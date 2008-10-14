@@ -39,6 +39,7 @@ import org.unicase.model.document.CompositeSection;
 import org.unicase.model.document.DocumentPackage;
 import org.unicase.model.document.LeafSection;
 import org.unicase.model.document.Section;
+import org.unicase.model.requirement.RequirementPackage;
 import org.unicase.ui.meeditor.MEEditor;
 import org.unicase.ui.meeditor.MEEditorInput;
 import org.unicase.workspace.ProjectSpace;
@@ -138,8 +139,12 @@ public class TestProjectGenerator {
 				if (MODELELEMENT_ECLASS.isSuperTypeOf(eClass)) {
 					if (!(eClass.isAbstract() || eClass.isInterface() || eClass
 							.equals(ModelPackage.eINSTANCE.getProject()))) {
-						// this can be instantiated
-						meNonAbstractClasses.add(eClass);
+						//FIXME: ZH TestProjectGenerator creates no Actors (because of EcoreUtil.Copy() problem)
+						if(!RequirementPackage.eINSTANCE.getActor().equals(eClass)){
+							// this can be instantiated
+							meNonAbstractClasses.add(eClass);
+						}
+						
 					}
 				} else {
 					if (!(eClass.isAbstract() || eClass.isInterface())) {
@@ -266,6 +271,10 @@ public class TestProjectGenerator {
 		if (SECTION_ECLASS.isSuperTypeOf(eClass)) {
 			return;
 		}
+		//FIXME: ZH TestProjectGenerator creates no Actors (because of EcoreUtil.Copy() problem)
+		if(RequirementPackage.eINSTANCE.getActor().equals(eClass)){
+			return;
+		}
 		// create the specified minimum number of instances of this EClass
 		for (int i = 0; i < numOfEachME; i++) {
 			EObject obj = createInstance(eClass, false);
@@ -330,7 +339,11 @@ public class TestProjectGenerator {
 				// i mean when you set a containment, it's opposite which is a
 				// container is also set.
 			} else {
-				// reference is neither containment, nor container
+				//FIXME: ZH TestProjectGenerator creates no Actors (because of EcoreUtil.Copy() problem)
+				if(ref.getEReferenceType().equals(RequirementPackage.eINSTANCE.getActor())){
+					// reference is neither containment, nor container
+					continue;
+				}
 				createNormalReference(me, ref, ref.getLowerBound(), ref
 						.getUpperBound());
 			}
@@ -631,6 +644,11 @@ public class TestProjectGenerator {
 	// a Section to be created. noSection parameter takes care of it.
 	private EObject createInstance(EClass eClass, boolean noSection) {
 		EObject obj = null;
+		//FIXME: ZH TestProjectGenerator creates no Actors (because of EcoreUtil.Copy() problem)
+		if(RequirementPackage.eINSTANCE.getActor().equals(eClass)){
+			return null;
+		}
+		
 		if (!(eClass.isAbstract() || eClass.isInterface())) {
 			obj = eClass.getEPackage().getEFactoryInstance().create(eClass);
 
@@ -671,6 +689,10 @@ public class TestProjectGenerator {
 		while (noSection && SECTION_ECLASS.isSuperTypeOf(eClass)) {
 			index = random.nextInt(meNonAbstractClasses.size());
 			eClass = meNonAbstractClasses.get(index);
+		}
+		//FIXME: ZH TestProjectGenerator creates no Actors (because of EcoreUtil.Copy() problem)
+		if(RequirementPackage.eINSTANCE.getActor().equals(eClass)){
+			return null;
 		}
 
 		me = eClass.getEPackage().getEFactoryInstance().create(eClass);
