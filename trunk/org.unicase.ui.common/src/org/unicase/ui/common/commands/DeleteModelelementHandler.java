@@ -101,8 +101,10 @@ public class DeleteModelelementHandler extends AbstractHandler {
 		List<IEditorReference> toCloseEditors = new ArrayList<IEditorReference>();
 		for (int i = 0; i < openEditors.length; i++) {
 			try {
-				if (openEditors[i].getEditorInput().getAdapter(
-						ModelElement.class).equals(me)) {
+				//JH: remove this hack, adapter is null if editor is mediagrameditor
+				Object adapter = openEditors[i].getEditorInput().getAdapter(
+						ModelElement.class);
+				if (adapter!=null && adapter.equals(me)) {
 					toCloseEditors.add(openEditors[i]);
 				}
 			} catch (PartInitException e) {
