@@ -127,9 +127,9 @@ public class DependencyCreateCommand extends CreateElementCommand {
 	 * @generated NOT
 	 */
 	/**
-	* {@inheritDoc}
-	* @see org.eclipse.gmf.runtime.emf.type.core.commands.CreateElementCommand#doDefaultElementCreation()
-	*/
+	 * {@inheritDoc}
+	 * @see org.eclipse.gmf.runtime.emf.type.core.commands.CreateElementCommand#doDefaultElementCreation()
+	 */
 	protected EObject doDefaultElementCreation() {
 		Dependency newElement = ClassesFactory.eINSTANCE.createDependency();
 		getContainer().getNewElements().add(newElement);

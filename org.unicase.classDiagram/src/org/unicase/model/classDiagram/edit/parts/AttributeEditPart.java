@@ -573,7 +573,8 @@ public class AttributeEditPart extends CompartmentEditPart implements
 		super.handleNotificationEvent(event);
 	}
 
-	private void refreshSemanticListeners(Notification event, ISemanticParser modelParser) {
+	private void refreshSemanticListeners(Notification event,
+			ISemanticParser modelParser) {
 		if (modelParser.areSemanticElementsAffected(null, event)) {
 			removeSemanticListeners();
 			if (resolveSemanticElement() != null) {

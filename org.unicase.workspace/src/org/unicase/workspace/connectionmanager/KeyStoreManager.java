@@ -10,7 +10,6 @@ import java.io.File;
 import java.io.FileInputStream;
 import java.io.FileNotFoundException;
 import java.io.FileOutputStream;
-import java.io.FileWriter;
 import java.io.IOException;
 import java.net.URL;
 import java.security.KeyStore;
@@ -22,7 +21,6 @@ import java.security.cert.CertificateFactory;
 import java.util.ArrayList;
 import java.util.Enumeration;
 
-import org.eclipse.core.internal.utils.FileUtil;
 import org.eclipse.core.runtime.FileLocator;
 import org.eclipse.core.runtime.Path;
 import org.eclipse.core.runtime.Platform;

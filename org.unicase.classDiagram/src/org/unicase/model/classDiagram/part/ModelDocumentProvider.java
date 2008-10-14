@@ -153,9 +153,9 @@ public class ModelDocumentProvider extends AbstractDocumentProvider implements
 	/**
 	 * @generated NOT
 	 * 
-	* {@inheritDoc}
-	* @see org.eclipse.gmf.runtime.diagram.ui.resources.editor.document.AbstractDocumentProvider#createEmptyDocument()
-	*/
+	 * {@inheritDoc}
+	 * @see org.eclipse.gmf.runtime.diagram.ui.resources.editor.document.AbstractDocumentProvider#createEmptyDocument()
+	 */
 	protected IDocument createEmptyDocument() {
 		DiagramDocument document = new DiagramDocument();
 		document.setEditingDomain(WorkspaceManager.getInstance()
@@ -218,9 +218,9 @@ public class ModelDocumentProvider extends AbstractDocumentProvider implements
 	 * @throws CoreException if an exceptional error occurs
 	 * 
 	 */
-	
-	protected void setDocumentContent(IDocument document, IEditorInput element) 
-		throws CoreException {
+
+	protected void setDocumentContent(IDocument document, IEditorInput element)
+			throws CoreException {
 		IDiagramDocument diagramDocument = (IDiagramDocument) document;
 		TransactionalEditingDomain domain = diagramDocument.getEditingDomain();
 		if (element instanceof FileEditorInput) {
@@ -269,7 +269,7 @@ public class ModelDocumentProvider extends AbstractDocumentProvider implements
 				}
 				throw new RuntimeException(
 						org.unicase.model.classDiagram.part.Messages.ModelDocumentProvider_NoDiagramInResourceError);
-			// BEGIN SUPRESS CATCH EXCEPTION
+				// BEGIN SUPRESS CATCH EXCEPTION
 			} catch (Exception e) {
 				CoreException thrownExcp = null;
 				if (e instanceof CoreException) {

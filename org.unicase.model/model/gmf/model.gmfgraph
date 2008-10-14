@@ -174,16 +174,34 @@
               name="PackageFigure_AuxLeftTab">
             <preferredSize
                 dx="1"
-                dy="30"/>
+                dy="23"/>
           </children>
           <children
               xsi:type="gmfgraph:Rectangle"
-              name="PackageFigure_AuxRightPadding"
+              name="PackageFigure_AuxLeftRightPadding"
               outline="false"
               fill="false">
             <preferredSize
                 dx="1"
-                dy="30"/>
+                dy="23"/>
+          </children>
+          <children
+              xsi:type="gmfgraph:Rectangle"
+              name="PackageFigure_AuxRightLeftPadding"
+              outline="false"
+              fill="false">
+            <preferredSize
+                dx="1"
+                dy="23"/>
+          </children>
+          <children
+              xsi:type="gmfgraph:Rectangle"
+              name="PackageFigure_AuxRightRightPadding"
+              outline="false"
+              fill="false">
+            <preferredSize
+                dx="1"
+                dy="23"/>
           </children>
         </children>
         <children
