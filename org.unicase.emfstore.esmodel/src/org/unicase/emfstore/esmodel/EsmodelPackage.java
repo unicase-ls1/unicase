@@ -301,6 +301,43 @@ public interface EsmodelPackage extends EPackage {
 	int VERSION_INFO_FEATURE_COUNT = 1;
 
 	/**
+	 * The meta object id for the '{@link org.unicase.emfstore.esmodel.impl.ClientVersionInfoImpl <em>Client Version Info</em>}' class.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @see org.unicase.emfstore.esmodel.impl.ClientVersionInfoImpl
+	 * @see org.unicase.emfstore.esmodel.impl.EsmodelPackageImpl#getClientVersionInfo()
+	 * @generated
+	 */
+	int CLIENT_VERSION_INFO = 6;
+
+	/**
+	 * The feature id for the '<em><b>Version</b></em>' attribute.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 * @ordered
+	 */
+	int CLIENT_VERSION_INFO__VERSION = 0;
+
+	/**
+	 * The feature id for the '<em><b>Name</b></em>' attribute.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 * @ordered
+	 */
+	int CLIENT_VERSION_INFO__NAME = 1;
+
+	/**
+	 * The number of structural features of the '<em>Client Version Info</em>' class.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 * @ordered
+	 */
+	int CLIENT_VERSION_INFO_FEATURE_COUNT = 2;
+
+	/**
 	 * Returns the meta object for class '{@link org.unicase.emfstore.esmodel.ProjectHistory <em>Project History</em>}'.
 	 * <!-- begin-user-doc --> <!-- end-user-doc -->
 	 * @return the meta object for class '<em>Project History</em>'.
@@ -494,6 +531,38 @@ public interface EsmodelPackage extends EPackage {
 	EAttribute getVersionInfo_EmfStoreVersionString();
 
 	/**
+	 * Returns the meta object for class '{@link org.unicase.emfstore.esmodel.ClientVersionInfo <em>Client Version Info</em>}'.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @return the meta object for class '<em>Client Version Info</em>'.
+	 * @see org.unicase.emfstore.esmodel.ClientVersionInfo
+	 * @generated
+	 */
+	EClass getClientVersionInfo();
+
+	/**
+	 * Returns the meta object for the attribute '{@link org.unicase.emfstore.esmodel.ClientVersionInfo#getVersion <em>Version</em>}'.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @return the meta object for the attribute '<em>Version</em>'.
+	 * @see org.unicase.emfstore.esmodel.ClientVersionInfo#getVersion()
+	 * @see #getClientVersionInfo()
+	 * @generated
+	 */
+	EAttribute getClientVersionInfo_Version();
+
+	/**
+	 * Returns the meta object for the attribute '{@link org.unicase.emfstore.esmodel.ClientVersionInfo#getName <em>Name</em>}'.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @return the meta object for the attribute '<em>Name</em>'.
+	 * @see org.unicase.emfstore.esmodel.ClientVersionInfo#getName()
+	 * @see #getClientVersionInfo()
+	 * @generated
+	 */
+	EAttribute getClientVersionInfo_Name();
+
+	/**
 	 * Returns the factory that creates the instances of the model. <!--
 	 * begin-user-doc --> <!-- end-user-doc -->
 	 * 
@@ -679,6 +748,34 @@ public interface EsmodelPackage extends EPackage {
 		 */
 		EAttribute VERSION_INFO__EMF_STORE_VERSION_STRING = eINSTANCE
 				.getVersionInfo_EmfStoreVersionString();
+
+		/**
+		 * The meta object literal for the '{@link org.unicase.emfstore.esmodel.impl.ClientVersionInfoImpl <em>Client Version Info</em>}' class.
+		 * <!-- begin-user-doc -->
+		 * <!-- end-user-doc -->
+		 * @see org.unicase.emfstore.esmodel.impl.ClientVersionInfoImpl
+		 * @see org.unicase.emfstore.esmodel.impl.EsmodelPackageImpl#getClientVersionInfo()
+		 * @generated
+		 */
+		EClass CLIENT_VERSION_INFO = eINSTANCE.getClientVersionInfo();
+
+		/**
+		 * The meta object literal for the '<em><b>Version</b></em>' attribute feature.
+		 * <!-- begin-user-doc -->
+		 * <!-- end-user-doc -->
+		 * @generated
+		 */
+		EAttribute CLIENT_VERSION_INFO__VERSION = eINSTANCE
+				.getClientVersionInfo_Version();
+
+		/**
+		 * The meta object literal for the '<em><b>Name</b></em>' attribute feature.
+		 * <!-- begin-user-doc -->
+		 * <!-- end-user-doc -->
+		 * @generated
+		 */
+		EAttribute CLIENT_VERSION_INFO__NAME = eINSTANCE
+				.getClientVersionInfo_Name();
 
 	}
 

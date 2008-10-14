@@ -79,6 +79,15 @@ public interface EsmodelFactory extends EFactory {
 	VersionInfo createVersionInfo();
 
 	/**
+	 * Returns a new object of class '<em>Client Version Info</em>'.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @return a new object of class '<em>Client Version Info</em>'.
+	 * @generated
+	 */
+	ClientVersionInfo createClientVersionInfo();
+
+	/**
 	 * Returns the package supported by this factory.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->

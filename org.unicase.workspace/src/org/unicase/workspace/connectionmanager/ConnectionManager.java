@@ -8,6 +8,7 @@ package org.unicase.workspace.connectionmanager;
 
 import org.unicase.emfstore.EmfStore;
 import org.unicase.emfstore.accesscontrol.AccessControlException;
+import org.unicase.emfstore.esmodel.ClientVersionInfo;
 import org.unicase.emfstore.esmodel.SessionId;
 import org.unicase.emfstore.exceptions.ConnectionException;
 import org.unicase.workspace.ServerInfo;
@@ -33,6 +34,8 @@ public interface ConnectionManager extends EmfStore {
 	 *            the password
 	 * @param severInfo
 	 *            the server info for the server to log into
+	 * @param clientVersionInfo
+	 *            the client's version
 	 * @return a session id that can be used for later authentication
 	 * @throws ConnectionException
 	 *             if the connection can not be established
@@ -41,6 +44,7 @@ public interface ConnectionManager extends EmfStore {
 	 * 
 	 * @generated NOT
 	 */
-	SessionId logIn(String username, String password, ServerInfo severInfo)
-			throws ConnectionException, AccessControlException;
+	SessionId logIn(String username, String password, ServerInfo severInfo,
+			ClientVersionInfo clientVersionInfo) throws ConnectionException,
+			AccessControlException;
 }
