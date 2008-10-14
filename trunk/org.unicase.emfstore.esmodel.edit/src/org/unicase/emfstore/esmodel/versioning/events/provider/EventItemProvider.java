@@ -1,16 +1,17 @@
 /**
- * <copyright> Copyright (c) 2008 Jonas Helming, Maximilian Koegel. All rights reserved. This program and the accompanying materials are made available under the terms of the Eclipse Public License v1.0 which accompanies this distribution, and is available at http://www.eclipse.org/legal/epl-v10.html
- * </copyright>
+ * <copyright>Copyright (c) 2008 Jonas Helming, Maximilian Koegel. All rights reserved. This program and the accompanying materials are made available under the terms of the Eclipse Public License v1.0 which accompanies this distribution, and is available at http://www.eclipse.org/legal/epl-v10.html</copyright>
  *
  * $Id$
  */
-package org.unicase.emfstore.esmodel.versioning.operations.provider;
+package org.unicase.emfstore.esmodel.versioning.events.provider;
 
 import java.util.Collection;
+import java.util.Date;
 import java.util.List;
 
 import org.eclipse.emf.common.notify.AdapterFactory;
 import org.eclipse.emf.common.notify.Notification;
+import org.eclipse.emf.common.util.ResourceLocator;
 import org.eclipse.emf.edit.provider.ComposeableAdapterFactory;
 import org.eclipse.emf.edit.provider.IEditingDomainItemProvider;
 import org.eclipse.emf.edit.provider.IItemLabelProvider;
@@ -19,18 +20,20 @@ import org.eclipse.emf.edit.provider.IItemPropertySource;
 import org.eclipse.emf.edit.provider.IStructuredItemContentProvider;
 import org.eclipse.emf.edit.provider.ITreeItemContentProvider;
 import org.eclipse.emf.edit.provider.ItemPropertyDescriptor;
+import org.eclipse.emf.edit.provider.ItemProviderAdapter;
 import org.eclipse.emf.edit.provider.ViewerNotification;
-import org.unicase.emfstore.esmodel.versioning.operations.OperationsPackage;
-import org.unicase.emfstore.esmodel.versioning.operations.ReadOperation;
+import org.unicase.emfstore.esmodel.provider.EsmodelEditPlugin;
+import org.unicase.emfstore.esmodel.versioning.events.Event;
+import org.unicase.emfstore.esmodel.versioning.events.EventsPackage;
 
 /**
- * This is the item provider adapter for a {@link org.unicase.emfstore.esmodel.versioning.operations.ReadOperation} object.
+ * This is the item provider adapter for a {@link org.unicase.emfstore.esmodel.versioning.events.Event} object.
  * <!-- begin-user-doc -->
  * <!-- end-user-doc -->
  * @generated
  */
-public class ReadOperationItemProvider extends AbstractOperationItemProvider
-		implements IEditingDomainItemProvider, IStructuredItemContentProvider,
+public class EventItemProvider extends ItemProviderAdapter implements
+		IEditingDomainItemProvider, IStructuredItemContentProvider,
 		ITreeItemContentProvider, IItemLabelProvider, IItemPropertySource {
 	/**
 	 * This constructs an instance from a factory and a notifier.
@@ -38,7 +41,7 @@ public class ReadOperationItemProvider extends AbstractOperationItemProvider
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
-	public ReadOperationItemProvider(AdapterFactory adapterFactory) {
+	public EventItemProvider(AdapterFactory adapterFactory) {
 		super(adapterFactory);
 	}
 
@@ -53,31 +56,30 @@ public class ReadOperationItemProvider extends AbstractOperationItemProvider
 		if (itemPropertyDescriptors == null) {
 			super.getPropertyDescriptors(object);
 
-			addDatePropertyDescriptor(object);
+			addTimestampPropertyDescriptor(object);
 		}
 		return itemPropertyDescriptors;
 	}
 
 	/**
-	 * This adds a property descriptor for the Date feature.
+	 * This adds a property descriptor for the Timestamp feature.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
-	protected void addDatePropertyDescriptor(Object object) {
+	protected void addTimestampPropertyDescriptor(Object object) {
 		itemPropertyDescriptors.add(createItemPropertyDescriptor(
 				((ComposeableAdapterFactory) adapterFactory)
 						.getRootAdapterFactory(), getResourceLocator(),
-				getString("_UI_ReadOperation_date_feature"), getString(
+				getString("_UI_Event_timestamp_feature"), getString(
 						"_UI_PropertyDescriptor_description",
-						"_UI_ReadOperation_date_feature",
-						"_UI_ReadOperation_type"),
-				OperationsPackage.Literals.READ_OPERATION__DATE, true, false,
-				false, ItemPropertyDescriptor.GENERIC_VALUE_IMAGE, null, null));
+						"_UI_Event_timestamp_feature", "_UI_Event_type"),
+				EventsPackage.Literals.EVENT__TIMESTAMP, true, false, false,
+				ItemPropertyDescriptor.GENERIC_VALUE_IMAGE, null, null));
 	}
 
 	/**
-	 * This returns ReadOperation.gif.
+	 * This returns Event.gif.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
 	 * @generated
@@ -85,7 +87,7 @@ public class ReadOperationItemProvider extends AbstractOperationItemProvider
 	@Override
 	public Object getImage(Object object) {
 		return overlayImage(object, getResourceLocator().getImage(
-				"full/obj16/ReadOperation"));
+				"full/obj16/Event"));
 	}
 
 	/**
@@ -96,9 +98,10 @@ public class ReadOperationItemProvider extends AbstractOperationItemProvider
 	 */
 	@Override
 	public String getText(Object object) {
-		String label = ((ReadOperation) object).getName();
-		return label == null || label.length() == 0 ? getString("_UI_ReadOperation_type")
-				: getString("_UI_ReadOperation_type") + " " + label;
+		Date labelValue = ((Event) object).getTimestamp();
+		String label = labelValue == null ? null : labelValue.toString();
+		return label == null || label.length() == 0 ? getString("_UI_Event_type")
+				: getString("_UI_Event_type") + " " + label;
 	}
 
 	/**
@@ -112,8 +115,8 @@ public class ReadOperationItemProvider extends AbstractOperationItemProvider
 	public void notifyChanged(Notification notification) {
 		updateChildren(notification);
 
-		switch (notification.getFeatureID(ReadOperation.class)) {
-		case OperationsPackage.READ_OPERATION__DATE:
+		switch (notification.getFeatureID(Event.class)) {
+		case EventsPackage.EVENT__TIMESTAMP:
 			fireNotifyChanged(new ViewerNotification(notification, notification
 					.getNotifier(), false, true));
 			return;
@@ -132,6 +135,17 @@ public class ReadOperationItemProvider extends AbstractOperationItemProvider
 	protected void collectNewChildDescriptors(
 			Collection<Object> newChildDescriptors, Object object) {
 		super.collectNewChildDescriptors(newChildDescriptors, object);
+	}
+
+	/**
+	 * Return the resource locator for this item provider's resources.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 */
+	@Override
+	public ResourceLocator getResourceLocator() {
+		return EsmodelEditPlugin.INSTANCE;
 	}
 
 }

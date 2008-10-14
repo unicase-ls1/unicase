@@ -7,10 +7,6 @@
 package org.unicase.emfstore.esmodel.versioning.impl;
 
 import java.util.Collection;
-import java.util.HashMap;
-import java.util.HashSet;
-import java.util.Map;
-import java.util.Set;
 
 import org.eclipse.emf.common.notify.NotificationChain;
 import org.eclipse.emf.common.util.EList;
@@ -22,14 +18,9 @@ import org.eclipse.emf.ecore.util.InternalEList;
 import org.unicase.emfstore.esmodel.versioning.ChangePackage;
 import org.unicase.emfstore.esmodel.versioning.VersioningFactory;
 import org.unicase.emfstore.esmodel.versioning.VersioningPackage;
+import org.unicase.emfstore.esmodel.versioning.events.Event;
 import org.unicase.emfstore.esmodel.versioning.operations.AbstractOperation;
-import org.unicase.emfstore.esmodel.versioning.operations.AttributeOperation;
-import org.unicase.emfstore.esmodel.versioning.operations.CompositeOperation;
-import org.unicase.emfstore.esmodel.versioning.operations.CreateDeleteOperation;
-import org.unicase.emfstore.esmodel.versioning.operations.MultiReferenceOperation;
-import org.unicase.emfstore.esmodel.versioning.operations.ReferenceOperation;
-import org.unicase.emfstore.esmodel.versioning.operations.SingleReferenceOperation;
-import org.unicase.model.ModelElementId;
+import org.unicase.emfstore.esmodel.versioning.operations.util.OperationsCannonizer;
 import org.unicase.model.Project;
 
 /**
@@ -39,6 +30,7 @@ import org.unicase.model.Project;
  * The following features are implemented:
  * <ul>
  *   <li>{@link org.unicase.emfstore.esmodel.versioning.impl.ChangePackageImpl#getOperations <em>Operations</em>}</li>
+ *   <li>{@link org.unicase.emfstore.esmodel.versioning.impl.ChangePackageImpl#getEvents <em>Events</em>}</li>
  * </ul>
  * </p>
  *
@@ -53,6 +45,16 @@ public class ChangePackageImpl extends EObjectImpl implements ChangePackage {
 	 * @ordered
 	 */
 	protected EList<AbstractOperation> operations;
+
+	/**
+	 * The cached value of the '{@link #getEvents() <em>Events</em>}' containment reference list.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @see #getEvents()
+	 * @generated
+	 * @ordered
+	 */
+	protected EList<Event> events;
 
 	/**
 	 * <!-- begin-user-doc --> <!-- end-user-doc -->
@@ -82,6 +84,19 @@ public class ChangePackageImpl extends EObjectImpl implements ChangePackage {
 					VersioningPackage.CHANGE_PACKAGE__OPERATIONS);
 		}
 		return operations;
+	}
+
+	/**
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 */
+	public EList<Event> getEvents() {
+		if (events == null) {
+			events = new EObjectContainmentEList.Resolving<Event>(Event.class,
+					this, VersioningPackage.CHANGE_PACKAGE__EVENTS);
+		}
+		return events;
 	}
 
 	// begin of custom code
@@ -132,278 +147,7 @@ public class ChangePackageImpl extends EObjectImpl implements ChangePackage {
 	 * @generated NOT
 	 */
 	public void cannonize() {
-		Map<ModelElementId, AbstractOperation> deletedElements = new HashMap<ModelElementId, AbstractOperation>();
-		Map<String, AttributeOperation> changedAttributes = new HashMap<String, AttributeOperation>();
-		HashMap<ModelElementId, Set<AttributeOperation>> modelElementAttributeChangeMap = new HashMap<ModelElementId, Set<AttributeOperation>>();
-		Map<String, ReferenceOperation> changedReferences = new HashMap<String, ReferenceOperation>();
-
-		Set<AbstractOperation> operationsToBeDeleted = new HashSet<AbstractOperation>();
-
-		EList<AbstractOperation> list = getOperations();
-		for (int i = list.size() - 1; i >= 0; i--) {
-			AbstractOperation operation = list.get(i);
-			if (operation instanceof CompositeOperation) {
-				// FIXME MK: check if composite will be empty after cannonize:
-				// FIXME MK: check if composite in context of cp
-				((CompositeOperation) operation).cannonize();
-				continue;
-			}
-
-			ModelElementId modelElementId = operation.getModelElementId();
-
-			if (operation instanceof CreateDeleteOperation) {
-				handleCreateDeleteOperation(deletedElements,
-						modelElementAttributeChangeMap, operationsToBeDeleted,
-						operation, modelElementId);
-				continue;
-			}
-			if (operation instanceof AttributeOperation) {
-				if (deletedElements.keySet().contains(modelElementId)) {
-					operationsToBeDeleted.add(operation);
-					continue;
-				}
-
-				handleAttributeOperation(changedAttributes,
-						modelElementAttributeChangeMap, operationsToBeDeleted,
-						operation);
-				continue;
-			}
-			if (operation instanceof SingleReferenceOperation) {
-				handleSingleRefOperation((SingleReferenceOperation) operation,
-						changedReferences, operationsToBeDeleted);
-				continue;
-			}
-
-			if (operation instanceof MultiReferenceOperation) {
-				handleMultiRefOperation((MultiReferenceOperation) operation,
-						changedReferences, operationsToBeDeleted);
-				continue;
-			}
-			// nop
-			// we do not aggregate MultiReferenceOperations since this might be
-			// confusing for the user
-			// we cannot aggregate operations we do not know
-		}
-		// remove all obsolete operations
-		list.removeAll(operationsToBeDeleted);
-	}
-
-	private void aggregateMultiReferenceOperations(
-			MultiReferenceOperation multiReferenceOperation,
-			Map<String, ReferenceOperation> changedReferences,
-			Set<AbstractOperation> operationsToBeDeleted, String key) {
-		// aggregate the two multi reference changes if possible
-		MultiReferenceOperation lastMultiReferenceOperation = (MultiReferenceOperation) changedReferences
-				.get(key);
-		// the two ops must be both add or both remove
-		if (multiReferenceOperation.isAdd() == lastMultiReferenceOperation
-				.isAdd()) {
-
-			int indexDifference = lastMultiReferenceOperation.getIndex()
-					- multiReferenceOperation.getIndex();
-			if (indexDifference > 0
-					&& indexDifference < multiReferenceOperation
-							.getReferencedModelElements().size()) {
-				multiReferenceOperation.getReferencedModelElements().addAll(
-						lastMultiReferenceOperation.getIndex(),
-						lastMultiReferenceOperation
-								.getReferencedModelElements());
-				changedReferences.put(key, multiReferenceOperation);
-				operationsToBeDeleted.add(lastMultiReferenceOperation);
-				return;
-			}
-		}
-		changedReferences.put(key, multiReferenceOperation);
-	}
-
-	private void handleMultiRefOperation(
-			MultiReferenceOperation multiReferenceOperation,
-			Map<String, ReferenceOperation> changedReferences,
-			Set<AbstractOperation> operationsToBeDeleted) {
-		String key = multiReferenceOperation.getModelElementId()
-				+ multiReferenceOperation.getFeatureName();
-
-		if (changedReferences.containsKey(key)) {
-			aggregateMultiReferenceOperations(multiReferenceOperation,
-					changedReferences, operationsToBeDeleted, key);
-			return;
-		} else if (multiReferenceOperation.isBidirectional()) {
-			for (ModelElementId referencedId : multiReferenceOperation
-					.getReferencedModelElements()) {
-				String oppositeKey = referencedId
-						+ multiReferenceOperation.getOppositeFeatureName();
-				if (changedReferences.containsKey(oppositeKey)) {
-					ReferenceOperation oppositeOperation = changedReferences
-							.get(oppositeKey);
-					if (oppositeOperation instanceof SingleReferenceOperation) {
-						aggregateMultiwithSingleReference(
-								multiReferenceOperation, changedReferences,
-								operationsToBeDeleted, key, referencedId,
-								oppositeKey, oppositeOperation);
-						return;
-					} else {
-						// opposite is multiref
-						aggregateMultiwithMultiReference(
-								multiReferenceOperation,
-								(MultiReferenceOperation) oppositeOperation,
-								changedReferences, operationsToBeDeleted, key,
-								oppositeKey);
-						return;
-					}
-				}
-			}
-		}
-		changedReferences.put(key, multiReferenceOperation);
-	}
-
-	private void aggregateMultiwithMultiReference(
-			MultiReferenceOperation multiReferenceOperation,
-			MultiReferenceOperation oppositeMultiOperation,
-			Map<String, ReferenceOperation> changedReferences,
-			Set<AbstractOperation> operationsToBeDeleted, String key,
-			String oppositeKey) {
-		if (oppositeMultiOperation.isAdd() == multiReferenceOperation.isAdd()) {
-			if (oppositeMultiOperation.getReferencedModelElements().size() == 1) {
-				ModelElementId oppositeReferencedModelElementId = oppositeMultiOperation
-						.getReferencedModelElements().get(0);
-				if (oppositeReferencedModelElementId
-						.equals(multiReferenceOperation.getModelElementId())) {
-					operationsToBeDeleted.add(oppositeMultiOperation);
-					changedReferences.remove(oppositeKey);
-				}
-				changedReferences.put(key, multiReferenceOperation);
-				return;
-			} else if (multiReferenceOperation.getReferencedModelElements()
-					.size() == 1) {
-				ModelElementId referencedModelElementId = multiReferenceOperation
-						.getReferencedModelElements().get(0);
-				if (referencedModelElementId.equals(oppositeMultiOperation
-						.getModelElementId())) {
-					operationsToBeDeleted.add(multiReferenceOperation);
-					return;
-				}
-				changedReferences.put(key, multiReferenceOperation);
-				return;
-			}
-		}
-	}
-
-	private void aggregateMultiwithSingleReference(
-			MultiReferenceOperation multiReferenceOperation,
-			Map<String, ReferenceOperation> changedReferences,
-			Set<AbstractOperation> operationsToBeDeleted, String key,
-			ModelElementId referencedId, String oppositeKey,
-			ReferenceOperation oppositeOperation) {
-		SingleReferenceOperation oppositeSingleOperation = (SingleReferenceOperation) oppositeOperation;
-		// single operation on opposite is about same
-		// remove change
-		if (oppositeSingleOperation.getNewValue() == null
-				&& referencedId.equals(oppositeSingleOperation
-						.getModelElementId())
-				&& multiReferenceOperation.getModelElementId().equals(
-						oppositeSingleOperation.getOldValue())
-				&& !multiReferenceOperation.isAdd()) {
-			operationsToBeDeleted.add(oppositeSingleOperation);
-			changedReferences.remove(oppositeKey);
-		}
-		// single operation on opposite is about same
-		// add change
-		else if (oppositeSingleOperation.getOldValue() == null
-				&& referencedId.equals(oppositeSingleOperation
-						.getModelElementId())
-				&& multiReferenceOperation.getModelElementId().equals(
-						oppositeSingleOperation.getNewValue())
-				&& multiReferenceOperation.isAdd()) {
-			operationsToBeDeleted.add(oppositeSingleOperation);
-			changedReferences.remove(oppositeKey);
-		}
-		changedReferences.put(key, multiReferenceOperation);
-	}
-
-	private void handleSingleRefOperation(
-			SingleReferenceOperation singleReferenceOperation,
-			Map<String, ReferenceOperation> changedReferences,
-			Set<AbstractOperation> operationsToBeDeleted) {
-		String key = singleReferenceOperation.getModelElementId()
-				+ singleReferenceOperation.getFeatureName();
-
-		if (changedReferences.containsKey(key)) {
-			// aggregate the two single reference changes
-			SingleReferenceOperation lastSingleReferenceOperation = (SingleReferenceOperation) changedReferences
-					.get(key);
-			lastSingleReferenceOperation.setOldValue(singleReferenceOperation
-					.getOldValue());
-			operationsToBeDeleted.add(singleReferenceOperation);
-			return;
-		} else if (singleReferenceOperation.isBidirectional()) {
-			String oppositeKey = singleReferenceOperation.getOldValue()
-					+ singleReferenceOperation.getOppositeFeatureName();
-			if (changedReferences.containsKey(oppositeKey)) {
-				ReferenceOperation oppositeOperation = changedReferences
-						.get(oppositeKey);
-				if (singleReferenceOperation.getOldValue().equals(
-						oppositeOperation.getModelElementId())
-						&& (singleReferenceOperation.getNewValue() == null)) {
-					operationsToBeDeleted.add(singleReferenceOperation);
-					return;
-				}
-			}
-		}
-		changedReferences.put(key, singleReferenceOperation);
-	}
-
-	private void handleAttributeOperation(
-			Map<String, AttributeOperation> changedAttributes,
-			HashMap<ModelElementId, Set<AttributeOperation>> modelElementAttributeChangeMap,
-			Set<AbstractOperation> operationsToBeDeleted,
-			AbstractOperation operation) {
-		AttributeOperation attributeOperation = (AttributeOperation) operation;
-		String key = attributeOperation.getModelElementId()
-				+ attributeOperation.getFeatureName();
-		if (changedAttributes.containsKey(key)) {
-			// aggregate the two attribute changes
-			AttributeOperation lastAttributeOperation = changedAttributes
-					.get(key);
-			lastAttributeOperation
-					.setOldValue(attributeOperation.getOldValue());
-			operationsToBeDeleted.add(attributeOperation);
-		} else {
-			changedAttributes.put(key, attributeOperation);
-			Set<AttributeOperation> set = modelElementAttributeChangeMap
-					.get(attributeOperation.getModelElementId());
-			if (set == null) {
-				set = new HashSet<AttributeOperation>();
-				modelElementAttributeChangeMap.put(attributeOperation
-						.getModelElementId(), set);
-			}
-			set.add(attributeOperation);
-		}
-	}
-
-	private void handleCreateDeleteOperation(
-			Map<ModelElementId, AbstractOperation> deletedElements,
-			HashMap<ModelElementId, Set<AttributeOperation>> modelElementAttributeChangeMap,
-			Set<AbstractOperation> operationsToBeDeleted,
-			AbstractOperation operation, ModelElementId modelElementId) {
-		boolean isDelete = ((CreateDeleteOperation) operation).isDelete();
-		if (isDelete) {
-			deletedElements.put(modelElementId, operation);
-		} else {
-			if (deletedElements.keySet().contains(modelElementId)) {
-				operationsToBeDeleted.add(operation);
-			} else {
-				Set<AttributeOperation> set = modelElementAttributeChangeMap
-						.get(modelElementId);
-				if (set != null) {
-					for (AttributeOperation attributeOperation : set) {
-						attributeOperation
-								.apply(((CreateDeleteOperation) operation)
-										.getModelElement());
-						operationsToBeDeleted.add(attributeOperation);
-					}
-				}
-			}
-		}
+		OperationsCannonizer.cannonize(getOperations());
 	}
 
 	// end of custom code
@@ -418,6 +162,8 @@ public class ChangePackageImpl extends EObjectImpl implements ChangePackage {
 		case VersioningPackage.CHANGE_PACKAGE__OPERATIONS:
 			return ((InternalEList<?>) getOperations()).basicRemove(otherEnd,
 					msgs);
+		case VersioningPackage.CHANGE_PACKAGE__EVENTS:
+			return ((InternalEList<?>) getEvents()).basicRemove(otherEnd, msgs);
 		}
 		return super.eInverseRemove(otherEnd, featureID, msgs);
 	}
@@ -433,6 +179,8 @@ public class ChangePackageImpl extends EObjectImpl implements ChangePackage {
 		switch (featureID) {
 		case VersioningPackage.CHANGE_PACKAGE__OPERATIONS:
 			return getOperations();
+		case VersioningPackage.CHANGE_PACKAGE__EVENTS:
+			return getEvents();
 		}
 		return super.eGet(featureID, resolve, coreType);
 	}
@@ -450,6 +198,10 @@ public class ChangePackageImpl extends EObjectImpl implements ChangePackage {
 			getOperations().addAll(
 					(Collection<? extends AbstractOperation>) newValue);
 			return;
+		case VersioningPackage.CHANGE_PACKAGE__EVENTS:
+			getEvents().clear();
+			getEvents().addAll((Collection<? extends Event>) newValue);
+			return;
 		}
 		super.eSet(featureID, newValue);
 	}
@@ -464,6 +216,9 @@ public class ChangePackageImpl extends EObjectImpl implements ChangePackage {
 		case VersioningPackage.CHANGE_PACKAGE__OPERATIONS:
 			getOperations().clear();
 			return;
+		case VersioningPackage.CHANGE_PACKAGE__EVENTS:
+			getEvents().clear();
+			return;
 		}
 		super.eUnset(featureID);
 	}
@@ -477,6 +232,8 @@ public class ChangePackageImpl extends EObjectImpl implements ChangePackage {
 		switch (featureID) {
 		case VersioningPackage.CHANGE_PACKAGE__OPERATIONS:
 			return operations != null && !operations.isEmpty();
+		case VersioningPackage.CHANGE_PACKAGE__EVENTS:
+			return events != null && !events.isEmpty();
 		}
 		return super.eIsSet(featureID);
 	}

@@ -24,6 +24,7 @@ import org.eclipse.emf.edit.provider.ViewerNotification;
 import org.unicase.emfstore.esmodel.provider.EsmodelEditPlugin;
 import org.unicase.emfstore.esmodel.versioning.ChangePackage;
 import org.unicase.emfstore.esmodel.versioning.VersioningPackage;
+import org.unicase.emfstore.esmodel.versioning.events.EventsFactory;
 import org.unicase.emfstore.esmodel.versioning.operations.OperationsFactory;
 
 /**
@@ -75,6 +76,8 @@ public class ChangePackageItemProvider extends ItemProviderAdapter implements
 			super.getChildrenFeatures(object);
 			childrenFeatures
 					.add(VersioningPackage.Literals.CHANGE_PACKAGE__OPERATIONS);
+			childrenFeatures
+					.add(VersioningPackage.Literals.CHANGE_PACKAGE__EVENTS);
 		}
 		return childrenFeatures;
 	}
@@ -128,6 +131,7 @@ public class ChangePackageItemProvider extends ItemProviderAdapter implements
 
 		switch (notification.getFeatureID(ChangePackage.class)) {
 		case VersioningPackage.CHANGE_PACKAGE__OPERATIONS:
+		case VersioningPackage.CHANGE_PACKAGE__EVENTS:
 			fireNotifyChanged(new ViewerNotification(notification, notification
 					.getNotifier(), true, false));
 			return;
@@ -179,10 +183,6 @@ public class ChangePackageItemProvider extends ItemProviderAdapter implements
 
 		newChildDescriptors.add(createChildParameter(
 				VersioningPackage.Literals.CHANGE_PACKAGE__OPERATIONS,
-				OperationsFactory.eINSTANCE.createReadOperation()));
-
-		newChildDescriptors.add(createChildParameter(
-				VersioningPackage.Literals.CHANGE_PACKAGE__OPERATIONS,
 				OperationsFactory.eINSTANCE.createDiagramLayoutOperation()));
 
 		newChildDescriptors
@@ -190,6 +190,22 @@ public class ChangePackageItemProvider extends ItemProviderAdapter implements
 						VersioningPackage.Literals.CHANGE_PACKAGE__OPERATIONS,
 						OperationsFactory.eINSTANCE
 								.createMultiAttributeMoveOperation()));
+
+		newChildDescriptors.add(createChildParameter(
+				VersioningPackage.Literals.CHANGE_PACKAGE__EVENTS,
+				EventsFactory.eINSTANCE.createEvent()));
+
+		newChildDescriptors.add(createChildParameter(
+				VersioningPackage.Literals.CHANGE_PACKAGE__EVENTS,
+				EventsFactory.eINSTANCE.createReadEvent()));
+
+		newChildDescriptors.add(createChildParameter(
+				VersioningPackage.Literals.CHANGE_PACKAGE__EVENTS,
+				EventsFactory.eINSTANCE.createMergeEvent()));
+
+		newChildDescriptors.add(createChildParameter(
+				VersioningPackage.Literals.CHANGE_PACKAGE__EVENTS,
+				EventsFactory.eINSTANCE.createCheckoutEvent()));
 	}
 
 	/**

@@ -899,70 +899,6 @@ public interface OperationsPackage extends EPackage {
 	int MULTI_ATTRIBUTE_OPERATION_FEATURE_COUNT = FEATURE_OPERATION_FEATURE_COUNT + 3;
 
 	/**
-	 * The meta object id for the '{@link org.unicase.emfstore.esmodel.versioning.operations.impl.ReadOperationImpl <em>Read Operation</em>}' class.
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
-	 * @see org.unicase.emfstore.esmodel.versioning.operations.impl.ReadOperationImpl
-	 * @see org.unicase.emfstore.esmodel.versioning.operations.impl.OperationsPackageImpl#getReadOperation()
-	 * @generated
-	 */
-	int READ_OPERATION = 10;
-
-	/**
-	 * The feature id for the '<em><b>Name</b></em>' attribute.
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
-	 * @generated
-	 * @ordered
-	 */
-	int READ_OPERATION__NAME = ABSTRACT_OPERATION__NAME;
-
-	/**
-	 * The feature id for the '<em><b>Description</b></em>' attribute.
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
-	 * @generated
-	 * @ordered
-	 */
-	int READ_OPERATION__DESCRIPTION = ABSTRACT_OPERATION__DESCRIPTION;
-
-	/**
-	 * The feature id for the '<em><b>Model Element Id</b></em>' containment reference.
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
-	 * @generated
-	 * @ordered
-	 */
-	int READ_OPERATION__MODEL_ELEMENT_ID = ABSTRACT_OPERATION__MODEL_ELEMENT_ID;
-
-	/**
-	 * The feature id for the '<em><b>Accepted</b></em>' attribute.
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
-	 * @generated
-	 * @ordered
-	 */
-	int READ_OPERATION__ACCEPTED = ABSTRACT_OPERATION__ACCEPTED;
-
-	/**
-	 * The feature id for the '<em><b>Date</b></em>' attribute.
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
-	 * @generated
-	 * @ordered
-	 */
-	int READ_OPERATION__DATE = ABSTRACT_OPERATION_FEATURE_COUNT + 0;
-
-	/**
-	 * The number of structural features of the '<em>Read Operation</em>' class.
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
-	 * @generated
-	 * @ordered
-	 */
-	int READ_OPERATION_FEATURE_COUNT = ABSTRACT_OPERATION_FEATURE_COUNT + 1;
-
-	/**
 	 * The meta object id for the '{@link org.unicase.emfstore.esmodel.versioning.operations.impl.DiagramLayoutOperationImpl <em>Diagram Layout Operation</em>}' class.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
@@ -970,7 +906,7 @@ public interface OperationsPackage extends EPackage {
 	 * @see org.unicase.emfstore.esmodel.versioning.operations.impl.OperationsPackageImpl#getDiagramLayoutOperation()
 	 * @generated
 	 */
-	int DIAGRAM_LAYOUT_OPERATION = 11;
+	int DIAGRAM_LAYOUT_OPERATION = 10;
 
 	/**
 	 * The feature id for the '<em><b>Name</b></em>' attribute.
@@ -1052,7 +988,7 @@ public interface OperationsPackage extends EPackage {
 	 * @see org.unicase.emfstore.esmodel.versioning.operations.impl.OperationsPackageImpl#getMultiAttributeMoveOperation()
 	 * @generated
 	 */
-	int MULTI_ATTRIBUTE_MOVE_OPERATION = 12;
+	int MULTI_ATTRIBUTE_MOVE_OPERATION = 11;
 
 	/**
 	 * The feature id for the '<em><b>Name</b></em>' attribute.
@@ -1513,27 +1449,6 @@ public interface OperationsPackage extends EPackage {
 	EAttribute getReferenceOperation_OppositeFeatureName();
 
 	/**
-	 * Returns the meta object for class '{@link org.unicase.emfstore.esmodel.versioning.operations.ReadOperation <em>Read Operation</em>}'.
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
-	 * @return the meta object for class '<em>Read Operation</em>'.
-	 * @see org.unicase.emfstore.esmodel.versioning.operations.ReadOperation
-	 * @generated
-	 */
-	EClass getReadOperation();
-
-	/**
-	 * Returns the meta object for the attribute '{@link org.unicase.emfstore.esmodel.versioning.operations.ReadOperation#getDate <em>Date</em>}'.
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
-	 * @return the meta object for the attribute '<em>Date</em>'.
-	 * @see org.unicase.emfstore.esmodel.versioning.operations.ReadOperation#getDate()
-	 * @see #getReadOperation()
-	 * @generated
-	 */
-	EAttribute getReadOperation_Date();
-
-	/**
 	 * Returns the meta object for class '{@link org.unicase.emfstore.esmodel.versioning.operations.DiagramLayoutOperation <em>Diagram Layout Operation</em>}'.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
@@ -1934,24 +1849,6 @@ public interface OperationsPackage extends EPackage {
 		 */
 		EAttribute REFERENCE_OPERATION__OPPOSITE_FEATURE_NAME = eINSTANCE
 				.getReferenceOperation_OppositeFeatureName();
-
-		/**
-		 * The meta object literal for the '{@link org.unicase.emfstore.esmodel.versioning.operations.impl.ReadOperationImpl <em>Read Operation</em>}' class.
-		 * <!-- begin-user-doc -->
-		 * <!-- end-user-doc -->
-		 * @see org.unicase.emfstore.esmodel.versioning.operations.impl.ReadOperationImpl
-		 * @see org.unicase.emfstore.esmodel.versioning.operations.impl.OperationsPackageImpl#getReadOperation()
-		 * @generated
-		 */
-		EClass READ_OPERATION = eINSTANCE.getReadOperation();
-
-		/**
-		 * The meta object literal for the '<em><b>Date</b></em>' attribute feature.
-		 * <!-- begin-user-doc -->
-		 * <!-- end-user-doc -->
-		 * @generated
-		 */
-		EAttribute READ_OPERATION__DATE = eINSTANCE.getReadOperation_Date();
 
 		/**
 		 * The meta object literal for the '{@link org.unicase.emfstore.esmodel.versioning.operations.impl.DiagramLayoutOperationImpl <em>Diagram Layout Operation</em>}' class.

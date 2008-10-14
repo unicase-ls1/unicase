@@ -31,6 +31,8 @@ import org.unicase.emfstore.esmodel.versioning.Version;
 import org.unicase.emfstore.esmodel.versioning.VersionSpec;
 import org.unicase.emfstore.esmodel.versioning.VersioningFactory;
 import org.unicase.emfstore.esmodel.versioning.VersioningPackage;
+import org.unicase.emfstore.esmodel.versioning.events.EventsPackage;
+import org.unicase.emfstore.esmodel.versioning.events.impl.EventsPackageImpl;
 import org.unicase.emfstore.esmodel.versioning.operations.OperationsPackage;
 import org.unicase.emfstore.esmodel.versioning.operations.impl.OperationsPackageImpl;
 import org.unicase.model.ModelPackage;
@@ -186,6 +188,10 @@ public class VersioningPackageImpl extends EPackageImpl implements
 				.getEPackage(OperationsPackage.eNS_URI) instanceof OperationsPackageImpl ? EPackage.Registry.INSTANCE
 				.getEPackage(OperationsPackage.eNS_URI)
 				: OperationsPackage.eINSTANCE);
+		EventsPackageImpl theEventsPackage = (EventsPackageImpl) (EPackage.Registry.INSTANCE
+				.getEPackage(EventsPackage.eNS_URI) instanceof EventsPackageImpl ? EPackage.Registry.INSTANCE
+				.getEPackage(EventsPackage.eNS_URI)
+				: EventsPackage.eINSTANCE);
 		AccesscontrolPackageImpl theAccesscontrolPackage = (AccesscontrolPackageImpl) (EPackage.Registry.INSTANCE
 				.getEPackage(AccesscontrolPackage.eNS_URI) instanceof AccesscontrolPackageImpl ? EPackage.Registry.INSTANCE
 				.getEPackage(AccesscontrolPackage.eNS_URI)
@@ -199,6 +205,7 @@ public class VersioningPackageImpl extends EPackageImpl implements
 		theVersioningPackage.createPackageContents();
 		theEsmodelPackage.createPackageContents();
 		theOperationsPackage.createPackageContents();
+		theEventsPackage.createPackageContents();
 		theAccesscontrolPackage.createPackageContents();
 		theRolesPackage.createPackageContents();
 
@@ -206,6 +213,7 @@ public class VersioningPackageImpl extends EPackageImpl implements
 		theVersioningPackage.initializePackageContents();
 		theEsmodelPackage.initializePackageContents();
 		theOperationsPackage.initializePackageContents();
+		theEventsPackage.initializePackageContents();
 		theAccesscontrolPackage.initializePackageContents();
 		theRolesPackage.initializePackageContents();
 
@@ -342,6 +350,15 @@ public class VersioningPackageImpl extends EPackageImpl implements
 	 */
 	public EReference getChangePackage_Operations() {
 		return (EReference) changePackageEClass.getEStructuralFeatures().get(0);
+	}
+
+	/**
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 */
+	public EReference getChangePackage_Events() {
+		return (EReference) changePackageEClass.getEStructuralFeatures().get(1);
 	}
 
 	/**
@@ -537,6 +554,7 @@ public class VersioningPackageImpl extends EPackageImpl implements
 
 		changePackageEClass = createEClass(CHANGE_PACKAGE);
 		createEReference(changePackageEClass, CHANGE_PACKAGE__OPERATIONS);
+		createEReference(changePackageEClass, CHANGE_PACKAGE__EVENTS);
 
 		historyInfoEClass = createEClass(HISTORY_INFO);
 		createEReference(historyInfoEClass, HISTORY_INFO__PRIMERY_SPEC);
@@ -586,6 +604,8 @@ public class VersioningPackageImpl extends EPackageImpl implements
 		// Obtain other dependent packages
 		OperationsPackage theOperationsPackage = (OperationsPackage) EPackage.Registry.INSTANCE
 				.getEPackage(OperationsPackage.eNS_URI);
+		EventsPackage theEventsPackage = (EventsPackage) EPackage.Registry.INSTANCE
+				.getEPackage(EventsPackage.eNS_URI);
 		EcorePackage theEcorePackage = (EcorePackage) EPackage.Registry.INSTANCE
 				.getEPackage(EcorePackage.eNS_URI);
 		ModelPackage theModelPackage = (ModelPackage) EPackage.Registry.INSTANCE
@@ -593,6 +613,7 @@ public class VersioningPackageImpl extends EPackageImpl implements
 
 		// Add subpackages
 		getESubpackages().add(theOperationsPackage);
+		getESubpackages().add(theEventsPackage);
 
 		// Create type parameters
 
@@ -658,6 +679,11 @@ public class VersioningPackageImpl extends EPackageImpl implements
 				ChangePackage.class, !IS_TRANSIENT, !IS_VOLATILE,
 				IS_CHANGEABLE, IS_COMPOSITE, IS_RESOLVE_PROXIES,
 				!IS_UNSETTABLE, IS_UNIQUE, !IS_DERIVED, IS_ORDERED);
+		initEReference(getChangePackage_Events(), theEventsPackage.getEvent(),
+				null, "events", null, 0, -1, ChangePackage.class,
+				!IS_TRANSIENT, !IS_VOLATILE, IS_CHANGEABLE, IS_COMPOSITE,
+				IS_RESOLVE_PROXIES, !IS_UNSETTABLE, IS_UNIQUE, !IS_DERIVED,
+				IS_ORDERED);
 
 		addEOperation(changePackageEClass, this.getChangePackage(), "reverse",
 				0, 1, IS_UNIQUE, IS_ORDERED);

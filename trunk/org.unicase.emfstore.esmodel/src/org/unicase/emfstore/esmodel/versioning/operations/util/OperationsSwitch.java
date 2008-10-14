@@ -21,7 +21,6 @@ import org.unicase.emfstore.esmodel.versioning.operations.MultiAttributeOperatio
 import org.unicase.emfstore.esmodel.versioning.operations.MultiReferenceMoveOperation;
 import org.unicase.emfstore.esmodel.versioning.operations.MultiReferenceOperation;
 import org.unicase.emfstore.esmodel.versioning.operations.OperationsPackage;
-import org.unicase.emfstore.esmodel.versioning.operations.ReadOperation;
 import org.unicase.emfstore.esmodel.versioning.operations.ReferenceOperation;
 import org.unicase.emfstore.esmodel.versioning.operations.SingleReferenceOperation;
 
@@ -196,15 +195,6 @@ public class OperationsSwitch<T> {
 				result = caseFeatureOperation(referenceOperation);
 			if (result == null)
 				result = caseAbstractOperation(referenceOperation);
-			if (result == null)
-				result = defaultCase(theEObject);
-			return result;
-		}
-		case OperationsPackage.READ_OPERATION: {
-			ReadOperation readOperation = (ReadOperation) theEObject;
-			T result = caseReadOperation(readOperation);
-			if (result == null)
-				result = caseAbstractOperation(readOperation);
 			if (result == null)
 				result = defaultCase(theEObject);
 			return result;
@@ -385,21 +375,6 @@ public class OperationsSwitch<T> {
 	 * @generated
 	 */
 	public T caseReferenceOperation(ReferenceOperation object) {
-		return null;
-	}
-
-	/**
-	 * Returns the result of interpreting the object as an instance of '<em>Read Operation</em>'.
-	 * <!-- begin-user-doc -->
-	 * This implementation returns null;
-	 * returning a non-null result will terminate the switch.
-	 * <!-- end-user-doc -->
-	 * @param object the target of the switch.
-	 * @return the result of interpreting the object as an instance of '<em>Read Operation</em>'.
-	 * @see #doSwitch(org.eclipse.emf.ecore.EObject) doSwitch(EObject)
-	 * @generated
-	 */
-	public T caseReadOperation(ReadOperation object) {
 		return null;
 	}
 

@@ -68,6 +68,8 @@
       <eOperations name="cannonize"/>
       <eStructuralFeatures xsi:type="ecore:EReference" name="operations" upperBound="-1"
           eType="#//versioning/operations/AbstractOperation" containment="true"/>
+      <eStructuralFeatures xsi:type="ecore:EReference" name="events" upperBound="-1"
+          eType="#//versioning/events/Event" containment="true"/>
     </eClassifiers>
     <eClassifiers xsi:type="ecore:EClass" name="HistoryInfo">
       <eStructuralFeatures xsi:type="ecore:EReference" name="primerySpec" lowerBound="1"
@@ -176,13 +178,40 @@
         <eStructuralFeatures xsi:type="ecore:EAttribute" name="oppositeFeatureName"
             eType="ecore:EDataType http://www.eclipse.org/emf/2002/Ecore#//EString"/>
       </eClassifiers>
-      <eClassifiers xsi:type="ecore:EClass" name="ReadOperation" eSuperTypes="#//versioning/operations/AbstractOperation">
-        <eStructuralFeatures xsi:type="ecore:EAttribute" name="date" eType="ecore:EDataType http://www.eclipse.org/emf/2002/Ecore#//EDate"/>
-      </eClassifiers>
       <eClassifiers xsi:type="ecore:EClass" name="DiagramLayoutOperation" eSuperTypes="#//versioning/operations/AttributeOperation"/>
       <eClassifiers xsi:type="ecore:EClass" name="MultiAttributeMoveOperation" eSuperTypes="#//versioning/operations/FeatureOperation">
         <eStructuralFeatures xsi:type="ecore:EAttribute" name="oldIndex" eType="ecore:EDataType http://www.eclipse.org/emf/2002/Ecore#//EInt"/>
         <eStructuralFeatures xsi:type="ecore:EAttribute" name="newIndex" eType="ecore:EDataType http://www.eclipse.org/emf/2002/Ecore#//EInt"/>
+      </eClassifiers>
+    </eSubpackages>
+    <eSubpackages name="events" nsURI="http://unicase.org/esmodel/versioning/events"
+        nsPrefix="org.unicase.emfstore.esmodel.versioning.events">
+      <eClassifiers xsi:type="ecore:EClass" name="Event">
+        <eStructuralFeatures xsi:type="ecore:EAttribute" name="timestamp" eType="ecore:EDataType http://www.eclipse.org/emf/2002/Ecore#//EDate"/>
+      </eClassifiers>
+      <eClassifiers xsi:type="ecore:EClass" name="ReadEvent" eSuperTypes="#//versioning/events/Event">
+        <eStructuralFeatures xsi:type="ecore:EReference" name="modelElement" eType="ecore:EClass ../../org.unicase.model/model/model.ecore#//ModelElementId"
+            containment="true"/>
+      </eClassifiers>
+      <eClassifiers xsi:type="ecore:EClass" name="MergeEvent" eSuperTypes="#//versioning/events/Event">
+        <eStructuralFeatures xsi:type="ecore:EAttribute" name="numberOfConflicts"
+            eType="ecore:EDataType http://www.eclipse.org/emf/2002/Ecore#//EInt"/>
+        <eStructuralFeatures xsi:type="ecore:EAttribute" name="totalTime" eType="ecore:EDataType platform:/plugin/org.eclipse.emf.ecore/model/Ecore.ecore#//EInt"/>
+        <eStructuralFeatures xsi:type="ecore:EReference" name="baseVersion" eType="#//versioning/PrimaryVersionSpec"
+            containment="true"/>
+      </eClassifiers>
+      <eClassifiers xsi:type="ecore:EClass" name="CheckoutEvent" eSuperTypes="#//versioning/events/Event">
+        <eStructuralFeatures xsi:type="ecore:EReference" name="baseVersion" eType="#//versioning/PrimaryVersionSpec"
+            containment="true"/>
+      </eClassifiers>
+      <eClassifiers xsi:type="ecore:EClass" name="ExceptionEvent">
+        <eStructuralFeatures xsi:type="ecore:EAttribute" name="ExceptionTitle" eType="ecore:EDataType http://www.eclipse.org/emf/2002/Ecore#//EString"/>
+        <eStructuralFeatures xsi:type="ecore:EAttribute" name="ExceptionStackTrace"
+            eType="ecore:EDataType http://www.eclipse.org/emf/2002/Ecore#//EString"/>
+        <eStructuralFeatures xsi:type="ecore:EAttribute" name="ExceptionCauseTitle"
+            eType="ecore:EDataType http://www.eclipse.org/emf/2002/Ecore#//EString"/>
+        <eStructuralFeatures xsi:type="ecore:EAttribute" name="ExceptionCauseStackTrace"
+            eType="ecore:EDataType http://www.eclipse.org/emf/2002/Ecore#//EString"/>
       </eClassifiers>
     </eSubpackages>
   </eSubpackages>
