@@ -99,6 +99,7 @@ public class ControlFactory {
 	private MEControl createAttributeControl(
 			IItemPropertyDescriptor itemPropertyDescriptor,
 			EStructuralFeature feature) {
+		//TODO: Add email control
 		if (itemPropertyDescriptor.isMultiLine(modelElement)) {
 			return createMERichTextControl((EAttribute) feature);
 		}
