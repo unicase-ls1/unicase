@@ -197,7 +197,7 @@
     </eClassifiers>
     <eClassifiers xsi:type="ecore:EClass" name="PackageElement" abstract="true" eSuperTypes="#//ModelElement">
       <eStructuralFeatures xsi:type="ecore:EReference" name="parentPackage" eType="#//classes/Package"
-          derived="true" eOpposite="#//classes/Package/containedPackageElements" eKeys="#//IdentifiableElement/identifier"/>
+          eOpposite="#//classes/Package/containedPackageElements" eKeys="#//IdentifiableElement/identifier"/>
       <eStructuralFeatures xsi:type="ecore:EReference" name="outgoingDependencies"
           upperBound="-1" eType="#//classes/Dependency" eOpposite="#//classes/Dependency/source"
           eKeys="#//IdentifiableElement/identifier"/>
@@ -399,7 +399,7 @@
           upperBound="-1" eType="#//requirement/UseCase" eOpposite="#//requirement/UseCase/participatingActors"
           eKeys="#//IdentifiableElement/identifier"/>
       <eStructuralFeatures xsi:type="ecore:EReference" name="instances" upperBound="-1"
-          eType="#//requirement/ActorInstance" derived="true" eOpposite="#//requirement/ActorInstance/instantiatedActor"
+          eType="#//requirement/ActorInstance" eOpposite="#//requirement/ActorInstance/instantiatedActor"
           eKeys="#//IdentifiableElement/identifier"/>
     </eClassifiers>
     <eClassifiers xsi:type="ecore:EClass" name="ActorInstance" eSuperTypes="#//ModelElement">

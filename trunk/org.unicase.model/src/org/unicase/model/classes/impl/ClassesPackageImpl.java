@@ -955,7 +955,7 @@ public class ClassesPackageImpl extends EPackageImpl implements ClassesPackage {
 				this.getPackage_ContainedPackageElements(), "parentPackage",
 				null, 0, 1, PackageElement.class, !IS_TRANSIENT, !IS_VOLATILE,
 				IS_CHANGEABLE, !IS_COMPOSITE, IS_RESOLVE_PROXIES,
-				!IS_UNSETTABLE, IS_UNIQUE, IS_DERIVED, IS_ORDERED);
+				!IS_UNSETTABLE, IS_UNIQUE, !IS_DERIVED, IS_ORDERED);
 		getPackageElement_ParentPackage().getEKeys().add(
 				theModelPackage.getIdentifiableElement_Identifier());
 		initEReference(getPackageElement_OutgoingDependencies(), this

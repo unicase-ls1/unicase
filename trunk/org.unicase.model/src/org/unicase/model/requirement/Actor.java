@@ -124,7 +124,7 @@ public interface Actor extends ModelElement {
 	 * @return the value of the '<em>Instances</em>' reference list.
 	 * @see org.unicase.model.requirement.RequirementPackage#getActor_Instances()
 	 * @see org.unicase.model.requirement.ActorInstance#getInstantiatedActor
-	 * @model opposite="instantiatedActor" keys="identifier" derived="true"
+	 * @model opposite="instantiatedActor" keys="identifier"
 	 * @generated
 	 */
 	EList<ActorInstance> getInstances();

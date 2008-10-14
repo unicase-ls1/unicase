@@ -1167,7 +1167,7 @@ public class RequirementPackageImpl extends EPackageImpl implements
 				.getActorInstance_InstantiatedActor(), "instances", null, 0,
 				-1, Actor.class, !IS_TRANSIENT, !IS_VOLATILE, IS_CHANGEABLE,
 				!IS_COMPOSITE, IS_RESOLVE_PROXIES, !IS_UNSETTABLE, IS_UNIQUE,
-				IS_DERIVED, IS_ORDERED);
+				!IS_DERIVED, IS_ORDERED);
 		getActor_Instances().getEKeys().add(
 				theModelPackage.getIdentifiableElement_Identifier());
 
