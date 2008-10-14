@@ -18,17 +18,30 @@ import org.eclipse.swt.widgets.Tree;
 import org.eclipse.swt.widgets.TreeItem;
 import org.unicase.model.task.WorkPackage;
 import org.unicase.workspace.WorkspaceManager;
-
+/**
+ * Implementation of a show case ganttchart.
+ * @author helming
+ *
+ */
 public class GantChart {
-	Map<WorkPackage, GanttEvent> map = new HashMap<WorkPackage, GanttEvent>();
-	// our GANTT chart, will end up on the right in the sash
-	final GanttChart chart;
+	/**
+	 * Map of all workpackages displayed in the chart.
+	 */
+	private Map<WorkPackage, GanttEvent> map = new HashMap<WorkPackage, GanttEvent>();
+	/**
+	 * our GANTT chart, will end up on the right in the sash.
+	 */
+	private final GanttChart chart;
 
 	// we will be using method calls straight onto the chart itself, so we set
 	// it to a variable
-	final GanttComposite ganttComposite;
-	GanttEvent ge;
-
+	
+	private final GanttComposite ganttComposite;
+	private GanttEvent ge;
+/**
+ * Default constructor.
+ * @param parent The parent shell
+ */
 	public GantChart(Composite parent) {
 
 		// split the view horizontally (which makes the splitter vertical)
@@ -92,9 +105,10 @@ public class GantChart {
 		// viewer.expandAll();
 
 		TreeItem[] items = tree.getItems();
-		for (TreeItem item : items) {
-			createItem(item);
-		}
+		
+		
+		for ( int i=1; i <= items.length; i++) System.out.println(zahl);
+		
 		ganttComposite.setShowPlannedDates(true);
 		ganttComposite.setZoomLevel(10);
 
@@ -110,7 +124,7 @@ public class GantChart {
 		}
 		map.put(workPackage, ge);
 		ge.setVerticalEventAlignment(SWT.CENTER);
-		TreeItem[] items = item.getItems();
+//		TreeItem[] items = item.getItems();
 		// for (TreeItem child : items) {
 		// createItem(child);
 		// }
