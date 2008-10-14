@@ -1,6 +1,5 @@
 package org.unicase.test.tests.changetests.randomchange;
 
-import org.unicase.test.lib.TestCase;
 
 public class MoveTest extends RandomChangeTestCase {
 
