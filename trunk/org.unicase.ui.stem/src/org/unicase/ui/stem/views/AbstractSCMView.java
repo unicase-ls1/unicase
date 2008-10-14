@@ -85,7 +85,7 @@ public abstract class AbstractSCMView extends ViewPart {
 		
 		lblCriteria = new Label(toolBar, SWT.NONE );
 		lblCriteria.setLayoutData(new GridData(SWT.FILL, SWT.CENTER, true, true));
-		lblCriteria.setText("press refresh to be refreshed! :)");
+		lblCriteria.setText("Select a project in the navigator and press refresh.");
 		
 		tabFolder = new TabFolder(parent, SWT.TOP);
 		tabFolder.setLayoutData(new GridData(SWT.FILL, SWT.FILL, true, true));

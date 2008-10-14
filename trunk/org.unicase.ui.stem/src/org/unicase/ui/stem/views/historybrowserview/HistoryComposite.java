@@ -80,7 +80,8 @@ public class HistoryComposite extends Composite {
 			column.pack();
 		}
 
-		createButtons();
+		//TODO functionality for buttons isnt implemented 
+		//createButtons();
 	}
 
 	/**
