@@ -20,6 +20,8 @@ import org.unicase.emfstore.esmodel.accesscontrol.roles.RolesPackage;
 import org.unicase.emfstore.esmodel.accesscontrol.roles.impl.RolesPackageImpl;
 import org.unicase.emfstore.esmodel.impl.EsmodelPackageImpl;
 import org.unicase.emfstore.esmodel.versioning.VersioningPackage;
+import org.unicase.emfstore.esmodel.versioning.events.EventsPackage;
+import org.unicase.emfstore.esmodel.versioning.events.impl.EventsPackageImpl;
 import org.unicase.emfstore.esmodel.versioning.impl.VersioningPackageImpl;
 import org.unicase.emfstore.esmodel.versioning.operations.AbstractOperation;
 import org.unicase.emfstore.esmodel.versioning.operations.AttributeOperation;
@@ -33,7 +35,6 @@ import org.unicase.emfstore.esmodel.versioning.operations.MultiReferenceMoveOper
 import org.unicase.emfstore.esmodel.versioning.operations.MultiReferenceOperation;
 import org.unicase.emfstore.esmodel.versioning.operations.OperationsFactory;
 import org.unicase.emfstore.esmodel.versioning.operations.OperationsPackage;
-import org.unicase.emfstore.esmodel.versioning.operations.ReadOperation;
 import org.unicase.emfstore.esmodel.versioning.operations.ReferenceOperation;
 import org.unicase.emfstore.esmodel.versioning.operations.SingleReferenceOperation;
 import org.unicase.model.ModelPackage;
@@ -115,13 +116,6 @@ public class OperationsPackageImpl extends EPackageImpl implements
 	 * @generated
 	 */
 	private EClass referenceOperationEClass = null;
-
-	/**
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
-	 * @generated
-	 */
-	private EClass readOperationEClass = null;
 
 	/**
 	 * <!-- begin-user-doc -->
@@ -210,6 +204,10 @@ public class OperationsPackageImpl extends EPackageImpl implements
 				.getEPackage(VersioningPackage.eNS_URI) instanceof VersioningPackageImpl ? EPackage.Registry.INSTANCE
 				.getEPackage(VersioningPackage.eNS_URI)
 				: VersioningPackage.eINSTANCE);
+		EventsPackageImpl theEventsPackage = (EventsPackageImpl) (EPackage.Registry.INSTANCE
+				.getEPackage(EventsPackage.eNS_URI) instanceof EventsPackageImpl ? EPackage.Registry.INSTANCE
+				.getEPackage(EventsPackage.eNS_URI)
+				: EventsPackage.eINSTANCE);
 		AccesscontrolPackageImpl theAccesscontrolPackage = (AccesscontrolPackageImpl) (EPackage.Registry.INSTANCE
 				.getEPackage(AccesscontrolPackage.eNS_URI) instanceof AccesscontrolPackageImpl ? EPackage.Registry.INSTANCE
 				.getEPackage(AccesscontrolPackage.eNS_URI)
@@ -223,6 +221,7 @@ public class OperationsPackageImpl extends EPackageImpl implements
 		theOperationsPackage.createPackageContents();
 		theEsmodelPackage.createPackageContents();
 		theVersioningPackage.createPackageContents();
+		theEventsPackage.createPackageContents();
 		theAccesscontrolPackage.createPackageContents();
 		theRolesPackage.createPackageContents();
 
@@ -230,6 +229,7 @@ public class OperationsPackageImpl extends EPackageImpl implements
 		theOperationsPackage.initializePackageContents();
 		theEsmodelPackage.initializePackageContents();
 		theVersioningPackage.initializePackageContents();
+		theEventsPackage.initializePackageContents();
 		theAccesscontrolPackage.initializePackageContents();
 		theRolesPackage.initializePackageContents();
 
@@ -594,24 +594,6 @@ public class OperationsPackageImpl extends EPackageImpl implements
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
-	public EClass getReadOperation() {
-		return readOperationEClass;
-	}
-
-	/**
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
-	 * @generated
-	 */
-	public EAttribute getReadOperation_Date() {
-		return (EAttribute) readOperationEClass.getEStructuralFeatures().get(0);
-	}
-
-	/**
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
-	 * @generated
-	 */
 	public EClass getDiagramLayoutOperation() {
 		return diagramLayoutOperationEClass;
 	}
@@ -744,9 +726,6 @@ public class OperationsPackageImpl extends EPackageImpl implements
 		createEAttribute(referenceOperationEClass,
 				REFERENCE_OPERATION__OPPOSITE_FEATURE_NAME);
 
-		readOperationEClass = createEClass(READ_OPERATION);
-		createEAttribute(readOperationEClass, READ_OPERATION__DATE);
-
 		diagramLayoutOperationEClass = createEClass(DIAGRAM_LAYOUT_OPERATION);
 
 		multiAttributeMoveOperationEClass = createEClass(MULTI_ATTRIBUTE_MOVE_OPERATION);
@@ -809,7 +788,6 @@ public class OperationsPackageImpl extends EPackageImpl implements
 				this.getFeatureOperation());
 		referenceOperationEClass.getESuperTypes().add(
 				this.getFeatureOperation());
-		readOperationEClass.getESuperTypes().add(this.getAbstractOperation());
 		diagramLayoutOperationEClass.getESuperTypes().add(
 				this.getAttributeOperation());
 		multiAttributeMoveOperationEClass.getESuperTypes().add(
@@ -1004,13 +982,6 @@ public class OperationsPackageImpl extends EPackageImpl implements
 				ReferenceOperation.class, !IS_TRANSIENT, !IS_VOLATILE,
 				IS_CHANGEABLE, !IS_UNSETTABLE, !IS_ID, IS_UNIQUE, !IS_DERIVED,
 				IS_ORDERED);
-
-		initEClass(readOperationEClass, ReadOperation.class, "ReadOperation",
-				!IS_ABSTRACT, !IS_INTERFACE, IS_GENERATED_INSTANCE_CLASS);
-		initEAttribute(getReadOperation_Date(), ecorePackage.getEDate(),
-				"date", null, 0, 1, ReadOperation.class, !IS_TRANSIENT,
-				!IS_VOLATILE, IS_CHANGEABLE, !IS_UNSETTABLE, !IS_ID, IS_UNIQUE,
-				!IS_DERIVED, IS_ORDERED);
 
 		initEClass(diagramLayoutOperationEClass, DiagramLayoutOperation.class,
 				"DiagramLayoutOperation", !IS_ABSTRACT, !IS_INTERFACE,

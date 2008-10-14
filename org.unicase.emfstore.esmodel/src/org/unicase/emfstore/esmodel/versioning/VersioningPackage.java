@@ -238,13 +238,22 @@ public interface VersioningPackage extends EPackage {
 	int CHANGE_PACKAGE__OPERATIONS = 0;
 
 	/**
+	 * The feature id for the '<em><b>Events</b></em>' containment reference list.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 * @ordered
+	 */
+	int CHANGE_PACKAGE__EVENTS = 1;
+
+	/**
 	 * The number of structural features of the '<em>Change Package</em>' class.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
 	 * @generated
 	 * @ordered
 	 */
-	int CHANGE_PACKAGE_FEATURE_COUNT = 1;
+	int CHANGE_PACKAGE_FEATURE_COUNT = 2;
 
 	/**
 	 * The meta object id for the '{@link org.unicase.emfstore.esmodel.versioning.impl.HistoryInfoImpl <em>History Info</em>}' class.
@@ -579,6 +588,17 @@ public interface VersioningPackage extends EPackage {
 	EReference getChangePackage_Operations();
 
 	/**
+	 * Returns the meta object for the containment reference list '{@link org.unicase.emfstore.esmodel.versioning.ChangePackage#getEvents <em>Events</em>}'.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @return the meta object for the containment reference list '<em>Events</em>'.
+	 * @see org.unicase.emfstore.esmodel.versioning.ChangePackage#getEvents()
+	 * @see #getChangePackage()
+	 * @generated
+	 */
+	EReference getChangePackage_Events();
+
+	/**
 	 * Returns the meta object for class '{@link org.unicase.emfstore.esmodel.versioning.HistoryInfo <em>History Info</em>}'.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
@@ -899,6 +919,14 @@ public interface VersioningPackage extends EPackage {
 		 */
 		EReference CHANGE_PACKAGE__OPERATIONS = eINSTANCE
 				.getChangePackage_Operations();
+
+		/**
+		 * The meta object literal for the '<em><b>Events</b></em>' containment reference list feature.
+		 * <!-- begin-user-doc -->
+		 * <!-- end-user-doc -->
+		 * @generated
+		 */
+		EReference CHANGE_PACKAGE__EVENTS = eINSTANCE.getChangePackage_Events();
 
 		/**
 		 * The meta object literal for the '{@link org.unicase.emfstore.esmodel.versioning.impl.HistoryInfoImpl <em>History Info</em>}' class.

@@ -21,7 +21,6 @@ import org.unicase.emfstore.esmodel.versioning.operations.MultiAttributeOperatio
 import org.unicase.emfstore.esmodel.versioning.operations.MultiReferenceMoveOperation;
 import org.unicase.emfstore.esmodel.versioning.operations.MultiReferenceOperation;
 import org.unicase.emfstore.esmodel.versioning.operations.OperationsPackage;
-import org.unicase.emfstore.esmodel.versioning.operations.ReadOperation;
 import org.unicase.emfstore.esmodel.versioning.operations.ReferenceOperation;
 import org.unicase.emfstore.esmodel.versioning.operations.SingleReferenceOperation;
 
@@ -132,11 +131,6 @@ public class OperationsAdapterFactory extends AdapterFactoryImpl {
 		@Override
 		public Adapter caseReferenceOperation(ReferenceOperation object) {
 			return createReferenceOperationAdapter();
-		}
-
-		@Override
-		public Adapter caseReadOperation(ReadOperation object) {
-			return createReadOperationAdapter();
 		}
 
 		@Override
@@ -306,20 +300,6 @@ public class OperationsAdapterFactory extends AdapterFactoryImpl {
 	 * @generated
 	 */
 	public Adapter createReferenceOperationAdapter() {
-		return null;
-	}
-
-	/**
-	 * Creates a new adapter for an object of class '{@link org.unicase.emfstore.esmodel.versioning.operations.ReadOperation <em>Read Operation</em>}'.
-	 * <!-- begin-user-doc -->
-	 * This default implementation returns null so that we can easily ignore cases;
-	 * it's useful to ignore a case when inheritance will catch all the cases anyway.
-	 * <!-- end-user-doc -->
-	 * @return the new adapter.
-	 * @see org.unicase.emfstore.esmodel.versioning.operations.ReadOperation
-	 * @generated
-	 */
-	public Adapter createReadOperationAdapter() {
 		return null;
 	}
 

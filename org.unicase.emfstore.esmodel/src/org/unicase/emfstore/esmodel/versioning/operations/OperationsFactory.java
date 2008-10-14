@@ -90,15 +90,6 @@ public interface OperationsFactory extends EFactory {
 	MultiAttributeOperation createMultiAttributeOperation();
 
 	/**
-	 * Returns a new object of class '<em>Read Operation</em>'.
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
-	 * @return a new object of class '<em>Read Operation</em>'.
-	 * @generated
-	 */
-	ReadOperation createReadOperation();
-
-	/**
 	 * Returns a new object of class '<em>Diagram Layout Operation</em>'.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->

@@ -250,10 +250,6 @@ public class CompositeOperationItemProvider extends
 
 		newChildDescriptors.add(createChildParameter(
 				OperationsPackage.Literals.COMPOSITE_OPERATION__SUB_OPERATIONS,
-				OperationsFactory.eINSTANCE.createReadOperation()));
-
-		newChildDescriptors.add(createChildParameter(
-				OperationsPackage.Literals.COMPOSITE_OPERATION__SUB_OPERATIONS,
 				OperationsFactory.eINSTANCE.createDiagramLayoutOperation()));
 
 		newChildDescriptors

@@ -52,6 +52,7 @@
       </genClasses>
       <genClasses ecoreClass="esmodel.ecore#//versioning/ChangePackage">
         <genFeatures property="None" children="true" createChild="true" ecoreFeature="ecore:EReference esmodel.ecore#//versioning/ChangePackage/operations"/>
+        <genFeatures property="None" children="true" createChild="true" ecoreFeature="ecore:EReference esmodel.ecore#//versioning/ChangePackage/events"/>
         <genOperations ecoreOperation="esmodel.ecore#//versioning/ChangePackage/reverse"/>
         <genOperations ecoreOperation="esmodel.ecore#//versioning/ChangePackage/apply">
           <genParameters ecoreParameter="esmodel.ecore#//versioning/ChangePackage/apply/project"/>
@@ -144,13 +145,33 @@
           <genFeatures createChild="false" ecoreFeature="ecore:EAttribute esmodel.ecore#//versioning/operations/ReferenceOperation/bidirectional"/>
           <genFeatures createChild="false" ecoreFeature="ecore:EAttribute esmodel.ecore#//versioning/operations/ReferenceOperation/oppositeFeatureName"/>
         </genClasses>
-        <genClasses ecoreClass="esmodel.ecore#//versioning/operations/ReadOperation">
-          <genFeatures createChild="false" ecoreFeature="ecore:EAttribute esmodel.ecore#//versioning/operations/ReadOperation/date"/>
-        </genClasses>
         <genClasses ecoreClass="esmodel.ecore#//versioning/operations/DiagramLayoutOperation"/>
         <genClasses ecoreClass="esmodel.ecore#//versioning/operations/MultiAttributeMoveOperation">
           <genFeatures createChild="false" ecoreFeature="ecore:EAttribute esmodel.ecore#//versioning/operations/MultiAttributeMoveOperation/oldIndex"/>
           <genFeatures createChild="false" ecoreFeature="ecore:EAttribute esmodel.ecore#//versioning/operations/MultiAttributeMoveOperation/newIndex"/>
+        </genClasses>
+      </nestedGenPackages>
+      <nestedGenPackages prefix="Events" basePackage="org.unicase.emfstore.esmodel.versioning"
+          disposableProviderFactory="true" ecorePackage="esmodel.ecore#//versioning/events">
+        <genClasses ecoreClass="esmodel.ecore#//versioning/events/Event">
+          <genFeatures createChild="false" ecoreFeature="ecore:EAttribute esmodel.ecore#//versioning/events/Event/timestamp"/>
+        </genClasses>
+        <genClasses ecoreClass="esmodel.ecore#//versioning/events/ReadEvent">
+          <genFeatures property="None" children="true" createChild="true" ecoreFeature="ecore:EReference esmodel.ecore#//versioning/events/ReadEvent/modelElement"/>
+        </genClasses>
+        <genClasses ecoreClass="esmodel.ecore#//versioning/events/MergeEvent">
+          <genFeatures createChild="false" ecoreFeature="ecore:EAttribute esmodel.ecore#//versioning/events/MergeEvent/numberOfConflicts"/>
+          <genFeatures createChild="false" ecoreFeature="ecore:EAttribute esmodel.ecore#//versioning/events/MergeEvent/totalTime"/>
+          <genFeatures property="None" children="true" createChild="true" ecoreFeature="ecore:EReference esmodel.ecore#//versioning/events/MergeEvent/baseVersion"/>
+        </genClasses>
+        <genClasses ecoreClass="esmodel.ecore#//versioning/events/CheckoutEvent">
+          <genFeatures property="None" children="true" createChild="true" ecoreFeature="ecore:EReference esmodel.ecore#//versioning/events/CheckoutEvent/baseVersion"/>
+        </genClasses>
+        <genClasses ecoreClass="esmodel.ecore#//versioning/events/ExceptionEvent">
+          <genFeatures createChild="false" ecoreFeature="ecore:EAttribute esmodel.ecore#//versioning/events/ExceptionEvent/ExceptionTitle"/>
+          <genFeatures createChild="false" ecoreFeature="ecore:EAttribute esmodel.ecore#//versioning/events/ExceptionEvent/ExceptionStackTrace"/>
+          <genFeatures createChild="false" ecoreFeature="ecore:EAttribute esmodel.ecore#//versioning/events/ExceptionEvent/ExceptionCauseTitle"/>
+          <genFeatures createChild="false" ecoreFeature="ecore:EAttribute esmodel.ecore#//versioning/events/ExceptionEvent/ExceptionCauseStackTrace"/>
         </genClasses>
       </nestedGenPackages>
     </nestedGenPackages>
