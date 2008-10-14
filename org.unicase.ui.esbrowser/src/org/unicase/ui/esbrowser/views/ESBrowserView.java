@@ -52,6 +52,7 @@ import org.unicase.workspace.ServerInfo;
 import org.unicase.workspace.Usersession;
 import org.unicase.workspace.WorkspaceManager;
 import org.unicase.workspace.accesscontrol.AccessControlHelper;
+import org.unicase.workspace.util.WorkspaceUtil;
 
 /**
  * View containing the remote repositories.
@@ -185,8 +186,9 @@ public class ESBrowserView extends ViewPart {
 						progressDialog.open();
 						progressDialog.getProgressMonitor().beginTask("Checkout project...", 100);
 						progressDialog.getProgressMonitor().worked(10);
-						contentProvider.getProjectServerMap().get(element)
+						ProjectSpace projectSpace = contentProvider.getProjectServerMap().get(element)
 								.getLastUsersession().checkout(element);
+						WorkspaceUtil.logCheckout(projectSpace, projectSpace.getBaseVersion());
 					} catch (EmfStoreException e) {
 						DialogHandler.showExceptionDialog(e);
 					// BEGIN SUPRESS CATCH EXCEPTION

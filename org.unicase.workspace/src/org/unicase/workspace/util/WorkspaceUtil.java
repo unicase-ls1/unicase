@@ -5,9 +5,16 @@
 
 package org.unicase.workspace.util;
 
+import java.util.Date;
+
 import org.eclipse.core.runtime.IStatus;
 import org.eclipse.core.runtime.Status;
+import org.eclipse.emf.ecore.util.EcoreUtil;
+import org.unicase.emfstore.esmodel.versioning.PrimaryVersionSpec;
+import org.unicase.emfstore.esmodel.versioning.events.CheckoutEvent;
+import org.unicase.emfstore.esmodel.versioning.events.EventsFactory;
 import org.unicase.workspace.Activator;
+import org.unicase.workspace.ProjectSpace;
 
 /**
  * Workspace utility class.
@@ -34,5 +41,17 @@ public final class WorkspaceUtil {
 			      activator.getBundle().getSymbolicName(),
 			      IStatus.ERROR, message, e);
 		activator.getLog().log(status);
+	}
+	
+	/**
+	 * Log a checkout event to the current projectSpace.
+	 * @param projectSpace the project space
+	 * @param baseVersion the base version that was checked out
+	 */
+	public static void logCheckout(ProjectSpace projectSpace, PrimaryVersionSpec baseVersion) {
+		CheckoutEvent checkoutEvent = EventsFactory.eINSTANCE.createCheckoutEvent();
+		checkoutEvent.setBaseVersion((PrimaryVersionSpec) EcoreUtil.copy(baseVersion));
+		checkoutEvent.setTimestamp(new Date());
+		projectSpace.addEvent(checkoutEvent);
 	}
 }
