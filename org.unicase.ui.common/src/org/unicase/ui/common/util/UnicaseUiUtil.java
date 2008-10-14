@@ -9,14 +9,11 @@ package org.unicase.ui.common.util;
 
 import java.util.Collection;
 
-import org.eclipse.core.runtime.IStatus;
-import org.eclipse.core.runtime.Status;
 import org.eclipse.emf.edit.provider.ComposedAdapterFactory;
 import org.eclipse.emf.edit.ui.provider.AdapterFactoryLabelProvider;
 import org.eclipse.jface.window.Window;
 import org.eclipse.swt.widgets.Shell;
 import org.eclipse.ui.dialogs.ElementListSelectionDialog;
-import org.unicase.ui.common.Activator;
 
 /**
  * Utility class for the unicase project. 
@@ -60,18 +57,4 @@ public final class UnicaseUiUtil {
 		}
 		return result;
 	}
-	
-	/**
-	 * Log an exception to the error log.
-	 * @param message the message
-	 * @param e the exception
-	 */
-	public static void logException(String message, Exception e) {
-		Activator activator = Activator.getDefault();
-		Status status = new Status(IStatus.ERROR,
-			      activator.getBundle().getSymbolicName(),
-			      IStatus.ERROR, message, e);
-		activator.getLog().log(status);
-	}
-
 }
