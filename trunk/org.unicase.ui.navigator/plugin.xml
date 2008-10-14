@@ -119,14 +119,18 @@
          </command>
          <command
                commandId="org.unicase.ui.navigator.newLeafSection"
-               icon="icons/LeafSectionorg.unicase.ui.navigator.commands.DynamicContainmentCommandson"
+               icon="icons/LeafSection.gif"
+               label="New leaf section"
                style="push">
             <visibleWhen
                   checkEnabled="false">
-               <reference
-                     definitionId="org.unicase.ui.common.commands.modelElementNotSection">
-               </reference>
-                   </visibleWhen>
+               <iterate
+                     ifEmpty="false">
+                  <instanceof
+                        value="org.unicase.model.document.CompositeSection">
+                  </instanceof>
+               </iterate>
+            </visibleWhen>
              </command>
       </menuContribution>
       <menuContribution
