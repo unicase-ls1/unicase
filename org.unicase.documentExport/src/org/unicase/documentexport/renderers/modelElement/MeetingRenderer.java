@@ -23,6 +23,7 @@ import org.unicase.model.meeting.Meeting;
 import org.unicase.model.meeting.MeetingSection;
 import org.unicase.model.meeting.WorkItemMeetingSection;
 import org.unicase.model.organization.OrgUnit;
+import org.unicase.model.organization.User;
 import org.unicase.model.rationale.Issue;
 import org.unicase.model.rationale.Proposal;
 import org.unicase.model.task.ActionItem;
@@ -109,7 +110,7 @@ public class MeetingRenderer extends ModelElementRenderer {
 		
 		
 		if (meeting.getFacilitator() != null)
-			text = meeting.getFacilitator().getName();
+			text = getOrgUnitName(meeting.getFacilitator());
 		else
 			text = "";
 		table.addEntry("Moderator: " + text);
@@ -126,7 +127,7 @@ public class MeetingRenderer extends ModelElementRenderer {
 		
 		
 		if (meeting.getTimekeeper() != null) {
-			text = meeting.getTimekeeper().getName();
+			text = getOrgUnitName(meeting.getTimekeeper());
 		} else {
 			text = "";
 		}
@@ -144,7 +145,7 @@ public class MeetingRenderer extends ModelElementRenderer {
 		
 		
 		if (meeting.getMinutetaker() != null) {
-			text = meeting.getMinutetaker().getName();
+			text = getOrgUnitName(meeting.getMinutetaker());
 		} else {
 			text = "";
 		}
@@ -162,7 +163,7 @@ public class MeetingRenderer extends ModelElementRenderer {
 		
 		String text2 = "Teilnehmer: ";
 		for (OrgUnit orgUnit : meeting.getParticipants()) {
-			text2 += orgUnit.getName() + ", ";
+			text2 += getOrgUnitName(orgUnit) + ", ";
 		}
 		text2 = text2.substring(0, text2.length() - 2);
 		
@@ -230,6 +231,8 @@ public class MeetingRenderer extends ModelElementRenderer {
 			UCompositeSection parent,
 			CompositeMeetingSection meetingSection) {
 		
+		parent.add(new UParagraph(" "));
+		
 		USection uSection = new USection(
 				getMeetingSectionTitle(meetingSection), 
 				layoutOptions.sectionTextOption
@@ -249,6 +252,8 @@ public class MeetingRenderer extends ModelElementRenderer {
 	private void renderIssueMeetingSection(
 			UCompositeSection parent,
 			IssueMeetingSection meetingSection) {
+		
+		parent.add(new UParagraph(" "));
 		
 		USection issueSection = new USection(
 				getMeetingSectionTitle(meetingSection), 
@@ -281,6 +286,9 @@ public class MeetingRenderer extends ModelElementRenderer {
 				getMeetingSectionTitle(meetingSection), 
 				layoutOptions.sectionTextOption
 			);
+		
+		parent.add(new UParagraph(" "));
+		
 		parent.add(workItemSection);	
 		
 		renderDescription(workItemSection, meetingSection);
@@ -303,6 +311,7 @@ public class MeetingRenderer extends ModelElementRenderer {
 //		ModelElementRendererMappings mappings = template.modelElementRendererMappings;
 //		ModelElementRenderer renderer = mappings.get(workItem.eClass().getInstanceClass());
 //		renderer.render(workItem, workItemSection, layoutOptions);
+		
 		String text = "";
 		if (workItem instanceof Issue) {
 			text += "I[" + number + "]: " + workItem.getName();
@@ -312,22 +321,26 @@ public class MeetingRenderer extends ModelElementRenderer {
 			text += "WP[" + number + "]: " + workItem.getName();
 		} else if (workItem instanceof ActionItem) {
 			text += "AI[" + number + ", ";
-			for (OrgUnit orgUnit : ((ActionItem)workItem).getParticipants()) {
-				text += orgUnit.getName() + ", ";
+			if (((ActionItem)workItem).getAssignee() != null) {
+				text += getOrgUnitName(((ActionItem)workItem).getAssignee()) + ", ";
+			} else {
+				text += "<not assigned>, ";
 			}
-			if (((ActionItem) workItem).getDueDate() != null) {
+			
+			if (((ActionItem) workItem).getDueDate() == null) {
 				text += "ASAP";
 			} else {
 				Date dueDate = ((ActionItem) workItem).getDueDate();
 				Calendar cal = new GregorianCalendar();
 				cal.setTime(dueDate);
-				text += cal.get(Calendar.DAY_OF_MONTH) + "." + cal.get(Calendar.MONTH);
+				text += cal.get(Calendar.DAY_OF_MONTH) + "." + cal.get(Calendar.MONTH);				
 			}
 			text += "]: " + workItem.getName();
-			text += " (" + workItem.getState() + ")";
+			//text += " (" + workItem.getState() + ")";
 		} else {
 			text += "WI[" + number + "]: " + workItem.getName();
 		}
+			text += " (" + workItem.getState() + ")";
 		
 		UParagraph par = new UParagraph(text, workItemTextOption);
 		par.setIndentionLeft(1);
@@ -337,7 +350,7 @@ public class MeetingRenderer extends ModelElementRenderer {
 			Issue issue = (Issue)workItem;
 			int i = 1;
 			for (Proposal proposal : issue.getProposals()) {
-				String text2 = "P[" + number + "." + i + "]" + proposal.getName();
+				String text2 = "P[" + number + "." + i + "]: " + proposal.getName();
 				UParagraph par2 = new UParagraph(text2, workItemTextOption);
 				par2.setIndentionLeft(2);
 				parent.add(par2);
@@ -354,16 +367,25 @@ public class MeetingRenderer extends ModelElementRenderer {
 	}
 	
 	private void renderDescription(UCompositeSection parent, ModelElement me) {
-		String description = "";
-		if (me.getDescription() != null)
-			description += me.getDescription();
-
 		
-		if (description.indexOf("%BEGINNTEXT%") > 0 && description.length() > 0)
-			description = description.substring(description.indexOf("%BEGINNTEXT%") + 12, description.length() - 1);
-			
-		UParagraph descr = new UParagraph(description + "\n", layoutOptions.defaultTextOption);
+		UParagraph descr = new UParagraph(me.getDescriptionPlainText() + "\n", layoutOptions.defaultTextOption);
 		descr.setIndentionLeft(0);
 		parent.add(descr);	
+	}
+	
+	private String getOrgUnitName(OrgUnit orgUnit) {
+		String ret;
+		if (orgUnit instanceof User) {
+			if (((User) orgUnit).getLastName() != null) {
+				ret = ((User) orgUnit).getLastName();
+			} else {
+				ret = orgUnit.getName();
+			}
+			
+		} else {
+			ret = orgUnit.getName();
+		}
+		
+		return ret;
 	}
 }

@@ -8,23 +8,30 @@ import java.io.IOException;
 import java.io.ObjectInputStream;
 import java.io.ObjectOutputStream;
 import java.net.URL;
+import java.util.ArrayList;
 import java.util.Collections;
 
 import org.eclipse.core.runtime.FileLocator;
 import org.eclipse.core.runtime.Path;
+import org.eclipse.emf.ecore.EClass;
+import org.eclipse.emf.ecore.EObject;
+import org.eclipse.emf.ecore.EPackage;
+import org.unicase.documentexport.documentTemplate.DefaultDocumentTemplateBuilder;
 import org.unicase.documentexport.documentTemplate.DocumentTemplate;
+import org.unicase.model.ModelElement;
+import org.unicase.model.ModelPackage;
 
 public class TemplateSaveHelper {
 	private static DocumentTemplate template = null;
 	public static DocumentTemplate createdDefaultTemplate = null;
+	
+	public static ArrayList<EClass> modelElementTypes = new ArrayList<EClass>();
 	
 	public static int meCount = 0;
 	
 	public static DocumentTemplate getTemplate() {
 		if (template == null)
 			loadDefaultTemplate();
-		if (template == null)
-			template = createdDefaultTemplate;
 		return template;
 	}
 	
@@ -35,6 +42,9 @@ public class TemplateSaveHelper {
 	
 	private static void loadDefaultTemplate() {
 		TemplateSaveHelper.loadTemplate("default.template");
+		if (template == null) {
+			template = createNewDefaultDocumentTemplate();
+		}
 	}	
 	
 	public static DocumentTemplate loadTemplate(String fileName) {
@@ -69,10 +79,8 @@ public class TemplateSaveHelper {
 			Object obj = obj_in.readObject();
 			if (obj instanceof DocumentTemplate) {
 				TemplateSaveHelper.template = (DocumentTemplate)obj;
-//				System.out.println("Template " + fileName + "loaded");
 				return (DocumentTemplate)obj;
 			} else {
-//				System.out.println("could not load template");
 			}
 		} catch (FileNotFoundException e) {
 			// TODO Auto-generated catch block
@@ -112,13 +120,11 @@ public class TemplateSaveHelper {
 			
 			f_out = new 
 				FileOutputStream(FileLocator.resolve(url).getPath());
-			// Write object with ObjectOutputStream
 			ObjectOutputStream obj_out = new
 				ObjectOutputStream (f_out);
 
 			// Write object out to disk
 			obj_out.writeObject ( template );	
-//			System.out.println("template " + template.name + " saved successfully");
 		} catch (FileNotFoundException e) {
 			// TODO Auto-generated catch block
 			e.printStackTrace();
@@ -127,4 +133,53 @@ public class TemplateSaveHelper {
 		}
 	}
 
+	public static DocumentTemplate createNewDefaultDocumentTemplate()  {
+		
+		
+		getModelElements(ModelPackage.eINSTANCE);
+		
+
+		DefaultDocumentTemplateBuilder builder = new DefaultDocumentTemplateBuilder();
+		
+		builder.setModelElementTypes(modelElementTypes);
+		
+		DocumentTemplate template = builder.build();
+		TemplateSaveHelper.createdDefaultTemplate = template;
+
+		template.name = "default";
+		saveTemplate(template);
+		
+		return template;
+	}
+	
+	private static void getModelElements(EObject object) {
+		
+		if (object instanceof EClass) {
+			EClass eClass = (EClass) object;
+			EObject me;
+			if (!(eClass.isAbstract() || eClass.isInterface())) {
+				me = eClass.getEPackage().getEFactoryInstance().create(eClass);
+				if (me instanceof ModelElement)
+					modelElementTypes.add((EClass) object);
+			}
+		}
+		
+		if (object instanceof EPackage) {
+			for (EObject obj : ((EPackage)object).eContents()) {
+				getModelElements(obj);
+			}
+		}
+	}
+	
+	public static EClass getEClassOfClass(Class<ModelElement> clazz) {
+		modelElementTypes = new ArrayList<EClass>();
+		getModelElements(ModelPackage.eINSTANCE);
+		
+		for (EClass eClass : modelElementTypes) {
+			if (eClass.getInstanceClass().equals(clazz)) {
+				return eClass;
+			}
+		}
+		return null;
+	}
 }

@@ -1,5 +1,6 @@
 package org.unicase.documentexport.renderers.options;
 
+@SuppressWarnings("serial")
 public class ListOption extends RendererOption {
 	public int listStyle = JUST_NEW_LINES;
 	public String bullet = "-";

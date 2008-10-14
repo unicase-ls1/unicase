@@ -93,7 +93,7 @@ public class DocumentRenderer {
 	 */
 	private void renderModelElement(UCompositeSection parent, ModelElement modelElement) {
 		ModelElementRenderer renderer = 
-			template.modelElementRendererMappings.get((Class<ModelElement>)modelElement.eClass().getInstanceClass());
+			template.modelElementRendererMappings.get(modelElement.eClass());
 		renderer.render(modelElement, parent, template.layoutOptions);
 	}	
 }

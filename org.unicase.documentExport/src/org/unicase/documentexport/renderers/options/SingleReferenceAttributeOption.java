@@ -1,5 +1,6 @@
 package org.unicase.documentexport.renderers.options;
 
+@SuppressWarnings("serial")
 public class SingleReferenceAttributeOption extends AttributeOption {
 	public ReferenceOption referenceOption = new ReferenceOption();
 	

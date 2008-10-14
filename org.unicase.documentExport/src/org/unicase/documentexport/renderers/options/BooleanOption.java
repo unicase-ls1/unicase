@@ -2,6 +2,7 @@ package org.unicase.documentexport.renderers.options;
 
 import java.awt.Color;
 
+@SuppressWarnings("serial")
 public class BooleanOption extends RendererOption {
 	public int style = BooleanOption.YES_NO;
 	public Color trueColor = new Color(0, 0, 0);

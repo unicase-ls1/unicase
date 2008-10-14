@@ -1,7 +1,8 @@
 package org.unicase.documentexport.documentTemplate;
 
-import java.util.Vector;
+import java.util.ArrayList;
 
+import org.eclipse.emf.ecore.EClass;
 import org.unicase.documentexport.renderers.modelElement.DefaultModelElementRenderer;
 import org.unicase.documentexport.renderers.options.BooleanAttributeOption;
 import org.unicase.documentexport.renderers.options.LayoutOptions;
@@ -9,7 +10,6 @@ import org.unicase.documentexport.renderers.options.MultiReferenceAttributeOptio
 import org.unicase.documentexport.renderers.options.SingleReferenceAttributeOption;
 import org.unicase.documentexport.renderers.options.StringAttributeOption;
 import org.unicase.documentexport.renderers.options.TextOption;
-import org.unicase.model.ModelElement;
 
 /**
  * This class create a new DocumentTemplate.
@@ -19,9 +19,9 @@ import org.unicase.model.ModelElement;
  */
 public class DefaultDocumentTemplateBuilder {
 
-	private Vector<ModelElement> modelElementTypes;
+	private ArrayList<EClass> modelElementTypes;
 
-	public void setModelElementTypes(Vector<ModelElement> modelElementTypes) {
+	public void setModelElementTypes(ArrayList<EClass> modelElementTypes) {
 		this.modelElementTypes = modelElementTypes;
 	}
 	
@@ -29,7 +29,7 @@ public class DefaultDocumentTemplateBuilder {
 		DocumentTemplate documentTemplate = new DocumentTemplate();
 		
 		LayoutOptions layoutOptions = new LayoutOptions();
-		layoutOptions.coverPage = "Lehrstuhl für Angewandte Softwaretechnik \n DOLLI-Projekt";
+		layoutOptions.coverPage = "Lehrstuhl fï¿½r Angewandte Softwaretechnik \n DOLLI-Projekt";
 		layoutOptions.coverTextOption.fontFamily = TextOption.ARIAL;
 		layoutOptions.coverTextOption.size = 10;
 		layoutOptions.coverTextOption.bold = true;
@@ -50,13 +50,13 @@ public class DefaultDocumentTemplateBuilder {
 		documentTemplate.globalRendererOptions.add(singleReferenceAttributeOption);
 		documentTemplate.globalRendererOptions.add(multiReferenceAttributeOption);
 
-		for (ModelElement modelElement : modelElementTypes) {
+		for (EClass eClass : modelElementTypes) {
 			DefaultModelElementRendererBuilder builder = new DefaultModelElementRendererBuilder();
-			DefaultModelElementRenderer renderer = builder.build(modelElement, documentTemplate);
+			DefaultModelElementRenderer renderer = builder.build(eClass, documentTemplate);
 			renderer.modelElementRendererMappings = documentTemplate.modelElementRendererMappings;
 			
 			documentTemplate.modelElementRendererMappings.set(
-					modelElement.eClass().getInstanceClass(), 
+					eClass,
 					renderer
 				);
 		}

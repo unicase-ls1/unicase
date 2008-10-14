@@ -6,10 +6,9 @@ import java.util.ArrayList;
 import org.eclipse.emf.ecore.EStructuralFeature;
 import org.unicase.documentexport.renderers.AttributeRenderer;
 
+@SuppressWarnings("serial")
 public class AttributeRendererMappings implements Serializable {
 
-
-	
 	public class AttributeRendererMapping implements Serializable {
 		public String attributeName;
 		public AttributeRenderer renderer;

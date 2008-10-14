@@ -1,6 +1,7 @@
 package org.unicase.documentexport.renderers.options;
 
 
+@SuppressWarnings("serial")
 public class StringAttributeOption extends AttributeOption {
 	
 	public TextOption textOption = new TextOption();

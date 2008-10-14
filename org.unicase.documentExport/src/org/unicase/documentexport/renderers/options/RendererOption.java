@@ -2,6 +2,7 @@ package org.unicase.documentexport.renderers.options;
 
 import java.io.Serializable;
 
+@SuppressWarnings("serial")
 public class RendererOption implements Serializable {
 	protected String optionName = "unnamed";
 	

@@ -19,6 +19,7 @@ import org.unicase.documentexport.renderers.options.LayoutOptions;
 import org.unicase.documentexport.renderers.options.RendererOption;
 import org.unicase.model.ModelElement;
 
+@SuppressWarnings("serial")
 public class DefaultModelElementRenderer extends ModelElementRenderer {
 	
 	public AttributeRendererMappings attributeRendererMappings = new AttributeRendererMappings();
