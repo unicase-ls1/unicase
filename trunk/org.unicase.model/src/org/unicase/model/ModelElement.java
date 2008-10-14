@@ -275,4 +275,14 @@ public interface ModelElement extends IdentifiableElement {
 	 */
 	ModelElementId getModelElementId();
 
+	//begin custom code
+	/**
+	 * <!-- begin-user-doc -->
+	 * Returns the plain text of the description. There are some meta information in the
+	 * description properties, which are removed in this function.
+	 * <!-- end-user-doc -->
+	 * @generated NOT
+	 */
+	String getDescriptionPlainText();
+	//end custom code
 } // ModelElement
