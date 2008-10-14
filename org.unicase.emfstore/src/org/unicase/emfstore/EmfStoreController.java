@@ -192,7 +192,9 @@ public class EmfStoreController implements IApplication {
 			if (properties.getProperty(
 					ServerConfiguration.VALIDATE_SERVERSPACE_ON_SERVERSTART,
 					"true").equals("true")) {
+				logger.info("Validating serverspace ...");
 				validateServerSpace(resource);
+				logger.info("Validation complete.");
 			}
 		} catch (IOException e) {
 			throw new FatalEmfStoreException(StorageException.NOLOAD, e);
@@ -362,8 +364,9 @@ public class EmfStoreController implements IApplication {
 			properties.load(fis);
 			ServerConfiguration.setProperties(properties);
 			fis.close();
+			logger.info("Property file read.");
 		} catch (IOException e) {
-			logger.warn("Property initialization failed.");
+			logger.warn("Property initialization failed, using default properties.");
 		}
 		return properties;
 	}

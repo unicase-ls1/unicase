@@ -15,6 +15,7 @@ import org.apache.commons.logging.LogFactory;
 import org.unicase.emfstore.EmfStore;
 import org.unicase.emfstore.accesscontrol.AccessControlException;
 import org.unicase.emfstore.accesscontrol.AuthenticationControl;
+import org.unicase.emfstore.esmodel.ClientVersionInfo;
 import org.unicase.emfstore.esmodel.ProjectId;
 import org.unicase.emfstore.esmodel.ProjectInfo;
 import org.unicase.emfstore.esmodel.SessionId;
@@ -172,12 +173,12 @@ public class RMIEmfStoreFacadeImpl extends AbstractUnicaseRMIFacade implements
 	 * @see org.unicase.emfstore.connection.rmi.RMIEmfStoreFacade#login(java.lang.String,
 	 *      java.lang.String, java.lang.String)
 	 */
-	public String login(String username, String password, String serverInfo)
+	public String login(String username, String password, String serverInfo, String version)
 			throws RemoteException, AccessControlException {
 		LOGGER.debug("Client call on login RECEIVED.");
 		try {
 			return SerializationUtil.eObjectToString(accessControl.logIn(username,
-					password));
+					password, (ClientVersionInfo) SerializationUtil.stringToEObject(version)));
 		} catch (RMISerializationException e) {
 			throw new AccessControlException(SERIALEX);
 		}
