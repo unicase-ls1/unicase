@@ -6,6 +6,8 @@
  */
 package org.unicase.emfstore.conflictDetection;
 
+import java.util.Set;
+
 import org.unicase.emfstore.esmodel.versioning.operations.AbstractOperation;
 import org.unicase.emfstore.esmodel.versioning.operations.AttributeOperation;
 import org.unicase.emfstore.esmodel.versioning.operations.CompositeOperation;
@@ -14,7 +16,6 @@ import org.unicase.emfstore.esmodel.versioning.operations.DiagramLayoutOperation
 import org.unicase.emfstore.esmodel.versioning.operations.FeatureOperation;
 import org.unicase.emfstore.esmodel.versioning.operations.MultiReferenceMoveOperation;
 import org.unicase.emfstore.esmodel.versioning.operations.MultiReferenceOperation;
-import org.unicase.emfstore.esmodel.versioning.operations.ReadOperation;
 import org.unicase.emfstore.esmodel.versioning.operations.ReferenceOperation;
 import org.unicase.emfstore.esmodel.versioning.operations.SingleReferenceOperation;
 import org.unicase.model.ModelElementId;
@@ -38,10 +39,7 @@ public class FineGrainedConflictDetectionStrategy implements
 	 */
 	public boolean doConflict(AbstractOperation operationA,
 			AbstractOperation operationB) {
-		if (operationA instanceof ReadOperation
-				|| operationB instanceof ReadOperation) {
-			return false;
-		} else if (operationA instanceof DiagramLayoutOperation) {
+		if (operationA instanceof DiagramLayoutOperation) {
 			return doConflict((DiagramLayoutOperation) operationA, operationB);
 
 		} else if (operationA instanceof AttributeOperation) {
@@ -76,18 +74,29 @@ public class FineGrainedConflictDetectionStrategy implements
 					operationB.getModelElementId());
 			return sameElement && sameFeature;
 		} else if (operationB instanceof ReferenceOperation) {
+			//MK split by multireference and singlereference
 			MultiReferenceOperation multiOperationA = operationA;
 			ReferenceOperation referenceOperationB = (ReferenceOperation) operationB;
 			boolean sameFeature = multiOperationA.getFeatureName().equals(
 					referenceOperationB.getFeatureName());
-			if (multiOperationA.getOppositeFeatureName() != null) {
-				sameFeature = sameFeature
-						|| multiOperationA.getOppositeFeatureName().equals(
-								referenceOperationB.getFeatureName());
-			}
+			//check if they really overlap
 			boolean sameElement = multiOperationA.getModelElementId().equals(
 					referenceOperationB.getModelElementId());
-			return sameFeature && sameElement;
+			if (sameFeature && sameElement) {
+				Set<ModelElementId> otherInvolvedModelElements = operationA.getOtherInvolvedModelElements();
+				for (ModelElementId modelElementId: operationA.getReferencedModelElements()) {
+					if (otherInvolvedModelElements.contains(modelElementId)) {
+						return true;
+					}
+				}
+			}
+			if (multiOperationA.getOppositeFeatureName() != null) {
+				sameFeature = multiOperationA.getOppositeFeatureName().equals(
+								referenceOperationB.getFeatureName());
+				
+			}
+			
+			return false;
 		} else {
 			return doConflict(operationB, operationA);
 		}
@@ -121,10 +130,7 @@ public class FineGrainedConflictDetectionStrategy implements
 	 */
 	public boolean isRequired(AbstractOperation requiredOperation,
 			AbstractOperation operation) {
-		if (requiredOperation instanceof ReadOperation
-				|| operation instanceof ReadOperation) {
-			return false;
-		} else if (requiredOperation instanceof CreateDeleteOperation) {
+		if (requiredOperation instanceof CreateDeleteOperation) {
 			return isRequired((CreateDeleteOperation) requiredOperation,
 					operation);
 		} else if (requiredOperation instanceof MultiReferenceOperation
