@@ -13,7 +13,10 @@ Require-Bundle: org.eclipse.ui,
  org.unicase.ui.meeditor,
  org.unicase.ui.common,
  org.unicase.ui.tableview,
- org.eclipse.nebula.widgets.cdatetime
+ org.eclipse.nebula.widgets.cdatetime,
+ org.eclipse.nebula.widgets.gantchart;bundle-version="0.0.14"
 Bundle-RequiredExecutionEnvironment: J2SE-1.5
 Bundle-ActivationPolicy: lazy
 Export-Package: org.unicase.ui.stem.views.dialogs
+Bundle-ClassPath: lib/,
+ .

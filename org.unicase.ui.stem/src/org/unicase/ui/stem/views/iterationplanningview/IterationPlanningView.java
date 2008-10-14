@@ -15,8 +15,12 @@ import org.eclipse.emf.edit.ui.dnd.LocalTransfer;
 import org.eclipse.emf.edit.ui.dnd.ViewerDragAdapter;
 import org.eclipse.emf.transaction.TransactionalEditingDomain;
 import org.eclipse.jface.action.Action;
+import org.eclipse.jface.action.IAction;
+import org.eclipse.jface.action.IMenuCreator;
 import org.eclipse.jface.action.IToolBarManager;
 import org.eclipse.jface.dialogs.DialogSettings;
+import org.eclipse.jface.resource.ImageDescriptor;
+import org.eclipse.jface.util.IPropertyChangeListener;
 import org.eclipse.jface.viewers.DecoratingLabelProvider;
 import org.eclipse.jface.viewers.DoubleClickEvent;
 import org.eclipse.jface.viewers.IDoubleClickListener;
@@ -27,7 +31,11 @@ import org.eclipse.jface.viewers.ViewerFilter;
 import org.eclipse.swt.SWT;
 import org.eclipse.swt.dnd.DND;
 import org.eclipse.swt.dnd.Transfer;
+import org.eclipse.swt.events.HelpListener;
+import org.eclipse.swt.layout.FillLayout;
 import org.eclipse.swt.widgets.Composite;
+import org.eclipse.swt.widgets.Event;
+import org.eclipse.swt.widgets.Shell;
 import org.eclipse.swt.widgets.Tree;
 import org.eclipse.ui.IActionBars;
 import org.eclipse.ui.IDecoratorManager;
@@ -56,6 +64,25 @@ import org.unicase.workspace.util.OrgUnitHelper;
  * 
  */
 public class IterationPlanningView extends ViewPart {
+	public class GantAction extends Action {
+		
+
+		public GantAction() {
+			super("Show Gantt Chart",Activator.getImageDescriptor("icons/ganttChart.png"));
+		}
+
+		@Override
+		public void run() {
+			// TODO Auto-generated method stub
+			Shell shell=new Shell(PlatformUI.getWorkbench().getDisplay());
+			shell.setSize(900, 500);
+			shell.setLayout(new FillLayout());
+			GantChart gantchart = new GantChart(shell);
+			shell.open();
+		}
+
+	}
+
 	private TreeViewer viewer;
 	private WorkpackageContentProvider workpackageContentProvider;
 	private Project project;
@@ -109,6 +136,7 @@ public class IterationPlanningView extends ViewPart {
 
 		menuManager.add(filterToMe);
 		menuManager.add(filterToMyTeam);
+//		menuManager.add(new GantAction());
 
 		// Create the help context id for the viewer's control
 		PlatformUI.getWorkbench().getHelpSystem().setHelp(viewer.getControl(),
