@@ -10,7 +10,9 @@ import java.io.File;
 import java.io.FileInputStream;
 import java.io.FileNotFoundException;
 import java.io.FileOutputStream;
+import java.io.FileWriter;
 import java.io.IOException;
+import java.net.URL;
 import java.security.KeyStore;
 import java.security.KeyStoreException;
 import java.security.NoSuchAlgorithmException;
@@ -20,6 +22,10 @@ import java.security.cert.CertificateFactory;
 import java.util.ArrayList;
 import java.util.Enumeration;
 
+import org.eclipse.core.internal.utils.FileUtil;
+import org.eclipse.core.runtime.FileLocator;
+import org.eclipse.core.runtime.Path;
+import org.eclipse.core.runtime.Platform;
 import org.unicase.workspace.Configuration;
 
 /**
@@ -59,14 +65,38 @@ public final class KeyStoreManager {
 	 */
 	public void setupKeys() {
 		if (!keyStoreExists()) {
-			// TODO: exception?
-			// throw new ConnectionException("Couldn't find keystore.");
-		} else {
-			System.setProperty("javax.net.ssl.trustStore", getPathToKeyStore());
-			System.setProperty("javax.net.ssl.keyStore", getPathToKeyStore());
-			System.setProperty("javax.net.ssl.keyStorePassword",
-					KEYSTOREPASSWORD);
+			// create directory ~/.unicase/ if necessary
+			File unicasedir = new File(Configuration.getWorkspaceDirectory());
+			if (!unicasedir.exists()) {
+				unicasedir.mkdir();
+			}
+
+			// prepare loading of file from bundle
+			URL clientKeyURL = FileLocator.find(Platform
+					.getBundle("org.unicase.workspace"), new Path(
+					"keystore/unicaseClient.keystore"), null);
+			try {
+				// configure file
+				URL localClientKeyURL = FileLocator.toFileURL(clientKeyURL);
+				File clientKeySource = new File(localClientKeyURL.getPath());
+
+				File clientKeyTarget = new File(Configuration
+						.getWorkspaceDirectory()
+						+ "unicaseClient.keystore");
+
+				// copy to destination
+				org.unicase.model.util.FileUtil.copyFile(clientKeySource,
+						clientKeyTarget);
+			} catch (IOException e) {
+				// TODO OW: exception? - now the user will be alerted to the
+				// problem as soon as he tries to connect.
+				// throw new ConnectionException("Couldn't find keystore.");
+			}
 		}
+		
+		System.setProperty("javax.net.ssl.trustStore", getPathToKeyStore());
+		System.setProperty("javax.net.ssl.keyStore", getPathToKeyStore());
+		System.setProperty("javax.net.ssl.keyStorePassword", KEYSTOREPASSWORD);
 	}
 
 	/**
