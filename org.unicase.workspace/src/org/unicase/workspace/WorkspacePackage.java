@@ -321,12 +321,21 @@ public interface WorkspacePackage extends EPackage {
 	int PROJECT_SPACE__OPERATIONS = ModelPackage.IDENTIFIABLE_ELEMENT_FEATURE_COUNT + 4;
 
 	/**
+	 * The feature id for the '<em><b>Events</b></em>' containment reference list.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 * @ordered
+	 */
+	int PROJECT_SPACE__EVENTS = ModelPackage.IDENTIFIABLE_ELEMENT_FEATURE_COUNT + 5;
+
+	/**
 	 * The feature id for the '<em><b>Usersession</b></em>' reference.
 	 * <!-- begin-user-doc --> <!-- end-user-doc -->
 	 * @generated
 	 * @ordered
 	 */
-	int PROJECT_SPACE__USERSESSION = ModelPackage.IDENTIFIABLE_ELEMENT_FEATURE_COUNT + 5;
+	int PROJECT_SPACE__USERSESSION = ModelPackage.IDENTIFIABLE_ELEMENT_FEATURE_COUNT + 6;
 
 	/**
 	 * The feature id for the '<em><b>Last Updated</b></em>' attribute. <!--
@@ -335,7 +344,7 @@ public interface WorkspacePackage extends EPackage {
 	 * @generated
 	 * @ordered
 	 */
-	int PROJECT_SPACE__LAST_UPDATED = ModelPackage.IDENTIFIABLE_ELEMENT_FEATURE_COUNT + 6;
+	int PROJECT_SPACE__LAST_UPDATED = ModelPackage.IDENTIFIABLE_ELEMENT_FEATURE_COUNT + 7;
 
 	/**
 	 * The feature id for the '<em><b>Base Version</b></em>' containment reference.
@@ -343,7 +352,7 @@ public interface WorkspacePackage extends EPackage {
 	 * @generated
 	 * @ordered
 	 */
-	int PROJECT_SPACE__BASE_VERSION = ModelPackage.IDENTIFIABLE_ELEMENT_FEATURE_COUNT + 7;
+	int PROJECT_SPACE__BASE_VERSION = ModelPackage.IDENTIFIABLE_ELEMENT_FEATURE_COUNT + 8;
 
 	/**
 	 * The feature id for the '<em><b>Resource Count</b></em>' attribute.
@@ -352,7 +361,7 @@ public interface WorkspacePackage extends EPackage {
 	 * @generated
 	 * @ordered
 	 */
-	int PROJECT_SPACE__RESOURCE_COUNT = ModelPackage.IDENTIFIABLE_ELEMENT_FEATURE_COUNT + 8;
+	int PROJECT_SPACE__RESOURCE_COUNT = ModelPackage.IDENTIFIABLE_ELEMENT_FEATURE_COUNT + 9;
 
 	/**
 	 * The feature id for the '<em><b>Dirty</b></em>' attribute.
@@ -361,7 +370,7 @@ public interface WorkspacePackage extends EPackage {
 	 * @generated
 	 * @ordered
 	 */
-	int PROJECT_SPACE__DIRTY = ModelPackage.IDENTIFIABLE_ELEMENT_FEATURE_COUNT + 9;
+	int PROJECT_SPACE__DIRTY = ModelPackage.IDENTIFIABLE_ELEMENT_FEATURE_COUNT + 10;
 
 	/**
 	 * The feature id for the '<em><b>Old Log Messages</b></em>' attribute list.
@@ -370,7 +379,7 @@ public interface WorkspacePackage extends EPackage {
 	 * @generated
 	 * @ordered
 	 */
-	int PROJECT_SPACE__OLD_LOG_MESSAGES = ModelPackage.IDENTIFIABLE_ELEMENT_FEATURE_COUNT + 10;
+	int PROJECT_SPACE__OLD_LOG_MESSAGES = ModelPackage.IDENTIFIABLE_ELEMENT_FEATURE_COUNT + 11;
 
 	/**
 	 * The number of structural features of the '<em>Project Space</em>' class.
@@ -378,7 +387,7 @@ public interface WorkspacePackage extends EPackage {
 	 * @generated
 	 * @ordered
 	 */
-	int PROJECT_SPACE_FEATURE_COUNT = ModelPackage.IDENTIFIABLE_ELEMENT_FEATURE_COUNT + 11;
+	int PROJECT_SPACE_FEATURE_COUNT = ModelPackage.IDENTIFIABLE_ELEMENT_FEATURE_COUNT + 12;
 
 	/**
 	 * Returns the meta object for class '
@@ -661,6 +670,17 @@ public interface WorkspacePackage extends EPackage {
 	 * @generated
 	 */
 	EReference getProjectSpace_Operations();
+
+	/**
+	 * Returns the meta object for the containment reference list '{@link org.unicase.workspace.ProjectSpace#getEvents <em>Events</em>}'.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @return the meta object for the containment reference list '<em>Events</em>'.
+	 * @see org.unicase.workspace.ProjectSpace#getEvents()
+	 * @see #getProjectSpace()
+	 * @generated
+	 */
+	EReference getProjectSpace_Events();
 
 	/**
 	 * Returns the meta object for the reference '{@link org.unicase.workspace.ProjectSpace#getUsersession <em>Usersession</em>}'.
@@ -961,6 +981,14 @@ public interface WorkspacePackage extends EPackage {
 		 */
 		EReference PROJECT_SPACE__OPERATIONS = eINSTANCE
 				.getProjectSpace_Operations();
+
+		/**
+		 * The meta object literal for the '<em><b>Events</b></em>' containment reference list feature.
+		 * <!-- begin-user-doc -->
+		 * <!-- end-user-doc -->
+		 * @generated
+		 */
+		EReference PROJECT_SPACE__EVENTS = eINSTANCE.getProjectSpace_Events();
 
 		/**
 		 * The meta object literal for the '<em><b>Usersession</b></em>' reference feature.

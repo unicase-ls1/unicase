@@ -15,6 +15,7 @@ import org.eclipse.emf.ecore.impl.EPackageImpl;
 import org.unicase.emfstore.esmodel.EsmodelPackage;
 import org.unicase.emfstore.esmodel.accesscontrol.AccesscontrolPackage;
 import org.unicase.emfstore.esmodel.versioning.VersioningPackage;
+import org.unicase.emfstore.esmodel.versioning.events.EventsPackage;
 import org.unicase.emfstore.esmodel.versioning.operations.OperationsPackage;
 import org.unicase.model.ModelPackage;
 import org.unicase.workspace.ProjectSpace;
@@ -341,10 +342,11 @@ public class WorkspacePackageImpl extends EPackageImpl implements
 	}
 
 	/**
-	 * <!-- begin-user-doc --> <!-- end-user-doc -->
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
 	 * @generated
 	 */
-	public EReference getProjectSpace_Usersession() {
+	public EReference getProjectSpace_Events() {
 		return (EReference) projectSpaceEClass.getEStructuralFeatures().get(5);
 	}
 
@@ -352,8 +354,16 @@ public class WorkspacePackageImpl extends EPackageImpl implements
 	 * <!-- begin-user-doc --> <!-- end-user-doc -->
 	 * @generated
 	 */
+	public EReference getProjectSpace_Usersession() {
+		return (EReference) projectSpaceEClass.getEStructuralFeatures().get(6);
+	}
+
+	/**
+	 * <!-- begin-user-doc --> <!-- end-user-doc -->
+	 * @generated
+	 */
 	public EAttribute getProjectSpace_LastUpdated() {
-		return (EAttribute) projectSpaceEClass.getEStructuralFeatures().get(6);
+		return (EAttribute) projectSpaceEClass.getEStructuralFeatures().get(7);
 	}
 
 	/**
@@ -361,7 +371,7 @@ public class WorkspacePackageImpl extends EPackageImpl implements
 	 * @generated
 	 */
 	public EReference getProjectSpace_BaseVersion() {
-		return (EReference) projectSpaceEClass.getEStructuralFeatures().get(7);
+		return (EReference) projectSpaceEClass.getEStructuralFeatures().get(8);
 	}
 
 	/**
@@ -370,15 +380,6 @@ public class WorkspacePackageImpl extends EPackageImpl implements
 	 * @generated
 	 */
 	public EAttribute getProjectSpace_ResourceCount() {
-		return (EAttribute) projectSpaceEClass.getEStructuralFeatures().get(8);
-	}
-
-	/**
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
-	 * @generated
-	 */
-	public EAttribute getProjectSpace_Dirty() {
 		return (EAttribute) projectSpaceEClass.getEStructuralFeatures().get(9);
 	}
 
@@ -387,8 +388,17 @@ public class WorkspacePackageImpl extends EPackageImpl implements
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
-	public EAttribute getProjectSpace_OldLogMessages() {
+	public EAttribute getProjectSpace_Dirty() {
 		return (EAttribute) projectSpaceEClass.getEStructuralFeatures().get(10);
+	}
+
+	/**
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 */
+	public EAttribute getProjectSpace_OldLogMessages() {
+		return (EAttribute) projectSpaceEClass.getEStructuralFeatures().get(11);
 	}
 
 	/**
@@ -447,6 +457,7 @@ public class WorkspacePackageImpl extends EPackageImpl implements
 		createEAttribute(projectSpaceEClass, PROJECT_SPACE__PROJECT_NAME);
 		createEAttribute(projectSpaceEClass, PROJECT_SPACE__PROJECT_DESCRIPTION);
 		createEReference(projectSpaceEClass, PROJECT_SPACE__OPERATIONS);
+		createEReference(projectSpaceEClass, PROJECT_SPACE__EVENTS);
 		createEReference(projectSpaceEClass, PROJECT_SPACE__USERSESSION);
 		createEAttribute(projectSpaceEClass, PROJECT_SPACE__LAST_UPDATED);
 		createEReference(projectSpaceEClass, PROJECT_SPACE__BASE_VERSION);
@@ -487,6 +498,8 @@ public class WorkspacePackageImpl extends EPackageImpl implements
 				.getEPackage(AccesscontrolPackage.eNS_URI);
 		OperationsPackage theOperationsPackage = (OperationsPackage) EPackage.Registry.INSTANCE
 				.getEPackage(OperationsPackage.eNS_URI);
+		EventsPackage theEventsPackage = (EventsPackage) EPackage.Registry.INSTANCE
+				.getEPackage(EventsPackage.eNS_URI);
 		VersioningPackage theVersioningPackage = (VersioningPackage) EPackage.Registry.INSTANCE
 				.getEPackage(VersioningPackage.eNS_URI);
 
@@ -632,6 +645,10 @@ public class WorkspacePackageImpl extends EPackageImpl implements
 				ProjectSpace.class, !IS_TRANSIENT, !IS_VOLATILE, IS_CHANGEABLE,
 				IS_COMPOSITE, IS_RESOLVE_PROXIES, !IS_UNSETTABLE, IS_UNIQUE,
 				!IS_DERIVED, IS_ORDERED);
+		initEReference(getProjectSpace_Events(), theEventsPackage.getEvent(),
+				null, "events", null, 0, -1, ProjectSpace.class, !IS_TRANSIENT,
+				!IS_VOLATILE, IS_CHANGEABLE, IS_COMPOSITE, IS_RESOLVE_PROXIES,
+				!IS_UNSETTABLE, IS_UNIQUE, !IS_DERIVED, IS_ORDERED);
 		initEReference(getProjectSpace_Usersession(), this.getUsersession(),
 				null, "usersession", null, 0, 1, ProjectSpace.class,
 				!IS_TRANSIENT, !IS_VOLATILE, IS_CHANGEABLE, !IS_COMPOSITE,

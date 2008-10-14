@@ -16,6 +16,7 @@ import org.unicase.emfstore.esmodel.ProjectInfo;
 import org.unicase.emfstore.esmodel.versioning.LogMessage;
 import org.unicase.emfstore.esmodel.versioning.PrimaryVersionSpec;
 import org.unicase.emfstore.esmodel.versioning.VersionSpec;
+import org.unicase.emfstore.esmodel.versioning.events.Event;
 import org.unicase.emfstore.esmodel.versioning.operations.AbstractOperation;
 import org.unicase.emfstore.exceptions.BaseVersionOutdatedException;
 import org.unicase.emfstore.exceptions.EmfStoreException;
@@ -37,6 +38,7 @@ import org.unicase.workspace.util.UpdateObserver;
  *   <li>{@link org.unicase.workspace.ProjectSpace#getProjectName <em>Project Name</em>}</li>
  *   <li>{@link org.unicase.workspace.ProjectSpace#getProjectDescription <em>Project Description</em>}</li>
  *   <li>{@link org.unicase.workspace.ProjectSpace#getOperations <em>Operations</em>}</li>
+ *   <li>{@link org.unicase.workspace.ProjectSpace#getEvents <em>Events</em>}</li>
  *   <li>{@link org.unicase.workspace.ProjectSpace#getUsersession <em>Usersession</em>}</li>
  *   <li>{@link org.unicase.workspace.ProjectSpace#getLastUpdated <em>Last Updated</em>}</li>
  *   <li>{@link org.unicase.workspace.ProjectSpace#getBaseVersion <em>Base Version</em>}</li>
@@ -170,6 +172,22 @@ public interface ProjectSpace extends IdentifiableElement {
 	 * @generated
 	 */
 	EList<AbstractOperation> getOperations();
+
+	/**
+	 * Returns the value of the '<em><b>Events</b></em>' containment reference list.
+	 * The list contents are of type {@link org.unicase.emfstore.esmodel.versioning.events.Event}.
+	 * <!-- begin-user-doc -->
+	 * <p>
+	 * If the meaning of the '<em>Events</em>' containment reference list isn't clear,
+	 * there really should be more of a description here...
+	 * </p>
+	 * <!-- end-user-doc -->
+	 * @return the value of the '<em>Events</em>' containment reference list.
+	 * @see org.unicase.workspace.WorkspacePackage#getProjectSpace_Events()
+	 * @model containment="true" resolveProxies="true"
+	 * @generated
+	 */
+	EList<Event> getEvents();
 
 	/**
 	 * Returns the value of the '<em><b>Usersession</b></em>' reference. <!--
@@ -487,4 +505,5 @@ public interface ProjectSpace extends IdentifiableElement {
 	 * Undo the last operation of the projectSpace.
 	 */
 	void undoLastOperation();
+
 } // ProjectContainer

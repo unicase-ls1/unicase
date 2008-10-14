@@ -50,6 +50,7 @@
       <genFeatures createChild="false" ecoreFeature="ecore:EAttribute workspace.ecore#//ProjectSpace/projectName"/>
       <genFeatures createChild="false" ecoreFeature="ecore:EAttribute workspace.ecore#//ProjectSpace/projectDescription"/>
       <genFeatures property="None" children="true" createChild="true" ecoreFeature="ecore:EReference workspace.ecore#//ProjectSpace/operations"/>
+      <genFeatures property="None" children="true" createChild="true" ecoreFeature="ecore:EReference workspace.ecore#//ProjectSpace/events"/>
       <genFeatures notify="false" createChild="false" propertySortChoices="true" ecoreFeature="ecore:EReference workspace.ecore#//ProjectSpace/usersession"/>
       <genFeatures createChild="false" ecoreFeature="ecore:EAttribute workspace.ecore#//ProjectSpace/lastUpdated"/>
       <genFeatures property="None" children="true" createChild="true" ecoreFeature="ecore:EReference workspace.ecore#//ProjectSpace/baseVersion"/>
