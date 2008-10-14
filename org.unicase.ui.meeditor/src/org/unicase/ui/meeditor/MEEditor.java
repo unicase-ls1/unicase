@@ -158,14 +158,6 @@ public class MEEditor extends SharedHeaderFormEditor {
 			stringBuffer.append(dateFormat.format(creationDate));
 			stringBuffer.append(" by ");
 			stringBuffer.append(modelElement.getCreator());
-			Date lastModifiedDate = modelElement.getLastModifiedDate();
-			if(lastModifiedDate!=null){
-				stringBuffer.append(" | ");
-				stringBuffer.append("Last modified: ");
-				stringBuffer.append(dateFormat.format(lastModifiedDate));
-				stringBuffer.append(" by ");
-				stringBuffer.append(modelElement.getLastModifier());
-			}
 			getEditorSite().getActionBars().getStatusLineManager().setMessage(stringBuffer.toString());
 		} else {
 			throw new PartInitException(
