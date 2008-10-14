@@ -26,6 +26,7 @@ import org.eclipse.ui.ISharedImages;
 import org.eclipse.ui.PlatformUI;
 import org.unicase.emfstore.esmodel.EsmodelFactory;
 import org.unicase.emfstore.esmodel.versioning.VersioningFactory;
+import org.unicase.emfstore.esmodel.versioning.events.EventsFactory;
 import org.unicase.emfstore.esmodel.versioning.operations.OperationsFactory;
 import org.unicase.model.ModelFactory;
 import org.unicase.model.provider.IdentifiableElementItemProvider;
@@ -244,6 +245,8 @@ public class ProjectSpaceItemProvider extends IdentifiableElementItemProvider
 			childrenFeatures
 					.add(WorkspacePackage.Literals.PROJECT_SPACE__OPERATIONS);
 			childrenFeatures
+					.add(WorkspacePackage.Literals.PROJECT_SPACE__EVENTS);
+			childrenFeatures
 					.add(WorkspacePackage.Literals.PROJECT_SPACE__BASE_VERSION);
 		}
 		return childrenFeatures;
@@ -326,6 +329,7 @@ public class ProjectSpaceItemProvider extends IdentifiableElementItemProvider
 		case WorkspacePackage.PROJECT_SPACE__PROJECT:
 		case WorkspacePackage.PROJECT_SPACE__PROJECT_ID:
 		case WorkspacePackage.PROJECT_SPACE__OPERATIONS:
+		case WorkspacePackage.PROJECT_SPACE__EVENTS:
 		case WorkspacePackage.PROJECT_SPACE__BASE_VERSION:
 			fireNotifyChanged(new ViewerNotification(notification, notification
 					.getNotifier(), true, false));
@@ -393,6 +397,22 @@ public class ProjectSpaceItemProvider extends IdentifiableElementItemProvider
 						WorkspacePackage.Literals.PROJECT_SPACE__OPERATIONS,
 						OperationsFactory.eINSTANCE
 								.createMultiAttributeMoveOperation()));
+
+		newChildDescriptors.add(createChildParameter(
+				WorkspacePackage.Literals.PROJECT_SPACE__EVENTS,
+				EventsFactory.eINSTANCE.createEvent()));
+
+		newChildDescriptors.add(createChildParameter(
+				WorkspacePackage.Literals.PROJECT_SPACE__EVENTS,
+				EventsFactory.eINSTANCE.createReadEvent()));
+
+		newChildDescriptors.add(createChildParameter(
+				WorkspacePackage.Literals.PROJECT_SPACE__EVENTS,
+				EventsFactory.eINSTANCE.createMergeEvent()));
+
+		newChildDescriptors.add(createChildParameter(
+				WorkspacePackage.Literals.PROJECT_SPACE__EVENTS,
+				EventsFactory.eINSTANCE.createCheckoutEvent()));
 
 		newChildDescriptors.add(createChildParameter(
 				WorkspacePackage.Literals.PROJECT_SPACE__BASE_VERSION,

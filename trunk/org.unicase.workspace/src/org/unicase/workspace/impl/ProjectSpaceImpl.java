@@ -44,6 +44,7 @@ import org.unicase.emfstore.esmodel.versioning.LogMessage;
 import org.unicase.emfstore.esmodel.versioning.PrimaryVersionSpec;
 import org.unicase.emfstore.esmodel.versioning.VersionSpec;
 import org.unicase.emfstore.esmodel.versioning.VersioningFactory;
+import org.unicase.emfstore.esmodel.versioning.events.Event;
 import org.unicase.emfstore.esmodel.versioning.operations.AbstractOperation;
 import org.unicase.emfstore.esmodel.versioning.operations.AttributeOperation;
 import org.unicase.emfstore.esmodel.versioning.operations.CreateDeleteOperation;
@@ -90,6 +91,7 @@ import org.unicase.workspace.util.UpdateObserver;
  *   <li>{@link org.unicase.workspace.impl.ProjectSpaceImpl#getProjectName <em>Project Name</em>}</li>
  *   <li>{@link org.unicase.workspace.impl.ProjectSpaceImpl#getProjectDescription <em>Project Description</em>}</li>
  *   <li>{@link org.unicase.workspace.impl.ProjectSpaceImpl#getOperations <em>Operations</em>}</li>
+ *   <li>{@link org.unicase.workspace.impl.ProjectSpaceImpl#getEvents <em>Events</em>}</li>
  *   <li>{@link org.unicase.workspace.impl.ProjectSpaceImpl#getUsersession <em>Usersession</em>}</li>
  *   <li>{@link org.unicase.workspace.impl.ProjectSpaceImpl#getLastUpdated <em>Last Updated</em>}</li>
  *   <li>{@link org.unicase.workspace.impl.ProjectSpaceImpl#getBaseVersion <em>Base Version</em>}</li>
@@ -168,6 +170,16 @@ public class ProjectSpaceImpl extends IdentifiableElementImpl implements
 	 * @ordered
 	 */
 	protected EList<AbstractOperation> operations;
+
+	/**
+	 * The cached value of the '{@link #getEvents() <em>Events</em>}' containment reference list.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @see #getEvents()
+	 * @generated
+	 * @ordered
+	 */
+	protected EList<Event> events;
 
 	/**
 	 * The cached value of the '{@link #getUsersession() <em>Usersession</em>}' reference.
@@ -501,6 +513,19 @@ public class ProjectSpaceImpl extends IdentifiableElementImpl implements
 					WorkspacePackage.PROJECT_SPACE__OPERATIONS);
 		}
 		return operations;
+	}
+
+	/**
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 */
+	public EList<Event> getEvents() {
+		if (events == null) {
+			events = new EObjectContainmentEList.Resolving<Event>(Event.class,
+					this, WorkspacePackage.PROJECT_SPACE__EVENTS);
+		}
+		return events;
 	}
 
 	/**
@@ -1031,6 +1056,8 @@ public class ProjectSpaceImpl extends IdentifiableElementImpl implements
 		case WorkspacePackage.PROJECT_SPACE__OPERATIONS:
 			return ((InternalEList<?>) getOperations()).basicRemove(otherEnd,
 					msgs);
+		case WorkspacePackage.PROJECT_SPACE__EVENTS:
+			return ((InternalEList<?>) getEvents()).basicRemove(otherEnd, msgs);
 		case WorkspacePackage.PROJECT_SPACE__BASE_VERSION:
 			return basicSetBaseVersion(null, msgs);
 		}
@@ -1058,6 +1085,8 @@ public class ProjectSpaceImpl extends IdentifiableElementImpl implements
 			return getProjectDescription();
 		case WorkspacePackage.PROJECT_SPACE__OPERATIONS:
 			return getOperations();
+		case WorkspacePackage.PROJECT_SPACE__EVENTS:
+			return getEvents();
 		case WorkspacePackage.PROJECT_SPACE__USERSESSION:
 			if (resolve)
 				return getUsersession();
@@ -1102,6 +1131,10 @@ public class ProjectSpaceImpl extends IdentifiableElementImpl implements
 			getOperations().clear();
 			getOperations().addAll(
 					(Collection<? extends AbstractOperation>) newValue);
+			return;
+		case WorkspacePackage.PROJECT_SPACE__EVENTS:
+			getEvents().clear();
+			getEvents().addAll((Collection<? extends Event>) newValue);
 			return;
 		case WorkspacePackage.PROJECT_SPACE__USERSESSION:
 			setUsersession((Usersession) newValue);
@@ -1148,6 +1181,9 @@ public class ProjectSpaceImpl extends IdentifiableElementImpl implements
 		case WorkspacePackage.PROJECT_SPACE__OPERATIONS:
 			getOperations().clear();
 			return;
+		case WorkspacePackage.PROJECT_SPACE__EVENTS:
+			getEvents().clear();
+			return;
 		case WorkspacePackage.PROJECT_SPACE__USERSESSION:
 			setUsersession((Usersession) null);
 			return;
@@ -1189,6 +1225,8 @@ public class ProjectSpaceImpl extends IdentifiableElementImpl implements
 					: !PROJECT_DESCRIPTION_EDEFAULT.equals(projectDescription);
 		case WorkspacePackage.PROJECT_SPACE__OPERATIONS:
 			return operations != null && !operations.isEmpty();
+		case WorkspacePackage.PROJECT_SPACE__EVENTS:
+			return events != null && !events.isEmpty();
 		case WorkspacePackage.PROJECT_SPACE__USERSESSION:
 			return usersession != null;
 		case WorkspacePackage.PROJECT_SPACE__LAST_UPDATED:
