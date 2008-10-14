@@ -41,7 +41,7 @@ public class RevertHandler extends ProjectActionHandler {
 			protected void doExecute() {
 				
 				MessageDialog dialog = new MessageDialog(null, "Confirmation",
-						null, "Do you really want to revert all your changes on project" + projectSpace.getProjectName(),
+						null, "Do you really want to revert all your changes on project " + projectSpace.getProjectName(),
 						MessageDialog.QUESTION, new String[] { "Yes", "No" }, 0);
 				int result = dialog.open();
 				if (result == 0) {
