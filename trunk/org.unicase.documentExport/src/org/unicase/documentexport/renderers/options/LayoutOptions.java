@@ -2,6 +2,7 @@ package org.unicase.documentexport.renderers.options;
 
 import java.awt.Graphics;
 
+@SuppressWarnings("serial")
 public class LayoutOptions extends RendererOption {
 	public Graphics logo = null;
 	public int pageNumberingStyle = LayoutOptions.ONLY_PAGE;

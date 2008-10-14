@@ -1,15 +1,16 @@
 package org.unicase.documentexport.commands;
 
-
-
-
-
 import java.io.File;
 import java.lang.reflect.InvocationTargetException;
+import java.util.List;
 
 import org.eclipse.core.commands.AbstractHandler;
 import org.eclipse.core.commands.ExecutionEvent;
 import org.eclipse.core.commands.ExecutionException;
+import org.eclipse.emf.ecore.EStructuralFeature;
+import org.eclipse.emf.edit.provider.AdapterFactoryItemDelegator;
+import org.eclipse.emf.edit.provider.ComposedAdapterFactory;
+import org.eclipse.emf.edit.provider.IItemPropertyDescriptor;
 import org.eclipse.jface.dialogs.ProgressMonitorDialog;
 import org.eclipse.jface.viewers.ISelection;
 import org.eclipse.jface.viewers.IStructuredSelection;
@@ -47,7 +48,6 @@ public class ExportDocument extends AbstractHandler {
 		}
 		
 		ModelElementImpl modelElement = (ModelElementImpl) o;
-	
 		
 	    Shell s = new Shell();
 	    
@@ -88,19 +88,18 @@ public class ExportDocument extends AbstractHandler {
 				try {
 					dialog.run(true, true, docExport);
 				} catch (InvocationTargetException e) {
-					// TODO Auto-generated catch block
+					MessageBox finished = new MessageBox(new Shell(), SWT.OK | SWT.ICON_WORKING);
+					finished.setText("Export status");
+					finished.setMessage(e.getClass().getSimpleName() + ": " + e.getMessage());
+					finished.open();
 					e.printStackTrace();
 				} catch (InterruptedException e) {
-					// TODO Auto-generated catch block
+					MessageBox finished = new MessageBox(new Shell(), SWT.OK | SWT.ICON_WORKING);
+					finished.setText("Export status");
+					finished.setMessage("Export interrupted");
+					finished.open();
 					e.printStackTrace();
 				}
-				
-
-
-//				MessageBox finished = new MessageBox(new Shell(), SWT.OK | SWT.ICON_WORKING);
-//				finished.setText("Export status");
-//				finished.setMessage("export successfull");
-//				finished.open();
 			}
 		}
 		
@@ -108,6 +107,23 @@ public class ExportDocument extends AbstractHandler {
 
 		return null;
 		
+	}
+	
+	public void getFeatures(ModelElement me) {
+		AdapterFactoryItemDelegator adapterFactoryItemDelegator = new AdapterFactoryItemDelegator(
+				new ComposedAdapterFactory(
+						ComposedAdapterFactory.Descriptor.Registry.INSTANCE
+				)
+		);
+		
+		List<IItemPropertyDescriptor> propertyDescriptors = adapterFactoryItemDelegator.
+			getPropertyDescriptors(me);
+		if (propertyDescriptors != null){	
+			for (IItemPropertyDescriptor itemPropertyDescriptor : propertyDescriptors) {
+				EStructuralFeature feature = (EStructuralFeature)itemPropertyDescriptor.getFeature(me);
+				System.out.println(feature.getName());
+			}
+		}
 	}
 	
 }

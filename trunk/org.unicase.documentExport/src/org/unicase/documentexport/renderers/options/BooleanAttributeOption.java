@@ -1,5 +1,6 @@
 package org.unicase.documentexport.renderers.options;
 
+@SuppressWarnings("serial")
 public class BooleanAttributeOption extends AttributeOption {
 
 	public BooleanOption booleanOption = new BooleanOption();

@@ -3,6 +3,7 @@ package org.unicase.documentexport.renderers.modelElement;
 import java.io.Serializable;
 import java.util.ArrayList;
 
+import org.eclipse.emf.ecore.EClass;
 import org.unicase.documentexport.renderers.ModelElementRenderer;
 
 /**
@@ -24,27 +25,28 @@ public class ModelElementRendererMappings implements Serializable {
 		return modelElementRenderers;
 	}
 	
-	public void set(Class clazz, ModelElementRenderer renderer) {
+	public void set(EClass eClass, ModelElementRenderer renderer) {
 		
 		//there isn't any entry for this ModelElement type yet -> add it
-		if ((get(clazz)) == null) {
+		if ((get(eClass)) == null) {
+			System.out.println("there is no renderer");
 			ModelElementRendererMapping mapping = new ModelElementRendererMapping();
-			mapping.modelElementType = clazz;
+			mapping.modelElementType = eClass.getInstanceClass();
 			mapping.renderer = renderer;
 			modelElementRenderers.add(mapping);			
 		} 
 		//change the existing entry for this modelElement type
 		else {
 			for (ModelElementRendererMapping mapping : modelElementRenderers) {
-				if (mapping.modelElementType.equals(clazz))
+				if (mapping.modelElementType.equals(eClass.getInstanceClass()))
 					mapping.renderer = renderer;
 			}		
 		}
 	}
 
-	public ModelElementRenderer get(Class clazz) {
+	public ModelElementRenderer get(EClass eClass) {
 		for (ModelElementRendererMapping mapping : modelElementRenderers) {
-			if (mapping.modelElementType.equals(clazz))
+			if (mapping.modelElementType.equals(eClass.getInstanceClass()))
 				return mapping.renderer;
 		}
 		

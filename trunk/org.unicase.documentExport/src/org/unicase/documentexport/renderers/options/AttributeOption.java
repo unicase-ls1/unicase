@@ -21,12 +21,6 @@ public abstract class AttributeOption extends RendererOption {
 	 */
 	public AttributeOption globalOption;
 	
-	/**
-	 * This AttributeOption defines the RendererOption of this feature. 
-	 * A Feature a property of a ModelElement.
-	 */
-	private String attributeName;
-	
 	
 	/**
 	 * shall the global option values be returned?

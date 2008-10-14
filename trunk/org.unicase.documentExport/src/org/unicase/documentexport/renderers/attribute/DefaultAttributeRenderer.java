@@ -21,13 +21,13 @@ import org.unicase.documentexport.renderers.options.SingleReferenceAttributeOpti
 import org.unicase.documentexport.renderers.options.StringAttributeOption;
 import org.unicase.model.ModelElement;
 
+@SuppressWarnings("serial")
 public class DefaultAttributeRenderer extends AttributeRenderer {
-	
-	private LayoutOptions layoutOptions;
-	private ModelElementRendererMappings modelElementRendererMappings;
-	private DocumentTemplate template;
-	
-	public void render(
+
+    private LayoutOptions layoutOptions;
+    private ModelElementRendererMappings modelElementRendererMappings;
+    
+    public void render(
 			EStructuralFeature feature,
 			ModelElement modelElement, 
 			UCompositeSection parent,
@@ -36,22 +36,24 @@ public class DefaultAttributeRenderer extends AttributeRenderer {
 			DocumentTemplate template
 		) {
 		
-
 		this.layoutOptions = layoutOptions;
 		this.modelElementRendererMappings = modelElementRendererMappings;
-		this.template = template;
 		
 		if (option instanceof StringAttributeOption) {
-			this.option.globalOption = template.getGlobalAttributeRendererOption(StringAttributeOption.class);
+			this.option.globalOption = (StringAttributeOption) 
+				template.getGlobalAttributeRendererOption(StringAttributeOption.class);
 		}
 		if (option instanceof BooleanAttributeOption) {
-			this.option.globalOption = template.getGlobalAttributeRendererOption(BooleanAttributeOption.class);			
+			this.option.globalOption = (BooleanAttributeOption) 
+				template.getGlobalAttributeRendererOption(BooleanAttributeOption.class);			
 		}
 		if (option instanceof SingleReferenceAttributeOption) {
-			this.option.globalOption = template.getGlobalAttributeRendererOption(SingleReferenceAttributeOption.class);		
+			this.option.globalOption = (SingleReferenceAttributeOption) 
+				template.getGlobalAttributeRendererOption(SingleReferenceAttributeOption.class);		
 		}
 		if (option instanceof MultiReferenceAttributeOption) {
-			this.option.globalOption = template.getGlobalAttributeRendererOption(MultiReferenceAttributeOption.class);	
+			this.option.globalOption = (MultiReferenceAttributeOption) 
+				template.getGlobalAttributeRendererOption(MultiReferenceAttributeOption.class);	
 		}
 		
 
@@ -82,11 +84,10 @@ public class DefaultAttributeRenderer extends AttributeRenderer {
 			}
 		} else { //EReference	
 			if (content != null) {
-				if (((EReference) feature).isContainment()) {
+				if (((EReference) feature).isContainment())
 					renderContainedReference((ModelElement)content, parent, feature);
-				} else {
+				else
 					renderLinkedReference((ModelElement)content, parent, feature);
-				}
 			}
 		}
 	}
@@ -96,6 +97,7 @@ public class DefaultAttributeRenderer extends AttributeRenderer {
 			UCompositeSection parent, 
 			EStructuralFeature feature
 		) {
+		
 		if (option instanceof StringAttributeOption) {
 			StringAttributeOption option2 = (StringAttributeOption)option;
 			UParagraph name = new UParagraph(
@@ -161,7 +163,7 @@ public class DefaultAttributeRenderer extends AttributeRenderer {
 		) {
 		
 		ModelElementRenderer renderer = modelElementRendererMappings.get(
-				(content).eClass().getInstanceClass()
+				((ModelElement)content).eClass()
 			);
 		renderer.render(content, attributeSection, layoutOptions);
 	}
@@ -189,6 +191,7 @@ public class DefaultAttributeRenderer extends AttributeRenderer {
 		
 		ReferenceOption refOption = getRefenceOption(option);
 		Object attributeValue = modelElement.eGet(feature);
+
 		EList<ModelElement> objectList = (EList<ModelElement>)attributeValue;
 		ListOption listOption = ((MultiReferenceAttributeOption)option).getListOption();
 		

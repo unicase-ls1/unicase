@@ -4,6 +4,7 @@ import java.util.ArrayList;
 import java.util.List;
 
 import org.eclipse.emf.ecore.EAttribute;
+import org.eclipse.emf.ecore.EClass;
 import org.eclipse.emf.ecore.EReference;
 import org.eclipse.emf.ecore.EStructuralFeature;
 import org.eclipse.emf.edit.provider.AdapterFactoryItemDelegator;
@@ -31,8 +32,12 @@ import org.unicase.model.ModelElement;
 public class DefaultModelElementRendererBuilder {
 	private DocumentTemplate template;
 
-	public DefaultModelElementRenderer build(ModelElement modelElement, DocumentTemplate template) {
+	public DefaultModelElementRenderer build(EClass eClass, DocumentTemplate template) {
 		this.template = template;
+		
+		ModelElement modelElement = 
+			(ModelElement)eClass.getEPackage().getEFactoryInstance().create(eClass);
+		
 		DefaultModelElementRenderer renderer = new DefaultModelElementRenderer(template);
 		
 		

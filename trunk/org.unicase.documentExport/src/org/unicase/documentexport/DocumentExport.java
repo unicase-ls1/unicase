@@ -46,9 +46,10 @@ public class DocumentExport implements IRunnableWithProgress{
 		
 		monitor.beginTask("Exporting Document", IProgressMonitor.UNKNOWN);
 		export(this.fileName);
-		monitor.done();
 		
 		if (monitor.isCanceled())
 			throw new InterruptedException("The export has been canceled");
+		
+		monitor.done();
 	}
 }

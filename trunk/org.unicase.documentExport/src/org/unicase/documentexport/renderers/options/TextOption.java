@@ -2,6 +2,7 @@ package org.unicase.documentexport.renderers.options;
 
 import java.awt.Color;
 
+@SuppressWarnings("serial")
 public class TextOption extends RendererOption  {
 	public int fontFamily = TextOption.ARIAL;
 	public int size = 12;

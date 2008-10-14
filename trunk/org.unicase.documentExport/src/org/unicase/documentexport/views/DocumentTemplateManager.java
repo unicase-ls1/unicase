@@ -104,7 +104,6 @@ public class DocumentTemplateManager extends ViewPart {
 			}
 
 			public void widgetSelected(SelectionEvent arg0) {	
-				Button button = (Button)arg0.widget;	
 				TemplateSaveHelper.saveTemplate(template);
 			}
 		});
@@ -236,17 +235,13 @@ public class DocumentTemplateManager extends ViewPart {
 	
 	
 	private void setTemplates() {
-		System.out.println("setting templates");;
-
 		for (int i = 0; i < templateSelect.getItemCount(); i++) {
-			System.out.println(i);
 			templateSelect.remove(i);
 		}
 		
 		
 		int i = 0;
 		while (i < templatePaths.size()) {
-			System.out.println("template path: " + i + templatePaths.get(i).fileName);
 			templateSelect.add(templatePaths.get(i).fileName, i);
 			i++;
 		}
@@ -273,7 +268,6 @@ public class DocumentTemplateManager extends ViewPart {
 
 			for(int i=0;i<files.length;i++) {
 				if (files[i].isFile()) {
-//					System.out.println(files[i].getName());
 					TemplateDescriptor descriptor = new TemplateDescriptor();
 					descriptor.path = files[i].getCanonicalPath();
 					descriptor.fileName = files[i].getName();
