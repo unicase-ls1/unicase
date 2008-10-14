@@ -7,8 +7,6 @@ import java.util.Map;
 
 import org.eclipse.emf.ecore.EClass;
 import org.eclipse.emf.ecore.EReference;
-import org.eclipse.emf.ecore.EcoreFactory;
-import org.eclipse.emf.ecore.EcorePackage;
 import org.eclipse.jface.action.IContributionItem;
 import org.eclipse.ui.PlatformUI;
 import org.eclipse.ui.actions.CompoundContributionItem;
@@ -19,7 +17,6 @@ import org.unicase.model.ModelPackage;
 import org.unicase.model.diagram.DiagramPackage;
 import org.unicase.model.util.ModelUtil;
 import org.unicase.ui.common.commands.ActionHelper;
-import org.unicase.ui.common.util.UnicaseUiUtil;
 
 public class DynamicContainmentCommands extends CompoundContributionItem {
 
