@@ -24,9 +24,6 @@ import org.unicase.model.task.util.MEState;
  *   <li>{@link org.unicase.model.ModelElement#getDescription <em>Description</em>}</li>
  *   <li>{@link org.unicase.model.ModelElement#getCreator <em>Creator</em>}</li>
  *   <li>{@link org.unicase.model.ModelElement#getCreationDate <em>Creation Date</em>}</li>
- *   <li>{@link org.unicase.model.ModelElement#getLastModifier <em>Last Modifier</em>}</li>
- *   <li>{@link org.unicase.model.ModelElement#getLastModifiedDate <em>Last Modified Date</em>}</li>
- *   <li>{@link org.unicase.model.ModelElement#getStringReaderInfos <em>String Reader Infos</em>}</li>
  *   <li>{@link org.unicase.model.ModelElement#getAnnotations <em>Annotations</em>}</li>
  *   <li>{@link org.unicase.model.ModelElement#getAttachments <em>Attachments</em>}</li>
  *   <li>{@link org.unicase.model.ModelElement#getIncomingDocumentReferences <em>Incoming Document References</em>}</li>
@@ -149,74 +146,6 @@ public interface ModelElement extends IdentifiableElement {
 	void setCreationDate(Date value);
 
 	/**
-	 * Returns the value of the '<em><b>Last Modifier</b></em>' attribute.
-	 * <!-- begin-user-doc -->
-	 * <p>
-	 * If the meaning of the '<em>Last Modifier</em>' attribute isn't clear,
-	 * there really should be more of a description here...
-	 * </p>
-	 * <!-- end-user-doc -->
-	 * @return the value of the '<em>Last Modifier</em>' attribute.
-	 * @see #setLastModifier(String)
-	 * @see org.unicase.model.ModelPackage#getModelElement_LastModifier()
-	 * @model
-	 * @generated
-	 */
-	String getLastModifier();
-
-	/**
-	 * Sets the value of the '{@link org.unicase.model.ModelElement#getLastModifier <em>Last Modifier</em>}' attribute.
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
-	 * @param value the new value of the '<em>Last Modifier</em>' attribute.
-	 * @see #getLastModifier()
-	 * @generated
-	 */
-	void setLastModifier(String value);
-
-	/**
-	 * Returns the value of the '<em><b>Last Modified Date</b></em>' attribute.
-	 * <!-- begin-user-doc -->
-	 * <p>
-	 * If the meaning of the '<em>Last Modified Date</em>' attribute isn't clear,
-	 * there really should be more of a description here...
-	 * </p>
-	 * <!-- end-user-doc -->
-	 * @return the value of the '<em>Last Modified Date</em>' attribute.
-	 * @see #setLastModifiedDate(Date)
-	 * @see org.unicase.model.ModelPackage#getModelElement_LastModifiedDate()
-	 * @model
-	 * @generated
-	 */
-	Date getLastModifiedDate();
-
-	/**
-	 * Sets the value of the '{@link org.unicase.model.ModelElement#getLastModifiedDate <em>Last Modified Date</em>}' attribute.
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
-	 * @param value the new value of the '<em>Last Modified Date</em>' attribute.
-	 * @see #getLastModifiedDate()
-	 * @generated
-	 */
-	void setLastModifiedDate(Date value);
-
-	/**
-	 * Returns the value of the '<em><b>String Reader Infos</b></em>' attribute list.
-	 * The list contents are of type {@link java.lang.String}.
-	 * <!-- begin-user-doc -->
-	 * <p>
-	 * If the meaning of the '<em>String Reader Infos</em>' attribute list isn't clear,
-	 * there really should be more of a description here...
-	 * </p>
-	 * <!-- end-user-doc -->
-	 * @return the value of the '<em>String Reader Infos</em>' attribute list.
-	 * @see org.unicase.model.ModelPackage#getModelElement_StringReaderInfos()
-	 * @model changeable="false"
-	 * @generated
-	 */
-	EList<String> getStringReaderInfos();
-
-	/**
 	 * Returns the value of the '<em><b>Annotations</b></em>' reference list.
 	 * The list contents are of type {@link org.unicase.model.Annotation}.
 	 * It is bidirectional and its opposite is '{@link org.unicase.model.Annotation#getAnnotatedModelElements <em>Annotated Model Elements</em>}'.
@@ -325,14 +254,6 @@ public interface ModelElement extends IdentifiableElement {
 	 * @generated
 	 */
 	Project getProject();
-
-	/**
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
-	 * @model
-	 * @generated
-	 */
-	void addReader(String acOrgId);
 
 	/**
 	 * <!-- begin-user-doc -->

@@ -292,38 +292,11 @@ public class ModelPackageImpl extends EPackageImpl implements ModelPackage {
 	}
 
 	/**
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
-	 * @generated
-	 */
-	public EAttribute getModelElement_LastModifier() {
-		return (EAttribute) modelElementEClass.getEStructuralFeatures().get(4);
-	}
-
-	/**
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
-	 * @generated
-	 */
-	public EAttribute getModelElement_LastModifiedDate() {
-		return (EAttribute) modelElementEClass.getEStructuralFeatures().get(5);
-	}
-
-	/**
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
-	 * @generated
-	 */
-	public EAttribute getModelElement_StringReaderInfos() {
-		return (EAttribute) modelElementEClass.getEStructuralFeatures().get(6);
-	}
-
-	/**
 	 * <!-- begin-user-doc --> <!-- end-user-doc -->
 	 * @generated
 	 */
 	public EReference getModelElement_Annotations() {
-		return (EReference) modelElementEClass.getEStructuralFeatures().get(7);
+		return (EReference) modelElementEClass.getEStructuralFeatures().get(4);
 	}
 
 	/**
@@ -332,7 +305,7 @@ public class ModelPackageImpl extends EPackageImpl implements ModelPackage {
 	 * @generated
 	 */
 	public EReference getModelElement_Attachments() {
-		return (EReference) modelElementEClass.getEStructuralFeatures().get(8);
+		return (EReference) modelElementEClass.getEStructuralFeatures().get(5);
 	}
 
 	/**
@@ -340,7 +313,7 @@ public class ModelPackageImpl extends EPackageImpl implements ModelPackage {
 	 * @generated
 	 */
 	public EReference getModelElement_IncomingDocumentReferences() {
-		return (EReference) modelElementEClass.getEStructuralFeatures().get(9);
+		return (EReference) modelElementEClass.getEStructuralFeatures().get(6);
 	}
 
 	/**
@@ -348,7 +321,7 @@ public class ModelPackageImpl extends EPackageImpl implements ModelPackage {
 	 * @generated
 	 */
 	public EReference getModelElement_LeafSection() {
-		return (EReference) modelElementEClass.getEStructuralFeatures().get(10);
+		return (EReference) modelElementEClass.getEStructuralFeatures().get(7);
 	}
 
 	/**
@@ -357,7 +330,7 @@ public class ModelPackageImpl extends EPackageImpl implements ModelPackage {
 	 * @generated
 	 */
 	public EAttribute getModelElement_State() {
-		return (EAttribute) modelElementEClass.getEStructuralFeatures().get(11);
+		return (EAttribute) modelElementEClass.getEStructuralFeatures().get(8);
 	}
 
 	/**
@@ -496,9 +469,6 @@ public class ModelPackageImpl extends EPackageImpl implements ModelPackage {
 		createEAttribute(modelElementEClass, MODEL_ELEMENT__DESCRIPTION);
 		createEAttribute(modelElementEClass, MODEL_ELEMENT__CREATOR);
 		createEAttribute(modelElementEClass, MODEL_ELEMENT__CREATION_DATE);
-		createEAttribute(modelElementEClass, MODEL_ELEMENT__LAST_MODIFIER);
-		createEAttribute(modelElementEClass, MODEL_ELEMENT__LAST_MODIFIED_DATE);
-		createEAttribute(modelElementEClass, MODEL_ELEMENT__STRING_READER_INFOS);
 		createEReference(modelElementEClass, MODEL_ELEMENT__ANNOTATIONS);
 		createEReference(modelElementEClass, MODEL_ELEMENT__ATTACHMENTS);
 		createEReference(modelElementEClass,
@@ -618,19 +588,6 @@ public class ModelPackageImpl extends EPackageImpl implements ModelPackage {
 				"creationDate", null, 0, 1, ModelElement.class, !IS_TRANSIENT,
 				!IS_VOLATILE, IS_CHANGEABLE, !IS_UNSETTABLE, !IS_ID, IS_UNIQUE,
 				!IS_DERIVED, IS_ORDERED);
-		initEAttribute(getModelElement_LastModifier(), ecorePackage
-				.getEString(), "lastModifier", null, 0, 1, ModelElement.class,
-				!IS_TRANSIENT, !IS_VOLATILE, IS_CHANGEABLE, !IS_UNSETTABLE,
-				!IS_ID, IS_UNIQUE, !IS_DERIVED, IS_ORDERED);
-		initEAttribute(getModelElement_LastModifiedDate(), ecorePackage
-				.getEDate(), "lastModifiedDate", null, 0, 1,
-				ModelElement.class, !IS_TRANSIENT, !IS_VOLATILE, IS_CHANGEABLE,
-				!IS_UNSETTABLE, !IS_ID, IS_UNIQUE, !IS_DERIVED, IS_ORDERED);
-		initEAttribute(getModelElement_StringReaderInfos(), ecorePackage
-				.getEString(), "stringReaderInfos", null, 0, -1,
-				ModelElement.class, !IS_TRANSIENT, !IS_VOLATILE,
-				!IS_CHANGEABLE, !IS_UNSETTABLE, !IS_ID, IS_UNIQUE, !IS_DERIVED,
-				IS_ORDERED);
 		initEReference(getModelElement_Annotations(), this.getAnnotation(),
 				this.getAnnotation_AnnotatedModelElements(), "annotations",
 				null, 0, -1, ModelElement.class, !IS_TRANSIENT, !IS_VOLATILE,
@@ -670,11 +627,6 @@ public class ModelPackageImpl extends EPackageImpl implements ModelPackage {
 		addEOperation(modelElementEClass, this.getProject(), "getProject", 0,
 				1, IS_UNIQUE, IS_ORDERED);
 
-		EOperation op = addEOperation(modelElementEClass, null, "addReader", 0,
-				1, IS_UNIQUE, IS_ORDERED);
-		addEParameter(op, ecorePackage.getEString(), "acOrgId", 0, 1,
-				IS_UNIQUE, IS_ORDERED);
-
 		addEOperation(modelElementEClass, this.getModelElementId(),
 				"getModelElementId", 0, 1, IS_UNIQUE, IS_ORDERED);
 
@@ -688,8 +640,8 @@ public class ModelPackageImpl extends EPackageImpl implements ModelPackage {
 		getProject_ModelElements().getEKeys().add(
 				this.getIdentifiableElement_Identifier());
 
-		op = addEOperation(projectEClass, null, "addModelElement", 0, 1,
-				IS_UNIQUE, IS_ORDERED);
+		EOperation op = addEOperation(projectEClass, null, "addModelElement",
+				0, 1, IS_UNIQUE, IS_ORDERED);
 		addEParameter(op, this.getModelElement(), "modelElement", 0, 1,
 				IS_UNIQUE, IS_ORDERED);
 
