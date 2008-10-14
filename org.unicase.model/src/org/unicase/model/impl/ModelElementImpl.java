@@ -503,6 +503,31 @@ public abstract class ModelElementImpl extends IdentifiableElementImpl
 
 	// end of custom code
 
+	//begin of custom code
+	/**
+	 * @generated NOT
+	 */
+	public String getDescriptionPlainText() {
+		String ret = "";
+		if (getDescription() != null) {
+			ret += getDescription();
+			
+			if (ret.indexOf("%BEGINNTEXT%") > 0 && ret.length() > 0)
+				ret = ret.substring(ret.indexOf("%BEGINNTEXT%") + 11, ret.length() - 1);
+	
+			//stupid string bugs...
+			//if there is no char after %, the "%" magically disappears, and the previous
+			//substring method throws an indexOutOfBounds exception, when using "+ 12" instead of 
+			//"+ 11" Therefore, if there is a remaining "%" at the start of the description
+			//-> remove it
+			if (ret.indexOf("%") == 0)
+				ret = ret.substring(1, ret.length() - 1);
+		}
+			
+		return ret;
+	}
+	//end of custom code
+	
 	/**
 	 * <!-- begin-user-doc --> <!-- end-user-doc -->
 	 * @generated
