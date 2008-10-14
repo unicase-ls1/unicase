@@ -385,6 +385,16 @@ public class ProjectSpaceItemProvider extends IdentifiableElementItemProvider
 				OperationsFactory.eINSTANCE.createMultiAttributeOperation()));
 
 		newChildDescriptors.add(createChildParameter(
+				WorkspacePackage.Literals.PROJECT_SPACE__OPERATIONS,
+				OperationsFactory.eINSTANCE.createDiagramLayoutOperation()));
+
+		newChildDescriptors
+				.add(createChildParameter(
+						WorkspacePackage.Literals.PROJECT_SPACE__OPERATIONS,
+						OperationsFactory.eINSTANCE
+								.createMultiAttributeMoveOperation()));
+
+		newChildDescriptors.add(createChildParameter(
 				WorkspacePackage.Literals.PROJECT_SPACE__BASE_VERSION,
 				VersioningFactory.eINSTANCE.createPrimaryVersionSpec()));
 	}

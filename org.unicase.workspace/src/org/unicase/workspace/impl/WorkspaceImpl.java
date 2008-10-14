@@ -493,9 +493,9 @@ public class WorkspaceImpl extends EObjectImpl implements Workspace {
 	public void setWorkspaceResourceSet(ResourceSet resourceSet) {
 		this.workspaceResourceSet = resourceSet;
 	}
-	
+
 	public ResourceSet getWorkspaceResourceSet() {
 		return this.workspaceResourceSet;
 	}
-	
+
 } // WorkspaceImpl

@@ -317,8 +317,8 @@ public interface Usersession extends EObject {
 	 * @throws EmfStoreException if server throws an exception
 	 * @generated NOT
 	 */
-	List<HistoryInfo> getHistoryInfo(ProjectId projectId,
-			HistoryQuery query) throws EmfStoreException;
+	List<HistoryInfo> getHistoryInfo(ProjectId projectId, HistoryQuery query)
+			throws EmfStoreException;
 
 	/**
 	 * Returns a {@link AdminBroker} related to the user session.
@@ -328,7 +328,8 @@ public interface Usersession extends EObject {
 	 * @throws AccessControlException if access is denied
 	 * @generated NOT
 	 */
-	AdminBroker getAdminBroker() throws EmfStoreException, AccessControlException;
+	AdminBroker getAdminBroker() throws EmfStoreException,
+			AccessControlException;
 
 	// end of custom code
 } // Usersession
