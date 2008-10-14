@@ -67,7 +67,8 @@ public class DynamicMECreationCommands extends CompoundContributionItem {
 	private IContributionItem[] createCommands(Object[] contentTypes) {
 
 		IContributionItem[] commands = new IContributionItem[contentTypes.length];
-		// every command take its corresponding EClass type as parameter
+		// every command takes its corresponding EClass type as parameter
+		//create command for contents of this leaf section
 		for (int i = 0; i < contentTypes.length; i++) {
 			CommandContributionItemParameter p = new CommandContributionItemParameter(
 					PlatformUI.getWorkbench(), null, COMMAND_ID,
