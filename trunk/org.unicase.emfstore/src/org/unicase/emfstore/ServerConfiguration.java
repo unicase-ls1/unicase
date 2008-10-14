@@ -144,6 +144,22 @@ public final class ServerConfiguration {
 	 */
 	public static final String VALIDATE_SERVERSPACE_ON_SERVERSTART = "emfstore.validateOnLoad";
 
+	/**
+	 * Property name of accepted client versions. Enter the version's names or
+	 * any, seperate multiple entries with {@link #MULTI_PROPERTY_SEPERATOR}.
+	 */
+	public static final String ACCEPTED_VERSIONS = "emfstore.acceptedversions";
+
+	/**
+	 * Allow any client version.
+	 */
+	public static final Object ACCEPTED_VERSIONS_ANY = "any";
+
+	/**
+	 * Seperator for multiple properties. E.g. acceptedversions = 0.1,0.2
+	 */
+	public static final String MULTI_PROPERTY_SEPERATOR = ",";
+
 	private static Properties properties;
 
 	private ServerConfiguration() {
