@@ -6,9 +6,8 @@ Bundle-Version: 0.0.1
 Bundle-Activator: org.unicase.documentexport.Activator
 Require-Bundle: org.eclipse.ui,
  org.eclipse.core.runtime,
- com.lowagie.text;bundle-version="1.0.0",
- org.unicase.model;bundle-version="0.0.1",
- org.eclipse.emf.edit;bundle-version="2.4.0"
+ org.unicase.model,
+ org.eclipse.emf.edit
 Bundle-ActivationPolicy: lazy
 Bundle-RequiredExecutionEnvironment: J2SE-1.5
 Bundle-ClassPath: .,
