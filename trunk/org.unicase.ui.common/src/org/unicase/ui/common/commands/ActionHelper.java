@@ -32,10 +32,13 @@ import org.eclipse.ui.PartInitException;
 import org.eclipse.ui.PlatformUI;
 import org.eclipse.ui.handlers.HandlerUtil;
 import org.eclipse.ui.handlers.IHandlerService;
+import org.unicase.emfstore.esmodel.versioning.events.EventsFactory;
+import org.unicase.emfstore.esmodel.versioning.events.ReadEvent;
 import org.unicase.model.ModelElement;
 import org.unicase.model.diagram.DiagramType;
 import org.unicase.model.diagram.MEDiagram;
 import org.unicase.ui.common.exceptions.DialogHandler;
+import org.unicase.workspace.ProjectSpace;
 import org.unicase.workspace.WorkspaceManager;
 
 /**
@@ -139,11 +142,12 @@ public final class ActionHelper {
 		domain.getCommandStack().execute(new RecordingCommand(domain) {
 			@Override
 			protected void doExecute() {
-				String user = WorkspaceManager.getInstance()
-						.getCurrentWorkspace().getActiveProjectSpace()
-						.getUsersession().getACUser().getName();
-				me.addReader(user);
-
+				ProjectSpace activeProjectSpace = WorkspaceManager.getInstance()
+						.getCurrentWorkspace().getActiveProjectSpace();
+				ReadEvent readEvent = EventsFactory.eINSTANCE.createReadEvent();
+				readEvent.setModelElement(me.getModelElementId());
+				readEvent.setTimestamp(new Date());
+				activeProjectSpace.addEvent(readEvent);
 			}
 		});
 
