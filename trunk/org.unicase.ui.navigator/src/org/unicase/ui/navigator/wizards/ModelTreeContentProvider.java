@@ -100,12 +100,27 @@ public class ModelTreeContentProvider extends AdapterFactoryContentProvider {
 	private Object[] removeNonModelElements(Object[] items) {
 		List<EClass> modelElements = new ArrayList<EClass>();
 		for (int i = 0; i < items.length; i++) {
-			if (isModelElement(items[i])) {
+			if (isModelElement(items[i]) && !isNonDomainElement(items[i])) {
 				modelElements.add((EClass) items[i]);
 			}
 		}
 
 		return modelElements.toArray();
+	}
+
+	
+	/**
+	 * Checks if the argument is a NonDomainElement.
+	 * 
+	 * @param object
+	 *            EClass to be checked.
+	 * @return
+	 */
+	private boolean isNonDomainElement(Object object) {
+
+		return object instanceof EClass
+				&& ModelPackage.eINSTANCE.getNonDomainElement().isSuperTypeOf(
+						(EClass) object);
 	}
 
 	/**
