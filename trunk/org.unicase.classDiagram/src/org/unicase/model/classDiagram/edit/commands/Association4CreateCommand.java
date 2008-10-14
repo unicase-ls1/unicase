@@ -40,7 +40,7 @@ public class Association4CreateCommand extends CreateElementCommand {
 	 * @generated
 	 */
 	private MEDiagram container;
-	
+
 	/**
 	 * This constructor should not be used!
 	 * Because of our use of a single resource we need to know the 
@@ -127,9 +127,9 @@ public class Association4CreateCommand extends CreateElementCommand {
 	 * @generated NOT
 	 */
 	/**
-	* {@inheritDoc}
-	* @see org.eclipse.gmf.runtime.emf.type.core.commands.CreateElementCommand#doDefaultElementCreation()
-	*/
+	 * {@inheritDoc}
+	 * @see org.eclipse.gmf.runtime.emf.type.core.commands.CreateElementCommand#doDefaultElementCreation()
+	 */
 	protected EObject doDefaultElementCreation() {
 		Association newElement = ClassesFactory.eINSTANCE.createAssociation();
 		getContainer().getNewElements().add(newElement);

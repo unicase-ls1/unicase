@@ -71,7 +71,6 @@ public class MEDiagramItemProvider extends AttachmentItemProvider implements
 			addElementsPropertyDescriptor(object);
 			addGmfdiagramPropertyDescriptor(object);
 			addTypePropertyDescriptor(object);
-			addDiagramLayoutPropertyDescriptor(object);
 		}
 		return itemPropertyDescriptors;
 	}
@@ -128,25 +127,6 @@ public class MEDiagramItemProvider extends AttachmentItemProvider implements
 						"_UI_MEDiagram_type_feature", "_UI_MEDiagram_type"),
 				DiagramPackage.Literals.ME_DIAGRAM__TYPE, true, false, false,
 				ItemPropertyDescriptor.GENERIC_VALUE_IMAGE, null, null));
-	}
-
-	/**
-	 * This adds a property descriptor for the Diagram Layout feature.
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
-	 * @generated
-	 */
-	protected void addDiagramLayoutPropertyDescriptor(Object object) {
-		itemPropertyDescriptors.add(createItemPropertyDescriptor(
-				((ComposeableAdapterFactory) adapterFactory)
-						.getRootAdapterFactory(), getResourceLocator(),
-				getString("_UI_MEDiagram_diagramLayout_feature"), getString(
-						"_UI_PropertyDescriptor_description",
-						"_UI_MEDiagram_diagramLayout_feature",
-						"_UI_MEDiagram_type"),
-				DiagramPackage.Literals.ME_DIAGRAM__DIAGRAM_LAYOUT, true,
-				false, false, ItemPropertyDescriptor.GENERIC_VALUE_IMAGE, null,
-				null));
 	}
 
 	/**

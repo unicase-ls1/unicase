@@ -126,9 +126,9 @@ public class Association1CreateCommand extends CreateElementCommand {
 	/**
 	 * @generated NOT
 	 * 
-	* {@inheritDoc}
-	* @see org.eclipse.gmf.runtime.emf.type.core.commands.CreateElementCommand#doDefaultElementCreation()
-	*/
+	 * {@inheritDoc}
+	 * @see org.eclipse.gmf.runtime.emf.type.core.commands.CreateElementCommand#doDefaultElementCreation()
+	 */
 	protected EObject doDefaultElementCreation() {
 		Association newElement = ClassesFactory.eINSTANCE.createAssociation();
 		getContainer().getNewElements().add(newElement);

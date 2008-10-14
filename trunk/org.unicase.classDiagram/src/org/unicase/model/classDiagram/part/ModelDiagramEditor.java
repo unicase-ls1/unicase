@@ -156,9 +156,9 @@ public class ModelDiagramEditor extends org.unicase.ui.common.diagram.ModelDiagr
 	/**
 	 * @generated NOT
 	 * 
-	* {@inheritDoc}
-	* @see org.eclipse.gmf.runtime.diagram.ui.resources.editor.parts.DiagramDocumentEditor#isSaveAsAllowed()
-	*/
+	 * {@inheritDoc}
+	 * @see org.eclipse.gmf.runtime.diagram.ui.resources.editor.parts.DiagramDocumentEditor#isSaveAsAllowed()
+	 */
 	public boolean isSaveAsAllowed() {
 		return false;
 	}

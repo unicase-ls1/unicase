@@ -256,17 +256,33 @@ public class PackageEditPart extends ShapeNodeEditPart {
 
 			RectangleFigure packageFigure_AuxLeftTab1 = new RectangleFigure();
 			packageFigure_AuxLeftTab1.setPreferredSize(new Dimension(
-					getMapMode().DPtoLP(1), getMapMode().DPtoLP(30)));
+					getMapMode().DPtoLP(1), getMapMode().DPtoLP(23)));
 
 			packageFigure_AuxTop0.add(packageFigure_AuxLeftTab1);
 
-			RectangleFigure packageFigure_AuxRightPadding1 = new RectangleFigure();
-			packageFigure_AuxRightPadding1.setFill(false);
-			packageFigure_AuxRightPadding1.setOutline(false);
-			packageFigure_AuxRightPadding1.setPreferredSize(new Dimension(
-					getMapMode().DPtoLP(1), getMapMode().DPtoLP(30)));
+			RectangleFigure packageFigure_AuxLeftRightPadding1 = new RectangleFigure();
+			packageFigure_AuxLeftRightPadding1.setFill(false);
+			packageFigure_AuxLeftRightPadding1.setOutline(false);
+			packageFigure_AuxLeftRightPadding1.setPreferredSize(new Dimension(
+					getMapMode().DPtoLP(1), getMapMode().DPtoLP(23)));
 
-			packageFigure_AuxTop0.add(packageFigure_AuxRightPadding1);
+			packageFigure_AuxTop0.add(packageFigure_AuxLeftRightPadding1);
+
+			RectangleFigure packageFigure_AuxRightLeftPadding1 = new RectangleFigure();
+			packageFigure_AuxRightLeftPadding1.setFill(false);
+			packageFigure_AuxRightLeftPadding1.setOutline(false);
+			packageFigure_AuxRightLeftPadding1.setPreferredSize(new Dimension(
+					getMapMode().DPtoLP(1), getMapMode().DPtoLP(23)));
+
+			packageFigure_AuxTop0.add(packageFigure_AuxRightLeftPadding1);
+
+			RectangleFigure packageFigure_AuxRightRightPadding1 = new RectangleFigure();
+			packageFigure_AuxRightRightPadding1.setFill(false);
+			packageFigure_AuxRightRightPadding1.setOutline(false);
+			packageFigure_AuxRightRightPadding1.setPreferredSize(new Dimension(
+					getMapMode().DPtoLP(1), getMapMode().DPtoLP(23)));
+
+			packageFigure_AuxTop0.add(packageFigure_AuxRightRightPadding1);
 
 			RectangleFigure packageFigure_AuxCenter0 = new RectangleFigure();
 			packageFigure_AuxCenter0.setFillXOR(true);
