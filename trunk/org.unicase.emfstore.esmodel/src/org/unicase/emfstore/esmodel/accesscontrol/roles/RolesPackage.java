@@ -206,9 +206,9 @@ public interface RolesPackage extends EPackage {
 	EClass getRole();
 
 	/**
-	 * Returns the meta object for the reference list '{@link org.unicase.emfstore.esmodel.accesscontrol.roles.Role#getProjects <em>Projects</em>}'.
+	 * Returns the meta object for the containment reference list '{@link org.unicase.emfstore.esmodel.accesscontrol.roles.Role#getProjects <em>Projects</em>}'.
 	 * <!-- begin-user-doc --> <!-- end-user-doc -->
-	 * @return the meta object for the reference list '<em>Projects</em>'.
+	 * @return the meta object for the containment reference list '<em>Projects</em>'.
 	 * @see org.unicase.emfstore.esmodel.accesscontrol.roles.Role#getProjects()
 	 * @see #getRole()
 	 * @generated
@@ -286,7 +286,7 @@ public interface RolesPackage extends EPackage {
 		EClass ROLE = eINSTANCE.getRole();
 
 		/**
-		 * The meta object literal for the '<em><b>Projects</b></em>' reference list feature.
+		 * The meta object literal for the '<em><b>Projects</b></em>' containment reference list feature.
 		 * <!-- begin-user-doc --> <!-- end-user-doc -->
 		 * @generated
 		 */

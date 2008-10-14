@@ -233,14 +233,14 @@ public class AdminEmfStoreImpl implements AdminEmfStore {
 		// check whether reader role exists
 		for (Role role : orgUnit.getRoles()) {
 			if (isReader(role)) {
-				role.getProjects().add(projectId);
+				role.getProjects().add((ProjectId) EcoreUtil.copy(projectId));
 				save();
 				return;
 			}
 		}
 		// else create new reader role
 		ReaderRole reader = RolesFactory.eINSTANCE.createReaderRole();
-		reader.getProjects().add(projectId);
+		reader.getProjects().add((ProjectId) EcoreUtil.copy(projectId));
 		orgUnit.getRoles().add(reader);
 		save();
 	}
@@ -321,7 +321,7 @@ public class AdminEmfStoreImpl implements AdminEmfStore {
 		// add project to role if it exists
 		for (Role role1 : orgUnit.getRoles()) {
 			if (role1.eClass().getName().equals(roleClass.getName())) {
-				role1.getProjects().add(projectId);
+				role1.getProjects().add((ProjectId) EcoreUtil.copy(projectId));
 				save();
 				return;
 			}
@@ -331,7 +331,7 @@ public class AdminEmfStoreImpl implements AdminEmfStore {
 				.create(
 						(EClass) RolesPackage.eINSTANCE
 								.getEClassifier(roleClass.getName()));
-		newRole.getProjects().add(projectId);
+		newRole.getProjects().add((ProjectId) EcoreUtil.copy(projectId));
 		orgUnit.getRoles().add(newRole);
 		save();
 	}
@@ -497,7 +497,7 @@ public class AdminEmfStoreImpl implements AdminEmfStore {
 	private Role getRole(ProjectId projectId, ACOrgUnit orgUnit) {
 		for (Role role : orgUnit.getRoles()) {
 			if (isServerAdmin(role) || role.getProjects().contains(projectId)) {
-				return role;
+				return (Role) EcoreUtil.copy(role);
 			}
 		}
 		return null;
