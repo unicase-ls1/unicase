@@ -137,40 +137,13 @@ public interface ModelPackage extends EPackage {
 	int MODEL_ELEMENT__CREATION_DATE = IDENTIFIABLE_ELEMENT_FEATURE_COUNT + 3;
 
 	/**
-	 * The feature id for the '<em><b>Last Modifier</b></em>' attribute.
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
-	 * @generated
-	 * @ordered
-	 */
-	int MODEL_ELEMENT__LAST_MODIFIER = IDENTIFIABLE_ELEMENT_FEATURE_COUNT + 4;
-
-	/**
-	 * The feature id for the '<em><b>Last Modified Date</b></em>' attribute.
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
-	 * @generated
-	 * @ordered
-	 */
-	int MODEL_ELEMENT__LAST_MODIFIED_DATE = IDENTIFIABLE_ELEMENT_FEATURE_COUNT + 5;
-
-	/**
-	 * The feature id for the '<em><b>String Reader Infos</b></em>' attribute list.
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
-	 * @generated
-	 * @ordered
-	 */
-	int MODEL_ELEMENT__STRING_READER_INFOS = IDENTIFIABLE_ELEMENT_FEATURE_COUNT + 6;
-
-	/**
 	 * The feature id for the '<em><b>Annotations</b></em>' reference list. <!--
 	 * begin-user-doc --> <!-- end-user-doc -->
 	 * 
 	 * @generated
 	 * @ordered
 	 */
-	int MODEL_ELEMENT__ANNOTATIONS = IDENTIFIABLE_ELEMENT_FEATURE_COUNT + 7;
+	int MODEL_ELEMENT__ANNOTATIONS = IDENTIFIABLE_ELEMENT_FEATURE_COUNT + 4;
 
 	/**
 	 * The feature id for the '<em><b>Attachments</b></em>' reference list.
@@ -179,7 +152,7 @@ public interface ModelPackage extends EPackage {
 	 * @generated
 	 * @ordered
 	 */
-	int MODEL_ELEMENT__ATTACHMENTS = IDENTIFIABLE_ELEMENT_FEATURE_COUNT + 8;
+	int MODEL_ELEMENT__ATTACHMENTS = IDENTIFIABLE_ELEMENT_FEATURE_COUNT + 5;
 
 	/**
 	 * The feature id for the '<em><b>Incoming Document References</b></em>' reference list.
@@ -187,7 +160,7 @@ public interface ModelPackage extends EPackage {
 	 * @generated
 	 * @ordered
 	 */
-	int MODEL_ELEMENT__INCOMING_DOCUMENT_REFERENCES = IDENTIFIABLE_ELEMENT_FEATURE_COUNT + 9;
+	int MODEL_ELEMENT__INCOMING_DOCUMENT_REFERENCES = IDENTIFIABLE_ELEMENT_FEATURE_COUNT + 6;
 
 	/**
 	 * The feature id for the '<em><b>Leaf Section</b></em>' container reference.
@@ -195,7 +168,7 @@ public interface ModelPackage extends EPackage {
 	 * @generated
 	 * @ordered
 	 */
-	int MODEL_ELEMENT__LEAF_SECTION = IDENTIFIABLE_ELEMENT_FEATURE_COUNT + 10;
+	int MODEL_ELEMENT__LEAF_SECTION = IDENTIFIABLE_ELEMENT_FEATURE_COUNT + 7;
 
 	/**
 	 * The feature id for the '<em><b>State</b></em>' attribute.
@@ -204,7 +177,7 @@ public interface ModelPackage extends EPackage {
 	 * @generated
 	 * @ordered
 	 */
-	int MODEL_ELEMENT__STATE = IDENTIFIABLE_ELEMENT_FEATURE_COUNT + 11;
+	int MODEL_ELEMENT__STATE = IDENTIFIABLE_ELEMENT_FEATURE_COUNT + 8;
 
 	/**
 	 * The number of structural features of the '<em>Element</em>' class. <!--
@@ -213,7 +186,7 @@ public interface ModelPackage extends EPackage {
 	 * @generated
 	 * @ordered
 	 */
-	int MODEL_ELEMENT_FEATURE_COUNT = IDENTIFIABLE_ELEMENT_FEATURE_COUNT + 12;
+	int MODEL_ELEMENT_FEATURE_COUNT = IDENTIFIABLE_ELEMENT_FEATURE_COUNT + 9;
 
 	/**
 	 * The meta object id for the '{@link org.unicase.model.impl.ProjectImpl <em>Project</em>}' class.
@@ -322,33 +295,6 @@ public interface ModelPackage extends EPackage {
 	 * @ordered
 	 */
 	int ANNOTATION__CREATION_DATE = MODEL_ELEMENT__CREATION_DATE;
-
-	/**
-	 * The feature id for the '<em><b>Last Modifier</b></em>' attribute.
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
-	 * @generated
-	 * @ordered
-	 */
-	int ANNOTATION__LAST_MODIFIER = MODEL_ELEMENT__LAST_MODIFIER;
-
-	/**
-	 * The feature id for the '<em><b>Last Modified Date</b></em>' attribute.
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
-	 * @generated
-	 * @ordered
-	 */
-	int ANNOTATION__LAST_MODIFIED_DATE = MODEL_ELEMENT__LAST_MODIFIED_DATE;
-
-	/**
-	 * The feature id for the '<em><b>String Reader Infos</b></em>' attribute list.
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
-	 * @generated
-	 * @ordered
-	 */
-	int ANNOTATION__STRING_READER_INFOS = MODEL_ELEMENT__STRING_READER_INFOS;
 
 	/**
 	 * The feature id for the '<em><b>Annotations</b></em>' reference list. <!--
@@ -463,33 +409,6 @@ public interface ModelPackage extends EPackage {
 	 * @ordered
 	 */
 	int ATTACHMENT__CREATION_DATE = MODEL_ELEMENT__CREATION_DATE;
-
-	/**
-	 * The feature id for the '<em><b>Last Modifier</b></em>' attribute.
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
-	 * @generated
-	 * @ordered
-	 */
-	int ATTACHMENT__LAST_MODIFIER = MODEL_ELEMENT__LAST_MODIFIER;
-
-	/**
-	 * The feature id for the '<em><b>Last Modified Date</b></em>' attribute.
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
-	 * @generated
-	 * @ordered
-	 */
-	int ATTACHMENT__LAST_MODIFIED_DATE = MODEL_ELEMENT__LAST_MODIFIED_DATE;
-
-	/**
-	 * The feature id for the '<em><b>String Reader Infos</b></em>' attribute list.
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
-	 * @generated
-	 * @ordered
-	 */
-	int ATTACHMENT__STRING_READER_INFOS = MODEL_ELEMENT__STRING_READER_INFOS;
 
 	/**
 	 * The feature id for the '<em><b>Annotations</b></em>' reference list.
@@ -653,39 +572,6 @@ public interface ModelPackage extends EPackage {
 	 * @generated
 	 */
 	EAttribute getModelElement_CreationDate();
-
-	/**
-	 * Returns the meta object for the attribute '{@link org.unicase.model.ModelElement#getLastModifier <em>Last Modifier</em>}'.
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
-	 * @return the meta object for the attribute '<em>Last Modifier</em>'.
-	 * @see org.unicase.model.ModelElement#getLastModifier()
-	 * @see #getModelElement()
-	 * @generated
-	 */
-	EAttribute getModelElement_LastModifier();
-
-	/**
-	 * Returns the meta object for the attribute '{@link org.unicase.model.ModelElement#getLastModifiedDate <em>Last Modified Date</em>}'.
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
-	 * @return the meta object for the attribute '<em>Last Modified Date</em>'.
-	 * @see org.unicase.model.ModelElement#getLastModifiedDate()
-	 * @see #getModelElement()
-	 * @generated
-	 */
-	EAttribute getModelElement_LastModifiedDate();
-
-	/**
-	 * Returns the meta object for the attribute list '{@link org.unicase.model.ModelElement#getStringReaderInfos <em>String Reader Infos</em>}'.
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
-	 * @return the meta object for the attribute list '<em>String Reader Infos</em>'.
-	 * @see org.unicase.model.ModelElement#getStringReaderInfos()
-	 * @see #getModelElement()
-	 * @generated
-	 */
-	EAttribute getModelElement_StringReaderInfos();
 
 	/**
 	 * Returns the meta object for the reference list '{@link org.unicase.model.ModelElement#getAnnotations <em>Annotations</em>}'.
@@ -924,33 +810,6 @@ public interface ModelPackage extends EPackage {
 		 */
 		EAttribute MODEL_ELEMENT__CREATION_DATE = eINSTANCE
 				.getModelElement_CreationDate();
-
-		/**
-		 * The meta object literal for the '<em><b>Last Modifier</b></em>' attribute feature.
-		 * <!-- begin-user-doc -->
-		 * <!-- end-user-doc -->
-		 * @generated
-		 */
-		EAttribute MODEL_ELEMENT__LAST_MODIFIER = eINSTANCE
-				.getModelElement_LastModifier();
-
-		/**
-		 * The meta object literal for the '<em><b>Last Modified Date</b></em>' attribute feature.
-		 * <!-- begin-user-doc -->
-		 * <!-- end-user-doc -->
-		 * @generated
-		 */
-		EAttribute MODEL_ELEMENT__LAST_MODIFIED_DATE = eINSTANCE
-				.getModelElement_LastModifiedDate();
-
-		/**
-		 * The meta object literal for the '<em><b>String Reader Infos</b></em>' attribute list feature.
-		 * <!-- begin-user-doc -->
-		 * <!-- end-user-doc -->
-		 * @generated
-		 */
-		EAttribute MODEL_ELEMENT__STRING_READER_INFOS = eINSTANCE
-				.getModelElement_StringReaderInfos();
 
 		/**
 		 * The meta object literal for the '<em><b>Annotations</b></em>' reference list feature.

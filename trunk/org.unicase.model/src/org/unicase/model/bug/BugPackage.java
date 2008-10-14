@@ -110,33 +110,6 @@ public interface BugPackage extends EPackage {
 	int BUG_REPORT__CREATION_DATE = TaskPackage.WORK_ITEM__CREATION_DATE;
 
 	/**
-	 * The feature id for the '<em><b>Last Modifier</b></em>' attribute.
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
-	 * @generated
-	 * @ordered
-	 */
-	int BUG_REPORT__LAST_MODIFIER = TaskPackage.WORK_ITEM__LAST_MODIFIER;
-
-	/**
-	 * The feature id for the '<em><b>Last Modified Date</b></em>' attribute.
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
-	 * @generated
-	 * @ordered
-	 */
-	int BUG_REPORT__LAST_MODIFIED_DATE = TaskPackage.WORK_ITEM__LAST_MODIFIED_DATE;
-
-	/**
-	 * The feature id for the '<em><b>String Reader Infos</b></em>' attribute list.
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
-	 * @generated
-	 * @ordered
-	 */
-	int BUG_REPORT__STRING_READER_INFOS = TaskPackage.WORK_ITEM__STRING_READER_INFOS;
-
-	/**
 	 * The feature id for the '<em><b>Annotations</b></em>' reference list. <!--
 	 * begin-user-doc --> <!-- end-user-doc -->
 	 * 

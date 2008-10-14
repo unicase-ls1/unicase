@@ -117,33 +117,6 @@ public interface MeetingPackage extends EPackage {
 	int MEETING__CREATION_DATE = ModelPackage.MODEL_ELEMENT__CREATION_DATE;
 
 	/**
-	 * The feature id for the '<em><b>Last Modifier</b></em>' attribute.
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
-	 * @generated
-	 * @ordered
-	 */
-	int MEETING__LAST_MODIFIER = ModelPackage.MODEL_ELEMENT__LAST_MODIFIER;
-
-	/**
-	 * The feature id for the '<em><b>Last Modified Date</b></em>' attribute.
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
-	 * @generated
-	 * @ordered
-	 */
-	int MEETING__LAST_MODIFIED_DATE = ModelPackage.MODEL_ELEMENT__LAST_MODIFIED_DATE;
-
-	/**
-	 * The feature id for the '<em><b>String Reader Infos</b></em>' attribute list.
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
-	 * @generated
-	 * @ordered
-	 */
-	int MEETING__STRING_READER_INFOS = ModelPackage.MODEL_ELEMENT__STRING_READER_INFOS;
-
-	/**
 	 * The feature id for the '<em><b>Annotations</b></em>' reference list.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
@@ -343,33 +316,6 @@ public interface MeetingPackage extends EPackage {
 	int MEETING_SECTION__CREATION_DATE = ModelPackage.MODEL_ELEMENT__CREATION_DATE;
 
 	/**
-	 * The feature id for the '<em><b>Last Modifier</b></em>' attribute.
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
-	 * @generated
-	 * @ordered
-	 */
-	int MEETING_SECTION__LAST_MODIFIER = ModelPackage.MODEL_ELEMENT__LAST_MODIFIER;
-
-	/**
-	 * The feature id for the '<em><b>Last Modified Date</b></em>' attribute.
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
-	 * @generated
-	 * @ordered
-	 */
-	int MEETING_SECTION__LAST_MODIFIED_DATE = ModelPackage.MODEL_ELEMENT__LAST_MODIFIED_DATE;
-
-	/**
-	 * The feature id for the '<em><b>String Reader Infos</b></em>' attribute list.
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
-	 * @generated
-	 * @ordered
-	 */
-	int MEETING_SECTION__STRING_READER_INFOS = ModelPackage.MODEL_ELEMENT__STRING_READER_INFOS;
-
-	/**
 	 * The feature id for the '<em><b>Annotations</b></em>' reference list.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
@@ -486,33 +432,6 @@ public interface MeetingPackage extends EPackage {
 	 * @ordered
 	 */
 	int COMPOSITE_MEETING_SECTION__CREATION_DATE = MEETING_SECTION__CREATION_DATE;
-
-	/**
-	 * The feature id for the '<em><b>Last Modifier</b></em>' attribute.
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
-	 * @generated
-	 * @ordered
-	 */
-	int COMPOSITE_MEETING_SECTION__LAST_MODIFIER = MEETING_SECTION__LAST_MODIFIER;
-
-	/**
-	 * The feature id for the '<em><b>Last Modified Date</b></em>' attribute.
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
-	 * @generated
-	 * @ordered
-	 */
-	int COMPOSITE_MEETING_SECTION__LAST_MODIFIED_DATE = MEETING_SECTION__LAST_MODIFIED_DATE;
-
-	/**
-	 * The feature id for the '<em><b>String Reader Infos</b></em>' attribute list.
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
-	 * @generated
-	 * @ordered
-	 */
-	int COMPOSITE_MEETING_SECTION__STRING_READER_INFOS = MEETING_SECTION__STRING_READER_INFOS;
 
 	/**
 	 * The feature id for the '<em><b>Annotations</b></em>' reference list.
@@ -642,33 +561,6 @@ public interface MeetingPackage extends EPackage {
 	int ISSUE_MEETING_SECTION__CREATION_DATE = MEETING_SECTION__CREATION_DATE;
 
 	/**
-	 * The feature id for the '<em><b>Last Modifier</b></em>' attribute.
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
-	 * @generated
-	 * @ordered
-	 */
-	int ISSUE_MEETING_SECTION__LAST_MODIFIER = MEETING_SECTION__LAST_MODIFIER;
-
-	/**
-	 * The feature id for the '<em><b>Last Modified Date</b></em>' attribute.
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
-	 * @generated
-	 * @ordered
-	 */
-	int ISSUE_MEETING_SECTION__LAST_MODIFIED_DATE = MEETING_SECTION__LAST_MODIFIED_DATE;
-
-	/**
-	 * The feature id for the '<em><b>String Reader Infos</b></em>' attribute list.
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
-	 * @generated
-	 * @ordered
-	 */
-	int ISSUE_MEETING_SECTION__STRING_READER_INFOS = MEETING_SECTION__STRING_READER_INFOS;
-
-	/**
 	 * The feature id for the '<em><b>Annotations</b></em>' reference list.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
@@ -794,33 +686,6 @@ public interface MeetingPackage extends EPackage {
 	 * @ordered
 	 */
 	int WORK_ITEM_MEETING_SECTION__CREATION_DATE = MEETING_SECTION__CREATION_DATE;
-
-	/**
-	 * The feature id for the '<em><b>Last Modifier</b></em>' attribute.
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
-	 * @generated
-	 * @ordered
-	 */
-	int WORK_ITEM_MEETING_SECTION__LAST_MODIFIER = MEETING_SECTION__LAST_MODIFIER;
-
-	/**
-	 * The feature id for the '<em><b>Last Modified Date</b></em>' attribute.
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
-	 * @generated
-	 * @ordered
-	 */
-	int WORK_ITEM_MEETING_SECTION__LAST_MODIFIED_DATE = MEETING_SECTION__LAST_MODIFIED_DATE;
-
-	/**
-	 * The feature id for the '<em><b>String Reader Infos</b></em>' attribute list.
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
-	 * @generated
-	 * @ordered
-	 */
-	int WORK_ITEM_MEETING_SECTION__STRING_READER_INFOS = MEETING_SECTION__STRING_READER_INFOS;
 
 	/**
 	 * The feature id for the '<em><b>Annotations</b></em>' reference list.

@@ -113,33 +113,6 @@ public interface ChangePackage extends EPackage {
 	int MODEL_CHANGE_PACKAGE__CREATION_DATE = ModelPackage.MODEL_ELEMENT__CREATION_DATE;
 
 	/**
-	 * The feature id for the '<em><b>Last Modifier</b></em>' attribute.
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
-	 * @generated
-	 * @ordered
-	 */
-	int MODEL_CHANGE_PACKAGE__LAST_MODIFIER = ModelPackage.MODEL_ELEMENT__LAST_MODIFIER;
-
-	/**
-	 * The feature id for the '<em><b>Last Modified Date</b></em>' attribute.
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
-	 * @generated
-	 * @ordered
-	 */
-	int MODEL_CHANGE_PACKAGE__LAST_MODIFIED_DATE = ModelPackage.MODEL_ELEMENT__LAST_MODIFIED_DATE;
-
-	/**
-	 * The feature id for the '<em><b>String Reader Infos</b></em>' attribute list.
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
-	 * @generated
-	 * @ordered
-	 */
-	int MODEL_CHANGE_PACKAGE__STRING_READER_INFOS = ModelPackage.MODEL_ELEMENT__STRING_READER_INFOS;
-
-	/**
 	 * The feature id for the '<em><b>Annotations</b></em>' reference list. <!--
 	 * begin-user-doc --> <!-- end-user-doc -->
 	 * 
@@ -263,33 +236,6 @@ public interface ChangePackage extends EPackage {
 	 * @ordered
 	 */
 	int MERGING_ISSUE__CREATION_DATE = RationalePackage.ISSUE__CREATION_DATE;
-
-	/**
-	 * The feature id for the '<em><b>Last Modifier</b></em>' attribute.
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
-	 * @generated
-	 * @ordered
-	 */
-	int MERGING_ISSUE__LAST_MODIFIER = RationalePackage.ISSUE__LAST_MODIFIER;
-
-	/**
-	 * The feature id for the '<em><b>Last Modified Date</b></em>' attribute.
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
-	 * @generated
-	 * @ordered
-	 */
-	int MERGING_ISSUE__LAST_MODIFIED_DATE = RationalePackage.ISSUE__LAST_MODIFIED_DATE;
-
-	/**
-	 * The feature id for the '<em><b>String Reader Infos</b></em>' attribute list.
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
-	 * @generated
-	 * @ordered
-	 */
-	int MERGING_ISSUE__STRING_READER_INFOS = RationalePackage.ISSUE__STRING_READER_INFOS;
 
 	/**
 	 * The feature id for the '<em><b>Annotations</b></em>' reference list. <!--
@@ -509,33 +455,6 @@ public interface ChangePackage extends EPackage {
 	int MERGING_PROPOSAL__CREATION_DATE = RationalePackage.PROPOSAL__CREATION_DATE;
 
 	/**
-	 * The feature id for the '<em><b>Last Modifier</b></em>' attribute.
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
-	 * @generated
-	 * @ordered
-	 */
-	int MERGING_PROPOSAL__LAST_MODIFIER = RationalePackage.PROPOSAL__LAST_MODIFIER;
-
-	/**
-	 * The feature id for the '<em><b>Last Modified Date</b></em>' attribute.
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
-	 * @generated
-	 * @ordered
-	 */
-	int MERGING_PROPOSAL__LAST_MODIFIED_DATE = RationalePackage.PROPOSAL__LAST_MODIFIED_DATE;
-
-	/**
-	 * The feature id for the '<em><b>String Reader Infos</b></em>' attribute list.
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
-	 * @generated
-	 * @ordered
-	 */
-	int MERGING_PROPOSAL__STRING_READER_INFOS = RationalePackage.PROPOSAL__STRING_READER_INFOS;
-
-	/**
 	 * The feature id for the '<em><b>Annotations</b></em>' reference list. <!--
 	 * begin-user-doc --> <!-- end-user-doc -->
 	 * 
@@ -673,33 +592,6 @@ public interface ChangePackage extends EPackage {
 	 * @ordered
 	 */
 	int MERGING_SOLUTION__CREATION_DATE = RationalePackage.SOLUTION__CREATION_DATE;
-
-	/**
-	 * The feature id for the '<em><b>Last Modifier</b></em>' attribute.
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
-	 * @generated
-	 * @ordered
-	 */
-	int MERGING_SOLUTION__LAST_MODIFIER = RationalePackage.SOLUTION__LAST_MODIFIER;
-
-	/**
-	 * The feature id for the '<em><b>Last Modified Date</b></em>' attribute.
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
-	 * @generated
-	 * @ordered
-	 */
-	int MERGING_SOLUTION__LAST_MODIFIED_DATE = RationalePackage.SOLUTION__LAST_MODIFIED_DATE;
-
-	/**
-	 * The feature id for the '<em><b>String Reader Infos</b></em>' attribute list.
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
-	 * @generated
-	 * @ordered
-	 */
-	int MERGING_SOLUTION__STRING_READER_INFOS = RationalePackage.SOLUTION__STRING_READER_INFOS;
 
 	/**
 	 * The feature id for the '<em><b>Annotations</b></em>' reference list. <!--
