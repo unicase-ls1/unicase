@@ -280,6 +280,7 @@ public interface ModelElement extends IdentifiableElement {
 	 * <!-- begin-user-doc -->
 	 * Returns the plain text of the description. There are some meta information in the
 	 * description properties, which are removed in this function.
+	 * @return the plain text string
 	 * <!-- end-user-doc -->
 	 * @generated NOT
 	 */
