@@ -13,6 +13,8 @@ import org.unicase.documentexport.renderers.AttributeRenderer;
 import org.unicase.documentexport.renderers.ModelElementRenderer;
 import org.unicase.documentexport.renderers.attribute.AttributeRendererMappings;
 import org.unicase.documentexport.renderers.elements.UCompositeSection;
+import org.unicase.documentexport.renderers.elements.UDocument;
+import org.unicase.documentexport.renderers.elements.UParagraph;
 import org.unicase.documentexport.renderers.elements.USection;
 import org.unicase.documentexport.renderers.options.AttributeOption;
 import org.unicase.documentexport.renderers.options.LayoutOptions;
@@ -51,6 +53,7 @@ public class DefaultModelElementRenderer extends ModelElementRenderer {
 				layoutOptions.sectionTextOption
 			);
 		parent.add(section);
+			
 		
 		Vector<IItemPropertyDescriptor> propertyDescriptors = getPropertyDescriptors(modelElement);
 		for (IItemPropertyDescriptor propertyDescriptor : propertyDescriptors) {
@@ -64,7 +67,14 @@ public class DefaultModelElementRenderer extends ModelElementRenderer {
 					}
 				}
 			}
-				
+			
+			if (
+					(feature.getName() == "annotations" && layoutOptions.hideAnnotations)
+					|| (feature.getName() == "incomingDocumentReferences" && layoutOptions.hideDocumentReferences)
+					|| (feature.getName() == "attachments" && layoutOptions.hideAttachments)
+				) {
+				// do nothing!  dont render these properties
+			} else {
 			renderer.render(
 					feature, 
 					modelElement, 
@@ -73,7 +83,7 @@ public class DefaultModelElementRenderer extends ModelElementRenderer {
 					modelElementRendererMappings,
 					template
 				);
-			propertyDescriptor.getFeature(modelElement);		
+			}	
 		}
 	}
 	

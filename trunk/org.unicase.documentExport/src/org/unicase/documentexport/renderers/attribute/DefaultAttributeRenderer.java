@@ -98,6 +98,24 @@ public class DefaultAttributeRenderer extends AttributeRenderer {
 			EStructuralFeature feature
 		) {
 		
+
+		if (content instanceof String) {
+			String ret = (String)content;
+				
+			if (ret.indexOf("%BEGINNTEXT%") > 0 && ret.length() > 1)
+				ret = ret.substring(ret.indexOf("%BEGINNTEXT%") + 11, ret.length() - 1);
+		
+			//stupid string bugs...
+			//if there is no char after %, the "%" magically disappears, and the previous
+			//substring method throws an indexOutOfBounds exception, when using "+ 12" instead of 
+			//"+ 11" Therefore, if there is a remaining "%" at the start of the description
+			//-> remove it
+			if (ret.indexOf("%") == 0 && ret.length() > 1)
+				ret = ret.substring(1, ret.length() - 1);
+				
+			content = ret;
+		}
+		
 		if (option instanceof StringAttributeOption) {
 			StringAttributeOption option2 = (StringAttributeOption)option;
 			UParagraph name = new UParagraph(
@@ -153,7 +171,7 @@ public class DefaultAttributeRenderer extends AttributeRenderer {
 		parent.add(name);
 		
 		if (layoutOptions.alwaysShowDescription)
-			addDescription(parent, content.getDescription());
+			addDescription(parent, content.getDescriptionPlainText());
 	}
 
 	private void renderContainedReference(
@@ -185,15 +203,17 @@ public class DefaultAttributeRenderer extends AttributeRenderer {
 			ModelElement modelElement, 
 			UCompositeSection parent) {
 		
-		UParagraph paragraph = new UParagraph(feature.getName(), layoutOptions.sectionTextOption);
-		paragraph.setIndentionLeft(1);
-		parent.add(paragraph);
-		
 		ReferenceOption refOption = getRefenceOption(option);
 		Object attributeValue = modelElement.eGet(feature);
 
 		EList<ModelElement> objectList = (EList<ModelElement>)attributeValue;
 		ListOption listOption = ((MultiReferenceAttributeOption)option).getListOption();
+	
+//		if (objectList != null && objectList.size() > 0) {
+//			UParagraph paragraph = new UParagraph(feature.getName(), layoutOptions.sectionTextOption);
+//			paragraph.setIndentionLeft(1);
+//			parent.add(paragraph);
+//		}
 		
 		
 		if (objectList != null) {
@@ -246,7 +266,7 @@ public class DefaultAttributeRenderer extends AttributeRenderer {
 			parent.add(paragraph);	
 			
 			if (layoutOptions.alwaysShowDescription)
-				addDescription(parent, me.getDescription());
+				addDescription(parent, me.getDescriptionPlainText());
 		}
 	}
 	
@@ -265,7 +285,7 @@ public class DefaultAttributeRenderer extends AttributeRenderer {
 			parent.add(paragraph);	
 			
 			if (layoutOptions.alwaysShowDescription)
-				addDescription(parent, me.getDescription());
+				addDescription(parent, me.getDescriptionPlainText());
 		}	
 	}
 	

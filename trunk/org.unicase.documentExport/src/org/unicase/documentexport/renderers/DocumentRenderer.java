@@ -33,9 +33,9 @@ public class DocumentRenderer {
 		doc.add(coverPage);
 		
 		if (modelElement instanceof CompositeSection) {
-			renderCompositeSection(doc, (CompositeSection)modelElement);
+			renderDocCompositeSection((CompositeSection)modelElement);
 		} else if (modelElement instanceof LeafSection) {
-			renderLeafSection(doc, (LeafSectionImpl)modelElement);
+			renderDocLeafSection((LeafSectionImpl)modelElement);
 		} else {
 			renderModelElement(doc, modelElement);
 		}
@@ -43,19 +43,47 @@ public class DocumentRenderer {
 		return doc;
 	}
 
+	private void renderDocLeafSection(LeafSectionImpl modelElement) {
+		doc.add(new UParagraph(modelElement.getName(), template.layoutOptions.sectionTextOption));
+		doc.add(new UParagraph(modelElement.getDescriptionPlainText(), template.layoutOptions.defaultTextOption));
+		
+		EList<ModelElement>  subSections = modelElement.getModelElements();
+		for (ModelElement child : subSections) {
+			renderModelElement(doc, child);
+		}
+	}
+
+	private void renderDocCompositeSection(CompositeSection modelElement) {
+		
+		doc.add(new UParagraph(modelElement.getName(), template.layoutOptions.sectionTextOption));
+		doc.add(new UParagraph(modelElement.getDescriptionPlainText(), template.layoutOptions.defaultTextOption));
+		
+		EList<Section>  subSections = modelElement.getSubsections();
+		for (Section child : subSections) {
+			if (child instanceof LeafSection) {
+				renderLeafSection(doc, (LeafSection) child);
+			} else { //instanceof CompositeSection
+				renderCompositeSection(doc, (CompositeSection)child);
+			}
+		}		
+		
+	}
+
 	/**
 	 * renders a composite section recursivly until an Leafsection appears. Then the leafsection renderer is called.
 	 */
 	private void renderCompositeSection(UCompositeSection parent, CompositeSection compositeSection) {
 
+
 		USection section = new USection(
-				compositeSection.getName(), 
-				template.layoutOptions.sectionTextOption
-			);
-		parent.add(section);
+					compositeSection.getName(), 
+					template.layoutOptions.sectionTextOption
+				);
+			parent.add(section);
+		
 			
 		section.add(new UParagraph(
-				compositeSection.getDescription(), 
+				compositeSection.getDescriptionPlainText(), 
 				template.layoutOptions.defaultTextOption)
 			);
 		
@@ -71,14 +99,17 @@ public class DocumentRenderer {
 	}
 
 	private void renderLeafSection(UCompositeSection parent, LeafSection leafSection) {
-		USection section = new USection(
+
+		UCompositeSection section = new USection(
 				leafSection.getName(), 
 				template.layoutOptions.sectionTextOption
 			);
 		parent.add(section);
+
+			
 			
 		section.add(new UParagraph(
-				leafSection.getDescription(), 
+				leafSection.getDescriptionPlainText(), 
 				template.layoutOptions.defaultTextOption)
 			);	
 		

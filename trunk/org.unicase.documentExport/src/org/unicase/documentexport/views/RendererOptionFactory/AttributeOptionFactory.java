@@ -331,6 +331,42 @@ public class AttributeOptionFactory  {
 		});
 		hideEmptyAttributes.setSelection(option.hideEmptyAttributes);
 		
+		newLabel("hide incomingDocumentReferences");
+		Button hideIncomingDocumentReferences = new Button(parent, SWT.CHECK);
+		hideIncomingDocumentReferences.addSelectionListener(new SelectionListener() {
+			public void widgetDefaultSelected(SelectionEvent e) {}
+
+			public void widgetSelected(SelectionEvent e) {
+				option.hideIncomingDocumentReferences = ((Button)e.widget).getSelection();
+			}
+		});
+		hideIncomingDocumentReferences.setSelection(option.hideIncomingDocumentReferences);
+		
+		
+		newLabel("hide annotations");
+		Button hideAnnotations = new Button(parent, SWT.CHECK);
+		hideAnnotations.addSelectionListener(new SelectionListener() {
+			public void widgetDefaultSelected(SelectionEvent e) {}
+
+			public void widgetSelected(SelectionEvent e) {
+				option.hideAnnotations = ((Button)e.widget).getSelection();
+			}
+		});
+		hideAnnotations.setSelection(option.hideEmptyAttributes);
+		
+		
+		newLabel("hide attachements");
+		Button hideAttachements = new Button(parent, SWT.CHECK);
+		hideAttachements.addSelectionListener(new SelectionListener() {
+			public void widgetDefaultSelected(SelectionEvent e) {}
+
+			public void widgetSelected(SelectionEvent e) {
+				option.hideAttachments = ((Button)e.widget).getSelection();
+			}
+		});
+		hideAttachements.setSelection(option.hideEmptyAttributes);
+		
+		
 		newLabel("always show description");
 		Button showDescr = new Button(parent, SWT.CHECK);
 		showDescr.addSelectionListener(new SelectionListener() {
