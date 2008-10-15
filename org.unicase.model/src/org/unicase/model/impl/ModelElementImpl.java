@@ -56,6 +56,8 @@ import org.unicase.model.task.util.MEStateImpl;
  */
 public abstract class ModelElementImpl extends IdentifiableElementImpl
 		implements ModelElement {
+	private static final String BEGINNTEXT = "%BEGINNTEXT%";
+
 	/**
 	 * The default value of the '{@link #getName() <em>Name</em>}' attribute.
 	 * <!-- begin-user-doc --> <!-- end-user-doc -->
@@ -505,27 +507,20 @@ public abstract class ModelElementImpl extends IdentifiableElementImpl
 
 	//begin of custom code
 	/**
+	 * {@inheritDoc}
+	 * @see org.unicase.model.ModelElement#getDescriptionPlainText()
 	 * @generated NOT
 	 */
 	public String getDescriptionPlainText() {
 		String ret = "";
-		if (getDescription() != null) {
-			ret += getDescription();
-			
-			if (ret.indexOf("%BEGINNTEXT%") > 0 && ret.length() > 0)
-				ret = ret.substring(ret.indexOf("%BEGINNTEXT%") + 11, ret.length() - 1);
-	
-			//stupid string bugs...
-			//if there is no char after %, the "%" magically disappears, and the previous
-			//substring method throws an indexOutOfBounds exception, when using "+ 12" instead of 
-			//"+ 11" Therefore, if there is a remaining "%" at the start of the description
-			//-> remove it
-			if (ret.indexOf("%") == 0 && ret.length() > 1) {
-				ret = ret.substring(1, ret.length() - 1);
+		String description = getDescription();
+		if (description != null && description.length() > 0) {
+			ret = description;
+			String[] split = ret.split(BEGINNTEXT);
+			if (split.length > 1) {
+				ret = split[split.length-1];
 			}
-				
 		}
-			
 		return ret;
 	}
 	//end of custom code
