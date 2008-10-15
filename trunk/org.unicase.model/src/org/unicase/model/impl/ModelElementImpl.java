@@ -512,8 +512,7 @@ public abstract class ModelElementImpl extends IdentifiableElementImpl
 		String ret = "";
 		String description = getDescription();
 		if (description != null && description.length() > 0) {
-			ret = description;
-			String[] split = ret.split(BEGINNTEXT);
+			String[] split = description.split(BEGINNTEXT);
 			if (split.length > 1) {
 				ret = split[split.length-1];
 			}
