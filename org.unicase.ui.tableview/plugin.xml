@@ -9,13 +9,6 @@
       </category>
       <view
             category="org.unicase"
-            class="org.unicase.ui.tableview.viewer.TableView"
-            id="org.unicase.ui.tableview.tableview"
-            name="Table View"
-            restorable="true">
-      </view>
-      <view
-            category="org.unicase"
             class="org.unicase.ui.taskview.TaskView"
             icon="icons/table.png"
             id="org.unicase.ui.taskview"
