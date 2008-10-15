@@ -54,6 +54,8 @@ public class TaskView extends ViewPart {
 	private TeamFilter teamFilter;
 	private Action filterToMyTeam;
 	private String filename;
+	private AdapterImpl adapterImpl;
+	private Workspace workspace; 
 
 	/**
 	 * default constructor.
@@ -69,16 +71,17 @@ public class TaskView extends ViewPart {
 		} catch (IOException e) {
 			// Do nothing.
 		}
-		final Workspace workspace = WorkspaceManager.getInstance()
+		workspace = WorkspaceManager.getInstance()
 				.getCurrentWorkspace();
-		workspace.eAdapters().add(new AdapterImpl() {
+		adapterImpl = new AdapterImpl() {
 			@Override
 			public void notifyChanged(Notification msg) {
 				if ((msg.getFeatureID(Workspace.class)) == WorkspacePackage.WORKSPACE__ACTIVE_PROJECT_SPACE) {
 					initUserFilter();
 				}
 			}
-		});
+		};
+		workspace.eAdapters().add(adapterImpl);
 
 	}
 
@@ -286,7 +289,7 @@ public class TaskView extends ViewPart {
 	 */
 	@Override
 	public void dispose() {
-
+		workspace.eAdapters().remove(adapterImpl);
 		settings.put("TeamFilter", filterToMyTeam.isChecked());
 		settings.put("UncheckedFilter", filterToUnchecked.isChecked());
 		settings.put("UserFilter", filterToMe.isChecked());

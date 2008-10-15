@@ -20,6 +20,7 @@ import org.eclipse.jface.viewers.TableViewer;
 import org.eclipse.jface.viewers.TableViewerColumn;
 import org.eclipse.jface.viewers.ViewerComparator;
 import org.eclipse.swt.SWT;
+import org.eclipse.swt.events.DisposeEvent;
 import org.eclipse.swt.widgets.Composite;
 import org.unicase.model.ModelPackage;
 import org.unicase.model.Project;
@@ -36,9 +37,20 @@ import org.unicase.workspace.WorkspacePackage;
  *
  */
 public class METableViewer extends TableViewer {
+	private final Workspace workspace; 
+	/**
+	 * remove adapter.
+	 * {@inheritDoc}
+	 */
+	@Override
+	protected void handleDispose(DisposeEvent event) {
+		workspace.eAdapters().remove(adapterImpl);
+		super.handleDispose(event);
+	}
 
 	private Project currentProject;
 	private AdapterFactory adapterFactory;
+	private AdapterImpl adapterImpl;
 
 	/**
 	 * Constructor that directly sets the input of the table view.
@@ -73,10 +85,9 @@ public class METableViewer extends TableViewer {
 		super(parent, SWT.FULL_SELECTION);
 		this.adapterFactory = adapterFactory;
 
-		final Workspace workspace = WorkspaceManager.getInstance()
+		workspace= WorkspaceManager.getInstance()
 				.getCurrentWorkspace();
-
-		workspace.eAdapters().add(new AdapterImpl() {
+		adapterImpl = new AdapterImpl() {
 			@Override
 			public void notifyChanged(Notification msg) {
 				if ((msg.getFeatureID(Workspace.class)) == WorkspacePackage.WORKSPACE__ACTIVE_PROJECT_SPACE) {
@@ -90,7 +101,8 @@ public class METableViewer extends TableViewer {
 				}
 				super.notifyChanged(msg);
 			}
-		});
+		};
+		workspace.eAdapters().add(adapterImpl);
 
 		this.setAdapterFactory(adapterFactory);
 
