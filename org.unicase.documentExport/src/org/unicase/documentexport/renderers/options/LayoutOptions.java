@@ -14,6 +14,10 @@ public class LayoutOptions extends RendererOption {
 	public TextOption sectionTextOption = new TextOption();
 	public boolean hideEmptyAttributes = true;
 	public boolean alwaysShowDescription = true;
+	public boolean hideDocumentReferences = true;
+	public boolean hideAnnotations = true;
+	public boolean hideIncomingDocumentReferences = true;
+	public boolean hideAttachments = true;
 	
 	public static final int ONLY_PAGE = 0;
 	public static final int PAGE_OF_MAX_PAGE = 1;

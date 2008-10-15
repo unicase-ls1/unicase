@@ -313,36 +313,33 @@ public class MeetingRenderer extends ModelElementRenderer {
 //		renderer.render(workItem, workItemSection, layoutOptions);
 		
 		String text = "";
+		String workItemText = "[" + number + ", " + getOrgUnitName(workItem.getAssignee()) + "]: " + workItem.getName();
 		if (workItem instanceof Issue) {
-			text += "I[" + number + "]: " + workItem.getName();
+			text += "I";
 		} else if (workItem instanceof BugReport) {
-			text += "BR[" + number + "]: " + workItem.getName();
+			text += "BR";
 		} else if (workItem instanceof WorkPackage) {
-			text += "WP[" + number + "]: " + workItem.getName();
+			text += "WP";
 		} else if (workItem instanceof ActionItem) {
-			text += "AI[" + number + ", ";
-			if (((ActionItem)workItem).getAssignee() != null) {
-				text += getOrgUnitName(((ActionItem)workItem).getAssignee()) + ", ";
-			} else {
-				text += "<not assigned>, ";
-			}
-			
+			text += "AI";
+			workItemText = "[" + number + ", " + getOrgUnitName(((ActionItem)workItem).getAssignee()) + ", ";
+
 			if (((ActionItem) workItem).getDueDate() == null) {
-				text += "ASAP";
+				workItemText += "ASAP";
 			} else {
 				Date dueDate = ((ActionItem) workItem).getDueDate();
 				Calendar cal = new GregorianCalendar();
 				cal.setTime(dueDate);
-				text += cal.get(Calendar.DAY_OF_MONTH) + "." + cal.get(Calendar.MONTH);				
+				workItemText += cal.get(Calendar.DAY_OF_MONTH) + "." + cal.get(Calendar.MONTH);				
 			}
-			text += "]: " + workItem.getName();
+			workItemText += "]: " + workItem.getName();
 			//text += " (" + workItem.getState() + ")";
 		} else {
-			text += "WI[" + number + "]: " + workItem.getName();
+			text += "WI";
 		}
-			text += " (" + workItem.getState() + ")";
+			workItemText += " (" + workItem.getState() + ")";
 		
-		UParagraph par = new UParagraph(text, workItemTextOption);
+		UParagraph par = new UParagraph(text + workItemText, workItemTextOption);
 		par.setIndentionLeft(1);
 		parent.add(par);
 		
@@ -374,6 +371,10 @@ public class MeetingRenderer extends ModelElementRenderer {
 	}
 	
 	private String getOrgUnitName(OrgUnit orgUnit) {
+		
+		if (orgUnit == null)
+			return "<not assigned>";
+		
 		String ret;
 		if (orgUnit instanceof User) {
 			if (((User) orgUnit).getLastName() != null) {
