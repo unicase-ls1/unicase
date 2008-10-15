@@ -2,7 +2,7 @@ Manifest-Version: 1.0
 Bundle-ManifestVersion: 2
 Bundle-Name: unicase Workspace Model Edit Plug-in
 Bundle-SymbolicName: org.unicase.workspace.edit; singleton:=true
-Bundle-Version: 0.2.2
+Bundle-Version: 0.2.3
 Bundle-ClassPath: .
 Bundle-Activator: org.unicase.workspace.provider.WorkspaceEditPlugin$Implementation
 Bundle-Vendor: unicase.org
@@ -12,19 +12,19 @@ Export-Package: org.unicase.workspace.edit.commands,
  org.unicase.workspace.edit.dialogs,
  org.unicase.workspace.provider
 Require-Bundle: org.eclipse.core.runtime,
- org.unicase.workspace;bundle-version="[0.2.2,0.2.2]";visibility:=reexport,
+ org.unicase.workspace;bundle-version="[0.2.3,0.2.3]";visibility:=reexport,
  org.eclipse.emf.edit;visibility:=reexport,
  org.eclipse.emf.ecore.change;visibility:=reexport,
  org.eclipse.emf.ecore;visibility:=reexport,
  org.eclipse.emf.ecore.edit;visibility:=reexport,
- org.unicase.emfstore.esmodel;bundle-version="[0.2.2,0.2.2]";visibility:=reexport,
- org.unicase.emfstore.esmodel.edit;bundle-version="[0.2.2,0.2.2]";visibility:=reexport,
- org.unicase.model;bundle-version="[0.2.2,0.2.2]";visibility:=reexport,
- org.unicase.model.edit;bundle-version="[0.2.2,0.2.2]";visibility:=reexport,
+ org.unicase.emfstore.esmodel;bundle-version="[0.2.3,0.2.3]";visibility:=reexport,
+ org.unicase.emfstore.esmodel.edit;bundle-version="[0.2.3,0.2.3]";visibility:=reexport,
+ org.unicase.model;bundle-version="[0.2.3,0.2.3]";visibility:=reexport,
+ org.unicase.model.edit;bundle-version="[0.2.3,0.2.3]";visibility:=reexport,
  org.eclipse.ui,
  org.eclipse.emf.transaction,
- org.unicase.ui.common;bundle-version="[0.2.2,0.2.2]",
- org.unicase.ui.stem;bundle-version="[0.2.2,0.2.2]",
+ org.unicase.ui.common;bundle-version="[0.2.3,0.2.3]",
+ org.unicase.ui.stem;bundle-version="[0.2.3,0.2.3]",
  org.eclipse.gmf.runtime.notation.edit
 Bundle-ActivationPolicy: lazy
 Import-Package: org.eclipse.emf.ecore.change.provider,
