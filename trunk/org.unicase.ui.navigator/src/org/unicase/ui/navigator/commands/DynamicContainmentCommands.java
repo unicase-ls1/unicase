@@ -45,7 +45,7 @@ public class DynamicContainmentCommands extends CompoundContributionItem {
 	@Override
 	protected IContributionItem[] getContributionItems() {
 		// 1. get selected ME
-		selectedME = (ModelElement) ActionHelper.getSelectedModelElement();
+		selectedME = ActionHelper.getSelectedModelElement();
 		if (selectedME == null) {
 			return new IContributionItem[0];
 		}
