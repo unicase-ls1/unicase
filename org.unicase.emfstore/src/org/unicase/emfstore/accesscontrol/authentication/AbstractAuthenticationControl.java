@@ -13,7 +13,6 @@ import org.unicase.emfstore.esmodel.ClientVersionInfo;
 import org.unicase.emfstore.esmodel.EsmodelFactory;
 import org.unicase.emfstore.esmodel.SessionId;
 import org.unicase.emfstore.exceptions.ClientVersionOutOfDateException;
-import org.unicase.emfstore.exceptions.InvalidInputException;
 
 /**
  * Abstract class for authentication.
