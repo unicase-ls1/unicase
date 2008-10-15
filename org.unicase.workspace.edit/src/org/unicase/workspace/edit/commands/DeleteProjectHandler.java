@@ -23,13 +23,15 @@ import org.unicase.workspace.WorkspaceManager;
 
 /**
  * Handler for delete project menu item.
+ * 
  * @author koegel
- *
+ * 
  */
 public class DeleteProjectHandler extends ProjectActionHandler {
 
-	/** 
+	/**
 	 * {@inheritDoc}
+	 * 
 	 * @see org.eclipse.core.commands.AbstractHandler#execute(org.eclipse.core.commands.ExecutionEvent)
 	 */
 	public Object execute(ExecutionEvent event) throws ExecutionException {
@@ -44,7 +46,7 @@ public class DeleteProjectHandler extends ProjectActionHandler {
 		});
 		return null;
 	}
-	
+
 	private void deleteProjectSpace(final ProjectSpace projectSpace) {
 		StringBuilder stringBuilder = new StringBuilder();
 		stringBuilder
@@ -53,31 +55,35 @@ public class DeleteProjectHandler extends ProjectActionHandler {
 		stringBuilder.append("\"");
 		if (projectSpace.getBaseVersion() != null) {
 			stringBuilder.append(" in version ");
-			stringBuilder.append(projectSpace.getBaseVersion()
-					.getIdentifier());
+			stringBuilder.append(projectSpace.getBaseVersion().getIdentifier());
 		}
 		stringBuilder.append(".");
 		String message = stringBuilder.toString();
 
-		MessageDialog dialog = new MessageDialog(null, "Confirmation",
-				null, message, MessageDialog.QUESTION, new String[] {
-						"Yes", "No" }, 0);
+		MessageDialog dialog = new MessageDialog(null, "Confirmation", null,
+				message, MessageDialog.QUESTION, new String[] { "Yes", "No" },
+				0);
 		int result = dialog.open();
 		if (result == 0) {
 
 			Workspace currentWorkspace = WorkspaceManager.getInstance()
 					.getCurrentWorkspace();
 			currentWorkspace.getProjectSpaces().remove(projectSpace);
+			if (currentWorkspace.getActiveProjectSpace() == projectSpace) {
+				currentWorkspace.setActiveProjectSpace(null);
+			}
+
 			currentWorkspace.save();
-			
+
 			try {
-				String pathToProject = Configuration.getWorkspaceDirectory()+"ps-"+projectSpace.getIdentifier();
+				String pathToProject = Configuration.getWorkspaceDirectory()
+						+ "ps-" + projectSpace.getIdentifier();
 				FileUtil.deleteFolder(new File(pathToProject));
 			} catch (IOException e) {
-				DialogHandler.showExceptionDialog("Couldn't delete project files in file system.", e);
+				DialogHandler.showExceptionDialog(
+						"Couldn't delete project files in file system.", e);
 			}
-			
+
 		}
 	}
 }
-
