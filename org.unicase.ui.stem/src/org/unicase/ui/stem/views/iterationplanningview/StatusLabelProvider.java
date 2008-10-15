@@ -43,7 +43,7 @@ public class StatusLabelProvider extends ColumnLabelProvider implements
 
 			String path = "icons/closed.jpg";
 			if (status.equals(MEState.OPEN)) {
-				path = "icons/open.gif";
+				path = "icons/open.jpg";
 			}
 			if (status.equals(MEState.BLOCKED)) {
 				path = "icons/blocked.jpg";
