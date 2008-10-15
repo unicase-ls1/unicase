@@ -134,20 +134,20 @@ public class GenericColumnLabelProvider extends
 			try {
 				getName = attr.getClass().getMethod("getName");
 			} catch (NoSuchMethodException e) {
-				return attr != null ? attr.toString() : "";
+				return attr.toString();
 			}
 
 			try {
 				name = getName.invoke(attr);
 			} catch (IllegalArgumentException e) {
-				return attr != null ? attr.toString() : "";
+				return attr.toString();
 			} catch (IllegalAccessException e) {
-				return attr != null ? attr.toString() : "";
+				return attr.toString();
 			} catch (InvocationTargetException e) {
-				return attr != null ? attr.toString() : "";
+				return attr.toString();
 			}
 			if (name == null) {
-				return attr != null ? attr.toString() : "";
+				attr.toString();
 			}
 			return (String) name;
 
