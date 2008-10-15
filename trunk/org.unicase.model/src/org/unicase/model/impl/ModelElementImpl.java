@@ -503,9 +503,6 @@ public abstract class ModelElementImpl extends IdentifiableElementImpl
 		return modelElementId;
 	}
 
-	// end of custom code
-
-	//begin of custom code
 	/**
 	 * {@inheritDoc}
 	 * @see org.unicase.model.ModelElement#getDescriptionPlainText()
@@ -523,7 +520,7 @@ public abstract class ModelElementImpl extends IdentifiableElementImpl
 		}
 		return ret;
 	}
-	//end of custom code
+	// end of custom code
 	
 	/**
 	 * <!-- begin-user-doc --> <!-- end-user-doc -->
