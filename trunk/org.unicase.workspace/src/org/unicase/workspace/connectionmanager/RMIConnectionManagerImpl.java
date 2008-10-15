@@ -38,7 +38,6 @@ import org.unicase.emfstore.exceptions.RMISerializationException;
 import org.unicase.emfstore.exceptions.UnknownSessionException;
 import org.unicase.model.Project;
 import org.unicase.workspace.ServerInfo;
-import org.unicase.workspace.WorkspaceManager;
 
 /**
  * The RMIConnectionManager implements the {@link ConnectionManager} using the
