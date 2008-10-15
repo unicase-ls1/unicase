@@ -28,8 +28,8 @@ public class ConflictDetector {
 	 * Constructor. Uses default conflict detection strategy
 	 */
 	public ConflictDetector() {
-		//this(new AlwaysFalseConflictDetectionStrategy());
-		this(new FineGrainedConflictDetectionStrategy());
+		this(new AlwaysFalseConflictDetectionStrategy());
+		//this(new FineGrainedConflictDetectionStrategy());
 	}
 	
 	/**
