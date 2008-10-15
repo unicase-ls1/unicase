@@ -520,8 +520,10 @@ public abstract class ModelElementImpl extends IdentifiableElementImpl
 			//substring method throws an indexOutOfBounds exception, when using "+ 12" instead of 
 			//"+ 11" Therefore, if there is a remaining "%" at the start of the description
 			//-> remove it
-			if (ret.indexOf("%") == 0)
+			if (ret.indexOf("%") == 0 && ret.length() > 1) {
 				ret = ret.substring(1, ret.length() - 1);
+			}
+				
 		}
 			
 		return ret;
