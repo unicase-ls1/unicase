@@ -145,7 +145,7 @@ public final class Configuration {
 	}
 	
 	/**
-	 * Dtermine if this is a release version or not.
+	 * Determine if this is a release version or not.
 	 * @return true if it is a release version
 	 */
 	public static boolean isReleaseVersion() {
