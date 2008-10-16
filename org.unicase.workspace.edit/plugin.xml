@@ -412,5 +412,21 @@
         </menu>
      </menuContribution>
   </extension>
+  
+     <extension
+         point="org.eclipse.ui.views">
+      <category
+            name="Unicase"
+            id="org.unicase">
+      </category>
+      <view
+            category="org.unicase"
+            class="org.unicase.workspace.edit.views.historybrowserview.HistoryBrowserView"
+            icon="icons/historyview.png"
+            id="org.unicase.ui.stem.HistoryBrowserView"
+            name="History Browser"
+            restorable="true">
+      </view>
+   </extension>
 
 </plugin>
