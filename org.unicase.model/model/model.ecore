@@ -581,4 +581,9 @@
           eType="#//task/WorkItem" eKeys="#//IdentifiableElement/identifier"/>
     </eClassifiers>
   </eSubpackages>
+  <eSubpackages name="attachment" nsURI="http://unicase.org/model/attachment" nsPrefix="org.unicase.model.attachment">
+    <eClassifiers xsi:type="ecore:EClass" name="UrlAttachment" eSuperTypes="#//Attachment">
+      <eStructuralFeatures xsi:type="ecore:EAttribute" name="url" eType="ecore:EDataType http://www.eclipse.org/emf/2002/Ecore#//EString"/>
+    </eClassifiers>
+  </eSubpackages>
 </ecore:EPackage>

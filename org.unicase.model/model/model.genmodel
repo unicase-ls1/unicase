@@ -482,5 +482,11 @@
             ecoreFeature="ecore:EReference model.ecore#//meeting/WorkItemMeetingSection/includedWorkItems"/>
       </genClasses>
     </nestedGenPackages>
+    <nestedGenPackages prefix="Attachment" basePackage="org.unicase.model" disposableProviderFactory="true"
+        ecorePackage="model.ecore#//attachment">
+      <genClasses ecoreClass="model.ecore#//attachment/UrlAttachment">
+        <genFeatures createChild="false" ecoreFeature="ecore:EAttribute model.ecore#//attachment/UrlAttachment/url"/>
+      </genClasses>
+    </nestedGenPackages>
   </genPackages>
 </genmodel:GenModel>
