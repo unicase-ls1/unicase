@@ -185,11 +185,36 @@ public interface Workspace extends EObject, IAdaptable {
 
 	/**
 	 * Export a project to a file.
-	 * @param projectSpace the project space
+	 * @param projectSpace the projectSpace containing the project
 	 * @param absoluteFileName the file name
 	 * @throws IOException if file access fails
 	 */
 	void exportProject(ProjectSpace projectSpace, String absoluteFileName)
 			throws IOException;
+	
+	/**
+	 * Export a project space to a file.
+	 * @param projectSpace the project space
+	 * @param absoluteFileName the file name
+	 * @throws IOException if file access fails
+	 */
+	void exportProjectSpace(ProjectSpace projectSpace, String absoluteFileName)
+			throws IOException;
+	
+	/**
+	 * Export the current workspace to a file.
+	 * @param absoluteFileName the file name
+	 * @throws IOException if file access fails
+	 */
+	void exportWorkSpace(String absoluteFileName)
+			throws IOException;
+	
+	/**
+	 * Import a project space from file.
+	 * @param absoluteFileName the file name to import from
+	 * @return the project space
+	 * @throws IOException if file access fails
+	 */
+	ProjectSpace importProjectSpace(String absoluteFileName) throws IOException;
 
 } // Workspace
