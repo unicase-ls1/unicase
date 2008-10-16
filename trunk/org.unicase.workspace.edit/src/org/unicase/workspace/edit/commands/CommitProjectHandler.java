@@ -25,10 +25,10 @@ import org.unicase.emfstore.exceptions.BaseVersionOutdatedException;
 import org.unicase.emfstore.exceptions.ConnectionException;
 import org.unicase.emfstore.exceptions.EmfStoreException;
 import org.unicase.ui.common.exceptions.DialogHandler;
-import org.unicase.ui.stem.views.dialogs.CommitDialog;
 import org.unicase.workspace.ProjectSpace;
 import org.unicase.workspace.Usersession;
 import org.unicase.workspace.edit.dialogs.LoginDialog;
+import org.unicase.workspace.edit.views.dialogs.CommitDialog;
 import org.unicase.workspace.exceptions.NoLocalChangesException;
 import org.unicase.workspace.util.CommitObserver;
 

@@ -10,6 +10,7 @@ Bundle-Localization: plugin
 Bundle-RequiredExecutionEnvironment: J2SE-1.5
 Export-Package: org.unicase.workspace.edit.commands,
  org.unicase.workspace.edit.dialogs,
+ org.unicase.workspace.edit.views.dialogs,
  org.unicase.workspace.provider
 Require-Bundle: org.eclipse.core.runtime,
  org.unicase.workspace;bundle-version="[0.2.4.qualifier,0.2.4.qualifier]";visibility:=reexport,
@@ -25,7 +26,9 @@ Require-Bundle: org.eclipse.core.runtime,
  org.eclipse.emf.transaction,
  org.unicase.ui.common;bundle-version="[0.2.4.qualifier,0.2.4.qualifier]",
  org.unicase.ui.stem;bundle-version="[0.2.4.qualifier,0.2.4.qualifier]",
- org.eclipse.gmf.runtime.notation.edit
+ org.eclipse.gmf.runtime.notation.edit,
+ org.eclipse.ui.views;bundle-version="3.3.0",
+ org.eclipse.nebula.widgets.cdatetime;bundle-version="0.10.0"
 Bundle-ActivationPolicy: lazy
 Import-Package: org.eclipse.emf.ecore.change.provider,
  org.eclipse.emf.edit.ui.provider
