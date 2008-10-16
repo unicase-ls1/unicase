@@ -14,11 +14,8 @@ import org.eclipse.emf.ecore.EObject;
 import org.eclipse.emf.ecore.EReference;
 import org.eclipse.emf.ecore.EStructuralFeature;
 import org.eclipse.emf.edit.domain.EditingDomain;
-import org.eclipse.emf.edit.provider.AdapterFactoryItemDelegator;
-import org.eclipse.emf.edit.provider.ComposedAdapterFactory;
 import org.eclipse.emf.edit.provider.IItemPropertyDescriptor;
 import org.eclipse.ui.forms.widgets.FormToolkit;
-import org.unicase.model.ModelElement;
 import org.unicase.model.rationale.Issue;
 import org.unicase.model.requirement.Step;
 import org.unicase.ui.meeditor.mecontrols.MEBoolControl;
@@ -164,7 +161,13 @@ public class ControlFactory {
 		return new MEEnumControl(attribute, toolkit, modelElement, editingDomain);
 	}
 	
-	//Create Control for AssessmentMatrix
+	/**
+	 * Create Control for AssessmentMatrix.
+	 * @param modelElement the model element
+	 * @param toolkit the tool kit
+	 * @param editingDomain the editing domain
+	 * @return a MEControl
+	 */
 	public static MEControl createMEIssueAssessmentMatrixControl(Issue modelElement, FormToolkit toolkit, EditingDomain editingDomain ) {
 		
 		return new AssessmentMatrixControl(modelElement, toolkit, editingDomain);

@@ -22,8 +22,6 @@ import org.eclipse.emf.edit.provider.IItemPropertyDescriptor;
 import org.eclipse.emf.transaction.RecordingCommand;
 import org.eclipse.emf.transaction.TransactionalEditingDomain;
 import org.eclipse.emf.transaction.util.TransactionUtil;
-import org.eclipse.jface.viewers.CellEditor.LayoutData;
-import org.eclipse.swt.SWT;
 import org.eclipse.swt.layout.GridData;
 import org.eclipse.swt.layout.GridLayout;
 import org.eclipse.swt.widgets.Composite;
@@ -159,6 +157,7 @@ public class AssessmentMatrixControl extends AbstractMEControl{
 	/**
 	 * used to close the control. removes all listener and closes all containing controls.
 	 */
+	@Override
 	public void dispose(){
 		matrixSection.dispose();
 		for(MEControl assessmentControl : this.assessmentControls){
@@ -230,7 +229,7 @@ public class AssessmentMatrixControl extends AbstractMEControl{
 			hyperLinkGridData.horizontalAlignment = GridData.HORIZONTAL_ALIGN_CENTER;
 			hyperlink.setLayoutData(hyperLinkGridData);
 			hyperlink.layout();
-			IHyperlinkListener listener = new MEHyperLinkAdapter((Criterion)criteria.get(i));
+			IHyperlinkListener listener = new MEHyperLinkAdapter(criteria.get(i));
 			hyperlink.addHyperlinkListener(listener);
 		}
 		
@@ -258,7 +257,6 @@ public class AssessmentMatrixControl extends AbstractMEControl{
 					GridData gridData = new GridData();
 					gridData.horizontalAlignment = GridData.HORIZONTAL_ALIGN_CENTER;
 					comp.setLayoutData(gridData);
-					Control c = assessmentControlDescription.createControl(comp, parentStyle);
 				}
 			}
 			getToolkit().createLabel(matrixSection, "          ");
