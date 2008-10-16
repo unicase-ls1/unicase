@@ -8,7 +8,7 @@
 	<property name="db_user" value="root" />
 	<property name="db_pass" value="pass" />
 	<property name="db_name" value="model" />
-	<property name="unicaseWorkspaceDir" value="${user.home}/.unicase" />
+	<property name="unicaseWorkspaceDir" value="${user.home}/.unicase.dev" />
 
 	<taskdef resource="net/sf/antcontrib/antlib.xml">
 		<classpath>
