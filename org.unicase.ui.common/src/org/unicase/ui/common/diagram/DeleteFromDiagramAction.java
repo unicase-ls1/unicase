@@ -1,13 +1,21 @@
 package org.unicase.ui.common.diagram;
 
+import org.eclipse.core.commands.ExecutionException;
+import org.eclipse.core.commands.operations.OperationHistoryFactory;
+import org.eclipse.core.runtime.NullProgressMonitor;
 import org.eclipse.gef.EditPart;
+import org.eclipse.gmf.runtime.common.core.command.ICommand;
+import org.eclipse.gmf.runtime.emf.type.core.ElementTypeRegistry;
+import org.eclipse.gmf.runtime.emf.type.core.IElementType;
+import org.eclipse.gmf.runtime.emf.type.core.requests.DestroyElementRequest;
 import org.eclipse.gmf.runtime.notation.View;
 import org.eclipse.jface.action.IAction;
 import org.eclipse.jface.viewers.ISelection;
 import org.eclipse.jface.viewers.IStructuredSelection;
 import org.eclipse.ui.IObjectActionDelegate;
 import org.eclipse.ui.IWorkbenchPart;
-import org.unicase.model.diagram.MEDiagram;
+import org.unicase.ui.common.commands.DeleteFromViewCommand;
+import org.unicase.workspace.WorkspaceManager;
 
 /**
  * @author denglerm This class implements the DeleteFromDiagram Action.
@@ -32,9 +40,21 @@ public class DeleteFromDiagramAction implements IObjectActionDelegate {
      * @see org.eclipse.ui.IActionDelegate#run(IAction)
 	 */
 	public void run(IAction action) {
-		MEDiagramEditPart me = (MEDiagramEditPart) selectedElement.getParent();
-		MEDiagram diag = (MEDiagram) ((View) me.getModel()).getElement();
-		diag.getElements().remove(((View)selectedElement.getModel()).getElement());
+		DestroyElementRequest destroy = new 
+		DestroyElementRequest(WorkspaceManager.getInstance()
+				.getCurrentWorkspace().getEditingDomain(),((View)selectedElement.getModel()).getElement(),false);
+		IElementType type = 
+		ElementTypeRegistry.getInstance().getElementType(destroy.getEditHelperContext());
+		ICommand command = (type != null) ? new DeleteFromViewCommand(destroy, selectedElement) : null;
+		try {
+		        OperationHistoryFactory.getOperationHistory().execute(command, new 
+		NullProgressMonitor(), null);
+		}
+		catch(ExecutionException e)
+		{
+		    e.printStackTrace();
+		}
+
 	}
 	/**
 	 * This method sets the selectedElement field.
