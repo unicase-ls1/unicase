@@ -9,6 +9,9 @@ package org.unicase.emfstore;
 import java.io.File;
 import java.util.Properties;
 
+import org.eclipse.core.runtime.Platform;
+import org.osgi.framework.Bundle;
+
 /**
  * Represents the current server configuration.
  * 
@@ -197,6 +200,9 @@ public final class ServerConfiguration {
 	public static String getServerHome() {
 		StringBuffer sb = new StringBuffer(getUserHome());
 		sb.append(".unicase");
+		if (!isReleaseVersion()) {
+			sb.append(".dev");
+		}
 		sb.append(File.separatorChar);
 		sb.append("emfstore");
 		sb.append(File.separatorChar);
@@ -244,5 +250,25 @@ public final class ServerConfiguration {
 	 */
 	public static String getServerKeyStorePath() {
 		return getServerHome() + "unicaseServer.keystore";
+	}
+	
+	/**
+	 * Get the server version as in the org.unicase.emfstore manifest file.
+	 * @return the server version number 
+	 */
+	public static String getServerVersion() {
+		
+		Bundle emfStoreBundle = Platform.getBundle("org.unicase.emfstore");
+		String emfStoreVersionString = (String) emfStoreBundle.getHeaders()
+				.get(org.osgi.framework.Constants.BUNDLE_VERSION);
+		return emfStoreVersionString;
+	}
+	
+	/**
+	 * Determine if this is a release version or not.
+	 * @return true if it is a release version
+	 */
+	public static boolean isReleaseVersion() {
+		return !getServerVersion().endsWith("qualifier");
 	}
 }
