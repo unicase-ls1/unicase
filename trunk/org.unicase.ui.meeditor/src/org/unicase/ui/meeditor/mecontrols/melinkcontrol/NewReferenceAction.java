@@ -59,7 +59,7 @@ public class NewReferenceAction extends Action {
 			EClass newClass = null;
 			ArrayList<EClass> subclasses = ModelUtil.getSubclasses(clazz);
 			if (subclasses.size() == 1) {
-				newClass = clazz;
+				newClass = subclasses.get(0);
 			} else {
 				ElementListSelectionDialog dlg = new ElementListSelectionDialog(
 						PlatformUI.getWorkbench().getActiveWorkbenchWindow()
@@ -119,6 +119,8 @@ public class NewReferenceAction extends Action {
 		this.eReference = eReference;
 
 		Object obj = null;
+		//Only create a temporary object in order to get the correct icon from the label provider
+		//the actual ME is created later on.
 		if (!eReference.getEReferenceType().isAbstract()) {
 			obj = eReference.getEReferenceType().getEPackage()
 					.getEFactoryInstance().create(
