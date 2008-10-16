@@ -22,6 +22,7 @@ import org.unicase.emfstore.esmodel.versioning.LogMessage;
 import org.unicase.emfstore.esmodel.versioning.PrimaryVersionSpec;
 import org.unicase.emfstore.esmodel.versioning.VersioningFactory;
 import org.unicase.emfstore.exceptions.BaseVersionOutdatedException;
+import org.unicase.emfstore.exceptions.ConnectionException;
 import org.unicase.emfstore.exceptions.EmfStoreException;
 import org.unicase.ui.common.exceptions.DialogHandler;
 import org.unicase.ui.stem.views.dialogs.CommitDialog;
@@ -36,16 +37,17 @@ import org.unicase.workspace.util.CommitObserver;
  * @author Hodaie
  * @author Shterev
  * 
- * This handler handles CommitWorkspace command. This command is
- *         shown in UC View context menu only for Projects
+ *         This handler handles CommitWorkspace command. This command is shown
+ *         in UC View context menu only for Projects
  * 
  */
-public class CommitProjectHandler extends ProjectActionHandler implements CommitObserver{
+public class CommitProjectHandler extends ProjectActionHandler implements
+		CommitObserver {
 
 	private Shell shell;
 	private Usersession usersession;
 	private LogMessage logMessage;
-	
+
 	/**
 	 * . ({@inheritDoc})
 	 * 
@@ -54,8 +56,8 @@ public class CommitProjectHandler extends ProjectActionHandler implements Commit
 
 		final ProjectSpace projectSpace = getProjectSpace(event);
 
-
-		TransactionalEditingDomain domain = TransactionalEditingDomain.Registry.INSTANCE.getEditingDomain("org.unicase.EditingDomain");																																																																																																																							  
+		TransactionalEditingDomain domain = TransactionalEditingDomain.Registry.INSTANCE
+				.getEditingDomain("org.unicase.EditingDomain");
 		domain.getCommandStack().execute(new RecordingCommand(domain) {
 
 			@Override
@@ -63,51 +65,42 @@ public class CommitProjectHandler extends ProjectActionHandler implements Commit
 				commitWithoutCommand(projectSpace);
 			}
 
-			
 		});
 		return null;
 	}
-	
+
 	private void commitWithoutCommand(final ProjectSpace projectSpace) {
 		usersession = projectSpace.getUsersession();
 		shell = PlatformUI.getWorkbench().getActiveWorkbenchWindow().getShell();
-		ProgressMonitorDialog progressDialog = new ProgressMonitorDialog(PlatformUI.getWorkbench()
-			       .getActiveWorkbenchWindow().getShell());
+		ProgressMonitorDialog progressDialog = new ProgressMonitorDialog(
+				PlatformUI.getWorkbench().getActiveWorkbenchWindow().getShell());
 		LoginDialog login;
 		// initially setting the status as successful in case the user
 		// is already logged in
 		int loginStatus = LoginDialog.SUCCESSFUL;
-		try{
-			if (!usersession.isLoggedIn()) {
-				login = new LoginDialog(shell, usersession, usersession.getServerInfo());
-				loginStatus = login.open();
-			}
-			if (loginStatus == LoginDialog.SUCCESSFUL) {
-				progressDialog.open();
-				progressDialog.getProgressMonitor().beginTask("Commit project...", 100);
-				progressDialog.getProgressMonitor().worked(10);
-				logMessage = VersioningFactory.eINSTANCE.createLogMessage();
-				PrimaryVersionSpec oldVersion = projectSpace.getBaseVersion();
-				PrimaryVersionSpec newVersion = projectSpace.commit(logMessage,CommitProjectHandler.this);
-				if(!oldVersion.equals(newVersion)){
-					MessageDialog.openInformation(shell, null, "Commit completed.");
-				}
-			}
+		try {
+			commit(projectSpace, progressDialog, loginStatus);
 		} catch (BaseVersionOutdatedException e) {
-			MessageDialog dialog = new MessageDialog(null, "Confirmation",
-					null, "Your project is outdated, you need to update before commit. Do you want to update now?",
-					MessageDialog.QUESTION, new String[] { "Yes", "No" }, 0);
-			int result = dialog.open();
-			if (result == 0) {
-				new UpdateProjectHandler().update(projectSpace);
-				commitWithoutCommand(projectSpace);
-			}
+			handleBaseVersionException(projectSpace);
 		} catch (NoLocalChangesException e) {
-			MessageDialog.openInformation(shell, null, "No local changes in your project. No need to commit.");
-			
+			MessageDialog.openInformation(shell, null,
+					"No local changes in your project. No need to commit.");
+		} catch (ConnectionException e) {
+			// after connection exception, try to relogin once.
+			try {
+				usersession.logIn();
+				commit(projectSpace, progressDialog, loginStatus);
+			} catch (BaseVersionOutdatedException e1) {
+				handleBaseVersionException(projectSpace);
+			} catch (EmfStoreException e1) {
+				DialogHandler.showExceptionDialog(e);
+			}
+			// BEGIN SUPRESS CATCH EXCEPTION
+			catch (Exception e1) {
+				DialogHandler.showExceptionDialog(e);
+			}
 		} catch (EmfStoreException e) {
 			DialogHandler.showExceptionDialog(e);
-		// BEGIN SUPRESS CATCH EXCEPTION
 		} catch (Exception e) {
 			DialogHandler.showExceptionDialog(e);
 		}
@@ -118,13 +111,51 @@ public class CommitProjectHandler extends ProjectActionHandler implements Commit
 		}
 	}
 
+	private void handleBaseVersionException(final ProjectSpace projectSpace) {
+		MessageDialog dialog = new MessageDialog(
+				null,
+				"Confirmation",
+				null,
+				"Your project is outdated, you need to update before commit. Do you want to update now?",
+				MessageDialog.QUESTION, new String[] { "Yes", "No" }, 0);
+		int result = dialog.open();
+		if (result == 0) {
+			new UpdateProjectHandler().update(projectSpace);
+			commitWithoutCommand(projectSpace);
+		}
+	}
+
+	private void commit(final ProjectSpace projectSpace,
+			ProgressMonitorDialog progressDialog, int loginStatus)
+			throws EmfStoreException, BaseVersionOutdatedException {
+		LoginDialog login;
+		if (!usersession.isLoggedIn()) {
+			login = new LoginDialog(shell, usersession, usersession
+					.getServerInfo());
+			loginStatus = login.open();
+		}
+		if (loginStatus == LoginDialog.SUCCESSFUL) {
+			progressDialog.open();
+			progressDialog.getProgressMonitor().beginTask("Commit project...",
+					100);
+			progressDialog.getProgressMonitor().worked(10);
+			logMessage = VersioningFactory.eINSTANCE.createLogMessage();
+			PrimaryVersionSpec oldVersion = projectSpace.getBaseVersion();
+			PrimaryVersionSpec newVersion = projectSpace.commit(logMessage,
+					CommitProjectHandler.this);
+			if (!oldVersion.equals(newVersion)) {
+				MessageDialog.openInformation(shell, null, "Commit completed.");
+			}
+		}
+	}
+
 	/**
 	 * {@inheritDoc}
 	 */
 	public boolean inspectChanges(ChangePackage changePackage) {
-		CommitDialog commitDialog = new CommitDialog(shell,changePackage);
+		CommitDialog commitDialog = new CommitDialog(shell, changePackage);
 		int returnCode = commitDialog.open();
-		if(returnCode==Window.OK){
+		if (returnCode == Window.OK) {
 			logMessage.setAuthor(usersession.getUsername());
 			logMessage.setClientDate(new Date());
 			logMessage.setMessage(commitDialog.getLogText());
