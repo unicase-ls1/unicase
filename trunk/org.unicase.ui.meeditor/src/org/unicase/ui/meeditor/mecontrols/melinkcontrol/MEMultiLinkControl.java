@@ -113,8 +113,8 @@ public class MEMultiLinkControl extends AbstractMEControl {
 				} else {
 					linkArea.layout();
 				}
-				section.setExpanded(false);
 				if (eList.size() > 0) {
+					section.setExpanded(false);
 					section.setExpanded(true);
 				}
 			}
