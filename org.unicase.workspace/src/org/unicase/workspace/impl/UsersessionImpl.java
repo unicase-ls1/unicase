@@ -9,7 +9,6 @@ package org.unicase.workspace.impl;
 import java.util.Date;
 import java.util.List;
 
-import org.eclipse.core.runtime.Platform;
 import org.eclipse.emf.common.notify.Notification;
 import org.eclipse.emf.common.notify.NotificationChain;
 import org.eclipse.emf.ecore.EClass;
@@ -17,10 +16,7 @@ import org.eclipse.emf.ecore.InternalEObject;
 import org.eclipse.emf.ecore.impl.ENotificationImpl;
 import org.eclipse.emf.ecore.impl.EObjectImpl;
 import org.eclipse.emf.ecore.util.EcoreUtil;
-import org.osgi.framework.Bundle;
 import org.unicase.emfstore.accesscontrol.AccessControlException;
-import org.unicase.emfstore.esmodel.ClientVersionInfo;
-import org.unicase.emfstore.esmodel.EsmodelFactory;
 import org.unicase.emfstore.esmodel.ProjectId;
 import org.unicase.emfstore.esmodel.ProjectInfo;
 import org.unicase.emfstore.esmodel.SessionId;
@@ -34,6 +30,7 @@ import org.unicase.emfstore.esmodel.versioning.VersioningFactory;
 import org.unicase.emfstore.exceptions.ConnectionException;
 import org.unicase.emfstore.exceptions.EmfStoreException;
 import org.unicase.workspace.AdminBroker;
+import org.unicase.workspace.Configuration;
 import org.unicase.workspace.ProjectSpace;
 import org.unicase.workspace.ServerInfo;
 import org.unicase.workspace.Usersession;
@@ -536,21 +533,9 @@ public class UsersessionImpl extends EObjectImpl implements Usersession {
 		copy.setLastUsersession(null);
 
 		SessionId newSessionId = connectionManager.logIn(username,
-				getPassword(), copy, getClientVersion());
+				getPassword(), copy, Configuration.getClientVersion());
 		this.setSessionId(newSessionId);
 		setACUser(connectionManager.resolveUser(newSessionId, null));
-	}
-
-	private ClientVersionInfo getClientVersion() {
-		ClientVersionInfo clientVersionInfo = EsmodelFactory.eINSTANCE.createClientVersionInfo();
-		clientVersionInfo.setName("unicase.org eclipse client");
-		
-		Bundle emfStoreBundle = Platform.getBundle("org.unicase.workspace");
-		String emfStoreVersionString = (String) emfStoreBundle.getHeaders()
-				.get(org.osgi.framework.Constants.BUNDLE_VERSION);
-		
-		clientVersionInfo.setVersion(emfStoreVersionString);
-		return clientVersionInfo;
 	}
 
 	// begin of custom code
