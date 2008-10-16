@@ -52,7 +52,7 @@ public class RMIConnectionManagerImpl implements ConnectionManager {
 
 	private static final String UNSUPPORTED_ENCODING = "Problem with en/decoding.";
 
-	private static final String REMOTE = "A rmi communication-related exception.";
+	private static final String REMOTE = "Server could not be reached.";
 
 	private Map<SessionId, RMIEmfStoreFacade> facadeMap;
 
