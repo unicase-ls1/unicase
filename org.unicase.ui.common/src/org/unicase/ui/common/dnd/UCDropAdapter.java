@@ -29,6 +29,9 @@ import org.unicase.model.ModelElement;
 import org.unicase.model.ModelPackage;
 import org.unicase.model.diagram.DiagramType;
 import org.unicase.model.diagram.MEDiagram;
+import org.unicase.model.document.CompositeSection;
+import org.unicase.model.document.DocumentFactory;
+import org.unicase.model.document.LeafSection;
 import org.unicase.model.document.Section;
 import org.unicase.model.organization.User;
 import org.unicase.model.task.ActionItem;
@@ -121,47 +124,48 @@ public class UCDropAdapter extends EditingDomainViewerDropAdapter {
 									.getAnnotations().addAll(newAnnotations);
 						}
 					});
-		} else if (target instanceof MEDiagram) {			
+		} else if (target instanceof MEDiagram) {
 			super.drop(event);
 			MEDiagram diagram = (MEDiagram) target;
 			ActionHelper.openModelElement(diagram);
-			
+
 		} else {
-			super.drop(event);
+			 super.drop(event);
 		}
 	}
 
 	private boolean isElementOfDiagram(MEDiagram diagram, EObject dropee) {
-		if(dropee instanceof MEDiagram){
+		if (dropee instanceof MEDiagram) {
 			return false;
 		}
 		DiagramType type = diagram.getType();
 		String clientContextID = "ModelClientContext";
-		if(type == DiagramType.USECASE_DIAGRAM) {
-			clientContextID = "UseCaseClientContext";			
+		if (type == DiagramType.USECASE_DIAGRAM) {
+			clientContextID = "UseCaseClientContext";
+		} else if (type == DiagramType.COMPONENT_DIAGRAM) {
+			clientContextID = "ComponentClientContext";
 		}
-		else if(type == DiagramType.COMPONENT_DIAGRAM) {
-			clientContextID = "ComponentClientContext";			
-		}
-		IClientContext cc = ClientContextManager.getInstance().getClientContext(clientContextID);
-		if(cc == null){
+		IClientContext cc = ClientContextManager.getInstance()
+				.getClientContext(clientContextID);
+		if (cc == null) {
 			return false;
 		}
-		IElementType[] containedTypes = ElementTypeRegistry.getInstance().getElementTypes(cc);
-		IElementType dropeeType = ElementTypeRegistry.getInstance().getElementType(dropee,cc);
-		boolean contains=false;
-		for(int i=0; i<containedTypes.length; i++){
-			contains |= containedTypes[i].equals(dropeeType);			
+		IElementType[] containedTypes = ElementTypeRegistry.getInstance()
+				.getElementTypes(cc);
+		IElementType dropeeType = ElementTypeRegistry.getInstance()
+				.getElementType(dropee, cc);
+		boolean contains = false;
+		for (int i = 0; i < containedTypes.length; i++) {
+			contains |= containedTypes[i].equals(dropeeType);
 		}
 		return contains;
 	}
 
 	/**
-	 * This method is called the same way for each of the
-	 * DropTargetListener methods, except for leave
-	 * and drop. If the source is available early, it creates or revalidates the
-	 * DragAndDropCommand, and updates the event's detail (operation)
-	 * and feedback (drag under effect), appropriately.
+	 * This method is called the same way for each of the DropTargetListener
+	 * methods, except for leave and drop. If the source is available early, it
+	 * creates or revalidates the DragAndDropCommand, and updates the event's
+	 * detail (operation) and feedback (drag under effect), appropriately.
 	 * 
 	 * @param event
 	 *            the DropTargetEvent
@@ -177,25 +181,43 @@ public class UCDropAdapter extends EditingDomainViewerDropAdapter {
 		if (event.item == null || event.item.getClass() == null
 				|| !(event.item.getData() instanceof ModelElement)) {
 			return;
-		}		
+		}
 		ModelElement target = (ModelElement) event.item.getData();
-		if (getDragSource(event).contains(target) || getDragSource(event)==target) {
+		if (getDragSource(event).contains(target)
+				|| getDragSource(event) == target) {
 			event.detail = DND.DROP_NONE;
 			return;
 		}
-		EObject eObject = (EObject) getDragSource(event).toArray()[0];
+		if (target instanceof CompositeSection) {
+			EObject dropee = (EObject) getDragSource(event).toArray()[0];
+			if (!(dropee instanceof LeafSection)) {
+				event.detail = DND.DROP_NONE;
+				return;
+			}
+
+		}
+		if (target instanceof LeafSection) {
+			LeafSection leafSection = (LeafSection) target;
+			EObject dropee = (EObject) getDragSource(event).toArray()[0];
+			if(leafSection.getModelElements().contains(dropee)){
+				event.detail = DND.DROP_NONE;
+				return;
+			}
+		}
+
 		EClass annotation = ModelPackage.eINSTANCE.getAnnotation();
+		EObject eObject = (EObject) getDragSource(event).toArray()[0];
 		if (annotation.isSuperTypeOf(eObject.eClass())) {
 			event.detail = event.detail | DND.DROP_COPY;
 		}
 		if (eObject instanceof User) {
 
 		}
-		if(target instanceof MEDiagram) {
-			if(!isElementOfDiagram((MEDiagram) target, eObject) ||
-					((MEDiagram)target).getElements().contains(eObject)) {
+		if (target instanceof MEDiagram) {
+			if (!isElementOfDiagram((MEDiagram) target, eObject)
+					|| ((MEDiagram) target).getElements().contains(eObject)) {
 				event.detail = DND.DROP_NONE;
-			} else{
+			} else {
 				event.detail = event.detail | DND.DROP_COPY;
 			}
 		}
