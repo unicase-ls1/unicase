@@ -261,7 +261,7 @@ public class RMIConnectionManagerImpl implements ConnectionManager {
 			throw new ConnectionException(UNSUPPORTED_ENCODING, e);
 		} catch (ClientVersionOutOfDateException e) {
 			throw new ConnectionException(
-					"Client version not compatible with server.", e);
+					"Client version not compatible with server. Please update your client.", e);
 		} catch (AccessControlException e) {
 			throw new ConnectionException("Login refused.", e);
 		}
