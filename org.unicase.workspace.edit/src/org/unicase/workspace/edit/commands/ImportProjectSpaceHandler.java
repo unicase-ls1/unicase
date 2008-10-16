@@ -1,3 +1,8 @@
+/**
+ * <copyright> Copyright (c) 2008 Jonas Helming, Maximilian Koegel. All rights reserved. This program and the accompanying materials are made available under the terms of the Eclipse Public License v1.0 which accompanies this distribution, and is available at http://www.eclipse.org/legal/epl-v10.html
+ * </copyright>
+ */
+
 package org.unicase.workspace.edit.commands;
 
 import java.io.File;
@@ -7,31 +12,30 @@ import org.eclipse.core.commands.ExecutionEvent;
 import org.eclipse.core.commands.ExecutionException;
 import org.eclipse.emf.transaction.RecordingCommand;
 import org.eclipse.emf.transaction.TransactionalEditingDomain;
+import org.eclipse.jface.dialogs.MessageDialog;
 import org.eclipse.swt.SWT;
 import org.eclipse.swt.widgets.FileDialog;
 import org.eclipse.ui.PlatformUI;
 import org.unicase.ui.common.exceptions.DialogHandler;
-import org.unicase.workspace.ProjectSpace;
+import org.unicase.workspace.Workspace;
 import org.unicase.workspace.WorkspaceManager;
 
 /**
- * Exports a project space to a file.
- * @author helming
+ * Imports a project space to the current workspace.
+ * @author koegel
  *
  */
-public class ExportProjectSpaceHandler extends ProjectActionHandler {
+public class ImportProjectSpaceHandler extends ProjectActionHandler {
 
 	/** 
 	 * {@inheritDoc}
 	 * @see org.eclipse.core.commands.AbstractHandler#execute(org.eclipse.core.commands.ExecutionEvent)
 	 */
 	public Object execute(ExecutionEvent event) throws ExecutionException {
-		final ProjectSpace projectSpace = getProjectSpace(event);
 		FileDialog dialog = new FileDialog(PlatformUI.getWorkbench()
-				.getActiveWorkbenchWindow().getShell(), SWT.SAVE);
-		dialog.setFilterNames(ExportChangesHandler.FILTER_NAMES);
-		dialog.setFilterExtensions(ExportChangesHandler.FILTER_EXTS);
-		dialog.setOverwrite(true);
+				.getActiveWorkbenchWindow().getShell(), SWT.OPEN);
+		dialog.setFilterNames(ImportProjectHandler.FILTER_NAMES);
+		dialog.setFilterExtensions(ImportProjectHandler.FILTER_EXTS);
 		String fn = dialog.open();
 		if (fn == null) {
 			return null;
@@ -45,18 +49,31 @@ public class ExportProjectSpaceHandler extends ProjectActionHandler {
 		}
 		stringBuilder.append(fileName);
 		final String absoluteFileName = stringBuilder.toString();
+
 		TransactionalEditingDomain domain = TransactionalEditingDomain.Registry.INSTANCE
 				.getEditingDomain("org.unicase.EditingDomain");
 		domain.getCommandStack().execute(new RecordingCommand(domain) {
 			@Override
 			protected void doExecute() {
 				try {
-					WorkspaceManager.getInstance().getCurrentWorkspace().exportProjectSpace(projectSpace, absoluteFileName);
+					Workspace currentWorkspace = WorkspaceManager.getInstance()
+							.getCurrentWorkspace();
+					currentWorkspace
+							.importProjectSpace(absoluteFileName);
+	
 				} catch (IOException e) {
 					DialogHandler.showExceptionDialog(e);
+					// BEGIN SUPRESS CATCH EXCEPTION
+				} catch (RuntimeException e) {
+					DialogHandler.showExceptionDialog(e);
+					throw e;
 				}
+				// END SUPRESS CATCH EXCEPTION
 			}
 		});
+
+		MessageDialog.openInformation(null, "Import",
+				"Imported project space from file: " + absoluteFileName);
 		return null;
 	}
 
