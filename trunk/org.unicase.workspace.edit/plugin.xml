@@ -58,6 +58,10 @@
             class="org.unicase.workspace.edit.commands.ExportWorkSpaceHandler"
             commandId="org.unicase.workspace.edit.exportWorkSpace">
       </handler>
+      <handler
+            class="org.unicase.workspace.edit.commands.ImportProjectSpaceHandler"
+            commandId="org.unicase.workspace.edit.importProjectSpace">
+      </handler>
   </extension>
   <extension
         point="org.eclipse.ui.commands">
@@ -132,6 +136,10 @@
      <command
            id="org.unicase.workspace.edit.exportWorkSpace"
            name="exportWorkSpace">
+     </command>
+     <command
+           id="org.unicase.workspace.edit.importProjectSpace"
+           name="importProjectSpace">
      </command>
   </extension>
   <extension
@@ -233,6 +241,71 @@
            </command>
         </menu>
         <menu
+              icon="icons/full/obj16/import.gif"
+              label="Import">
+           <command
+                 commandId="org.unicase.workspace.edit.importProject"
+                 icon="icons/full/obj16/import.gif"
+                 label="Import Project"
+                 style="push">
+              <visibleWhen
+                    checkEnabled="false">
+                 <iterate
+                       ifEmpty="true"
+                       operator="or">
+                    <instanceof
+                          value="org.unicase.workspace.ProjectSpace">
+                    </instanceof>
+                 </iterate>
+              </visibleWhen>
+           </command>
+           <command
+                 commandId="org.unicase.workspace.edit.importChanges"
+                 icon="icons/full/obj16/import.gif"
+                 label="Import Changes"
+                 style="push">
+              <visibleWhen
+                    checkEnabled="false">
+                 <iterate
+                       ifEmpty="false">
+                    <instanceof
+                          value="org.unicase.workspace.ProjectSpace">
+                    </instanceof>
+                 </iterate>
+              </visibleWhen>
+           </command>
+           <command
+                 commandId="org.unicase.workspace.edit.importProjectSpace"
+                 icon="icons/full/obj16/import.gif"
+                 label="Import Projectspace"
+                 style="push">
+              <visibleWhen
+                    checkEnabled="false">
+                 <iterate
+                       ifEmpty="false">
+                    <instanceof
+                          value="org.unicase.workspace.ProjectSpace">
+                    </instanceof>
+                 </iterate>
+              </visibleWhen>
+           </command>
+           <command
+                 commandId="org.unicase.workspace.edit.importUser"
+                 icon="icons/importuser.png"
+                 label="Import Users"
+                 style="push">
+              <visibleWhen
+                    checkEnabled="false">
+                 <iterate
+                       ifEmpty="false">
+                    <instanceof
+                          value="org.unicase.workspace.ProjectSpace">
+                    </instanceof>
+                 </iterate>
+              </visibleWhen>
+           </command>
+        </menu>
+        <menu
               icon="icons/full/obj16/createrepos.gif"
               label="Other...">
            <command
@@ -285,37 +358,6 @@
               icon="icons/advanced.gif"
               label="Advanced">
            <command
-                 commandId="org.unicase.workspace.edit.importProject"
-                 icon="icons/full/obj16/import.gif"
-                 label="Import Project"
-                 style="push">
-              <visibleWhen
-                    checkEnabled="false">
-                 <iterate
-                       ifEmpty="true"
-                       operator="or">
-                    <instanceof
-                          value="org.unicase.workspace.ProjectSpace">
-                    </instanceof>
-                 </iterate>
-              </visibleWhen>
-           </command>
-           <command
-                 commandId="org.unicase.workspace.edit.importChanges"
-                 icon="icons/full/obj16/import.gif"
-                 label="Import Changes"
-                 style="push">
-              <visibleWhen
-                    checkEnabled="false">
-                 <iterate
-                       ifEmpty="false">
-                    <instanceof
-                          value="org.unicase.workspace.ProjectSpace">
-                    </instanceof>
-                 </iterate>
-              </visibleWhen>
-           </command>
-           <command
                  commandId="org.unicase.workspace.edit.shareProject"
                  icon="icons/full/obj16/relocate.gif"
                  label="Share  Project"
@@ -334,21 +376,6 @@
                  commandId="org.unicase.workspace.edit.compareProjects"
                  icon="icons/full/obj16/compare.png"
                  label="Compare to ..."
-                 style="push">
-              <visibleWhen
-                    checkEnabled="false">
-                 <iterate
-                       ifEmpty="false">
-                    <instanceof
-                          value="org.unicase.workspace.ProjectSpace">
-                    </instanceof>
-                 </iterate>
-              </visibleWhen>
-           </command>
-           <command
-                 commandId="org.unicase.workspace.edit.importUser"
-                 icon="icons/importuser.png"
-                 label="Import Users"
                  style="push">
               <visibleWhen
                     checkEnabled="false">
@@ -380,6 +407,9 @@
               name="org.unicase.workspace.edit.scmCommands"
               visible="true">
         </separator>
+        <menu
+              label="label">
+        </menu>
      </menuContribution>
   </extension>
 
