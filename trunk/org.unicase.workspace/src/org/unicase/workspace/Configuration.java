@@ -11,6 +11,11 @@ import java.util.ArrayList;
 import java.util.List;
 import java.util.Map;
 
+import org.eclipse.core.runtime.Platform;
+import org.osgi.framework.Bundle;
+import org.unicase.emfstore.esmodel.ClientVersionInfo;
+import org.unicase.emfstore.esmodel.EsmodelFactory;
+
 /**
  * Represents the current Workspace Configuration.
  * 
@@ -35,6 +40,9 @@ public final class Configuration {
 		sb.append(System.getProperty("user.home"));
 		sb.append(File.separatorChar);
 		sb.append(".unicase");
+		if (!isReleaseVersion()) {
+			sb.append(".dev");
+		}
 		sb.append(File.separatorChar);
 		File workspace = new File(sb.toString());
 		if (!workspace.exists()) {
@@ -117,5 +125,30 @@ public final class Configuration {
 	 */
 	public static int getMaxResourceFileSizeOnExpand() {
 		return 50000;
+	}
+	
+	
+	/**
+	 * Get the client version as in the org.unicase.workspace manifest file.
+	 * @return the client version number 
+	 */
+	public static ClientVersionInfo getClientVersion() {
+		ClientVersionInfo clientVersionInfo = EsmodelFactory.eINSTANCE.createClientVersionInfo();
+		clientVersionInfo.setName("unicase.org eclipse client");
+		
+		Bundle emfStoreBundle = Platform.getBundle("org.unicase.workspace");
+		String emfStoreVersionString = (String) emfStoreBundle.getHeaders()
+				.get(org.osgi.framework.Constants.BUNDLE_VERSION);
+		
+		clientVersionInfo.setVersion(emfStoreVersionString);
+		return clientVersionInfo;
+	}
+	
+	/**
+	 * Dtermine if this is a release version or not.
+	 * @return true if it is a release version
+	 */
+	public static boolean isReleaseVersion() {
+		return !getClientVersion().getVersion().endsWith("qualifier");
 	}
 }
