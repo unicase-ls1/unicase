@@ -35,6 +35,7 @@ import org.eclipse.ui.forms.widgets.TableWrapLayout;
 import org.eclipse.ui.menus.IMenuService;
 import org.eclipse.ui.services.IEvaluationService;
 import org.unicase.model.ModelElement;
+import org.unicase.model.rationale.Issue;
 import org.unicase.ui.meeditor.mecontrols.MEControl;
 import org.unicase.ui.meeditor.mecontrols.METextControl;
 import org.unicase.ui.meeditor.mecontrols.uccontrol.UseCaseStepsControl;
@@ -122,6 +123,9 @@ public class MEEditorPage extends FormPage {
 
 		// Create Sections for every Reference
 		createMultiReferences();
+		
+		// Create special ME Control
+		createSpecificMEControls();
 
 		createToolbar();
 		this.form.layout();
@@ -129,7 +133,7 @@ public class MEEditorPage extends FormPage {
 
 	}
 
-	private void createToolbar() {
+		private void createToolbar() {
 		IMenuService menuService = (IMenuService) PlatformUI.getWorkbench()
 				.getService(IMenuService.class);
 		ISourceProvider sourceProvider = new AbstractSourceProvider() {
@@ -260,6 +264,19 @@ public class MEEditorPage extends FormPage {
 					break;
 				}
 			}
+	}
+	
+	private void createSpecificMEControls() {
+		if(this.modelElement instanceof Issue) {
+			MEControl meControl = ControlFactory.createMEIssueAssessmentMatrixControl((Issue)this.modelElement, toolkit, editingDomain);
+			if (meControl != null) {
+				meControls.add(meControl);
+				Control control;
+				control = meControl.createControl(bottom, SWT.WRAP);				
+				control.setLayoutData(new TableWrapData(TableWrapData.FILL_GRAB));
+			}
+		}
+		
 	}
 
 	

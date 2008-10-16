@@ -14,8 +14,12 @@ import org.eclipse.emf.ecore.EObject;
 import org.eclipse.emf.ecore.EReference;
 import org.eclipse.emf.ecore.EStructuralFeature;
 import org.eclipse.emf.edit.domain.EditingDomain;
+import org.eclipse.emf.edit.provider.AdapterFactoryItemDelegator;
+import org.eclipse.emf.edit.provider.ComposedAdapterFactory;
 import org.eclipse.emf.edit.provider.IItemPropertyDescriptor;
 import org.eclipse.ui.forms.widgets.FormToolkit;
+import org.unicase.model.ModelElement;
+import org.unicase.model.rationale.Issue;
 import org.unicase.model.requirement.Step;
 import org.unicase.ui.meeditor.mecontrols.MEBoolControl;
 import org.unicase.ui.meeditor.mecontrols.MEControl;
@@ -24,6 +28,7 @@ import org.unicase.ui.meeditor.mecontrols.MEEnumControl;
 import org.unicase.ui.meeditor.mecontrols.MEIntControl;
 import org.unicase.ui.meeditor.mecontrols.MERichTextControl;
 import org.unicase.ui.meeditor.mecontrols.METextControl;
+import org.unicase.ui.meeditor.mecontrols.issuecontrol.AssessmentMatrixControl;
 import org.unicase.ui.meeditor.mecontrols.melinkcontrol.MEMultiLinkControl;
 import org.unicase.ui.meeditor.mecontrols.melinkcontrol.MESingleLinkControl;
 import org.unicase.ui.meeditor.mecontrols.uccontrol.UseCaseStepsControl;
@@ -99,6 +104,7 @@ public class ControlFactory {
 	private MEControl createAttributeControl(
 			IItemPropertyDescriptor itemPropertyDescriptor,
 			EStructuralFeature feature) {
+				
 		//TODO: Add email control
 //		if(feature.getFeatureID()==OrganizationPackage.USER__EMAIL)
 		if (itemPropertyDescriptor.isMultiLine(modelElement)) {
@@ -157,5 +163,12 @@ public class ControlFactory {
 	private MEControl createMEEnumControl(EAttribute attribute) {
 		return new MEEnumControl(attribute, toolkit, modelElement, editingDomain);
 	}
+	
+	//Create Control for AssessmentMatrix
+	public static MEControl createMEIssueAssessmentMatrixControl(Issue modelElement, FormToolkit toolkit, EditingDomain editingDomain ) {
+		
+		return new AssessmentMatrixControl(modelElement, toolkit, editingDomain);
+	}
+
 
 }
