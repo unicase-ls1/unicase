@@ -13,6 +13,8 @@ import org.eclipse.emf.ecore.EReference;
 import org.eclipse.emf.ecore.impl.EPackageImpl;
 import org.eclipse.gmf.runtime.notation.NotationPackage;
 import org.unicase.model.ModelPackage;
+import org.unicase.model.attachment.AttachmentPackage;
+import org.unicase.model.attachment.impl.AttachmentPackageImpl;
 import org.unicase.model.bug.BugPackage;
 import org.unicase.model.bug.impl.BugPackageImpl;
 import org.unicase.model.change.ChangePackage;
@@ -193,6 +195,10 @@ public class MeetingPackageImpl extends EPackageImpl implements MeetingPackage {
 				.getEPackage(ComponentPackage.eNS_URI) instanceof ComponentPackageImpl ? EPackage.Registry.INSTANCE
 				.getEPackage(ComponentPackage.eNS_URI)
 				: ComponentPackage.eINSTANCE);
+		AttachmentPackageImpl theAttachmentPackage = (AttachmentPackageImpl) (EPackage.Registry.INSTANCE
+				.getEPackage(AttachmentPackage.eNS_URI) instanceof AttachmentPackageImpl ? EPackage.Registry.INSTANCE
+				.getEPackage(AttachmentPackage.eNS_URI)
+				: AttachmentPackage.eINSTANCE);
 
 		// Create package meta-data objects
 		theMeetingPackage.createPackageContents();
@@ -207,6 +213,7 @@ public class MeetingPackageImpl extends EPackageImpl implements MeetingPackage {
 		theChangePackage.createPackageContents();
 		theBugPackage.createPackageContents();
 		theComponentPackage.createPackageContents();
+		theAttachmentPackage.createPackageContents();
 
 		// Initialize created meta-data
 		theMeetingPackage.initializePackageContents();
@@ -221,6 +228,7 @@ public class MeetingPackageImpl extends EPackageImpl implements MeetingPackage {
 		theChangePackage.initializePackageContents();
 		theBugPackage.initializePackageContents();
 		theComponentPackage.initializePackageContents();
+		theAttachmentPackage.initializePackageContents();
 
 		// Mark meta-data to indicate it can't be changed
 		theMeetingPackage.freeze();

@@ -514,13 +514,14 @@ public abstract class ModelElementImpl extends IdentifiableElementImpl
 		if (description != null && description.length() > 0) {
 			String[] split = description.split(BEGINNTEXT);
 			if (split.length > 1) {
-				ret = split[split.length-1];
+				ret = split[split.length - 1];
 			}
 		}
 		return ret;
 	}
+
 	// end of custom code
-	
+
 	/**
 	 * <!-- begin-user-doc --> <!-- end-user-doc -->
 	 * @generated
