@@ -38,6 +38,7 @@ import org.unicase.workspace.ServerInfo;
 import org.unicase.workspace.Usersession;
 import org.unicase.workspace.Workspace;
 import org.unicase.workspace.WorkspaceFactory;
+import org.unicase.workspace.WorkspaceManager;
 import org.unicase.workspace.WorkspacePackage;
 import org.unicase.workspace.connectionmanager.ConnectionManager;
 
@@ -475,9 +476,81 @@ public class WorkspaceImpl extends EObjectImpl implements Workspace {
 		return projectSpace;
 	}
 
+	/** 
+	 * {@inheritDoc}
+	 * @see org.unicase.workspace.Workspace#setWorkspaceResourceSet(org.eclipse.emf.ecore.resource.ResourceSet)
+	 */
+	public void setWorkspaceResourceSet(ResourceSet resourceSet) {
+		this.workspaceResourceSet = resourceSet;
+	}
+
 	/**
-	 * @param absoluteFileName
-	 * @param projectSpace
+	 * @return
+	 */
+	public ResourceSet getWorkspaceResourceSet() {
+		return this.workspaceResourceSet;
+	}
+
+	/** 
+	 * {@inheritDoc}
+	 * @see org.unicase.workspace.Workspace#exportProjectSpace(org.unicase.workspace.ProjectSpace, java.lang.String)
+	 */
+	public void exportProjectSpace(ProjectSpace projectSpace,
+			String absoluteFileName) throws IOException {
+		ResourceSet resourceSet = new ResourceSetImpl();
+		Resource resource = resourceSet.createResource(URI
+				.createFileURI(absoluteFileName));
+		ProjectSpace copy = (ProjectSpace) EcoreUtil.copy(projectSpace);
+		copy.setUsersession(null);
+		resource.getContents().add(copy);
+		resource.save(null);
+	}
+
+	/** 
+	 * {@inheritDoc}
+	 * @see org.unicase.workspace.Workspace#exportWorkSpace(java.lang.String)
+	 */
+	public void exportWorkSpace(String absoluteFileName) throws IOException {
+		ResourceSet resourceSet = new ResourceSetImpl();
+		Resource resource = resourceSet.createResource(URI
+				.createFileURI(absoluteFileName));
+		Workspace copy = (Workspace) EcoreUtil.copy(WorkspaceManager.getInstance().getCurrentWorkspace());
+		resource.getContents().add(copy);
+		resource.save(null);
+	}
+
+	/** 
+	 * {@inheritDoc}
+	 * @see org.unicase.workspace.Workspace#importProjectSpace(java.lang.String)
+	 */
+	public ProjectSpace importProjectSpace(String absoluteFileName)
+			throws IOException {
+		ResourceSetImpl resourceSet = new ResourceSetImpl();
+		Resource resource = resourceSet.getResource(URI
+				.createFileURI(absoluteFileName), true);
+		EList<EObject> directContents = resource.getContents();
+		// sanity check
+
+		if (directContents.size() != 1
+				&& (!(directContents.get(0) instanceof ProjectSpace))) {
+			throw new IOException(
+					"File is corrupt, does not contain a ProjectSpace.");
+		}
+
+		ProjectSpace projectSpace = (ProjectSpace) directContents.get(0);
+		resource.getContents().remove(projectSpace);
+
+		projectSpace.initResources(this.workspaceResourceSet);
+
+		getProjectSpaces().add(projectSpace);
+		this.save();
+		return projectSpace;
+	}
+
+
+	/** 
+	 * {@inheritDoc}
+	 * @see org.unicase.workspace.Workspace#exportProject(org.unicase.workspace.ProjectSpace, java.lang.String)
 	 */
 	public void exportProject(ProjectSpace projectSpace, String absoluteFileName)
 			throws IOException {
@@ -488,14 +561,6 @@ public class WorkspaceImpl extends EObjectImpl implements Workspace {
 
 		resource.getContents().add(project);
 		resource.save(null);
-	}
-
-	public void setWorkspaceResourceSet(ResourceSet resourceSet) {
-		this.workspaceResourceSet = resourceSet;
-	}
-
-	public ResourceSet getWorkspaceResourceSet() {
-		return this.workspaceResourceSet;
 	}
 
 } // WorkspaceImpl
