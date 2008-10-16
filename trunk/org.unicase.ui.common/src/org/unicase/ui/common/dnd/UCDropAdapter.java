@@ -30,7 +30,6 @@ import org.unicase.model.ModelPackage;
 import org.unicase.model.diagram.DiagramType;
 import org.unicase.model.diagram.MEDiagram;
 import org.unicase.model.document.CompositeSection;
-import org.unicase.model.document.DocumentFactory;
 import org.unicase.model.document.LeafSection;
 import org.unicase.model.document.Section;
 import org.unicase.model.organization.User;
@@ -67,10 +66,61 @@ public class UCDropAdapter extends EditingDomainViewerDropAdapter {
 	@Override
 	public void drop(final DropTargetEvent event) {
 		final ModelElement target = (ModelElement) event.item.getData();
-		@SuppressWarnings("unchecked")
+	
+		if (getDragSource(event) == null) {
+			return;
+		}
+    	@SuppressWarnings("unchecked")
 		final Collection<ModelElement> dragSource = (Collection<ModelElement>) getDragSource(event);
 		EObject dropee = (EObject) dragSource.toArray()[0];
 
+
+		if (event.item == null || event.item.getClass() == null
+				|| !(event.item.getData() instanceof ModelElement)) {
+			return;
+		}
+		if (getDragSource(event).contains(target)
+				|| getDragSource(event) == target) {
+			event.detail = DND.DROP_NONE;
+			return;
+		}
+		if (target instanceof CompositeSection) {
+			if (!(dropee instanceof LeafSection)) {
+				event.detail = DND.DROP_NONE;
+				return;
+			}
+
+		}
+		if (target instanceof LeafSection) {
+			LeafSection leafSection = (LeafSection) target;
+			if(leafSection.getModelElements().contains(dropee)){
+				event.detail = DND.DROP_NONE;
+				return;
+			}
+		}
+
+		EClass annotation = ModelPackage.eINSTANCE.getAnnotation();
+		EObject eObject = (EObject) getDragSource(event).toArray()[0];
+		if (annotation.isSuperTypeOf(eObject.eClass())) {
+			event.detail = event.detail | DND.DROP_COPY;
+		}
+		if (eObject instanceof User) {
+
+		}
+		if (target instanceof MEDiagram) {
+			if (!isElementOfDiagram((MEDiagram) target, eObject)
+					|| ((MEDiagram) target).getElements().contains(eObject)) {
+				event.detail = DND.DROP_NONE;
+			} else {
+				event.detail = event.detail | DND.DROP_COPY;
+			}
+		}
+		if (target instanceof WorkPackage
+				|| target.eContainer() instanceof WorkPackage) {
+			event.detail = event.detail | DND.DROP_COPY;
+		}
+		
+		
 		if (target instanceof WorkPackage && !(dropee instanceof Annotation)) {
 			// create an ActionItem for each droppe
 			// add the AI to target
