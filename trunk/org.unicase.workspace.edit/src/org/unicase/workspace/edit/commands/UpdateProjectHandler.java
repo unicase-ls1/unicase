@@ -82,7 +82,6 @@ public class UpdateProjectHandler extends ProjectActionHandler implements
 		shell = PlatformUI.getWorkbench().getActiveWorkbenchWindow().getShell();
 		ProgressMonitorDialog progressDialog = new ProgressMonitorDialog(
 				PlatformUI.getWorkbench().getActiveWorkbenchWindow().getShell());
-		LoginDialog login;
 		// initially setting the status as successful in case the user
 		// is already logged in
 		int loginStatus = LoginDialog.SUCCESSFUL;
