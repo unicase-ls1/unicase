@@ -37,6 +37,7 @@ public class MEDateControl extends AbstractMEControl implements MEControl,
 
 	private EAttribute attribute;
 	private CDateTime widget;
+	private AdapterImpl adapterImpl;
 
 	/**
 	 * default constructor.
@@ -54,16 +55,19 @@ public class MEDateControl extends AbstractMEControl implements MEControl,
 			EObject modelElement, EditingDomain editingDomain) {
 		super(editingDomain, modelElement, toolkit);
 		this.attribute = attribute;
-		modelElement.eAdapters().add(new AdapterImpl() {
+		adapterImpl = new AdapterImpl() {
 			@Override
 			public void notifyChanged(Notification msg) {
-				if (msg.getFeature()!=null && msg.getFeature().equals(MEDateControl.this.attribute)) {
+				if (msg.getFeature() != null
+						&& msg.getFeature()
+								.equals(MEDateControl.this.attribute)) {
 					update();
 				}
 				super.notifyChanged(msg);
 			}
 
-		});
+		};
+		modelElement.eAdapters().add(adapterImpl);
 	}
 
 	/**
@@ -116,6 +120,15 @@ public class MEDateControl extends AbstractMEControl implements MEControl,
 				}
 			}
 		});
+	}
+
+	/**
+	 * Remove adapter. {@inheritDoc}
+	 */
+	@Override
+	public void dispose() {
+		getModelElement().eAdapters().remove(adapterImpl);
+		super.dispose();
 	}
 
 }
