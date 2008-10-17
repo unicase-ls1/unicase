@@ -87,6 +87,7 @@ public class ProjectChangeNotifier extends AdapterImpl {
 						//on a remove fire notification first and then the remove
 						fireNotification(notification);
 						this.projectChangeObserver.modelElementRemoved(project, modelElement);
+						modelElement.eAdapters().remove(this);
 						return;
 					}
 				}
