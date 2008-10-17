@@ -74,6 +74,8 @@
           eType="#//versioning/operations/AbstractOperation" containment="true"/>
       <eStructuralFeatures xsi:type="ecore:EReference" name="events" upperBound="-1"
           eType="#//versioning/events/Event" containment="true"/>
+      <eStructuralFeatures xsi:type="ecore:EReference" name="logMessage" eType="#//versioning/LogMessage"
+          containment="true"/>
     </eClassifiers>
     <eClassifiers xsi:type="ecore:EClass" name="HistoryInfo">
       <eStructuralFeatures xsi:type="ecore:EReference" name="primerySpec" lowerBound="1"

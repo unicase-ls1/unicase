@@ -57,6 +57,7 @@
       <genClasses ecoreClass="esmodel.ecore#//versioning/ChangePackage">
         <genFeatures property="None" children="true" createChild="true" ecoreFeature="ecore:EReference esmodel.ecore#//versioning/ChangePackage/operations"/>
         <genFeatures property="None" children="true" createChild="true" ecoreFeature="ecore:EReference esmodel.ecore#//versioning/ChangePackage/events"/>
+        <genFeatures property="None" children="true" createChild="true" ecoreFeature="ecore:EReference esmodel.ecore#//versioning/ChangePackage/logMessage"/>
         <genOperations ecoreOperation="esmodel.ecore#//versioning/ChangePackage/reverse"/>
         <genOperations ecoreOperation="esmodel.ecore#//versioning/ChangePackage/apply">
           <genParameters ecoreParameter="esmodel.ecore#//versioning/ChangePackage/apply/project"/>

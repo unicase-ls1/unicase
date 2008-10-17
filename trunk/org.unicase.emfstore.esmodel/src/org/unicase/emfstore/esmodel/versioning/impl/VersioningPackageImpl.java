@@ -366,6 +366,15 @@ public class VersioningPackageImpl extends EPackageImpl implements
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
+	public EReference getChangePackage_LogMessage() {
+		return (EReference) changePackageEClass.getEStructuralFeatures().get(2);
+	}
+
+	/**
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 */
 	public EClass getHistoryInfo() {
 		return historyInfoEClass;
 	}
@@ -555,6 +564,7 @@ public class VersioningPackageImpl extends EPackageImpl implements
 		changePackageEClass = createEClass(CHANGE_PACKAGE);
 		createEReference(changePackageEClass, CHANGE_PACKAGE__OPERATIONS);
 		createEReference(changePackageEClass, CHANGE_PACKAGE__EVENTS);
+		createEReference(changePackageEClass, CHANGE_PACKAGE__LOG_MESSAGE);
 
 		historyInfoEClass = createEClass(HISTORY_INFO);
 		createEReference(historyInfoEClass, HISTORY_INFO__PRIMERY_SPEC);
@@ -681,6 +691,11 @@ public class VersioningPackageImpl extends EPackageImpl implements
 				!IS_UNSETTABLE, IS_UNIQUE, !IS_DERIVED, IS_ORDERED);
 		initEReference(getChangePackage_Events(), theEventsPackage.getEvent(),
 				null, "events", null, 0, -1, ChangePackage.class,
+				!IS_TRANSIENT, !IS_VOLATILE, IS_CHANGEABLE, IS_COMPOSITE,
+				IS_RESOLVE_PROXIES, !IS_UNSETTABLE, IS_UNIQUE, !IS_DERIVED,
+				IS_ORDERED);
+		initEReference(getChangePackage_LogMessage(), this.getLogMessage(),
+				null, "logMessage", null, 0, 1, ChangePackage.class,
 				!IS_TRANSIENT, !IS_VOLATILE, IS_CHANGEABLE, IS_COMPOSITE,
 				IS_RESOLVE_PROXIES, !IS_UNSETTABLE, IS_UNIQUE, !IS_DERIVED,
 				IS_ORDERED);

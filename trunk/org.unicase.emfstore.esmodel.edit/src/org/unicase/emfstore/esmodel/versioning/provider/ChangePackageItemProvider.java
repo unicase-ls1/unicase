@@ -23,6 +23,7 @@ import org.eclipse.emf.edit.provider.ItemProviderAdapter;
 import org.eclipse.emf.edit.provider.ViewerNotification;
 import org.unicase.emfstore.esmodel.provider.EsmodelEditPlugin;
 import org.unicase.emfstore.esmodel.versioning.ChangePackage;
+import org.unicase.emfstore.esmodel.versioning.VersioningFactory;
 import org.unicase.emfstore.esmodel.versioning.VersioningPackage;
 import org.unicase.emfstore.esmodel.versioning.events.EventsFactory;
 import org.unicase.emfstore.esmodel.versioning.operations.OperationsFactory;
@@ -78,6 +79,8 @@ public class ChangePackageItemProvider extends ItemProviderAdapter implements
 					.add(VersioningPackage.Literals.CHANGE_PACKAGE__OPERATIONS);
 			childrenFeatures
 					.add(VersioningPackage.Literals.CHANGE_PACKAGE__EVENTS);
+			childrenFeatures
+					.add(VersioningPackage.Literals.CHANGE_PACKAGE__LOG_MESSAGE);
 		}
 		return childrenFeatures;
 	}
@@ -132,6 +135,7 @@ public class ChangePackageItemProvider extends ItemProviderAdapter implements
 		switch (notification.getFeatureID(ChangePackage.class)) {
 		case VersioningPackage.CHANGE_PACKAGE__OPERATIONS:
 		case VersioningPackage.CHANGE_PACKAGE__EVENTS:
+		case VersioningPackage.CHANGE_PACKAGE__LOG_MESSAGE:
 			fireNotifyChanged(new ViewerNotification(notification, notification
 					.getNotifier(), true, false));
 			return;
@@ -206,6 +210,10 @@ public class ChangePackageItemProvider extends ItemProviderAdapter implements
 		newChildDescriptors.add(createChildParameter(
 				VersioningPackage.Literals.CHANGE_PACKAGE__EVENTS,
 				EventsFactory.eINSTANCE.createCheckoutEvent()));
+
+		newChildDescriptors.add(createChildParameter(
+				VersioningPackage.Literals.CHANGE_PACKAGE__LOG_MESSAGE,
+				VersioningFactory.eINSTANCE.createLogMessage()));
 	}
 
 	/**
