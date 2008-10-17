@@ -27,6 +27,6 @@ Export-Package: org.unicase.emfstore.esmodel,
  org.unicase.emfstore.esmodel.versioning.util
 Require-Bundle: org.eclipse.core.runtime,
  org.eclipse.emf.ecore;visibility:=reexport,
- org.unicase.model;bundle-version="[0.2.5,0.2.5]";visibility:=reexport,
- org.eclipse.emf.ecore.change;visibility:=reexport
+ org.eclipse.emf.ecore.change;visibility:=reexport,
+ org.unicase.model;bundle-version="[0.2.5,0.2.5]";visibility:=reexport
 Bundle-ActivationPolicy: lazy

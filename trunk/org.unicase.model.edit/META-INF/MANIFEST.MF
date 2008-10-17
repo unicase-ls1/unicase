@@ -20,7 +20,7 @@ Export-Package: org.unicase.model.bug.provider,
  org.unicase.model.rationale.provider,
  org.unicase.model.requirement.provider,
  org.unicase.model.task.provider
-Require-Bundle: org.unicase.model;bundle-version="[0.2.5,0.2.5]";visibility:=reexport,
- org.eclipse.gmf.runtime.diagram.core,
- org.eclipse.emf.ecore.edit;visibility:=reexport
+Require-Bundle: org.eclipse.gmf.runtime.diagram.core,
+ org.eclipse.emf.ecore.edit;visibility:=reexport,
+ org.unicase.model;bundle-version="[0.2.5,0.2.5]";visibility:=reexport
 Bundle-ActivationPolicy: lazy
