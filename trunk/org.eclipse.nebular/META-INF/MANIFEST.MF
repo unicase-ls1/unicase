@@ -7,3 +7,4 @@ Export-Package: org.eclipse.nebula.widgets.calendarcombo,
  org.eclipse.nebula.widgets.ganttchart,
  org.eclipse.nebula.widgets.ganttchart.themes,
  org.eclipse.swt.nebula.widgets.cdatetime
+Bundle-RequiredExecutionEnvironment: J2SE-1.5
