@@ -203,14 +203,13 @@ public class ScenarioItemProvider extends ModelElementItemProvider implements
 	/**
 	 * This returns the label text for the adapted class.
 	 * <!-- begin-user-doc
-	 * --> <!-- end-user-doc -->
-	 * @generated
+	 * --> .<!-- end-user-doc -->
+	 * {@inheritDoc}
+	 * @generated NOT
 	 */
 	@Override
 	public String getText(Object object) {
-		String label = ((Scenario) object).getName();
-		return label == null || label.length() == 0 ? getString("_UI_Scenario_type")
-				: getString("_UI_Scenario_type") + " " + label;
+		return super.getText(object);
 	}
 
 	/**
