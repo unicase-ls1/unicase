@@ -192,10 +192,8 @@ public class ChangesTreeComposite extends Composite {
 		tree.setLinesVisible(true);
 		treeViewer.setContentProvider(new ChangesTreeContentProvider());
 		treeViewer.addSelectionChangedListener(new ISelectionChangedListener() {
-
 			public void selectionChanged(SelectionChangedEvent event) {
-				Object selected = ((TreeSelection) event.getSelection())
-						.getFirstElement();
+				Object selected = ((TreeSelection) event.getSelection()).getFirstElement();
 				if (affectedTable != null
 						&& !affectedTable.getTable().isDisposed()) {
 					affectedTable.getTable().dispose();
@@ -204,8 +202,13 @@ public class ChangesTreeComposite extends Composite {
 				}
 				if (selected instanceof AbstractOperation) {
 					AbstractOperation operation = (AbstractOperation) selected;
-					Set<ModelElement> affectedList = visualizationHelper
-							.getAffectedElements(operation);
+					Set<ModelElement> affectedList = visualizationHelper.getAffectedElements(operation);
+					if (affectedList.size() > 0) {
+						createAffectedTableComposite(emfProvider, affectedList);
+					}
+				}else if (selected instanceof ChangePackage) {
+					ChangePackage cPackage = (ChangePackage) selected;
+					Set<ModelElement> affectedList = visualizationHelper.getAllModelElements(cPackage);
 					if (affectedList.size() > 0) {
 						createAffectedTableComposite(emfProvider, affectedList);
 					}
