@@ -52,8 +52,9 @@ public class ChangesTreeComposite extends Composite {
 
 	/**
 	 * Label provider for the operation column in the viewer.
+	 * 
 	 * @author Shterev
-	 *
+	 * 
 	 */
 	private final class OperationColumnLabelProvider extends
 			ColumnLabelProvider {
@@ -70,9 +71,11 @@ public class ChangesTreeComposite extends Composite {
 				AbstractOperation op = (AbstractOperation) element;
 				cell.setText(op.getName());
 				Image image = visualizationHelper.getImage(emfProvider, op);
-				ImageDescriptor overlay = visualizationHelper.getOverlayImage(op);
+				ImageDescriptor overlay = visualizationHelper
+						.getOverlayImage(op);
 				if (image != null && overlay != null) {
-					OverlayImageDescriptor imageDescriptor = new OverlayImageDescriptor(image, overlay,	OverlayImageDescriptor.LOWER_RIGHT);
+					OverlayImageDescriptor imageDescriptor = new OverlayImageDescriptor(
+							image, overlay, OverlayImageDescriptor.LOWER_RIGHT);
 					cell.setImage(imageDescriptor.createImage());
 				}
 			} else {
@@ -91,14 +94,17 @@ public class ChangesTreeComposite extends Composite {
 			return "";
 		}
 	}
-	
+
 	/**
-	 * Content provider for the affected elements treeviewer.
-	 * The class uses a helper class to gather the elements - @see {@link ChangePackageVisualizationHelper#getAffectedElements(AbstractOperation)}
+	 * Content provider for the affected elements treeviewer. The class uses a
+	 * helper class to gather the elements - @see
+	 * {@link ChangePackageVisualizationHelper#getAffectedElements(AbstractOperation)}
+	 * 
 	 * @author Shterev
-	 *
+	 * 
 	 */
-	private final class AffectedElementsContentProvider extends AdapterFactoryContentProvider implements IContentProvider {
+	private final class AffectedElementsContentProvider extends
+			AdapterFactoryContentProvider implements IContentProvider {
 
 		private Set<ModelElement> affected;
 
@@ -107,7 +113,7 @@ public class ChangesTreeComposite extends Composite {
 					ComposedAdapterFactory.Descriptor.Registry.INSTANCE));
 			this.affected = affected;
 		}
-		
+
 		/**
 		 * {@inheritDoc}
 		 */
@@ -137,36 +143,41 @@ public class ChangesTreeComposite extends Composite {
 	 */
 	public ChangesTreeComposite(Composite parent, int style) {
 		super(parent, style);
-		this.setLayout(new GridLayout(2,false));
+		this.setLayout(new GridLayout(2, false));
 		createTreeViewer();
 	}
-	
-	private void createAffectedTableComposite(final ILabelProvider emfProvider, Set<ModelElement> affected){
-		affectedTableComposite = new Composite(this,SWT.NO_BACKGROUND);
-		GridDataFactory.fillDefaults().hint(200, 100).grab(false, true).applyTo(affectedTableComposite);
+
+	private void createAffectedTableComposite(final ILabelProvider emfProvider,
+			Set<ModelElement> affected) {
+		affectedTableComposite = new Composite(this, SWT.NO_BACKGROUND);
+		GridDataFactory.fillDefaults().hint(200, 100).grab(false, true)
+				.applyTo(affectedTableComposite);
 		affectedTableComposite.setLayout(new GridLayout());
 		affectedTable = new TableViewer(affectedTableComposite, SWT.SINGLE);
 		affectedTable.getTable().setHeaderVisible(true);
-		GridDataFactory.fillDefaults().grab(true, true).applyTo(affectedTable.getTable());
-		TableViewerColumn theList = new TableViewerColumn(affectedTable,SWT.LEFT);
+		GridDataFactory.fillDefaults().grab(true, true).applyTo(
+				affectedTable.getTable());
+		TableViewerColumn theList = new TableViewerColumn(affectedTable,
+				SWT.LEFT);
 		theList.getColumn().setText("Affected Model Elements");
 		theList.getColumn().setWidth(170);
 		theList.getColumn().setResizable(false);
 		affectedTableComposite.layout(true);
 		ChangesTreeComposite.this.layout(true);
-		
-		theList.setLabelProvider(new ColumnLabelProvider(){
+
+		theList.setLabelProvider(new ColumnLabelProvider() {
 			@Override
 			public Image getImage(Object element) {
 				return emfProvider.getImage(element);
 			}
-			
+
 			@Override
 			public String getText(Object element) {
 				return emfProvider.getText(element);
 			}
 		});
-		affectedTable.setContentProvider(new AffectedElementsContentProvider(affected));
+		affectedTable.setContentProvider(new AffectedElementsContentProvider(
+				affected));
 		affectedTable.setInput(new Object());
 	}
 
@@ -180,26 +191,29 @@ public class ChangesTreeComposite extends Composite {
 		tree.setHeaderVisible(true);
 		tree.setLinesVisible(true);
 		treeViewer.setContentProvider(new ChangesTreeContentProvider());
-		treeViewer.addSelectionChangedListener(new ISelectionChangedListener(){
+		treeViewer.addSelectionChangedListener(new ISelectionChangedListener() {
 
 			public void selectionChanged(SelectionChangedEvent event) {
-				Object selected = ((TreeSelection)event.getSelection()).getFirstElement();				
-				if(affectedTable!=null && !affectedTable.getTable().isDisposed()){
+				Object selected = ((TreeSelection) event.getSelection())
+						.getFirstElement();
+				if (affectedTable != null
+						&& !affectedTable.getTable().isDisposed()) {
 					affectedTable.getTable().dispose();
 					affectedTableComposite.dispose();
 					ChangesTreeComposite.this.layout(true);
 				}
-				if (selected instanceof AbstractOperation){
-					AbstractOperation operation = (AbstractOperation)selected;
-					Set<ModelElement> affectedList = visualizationHelper.getAffectedElements(operation);
-					if(affectedList.size()>0){
-						createAffectedTableComposite(emfProvider,affectedList);
+				if (selected instanceof AbstractOperation) {
+					AbstractOperation operation = (AbstractOperation) selected;
+					Set<ModelElement> affectedList = visualizationHelper
+							.getAffectedElements(operation);
+					if (affectedList.size() > 0) {
+						createAffectedTableComposite(emfProvider, affectedList);
 					}
 				}
 			}
-			
+
 		});
-		
+
 		// the changed model element
 		TreeViewerColumn tclmME = new TreeViewerColumn(treeViewer, SWT.NONE);
 		tclmME.getColumn().setWidth(200);
@@ -212,8 +226,13 @@ public class ChangesTreeComposite extends Composite {
 					AbstractOperation operation = (AbstractOperation) element;
 					ModelElement me = visualizationHelper
 							.getModelElement(operation.getModelElementId());
-					cell.setText(me.getName());
-					cell.setImage(emfProvider.getImage(me));
+					// hack for missing model elements
+					if (me != null) {
+						cell.setText(me.getName());
+						cell.setImage(emfProvider.getImage(me));
+					} else {
+						cell.setText("(Missing ELement)");
+					}
 				} else {
 					cell.setText("Change Package");
 				}
@@ -223,7 +242,7 @@ public class ChangesTreeComposite extends Composite {
 		// operation column
 		TreeViewerColumn tclmOp = new TreeViewerColumn(treeViewer, SWT.NONE);
 		tclmOp.getColumn().setText("Operation");
-		tclmOp.getColumn().setWidth(150);//getShell().getSize().x - 350);
+		tclmOp.getColumn().setWidth(150);// getShell().getSize().x - 350);
 		tclmOp.setLabelProvider(new OperationColumnLabelProvider(emfProvider));
 		ColumnViewerToolTipSupport.enableFor(treeViewer);
 
