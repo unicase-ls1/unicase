@@ -221,7 +221,12 @@ public class ChangePackageVisualizationHelper {
 	 * @param changePackage the change package
 	 * @return a set of touched model elements
 	 */
-	public Set<ModelElementId> getAllModelElements(ChangePackage changePackage) {
-		return this.touchedModelElements.get(changePackage);
+	public Set<ModelElement> getAllModelElements(ChangePackage changePackage) {
+		Set<ModelElement> set = new HashSet<ModelElement>();
+		Set<ModelElementId> tempSet = this.touchedModelElements.get(changePackage);
+		for(ModelElementId id: tempSet){
+			set.add(getModelElement(id));
+		}
+		return set;
 	}
 }
