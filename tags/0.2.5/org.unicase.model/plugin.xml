@@ -1,0 +1,53 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<?eclipse version="3.0"?>
+
+<!--
+ <copyright>
+ </copyright>
+
+ $Id$
+-->
+
+<plugin>
+
+  <extension point="org.eclipse.emf.ecore.generated_package">
+    <package 
+       uri = "http://unicase.org/model" 
+       class = "org.unicase.model.ModelPackage"
+       genModel = "model/model.genmodel" />
+  </extension>
+  <extension
+        point="org.eclipse.emf.validation.constraintProviders">
+     <category
+           id="org.unicase.model"
+           name="Unicase Constraints">
+     </category>
+     <constraintProvider
+           mode="Batch">
+        <package
+              namespaceUri="http://unicase.org/model/task">
+        </package>
+        <constraints
+              categories="org.unicase.model">
+           <constraint
+                
+                 id="org.unicase.model.task.ActionItem"
+                 lang="Java"
+                 mode="Batch"
+                 name="ActionItem Check"
+                 severity="WARNING"
+                 statusCode="1">
+              <message>
+                 A {0} has been found to be Management.
+              </message>
+              <target
+                    class="ActionItem">
+              </target>
+           </constraint>
+        </constraints>
+     </constraintProvider>
+  </extension>
+  
+
+
+</plugin>
