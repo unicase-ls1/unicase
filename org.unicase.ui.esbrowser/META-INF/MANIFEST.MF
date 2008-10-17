@@ -2,20 +2,20 @@ Manifest-Version: 1.0
 Bundle-ManifestVersion: 2
 Bundle-Name: unicase EmfStore Browser Plug-in
 Bundle-SymbolicName: org.unicase.ui.esbrowser;singleton:=true
-Bundle-Version: 0.2.4.qualifier
+Bundle-Version: 0.2.5
 Bundle-Activator: org.unicase.ui.esbrowser.Activator
 Require-Bundle: org.eclipse.ui,
  org.eclipse.core.runtime,
- org.unicase.workspace.edit;bundle-version="[0.2.4.qualifier,0.2.4.qualifier]",
+ org.unicase.workspace.edit;bundle-version="[0.2.5,0.2.5]",
  org.eclipse.emf.edit.ui,
  org.eclipse.emf.transaction,
  org.eclipse.emf.transaction.ui,
  org.eclipse.ui.forms,
- org.unicase.ui.meeditor;bundle-version="[0.2.4.qualifier,0.2.4.qualifier]",
+ org.unicase.ui.meeditor;bundle-version="[0.2.5,0.2.5]",
  org.eclipse.emf.databinding,
  org.eclipse.emf.databinding.edit,
  org.eclipse.jface.databinding,
- org.unicase.ui.common;bundle-version="[0.2.4.qualifier,0.2.4.qualifier]"
+ org.unicase.ui.common;bundle-version="[0.2.5,0.2.5]"
 Bundle-ActivationPolicy: lazy
 Bundle-RequiredExecutionEnvironment: J2SE-1.5
 Bundle-Vendor: unicase.org
