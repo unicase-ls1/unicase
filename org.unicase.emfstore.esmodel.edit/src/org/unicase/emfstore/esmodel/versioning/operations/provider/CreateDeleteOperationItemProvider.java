@@ -23,6 +23,7 @@ import org.eclipse.emf.edit.provider.ItemPropertyDescriptor;
 import org.eclipse.emf.edit.provider.ViewerNotification;
 import org.unicase.emfstore.esmodel.versioning.operations.CreateDeleteOperation;
 import org.unicase.emfstore.esmodel.versioning.operations.OperationsPackage;
+import org.unicase.model.attachment.AttachmentFactory;
 import org.unicase.model.bug.BugFactory;
 import org.unicase.model.change.ChangeFactory;
 import org.unicase.model.classes.ClassesFactory;
@@ -395,6 +396,11 @@ public class CreateDeleteOperationItemProvider extends
 				.add(createChildParameter(
 						OperationsPackage.Literals.CREATE_DELETE_OPERATION__MODEL_ELEMENT,
 						MeetingFactory.eINSTANCE.createWorkItemMeetingSection()));
+
+		newChildDescriptors
+				.add(createChildParameter(
+						OperationsPackage.Literals.CREATE_DELETE_OPERATION__MODEL_ELEMENT,
+						AttachmentFactory.eINSTANCE.createUrlAttachment()));
 	}
 
 }

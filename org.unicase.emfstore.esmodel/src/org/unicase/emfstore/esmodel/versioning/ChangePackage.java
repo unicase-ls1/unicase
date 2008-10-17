@@ -21,6 +21,7 @@ import org.unicase.model.Project;
  * <ul>
  *   <li>{@link org.unicase.emfstore.esmodel.versioning.ChangePackage#getOperations <em>Operations</em>}</li>
  *   <li>{@link org.unicase.emfstore.esmodel.versioning.ChangePackage#getEvents <em>Events</em>}</li>
+ *   <li>{@link org.unicase.emfstore.esmodel.versioning.ChangePackage#getLogMessage <em>Log Message</em>}</li>
  * </ul>
  * </p>
  *
@@ -80,5 +81,31 @@ public interface ChangePackage extends EObject {
 	 * @generated
 	 */
 	EList<Event> getEvents();
+
+	/**
+	 * Returns the value of the '<em><b>Log Message</b></em>' containment reference.
+	 * <!-- begin-user-doc -->
+	 * <p>
+	 * If the meaning of the '<em>Log Message</em>' containment reference isn't clear,
+	 * there really should be more of a description here...
+	 * </p>
+	 * <!-- end-user-doc -->
+	 * @return the value of the '<em>Log Message</em>' containment reference.
+	 * @see #setLogMessage(LogMessage)
+	 * @see org.unicase.emfstore.esmodel.versioning.VersioningPackage#getChangePackage_LogMessage()
+	 * @model containment="true" resolveProxies="true"
+	 * @generated
+	 */
+	LogMessage getLogMessage();
+
+	/**
+	 * Sets the value of the '{@link org.unicase.emfstore.esmodel.versioning.ChangePackage#getLogMessage <em>Log Message</em>}' containment reference.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @param value the new value of the '<em>Log Message</em>' containment reference.
+	 * @see #getLogMessage()
+	 * @generated
+	 */
+	void setLogMessage(LogMessage value);
 
 } // ChangePackage

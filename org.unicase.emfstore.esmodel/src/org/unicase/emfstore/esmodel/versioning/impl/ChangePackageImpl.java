@@ -8,14 +8,17 @@ package org.unicase.emfstore.esmodel.versioning.impl;
 
 import java.util.Collection;
 
+import org.eclipse.emf.common.notify.Notification;
 import org.eclipse.emf.common.notify.NotificationChain;
 import org.eclipse.emf.common.util.EList;
 import org.eclipse.emf.ecore.EClass;
 import org.eclipse.emf.ecore.InternalEObject;
+import org.eclipse.emf.ecore.impl.ENotificationImpl;
 import org.eclipse.emf.ecore.impl.EObjectImpl;
 import org.eclipse.emf.ecore.util.EObjectContainmentEList;
 import org.eclipse.emf.ecore.util.InternalEList;
 import org.unicase.emfstore.esmodel.versioning.ChangePackage;
+import org.unicase.emfstore.esmodel.versioning.LogMessage;
 import org.unicase.emfstore.esmodel.versioning.VersioningFactory;
 import org.unicase.emfstore.esmodel.versioning.VersioningPackage;
 import org.unicase.emfstore.esmodel.versioning.events.Event;
@@ -31,6 +34,7 @@ import org.unicase.model.Project;
  * <ul>
  *   <li>{@link org.unicase.emfstore.esmodel.versioning.impl.ChangePackageImpl#getOperations <em>Operations</em>}</li>
  *   <li>{@link org.unicase.emfstore.esmodel.versioning.impl.ChangePackageImpl#getEvents <em>Events</em>}</li>
+ *   <li>{@link org.unicase.emfstore.esmodel.versioning.impl.ChangePackageImpl#getLogMessage <em>Log Message</em>}</li>
  * </ul>
  * </p>
  *
@@ -55,6 +59,16 @@ public class ChangePackageImpl extends EObjectImpl implements ChangePackage {
 	 * @ordered
 	 */
 	protected EList<Event> events;
+
+	/**
+	 * The cached value of the '{@link #getLogMessage() <em>Log Message</em>}' containment reference.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @see #getLogMessage()
+	 * @generated
+	 * @ordered
+	 */
+	protected LogMessage logMessage;
 
 	/**
 	 * <!-- begin-user-doc --> <!-- end-user-doc -->
@@ -97,6 +111,104 @@ public class ChangePackageImpl extends EObjectImpl implements ChangePackage {
 					this, VersioningPackage.CHANGE_PACKAGE__EVENTS);
 		}
 		return events;
+	}
+
+	/**
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 */
+	public LogMessage getLogMessage() {
+		if (logMessage != null && logMessage.eIsProxy()) {
+			InternalEObject oldLogMessage = (InternalEObject) logMessage;
+			logMessage = (LogMessage) eResolveProxy(oldLogMessage);
+			if (logMessage != oldLogMessage) {
+				InternalEObject newLogMessage = (InternalEObject) logMessage;
+				NotificationChain msgs = oldLogMessage
+						.eInverseRemove(
+								this,
+								EOPPOSITE_FEATURE_BASE
+										- VersioningPackage.CHANGE_PACKAGE__LOG_MESSAGE,
+								null, null);
+				if (newLogMessage.eInternalContainer() == null) {
+					msgs = newLogMessage
+							.eInverseAdd(
+									this,
+									EOPPOSITE_FEATURE_BASE
+											- VersioningPackage.CHANGE_PACKAGE__LOG_MESSAGE,
+									null, msgs);
+				}
+				if (msgs != null)
+					msgs.dispatch();
+				if (eNotificationRequired())
+					eNotify(new ENotificationImpl(this, Notification.RESOLVE,
+							VersioningPackage.CHANGE_PACKAGE__LOG_MESSAGE,
+							oldLogMessage, logMessage));
+			}
+		}
+		return logMessage;
+	}
+
+	/**
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 */
+	public LogMessage basicGetLogMessage() {
+		return logMessage;
+	}
+
+	/**
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 */
+	public NotificationChain basicSetLogMessage(LogMessage newLogMessage,
+			NotificationChain msgs) {
+		LogMessage oldLogMessage = logMessage;
+		logMessage = newLogMessage;
+		if (eNotificationRequired()) {
+			ENotificationImpl notification = new ENotificationImpl(this,
+					Notification.SET,
+					VersioningPackage.CHANGE_PACKAGE__LOG_MESSAGE,
+					oldLogMessage, newLogMessage);
+			if (msgs == null)
+				msgs = notification;
+			else
+				msgs.add(notification);
+		}
+		return msgs;
+	}
+
+	/**
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 */
+	public void setLogMessage(LogMessage newLogMessage) {
+		if (newLogMessage != logMessage) {
+			NotificationChain msgs = null;
+			if (logMessage != null)
+				msgs = ((InternalEObject) logMessage)
+						.eInverseRemove(
+								this,
+								EOPPOSITE_FEATURE_BASE
+										- VersioningPackage.CHANGE_PACKAGE__LOG_MESSAGE,
+								null, msgs);
+			if (newLogMessage != null)
+				msgs = ((InternalEObject) newLogMessage)
+						.eInverseAdd(
+								this,
+								EOPPOSITE_FEATURE_BASE
+										- VersioningPackage.CHANGE_PACKAGE__LOG_MESSAGE,
+								null, msgs);
+			msgs = basicSetLogMessage(newLogMessage, msgs);
+			if (msgs != null)
+				msgs.dispatch();
+		} else if (eNotificationRequired())
+			eNotify(new ENotificationImpl(this, Notification.SET,
+					VersioningPackage.CHANGE_PACKAGE__LOG_MESSAGE,
+					newLogMessage, newLogMessage));
 	}
 
 	// begin of custom code
@@ -164,6 +276,8 @@ public class ChangePackageImpl extends EObjectImpl implements ChangePackage {
 					msgs);
 		case VersioningPackage.CHANGE_PACKAGE__EVENTS:
 			return ((InternalEList<?>) getEvents()).basicRemove(otherEnd, msgs);
+		case VersioningPackage.CHANGE_PACKAGE__LOG_MESSAGE:
+			return basicSetLogMessage(null, msgs);
 		}
 		return super.eInverseRemove(otherEnd, featureID, msgs);
 	}
@@ -181,6 +295,10 @@ public class ChangePackageImpl extends EObjectImpl implements ChangePackage {
 			return getOperations();
 		case VersioningPackage.CHANGE_PACKAGE__EVENTS:
 			return getEvents();
+		case VersioningPackage.CHANGE_PACKAGE__LOG_MESSAGE:
+			if (resolve)
+				return getLogMessage();
+			return basicGetLogMessage();
 		}
 		return super.eGet(featureID, resolve, coreType);
 	}
@@ -202,6 +320,9 @@ public class ChangePackageImpl extends EObjectImpl implements ChangePackage {
 			getEvents().clear();
 			getEvents().addAll((Collection<? extends Event>) newValue);
 			return;
+		case VersioningPackage.CHANGE_PACKAGE__LOG_MESSAGE:
+			setLogMessage((LogMessage) newValue);
+			return;
 		}
 		super.eSet(featureID, newValue);
 	}
@@ -219,6 +340,9 @@ public class ChangePackageImpl extends EObjectImpl implements ChangePackage {
 		case VersioningPackage.CHANGE_PACKAGE__EVENTS:
 			getEvents().clear();
 			return;
+		case VersioningPackage.CHANGE_PACKAGE__LOG_MESSAGE:
+			setLogMessage((LogMessage) null);
+			return;
 		}
 		super.eUnset(featureID);
 	}
@@ -234,6 +358,8 @@ public class ChangePackageImpl extends EObjectImpl implements ChangePackage {
 			return operations != null && !operations.isEmpty();
 		case VersioningPackage.CHANGE_PACKAGE__EVENTS:
 			return events != null && !events.isEmpty();
+		case VersioningPackage.CHANGE_PACKAGE__LOG_MESSAGE:
+			return logMessage != null;
 		}
 		return super.eIsSet(featureID);
 	}
