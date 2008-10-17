@@ -27,8 +27,7 @@ Require-Bundle: org.eclipse.core.runtime,
  org.unicase.ui.common;bundle-version="[0.2.5,0.2.5]",
  org.unicase.ui.stem;bundle-version="[0.2.5,0.2.5]",
  org.eclipse.gmf.runtime.notation.edit,
- org.eclipse.ui.views;bundle-version="3.3.0",
- org.eclipse.nebular;bundle-version="0.0.1"
+ org.eclipse.ui.views;bundle-version="3.3.0"
 Bundle-ActivationPolicy: lazy
 Import-Package: org.eclipse.emf.ecore.change.provider,
  org.eclipse.emf.edit.ui.provider
