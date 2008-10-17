@@ -194,6 +194,7 @@ public class EmfStoreImpl implements EmfStore {
 		for (Version version : getVersions(projectId, resolvedSource,
 				resolvedTarget)) {
 			ChangePackage changes = version.getChanges();
+			changes.setLogMessage(version.getLogMessage());
 			result.add(changes);
 		}
 
