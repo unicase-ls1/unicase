@@ -33,6 +33,7 @@ import org.eclipse.ui.actions.ActionFactory;
 import org.eclipse.ui.part.ViewPart;
 import org.unicase.model.ModelElement;
 import org.unicase.ui.common.commands.ActionHelper;
+import org.unicase.ui.common.dnd.UCDragAdapter;
 import org.unicase.ui.common.dnd.UCDropAdapter;
 import org.unicase.ui.navigator.commands.RedoAction;
 import org.unicase.ui.navigator.commands.UndoAction;
@@ -177,7 +178,7 @@ public class TreeView extends ViewPart  { //implements IShowInSource
 		int dndOperations = DND.DROP_COPY | DND.DROP_MOVE | DND.DROP_LINK;
 		Transfer[] transfers = new Transfer[] { LocalTransfer.getInstance() };
 
-		viewer.addDragSupport(dndOperations, transfers, new ViewerDragAdapter(
+		viewer.addDragSupport(dndOperations, transfers, new UCDragAdapter(
 				viewer));
 
 		viewer
