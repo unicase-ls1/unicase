@@ -185,7 +185,7 @@ public class UCDropAdapter extends EditingDomainViewerDropAdapter {
 	protected void helper(DropTargetEvent event) {
 
 		super.helper(event);
-		super.helper(event);
+		
 		List<ModelElement> source = (List<ModelElement>) viewer.getData(DRAG_SOURCE_KEY);
 		
 		if (source == null) {
