@@ -12,7 +12,9 @@ import java.util.ArrayList;
 import java.util.Collections;
 
 import org.eclipse.core.runtime.FileLocator;
+import org.eclipse.core.runtime.IStatus;
 import org.eclipse.core.runtime.Path;
+import org.eclipse.core.runtime.Platform;
 import org.eclipse.emf.ecore.EClass;
 import org.eclipse.emf.ecore.EObject;
 import org.eclipse.emf.ecore.EPackage;
@@ -20,6 +22,8 @@ import org.unicase.documentexport.documentTemplate.DefaultDocumentTemplateBuilde
 import org.unicase.documentexport.documentTemplate.DocumentTemplate;
 import org.unicase.model.ModelElement;
 import org.unicase.model.ModelPackage;
+import org.unicase.workspace.Workspace;
+import org.unicase.workspace.util.WorkspaceUtil;
 
 public class TemplateSaveHelper {
 	private static DocumentTemplate template = null;
@@ -34,6 +38,7 @@ public class TemplateSaveHelper {
 			loadDefaultTemplate();
 		return template;
 	}
+		
 	
 	public static void setTemplate(DocumentTemplate template) {
 		TemplateSaveHelper.template = template;
@@ -47,30 +52,80 @@ public class TemplateSaveHelper {
 		}
 	}	
 	
+	
+	public static ArrayList<TemplateDescriptor> getTemplatePaths() {
+		ArrayList<TemplateDescriptor> ret = new ArrayList<TemplateDescriptor>();
+		
+		URL url = FileLocator.find(
+			Activator.getDefault().getBundle(), 
+			new Path("templates/"), 
+			Collections.EMPTY_MAP
+		);
+			
+		File f;
+		try {
+			f = new File(FileLocator.resolve(url).getPath());
+			
+			File[] files = f.listFiles();
+			System.out.println("f: " + f);
+			System.out.println("files[]: " + files);
+			
+			for (int i=0;i<files.length;i++) {
+				if (files[i].isFile()) {
+					TemplateDescriptor descriptor = new TemplateDescriptor();
+					descriptor.setPath(files[i].getCanonicalPath());
+					descriptor.setFileName(files[i].getName());
+					
+					ret.add(descriptor);
+					WorkspaceUtil.log("available template: " + descriptor.getFileName(), new Exception(""), IStatus.INFO);
+				}
+			}			
+		} catch (IOException e) {
+			// TODO Auto-generated catch block
+			e.printStackTrace();
+		}
+		
+		return ret;
+	}
+	
+	
 	public static DocumentTemplate loadTemplate(String fileName) {
 		FileInputStream f_in;
 		try {
+//			URL localClientKeyURL = FileLocator.toFileURL(clientKeyURL);
+//			File clientKeySource = new File(localClientKeyURL.getPath());
+//
+//			File clientKeyTarget = new File(Configuration
+//						.getWorkspaceDirectory()
+//						+ "unicaseClient.keystore");
+//			URL url2 = FileLocator.find(
+//					Activator.getDefault().getBundle(), 
+//					new Path("templates/"), 
+//					Collections.EMPTY_MAP
+//				);	
 			
-			URL url2 = FileLocator.find(
-					Activator.getDefault().getBundle(), 
-					new Path("templates/"), 
-					Collections.EMPTY_MAP
-				);
-			
-			File f = new File(FileLocator.resolve(url2).getPath() + fileName);
-			
-			if (!f.exists())
-				return null;
-			
-			
-			URL url = FileLocator.find(
-					Activator.getDefault().getBundle(), 
+			URL url2 = FileLocator.find(Platform
+					.getBundle("org.unicase.documentExport"), 
 					new Path("templates/" + fileName), 
-					Collections.EMPTY_MAP
+					null
 				);
 			
+			File f = new File(FileLocator.resolve((url2)).getPath());
 			
-			f_in = new FileInputStream(FileLocator.resolve(url).getPath());
+			if (!f.exists()) {
+				WorkspaceUtil.log("The template " + fileName + "doesn't exist", new Exception(), IStatus.WARNING);
+				return null;
+			}
+			
+			
+//			URL url = FileLocator.find(
+//					Activator.getDefault().getBundle(), 
+//					new Path("templates/" + fileName), 
+//					Collections.EMPTY_MAP
+//				);
+			
+			
+			f_in = new FileInputStream(FileLocator.toFileURL(url2).getPath());
 
 			// Read object using ObjectInputStream
 			ObjectInputStream obj_in = new ObjectInputStream (f_in);
@@ -79,8 +134,10 @@ public class TemplateSaveHelper {
 			Object obj = obj_in.readObject();
 			if (obj instanceof DocumentTemplate) {
 				TemplateSaveHelper.template = (DocumentTemplate)obj;
+				WorkspaceUtil.logException("The template " + fileName + " has been loaded successfully", new Exception());
 				return (DocumentTemplate)obj;
 			} else {
+				WorkspaceUtil.log("the loaded file is no DocumentTemplate (" + fileName + ")", new Exception(), IStatus.ERROR);
 			}
 		} catch (FileNotFoundException e) {
 			// TODO Auto-generated catch block
@@ -148,6 +205,8 @@ public class TemplateSaveHelper {
 
 		template.name = "default";
 		saveTemplate(template);
+		
+		WorkspaceUtil.logException("new default template has been created", new Exception());
 		
 		return template;
 	}
