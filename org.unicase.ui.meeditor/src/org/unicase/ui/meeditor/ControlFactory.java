@@ -16,6 +16,7 @@ import org.eclipse.emf.ecore.EStructuralFeature;
 import org.eclipse.emf.edit.domain.EditingDomain;
 import org.eclipse.emf.edit.provider.IItemPropertyDescriptor;
 import org.eclipse.ui.forms.widgets.FormToolkit;
+import org.unicase.model.organization.OrganizationPackage;
 import org.unicase.model.rationale.Issue;
 import org.unicase.model.requirement.Step;
 import org.unicase.ui.meeditor.mecontrols.MEBoolControl;
@@ -52,7 +53,8 @@ public class ControlFactory {
 	 * @param toolkit
 	 *            the gui toolkit
 	 */
-	public ControlFactory(EditingDomain editingDomain, EObject modelElement, FormToolkit toolkit) {
+	public ControlFactory(EditingDomain editingDomain, EObject modelElement,
+			FormToolkit toolkit) {
 		this.editingDomain = editingDomain;
 		this.modelElement = modelElement;
 		this.toolkit = toolkit;
@@ -66,32 +68,37 @@ public class ControlFactory {
 	 *            the descriptor
 	 * @return the {@link MEControl}
 	 */
-	public MEControl createControl(IItemPropertyDescriptor itemPropertyDescriptor) {
+	public MEControl createControl(
+			IItemPropertyDescriptor itemPropertyDescriptor) {
 
-		EStructuralFeature feature = (EStructuralFeature) itemPropertyDescriptor.getFeature(modelElement);
+		EStructuralFeature feature = (EStructuralFeature) itemPropertyDescriptor
+				.getFeature(modelElement);
 		if (feature instanceof EAttribute) {
 			return createAttributeControl(itemPropertyDescriptor, feature);
 		}
-		
-		//Changed by Lars Borner
-		if(feature instanceof EReference){
+
+		// Changed by Lars Borner
+		if (feature instanceof EReference) {
 			EReference reference = (EReference) feature;
-			//Create Widgets for Use Case Steps			
-			if (feature.getEType().getInstanceClass().equals(Step.class) ) {				
-				return createMEUseCaseStepsControl(reference, itemPropertyDescriptor);	
+			// Create Widgets for Use Case Steps
+			if (feature.getEType().getInstanceClass().equals(Step.class)) {
+				return createMEUseCaseStepsControl(reference,
+						itemPropertyDescriptor);
 			}
-			
+
 			if (feature.getUpperBound() != 1) {
 				if (reference.isMany()) {
-					return createMELinkControl((EReference) feature, itemPropertyDescriptor);
+					return createMELinkControl((EReference) feature,
+							itemPropertyDescriptor);
 				}
 			}
-	
+
 			if (feature.getUpperBound() == 1) {
-				return createMESingleLinkControl(reference, itemPropertyDescriptor);
-	
+				return createMESingleLinkControl(reference,
+						itemPropertyDescriptor);
+
 			}
-			
+
 		}
 
 		return null;
@@ -101,9 +108,10 @@ public class ControlFactory {
 	private MEControl createAttributeControl(
 			IItemPropertyDescriptor itemPropertyDescriptor,
 			EStructuralFeature feature) {
-				
-		//TODO: Add email control
-//		if(feature.getFeatureID()==OrganizationPackage.USER__EMAIL)
+
+		if (feature.getFeatureID() == OrganizationPackage.USER__EMAIL) {
+			return createMEEmailControl((EAttribute) feature);
+		}
 		if (itemPropertyDescriptor.isMultiLine(modelElement)) {
 			return createMERichTextControl((EAttribute) feature);
 		}
@@ -122,21 +130,32 @@ public class ControlFactory {
 		return createMETextControl((EAttribute) feature);
 	}
 
+	private MEControl createMEEmailControl(EAttribute feature) {
+		return new MEEmailControl(feature, toolkit, modelElement,
+				editingDomain);
+	}
+
 	private MEControl createMERichTextControl(EAttribute feature) {
-		return new MERichTextControl(feature, editingDomain, modelElement, toolkit);
+		return new MERichTextControl(feature, editingDomain, modelElement,
+				toolkit);
 	}
 
-	//Create Control for Use Case Steps
-	private MEControl createMEUseCaseStepsControl(EReference reference, IItemPropertyDescriptor itemPropertyDescriptor) {
-		return new UseCaseStepsControl(modelElement, reference, toolkit, editingDomain, itemPropertyDescriptor);
+	// Create Control for Use Case Steps
+	private MEControl createMEUseCaseStepsControl(EReference reference,
+			IItemPropertyDescriptor itemPropertyDescriptor) {
+		return new UseCaseStepsControl(modelElement, reference, toolkit,
+				editingDomain, itemPropertyDescriptor);
 	}
 
-	private MEControl createMESingleLinkControl(EReference reference, IItemPropertyDescriptor itemPropertyDescriptor) {
-		return new MESingleLinkControl(editingDomain, modelElement, toolkit, reference, itemPropertyDescriptor);
+	private MEControl createMESingleLinkControl(EReference reference,
+			IItemPropertyDescriptor itemPropertyDescriptor) {
+		return new MESingleLinkControl(editingDomain, modelElement, toolkit,
+				reference, itemPropertyDescriptor);
 	}
 
 	private MEControl createMEDateControl(EAttribute attribute) {
-		return new MEDateControl(attribute, toolkit, modelElement, editingDomain);
+		return new MEDateControl(attribute, toolkit, modelElement,
+				editingDomain);
 	}
 
 	private MEControl createMEIntControl(EAttribute attribute) {
@@ -144,34 +163,42 @@ public class ControlFactory {
 	}
 
 	private MEControl createMEBoolControl(EAttribute attribute) {
-		return new MEBoolControl(attribute, toolkit, modelElement, editingDomain);
+		return new MEBoolControl(attribute, toolkit, modelElement,
+				editingDomain);
 
 	}
-
 
 	private MEControl createMETextControl(EAttribute attribute) {
-		return new METextControl(attribute, toolkit, modelElement, editingDomain);
+		return new METextControl(attribute, toolkit, modelElement,
+				editingDomain);
 	}
 
-	private MEControl createMELinkControl(EReference reference, IItemPropertyDescriptor itemPropertyDescriptor) {
-		return new MEMultiLinkControl(modelElement, reference, toolkit, editingDomain, itemPropertyDescriptor);
+	private MEControl createMELinkControl(EReference reference,
+			IItemPropertyDescriptor itemPropertyDescriptor) {
+		return new MEMultiLinkControl(modelElement, reference, toolkit,
+				editingDomain, itemPropertyDescriptor);
 	}
 
 	private MEControl createMEEnumControl(EAttribute attribute) {
-		return new MEEnumControl(attribute, toolkit, modelElement, editingDomain);
-	}
-	
-	/**
-	 * Create Control for AssessmentMatrix.
-	 * @param modelElement the model element
-	 * @param toolkit the tool kit
-	 * @param editingDomain the editing domain
-	 * @return a MEControl
-	 */
-	public static MEControl createMEIssueAssessmentMatrixControl(Issue modelElement, FormToolkit toolkit, EditingDomain editingDomain ) {
-		
-		return new AssessmentMatrixControl(modelElement, toolkit, editingDomain);
+		return new MEEnumControl(attribute, toolkit, modelElement,
+				editingDomain);
 	}
 
+	/**
+	 * Create Control for AssessmentMatrix.
+	 * 
+	 * @param modelElement
+	 *            the model element
+	 * @param toolkit
+	 *            the tool kit
+	 * @param editingDomain
+	 *            the editing domain
+	 * @return a MEControl
+	 */
+	public static MEControl createMEIssueAssessmentMatrixControl(
+			Issue modelElement, FormToolkit toolkit, EditingDomain editingDomain) {
+
+		return new AssessmentMatrixControl(modelElement, toolkit, editingDomain);
+	}
 
 }
