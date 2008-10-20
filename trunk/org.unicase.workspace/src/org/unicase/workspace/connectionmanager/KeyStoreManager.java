@@ -11,7 +11,7 @@ import java.io.FileInputStream;
 import java.io.FileNotFoundException;
 import java.io.FileOutputStream;
 import java.io.IOException;
-import java.net.URL;
+import java.io.InputStream;
 import java.security.KeyStore;
 import java.security.KeyStoreException;
 import java.security.NoSuchAlgorithmException;
@@ -21,9 +21,6 @@ import java.security.cert.CertificateFactory;
 import java.util.ArrayList;
 import java.util.Enumeration;
 
-import org.eclipse.core.runtime.FileLocator;
-import org.eclipse.core.runtime.Path;
-import org.eclipse.core.runtime.Platform;
 import org.unicase.workspace.Configuration;
 
 /**
@@ -69,21 +66,16 @@ public final class KeyStoreManager {
 				unicasedir.mkdir();
 			}
 
-			// prepare loading of file from bundle
-			URL clientKeyURL = FileLocator.find(Platform
-					.getBundle("org.unicase.workspace"), new Path(
-					"keystore/unicaseClient.keystore"), null);
 			try {
 				// configure file
-				URL localClientKeyURL = FileLocator.toFileURL(clientKeyURL);
-				File clientKeySource = new File(localClientKeyURL.getPath());
+				InputStream inputStream = getClass().getResourceAsStream(KEYSTORENAME);
 
 				File clientKeyTarget = new File(Configuration
 						.getWorkspaceDirectory()
 						+ "unicaseClient.keystore");
 
 				// copy to destination
-				org.unicase.model.util.FileUtil.copyFile(clientKeySource,
+				org.unicase.model.util.FileUtil.copyFile(inputStream,
 						clientKeyTarget);
 			} catch (IOException e) {
 				// TODO OW: exception? - now the user will be alerted to the
