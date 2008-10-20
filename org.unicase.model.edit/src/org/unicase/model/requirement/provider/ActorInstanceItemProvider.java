@@ -21,7 +21,6 @@ import org.eclipse.emf.edit.provider.IStructuredItemContentProvider;
 import org.eclipse.emf.edit.provider.ITreeItemContentProvider;
 import org.unicase.model.provider.ModelEditPlugin;
 import org.unicase.model.provider.ModelElementItemProvider;
-import org.unicase.model.requirement.ActorInstance;
 import org.unicase.model.requirement.RequirementPackage;
 
 /**
@@ -136,13 +135,12 @@ public class ActorInstanceItemProvider extends ModelElementItemProvider
 	 * This returns the label text for the adapted class.
 	 * <!-- begin-user-doc
 	 * --> <!-- end-user-doc -->
-	 * @generated
+	 * {@inheritDoc}
+	 * @generated NOT
 	 */
 	@Override
 	public String getText(Object object) {
-		String label = ((ActorInstance) object).getName();
-		return label == null || label.length() == 0 ? getString("_UI_ActorInstance_type")
-				: getString("_UI_ActorInstance_type") + " " + label;
+		return super.getText(object);
 	}
 
 	/**
