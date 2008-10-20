@@ -3,7 +3,7 @@
       id="org.unicase.client"
       label="Unicase Client"
       version="0.2.6"
-      provider-name="TU Muenchen">
+      provider-name="unicase.org">
 
    <description url="http://www.unicase.org">
       This feature contains the unicase client.
