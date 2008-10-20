@@ -5,6 +5,7 @@ import java.io.FileInputStream;
 import java.io.FileNotFoundException;
 import java.io.FileOutputStream;
 import java.io.IOException;
+import java.io.InputStream;
 import java.io.ObjectInputStream;
 import java.io.ObjectOutputStream;
 import java.net.URL;
@@ -124,14 +125,18 @@ public class TemplateSaveHelper {
 //					Collections.EMPTY_MAP
 //				);
 			
-			
-			f_in = new FileInputStream(FileLocator.toFileURL(url2).getPath());
+			Path templatePath = new Path("templates/" + fileName);
+			InputStream fIn = FileLocator.openStream(
+					Activator.getDefault().getBundle(), 
+					templatePath, 
+					false
+				);
 
 			// Read object using ObjectInputStream
-			ObjectInputStream obj_in = new ObjectInputStream (f_in);
+			ObjectInputStream objIn = new ObjectInputStream (fIn);
 			
 			// Read an object
-			Object obj = obj_in.readObject();
+			Object obj = objIn.readObject();
 			if (obj instanceof DocumentTemplate) {
 				TemplateSaveHelper.template = (DocumentTemplate)obj;
 				WorkspaceUtil.logException("The template " + fileName + " has been loaded successfully", new Exception());
@@ -147,6 +152,7 @@ public class TemplateSaveHelper {
 		} catch (ClassNotFoundException e) {
 			e.printStackTrace();
 		}
+		WorkspaceUtil.log("a fatal error occured when loading a template (" + fileName + ")", new Exception(), IStatus.ERROR);
 		return null;
 	}
 	
