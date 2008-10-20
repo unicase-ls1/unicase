@@ -1,8 +1,0 @@
-Manifest-Version: 1.0
-Bundle-ManifestVersion: 2
-Bundle-Name: Nebular Plug-in
-Bundle-SymbolicName: org.eclipse.nebular
-Bundle-Version: 0.0.1
-Export-Package: org.eclipse.nebula.widgets.ganttchart,
- org.eclipse.nebula.widgets.ganttchart.themes,
- org.eclipse.swt.nebula.widgets.cdatetime
