@@ -7,9 +7,9 @@
 package org.unicase.model.util;
 
 import java.io.File;
-import java.io.FileInputStream;
 import java.io.FileOutputStream;
 import java.io.IOException;
+import java.io.InputStream;
 
 /**
  * Helperclass for file system operations.
@@ -56,27 +56,25 @@ public final class FileUtil {
 	 * This method copies a single file.
 	 * 
 	 * @param source
-	 *            the source
+	 *            the source input stream
 	 * @param destination
 	 *            the destination
 	 * @throws IOException
 	 *             copy problem
 	 */
-	public static void copyFile(File source, File destination)
+	public static void copyFile(InputStream source, File destination)
 			throws IOException {
-		FileInputStream fis = null;
-		FileOutputStream fos = null;
+		FileOutputStream outputStream = null;
 
-		fis = new FileInputStream(source);
-		fos = new FileOutputStream(destination);
+		outputStream = new FileOutputStream(destination);
 
 		byte[] buffer = new byte[4096];
 		int read;
-		while ((read = fis.read(buffer)) != -1) {
-			fos.write(buffer, 0, read);
+		while ((read = source.read(buffer)) != -1) {
+			outputStream.write(buffer, 0, read);
 		}
 
-		fis.close();
-		fos.close();
+		source.close();
+		outputStream.close();
 	}
 }
