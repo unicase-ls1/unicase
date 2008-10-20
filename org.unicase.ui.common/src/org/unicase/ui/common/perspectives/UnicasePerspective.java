@@ -52,6 +52,7 @@ public class UnicasePerspective implements IPerspectiveFactory {
 		bottom.addView("org.unicase.ui.treeview.views.IterationPlanningView");
 		bottom.addView("org.unicase.ui.treeview.views.StatusView");
 		bottom.addView("org.unicase.ui.taskview");
+		bottom.addView("org.unicase.ui.repository.views.HistoryView");;
 
 		bottom.addPlaceholder(IConsoleConstants.ID_CONSOLE_VIEW);
 
