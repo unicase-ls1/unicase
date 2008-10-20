@@ -72,7 +72,7 @@ public final class KeyStoreManager {
 
 				File clientKeyTarget = new File(Configuration
 						.getWorkspaceDirectory()
-						+ "unicaseClient.keystore");
+						+ KEYSTORENAME);
 
 				// copy to destination
 				org.unicase.model.util.FileUtil.copyFile(inputStream,
