@@ -36,10 +36,20 @@ public final class WorkspaceUtil {
 	 * @param e the exception
 	 */
 	public static void logException(String message, Exception e) {
+		log(message, e, IStatus.ERROR);
+	}
+	
+	/**
+	 * Log a warning to the error log.
+	 * @param message the message
+	 * @param exception the exception or null f not applicable
+	 * @param statusInt the status constant as defined in {@link IStatus}
+	 */
+	public static void log(String message, Exception exception, int statusInt) {
 		Activator activator = Activator.getDefault();
-		Status status = new Status(IStatus.ERROR,
+		Status status = new Status(statusInt,
 			      activator.getBundle().getSymbolicName(),
-			      IStatus.ERROR, message, e);
+			      statusInt, message, exception);
 		activator.getLog().log(status);
 	}
 	
