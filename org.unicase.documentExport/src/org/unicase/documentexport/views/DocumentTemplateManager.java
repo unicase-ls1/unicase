@@ -6,6 +6,7 @@ import java.net.URL;
 import java.util.ArrayList;
 import java.util.Collections;
 
+
 import org.eclipse.core.runtime.FileLocator;
 import org.eclipse.core.runtime.Path;
 import org.eclipse.swt.SWT;
@@ -28,6 +29,7 @@ import org.eclipse.ui.part.ViewPart;
 import org.unicase.documentexport.Activator;
 import org.unicase.documentexport.TemplateSaveHelper;
 import org.unicase.documentexport.documentTemplate.DocumentTemplate;
+import org.unicase.documentexport.TemplateDescriptor;
 
 public class DocumentTemplateManager extends ViewPart {
 	TabFolder tabFolder;
@@ -45,11 +47,6 @@ public class DocumentTemplateManager extends ViewPart {
 	private ArrayList<TemplateDescriptor> templatePaths = new ArrayList<TemplateDescriptor>();
 	
 	private final String AUTO_CREATED_TEMPLATE = "AUTO_CREATED_TEMPLATE";
-	
-	private class TemplateDescriptor {
-		public String path;
-		public String fileName;
-	}
 	
 	/**.
 	 * constructor
@@ -209,7 +206,7 @@ public class DocumentTemplateManager extends ViewPart {
 				if (combo.getItem(combo.getSelectionIndex()).equals(AUTO_CREATED_TEMPLATE)) {
 					template2 = TemplateSaveHelper.createdDefaultTemplate;
 				} else {
-					String templateName = templatePaths.get(combo.getSelectionIndex()).fileName;
+					String templateName = templatePaths.get(combo.getSelectionIndex()).getFileName();
 					template2 = TemplateSaveHelper.loadTemplate(templateName);		
 				}
 				
@@ -242,7 +239,7 @@ public class DocumentTemplateManager extends ViewPart {
 		
 		int i = 0;
 		while (i < templatePaths.size()) {
-			templateSelect.add(templatePaths.get(i).fileName, i);
+			templateSelect.add(templatePaths.get(i).getFileName(), i);
 			i++;
 		}
 		if (TemplateSaveHelper.createdDefaultTemplate != null) {
@@ -255,30 +252,9 @@ public class DocumentTemplateManager extends ViewPart {
 
 
 	private void getPossibleTemplates()  {
-		URL url = FileLocator.find(
-				Activator.getDefault().getBundle(), 
-				new Path("templates/"), 
-				Collections.EMPTY_MAP
-			);
-				
-		File f;
-		try {
-			f = new File(FileLocator.resolve(url).getPath());
-			File files[] = f.listFiles();
-
-			for(int i=0;i<files.length;i++) {
-				if (files[i].isFile()) {
-					TemplateDescriptor descriptor = new TemplateDescriptor();
-					descriptor.path = files[i].getCanonicalPath();
-					descriptor.fileName = files[i].getName();
-					
-					this.templatePaths.add(descriptor);
-				}
-			}			
-		} catch (IOException e) {
-			// TODO Auto-generated catch block
-			e.printStackTrace();
-		}	
+		for (TemplateDescriptor blub : TemplateSaveHelper.getTemplatePaths()) {
+			templatePaths.add(blub);
+		}
 	}
 	
 	private void createTabs(Composite parent) {
