@@ -423,7 +423,7 @@
             category="org.unicase"
             class="org.unicase.workspace.edit.views.historybrowserview.HistoryBrowserView"
             icon="icons/historyview.png"
-            id="org.unicase.ui.stem.HistoryBrowserView"
+            id="org.unicase.ui.repository.views.HistoryView"
             name="History Browser"
             restorable="true">
       </view>
