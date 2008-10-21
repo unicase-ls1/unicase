@@ -100,7 +100,7 @@ public class EmfStoreImpl implements EmfStore {
 		//OW: check here if base version is valid at all
 		
 		if (versions.size() - 1 != baseVersionSpec.getIdentifier()) {
-			throw new BaseVersionOutdatedException();
+			throw new InvalidVersionSpecException();
 		}
 
 		PrimaryVersionSpec newVersionSpec = VersioningFactory.eINSTANCE
