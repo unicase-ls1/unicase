@@ -86,6 +86,8 @@ public class UseCaseStepsControl extends AbstractMEControl{
 	private Section section;
 	
 	private Composite stepArea;
+	private Step focusedStep = null;
+	private ArrayList<Step> currentStepList = new ArrayList<Step>();
 	
 	
 	
@@ -109,12 +111,33 @@ public class UseCaseStepsControl extends AbstractMEControl{
 			@Override
 			public void notifyChanged(Notification msg) {
 				if (msg.getFeature() != null && msg.getFeature().equals(eReference)) {
+					setFocusedStep(msg);
+					currentStepList = new ArrayList<Step>( ((UseCase)msg.getNotifier()).getUseCaseSteps());
 					rebuildStepList();
 				}
 				super.notifyChanged(msg);
 			}
 		};
 		modelElement.eAdapters().add(eAdapter);
+	}
+	
+	private void setFocusedStep(Notification msg) {
+		if(msg.getNewValue() != null && msg.getOldValue() == null) {
+			focusedStep = (Step)msg.getNewValue();
+		} 
+		if(msg.getNewValue() == null && msg.getOldValue() != null){
+			UseCase uc = (UseCase)msg.getNotifier();
+			int stepNumber = currentStepList.indexOf(msg.getOldValue());					 
+			if(uc.getUseCaseSteps().size() > 0) {
+				if(stepNumber > 1 ) {							
+					focusedStep = uc.getUseCaseSteps().get(stepNumber - 1);
+				} else {
+					focusedStep = uc.getUseCaseSteps().get(0);
+				}
+			} else {
+				focusedStep = null;
+			}
+		}
 	}
 
 	/**
@@ -146,11 +169,11 @@ public class UseCaseStepsControl extends AbstractMEControl{
 	
 	@SuppressWarnings("unchecked")
 	private void rebuildStepList() {
+		SingleUseCaseStepControl focusedStepControl = null;
 		stepArea.dispose();
 		for(SingleUseCaseStepControl step : stepControls){
 			step.dispose();
 		}
-		
 		
 		stepArea = getToolkit().createComposite(mainComposite);
 		stepArea.setLayout( new GridLayout(2, true));
@@ -162,23 +185,25 @@ public class UseCaseStepsControl extends AbstractMEControl{
 		}
 		stepControls.clear();
 		
+		
 		Object objectList = getModelElement().eGet(eReference);
 		if (objectList instanceof EList) {
 			EList<EObject> eList = (EList<EObject>) objectList;
 			int currentPosition = 0;
 			for (EObject object : eList) {
-				if (object instanceof ModelElement) {
+				if (object instanceof Step) {
 					
 					Step me = (Step) object;
-					GridData gdEmtpy = new GridData(GridData.FILL_HORIZONTAL);
+					GridData gdEmtpy = new GridData(GridData.GRAB_HORIZONTAL);
 					gdEmtpy.verticalIndent = 0;
 					
-					GridData gdUserStep = new GridData(GridData.FILL_HORIZONTAL);
+					GridData gdUserStep = new GridData(GridData.GRAB_HORIZONTAL);
 					gdUserStep.verticalIndent = 0;							
 					SingleUseCaseStepControl stepControl = new SingleUseCaseStepControl(getEditingDomain(), me, getToolkit(), getModelElement(), eReference);
 					
+					
 					if(me.isUserStep()){	
-						Control c = stepControl.createControl(stepArea, parentStyle);								
+						Control c = stepControl.createControl(stepArea, parentStyle);						
 						c.setLayoutData(gdUserStep);
 						Control empty2 = getToolkit().createComposite(stepArea, parentStyle);						
 						empty2.setLayoutData(gdEmtpy);								
@@ -188,19 +213,27 @@ public class UseCaseStepsControl extends AbstractMEControl{
 						Control c = stepControl.createControl(stepArea, parentStyle);								
 						c.setLayoutData(gdUserStep);
 					}
+					if(focusedStep != null && me.equals(focusedStep)) {
+						focusedStepControl = stepControl;
+						focusedStep = null;
+					}
+					
 					stepControls.add(stepControl);
 				}
 				currentPosition++;
 			}
 		}
 		
-		GridData gdButtonPanel = new GridData(GridData.FILL_HORIZONTAL);
+		GridData gdButtonPanel = new GridData(GridData.GRAB_HORIZONTAL);
 		gdButtonPanel.verticalIndent = 0;
 		gdButtonPanel.horizontalSpan = 2;
 		createAddStepButtons(-1, stepArea).setLayoutData(gdButtonPanel);
 		mainComposite.layout(true);
 		section.setExpanded(false);
 		section.setExpanded(true);
+		if(focusedStepControl != null) {
+			focusedStepControl.setFocus();
+		}
 		
 	}
 	
