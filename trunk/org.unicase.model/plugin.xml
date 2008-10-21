@@ -20,9 +20,10 @@
         point="org.eclipse.emf.validation.constraintProviders">
      <category
            id="org.unicase.model"
-           name="Unicase Constraints">
+           name="Unicase">
      </category>
      <constraintProvider
+           cache="true"
            mode="Batch">
         <package
               namespaceUri="http://unicase.org/model/task">
@@ -30,15 +31,15 @@
         <constraints
               categories="org.unicase.model">
            <constraint
-                
+                 class="org.unicase.model.task.validation.ActionItemConstraint"
                  id="org.unicase.model.task.ActionItem"
                  lang="Java"
                  mode="Batch"
-                 name="ActionItem Check"
+                 name="ActionItem Validation"
                  severity="WARNING"
                  statusCode="1">
               <message>
-                 A {0} has been found to be Management.
+                 A {0} has been found to have no Assignee.
               </message>
               <target
                     class="ActionItem">
@@ -46,6 +47,22 @@
            </constraint>
         </constraints>
      </constraintProvider>
+  </extension>
+  <extension
+        point="org.eclipse.emf.validation.constraintBindings">
+     <clientContext
+           default="false"
+           id="org.unicase.model.validation">
+        <selector
+              class="org.unicase.model.validation.ValidationClientSelector">
+        </selector>
+     </clientContext>
+     <binding
+           context="org.unicase.model.binding">
+        <category
+              ref="org.unicase.model">
+        </category>
+     </binding>
   </extension>
   
 
