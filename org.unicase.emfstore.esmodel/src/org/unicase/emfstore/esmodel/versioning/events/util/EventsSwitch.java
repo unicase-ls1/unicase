@@ -14,6 +14,7 @@ import org.unicase.emfstore.esmodel.versioning.events.Event;
 import org.unicase.emfstore.esmodel.versioning.events.EventsPackage;
 import org.unicase.emfstore.esmodel.versioning.events.ExceptionEvent;
 import org.unicase.emfstore.esmodel.versioning.events.MergeEvent;
+import org.unicase.emfstore.esmodel.versioning.events.PluginStartEvent;
 import org.unicase.emfstore.esmodel.versioning.events.ReadEvent;
 
 /**
@@ -125,6 +126,17 @@ public class EventsSwitch<T> {
 			ExceptionEvent exceptionEvent = (ExceptionEvent) theEObject;
 			T result = caseExceptionEvent(exceptionEvent);
 			if (result == null)
+				result = caseEvent(exceptionEvent);
+			if (result == null)
+				result = defaultCase(theEObject);
+			return result;
+		}
+		case EventsPackage.PLUGIN_START_EVENT: {
+			PluginStartEvent pluginStartEvent = (PluginStartEvent) theEObject;
+			T result = casePluginStartEvent(pluginStartEvent);
+			if (result == null)
+				result = caseEvent(pluginStartEvent);
+			if (result == null)
 				result = defaultCase(theEObject);
 			return result;
 		}
@@ -205,6 +217,21 @@ public class EventsSwitch<T> {
 	 * @generated
 	 */
 	public T caseExceptionEvent(ExceptionEvent object) {
+		return null;
+	}
+
+	/**
+	 * Returns the result of interpreting the object as an instance of '<em>Plugin Start Event</em>'.
+	 * <!-- begin-user-doc -->
+	 * This implementation returns null;
+	 * returning a non-null result will terminate the switch.
+	 * <!-- end-user-doc -->
+	 * @param object the target of the switch.
+	 * @return the result of interpreting the object as an instance of '<em>Plugin Start Event</em>'.
+	 * @see #doSwitch(org.eclipse.emf.ecore.EObject) doSwitch(EObject)
+	 * @generated
+	 */
+	public T casePluginStartEvent(PluginStartEvent object) {
 		return null;
 	}
 

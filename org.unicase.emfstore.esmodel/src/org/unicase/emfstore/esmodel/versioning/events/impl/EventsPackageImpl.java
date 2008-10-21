@@ -24,6 +24,7 @@ import org.unicase.emfstore.esmodel.versioning.events.EventsFactory;
 import org.unicase.emfstore.esmodel.versioning.events.EventsPackage;
 import org.unicase.emfstore.esmodel.versioning.events.ExceptionEvent;
 import org.unicase.emfstore.esmodel.versioning.events.MergeEvent;
+import org.unicase.emfstore.esmodel.versioning.events.PluginStartEvent;
 import org.unicase.emfstore.esmodel.versioning.events.ReadEvent;
 import org.unicase.emfstore.esmodel.versioning.impl.VersioningPackageImpl;
 import org.unicase.emfstore.esmodel.versioning.operations.OperationsPackage;
@@ -71,6 +72,13 @@ public class EventsPackageImpl extends EPackageImpl implements EventsPackage {
 	 * @generated
 	 */
 	private EClass exceptionEventEClass = null;
+
+	/**
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 */
+	private EClass pluginStartEventEClass = null;
 
 	/**
 	 * Creates an instance of the model <b>Package</b>, registered with
@@ -257,6 +265,24 @@ public class EventsPackageImpl extends EPackageImpl implements EventsPackage {
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
+	public EReference getMergeEvent_TargetVersion() {
+		return (EReference) mergeEventEClass.getEStructuralFeatures().get(3);
+	}
+
+	/**
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 */
+	public EReference getMergeEvent_LocalChanges() {
+		return (EReference) mergeEventEClass.getEStructuralFeatures().get(4);
+	}
+
+	/**
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 */
 	public EClass getCheckoutEvent() {
 		return checkoutEventEClass;
 	}
@@ -324,6 +350,25 @@ public class EventsPackageImpl extends EPackageImpl implements EventsPackage {
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
+	public EClass getPluginStartEvent() {
+		return pluginStartEventEClass;
+	}
+
+	/**
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 */
+	public EAttribute getPluginStartEvent_PluginId() {
+		return (EAttribute) pluginStartEventEClass.getEStructuralFeatures()
+				.get(0);
+	}
+
+	/**
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 */
 	public EventsFactory getEventsFactory() {
 		return (EventsFactory) getEFactoryInstance();
 	}
@@ -358,6 +403,8 @@ public class EventsPackageImpl extends EPackageImpl implements EventsPackage {
 		createEAttribute(mergeEventEClass, MERGE_EVENT__NUMBER_OF_CONFLICTS);
 		createEAttribute(mergeEventEClass, MERGE_EVENT__TOTAL_TIME);
 		createEReference(mergeEventEClass, MERGE_EVENT__BASE_VERSION);
+		createEReference(mergeEventEClass, MERGE_EVENT__TARGET_VERSION);
+		createEReference(mergeEventEClass, MERGE_EVENT__LOCAL_CHANGES);
 
 		checkoutEventEClass = createEClass(CHECKOUT_EVENT);
 		createEReference(checkoutEventEClass, CHECKOUT_EVENT__BASE_VERSION);
@@ -370,6 +417,9 @@ public class EventsPackageImpl extends EPackageImpl implements EventsPackage {
 				EXCEPTION_EVENT__EXCEPTION_CAUSE_TITLE);
 		createEAttribute(exceptionEventEClass,
 				EXCEPTION_EVENT__EXCEPTION_CAUSE_STACK_TRACE);
+
+		pluginStartEventEClass = createEClass(PLUGIN_START_EVENT);
+		createEAttribute(pluginStartEventEClass, PLUGIN_START_EVENT__PLUGIN_ID);
 	}
 
 	/**
@@ -403,6 +453,8 @@ public class EventsPackageImpl extends EPackageImpl implements EventsPackage {
 				.getEPackage(EcorePackage.eNS_URI);
 		VersioningPackage theVersioningPackage = (VersioningPackage) EPackage.Registry.INSTANCE
 				.getEPackage(VersioningPackage.eNS_URI);
+		OperationsPackage theOperationsPackage = (OperationsPackage) EPackage.Registry.INSTANCE
+				.getEPackage(OperationsPackage.eNS_URI);
 
 		// Create type parameters
 
@@ -412,6 +464,8 @@ public class EventsPackageImpl extends EPackageImpl implements EventsPackage {
 		readEventEClass.getESuperTypes().add(this.getEvent());
 		mergeEventEClass.getESuperTypes().add(this.getEvent());
 		checkoutEventEClass.getESuperTypes().add(this.getEvent());
+		exceptionEventEClass.getESuperTypes().add(this.getEvent());
+		pluginStartEventEClass.getESuperTypes().add(this.getEvent());
 
 		// Initialize classes and features; add operations and parameters
 		initEClass(eventEClass, Event.class, "Event", !IS_ABSTRACT,
@@ -441,6 +495,16 @@ public class EventsPackageImpl extends EPackageImpl implements EventsPackage {
 				!IS_DERIVED, IS_ORDERED);
 		initEReference(getMergeEvent_BaseVersion(), theVersioningPackage
 				.getPrimaryVersionSpec(), null, "baseVersion", null, 0, 1,
+				MergeEvent.class, !IS_TRANSIENT, !IS_VOLATILE, IS_CHANGEABLE,
+				IS_COMPOSITE, IS_RESOLVE_PROXIES, !IS_UNSETTABLE, IS_UNIQUE,
+				!IS_DERIVED, IS_ORDERED);
+		initEReference(getMergeEvent_TargetVersion(), theVersioningPackage
+				.getPrimaryVersionSpec(), null, "targetVersion", null, 0, 1,
+				MergeEvent.class, !IS_TRANSIENT, !IS_VOLATILE, IS_CHANGEABLE,
+				IS_COMPOSITE, IS_RESOLVE_PROXIES, !IS_UNSETTABLE, IS_UNIQUE,
+				!IS_DERIVED, IS_ORDERED);
+		initEReference(getMergeEvent_LocalChanges(), theOperationsPackage
+				.getAbstractOperation(), null, "localChanges", null, 0, -1,
 				MergeEvent.class, !IS_TRANSIENT, !IS_VOLATILE, IS_CHANGEABLE,
 				IS_COMPOSITE, IS_RESOLVE_PROXIES, !IS_UNSETTABLE, IS_UNIQUE,
 				!IS_DERIVED, IS_ORDERED);
@@ -476,6 +540,14 @@ public class EventsPackageImpl extends EPackageImpl implements EventsPackage {
 				1, ExceptionEvent.class, !IS_TRANSIENT, !IS_VOLATILE,
 				IS_CHANGEABLE, !IS_UNSETTABLE, !IS_ID, IS_UNIQUE, !IS_DERIVED,
 				IS_ORDERED);
+
+		initEClass(pluginStartEventEClass, PluginStartEvent.class,
+				"PluginStartEvent", !IS_ABSTRACT, !IS_INTERFACE,
+				IS_GENERATED_INSTANCE_CLASS);
+		initEAttribute(getPluginStartEvent_PluginId(), ecorePackage
+				.getEString(), "pluginId", null, 0, 1, PluginStartEvent.class,
+				!IS_TRANSIENT, !IS_VOLATILE, IS_CHANGEABLE, !IS_UNSETTABLE,
+				!IS_ID, IS_UNIQUE, !IS_DERIVED, IS_ORDERED);
 	}
 
 } //EventsPackageImpl

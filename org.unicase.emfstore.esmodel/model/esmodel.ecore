@@ -205,12 +205,16 @@
         <eStructuralFeatures xsi:type="ecore:EAttribute" name="totalTime" eType="ecore:EDataType platform:/plugin/org.eclipse.emf.ecore/model/Ecore.ecore#//EInt"/>
         <eStructuralFeatures xsi:type="ecore:EReference" name="baseVersion" eType="#//versioning/PrimaryVersionSpec"
             containment="true"/>
+        <eStructuralFeatures xsi:type="ecore:EReference" name="targetVersion" eType="#//versioning/PrimaryVersionSpec"
+            containment="true"/>
+        <eStructuralFeatures xsi:type="ecore:EReference" name="localChanges" upperBound="-1"
+            eType="#//versioning/operations/AbstractOperation" containment="true"/>
       </eClassifiers>
       <eClassifiers xsi:type="ecore:EClass" name="CheckoutEvent" eSuperTypes="#//versioning/events/Event">
         <eStructuralFeatures xsi:type="ecore:EReference" name="baseVersion" eType="#//versioning/PrimaryVersionSpec"
             containment="true"/>
       </eClassifiers>
-      <eClassifiers xsi:type="ecore:EClass" name="ExceptionEvent">
+      <eClassifiers xsi:type="ecore:EClass" name="ExceptionEvent" eSuperTypes="#//versioning/events/Event">
         <eStructuralFeatures xsi:type="ecore:EAttribute" name="ExceptionTitle" eType="ecore:EDataType http://www.eclipse.org/emf/2002/Ecore#//EString"/>
         <eStructuralFeatures xsi:type="ecore:EAttribute" name="ExceptionStackTrace"
             eType="ecore:EDataType http://www.eclipse.org/emf/2002/Ecore#//EString"/>
@@ -218,6 +222,9 @@
             eType="ecore:EDataType http://www.eclipse.org/emf/2002/Ecore#//EString"/>
         <eStructuralFeatures xsi:type="ecore:EAttribute" name="ExceptionCauseStackTrace"
             eType="ecore:EDataType http://www.eclipse.org/emf/2002/Ecore#//EString"/>
+      </eClassifiers>
+      <eClassifiers xsi:type="ecore:EClass" name="PluginStartEvent" eSuperTypes="#//versioning/events/Event">
+        <eStructuralFeatures xsi:type="ecore:EAttribute" name="pluginId" eType="ecore:EDataType http://www.eclipse.org/emf/2002/Ecore#//EString"/>
       </eClassifiers>
     </eSubpackages>
   </eSubpackages>

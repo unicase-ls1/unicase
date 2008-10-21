@@ -171,13 +171,31 @@ public interface EventsPackage extends EPackage {
 	int MERGE_EVENT__BASE_VERSION = EVENT_FEATURE_COUNT + 2;
 
 	/**
+	 * The feature id for the '<em><b>Target Version</b></em>' containment reference.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 * @ordered
+	 */
+	int MERGE_EVENT__TARGET_VERSION = EVENT_FEATURE_COUNT + 3;
+
+	/**
+	 * The feature id for the '<em><b>Local Changes</b></em>' containment reference list.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 * @ordered
+	 */
+	int MERGE_EVENT__LOCAL_CHANGES = EVENT_FEATURE_COUNT + 4;
+
+	/**
 	 * The number of structural features of the '<em>Merge Event</em>' class.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
 	 * @generated
 	 * @ordered
 	 */
-	int MERGE_EVENT_FEATURE_COUNT = EVENT_FEATURE_COUNT + 3;
+	int MERGE_EVENT_FEATURE_COUNT = EVENT_FEATURE_COUNT + 5;
 
 	/**
 	 * The meta object id for the '{@link org.unicase.emfstore.esmodel.versioning.events.impl.CheckoutEventImpl <em>Checkout Event</em>}' class.
@@ -227,13 +245,22 @@ public interface EventsPackage extends EPackage {
 	int EXCEPTION_EVENT = 4;
 
 	/**
+	 * The feature id for the '<em><b>Timestamp</b></em>' attribute.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 * @ordered
+	 */
+	int EXCEPTION_EVENT__TIMESTAMP = EVENT__TIMESTAMP;
+
+	/**
 	 * The feature id for the '<em><b>Exception Title</b></em>' attribute.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
 	 * @generated
 	 * @ordered
 	 */
-	int EXCEPTION_EVENT__EXCEPTION_TITLE = 0;
+	int EXCEPTION_EVENT__EXCEPTION_TITLE = EVENT_FEATURE_COUNT + 0;
 
 	/**
 	 * The feature id for the '<em><b>Exception Stack Trace</b></em>' attribute.
@@ -242,7 +269,7 @@ public interface EventsPackage extends EPackage {
 	 * @generated
 	 * @ordered
 	 */
-	int EXCEPTION_EVENT__EXCEPTION_STACK_TRACE = 1;
+	int EXCEPTION_EVENT__EXCEPTION_STACK_TRACE = EVENT_FEATURE_COUNT + 1;
 
 	/**
 	 * The feature id for the '<em><b>Exception Cause Title</b></em>' attribute.
@@ -251,7 +278,7 @@ public interface EventsPackage extends EPackage {
 	 * @generated
 	 * @ordered
 	 */
-	int EXCEPTION_EVENT__EXCEPTION_CAUSE_TITLE = 2;
+	int EXCEPTION_EVENT__EXCEPTION_CAUSE_TITLE = EVENT_FEATURE_COUNT + 2;
 
 	/**
 	 * The feature id for the '<em><b>Exception Cause Stack Trace</b></em>' attribute.
@@ -260,7 +287,7 @@ public interface EventsPackage extends EPackage {
 	 * @generated
 	 * @ordered
 	 */
-	int EXCEPTION_EVENT__EXCEPTION_CAUSE_STACK_TRACE = 3;
+	int EXCEPTION_EVENT__EXCEPTION_CAUSE_STACK_TRACE = EVENT_FEATURE_COUNT + 3;
 
 	/**
 	 * The number of structural features of the '<em>Exception Event</em>' class.
@@ -269,7 +296,44 @@ public interface EventsPackage extends EPackage {
 	 * @generated
 	 * @ordered
 	 */
-	int EXCEPTION_EVENT_FEATURE_COUNT = 4;
+	int EXCEPTION_EVENT_FEATURE_COUNT = EVENT_FEATURE_COUNT + 4;
+
+	/**
+	 * The meta object id for the '{@link org.unicase.emfstore.esmodel.versioning.events.impl.PluginStartEventImpl <em>Plugin Start Event</em>}' class.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @see org.unicase.emfstore.esmodel.versioning.events.impl.PluginStartEventImpl
+	 * @see org.unicase.emfstore.esmodel.versioning.events.impl.EventsPackageImpl#getPluginStartEvent()
+	 * @generated
+	 */
+	int PLUGIN_START_EVENT = 5;
+
+	/**
+	 * The feature id for the '<em><b>Timestamp</b></em>' attribute.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 * @ordered
+	 */
+	int PLUGIN_START_EVENT__TIMESTAMP = EVENT__TIMESTAMP;
+
+	/**
+	 * The feature id for the '<em><b>Plugin Id</b></em>' attribute.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 * @ordered
+	 */
+	int PLUGIN_START_EVENT__PLUGIN_ID = EVENT_FEATURE_COUNT + 0;
+
+	/**
+	 * The number of structural features of the '<em>Plugin Start Event</em>' class.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 * @ordered
+	 */
+	int PLUGIN_START_EVENT_FEATURE_COUNT = EVENT_FEATURE_COUNT + 1;
 
 	/**
 	 * Returns the meta object for class '{@link org.unicase.emfstore.esmodel.versioning.events.Event <em>Event</em>}'.
@@ -357,6 +421,28 @@ public interface EventsPackage extends EPackage {
 	EReference getMergeEvent_BaseVersion();
 
 	/**
+	 * Returns the meta object for the containment reference '{@link org.unicase.emfstore.esmodel.versioning.events.MergeEvent#getTargetVersion <em>Target Version</em>}'.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @return the meta object for the containment reference '<em>Target Version</em>'.
+	 * @see org.unicase.emfstore.esmodel.versioning.events.MergeEvent#getTargetVersion()
+	 * @see #getMergeEvent()
+	 * @generated
+	 */
+	EReference getMergeEvent_TargetVersion();
+
+	/**
+	 * Returns the meta object for the containment reference list '{@link org.unicase.emfstore.esmodel.versioning.events.MergeEvent#getLocalChanges <em>Local Changes</em>}'.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @return the meta object for the containment reference list '<em>Local Changes</em>'.
+	 * @see org.unicase.emfstore.esmodel.versioning.events.MergeEvent#getLocalChanges()
+	 * @see #getMergeEvent()
+	 * @generated
+	 */
+	EReference getMergeEvent_LocalChanges();
+
+	/**
 	 * Returns the meta object for class '{@link org.unicase.emfstore.esmodel.versioning.events.CheckoutEvent <em>Checkout Event</em>}'.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
@@ -430,6 +516,27 @@ public interface EventsPackage extends EPackage {
 	 * @generated
 	 */
 	EAttribute getExceptionEvent_ExceptionCauseStackTrace();
+
+	/**
+	 * Returns the meta object for class '{@link org.unicase.emfstore.esmodel.versioning.events.PluginStartEvent <em>Plugin Start Event</em>}'.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @return the meta object for class '<em>Plugin Start Event</em>'.
+	 * @see org.unicase.emfstore.esmodel.versioning.events.PluginStartEvent
+	 * @generated
+	 */
+	EClass getPluginStartEvent();
+
+	/**
+	 * Returns the meta object for the attribute '{@link org.unicase.emfstore.esmodel.versioning.events.PluginStartEvent#getPluginId <em>Plugin Id</em>}'.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @return the meta object for the attribute '<em>Plugin Id</em>'.
+	 * @see org.unicase.emfstore.esmodel.versioning.events.PluginStartEvent#getPluginId()
+	 * @see #getPluginStartEvent()
+	 * @generated
+	 */
+	EAttribute getPluginStartEvent_PluginId();
 
 	/**
 	 * Returns the factory that creates the instances of the model.
@@ -528,6 +635,24 @@ public interface EventsPackage extends EPackage {
 				.getMergeEvent_BaseVersion();
 
 		/**
+		 * The meta object literal for the '<em><b>Target Version</b></em>' containment reference feature.
+		 * <!-- begin-user-doc -->
+		 * <!-- end-user-doc -->
+		 * @generated
+		 */
+		EReference MERGE_EVENT__TARGET_VERSION = eINSTANCE
+				.getMergeEvent_TargetVersion();
+
+		/**
+		 * The meta object literal for the '<em><b>Local Changes</b></em>' containment reference list feature.
+		 * <!-- begin-user-doc -->
+		 * <!-- end-user-doc -->
+		 * @generated
+		 */
+		EReference MERGE_EVENT__LOCAL_CHANGES = eINSTANCE
+				.getMergeEvent_LocalChanges();
+
+		/**
 		 * The meta object literal for the '{@link org.unicase.emfstore.esmodel.versioning.events.impl.CheckoutEventImpl <em>Checkout Event</em>}' class.
 		 * <!-- begin-user-doc -->
 		 * <!-- end-user-doc -->
@@ -591,6 +716,25 @@ public interface EventsPackage extends EPackage {
 		 */
 		EAttribute EXCEPTION_EVENT__EXCEPTION_CAUSE_STACK_TRACE = eINSTANCE
 				.getExceptionEvent_ExceptionCauseStackTrace();
+
+		/**
+		 * The meta object literal for the '{@link org.unicase.emfstore.esmodel.versioning.events.impl.PluginStartEventImpl <em>Plugin Start Event</em>}' class.
+		 * <!-- begin-user-doc -->
+		 * <!-- end-user-doc -->
+		 * @see org.unicase.emfstore.esmodel.versioning.events.impl.PluginStartEventImpl
+		 * @see org.unicase.emfstore.esmodel.versioning.events.impl.EventsPackageImpl#getPluginStartEvent()
+		 * @generated
+		 */
+		EClass PLUGIN_START_EVENT = eINSTANCE.getPluginStartEvent();
+
+		/**
+		 * The meta object literal for the '<em><b>Plugin Id</b></em>' attribute feature.
+		 * <!-- begin-user-doc -->
+		 * <!-- end-user-doc -->
+		 * @generated
+		 */
+		EAttribute PLUGIN_START_EVENT__PLUGIN_ID = eINSTANCE
+				.getPluginStartEvent_PluginId();
 
 	}
 

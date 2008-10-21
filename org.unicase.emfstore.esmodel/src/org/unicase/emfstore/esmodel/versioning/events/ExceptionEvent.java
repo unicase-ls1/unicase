@@ -5,7 +5,6 @@
  */
 package org.unicase.emfstore.esmodel.versioning.events;
 
-import org.eclipse.emf.ecore.EObject;
 
 /**
  * <!-- begin-user-doc -->
@@ -26,7 +25,7 @@ import org.eclipse.emf.ecore.EObject;
  * @model
  * @generated
  */
-public interface ExceptionEvent extends EObject {
+public interface ExceptionEvent extends Event {
 	/**
 	 * Returns the value of the '<em><b>Exception Title</b></em>' attribute.
 	 * <!-- begin-user-doc -->

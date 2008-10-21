@@ -5,7 +5,9 @@
  */
 package org.unicase.emfstore.esmodel.versioning.events;
 
+import org.eclipse.emf.common.util.EList;
 import org.unicase.emfstore.esmodel.versioning.PrimaryVersionSpec;
+import org.unicase.emfstore.esmodel.versioning.operations.AbstractOperation;
 
 /**
  * <!-- begin-user-doc -->
@@ -18,6 +20,8 @@ import org.unicase.emfstore.esmodel.versioning.PrimaryVersionSpec;
  *   <li>{@link org.unicase.emfstore.esmodel.versioning.events.MergeEvent#getNumberOfConflicts <em>Number Of Conflicts</em>}</li>
  *   <li>{@link org.unicase.emfstore.esmodel.versioning.events.MergeEvent#getTotalTime <em>Total Time</em>}</li>
  *   <li>{@link org.unicase.emfstore.esmodel.versioning.events.MergeEvent#getBaseVersion <em>Base Version</em>}</li>
+ *   <li>{@link org.unicase.emfstore.esmodel.versioning.events.MergeEvent#getTargetVersion <em>Target Version</em>}</li>
+ *   <li>{@link org.unicase.emfstore.esmodel.versioning.events.MergeEvent#getLocalChanges <em>Local Changes</em>}</li>
  * </ul>
  * </p>
  *
@@ -103,5 +107,47 @@ public interface MergeEvent extends Event {
 	 * @generated
 	 */
 	void setBaseVersion(PrimaryVersionSpec value);
+
+	/**
+	 * Returns the value of the '<em><b>Target Version</b></em>' containment reference.
+	 * <!-- begin-user-doc -->
+	 * <p>
+	 * If the meaning of the '<em>Target Version</em>' containment reference isn't clear,
+	 * there really should be more of a description here...
+	 * </p>
+	 * <!-- end-user-doc -->
+	 * @return the value of the '<em>Target Version</em>' containment reference.
+	 * @see #setTargetVersion(PrimaryVersionSpec)
+	 * @see org.unicase.emfstore.esmodel.versioning.events.EventsPackage#getMergeEvent_TargetVersion()
+	 * @model containment="true" resolveProxies="true"
+	 * @generated
+	 */
+	PrimaryVersionSpec getTargetVersion();
+
+	/**
+	 * Sets the value of the '{@link org.unicase.emfstore.esmodel.versioning.events.MergeEvent#getTargetVersion <em>Target Version</em>}' containment reference.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @param value the new value of the '<em>Target Version</em>' containment reference.
+	 * @see #getTargetVersion()
+	 * @generated
+	 */
+	void setTargetVersion(PrimaryVersionSpec value);
+
+	/**
+	 * Returns the value of the '<em><b>Local Changes</b></em>' containment reference list.
+	 * The list contents are of type {@link org.unicase.emfstore.esmodel.versioning.operations.AbstractOperation}.
+	 * <!-- begin-user-doc -->
+	 * <p>
+	 * If the meaning of the '<em>Local Changes</em>' containment reference list isn't clear,
+	 * there really should be more of a description here...
+	 * </p>
+	 * <!-- end-user-doc -->
+	 * @return the value of the '<em>Local Changes</em>' containment reference list.
+	 * @see org.unicase.emfstore.esmodel.versioning.events.EventsPackage#getMergeEvent_LocalChanges()
+	 * @model containment="true" resolveProxies="true"
+	 * @generated
+	 */
+	EList<AbstractOperation> getLocalChanges();
 
 } // MergeEvent
