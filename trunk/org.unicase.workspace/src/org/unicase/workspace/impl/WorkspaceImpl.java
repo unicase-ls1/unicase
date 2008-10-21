@@ -30,6 +30,8 @@ import org.eclipse.emf.transaction.TransactionalEditingDomain;
 import org.unicase.emfstore.esmodel.ProjectInfo;
 import org.unicase.emfstore.esmodel.versioning.PrimaryVersionSpec;
 import org.unicase.emfstore.esmodel.versioning.VersionSpec;
+import org.unicase.emfstore.esmodel.versioning.events.EventsFactory;
+import org.unicase.emfstore.esmodel.versioning.events.PluginStartEvent;
 import org.unicase.emfstore.exceptions.EmfStoreException;
 import org.unicase.model.Project;
 import org.unicase.workspace.Configuration;
@@ -426,6 +428,11 @@ public class WorkspaceImpl extends EObjectImpl implements Workspace {
 		// initialize all projectSpaces
 		for (ProjectSpace projectSpace : getProjectSpaces()) {
 			projectSpace.init();
+			//add plugin start event 
+			PluginStartEvent event = EventsFactory.eINSTANCE.createPluginStartEvent();
+			event.setPluginId("org.unicase.workspace");
+			event.setTimestamp(new Date());		
+			projectSpace.addEvent(event);
 		}
 	}
 
