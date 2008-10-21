@@ -55,7 +55,7 @@ public class TaskView extends ViewPart {
 	private Action filterToMyTeam;
 	private String filename;
 	private AdapterImpl adapterImpl;
-	private Workspace workspace; 
+	private Workspace workspace;
 
 	/**
 	 * default constructor.
@@ -71,8 +71,7 @@ public class TaskView extends ViewPart {
 		} catch (IOException e) {
 			// Do nothing.
 		}
-		workspace = WorkspaceManager.getInstance()
-				.getCurrentWorkspace();
+		workspace = WorkspaceManager.getInstance().getCurrentWorkspace();
 		adapterImpl = new AdapterImpl() {
 			@Override
 			public void notifyChanged(Notification msg) {
@@ -145,18 +144,22 @@ public class TaskView extends ViewPart {
 			};
 			filterToMyTeam.setImageDescriptor(Activator
 					.getImageDescriptor("/icons/filtertomyteam.png"));
+			Boolean teamFilter = Boolean.parseBoolean(settings
+					.get("TeamFilter"));
+			filterToMyTeam.setChecked(teamFilter);
 		}
 		if (user == null) {
 			setTeamFilter(false);
 			filterToMyTeam.setEnabled(false);
 			return;
 		}
+		if (teamFilter != null) {
+			viewer.removeFilter(teamFilter);
+		}
+
 		filterToMyTeam.setEnabled(true);
 		teamFilter = new TeamFilter(user);
-
-		Boolean teamFilter = Boolean.parseBoolean(settings.get("TeamFilter"));
-		filterToMyTeam.setChecked(teamFilter);
-		setTeamFilter(teamFilter);
+		setTeamFilter(filterToMyTeam.isChecked());
 	}
 
 	/**
@@ -206,20 +209,23 @@ public class TaskView extends ViewPart {
 			};
 			filterToMe.setImageDescriptor(Activator
 					.getImageDescriptor("/icons/filtertouser.png"));
+			Boolean isUserFilter = Boolean.parseBoolean(settings
+					.get("UserFilter"));
+			filterToMe.setChecked(isUserFilter);
 		}
 		if (user == null) {
 			setUserFilter(false);
 			filterToMe.setEnabled(false);
 			return;
 		}
+		if (userFilter != null) {
+			viewer.removeFilter(userFilter);
+		}
 		filterToMe.setEnabled(true);
 		userFilter = new UserFilter(user);
-
-		Boolean userFilter = Boolean.parseBoolean(settings.get("UserFilter"));
-		filterToMe.setChecked(userFilter);
 		filterToMe
 				.setToolTipText("Restricts the displayed table items to items owned by the current user.");
-		setUserFilter(userFilter);
+		setUserFilter(filterToMe.isChecked());
 	}
 
 	/**
