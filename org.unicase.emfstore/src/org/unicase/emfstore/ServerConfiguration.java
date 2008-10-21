@@ -77,14 +77,24 @@ public final class ServerConfiguration {
 	public static final String PROJECTSTATE_VERSION_PERSISTENCE_FIRSTANDLASTVERSIONONLY = "firstAndLastVersionOnly";
 
 	/**
-	 * The projectstate of every version will be stored.
+	 * The projectstate of every x versions will be stored. This is used to save memory. Use x=1 to save every version.
 	 */
-	public static final String PROJECTSTATE_VERSION_PERSISTENCE_EVERYVERSION = "everyVersion";
+	public static final String PROJECTSTATE_VERSION_PERSISTENCE_EVERYXVERSIONS = "everyXVersion";
 
+	/**
+	 * Property for the count of versions, needed by the everyXVersion policy.
+	 */
+	public static final String PROJECTSTATE_VERSION_PERSISTENCE_EVERYXVERSIONS_X = "persistence.version.projectstate.everyxversions";
+	
+	/**
+	 * Default value for the everyXVersion policy.
+	 */
+	public static final String PROJECTSTATE_VERSION_PERSISTENCE_EVERYXVERSIONS_X_DEFAULT = "1";
+	
 	/**
 	 * Default value for projectstate persistence policy in versions.
 	 */
-	public static final String PROJECTSPACE_VERSION_PERSISTENCY_DEFAULT = PROJECTSTATE_VERSION_PERSISTENCE_EVERYVERSION;
+	public static final String PROJECTSPACE_VERSION_PERSISTENCE_DEFAULT = PROJECTSTATE_VERSION_PERSISTENCE_EVERYXVERSIONS;
 
 	/**
 	 * Property for timeout time of a user session.

@@ -124,30 +124,54 @@ public class EmfStoreImpl implements EmfStore {
 
 		versions.add(version);
 
+		// try to save
 		try {
 			try {
 				createResourceForVersion(version, projectHistory.getProjectId());
 			} catch (FatalEmfStoreException e) {
+				// try to roll back
 				previousHeadVersion.setNextVersion(null);
 				versions.remove(version);
 				save(previousHeadVersion);
 				save(projectHistory);
 				throw new StorageException(StorageException.NOSAVE);
 			}
+			// delete projectstate from last revision depending on persistence policy
 			String property = ServerConfiguration
 					.getProperties()
 					.getProperty(
 							ServerConfiguration.PROJECTSTATE_VERSION_PERSISTENCE,
-							ServerConfiguration.PROJECTSPACE_VERSION_PERSISTENCY_DEFAULT);
+							ServerConfiguration.PROJECTSPACE_VERSION_PERSISTENCE_DEFAULT);
 
-			// allways save projecstate of first version
-			if (!(previousHeadVersion.getPrimarySpec().getIdentifier() == 0 || property
-					.equals(ServerConfiguration.PROJECTSTATE_VERSION_PERSISTENCE_EVERYVERSION))) {
-				previousHeadVersion.setProjectState(null);
+			if (property.equals(ServerConfiguration.PROJECTSTATE_VERSION_PERSISTENCE_EVERYXVERSIONS)) {
+				int x;
+				try {
+					x = Integer
+							.parseInt(ServerConfiguration
+									.getProperties()
+									.getProperty(
+											ServerConfiguration.PROJECTSTATE_VERSION_PERSISTENCE_EVERYXVERSIONS_X,
+											ServerConfiguration.PROJECTSTATE_VERSION_PERSISTENCE_EVERYXVERSIONS_X_DEFAULT));
+				} catch (NumberFormatException e) {
+					x = 1;
+					LOGGER.warn("Couldn't read property: "+ServerConfiguration.PROJECTSTATE_VERSION_PERSISTENCE_EVERYXVERSIONS_X+" , x set to 1");
+				}
+				if(x == 0) {
+					x = 1;
+					LOGGER.warn("Persistence policy everyXVersion with x = 0 not possible, x set to 1.");
+				}
+				
+				// allways save projecstate of first version
+				int lastVersion = previousHeadVersion.getPrimarySpec().getIdentifier();
+				if(lastVersion != 0 && lastVersion%x != 0) {					
+					previousHeadVersion.setProjectState(null);
+				}
+
 			}
 			save(previousHeadVersion);
 			save(projectHistory);
 		} catch (FatalEmfStoreException e) {
+			// roll back failed
 			EmfStoreController.getInstance().shutdown(e);
 			throw new EmfStoreException("Shutting down server.");
 		}
