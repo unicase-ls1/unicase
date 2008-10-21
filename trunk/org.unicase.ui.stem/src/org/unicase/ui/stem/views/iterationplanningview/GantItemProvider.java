@@ -16,12 +16,22 @@ import org.unicase.model.Project;
 import org.unicase.model.task.TaskPackage;
 import org.unicase.model.task.WorkPackage;
 import org.unicase.workspace.WorkspaceManager;
-
+/**
+ * Example for a ganttchart item provider.
+ * @author helming
+ *
+ */
 public class GantItemProvider extends
 		TransactionalAdapterFactoryContentProvider implements IContentProvider {
-
+/**
+ * Comapartor to order workpackages by their name.
+ * @author helming
+ *
+ */
 	public class WPComparator implements Comparator<EObject> {
-
+/**
+ * {@inheritDoc}
+ */
 		public int compare(EObject o1, EObject o2) {
 			WorkPackage wp1 = (WorkPackage) o1;
 			WorkPackage wp2 = (WorkPackage) o2;
@@ -29,7 +39,9 @@ public class GantItemProvider extends
 		}
 
 	}
-
+/**
+ * default constructor.
+ */
 	public GantItemProvider() {
 		super(WorkspaceManager.getInstance().getCurrentWorkspace()
 				.getEditingDomain(), new ComposedAdapterFactory(
