@@ -43,6 +43,7 @@ import org.unicase.emfstore.esmodel.versioning.TagVersionSpec;
 import org.unicase.emfstore.esmodel.versioning.Version;
 import org.unicase.emfstore.esmodel.versioning.VersionSpec;
 import org.unicase.emfstore.esmodel.versioning.VersioningFactory;
+import org.unicase.emfstore.exceptions.BaseVersionOutdatedException;
 import org.unicase.emfstore.exceptions.EmfStoreException;
 import org.unicase.emfstore.exceptions.FatalEmfStoreException;
 import org.unicase.emfstore.exceptions.InvalidInputException;
@@ -95,8 +96,11 @@ public class EmfStoreImpl implements EmfStore {
 
 		ProjectHistory projectHistory = getProject(projectId);
 		List<Version> versions = projectHistory.getVersions();
+		
+		//OW: check here if base version is valid at all
+		
 		if (versions.size() - 1 != baseVersionSpec.getIdentifier()) {
-			throw new InvalidVersionSpecException();
+			throw new BaseVersionOutdatedException();
 		}
 
 		PrimaryVersionSpec newVersionSpec = VersioningFactory.eINSTANCE
