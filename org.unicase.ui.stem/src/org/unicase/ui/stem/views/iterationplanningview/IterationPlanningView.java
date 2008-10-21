@@ -58,20 +58,32 @@ import org.unicase.workspace.util.OrgUnitHelper;
  * 
  */
 public class IterationPlanningView extends ViewPart {
+	/**
+	 * Action to create a window with a ganttchart.
+	 * 
+	 * @author helming
+	 * 
+	 */
 	public class GantAction extends Action {
-		
 
+		/**
+		 * Default constructor.
+		 */
 		public GantAction() {
-			super("Show Gantt Chart",Activator.getImageDescriptor("icons/ganttChart.png"));
+			super("Show Gantt Chart", Activator
+					.getImageDescriptor("icons/ganttChart.png"));
 		}
 
+		/**
+		 * {@inheritDoc}
+		 */
 		@Override
 		public void run() {
 			// TODO Auto-generated method stub
-			Shell shell=new Shell(PlatformUI.getWorkbench().getDisplay());
+			Shell shell = new Shell(PlatformUI.getWorkbench().getDisplay());
 			shell.setSize(900, 500);
 			shell.setLayout(new FillLayout());
-			GantChart gantchart = new GantChart(shell);
+			new GantChart(shell);
 			shell.open();
 		}
 
@@ -130,7 +142,7 @@ public class IterationPlanningView extends ViewPart {
 
 		menuManager.add(filterToMe);
 		menuManager.add(filterToMyTeam);
-//		menuManager.add(new GantAction());
+		// menuManager.add(new GantAction());
 
 		// Create the help context id for the viewer's control
 		PlatformUI.getWorkbench().getHelpSystem().setHelp(viewer.getControl(),
