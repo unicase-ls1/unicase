@@ -23,14 +23,16 @@ import org.eclipse.emf.edit.provider.ItemPropertyDescriptor;
 import org.eclipse.emf.edit.provider.ViewerNotification;
 import org.unicase.model.bug.BugPackage;
 import org.unicase.model.bug.BugReport;
+import org.unicase.model.bug.BugStatus;
 import org.unicase.model.provider.AnnotationItemProvider;
 import org.unicase.model.provider.ModelEditPlugin;
 import org.unicase.model.task.TaskPackage;
 
 /**
- * This is the item provider adapter for a {@link org.unicase.model.bug.BugReport} object.
- * <!-- begin-user-doc --> <!--
+ * This is the item provider adapter for a
+ * {@link org.unicase.model.bug.BugReport} object. <!-- begin-user-doc --> <!--
  * end-user-doc -->
+ * 
  * @generated
  */
 public class BugReportItemProvider extends AnnotationItemProvider implements
@@ -72,8 +74,8 @@ public class BugReportItemProvider extends AnnotationItemProvider implements
 
 	/**
 	 * This adds a property descriptor for the Containing Workpackage feature.
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
+	 * <!-- begin-user-doc --> <!-- end-user-doc -->
+	 * 
 	 * @generated
 	 */
 	protected void addContainingWorkpackagePropertyDescriptor(Object object) {
@@ -89,9 +91,9 @@ public class BugReportItemProvider extends AnnotationItemProvider implements
 	}
 
 	/**
-	 * This adds a property descriptor for the Predecessors feature.
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
+	 * This adds a property descriptor for the Predecessors feature. <!--
+	 * begin-user-doc --> <!-- end-user-doc -->
+	 * 
 	 * @generated
 	 */
 	protected void addPredecessorsPropertyDescriptor(Object object) {
@@ -107,9 +109,9 @@ public class BugReportItemProvider extends AnnotationItemProvider implements
 	}
 
 	/**
-	 * This adds a property descriptor for the Successors feature.
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
+	 * This adds a property descriptor for the Successors feature. <!--
+	 * begin-user-doc --> <!-- end-user-doc -->
+	 * 
 	 * @generated
 	 */
 	protected void addSuccessorsPropertyDescriptor(Object object) {
@@ -126,9 +128,9 @@ public class BugReportItemProvider extends AnnotationItemProvider implements
 	}
 
 	/**
-	 * This adds a property descriptor for the Assignee feature.
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
+	 * This adds a property descriptor for the Assignee feature. <!--
+	 * begin-user-doc --> <!-- end-user-doc -->
+	 * 
 	 * @generated
 	 */
 	protected void addAssigneePropertyDescriptor(Object object) {
@@ -143,9 +145,9 @@ public class BugReportItemProvider extends AnnotationItemProvider implements
 	}
 
 	/**
-	 * This adds a property descriptor for the Participants feature.
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
+	 * This adds a property descriptor for the Participants feature. <!--
+	 * begin-user-doc --> <!-- end-user-doc -->
+	 * 
 	 * @generated
 	 */
 	protected void addParticipantsPropertyDescriptor(Object object) {
@@ -198,9 +200,9 @@ public class BugReportItemProvider extends AnnotationItemProvider implements
 	}
 
 	/**
-	 * This adds a property descriptor for the Resolution feature.
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
+	 * This adds a property descriptor for the Resolution feature. <!--
+	 * begin-user-doc --> <!-- end-user-doc -->
+	 * 
 	 * @generated
 	 */
 	protected void addResolutionPropertyDescriptor(Object object) {
@@ -216,9 +218,9 @@ public class BugReportItemProvider extends AnnotationItemProvider implements
 	}
 
 	/**
-	 * This adds a property descriptor for the Resolution Type feature.
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
+	 * This adds a property descriptor for the Resolution Type feature. <!--
+	 * begin-user-doc --> <!-- end-user-doc -->
+	 * 
 	 * @generated
 	 */
 	protected void addResolutionTypePropertyDescriptor(Object object) {
@@ -234,22 +236,28 @@ public class BugReportItemProvider extends AnnotationItemProvider implements
 	}
 
 	/**
-	 * This returns BugReport.gif.
-	 * <!-- begin-user-doc --> <!-- end-user-doc -->
+	 * This returns BugReport.gif. <!-- begin-user-doc --> <!-- end-user-doc -->
+	 * 
 	 * @generated
 	 */
 	@Override
 	public Object getImage(Object object) {
+		// HN: Add image correctly
+		// if(object instanceof BugReport){
+		// if(((BugReport) object).getStatus().equals(BugStatus.RESOLVED)){
+		// return overlayImage(object, getResourceLocator().getImage(
+		// "full/obj16/BugReportResolved"));
+		// }
+		// }
 		return overlayImage(object, getResourceLocator().getImage(
 				"full/obj16/BugReport"));
 	}
 
 	/**
-	 * This returns the label text for the adapted class.
-	 * <!-- begin-user-doc
+	 * This returns the label text for the adapted class. <!-- begin-user-doc
 	 * --> <!-- end-user-doc -->
-	 * @generated NOT
-	 * {@inheritDoc}
+	 * 
+	 * @generated NOT {@inheritDoc}
 	 */
 	@Override
 	public String getText(Object object) {
@@ -257,10 +265,11 @@ public class BugReportItemProvider extends AnnotationItemProvider implements
 	}
 
 	/**
-	 * This handles model notifications by calling {@link #updateChildren} to update any cached
-	 * children and by creating a viewer notification, which it passes to {@link #fireNotifyChanged}.
-	 * <!-- begin-user-doc --> <!--
+	 * This handles model notifications by calling {@link #updateChildren} to
+	 * update any cached children and by creating a viewer notification, which
+	 * it passes to {@link #fireNotifyChanged}. <!-- begin-user-doc --> <!--
 	 * end-user-doc -->
+	 * 
 	 * @generated
 	 */
 	@Override
