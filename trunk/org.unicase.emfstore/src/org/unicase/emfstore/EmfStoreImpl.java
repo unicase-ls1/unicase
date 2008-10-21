@@ -132,6 +132,7 @@ public class EmfStoreImpl implements EmfStore {
 				// try to roll back
 				previousHeadVersion.setNextVersion(null);
 				versions.remove(version);
+				//OW: why do we need to save here, can we remove? do test!!
 				save(previousHeadVersion);
 				save(projectHistory);
 				throw new StorageException(StorageException.NOSAVE);
@@ -161,7 +162,7 @@ public class EmfStoreImpl implements EmfStore {
 					LOGGER.warn("Persistence policy everyXVersion with x = 0 not possible, x set to 1.");
 				}
 				
-				// allways save projecstate of first version
+				// always save projecstate of first version
 				int lastVersion = previousHeadVersion.getPrimarySpec().getIdentifier();
 				if(lastVersion != 0 && lastVersion%x != 0) {					
 					previousHeadVersion.setProjectState(null);
