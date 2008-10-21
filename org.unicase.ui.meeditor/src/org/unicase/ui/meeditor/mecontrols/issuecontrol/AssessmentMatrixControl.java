@@ -250,9 +250,11 @@ public class AssessmentMatrixControl extends AbstractMEControl{
 				if(assessment != null) {
 					ControlFactory cFactory = new ControlFactory(getEditingDomain(), assessment, getToolkit());
 					final IItemPropertyDescriptor pDescriptorAssessmentValue = adapterFactoryItemDelegator.getPropertyDescriptor(assessment, "value");
-					MEControl assessmentControlDescription = cFactory.createControl(pDescriptorAssessmentValue);
+					MEControl assessmentControlDescription = cFactory.createControl(pDescriptorAssessmentValue);					
 					this.assessmentControls.add(assessmentControlDescription);
+					
 					Composite comp = getToolkit().createComposite(matrixSection);
+					assessmentControlDescription.createControl(comp, parentStyle);
 					comp.setLayout(new GridLayout(1,true));
 					GridData gridData = new GridData();
 					gridData.horizontalAlignment = GridData.HORIZONTAL_ALIGN_CENTER;

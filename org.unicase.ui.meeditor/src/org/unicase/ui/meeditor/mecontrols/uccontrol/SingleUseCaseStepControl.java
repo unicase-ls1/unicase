@@ -129,19 +129,19 @@ public class SingleUseCaseStepControl extends AbstractMEControl{
 		
 		mainComposite = getToolkit().createComposite(parent);
 		mainComposite.setLayout(new GridLayout(1,true));
-		mainComposite.setLayoutData(new GridData(GridData.FILL_HORIZONTAL));
+		mainComposite.setLayoutData(new GridData(GridData.GRAB_HORIZONTAL));
 		mainComposite.setBackground(backGroundColor);	
 		
 		buttonComposite = getToolkit().createComposite(mainComposite);
 		buttonComposite.setLayout(new GridLayout(3,true));	
-		buttonComposite.setLayoutData(new GridData(GridData.FILL_HORIZONTAL));
+		buttonComposite.setLayoutData(new GridData(GridData.GRAB_HORIZONTAL));
 		buttonComposite.setBackground(backGroundColor);
 		
 		buildButtons();
 		
 		textComposite = getToolkit().createComposite(mainComposite);
 		textComposite.setLayout(new GridLayout(1,true));	
-		textComposite.setLayoutData(new GridData(GridData.FILL_HORIZONTAL));
+		textComposite.setLayoutData(new GridData(GridData.GRAB_HORIZONTAL));
 		textComposite.setBackground(backGroundColor);
 		
 		includeComposite = getToolkit().createComposite(mainComposite);
@@ -250,9 +250,10 @@ public class SingleUseCaseStepControl extends AbstractMEControl{
 		
 		ControlFactory cFactory = new ControlFactory(getEditingDomain(), getModelElement(), getToolkit());
 		IItemPropertyDescriptor pDescriptorName = adapterFactoryItemDelegator.getPropertyDescriptor(getModelElement(), "name");
-		textControlName = cFactory.createControl(pDescriptorName);
+		textControlName = cFactory.createControl(pDescriptorName);		
 		cName = textControlName.createControl(textComposite, parentStyle);
 		cName.setLayoutData(new GridData(GridData.FILL_HORIZONTAL));
+		
 		
 		IItemPropertyDescriptor pDescriptorDescription = adapterFactoryItemDelegator.getPropertyDescriptor(getModelElement(), "description");				
 		textControlDescription = cFactory.createControl(pDescriptorDescription);				
@@ -314,7 +315,11 @@ public class SingleUseCaseStepControl extends AbstractMEControl{
 				UseCase uc = (UseCase) contextModelElement;
 				Project project = uc.getProject();
 				project.addModelElement(p);
-				p.setName("New Actor Step");
+				if(isActorStep) {
+					p.setName("New Actor Step");
+				} else {
+					p.setName("New System Step");
+				}
 				p.setUserStep(isActorStep);
 				EList<Step> allSteps = uc.getUseCaseSteps();
 				if(position == -1) {
@@ -364,6 +369,16 @@ public class SingleUseCaseStepControl extends AbstractMEControl{
 			counter++;
 		}
 		return -1;
+	}
+
+	/**
+	 * sets the focus to the corresponding step. 
+	 */
+	public void setFocus() {
+		if(cName != null) {
+			cName.setFocus();
+		}
+		
 	}
 
 
