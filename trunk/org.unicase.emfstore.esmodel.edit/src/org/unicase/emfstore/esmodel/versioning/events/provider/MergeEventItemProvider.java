@@ -24,6 +24,7 @@ import org.eclipse.emf.edit.provider.ViewerNotification;
 import org.unicase.emfstore.esmodel.versioning.VersioningFactory;
 import org.unicase.emfstore.esmodel.versioning.events.EventsPackage;
 import org.unicase.emfstore.esmodel.versioning.events.MergeEvent;
+import org.unicase.emfstore.esmodel.versioning.operations.OperationsFactory;
 
 /**
  * This is the item provider adapter for a {@link org.unicase.emfstore.esmodel.versioning.events.MergeEvent} object.
@@ -115,6 +116,10 @@ public class MergeEventItemProvider extends EventItemProvider implements
 			super.getChildrenFeatures(object);
 			childrenFeatures
 					.add(EventsPackage.Literals.MERGE_EVENT__BASE_VERSION);
+			childrenFeatures
+					.add(EventsPackage.Literals.MERGE_EVENT__TARGET_VERSION);
+			childrenFeatures
+					.add(EventsPackage.Literals.MERGE_EVENT__LOCAL_CHANGES);
 		}
 		return childrenFeatures;
 	}
@@ -176,6 +181,8 @@ public class MergeEventItemProvider extends EventItemProvider implements
 					.getNotifier(), false, true));
 			return;
 		case EventsPackage.MERGE_EVENT__BASE_VERSION:
+		case EventsPackage.MERGE_EVENT__TARGET_VERSION:
+		case EventsPackage.MERGE_EVENT__LOCAL_CHANGES:
 			fireNotifyChanged(new ViewerNotification(notification, notification
 					.getNotifier(), true, false));
 			return;
@@ -198,6 +205,73 @@ public class MergeEventItemProvider extends EventItemProvider implements
 		newChildDescriptors.add(createChildParameter(
 				EventsPackage.Literals.MERGE_EVENT__BASE_VERSION,
 				VersioningFactory.eINSTANCE.createPrimaryVersionSpec()));
+
+		newChildDescriptors.add(createChildParameter(
+				EventsPackage.Literals.MERGE_EVENT__TARGET_VERSION,
+				VersioningFactory.eINSTANCE.createPrimaryVersionSpec()));
+
+		newChildDescriptors.add(createChildParameter(
+				EventsPackage.Literals.MERGE_EVENT__LOCAL_CHANGES,
+				OperationsFactory.eINSTANCE.createCompositeOperation()));
+
+		newChildDescriptors.add(createChildParameter(
+				EventsPackage.Literals.MERGE_EVENT__LOCAL_CHANGES,
+				OperationsFactory.eINSTANCE.createCreateDeleteOperation()));
+
+		newChildDescriptors.add(createChildParameter(
+				EventsPackage.Literals.MERGE_EVENT__LOCAL_CHANGES,
+				OperationsFactory.eINSTANCE.createAttributeOperation()));
+
+		newChildDescriptors.add(createChildParameter(
+				EventsPackage.Literals.MERGE_EVENT__LOCAL_CHANGES,
+				OperationsFactory.eINSTANCE.createSingleReferenceOperation()));
+
+		newChildDescriptors.add(createChildParameter(
+				EventsPackage.Literals.MERGE_EVENT__LOCAL_CHANGES,
+				OperationsFactory.eINSTANCE.createMultiReferenceOperation()));
+
+		newChildDescriptors
+				.add(createChildParameter(
+						EventsPackage.Literals.MERGE_EVENT__LOCAL_CHANGES,
+						OperationsFactory.eINSTANCE
+								.createMultiReferenceMoveOperation()));
+
+		newChildDescriptors.add(createChildParameter(
+				EventsPackage.Literals.MERGE_EVENT__LOCAL_CHANGES,
+				OperationsFactory.eINSTANCE.createMultiAttributeOperation()));
+
+		newChildDescriptors.add(createChildParameter(
+				EventsPackage.Literals.MERGE_EVENT__LOCAL_CHANGES,
+				OperationsFactory.eINSTANCE.createDiagramLayoutOperation()));
+
+		newChildDescriptors
+				.add(createChildParameter(
+						EventsPackage.Literals.MERGE_EVENT__LOCAL_CHANGES,
+						OperationsFactory.eINSTANCE
+								.createMultiAttributeMoveOperation()));
+	}
+
+	/**
+	 * This returns the label text for {@link org.eclipse.emf.edit.command.CreateChildCommand}.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 */
+	@Override
+	public String getCreateChildText(Object owner, Object feature,
+			Object child, Collection<?> selection) {
+		Object childFeature = feature;
+		Object childObject = child;
+
+		boolean qualify = childFeature == EventsPackage.Literals.MERGE_EVENT__BASE_VERSION
+				|| childFeature == EventsPackage.Literals.MERGE_EVENT__TARGET_VERSION;
+
+		if (qualify) {
+			return getString("_UI_CreateChild_text2", new Object[] {
+					getTypeText(childObject), getFeatureText(childFeature),
+					getTypeText(owner) });
+		}
+		return super.getCreateChildText(owner, feature, child, selection);
 	}
 
 }

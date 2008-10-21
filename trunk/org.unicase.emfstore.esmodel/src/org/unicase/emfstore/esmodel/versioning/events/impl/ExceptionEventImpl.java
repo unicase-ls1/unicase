@@ -8,7 +8,6 @@ package org.unicase.emfstore.esmodel.versioning.events.impl;
 import org.eclipse.emf.common.notify.Notification;
 import org.eclipse.emf.ecore.EClass;
 import org.eclipse.emf.ecore.impl.ENotificationImpl;
-import org.eclipse.emf.ecore.impl.EObjectImpl;
 import org.unicase.emfstore.esmodel.versioning.events.EventsPackage;
 import org.unicase.emfstore.esmodel.versioning.events.ExceptionEvent;
 
@@ -28,7 +27,7 @@ import org.unicase.emfstore.esmodel.versioning.events.ExceptionEvent;
  *
  * @generated
  */
-public class ExceptionEventImpl extends EObjectImpl implements ExceptionEvent {
+public class ExceptionEventImpl extends EventImpl implements ExceptionEvent {
 	/**
 	 * The default value of the '{@link #getExceptionTitle() <em>Exception Title</em>}' attribute.
 	 * <!-- begin-user-doc -->

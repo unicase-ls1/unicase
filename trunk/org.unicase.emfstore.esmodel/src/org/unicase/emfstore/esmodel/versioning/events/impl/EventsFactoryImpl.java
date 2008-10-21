@@ -16,6 +16,7 @@ import org.unicase.emfstore.esmodel.versioning.events.EventsFactory;
 import org.unicase.emfstore.esmodel.versioning.events.EventsPackage;
 import org.unicase.emfstore.esmodel.versioning.events.ExceptionEvent;
 import org.unicase.emfstore.esmodel.versioning.events.MergeEvent;
+import org.unicase.emfstore.esmodel.versioning.events.PluginStartEvent;
 import org.unicase.emfstore.esmodel.versioning.events.ReadEvent;
 
 /**
@@ -72,6 +73,8 @@ public class EventsFactoryImpl extends EFactoryImpl implements EventsFactory {
 			return createCheckoutEvent();
 		case EventsPackage.EXCEPTION_EVENT:
 			return createExceptionEvent();
+		case EventsPackage.PLUGIN_START_EVENT:
+			return createPluginStartEvent();
 		default:
 			throw new IllegalArgumentException("The class '" + eClass.getName()
 					+ "' is not a valid classifier");
@@ -126,6 +129,16 @@ public class EventsFactoryImpl extends EFactoryImpl implements EventsFactory {
 	public ExceptionEvent createExceptionEvent() {
 		ExceptionEventImpl exceptionEvent = new ExceptionEventImpl();
 		return exceptionEvent;
+	}
+
+	/**
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 */
+	public PluginStartEvent createPluginStartEvent() {
+		PluginStartEventImpl pluginStartEvent = new PluginStartEventImpl();
+		return pluginStartEvent;
 	}
 
 	/**

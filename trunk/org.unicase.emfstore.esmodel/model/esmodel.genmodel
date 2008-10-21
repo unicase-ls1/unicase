@@ -168,6 +168,8 @@
           <genFeatures createChild="false" ecoreFeature="ecore:EAttribute esmodel.ecore#//versioning/events/MergeEvent/numberOfConflicts"/>
           <genFeatures createChild="false" ecoreFeature="ecore:EAttribute esmodel.ecore#//versioning/events/MergeEvent/totalTime"/>
           <genFeatures property="None" children="true" createChild="true" ecoreFeature="ecore:EReference esmodel.ecore#//versioning/events/MergeEvent/baseVersion"/>
+          <genFeatures property="None" children="true" createChild="true" ecoreFeature="ecore:EReference esmodel.ecore#//versioning/events/MergeEvent/targetVersion"/>
+          <genFeatures property="None" children="true" createChild="true" ecoreFeature="ecore:EReference esmodel.ecore#//versioning/events/MergeEvent/localChanges"/>
         </genClasses>
         <genClasses ecoreClass="esmodel.ecore#//versioning/events/CheckoutEvent">
           <genFeatures property="None" children="true" createChild="true" ecoreFeature="ecore:EReference esmodel.ecore#//versioning/events/CheckoutEvent/baseVersion"/>
@@ -177,6 +179,9 @@
           <genFeatures createChild="false" ecoreFeature="ecore:EAttribute esmodel.ecore#//versioning/events/ExceptionEvent/ExceptionStackTrace"/>
           <genFeatures createChild="false" ecoreFeature="ecore:EAttribute esmodel.ecore#//versioning/events/ExceptionEvent/ExceptionCauseTitle"/>
           <genFeatures createChild="false" ecoreFeature="ecore:EAttribute esmodel.ecore#//versioning/events/ExceptionEvent/ExceptionCauseStackTrace"/>
+        </genClasses>
+        <genClasses ecoreClass="esmodel.ecore#//versioning/events/PluginStartEvent">
+          <genFeatures createChild="false" ecoreFeature="ecore:EAttribute esmodel.ecore#//versioning/events/PluginStartEvent/pluginId"/>
         </genClasses>
       </nestedGenPackages>
     </nestedGenPackages>

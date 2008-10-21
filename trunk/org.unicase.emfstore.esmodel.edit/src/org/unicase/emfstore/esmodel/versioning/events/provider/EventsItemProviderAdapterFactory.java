@@ -189,6 +189,30 @@ public class EventsItemProviderAdapterFactory extends EventsAdapterFactory
 	}
 
 	/**
+	 * This keeps track of the one adapter used for all {@link org.unicase.emfstore.esmodel.versioning.events.PluginStartEvent} instances.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 */
+	protected PluginStartEventItemProvider pluginStartEventItemProvider;
+
+	/**
+	 * This creates an adapter for a {@link org.unicase.emfstore.esmodel.versioning.events.PluginStartEvent}.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 */
+	@Override
+	public Adapter createPluginStartEventAdapter() {
+		if (pluginStartEventItemProvider == null) {
+			pluginStartEventItemProvider = new PluginStartEventItemProvider(
+					this);
+		}
+
+		return pluginStartEventItemProvider;
+	}
+
+	/**
 	 * This returns the root adapter factory that contains this factory.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
@@ -300,6 +324,8 @@ public class EventsItemProviderAdapterFactory extends EventsAdapterFactory
 			checkoutEventItemProvider.dispose();
 		if (exceptionEventItemProvider != null)
 			exceptionEventItemProvider.dispose();
+		if (pluginStartEventItemProvider != null)
+			pluginStartEventItemProvider.dispose();
 	}
 
 }

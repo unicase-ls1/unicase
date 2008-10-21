@@ -71,6 +71,15 @@ public interface EventsFactory extends EFactory {
 	ExceptionEvent createExceptionEvent();
 
 	/**
+	 * Returns a new object of class '<em>Plugin Start Event</em>'.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @return a new object of class '<em>Plugin Start Event</em>'.
+	 * @generated
+	 */
+	PluginStartEvent createPluginStartEvent();
+
+	/**
 	 * Returns the package supported by this factory.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->

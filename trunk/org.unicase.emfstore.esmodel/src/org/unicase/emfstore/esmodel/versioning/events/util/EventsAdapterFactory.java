@@ -14,6 +14,7 @@ import org.unicase.emfstore.esmodel.versioning.events.Event;
 import org.unicase.emfstore.esmodel.versioning.events.EventsPackage;
 import org.unicase.emfstore.esmodel.versioning.events.ExceptionEvent;
 import org.unicase.emfstore.esmodel.versioning.events.MergeEvent;
+import org.unicase.emfstore.esmodel.versioning.events.PluginStartEvent;
 import org.unicase.emfstore.esmodel.versioning.events.ReadEvent;
 
 /**
@@ -94,6 +95,11 @@ public class EventsAdapterFactory extends AdapterFactoryImpl {
 		@Override
 		public Adapter caseExceptionEvent(ExceptionEvent object) {
 			return createExceptionEventAdapter();
+		}
+
+		@Override
+		public Adapter casePluginStartEvent(PluginStartEvent object) {
+			return createPluginStartEventAdapter();
 		}
 
 		@Override
@@ -182,6 +188,20 @@ public class EventsAdapterFactory extends AdapterFactoryImpl {
 	 * @generated
 	 */
 	public Adapter createExceptionEventAdapter() {
+		return null;
+	}
+
+	/**
+	 * Creates a new adapter for an object of class '{@link org.unicase.emfstore.esmodel.versioning.events.PluginStartEvent <em>Plugin Start Event</em>}'.
+	 * <!-- begin-user-doc -->
+	 * This default implementation returns null so that we can easily ignore cases;
+	 * it's useful to ignore a case when inheritance will catch all the cases anyway.
+	 * <!-- end-user-doc -->
+	 * @return the new adapter.
+	 * @see org.unicase.emfstore.esmodel.versioning.events.PluginStartEvent
+	 * @generated
+	 */
+	public Adapter createPluginStartEventAdapter() {
 		return null;
 	}
 
