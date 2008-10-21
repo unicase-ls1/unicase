@@ -13,5 +13,17 @@
          </run>
       </application>
    </extension>
+   <extension
+         id="unicaseEmfstoreProduct"
+         point="org.eclipse.core.runtime.products">
+      <product
+            application="org.unicase.emfstore.id1"
+            name="unicase EmfStore">
+         <property
+               name="appName"
+               value="unicase EmfStore">
+         </property>
+      </product>
+   </extension>
 
 </plugin>
