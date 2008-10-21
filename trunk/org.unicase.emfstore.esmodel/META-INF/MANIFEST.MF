@@ -2,7 +2,7 @@ Manifest-Version: 1.0
 Bundle-ManifestVersion: 2
 Bundle-Name: unicase EMFStore Model Plug-in
 Bundle-SymbolicName: org.unicase.emfstore.esmodel;singleton:=true
-Bundle-Version: 0.2.6
+Bundle-Version: 0.2.7
 Bundle-ClassPath: .
 Bundle-Vendor: unicase.org
 Bundle-Localization: plugin
@@ -28,5 +28,5 @@ Export-Package: org.unicase.emfstore.esmodel,
 Require-Bundle: org.eclipse.core.runtime,
  org.eclipse.emf.ecore;visibility:=reexport,
  org.eclipse.emf.ecore.change;visibility:=reexport,
- org.unicase.model;bundle-version="[0.2.6,0.2.6]";visibility:=reexport
+ org.unicase.model;bundle-version="[0.2.7,0.2.7]";visibility:=reexport
 Bundle-ActivationPolicy: lazy
