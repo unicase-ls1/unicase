@@ -62,6 +62,10 @@
             class="org.unicase.workspace.edit.commands.ImportProjectSpaceHandler"
             commandId="org.unicase.workspace.edit.importProjectSpace">
       </handler>
+      <handler
+            class="org.unicase.workspace.edit.commands.ValidateHandler"
+            commandId="org.unicase.ui.common.validate">
+      </handler>
   </extension>
   <extension
         point="org.eclipse.ui.commands">
@@ -140,6 +144,10 @@
      <command
            id="org.unicase.workspace.edit.importProjectSpace"
            name="importProjectSpace">
+     </command>
+     <command
+           id="org.unicase.ui.common.validate"
+           name="Validate">
      </command>
   </extension>
   <extension
