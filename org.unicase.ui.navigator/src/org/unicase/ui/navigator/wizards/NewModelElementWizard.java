@@ -18,6 +18,11 @@ import org.unicase.model.ModelElement;
 import org.unicase.model.diagram.DiagramType;
 import org.unicase.model.diagram.MEDiagram;
 import org.unicase.model.document.LeafSection;
+import org.unicase.model.meeting.CompositeMeetingSection;
+import org.unicase.model.meeting.IssueMeetingSection;
+import org.unicase.model.meeting.Meeting;
+import org.unicase.model.meeting.MeetingFactory;
+import org.unicase.model.meeting.WorkItemMeetingSection;
 import org.unicase.ui.common.commands.ActionHelper;
 import org.unicase.workspace.WorkspaceManager;
 
@@ -94,6 +99,70 @@ public class NewModelElementWizard extends Wizard implements IWorkbenchWizard {
 					}
 				});
 
+			}
+			//FIXME: added DOLLI meeting structure as default - needs flexible approach.
+			if (newMEInstance instanceof Meeting) {
+				TransactionalEditingDomain domain = WorkspaceManager
+						.getInstance().getCurrentWorkspace().getEditingDomain();
+				domain.getCommandStack().execute(new RecordingCommand(domain) {
+					@Override
+					protected void doExecute() {
+						Meeting meeting = (Meeting) newMEInstance;
+
+						// create all DOLLI sections
+						CompositeMeetingSection objectiveSection = MeetingFactory.eINSTANCE
+								.createCompositeMeetingSection();
+						CompositeMeetingSection informationExchangeSection = MeetingFactory.eINSTANCE
+								.createCompositeMeetingSection();
+						CompositeMeetingSection miscSection = MeetingFactory.eINSTANCE
+								.createCompositeMeetingSection();
+						CompositeMeetingSection wrapUpSection = MeetingFactory.eINSTANCE
+								.createCompositeMeetingSection();
+						CompositeMeetingSection meetingCritiqueSection = MeetingFactory.eINSTANCE
+								.createCompositeMeetingSection();
+						IssueMeetingSection discussionSection = MeetingFactory.eINSTANCE
+								.createIssueMeetingSection();
+						WorkItemMeetingSection workItemsSection = MeetingFactory.eINSTANCE
+								.createWorkItemMeetingSection();
+						WorkItemMeetingSection newWorkItemsSection = MeetingFactory.eINSTANCE
+								.createWorkItemMeetingSection();
+
+						// set attributes
+						objectiveSection.setName("Objective");
+						informationExchangeSection
+								.setName("Information exchange");
+						miscSection.setName("Misc");
+						wrapUpSection.setName("Wrap up");
+						meetingCritiqueSection.setName("Meeting critique");
+						discussionSection.setName("Discussion");
+						workItemsSection.setName("Work items");
+						newWorkItemsSection.setName("New work items");
+
+						informationExchangeSection.setAllocatedTime(30);
+						discussionSection.setAllocatedTime(50);
+						wrapUpSection.setAllocatedTime(10);
+
+						// set links
+						informationExchangeSection.getSubsections().add(
+								workItemsSection);
+						informationExchangeSection.getSubsections().add(
+								miscSection);
+						wrapUpSection.getSubsections().add(newWorkItemsSection);
+						wrapUpSection.getSubsections().add(
+								meetingCritiqueSection);
+
+						meeting.getSections().add(objectiveSection);
+						meeting.getSections().add(informationExchangeSection);
+						meeting.getSections().add(discussionSection);
+						meeting.getSections().add(wrapUpSection);
+
+						meeting.setIdentifiedIssuesSection(discussionSection);
+						meeting
+								.setIdentifiedWorkItemsSection(newWorkItemsSection);
+
+						meeting.setName("Dolli meeting");
+					}
+				});
 			}
 			// 3.open the newly created ME
 			ActionHelper.openModelElement(newMEInstance);
