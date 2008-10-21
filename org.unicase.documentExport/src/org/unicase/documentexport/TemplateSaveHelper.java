@@ -91,49 +91,19 @@ public class TemplateSaveHelper {
 	
 	
 	public static DocumentTemplate loadTemplate(String fileName) {
+		//SH: fix this, only works for default template
 		FileInputStream f_in;
 		try {
-//			URL localClientKeyURL = FileLocator.toFileURL(clientKeyURL);
-//			File clientKeySource = new File(localClientKeyURL.getPath());
-//
-//			File clientKeyTarget = new File(Configuration
-//						.getWorkspaceDirectory()
-//						+ "unicaseClient.keystore");
-//			URL url2 = FileLocator.find(
-//					Activator.getDefault().getBundle(), 
-//					new Path("templates/"), 
-//					Collections.EMPTY_MAP
-//				);	
 			
-			URL url2 = FileLocator.find(Platform
-					.getBundle("org.unicase.documentExport"), 
-					new Path("templates/" + fileName), 
-					null
-				);
+			InputStream inputStream = TemplateSaveHelper.class.getResourceAsStream(fileName);
 			
-			File f = new File(FileLocator.resolve((url2)).getPath());
-			
-			if (!f.exists()) {
-				WorkspaceUtil.log("The template " + fileName + "doesn't exist", new Exception(), IStatus.WARNING);
+			if (inputStream==null) {
+				WorkspaceUtil.log("The template " + fileName + "doesn't exist", null, IStatus.WARNING);
 				return null;
 			}
 			
-			
-//			URL url = FileLocator.find(
-//					Activator.getDefault().getBundle(), 
-//					new Path("templates/" + fileName), 
-//					Collections.EMPTY_MAP
-//				);
-			
-			Path templatePath = new Path("templates/" + fileName);
-			InputStream fIn = FileLocator.openStream(
-					Activator.getDefault().getBundle(), 
-					templatePath, 
-					false
-				);
-
 			// Read object using ObjectInputStream
-			ObjectInputStream objIn = new ObjectInputStream (fIn);
+			ObjectInputStream objIn = new ObjectInputStream (inputStream);
 			
 			// Read an object
 			Object obj = objIn.readObject();
