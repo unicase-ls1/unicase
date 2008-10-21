@@ -27,7 +27,6 @@ import org.eclipse.ui.forms.events.IHyperlinkListener;
 import org.eclipse.ui.forms.widgets.FormToolkit;
 import org.eclipse.ui.forms.widgets.Hyperlink;
 import org.eclipse.ui.forms.widgets.Section;
-import org.unicase.model.ModelElement;
 import org.unicase.model.requirement.RequirementFactory;
 import org.unicase.model.requirement.Step;
 import org.unicase.model.requirement.UseCase;
@@ -86,7 +85,7 @@ public class UseCaseStepsControl extends AbstractMEControl{
 	private Section section;
 	
 	private Composite stepArea;
-	private Step focusedStep = null;
+	private Step focusedStep;
 	private ArrayList<Step> currentStepList = new ArrayList<Step>();
 	
 	
