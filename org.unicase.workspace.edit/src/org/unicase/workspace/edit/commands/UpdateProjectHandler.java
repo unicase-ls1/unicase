@@ -82,6 +82,10 @@ public class UpdateProjectHandler extends ProjectActionHandler implements
 		shell = PlatformUI.getWorkbench().getActiveWorkbenchWindow().getShell();
 		ProgressMonitorDialog progressDialog = new ProgressMonitorDialog(
 				PlatformUI.getWorkbench().getActiveWorkbenchWindow().getShell());
+		progressDialog.open();
+		progressDialog.getProgressMonitor().beginTask("Update project...",
+				100);
+		progressDialog.getProgressMonitor().worked(10);
 		// initially setting the status as successful in case the user
 		// is already logged in
 		int loginStatus = LoginDialog.SUCCESSFUL;
@@ -137,10 +141,6 @@ public class UpdateProjectHandler extends ProjectActionHandler implements
 			loginStatus = login.open();
 		}
 		if (loginStatus == LoginDialog.SUCCESSFUL) {
-			progressDialog.open();
-			progressDialog.getProgressMonitor().beginTask("Update project...",
-					100);
-			progressDialog.getProgressMonitor().worked(10);
 			projectSpace.update(VersionSpec.HEAD_VERSION,
 					UpdateProjectHandler.this);
 		}
