@@ -28,7 +28,7 @@ public final class Configuration {
 		// nothing to do
 	}
 
-	//private static Map<Object, Object> resourceSaveOptions;
+	// private static Map<Object, Object> resourceSaveOptions;
 
 	/**
 	 * Get the Workspace directory.
@@ -85,19 +85,22 @@ public final class Configuration {
 	public static List<ServerInfo> getDefaultServerInfos() {
 		List<ServerInfo> serverInfos = new ArrayList<ServerInfo>();
 
-		ServerInfo serverInfo1 = WorkspaceFactory.eINSTANCE.createServerInfo();
-		serverInfo1.setDisplayName("Localhost Server");
-		serverInfo1.setName("Localhost Server");
-		serverInfo1.setPort(1099);
-		serverInfo1.setUrl("localhost");
-		Usersession superUsersession = WorkspaceFactory.eINSTANCE
-				.createUsersession();
-		superUsersession.setPassword("super");
-		superUsersession.setSavePassword(true);
-		superUsersession.setServerInfo(serverInfo1);
-		superUsersession.setUsername("super");
-		serverInfo1.setLastUsersession(superUsersession);
-		serverInfos.add(serverInfo1);
+		if (!isReleaseVersion()) {
+			ServerInfo serverInfo1 = WorkspaceFactory.eINSTANCE
+					.createServerInfo();
+			serverInfo1.setDisplayName("Localhost Server");
+			serverInfo1.setName("Localhost Server");
+			serverInfo1.setPort(1099);
+			serverInfo1.setUrl("localhost");
+			Usersession superUsersession = WorkspaceFactory.eINSTANCE
+					.createUsersession();
+			superUsersession.setPassword("super");
+			superUsersession.setSavePassword(true);
+			superUsersession.setServerInfo(serverInfo1);
+			superUsersession.setUsername("super");
+			serverInfo1.setLastUsersession(superUsersession);
+			serverInfos.add(serverInfo1);
+		}
 
 		ServerInfo serverInfo2 = WorkspaceFactory.eINSTANCE.createServerInfo();
 		serverInfo2.setDisplayName("unicase Server");
@@ -126,26 +129,28 @@ public final class Configuration {
 	public static int getMaxResourceFileSizeOnExpand() {
 		return 50000;
 	}
-	
-	
+
 	/**
 	 * Get the client version as in the org.unicase.workspace manifest file.
-	 * @return the client version number 
+	 * 
+	 * @return the client version number
 	 */
 	public static ClientVersionInfo getClientVersion() {
-		ClientVersionInfo clientVersionInfo = EsmodelFactory.eINSTANCE.createClientVersionInfo();
+		ClientVersionInfo clientVersionInfo = EsmodelFactory.eINSTANCE
+				.createClientVersionInfo();
 		clientVersionInfo.setName("unicase.org eclipse client");
-		
+
 		Bundle emfStoreBundle = Platform.getBundle("org.unicase.workspace");
 		String emfStoreVersionString = (String) emfStoreBundle.getHeaders()
 				.get(org.osgi.framework.Constants.BUNDLE_VERSION);
-		
+
 		clientVersionInfo.setVersion(emfStoreVersionString);
 		return clientVersionInfo;
 	}
-	
+
 	/**
 	 * Determine if this is a release version or not.
+	 * 
 	 * @return true if it is a release version
 	 */
 	public static boolean isReleaseVersion() {
