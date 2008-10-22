@@ -43,6 +43,8 @@ import org.unicase.ui.common.commands.ActionHelper;
 import org.unicase.ui.common.dnd.UCDropAdapter;
 import org.unicase.ui.common.filter.UserFilter;
 import org.unicase.ui.stem.Activator;
+import org.unicase.ui.stem.views.AssignedToLabelProvider;
+import org.unicase.ui.stem.views.StatusLabelProvider;
 import org.unicase.workspace.Workspace;
 import org.unicase.workspace.WorkspaceManager;
 import org.unicase.workspace.WorkspacePackage;
