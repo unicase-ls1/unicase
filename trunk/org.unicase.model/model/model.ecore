@@ -134,12 +134,13 @@
     </eClassifiers>
     <eClassifiers xsi:type="ecore:EClass" name="Milestone" eSuperTypes="#//ModelElement"/>
     <eClassifiers xsi:type="ecore:EEnum" name="ActivityType">
-      <eLiterals name="MANAGEMENT" literal="Management"/>
+      <eLiterals name="NONE" literal="&lt;please select>"/>
       <eLiterals name="ANALYSIS" value="1" literal="Analysis"/>
       <eLiterals name="SYSTEM_DESIGN" value="2" literal="System Design"/>
       <eLiterals name="OBJECT_DESIGN" value="3" literal="Object Design"/>
       <eLiterals name="IMPLEMENTATION" value="4" literal="Implementation"/>
       <eLiterals name="TESTING" value="5" literal="Testing"/>
+      <eLiterals name="MANAGEMENT" value="6" literal="Management"/>
     </eClassifiers>
     <eClassifiers xsi:type="ecore:EClass" name="Checkable" abstract="true" interface="true">
       <eStructuralFeatures xsi:type="ecore:EAttribute" name="checked" eType="ecore:EDataType platform:/plugin/org.eclipse.emf.ecore/model/Ecore.ecore#//EBoolean"

@@ -18,6 +18,6 @@ Require-Bundle: org.eclipse.core.runtime,
  org.eclipse.emf.ecore.change;visibility:=reexport,
  org.eclipse.emf.transaction,
  org.eclipse.emf.ecore.xmi,
- org.unicase.emfstore;bundle-version="[0.2.7.qualifier,0.2.7.qualifier]";visibility:=reexport
+ org.unicase.emfstore;bundle-version="0.2.7";visibility:=reexport
 Bundle-ActivationPolicy: lazy
 Bundle-Activator: org.unicase.workspace.Activator
