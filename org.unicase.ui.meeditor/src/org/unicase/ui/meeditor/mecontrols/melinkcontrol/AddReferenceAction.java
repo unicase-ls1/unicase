@@ -135,9 +135,12 @@ public class AddReferenceAction extends Action {
 				new ComposedAdapterFactory(
 						ComposedAdapterFactory.Descriptor.Registry.INSTANCE))
 				.getImage(obj);
-
+		String overlayString = "icons/link_overlay.png";
+		if(eReference.isContainment()){
+			overlayString = "icons/containment_overlay.png";
+		}
 		ImageDescriptor addOverlay = org.unicase.ui.common.Activator
-				.getImageDescriptor("icons/link_overlay.png");
+				.getImageDescriptor(overlayString);
 		OverlayImageDescriptor imageDescriptor = new OverlayImageDescriptor(
 				image, addOverlay, OverlayImageDescriptor.LOWER_RIGHT);
 		setImageDescriptor(imageDescriptor);
