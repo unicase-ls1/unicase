@@ -6,6 +6,7 @@
  */
 package org.unicase.workspace.edit.views;
 
+import java.text.SimpleDateFormat;
 import java.util.List;
 import java.util.Set;
 
@@ -33,6 +34,7 @@ import org.eclipse.swt.layout.GridLayout;
 import org.eclipse.swt.widgets.Composite;
 import org.eclipse.swt.widgets.Tree;
 import org.unicase.emfstore.esmodel.versioning.ChangePackage;
+import org.unicase.emfstore.esmodel.versioning.LogMessage;
 import org.unicase.emfstore.esmodel.versioning.operations.AbstractOperation;
 import org.unicase.model.ModelElement;
 import org.unicase.ui.common.decorators.OverlayImageDescriptor;
@@ -78,8 +80,24 @@ public class ChangesTreeComposite extends Composite {
 							image, overlay, OverlayImageDescriptor.LOWER_RIGHT);
 					cell.setImage(imageDescriptor.createImage());
 				}
-			} else {
-				cell.setText("Change Package");
+			} else if (element instanceof ChangePackage) {
+				ChangePackage cPackage = (ChangePackage) element;
+				LogMessage logMessage = cPackage.getLogMessage();
+				if(logMessage!=null){
+					StringBuffer log = new StringBuffer();
+					log.append("[");
+					log.append(logMessage.getAuthor());
+					log.append("@");
+					SimpleDateFormat format = new SimpleDateFormat("yyyy-MM-dd HH:mm");
+					log.append(format.format(logMessage.getDate()));
+					log.append("]");
+					log.append(" \'");
+					log.append(logMessage.getMessage());
+					log.append("\' ");
+					cell.setText(log.toString());
+				}else{
+					cell.setText(""); //No log message in case of commit change tree
+				}
 			}
 
 		}
@@ -198,7 +216,6 @@ public class ChangesTreeComposite extends Composite {
 						&& !affectedTable.getTable().isDisposed()) {
 					affectedTable.getTable().dispose();
 					affectedTableComposite.dispose();
-					ChangesTreeComposite.this.layout(true);
 				}
 				if (selected instanceof AbstractOperation) {
 					AbstractOperation operation = (AbstractOperation) selected;
@@ -213,13 +230,14 @@ public class ChangesTreeComposite extends Composite {
 						createAffectedTableComposite(emfProvider, affectedList);
 					}
 				}
+				ChangesTreeComposite.this.layout(true);
 			}
 
 		});
 
 		// the changed model element
 		TreeViewerColumn tclmME = new TreeViewerColumn(treeViewer, SWT.NONE);
-		tclmME.getColumn().setWidth(200);
+		tclmME.getColumn().setWidth(250);
 		tclmME.getColumn().setText("ModelElement");
 		tclmME.setLabelProvider(new ColumnLabelProvider() {
 			@Override
@@ -245,7 +263,7 @@ public class ChangesTreeComposite extends Composite {
 		// operation column
 		TreeViewerColumn tclmOp = new TreeViewerColumn(treeViewer, SWT.NONE);
 		tclmOp.getColumn().setText("Operation");
-		tclmOp.getColumn().setWidth(150);// getShell().getSize().x - 350);
+		tclmOp.getColumn().setWidth(getShell().getSize().x-860);
 		tclmOp.setLabelProvider(new OperationColumnLabelProvider(emfProvider));
 		ColumnViewerToolTipSupport.enableFor(treeViewer);
 
