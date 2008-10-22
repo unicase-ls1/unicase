@@ -144,13 +144,12 @@ public class ProposalItemProvider extends ModelElementItemProvider implements
 	 * This returns the label text for the adapted class.
 	 * <!-- begin-user-doc
 	 * --> <!-- end-user-doc -->
-	 * @generated
+	 * @generated NOT
+	 * {@inheritDoc}
 	 */
 	@Override
 	public String getText(Object object) {
-		String label = ((Proposal) object).getName();
-		return label == null || label.length() == 0 ? getString("_UI_Proposal_type")
-				: getString("_UI_Proposal_type") + " " + label;
+		return super.getText(object);
 	}
 
 	/**
