@@ -57,6 +57,7 @@ public class LoginDialog extends TitleAreaDialog implements SelectionListener {
 	private Button savePassword;
 	private Composite contents;
 	private ServerInfo server;
+	private String exception;
 
 	/**
 	 * Default constructor.
@@ -85,6 +86,9 @@ public class LoginDialog extends TitleAreaDialog implements SelectionListener {
 
 		setTitle("Log in");
 		setMessage("Please enter your username and password");
+		if(exception!=null){
+			setErrorMessage(exception);
+		}
 
 		Label sessionsLabel = new Label(contents, SWT.NULL);
 		sessionsLabel.setText("Saved sessions:");
@@ -233,7 +237,7 @@ public class LoginDialog extends TitleAreaDialog implements SelectionListener {
 				close();
 				return SUCCESSFUL;
 			} catch (EmfStoreException e) {
-				setErrorMessage(e.getMessage());
+				exception = e.getMessage();
 			}
 		}
 		return super.open();
