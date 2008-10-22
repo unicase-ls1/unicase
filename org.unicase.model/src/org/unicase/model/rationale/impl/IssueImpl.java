@@ -150,7 +150,7 @@ public class IssueImpl extends AnnotationImpl implements Issue {
 	 * @generated
 	 * @ordered
 	 */
-	protected static final ActivityType ACTIVITY_EDEFAULT = ActivityType.MANAGEMENT;
+	protected static final ActivityType ACTIVITY_EDEFAULT = ActivityType.NONE;
 
 	/**
 	 * The cached value of the '{@link #getActivity() <em>Activity</em>}' attribute.

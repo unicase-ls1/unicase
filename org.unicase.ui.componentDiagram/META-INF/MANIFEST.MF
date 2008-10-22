@@ -38,7 +38,7 @@ Require-Bundle: org.eclipse.core.runtime,
  org.eclipse.gmf.runtime.draw2d.ui;visibility:=reexport,
  org.eclipse.gef;visibility:=reexport,
  org.eclipse.ocl.ecore;visibility:=reexport,
- org.unicase.model.edit;bundle-version="[0.2.7.qualifier,0.2.7.qualifier]";visibility:=reexport,
- org.unicase.ui.common;bundle-version="[0.2.7.qualifier,0.2.7.qualifier]"
+ org.unicase.model.edit;bundle-version="0.2.7";visibility:=reexport,
+ org.unicase.ui.common;bundle-version="0.2.7"
 Eclipse-LazyStart: true
 Import-Package: org.unicase.workspace

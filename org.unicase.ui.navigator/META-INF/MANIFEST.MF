@@ -6,7 +6,7 @@ Bundle-Version: 0.2.7.qualifier
 Bundle-Activator: org.unicase.ui.navigator.Activator
 Bundle-Vendor: unicase.org
 Require-Bundle: org.eclipse.emf.transaction.ui,
- org.unicase.ui.meeditor;bundle-version="[0.2.7.qualifier,0.2.7.qualifier]"
+ org.unicase.ui.meeditor;bundle-version="0.2.7"
 Bundle-RequiredExecutionEnvironment: J2SE-1.5
 Bundle-ActivationPolicy: lazy
 

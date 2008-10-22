@@ -24,3 +24,4 @@ Require-Bundle: org.eclipse.gmf.runtime.diagram.core,
  org.eclipse.emf.ecore.edit;visibility:=reexport,
  org.unicase.model;bundle-version="[0.2.7.qualifier,0.2.7.qualifier]";visibility:=reexport
 Bundle-ActivationPolicy: lazy
+Import-Package: org.unicase.model.rationale

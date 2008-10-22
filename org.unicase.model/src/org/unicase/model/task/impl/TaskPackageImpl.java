@@ -607,12 +607,13 @@ public class TaskPackageImpl extends EPackageImpl implements TaskPackage {
 
 		// Initialize enums and add enum literals
 		initEEnum(activityTypeEEnum, ActivityType.class, "ActivityType");
-		addEEnumLiteral(activityTypeEEnum, ActivityType.MANAGEMENT);
+		addEEnumLiteral(activityTypeEEnum, ActivityType.NONE);
 		addEEnumLiteral(activityTypeEEnum, ActivityType.ANALYSIS);
 		addEEnumLiteral(activityTypeEEnum, ActivityType.SYSTEM_DESIGN);
 		addEEnumLiteral(activityTypeEEnum, ActivityType.OBJECT_DESIGN);
 		addEEnumLiteral(activityTypeEEnum, ActivityType.IMPLEMENTATION);
 		addEEnumLiteral(activityTypeEEnum, ActivityType.TESTING);
+		addEEnumLiteral(activityTypeEEnum, ActivityType.MANAGEMENT);
 	}
 
 } // TaskPackageImpl

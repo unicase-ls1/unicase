@@ -16,9 +16,9 @@ Export-Package:
 Require-Bundle: org.eclipse.ui,
  org.eclipse.emf.transaction,
  org.eclipse.gmf.runtime.notation.edit,
- org.unicase.workspace;bundle-version="[0.2.7.qualifier,0.2.7.qualifier]";visibility:=reexport,
- org.unicase.ui.common;bundle-version="[0.2.7.qualifier,0.2.7.qualifier]";visibility:=reexport,
- org.unicase.emfstore.esmodel.edit;bundle-version="[0.2.7.qualifier,0.2.7.qualifier]";visibility:=reexport,
- org.eclipse.emf.edit.ui
+ org.eclipse.emf.edit.ui,
+ org.unicase.workspace;bundle-version="0.2.7";visibility:=reexport,
+ org.unicase.ui.common;bundle-version="0.2.7";visibility:=reexport,
+ org.unicase.emfstore.esmodel.edit;bundle-version="0.2.7";visibility:=reexport
 Bundle-ActivationPolicy: lazy
 Import-Package: org.eclipse.emf.edit.ui.provider

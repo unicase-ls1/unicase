@@ -81,12 +81,13 @@
     <nestedGenPackages prefix="Task" basePackage="org.unicase.model" disposableProviderFactory="true"
         ecorePackage="model.ecore#//task">
       <genEnums typeSafeEnumCompatible="false" ecoreEnum="model.ecore#//task/ActivityType">
-        <genEnumLiterals ecoreEnumLiteral="model.ecore#//task/ActivityType/MANAGEMENT"/>
+        <genEnumLiterals ecoreEnumLiteral="model.ecore#//task/ActivityType/NONE"/>
         <genEnumLiterals ecoreEnumLiteral="model.ecore#//task/ActivityType/ANALYSIS"/>
         <genEnumLiterals ecoreEnumLiteral="model.ecore#//task/ActivityType/SYSTEM_DESIGN"/>
         <genEnumLiterals ecoreEnumLiteral="model.ecore#//task/ActivityType/OBJECT_DESIGN"/>
         <genEnumLiterals ecoreEnumLiteral="model.ecore#//task/ActivityType/IMPLEMENTATION"/>
         <genEnumLiterals ecoreEnumLiteral="model.ecore#//task/ActivityType/TESTING"/>
+        <genEnumLiterals ecoreEnumLiteral="model.ecore#//task/ActivityType/MANAGEMENT"/>
       </genEnums>
       <genClasses ecoreClass="model.ecore#//task/ActionItem">
         <genFeatures createChild="false" ecoreFeature="ecore:EAttribute model.ecore#//task/ActionItem/done"/>

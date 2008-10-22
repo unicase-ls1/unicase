@@ -23,16 +23,14 @@ import org.eclipse.emf.common.util.Enumerator;
  */
 public enum ActivityType implements Enumerator {
 	/**
-	 * The '<em><b>MANAGEMENT</b></em>' literal object.
+	 * The '<em><b>NONE</b></em>' literal object.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
-	 * @see #MANAGEMENT_VALUE
+	 * @see #NONE_VALUE
 	 * @generated
 	 * @ordered
 	 */
-	MANAGEMENT(0, "MANAGEMENT", "Management"),
-
-	/**
+	NONE(0, "NONE", "<please select>"), /**
 	 * The '<em><b>ANALYSIS</b></em>' literal object.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
@@ -80,22 +78,30 @@ public enum ActivityType implements Enumerator {
 	 * @generated
 	 * @ordered
 	 */
-	TESTING(5, "TESTING", "Testing");
-
-	/**
-	 * The '<em><b>MANAGEMENT</b></em>' literal value.
+	TESTING(5, "TESTING", "Testing"), /**
+	 * The '<em><b>MANAGEMENT</b></em>' literal object.
 	 * <!-- begin-user-doc -->
-	 * <p>
-	 * If the meaning of '<em><b>MANAGEMENT</b></em>' literal object isn't clear,
-	 * there really should be more of a description here...
-	 * </p>
 	 * <!-- end-user-doc -->
-	 * @see #MANAGEMENT
-	 * @model literal="Management"
+	 * @see #MANAGEMENT_VALUE
 	 * @generated
 	 * @ordered
 	 */
-	public static final int MANAGEMENT_VALUE = 0;
+	MANAGEMENT(6, "MANAGEMENT", "Management");
+
+	/**
+	 * The '<em><b>NONE</b></em>' literal value.
+	 * <!-- begin-user-doc -->
+	 * <p>
+	 * If the meaning of '<em><b>NONE</b></em>' literal object isn't clear,
+	 * there really should be more of a description here...
+	 * </p>
+	 * <!-- end-user-doc -->
+	 * @see #NONE
+	 * @model literal="<please select>"
+	 * @generated
+	 * @ordered
+	 */
+	public static final int NONE_VALUE = 0;
 
 	/**
 	 * The '<em><b>ANALYSIS</b></em>' literal value.
@@ -173,14 +179,29 @@ public enum ActivityType implements Enumerator {
 	public static final int TESTING_VALUE = 5;
 
 	/**
+	 * The '<em><b>MANAGEMENT</b></em>' literal value.
+	 * <!-- begin-user-doc -->
+	 * <p>
+	 * If the meaning of '<em><b>MANAGEMENT</b></em>' literal object isn't clear,
+	 * there really should be more of a description here...
+	 * </p>
+	 * <!-- end-user-doc -->
+	 * @see #MANAGEMENT
+	 * @model literal="Management"
+	 * @generated
+	 * @ordered
+	 */
+	public static final int MANAGEMENT_VALUE = 6;
+
+	/**
 	 * An array of all the '<em><b>Activity Type</b></em>' enumerators.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
 	private static final ActivityType[] VALUES_ARRAY = new ActivityType[] {
-			MANAGEMENT, ANALYSIS, SYSTEM_DESIGN, OBJECT_DESIGN, IMPLEMENTATION,
-			TESTING, };
+			NONE, ANALYSIS, SYSTEM_DESIGN, OBJECT_DESIGN, IMPLEMENTATION,
+			TESTING, MANAGEMENT, };
 
 	/**
 	 * A public read-only list of all the '<em><b>Activity Type</b></em>' enumerators.
@@ -231,8 +252,8 @@ public enum ActivityType implements Enumerator {
 	 */
 	public static ActivityType get(int value) {
 		switch (value) {
-		case MANAGEMENT_VALUE:
-			return MANAGEMENT;
+		case NONE_VALUE:
+			return NONE;
 		case ANALYSIS_VALUE:
 			return ANALYSIS;
 		case SYSTEM_DESIGN_VALUE:
@@ -243,6 +264,8 @@ public enum ActivityType implements Enumerator {
 			return IMPLEMENTATION;
 		case TESTING_VALUE:
 			return TESTING;
+		case MANAGEMENT_VALUE:
+			return MANAGEMENT;
 		}
 		return null;
 	}

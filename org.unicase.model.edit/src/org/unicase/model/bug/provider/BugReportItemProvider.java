@@ -28,10 +28,9 @@ import org.unicase.model.provider.ModelEditPlugin;
 import org.unicase.model.task.TaskPackage;
 
 /**
- * This is the item provider adapter for a
- * {@link org.unicase.model.bug.BugReport} object. <!-- begin-user-doc --> <!--
+ * This is the item provider adapter for a {@link org.unicase.model.bug.BugReport} object.
+ * <!-- begin-user-doc --> <!--
  * end-user-doc -->
- * 
  * @generated
  */
 public class BugReportItemProvider extends AnnotationItemProvider implements
@@ -74,7 +73,6 @@ public class BugReportItemProvider extends AnnotationItemProvider implements
 	/**
 	 * This adds a property descriptor for the Containing Workpackage feature.
 	 * <!-- begin-user-doc --> <!-- end-user-doc -->
-	 * 
 	 * @generated
 	 */
 	protected void addContainingWorkpackagePropertyDescriptor(Object object) {
@@ -235,19 +233,12 @@ public class BugReportItemProvider extends AnnotationItemProvider implements
 	}
 
 	/**
-	 * This returns BugReport.gif. <!-- begin-user-doc --> <!-- end-user-doc -->
-	 * 
+	 * This returns BugReport.gif.
+	 * <!-- begin-user-doc --> <!-- end-user-doc -->
 	 * @generated
 	 */
 	@Override
 	public Object getImage(Object object) {
-		// HN: Add image correctly
-		// if(object instanceof BugReport){
-		// if(((BugReport) object).getStatus().equals(BugStatus.RESOLVED)){
-		// return overlayImage(object, getResourceLocator().getImage(
-		// "full/obj16/BugReportResolved"));
-		// }
-		// }
 		return overlayImage(object, getResourceLocator().getImage(
 				"full/obj16/BugReport"));
 	}
@@ -264,11 +255,10 @@ public class BugReportItemProvider extends AnnotationItemProvider implements
 	}
 
 	/**
-	 * This handles model notifications by calling {@link #updateChildren} to
-	 * update any cached children and by creating a viewer notification, which
-	 * it passes to {@link #fireNotifyChanged}. <!-- begin-user-doc --> <!--
+	 * This handles model notifications by calling {@link #updateChildren} to update any cached
+	 * children and by creating a viewer notification, which it passes to {@link #fireNotifyChanged}.
+	 * <!-- begin-user-doc --> <!--
 	 * end-user-doc -->
-	 * 
 	 * @generated
 	 */
 	@Override

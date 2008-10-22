@@ -19,6 +19,6 @@ Require-Bundle: org.eclipse.core.runtime,
  org.eclipse.emf.ecore.edit;visibility:=reexport,
  org.eclipse.emf.ecore.change.edit,
  org.eclipse.gmf.runtime.notation.edit,
- org.unicase.model.edit;bundle-version="[0.2.7.qualifier,0.2.7.qualifier]";visibility:=reexport,
- org.unicase.emfstore.esmodel;bundle-version="[0.2.7.qualifier,0.2.7.qualifier]";visibility:=reexport
+ org.unicase.model.edit;bundle-version="0.2.7";visibility:=reexport,
+ org.unicase.emfstore.esmodel;bundle-version="0.2.7";visibility:=reexport
 Bundle-ActivationPolicy: lazy

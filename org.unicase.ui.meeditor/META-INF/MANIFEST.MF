@@ -10,7 +10,7 @@ Require-Bundle: org.eclipse.ui.forms,
  org.eclipse.jface.databinding,
  org.eclipse.jface.text,
  org.eclipse.emf.transaction.ui,
- org.unicase.workspace.edit;bundle-version="[0.2.7.qualifier,0.2.7.qualifier]";visibility:=reexport
+ org.unicase.workspace.edit;bundle-version="0.2.7";visibility:=reexport
 Bundle-RequiredExecutionEnvironment: J2SE-1.5
 Bundle-ActivationPolicy: lazy
 Export-Package: org.unicase.ui.meeditor
