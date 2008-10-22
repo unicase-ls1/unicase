@@ -13,7 +13,6 @@ import java.util.List;
 import org.eclipse.emf.edit.ui.provider.AdapterFactoryContentProvider;
 import org.eclipse.emf.transaction.RecordingCommand;
 import org.eclipse.emf.transaction.TransactionalEditingDomain;
-import org.eclipse.jface.viewers.TreeViewer;
 import org.eclipse.swt.widgets.Display;
 import org.eclipse.ui.PlatformUI;
 import org.unicase.emfstore.esmodel.ProjectInfo;
@@ -77,7 +76,6 @@ public class ESBrowserContentProvider extends AdapterFactoryContentProvider {
 			TransactionalEditingDomain domain = TransactionalEditingDomain.Registry.INSTANCE.getEditingDomain("org.unicase.EditingDomain");
 			ContentProviderRecordingCommand command = new ContentProviderRecordingCommand(session,serverInfo,domain);
 			domain.getCommandStack().execute(command);
-			((TreeViewer)viewer).refresh(object,true);
 			Display.getDefault().asyncExec(new Runnable() {
 				public void run() {
 					PlatformUI.getWorkbench().getDecoratorManager().
