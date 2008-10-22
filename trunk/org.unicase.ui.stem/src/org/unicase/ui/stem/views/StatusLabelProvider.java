@@ -4,7 +4,7 @@
  *
  * $Id$
  */
-package org.unicase.ui.stem.views.iterationplanningview;
+package org.unicase.ui.stem.views;
 
 import java.net.URL;
 
