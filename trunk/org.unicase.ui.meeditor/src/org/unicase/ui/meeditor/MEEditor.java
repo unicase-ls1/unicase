@@ -140,7 +140,8 @@ public class MEEditor extends SharedHeaderFormEditor {
 				
 			};			
 			this.modelElement.eAdapters().add(eAdapter);
-			SimpleDateFormat dateFormat = new SimpleDateFormat("yyyy-MM-dd HH:mm:ss"); 
+			SimpleDateFormat dateFormat = new SimpleDateFormat("yyyy-MM-dd"); 
+			SimpleDateFormat timeFormat = new SimpleDateFormat("HH:mm:ss"); 
 			StringBuffer stringBuffer = new StringBuffer();
 			Date creationDate = modelElement.getCreationDate();
 			if(creationDate==null){
@@ -154,8 +155,10 @@ public class MEEditor extends SharedHeaderFormEditor {
 				});
 			}
 			creationDate = modelElement.getCreationDate();
-			stringBuffer.append("Created: ");
+			stringBuffer.append("Created on ");
 			stringBuffer.append(dateFormat.format(creationDate));
+			stringBuffer.append(" at ");
+			stringBuffer.append(timeFormat.format(creationDate));
 			stringBuffer.append(" by ");
 			stringBuffer.append(modelElement.getCreator());
 			getEditorSite().getActionBars().getStatusLineManager().setMessage(stringBuffer.toString());
