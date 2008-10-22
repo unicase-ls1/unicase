@@ -289,11 +289,11 @@ public class UCDropAdapter extends DropTargetAdapter {
 						}else{
 							if(haveSameEContainer(target, source.get(0))){
 								for(int i = source.size() - 1; i >=0; i--){
-									eList.move(targetIndex - 1 , source.get(i));
+									eList.move(targetIndex  , source.get(i));
 								}
 								
 							}else{
-								eList.addAll(targetIndex - 1, source);
+								eList.addAll(targetIndex , source);
 							}
 						}
 						
