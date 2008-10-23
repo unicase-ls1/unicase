@@ -25,6 +25,7 @@ public class UCDragAdapter extends ViewerDragAdapter {
 	public void dragStart(DragSourceEvent event) {
 		// TODO Auto-generated method stub
 		super.dragStart(event);
+		
 		List<ModelElement> dragSource = null; 
 		ISelection sel = viewer.getSelection();
 		if(sel instanceof IStructuredSelection){
@@ -32,6 +33,7 @@ public class UCDragAdapter extends ViewerDragAdapter {
 			dragSource = (List<ModelElement>)ssel.toList();
 			
 		}
-		viewer.setData(UCDropAdapter.DRAG_SOURCE_KEY, dragSource );
+		DragSourcePlaceHolder.getInstance().setDragSource(dragSource);
+		
 	}
 }
