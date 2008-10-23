@@ -69,12 +69,10 @@ public class MELinkControl extends AbstractMEControl {
 		labelProvider = new MELinkLabelProvider();
 		labelListener = new ILabelProviderListener(){
 			public void labelProviderChanged(LabelProviderChangedEvent event) {
-				if(hyperlink==null){
-					//no hyperlink defined yet -> nothing to refresh
-					return;
+				if(hyperlink!=null){
+					hyperlink.setText(labelProvider.getText(getModelElement()));
+					linkComposite.layout();
 				}
-				hyperlink.setText(labelProvider.getText(getModelElement()));
-				linkComposite.layout();
 			}
 		};
 		labelProvider.addListener(labelListener);
@@ -98,6 +96,7 @@ public class MELinkControl extends AbstractMEControl {
 	@Override
 	public void dispose() {
 		labelProvider.removeListener(labelListener);
+		labelProvider.dispose();
 		if (linkComposite!=null){
 			linkComposite.dispose();
 		}

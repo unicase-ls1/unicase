@@ -13,6 +13,7 @@ import org.eclipse.emf.ecore.EAttribute;
 import org.eclipse.emf.ecore.EObject;
 import org.eclipse.emf.edit.domain.EditingDomain;
 import org.eclipse.jface.databinding.swt.SWTObservables;
+import org.eclipse.jface.layout.GridDataFactory;
 import org.eclipse.swt.SWT;
 import org.eclipse.swt.widgets.Composite;
 import org.eclipse.swt.widgets.Control;
@@ -61,8 +62,6 @@ public class METextControl extends AbstractMEControl implements MEControl {
 		EMFDataBindingContext dbc = new EMFDataBindingContext();
 		dbc.bindValue(SWTObservables.observeText(text, SWT.FocusOut), model,
 				null, null);
-		TableWrapData layoutData = new TableWrapData(TableWrapData.FILL_GRAB);
-		text.setLayoutData(layoutData);
 		return text;
 	}
 	
@@ -71,6 +70,13 @@ public class METextControl extends AbstractMEControl implements MEControl {
 	 */
 	public void setFocus(){
 		this.text.setFocus();
+	}
+	
+	/**
+	 * {@inheritDoc}
+	 */
+	public void applyCustomLayoutData(){
+		GridDataFactory.fillDefaults().grab(true, false).hint(250, 14).align(SWT.FILL, SWT.TOP).applyTo(text);	
 	}
 
 }

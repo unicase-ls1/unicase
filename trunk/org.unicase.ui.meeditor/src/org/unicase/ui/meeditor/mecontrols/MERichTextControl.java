@@ -18,6 +18,7 @@ import org.eclipse.emf.edit.domain.EditingDomain;
 import org.eclipse.emf.transaction.RecordingCommand;
 import org.eclipse.emf.transaction.TransactionalEditingDomain;
 import org.eclipse.emf.transaction.util.TransactionUtil;
+import org.eclipse.jface.layout.GridDataFactory;
 import org.eclipse.jface.resource.ImageDescriptor;
 import org.eclipse.jface.text.Document;
 import org.eclipse.jface.text.TextViewer;
@@ -93,9 +94,7 @@ public class MERichTextControl extends AbstractMEControl {
 	 */
 	public Control createControl(Composite parent, int style) {
 		composite = new Composite(parent, style);
-		GridLayout layout = new GridLayout();
-		layout.numColumns = 1;
-		composite.setLayout(layout);
+		composite.setLayout(new GridLayout());
 		createToolBar();
 		createStyledText();
 		load();
@@ -295,4 +294,10 @@ public class MERichTextControl extends AbstractMEControl {
 		getModelElement().eAdapters().remove(eAdapter);
 	}
 
+	/**
+	 * {@inheritDoc}
+	 */
+	public void applyCustomLayoutData() {
+		GridDataFactory.fillDefaults().align(SWT.FILL, SWT.TOP).hint(250, 150).grab(true, false).applyTo(composite);
+	}
 }

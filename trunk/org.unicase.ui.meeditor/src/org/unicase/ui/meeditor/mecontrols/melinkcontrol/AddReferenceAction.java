@@ -20,6 +20,7 @@ import org.eclipse.emf.transaction.RecordingCommand;
 import org.eclipse.emf.transaction.TransactionalEditingDomain;
 import org.eclipse.emf.transaction.util.TransactionUtil;
 import org.eclipse.jface.action.Action;
+import org.eclipse.jface.dialogs.ProgressMonitorDialog;
 import org.eclipse.jface.resource.ImageDescriptor;
 import org.eclipse.jface.window.Window;
 import org.eclipse.swt.graphics.Image;
@@ -91,11 +92,19 @@ public class AddReferenceAction extends Action {
 
 				if (isMultiReference()) {
 					Object[] results = dlg.getResult();
+					ProgressMonitorDialog progressDialog = new ProgressMonitorDialog(
+							PlatformUI.getWorkbench().getActiveWorkbenchWindow().getShell());
+					progressDialog.open();
+					progressDialog.getProgressMonitor().beginTask("Adding references...",
+							results.length*10);
 					for (Object result : results) {
 						if (result instanceof EObject) {
-							eList.add((EObject) result);
+							eList.add((ModelElement) result);
+							progressDialog.getProgressMonitor().worked(10);
 						}
 					}
+					progressDialog.getProgressMonitor().done();
+					progressDialog.close();
 				} else {
 					Object result = dlg.getFirstResult();
 					if (result instanceof EObject) {

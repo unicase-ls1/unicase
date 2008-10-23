@@ -77,7 +77,8 @@ public class MESingleLinkControl extends AbstractMEControl {
 			@Override
 			public void notifyChanged(Notification msg) {
 				if (msg.getFeature() != null
-						&& msg.getFeature().equals(eReference)) {
+						&& msg.getFeature().equals(eReference)
+						&& !msg.isTouch()) {
 					updateLink();
 				}
 				super.notifyChanged(msg);
