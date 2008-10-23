@@ -40,6 +40,7 @@ import org.unicase.model.Project;
 import org.unicase.model.organization.User;
 import org.unicase.ui.common.TreeViewerColumnSorter;
 import org.unicase.ui.common.commands.ActionHelper;
+import org.unicase.ui.common.dnd.UCDragAdapter;
 import org.unicase.ui.common.dnd.UCDropAdapter;
 import org.unicase.ui.common.filter.UserFilter;
 import org.unicase.ui.stem.Activator;
@@ -379,7 +380,7 @@ public class IterationPlanningView extends ViewPart {
 		int dndOperations = DND.DROP_COPY | DND.DROP_MOVE | DND.DROP_LINK;
 		Transfer[] transfers = new Transfer[] { LocalTransfer.getInstance() };
 
-		viewer.addDragSupport(dndOperations, transfers, new ViewerDragAdapter(
+		viewer.addDragSupport(dndOperations, transfers, new UCDragAdapter(
 				viewer));
 		viewer
 				.addDropSupport(dndOperations, transfers, new UCDropAdapter(

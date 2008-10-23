@@ -39,6 +39,7 @@ import org.unicase.model.document.LeafSection;
 import org.unicase.model.document.Section;
 import org.unicase.model.task.ActionItem;
 import org.unicase.model.task.TaskFactory;
+import org.unicase.model.task.TaskPackage;
 import org.unicase.model.task.WorkPackage;
 import org.unicase.ui.common.commands.ActionHelper;
 
@@ -79,8 +80,8 @@ public class UCDropAdapter extends DropTargetAdapter {
 	@Override
 	public void drop(final DropTargetEvent event) {
 
-		final List<ModelElement> source = (List<ModelElement>) viewer
-				.getData(DRAG_SOURCE_KEY);
+		final List<ModelElement> source = (List<ModelElement>) DragSourcePlaceHolder
+						.getInstance().getDragSource();
 		if (source == null) {
 			return;
 		}
@@ -105,7 +106,7 @@ public class UCDropAdapter extends DropTargetAdapter {
 		if ((eventFeedback & DND.FEEDBACK_INSERT_BEFORE) == DND.FEEDBACK_INSERT_BEFORE) {
 			dropBefore(target, source);
 			return;
-		
+
 		}
 
 		if (target instanceof WorkPackage && !(dropee instanceof Annotation)) {
@@ -155,7 +156,7 @@ public class UCDropAdapter extends DropTargetAdapter {
 			// when an annotation is dropped on a model element, which is not a
 			// Section,
 			// WorkPackage or contained in a WorkPackage.
-
+						
 			Annotation[] arr = source.toArray(new Annotation[source.size()]);
 			final List<Annotation> newAnnotations = Arrays.asList(arr);
 			domain.getCommandStack().execute(
@@ -176,18 +177,17 @@ public class UCDropAdapter extends DropTargetAdapter {
 					new RecordingCommand((TransactionalEditingDomain) domain) {
 						@Override
 						protected void doExecute() {
-								dropContainment(event, target, source);
+							dropContainment(event, target, source);
 						}
 
-						
 					});
-		
+
 		}
 	}
-	
-	private void dropContainment(DropTargetEvent event,
-			ModelElement target, List<ModelElement> source) {
-		
+
+	private void dropContainment(DropTargetEvent event, ModelElement target,
+			List<ModelElement> source) {
+
 		EReference theRef = getSourceRef(target, source);
 		if (theRef == null) {
 			return;
@@ -196,7 +196,7 @@ public class UCDropAdapter extends DropTargetAdapter {
 		Object object = target.eGet(theRef);
 		EList<EObject> eList = (EList<EObject>) object;
 		eList.addAll(source);
-		
+
 	}
 
 	private EReference getSourceRef(ModelElement target,
@@ -204,10 +204,12 @@ public class UCDropAdapter extends DropTargetAdapter {
 		EReference theRef = null;
 		List<EReference> refs = target.eClass().getEAllReferences();
 		for (EReference ref : refs) {
-			if(!ref.isContainment()){
+			if (!ref.isContainment()) {
 				continue;
 			}
-			if (ref.getEReferenceType().equals(source.get(0).eClass()) || ref.getEReferenceType().isSuperTypeOf(source.get(0).eClass())) {
+			if (ref.getEReferenceType().equals(source.get(0).eClass())
+					|| ref.getEReferenceType().isSuperTypeOf(
+							source.get(0).eClass())) {
 				return ref;
 			}
 		}
@@ -235,15 +237,15 @@ public class UCDropAdapter extends DropTargetAdapter {
 						Object object = target.eContainer().eGet(theRef);
 						EList<EObject> eList = (EList<EObject>) object;
 						targetIndex = eList.indexOf(target);
-						if(haveSameEContainer(target, source.get(0))){
-							for(int i = source.size() - 1; i >=0; i--){
+						if (haveSameEContainer(target, source.get(0))) {
+							for (int i = source.size() - 1; i >= 0; i--) {
 								eList.move(targetIndex, source.get(i));
 							}
-							
-						}else{
+
+						} else {
 							eList.addAll(targetIndex, source);
 						}
-					
+
 					}
 
 				});
@@ -252,7 +254,7 @@ public class UCDropAdapter extends DropTargetAdapter {
 
 	protected boolean haveSameEContainer(ModelElement target,
 			ModelElement dropee) {
-		
+
 		return target.eContainer().equals(dropee.eContainer());
 	}
 
@@ -277,26 +279,25 @@ public class UCDropAdapter extends DropTargetAdapter {
 						Object object = target.eContainer().eGet(theRef);
 						EList<EObject> eList = (EList<EObject>) object;
 						targetIndex = eList.indexOf(target);
-						if(targetIndex == 0){
-							if(haveSameEContainer(target, source.get(0))){
-								for(int i = source.size() - 1; i >=0; i--){
-									eList.move(0 , source.get(i));
+						if (targetIndex == 0) {
+							if (haveSameEContainer(target, source.get(0))) {
+								for (int i = source.size() - 1; i >= 0; i--) {
+									eList.move(0, source.get(i));
 								}
-								
-							}else{
+
+							} else {
 								eList.addAll(0, source);
 							}
-						}else{
-							if(haveSameEContainer(target, source.get(0))){
-								for(int i = source.size() - 1; i >=0; i--){
-									eList.move(targetIndex  , source.get(i));
+						} else {
+							if (haveSameEContainer(target, source.get(0))) {
+								for (int i = source.size() - 1; i >= 0; i--) {
+									eList.move(targetIndex, source.get(i));
 								}
-								
-							}else{
-								eList.addAll(targetIndex , source);
+
+							} else {
+								eList.addAll(targetIndex, source);
 							}
 						}
-						
 
 					}
 
@@ -311,10 +312,12 @@ public class UCDropAdapter extends DropTargetAdapter {
 		EReference theRef = null;
 		List<EReference> refs = container.eClass().getEAllReferences();
 		for (EReference ref : refs) {
-			if(!ref.isContainment()){
+			if (!ref.isContainment()) {
 				continue;
 			}
-			if (ref.getEReferenceType().equals(source.get(0).eClass()) || ref.getEReferenceType().isSuperTypeOf(source.get(0).eClass())) {
+			if (ref.getEReferenceType().equals(source.get(0).eClass())
+					|| ref.getEReferenceType().isSuperTypeOf(
+							source.get(0).eClass())) {
 				return ref;
 			}
 		}
@@ -328,10 +331,12 @@ public class UCDropAdapter extends DropTargetAdapter {
 		EReference theRef = null;
 		List<EReference> refs = container.eClass().getEAllReferences();
 		for (EReference ref : refs) {
-			if(!ref.isContainment()){
+			if (!ref.isContainment()) {
 				continue;
 			}
-			if (ref.getEReferenceType().equals(source.get(0).eClass()) || ref.getEReferenceType().isSuperTypeOf(source.get(0).eClass())) {
+			if (ref.getEReferenceType().equals(source.get(0).eClass())
+					|| ref.getEReferenceType().isSuperTypeOf(
+							source.get(0).eClass())) {
 				theRef = ref;
 				break;
 			}
@@ -427,13 +432,12 @@ public class UCDropAdapter extends DropTargetAdapter {
 				event.feedback = DND.FEEDBACK_INSERT_BEFORE;
 			if (pt.y > rect.y + rect.height - 5)
 				event.feedback = DND.FEEDBACK_INSERT_AFTER;
-				
+
 		}
 		event.feedback |= DND.FEEDBACK_SCROLL | DND.FEEDBACK_EXPAND;
-		
-		
-		List<ModelElement> source = (List<ModelElement>) viewer
-				.getData(DRAG_SOURCE_KEY);
+
+		List<ModelElement> source = (List<ModelElement>) DragSourcePlaceHolder
+										.getInstance().getDragSource();
 
 		if (source == null) {
 			return;
@@ -446,16 +450,15 @@ public class UCDropAdapter extends DropTargetAdapter {
 		ModelElement target = (ModelElement) event.item.getData();
 		ModelElement dropee = source.get(0);
 		if (target.eContents().contains(dropee) || target == dropee) {
-			if (!((event.feedback | DND.FEEDBACK_INSERT_AFTER) == DND.FEEDBACK_INSERT_AFTER
-					|| (event.feedback | DND.FEEDBACK_INSERT_BEFORE) == DND.FEEDBACK_INSERT_BEFORE)) {
+			if (!((event.feedback | DND.FEEDBACK_INSERT_AFTER) == DND.FEEDBACK_INSERT_AFTER || (event.feedback | DND.FEEDBACK_INSERT_BEFORE) == DND.FEEDBACK_INSERT_BEFORE)) {
 				event.detail = DND.DROP_NONE;
 				return;
 			}
-			
+
 		}
 		if (target instanceof CompositeSection) {
 			if (!(dropee instanceof LeafSection)) {
-				 event.detail = DND.DROP_NONE;
+				event.detail = DND.DROP_NONE;
 				return;
 			}
 
@@ -489,7 +492,7 @@ public class UCDropAdapter extends DropTargetAdapter {
 
 	@Override
 	public void dragOver(DropTargetEvent event) {
-		
+
 		helper(event);
 
 	}
