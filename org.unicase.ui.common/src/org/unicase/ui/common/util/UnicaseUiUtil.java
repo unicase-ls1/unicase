@@ -8,12 +8,17 @@
 package org.unicase.ui.common.util;
 
 import java.util.Collection;
+import java.util.List;
 
 import org.eclipse.emf.edit.provider.ComposedAdapterFactory;
 import org.eclipse.emf.edit.ui.provider.AdapterFactoryLabelProvider;
 import org.eclipse.jface.window.Window;
 import org.eclipse.swt.widgets.Shell;
 import org.eclipse.ui.dialogs.ElementListSelectionDialog;
+import org.unicase.emfstore.esmodel.accesscontrol.ACUser;
+import org.unicase.emfstore.esmodel.accesscontrol.roles.Role;
+import org.unicase.workspace.ProjectSpace;
+import org.unicase.workspace.Usersession;
 
 /**
  * Utility class for the unicase project. 
@@ -56,5 +61,26 @@ public final class UnicaseUiUtil {
 			result = dlg.getResult();
 		}
 		return result;
+	}
+	
+	/**
+	 * 
+	 * This checks a user session for project administrator rights.
+	 * 
+	 * @param session User session to check 
+	 * @param projectSpace ProjectSpace
+	 * @return true if user has project administrator rights
+	 */
+	public static boolean isProjectAdmin(Usersession session, ProjectSpace projectSpace){
+		
+		ACUser user = session.getACUser();
+		List<Role> roles = user.getRoles();
+		for(Role role : roles){
+			if(role.canAdministrate(projectSpace.getProjectId())){
+				return true;
+			}
+		}
+		
+		return false;
 	}
 }

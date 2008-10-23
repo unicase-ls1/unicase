@@ -21,9 +21,15 @@ import org.eclipse.jface.dialogs.MessageDialog;
 import org.eclipse.ui.IEditorReference;
 import org.eclipse.ui.PartInitException;
 import org.eclipse.ui.PlatformUI;
+import org.eclipse.ui.handlers.HandlerUtil;
 import org.unicase.model.ModelElement;
+import org.unicase.model.document.Section;
 import org.unicase.ui.common.exceptions.DialogHandler;
+import org.unicase.ui.common.util.UnicaseUiUtil;
 import org.unicase.workspace.Configuration;
+import org.unicase.workspace.ProjectSpace;
+import org.unicase.workspace.Usersession;
+import org.unicase.workspace.WorkspaceManager;
 
 /**
  * . This is the Handler to delete a ModelElement
@@ -53,14 +59,13 @@ public class DeleteModelelementHandler extends AbstractHandler {
 					null, "Do you really want to delete " + me.getName(),
 					MessageDialog.QUESTION, new String[] { "Yes", "No" }, 0);
 			int result = dialog.open();
-			if (result == 0) {
+			if (result == MessageDialog.OK) {
 
 				// FIXME MK OW how do we delete model elements
-				
 				Resource resource = me.eResource();
 				EcoreUtil.delete(me, true);
 				resource.getContents().remove(me);
-				//MK: remove save here if save problems are all solved
+				// MK: remove save here if save problems are all solved
 				try {
 					resource.save(Configuration.getResourceSaveOptions());
 				} catch (IOException e) {
@@ -76,14 +81,30 @@ public class DeleteModelelementHandler extends AbstractHandler {
 	 */
 	public Object execute(ExecutionEvent event) throws ExecutionException {
 		ModelElement me = ActionHelper.getModelElement(event);
-		if (me != null) {
-			// check if this model element is already opened in an editor
-			// and if yes, prompt to close editor.
-			if (closeEditor(me)) {
-				deleteModelElement(me);
-			}
-
+		if(me == null){
+			return null;
 		}
+		
+		//if it is a section check if user has administrative rights
+		if (me instanceof Section) {
+			ProjectSpace projectSpace = WorkspaceManager.getProjectSpace(me);
+			Usersession userSession = projectSpace.getUsersession();
+			if (!UnicaseUiUtil.isProjectAdmin(userSession, projectSpace)){
+				MessageDialog
+						.openInformation(HandlerUtil.getActiveShell(event),
+								"Access deneid",
+								"You must have administrative rights on this project to delete a section!");
+				
+				return null;
+			}
+		}
+
+		// check if this model element is already opened in an editor
+		// and if yes, prompt to close editor.
+		if (closeEditor(me)) {
+			deleteModelElement(me);
+		}
+
 		return null;
 	}
 
@@ -101,10 +122,11 @@ public class DeleteModelelementHandler extends AbstractHandler {
 		List<IEditorReference> toCloseEditors = new ArrayList<IEditorReference>();
 		for (int i = 0; i < openEditors.length; i++) {
 			try {
-				//JH: remove this hack, adapter is null if editor is mediagrameditor
+				// JH: remove this hack, adapter is null if editor is
+				// mediagrameditor
 				Object adapter = openEditors[i].getEditorInput().getAdapter(
 						ModelElement.class);
-				if (adapter!=null && adapter.equals(me)) {
+				if (adapter != null && adapter.equals(me)) {
 					toCloseEditors.add(openEditors[i]);
 				}
 			} catch (PartInitException e) {
