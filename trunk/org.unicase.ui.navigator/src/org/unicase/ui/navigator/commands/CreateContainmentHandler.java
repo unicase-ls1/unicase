@@ -69,7 +69,7 @@ public class CreateContainmentHandler extends AbstractHandler {
 					protected void doExecute() {
 						// get EStructuralFeature of selected ME
 						EReference ref = getStructuralFeature(selectedME, newMEType);
-						// note that in DynamicContainmentCommands context menu
+						// note that in DynamicContainmentCommands, context menu
 						// items
 						// are created only for references that are many
 						if (ref != null && ref.isMany()) {
@@ -77,7 +77,7 @@ public class CreateContainmentHandler extends AbstractHandler {
 							EList<EObject> eList = (EList<EObject>) object;
 							eList.add(newMEInstance);
 
-							// ActionHelper.openModelElement(newMEInstance);
+							ActionHelper.openModelElement(newMEInstance);
 						}
 
 					}
