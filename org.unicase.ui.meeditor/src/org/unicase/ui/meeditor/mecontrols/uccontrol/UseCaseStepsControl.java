@@ -18,6 +18,7 @@ import org.eclipse.emf.edit.provider.IItemPropertyDescriptor;
 import org.eclipse.emf.transaction.RecordingCommand;
 import org.eclipse.emf.transaction.TransactionalEditingDomain;
 import org.eclipse.emf.transaction.util.TransactionUtil;
+import org.eclipse.jface.layout.GridDataFactory;
 import org.eclipse.swt.layout.GridData;
 import org.eclipse.swt.layout.GridLayout;
 import org.eclipse.swt.widgets.Composite;
@@ -151,12 +152,9 @@ public class UseCaseStepsControl extends AbstractMEControl{
 		section = getToolkit().createSection(parent, Section.TITLE_BAR | Section.TWISTIE | Section.EXPANDED);
 		section.setText(descriptor.getDisplayName(getModelElement()));		
 		mainComposite = getToolkit().createComposite(section);
-		mainComposite.setLayout( new GridLayout(1,true));
-		mainComposite.setLayoutData(new GridData(GridData.FILL_HORIZONTAL));
+		mainComposite.setLayout( new GridLayout());
 		stepArea = getToolkit().createComposite(mainComposite);
 		stepArea.setLayout( new GridLayout(2, true));
-		GridData stepAreaGridData = new GridData(GridData.FILL_HORIZONTAL);		
-		stepArea.setLayoutData(stepAreaGridData);
 		
 		
 		rebuildStepList();

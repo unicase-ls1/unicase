@@ -18,6 +18,7 @@ import org.eclipse.emf.edit.provider.IItemPropertyDescriptor;
 import org.eclipse.emf.transaction.RecordingCommand;
 import org.eclipse.emf.transaction.TransactionalEditingDomain;
 import org.eclipse.emf.transaction.util.TransactionUtil;
+import org.eclipse.jface.layout.GridDataFactory;
 import org.eclipse.swt.SWT;
 import org.eclipse.swt.graphics.Color;
 import org.eclipse.swt.layout.GridData;
@@ -129,7 +130,8 @@ public class SingleUseCaseStepControl extends AbstractMEControl{
 		
 		mainComposite = getToolkit().createComposite(parent);
 		mainComposite.setLayout(new GridLayout(1,true));
-		mainComposite.setLayoutData(new GridData(GridData.GRAB_HORIZONTAL));
+		GridDataFactory.fillDefaults().align(SWT.FILL, SWT.TOP).grab(true, false).applyTo(mainComposite);
+//		mainComposite.setLayoutData(new GridData(GridData.GRAB_HORIZONTAL));
 		mainComposite.setBackground(backGroundColor);	
 		
 		buttonComposite = getToolkit().createComposite(mainComposite);
@@ -252,13 +254,13 @@ public class SingleUseCaseStepControl extends AbstractMEControl{
 		IItemPropertyDescriptor pDescriptorName = adapterFactoryItemDelegator.getPropertyDescriptor(getModelElement(), "name");
 		textControlName = cFactory.createControl(pDescriptorName);		
 		cName = textControlName.createControl(textComposite, parentStyle);
-		cName.setLayoutData(new GridData(GridData.FILL_HORIZONTAL));
+		GridDataFactory.fillDefaults().align(SWT.FILL, SWT.TOP).hint(250, 14).grab(true, false).applyTo(cName);
 		
 		
 		IItemPropertyDescriptor pDescriptorDescription = adapterFactoryItemDelegator.getPropertyDescriptor(getModelElement(), "description");				
-		textControlDescription = cFactory.createControl(pDescriptorDescription);				
+		textControlDescription = cFactory.createControl(pDescriptorDescription);
 		cDescription = textControlDescription.createControl(textComposite, parentStyle);
-		cDescription.setLayoutData(new GridData(GridData.FILL_HORIZONTAL));
+		GridDataFactory.fillDefaults().align(SWT.FILL, SWT.TOP).hint(250, 150).grab(true, false).applyTo(cDescription);
 				
 		textComposite.layout();
 		

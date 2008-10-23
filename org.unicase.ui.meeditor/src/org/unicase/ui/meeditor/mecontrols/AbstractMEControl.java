@@ -97,5 +97,12 @@ public abstract class AbstractMEControl implements MEControl {
 	public void dispose(){
 		
 	}
+	
+	/**
+	 * Method for applying a custom layout data to widgets, as for {@link MERichTextControl}.
+	 */
+	public void applyCustomLayoutData(){
+		//by default none. must me implemented by the subclass.
+	}
 
 }
