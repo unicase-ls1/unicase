@@ -27,10 +27,11 @@ public class ProjectComposite extends FormContents {
 	private static final int READER_ROLE = 0;
 	private static final int WRITER_ROLE = 1;
 	private static final int PROJECT_ADMIN_ROLE = 2;
+	private static final int SERVER_ADMIN_ROLE = 3;
 
 	// Set column names
 	private String[] roleNames = new String[] { "Reader", "Writer",
-			"Project Admin" };
+			"Project Admin", "Server Admin" };
 
 	private Label lblVersion;
 	private Text txtVersion;
@@ -204,6 +205,14 @@ public class ProjectComposite extends FormContents {
 				adminBroker.changeRole(
 						projectInfo.getProjectId(), orgUnit.getId(),
 						RolesPackage.eINSTANCE.getProjectAdminRole());
+				break;
+			
+			case SERVER_ADMIN_ROLE:
+				adminBroker.changeRole(
+						projectInfo.getProjectId(), orgUnit.getId(),
+						RolesPackage.eINSTANCE.getServerAdmin());
+				break;
+			
 			}
 		} catch (EmfStoreException e) {
 			// ZH Auto-generated catch block
@@ -258,6 +267,8 @@ public class ProjectComposite extends FormContents {
 			} else if (role.eClass().equals(
 					RolesPackage.eINSTANCE.getProjectAdminRole())) {
 				result = PROJECT_ADMIN_ROLE;
+			} else if(role.eClass().equals(RolesPackage.eINSTANCE.getServerAdmin())){
+				result = SERVER_ADMIN_ROLE;
 			}
 		} catch (EmfStoreException e) {
 			// ZH Auto-generated catch block

@@ -434,6 +434,7 @@ public class ESBrowserView extends ViewPart {
 		addRepository.setImageDescriptor(Activator
 				.getImageDescriptor("icons/serverAdd.png"));
 
+		
 		manageOrgUnits = new Action() {
 			@Override
 			public void run() {
@@ -455,7 +456,7 @@ public class ESBrowserView extends ViewPart {
 			}
 		};
 		manageOrgUnits.setText("Manage OrgUnits...");
-
+		
 		deleteAction = new DeleteAction();
 		deleteAction.setText("Delete");
 		deleteAction.setImageDescriptor(org.unicase.ui.common.Activator

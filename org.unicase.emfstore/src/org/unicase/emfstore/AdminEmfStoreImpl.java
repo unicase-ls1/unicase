@@ -497,7 +497,8 @@ public class AdminEmfStoreImpl implements AdminEmfStore {
 	private Role getRole(ProjectId projectId, ACOrgUnit orgUnit) {
 		for (Role role : orgUnit.getRoles()) {
 			if (isServerAdmin(role) || role.getProjects().contains(projectId)) {
-				return (Role) EcoreUtil.copy(role);
+				//return (Role) EcoreUtil.copy(role);
+				return role;
 			}
 		}
 		return null;
