@@ -99,6 +99,7 @@ public class MEStateImpl implements MEState {
 		if(me==modelElement){
 			return;
 		}
+		effectiveBlocker.add(me);
 		if (effectiveBlocker.size() == 1) {
 			recursivlyUpdateStatus(getStatus());
 		}
@@ -213,16 +214,16 @@ public class MEStateImpl implements MEState {
 				for (ModelElement open : opened) {
 					open.getMEState().addOpener(modelElement);
 				}
-				for (ModelElement modelElement : blocked) {
-					modelElement.getMEState().addBlocker(modelElement);
+				for (ModelElement block : blocked) {
+					block.getMEState().addBlocker(modelElement);
 				}
 			}
 			if (status.equals(CLOSED)) {
 				for (ModelElement open : opened) {
 					open.getMEState().removeOpener(modelElement);
 				}
-				for (ModelElement modelElement : blocked) {
-					modelElement.getMEState().removeBlocker(modelElement);
+				for (ModelElement block : blocked) {
+					block.getMEState().removeBlocker(modelElement);
 				}
 			}
 		} catch (CircularDependencyException e) {
