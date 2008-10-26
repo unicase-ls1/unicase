@@ -297,6 +297,7 @@ public class MERichTextControl extends AbstractMEControl {
 	/**
 	 * {@inheritDoc}
 	 */
+	@Override
 	public void applyCustomLayoutData() {
 		GridDataFactory.fillDefaults().align(SWT.FILL, SWT.TOP).hint(250, 150).grab(true, false).applyTo(composite);
 	}
