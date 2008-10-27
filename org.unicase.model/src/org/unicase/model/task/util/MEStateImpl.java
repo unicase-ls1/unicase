@@ -65,7 +65,7 @@ public class MEStateImpl implements MEState {
 		for (ModelElement blocker : blockers) {
 			try {
 				if (blocker.getMEState().getStatus().equals(OPEN)
-						| blocker.getMEState().getStatus().equals(BLOCKED)) {
+						|| blocker.getMEState().getStatus().equals(BLOCKED)) {
 					effectiveBlocker.add(blocker);
 				}
 			} catch (CircularDependencyException e) {
@@ -82,7 +82,7 @@ public class MEStateImpl implements MEState {
 		for (ModelElement opener : openers) {
 			try {
 				if (opener.getMEState().getStatus().equals(OPEN)
-						| opener.getMEState().getStatus().equals(BLOCKED)) {
+						|| opener.getMEState().getStatus().equals(BLOCKED)) {
 					effectiveOpeners.add(opener);
 				}
 			} catch (CircularDependencyException e) {
@@ -210,7 +210,7 @@ public class MEStateImpl implements MEState {
 		ArrayList<ModelElement> blocked = TaxonomyAccess.getInstance()
 				.getBlockingLinkTaxonomy().getBlocked(modelElement);
 		try {
-			if (status.equals(OPEN) | status.equals(BLOCKED)) {
+			if (status.equals(OPEN) || status.equals(BLOCKED)) {
 				for (ModelElement open : opened) {
 					open.getMEState().addOpener(modelElement);
 				}
