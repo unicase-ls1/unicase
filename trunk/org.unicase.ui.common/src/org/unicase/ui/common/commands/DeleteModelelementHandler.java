@@ -30,6 +30,7 @@ import org.unicase.workspace.Configuration;
 import org.unicase.workspace.ProjectSpace;
 import org.unicase.workspace.Usersession;
 import org.unicase.workspace.WorkspaceManager;
+import org.unicase.workspace.util.WorkspaceUtil;
 
 /**
  * . This is the Handler to delete a ModelElement
@@ -61,17 +62,10 @@ public class DeleteModelelementHandler extends AbstractHandler {
 			int result = dialog.open();
 			if (result == MessageDialog.OK) {
 
-				// FIXME MK OW how do we delete model elements
-				Resource resource = me.eResource();
 				EcoreUtil.delete(me, true);
-				resource.getContents().remove(me);
+				
 				// MK: remove save here if save problems are all solved
-				try {
-					resource.save(Configuration.getResourceSaveOptions());
-				} catch (IOException e) {
-					// MK: insert proper exception handling
-					e.printStackTrace();
-				}
+				WorkspaceManager.getInstance().getCurrentWorkspace().getActiveProjectSpace().save();
 			}
 		}
 	}
