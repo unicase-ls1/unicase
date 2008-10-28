@@ -16,6 +16,7 @@ import org.eclipse.emf.common.util.EList;
  * The following features are supported:
  * <ul>
  *   <li>{@link org.unicase.model.classes.Package#getContainedPackageElements <em>Contained Package Elements</em>}</li>
+ *   <li>{@link org.unicase.model.classes.Package#getFacadeClass <em>Facade Class</em>}</li>
  * </ul>
  * </p>
  *
@@ -42,5 +43,31 @@ public interface Package extends PackageElement {
 	 * @generated
 	 */
 	EList<PackageElement> getContainedPackageElements();
+
+	/**
+	 * Returns the value of the '<em><b>Facade Class</b></em>' reference.
+	 * <!-- begin-user-doc -->
+	 * <p>
+	 * If the meaning of the '<em>Facade Class</em>' reference isn't clear,
+	 * there really should be more of a description here...
+	 * </p>
+	 * <!-- end-user-doc -->
+	 * @return the value of the '<em>Facade Class</em>' reference.
+	 * @see #setFacadeClass(org.unicase.model.classes.Class)
+	 * @see org.unicase.model.classes.ClassesPackage#getPackage_FacadeClass()
+	 * @model
+	 * @generated
+	 */
+	org.unicase.model.classes.Class getFacadeClass();
+
+	/**
+	 * Sets the value of the '{@link org.unicase.model.classes.Package#getFacadeClass <em>Facade Class</em>}' reference.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @param value the new value of the '<em>Facade Class</em>' reference.
+	 * @see #getFacadeClass()
+	 * @generated
+	 */
+	void setFacadeClass(org.unicase.model.classes.Class value);
 
 } // Package
