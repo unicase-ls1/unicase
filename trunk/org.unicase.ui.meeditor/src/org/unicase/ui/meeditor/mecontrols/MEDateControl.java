@@ -115,9 +115,11 @@ public class MEDateControl extends AbstractMEControl implements MEControl,
 			@Override
 			protected void doExecute() {
 				Date newDate = (Date) getModelElement().eGet(attribute);
-				if (newDate != null) {
-					widget.setSelection(newDate);
+				if (newDate == null) {
+					newDate = new Date();
+					getModelElement().eSet(attribute, newDate);
 				}
+				widget.setSelection(newDate);
 			}
 		});
 	}
