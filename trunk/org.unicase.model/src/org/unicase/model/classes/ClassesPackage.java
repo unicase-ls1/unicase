@@ -511,13 +511,22 @@ public interface ClassesPackage extends EPackage {
 	int PACKAGE__CONTAINED_PACKAGE_ELEMENTS = PACKAGE_ELEMENT_FEATURE_COUNT + 0;
 
 	/**
+	 * The feature id for the '<em><b>Facade Class</b></em>' reference.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 * @ordered
+	 */
+	int PACKAGE__FACADE_CLASS = PACKAGE_ELEMENT_FEATURE_COUNT + 1;
+
+	/**
 	 * The number of structural features of the '<em>Package</em>' class. <!--
 	 * begin-user-doc --> <!-- end-user-doc -->
 	 * 
 	 * @generated
 	 * @ordered
 	 */
-	int PACKAGE_FEATURE_COUNT = PACKAGE_ELEMENT_FEATURE_COUNT + 1;
+	int PACKAGE_FEATURE_COUNT = PACKAGE_ELEMENT_FEATURE_COUNT + 2;
 
 	/**
 	 * The meta object id for the '
@@ -1482,6 +1491,17 @@ public interface ClassesPackage extends EPackage {
 	EReference getPackage_ContainedPackageElements();
 
 	/**
+	 * Returns the meta object for the reference '{@link org.unicase.model.classes.Package#getFacadeClass <em>Facade Class</em>}'.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @return the meta object for the reference '<em>Facade Class</em>'.
+	 * @see org.unicase.model.classes.Package#getFacadeClass()
+	 * @see #getPackage()
+	 * @generated
+	 */
+	EReference getPackage_FacadeClass();
+
+	/**
 	 * Returns the meta object for class '{@link org.unicase.model.classes.PackageElement <em>Package Element</em>}'.
 	 * <!-- begin-user-doc --> <!-- end-user-doc -->
 	 * @return the meta object for class '<em>Package Element</em>'.
@@ -2041,6 +2061,13 @@ public interface ClassesPackage extends EPackage {
 		 */
 		EReference PACKAGE__CONTAINED_PACKAGE_ELEMENTS = eINSTANCE
 				.getPackage_ContainedPackageElements();
+		/**
+		 * The meta object literal for the '<em><b>Facade Class</b></em>' reference feature.
+		 * <!-- begin-user-doc -->
+		 * <!-- end-user-doc -->
+		 * @generated
+		 */
+		EReference PACKAGE__FACADE_CLASS = eINSTANCE.getPackage_FacadeClass();
 		/**
 		 * The meta object literal for the '{@link org.unicase.model.classes.impl.PackageElementImpl <em>Package Element</em>}' class.
 		 * <!-- begin-user-doc --> <!--

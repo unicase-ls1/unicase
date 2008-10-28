@@ -188,6 +188,7 @@
       <eStructuralFeatures xsi:type="ecore:EReference" name="containedPackageElements"
           upperBound="-1" eType="#//classes/PackageElement" containment="true" eOpposite="#//classes/PackageElement/parentPackage"
           eKeys="#//IdentifiableElement/identifier"/>
+      <eStructuralFeatures xsi:type="ecore:EReference" name="facadeClass" eType="#//classes/Class"/>
     </eClassifiers>
     <eClassifiers xsi:type="ecore:EClass" name="PackageElement" abstract="true" eSuperTypes="#//ModelElement">
       <eStructuralFeatures xsi:type="ecore:EReference" name="parentPackage" eType="#//classes/Package"

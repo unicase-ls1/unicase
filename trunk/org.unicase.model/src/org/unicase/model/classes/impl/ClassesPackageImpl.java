@@ -365,6 +365,15 @@ public class ClassesPackageImpl extends EPackageImpl implements ClassesPackage {
 	}
 
 	/**
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 */
+	public EReference getPackage_FacadeClass() {
+		return (EReference) packageEClass.getEStructuralFeatures().get(1);
+	}
+
+	/**
 	 * <!-- begin-user-doc --> <!-- end-user-doc -->
 	 * @generated
 	 */
@@ -790,6 +799,7 @@ public class ClassesPackageImpl extends EPackageImpl implements ClassesPackage {
 
 		packageEClass = createEClass(PACKAGE);
 		createEReference(packageEClass, PACKAGE__CONTAINED_PACKAGE_ELEMENTS);
+		createEReference(packageEClass, PACKAGE__FACADE_CLASS);
 
 		packageElementEClass = createEClass(PACKAGE_ELEMENT);
 		createEReference(packageElementEClass, PACKAGE_ELEMENT__PARENT_PACKAGE);
@@ -955,6 +965,11 @@ public class ClassesPackageImpl extends EPackageImpl implements ClassesPackage {
 				!IS_UNSETTABLE, IS_UNIQUE, !IS_DERIVED, IS_ORDERED);
 		getPackage_ContainedPackageElements().getEKeys().add(
 				theModelPackage.getIdentifiableElement_Identifier());
+		initEReference(getPackage_FacadeClass(), this.getClass_(), null,
+				"facadeClass", null, 0, 1,
+				org.unicase.model.classes.Package.class, !IS_TRANSIENT,
+				!IS_VOLATILE, IS_CHANGEABLE, !IS_COMPOSITE, IS_RESOLVE_PROXIES,
+				!IS_UNSETTABLE, IS_UNIQUE, !IS_DERIVED, IS_ORDERED);
 
 		initEClass(packageElementEClass, PackageElement.class,
 				"PackageElement", IS_ABSTRACT, !IS_INTERFACE,
