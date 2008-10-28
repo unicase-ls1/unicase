@@ -159,10 +159,8 @@ public class ChangePackageVisualizationHelper {
 			SingleReferenceOperation op = (SingleReferenceOperation) operation;
 			if (op.getNewValue() == null) {
 				overlay = "icons/delete_overlay.png";
-			} else if (op.getOldValue() == null) {
-				overlay = "icons/add_overlay.png";
 			} else {
-				overlay = "icons/modify_overlay.png";
+				overlay = "icons/link_overlay.png";
 			}
 		} else if (operation instanceof MultiAttributeOperation) {
 			overlay = "icons/modify_overlay.png";
