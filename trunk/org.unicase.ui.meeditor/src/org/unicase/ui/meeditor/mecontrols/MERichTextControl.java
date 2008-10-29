@@ -94,6 +94,8 @@ public class MERichTextControl extends AbstractMEControl {
 	 */
 	public Control createControl(Composite parent, int style) {
 		composite = new Composite(parent, style);
+		//FIXME: [AS@08-10-29] background fix 
+		//AS: JH: probably a toolkit style issue?
 		composite.setBackground(Display.getCurrent().getSystemColor(SWT.COLOR_WHITE));
 		composite.setLayout(new GridLayout());
 		createToolBar();
