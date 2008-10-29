@@ -8,6 +8,7 @@ package org.unicase.ui.meeditor;
 
 import java.util.ArrayList;
 import java.util.Collections;
+import java.util.Comparator;
 import java.util.HashMap;
 import java.util.List;
 import java.util.Map;
@@ -33,7 +34,6 @@ import org.eclipse.ui.forms.IManagedForm;
 import org.eclipse.ui.forms.editor.FormPage;
 import org.eclipse.ui.forms.widgets.FormToolkit;
 import org.eclipse.ui.forms.widgets.ScrolledForm;
-import org.eclipse.ui.forms.widgets.Section;
 import org.eclipse.ui.menus.IMenuService;
 import org.eclipse.ui.services.IEvaluationService;
 import org.unicase.model.ModelElement;
@@ -58,10 +58,10 @@ public class MEEditorPage extends FormPage {
 	
 	private static String activeModelelement = "activeModelelement";
 	private ScrolledForm form;
-	private List<IItemPropertyDescriptor> simpleAttributes = new ArrayList<IItemPropertyDescriptor>();
-	private List<IItemPropertyDescriptor> multiReferences = new ArrayList<IItemPropertyDescriptor>();
-	private Composite left;
-	private Composite right;
+	private List<IItemPropertyDescriptor> leftColumnAttributes = new ArrayList<IItemPropertyDescriptor>();
+	private List<IItemPropertyDescriptor> rightColumnAttributes = new ArrayList<IItemPropertyDescriptor>();
+	private Composite leftColumnComposite;
+	private Composite rightColumnComposite;
 	private Composite bottom;
 
 	/**
@@ -100,13 +100,13 @@ public class MEEditorPage extends FormPage {
 		toolkit.adapt(topSash, true, true);
 		topSash.setSashWidth(4);
 		
-		left = toolkit.createComposite(topSash, SWT.NONE);
-		GridLayoutFactory.fillDefaults().numColumns(1).equalWidth(false).extendedMargins(2, 5, 5, 5).applyTo(left);
-		GridDataFactory.fillDefaults().align(SWT.FILL, SWT.FILL).applyTo(left);
+		leftColumnComposite = toolkit.createComposite(topSash, SWT.NONE);
+		GridLayoutFactory.fillDefaults().numColumns(1).equalWidth(false).extendedMargins(2, 5, 5, 5).applyTo(leftColumnComposite);
+		GridDataFactory.fillDefaults().align(SWT.FILL, SWT.FILL).applyTo(leftColumnComposite);
 
-		right = toolkit.createComposite(topSash, SWT.NONE);
-		GridLayoutFactory.fillDefaults().numColumns(1).equalWidth(false).extendedMargins(5, 2, 5, 5).applyTo(right);
-		GridDataFactory.fillDefaults().align(SWT.FILL, SWT.FILL).applyTo(right);
+		rightColumnComposite = toolkit.createComposite(topSash, SWT.NONE);
+		GridLayoutFactory.fillDefaults().numColumns(1).equalWidth(false).extendedMargins(5, 2, 5, 5).applyTo(rightColumnComposite);
+		GridDataFactory.fillDefaults().align(SWT.FILL, SWT.FILL).applyTo(rightColumnComposite);
 		
 		int[] topWeights = {50,50};
 		topSash.setWeights(topWeights);
@@ -125,9 +125,8 @@ public class MEEditorPage extends FormPage {
 		// Sort and order attributes
 		sortAndOrderAttributes();
 		// Create attributes
-		createSimpleAttributes();
-		// Create Sections for every Reference
-		createMultiReferences();
+		createAttributes(leftColumnComposite,leftColumnAttributes);
+		createAttributes(rightColumnComposite,rightColumnAttributes);
 		// Create special ME Control
 		createSpecificMEControls();
 		createToolbar();
@@ -174,67 +173,60 @@ public class MEEditorPage extends FormPage {
 		List<IItemPropertyDescriptor> propertyDescriptors = adapterFactoryItemDelegator
 				.getPropertyDescriptors(modelElement);
 		if (propertyDescriptors != null){
+			final HashMap<IItemPropertyDescriptor,Double> map = new HashMap<IItemPropertyDescriptor, Double>();
+			IAttributePriorityDescriptor priorityDescriptor = new AnnotationPriorityDescriptor();
 			for (IItemPropertyDescriptor itemPropertyDescriptor : propertyDescriptors) {
-				if (itemPropertyDescriptor.isMany(modelElement)) {
-					multiReferences.add(itemPropertyDescriptor);
-				} else {
-					simpleAttributes.add(itemPropertyDescriptor);
-				}
+				map.put(itemPropertyDescriptor,priorityDescriptor.getPriority(itemPropertyDescriptor, modelElement));
 			}
-			Collections.reverse(multiReferences);
+			Collections.sort(propertyDescriptors, new Comparator<IItemPropertyDescriptor>(){
+				public int compare(IItemPropertyDescriptor o1,
+						IItemPropertyDescriptor o2) {
+					return Double.compare(map.get(o1), map.get(o2));
+				}
+			});
+			int length = propertyDescriptors.size();
+			for(int i=0; i<length/2; i++){
+				leftColumnAttributes.add(propertyDescriptors.get(i));
+			}
+			for(int i=length/2; i<length; i++){
+				rightColumnAttributes.add(propertyDescriptors.get(i));
+			}
 		}
 
 	}
 
-	private void createMultiReferences() {
-		ControlFactory controlFactory = new ControlFactory(editingDomain,
-				modelElement, this.getEditor().getToolkit());
-		for (IItemPropertyDescriptor itemPropertyDescriptor : multiReferences) {
-			MEControl meControl = controlFactory
-					.createControl(itemPropertyDescriptor);
-			if (meControl != null) {
-				meControls.add(meControl);
-				Control control;
+	private void createAttributes(Composite column, List<IItemPropertyDescriptor> attributes) {
+
+		Composite attributeComposite = toolkit.createComposite(column);
+		GridLayoutFactory.fillDefaults().numColumns(2).applyTo(attributeComposite);
+		GridDataFactory.fillDefaults().grab(true, true).align(SWT.FILL, SWT.FILL).applyTo(attributeComposite);
+		
+		ControlFactory controlFactory = new ControlFactory(editingDomain, modelElement, this.getEditor().getToolkit());
+		
+		for (IItemPropertyDescriptor itemPropertyDescriptor : attributes) {
+			MEControl meControl = controlFactory.createControl(itemPropertyDescriptor);
+			if(meControl==null){
+				continue;
+			}
+			meControls.add(meControl);
+			Control control;
+			if(!itemPropertyDescriptor.isMany(modelElement)){
+				Label label = toolkit.createLabel(attributeComposite, itemPropertyDescriptor.getDisplayName(modelElement));
+				control = meControl.createControl(attributeComposite, SWT.WRAP);
+				GridDataFactory.fillDefaults().align(SWT.LEFT, SWT.CENTER).applyTo(label);
+				GridDataFactory.fillDefaults().grab(true, false).align(SWT.FILL, SWT.TOP).applyTo(control);
+				if(meControl instanceof AbstractMEControl){
+					((AbstractMEControl)meControl).applyCustomLayoutData();
+				}
+			}else{
 				if(meControl instanceof UseCaseStepsControl){
 					control = meControl.createControl(bottom, SWT.WRAP);
 				}else{
-					control = meControl.createControl(right, SWT.WRAP);
+					control = meControl.createControl(column, SWT.WRAP);
 				}
-				GridDataFactory.fillDefaults().grab(true, false).align(SWT.FILL, SWT.TOP).applyTo(control);
+				GridDataFactory.fillDefaults().span(2,1).grab(true, false).align(SWT.FILL, SWT.TOP).applyTo(control);
 			}
 		}
-
-	}
-
-	private void createSimpleAttributes() {
-
-		Section attributeSection = toolkit.createSection(left,
-				Section.TITLE_BAR | Section.TWISTIE
-						| Section.EXPANDED);
-		attributeSection.setText("Attributes");
-		Composite attributeComposite = toolkit
-				.createComposite(attributeSection);
-		GridLayoutFactory.fillDefaults().numColumns(2).applyTo(attributeComposite);
-		GridDataFactory.fillDefaults().grab(true, true).align(SWT.FILL, SWT.FILL).applyTo(attributeSection);
-		
-		ControlFactory controlFactory = new ControlFactory(editingDomain,
-				modelElement, this.getEditor().getToolkit());
-		for (IItemPropertyDescriptor itemPropertyDescriptor : simpleAttributes) {
-			Label label = toolkit.createLabel(attributeComposite, itemPropertyDescriptor
-					.getDisplayName(modelElement));
-			MEControl meControl = controlFactory
-					.createControl(itemPropertyDescriptor);
-			meControls.add(meControl);
-			Control control = meControl.createControl(attributeComposite,
-					SWT.WRAP);
-			
-			GridDataFactory.fillDefaults().align(SWT.LEFT, SWT.CENTER).applyTo(label);
-			GridDataFactory.fillDefaults().grab(true, false).align(SWT.FILL, SWT.TOP).applyTo(control);
-			if(meControl instanceof AbstractMEControl){
-				((AbstractMEControl)meControl).applyCustomLayoutData();
-			}
-		}
-		attributeSection.setClient(attributeComposite);
 
 	}
 	

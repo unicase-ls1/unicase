@@ -94,6 +94,7 @@ public class MERichTextControl extends AbstractMEControl {
 	 */
 	public Control createControl(Composite parent, int style) {
 		composite = new Composite(parent, style);
+		composite.setBackground(Display.getCurrent().getSystemColor(SWT.COLOR_WHITE));
 		composite.setLayout(new GridLayout());
 		createToolBar();
 		createStyledText();
