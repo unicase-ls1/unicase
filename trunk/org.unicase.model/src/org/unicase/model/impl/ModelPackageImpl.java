@@ -739,8 +739,24 @@ public class ModelPackageImpl extends EPackageImpl implements ModelPackage {
 		createResource(eNS_URI);
 
 		// Create annotations
+		// org.unicase.ui.meeditor
+		createOrgAnnotations();
 		// teneo.jpa
 		createTeneoAnnotations();
+	}
+
+	/**
+	 * Initializes the annotations for <b>org.unicase.ui.meeditor</b>.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 */
+	protected void createOrgAnnotations() {
+		String source = "org.unicase.ui.meeditor";
+		addAnnotation(getModelElement_Name(), source, new String[] {
+				"priority", "1.0" });
+		addAnnotation(getModelElement_Description(), source, new String[] {
+				"priority", "1.0" });
 	}
 
 	/**

@@ -403,6 +403,22 @@ public class BugPackageImpl extends EPackageImpl implements BugPackage {
 		addEEnumLiteral(resolutionTypeEEnum, ResolutionType.FIXED);
 		addEEnumLiteral(resolutionTypeEEnum, ResolutionType.CANNOT_REPRODUCE);
 		addEEnumLiteral(resolutionTypeEEnum, ResolutionType.WONT_FIX);
+
+		// Create annotations
+		// org.unicase.ui.meeditor
+		createOrgAnnotations();
+	}
+
+	/**
+	 * Initializes the annotations for <b>org.unicase.ui.meeditor</b>.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 */
+	protected void createOrgAnnotations() {
+		String source = "org.unicase.ui.meeditor";
+		addAnnotation(getBugReport_Status(), source, new String[] { "priority",
+				"2.0" });
 	}
 
 } // BugPackageImpl
