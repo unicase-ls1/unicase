@@ -58,7 +58,7 @@
         </selector>
      </clientContext>
      <binding
-           context="org.unicase.model.binding">
+           context="org.unicase.model.validation">
         <category
               ref="org.unicase.model">
         </category>
