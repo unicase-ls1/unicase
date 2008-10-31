@@ -2,6 +2,8 @@ package org.unicase.test.tests.changetests.randomchange;
 
 import java.util.Calendar;
 
+import org.apache.commons.logging.Log;
+import org.apache.commons.logging.LogFactory;
 import org.eclipse.emf.ecore.util.EcoreUtil;
 import org.unicase.model.Project;
 import org.unicase.test.lib.TestCase;
@@ -14,6 +16,7 @@ public class RandomChangeTestSuite extends ChangeTestSuite {
 	private Project testProject;
 	private Project compareProject;
 	private Long randomSeed= Calendar.getInstance().getTimeInMillis();
+	private static Log logger = LogFactory.getLog("test");
 	
 	
 	@Override
@@ -21,28 +24,29 @@ public class RandomChangeTestSuite extends ChangeTestSuite {
 		
 		// add test cases
 		//getLogger().info("adding testcases");
-	
+		System.out.println("adding testcases...");
+		
 		//RenameTest
-		RenameTest renameTest = new RenameTest("Rename", randomSeed);
+		//RenameTest renameTest = new RenameTest("Rename", randomSeed);
 		//renameTest.setParameters();
 		
 		//DeleteTest
-		//DeleteTest deleteTest = new DeleteTest("Delete",  Calendar.getInstance().getTimeInMillis());
+		//DeleteTest deleteTest = new DeleteTest("Delete",  randomSeed);
 		//deleteTest.setParameters();
 		
 		//MoveTest
-		//MoveTest moveTest = new MoveTest();
+		MoveTest moveTest = new MoveTest("Move", randomSeed);
 		//moveTest.setParameters();
 
 		//AddTest
 		//AddTest addTest = new AddTest();
 		//addTest.setParameters();
 		
-		//this.getTestCases().add(deleteTest);
-		//this.getTestCases().add(moveTest);
-		//this.getTestCases().add(addTest);
-		this.getTestCases().add(renameTest);
 		
+		this.getTestCases().add(moveTest);
+		//this.getTestCases().add(addTest);
+		//this.getTestCases().add(renameTest);
+		//this.getTestCases().add(deleteTest);
 		
 		for(TestCase test : getTestCases()){
 			if(test instanceof RandomChangeTestCase){
@@ -60,23 +64,42 @@ public class RandomChangeTestSuite extends ChangeTestSuite {
 //		if(ChangeTestHelper.compare(getTestProjectSpace(), getCompareProjectSpace())){
 //			System.out.println("Test succeeded: " + testName + "!");
 //		}else{
-//			System.out.println("Test failed: " + testName + "!");
+//			logger.info("Test failed: " + testName + "!");
+//			//System.out.println();
 //		}
 		
-		//int[] result = ChangeTestHelper.linearCompare(getTestProjectSpace(), getCompareProjectSpace());
-		int[] result = ChangeTestHelper.linearCompare(testProject, compareProject);
+		System.out.println("Done: " + testName );
+//		int[] result = ChangeTestHelper.linearCompare(getTestProjectSpace(), getCompareProjectSpace());
+//		//int[] result = ChangeTestHelper.linearCompare(testProject, compareProject);
+//		if(result[0] == 1){
+//			System.out.println("Test succeeded: " + testName + "!");
+//		}else{
+//			logger.info("Test failed: " + testName + "!");
+//			//System.out.println("Test failed: " + testName + "!");
+//			System.out.println("position: " + result[1]);
+//			System.out.println("character: " + (char)result[2]);
+//			System.out.println("lineNum: " + result[3]);
+//			System.out.println("colNum: " + result[4]);
+//		}
+	}
+	
+	
+	@Override
+	public void endTestSuite() {
+		int[] result = ChangeTestHelper.linearCompare(getTestProjectSpace(), getCompareProjectSpace());
+		//int[] result = ChangeTestHelper.linearCompare(testProject, compareProject);
 		if(result[0] == 1){
-			System.out.println("Test succeeded: " + testName + "!");
+			System.out.println("Test succeeded!");
 		}else{
-			System.out.println("Test failed: " + testName + "!");
-			System.out.println("character: " + (char)result[2]);
+			logger.info("Test failed!");
+			//System.out.println("Test failed: " + testName + "!");
 			System.out.println("position: " + result[1]);
+			System.out.println("character: " + (char)result[2]);
 			System.out.println("lineNum: " + result[3]);
 			System.out.println("colNum: " + result[4]);
 		}
 	}
-	
-	
+
 	@Override
 	public Project getCompareProject() {
 			

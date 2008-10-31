@@ -15,12 +15,16 @@ public abstract class TestSuite {
 	public void runTest() {
 		initTestSuite();
 		initTestCases();
-		for (TestCase testCase : testcases) {
-			System.out.println("Running TestCase: " + testCase.getTestName());
-			testCase.runTest();
-			endTestCase(testCase.getTestName());
+		
+		for (int i = 0; i < 10; i++) {
+			for (TestCase testCase : testcases) {
+				System.out.println("========= Running TestCase: "
+						+ testCase.getTestName() + " =========  " + i);
+				testCase.runTest();
+				endTestCase(testCase.getTestName());
+			}
+			endTestSuite();
 		}
-		endTestSuite();
 	}
 
 	public void initTestSuite() {

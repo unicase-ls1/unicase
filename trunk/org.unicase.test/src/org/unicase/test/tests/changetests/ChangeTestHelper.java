@@ -84,7 +84,12 @@ public class ChangeTestHelper {
 				.getProject());
 	}
 
-
+	/**
+	 *  Extracts changes form test project and applys them to compare project.
+	 *  
+	 * @param testSpace
+	 * @param compareSpace
+	 */
 	private static void prepareCompare(final ProjectSpace testSpace,
 			final ProjectSpace compareSpace) {
 		System.out.println("extracting operations from test project...");
@@ -98,6 +103,7 @@ public class ChangeTestHelper {
 			protected void doExecute() {
 				System.out.println("applying changes to compareSpace...");
 				changePackage.apply(compareSpace.getProject());
+				//compareSpace.save();
 			}
 		});
 	}

@@ -6,14 +6,12 @@
  */
 package org.unicase.ui.common.commands;
 
-import java.io.IOException;
 import java.util.ArrayList;
 import java.util.List;
 
 import org.eclipse.core.commands.AbstractHandler;
 import org.eclipse.core.commands.ExecutionEvent;
 import org.eclipse.core.commands.ExecutionException;
-import org.eclipse.emf.ecore.resource.Resource;
 import org.eclipse.emf.ecore.util.EcoreUtil;
 import org.eclipse.emf.transaction.RecordingCommand;
 import org.eclipse.emf.transaction.TransactionalEditingDomain;
@@ -26,11 +24,9 @@ import org.unicase.model.ModelElement;
 import org.unicase.model.document.Section;
 import org.unicase.ui.common.exceptions.DialogHandler;
 import org.unicase.ui.common.util.UnicaseUiUtil;
-import org.unicase.workspace.Configuration;
 import org.unicase.workspace.ProjectSpace;
 import org.unicase.workspace.Usersession;
 import org.unicase.workspace.WorkspaceManager;
-import org.unicase.workspace.util.WorkspaceUtil;
 
 /**
  * . This is the Handler to delete a ModelElement
@@ -118,6 +114,7 @@ public class DeleteModelelementHandler extends AbstractHandler {
 			try {
 				// JH: remove this hack, adapter is null if editor is
 				// mediagrameditor
+				// ZH: set adapter for MEDiagramEditor
 				Object adapter = openEditors[i].getEditorInput().getAdapter(
 						ModelElement.class);
 				if (adapter != null && adapter.equals(me)) {
