@@ -10,6 +10,7 @@ import org.eclipse.core.runtime.CoreException;
 import org.eclipse.core.runtime.IStatus;
 import org.eclipse.emf.transaction.RecordingCommand;
 import org.eclipse.emf.transaction.TransactionalEditingDomain;
+import org.eclipse.emf.validation.marker.MarkerUtil;
 import org.eclipse.emf.validation.model.EvaluationMode;
 import org.eclipse.emf.validation.service.IBatchValidator;
 import org.eclipse.emf.validation.service.ModelValidationService;
@@ -62,12 +63,12 @@ public class ValidateHandler extends ProjectActionHandler {
 		// "org.unicase.model", 1, status.getChildren(),
 		// "Problems were found by validation", null);
 		// //
-		// try {
-		// MarkerUtil.createMarkers(status);
-		// } catch(CoreException e) {
-		// //log this ...
-		// e.printStackTrace();
-		// }
+//		try {
+//			MarkerUtil.createMarkers(status);
+//		} catch (CoreException e) {
+//			// log this ...
+//			e.printStackTrace();
+//		}
 
 		IWorkspace workspace = ResourcesPlugin.getWorkspace();
 		IResource resource = workspace.getRoot();
@@ -80,7 +81,6 @@ public class ValidateHandler extends ProjectActionHandler {
 
 		if (status.isMultiStatus()) {
 			for (IStatus stat : status.getChildren()) {
-				System.out.println(stat.getMessage());
 				try {
 					IMarker marker = (IMarker) resource
 							.createMarker(markerType);
