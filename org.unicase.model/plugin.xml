@@ -41,9 +41,6 @@
               <message>
                  A {0} has been found to have no Assignee.
               </message>
-              <target
-                    class="ActionItem">
-              </target>
            </constraint>
         </constraints>
      </constraintProvider>
@@ -63,6 +60,17 @@
               ref="org.unicase.model">
         </category>
      </binding>
+  </extension>
+  <extension
+        id="validation.marker"
+        name="Unicase Validation Marker"
+        point="org.eclipse.core.resources.markers">
+     <persistent
+           value="false">
+     </persistent>
+     <super
+           type="org.eclipse.core.resources.problemmarker">
+     </super>
   </extension>
   
 
