@@ -485,7 +485,7 @@
 <extension point="org.eclipse.ui.popupMenus">
       <objectContribution
             adaptable="false"
-            id="org.unicase.ui.usecaseDiagram.part.DeleteFromDiagramAction"
+            id="DeleteFromDiagramActionComponent"
             objectClass="org.unicase.ui.componentDiagram.edit.parts.ComponentEditPart">
          <action
                class="org.unicase.ui.common.diagram.DeleteFromDiagramAction"
