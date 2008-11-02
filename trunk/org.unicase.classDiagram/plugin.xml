@@ -530,7 +530,33 @@
          contextId="org.unicase.model.classDiagram.ui.diagramContext"
          schemeId="org.eclipse.ui.defaultAcceleratorConfiguration"
          sequence="F5"/>
-   </extension><extension point="org.eclipse.gmf.runtime.emf.type.core.elementTypeBindings">
+   </extension>
+   
+       <extension point="org.eclipse.gmf.runtime.common.ui.services.action.contributionItemProviders">
+<contributionItemProvider class="org.eclipse.gmf.runtime.diagram.ui.providers.DiagramContributionItemProvider" checkPluginLoaded="false">
+<Priority name="Low"/>
+<popupContribution class="org.eclipse.gmf.runtime.diagram.ui.providers.DiagramContextMenuProvider">
+<popupStructuredContributionCriteria objectClass="org.eclipse.gmf.runtime.diagram.ui.editparts.DiagramEditPartt"/>
+<popupPredefinedItem id="deleteFromDiagramAction" remove="true"/>
+</popupContribution>
+</contributionItemProvider>
+</extension>
+
+<extension point="org.eclipse.ui.popupMenus">
+      <objectContribution
+            adaptable="false"
+            id="DeleteFromDiagramActionClasst"
+            objectClass="org.unicase.model.classDiagram.edit.parts.ClassEditPart">
+         <action
+               class="org.unicase.ui.common.diagram.DeleteFromDiagramAction"
+               enablesFor="1"
+               id="DeleteFromDiagramActionID"
+               label="Delete From Diagram">
+         </action>
+      </objectContribution>
+</extension>
+   
+   <extension point="org.eclipse.gmf.runtime.emf.type.core.elementTypeBindings">
       <?gmfgen generated="true"?>
       <clientContext id="ModelClientContext">
          <enablement>
