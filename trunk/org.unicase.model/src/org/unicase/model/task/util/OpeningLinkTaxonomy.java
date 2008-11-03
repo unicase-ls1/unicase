@@ -118,7 +118,7 @@ public class OpeningLinkTaxonomy {
 			if (opener instanceof Checkable){
 				leafOpeners.add(opener);
 			}
-			leafOpeners.addAll(getLeafOpeners(modelElement)); 
+			leafOpeners.addAll(getLeafOpeners(opener)); 
 		}
 		leafOpeners.remove(modelElement);
 		return leafOpeners;
