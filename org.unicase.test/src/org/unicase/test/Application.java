@@ -19,6 +19,7 @@ public class Application implements IApplication {
 		ChangeTestSuite changeTest = new RandomChangeTestSuite();
 		changeTest.runTest();
 		
+		
 //		for(int i = 0; i < 5; i++){
 //			System.out.println("==== test " + i + " ====");
 //			long randomSeed = Calendar.getInstance().getTimeInMillis();

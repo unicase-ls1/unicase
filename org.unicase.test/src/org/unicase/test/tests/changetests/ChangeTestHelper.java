@@ -10,6 +10,7 @@ import java.util.List;
 import org.eclipse.emf.common.util.URI;
 import org.eclipse.emf.ecore.EObject;
 import org.eclipse.emf.ecore.resource.Resource;
+import org.eclipse.emf.ecore.resource.ResourceSet;
 import org.eclipse.emf.ecore.resource.impl.ResourceSetImpl;
 import org.eclipse.emf.ecore.util.EcoreUtil;
 import org.eclipse.emf.transaction.RecordingCommand;
@@ -31,10 +32,11 @@ import org.unicase.workspace.impl.ProjectSpaceImpl;
 public class ChangeTestHelper {
 
 	private static TransactionalEditingDomain domain;
-	
+	private static String TEMP_PATH = Configuration.getWorkspaceDirectory()
+			+ "\\tmp\\";
+
 	public static ProjectSpace createEmptyProjectSpace(String name) {
-		
-		
+
 		ProjectSpace projectSpace = WorkspaceFactory.eINSTANCE
 				.createProjectSpace();
 		ProjectId projectId = EsmodelFactory.eINSTANCE.createProjectId();
@@ -51,32 +53,40 @@ public class ChangeTestHelper {
 		projectSpace.setUsersession(null);
 		// projectSpace.setProject(ModelFactory.eINSTANCE.createProject());
 		projectSpace.setResourceCount(0);
+
+		File file = new File(TEMP_PATH);
+		if (!file.exists()) {
+
+			new File(Configuration.getWorkspaceDirectory() + "\\tmp\\")
+					.mkdir();
+		}
+
 		return projectSpace;
-		
+
 	}
 
-	
 	public static ChangePackage getChangePackage(
 			final List<AbstractOperation> operations, final boolean cannonize) {
-		
+
 		final ChangePackage changePackage = VersioningFactory.eINSTANCE
 				.createChangePackage();
-		getDomain().getCommandStack().execute(new RecordingCommand(getDomain()) {
+		getDomain().getCommandStack().execute(
+				new RecordingCommand(getDomain()) {
 
-			@Override
-			protected void doExecute() {
-				changePackage.getOperations().addAll(operations);
-				if (cannonize) {
-					changePackage.cannonize();
-				}
-			}
+					@Override
+					protected void doExecute() {
+						changePackage.getOperations().addAll(operations);
+						if (cannonize) {
+							changePackage.cannonize();
+						}
+					}
 
-		});
+				});
 		return changePackage;
 	}
 
 	public static boolean compare(ProjectSpace testSpace,
-			 ProjectSpace compareSpace) {
+			ProjectSpace compareSpace) {
 
 		prepareCompare(testSpace, compareSpace);
 
@@ -86,8 +96,8 @@ public class ChangeTestHelper {
 	}
 
 	/**
-	 *  Extracts changes form test project and applys them to compare project.
-	 *  
+	 * Extracts changes form test project and applys them to compare project.
+	 * 
 	 * @param testSpace
 	 * @param compareSpace
 	 */
@@ -97,8 +107,22 @@ public class ChangeTestHelper {
 		List<AbstractOperation> operations = testSpace
 				.getOperations();
 		System.out.println(operations.size() + " operatoins");
-		final ChangePackage changePackage = getChangePackage(operations, false);
-
+		final ChangePackage changePackage = getChangePackage(operations, true);
+		
+		//save change package for later reference
+		//the saved change package will be overwritten every time a test succeeds.
+		EObject copyChangePackage = EcoreUtil.copy(changePackage);
+		ResourceSet reseourceSet = new ResourceSetImpl();
+		Resource resource = reseourceSet.createResource(URI.createFileURI(TEMP_PATH + "changePackage.txt"));
+		resource.getContents().add(copyChangePackage);
+		try {
+			resource.save(null);
+		} catch (IOException e) {
+			// TODO Auto-generated catch block
+			e.printStackTrace();
+		}
+		
+		//apply changes to compare project
 		getDomain().getCommandStack().execute(new RecordingCommand(getDomain()) {
 			@Override
 			protected void doExecute() {
@@ -109,32 +133,33 @@ public class ChangeTestHelper {
 			}
 		});
 	}
-	
+
 	public static int[] linearCompare(ProjectSpace testSpace,
-			ProjectSpace compareSpace){
-		
+			ProjectSpace compareSpace) {
+
 		prepareCompare(testSpace, compareSpace);
 		System.out.println("linear comparing...");
 		return linearCompare(testSpace.getProject(), compareSpace.getProject());
-		
+
 	}
 
-	
 	public static TransactionalEditingDomain getDomain() {
-		
-		if( domain == null) {
+
+		if (domain == null) {
 			domain = TransactionalEditingDomain.Registry.INSTANCE
-			.getEditingDomain("org.unicase.EditingDomain");
+					.getEditingDomain("org.unicase.EditingDomain");
 
 		}
 		return domain;
 	}
-	
-	public static String eObjectToString(EObject object, String name) throws SerializationException {
+
+	public static String eObjectToString(EObject object, String name)
+			throws SerializationException {
 		if (object == null) {
 			return null;
 		}
-		Resource res = (new ResourceSetImpl()).createResource(URI.createURI("virtualUnicaseUri"));
+		Resource res = (new ResourceSetImpl()).createResource(URI
+				.createURI("virtualUnicaseUri"));
 		ByteArrayOutputStream out = new ByteArrayOutputStream();
 		res.getContents().add(EcoreUtil.copy(object));
 		try {
@@ -142,13 +167,14 @@ public class ChangeTestHelper {
 		} catch (IOException e) {
 			throw new SerializationException(e);
 		}
-		File file = new File(Configuration.getWorkspaceDirectory() + "\\tmp\\" + name + ".txt");
+		File file = new File(TEMP_PATH  + name + ".txt");
 		try {
-			if(!file.exists()){
-				
-				new File(Configuration.getWorkspaceDirectory() + "\\tmp\\").mkdir();
+			if (!file.exists()) {
+
+				new File(Configuration.getWorkspaceDirectory() + "\\tmp\\")
+						.mkdir();
 			}
-				
+
 			FileOutputStream fos;
 			fos = new FileOutputStream(file);
 			fos.write(out.toByteArray());
@@ -157,12 +183,11 @@ public class ChangeTestHelper {
 			// TODO Auto-generated catch block
 			e.printStackTrace();
 		}
-		
-		
+
 		return out.toString();
 	}
-	
-	public static int[] linearCompare(Project projectA, Project projectB){
+
+	public static int[] linearCompare(Project projectA, Project projectB) {
 		int[] result = new int[5];
 		int ARE_EQUAL = 0;
 		int DIFFRENCE_POSITION = 1;
@@ -172,22 +197,22 @@ public class ChangeTestHelper {
 		result[ARE_EQUAL] = 1;
 		String stringA;
 		String stringB;
-		
+
 		try {
-		
+
 			stringA = eObjectToString(projectA, "testProj");
 			stringB = eObjectToString(projectB, "compareProj");
-			
+
 		} catch (SerializationException e) {
-			for(int i = 0; i < 5; i++){
+			for (int i = 0; i < 5; i++) {
 				result[i] = -1;
 			}
 			return result;
 		}
-		
+
 		int length = Math.min(stringA.length(), stringB.length());
-		for(int index = 0; index < length; index++){
-			if( stringA.charAt(index) != stringB.charAt(index)){
+		for (int index = 0; index < length; index++) {
+			if (stringA.charAt(index) != stringB.charAt(index)) {
 				result[ARE_EQUAL] = 0;
 				result[DIFFRENCE_POSITION] = index;
 				result[CHARACTER] = stringA.charAt(index);
@@ -196,40 +221,37 @@ public class ChangeTestHelper {
 				result[COL_NUM] = getColNum(stringA, index);
 				break;
 			}
-			
+
 		}
-		
+
 		return result;
-		
+
 	}
-	
-	
-	
+
 	private static int getColNum(String stringA, int index) {
 		int lineNum = 1;
 		int pos = index;
 		int j = 0;
-		for(int i = 0; i < index; i ++){
+		for (int i = 0; i < index; i++) {
 			j++;
-			if(stringA.charAt(i) == '\n'){
+			if (stringA.charAt(i) == '\n') {
 				lineNum++;
 				pos -= j;
 				j = 0;
 			}
 		}
 		return pos;
-		
+
 	}
 
 	private static int getLineNum(String stringA, int index) {
 		int lineNum = 1;
-		for(int i = 0; i < index; i ++){
-			if(stringA.charAt(i) == '\n'){
+		for (int i = 0; i < index; i++) {
+			if (stringA.charAt(i) == '\n') {
 				lineNum++;
 			}
 		}
 		return lineNum;
 	}
-
 
 }
