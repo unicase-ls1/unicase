@@ -27,29 +27,29 @@ public class RandomChangeTestSuite extends ChangeTestSuite {
 	public void initTestCases() {
 		
 		// add test cases
-		//getLogger().info("adding testcases");
+		//getLogger().info("adding test cases");
 		System.out.println("adding testcases...");
 		
-		//RenameTest
-		//RenameTest renameTest = new RenameTest("Rename", randomSeed);
-		//renameTest.setParameters();
+		//ChangeAttributeTest
+		//ChangeAttributeTest changeAttributeTest = new ChangeAttributeTest("Rename", randomSeed);
+		//changeAttributeTest.setParameters();
 		
 		//DeleteTest
 		//DeleteTest deleteTest = new DeleteTest("Delete",  randomSeed);
 		//deleteTest.setParameters();
 		
 		//MoveTest
-		MoveTest moveTest = new MoveTest("Move", randomSeed);
+		//MoveTest moveTest = new MoveTest("Move", randomSeed);
 		//moveTest.setParameters();
 
 		//AddTest
-		//AddTest addTest = new AddTest();
+		AddTest addTest = new AddTest("Add", randomSeed);
 		//addTest.setParameters();
 		
 		
-		this.getTestCases().add(moveTest);
-		//this.getTestCases().add(addTest);
-		//this.getTestCases().add(renameTest);
+		//this.getTestCases().add(moveTest);
+		this.getTestCases().add(addTest);
+		//this.getTestCases().add(changeAttributeTest);
 		//this.getTestCases().add(deleteTest);
 		
 		for(TestCase test : getTestCases()){

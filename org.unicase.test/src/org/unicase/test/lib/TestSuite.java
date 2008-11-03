@@ -12,11 +12,11 @@ public abstract class TestSuite {
 		testcases = new ArrayList<TestCase>();
 	}
 
-	public void runTest() {
+	public void runTest(int numOfIterations) {
 		initTestSuite();
 		initTestCases();
 		
-		for (int i = 0; i < 10; i++) {
+		for (int i = 0; i < numOfIterations; i++) {
 			for (TestCase testCase : testcases) {
 				System.out.println("========= Running TestCase: "
 						+ testCase.getTestName() + " =========  " + i);
