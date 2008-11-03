@@ -192,9 +192,6 @@ public class MEMultiLinkControl extends AbstractMEControl {
 		tableLayout = new GridLayout(1, false);
 		section = getToolkit().createSection(parent,
 				Section.TITLE_BAR | Section.TWISTIE | Section.EXPANDED);
-//		MultiLinkSection section2 = new MultiLinkSection(parent,
-//				Section.TITLE_BAR | Section.TWISTIE | Section.EXPANDED);
-//		getToolkit().adapt(section);
 		section.setText(descriptor.getDisplayName(getModelElement()));
 		createSectionToolbar(section, getToolkit());
 		composite = getToolkit().createComposite(section, style);
