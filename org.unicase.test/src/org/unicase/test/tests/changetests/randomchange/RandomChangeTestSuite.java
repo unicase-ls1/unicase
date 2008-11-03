@@ -91,8 +91,8 @@ public class RandomChangeTestSuite extends ChangeTestSuite {
 		if(result[0] == 1){
 			System.out.println("Test succeeded!");
 		}else{
-			logger.info("Test failed!");
-			//System.out.println("Test failed: " + testName + "!");
+			//logger.info("Test failed!");
+			System.out.println("XXXXXXXXXXXXXXXXXXXX----  Test failed!  ----XXXXXXXXXXXXXXXXXXXX ");
 			System.out.println("position: " + result[1]);
 			System.out.println("character: " + (char)result[2]);
 			System.out.println("lineNum: " + result[3]);

@@ -26,6 +26,7 @@ import org.unicase.model.util.SerializationException;
 import org.unicase.workspace.Configuration;
 import org.unicase.workspace.ProjectSpace;
 import org.unicase.workspace.WorkspaceFactory;
+import org.unicase.workspace.impl.ProjectSpaceImpl;
 
 public class ChangeTestHelper {
 
@@ -102,6 +103,7 @@ public class ChangeTestHelper {
 			@Override
 			protected void doExecute() {
 				System.out.println("applying changes to compareSpace...");
+				((ProjectSpaceImpl)compareSpace).stopChangeRecording();
 				changePackage.apply(compareSpace.getProject());
 				//compareSpace.save();
 			}
