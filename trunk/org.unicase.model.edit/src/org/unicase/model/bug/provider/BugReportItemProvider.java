@@ -239,8 +239,15 @@ public class BugReportItemProvider extends AnnotationItemProvider implements
 	 */
 	@Override
 	public Object getImage(Object object) {
+		if(object instanceof BugReport) {
+			BugReport bugReport = (BugReport) object;
+			if(bugReport.isChecked()) {
+				return overlayImage(object, getResourceLocator().getImage(
+				"full/obj16/BugReportResolved"));
+			}
+		}
 		return overlayImage(object, getResourceLocator().getImage(
-				"full/obj16/BugReport"));
+		"full/obj16/BugReport"));
 	}
 
 	/**
