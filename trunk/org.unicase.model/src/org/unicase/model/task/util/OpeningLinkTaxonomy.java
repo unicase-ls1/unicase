@@ -112,9 +112,14 @@ public class OpeningLinkTaxonomy {
 	 * @return a set of modelelement
 	 */
 	public Set<ModelElement> getLeafOpeners(ModelElement modelElement){
+		Set<ModelElement> visited = new HashSet<ModelElement>();
 		Set<ModelElement> leafOpeners = new HashSet<ModelElement>();
-		Set<ModelElement> openeners = getOpeners(modelElement);
-		for(ModelElement opener: openeners){
+		Set<ModelElement> openers = getOpeners(modelElement);
+		visited.add(modelElement);
+		for(ModelElement opener: openers){
+			if(visited.contains(opener)){
+				continue;
+			}
 			if (opener instanceof Checkable){
 				leafOpeners.add(opener);
 			}
