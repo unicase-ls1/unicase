@@ -7,6 +7,7 @@ import org.unicase.model.Project;
 import org.unicase.test.lib.TestSuite;
 import org.unicase.workspace.ProjectSpace;
 import org.unicase.workspace.WorkspaceManager;
+import org.unicase.workspace.impl.ProjectSpaceImpl;
 import org.unicase.workspace.impl.WorkspaceImpl;
 
 
@@ -31,7 +32,7 @@ public abstract class ChangeTestSuite extends TestSuite {
 		System.out.println("initializing test projectSpaces");
 		testSpace = ChangeTestHelper.createEmptyProjectSpace("test");
 		compareSpace = ChangeTestHelper.createEmptyProjectSpace("compare");
-		
+		((ProjectSpaceImpl)compareSpace).stopChangeRecording();
 		final WorkspaceImpl currentWorkspace = (WorkspaceImpl) WorkspaceManager
 				.getInstance().getCurrentWorkspace();
 
