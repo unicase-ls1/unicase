@@ -1005,7 +1005,7 @@ public class ProjectSpaceImpl extends IdentifiableElementImpl implements
 	 * 
 	 * @generated NOT
 	 */
-	private void stopChangeRecording() {
+	public void stopChangeRecording() {
 		this.isRecording = false;
 	}
 
@@ -1015,7 +1015,7 @@ public class ProjectSpaceImpl extends IdentifiableElementImpl implements
 	 * 
 	 * @generated NOT
 	 */
-	private void startChangeRecording() {
+	public void startChangeRecording() {
 		isRecording = true;
 		setDirty(getOperations().size() > 0);
 	}
