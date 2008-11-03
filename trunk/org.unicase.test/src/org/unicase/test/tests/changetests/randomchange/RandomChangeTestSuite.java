@@ -5,7 +5,11 @@ import java.util.Calendar;
 import org.apache.commons.logging.Log;
 import org.apache.commons.logging.LogFactory;
 import org.eclipse.emf.ecore.util.EcoreUtil;
+import org.osgi.service.application.ApplicationDescriptor;
+import org.osgi.service.application.ApplicationHandle;
 import org.unicase.model.Project;
+import org.unicase.test.Activator;
+import org.unicase.test.Application;
 import org.unicase.test.lib.TestCase;
 import org.unicase.test.tests.changetests.ChangeTestHelper;
 import org.unicase.test.tests.changetests.ChangeTestSuite;
@@ -97,6 +101,7 @@ public class RandomChangeTestSuite extends ChangeTestSuite {
 			System.out.println("character: " + (char)result[2]);
 			System.out.println("lineNum: " + result[3]);
 			System.out.println("colNum: " + result[4]);
+			System.exit(0);
 		}
 	}
 
