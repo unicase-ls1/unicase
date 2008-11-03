@@ -477,11 +477,11 @@
         <genFeatures property="None" children="true" createChild="true" ecoreFeature="ecore:EReference model.ecore#//meeting/CompositeMeetingSection/subsections"/>
       </genClasses>
       <genClasses ecoreClass="model.ecore#//meeting/IssueMeetingSection">
-        <genFeatures notify="false" createChild="false" propertySortChoices="true"
+        <genFeatures notify="false" children="true" createChild="false" propertySortChoices="true"
             ecoreFeature="ecore:EReference model.ecore#//meeting/IssueMeetingSection/includedIssues"/>
       </genClasses>
       <genClasses ecoreClass="model.ecore#//meeting/WorkItemMeetingSection">
-        <genFeatures notify="false" createChild="false" propertySortChoices="true"
+        <genFeatures notify="false" children="true" createChild="false" propertySortChoices="true"
             ecoreFeature="ecore:EReference model.ecore#//meeting/WorkItemMeetingSection/includedWorkItems"/>
       </genClasses>
     </nestedGenPackages>
