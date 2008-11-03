@@ -26,6 +26,7 @@ import org.eclipse.swt.custom.SashForm;
 import org.eclipse.swt.layout.GridLayout;
 import org.eclipse.swt.widgets.Composite;
 import org.eclipse.swt.widgets.Control;
+import org.eclipse.swt.widgets.Display;
 import org.eclipse.swt.widgets.Label;
 import org.eclipse.ui.AbstractSourceProvider;
 import org.eclipse.ui.ISourceProvider;
@@ -196,10 +197,9 @@ public class MEEditorPage extends FormPage {
 	}
 
 	private void createAttributes(Composite column, List<IItemPropertyDescriptor> attributes) {
-
 		Composite attributeComposite = toolkit.createComposite(column);
 		GridLayoutFactory.fillDefaults().numColumns(2).applyTo(attributeComposite);
-		GridDataFactory.fillDefaults().grab(true, true).align(SWT.FILL, SWT.FILL).applyTo(attributeComposite);
+		GridDataFactory.fillDefaults().grab(true, true).align(SWT.FILL, SWT.BEGINNING).applyTo(attributeComposite);
 		
 		ControlFactory controlFactory = new ControlFactory(editingDomain, modelElement, this.getEditor().getToolkit());
 		
@@ -214,7 +214,7 @@ public class MEEditorPage extends FormPage {
 				Label label = toolkit.createLabel(attributeComposite, itemPropertyDescriptor.getDisplayName(modelElement));
 				control = meControl.createControl(attributeComposite, SWT.WRAP);
 				GridDataFactory.fillDefaults().align(SWT.LEFT, SWT.CENTER).applyTo(label);
-				GridDataFactory.fillDefaults().grab(true, false).align(SWT.FILL, SWT.TOP).applyTo(control);
+				GridDataFactory.fillDefaults().grab(true, false).align(SWT.FILL, SWT.BEGINNING).applyTo(control);
 				if(meControl instanceof AbstractMEControl){
 					((AbstractMEControl)meControl).applyCustomLayoutData();
 				}
@@ -222,9 +222,9 @@ public class MEEditorPage extends FormPage {
 				if(meControl instanceof UseCaseStepsControl){
 					control = meControl.createControl(bottom, SWT.WRAP);
 				}else{
-					control = meControl.createControl(column, SWT.WRAP);
+					control = meControl.createControl(attributeComposite, SWT.WRAP);
 				}
-				GridDataFactory.fillDefaults().span(2,1).grab(true, false).align(SWT.FILL, SWT.TOP).applyTo(control);
+				GridDataFactory.fillDefaults().span(2,1).grab(true, false).align(SWT.FILL, SWT.BEGINNING).applyTo(control);
 			}
 		}
 
