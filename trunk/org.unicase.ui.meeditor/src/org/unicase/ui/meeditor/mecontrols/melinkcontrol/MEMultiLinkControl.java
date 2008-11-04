@@ -41,11 +41,9 @@ import org.unicase.workspace.WorkspaceManager;
  * GUI Control for the ME reference multilinks.
  * 
  * @author helming
- * @author shterev
  * 
  */
 public class MEMultiLinkControl extends AbstractMEControl {
-	
 	/**
 	 * Command to rebuild the links.
 	 * 
@@ -53,9 +51,12 @@ public class MEMultiLinkControl extends AbstractMEControl {
 	 * 
 	 */
 	private final class RebuildLinksCommand extends RecordingCommand {
+		private final int sizeLimit;
 
-		private RebuildLinksCommand(TransactionalEditingDomain domain) {
+		private RebuildLinksCommand(TransactionalEditingDomain domain,
+				int sizeLimit) {
 			super(domain);
+			this.sizeLimit = sizeLimit;
 		}
 
 		@SuppressWarnings("unchecked")
@@ -64,6 +65,13 @@ public class MEMultiLinkControl extends AbstractMEControl {
 			Object objectList = getModelElement().eGet(eReference);
 			if (objectList instanceof EList) {
 				EList<EObject> eList = (EList<EObject>) objectList;
+				if (eList.size() <= sizeLimit) {
+					linkArea = getToolkit().createComposite(composite, style);
+					linkArea.setLayout(tableLayout);
+					linkArea.setLayoutData(new GridData(
+							GridData.FILL_HORIZONTAL));
+				} else {
+
 					scrollPane = new ScrolledComposite(composite, SWT.V_SCROLL
 							| SWT.H_SCROLL | SWT.TRANSPARENT);
 					scrollClient = new Composite(scrollPane, style);
@@ -82,13 +90,15 @@ public class MEMultiLinkControl extends AbstractMEControl {
 					spec.grabExcessHorizontalSpace = true;
 					scrollPane.setLayoutData(spec);
 					scrollPane.setMinSize(150, 150);
+				}
+
 				for (EObject object : eList) {
 					if (object instanceof ModelElement) {
 						ModelElement me = (ModelElement) object;
 						MELinkControl meControl = new MELinkControl(
 								getEditingDomain(), me, getToolkit(),
 								getModelElement(), eReference);
-						meControl.createControl(scrollClient, style);
+						meControl.createControl((eList.size()<=sizeLimit?linkArea:scrollClient), style);
 						linkControls.add(meControl);
 					}
 				}
@@ -96,12 +106,13 @@ public class MEMultiLinkControl extends AbstractMEControl {
 					scrollPane.setMinSize(scrollClient.computeSize(SWT.DEFAULT,
 							SWT.DEFAULT));
 					scrollClient.layout();
+					scrollPane.layout();
+				} else {
+					linkArea.layout();
 				}
 				if (eList.size() > 0) {
 					section.setExpanded(false);
 					section.setExpanded(true);
-				}else{
-					section.setExpanded(false);
 				}
 			}
 		}
@@ -115,6 +126,8 @@ public class MEMultiLinkControl extends AbstractMEControl {
 	private ScrolledComposite scrollPane;
 
 	private Section section;
+
+	private Composite linkArea;
 
 	private Composite composite;
 
@@ -207,18 +220,23 @@ public class MEMultiLinkControl extends AbstractMEControl {
 	 * Method for refreshing (rebuilding) the composite section.
 	 */
 	private void rebuildLinkSection() {
+		final int sizeLimit = 5;
+
 		for (MELinkControl link : linkControls) {
 			link.dispose();
 		}
 		if (scrollPane != null) {
 			scrollPane.dispose();
 		}
+		if (linkArea != null) {
+			linkArea.dispose();
+		}
 		linkControls.clear();
 		TransactionalEditingDomain domain = WorkspaceManager.getInstance()
 				.getCurrentWorkspace().getEditingDomain();
 		// JH: TransactionUtil.getEditingDomain(modelElement);
 		domain.getCommandStack().execute(
-				new RebuildLinksCommand(domain));
+				new RebuildLinksCommand(domain, sizeLimit));
 	}
 
 	/**
