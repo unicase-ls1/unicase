@@ -26,7 +26,9 @@ public abstract class UpdateStepImpl implements UpdateStep {
 		int numberOfUpdatedItems = 0;
 		for (Version version : versions) {
 			Project projectState = version.getProjectState();
-			numberOfUpdatedItems += updateProjectState(projectState);
+			if (projectState!=null) {
+				numberOfUpdatedItems += updateProjectState(projectState);
+			}
 		}
 		
 		return numberOfUpdatedItems;
