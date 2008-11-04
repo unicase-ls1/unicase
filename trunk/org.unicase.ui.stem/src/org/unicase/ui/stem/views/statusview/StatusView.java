@@ -7,7 +7,9 @@
 package org.unicase.ui.stem.views.statusview;
 
 import java.net.URL;
+import java.util.Date;
 import java.util.HashSet;
+import java.util.Iterator;
 import java.util.Set;
 
 import org.eclipse.core.runtime.FileLocator;
@@ -32,9 +34,9 @@ import org.eclipse.swt.widgets.Label;
 import org.eclipse.swt.widgets.ProgressBar;
 import org.eclipse.swt.widgets.TabFolder;
 import org.eclipse.swt.widgets.TabItem;
-import org.eclipse.swt.widgets.Text;
 import org.eclipse.ui.part.ViewPart;
 import org.unicase.model.ModelElement;
+import org.unicase.model.task.ActionItem;
 import org.unicase.model.task.util.MEState;
 import org.unicase.model.task.util.TaxonomyAccess;
 import org.unicase.ui.common.MEClassLabelProvider;
@@ -59,14 +61,13 @@ public class StatusView extends ViewPart {
 	private ModelElement input;
 	// this must be disposed!
 	private DropTarget dropTarget;
-	private ProgressBar pb;
+	private ProgressBar pbTasks;
 
 	// used to get image of model element's class
 	private MEClassLabelProvider labelProvider;
 
 	private Label lblImage;
 	private Label lblName;
-	private Text txtDescription;
 	private Label lblProjectName;
 	private Composite topComposite;
 
@@ -74,6 +75,11 @@ public class StatusView extends ViewPart {
 	private FlatTabComposite flatTabComposite;
 	private HierarchyTabComposite hierarchyTabComposite;
 	private UserTabComposite userTabComposite;
+	private Label lblLatestDueDateName;
+	private Composite leftComposite;
+	private ProgressBar pbEstimate;
+	private Label lblProgressName;
+	private Label lblEstimateProgressName;
 
 	/**
 	 * . Constructor
@@ -99,75 +105,95 @@ public class StatusView extends ViewPart {
 
 	private void createTopComposite(SashForm sash) {
 		topComposite = new Composite(sash, SWT.NONE);
-		topComposite.setLayout(new GridLayout(3, false));
+		topComposite.setLayout(new GridLayout(2, true));
 		topComposite
 				.setLayoutData(new GridData(SWT.FILL, SWT.FILL, true, true));
 
+		leftComposite = new Composite(topComposite, SWT.NONE);
+		leftComposite.setLayout(new GridLayout(2, false));
+		GridData gridData = new GridData(SWT.FILL, SWT.TOP, true, false);
+		leftComposite.setLayoutData(gridData);
+
 		// image of model element's class
-		lblImage = new Label(topComposite, SWT.NONE);
-		GridData gridData = new GridData(SWT.BEGINNING, SWT.TOP, false, false);
+		lblImage = new Label(leftComposite, SWT.NONE);
+		gridData = new GridData(SWT.BEGINNING, SWT.TOP, false, false);
 		gridData.heightHint = 25;
 		gridData.widthHint = 25;
 		lblImage.setLayoutData(gridData);
-		lblImage.setText("");
+		lblImage.setText("Drag a model element here");
 		lblImage.setImage(labelProvider.getImage(input));
 
 		// name of model element
-		lblName = new Label(topComposite, SWT.NONE);
-		lblName.setLayoutData(new GridData(SWT.FILL, SWT.CENTER, true, false,
-				2, 1));
+		lblName = new Label(leftComposite, SWT.NONE);
+		lblName.setLayoutData(new GridData(SWT.FILL, SWT.CENTER, true, false));
 		lblName.setText("Drag a model element here");
-		lblName.setFont(new Font(Display.getDefault(), "Tahoma", 8, SWT.BOLD));
-
-		Label filler = new Label(topComposite, SWT.NONE);
-		filler
-				.setLayoutData(new GridData(SWT.BEGINNING, SWT.TOP, false,
-						false));
+		lblName.setFont(new Font(Display.getDefault(), "Tahoma", 10, SWT.BOLD));
 
 		// project model element belongs to
-		Label lblProject = new Label(topComposite, SWT.NONE);
+		Label lblProject = new Label(leftComposite, SWT.NONE);
 		lblProject.setLayoutData(new GridData(SWT.BEGINNING, SWT.TOP, false,
 				false));
 		lblProject.setText("Project:");
-		lblProjectName = new Label(topComposite, SWT.NONE);
-		lblProjectName.setLayoutData(new GridData(SWT.FILL, SWT.TOP, false,
+		lblProjectName = new Label(leftComposite, SWT.NONE);
+		lblProjectName.setLayoutData(new GridData(SWT.FILL, SWT.CENTER, true,
 				false));
 		lblProjectName.setText("");
 
-		Label filler1 = new Label(topComposite, SWT.NONE);
-		filler1
-				.setLayoutData(new GridData(SWT.BEGINNING, SWT.TOP, false,
-						false));
-
-		// description of model element
-		Label lblDescription = new Label(topComposite, SWT.NONE);
-		lblDescription.setLayoutData(new GridData(SWT.BEGINNING, SWT.TOP,
+		// Last DueDate
+		Label lbllastDueDate = new Label(leftComposite, SWT.NONE);
+		lbllastDueDate.setLayoutData(new GridData(SWT.BEGINNING, SWT.TOP,
 				false, false));
-		lblDescription.setText("Description:");
-		txtDescription = new Text(topComposite, SWT.MULTI | SWT.WRAP
-				| SWT.V_SCROLL | SWT.BORDER);
-		txtDescription.setLayoutData(new GridData(SWT.FILL, SWT.FILL, true,
-				true));
-		txtDescription.setText("");
-		txtDescription.setEditable(false);
+		lbllastDueDate.setText("Latest Due Date:");
+		lblLatestDueDateName = new Label(leftComposite, SWT.NONE);
+		lblLatestDueDateName.setLayoutData(new GridData(SWT.FILL, SWT.TOP,
+				true, false));
+		lblLatestDueDateName.setText("");
 
-		Label filler2 = new Label(topComposite, SWT.NONE);
-		filler2
-				.setLayoutData(new GridData(SWT.BEGINNING, SWT.TOP, false,
-						false));
+		// Right Composite
+		Composite rightComposite = new Composite(topComposite, SWT.NONE);
+		rightComposite.setLayout(new GridLayout(3, false));
+		gridData = new GridData(SWT.FILL, SWT.TOP, true, false);
+		rightComposite.setLayoutData(gridData);
 
-		// progress bar
-		Label lblProgress = new Label(topComposite, SWT.NONE);
+		// progress bar for number
+		Label lblProgress = new Label(rightComposite, SWT.NONE);
 		lblProgress.setLayoutData(new GridData(SWT.BEGINNING, SWT.TOP, false,
 				false));
-		lblProgress.setText("Progress:");
-		pb = new ProgressBar(topComposite, SWT.HORIZONTAL);
-		pb.setLayoutData(new GridData(SWT.BEGINNING, SWT.CENTER, true, false));
-		pb.setMinimum(0);
-		pb.setMaximum(100);
-		pb.setSelection(0);
+		lblProgress.setText("Closed workitems:");
+		lblProgressName = new Label(rightComposite, SWT.NONE);
+		gridData =new GridData(SWT.FILL, SWT.TOP, false,
+				false);
+		lblProgressName.setLayoutData(gridData);
+		lblProgressName.setText(0+"/"+0);
+		
+		pbTasks = new ProgressBar(rightComposite, SWT.HORIZONTAL);
+		gridData=new GridData(SWT.BEGINNING, SWT.CENTER, true,
+				false);
+		pbTasks.setLayoutData(gridData);
+		pbTasks.setMinimum(0);
+		pbTasks.setMaximum(100);
+		pbTasks.setSelection(0);
+
+		// progress bar for estimate
+		Label lblEstimateProgress = new Label(rightComposite, SWT.NONE);
+		lblEstimateProgress.setLayoutData(new GridData(SWT.BEGINNING, SWT.TOP,
+				false, false));
+		lblEstimateProgress.setText("Closed estimate:");
+		lblEstimateProgressName = new Label(rightComposite, SWT.None);
+		lblEstimateProgressName.setLayoutData(new GridData(SWT.FILL, SWT.TOP,
+				false, false));
+		lblEstimateProgressName.setText("0/0");
+		pbEstimate = new ProgressBar(rightComposite, SWT.HORIZONTAL);
+		pbEstimate.setLayoutData(new GridData(SWT.BEGINNING, SWT.CENTER, true,
+				false));
+		pbEstimate.setMinimum(0);
+		pbEstimate.setMaximum(100);
+		pbEstimate.setSelection(0);
 
 		addDNDSupport(topComposite);
+		addDNDSupport(leftComposite);
+		addDNDSupport(rightComposite);
+		addDNDSupport(topComposite.getShell());
 	}
 
 	/**
@@ -181,35 +207,43 @@ public class StatusView extends ViewPart {
 		// update attributes
 		lblImage.setImage(labelProvider.getImage(input));
 		lblName.setText(input.getName());
-		String description = input.getDescription() == null ? "" : input
-				.getDescription();
-		txtDescription.setText(description);
 		lblProjectName.setText(WorkspaceManager.getProjectSpace(input)
 				.getProjectName());
 
 		// get number of all Openers for this model element
 		// in a hierarchical manner
-		int maximum = TaxonomyAccess.getInstance().getOpeningLinkTaxonomy()
-				.getOpenersRecursive(input).size();
+		Set<ModelElement> leafOpeners = TaxonomyAccess.getInstance()
+				.getOpeningLinkTaxonomy().getLeafOpeners(input);
+		int tasks = leafOpeners.size();
+		int estimate = getEstimate(leafOpeners);
+		int closedTasks = getClosedTasks(leafOpeners);
+		int closedEstimate = getClosedEstimate(leafOpeners);
+		
+		lblProgressName.setText(closedTasks+"/"+tasks);
+		lblEstimateProgressName.setText(closedEstimate+"/"+estimate);
+
+		Date latestDueDate = getLatestDueDate(leafOpeners);
+		if (latestDueDate != null) {
+			lblLatestDueDateName.setText(latestDueDate.toString());
+		}
 
 		// if this model element has no set progress
 		// based on its state
-		if (maximum == 0) {
-			pb.setMaximum(10);
+		if (tasks == 0) {
+			pbTasks.setMaximum(10);
 			if (input.getState().equals(MEState.CLOSED)) {
-				pb.setSelection(10);
-				pb.setToolTipText("100% done");
+				pbTasks.setSelection(10);
+				pbTasks.setToolTipText("100% done");
 			} else {
-				pb.setSelection(0);
-				pb.setToolTipText("0% done");
+				pbTasks.setSelection(0);
+				pbTasks.setToolTipText("0% done");
 			}
 		} else {
 			// set progress based of number of still open openers
-			pb.setMaximum(maximum);
-			int stillOpens = getStillOpenOpeners(input).size();
-			pb.setSelection(maximum - stillOpens);
-			int progress = (int) ((float) (maximum - stillOpens) / maximum * 100);
-			pb.setToolTipText(Integer.toString(progress) + "% done");
+			pbTasks.setMaximum(tasks);
+			pbTasks.setSelection(closedTasks);
+			int progress = (int) ((float) (closedTasks) / tasks * 100);
+			pbTasks.setToolTipText(Integer.toString(progress) + "% done");
 		}
 
 		// set input for tabs
@@ -217,6 +251,68 @@ public class StatusView extends ViewPart {
 		hierarchyTabComposite.setInput(input);
 		userTabComposite.setInput(input);
 
+	}
+
+	private int getClosedEstimate(Set<ModelElement> leafOpeners) {
+		int estimate = 0;
+		Iterator<ModelElement> iterator = leafOpeners.iterator();
+		while (iterator.hasNext()) {
+			ModelElement next = iterator.next();
+			// JH: change to workItem
+			if (next instanceof ActionItem) {
+				if (next.getState().equals(MEState.CLOSED)) {
+					estimate = estimate + ((ActionItem) next).getEstimate();
+				}
+			}
+		}
+		return estimate;
+	}
+
+	private int getClosedTasks(Set<ModelElement> leafOpeners) {
+		int openTasks = 0;
+		Iterator<ModelElement> iterator = leafOpeners.iterator();
+		while (iterator.hasNext()) {
+			ModelElement next = iterator.next();
+			// JH: change to workItem
+			if (next.getState().equals(MEState.CLOSED)) {
+				openTasks++;
+			}
+		}
+		return openTasks;
+	}
+
+	private int getEstimate(Set<ModelElement> leafOpeners) {
+		int estimate = 0;
+		Iterator<ModelElement> iterator = leafOpeners.iterator();
+		while (iterator.hasNext()) {
+			ModelElement next = iterator.next();
+			// JH: change to workItem
+			if (next instanceof ActionItem) {
+				estimate = estimate + ((ActionItem) next).getEstimate();
+			}
+		}
+		return estimate;
+	}
+
+	private Date getLatestDueDate(Set<ModelElement> leafOpeners) {
+		Date date = null;
+		Iterator<ModelElement> iterator = leafOpeners.iterator();
+		while (iterator.hasNext()) {
+			ModelElement next = iterator.next();
+			// JH: change to workItem
+			if (next instanceof ActionItem) {
+				Date dueDate = ((ActionItem) next).getDueDate();
+				if (dueDate == null) {
+					continue;
+				}
+				if (date == null) {
+					date = dueDate;
+				} else if (date.compareTo(dueDate) == 2) {
+					date = dueDate;
+				}
+			}
+		}
+		return date;
 	}
 
 	/**
@@ -274,7 +370,7 @@ public class StatusView extends ViewPart {
 				new Path("icons/User.gif"), null);
 		imageDescriptor = ImageDescriptor.createFromURL(url);
 		TabItem userTab = new TabItem(tabFolder, SWT.None);
-		userTab.setText("Users");
+		userTab.setText("Users view");
 		userTab.setImage(imageDescriptor.createImage());
 		userTabComposite = new UserTabComposite(tabFolder, SWT.NONE);
 		userTab.setControl(userTabComposite);
@@ -299,8 +395,8 @@ public class StatusView extends ViewPart {
 			}
 
 			public void drop(DropTargetEvent event) {
-				TreeSelection selection =(TreeSelection) event.data;
-				ModelElement me= (ModelElement) selection.getFirstElement();
+				TreeSelection selection = (TreeSelection) event.data;
+				ModelElement me = (ModelElement) selection.getFirstElement();
 				setInput(me);
 			}
 
