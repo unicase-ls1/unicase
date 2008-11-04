@@ -7,8 +7,6 @@
 package org.unicase.ui.meeditor;
 
 import java.util.ArrayList;
-import java.util.Collections;
-import java.util.Comparator;
 import java.util.HashMap;
 import java.util.List;
 import java.util.Map;
@@ -26,7 +24,6 @@ import org.eclipse.swt.custom.SashForm;
 import org.eclipse.swt.layout.GridLayout;
 import org.eclipse.swt.widgets.Composite;
 import org.eclipse.swt.widgets.Control;
-import org.eclipse.swt.widgets.Display;
 import org.eclipse.swt.widgets.Label;
 import org.eclipse.ui.AbstractSourceProvider;
 import org.eclipse.ui.ISourceProvider;
@@ -174,24 +171,34 @@ public class MEEditorPage extends FormPage {
 		List<IItemPropertyDescriptor> propertyDescriptors = adapterFactoryItemDelegator
 				.getPropertyDescriptors(modelElement);
 		if (propertyDescriptors != null){
-			final HashMap<IItemPropertyDescriptor,Double> map = new HashMap<IItemPropertyDescriptor, Double>();
-			IAttributePriorityDescriptor priorityDescriptor = new AnnotationPriorityDescriptor();
-			for (IItemPropertyDescriptor itemPropertyDescriptor : propertyDescriptors) {
-				map.put(itemPropertyDescriptor,priorityDescriptor.getPriority(itemPropertyDescriptor, modelElement));
+//			DO NOT REMOVE 
+//			
+//			final HashMap<IItemPropertyDescriptor,Double> map = new HashMap<IItemPropertyDescriptor, Double>();
+//			IAttributePriorityDescriptor priorityDescriptor = new AnnotationPriorityDescriptor();
+//			for (IItemPropertyDescriptor itemPropertyDescriptor : propertyDescriptors) {
+//				map.put(itemPropertyDescriptor,priorityDescriptor.getPriority(itemPropertyDescriptor, modelElement));
+//			}
+//			Collections.sort(propertyDescriptors, new Comparator<IItemPropertyDescriptor>(){
+//				public int compare(IItemPropertyDescriptor o1,
+//						IItemPropertyDescriptor o2) {
+//					return Double.compare(map.get(o1), map.get(o2));
+//				}
+//			});
+//			int length = propertyDescriptors.size();
+//			for(int i=0; i<length/2; i++){
+//				leftColumnAttributes.add(propertyDescriptors.get(i));
+//			}
+//			for(int i=length/2; i<length; i++){
+//				rightColumnAttributes.add(propertyDescriptors.get(i));
+//			}
+			for(IItemPropertyDescriptor pd : propertyDescriptors){
+				if(!pd.isMany(modelElement)){
+					leftColumnAttributes.add(pd);
+				}else{
+					rightColumnAttributes.add(pd);
+				}	
 			}
-			Collections.sort(propertyDescriptors, new Comparator<IItemPropertyDescriptor>(){
-				public int compare(IItemPropertyDescriptor o1,
-						IItemPropertyDescriptor o2) {
-					return Double.compare(map.get(o1), map.get(o2));
-				}
-			});
-			int length = propertyDescriptors.size();
-			for(int i=0; i<length/2; i++){
-				leftColumnAttributes.add(propertyDescriptors.get(i));
-			}
-			for(int i=length/2; i<length; i++){
-				rightColumnAttributes.add(propertyDescriptors.get(i));
-			}
+			
 		}
 
 	}
