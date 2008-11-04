@@ -8,7 +8,6 @@ package org.unicase.ui.stem.views.statusview;
 
 import java.net.URL;
 import java.util.Date;
-import java.util.HashSet;
 import java.util.Iterator;
 import java.util.Set;
 
@@ -413,29 +412,6 @@ public class StatusView extends ViewPart {
 			}
 		});
 
-	}
-
-	/**
-	 * This goes (hierarchically) through list of all opener of this ME and
-	 * returns a list of those openers whose state is not closed.
-	 * 
-	 * @param me
-	 *            input model element
-	 * @return
-	 */
-	private Set<ModelElement> getStillOpenOpeners(ModelElement me) {
-		Set<ModelElement> result = new HashSet<ModelElement>();
-		Set<ModelElement> openers = TaxonomyAccess.getInstance()
-				.getOpeningLinkTaxonomy().getOpenersRecursive(input);
-		for (ModelElement opener : openers) {
-			if (opener.getState().equals(MEState.OPEN)
-					|| opener.getState().equals(MEState.BLOCKED)) {
-
-				result.add(opener);
-			}
-		}
-
-		return result;
 	}
 
 	/**
