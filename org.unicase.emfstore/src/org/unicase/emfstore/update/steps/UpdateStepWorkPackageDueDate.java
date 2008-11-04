@@ -43,7 +43,7 @@ public class UpdateStepWorkPackageDueDate extends UpdateStepRenameFeature {
 	* @see org.unicase.emfstore.update.UpdateStep#getSourceVersion()
 	*/
 	public Version getSourceVersion() {
-		return new Version("0.2.2");
+		return new Version("0.2.9");
 	}
 
 	/**
@@ -51,7 +51,7 @@ public class UpdateStepWorkPackageDueDate extends UpdateStepRenameFeature {
 	* @see org.unicase.emfstore.update.UpdateStep#getTargetVersion()
 	*/
 	public Version getTargetVersion() {
-		return new Version("0.2.3");
+		return new Version("0.2.10");
 	}
 
 	/**
