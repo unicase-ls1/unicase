@@ -112,7 +112,11 @@ public class OpeningLinkTaxonomy {
 	 * @return a set of modelelement
 	 */
 	public Set<ModelElement> getLeafOpeners(ModelElement modelElement){
-		Set<ModelElement> visited = new HashSet<ModelElement>();
+		return getRecursiveLeafOpeners(modelElement, new HashSet<ModelElement>());
+	}
+
+	private Set<ModelElement> getRecursiveLeafOpeners(
+			ModelElement modelElement, HashSet<ModelElement> visited) {
 		Set<ModelElement> leafOpeners = new HashSet<ModelElement>();
 		Set<ModelElement> openers = getOpeners(modelElement);
 		visited.add(modelElement);
@@ -123,7 +127,7 @@ public class OpeningLinkTaxonomy {
 			if (opener instanceof Checkable){
 				leafOpeners.add(opener);
 			}
-			leafOpeners.addAll(getLeafOpeners(opener)); 
+			leafOpeners.addAll(getRecursiveLeafOpeners(opener, visited)); 
 		}
 		leafOpeners.remove(modelElement);
 		return leafOpeners;
