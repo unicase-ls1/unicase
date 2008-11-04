@@ -144,7 +144,7 @@ public class IterationPlanningView extends ViewPart {
 
 		menuManager.add(filterToMe);
 		menuManager.add(filterToMyTeam);
-		// menuManager.add(new GantAction());
+		 menuManager.add(new GantAction());
 
 		// Create the help context id for the viewer's control
 		PlatformUI.getWorkbench().getHelpSystem().setHelp(viewer.getControl(),
