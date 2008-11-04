@@ -23,6 +23,7 @@ import org.unicase.emfstore.esmodel.ServerSpace;
 import org.unicase.emfstore.esmodel.VersionInfo;
 import org.unicase.emfstore.exceptions.FatalEmfStoreException;
 import org.unicase.emfstore.exceptions.StorageException;
+import org.unicase.emfstore.update.steps.UpdateStepWorkPackageDueDate;
 
 /**
  * @author schroech
@@ -35,7 +36,7 @@ public class UpdateController {
 	private List<UpdateStep> necessaryUpdateSteps;
 
 	private static final Log LOGGER = LogFactory.getLog(EmfStoreImpl.class);
-	
+
 	/**
 	 * @return A list of necessary update steps to upgrade from the model version to the emf store version
 	 */
@@ -57,7 +58,7 @@ public class UpdateController {
 		return updateSteps;
 	}
 
-	
+
 	/**
 	 * @param updateSteps 
 	 * A list of all available update steps
@@ -65,7 +66,7 @@ public class UpdateController {
 	public void setUpdateSteps(List<UpdateStep> updateSteps) {
 		this.updateSteps = updateSteps;
 	}
-	
+
 	/**
 	 * Constructor.
 	 */
@@ -75,22 +76,23 @@ public class UpdateController {
 
 		//Model reset here: cannot run these updaters without old model
 		//Update from Version 0.0.4 to 0.0.5
-//		updateSteps.add(new UpdateStepRenameFacilitator());
-//		updateSteps.add(new UpdateStepRemoveAnnotationInstances());
-//		updateSteps.add(new UpdateStepRemoveBugResolution());
-//		updateSteps.add(new UpdateStepRemoveRefiningIssues());
-//		updateSteps.add(new UpdateStepRemoveStepsToReproduce());
-//		updateSteps.add(new UpdateStepRenameAssignedTo());
-//		updateSteps.add(new UpdateStepRenameActionItemAssignedTo());
-//		updateSteps.add(new UpdateStepRenamePackages());
-//		updateSteps.add(new UpdateStepRemoveOrgUnit());
+		//		updateSteps.add(new UpdateStepRenameFacilitator());
+		//		updateSteps.add(new UpdateStepRemoveAnnotationInstances());
+		//		updateSteps.add(new UpdateStepRemoveBugResolution());
+		//		updateSteps.add(new UpdateStepRemoveRefiningIssues());
+		//		updateSteps.add(new UpdateStepRemoveStepsToReproduce());
+		//		updateSteps.add(new UpdateStepRenameAssignedTo());
+		//		updateSteps.add(new UpdateStepRenameActionItemAssignedTo());
+		//		updateSteps.add(new UpdateStepRenamePackages());
+		//		updateSteps.add(new UpdateStepRemoveOrgUnit());
 
 		//Model reset here: cannot run these updaters without old model
 		//Update from Version 0.0.5 to 0.0.6
-//		updateSteps.add(new UpdateStepRemoveAssociationTypeDependency());
-//		updateSteps.add(new UpdateStepRenameAssociationTypeLiterals());
+		//		updateSteps.add(new UpdateStepRemoveAssociationTypeDependency());
+		//		updateSteps.add(new UpdateStepRenameAssociationTypeLiterals());
+		updateSteps.add(new UpdateStepWorkPackageDueDate());
 	}
-	
+
 
 	/**
 	 * Update the server space.
@@ -100,22 +102,22 @@ public class UpdateController {
 	 * Throws an {@link FatalEmfStoreException} if the {@link Resource} could not be saved
 	 */
 	public void updateServerSpace(ServerSpace serverSpace, VersionInfo versionInformation) throws FatalEmfStoreException{
-		
+
 		Version sourceEMFStoreVersion = versionInformation.getEmfStoreVersion();
 		Version targetEMFStoreVersion = EmfStoreImpl.getModelVersion();
-		
+
 		Collections.sort(getUpdateSteps(), new Comparator<UpdateStep>(){
-				public int compare(UpdateStep arg0, UpdateStep arg1) {
-					int compare = arg0.getSourceVersion().compareTo(arg1.getSourceVersion());
-					if (compare == 0) {
-						compare = arg0.getTargetVersion().compareTo(arg1.getTargetVersion());
-					}
-					return compare; 
+			public int compare(UpdateStep arg0, UpdateStep arg1) {
+				int compare = arg0.getSourceVersion().compareTo(arg1.getSourceVersion());
+				if (compare == 0) {
+					compare = arg0.getTargetVersion().compareTo(arg1.getTargetVersion());
 				}
+				return compare; 
+			}
 		});
-		
+
 		UpdateStep previousUpdateStep = null;
-		
+
 		for (UpdateStep updateStep : getUpdateSteps()) {
 			// if target > emf store source 
 			if (updateStep.getTargetVersion().compareTo(sourceEMFStoreVersion) > 0) {
@@ -124,7 +126,7 @@ public class UpdateController {
 					if (updateStep instanceof ModelCleanupUpdateStep) {
 						StringBuilder stringBuilder = new StringBuilder();
 						stringBuilder.append("Your model version is outdated!\n" 
-						+ "Please start the emf store version");
+								+ "Please start the emf store version");
 						stringBuilder.append(updateStep.getSourceVersion());
 						stringBuilder.append("and perform all available ");
 						stringBuilder.append("updates before loading the model with emf store version ");
@@ -141,32 +143,43 @@ public class UpdateController {
 				}
 			}
 		}
-		
+
 		int numberOfUpdatedItems = 0;
-		
-		System.out.println("Starting update…");
-		for (ProjectHistory projectHistory : serverSpace.getProjects()) {
-			for (UpdateStep updateStep : getNecessaryUpdateSteps()) {
-				System.out.println("Performing update: " + updateStep.getTitle());
-				System.out.println("Updating from version " 
-						+ updateStep.getSourceVersion() 
-						+ " to version " 
-						+ updateStep.getTargetVersion());
-								
-				numberOfUpdatedItems += updateStep.updateProjectHistory(projectHistory);
+
+
+		if (getNecessaryUpdateSteps().size() > 0) {	
+			System.out.println("Starting update…");
+			for (ProjectHistory projectHistory : serverSpace.getProjects()) {
+				for (UpdateStep updateStep : getNecessaryUpdateSteps()) {
+					System.out.println("Performing update: " + updateStep.getTitle());
+					System.out.println("Updating from version " 
+							+ updateStep.getSourceVersion() 
+							+ " to version " 
+							+ updateStep.getTargetVersion());
+
+					numberOfUpdatedItems += updateStep.updateProjectHistory(projectHistory);
+				}
 			}
 		}
-		
+
 		versionInformation.setEmfStoreVersion(EmfStoreImpl.getModelVersion());
 		
 		try {
-			EList<Resource> resources = serverSpace.eResource().getResourceSet().getResources();
-			for (Resource currentResource : resources) {
-				currentResource.save(null);
-			}
-			System.out.println("Successfully updated " + numberOfUpdatedItems + " items");
+			serverSpace.eResource().save(null);
 		} catch (IOException e) {
 			throw new FatalEmfStoreException(StorageException.NOSAVE, e);
+		}
+
+		if (getNecessaryUpdateSteps().size() > 0) {
+			try {
+				EList<Resource> resources = serverSpace.eResource().getResourceSet().getResources();
+				for (Resource currentResource : resources) {
+					currentResource.save(null);
+				}
+				System.out.println("Successfully updated " + numberOfUpdatedItems + " items");
+			} catch (IOException e) {
+				throw new FatalEmfStoreException(StorageException.NOSAVE, e);
+			}	
 		}
 	}
 
