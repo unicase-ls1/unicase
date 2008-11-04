@@ -34,7 +34,7 @@ public final class ServerConfiguration {
 	/**
 	 * Constant for the name of the Resource Storage Property.
 	 */
-	public static final String RESOURCE_STORAGE = "ResourceStorage";
+	public static final String RESOURCE_STORAGE = "emfstore.persistence.resourceStorage";
 
 	/**
 	 * Constant for the Default Resource Storage.
@@ -44,7 +44,7 @@ public final class ServerConfiguration {
 	/**
 	 * RMI encryption property, possible values are true and false.
 	 */
-	public static final String RMI_ENCRYPTION = "rmi.encryption";
+	public static final String RMI_ENCRYPTION = "emfstore.connection.rmi.encryption";
 
 	/**
 	 * Default RMI encryption property value.
@@ -54,7 +54,7 @@ public final class ServerConfiguration {
 	/**
 	 * SSL password property, used for RMI encryption.
 	 */
-	public static final String SSL_PASSWORD = "rmi.encryption.ssl.password";
+	public static final String SSL_PASSWORD = "emfstore.connection.rmi.encryption.ssl.password";
 
 	/**
 	 * Default SSL password.
@@ -68,7 +68,7 @@ public final class ServerConfiguration {
 	 * requested. On the other side saving every project state is quite
 	 * redundant.
 	 */
-	public static final String PROJECTSTATE_VERSION_PERSISTENCE = "persistence.version.projectstate";
+	public static final String PROJECTSTATE_VERSION_PERSISTENCE = "emfstore.persistence.version.projectstate";
 
 	/**
 	 * Only the project state from the first and last version is stored, the
@@ -84,7 +84,7 @@ public final class ServerConfiguration {
 	/**
 	 * Property for the count of versions, needed by the everyXVersion policy.
 	 */
-	public static final String PROJECTSTATE_VERSION_PERSISTENCE_EVERYXVERSIONS_X = "persistence.version.projectstate.everyxversions";
+	public static final String PROJECTSTATE_VERSION_PERSISTENCE_EVERYXVERSIONS_X = "emfstore.persistence.version.projectstate.everyxversions";
 	
 	/**
 	 * Default value for the everyXVersion policy.
@@ -99,7 +99,7 @@ public final class ServerConfiguration {
 	/**
 	 * Property for timeout time of a user session.
 	 */
-	public static final String SESSION_TIMEOUT = "accesscontrol.session.timeout";
+	public static final String SESSION_TIMEOUT = "emfstore.accesscontrol.session.timeout";
 
 	/**
 	 * Default timeout.
@@ -109,7 +109,7 @@ public final class ServerConfiguration {
 	/**
 	 * Property for the super user.
 	 */
-	public static final String SUPER_USER = "accesscontrol.authentication.superuser";
+	public static final String SUPER_USER = "emfstore.accesscontrol.authentication.superuser";
 
 	/**
 	 * Default super user name.
@@ -119,7 +119,7 @@ public final class ServerConfiguration {
 	/**
 	 * Property for the super user's password.
 	 */
-	public static final String SUPER_USER_PASSWORD = "accesscontrol.authentication.superuser.password";
+	public static final String SUPER_USER_PASSWORD = "emfstore.accesscontrol.authentication.superuser.password";
 
 	/**
 	 * Default super user password.
@@ -130,7 +130,7 @@ public final class ServerConfiguration {
 	 * Property for authentication policy used by server. E.g. ldap or property
 	 * file.
 	 */
-	public static final String AUTHENTICATION_POLICY = "accesscontrol.authentication.policy";
+	public static final String AUTHENTICATION_POLICY = "emfstore.accesscontrol.authentication.policy";
 
 	/**
 	 * Use ldap for authentication.
@@ -150,7 +150,7 @@ public final class ServerConfiguration {
 	/**
 	 * Path to property file for spfv authentication.
 	 */
-	public static final String AUTHENTICATION_SPFV_FILEPATH = "accesscontrol.authentication.spfv";
+	public static final String AUTHENTICATION_SPFV_FILEPATH = "emfstore.accesscontrol.authentication.spfv";
 
 	/**
 	 * Property to validate server on start up.
@@ -166,7 +166,7 @@ public final class ServerConfiguration {
 	/**
 	 * Allow any client version.
 	 */
-	public static final Object ACCEPTED_VERSIONS_ANY = "any";
+	public static final String ACCEPTED_VERSIONS_ANY = "any";
 
 	/**
 	 * Seperator for multiple properties. E.g. acceptedversions = 0.1,0.2
