@@ -96,7 +96,7 @@ public class UpdateProjectHandler extends ProjectActionHandler implements
 		} catch (NoChangesOnServerException e) {
 			MessageDialog
 					.openInformation(shell, "No need to update",
-							"Your project is update to date, you do not need to update.");
+							"Your project is up to date, you do not need to update.");
 		} catch (ConnectionException e) {
 			try {
 				//try to reconnect once.
