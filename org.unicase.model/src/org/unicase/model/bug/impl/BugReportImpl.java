@@ -7,6 +7,7 @@
 package org.unicase.model.bug.impl;
 
 import java.util.Collection;
+import java.util.Date;
 
 import org.eclipse.emf.common.notify.Notification;
 import org.eclipse.emf.common.notify.NotificationChain;
@@ -44,6 +45,7 @@ import org.unicase.model.task.WorkPackage;
  *   <li>{@link org.unicase.model.bug.impl.BugReportImpl#getSuccessors <em>Successors</em>}</li>
  *   <li>{@link org.unicase.model.bug.impl.BugReportImpl#getAssignee <em>Assignee</em>}</li>
  *   <li>{@link org.unicase.model.bug.impl.BugReportImpl#getParticipants <em>Participants</em>}</li>
+ *   <li>{@link org.unicase.model.bug.impl.BugReportImpl#getDueDate <em>Due Date</em>}</li>
  *   <li>{@link org.unicase.model.bug.impl.BugReportImpl#isChecked <em>Checked</em>}</li>
  *   <li>{@link org.unicase.model.bug.impl.BugReportImpl#getStatus <em>Status</em>}</li>
  *   <li>{@link org.unicase.model.bug.impl.BugReportImpl#getSeverity <em>Severity</em>}</li>
@@ -102,6 +104,26 @@ public class BugReportImpl extends AnnotationImpl implements BugReport {
 	 * @ordered
 	 */
 	protected EList<OrgUnit> participants;
+
+	/**
+	 * The default value of the '{@link #getDueDate() <em>Due Date</em>}' attribute.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @see #getDueDate()
+	 * @generated
+	 * @ordered
+	 */
+	protected static final Date DUE_DATE_EDEFAULT = null;
+
+	/**
+	 * The cached value of the '{@link #getDueDate() <em>Due Date</em>}' attribute.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @see #getDueDate()
+	 * @generated
+	 * @ordered
+	 */
+	protected Date dueDate = DUE_DATE_EDEFAULT;
 
 	/**
 	 * The default value of the '{@link #isChecked() <em>Checked</em>}' attribute.
@@ -393,6 +415,28 @@ public class BugReportImpl extends AnnotationImpl implements BugReport {
 
 	/**
 	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 */
+	public Date getDueDate() {
+		return dueDate;
+	}
+
+	/**
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 */
+	public void setDueDate(Date newDueDate) {
+		Date oldDueDate = dueDate;
+		dueDate = newDueDate;
+		if (eNotificationRequired())
+			eNotify(new ENotificationImpl(this, Notification.SET,
+					BugPackage.BUG_REPORT__DUE_DATE, oldDueDate, dueDate));
+	}
+
+	/**
+	 * <!-- begin-user-doc -->
 	 * .
 	 * <!-- end-user-doc -->
 	 * @generated NOT
@@ -600,6 +644,8 @@ public class BugReportImpl extends AnnotationImpl implements BugReport {
 			return basicGetAssignee();
 		case BugPackage.BUG_REPORT__PARTICIPANTS:
 			return getParticipants();
+		case BugPackage.BUG_REPORT__DUE_DATE:
+			return getDueDate();
 		case BugPackage.BUG_REPORT__CHECKED:
 			return isChecked() ? Boolean.TRUE : Boolean.FALSE;
 		case BugPackage.BUG_REPORT__STATUS:
@@ -645,6 +691,9 @@ public class BugReportImpl extends AnnotationImpl implements BugReport {
 			getParticipants().clear();
 			getParticipants().addAll((Collection<? extends OrgUnit>) newValue);
 			return;
+		case BugPackage.BUG_REPORT__DUE_DATE:
+			setDueDate((Date) newValue);
+			return;
 		case BugPackage.BUG_REPORT__CHECKED:
 			setChecked(((Boolean) newValue).booleanValue());
 			return;
@@ -689,6 +738,9 @@ public class BugReportImpl extends AnnotationImpl implements BugReport {
 		case BugPackage.BUG_REPORT__PARTICIPANTS:
 			getParticipants().clear();
 			return;
+		case BugPackage.BUG_REPORT__DUE_DATE:
+			setDueDate(DUE_DATE_EDEFAULT);
+			return;
 		case BugPackage.BUG_REPORT__CHECKED:
 			setChecked(CHECKED_EDEFAULT);
 			return;
@@ -728,6 +780,9 @@ public class BugReportImpl extends AnnotationImpl implements BugReport {
 			return assignee != null;
 		case BugPackage.BUG_REPORT__PARTICIPANTS:
 			return participants != null && !participants.isEmpty();
+		case BugPackage.BUG_REPORT__DUE_DATE:
+			return DUE_DATE_EDEFAULT == null ? dueDate != null
+					: !DUE_DATE_EDEFAULT.equals(dueDate);
 		case BugPackage.BUG_REPORT__CHECKED:
 			return isChecked() != CHECKED_EDEFAULT;
 		case BugPackage.BUG_REPORT__STATUS:
@@ -789,7 +844,9 @@ public class BugReportImpl extends AnnotationImpl implements BugReport {
 			return super.toString();
 
 		StringBuffer result = new StringBuffer(super.toString());
-		result.append(" (Status: ");
+		result.append(" (dueDate: ");
+		result.append(dueDate);
+		result.append(", Status: ");
 		result.append(status);
 		result.append(", severity: ");
 		result.append(severity);

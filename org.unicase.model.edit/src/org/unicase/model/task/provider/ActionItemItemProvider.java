@@ -61,8 +61,8 @@ public class ActionItemItemProvider extends AnnotationItemProvider implements
 			addSuccessorsPropertyDescriptor(object);
 			addAssigneePropertyDescriptor(object);
 			addParticipantsPropertyDescriptor(object);
-			addDonePropertyDescriptor(object);
 			addDueDatePropertyDescriptor(object);
+			addDonePropertyDescriptor(object);
 			addEstimatePropertyDescriptor(object);
 			addActivityPropertyDescriptor(object);
 		}
@@ -166,17 +166,14 @@ public class ActionItemItemProvider extends AnnotationItemProvider implements
 	 * @generated
 	 */
 	protected void addDueDatePropertyDescriptor(Object object) {
-		itemPropertyDescriptors
-				.add(createItemPropertyDescriptor(
-						((ComposeableAdapterFactory) adapterFactory)
-								.getRootAdapterFactory(), getResourceLocator(),
-						getString("_UI_ActionItem_dueDate_feature"), getString(
-								"_UI_PropertyDescriptor_description",
-								"_UI_ActionItem_dueDate_feature",
-								"_UI_ActionItem_type"),
-						TaskPackage.Literals.ACTION_ITEM__DUE_DATE, true,
-						false, false,
-						ItemPropertyDescriptor.GENERIC_VALUE_IMAGE, null, null));
+		itemPropertyDescriptors.add(createItemPropertyDescriptor(
+				((ComposeableAdapterFactory) adapterFactory)
+						.getRootAdapterFactory(), getResourceLocator(),
+				getString("_UI_WorkItem_dueDate_feature"), getString(
+						"_UI_PropertyDescriptor_description",
+						"_UI_WorkItem_dueDate_feature", "_UI_WorkItem_type"),
+				TaskPackage.Literals.WORK_ITEM__DUE_DATE, true, false, false,
+				ItemPropertyDescriptor.GENERIC_VALUE_IMAGE, null, null));
 	}
 
 	/**
@@ -268,9 +265,9 @@ public class ActionItemItemProvider extends AnnotationItemProvider implements
 		updateChildren(notification);
 
 		switch (notification.getFeatureID(ActionItem.class)) {
+		case TaskPackage.ACTION_ITEM__DUE_DATE:
 		case TaskPackage.ACTION_ITEM__CHECKED:
 		case TaskPackage.ACTION_ITEM__DONE:
-		case TaskPackage.ACTION_ITEM__DUE_DATE:
 		case TaskPackage.ACTION_ITEM__ESTIMATE:
 		case TaskPackage.ACTION_ITEM__ACTIVITY:
 			fireNotifyChanged(new ViewerNotification(notification, notification

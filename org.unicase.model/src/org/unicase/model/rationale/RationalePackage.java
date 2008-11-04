@@ -224,12 +224,21 @@ public interface RationalePackage extends EPackage {
 	int ISSUE__PARTICIPANTS = ModelPackage.ANNOTATION_FEATURE_COUNT + 6;
 
 	/**
+	 * The feature id for the '<em><b>Due Date</b></em>' attribute.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 * @ordered
+	 */
+	int ISSUE__DUE_DATE = ModelPackage.ANNOTATION_FEATURE_COUNT + 7;
+
+	/**
 	 * The feature id for the '<em><b>Proposals</b></em>' containment reference list.
 	 * <!-- begin-user-doc --> <!-- end-user-doc -->
 	 * @generated
 	 * @ordered
 	 */
-	int ISSUE__PROPOSALS = ModelPackage.ANNOTATION_FEATURE_COUNT + 7;
+	int ISSUE__PROPOSALS = ModelPackage.ANNOTATION_FEATURE_COUNT + 8;
 
 	/**
 	 * The feature id for the '<em><b>Solution</b></em>' containment reference.
@@ -237,7 +246,7 @@ public interface RationalePackage extends EPackage {
 	 * @generated
 	 * @ordered
 	 */
-	int ISSUE__SOLUTION = ModelPackage.ANNOTATION_FEATURE_COUNT + 8;
+	int ISSUE__SOLUTION = ModelPackage.ANNOTATION_FEATURE_COUNT + 9;
 
 	/**
 	 * The feature id for the '<em><b>Criteria</b></em>' reference list. <!--
@@ -246,7 +255,7 @@ public interface RationalePackage extends EPackage {
 	 * @generated
 	 * @ordered
 	 */
-	int ISSUE__CRITERIA = ModelPackage.ANNOTATION_FEATURE_COUNT + 9;
+	int ISSUE__CRITERIA = ModelPackage.ANNOTATION_FEATURE_COUNT + 10;
 
 	/**
 	 * The feature id for the '<em><b>Activity</b></em>' attribute.
@@ -255,7 +264,7 @@ public interface RationalePackage extends EPackage {
 	 * @generated
 	 * @ordered
 	 */
-	int ISSUE__ACTIVITY = ModelPackage.ANNOTATION_FEATURE_COUNT + 10;
+	int ISSUE__ACTIVITY = ModelPackage.ANNOTATION_FEATURE_COUNT + 11;
 
 	/**
 	 * The number of structural features of the '<em>Issue</em>' class. <!--
@@ -264,7 +273,7 @@ public interface RationalePackage extends EPackage {
 	 * @generated
 	 * @ordered
 	 */
-	int ISSUE_FEATURE_COUNT = ModelPackage.ANNOTATION_FEATURE_COUNT + 11;
+	int ISSUE_FEATURE_COUNT = ModelPackage.ANNOTATION_FEATURE_COUNT + 12;
 
 	/**
 	 * The meta object id for the '{@link org.unicase.model.rationale.impl.ProposalImpl <em>Proposal</em>}' class.

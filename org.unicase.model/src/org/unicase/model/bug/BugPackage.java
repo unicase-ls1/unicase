@@ -216,6 +216,15 @@ public interface BugPackage extends EPackage {
 	int BUG_REPORT__PARTICIPANTS = TaskPackage.WORK_ITEM__PARTICIPANTS;
 
 	/**
+	 * The feature id for the '<em><b>Due Date</b></em>' attribute.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 * @ordered
+	 */
+	int BUG_REPORT__DUE_DATE = TaskPackage.WORK_ITEM__DUE_DATE;
+
+	/**
 	 * The feature id for the '<em><b>Checked</b></em>' attribute.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->

@@ -6,6 +6,8 @@
  */
 package org.unicase.model.task;
 
+import java.util.Date;
+
 import org.eclipse.emf.common.util.EList;
 import org.unicase.model.Annotation;
 import org.unicase.model.change.ModelChangePackage;
@@ -24,6 +26,7 @@ import org.unicase.model.organization.OrgUnit;
  *   <li>{@link org.unicase.model.task.WorkItem#getSuccessors <em>Successors</em>}</li>
  *   <li>{@link org.unicase.model.task.WorkItem#getAssignee <em>Assignee</em>}</li>
  *   <li>{@link org.unicase.model.task.WorkItem#getParticipants <em>Participants</em>}</li>
+ *   <li>{@link org.unicase.model.task.WorkItem#getDueDate <em>Due Date</em>}</li>
  * </ul>
  * </p>
  *
@@ -163,5 +166,31 @@ public interface WorkItem extends Annotation {
 	 * @generated
 	 */
 	EList<OrgUnit> getParticipants();
+
+	/**
+	 * Returns the value of the '<em><b>Due Date</b></em>' attribute.
+	 * <!-- begin-user-doc -->
+	 * <p>
+	 * If the meaning of the '<em>Due Date</em>' attribute isn't clear,
+	 * there really should be more of a description here...
+	 * </p>
+	 * <!-- end-user-doc -->
+	 * @return the value of the '<em>Due Date</em>' attribute.
+	 * @see #setDueDate(Date)
+	 * @see org.unicase.model.task.TaskPackage#getWorkItem_DueDate()
+	 * @model
+	 * @generated
+	 */
+	Date getDueDate();
+
+	/**
+	 * Sets the value of the '{@link org.unicase.model.task.WorkItem#getDueDate <em>Due Date</em>}' attribute.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @param value the new value of the '<em>Due Date</em>' attribute.
+	 * @see #getDueDate()
+	 * @generated
+	 */
+	void setDueDate(Date value);
 
 } // WorkItem

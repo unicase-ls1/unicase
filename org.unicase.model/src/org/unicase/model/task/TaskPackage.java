@@ -214,13 +214,22 @@ public interface TaskPackage extends EPackage {
 	int WORK_ITEM__PARTICIPANTS = ModelPackage.ANNOTATION_FEATURE_COUNT + 5;
 
 	/**
+	 * The feature id for the '<em><b>Due Date</b></em>' attribute.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 * @ordered
+	 */
+	int WORK_ITEM__DUE_DATE = ModelPackage.ANNOTATION_FEATURE_COUNT + 6;
+
+	/**
 	 * The number of structural features of the '<em>Work Item</em>' class. <!--
 	 * begin-user-doc --> <!-- end-user-doc -->
 	 * 
 	 * @generated
 	 * @ordered
 	 */
-	int WORK_ITEM_FEATURE_COUNT = ModelPackage.ANNOTATION_FEATURE_COUNT + 6;
+	int WORK_ITEM_FEATURE_COUNT = ModelPackage.ANNOTATION_FEATURE_COUNT + 7;
 
 	/**
 	 * The meta object id for the '{@link org.unicase.model.task.impl.ActionItemImpl <em>Action Item</em>}' class.
@@ -379,6 +388,15 @@ public interface TaskPackage extends EPackage {
 	int ACTION_ITEM__PARTICIPANTS = WORK_ITEM__PARTICIPANTS;
 
 	/**
+	 * The feature id for the '<em><b>Due Date</b></em>' attribute. <!--
+	 * begin-user-doc --> <!-- end-user-doc -->
+	 * 
+	 * @generated
+	 * @ordered
+	 */
+	int ACTION_ITEM__DUE_DATE = WORK_ITEM__DUE_DATE;
+
+	/**
 	 * The feature id for the '<em><b>Checked</b></em>' attribute.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
@@ -397,22 +415,13 @@ public interface TaskPackage extends EPackage {
 	int ACTION_ITEM__DONE = WORK_ITEM_FEATURE_COUNT + 1;
 
 	/**
-	 * The feature id for the '<em><b>Due Date</b></em>' attribute. <!--
-	 * begin-user-doc --> <!-- end-user-doc -->
-	 * 
-	 * @generated
-	 * @ordered
-	 */
-	int ACTION_ITEM__DUE_DATE = WORK_ITEM_FEATURE_COUNT + 2;
-
-	/**
 	 * The feature id for the '<em><b>Estimate</b></em>' attribute. <!--
 	 * begin-user-doc --> <!-- end-user-doc -->
 	 * 
 	 * @generated
 	 * @ordered
 	 */
-	int ACTION_ITEM__ESTIMATE = WORK_ITEM_FEATURE_COUNT + 3;
+	int ACTION_ITEM__ESTIMATE = WORK_ITEM_FEATURE_COUNT + 2;
 
 	/**
 	 * The feature id for the '<em><b>Activity</b></em>' attribute.
@@ -421,7 +430,7 @@ public interface TaskPackage extends EPackage {
 	 * @generated
 	 * @ordered
 	 */
-	int ACTION_ITEM__ACTIVITY = WORK_ITEM_FEATURE_COUNT + 4;
+	int ACTION_ITEM__ACTIVITY = WORK_ITEM_FEATURE_COUNT + 3;
 
 	/**
 	 * The number of structural features of the '<em>Action Item</em>' class.
@@ -429,7 +438,7 @@ public interface TaskPackage extends EPackage {
 	 * @generated
 	 * @ordered
 	 */
-	int ACTION_ITEM_FEATURE_COUNT = WORK_ITEM_FEATURE_COUNT + 5;
+	int ACTION_ITEM_FEATURE_COUNT = WORK_ITEM_FEATURE_COUNT + 4;
 
 	/**
 	 * The meta object id for the '{@link org.unicase.model.task.impl.WorkPackageImpl <em>Work Package</em>}' class.
@@ -589,6 +598,15 @@ public interface TaskPackage extends EPackage {
 	 * @ordered
 	 */
 	int WORK_PACKAGE__PARTICIPANTS = WORK_ITEM__PARTICIPANTS;
+
+	/**
+	 * The feature id for the '<em><b>Due Date</b></em>' attribute.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 * @ordered
+	 */
+	int WORK_PACKAGE__DUE_DATE = WORK_ITEM__DUE_DATE;
 
 	/**
 	 * The feature id for the '<em><b>Contained Work Items</b></em>' containment reference list.
@@ -784,16 +802,6 @@ public interface TaskPackage extends EPackage {
 	EClass getActionItem();
 
 	/**
-	 * Returns the meta object for the attribute '{@link org.unicase.model.task.ActionItem#getDueDate <em>Due Date</em>}'.
-	 * <!-- begin-user-doc --> <!-- end-user-doc -->
-	 * @return the meta object for the attribute '<em>Due Date</em>'.
-	 * @see org.unicase.model.task.ActionItem#getDueDate()
-	 * @see #getActionItem()
-	 * @generated
-	 */
-	EAttribute getActionItem_DueDate();
-
-	/**
 	 * Returns the meta object for the attribute '
 	 * {@link org.unicase.model.task.ActionItem#isDone <em>Done</em>}'. <!--
 	 * begin-user-doc --> <!-- end-user-doc -->
@@ -948,6 +956,17 @@ public interface TaskPackage extends EPackage {
 	EReference getWorkItem_Participants();
 
 	/**
+	 * Returns the meta object for the attribute '{@link org.unicase.model.task.WorkItem#getDueDate <em>Due Date</em>}'.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @return the meta object for the attribute '<em>Due Date</em>'.
+	 * @see org.unicase.model.task.WorkItem#getDueDate()
+	 * @see #getWorkItem()
+	 * @generated
+	 */
+	EAttribute getWorkItem_DueDate();
+
+	/**
 	 * Returns the meta object for class '{@link org.unicase.model.task.Milestone <em>Milestone</em>}'.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
@@ -1019,13 +1038,6 @@ public interface TaskPackage extends EPackage {
 		 * @generated
 		 */
 		EClass ACTION_ITEM = eINSTANCE.getActionItem();
-
-		/**
-		 * The meta object literal for the '<em><b>Due Date</b></em>' attribute feature.
-		 * <!-- begin-user-doc --> <!-- end-user-doc -->
-		 * @generated
-		 */
-		EAttribute ACTION_ITEM__DUE_DATE = eINSTANCE.getActionItem_DueDate();
 
 		/**
 		 * The meta object literal for the '<em><b>Done</b></em>' attribute feature.
@@ -1143,6 +1155,14 @@ public interface TaskPackage extends EPackage {
 		 */
 		EReference WORK_ITEM__PARTICIPANTS = eINSTANCE
 				.getWorkItem_Participants();
+
+		/**
+		 * The meta object literal for the '<em><b>Due Date</b></em>' attribute feature.
+		 * <!-- begin-user-doc -->
+		 * <!-- end-user-doc -->
+		 * @generated
+		 */
+		EAttribute WORK_ITEM__DUE_DATE = eINSTANCE.getWorkItem_DueDate();
 
 		/**
 		 * The meta object literal for the '{@link org.unicase.model.task.impl.MilestoneImpl <em>Milestone</em>}' class.

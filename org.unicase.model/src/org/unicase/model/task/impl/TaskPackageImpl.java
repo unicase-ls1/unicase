@@ -251,14 +251,6 @@ public class TaskPackageImpl extends EPackageImpl implements TaskPackage {
 	 * <!-- begin-user-doc --> <!-- end-user-doc -->
 	 * @generated
 	 */
-	public EAttribute getActionItem_DueDate() {
-		return (EAttribute) actionItemEClass.getEStructuralFeatures().get(1);
-	}
-
-	/**
-	 * <!-- begin-user-doc --> <!-- end-user-doc -->
-	 * @generated
-	 */
 	public EAttribute getActionItem_Done() {
 		return (EAttribute) actionItemEClass.getEStructuralFeatures().get(0);
 	}
@@ -268,7 +260,7 @@ public class TaskPackageImpl extends EPackageImpl implements TaskPackage {
 	 * @generated
 	 */
 	public EAttribute getActionItem_Estimate() {
-		return (EAttribute) actionItemEClass.getEStructuralFeatures().get(2);
+		return (EAttribute) actionItemEClass.getEStructuralFeatures().get(1);
 	}
 
 	/**
@@ -277,7 +269,7 @@ public class TaskPackageImpl extends EPackageImpl implements TaskPackage {
 	 * @generated
 	 */
 	public EAttribute getActionItem_Activity() {
-		return (EAttribute) actionItemEClass.getEStructuralFeatures().get(3);
+		return (EAttribute) actionItemEClass.getEStructuralFeatures().get(2);
 	}
 
 	/**
@@ -380,6 +372,15 @@ public class TaskPackageImpl extends EPackageImpl implements TaskPackage {
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
+	public EAttribute getWorkItem_DueDate() {
+		return (EAttribute) workItemEClass.getEStructuralFeatures().get(6);
+	}
+
+	/**
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 */
 	public EClass getMilestone() {
 		return milestoneEClass;
 	}
@@ -440,7 +441,6 @@ public class TaskPackageImpl extends EPackageImpl implements TaskPackage {
 		// Create classes and their features
 		actionItemEClass = createEClass(ACTION_ITEM);
 		createEAttribute(actionItemEClass, ACTION_ITEM__DONE);
-		createEAttribute(actionItemEClass, ACTION_ITEM__DUE_DATE);
 		createEAttribute(actionItemEClass, ACTION_ITEM__ESTIMATE);
 		createEAttribute(actionItemEClass, ACTION_ITEM__ACTIVITY);
 
@@ -456,6 +456,7 @@ public class TaskPackageImpl extends EPackageImpl implements TaskPackage {
 		createEReference(workItemEClass, WORK_ITEM__SUCCESSORS);
 		createEReference(workItemEClass, WORK_ITEM__ASSIGNEE);
 		createEReference(workItemEClass, WORK_ITEM__PARTICIPANTS);
+		createEAttribute(workItemEClass, WORK_ITEM__DUE_DATE);
 
 		milestoneEClass = createEClass(MILESTONE);
 
@@ -515,10 +516,6 @@ public class TaskPackageImpl extends EPackageImpl implements TaskPackage {
 				!IS_ABSTRACT, !IS_INTERFACE, IS_GENERATED_INSTANCE_CLASS);
 		initEAttribute(getActionItem_Done(), ecorePackage.getEBoolean(),
 				"done", null, 0, 1, ActionItem.class, !IS_TRANSIENT,
-				!IS_VOLATILE, IS_CHANGEABLE, !IS_UNSETTABLE, !IS_ID, IS_UNIQUE,
-				!IS_DERIVED, IS_ORDERED);
-		initEAttribute(getActionItem_DueDate(), ecorePackage.getEDate(),
-				"dueDate", null, 0, 1, ActionItem.class, !IS_TRANSIENT,
 				!IS_VOLATILE, IS_CHANGEABLE, !IS_UNSETTABLE, !IS_ID, IS_UNIQUE,
 				!IS_DERIVED, IS_ORDERED);
 		initEAttribute(getActionItem_Estimate(), ecorePackage.getEInt(),
@@ -594,6 +591,10 @@ public class TaskPackageImpl extends EPackageImpl implements TaskPackage {
 				!IS_DERIVED, IS_ORDERED);
 		getWorkItem_Participants().getEKeys().add(
 				theModelPackage.getIdentifiableElement_Identifier());
+		initEAttribute(getWorkItem_DueDate(), ecorePackage.getEDate(),
+				"dueDate", null, 0, 1, WorkItem.class, !IS_TRANSIENT,
+				!IS_VOLATILE, IS_CHANGEABLE, !IS_UNSETTABLE, !IS_ID, IS_UNIQUE,
+				!IS_DERIVED, IS_ORDERED);
 
 		initEClass(milestoneEClass, Milestone.class, "Milestone", !IS_ABSTRACT,
 				!IS_INTERFACE, IS_GENERATED_INSTANCE_CLASS);

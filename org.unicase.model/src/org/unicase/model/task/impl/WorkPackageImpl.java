@@ -40,6 +40,7 @@ import org.unicase.model.task.WorkPackage;
  *   <li>{@link org.unicase.model.task.impl.WorkPackageImpl#getSuccessors <em>Successors</em>}</li>
  *   <li>{@link org.unicase.model.task.impl.WorkPackageImpl#getAssignee <em>Assignee</em>}</li>
  *   <li>{@link org.unicase.model.task.impl.WorkPackageImpl#getParticipants <em>Participants</em>}</li>
+ *   <li>{@link org.unicase.model.task.impl.WorkPackageImpl#getDueDate <em>Due Date</em>}</li>
  *   <li>{@link org.unicase.model.task.impl.WorkPackageImpl#getContainedWorkItems <em>Contained Work Items</em>}</li>
  *   <li>{@link org.unicase.model.task.impl.WorkPackageImpl#getStartDate <em>Start Date</em>}</li>
  *   <li>{@link org.unicase.model.task.impl.WorkPackageImpl#getEndDate <em>End Date</em>}</li>
@@ -94,6 +95,24 @@ public class WorkPackageImpl extends AnnotationImpl implements WorkPackage {
 	 * @ordered
 	 */
 	protected EList<OrgUnit> participants;
+	/**
+	 * The default value of the '{@link #getDueDate() <em>Due Date</em>}' attribute.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @see #getDueDate()
+	 * @generated
+	 * @ordered
+	 */
+	protected static final Date DUE_DATE_EDEFAULT = null;
+	/**
+	 * The cached value of the '{@link #getDueDate() <em>Due Date</em>}' attribute.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @see #getDueDate()
+	 * @generated
+	 * @ordered
+	 */
+	protected Date dueDate = DUE_DATE_EDEFAULT;
 	/**
 	 * The cached value of the '{@link #getContainedWorkItems() <em>Contained Work Items</em>}' containment reference list.
 	 * <!-- begin-user-doc -->
@@ -416,6 +435,28 @@ public class WorkPackageImpl extends AnnotationImpl implements WorkPackage {
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
+	public Date getDueDate() {
+		return dueDate;
+	}
+
+	/**
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 */
+	public void setDueDate(Date newDueDate) {
+		Date oldDueDate = dueDate;
+		dueDate = newDueDate;
+		if (eNotificationRequired())
+			eNotify(new ENotificationImpl(this, Notification.SET,
+					TaskPackage.WORK_PACKAGE__DUE_DATE, oldDueDate, dueDate));
+	}
+
+	/**
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 */
 	@SuppressWarnings("unchecked")
 	@Override
 	public NotificationChain eInverseAdd(InternalEObject otherEnd,
@@ -516,6 +557,8 @@ public class WorkPackageImpl extends AnnotationImpl implements WorkPackage {
 			return basicGetAssignee();
 		case TaskPackage.WORK_PACKAGE__PARTICIPANTS:
 			return getParticipants();
+		case TaskPackage.WORK_PACKAGE__DUE_DATE:
+			return getDueDate();
 		case TaskPackage.WORK_PACKAGE__CONTAINED_WORK_ITEMS:
 			return getContainedWorkItems();
 		case TaskPackage.WORK_PACKAGE__START_DATE:
@@ -557,6 +600,9 @@ public class WorkPackageImpl extends AnnotationImpl implements WorkPackage {
 			getParticipants().clear();
 			getParticipants().addAll((Collection<? extends OrgUnit>) newValue);
 			return;
+		case TaskPackage.WORK_PACKAGE__DUE_DATE:
+			setDueDate((Date) newValue);
+			return;
 		case TaskPackage.WORK_PACKAGE__CONTAINED_WORK_ITEMS:
 			getContainedWorkItems().clear();
 			getContainedWorkItems().addAll(
@@ -597,6 +643,9 @@ public class WorkPackageImpl extends AnnotationImpl implements WorkPackage {
 		case TaskPackage.WORK_PACKAGE__PARTICIPANTS:
 			getParticipants().clear();
 			return;
+		case TaskPackage.WORK_PACKAGE__DUE_DATE:
+			setDueDate(DUE_DATE_EDEFAULT);
+			return;
 		case TaskPackage.WORK_PACKAGE__CONTAINED_WORK_ITEMS:
 			getContainedWorkItems().clear();
 			return;
@@ -630,6 +679,9 @@ public class WorkPackageImpl extends AnnotationImpl implements WorkPackage {
 			return assignee != null;
 		case TaskPackage.WORK_PACKAGE__PARTICIPANTS:
 			return participants != null && !participants.isEmpty();
+		case TaskPackage.WORK_PACKAGE__DUE_DATE:
+			return DUE_DATE_EDEFAULT == null ? dueDate != null
+					: !DUE_DATE_EDEFAULT.equals(dueDate);
 		case TaskPackage.WORK_PACKAGE__CONTAINED_WORK_ITEMS:
 			return containedWorkItems != null && !containedWorkItems.isEmpty();
 		case TaskPackage.WORK_PACKAGE__START_DATE:
@@ -653,7 +705,9 @@ public class WorkPackageImpl extends AnnotationImpl implements WorkPackage {
 			return super.toString();
 
 		StringBuffer result = new StringBuffer(super.toString());
-		result.append(" (startDate: ");
+		result.append(" (dueDate: ");
+		result.append(dueDate);
+		result.append(", startDate: ");
 		result.append(startDate);
 		result.append(", endDate: ");
 		result.append(endDate);

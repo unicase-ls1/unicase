@@ -65,6 +65,7 @@ public class IssueItemProvider extends AnnotationItemProvider implements
 			addSuccessorsPropertyDescriptor(object);
 			addAssigneePropertyDescriptor(object);
 			addParticipantsPropertyDescriptor(object);
+			addDueDatePropertyDescriptor(object);
 			addProposalsPropertyDescriptor(object);
 			addSolutionPropertyDescriptor(object);
 			addCriteriaPropertyDescriptor(object);
@@ -198,6 +199,23 @@ public class IssueItemProvider extends AnnotationItemProvider implements
 	}
 
 	/**
+	 * This adds a property descriptor for the Due Date feature.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 */
+	protected void addDueDatePropertyDescriptor(Object object) {
+		itemPropertyDescriptors.add(createItemPropertyDescriptor(
+				((ComposeableAdapterFactory) adapterFactory)
+						.getRootAdapterFactory(), getResourceLocator(),
+				getString("_UI_WorkItem_dueDate_feature"), getString(
+						"_UI_PropertyDescriptor_description",
+						"_UI_WorkItem_dueDate_feature", "_UI_WorkItem_type"),
+				TaskPackage.Literals.WORK_ITEM__DUE_DATE, true, false, false,
+				ItemPropertyDescriptor.GENERIC_VALUE_IMAGE, null, null));
+	}
+
+	/**
 	 * This adds a property descriptor for the Proposals feature.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
@@ -305,6 +323,7 @@ public class IssueItemProvider extends AnnotationItemProvider implements
 
 		switch (notification.getFeatureID(Issue.class)) {
 		case RationalePackage.ISSUE__CHECKED:
+		case RationalePackage.ISSUE__DUE_DATE:
 		case RationalePackage.ISSUE__ACTIVITY:
 			fireNotifyChanged(new ViewerNotification(notification, notification
 					.getNotifier(), false, true));
