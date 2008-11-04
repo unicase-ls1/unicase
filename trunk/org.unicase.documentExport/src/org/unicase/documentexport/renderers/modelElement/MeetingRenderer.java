@@ -104,8 +104,10 @@ public class MeetingRenderer extends ModelElementRenderer {
 			"-" +
 			cal.get(Calendar.YEAR);
 		}
-		else
+		else {
 			text = "";
+			text = "null!!!";
+		}
 		table.addEntry("Datum: " + text);
 		
 		
@@ -341,7 +343,7 @@ public class MeetingRenderer extends ModelElementRenderer {
 		
 		UParagraph par = new UParagraph(text + workItemText, workItemTextOption);
 		par.setIndentionLeft(1);
-		parent.add(par);
+		workItemSection.add(par);
 		
 		if (workItem instanceof Issue) {
 			Issue issue = (Issue)workItem;
@@ -350,7 +352,7 @@ public class MeetingRenderer extends ModelElementRenderer {
 				String text2 = "P[" + number + "." + i + "]: " + proposal.getName();
 				UParagraph par2 = new UParagraph(text2, workItemTextOption);
 				par2.setIndentionLeft(2);
-				parent.add(par2);
+				workItemSection.add(par2);
 			}
 		}
 	}
