@@ -1,0 +1,80 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<?eclipse version="3.2"?>
+<plugin>
+
+   <extension
+         point="org.eclipse.ui.views">
+      <category
+            id="org.unicase"
+            name="unicase">
+      </category>
+      <view
+            category="org.unicase"
+            class="org.unicase.documentexport.views.DocumentTemplateManager"
+            icon="icons/sample.gif"
+            id="org.unicase.DocumentTemplateManager"
+            name="Document template manager">
+      </view>
+   </extension>
+   <extension
+         point="org.eclipse.ui.perspectiveExtensions">
+      <perspectiveExtension
+            targetID="org.eclipse.jdt.ui.JavaPerspective">
+         <view
+               ratio="0.5"
+               relative="org.eclipse.ui.views.TaskList"
+               relationship="right"
+               id="org.unicase.documentexport2.views.SampleView">
+         </view>
+      </perspectiveExtension>
+   </extension>
+   <extension
+         point="org.eclipse.help.contexts">
+      <contexts
+            file="contexts.xml">
+      </contexts>
+   </extension>
+   <extension
+         point="org.eclipse.ui.menus">
+      <menuContribution
+            locationURI="popup:org.unicase.ui.navigator.viewer?after=org.unicase.ui.common.commands.annotateActionitemSeperator">
+         <command
+               commandId="org.unicase.documentExport.exportDocument"
+               label="Export Meeting"
+               style="push">
+            <visibleWhen
+                  checkEnabled="false">
+               <iterate
+                     ifEmpty="false">
+                  <instanceof
+                        value="org.unicase.model.meeting.Meeting">
+                  </instanceof>
+               </iterate>
+            </visibleWhen>
+         </command>
+      </menuContribution>
+   </extension>
+   <extension
+         point="org.eclipse.ui.commands">
+      <command
+            id="org.unicase.documentExport.exportDocument"
+            name="exportDocument">
+      </command>
+      <command
+            id="org.unicase.documentExport.createDefaultTemplate"
+            name="createDefaultTemplate">
+      </command>
+   </extension>
+   <extension
+         point="org.eclipse.ui.handlers">
+      <handler
+            class="org.unicase.documentexport.commands.ExportDocument"
+            commandId="org.unicase.documentExport.exportDocument">
+      </handler>
+      <handler
+            class="org.unicase.documentexport.commands.CreateDefaultTemplate"
+            commandId="org.unicase.documentExport.createDefaultTemplate">
+      </handler>
+   </extension>
+
+</plugin>
