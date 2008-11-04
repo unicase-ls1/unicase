@@ -66,9 +66,9 @@ public class WorkPackageItemProvider extends AnnotationItemProvider implements
 			addSuccessorsPropertyDescriptor(object);
 			addAssigneePropertyDescriptor(object);
 			addParticipantsPropertyDescriptor(object);
+			addDueDatePropertyDescriptor(object);
 			addContainedWorkItemsPropertyDescriptor(object);
 			addStartDatePropertyDescriptor(object);
-			addEndDatePropertyDescriptor(object);
 		}
 		return itemPropertyDescriptors;
 	}
@@ -165,24 +165,6 @@ public class WorkPackageItemProvider extends AnnotationItemProvider implements
 	}
 
 	/**
-	 * This adds a property descriptor for the End Date feature.
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
-	 * @generated
-	 */
-	protected void addEndDatePropertyDescriptor(Object object) {
-		itemPropertyDescriptors.add(createItemPropertyDescriptor(
-				((ComposeableAdapterFactory) adapterFactory)
-						.getRootAdapterFactory(), getResourceLocator(),
-				getString("_UI_WorkPackage_endDate_feature"), getString(
-						"_UI_PropertyDescriptor_description",
-						"_UI_WorkPackage_endDate_feature",
-						"_UI_WorkPackage_type"),
-				TaskPackage.Literals.WORK_PACKAGE__END_DATE, true, false,
-				false, ItemPropertyDescriptor.GENERIC_VALUE_IMAGE, null, null));
-	}
-
-	/**
 	 * This adds a property descriptor for the Assignee feature.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
@@ -215,6 +197,23 @@ public class WorkPackageItemProvider extends AnnotationItemProvider implements
 						"_UI_WorkItem_type"),
 				TaskPackage.Literals.WORK_ITEM__PARTICIPANTS, true, false,
 				true, null, null, null));
+	}
+
+	/**
+	 * This adds a property descriptor for the Due Date feature.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 */
+	protected void addDueDatePropertyDescriptor(Object object) {
+		itemPropertyDescriptors.add(createItemPropertyDescriptor(
+				((ComposeableAdapterFactory) adapterFactory)
+						.getRootAdapterFactory(), getResourceLocator(),
+				getString("_UI_WorkItem_dueDate_feature"), getString(
+						"_UI_PropertyDescriptor_description",
+						"_UI_WorkItem_dueDate_feature", "_UI_WorkItem_type"),
+				TaskPackage.Literals.WORK_ITEM__DUE_DATE, true, false, false,
+				ItemPropertyDescriptor.GENERIC_VALUE_IMAGE, null, null));
 	}
 
 	/**
@@ -285,6 +284,7 @@ public class WorkPackageItemProvider extends AnnotationItemProvider implements
 		updateChildren(notification);
 
 		switch (notification.getFeatureID(WorkPackage.class)) {
+		case TaskPackage.WORK_PACKAGE__DUE_DATE:
 		case TaskPackage.WORK_PACKAGE__START_DATE:
 		case TaskPackage.WORK_PACKAGE__END_DATE:
 			fireNotifyChanged(new ViewerNotification(notification, notification

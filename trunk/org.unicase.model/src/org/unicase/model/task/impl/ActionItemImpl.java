@@ -42,9 +42,9 @@ import org.unicase.model.task.WorkPackage;
  *   <li>{@link org.unicase.model.task.impl.ActionItemImpl#getSuccessors <em>Successors</em>}</li>
  *   <li>{@link org.unicase.model.task.impl.ActionItemImpl#getAssignee <em>Assignee</em>}</li>
  *   <li>{@link org.unicase.model.task.impl.ActionItemImpl#getParticipants <em>Participants</em>}</li>
+ *   <li>{@link org.unicase.model.task.impl.ActionItemImpl#getDueDate <em>Due Date</em>}</li>
  *   <li>{@link org.unicase.model.task.impl.ActionItemImpl#isChecked <em>Checked</em>}</li>
  *   <li>{@link org.unicase.model.task.impl.ActionItemImpl#isDone <em>Done</em>}</li>
- *   <li>{@link org.unicase.model.task.impl.ActionItemImpl#getDueDate <em>Due Date</em>}</li>
  *   <li>{@link org.unicase.model.task.impl.ActionItemImpl#getEstimate <em>Estimate</em>}</li>
  *   <li>{@link org.unicase.model.task.impl.ActionItemImpl#getActivity <em>Activity</em>}</li>
  * </ul>
@@ -102,6 +102,24 @@ public class ActionItemImpl extends AnnotationImpl implements ActionItem {
 	protected EList<OrgUnit> participants;
 
 	/**
+	 * The default value of the '{@link #getDueDate() <em>Due Date</em>}' attribute.
+	 * <!-- begin-user-doc --> <!-- end-user-doc -->
+	 * @see #getDueDate()
+	 * @generated
+	 * @ordered
+	 */
+	protected static final Date DUE_DATE_EDEFAULT = null;
+
+	/**
+	 * The cached value of the '{@link #getDueDate() <em>Due Date</em>}' attribute.
+	 * <!-- begin-user-doc --> <!-- end-user-doc -->
+	 * @see #getDueDate()
+	 * @generated
+	 * @ordered
+	 */
+	protected Date dueDate = DUE_DATE_EDEFAULT;
+
+	/**
 	 * The default value of the '{@link #isChecked() <em>Checked</em>}' attribute.
 	 * <!-- begin-user-doc --> <!-- end-user-doc -->
 	 * @see #isChecked()
@@ -128,24 +146,6 @@ public class ActionItemImpl extends AnnotationImpl implements ActionItem {
 	 * @ordered
 	 */
 	protected boolean done = DONE_EDEFAULT;
-
-	/**
-	 * The default value of the '{@link #getDueDate() <em>Due Date</em>}' attribute.
-	 * <!-- begin-user-doc --> <!-- end-user-doc -->
-	 * @see #getDueDate()
-	 * @generated
-	 * @ordered
-	 */
-	protected static final Date DUE_DATE_EDEFAULT = null;
-
-	/**
-	 * The cached value of the '{@link #getDueDate() <em>Due Date</em>}' attribute.
-	 * <!-- begin-user-doc --> <!-- end-user-doc -->
-	 * @see #getDueDate()
-	 * @generated
-	 * @ordered
-	 */
-	protected Date dueDate = DUE_DATE_EDEFAULT;
 
 	/**
 	 * The default value of the '{@link #getEstimate() <em>Estimate</em>}' attribute.
@@ -587,12 +587,12 @@ public class ActionItemImpl extends AnnotationImpl implements ActionItem {
 			return basicGetAssignee();
 		case TaskPackage.ACTION_ITEM__PARTICIPANTS:
 			return getParticipants();
+		case TaskPackage.ACTION_ITEM__DUE_DATE:
+			return getDueDate();
 		case TaskPackage.ACTION_ITEM__CHECKED:
 			return isChecked() ? Boolean.TRUE : Boolean.FALSE;
 		case TaskPackage.ACTION_ITEM__DONE:
 			return isDone() ? Boolean.TRUE : Boolean.FALSE;
-		case TaskPackage.ACTION_ITEM__DUE_DATE:
-			return getDueDate();
 		case TaskPackage.ACTION_ITEM__ESTIMATE:
 			return new Integer(getEstimate());
 		case TaskPackage.ACTION_ITEM__ACTIVITY:
@@ -632,14 +632,14 @@ public class ActionItemImpl extends AnnotationImpl implements ActionItem {
 			getParticipants().clear();
 			getParticipants().addAll((Collection<? extends OrgUnit>) newValue);
 			return;
+		case TaskPackage.ACTION_ITEM__DUE_DATE:
+			setDueDate((Date) newValue);
+			return;
 		case TaskPackage.ACTION_ITEM__CHECKED:
 			setChecked(((Boolean) newValue).booleanValue());
 			return;
 		case TaskPackage.ACTION_ITEM__DONE:
 			setDone(((Boolean) newValue).booleanValue());
-			return;
-		case TaskPackage.ACTION_ITEM__DUE_DATE:
-			setDueDate((Date) newValue);
 			return;
 		case TaskPackage.ACTION_ITEM__ESTIMATE:
 			setEstimate(((Integer) newValue).intValue());
@@ -676,14 +676,14 @@ public class ActionItemImpl extends AnnotationImpl implements ActionItem {
 		case TaskPackage.ACTION_ITEM__PARTICIPANTS:
 			getParticipants().clear();
 			return;
+		case TaskPackage.ACTION_ITEM__DUE_DATE:
+			setDueDate(DUE_DATE_EDEFAULT);
+			return;
 		case TaskPackage.ACTION_ITEM__CHECKED:
 			setChecked(CHECKED_EDEFAULT);
 			return;
 		case TaskPackage.ACTION_ITEM__DONE:
 			setDone(DONE_EDEFAULT);
-			return;
-		case TaskPackage.ACTION_ITEM__DUE_DATE:
-			setDueDate(DUE_DATE_EDEFAULT);
 			return;
 		case TaskPackage.ACTION_ITEM__ESTIMATE:
 			setEstimate(ESTIMATE_EDEFAULT);
@@ -715,13 +715,13 @@ public class ActionItemImpl extends AnnotationImpl implements ActionItem {
 			return assignee != null;
 		case TaskPackage.ACTION_ITEM__PARTICIPANTS:
 			return participants != null && !participants.isEmpty();
+		case TaskPackage.ACTION_ITEM__DUE_DATE:
+			return DUE_DATE_EDEFAULT == null ? dueDate != null
+					: !DUE_DATE_EDEFAULT.equals(dueDate);
 		case TaskPackage.ACTION_ITEM__CHECKED:
 			return isChecked() != CHECKED_EDEFAULT;
 		case TaskPackage.ACTION_ITEM__DONE:
 			return done != DONE_EDEFAULT;
-		case TaskPackage.ACTION_ITEM__DUE_DATE:
-			return DUE_DATE_EDEFAULT == null ? dueDate != null
-					: !DUE_DATE_EDEFAULT.equals(dueDate);
 		case TaskPackage.ACTION_ITEM__ESTIMATE:
 			return estimate != ESTIMATE_EDEFAULT;
 		case TaskPackage.ACTION_ITEM__ACTIVITY:
@@ -774,10 +774,10 @@ public class ActionItemImpl extends AnnotationImpl implements ActionItem {
 			return super.toString();
 
 		StringBuffer result = new StringBuffer(super.toString());
-		result.append(" (done: ");
-		result.append(done);
-		result.append(", dueDate: ");
+		result.append(" (dueDate: ");
 		result.append(dueDate);
+		result.append(", done: ");
+		result.append(done);
 		result.append(", estimate: ");
 		result.append(estimate);
 		result.append(", activity: ");

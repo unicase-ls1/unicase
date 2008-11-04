@@ -53,10 +53,29 @@ public class PackageElementItemProvider extends ModelElementItemProvider
 		if (itemPropertyDescriptors == null) {
 			super.getPropertyDescriptors(object);
 
+			addParentPackagePropertyDescriptor(object);
 			addOutgoingDependenciesPropertyDescriptor(object);
 			addIncomingDependenciesPropertyDescriptor(object);
 		}
 		return itemPropertyDescriptors;
+	}
+
+	/**
+	 * This adds a property descriptor for the Parent Package feature.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 */
+	protected void addParentPackagePropertyDescriptor(Object object) {
+		itemPropertyDescriptors.add(createItemPropertyDescriptor(
+				((ComposeableAdapterFactory) adapterFactory)
+						.getRootAdapterFactory(), getResourceLocator(),
+				getString("_UI_PackageElement_parentPackage_feature"),
+				getString("_UI_PropertyDescriptor_description",
+						"_UI_PackageElement_parentPackage_feature",
+						"_UI_PackageElement_type"),
+				ClassesPackage.Literals.PACKAGE_ELEMENT__PARENT_PACKAGE, true,
+				false, false, null, null, null));
 	}
 
 	/**

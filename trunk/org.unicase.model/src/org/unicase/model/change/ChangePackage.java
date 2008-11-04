@@ -351,6 +351,15 @@ public interface ChangePackage extends EPackage {
 	int MERGING_ISSUE__PARTICIPANTS = RationalePackage.ISSUE__PARTICIPANTS;
 
 	/**
+	 * The feature id for the '<em><b>Due Date</b></em>' attribute.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 * @ordered
+	 */
+	int MERGING_ISSUE__DUE_DATE = RationalePackage.ISSUE__DUE_DATE;
+
+	/**
 	 * The feature id for the '<em><b>Proposals</b></em>' containment reference list.
 	 * <!-- begin-user-doc --> <!-- end-user-doc -->
 	 * @generated

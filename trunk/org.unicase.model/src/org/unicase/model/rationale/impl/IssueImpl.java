@@ -7,6 +7,7 @@
 package org.unicase.model.rationale.impl;
 
 import java.util.Collection;
+import java.util.Date;
 
 import org.eclipse.emf.common.notify.Notification;
 import org.eclipse.emf.common.notify.NotificationChain;
@@ -47,6 +48,7 @@ import org.unicase.model.task.WorkPackage;
  *   <li>{@link org.unicase.model.rationale.impl.IssueImpl#getSuccessors <em>Successors</em>}</li>
  *   <li>{@link org.unicase.model.rationale.impl.IssueImpl#getAssignee <em>Assignee</em>}</li>
  *   <li>{@link org.unicase.model.rationale.impl.IssueImpl#getParticipants <em>Participants</em>}</li>
+ *   <li>{@link org.unicase.model.rationale.impl.IssueImpl#getDueDate <em>Due Date</em>}</li>
  *   <li>{@link org.unicase.model.rationale.impl.IssueImpl#getProposals <em>Proposals</em>}</li>
  *   <li>{@link org.unicase.model.rationale.impl.IssueImpl#getSolution <em>Solution</em>}</li>
  *   <li>{@link org.unicase.model.rationale.impl.IssueImpl#getCriteria <em>Criteria</em>}</li>
@@ -114,6 +116,26 @@ public class IssueImpl extends AnnotationImpl implements Issue {
 	 * @ordered
 	 */
 	protected EList<OrgUnit> participants;
+
+	/**
+	 * The default value of the '{@link #getDueDate() <em>Due Date</em>}' attribute.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @see #getDueDate()
+	 * @generated
+	 * @ordered
+	 */
+	protected static final Date DUE_DATE_EDEFAULT = null;
+
+	/**
+	 * The cached value of the '{@link #getDueDate() <em>Due Date</em>}' attribute.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @see #getDueDate()
+	 * @generated
+	 * @ordered
+	 */
+	protected Date dueDate = DUE_DATE_EDEFAULT;
 
 	/**
 	 * The cached value of the '{@link #getProposals() <em>Proposals</em>}' containment reference list.
@@ -523,6 +545,28 @@ public class IssueImpl extends AnnotationImpl implements Issue {
 	}
 
 	/**
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 */
+	public Date getDueDate() {
+		return dueDate;
+	}
+
+	/**
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 */
+	public void setDueDate(Date newDueDate) {
+		Date oldDueDate = dueDate;
+		dueDate = newDueDate;
+		if (eNotificationRequired())
+			eNotify(new ENotificationImpl(this, Notification.SET,
+					RationalePackage.ISSUE__DUE_DATE, oldDueDate, dueDate));
+	}
+
+	/**
 	 * <!-- begin-user-doc --> <!-- end-user-doc -->
 	 * @generated
 	 */
@@ -634,6 +678,8 @@ public class IssueImpl extends AnnotationImpl implements Issue {
 			return basicGetAssignee();
 		case RationalePackage.ISSUE__PARTICIPANTS:
 			return getParticipants();
+		case RationalePackage.ISSUE__DUE_DATE:
+			return getDueDate();
 		case RationalePackage.ISSUE__PROPOSALS:
 			return getProposals();
 		case RationalePackage.ISSUE__SOLUTION:
@@ -682,6 +728,9 @@ public class IssueImpl extends AnnotationImpl implements Issue {
 			getParticipants().clear();
 			getParticipants().addAll((Collection<? extends OrgUnit>) newValue);
 			return;
+		case RationalePackage.ISSUE__DUE_DATE:
+			setDueDate((Date) newValue);
+			return;
 		case RationalePackage.ISSUE__PROPOSALS:
 			getProposals().clear();
 			getProposals().addAll((Collection<? extends Proposal>) newValue);
@@ -728,6 +777,9 @@ public class IssueImpl extends AnnotationImpl implements Issue {
 		case RationalePackage.ISSUE__PARTICIPANTS:
 			getParticipants().clear();
 			return;
+		case RationalePackage.ISSUE__DUE_DATE:
+			setDueDate(DUE_DATE_EDEFAULT);
+			return;
 		case RationalePackage.ISSUE__PROPOSALS:
 			getProposals().clear();
 			return;
@@ -766,6 +818,9 @@ public class IssueImpl extends AnnotationImpl implements Issue {
 			return assignee != null;
 		case RationalePackage.ISSUE__PARTICIPANTS:
 			return participants != null && !participants.isEmpty();
+		case RationalePackage.ISSUE__DUE_DATE:
+			return DUE_DATE_EDEFAULT == null ? dueDate != null
+					: !DUE_DATE_EDEFAULT.equals(dueDate);
 		case RationalePackage.ISSUE__PROPOSALS:
 			return proposals != null && !proposals.isEmpty();
 		case RationalePackage.ISSUE__SOLUTION:
@@ -806,6 +861,8 @@ public class IssueImpl extends AnnotationImpl implements Issue {
 				return TaskPackage.WORK_ITEM__ASSIGNEE;
 			case RationalePackage.ISSUE__PARTICIPANTS:
 				return TaskPackage.WORK_ITEM__PARTICIPANTS;
+			case RationalePackage.ISSUE__DUE_DATE:
+				return TaskPackage.WORK_ITEM__DUE_DATE;
 			default:
 				return -1;
 			}
@@ -841,6 +898,8 @@ public class IssueImpl extends AnnotationImpl implements Issue {
 				return RationalePackage.ISSUE__ASSIGNEE;
 			case TaskPackage.WORK_ITEM__PARTICIPANTS:
 				return RationalePackage.ISSUE__PARTICIPANTS;
+			case TaskPackage.WORK_ITEM__DUE_DATE:
+				return RationalePackage.ISSUE__DUE_DATE;
 			default:
 				return -1;
 			}
@@ -859,7 +918,9 @@ public class IssueImpl extends AnnotationImpl implements Issue {
 			return super.toString();
 
 		StringBuffer result = new StringBuffer(super.toString());
-		result.append(" (activity: ");
+		result.append(" (dueDate: ");
+		result.append(dueDate);
+		result.append(", activity: ");
 		result.append(activity);
 		result.append(')');
 		return result.toString();
