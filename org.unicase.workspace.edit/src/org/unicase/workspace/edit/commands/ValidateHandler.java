@@ -88,7 +88,6 @@ public class ValidateHandler extends ProjectActionHandler {
 							+ stat.getMessage());
 					marker.setAttribute(IMarker.SEVERITY,
 							IMarker.SEVERITY_WARNING);
-					System.out.println("type: " + marker.getType());
 				} catch (CoreException e) {
 					e.printStackTrace();
 				}
