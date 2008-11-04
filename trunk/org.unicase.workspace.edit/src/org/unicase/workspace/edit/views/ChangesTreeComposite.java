@@ -263,7 +263,7 @@ public class ChangesTreeComposite extends Composite {
 		// operation column
 		TreeViewerColumn tclmOp = new TreeViewerColumn(treeViewer, SWT.NONE);
 		tclmOp.getColumn().setText("Operation");
-		tclmOp.getColumn().setWidth(getShell().getSize().x-860);
+		tclmOp.getColumn().setWidth(getShell().getSize().x/2);
 		tclmOp.setLabelProvider(new OperationColumnLabelProvider(emfProvider));
 		ColumnViewerToolTipSupport.enableFor(treeViewer);
 
