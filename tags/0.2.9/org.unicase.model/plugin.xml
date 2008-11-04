@@ -1,0 +1,78 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<?eclipse version="3.0"?>
+
+<!--
+ <copyright>
+ </copyright>
+
+ $Id$
+-->
+
+<plugin>
+
+  <extension point="org.eclipse.emf.ecore.generated_package">
+    <package 
+       uri = "http://unicase.org/model" 
+       class = "org.unicase.model.ModelPackage"
+       genModel = "model/model.genmodel" />
+  </extension>
+  <extension
+        point="org.eclipse.emf.validation.constraintProviders">
+     <category
+           id="org.unicase.model"
+           name="Unicase">
+     </category>
+     <constraintProvider
+           cache="true"
+           mode="Batch">
+        <package
+              namespaceUri="http://unicase.org/model/task">
+        </package>
+        <constraints
+              categories="org.unicase.model">
+           <constraint
+                 class="org.unicase.model.task.validation.ActionItemConstraint"
+                 id="org.unicase.model.task.ActionItem"
+                 lang="Java"
+                 mode="Batch"
+                 name="ActionItem Validation"
+                 severity="WARNING"
+                 statusCode="1">
+              <message>
+                 A {0} has been found to have no Assignee.
+              </message>
+           </constraint>
+        </constraints>
+     </constraintProvider>
+  </extension>
+  <extension
+        point="org.eclipse.emf.validation.constraintBindings">
+     <clientContext
+           default="false"
+           id="org.unicase.model.validation">
+        <selector
+              class="org.unicase.model.validation.ValidationClientSelector">
+        </selector>
+     </clientContext>
+     <binding
+           context="org.unicase.model.validation">
+        <category
+              ref="org.unicase.model">
+        </category>
+     </binding>
+  </extension>
+  <extension
+        id="validation.marker"
+        name="Unicase Validation Marker"
+        point="org.eclipse.core.resources.markers">
+     <persistent
+           value="false">
+     </persistent>
+     <super
+           type="org.eclipse.core.resources.problemmarker">
+     </super>
+  </extension>
+  
+
+
+</plugin>
