@@ -10,7 +10,6 @@ import org.eclipse.core.runtime.CoreException;
 import org.eclipse.core.runtime.IStatus;
 import org.eclipse.emf.transaction.RecordingCommand;
 import org.eclipse.emf.transaction.TransactionalEditingDomain;
-import org.eclipse.emf.validation.marker.MarkerUtil;
 import org.eclipse.emf.validation.model.EvaluationMode;
 import org.eclipse.emf.validation.service.IBatchValidator;
 import org.eclipse.emf.validation.service.ModelValidationService;
@@ -82,7 +81,7 @@ public class ValidateHandler extends ProjectActionHandler {
 		if (status.isMultiStatus()) {
 			for (IStatus stat : status.getChildren()) {
 				try {
-					IMarker marker = (IMarker) resource
+					IMarker marker = resource
 							.createMarker(markerType);
 					marker.setAttribute(IMarker.MESSAGE, "unicase: "
 							+ stat.getMessage());
