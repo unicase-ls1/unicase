@@ -130,20 +130,19 @@ public class SingleUseCaseStepControl extends AbstractMEControl{
 		
 		mainComposite = getToolkit().createComposite(parent);
 		mainComposite.setLayout(new GridLayout(1,true));
-		GridDataFactory.fillDefaults().align(SWT.FILL, SWT.TOP).grab(true, false).applyTo(mainComposite);
-//		mainComposite.setLayoutData(new GridData(GridData.GRAB_HORIZONTAL));
+		GridDataFactory.fillDefaults().align(SWT.FILL, SWT.BEGINNING).grab(true, false).applyTo(mainComposite);
 		mainComposite.setBackground(backGroundColor);	
 		
 		buttonComposite = getToolkit().createComposite(mainComposite);
 		buttonComposite.setLayout(new GridLayout(3,true));	
-		buttonComposite.setLayoutData(new GridData(GridData.GRAB_HORIZONTAL));
+		GridDataFactory.fillDefaults().align(SWT.FILL, SWT.BEGINNING).grab(true, false).applyTo(buttonComposite);
 		buttonComposite.setBackground(backGroundColor);
 		
 		buildButtons();
 		
 		textComposite = getToolkit().createComposite(mainComposite);
 		textComposite.setLayout(new GridLayout(1,true));	
-		textComposite.setLayoutData(new GridData(GridData.GRAB_HORIZONTAL));
+		GridDataFactory.fillDefaults().align(SWT.FILL, SWT.BEGINNING).grab(true, false).applyTo(textComposite);
 		textComposite.setBackground(backGroundColor);
 		
 		includeComposite = getToolkit().createComposite(mainComposite);
@@ -254,7 +253,7 @@ public class SingleUseCaseStepControl extends AbstractMEControl{
 		IItemPropertyDescriptor pDescriptorName = adapterFactoryItemDelegator.getPropertyDescriptor(getModelElement(), "name");
 		textControlName = cFactory.createControl(pDescriptorName);		
 		cName = textControlName.createControl(textComposite, parentStyle);
-		GridDataFactory.fillDefaults().align(SWT.FILL, SWT.TOP).hint(250, 14).grab(true, false).applyTo(cName);
+		GridDataFactory.fillDefaults().align(SWT.FILL, SWT.TOP).hint(250, 16).grab(true, false).applyTo(cName);
 		
 		
 		IItemPropertyDescriptor pDescriptorDescription = adapterFactoryItemDelegator.getPropertyDescriptor(getModelElement(), "description");				

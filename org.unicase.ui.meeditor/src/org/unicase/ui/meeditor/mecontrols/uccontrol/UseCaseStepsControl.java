@@ -18,6 +18,7 @@ import org.eclipse.emf.edit.provider.IItemPropertyDescriptor;
 import org.eclipse.emf.transaction.RecordingCommand;
 import org.eclipse.emf.transaction.TransactionalEditingDomain;
 import org.eclipse.emf.transaction.util.TransactionUtil;
+import org.eclipse.jface.layout.GridDataFactory;
 import org.eclipse.swt.layout.GridData;
 import org.eclipse.swt.layout.GridLayout;
 import org.eclipse.swt.widgets.Composite;
@@ -190,22 +191,19 @@ public class UseCaseStepsControl extends AbstractMEControl{
 				if (object instanceof Step) {
 					
 					Step me = (Step) object;
-					GridData gdEmtpy = new GridData(GridData.GRAB_HORIZONTAL);
-					gdEmtpy.verticalIndent = 0;
+					GridData gdEmpty = GridDataFactory.fillDefaults().grab(true, false).indent(0, 0).create(); 
+					GridData gdUserStep = GridDataFactory.fillDefaults().grab(true, false).indent(0, 0).create(); 
 					
-					GridData gdUserStep = new GridData(GridData.GRAB_HORIZONTAL);
-					gdUserStep.verticalIndent = 0;							
 					SingleUseCaseStepControl stepControl = new SingleUseCaseStepControl(getEditingDomain(), me, getToolkit(), getModelElement(), eReference);
-					
 					
 					if(me.isUserStep()){	
 						Control c = stepControl.createControl(stepArea, parentStyle);						
 						c.setLayoutData(gdUserStep);
 						Control empty2 = getToolkit().createComposite(stepArea, parentStyle);						
-						empty2.setLayoutData(gdEmtpy);								
+						empty2.setLayoutData(gdEmpty);								
 					} else {
 						Control empty2 = getToolkit().createComposite(stepArea, parentStyle);						
-						empty2.setLayoutData(gdEmtpy);
+						empty2.setLayoutData(gdEmpty);
 						Control c = stepControl.createControl(stepArea, parentStyle);								
 						c.setLayoutData(gdUserStep);
 					}
