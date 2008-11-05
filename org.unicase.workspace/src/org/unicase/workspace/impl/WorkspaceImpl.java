@@ -429,9 +429,10 @@ public class WorkspaceImpl extends EObjectImpl implements Workspace {
 		for (ProjectSpace projectSpace : getProjectSpaces()) {
 			projectSpace.init();
 			//add plugin start event 
-			PluginStartEvent event = EventsFactory.eINSTANCE.createPluginStartEvent();
+			PluginStartEvent event = EventsFactory.eINSTANCE
+					.createPluginStartEvent();
 			event.setPluginId("org.unicase.workspace");
-			event.setTimestamp(new Date());		
+			event.setTimestamp(new Date());
 			projectSpace.addEvent(event);
 		}
 	}
@@ -521,7 +522,8 @@ public class WorkspaceImpl extends EObjectImpl implements Workspace {
 		ResourceSet resourceSet = new ResourceSetImpl();
 		Resource resource = resourceSet.createResource(URI
 				.createFileURI(absoluteFileName));
-		Workspace copy = (Workspace) EcoreUtil.copy(WorkspaceManager.getInstance().getCurrentWorkspace());
+		Workspace copy = (Workspace) EcoreUtil.copy(WorkspaceManager
+				.getInstance().getCurrentWorkspace());
 		resource.getContents().add(copy);
 		resource.save(null);
 	}
@@ -553,7 +555,6 @@ public class WorkspaceImpl extends EObjectImpl implements Workspace {
 		this.save();
 		return projectSpace;
 	}
-
 
 	/** 
 	 * {@inheritDoc}

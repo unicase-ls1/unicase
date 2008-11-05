@@ -36,7 +36,7 @@ public interface IdentifiableElement extends EObject {
 	 * @return the value of the '<em>Identifier</em>' attribute.
 	 * @see #setIdentifier(String)
 	 * @see org.unicase.model.ModelPackage#getIdentifiableElement_Identifier()
-	 * @model required="true"
+	 * @model id="true" required="true"
 	 * @generated
 	 */
 	String getIdentifier();

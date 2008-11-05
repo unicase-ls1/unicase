@@ -213,6 +213,240 @@ public class EventsItemProviderAdapterFactory extends EventsAdapterFactory
 	}
 
 	/**
+	 * This keeps track of the one adapter used for all {@link org.unicase.emfstore.esmodel.versioning.events.UpdateEvent} instances.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 */
+	protected UpdateEventItemProvider updateEventItemProvider;
+
+	/**
+	 * This creates an adapter for a {@link org.unicase.emfstore.esmodel.versioning.events.UpdateEvent}.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 */
+	@Override
+	public Adapter createUpdateEventAdapter() {
+		if (updateEventItemProvider == null) {
+			updateEventItemProvider = new UpdateEventItemProvider(this);
+		}
+
+		return updateEventItemProvider;
+	}
+
+	/**
+	 * This keeps track of the one adapter used for all {@link org.unicase.emfstore.esmodel.versioning.events.AnnotationEvent} instances.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 */
+	protected AnnotationEventItemProvider annotationEventItemProvider;
+
+	/**
+	 * This creates an adapter for a {@link org.unicase.emfstore.esmodel.versioning.events.AnnotationEvent}.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 */
+	@Override
+	public Adapter createAnnotationEventAdapter() {
+		if (annotationEventItemProvider == null) {
+			annotationEventItemProvider = new AnnotationEventItemProvider(this);
+		}
+
+		return annotationEventItemProvider;
+	}
+
+	/**
+	 * This keeps track of the one adapter used for all {@link org.unicase.emfstore.esmodel.versioning.events.RevertEvent} instances.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 */
+	protected RevertEventItemProvider revertEventItemProvider;
+
+	/**
+	 * This creates an adapter for a {@link org.unicase.emfstore.esmodel.versioning.events.RevertEvent}.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 */
+	@Override
+	public Adapter createRevertEventAdapter() {
+		if (revertEventItemProvider == null) {
+			revertEventItemProvider = new RevertEventItemProvider(this);
+		}
+
+		return revertEventItemProvider;
+	}
+
+	/**
+	 * This keeps track of the one adapter used for all {@link org.unicase.emfstore.esmodel.versioning.events.ReadDiagramEvent} instances.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 */
+	protected ReadDiagramEventItemProvider readDiagramEventItemProvider;
+
+	/**
+	 * This creates an adapter for a {@link org.unicase.emfstore.esmodel.versioning.events.ReadDiagramEvent}.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 */
+	@Override
+	public Adapter createReadDiagramEventAdapter() {
+		if (readDiagramEventItemProvider == null) {
+			readDiagramEventItemProvider = new ReadDiagramEventItemProvider(
+					this);
+		}
+
+		return readDiagramEventItemProvider;
+	}
+
+	/**
+	 * This keeps track of the one adapter used for all {@link org.unicase.emfstore.esmodel.versioning.events.ShowHistoryEvent} instances.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 */
+	protected ShowHistoryEventItemProvider showHistoryEventItemProvider;
+
+	/**
+	 * This creates an adapter for a {@link org.unicase.emfstore.esmodel.versioning.events.ShowHistoryEvent}.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 */
+	@Override
+	public Adapter createShowHistoryEventAdapter() {
+		if (showHistoryEventItemProvider == null) {
+			showHistoryEventItemProvider = new ShowHistoryEventItemProvider(
+					this);
+		}
+
+		return showHistoryEventItemProvider;
+	}
+
+	/**
+	 * This keeps track of the one adapter used for all {@link org.unicase.emfstore.esmodel.versioning.events.PerspectiveEvent} instances.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 */
+	protected PerspectiveEventItemProvider perspectiveEventItemProvider;
+
+	/**
+	 * This creates an adapter for a {@link org.unicase.emfstore.esmodel.versioning.events.PerspectiveEvent}.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 */
+	@Override
+	public Adapter createPerspectiveEventAdapter() {
+		if (perspectiveEventItemProvider == null) {
+			perspectiveEventItemProvider = new PerspectiveEventItemProvider(
+					this);
+		}
+
+		return perspectiveEventItemProvider;
+	}
+
+	/**
+	 * This keeps track of the one adapter used for all {@link org.unicase.emfstore.esmodel.versioning.events.DNDEvent} instances.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 */
+	protected DNDEventItemProvider dndEventItemProvider;
+
+	/**
+	 * This creates an adapter for a {@link org.unicase.emfstore.esmodel.versioning.events.DNDEvent}.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 */
+	@Override
+	public Adapter createDNDEventAdapter() {
+		if (dndEventItemProvider == null) {
+			dndEventItemProvider = new DNDEventItemProvider(this);
+		}
+
+		return dndEventItemProvider;
+	}
+
+	/**
+	 * This keeps track of the one adapter used for all {@link org.unicase.emfstore.esmodel.versioning.events.LinkEvent} instances.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 */
+	protected LinkEventItemProvider linkEventItemProvider;
+
+	/**
+	 * This creates an adapter for a {@link org.unicase.emfstore.esmodel.versioning.events.LinkEvent}.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 */
+	@Override
+	public Adapter createLinkEventAdapter() {
+		if (linkEventItemProvider == null) {
+			linkEventItemProvider = new LinkEventItemProvider(this);
+		}
+
+		return linkEventItemProvider;
+	}
+
+	/**
+	 * This keeps track of the one adapter used for all {@link org.unicase.emfstore.esmodel.versioning.events.TraceEvent} instances.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 */
+	protected TraceEventItemProvider traceEventItemProvider;
+
+	/**
+	 * This creates an adapter for a {@link org.unicase.emfstore.esmodel.versioning.events.TraceEvent}.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 */
+	@Override
+	public Adapter createTraceEventAdapter() {
+		if (traceEventItemProvider == null) {
+			traceEventItemProvider = new TraceEventItemProvider(this);
+		}
+
+		return traceEventItemProvider;
+	}
+
+	/**
+	 * This keeps track of the one adapter used for all {@link org.unicase.emfstore.esmodel.versioning.events.NavigatorCreateEvent} instances.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 */
+	protected NavigatorCreateEventItemProvider navigatorCreateEventItemProvider;
+
+	/**
+	 * This creates an adapter for a {@link org.unicase.emfstore.esmodel.versioning.events.NavigatorCreateEvent}.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 */
+	@Override
+	public Adapter createNavigatorCreateEventAdapter() {
+		if (navigatorCreateEventItemProvider == null) {
+			navigatorCreateEventItemProvider = new NavigatorCreateEventItemProvider(
+					this);
+		}
+
+		return navigatorCreateEventItemProvider;
+	}
+
+	/**
 	 * This returns the root adapter factory that contains this factory.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
@@ -326,6 +560,26 @@ public class EventsItemProviderAdapterFactory extends EventsAdapterFactory
 			exceptionEventItemProvider.dispose();
 		if (pluginStartEventItemProvider != null)
 			pluginStartEventItemProvider.dispose();
+		if (updateEventItemProvider != null)
+			updateEventItemProvider.dispose();
+		if (annotationEventItemProvider != null)
+			annotationEventItemProvider.dispose();
+		if (revertEventItemProvider != null)
+			revertEventItemProvider.dispose();
+		if (readDiagramEventItemProvider != null)
+			readDiagramEventItemProvider.dispose();
+		if (showHistoryEventItemProvider != null)
+			showHistoryEventItemProvider.dispose();
+		if (perspectiveEventItemProvider != null)
+			perspectiveEventItemProvider.dispose();
+		if (dndEventItemProvider != null)
+			dndEventItemProvider.dispose();
+		if (linkEventItemProvider != null)
+			linkEventItemProvider.dispose();
+		if (traceEventItemProvider != null)
+			traceEventItemProvider.dispose();
+		if (navigatorCreateEventItemProvider != null)
+			navigatorCreateEventItemProvider.dispose();
 	}
 
 }

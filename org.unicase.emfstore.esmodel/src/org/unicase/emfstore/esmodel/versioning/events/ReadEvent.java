@@ -16,6 +16,7 @@ import org.unicase.model.ModelElementId;
  * The following features are supported:
  * <ul>
  *   <li>{@link org.unicase.emfstore.esmodel.versioning.events.ReadEvent#getModelElement <em>Model Element</em>}</li>
+ *   <li>{@link org.unicase.emfstore.esmodel.versioning.events.ReadEvent#getSourceView <em>Source View</em>}</li>
  * </ul>
  * </p>
  *
@@ -49,5 +50,31 @@ public interface ReadEvent extends Event {
 	 * @generated
 	 */
 	void setModelElement(ModelElementId value);
+
+	/**
+	 * Returns the value of the '<em><b>Source View</b></em>' attribute.
+	 * <!-- begin-user-doc -->
+	 * <p>
+	 * If the meaning of the '<em>Source View</em>' attribute isn't clear,
+	 * there really should be more of a description here...
+	 * </p>
+	 * <!-- end-user-doc -->
+	 * @return the value of the '<em>Source View</em>' attribute.
+	 * @see #setSourceView(String)
+	 * @see org.unicase.emfstore.esmodel.versioning.events.EventsPackage#getReadEvent_SourceView()
+	 * @model
+	 * @generated
+	 */
+	String getSourceView();
+
+	/**
+	 * Sets the value of the '{@link org.unicase.emfstore.esmodel.versioning.events.ReadEvent#getSourceView <em>Source View</em>}' attribute.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @param value the new value of the '<em>Source View</em>' attribute.
+	 * @see #getSourceView()
+	 * @generated
+	 */
+	void setSourceView(String value);
 
 } // ReadEvent

@@ -22,6 +22,7 @@ import org.unicase.model.ModelElementId;
  * The following features are implemented:
  * <ul>
  *   <li>{@link org.unicase.emfstore.esmodel.versioning.events.impl.ReadEventImpl#getModelElement <em>Model Element</em>}</li>
+ *   <li>{@link org.unicase.emfstore.esmodel.versioning.events.impl.ReadEventImpl#getSourceView <em>Source View</em>}</li>
  * </ul>
  * </p>
  *
@@ -37,6 +38,25 @@ public class ReadEventImpl extends EventImpl implements ReadEvent {
 	 * @ordered
 	 */
 	protected ModelElementId modelElement;
+
+	/**
+	 * The default value of the '{@link #getSourceView() <em>Source View</em>}' attribute.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @see #getSourceView()
+	 * @generated
+	 * @ordered
+	 */
+	protected static final String SOURCE_VIEW_EDEFAULT = null;
+	/**
+	 * The cached value of the '{@link #getSourceView() <em>Source View</em>}' attribute.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @see #getSourceView()
+	 * @generated
+	 * @ordered
+	 */
+	protected String sourceView = SOURCE_VIEW_EDEFAULT;
 
 	/**
 	 * <!-- begin-user-doc -->
@@ -151,6 +171,29 @@ public class ReadEventImpl extends EventImpl implements ReadEvent {
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
+	public String getSourceView() {
+		return sourceView;
+	}
+
+	/**
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 */
+	public void setSourceView(String newSourceView) {
+		String oldSourceView = sourceView;
+		sourceView = newSourceView;
+		if (eNotificationRequired())
+			eNotify(new ENotificationImpl(this, Notification.SET,
+					EventsPackage.READ_EVENT__SOURCE_VIEW, oldSourceView,
+					sourceView));
+	}
+
+	/**
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 */
 	@Override
 	public NotificationChain eInverseRemove(InternalEObject otherEnd,
 			int featureID, NotificationChain msgs) {
@@ -173,6 +216,8 @@ public class ReadEventImpl extends EventImpl implements ReadEvent {
 			if (resolve)
 				return getModelElement();
 			return basicGetModelElement();
+		case EventsPackage.READ_EVENT__SOURCE_VIEW:
+			return getSourceView();
 		}
 		return super.eGet(featureID, resolve, coreType);
 	}
@@ -187,6 +232,9 @@ public class ReadEventImpl extends EventImpl implements ReadEvent {
 		switch (featureID) {
 		case EventsPackage.READ_EVENT__MODEL_ELEMENT:
 			setModelElement((ModelElementId) newValue);
+			return;
+		case EventsPackage.READ_EVENT__SOURCE_VIEW:
+			setSourceView((String) newValue);
 			return;
 		}
 		super.eSet(featureID, newValue);
@@ -203,6 +251,9 @@ public class ReadEventImpl extends EventImpl implements ReadEvent {
 		case EventsPackage.READ_EVENT__MODEL_ELEMENT:
 			setModelElement((ModelElementId) null);
 			return;
+		case EventsPackage.READ_EVENT__SOURCE_VIEW:
+			setSourceView(SOURCE_VIEW_EDEFAULT);
+			return;
 		}
 		super.eUnset(featureID);
 	}
@@ -217,8 +268,28 @@ public class ReadEventImpl extends EventImpl implements ReadEvent {
 		switch (featureID) {
 		case EventsPackage.READ_EVENT__MODEL_ELEMENT:
 			return modelElement != null;
+		case EventsPackage.READ_EVENT__SOURCE_VIEW:
+			return SOURCE_VIEW_EDEFAULT == null ? sourceView != null
+					: !SOURCE_VIEW_EDEFAULT.equals(sourceView);
 		}
 		return super.eIsSet(featureID);
+	}
+
+	/**
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 */
+	@Override
+	public String toString() {
+		if (eIsProxy())
+			return super.toString();
+
+		StringBuffer result = new StringBuffer(super.toString());
+		result.append(" (sourceView: ");
+		result.append(sourceView);
+		result.append(')');
+		return result.toString();
 	}
 
 } //ReadEventImpl
