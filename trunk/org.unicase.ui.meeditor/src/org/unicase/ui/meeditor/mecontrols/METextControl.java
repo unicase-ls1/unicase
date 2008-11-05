@@ -76,7 +76,7 @@ public class METextControl extends AbstractMEControl implements MEControl {
 	 */
 	@Override
 	public void applyCustomLayoutData(){
-		GridDataFactory.fillDefaults().grab(true, false).hint(250, 14).align(SWT.FILL, SWT.TOP).applyTo(text);	
+		GridDataFactory.fillDefaults().grab(true, false).hint(250, 16).align(SWT.FILL, SWT.TOP).applyTo(text);	
 	}
 
 }
