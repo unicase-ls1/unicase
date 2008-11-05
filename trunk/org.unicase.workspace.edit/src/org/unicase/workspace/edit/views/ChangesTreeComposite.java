@@ -10,13 +10,17 @@ import java.text.SimpleDateFormat;
 import java.util.List;
 import java.util.Set;
 
+import org.eclipse.emf.ecore.EObject;
 import org.eclipse.emf.edit.provider.ComposedAdapterFactory;
 import org.eclipse.emf.edit.ui.provider.AdapterFactoryContentProvider;
 import org.eclipse.emf.edit.ui.provider.AdapterFactoryLabelProvider;
 import org.eclipse.jface.layout.GridDataFactory;
 import org.eclipse.jface.resource.ImageDescriptor;
+import org.eclipse.jface.viewers.CheckStateChangedEvent;
+import org.eclipse.jface.viewers.CheckboxTreeViewer;
 import org.eclipse.jface.viewers.ColumnLabelProvider;
 import org.eclipse.jface.viewers.ColumnViewerToolTipSupport;
+import org.eclipse.jface.viewers.ICheckStateListener;
 import org.eclipse.jface.viewers.IContentProvider;
 import org.eclipse.jface.viewers.ILabelProvider;
 import org.eclipse.jface.viewers.ISelectionChangedListener;
@@ -141,7 +145,7 @@ public class ChangesTreeComposite extends Composite {
 		}
 	}
 
-	private TreeViewer treeViewer;
+	private CheckboxTreeViewer treeViewer;
 
 	// input ChangePackages
 	private List<ChangePackage> changePackages;
@@ -203,7 +207,7 @@ public class ChangesTreeComposite extends Composite {
 		final ILabelProvider emfProvider = new AdapterFactoryLabelProvider(
 				new ComposedAdapterFactory(
 						ComposedAdapterFactory.Descriptor.Registry.INSTANCE));
-		treeViewer = new TreeViewer(this, SWT.FULL_SELECTION);
+		treeViewer = new CheckboxTreeViewer(this, SWT.FULL_SELECTION);
 		Tree tree = treeViewer.getTree();
 		tree.setLayoutData(new GridData(SWT.FILL, SWT.FILL, true, true));
 		tree.setHeaderVisible(true);
@@ -233,6 +237,31 @@ public class ChangesTreeComposite extends Composite {
 				ChangesTreeComposite.this.layout(true);
 			}
 
+		});
+		treeViewer.addCheckStateListener(new ICheckStateListener(){
+			public void checkStateChanged(CheckStateChangedEvent event) {
+				Object element = event.getElement();
+				if(element instanceof ChangePackage){
+					Object[] elements = ((ChangesTreeContentProvider)treeViewer.getContentProvider()).getChildren(element);
+					for(Object op : elements){
+						treeViewer.setChecked(op, event.getChecked());
+				}}
+				if(element instanceof AbstractOperation){
+					EObject container = ((AbstractOperation)element).eContainer();
+					if(event.getChecked()){
+						treeViewer.setGrayChecked(container, true);
+					}else{
+						Object[] elements = ((ChangesTreeContentProvider)treeViewer.getContentProvider()).getChildren(container);
+						boolean empty = true;
+						for(Object o : elements){
+							if(treeViewer.getChecked(o)){
+								empty = false;
+								break;
+							}
+						}
+						treeViewer.setGrayChecked(container, !empty);
+				}}
+			}
 		});
 
 		// the changed model element
