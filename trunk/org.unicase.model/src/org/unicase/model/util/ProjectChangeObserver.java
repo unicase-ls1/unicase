@@ -21,7 +21,9 @@ public interface ProjectChangeObserver {
 
 	/**
 	 * A notification on a model element of the project occured. See
-	 * {@link Notification} documentation for details on the notifications.
+	 * {@link Notification} documentation for details on the notifications. This
+	 * method will be called even if the given notification results from an add
+	 * or remove of a model element of the project.
 	 * 
 	 * @param notification
 	 *            the notification
