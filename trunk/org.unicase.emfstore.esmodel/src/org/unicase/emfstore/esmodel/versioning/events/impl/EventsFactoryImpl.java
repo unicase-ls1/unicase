@@ -10,14 +10,24 @@ import org.eclipse.emf.ecore.EObject;
 import org.eclipse.emf.ecore.EPackage;
 import org.eclipse.emf.ecore.impl.EFactoryImpl;
 import org.eclipse.emf.ecore.plugin.EcorePlugin;
+import org.unicase.emfstore.esmodel.versioning.events.AnnotationEvent;
 import org.unicase.emfstore.esmodel.versioning.events.CheckoutEvent;
+import org.unicase.emfstore.esmodel.versioning.events.DNDEvent;
 import org.unicase.emfstore.esmodel.versioning.events.Event;
 import org.unicase.emfstore.esmodel.versioning.events.EventsFactory;
 import org.unicase.emfstore.esmodel.versioning.events.EventsPackage;
 import org.unicase.emfstore.esmodel.versioning.events.ExceptionEvent;
+import org.unicase.emfstore.esmodel.versioning.events.LinkEvent;
 import org.unicase.emfstore.esmodel.versioning.events.MergeEvent;
+import org.unicase.emfstore.esmodel.versioning.events.NavigatorCreateEvent;
+import org.unicase.emfstore.esmodel.versioning.events.PerspectiveEvent;
 import org.unicase.emfstore.esmodel.versioning.events.PluginStartEvent;
+import org.unicase.emfstore.esmodel.versioning.events.ReadDiagramEvent;
 import org.unicase.emfstore.esmodel.versioning.events.ReadEvent;
+import org.unicase.emfstore.esmodel.versioning.events.RevertEvent;
+import org.unicase.emfstore.esmodel.versioning.events.ShowHistoryEvent;
+import org.unicase.emfstore.esmodel.versioning.events.TraceEvent;
+import org.unicase.emfstore.esmodel.versioning.events.UpdateEvent;
 
 /**
  * <!-- begin-user-doc -->
@@ -75,6 +85,26 @@ public class EventsFactoryImpl extends EFactoryImpl implements EventsFactory {
 			return createExceptionEvent();
 		case EventsPackage.PLUGIN_START_EVENT:
 			return createPluginStartEvent();
+		case EventsPackage.UPDATE_EVENT:
+			return createUpdateEvent();
+		case EventsPackage.ANNOTATION_EVENT:
+			return createAnnotationEvent();
+		case EventsPackage.REVERT_EVENT:
+			return createRevertEvent();
+		case EventsPackage.READ_DIAGRAM_EVENT:
+			return createReadDiagramEvent();
+		case EventsPackage.SHOW_HISTORY_EVENT:
+			return createShowHistoryEvent();
+		case EventsPackage.PERSPECTIVE_EVENT:
+			return createPerspectiveEvent();
+		case EventsPackage.DND_EVENT:
+			return createDNDEvent();
+		case EventsPackage.LINK_EVENT:
+			return createLinkEvent();
+		case EventsPackage.TRACE_EVENT:
+			return createTraceEvent();
+		case EventsPackage.NAVIGATOR_CREATE_EVENT:
+			return createNavigatorCreateEvent();
 		default:
 			throw new IllegalArgumentException("The class '" + eClass.getName()
 					+ "' is not a valid classifier");
@@ -139,6 +169,106 @@ public class EventsFactoryImpl extends EFactoryImpl implements EventsFactory {
 	public PluginStartEvent createPluginStartEvent() {
 		PluginStartEventImpl pluginStartEvent = new PluginStartEventImpl();
 		return pluginStartEvent;
+	}
+
+	/**
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 */
+	public UpdateEvent createUpdateEvent() {
+		UpdateEventImpl updateEvent = new UpdateEventImpl();
+		return updateEvent;
+	}
+
+	/**
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 */
+	public AnnotationEvent createAnnotationEvent() {
+		AnnotationEventImpl annotationEvent = new AnnotationEventImpl();
+		return annotationEvent;
+	}
+
+	/**
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 */
+	public RevertEvent createRevertEvent() {
+		RevertEventImpl revertEvent = new RevertEventImpl();
+		return revertEvent;
+	}
+
+	/**
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 */
+	public ReadDiagramEvent createReadDiagramEvent() {
+		ReadDiagramEventImpl readDiagramEvent = new ReadDiagramEventImpl();
+		return readDiagramEvent;
+	}
+
+	/**
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 */
+	public ShowHistoryEvent createShowHistoryEvent() {
+		ShowHistoryEventImpl showHistoryEvent = new ShowHistoryEventImpl();
+		return showHistoryEvent;
+	}
+
+	/**
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 */
+	public PerspectiveEvent createPerspectiveEvent() {
+		PerspectiveEventImpl perspectiveEvent = new PerspectiveEventImpl();
+		return perspectiveEvent;
+	}
+
+	/**
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 */
+	public DNDEvent createDNDEvent() {
+		DNDEventImpl dndEvent = new DNDEventImpl();
+		return dndEvent;
+	}
+
+	/**
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 */
+	public LinkEvent createLinkEvent() {
+		LinkEventImpl linkEvent = new LinkEventImpl();
+		return linkEvent;
+	}
+
+	/**
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 */
+	public TraceEvent createTraceEvent() {
+		TraceEventImpl traceEvent = new TraceEventImpl();
+		return traceEvent;
+	}
+
+	/**
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 */
+	public NavigatorCreateEvent createNavigatorCreateEvent() {
+		NavigatorCreateEventImpl navigatorCreateEvent = new NavigatorCreateEventImpl();
+		return navigatorCreateEvent;
 	}
 
 	/**

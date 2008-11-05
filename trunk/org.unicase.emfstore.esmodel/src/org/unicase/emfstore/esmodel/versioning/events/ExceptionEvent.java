@@ -5,7 +5,6 @@
  */
 package org.unicase.emfstore.esmodel.versioning.events;
 
-
 /**
  * <!-- begin-user-doc -->
  * A representation of the model object '<em><b>Exception Event</b></em>'.

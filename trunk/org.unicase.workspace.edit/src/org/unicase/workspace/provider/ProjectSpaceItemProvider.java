@@ -415,6 +415,14 @@ public class ProjectSpaceItemProvider extends IdentifiableElementItemProvider
 				EventsFactory.eINSTANCE.createCheckoutEvent()));
 
 		newChildDescriptors.add(createChildParameter(
+				WorkspacePackage.Literals.PROJECT_SPACE__EVENTS,
+				EventsFactory.eINSTANCE.createExceptionEvent()));
+
+		newChildDescriptors.add(createChildParameter(
+				WorkspacePackage.Literals.PROJECT_SPACE__EVENTS,
+				EventsFactory.eINSTANCE.createPluginStartEvent()));
+
+		newChildDescriptors.add(createChildParameter(
 				WorkspacePackage.Literals.PROJECT_SPACE__BASE_VERSION,
 				VersioningFactory.eINSTANCE.createPrimaryVersionSpec()));
 	}

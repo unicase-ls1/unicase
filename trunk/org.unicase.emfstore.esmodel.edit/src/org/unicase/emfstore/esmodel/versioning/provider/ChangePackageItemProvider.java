@@ -220,6 +220,46 @@ public class ChangePackageItemProvider extends ItemProviderAdapter implements
 				EventsFactory.eINSTANCE.createPluginStartEvent()));
 
 		newChildDescriptors.add(createChildParameter(
+				VersioningPackage.Literals.CHANGE_PACKAGE__EVENTS,
+				EventsFactory.eINSTANCE.createUpdateEvent()));
+
+		newChildDescriptors.add(createChildParameter(
+				VersioningPackage.Literals.CHANGE_PACKAGE__EVENTS,
+				EventsFactory.eINSTANCE.createAnnotationEvent()));
+
+		newChildDescriptors.add(createChildParameter(
+				VersioningPackage.Literals.CHANGE_PACKAGE__EVENTS,
+				EventsFactory.eINSTANCE.createRevertEvent()));
+
+		newChildDescriptors.add(createChildParameter(
+				VersioningPackage.Literals.CHANGE_PACKAGE__EVENTS,
+				EventsFactory.eINSTANCE.createReadDiagramEvent()));
+
+		newChildDescriptors.add(createChildParameter(
+				VersioningPackage.Literals.CHANGE_PACKAGE__EVENTS,
+				EventsFactory.eINSTANCE.createShowHistoryEvent()));
+
+		newChildDescriptors.add(createChildParameter(
+				VersioningPackage.Literals.CHANGE_PACKAGE__EVENTS,
+				EventsFactory.eINSTANCE.createPerspectiveEvent()));
+
+		newChildDescriptors.add(createChildParameter(
+				VersioningPackage.Literals.CHANGE_PACKAGE__EVENTS,
+				EventsFactory.eINSTANCE.createDNDEvent()));
+
+		newChildDescriptors.add(createChildParameter(
+				VersioningPackage.Literals.CHANGE_PACKAGE__EVENTS,
+				EventsFactory.eINSTANCE.createLinkEvent()));
+
+		newChildDescriptors.add(createChildParameter(
+				VersioningPackage.Literals.CHANGE_PACKAGE__EVENTS,
+				EventsFactory.eINSTANCE.createTraceEvent()));
+
+		newChildDescriptors.add(createChildParameter(
+				VersioningPackage.Literals.CHANGE_PACKAGE__EVENTS,
+				EventsFactory.eINSTANCE.createNavigatorCreateEvent()));
+
+		newChildDescriptors.add(createChildParameter(
 				VersioningPackage.Literals.CHANGE_PACKAGE__LOG_MESSAGE,
 				VersioningFactory.eINSTANCE.createLogMessage()));
 	}

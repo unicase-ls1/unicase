@@ -9,13 +9,23 @@ import java.util.List;
 
 import org.eclipse.emf.ecore.EClass;
 import org.eclipse.emf.ecore.EObject;
+import org.unicase.emfstore.esmodel.versioning.events.AnnotationEvent;
 import org.unicase.emfstore.esmodel.versioning.events.CheckoutEvent;
+import org.unicase.emfstore.esmodel.versioning.events.DNDEvent;
 import org.unicase.emfstore.esmodel.versioning.events.Event;
 import org.unicase.emfstore.esmodel.versioning.events.EventsPackage;
 import org.unicase.emfstore.esmodel.versioning.events.ExceptionEvent;
+import org.unicase.emfstore.esmodel.versioning.events.LinkEvent;
 import org.unicase.emfstore.esmodel.versioning.events.MergeEvent;
+import org.unicase.emfstore.esmodel.versioning.events.NavigatorCreateEvent;
+import org.unicase.emfstore.esmodel.versioning.events.PerspectiveEvent;
 import org.unicase.emfstore.esmodel.versioning.events.PluginStartEvent;
+import org.unicase.emfstore.esmodel.versioning.events.ReadDiagramEvent;
 import org.unicase.emfstore.esmodel.versioning.events.ReadEvent;
+import org.unicase.emfstore.esmodel.versioning.events.RevertEvent;
+import org.unicase.emfstore.esmodel.versioning.events.ShowHistoryEvent;
+import org.unicase.emfstore.esmodel.versioning.events.TraceEvent;
+import org.unicase.emfstore.esmodel.versioning.events.UpdateEvent;
 
 /**
  * <!-- begin-user-doc -->
@@ -140,6 +150,98 @@ public class EventsSwitch<T> {
 				result = defaultCase(theEObject);
 			return result;
 		}
+		case EventsPackage.UPDATE_EVENT: {
+			UpdateEvent updateEvent = (UpdateEvent) theEObject;
+			T result = caseUpdateEvent(updateEvent);
+			if (result == null)
+				result = caseEvent(updateEvent);
+			if (result == null)
+				result = defaultCase(theEObject);
+			return result;
+		}
+		case EventsPackage.ANNOTATION_EVENT: {
+			AnnotationEvent annotationEvent = (AnnotationEvent) theEObject;
+			T result = caseAnnotationEvent(annotationEvent);
+			if (result == null)
+				result = caseEvent(annotationEvent);
+			if (result == null)
+				result = defaultCase(theEObject);
+			return result;
+		}
+		case EventsPackage.REVERT_EVENT: {
+			RevertEvent revertEvent = (RevertEvent) theEObject;
+			T result = caseRevertEvent(revertEvent);
+			if (result == null)
+				result = caseEvent(revertEvent);
+			if (result == null)
+				result = defaultCase(theEObject);
+			return result;
+		}
+		case EventsPackage.READ_DIAGRAM_EVENT: {
+			ReadDiagramEvent readDiagramEvent = (ReadDiagramEvent) theEObject;
+			T result = caseReadDiagramEvent(readDiagramEvent);
+			if (result == null)
+				result = caseReadEvent(readDiagramEvent);
+			if (result == null)
+				result = caseEvent(readDiagramEvent);
+			if (result == null)
+				result = defaultCase(theEObject);
+			return result;
+		}
+		case EventsPackage.SHOW_HISTORY_EVENT: {
+			ShowHistoryEvent showHistoryEvent = (ShowHistoryEvent) theEObject;
+			T result = caseShowHistoryEvent(showHistoryEvent);
+			if (result == null)
+				result = caseEvent(showHistoryEvent);
+			if (result == null)
+				result = defaultCase(theEObject);
+			return result;
+		}
+		case EventsPackage.PERSPECTIVE_EVENT: {
+			PerspectiveEvent perspectiveEvent = (PerspectiveEvent) theEObject;
+			T result = casePerspectiveEvent(perspectiveEvent);
+			if (result == null)
+				result = caseEvent(perspectiveEvent);
+			if (result == null)
+				result = defaultCase(theEObject);
+			return result;
+		}
+		case EventsPackage.DND_EVENT: {
+			DNDEvent dndEvent = (DNDEvent) theEObject;
+			T result = caseDNDEvent(dndEvent);
+			if (result == null)
+				result = caseEvent(dndEvent);
+			if (result == null)
+				result = defaultCase(theEObject);
+			return result;
+		}
+		case EventsPackage.LINK_EVENT: {
+			LinkEvent linkEvent = (LinkEvent) theEObject;
+			T result = caseLinkEvent(linkEvent);
+			if (result == null)
+				result = caseEvent(linkEvent);
+			if (result == null)
+				result = defaultCase(theEObject);
+			return result;
+		}
+		case EventsPackage.TRACE_EVENT: {
+			TraceEvent traceEvent = (TraceEvent) theEObject;
+			T result = caseTraceEvent(traceEvent);
+			if (result == null)
+				result = caseEvent(traceEvent);
+			if (result == null)
+				result = defaultCase(theEObject);
+			return result;
+		}
+		case EventsPackage.NAVIGATOR_CREATE_EVENT: {
+			NavigatorCreateEvent navigatorCreateEvent = (NavigatorCreateEvent) theEObject;
+			T result = caseNavigatorCreateEvent(navigatorCreateEvent);
+			if (result == null)
+				result = caseEvent(navigatorCreateEvent);
+			if (result == null)
+				result = defaultCase(theEObject);
+			return result;
+		}
 		default:
 			return defaultCase(theEObject);
 		}
@@ -232,6 +334,156 @@ public class EventsSwitch<T> {
 	 * @generated
 	 */
 	public T casePluginStartEvent(PluginStartEvent object) {
+		return null;
+	}
+
+	/**
+	 * Returns the result of interpreting the object as an instance of '<em>Update Event</em>'.
+	 * <!-- begin-user-doc -->
+	 * This implementation returns null;
+	 * returning a non-null result will terminate the switch.
+	 * <!-- end-user-doc -->
+	 * @param object the target of the switch.
+	 * @return the result of interpreting the object as an instance of '<em>Update Event</em>'.
+	 * @see #doSwitch(org.eclipse.emf.ecore.EObject) doSwitch(EObject)
+	 * @generated
+	 */
+	public T caseUpdateEvent(UpdateEvent object) {
+		return null;
+	}
+
+	/**
+	 * Returns the result of interpreting the object as an instance of '<em>Annotation Event</em>'.
+	 * <!-- begin-user-doc -->
+	 * This implementation returns null;
+	 * returning a non-null result will terminate the switch.
+	 * <!-- end-user-doc -->
+	 * @param object the target of the switch.
+	 * @return the result of interpreting the object as an instance of '<em>Annotation Event</em>'.
+	 * @see #doSwitch(org.eclipse.emf.ecore.EObject) doSwitch(EObject)
+	 * @generated
+	 */
+	public T caseAnnotationEvent(AnnotationEvent object) {
+		return null;
+	}
+
+	/**
+	 * Returns the result of interpreting the object as an instance of '<em>Revert Event</em>'.
+	 * <!-- begin-user-doc -->
+	 * This implementation returns null;
+	 * returning a non-null result will terminate the switch.
+	 * <!-- end-user-doc -->
+	 * @param object the target of the switch.
+	 * @return the result of interpreting the object as an instance of '<em>Revert Event</em>'.
+	 * @see #doSwitch(org.eclipse.emf.ecore.EObject) doSwitch(EObject)
+	 * @generated
+	 */
+	public T caseRevertEvent(RevertEvent object) {
+		return null;
+	}
+
+	/**
+	 * Returns the result of interpreting the object as an instance of '<em>Read Diagram Event</em>'.
+	 * <!-- begin-user-doc -->
+	 * This implementation returns null;
+	 * returning a non-null result will terminate the switch.
+	 * <!-- end-user-doc -->
+	 * @param object the target of the switch.
+	 * @return the result of interpreting the object as an instance of '<em>Read Diagram Event</em>'.
+	 * @see #doSwitch(org.eclipse.emf.ecore.EObject) doSwitch(EObject)
+	 * @generated
+	 */
+	public T caseReadDiagramEvent(ReadDiagramEvent object) {
+		return null;
+	}
+
+	/**
+	 * Returns the result of interpreting the object as an instance of '<em>Show History Event</em>'.
+	 * <!-- begin-user-doc -->
+	 * This implementation returns null;
+	 * returning a non-null result will terminate the switch.
+	 * <!-- end-user-doc -->
+	 * @param object the target of the switch.
+	 * @return the result of interpreting the object as an instance of '<em>Show History Event</em>'.
+	 * @see #doSwitch(org.eclipse.emf.ecore.EObject) doSwitch(EObject)
+	 * @generated
+	 */
+	public T caseShowHistoryEvent(ShowHistoryEvent object) {
+		return null;
+	}
+
+	/**
+	 * Returns the result of interpreting the object as an instance of '<em>Perspective Event</em>'.
+	 * <!-- begin-user-doc -->
+	 * This implementation returns null;
+	 * returning a non-null result will terminate the switch.
+	 * <!-- end-user-doc -->
+	 * @param object the target of the switch.
+	 * @return the result of interpreting the object as an instance of '<em>Perspective Event</em>'.
+	 * @see #doSwitch(org.eclipse.emf.ecore.EObject) doSwitch(EObject)
+	 * @generated
+	 */
+	public T casePerspectiveEvent(PerspectiveEvent object) {
+		return null;
+	}
+
+	/**
+	 * Returns the result of interpreting the object as an instance of '<em>DND Event</em>'.
+	 * <!-- begin-user-doc -->
+	 * This implementation returns null;
+	 * returning a non-null result will terminate the switch.
+	 * <!-- end-user-doc -->
+	 * @param object the target of the switch.
+	 * @return the result of interpreting the object as an instance of '<em>DND Event</em>'.
+	 * @see #doSwitch(org.eclipse.emf.ecore.EObject) doSwitch(EObject)
+	 * @generated
+	 */
+	public T caseDNDEvent(DNDEvent object) {
+		return null;
+	}
+
+	/**
+	 * Returns the result of interpreting the object as an instance of '<em>Link Event</em>'.
+	 * <!-- begin-user-doc -->
+	 * This implementation returns null;
+	 * returning a non-null result will terminate the switch.
+	 * <!-- end-user-doc -->
+	 * @param object the target of the switch.
+	 * @return the result of interpreting the object as an instance of '<em>Link Event</em>'.
+	 * @see #doSwitch(org.eclipse.emf.ecore.EObject) doSwitch(EObject)
+	 * @generated
+	 */
+	public T caseLinkEvent(LinkEvent object) {
+		return null;
+	}
+
+	/**
+	 * Returns the result of interpreting the object as an instance of '<em>Trace Event</em>'.
+	 * <!-- begin-user-doc -->
+	 * This implementation returns null;
+	 * returning a non-null result will terminate the switch.
+	 * <!-- end-user-doc -->
+	 * @param object the target of the switch.
+	 * @return the result of interpreting the object as an instance of '<em>Trace Event</em>'.
+	 * @see #doSwitch(org.eclipse.emf.ecore.EObject) doSwitch(EObject)
+	 * @generated
+	 */
+	public T caseTraceEvent(TraceEvent object) {
+		return null;
+	}
+
+	/**
+	 * Returns the result of interpreting the object as an instance of '<em>Navigator Create Event</em>'.
+	 * <!-- begin-user-doc -->
+	 * This implementation returns null;
+	 * returning a non-null result will terminate the switch.
+	 * <!-- end-user-doc -->
+	 * @param object the target of the switch.
+	 * @return the result of interpreting the object as an instance of '<em>Navigator Create Event</em>'.
+	 * @see #doSwitch(org.eclipse.emf.ecore.EObject) doSwitch(EObject)
+	 * @generated
+	 */
+	public T caseNavigatorCreateEvent(NavigatorCreateEvent object) {
 		return null;
 	}
 

@@ -80,6 +80,96 @@ public interface EventsFactory extends EFactory {
 	PluginStartEvent createPluginStartEvent();
 
 	/**
+	 * Returns a new object of class '<em>Update Event</em>'.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @return a new object of class '<em>Update Event</em>'.
+	 * @generated
+	 */
+	UpdateEvent createUpdateEvent();
+
+	/**
+	 * Returns a new object of class '<em>Annotation Event</em>'.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @return a new object of class '<em>Annotation Event</em>'.
+	 * @generated
+	 */
+	AnnotationEvent createAnnotationEvent();
+
+	/**
+	 * Returns a new object of class '<em>Revert Event</em>'.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @return a new object of class '<em>Revert Event</em>'.
+	 * @generated
+	 */
+	RevertEvent createRevertEvent();
+
+	/**
+	 * Returns a new object of class '<em>Read Diagram Event</em>'.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @return a new object of class '<em>Read Diagram Event</em>'.
+	 * @generated
+	 */
+	ReadDiagramEvent createReadDiagramEvent();
+
+	/**
+	 * Returns a new object of class '<em>Show History Event</em>'.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @return a new object of class '<em>Show History Event</em>'.
+	 * @generated
+	 */
+	ShowHistoryEvent createShowHistoryEvent();
+
+	/**
+	 * Returns a new object of class '<em>Perspective Event</em>'.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @return a new object of class '<em>Perspective Event</em>'.
+	 * @generated
+	 */
+	PerspectiveEvent createPerspectiveEvent();
+
+	/**
+	 * Returns a new object of class '<em>DND Event</em>'.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @return a new object of class '<em>DND Event</em>'.
+	 * @generated
+	 */
+	DNDEvent createDNDEvent();
+
+	/**
+	 * Returns a new object of class '<em>Link Event</em>'.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @return a new object of class '<em>Link Event</em>'.
+	 * @generated
+	 */
+	LinkEvent createLinkEvent();
+
+	/**
+	 * Returns a new object of class '<em>Trace Event</em>'.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @return a new object of class '<em>Trace Event</em>'.
+	 * @generated
+	 */
+	TraceEvent createTraceEvent();
+
+	/**
+	 * Returns a new object of class '<em>Navigator Create Event</em>'.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @return a new object of class '<em>Navigator Create Event</em>'.
+	 * @generated
+	 */
+	NavigatorCreateEvent createNavigatorCreateEvent();
+
+	/**
 	 * Returns the package supported by this factory.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->

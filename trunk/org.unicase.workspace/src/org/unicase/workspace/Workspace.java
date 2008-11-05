@@ -191,7 +191,7 @@ public interface Workspace extends EObject, IAdaptable {
 	 */
 	void exportProject(ProjectSpace projectSpace, String absoluteFileName)
 			throws IOException;
-	
+
 	/**
 	 * Export a project space to a file.
 	 * @param projectSpace the project space
@@ -200,15 +200,14 @@ public interface Workspace extends EObject, IAdaptable {
 	 */
 	void exportProjectSpace(ProjectSpace projectSpace, String absoluteFileName)
 			throws IOException;
-	
+
 	/**
 	 * Export the current workspace to a file.
 	 * @param absoluteFileName the file name
 	 * @throws IOException if file access fails
 	 */
-	void exportWorkSpace(String absoluteFileName)
-			throws IOException;
-	
+	void exportWorkSpace(String absoluteFileName) throws IOException;
+
 	/**
 	 * Import a project space from file.
 	 * @param absoluteFileName the file name to import from
