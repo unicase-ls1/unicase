@@ -6,7 +6,6 @@
  */
 package org.unicase.ui.meeditor.mecontrols.melinkcontrol;
 
-import org.eclipse.emf.common.util.EList;
 import org.eclipse.emf.ecore.EObject;
 import org.eclipse.emf.ecore.EReference;
 import org.eclipse.emf.transaction.RecordingCommand;
@@ -16,6 +15,9 @@ import org.eclipse.ui.forms.events.HyperlinkAdapter;
 import org.eclipse.ui.forms.events.HyperlinkEvent;
 import org.eclipse.ui.forms.events.IHyperlinkListener;
 import org.unicase.model.ModelElement;
+import org.unicase.model.NonDomainElement;
+import org.unicase.ui.common.commands.DeleteModelElementCommand;
+import org.unicase.ui.common.commands.DeleteReferenceCommand;
 
 /**
  * A {@link HyperlinkAdapter} regarding deletion of model elements.
@@ -25,44 +27,7 @@ import org.unicase.model.ModelElement;
  */
 public class MEHyperLinkDeleteAdapter extends HyperlinkAdapter implements
 		IHyperlinkListener {
-	/**
-	 * Command to delete a reference.
-	 * 
-	 * @author helming
-	 * 
-	 */
-	private final class DeleteReferenceCommand extends RecordingCommand {
-		private DeleteReferenceCommand(TransactionalEditingDomain domain) {
-			super(domain);
-		}
 
-		@Override
-		protected void doExecute() {
-			Object object = modelElement.eGet(reference);
-
-			if (reference.isContainer()) {
-				ModelElement me = ((ModelElement) modelElement);
-				((ModelElement) opposite).getProject().addModelElement(me);
-				return;
-			}
-			if (reference.isContainment()) {
-				ModelElement me = ((ModelElement) opposite);
-				((ModelElement) modelElement).getProject().addModelElement(me);
-				return;
-			}
-
-			if (object instanceof EList) {
-				@SuppressWarnings("unchecked")
-				EList<EObject> list = (EList<EObject>) object;
-				list.remove(opposite);
-				return;
-			} else {
-				modelElement.eSet(reference, null);
-				return;
-			}
-
-		}
-	}
 
 	private EObject modelElement;
 	private EReference reference;
@@ -92,6 +57,12 @@ public class MEHyperLinkDeleteAdapter extends HyperlinkAdapter implements
 	public void linkActivated(HyperlinkEvent e) {
 		TransactionalEditingDomain domain = TransactionUtil
 				.getEditingDomain(modelElement);
-		domain.getCommandStack().execute(new DeleteReferenceCommand(domain));
+		RecordingCommand command = null;
+		if(reference.isContainment() && opposite instanceof NonDomainElement){
+			command = new DeleteModelElementCommand(domain,(ModelElement)opposite); 
+		}else{
+			command = new DeleteReferenceCommand(domain,(ModelElement)modelElement,reference,(ModelElement)opposite);
+		}
+		domain.getCommandStack().execute(command);
 	}
 }

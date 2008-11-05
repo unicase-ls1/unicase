@@ -23,6 +23,7 @@ import org.eclipse.ui.forms.widgets.FormToolkit;
 import org.eclipse.ui.forms.widgets.Hyperlink;
 import org.eclipse.ui.forms.widgets.ImageHyperlink;
 import org.unicase.model.ModelElement;
+import org.unicase.model.NonDomainElement;
 import org.unicase.ui.meeditor.mecontrols.AbstractMEControl;
 
 /**
@@ -71,6 +72,7 @@ public class MELinkControl extends AbstractMEControl {
 			public void labelProviderChanged(LabelProviderChangedEvent event) {
 				if(hyperlink!=null){
 					hyperlink.setText(labelProvider.getText(getModelElement()));
+					linkComposite.pack(true);
 					linkComposite.layout();
 				}
 			}
@@ -84,7 +86,14 @@ public class MELinkControl extends AbstractMEControl {
 		hyperlink.addHyperlinkListener(listener);
 		imageHyperlink.addHyperlinkListener(listener);
 		ImageHyperlink deleteLink = getToolkit().createImageHyperlink(linkComposite, style);
-		deleteLink.setImage(PlatformUI.getWorkbench().getSharedImages().getImage(ISharedImages.IMG_TOOL_DELETE));
+		Image deleteImage = null;
+		if(reference.isContainment() && (getModelElement() instanceof NonDomainElement)){
+			deleteImage = org.unicase.ui.common.Activator
+			.getImageDescriptor("icons/delete.gif").createImage();
+		}else{
+			deleteImage = PlatformUI.getWorkbench().getSharedImages().getImage(ISharedImages.IMG_TOOL_DELETE);
+		}
+		deleteLink.setImage(deleteImage);
 
 		deleteLink.addHyperlinkListener(new MEHyperLinkDeleteAdapter(contextModelElement, reference, getModelElement()));
 		return linkComposite;
