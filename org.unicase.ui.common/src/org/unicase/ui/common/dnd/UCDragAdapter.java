@@ -49,7 +49,7 @@ public class UCDragAdapter extends ViewerDragAdapter {
 		ISelection sel = viewer.getSelection();
 		if(sel instanceof IStructuredSelection){
 			IStructuredSelection ssel = (IStructuredSelection) sel;
-			dragSource = (List<ModelElement>)ssel.toList();
+			dragSource =ssel.toList();
 			
 		}
 		
