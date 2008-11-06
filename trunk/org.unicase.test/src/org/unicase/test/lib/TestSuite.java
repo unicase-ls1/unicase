@@ -1,26 +1,25 @@
 package org.unicase.test.lib;
 
 import java.util.ArrayList;
-import java.util.EnumSet;
 import java.util.List;
-
-import org.unicase.test.tests.changetests.randomchange.RandomChangeTestSuite.TestCases;
 
 
 public abstract class TestSuite {
 
-	List<TestCase> testcases;
+	private List<TestCase> testcases;
+	private boolean manualTests;
 
 	public TestSuite() {
 		testcases = new ArrayList<TestCase>();
 	}
 
-	public void runTest(int numOfIterations, EnumSet<TestCases> testCases) {
+	public void runTest(int numOfIterations) {
 		initTestSuite();
-		initTestCases(testCases);
+		initTestCases();
 		
 		for (int i = 0; i < numOfIterations; i++) {
 			for (TestCase testCase : testcases) {
+				System.out.println();
 				System.out.println("========= Running TestCase: "
 						+ testCase.getTestName() + " =========  " + i);
 				testCase.runTest();
@@ -39,10 +38,20 @@ public abstract class TestSuite {
 	public void endTestSuite() {
 	}
 
-	public void initTestCases(EnumSet<TestCases> testCases) {
+	public void initTestCases() {
 	}
 
 	public List<TestCase> getTestCases() {
 		return testcases;
 	}
+
+	public void setManualTests(boolean manualTests) {
+		this.manualTests = manualTests;
+	}
+
+	public boolean isManualTests() {
+		return manualTests;
+	}
+	
+	
 }
