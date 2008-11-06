@@ -1,7 +1,10 @@
 package org.unicase.test.lib;
 
 import java.util.ArrayList;
+import java.util.EnumSet;
 import java.util.List;
+
+import org.unicase.test.tests.changetests.randomchange.RandomChangeTestSuite.TestCases;
 
 
 public abstract class TestSuite {
@@ -12,9 +15,9 @@ public abstract class TestSuite {
 		testcases = new ArrayList<TestCase>();
 	}
 
-	public void runTest(int numOfIterations) {
+	public void runTest(int numOfIterations, EnumSet<TestCases> testCases) {
 		initTestSuite();
-		initTestCases();
+		initTestCases(testCases);
 		
 		for (int i = 0; i < numOfIterations; i++) {
 			for (TestCase testCase : testcases) {
@@ -36,7 +39,7 @@ public abstract class TestSuite {
 	public void endTestSuite() {
 	}
 
-	public void initTestCases() {
+	public void initTestCases(EnumSet<TestCases> testCases) {
 	}
 
 	public List<TestCase> getTestCases() {
