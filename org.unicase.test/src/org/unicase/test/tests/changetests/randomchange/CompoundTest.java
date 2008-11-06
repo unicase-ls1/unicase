@@ -1,6 +1,6 @@
 package org.unicase.test.tests.changetests.randomchange;
 
-import org.unicase.test.tests.changetests.randomchange.RandomChangeTestSuite.TestCases;
+import org.unicase.test.tests.changetests.randomchange.RandomChangeTestSuite.AutomaticTestCases;
 
 public class CompoundTest extends RandomChangeTestCase {
 
@@ -13,19 +13,20 @@ public class CompoundTest extends RandomChangeTestCase {
 	public void runTest() {
 		
 		int numOfLoops = getRandom().nextInt(5) + 5; 
-		int maxTimesToRun = 10;
-		TestCases testCase;
+		int maxTimesToRun = 3;
+		AutomaticTestCases testCase;
 		int timesToRun = 0;
 		
 		for(int i = 0; i < numOfLoops; i++){
-			testCase = TestCases.values()[getRandom().nextInt(TestCases.values().length - 1)];
-			timesToRun = getRandom().nextInt(maxTimesToRun);
+			//testCase = AutomaticTestCases.values()[getRandom().nextInt(AutomaticTestCases.values().length - 1)];
+			testCase = AutomaticTestCases.values()[getRandom().nextInt(5)];  //add==0, change==1, delete==2, move==3, reference==4
+			timesToRun = getRandom().nextInt(maxTimesToRun) + 1;
 			runTestCase(testCase, timesToRun);
 		}
 		
 	}
 
-	private void runTestCase(TestCases testCase, int timesToRun) {
+	private void runTestCase(AutomaticTestCases testCase, int timesToRun) {
 		switch(testCase){
 		case ADD_TEST:
 			System.out.println("**** CompoundTest: AddTest ****");
@@ -56,30 +57,43 @@ public class CompoundTest extends RandomChangeTestCase {
 	}
 
 	private void renMoveTest(int timesToRun) {
+		
 		MoveTest moveTest = new MoveTest("Move", getRandom().nextInt());
 		moveTest.setTestProject(getTestProject());
-		moveTest.runTest();
+		
+		for (int i = 0; i < timesToRun; i++) {
+			moveTest.runTest();
+		}
 		
 	}
 
 	private void renChangeAttributeTest(int timesToRun) {
 		ChangeAttributeTest changeAttributeTest = new ChangeAttributeTest("ChangeAttribute", getRandom().nextInt());
 		changeAttributeTest.setTestProject(getTestProject());
-		changeAttributeTest.runTest();
+		
+		for (int i = 0; i < timesToRun; i++) {
+			changeAttributeTest.runTest();
+		}
 		
 	}
 
 	private void renDeleteTest(int timesToRun) {
 		DeleteTest deleteTest = new DeleteTest("Delete", getRandom().nextInt());
 		deleteTest.setTestProject(getTestProject());
-		deleteTest.runTest();
+		
+		for (int i = 0; i < timesToRun; i++) {
+			deleteTest.runTest();
+		}
 		
 	}
 
 	private void renAddTest(int timesToRun) {
 		AddTest addTest = new AddTest("Add", getRandom().nextInt());
 		addTest.setTestProject(getTestProject());
-		addTest.runTest();
+		
+		for (int i = 0; i < timesToRun; i++) {
+			addTest.runTest();
+		}
 	}
 
 }

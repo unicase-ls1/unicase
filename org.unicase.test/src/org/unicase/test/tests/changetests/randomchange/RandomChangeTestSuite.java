@@ -1,9 +1,10 @@
 package org.unicase.test.tests.changetests.randomchange;
 
 import java.util.Calendar;
-import java.util.EnumSet;
 
 import org.eclipse.emf.ecore.util.EcoreUtil;
+import org.unicase.emfstore.esmodel.versioning.ChangePackage;
+import org.unicase.emfstore.esmodel.versioning.operations.AbstractOperation;
 import org.unicase.model.Project;
 import org.unicase.test.lib.TestCase;
 import org.unicase.test.tests.changetests.ChangeTestHelper;
@@ -16,18 +17,35 @@ public class RandomChangeTestSuite extends ChangeTestSuite {
 	private Project compareProject;
 	private Long randomSeed= Calendar.getInstance().getTimeInMillis();
 	//private static Log logger = LogFactory.getLog("test");
-	public enum TestCases {
+	private boolean automaticTests;
+	
+	
+	
+	public enum AutomaticTestCases {
 		ADD_TEST,
 		CHANGE_ATTRIBUTE_TEST,
 		DELETE_TEST, 
 		MOVE_TEST,
+		REFERENCE_TEST,
 		COMPOUND_TEST
-		
+	}
+	 
+	
+	public enum ManualTestCases {
+		REMOVE_TEST,
+		CREATE_AND_DELETE_TEST,
+		CREATE_AND_CHANGE_REF_TEST,
+		SIMPLE_ATTRIBUTE_CHANGE_TEST
+	}
+	
+	
+	public RandomChangeTestSuite(boolean automaticTests){
+		this.automaticTests = automaticTests;
 	}
 	
 	
 	@Override
-	public void initTestCases(EnumSet<TestCases> testCases) {
+	public void initTestCases() {
 		
 		// add test cases
 		//getLogger().info("adding test cases");
@@ -49,15 +67,26 @@ public class RandomChangeTestSuite extends ChangeTestSuite {
 		//AddTest addTest = new AddTest("Add", randomSeed);
 		//addTest.setParameters();
 		
+		//Reference Test
+		//ReferenceTest referenceTest = new ReferenceTest("Reference", randomSeed);
+		//referenceTest.setParameters();
+		
+		//CreateAndDelete Test
+		CreateAndDeleteTest createAndDeleteTest = new CreateAndDeleteTest("CreateAndDelete", randomSeed);
+		//createAndDeleteTest.setParameters();
+		
+		
 		//CompoundTest
-		CompoundTest compoundTest = new CompoundTest("Compound", randomSeed);
+		//CompoundTest compoundTest = new CompoundTest("Compound", randomSeed);
 		//compoundTest.setParameters();
 		
 		//this.getTestCases().add(moveTest);
 		//this.getTestCases().add(addTest);
 		//this.getTestCases().add(changeAttributeTest);
 		//this.getTestCases().add(deleteTest);
-		this.getTestCases().add(compoundTest);
+		//this.getTestCases().add(referenceTest);
+		//this.getTestCases().add(compoundTest);
+		this.getTestCases().add(createAndDeleteTest);
 		
 		for(TestCase test : getTestCases()){
 			if(test instanceof RandomChangeTestCase){
@@ -97,8 +126,21 @@ public class RandomChangeTestSuite extends ChangeTestSuite {
 	
 	@Override
 	public void endTestSuite() {
+		
+		if(automaticTests){
+			endTestSuiteAutomaticTests();
+			
+		}else{
+			endTestSuiteManualTests();
+		}
+		
+		
+	}
+
+	
+	
+	private void endTestSuiteAutomaticTests() {
 		int[] result = ChangeTestHelper.linearCompare(getTestProjectSpace(), getCompareProjectSpace());
-		//int[] result = ChangeTestHelper.linearCompare(testProject, compareProject);
 		if(result[0] == 1){
 			System.out.println("Test succeeded!");
 		}else{
@@ -110,7 +152,26 @@ public class RandomChangeTestSuite extends ChangeTestSuite {
 			System.out.println("colNum: " + result[4]);
 			System.exit(0);
 		}
+		
 	}
+
+
+	private void endTestSuiteManualTests() {
+		ChangePackage changePackage = ChangeTestHelper.getChangePackage(getTestProjectSpace().getOperations(), true);
+		System.out.println("num of changes: " + changePackage.getOperations().size());
+		
+		int i = 0;
+		for(AbstractOperation op : changePackage.getOperations()){
+			System.out.println("-------------------------------------");
+			System.out.print(i + ". ");
+			System.out.println(op.getName());
+			System.out.println(op.getDescription());
+			//System.out.println("-------------------------------------");
+			i++;
+			
+		}
+	}
+
 
 	@Override
 	public Project getCompareProject() {
