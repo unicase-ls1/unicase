@@ -9,11 +9,7 @@ import org.eclipse.emf.ecore.EEnum;
 import org.eclipse.emf.ecore.EEnumLiteral;
 import org.eclipse.emf.transaction.RecordingCommand;
 import org.eclipse.emf.transaction.TransactionalEditingDomain;
-import org.unicase.model.IdentifiableElement;
 import org.unicase.model.ModelElement;
-import org.unicase.model.ModelFactory;
-import org.unicase.model.ModelPackage;
-import org.unicase.model.UniqueIdentifier;
 
 public class ChangeAttributeTest extends RandomChangeTestCase {
 

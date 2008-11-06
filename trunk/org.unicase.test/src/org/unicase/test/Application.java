@@ -1,9 +1,12 @@
 package org.unicase.test;
 
+import java.util.EnumSet;
+
 import org.eclipse.equinox.app.IApplication;
 import org.eclipse.equinox.app.IApplicationContext;
 import org.unicase.test.tests.changetests.ChangeTestSuite;
 import org.unicase.test.tests.changetests.randomchange.RandomChangeTestSuite;
+import org.unicase.test.tests.changetests.randomchange.RandomChangeTestSuite.TestCases;
 
 /**
  * This class controls all aspects of the application's execution
@@ -17,7 +20,8 @@ public class Application implements IApplication {
 
 		
 		ChangeTestSuite changeTest = new RandomChangeTestSuite();
-		changeTest.runTest(10);
+		EnumSet<TestCases> testCases = EnumSet.of(TestCases.ADD_TEST);
+		changeTest.runTest(1, testCases);
 		
 		
 //		for(int i = 0; i < 5; i++){

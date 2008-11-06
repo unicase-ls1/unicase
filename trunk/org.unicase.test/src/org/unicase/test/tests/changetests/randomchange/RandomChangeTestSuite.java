@@ -1,15 +1,10 @@
 package org.unicase.test.tests.changetests.randomchange;
 
 import java.util.Calendar;
+import java.util.EnumSet;
 
-import org.apache.commons.logging.Log;
-import org.apache.commons.logging.LogFactory;
 import org.eclipse.emf.ecore.util.EcoreUtil;
-import org.osgi.service.application.ApplicationDescriptor;
-import org.osgi.service.application.ApplicationHandle;
 import org.unicase.model.Project;
-import org.unicase.test.Activator;
-import org.unicase.test.Application;
 import org.unicase.test.lib.TestCase;
 import org.unicase.test.tests.changetests.ChangeTestHelper;
 import org.unicase.test.tests.changetests.ChangeTestSuite;
@@ -20,11 +15,19 @@ public class RandomChangeTestSuite extends ChangeTestSuite {
 	private Project testProject;
 	private Project compareProject;
 	private Long randomSeed= Calendar.getInstance().getTimeInMillis();
-	private static Log logger = LogFactory.getLog("test");
+	//private static Log logger = LogFactory.getLog("test");
+	public enum TestCases {
+		ADD_TEST,
+		CHANGE_ATTRIBUTE_TEST,
+		DELETE_TEST, 
+		MOVE_TEST,
+		COMPOUND_TEST
+		
+	}
 	
 	
 	@Override
-	public void initTestCases() {
+	public void initTestCases(EnumSet<TestCases> testCases) {
 		
 		// add test cases
 		//getLogger().info("adding test cases");
@@ -43,14 +46,18 @@ public class RandomChangeTestSuite extends ChangeTestSuite {
 		//moveTest.setParameters();
 
 		//AddTest
-		AddTest addTest = new AddTest("Add", randomSeed);
+		//AddTest addTest = new AddTest("Add", randomSeed);
 		//addTest.setParameters();
 		
+		//CompoundTest
+		CompoundTest compoundTest = new CompoundTest("Compound", randomSeed);
+		//compoundTest.setParameters();
 		
 		//this.getTestCases().add(moveTest);
-		this.getTestCases().add(addTest);
+		//this.getTestCases().add(addTest);
 		//this.getTestCases().add(changeAttributeTest);
 		//this.getTestCases().add(deleteTest);
+		this.getTestCases().add(compoundTest);
 		
 		for(TestCase test : getTestCases()){
 			if(test instanceof RandomChangeTestCase){
