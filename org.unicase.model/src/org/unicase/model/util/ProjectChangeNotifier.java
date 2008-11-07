@@ -76,26 +76,33 @@ public class ProjectChangeNotifier extends AdapterImpl {
 		case Notification.ADD_MANY:
 			handleAddAllNotification(notification);
 			break;
-		case Notification.SET:
-			//model element is removed from containment hierachy
-			if (isAboutContainer(notification)) {
-				ModelElement modelElement = (ModelElement) notification.getNotifier();
-				EObject newParent = (EObject) notification.getNewValue();
-				if (newParent == null) {
-					//check if model element is really removed from project
-					if (modelElement.getProject()!=project) {
-						//on a remove fire notification first and then the remove
-						fireNotification(notification);
-						this.projectChangeObserver.modelElementRemoved(project, modelElement);
-						modelElement.eAdapters().remove(this);
-						return;
-					}
+		case Notification.REMOVE:
+			// model element is removed from containment hierachy
+			if (isAboutContainment(notification)) {
+				Object oldValue = notification.getOldValue();
+				if (oldValue instanceof ModelElement) {
+					ModelElement child = (ModelElement) oldValue;
+					handleSingleRemove(notification, child);
 				}
+
 			}
-			
-			//model element is added to containment hierachy
+			break;
+		case Notification.SET:
+			// model element is added to containment hierachy
 			if (isAboutContainment(notification)) {
 				handleSingleAdd((EObject) notification.getNotifier());
+			}
+			break;
+		case Notification.REMOVE_MANY:
+			if (isAboutContainment(notification)) {
+				Object oldValue = notification.getOldValue();
+				if (oldValue instanceof List) {
+					@SuppressWarnings("unchecked")
+					List<ModelElement> list = (List<ModelElement>) oldValue;
+					for (ModelElement child : list) {
+						handleSingleRemove(notification, child);
+					}
+				}
 			}
 			break;
 		default:
@@ -108,6 +115,15 @@ public class ProjectChangeNotifier extends AdapterImpl {
 
 	}
 
+	private void handleSingleRemove(Notification notification,
+			ModelElement child) {
+		if (child.getProject() != project) {
+			fireNotification(notification);
+			this.projectChangeObserver.modelElementRemoved(project, child);
+			child.eAdapters().remove(this);
+		}
+	}
+
 	private void fireNotification(Notification notification) {
 		Object notifier = notification.getNotifier();
 		if (notifier instanceof ModelElement) {
@@ -115,7 +131,6 @@ public class ProjectChangeNotifier extends AdapterImpl {
 					(ModelElement) notifier);
 		}
 	}
-
 
 	// cast cannot be checked properly, flaw in EMF notification design
 	@SuppressWarnings("unchecked")
@@ -128,17 +143,6 @@ public class ProjectChangeNotifier extends AdapterImpl {
 			}
 		}
 
-	}
-
-	private boolean isAboutContainer(Notification notification) {
-		Object feature = notification.getFeature();
-		if (feature instanceof EReference) {
-			EReference reference = (EReference) feature;
-			if (reference.isContainer()) {
-				return true;
-			}
-		}
-		return false;
 	}
 
 	private boolean isAboutContainment(Notification notification) {
@@ -167,10 +171,10 @@ public class ProjectChangeNotifier extends AdapterImpl {
 				newValue.eAdapters().add(this);
 				this.projectChangeObserver.modelElementAdded(project,
 						(ModelElement) newValue);
-			}
-			else {
-				if (project.getModelElement(modelElement.getModelElementId())!=modelElement) {
-					throw new IllegalStateException("Two elements with the same id but different instance detected!");
+			} else {
+				if (project.getModelElement(modelElement.getModelElementId()) != modelElement) {
+					throw new IllegalStateException(
+							"Two elements with the same id but different instance detected!");
 				}
 			}
 		}
