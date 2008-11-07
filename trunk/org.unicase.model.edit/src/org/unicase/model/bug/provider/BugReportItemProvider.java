@@ -23,6 +23,7 @@ import org.eclipse.emf.edit.provider.ItemPropertyDescriptor;
 import org.eclipse.emf.edit.provider.ViewerNotification;
 import org.unicase.model.bug.BugPackage;
 import org.unicase.model.bug.BugReport;
+import org.unicase.model.bug.BugStatus;
 import org.unicase.model.provider.AnnotationItemProvider;
 import org.unicase.model.provider.ModelEditPlugin;
 import org.unicase.model.task.TaskPackage;
@@ -259,7 +260,7 @@ public class BugReportItemProvider extends AnnotationItemProvider implements
 	public Object getImage(Object object) {
 		if (object instanceof BugReport) {
 			BugReport bugReport = (BugReport) object;
-			if (bugReport.isChecked()) {
+			if (bugReport.getStatus().equals(BugStatus.RESOLVED)) {
 				return overlayImage(object, getResourceLocator().getImage(
 						"full/obj16/BugReportResolved"));
 			}
