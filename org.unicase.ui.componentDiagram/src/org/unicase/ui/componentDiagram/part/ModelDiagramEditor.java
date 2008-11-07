@@ -281,6 +281,7 @@ public class ModelDiagramEditor extends org.unicase.ui.common.diagram.ModelDiagr
 	/**
 	 * @generated
 	 */
+	@Override
 	protected void configureGraphicalViewer() {
 		super.configureGraphicalViewer();
 		org.unicase.ui.componentDiagram.part.DiagramEditorContextMenuProvider provider = new org.unicase.ui.componentDiagram.part.DiagramEditorContextMenuProvider(
@@ -288,21 +289,5 @@ public class ModelDiagramEditor extends org.unicase.ui.common.diagram.ModelDiagr
 		getDiagramGraphicalViewer().setContextMenu(provider);
 		getSite().registerContextMenu(ActionIds.DIAGRAM_EDITOR_CONTEXT_MENU,
 				provider, getDiagramGraphicalViewer());
-	}
-
-	/**
-	 * @generated NOT
-	 */
-	@Override
-	public void setInput(IEditorInput input) {
-		try {
-			doSetInput(input, true);
-		} catch (CoreException x) {
-			x.printStackTrace(System.err);
-			String title = x.getMessage();
-			String msg = x.getMessage();
-			Shell shell = getSite().getShell();
-			ErrorDialog.openError(shell, title, msg, x.getStatus());
-		}
 	}
 }
