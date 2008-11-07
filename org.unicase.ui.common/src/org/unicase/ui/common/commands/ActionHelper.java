@@ -39,6 +39,7 @@ import org.unicase.model.diagram.DiagramType;
 import org.unicase.model.diagram.MEDiagram;
 import org.unicase.ui.common.exceptions.DialogHandler;
 import org.unicase.workspace.ProjectSpace;
+import org.unicase.workspace.Usersession;
 import org.unicase.workspace.WorkspaceManager;
 
 /**
@@ -116,9 +117,12 @@ public final class ActionHelper {
 		domain.getCommandStack().execute(new RecordingCommand(domain) {
 			@Override
 			protected void doExecute() {
-				creator.append(WorkspaceManager.getInstance()
+				Usersession usersession = WorkspaceManager.getInstance()
 						.getCurrentWorkspace().getActiveProjectSpace()
-						.getUsersession().getACUser().getName());
+						.getUsersession();
+				if (usersession != null) {
+					creator.append(usersession.getACUser().getName());
+				}
 			}
 		});
 		me.setCreator(creator.toString());
@@ -142,8 +146,9 @@ public final class ActionHelper {
 		domain.getCommandStack().execute(new RecordingCommand(domain) {
 			@Override
 			protected void doExecute() {
-				ProjectSpace activeProjectSpace = WorkspaceManager.getInstance()
-						.getCurrentWorkspace().getActiveProjectSpace();
+				ProjectSpace activeProjectSpace = WorkspaceManager
+						.getInstance().getCurrentWorkspace()
+						.getActiveProjectSpace();
 				ReadEvent readEvent = EventsFactory.eINSTANCE.createReadEvent();
 				readEvent.setModelElement(me.getModelElementId());
 				readEvent.setTimestamp(new Date());
@@ -269,9 +274,8 @@ public final class ActionHelper {
 	 *         IStructuredSelection
 	 */
 	public static Object getSelection() {
-		ISelectionService selectionService = PlatformUI
-				.getWorkbench().getActiveWorkbenchWindow()
-				.getSelectionService();
+		ISelectionService selectionService = PlatformUI.getWorkbench()
+				.getActiveWorkbenchWindow().getSelectionService();
 
 		ISelection sel = selectionService.getSelection();
 		if (!(sel instanceof IStructuredSelection)) {
