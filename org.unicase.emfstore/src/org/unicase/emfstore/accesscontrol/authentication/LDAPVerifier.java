@@ -18,6 +18,7 @@ import javax.naming.directory.SearchResult;
 
 import org.apache.commons.logging.Log;
 import org.apache.commons.logging.LogFactory;
+import org.unicase.emfstore.ServerConfiguration;
 import org.unicase.emfstore.accesscontrol.AccessControlException;
 
 /**
@@ -27,11 +28,11 @@ import org.unicase.emfstore.accesscontrol.AccessControlException;
  */
 public class LDAPVerifier extends AbstractAuthenticationControl {
 
-	private static final String LDAPURL = "ldap://opendirectorybruegge.informatik.tu-muenchen.de";
+	private String ldapUrl;
 
-	private static final String LDAPBASE = "dc=opendirectorybruegge,dc=informatik,dc=tu-muenchen,dc=de";
+	private String ldapBase;
 
-	private static final String SEARCHDN = "uid";
+	private String searchDn;
 
 	private static final String DEFAULT_CTX = "com.sun.jndi.ldap.LdapCtxFactory";
 
@@ -53,18 +54,49 @@ public class LDAPVerifier extends AbstractAuthenticationControl {
 	@Override
 	public boolean verifyPassword(String username, String password)
 			throws AccessControlException {
+		Properties properties = ServerConfiguration.getProperties();
+
+		int count = 1;
+		while (count != -1) {
+
+			ldapUrl = properties
+					.getProperty(ServerConfiguration.AUTHENTICATION_LDAP_PREFIX
+							+ "." + count + "."
+							+ ServerConfiguration.AUTHENTICATION_LDAP_URL);
+			ldapBase = properties
+					.getProperty(ServerConfiguration.AUTHENTICATION_LDAP_PREFIX
+							+ "." + count + "."
+							+ ServerConfiguration.AUTHENTICATION_LDAP_BASE);
+			searchDn = properties
+					.getProperty(ServerConfiguration.AUTHENTICATION_LDAP_PREFIX
+							+ "." + count + "."
+							+ ServerConfiguration.AUTHENTICATION_LDAP_SEARCHDN);
+
+			if(ldapUrl != null && ldapBase != null && searchDn != null) {
+				if(verifyPasswordWithLdap(username, password)) {
+					return true;
+				}
+				count++;
+			} else {
+				count = -1;
+			}
+		}
+		return false;
+	}
+
+	private boolean verifyPasswordWithLdap(String username, String password) {
 		Properties props = new Properties();
 		DirContext dirContext = null;
 
 		// anonymous bind
 		props.put("java.naming.ldap.version", "3");
 		props.put(Context.INITIAL_CONTEXT_FACTORY, DEFAULT_CTX);
-		props.put(Context.PROVIDER_URL, LDAPURL);
+		props.put(Context.PROVIDER_URL, ldapUrl);
 		// props.put(Context.SECURITY_PROTOCOL, "ssl");
 		try {
 			dirContext = new InitialDirContext(props);
 		} catch (NamingException e) {
-			logger.info("LDAP Directory " + LDAPURL + " not found.", e);
+			logger.info("LDAP Directory " + ldapUrl + " not found.", e);
 			return false;
 		}
 
@@ -72,10 +104,10 @@ public class LDAPVerifier extends AbstractAuthenticationControl {
 		constraints.setSearchScope(SearchControls.SUBTREE_SCOPE);
 		NamingEnumeration<SearchResult> results = null;
 		try {
-			results = dirContext.search(LDAPBASE, "(& (" + SEARCHDN + "="
+			results = dirContext.search(ldapBase, "(& (" + searchDn + "="
 					+ username + ") (objectclass=*))", constraints);
 		} catch (NamingException e) {
-			logger.error("Search failed, base = " + LDAPBASE, e);
+			logger.error("Search failed, base = " + ldapBase, e);
 			return false;
 		}
 
@@ -87,18 +119,19 @@ public class LDAPVerifier extends AbstractAuthenticationControl {
 		try {
 			while (results.hasMoreElements()) {
 				SearchResult sr = results.next();
-				if (sr!=null) {
+				if (sr != null) {
 					resolvedName = sr.getName();
 				}
 				break;
 			}
 		} catch (NamingException e) {
-			logger.error("Search returned invalid results, base = " + LDAPBASE, e);
+			logger.error("Search returned invalid results, base = " + ldapBase,
+					e);
 			return false;
 		}
 
 		if (resolvedName == null) {
-			logger.info("Distinguished name not found.");
+			logger.info("Distinguished name not found on "+ldapBase);
 			return false;
 		}
 
@@ -107,15 +140,15 @@ public class LDAPVerifier extends AbstractAuthenticationControl {
 		props = new Properties();
 		// props.put(Context.SECURITY_PROTOCOL, "ssl");
 		props.put(Context.SECURITY_AUTHENTICATION, "simple");
-		props.put(Context.SECURITY_PRINCIPAL, resolvedName + ", " + LDAPBASE);
+		props.put(Context.SECURITY_PRINCIPAL, resolvedName + ", " + ldapBase);
 		props.put(Context.SECURITY_CREDENTIALS, password);
 		props.put("java.naming.ldap.version", "3");
 		props.put(Context.INITIAL_CONTEXT_FACTORY, DEFAULT_CTX);
-		props.put(Context.PROVIDER_URL, LDAPURL);
+		props.put(Context.PROVIDER_URL, ldapUrl);
 		try {
 			dirContext = new InitialDirContext(props);
 		} catch (NamingException e) {
-			logger.info("Login failed.");
+			logger.info("Login failed on "+ldapBase+" .");
 			return false;
 		}
 		return true;
