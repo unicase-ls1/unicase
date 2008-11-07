@@ -47,8 +47,9 @@ public class SimplePropertyFileVerifyer extends AbstractAuthenticationControl {
 			passwordFile.load(fis);
 			fis.close();
 		} catch (IOException e) {
-			logger.warn("Couldn't load password file", e);
-			throw new AccessControlException("Couldn't load password file");
+			logger.warn("Couldn't load password file from path: "+filePath);
+			// Run with empty password file
+//			throw new AccessControlException("Couldn't load password file from path: "+filePath);
 		}
 	}
 

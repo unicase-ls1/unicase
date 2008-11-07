@@ -77,7 +77,8 @@ public final class ServerConfiguration {
 	public static final String PROJECTSTATE_VERSION_PERSISTENCE_FIRSTANDLASTVERSIONONLY = "firstAndLastVersionOnly";
 
 	/**
-	 * The projectstate of every x versions will be stored. This is used to save memory. Use x=1 to save every version.
+	 * The projectstate of every x versions will be stored. This is used to save
+	 * memory. Use x=1 to save every version.
 	 */
 	public static final String PROJECTSTATE_VERSION_PERSISTENCE_EVERYXVERSIONS = "everyXVersion";
 
@@ -85,12 +86,12 @@ public final class ServerConfiguration {
 	 * Property for the count of versions, needed by the everyXVersion policy.
 	 */
 	public static final String PROJECTSTATE_VERSION_PERSISTENCE_EVERYXVERSIONS_X = "emfstore.persistence.version.projectstate.everyxversions";
-	
+
 	/**
 	 * Default value for the everyXVersion policy.
 	 */
 	public static final String PROJECTSTATE_VERSION_PERSISTENCE_EVERYXVERSIONS_X_DEFAULT = "1";
-	
+
 	/**
 	 * Default value for projectstate persistence policy in versions.
 	 */
@@ -138,6 +139,28 @@ public final class ServerConfiguration {
 	public static final String AUTHENTICATION_LDAP = "ldap";
 
 	/**
+	 * Beginng tag of every ldap property. Format for ldap configuration is
+	 * {@link #AUTHENTICATION_LDAP_PREFIX}.[numberOfLdapConfiguration].{ {@link #AUTHENTICATION_LDAP_URL}/
+	 * {@link #AUTHENTICATION_LDAP_BASE_DEFAULT}/{@link #AUTHENTICATION_LDAP_SEARCHDN} .
+	 */
+	public static final String AUTHENTICATION_LDAP_PREFIX = "emfstore.accesscontrol.authentication.ldap";
+	
+	/**
+	 * Ldap url.
+	 */
+	public static final String AUTHENTICATION_LDAP_URL = "url";
+
+	/**
+	 * Ldap base.
+	 */
+	public static final String AUTHENTICATION_LDAP_BASE = "base";
+
+	/**
+	 * Searchdn for ldap.
+	 */
+	public static final String AUTHENTICATION_LDAP_SEARCHDN = "searchdn";
+
+	/**
 	 * Use simple property file for authentication.
 	 */
 	public static final String AUTHENTICATION_SPFV = "spfv";
@@ -145,12 +168,17 @@ public final class ServerConfiguration {
 	/**
 	 * Default authentication policy: ldap.
 	 */
-	public static final String AUTHENTICATION_POLICY_DEFAULT = AUTHENTICATION_LDAP;
+	public static final String AUTHENTICATION_POLICY_DEFAULT = AUTHENTICATION_SPFV;
 
 	/**
 	 * Path to property file for spfv authentication.
 	 */
 	public static final String AUTHENTICATION_SPFV_FILEPATH = "emfstore.accesscontrol.authentication.spfv";
+	
+	/**
+	 * Default filepath for spfv authentication.
+	 */
+	public static final String AUTHENTICATION_SPFV_FILEPATH_DEFAULT = getConfDirectory()+"user.properties";
 
 	/**
 	 * Property to validate server on start up.
@@ -261,21 +289,23 @@ public final class ServerConfiguration {
 	public static String getServerKeyStorePath() {
 		return getServerHome() + "unicaseServer.keystore";
 	}
-	
+
 	/**
 	 * Get the server version as in the org.unicase.emfstore manifest file.
-	 * @return the server version number 
+	 * 
+	 * @return the server version number
 	 */
 	public static String getServerVersion() {
-		
+
 		Bundle emfStoreBundle = Platform.getBundle("org.unicase.emfstore");
 		String emfStoreVersionString = (String) emfStoreBundle.getHeaders()
 				.get(org.osgi.framework.Constants.BUNDLE_VERSION);
 		return emfStoreVersionString;
 	}
-	
+
 	/**
 	 * Determine if this is a release version or not.
+	 * 
 	 * @return true if it is a release version
 	 */
 	public static boolean isReleaseVersion() {
