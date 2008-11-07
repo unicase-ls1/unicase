@@ -402,7 +402,7 @@ public class IterationPlanningView extends ViewPart {
 			// JH Auto-generated catch block
 			e.printStackTrace();
 		}
-
+		workpackageContentProvider.dispose();
 		super.dispose();
 	}
 

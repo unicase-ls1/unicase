@@ -17,11 +17,16 @@ import org.eclipse.emf.ecore.EObject;
 import org.eclipse.emf.edit.provider.ComposedAdapterFactory;
 import org.eclipse.emf.transaction.ui.provider.TransactionalAdapterFactoryContentProvider;
 import org.eclipse.jface.viewers.TreeViewer;
+import org.unicase.model.ModelElement;
 import org.unicase.model.Project;
 import org.unicase.model.task.TaskPackage;
 import org.unicase.model.task.WorkItem;
 import org.unicase.model.task.WorkPackage;
+import org.unicase.model.util.ProjectChangeObserver;
+import org.unicase.workspace.ProjectSpace;
+import org.unicase.workspace.Workspace;
 import org.unicase.workspace.WorkspaceManager;
+import org.unicase.workspace.WorkspacePackage;
 
 /**
  * . ContentProvider for IterationPlaningView
@@ -30,10 +35,21 @@ import org.unicase.workspace.WorkspaceManager;
  * 
  */
 public class WorkpackageContentProvider extends
-		TransactionalAdapterFactoryContentProvider {
+		TransactionalAdapterFactoryContentProvider implements
+		ProjectChangeObserver {
+
+	/**
+	 * remove listener.
+	 */
+	@Override
+	public void dispose() {
+		WorkspaceManager.getInstance().getCurrentWorkspace()
+				.getActiveProjectSpace().getProject()
+				.removeProjectChangeObserver(this);
+		super.dispose();
+	}
 
 	private boolean teamFilter;
-	private AdapterImpl adapterImpl;
 	private Backlog backlog;
 
 	/**
@@ -43,23 +59,31 @@ public class WorkpackageContentProvider extends
 		super(WorkspaceManager.getInstance().getCurrentWorkspace()
 				.getEditingDomain(), new ComposedAdapterFactory(
 				ComposedAdapterFactory.Descriptor.Registry.INSTANCE));
-		adapterImpl = new AdapterImpl() {
-
+		// Listen to active project space change and register as listener
+		final WorkpackageContentProvider instance = this;
+		final Workspace currentWorkspace = WorkspaceManager.getInstance()
+				.getCurrentWorkspace();
+		currentWorkspace.getActiveProjectSpace().getProject()
+				.addProjectChangeObserver(this);
+		currentWorkspace.eAdapters().add(new AdapterImpl() {
 			@Override
 			public void notifyChanged(Notification msg) {
-				if (msg.isTouch()) {
-					return;
-				}
-				if (msg.getFeatureID(WorkItem.class) == TaskPackage.WORK_ITEM__CONTAINING_WORKPACKAGE) {
-					TreeViewer treeViewer = (TreeViewer) viewer;
-					treeViewer.refresh(backlog, true);
-					EObject notifier = (EObject) msg.getNotifier();
-					notifier.eAdapters().remove(this);
-
+				if ((msg.getFeatureID(Workspace.class)) == WorkspacePackage.WORKSPACE__ACTIVE_PROJECT_SPACE) {
+					if (currentWorkspace.getActiveProjectSpace() != null) {
+						Object oldValue = msg.getOldValue();
+						if (oldValue instanceof ProjectSpace) {
+							((ProjectSpace) oldValue).getProject()
+									.removeProjectChangeObserver(instance);
+						}
+						Object newValue = msg.getNewValue();
+						if (newValue instanceof ProjectSpace) {
+							((ProjectSpace) newValue).getProject()
+									.addProjectChangeObserver(instance);
+						}
+					}
 				}
 			}
-
-		};
+		});
 	}
 
 	/**
@@ -67,6 +91,7 @@ public class WorkpackageContentProvider extends
 	 */
 	@Override
 	public Object[] getElements(Object object) {
+
 		List<EObject> ret = new ArrayList<EObject>();
 		if (object instanceof Project) {
 			Project project = (Project) object;
@@ -135,7 +160,6 @@ public class WorkpackageContentProvider extends
 			if (!(workItem instanceof WorkPackage)) {
 				if (!(workItem.eContainer() instanceof WorkPackage)) {
 					ret.add(workItem);
-					workItem.eAdapters().add(adapterImpl);
 				}
 			}
 		}
@@ -151,6 +175,54 @@ public class WorkpackageContentProvider extends
 	public void setTeamFilter(boolean checked) {
 		teamFilter = checked;
 		viewer.refresh();
+	}
+
+	/**
+	 * {@inheritDoc}
+	 */
+	public void modelElementAdded(Project project, ModelElement modelElement) {
+		if (modelElement instanceof WorkItem) {
+			WorkPackage containingWorkpackage = ((WorkItem) modelElement)
+					.getContainingWorkpackage();
+			if (containingWorkpackage == null) {
+				TreeViewer treeViewer = (TreeViewer) viewer;
+				treeViewer.refresh(backlog, true);
+			}
+		}
+
+	}
+
+	/**
+	 * {@inheritDoc}
+	 */
+	public void modelElementRemoved(Project project, ModelElement modelElement) {
+		if (modelElement instanceof WorkItem) {
+			WorkPackage containingWorkpackage = ((WorkItem) modelElement)
+					.getContainingWorkpackage();
+			if (containingWorkpackage == null) {
+				TreeViewer treeViewer = (TreeViewer) viewer;
+				treeViewer.refresh(backlog, true);
+			}
+		}
+
+	}
+
+	/**
+	 * {@inheritDoc}
+	 */
+	public void notify(Notification notification, Project project,
+			ModelElement modelElement) {
+		if (notification.isTouch()) {
+			return;
+		}
+		if (notification.getFeatureID(WorkItem.class) == TaskPackage.WORK_ITEM__CONTAINING_WORKPACKAGE) {
+			if (notification.getNewValue() == null
+					| notification.getOldValue() == null) {
+				TreeViewer treeViewer = (TreeViewer) viewer;
+				treeViewer.refresh(backlog, true);
+			}
+
+		}
 	}
 
 }
