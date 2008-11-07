@@ -12,6 +12,7 @@ import java.util.HashSet;
 import java.util.Iterator;
 import java.util.List;
 
+import org.eclipse.core.runtime.CoreException;
 import org.eclipse.core.runtime.IAdaptable;
 import org.eclipse.core.runtime.IProgressMonitor;
 import org.eclipse.emf.common.util.URI;
@@ -22,10 +23,13 @@ import org.eclipse.emf.transaction.RecordingCommand;
 import org.eclipse.gef.EditPartViewer;
 import org.eclipse.gmf.runtime.diagram.ui.parts.DiagramDropTargetListener;
 import org.eclipse.gmf.runtime.diagram.ui.resources.editor.parts.DiagramDocumentEditor;
+import org.eclipse.jface.dialogs.ErrorDialog;
 import org.eclipse.jface.util.LocalSelectionTransfer;
 import org.eclipse.jface.viewers.IStructuredSelection;
 import org.eclipse.swt.dnd.Transfer;
 import org.eclipse.swt.dnd.TransferData;
+import org.eclipse.swt.widgets.Shell;
+import org.eclipse.ui.IEditorInput;
 import org.unicase.model.diagram.MEDiagram;
 import org.unicase.model.diagram.impl.DiagramStoreException;
 
@@ -159,11 +163,29 @@ public class ModelDiagramEditor extends DiagramDocumentEditor {
 		protected abstract Object getJavaObject(TransferData data);
 
 	}
-/**
- *Turned to always true as a fix.
- *{@inheritDoc}
- */
-	//MD: Fix to better method
+	
+	/**
+	 * @generated NOT
+     * @see org.eclipse.ui.part.EditorPart#setInput(IEditorInput)
+     * @param input the editor input
+	 */
+	@Override
+	public void setInput(IEditorInput input) {
+		try {
+			doSetInput(input, true);
+		} catch (CoreException x) {
+			x.printStackTrace(System.err);
+			String title = x.getMessage();
+			String msg = x.getMessage();
+			Shell shell = getSite().getShell();
+			ErrorDialog.openError(shell, title, msg, x.getStatus());
+		}
+	}
+
+	/**
+	 *Turned to always true as a fix. {@inheritDoc}
+	 */
+	// MD: Fix to better method
 	@Override
 	public boolean isDirty() {
 		return true;
