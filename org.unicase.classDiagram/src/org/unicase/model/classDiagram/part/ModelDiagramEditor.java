@@ -293,31 +293,6 @@ public class ModelDiagramEditor extends org.unicase.ui.common.diagram.ModelDiagr
 	}
 
 	@Override
-	// register the resource as not being readonly
-	public void setInput(IEditorInput input) {
-		// this part is copied from the super.setInput because
-		// the catch block was hiding the underlying exception
-		// for now a printStackTrace is added for better visibility
-		// this should ofcourse be replaced by logging
-		try {
-			doSetInput(input, true);
-		} catch (CoreException x) {
-			x.printStackTrace(System.err);
-			String title = x.getMessage();
-			String msg = x.getMessage();
-			Shell shell = getSite().getShell();
-			ErrorDialog.openError(shell, title, msg, x.getStatus());
-		}
-
-		// set the resource in the resourcetoreadonly map
-		// final ResourceSet rs = getEditingDomain().getResourceSet();
-		// for (Resource res : rs.getResources()) {
-		// ((AdapterFactoryEditingDomain) getEditingDomain())
-		// .getResourceToReadOnlyMap().put(res, new Boolean(false));
-		// }
-	}
-
-	@Override
 	public boolean isDirty() {
 		return true;
 	}
