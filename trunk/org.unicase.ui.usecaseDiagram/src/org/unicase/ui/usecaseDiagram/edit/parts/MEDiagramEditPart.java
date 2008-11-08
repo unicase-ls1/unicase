@@ -28,6 +28,7 @@ public class MEDiagramEditPart extends org.unicase.ui.common.diagram.MEDiagramEd
 	/**
 	 * @generated
 	 */
+	@Override
 	protected void createDefaultEditPolicies() {
 		super.createDefaultEditPolicies();
 		installEditPolicy(
