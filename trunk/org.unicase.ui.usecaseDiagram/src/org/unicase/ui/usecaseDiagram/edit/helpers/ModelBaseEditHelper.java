@@ -56,9 +56,10 @@ public class ModelBaseEditHelper extends AbstractEditHelper {
 	/**
 	 * @generated
 	 */
+	@Override
 	protected ICommand getDestroyElementCommand(DestroyElementRequest req) {
 		return null;
-	}
+		}
 
 	/**
 	 * @generated
