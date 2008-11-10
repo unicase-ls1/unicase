@@ -1,21 +1,15 @@
 package org.unicase.test.tests.changetests.randomchange;
 
-import java.util.Calendar;
-
-import org.eclipse.emf.ecore.util.EcoreUtil;
 import org.unicase.emfstore.esmodel.versioning.ChangePackage;
 import org.unicase.emfstore.esmodel.versioning.operations.AbstractOperation;
-import org.unicase.model.Project;
 import org.unicase.test.lib.TestCase;
 import org.unicase.test.tests.changetests.ChangeTestHelper;
 import org.unicase.test.tests.changetests.ChangeTestSuite;
-import org.unicase.ui.test.TestProjectGenerator;
+import org.unicase.test.tests.changetests.randomchange.testcases.CreateAndDeleteTest;
 
 public class RandomChangeTestSuite extends ChangeTestSuite {
 
-	private Project testProject;
-	private Project compareProject;
-	private Long randomSeed= Calendar.getInstance().getTimeInMillis();
+	
 	//private static Log logger = LogFactory.getLog("test");
 	private boolean automaticTests;
 	
@@ -27,17 +21,15 @@ public class RandomChangeTestSuite extends ChangeTestSuite {
 		DELETE_TEST, 
 		MOVE_TEST,
 		REFERENCE_TEST,
+		REMOVE_TEST,
+		CREATE_AND_DELETE_TEST,
+		CREATE_AND_CHANGE_REF_TEST,
+		SIMPLE_ATTRIBUTE_CHANGE_TEST,
 		COMPOUND_TEST
 	}
 	 
 	
-	public enum ManualTestCases {
-		REMOVE_TEST,
-		CREATE_AND_DELETE_TEST,
-		CREATE_AND_CHANGE_REF_TEST,
-		SIMPLE_ATTRIBUTE_CHANGE_TEST
-	}
-	
+		
 	
 	public RandomChangeTestSuite(boolean automaticTests){
 		this.automaticTests = automaticTests;
@@ -72,7 +64,7 @@ public class RandomChangeTestSuite extends ChangeTestSuite {
 		//referenceTest.setParameters();
 		
 		//CreateAndDelete Test
-		CreateAndDeleteTest createAndDeleteTest = new CreateAndDeleteTest("CreateAndDelete", randomSeed);
+		CreateAndDeleteTest createAndDeleteTest = new CreateAndDeleteTest("CreateAndDelete", getRandomSeed());
 		//createAndDeleteTest.setParameters();
 		
 		
@@ -160,7 +152,7 @@ public class RandomChangeTestSuite extends ChangeTestSuite {
 		ChangePackage changePackage = ChangeTestHelper.getChangePackage(getTestProjectSpace().getOperations(), true);
 		System.out.println("num of changes: " + changePackage.getOperations().size());
 		
-		int i = 0;
+		int i = 1;
 		for(AbstractOperation op : changePackage.getOperations()){
 			System.out.println("-------------------------------------");
 			System.out.print(i + ". ");
@@ -173,29 +165,5 @@ public class RandomChangeTestSuite extends ChangeTestSuite {
 	}
 
 
-	@Override
-	public Project getCompareProject() {
-			
-		if(testProject == null){
-			testProject = getTestProject();
-		}
-		if(compareProject == null){
-			System.out.println("coping test project");
-			compareProject = (Project)EcoreUtil.copy(testProject);
-			System.out.println("test project copied");
-		}
-		return compareProject;
 		
-	}
-
-	@Override
-	public Project getTestProject() {
-		if(testProject == null){
-			System.out.println("creating test project");
-			testProject = new TestProjectGenerator(5, randomSeed, 3, 2, 3, 10).generateProject();
-			System.out.println("test project created");
-		}
-		return testProject;
-	}
-	
 }

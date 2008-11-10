@@ -1,5 +1,7 @@
-package org.unicase.test.tests.changetests.randomchange;
+package org.unicase.test.tests.changetests.randomchange.testcases;
 
+import org.unicase.test.tests.changetests.randomchange.RandomChangeTestCase;
+import org.unicase.test.tests.changetests.randomchange.RandomChangeTestSuite;
 import org.unicase.test.tests.changetests.randomchange.RandomChangeTestSuite.AutomaticTestCases;
 
 public class CompoundTest extends RandomChangeTestCase {
