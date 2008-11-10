@@ -354,20 +354,21 @@ public interface ProjectSpace extends IdentifiableElement {
 
 	/**
 	 * <!-- begin-user-doc --> Update the project to the head version.
-	 * 
+	 * @return the new base version
 	 * @throws EmfStoreException
 	 *             if update fails <!-- end-user-doc -->
 	 * 
 	 * @model
 	 * @generated NOT
 	 */
-	void update() throws EmfStoreException;
+	PrimaryVersionSpec update() throws EmfStoreException;
 
 	/**
 	 * <!-- begin-user-doc --> Update the project to the given version.
 	 * 
 	 * @param version
 	 *            the version to update to
+	 * @return the new base version
 	 * @throws EmfStoreException
 	 *             if update fails
 	 * 
@@ -376,7 +377,7 @@ public interface ProjectSpace extends IdentifiableElement {
 	 * @model
 	 * @generated NOT
 	 */
-	void update(VersionSpec version) throws EmfStoreException;
+	PrimaryVersionSpec update(VersionSpec version) throws EmfStoreException;
 
 	/**
 	 * <!-- begin-user-doc --> Drop all changes to the local project. <!--
@@ -459,10 +460,11 @@ public interface ProjectSpace extends IdentifiableElement {
 	 * @param observer
 	 *            an observer that is notified of the changes performed by the
 	 *            update, maybe null
+	 * @return the new base version
 	 * @throws EmfStoreException if the update fails
 	 * @throws ChangeConflictException if a conflict with local changes is detected
 	 */
-	void update(VersionSpec version, UpdateObserver observer)
+	PrimaryVersionSpec update(VersionSpec version, UpdateObserver observer)
 			throws EmfStoreException, ChangeConflictException;
 
 	/**

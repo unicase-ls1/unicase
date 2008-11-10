@@ -13,6 +13,7 @@ import org.eclipse.emf.ecore.util.EcoreUtil;
 import org.unicase.emfstore.esmodel.versioning.PrimaryVersionSpec;
 import org.unicase.emfstore.esmodel.versioning.events.CheckoutEvent;
 import org.unicase.emfstore.esmodel.versioning.events.EventsFactory;
+import org.unicase.emfstore.esmodel.versioning.events.UpdateEvent;
 import org.unicase.workspace.Activator;
 import org.unicase.workspace.ProjectSpace;
 
@@ -54,7 +55,7 @@ public final class WorkspaceUtil {
 	}
 	
 	/**
-	 * Log a checkout event to the current projectSpace.
+	 * Log a checkout event to the given projectSpace.
 	 * @param projectSpace the project space
 	 * @param baseVersion the base version that was checked out
 	 */
@@ -64,4 +65,18 @@ public final class WorkspaceUtil {
 		checkoutEvent.setTimestamp(new Date());
 		projectSpace.addEvent(checkoutEvent);
 	}
+	
+	/**
+	 * Log a update event to the given projectSpace.
+	 * @param projectSpace the project space
+	 * @param baseVersion the base version of the project space
+	 * @param targetVersion the target version to update to
+	 */
+	public static void logUpdate(ProjectSpace projectSpace, PrimaryVersionSpec baseVersion, PrimaryVersionSpec targetVersion) {
+		UpdateEvent updateEvent = EventsFactory.eINSTANCE.createUpdateEvent();
+		updateEvent.setBaseVersion(baseVersion);
+		updateEvent.setTargetVersion(targetVersion);
+		updateEvent.setTimestamp(new Date());
+		projectSpace.addEvent(updateEvent);
+	}	
 }
