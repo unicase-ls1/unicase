@@ -203,6 +203,7 @@ public abstract class FormContents extends Composite {
 		add.addSelectionListener(new SelectionAdapter() {
 
 			// Add a task to the ExampleTaskList and refresh the view
+			@Override
 			public void widgetSelected(SelectionEvent e) {
 				addOrgUnit(null);
 			}
@@ -219,6 +220,7 @@ public abstract class FormContents extends Composite {
 		remove.addSelectionListener(new SelectionAdapter() {
 
 			// Remove the selection and refresh the view
+			@Override
 			public void widgetSelected(SelectionEvent e) {
 				ACOrgUnit ou = (ACOrgUnit) ((IStructuredSelection) tableViewer
 						.getSelection()).getFirstElement();
@@ -421,6 +423,7 @@ public abstract class FormContents extends Composite {
 					ComposedAdapterFactory.Descriptor.Registry.INSTANCE));
 		}
 
+		@Override
 		public Image getColumnImage(Object element, int columnIndex) {
 			if (columnIndex == 0) {
 				return super.getImage(element);
@@ -430,6 +433,7 @@ public abstract class FormContents extends Composite {
 
 		}
 
+		@Override
 		public String getColumnText(Object element, int columnIndex) {
 			ACOrgUnit orgUnit = (ACOrgUnit) element;
 			String result = "";
