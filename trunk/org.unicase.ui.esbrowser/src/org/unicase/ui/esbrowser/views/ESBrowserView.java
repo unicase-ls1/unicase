@@ -52,6 +52,7 @@ import org.unicase.workspace.ServerInfo;
 import org.unicase.workspace.Usersession;
 import org.unicase.workspace.WorkspaceManager;
 import org.unicase.workspace.accesscontrol.AccessControlHelper;
+import org.unicase.workspace.util.EventUtil;
 import org.unicase.workspace.util.WorkspaceUtil;
 
 /**
@@ -177,21 +178,25 @@ public class ESBrowserView extends ViewPart {
 			final ProjectInfo element = (ProjectInfo) obj;
 			TransactionalEditingDomain domain = TransactionalEditingDomain.Registry.INSTANCE
 					.getEditingDomain("org.unicase.EditingDomain");
-			final ProgressMonitorDialog progressDialog = new ProgressMonitorDialog(PlatformUI.getWorkbench()
-				       .getActiveWorkbenchWindow().getShell());
+			final ProgressMonitorDialog progressDialog = new ProgressMonitorDialog(
+					PlatformUI.getWorkbench().getActiveWorkbenchWindow()
+							.getShell());
 			domain.getCommandStack().execute(new RecordingCommand(domain) {
 				@Override
 				protected void doExecute() {
 					try {
 						progressDialog.open();
-						progressDialog.getProgressMonitor().beginTask("Checkout project...", 100);
+						progressDialog.getProgressMonitor().beginTask(
+								"Checkout project...", 100);
 						progressDialog.getProgressMonitor().worked(10);
-						ProjectSpace projectSpace = contentProvider.getProjectServerMap().get(element)
+						ProjectSpace projectSpace = contentProvider
+								.getProjectServerMap().get(element)
 								.getLastUsersession().checkout(element);
-						WorkspaceUtil.logCheckout(projectSpace, projectSpace.getBaseVersion());
+						WorkspaceUtil.logCheckout(projectSpace, projectSpace
+								.getBaseVersion());
 					} catch (EmfStoreException e) {
 						DialogHandler.showExceptionDialog(e);
-					// BEGIN SUPRESS CATCH EXCEPTION
+						// BEGIN SUPRESS CATCH EXCEPTION
 					} catch (Exception e) {
 						DialogHandler.showExceptionDialog(e);
 					}
@@ -249,19 +254,23 @@ public class ESBrowserView extends ViewPart {
 
 		viewer.setSorter(new ViewerSorter() {
 
-            @Override
+			@Override
 			public int compare(Viewer viewer, Object e1, Object e2) {
-                if (e1 instanceof ServerInfo && e2 instanceof ServerInfo){
-                    return ((ServerInfo)e1).getDisplayName().toLowerCase().compareTo(
-                            ((ServerInfo) e2).getDisplayName().toLowerCase());
-                }else if(e1 instanceof ProjectInfo && e2 instanceof ProjectInfo){
-                	return ((ProjectInfo)e1).getName().toLowerCase().compareTo(
-                			((ProjectInfo) e2).getName().toLowerCase());
-                }
+				if (e1 instanceof ServerInfo && e2 instanceof ServerInfo) {
+					return ((ServerInfo) e1).getDisplayName().toLowerCase()
+							.compareTo(
+									((ServerInfo) e2).getDisplayName()
+											.toLowerCase());
+				} else if (e1 instanceof ProjectInfo
+						&& e2 instanceof ProjectInfo) {
+					return ((ProjectInfo) e1).getName().toLowerCase()
+							.compareTo(
+									((ProjectInfo) e2).getName().toLowerCase());
+				}
 
-                return super.compare(viewer, e1, e2);
-            }
-        });
+				return super.compare(viewer, e1, e2);
+			}
+		});
 		viewer.setInput(getViewSite());
 
 		PlatformUI.getWorkbench().getHelpSystem().setHelp(viewer.getControl(),
@@ -434,7 +443,6 @@ public class ESBrowserView extends ViewPart {
 		addRepository.setImageDescriptor(Activator
 				.getImageDescriptor("icons/serverAdd.png"));
 
-		
 		manageOrgUnits = new Action() {
 			@Override
 			public void run() {
@@ -456,7 +464,7 @@ public class ESBrowserView extends ViewPart {
 			}
 		};
 		manageOrgUnits.setText("Manage OrgUnits...");
-		
+
 		deleteAction = new DeleteAction();
 		deleteAction.setText("Delete");
 		deleteAction.setImageDescriptor(org.unicase.ui.common.Activator
@@ -483,6 +491,8 @@ public class ESBrowserView extends ViewPart {
 	@Override
 	public void setFocus() {
 		viewer.getControl().setFocus();
+		EventUtil
+				.logFocusEvent("org.unicase.ui.repository.views.RepositoryView");
 	}
 
 	/**
@@ -491,4 +501,5 @@ public class ESBrowserView extends ViewPart {
 	public TreeViewer getViewer() {
 		return viewer;
 	}
+
 }

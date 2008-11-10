@@ -7,16 +7,21 @@
 
 package org.unicase.ui.common.commands;
 
+import java.util.Calendar;
+
 import org.eclipse.core.commands.AbstractHandler;
 import org.eclipse.core.commands.ExecutionEvent;
 import org.eclipse.core.commands.ExecutionException;
 import org.eclipse.emf.transaction.RecordingCommand;
 import org.eclipse.emf.transaction.TransactionalEditingDomain;
+import org.unicase.emfstore.esmodel.versioning.events.AnnotationEvent;
+import org.unicase.emfstore.esmodel.versioning.events.EventsFactory;
 import org.unicase.model.Annotation;
 import org.unicase.model.ModelElement;
 import org.unicase.model.Project;
 import org.unicase.model.rationale.RationaleFactory;
 import org.unicase.model.task.TaskFactory;
+import org.unicase.workspace.util.EventUtil;
 
 /**.
  * This is a generic handler to add different types of Annotations to a ModelElement
@@ -47,6 +52,9 @@ public class AddAnnotationHandler extends AbstractHandler {
 		Annotation annotation = createAnnotation(me.getProject());
 
 		attachAnnotation(me, annotation);
+		//log event
+		EventUtil.logAnnotationEvent(me, annotation);
+		
 		// 3. open annotation object for further editing
 		openAnnotation(annotation);
 
