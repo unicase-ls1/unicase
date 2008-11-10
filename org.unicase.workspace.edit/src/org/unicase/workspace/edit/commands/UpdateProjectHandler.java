@@ -17,6 +17,7 @@ import org.eclipse.jface.window.Window;
 import org.eclipse.swt.widgets.Shell;
 import org.eclipse.ui.PlatformUI;
 import org.unicase.emfstore.esmodel.versioning.ChangePackage;
+import org.unicase.emfstore.esmodel.versioning.PrimaryVersionSpec;
 import org.unicase.emfstore.esmodel.versioning.VersionSpec;
 import org.unicase.emfstore.exceptions.ConnectionException;
 import org.unicase.emfstore.exceptions.EmfStoreException;
@@ -30,6 +31,7 @@ import org.unicase.workspace.exceptions.ChangeConflictException;
 import org.unicase.workspace.exceptions.NoChangesOnServerException;
 import org.unicase.workspace.util.RecordingCommandWithResult;
 import org.unicase.workspace.util.UpdateObserver;
+import org.unicase.workspace.util.WorkspaceUtil;
 
 /**
  * 
@@ -141,8 +143,10 @@ public class UpdateProjectHandler extends ProjectActionHandler implements
 			loginStatus = login.open();
 		}
 		if (loginStatus == LoginDialog.SUCCESSFUL) {
-			projectSpace.update(VersionSpec.HEAD_VERSION,
+			PrimaryVersionSpec baseVersion = projectSpace.getBaseVersion();
+			PrimaryVersionSpec targetVersion = projectSpace.update(VersionSpec.HEAD_VERSION,
 					UpdateProjectHandler.this);
+			WorkspaceUtil.logUpdate(projectSpace, baseVersion, targetVersion);
 		}
 	}
 

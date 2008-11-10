@@ -9,7 +9,7 @@ import java.util.Date;
 
 import org.eclipse.core.runtime.IStatus;
 import org.eclipse.core.runtime.Status;
-import org.eclipse.emf.ecore.util.EcoreUtil;
+import org.unicase.emfstore.esmodel.util.EsModelUtil;
 import org.unicase.emfstore.esmodel.versioning.PrimaryVersionSpec;
 import org.unicase.emfstore.esmodel.versioning.events.CheckoutEvent;
 import org.unicase.emfstore.esmodel.versioning.events.EventsFactory;
@@ -61,7 +61,7 @@ public final class WorkspaceUtil {
 	 */
 	public static void logCheckout(ProjectSpace projectSpace, PrimaryVersionSpec baseVersion) {
 		CheckoutEvent checkoutEvent = EventsFactory.eINSTANCE.createCheckoutEvent();
-		checkoutEvent.setBaseVersion((PrimaryVersionSpec) EcoreUtil.copy(baseVersion));
+		checkoutEvent.setBaseVersion(EsModelUtil.clone(baseVersion));
 		checkoutEvent.setTimestamp(new Date());
 		projectSpace.addEvent(checkoutEvent);
 	}
@@ -74,8 +74,8 @@ public final class WorkspaceUtil {
 	 */
 	public static void logUpdate(ProjectSpace projectSpace, PrimaryVersionSpec baseVersion, PrimaryVersionSpec targetVersion) {
 		UpdateEvent updateEvent = EventsFactory.eINSTANCE.createUpdateEvent();
-		updateEvent.setBaseVersion(baseVersion);
-		updateEvent.setTargetVersion(targetVersion);
+		updateEvent.setBaseVersion(EsModelUtil.clone(baseVersion));
+		updateEvent.setTargetVersion(EsModelUtil.clone(targetVersion));
 		updateEvent.setTimestamp(new Date());
 		projectSpace.addEvent(updateEvent);
 	}	
