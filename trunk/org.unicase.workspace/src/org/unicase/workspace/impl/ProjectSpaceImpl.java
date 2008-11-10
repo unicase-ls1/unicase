@@ -1760,6 +1760,7 @@ public class ProjectSpaceImpl extends IdentifiableElementImpl implements
 	public void modelElementAdded(Project project, ModelElement modelElement) {
 		addToResource(modelElement);
 		if (isRecording) {
+			//filter create operation if a predeccessing delete is already present
 			EList<AbstractOperation> operations = this.getOperations();
 			for (int i = 0; i < operations.size(); i++) {
 				AbstractOperation abstractOperation = operations.get(i);
