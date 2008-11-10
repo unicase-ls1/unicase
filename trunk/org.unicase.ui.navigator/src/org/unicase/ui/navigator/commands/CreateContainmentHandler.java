@@ -59,7 +59,8 @@ public class CreateContainmentHandler extends AbstractHandler {
 			// selected ME
 			final ModelElement selectedME = ActionHelper
 					.getSelectedModelElement();
-
+			
+			final String sourceID = this.getClass().getName();
 			if (selectedME != null) {
 				TransactionalEditingDomain domain = WorkspaceManager
 						.getInstance().getCurrentWorkspace().getEditingDomain();
@@ -77,7 +78,7 @@ public class CreateContainmentHandler extends AbstractHandler {
 							EList<EObject> eList = (EList<EObject>) object;
 							eList.add(newMEInstance);
 
-							ActionHelper.openModelElement(newMEInstance);
+							ActionHelper.openModelElement(newMEInstance, sourceID);
 						}
 
 					}

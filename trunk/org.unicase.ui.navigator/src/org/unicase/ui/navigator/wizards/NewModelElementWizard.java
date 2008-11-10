@@ -112,7 +112,7 @@ public class NewModelElementWizard extends Wizard implements IWorkbenchWizard {
 				});
 			}
 			// 3.open the newly created ME
-			ActionHelper.openModelElement(newMEInstance);
+			ActionHelper.openModelElement(newMEInstance, this.getClass().getName());
 		}
 
 		return true;

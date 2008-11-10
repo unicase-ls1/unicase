@@ -108,7 +108,7 @@ public class ShortcutHandler extends AbstractHandler implements IHandler {
 		 * modelelemnt to open
 		 */
 		ModelElement mod = (ModelElement) dialog.getFirstResult();
-		ActionHelper.openModelElement(mod);
+		ActionHelper.openModelElement(mod, this.getClass().getName());
 		return result;
 	}
 

@@ -132,7 +132,7 @@ public class CreateMEHandler extends AbstractHandler implements IHandler {
 					}
 				});
 
-				ActionHelper.openModelElement(newMEInstance);
+				ActionHelper.openModelElement(newMEInstance, this.getClass().getName());
 			}
 		}
 		return null;

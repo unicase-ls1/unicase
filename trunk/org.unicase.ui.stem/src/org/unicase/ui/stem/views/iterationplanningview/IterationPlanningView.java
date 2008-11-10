@@ -354,12 +354,13 @@ public class IterationPlanningView extends ViewPart {
 	 * open WorkItem on double-click.
 	 */
 	private void hookDoubleClickAction() {
+		final String viewId = getClass().getName();
 		viewer.addDoubleClickListener(new IDoubleClickListener() {
 			public void doubleClick(DoubleClickEvent event) {
 				TreeSelection selection = (TreeSelection) viewer.getSelection();
 				Object object = selection.getFirstElement();
 				if (object instanceof ModelElement) {
-					ActionHelper.openModelElement((ModelElement) object);
+					ActionHelper.openModelElement((ModelElement) object, viewId);
 				}
 			}
 

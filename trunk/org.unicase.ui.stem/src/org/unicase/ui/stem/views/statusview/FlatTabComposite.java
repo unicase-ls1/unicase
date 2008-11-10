@@ -213,7 +213,7 @@ public class FlatTabComposite extends Composite {
 				IStructuredSelection sel = (IStructuredSelection) event
 						.getSelection();
 				ActionHelper.openModelElement((ModelElement) sel
-						.getFirstElement());
+						.getFirstElement(), tableViewer.getClass().getName());
 			}
 
 		});

@@ -115,7 +115,7 @@ public class AddAnnotationHandler extends AbstractHandler {
 	 */
 	private void openAnnotation(Annotation annotation) {
 		
-		ActionHelper.openModelElement(annotation);
+		ActionHelper.openModelElement(annotation, this.getClass().getName());
 		
 	}
 
