@@ -107,15 +107,6 @@ public interface EventsFactory extends EFactory {
 	RevertEvent createRevertEvent();
 
 	/**
-	 * Returns a new object of class '<em>Read Diagram Event</em>'.
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
-	 * @return a new object of class '<em>Read Diagram Event</em>'.
-	 * @generated
-	 */
-	ReadDiagramEvent createReadDiagramEvent();
-
-	/**
 	 * Returns a new object of class '<em>Show History Event</em>'.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
@@ -168,6 +159,51 @@ public interface EventsFactory extends EFactory {
 	 * @generated
 	 */
 	NavigatorCreateEvent createNavigatorCreateEvent();
+
+	/**
+	 * Returns a new object of class '<em>Plugin Focus Event</em>'.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @return a new object of class '<em>Plugin Focus Event</em>'.
+	 * @generated
+	 */
+	PluginFocusEvent createPluginFocusEvent();
+
+	/**
+	 * Returns a new object of class '<em>Presentation Switch Event</em>'.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @return a new object of class '<em>Presentation Switch Event</em>'.
+	 * @generated
+	 */
+	PresentationSwitchEvent createPresentationSwitchEvent();
+
+	/**
+	 * Returns a new object of class '<em>Undo Event</em>'.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @return a new object of class '<em>Undo Event</em>'.
+	 * @generated
+	 */
+	UndoEvent createUndoEvent();
+
+	/**
+	 * Returns a new object of class '<em>Validate</em>'.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @return a new object of class '<em>Validate</em>'.
+	 * @generated
+	 */
+	Validate createValidate();
+
+	/**
+	 * Returns a new object of class '<em>Show Changes Event</em>'.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @return a new object of class '<em>Show Changes Event</em>'.
+	 * @generated
+	 */
+	ShowChangesEvent createShowChangesEvent();
 
 	/**
 	 * Returns the package supported by this factory.

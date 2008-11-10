@@ -6,6 +6,8 @@
  */
 package org.unicase.emfstore.esmodel.versioning.operations;
 
+import java.util.Date;
+
 import org.eclipse.emf.ecore.EObject;
 import org.unicase.model.ModelElementId;
 import org.unicase.model.Project;
@@ -22,6 +24,7 @@ import org.unicase.model.Project;
  *   <li>{@link org.unicase.emfstore.esmodel.versioning.operations.AbstractOperation#getDescription <em>Description</em>}</li>
  *   <li>{@link org.unicase.emfstore.esmodel.versioning.operations.AbstractOperation#getModelElementId <em>Model Element Id</em>}</li>
  *   <li>{@link org.unicase.emfstore.esmodel.versioning.operations.AbstractOperation#isAccepted <em>Accepted</em>}</li>
+ *   <li>{@link org.unicase.emfstore.esmodel.versioning.operations.AbstractOperation#getClientDate <em>Client Date</em>}</li>
  * </ul>
  * </p>
  *
@@ -112,6 +115,32 @@ public interface AbstractOperation extends EObject {
 	 * @generated
 	 */
 	void setAccepted(boolean value);
+
+	/**
+	 * Returns the value of the '<em><b>Client Date</b></em>' attribute.
+	 * <!-- begin-user-doc -->
+	 * <p>
+	 * If the meaning of the '<em>Client Date</em>' attribute isn't clear,
+	 * there really should be more of a description here...
+	 * </p>
+	 * <!-- end-user-doc -->
+	 * @return the value of the '<em>Client Date</em>' attribute.
+	 * @see #setClientDate(Date)
+	 * @see org.unicase.emfstore.esmodel.versioning.operations.OperationsPackage#getAbstractOperation_ClientDate()
+	 * @model
+	 * @generated
+	 */
+	Date getClientDate();
+
+	/**
+	 * Sets the value of the '{@link org.unicase.emfstore.esmodel.versioning.operations.AbstractOperation#getClientDate <em>Client Date</em>}' attribute.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @param value the new value of the '<em>Client Date</em>' attribute.
+	 * @see #getClientDate()
+	 * @generated
+	 */
+	void setClientDate(Date value);
 
 	/**
 	 * <!-- begin-user-doc -->

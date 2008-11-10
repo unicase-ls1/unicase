@@ -19,13 +19,17 @@ import org.unicase.emfstore.esmodel.versioning.events.LinkEvent;
 import org.unicase.emfstore.esmodel.versioning.events.MergeEvent;
 import org.unicase.emfstore.esmodel.versioning.events.NavigatorCreateEvent;
 import org.unicase.emfstore.esmodel.versioning.events.PerspectiveEvent;
+import org.unicase.emfstore.esmodel.versioning.events.PluginFocusEvent;
 import org.unicase.emfstore.esmodel.versioning.events.PluginStartEvent;
-import org.unicase.emfstore.esmodel.versioning.events.ReadDiagramEvent;
+import org.unicase.emfstore.esmodel.versioning.events.PresentationSwitchEvent;
 import org.unicase.emfstore.esmodel.versioning.events.ReadEvent;
 import org.unicase.emfstore.esmodel.versioning.events.RevertEvent;
+import org.unicase.emfstore.esmodel.versioning.events.ShowChangesEvent;
 import org.unicase.emfstore.esmodel.versioning.events.ShowHistoryEvent;
 import org.unicase.emfstore.esmodel.versioning.events.TraceEvent;
+import org.unicase.emfstore.esmodel.versioning.events.UndoEvent;
 import org.unicase.emfstore.esmodel.versioning.events.UpdateEvent;
+import org.unicase.emfstore.esmodel.versioning.events.Validate;
 
 /**
  * <!-- begin-user-doc -->
@@ -128,11 +132,6 @@ public class EventsAdapterFactory extends AdapterFactoryImpl {
 		}
 
 		@Override
-		public Adapter caseReadDiagramEvent(ReadDiagramEvent object) {
-			return createReadDiagramEventAdapter();
-		}
-
-		@Override
 		public Adapter caseShowHistoryEvent(ShowHistoryEvent object) {
 			return createShowHistoryEventAdapter();
 		}
@@ -160,6 +159,32 @@ public class EventsAdapterFactory extends AdapterFactoryImpl {
 		@Override
 		public Adapter caseNavigatorCreateEvent(NavigatorCreateEvent object) {
 			return createNavigatorCreateEventAdapter();
+		}
+
+		@Override
+		public Adapter casePluginFocusEvent(PluginFocusEvent object) {
+			return createPluginFocusEventAdapter();
+		}
+
+		@Override
+		public Adapter casePresentationSwitchEvent(
+				PresentationSwitchEvent object) {
+			return createPresentationSwitchEventAdapter();
+		}
+
+		@Override
+		public Adapter caseUndoEvent(UndoEvent object) {
+			return createUndoEventAdapter();
+		}
+
+		@Override
+		public Adapter caseValidate(Validate object) {
+			return createValidateAdapter();
+		}
+
+		@Override
+		public Adapter caseShowChangesEvent(ShowChangesEvent object) {
+			return createShowChangesEventAdapter();
 		}
 
 		@Override
@@ -308,20 +333,6 @@ public class EventsAdapterFactory extends AdapterFactoryImpl {
 	}
 
 	/**
-	 * Creates a new adapter for an object of class '{@link org.unicase.emfstore.esmodel.versioning.events.ReadDiagramEvent <em>Read Diagram Event</em>}'.
-	 * <!-- begin-user-doc -->
-	 * This default implementation returns null so that we can easily ignore cases;
-	 * it's useful to ignore a case when inheritance will catch all the cases anyway.
-	 * <!-- end-user-doc -->
-	 * @return the new adapter.
-	 * @see org.unicase.emfstore.esmodel.versioning.events.ReadDiagramEvent
-	 * @generated
-	 */
-	public Adapter createReadDiagramEventAdapter() {
-		return null;
-	}
-
-	/**
 	 * Creates a new adapter for an object of class '{@link org.unicase.emfstore.esmodel.versioning.events.ShowHistoryEvent <em>Show History Event</em>}'.
 	 * <!-- begin-user-doc -->
 	 * This default implementation returns null so that we can easily ignore cases;
@@ -402,6 +413,76 @@ public class EventsAdapterFactory extends AdapterFactoryImpl {
 	 * @generated
 	 */
 	public Adapter createNavigatorCreateEventAdapter() {
+		return null;
+	}
+
+	/**
+	 * Creates a new adapter for an object of class '{@link org.unicase.emfstore.esmodel.versioning.events.PluginFocusEvent <em>Plugin Focus Event</em>}'.
+	 * <!-- begin-user-doc -->
+	 * This default implementation returns null so that we can easily ignore cases;
+	 * it's useful to ignore a case when inheritance will catch all the cases anyway.
+	 * <!-- end-user-doc -->
+	 * @return the new adapter.
+	 * @see org.unicase.emfstore.esmodel.versioning.events.PluginFocusEvent
+	 * @generated
+	 */
+	public Adapter createPluginFocusEventAdapter() {
+		return null;
+	}
+
+	/**
+	 * Creates a new adapter for an object of class '{@link org.unicase.emfstore.esmodel.versioning.events.PresentationSwitchEvent <em>Presentation Switch Event</em>}'.
+	 * <!-- begin-user-doc -->
+	 * This default implementation returns null so that we can easily ignore cases;
+	 * it's useful to ignore a case when inheritance will catch all the cases anyway.
+	 * <!-- end-user-doc -->
+	 * @return the new adapter.
+	 * @see org.unicase.emfstore.esmodel.versioning.events.PresentationSwitchEvent
+	 * @generated
+	 */
+	public Adapter createPresentationSwitchEventAdapter() {
+		return null;
+	}
+
+	/**
+	 * Creates a new adapter for an object of class '{@link org.unicase.emfstore.esmodel.versioning.events.UndoEvent <em>Undo Event</em>}'.
+	 * <!-- begin-user-doc -->
+	 * This default implementation returns null so that we can easily ignore cases;
+	 * it's useful to ignore a case when inheritance will catch all the cases anyway.
+	 * <!-- end-user-doc -->
+	 * @return the new adapter.
+	 * @see org.unicase.emfstore.esmodel.versioning.events.UndoEvent
+	 * @generated
+	 */
+	public Adapter createUndoEventAdapter() {
+		return null;
+	}
+
+	/**
+	 * Creates a new adapter for an object of class '{@link org.unicase.emfstore.esmodel.versioning.events.Validate <em>Validate</em>}'.
+	 * <!-- begin-user-doc -->
+	 * This default implementation returns null so that we can easily ignore cases;
+	 * it's useful to ignore a case when inheritance will catch all the cases anyway.
+	 * <!-- end-user-doc -->
+	 * @return the new adapter.
+	 * @see org.unicase.emfstore.esmodel.versioning.events.Validate
+	 * @generated
+	 */
+	public Adapter createValidateAdapter() {
+		return null;
+	}
+
+	/**
+	 * Creates a new adapter for an object of class '{@link org.unicase.emfstore.esmodel.versioning.events.ShowChangesEvent <em>Show Changes Event</em>}'.
+	 * <!-- begin-user-doc -->
+	 * This default implementation returns null so that we can easily ignore cases;
+	 * it's useful to ignore a case when inheritance will catch all the cases anyway.
+	 * <!-- end-user-doc -->
+	 * @return the new adapter.
+	 * @see org.unicase.emfstore.esmodel.versioning.events.ShowChangesEvent
+	 * @generated
+	 */
+	public Adapter createShowChangesEventAdapter() {
 		return null;
 	}
 

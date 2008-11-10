@@ -60,6 +60,7 @@ public class AbstractOperationItemProvider extends ItemProviderAdapter
 			addDescriptionPropertyDescriptor(object);
 			addModelElementIdPropertyDescriptor(object);
 			addAcceptedPropertyDescriptor(object);
+			addClientDatePropertyDescriptor(object);
 		}
 		return itemPropertyDescriptors;
 	}
@@ -142,6 +143,25 @@ public class AbstractOperationItemProvider extends ItemProviderAdapter
 	}
 
 	/**
+	 * This adds a property descriptor for the Client Date feature.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 */
+	protected void addClientDatePropertyDescriptor(Object object) {
+		itemPropertyDescriptors.add(createItemPropertyDescriptor(
+				((ComposeableAdapterFactory) adapterFactory)
+						.getRootAdapterFactory(), getResourceLocator(),
+				getString("_UI_AbstractOperation_clientDate_feature"),
+				getString("_UI_PropertyDescriptor_description",
+						"_UI_AbstractOperation_clientDate_feature",
+						"_UI_AbstractOperation_type"),
+				OperationsPackage.Literals.ABSTRACT_OPERATION__CLIENT_DATE,
+				true, false, false, ItemPropertyDescriptor.GENERIC_VALUE_IMAGE,
+				null, null));
+	}
+
+	/**
 	 * This returns AbstractOperation.gif.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
@@ -181,6 +201,7 @@ public class AbstractOperationItemProvider extends ItemProviderAdapter
 		case OperationsPackage.ABSTRACT_OPERATION__NAME:
 		case OperationsPackage.ABSTRACT_OPERATION__DESCRIPTION:
 		case OperationsPackage.ABSTRACT_OPERATION__ACCEPTED:
+		case OperationsPackage.ABSTRACT_OPERATION__CLIENT_DATE:
 			fireNotifyChanged(new ViewerNotification(notification, notification
 					.getNotifier(), false, true));
 			return;

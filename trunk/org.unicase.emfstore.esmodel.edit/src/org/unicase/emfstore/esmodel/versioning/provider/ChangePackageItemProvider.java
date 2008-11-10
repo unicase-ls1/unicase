@@ -233,10 +233,6 @@ public class ChangePackageItemProvider extends ItemProviderAdapter implements
 
 		newChildDescriptors.add(createChildParameter(
 				VersioningPackage.Literals.CHANGE_PACKAGE__EVENTS,
-				EventsFactory.eINSTANCE.createReadDiagramEvent()));
-
-		newChildDescriptors.add(createChildParameter(
-				VersioningPackage.Literals.CHANGE_PACKAGE__EVENTS,
 				EventsFactory.eINSTANCE.createShowHistoryEvent()));
 
 		newChildDescriptors.add(createChildParameter(
@@ -258,6 +254,26 @@ public class ChangePackageItemProvider extends ItemProviderAdapter implements
 		newChildDescriptors.add(createChildParameter(
 				VersioningPackage.Literals.CHANGE_PACKAGE__EVENTS,
 				EventsFactory.eINSTANCE.createNavigatorCreateEvent()));
+
+		newChildDescriptors.add(createChildParameter(
+				VersioningPackage.Literals.CHANGE_PACKAGE__EVENTS,
+				EventsFactory.eINSTANCE.createPluginFocusEvent()));
+
+		newChildDescriptors.add(createChildParameter(
+				VersioningPackage.Literals.CHANGE_PACKAGE__EVENTS,
+				EventsFactory.eINSTANCE.createPresentationSwitchEvent()));
+
+		newChildDescriptors.add(createChildParameter(
+				VersioningPackage.Literals.CHANGE_PACKAGE__EVENTS,
+				EventsFactory.eINSTANCE.createUndoEvent()));
+
+		newChildDescriptors.add(createChildParameter(
+				VersioningPackage.Literals.CHANGE_PACKAGE__EVENTS,
+				EventsFactory.eINSTANCE.createValidate()));
+
+		newChildDescriptors.add(createChildParameter(
+				VersioningPackage.Literals.CHANGE_PACKAGE__EVENTS,
+				EventsFactory.eINSTANCE.createShowChangesEvent()));
 
 		newChildDescriptors.add(createChildParameter(
 				VersioningPackage.Literals.CHANGE_PACKAGE__LOG_MESSAGE,

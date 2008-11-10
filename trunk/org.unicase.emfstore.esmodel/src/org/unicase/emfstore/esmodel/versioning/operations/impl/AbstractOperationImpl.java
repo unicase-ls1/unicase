@@ -6,6 +6,8 @@
  */
 package org.unicase.emfstore.esmodel.versioning.operations.impl;
 
+import java.util.Date;
+
 import org.eclipse.emf.common.notify.Notification;
 import org.eclipse.emf.common.notify.NotificationChain;
 import org.eclipse.emf.ecore.EClass;
@@ -29,6 +31,7 @@ import org.unicase.model.util.ModelUtil;
  *   <li>{@link org.unicase.emfstore.esmodel.versioning.operations.impl.AbstractOperationImpl#getDescription <em>Description</em>}</li>
  *   <li>{@link org.unicase.emfstore.esmodel.versioning.operations.impl.AbstractOperationImpl#getModelElementId <em>Model Element Id</em>}</li>
  *   <li>{@link org.unicase.emfstore.esmodel.versioning.operations.impl.AbstractOperationImpl#isAccepted <em>Accepted</em>}</li>
+ *   <li>{@link org.unicase.emfstore.esmodel.versioning.operations.impl.AbstractOperationImpl#getClientDate <em>Client Date</em>}</li>
  * </ul>
  * </p>
  *
@@ -82,6 +85,25 @@ public abstract class AbstractOperationImpl extends EObjectImpl implements
 	 * @ordered
 	 */
 	protected boolean accepted = ACCEPTED_EDEFAULT;
+
+	/**
+	 * The default value of the '{@link #getClientDate() <em>Client Date</em>}' attribute.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @see #getClientDate()
+	 * @generated
+	 * @ordered
+	 */
+	protected static final Date CLIENT_DATE_EDEFAULT = null;
+	/**
+	 * The cached value of the '{@link #getClientDate() <em>Client Date</em>}' attribute.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @see #getClientDate()
+	 * @generated
+	 * @ordered
+	 */
+	protected Date clientDate = CLIENT_DATE_EDEFAULT;
 
 	/**
 	 * <!-- begin-user-doc -->
@@ -249,6 +271,29 @@ public abstract class AbstractOperationImpl extends EObjectImpl implements
 	/**
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
+	 * @generated
+	 */
+	public Date getClientDate() {
+		return clientDate;
+	}
+
+	/**
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 */
+	public void setClientDate(Date newClientDate) {
+		Date oldClientDate = clientDate;
+		clientDate = newClientDate;
+		if (eNotificationRequired())
+			eNotify(new ENotificationImpl(this, Notification.SET,
+					OperationsPackage.ABSTRACT_OPERATION__CLIENT_DATE,
+					oldClientDate, clientDate));
+	}
+
+	/**
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
 	 * @generated NOT
 	 */
 	public void apply(Project project) {
@@ -326,6 +371,8 @@ public abstract class AbstractOperationImpl extends EObjectImpl implements
 			return basicGetModelElementId();
 		case OperationsPackage.ABSTRACT_OPERATION__ACCEPTED:
 			return isAccepted() ? Boolean.TRUE : Boolean.FALSE;
+		case OperationsPackage.ABSTRACT_OPERATION__CLIENT_DATE:
+			return getClientDate();
 		}
 		return super.eGet(featureID, resolve, coreType);
 	}
@@ -344,6 +391,9 @@ public abstract class AbstractOperationImpl extends EObjectImpl implements
 		case OperationsPackage.ABSTRACT_OPERATION__ACCEPTED:
 			setAccepted(((Boolean) newValue).booleanValue());
 			return;
+		case OperationsPackage.ABSTRACT_OPERATION__CLIENT_DATE:
+			setClientDate((Date) newValue);
+			return;
 		}
 		super.eSet(featureID, newValue);
 	}
@@ -361,6 +411,9 @@ public abstract class AbstractOperationImpl extends EObjectImpl implements
 			return;
 		case OperationsPackage.ABSTRACT_OPERATION__ACCEPTED:
 			setAccepted(ACCEPTED_EDEFAULT);
+			return;
+		case OperationsPackage.ABSTRACT_OPERATION__CLIENT_DATE:
+			setClientDate(CLIENT_DATE_EDEFAULT);
 			return;
 		}
 		super.eUnset(featureID);
@@ -384,6 +437,9 @@ public abstract class AbstractOperationImpl extends EObjectImpl implements
 			return modelElementId != null;
 		case OperationsPackage.ABSTRACT_OPERATION__ACCEPTED:
 			return accepted != ACCEPTED_EDEFAULT;
+		case OperationsPackage.ABSTRACT_OPERATION__CLIENT_DATE:
+			return CLIENT_DATE_EDEFAULT == null ? clientDate != null
+					: !CLIENT_DATE_EDEFAULT.equals(clientDate);
 		}
 		return super.eIsSet(featureID);
 	}
@@ -401,6 +457,8 @@ public abstract class AbstractOperationImpl extends EObjectImpl implements
 		StringBuffer result = new StringBuffer(super.toString());
 		result.append(" (accepted: ");
 		result.append(accepted);
+		result.append(", clientDate: ");
+		result.append(clientDate);
 		result.append(')');
 		return result.toString();
 	}

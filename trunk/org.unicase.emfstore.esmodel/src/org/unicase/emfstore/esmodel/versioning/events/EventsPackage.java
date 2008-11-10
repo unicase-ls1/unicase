@@ -125,13 +125,22 @@ public interface EventsPackage extends EPackage {
 	int READ_EVENT__SOURCE_VIEW = EVENT_FEATURE_COUNT + 1;
 
 	/**
+	 * The feature id for the '<em><b>Read View</b></em>' attribute.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 * @ordered
+	 */
+	int READ_EVENT__READ_VIEW = EVENT_FEATURE_COUNT + 2;
+
+	/**
 	 * The number of structural features of the '<em>Read Event</em>' class.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
 	 * @generated
 	 * @ordered
 	 */
-	int READ_EVENT_FEATURE_COUNT = EVENT_FEATURE_COUNT + 2;
+	int READ_EVENT_FEATURE_COUNT = EVENT_FEATURE_COUNT + 3;
 
 	/**
 	 * The meta object id for the '{@link org.unicase.emfstore.esmodel.versioning.events.impl.MergeEventImpl <em>Merge Event</em>}' class.
@@ -474,52 +483,6 @@ public interface EventsPackage extends EPackage {
 	int REVERT_EVENT_FEATURE_COUNT = EVENT_FEATURE_COUNT + 1;
 
 	/**
-	 * The meta object id for the '{@link org.unicase.emfstore.esmodel.versioning.events.impl.ReadDiagramEventImpl <em>Read Diagram Event</em>}' class.
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
-	 * @see org.unicase.emfstore.esmodel.versioning.events.impl.ReadDiagramEventImpl
-	 * @see org.unicase.emfstore.esmodel.versioning.events.impl.EventsPackageImpl#getReadDiagramEvent()
-	 * @generated
-	 */
-	int READ_DIAGRAM_EVENT = 9;
-
-	/**
-	 * The feature id for the '<em><b>Timestamp</b></em>' attribute.
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
-	 * @generated
-	 * @ordered
-	 */
-	int READ_DIAGRAM_EVENT__TIMESTAMP = READ_EVENT__TIMESTAMP;
-
-	/**
-	 * The feature id for the '<em><b>Model Element</b></em>' containment reference.
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
-	 * @generated
-	 * @ordered
-	 */
-	int READ_DIAGRAM_EVENT__MODEL_ELEMENT = READ_EVENT__MODEL_ELEMENT;
-
-	/**
-	 * The feature id for the '<em><b>Source View</b></em>' attribute.
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
-	 * @generated
-	 * @ordered
-	 */
-	int READ_DIAGRAM_EVENT__SOURCE_VIEW = READ_EVENT__SOURCE_VIEW;
-
-	/**
-	 * The number of structural features of the '<em>Read Diagram Event</em>' class.
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
-	 * @generated
-	 * @ordered
-	 */
-	int READ_DIAGRAM_EVENT_FEATURE_COUNT = READ_EVENT_FEATURE_COUNT + 0;
-
-	/**
 	 * The meta object id for the '{@link org.unicase.emfstore.esmodel.versioning.events.impl.ShowHistoryEventImpl <em>Show History Event</em>}' class.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
@@ -527,7 +490,7 @@ public interface EventsPackage extends EPackage {
 	 * @see org.unicase.emfstore.esmodel.versioning.events.impl.EventsPackageImpl#getShowHistoryEvent()
 	 * @generated
 	 */
-	int SHOW_HISTORY_EVENT = 10;
+	int SHOW_HISTORY_EVENT = 9;
 
 	/**
 	 * The feature id for the '<em><b>Timestamp</b></em>' attribute.
@@ -573,7 +536,7 @@ public interface EventsPackage extends EPackage {
 	 * @see org.unicase.emfstore.esmodel.versioning.events.impl.EventsPackageImpl#getPerspectiveEvent()
 	 * @generated
 	 */
-	int PERSPECTIVE_EVENT = 11;
+	int PERSPECTIVE_EVENT = 10;
 
 	/**
 	 * The feature id for the '<em><b>Timestamp</b></em>' attribute.
@@ -601,7 +564,7 @@ public interface EventsPackage extends EPackage {
 	 * @see org.unicase.emfstore.esmodel.versioning.events.impl.EventsPackageImpl#getDNDEvent()
 	 * @generated
 	 */
-	int DND_EVENT = 12;
+	int DND_EVENT = 11;
 
 	/**
 	 * The feature id for the '<em><b>Timestamp</b></em>' attribute.
@@ -665,7 +628,7 @@ public interface EventsPackage extends EPackage {
 	 * @see org.unicase.emfstore.esmodel.versioning.events.impl.EventsPackageImpl#getLinkEvent()
 	 * @generated
 	 */
-	int LINK_EVENT = 13;
+	int LINK_EVENT = 12;
 
 	/**
 	 * The feature id for the '<em><b>Timestamp</b></em>' attribute.
@@ -729,7 +692,7 @@ public interface EventsPackage extends EPackage {
 	 * @see org.unicase.emfstore.esmodel.versioning.events.impl.EventsPackageImpl#getTraceEvent()
 	 * @generated
 	 */
-	int TRACE_EVENT = 14;
+	int TRACE_EVENT = 13;
 
 	/**
 	 * The feature id for the '<em><b>Timestamp</b></em>' attribute.
@@ -784,7 +747,7 @@ public interface EventsPackage extends EPackage {
 	 * @see org.unicase.emfstore.esmodel.versioning.events.impl.EventsPackageImpl#getNavigatorCreateEvent()
 	 * @generated
 	 */
-	int NAVIGATOR_CREATE_EVENT = 15;
+	int NAVIGATOR_CREATE_EVENT = 14;
 
 	/**
 	 * The feature id for the '<em><b>Timestamp</b></em>' attribute.
@@ -830,6 +793,209 @@ public interface EventsPackage extends EPackage {
 	 * @ordered
 	 */
 	int NAVIGATOR_CREATE_EVENT_FEATURE_COUNT = EVENT_FEATURE_COUNT + 3;
+
+	/**
+	 * The meta object id for the '{@link org.unicase.emfstore.esmodel.versioning.events.impl.PluginFocusEventImpl <em>Plugin Focus Event</em>}' class.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @see org.unicase.emfstore.esmodel.versioning.events.impl.PluginFocusEventImpl
+	 * @see org.unicase.emfstore.esmodel.versioning.events.impl.EventsPackageImpl#getPluginFocusEvent()
+	 * @generated
+	 */
+	int PLUGIN_FOCUS_EVENT = 15;
+
+	/**
+	 * The feature id for the '<em><b>Timestamp</b></em>' attribute.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 * @ordered
+	 */
+	int PLUGIN_FOCUS_EVENT__TIMESTAMP = EVENT__TIMESTAMP;
+
+	/**
+	 * The feature id for the '<em><b>Plugin Id</b></em>' attribute.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 * @ordered
+	 */
+	int PLUGIN_FOCUS_EVENT__PLUGIN_ID = EVENT_FEATURE_COUNT + 0;
+
+	/**
+	 * The feature id for the '<em><b>Start Date</b></em>' attribute.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 * @ordered
+	 */
+	int PLUGIN_FOCUS_EVENT__START_DATE = EVENT_FEATURE_COUNT + 1;
+
+	/**
+	 * The number of structural features of the '<em>Plugin Focus Event</em>' class.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 * @ordered
+	 */
+	int PLUGIN_FOCUS_EVENT_FEATURE_COUNT = EVENT_FEATURE_COUNT + 2;
+
+	/**
+	 * The meta object id for the '{@link org.unicase.emfstore.esmodel.versioning.events.impl.PresentationSwitchEventImpl <em>Presentation Switch Event</em>}' class.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @see org.unicase.emfstore.esmodel.versioning.events.impl.PresentationSwitchEventImpl
+	 * @see org.unicase.emfstore.esmodel.versioning.events.impl.EventsPackageImpl#getPresentationSwitchEvent()
+	 * @generated
+	 */
+	int PRESENTATION_SWITCH_EVENT = 16;
+
+	/**
+	 * The feature id for the '<em><b>Timestamp</b></em>' attribute.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 * @ordered
+	 */
+	int PRESENTATION_SWITCH_EVENT__TIMESTAMP = EVENT__TIMESTAMP;
+
+	/**
+	 * The feature id for the '<em><b>Read View</b></em>' attribute.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 * @ordered
+	 */
+	int PRESENTATION_SWITCH_EVENT__READ_VIEW = EVENT_FEATURE_COUNT + 0;
+
+	/**
+	 * The feature id for the '<em><b>New Presentation</b></em>' attribute.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 * @ordered
+	 */
+	int PRESENTATION_SWITCH_EVENT__NEW_PRESENTATION = EVENT_FEATURE_COUNT + 1;
+
+	/**
+	 * The number of structural features of the '<em>Presentation Switch Event</em>' class.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 * @ordered
+	 */
+	int PRESENTATION_SWITCH_EVENT_FEATURE_COUNT = EVENT_FEATURE_COUNT + 2;
+
+	/**
+	 * The meta object id for the '{@link org.unicase.emfstore.esmodel.versioning.events.impl.UndoEventImpl <em>Undo Event</em>}' class.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @see org.unicase.emfstore.esmodel.versioning.events.impl.UndoEventImpl
+	 * @see org.unicase.emfstore.esmodel.versioning.events.impl.EventsPackageImpl#getUndoEvent()
+	 * @generated
+	 */
+	int UNDO_EVENT = 17;
+
+	/**
+	 * The feature id for the '<em><b>Timestamp</b></em>' attribute.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 * @ordered
+	 */
+	int UNDO_EVENT__TIMESTAMP = EVENT__TIMESTAMP;
+
+	/**
+	 * The feature id for the '<em><b>Operation</b></em>' containment reference.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 * @ordered
+	 */
+	int UNDO_EVENT__OPERATION = EVENT_FEATURE_COUNT + 0;
+
+	/**
+	 * The number of structural features of the '<em>Undo Event</em>' class.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 * @ordered
+	 */
+	int UNDO_EVENT_FEATURE_COUNT = EVENT_FEATURE_COUNT + 1;
+
+	/**
+	 * The meta object id for the '{@link org.unicase.emfstore.esmodel.versioning.events.impl.ValidateImpl <em>Validate</em>}' class.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @see org.unicase.emfstore.esmodel.versioning.events.impl.ValidateImpl
+	 * @see org.unicase.emfstore.esmodel.versioning.events.impl.EventsPackageImpl#getValidate()
+	 * @generated
+	 */
+	int VALIDATE = 18;
+
+	/**
+	 * The feature id for the '<em><b>Timestamp</b></em>' attribute.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 * @ordered
+	 */
+	int VALIDATE__TIMESTAMP = EVENT__TIMESTAMP;
+
+	/**
+	 * The number of structural features of the '<em>Validate</em>' class.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 * @ordered
+	 */
+	int VALIDATE_FEATURE_COUNT = EVENT_FEATURE_COUNT + 0;
+
+	/**
+	 * The meta object id for the '{@link org.unicase.emfstore.esmodel.versioning.events.impl.ShowChangesEventImpl <em>Show Changes Event</em>}' class.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @see org.unicase.emfstore.esmodel.versioning.events.impl.ShowChangesEventImpl
+	 * @see org.unicase.emfstore.esmodel.versioning.events.impl.EventsPackageImpl#getShowChangesEvent()
+	 * @generated
+	 */
+	int SHOW_CHANGES_EVENT = 19;
+
+	/**
+	 * The feature id for the '<em><b>Timestamp</b></em>' attribute.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 * @ordered
+	 */
+	int SHOW_CHANGES_EVENT__TIMESTAMP = EVENT__TIMESTAMP;
+
+	/**
+	 * The feature id for the '<em><b>Source Version</b></em>' containment reference.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 * @ordered
+	 */
+	int SHOW_CHANGES_EVENT__SOURCE_VERSION = EVENT_FEATURE_COUNT + 0;
+
+	/**
+	 * The feature id for the '<em><b>Target Version</b></em>' containment reference.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 * @ordered
+	 */
+	int SHOW_CHANGES_EVENT__TARGET_VERSION = EVENT_FEATURE_COUNT + 1;
+
+	/**
+	 * The number of structural features of the '<em>Show Changes Event</em>' class.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 * @ordered
+	 */
+	int SHOW_CHANGES_EVENT_FEATURE_COUNT = EVENT_FEATURE_COUNT + 2;
 
 	/**
 	 * Returns the meta object for class '{@link org.unicase.emfstore.esmodel.versioning.events.Event <em>Event</em>}'.
@@ -883,6 +1049,17 @@ public interface EventsPackage extends EPackage {
 	 * @generated
 	 */
 	EAttribute getReadEvent_SourceView();
+
+	/**
+	 * Returns the meta object for the attribute '{@link org.unicase.emfstore.esmodel.versioning.events.ReadEvent#getReadView <em>Read View</em>}'.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @return the meta object for the attribute '<em>Read View</em>'.
+	 * @see org.unicase.emfstore.esmodel.versioning.events.ReadEvent#getReadView()
+	 * @see #getReadEvent()
+	 * @generated
+	 */
+	EAttribute getReadEvent_ReadView();
 
 	/**
 	 * Returns the meta object for class '{@link org.unicase.emfstore.esmodel.versioning.events.MergeEvent <em>Merge Event</em>}'.
@@ -1131,16 +1308,6 @@ public interface EventsPackage extends EPackage {
 	EAttribute getRevertEvent_RevertedChangesCount();
 
 	/**
-	 * Returns the meta object for class '{@link org.unicase.emfstore.esmodel.versioning.events.ReadDiagramEvent <em>Read Diagram Event</em>}'.
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
-	 * @return the meta object for class '<em>Read Diagram Event</em>'.
-	 * @see org.unicase.emfstore.esmodel.versioning.events.ReadDiagramEvent
-	 * @generated
-	 */
-	EClass getReadDiagramEvent();
-
-	/**
 	 * Returns the meta object for class '{@link org.unicase.emfstore.esmodel.versioning.events.ShowHistoryEvent <em>Show History Event</em>}'.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
@@ -1377,6 +1544,133 @@ public interface EventsPackage extends EPackage {
 	EAttribute getNavigatorCreateEvent_Dynamic();
 
 	/**
+	 * Returns the meta object for class '{@link org.unicase.emfstore.esmodel.versioning.events.PluginFocusEvent <em>Plugin Focus Event</em>}'.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @return the meta object for class '<em>Plugin Focus Event</em>'.
+	 * @see org.unicase.emfstore.esmodel.versioning.events.PluginFocusEvent
+	 * @generated
+	 */
+	EClass getPluginFocusEvent();
+
+	/**
+	 * Returns the meta object for the attribute '{@link org.unicase.emfstore.esmodel.versioning.events.PluginFocusEvent#getPluginId <em>Plugin Id</em>}'.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @return the meta object for the attribute '<em>Plugin Id</em>'.
+	 * @see org.unicase.emfstore.esmodel.versioning.events.PluginFocusEvent#getPluginId()
+	 * @see #getPluginFocusEvent()
+	 * @generated
+	 */
+	EAttribute getPluginFocusEvent_PluginId();
+
+	/**
+	 * Returns the meta object for the attribute '{@link org.unicase.emfstore.esmodel.versioning.events.PluginFocusEvent#getStartDate <em>Start Date</em>}'.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @return the meta object for the attribute '<em>Start Date</em>'.
+	 * @see org.unicase.emfstore.esmodel.versioning.events.PluginFocusEvent#getStartDate()
+	 * @see #getPluginFocusEvent()
+	 * @generated
+	 */
+	EAttribute getPluginFocusEvent_StartDate();
+
+	/**
+	 * Returns the meta object for class '{@link org.unicase.emfstore.esmodel.versioning.events.PresentationSwitchEvent <em>Presentation Switch Event</em>}'.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @return the meta object for class '<em>Presentation Switch Event</em>'.
+	 * @see org.unicase.emfstore.esmodel.versioning.events.PresentationSwitchEvent
+	 * @generated
+	 */
+	EClass getPresentationSwitchEvent();
+
+	/**
+	 * Returns the meta object for the attribute '{@link org.unicase.emfstore.esmodel.versioning.events.PresentationSwitchEvent#getReadView <em>Read View</em>}'.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @return the meta object for the attribute '<em>Read View</em>'.
+	 * @see org.unicase.emfstore.esmodel.versioning.events.PresentationSwitchEvent#getReadView()
+	 * @see #getPresentationSwitchEvent()
+	 * @generated
+	 */
+	EAttribute getPresentationSwitchEvent_ReadView();
+
+	/**
+	 * Returns the meta object for the attribute '{@link org.unicase.emfstore.esmodel.versioning.events.PresentationSwitchEvent#getNewPresentation <em>New Presentation</em>}'.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @return the meta object for the attribute '<em>New Presentation</em>'.
+	 * @see org.unicase.emfstore.esmodel.versioning.events.PresentationSwitchEvent#getNewPresentation()
+	 * @see #getPresentationSwitchEvent()
+	 * @generated
+	 */
+	EAttribute getPresentationSwitchEvent_NewPresentation();
+
+	/**
+	 * Returns the meta object for class '{@link org.unicase.emfstore.esmodel.versioning.events.UndoEvent <em>Undo Event</em>}'.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @return the meta object for class '<em>Undo Event</em>'.
+	 * @see org.unicase.emfstore.esmodel.versioning.events.UndoEvent
+	 * @generated
+	 */
+	EClass getUndoEvent();
+
+	/**
+	 * Returns the meta object for the containment reference '{@link org.unicase.emfstore.esmodel.versioning.events.UndoEvent#getOperation <em>Operation</em>}'.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @return the meta object for the containment reference '<em>Operation</em>'.
+	 * @see org.unicase.emfstore.esmodel.versioning.events.UndoEvent#getOperation()
+	 * @see #getUndoEvent()
+	 * @generated
+	 */
+	EReference getUndoEvent_Operation();
+
+	/**
+	 * Returns the meta object for class '{@link org.unicase.emfstore.esmodel.versioning.events.Validate <em>Validate</em>}'.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @return the meta object for class '<em>Validate</em>'.
+	 * @see org.unicase.emfstore.esmodel.versioning.events.Validate
+	 * @generated
+	 */
+	EClass getValidate();
+
+	/**
+	 * Returns the meta object for class '{@link org.unicase.emfstore.esmodel.versioning.events.ShowChangesEvent <em>Show Changes Event</em>}'.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @return the meta object for class '<em>Show Changes Event</em>'.
+	 * @see org.unicase.emfstore.esmodel.versioning.events.ShowChangesEvent
+	 * @generated
+	 */
+	EClass getShowChangesEvent();
+
+	/**
+	 * Returns the meta object for the containment reference '{@link org.unicase.emfstore.esmodel.versioning.events.ShowChangesEvent#getSourceVersion <em>Source Version</em>}'.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @return the meta object for the containment reference '<em>Source Version</em>'.
+	 * @see org.unicase.emfstore.esmodel.versioning.events.ShowChangesEvent#getSourceVersion()
+	 * @see #getShowChangesEvent()
+	 * @generated
+	 */
+	EReference getShowChangesEvent_SourceVersion();
+
+	/**
+	 * Returns the meta object for the containment reference '{@link org.unicase.emfstore.esmodel.versioning.events.ShowChangesEvent#getTargetVersion <em>Target Version</em>}'.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @return the meta object for the containment reference '<em>Target Version</em>'.
+	 * @see org.unicase.emfstore.esmodel.versioning.events.ShowChangesEvent#getTargetVersion()
+	 * @see #getShowChangesEvent()
+	 * @generated
+	 */
+	EReference getShowChangesEvent_TargetVersion();
+
+	/**
 	 * Returns the factory that creates the instances of the model.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
@@ -1443,6 +1737,14 @@ public interface EventsPackage extends EPackage {
 		 */
 		EAttribute READ_EVENT__SOURCE_VIEW = eINSTANCE
 				.getReadEvent_SourceView();
+
+		/**
+		 * The meta object literal for the '<em><b>Read View</b></em>' attribute feature.
+		 * <!-- begin-user-doc -->
+		 * <!-- end-user-doc -->
+		 * @generated
+		 */
+		EAttribute READ_EVENT__READ_VIEW = eINSTANCE.getReadEvent_ReadView();
 
 		/**
 		 * The meta object literal for the '{@link org.unicase.emfstore.esmodel.versioning.events.impl.MergeEventImpl <em>Merge Event</em>}' class.
@@ -1659,16 +1961,6 @@ public interface EventsPackage extends EPackage {
 				.getRevertEvent_RevertedChangesCount();
 
 		/**
-		 * The meta object literal for the '{@link org.unicase.emfstore.esmodel.versioning.events.impl.ReadDiagramEventImpl <em>Read Diagram Event</em>}' class.
-		 * <!-- begin-user-doc -->
-		 * <!-- end-user-doc -->
-		 * @see org.unicase.emfstore.esmodel.versioning.events.impl.ReadDiagramEventImpl
-		 * @see org.unicase.emfstore.esmodel.versioning.events.impl.EventsPackageImpl#getReadDiagramEvent()
-		 * @generated
-		 */
-		EClass READ_DIAGRAM_EVENT = eINSTANCE.getReadDiagramEvent();
-
-		/**
 		 * The meta object literal for the '{@link org.unicase.emfstore.esmodel.versioning.events.impl.ShowHistoryEventImpl <em>Show History Event</em>}' class.
 		 * <!-- begin-user-doc -->
 		 * <!-- end-user-doc -->
@@ -1869,6 +2161,119 @@ public interface EventsPackage extends EPackage {
 		 */
 		EAttribute NAVIGATOR_CREATE_EVENT__DYNAMIC = eINSTANCE
 				.getNavigatorCreateEvent_Dynamic();
+
+		/**
+		 * The meta object literal for the '{@link org.unicase.emfstore.esmodel.versioning.events.impl.PluginFocusEventImpl <em>Plugin Focus Event</em>}' class.
+		 * <!-- begin-user-doc -->
+		 * <!-- end-user-doc -->
+		 * @see org.unicase.emfstore.esmodel.versioning.events.impl.PluginFocusEventImpl
+		 * @see org.unicase.emfstore.esmodel.versioning.events.impl.EventsPackageImpl#getPluginFocusEvent()
+		 * @generated
+		 */
+		EClass PLUGIN_FOCUS_EVENT = eINSTANCE.getPluginFocusEvent();
+
+		/**
+		 * The meta object literal for the '<em><b>Plugin Id</b></em>' attribute feature.
+		 * <!-- begin-user-doc -->
+		 * <!-- end-user-doc -->
+		 * @generated
+		 */
+		EAttribute PLUGIN_FOCUS_EVENT__PLUGIN_ID = eINSTANCE
+				.getPluginFocusEvent_PluginId();
+
+		/**
+		 * The meta object literal for the '<em><b>Start Date</b></em>' attribute feature.
+		 * <!-- begin-user-doc -->
+		 * <!-- end-user-doc -->
+		 * @generated
+		 */
+		EAttribute PLUGIN_FOCUS_EVENT__START_DATE = eINSTANCE
+				.getPluginFocusEvent_StartDate();
+
+		/**
+		 * The meta object literal for the '{@link org.unicase.emfstore.esmodel.versioning.events.impl.PresentationSwitchEventImpl <em>Presentation Switch Event</em>}' class.
+		 * <!-- begin-user-doc -->
+		 * <!-- end-user-doc -->
+		 * @see org.unicase.emfstore.esmodel.versioning.events.impl.PresentationSwitchEventImpl
+		 * @see org.unicase.emfstore.esmodel.versioning.events.impl.EventsPackageImpl#getPresentationSwitchEvent()
+		 * @generated
+		 */
+		EClass PRESENTATION_SWITCH_EVENT = eINSTANCE
+				.getPresentationSwitchEvent();
+
+		/**
+		 * The meta object literal for the '<em><b>Read View</b></em>' attribute feature.
+		 * <!-- begin-user-doc -->
+		 * <!-- end-user-doc -->
+		 * @generated
+		 */
+		EAttribute PRESENTATION_SWITCH_EVENT__READ_VIEW = eINSTANCE
+				.getPresentationSwitchEvent_ReadView();
+
+		/**
+		 * The meta object literal for the '<em><b>New Presentation</b></em>' attribute feature.
+		 * <!-- begin-user-doc -->
+		 * <!-- end-user-doc -->
+		 * @generated
+		 */
+		EAttribute PRESENTATION_SWITCH_EVENT__NEW_PRESENTATION = eINSTANCE
+				.getPresentationSwitchEvent_NewPresentation();
+
+		/**
+		 * The meta object literal for the '{@link org.unicase.emfstore.esmodel.versioning.events.impl.UndoEventImpl <em>Undo Event</em>}' class.
+		 * <!-- begin-user-doc -->
+		 * <!-- end-user-doc -->
+		 * @see org.unicase.emfstore.esmodel.versioning.events.impl.UndoEventImpl
+		 * @see org.unicase.emfstore.esmodel.versioning.events.impl.EventsPackageImpl#getUndoEvent()
+		 * @generated
+		 */
+		EClass UNDO_EVENT = eINSTANCE.getUndoEvent();
+
+		/**
+		 * The meta object literal for the '<em><b>Operation</b></em>' containment reference feature.
+		 * <!-- begin-user-doc -->
+		 * <!-- end-user-doc -->
+		 * @generated
+		 */
+		EReference UNDO_EVENT__OPERATION = eINSTANCE.getUndoEvent_Operation();
+
+		/**
+		 * The meta object literal for the '{@link org.unicase.emfstore.esmodel.versioning.events.impl.ValidateImpl <em>Validate</em>}' class.
+		 * <!-- begin-user-doc -->
+		 * <!-- end-user-doc -->
+		 * @see org.unicase.emfstore.esmodel.versioning.events.impl.ValidateImpl
+		 * @see org.unicase.emfstore.esmodel.versioning.events.impl.EventsPackageImpl#getValidate()
+		 * @generated
+		 */
+		EClass VALIDATE = eINSTANCE.getValidate();
+
+		/**
+		 * The meta object literal for the '{@link org.unicase.emfstore.esmodel.versioning.events.impl.ShowChangesEventImpl <em>Show Changes Event</em>}' class.
+		 * <!-- begin-user-doc -->
+		 * <!-- end-user-doc -->
+		 * @see org.unicase.emfstore.esmodel.versioning.events.impl.ShowChangesEventImpl
+		 * @see org.unicase.emfstore.esmodel.versioning.events.impl.EventsPackageImpl#getShowChangesEvent()
+		 * @generated
+		 */
+		EClass SHOW_CHANGES_EVENT = eINSTANCE.getShowChangesEvent();
+
+		/**
+		 * The meta object literal for the '<em><b>Source Version</b></em>' containment reference feature.
+		 * <!-- begin-user-doc -->
+		 * <!-- end-user-doc -->
+		 * @generated
+		 */
+		EReference SHOW_CHANGES_EVENT__SOURCE_VERSION = eINSTANCE
+				.getShowChangesEvent_SourceVersion();
+
+		/**
+		 * The meta object literal for the '<em><b>Target Version</b></em>' containment reference feature.
+		 * <!-- begin-user-doc -->
+		 * <!-- end-user-doc -->
+		 * @generated
+		 */
+		EReference SHOW_CHANGES_EVENT__TARGET_VERSION = eINSTANCE
+				.getShowChangesEvent_TargetVersion();
 
 	}
 

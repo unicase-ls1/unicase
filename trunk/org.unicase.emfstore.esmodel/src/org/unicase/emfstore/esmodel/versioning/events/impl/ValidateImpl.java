@@ -7,25 +7,24 @@ package org.unicase.emfstore.esmodel.versioning.events.impl;
 
 import org.eclipse.emf.ecore.EClass;
 import org.unicase.emfstore.esmodel.versioning.events.EventsPackage;
-import org.unicase.emfstore.esmodel.versioning.events.ReadDiagramEvent;
+import org.unicase.emfstore.esmodel.versioning.events.Validate;
 
 /**
  * <!-- begin-user-doc -->
- * An implementation of the model object '<em><b>Read Diagram Event</b></em>'.
+ * An implementation of the model object '<em><b>Validate</b></em>'.
  * <!-- end-user-doc -->
  * <p>
  * </p>
  *
  * @generated
  */
-public class ReadDiagramEventImpl extends ReadEventImpl implements
-		ReadDiagramEvent {
+public class ValidateImpl extends EventImpl implements Validate {
 	/**
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
-	protected ReadDiagramEventImpl() {
+	protected ValidateImpl() {
 		super();
 	}
 
@@ -36,7 +35,7 @@ public class ReadDiagramEventImpl extends ReadEventImpl implements
 	 */
 	@Override
 	protected EClass eStaticClass() {
-		return EventsPackage.Literals.READ_DIAGRAM_EVENT;
+		return EventsPackage.Literals.VALIDATE;
 	}
 
-} //ReadDiagramEventImpl
+} //ValidateImpl

@@ -56,6 +56,7 @@ public class ReadEventItemProvider extends EventItemProvider implements
 			super.getPropertyDescriptors(object);
 
 			addSourceViewPropertyDescriptor(object);
+			addReadViewPropertyDescriptor(object);
 		}
 		return itemPropertyDescriptors;
 	}
@@ -76,6 +77,26 @@ public class ReadEventItemProvider extends EventItemProvider implements
 						"_UI_ReadEvent_type"),
 				EventsPackage.Literals.READ_EVENT__SOURCE_VIEW, true, false,
 				false, ItemPropertyDescriptor.GENERIC_VALUE_IMAGE, null, null));
+	}
+
+	/**
+	 * This adds a property descriptor for the Read View feature.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 */
+	protected void addReadViewPropertyDescriptor(Object object) {
+		itemPropertyDescriptors
+				.add(createItemPropertyDescriptor(
+						((ComposeableAdapterFactory) adapterFactory)
+								.getRootAdapterFactory(), getResourceLocator(),
+						getString("_UI_ReadEvent_readView_feature"), getString(
+								"_UI_PropertyDescriptor_description",
+								"_UI_ReadEvent_readView_feature",
+								"_UI_ReadEvent_type"),
+						EventsPackage.Literals.READ_EVENT__READ_VIEW, true,
+						false, false,
+						ItemPropertyDescriptor.GENERIC_VALUE_IMAGE, null, null));
 	}
 
 	/**
@@ -149,6 +170,7 @@ public class ReadEventItemProvider extends EventItemProvider implements
 
 		switch (notification.getFeatureID(ReadEvent.class)) {
 		case EventsPackage.READ_EVENT__SOURCE_VIEW:
+		case EventsPackage.READ_EVENT__READ_VIEW:
 			fireNotifyChanged(new ViewerNotification(notification, notification
 					.getNotifier(), false, true));
 			return;

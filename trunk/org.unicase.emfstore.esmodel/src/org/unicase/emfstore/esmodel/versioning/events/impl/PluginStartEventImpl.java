@@ -34,7 +34,6 @@ public class PluginStartEventImpl extends EventImpl implements PluginStartEvent 
 	 * @ordered
 	 */
 	protected static final String PLUGIN_ID_EDEFAULT = null;
-
 	/**
 	 * The cached value of the '{@link #getPluginId() <em>Plugin Id</em>}' attribute.
 	 * <!-- begin-user-doc -->

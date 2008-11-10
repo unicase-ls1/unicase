@@ -282,30 +282,6 @@ public class EventsItemProviderAdapterFactory extends EventsAdapterFactory
 	}
 
 	/**
-	 * This keeps track of the one adapter used for all {@link org.unicase.emfstore.esmodel.versioning.events.ReadDiagramEvent} instances.
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
-	 * @generated
-	 */
-	protected ReadDiagramEventItemProvider readDiagramEventItemProvider;
-
-	/**
-	 * This creates an adapter for a {@link org.unicase.emfstore.esmodel.versioning.events.ReadDiagramEvent}.
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
-	 * @generated
-	 */
-	@Override
-	public Adapter createReadDiagramEventAdapter() {
-		if (readDiagramEventItemProvider == null) {
-			readDiagramEventItemProvider = new ReadDiagramEventItemProvider(
-					this);
-		}
-
-		return readDiagramEventItemProvider;
-	}
-
-	/**
 	 * This keeps track of the one adapter used for all {@link org.unicase.emfstore.esmodel.versioning.events.ShowHistoryEvent} instances.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
@@ -447,6 +423,124 @@ public class EventsItemProviderAdapterFactory extends EventsAdapterFactory
 	}
 
 	/**
+	 * This keeps track of the one adapter used for all {@link org.unicase.emfstore.esmodel.versioning.events.PluginFocusEvent} instances.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 */
+	protected PluginFocusEventItemProvider pluginFocusEventItemProvider;
+
+	/**
+	 * This creates an adapter for a {@link org.unicase.emfstore.esmodel.versioning.events.PluginFocusEvent}.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 */
+	@Override
+	public Adapter createPluginFocusEventAdapter() {
+		if (pluginFocusEventItemProvider == null) {
+			pluginFocusEventItemProvider = new PluginFocusEventItemProvider(
+					this);
+		}
+
+		return pluginFocusEventItemProvider;
+	}
+
+	/**
+	 * This keeps track of the one adapter used for all {@link org.unicase.emfstore.esmodel.versioning.events.PresentationSwitchEvent} instances.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 */
+	protected PresentationSwitchEventItemProvider presentationSwitchEventItemProvider;
+
+	/**
+	 * This creates an adapter for a {@link org.unicase.emfstore.esmodel.versioning.events.PresentationSwitchEvent}.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 */
+	@Override
+	public Adapter createPresentationSwitchEventAdapter() {
+		if (presentationSwitchEventItemProvider == null) {
+			presentationSwitchEventItemProvider = new PresentationSwitchEventItemProvider(
+					this);
+		}
+
+		return presentationSwitchEventItemProvider;
+	}
+
+	/**
+	 * This keeps track of the one adapter used for all {@link org.unicase.emfstore.esmodel.versioning.events.UndoEvent} instances.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 */
+	protected UndoEventItemProvider undoEventItemProvider;
+
+	/**
+	 * This creates an adapter for a {@link org.unicase.emfstore.esmodel.versioning.events.UndoEvent}.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 */
+	@Override
+	public Adapter createUndoEventAdapter() {
+		if (undoEventItemProvider == null) {
+			undoEventItemProvider = new UndoEventItemProvider(this);
+		}
+
+		return undoEventItemProvider;
+	}
+
+	/**
+	 * This keeps track of the one adapter used for all {@link org.unicase.emfstore.esmodel.versioning.events.Validate} instances.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 */
+	protected ValidateItemProvider validateItemProvider;
+
+	/**
+	 * This creates an adapter for a {@link org.unicase.emfstore.esmodel.versioning.events.Validate}.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 */
+	@Override
+	public Adapter createValidateAdapter() {
+		if (validateItemProvider == null) {
+			validateItemProvider = new ValidateItemProvider(this);
+		}
+
+		return validateItemProvider;
+	}
+
+	/**
+	 * This keeps track of the one adapter used for all {@link org.unicase.emfstore.esmodel.versioning.events.ShowChangesEvent} instances.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 */
+	protected ShowChangesEventItemProvider showChangesEventItemProvider;
+
+	/**
+	 * This creates an adapter for a {@link org.unicase.emfstore.esmodel.versioning.events.ShowChangesEvent}.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 */
+	@Override
+	public Adapter createShowChangesEventAdapter() {
+		if (showChangesEventItemProvider == null) {
+			showChangesEventItemProvider = new ShowChangesEventItemProvider(
+					this);
+		}
+
+		return showChangesEventItemProvider;
+	}
+
+	/**
 	 * This returns the root adapter factory that contains this factory.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
@@ -566,8 +660,6 @@ public class EventsItemProviderAdapterFactory extends EventsAdapterFactory
 			annotationEventItemProvider.dispose();
 		if (revertEventItemProvider != null)
 			revertEventItemProvider.dispose();
-		if (readDiagramEventItemProvider != null)
-			readDiagramEventItemProvider.dispose();
 		if (showHistoryEventItemProvider != null)
 			showHistoryEventItemProvider.dispose();
 		if (perspectiveEventItemProvider != null)
@@ -580,6 +672,16 @@ public class EventsItemProviderAdapterFactory extends EventsAdapterFactory
 			traceEventItemProvider.dispose();
 		if (navigatorCreateEventItemProvider != null)
 			navigatorCreateEventItemProvider.dispose();
+		if (pluginFocusEventItemProvider != null)
+			pluginFocusEventItemProvider.dispose();
+		if (presentationSwitchEventItemProvider != null)
+			presentationSwitchEventItemProvider.dispose();
+		if (undoEventItemProvider != null)
+			undoEventItemProvider.dispose();
+		if (validateItemProvider != null)
+			validateItemProvider.dispose();
+		if (showChangesEventItemProvider != null)
+			showChangesEventItemProvider.dispose();
 	}
 
 }

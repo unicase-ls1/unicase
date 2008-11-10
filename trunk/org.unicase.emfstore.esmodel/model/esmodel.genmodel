@@ -97,6 +97,7 @@
           <genFeatures notify="false" createChild="false" propertySortChoices="true"
               ecoreFeature="ecore:EReference esmodel.ecore#//versioning/operations/AbstractOperation/modelElementId"/>
           <genFeatures createChild="false" ecoreFeature="ecore:EAttribute esmodel.ecore#//versioning/operations/AbstractOperation/accepted"/>
+          <genFeatures createChild="false" ecoreFeature="ecore:EAttribute esmodel.ecore#//versioning/operations/AbstractOperation/clientDate"/>
           <genOperations ecoreOperation="esmodel.ecore#//versioning/operations/AbstractOperation/apply">
             <genParameters ecoreParameter="esmodel.ecore#//versioning/operations/AbstractOperation/apply/project"/>
           </genOperations>
@@ -163,6 +164,8 @@
         </genClasses>
         <genClasses ecoreClass="esmodel.ecore#//versioning/events/ReadEvent">
           <genFeatures property="None" children="true" createChild="true" ecoreFeature="ecore:EReference esmodel.ecore#//versioning/events/ReadEvent/modelElement"/>
+          <genFeatures createChild="false" ecoreFeature="ecore:EAttribute esmodel.ecore#//versioning/events/ReadEvent/sourceView"/>
+          <genFeatures createChild="false" ecoreFeature="ecore:EAttribute esmodel.ecore#//versioning/events/ReadEvent/readView"/>
         </genClasses>
         <genClasses ecoreClass="esmodel.ecore#//versioning/events/MergeEvent">
           <genFeatures createChild="false" ecoreFeature="ecore:EAttribute esmodel.ecore#//versioning/events/MergeEvent/numberOfConflicts"/>
@@ -182,6 +185,70 @@
         </genClasses>
         <genClasses ecoreClass="esmodel.ecore#//versioning/events/PluginStartEvent">
           <genFeatures createChild="false" ecoreFeature="ecore:EAttribute esmodel.ecore#//versioning/events/PluginStartEvent/pluginId"/>
+        </genClasses>
+        <genClasses ecoreClass="esmodel.ecore#//versioning/events/UpdateEvent">
+          <genFeatures property="None" children="true" createChild="true" ecoreFeature="ecore:EReference esmodel.ecore#//versioning/events/UpdateEvent/baseVersion"/>
+          <genFeatures property="None" children="true" createChild="true" ecoreFeature="ecore:EReference esmodel.ecore#//versioning/events/UpdateEvent/targetVersion"/>
+        </genClasses>
+        <genClasses ecoreClass="esmodel.ecore#//versioning/events/AnnotationEvent">
+          <genFeatures notify="false" createChild="false" propertySortChoices="true"
+              ecoreFeature="ecore:EReference esmodel.ecore#//versioning/events/AnnotationEvent/annotatedElement"/>
+          <genFeatures notify="false" createChild="false" propertySortChoices="true"
+              ecoreFeature="ecore:EReference esmodel.ecore#//versioning/events/AnnotationEvent/annotation"/>
+        </genClasses>
+        <genClasses ecoreClass="esmodel.ecore#//versioning/events/RevertEvent">
+          <genFeatures createChild="false" ecoreFeature="ecore:EAttribute esmodel.ecore#//versioning/events/RevertEvent/revertedChangesCount"/>
+        </genClasses>
+        <genClasses ecoreClass="esmodel.ecore#//versioning/events/ShowHistoryEvent">
+          <genFeatures property="None" children="true" createChild="true" ecoreFeature="ecore:EReference esmodel.ecore#//versioning/events/ShowHistoryEvent/sourceVersion"/>
+          <genFeatures property="None" children="true" createChild="true" ecoreFeature="ecore:EReference esmodel.ecore#//versioning/events/ShowHistoryEvent/targetVersion"/>
+        </genClasses>
+        <genClasses ecoreClass="esmodel.ecore#//versioning/events/PerspectiveEvent"/>
+        <genClasses ecoreClass="esmodel.ecore#//versioning/events/DNDEvent">
+          <genFeatures createChild="false" ecoreFeature="ecore:EAttribute esmodel.ecore#//versioning/events/DNDEvent/sourceView"/>
+          <genFeatures createChild="false" ecoreFeature="ecore:EAttribute esmodel.ecore#//versioning/events/DNDEvent/targetView"/>
+          <genFeatures notify="false" createChild="false" propertySortChoices="true"
+              ecoreFeature="ecore:EReference esmodel.ecore#//versioning/events/DNDEvent/dragSourceElement"/>
+          <genFeatures notify="false" createChild="false" propertySortChoices="true"
+              ecoreFeature="ecore:EReference esmodel.ecore#//versioning/events/DNDEvent/dropTargetElement"/>
+        </genClasses>
+        <genClasses ecoreClass="esmodel.ecore#//versioning/events/LinkEvent">
+          <genFeatures createChild="false" ecoreFeature="ecore:EAttribute esmodel.ecore#//versioning/events/LinkEvent/sourceView"/>
+          <genFeatures notify="false" createChild="false" propertySortChoices="true"
+              ecoreFeature="ecore:EReference esmodel.ecore#//versioning/events/LinkEvent/sourceElement"/>
+          <genFeatures notify="false" createChild="false" propertySortChoices="true"
+              ecoreFeature="ecore:EReference esmodel.ecore#//versioning/events/LinkEvent/targetElement"/>
+          <genFeatures createChild="false" ecoreFeature="ecore:EAttribute esmodel.ecore#//versioning/events/LinkEvent/createdNew"/>
+        </genClasses>
+        <genClasses ecoreClass="esmodel.ecore#//versioning/events/TraceEvent">
+          <genFeatures notify="false" createChild="false" propertySortChoices="true"
+              ecoreFeature="ecore:EReference esmodel.ecore#//versioning/events/TraceEvent/sourceElement"/>
+          <genFeatures notify="false" createChild="false" propertySortChoices="true"
+              ecoreFeature="ecore:EReference esmodel.ecore#//versioning/events/TraceEvent/targetElement"/>
+          <genFeatures createChild="false" ecoreFeature="ecore:EAttribute esmodel.ecore#//versioning/events/TraceEvent/featureName"/>
+        </genClasses>
+        <genClasses ecoreClass="esmodel.ecore#//versioning/events/NavigatorCreateEvent">
+          <genFeatures notify="false" createChild="false" propertySortChoices="true"
+              ecoreFeature="ecore:EReference esmodel.ecore#//versioning/events/NavigatorCreateEvent/createdElement"/>
+          <genFeatures notify="false" createChild="false" propertySortChoices="true"
+              ecoreFeature="ecore:EReference esmodel.ecore#//versioning/events/NavigatorCreateEvent/sourceSection"/>
+          <genFeatures createChild="false" ecoreFeature="ecore:EAttribute esmodel.ecore#//versioning/events/NavigatorCreateEvent/dynamic"/>
+        </genClasses>
+        <genClasses ecoreClass="esmodel.ecore#//versioning/events/PluginFocusEvent">
+          <genFeatures createChild="false" ecoreFeature="ecore:EAttribute esmodel.ecore#//versioning/events/PluginFocusEvent/pluginId"/>
+          <genFeatures createChild="false" ecoreFeature="ecore:EAttribute esmodel.ecore#//versioning/events/PluginFocusEvent/startDate"/>
+        </genClasses>
+        <genClasses ecoreClass="esmodel.ecore#//versioning/events/PresentationSwitchEvent">
+          <genFeatures createChild="false" ecoreFeature="ecore:EAttribute esmodel.ecore#//versioning/events/PresentationSwitchEvent/readView"/>
+          <genFeatures createChild="false" ecoreFeature="ecore:EAttribute esmodel.ecore#//versioning/events/PresentationSwitchEvent/newPresentation"/>
+        </genClasses>
+        <genClasses ecoreClass="esmodel.ecore#//versioning/events/UndoEvent">
+          <genFeatures property="None" children="true" createChild="true" ecoreFeature="ecore:EReference esmodel.ecore#//versioning/events/UndoEvent/operation"/>
+        </genClasses>
+        <genClasses ecoreClass="esmodel.ecore#//versioning/events/Validate"/>
+        <genClasses ecoreClass="esmodel.ecore#//versioning/events/ShowChangesEvent">
+          <genFeatures property="None" children="true" createChild="true" ecoreFeature="ecore:EReference esmodel.ecore#//versioning/events/ShowChangesEvent/sourceVersion"/>
+          <genFeatures property="None" children="true" createChild="true" ecoreFeature="ecore:EReference esmodel.ecore#//versioning/events/ShowChangesEvent/targetVersion"/>
         </genClasses>
       </nestedGenPackages>
     </nestedGenPackages>
