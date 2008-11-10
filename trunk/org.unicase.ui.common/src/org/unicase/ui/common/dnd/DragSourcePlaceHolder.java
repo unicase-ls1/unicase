@@ -1,5 +1,7 @@
 package org.unicase.ui.common.dnd;
 
+import java.util.List;
+
 
 /**
  * This class is just a temporary location to hold dragSource in a DnD operation.
@@ -45,7 +47,12 @@ public final class DragSourcePlaceHolder {
 	 * 
 	 * @param dragSource the drag source
 	 */
+	@SuppressWarnings("unchecked")
 	public static void setDragSource(Object dragSource){
+		if ((dragSource instanceof List)
+			&& ((List)dragSource).size() == 0){
+				DragSourcePlaceHolder.dragSource = null;
+		}
 		DragSourcePlaceHolder.dragSource = dragSource;
 	}
 	

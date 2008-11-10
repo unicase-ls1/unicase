@@ -24,14 +24,14 @@ import org.eclipse.gef.EditPartViewer;
 import org.eclipse.gmf.runtime.diagram.ui.parts.DiagramDropTargetListener;
 import org.eclipse.gmf.runtime.diagram.ui.resources.editor.parts.DiagramDocumentEditor;
 import org.eclipse.jface.dialogs.ErrorDialog;
-import org.eclipse.jface.util.LocalSelectionTransfer;
-import org.eclipse.jface.viewers.IStructuredSelection;
 import org.eclipse.swt.dnd.Transfer;
 import org.eclipse.swt.dnd.TransferData;
 import org.eclipse.swt.widgets.Shell;
 import org.eclipse.ui.IEditorInput;
+import org.unicase.model.ModelElement;
 import org.unicase.model.diagram.MEDiagram;
 import org.unicase.model.diagram.impl.DiagramStoreException;
+import org.unicase.ui.common.dnd.DragSourcePlaceHolder;
 
 /**
  * @author denglerm This class is a superclass for the specific
@@ -90,22 +90,11 @@ public class ModelDiagramEditor extends DiagramDocumentEditor {
 		super.initializeGraphicalViewer();
 		getDiagramGraphicalViewer().addDropTargetListener(
 				new DropTargetListener(getDiagramGraphicalViewer(),
-						LocalSelectionTransfer.getTransfer()) {
-
-					@Override
-					protected Object getJavaObject(TransferData data) {
-						return LocalSelectionTransfer.getTransfer()
-								.nativeToJava(data);
-					}
-
-				});
-		getDiagramGraphicalViewer().addDropTargetListener(
-				new DropTargetListener(getDiagramGraphicalViewer(),
 						LocalTransfer.getInstance()) {
 
 					@Override
 					protected Object getJavaObject(TransferData data) {
-						return LocalTransfer.getInstance().nativeToJava(data);
+						return DragSourcePlaceHolder.getDragSource();
 					}
 
 				});
@@ -129,23 +118,25 @@ public class ModelDiagramEditor extends DiagramDocumentEditor {
 			Collection<URI> uris = new HashSet<URI>();
 
 			Object transferedObject = getJavaObject(data);
-			if (transferedObject instanceof IStructuredSelection) {
-				IStructuredSelection selection = (IStructuredSelection) transferedObject;
-				for (Iterator it = selection.iterator(); it.hasNext();) {
+			
+			if (transferedObject instanceof List) {
+				List<ModelElement> selection = (List<ModelElement>) transferedObject;
+				for (Iterator it = selection.iterator(); it
+						.hasNext();) {
 					Object nextSelectedObject = it.next();
 					if (nextSelectedObject instanceof IAdaptable) {
 						IAdaptable adaptable = (IAdaptable) nextSelectedObject;
 						nextSelectedObject = adaptable
-								.getAdapter(EObject.class);
+						.getAdapter(EObject.class);
 					}
 
 					if (nextSelectedObject instanceof EObject) {
 						EObject modelElement = (EObject) nextSelectedObject;
 						Resource modelElementResource = modelElement
-								.eResource();
+						.eResource();
 						uris.add(modelElementResource.getURI().appendFragment(
 								modelElementResource
-										.getURIFragment(modelElement)));
+								.getURIFragment(modelElement)));
 					}
 				}
 			}
@@ -154,7 +145,7 @@ public class ModelDiagramEditor extends DiagramDocumentEditor {
 			for (Iterator<URI> it = uris.iterator(); it.hasNext();) {
 				URI nextURI = it.next();
 				EObject modelObject = getEditingDomain().getResourceSet()
-						.getEObject(nextURI, true);
+				.getEObject(nextURI, true);
 				result.add(modelObject);
 			}
 			return result;
@@ -163,7 +154,7 @@ public class ModelDiagramEditor extends DiagramDocumentEditor {
 		protected abstract Object getJavaObject(TransferData data);
 
 	}
-	
+
 	/**
 	 * @generated NOT
      * @see org.eclipse.ui.part.EditorPart#setInput(IEditorInput)

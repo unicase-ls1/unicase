@@ -2,11 +2,14 @@ package org.unicase.ui.common.dnd;
 
 import java.util.List;
 
+import org.eclipse.emf.edit.ui.dnd.LocalTransfer;
 import org.eclipse.emf.edit.ui.dnd.ViewerDragAdapter;
+import org.eclipse.jface.util.TransferDragSourceListener;
 import org.eclipse.jface.viewers.ISelection;
 import org.eclipse.jface.viewers.IStructuredSelection;
 import org.eclipse.jface.viewers.Viewer;
 import org.eclipse.swt.dnd.DragSourceEvent;
+import org.eclipse.swt.dnd.Transfer;
 import org.unicase.model.ModelElement;
 
 /**
@@ -17,11 +20,7 @@ import org.unicase.model.ModelElement;
  * @author Hodaie
  *
  */
-public class UCDragAdapter extends ViewerDragAdapter {
-
-	
-	
-
+public class UCDragAdapter extends ViewerDragAdapter implements	TransferDragSourceListener{
 
 	/**
 	 * Constructor.
@@ -37,23 +36,29 @@ public class UCDragAdapter extends ViewerDragAdapter {
 	 * {@inheritDoc}
 	 * This method extracts the viewer's selection and sets it as 
 	 * drag source in DragSourcePlaceHolder.
-	 * 
 	 */
 	@SuppressWarnings("unchecked")
 	@Override
 	public void dragStart(DragSourceEvent event) {
-		// TODO Auto-generated method stub
 		super.dragStart(event);
 		
 		List<ModelElement> dragSource = null; 
 		ISelection sel = viewer.getSelection();
 		if(sel instanceof IStructuredSelection){
 			IStructuredSelection ssel = (IStructuredSelection) sel;
-			dragSource =ssel.toList();
-			
+			dragSource = ssel.toList();
 		}
 		
 		DragSourcePlaceHolder.setDragSource(dragSource);
 		
 	}
+
+	/**
+	* {@inheritDoc}
+	* @see org.eclipse.jface.util.TransferDragSourceListener#getTransfer()
+	*/
+	public Transfer getTransfer() {
+		return LocalTransfer.getInstance();
+	}
+
 }
