@@ -1,4 +1,4 @@
-package org.unicase.test.tests.changetests.randomchange;
+package org.unicase.test.tests.changetests.randomchange.testcases;
 
 import java.util.ArrayList;
 import java.util.List;
@@ -11,6 +11,7 @@ import org.eclipse.emf.ecore.EReference;
 import org.eclipse.emf.transaction.RecordingCommand;
 import org.eclipse.emf.transaction.TransactionalEditingDomain;
 import org.unicase.model.ModelElement;
+import org.unicase.test.tests.changetests.randomchange.RandomChangeTestCase;
 
 /**
  * takes a random model element and changes one of its non-containment

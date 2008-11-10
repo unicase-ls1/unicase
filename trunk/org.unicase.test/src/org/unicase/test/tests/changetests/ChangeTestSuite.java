@@ -1,10 +1,14 @@
 package org.unicase.test.tests.changetests;
 
+import java.util.Calendar;
+
 import org.eclipse.emf.common.util.EList;
+import org.eclipse.emf.ecore.util.EcoreUtil;
 import org.eclipse.emf.transaction.RecordingCommand;
 import org.eclipse.emf.transaction.TransactionalEditingDomain;
 import org.unicase.model.Project;
 import org.unicase.test.lib.TestSuite;
+import org.unicase.ui.test.TestProjectGenerator;
 import org.unicase.workspace.ProjectSpace;
 import org.unicase.workspace.WorkspaceManager;
 import org.unicase.workspace.impl.ProjectSpaceImpl;
@@ -13,8 +17,14 @@ import org.unicase.workspace.impl.WorkspaceImpl;
 
 public abstract class ChangeTestSuite extends TestSuite {
 
+	private Project testProject;
+	private Project compareProject;
+	
 	private ProjectSpace testSpace;
 	private ProjectSpace compareSpace;
+	
+	private Long randomSeed = Calendar.getInstance().getTimeInMillis();
+	
 	private TransactionalEditingDomain domain;
 
 
@@ -59,7 +69,32 @@ public abstract class ChangeTestSuite extends TestSuite {
 		});
 	}
 
-	abstract public Project getCompareProject();
+	public Project getCompareProject(){
+		
+		if(testProject == null){
+			testProject = getTestProject();
+		}
+		if(compareProject == null){
+			System.out.println("coping test project");
+			compareProject = (Project)EcoreUtil.copy(testProject);
+			System.out.println("test project copied");
+		}
+		return compareProject;
+	}
+	
 
-	abstract public Project getTestProject(); 
+	public Project getTestProject(){
+		if(testProject == null){
+			System.out.println("creating test project");
+			testProject = new TestProjectGenerator(5, randomSeed, 3, 2, 3, 10).generateProject();
+			System.out.println("test project created");
+		}
+		return testProject;
+	}
+	
+	
+	public long getRandomSeed(){
+		return randomSeed;
+	}
+	
 }
