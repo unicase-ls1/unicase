@@ -435,6 +435,22 @@
             name="History Browser"
             restorable="true">
       </view>
+      <view
+            category="org.unicase"
+            class="org.unicase.workspace.edit.views.validationview.ValidationView"
+            id="org.unicase.ui.repository.views.ValidationView"
+            name="Validation View"
+            restorable="true">
+      </view>
    </extension>
+     <extension
+           point="org.eclipse.emf.validation.validationListeners">
+        <listener
+              class="org.unicase.workspace.edit.views.validationview.ValidationListener">
+           <clientContext
+                 id="org.unicase.model.validation">
+           </clientContext>
+        </listener>
+     </extension>
 
 </plugin>
