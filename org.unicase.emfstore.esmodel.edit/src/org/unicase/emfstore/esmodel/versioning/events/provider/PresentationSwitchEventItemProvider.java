@@ -11,7 +11,6 @@ import java.util.List;
 
 import org.eclipse.emf.common.notify.AdapterFactory;
 import org.eclipse.emf.common.notify.Notification;
-import org.eclipse.emf.ecore.EStructuralFeature;
 import org.eclipse.emf.edit.provider.ComposeableAdapterFactory;
 import org.eclipse.emf.edit.provider.IEditingDomainItemProvider;
 import org.eclipse.emf.edit.provider.IItemLabelProvider;
@@ -22,17 +21,16 @@ import org.eclipse.emf.edit.provider.ITreeItemContentProvider;
 import org.eclipse.emf.edit.provider.ItemPropertyDescriptor;
 import org.eclipse.emf.edit.provider.ViewerNotification;
 import org.unicase.emfstore.esmodel.versioning.events.EventsPackage;
-import org.unicase.emfstore.esmodel.versioning.events.ReadEvent;
-import org.unicase.model.ModelFactory;
+import org.unicase.emfstore.esmodel.versioning.events.PresentationSwitchEvent;
 
 /**
- * This is the item provider adapter for a {@link org.unicase.emfstore.esmodel.versioning.events.ReadEvent} object.
+ * This is the item provider adapter for a {@link org.unicase.emfstore.esmodel.versioning.events.PresentationSwitchEvent} object.
  * <!-- begin-user-doc -->
  * <!-- end-user-doc -->
  * @generated
  */
-public class ReadEventItemProvider extends EventItemProvider implements
-		IEditingDomainItemProvider, IStructuredItemContentProvider,
+public class PresentationSwitchEventItemProvider extends EventItemProvider
+		implements IEditingDomainItemProvider, IStructuredItemContentProvider,
 		ITreeItemContentProvider, IItemLabelProvider, IItemPropertySource {
 	/**
 	 * This constructs an instance from a factory and a notifier.
@@ -40,7 +38,7 @@ public class ReadEventItemProvider extends EventItemProvider implements
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
-	public ReadEventItemProvider(AdapterFactory adapterFactory) {
+	public PresentationSwitchEventItemProvider(AdapterFactory adapterFactory) {
 		super(adapterFactory);
 	}
 
@@ -55,28 +53,10 @@ public class ReadEventItemProvider extends EventItemProvider implements
 		if (itemPropertyDescriptors == null) {
 			super.getPropertyDescriptors(object);
 
-			addSourceViewPropertyDescriptor(object);
 			addReadViewPropertyDescriptor(object);
+			addNewPresentationPropertyDescriptor(object);
 		}
 		return itemPropertyDescriptors;
-	}
-
-	/**
-	 * This adds a property descriptor for the Source View feature.
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
-	 * @generated
-	 */
-	protected void addSourceViewPropertyDescriptor(Object object) {
-		itemPropertyDescriptors.add(createItemPropertyDescriptor(
-				((ComposeableAdapterFactory) adapterFactory)
-						.getRootAdapterFactory(), getResourceLocator(),
-				getString("_UI_ReadEvent_sourceView_feature"), getString(
-						"_UI_PropertyDescriptor_description",
-						"_UI_ReadEvent_sourceView_feature",
-						"_UI_ReadEvent_type"),
-				EventsPackage.Literals.READ_EVENT__SOURCE_VIEW, true, false,
-				false, ItemPropertyDescriptor.GENERIC_VALUE_IMAGE, null, null));
 	}
 
 	/**
@@ -86,53 +66,42 @@ public class ReadEventItemProvider extends EventItemProvider implements
 	 * @generated
 	 */
 	protected void addReadViewPropertyDescriptor(Object object) {
+		itemPropertyDescriptors.add(createItemPropertyDescriptor(
+				((ComposeableAdapterFactory) adapterFactory)
+						.getRootAdapterFactory(), getResourceLocator(),
+				getString("_UI_PresentationSwitchEvent_readView_feature"),
+				getString("_UI_PropertyDescriptor_description",
+						"_UI_PresentationSwitchEvent_readView_feature",
+						"_UI_PresentationSwitchEvent_type"),
+				EventsPackage.Literals.PRESENTATION_SWITCH_EVENT__READ_VIEW,
+				true, false, false, ItemPropertyDescriptor.GENERIC_VALUE_IMAGE,
+				null, null));
+	}
+
+	/**
+	 * This adds a property descriptor for the New Presentation feature.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 */
+	protected void addNewPresentationPropertyDescriptor(Object object) {
 		itemPropertyDescriptors
 				.add(createItemPropertyDescriptor(
 						((ComposeableAdapterFactory) adapterFactory)
-								.getRootAdapterFactory(), getResourceLocator(),
-						getString("_UI_ReadEvent_readView_feature"), getString(
+								.getRootAdapterFactory(),
+						getResourceLocator(),
+						getString("_UI_PresentationSwitchEvent_newPresentation_feature"),
+						getString(
 								"_UI_PropertyDescriptor_description",
-								"_UI_ReadEvent_readView_feature",
-								"_UI_ReadEvent_type"),
-						EventsPackage.Literals.READ_EVENT__READ_VIEW, true,
-						false, false,
+								"_UI_PresentationSwitchEvent_newPresentation_feature",
+								"_UI_PresentationSwitchEvent_type"),
+						EventsPackage.Literals.PRESENTATION_SWITCH_EVENT__NEW_PRESENTATION,
+						true, false, false,
 						ItemPropertyDescriptor.GENERIC_VALUE_IMAGE, null, null));
 	}
 
 	/**
-	 * This specifies how to implement {@link #getChildren} and is used to deduce an appropriate feature for an
-	 * {@link org.eclipse.emf.edit.command.AddCommand}, {@link org.eclipse.emf.edit.command.RemoveCommand} or
-	 * {@link org.eclipse.emf.edit.command.MoveCommand} in {@link #createCommand}.
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
-	 * @generated
-	 */
-	@Override
-	public Collection<? extends EStructuralFeature> getChildrenFeatures(
-			Object object) {
-		if (childrenFeatures == null) {
-			super.getChildrenFeatures(object);
-			childrenFeatures
-					.add(EventsPackage.Literals.READ_EVENT__MODEL_ELEMENT);
-		}
-		return childrenFeatures;
-	}
-
-	/**
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
-	 * @generated
-	 */
-	@Override
-	protected EStructuralFeature getChildFeature(Object object, Object child) {
-		// Check the type of the specified child object and return the proper feature to use for
-		// adding (see {@link AddCommand}) it as a child.
-
-		return super.getChildFeature(object, child);
-	}
-
-	/**
-	 * This returns ReadEvent.gif.
+	 * This returns PresentationSwitchEvent.gif.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
 	 * @generated
@@ -140,7 +109,7 @@ public class ReadEventItemProvider extends EventItemProvider implements
 	@Override
 	public Object getImage(Object object) {
 		return overlayImage(object, getResourceLocator().getImage(
-				"full/obj16/ReadEvent"));
+				"full/obj16/PresentationSwitchEvent"));
 	}
 
 	/**
@@ -151,10 +120,10 @@ public class ReadEventItemProvider extends EventItemProvider implements
 	 */
 	@Override
 	public String getText(Object object) {
-		Date labelValue = ((ReadEvent) object).getTimestamp();
+		Date labelValue = ((PresentationSwitchEvent) object).getTimestamp();
 		String label = labelValue == null ? null : labelValue.toString();
-		return label == null || label.length() == 0 ? getString("_UI_ReadEvent_type")
-				: getString("_UI_ReadEvent_type") + " " + label;
+		return label == null || label.length() == 0 ? getString("_UI_PresentationSwitchEvent_type")
+				: getString("_UI_PresentationSwitchEvent_type") + " " + label;
 	}
 
 	/**
@@ -168,15 +137,11 @@ public class ReadEventItemProvider extends EventItemProvider implements
 	public void notifyChanged(Notification notification) {
 		updateChildren(notification);
 
-		switch (notification.getFeatureID(ReadEvent.class)) {
-		case EventsPackage.READ_EVENT__SOURCE_VIEW:
-		case EventsPackage.READ_EVENT__READ_VIEW:
+		switch (notification.getFeatureID(PresentationSwitchEvent.class)) {
+		case EventsPackage.PRESENTATION_SWITCH_EVENT__READ_VIEW:
+		case EventsPackage.PRESENTATION_SWITCH_EVENT__NEW_PRESENTATION:
 			fireNotifyChanged(new ViewerNotification(notification, notification
 					.getNotifier(), false, true));
-			return;
-		case EventsPackage.READ_EVENT__MODEL_ELEMENT:
-			fireNotifyChanged(new ViewerNotification(notification, notification
-					.getNotifier(), true, false));
 			return;
 		}
 		super.notifyChanged(notification);
@@ -193,10 +158,6 @@ public class ReadEventItemProvider extends EventItemProvider implements
 	protected void collectNewChildDescriptors(
 			Collection<Object> newChildDescriptors, Object object) {
 		super.collectNewChildDescriptors(newChildDescriptors, object);
-
-		newChildDescriptors.add(createChildParameter(
-				EventsPackage.Literals.READ_EVENT__MODEL_ELEMENT,
-				ModelFactory.eINSTANCE.createModelElementId()));
 	}
 
 }

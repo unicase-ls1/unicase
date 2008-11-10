@@ -22,6 +22,7 @@ package org.unicase.emfstore.esmodel.versioning.events;
  * @generated
  */
 public interface PluginStartEvent extends Event {
+
 	/**
 	 * Returns the value of the '<em><b>Plugin Id</b></em>' attribute.
 	 * <!-- begin-user-doc -->

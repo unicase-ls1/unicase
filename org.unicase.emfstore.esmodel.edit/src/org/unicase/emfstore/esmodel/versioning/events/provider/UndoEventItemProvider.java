@@ -12,26 +12,24 @@ import java.util.List;
 import org.eclipse.emf.common.notify.AdapterFactory;
 import org.eclipse.emf.common.notify.Notification;
 import org.eclipse.emf.ecore.EStructuralFeature;
-import org.eclipse.emf.edit.provider.ComposeableAdapterFactory;
 import org.eclipse.emf.edit.provider.IEditingDomainItemProvider;
 import org.eclipse.emf.edit.provider.IItemLabelProvider;
 import org.eclipse.emf.edit.provider.IItemPropertyDescriptor;
 import org.eclipse.emf.edit.provider.IItemPropertySource;
 import org.eclipse.emf.edit.provider.IStructuredItemContentProvider;
 import org.eclipse.emf.edit.provider.ITreeItemContentProvider;
-import org.eclipse.emf.edit.provider.ItemPropertyDescriptor;
 import org.eclipse.emf.edit.provider.ViewerNotification;
 import org.unicase.emfstore.esmodel.versioning.events.EventsPackage;
-import org.unicase.emfstore.esmodel.versioning.events.ReadEvent;
-import org.unicase.model.ModelFactory;
+import org.unicase.emfstore.esmodel.versioning.events.UndoEvent;
+import org.unicase.emfstore.esmodel.versioning.operations.OperationsFactory;
 
 /**
- * This is the item provider adapter for a {@link org.unicase.emfstore.esmodel.versioning.events.ReadEvent} object.
+ * This is the item provider adapter for a {@link org.unicase.emfstore.esmodel.versioning.events.UndoEvent} object.
  * <!-- begin-user-doc -->
  * <!-- end-user-doc -->
  * @generated
  */
-public class ReadEventItemProvider extends EventItemProvider implements
+public class UndoEventItemProvider extends EventItemProvider implements
 		IEditingDomainItemProvider, IStructuredItemContentProvider,
 		ITreeItemContentProvider, IItemLabelProvider, IItemPropertySource {
 	/**
@@ -40,7 +38,7 @@ public class ReadEventItemProvider extends EventItemProvider implements
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
-	public ReadEventItemProvider(AdapterFactory adapterFactory) {
+	public UndoEventItemProvider(AdapterFactory adapterFactory) {
 		super(adapterFactory);
 	}
 
@@ -55,48 +53,8 @@ public class ReadEventItemProvider extends EventItemProvider implements
 		if (itemPropertyDescriptors == null) {
 			super.getPropertyDescriptors(object);
 
-			addSourceViewPropertyDescriptor(object);
-			addReadViewPropertyDescriptor(object);
 		}
 		return itemPropertyDescriptors;
-	}
-
-	/**
-	 * This adds a property descriptor for the Source View feature.
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
-	 * @generated
-	 */
-	protected void addSourceViewPropertyDescriptor(Object object) {
-		itemPropertyDescriptors.add(createItemPropertyDescriptor(
-				((ComposeableAdapterFactory) adapterFactory)
-						.getRootAdapterFactory(), getResourceLocator(),
-				getString("_UI_ReadEvent_sourceView_feature"), getString(
-						"_UI_PropertyDescriptor_description",
-						"_UI_ReadEvent_sourceView_feature",
-						"_UI_ReadEvent_type"),
-				EventsPackage.Literals.READ_EVENT__SOURCE_VIEW, true, false,
-				false, ItemPropertyDescriptor.GENERIC_VALUE_IMAGE, null, null));
-	}
-
-	/**
-	 * This adds a property descriptor for the Read View feature.
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
-	 * @generated
-	 */
-	protected void addReadViewPropertyDescriptor(Object object) {
-		itemPropertyDescriptors
-				.add(createItemPropertyDescriptor(
-						((ComposeableAdapterFactory) adapterFactory)
-								.getRootAdapterFactory(), getResourceLocator(),
-						getString("_UI_ReadEvent_readView_feature"), getString(
-								"_UI_PropertyDescriptor_description",
-								"_UI_ReadEvent_readView_feature",
-								"_UI_ReadEvent_type"),
-						EventsPackage.Literals.READ_EVENT__READ_VIEW, true,
-						false, false,
-						ItemPropertyDescriptor.GENERIC_VALUE_IMAGE, null, null));
 	}
 
 	/**
@@ -112,8 +70,7 @@ public class ReadEventItemProvider extends EventItemProvider implements
 			Object object) {
 		if (childrenFeatures == null) {
 			super.getChildrenFeatures(object);
-			childrenFeatures
-					.add(EventsPackage.Literals.READ_EVENT__MODEL_ELEMENT);
+			childrenFeatures.add(EventsPackage.Literals.UNDO_EVENT__OPERATION);
 		}
 		return childrenFeatures;
 	}
@@ -132,7 +89,7 @@ public class ReadEventItemProvider extends EventItemProvider implements
 	}
 
 	/**
-	 * This returns ReadEvent.gif.
+	 * This returns UndoEvent.gif.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
 	 * @generated
@@ -140,7 +97,7 @@ public class ReadEventItemProvider extends EventItemProvider implements
 	@Override
 	public Object getImage(Object object) {
 		return overlayImage(object, getResourceLocator().getImage(
-				"full/obj16/ReadEvent"));
+				"full/obj16/UndoEvent"));
 	}
 
 	/**
@@ -151,10 +108,10 @@ public class ReadEventItemProvider extends EventItemProvider implements
 	 */
 	@Override
 	public String getText(Object object) {
-		Date labelValue = ((ReadEvent) object).getTimestamp();
+		Date labelValue = ((UndoEvent) object).getTimestamp();
 		String label = labelValue == null ? null : labelValue.toString();
-		return label == null || label.length() == 0 ? getString("_UI_ReadEvent_type")
-				: getString("_UI_ReadEvent_type") + " " + label;
+		return label == null || label.length() == 0 ? getString("_UI_UndoEvent_type")
+				: getString("_UI_UndoEvent_type") + " " + label;
 	}
 
 	/**
@@ -168,13 +125,8 @@ public class ReadEventItemProvider extends EventItemProvider implements
 	public void notifyChanged(Notification notification) {
 		updateChildren(notification);
 
-		switch (notification.getFeatureID(ReadEvent.class)) {
-		case EventsPackage.READ_EVENT__SOURCE_VIEW:
-		case EventsPackage.READ_EVENT__READ_VIEW:
-			fireNotifyChanged(new ViewerNotification(notification, notification
-					.getNotifier(), false, true));
-			return;
-		case EventsPackage.READ_EVENT__MODEL_ELEMENT:
+		switch (notification.getFeatureID(UndoEvent.class)) {
+		case EventsPackage.UNDO_EVENT__OPERATION:
 			fireNotifyChanged(new ViewerNotification(notification, notification
 					.getNotifier(), true, false));
 			return;
@@ -195,8 +147,44 @@ public class ReadEventItemProvider extends EventItemProvider implements
 		super.collectNewChildDescriptors(newChildDescriptors, object);
 
 		newChildDescriptors.add(createChildParameter(
-				EventsPackage.Literals.READ_EVENT__MODEL_ELEMENT,
-				ModelFactory.eINSTANCE.createModelElementId()));
+				EventsPackage.Literals.UNDO_EVENT__OPERATION,
+				OperationsFactory.eINSTANCE.createCompositeOperation()));
+
+		newChildDescriptors.add(createChildParameter(
+				EventsPackage.Literals.UNDO_EVENT__OPERATION,
+				OperationsFactory.eINSTANCE.createCreateDeleteOperation()));
+
+		newChildDescriptors.add(createChildParameter(
+				EventsPackage.Literals.UNDO_EVENT__OPERATION,
+				OperationsFactory.eINSTANCE.createAttributeOperation()));
+
+		newChildDescriptors.add(createChildParameter(
+				EventsPackage.Literals.UNDO_EVENT__OPERATION,
+				OperationsFactory.eINSTANCE.createSingleReferenceOperation()));
+
+		newChildDescriptors.add(createChildParameter(
+				EventsPackage.Literals.UNDO_EVENT__OPERATION,
+				OperationsFactory.eINSTANCE.createMultiReferenceOperation()));
+
+		newChildDescriptors
+				.add(createChildParameter(
+						EventsPackage.Literals.UNDO_EVENT__OPERATION,
+						OperationsFactory.eINSTANCE
+								.createMultiReferenceMoveOperation()));
+
+		newChildDescriptors.add(createChildParameter(
+				EventsPackage.Literals.UNDO_EVENT__OPERATION,
+				OperationsFactory.eINSTANCE.createMultiAttributeOperation()));
+
+		newChildDescriptors.add(createChildParameter(
+				EventsPackage.Literals.UNDO_EVENT__OPERATION,
+				OperationsFactory.eINSTANCE.createDiagramLayoutOperation()));
+
+		newChildDescriptors
+				.add(createChildParameter(
+						EventsPackage.Literals.UNDO_EVENT__OPERATION,
+						OperationsFactory.eINSTANCE
+								.createMultiAttributeMoveOperation()));
 	}
 
 }

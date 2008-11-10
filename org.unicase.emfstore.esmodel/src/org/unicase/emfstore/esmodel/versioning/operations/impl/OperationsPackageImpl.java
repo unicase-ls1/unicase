@@ -293,6 +293,16 @@ public class OperationsPackageImpl extends EPackageImpl implements
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
+	public EAttribute getAbstractOperation_ClientDate() {
+		return (EAttribute) abstractOperationEClass.getEStructuralFeatures()
+				.get(4);
+	}
+
+	/**
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 */
 	public EClass getCompositeOperation() {
 		return compositeOperationEClass;
 	}
@@ -663,6 +673,8 @@ public class OperationsPackageImpl extends EPackageImpl implements
 		createEReference(abstractOperationEClass,
 				ABSTRACT_OPERATION__MODEL_ELEMENT_ID);
 		createEAttribute(abstractOperationEClass, ABSTRACT_OPERATION__ACCEPTED);
+		createEAttribute(abstractOperationEClass,
+				ABSTRACT_OPERATION__CLIENT_DATE);
 
 		compositeOperationEClass = createEClass(COMPOSITE_OPERATION);
 		createEReference(compositeOperationEClass,
@@ -816,6 +828,10 @@ public class OperationsPackageImpl extends EPackageImpl implements
 				AbstractOperation.class, IS_TRANSIENT, !IS_VOLATILE,
 				IS_CHANGEABLE, !IS_UNSETTABLE, !IS_ID, IS_UNIQUE, !IS_DERIVED,
 				IS_ORDERED);
+		initEAttribute(getAbstractOperation_ClientDate(), ecorePackage
+				.getEDate(), "clientDate", null, 0, 1, AbstractOperation.class,
+				!IS_TRANSIENT, !IS_VOLATILE, IS_CHANGEABLE, !IS_UNSETTABLE,
+				!IS_ID, IS_UNIQUE, !IS_DERIVED, IS_ORDERED);
 
 		EOperation op = addEOperation(abstractOperationEClass, null, "apply",
 				0, 1, IS_UNIQUE, IS_ORDERED);

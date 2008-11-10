@@ -23,6 +23,7 @@ import org.unicase.model.ModelElementId;
  * <ul>
  *   <li>{@link org.unicase.emfstore.esmodel.versioning.events.impl.ReadEventImpl#getModelElement <em>Model Element</em>}</li>
  *   <li>{@link org.unicase.emfstore.esmodel.versioning.events.impl.ReadEventImpl#getSourceView <em>Source View</em>}</li>
+ *   <li>{@link org.unicase.emfstore.esmodel.versioning.events.impl.ReadEventImpl#getReadView <em>Read View</em>}</li>
  * </ul>
  * </p>
  *
@@ -57,6 +58,26 @@ public class ReadEventImpl extends EventImpl implements ReadEvent {
 	 * @ordered
 	 */
 	protected String sourceView = SOURCE_VIEW_EDEFAULT;
+
+	/**
+	 * The default value of the '{@link #getReadView() <em>Read View</em>}' attribute.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @see #getReadView()
+	 * @generated
+	 * @ordered
+	 */
+	protected static final String READ_VIEW_EDEFAULT = null;
+
+	/**
+	 * The cached value of the '{@link #getReadView() <em>Read View</em>}' attribute.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @see #getReadView()
+	 * @generated
+	 * @ordered
+	 */
+	protected String readView = READ_VIEW_EDEFAULT;
 
 	/**
 	 * <!-- begin-user-doc -->
@@ -194,6 +215,28 @@ public class ReadEventImpl extends EventImpl implements ReadEvent {
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
+	public String getReadView() {
+		return readView;
+	}
+
+	/**
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 */
+	public void setReadView(String newReadView) {
+		String oldReadView = readView;
+		readView = newReadView;
+		if (eNotificationRequired())
+			eNotify(new ENotificationImpl(this, Notification.SET,
+					EventsPackage.READ_EVENT__READ_VIEW, oldReadView, readView));
+	}
+
+	/**
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 */
 	@Override
 	public NotificationChain eInverseRemove(InternalEObject otherEnd,
 			int featureID, NotificationChain msgs) {
@@ -218,6 +261,8 @@ public class ReadEventImpl extends EventImpl implements ReadEvent {
 			return basicGetModelElement();
 		case EventsPackage.READ_EVENT__SOURCE_VIEW:
 			return getSourceView();
+		case EventsPackage.READ_EVENT__READ_VIEW:
+			return getReadView();
 		}
 		return super.eGet(featureID, resolve, coreType);
 	}
@@ -235,6 +280,9 @@ public class ReadEventImpl extends EventImpl implements ReadEvent {
 			return;
 		case EventsPackage.READ_EVENT__SOURCE_VIEW:
 			setSourceView((String) newValue);
+			return;
+		case EventsPackage.READ_EVENT__READ_VIEW:
+			setReadView((String) newValue);
 			return;
 		}
 		super.eSet(featureID, newValue);
@@ -254,6 +302,9 @@ public class ReadEventImpl extends EventImpl implements ReadEvent {
 		case EventsPackage.READ_EVENT__SOURCE_VIEW:
 			setSourceView(SOURCE_VIEW_EDEFAULT);
 			return;
+		case EventsPackage.READ_EVENT__READ_VIEW:
+			setReadView(READ_VIEW_EDEFAULT);
+			return;
 		}
 		super.eUnset(featureID);
 	}
@@ -271,6 +322,9 @@ public class ReadEventImpl extends EventImpl implements ReadEvent {
 		case EventsPackage.READ_EVENT__SOURCE_VIEW:
 			return SOURCE_VIEW_EDEFAULT == null ? sourceView != null
 					: !SOURCE_VIEW_EDEFAULT.equals(sourceView);
+		case EventsPackage.READ_EVENT__READ_VIEW:
+			return READ_VIEW_EDEFAULT == null ? readView != null
+					: !READ_VIEW_EDEFAULT.equals(readView);
 		}
 		return super.eIsSet(featureID);
 	}
@@ -288,6 +342,8 @@ public class ReadEventImpl extends EventImpl implements ReadEvent {
 		StringBuffer result = new StringBuffer(super.toString());
 		result.append(" (sourceView: ");
 		result.append(sourceView);
+		result.append(", readView: ");
+		result.append(readView);
 		result.append(')');
 		return result.toString();
 	}

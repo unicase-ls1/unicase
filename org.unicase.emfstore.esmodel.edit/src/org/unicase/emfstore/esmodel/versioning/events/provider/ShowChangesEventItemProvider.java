@@ -12,26 +12,24 @@ import java.util.List;
 import org.eclipse.emf.common.notify.AdapterFactory;
 import org.eclipse.emf.common.notify.Notification;
 import org.eclipse.emf.ecore.EStructuralFeature;
-import org.eclipse.emf.edit.provider.ComposeableAdapterFactory;
 import org.eclipse.emf.edit.provider.IEditingDomainItemProvider;
 import org.eclipse.emf.edit.provider.IItemLabelProvider;
 import org.eclipse.emf.edit.provider.IItemPropertyDescriptor;
 import org.eclipse.emf.edit.provider.IItemPropertySource;
 import org.eclipse.emf.edit.provider.IStructuredItemContentProvider;
 import org.eclipse.emf.edit.provider.ITreeItemContentProvider;
-import org.eclipse.emf.edit.provider.ItemPropertyDescriptor;
 import org.eclipse.emf.edit.provider.ViewerNotification;
+import org.unicase.emfstore.esmodel.versioning.VersioningFactory;
 import org.unicase.emfstore.esmodel.versioning.events.EventsPackage;
-import org.unicase.emfstore.esmodel.versioning.events.ReadEvent;
-import org.unicase.model.ModelFactory;
+import org.unicase.emfstore.esmodel.versioning.events.ShowChangesEvent;
 
 /**
- * This is the item provider adapter for a {@link org.unicase.emfstore.esmodel.versioning.events.ReadEvent} object.
+ * This is the item provider adapter for a {@link org.unicase.emfstore.esmodel.versioning.events.ShowChangesEvent} object.
  * <!-- begin-user-doc -->
  * <!-- end-user-doc -->
  * @generated
  */
-public class ReadEventItemProvider extends EventItemProvider implements
+public class ShowChangesEventItemProvider extends EventItemProvider implements
 		IEditingDomainItemProvider, IStructuredItemContentProvider,
 		ITreeItemContentProvider, IItemLabelProvider, IItemPropertySource {
 	/**
@@ -40,7 +38,7 @@ public class ReadEventItemProvider extends EventItemProvider implements
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
-	public ReadEventItemProvider(AdapterFactory adapterFactory) {
+	public ShowChangesEventItemProvider(AdapterFactory adapterFactory) {
 		super(adapterFactory);
 	}
 
@@ -55,48 +53,8 @@ public class ReadEventItemProvider extends EventItemProvider implements
 		if (itemPropertyDescriptors == null) {
 			super.getPropertyDescriptors(object);
 
-			addSourceViewPropertyDescriptor(object);
-			addReadViewPropertyDescriptor(object);
 		}
 		return itemPropertyDescriptors;
-	}
-
-	/**
-	 * This adds a property descriptor for the Source View feature.
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
-	 * @generated
-	 */
-	protected void addSourceViewPropertyDescriptor(Object object) {
-		itemPropertyDescriptors.add(createItemPropertyDescriptor(
-				((ComposeableAdapterFactory) adapterFactory)
-						.getRootAdapterFactory(), getResourceLocator(),
-				getString("_UI_ReadEvent_sourceView_feature"), getString(
-						"_UI_PropertyDescriptor_description",
-						"_UI_ReadEvent_sourceView_feature",
-						"_UI_ReadEvent_type"),
-				EventsPackage.Literals.READ_EVENT__SOURCE_VIEW, true, false,
-				false, ItemPropertyDescriptor.GENERIC_VALUE_IMAGE, null, null));
-	}
-
-	/**
-	 * This adds a property descriptor for the Read View feature.
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
-	 * @generated
-	 */
-	protected void addReadViewPropertyDescriptor(Object object) {
-		itemPropertyDescriptors
-				.add(createItemPropertyDescriptor(
-						((ComposeableAdapterFactory) adapterFactory)
-								.getRootAdapterFactory(), getResourceLocator(),
-						getString("_UI_ReadEvent_readView_feature"), getString(
-								"_UI_PropertyDescriptor_description",
-								"_UI_ReadEvent_readView_feature",
-								"_UI_ReadEvent_type"),
-						EventsPackage.Literals.READ_EVENT__READ_VIEW, true,
-						false, false,
-						ItemPropertyDescriptor.GENERIC_VALUE_IMAGE, null, null));
 	}
 
 	/**
@@ -113,7 +71,9 @@ public class ReadEventItemProvider extends EventItemProvider implements
 		if (childrenFeatures == null) {
 			super.getChildrenFeatures(object);
 			childrenFeatures
-					.add(EventsPackage.Literals.READ_EVENT__MODEL_ELEMENT);
+					.add(EventsPackage.Literals.SHOW_CHANGES_EVENT__SOURCE_VERSION);
+			childrenFeatures
+					.add(EventsPackage.Literals.SHOW_CHANGES_EVENT__TARGET_VERSION);
 		}
 		return childrenFeatures;
 	}
@@ -132,7 +92,7 @@ public class ReadEventItemProvider extends EventItemProvider implements
 	}
 
 	/**
-	 * This returns ReadEvent.gif.
+	 * This returns ShowChangesEvent.gif.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
 	 * @generated
@@ -140,7 +100,7 @@ public class ReadEventItemProvider extends EventItemProvider implements
 	@Override
 	public Object getImage(Object object) {
 		return overlayImage(object, getResourceLocator().getImage(
-				"full/obj16/ReadEvent"));
+				"full/obj16/ShowChangesEvent"));
 	}
 
 	/**
@@ -151,10 +111,10 @@ public class ReadEventItemProvider extends EventItemProvider implements
 	 */
 	@Override
 	public String getText(Object object) {
-		Date labelValue = ((ReadEvent) object).getTimestamp();
+		Date labelValue = ((ShowChangesEvent) object).getTimestamp();
 		String label = labelValue == null ? null : labelValue.toString();
-		return label == null || label.length() == 0 ? getString("_UI_ReadEvent_type")
-				: getString("_UI_ReadEvent_type") + " " + label;
+		return label == null || label.length() == 0 ? getString("_UI_ShowChangesEvent_type")
+				: getString("_UI_ShowChangesEvent_type") + " " + label;
 	}
 
 	/**
@@ -168,13 +128,9 @@ public class ReadEventItemProvider extends EventItemProvider implements
 	public void notifyChanged(Notification notification) {
 		updateChildren(notification);
 
-		switch (notification.getFeatureID(ReadEvent.class)) {
-		case EventsPackage.READ_EVENT__SOURCE_VIEW:
-		case EventsPackage.READ_EVENT__READ_VIEW:
-			fireNotifyChanged(new ViewerNotification(notification, notification
-					.getNotifier(), false, true));
-			return;
-		case EventsPackage.READ_EVENT__MODEL_ELEMENT:
+		switch (notification.getFeatureID(ShowChangesEvent.class)) {
+		case EventsPackage.SHOW_CHANGES_EVENT__SOURCE_VERSION:
+		case EventsPackage.SHOW_CHANGES_EVENT__TARGET_VERSION:
 			fireNotifyChanged(new ViewerNotification(notification, notification
 					.getNotifier(), true, false));
 			return;
@@ -195,8 +151,35 @@ public class ReadEventItemProvider extends EventItemProvider implements
 		super.collectNewChildDescriptors(newChildDescriptors, object);
 
 		newChildDescriptors.add(createChildParameter(
-				EventsPackage.Literals.READ_EVENT__MODEL_ELEMENT,
-				ModelFactory.eINSTANCE.createModelElementId()));
+				EventsPackage.Literals.SHOW_CHANGES_EVENT__SOURCE_VERSION,
+				VersioningFactory.eINSTANCE.createPrimaryVersionSpec()));
+
+		newChildDescriptors.add(createChildParameter(
+				EventsPackage.Literals.SHOW_CHANGES_EVENT__TARGET_VERSION,
+				VersioningFactory.eINSTANCE.createPrimaryVersionSpec()));
+	}
+
+	/**
+	 * This returns the label text for {@link org.eclipse.emf.edit.command.CreateChildCommand}.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 */
+	@Override
+	public String getCreateChildText(Object owner, Object feature,
+			Object child, Collection<?> selection) {
+		Object childFeature = feature;
+		Object childObject = child;
+
+		boolean qualify = childFeature == EventsPackage.Literals.SHOW_CHANGES_EVENT__SOURCE_VERSION
+				|| childFeature == EventsPackage.Literals.SHOW_CHANGES_EVENT__TARGET_VERSION;
+
+		if (qualify) {
+			return getString("_UI_CreateChild_text2", new Object[] {
+					getTypeText(childObject), getFeatureText(childFeature),
+					getTypeText(owner) });
+		}
+		return super.getCreateChildText(owner, feature, child, selection);
 	}
 
 }

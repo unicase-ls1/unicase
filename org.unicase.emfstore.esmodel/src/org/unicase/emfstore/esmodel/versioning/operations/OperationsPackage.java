@@ -107,13 +107,22 @@ public interface OperationsPackage extends EPackage {
 	int ABSTRACT_OPERATION__ACCEPTED = 3;
 
 	/**
+	 * The feature id for the '<em><b>Client Date</b></em>' attribute.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 * @ordered
+	 */
+	int ABSTRACT_OPERATION__CLIENT_DATE = 4;
+
+	/**
 	 * The number of structural features of the '<em>Abstract Operation</em>' class.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
 	 * @generated
 	 * @ordered
 	 */
-	int ABSTRACT_OPERATION_FEATURE_COUNT = 4;
+	int ABSTRACT_OPERATION_FEATURE_COUNT = 5;
 
 	/**
 	 * The meta object id for the '{@link org.unicase.emfstore.esmodel.versioning.operations.impl.CompositeOperationImpl <em>Composite Operation</em>}' class.
@@ -160,6 +169,15 @@ public interface OperationsPackage extends EPackage {
 	 * @ordered
 	 */
 	int COMPOSITE_OPERATION__ACCEPTED = ABSTRACT_OPERATION__ACCEPTED;
+
+	/**
+	 * The feature id for the '<em><b>Client Date</b></em>' attribute.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 * @ordered
+	 */
+	int COMPOSITE_OPERATION__CLIENT_DATE = ABSTRACT_OPERATION__CLIENT_DATE;
 
 	/**
 	 * The feature id for the '<em><b>Sub Operations</b></em>' containment reference list.
@@ -253,6 +271,15 @@ public interface OperationsPackage extends EPackage {
 	int FEATURE_OPERATION__ACCEPTED = ABSTRACT_OPERATION__ACCEPTED;
 
 	/**
+	 * The feature id for the '<em><b>Client Date</b></em>' attribute.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 * @ordered
+	 */
+	int FEATURE_OPERATION__CLIENT_DATE = ABSTRACT_OPERATION__CLIENT_DATE;
+
+	/**
 	 * The feature id for the '<em><b>Feature Name</b></em>' attribute.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
@@ -315,6 +342,15 @@ public interface OperationsPackage extends EPackage {
 	 * @ordered
 	 */
 	int CREATE_DELETE_OPERATION__ACCEPTED = ABSTRACT_OPERATION__ACCEPTED;
+
+	/**
+	 * The feature id for the '<em><b>Client Date</b></em>' attribute.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 * @ordered
+	 */
+	int CREATE_DELETE_OPERATION__CLIENT_DATE = ABSTRACT_OPERATION__CLIENT_DATE;
 
 	/**
 	 * The feature id for the '<em><b>Delete</b></em>' attribute.
@@ -388,6 +424,15 @@ public interface OperationsPackage extends EPackage {
 	 * @ordered
 	 */
 	int ATTRIBUTE_OPERATION__ACCEPTED = FEATURE_OPERATION__ACCEPTED;
+
+	/**
+	 * The feature id for the '<em><b>Client Date</b></em>' attribute.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 * @ordered
+	 */
+	int ATTRIBUTE_OPERATION__CLIENT_DATE = FEATURE_OPERATION__CLIENT_DATE;
 
 	/**
 	 * The feature id for the '<em><b>Feature Name</b></em>' attribute.
@@ -472,6 +517,15 @@ public interface OperationsPackage extends EPackage {
 	int REFERENCE_OPERATION__ACCEPTED = FEATURE_OPERATION__ACCEPTED;
 
 	/**
+	 * The feature id for the '<em><b>Client Date</b></em>' attribute.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 * @ordered
+	 */
+	int REFERENCE_OPERATION__CLIENT_DATE = FEATURE_OPERATION__CLIENT_DATE;
+
+	/**
 	 * The feature id for the '<em><b>Feature Name</b></em>' attribute.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
@@ -552,6 +606,15 @@ public interface OperationsPackage extends EPackage {
 	 * @ordered
 	 */
 	int SINGLE_REFERENCE_OPERATION__ACCEPTED = REFERENCE_OPERATION__ACCEPTED;
+
+	/**
+	 * The feature id for the '<em><b>Client Date</b></em>' attribute.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 * @ordered
+	 */
+	int SINGLE_REFERENCE_OPERATION__CLIENT_DATE = REFERENCE_OPERATION__CLIENT_DATE;
 
 	/**
 	 * The feature id for the '<em><b>Feature Name</b></em>' attribute.
@@ -652,6 +715,15 @@ public interface OperationsPackage extends EPackage {
 	 * @ordered
 	 */
 	int MULTI_REFERENCE_OPERATION__ACCEPTED = REFERENCE_OPERATION__ACCEPTED;
+
+	/**
+	 * The feature id for the '<em><b>Client Date</b></em>' attribute.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 * @ordered
+	 */
+	int MULTI_REFERENCE_OPERATION__CLIENT_DATE = REFERENCE_OPERATION__CLIENT_DATE;
 
 	/**
 	 * The feature id for the '<em><b>Feature Name</b></em>' attribute.
@@ -763,6 +835,15 @@ public interface OperationsPackage extends EPackage {
 	int MULTI_REFERENCE_MOVE_OPERATION__ACCEPTED = FEATURE_OPERATION__ACCEPTED;
 
 	/**
+	 * The feature id for the '<em><b>Client Date</b></em>' attribute.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 * @ordered
+	 */
+	int MULTI_REFERENCE_MOVE_OPERATION__CLIENT_DATE = FEATURE_OPERATION__CLIENT_DATE;
+
+	/**
 	 * The feature id for the '<em><b>Feature Name</b></em>' attribute.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
@@ -852,6 +933,15 @@ public interface OperationsPackage extends EPackage {
 	 * @ordered
 	 */
 	int MULTI_ATTRIBUTE_OPERATION__ACCEPTED = FEATURE_OPERATION__ACCEPTED;
+
+	/**
+	 * The feature id for the '<em><b>Client Date</b></em>' attribute.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 * @ordered
+	 */
+	int MULTI_ATTRIBUTE_OPERATION__CLIENT_DATE = FEATURE_OPERATION__CLIENT_DATE;
 
 	/**
 	 * The feature id for the '<em><b>Feature Name</b></em>' attribute.
@@ -945,6 +1035,15 @@ public interface OperationsPackage extends EPackage {
 	int DIAGRAM_LAYOUT_OPERATION__ACCEPTED = ATTRIBUTE_OPERATION__ACCEPTED;
 
 	/**
+	 * The feature id for the '<em><b>Client Date</b></em>' attribute.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 * @ordered
+	 */
+	int DIAGRAM_LAYOUT_OPERATION__CLIENT_DATE = ATTRIBUTE_OPERATION__CLIENT_DATE;
+
+	/**
 	 * The feature id for the '<em><b>Feature Name</b></em>' attribute.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
@@ -1025,6 +1124,15 @@ public interface OperationsPackage extends EPackage {
 	 * @ordered
 	 */
 	int MULTI_ATTRIBUTE_MOVE_OPERATION__ACCEPTED = FEATURE_OPERATION__ACCEPTED;
+
+	/**
+	 * The feature id for the '<em><b>Client Date</b></em>' attribute.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 * @ordered
+	 */
+	int MULTI_ATTRIBUTE_MOVE_OPERATION__CLIENT_DATE = FEATURE_OPERATION__CLIENT_DATE;
 
 	/**
 	 * The feature id for the '<em><b>Feature Name</b></em>' attribute.
@@ -1115,6 +1223,17 @@ public interface OperationsPackage extends EPackage {
 	 * @generated
 	 */
 	EAttribute getAbstractOperation_Accepted();
+
+	/**
+	 * Returns the meta object for the attribute '{@link org.unicase.emfstore.esmodel.versioning.operations.AbstractOperation#getClientDate <em>Client Date</em>}'.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @return the meta object for the attribute '<em>Client Date</em>'.
+	 * @see org.unicase.emfstore.esmodel.versioning.operations.AbstractOperation#getClientDate()
+	 * @see #getAbstractOperation()
+	 * @generated
+	 */
+	EAttribute getAbstractOperation_ClientDate();
 
 	/**
 	 * Returns the meta object for class '{@link org.unicase.emfstore.esmodel.versioning.operations.CompositeOperation <em>Composite Operation</em>}'.
@@ -1557,6 +1676,15 @@ public interface OperationsPackage extends EPackage {
 		 */
 		EAttribute ABSTRACT_OPERATION__ACCEPTED = eINSTANCE
 				.getAbstractOperation_Accepted();
+
+		/**
+		 * The meta object literal for the '<em><b>Client Date</b></em>' attribute feature.
+		 * <!-- begin-user-doc -->
+		 * <!-- end-user-doc -->
+		 * @generated
+		 */
+		EAttribute ABSTRACT_OPERATION__CLIENT_DATE = eINSTANCE
+				.getAbstractOperation_ClientDate();
 
 		/**
 		 * The meta object literal for the '{@link org.unicase.emfstore.esmodel.versioning.operations.impl.CompositeOperationImpl <em>Composite Operation</em>}' class.

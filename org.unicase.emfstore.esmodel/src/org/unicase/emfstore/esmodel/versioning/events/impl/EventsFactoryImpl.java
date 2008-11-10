@@ -21,13 +21,17 @@ import org.unicase.emfstore.esmodel.versioning.events.LinkEvent;
 import org.unicase.emfstore.esmodel.versioning.events.MergeEvent;
 import org.unicase.emfstore.esmodel.versioning.events.NavigatorCreateEvent;
 import org.unicase.emfstore.esmodel.versioning.events.PerspectiveEvent;
+import org.unicase.emfstore.esmodel.versioning.events.PluginFocusEvent;
 import org.unicase.emfstore.esmodel.versioning.events.PluginStartEvent;
-import org.unicase.emfstore.esmodel.versioning.events.ReadDiagramEvent;
+import org.unicase.emfstore.esmodel.versioning.events.PresentationSwitchEvent;
 import org.unicase.emfstore.esmodel.versioning.events.ReadEvent;
 import org.unicase.emfstore.esmodel.versioning.events.RevertEvent;
+import org.unicase.emfstore.esmodel.versioning.events.ShowChangesEvent;
 import org.unicase.emfstore.esmodel.versioning.events.ShowHistoryEvent;
 import org.unicase.emfstore.esmodel.versioning.events.TraceEvent;
+import org.unicase.emfstore.esmodel.versioning.events.UndoEvent;
 import org.unicase.emfstore.esmodel.versioning.events.UpdateEvent;
+import org.unicase.emfstore.esmodel.versioning.events.Validate;
 
 /**
  * <!-- begin-user-doc -->
@@ -91,8 +95,6 @@ public class EventsFactoryImpl extends EFactoryImpl implements EventsFactory {
 			return createAnnotationEvent();
 		case EventsPackage.REVERT_EVENT:
 			return createRevertEvent();
-		case EventsPackage.READ_DIAGRAM_EVENT:
-			return createReadDiagramEvent();
 		case EventsPackage.SHOW_HISTORY_EVENT:
 			return createShowHistoryEvent();
 		case EventsPackage.PERSPECTIVE_EVENT:
@@ -105,6 +107,16 @@ public class EventsFactoryImpl extends EFactoryImpl implements EventsFactory {
 			return createTraceEvent();
 		case EventsPackage.NAVIGATOR_CREATE_EVENT:
 			return createNavigatorCreateEvent();
+		case EventsPackage.PLUGIN_FOCUS_EVENT:
+			return createPluginFocusEvent();
+		case EventsPackage.PRESENTATION_SWITCH_EVENT:
+			return createPresentationSwitchEvent();
+		case EventsPackage.UNDO_EVENT:
+			return createUndoEvent();
+		case EventsPackage.VALIDATE:
+			return createValidate();
+		case EventsPackage.SHOW_CHANGES_EVENT:
+			return createShowChangesEvent();
 		default:
 			throw new IllegalArgumentException("The class '" + eClass.getName()
 					+ "' is not a valid classifier");
@@ -206,16 +218,6 @@ public class EventsFactoryImpl extends EFactoryImpl implements EventsFactory {
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
-	public ReadDiagramEvent createReadDiagramEvent() {
-		ReadDiagramEventImpl readDiagramEvent = new ReadDiagramEventImpl();
-		return readDiagramEvent;
-	}
-
-	/**
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
-	 * @generated
-	 */
 	public ShowHistoryEvent createShowHistoryEvent() {
 		ShowHistoryEventImpl showHistoryEvent = new ShowHistoryEventImpl();
 		return showHistoryEvent;
@@ -269,6 +271,56 @@ public class EventsFactoryImpl extends EFactoryImpl implements EventsFactory {
 	public NavigatorCreateEvent createNavigatorCreateEvent() {
 		NavigatorCreateEventImpl navigatorCreateEvent = new NavigatorCreateEventImpl();
 		return navigatorCreateEvent;
+	}
+
+	/**
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 */
+	public PluginFocusEvent createPluginFocusEvent() {
+		PluginFocusEventImpl pluginFocusEvent = new PluginFocusEventImpl();
+		return pluginFocusEvent;
+	}
+
+	/**
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 */
+	public PresentationSwitchEvent createPresentationSwitchEvent() {
+		PresentationSwitchEventImpl presentationSwitchEvent = new PresentationSwitchEventImpl();
+		return presentationSwitchEvent;
+	}
+
+	/**
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 */
+	public UndoEvent createUndoEvent() {
+		UndoEventImpl undoEvent = new UndoEventImpl();
+		return undoEvent;
+	}
+
+	/**
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 */
+	public Validate createValidate() {
+		ValidateImpl validate = new ValidateImpl();
+		return validate;
+	}
+
+	/**
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 */
+	public ShowChangesEvent createShowChangesEvent() {
+		ShowChangesEventImpl showChangesEvent = new ShowChangesEventImpl();
+		return showChangesEvent;
 	}
 
 	/**

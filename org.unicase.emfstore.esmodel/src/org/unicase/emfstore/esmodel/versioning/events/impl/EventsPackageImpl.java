@@ -29,13 +29,17 @@ import org.unicase.emfstore.esmodel.versioning.events.LinkEvent;
 import org.unicase.emfstore.esmodel.versioning.events.MergeEvent;
 import org.unicase.emfstore.esmodel.versioning.events.NavigatorCreateEvent;
 import org.unicase.emfstore.esmodel.versioning.events.PerspectiveEvent;
+import org.unicase.emfstore.esmodel.versioning.events.PluginFocusEvent;
 import org.unicase.emfstore.esmodel.versioning.events.PluginStartEvent;
-import org.unicase.emfstore.esmodel.versioning.events.ReadDiagramEvent;
+import org.unicase.emfstore.esmodel.versioning.events.PresentationSwitchEvent;
 import org.unicase.emfstore.esmodel.versioning.events.ReadEvent;
 import org.unicase.emfstore.esmodel.versioning.events.RevertEvent;
+import org.unicase.emfstore.esmodel.versioning.events.ShowChangesEvent;
 import org.unicase.emfstore.esmodel.versioning.events.ShowHistoryEvent;
 import org.unicase.emfstore.esmodel.versioning.events.TraceEvent;
+import org.unicase.emfstore.esmodel.versioning.events.UndoEvent;
 import org.unicase.emfstore.esmodel.versioning.events.UpdateEvent;
+import org.unicase.emfstore.esmodel.versioning.events.Validate;
 import org.unicase.emfstore.esmodel.versioning.impl.VersioningPackageImpl;
 import org.unicase.emfstore.esmodel.versioning.operations.OperationsPackage;
 import org.unicase.emfstore.esmodel.versioning.operations.impl.OperationsPackageImpl;
@@ -116,13 +120,6 @@ public class EventsPackageImpl extends EPackageImpl implements EventsPackage {
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
-	private EClass readDiagramEventEClass = null;
-
-	/**
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
-	 * @generated
-	 */
 	private EClass showHistoryEventEClass = null;
 
 	/**
@@ -159,6 +156,41 @@ public class EventsPackageImpl extends EPackageImpl implements EventsPackage {
 	 * @generated
 	 */
 	private EClass navigatorCreateEventEClass = null;
+
+	/**
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 */
+	private EClass pluginFocusEventEClass = null;
+
+	/**
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 */
+	private EClass presentationSwitchEventEClass = null;
+
+	/**
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 */
+	private EClass undoEventEClass = null;
+
+	/**
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 */
+	private EClass validateEClass = null;
+
+	/**
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 */
+	private EClass showChangesEventEClass = null;
 
 	/**
 	 * Creates an instance of the model <b>Package</b>, registered with
@@ -311,6 +343,15 @@ public class EventsPackageImpl extends EPackageImpl implements EventsPackage {
 	 */
 	public EAttribute getReadEvent_SourceView() {
 		return (EAttribute) readEventEClass.getEStructuralFeatures().get(1);
+	}
+
+	/**
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 */
+	public EAttribute getReadEvent_ReadView() {
+		return (EAttribute) readEventEClass.getEStructuralFeatures().get(2);
 	}
 
 	/**
@@ -532,15 +573,6 @@ public class EventsPackageImpl extends EPackageImpl implements EventsPackage {
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
-	public EClass getReadDiagramEvent() {
-		return readDiagramEventEClass;
-	}
-
-	/**
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
-	 * @generated
-	 */
 	public EClass getShowHistoryEvent() {
 		return showHistoryEventEClass;
 	}
@@ -744,6 +776,120 @@ public class EventsPackageImpl extends EPackageImpl implements EventsPackage {
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
+	public EClass getPluginFocusEvent() {
+		return pluginFocusEventEClass;
+	}
+
+	/**
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 */
+	public EAttribute getPluginFocusEvent_PluginId() {
+		return (EAttribute) pluginFocusEventEClass.getEStructuralFeatures()
+				.get(0);
+	}
+
+	/**
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 */
+	public EAttribute getPluginFocusEvent_StartDate() {
+		return (EAttribute) pluginFocusEventEClass.getEStructuralFeatures()
+				.get(1);
+	}
+
+	/**
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 */
+	public EClass getPresentationSwitchEvent() {
+		return presentationSwitchEventEClass;
+	}
+
+	/**
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 */
+	public EAttribute getPresentationSwitchEvent_ReadView() {
+		return (EAttribute) presentationSwitchEventEClass
+				.getEStructuralFeatures().get(0);
+	}
+
+	/**
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 */
+	public EAttribute getPresentationSwitchEvent_NewPresentation() {
+		return (EAttribute) presentationSwitchEventEClass
+				.getEStructuralFeatures().get(1);
+	}
+
+	/**
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 */
+	public EClass getUndoEvent() {
+		return undoEventEClass;
+	}
+
+	/**
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 */
+	public EReference getUndoEvent_Operation() {
+		return (EReference) undoEventEClass.getEStructuralFeatures().get(0);
+	}
+
+	/**
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 */
+	public EClass getValidate() {
+		return validateEClass;
+	}
+
+	/**
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 */
+	public EClass getShowChangesEvent() {
+		return showChangesEventEClass;
+	}
+
+	/**
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 */
+	public EReference getShowChangesEvent_SourceVersion() {
+		return (EReference) showChangesEventEClass.getEStructuralFeatures()
+				.get(0);
+	}
+
+	/**
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 */
+	public EReference getShowChangesEvent_TargetVersion() {
+		return (EReference) showChangesEventEClass.getEStructuralFeatures()
+				.get(1);
+	}
+
+	/**
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 */
 	public EventsFactory getEventsFactory() {
 		return (EventsFactory) getEFactoryInstance();
 	}
@@ -774,6 +920,7 @@ public class EventsPackageImpl extends EPackageImpl implements EventsPackage {
 		readEventEClass = createEClass(READ_EVENT);
 		createEReference(readEventEClass, READ_EVENT__MODEL_ELEMENT);
 		createEAttribute(readEventEClass, READ_EVENT__SOURCE_VIEW);
+		createEAttribute(readEventEClass, READ_EVENT__READ_VIEW);
 
 		mergeEventEClass = createEClass(MERGE_EVENT);
 		createEAttribute(mergeEventEClass, MERGE_EVENT__NUMBER_OF_CONFLICTS);
@@ -810,8 +957,6 @@ public class EventsPackageImpl extends EPackageImpl implements EventsPackage {
 		createEAttribute(revertEventEClass,
 				REVERT_EVENT__REVERTED_CHANGES_COUNT);
 
-		readDiagramEventEClass = createEClass(READ_DIAGRAM_EVENT);
-
 		showHistoryEventEClass = createEClass(SHOW_HISTORY_EVENT);
 		createEReference(showHistoryEventEClass,
 				SHOW_HISTORY_EVENT__SOURCE_VERSION);
@@ -844,6 +989,27 @@ public class EventsPackageImpl extends EPackageImpl implements EventsPackage {
 				NAVIGATOR_CREATE_EVENT__SOURCE_SECTION);
 		createEAttribute(navigatorCreateEventEClass,
 				NAVIGATOR_CREATE_EVENT__DYNAMIC);
+
+		pluginFocusEventEClass = createEClass(PLUGIN_FOCUS_EVENT);
+		createEAttribute(pluginFocusEventEClass, PLUGIN_FOCUS_EVENT__PLUGIN_ID);
+		createEAttribute(pluginFocusEventEClass, PLUGIN_FOCUS_EVENT__START_DATE);
+
+		presentationSwitchEventEClass = createEClass(PRESENTATION_SWITCH_EVENT);
+		createEAttribute(presentationSwitchEventEClass,
+				PRESENTATION_SWITCH_EVENT__READ_VIEW);
+		createEAttribute(presentationSwitchEventEClass,
+				PRESENTATION_SWITCH_EVENT__NEW_PRESENTATION);
+
+		undoEventEClass = createEClass(UNDO_EVENT);
+		createEReference(undoEventEClass, UNDO_EVENT__OPERATION);
+
+		validateEClass = createEClass(VALIDATE);
+
+		showChangesEventEClass = createEClass(SHOW_CHANGES_EVENT);
+		createEReference(showChangesEventEClass,
+				SHOW_CHANGES_EVENT__SOURCE_VERSION);
+		createEReference(showChangesEventEClass,
+				SHOW_CHANGES_EVENT__TARGET_VERSION);
 	}
 
 	/**
@@ -893,13 +1059,17 @@ public class EventsPackageImpl extends EPackageImpl implements EventsPackage {
 		updateEventEClass.getESuperTypes().add(this.getEvent());
 		annotationEventEClass.getESuperTypes().add(this.getEvent());
 		revertEventEClass.getESuperTypes().add(this.getEvent());
-		readDiagramEventEClass.getESuperTypes().add(this.getReadEvent());
 		showHistoryEventEClass.getESuperTypes().add(this.getEvent());
 		perspectiveEventEClass.getESuperTypes().add(this.getEvent());
 		dndEventEClass.getESuperTypes().add(this.getEvent());
 		linkEventEClass.getESuperTypes().add(this.getEvent());
 		traceEventEClass.getESuperTypes().add(this.getEvent());
 		navigatorCreateEventEClass.getESuperTypes().add(this.getEvent());
+		pluginFocusEventEClass.getESuperTypes().add(this.getEvent());
+		presentationSwitchEventEClass.getESuperTypes().add(this.getEvent());
+		undoEventEClass.getESuperTypes().add(this.getEvent());
+		validateEClass.getESuperTypes().add(this.getEvent());
+		showChangesEventEClass.getESuperTypes().add(this.getEvent());
 
 		// Initialize classes and features; add operations and parameters
 		initEClass(eventEClass, Event.class, "Event", !IS_ABSTRACT,
@@ -918,6 +1088,10 @@ public class EventsPackageImpl extends EPackageImpl implements EventsPackage {
 				!IS_DERIVED, IS_ORDERED);
 		initEAttribute(getReadEvent_SourceView(), ecorePackage.getEString(),
 				"sourceView", null, 0, 1, ReadEvent.class, !IS_TRANSIENT,
+				!IS_VOLATILE, IS_CHANGEABLE, !IS_UNSETTABLE, !IS_ID, IS_UNIQUE,
+				!IS_DERIVED, IS_ORDERED);
+		initEAttribute(getReadEvent_ReadView(), ecorePackage.getEString(),
+				"readView", null, 0, 1, ReadEvent.class, !IS_TRANSIENT,
 				!IS_VOLATILE, IS_CHANGEABLE, !IS_UNSETTABLE, !IS_ID, IS_UNIQUE,
 				!IS_DERIVED, IS_ORDERED);
 
@@ -1021,10 +1195,6 @@ public class EventsPackageImpl extends EPackageImpl implements EventsPackage {
 				RevertEvent.class, !IS_TRANSIENT, !IS_VOLATILE, IS_CHANGEABLE,
 				!IS_UNSETTABLE, !IS_ID, IS_UNIQUE, !IS_DERIVED, IS_ORDERED);
 
-		initEClass(readDiagramEventEClass, ReadDiagramEvent.class,
-				"ReadDiagramEvent", !IS_ABSTRACT, !IS_INTERFACE,
-				IS_GENERATED_INSTANCE_CLASS);
-
 		initEClass(showHistoryEventEClass, ShowHistoryEvent.class,
 				"ShowHistoryEvent", !IS_ABSTRACT, !IS_INTERFACE,
 				IS_GENERATED_INSTANCE_CLASS);
@@ -1121,6 +1291,60 @@ public class EventsPackageImpl extends EPackageImpl implements EventsPackage {
 				.getEBoolean(), "dynamic", null, 0, 1,
 				NavigatorCreateEvent.class, !IS_TRANSIENT, !IS_VOLATILE,
 				IS_CHANGEABLE, !IS_UNSETTABLE, !IS_ID, IS_UNIQUE, !IS_DERIVED,
+				IS_ORDERED);
+
+		initEClass(pluginFocusEventEClass, PluginFocusEvent.class,
+				"PluginFocusEvent", !IS_ABSTRACT, !IS_INTERFACE,
+				IS_GENERATED_INSTANCE_CLASS);
+		initEAttribute(getPluginFocusEvent_PluginId(), ecorePackage
+				.getEString(), "pluginId", null, 0, 1, PluginFocusEvent.class,
+				!IS_TRANSIENT, !IS_VOLATILE, IS_CHANGEABLE, !IS_UNSETTABLE,
+				!IS_ID, IS_UNIQUE, !IS_DERIVED, IS_ORDERED);
+		initEAttribute(getPluginFocusEvent_StartDate(),
+				ecorePackage.getEDate(), "startDate", null, 0, 1,
+				PluginFocusEvent.class, !IS_TRANSIENT, !IS_VOLATILE,
+				IS_CHANGEABLE, !IS_UNSETTABLE, !IS_ID, IS_UNIQUE, !IS_DERIVED,
+				IS_ORDERED);
+
+		initEClass(presentationSwitchEventEClass,
+				PresentationSwitchEvent.class, "PresentationSwitchEvent",
+				!IS_ABSTRACT, !IS_INTERFACE, IS_GENERATED_INSTANCE_CLASS);
+		initEAttribute(getPresentationSwitchEvent_ReadView(), ecorePackage
+				.getEString(), "readView", null, 0, 1,
+				PresentationSwitchEvent.class, !IS_TRANSIENT, !IS_VOLATILE,
+				IS_CHANGEABLE, !IS_UNSETTABLE, !IS_ID, IS_UNIQUE, !IS_DERIVED,
+				IS_ORDERED);
+		initEAttribute(getPresentationSwitchEvent_NewPresentation(),
+				ecorePackage.getEString(), "newPresentation", null, 0, 1,
+				PresentationSwitchEvent.class, !IS_TRANSIENT, !IS_VOLATILE,
+				IS_CHANGEABLE, !IS_UNSETTABLE, !IS_ID, IS_UNIQUE, !IS_DERIVED,
+				IS_ORDERED);
+
+		initEClass(undoEventEClass, UndoEvent.class, "UndoEvent", !IS_ABSTRACT,
+				!IS_INTERFACE, IS_GENERATED_INSTANCE_CLASS);
+		initEReference(getUndoEvent_Operation(), theOperationsPackage
+				.getAbstractOperation(), null, "operation", null, 0, 1,
+				UndoEvent.class, !IS_TRANSIENT, !IS_VOLATILE, IS_CHANGEABLE,
+				IS_COMPOSITE, IS_RESOLVE_PROXIES, !IS_UNSETTABLE, IS_UNIQUE,
+				!IS_DERIVED, IS_ORDERED);
+
+		initEClass(validateEClass, Validate.class, "Validate", !IS_ABSTRACT,
+				!IS_INTERFACE, IS_GENERATED_INSTANCE_CLASS);
+
+		initEClass(showChangesEventEClass, ShowChangesEvent.class,
+				"ShowChangesEvent", !IS_ABSTRACT, !IS_INTERFACE,
+				IS_GENERATED_INSTANCE_CLASS);
+		initEReference(getShowChangesEvent_SourceVersion(),
+				theVersioningPackage.getPrimaryVersionSpec(), null,
+				"sourceVersion", null, 0, 1, ShowChangesEvent.class,
+				!IS_TRANSIENT, !IS_VOLATILE, IS_CHANGEABLE, IS_COMPOSITE,
+				IS_RESOLVE_PROXIES, !IS_UNSETTABLE, IS_UNIQUE, !IS_DERIVED,
+				IS_ORDERED);
+		initEReference(getShowChangesEvent_TargetVersion(),
+				theVersioningPackage.getPrimaryVersionSpec(), null,
+				"targetVersion", null, 0, 1, ShowChangesEvent.class,
+				!IS_TRANSIENT, !IS_VOLATILE, IS_CHANGEABLE, IS_COMPOSITE,
+				IS_RESOLVE_PROXIES, !IS_UNSETTABLE, IS_UNIQUE, !IS_DERIVED,
 				IS_ORDERED);
 	}
 
