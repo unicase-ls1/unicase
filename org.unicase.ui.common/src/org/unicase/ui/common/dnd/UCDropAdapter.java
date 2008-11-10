@@ -173,7 +173,7 @@ public class UCDropAdapter extends DropTargetAdapter {
 		} else if (target instanceof MEDiagram) {
 			super.drop(event);
 			MEDiagram diagram = (MEDiagram) target;
-			ActionHelper.openModelElement(diagram);
+			ActionHelper.openModelElement(diagram, this.getClass().getName());
 
 		} else {
 			domain.getCommandStack().execute(

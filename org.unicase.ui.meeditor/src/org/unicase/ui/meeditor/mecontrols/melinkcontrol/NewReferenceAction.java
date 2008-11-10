@@ -96,7 +96,7 @@ public class NewReferenceAction extends Action {
 				modelElement.eSet(eReference, newMEInstance);
 			}
 
-			ActionHelper.openModelElement(newMEInstance);
+			ActionHelper.openModelElement(newMEInstance, this.getClass().getName());
 		}
 	}
 

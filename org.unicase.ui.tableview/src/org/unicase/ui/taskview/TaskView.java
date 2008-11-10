@@ -274,7 +274,7 @@ public class TaskView extends ViewPart {
 			@Override
 			public void run() {
 				ActionHelper.openModelElement(ActionHelper
-						.getSelectedModelElement());
+						.getSelectedModelElement(), TaskView.class.getName());
 			}
 		};
 	}

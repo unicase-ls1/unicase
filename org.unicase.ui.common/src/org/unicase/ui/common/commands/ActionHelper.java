@@ -32,8 +32,6 @@ import org.eclipse.ui.PartInitException;
 import org.eclipse.ui.PlatformUI;
 import org.eclipse.ui.handlers.HandlerUtil;
 import org.eclipse.ui.handlers.IHandlerService;
-import org.unicase.emfstore.esmodel.versioning.events.EventsFactory;
-import org.unicase.emfstore.esmodel.versioning.events.ReadEvent;
 import org.unicase.model.ModelElement;
 import org.unicase.model.diagram.DiagramType;
 import org.unicase.model.diagram.MEDiagram;
@@ -41,6 +39,7 @@ import org.unicase.ui.common.exceptions.DialogHandler;
 import org.unicase.workspace.ProjectSpace;
 import org.unicase.workspace.Usersession;
 import org.unicase.workspace.WorkspaceManager;
+import org.unicase.workspace.util.WorkspaceUtil;
 
 /**
  * 
@@ -135,12 +134,18 @@ public final class ActionHelper {
 	 * 
 	 * @param me
 	 *            ModelElement to open
+	 * @param sourceView the view that requested the open model element
 	 */
-	public static void openModelElement(final ModelElement me) {
+	public static void openModelElement(final ModelElement me, final String sourceView) {
 		if (me == null) {
 			return;
 		}
-
+		
+		boolean openWithMeDiagram = false;
+		if (me instanceof MEDiagram) {
+			openWithMeDiagram = true;
+		}
+		final boolean isDiagram = openWithMeDiagram;
 		TransactionalEditingDomain domain = TransactionalEditingDomain.Registry.INSTANCE
 				.getEditingDomain("org.unicase.EditingDomain");
 		domain.getCommandStack().execute(new RecordingCommand(domain) {
@@ -149,14 +154,18 @@ public final class ActionHelper {
 				ProjectSpace activeProjectSpace = WorkspaceManager
 						.getInstance().getCurrentWorkspace()
 						.getActiveProjectSpace();
-				ReadEvent readEvent = EventsFactory.eINSTANCE.createReadEvent();
-				readEvent.setModelElement(me.getModelElementId());
-				readEvent.setTimestamp(new Date());
-				activeProjectSpace.addEvent(readEvent);
+				String readView;
+				if (isDiagram) {
+					readView = "org.unicase.ui.MEDiagramEditor";
+				}
+				else {
+					readView = "org.unicase.ui.meeditor.MEEditor";
+				}
+				WorkspaceUtil.logReadEvent(activeProjectSpace, me.getModelElementId(), sourceView, readView);
 			}
 		});
 
-		if (me instanceof MEDiagram) {
+		if (openWithMeDiagram) {
 			openMEDiagram((MEDiagram) me, false);
 		} else {
 			openMEwithMEEditor(me);

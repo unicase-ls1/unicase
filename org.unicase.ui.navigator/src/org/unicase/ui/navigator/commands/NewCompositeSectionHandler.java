@@ -58,7 +58,7 @@ public class NewCompositeSectionHandler extends AbstractHandler  {
 			}
 		});
 
-		ActionHelper.openModelElement(createCompositeSection);
+		ActionHelper.openModelElement(createCompositeSection, this.getClass().getName());
 
 		return null;
 	}

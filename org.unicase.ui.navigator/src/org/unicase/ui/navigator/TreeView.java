@@ -220,7 +220,7 @@ public class TreeView extends ViewPart  { //implements IShowInSource
 			@Override
 			public void run() {
 				ActionHelper.openModelElement(ActionHelper
-						.getSelectedModelElement());
+						.getSelectedModelElement(), TreeView.class.getName());
 			}
 		};
 

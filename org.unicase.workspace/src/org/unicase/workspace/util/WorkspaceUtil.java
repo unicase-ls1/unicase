@@ -13,7 +13,9 @@ import org.unicase.emfstore.esmodel.util.EsModelUtil;
 import org.unicase.emfstore.esmodel.versioning.PrimaryVersionSpec;
 import org.unicase.emfstore.esmodel.versioning.events.CheckoutEvent;
 import org.unicase.emfstore.esmodel.versioning.events.EventsFactory;
+import org.unicase.emfstore.esmodel.versioning.events.ReadEvent;
 import org.unicase.emfstore.esmodel.versioning.events.UpdateEvent;
+import org.unicase.model.ModelElementId;
 import org.unicase.workspace.Activator;
 import org.unicase.workspace.ProjectSpace;
 
@@ -78,5 +80,22 @@ public final class WorkspaceUtil {
 		updateEvent.setTargetVersion(EsModelUtil.clone(targetVersion));
 		updateEvent.setTimestamp(new Date());
 		projectSpace.addEvent(updateEvent);
-	}	
+	}
+	
+	/**
+	 * Log a read event to the given projectSpace.
+	 * @param projectSpace the project space
+	 * @param modelElement the model element that is read
+	 * @param sourceView the view the read originates
+	 * @param readView the view the model element is shown in
+	 */
+	public static void logReadEvent(ProjectSpace projectSpace, ModelElementId modelElement, String sourceView, String readView) {
+		ReadEvent readEvent = EventsFactory.eINSTANCE.createReadEvent();
+		readEvent.setModelElement(modelElement);
+		readEvent.setReadView(readView);
+		readEvent.setSourceView(sourceView);
+		readEvent.setTimestamp(new Date());
+		projectSpace.addEvent(readEvent);
+	}
+
 }

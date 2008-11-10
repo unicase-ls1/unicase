@@ -74,7 +74,7 @@ public class HierarchyTabComposite extends Composite {
 				IStructuredSelection sel = (IStructuredSelection) event
 						.getSelection();
 				ActionHelper.openModelElement((ModelElement) sel
-						.getFirstElement());
+						.getFirstElement(), treeViewer.getClass().getName());
 			}
 
 		});

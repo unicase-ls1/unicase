@@ -62,7 +62,7 @@ public class NewLeafSection extends AbstractHandler {
 			}
 		});
 		
-		ActionHelper.openModelElement(createLeafSection);
+		ActionHelper.openModelElement(createLeafSection, this.getClass().getName());
 
 		return null;
 	}
