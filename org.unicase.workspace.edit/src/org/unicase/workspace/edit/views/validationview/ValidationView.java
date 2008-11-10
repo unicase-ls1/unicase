@@ -77,7 +77,7 @@ public class ValidationView extends ViewPart {
 				IStructuredSelection selection = (IStructuredSelection) event.getSelection();
 				EObject me = ((IConstraintStatus)selection.getFirstElement()).getTarget();
 				if(me instanceof ModelElement) {					
-					ActionHelper.openModelElement((ModelElement) me);
+					ActionHelper.openModelElement((ModelElement) me, tableViewer.getClass().getName());
 				}
 			}
 		});
