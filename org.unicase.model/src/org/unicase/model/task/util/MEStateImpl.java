@@ -49,7 +49,7 @@ public class MEStateImpl implements MEState {
 
 			@Override
 			public void notifyChanged(Notification msg) {
-				if (!(msg.getFeatureID(ModelElement.class) == ModelPackage.MODEL_ELEMENT__STATE)) {
+				if (!msg.isTouch()&&!(msg.getFeatureID(ModelElement.class) == ModelPackage.MODEL_ELEMENT__STATE)) {
 					recursivlyUpdateStatus(getStatus());
 				}
 				// super.notifyChanged(msg);
