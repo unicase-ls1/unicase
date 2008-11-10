@@ -7,15 +7,11 @@
 
 package org.unicase.ui.common.commands;
 
-import java.util.Calendar;
-
 import org.eclipse.core.commands.AbstractHandler;
 import org.eclipse.core.commands.ExecutionEvent;
 import org.eclipse.core.commands.ExecutionException;
 import org.eclipse.emf.transaction.RecordingCommand;
 import org.eclipse.emf.transaction.TransactionalEditingDomain;
-import org.unicase.emfstore.esmodel.versioning.events.AnnotationEvent;
-import org.unicase.emfstore.esmodel.versioning.events.EventsFactory;
 import org.unicase.model.Annotation;
 import org.unicase.model.ModelElement;
 import org.unicase.model.Project;
