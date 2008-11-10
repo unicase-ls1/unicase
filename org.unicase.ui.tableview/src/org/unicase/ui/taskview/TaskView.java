@@ -30,6 +30,7 @@ import org.unicase.ui.tableview.Activator;
 import org.unicase.workspace.Workspace;
 import org.unicase.workspace.WorkspaceManager;
 import org.unicase.workspace.WorkspacePackage;
+import org.unicase.workspace.util.EventUtil;
 import org.unicase.workspace.util.NoCurrentUserException;
 import org.unicase.workspace.util.OrgUnitHelper;
 
@@ -288,6 +289,7 @@ public class TaskView extends ViewPart {
 	@Override
 	public void setFocus() {
 		viewer.refresh();
+		EventUtil.logFocusEvent("org.unicase.ui.taskview");
 	}
 
 	/**

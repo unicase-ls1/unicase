@@ -24,6 +24,8 @@ import org.eclipse.swt.dnd.DropTarget;
 import org.eclipse.swt.dnd.DropTargetEvent;
 import org.eclipse.swt.dnd.DropTargetListener;
 import org.eclipse.swt.dnd.Transfer;
+import org.eclipse.swt.events.SelectionAdapter;
+import org.eclipse.swt.events.SelectionEvent;
 import org.eclipse.swt.graphics.Font;
 import org.eclipse.swt.layout.GridData;
 import org.eclipse.swt.layout.GridLayout;
@@ -33,6 +35,7 @@ import org.eclipse.swt.widgets.Label;
 import org.eclipse.swt.widgets.ProgressBar;
 import org.eclipse.swt.widgets.TabFolder;
 import org.eclipse.swt.widgets.TabItem;
+import org.eclipse.swt.widgets.Widget;
 import org.eclipse.ui.part.ViewPart;
 import org.unicase.model.ModelElement;
 import org.unicase.model.task.ActionItem;
@@ -41,6 +44,7 @@ import org.unicase.model.task.util.TaxonomyAccess;
 import org.unicase.ui.common.MEClassLabelProvider;
 import org.unicase.ui.common.commands.ActionHelper;
 import org.unicase.workspace.WorkspaceManager;
+import org.unicase.workspace.util.EventUtil;
 
 /**
  * . This view summarizes the the progress status of a model element according
@@ -160,14 +164,12 @@ public class StatusView extends ViewPart {
 				false));
 		lblProgress.setText("Closed workitems:");
 		lblProgressName = new Label(rightComposite, SWT.NONE);
-		gridData =new GridData(SWT.FILL, SWT.TOP, false,
-				false);
+		gridData = new GridData(SWT.FILL, SWT.TOP, false, false);
 		lblProgressName.setLayoutData(gridData);
-		lblProgressName.setText(0+"/"+0);
-		
+		lblProgressName.setText(0 + "/" + 0);
+
 		pbTasks = new ProgressBar(rightComposite, SWT.HORIZONTAL);
-		gridData=new GridData(SWT.BEGINNING, SWT.CENTER, true,
-				false);
+		gridData = new GridData(SWT.BEGINNING, SWT.CENTER, true, false);
 		pbTasks.setLayoutData(gridData);
 		pbTasks.setMinimum(0);
 		pbTasks.setMaximum(100);
@@ -217,9 +219,9 @@ public class StatusView extends ViewPart {
 		int estimate = getEstimate(leafOpeners);
 		int closedTasks = getClosedTasks(leafOpeners);
 		int closedEstimate = getClosedEstimate(leafOpeners);
-		
-		lblProgressName.setText(closedTasks+"/"+tasks);
-		lblEstimateProgressName.setText(closedEstimate+"/"+estimate);
+
+		lblProgressName.setText(closedTasks + "/" + tasks);
+		lblEstimateProgressName.setText(closedEstimate + "/" + estimate);
 
 		Date latestDueDate = getLatestDueDate(leafOpeners);
 		if (latestDueDate != null) {
@@ -349,6 +351,7 @@ public class StatusView extends ViewPart {
 				new Path("icons/flatLayout.gif"), null);
 		ImageDescriptor imageDescriptor = ImageDescriptor.createFromURL(url);
 		TabItem flatTab = new TabItem(tabFolder, SWT.None);
+
 		flatTab.setText("Flat view");
 		flatTab.setImage(imageDescriptor.createImage());
 		flatTabComposite = new FlatTabComposite(tabFolder, SWT.NONE);
@@ -374,6 +377,22 @@ public class StatusView extends ViewPart {
 		userTabComposite = new UserTabComposite(tabFolder, SWT.NONE);
 		userTab.setControl(userTabComposite);
 
+		tabFolder.addSelectionListener(new SelectionAdapter() {
+
+		/**
+		 * @author helming
+		 */
+			@Override
+			public void widgetSelected(SelectionEvent e) {
+				Widget item = e.item;
+				TabItem tabItem = (TabItem) item;
+				String text = tabItem.getText();
+				EventUtil.logPresentationChangeEvent(
+						"org.unicase.ui.treeview.views.StatusView", text);
+				super.widgetSelected(e);
+			}
+
+		});
 	}
 
 	/**
@@ -419,7 +438,7 @@ public class StatusView extends ViewPart {
 	 */
 	@Override
 	public void setFocus() {
-
+		EventUtil.logFocusEvent("org.unicase.ui.treeview.views.StatusView");
 	}
 
 	/**

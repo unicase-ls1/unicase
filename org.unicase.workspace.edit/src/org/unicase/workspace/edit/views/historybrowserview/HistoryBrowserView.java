@@ -27,6 +27,7 @@ import org.unicase.workspace.WorkspaceManager;
 import org.unicase.workspace.edit.views.AbstractSCMView;
 import org.unicase.workspace.edit.views.Query;
 import org.unicase.workspace.edit.views.Query.QueryRangeType;
+import org.unicase.workspace.util.EventUtil;
 
 /**
  * . This the History Browser view. It inherits AbstractSCMView and hence has a
@@ -152,7 +153,7 @@ public class HistoryBrowserView extends AbstractSCMView {
 	 */
 	@Override
 	public void setFocus() {
-
+		EventUtil.logFocusEvent("org.unicase.ui.repository.views.HistoryView");
 	}
 
 	/**
@@ -182,8 +183,8 @@ public class HistoryBrowserView extends AbstractSCMView {
 	}
 
 	/**
-	 * This will be called to set contents of browser tab.
-	 * {@inheritDoc}
+	 * This will be called to set contents of browser tab. {@inheritDoc}
+	 * 
 	 * @see org.unicase.workspace.edit.views.AbstractSCMView#setBrowserTabControl()
 	 */
 	@Override

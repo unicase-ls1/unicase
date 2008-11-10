@@ -48,6 +48,7 @@ import org.unicase.ui.stem.views.StatusLabelProvider;
 import org.unicase.workspace.Workspace;
 import org.unicase.workspace.WorkspaceManager;
 import org.unicase.workspace.WorkspacePackage;
+import org.unicase.workspace.util.EventUtil;
 import org.unicase.workspace.util.NoCurrentUserException;
 import org.unicase.workspace.util.OrgUnitHelper;
 
@@ -144,7 +145,7 @@ public class IterationPlanningView extends ViewPart {
 
 		menuManager.add(filterToMe);
 		menuManager.add(filterToMyTeam);
-		 menuManager.add(new GantAction());
+		menuManager.add(new GantAction());
 
 		// Create the help context id for the viewer's control
 		PlatformUI.getWorkbench().getHelpSystem().setHelp(viewer.getControl(),
@@ -374,6 +375,7 @@ public class IterationPlanningView extends ViewPart {
 	@Override
 	public void setFocus() {
 		viewer.getTree().setFocus();
+		EventUtil.logFocusEvent("org.unicase.ui.treeview.views.IterationPlanningView");
 	}
 
 	private void addDNDSupport() {
