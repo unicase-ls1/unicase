@@ -822,8 +822,8 @@ public class ProjectSpaceImpl extends IdentifiableElementImpl implements
 	 * @see org.unicase.workspace.ProjectSpace#update()
 	 * @generated NOT
 	 */
-	public void update() throws EmfStoreException {
-		update(VersionSpec.HEAD_VERSION);
+	public PrimaryVersionSpec update() throws EmfStoreException {
+		return update(VersionSpec.HEAD_VERSION);
 	}
 
 	/**
@@ -832,8 +832,8 @@ public class ProjectSpaceImpl extends IdentifiableElementImpl implements
 	 * @see org.unicase.workspace.ProjectSpace#update(org.unicase.emfstore.esmodel.versioning.VersionSpec)
 	 * @generated NOT
 	 */
-	public void update(final VersionSpec version) throws EmfStoreException {
-		update(version, null);
+	public PrimaryVersionSpec update(final VersionSpec version) throws EmfStoreException {
+		return update(version, null);
 	}
 
 	/**
@@ -842,7 +842,7 @@ public class ProjectSpaceImpl extends IdentifiableElementImpl implements
 	 * @see org.unicase.workspace.ProjectSpace#update(org.unicase.emfstore.esmodel.versioning.VersionSpec)
 	 * @generated NOT
 	 */
-	public void update(final VersionSpec version, final UpdateObserver observer)
+	public PrimaryVersionSpec update(final VersionSpec version, final UpdateObserver observer)
 			throws EmfStoreException {
 
 		final ConnectionManager connectionManager = WorkspaceManager
@@ -889,7 +889,7 @@ public class ProjectSpaceImpl extends IdentifiableElementImpl implements
 
 		// notify updateObserver if there is one
 		if (observer != null && !observer.inspectChanges(changes)) {
-			return;
+			return getBaseVersion();
 		}
 		final List<ChangePackage> cps = changes;
 		for (ChangePackage change : cps) {
@@ -898,6 +898,7 @@ public class ProjectSpaceImpl extends IdentifiableElementImpl implements
 
 		setBaseVersion(resolvedVersion);
 		save();
+		return resolvedVersion;
 	}
 
 	/**
