@@ -38,7 +38,8 @@ public class ModelViewProvider extends AbstractViewProvider {
 		IElementType elementType = getSemanticElementType(semanticAdapter);
 		EObject domainElement = getSemanticElement(semanticAdapter);
 		int visualID;
-		if (semanticHint == null) {
+		if (semanticHint == null
+			|| semanticHint.equals("")) {
 			// Semantic hint is not specified. Can be a result of call from CanonicalEditPolicy.
 			// In this situation there should be NO elementType, visualID will be determined
 			// by VisualIDRegistry.getNodeVisualID() for domainElement.
