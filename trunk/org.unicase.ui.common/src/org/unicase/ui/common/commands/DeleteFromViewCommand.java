@@ -10,25 +10,18 @@ package org.unicase.ui.common.commands;
  * Contributors:
  *    IBM Corporation - initial API and implementation 
  ****************************************************************************/
-import java.util.Collection;
-import java.util.Iterator;
-
 import org.eclipse.core.commands.ExecutionException;
 import org.eclipse.core.runtime.IAdaptable;
 import org.eclipse.core.runtime.IProgressMonitor;
 import org.eclipse.core.runtime.NullProgressMonitor;
 import org.eclipse.emf.ecore.EObject;
-import org.eclipse.emf.ecore.EReference;
-import org.eclipse.emf.ecore.EStructuralFeature.Setting;
 import org.eclipse.emf.ecore.resource.Resource;
-import org.eclipse.emf.ecore.util.EcoreUtil;
 import org.eclipse.emf.transaction.util.TransactionUtil;
 import org.eclipse.gef.EditPart;
 import org.eclipse.gmf.runtime.common.core.command.CommandResult;
 import org.eclipse.gmf.runtime.common.core.command.ICommand;
 import org.eclipse.gmf.runtime.common.core.util.Log;
 import org.eclipse.gmf.runtime.common.core.util.Trace;
-import org.eclipse.gmf.runtime.emf.core.util.CrossReferenceAdapter;
 import org.eclipse.gmf.runtime.emf.type.core.ElementTypeRegistry;
 import org.eclipse.gmf.runtime.emf.type.core.IElementType;
 import org.eclipse.gmf.runtime.emf.type.core.internal.EMFTypeDebugOptions;
@@ -139,65 +132,7 @@ public class DeleteFromViewCommand
 		}
 		
 		return CommandResult.newOKCommandResult();
-	}
-	
-	/**
-	 * Tears down references to the object that we are destroying, from all other
-	 * objects in the resource set.
-	 * 
-	 * @param destructee the object being destroyed
-	 */
-	protected void tearDownIncomingReferences(EObject destructee) {
-		CrossReferenceAdapter crossReferencer = CrossReferenceAdapter
-			.getExistingCrossReferenceAdapter(destructee);
-		if (crossReferencer != null) {
-			Collection<Setting> inverseReferences = crossReferencer
-				.getInverseReferences(destructee);
-			if (inverseReferences != null) {
-				int size = inverseReferences.size();
-				if (size > 0) {
-					Setting setting;
-					EReference eRef;
-					Setting[] settings = inverseReferences
-						.toArray(new Setting[size]);
-					for (int i = 0; i < size; ++i) {
-						setting = settings[i];
-						eRef = (EReference) setting.getEStructuralFeature();
-						if (eRef.isChangeable() && !(eRef.isDerived())
-							&& !(eRef.isContainment())
-							&& !(eRef.isContainer())) {
-							EcoreUtil.remove(setting.getEObject(), eRef,
-								destructee);
-						}
-					}
-				}
-			}
-		}
-	}
-	
-	/**
-	 * Tears down outgoing unidirectional references from the object being
-	 * destroyed to all other elements in the resource set.  This is required
-	 * so that reverse-reference queries will not find the destroyed object.
-	 * 
-	 * @param destructee the object being destroyed
-	 */
-	protected void tearDownOutgoingReferences(EObject destructee) {
-		for (Iterator<EReference> iter = destructee.eClass().getEAllReferences().iterator(); iter.hasNext();) {
-			EReference reference = iter.next();
-			
-			// container/containment features are handled separately, and
-			//   bidirectional references were handled via incomings
-			if (reference.isChangeable() && !reference.isDerived()
-					&& !reference.isContainer() && !reference.isContainment()
-					&& (reference.getEOpposite() == null)) {
-				
-				if (destructee.eIsSet(reference)) {
-					destructee.eUnset(reference);
-				}
-			}
-		}
-	}
+	}	
 	
 	/**
 	 * Gets the element to be destroyed.
