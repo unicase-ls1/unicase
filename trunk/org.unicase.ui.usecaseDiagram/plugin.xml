@@ -500,6 +500,7 @@
                class="org.unicase.ui.common.diagram.DeleteFromDiagramAction"
                enablesFor="1"
                id="DeleteFromDiagramActionID"
+               icon="icons/delete_edit.gif"
                label="Delete From Diagram"
                menubarPath="additions">
          </action>
@@ -512,6 +513,7 @@
                class="org.unicase.ui.common.diagram.DeleteFromDiagramAction"
                enablesFor="1"
                id="DeleteFromDiagramActionID"
+               icon="icons/delete_edit.gif"
                label="Delete From Diagram"
                menubarPath="additions">
          </action>
