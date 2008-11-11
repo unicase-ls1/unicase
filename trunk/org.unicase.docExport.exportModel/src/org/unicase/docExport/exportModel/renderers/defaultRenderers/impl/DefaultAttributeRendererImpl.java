@@ -6,6 +6,7 @@
  */
 package org.unicase.docExport.exportModel.renderers.defaultRenderers.impl;
 
+import org.eclipse.core.runtime.IStatus;
 import org.eclipse.emf.common.util.EList;
 import org.eclipse.emf.ecore.EAttribute;
 import org.eclipse.emf.ecore.EClass;
@@ -30,6 +31,7 @@ import org.unicase.docExport.exportModel.renderers.options.ReferenceOption;
 import org.unicase.docExport.exportModel.renderers.options.SingleReferenceAttributeOption;
 import org.unicase.docExport.exportModel.renderers.options.StringAttributeOption;
 import org.unicase.model.ModelElement;
+import org.unicase.workspace.util.WorkspaceUtil;
 
 /**
  * <!-- begin-user-doc -->
@@ -170,7 +172,16 @@ public class DefaultAttributeRendererImpl extends AttributeRendererImpl implemen
 		) {
 		
 		ModelElementRenderer renderer = getModelElementRenderer(content.eClass());
-		renderer.render(content, attributeSection);
+		try {
+			renderer.render(content, attributeSection);
+		} catch (Exception e) {
+			WorkspaceUtil.log(
+					"Error in the renderer " + renderer.getClass().getSimpleName(), 
+					e, 
+					IStatus.ERROR
+				);
+		}
+		
 	}
 	
 	private ModelElementRenderer getModelElementRenderer(EClass eClass) {

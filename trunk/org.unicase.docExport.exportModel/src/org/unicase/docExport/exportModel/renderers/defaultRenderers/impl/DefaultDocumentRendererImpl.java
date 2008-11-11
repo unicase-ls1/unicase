@@ -202,7 +202,15 @@ public class DefaultDocumentRendererImpl extends DocumentRendererImpl implements
 	private void renderModelElement(UCompositeSection parent, ModelElement modelElement) {
 		ModelElementRenderer renderer = getRenderer(modelElement.eClass());
 		if (renderer != null) {
-			renderer.render(modelElement, parent);
+			try {
+				renderer.render(modelElement, parent);
+			} catch (Exception e) {
+				WorkspaceUtil.log(
+						"Error in the renderer " + renderer.getClass().getSimpleName(), 
+						e, 
+						IStatus.ERROR
+					);
+			}
 			template.addRenderedModelElement(modelElement);
 		}
 	}
