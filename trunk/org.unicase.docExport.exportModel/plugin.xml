@@ -1,0 +1,48 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<?eclipse version="3.0"?>
+
+<!--
+ <copyright>
+ </copyright>
+
+ $Id$
+-->
+
+<plugin>
+
+   <extension point="org.eclipse.emf.ecore.generated_package">
+      <package
+            uri="http://unicase.org/docExport/exportModel"
+            class="org.unicase.docExport.exportModel.ExportModelPackage"
+            genModel="model/exportModel.genmodel"/>
+   </extension>
+
+   <extension point="org.eclipse.emf.ecore.generated_package">
+      <package
+            uri="http://unicase.org/docExport/exportModel/renderers"
+            class="org.unicase.docExport.exportModel.renderers.RenderersPackage"
+            genModel="model/exportModel.genmodel"/>
+   </extension>
+
+   <extension point="org.eclipse.emf.ecore.generated_package">
+      <package
+            uri="http://unicase.org/docExport/exportModel/renderers/defaultRenderers"
+            class="org.unicase.docExport.exportModel.renderers.defaultRenderers.DefaultRenderersPackage"
+            genModel="model/exportModel.genmodel"/>
+   </extension>
+
+   <extension point="org.eclipse.emf.ecore.generated_package">
+      <package
+            uri="http://unicase.org/docExport/exportModel/renderers/specialRenderers"
+            class="org.unicase.docExport.exportModel.renderers.specialRenderers.SpecialRenderersPackage"
+            genModel="model/exportModel.genmodel"/>
+   </extension>
+
+   <extension point="org.eclipse.emf.ecore.generated_package">
+      <package
+            uri="http://unicase.org/docExport/exportModel/renderers/options"
+            class="org.unicase.docExport.exportModel.renderers.options.OptionsPackage"
+            genModel="model/exportModel.genmodel"/>
+   </extension>
+
+</plugin>
