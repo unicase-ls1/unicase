@@ -72,8 +72,8 @@ public class ExportDocument extends AbstractHandler {
 				selected += ".pdf";
 			}
 			File f = new File(selected);
-			
 			Boolean doIt = true;
+			
 			if (f.exists()) {
 				MessageBox messageBox = new MessageBox(new Shell(), 
 						SWT.YES | SWT.NO | SWT.ICON_WARNING | SWT.CENTER );
