@@ -2,7 +2,7 @@ Manifest-Version: 1.0
 Bundle-ManifestVersion: 2
 Bundle-Name: %pluginName
 Bundle-SymbolicName: org.unicase.docExport.exportModel;singleton:=true
-Bundle-Version: 0.2.10
+Bundle-Version: 0.2.11
 Bundle-ClassPath: .
 Bundle-Vendor: %providerName
 Bundle-Localization: plugin
@@ -26,8 +26,8 @@ Export-Package: org.unicase.docExport.exportModel,
  org.unicase.docExport.exportModel.util
 Require-Bundle: org.eclipse.core.runtime,
  org.eclipse.emf.ecore;visibility:=reexport,
- org.unicase.model;bundle-version="0.2.10",
- org.unicase.workspace;bundle-version="0.2.10",
+ org.unicase.model;bundle-version="0.2.11",
+ org.unicase.workspace;bundle-version="0.2.11",
  org.eclipse.emf.edit;bundle-version="2.4.0",
  org.eclipse.emf.edit.ui;bundle-version="2.4.0",
  org.eclipse.emf.transaction.ui;bundle-version="1.2.0"
