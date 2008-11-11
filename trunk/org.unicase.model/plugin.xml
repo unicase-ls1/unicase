@@ -78,10 +78,10 @@
               categories="org.unicase.model">
            <constraint
                  class="org.unicase.model.requirement.validation.UsecaseRequirementConstraint"
-                 id="org.unicase.model.requirement.UsecaseRequirement"
+                 id="org.unicase.model.requirement.UsecaseNFRequirement"
                  lang="Java"
                  mode="Batch"
-                 name="Usecase Requirement Constraint"
+                 name="Usecase NFRequirement Constraint"
                  severity="WARNING"
                  statusCode="1">
               <message>
@@ -98,6 +98,120 @@
                  statusCode="1">
               <message>
                  {0} is not connected to any identified classes.
+              </message>
+           </constraint>
+           <constraint
+                 class="org.unicase.model.requirement.validation.RequirementUsecaseConstraint"
+                 id="org.unicase.model.requirement.NFRequirementUsecase"
+                 lang="Java"
+                 mode="Batch"
+                 name="NFRequirement Usecase Constraint"
+                 severity="WARNING"
+                 statusCode="1">
+              <message>
+                 The {0} is not connected to a usecase.
+              </message>
+           </constraint>
+           <constraint
+                 class="org.unicase.model.requirement.validation.ScenarioUsecaseConstraint"
+                 id="org.unicase.model.requirement.ScenarioUsecase"
+                 lang="Java"
+                 mode="Batch"
+                 name="Scenario Usecase Constraint"
+                 severity="WARNING"
+                 statusCode="1">
+              <message>
+                 The {0} is not connected to a usecase.
+              </message>
+           </constraint>
+           <constraint
+                 class="org.unicase.model.requirement.validation.ScenarioActorInstanceConstraint"
+                 id="org.unicase.model.requirement.ScenarioActorInstance"
+                 lang="Java"
+                 mode="Batch"
+                 name="Scenario ActorInstance Constraint"
+                 severity="WARNING"
+                 statusCode="1">
+              <message>
+                 {0} is not connected to an actor instance.
+              </message>
+           </constraint>
+           <constraint
+                 class="org.unicase.model.requirement.validation.ActorInstanceActorConstraint"
+                 id="org.unicase.model.requirement.ActorInstanceActor"
+                 lang="Java"
+                 mode="Batch"
+                 name="ActorInstance Actor Constraint"
+                 severity="WARNING"
+                 statusCode="1">
+              <message>
+                 {0} is not connected to an actor.
+              </message>
+           </constraint>
+        </constraints>
+     </constraintProvider>
+     <constraintProvider
+           cache="true"
+           mode="Batch">
+        <package
+              namespaceUri="http://unicase.org/model/classes">
+        </package>
+        <constraints
+              categories="org.unicase.model">
+           <constraint
+                 class="org.unicase.model.classes.validation.ClassPackageConstraint"
+                 id="org.unicase.model.classes.ClassPackage"
+                 lang="Java"
+                 mode="Batch"
+                 name="Class Package Constraint"
+                 severity="WARNING"
+                 statusCode="1">
+              <message>
+                 {0} is not contained in a package.
+              </message>
+           </constraint>
+        </constraints>
+     </constraintProvider>
+     <constraintProvider
+           cache="true"
+           mode="Batch">
+        <package
+              namespaceUri="http://unicase.org/model/document">
+        </package>
+        <constraints
+              categories="org.unicase.model">
+           <constraint
+                 class="org.unicase.model.document.validation.SectionAnnotationConstraint"
+                 id="org.unicase.model.document.SectionAnnotation"
+                 lang="Java"
+                 mode="Batch"
+                 name="Section Annotation Constraint"
+                 severity="WARNING"
+                 statusCode="1">
+              <message>
+                 {0} has annotations, this should be avoided.
+              </message>
+           </constraint>
+        </constraints>
+     </constraintProvider>
+     <constraintProvider
+           cache="true"
+           mode="Batch">
+        <package
+              namespaceUri="http://unicase.org/model">
+        </package>
+        <constraints
+              categories="org.unicase.model">
+           <constraint
+                 class="org.unicase.model.validation.ModelElementNewNameConstraint"
+                 id="org.unicase.model.MENewName"
+                 lang="Java"
+                 mode="Batch"
+                 name="ModelElement new Name Constraint"
+                 severity="WARNING"
+                 statusCode="1">
+              <message>
+                 {0} has a default name, please change.
               </message>
            </constraint>
         </constraints>

@@ -8,7 +8,6 @@ import org.eclipse.emf.validation.EMFEventType;
 import org.eclipse.emf.validation.IValidationContext;
 import org.unicase.model.requirement.FunctionalRequirement;
 import org.unicase.model.requirement.UseCase;
-import org.unicase.model.task.ActionItem;
 
 /**
  * Checks whether a usecase is connected to a functional requirement.
@@ -27,11 +26,12 @@ public class UsecaseRequirementConstraint extends AbstractModelConstraint {
 
 		if (eType == EMFEventType.NULL) {
 			if (eObj instanceof UseCase) {
-				EList<FunctionalRequirement> functionalRequirements = ((UseCase) eObj).getFunctionalRequirements();
-				if (functionalRequirements==null) {
+				EList<FunctionalRequirement> functionalRequirements = ((UseCase) eObj)
+						.getFunctionalRequirements();
+				if (functionalRequirements.size() < 1) {
 					return ctx.createFailureStatus(new Object[] { eObj.eClass()
 							.getName()
-							+ ": '" + ((ActionItem) eObj).getName() + "'" });
+							+ ": '" + ((UseCase) eObj).getName() + "'" });
 				}
 			}
 		}
