@@ -472,21 +472,26 @@
          sequence="F5"/>
    </extension>
    
-    <extension point="org.eclipse.gmf.runtime.common.ui.services.action.contributionItemProviders">
-<contributionItemProvider class="org.eclipse.gmf.runtime.diagram.ui.providers.DiagramContributionItemProvider" checkPluginLoaded="false">
-<Priority name="Low"/>
-<popupContribution class="org.eclipse.gmf.runtime.diagram.ui.providers.DiagramContextMenuProvider">
-<popupStructuredContributionCriteria objectClass="org.eclipse.gmf.runtime.diagram.ui.editparts.DiagramEditPartt"/>
-<popupPredefinedItem id="deleteFromDiagramAction" remove="true"/>
-</popupContribution>
-</contributionItemProvider>
+<extension point="org.eclipse.ui.popupMenus">
+      <objectContribution
+            adaptable="false"
+            id="DeleteFromDiagramActionComponent"
+            objectClass="org.unicase.ui.componentDiagram.edit.parts.ComponentEditPart">
+         <action
+               class="org.unicase.ui.common.diagram.DeleteFromDiagramAction"
+               enablesFor="1"
+               icon="icons/delete_edit.gif"
+               id="DeleteFromDiagramActionID"
+               label="Delete From Diagram">
+         </action>
+      </objectContribution>
 </extension>
 
 <extension point="org.eclipse.ui.popupMenus">
       <objectContribution
             adaptable="false"
             id="DeleteFromDiagramActionComponent"
-            objectClass="org.unicase.ui.componentDiagram.edit.parts.ComponentEditPart">
+            objectClass="org.unicase.ui.componentDiagram.edit.parts.Component2EditPart">
          <action
                class="org.unicase.ui.common.diagram.DeleteFromDiagramAction"
                enablesFor="1"
