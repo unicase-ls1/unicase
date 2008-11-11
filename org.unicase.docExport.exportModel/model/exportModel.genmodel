@@ -1,0 +1,127 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<genmodel:GenModel xmi:version="2.0"
+    xmlns:xmi="http://www.omg.org/XMI" xmlns:ecore="http://www.eclipse.org/emf/2002/Ecore"
+    xmlns:genmodel="http://www.eclipse.org/emf/2002/GenModel" modelDirectory="/org.unicase.docExport.exportModel/src"
+    modelPluginID="org.unicase.docExport.exportModel" modelName="ExportModel" importerID="org.eclipse.emf.importer.ecore"
+    complianceLevel="5.0" copyrightFields="false" usedGenPackages="platform:/plugin/org.eclipse.emf.ecore/model/Ecore.genmodel#//ecore">
+  <foreignModel>exportModel.ecore</foreignModel>
+  <genPackages prefix="ExportModel" basePackage="org.unicase.docExport" disposableProviderFactory="true"
+      ecorePackage="exportModel.ecore#/">
+    <genClasses ecoreClass="exportModel.ecore#//Template">
+      <genFeatures property="None" children="true" createChild="true" ecoreFeature="ecore:EReference exportModel.ecore#//Template/modelElementRendererMapping"/>
+      <genFeatures property="None" children="true" createChild="true" ecoreFeature="ecore:EReference exportModel.ecore#//Template/layoutOptions"/>
+      <genFeatures property="None" children="true" createChild="true" ecoreFeature="ecore:EReference exportModel.ecore#//Template/globalRendererOptions"/>
+      <genFeatures createChild="false" ecoreFeature="ecore:EAttribute exportModel.ecore#//Template/name"/>
+    </genClasses>
+    <nestedGenPackages prefix="Renderers" basePackage="org.unicase.docExport.exportModel"
+        disposableProviderFactory="true" ecorePackage="exportModel.ecore#//renderers">
+      <genClasses image="false" ecoreClass="exportModel.ecore#//renderers/ModelElementRenderer">
+        <genFeatures property="None" children="true" createChild="true" ecoreFeature="ecore:EReference exportModel.ecore#//renderers/ModelElementRenderer/rendererOptions"/>
+        <genFeatures notify="false" createChild="false" propertySortChoices="true"
+            ecoreFeature="ecore:EReference exportModel.ecore#//renderers/ModelElementRenderer/template"/>
+      </genClasses>
+      <genClasses image="false" ecoreClass="exportModel.ecore#//renderers/AttributeRenderer">
+        <genFeatures notify="false" createChild="false" propertySortChoices="true"
+            ecoreFeature="ecore:EReference exportModel.ecore#//renderers/AttributeRenderer/attributeOption"/>
+      </genClasses>
+      <genClasses image="false" ecoreClass="exportModel.ecore#//renderers/DocumentRenderer"/>
+      <genClasses ecoreClass="exportModel.ecore#//renderers/ModelElementRendererMapping">
+        <genFeatures property="None" children="true" createChild="true" ecoreFeature="ecore:EReference exportModel.ecore#//renderers/ModelElementRendererMapping/renderer"/>
+        <genFeatures createChild="false" ecoreFeature="ecore:EAttribute exportModel.ecore#//renderers/ModelElementRendererMapping/eClassName"/>
+      </genClasses>
+      <genClasses ecoreClass="exportModel.ecore#//renderers/AttributeRendererMapping">
+        <genFeatures property="None" children="true" createChild="true" ecoreFeature="ecore:EReference exportModel.ecore#//renderers/AttributeRendererMapping/attributeRenderer"/>
+        <genFeatures createChild="false" ecoreFeature="ecore:EAttribute exportModel.ecore#//renderers/AttributeRendererMapping/featureName"/>
+      </genClasses>
+      <nestedGenPackages prefix="DefaultRenderers" basePackage="org.unicase.docExport.exportModel.renderers"
+          disposableProviderFactory="true" ecorePackage="exportModel.ecore#//renderers/defaultRenderers">
+        <genClasses ecoreClass="exportModel.ecore#//renderers/defaultRenderers/DefaultModelElementRenderer">
+          <genFeatures property="None" children="true" createChild="true" ecoreFeature="ecore:EReference exportModel.ecore#//renderers/defaultRenderers/DefaultModelElementRenderer/attributeRendererMapping"/>
+        </genClasses>
+        <genClasses ecoreClass="exportModel.ecore#//renderers/defaultRenderers/DefaultAttributeRenderer"/>
+        <genClasses ecoreClass="exportModel.ecore#//renderers/defaultRenderers/DefaultDocumentRenderer"/>
+      </nestedGenPackages>
+      <nestedGenPackages prefix="SpecialRenderers" basePackage="org.unicase.docExport.exportModel.renderers"
+          disposableProviderFactory="true" ecorePackage="exportModel.ecore#//renderers/specialRenderers">
+        <genClasses ecoreClass="exportModel.ecore#//renderers/specialRenderers/MeetingRenderer"/>
+        <genClasses ecoreClass="exportModel.ecore#//renderers/specialRenderers/MilestoneRenderer"/>
+      </nestedGenPackages>
+      <nestedGenPackages prefix="Options" basePackage="org.unicase.docExport.exportModel.renderers"
+          disposableProviderFactory="true" ecorePackage="exportModel.ecore#//renderers/options">
+        <genEnums typeSafeEnumCompatible="false" ecoreEnum="exportModel.ecore#//renderers/options/FontFamily">
+          <genEnumLiterals ecoreEnumLiteral="exportModel.ecore#//renderers/options/FontFamily/ARIAL"/>
+          <genEnumLiterals ecoreEnumLiteral="exportModel.ecore#//renderers/options/FontFamily/VERDANA"/>
+          <genEnumLiterals ecoreEnumLiteral="exportModel.ecore#//renderers/options/FontFamily/TIMES_NEW_ROMAN"/>
+          <genEnumLiterals ecoreEnumLiteral="exportModel.ecore#//renderers/options/FontFamily/HELVETICA"/>
+        </genEnums>
+        <genEnums typeSafeEnumCompatible="false" ecoreEnum="exportModel.ecore#//renderers/options/ListStyle">
+          <genEnumLiterals ecoreEnumLiteral="exportModel.ecore#//renderers/options/ListStyle/BULLETED"/>
+          <genEnumLiterals ecoreEnumLiteral="exportModel.ecore#//renderers/options/ListStyle/JUST_NEW_LINES"/>
+          <genEnumLiterals ecoreEnumLiteral="exportModel.ecore#//renderers/options/ListStyle/SEPERATED_LIST"/>
+          <genEnumLiterals ecoreEnumLiteral="exportModel.ecore#//renderers/options/ListStyle/NUMBERED"/>
+          <genEnumLiterals ecoreEnumLiteral="exportModel.ecore#//renderers/options/ListStyle/ALPHA"/>
+        </genEnums>
+        <genEnums typeSafeEnumCompatible="false" ecoreEnum="exportModel.ecore#//renderers/options/PageNumberingStyle">
+          <genEnumLiterals ecoreEnumLiteral="exportModel.ecore#//renderers/options/PageNumberingStyle/PAGE_ONLY"/>
+          <genEnumLiterals ecoreEnumLiteral="exportModel.ecore#//renderers/options/PageNumberingStyle/PAGE_OF_PAGE_COUNT"/>
+          <genEnumLiterals ecoreEnumLiteral="exportModel.ecore#//renderers/options/PageNumberingStyle/EMPTY"/>
+        </genEnums>
+        <genClasses image="false" ecoreClass="exportModel.ecore#//renderers/options/RendererOption">
+          <genFeatures createChild="false" ecoreFeature="ecore:EAttribute exportModel.ecore#//renderers/options/RendererOption/name"/>
+        </genClasses>
+        <genClasses image="false" ecoreClass="exportModel.ecore#//renderers/options/AttributeOption">
+          <genFeatures createChild="false" ecoreFeature="ecore:EAttribute exportModel.ecore#//renderers/options/AttributeOption/hide"/>
+          <genFeatures createChild="false" ecoreFeature="ecore:EAttribute exportModel.ecore#//renderers/options/AttributeOption/overwriteGlobalOption"/>
+        </genClasses>
+        <genClasses ecoreClass="exportModel.ecore#//renderers/options/SingleReferenceAttributeOption">
+          <genFeatures notify="false" createChild="false" propertySortChoices="true"
+              ecoreFeature="ecore:EReference exportModel.ecore#//renderers/options/SingleReferenceAttributeOption/globalOption"/>
+        </genClasses>
+        <genClasses ecoreClass="exportModel.ecore#//renderers/options/MultiReferenceAttributeOption">
+          <genFeatures notify="false" createChild="false" propertySortChoices="true"
+              ecoreFeature="ecore:EReference exportModel.ecore#//renderers/options/MultiReferenceAttributeOption/globalOption"/>
+          <genFeatures property="None" children="true" createChild="true" ecoreFeature="ecore:EReference exportModel.ecore#//renderers/options/MultiReferenceAttributeOption/listOption"/>
+        </genClasses>
+        <genClasses ecoreClass="exportModel.ecore#//renderers/options/ReferenceOption">
+          <genFeatures property="None" children="true" createChild="true" ecoreFeature="ecore:EReference exportModel.ecore#//renderers/options/ReferenceOption/textOption"/>
+        </genClasses>
+        <genClasses ecoreClass="exportModel.ecore#//renderers/options/StringAttributeOption">
+          <genFeatures notify="false" createChild="false" propertySortChoices="true"
+              ecoreFeature="ecore:EReference exportModel.ecore#//renderers/options/StringAttributeOption/globalOption"/>
+          <genFeatures property="None" children="true" createChild="true" ecoreFeature="ecore:EReference exportModel.ecore#//renderers/options/StringAttributeOption/textOption"/>
+        </genClasses>
+        <genClasses ecoreClass="exportModel.ecore#//renderers/options/LayoutOptions">
+          <genFeatures createChild="false" ecoreFeature="ecore:EAttribute exportModel.ecore#//renderers/options/LayoutOptions/coverText"/>
+          <genFeatures property="None" children="true" createChild="true" ecoreFeature="ecore:EReference exportModel.ecore#//renderers/options/LayoutOptions/coverTextTextOption"/>
+          <genFeatures property="None" children="true" createChild="true" ecoreFeature="ecore:EReference exportModel.ecore#//renderers/options/LayoutOptions/defaultTextOption"/>
+          <genFeatures property="None" children="true" createChild="true" ecoreFeature="ecore:EReference exportModel.ecore#//renderers/options/LayoutOptions/sectionTextOption"/>
+          <genFeatures createChild="false" ecoreFeature="ecore:EAttribute exportModel.ecore#//renderers/options/LayoutOptions/hideAnnotations"/>
+          <genFeatures createChild="false" ecoreFeature="ecore:EAttribute exportModel.ecore#//renderers/options/LayoutOptions/hideAttachments"/>
+          <genFeatures createChild="false" ecoreFeature="ecore:EAttribute exportModel.ecore#//renderers/options/LayoutOptions/hideIncomingDocumentReferences"/>
+          <genFeatures createChild="false" ecoreFeature="ecore:EAttribute exportModel.ecore#//renderers/options/LayoutOptions/pageNumberingStyle"/>
+          <genFeatures createChild="false" ecoreFeature="ecore:EAttribute exportModel.ecore#//renderers/options/LayoutOptions/hideModelElementImages"/>
+          <genFeatures property="None" children="true" createChild="true" ecoreFeature="ecore:EReference exportModel.ecore#//renderers/options/LayoutOptions/modelElementTextOption"/>
+        </genClasses>
+        <genClasses ecoreClass="exportModel.ecore#//renderers/options/ListOption">
+          <genFeatures createChild="false" ecoreFeature="ecore:EAttribute exportModel.ecore#//renderers/options/ListOption/listStyle"/>
+        </genClasses>
+        <genClasses ecoreClass="exportModel.ecore#//renderers/options/TextOption">
+          <genFeatures createChild="false" ecoreFeature="ecore:EAttribute exportModel.ecore#//renderers/options/TextOption/fontFamily"/>
+          <genFeatures createChild="false" ecoreFeature="ecore:EAttribute exportModel.ecore#//renderers/options/TextOption/fontSize"/>
+          <genFeatures createChild="false" ecoreFeature="ecore:EAttribute exportModel.ecore#//renderers/options/TextOption/bold"/>
+          <genFeatures createChild="false" ecoreFeature="ecore:EAttribute exportModel.ecore#//renderers/options/TextOption/underline"/>
+          <genFeatures property="None" children="true" createChild="true" ecoreFeature="ecore:EReference exportModel.ecore#//renderers/options/TextOption/fontColor"/>
+        </genClasses>
+        <genClasses image="false" ecoreClass="exportModel.ecore#//renderers/options/ReferenceAttributeOption">
+          <genFeatures createChild="false" ecoreFeature="ecore:EAttribute exportModel.ecore#//renderers/options/ReferenceAttributeOption/contained"/>
+          <genFeatures property="None" children="true" createChild="true" ecoreFeature="ecore:EReference exportModel.ecore#//renderers/options/ReferenceAttributeOption/referenceOption"/>
+        </genClasses>
+        <genClasses ecoreClass="exportModel.ecore#//renderers/options/UColor">
+          <genFeatures createChild="false" ecoreFeature="ecore:EAttribute exportModel.ecore#//renderers/options/UColor/red"/>
+          <genFeatures createChild="false" ecoreFeature="ecore:EAttribute exportModel.ecore#//renderers/options/UColor/green"/>
+          <genFeatures createChild="false" ecoreFeature="ecore:EAttribute exportModel.ecore#//renderers/options/UColor/blue"/>
+        </genClasses>
+      </nestedGenPackages>
+    </nestedGenPackages>
+  </genPackages>
+</genmodel:GenModel>
