@@ -1,20 +1,18 @@
-package org.unicase.model.requirement.validation;
+package org.unicase.model.validation;
 
 import org.eclipse.core.runtime.IStatus;
-import org.eclipse.emf.common.util.EList;
 import org.eclipse.emf.ecore.EObject;
 import org.eclipse.emf.validation.AbstractModelConstraint;
 import org.eclipse.emf.validation.EMFEventType;
 import org.eclipse.emf.validation.IValidationContext;
-import org.unicase.model.requirement.FunctionalRequirement;
-import org.unicase.model.requirement.UseCase;
+import org.unicase.model.ModelElement;
 
 /**
- * Checks whether a usecase is connected to a functional requirement.
+ * Checks whether a model element has a default "new: ..." name.
  * 
  * @author wesendonk
  */
-public class UsecaseRequirementConstraint extends AbstractModelConstraint {
+public class ModelElementNewNameConstraint extends AbstractModelConstraint {
 
 	/**
 	 * {@inheritDoc}
@@ -25,13 +23,12 @@ public class UsecaseRequirementConstraint extends AbstractModelConstraint {
 		EMFEventType eType = ctx.getEventType();
 
 		if (eType == EMFEventType.NULL) {
-			if (eObj instanceof UseCase) {
-				EList<FunctionalRequirement> functionalRequirements = ((UseCase) eObj)
-						.getFunctionalRequirements();
-				if (functionalRequirements.size() < 1) {
+			if (eObj instanceof ModelElement) {
+				String name = ((ModelElement) eObj).getName();
+				if (name.equals("new "+eObj.eClass().getName())) {
 					return ctx.createFailureStatus(new Object[] { eObj.eClass()
 							.getName()
-							+ ": '" + ((UseCase) eObj).getName() + "'" });
+							+ ": '" + ((ModelElement) eObj).getName() + "'" });
 				}
 			}
 		}

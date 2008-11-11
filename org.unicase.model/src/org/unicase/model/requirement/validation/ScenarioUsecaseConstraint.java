@@ -6,15 +6,15 @@ import org.eclipse.emf.ecore.EObject;
 import org.eclipse.emf.validation.AbstractModelConstraint;
 import org.eclipse.emf.validation.EMFEventType;
 import org.eclipse.emf.validation.IValidationContext;
-import org.unicase.model.requirement.FunctionalRequirement;
+import org.unicase.model.requirement.Scenario;
 import org.unicase.model.requirement.UseCase;
 
 /**
- * Checks whether a usecase is connected to a functional requirement.
+ * Checks whether a scenario is connected to a usecase.
  * 
- * @author wesendonk
+ * @author wesendon
  */
-public class UsecaseRequirementConstraint extends AbstractModelConstraint {
+public class ScenarioUsecaseConstraint extends AbstractModelConstraint {
 
 	/**
 	 * {@inheritDoc}
@@ -25,13 +25,12 @@ public class UsecaseRequirementConstraint extends AbstractModelConstraint {
 		EMFEventType eType = ctx.getEventType();
 
 		if (eType == EMFEventType.NULL) {
-			if (eObj instanceof UseCase) {
-				EList<FunctionalRequirement> functionalRequirements = ((UseCase) eObj)
-						.getFunctionalRequirements();
-				if (functionalRequirements.size() < 1) {
+			if (eObj instanceof Scenario) {
+				EList<UseCase> useCases = ((Scenario) eObj).getInstantiatedUseCases();
+				if (useCases.size() < 1) {
 					return ctx.createFailureStatus(new Object[] { eObj.eClass()
 							.getName()
-							+ ": '" + ((UseCase) eObj).getName() + "'" });
+							+ ": '" + ((Scenario) eObj).getName() + "'" });
 				}
 			}
 		}

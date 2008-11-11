@@ -8,7 +8,6 @@ import org.eclipse.emf.validation.EMFEventType;
 import org.eclipse.emf.validation.IValidationContext;
 import org.unicase.model.classes.Class;
 import org.unicase.model.requirement.UseCase;
-import org.unicase.model.task.ActionItem;
 
 /**
  * Checks whether a usecase is connected to a identified class.
@@ -28,10 +27,10 @@ public class UsecaseIdentifiedClassConstraint extends AbstractModelConstraint {
 		if (eType == EMFEventType.NULL) {
 			if (eObj instanceof UseCase) {
 				EList<Class> identifiedClasses = ((UseCase) eObj).getIdentifiedClasses();
-				if (identifiedClasses == null) {
+				if (identifiedClasses.size()<1) {
 					return ctx.createFailureStatus(new Object[] { eObj.eClass()
 							.getName()
-							+ ": '" + ((ActionItem) eObj).getName() + "'" });
+							+ ": '" + ((UseCase) eObj).getName() + "'" });
 				}
 			}
 		}
