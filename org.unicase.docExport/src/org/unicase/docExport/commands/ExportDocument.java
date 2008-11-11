@@ -1,6 +1,8 @@
 package org.unicase.docExport.commands;
 
+import java.awt.Desktop;
 import java.io.File;
+import java.io.IOException;
 import java.lang.reflect.InvocationTargetException;
 
 import org.eclipse.core.commands.AbstractHandler;
@@ -64,7 +66,13 @@ public class ExportDocument extends AbstractHandler {
 	    String selected = fd.open();
 		
 		if (selected != null) {
+			
+			Path path = new Path(selected);
+			if (path.getFileExtension() == null) {
+				selected += ".pdf";
+			}
 			File f = new File(selected);
+			
 			Boolean doIt = true;
 			if (f.exists()) {
 				MessageBox messageBox = new MessageBox(new Shell(), 
@@ -78,10 +86,6 @@ public class ExportDocument extends AbstractHandler {
 			} 
 			
 			if (doIt) { 
-				Path path = new Path(selected);
-				if (path.getFileExtension() == null) {
-					selected += ".pdf";
-				}
 				
 				DocumentExport docExport;
 				
@@ -117,6 +121,16 @@ public class ExportDocument extends AbstractHandler {
 				//dialog.open();
 				try {
 					dialog.run(true, true, docExport);
+					try {
+			               File file = new File(selected);
+			               Desktop.getDesktop().open(file);
+			           } catch (IOException e) {
+							MessageBox messageBox = new MessageBox(new Shell(), 
+									SWT.ERROR| SWT.CENTER );
+							messageBox.setMessage("Can't open the file " + selected + "\n" + e.getMessage());
+							messageBox.setText("Error");
+							messageBox.open();
+			           }
 				} catch (InvocationTargetException e) {
 					MessageBox finished = new MessageBox(new Shell(), SWT.OK | SWT.ICON_WORKING);
 					finished.setText("Export status");

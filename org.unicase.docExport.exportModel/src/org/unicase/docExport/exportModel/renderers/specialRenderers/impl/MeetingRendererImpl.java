@@ -394,6 +394,15 @@ public class MeetingRendererImpl extends ModelElementRendererImpl implements Mee
 				par2.setIndentionLeft(2);
 				workItemSection.add(par2);
 			}
+			
+			if (issue.getSolution() != null) {
+				UParagraph solution = new UParagraph(
+						"Solution: " + issue.getSolution().getName(), 
+						workItemTextOption
+					);
+				solution.setIndentionLeft(2);
+				workItemSection.add(solution);
+			}
 		}
 	}
 	
