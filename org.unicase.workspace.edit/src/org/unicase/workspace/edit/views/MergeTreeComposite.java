@@ -20,7 +20,7 @@ import org.unicase.emfstore.esmodel.versioning.operations.AbstractOperation;
  * @author Shterev
  * 
  */
-public class MergeTreeComposite extends ChangesTreeComposite {
+public class MergeTreeComposite extends ChangesCheckboxTreeComposite {
 
 	private TreeViewerColumn statusColumn;
 

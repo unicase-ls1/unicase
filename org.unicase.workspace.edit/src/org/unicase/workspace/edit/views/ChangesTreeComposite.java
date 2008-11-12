@@ -163,6 +163,7 @@ public class ChangesTreeComposite extends Composite {
 		super(parent, style);
 		this.setLayout(new GridLayout(2, false));
 		createTreeViewer();
+		initTreeViewer();
 	}
 
 	private void createAffectedTableComposite(final ILabelProvider emfProvider,
@@ -199,15 +200,22 @@ public class ChangesTreeComposite extends Composite {
 		affectedTable.setInput(new Object());
 	}
 
-	private void createTreeViewer() {
-		final ILabelProvider emfProvider = new AdapterFactoryLabelProvider(
-				new ComposedAdapterFactory(
-						ComposedAdapterFactory.Descriptor.Registry.INSTANCE));
+	/**
+	 * Method for creating the {@link TreeViewer}.
+	 */
+	protected void createTreeViewer() {
 		treeViewer = new TreeViewer(this, SWT.FULL_SELECTION);
+	}
+
+	private void initTreeViewer() {
+	
 		Tree tree = treeViewer.getTree();
 		tree.setLayoutData(new GridData(SWT.FILL, SWT.FILL, true, true));
 		tree.setHeaderVisible(true);
 		tree.setLinesVisible(true);
+		final ILabelProvider emfProvider = new AdapterFactoryLabelProvider(
+				new ComposedAdapterFactory(
+						ComposedAdapterFactory.Descriptor.Registry.INSTANCE));
 		treeViewer.setContentProvider(new ChangesTreeContentProvider());
 		treeViewer.addSelectionChangedListener(new ISelectionChangedListener() {
 			public void selectionChanged(SelectionChangedEvent event) {
@@ -326,6 +334,14 @@ public class ChangesTreeComposite extends Composite {
 	 */
 	public TreeViewer getTreeViewer() {
 		return treeViewer;
+	}
+
+	/**
+	 * Setter for the {@link TreeViewer}.
+	 * @param treeViewer the {@link TreeViewer}
+	 */
+	public void setTreeViewer(TreeViewer treeViewer) {
+		this.treeViewer = treeViewer;
 	}
 
 }
