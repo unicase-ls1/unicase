@@ -75,11 +75,12 @@ public class MEDateControl extends AbstractMEControl implements MEControl {
 	public Control createControl(Composite parent, int style) {
 		Composite composite = getToolkit().createComposite(parent);
 		composite.setLayout(new GridLayout(2, false));
+		composite.setBackgroundMode(SWT.INHERIT_FORCE);
 
-		widget = new CDateTime(composite, CDT.BORDER
-				| CDT.COMPACT);
+//		 The picker (CDT.DROP_DOWN) is deactivated on purpose
+		widget = new CDateTime(composite, CDT.BORDER);
 		widget.setLayoutData(new GridData(SWT.FILL, SWT.FILL, true, true));
-		widget.setPattern("dd.MM.yyyy hh:mm");
+		widget.setPattern("dd.MM.yyyy HH:mm");
 		update();
 		widget.addFocusListener(new FocusListener() {
 
