@@ -303,6 +303,7 @@ public class SingleUseCaseStepControl extends AbstractMEControl{
 		
 		includeLinkControl = cFactory.createControl(pDescriptorIncluded);
 		cIncludeLink = includeLinkControl.createControl(includeComposite, parentStyle);
+		cIncludeLink.setBackground(mainComposite.getBackground());
 		
 		includeComposite.layout();
 	}
