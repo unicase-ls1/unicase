@@ -17,8 +17,8 @@ import org.eclipse.emf.transaction.RecordingCommand;
 import org.eclipse.emf.transaction.TransactionalEditingDomain;
 import org.eclipse.emf.transaction.util.TransactionUtil;
 import org.eclipse.swt.SWT;
-import org.eclipse.swt.events.SelectionEvent;
-import org.eclipse.swt.events.SelectionListener;
+import org.eclipse.swt.events.FocusEvent;
+import org.eclipse.swt.events.FocusListener;
 import org.eclipse.swt.layout.GridData;
 import org.eclipse.swt.layout.GridLayout;
 import org.eclipse.swt.nebula.widgets.cdatetime.CDT;
@@ -32,8 +32,7 @@ import org.eclipse.ui.forms.widgets.FormToolkit;
  * 
  * @author shterev
  */
-public class MEDateControl extends AbstractMEControl implements MEControl,
-		SelectionListener {
+public class MEDateControl extends AbstractMEControl implements MEControl {
 
 	private EAttribute attribute;
 	private CDateTime widget;
@@ -77,35 +76,31 @@ public class MEDateControl extends AbstractMEControl implements MEControl,
 		Composite composite = getToolkit().createComposite(parent);
 		composite.setLayout(new GridLayout(2, false));
 
-		widget = new CDateTime(composite, CDT.BORDER | CDT.DROP_DOWN
+		widget = new CDateTime(composite, CDT.BORDER
 				| CDT.COMPACT);
 		widget.setLayoutData(new GridData(SWT.FILL, SWT.FILL, true, true));
-		widget.setFormat(CDT.DATE_MEDIUM | CDT.TIME_SHORT);
-		widget.addSelectionListener(this);
+		widget.setPattern("dd.MM.yyyy hh:mm");
 		update();
-		return composite;
+		widget.addFocusListener(new FocusListener() {
 
-	}
-
-	/**
-	 * {@inheritDoc}
-	 */
-	public void widgetSelected(SelectionEvent e) {
-		// nothing to do here
-	}
-
-	/**
-	 * {@inheritDoc}
-	 */
-	public void widgetDefaultSelected(SelectionEvent e) {
-		TransactionalEditingDomain domain = TransactionUtil
-				.getEditingDomain(getModelElement());
-		domain.getCommandStack().execute(new RecordingCommand(domain) {
-			@Override
-			protected void doExecute() {
-				getModelElement().eSet(attribute, widget.getSelection());
+			public void focusGained(FocusEvent e) {
+				//nothing to do here
 			}
+
+			public void focusLost(FocusEvent e) {
+				TransactionalEditingDomain domain = TransactionUtil
+						.getEditingDomain(getModelElement());
+				domain.getCommandStack().execute(new RecordingCommand(domain) {
+					@Override
+					protected void doExecute() {
+						getModelElement()
+								.eSet(attribute, widget.getSelection());
+					}
+				});
+			}
+
 		});
+		return composite;
 	}
 
 	private void update() {
