@@ -260,7 +260,8 @@ public class SingleUseCaseStepControl extends AbstractMEControl{
 		textControlDescription = cFactory.createControl(pDescriptorDescription);
 		cDescription = textControlDescription.createControl(textComposite, parentStyle);
 		GridDataFactory.fillDefaults().align(SWT.FILL, SWT.TOP).hint(250, 150).grab(true, false).applyTo(cDescription);
-				
+		
+		cDescription.setBackground(mainComposite.getBackground());
 		textComposite.layout();
 		
 		

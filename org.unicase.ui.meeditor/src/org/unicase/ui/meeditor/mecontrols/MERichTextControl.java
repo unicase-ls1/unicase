@@ -118,6 +118,7 @@ public class MERichTextControl extends AbstractMEControl {
 		viewer.setDocument(new Document());
 
 		text = viewer.getTextWidget();
+		text.setBackground(Display.getCurrent().getSystemColor(SWT.COLOR_WHITE));
 		text.setSize(10, 100);
 		text.addFocusListener(new FocusAdapter() {
 
