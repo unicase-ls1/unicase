@@ -27,6 +27,7 @@ import org.unicase.emfstore.exceptions.EmfStoreException;
 import org.unicase.ui.common.exceptions.DialogHandler;
 import org.unicase.workspace.ProjectSpace;
 import org.unicase.workspace.Usersession;
+import org.unicase.workspace.WorkspaceManager;
 import org.unicase.workspace.edit.dialogs.LoginDialog;
 import org.unicase.workspace.edit.views.dialogs.CommitDialog;
 import org.unicase.workspace.exceptions.NoLocalChangesException;
@@ -54,15 +55,25 @@ public class CommitProjectHandler extends ProjectActionHandler implements
 	 */
 	public Object execute(ExecutionEvent event) throws ExecutionException {
 
-		final ProjectSpace projectSpace = getProjectSpace(event);
-
+		ProjectSpace projectSpace = getProjectSpace(event);
+		if (projectSpace == null) {
+			ProjectSpace activeProjectSpace = WorkspaceManager.getInstance()
+					.getCurrentWorkspace().getActiveProjectSpace();
+			if (activeProjectSpace == null) {
+				MessageDialog.openInformation(shell, "Information",
+						"You must select the Project");
+				return null;
+			}
+			projectSpace = activeProjectSpace;
+		}
+		final ProjectSpace finalProjectSpace = projectSpace;
 		TransactionalEditingDomain domain = TransactionalEditingDomain.Registry.INSTANCE
 				.getEditingDomain("org.unicase.EditingDomain");
 		domain.getCommandStack().execute(new RecordingCommand(domain) {
 
 			@Override
 			protected void doExecute() {
-				commitWithoutCommand(projectSpace);
+				commitWithoutCommand(finalProjectSpace);
 			}
 
 		});
@@ -75,10 +86,9 @@ public class CommitProjectHandler extends ProjectActionHandler implements
 		ProgressMonitorDialog progressDialog = new ProgressMonitorDialog(
 				PlatformUI.getWorkbench().getActiveWorkbenchWindow().getShell());
 		progressDialog.open();
-		progressDialog.getProgressMonitor().beginTask("Commit project...",
-				100);
+		progressDialog.getProgressMonitor().beginTask("Commit project...", 100);
 		progressDialog.getProgressMonitor().worked(10);
-		
+
 		// initially setting the status as successful in case the user
 		// is already logged in
 		int loginStatus = LoginDialog.SUCCESSFUL;

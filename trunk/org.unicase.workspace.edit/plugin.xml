@@ -452,5 +452,21 @@
            </clientContext>
         </listener>
      </extension>
+     
+     <extension
+           point="org.eclipse.ui.bindings">
+        <key
+              commandId="org.unicase.workspace.edit.commitProject"
+              contextId="org.eclipse.ui.contexts.window"
+              schemeId="org.eclipse.ui.defaultAcceleratorConfiguration"
+              sequence="Alt+C">
+        </key>
+        <key
+              commandId="org.unicase.workspace.edit.updateProject"
+              contextId="org.eclipse.ui.contexts.window"
+              schemeId="org.eclipse.ui.defaultAcceleratorConfiguration"
+              sequence="Alt+U">
+        </key>
+     </extension>
 
 </plugin>
