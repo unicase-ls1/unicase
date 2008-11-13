@@ -1,4 +1,4 @@
-package org.unicase.ui.common.commands;
+package org.unicase.ui.common.handlers;
 
 import java.util.ArrayList;
 import java.util.Collection;
@@ -18,6 +18,7 @@ import org.eclipse.ui.PlatformUI;
 import org.eclipse.ui.dialogs.ElementListSelectionDialog;
 import org.unicase.model.ModelElement;
 import org.unicase.model.Project;
+import org.unicase.ui.common.commands.ActionHelper;
 import org.unicase.workspace.ProjectSpace;
 import org.unicase.workspace.WorkspaceManager;
 
@@ -28,32 +29,32 @@ import org.unicase.workspace.WorkspaceManager;
  * @author Hamid
  */
 
-public class ShortcutHandler extends AbstractHandler implements IHandler {
+public class OpenMEShortcutHandler extends AbstractHandler implements IHandler {
 
 	private Project project;
-	private Shell shell;
 
 	/**
 	 * Default constructor.
 	 */
-	public ShortcutHandler() {
-		shell = PlatformUI.getWorkbench().getActiveWorkbenchWindow().getShell();
-		// HB: Check this on bigger screens.
-		shell.setLocation(220, 135);
+	public OpenMEShortcutHandler() {
+
 	}
 
 	/**
-	 * Opens a element selection dialog.
-	 * {@inheritDoc}
+	 * Opens a element selection dialog. {@inheritDoc}
 	 */
 	public Object execute(ExecutionEvent event) throws ExecutionException {
-		ProjectSpace workspace = WorkspaceManager.getInstance()
+		Shell shell = PlatformUI.getWorkbench().getActiveWorkbenchWindow()
+				.getShell();
+		ProjectSpace projectSpace = WorkspaceManager.getInstance()
 				.getCurrentWorkspace().getActiveProjectSpace();
-		project = workspace.getProject();
-		if (project == null) {
-			MessageDialog.openInformation(shell, "Info", "Select the Project");
 
-		} else{
+		if (projectSpace == null) {
+			MessageDialog.openInformation(shell, "Information",
+					"You must select the Project");
+		} else {
+
+			project = projectSpace.getProject();
 			List<ModelElement> modelElements = new ArrayList<ModelElement>();
 			modelElements.addAll(project.getAllModelElements());
 			showShortcutDialog(shell, modelElements, "select model element",
@@ -67,11 +68,15 @@ public class ShortcutHandler extends AbstractHandler implements IHandler {
 	 * This shows a standard dialog with some given initial contents to select
 	 * model elements.
 	 * 
-	 * @param shell The parent shell
-	 * @param initialContent The list of model elements to select from
-	 * @param title The title of the dialog
-	 * @param message the message of the dialog
-	 * @return The selected elements 
+	 * @param shell
+	 *            The parent shell
+	 * @param initialContent
+	 *            The list of model elements to select from
+	 * @param title
+	 *            The title of the dialog
+	 * @param message
+	 *            the message of the dialog
+	 * @return The selected elements
 	 */
 	public Object[] showShortcutDialog(Shell shell,
 			Collection<?> initialContent, String title, String message) {
@@ -79,17 +84,9 @@ public class ShortcutHandler extends AbstractHandler implements IHandler {
 		// adapterFactory an adapter factory that yield adapters that
 		// implement the various item label provider interfaces.
 
-		ILabelProvider renderer = new AdapterFactoryLabelProvider(new ComposedAdapterFactory(
-				ComposedAdapterFactory.Descriptor.Registry.INSTANCE));
-		/**
-		 * Creates a list selection dialog..
-		 * 
-		 * @param parent
-		 *            the parent widget.
-		 * @param renderer
-		 *            the label renderer.
-		 */
-
+		ILabelProvider renderer = new AdapterFactoryLabelProvider(
+				new ComposedAdapterFactory(
+						ComposedAdapterFactory.Descriptor.Registry.INSTANCE));
 		ElementListSelectionDialog dialog = new ElementListSelectionDialog(
 				shell.getShell(), renderer);
 		Object[] items = initialContent.toArray(new Object[initialContent
@@ -104,11 +101,9 @@ public class ShortcutHandler extends AbstractHandler implements IHandler {
 		if (dialog.open() == Window.OK) {
 			result = dialog.getResult();
 		}
-		/**
-		 * modelelemnt to open
-		 */
+
 		ModelElement mod = (ModelElement) dialog.getFirstResult();
-		ActionHelper.openModelElement(mod, this.getClass().getName());
+		ActionHelper.openModelElement(mod, "org.unicase.ui.OpenMEShortcut");
 		return result;
 	}
 
