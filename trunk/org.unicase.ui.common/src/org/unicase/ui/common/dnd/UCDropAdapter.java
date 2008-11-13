@@ -37,8 +37,10 @@ import org.unicase.model.diagram.MEDiagram;
 import org.unicase.model.document.CompositeSection;
 import org.unicase.model.document.LeafSection;
 import org.unicase.model.document.Section;
+import org.unicase.model.meeting.WorkItemMeetingSection;
 import org.unicase.model.task.ActionItem;
 import org.unicase.model.task.TaskFactory;
+import org.unicase.model.task.WorkItem;
 import org.unicase.model.task.WorkPackage;
 import org.unicase.ui.common.commands.ActionHelper;
 
@@ -81,6 +83,13 @@ public class UCDropAdapter extends DropTargetAdapter {
 		this.viewer = viewer;
 	}
 
+	/**
+	 * This checks drop target and drop source to be not Null.
+	 * 
+	 * @param event
+	 *            DropTargetEvent
+	 * @return
+	 */
 	@SuppressWarnings("unchecked")
 	private boolean canDrop(DropTargetEvent event) {
 		boolean result = true;
@@ -104,6 +113,7 @@ public class UCDropAdapter extends DropTargetAdapter {
 	@Override
 	public void drop(final DropTargetEvent event) {
 
+		// check if drop target and drop source are available
 		if (!canDrop(event)) {
 			return;
 		}
@@ -130,28 +140,13 @@ public class UCDropAdapter extends DropTargetAdapter {
 		if (target instanceof WorkPackage && !(dropee instanceof Annotation)) {
 			// create an ActionItem for each dropee
 			// add the AI to target
-			dropMEOnWorkpackage(source, target);
+			dropMEOnWorkpackage(target, source);
 
-		} else if (target.eContainer() instanceof WorkPackage
-				&& !(dropee instanceof Annotation)) {
-			// when a model element is dropped on an item in a workpackage
-			// create an ActionItem for each dropee
-			// add the AI to target.eContainer
-			domain.getCommandStack().execute(
-					new RecordingCommand((TransactionalEditingDomain) domain) {
-						@Override
-						protected void doExecute() {
-							for (ModelElement me : source) {
-								ActionItem ai = TaskFactory.eINSTANCE
-										.createActionItem();
-								ai.setName("New Action Item relating "
-										+ me.getName());
-								ai.getAnnotatedModelElements().add(me);
-								((WorkPackage) target.eContainer())
-										.getContainedWorkItems().add(ai);
-							}
-						}
-					});
+		} else if (target instanceof WorkItemMeetingSection
+				&& dropee instanceof WorkItem) {
+
+			dropWorkItemOnMeetingSection((WorkItemMeetingSection) target,
+					source);
 
 		} else if ((dropee instanceof Annotation)
 				&& !(target instanceof Section || target instanceof WorkPackage || target
@@ -188,8 +183,28 @@ public class UCDropAdapter extends DropTargetAdapter {
 		}
 	}
 
-	private void dropMEOnWorkpackage(final List<ModelElement> source,
-			final ModelElement target) {
+	private void dropWorkItemOnMeetingSection(final WorkItemMeetingSection target,
+			final List<ModelElement> source) {
+
+		domain.getCommandStack().execute(
+				new RecordingCommand((TransactionalEditingDomain) domain) {
+					@Override
+					protected void doExecute() {
+						for (ModelElement me : source) {
+							if (me instanceof WorkItem) {
+								target.getIncludedWorkItems()
+										.add((WorkItem) me);
+							}
+						}
+
+					}
+				});
+
+	}
+
+	private void dropMEOnWorkpackage(final ModelElement target,
+			final List<ModelElement> source) {
+
 		domain.getCommandStack().execute(
 				new RecordingCommand((TransactionalEditingDomain) domain) {
 					@Override
@@ -207,22 +222,27 @@ public class UCDropAdapter extends DropTargetAdapter {
 				});
 	}
 
-	
 	/**
 	 * Returns if target has a containment of type refType.
-	 * @param target target
-	 * @param refType reference type to check for its existence in target
+	 * 
+	 * @param target
+	 *            target
+	 * @param refType
+	 *            reference type to check for its existence in target
 	 * @return if target has such a reference type
 	 */
-	private boolean hasThisContainmentReference(ModelElement target, EClass refType){
-		
+	private boolean hasThisContainmentReference(ModelElement target,
+			EClass refType) {
+
 		boolean result = false;
 		final List<EReference> targetReferences = target.eClass()
 				.getEAllReferences();
-		
+
 		for (EReference ref : targetReferences) {
-			if (ref.getEReferenceType().equals(refType)
-					&& ref.isContainment()) {
+			// ZH I think here we should also check
+			// if ref.getEReferenceType().isSuperTypeOf(refType);
+			if (ref.getEReferenceType().equals(refType) && ref.isContainment()) {
+				ref.getEReferenceType().isSuperTypeOf(refType);
 				result = true;
 				break;
 			}
@@ -230,12 +250,11 @@ public class UCDropAdapter extends DropTargetAdapter {
 
 		return result;
 	}
-	
+
 	@SuppressWarnings("unchecked")
 	private void dropContainment(DropTargetEvent event, ModelElement target,
 			List<ModelElement> source) {
 
-		
 		EReference theRef = getSourceRefForThisTarget(target, source);
 		if (theRef == null) {
 			return;
@@ -247,11 +266,13 @@ public class UCDropAdapter extends DropTargetAdapter {
 
 	}
 
-	
 	/**
 	 * Returns the EReference in target, which corresponds to EClass of source.
-	 * @param target target
-	 * @param source source
+	 * 
+	 * @param target
+	 *            target
+	 * @param source
+	 *            source
 	 * @return the EReference of target
 	 */
 	private EReference getSourceRefForThisTarget(ModelElement target,
@@ -276,8 +297,21 @@ public class UCDropAdapter extends DropTargetAdapter {
 		return null;
 	}
 
+	/**
+	 * drop after.
+	 * 
+	 * @param target
+	 * @param source
+	 */
 	private void dropAfter(final ModelElement target,
 			final List<ModelElement> source) {
+
+		ModelElement dropee = source.get(0);
+		if (target.eContainer() instanceof WorkPackage
+				&& !(dropee instanceof Annotation)) {
+			dropMEOnWorkpackage((ModelElement) target.eContainer(), source);
+			return;
+		}
 
 		domain.getCommandStack().execute(
 				new RecordingCommand((TransactionalEditingDomain) domain) {
@@ -292,6 +326,43 @@ public class UCDropAdapter extends DropTargetAdapter {
 
 	}
 
+	/**
+	 * drop before.
+	 * 
+	 * @param target
+	 *            target
+	 * @param source
+	 *            souerce
+	 */
+	private void dropBefore(final ModelElement target,
+			final List<ModelElement> source) {
+
+		ModelElement dropee = source.get(0);
+		if (target.eContainer() instanceof WorkPackage
+				&& !(dropee instanceof Annotation)) {
+			dropMEOnWorkpackage((ModelElement) target.eContainer(), source);
+			return;
+		}
+
+		domain.getCommandStack().execute(
+				new RecordingCommand((TransactionalEditingDomain) domain) {
+
+					@Override
+					protected void doExecute() {
+						doDropBefore(target, source);
+
+					}
+
+				});
+
+	}
+
+	/**
+	 * do drop after.
+	 * 
+	 * @param target
+	 * @param source
+	 */
 	@SuppressWarnings("unchecked")
 	private void doDropAfter(final ModelElement target,
 			final List<ModelElement> source) {
@@ -320,35 +391,60 @@ public class UCDropAdapter extends DropTargetAdapter {
 	}
 
 	/**
+	 * do drop before.
 	 * 
 	 * @param target
 	 *            target
-	 * @param dropee
-	 *            dropee
-	 * @return boolean
+	 * @param source
+	 *            source
 	 */
-	protected boolean haveSameEContainer(ModelElement target,
-			ModelElement dropee) {
-
-		return target.eContainer().equals(dropee.eContainer());
-	}
-
-	private void dropBefore(final ModelElement target,
+	@SuppressWarnings("unchecked")
+	private void doDropBefore(final ModelElement target,
 			final List<ModelElement> source) {
+		int targetIndex = getTargetIndex(target, source);
+		if (targetIndex == -1) {
+			return;
+		}
 
-		domain.getCommandStack().execute(
-				new RecordingCommand((TransactionalEditingDomain) domain) {
+		EReference theRef = getTargetContainerRef(target, source);
+		if (theRef == null) {
+			return;
+		}
 
-					@Override
-					protected void doExecute() {
-						doDropBefore(target, source);
+		Object object = target.eContainer().eGet(theRef);
+		EList<EObject> eList = (EList<EObject>) object;
+		targetIndex = eList.indexOf(target);
+		if (targetIndex == 0) {
+			if (haveSameEContainer(target, source.get(0))) {
+				for (int i = source.size() - 1; i >= 0; i--) {
+					eList.move(0, source.get(i));
+				}
 
-					}
+			} else {
+				eList.addAll(0, source);
+			}
+		} else {
+			if (haveSameEContainer(target, source.get(0))) {
+				for (int i = source.size() - 1; i >= 0; i--) {
+					eList.move(targetIndex, source.get(i));
+				}
 
-				});
-
+			} else {
+				eList.addAll(targetIndex, source);
+			}
+		}
 	}
 
+	/**
+	 * This return the EReference of container of the target, matching type of
+	 * source.
+	 * 
+	 * @param target
+	 *            drop target
+	 * @param source
+	 *            drag source
+	 * @return
+	 */
 	private EReference getTargetContainerRef(ModelElement target,
 			List<ModelElement> source) {
 
@@ -374,6 +470,16 @@ public class UCDropAdapter extends DropTargetAdapter {
 
 	}
 
+	/**
+	 * 
+	 * This returns the position of a drop target within its container.
+	 * 
+	 * @param target
+	 *            drop target
+	 * @param source
+	 *            drag source
+	 * @return
+	 */
 	@SuppressWarnings("unchecked")
 	private int getTargetIndex(ModelElement target, List<ModelElement> source) {
 		int targetIndex = -1;
@@ -402,6 +508,14 @@ public class UCDropAdapter extends DropTargetAdapter {
 		return targetIndex;
 	}
 
+	/**
+	 * Currently not supported.
+	 * 
+	 * @param source
+	 *            drag source
+	 * @param target
+	 *            drop target
+	 */
 	@SuppressWarnings("unused")
 	private void dropMany(final List<ModelElement> source,
 			final ModelElement target) {
@@ -423,7 +537,7 @@ public class UCDropAdapter extends DropTargetAdapter {
 		if (!hasThisReference) {
 			return;
 		}
-				
+
 		final EReference thisReference = tmpReference;
 		domain.getCommandStack().execute(
 				new RecordingCommand((TransactionalEditingDomain) domain) {
@@ -437,6 +551,13 @@ public class UCDropAdapter extends DropTargetAdapter {
 				});
 	}
 
+	/**
+	 * 
+	 * 
+	 * @param diagram
+	 * @param dropee
+	 * @return
+	 */
 	private boolean isElementOfDiagram(MEDiagram diagram, EObject dropee) {
 		if (dropee instanceof MEDiagram) {
 			return false;
@@ -477,24 +598,29 @@ public class UCDropAdapter extends DropTargetAdapter {
 	protected void helper(DropTargetEvent event) {
 
 		event.detail = DND.DROP_COPY;
-		setEventFeedback(event);
+		setInitialEventFeedback(event);
 
+		// check if we have a drop target and drop source
 		if (!canDrop(event)) {
 			return;
 		}
+
+		// extract drop target and drop source
 		ModelElement target = (ModelElement) event.item.getData();
 		List<ModelElement> source = (List<ModelElement>) DragSourcePlaceHolder
 				.getDragSource();
 		ModelElement dropee = source.get(0);
 
+		// check if a drop can occur for this target and source
 		if (!canDrop(event, source, target, dropee)) {
 			return;
 		}
 
-		if(!hasThisContainmentReference(target, dropee.eClass())){
+		// check if target has any containment matching source
+		if (!hasThisContainmentReference(target, dropee.eClass())) {
 			event.detail = DND.DROP_NONE;
 		}
-		
+
 		EClass annotation = ModelPackage.eINSTANCE.getAnnotation();
 		if (annotation.isSuperTypeOf(dropee.eClass())) {
 			event.detail = event.detail | DND.DROP_COPY;
@@ -508,30 +634,48 @@ public class UCDropAdapter extends DropTargetAdapter {
 				event.detail = event.detail | DND.DROP_COPY;
 			}
 		}
-		if (target instanceof WorkPackage
-				|| target.eContainer() instanceof WorkPackage) {
+		if (target instanceof WorkPackage) {
 			event.detail = event.detail | DND.DROP_COPY;
 		}
+		if (target.eContainer() instanceof WorkPackage
+				&& ((eventFeedback & DND.FEEDBACK_INSERT_AFTER) == DND.FEEDBACK_INSERT_AFTER || (eventFeedback & DND.FEEDBACK_INSERT_BEFORE) == DND.FEEDBACK_INSERT_BEFORE)) {
+			event.detail = event.detail | DND.DROP_COPY;
+		}
+
+		// see comment of eventFeedback field
 		eventFeedback = event.feedback;
 
 	}
 
+	/**
+	 * This checks if drag and drop is allowed.
+	 * 
+	 * @param event
+	 * @param source
+	 * @param target
+	 * @param dropee
+	 * @return
+	 */
 	private boolean canDrop(DropTargetEvent event, List<ModelElement> source,
 			ModelElement target, ModelElement dropee) {
 
+		// a container is not allowed to contain the same element twice
 		if (target.eContents().contains(dropee)) {
-			if (!((event.feedback | DND.FEEDBACK_INSERT_AFTER) == DND.FEEDBACK_INSERT_AFTER || (event.feedback | DND.FEEDBACK_INSERT_BEFORE) == DND.FEEDBACK_INSERT_BEFORE)) {
+			if (!((event.feedback & DND.FEEDBACK_INSERT_AFTER) == DND.FEEDBACK_INSERT_AFTER || (event.feedback & DND.FEEDBACK_INSERT_BEFORE) == DND.FEEDBACK_INSERT_BEFORE)) {
 				event.detail = DND.DROP_NONE;
 				return false;
 			}
 
 		}
 
+		// do not drop an element on itself
 		if (target == dropee) {
 			event.detail = DND.DROP_NONE;
 			return false;
 		}
 
+		// a composite section should only contain leaf sections
+		// do not drop anything else on it
 		if (target instanceof CompositeSection) {
 			if (!(dropee instanceof LeafSection)) {
 				event.detail = DND.DROP_NONE;
@@ -540,20 +684,34 @@ public class UCDropAdapter extends DropTargetAdapter {
 
 		}
 
+		// check if the collection of selected elements to be dropped come
+		// all from the same level
 		if (!haveSameEContainer(source)) {
 			event.detail = DND.DROP_NONE;
 			return false;
 		}
 
+		// do not drop an element on one of its children. this leads to circular
+		// reference
+		// in containment hierarchy and the element and all of its children get
+		// lost
+		// (this creates an island)
 		if (EcoreUtil.isAncestor(dropee, target)) {
 			event.detail = DND.DROP_NONE;
 			return false;
 		}
-		
+
 		return true;
 	}
 
-	private void setEventFeedback(DropTargetEvent event) {
+	/**
+	 * This sets the initial event feedback, and is also responsible for showing
+	 * INSERT_AFTER and INSERT_BEFORE feedbacks according to mouse cursor
+	 * position.
+	 * 
+	 * @param event
+	 */
+	private void setInitialEventFeedback(DropTargetEvent event) {
 		event.feedback = DND.FEEDBACK_SELECT;
 
 		if (event.item != null) {
@@ -581,6 +739,13 @@ public class UCDropAdapter extends DropTargetAdapter {
 
 	}
 
+	/**
+	 * This checks if all elements is drag source collection come from the same
+	 * container (level in tree).
+	 * 
+	 * @param source
+	 * @return
+	 */
 	private boolean haveSameEContainer(List<ModelElement> source) {
 		ModelElement first = source.get(0);
 		for (ModelElement me : source) {
@@ -591,41 +756,18 @@ public class UCDropAdapter extends DropTargetAdapter {
 		return true;
 	}
 
-	@SuppressWarnings("unchecked")
-	private void doDropBefore(final ModelElement target,
-			final List<ModelElement> source) {
-		int targetIndex = getTargetIndex(target, source);
-		if (targetIndex == -1) {
-			return;
-		}
+	/**
+	 * 
+	 * @param target
+	 *            target
+	 * @param dropee
+	 *            dropee
+	 * @return boolean
+	 */
+	protected boolean haveSameEContainer(ModelElement target,
+			ModelElement dropee) {
 
-		EReference theRef = getTargetContainerRef(target, source);
-		if (theRef == null) {
-			return;
-		}
-
-		Object object = target.eContainer().eGet(theRef);
-		EList<EObject> eList = (EList<EObject>) object;
-		targetIndex = eList.indexOf(target);
-		if (targetIndex == 0) {
-			if (haveSameEContainer(target, source.get(0))) {
-				for (int i = source.size() - 1; i >= 0; i--) {
-					eList.move(0, source.get(i));
-				}
-
-			} else {
-				eList.addAll(0, source);
-			}
-		} else {
-			if (haveSameEContainer(target, source.get(0))) {
-				for (int i = source.size() - 1; i >= 0; i--) {
-					eList.move(targetIndex, source.get(i));
-				}
-
-			} else {
-				eList.addAll(targetIndex, source);
-			}
-		}
+		return target.eContainer().equals(dropee.eContainer());
 	}
 
 }
