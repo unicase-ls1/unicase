@@ -24,6 +24,7 @@ import org.unicase.emfstore.exceptions.EmfStoreException;
 import org.unicase.ui.common.exceptions.DialogHandler;
 import org.unicase.workspace.ProjectSpace;
 import org.unicase.workspace.Usersession;
+import org.unicase.workspace.WorkspaceManager;
 import org.unicase.workspace.edit.dialogs.LoginDialog;
 import org.unicase.workspace.edit.views.dialogs.MergeDialog;
 import org.unicase.workspace.edit.views.dialogs.UpdateDialog;
@@ -53,7 +54,17 @@ public class UpdateProjectHandler extends ProjectActionHandler implements
 	 */
 	public Object execute(ExecutionEvent event) throws ExecutionException {
 
-		final ProjectSpace projectSpace = getProjectSpace(event);
+		ProjectSpace projectSpace = getProjectSpace(event);
+		if (projectSpace == null) {
+			ProjectSpace activeProjectSpace = WorkspaceManager.getInstance()
+					.getCurrentWorkspace().getActiveProjectSpace();
+			if (activeProjectSpace == null) {
+				MessageDialog.openInformation(shell, "Information",
+						"You must select the Project");
+				return null;
+			}
+			projectSpace = activeProjectSpace;
+		}
 
 		update(projectSpace);
 
@@ -85,8 +96,7 @@ public class UpdateProjectHandler extends ProjectActionHandler implements
 		ProgressMonitorDialog progressDialog = new ProgressMonitorDialog(
 				PlatformUI.getWorkbench().getActiveWorkbenchWindow().getShell());
 		progressDialog.open();
-		progressDialog.getProgressMonitor().beginTask("Update project...",
-				100);
+		progressDialog.getProgressMonitor().beginTask("Update project...", 100);
 		progressDialog.getProgressMonitor().worked(10);
 		// initially setting the status as successful in case the user
 		// is already logged in
@@ -96,12 +106,11 @@ public class UpdateProjectHandler extends ProjectActionHandler implements
 		} catch (ChangeConflictException e1) {
 			handleChangeConflictException(e1);
 		} catch (NoChangesOnServerException e) {
-			MessageDialog
-					.openInformation(shell, "No need to update",
-							"Your project is up to date, you do not need to update.");
+			MessageDialog.openInformation(shell, "No need to update",
+					"Your project is up to date, you do not need to update.");
 		} catch (ConnectionException e) {
 			try {
-				//try to reconnect once.
+				// try to reconnect once.
 				usersession.logIn();
 				update(projectSpace, progressDialog, loginStatus);
 			} catch (ChangeConflictException e1) {
@@ -144,8 +153,8 @@ public class UpdateProjectHandler extends ProjectActionHandler implements
 		}
 		if (loginStatus == LoginDialog.SUCCESSFUL) {
 			PrimaryVersionSpec baseVersion = projectSpace.getBaseVersion();
-			PrimaryVersionSpec targetVersion = projectSpace.update(VersionSpec.HEAD_VERSION,
-					UpdateProjectHandler.this);
+			PrimaryVersionSpec targetVersion = projectSpace.update(
+					VersionSpec.HEAD_VERSION, UpdateProjectHandler.this);
 			WorkspaceUtil.logUpdate(projectSpace, baseVersion, targetVersion);
 		}
 	}
@@ -161,4 +170,5 @@ public class UpdateProjectHandler extends ProjectActionHandler implements
 		}
 		return false;
 	}
+
 }
