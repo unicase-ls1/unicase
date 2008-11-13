@@ -63,8 +63,12 @@ public class WorkpackageContentProvider extends
 		final WorkpackageContentProvider instance = this;
 		final Workspace currentWorkspace = WorkspaceManager.getInstance()
 				.getCurrentWorkspace();
-		currentWorkspace.getActiveProjectSpace().getProject()
+		ProjectSpace activeProjectSapce = currentWorkspace.getActiveProjectSpace();
+		if(activeProjectSapce != null){
+			activeProjectSapce.getProject()
 				.addProjectChangeObserver(this);
+		}
+		
 		currentWorkspace.eAdapters().add(new AdapterImpl() {
 			@Override
 			public void notifyChanged(Notification msg) {
