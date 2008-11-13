@@ -12,6 +12,16 @@ import org.eclipse.emf.transaction.TransactionalEditingDomain;
 import org.unicase.model.ModelElement;
 import org.unicase.test.tests.changetests.randomchange.RandomChangeTestCase;
 
+/**
+ * This is a compare test.
+ * It takes randomly a ME from test project, 
+ * changes one of its EAttributes, extract changes from test project,
+ * applies changes to compare project. 
+ * Test succeeds when compare project and test project are identical.
+ * 
+ * @author Hodaie
+ *
+ */
 public class ChangeAttributeTest extends RandomChangeTestCase {
 
 	private int totalChanges = 0;

@@ -1,11 +1,7 @@
 package org.unicase.test;
 
-import java.util.ArrayList;
-import java.util.List;
-
 import org.eclipse.equinox.app.IApplication;
 import org.eclipse.equinox.app.IApplicationContext;
-import org.unicase.test.lib.TestCase;
 import org.unicase.test.tests.changetests.ChangeTestSuite;
 import org.unicase.test.tests.changetests.randomchange.RandomChangeTestSuite;
 
@@ -15,31 +11,14 @@ import org.unicase.test.tests.changetests.randomchange.RandomChangeTestSuite;
 public class Application implements IApplication {
 
 	/* (non-Javadoc)
-	 * @see org.eclipse.equinox.app.IApplication#start(org.eclipse.equinox.app.IApplicationContext)
+	 * @see org.eclipse.equinox.app.IApplicationk#start(org.eclipse.equinox.app.IApplicationContext)
 	 */
 	public Object start(IApplicationContext context) throws Exception {
 
 		
-		ChangeTestSuite changeTest = new RandomChangeTestSuite(false);
-		changeTest.runTest(10);
-		
-		
-//		for(int i = 0; i < 5; i++){
-//			System.out.println("==== test " + i + " ====");
-//			long randomSeed = Calendar.getInstance().getTimeInMillis();
-//			Project p = new TestProjectGenerator(5, randomSeed, 3, 2, 5, 10).generateProject();
-//			System.out.println("project created: " + p.getAllModelElements().size() + " MEs");
-//			int[] result = ChangeTestHelper.linearCompare(p, (Project)EcoreUtil.copy(p));
-//			if(result[0] == 1){
-//				System.out.println("Test succeeded: "  + "!");
-//			}else{
-//				System.out.println("Test failed: " + "!");
-//				System.out.println("character: " + (char)result[2]);
-//				System.out.println("position: " + result[1]);
-//				System.out.println("lineNum: " + result[3]);
-//				System.out.println("colNum: " + result[4]);
-//			}
-//		}
+		boolean isChangePackageTest = true;
+		ChangeTestSuite changeTest = new RandomChangeTestSuite(isChangePackageTest);
+		changeTest.runTest(3);
 		
 		return IApplication.EXIT_OK;
 	}
@@ -57,3 +36,26 @@ public class Application implements IApplication {
 		// nothing to do
 	}
 }
+
+
+
+
+
+
+////===================================================================
+//for(int i = 0; i < 5; i++){
+//	System.out.println("==== test " + i + " ====");
+//	long randomSeed = Calendar.getInstance().getTimeInMillis();
+//	Project p = new TestProjectGenerator(5, randomSeed, 3, 2, 5, 10).generateProject();
+//	System.out.println("project created: " + p.getAllModelElements().size() + " MEs");
+//	int[] result = ChangeTestHelper.linearCompare(p, (Project)EcoreUtil.copy(p));
+//	if(result[0] == 1){
+//		System.out.println("Test succeeded: "  + "!");
+//	}else{
+//		System.out.println("Test failed: " + "!");
+//		System.out.println("character: " + (char)result[2]);
+//		System.out.println("position: " + result[1]);
+//		System.out.println("lineNum: " + result[3]);
+//		System.out.println("colNum: " + result[4]);
+//	}
+//}

@@ -11,11 +11,14 @@ import org.eclipse.emf.ecore.EReference;
 import org.eclipse.emf.transaction.RecordingCommand;
 import org.eclipse.emf.transaction.TransactionalEditingDomain;
 import org.unicase.model.ModelElement;
+import org.unicase.test.tests.changetests.ChangeTestHelper;
 import org.unicase.test.tests.changetests.randomchange.RandomChangeTestCase;
 
 /**
- * takes a random model element and changes one of its non-containment
- * references
+ * This is a compare test.
+ * It takes a random model element from test project and changes one of its non-containment
+ * references, applies this change to compare project. 
+ * Test succeeds when both projects are identical, and fails otherwise.
  * 
  * @author Hodaie
  * 
@@ -30,19 +33,14 @@ public class ReferenceTest extends RandomChangeTestCase {
 	@Override
 	public void runTest() {
 
-		System.out.println("getting list of all model elements in project...");
-		List<ModelElement> modelElements = getTestProject()
-				.getAllModelElements();
-		System.out.println(modelElements.size() + " MEs in project...");
-
-		int numOfChanges = getRandom().nextInt(modelElements.size() / 8);
-		// int numOfChanges = 1;
+		int numOfChanges = getRandom().nextInt(40);
+		List<ModelElement> modelElements = ChangeTestHelper.getRandomMEs(getTestProject(), numOfChanges, true);
+		
 		TransactionalEditingDomain domain = TransactionalEditingDomain.Registry.INSTANCE
 				.getEditingDomain("org.unicase.EditingDomain");
 
-		for (int i = 0; i < numOfChanges; i++) {
-			final ModelElement me = modelElements.get(getRandom().nextInt(
-					modelElements.size() - 1));
+		for (int i = 0; i < modelElements.size(); i++) {
+			final ModelElement me = modelElements.get(i);
 			final List<EReference> nonContainmentRefs = new ArrayList<EReference>();
 			for (EReference ref : me.eClass().getEAllReferences()) {
 				if (!ref.isContainment()) {

@@ -4,8 +4,10 @@ import java.io.ByteArrayOutputStream;
 import java.io.File;
 import java.io.FileOutputStream;
 import java.io.IOException;
+import java.util.ArrayList;
 import java.util.Date;
 import java.util.List;
+import java.util.Random;
 
 import org.eclipse.emf.common.util.URI;
 import org.eclipse.emf.ecore.EObject;
@@ -21,6 +23,7 @@ import org.unicase.emfstore.esmodel.versioning.ChangePackage;
 import org.unicase.emfstore.esmodel.versioning.PrimaryVersionSpec;
 import org.unicase.emfstore.esmodel.versioning.VersioningFactory;
 import org.unicase.emfstore.esmodel.versioning.operations.AbstractOperation;
+import org.unicase.model.ModelElement;
 import org.unicase.model.Project;
 import org.unicase.model.util.ModelUtil;
 import org.unicase.model.util.SerializationException;
@@ -34,6 +37,8 @@ public class ChangeTestHelper {
 	private static TransactionalEditingDomain domain;
 	private static String TEMP_PATH = Configuration.getWorkspaceDirectory()
 			+ "\\tmp\\";
+
+	private static Random random = new Random();
 
 	public static ProjectSpace createEmptyProjectSpace(String name) {
 
@@ -57,8 +62,7 @@ public class ChangeTestHelper {
 		File file = new File(TEMP_PATH);
 		if (!file.exists()) {
 
-			new File(Configuration.getWorkspaceDirectory() + "\\tmp\\")
-					.mkdir();
+			new File(Configuration.getWorkspaceDirectory() + "\\tmp\\").mkdir();
 		}
 
 		return projectSpace;
@@ -104,16 +108,17 @@ public class ChangeTestHelper {
 	private static void prepareCompare(final ProjectSpace testSpace,
 			final ProjectSpace compareSpace) {
 		System.out.println("extracting operations from test project...");
-		List<AbstractOperation> operations = testSpace
-				.getOperations();
+		List<AbstractOperation> operations = testSpace.getOperations();
 		System.out.println(operations.size() + " operatoins");
 		final ChangePackage changePackage = getChangePackage(operations, true);
-		
-		//save change package for later reference
-		//the saved change package will be overwritten every time a test succeeds.
+
+		// save change package for later reference
+		// the saved change package will be overwritten every time a test
+		// succeeds.
 		EObject copyChangePackage = EcoreUtil.copy(changePackage);
 		ResourceSet reseourceSet = new ResourceSetImpl();
-		Resource resource = reseourceSet.createResource(URI.createFileURI(TEMP_PATH + "changePackage.txt"));
+		Resource resource = reseourceSet.createResource(URI
+				.createFileURI(TEMP_PATH + "changePackage.txt"));
 		resource.getContents().add(copyChangePackage);
 		try {
 			resource.save(null);
@@ -121,17 +126,19 @@ public class ChangeTestHelper {
 			// TODO Auto-generated catch block
 			e.printStackTrace();
 		}
-		
-		//apply changes to compare project
-		getDomain().getCommandStack().execute(new RecordingCommand(getDomain()) {
-			@Override
-			protected void doExecute() {
-				System.out.println("applying changes to compareSpace...");
-				((ProjectSpaceImpl)compareSpace).stopChangeRecording();
-				changePackage.apply(compareSpace.getProject());
-				//compareSpace.save();
-			}
-		});
+
+		// apply changes to compare project
+		getDomain().getCommandStack().execute(
+				new RecordingCommand(getDomain()) {
+					@Override
+					protected void doExecute() {
+						System.out
+								.println("applying changes to compareSpace...");
+						((ProjectSpaceImpl) compareSpace).stopChangeRecording();
+						changePackage.apply(compareSpace.getProject());
+						// compareSpace.save();
+					}
+				});
 	}
 
 	public static int[] linearCompare(ProjectSpace testSpace,
@@ -167,7 +174,7 @@ public class ChangeTestHelper {
 		} catch (IOException e) {
 			throw new SerializationException(e);
 		}
-		File file = new File(TEMP_PATH  + name + ".txt");
+		File file = new File(TEMP_PATH + name + ".txt");
 		try {
 			if (!file.exists()) {
 
@@ -252,6 +259,41 @@ public class ChangeTestHelper {
 			}
 		}
 		return lineNum;
+	}
+
+	public static List<ModelElement> getRandomMEs(Project project, int num,
+			boolean unique) {
+
+		List<ModelElement> result = new ArrayList<ModelElement>();
+
+		System.out.println("getting list of all model elements in project...");
+		List<ModelElement> modelElements = project.getAllModelElements();
+		int numOfMEs = modelElements.size();
+		if (num > numOfMEs) {
+			throw new IllegalArgumentException(
+					"Number of random MEs to return is greater than total number of MEs in project.");
+		}
+		System.out.println(numOfMEs + " MEs in project...");
+
+		if (unique) {
+			do {
+				final ModelElement me = modelElements.get(random
+						.nextInt(numOfMEs - 1));
+				if (!result.contains(me)) {
+					result.add(me);
+				}
+
+			} while (result.size() < num);
+
+		} else {
+			for (int i = 0; i < num; i++) {
+				final ModelElement me = modelElements.get(random
+						.nextInt(numOfMEs - 1));
+				result.add(me);
+			}
+
+		}
+		return result;
 	}
 
 }

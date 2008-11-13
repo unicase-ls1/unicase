@@ -2,7 +2,7 @@ package org.unicase.test.tests.changetests.randomchange.testcases;
 
 import org.unicase.test.tests.changetests.randomchange.RandomChangeTestCase;
 import org.unicase.test.tests.changetests.randomchange.RandomChangeTestSuite;
-import org.unicase.test.tests.changetests.randomchange.RandomChangeTestSuite.AutomaticTestCases;
+import org.unicase.test.tests.changetests.randomchange.RandomChangeTestSuite.RandomTestCases;
 
 public class CompoundTest extends RandomChangeTestCase {
 
@@ -16,19 +16,19 @@ public class CompoundTest extends RandomChangeTestCase {
 		
 		int numOfLoops = getRandom().nextInt(5) + 5; 
 		int maxTimesToRun = 3;
-		AutomaticTestCases testCase;
+		RandomTestCases testCase;
 		int timesToRun = 0;
 		
 		for(int i = 0; i < numOfLoops; i++){
-			//testCase = AutomaticTestCases.values()[getRandom().nextInt(AutomaticTestCases.values().length - 1)];
-			testCase = AutomaticTestCases.values()[getRandom().nextInt(5)];  //add==0, change==1, delete==2, move==3, reference==4
+			int numOfTestCases  = RandomTestCases.values().length;
+			testCase = RandomTestCases.values()[getRandom().nextInt(numOfTestCases)];  
 			timesToRun = getRandom().nextInt(maxTimesToRun) + 1;
 			runTestCase(testCase, timesToRun);
 		}
 		
 	}
 
-	private void runTestCase(AutomaticTestCases testCase, int timesToRun) {
+	private void runTestCase(RandomTestCases testCase, int timesToRun) {
 		switch(testCase){
 		case ADD_TEST:
 			System.out.println("**** CompoundTest: AddTest ****");

@@ -16,6 +16,17 @@ import org.unicase.model.ModelPackage;
 import org.unicase.model.util.ModelUtil;
 import org.unicase.test.tests.changetests.randomchange.RandomChangeTestCase;
 
+
+/**
+ * 
+ * This is a change package test.
+ * It creates randomly a model element, changes one of its non-containment references,
+ * and deletes this ME. 
+ * The expected change package should contain no operations.
+ * 
+ * @author Hodaie
+ *
+ */
 public class CreateAndDeleteTest extends RandomChangeTestCase {
 
 	public CreateAndDeleteTest(String testName, long randomSeed) {
