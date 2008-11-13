@@ -55,15 +55,10 @@
            name="Quick open modelelement">
      </command>
      <command
-           defaultHandler="org.unicase.ui.common.commands.ShortcutHandler"
-           id="org.unicase.ui.common.commands.ShortcutCommandID"
-           name="ShortcutCommand">
+           defaultHandler="org.unicase.ui.common.handlers.OpenMEShortcutHandler"
+           id="org.unicase.ui.common.handlers.open_me_ID"
+           name="OpenMEShortcutCommand">
      </command>
-     <keyBinding
-           commandId="org.unicase.ui.common.commands.ShortcutCommandID"
-           keyConfigurationId="org.eclipse.ui.defaultAcceleratorConfiguration"
-           keySequence="M1+M">
-     </keyBinding>
    
   </extension>
    <extension
@@ -436,5 +431,14 @@
        </extension>
     <extension
           point="org.eclipse.ui.ide.markerSupport">
+    </extension>
+    <extension
+          point="org.eclipse.ui.bindings">
+       <key
+             commandId="org.unicase.ui.common.handlers.open_me_ID"
+             contextId="org.eclipse.ui.contexts.window"
+             schemeId="org.eclipse.ui.defaultAcceleratorConfiguration"
+             sequence="Alt+M">
+       </key>
     </extension>
 </plugin>
