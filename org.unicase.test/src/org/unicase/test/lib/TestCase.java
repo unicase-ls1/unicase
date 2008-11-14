@@ -9,9 +9,13 @@ public abstract class TestCase {
 		this.testName = testName;
 	}
 
-	abstract public void runTest();
-	
 	public String getTestName() {
 		return testName;
 	}
+	
+	
+	abstract public void runTest();
+	abstract public void endTest();
+	
+	
 }
