@@ -12,12 +12,15 @@ import java.util.Set;
 
 import org.eclipse.emf.common.notify.Notification;
 import org.eclipse.emf.common.notify.impl.AdapterImpl;
+import org.eclipse.emf.common.util.EList;
 import org.eclipse.emf.ecore.InternalEObject;
 import org.eclipse.emf.ecore.impl.ENotificationImpl;
 import org.unicase.model.ModelElement;
 import org.unicase.model.ModelPackage;
 import org.unicase.model.requirement.FunctionalRequirement;
 import org.unicase.model.task.Checkable;
+import org.unicase.model.task.WorkItem;
+import org.unicase.model.task.WorkPackage;
 
 /**
  * Implementation of MEState.
@@ -49,7 +52,17 @@ public class MEStateImpl implements MEState {
 
 			@Override
 			public void notifyChanged(Notification msg) {
-				if (!msg.isTouch()&&!(msg.getFeatureID(ModelElement.class) == ModelPackage.MODEL_ELEMENT__STATE)) {
+				if (!msg.isTouch()
+						&& !(msg.getFeatureID(ModelElement.class) == ModelPackage.MODEL_ELEMENT__STATE)) {
+					if (msg.getEventType() == Notification.REMOVE) {
+						Object oldValue = msg.getOldValue();
+						if (effectiveBlocker.contains(oldValue)) {
+							updateEffectiveBlockers();
+						}
+						if (effectiveOpeners.contains(oldValue)) {
+							updateEffectiveOpeners();
+						}
+					}
 					recursivlyUpdateStatus(getStatus());
 				}
 				// super.notifyChanged(msg);
@@ -59,6 +72,7 @@ public class MEStateImpl implements MEState {
 	}
 
 	private void updateEffectiveBlockers() {
+		effectiveBlocker.clear();
 		Set<ModelElement> blockers = TaxonomyAccess.getInstance()
 				.getBlockingLinkTaxonomy().getBlockers(modelElement);
 
@@ -76,6 +90,7 @@ public class MEStateImpl implements MEState {
 	}
 
 	private void updateEffectiveOpeners() {
+		effectiveOpeners.clear();
 		Set<ModelElement> openers = TaxonomyAccess.getInstance()
 				.getOpeningLinkTaxonomy().getOpeners(modelElement);
 
@@ -96,11 +111,21 @@ public class MEStateImpl implements MEState {
 	 * {@inheritDoc}
 	 */
 	public void addBlocker(ModelElement me) {
-		if(me==modelElement){
+		if (me == modelElement) {
 			return;
 		}
 		effectiveBlocker.add(me);
 		if (effectiveBlocker.size() == 1) {
+			if(modelElement instanceof WorkPackage){
+				EList<WorkItem> containedWorkItems = ((WorkPackage) modelElement).getContainedWorkItems();
+				for(WorkItem workItem:containedWorkItems){
+					try {
+						workItem.getMEState().removeBlocker(modelElement);
+					} catch (CircularDependencyException e) {
+						// JH: Auto-generated catch block
+					}
+				}
+			}
 			recursivlyUpdateStatus(getStatus());
 		}
 	}
@@ -117,7 +142,7 @@ public class MEStateImpl implements MEState {
 	 * {@inheritDoc}
 	 */
 	public void addOpener(ModelElement me) {
-		if(me==modelElement){
+		if (me == modelElement) {
 			return;
 		}
 		effectiveOpeners.add(me);
@@ -130,6 +155,15 @@ public class MEStateImpl implements MEState {
 	 * {@inheritDoc}
 	 */
 	public String getStatus() {
+		if (modelElement instanceof WorkItem) {
+			WorkPackage containingWorkpackage = ((WorkItem) modelElement)
+					.getContainingWorkpackage();
+			if (containingWorkpackage != null) {
+				if (containingWorkpackage.getState().equals(MEState.BLOCKED)) {
+					return BLOCKED;
+				}
+			}
+		}
 		// If there is a blocker, every me is blocked
 		if (effectiveBlocker.size() > 0) {
 			return BLOCKED;
@@ -139,8 +173,8 @@ public class MEStateImpl implements MEState {
 			return OPEN;
 		}
 
-		if(modelElement instanceof Checkable){
-			if(((Checkable) modelElement).isChecked()){
+		if (modelElement instanceof Checkable) {
+			if (((Checkable) modelElement).isChecked()) {
 				return CLOSED;
 			}
 			return OPEN;
@@ -154,11 +188,11 @@ public class MEStateImpl implements MEState {
 				return OPEN;
 			}
 		}
-	
+
 		// Else the me is closed
-		
-			return CLOSED;
-		
+
+		return CLOSED;
+
 	}
 
 	/**
@@ -174,6 +208,16 @@ public class MEStateImpl implements MEState {
 	public boolean removeBlocker(ModelElement me) {
 		boolean ret = effectiveBlocker.remove(me);
 		if (effectiveBlocker.size() == 0) {
+			if(modelElement instanceof WorkPackage){
+				EList<WorkItem> containedWorkItems = ((WorkPackage) modelElement).getContainedWorkItems();
+				for(WorkItem workItem:containedWorkItems){
+					try {
+						workItem.getMEState().removeBlocker(modelElement);
+					} catch (CircularDependencyException e) {
+						// JH: Auto-generated catch block
+					}
+				}
+			}
 			recursivlyUpdateStatus(getStatus());
 		}
 		return ret;
@@ -198,7 +242,7 @@ public class MEStateImpl implements MEState {
 	}
 
 	private void recursivlyUpdateStatus(String status) {
-//		
+		//		
 		ENotificationImpl notificationImpl = new ENotificationImpl(
 				(InternalEObject) modelElement, Notification.RESOLVE,
 				ModelPackage.MODEL_ELEMENT__STATE, OPEN, OPEN);
@@ -227,7 +271,7 @@ public class MEStateImpl implements MEState {
 				}
 			}
 		} catch (CircularDependencyException e) {
-			//JH: insert proper exception handlin
+			// JH: insert proper exception handlin
 			e.printStackTrace();
 		}
 

@@ -388,7 +388,7 @@ public abstract class ModelElementImpl extends IdentifiableElementImpl
 			return getMEState().getStatus();
 		} catch (CircularDependencyException e) {
 			// JH: insert proper exception handling
-			e.printStackTrace();
+//			e.printStackTrace();
 			return MEState.CLOSED;
 		}
 	}
