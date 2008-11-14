@@ -4,7 +4,7 @@
  *
  * $Id$
  */
-package org.unicase.ui.stem.views;
+package org.unicase.ui.tableview.labelprovider;
 
 import java.net.URL;
 

@@ -57,6 +57,8 @@ public class TaskView extends ViewPart {
 	private String filename;
 	private AdapterImpl adapterImpl;
 	private Workspace workspace;
+	private Action filterToBlocked;
+	private BlockedElementsViewerFilter blockedFilter;
 
 	/**
 	 * default constructor.
@@ -113,8 +115,46 @@ public class TaskView extends ViewPart {
 		createCheckedFilter();
 		menuManager.add(filterToUnchecked);
 
+		createBlockedFilter();
+		menuManager.add(filterToBlocked);
+
 		getSite().setSelectionProvider(viewer);
 		hookDoubleClickAction();
+	}
+
+	private void createBlockedFilter() {
+		blockedFilter = new BlockedElementsViewerFilter();
+		filterToBlocked = new Action("", SWT.TOGGLE) {
+			@Override
+			public void run() {
+				setBlockedFilter(isChecked());
+			}
+
+		};
+		filterToBlocked.setImageDescriptor(Activator
+				.getImageDescriptor("/icons/blocked.jpg"));
+		Boolean blockedFilterBoolean = Boolean.parseBoolean(settings
+				.get("BlockedFilter"));
+		filterToBlocked.setChecked(blockedFilterBoolean);
+		filterToBlocked
+				.setToolTipText("Besides the unblocked elements, the blocked ones will be shown as well.");
+		setBlockedFilter(blockedFilterBoolean);
+
+	}
+
+	/**
+	 * Sets the blocked filter.
+	 * 
+	 * @param checked
+	 *            if the blocked filter is activated.
+	 */
+	protected void setBlockedFilter(boolean checked) {
+		if (checked) {
+			viewer.removeFilter(blockedFilter);
+		} else {
+			viewer.addFilter(blockedFilter);
+		}
+
 	}
 
 	private void initUserFilter() {
@@ -301,6 +341,7 @@ public class TaskView extends ViewPart {
 		settings.put("TeamFilter", filterToMyTeam.isChecked());
 		settings.put("UncheckedFilter", filterToUnchecked.isChecked());
 		settings.put("UserFilter", filterToMe.isChecked());
+		settings.put("BlockedFilter", filterToBlocked.isChecked());
 		try {
 			settings.save(filename);
 		} catch (IOException e) {
