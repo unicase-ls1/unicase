@@ -14,6 +14,7 @@ import org.eclipse.emf.transaction.TransactionalEditingDomain;
 import org.unicase.model.ModelElement;
 import org.unicase.model.ModelPackage;
 import org.unicase.model.util.ModelUtil;
+import org.unicase.test.tests.changetests.ChangeTestHelper;
 import org.unicase.test.tests.changetests.randomchange.RandomChangeTestCase;
 
 
@@ -36,12 +37,7 @@ public class CreateAndDeleteTest extends RandomChangeTestCase {
 
 	@Override
 	public void runTest() {
-		List<EClass> eClazz = ModelUtil.getSubclasses(ModelPackage.eINSTANCE
-				.getModelElement());
-		EClass eClass = eClazz.get(getRandom().nextInt(eClazz.size() - 1));
-		final ModelElement me = (ModelElement) eClass.getEPackage()
-				.getEFactoryInstance().create(eClass);
-
+		final ModelElement me = ChangeTestHelper.createRandomME();
 		TransactionalEditingDomain domain = TransactionalEditingDomain.Registry.INSTANCE
 				.getEditingDomain("org.unicase.EditingDomain");
 

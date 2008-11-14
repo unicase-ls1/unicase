@@ -12,6 +12,19 @@ import org.eclipse.emf.transaction.TransactionalEditingDomain;
 import org.unicase.model.ModelElement;
 import org.unicase.test.tests.changetests.randomchange.RandomChangeTestCase;
 
+/**
+ * This is a compare test. 
+ * It takes a random ME A;
+ * Takes randomly one of its containment references contRef;
+ * Creates a model element of corresponding type;
+ * adds newly created ME to A.contRef;
+ * extracts changes on test project and applies them on compare project;
+ * Test succeeds when test and compare projects are identical.
+ * 
+ * 
+ * @author Hodaie
+ *
+ */
 public class AddTest extends RandomChangeTestCase {
 
 	private int totalOps;

@@ -6,9 +6,8 @@ import org.unicase.emfstore.esmodel.versioning.operations.CreateDeleteOperation;
 import org.unicase.test.lib.TestCase;
 import org.unicase.test.tests.changetests.ChangeTestHelper;
 import org.unicase.test.tests.changetests.ChangeTestSuite;
-import org.unicase.test.tests.changetests.randomchange.testcases.CreateAndDeleteTest;
+import org.unicase.test.tests.changetests.randomchange.testcases.CreateAndChangeRefTest;
 import org.unicase.test.tests.changetests.randomchange.testcases.RemoveTest;
-import org.unicase.test.tests.changetests.randomchange.testcases.TransitivelyChangeAttributeTest;
 
 public class RandomChangeTestSuite extends ChangeTestSuite {
 
@@ -64,8 +63,13 @@ public class RandomChangeTestSuite extends ChangeTestSuite {
 		// createAndDeleteTest.setParameters();
 
 		// Remove Test
-		RemoveTest removeTest = new RemoveTest("Remove", getRandomSeed());
+		// RemoveTest removeTest = new RemoveTest("Remove", getRandomSeed());
 		// rmoveTest.setPrameters();
+
+		// CreateAndChangeRef Test
+		CreateAndChangeRefTest createAndChangeRefTest = new CreateAndChangeRefTest(
+				"CreateAndChangeRef", getRandomSeed());
+		// createAndChangeRefTest.setParameters();
 
 		// CompoundTest
 		// CompoundTest compoundTest = new CompoundTest("Compound", randomSeed);
@@ -79,7 +83,8 @@ public class RandomChangeTestSuite extends ChangeTestSuite {
 		// this.getTestCases().add(compoundTest);
 		// this.getTestCases().add(createAndDeleteTest);
 		// this.getTestCases().add(transitivelyChangeAttribute);
-		this.getTestCases().add(removeTest);
+		// this.getTestCases().add(removeTest);
+		this.getTestCases().add(createAndChangeRefTest);
 
 		for (TestCase test : getTestCases()) {
 			if (test instanceof RandomChangeTestCase) {
@@ -181,7 +186,8 @@ public class RandomChangeTestSuite extends ChangeTestSuite {
 			if (op instanceof CreateDeleteOperation) {
 				System.out.println(op.getName()
 						+ " ("
-						+ ((CreateDeleteOperation)op).getModelElement().getName() + ")");
+						+ ((CreateDeleteOperation) op).getModelElement()
+								.getName() + ")");
 			} else {
 				System.out.println(op.getName()
 						+ " ("

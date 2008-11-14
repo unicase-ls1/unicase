@@ -5,14 +5,11 @@ import java.util.Date;
 import java.util.List;
 
 import org.eclipse.emf.ecore.EAttribute;
-import org.eclipse.emf.ecore.EClass;
 import org.eclipse.emf.ecore.EEnum;
 import org.eclipse.emf.ecore.EEnumLiteral;
 import org.eclipse.emf.transaction.RecordingCommand;
 import org.eclipse.emf.transaction.TransactionalEditingDomain;
 import org.unicase.model.ModelElement;
-import org.unicase.model.ModelPackage;
-import org.unicase.model.util.ModelUtil;
 import org.unicase.test.tests.changetests.randomchange.RandomChangeTestCase;
 
 /**

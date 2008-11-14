@@ -10,6 +10,7 @@ import java.util.List;
 import java.util.Random;
 
 import org.eclipse.emf.common.util.URI;
+import org.eclipse.emf.ecore.EClass;
 import org.eclipse.emf.ecore.EObject;
 import org.eclipse.emf.ecore.resource.Resource;
 import org.eclipse.emf.ecore.resource.ResourceSet;
@@ -24,6 +25,7 @@ import org.unicase.emfstore.esmodel.versioning.PrimaryVersionSpec;
 import org.unicase.emfstore.esmodel.versioning.VersioningFactory;
 import org.unicase.emfstore.esmodel.versioning.operations.AbstractOperation;
 import org.unicase.model.ModelElement;
+import org.unicase.model.ModelPackage;
 import org.unicase.model.Project;
 import org.unicase.model.util.ModelUtil;
 import org.unicase.model.util.SerializationException;
@@ -294,6 +296,16 @@ public class ChangeTestHelper {
 
 		}
 		return result;
+	}
+
+	public static ModelElement createRandomME() {
+		List<EClass> eClazz = ModelUtil.getSubclasses(ModelPackage.eINSTANCE
+				.getModelElement());
+		EClass eClass = eClazz.get(random.nextInt(eClazz.size() - 1));
+		ModelElement me = (ModelElement) eClass.getEPackage()
+				.getEFactoryInstance().create(eClass);
+
+		return me;
 	}
 
 }
