@@ -13,7 +13,7 @@ import org.unicase.model.task.util.MEState;
  */
 public class BlockedElementsViewerFilter extends ViewerFilter {
 	/**
-	 * {@inheritDoc}
+	 * {@inheritDocµ}
 	 */
 	@Override
 	public boolean select(Viewer viewer, Object parentElement, Object element) {
