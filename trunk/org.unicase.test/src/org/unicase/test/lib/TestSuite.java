@@ -23,16 +23,13 @@ public abstract class TestSuite {
 				System.out.println("========= Running TestCase: "
 						+ testCase.getTestName() + " =========  " + i);
 				testCase.runTest();
-				endTestCase(testCase.getTestName());
+				testCase.endTest();
 			}
 			endTestSuite();
 		}
 	}
 
 	public void initTestSuite() {
-	}
-
-	public void endTestCase(String testName) {
 	}
 
 	public void endTestSuite() {
@@ -45,13 +42,6 @@ public abstract class TestSuite {
 		return testcases;
 	}
 
-	public void setManualTests(boolean manualTests) {
-		this.manualTests = manualTests;
-	}
-
-	public boolean isManualTests() {
-		return manualTests;
-	}
-	
+		
 	
 }

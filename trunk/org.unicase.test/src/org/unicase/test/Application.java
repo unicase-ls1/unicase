@@ -16,9 +16,9 @@ public class Application implements IApplication {
 	public Object start(IApplicationContext context) throws Exception {
 
 		
-		boolean isChangePackageTest = true;
-		ChangeTestSuite changeTest = new RandomChangeTestSuite(isChangePackageTest);
-		changeTest.runTest(3);
+	
+		ChangeTestSuite changeTest = new RandomChangeTestSuite();
+		changeTest.runTest(30);
 		
 		return IApplication.EXIT_OK;
 	}

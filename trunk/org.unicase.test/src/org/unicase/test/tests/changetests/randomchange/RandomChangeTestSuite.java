@@ -7,19 +7,18 @@ import org.unicase.test.lib.TestCase;
 import org.unicase.test.tests.changetests.ChangeTestHelper;
 import org.unicase.test.tests.changetests.ChangeTestSuite;
 import org.unicase.test.tests.changetests.randomchange.testcases.CreateAndChangeRefTest;
-import org.unicase.test.tests.changetests.randomchange.testcases.RemoveTest;
 
 public class RandomChangeTestSuite extends ChangeTestSuite {
 
 	// private static Log logger = LogFactory.getLog("test");
-	private boolean changePackageTest;
+	//private boolean changePackageTest;
 
 	public enum RandomTestCases {
 		ADD_TEST, CHANGE_ATTRIBUTE_TEST, DELETE_TEST, MOVE_TEST, REFERENCE_TEST, REMOVE_TEST, CREATE_AND_DELETE_TEST, CREATE_AND_CHANGE_REF_TEST, CREATE_AND_CHANGE_ATTRIBUTE_TEST, TRANSITIVELY_CHANGE_ATTRIBUTE_TEST, COMPOUND_TEST
 	}
 
-	public RandomChangeTestSuite(boolean automaticTests) {
-		this.changePackageTest = automaticTests;
+	public RandomChangeTestSuite() {
+		//this.changePackageTest = automaticTests;
 	}
 
 	@Override
@@ -70,6 +69,11 @@ public class RandomChangeTestSuite extends ChangeTestSuite {
 		CreateAndChangeRefTest createAndChangeRefTest = new CreateAndChangeRefTest(
 				"CreateAndChangeRef", getRandomSeed());
 		// createAndChangeRefTest.setParameters();
+		
+		//CreateAndChangeAttribute Test
+		//CreateAndChangeAttributeTest createAndChangeAttrTest = new CreateAndChangeAttributeTest(
+		//		"CrateAndChangeAttribute", getRandomSeed());
+		//createAndChangeAttrTest.setParameters();
 
 		// CompoundTest
 		// CompoundTest compoundTest = new CompoundTest("Compound", randomSeed);
@@ -85,7 +89,8 @@ public class RandomChangeTestSuite extends ChangeTestSuite {
 		// this.getTestCases().add(transitivelyChangeAttribute);
 		// this.getTestCases().add(removeTest);
 		this.getTestCases().add(createAndChangeRefTest);
-
+		//this.getTestCases().add(createAndChangeAttrTest);
+		
 		for (TestCase test : getTestCases()) {
 			if (test instanceof RandomChangeTestCase) {
 				((RandomChangeTestCase) test)
@@ -95,39 +100,39 @@ public class RandomChangeTestSuite extends ChangeTestSuite {
 		}
 
 	}
-
-	@Override
-	public void endTestCase(String testName) {
-
-		// if(ChangeTestHelper.compare(getTestProjectSpace(),
-		// getCompareProjectSpace())){
-		// System.out.println("Test succeeded: " + testName + "!");
-		// }else{
-		// logger.info("Test failed: " + testName + "!");
-		// //System.out.println();
-		// }
-
-		System.out.println("Done: " + testName);
-		// int[] result = ChangeTestHelper.linearCompare(getTestProjectSpace(),
-		// getCompareProjectSpace());
-		// //int[] result = ChangeTestHelper.linearCompare(testProject,
-		// compareProject);
-		// if(result[0] == 1){
-		// System.out.println("Test succeeded: " + testName + "!");
-		// }else{
-		// logger.info("Test failed: " + testName + "!");
-		// //System.out.println("Test failed: " + testName + "!");
-		// System.out.println("position: " + result[1]);
-		// System.out.println("character: " + (char)result[2]);
-		// System.out.println("lineNum: " + result[3]);
-		// System.out.println("colNum: " + result[4]);
-		// }
-	}
+//
+//	@Override
+//	public void endTestCase(String testName) {
+//
+//		// if(ChangeTestHelper.compare(getTestProjectSpace(),
+//		// getCompareProjectSpace())){
+//		// System.out.println("Test succeeded: " + testName + "!");
+//		// }else{
+//		// logger.info("Test failed: " + testName + "!");
+//		// //System.out.println();
+//		// }
+//
+//		System.out.println("Done: " + testName);
+//		// int[] result = ChangeTestHelper.linearCompare(getTestProjectSpace(),
+//		// getCompareProjectSpace());
+//		// //int[] result = ChangeTestHelper.linearCompare(testProject,
+//		// compareProject);
+//		// if(result[0] == 1){
+//		// System.out.println("Test succeeded: " + testName + "!");
+//		// }else{
+//		// logger.info("Test failed: " + testName + "!");
+//		// //System.out.println("Test failed: " + testName + "!");
+//		// System.out.println("position: " + result[1]);
+//		// System.out.println("character: " + (char)result[2]);
+//		// System.out.println("lineNum: " + result[3]);
+//		// System.out.println("colNum: " + result[4]);
+//		// }
+//	}
 
 	@Override
 	public void endTestSuite() {
 
-		if (changePackageTest) {
+		if (true) {
 			endTestSuiteChangePackageTests();
 		} else {
 			endTestSuiteCompareTests();
@@ -170,11 +175,11 @@ public class RandomChangeTestSuite extends ChangeTestSuite {
 
 		ChangePackage changePackage = ChangeTestHelper.getChangePackage(
 				getTestProjectSpace().getOperations(), true);
-		// if(changePackage.getOperations().size() == 1){
-		// System.out.println("ok");
-		// return;
-		//			
-		// }
+		 if (changePackage.getOperations().size() == 1) {
+			System.out.println("ok");
+			return;
+
+		}
 
 		System.out.println("num of changes: "
 				+ changePackage.getOperations().size());

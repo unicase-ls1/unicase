@@ -33,5 +33,10 @@ public class ChangeTestCase extends TestCase {
 		return testProject;
 	}
 
+	@Override
+	public void endTest() {
+		System.out.println("Done: " + getTestName());
+	}
+
 
 }
