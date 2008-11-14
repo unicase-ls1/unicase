@@ -27,20 +27,23 @@ import org.unicase.model.Project;
 import org.unicase.model.provider.ModelEditPlugin;
 import org.unicase.model.task.TaskPackage;
 import org.unicase.ui.common.TableViewerColumnSorter;
+import org.unicase.ui.tableview.labelprovider.StatusLabelProvider;
 import org.unicase.workspace.ProjectSpace;
 import org.unicase.workspace.Workspace;
 import org.unicase.workspace.WorkspaceManager;
 import org.unicase.workspace.WorkspacePackage;
+
 /**
  * A tableviewer for modelelements.
+ * 
  * @author schneidf
- *
+ * 
  */
 public class METableViewer extends TableViewer {
-	private final Workspace workspace; 
+	private final Workspace workspace;
+
 	/**
-	 * remove adapter.
-	 * {@inheritDoc}
+	 * remove adapter. {@inheritDoc}
 	 */
 	@Override
 	protected void handleDispose(DisposeEvent event) {
@@ -85,8 +88,7 @@ public class METableViewer extends TableViewer {
 		super(parent, SWT.FULL_SELECTION);
 		this.adapterFactory = adapterFactory;
 
-		workspace= WorkspaceManager.getInstance()
-				.getCurrentWorkspace();
+		workspace = WorkspaceManager.getInstance().getCurrentWorkspace();
 		adapterImpl = new AdapterImpl() {
 			@Override
 			public void notifyChanged(Notification msg) {
@@ -134,8 +136,6 @@ public class METableViewer extends TableViewer {
 		setInput(currentProject);
 	}
 
-	
-
 	private void createColumns() {
 		EAttribute check = TaskPackage.Literals.CHECKABLE__CHECKED;
 		TableViewerColumn currentColumn = new TableViewerColumn(this,
@@ -150,6 +150,11 @@ public class METableViewer extends TableViewer {
 		EditingSupport es = new CheckableEditingSupport(this);
 		currentColumn.setEditingSupport(es);
 
+		TableViewerColumn state = new TableViewerColumn(this, SWT.NONE);
+		state.getColumn().setWidth(20);
+		state.setLabelProvider(new StatusLabelProvider());
+		state.getColumn().setText("State");
+
 		EAttribute name = ModelPackage.Literals.MODEL_ELEMENT__NAME;
 		TableViewerColumn nameColumn = prepareStandardColumn(name, 250);
 		nameColumn.getColumn().setAlignment(SWT.LEFT);
@@ -161,12 +166,10 @@ public class METableViewer extends TableViewer {
 		prepareStandardColumn(creator, 100);
 
 		EAttribute creationDate = ModelPackage.Literals.MODEL_ELEMENT__CREATION_DATE;
-		prepareStandardColumn(
-				creationDate, 150);
+		prepareStandardColumn(creationDate, 150);
 
 		EReference container = TaskPackage.Literals.WORK_ITEM__CONTAINING_WORKPACKAGE;
-		prepareStandardColumn(container,
-				150);
+		prepareStandardColumn(container, 150);
 	}
 
 	private String getFeatureName(EStructuralFeature feature) {
@@ -204,6 +207,5 @@ public class METableViewer extends TableViewer {
 
 		return currentColumn;
 	}
-	
 
 }

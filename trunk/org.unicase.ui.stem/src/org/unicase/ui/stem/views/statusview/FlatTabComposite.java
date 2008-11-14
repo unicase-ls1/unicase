@@ -26,8 +26,8 @@ import org.unicase.model.task.util.MEState;
 import org.unicase.ui.common.TableViewerColumnSorter;
 import org.unicase.ui.common.commands.ActionHelper;
 import org.unicase.ui.stem.views.AssignedToLabelProvider;
-import org.unicase.ui.stem.views.StatusLabelProvider;
 import org.unicase.ui.stem.views.iterationplanningview.TaskObjectLabelProvider;
+import org.unicase.ui.tableview.labelprovider.StatusLabelProvider;
 
 /**
  * . This class provides contents of flat tab in Status view. It contains a
