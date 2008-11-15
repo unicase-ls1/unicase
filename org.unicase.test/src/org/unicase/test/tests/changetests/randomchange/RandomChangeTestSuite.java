@@ -175,7 +175,7 @@ public class RandomChangeTestSuite extends ChangeTestSuite {
 
 		ChangePackage changePackage = ChangeTestHelper.getChangePackage(
 				getTestProjectSpace().getOperations(), true);
-		 if (changePackage.getOperations().size() == 1) {
+		 if (changePackage.getOperations().size() == 2) {
 			System.out.println("ok");
 			return;
 
