@@ -32,6 +32,7 @@ import org.eclipse.swt.widgets.TreeItem;
 import org.unicase.model.Annotation;
 import org.unicase.model.ModelElement;
 import org.unicase.model.ModelPackage;
+import org.unicase.model.Project;
 import org.unicase.model.diagram.DiagramType;
 import org.unicase.model.diagram.MEDiagram;
 import org.unicase.model.document.CompositeSection;
@@ -333,6 +334,10 @@ public class UCDropAdapter extends DropTargetAdapter {
 	private void doDropAfter(final ModelElement target,
 			final List<ModelElement> source) {
 
+		if(target instanceof CompositeSection && source.get(0) instanceof CompositeSection && target.eContainer() instanceof Project){
+			moveFirstLevelCompSection(target, source, true);
+		}
+		
 		int targetIndex = getTargetIndex(target, source);
 		if (targetIndex == -1) {
 			return;
@@ -358,6 +363,8 @@ public class UCDropAdapter extends DropTargetAdapter {
 		}
 	}
 
+	
+
 	/**
 	 * do drop before.
 	 * 
@@ -369,6 +376,11 @@ public class UCDropAdapter extends DropTargetAdapter {
 	@SuppressWarnings("unchecked")
 	private void doDropBefore(final ModelElement target,
 			final List<ModelElement> source) {
+		
+		if(target instanceof CompositeSection && source.get(0) instanceof CompositeSection && target.eContainer() instanceof Project){
+			moveFirstLevelCompSection(target, source, false);
+		}
+		
 		int targetIndex = getTargetIndex(target, source);
 		if (targetIndex == -1) {
 			return;
@@ -401,6 +413,32 @@ public class UCDropAdapter extends DropTargetAdapter {
 				eList.addAll(targetIndex, source);
 			}
 		}
+	}
+	
+	
+	private void moveFirstLevelCompSection(ModelElement target,
+			List<ModelElement> source, boolean after) {
+		
+		Project project = (Project)target.eContainer();
+		EList<ModelElement> modelElements = project.getModelElements();
+		int targetIndex = modelElements.indexOf(target);
+		if(after){
+			modelElements.addAll(targetIndex + 1, source);
+		}else{
+			modelElements.addAll(targetIndex, source);
+			//modelElements.addAll(targetIndex == 0? 0 : targetIndex - 1, source);
+			
+		}
+		
+		viewer.refresh();
+		
+//		List<CompositeSection> firstLevelCompoSections = new ArrayList<CompositeSection>();
+//		for(CompositeSection compSection : project.getAllModelElementsbyClass(DocumentPackage.eINSTANCE.getCompositeSection(), new BasicEList<CompositeSection>())){
+//			if(compSection.eContainer() instanceof Project){
+//				firstLevelCompoSections.add(compSection);
+//			}
+//		}
+		
 	}
 
 	/**
@@ -761,14 +799,14 @@ public class UCDropAdapter extends DropTargetAdapter {
 
 		// take care that you cannot drop anything on project (project is not a
 		// ModelElement)
-		if (event.item == null || event.item.getClass() == null
+		if (event.item == null || event.item.getData() == null
 				|| !(event.item.getData() instanceof ModelElement)) {
 			result = false;
 		}
 
 		// check if source and target are in the same project
 		ModelElement dropee = source.get(0);
-		if (event.item.getData() instanceof ModelElement) {
+		if (event.item != null && event.item.getData() != null && event.item.getData() instanceof ModelElement) {
 			ModelElement target = (ModelElement) event.item.getData();
 			if (!target.getProject().equals(dropee.getProject())) {
 				result = false;
