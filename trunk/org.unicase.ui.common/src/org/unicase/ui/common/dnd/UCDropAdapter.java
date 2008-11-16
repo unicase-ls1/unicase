@@ -32,7 +32,6 @@ import org.eclipse.swt.widgets.TreeItem;
 import org.unicase.model.Annotation;
 import org.unicase.model.ModelElement;
 import org.unicase.model.ModelPackage;
-import org.unicase.model.Project;
 import org.unicase.model.diagram.DiagramType;
 import org.unicase.model.diagram.MEDiagram;
 import org.unicase.model.document.CompositeSection;
@@ -412,7 +411,7 @@ public class UCDropAdapter extends DropTargetAdapter {
 	}
 
 	/**
-	 * This return the EReference of container of the target, matching type of
+	 * This returns the EReference of container of the target, matching type of
 	 * source.
 	 * 
 	 * @param target
@@ -576,6 +575,7 @@ public class UCDropAdapter extends DropTargetAdapter {
 
 		// check if we have a drop target and drop source
 		if (!canDrop(event)) {
+			event.detail = DND.DROP_NONE;
 			return;
 		}
 
@@ -617,18 +617,6 @@ public class UCDropAdapter extends DropTargetAdapter {
 			event.detail = event.detail | DND.DROP_COPY;
 		}
 		
-		
-//		if((eventFeedback & DND.FEEDBACK_INSERT_AFTER) == DND.FEEDBACK_INSERT_AFTER || (eventFeedback & DND.FEEDBACK_INSERT_BEFORE) == DND.FEEDBACK_INSERT_BEFORE){
-//			//Trying to move a WorkItem inside its own WorkPackage
-//			if (target.eContainer() instanceof WorkPackage){
-//				event.detail = event.detail | DND.DROP_COPY;
-//			}
-//			//to move LeafSections inside a CompositeSection
-//			if(target.eContainer() instanceof CompositeSection){
-//					event.detail = event.detail | DND.DROP_COPY;
-//			}
-//		}
-		
 		// see comment of eventFeedback field
 		eventFeedback = event.feedback;
 
@@ -645,7 +633,8 @@ public class UCDropAdapter extends DropTargetAdapter {
 	 */
 	private boolean canDrop(DropTargetEvent event, List<ModelElement> source,
 			ModelElement target, ModelElement dropee) {
-
+		
+		
 		// a container is not allowed to contain the same element twice
 		if (target.eContents().contains(dropee)) {
 			if (!((event.feedback & DND.FEEDBACK_INSERT_AFTER) == DND.FEEDBACK_INSERT_AFTER || (event.feedback & DND.FEEDBACK_INSERT_BEFORE) == DND.FEEDBACK_INSERT_BEFORE)) {
@@ -654,6 +643,7 @@ public class UCDropAdapter extends DropTargetAdapter {
 			}
 
 		}
+				
 
 		// do not drop an element on itself
 		if (target == dropee) {
@@ -661,10 +651,10 @@ public class UCDropAdapter extends DropTargetAdapter {
 			return false;
 		}
 
-		// a composite section should only contain leaf sections
+		// a composite section should only contain sections
 		// do not drop anything else on it
 		if (target instanceof CompositeSection) {
-			if (!(dropee instanceof LeafSection)) {
+			if (!(dropee instanceof Section)) {
 				event.detail = DND.DROP_NONE;
 				return false;
 			}
@@ -687,10 +677,6 @@ public class UCDropAdapter extends DropTargetAdapter {
 			event.detail = DND.DROP_NONE;
 			return false;
 		}
-		
-//		if(target instanceof Project || target.eContainer() instanceof Project){
-//			if(!dropee.eContainingFeature().equals(ModelPackage.eINSTANCE.getpro))
-//		}
 		
 		ProjectSpace projectSpace = WorkspaceManager.getProjectSpace(target);
 		Usersession userSession = projectSpace.getUsersession();
@@ -770,6 +756,8 @@ public class UCDropAdapter extends DropTargetAdapter {
 		if (source == null) {
 			result = false;
 		}
+		
+		//take care that you cannot drop anything on project (project is not a ModelElement)
 		if (event.item == null || event.item.getClass() == null
 				|| !(event.item.getData() instanceof ModelElement)) {
 			result = false;
