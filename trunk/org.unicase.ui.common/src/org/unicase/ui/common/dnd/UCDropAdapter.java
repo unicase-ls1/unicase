@@ -183,9 +183,10 @@ public class UCDropAdapter extends DropTargetAdapter {
 	}
 
 	/**
-	 * When a ModelElement (which is not a WorkItem) is dropped on a WorkPackage, or one of 
-	 * WorkItems inside this WorkPackage, then an ActionItem relating the dropped ME is created
-	 * and added to WorkPackage.
+	 * When a ModelElement (which is not a WorkItem) is dropped on a
+	 * WorkPackage, or one of WorkItems inside this WorkPackage, then an
+	 * ActionItem relating the dropped ME is created and added to WorkPackage.
+	 * 
 	 * @param target
 	 * @param source
 	 */
@@ -208,8 +209,6 @@ public class UCDropAdapter extends DropTargetAdapter {
 					}
 				});
 	}
-	
-	
 
 	/**
 	 * Drop containment.
@@ -233,8 +232,6 @@ public class UCDropAdapter extends DropTargetAdapter {
 
 	}
 
-	
-	
 	/**
 	 * Returns the EReference in target, which corresponds to EClass of source.
 	 * 
@@ -266,8 +263,6 @@ public class UCDropAdapter extends DropTargetAdapter {
 		return null;
 	}
 
-	
-	
 	/**
 	 * drop after.
 	 * 
@@ -296,8 +291,6 @@ public class UCDropAdapter extends DropTargetAdapter {
 				});
 
 	}
-	
-	
 
 	/**
 	 * drop before.
@@ -354,13 +347,13 @@ public class UCDropAdapter extends DropTargetAdapter {
 		EList<EObject> eList = (EList<EObject>) object;
 		targetIndex = eList.indexOf(target);
 		if (haveSameEContainer(target, source.get(0))) {
-			//if we are moving some children within the same parent
+			// if we are moving some children within the same parent
 			for (int i = source.size() - 1; i >= 0; i--) {
 				eList.move(targetIndex, source.get(i));
 			}
 
 		} else {
-			//if we are moving some children from another parent here.
+			// if we are moving some children from another parent here.
 			eList.addAll(targetIndex, source);
 		}
 	}
@@ -461,7 +454,7 @@ public class UCDropAdapter extends DropTargetAdapter {
 		EObject container = target.eContainer();
 		EReference theRef = null;
 		List<EReference> refs = container.eClass().getEAllContainments();
-		
+
 		for (EReference ref : refs) {
 			if (ref.getEReferenceType().equals(source.get(0).eClass())
 					|| ref.getEReferenceType().isSuperTypeOf(
@@ -616,7 +609,7 @@ public class UCDropAdapter extends DropTargetAdapter {
 		if (target instanceof WorkPackage) {
 			event.detail = event.detail | DND.DROP_COPY;
 		}
-		
+
 		// see comment of eventFeedback field
 		eventFeedback = event.feedback;
 
@@ -633,8 +626,7 @@ public class UCDropAdapter extends DropTargetAdapter {
 	 */
 	private boolean canDrop(DropTargetEvent event, List<ModelElement> source,
 			ModelElement target, ModelElement dropee) {
-		
-		
+
 		// a container is not allowed to contain the same element twice
 		if (target.eContents().contains(dropee)) {
 			if (!((event.feedback & DND.FEEDBACK_INSERT_AFTER) == DND.FEEDBACK_INSERT_AFTER || (event.feedback & DND.FEEDBACK_INSERT_BEFORE) == DND.FEEDBACK_INSERT_BEFORE)) {
@@ -643,7 +635,6 @@ public class UCDropAdapter extends DropTargetAdapter {
 			}
 
 		}
-				
 
 		// do not drop an element on itself
 		if (target == dropee) {
@@ -677,17 +668,17 @@ public class UCDropAdapter extends DropTargetAdapter {
 			event.detail = DND.DROP_NONE;
 			return false;
 		}
-		
+
 		ProjectSpace projectSpace = WorkspaceManager.getProjectSpace(target);
 		Usersession userSession = projectSpace.getUsersession();
-		if(dropee instanceof Section && !UnicaseUiUtil.isProjectAdmin(userSession, projectSpace)) {
+		if (dropee instanceof Section
+				&& !UnicaseUiUtil.isProjectAdmin(userSession, projectSpace)) {
 			event.detail = DND.DROP_NONE;
 			return false;
 		}
 
 		return true;
 	}
-
 
 	/**
 	 * Returns if target has a containment of type refType.
@@ -701,11 +692,18 @@ public class UCDropAdapter extends DropTargetAdapter {
 	private boolean hasThisContainmentReference(ModelElement target,
 			EClass refType) {
 
-		//I think a better (faster) implementation could use a map. <<target, refType>, boolean>
+		// I think a better (faster) implementation could use a map. <<target,
+		// refType>, boolean>
 
 		boolean result = false;
-		final List<EReference> targetReferences = target.eClass()
-				.getEAllReferences();
+		List<EReference> targetReferences = null;
+
+		if ((eventFeedback & DND.FEEDBACK_INSERT_AFTER) == DND.FEEDBACK_INSERT_AFTER
+				|| (eventFeedback & DND.FEEDBACK_INSERT_BEFORE) == DND.FEEDBACK_INSERT_BEFORE) {
+			targetReferences = target.eContainer().eClass().getEAllReferences();
+		} else {
+			targetReferences = target.eClass().getEAllReferences();
+		}
 
 		for (EReference ref : targetReferences) {
 
@@ -725,22 +723,26 @@ public class UCDropAdapter extends DropTargetAdapter {
 				break;
 			}
 		}
-		
-		if((eventFeedback & DND.FEEDBACK_INSERT_AFTER) == DND.FEEDBACK_INSERT_AFTER || (eventFeedback & DND.FEEDBACK_INSERT_BEFORE) == DND.FEEDBACK_INSERT_BEFORE){
-			//Trying to move a WorkItem inside its own WorkPackage
-			if (target.eContainer() instanceof WorkPackage){
+
+		if ((eventFeedback & DND.FEEDBACK_INSERT_AFTER) == DND.FEEDBACK_INSERT_AFTER
+				|| (eventFeedback & DND.FEEDBACK_INSERT_BEFORE) == DND.FEEDBACK_INSERT_BEFORE) {
+			// Trying to move a WorkItem inside its own WorkPackage
+			if (target.eContainer() instanceof WorkPackage) {
 				result = true;
 			}
-			//to move LeafSections inside a CompositeSection
-			if(target.eContainer() instanceof CompositeSection){
+			// to move LeafSections inside a CompositeSection
+			if (target.eContainer() instanceof CompositeSection) {
 				result = true;
+				if (!(refType instanceof Section)) {
+					result = false;
+				}
 			}
+
 		}
 
 		return result;
 	}
-	
-	
+
 	/**
 	 * This checks drop target and drop source to be not Null.
 	 * 
@@ -756,8 +758,9 @@ public class UCDropAdapter extends DropTargetAdapter {
 		if (source == null) {
 			result = false;
 		}
-		
-		//take care that you cannot drop anything on project (project is not a ModelElement)
+
+		// take care that you cannot drop anything on project (project is not a
+		// ModelElement)
 		if (event.item == null || event.item.getClass() == null
 				|| !(event.item.getData() instanceof ModelElement)) {
 			result = false;
@@ -765,7 +768,6 @@ public class UCDropAdapter extends DropTargetAdapter {
 
 		return result;
 	}
-
 
 	/**
 	 * This sets the initial event feedback, and is also responsible for showing
