@@ -766,6 +766,15 @@ public class UCDropAdapter extends DropTargetAdapter {
 			result = false;
 		}
 
+		// check if source and target are in the same project
+		ModelElement dropee = source.get(0);
+		if (event.item.getData() instanceof ModelElement) {
+			ModelElement target = (ModelElement) event.item.getData();
+			if (!target.getProject().equals(dropee.getProject())) {
+				result = false;
+			}
+		}
+
 		return result;
 	}
 
