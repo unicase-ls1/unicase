@@ -32,9 +32,11 @@ import org.eclipse.swt.widgets.TreeItem;
 import org.unicase.model.Annotation;
 import org.unicase.model.ModelElement;
 import org.unicase.model.ModelPackage;
+import org.unicase.model.Project;
 import org.unicase.model.diagram.DiagramType;
 import org.unicase.model.diagram.MEDiagram;
 import org.unicase.model.document.CompositeSection;
+import org.unicase.model.document.DocumentPackage;
 import org.unicase.model.document.LeafSection;
 import org.unicase.model.document.Section;
 import org.unicase.model.meeting.WorkItemMeetingSection;
@@ -43,6 +45,10 @@ import org.unicase.model.task.TaskFactory;
 import org.unicase.model.task.WorkItem;
 import org.unicase.model.task.WorkPackage;
 import org.unicase.ui.common.commands.ActionHelper;
+import org.unicase.ui.common.util.UnicaseUiUtil;
+import org.unicase.workspace.ProjectSpace;
+import org.unicase.workspace.Usersession;
+import org.unicase.workspace.WorkspaceManager;
 
 /**
  * Drop adaptor for viewers. Currently drag and drop for more than one element
@@ -81,29 +87,6 @@ public class UCDropAdapter extends DropTargetAdapter {
 		super();
 		this.domain = domain;
 		this.viewer = viewer;
-	}
-
-	/**
-	 * This checks drop target and drop source to be not Null.
-	 * 
-	 * @param event
-	 *            DropTargetEvent
-	 * @return
-	 */
-	@SuppressWarnings("unchecked")
-	private boolean canDrop(DropTargetEvent event) {
-		boolean result = true;
-		final List<ModelElement> source = (List<ModelElement>) DragSourcePlaceHolder
-				.getDragSource();
-		if (source == null) {
-			result = false;
-		}
-		if (event.item == null || event.item.getClass() == null
-				|| !(event.item.getData() instanceof ModelElement)) {
-			result = false;
-		}
-
-		return result;
 	}
 
 	/**
@@ -152,9 +135,7 @@ public class UCDropAdapter extends DropTargetAdapter {
 				&& !(target instanceof Section || target instanceof WorkPackage || target
 						.eContainer() instanceof WorkPackage)) {
 			// when an annotation is dropped on a model element, which is not a
-			// Section,
-			// WorkPackage or contained in a WorkPackage.
-
+			// Section, WorkPackage or contained in a WorkPackage.
 			Annotation[] arr = source.toArray(new Annotation[source.size()]);
 			final List<Annotation> newAnnotations = Arrays.asList(arr);
 			domain.getCommandStack().execute(
@@ -183,8 +164,8 @@ public class UCDropAdapter extends DropTargetAdapter {
 		}
 	}
 
-	private void dropWorkItemOnMeetingSection(final WorkItemMeetingSection target,
-			final List<ModelElement> source) {
+	private void dropWorkItemOnMeetingSection(
+			final WorkItemMeetingSection target, final List<ModelElement> source) {
 
 		domain.getCommandStack().execute(
 				new RecordingCommand((TransactionalEditingDomain) domain) {
@@ -202,6 +183,13 @@ public class UCDropAdapter extends DropTargetAdapter {
 
 	}
 
+	/**
+	 * When a ModelElement (which is not a WorkItem) is dropped on a WorkPackage, or one of 
+	 * WorkItems inside this WorkPackage, then an ActionItem relating the dropped ME is created
+	 * and added to WorkPackage.
+	 * @param target
+	 * @param source
+	 */
 	private void dropMEOnWorkpackage(final ModelElement target,
 			final List<ModelElement> source) {
 
@@ -221,36 +209,16 @@ public class UCDropAdapter extends DropTargetAdapter {
 					}
 				});
 	}
+	
+	
 
 	/**
-	 * Returns if target has a containment of type refType.
+	 * Drop containment.
 	 * 
+	 * @param event
 	 * @param target
-	 *            target
-	 * @param refType
-	 *            reference type to check for its existence in target
-	 * @return if target has such a reference type
+	 * @param source
 	 */
-	private boolean hasThisContainmentReference(ModelElement target,
-			EClass refType) {
-
-		boolean result = false;
-		final List<EReference> targetReferences = target.eClass()
-				.getEAllReferences();
-
-		for (EReference ref : targetReferences) {
-			// ZH I think here we should also check
-			// if ref.getEReferenceType().isSuperTypeOf(refType);
-			if (ref.getEReferenceType().equals(refType) && ref.isContainment()) {
-				ref.getEReferenceType().isSuperTypeOf(refType);
-				result = true;
-				break;
-			}
-		}
-
-		return result;
-	}
-
 	@SuppressWarnings("unchecked")
 	private void dropContainment(DropTargetEvent event, ModelElement target,
 			List<ModelElement> source) {
@@ -266,6 +234,8 @@ public class UCDropAdapter extends DropTargetAdapter {
 
 	}
 
+	
+	
 	/**
 	 * Returns the EReference in target, which corresponds to EClass of source.
 	 * 
@@ -297,6 +267,8 @@ public class UCDropAdapter extends DropTargetAdapter {
 		return null;
 	}
 
+	
+	
 	/**
 	 * drop after.
 	 * 
@@ -325,6 +297,8 @@ public class UCDropAdapter extends DropTargetAdapter {
 				});
 
 	}
+	
+	
 
 	/**
 	 * drop before.
@@ -381,11 +355,13 @@ public class UCDropAdapter extends DropTargetAdapter {
 		EList<EObject> eList = (EList<EObject>) object;
 		targetIndex = eList.indexOf(target);
 		if (haveSameEContainer(target, source.get(0))) {
+			//if we are moving some children within the same parent
 			for (int i = source.size() - 1; i >= 0; i--) {
 				eList.move(targetIndex, source.get(i));
 			}
 
 		} else {
+			//if we are moving some children from another parent here.
 			eList.addAll(targetIndex, source);
 		}
 	}
@@ -485,11 +461,9 @@ public class UCDropAdapter extends DropTargetAdapter {
 		int targetIndex = -1;
 		EObject container = target.eContainer();
 		EReference theRef = null;
-		List<EReference> refs = container.eClass().getEAllReferences();
+		List<EReference> refs = container.eClass().getEAllContainments();
+		
 		for (EReference ref : refs) {
-			if (!ref.isContainment()) {
-				continue;
-			}
 			if (ref.getEReferenceType().equals(source.get(0).eClass())
 					|| ref.getEReferenceType().isSuperTypeOf(
 							source.get(0).eClass())) {
@@ -621,11 +595,13 @@ public class UCDropAdapter extends DropTargetAdapter {
 			event.detail = DND.DROP_NONE;
 		}
 
+		// you can drop an annotation on any ME
 		EClass annotation = ModelPackage.eINSTANCE.getAnnotation();
 		if (annotation.isSuperTypeOf(dropee.eClass())) {
 			event.detail = event.detail | DND.DROP_COPY;
 		}
 
+		// I don't know much about diagrams
 		if (target instanceof MEDiagram) {
 			if (!isElementOfDiagram((MEDiagram) target, dropee)
 					|| ((MEDiagram) target).getElements().contains(dropee)) {
@@ -634,14 +610,25 @@ public class UCDropAdapter extends DropTargetAdapter {
 				event.detail = event.detail | DND.DROP_COPY;
 			}
 		}
+
+		// On a WorkPackage you can drop anything. If the dropee is not a
+		// WorkItem, a WorkItem will be created for it and added to WorkPackage.
 		if (target instanceof WorkPackage) {
 			event.detail = event.detail | DND.DROP_COPY;
 		}
-		if (target.eContainer() instanceof WorkPackage
-				&& ((eventFeedback & DND.FEEDBACK_INSERT_AFTER) == DND.FEEDBACK_INSERT_AFTER || (eventFeedback & DND.FEEDBACK_INSERT_BEFORE) == DND.FEEDBACK_INSERT_BEFORE)) {
-			event.detail = event.detail | DND.DROP_COPY;
-		}
-
+		
+		
+//		if((eventFeedback & DND.FEEDBACK_INSERT_AFTER) == DND.FEEDBACK_INSERT_AFTER || (eventFeedback & DND.FEEDBACK_INSERT_BEFORE) == DND.FEEDBACK_INSERT_BEFORE){
+//			//Trying to move a WorkItem inside its own WorkPackage
+//			if (target.eContainer() instanceof WorkPackage){
+//				event.detail = event.detail | DND.DROP_COPY;
+//			}
+//			//to move LeafSections inside a CompositeSection
+//			if(target.eContainer() instanceof CompositeSection){
+//					event.detail = event.detail | DND.DROP_COPY;
+//			}
+//		}
+		
 		// see comment of eventFeedback field
 		eventFeedback = event.feedback;
 
@@ -700,9 +687,97 @@ public class UCDropAdapter extends DropTargetAdapter {
 			event.detail = DND.DROP_NONE;
 			return false;
 		}
+		
+//		if(target instanceof Project || target.eContainer() instanceof Project){
+//			if(!dropee.eContainingFeature().equals(ModelPackage.eINSTANCE.getpro))
+//		}
+		
+		ProjectSpace projectSpace = WorkspaceManager.getProjectSpace(target);
+		Usersession userSession = projectSpace.getUsersession();
+		if(dropee instanceof Section && !UnicaseUiUtil.isProjectAdmin(userSession, projectSpace)) {
+			event.detail = DND.DROP_NONE;
+			return false;
+		}
 
 		return true;
 	}
+
+
+	/**
+	 * Returns if target has a containment of type refType.
+	 * 
+	 * @param target
+	 *            target
+	 * @param refType
+	 *            reference type to check for its existence in target
+	 * @return if target has such a reference type
+	 */
+	private boolean hasThisContainmentReference(ModelElement target,
+			EClass refType) {
+
+		//I think a better (faster) implementation could use a map. <<target, refType>, boolean>
+
+		boolean result = false;
+		final List<EReference> targetReferences = target.eClass()
+				.getEAllReferences();
+
+		for (EReference ref : targetReferences) {
+
+			if (ref.isContainment()
+					&& (ref.getEReferenceType().equals(refType) || ref
+							.getEReferenceType().isSuperTypeOf(refType))) {
+
+				// consider LeafSection.modelElements() reference
+				// A Composite- or LeafSection is not allowed to be dropped on a
+				// LeafSection.
+				if (target instanceof LeafSection
+						&& DocumentPackage.eINSTANCE.getSection()
+								.isSuperTypeOf(refType)) {
+					continue;
+				}
+				result = true;
+				break;
+			}
+		}
+		
+		if((eventFeedback & DND.FEEDBACK_INSERT_AFTER) == DND.FEEDBACK_INSERT_AFTER || (eventFeedback & DND.FEEDBACK_INSERT_BEFORE) == DND.FEEDBACK_INSERT_BEFORE){
+			//Trying to move a WorkItem inside its own WorkPackage
+			if (target.eContainer() instanceof WorkPackage){
+				result = true;
+			}
+			//to move LeafSections inside a CompositeSection
+			if(target.eContainer() instanceof CompositeSection){
+				result = true;
+			}
+		}
+
+		return result;
+	}
+	
+	
+	/**
+	 * This checks drop target and drop source to be not Null.
+	 * 
+	 * @param event
+	 *            DropTargetEvent
+	 * @return
+	 */
+	@SuppressWarnings("unchecked")
+	private boolean canDrop(DropTargetEvent event) {
+		boolean result = true;
+		final List<ModelElement> source = (List<ModelElement>) DragSourcePlaceHolder
+				.getDragSource();
+		if (source == null) {
+			result = false;
+		}
+		if (event.item == null || event.item.getClass() == null
+				|| !(event.item.getData() instanceof ModelElement)) {
+			result = false;
+		}
+
+		return result;
+	}
+
 
 	/**
 	 * This sets the initial event feedback, and is also responsible for showing
