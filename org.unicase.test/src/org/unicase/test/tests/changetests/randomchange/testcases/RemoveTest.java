@@ -9,6 +9,7 @@ import org.eclipse.emf.ecore.EReference;
 import org.eclipse.emf.transaction.RecordingCommand;
 import org.eclipse.emf.transaction.TransactionalEditingDomain;
 import org.unicase.model.ModelElement;
+import org.unicase.test.tests.changetests.randomchange.IChangePackageTest;
 import org.unicase.test.tests.changetests.randomchange.RandomChangeTestCase;
 
 /**
@@ -23,8 +24,10 @@ import org.unicase.test.tests.changetests.randomchange.RandomChangeTestCase;
  * @author Hodaie
  * 
  */
-public class RemoveTest extends RandomChangeTestCase {
+public class RemoveTest extends RandomChangeTestCase implements IChangePackageTest{
 
+	private static final int EXPECTED_NUM_OF_CHANGES = 1;
+	
 	private EReference ref;
 	
 	public RemoveTest(String testName, long randomSeed) {
@@ -94,6 +97,11 @@ public class RemoveTest extends RandomChangeTestCase {
 		
 		ref = tmpRef;
 		return true;
+	}
+
+	public int getExpectedNumOfChanges() {
+		
+		return EXPECTED_NUM_OF_CHANGES;
 	}
 
 }

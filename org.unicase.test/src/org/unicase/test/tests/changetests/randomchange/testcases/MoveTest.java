@@ -15,6 +15,7 @@ import org.unicase.test.tests.changetests.randomchange.RandomChangeTestCase;
 
 public class MoveTest extends RandomChangeTestCase {
 
+	
 	private int totalOps = 0;
 
 	public MoveTest(String testName, long randomSeed) {
@@ -142,5 +143,7 @@ public class MoveTest extends RandomChangeTestCase {
 		System.out.println(getTestName() + "; " + totalOps + " moves");
 
 	}
+
+
 }
 
