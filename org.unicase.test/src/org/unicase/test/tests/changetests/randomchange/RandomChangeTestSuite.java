@@ -12,6 +12,7 @@ import org.unicase.test.tests.changetests.ChangeTestHelper;
 import org.unicase.test.tests.changetests.ChangeTestSuite;
 import org.unicase.test.tests.changetests.randomchange.testcases.AddTest;
 import org.unicase.test.tests.changetests.randomchange.testcases.ChangeSimpleAttributeTest;
+import org.unicase.test.tests.changetests.randomchange.testcases.CommitTest;
 import org.unicase.test.tests.changetests.randomchange.testcases.CompoundTest;
 import org.unicase.test.tests.changetests.randomchange.testcases.CreateAndChangeRefTest;
 import org.unicase.test.tests.changetests.randomchange.testcases.DeleteTest;
@@ -97,12 +98,16 @@ public class RandomChangeTestSuite extends ChangeTestSuite {
 		// createAndChangeAttrTest.setParameters();
 
 		// CompoundTest
-		 CompoundTest compoundTest = new CompoundTest("Compound", getRandomSeed(), testCases);
+		//CompoundTest compoundTest = new CompoundTest("Compound", getRandomSeed(), testCases);
 		// compoundTest.setParameters();
+		
+		// CommitTest
+		CommitTest commitTest = new CommitTest("Commit", getRandomSeed(), testCases);
+		// commitTest.setParameters();
 
 		// this.getTestCases().add(moveTest);
 		// this.getTestCases().add(addTest);
-		this.getTestCases().add(compoundTest);
+		// this.getTestCases().add(compoundTest);
 		// this.getTestCases().add(deleteTest);
 		// this.getTestCases().add(referenceTest);
 		// this.getTestCases().add(compoundTest);
@@ -111,6 +116,7 @@ public class RandomChangeTestSuite extends ChangeTestSuite {
 		// this.getTestCases().add(removeTest);
 		// this.getTestCases().add(createAndChangeRefTest);
 		// this.getTestCases().add(createAndChangeAttrTest);
+		this.getTestCases().add(commitTest);
 
 		for (TestCase test : getTestCases()) {
 			if (test instanceof ChangeTestCase) {
@@ -156,12 +162,12 @@ public class RandomChangeTestSuite extends ChangeTestSuite {
 	@Override
 	public void endTestSuite() {
 
-		if (true) {
-			endTestSuiteChangePackageTests();
-		} else {
-			endTestSuiteCompareTests();
-
-		}
+//		if (true) {
+//			endTestSuiteChangePackageTests();
+//		} else {
+//			endTestSuiteCompareTests();
+//
+//		}
 
 	}
 
