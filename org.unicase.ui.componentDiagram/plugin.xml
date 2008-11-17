@@ -10,13 +10,6 @@
       </fileTypes>
    </extension>
 
-   <extension point="org.eclipse.emf.ecore.extension_parser">
-      <?gmfgen generated="true"?>
-      <parser
-         type="model_diagram"
-         class="org.eclipse.gmf.runtime.emf.core.resources.GMFResourceFactory">
-      </parser>
-   </extension>
 
    <extension point="org.eclipse.ui.editors">
       <?gmfgen generated="true"?>
@@ -481,7 +474,7 @@
                class="org.unicase.ui.common.diagram.DeleteFromDiagramAction"
                enablesFor="1"
                icon="icons/delete_edit.gif"
-               id="DeleteFromDiagramActionID"
+               id="DeleteFromDiagramActionIDComp"
                label="Delete From Diagram">
          </action>
       </objectContribution>
@@ -495,7 +488,8 @@
          <action
                class="org.unicase.ui.common.diagram.DeleteFromDiagramAction"
                enablesFor="1"
-               id="DeleteFromDiagramActionID"
+               icon="icons/delete_edit.gif"
+               id="DeleteFromDiagramActionIDComponent"
                label="Delete From Diagram">
          </action>
       </objectContribution>
