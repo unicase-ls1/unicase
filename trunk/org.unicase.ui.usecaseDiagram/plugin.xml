@@ -483,12 +483,6 @@
          contextId="org.unicase.ui.usecaseDiagram.ui.diagramContext"
          schemeId="org.eclipse.ui.defaultAcceleratorConfiguration"
          sequence="F5"/>
-   </extension><extension point="org.eclipse.emf.ecore.extension_parser">
-      <?gmfgen generated="true"?>
-      <parser
-         type="model_diagram"
-         class="org.eclipse.gmf.runtime.emf.core.resources.GMFResourceFactory">
-      </parser>
    </extension>
 
 <extension point="org.eclipse.ui.popupMenus">
@@ -499,7 +493,7 @@
          <action
                class="org.unicase.ui.common.diagram.DeleteFromDiagramAction"
                enablesFor="1"
-               id="DeleteFromDiagramActionID"
+               id="DeleteFromDiagramActionIDUseCase"
                icon="icons/delete_edit.gif"
                label="Delete From Diagram"
                menubarPath="additions">
@@ -512,7 +506,7 @@
          <action
                class="org.unicase.ui.common.diagram.DeleteFromDiagramAction"
                enablesFor="1"
-               id="DeleteFromDiagramActionID"
+               id="DeleteFromDiagramActionIDUseCase"
                icon="icons/delete_edit.gif"
                label="Delete From Diagram"
                menubarPath="additions">
