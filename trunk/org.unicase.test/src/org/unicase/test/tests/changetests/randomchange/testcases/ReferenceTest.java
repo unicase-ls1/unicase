@@ -12,6 +12,7 @@ import org.eclipse.emf.transaction.RecordingCommand;
 import org.eclipse.emf.transaction.TransactionalEditingDomain;
 import org.unicase.model.ModelElement;
 import org.unicase.test.tests.changetests.ChangeTestHelper;
+import org.unicase.test.tests.changetests.randomchange.IChangePackageTest;
 import org.unicase.test.tests.changetests.randomchange.RandomChangeTestCase;
 
 /**
@@ -23,8 +24,10 @@ import org.unicase.test.tests.changetests.randomchange.RandomChangeTestCase;
  * @author Hodaie
  * 
  */
-public class ReferenceTest extends RandomChangeTestCase {
+public class ReferenceTest extends RandomChangeTestCase  implements IChangePackageTest{
 
+	private static final int EXPECTED_NUM_OF_CHANGES = 1;
+	
 	public ReferenceTest(String testName, long randomSeed) {
 		super(testName, randomSeed);
 
@@ -80,6 +83,11 @@ public class ReferenceTest extends RandomChangeTestCase {
 		eList.add(toBeReferencedME);
 				
 
+	}
+
+	public int getExpectedNumOfChanges() {
+		
+		return EXPECTED_NUM_OF_CHANGES;
 	}
 
 }

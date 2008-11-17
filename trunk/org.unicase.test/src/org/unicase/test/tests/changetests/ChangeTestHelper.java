@@ -12,6 +12,7 @@ import java.util.Random;
 import org.eclipse.emf.common.util.URI;
 import org.eclipse.emf.ecore.EClass;
 import org.eclipse.emf.ecore.EObject;
+import org.eclipse.emf.ecore.EPackage;
 import org.eclipse.emf.ecore.resource.Resource;
 import org.eclipse.emf.ecore.resource.ResourceSet;
 import org.eclipse.emf.ecore.resource.impl.ResourceSetImpl;
@@ -263,6 +264,8 @@ public class ChangeTestHelper {
 		return lineNum;
 	}
 
+	
+	
 	public static List<ModelElement> getRandomMEs(Project project, int num,
 			boolean unique) {
 
@@ -298,6 +301,11 @@ public class ChangeTestHelper {
 		return result;
 	}
 
+	public static ModelElement getRandomME(Project project){
+		List<ModelElement> modelElements = getRandomMEs(project, 1, false);
+		return modelElements.get(0);
+	}
+	
 	public static ModelElement createRandomME() {
 		List<EClass> eClazz = ModelUtil.getSubclasses(ModelPackage.eINSTANCE
 				.getModelElement());
@@ -307,5 +315,17 @@ public class ChangeTestHelper {
 
 		return me;
 	}
+	
+	public static ModelElement createInstance(EClass refType) {
+
+		ModelElement me;
+
+		EPackage ePackage = refType.getEPackage();
+		me = (ModelElement) ePackage.getEFactoryInstance().create(refType);
+
+		return me;
+
+	}
+
 
 }

@@ -10,6 +10,7 @@ import org.eclipse.emf.ecore.EEnumLiteral;
 import org.eclipse.emf.transaction.RecordingCommand;
 import org.eclipse.emf.transaction.TransactionalEditingDomain;
 import org.unicase.model.ModelElement;
+import org.unicase.test.tests.changetests.randomchange.IChangePackageTest;
 import org.unicase.test.tests.changetests.randomchange.RandomChangeTestCase;
 
 /**
@@ -25,8 +26,10 @@ import org.unicase.test.tests.changetests.randomchange.RandomChangeTestCase;
  * @author Hodaie
  *
  */
-public class TransitivelyChangeAttributeTest extends RandomChangeTestCase {
+public class TransitivelyChangeAttributeTest extends RandomChangeTestCase implements IChangePackageTest{
 
+	private static final int EXPECTED_NUM_OF_CHANGES = 1;
+	
 	
 
 	public TransitivelyChangeAttributeTest(String testName, long randomSeed) {
@@ -124,6 +127,12 @@ public class TransitivelyChangeAttributeTest extends RandomChangeTestCase {
 	
 	private Date getRandomDate() {
 		return new Date();
+	}
+
+
+	public int getExpectedNumOfChanges() {
+		
+		return EXPECTED_NUM_OF_CHANGES;
 	}
 
 }

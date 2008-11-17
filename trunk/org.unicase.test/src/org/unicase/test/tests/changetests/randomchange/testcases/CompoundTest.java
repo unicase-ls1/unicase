@@ -1,7 +1,6 @@
 package org.unicase.test.tests.changetests.randomchange.testcases;
 
 import org.unicase.test.tests.changetests.randomchange.RandomChangeTestCase;
-import org.unicase.test.tests.changetests.randomchange.RandomChangeTestSuite;
 import org.unicase.test.tests.changetests.randomchange.RandomChangeTestSuite.RandomTestCases;
 
 public class CompoundTest extends RandomChangeTestCase {
@@ -43,7 +42,7 @@ public class CompoundTest extends RandomChangeTestCase {
 			break;
 			
 		case CHANGE_ATTRIBUTE_TEST:
-			System.out.println("**** CompoundTest: ChangeAttributeTest ****");
+			System.out.println("**** CompoundTest: ChangeSimpleAttributeTest ****");
 			renChangeAttributeTest(timesToRun);
 			System.out.println();
 			break;
@@ -70,7 +69,7 @@ public class CompoundTest extends RandomChangeTestCase {
 	}
 
 	private void renChangeAttributeTest(int timesToRun) {
-		ChangeAttributeTest changeAttributeTest = new ChangeAttributeTest("ChangeAttribute", getRandom().nextInt());
+		ChangeSimpleAttributeTest changeAttributeTest = new ChangeSimpleAttributeTest("ChangeAttribute", getRandom().nextInt());
 		changeAttributeTest.setTestProject(getTestProject());
 		
 		for (int i = 0; i < timesToRun; i++) {
@@ -98,4 +97,5 @@ public class CompoundTest extends RandomChangeTestCase {
 		}
 	}
 
+	
 }

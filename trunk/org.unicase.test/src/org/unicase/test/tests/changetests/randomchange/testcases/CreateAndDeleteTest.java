@@ -13,6 +13,7 @@ import org.eclipse.emf.transaction.RecordingCommand;
 import org.eclipse.emf.transaction.TransactionalEditingDomain;
 import org.unicase.model.ModelElement;
 import org.unicase.test.tests.changetests.ChangeTestHelper;
+import org.unicase.test.tests.changetests.randomchange.IChangePackageTest;
 import org.unicase.test.tests.changetests.randomchange.RandomChangeTestCase;
 
 
@@ -26,8 +27,10 @@ import org.unicase.test.tests.changetests.randomchange.RandomChangeTestCase;
  * @author Hodaie
  *
  */
-public class CreateAndDeleteTest extends RandomChangeTestCase {
+public class CreateAndDeleteTest extends RandomChangeTestCase implements IChangePackageTest{
 
+	private static final int EXPECTED_NUM_OF_CHANGES = 0;
+	
 	public CreateAndDeleteTest(String testName, long randomSeed) {
 		super(testName, randomSeed);
 
@@ -83,6 +86,11 @@ public class CreateAndDeleteTest extends RandomChangeTestCase {
 	protected void deleteME(ModelElement me) {
 		//EcoreUtil.delete(me, true);
 		EcoreUtil.delete(me);
+	}
+
+	public int getExpectedNumOfChanges() {
+		// TODO Auto-generated method stub
+		return EXPECTED_NUM_OF_CHANGES;
 	}
 
 

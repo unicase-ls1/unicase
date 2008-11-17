@@ -4,18 +4,14 @@ import java.util.ArrayList;
 import java.util.Date;
 import java.util.List;
 
-import org.eclipse.emf.common.util.BasicEList;
-import org.eclipse.emf.common.util.EList;
 import org.eclipse.emf.ecore.EAttribute;
-import org.eclipse.emf.ecore.EClass;
 import org.eclipse.emf.ecore.EEnum;
 import org.eclipse.emf.ecore.EEnumLiteral;
-import org.eclipse.emf.ecore.EObject;
-import org.eclipse.emf.ecore.EReference;
 import org.eclipse.emf.transaction.RecordingCommand;
 import org.eclipse.emf.transaction.TransactionalEditingDomain;
 import org.unicase.model.ModelElement;
 import org.unicase.test.tests.changetests.ChangeTestHelper;
+import org.unicase.test.tests.changetests.randomchange.IChangePackageTest;
 import org.unicase.test.tests.changetests.randomchange.RandomChangeTestCase;
 
 /**
@@ -30,8 +26,11 @@ import org.unicase.test.tests.changetests.randomchange.RandomChangeTestCase;
  * 
  */
 
-public class CreateAndChangeAttributeTest extends RandomChangeTestCase {
+public class CreateAndChangeAttributeTest extends RandomChangeTestCase implements IChangePackageTest{
 
+	private static final int EXPECTED_NUM_OF_CHANGES = 1;
+	
+	
 	public CreateAndChangeAttributeTest(String testName, long randomSeed) {
 		super(testName, randomSeed);
 
@@ -122,6 +121,10 @@ public class CreateAndChangeAttributeTest extends RandomChangeTestCase {
 
 	private Date getRandomDate() {
 		return new Date();
+	}
+
+	public int getExpectedNumOfChanges() {
+		return EXPECTED_NUM_OF_CHANGES;
 	}
 
 }
