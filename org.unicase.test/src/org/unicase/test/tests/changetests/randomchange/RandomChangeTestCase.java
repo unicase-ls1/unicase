@@ -17,8 +17,6 @@ import org.unicase.workspace.Configuration;
 public abstract class RandomChangeTestCase extends ChangeTestCase {
 
 	private boolean isCompareTest;
-	private boolean isChangePackageTest;
-	private int EXPECTED_NUM_OF_CHANGES;
 	
 	private static final String REUSLTS_SAVE_DIR = Configuration
 			.getWorkspaceDirectory()
