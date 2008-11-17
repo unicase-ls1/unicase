@@ -7,7 +7,7 @@ import java.util.List;
 public abstract class TestSuite {
 
 	private List<TestCase> testcases;
-	private boolean manualTests;
+	
 
 	public TestSuite() {
 		testcases = new ArrayList<TestCase>();

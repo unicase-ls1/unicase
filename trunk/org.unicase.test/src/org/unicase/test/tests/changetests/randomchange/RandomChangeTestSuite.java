@@ -1,5 +1,8 @@
 package org.unicase.test.tests.changetests.randomchange;
 
+import java.util.ArrayList;
+import java.util.List;
+
 import org.unicase.emfstore.esmodel.versioning.ChangePackage;
 import org.unicase.emfstore.esmodel.versioning.operations.AbstractOperation;
 import org.unicase.emfstore.esmodel.versioning.operations.CreateDeleteOperation;
@@ -9,6 +12,12 @@ import org.unicase.test.tests.changetests.ChangeTestHelper;
 import org.unicase.test.tests.changetests.ChangeTestSuite;
 import org.unicase.test.tests.changetests.randomchange.testcases.AddTest;
 import org.unicase.test.tests.changetests.randomchange.testcases.ChangeSimpleAttributeTest;
+import org.unicase.test.tests.changetests.randomchange.testcases.CompoundTest;
+import org.unicase.test.tests.changetests.randomchange.testcases.CreateAndChangeRefTest;
+import org.unicase.test.tests.changetests.randomchange.testcases.DeleteTest;
+import org.unicase.test.tests.changetests.randomchange.testcases.MoveTest;
+import org.unicase.test.tests.changetests.randomchange.testcases.ReferenceTest;
+import org.unicase.test.tests.changetests.randomchange.testcases.TransitivelyChangeAttributeTest;
 
 public class RandomChangeTestSuite extends ChangeTestSuite {
 
@@ -16,7 +25,7 @@ public class RandomChangeTestSuite extends ChangeTestSuite {
 	// private boolean changePackageTest;
 
 	public enum RandomTestCases {
-		ADD_TEST, CHANGE_ATTRIBUTE_TEST, DELETE_TEST, MOVE_TEST, REFERENCE_TEST, REMOVE_TEST, CREATE_AND_DELETE_TEST, CREATE_AND_CHANGE_REF_TEST, CREATE_AND_CHANGE_ATTRIBUTE_TEST, TRANSITIVELY_CHANGE_ATTRIBUTE_TEST, COMPOUND_TEST
+		ADD_TEST, CHANGE_SIMPLE_ATTRIBUTE_TEST, DELETE_TEST, MOVE_TEST, REFERENCE_TEST, REMOVE_TEST, CREATE_AND_DELETE_TEST, CREATE_AND_CHANGE_REF_TEST, CREATE_AND_CHANGE_ATTRIBUTE_TEST, TRANSITIVELY_CHANGE_ATTRIBUTE_TEST, COMPOUND_TEST
 	}
 
 	public RandomChangeTestSuite() {
@@ -26,6 +35,8 @@ public class RandomChangeTestSuite extends ChangeTestSuite {
 	@Override
 	public void initTestCases() {
 
+		List<RandomChangeTestCase> testCases = new ArrayList<RandomChangeTestCase>();
+
 		// add test cases
 		// getLogger().info("adding test cases");
 		System.out.println("adding testcases...");
@@ -33,34 +44,40 @@ public class RandomChangeTestSuite extends ChangeTestSuite {
 		// ChangeSimpleAttributeTest
 		ChangeSimpleAttributeTest changeAttributeTest = new ChangeSimpleAttributeTest(
 				"ChangeSimpleAttributeTest", getRandomSeed());
+		testCases.add(changeAttributeTest);
 		// changeAttributeTest.setParameters();
 
 		// DeleteTest
-		// DeleteTest deleteTest = new DeleteTest("Delete", randomSeed);
+		DeleteTest deleteTest = new DeleteTest("Delete", getRandomSeed());
+		testCases.add(deleteTest);
 		// deleteTest.setParameters();
 
 		// MoveTest
-		// MoveTest moveTest = new MoveTest("Move", randomSeed);
+		MoveTest moveTest = new MoveTest("Move", getRandomSeed());
+		testCases.add(moveTest);
 		// moveTest.setParameters();
 
 		// AddTest
-		//AddTest addTest = new AddTest("Add", getRandomSeed());
+		AddTest addTest = new AddTest("Add", getRandomSeed());
+		testCases.add(addTest);
 		// addTest.setParameters();
 
 		// Reference Test
-		// ReferenceTest referenceTest = new ReferenceTest("Reference",
-		// randomSeed);
+		ReferenceTest referenceTest = new ReferenceTest("Reference",
+				getRandomSeed());
+		testCases.add(referenceTest);
 		// referenceTest.setParameters();
 
 		// CreateAndDelete Test
-		// CreateAndDeleteTest createAndDeleteTest = new
-		// CreateAndDeleteTest("CreateAndDelete", getRandomSeed());
+		// CreateAndDeleteTest createAndDeleteTest = new CreateAndDeleteTest(
+		// "CreateAndDelete", getRandomSeed());
+		// testCases.add(createAndDeleteTest);
 		// createAndDeleteTest.setParameters();
 
 		// TransitivelyChangeAttributeTest Test
-		// TransitivelyChangeAttributeTest transitivelyChangeAttribute = new
-		// TransitivelyChangeAttributeTest("SimpleAttributeChange",
-		// getRandomSeed());
+		TransitivelyChangeAttributeTest transitivelyChangeAttribute = new TransitivelyChangeAttributeTest(
+				"SimpleAttributeChange", getRandomSeed());
+		testCases.add(transitivelyChangeAttribute);
 		// createAndDeleteTest.setParameters();
 
 		// Remove Test
@@ -68,9 +85,9 @@ public class RandomChangeTestSuite extends ChangeTestSuite {
 		// rmoveTest.setPrameters();
 
 		// CreateAndChangeRef Test
-		// CreateAndChangeRefTest createAndChangeRefTest = new
-		// CreateAndChangeRefTest(
-		// "CreateAndChangeRef", getRandomSeed());
+		CreateAndChangeRefTest createAndChangeRefTest = new CreateAndChangeRefTest(
+				"CreateAndChangeRef", getRandomSeed());
+		testCases.add(createAndChangeRefTest);
 		// createAndChangeRefTest.setParameters();
 
 		// CreateAndChangeAttribute Test
@@ -80,12 +97,12 @@ public class RandomChangeTestSuite extends ChangeTestSuite {
 		// createAndChangeAttrTest.setParameters();
 
 		// CompoundTest
-		// CompoundTest compoundTest = new CompoundTest("Compound", randomSeed);
+		 CompoundTest compoundTest = new CompoundTest("Compound", getRandomSeed(), testCases);
 		// compoundTest.setParameters();
 
 		// this.getTestCases().add(moveTest);
 		// this.getTestCases().add(addTest);
-		this.getTestCases().add(changeAttributeTest);
+		this.getTestCases().add(compoundTest);
 		// this.getTestCases().add(deleteTest);
 		// this.getTestCases().add(referenceTest);
 		// this.getTestCases().add(compoundTest);
