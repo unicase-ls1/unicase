@@ -79,10 +79,21 @@ public class CreateAndChangeRefTest extends RandomChangeTestCase implements ICha
 		ModelElement toBeReferencedME = refTypeMEs.get(getRandom().nextInt(
 				refTypeMEs.size() - 1));
 
-		Object object = me.eGet(ref);
-		EList<EObject> eList = (EList<EObject>) object;
-		eList.add(toBeReferencedME);
 		
+		Object object = me.eGet(ref);
+		if(ref.isMany()){
+			EList<EObject> eList = (EList<EObject>) object;
+			if(eList == null){
+				List<Object> list = new ArrayList<Object>();
+				list.add(toBeReferencedME);
+				me.eSet(ref, list);
+			}else{
+				eList.add(toBeReferencedME);
+			}
+		}else{
+			me.eSet(ref, toBeReferencedME);
+		}
+			
 		
 		
 //		ChangePackage changePackage = ChangeTestHelper.getChangePackage(

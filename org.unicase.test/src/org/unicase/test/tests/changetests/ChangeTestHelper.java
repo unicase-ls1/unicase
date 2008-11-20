@@ -42,6 +42,7 @@ public class ChangeTestHelper {
 			+ "\\tmp\\";
 
 	private static Random random = new Random();
+	private static List<ModelElement> modelElements;
 
 	public static ProjectSpace createEmptyProjectSpace(String name) {
 
@@ -264,21 +265,22 @@ public class ChangeTestHelper {
 		return lineNum;
 	}
 
-	
-	
 	public static List<ModelElement> getRandomMEs(Project project, int num,
 			boolean unique) {
 
 		List<ModelElement> result = new ArrayList<ModelElement>();
+		if (modelElements == null) {
+			System.out
+					.println("getting list of all model elements in project...");
+			modelElements = project.getAllModelElements();
+			System.out.println(modelElements.size() + " MEs in project...");
+		}
 
-		System.out.println("getting list of all model elements in project...");
-		List<ModelElement> modelElements = project.getAllModelElements();
 		int numOfMEs = modelElements.size();
 		if (num > numOfMEs) {
 			throw new IllegalArgumentException(
 					"Number of random MEs to return is greater than total number of MEs in project.");
 		}
-		System.out.println(numOfMEs + " MEs in project...");
 
 		if (unique) {
 			do {
@@ -301,11 +303,11 @@ public class ChangeTestHelper {
 		return result;
 	}
 
-	public static ModelElement getRandomME(Project project){
+	public static ModelElement getRandomME(Project project) {
 		List<ModelElement> modelElements = getRandomMEs(project, 1, false);
 		return modelElements.get(0);
 	}
-	
+
 	public static ModelElement createRandomME() {
 		List<EClass> eClazz = ModelUtil.getSubclasses(ModelPackage.eINSTANCE
 				.getModelElement());
@@ -315,17 +317,25 @@ public class ChangeTestHelper {
 
 		return me;
 	}
-	
+
 	public static ModelElement createInstance(EClass refType) {
 
-		ModelElement me;
+		ModelElement me = null;
 
 		EPackage ePackage = refType.getEPackage();
-		me = (ModelElement) ePackage.getEFactoryInstance().create(refType);
+		if (refType.isAbstract() || refType.isInterface()) {
+			List<EClass> eClazz = ModelUtil.getSubclasses(refType);
+			int index = eClazz.size() == 1 ? 0 : random.nextInt(eClazz.size());
+			refType = eClazz.get(index);
+		}
+
+		EObject eObject = ePackage.getEFactoryInstance().create(refType);
+		if (eObject instanceof ModelElement) {
+			me = (ModelElement) eObject;
+		}
 
 		return me;
 
 	}
-
 
 }

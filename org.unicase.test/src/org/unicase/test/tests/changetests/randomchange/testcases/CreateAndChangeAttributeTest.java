@@ -10,6 +10,7 @@ import org.eclipse.emf.ecore.EEnumLiteral;
 import org.eclipse.emf.transaction.RecordingCommand;
 import org.eclipse.emf.transaction.TransactionalEditingDomain;
 import org.unicase.model.ModelElement;
+import org.unicase.model.ModelPackage;
 import org.unicase.test.tests.changetests.ChangeTestHelper;
 import org.unicase.test.tests.changetests.randomchange.IChangePackageTest;
 import org.unicase.test.tests.changetests.randomchange.RandomChangeTestCase;
@@ -49,8 +50,8 @@ public class CreateAndChangeAttributeTest extends RandomChangeTestCase implement
 			@Override
 			protected void doExecute() {
 				getTestProject().getModelElements().add(me);
-				me.setName("newly created " + me.eClass().getName());
-				//changeRandomAttribute(me);
+				//me.setName("newly created " + me.eClass().getName());
+				changeRandomAttribute(me);
 			}
 
 		});
@@ -63,30 +64,16 @@ public class CreateAndChangeAttributeTest extends RandomChangeTestCase implement
 	protected boolean changeRandomAttribute(ModelElement me) {
 
 		List<EAttribute> attributes = new ArrayList<EAttribute>();
-		attributes.addAll(me.eClass().getEAllAttributes());
-		EAttribute identifier = null;
-		for(EAttribute attr : attributes){
-			if(attr.getName().equalsIgnoreCase("identifier")){
-				identifier = attr;
+		for (EAttribute attr : me.eClass().getEAllAttributes()) {
+			if (attr.isChangeable() && attr.getFeatureID() != ModelPackage.MODEL_ELEMENT__IDENTIFIER){
+				attributes.add(attr);
 			}
 		}
-		if(identifier != null){
-			attributes.remove(identifier);
-		}
+	
+		EAttribute attribute = attributes.size() == 1 ? attributes.get(0)
+				: attributes.get(getRandom().nextInt(attributes.size() - 1));
+
 		
-		EAttribute attribute = null;
-
-		if (attributes.size() < 2) {
-			attribute = attributes.get(0);
-		} else {
-			attribute = attributes.get(getRandom().nextInt(
-					attributes.size() - 1));
-		}
-
-		if (!attribute.isChangeable()) {
-			return false;
-		}
-
 		if (attribute.getEType().getInstanceClass().equals(String.class)) {
 			String oldValue = (String) me.eGet(attribute);
 			String newValue = "changed-" + oldValue;
@@ -95,7 +82,12 @@ public class CreateAndChangeAttributeTest extends RandomChangeTestCase implement
 
 		} else if (attribute.getEType().getInstanceClass()
 				.equals(boolean.class)) {
-			me.eSet(attribute, !((Boolean) me.eGet(attribute)));
+			if(!me.eIsSet(attribute)){
+				me.eSet(attribute, getRandom().nextBoolean());
+			}else{
+				me.eSet(attribute, !((Boolean) me.eGet(attribute)));
+			}
+			
 			return true;
 
 		} else if (attribute.getEType().getInstanceClass().equals(int.class)) {

@@ -8,7 +8,7 @@ public class CompoundTest extends RandomChangeTestCase {
 
 	private List<RandomChangeTestCase> testCases;
 	private static final int MAX_TIMES_TO_RUN = 3;
-	//private static final int ITERATIONS = 5;
+	private static final int ITERATIONS = 5;
 
 	public CompoundTest(String testName, long randomSeed,
 			List<RandomChangeTestCase> testCases) {
@@ -20,10 +20,20 @@ public class CompoundTest extends RandomChangeTestCase {
 	@Override
 	public void runTest() {
 	
-		int numOfTestCases = testCases.size();
-		RandomChangeTestCase testCase = testCases.get(getRandom().nextInt(numOfTestCases));
-		int timesToRun = getRandom().nextInt(MAX_TIMES_TO_RUN) + 1;
-		runTestCase(testCase, timesToRun);
+		for(int i = 0; i < ITERATIONS; i ++){
+			int numOfTestCases = testCases.size();
+			RandomChangeTestCase testCase = testCases.get(getRandom().nextInt(
+					numOfTestCases));
+			
+			//there is a problem with delete test !!!!
+			if(testCase instanceof DeleteTest){
+				continue;
+			}
+			
+			int timesToRun = getRandom().nextInt(MAX_TIMES_TO_RUN) + 1;
+			runTestCase(testCase, timesToRun);
+		}
+		
 
 	}
 

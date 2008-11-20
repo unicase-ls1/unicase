@@ -1,5 +1,6 @@
 package org.unicase.test.tests.changetests.randomchange.testcases;
 
+import java.util.ArrayList;
 import java.util.List;
 
 import org.eclipse.emf.common.util.EList;
@@ -114,9 +115,21 @@ public class AddTest extends RandomChangeTestCase  implements IChangePackageTest
 					return;
 				}
 
+				
 				Object object = me.eGet(ref);
-				EList<EObject> eList = (EList<EObject>) object;
-				eList.add(newInstance);
+				if(ref.isMany()){
+					EList<EObject> eList = (EList<EObject>) object;
+					if(eList == null){
+						List<Object> list = new ArrayList<Object>();
+						list.add(newInstance);
+						me.eSet(ref, list);
+					}else{
+						eList.add(newInstance);
+					}
+				}else{
+					me.eSet(ref, newInstance);
+				}
+				
 				totalOps++;
 
 			}

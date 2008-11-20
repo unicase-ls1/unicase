@@ -29,8 +29,8 @@ public class MoveTest extends RandomChangeTestCase {
 		TransactionalEditingDomain domain = TransactionalEditingDomain.Registry.INSTANCE
 				.getEditingDomain("org.unicase.EditingDomain");
 
-		// runSimpleTest(domain);
-		runFullRandomTest(domain);
+		runSimpleTest(domain);
+		// runFullRandomTest(domain);
 
 	}
 
@@ -51,7 +51,9 @@ public class MoveTest extends RandomChangeTestCase {
 					containments = me.eClass().getEAllContainments();
 				}
 
-				EReference ref = containments.get(0);
+				EReference ref = containments
+						.get(containments.size() == 1 ? 0 : getRandom()
+								.nextInt(containments.size() - 1));
 				EClass refType = ref.getEReferenceType();
 				List<ModelElement> moveableMEs = getTestProject()
 						.getAllModelElementsbyClass(refType,
@@ -63,8 +65,19 @@ public class MoveTest extends RandomChangeTestCase {
 				ModelElement toBeMovedME = moveableMEs.get(0);
 
 				Object object = me.eGet(ref);
-				EList<EObject> eList = (EList<EObject>) object;
-				eList.add(toBeMovedME);
+				if(ref.isMany()){
+					EList<EObject> eList = (EList<EObject>) object;
+					if(eList == null){
+						List<Object> list = new ArrayList<Object>();
+						list.add(toBeMovedME);
+						me.eSet(ref, list);
+					}else{
+						eList.add(toBeMovedME);
+					}
+				}else{
+					me.eSet(ref, toBeMovedME);
+				}
+				
 				totalOps++;
 
 			}
@@ -90,9 +103,8 @@ public class MoveTest extends RandomChangeTestCase {
 					containments = me.eClass().getEAllContainments();
 				}
 
-				final EReference ref = containments
-						.get(containments.size() == 1 ? 0 : getRandom()
-								.nextInt(containments.size() - 1));
+				EReference ref = containments.get(containments.size() == 1 ? 0
+						: getRandom().nextInt(containments.size() - 1));
 				EClass refType = ref.getEReferenceType();
 				final List<ModelElement> moveableMEs = getTestProject()
 						.getAllModelElementsbyClass(refType,
@@ -103,7 +115,7 @@ public class MoveTest extends RandomChangeTestCase {
 				final int maxNumOfMoves = Math.min(10, moveableMEs.size());
 				List<ModelElement> toBeMovedMEs = new ArrayList<ModelElement>();
 				int numOfMoves = getRandom().nextInt(maxNumOfMoves);
-				
+
 				for (int j = 0; j < numOfMoves; j++) {
 					ModelElement toBeMovedME = moveableMEs.get(getRandom()
 							.nextInt(moveableMEs.size() - 1));

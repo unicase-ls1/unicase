@@ -10,6 +10,8 @@ import org.eclipse.emf.ecore.EEnumLiteral;
 import org.eclipse.emf.transaction.RecordingCommand;
 import org.eclipse.emf.transaction.TransactionalEditingDomain;
 import org.unicase.model.ModelElement;
+import org.unicase.model.ModelPackage;
+import org.unicase.test.tests.changetests.ChangeTestHelper;
 import org.unicase.test.tests.changetests.randomchange.IChangePackageTest;
 import org.unicase.test.tests.changetests.randomchange.RandomChangeTestCase;
 
@@ -40,11 +42,9 @@ public class TransitivelyChangeAttributeTest extends RandomChangeTestCase implem
 	
 	@Override
 	public void runTest() {
-		List<ModelElement> modelElements = getTestProject()
-		.getAllModelElements();
 		
-		final ModelElement me = modelElements.get(getRandom().nextInt(
-				modelElements.size() - 1));
+		
+		final ModelElement me = ChangeTestHelper.getRandomME(getTestProject());
 
 		TransactionalEditingDomain domain = TransactionalEditingDomain.Registry.INSTANCE
 				.getEditingDomain("org.unicase.EditingDomain");
@@ -65,34 +65,27 @@ public class TransitivelyChangeAttributeTest extends RandomChangeTestCase implem
 
 
 	protected void changeSimpleAttribute(ModelElement me) {
-		List<EAttribute> attribs = me.eClass().getEAllAttributes();
-		List<EAttribute> changeableAttribs = new ArrayList<EAttribute>();
-		for(EAttribute attrib : attribs){
-			if(attrib.getName().equalsIgnoreCase("identifier")){
-				continue;
-			}
-			if(attrib.isChangeable()) {
-				changeableAttribs.add(attrib);
+		List<EAttribute> attributes = new ArrayList<EAttribute>();
+		for (EAttribute attr : me.eClass().getEAllAttributes()) {
+			if (attr.isChangeable() && attr.getFeatureID() != ModelPackage.MODEL_ELEMENT__IDENTIFIER) {
+				attributes.add(attr);
 			}
 		}
-		
-		EAttribute attribToChange;
-		if (changeableAttribs.size() < 2) {
-			attribToChange = changeableAttribs.get(0);
-		} else {
-			attribToChange = changeableAttribs.get(getRandom().nextInt(
-					changeableAttribs.size() - 1));
-		}
+	
+		EAttribute attribute = attributes.size() == 1 ? attributes.get(0)
+				: attributes.get(getRandom().nextInt(attributes.size() - 1));
 
+		
+		
 		//attribute = a (initialization)
-		if(!me.eIsSet(attribToChange)){
-			changeAttribute(me, attribToChange);
+		if(!me.eIsSet(attribute)){
+			changeAttribute(me, attribute);
 		}
 		
 		//attribute = b
-		changeAttribute(me, attribToChange);
+		changeAttribute(me, attribute);
 		//attribute = c
-		changeAttribute(me, attribToChange);
+		changeAttribute(me, attribute);
 	}
 
 

@@ -59,7 +59,7 @@ public class ChangeSimpleAttributeTest extends RandomChangeTestCase implements
 
 		List<EAttribute> attributes = new ArrayList<EAttribute>();
 		for (EAttribute attr : me.eClass().getEAllAttributes()) {
-			if (attr.isChangeable() && !attr.equals(ModelPackage.MODEL_ELEMENT__IDENTIFIER)) {
+			if (attr.isChangeable() && attr.getFeatureID() != ModelPackage.MODEL_ELEMENT__IDENTIFIER) {
 				attributes.add(attr);
 			}
 		}

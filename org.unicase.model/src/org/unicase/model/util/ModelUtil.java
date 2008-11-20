@@ -163,7 +163,7 @@ public final class ModelUtil {
 	/**
 	 * @param clazz the input class
 	 * @param ePackage the input package
-	 * @return Returns all subclasses of the given input in the given package.
+	 * @return Returns all non-abstract, non-interface subclasses of the given input in the given package.
 	 */
 	public static ArrayList<EClass> getSubclasses(EClass clazz, EPackage ePackage) {
 		ArrayList<EClass> ret = new ArrayList<EClass>();
@@ -188,7 +188,7 @@ public final class ModelUtil {
 
 	/**
 	 * @param clazz the input super class
-	 * @return Returns all subclasses of the given input.
+	 * @return Returns all non-abstract, non-interface subclasses of the given input.
 	 * Looks in whole graph starting from the root package - i.e. ModelPackage.
 	 */
 	public static ArrayList<EClass> getSubclasses(EClass clazz) {

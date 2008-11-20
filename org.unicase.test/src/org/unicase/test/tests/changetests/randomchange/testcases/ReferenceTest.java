@@ -46,7 +46,7 @@ public class ReferenceTest extends RandomChangeTestCase  implements IChangePacka
 			final ModelElement me = modelElements.get(i);
 			final List<EReference> nonContainmentRefs = new ArrayList<EReference>();
 			for (EReference ref : me.eClass().getEAllReferences()) {
-				if (!ref.isContainment()) {
+				if (!(ref.isContainment() || ref.isContainer())) {
 					nonContainmentRefs.add(ref);
 				}
 			}
@@ -66,6 +66,7 @@ public class ReferenceTest extends RandomChangeTestCase  implements IChangePacka
 
 	}
 
+	@SuppressWarnings("unchecked")
 	private void changeReference(ModelElement me,
 			List<EReference> nonContainmentRefs) {
 
@@ -79,10 +80,19 @@ public class ReferenceTest extends RandomChangeTestCase  implements IChangePacka
 		ModelElement toBeReferencedME = refTypeMEs.get(getRandom().nextInt(refTypeMEs.size() - 1));
 		
 		Object object = me.eGet(ref);
-		EList<EObject> eList = (EList<EObject>) object;
-		eList.add(toBeReferencedME);
-				
-
+		if(ref.isMany()){
+			EList<EObject> eList = (EList<EObject>) object;
+			if(eList == null){
+				List<Object> list = new ArrayList<Object>();
+				list.add(toBeReferencedME);
+				me.eSet(ref, list);
+			}else{
+				eList.add(toBeReferencedME);
+			}
+		}else{
+			me.eSet(ref, toBeReferencedME);
+		}
+		
 	}
 
 	public int getExpectedNumOfChanges() {

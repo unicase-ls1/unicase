@@ -38,42 +38,42 @@ public class RemoveTest extends RandomChangeTestCase implements IChangePackageTe
 	@Override
 	public void runTest() {
 
-		List<ModelElement> modelElements = getTestProject()
-				.getAllModelElements();
-		int numOfMEs = modelElements.size();
-		int numOfChanges = getRandom().nextInt(numOfMEs / 30);
-		List<ModelElement> changedMEs = new ArrayList<ModelElement>();
-		
-		int i = 0;
-		do {
-			ModelElement meToChange = modelElements.get(getRandom().nextInt(
-					numOfMEs - 1));
-			if (hasEnoughContainments(meToChange)
-					&& !changedMEs.contains(meToChange)) {
-
-				changedMEs.add(meToChange);
-				Object object = meToChange.eGet(ref);
-				final EList<EObject> eList = (EList<EObject>) object;
-				final int indexToRemove = eList.size() == 1 ? 0 : getRandom()
-						.nextInt(eList.size());
-
-				TransactionalEditingDomain domain = TransactionalEditingDomain.Registry.INSTANCE
-						.getEditingDomain("org.unicase.EditingDomain");
-				domain.getCommandStack().execute(new RecordingCommand(domain) {
-
-					@Override
-					protected void doExecute() {
-
-						eList.remove(indexToRemove);
-
-					}
-
-				});
-				
-				i++;
-			}
-			
-		} while (i < numOfChanges);
+//		List<ModelElement> modelElements = getTestProject()
+//				.getAllModelElements();
+//		int numOfMEs = modelElements.size();
+//		int numOfChanges = getRandom().nextInt(numOfMEs / 30);
+//		List<ModelElement> changedMEs = new ArrayList<ModelElement>();
+//		
+//		int i = 0;
+//		do {
+//			ModelElement meToChange = modelElements.get(getRandom().nextInt(
+//					numOfMEs - 1));
+//			if (hasEnoughContainments(meToChange)
+//					&& !changedMEs.contains(meToChange)) {
+//
+//				changedMEs.add(meToChange);
+//				Object object = meToChange.eGet(ref);
+//				final EList<EObject> eList = (EList<EObject>) object;
+//				final int indexToRemove = eList.size() == 1 ? 0 : getRandom()
+//						.nextInt(eList.size());
+//
+//				TransactionalEditingDomain domain = TransactionalEditingDomain.Registry.INSTANCE
+//						.getEditingDomain("org.unicase.EditingDomain");
+//				domain.getCommandStack().execute(new RecordingCommand(domain) {
+//
+//					@Override
+//					protected void doExecute() {
+//
+//						eList.remove(indexToRemove);
+//
+//					}
+//
+//				});
+//				
+//				i++;
+//			}
+//			
+//		} while (i < numOfChanges);
 
 	}
 
