@@ -12,10 +12,10 @@ import org.unicase.test.tests.changetests.ChangeTestHelper;
 import org.unicase.test.tests.changetests.ChangeTestSuite;
 import org.unicase.test.tests.changetests.randomchange.testcases.AddTest;
 import org.unicase.test.tests.changetests.randomchange.testcases.ChangeSimpleAttributeTest;
-import org.unicase.test.tests.changetests.randomchange.testcases.CommitTest;
 import org.unicase.test.tests.changetests.randomchange.testcases.CompoundTest;
+import org.unicase.test.tests.changetests.randomchange.testcases.CreateAndChangeAttributeTest;
 import org.unicase.test.tests.changetests.randomchange.testcases.CreateAndChangeRefTest;
-import org.unicase.test.tests.changetests.randomchange.testcases.DeleteTest;
+import org.unicase.test.tests.changetests.randomchange.testcases.CreateAndDeleteTest;
 import org.unicase.test.tests.changetests.randomchange.testcases.MoveTest;
 import org.unicase.test.tests.changetests.randomchange.testcases.ReferenceTest;
 import org.unicase.test.tests.changetests.randomchange.testcases.TransitivelyChangeAttributeTest;
@@ -49,8 +49,8 @@ public class RandomChangeTestSuite extends ChangeTestSuite {
 		// changeAttributeTest.setParameters();
 
 		// DeleteTest
-		DeleteTest deleteTest = new DeleteTest("Delete", getRandomSeed());
-		testCases.add(deleteTest);
+		// DeleteTest deleteTest = new DeleteTest("Delete", getRandomSeed());
+		// testCases.add(deleteTest);
 		// deleteTest.setParameters();
 
 		// MoveTest
@@ -70,14 +70,14 @@ public class RandomChangeTestSuite extends ChangeTestSuite {
 		// referenceTest.setParameters();
 
 		// CreateAndDelete Test
-		// CreateAndDeleteTest createAndDeleteTest = new CreateAndDeleteTest(
-		// "CreateAndDelete", getRandomSeed());
-		// testCases.add(createAndDeleteTest);
+		CreateAndDeleteTest createAndDeleteTest = new CreateAndDeleteTest(
+				"CreateAndDelete", getRandomSeed());
+		testCases.add(createAndDeleteTest);
 		// createAndDeleteTest.setParameters();
 
 		// TransitivelyChangeAttributeTest Test
 		TransitivelyChangeAttributeTest transitivelyChangeAttribute = new TransitivelyChangeAttributeTest(
-				"SimpleAttributeChange", getRandomSeed());
+				"TransitivelyChangeAttributeTest", getRandomSeed());
 		testCases.add(transitivelyChangeAttribute);
 		// createAndDeleteTest.setParameters();
 
@@ -92,22 +92,24 @@ public class RandomChangeTestSuite extends ChangeTestSuite {
 		// createAndChangeRefTest.setParameters();
 
 		// CreateAndChangeAttribute Test
-		// CreateAndChangeAttributeTest createAndChangeAttrTest = new
-		// CreateAndChangeAttributeTest(
-		// "CrateAndChangeAttribute", getRandomSeed());
+		CreateAndChangeAttributeTest createAndChangeAttrTest = new CreateAndChangeAttributeTest(
+				"CrateAndChangeAttribute", getRandomSeed());
+		testCases.add(createAndChangeAttrTest);
 		// createAndChangeAttrTest.setParameters();
 
 		// CompoundTest
-		//CompoundTest compoundTest = new CompoundTest("Compound", getRandomSeed(), testCases);
+		CompoundTest compoundTest = new CompoundTest("Compound",
+				getRandomSeed(), testCases);
 		// compoundTest.setParameters();
-		
+
 		// CommitTest
-		CommitTest commitTest = new CommitTest("Commit", getRandomSeed(), testCases);
+		// CommitTest commitTest = new CommitTest("Commit", getRandomSeed(),
+		// testCases);
 		// commitTest.setParameters();
 
 		// this.getTestCases().add(moveTest);
 		// this.getTestCases().add(addTest);
-		// this.getTestCases().add(compoundTest);
+		this.getTestCases().add(compoundTest);
 		// this.getTestCases().add(deleteTest);
 		// this.getTestCases().add(referenceTest);
 		// this.getTestCases().add(compoundTest);
@@ -116,7 +118,7 @@ public class RandomChangeTestSuite extends ChangeTestSuite {
 		// this.getTestCases().add(removeTest);
 		// this.getTestCases().add(createAndChangeRefTest);
 		// this.getTestCases().add(createAndChangeAttrTest);
-		this.getTestCases().add(commitTest);
+		// this.getTestCases().add(commitTest);
 
 		for (TestCase test : getTestCases()) {
 			if (test instanceof ChangeTestCase) {
@@ -162,12 +164,12 @@ public class RandomChangeTestSuite extends ChangeTestSuite {
 	@Override
 	public void endTestSuite() {
 
-//		if (true) {
-//			endTestSuiteChangePackageTests();
-//		} else {
-//			endTestSuiteCompareTests();
-//
-//		}
+		if (true) {
+			endTestSuiteChangePackageTests();
+		} else {
+			endTestSuiteCompareTests();
+
+		}
 
 	}
 

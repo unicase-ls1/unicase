@@ -11,12 +11,10 @@ import org.unicase.emfstore.esmodel.versioning.VersioningFactory;
 import org.unicase.emfstore.exceptions.EmfStoreException;
 import org.unicase.model.Project;
 import org.unicase.test.tests.changetests.randomchange.RandomChangeTestCase;
-import org.unicase.ui.common.exceptions.DialogHandler;
 import org.unicase.workspace.ProjectSpace;
 import org.unicase.workspace.ServerInfo;
 import org.unicase.workspace.Usersession;
 import org.unicase.workspace.WorkspaceFactory;
-import org.unicase.workspace.WorkspacePackage;
 
 public class CommitTest extends RandomChangeTestCase {
 
