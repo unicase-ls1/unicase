@@ -162,10 +162,21 @@
            <visibleWhen
                  checkEnabled="false">
               <iterate
-                    ifEmpty="false">
+                    ifEmpty="false"
+                    operator="and">
                  <instanceof
                        value="org.unicase.workspace.ProjectSpace">
                  </instanceof>
+                 <test
+                       forcePluginActivation="true"
+                       property="org.unicase.workspace.edit.commands.projectIsShared"
+                       value="true">
+                 </test>
+                 <test
+                       forcePluginActivation="true"
+                       property="org.unicase.workspace.edit.commands.projectHasLocalChanges"
+                       value="true">
+                 </test>
               </iterate>
            </visibleWhen>
         </command>
@@ -177,13 +188,44 @@
            <visibleWhen
                  checkEnabled="false">
               <iterate
-                    ifEmpty="false">
+                    ifEmpty="false"
+                    operator="and">
                  <instanceof
                        value="org.unicase.workspace.ProjectSpace">
                  </instanceof>
+                 <test
+                       forcePluginActivation="true"
+                       property="org.unicase.workspace.edit.commands.projectIsShared"
+                       value="true">
+                 </test>
               </iterate>
            </visibleWhen>
         </command>
+        <command
+              commandId="org.unicase.workspace.edit.shareProject"
+              icon="icons/full/obj16/relocate.gif"
+              label="Share  Project"
+              style="push">
+           <visibleWhen
+                 checkEnabled="false">
+              <iterate
+                    ifEmpty="false"
+                    operator="and">
+                 <instanceof
+                       value="org.unicase.workspace.ProjectSpace">
+                 </instanceof>
+                 <test
+                       forcePluginActivation="true"
+                       property="org.unicase.workspace.edit.commands.projectIsShared"
+                       value="false">
+                 </test>
+              </iterate>
+           </visibleWhen>
+        </command>
+        <separator
+              name="org.unicase.workspace.edit.otherCommands"
+              visible="true">
+        </separator>
         <menu
               icon="icons/full/obj16/export.gif"
               label="Export">
@@ -210,10 +252,16 @@
               <visibleWhen
                     checkEnabled="false">
                  <iterate
-                       ifEmpty="false">
+                       ifEmpty="false"
+                       operator="and">
                     <instanceof
                           value="org.unicase.workspace.ProjectSpace">
                     </instanceof>
+                    <test
+                          forcePluginActivation="true"
+                          property="org.unicase.workspace.edit.commands.projectHasLocalChanges"
+                          value="true">
+                    </test>
                  </iterate>
               </visibleWhen>
            </command>
@@ -275,10 +323,16 @@
               <visibleWhen
                     checkEnabled="false">
                  <iterate
-                       ifEmpty="false">
+                       ifEmpty="false"
+                       operator="and">
                     <instanceof
                           value="org.unicase.workspace.ProjectSpace">
                     </instanceof>
+                    <test
+                          forcePluginActivation="true"
+                          property="org.unicase.workspace.edit.commands.projectHasLocalChanges"
+                          value="false">
+                    </test>
                  </iterate>
               </visibleWhen>
            </command>
@@ -305,10 +359,16 @@
               <visibleWhen
                     checkEnabled="false">
                  <iterate
-                       ifEmpty="false">
+                       ifEmpty="false"
+                       operator="and">
                     <instanceof
                           value="org.unicase.workspace.ProjectSpace">
                     </instanceof>
+                    <test
+                          forcePluginActivation="true"
+                          property="org.unicase.workspace.edit.commands.projectIsShared"
+                          value="true">
+                    </test>
                  </iterate>
               </visibleWhen>
            </command>
@@ -316,21 +376,6 @@
         <menu
               icon="icons/full/obj16/createrepos.gif"
               label="Other...">
-           <command
-                 commandId="org.unicase.workspace.edit.revert"
-                 icon="icons/revert.png"
-                 label="Revert all changes"
-                 style="push">
-              <visibleWhen
-                    checkEnabled="false">
-                 <iterate
-                       ifEmpty="false">
-                    <instanceof
-                          value="org.unicase.workspace.ProjectSpace">
-                    </instanceof>
-                 </iterate>
-              </visibleWhen>
-           </command>
            <command
                  commandId="org.unicase.workspace.edit.deleteProject"
                  icon="icons/delete.gif"
@@ -349,34 +394,42 @@
            <command
                  commandId="org.unicase.workspace.edit.undoLastOperation"
                  icon="icons/full/obj16/arrow_left.png"
-                 label="Undo last operation"
+                 label="Undo last operation (Experimental)"
                  style="push">
               <visibleWhen
                     checkEnabled="false">
                  <iterate
-                       ifEmpty="false">
+                       ifEmpty="false"
+                       operator="and">
                     <instanceof
                           value="org.unicase.workspace.ProjectSpace">
                     </instanceof>
+                    <test
+                          forcePluginActivation="true"
+                          property="org.unicase.workspace.edit.commands.projectHasLocalChanges"
+                          value="true">
+                    </test>
                  </iterate>
               </visibleWhen>
            </command>
-        </menu>
-        <menu
-              icon="icons/advanced.gif"
-              label="Advanced">
            <command
-                 commandId="org.unicase.workspace.edit.shareProject"
-                 icon="icons/full/obj16/relocate.gif"
-                 label="Share  Project"
+                 commandId="org.unicase.workspace.edit.revert"
+                 icon="icons/revert.png"
+                 label="Revert all changes (Experimental)"
                  style="push">
               <visibleWhen
                     checkEnabled="false">
                  <iterate
-                       ifEmpty="false">
+                       ifEmpty="false"
+                       operator="and">
                     <instanceof
                           value="org.unicase.workspace.ProjectSpace">
                     </instanceof>
+                    <test
+                          forcePluginActivation="true"
+                          property="org.unicase.workspace.edit.commands.projectHasLocalChanges"
+                          value="true">
+                    </test>
                  </iterate>
               </visibleWhen>
            </command>
@@ -411,13 +464,13 @@
               </visibleWhen>
            </command>
         </menu>
+        <menu
+              label="label">
+        </menu>
         <separator
               name="org.unicase.workspace.edit.scmCommands"
               visible="true">
         </separator>
-        <menu
-              label="label">
-        </menu>
      </menuContribution>
   </extension>
   
@@ -467,6 +520,23 @@
               schemeId="org.eclipse.ui.defaultAcceleratorConfiguration"
               sequence="Alt+U">
         </key>
+     </extension>
+     <extension
+           point="org.eclipse.core.expressions.propertyTesters">
+        <propertyTester
+              class="org.unicase.workspace.edit.commands.ProjectIsSharedTester"
+              id="org.unicase.workspace.edit.commands.projectIsSharedTester"
+              namespace="org.unicase.workspace.edit.commands"
+              properties="projectIsShared"
+              type="org.unicase.workspace.ProjectSpace">
+        </propertyTester>
+        <propertyTester
+              class="org.unicase.workspace.edit.commands.ProjectHasLocalChangesTester"
+              id="org.unicase.workspace.edit.commands.projectHasLocalChangesTester"
+              namespace="org.unicase.workspace.edit.commands"
+              properties="projectHasLocalChanges"
+              type="org.unicase.workspace.ProjectSpace">
+        </propertyTester>
      </extension>
 
 </plugin>

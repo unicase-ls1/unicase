@@ -53,7 +53,6 @@ public class UpdateProjectHandler extends ProjectActionHandler implements
 	 * {@inheritDoc}
 	 */
 	public Object execute(ExecutionEvent event) throws ExecutionException {
-
 		ProjectSpace projectSpace = getProjectSpace(event);
 		if (projectSpace == null) {
 			ProjectSpace activeProjectSpace = WorkspaceManager.getInstance()
@@ -92,6 +91,13 @@ public class UpdateProjectHandler extends ProjectActionHandler implements
 
 	private void updateWithoutCommand(final ProjectSpace projectSpace) {
 		usersession = projectSpace.getUsersession();
+		usersession = projectSpace.getUsersession();
+		if (usersession==null) {
+			MessageDialog.openInformation(shell, null,
+			"This project is not yet shared with a server, you cannot update.");
+			return;
+		}
+		
 		shell = PlatformUI.getWorkbench().getActiveWorkbenchWindow().getShell();
 		ProgressMonitorDialog progressDialog = new ProgressMonitorDialog(
 				PlatformUI.getWorkbench().getActiveWorkbenchWindow().getShell());

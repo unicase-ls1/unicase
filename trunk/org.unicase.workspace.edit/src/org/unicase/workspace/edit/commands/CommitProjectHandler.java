@@ -82,6 +82,11 @@ public class CommitProjectHandler extends ProjectActionHandler implements
 
 	private void commitWithoutCommand(final ProjectSpace projectSpace) {
 		usersession = projectSpace.getUsersession();
+		if (usersession==null) {
+			MessageDialog.openInformation(shell, null,
+			"This project is not yet shared with a server, you cannot commit.");
+			return;
+		}
 		shell = PlatformUI.getWorkbench().getActiveWorkbenchWindow().getShell();
 		ProgressMonitorDialog progressDialog = new ProgressMonitorDialog(
 				PlatformUI.getWorkbench().getActiveWorkbenchWindow().getShell());
