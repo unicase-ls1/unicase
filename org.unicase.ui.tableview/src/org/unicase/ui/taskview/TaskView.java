@@ -132,7 +132,7 @@ public class TaskView extends ViewPart {
 
 		};
 		filterToBlocked.setImageDescriptor(Activator
-				.getImageDescriptor("/icons/blocked.jpg"));
+				.getImageDescriptor("/icons/blocked.gif"));
 		Boolean blockedFilterBoolean = Boolean.parseBoolean(settings
 				.get("BlockedFilter"));
 		filterToBlocked.setChecked(blockedFilterBoolean);
