@@ -21,6 +21,25 @@
      <handler
            class="org.unicase.workspace.edit.commands.CommitProjectHandler"
            commandId="org.unicase.workspace.edit.commitProject">
+        <enabledWhen>
+           <iterate
+                 ifEmpty="false"
+                 operator="and">
+              <instanceof
+                    value="org.unicase.workspace.ProjectSpace">
+              </instanceof>
+              <test
+                    forcePluginActivation="true"
+                    property="org.unicase.workspace.edit.commands.projectIsShared"
+                    value="true">
+              </test>
+              <test
+                    forcePluginActivation="true"
+                    property="org.unicase.workspace.edit.commands.projectHasLocalChanges"
+                    value="true">
+              </test>
+           </iterate>
+        </enabledWhen>
      </handler>
      <handler
            class="org.unicase.workspace.edit.commands.UpdateProjectHandler"
@@ -49,6 +68,20 @@
       <handler
             class="org.unicase.workspace.edit.commands.RevertHandler"
             commandId="org.unicase.workspace.edit.revert">
+         <enabledWhen>
+            <iterate
+                  ifEmpty="false"
+                  operator="and">
+               <instanceof
+                     value="org.unicase.workspace.ProjectSpace">
+               </instanceof>
+               <test
+                     forcePluginActivation="true"
+                     property="org.unicase.workspace.edit.commands.projectHasLocalChanges"
+                     value="true">
+               </test>
+            </iterate>
+         </enabledWhen>
       </handler>
       <handler
             class="org.unicase.workspace.edit.commands.ExportProjectSpaceHandler"
@@ -65,6 +98,24 @@
       <handler
             class="org.unicase.workspace.edit.commands.ValidateHandler"
             commandId="org.unicase.ui.common.validate">
+      </handler>
+      <handler
+            class="org.unicase.workspace.edit.commands.UndoLastOperationHandler"
+            commandId="org.unicase.workspace.edit.undoLastOperation">
+         <enabledWhen>
+            <iterate
+                  ifEmpty="false"
+                  operator="and">
+               <instanceof
+                     value="org.unicase.workspace.ProjectSpace">
+               </instanceof>
+               <test
+                     forcePluginActivation="true"
+                     property="org.unicase.workspace.edit.commands.projectHasLocalChanges"
+                     value="true">
+               </test>
+            </iterate>
+         </enabledWhen>
       </handler>
   </extension>
   <extension
@@ -129,7 +180,6 @@
            name="importChanges">
      </command>
      <command
-           defaultHandler="org.unicase.workspace.edit.commands.UndoLastOperationHandler"
            id="org.unicase.workspace.edit.undoLastOperation"
            name="undoLastOperation">
      </command>
@@ -156,6 +206,7 @@
            locationURI="popup:org.unicase.ui.navigator.viewer?before=additions">
         <command
               commandId="org.unicase.workspace.edit.commitProject"
+              disabledIcon="icons/advanced.gif"
               icon="icons/full/obj16/commit.gif"
               label="Commit Project"
               style="push">
@@ -170,11 +221,6 @@
                  <test
                        forcePluginActivation="true"
                        property="org.unicase.workspace.edit.commands.projectIsShared"
-                       value="true">
-                 </test>
-                 <test
-                       forcePluginActivation="true"
-                       property="org.unicase.workspace.edit.commands.projectHasLocalChanges"
                        value="true">
                  </test>
               </iterate>
@@ -404,11 +450,6 @@
                     <instanceof
                           value="org.unicase.workspace.ProjectSpace">
                     </instanceof>
-                    <test
-                          forcePluginActivation="true"
-                          property="org.unicase.workspace.edit.commands.projectHasLocalChanges"
-                          value="true">
-                    </test>
                  </iterate>
               </visibleWhen>
            </command>
@@ -425,11 +466,6 @@
                     <instanceof
                           value="org.unicase.workspace.ProjectSpace">
                     </instanceof>
-                    <test
-                          forcePluginActivation="true"
-                          property="org.unicase.workspace.edit.commands.projectHasLocalChanges"
-                          value="true">
-                    </test>
                  </iterate>
               </visibleWhen>
            </command>
