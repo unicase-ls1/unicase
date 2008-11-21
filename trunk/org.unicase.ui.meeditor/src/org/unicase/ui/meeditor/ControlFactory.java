@@ -16,7 +16,6 @@ import org.eclipse.emf.ecore.EStructuralFeature;
 import org.eclipse.emf.edit.domain.EditingDomain;
 import org.eclipse.emf.edit.provider.IItemPropertyDescriptor;
 import org.eclipse.ui.forms.widgets.FormToolkit;
-import org.unicase.model.organization.OrganizationPackage;
 import org.unicase.model.rationale.Issue;
 import org.unicase.model.requirement.Step;
 import org.unicase.ui.meeditor.mecontrols.MEBoolControl;
@@ -109,7 +108,7 @@ public class ControlFactory {
 			IItemPropertyDescriptor itemPropertyDescriptor,
 			EStructuralFeature feature) {
 
-		if (feature.getFeatureID() == OrganizationPackage.USER__EMAIL) {
+		if (feature.getName().equalsIgnoreCase("email")){
 			return createMEEmailControl((EAttribute) feature);
 		}
 		if (itemPropertyDescriptor.isMultiLine(modelElement)) {
