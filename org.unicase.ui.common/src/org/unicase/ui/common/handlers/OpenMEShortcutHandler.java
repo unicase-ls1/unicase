@@ -57,8 +57,8 @@ public class OpenMEShortcutHandler extends AbstractHandler implements IHandler {
 			project = projectSpace.getProject();
 			List<ModelElement> modelElements = new ArrayList<ModelElement>();
 			modelElements.addAll(project.getAllModelElements());
-			showShortcutDialog(shell, modelElements, "select model element",
-					"   Enter type name prefix or pattern   ( * , ? , or camel case )  ");
+			showShortcutDialog(shell, modelElements, "Open Model Element",
+					"   Enter model element name prefix or pattern (e.g. *Trun?)");
 		}
 
 		return null;
