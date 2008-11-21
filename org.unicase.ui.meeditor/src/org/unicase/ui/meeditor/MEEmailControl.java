@@ -4,6 +4,7 @@ import org.eclipse.emf.ecore.EAttribute;
 import org.eclipse.emf.ecore.EObject;
 import org.eclipse.emf.edit.domain.EditingDomain;
 import org.eclipse.jface.action.Action;
+import org.eclipse.jface.layout.GridDataFactory;
 import org.eclipse.swt.SWT;
 import org.eclipse.swt.events.SelectionAdapter;
 import org.eclipse.swt.events.SelectionEvent;
@@ -49,8 +50,9 @@ public class MEEmailControl extends AbstractMEControl {
 		Composite composite = getToolkit().createComposite(parent, style);
 		GridLayout gridLayout = new GridLayout(2, false);
 		composite.setLayout(gridLayout);
+		GridDataFactory.fillDefaults().align(SWT.FILL, SWT.CENTER).grab(true, true).applyTo(composite);
 		final Text createControl = (Text)meAreaControl.createControl(composite, style);
-		createControl.setLayoutData(new GridData(SWT.FILL, SWT.CENTER, true, false));
+		GridDataFactory.fillDefaults().align(SWT.FILL, SWT.CENTER).grab(true, true).applyTo(createControl);
 		final Action mail = new Action("Send email", SWT.PUSH) {
 
 			@Override
