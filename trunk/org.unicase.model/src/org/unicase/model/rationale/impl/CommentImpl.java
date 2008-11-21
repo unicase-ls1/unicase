@@ -63,7 +63,8 @@ public class CommentImpl extends AnnotationImpl implements Comment {
 	 */
 	public EList<Comment> getReplies() {
 		if (replies == null) {
-			replies = new EObjectContainmentEList.Resolving<Comment>(Comment.class, this, RationalePackage.COMMENT__REPLIES);
+			replies = new EObjectContainmentEList.Resolving<Comment>(
+					Comment.class, this, RationalePackage.COMMENT__REPLIES);
 		}
 		return replies;
 	}
@@ -74,10 +75,12 @@ public class CommentImpl extends AnnotationImpl implements Comment {
 	 * @generated
 	 */
 	@Override
-	public NotificationChain eInverseRemove(InternalEObject otherEnd, int featureID, NotificationChain msgs) {
+	public NotificationChain eInverseRemove(InternalEObject otherEnd,
+			int featureID, NotificationChain msgs) {
 		switch (featureID) {
 		case RationalePackage.COMMENT__REPLIES:
-			return ((InternalEList<?>) getReplies()).basicRemove(otherEnd, msgs);
+			return ((InternalEList<?>) getReplies())
+					.basicRemove(otherEnd, msgs);
 		}
 		return super.eInverseRemove(otherEnd, featureID, msgs);
 	}

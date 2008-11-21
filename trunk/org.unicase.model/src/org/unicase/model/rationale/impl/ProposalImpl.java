@@ -69,8 +69,10 @@ public class ProposalImpl extends ModelElementImpl implements Proposal {
 	 */
 	public EList<Assessment> getAssessments() {
 		if (assessments == null) {
-			assessments = new EObjectContainmentWithInverseEList.Resolving<Assessment>(Assessment.class, this,
-					RationalePackage.PROPOSAL__ASSESSMENTS, RationalePackage.ASSESSMENT__PROPOSAL);
+			assessments = new EObjectContainmentWithInverseEList.Resolving<Assessment>(
+					Assessment.class, this,
+					RationalePackage.PROPOSAL__ASSESSMENTS,
+					RationalePackage.ASSESSMENT__PROPOSAL);
 		}
 		return assessments;
 	}
@@ -100,8 +102,10 @@ public class ProposalImpl extends ModelElementImpl implements Proposal {
 	 * <!-- begin-user-doc --> <!-- end-user-doc -->
 	 * @generated
 	 */
-	public NotificationChain basicSetIssue(Issue newIssue, NotificationChain msgs) {
-		msgs = eBasicSetContainer((InternalEObject) newIssue, RationalePackage.PROPOSAL__ISSUE, msgs);
+	public NotificationChain basicSetIssue(Issue newIssue,
+			NotificationChain msgs) {
+		msgs = eBasicSetContainer((InternalEObject) newIssue,
+				RationalePackage.PROPOSAL__ISSUE, msgs);
 		return msgs;
 	}
 
@@ -110,19 +114,23 @@ public class ProposalImpl extends ModelElementImpl implements Proposal {
 	 * @generated
 	 */
 	public void setIssue(Issue newIssue) {
-		if (newIssue != eInternalContainer() || (eContainerFeatureID != RationalePackage.PROPOSAL__ISSUE && newIssue != null)) {
+		if (newIssue != eInternalContainer()
+				|| (eContainerFeatureID != RationalePackage.PROPOSAL__ISSUE && newIssue != null)) {
 			if (EcoreUtil.isAncestor(this, newIssue))
-				throw new IllegalArgumentException("Recursive containment not allowed for " + toString());
+				throw new IllegalArgumentException(
+						"Recursive containment not allowed for " + toString());
 			NotificationChain msgs = null;
 			if (eInternalContainer() != null)
 				msgs = eBasicRemoveFromContainer(msgs);
 			if (newIssue != null)
-				msgs = ((InternalEObject) newIssue).eInverseAdd(this, RationalePackage.ISSUE__PROPOSALS, Issue.class, msgs);
+				msgs = ((InternalEObject) newIssue).eInverseAdd(this,
+						RationalePackage.ISSUE__PROPOSALS, Issue.class, msgs);
 			msgs = basicSetIssue(newIssue, msgs);
 			if (msgs != null)
 				msgs.dispatch();
 		} else if (eNotificationRequired())
-			eNotify(new ENotificationImpl(this, Notification.SET, RationalePackage.PROPOSAL__ISSUE, newIssue, newIssue));
+			eNotify(new ENotificationImpl(this, Notification.SET,
+					RationalePackage.PROPOSAL__ISSUE, newIssue, newIssue));
 	}
 
 	/**
@@ -131,10 +139,12 @@ public class ProposalImpl extends ModelElementImpl implements Proposal {
 	 */
 	@SuppressWarnings("unchecked")
 	@Override
-	public NotificationChain eInverseAdd(InternalEObject otherEnd, int featureID, NotificationChain msgs) {
+	public NotificationChain eInverseAdd(InternalEObject otherEnd,
+			int featureID, NotificationChain msgs) {
 		switch (featureID) {
 		case RationalePackage.PROPOSAL__ASSESSMENTS:
-			return ((InternalEList<InternalEObject>) (InternalEList<?>) getAssessments()).basicAdd(otherEnd, msgs);
+			return ((InternalEList<InternalEObject>) (InternalEList<?>) getAssessments())
+					.basicAdd(otherEnd, msgs);
 		case RationalePackage.PROPOSAL__ISSUE:
 			if (eInternalContainer() != null)
 				msgs = eBasicRemoveFromContainer(msgs);
@@ -148,10 +158,12 @@ public class ProposalImpl extends ModelElementImpl implements Proposal {
 	 * @generated
 	 */
 	@Override
-	public NotificationChain eInverseRemove(InternalEObject otherEnd, int featureID, NotificationChain msgs) {
+	public NotificationChain eInverseRemove(InternalEObject otherEnd,
+			int featureID, NotificationChain msgs) {
 		switch (featureID) {
 		case RationalePackage.PROPOSAL__ASSESSMENTS:
-			return ((InternalEList<?>) getAssessments()).basicRemove(otherEnd, msgs);
+			return ((InternalEList<?>) getAssessments()).basicRemove(otherEnd,
+					msgs);
 		case RationalePackage.PROPOSAL__ISSUE:
 			return basicSetIssue(null, msgs);
 		}
@@ -163,10 +175,12 @@ public class ProposalImpl extends ModelElementImpl implements Proposal {
 	 * @generated
 	 */
 	@Override
-	public NotificationChain eBasicRemoveFromContainerFeature(NotificationChain msgs) {
+	public NotificationChain eBasicRemoveFromContainerFeature(
+			NotificationChain msgs) {
 		switch (eContainerFeatureID) {
 		case RationalePackage.PROPOSAL__ISSUE:
-			return eInternalContainer().eInverseRemove(this, RationalePackage.ISSUE__PROPOSALS, Issue.class, msgs);
+			return eInternalContainer().eInverseRemove(this,
+					RationalePackage.ISSUE__PROPOSALS, Issue.class, msgs);
 		}
 		return super.eBasicRemoveFromContainerFeature(msgs);
 	}
@@ -198,7 +212,8 @@ public class ProposalImpl extends ModelElementImpl implements Proposal {
 		switch (featureID) {
 		case RationalePackage.PROPOSAL__ASSESSMENTS:
 			getAssessments().clear();
-			getAssessments().addAll((Collection<? extends Assessment>) newValue);
+			getAssessments()
+					.addAll((Collection<? extends Assessment>) newValue);
 			return;
 		case RationalePackage.PROPOSAL__ISSUE:
 			setIssue((Issue) newValue);

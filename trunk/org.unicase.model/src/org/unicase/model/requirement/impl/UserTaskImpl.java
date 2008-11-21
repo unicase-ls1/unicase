@@ -98,7 +98,8 @@ public class UserTaskImpl extends ModelElementImpl implements UserTask {
 			initiatingActor = (Actor) eResolveProxy(oldInitiatingActor);
 			if (initiatingActor != oldInitiatingActor) {
 				if (eNotificationRequired())
-					eNotify(new ENotificationImpl(this, Notification.RESOLVE, RequirementPackage.USER_TASK__INITIATING_ACTOR,
+					eNotify(new ENotificationImpl(this, Notification.RESOLVE,
+							RequirementPackage.USER_TASK__INITIATING_ACTOR,
 							oldInitiatingActor, initiatingActor));
 			}
 		}
@@ -119,12 +120,15 @@ public class UserTaskImpl extends ModelElementImpl implements UserTask {
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
-	public NotificationChain basicSetInitiatingActor(Actor newInitiatingActor, NotificationChain msgs) {
+	public NotificationChain basicSetInitiatingActor(Actor newInitiatingActor,
+			NotificationChain msgs) {
 		Actor oldInitiatingActor = initiatingActor;
 		initiatingActor = newInitiatingActor;
 		if (eNotificationRequired()) {
-			ENotificationImpl notification = new ENotificationImpl(this, Notification.SET,
-					RequirementPackage.USER_TASK__INITIATING_ACTOR, oldInitiatingActor, newInitiatingActor);
+			ENotificationImpl notification = new ENotificationImpl(this,
+					Notification.SET,
+					RequirementPackage.USER_TASK__INITIATING_ACTOR,
+					oldInitiatingActor, newInitiatingActor);
 			if (msgs == null)
 				msgs = notification;
 			else
@@ -142,16 +146,19 @@ public class UserTaskImpl extends ModelElementImpl implements UserTask {
 		if (newInitiatingActor != initiatingActor) {
 			NotificationChain msgs = null;
 			if (initiatingActor != null)
-				msgs = ((InternalEObject) initiatingActor).eInverseRemove(this, RequirementPackage.ACTOR__INITIATED_USER_TASK,
+				msgs = ((InternalEObject) initiatingActor).eInverseRemove(this,
+						RequirementPackage.ACTOR__INITIATED_USER_TASK,
 						Actor.class, msgs);
 			if (newInitiatingActor != null)
-				msgs = ((InternalEObject) newInitiatingActor).eInverseAdd(this, RequirementPackage.ACTOR__INITIATED_USER_TASK,
+				msgs = ((InternalEObject) newInitiatingActor).eInverseAdd(this,
+						RequirementPackage.ACTOR__INITIATED_USER_TASK,
 						Actor.class, msgs);
 			msgs = basicSetInitiatingActor(newInitiatingActor, msgs);
 			if (msgs != null)
 				msgs.dispatch();
 		} else if (eNotificationRequired())
-			eNotify(new ENotificationImpl(this, Notification.SET, RequirementPackage.USER_TASK__INITIATING_ACTOR,
+			eNotify(new ENotificationImpl(this, Notification.SET,
+					RequirementPackage.USER_TASK__INITIATING_ACTOR,
 					newInitiatingActor, newInitiatingActor));
 	}
 
@@ -162,8 +169,10 @@ public class UserTaskImpl extends ModelElementImpl implements UserTask {
 	 */
 	public EList<Actor> getParticipatingActor() {
 		if (participatingActor == null) {
-			participatingActor = new EObjectWithInverseResolvingEList.ManyInverse<Actor>(Actor.class, this,
-					RequirementPackage.USER_TASK__PARTICIPATING_ACTOR, RequirementPackage.ACTOR__PARTICIPATED_USER_TASKS);
+			participatingActor = new EObjectWithInverseResolvingEList.ManyInverse<Actor>(
+					Actor.class, this,
+					RequirementPackage.USER_TASK__PARTICIPATING_ACTOR,
+					RequirementPackage.ACTOR__PARTICIPATED_USER_TASKS);
 		}
 		return participatingActor;
 	}
@@ -175,8 +184,10 @@ public class UserTaskImpl extends ModelElementImpl implements UserTask {
 	 */
 	public EList<UseCase> getRealizingUseCases() {
 		if (realizingUseCases == null) {
-			realizingUseCases = new EObjectWithInverseResolvingEList<UseCase>(UseCase.class, this,
-					RequirementPackage.USER_TASK__REALIZING_USE_CASES, RequirementPackage.USE_CASE__REALIZED_USER_TASK);
+			realizingUseCases = new EObjectWithInverseResolvingEList<UseCase>(
+					UseCase.class, this,
+					RequirementPackage.USER_TASK__REALIZING_USE_CASES,
+					RequirementPackage.USE_CASE__REALIZED_USER_TASK);
 		}
 		return realizingUseCases;
 	}
@@ -188,17 +199,21 @@ public class UserTaskImpl extends ModelElementImpl implements UserTask {
 	 */
 	@SuppressWarnings("unchecked")
 	@Override
-	public NotificationChain eInverseAdd(InternalEObject otherEnd, int featureID, NotificationChain msgs) {
+	public NotificationChain eInverseAdd(InternalEObject otherEnd,
+			int featureID, NotificationChain msgs) {
 		switch (featureID) {
 		case RequirementPackage.USER_TASK__INITIATING_ACTOR:
 			if (initiatingActor != null)
-				msgs = ((InternalEObject) initiatingActor).eInverseRemove(this, RequirementPackage.ACTOR__INITIATED_USER_TASK,
+				msgs = ((InternalEObject) initiatingActor).eInverseRemove(this,
+						RequirementPackage.ACTOR__INITIATED_USER_TASK,
 						Actor.class, msgs);
 			return basicSetInitiatingActor((Actor) otherEnd, msgs);
 		case RequirementPackage.USER_TASK__PARTICIPATING_ACTOR:
-			return ((InternalEList<InternalEObject>) (InternalEList<?>) getParticipatingActor()).basicAdd(otherEnd, msgs);
+			return ((InternalEList<InternalEObject>) (InternalEList<?>) getParticipatingActor())
+					.basicAdd(otherEnd, msgs);
 		case RequirementPackage.USER_TASK__REALIZING_USE_CASES:
-			return ((InternalEList<InternalEObject>) (InternalEList<?>) getRealizingUseCases()).basicAdd(otherEnd, msgs);
+			return ((InternalEList<InternalEObject>) (InternalEList<?>) getRealizingUseCases())
+					.basicAdd(otherEnd, msgs);
 		}
 		return super.eInverseAdd(otherEnd, featureID, msgs);
 	}
@@ -209,14 +224,17 @@ public class UserTaskImpl extends ModelElementImpl implements UserTask {
 	 * @generated
 	 */
 	@Override
-	public NotificationChain eInverseRemove(InternalEObject otherEnd, int featureID, NotificationChain msgs) {
+	public NotificationChain eInverseRemove(InternalEObject otherEnd,
+			int featureID, NotificationChain msgs) {
 		switch (featureID) {
 		case RequirementPackage.USER_TASK__INITIATING_ACTOR:
 			return basicSetInitiatingActor(null, msgs);
 		case RequirementPackage.USER_TASK__PARTICIPATING_ACTOR:
-			return ((InternalEList<?>) getParticipatingActor()).basicRemove(otherEnd, msgs);
+			return ((InternalEList<?>) getParticipatingActor()).basicRemove(
+					otherEnd, msgs);
 		case RequirementPackage.USER_TASK__REALIZING_USE_CASES:
-			return ((InternalEList<?>) getRealizingUseCases()).basicRemove(otherEnd, msgs);
+			return ((InternalEList<?>) getRealizingUseCases()).basicRemove(
+					otherEnd, msgs);
 		}
 		return super.eInverseRemove(otherEnd, featureID, msgs);
 	}
@@ -255,11 +273,13 @@ public class UserTaskImpl extends ModelElementImpl implements UserTask {
 			return;
 		case RequirementPackage.USER_TASK__PARTICIPATING_ACTOR:
 			getParticipatingActor().clear();
-			getParticipatingActor().addAll((Collection<? extends Actor>) newValue);
+			getParticipatingActor().addAll(
+					(Collection<? extends Actor>) newValue);
 			return;
 		case RequirementPackage.USER_TASK__REALIZING_USE_CASES:
 			getRealizingUseCases().clear();
-			getRealizingUseCases().addAll((Collection<? extends UseCase>) newValue);
+			getRealizingUseCases().addAll(
+					(Collection<? extends UseCase>) newValue);
 			return;
 		}
 		super.eSet(featureID, newValue);

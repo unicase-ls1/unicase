@@ -35,7 +35,8 @@ import org.unicase.model.impl.ModelElementImpl;
  *
  * @generated
  */
-public class ComponentServiceImpl extends ModelElementImpl implements ComponentService {
+public class ComponentServiceImpl extends ModelElementImpl implements
+		ComponentService {
 	/**
 	 * The cached value of the '{@link #getConsumingComponents() <em>Consuming Components</em>}' reference list.
 	 * <!-- begin-user-doc -->
@@ -88,9 +89,10 @@ public class ComponentServiceImpl extends ModelElementImpl implements ComponentS
 	 * <!-- begin-user-doc --> <!-- end-user-doc -->
 	 * @generated
 	 */
-	public NotificationChain basicSetOfferingComponent(Component newOfferingComponent, NotificationChain msgs) {
-		msgs = eBasicSetContainer((InternalEObject) newOfferingComponent, ComponentPackage.COMPONENT_SERVICE__OFFERING_COMPONENT,
-				msgs);
+	public NotificationChain basicSetOfferingComponent(
+			Component newOfferingComponent, NotificationChain msgs) {
+		msgs = eBasicSetContainer((InternalEObject) newOfferingComponent,
+				ComponentPackage.COMPONENT_SERVICE__OFFERING_COMPONENT, msgs);
 		return msgs;
 	}
 
@@ -102,18 +104,21 @@ public class ComponentServiceImpl extends ModelElementImpl implements ComponentS
 		if (newOfferingComponent != eInternalContainer()
 				|| (eContainerFeatureID != ComponentPackage.COMPONENT_SERVICE__OFFERING_COMPONENT && newOfferingComponent != null)) {
 			if (EcoreUtil.isAncestor(this, newOfferingComponent))
-				throw new IllegalArgumentException("Recursive containment not allowed for " + toString());
+				throw new IllegalArgumentException(
+						"Recursive containment not allowed for " + toString());
 			NotificationChain msgs = null;
 			if (eInternalContainer() != null)
 				msgs = eBasicRemoveFromContainer(msgs);
 			if (newOfferingComponent != null)
-				msgs = ((InternalEObject) newOfferingComponent).eInverseAdd(this, ComponentPackage.COMPONENT__OFFERED_SERVICES,
+				msgs = ((InternalEObject) newOfferingComponent).eInverseAdd(
+						this, ComponentPackage.COMPONENT__OFFERED_SERVICES,
 						Component.class, msgs);
 			msgs = basicSetOfferingComponent(newOfferingComponent, msgs);
 			if (msgs != null)
 				msgs.dispatch();
 		} else if (eNotificationRequired())
-			eNotify(new ENotificationImpl(this, Notification.SET, ComponentPackage.COMPONENT_SERVICE__OFFERING_COMPONENT,
+			eNotify(new ENotificationImpl(this, Notification.SET,
+					ComponentPackage.COMPONENT_SERVICE__OFFERING_COMPONENT,
 					newOfferingComponent, newOfferingComponent));
 	}
 
@@ -123,8 +128,10 @@ public class ComponentServiceImpl extends ModelElementImpl implements ComponentS
 	 */
 	public EList<Component> getConsumingComponents() {
 		if (consumingComponents == null) {
-			consumingComponents = new EObjectWithInverseResolvingEList.ManyInverse<Component>(Component.class, this,
-					ComponentPackage.COMPONENT_SERVICE__CONSUMING_COMPONENTS, ComponentPackage.COMPONENT__CONSUMED_SERVICES);
+			consumingComponents = new EObjectWithInverseResolvingEList.ManyInverse<Component>(
+					Component.class, this,
+					ComponentPackage.COMPONENT_SERVICE__CONSUMING_COMPONENTS,
+					ComponentPackage.COMPONENT__CONSUMED_SERVICES);
 		}
 		return consumingComponents;
 	}
@@ -135,14 +142,16 @@ public class ComponentServiceImpl extends ModelElementImpl implements ComponentS
 	 */
 	@SuppressWarnings("unchecked")
 	@Override
-	public NotificationChain eInverseAdd(InternalEObject otherEnd, int featureID, NotificationChain msgs) {
+	public NotificationChain eInverseAdd(InternalEObject otherEnd,
+			int featureID, NotificationChain msgs) {
 		switch (featureID) {
 		case ComponentPackage.COMPONENT_SERVICE__OFFERING_COMPONENT:
 			if (eInternalContainer() != null)
 				msgs = eBasicRemoveFromContainer(msgs);
 			return basicSetOfferingComponent((Component) otherEnd, msgs);
 		case ComponentPackage.COMPONENT_SERVICE__CONSUMING_COMPONENTS:
-			return ((InternalEList<InternalEObject>) (InternalEList<?>) getConsumingComponents()).basicAdd(otherEnd, msgs);
+			return ((InternalEList<InternalEObject>) (InternalEList<?>) getConsumingComponents())
+					.basicAdd(otherEnd, msgs);
 		}
 		return super.eInverseAdd(otherEnd, featureID, msgs);
 	}
@@ -152,12 +161,14 @@ public class ComponentServiceImpl extends ModelElementImpl implements ComponentS
 	 * @generated
 	 */
 	@Override
-	public NotificationChain eInverseRemove(InternalEObject otherEnd, int featureID, NotificationChain msgs) {
+	public NotificationChain eInverseRemove(InternalEObject otherEnd,
+			int featureID, NotificationChain msgs) {
 		switch (featureID) {
 		case ComponentPackage.COMPONENT_SERVICE__OFFERING_COMPONENT:
 			return basicSetOfferingComponent(null, msgs);
 		case ComponentPackage.COMPONENT_SERVICE__CONSUMING_COMPONENTS:
-			return ((InternalEList<?>) getConsumingComponents()).basicRemove(otherEnd, msgs);
+			return ((InternalEList<?>) getConsumingComponents()).basicRemove(
+					otherEnd, msgs);
 		}
 		return super.eInverseRemove(otherEnd, featureID, msgs);
 	}
@@ -167,10 +178,13 @@ public class ComponentServiceImpl extends ModelElementImpl implements ComponentS
 	 * @generated
 	 */
 	@Override
-	public NotificationChain eBasicRemoveFromContainerFeature(NotificationChain msgs) {
+	public NotificationChain eBasicRemoveFromContainerFeature(
+			NotificationChain msgs) {
 		switch (eContainerFeatureID) {
 		case ComponentPackage.COMPONENT_SERVICE__OFFERING_COMPONENT:
-			return eInternalContainer().eInverseRemove(this, ComponentPackage.COMPONENT__OFFERED_SERVICES, Component.class, msgs);
+			return eInternalContainer().eInverseRemove(this,
+					ComponentPackage.COMPONENT__OFFERED_SERVICES,
+					Component.class, msgs);
 		}
 		return super.eBasicRemoveFromContainerFeature(msgs);
 	}
@@ -205,7 +219,8 @@ public class ComponentServiceImpl extends ModelElementImpl implements ComponentS
 			return;
 		case ComponentPackage.COMPONENT_SERVICE__CONSUMING_COMPONENTS:
 			getConsumingComponents().clear();
-			getConsumingComponents().addAll((Collection<? extends Component>) newValue);
+			getConsumingComponents().addAll(
+					(Collection<? extends Component>) newValue);
 			return;
 		}
 		super.eSet(featureID, newValue);
@@ -238,7 +253,8 @@ public class ComponentServiceImpl extends ModelElementImpl implements ComponentS
 		case ComponentPackage.COMPONENT_SERVICE__OFFERING_COMPONENT:
 			return basicGetOfferingComponent() != null;
 		case ComponentPackage.COMPONENT_SERVICE__CONSUMING_COMPONENTS:
-			return consumingComponents != null && !consumingComponents.isEmpty();
+			return consumingComponents != null
+					&& !consumingComponents.isEmpty();
 		}
 		return super.eIsSet(featureID);
 	}

@@ -50,7 +50,8 @@ import org.unicase.model.task.impl.TaskPackageImpl;
  * end-user-doc -->
  * @generated
  */
-public class RationalePackageImpl extends EPackageImpl implements RationalePackage {
+public class RationalePackageImpl extends EPackageImpl implements
+		RationalePackage {
 	/**
 	 * <!-- begin-user-doc --> <!-- end-user-doc -->
 	 * @generated
@@ -135,10 +136,12 @@ public class RationalePackageImpl extends EPackageImpl implements RationalePacka
 	 */
 	public static RationalePackage init() {
 		if (isInited)
-			return (RationalePackage) EPackage.Registry.INSTANCE.getEPackage(RationalePackage.eNS_URI);
+			return (RationalePackage) EPackage.Registry.INSTANCE
+					.getEPackage(RationalePackage.eNS_URI);
 
 		// Obtain or create and register package
-		RationalePackageImpl theRationalePackage = (RationalePackageImpl) (EPackage.Registry.INSTANCE.getEPackage(eNS_URI) instanceof RationalePackageImpl ? EPackage.Registry.INSTANCE
+		RationalePackageImpl theRationalePackage = (RationalePackageImpl) (EPackage.Registry.INSTANCE
+				.getEPackage(eNS_URI) instanceof RationalePackageImpl ? EPackage.Registry.INSTANCE
 				.getEPackage(eNS_URI)
 				: new RationalePackageImpl());
 
@@ -148,42 +151,54 @@ public class RationalePackageImpl extends EPackageImpl implements RationalePacka
 		NotationPackage.eINSTANCE.eClass();
 
 		// Obtain or create and register interdependencies
-		ModelPackageImpl theModelPackage = (ModelPackageImpl) (EPackage.Registry.INSTANCE.getEPackage(ModelPackage.eNS_URI) instanceof ModelPackageImpl ? EPackage.Registry.INSTANCE
+		ModelPackageImpl theModelPackage = (ModelPackageImpl) (EPackage.Registry.INSTANCE
+				.getEPackage(ModelPackage.eNS_URI) instanceof ModelPackageImpl ? EPackage.Registry.INSTANCE
 				.getEPackage(ModelPackage.eNS_URI)
 				: ModelPackage.eINSTANCE);
 		OrganizationPackageImpl theOrganizationPackage = (OrganizationPackageImpl) (EPackage.Registry.INSTANCE
 				.getEPackage(OrganizationPackage.eNS_URI) instanceof OrganizationPackageImpl ? EPackage.Registry.INSTANCE
-				.getEPackage(OrganizationPackage.eNS_URI) : OrganizationPackage.eINSTANCE);
-		TaskPackageImpl theTaskPackage = (TaskPackageImpl) (EPackage.Registry.INSTANCE.getEPackage(TaskPackage.eNS_URI) instanceof TaskPackageImpl ? EPackage.Registry.INSTANCE
+				.getEPackage(OrganizationPackage.eNS_URI)
+				: OrganizationPackage.eINSTANCE);
+		TaskPackageImpl theTaskPackage = (TaskPackageImpl) (EPackage.Registry.INSTANCE
+				.getEPackage(TaskPackage.eNS_URI) instanceof TaskPackageImpl ? EPackage.Registry.INSTANCE
 				.getEPackage(TaskPackage.eNS_URI)
 				: TaskPackage.eINSTANCE);
 		DiagramPackageImpl theDiagramPackage = (DiagramPackageImpl) (EPackage.Registry.INSTANCE
 				.getEPackage(DiagramPackage.eNS_URI) instanceof DiagramPackageImpl ? EPackage.Registry.INSTANCE
-				.getEPackage(DiagramPackage.eNS_URI) : DiagramPackage.eINSTANCE);
+				.getEPackage(DiagramPackage.eNS_URI)
+				: DiagramPackage.eINSTANCE);
 		ClassesPackageImpl theClassesPackage = (ClassesPackageImpl) (EPackage.Registry.INSTANCE
 				.getEPackage(ClassesPackage.eNS_URI) instanceof ClassesPackageImpl ? EPackage.Registry.INSTANCE
-				.getEPackage(ClassesPackage.eNS_URI) : ClassesPackage.eINSTANCE);
+				.getEPackage(ClassesPackage.eNS_URI)
+				: ClassesPackage.eINSTANCE);
 		DocumentPackageImpl theDocumentPackage = (DocumentPackageImpl) (EPackage.Registry.INSTANCE
 				.getEPackage(DocumentPackage.eNS_URI) instanceof DocumentPackageImpl ? EPackage.Registry.INSTANCE
-				.getEPackage(DocumentPackage.eNS_URI) : DocumentPackage.eINSTANCE);
+				.getEPackage(DocumentPackage.eNS_URI)
+				: DocumentPackage.eINSTANCE);
 		RequirementPackageImpl theRequirementPackage = (RequirementPackageImpl) (EPackage.Registry.INSTANCE
 				.getEPackage(RequirementPackage.eNS_URI) instanceof RequirementPackageImpl ? EPackage.Registry.INSTANCE
-				.getEPackage(RequirementPackage.eNS_URI) : RequirementPackage.eINSTANCE);
-		ChangePackageImpl theChangePackage = (ChangePackageImpl) (EPackage.Registry.INSTANCE.getEPackage(ChangePackage.eNS_URI) instanceof ChangePackageImpl ? EPackage.Registry.INSTANCE
+				.getEPackage(RequirementPackage.eNS_URI)
+				: RequirementPackage.eINSTANCE);
+		ChangePackageImpl theChangePackage = (ChangePackageImpl) (EPackage.Registry.INSTANCE
+				.getEPackage(ChangePackage.eNS_URI) instanceof ChangePackageImpl ? EPackage.Registry.INSTANCE
 				.getEPackage(ChangePackage.eNS_URI)
 				: ChangePackage.eINSTANCE);
-		BugPackageImpl theBugPackage = (BugPackageImpl) (EPackage.Registry.INSTANCE.getEPackage(BugPackage.eNS_URI) instanceof BugPackageImpl ? EPackage.Registry.INSTANCE
+		BugPackageImpl theBugPackage = (BugPackageImpl) (EPackage.Registry.INSTANCE
+				.getEPackage(BugPackage.eNS_URI) instanceof BugPackageImpl ? EPackage.Registry.INSTANCE
 				.getEPackage(BugPackage.eNS_URI)
 				: BugPackage.eINSTANCE);
 		ComponentPackageImpl theComponentPackage = (ComponentPackageImpl) (EPackage.Registry.INSTANCE
 				.getEPackage(ComponentPackage.eNS_URI) instanceof ComponentPackageImpl ? EPackage.Registry.INSTANCE
-				.getEPackage(ComponentPackage.eNS_URI) : ComponentPackage.eINSTANCE);
+				.getEPackage(ComponentPackage.eNS_URI)
+				: ComponentPackage.eINSTANCE);
 		MeetingPackageImpl theMeetingPackage = (MeetingPackageImpl) (EPackage.Registry.INSTANCE
 				.getEPackage(MeetingPackage.eNS_URI) instanceof MeetingPackageImpl ? EPackage.Registry.INSTANCE
-				.getEPackage(MeetingPackage.eNS_URI) : MeetingPackage.eINSTANCE);
+				.getEPackage(MeetingPackage.eNS_URI)
+				: MeetingPackage.eINSTANCE);
 		AttachmentPackageImpl theAttachmentPackage = (AttachmentPackageImpl) (EPackage.Registry.INSTANCE
 				.getEPackage(AttachmentPackage.eNS_URI) instanceof AttachmentPackageImpl ? EPackage.Registry.INSTANCE
-				.getEPackage(AttachmentPackage.eNS_URI) : AttachmentPackage.eINSTANCE);
+				.getEPackage(AttachmentPackage.eNS_URI)
+				: AttachmentPackage.eINSTANCE);
 
 		// Create package meta-data objects
 		theRationalePackage.createPackageContents();
@@ -451,8 +466,10 @@ public class RationalePackageImpl extends EPackageImpl implements RationalePacka
 		setNsURI(eNS_URI);
 
 		// Obtain other dependent packages
-		ModelPackage theModelPackage = (ModelPackage) EPackage.Registry.INSTANCE.getEPackage(ModelPackage.eNS_URI);
-		TaskPackage theTaskPackage = (TaskPackage) EPackage.Registry.INSTANCE.getEPackage(TaskPackage.eNS_URI);
+		ModelPackage theModelPackage = (ModelPackage) EPackage.Registry.INSTANCE
+				.getEPackage(ModelPackage.eNS_URI);
+		TaskPackage theTaskPackage = (TaskPackage) EPackage.Registry.INSTANCE
+				.getEPackage(TaskPackage.eNS_URI);
 
 		// Create type parameters
 
@@ -463,73 +480,119 @@ public class RationalePackageImpl extends EPackageImpl implements RationalePacka
 		issueEClass.getESuperTypes().add(theTaskPackage.getCheckable());
 		issueEClass.getESuperTypes().add(theTaskPackage.getWorkItem());
 		proposalEClass.getESuperTypes().add(theModelPackage.getModelElement());
-		proposalEClass.getESuperTypes().add(theModelPackage.getNonDomainElement());
+		proposalEClass.getESuperTypes().add(
+				theModelPackage.getNonDomainElement());
 		solutionEClass.getESuperTypes().add(theModelPackage.getModelElement());
-		solutionEClass.getESuperTypes().add(theModelPackage.getNonDomainElement());
+		solutionEClass.getESuperTypes().add(
+				theModelPackage.getNonDomainElement());
 		criterionEClass.getESuperTypes().add(theModelPackage.getModelElement());
-		assessmentEClass.getESuperTypes().add(theModelPackage.getModelElement());
-		assessmentEClass.getESuperTypes().add(theModelPackage.getNonDomainElement());
+		assessmentEClass.getESuperTypes()
+				.add(theModelPackage.getModelElement());
+		assessmentEClass.getESuperTypes().add(
+				theModelPackage.getNonDomainElement());
 		commentEClass.getESuperTypes().add(theModelPackage.getAnnotation());
 
 		// Initialize classes and features; add operations and parameters
-		initEClass(issueEClass, Issue.class, "Issue", !IS_ABSTRACT, !IS_INTERFACE, IS_GENERATED_INSTANCE_CLASS);
-		initEReference(getIssue_Proposals(), this.getProposal(), this.getProposal_Issue(), "proposals", null, 0, -1, Issue.class,
-				!IS_TRANSIENT, !IS_VOLATILE, IS_CHANGEABLE, IS_COMPOSITE, IS_RESOLVE_PROXIES, !IS_UNSETTABLE, IS_UNIQUE,
-				!IS_DERIVED, IS_ORDERED);
-		getIssue_Proposals().getEKeys().add(theModelPackage.getIdentifiableElement_Identifier());
-		initEReference(getIssue_Solution(), this.getSolution(), this.getSolution_Issue(), "solution", null, 0, 1, Issue.class,
-				!IS_TRANSIENT, !IS_VOLATILE, IS_CHANGEABLE, IS_COMPOSITE, IS_RESOLVE_PROXIES, !IS_UNSETTABLE, IS_UNIQUE,
-				!IS_DERIVED, IS_ORDERED);
-		getIssue_Solution().getEKeys().add(theModelPackage.getIdentifiableElement_Identifier());
-		initEReference(getIssue_Criteria(), this.getCriterion(), null, "criteria", null, 0, -1, Issue.class, !IS_TRANSIENT,
-				!IS_VOLATILE, IS_CHANGEABLE, !IS_COMPOSITE, IS_RESOLVE_PROXIES, !IS_UNSETTABLE, IS_UNIQUE, !IS_DERIVED,
+		initEClass(issueEClass, Issue.class, "Issue", !IS_ABSTRACT,
+				!IS_INTERFACE, IS_GENERATED_INSTANCE_CLASS);
+		initEReference(getIssue_Proposals(), this.getProposal(), this
+				.getProposal_Issue(), "proposals", null, 0, -1, Issue.class,
+				!IS_TRANSIENT, !IS_VOLATILE, IS_CHANGEABLE, IS_COMPOSITE,
+				IS_RESOLVE_PROXIES, !IS_UNSETTABLE, IS_UNIQUE, !IS_DERIVED,
 				IS_ORDERED);
-		getIssue_Criteria().getEKeys().add(theModelPackage.getIdentifiableElement_Identifier());
-		initEAttribute(getIssue_Activity(), theTaskPackage.getActivityType(), "activity", null, 0, 1, Issue.class, !IS_TRANSIENT,
-				!IS_VOLATILE, IS_CHANGEABLE, !IS_UNSETTABLE, !IS_ID, IS_UNIQUE, !IS_DERIVED, IS_ORDERED);
-
-		initEClass(proposalEClass, Proposal.class, "Proposal", !IS_ABSTRACT, !IS_INTERFACE, IS_GENERATED_INSTANCE_CLASS);
-		initEReference(getProposal_Assessments(), this.getAssessment(), this.getAssessment_Proposal(), "assessments", null, 0,
-				-1, Proposal.class, !IS_TRANSIENT, !IS_VOLATILE, IS_CHANGEABLE, IS_COMPOSITE, IS_RESOLVE_PROXIES, !IS_UNSETTABLE,
-				IS_UNIQUE, !IS_DERIVED, IS_ORDERED);
-		getProposal_Assessments().getEKeys().add(theModelPackage.getIdentifiableElement_Identifier());
-		initEReference(getProposal_Issue(), this.getIssue(), this.getIssue_Proposals(), "issue", null, 0, 1, Proposal.class,
-				!IS_TRANSIENT, !IS_VOLATILE, IS_CHANGEABLE, !IS_COMPOSITE, IS_RESOLVE_PROXIES, !IS_UNSETTABLE, IS_UNIQUE,
-				!IS_DERIVED, IS_ORDERED);
-		getProposal_Issue().getEKeys().add(theModelPackage.getIdentifiableElement_Identifier());
-
-		initEClass(solutionEClass, Solution.class, "Solution", !IS_ABSTRACT, !IS_INTERFACE, IS_GENERATED_INSTANCE_CLASS);
-		initEReference(getSolution_UnderlyingProposals(), this.getProposal(), null, "underlyingProposals", null, 0, -1,
-				Solution.class, !IS_TRANSIENT, !IS_VOLATILE, IS_CHANGEABLE, !IS_COMPOSITE, IS_RESOLVE_PROXIES, !IS_UNSETTABLE,
-				IS_UNIQUE, !IS_DERIVED, IS_ORDERED);
-		getSolution_UnderlyingProposals().getEKeys().add(theModelPackage.getIdentifiableElement_Identifier());
-		initEReference(getSolution_Issue(), this.getIssue(), this.getIssue_Solution(), "issue", null, 0, 1, Solution.class,
-				!IS_TRANSIENT, !IS_VOLATILE, IS_CHANGEABLE, !IS_COMPOSITE, IS_RESOLVE_PROXIES, !IS_UNSETTABLE, IS_UNIQUE,
-				!IS_DERIVED, IS_ORDERED);
-		getSolution_Issue().getEKeys().add(theModelPackage.getIdentifiableElement_Identifier());
-
-		initEClass(criterionEClass, Criterion.class, "Criterion", !IS_ABSTRACT, !IS_INTERFACE, IS_GENERATED_INSTANCE_CLASS);
-		initEReference(getCriterion_Assessments(), this.getAssessment(), this.getAssessment_Criterion(), "assessments", null, 0,
-				-1, Criterion.class, !IS_TRANSIENT, !IS_VOLATILE, IS_CHANGEABLE, !IS_COMPOSITE, IS_RESOLVE_PROXIES,
+		getIssue_Proposals().getEKeys().add(
+				theModelPackage.getIdentifiableElement_Identifier());
+		initEReference(getIssue_Solution(), this.getSolution(), this
+				.getSolution_Issue(), "solution", null, 0, 1, Issue.class,
+				!IS_TRANSIENT, !IS_VOLATILE, IS_CHANGEABLE, IS_COMPOSITE,
+				IS_RESOLVE_PROXIES, !IS_UNSETTABLE, IS_UNIQUE, !IS_DERIVED,
+				IS_ORDERED);
+		getIssue_Solution().getEKeys().add(
+				theModelPackage.getIdentifiableElement_Identifier());
+		initEReference(getIssue_Criteria(), this.getCriterion(), null,
+				"criteria", null, 0, -1, Issue.class, !IS_TRANSIENT,
+				!IS_VOLATILE, IS_CHANGEABLE, !IS_COMPOSITE, IS_RESOLVE_PROXIES,
 				!IS_UNSETTABLE, IS_UNIQUE, !IS_DERIVED, IS_ORDERED);
-		getCriterion_Assessments().getEKeys().add(theModelPackage.getIdentifiableElement_Identifier());
+		getIssue_Criteria().getEKeys().add(
+				theModelPackage.getIdentifiableElement_Identifier());
+		initEAttribute(getIssue_Activity(), theTaskPackage.getActivityType(),
+				"activity", null, 0, 1, Issue.class, !IS_TRANSIENT,
+				!IS_VOLATILE, IS_CHANGEABLE, !IS_UNSETTABLE, !IS_ID, IS_UNIQUE,
+				!IS_DERIVED, IS_ORDERED);
 
-		initEClass(assessmentEClass, Assessment.class, "Assessment", !IS_ABSTRACT, !IS_INTERFACE, IS_GENERATED_INSTANCE_CLASS);
-		initEReference(getAssessment_Proposal(), this.getProposal(), this.getProposal_Assessments(), "proposal", null, 0, 1,
-				Assessment.class, !IS_TRANSIENT, !IS_VOLATILE, IS_CHANGEABLE, !IS_COMPOSITE, IS_RESOLVE_PROXIES, !IS_UNSETTABLE,
-				IS_UNIQUE, !IS_DERIVED, IS_ORDERED);
-		getAssessment_Proposal().getEKeys().add(theModelPackage.getIdentifiableElement_Identifier());
-		initEReference(getAssessment_Criterion(), this.getCriterion(), this.getCriterion_Assessments(), "criterion", null, 0, 1,
-				Assessment.class, !IS_TRANSIENT, !IS_VOLATILE, IS_CHANGEABLE, !IS_COMPOSITE, IS_RESOLVE_PROXIES, !IS_UNSETTABLE,
-				IS_UNIQUE, !IS_DERIVED, IS_ORDERED);
-		getAssessment_Criterion().getEKeys().add(theModelPackage.getIdentifiableElement_Identifier());
-		initEAttribute(getAssessment_Value(), ecorePackage.getEInt(), "value", null, 0, 1, Assessment.class, !IS_TRANSIENT,
-				!IS_VOLATILE, IS_CHANGEABLE, !IS_UNSETTABLE, !IS_ID, IS_UNIQUE, !IS_DERIVED, IS_ORDERED);
+		initEClass(proposalEClass, Proposal.class, "Proposal", !IS_ABSTRACT,
+				!IS_INTERFACE, IS_GENERATED_INSTANCE_CLASS);
+		initEReference(getProposal_Assessments(), this.getAssessment(), this
+				.getAssessment_Proposal(), "assessments", null, 0, -1,
+				Proposal.class, !IS_TRANSIENT, !IS_VOLATILE, IS_CHANGEABLE,
+				IS_COMPOSITE, IS_RESOLVE_PROXIES, !IS_UNSETTABLE, IS_UNIQUE,
+				!IS_DERIVED, IS_ORDERED);
+		getProposal_Assessments().getEKeys().add(
+				theModelPackage.getIdentifiableElement_Identifier());
+		initEReference(getProposal_Issue(), this.getIssue(), this
+				.getIssue_Proposals(), "issue", null, 0, 1, Proposal.class,
+				!IS_TRANSIENT, !IS_VOLATILE, IS_CHANGEABLE, !IS_COMPOSITE,
+				IS_RESOLVE_PROXIES, !IS_UNSETTABLE, IS_UNIQUE, !IS_DERIVED,
+				IS_ORDERED);
+		getProposal_Issue().getEKeys().add(
+				theModelPackage.getIdentifiableElement_Identifier());
 
-		initEClass(commentEClass, Comment.class, "Comment", !IS_ABSTRACT, !IS_INTERFACE, IS_GENERATED_INSTANCE_CLASS);
-		initEReference(getComment_Replies(), this.getComment(), null, "replies", null, 0, -1, Comment.class, !IS_TRANSIENT,
-				!IS_VOLATILE, IS_CHANGEABLE, IS_COMPOSITE, IS_RESOLVE_PROXIES, !IS_UNSETTABLE, IS_UNIQUE, !IS_DERIVED, IS_ORDERED);
-		getComment_Replies().getEKeys().add(theModelPackage.getIdentifiableElement_Identifier());
+		initEClass(solutionEClass, Solution.class, "Solution", !IS_ABSTRACT,
+				!IS_INTERFACE, IS_GENERATED_INSTANCE_CLASS);
+		initEReference(getSolution_UnderlyingProposals(), this.getProposal(),
+				null, "underlyingProposals", null, 0, -1, Solution.class,
+				!IS_TRANSIENT, !IS_VOLATILE, IS_CHANGEABLE, !IS_COMPOSITE,
+				IS_RESOLVE_PROXIES, !IS_UNSETTABLE, IS_UNIQUE, !IS_DERIVED,
+				IS_ORDERED);
+		getSolution_UnderlyingProposals().getEKeys().add(
+				theModelPackage.getIdentifiableElement_Identifier());
+		initEReference(getSolution_Issue(), this.getIssue(), this
+				.getIssue_Solution(), "issue", null, 0, 1, Solution.class,
+				!IS_TRANSIENT, !IS_VOLATILE, IS_CHANGEABLE, !IS_COMPOSITE,
+				IS_RESOLVE_PROXIES, !IS_UNSETTABLE, IS_UNIQUE, !IS_DERIVED,
+				IS_ORDERED);
+		getSolution_Issue().getEKeys().add(
+				theModelPackage.getIdentifiableElement_Identifier());
+
+		initEClass(criterionEClass, Criterion.class, "Criterion", !IS_ABSTRACT,
+				!IS_INTERFACE, IS_GENERATED_INSTANCE_CLASS);
+		initEReference(getCriterion_Assessments(), this.getAssessment(), this
+				.getAssessment_Criterion(), "assessments", null, 0, -1,
+				Criterion.class, !IS_TRANSIENT, !IS_VOLATILE, IS_CHANGEABLE,
+				!IS_COMPOSITE, IS_RESOLVE_PROXIES, !IS_UNSETTABLE, IS_UNIQUE,
+				!IS_DERIVED, IS_ORDERED);
+		getCriterion_Assessments().getEKeys().add(
+				theModelPackage.getIdentifiableElement_Identifier());
+
+		initEClass(assessmentEClass, Assessment.class, "Assessment",
+				!IS_ABSTRACT, !IS_INTERFACE, IS_GENERATED_INSTANCE_CLASS);
+		initEReference(getAssessment_Proposal(), this.getProposal(), this
+				.getProposal_Assessments(), "proposal", null, 0, 1,
+				Assessment.class, !IS_TRANSIENT, !IS_VOLATILE, IS_CHANGEABLE,
+				!IS_COMPOSITE, IS_RESOLVE_PROXIES, !IS_UNSETTABLE, IS_UNIQUE,
+				!IS_DERIVED, IS_ORDERED);
+		getAssessment_Proposal().getEKeys().add(
+				theModelPackage.getIdentifiableElement_Identifier());
+		initEReference(getAssessment_Criterion(), this.getCriterion(), this
+				.getCriterion_Assessments(), "criterion", null, 0, 1,
+				Assessment.class, !IS_TRANSIENT, !IS_VOLATILE, IS_CHANGEABLE,
+				!IS_COMPOSITE, IS_RESOLVE_PROXIES, !IS_UNSETTABLE, IS_UNIQUE,
+				!IS_DERIVED, IS_ORDERED);
+		getAssessment_Criterion().getEKeys().add(
+				theModelPackage.getIdentifiableElement_Identifier());
+		initEAttribute(getAssessment_Value(), ecorePackage.getEInt(), "value",
+				null, 0, 1, Assessment.class, !IS_TRANSIENT, !IS_VOLATILE,
+				IS_CHANGEABLE, !IS_UNSETTABLE, !IS_ID, IS_UNIQUE, !IS_DERIVED,
+				IS_ORDERED);
+
+		initEClass(commentEClass, Comment.class, "Comment", !IS_ABSTRACT,
+				!IS_INTERFACE, IS_GENERATED_INSTANCE_CLASS);
+		initEReference(getComment_Replies(), this.getComment(), null,
+				"replies", null, 0, -1, Comment.class, !IS_TRANSIENT,
+				!IS_VOLATILE, IS_CHANGEABLE, IS_COMPOSITE, IS_RESOLVE_PROXIES,
+				!IS_UNSETTABLE, IS_UNIQUE, !IS_DERIVED, IS_ORDERED);
+		getComment_Replies().getEKeys().add(
+				theModelPackage.getIdentifiableElement_Identifier());
 
 		// Create annotations
 		// org.unicase.ui.meeditor
@@ -544,16 +607,26 @@ public class RationalePackageImpl extends EPackageImpl implements RationalePacka
 	 */
 	protected void createOrgAnnotations() {
 		String source = "org.unicase.ui.meeditor";
-		addAnnotation(getIssue_Proposals(), source, new String[] { "priority", "21.0", "position", "left" });
-		addAnnotation(getIssue_Solution(), source, new String[] { "priority", "20.0", "position", "left" });
-		addAnnotation(getIssue_Criteria(), source, new String[] { "priority", "22.0", "position", "left" });
-		addAnnotation(getIssue_Activity(), source, new String[] { "priority", "9.5", "position", "left" });
-		addAnnotation(getProposal_Assessments(), source, new String[] { "priority", "10.0", "position", "right" });
-		addAnnotation(getProposal_Issue(), source, new String[] { "priority", "10.0", "position", "left" });
-		addAnnotation(getSolution_UnderlyingProposals(), source, new String[] { "priority", "10.0", "position", "right" });
-		addAnnotation(getSolution_Issue(), source, new String[] { "priority", "10.0", "position", "left" });
-		addAnnotation(getCriterion_Assessments(), source, new String[] { "priority", "10.0", "position", "right" });
-		addAnnotation(getComment_Replies(), source, new String[] { "priority", "10.0", "position", "right" });
+		addAnnotation(getIssue_Proposals(), source, new String[] { "priority",
+				"21.0", "position", "left" });
+		addAnnotation(getIssue_Solution(), source, new String[] { "priority",
+				"20.0", "position", "left" });
+		addAnnotation(getIssue_Criteria(), source, new String[] { "priority",
+				"22.0", "position", "left" });
+		addAnnotation(getIssue_Activity(), source, new String[] { "priority",
+				"9.5", "position", "left" });
+		addAnnotation(getProposal_Assessments(), source, new String[] {
+				"priority", "10.0", "position", "right" });
+		addAnnotation(getProposal_Issue(), source, new String[] { "priority",
+				"10.0", "position", "left" });
+		addAnnotation(getSolution_UnderlyingProposals(), source, new String[] {
+				"priority", "10.0", "position", "right" });
+		addAnnotation(getSolution_Issue(), source, new String[] { "priority",
+				"10.0", "position", "left" });
+		addAnnotation(getCriterion_Assessments(), source, new String[] {
+				"priority", "10.0", "position", "right" });
+		addAnnotation(getComment_Replies(), source, new String[] { "priority",
+				"10.0", "position", "right" });
 	}
 
 } // RationalePackageImpl

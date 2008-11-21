@@ -54,7 +54,8 @@ public interface OrganizationPackage extends EPackage {
 	 * end-user-doc -->
 	 * @generated
 	 */
-	OrganizationPackage eINSTANCE = org.unicase.model.organization.impl.OrganizationPackageImpl.init();
+	OrganizationPackage eINSTANCE = org.unicase.model.organization.impl.OrganizationPackageImpl
+			.init();
 
 	/**
 	 * The meta object id for the '{@link org.unicase.model.organization.impl.UserImpl <em>User</em>}' class.
@@ -711,7 +712,8 @@ public interface OrganizationPackage extends EPackage {
 		 * <!-- end-user-doc -->
 		 * @generated
 		 */
-		EReference ORG_UNIT__GROUP_MEMBERSHIPS = eINSTANCE.getOrgUnit_GroupMemberships();
+		EReference ORG_UNIT__GROUP_MEMBERSHIPS = eINSTANCE
+				.getOrgUnit_GroupMemberships();
 		/**
 		 * The meta object literal for the '<em><b>Assignments</b></em>' reference list feature.
 		 * <!-- begin-user-doc -->
@@ -725,7 +727,8 @@ public interface OrganizationPackage extends EPackage {
 		 * <!-- end-user-doc -->
 		 * @generated
 		 */
-		EReference ORG_UNIT__PARTICIPATIONS = eINSTANCE.getOrgUnit_Participations();
+		EReference ORG_UNIT__PARTICIPATIONS = eINSTANCE
+				.getOrgUnit_Participations();
 		/**
 		 * The meta object literal for the '{@link org.unicase.model.organization.impl.GroupImpl <em>Group</em>}' class.
 		 * <!-- begin-user-doc --> <!-- end-user-doc -->

@@ -55,7 +55,8 @@ public interface ChangePackage extends EPackage {
 	 * end-user-doc -->
 	 * @generated
 	 */
-	ChangePackage eINSTANCE = org.unicase.model.change.impl.ChangePackageImpl.init();
+	ChangePackage eINSTANCE = org.unicase.model.change.impl.ChangePackageImpl
+			.init();
 
 	/**
 	 * The meta object id for the '{@link org.unicase.model.change.impl.ModelChangePackageImpl <em>Model Change Package</em>}' class.
@@ -821,14 +822,16 @@ public interface ChangePackage extends EPackage {
 		 * <!-- begin-user-doc --> <!-- end-user-doc -->
 		 * @generated
 		 */
-		EAttribute MODEL_CHANGE_PACKAGE__SOURCE_VERSION = eINSTANCE.getModelChangePackage_SourceVersion();
+		EAttribute MODEL_CHANGE_PACKAGE__SOURCE_VERSION = eINSTANCE
+				.getModelChangePackage_SourceVersion();
 
 		/**
 		 * The meta object literal for the '<em><b>Target Version</b></em>' attribute feature.
 		 * <!-- begin-user-doc --> <!-- end-user-doc -->
 		 * @generated
 		 */
-		EAttribute MODEL_CHANGE_PACKAGE__TARGET_VERSION = eINSTANCE.getModelChangePackage_TargetVersion();
+		EAttribute MODEL_CHANGE_PACKAGE__TARGET_VERSION = eINSTANCE
+				.getModelChangePackage_TargetVersion();
 
 		/**
 		 * The meta object literal for the '{@link org.unicase.model.change.impl.MergingIssueImpl <em>Merging Issue</em>}' class.
@@ -845,7 +848,8 @@ public interface ChangePackage extends EPackage {
 		 * <!-- begin-user-doc --> <!-- end-user-doc -->
 		 * @generated
 		 */
-		EAttribute MERGING_ISSUE__RESOLVING_REVISION = eINSTANCE.getMergingIssue_ResolvingRevision();
+		EAttribute MERGING_ISSUE__RESOLVING_REVISION = eINSTANCE
+				.getMergingIssue_ResolvingRevision();
 
 		/**
 		 * The meta object literal for the '{@link org.unicase.model.change.impl.MergingProposalImpl <em>Merging Proposal</em>}' class.
@@ -864,14 +868,16 @@ public interface ChangePackage extends EPackage {
 		 * 
 		 * @generated
 		 */
-		EReference MERGING_PROPOSAL__CONFLICTING_PROPOSALS = eINSTANCE.getMergingProposal_ConflictingProposals();
+		EReference MERGING_PROPOSAL__CONFLICTING_PROPOSALS = eINSTANCE
+				.getMergingProposal_ConflictingProposals();
 
 		/**
 		 * The meta object literal for the '<em><b>Pending Changes</b></em>' reference feature.
 		 * <!-- begin-user-doc --> <!-- end-user-doc -->
 		 * @generated
 		 */
-		EReference MERGING_PROPOSAL__PENDING_CHANGES = eINSTANCE.getMergingProposal_PendingChanges();
+		EReference MERGING_PROPOSAL__PENDING_CHANGES = eINSTANCE
+				.getMergingProposal_PendingChanges();
 
 		/**
 		 * The meta object literal for the '{@link org.unicase.model.change.impl.MergingSolutionImpl <em>Merging Solution</em>}' class.
@@ -888,7 +894,8 @@ public interface ChangePackage extends EPackage {
 		 * <!-- begin-user-doc --> <!-- end-user-doc -->
 		 * @generated
 		 */
-		EReference MERGING_SOLUTION__APPLIED_CHANGES = eINSTANCE.getMergingSolution_AppliedChanges();
+		EReference MERGING_SOLUTION__APPLIED_CHANGES = eINSTANCE
+				.getMergingSolution_AppliedChanges();
 
 	}
 

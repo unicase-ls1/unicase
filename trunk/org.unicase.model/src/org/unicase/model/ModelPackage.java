@@ -791,7 +791,8 @@ public interface ModelPackage extends EPackage {
 		 * <!-- begin-user-doc --> <!-- end-user-doc -->
 		 * @generated
 		 */
-		EAttribute MODEL_ELEMENT__DESCRIPTION = eINSTANCE.getModelElement_Description();
+		EAttribute MODEL_ELEMENT__DESCRIPTION = eINSTANCE
+				.getModelElement_Description();
 
 		/**
 		 * The meta object literal for the '<em><b>Creator</b></em>' attribute feature.
@@ -807,14 +808,16 @@ public interface ModelPackage extends EPackage {
 		 * <!-- end-user-doc -->
 		 * @generated
 		 */
-		EAttribute MODEL_ELEMENT__CREATION_DATE = eINSTANCE.getModelElement_CreationDate();
+		EAttribute MODEL_ELEMENT__CREATION_DATE = eINSTANCE
+				.getModelElement_CreationDate();
 
 		/**
 		 * The meta object literal for the '<em><b>Annotations</b></em>' reference list feature.
 		 * <!-- begin-user-doc --> <!-- end-user-doc -->
 		 * @generated
 		 */
-		EReference MODEL_ELEMENT__ANNOTATIONS = eINSTANCE.getModelElement_Annotations();
+		EReference MODEL_ELEMENT__ANNOTATIONS = eINSTANCE
+				.getModelElement_Annotations();
 
 		/**
 		 * The meta object literal for the '<em><b>Attachments</b></em>' reference list feature.
@@ -822,14 +825,16 @@ public interface ModelPackage extends EPackage {
 		 * <!-- end-user-doc -->
 		 * @generated
 		 */
-		EReference MODEL_ELEMENT__ATTACHMENTS = eINSTANCE.getModelElement_Attachments();
+		EReference MODEL_ELEMENT__ATTACHMENTS = eINSTANCE
+				.getModelElement_Attachments();
 
 		/**
 		 * The meta object literal for the '<em><b>Incoming Document References</b></em>' reference list feature.
 		 * <!-- begin-user-doc --> <!-- end-user-doc -->
 		 * @generated
 		 */
-		EReference MODEL_ELEMENT__INCOMING_DOCUMENT_REFERENCES = eINSTANCE.getModelElement_IncomingDocumentReferences();
+		EReference MODEL_ELEMENT__INCOMING_DOCUMENT_REFERENCES = eINSTANCE
+				.getModelElement_IncomingDocumentReferences();
 
 		/**
 		 * The meta object literal for the '<em><b>Leaf Section</b></em>' container reference feature.
@@ -837,7 +842,8 @@ public interface ModelPackage extends EPackage {
 		 * end-user-doc -->
 		 * @generated
 		 */
-		EReference MODEL_ELEMENT__LEAF_SECTION = eINSTANCE.getModelElement_LeafSection();
+		EReference MODEL_ELEMENT__LEAF_SECTION = eINSTANCE
+				.getModelElement_LeafSection();
 
 		/**
 		 * The meta object literal for the '<em><b>State</b></em>' attribute feature.
@@ -862,7 +868,8 @@ public interface ModelPackage extends EPackage {
 		 * end-user-doc -->
 		 * @generated
 		 */
-		EReference PROJECT__MODEL_ELEMENTS = eINSTANCE.getProject_ModelElements();
+		EReference PROJECT__MODEL_ELEMENTS = eINSTANCE
+				.getProject_ModelElements();
 
 		/**
 		 * The meta object literal for the '{@link org.unicase.model.impl.UniqueIdentifierImpl <em>Unique Identifier</em>}' class.
@@ -895,7 +902,8 @@ public interface ModelPackage extends EPackage {
 		 * <!-- begin-user-doc --> <!-- end-user-doc -->
 		 * @generated
 		 */
-		EReference ANNOTATION__ANNOTATED_MODEL_ELEMENTS = eINSTANCE.getAnnotation_AnnotatedModelElements();
+		EReference ANNOTATION__ANNOTATED_MODEL_ELEMENTS = eINSTANCE
+				.getAnnotation_AnnotatedModelElements();
 
 		/**
 		 * The meta object literal for the '{@link org.unicase.model.impl.AttachmentImpl <em>Attachment</em>}' class.
@@ -913,7 +921,8 @@ public interface ModelPackage extends EPackage {
 		 * <!-- end-user-doc -->
 		 * @generated
 		 */
-		EReference ATTACHMENT__REFERRING_MODEL_ELEMENTS = eINSTANCE.getAttachment_ReferringModelElements();
+		EReference ATTACHMENT__REFERRING_MODEL_ELEMENTS = eINSTANCE
+				.getAttachment_ReferringModelElements();
 
 		/**
 		 * The meta object literal for the '{@link org.unicase.model.impl.IdentifiableElementImpl <em>Identifiable Element</em>}' class.
@@ -931,7 +940,8 @@ public interface ModelPackage extends EPackage {
 		 * <!-- end-user-doc -->
 		 * @generated
 		 */
-		EAttribute IDENTIFIABLE_ELEMENT__IDENTIFIER = eINSTANCE.getIdentifiableElement_Identifier();
+		EAttribute IDENTIFIABLE_ELEMENT__IDENTIFIER = eINSTANCE
+				.getIdentifiableElement_Identifier();
 
 		/**
 		 * The meta object literal for the '{@link org.unicase.model.impl.ModelElementIdImpl <em>Element Id</em>}' class.

@@ -30,8 +30,9 @@ import org.unicase.model.requirement.RequirementPackage;
  * 
  * @generated
  */
-public class NonFunctionalRequirementItemProvider extends CriterionItemProvider implements IEditingDomainItemProvider,
-		IStructuredItemContentProvider, ITreeItemContentProvider, IItemLabelProvider, IItemPropertySource {
+public class NonFunctionalRequirementItemProvider extends CriterionItemProvider
+		implements IEditingDomainItemProvider, IStructuredItemContentProvider,
+		ITreeItemContentProvider, IItemLabelProvider, IItemPropertySource {
 	/**
 	 * This constructs an instance from a factory and a notifier. <!--
 	 * begin-user-doc --> <!-- end-user-doc -->
@@ -66,12 +67,17 @@ public class NonFunctionalRequirementItemProvider extends CriterionItemProvider 
 	 */
 	protected void addRestrictedScenariosPropertyDescriptor(Object object) {
 		itemPropertyDescriptors
-				.add(createItemPropertyDescriptor(((ComposeableAdapterFactory) adapterFactory).getRootAdapterFactory(),
-						getResourceLocator(), getString("_UI_NonFunctionalRequirement_restrictedScenarios_feature"), getString(
-								"_UI_PropertyDescriptor_description", "_UI_NonFunctionalRequirement_restrictedScenarios_feature",
+				.add(createItemPropertyDescriptor(
+						((ComposeableAdapterFactory) adapterFactory)
+								.getRootAdapterFactory(),
+						getResourceLocator(),
+						getString("_UI_NonFunctionalRequirement_restrictedScenarios_feature"),
+						getString(
+								"_UI_PropertyDescriptor_description",
+								"_UI_NonFunctionalRequirement_restrictedScenarios_feature",
 								"_UI_NonFunctionalRequirement_type"),
-						RequirementPackage.Literals.NON_FUNCTIONAL_REQUIREMENT__RESTRICTED_SCENARIOS, true, false, true, null,
-						null, null));
+						RequirementPackage.Literals.NON_FUNCTIONAL_REQUIREMENT__RESTRICTED_SCENARIOS,
+						true, false, true, null, null, null));
 	}
 
 	/**
@@ -81,12 +87,17 @@ public class NonFunctionalRequirementItemProvider extends CriterionItemProvider 
 	 */
 	protected void addRestrictedUseCasesPropertyDescriptor(Object object) {
 		itemPropertyDescriptors
-				.add(createItemPropertyDescriptor(((ComposeableAdapterFactory) adapterFactory).getRootAdapterFactory(),
-						getResourceLocator(), getString("_UI_NonFunctionalRequirement_restrictedUseCases_feature"), getString(
-								"_UI_PropertyDescriptor_description", "_UI_NonFunctionalRequirement_restrictedUseCases_feature",
+				.add(createItemPropertyDescriptor(
+						((ComposeableAdapterFactory) adapterFactory)
+								.getRootAdapterFactory(),
+						getResourceLocator(),
+						getString("_UI_NonFunctionalRequirement_restrictedUseCases_feature"),
+						getString(
+								"_UI_PropertyDescriptor_description",
+								"_UI_NonFunctionalRequirement_restrictedUseCases_feature",
 								"_UI_NonFunctionalRequirement_type"),
-						RequirementPackage.Literals.NON_FUNCTIONAL_REQUIREMENT__RESTRICTED_USE_CASES, true, false, true, null,
-						null, null));
+						RequirementPackage.Literals.NON_FUNCTIONAL_REQUIREMENT__RESTRICTED_USE_CASES,
+						true, false, true, null, null, null));
 	}
 
 	/**
@@ -97,7 +108,8 @@ public class NonFunctionalRequirementItemProvider extends CriterionItemProvider 
 	 */
 	@Override
 	public Object getImage(Object object) {
-		return overlayImage(object, getResourceLocator().getImage("full/obj16/NonFunctionalRequirement"));
+		return overlayImage(object, getResourceLocator().getImage(
+				"full/obj16/NonFunctionalRequirement"));
 	}
 
 	/**
@@ -133,7 +145,8 @@ public class NonFunctionalRequirementItemProvider extends CriterionItemProvider 
 	 * @generated
 	 */
 	@Override
-	protected void collectNewChildDescriptors(Collection<Object> newChildDescriptors, Object object) {
+	protected void collectNewChildDescriptors(
+			Collection<Object> newChildDescriptors, Object object) {
 		super.collectNewChildDescriptors(newChildDescriptors, object);
 	}
 

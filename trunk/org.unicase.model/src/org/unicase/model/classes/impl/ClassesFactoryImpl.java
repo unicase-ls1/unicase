@@ -81,7 +81,8 @@ public class ClassesFactoryImpl extends EFactoryImpl implements ClassesFactory {
 		case ClassesPackage.DEPENDENCY:
 			return createDependency();
 		default:
-			throw new IllegalArgumentException("The class '" + eClass.getName() + "' is not a valid classifier");
+			throw new IllegalArgumentException("The class '" + eClass.getName()
+					+ "' is not a valid classifier");
 		}
 	}
 
@@ -99,9 +100,11 @@ public class ClassesFactoryImpl extends EFactoryImpl implements ClassesFactory {
 		case ClassesPackage.SCOPE_TYPE:
 			return createScopeTypeFromString(eDataType, initialValue);
 		case ClassesPackage.ARGUMENT_DIRECTION_TYPE:
-			return createArgumentDirectionTypeFromString(eDataType, initialValue);
+			return createArgumentDirectionTypeFromString(eDataType,
+					initialValue);
 		default:
-			throw new IllegalArgumentException("The datatype '" + eDataType.getName() + "' is not a valid classifier");
+			throw new IllegalArgumentException("The datatype '"
+					+ eDataType.getName() + "' is not a valid classifier");
 		}
 	}
 
@@ -119,9 +122,11 @@ public class ClassesFactoryImpl extends EFactoryImpl implements ClassesFactory {
 		case ClassesPackage.SCOPE_TYPE:
 			return convertScopeTypeToString(eDataType, instanceValue);
 		case ClassesPackage.ARGUMENT_DIRECTION_TYPE:
-			return convertArgumentDirectionTypeToString(eDataType, instanceValue);
+			return convertArgumentDirectionTypeToString(eDataType,
+					instanceValue);
 		default:
-			throw new IllegalArgumentException("The datatype '" + eDataType.getName() + "' is not a valid classifier");
+			throw new IllegalArgumentException("The datatype '"
+					+ eDataType.getName() + "' is not a valid classifier");
 		}
 	}
 
@@ -196,11 +201,13 @@ public class ClassesFactoryImpl extends EFactoryImpl implements ClassesFactory {
 	 * <!-- begin-user-doc --> <!-- end-user-doc -->
 	 * @generated
 	 */
-	public AssociationType createAssociationTypeFromString(EDataType eDataType, String initialValue) {
+	public AssociationType createAssociationTypeFromString(EDataType eDataType,
+			String initialValue) {
 		AssociationType result = AssociationType.get(initialValue);
 		if (result == null)
-			throw new IllegalArgumentException("The value '" + initialValue + "' is not a valid enumerator of '"
-					+ eDataType.getName() + "'");
+			throw new IllegalArgumentException("The value '" + initialValue
+					+ "' is not a valid enumerator of '" + eDataType.getName()
+					+ "'");
 		return result;
 	}
 
@@ -208,7 +215,8 @@ public class ClassesFactoryImpl extends EFactoryImpl implements ClassesFactory {
 	 * <!-- begin-user-doc --> <!-- end-user-doc -->
 	 * @generated
 	 */
-	public String convertAssociationTypeToString(EDataType eDataType, Object instanceValue) {
+	public String convertAssociationTypeToString(EDataType eDataType,
+			Object instanceValue) {
 		return instanceValue == null ? null : instanceValue.toString();
 	}
 
@@ -217,11 +225,13 @@ public class ClassesFactoryImpl extends EFactoryImpl implements ClassesFactory {
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
-	public VisibilityType createVisibilityTypeFromString(EDataType eDataType, String initialValue) {
+	public VisibilityType createVisibilityTypeFromString(EDataType eDataType,
+			String initialValue) {
 		VisibilityType result = VisibilityType.get(initialValue);
 		if (result == null)
-			throw new IllegalArgumentException("The value '" + initialValue + "' is not a valid enumerator of '"
-					+ eDataType.getName() + "'");
+			throw new IllegalArgumentException("The value '" + initialValue
+					+ "' is not a valid enumerator of '" + eDataType.getName()
+					+ "'");
 		return result;
 	}
 
@@ -230,7 +240,8 @@ public class ClassesFactoryImpl extends EFactoryImpl implements ClassesFactory {
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
-	public String convertVisibilityTypeToString(EDataType eDataType, Object instanceValue) {
+	public String convertVisibilityTypeToString(EDataType eDataType,
+			Object instanceValue) {
 		return instanceValue == null ? null : instanceValue.toString();
 	}
 
@@ -239,11 +250,13 @@ public class ClassesFactoryImpl extends EFactoryImpl implements ClassesFactory {
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
-	public ScopeType createScopeTypeFromString(EDataType eDataType, String initialValue) {
+	public ScopeType createScopeTypeFromString(EDataType eDataType,
+			String initialValue) {
 		ScopeType result = ScopeType.get(initialValue);
 		if (result == null)
-			throw new IllegalArgumentException("The value '" + initialValue + "' is not a valid enumerator of '"
-					+ eDataType.getName() + "'");
+			throw new IllegalArgumentException("The value '" + initialValue
+					+ "' is not a valid enumerator of '" + eDataType.getName()
+					+ "'");
 		return result;
 	}
 
@@ -252,7 +265,8 @@ public class ClassesFactoryImpl extends EFactoryImpl implements ClassesFactory {
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
-	public String convertScopeTypeToString(EDataType eDataType, Object instanceValue) {
+	public String convertScopeTypeToString(EDataType eDataType,
+			Object instanceValue) {
 		return instanceValue == null ? null : instanceValue.toString();
 	}
 
@@ -261,11 +275,13 @@ public class ClassesFactoryImpl extends EFactoryImpl implements ClassesFactory {
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
-	public ArgumentDirectionType createArgumentDirectionTypeFromString(EDataType eDataType, String initialValue) {
+	public ArgumentDirectionType createArgumentDirectionTypeFromString(
+			EDataType eDataType, String initialValue) {
 		ArgumentDirectionType result = ArgumentDirectionType.get(initialValue);
 		if (result == null)
-			throw new IllegalArgumentException("The value '" + initialValue + "' is not a valid enumerator of '"
-					+ eDataType.getName() + "'");
+			throw new IllegalArgumentException("The value '" + initialValue
+					+ "' is not a valid enumerator of '" + eDataType.getName()
+					+ "'");
 		return result;
 	}
 
@@ -274,7 +290,8 @@ public class ClassesFactoryImpl extends EFactoryImpl implements ClassesFactory {
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
-	public String convertArgumentDirectionTypeToString(EDataType eDataType, Object instanceValue) {
+	public String convertArgumentDirectionTypeToString(EDataType eDataType,
+			Object instanceValue) {
 		return instanceValue == null ? null : instanceValue.toString();
 	}
 

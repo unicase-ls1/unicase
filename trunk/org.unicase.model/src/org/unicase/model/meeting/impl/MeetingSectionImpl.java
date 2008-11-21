@@ -26,7 +26,8 @@ import org.unicase.model.meeting.MeetingSection;
  *
  * @generated
  */
-public abstract class MeetingSectionImpl extends ModelElementImpl implements MeetingSection {
+public abstract class MeetingSectionImpl extends ModelElementImpl implements
+		MeetingSection {
 	/**
 	 * The default value of the '{@link #getAllocatedTime() <em>Allocated Time</em>}' attribute.
 	 * <!-- begin-user-doc -->
@@ -84,7 +85,8 @@ public abstract class MeetingSectionImpl extends ModelElementImpl implements Mee
 		int oldAllocatedTime = allocatedTime;
 		allocatedTime = newAllocatedTime;
 		if (eNotificationRequired())
-			eNotify(new ENotificationImpl(this, Notification.SET, MeetingPackage.MEETING_SECTION__ALLOCATED_TIME,
+			eNotify(new ENotificationImpl(this, Notification.SET,
+					MeetingPackage.MEETING_SECTION__ALLOCATED_TIME,
 					oldAllocatedTime, allocatedTime));
 	}
 

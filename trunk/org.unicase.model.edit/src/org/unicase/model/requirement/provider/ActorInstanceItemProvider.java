@@ -30,8 +30,9 @@ import org.unicase.model.requirement.RequirementPackage;
  * 
  * @generated
  */
-public class ActorInstanceItemProvider extends ModelElementItemProvider implements IEditingDomainItemProvider,
-		IStructuredItemContentProvider, ITreeItemContentProvider, IItemLabelProvider, IItemPropertySource {
+public class ActorInstanceItemProvider extends ModelElementItemProvider
+		implements IEditingDomainItemProvider, IStructuredItemContentProvider,
+		ITreeItemContentProvider, IItemLabelProvider, IItemPropertySource {
 	/**
 	 * This constructs an instance from a factory and a notifier. <!--
 	 * begin-user-doc --> <!-- end-user-doc -->
@@ -67,11 +68,17 @@ public class ActorInstanceItemProvider extends ModelElementItemProvider implemen
 	 * @generated
 	 */
 	protected void addInitiatedScenariosPropertyDescriptor(Object object) {
-		itemPropertyDescriptors.add(createItemPropertyDescriptor(((ComposeableAdapterFactory) adapterFactory)
-				.getRootAdapterFactory(), getResourceLocator(), getString("_UI_ActorInstance_initiatedScenarios_feature"),
-				getString("_UI_PropertyDescriptor_description", "_UI_ActorInstance_initiatedScenarios_feature",
-						"_UI_ActorInstance_type"), RequirementPackage.Literals.ACTOR_INSTANCE__INITIATED_SCENARIOS, true, false,
-				true, null, null, null));
+		itemPropertyDescriptors
+				.add(createItemPropertyDescriptor(
+						((ComposeableAdapterFactory) adapterFactory)
+								.getRootAdapterFactory(),
+						getResourceLocator(),
+						getString("_UI_ActorInstance_initiatedScenarios_feature"),
+						getString("_UI_PropertyDescriptor_description",
+								"_UI_ActorInstance_initiatedScenarios_feature",
+								"_UI_ActorInstance_type"),
+						RequirementPackage.Literals.ACTOR_INSTANCE__INITIATED_SCENARIOS,
+						true, false, true, null, null, null));
 	}
 
 	/**
@@ -80,11 +87,18 @@ public class ActorInstanceItemProvider extends ModelElementItemProvider implemen
 	 * @generated
 	 */
 	protected void addParticipatedScenariosPropertyDescriptor(Object object) {
-		itemPropertyDescriptors.add(createItemPropertyDescriptor(((ComposeableAdapterFactory) adapterFactory)
-				.getRootAdapterFactory(), getResourceLocator(), getString("_UI_ActorInstance_participatedScenarios_feature"),
-				getString("_UI_PropertyDescriptor_description", "_UI_ActorInstance_participatedScenarios_feature",
-						"_UI_ActorInstance_type"), RequirementPackage.Literals.ACTOR_INSTANCE__PARTICIPATED_SCENARIOS, true,
-				false, true, null, null, null));
+		itemPropertyDescriptors
+				.add(createItemPropertyDescriptor(
+						((ComposeableAdapterFactory) adapterFactory)
+								.getRootAdapterFactory(),
+						getResourceLocator(),
+						getString("_UI_ActorInstance_participatedScenarios_feature"),
+						getString(
+								"_UI_PropertyDescriptor_description",
+								"_UI_ActorInstance_participatedScenarios_feature",
+								"_UI_ActorInstance_type"),
+						RequirementPackage.Literals.ACTOR_INSTANCE__PARTICIPATED_SCENARIOS,
+						true, false, true, null, null, null));
 	}
 
 	/**
@@ -94,11 +108,15 @@ public class ActorInstanceItemProvider extends ModelElementItemProvider implemen
 	 * @generated
 	 */
 	protected void addInstantiatedActorPropertyDescriptor(Object object) {
-		itemPropertyDescriptors.add(createItemPropertyDescriptor(((ComposeableAdapterFactory) adapterFactory)
-				.getRootAdapterFactory(), getResourceLocator(), getString("_UI_ActorInstance_instantiatedActor_feature"),
-				getString("_UI_PropertyDescriptor_description", "_UI_ActorInstance_instantiatedActor_feature",
-						"_UI_ActorInstance_type"), RequirementPackage.Literals.ACTOR_INSTANCE__INSTANTIATED_ACTOR, true, false,
-				true, null, null, null));
+		itemPropertyDescriptors.add(createItemPropertyDescriptor(
+				((ComposeableAdapterFactory) adapterFactory)
+						.getRootAdapterFactory(), getResourceLocator(),
+				getString("_UI_ActorInstance_instantiatedActor_feature"),
+				getString("_UI_PropertyDescriptor_description",
+						"_UI_ActorInstance_instantiatedActor_feature",
+						"_UI_ActorInstance_type"),
+				RequirementPackage.Literals.ACTOR_INSTANCE__INSTANTIATED_ACTOR,
+				true, false, true, null, null, null));
 	}
 
 	/**
@@ -109,7 +127,8 @@ public class ActorInstanceItemProvider extends ModelElementItemProvider implemen
 	 */
 	@Override
 	public Object getImage(Object object) {
-		return overlayImage(object, getResourceLocator().getImage("full/obj16/ActorInstance"));
+		return overlayImage(object, getResourceLocator().getImage(
+				"full/obj16/ActorInstance"));
 	}
 
 	/**
@@ -145,7 +164,8 @@ public class ActorInstanceItemProvider extends ModelElementItemProvider implemen
 	 * @generated
 	 */
 	@Override
-	protected void collectNewChildDescriptors(Collection<Object> newChildDescriptors, Object object) {
+	protected void collectNewChildDescriptors(
+			Collection<Object> newChildDescriptors, Object object) {
 		super.collectNewChildDescriptors(newChildDescriptors, object);
 	}
 

@@ -199,8 +199,9 @@ public enum ActivityType implements Enumerator {
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
-	private static final ActivityType[] VALUES_ARRAY = new ActivityType[] { NONE, ANALYSIS, SYSTEM_DESIGN, OBJECT_DESIGN,
-			IMPLEMENTATION, TESTING, MANAGEMENT, };
+	private static final ActivityType[] VALUES_ARRAY = new ActivityType[] {
+			NONE, ANALYSIS, SYSTEM_DESIGN, OBJECT_DESIGN, IMPLEMENTATION,
+			TESTING, MANAGEMENT, };
 
 	/**
 	 * A public read-only list of all the '<em><b>Activity Type</b></em>' enumerators.
@@ -208,7 +209,8 @@ public enum ActivityType implements Enumerator {
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
-	public static final List<ActivityType> VALUES = Collections.unmodifiableList(Arrays.asList(VALUES_ARRAY));
+	public static final List<ActivityType> VALUES = Collections
+			.unmodifiableList(Arrays.asList(VALUES_ARRAY));
 
 	/**
 	 * Returns the '<em><b>Activity Type</b></em>' literal with the specified literal value.

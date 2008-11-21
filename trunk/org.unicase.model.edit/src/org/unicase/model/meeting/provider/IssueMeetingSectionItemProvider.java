@@ -27,8 +27,9 @@ import org.unicase.model.meeting.MeetingPackage;
  * <!-- end-user-doc -->
  * @generated
  */
-public class IssueMeetingSectionItemProvider extends MeetingSectionItemProvider implements IEditingDomainItemProvider,
-		IStructuredItemContentProvider, ITreeItemContentProvider, IItemLabelProvider, IItemPropertySource {
+public class IssueMeetingSectionItemProvider extends MeetingSectionItemProvider
+		implements IEditingDomainItemProvider, IStructuredItemContentProvider,
+		ITreeItemContentProvider, IItemLabelProvider, IItemPropertySource {
 	/**
 	 * This constructs an instance from a factory and a notifier.
 	 * <!-- begin-user-doc -->
@@ -62,11 +63,15 @@ public class IssueMeetingSectionItemProvider extends MeetingSectionItemProvider 
 	 * @generated
 	 */
 	protected void addIncludedIssuesPropertyDescriptor(Object object) {
-		itemPropertyDescriptors.add(createItemPropertyDescriptor(((ComposeableAdapterFactory) adapterFactory)
-				.getRootAdapterFactory(), getResourceLocator(), getString("_UI_IssueMeetingSection_includedIssues_feature"),
-				getString("_UI_PropertyDescriptor_description", "_UI_IssueMeetingSection_includedIssues_feature",
-						"_UI_IssueMeetingSection_type"), MeetingPackage.Literals.ISSUE_MEETING_SECTION__INCLUDED_ISSUES, true,
-				false, true, null, null, null));
+		itemPropertyDescriptors.add(createItemPropertyDescriptor(
+				((ComposeableAdapterFactory) adapterFactory)
+						.getRootAdapterFactory(), getResourceLocator(),
+				getString("_UI_IssueMeetingSection_includedIssues_feature"),
+				getString("_UI_PropertyDescriptor_description",
+						"_UI_IssueMeetingSection_includedIssues_feature",
+						"_UI_IssueMeetingSection_type"),
+				MeetingPackage.Literals.ISSUE_MEETING_SECTION__INCLUDED_ISSUES,
+				true, false, true, null, null, null));
 	}
 
 	/**
@@ -78,10 +83,12 @@ public class IssueMeetingSectionItemProvider extends MeetingSectionItemProvider 
 	 * @generated
 	 */
 	@Override
-	public Collection<? extends EStructuralFeature> getChildrenFeatures(Object object) {
+	public Collection<? extends EStructuralFeature> getChildrenFeatures(
+			Object object) {
 		if (childrenFeatures == null) {
 			super.getChildrenFeatures(object);
-			childrenFeatures.add(MeetingPackage.Literals.ISSUE_MEETING_SECTION__INCLUDED_ISSUES);
+			childrenFeatures
+					.add(MeetingPackage.Literals.ISSUE_MEETING_SECTION__INCLUDED_ISSUES);
 		}
 		return childrenFeatures;
 	}
@@ -107,7 +114,8 @@ public class IssueMeetingSectionItemProvider extends MeetingSectionItemProvider 
 	 */
 	@Override
 	public Object getImage(Object object) {
-		return overlayImage(object, getResourceLocator().getImage("full/obj16/IssueMeetingSection"));
+		return overlayImage(object, getResourceLocator().getImage(
+				"full/obj16/IssueMeetingSection"));
 	}
 
 	/**
@@ -143,7 +151,8 @@ public class IssueMeetingSectionItemProvider extends MeetingSectionItemProvider 
 	 * @generated
 	 */
 	@Override
-	protected void collectNewChildDescriptors(Collection<Object> newChildDescriptors, Object object) {
+	protected void collectNewChildDescriptors(
+			Collection<Object> newChildDescriptors, Object object) {
 		super.collectNewChildDescriptors(newChildDescriptors, object);
 	}
 

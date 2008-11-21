@@ -34,7 +34,8 @@ import org.unicase.model.organization.util.OrganizationAdapterFactory;
  * end-user-doc -->
  * @generated
  */
-public class OrganizationItemProviderAdapterFactory extends OrganizationAdapterFactory implements ComposeableAdapterFactory,
+public class OrganizationItemProviderAdapterFactory extends
+		OrganizationAdapterFactory implements ComposeableAdapterFactory,
 		IChangeNotifier, IDisposable {
 	/**
 	 * This keeps track of the root adapter factory that delegates to this adapter factory.
@@ -128,7 +129,8 @@ public class OrganizationItemProviderAdapterFactory extends OrganizationAdapterF
 	 * @generated
 	 */
 	public ComposeableAdapterFactory getRootAdapterFactory() {
-		return parentAdapterFactory == null ? this : parentAdapterFactory.getRootAdapterFactory();
+		return parentAdapterFactory == null ? this : parentAdapterFactory
+				.getRootAdapterFactory();
 	}
 
 	/**
@@ -137,7 +139,8 @@ public class OrganizationItemProviderAdapterFactory extends OrganizationAdapterF
 	 * 
 	 * @generated
 	 */
-	public void setParentAdapterFactory(ComposedAdapterFactory parentAdapterFactory) {
+	public void setParentAdapterFactory(
+			ComposedAdapterFactory parentAdapterFactory) {
 		this.parentAdapterFactory = parentAdapterFactory;
 	}
 
@@ -168,7 +171,8 @@ public class OrganizationItemProviderAdapterFactory extends OrganizationAdapterF
 	public Object adapt(Object object, Object type) {
 		if (isFactoryForType(type)) {
 			Object adapter = super.adapt(object, type);
-			if (!(type instanceof Class) || (((Class<?>) type).isInstance(adapter))) {
+			if (!(type instanceof Class)
+					|| (((Class<?>) type).isInstance(adapter))) {
 				return adapter;
 			}
 		}

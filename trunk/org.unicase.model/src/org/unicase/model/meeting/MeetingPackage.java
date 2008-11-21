@@ -58,7 +58,8 @@ public interface MeetingPackage extends EPackage {
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
-	MeetingPackage eINSTANCE = org.unicase.model.meeting.impl.MeetingPackageImpl.init();
+	MeetingPackage eINSTANCE = org.unicase.model.meeting.impl.MeetingPackageImpl
+			.init();
 
 	/**
 	 * The meta object id for the '{@link org.unicase.model.meeting.impl.MeetingImpl <em>Meeting</em>}' class.
@@ -1064,7 +1065,8 @@ public interface MeetingPackage extends EPackage {
 		 * <!-- end-user-doc -->
 		 * @generated
 		 */
-		EReference MEETING__IDENTIFIED_ISSUES_SECTION = eINSTANCE.getMeeting_IdentifiedIssuesSection();
+		EReference MEETING__IDENTIFIED_ISSUES_SECTION = eINSTANCE
+				.getMeeting_IdentifiedIssuesSection();
 
 		/**
 		 * The meta object literal for the '<em><b>Identified Work Items Section</b></em>' reference feature.
@@ -1072,7 +1074,8 @@ public interface MeetingPackage extends EPackage {
 		 * <!-- end-user-doc -->
 		 * @generated
 		 */
-		EReference MEETING__IDENTIFIED_WORK_ITEMS_SECTION = eINSTANCE.getMeeting_IdentifiedWorkItemsSection();
+		EReference MEETING__IDENTIFIED_WORK_ITEMS_SECTION = eINSTANCE
+				.getMeeting_IdentifiedWorkItemsSection();
 
 		/**
 		 * The meta object literal for the '{@link org.unicase.model.meeting.impl.MeetingSectionImpl <em>Section</em>}' class.
@@ -1090,7 +1093,8 @@ public interface MeetingPackage extends EPackage {
 		 * <!-- end-user-doc -->
 		 * @generated
 		 */
-		EAttribute MEETING_SECTION__ALLOCATED_TIME = eINSTANCE.getMeetingSection_AllocatedTime();
+		EAttribute MEETING_SECTION__ALLOCATED_TIME = eINSTANCE
+				.getMeetingSection_AllocatedTime();
 
 		/**
 		 * The meta object literal for the '{@link org.unicase.model.meeting.impl.CompositeMeetingSectionImpl <em>Composite Meeting Section</em>}' class.
@@ -1100,7 +1104,8 @@ public interface MeetingPackage extends EPackage {
 		 * @see org.unicase.model.meeting.impl.MeetingPackageImpl#getCompositeMeetingSection()
 		 * @generated
 		 */
-		EClass COMPOSITE_MEETING_SECTION = eINSTANCE.getCompositeMeetingSection();
+		EClass COMPOSITE_MEETING_SECTION = eINSTANCE
+				.getCompositeMeetingSection();
 
 		/**
 		 * The meta object literal for the '<em><b>Subsections</b></em>' containment reference list feature.
@@ -1108,7 +1113,8 @@ public interface MeetingPackage extends EPackage {
 		 * <!-- end-user-doc -->
 		 * @generated
 		 */
-		EReference COMPOSITE_MEETING_SECTION__SUBSECTIONS = eINSTANCE.getCompositeMeetingSection_Subsections();
+		EReference COMPOSITE_MEETING_SECTION__SUBSECTIONS = eINSTANCE
+				.getCompositeMeetingSection_Subsections();
 
 		/**
 		 * The meta object literal for the '{@link org.unicase.model.meeting.impl.IssueMeetingSectionImpl <em>Issue Meeting Section</em>}' class.
@@ -1126,7 +1132,8 @@ public interface MeetingPackage extends EPackage {
 		 * <!-- end-user-doc -->
 		 * @generated
 		 */
-		EReference ISSUE_MEETING_SECTION__INCLUDED_ISSUES = eINSTANCE.getIssueMeetingSection_IncludedIssues();
+		EReference ISSUE_MEETING_SECTION__INCLUDED_ISSUES = eINSTANCE
+				.getIssueMeetingSection_IncludedIssues();
 
 		/**
 		 * The meta object literal for the '{@link org.unicase.model.meeting.impl.WorkItemMeetingSectionImpl <em>Work Item Meeting Section</em>}' class.
@@ -1136,7 +1143,8 @@ public interface MeetingPackage extends EPackage {
 		 * @see org.unicase.model.meeting.impl.MeetingPackageImpl#getWorkItemMeetingSection()
 		 * @generated
 		 */
-		EClass WORK_ITEM_MEETING_SECTION = eINSTANCE.getWorkItemMeetingSection();
+		EClass WORK_ITEM_MEETING_SECTION = eINSTANCE
+				.getWorkItemMeetingSection();
 
 		/**
 		 * The meta object literal for the '<em><b>Included Work Items</b></em>' reference list feature.
@@ -1144,7 +1152,8 @@ public interface MeetingPackage extends EPackage {
 		 * <!-- end-user-doc -->
 		 * @generated
 		 */
-		EReference WORK_ITEM_MEETING_SECTION__INCLUDED_WORK_ITEMS = eINSTANCE.getWorkItemMeetingSection_IncludedWorkItems();
+		EReference WORK_ITEM_MEETING_SECTION__INCLUDED_WORK_ITEMS = eINSTANCE
+				.getWorkItemMeetingSection_IncludedWorkItems();
 
 	}
 

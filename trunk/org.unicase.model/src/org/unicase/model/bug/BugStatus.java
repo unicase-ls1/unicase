@@ -152,14 +152,16 @@ public enum BugStatus implements Enumerator {
 	 * 
 	 * @generated
 	 */
-	private static final BugStatus[] VALUES_ARRAY = new BugStatus[] { NEW, CONFIRMED, ASSIGNED, RESOLVED, CLOSED, };
+	private static final BugStatus[] VALUES_ARRAY = new BugStatus[] { NEW,
+			CONFIRMED, ASSIGNED, RESOLVED, CLOSED, };
 
 	/**
 	 * A public read-only list of all the '<em><b>Status</b></em>' enumerators.
 	 * <!-- begin-user-doc --> <!-- end-user-doc -->
 	 * @generated
 	 */
-	public static final List<BugStatus> VALUES = Collections.unmodifiableList(Arrays.asList(VALUES_ARRAY));
+	public static final List<BugStatus> VALUES = Collections
+			.unmodifiableList(Arrays.asList(VALUES_ARRAY));
 
 	/**
 	 * Returns the '<em><b>Status</b></em>' literal with the specified literal value.

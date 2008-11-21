@@ -35,8 +35,9 @@ import org.unicase.model.requirement.RequirementPackage;
  * 
  * @generated
  */
-public class FunctionalRequirementItemProvider extends ModelElementItemProvider implements IEditingDomainItemProvider,
-		IStructuredItemContentProvider, ITreeItemContentProvider, IItemLabelProvider, IItemPropertySource {
+public class FunctionalRequirementItemProvider extends ModelElementItemProvider
+		implements IEditingDomainItemProvider, IStructuredItemContentProvider,
+		ITreeItemContentProvider, IItemLabelProvider, IItemPropertySource {
 	/**
 	 * This constructs an instance from a factory and a notifier. <!--
 	 * begin-user-doc --> <!-- end-user-doc -->
@@ -76,11 +77,16 @@ public class FunctionalRequirementItemProvider extends ModelElementItemProvider 
 	 * @generated
 	 */
 	protected void addReviewedPropertyDescriptor(Object object) {
-		itemPropertyDescriptors.add(createItemPropertyDescriptor(((ComposeableAdapterFactory) adapterFactory)
-				.getRootAdapterFactory(), getResourceLocator(), getString("_UI_FunctionalRequirement_reviewed_feature"),
-				getString("_UI_PropertyDescriptor_description", "_UI_FunctionalRequirement_reviewed_feature",
-						"_UI_FunctionalRequirement_type"), RequirementPackage.Literals.FUNCTIONAL_REQUIREMENT__REVIEWED, true,
-				false, false, ItemPropertyDescriptor.BOOLEAN_VALUE_IMAGE, null, null));
+		itemPropertyDescriptors.add(createItemPropertyDescriptor(
+				((ComposeableAdapterFactory) adapterFactory)
+						.getRootAdapterFactory(), getResourceLocator(),
+				getString("_UI_FunctionalRequirement_reviewed_feature"),
+				getString("_UI_PropertyDescriptor_description",
+						"_UI_FunctionalRequirement_reviewed_feature",
+						"_UI_FunctionalRequirement_type"),
+				RequirementPackage.Literals.FUNCTIONAL_REQUIREMENT__REVIEWED,
+				true, false, false, ItemPropertyDescriptor.BOOLEAN_VALUE_IMAGE,
+				null, null));
 	}
 
 	/**
@@ -90,11 +96,18 @@ public class FunctionalRequirementItemProvider extends ModelElementItemProvider 
 	 * @generated
 	 */
 	protected void addStakeholderPropertyDescriptor(Object object) {
-		itemPropertyDescriptors.add(createItemPropertyDescriptor(((ComposeableAdapterFactory) adapterFactory)
-				.getRootAdapterFactory(), getResourceLocator(), getString("_UI_FunctionalRequirement_stakeholder_feature"),
-				getString("_UI_PropertyDescriptor_description", "_UI_FunctionalRequirement_stakeholder_feature",
-						"_UI_FunctionalRequirement_type"), RequirementPackage.Literals.FUNCTIONAL_REQUIREMENT__STAKEHOLDER, true,
-				false, true, null, null, null));
+		itemPropertyDescriptors
+				.add(createItemPropertyDescriptor(
+						((ComposeableAdapterFactory) adapterFactory)
+								.getRootAdapterFactory(),
+						getResourceLocator(),
+						getString("_UI_FunctionalRequirement_stakeholder_feature"),
+						getString(
+								"_UI_PropertyDescriptor_description",
+								"_UI_FunctionalRequirement_stakeholder_feature",
+								"_UI_FunctionalRequirement_type"),
+						RequirementPackage.Literals.FUNCTIONAL_REQUIREMENT__STAKEHOLDER,
+						true, false, true, null, null, null));
 	}
 
 	/**
@@ -104,11 +117,16 @@ public class FunctionalRequirementItemProvider extends ModelElementItemProvider 
 	 * @generated
 	 */
 	protected void addPriorityPropertyDescriptor(Object object) {
-		itemPropertyDescriptors.add(createItemPropertyDescriptor(((ComposeableAdapterFactory) adapterFactory)
-				.getRootAdapterFactory(), getResourceLocator(), getString("_UI_FunctionalRequirement_priority_feature"),
-				getString("_UI_PropertyDescriptor_description", "_UI_FunctionalRequirement_priority_feature",
-						"_UI_FunctionalRequirement_type"), RequirementPackage.Literals.FUNCTIONAL_REQUIREMENT__PRIORITY, true,
-				false, false, ItemPropertyDescriptor.INTEGRAL_VALUE_IMAGE, null, null));
+		itemPropertyDescriptors.add(createItemPropertyDescriptor(
+				((ComposeableAdapterFactory) adapterFactory)
+						.getRootAdapterFactory(), getResourceLocator(),
+				getString("_UI_FunctionalRequirement_priority_feature"),
+				getString("_UI_PropertyDescriptor_description",
+						"_UI_FunctionalRequirement_priority_feature",
+						"_UI_FunctionalRequirement_type"),
+				RequirementPackage.Literals.FUNCTIONAL_REQUIREMENT__PRIORITY,
+				true, false, false,
+				ItemPropertyDescriptor.INTEGRAL_VALUE_IMAGE, null, null));
 	}
 
 	/**
@@ -118,12 +136,18 @@ public class FunctionalRequirementItemProvider extends ModelElementItemProvider 
 	 * @generated
 	 */
 	protected void addRefiningRequirementsPropertyDescriptor(Object object) {
-		itemPropertyDescriptors.add(createItemPropertyDescriptor(((ComposeableAdapterFactory) adapterFactory)
-				.getRootAdapterFactory(), getResourceLocator(),
-				getString("_UI_FunctionalRequirement_refiningRequirements_feature"), getString(
-						"_UI_PropertyDescriptor_description", "_UI_FunctionalRequirement_refiningRequirements_feature",
-						"_UI_FunctionalRequirement_type"),
-				RequirementPackage.Literals.FUNCTIONAL_REQUIREMENT__REFINING_REQUIREMENTS, true, false, false, null, null, null));
+		itemPropertyDescriptors
+				.add(createItemPropertyDescriptor(
+						((ComposeableAdapterFactory) adapterFactory)
+								.getRootAdapterFactory(),
+						getResourceLocator(),
+						getString("_UI_FunctionalRequirement_refiningRequirements_feature"),
+						getString(
+								"_UI_PropertyDescriptor_description",
+								"_UI_FunctionalRequirement_refiningRequirements_feature",
+								"_UI_FunctionalRequirement_type"),
+						RequirementPackage.Literals.FUNCTIONAL_REQUIREMENT__REFINING_REQUIREMENTS,
+						true, false, false, null, null, null));
 	}
 
 	/**
@@ -133,12 +157,18 @@ public class FunctionalRequirementItemProvider extends ModelElementItemProvider 
 	 * @generated
 	 */
 	protected void addRefinedRequirementPropertyDescriptor(Object object) {
-		itemPropertyDescriptors.add(createItemPropertyDescriptor(((ComposeableAdapterFactory) adapterFactory)
-				.getRootAdapterFactory(), getResourceLocator(),
-				getString("_UI_FunctionalRequirement_refinedRequirement_feature"), getString(
-						"_UI_PropertyDescriptor_description", "_UI_FunctionalRequirement_refinedRequirement_feature",
-						"_UI_FunctionalRequirement_type"),
-				RequirementPackage.Literals.FUNCTIONAL_REQUIREMENT__REFINED_REQUIREMENT, true, false, false, null, null, null));
+		itemPropertyDescriptors
+				.add(createItemPropertyDescriptor(
+						((ComposeableAdapterFactory) adapterFactory)
+								.getRootAdapterFactory(),
+						getResourceLocator(),
+						getString("_UI_FunctionalRequirement_refinedRequirement_feature"),
+						getString(
+								"_UI_PropertyDescriptor_description",
+								"_UI_FunctionalRequirement_refinedRequirement_feature",
+								"_UI_FunctionalRequirement_type"),
+						RequirementPackage.Literals.FUNCTIONAL_REQUIREMENT__REFINED_REQUIREMENT,
+						true, false, false, null, null, null));
 	}
 
 	/**
@@ -148,11 +178,15 @@ public class FunctionalRequirementItemProvider extends ModelElementItemProvider 
 	 * @generated
 	 */
 	protected void addUseCasesPropertyDescriptor(Object object) {
-		itemPropertyDescriptors.add(createItemPropertyDescriptor(((ComposeableAdapterFactory) adapterFactory)
-				.getRootAdapterFactory(), getResourceLocator(), getString("_UI_FunctionalRequirement_useCases_feature"),
-				getString("_UI_PropertyDescriptor_description", "_UI_FunctionalRequirement_useCases_feature",
-						"_UI_FunctionalRequirement_type"), RequirementPackage.Literals.FUNCTIONAL_REQUIREMENT__USE_CASES, true,
-				false, true, null, null, null));
+		itemPropertyDescriptors.add(createItemPropertyDescriptor(
+				((ComposeableAdapterFactory) adapterFactory)
+						.getRootAdapterFactory(), getResourceLocator(),
+				getString("_UI_FunctionalRequirement_useCases_feature"),
+				getString("_UI_PropertyDescriptor_description",
+						"_UI_FunctionalRequirement_useCases_feature",
+						"_UI_FunctionalRequirement_type"),
+				RequirementPackage.Literals.FUNCTIONAL_REQUIREMENT__USE_CASES,
+				true, false, true, null, null, null));
 	}
 
 	/**
@@ -162,11 +196,15 @@ public class FunctionalRequirementItemProvider extends ModelElementItemProvider 
 	 * @generated
 	 */
 	protected void addScenariosPropertyDescriptor(Object object) {
-		itemPropertyDescriptors.add(createItemPropertyDescriptor(((ComposeableAdapterFactory) adapterFactory)
-				.getRootAdapterFactory(), getResourceLocator(), getString("_UI_FunctionalRequirement_scenarios_feature"),
-				getString("_UI_PropertyDescriptor_description", "_UI_FunctionalRequirement_scenarios_feature",
-						"_UI_FunctionalRequirement_type"), RequirementPackage.Literals.FUNCTIONAL_REQUIREMENT__SCENARIOS, true,
-				false, true, null, null, null));
+		itemPropertyDescriptors.add(createItemPropertyDescriptor(
+				((ComposeableAdapterFactory) adapterFactory)
+						.getRootAdapterFactory(), getResourceLocator(),
+				getString("_UI_FunctionalRequirement_scenarios_feature"),
+				getString("_UI_PropertyDescriptor_description",
+						"_UI_FunctionalRequirement_scenarios_feature",
+						"_UI_FunctionalRequirement_type"),
+				RequirementPackage.Literals.FUNCTIONAL_REQUIREMENT__SCENARIOS,
+				true, false, true, null, null, null));
 	}
 
 	/**
@@ -177,10 +215,12 @@ public class FunctionalRequirementItemProvider extends ModelElementItemProvider 
 	 * @generated
 	 */
 	@Override
-	public Collection<? extends EStructuralFeature> getChildrenFeatures(Object object) {
+	public Collection<? extends EStructuralFeature> getChildrenFeatures(
+			Object object) {
 		if (childrenFeatures == null) {
 			super.getChildrenFeatures(object);
-			childrenFeatures.add(RequirementPackage.Literals.FUNCTIONAL_REQUIREMENT__REFINING_REQUIREMENTS);
+			childrenFeatures
+					.add(RequirementPackage.Literals.FUNCTIONAL_REQUIREMENT__REFINING_REQUIREMENTS);
 		}
 		return childrenFeatures;
 	}
@@ -205,7 +245,8 @@ public class FunctionalRequirementItemProvider extends ModelElementItemProvider 
 	 */
 	@Override
 	public Object getImage(Object object) {
-		return overlayImage(object, getResourceLocator().getImage("full/obj16/FunctionalRequirement"));
+		return overlayImage(object, getResourceLocator().getImage(
+				"full/obj16/FunctionalRequirement"));
 	}
 
 	/**
@@ -235,10 +276,12 @@ public class FunctionalRequirementItemProvider extends ModelElementItemProvider 
 		case RequirementPackage.FUNCTIONAL_REQUIREMENT__STORY_POINTS:
 		case RequirementPackage.FUNCTIONAL_REQUIREMENT__PRIORITY:
 		case RequirementPackage.FUNCTIONAL_REQUIREMENT__REVIEWED:
-			fireNotifyChanged(new ViewerNotification(notification, notification.getNotifier(), false, true));
+			fireNotifyChanged(new ViewerNotification(notification, notification
+					.getNotifier(), false, true));
 			return;
 		case RequirementPackage.FUNCTIONAL_REQUIREMENT__REFINING_REQUIREMENTS:
-			fireNotifyChanged(new ViewerNotification(notification, notification.getNotifier(), true, false));
+			fireNotifyChanged(new ViewerNotification(notification, notification
+					.getNotifier(), true, false));
 			return;
 		}
 		super.notifyChanged(notification);
@@ -252,11 +295,15 @@ public class FunctionalRequirementItemProvider extends ModelElementItemProvider 
 	 * @generated
 	 */
 	@Override
-	protected void collectNewChildDescriptors(Collection<Object> newChildDescriptors, Object object) {
+	protected void collectNewChildDescriptors(
+			Collection<Object> newChildDescriptors, Object object) {
 		super.collectNewChildDescriptors(newChildDescriptors, object);
 
-		newChildDescriptors.add(createChildParameter(RequirementPackage.Literals.FUNCTIONAL_REQUIREMENT__REFINING_REQUIREMENTS,
-				RequirementFactory.eINSTANCE.createFunctionalRequirement()));
+		newChildDescriptors
+				.add(createChildParameter(
+						RequirementPackage.Literals.FUNCTIONAL_REQUIREMENT__REFINING_REQUIREMENTS,
+						RequirementFactory.eINSTANCE
+								.createFunctionalRequirement()));
 	}
 
 	/**

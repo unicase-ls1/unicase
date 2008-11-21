@@ -27,8 +27,10 @@ import org.unicase.model.meeting.MeetingPackage;
  * <!-- end-user-doc -->
  * @generated
  */
-public class WorkItemMeetingSectionItemProvider extends MeetingSectionItemProvider implements IEditingDomainItemProvider,
-		IStructuredItemContentProvider, ITreeItemContentProvider, IItemLabelProvider, IItemPropertySource {
+public class WorkItemMeetingSectionItemProvider extends
+		MeetingSectionItemProvider implements IEditingDomainItemProvider,
+		IStructuredItemContentProvider, ITreeItemContentProvider,
+		IItemLabelProvider, IItemPropertySource {
 	/**
 	 * This constructs an instance from a factory and a notifier.
 	 * <!-- begin-user-doc -->
@@ -62,12 +64,18 @@ public class WorkItemMeetingSectionItemProvider extends MeetingSectionItemProvid
 	 * @generated
 	 */
 	protected void addIncludedWorkItemsPropertyDescriptor(Object object) {
-		itemPropertyDescriptors.add(createItemPropertyDescriptor(((ComposeableAdapterFactory) adapterFactory)
-				.getRootAdapterFactory(), getResourceLocator(),
-				getString("_UI_WorkItemMeetingSection_includedWorkItems_feature"), getString(
-						"_UI_PropertyDescriptor_description", "_UI_WorkItemMeetingSection_includedWorkItems_feature",
-						"_UI_WorkItemMeetingSection_type"),
-				MeetingPackage.Literals.WORK_ITEM_MEETING_SECTION__INCLUDED_WORK_ITEMS, true, false, true, null, null, null));
+		itemPropertyDescriptors
+				.add(createItemPropertyDescriptor(
+						((ComposeableAdapterFactory) adapterFactory)
+								.getRootAdapterFactory(),
+						getResourceLocator(),
+						getString("_UI_WorkItemMeetingSection_includedWorkItems_feature"),
+						getString(
+								"_UI_PropertyDescriptor_description",
+								"_UI_WorkItemMeetingSection_includedWorkItems_feature",
+								"_UI_WorkItemMeetingSection_type"),
+						MeetingPackage.Literals.WORK_ITEM_MEETING_SECTION__INCLUDED_WORK_ITEMS,
+						true, false, true, null, null, null));
 	}
 
 	/**
@@ -79,10 +87,12 @@ public class WorkItemMeetingSectionItemProvider extends MeetingSectionItemProvid
 	 * @generated
 	 */
 	@Override
-	public Collection<? extends EStructuralFeature> getChildrenFeatures(Object object) {
+	public Collection<? extends EStructuralFeature> getChildrenFeatures(
+			Object object) {
 		if (childrenFeatures == null) {
 			super.getChildrenFeatures(object);
-			childrenFeatures.add(MeetingPackage.Literals.WORK_ITEM_MEETING_SECTION__INCLUDED_WORK_ITEMS);
+			childrenFeatures
+					.add(MeetingPackage.Literals.WORK_ITEM_MEETING_SECTION__INCLUDED_WORK_ITEMS);
 		}
 		return childrenFeatures;
 	}
@@ -108,7 +118,8 @@ public class WorkItemMeetingSectionItemProvider extends MeetingSectionItemProvid
 	 */
 	@Override
 	public Object getImage(Object object) {
-		return overlayImage(object, getResourceLocator().getImage("full/obj16/WorkItemMeetingSection"));
+		return overlayImage(object, getResourceLocator().getImage(
+				"full/obj16/WorkItemMeetingSection"));
 	}
 
 	/**
@@ -144,7 +155,8 @@ public class WorkItemMeetingSectionItemProvider extends MeetingSectionItemProvid
 	 * @generated
 	 */
 	@Override
-	protected void collectNewChildDescriptors(Collection<Object> newChildDescriptors, Object object) {
+	protected void collectNewChildDescriptors(
+			Collection<Object> newChildDescriptors, Object object) {
 		super.collectNewChildDescriptors(newChildDescriptors, object);
 	}
 

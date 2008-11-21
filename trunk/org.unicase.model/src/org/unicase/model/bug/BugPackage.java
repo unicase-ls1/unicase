@@ -447,7 +447,8 @@ public interface BugPackage extends EPackage {
 		 * <!-- end-user-doc -->
 		 * @generated
 		 */
-		EAttribute BUG_REPORT__RESOLUTION_TYPE = eINSTANCE.getBugReport_ResolutionType();
+		EAttribute BUG_REPORT__RESOLUTION_TYPE = eINSTANCE
+				.getBugReport_ResolutionType();
 
 		/**
 		 * The meta object literal for the '

@@ -56,7 +56,8 @@ public interface AttachmentPackage extends EPackage {
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
-	AttachmentPackage eINSTANCE = org.unicase.model.attachment.impl.AttachmentPackageImpl.init();
+	AttachmentPackage eINSTANCE = org.unicase.model.attachment.impl.AttachmentPackageImpl
+			.init();
 
 	/**
 	 * The meta object id for the '{@link org.unicase.model.attachment.impl.UrlAttachmentImpl <em>Url Attachment</em>}' class.

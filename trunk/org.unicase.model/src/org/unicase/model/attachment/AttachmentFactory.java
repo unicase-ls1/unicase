@@ -22,7 +22,8 @@ public interface AttachmentFactory extends EFactory {
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
-	AttachmentFactory eINSTANCE = org.unicase.model.attachment.impl.AttachmentFactoryImpl.init();
+	AttachmentFactory eINSTANCE = org.unicase.model.attachment.impl.AttachmentFactoryImpl
+			.init();
 
 	/**
 	 * Returns a new object of class '<em>Url Attachment</em>'.
