@@ -197,7 +197,8 @@ public class TaskView extends ViewPart {
 		if (teamFilter != null) {
 			viewer.removeFilter(teamFilter);
 		}
-
+		filterToMyTeam
+				.setToolTipText("Restricts the displayed table items to items owned by the current user and it's teammates.");
 		filterToMyTeam.setEnabled(true);
 		teamFilter = new TeamFilter(user);
 		setTeamFilter(filterToMyTeam.isChecked());
