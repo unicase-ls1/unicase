@@ -22,6 +22,7 @@ import org.unicase.model.meeting.CompositeMeetingSection;
 import org.unicase.model.meeting.IssueMeetingSection;
 import org.unicase.model.meeting.Meeting;
 import org.unicase.model.meeting.MeetingFactory;
+import org.unicase.model.meeting.MeetingPackage;
 import org.unicase.model.meeting.WorkItemMeetingSection;
 import org.unicase.ui.common.commands.ActionHelper;
 import org.unicase.workspace.WorkspaceManager;
@@ -107,7 +108,13 @@ public class NewModelElementWizard extends Wizard implements IWorkbenchWizard {
 				domain.getCommandStack().execute(new RecordingCommand(domain) {
 					@Override
 					protected void doExecute() {
-						setupMeeting(newMEInstance);
+						setupMeetingSections((Meeting)newMEInstance);
+					}
+				});
+				domain.getCommandStack().execute(new RecordingCommand(domain) {
+					@Override
+					protected void doExecute() {
+						setupMeetingSubSections((Meeting)newMEInstance);
 					}
 				});
 			}
@@ -119,60 +126,54 @@ public class NewModelElementWizard extends Wizard implements IWorkbenchWizard {
 	}
 	
 	//FIXME: added DOLLI meeting structure as default - needs flexible approach.
-	private void setupMeeting(final ModelElement newMEInstance) {
-		Meeting meeting = (Meeting) newMEInstance;
+	private void setupMeetingSections(Meeting meeting) {
+		meeting.setName("Dolli meeting");
 
 		// create all DOLLI sections
-		CompositeMeetingSection objectiveSection = MeetingFactory.eINSTANCE
-				.createCompositeMeetingSection();
-		CompositeMeetingSection informationExchangeSection = MeetingFactory.eINSTANCE
-				.createCompositeMeetingSection();
-		CompositeMeetingSection miscSection = MeetingFactory.eINSTANCE
-				.createCompositeMeetingSection();
-		CompositeMeetingSection wrapUpSection = MeetingFactory.eINSTANCE
-				.createCompositeMeetingSection();
-		CompositeMeetingSection meetingCritiqueSection = MeetingFactory.eINSTANCE
-				.createCompositeMeetingSection();
-		IssueMeetingSection discussionSection = MeetingFactory.eINSTANCE
-				.createIssueMeetingSection();
-		WorkItemMeetingSection workItemsSection = MeetingFactory.eINSTANCE
-				.createWorkItemMeetingSection();
-		WorkItemMeetingSection newWorkItemsSection = MeetingFactory.eINSTANCE
-				.createWorkItemMeetingSection();
+		CompositeMeetingSection objectiveSection = (CompositeMeetingSection) ActionHelper.createModelElement(MeetingFactory.eINSTANCE, MeetingPackage.eINSTANCE.getCompositeMeetingSection());
+		CompositeMeetingSection informationExchangeSection = (CompositeMeetingSection) ActionHelper.createModelElement(MeetingFactory.eINSTANCE, MeetingPackage.eINSTANCE.getCompositeMeetingSection());
+		CompositeMeetingSection wrapUpSection = (CompositeMeetingSection) ActionHelper.createModelElement(MeetingFactory.eINSTANCE, MeetingPackage.eINSTANCE.getCompositeMeetingSection());
+		IssueMeetingSection discussionSection = (IssueMeetingSection) ActionHelper.createModelElement(MeetingFactory.eINSTANCE, MeetingPackage.eINSTANCE.getIssueMeetingSection());
 
 		// set attributes
 		objectiveSection.setName("Objective");
-		informationExchangeSection.setName("Information exchange");
-		miscSection.setName("Misc");
+		informationExchangeSection.setName("Information sharing");
 		wrapUpSection.setName("Wrap up");
-		meetingCritiqueSection.setName("Meeting critique");
 		discussionSection.setName("Discussion");
-		workItemsSection.setName("Work items");
-		newWorkItemsSection.setName("New work items");
 
 		informationExchangeSection.setAllocatedTime(30);
 		discussionSection.setAllocatedTime(50);
 		wrapUpSection.setAllocatedTime(10);
 
 		// set links
-		informationExchangeSection.getSubsections().add(
-				workItemsSection);
-		informationExchangeSection.getSubsections().add(
-				miscSection);
-		wrapUpSection.getSubsections().add(
-				newWorkItemsSection);
-		wrapUpSection.getSubsections().add(
-				meetingCritiqueSection);
-
 		meeting.getSections().add(objectiveSection);
 		meeting.getSections().add(informationExchangeSection);
 		meeting.getSections().add(discussionSection);
 		meeting.getSections().add(wrapUpSection);
 
 		meeting.setIdentifiedIssuesSection(discussionSection);
+	}
+	
+	private void setupMeetingSubSections(Meeting meeting) {
+		CompositeMeetingSection miscSection = (CompositeMeetingSection) ActionHelper.createModelElement(MeetingFactory.eINSTANCE, MeetingPackage.eINSTANCE.getCompositeMeetingSection());
+		CompositeMeetingSection meetingCritiqueSection = (CompositeMeetingSection) ActionHelper.createModelElement(MeetingFactory.eINSTANCE, MeetingPackage.eINSTANCE.getCompositeMeetingSection());
+		WorkItemMeetingSection workItemsSection = (WorkItemMeetingSection) ActionHelper.createModelElement(MeetingFactory.eINSTANCE, MeetingPackage.eINSTANCE.getWorkItemMeetingSection());
+		WorkItemMeetingSection newWorkItemsSection = (WorkItemMeetingSection) ActionHelper.createModelElement(MeetingFactory.eINSTANCE, MeetingPackage.eINSTANCE.getWorkItemMeetingSection());
+		
+		miscSection.setName("Misc");
+		meetingCritiqueSection.setName("Meeting critique");
+		workItemsSection.setName("Action items");
+		newWorkItemsSection.setName("New action items");
+		
+		CompositeMeetingSection informationExchangeSection = (CompositeMeetingSection)meeting.getSections().get(1);
+		CompositeMeetingSection wrapUpSection = (CompositeMeetingSection)meeting.getSections().get(3);
+		
+		informationExchangeSection.getSubsections().add(workItemsSection);
+		informationExchangeSection.getSubsections().add(miscSection);
+		wrapUpSection.getSubsections().add(newWorkItemsSection);
+		wrapUpSection.getSubsections().add(meetingCritiqueSection);
+		
 		meeting.setIdentifiedWorkItemsSection(newWorkItemsSection);
-
-		meeting.setName("Dolli meeting");
 	}
 		
 	/**
