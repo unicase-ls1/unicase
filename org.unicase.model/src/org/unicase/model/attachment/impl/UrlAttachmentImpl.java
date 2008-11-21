@@ -83,8 +83,7 @@ public class UrlAttachmentImpl extends AttachmentImpl implements UrlAttachment {
 		String oldUrl = url;
 		url = newUrl;
 		if (eNotificationRequired())
-			eNotify(new ENotificationImpl(this, Notification.SET,
-					AttachmentPackage.URL_ATTACHMENT__URL, oldUrl, url));
+			eNotify(new ENotificationImpl(this, Notification.SET, AttachmentPackage.URL_ATTACHMENT__URL, oldUrl, url));
 	}
 
 	/**
@@ -140,8 +139,7 @@ public class UrlAttachmentImpl extends AttachmentImpl implements UrlAttachment {
 	public boolean eIsSet(int featureID) {
 		switch (featureID) {
 		case AttachmentPackage.URL_ATTACHMENT__URL:
-			return URL_EDEFAULT == null ? url != null : !URL_EDEFAULT
-					.equals(url);
+			return URL_EDEFAULT == null ? url != null : !URL_EDEFAULT.equals(url);
 		}
 		return super.eIsSet(featureID);
 	}

@@ -44,8 +44,7 @@ import org.unicase.model.requirement.UseCase;
  *
  * @generated
  */
-public class FunctionalRequirementImpl extends ModelElementImpl implements
-		FunctionalRequirement {
+public class FunctionalRequirementImpl extends ModelElementImpl implements FunctionalRequirement {
 
 	/**
 	 * The default value of the '{@link #getStoryPoints() <em>Story Points</em>}' attribute.
@@ -173,8 +172,7 @@ public class FunctionalRequirementImpl extends ModelElementImpl implements
 		boolean oldReviewed = reviewed;
 		reviewed = newReviewed;
 		if (eNotificationRequired())
-			eNotify(new ENotificationImpl(this, Notification.SET,
-					RequirementPackage.FUNCTIONAL_REQUIREMENT__REVIEWED,
+			eNotify(new ENotificationImpl(this, Notification.SET, RequirementPackage.FUNCTIONAL_REQUIREMENT__REVIEWED,
 					oldReviewed, reviewed));
 	}
 
@@ -189,11 +187,8 @@ public class FunctionalRequirementImpl extends ModelElementImpl implements
 			stakeholder = (OrgUnit) eResolveProxy(oldStakeholder);
 			if (stakeholder != oldStakeholder) {
 				if (eNotificationRequired())
-					eNotify(new ENotificationImpl(
-							this,
-							Notification.RESOLVE,
-							RequirementPackage.FUNCTIONAL_REQUIREMENT__STAKEHOLDER,
-							oldStakeholder, stakeholder));
+					eNotify(new ENotificationImpl(this, Notification.RESOLVE,
+							RequirementPackage.FUNCTIONAL_REQUIREMENT__STAKEHOLDER, oldStakeholder, stakeholder));
 			}
 		}
 		return stakeholder;
@@ -217,8 +212,7 @@ public class FunctionalRequirementImpl extends ModelElementImpl implements
 		OrgUnit oldStakeholder = stakeholder;
 		stakeholder = newStakeholder;
 		if (eNotificationRequired())
-			eNotify(new ENotificationImpl(this, Notification.SET,
-					RequirementPackage.FUNCTIONAL_REQUIREMENT__STAKEHOLDER,
+			eNotify(new ENotificationImpl(this, Notification.SET, RequirementPackage.FUNCTIONAL_REQUIREMENT__STAKEHOLDER,
 					oldStakeholder, stakeholder));
 	}
 
@@ -238,8 +232,7 @@ public class FunctionalRequirementImpl extends ModelElementImpl implements
 		int oldStoryPoints = storyPoints;
 		storyPoints = newStoryPoints;
 		if (eNotificationRequired())
-			eNotify(new ENotificationImpl(this, Notification.SET,
-					RequirementPackage.FUNCTIONAL_REQUIREMENT__STORY_POINTS,
+			eNotify(new ENotificationImpl(this, Notification.SET, RequirementPackage.FUNCTIONAL_REQUIREMENT__STORY_POINTS,
 					oldStoryPoints, storyPoints));
 	}
 
@@ -259,8 +252,7 @@ public class FunctionalRequirementImpl extends ModelElementImpl implements
 		int oldPriority = priority;
 		priority = newPriority;
 		if (eNotificationRequired())
-			eNotify(new ENotificationImpl(this, Notification.SET,
-					RequirementPackage.FUNCTIONAL_REQUIREMENT__PRIORITY,
+			eNotify(new ENotificationImpl(this, Notification.SET, RequirementPackage.FUNCTIONAL_REQUIREMENT__PRIORITY,
 					oldPriority, priority));
 	}
 
@@ -271,9 +263,7 @@ public class FunctionalRequirementImpl extends ModelElementImpl implements
 	public EList<FunctionalRequirement> getRefiningRequirements() {
 		if (refiningRequirements == null) {
 			refiningRequirements = new EObjectContainmentWithInverseEList.Resolving<FunctionalRequirement>(
-					FunctionalRequirement.class,
-					this,
-					RequirementPackage.FUNCTIONAL_REQUIREMENT__REFINING_REQUIREMENTS,
+					FunctionalRequirement.class, this, RequirementPackage.FUNCTIONAL_REQUIREMENT__REFINING_REQUIREMENTS,
 					RequirementPackage.FUNCTIONAL_REQUIREMENT__REFINED_REQUIREMENT);
 		}
 		return refiningRequirements;
@@ -304,11 +294,9 @@ public class FunctionalRequirementImpl extends ModelElementImpl implements
 	 * <!-- begin-user-doc --> <!-- end-user-doc -->
 	 * @generated
 	 */
-	public NotificationChain basicSetRefinedRequirement(
-			FunctionalRequirement newRefinedRequirement, NotificationChain msgs) {
+	public NotificationChain basicSetRefinedRequirement(FunctionalRequirement newRefinedRequirement, NotificationChain msgs) {
 		msgs = eBasicSetContainer((InternalEObject) newRefinedRequirement,
-				RequirementPackage.FUNCTIONAL_REQUIREMENT__REFINED_REQUIREMENT,
-				msgs);
+				RequirementPackage.FUNCTIONAL_REQUIREMENT__REFINED_REQUIREMENT, msgs);
 		return msgs;
 	}
 
@@ -316,30 +304,22 @@ public class FunctionalRequirementImpl extends ModelElementImpl implements
 	 * <!-- begin-user-doc --> <!-- end-user-doc -->
 	 * @generated
 	 */
-	public void setRefinedRequirement(
-			FunctionalRequirement newRefinedRequirement) {
+	public void setRefinedRequirement(FunctionalRequirement newRefinedRequirement) {
 		if (newRefinedRequirement != eInternalContainer()
 				|| (eContainerFeatureID != RequirementPackage.FUNCTIONAL_REQUIREMENT__REFINED_REQUIREMENT && newRefinedRequirement != null)) {
 			if (EcoreUtil.isAncestor(this, newRefinedRequirement))
-				throw new IllegalArgumentException(
-						"Recursive containment not allowed for " + toString());
+				throw new IllegalArgumentException("Recursive containment not allowed for " + toString());
 			NotificationChain msgs = null;
 			if (eInternalContainer() != null)
 				msgs = eBasicRemoveFromContainer(msgs);
 			if (newRefinedRequirement != null)
-				msgs = ((InternalEObject) newRefinedRequirement)
-						.eInverseAdd(
-								this,
-								RequirementPackage.FUNCTIONAL_REQUIREMENT__REFINING_REQUIREMENTS,
-								FunctionalRequirement.class, msgs);
+				msgs = ((InternalEObject) newRefinedRequirement).eInverseAdd(this,
+						RequirementPackage.FUNCTIONAL_REQUIREMENT__REFINING_REQUIREMENTS, FunctionalRequirement.class, msgs);
 			msgs = basicSetRefinedRequirement(newRefinedRequirement, msgs);
 			if (msgs != null)
 				msgs.dispatch();
 		} else if (eNotificationRequired())
-			eNotify(new ENotificationImpl(
-					this,
-					Notification.SET,
-					RequirementPackage.FUNCTIONAL_REQUIREMENT__REFINED_REQUIREMENT,
+			eNotify(new ENotificationImpl(this, Notification.SET, RequirementPackage.FUNCTIONAL_REQUIREMENT__REFINED_REQUIREMENT,
 					newRefinedRequirement, newRefinedRequirement));
 	}
 
@@ -349,10 +329,8 @@ public class FunctionalRequirementImpl extends ModelElementImpl implements
 	 */
 	public EList<UseCase> getUseCases() {
 		if (useCases == null) {
-			useCases = new EObjectWithInverseResolvingEList.ManyInverse<UseCase>(
-					UseCase.class, this,
-					RequirementPackage.FUNCTIONAL_REQUIREMENT__USE_CASES,
-					RequirementPackage.USE_CASE__FUNCTIONAL_REQUIREMENTS);
+			useCases = new EObjectWithInverseResolvingEList.ManyInverse<UseCase>(UseCase.class, this,
+					RequirementPackage.FUNCTIONAL_REQUIREMENT__USE_CASES, RequirementPackage.USE_CASE__FUNCTIONAL_REQUIREMENTS);
 		}
 		return useCases;
 	}
@@ -363,10 +341,8 @@ public class FunctionalRequirementImpl extends ModelElementImpl implements
 	 */
 	public EList<Scenario> getScenarios() {
 		if (scenarios == null) {
-			scenarios = new EObjectWithInverseResolvingEList.ManyInverse<Scenario>(
-					Scenario.class, this,
-					RequirementPackage.FUNCTIONAL_REQUIREMENT__SCENARIOS,
-					RequirementPackage.SCENARIO__FUNCTIONAL_REQUIREMENTS);
+			scenarios = new EObjectWithInverseResolvingEList.ManyInverse<Scenario>(Scenario.class, this,
+					RequirementPackage.FUNCTIONAL_REQUIREMENT__SCENARIOS, RequirementPackage.SCENARIO__FUNCTIONAL_REQUIREMENTS);
 		}
 		return scenarios;
 	}
@@ -377,23 +353,18 @@ public class FunctionalRequirementImpl extends ModelElementImpl implements
 	 */
 	@SuppressWarnings("unchecked")
 	@Override
-	public NotificationChain eInverseAdd(InternalEObject otherEnd,
-			int featureID, NotificationChain msgs) {
+	public NotificationChain eInverseAdd(InternalEObject otherEnd, int featureID, NotificationChain msgs) {
 		switch (featureID) {
 		case RequirementPackage.FUNCTIONAL_REQUIREMENT__REFINED_REQUIREMENT:
 			if (eInternalContainer() != null)
 				msgs = eBasicRemoveFromContainer(msgs);
-			return basicSetRefinedRequirement((FunctionalRequirement) otherEnd,
-					msgs);
+			return basicSetRefinedRequirement((FunctionalRequirement) otherEnd, msgs);
 		case RequirementPackage.FUNCTIONAL_REQUIREMENT__REFINING_REQUIREMENTS:
-			return ((InternalEList<InternalEObject>) (InternalEList<?>) getRefiningRequirements())
-					.basicAdd(otherEnd, msgs);
+			return ((InternalEList<InternalEObject>) (InternalEList<?>) getRefiningRequirements()).basicAdd(otherEnd, msgs);
 		case RequirementPackage.FUNCTIONAL_REQUIREMENT__USE_CASES:
-			return ((InternalEList<InternalEObject>) (InternalEList<?>) getUseCases())
-					.basicAdd(otherEnd, msgs);
+			return ((InternalEList<InternalEObject>) (InternalEList<?>) getUseCases()).basicAdd(otherEnd, msgs);
 		case RequirementPackage.FUNCTIONAL_REQUIREMENT__SCENARIOS:
-			return ((InternalEList<InternalEObject>) (InternalEList<?>) getScenarios())
-					.basicAdd(otherEnd, msgs);
+			return ((InternalEList<InternalEObject>) (InternalEList<?>) getScenarios()).basicAdd(otherEnd, msgs);
 		}
 		return super.eInverseAdd(otherEnd, featureID, msgs);
 	}
@@ -403,20 +374,16 @@ public class FunctionalRequirementImpl extends ModelElementImpl implements
 	 * @generated
 	 */
 	@Override
-	public NotificationChain eInverseRemove(InternalEObject otherEnd,
-			int featureID, NotificationChain msgs) {
+	public NotificationChain eInverseRemove(InternalEObject otherEnd, int featureID, NotificationChain msgs) {
 		switch (featureID) {
 		case RequirementPackage.FUNCTIONAL_REQUIREMENT__REFINED_REQUIREMENT:
 			return basicSetRefinedRequirement(null, msgs);
 		case RequirementPackage.FUNCTIONAL_REQUIREMENT__REFINING_REQUIREMENTS:
-			return ((InternalEList<?>) getRefiningRequirements()).basicRemove(
-					otherEnd, msgs);
+			return ((InternalEList<?>) getRefiningRequirements()).basicRemove(otherEnd, msgs);
 		case RequirementPackage.FUNCTIONAL_REQUIREMENT__USE_CASES:
-			return ((InternalEList<?>) getUseCases()).basicRemove(otherEnd,
-					msgs);
+			return ((InternalEList<?>) getUseCases()).basicRemove(otherEnd, msgs);
 		case RequirementPackage.FUNCTIONAL_REQUIREMENT__SCENARIOS:
-			return ((InternalEList<?>) getScenarios()).basicRemove(otherEnd,
-					msgs);
+			return ((InternalEList<?>) getScenarios()).basicRemove(otherEnd, msgs);
 		}
 		return super.eInverseRemove(otherEnd, featureID, msgs);
 	}
@@ -426,15 +393,11 @@ public class FunctionalRequirementImpl extends ModelElementImpl implements
 	 * @generated
 	 */
 	@Override
-	public NotificationChain eBasicRemoveFromContainerFeature(
-			NotificationChain msgs) {
+	public NotificationChain eBasicRemoveFromContainerFeature(NotificationChain msgs) {
 		switch (eContainerFeatureID) {
 		case RequirementPackage.FUNCTIONAL_REQUIREMENT__REFINED_REQUIREMENT:
-			return eInternalContainer()
-					.eInverseRemove(
-							this,
-							RequirementPackage.FUNCTIONAL_REQUIREMENT__REFINING_REQUIREMENTS,
-							FunctionalRequirement.class, msgs);
+			return eInternalContainer().eInverseRemove(this, RequirementPackage.FUNCTIONAL_REQUIREMENT__REFINING_REQUIREMENTS,
+					FunctionalRequirement.class, msgs);
 		}
 		return super.eBasicRemoveFromContainerFeature(msgs);
 	}
@@ -489,8 +452,7 @@ public class FunctionalRequirementImpl extends ModelElementImpl implements
 			return;
 		case RequirementPackage.FUNCTIONAL_REQUIREMENT__REFINING_REQUIREMENTS:
 			getRefiningRequirements().clear();
-			getRefiningRequirements().addAll(
-					(Collection<? extends FunctionalRequirement>) newValue);
+			getRefiningRequirements().addAll((Collection<? extends FunctionalRequirement>) newValue);
 			return;
 		case RequirementPackage.FUNCTIONAL_REQUIREMENT__USE_CASES:
 			getUseCases().clear();
@@ -559,8 +521,7 @@ public class FunctionalRequirementImpl extends ModelElementImpl implements
 		case RequirementPackage.FUNCTIONAL_REQUIREMENT__PRIORITY:
 			return priority != PRIORITY_EDEFAULT;
 		case RequirementPackage.FUNCTIONAL_REQUIREMENT__REFINING_REQUIREMENTS:
-			return refiningRequirements != null
-					&& !refiningRequirements.isEmpty();
+			return refiningRequirements != null && !refiningRequirements.isEmpty();
 		case RequirementPackage.FUNCTIONAL_REQUIREMENT__USE_CASES:
 			return useCases != null && !useCases.isEmpty();
 		case RequirementPackage.FUNCTIONAL_REQUIREMENT__SCENARIOS:

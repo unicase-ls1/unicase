@@ -60,6 +60,7 @@ public interface Scenario extends ModelElement {
 	 * @see org.unicase.model.requirement.RequirementPackage#getScenario_InitiatingActorInstance()
 	 * @see org.unicase.model.requirement.ActorInstance#getInitiatedScenarios
 	 * @model opposite="initiatedScenarios" keys="identifier"
+	 *        annotation="org.unicase.ui.meeditor priority='10.0' position='left'"
 	 * @generated
 	 */
 	ActorInstance getInitiatingActorInstance();
@@ -88,6 +89,7 @@ public interface Scenario extends ModelElement {
 	 * @see org.unicase.model.requirement.RequirementPackage#getScenario_ParticipatingActorInstances()
 	 * @see org.unicase.model.requirement.ActorInstance#getParticipatedScenarios
 	 * @model opposite="participatedScenarios" keys="identifier"
+	 *        annotation="org.unicase.ui.meeditor priority='11.0' position='left'"
 	 * @generated
 	 */
 	EList<ActorInstance> getParticipatingActorInstances();
@@ -106,6 +108,7 @@ public interface Scenario extends ModelElement {
 	 * @see org.unicase.model.requirement.RequirementPackage#getScenario_InstantiatedUseCases()
 	 * @see org.unicase.model.requirement.UseCase#getScenarios
 	 * @model opposite="scenarios" keys="identifier"
+	 *        annotation="org.unicase.ui.meeditor priority='10.0' position='right'"
 	 * @generated
 	 */
 	EList<UseCase> getInstantiatedUseCases();
@@ -124,6 +127,7 @@ public interface Scenario extends ModelElement {
 	 * @see org.unicase.model.requirement.RequirementPackage#getScenario_FunctionalRequirements()
 	 * @see org.unicase.model.requirement.FunctionalRequirement#getScenarios
 	 * @model opposite="scenarios" keys="identifier"
+	 *        annotation="org.unicase.ui.meeditor priority='11.0' position='right'"
 	 * @generated
 	 */
 	EList<FunctionalRequirement> getFunctionalRequirements();
@@ -142,6 +146,7 @@ public interface Scenario extends ModelElement {
 	 * @see org.unicase.model.requirement.RequirementPackage#getScenario_NonFunctionalRequirements()
 	 * @see org.unicase.model.requirement.NonFunctionalRequirement#getRestrictedScenarios
 	 * @model opposite="restrictedScenarios" keys="identifier"
+	 *        annotation="org.unicase.ui.meeditor priority='12.0' position='right'"
 	 * @generated
 	 */
 	EList<NonFunctionalRequirement> getNonFunctionalRequirements();

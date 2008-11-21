@@ -54,8 +54,7 @@ import org.unicase.model.task.util.MEStateImpl;
  *
  * @generated
  */
-public abstract class ModelElementImpl extends IdentifiableElementImpl
-		implements ModelElement {
+public abstract class ModelElementImpl extends IdentifiableElementImpl implements ModelElement {
 	private static final String BEGINNTEXT = "%BEGINNTEXT%";
 
 	/**
@@ -212,8 +211,7 @@ public abstract class ModelElementImpl extends IdentifiableElementImpl
 		String oldName = name;
 		name = newName;
 		if (eNotificationRequired())
-			eNotify(new ENotificationImpl(this, Notification.SET,
-					ModelPackage.MODEL_ELEMENT__NAME, oldName, name));
+			eNotify(new ENotificationImpl(this, Notification.SET, ModelPackage.MODEL_ELEMENT__NAME, oldName, name));
 	}
 
 	/**
@@ -232,8 +230,7 @@ public abstract class ModelElementImpl extends IdentifiableElementImpl
 		String oldDescription = description;
 		description = newDescription;
 		if (eNotificationRequired())
-			eNotify(new ENotificationImpl(this, Notification.SET,
-					ModelPackage.MODEL_ELEMENT__DESCRIPTION, oldDescription,
+			eNotify(new ENotificationImpl(this, Notification.SET, ModelPackage.MODEL_ELEMENT__DESCRIPTION, oldDescription,
 					description));
 	}
 
@@ -253,8 +250,7 @@ public abstract class ModelElementImpl extends IdentifiableElementImpl
 		String oldCreator = creator;
 		creator = newCreator;
 		if (eNotificationRequired())
-			eNotify(new ENotificationImpl(this, Notification.SET,
-					ModelPackage.MODEL_ELEMENT__CREATOR, oldCreator, creator));
+			eNotify(new ENotificationImpl(this, Notification.SET, ModelPackage.MODEL_ELEMENT__CREATOR, oldCreator, creator));
 	}
 
 	/**
@@ -273,8 +269,7 @@ public abstract class ModelElementImpl extends IdentifiableElementImpl
 		Date oldCreationDate = creationDate;
 		creationDate = newCreationDate;
 		if (eNotificationRequired())
-			eNotify(new ENotificationImpl(this, Notification.SET,
-					ModelPackage.MODEL_ELEMENT__CREATION_DATE, oldCreationDate,
+			eNotify(new ENotificationImpl(this, Notification.SET, ModelPackage.MODEL_ELEMENT__CREATION_DATE, oldCreationDate,
 					creationDate));
 	}
 
@@ -284,10 +279,8 @@ public abstract class ModelElementImpl extends IdentifiableElementImpl
 	 */
 	public EList<Annotation> getAnnotations() {
 		if (annotations == null) {
-			annotations = new EObjectWithInverseResolvingEList.ManyInverse<Annotation>(
-					Annotation.class, this,
-					ModelPackage.MODEL_ELEMENT__ANNOTATIONS,
-					ModelPackage.ANNOTATION__ANNOTATED_MODEL_ELEMENTS);
+			annotations = new EObjectWithInverseResolvingEList.ManyInverse<Annotation>(Annotation.class, this,
+					ModelPackage.MODEL_ELEMENT__ANNOTATIONS, ModelPackage.ANNOTATION__ANNOTATED_MODEL_ELEMENTS);
 		}
 		return annotations;
 	}
@@ -298,10 +291,8 @@ public abstract class ModelElementImpl extends IdentifiableElementImpl
 	 */
 	public EList<Attachment> getAttachments() {
 		if (attachments == null) {
-			attachments = new EObjectWithInverseResolvingEList.ManyInverse<Attachment>(
-					Attachment.class, this,
-					ModelPackage.MODEL_ELEMENT__ATTACHMENTS,
-					ModelPackage.ATTACHMENT__REFERRING_MODEL_ELEMENTS);
+			attachments = new EObjectWithInverseResolvingEList.ManyInverse<Attachment>(Attachment.class, this,
+					ModelPackage.MODEL_ELEMENT__ATTACHMENTS, ModelPackage.ATTACHMENT__REFERRING_MODEL_ELEMENTS);
 		}
 		return attachments;
 	}
@@ -312,8 +303,7 @@ public abstract class ModelElementImpl extends IdentifiableElementImpl
 	 */
 	public EList<LeafSection> getIncomingDocumentReferences() {
 		if (incomingDocumentReferences == null) {
-			incomingDocumentReferences = new EObjectWithInverseResolvingEList.ManyInverse<LeafSection>(
-					LeafSection.class, this,
+			incomingDocumentReferences = new EObjectWithInverseResolvingEList.ManyInverse<LeafSection>(LeafSection.class, this,
 					ModelPackage.MODEL_ELEMENT__INCOMING_DOCUMENT_REFERENCES,
 					DocumentPackage.LEAF_SECTION__REFERENCED_MODEL_ELEMENTS);
 		}
@@ -344,10 +334,8 @@ public abstract class ModelElementImpl extends IdentifiableElementImpl
 	 * <!-- begin-user-doc --> <!-- end-user-doc -->
 	 * @generated
 	 */
-	public NotificationChain basicSetLeafSection(LeafSection newLeafSection,
-			NotificationChain msgs) {
-		msgs = eBasicSetContainer((InternalEObject) newLeafSection,
-				ModelPackage.MODEL_ELEMENT__LEAF_SECTION, msgs);
+	public NotificationChain basicSetLeafSection(LeafSection newLeafSection, NotificationChain msgs) {
+		msgs = eBasicSetContainer((InternalEObject) newLeafSection, ModelPackage.MODEL_ELEMENT__LEAF_SECTION, msgs);
 		return msgs;
 	}
 
@@ -359,21 +347,18 @@ public abstract class ModelElementImpl extends IdentifiableElementImpl
 		if (newLeafSection != eInternalContainer()
 				|| (eContainerFeatureID != ModelPackage.MODEL_ELEMENT__LEAF_SECTION && newLeafSection != null)) {
 			if (EcoreUtil.isAncestor(this, newLeafSection))
-				throw new IllegalArgumentException(
-						"Recursive containment not allowed for " + toString());
+				throw new IllegalArgumentException("Recursive containment not allowed for " + toString());
 			NotificationChain msgs = null;
 			if (eInternalContainer() != null)
 				msgs = eBasicRemoveFromContainer(msgs);
 			if (newLeafSection != null)
-				msgs = ((InternalEObject) newLeafSection).eInverseAdd(this,
-						DocumentPackage.LEAF_SECTION__MODEL_ELEMENTS,
+				msgs = ((InternalEObject) newLeafSection).eInverseAdd(this, DocumentPackage.LEAF_SECTION__MODEL_ELEMENTS,
 						LeafSection.class, msgs);
 			msgs = basicSetLeafSection(newLeafSection, msgs);
 			if (msgs != null)
 				msgs.dispatch();
 		} else if (eNotificationRequired())
-			eNotify(new ENotificationImpl(this, Notification.SET,
-					ModelPackage.MODEL_ELEMENT__LEAF_SECTION, newLeafSection,
+			eNotify(new ENotificationImpl(this, Notification.SET, ModelPackage.MODEL_ELEMENT__LEAF_SECTION, newLeafSection,
 					newLeafSection));
 	}
 
@@ -388,7 +373,7 @@ public abstract class ModelElementImpl extends IdentifiableElementImpl
 			return getMEState().getStatus();
 		} catch (CircularDependencyException e) {
 			// JH: insert proper exception handling
-//			e.printStackTrace();
+			//			e.printStackTrace();
 			return MEState.CLOSED;
 		}
 	}
@@ -425,8 +410,7 @@ public abstract class ModelElementImpl extends IdentifiableElementImpl
 		}
 
 		if (seenModelElements.contains(container)) {
-			throw new IllegalStateException(
-					"ModelElement is in a containment cycle");
+			throw new IllegalStateException("ModelElement is in a containment cycle");
 		}
 		// check if my container is a project
 		if (ModelPackage.eINSTANCE.getProject().isInstance(container)) {
@@ -437,8 +421,7 @@ public abstract class ModelElementImpl extends IdentifiableElementImpl
 			seenModelElements.add(this);
 			return ((ModelElementImpl) container).getProject(seenModelElements);
 		} else {
-			throw new IllegalStateException(
-					"ModelElement is not contained by any project");
+			throw new IllegalStateException("ModelElement is not contained by any project");
 		}
 	}
 
@@ -465,8 +448,7 @@ public abstract class ModelElementImpl extends IdentifiableElementImpl
 	 * @throws CircularDependencyException
 	 * @generated NOT
 	 */
-	public org.unicase.model.task.util.MEState getMEState()
-			throws CircularDependencyException {
+	public org.unicase.model.task.util.MEState getMEState() throws CircularDependencyException {
 		if (meState == null) {
 			synchronized (this) {
 				if (meState == null) {
@@ -490,11 +472,9 @@ public abstract class ModelElementImpl extends IdentifiableElementImpl
 	 */
 	public ModelElementId getModelElementId() {
 		if (this.identifier == null) {
-			throw new IllegalStateException(
-					"Model element does not have an identifier");
+			throw new IllegalStateException("Model element does not have an identifier");
 		}
-		ModelElementId modelElementId = ModelFactory.eINSTANCE
-				.createModelElementId();
+		ModelElementId modelElementId = ModelFactory.eINSTANCE.createModelElementId();
 		modelElementId.setId(this.identifier);
 		return modelElementId;
 	}
@@ -525,18 +505,14 @@ public abstract class ModelElementImpl extends IdentifiableElementImpl
 	 */
 	@SuppressWarnings("unchecked")
 	@Override
-	public NotificationChain eInverseAdd(InternalEObject otherEnd,
-			int featureID, NotificationChain msgs) {
+	public NotificationChain eInverseAdd(InternalEObject otherEnd, int featureID, NotificationChain msgs) {
 		switch (featureID) {
 		case ModelPackage.MODEL_ELEMENT__ANNOTATIONS:
-			return ((InternalEList<InternalEObject>) (InternalEList<?>) getAnnotations())
-					.basicAdd(otherEnd, msgs);
+			return ((InternalEList<InternalEObject>) (InternalEList<?>) getAnnotations()).basicAdd(otherEnd, msgs);
 		case ModelPackage.MODEL_ELEMENT__ATTACHMENTS:
-			return ((InternalEList<InternalEObject>) (InternalEList<?>) getAttachments())
-					.basicAdd(otherEnd, msgs);
+			return ((InternalEList<InternalEObject>) (InternalEList<?>) getAttachments()).basicAdd(otherEnd, msgs);
 		case ModelPackage.MODEL_ELEMENT__INCOMING_DOCUMENT_REFERENCES:
-			return ((InternalEList<InternalEObject>) (InternalEList<?>) getIncomingDocumentReferences())
-					.basicAdd(otherEnd, msgs);
+			return ((InternalEList<InternalEObject>) (InternalEList<?>) getIncomingDocumentReferences()).basicAdd(otherEnd, msgs);
 		case ModelPackage.MODEL_ELEMENT__LEAF_SECTION:
 			if (eInternalContainer() != null)
 				msgs = eBasicRemoveFromContainer(msgs);
@@ -550,18 +526,14 @@ public abstract class ModelElementImpl extends IdentifiableElementImpl
 	 * @generated
 	 */
 	@Override
-	public NotificationChain eInverseRemove(InternalEObject otherEnd,
-			int featureID, NotificationChain msgs) {
+	public NotificationChain eInverseRemove(InternalEObject otherEnd, int featureID, NotificationChain msgs) {
 		switch (featureID) {
 		case ModelPackage.MODEL_ELEMENT__ANNOTATIONS:
-			return ((InternalEList<?>) getAnnotations()).basicRemove(otherEnd,
-					msgs);
+			return ((InternalEList<?>) getAnnotations()).basicRemove(otherEnd, msgs);
 		case ModelPackage.MODEL_ELEMENT__ATTACHMENTS:
-			return ((InternalEList<?>) getAttachments()).basicRemove(otherEnd,
-					msgs);
+			return ((InternalEList<?>) getAttachments()).basicRemove(otherEnd, msgs);
 		case ModelPackage.MODEL_ELEMENT__INCOMING_DOCUMENT_REFERENCES:
-			return ((InternalEList<?>) getIncomingDocumentReferences())
-					.basicRemove(otherEnd, msgs);
+			return ((InternalEList<?>) getIncomingDocumentReferences()).basicRemove(otherEnd, msgs);
 		case ModelPackage.MODEL_ELEMENT__LEAF_SECTION:
 			return basicSetLeafSection(null, msgs);
 		}
@@ -573,13 +545,11 @@ public abstract class ModelElementImpl extends IdentifiableElementImpl
 	 * @generated
 	 */
 	@Override
-	public NotificationChain eBasicRemoveFromContainerFeature(
-			NotificationChain msgs) {
+	public NotificationChain eBasicRemoveFromContainerFeature(NotificationChain msgs) {
 		switch (eContainerFeatureID) {
 		case ModelPackage.MODEL_ELEMENT__LEAF_SECTION:
-			return eInternalContainer().eInverseRemove(this,
-					DocumentPackage.LEAF_SECTION__MODEL_ELEMENTS,
-					LeafSection.class, msgs);
+			return eInternalContainer().eInverseRemove(this, DocumentPackage.LEAF_SECTION__MODEL_ELEMENTS, LeafSection.class,
+					msgs);
 		}
 		return super.eBasicRemoveFromContainerFeature(msgs);
 	}
@@ -637,18 +607,15 @@ public abstract class ModelElementImpl extends IdentifiableElementImpl
 			return;
 		case ModelPackage.MODEL_ELEMENT__ANNOTATIONS:
 			getAnnotations().clear();
-			getAnnotations()
-					.addAll((Collection<? extends Annotation>) newValue);
+			getAnnotations().addAll((Collection<? extends Annotation>) newValue);
 			return;
 		case ModelPackage.MODEL_ELEMENT__ATTACHMENTS:
 			getAttachments().clear();
-			getAttachments()
-					.addAll((Collection<? extends Attachment>) newValue);
+			getAttachments().addAll((Collection<? extends Attachment>) newValue);
 			return;
 		case ModelPackage.MODEL_ELEMENT__INCOMING_DOCUMENT_REFERENCES:
 			getIncomingDocumentReferences().clear();
-			getIncomingDocumentReferences().addAll(
-					(Collection<? extends LeafSection>) newValue);
+			getIncomingDocumentReferences().addAll((Collection<? extends LeafSection>) newValue);
 			return;
 		case ModelPackage.MODEL_ELEMENT__LEAF_SECTION:
 			setLeafSection((LeafSection) newValue);
@@ -700,29 +667,23 @@ public abstract class ModelElementImpl extends IdentifiableElementImpl
 	public boolean eIsSet(int featureID) {
 		switch (featureID) {
 		case ModelPackage.MODEL_ELEMENT__NAME:
-			return NAME_EDEFAULT == null ? name != null : !NAME_EDEFAULT
-					.equals(name);
+			return NAME_EDEFAULT == null ? name != null : !NAME_EDEFAULT.equals(name);
 		case ModelPackage.MODEL_ELEMENT__DESCRIPTION:
-			return DESCRIPTION_EDEFAULT == null ? description != null
-					: !DESCRIPTION_EDEFAULT.equals(description);
+			return DESCRIPTION_EDEFAULT == null ? description != null : !DESCRIPTION_EDEFAULT.equals(description);
 		case ModelPackage.MODEL_ELEMENT__CREATOR:
-			return CREATOR_EDEFAULT == null ? creator != null
-					: !CREATOR_EDEFAULT.equals(creator);
+			return CREATOR_EDEFAULT == null ? creator != null : !CREATOR_EDEFAULT.equals(creator);
 		case ModelPackage.MODEL_ELEMENT__CREATION_DATE:
-			return CREATION_DATE_EDEFAULT == null ? creationDate != null
-					: !CREATION_DATE_EDEFAULT.equals(creationDate);
+			return CREATION_DATE_EDEFAULT == null ? creationDate != null : !CREATION_DATE_EDEFAULT.equals(creationDate);
 		case ModelPackage.MODEL_ELEMENT__ANNOTATIONS:
 			return annotations != null && !annotations.isEmpty();
 		case ModelPackage.MODEL_ELEMENT__ATTACHMENTS:
 			return attachments != null && !attachments.isEmpty();
 		case ModelPackage.MODEL_ELEMENT__INCOMING_DOCUMENT_REFERENCES:
-			return incomingDocumentReferences != null
-					&& !incomingDocumentReferences.isEmpty();
+			return incomingDocumentReferences != null && !incomingDocumentReferences.isEmpty();
 		case ModelPackage.MODEL_ELEMENT__LEAF_SECTION:
 			return basicGetLeafSection() != null;
 		case ModelPackage.MODEL_ELEMENT__STATE:
-			return STATE_EDEFAULT == null ? getState() != null
-					: !STATE_EDEFAULT.equals(getState());
+			return STATE_EDEFAULT == null ? getState() != null : !STATE_EDEFAULT.equals(getState());
 		}
 		return super.eIsSet(featureID);
 	}

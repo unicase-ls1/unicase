@@ -27,8 +27,7 @@ import org.unicase.model.ModelPackage;
  *
  * @generated
  */
-public class IdentifiableElementImpl extends EObjectImpl implements
-		IdentifiableElement {
+public class IdentifiableElementImpl extends EObjectImpl implements IdentifiableElement {
 	/**
 	 * The default value of the '{@link #getIdentifier() <em>Identifier</em>}' attribute.
 	 * <!-- begin-user-doc -->
@@ -88,9 +87,8 @@ public class IdentifiableElementImpl extends EObjectImpl implements
 		String oldIdentifier = identifier;
 		identifier = newIdentifier;
 		if (eNotificationRequired())
-			eNotify(new ENotificationImpl(this, Notification.SET,
-					ModelPackage.IDENTIFIABLE_ELEMENT__IDENTIFIER,
-					oldIdentifier, identifier));
+			eNotify(new ENotificationImpl(this, Notification.SET, ModelPackage.IDENTIFIABLE_ELEMENT__IDENTIFIER, oldIdentifier,
+					identifier));
 	}
 
 	/**
@@ -146,8 +144,7 @@ public class IdentifiableElementImpl extends EObjectImpl implements
 	public boolean eIsSet(int featureID) {
 		switch (featureID) {
 		case ModelPackage.IDENTIFIABLE_ELEMENT__IDENTIFIER:
-			return IDENTIFIER_EDEFAULT == null ? identifier != null
-					: !IDENTIFIER_EDEFAULT.equals(identifier);
+			return IDENTIFIER_EDEFAULT == null ? identifier != null : !IDENTIFIER_EDEFAULT.equals(identifier);
 		}
 		return super.eIsSet(featureID);
 	}

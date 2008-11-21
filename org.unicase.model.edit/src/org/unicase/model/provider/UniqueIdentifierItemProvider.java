@@ -31,9 +31,8 @@ import org.unicase.model.UniqueIdentifier;
  * <!-- end-user-doc -->
  * @generated
  */
-public class UniqueIdentifierItemProvider extends ItemProviderAdapter implements
-		IEditingDomainItemProvider, IStructuredItemContentProvider,
-		ITreeItemContentProvider, IItemLabelProvider, IItemPropertySource {
+public class UniqueIdentifierItemProvider extends ItemProviderAdapter implements IEditingDomainItemProvider,
+		IStructuredItemContentProvider, ITreeItemContentProvider, IItemLabelProvider, IItemPropertySource {
 	/**
 	 * This constructs an instance from a factory and a notifier. <!--
 	 * begin-user-doc --> <!-- end-user-doc -->
@@ -67,15 +66,11 @@ public class UniqueIdentifierItemProvider extends ItemProviderAdapter implements
 	 * @generated
 	 */
 	protected void addIdPropertyDescriptor(Object object) {
-		itemPropertyDescriptors.add(createItemPropertyDescriptor(
-				((ComposeableAdapterFactory) adapterFactory)
-						.getRootAdapterFactory(), getResourceLocator(),
-				getString("_UI_UniqueIdentifier_id_feature"), getString(
-						"_UI_PropertyDescriptor_description",
-						"_UI_UniqueIdentifier_id_feature",
-						"_UI_UniqueIdentifier_type"),
-				ModelPackage.Literals.UNIQUE_IDENTIFIER__ID, false, false,
-				false, ItemPropertyDescriptor.GENERIC_VALUE_IMAGE, null, null));
+		itemPropertyDescriptors.add(createItemPropertyDescriptor(((ComposeableAdapterFactory) adapterFactory)
+				.getRootAdapterFactory(), getResourceLocator(), getString("_UI_UniqueIdentifier_id_feature"), getString(
+				"_UI_PropertyDescriptor_description", "_UI_UniqueIdentifier_id_feature", "_UI_UniqueIdentifier_type"),
+				ModelPackage.Literals.UNIQUE_IDENTIFIER__ID, false, false, false, ItemPropertyDescriptor.GENERIC_VALUE_IMAGE,
+				null, null));
 	}
 
 	/**
@@ -104,8 +99,7 @@ public class UniqueIdentifierItemProvider extends ItemProviderAdapter implements
 
 		switch (notification.getFeatureID(UniqueIdentifier.class)) {
 		case ModelPackage.UNIQUE_IDENTIFIER__ID:
-			fireNotifyChanged(new ViewerNotification(notification, notification
-					.getNotifier(), false, true));
+			fireNotifyChanged(new ViewerNotification(notification, notification.getNotifier(), false, true));
 			return;
 		}
 		super.notifyChanged(notification);
@@ -119,8 +113,7 @@ public class UniqueIdentifierItemProvider extends ItemProviderAdapter implements
 	 * @generated
 	 */
 	@Override
-	protected void collectNewChildDescriptors(
-			Collection<Object> newChildDescriptors, Object object) {
+	protected void collectNewChildDescriptors(Collection<Object> newChildDescriptors, Object object) {
 		super.collectNewChildDescriptors(newChildDescriptors, object);
 	}
 

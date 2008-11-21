@@ -39,6 +39,7 @@ public interface Solution extends ModelElement, NonDomainElement {
 	 * @return the value of the '<em>Underlying Proposals</em>' reference list.
 	 * @see org.unicase.model.rationale.RationalePackage#getSolution_UnderlyingProposals()
 	 * @model keys="identifier"
+	 *        annotation="org.unicase.ui.meeditor priority='10.0' position='right'"
 	 * @generated
 	 */
 	EList<Proposal> getUnderlyingProposals();
@@ -57,6 +58,7 @@ public interface Solution extends ModelElement, NonDomainElement {
 	 * @see org.unicase.model.rationale.RationalePackage#getSolution_Issue()
 	 * @see org.unicase.model.rationale.Issue#getSolution
 	 * @model opposite="solution" keys="identifier" transient="false"
+	 *        annotation="org.unicase.ui.meeditor priority='10.0' position='left'"
 	 * @generated
 	 */
 	Issue getIssue();

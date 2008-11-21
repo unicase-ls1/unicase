@@ -29,8 +29,7 @@ import org.unicase.model.organization.User;
  * <!-- end-user-doc -->
  * @generated
  */
-public class UserItemProvider extends OrgUnitItemProvider implements
-		IEditingDomainItemProvider, IStructuredItemContentProvider,
+public class UserItemProvider extends OrgUnitItemProvider implements IEditingDomainItemProvider, IStructuredItemContentProvider,
 		ITreeItemContentProvider, IItemLabelProvider, IItemPropertySource {
 	/**
 	 * This constructs an instance from a factory and a notifier. <!--
@@ -67,14 +66,11 @@ public class UserItemProvider extends OrgUnitItemProvider implements
 	 * @generated
 	 */
 	protected void addEmailPropertyDescriptor(Object object) {
-		itemPropertyDescriptors.add(createItemPropertyDescriptor(
-				((ComposeableAdapterFactory) adapterFactory)
-						.getRootAdapterFactory(), getResourceLocator(),
-				getString("_UI_User_email_feature"), getString(
-						"_UI_PropertyDescriptor_description",
-						"_UI_User_email_feature", "_UI_User_type"),
-				OrganizationPackage.Literals.USER__EMAIL, true, false, false,
-				ItemPropertyDescriptor.GENERIC_VALUE_IMAGE, null, null));
+		itemPropertyDescriptors.add(createItemPropertyDescriptor(((ComposeableAdapterFactory) adapterFactory)
+				.getRootAdapterFactory(), getResourceLocator(), getString("_UI_User_email_feature"), getString(
+				"_UI_PropertyDescriptor_description", "_UI_User_email_feature", "_UI_User_type"),
+				OrganizationPackage.Literals.USER__EMAIL, true, false, false, ItemPropertyDescriptor.GENERIC_VALUE_IMAGE, null,
+				null));
 	}
 
 	/**
@@ -84,14 +80,11 @@ public class UserItemProvider extends OrgUnitItemProvider implements
 	 * @generated
 	 */
 	protected void addFirstNamePropertyDescriptor(Object object) {
-		itemPropertyDescriptors.add(createItemPropertyDescriptor(
-				((ComposeableAdapterFactory) adapterFactory)
-						.getRootAdapterFactory(), getResourceLocator(),
-				getString("_UI_User_firstName_feature"), getString(
-						"_UI_PropertyDescriptor_description",
-						"_UI_User_firstName_feature", "_UI_User_type"),
-				OrganizationPackage.Literals.USER__FIRST_NAME, true, false,
-				false, ItemPropertyDescriptor.GENERIC_VALUE_IMAGE, null, null));
+		itemPropertyDescriptors.add(createItemPropertyDescriptor(((ComposeableAdapterFactory) adapterFactory)
+				.getRootAdapterFactory(), getResourceLocator(), getString("_UI_User_firstName_feature"), getString(
+				"_UI_PropertyDescriptor_description", "_UI_User_firstName_feature", "_UI_User_type"),
+				OrganizationPackage.Literals.USER__FIRST_NAME, true, false, false, ItemPropertyDescriptor.GENERIC_VALUE_IMAGE,
+				null, null));
 	}
 
 	/**
@@ -101,14 +94,11 @@ public class UserItemProvider extends OrgUnitItemProvider implements
 	 * @generated
 	 */
 	protected void addLastNamePropertyDescriptor(Object object) {
-		itemPropertyDescriptors.add(createItemPropertyDescriptor(
-				((ComposeableAdapterFactory) adapterFactory)
-						.getRootAdapterFactory(), getResourceLocator(),
-				getString("_UI_User_lastName_feature"), getString(
-						"_UI_PropertyDescriptor_description",
-						"_UI_User_lastName_feature", "_UI_User_type"),
-				OrganizationPackage.Literals.USER__LAST_NAME, true, false,
-				false, ItemPropertyDescriptor.GENERIC_VALUE_IMAGE, null, null));
+		itemPropertyDescriptors.add(createItemPropertyDescriptor(((ComposeableAdapterFactory) adapterFactory)
+				.getRootAdapterFactory(), getResourceLocator(), getString("_UI_User_lastName_feature"), getString(
+				"_UI_PropertyDescriptor_description", "_UI_User_lastName_feature", "_UI_User_type"),
+				OrganizationPackage.Literals.USER__LAST_NAME, true, false, false, ItemPropertyDescriptor.GENERIC_VALUE_IMAGE,
+				null, null));
 	}
 
 	/**
@@ -118,8 +108,7 @@ public class UserItemProvider extends OrgUnitItemProvider implements
 	 */
 	@Override
 	public Object getImage(Object object) {
-		return overlayImage(object, getResourceLocator().getImage(
-				"full/obj16/User"));
+		return overlayImage(object, getResourceLocator().getImage("full/obj16/User"));
 	}
 
 	/**
@@ -149,8 +138,7 @@ public class UserItemProvider extends OrgUnitItemProvider implements
 		case OrganizationPackage.USER__EMAIL:
 		case OrganizationPackage.USER__FIRST_NAME:
 		case OrganizationPackage.USER__LAST_NAME:
-			fireNotifyChanged(new ViewerNotification(notification, notification
-					.getNotifier(), false, true));
+			fireNotifyChanged(new ViewerNotification(notification, notification.getNotifier(), false, true));
 			return;
 		}
 		super.notifyChanged(notification);
@@ -164,8 +152,7 @@ public class UserItemProvider extends OrgUnitItemProvider implements
 	 * @generated
 	 */
 	@Override
-	protected void collectNewChildDescriptors(
-			Collection<Object> newChildDescriptors, Object object) {
+	protected void collectNewChildDescriptors(Collection<Object> newChildDescriptors, Object object) {
 		super.collectNewChildDescriptors(newChildDescriptors, object);
 	}
 

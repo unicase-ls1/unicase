@@ -105,8 +105,7 @@ public class StepImpl extends ModelElementImpl implements Step {
 		boolean oldUserStep = userStep;
 		userStep = newUserStep;
 		if (eNotificationRequired())
-			eNotify(new ENotificationImpl(this, Notification.SET,
-					RequirementPackage.STEP__USER_STEP, oldUserStep, userStep));
+			eNotify(new ENotificationImpl(this, Notification.SET, RequirementPackage.STEP__USER_STEP, oldUserStep, userStep));
 	}
 
 	/**
@@ -119,8 +118,7 @@ public class StepImpl extends ModelElementImpl implements Step {
 			includedUseCase = (UseCase) eResolveProxy(oldIncludedUseCase);
 			if (includedUseCase != oldIncludedUseCase) {
 				if (eNotificationRequired())
-					eNotify(new ENotificationImpl(this, Notification.RESOLVE,
-							RequirementPackage.STEP__INCLUDED_USE_CASE,
+					eNotify(new ENotificationImpl(this, Notification.RESOLVE, RequirementPackage.STEP__INCLUDED_USE_CASE,
 							oldIncludedUseCase, includedUseCase));
 			}
 		}
@@ -153,9 +151,8 @@ public class StepImpl extends ModelElementImpl implements Step {
 		UseCase oldIncludedUseCase = includedUseCase;
 		includedUseCase = newIncludedUseCase;
 		if (eNotificationRequired()) {
-			eNotify(new ENotificationImpl(this, Notification.SET,
-					RequirementPackage.STEP__INCLUDED_USE_CASE,
-					oldIncludedUseCase, includedUseCase));
+			eNotify(new ENotificationImpl(this, Notification.SET, RequirementPackage.STEP__INCLUDED_USE_CASE, oldIncludedUseCase,
+					includedUseCase));
 		}
 	}
 
@@ -169,8 +166,7 @@ public class StepImpl extends ModelElementImpl implements Step {
 			includedSystemFunction = (SystemFunction) eResolveProxy(oldIncludedSystemFunction);
 			if (includedSystemFunction != oldIncludedSystemFunction) {
 				if (eNotificationRequired())
-					eNotify(new ENotificationImpl(this, Notification.RESOLVE,
-							RequirementPackage.STEP__INCLUDED_SYSTEM_FUNCTION,
+					eNotify(new ENotificationImpl(this, Notification.RESOLVE, RequirementPackage.STEP__INCLUDED_SYSTEM_FUNCTION,
 							oldIncludedSystemFunction, includedSystemFunction));
 			}
 		}
@@ -189,13 +185,11 @@ public class StepImpl extends ModelElementImpl implements Step {
 	 * <!-- begin-user-doc --> <!-- end-user-doc -->
 	 * @generated
 	 */
-	public void setIncludedSystemFunction(
-			SystemFunction newIncludedSystemFunction) {
+	public void setIncludedSystemFunction(SystemFunction newIncludedSystemFunction) {
 		SystemFunction oldIncludedSystemFunction = includedSystemFunction;
 		includedSystemFunction = newIncludedSystemFunction;
 		if (eNotificationRequired())
-			eNotify(new ENotificationImpl(this, Notification.SET,
-					RequirementPackage.STEP__INCLUDED_SYSTEM_FUNCTION,
+			eNotify(new ENotificationImpl(this, Notification.SET, RequirementPackage.STEP__INCLUDED_SYSTEM_FUNCTION,
 					oldIncludedSystemFunction, includedSystemFunction));
 	}
 
@@ -223,10 +217,8 @@ public class StepImpl extends ModelElementImpl implements Step {
 	 * <!-- begin-user-doc --> <!-- end-user-doc -->
 	 * @generated
 	 */
-	public NotificationChain basicSetUseCase(UseCase newUseCase,
-			NotificationChain msgs) {
-		msgs = eBasicSetContainer((InternalEObject) newUseCase,
-				RequirementPackage.STEP__USE_CASE, msgs);
+	public NotificationChain basicSetUseCase(UseCase newUseCase, NotificationChain msgs) {
+		msgs = eBasicSetContainer((InternalEObject) newUseCase, RequirementPackage.STEP__USE_CASE, msgs);
 		return msgs;
 	}
 
@@ -238,21 +230,18 @@ public class StepImpl extends ModelElementImpl implements Step {
 		if (newUseCase != eInternalContainer()
 				|| (eContainerFeatureID != RequirementPackage.STEP__USE_CASE && newUseCase != null)) {
 			if (EcoreUtil.isAncestor(this, newUseCase))
-				throw new IllegalArgumentException(
-						"Recursive containment not allowed for " + toString());
+				throw new IllegalArgumentException("Recursive containment not allowed for " + toString());
 			NotificationChain msgs = null;
 			if (eInternalContainer() != null)
 				msgs = eBasicRemoveFromContainer(msgs);
 			if (newUseCase != null)
-				msgs = ((InternalEObject) newUseCase).eInverseAdd(this,
-						RequirementPackage.USE_CASE__USE_CASE_STEPS,
+				msgs = ((InternalEObject) newUseCase).eInverseAdd(this, RequirementPackage.USE_CASE__USE_CASE_STEPS,
 						UseCase.class, msgs);
 			msgs = basicSetUseCase(newUseCase, msgs);
 			if (msgs != null)
 				msgs.dispatch();
 		} else if (eNotificationRequired())
-			eNotify(new ENotificationImpl(this, Notification.SET,
-					RequirementPackage.STEP__USE_CASE, newUseCase, newUseCase));
+			eNotify(new ENotificationImpl(this, Notification.SET, RequirementPackage.STEP__USE_CASE, newUseCase, newUseCase));
 	}
 
 	/**
@@ -260,8 +249,7 @@ public class StepImpl extends ModelElementImpl implements Step {
 	 * @generated
 	 */
 	@Override
-	public NotificationChain eInverseAdd(InternalEObject otherEnd,
-			int featureID, NotificationChain msgs) {
+	public NotificationChain eInverseAdd(InternalEObject otherEnd, int featureID, NotificationChain msgs) {
 		switch (featureID) {
 		case RequirementPackage.STEP__USE_CASE:
 			if (eInternalContainer() != null)
@@ -276,8 +264,7 @@ public class StepImpl extends ModelElementImpl implements Step {
 	 * @generated
 	 */
 	@Override
-	public NotificationChain eInverseRemove(InternalEObject otherEnd,
-			int featureID, NotificationChain msgs) {
+	public NotificationChain eInverseRemove(InternalEObject otherEnd, int featureID, NotificationChain msgs) {
 		switch (featureID) {
 		case RequirementPackage.STEP__USE_CASE:
 			return basicSetUseCase(null, msgs);
@@ -290,13 +277,10 @@ public class StepImpl extends ModelElementImpl implements Step {
 	 * @generated
 	 */
 	@Override
-	public NotificationChain eBasicRemoveFromContainerFeature(
-			NotificationChain msgs) {
+	public NotificationChain eBasicRemoveFromContainerFeature(NotificationChain msgs) {
 		switch (eContainerFeatureID) {
 		case RequirementPackage.STEP__USE_CASE:
-			return eInternalContainer().eInverseRemove(this,
-					RequirementPackage.USE_CASE__USE_CASE_STEPS, UseCase.class,
-					msgs);
+			return eInternalContainer().eInverseRemove(this, RequirementPackage.USE_CASE__USE_CASE_STEPS, UseCase.class, msgs);
 		}
 		return super.eBasicRemoveFromContainerFeature(msgs);
 	}

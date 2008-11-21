@@ -28,8 +28,7 @@ import org.unicase.model.rationale.Issue;
  *
  * @generated
  */
-public class IssueMeetingSectionImpl extends MeetingSectionImpl implements
-		IssueMeetingSection {
+public class IssueMeetingSectionImpl extends MeetingSectionImpl implements IssueMeetingSection {
 	/**
 	 * The cached value of the '{@link #getIncludedIssues() <em>Included Issues</em>}' reference list.
 	 * <!-- begin-user-doc -->
@@ -66,8 +65,8 @@ public class IssueMeetingSectionImpl extends MeetingSectionImpl implements
 	 */
 	public EList<Issue> getIncludedIssues() {
 		if (includedIssues == null) {
-			includedIssues = new EObjectResolvingEList<Issue>(Issue.class,
-					this, MeetingPackage.ISSUE_MEETING_SECTION__INCLUDED_ISSUES);
+			includedIssues = new EObjectResolvingEList<Issue>(Issue.class, this,
+					MeetingPackage.ISSUE_MEETING_SECTION__INCLUDED_ISSUES);
 		}
 		return includedIssues;
 	}

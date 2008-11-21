@@ -31,8 +31,7 @@ public class ModelFactoryImpl extends EFactoryImpl implements ModelFactory {
 	 */
 	public static ModelFactory init() {
 		try {
-			ModelFactory theModelFactory = (ModelFactory) EPackage.Registry.INSTANCE
-					.getEFactory("http://unicase.org/model");
+			ModelFactory theModelFactory = (ModelFactory) EPackage.Registry.INSTANCE.getEFactory("http://unicase.org/model");
 			if (theModelFactory != null) {
 				return theModelFactory;
 			}
@@ -66,8 +65,7 @@ public class ModelFactoryImpl extends EFactoryImpl implements ModelFactory {
 		case ModelPackage.MODEL_ELEMENT_ID:
 			return createModelElementId();
 		default:
-			throw new IllegalArgumentException("The class '" + eClass.getName()
-					+ "' is not a valid classifier");
+			throw new IllegalArgumentException("The class '" + eClass.getName() + "' is not a valid classifier");
 		}
 	}
 

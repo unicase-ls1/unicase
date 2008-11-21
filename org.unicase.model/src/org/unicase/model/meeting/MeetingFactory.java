@@ -23,8 +23,7 @@ public interface MeetingFactory extends EFactory {
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
-	MeetingFactory eINSTANCE = org.unicase.model.meeting.impl.MeetingFactoryImpl
-			.init();
+	MeetingFactory eINSTANCE = org.unicase.model.meeting.impl.MeetingFactoryImpl.init();
 
 	/**
 	 * Returns a new object of class '<em>Meeting</em>'.

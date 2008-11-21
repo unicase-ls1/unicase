@@ -149,8 +149,7 @@ public enum VisibilityType implements Enumerator {
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
-	private static final VisibilityType[] VALUES_ARRAY = new VisibilityType[] {
-			UNDEFINED, PACKAGE, PRIVATE, GLOBAL, PROTECTED, };
+	private static final VisibilityType[] VALUES_ARRAY = new VisibilityType[] { UNDEFINED, PACKAGE, PRIVATE, GLOBAL, PROTECTED, };
 
 	/**
 	 * A public read-only list of all the '<em><b>Visibility Type</b></em>' enumerators.
@@ -158,8 +157,7 @@ public enum VisibilityType implements Enumerator {
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
-	public static final List<VisibilityType> VALUES = Collections
-			.unmodifiableList(Arrays.asList(VALUES_ARRAY));
+	public static final List<VisibilityType> VALUES = Collections.unmodifiableList(Arrays.asList(VALUES_ARRAY));
 
 	/**
 	 * Returns the '<em><b>Visibility Type</b></em>' literal with the specified literal value.

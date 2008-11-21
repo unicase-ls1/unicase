@@ -46,7 +46,7 @@ public interface Method extends ModelElement {
 	 * @see org.unicase.model.classes.VisibilityType
 	 * @see #setVisibility(VisibilityType)
 	 * @see org.unicase.model.classes.ClassesPackage#getMethod_Visibility()
-	 * @model
+	 * @model annotation="org.unicase.ui.meeditor priority='11.0' position='left'"
 	 * @generated
 	 */
 	VisibilityType getVisibility();
@@ -75,7 +75,7 @@ public interface Method extends ModelElement {
 	 * @see org.unicase.model.classes.ScopeType
 	 * @see #setScope(ScopeType)
 	 * @see org.unicase.model.classes.ClassesPackage#getMethod_Scope()
-	 * @model
+	 * @model annotation="org.unicase.ui.meeditor priority='12.0' position='left'"
 	 * @generated
 	 */
 	ScopeType getScope();
@@ -105,6 +105,7 @@ public interface Method extends ModelElement {
 	 * @see org.unicase.model.classes.ClassesPackage#getMethod_DefiningClass()
 	 * @see org.unicase.model.classes.Class#getMethods
 	 * @model opposite="methods" transient="false"
+	 *        annotation="org.unicase.ui.meeditor priority='10.0' position='left'"
 	 * @generated
 	 */
 	org.unicase.model.classes.Class getDefiningClass();
@@ -130,7 +131,7 @@ public interface Method extends ModelElement {
 	 * @return the value of the '<em>Return Type</em>' attribute.
 	 * @see #setReturnType(String)
 	 * @see org.unicase.model.classes.ClassesPackage#getMethod_ReturnType()
-	 * @model
+	 * @model annotation="org.unicase.ui.meeditor priority='13.0' position='left'"
 	 * @generated
 	 */
 	String getReturnType();
@@ -188,7 +189,7 @@ public interface Method extends ModelElement {
 	 * @return the value of the '<em>Properties</em>' attribute.
 	 * @see #setProperties(String)
 	 * @see org.unicase.model.classes.ClassesPackage#getMethod_Properties()
-	 * @model
+	 * @model annotation="org.unicase.ui.meeditor priority='14.0' position='left'"
 	 * @generated
 	 */
 	String getProperties();
@@ -214,7 +215,7 @@ public interface Method extends ModelElement {
 	 * @return the value of the '<em>Label</em>' attribute.
 	 * @see #setLabel(String)
 	 * @see org.unicase.model.classes.ClassesPackage#getMethod_Label()
-	 * @model
+	 * @model annotation="org.unicase.ui.meeditor priority='15.0' position='left'"
 	 * @generated
 	 */
 	String getLabel();

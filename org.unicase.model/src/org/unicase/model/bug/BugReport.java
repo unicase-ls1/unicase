@@ -73,7 +73,7 @@ public interface BugReport extends WorkItem, Checkable {
 	 * @see org.unicase.model.bug.Severity
 	 * @see #setSeverity(Severity)
 	 * @see org.unicase.model.bug.BugPackage#getBugReport_Severity()
-	 * @model
+	 * @model annotation="org.unicase.ui.meeditor priority='9.5' position='left'"
 	 * @generated
 	 */
 	Severity getSeverity();
@@ -99,7 +99,7 @@ public interface BugReport extends WorkItem, Checkable {
 	 * @return the value of the '<em>Resolution</em>' attribute.
 	 * @see #setResolution(String)
 	 * @see org.unicase.model.bug.BugPackage#getBugReport_Resolution()
-	 * @model
+	 * @model annotation="org.unicase.ui.meeditor priority='21.0' position='left'"
 	 * @generated
 	 */
 	String getResolution();
@@ -127,7 +127,7 @@ public interface BugReport extends WorkItem, Checkable {
 	 * @see org.unicase.model.bug.ResolutionType
 	 * @see #setResolutionType(ResolutionType)
 	 * @see org.unicase.model.bug.BugPackage#getBugReport_ResolutionType()
-	 * @model
+	 * @model annotation="org.unicase.ui.meeditor priority='22.0' position='left'"
 	 * @generated
 	 */
 	ResolutionType getResolutionType();

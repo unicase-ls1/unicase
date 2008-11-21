@@ -55,8 +55,7 @@ public interface ClassesPackage extends EPackage {
 	 * end-user-doc -->
 	 * @generated
 	 */
-	ClassesPackage eINSTANCE = org.unicase.model.classes.impl.ClassesPackageImpl
-			.init();
+	ClassesPackage eINSTANCE = org.unicase.model.classes.impl.ClassesPackageImpl.init();
 
 	/**
 	 * The meta object id for the '{@link org.unicase.model.classes.impl.PackageElementImpl <em>Package Element</em>}' class.
@@ -1999,8 +1998,7 @@ public interface ClassesPackage extends EPackage {
 		 * 
 		 * @generated
 		 */
-		EReference CLASS__PARTICIPATED_USE_CASES = eINSTANCE
-				.getClass_ParticipatedUseCases();
+		EReference CLASS__PARTICIPATED_USE_CASES = eINSTANCE.getClass_ParticipatedUseCases();
 		/**
 		 * The meta object literal for the '<em><b>Super Classes</b></em>' reference list feature.
 		 * <!-- begin-user-doc -->
@@ -2021,8 +2019,7 @@ public interface ClassesPackage extends EPackage {
 		 * 
 		 * @generated
 		 */
-		EReference CLASS__INCOMING_ASSOCIATIONS = eINSTANCE
-				.getClass_IncomingAssociations();
+		EReference CLASS__INCOMING_ASSOCIATIONS = eINSTANCE.getClass_IncomingAssociations();
 		/**
 		 * The meta object literal for the '
 		 * <em><b>Outgoing Associations</b></em>' reference list feature. <!--
@@ -2030,8 +2027,7 @@ public interface ClassesPackage extends EPackage {
 		 * 
 		 * @generated
 		 */
-		EReference CLASS__OUTGOING_ASSOCIATIONS = eINSTANCE
-				.getClass_OutgoingAssociations();
+		EReference CLASS__OUTGOING_ASSOCIATIONS = eINSTANCE.getClass_OutgoingAssociations();
 		/**
 		 * The meta object literal for the '<em><b>Attributes</b></em>' containment reference list feature.
 		 * <!-- begin-user-doc -->
@@ -2059,8 +2055,7 @@ public interface ClassesPackage extends EPackage {
 		 * <!-- begin-user-doc --> <!-- end-user-doc -->
 		 * @generated
 		 */
-		EReference PACKAGE__CONTAINED_PACKAGE_ELEMENTS = eINSTANCE
-				.getPackage_ContainedPackageElements();
+		EReference PACKAGE__CONTAINED_PACKAGE_ELEMENTS = eINSTANCE.getPackage_ContainedPackageElements();
 		/**
 		 * The meta object literal for the '<em><b>Facade Class</b></em>' reference feature.
 		 * <!-- begin-user-doc -->
@@ -2083,24 +2078,21 @@ public interface ClassesPackage extends EPackage {
 		 * end-user-doc -->
 		 * @generated
 		 */
-		EReference PACKAGE_ELEMENT__PARENT_PACKAGE = eINSTANCE
-				.getPackageElement_ParentPackage();
+		EReference PACKAGE_ELEMENT__PARENT_PACKAGE = eINSTANCE.getPackageElement_ParentPackage();
 		/**
 		 * The meta object literal for the '<em><b>Outgoing Dependencies</b></em>' reference list feature.
 		 * <!-- begin-user-doc -->
 		 * <!-- end-user-doc -->
 		 * @generated
 		 */
-		EReference PACKAGE_ELEMENT__OUTGOING_DEPENDENCIES = eINSTANCE
-				.getPackageElement_OutgoingDependencies();
+		EReference PACKAGE_ELEMENT__OUTGOING_DEPENDENCIES = eINSTANCE.getPackageElement_OutgoingDependencies();
 		/**
 		 * The meta object literal for the '<em><b>Incoming Dependencies</b></em>' reference list feature.
 		 * <!-- begin-user-doc -->
 		 * <!-- end-user-doc -->
 		 * @generated
 		 */
-		EReference PACKAGE_ELEMENT__INCOMING_DEPENDENCIES = eINSTANCE
-				.getPackageElement_IncomingDependencies();
+		EReference PACKAGE_ELEMENT__INCOMING_DEPENDENCIES = eINSTANCE.getPackageElement_IncomingDependencies();
 		/**
 		 * The meta object literal for the '{@link org.unicase.model.classes.impl.AssociationImpl <em>Association</em>}' class.
 		 * <!-- begin-user-doc --> <!--
@@ -2134,32 +2126,28 @@ public interface ClassesPackage extends EPackage {
 		 * <!-- end-user-doc -->
 		 * @generated
 		 */
-		EAttribute ASSOCIATION__SOURCE_MULTIPLICITY = eINSTANCE
-				.getAssociation_SourceMultiplicity();
+		EAttribute ASSOCIATION__SOURCE_MULTIPLICITY = eINSTANCE.getAssociation_SourceMultiplicity();
 		/**
 		 * The meta object literal for the '<em><b>Target Multiplicity</b></em>' attribute feature.
 		 * <!-- begin-user-doc -->
 		 * <!-- end-user-doc -->
 		 * @generated
 		 */
-		EAttribute ASSOCIATION__TARGET_MULTIPLICITY = eINSTANCE
-				.getAssociation_TargetMultiplicity();
+		EAttribute ASSOCIATION__TARGET_MULTIPLICITY = eINSTANCE.getAssociation_TargetMultiplicity();
 		/**
 		 * The meta object literal for the '<em><b>Source Role</b></em>' attribute feature.
 		 * <!-- begin-user-doc -->
 		 * <!-- end-user-doc -->
 		 * @generated
 		 */
-		EAttribute ASSOCIATION__SOURCE_ROLE = eINSTANCE
-				.getAssociation_SourceRole();
+		EAttribute ASSOCIATION__SOURCE_ROLE = eINSTANCE.getAssociation_SourceRole();
 		/**
 		 * The meta object literal for the '<em><b>Target Role</b></em>' attribute feature.
 		 * <!-- begin-user-doc -->
 		 * <!-- end-user-doc -->
 		 * @generated
 		 */
-		EAttribute ASSOCIATION__TARGET_ROLE = eINSTANCE
-				.getAssociation_TargetRole();
+		EAttribute ASSOCIATION__TARGET_ROLE = eINSTANCE.getAssociation_TargetRole();
 		/**
 		 * The meta object literal for the '{@link org.unicase.model.classes.impl.AttributeImpl <em>Attribute</em>}' class.
 		 * <!-- begin-user-doc -->
@@ -2175,8 +2163,7 @@ public interface ClassesPackage extends EPackage {
 		 * <!-- end-user-doc -->
 		 * @generated
 		 */
-		EReference ATTRIBUTE__DEFINING_CLASS = eINSTANCE
-				.getAttribute_DefiningClass();
+		EReference ATTRIBUTE__DEFINING_CLASS = eINSTANCE.getAttribute_DefiningClass();
 		/**
 		 * The meta object literal for the '<em><b>Visibility</b></em>' attribute feature.
 		 * <!-- begin-user-doc -->
@@ -2211,8 +2198,7 @@ public interface ClassesPackage extends EPackage {
 		 * <!-- end-user-doc -->
 		 * @generated
 		 */
-		EAttribute ATTRIBUTE__DEFAULT_VALUE = eINSTANCE
-				.getAttribute_DefaultValue();
+		EAttribute ATTRIBUTE__DEFAULT_VALUE = eINSTANCE.getAttribute_DefaultValue();
 		/**
 		 * The meta object literal for the '<em><b>Properties</b></em>' attribute feature.
 		 * <!-- begin-user-doc -->
@@ -2314,24 +2300,21 @@ public interface ClassesPackage extends EPackage {
 		 * <!-- end-user-doc -->
 		 * @generated
 		 */
-		EAttribute METHOD_ARGUMENT__DIRECTION = eINSTANCE
-				.getMethodArgument_Direction();
+		EAttribute METHOD_ARGUMENT__DIRECTION = eINSTANCE.getMethodArgument_Direction();
 		/**
 		 * The meta object literal for the '<em><b>Default Value</b></em>' attribute feature.
 		 * <!-- begin-user-doc -->
 		 * <!-- end-user-doc -->
 		 * @generated
 		 */
-		EAttribute METHOD_ARGUMENT__DEFAULT_VALUE = eINSTANCE
-				.getMethodArgument_DefaultValue();
+		EAttribute METHOD_ARGUMENT__DEFAULT_VALUE = eINSTANCE.getMethodArgument_DefaultValue();
 		/**
 		 * The meta object literal for the '<em><b>Signature</b></em>' attribute feature.
 		 * <!-- begin-user-doc -->
 		 * <!-- end-user-doc -->
 		 * @generated
 		 */
-		EAttribute METHOD_ARGUMENT__SIGNATURE = eINSTANCE
-				.getMethodArgument_Signature();
+		EAttribute METHOD_ARGUMENT__SIGNATURE = eINSTANCE.getMethodArgument_Signature();
 		/**
 		 * The meta object literal for the '<em><b>Label</b></em>' attribute feature.
 		 * <!-- begin-user-doc -->

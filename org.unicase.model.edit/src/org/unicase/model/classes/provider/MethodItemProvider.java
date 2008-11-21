@@ -34,9 +34,8 @@ import org.unicase.model.provider.ModelElementItemProvider;
  * <!-- end-user-doc -->
  * @generated
  */
-public class MethodItemProvider extends ModelElementItemProvider implements
-		IEditingDomainItemProvider, IStructuredItemContentProvider,
-		ITreeItemContentProvider, IItemLabelProvider, IItemPropertySource {
+public class MethodItemProvider extends ModelElementItemProvider implements IEditingDomainItemProvider,
+		IStructuredItemContentProvider, ITreeItemContentProvider, IItemLabelProvider, IItemPropertySource {
 	/**
 	 * This constructs an instance from a factory and a notifier.
 	 * <!-- begin-user-doc -->
@@ -76,14 +75,11 @@ public class MethodItemProvider extends ModelElementItemProvider implements
 	 * @generated
 	 */
 	protected void addVisibilityPropertyDescriptor(Object object) {
-		itemPropertyDescriptors.add(createItemPropertyDescriptor(
-				((ComposeableAdapterFactory) adapterFactory)
-						.getRootAdapterFactory(), getResourceLocator(),
-				getString("_UI_Method_visibility_feature"), getString(
-						"_UI_PropertyDescriptor_description",
-						"_UI_Method_visibility_feature", "_UI_Method_type"),
-				ClassesPackage.Literals.METHOD__VISIBILITY, true, false, false,
-				ItemPropertyDescriptor.GENERIC_VALUE_IMAGE, null, null));
+		itemPropertyDescriptors.add(createItemPropertyDescriptor(((ComposeableAdapterFactory) adapterFactory)
+				.getRootAdapterFactory(), getResourceLocator(), getString("_UI_Method_visibility_feature"), getString(
+				"_UI_PropertyDescriptor_description", "_UI_Method_visibility_feature", "_UI_Method_type"),
+				ClassesPackage.Literals.METHOD__VISIBILITY, true, false, false, ItemPropertyDescriptor.GENERIC_VALUE_IMAGE, null,
+				null));
 	}
 
 	/**
@@ -93,14 +89,12 @@ public class MethodItemProvider extends ModelElementItemProvider implements
 	 * @generated
 	 */
 	protected void addScopePropertyDescriptor(Object object) {
-		itemPropertyDescriptors.add(createItemPropertyDescriptor(
-				((ComposeableAdapterFactory) adapterFactory)
-						.getRootAdapterFactory(), getResourceLocator(),
-				getString("_UI_Method_scope_feature"), getString(
-						"_UI_PropertyDescriptor_description",
-						"_UI_Method_scope_feature", "_UI_Method_type"),
-				ClassesPackage.Literals.METHOD__SCOPE, true, false, false,
-				ItemPropertyDescriptor.GENERIC_VALUE_IMAGE, null, null));
+		itemPropertyDescriptors
+				.add(createItemPropertyDescriptor(((ComposeableAdapterFactory) adapterFactory).getRootAdapterFactory(),
+						getResourceLocator(), getString("_UI_Method_scope_feature"), getString(
+								"_UI_PropertyDescriptor_description", "_UI_Method_scope_feature", "_UI_Method_type"),
+						ClassesPackage.Literals.METHOD__SCOPE, true, false, false, ItemPropertyDescriptor.GENERIC_VALUE_IMAGE,
+						null, null));
 	}
 
 	/**
@@ -110,14 +104,10 @@ public class MethodItemProvider extends ModelElementItemProvider implements
 	 * @generated
 	 */
 	protected void addDefiningClassPropertyDescriptor(Object object) {
-		itemPropertyDescriptors.add(createItemPropertyDescriptor(
-				((ComposeableAdapterFactory) adapterFactory)
-						.getRootAdapterFactory(), getResourceLocator(),
-				getString("_UI_Method_definingClass_feature"), getString(
-						"_UI_PropertyDescriptor_description",
-						"_UI_Method_definingClass_feature", "_UI_Method_type"),
-				ClassesPackage.Literals.METHOD__DEFINING_CLASS, true, false,
-				false, null, null, null));
+		itemPropertyDescriptors.add(createItemPropertyDescriptor(((ComposeableAdapterFactory) adapterFactory)
+				.getRootAdapterFactory(), getResourceLocator(), getString("_UI_Method_definingClass_feature"), getString(
+				"_UI_PropertyDescriptor_description", "_UI_Method_definingClass_feature", "_UI_Method_type"),
+				ClassesPackage.Literals.METHOD__DEFINING_CLASS, true, false, false, null, null, null));
 	}
 
 	/**
@@ -127,14 +117,11 @@ public class MethodItemProvider extends ModelElementItemProvider implements
 	 * @generated
 	 */
 	protected void addReturnTypePropertyDescriptor(Object object) {
-		itemPropertyDescriptors.add(createItemPropertyDescriptor(
-				((ComposeableAdapterFactory) adapterFactory)
-						.getRootAdapterFactory(), getResourceLocator(),
-				getString("_UI_Method_returnType_feature"), getString(
-						"_UI_PropertyDescriptor_description",
-						"_UI_Method_returnType_feature", "_UI_Method_type"),
-				ClassesPackage.Literals.METHOD__RETURN_TYPE, true, false,
-				false, ItemPropertyDescriptor.GENERIC_VALUE_IMAGE, null, null));
+		itemPropertyDescriptors.add(createItemPropertyDescriptor(((ComposeableAdapterFactory) adapterFactory)
+				.getRootAdapterFactory(), getResourceLocator(), getString("_UI_Method_returnType_feature"), getString(
+				"_UI_PropertyDescriptor_description", "_UI_Method_returnType_feature", "_UI_Method_type"),
+				ClassesPackage.Literals.METHOD__RETURN_TYPE, true, false, false, ItemPropertyDescriptor.GENERIC_VALUE_IMAGE,
+				null, null));
 	}
 
 	/**
@@ -144,14 +131,10 @@ public class MethodItemProvider extends ModelElementItemProvider implements
 	 * @generated
 	 */
 	protected void addArgumentsPropertyDescriptor(Object object) {
-		itemPropertyDescriptors.add(createItemPropertyDescriptor(
-				((ComposeableAdapterFactory) adapterFactory)
-						.getRootAdapterFactory(), getResourceLocator(),
-				getString("_UI_Method_arguments_feature"), getString(
-						"_UI_PropertyDescriptor_description",
-						"_UI_Method_arguments_feature", "_UI_Method_type"),
-				ClassesPackage.Literals.METHOD__ARGUMENTS, true, false, false,
-				null, null, null));
+		itemPropertyDescriptors.add(createItemPropertyDescriptor(((ComposeableAdapterFactory) adapterFactory)
+				.getRootAdapterFactory(), getResourceLocator(), getString("_UI_Method_arguments_feature"), getString(
+				"_UI_PropertyDescriptor_description", "_UI_Method_arguments_feature", "_UI_Method_type"),
+				ClassesPackage.Literals.METHOD__ARGUMENTS, true, false, false, null, null, null));
 	}
 
 	/**
@@ -161,14 +144,11 @@ public class MethodItemProvider extends ModelElementItemProvider implements
 	 * @generated
 	 */
 	protected void addPropertiesPropertyDescriptor(Object object) {
-		itemPropertyDescriptors.add(createItemPropertyDescriptor(
-				((ComposeableAdapterFactory) adapterFactory)
-						.getRootAdapterFactory(), getResourceLocator(),
-				getString("_UI_Method_properties_feature"), getString(
-						"_UI_PropertyDescriptor_description",
-						"_UI_Method_properties_feature", "_UI_Method_type"),
-				ClassesPackage.Literals.METHOD__PROPERTIES, true, false, false,
-				ItemPropertyDescriptor.GENERIC_VALUE_IMAGE, null, null));
+		itemPropertyDescriptors.add(createItemPropertyDescriptor(((ComposeableAdapterFactory) adapterFactory)
+				.getRootAdapterFactory(), getResourceLocator(), getString("_UI_Method_properties_feature"), getString(
+				"_UI_PropertyDescriptor_description", "_UI_Method_properties_feature", "_UI_Method_type"),
+				ClassesPackage.Literals.METHOD__PROPERTIES, true, false, false, ItemPropertyDescriptor.GENERIC_VALUE_IMAGE, null,
+				null));
 	}
 
 	/**
@@ -178,14 +158,12 @@ public class MethodItemProvider extends ModelElementItemProvider implements
 	 * @generated
 	 */
 	protected void addLabelPropertyDescriptor(Object object) {
-		itemPropertyDescriptors.add(createItemPropertyDescriptor(
-				((ComposeableAdapterFactory) adapterFactory)
-						.getRootAdapterFactory(), getResourceLocator(),
-				getString("_UI_Method_label_feature"), getString(
-						"_UI_PropertyDescriptor_description",
-						"_UI_Method_label_feature", "_UI_Method_type"),
-				ClassesPackage.Literals.METHOD__LABEL, true, false, false,
-				ItemPropertyDescriptor.GENERIC_VALUE_IMAGE, null, null));
+		itemPropertyDescriptors
+				.add(createItemPropertyDescriptor(((ComposeableAdapterFactory) adapterFactory).getRootAdapterFactory(),
+						getResourceLocator(), getString("_UI_Method_label_feature"), getString(
+								"_UI_PropertyDescriptor_description", "_UI_Method_label_feature", "_UI_Method_type"),
+						ClassesPackage.Literals.METHOD__LABEL, true, false, false, ItemPropertyDescriptor.GENERIC_VALUE_IMAGE,
+						null, null));
 	}
 
 	/**
@@ -197,8 +175,7 @@ public class MethodItemProvider extends ModelElementItemProvider implements
 	 * @generated
 	 */
 	@Override
-	public Collection<? extends EStructuralFeature> getChildrenFeatures(
-			Object object) {
+	public Collection<? extends EStructuralFeature> getChildrenFeatures(Object object) {
 		if (childrenFeatures == null) {
 			super.getChildrenFeatures(object);
 			childrenFeatures.add(ClassesPackage.Literals.METHOD__ARGUMENTS);
@@ -227,8 +204,7 @@ public class MethodItemProvider extends ModelElementItemProvider implements
 	 */
 	@Override
 	public Object getImage(Object object) {
-		return overlayImage(object, getResourceLocator().getImage(
-				"full/obj16/Method"));
+		return overlayImage(object, getResourceLocator().getImage("full/obj16/Method"));
 	}
 
 	/**
@@ -241,8 +217,7 @@ public class MethodItemProvider extends ModelElementItemProvider implements
 	@Override
 	public String getText(Object object) {
 		String label = ((Method) object).getLabel();
-		return label == null || label.length() == 0 ? getString("_UI_Method_type")
-				: label;
+		return label == null || label.length() == 0 ? getString("_UI_Method_type") : label;
 	}
 
 	/**
@@ -263,12 +238,10 @@ public class MethodItemProvider extends ModelElementItemProvider implements
 		case ClassesPackage.METHOD__SIGNATURE:
 		case ClassesPackage.METHOD__PROPERTIES:
 		case ClassesPackage.METHOD__LABEL:
-			fireNotifyChanged(new ViewerNotification(notification, notification
-					.getNotifier(), false, true));
+			fireNotifyChanged(new ViewerNotification(notification, notification.getNotifier(), false, true));
 			return;
 		case ClassesPackage.METHOD__ARGUMENTS:
-			fireNotifyChanged(new ViewerNotification(notification, notification
-					.getNotifier(), true, false));
+			fireNotifyChanged(new ViewerNotification(notification, notification.getNotifier(), true, false));
 			return;
 		}
 		super.notifyChanged(notification);
@@ -282,13 +255,11 @@ public class MethodItemProvider extends ModelElementItemProvider implements
 	 * @generated
 	 */
 	@Override
-	protected void collectNewChildDescriptors(
-			Collection<Object> newChildDescriptors, Object object) {
+	protected void collectNewChildDescriptors(Collection<Object> newChildDescriptors, Object object) {
 		super.collectNewChildDescriptors(newChildDescriptors, object);
 
-		newChildDescriptors.add(createChildParameter(
-				ClassesPackage.Literals.METHOD__ARGUMENTS,
-				ClassesFactory.eINSTANCE.createMethodArgument()));
+		newChildDescriptors.add(createChildParameter(ClassesPackage.Literals.METHOD__ARGUMENTS, ClassesFactory.eINSTANCE
+				.createMethodArgument()));
 	}
 
 	/**

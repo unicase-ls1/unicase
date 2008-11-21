@@ -31,8 +31,7 @@ import org.unicase.model.ModelPackage;
  *
  * @generated
  */
-public abstract class AttachmentImpl extends ModelElementImpl implements
-		Attachment {
+public abstract class AttachmentImpl extends ModelElementImpl implements Attachment {
 	/**
 	 * The cached value of the '{@link #getReferringModelElements() <em>Referring Model Elements</em>}' reference list.
 	 * <!-- begin-user-doc -->
@@ -69,10 +68,8 @@ public abstract class AttachmentImpl extends ModelElementImpl implements
 	 */
 	public EList<ModelElement> getReferringModelElements() {
 		if (referringModelElements == null) {
-			referringModelElements = new EObjectWithInverseResolvingEList.ManyInverse<ModelElement>(
-					ModelElement.class, this,
-					ModelPackage.ATTACHMENT__REFERRING_MODEL_ELEMENTS,
-					ModelPackage.MODEL_ELEMENT__ATTACHMENTS);
+			referringModelElements = new EObjectWithInverseResolvingEList.ManyInverse<ModelElement>(ModelElement.class, this,
+					ModelPackage.ATTACHMENT__REFERRING_MODEL_ELEMENTS, ModelPackage.MODEL_ELEMENT__ATTACHMENTS);
 		}
 		return referringModelElements;
 	}
@@ -84,12 +81,10 @@ public abstract class AttachmentImpl extends ModelElementImpl implements
 	 */
 	@SuppressWarnings("unchecked")
 	@Override
-	public NotificationChain eInverseAdd(InternalEObject otherEnd,
-			int featureID, NotificationChain msgs) {
+	public NotificationChain eInverseAdd(InternalEObject otherEnd, int featureID, NotificationChain msgs) {
 		switch (featureID) {
 		case ModelPackage.ATTACHMENT__REFERRING_MODEL_ELEMENTS:
-			return ((InternalEList<InternalEObject>) (InternalEList<?>) getReferringModelElements())
-					.basicAdd(otherEnd, msgs);
+			return ((InternalEList<InternalEObject>) (InternalEList<?>) getReferringModelElements()).basicAdd(otherEnd, msgs);
 		}
 		return super.eInverseAdd(otherEnd, featureID, msgs);
 	}
@@ -100,12 +95,10 @@ public abstract class AttachmentImpl extends ModelElementImpl implements
 	 * @generated
 	 */
 	@Override
-	public NotificationChain eInverseRemove(InternalEObject otherEnd,
-			int featureID, NotificationChain msgs) {
+	public NotificationChain eInverseRemove(InternalEObject otherEnd, int featureID, NotificationChain msgs) {
 		switch (featureID) {
 		case ModelPackage.ATTACHMENT__REFERRING_MODEL_ELEMENTS:
-			return ((InternalEList<?>) getReferringModelElements())
-					.basicRemove(otherEnd, msgs);
+			return ((InternalEList<?>) getReferringModelElements()).basicRemove(otherEnd, msgs);
 		}
 		return super.eInverseRemove(otherEnd, featureID, msgs);
 	}
@@ -135,8 +128,7 @@ public abstract class AttachmentImpl extends ModelElementImpl implements
 		switch (featureID) {
 		case ModelPackage.ATTACHMENT__REFERRING_MODEL_ELEMENTS:
 			getReferringModelElements().clear();
-			getReferringModelElements().addAll(
-					(Collection<? extends ModelElement>) newValue);
+			getReferringModelElements().addAll((Collection<? extends ModelElement>) newValue);
 			return;
 		}
 		super.eSet(featureID, newValue);
@@ -166,8 +158,7 @@ public abstract class AttachmentImpl extends ModelElementImpl implements
 	public boolean eIsSet(int featureID) {
 		switch (featureID) {
 		case ModelPackage.ATTACHMENT__REFERRING_MODEL_ELEMENTS:
-			return referringModelElements != null
-					&& !referringModelElements.isEmpty();
+			return referringModelElements != null && !referringModelElements.isEmpty();
 		}
 		return super.eIsSet(featureID);
 	}

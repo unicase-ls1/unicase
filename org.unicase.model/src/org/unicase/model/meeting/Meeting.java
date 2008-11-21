@@ -50,7 +50,7 @@ public interface Meeting extends ModelElement {
 	 * @return the value of the '<em>Location</em>' attribute.
 	 * @see #setLocation(String)
 	 * @see org.unicase.model.meeting.MeetingPackage#getMeeting_Location()
-	 * @model
+	 * @model annotation="org.unicase.ui.meeditor priority='10.0' position='left'"
 	 * @generated
 	 */
 	String getLocation();
@@ -76,7 +76,7 @@ public interface Meeting extends ModelElement {
 	 * @return the value of the '<em>Starttime</em>' attribute.
 	 * @see #setStarttime(Date)
 	 * @see org.unicase.model.meeting.MeetingPackage#getMeeting_Starttime()
-	 * @model
+	 * @model annotation="org.unicase.ui.meeditor priority='11.0' position='left'"
 	 * @generated
 	 */
 	Date getStarttime();
@@ -102,7 +102,7 @@ public interface Meeting extends ModelElement {
 	 * @return the value of the '<em>Endtime</em>' attribute.
 	 * @see #setEndtime(Date)
 	 * @see org.unicase.model.meeting.MeetingPackage#getMeeting_Endtime()
-	 * @model
+	 * @model annotation="org.unicase.ui.meeditor priority='11.0' position='left'"
 	 * @generated
 	 */
 	Date getEndtime();
@@ -129,6 +129,7 @@ public interface Meeting extends ModelElement {
 	 * @see #setFacilitator(User)
 	 * @see org.unicase.model.meeting.MeetingPackage#getMeeting_Facilitator()
 	 * @model keys="identifier"
+	 *        annotation="org.unicase.ui.meeditor priority='12.0' position='left'"
 	 * @generated
 	 */
 	User getFacilitator();
@@ -155,6 +156,7 @@ public interface Meeting extends ModelElement {
 	 * @see #setMinutetaker(User)
 	 * @see org.unicase.model.meeting.MeetingPackage#getMeeting_Minutetaker()
 	 * @model keys="identifier"
+	 *        annotation="org.unicase.ui.meeditor priority='12.0' position='left'"
 	 * @generated
 	 */
 	User getMinutetaker();
@@ -181,6 +183,7 @@ public interface Meeting extends ModelElement {
 	 * @see #setTimekeeper(User)
 	 * @see org.unicase.model.meeting.MeetingPackage#getMeeting_Timekeeper()
 	 * @model keys="identifier"
+	 *        annotation="org.unicase.ui.meeditor priority='12.0' position='left'"
 	 * @generated
 	 */
 	User getTimekeeper();
@@ -207,6 +210,7 @@ public interface Meeting extends ModelElement {
 	 * @return the value of the '<em>Participants</em>' reference list.
 	 * @see org.unicase.model.meeting.MeetingPackage#getMeeting_Participants()
 	 * @model keys="identifier"
+	 *        annotation="org.unicase.ui.meeditor priority='10.0' position='right'"
 	 * @generated
 	 */
 	EList<OrgUnit> getParticipants();
@@ -223,6 +227,7 @@ public interface Meeting extends ModelElement {
 	 * @return the value of the '<em>Sections</em>' containment reference list.
 	 * @see org.unicase.model.meeting.MeetingPackage#getMeeting_Sections()
 	 * @model containment="true" resolveProxies="true" keys="identifier"
+	 *        annotation="org.unicase.ui.meeditor priority='11.0' position='right'"
 	 * @generated
 	 */
 	EList<MeetingSection> getSections();
@@ -239,6 +244,7 @@ public interface Meeting extends ModelElement {
 	 * @see #setIdentifiedIssuesSection(IssueMeetingSection)
 	 * @see org.unicase.model.meeting.MeetingPackage#getMeeting_IdentifiedIssuesSection()
 	 * @model keys="identifier"
+	 *        annotation="org.unicase.ui.meeditor priority='13.0' position='left'"
 	 * @generated
 	 */
 	IssueMeetingSection getIdentifiedIssuesSection();
@@ -265,6 +271,7 @@ public interface Meeting extends ModelElement {
 	 * @see #setIdentifiedWorkItemsSection(WorkItemMeetingSection)
 	 * @see org.unicase.model.meeting.MeetingPackage#getMeeting_IdentifiedWorkItemsSection()
 	 * @model keys="identifier"
+	 *        annotation="org.unicase.ui.meeditor priority='14.0' position='left'"
 	 * @generated
 	 */
 	WorkItemMeetingSection getIdentifiedWorkItemsSection();

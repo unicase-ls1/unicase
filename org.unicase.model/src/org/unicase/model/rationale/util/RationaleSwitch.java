@@ -77,8 +77,7 @@ public class RationaleSwitch<T> {
 			return doSwitch(theEClass.getClassifierID(), theEObject);
 		} else {
 			List<EClass> eSuperTypes = theEClass.getESuperTypes();
-			return eSuperTypes.isEmpty() ? defaultCase(theEObject) : doSwitch(
-					eSuperTypes.get(0), theEObject);
+			return eSuperTypes.isEmpty() ? defaultCase(theEObject) : doSwitch(eSuperTypes.get(0), theEObject);
 		}
 	}
 

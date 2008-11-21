@@ -33,9 +33,8 @@ import org.unicase.model.rationale.RationalePackage;
  * <!-- end-user-doc -->
  * @generated
  */
-public class ProposalItemProvider extends ModelElementItemProvider implements
-		IEditingDomainItemProvider, IStructuredItemContentProvider,
-		ITreeItemContentProvider, IItemLabelProvider, IItemPropertySource {
+public class ProposalItemProvider extends ModelElementItemProvider implements IEditingDomainItemProvider,
+		IStructuredItemContentProvider, ITreeItemContentProvider, IItemLabelProvider, IItemPropertySource {
 	/**
 	 * This constructs an instance from a factory and a notifier. <!--
 	 * begin-user-doc --> <!-- end-user-doc -->
@@ -70,16 +69,10 @@ public class ProposalItemProvider extends ModelElementItemProvider implements
 	 * @generated
 	 */
 	protected void addAssessmentsPropertyDescriptor(Object object) {
-		itemPropertyDescriptors
-				.add(createItemPropertyDescriptor(
-						((ComposeableAdapterFactory) adapterFactory)
-								.getRootAdapterFactory(), getResourceLocator(),
-						getString("_UI_Proposal_assessments_feature"),
-						getString("_UI_PropertyDescriptor_description",
-								"_UI_Proposal_assessments_feature",
-								"_UI_Proposal_type"),
-						RationalePackage.Literals.PROPOSAL__ASSESSMENTS, true,
-						false, false, null, null, null));
+		itemPropertyDescriptors.add(createItemPropertyDescriptor(((ComposeableAdapterFactory) adapterFactory)
+				.getRootAdapterFactory(), getResourceLocator(), getString("_UI_Proposal_assessments_feature"), getString(
+				"_UI_PropertyDescriptor_description", "_UI_Proposal_assessments_feature", "_UI_Proposal_type"),
+				RationalePackage.Literals.PROPOSAL__ASSESSMENTS, true, false, false, null, null, null));
 	}
 
 	/**
@@ -89,14 +82,10 @@ public class ProposalItemProvider extends ModelElementItemProvider implements
 	 * @generated
 	 */
 	protected void addIssuePropertyDescriptor(Object object) {
-		itemPropertyDescriptors.add(createItemPropertyDescriptor(
-				((ComposeableAdapterFactory) adapterFactory)
-						.getRootAdapterFactory(), getResourceLocator(),
-				getString("_UI_Proposal_issue_feature"), getString(
-						"_UI_PropertyDescriptor_description",
-						"_UI_Proposal_issue_feature", "_UI_Proposal_type"),
-				RationalePackage.Literals.PROPOSAL__ISSUE, true, false, false,
-				null, null, null));
+		itemPropertyDescriptors.add(createItemPropertyDescriptor(((ComposeableAdapterFactory) adapterFactory)
+				.getRootAdapterFactory(), getResourceLocator(), getString("_UI_Proposal_issue_feature"), getString(
+				"_UI_PropertyDescriptor_description", "_UI_Proposal_issue_feature", "_UI_Proposal_type"),
+				RationalePackage.Literals.PROPOSAL__ISSUE, true, false, false, null, null, null));
 	}
 
 	/**
@@ -107,12 +96,10 @@ public class ProposalItemProvider extends ModelElementItemProvider implements
 	 * @generated
 	 */
 	@Override
-	public Collection<? extends EStructuralFeature> getChildrenFeatures(
-			Object object) {
+	public Collection<? extends EStructuralFeature> getChildrenFeatures(Object object) {
 		if (childrenFeatures == null) {
 			super.getChildrenFeatures(object);
-			childrenFeatures
-					.add(RationalePackage.Literals.PROPOSAL__ASSESSMENTS);
+			childrenFeatures.add(RationalePackage.Literals.PROPOSAL__ASSESSMENTS);
 		}
 		return childrenFeatures;
 	}
@@ -136,8 +123,7 @@ public class ProposalItemProvider extends ModelElementItemProvider implements
 	 */
 	@Override
 	public Object getImage(Object object) {
-		return overlayImage(object, getResourceLocator().getImage(
-				"full/obj16/Proposal"));
+		return overlayImage(object, getResourceLocator().getImage("full/obj16/Proposal"));
 	}
 
 	/**
@@ -165,8 +151,7 @@ public class ProposalItemProvider extends ModelElementItemProvider implements
 
 		switch (notification.getFeatureID(Proposal.class)) {
 		case RationalePackage.PROPOSAL__ASSESSMENTS:
-			fireNotifyChanged(new ViewerNotification(notification, notification
-					.getNotifier(), true, false));
+			fireNotifyChanged(new ViewerNotification(notification, notification.getNotifier(), true, false));
 			return;
 		}
 		super.notifyChanged(notification);
@@ -180,13 +165,11 @@ public class ProposalItemProvider extends ModelElementItemProvider implements
 	 * @generated
 	 */
 	@Override
-	protected void collectNewChildDescriptors(
-			Collection<Object> newChildDescriptors, Object object) {
+	protected void collectNewChildDescriptors(Collection<Object> newChildDescriptors, Object object) {
 		super.collectNewChildDescriptors(newChildDescriptors, object);
 
-		newChildDescriptors.add(createChildParameter(
-				RationalePackage.Literals.PROPOSAL__ASSESSMENTS,
-				RationaleFactory.eINSTANCE.createAssessment()));
+		newChildDescriptors.add(createChildParameter(RationalePackage.Literals.PROPOSAL__ASSESSMENTS, RationaleFactory.eINSTANCE
+				.createAssessment()));
 	}
 
 	/**

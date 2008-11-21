@@ -89,7 +89,7 @@ public interface ActionItem extends WorkItem, Checkable {
 	 * @see org.unicase.model.task.ActivityType
 	 * @see #setActivity(ActivityType)
 	 * @see org.unicase.model.task.TaskPackage#getActionItem_Activity()
-	 * @model
+	 * @model annotation="org.unicase.ui.meeditor priority='9.5' position='left'"
 	 * @generated
 	 */
 	ActivityType getActivity();

@@ -20,8 +20,7 @@ import org.unicase.model.attachment.UrlAttachment;
  * <!-- end-user-doc -->
  * @generated
  */
-public class AttachmentFactoryImpl extends EFactoryImpl implements
-		AttachmentFactory {
+public class AttachmentFactoryImpl extends EFactoryImpl implements AttachmentFactory {
 	/**
 	 * Creates the default factory implementation.
 	 * <!-- begin-user-doc -->
@@ -62,8 +61,7 @@ public class AttachmentFactoryImpl extends EFactoryImpl implements
 		case AttachmentPackage.URL_ATTACHMENT:
 			return createUrlAttachment();
 		default:
-			throw new IllegalArgumentException("The class '" + eClass.getName()
-					+ "' is not a valid classifier");
+			throw new IllegalArgumentException("The class '" + eClass.getName() + "' is not a valid classifier");
 		}
 	}
 

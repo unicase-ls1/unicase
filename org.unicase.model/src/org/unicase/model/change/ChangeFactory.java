@@ -21,8 +21,7 @@ public interface ChangeFactory extends EFactory {
 	 * end-user-doc -->
 	 * @generated
 	 */
-	ChangeFactory eINSTANCE = org.unicase.model.change.impl.ChangeFactoryImpl
-			.init();
+	ChangeFactory eINSTANCE = org.unicase.model.change.impl.ChangeFactoryImpl.init();
 
 	/**
 	 * Returns a new object of class '<em>Model Change Package</em>'. <!--

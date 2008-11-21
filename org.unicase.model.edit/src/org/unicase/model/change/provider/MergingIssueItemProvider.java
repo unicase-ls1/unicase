@@ -32,9 +32,8 @@ import org.unicase.model.rationale.provider.IssueItemProvider;
  * <!-- end-user-doc -->
  * @generated
  */
-public class MergingIssueItemProvider extends IssueItemProvider implements
-		IEditingDomainItemProvider, IStructuredItemContentProvider,
-		ITreeItemContentProvider, IItemLabelProvider, IItemPropertySource {
+public class MergingIssueItemProvider extends IssueItemProvider implements IEditingDomainItemProvider,
+		IStructuredItemContentProvider, ITreeItemContentProvider, IItemLabelProvider, IItemPropertySource {
 	/**
 	 * This constructs an instance from a factory and a notifier. <!--
 	 * begin-user-doc --> <!-- end-user-doc -->
@@ -68,16 +67,11 @@ public class MergingIssueItemProvider extends IssueItemProvider implements
 	 * @generated
 	 */
 	protected void addResolvingRevisionPropertyDescriptor(Object object) {
-		itemPropertyDescriptors.add(createItemPropertyDescriptor(
-				((ComposeableAdapterFactory) adapterFactory)
-						.getRootAdapterFactory(), getResourceLocator(),
-				getString("_UI_MergingIssue_resolvingRevision_feature"),
-				getString("_UI_PropertyDescriptor_description",
-						"_UI_MergingIssue_resolvingRevision_feature",
-						"_UI_MergingIssue_type"),
-				ChangePackage.Literals.MERGING_ISSUE__RESOLVING_REVISION, true,
-				false, false, ItemPropertyDescriptor.INTEGRAL_VALUE_IMAGE,
-				null, null));
+		itemPropertyDescriptors.add(createItemPropertyDescriptor(((ComposeableAdapterFactory) adapterFactory)
+				.getRootAdapterFactory(), getResourceLocator(), getString("_UI_MergingIssue_resolvingRevision_feature"),
+				getString("_UI_PropertyDescriptor_description", "_UI_MergingIssue_resolvingRevision_feature",
+						"_UI_MergingIssue_type"), ChangePackage.Literals.MERGING_ISSUE__RESOLVING_REVISION, true, false, false,
+				ItemPropertyDescriptor.INTEGRAL_VALUE_IMAGE, null, null));
 	}
 
 	/**
@@ -88,8 +82,7 @@ public class MergingIssueItemProvider extends IssueItemProvider implements
 	 */
 	@Override
 	public Object getImage(Object object) {
-		return overlayImage(object, getResourceLocator().getImage(
-				"full/obj16/MergingIssue"));
+		return overlayImage(object, getResourceLocator().getImage("full/obj16/MergingIssue"));
 	}
 
 	/**
@@ -101,8 +94,8 @@ public class MergingIssueItemProvider extends IssueItemProvider implements
 	@Override
 	public String getText(Object object) {
 		String label = ((MergingIssue) object).getName();
-		return label == null || label.length() == 0 ? getString("_UI_MergingIssue_type")
-				: getString("_UI_MergingIssue_type") + " " + label;
+		return label == null || label.length() == 0 ? getString("_UI_MergingIssue_type") : getString("_UI_MergingIssue_type")
+				+ " " + label;
 	}
 
 	/**
@@ -118,8 +111,7 @@ public class MergingIssueItemProvider extends IssueItemProvider implements
 
 		switch (notification.getFeatureID(MergingIssue.class)) {
 		case ChangePackage.MERGING_ISSUE__RESOLVING_REVISION:
-			fireNotifyChanged(new ViewerNotification(notification, notification
-					.getNotifier(), false, true));
+			fireNotifyChanged(new ViewerNotification(notification, notification.getNotifier(), false, true));
 			return;
 		}
 		super.notifyChanged(notification);
@@ -133,8 +125,7 @@ public class MergingIssueItemProvider extends IssueItemProvider implements
 	 * @generated
 	 */
 	@Override
-	protected void collectNewChildDescriptors(
-			Collection<Object> newChildDescriptors, Object object) {
+	protected void collectNewChildDescriptors(Collection<Object> newChildDescriptors, Object object) {
 		super.collectNewChildDescriptors(newChildDescriptors, object);
 	}
 

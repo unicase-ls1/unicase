@@ -41,6 +41,7 @@ public interface NonFunctionalRequirement extends Criterion {
 	 * @see org.unicase.model.requirement.RequirementPackage#getNonFunctionalRequirement_RestrictedScenarios()
 	 * @see org.unicase.model.requirement.Scenario#getNonFunctionalRequirements
 	 * @model opposite="nonFunctionalRequirements" keys="identifier"
+	 *        annotation="org.unicase.ui.meeditor priority='9.1' position='right'"
 	 * @generated
 	 */
 	EList<Scenario> getRestrictedScenarios();
@@ -59,6 +60,7 @@ public interface NonFunctionalRequirement extends Criterion {
 	 * @see org.unicase.model.requirement.RequirementPackage#getNonFunctionalRequirement_RestrictedUseCases()
 	 * @see org.unicase.model.requirement.UseCase#getNonFunctionalRequirements
 	 * @model opposite="nonFunctionalRequirements" keys="identifier"
+	 *        annotation="org.unicase.ui.meeditor priority='9.2' position='right'"
 	 * @generated
 	 */
 	EList<UseCase> getRestrictedUseCases();

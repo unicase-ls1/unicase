@@ -30,9 +30,8 @@ import org.unicase.model.rationale.provider.SolutionItemProvider;
  * --> <!-- end-user-doc -->
  * @generated
  */
-public class MergingSolutionItemProvider extends SolutionItemProvider implements
-		IEditingDomainItemProvider, IStructuredItemContentProvider,
-		ITreeItemContentProvider, IItemLabelProvider, IItemPropertySource {
+public class MergingSolutionItemProvider extends SolutionItemProvider implements IEditingDomainItemProvider,
+		IStructuredItemContentProvider, ITreeItemContentProvider, IItemLabelProvider, IItemPropertySource {
 	/**
 	 * This constructs an instance from a factory and a notifier. <!--
 	 * begin-user-doc --> <!-- end-user-doc -->
@@ -66,15 +65,11 @@ public class MergingSolutionItemProvider extends SolutionItemProvider implements
 	 * @generated
 	 */
 	protected void addAppliedChangesPropertyDescriptor(Object object) {
-		itemPropertyDescriptors.add(createItemPropertyDescriptor(
-				((ComposeableAdapterFactory) adapterFactory)
-						.getRootAdapterFactory(), getResourceLocator(),
-				getString("_UI_MergingSolution_appliedChanges_feature"),
-				getString("_UI_PropertyDescriptor_description",
-						"_UI_MergingSolution_appliedChanges_feature",
-						"_UI_MergingSolution_type"),
-				ChangePackage.Literals.MERGING_SOLUTION__APPLIED_CHANGES, true,
-				false, true, null, null, null));
+		itemPropertyDescriptors.add(createItemPropertyDescriptor(((ComposeableAdapterFactory) adapterFactory)
+				.getRootAdapterFactory(), getResourceLocator(), getString("_UI_MergingSolution_appliedChanges_feature"),
+				getString("_UI_PropertyDescriptor_description", "_UI_MergingSolution_appliedChanges_feature",
+						"_UI_MergingSolution_type"), ChangePackage.Literals.MERGING_SOLUTION__APPLIED_CHANGES, true, false, true,
+				null, null, null));
 	}
 
 	/**
@@ -85,8 +80,7 @@ public class MergingSolutionItemProvider extends SolutionItemProvider implements
 	 */
 	@Override
 	public Object getImage(Object object) {
-		return overlayImage(object, getResourceLocator().getImage(
-				"full/obj16/MergingSolution"));
+		return overlayImage(object, getResourceLocator().getImage("full/obj16/MergingSolution"));
 	}
 
 	/**
@@ -123,8 +117,7 @@ public class MergingSolutionItemProvider extends SolutionItemProvider implements
 	 * @generated
 	 */
 	@Override
-	protected void collectNewChildDescriptors(
-			Collection<Object> newChildDescriptors, Object object) {
+	protected void collectNewChildDescriptors(Collection<Object> newChildDescriptors, Object object) {
 		super.collectNewChildDescriptors(newChildDescriptors, object);
 	}
 

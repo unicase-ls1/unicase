@@ -40,6 +40,7 @@ public interface LeafSection extends Section {
 	 * @see org.unicase.model.document.DocumentPackage#getLeafSection_ModelElements()
 	 * @see org.unicase.model.ModelElement#getLeafSection
 	 * @model opposite="leafSection" containment="true" resolveProxies="true" keys="identifier"
+	 *        annotation="org.unicase.ui.meeditor priority='20.0' position='right'"
 	 * @generated
 	 */
 	EList<ModelElement> getModelElements();
@@ -58,6 +59,7 @@ public interface LeafSection extends Section {
 	 * @see org.unicase.model.document.DocumentPackage#getLeafSection_ReferencedModelElements()
 	 * @see org.unicase.model.ModelElement#getIncomingDocumentReferences
 	 * @model opposite="incomingDocumentReferences" keys="identifier"
+	 *        annotation="org.unicase.ui.meeditor priority='21.0' position='right'"
 	 * @generated
 	 */
 	EList<ModelElement> getReferencedModelElements();

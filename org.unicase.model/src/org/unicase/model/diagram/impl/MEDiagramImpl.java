@@ -146,9 +146,7 @@ public class MEDiagramImpl extends AttachmentImpl implements MEDiagram {
 	 */
 	public EList<ModelElement> getElements() {
 		if (elements == null) {
-			elements = new EObjectResolvingEList<ModelElement>(
-					ModelElement.class, this,
-					DiagramPackage.ME_DIAGRAM__ELEMENTS);
+			elements = new EObjectResolvingEList<ModelElement>(ModelElement.class, this, DiagramPackage.ME_DIAGRAM__ELEMENTS);
 		}
 		return elements;
 	}
@@ -163,21 +161,16 @@ public class MEDiagramImpl extends AttachmentImpl implements MEDiagram {
 			gmfdiagram = (Diagram) eResolveProxy(oldGmfdiagram);
 			if (gmfdiagram != oldGmfdiagram) {
 				InternalEObject newGmfdiagram = (InternalEObject) gmfdiagram;
-				NotificationChain msgs = oldGmfdiagram.eInverseRemove(this,
-						EOPPOSITE_FEATURE_BASE
-								- DiagramPackage.ME_DIAGRAM__GMFDIAGRAM, null,
-						null);
+				NotificationChain msgs = oldGmfdiagram.eInverseRemove(this, EOPPOSITE_FEATURE_BASE
+						- DiagramPackage.ME_DIAGRAM__GMFDIAGRAM, null, null);
 				if (newGmfdiagram.eInternalContainer() == null) {
-					msgs = newGmfdiagram.eInverseAdd(this,
-							EOPPOSITE_FEATURE_BASE
-									- DiagramPackage.ME_DIAGRAM__GMFDIAGRAM,
-							null, msgs);
+					msgs = newGmfdiagram.eInverseAdd(this, EOPPOSITE_FEATURE_BASE - DiagramPackage.ME_DIAGRAM__GMFDIAGRAM, null,
+							msgs);
 				}
 				if (msgs != null)
 					msgs.dispatch();
 				if (eNotificationRequired())
-					eNotify(new ENotificationImpl(this, Notification.RESOLVE,
-							DiagramPackage.ME_DIAGRAM__GMFDIAGRAM,
+					eNotify(new ENotificationImpl(this, Notification.RESOLVE, DiagramPackage.ME_DIAGRAM__GMFDIAGRAM,
 							oldGmfdiagram, gmfdiagram));
 			}
 		}
@@ -196,13 +189,11 @@ public class MEDiagramImpl extends AttachmentImpl implements MEDiagram {
 	 * <!-- begin-user-doc --> <!-- end-user-doc -->
 	 * @generated
 	 */
-	public NotificationChain basicSetGmfdiagram(Diagram newGmfdiagram,
-			NotificationChain msgs) {
+	public NotificationChain basicSetGmfdiagram(Diagram newGmfdiagram, NotificationChain msgs) {
 		Diagram oldGmfdiagram = gmfdiagram;
 		gmfdiagram = newGmfdiagram;
 		if (eNotificationRequired()) {
-			ENotificationImpl notification = new ENotificationImpl(this,
-					Notification.SET, DiagramPackage.ME_DIAGRAM__GMFDIAGRAM,
+			ENotificationImpl notification = new ENotificationImpl(this, Notification.SET, DiagramPackage.ME_DIAGRAM__GMFDIAGRAM,
 					oldGmfdiagram, newGmfdiagram);
 			if (msgs == null)
 				msgs = notification;
@@ -220,21 +211,16 @@ public class MEDiagramImpl extends AttachmentImpl implements MEDiagram {
 		if (newGmfdiagram != gmfdiagram) {
 			NotificationChain msgs = null;
 			if (gmfdiagram != null)
-				msgs = ((InternalEObject) gmfdiagram).eInverseRemove(this,
-						EOPPOSITE_FEATURE_BASE
-								- DiagramPackage.ME_DIAGRAM__GMFDIAGRAM, null,
-						msgs);
+				msgs = ((InternalEObject) gmfdiagram).eInverseRemove(this, EOPPOSITE_FEATURE_BASE
+						- DiagramPackage.ME_DIAGRAM__GMFDIAGRAM, null, msgs);
 			if (newGmfdiagram != null)
-				msgs = ((InternalEObject) newGmfdiagram).eInverseAdd(this,
-						EOPPOSITE_FEATURE_BASE
-								- DiagramPackage.ME_DIAGRAM__GMFDIAGRAM, null,
-						msgs);
+				msgs = ((InternalEObject) newGmfdiagram).eInverseAdd(this, EOPPOSITE_FEATURE_BASE
+						- DiagramPackage.ME_DIAGRAM__GMFDIAGRAM, null, msgs);
 			msgs = basicSetGmfdiagram(newGmfdiagram, msgs);
 			if (msgs != null)
 				msgs.dispatch();
 		} else if (eNotificationRequired())
-			eNotify(new ENotificationImpl(this, Notification.SET,
-					DiagramPackage.ME_DIAGRAM__GMFDIAGRAM, newGmfdiagram,
+			eNotify(new ENotificationImpl(this, Notification.SET, DiagramPackage.ME_DIAGRAM__GMFDIAGRAM, newGmfdiagram,
 					newGmfdiagram));
 	}
 
@@ -274,8 +260,7 @@ public class MEDiagramImpl extends AttachmentImpl implements MEDiagram {
 		DiagramType oldType = type;
 		type = newType == null ? TYPE_EDEFAULT : newType;
 		if (eNotificationRequired())
-			eNotify(new ENotificationImpl(this, Notification.SET,
-					DiagramPackage.ME_DIAGRAM__TYPE, oldType, type));
+			eNotify(new ENotificationImpl(this, Notification.SET, DiagramPackage.ME_DIAGRAM__TYPE, oldType, type));
 	}
 
 	/**
@@ -294,9 +279,8 @@ public class MEDiagramImpl extends AttachmentImpl implements MEDiagram {
 		String oldDiagramLayout = diagramLayout;
 		diagramLayout = newDiagramLayout;
 		if (eNotificationRequired())
-			eNotify(new ENotificationImpl(this, Notification.SET,
-					DiagramPackage.ME_DIAGRAM__DIAGRAM_LAYOUT,
-					oldDiagramLayout, diagramLayout));
+			eNotify(new ENotificationImpl(this, Notification.SET, DiagramPackage.ME_DIAGRAM__DIAGRAM_LAYOUT, oldDiagramLayout,
+					diagramLayout));
 	}
 
 	/**
@@ -304,14 +288,12 @@ public class MEDiagramImpl extends AttachmentImpl implements MEDiagram {
 	 * @generated
 	 */
 	@Override
-	public NotificationChain eInverseRemove(InternalEObject otherEnd,
-			int featureID, NotificationChain msgs) {
+	public NotificationChain eInverseRemove(InternalEObject otherEnd, int featureID, NotificationChain msgs) {
 		switch (featureID) {
 		case DiagramPackage.ME_DIAGRAM__GMFDIAGRAM:
 			return basicSetGmfdiagram(null, msgs);
 		case DiagramPackage.ME_DIAGRAM__NEW_ELEMENTS:
-			return ((InternalEList<?>) getNewElements()).basicRemove(otherEnd,
-					msgs);
+			return ((InternalEList<?>) getNewElements()).basicRemove(otherEnd, msgs);
 		}
 		return super.eInverseRemove(otherEnd, featureID, msgs);
 	}
@@ -356,8 +338,7 @@ public class MEDiagramImpl extends AttachmentImpl implements MEDiagram {
 			return;
 		case DiagramPackage.ME_DIAGRAM__NEW_ELEMENTS:
 			getNewElements().clear();
-			getNewElements().addAll(
-					(Collection<? extends ModelElement>) newValue);
+			getNewElements().addAll((Collection<? extends ModelElement>) newValue);
 			return;
 		case DiagramPackage.ME_DIAGRAM__TYPE:
 			setType((DiagramType) newValue);
@@ -411,8 +392,7 @@ public class MEDiagramImpl extends AttachmentImpl implements MEDiagram {
 		case DiagramPackage.ME_DIAGRAM__TYPE:
 			return type != TYPE_EDEFAULT;
 		case DiagramPackage.ME_DIAGRAM__DIAGRAM_LAYOUT:
-			return DIAGRAM_LAYOUT_EDEFAULT == null ? diagramLayout != null
-					: !DIAGRAM_LAYOUT_EDEFAULT.equals(diagramLayout);
+			return DIAGRAM_LAYOUT_EDEFAULT == null ? diagramLayout != null : !DIAGRAM_LAYOUT_EDEFAULT.equals(diagramLayout);
 		}
 		return super.eIsSet(featureID);
 	}
@@ -435,10 +415,8 @@ public class MEDiagramImpl extends AttachmentImpl implements MEDiagram {
 		return result.toString();
 	}
 
-	private static final URI VIRTUAL_DIAGRAM_URI = URI
-			.createURI("virtual.diagram.uri");
-	private static final URI VIRTUAL_DIAGRAM_ELEMENTS_URI = URI
-			.createURI("virtual.diagram.elements.uri");
+	private static final URI VIRTUAL_DIAGRAM_URI = URI.createURI("virtual.diagram.uri");
+	private static final URI VIRTUAL_DIAGRAM_ELEMENTS_URI = URI.createURI("virtual.diagram.elements.uri");
 
 	/**
 	 * Load a gmf diagram from a String.
@@ -454,44 +432,36 @@ public class MEDiagramImpl extends AttachmentImpl implements MEDiagram {
 		EList<ModelElement> elements = this.getElements();
 		Map<ModelElement, Resource> resourceMap = new HashMap<ModelElement, Resource>();
 		for (ModelElement modelElement : elements) {
-			if (modelElement.eResource() != modelElement.eContainer()
-					.eResource()) {
+			if (modelElement.eResource() != modelElement.eContainer().eResource()) {
 				resourceMap.put(modelElement, modelElement.eResource());
 			}
 		}
 
 		// put all involved elements into a virtual resource set
 		ResourceSet resourceSet = new ResourceSetImpl();
-		Resource diagramResource = resourceSet
-				.createResource(VIRTUAL_DIAGRAM_URI);
-		Resource elementsResource = resourceSet
-				.createResource(VIRTUAL_DIAGRAM_ELEMENTS_URI);
+		Resource diagramResource = resourceSet.createResource(VIRTUAL_DIAGRAM_URI);
+		Resource elementsResource = resourceSet.createResource(VIRTUAL_DIAGRAM_ELEMENTS_URI);
 		elementsResource.getContents().addAll(elements);
 
 		String diagramLayout = getDiagramLayout();
 		if (diagramLayout == null) {
-			throw new DiagramLoadException(
-					"Diagram string is null, load failed.");
+			throw new DiagramLoadException("Diagram string is null, load failed.");
 		}
 		// load diagram
 		try {
-			diagramResource.load(new ByteArrayInputStream(diagramLayout
-					.getBytes("UTF-8")), null);
+			diagramResource.load(new ByteArrayInputStream(diagramLayout.getBytes("UTF-8")), null);
 		} catch (UnsupportedEncodingException e) {
-			throw new DiagramLoadException(
-					"Diagram string encoding is malformed, load failed.", e);
+			throw new DiagramLoadException("Diagram string encoding is malformed, load failed.", e);
 		} catch (IOException e) {
 			throw new DiagramLoadException("Diagram load failed.", e);
 		}
 
 		if (diagramResource.getContents().size() < 1) {
-			throw new DiagramLoadException(
-					"Diagram String does not contain anything, load failed!");
+			throw new DiagramLoadException("Diagram String does not contain anything, load failed!");
 		}
 		EObject object = diagramResource.getContents().get(0);
 		if (!(object instanceof Diagram)) {
-			throw new DiagramLoadException(
-					"Diagram String contains unexpected content: first entry is not a diagram");
+			throw new DiagramLoadException("Diagram String contains unexpected content: first entry is not a diagram");
 		}
 		@SuppressWarnings("unused")
 		EObject object2;
@@ -517,8 +487,7 @@ public class MEDiagramImpl extends AttachmentImpl implements MEDiagram {
 	}
 
 	private void saveAllResources() {
-		EList<Resource> resources = this.eResource().getResourceSet()
-				.getResources();
+		EList<Resource> resources = this.eResource().getResourceSet().getResources();
 		for (Resource resource : resources) {
 			try {
 				resource.save(null);
@@ -544,19 +513,16 @@ public class MEDiagramImpl extends AttachmentImpl implements MEDiagram {
 		EList<ModelElement> elements = this.getElements();
 		Map<ModelElement, Resource> resourceMap = new HashMap<ModelElement, Resource>();
 		for (ModelElement modelElement : elements) {
-			if (modelElement.eResource() != modelElement.eContainer()
-					.eResource()) {
+			if (modelElement.eResource() != modelElement.eContainer().eResource()) {
 				resourceMap.put(modelElement, modelElement.eResource());
 			}
 		}
 
 		// put all involved elements into a virtual resource set
 		ResourceSet resourceSet = new ResourceSetImpl();
-		Resource diagramResource = resourceSet
-				.createResource(VIRTUAL_DIAGRAM_URI);
+		Resource diagramResource = resourceSet.createResource(VIRTUAL_DIAGRAM_URI);
 
-		Resource elementsResource = resourceSet
-				.createResource(VIRTUAL_DIAGRAM_ELEMENTS_URI);
+		Resource elementsResource = resourceSet.createResource(VIRTUAL_DIAGRAM_ELEMENTS_URI);
 		elementsResource.getContents().addAll(elements);
 		diagramResource.getContents().add(getGmfdiagram());
 

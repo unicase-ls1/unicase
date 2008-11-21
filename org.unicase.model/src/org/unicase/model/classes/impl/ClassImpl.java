@@ -40,8 +40,7 @@ import org.unicase.model.requirement.UseCase;
  *
  * @generated
  */
-public class ClassImpl extends PackageElementImpl implements
-		org.unicase.model.classes.Class {
+public class ClassImpl extends PackageElementImpl implements org.unicase.model.classes.Class {
 	/**
 	 * The cached value of the '{@link #getParticipatedUseCases() <em>Participated Use Cases</em>}' reference list.
 	 * <!-- begin-user-doc -->
@@ -131,10 +130,8 @@ public class ClassImpl extends PackageElementImpl implements
 	 */
 	public EList<UseCase> getParticipatedUseCases() {
 		if (participatedUseCases == null) {
-			participatedUseCases = new EObjectWithInverseResolvingEList.ManyInverse<UseCase>(
-					UseCase.class, this,
-					ClassesPackage.CLASS__PARTICIPATED_USE_CASES,
-					RequirementPackage.USE_CASE__IDENTIFIED_CLASSES);
+			participatedUseCases = new EObjectWithInverseResolvingEList.ManyInverse<UseCase>(UseCase.class, this,
+					ClassesPackage.CLASS__PARTICIPATED_USE_CASES, RequirementPackage.USE_CASE__IDENTIFIED_CLASSES);
 		}
 		return participatedUseCases;
 	}
@@ -147,8 +144,7 @@ public class ClassImpl extends PackageElementImpl implements
 	public EList<org.unicase.model.classes.Class> getSuperClasses() {
 		if (superClasses == null) {
 			superClasses = new EObjectWithInverseResolvingEList.ManyInverse<org.unicase.model.classes.Class>(
-					org.unicase.model.classes.Class.class, this,
-					ClassesPackage.CLASS__SUPER_CLASSES,
+					org.unicase.model.classes.Class.class, this, ClassesPackage.CLASS__SUPER_CLASSES,
 					ClassesPackage.CLASS__SUB_CLASSES);
 		}
 		return superClasses;
@@ -161,8 +157,7 @@ public class ClassImpl extends PackageElementImpl implements
 	public EList<org.unicase.model.classes.Class> getSubClasses() {
 		if (subClasses == null) {
 			subClasses = new EObjectWithInverseResolvingEList.ManyInverse<org.unicase.model.classes.Class>(
-					org.unicase.model.classes.Class.class, this,
-					ClassesPackage.CLASS__SUB_CLASSES,
+					org.unicase.model.classes.Class.class, this, ClassesPackage.CLASS__SUB_CLASSES,
 					ClassesPackage.CLASS__SUPER_CLASSES);
 		}
 		return subClasses;
@@ -174,10 +169,8 @@ public class ClassImpl extends PackageElementImpl implements
 	 */
 	public EList<Association> getIncomingAssociations() {
 		if (incomingAssociations == null) {
-			incomingAssociations = new EObjectWithInverseResolvingEList<Association>(
-					Association.class, this,
-					ClassesPackage.CLASS__INCOMING_ASSOCIATIONS,
-					ClassesPackage.ASSOCIATION__TARGET);
+			incomingAssociations = new EObjectWithInverseResolvingEList<Association>(Association.class, this,
+					ClassesPackage.CLASS__INCOMING_ASSOCIATIONS, ClassesPackage.ASSOCIATION__TARGET);
 		}
 		return incomingAssociations;
 	}
@@ -188,10 +181,8 @@ public class ClassImpl extends PackageElementImpl implements
 	 */
 	public EList<Association> getOutgoingAssociations() {
 		if (outgoingAssociations == null) {
-			outgoingAssociations = new EObjectWithInverseResolvingEList<Association>(
-					Association.class, this,
-					ClassesPackage.CLASS__OUTGOING_ASSOCIATIONS,
-					ClassesPackage.ASSOCIATION__SOURCE);
+			outgoingAssociations = new EObjectWithInverseResolvingEList<Association>(Association.class, this,
+					ClassesPackage.CLASS__OUTGOING_ASSOCIATIONS, ClassesPackage.ASSOCIATION__SOURCE);
 		}
 		return outgoingAssociations;
 	}
@@ -203,9 +194,8 @@ public class ClassImpl extends PackageElementImpl implements
 	 */
 	public EList<Attribute> getAttributes() {
 		if (attributes == null) {
-			attributes = new EObjectContainmentWithInverseEList.Resolving<Attribute>(
-					Attribute.class, this, ClassesPackage.CLASS__ATTRIBUTES,
-					ClassesPackage.ATTRIBUTE__DEFINING_CLASS);
+			attributes = new EObjectContainmentWithInverseEList.Resolving<Attribute>(Attribute.class, this,
+					ClassesPackage.CLASS__ATTRIBUTES, ClassesPackage.ATTRIBUTE__DEFINING_CLASS);
 		}
 		return attributes;
 	}
@@ -217,8 +207,7 @@ public class ClassImpl extends PackageElementImpl implements
 	 */
 	public EList<Method> getMethods() {
 		if (methods == null) {
-			methods = new EObjectContainmentWithInverseEList.Resolving<Method>(
-					Method.class, this, ClassesPackage.CLASS__METHODS,
+			methods = new EObjectContainmentWithInverseEList.Resolving<Method>(Method.class, this, ClassesPackage.CLASS__METHODS,
 					ClassesPackage.METHOD__DEFINING_CLASS);
 		}
 		return methods;
@@ -230,30 +219,22 @@ public class ClassImpl extends PackageElementImpl implements
 	 */
 	@SuppressWarnings("unchecked")
 	@Override
-	public NotificationChain eInverseAdd(InternalEObject otherEnd,
-			int featureID, NotificationChain msgs) {
+	public NotificationChain eInverseAdd(InternalEObject otherEnd, int featureID, NotificationChain msgs) {
 		switch (featureID) {
 		case ClassesPackage.CLASS__PARTICIPATED_USE_CASES:
-			return ((InternalEList<InternalEObject>) (InternalEList<?>) getParticipatedUseCases())
-					.basicAdd(otherEnd, msgs);
+			return ((InternalEList<InternalEObject>) (InternalEList<?>) getParticipatedUseCases()).basicAdd(otherEnd, msgs);
 		case ClassesPackage.CLASS__SUPER_CLASSES:
-			return ((InternalEList<InternalEObject>) (InternalEList<?>) getSuperClasses())
-					.basicAdd(otherEnd, msgs);
+			return ((InternalEList<InternalEObject>) (InternalEList<?>) getSuperClasses()).basicAdd(otherEnd, msgs);
 		case ClassesPackage.CLASS__SUB_CLASSES:
-			return ((InternalEList<InternalEObject>) (InternalEList<?>) getSubClasses())
-					.basicAdd(otherEnd, msgs);
+			return ((InternalEList<InternalEObject>) (InternalEList<?>) getSubClasses()).basicAdd(otherEnd, msgs);
 		case ClassesPackage.CLASS__INCOMING_ASSOCIATIONS:
-			return ((InternalEList<InternalEObject>) (InternalEList<?>) getIncomingAssociations())
-					.basicAdd(otherEnd, msgs);
+			return ((InternalEList<InternalEObject>) (InternalEList<?>) getIncomingAssociations()).basicAdd(otherEnd, msgs);
 		case ClassesPackage.CLASS__OUTGOING_ASSOCIATIONS:
-			return ((InternalEList<InternalEObject>) (InternalEList<?>) getOutgoingAssociations())
-					.basicAdd(otherEnd, msgs);
+			return ((InternalEList<InternalEObject>) (InternalEList<?>) getOutgoingAssociations()).basicAdd(otherEnd, msgs);
 		case ClassesPackage.CLASS__ATTRIBUTES:
-			return ((InternalEList<InternalEObject>) (InternalEList<?>) getAttributes())
-					.basicAdd(otherEnd, msgs);
+			return ((InternalEList<InternalEObject>) (InternalEList<?>) getAttributes()).basicAdd(otherEnd, msgs);
 		case ClassesPackage.CLASS__METHODS:
-			return ((InternalEList<InternalEObject>) (InternalEList<?>) getMethods())
-					.basicAdd(otherEnd, msgs);
+			return ((InternalEList<InternalEObject>) (InternalEList<?>) getMethods()).basicAdd(otherEnd, msgs);
 		}
 		return super.eInverseAdd(otherEnd, featureID, msgs);
 	}
@@ -263,30 +244,22 @@ public class ClassImpl extends PackageElementImpl implements
 	 * @generated
 	 */
 	@Override
-	public NotificationChain eInverseRemove(InternalEObject otherEnd,
-			int featureID, NotificationChain msgs) {
+	public NotificationChain eInverseRemove(InternalEObject otherEnd, int featureID, NotificationChain msgs) {
 		switch (featureID) {
 		case ClassesPackage.CLASS__PARTICIPATED_USE_CASES:
-			return ((InternalEList<?>) getParticipatedUseCases()).basicRemove(
-					otherEnd, msgs);
+			return ((InternalEList<?>) getParticipatedUseCases()).basicRemove(otherEnd, msgs);
 		case ClassesPackage.CLASS__SUPER_CLASSES:
-			return ((InternalEList<?>) getSuperClasses()).basicRemove(otherEnd,
-					msgs);
+			return ((InternalEList<?>) getSuperClasses()).basicRemove(otherEnd, msgs);
 		case ClassesPackage.CLASS__SUB_CLASSES:
-			return ((InternalEList<?>) getSubClasses()).basicRemove(otherEnd,
-					msgs);
+			return ((InternalEList<?>) getSubClasses()).basicRemove(otherEnd, msgs);
 		case ClassesPackage.CLASS__INCOMING_ASSOCIATIONS:
-			return ((InternalEList<?>) getIncomingAssociations()).basicRemove(
-					otherEnd, msgs);
+			return ((InternalEList<?>) getIncomingAssociations()).basicRemove(otherEnd, msgs);
 		case ClassesPackage.CLASS__OUTGOING_ASSOCIATIONS:
-			return ((InternalEList<?>) getOutgoingAssociations()).basicRemove(
-					otherEnd, msgs);
+			return ((InternalEList<?>) getOutgoingAssociations()).basicRemove(otherEnd, msgs);
 		case ClassesPackage.CLASS__ATTRIBUTES:
-			return ((InternalEList<?>) getAttributes()).basicRemove(otherEnd,
-					msgs);
+			return ((InternalEList<?>) getAttributes()).basicRemove(otherEnd, msgs);
 		case ClassesPackage.CLASS__METHODS:
-			return ((InternalEList<?>) getMethods())
-					.basicRemove(otherEnd, msgs);
+			return ((InternalEList<?>) getMethods()).basicRemove(otherEnd, msgs);
 		}
 		return super.eInverseRemove(otherEnd, featureID, msgs);
 	}
@@ -326,30 +299,23 @@ public class ClassImpl extends PackageElementImpl implements
 		switch (featureID) {
 		case ClassesPackage.CLASS__PARTICIPATED_USE_CASES:
 			getParticipatedUseCases().clear();
-			getParticipatedUseCases().addAll(
-					(Collection<? extends UseCase>) newValue);
+			getParticipatedUseCases().addAll((Collection<? extends UseCase>) newValue);
 			return;
 		case ClassesPackage.CLASS__SUPER_CLASSES:
 			getSuperClasses().clear();
-			getSuperClasses()
-					.addAll(
-							(Collection<? extends org.unicase.model.classes.Class>) newValue);
+			getSuperClasses().addAll((Collection<? extends org.unicase.model.classes.Class>) newValue);
 			return;
 		case ClassesPackage.CLASS__SUB_CLASSES:
 			getSubClasses().clear();
-			getSubClasses()
-					.addAll(
-							(Collection<? extends org.unicase.model.classes.Class>) newValue);
+			getSubClasses().addAll((Collection<? extends org.unicase.model.classes.Class>) newValue);
 			return;
 		case ClassesPackage.CLASS__INCOMING_ASSOCIATIONS:
 			getIncomingAssociations().clear();
-			getIncomingAssociations().addAll(
-					(Collection<? extends Association>) newValue);
+			getIncomingAssociations().addAll((Collection<? extends Association>) newValue);
 			return;
 		case ClassesPackage.CLASS__OUTGOING_ASSOCIATIONS:
 			getOutgoingAssociations().clear();
-			getOutgoingAssociations().addAll(
-					(Collection<? extends Association>) newValue);
+			getOutgoingAssociations().addAll((Collection<? extends Association>) newValue);
 			return;
 		case ClassesPackage.CLASS__ATTRIBUTES:
 			getAttributes().clear();
@@ -403,18 +369,15 @@ public class ClassImpl extends PackageElementImpl implements
 	public boolean eIsSet(int featureID) {
 		switch (featureID) {
 		case ClassesPackage.CLASS__PARTICIPATED_USE_CASES:
-			return participatedUseCases != null
-					&& !participatedUseCases.isEmpty();
+			return participatedUseCases != null && !participatedUseCases.isEmpty();
 		case ClassesPackage.CLASS__SUPER_CLASSES:
 			return superClasses != null && !superClasses.isEmpty();
 		case ClassesPackage.CLASS__SUB_CLASSES:
 			return subClasses != null && !subClasses.isEmpty();
 		case ClassesPackage.CLASS__INCOMING_ASSOCIATIONS:
-			return incomingAssociations != null
-					&& !incomingAssociations.isEmpty();
+			return incomingAssociations != null && !incomingAssociations.isEmpty();
 		case ClassesPackage.CLASS__OUTGOING_ASSOCIATIONS:
-			return outgoingAssociations != null
-					&& !outgoingAssociations.isEmpty();
+			return outgoingAssociations != null && !outgoingAssociations.isEmpty();
 		case ClassesPackage.CLASS__ATTRIBUTES:
 			return attributes != null && !attributes.isEmpty();
 		case ClassesPackage.CLASS__METHODS:

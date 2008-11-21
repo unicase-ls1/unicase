@@ -46,8 +46,7 @@ import org.unicase.model.task.impl.TaskPackageImpl;
  * end-user-doc -->
  * @generated
  */
-public class DocumentPackageImpl extends EPackageImpl implements
-		DocumentPackage {
+public class DocumentPackageImpl extends EPackageImpl implements DocumentPackage {
 	/**
 	 * <!-- begin-user-doc --> <!-- end-user-doc -->
 	 * @generated
@@ -112,12 +111,10 @@ public class DocumentPackageImpl extends EPackageImpl implements
 	 */
 	public static DocumentPackage init() {
 		if (isInited)
-			return (DocumentPackage) EPackage.Registry.INSTANCE
-					.getEPackage(DocumentPackage.eNS_URI);
+			return (DocumentPackage) EPackage.Registry.INSTANCE.getEPackage(DocumentPackage.eNS_URI);
 
 		// Obtain or create and register package
-		DocumentPackageImpl theDocumentPackage = (DocumentPackageImpl) (EPackage.Registry.INSTANCE
-				.getEPackage(eNS_URI) instanceof DocumentPackageImpl ? EPackage.Registry.INSTANCE
+		DocumentPackageImpl theDocumentPackage = (DocumentPackageImpl) (EPackage.Registry.INSTANCE.getEPackage(eNS_URI) instanceof DocumentPackageImpl ? EPackage.Registry.INSTANCE
 				.getEPackage(eNS_URI)
 				: new DocumentPackageImpl());
 
@@ -127,54 +124,42 @@ public class DocumentPackageImpl extends EPackageImpl implements
 		NotationPackage.eINSTANCE.eClass();
 
 		// Obtain or create and register interdependencies
-		ModelPackageImpl theModelPackage = (ModelPackageImpl) (EPackage.Registry.INSTANCE
-				.getEPackage(ModelPackage.eNS_URI) instanceof ModelPackageImpl ? EPackage.Registry.INSTANCE
+		ModelPackageImpl theModelPackage = (ModelPackageImpl) (EPackage.Registry.INSTANCE.getEPackage(ModelPackage.eNS_URI) instanceof ModelPackageImpl ? EPackage.Registry.INSTANCE
 				.getEPackage(ModelPackage.eNS_URI)
 				: ModelPackage.eINSTANCE);
 		OrganizationPackageImpl theOrganizationPackage = (OrganizationPackageImpl) (EPackage.Registry.INSTANCE
 				.getEPackage(OrganizationPackage.eNS_URI) instanceof OrganizationPackageImpl ? EPackage.Registry.INSTANCE
-				.getEPackage(OrganizationPackage.eNS_URI)
-				: OrganizationPackage.eINSTANCE);
-		TaskPackageImpl theTaskPackage = (TaskPackageImpl) (EPackage.Registry.INSTANCE
-				.getEPackage(TaskPackage.eNS_URI) instanceof TaskPackageImpl ? EPackage.Registry.INSTANCE
+				.getEPackage(OrganizationPackage.eNS_URI) : OrganizationPackage.eINSTANCE);
+		TaskPackageImpl theTaskPackage = (TaskPackageImpl) (EPackage.Registry.INSTANCE.getEPackage(TaskPackage.eNS_URI) instanceof TaskPackageImpl ? EPackage.Registry.INSTANCE
 				.getEPackage(TaskPackage.eNS_URI)
 				: TaskPackage.eINSTANCE);
 		DiagramPackageImpl theDiagramPackage = (DiagramPackageImpl) (EPackage.Registry.INSTANCE
 				.getEPackage(DiagramPackage.eNS_URI) instanceof DiagramPackageImpl ? EPackage.Registry.INSTANCE
-				.getEPackage(DiagramPackage.eNS_URI)
-				: DiagramPackage.eINSTANCE);
+				.getEPackage(DiagramPackage.eNS_URI) : DiagramPackage.eINSTANCE);
 		ClassesPackageImpl theClassesPackage = (ClassesPackageImpl) (EPackage.Registry.INSTANCE
 				.getEPackage(ClassesPackage.eNS_URI) instanceof ClassesPackageImpl ? EPackage.Registry.INSTANCE
-				.getEPackage(ClassesPackage.eNS_URI)
-				: ClassesPackage.eINSTANCE);
+				.getEPackage(ClassesPackage.eNS_URI) : ClassesPackage.eINSTANCE);
 		RequirementPackageImpl theRequirementPackage = (RequirementPackageImpl) (EPackage.Registry.INSTANCE
 				.getEPackage(RequirementPackage.eNS_URI) instanceof RequirementPackageImpl ? EPackage.Registry.INSTANCE
-				.getEPackage(RequirementPackage.eNS_URI)
-				: RequirementPackage.eINSTANCE);
+				.getEPackage(RequirementPackage.eNS_URI) : RequirementPackage.eINSTANCE);
 		RationalePackageImpl theRationalePackage = (RationalePackageImpl) (EPackage.Registry.INSTANCE
 				.getEPackage(RationalePackage.eNS_URI) instanceof RationalePackageImpl ? EPackage.Registry.INSTANCE
-				.getEPackage(RationalePackage.eNS_URI)
-				: RationalePackage.eINSTANCE);
-		ChangePackageImpl theChangePackage = (ChangePackageImpl) (EPackage.Registry.INSTANCE
-				.getEPackage(ChangePackage.eNS_URI) instanceof ChangePackageImpl ? EPackage.Registry.INSTANCE
+				.getEPackage(RationalePackage.eNS_URI) : RationalePackage.eINSTANCE);
+		ChangePackageImpl theChangePackage = (ChangePackageImpl) (EPackage.Registry.INSTANCE.getEPackage(ChangePackage.eNS_URI) instanceof ChangePackageImpl ? EPackage.Registry.INSTANCE
 				.getEPackage(ChangePackage.eNS_URI)
 				: ChangePackage.eINSTANCE);
-		BugPackageImpl theBugPackage = (BugPackageImpl) (EPackage.Registry.INSTANCE
-				.getEPackage(BugPackage.eNS_URI) instanceof BugPackageImpl ? EPackage.Registry.INSTANCE
+		BugPackageImpl theBugPackage = (BugPackageImpl) (EPackage.Registry.INSTANCE.getEPackage(BugPackage.eNS_URI) instanceof BugPackageImpl ? EPackage.Registry.INSTANCE
 				.getEPackage(BugPackage.eNS_URI)
 				: BugPackage.eINSTANCE);
 		ComponentPackageImpl theComponentPackage = (ComponentPackageImpl) (EPackage.Registry.INSTANCE
 				.getEPackage(ComponentPackage.eNS_URI) instanceof ComponentPackageImpl ? EPackage.Registry.INSTANCE
-				.getEPackage(ComponentPackage.eNS_URI)
-				: ComponentPackage.eINSTANCE);
+				.getEPackage(ComponentPackage.eNS_URI) : ComponentPackage.eINSTANCE);
 		MeetingPackageImpl theMeetingPackage = (MeetingPackageImpl) (EPackage.Registry.INSTANCE
 				.getEPackage(MeetingPackage.eNS_URI) instanceof MeetingPackageImpl ? EPackage.Registry.INSTANCE
-				.getEPackage(MeetingPackage.eNS_URI)
-				: MeetingPackage.eINSTANCE);
+				.getEPackage(MeetingPackage.eNS_URI) : MeetingPackage.eINSTANCE);
 		AttachmentPackageImpl theAttachmentPackage = (AttachmentPackageImpl) (EPackage.Registry.INSTANCE
 				.getEPackage(AttachmentPackage.eNS_URI) instanceof AttachmentPackageImpl ? EPackage.Registry.INSTANCE
-				.getEPackage(AttachmentPackage.eNS_URI)
-				: AttachmentPackage.eINSTANCE);
+				.getEPackage(AttachmentPackage.eNS_URI) : AttachmentPackage.eINSTANCE);
 
 		// Create package meta-data objects
 		theDocumentPackage.createPackageContents();
@@ -249,8 +234,7 @@ public class DocumentPackageImpl extends EPackageImpl implements
 	 * @generated
 	 */
 	public EReference getCompositeSection_Subsections() {
-		return (EReference) compositeSectionEClass.getEStructuralFeatures()
-				.get(0);
+		return (EReference) compositeSectionEClass.getEStructuralFeatures().get(0);
 	}
 
 	/**
@@ -298,8 +282,7 @@ public class DocumentPackageImpl extends EPackageImpl implements
 		// Create classes and their features
 		leafSectionEClass = createEClass(LEAF_SECTION);
 		createEReference(leafSectionEClass, LEAF_SECTION__MODEL_ELEMENTS);
-		createEReference(leafSectionEClass,
-				LEAF_SECTION__REFERENCED_MODEL_ELEMENTS);
+		createEReference(leafSectionEClass, LEAF_SECTION__REFERENCED_MODEL_ELEMENTS);
 
 		compositeSectionEClass = createEClass(COMPOSITE_SECTION);
 		createEReference(compositeSectionEClass, COMPOSITE_SECTION__SUBSECTIONS);
@@ -332,8 +315,7 @@ public class DocumentPackageImpl extends EPackageImpl implements
 		setNsURI(eNS_URI);
 
 		// Obtain other dependent packages
-		ModelPackage theModelPackage = (ModelPackage) EPackage.Registry.INSTANCE
-				.getEPackage(ModelPackage.eNS_URI);
+		ModelPackage theModelPackage = (ModelPackage) EPackage.Registry.INSTANCE.getEPackage(ModelPackage.eNS_URI);
 
 		// Create type parameters
 
@@ -345,46 +327,46 @@ public class DocumentPackageImpl extends EPackageImpl implements
 		sectionEClass.getESuperTypes().add(theModelPackage.getModelElement());
 
 		// Initialize classes and features; add operations and parameters
-		initEClass(leafSectionEClass, LeafSection.class, "LeafSection",
-				!IS_ABSTRACT, !IS_INTERFACE, IS_GENERATED_INSTANCE_CLASS);
-		initEReference(getLeafSection_ModelElements(), theModelPackage
-				.getModelElement(), theModelPackage
-				.getModelElement_LeafSection(), "modelElements", null, 0, -1,
-				LeafSection.class, !IS_TRANSIENT, !IS_VOLATILE, IS_CHANGEABLE,
-				IS_COMPOSITE, IS_RESOLVE_PROXIES, !IS_UNSETTABLE, IS_UNIQUE,
+		initEClass(leafSectionEClass, LeafSection.class, "LeafSection", !IS_ABSTRACT, !IS_INTERFACE, IS_GENERATED_INSTANCE_CLASS);
+		initEReference(getLeafSection_ModelElements(), theModelPackage.getModelElement(), theModelPackage
+				.getModelElement_LeafSection(), "modelElements", null, 0, -1, LeafSection.class, !IS_TRANSIENT, !IS_VOLATILE,
+				IS_CHANGEABLE, IS_COMPOSITE, IS_RESOLVE_PROXIES, !IS_UNSETTABLE, IS_UNIQUE, !IS_DERIVED, IS_ORDERED);
+		getLeafSection_ModelElements().getEKeys().add(theModelPackage.getIdentifiableElement_Identifier());
+		initEReference(getLeafSection_ReferencedModelElements(), theModelPackage.getModelElement(), theModelPackage
+				.getModelElement_IncomingDocumentReferences(), "referencedModelElements", null, 0, -1, LeafSection.class,
+				!IS_TRANSIENT, !IS_VOLATILE, IS_CHANGEABLE, !IS_COMPOSITE, IS_RESOLVE_PROXIES, !IS_UNSETTABLE, IS_UNIQUE,
 				!IS_DERIVED, IS_ORDERED);
-		getLeafSection_ModelElements().getEKeys().add(
-				theModelPackage.getIdentifiableElement_Identifier());
-		initEReference(getLeafSection_ReferencedModelElements(),
-				theModelPackage.getModelElement(), theModelPackage
-						.getModelElement_IncomingDocumentReferences(),
-				"referencedModelElements", null, 0, -1, LeafSection.class,
-				!IS_TRANSIENT, !IS_VOLATILE, IS_CHANGEABLE, !IS_COMPOSITE,
-				IS_RESOLVE_PROXIES, !IS_UNSETTABLE, IS_UNIQUE, !IS_DERIVED,
-				IS_ORDERED);
-		getLeafSection_ReferencedModelElements().getEKeys().add(
-				theModelPackage.getIdentifiableElement_Identifier());
+		getLeafSection_ReferencedModelElements().getEKeys().add(theModelPackage.getIdentifiableElement_Identifier());
 
-		initEClass(compositeSectionEClass, CompositeSection.class,
-				"CompositeSection", !IS_ABSTRACT, !IS_INTERFACE,
+		initEClass(compositeSectionEClass, CompositeSection.class, "CompositeSection", !IS_ABSTRACT, !IS_INTERFACE,
 				IS_GENERATED_INSTANCE_CLASS);
-		initEReference(getCompositeSection_Subsections(), this.getSection(),
-				this.getSection_Parent(), "subsections", null, 0, -1,
-				CompositeSection.class, !IS_TRANSIENT, !IS_VOLATILE,
-				IS_CHANGEABLE, IS_COMPOSITE, IS_RESOLVE_PROXIES,
+		initEReference(getCompositeSection_Subsections(), this.getSection(), this.getSection_Parent(), "subsections", null, 0,
+				-1, CompositeSection.class, !IS_TRANSIENT, !IS_VOLATILE, IS_CHANGEABLE, IS_COMPOSITE, IS_RESOLVE_PROXIES,
 				!IS_UNSETTABLE, IS_UNIQUE, !IS_DERIVED, IS_ORDERED);
-		getCompositeSection_Subsections().getEKeys().add(
-				theModelPackage.getIdentifiableElement_Identifier());
+		getCompositeSection_Subsections().getEKeys().add(theModelPackage.getIdentifiableElement_Identifier());
 
-		initEClass(sectionEClass, Section.class, "Section", IS_ABSTRACT,
-				IS_INTERFACE, IS_GENERATED_INSTANCE_CLASS);
-		initEReference(getSection_Parent(), this.getCompositeSection(), this
-				.getCompositeSection_Subsections(), "parent", null, 0, 1,
-				Section.class, !IS_TRANSIENT, !IS_VOLATILE, IS_CHANGEABLE,
-				!IS_COMPOSITE, IS_RESOLVE_PROXIES, !IS_UNSETTABLE, IS_UNIQUE,
-				!IS_DERIVED, IS_ORDERED);
-		getSection_Parent().getEKeys().add(
-				theModelPackage.getIdentifiableElement_Identifier());
+		initEClass(sectionEClass, Section.class, "Section", IS_ABSTRACT, IS_INTERFACE, IS_GENERATED_INSTANCE_CLASS);
+		initEReference(getSection_Parent(), this.getCompositeSection(), this.getCompositeSection_Subsections(), "parent", null,
+				0, 1, Section.class, !IS_TRANSIENT, !IS_VOLATILE, IS_CHANGEABLE, !IS_COMPOSITE, IS_RESOLVE_PROXIES,
+				!IS_UNSETTABLE, IS_UNIQUE, !IS_DERIVED, IS_ORDERED);
+		getSection_Parent().getEKeys().add(theModelPackage.getIdentifiableElement_Identifier());
+
+		// Create annotations
+		// org.unicase.ui.meeditor
+		createOrgAnnotations();
+	}
+
+	/**
+	 * Initializes the annotations for <b>org.unicase.ui.meeditor</b>.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 */
+	protected void createOrgAnnotations() {
+		String source = "org.unicase.ui.meeditor";
+		addAnnotation(getLeafSection_ModelElements(), source, new String[] { "priority", "20.0", "position", "right" });
+		addAnnotation(getLeafSection_ReferencedModelElements(), source, new String[] { "priority", "21.0", "position", "right" });
+		addAnnotation(getCompositeSection_Subsections(), source, new String[] { "priority", "20.0", "position", "right" });
 	}
 
 } // DocumentPackageImpl

@@ -102,10 +102,8 @@ public class AssessmentImpl extends ModelElementImpl implements Assessment {
 	 * <!-- begin-user-doc --> <!-- end-user-doc -->
 	 * @generated
 	 */
-	public NotificationChain basicSetProposal(Proposal newProposal,
-			NotificationChain msgs) {
-		msgs = eBasicSetContainer((InternalEObject) newProposal,
-				RationalePackage.ASSESSMENT__PROPOSAL, msgs);
+	public NotificationChain basicSetProposal(Proposal newProposal, NotificationChain msgs) {
+		msgs = eBasicSetContainer((InternalEObject) newProposal, RationalePackage.ASSESSMENT__PROPOSAL, msgs);
 		return msgs;
 	}
 
@@ -117,22 +115,18 @@ public class AssessmentImpl extends ModelElementImpl implements Assessment {
 		if (newProposal != eInternalContainer()
 				|| (eContainerFeatureID != RationalePackage.ASSESSMENT__PROPOSAL && newProposal != null)) {
 			if (EcoreUtil.isAncestor(this, newProposal))
-				throw new IllegalArgumentException(
-						"Recursive containment not allowed for " + toString());
+				throw new IllegalArgumentException("Recursive containment not allowed for " + toString());
 			NotificationChain msgs = null;
 			if (eInternalContainer() != null)
 				msgs = eBasicRemoveFromContainer(msgs);
 			if (newProposal != null)
-				msgs = ((InternalEObject) newProposal).eInverseAdd(this,
-						RationalePackage.PROPOSAL__ASSESSMENTS, Proposal.class,
+				msgs = ((InternalEObject) newProposal).eInverseAdd(this, RationalePackage.PROPOSAL__ASSESSMENTS, Proposal.class,
 						msgs);
 			msgs = basicSetProposal(newProposal, msgs);
 			if (msgs != null)
 				msgs.dispatch();
 		} else if (eNotificationRequired())
-			eNotify(new ENotificationImpl(this, Notification.SET,
-					RationalePackage.ASSESSMENT__PROPOSAL, newProposal,
-					newProposal));
+			eNotify(new ENotificationImpl(this, Notification.SET, RationalePackage.ASSESSMENT__PROPOSAL, newProposal, newProposal));
 	}
 
 	/**
@@ -145,8 +139,7 @@ public class AssessmentImpl extends ModelElementImpl implements Assessment {
 			criterion = (Criterion) eResolveProxy(oldCriterion);
 			if (criterion != oldCriterion) {
 				if (eNotificationRequired())
-					eNotify(new ENotificationImpl(this, Notification.RESOLVE,
-							RationalePackage.ASSESSMENT__CRITERION,
+					eNotify(new ENotificationImpl(this, Notification.RESOLVE, RationalePackage.ASSESSMENT__CRITERION,
 							oldCriterion, criterion));
 			}
 		}
@@ -165,14 +158,12 @@ public class AssessmentImpl extends ModelElementImpl implements Assessment {
 	 * <!-- begin-user-doc --> <!-- end-user-doc -->
 	 * @generated
 	 */
-	public NotificationChain basicSetCriterion(Criterion newCriterion,
-			NotificationChain msgs) {
+	public NotificationChain basicSetCriterion(Criterion newCriterion, NotificationChain msgs) {
 		Criterion oldCriterion = criterion;
 		criterion = newCriterion;
 		if (eNotificationRequired()) {
-			ENotificationImpl notification = new ENotificationImpl(this,
-					Notification.SET, RationalePackage.ASSESSMENT__CRITERION,
-					oldCriterion, newCriterion);
+			ENotificationImpl notification = new ENotificationImpl(this, Notification.SET,
+					RationalePackage.ASSESSMENT__CRITERION, oldCriterion, newCriterion);
 			if (msgs == null)
 				msgs = notification;
 			else
@@ -189,19 +180,16 @@ public class AssessmentImpl extends ModelElementImpl implements Assessment {
 		if (newCriterion != criterion) {
 			NotificationChain msgs = null;
 			if (criterion != null)
-				msgs = ((InternalEObject) criterion).eInverseRemove(this,
-						RationalePackage.CRITERION__ASSESSMENTS,
+				msgs = ((InternalEObject) criterion).eInverseRemove(this, RationalePackage.CRITERION__ASSESSMENTS,
 						Criterion.class, msgs);
 			if (newCriterion != null)
-				msgs = ((InternalEObject) newCriterion).eInverseAdd(this,
-						RationalePackage.CRITERION__ASSESSMENTS,
+				msgs = ((InternalEObject) newCriterion).eInverseAdd(this, RationalePackage.CRITERION__ASSESSMENTS,
 						Criterion.class, msgs);
 			msgs = basicSetCriterion(newCriterion, msgs);
 			if (msgs != null)
 				msgs.dispatch();
 		} else if (eNotificationRequired())
-			eNotify(new ENotificationImpl(this, Notification.SET,
-					RationalePackage.ASSESSMENT__CRITERION, newCriterion,
+			eNotify(new ENotificationImpl(this, Notification.SET, RationalePackage.ASSESSMENT__CRITERION, newCriterion,
 					newCriterion));
 	}
 
@@ -221,8 +209,7 @@ public class AssessmentImpl extends ModelElementImpl implements Assessment {
 		int oldValue = value;
 		value = newValue;
 		if (eNotificationRequired())
-			eNotify(new ENotificationImpl(this, Notification.SET,
-					RationalePackage.ASSESSMENT__VALUE, oldValue, value));
+			eNotify(new ENotificationImpl(this, Notification.SET, RationalePackage.ASSESSMENT__VALUE, oldValue, value));
 	}
 
 	/**
@@ -230,8 +217,7 @@ public class AssessmentImpl extends ModelElementImpl implements Assessment {
 	 * @generated
 	 */
 	@Override
-	public NotificationChain eInverseAdd(InternalEObject otherEnd,
-			int featureID, NotificationChain msgs) {
+	public NotificationChain eInverseAdd(InternalEObject otherEnd, int featureID, NotificationChain msgs) {
 		switch (featureID) {
 		case RationalePackage.ASSESSMENT__PROPOSAL:
 			if (eInternalContainer() != null)
@@ -239,8 +225,7 @@ public class AssessmentImpl extends ModelElementImpl implements Assessment {
 			return basicSetProposal((Proposal) otherEnd, msgs);
 		case RationalePackage.ASSESSMENT__CRITERION:
 			if (criterion != null)
-				msgs = ((InternalEObject) criterion).eInverseRemove(this,
-						RationalePackage.CRITERION__ASSESSMENTS,
+				msgs = ((InternalEObject) criterion).eInverseRemove(this, RationalePackage.CRITERION__ASSESSMENTS,
 						Criterion.class, msgs);
 			return basicSetCriterion((Criterion) otherEnd, msgs);
 		}
@@ -252,8 +237,7 @@ public class AssessmentImpl extends ModelElementImpl implements Assessment {
 	 * @generated
 	 */
 	@Override
-	public NotificationChain eInverseRemove(InternalEObject otherEnd,
-			int featureID, NotificationChain msgs) {
+	public NotificationChain eInverseRemove(InternalEObject otherEnd, int featureID, NotificationChain msgs) {
 		switch (featureID) {
 		case RationalePackage.ASSESSMENT__PROPOSAL:
 			return basicSetProposal(null, msgs);
@@ -268,13 +252,10 @@ public class AssessmentImpl extends ModelElementImpl implements Assessment {
 	 * @generated
 	 */
 	@Override
-	public NotificationChain eBasicRemoveFromContainerFeature(
-			NotificationChain msgs) {
+	public NotificationChain eBasicRemoveFromContainerFeature(NotificationChain msgs) {
 		switch (eContainerFeatureID) {
 		case RationalePackage.ASSESSMENT__PROPOSAL:
-			return eInternalContainer().eInverseRemove(this,
-					RationalePackage.PROPOSAL__ASSESSMENTS, Proposal.class,
-					msgs);
+			return eInternalContainer().eInverseRemove(this, RationalePackage.PROPOSAL__ASSESSMENTS, Proposal.class, msgs);
 		}
 		return super.eBasicRemoveFromContainerFeature(msgs);
 	}

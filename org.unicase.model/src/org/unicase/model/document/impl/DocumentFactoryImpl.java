@@ -21,8 +21,7 @@ import org.unicase.model.document.LeafSection;
  * end-user-doc -->
  * @generated
  */
-public class DocumentFactoryImpl extends EFactoryImpl implements
-		DocumentFactory {
+public class DocumentFactoryImpl extends EFactoryImpl implements DocumentFactory {
 	/**
 	 * Creates the default factory implementation.
 	 * <!-- begin-user-doc --> <!--
@@ -64,8 +63,7 @@ public class DocumentFactoryImpl extends EFactoryImpl implements
 		case DocumentPackage.COMPOSITE_SECTION:
 			return createCompositeSection();
 		default:
-			throw new IllegalArgumentException("The class '" + eClass.getName()
-					+ "' is not a valid classifier");
+			throw new IllegalArgumentException("The class '" + eClass.getName() + "' is not a valid classifier");
 		}
 	}
 

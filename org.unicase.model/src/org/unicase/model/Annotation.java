@@ -39,6 +39,7 @@ public interface Annotation extends ModelElement {
 	 * @see org.unicase.model.ModelPackage#getAnnotation_AnnotatedModelElements()
 	 * @see org.unicase.model.ModelElement#getAnnotations
 	 * @model opposite="annotations" keys="identifier"
+	 *        annotation="org.unicase.ui.meeditor priority='90.0' position='right'"
 	 * @generated
 	 */
 	EList<ModelElement> getAnnotatedModelElements();

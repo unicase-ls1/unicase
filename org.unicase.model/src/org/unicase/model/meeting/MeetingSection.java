@@ -38,6 +38,7 @@ public interface MeetingSection extends ModelElement {
 	 * @see #setAllocatedTime(int)
 	 * @see org.unicase.model.meeting.MeetingPackage#getMeetingSection_AllocatedTime()
 	 * @model default="0"
+	 *        annotation="org.unicase.ui.meeditor priority='10.0' position='left'"
 	 * @generated
 	 */
 	int getAllocatedTime();

@@ -50,6 +50,7 @@ public interface WorkItem extends Annotation {
 	 * @see org.unicase.model.task.TaskPackage#getWorkItem_ContainingWorkpackage()
 	 * @see org.unicase.model.task.WorkPackage#getContainedWorkItems
 	 * @model opposite="containedWorkItems" keys="identifier" transient="false"
+	 *        annotation="org.unicase.ui.meeditor priority='10.0' position='left'"
 	 * @generated
 	 */
 	WorkPackage getContainingWorkpackage();
@@ -99,6 +100,7 @@ public interface WorkItem extends Annotation {
 	 * @see org.unicase.model.task.TaskPackage#getWorkItem_Predecessors()
 	 * @see org.unicase.model.task.WorkItem#getSuccessors
 	 * @model opposite="successors" keys="identifier"
+	 *        annotation="org.unicase.ui.meeditor priority='11.0' position='right'"
 	 * @generated
 	 */
 	EList<WorkItem> getPredecessors();
@@ -117,6 +119,7 @@ public interface WorkItem extends Annotation {
 	 * @see org.unicase.model.task.TaskPackage#getWorkItem_Successors()
 	 * @see org.unicase.model.task.WorkItem#getPredecessors
 	 * @model opposite="predecessors" keys="identifier"
+	 *        annotation="org.unicase.ui.meeditor priority='12.0' position='right'"
 	 * @generated
 	 */
 	EList<WorkItem> getSuccessors();
@@ -135,6 +138,7 @@ public interface WorkItem extends Annotation {
 	 * @see org.unicase.model.task.TaskPackage#getWorkItem_Assignee()
 	 * @see org.unicase.model.organization.OrgUnit#getAssignments
 	 * @model opposite="assignments" keys="identifier"
+	 *        annotation="org.unicase.ui.meeditor priority='11.0' position='left'"
 	 * @generated
 	 */
 	OrgUnit getAssignee();
@@ -163,6 +167,7 @@ public interface WorkItem extends Annotation {
 	 * @see org.unicase.model.task.TaskPackage#getWorkItem_Participants()
 	 * @see org.unicase.model.organization.OrgUnit#getParticipations
 	 * @model opposite="participations" keys="identifier"
+	 *        annotation="org.unicase.ui.meeditor priority='10.0' position='right'"
 	 * @generated
 	 */
 	EList<OrgUnit> getParticipants();
@@ -178,7 +183,7 @@ public interface WorkItem extends Annotation {
 	 * @return the value of the '<em>Due Date</em>' attribute.
 	 * @see #setDueDate(Date)
 	 * @see org.unicase.model.task.TaskPackage#getWorkItem_DueDate()
-	 * @model
+	 * @model annotation="org.unicase.ui.meeditor priority='12.0' position='left'"
 	 * @generated
 	 */
 	Date getDueDate();

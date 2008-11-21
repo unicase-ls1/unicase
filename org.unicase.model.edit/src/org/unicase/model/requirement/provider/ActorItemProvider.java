@@ -29,9 +29,8 @@ import org.unicase.model.requirement.RequirementPackage;
  * <!-- end-user-doc -->
  * @generated
  */
-public class ActorItemProvider extends ModelElementItemProvider implements
-		IEditingDomainItemProvider, IStructuredItemContentProvider,
-		ITreeItemContentProvider, IItemLabelProvider, IItemPropertySource {
+public class ActorItemProvider extends ModelElementItemProvider implements IEditingDomainItemProvider,
+		IStructuredItemContentProvider, ITreeItemContentProvider, IItemLabelProvider, IItemPropertySource {
 	/**
 	 * This constructs an instance from a factory and a notifier. <!--
 	 * begin-user-doc --> <!-- end-user-doc -->
@@ -67,16 +66,10 @@ public class ActorItemProvider extends ModelElementItemProvider implements
 	 * @generated
 	 */
 	protected void addInitiatedUseCasesPropertyDescriptor(Object object) {
-		itemPropertyDescriptors
-				.add(createItemPropertyDescriptor(
-						((ComposeableAdapterFactory) adapterFactory)
-								.getRootAdapterFactory(), getResourceLocator(),
-						getString("_UI_Actor_initiatedUseCases_feature"),
-						getString("_UI_PropertyDescriptor_description",
-								"_UI_Actor_initiatedUseCases_feature",
-								"_UI_Actor_type"),
-						RequirementPackage.Literals.ACTOR__INITIATED_USE_CASES,
-						true, false, true, null, null, null));
+		itemPropertyDescriptors.add(createItemPropertyDescriptor(((ComposeableAdapterFactory) adapterFactory)
+				.getRootAdapterFactory(), getResourceLocator(), getString("_UI_Actor_initiatedUseCases_feature"), getString(
+				"_UI_PropertyDescriptor_description", "_UI_Actor_initiatedUseCases_feature", "_UI_Actor_type"),
+				RequirementPackage.Literals.ACTOR__INITIATED_USE_CASES, true, false, true, null, null, null));
 	}
 
 	/**
@@ -85,15 +78,10 @@ public class ActorItemProvider extends ModelElementItemProvider implements
 	 * @generated
 	 */
 	protected void addParticipatedUseCasesPropertyDescriptor(Object object) {
-		itemPropertyDescriptors.add(createItemPropertyDescriptor(
-				((ComposeableAdapterFactory) adapterFactory)
-						.getRootAdapterFactory(), getResourceLocator(),
-				getString("_UI_Actor_participatedUseCases_feature"), getString(
-						"_UI_PropertyDescriptor_description",
-						"_UI_Actor_participatedUseCases_feature",
-						"_UI_Actor_type"),
-				RequirementPackage.Literals.ACTOR__PARTICIPATED_USE_CASES,
-				true, false, true, null, null, null));
+		itemPropertyDescriptors.add(createItemPropertyDescriptor(((ComposeableAdapterFactory) adapterFactory)
+				.getRootAdapterFactory(), getResourceLocator(), getString("_UI_Actor_participatedUseCases_feature"), getString(
+				"_UI_PropertyDescriptor_description", "_UI_Actor_participatedUseCases_feature", "_UI_Actor_type"),
+				RequirementPackage.Literals.ACTOR__PARTICIPATED_USE_CASES, true, false, true, null, null, null));
 	}
 
 	/**
@@ -103,14 +91,10 @@ public class ActorItemProvider extends ModelElementItemProvider implements
 	 * @generated
 	 */
 	protected void addInstancesPropertyDescriptor(Object object) {
-		itemPropertyDescriptors.add(createItemPropertyDescriptor(
-				((ComposeableAdapterFactory) adapterFactory)
-						.getRootAdapterFactory(), getResourceLocator(),
-				getString("_UI_Actor_instances_feature"), getString(
-						"_UI_PropertyDescriptor_description",
-						"_UI_Actor_instances_feature", "_UI_Actor_type"),
-				RequirementPackage.Literals.ACTOR__INSTANCES, true, false,
-				true, null, null, null));
+		itemPropertyDescriptors.add(createItemPropertyDescriptor(((ComposeableAdapterFactory) adapterFactory)
+				.getRootAdapterFactory(), getResourceLocator(), getString("_UI_Actor_instances_feature"), getString(
+				"_UI_PropertyDescriptor_description", "_UI_Actor_instances_feature", "_UI_Actor_type"),
+				RequirementPackage.Literals.ACTOR__INSTANCES, true, false, true, null, null, null));
 	}
 
 	/**
@@ -120,8 +104,7 @@ public class ActorItemProvider extends ModelElementItemProvider implements
 	 */
 	@Override
 	public Object getImage(Object object) {
-		return overlayImage(object, getResourceLocator().getImage(
-				"full/obj16/Actor"));
+		return overlayImage(object, getResourceLocator().getImage("full/obj16/Actor"));
 	}
 
 	/**
@@ -157,8 +140,7 @@ public class ActorItemProvider extends ModelElementItemProvider implements
 	 * @generated
 	 */
 	@Override
-	protected void collectNewChildDescriptors(
-			Collection<Object> newChildDescriptors, Object object) {
+	protected void collectNewChildDescriptors(Collection<Object> newChildDescriptors, Object object) {
 		super.collectNewChildDescriptors(newChildDescriptors, object);
 	}
 

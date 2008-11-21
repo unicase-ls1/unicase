@@ -62,8 +62,7 @@ public class DiagramFactoryImpl extends EFactoryImpl implements DiagramFactory {
 		case DiagramPackage.ME_DIAGRAM:
 			return createMEDiagram();
 		default:
-			throw new IllegalArgumentException("The class '" + eClass.getName()
-					+ "' is not a valid classifier");
+			throw new IllegalArgumentException("The class '" + eClass.getName() + "' is not a valid classifier");
 		}
 	}
 
@@ -78,8 +77,7 @@ public class DiagramFactoryImpl extends EFactoryImpl implements DiagramFactory {
 		case DiagramPackage.DIAGRAM_TYPE:
 			return createDiagramTypeFromString(eDataType, initialValue);
 		default:
-			throw new IllegalArgumentException("The datatype '"
-					+ eDataType.getName() + "' is not a valid classifier");
+			throw new IllegalArgumentException("The datatype '" + eDataType.getName() + "' is not a valid classifier");
 		}
 	}
 
@@ -94,8 +92,7 @@ public class DiagramFactoryImpl extends EFactoryImpl implements DiagramFactory {
 		case DiagramPackage.DIAGRAM_TYPE:
 			return convertDiagramTypeToString(eDataType, instanceValue);
 		default:
-			throw new IllegalArgumentException("The datatype '"
-					+ eDataType.getName() + "' is not a valid classifier");
+			throw new IllegalArgumentException("The datatype '" + eDataType.getName() + "' is not a valid classifier");
 		}
 	}
 
@@ -113,13 +110,11 @@ public class DiagramFactoryImpl extends EFactoryImpl implements DiagramFactory {
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
-	public DiagramType createDiagramTypeFromString(EDataType eDataType,
-			String initialValue) {
+	public DiagramType createDiagramTypeFromString(EDataType eDataType, String initialValue) {
 		DiagramType result = DiagramType.get(initialValue);
 		if (result == null)
-			throw new IllegalArgumentException("The value '" + initialValue
-					+ "' is not a valid enumerator of '" + eDataType.getName()
-					+ "'");
+			throw new IllegalArgumentException("The value '" + initialValue + "' is not a valid enumerator of '"
+					+ eDataType.getName() + "'");
 		return result;
 	}
 
@@ -128,8 +123,7 @@ public class DiagramFactoryImpl extends EFactoryImpl implements DiagramFactory {
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
-	public String convertDiagramTypeToString(EDataType eDataType,
-			Object instanceValue) {
+	public String convertDiagramTypeToString(EDataType eDataType, Object instanceValue) {
 		return instanceValue == null ? null : instanceValue.toString();
 	}
 

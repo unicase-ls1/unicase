@@ -31,9 +31,8 @@ import org.unicase.model.provider.ModelElementItemProvider;
  * 
  * @generated
  */
-public class DeploymentNodeItemProvider extends ModelElementItemProvider
-		implements IEditingDomainItemProvider, IStructuredItemContentProvider,
-		ITreeItemContentProvider, IItemLabelProvider, IItemPropertySource {
+public class DeploymentNodeItemProvider extends ModelElementItemProvider implements IEditingDomainItemProvider,
+		IStructuredItemContentProvider, ITreeItemContentProvider, IItemLabelProvider, IItemPropertySource {
 	/**
 	 * This constructs an instance from a factory and a notifier. <!--
 	 * begin-user-doc --> <!-- end-user-doc -->
@@ -67,15 +66,10 @@ public class DeploymentNodeItemProvider extends ModelElementItemProvider
 	 * @generated
 	 */
 	protected void addComponentsPropertyDescriptor(Object object) {
-		itemPropertyDescriptors.add(createItemPropertyDescriptor(
-				((ComposeableAdapterFactory) adapterFactory)
-						.getRootAdapterFactory(), getResourceLocator(),
-				getString("_UI_DeploymentNode_components_feature"), getString(
-						"_UI_PropertyDescriptor_description",
-						"_UI_DeploymentNode_components_feature",
-						"_UI_DeploymentNode_type"),
-				ComponentPackage.Literals.DEPLOYMENT_NODE__COMPONENTS, true,
-				false, true, null, null, null));
+		itemPropertyDescriptors.add(createItemPropertyDescriptor(((ComposeableAdapterFactory) adapterFactory)
+				.getRootAdapterFactory(), getResourceLocator(), getString("_UI_DeploymentNode_components_feature"), getString(
+				"_UI_PropertyDescriptor_description", "_UI_DeploymentNode_components_feature", "_UI_DeploymentNode_type"),
+				ComponentPackage.Literals.DEPLOYMENT_NODE__COMPONENTS, true, false, true, null, null, null));
 	}
 
 	/**
@@ -86,8 +80,7 @@ public class DeploymentNodeItemProvider extends ModelElementItemProvider
 	 */
 	@Override
 	public Object getImage(Object object) {
-		return overlayImage(object, getResourceLocator().getImage(
-				"full/obj16/DeploymentNode"));
+		return overlayImage(object, getResourceLocator().getImage("full/obj16/DeploymentNode"));
 	}
 
 	/**
@@ -99,8 +92,8 @@ public class DeploymentNodeItemProvider extends ModelElementItemProvider
 	@Override
 	public String getText(Object object) {
 		String label = ((DeploymentNode) object).getName();
-		return label == null || label.length() == 0 ? getString("_UI_DeploymentNode_type")
-				: getString("_UI_DeploymentNode_type") + " " + label;
+		return label == null || label.length() == 0 ? getString("_UI_DeploymentNode_type") : getString("_UI_DeploymentNode_type")
+				+ " " + label;
 	}
 
 	/**
@@ -124,8 +117,7 @@ public class DeploymentNodeItemProvider extends ModelElementItemProvider
 	 * @generated
 	 */
 	@Override
-	protected void collectNewChildDescriptors(
-			Collection<Object> newChildDescriptors, Object object) {
+	protected void collectNewChildDescriptors(Collection<Object> newChildDescriptors, Object object) {
 		super.collectNewChildDescriptors(newChildDescriptors, object);
 	}
 

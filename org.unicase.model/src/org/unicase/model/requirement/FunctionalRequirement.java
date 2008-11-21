@@ -75,6 +75,7 @@ public interface FunctionalRequirement extends ModelElement {
 	 * @see #setStakeholder(OrgUnit)
 	 * @see org.unicase.model.requirement.RequirementPackage#getFunctionalRequirement_Stakeholder()
 	 * @model keys="identifier"
+	 *        annotation="org.unicase.ui.meeditor priority='11.0' position='left'"
 	 * @generated
 	 */
 	OrgUnit getStakeholder();
@@ -160,6 +161,7 @@ public interface FunctionalRequirement extends ModelElement {
 	 * @see org.unicase.model.requirement.RequirementPackage#getFunctionalRequirement_RefiningRequirements()
 	 * @see org.unicase.model.requirement.FunctionalRequirement#getRefinedRequirement
 	 * @model opposite="refinedRequirement" containment="true" resolveProxies="true" keys="identifier"
+	 *        annotation="org.unicase.ui.meeditor priority='12.0' position='right'"
 	 * @generated
 	 */
 	EList<FunctionalRequirement> getRefiningRequirements();
@@ -178,6 +180,7 @@ public interface FunctionalRequirement extends ModelElement {
 	 * @see org.unicase.model.requirement.RequirementPackage#getFunctionalRequirement_RefinedRequirement()
 	 * @see org.unicase.model.requirement.FunctionalRequirement#getRefiningRequirements
 	 * @model opposite="refiningRequirements" keys="identifier" transient="false"
+	 *        annotation="org.unicase.ui.meeditor priority='10.0' position='left'"
 	 * @generated
 	 */
 	FunctionalRequirement getRefinedRequirement();
@@ -206,6 +209,7 @@ public interface FunctionalRequirement extends ModelElement {
 	 * @see org.unicase.model.requirement.RequirementPackage#getFunctionalRequirement_UseCases()
 	 * @see org.unicase.model.requirement.UseCase#getFunctionalRequirements
 	 * @model opposite="functionalRequirements" keys="identifier"
+	 *        annotation="org.unicase.ui.meeditor priority='10.0' position='right'"
 	 * @generated
 	 */
 	EList<UseCase> getUseCases();
@@ -224,6 +228,7 @@ public interface FunctionalRequirement extends ModelElement {
 	 * @see org.unicase.model.requirement.RequirementPackage#getFunctionalRequirement_Scenarios()
 	 * @see org.unicase.model.requirement.Scenario#getFunctionalRequirements
 	 * @model opposite="functionalRequirements" keys="identifier"
+	 *        annotation="org.unicase.ui.meeditor priority='11.0' position='right'"
 	 * @generated
 	 */
 	EList<Scenario> getScenarios();

@@ -28,8 +28,7 @@ import org.unicase.model.task.WorkItem;
  *
  * @generated
  */
-public class WorkItemMeetingSectionImpl extends MeetingSectionImpl implements
-		WorkItemMeetingSection {
+public class WorkItemMeetingSectionImpl extends MeetingSectionImpl implements WorkItemMeetingSection {
 	/**
 	 * The cached value of the '{@link #getIncludedWorkItems() <em>Included Work Items</em>}' reference list.
 	 * <!-- begin-user-doc -->
@@ -66,9 +65,7 @@ public class WorkItemMeetingSectionImpl extends MeetingSectionImpl implements
 	 */
 	public EList<WorkItem> getIncludedWorkItems() {
 		if (includedWorkItems == null) {
-			includedWorkItems = new EObjectResolvingEList<WorkItem>(
-					WorkItem.class,
-					this,
+			includedWorkItems = new EObjectResolvingEList<WorkItem>(WorkItem.class, this,
 					MeetingPackage.WORK_ITEM_MEETING_SECTION__INCLUDED_WORK_ITEMS);
 		}
 		return includedWorkItems;
@@ -99,8 +96,7 @@ public class WorkItemMeetingSectionImpl extends MeetingSectionImpl implements
 		switch (featureID) {
 		case MeetingPackage.WORK_ITEM_MEETING_SECTION__INCLUDED_WORK_ITEMS:
 			getIncludedWorkItems().clear();
-			getIncludedWorkItems().addAll(
-					(Collection<? extends WorkItem>) newValue);
+			getIncludedWorkItems().addAll((Collection<? extends WorkItem>) newValue);
 			return;
 		}
 		super.eSet(featureID, newValue);

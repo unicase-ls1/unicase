@@ -100,9 +100,8 @@ public class ComponentImpl extends ModelElementImpl implements Component {
 	 */
 	public EList<org.unicase.model.classes.Package> getPackages() {
 		if (packages == null) {
-			packages = new EObjectResolvingEList<org.unicase.model.classes.Package>(
-					org.unicase.model.classes.Package.class, this,
-					ComponentPackage.COMPONENT__PACKAGES);
+			packages = new EObjectResolvingEList<org.unicase.model.classes.Package>(org.unicase.model.classes.Package.class,
+					this, ComponentPackage.COMPONENT__PACKAGES);
 		}
 		return packages;
 	}
@@ -113,10 +112,8 @@ public class ComponentImpl extends ModelElementImpl implements Component {
 	 */
 	public EList<ComponentService> getOfferedServices() {
 		if (offeredServices == null) {
-			offeredServices = new EObjectContainmentWithInverseEList.Resolving<ComponentService>(
-					ComponentService.class, this,
-					ComponentPackage.COMPONENT__OFFERED_SERVICES,
-					ComponentPackage.COMPONENT_SERVICE__OFFERING_COMPONENT);
+			offeredServices = new EObjectContainmentWithInverseEList.Resolving<ComponentService>(ComponentService.class, this,
+					ComponentPackage.COMPONENT__OFFERED_SERVICES, ComponentPackage.COMPONENT_SERVICE__OFFERING_COMPONENT);
 		}
 		return offeredServices;
 	}
@@ -127,10 +124,8 @@ public class ComponentImpl extends ModelElementImpl implements Component {
 	 */
 	public EList<ComponentService> getConsumedServices() {
 		if (consumedServices == null) {
-			consumedServices = new EObjectWithInverseResolvingEList.ManyInverse<ComponentService>(
-					ComponentService.class, this,
-					ComponentPackage.COMPONENT__CONSUMED_SERVICES,
-					ComponentPackage.COMPONENT_SERVICE__CONSUMING_COMPONENTS);
+			consumedServices = new EObjectWithInverseResolvingEList.ManyInverse<ComponentService>(ComponentService.class, this,
+					ComponentPackage.COMPONENT__CONSUMED_SERVICES, ComponentPackage.COMPONENT_SERVICE__CONSUMING_COMPONENTS);
 		}
 		return consumedServices;
 	}
@@ -142,9 +137,8 @@ public class ComponentImpl extends ModelElementImpl implements Component {
 	 */
 	public EList<org.unicase.model.classes.Package> getSubsystems() {
 		if (subsystems == null) {
-			subsystems = new EObjectResolvingEList<org.unicase.model.classes.Package>(
-					org.unicase.model.classes.Package.class, this,
-					ComponentPackage.COMPONENT__SUBSYSTEMS);
+			subsystems = new EObjectResolvingEList<org.unicase.model.classes.Package>(org.unicase.model.classes.Package.class,
+					this, ComponentPackage.COMPONENT__SUBSYSTEMS);
 		}
 		return subsystems;
 	}
@@ -155,15 +149,12 @@ public class ComponentImpl extends ModelElementImpl implements Component {
 	 */
 	@SuppressWarnings("unchecked")
 	@Override
-	public NotificationChain eInverseAdd(InternalEObject otherEnd,
-			int featureID, NotificationChain msgs) {
+	public NotificationChain eInverseAdd(InternalEObject otherEnd, int featureID, NotificationChain msgs) {
 		switch (featureID) {
 		case ComponentPackage.COMPONENT__OFFERED_SERVICES:
-			return ((InternalEList<InternalEObject>) (InternalEList<?>) getOfferedServices())
-					.basicAdd(otherEnd, msgs);
+			return ((InternalEList<InternalEObject>) (InternalEList<?>) getOfferedServices()).basicAdd(otherEnd, msgs);
 		case ComponentPackage.COMPONENT__CONSUMED_SERVICES:
-			return ((InternalEList<InternalEObject>) (InternalEList<?>) getConsumedServices())
-					.basicAdd(otherEnd, msgs);
+			return ((InternalEList<InternalEObject>) (InternalEList<?>) getConsumedServices()).basicAdd(otherEnd, msgs);
 		}
 		return super.eInverseAdd(otherEnd, featureID, msgs);
 	}
@@ -173,15 +164,12 @@ public class ComponentImpl extends ModelElementImpl implements Component {
 	 * @generated
 	 */
 	@Override
-	public NotificationChain eInverseRemove(InternalEObject otherEnd,
-			int featureID, NotificationChain msgs) {
+	public NotificationChain eInverseRemove(InternalEObject otherEnd, int featureID, NotificationChain msgs) {
 		switch (featureID) {
 		case ComponentPackage.COMPONENT__OFFERED_SERVICES:
-			return ((InternalEList<?>) getOfferedServices()).basicRemove(
-					otherEnd, msgs);
+			return ((InternalEList<?>) getOfferedServices()).basicRemove(otherEnd, msgs);
 		case ComponentPackage.COMPONENT__CONSUMED_SERVICES:
-			return ((InternalEList<?>) getConsumedServices()).basicRemove(
-					otherEnd, msgs);
+			return ((InternalEList<?>) getConsumedServices()).basicRemove(otherEnd, msgs);
 		}
 		return super.eInverseRemove(otherEnd, featureID, msgs);
 	}
@@ -215,25 +203,19 @@ public class ComponentImpl extends ModelElementImpl implements Component {
 		switch (featureID) {
 		case ComponentPackage.COMPONENT__PACKAGES:
 			getPackages().clear();
-			getPackages()
-					.addAll(
-							(Collection<? extends org.unicase.model.classes.Package>) newValue);
+			getPackages().addAll((Collection<? extends org.unicase.model.classes.Package>) newValue);
 			return;
 		case ComponentPackage.COMPONENT__OFFERED_SERVICES:
 			getOfferedServices().clear();
-			getOfferedServices().addAll(
-					(Collection<? extends ComponentService>) newValue);
+			getOfferedServices().addAll((Collection<? extends ComponentService>) newValue);
 			return;
 		case ComponentPackage.COMPONENT__CONSUMED_SERVICES:
 			getConsumedServices().clear();
-			getConsumedServices().addAll(
-					(Collection<? extends ComponentService>) newValue);
+			getConsumedServices().addAll((Collection<? extends ComponentService>) newValue);
 			return;
 		case ComponentPackage.COMPONENT__SUBSYSTEMS:
 			getSubsystems().clear();
-			getSubsystems()
-					.addAll(
-							(Collection<? extends org.unicase.model.classes.Package>) newValue);
+			getSubsystems().addAll((Collection<? extends org.unicase.model.classes.Package>) newValue);
 			return;
 		}
 		super.eSet(featureID, newValue);

@@ -12,18 +12,18 @@ import org.eclipse.emf.edit.provider.IItemPropertyDescriptor;
 import org.unicase.model.ModelElement;
 
 /**
- * A {@link IAttributePriorityDescriptor} using the annotation in the genmodel.
+ * A {@link IAttributeDescriptor} using the annotation in the genmodel.
  * @author shterevg
  *
  */
-public class AnnotationPriorityDescriptor implements IAttributePriorityDescriptor{
+public class AnnotationPriorityDescriptor implements IAttributeDescriptor<Double>{
 
 	private double defaultValue = 100.0;
 
 	/**
 	 * {@inheritDoc}
 	 */
-	public double getPriority(IItemPropertyDescriptor propertyDescriptor,
+	public Double getValue(IItemPropertyDescriptor propertyDescriptor,
 			ModelElement modelElement) {
 		EAnnotation priority = ((EStructuralFeature)propertyDescriptor.getFeature(modelElement)).getEAnnotation("org.unicase.ui.meeditor");
 		try{

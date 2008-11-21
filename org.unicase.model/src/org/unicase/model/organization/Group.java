@@ -39,6 +39,7 @@ public interface Group extends OrgUnit {
 	 * @see org.unicase.model.organization.OrganizationPackage#getGroup_OrgUnits()
 	 * @see org.unicase.model.organization.OrgUnit#getGroupMemberships
 	 * @model opposite="groupMemberships" keys="identifier"
+	 *        annotation="org.unicase.ui.meeditor priority='10.5' position='right'"
 	 * @generated
 	 */
 	EList<OrgUnit> getOrgUnits();

@@ -118,8 +118,7 @@ public class UserImpl extends OrgUnitImpl implements User {
 		String oldEmail = email;
 		email = newEmail;
 		if (eNotificationRequired())
-			eNotify(new ENotificationImpl(this, Notification.SET,
-					OrganizationPackage.USER__EMAIL, oldEmail, email));
+			eNotify(new ENotificationImpl(this, Notification.SET, OrganizationPackage.USER__EMAIL, oldEmail, email));
 	}
 
 	/**
@@ -140,9 +139,7 @@ public class UserImpl extends OrgUnitImpl implements User {
 		String oldFirstName = firstName;
 		firstName = newFirstName;
 		if (eNotificationRequired())
-			eNotify(new ENotificationImpl(this, Notification.SET,
-					OrganizationPackage.USER__FIRST_NAME, oldFirstName,
-					firstName));
+			eNotify(new ENotificationImpl(this, Notification.SET, OrganizationPackage.USER__FIRST_NAME, oldFirstName, firstName));
 	}
 
 	/**
@@ -163,8 +160,7 @@ public class UserImpl extends OrgUnitImpl implements User {
 		String oldLastName = lastName;
 		lastName = newLastName;
 		if (eNotificationRequired())
-			eNotify(new ENotificationImpl(this, Notification.SET,
-					OrganizationPackage.USER__LAST_NAME, oldLastName, lastName));
+			eNotify(new ENotificationImpl(this, Notification.SET, OrganizationPackage.USER__LAST_NAME, oldLastName, lastName));
 	}
 
 	/**
@@ -236,14 +232,11 @@ public class UserImpl extends OrgUnitImpl implements User {
 	public boolean eIsSet(int featureID) {
 		switch (featureID) {
 		case OrganizationPackage.USER__EMAIL:
-			return EMAIL_EDEFAULT == null ? email != null : !EMAIL_EDEFAULT
-					.equals(email);
+			return EMAIL_EDEFAULT == null ? email != null : !EMAIL_EDEFAULT.equals(email);
 		case OrganizationPackage.USER__FIRST_NAME:
-			return FIRST_NAME_EDEFAULT == null ? firstName != null
-					: !FIRST_NAME_EDEFAULT.equals(firstName);
+			return FIRST_NAME_EDEFAULT == null ? firstName != null : !FIRST_NAME_EDEFAULT.equals(firstName);
 		case OrganizationPackage.USER__LAST_NAME:
-			return LAST_NAME_EDEFAULT == null ? lastName != null
-					: !LAST_NAME_EDEFAULT.equals(lastName);
+			return LAST_NAME_EDEFAULT == null ? lastName != null : !LAST_NAME_EDEFAULT.equals(lastName);
 		}
 		return super.eIsSet(featureID);
 	}

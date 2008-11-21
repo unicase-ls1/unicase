@@ -21,8 +21,7 @@ public interface ClassesFactory extends EFactory {
 	 * end-user-doc -->
 	 * @generated
 	 */
-	ClassesFactory eINSTANCE = org.unicase.model.classes.impl.ClassesFactoryImpl
-			.init();
+	ClassesFactory eINSTANCE = org.unicase.model.classes.impl.ClassesFactoryImpl.init();
 
 	/**
 	 * Returns a new object of class '<em>Class</em>'.

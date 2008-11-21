@@ -52,6 +52,7 @@ public interface UseCase extends ModelElement {
 	 * @see org.unicase.model.requirement.RequirementPackage#getUseCase_InitiatingActor()
 	 * @see org.unicase.model.requirement.Actor#getInitiatedUseCases
 	 * @model opposite="initiatedUseCases" keys="identifier"
+	 *        annotation="org.unicase.ui.meeditor priority='10.0' position='left'"
 	 * @generated
 	 */
 	Actor getInitiatingActor();
@@ -80,6 +81,7 @@ public interface UseCase extends ModelElement {
 	 * @see org.unicase.model.requirement.RequirementPackage#getUseCase_Scenarios()
 	 * @see org.unicase.model.requirement.Scenario#getInstantiatedUseCases
 	 * @model opposite="instantiatedUseCases" keys="identifier"
+	 *        annotation="org.unicase.ui.meeditor priority='10.0' position='right'"
 	 * @generated
 	 */
 	EList<Scenario> getScenarios();
@@ -98,6 +100,7 @@ public interface UseCase extends ModelElement {
 	 * @see org.unicase.model.requirement.RequirementPackage#getUseCase_FunctionalRequirements()
 	 * @see org.unicase.model.requirement.FunctionalRequirement#getUseCases
 	 * @model opposite="useCases" keys="identifier"
+	 *        annotation="org.unicase.ui.meeditor priority='11.0' position='right'"
 	 * @generated
 	 */
 	EList<FunctionalRequirement> getFunctionalRequirements();
@@ -116,6 +119,7 @@ public interface UseCase extends ModelElement {
 	 * @see org.unicase.model.requirement.RequirementPackage#getUseCase_NonFunctionalRequirements()
 	 * @see org.unicase.model.requirement.NonFunctionalRequirement#getRestrictedUseCases
 	 * @model opposite="restrictedUseCases" keys="identifier"
+	 *        annotation="org.unicase.ui.meeditor priority='12.0' position='right'"
 	 * @generated
 	 */
 	EList<NonFunctionalRequirement> getNonFunctionalRequirements();
@@ -134,6 +138,7 @@ public interface UseCase extends ModelElement {
 	 * @see org.unicase.model.requirement.RequirementPackage#getUseCase_IdentifiedClasses()
 	 * @see org.unicase.model.classes.Class#getParticipatedUseCases
 	 * @model opposite="participatedUseCases" keys="identifier"
+	 *        annotation="org.unicase.ui.meeditor priority='13.0' position='right'"
 	 * @generated
 	 */
 	EList<org.unicase.model.classes.Class> getIdentifiedClasses();
@@ -150,6 +155,7 @@ public interface UseCase extends ModelElement {
 	 * @return the value of the '<em>Included Use Cases</em>' reference list.
 	 * @see org.unicase.model.requirement.RequirementPackage#getUseCase_IncludedUseCases()
 	 * @model keys="identifier"
+	 *        annotation="org.unicase.ui.meeditor priority='12.0' position='left'"
 	 * @generated
 	 */
 	EList<UseCase> getIncludedUseCases();
@@ -166,6 +172,7 @@ public interface UseCase extends ModelElement {
 	 * @return the value of the '<em>Extended Use Cases</em>' reference list.
 	 * @see org.unicase.model.requirement.RequirementPackage#getUseCase_ExtendedUseCases()
 	 * @model keys="identifier"
+	 *        annotation="org.unicase.ui.meeditor priority='13.0' position='left'"
 	 * @generated
 	 */
 	EList<UseCase> getExtendedUseCases();
@@ -184,6 +191,7 @@ public interface UseCase extends ModelElement {
 	 * @see org.unicase.model.requirement.RequirementPackage#getUseCase_ParticipatingActors()
 	 * @see org.unicase.model.requirement.Actor#getParticipatedUseCases
 	 * @model opposite="participatedUseCases" keys="identifier"
+	 *        annotation="org.unicase.ui.meeditor priority='11.0' position='left'"
 	 * @generated
 	 */
 	EList<Actor> getParticipatingActors();

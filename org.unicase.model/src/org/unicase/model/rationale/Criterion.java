@@ -40,6 +40,7 @@ public interface Criterion extends ModelElement {
 	 * @see org.unicase.model.rationale.RationalePackage#getCriterion_Assessments()
 	 * @see org.unicase.model.rationale.Assessment#getCriterion
 	 * @model opposite="criterion" keys="identifier"
+	 *        annotation="org.unicase.ui.meeditor priority='10.0' position='right'"
 	 * @generated
 	 */
 	EList<Assessment> getAssessments();

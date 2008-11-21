@@ -64,10 +64,8 @@ public class CriterionImpl extends ModelElementImpl implements Criterion {
 	 */
 	public EList<Assessment> getAssessments() {
 		if (assessments == null) {
-			assessments = new EObjectWithInverseResolvingEList<Assessment>(
-					Assessment.class, this,
-					RationalePackage.CRITERION__ASSESSMENTS,
-					RationalePackage.ASSESSMENT__CRITERION);
+			assessments = new EObjectWithInverseResolvingEList<Assessment>(Assessment.class, this,
+					RationalePackage.CRITERION__ASSESSMENTS, RationalePackage.ASSESSMENT__CRITERION);
 		}
 		return assessments;
 	}
@@ -78,12 +76,10 @@ public class CriterionImpl extends ModelElementImpl implements Criterion {
 	 */
 	@SuppressWarnings("unchecked")
 	@Override
-	public NotificationChain eInverseAdd(InternalEObject otherEnd,
-			int featureID, NotificationChain msgs) {
+	public NotificationChain eInverseAdd(InternalEObject otherEnd, int featureID, NotificationChain msgs) {
 		switch (featureID) {
 		case RationalePackage.CRITERION__ASSESSMENTS:
-			return ((InternalEList<InternalEObject>) (InternalEList<?>) getAssessments())
-					.basicAdd(otherEnd, msgs);
+			return ((InternalEList<InternalEObject>) (InternalEList<?>) getAssessments()).basicAdd(otherEnd, msgs);
 		}
 		return super.eInverseAdd(otherEnd, featureID, msgs);
 	}
@@ -93,12 +89,10 @@ public class CriterionImpl extends ModelElementImpl implements Criterion {
 	 * @generated
 	 */
 	@Override
-	public NotificationChain eInverseRemove(InternalEObject otherEnd,
-			int featureID, NotificationChain msgs) {
+	public NotificationChain eInverseRemove(InternalEObject otherEnd, int featureID, NotificationChain msgs) {
 		switch (featureID) {
 		case RationalePackage.CRITERION__ASSESSMENTS:
-			return ((InternalEList<?>) getAssessments()).basicRemove(otherEnd,
-					msgs);
+			return ((InternalEList<?>) getAssessments()).basicRemove(otherEnd, msgs);
 		}
 		return super.eInverseRemove(otherEnd, featureID, msgs);
 	}
@@ -126,8 +120,7 @@ public class CriterionImpl extends ModelElementImpl implements Criterion {
 		switch (featureID) {
 		case RationalePackage.CRITERION__ASSESSMENTS:
 			getAssessments().clear();
-			getAssessments()
-					.addAll((Collection<? extends Assessment>) newValue);
+			getAssessments().addAll((Collection<? extends Assessment>) newValue);
 			return;
 		}
 		super.eSet(featureID, newValue);

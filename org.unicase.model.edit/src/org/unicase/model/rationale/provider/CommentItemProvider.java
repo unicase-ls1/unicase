@@ -30,9 +30,8 @@ import org.unicase.model.rationale.RationalePackage;
  * <!-- end-user-doc -->
  * @generated
  */
-public class CommentItemProvider extends AnnotationItemProvider implements
-		IEditingDomainItemProvider, IStructuredItemContentProvider,
-		ITreeItemContentProvider, IItemLabelProvider, IItemPropertySource {
+public class CommentItemProvider extends AnnotationItemProvider implements IEditingDomainItemProvider,
+		IStructuredItemContentProvider, ITreeItemContentProvider, IItemLabelProvider, IItemPropertySource {
 	/**
 	 * This constructs an instance from a factory and a notifier. <!--
 	 * begin-user-doc --> <!-- end-user-doc -->
@@ -66,14 +65,10 @@ public class CommentItemProvider extends AnnotationItemProvider implements
 	 * @generated
 	 */
 	protected void addRepliesPropertyDescriptor(Object object) {
-		itemPropertyDescriptors.add(createItemPropertyDescriptor(
-				((ComposeableAdapterFactory) adapterFactory)
-						.getRootAdapterFactory(), getResourceLocator(),
-				getString("_UI_Comment_replies_feature"), getString(
-						"_UI_PropertyDescriptor_description",
-						"_UI_Comment_replies_feature", "_UI_Comment_type"),
-				RationalePackage.Literals.COMMENT__REPLIES, true, false, true,
-				null, null, null));
+		itemPropertyDescriptors.add(createItemPropertyDescriptor(((ComposeableAdapterFactory) adapterFactory)
+				.getRootAdapterFactory(), getResourceLocator(), getString("_UI_Comment_replies_feature"), getString(
+				"_UI_PropertyDescriptor_description", "_UI_Comment_replies_feature", "_UI_Comment_type"),
+				RationalePackage.Literals.COMMENT__REPLIES, true, false, true, null, null, null));
 	}
 
 	/**
@@ -83,8 +78,7 @@ public class CommentItemProvider extends AnnotationItemProvider implements
 	 */
 	@Override
 	public Object getImage(Object object) {
-		return overlayImage(object, getResourceLocator().getImage(
-				"full/obj16/Comment"));
+		return overlayImage(object, getResourceLocator().getImage("full/obj16/Comment"));
 	}
 
 	/**
@@ -96,8 +90,7 @@ public class CommentItemProvider extends AnnotationItemProvider implements
 	@Override
 	public String getText(Object object) {
 		String label = ((Comment) object).getName();
-		return label == null || label.length() == 0 ? getString("_UI_Comment_type")
-				: getString("_UI_Comment_type") + " " + label;
+		return label == null || label.length() == 0 ? getString("_UI_Comment_type") : getString("_UI_Comment_type") + " " + label;
 	}
 
 	/**
@@ -121,8 +114,7 @@ public class CommentItemProvider extends AnnotationItemProvider implements
 	 * @generated
 	 */
 	@Override
-	protected void collectNewChildDescriptors(
-			Collection<Object> newChildDescriptors, Object object) {
+	protected void collectNewChildDescriptors(Collection<Object> newChildDescriptors, Object object) {
 		super.collectNewChildDescriptors(newChildDescriptors, object);
 	}
 
