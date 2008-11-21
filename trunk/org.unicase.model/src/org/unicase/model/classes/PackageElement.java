@@ -41,6 +41,7 @@ public interface PackageElement extends ModelElement {
 	 * @see org.unicase.model.classes.ClassesPackage#getPackageElement_ParentPackage()
 	 * @see org.unicase.model.classes.Package#getContainedPackageElements
 	 * @model opposite="containedPackageElements" keys="identifier" transient="false"
+	 *        annotation="org.unicase.ui.meeditor priority='10.0' position='left'"
 	 * @generated
 	 */
 	org.unicase.model.classes.Package getParentPackage();
@@ -69,6 +70,7 @@ public interface PackageElement extends ModelElement {
 	 * @see org.unicase.model.classes.ClassesPackage#getPackageElement_OutgoingDependencies()
 	 * @see org.unicase.model.classes.Dependency#getSource
 	 * @model opposite="source" keys="identifier"
+	 *        annotation="org.unicase.ui.meeditor priority='10.0' position='right'"
 	 * @generated
 	 */
 	EList<Dependency> getOutgoingDependencies();
@@ -87,6 +89,7 @@ public interface PackageElement extends ModelElement {
 	 * @see org.unicase.model.classes.ClassesPackage#getPackageElement_IncomingDependencies()
 	 * @see org.unicase.model.classes.Dependency#getTarget
 	 * @model opposite="target" keys="identifier"
+	 *        annotation="org.unicase.ui.meeditor priority='11.0' position='right'"
 	 * @generated
 	 */
 	EList<Dependency> getIncomingDependencies();

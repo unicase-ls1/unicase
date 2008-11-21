@@ -32,9 +32,8 @@ import org.unicase.model.requirement.Step;
  * <!-- end-user-doc -->
  * @generated
  */
-public class StepItemProvider extends ModelElementItemProvider implements
-		IEditingDomainItemProvider, IStructuredItemContentProvider,
-		ITreeItemContentProvider, IItemLabelProvider, IItemPropertySource {
+public class StepItemProvider extends ModelElementItemProvider implements IEditingDomainItemProvider,
+		IStructuredItemContentProvider, ITreeItemContentProvider, IItemLabelProvider, IItemPropertySource {
 	/**
 	 * This constructs an instance from a factory and a notifier. <!--
 	 * begin-user-doc --> <!-- end-user-doc -->
@@ -70,14 +69,11 @@ public class StepItemProvider extends ModelElementItemProvider implements
 	 * @generated
 	 */
 	protected void addUserStepPropertyDescriptor(Object object) {
-		itemPropertyDescriptors.add(createItemPropertyDescriptor(
-				((ComposeableAdapterFactory) adapterFactory)
-						.getRootAdapterFactory(), getResourceLocator(),
-				getString("_UI_Step_userStep_feature"), getString(
-						"_UI_PropertyDescriptor_description",
-						"_UI_Step_userStep_feature", "_UI_Step_type"),
-				RequirementPackage.Literals.STEP__USER_STEP, true, false,
-				false, ItemPropertyDescriptor.BOOLEAN_VALUE_IMAGE, null, null));
+		itemPropertyDescriptors.add(createItemPropertyDescriptor(((ComposeableAdapterFactory) adapterFactory)
+				.getRootAdapterFactory(), getResourceLocator(), getString("_UI_Step_userStep_feature"), getString(
+				"_UI_PropertyDescriptor_description", "_UI_Step_userStep_feature", "_UI_Step_type"),
+				RequirementPackage.Literals.STEP__USER_STEP, true, false, false, ItemPropertyDescriptor.BOOLEAN_VALUE_IMAGE,
+				null, null));
 	}
 
 	/**
@@ -87,14 +83,10 @@ public class StepItemProvider extends ModelElementItemProvider implements
 	 * @generated
 	 */
 	protected void addIncludedUseCasePropertyDescriptor(Object object) {
-		itemPropertyDescriptors.add(createItemPropertyDescriptor(
-				((ComposeableAdapterFactory) adapterFactory)
-						.getRootAdapterFactory(), getResourceLocator(),
-				getString("_UI_Step_includedUseCase_feature"), getString(
-						"_UI_PropertyDescriptor_description",
-						"_UI_Step_includedUseCase_feature", "_UI_Step_type"),
-				RequirementPackage.Literals.STEP__INCLUDED_USE_CASE, true,
-				false, true, null, null, null));
+		itemPropertyDescriptors.add(createItemPropertyDescriptor(((ComposeableAdapterFactory) adapterFactory)
+				.getRootAdapterFactory(), getResourceLocator(), getString("_UI_Step_includedUseCase_feature"), getString(
+				"_UI_PropertyDescriptor_description", "_UI_Step_includedUseCase_feature", "_UI_Step_type"),
+				RequirementPackage.Literals.STEP__INCLUDED_USE_CASE, true, false, true, null, null, null));
 	}
 
 	/**
@@ -104,15 +96,10 @@ public class StepItemProvider extends ModelElementItemProvider implements
 	 * @generated
 	 */
 	protected void addIncludedSystemFunctionPropertyDescriptor(Object object) {
-		itemPropertyDescriptors.add(createItemPropertyDescriptor(
-				((ComposeableAdapterFactory) adapterFactory)
-						.getRootAdapterFactory(), getResourceLocator(),
-				getString("_UI_Step_includedSystemFunction_feature"),
-				getString("_UI_PropertyDescriptor_description",
-						"_UI_Step_includedSystemFunction_feature",
-						"_UI_Step_type"),
-				RequirementPackage.Literals.STEP__INCLUDED_SYSTEM_FUNCTION,
-				true, false, true, null, null, null));
+		itemPropertyDescriptors.add(createItemPropertyDescriptor(((ComposeableAdapterFactory) adapterFactory)
+				.getRootAdapterFactory(), getResourceLocator(), getString("_UI_Step_includedSystemFunction_feature"), getString(
+				"_UI_PropertyDescriptor_description", "_UI_Step_includedSystemFunction_feature", "_UI_Step_type"),
+				RequirementPackage.Literals.STEP__INCLUDED_SYSTEM_FUNCTION, true, false, true, null, null, null));
 	}
 
 	/**
@@ -122,8 +109,7 @@ public class StepItemProvider extends ModelElementItemProvider implements
 	 */
 	@Override
 	public Object getImage(Object object) {
-		return overlayImage(object, getResourceLocator().getImage(
-				"full/obj16/Step"));
+		return overlayImage(object, getResourceLocator().getImage("full/obj16/Step"));
 	}
 
 	/**
@@ -135,8 +121,7 @@ public class StepItemProvider extends ModelElementItemProvider implements
 	@Override
 	public String getText(Object object) {
 		String label = ((Step) object).getName();
-		return label == null || label.length() == 0 ? getString("_UI_Step_type")
-				: getString("_UI_Step_type") + " " + label;
+		return label == null || label.length() == 0 ? getString("_UI_Step_type") : getString("_UI_Step_type") + " " + label;
 	}
 
 	/**
@@ -152,8 +137,7 @@ public class StepItemProvider extends ModelElementItemProvider implements
 
 		switch (notification.getFeatureID(Step.class)) {
 		case RequirementPackage.STEP__USER_STEP:
-			fireNotifyChanged(new ViewerNotification(notification, notification
-					.getNotifier(), false, true));
+			fireNotifyChanged(new ViewerNotification(notification, notification.getNotifier(), false, true));
 			return;
 		}
 		super.notifyChanged(notification);
@@ -167,8 +151,7 @@ public class StepItemProvider extends ModelElementItemProvider implements
 	 * @generated
 	 */
 	@Override
-	protected void collectNewChildDescriptors(
-			Collection<Object> newChildDescriptors, Object object) {
+	protected void collectNewChildDescriptors(Collection<Object> newChildDescriptors, Object object) {
 		super.collectNewChildDescriptors(newChildDescriptors, object);
 	}
 

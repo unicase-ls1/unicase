@@ -55,8 +55,7 @@ public interface DiagramPackage extends EPackage {
 	 * end-user-doc -->
 	 * @generated
 	 */
-	DiagramPackage eINSTANCE = org.unicase.model.diagram.impl.DiagramPackageImpl
-			.init();
+	DiagramPackage eINSTANCE = org.unicase.model.diagram.impl.DiagramPackageImpl.init();
 
 	/**
 	 * The meta object id for the '{@link org.unicase.model.diagram.impl.MEDiagramImpl <em>ME Diagram</em>}' class.
@@ -350,8 +349,7 @@ public interface DiagramPackage extends EPackage {
 		 * end-user-doc -->
 		 * @generated
 		 */
-		EReference ME_DIAGRAM__NEW_ELEMENTS = eINSTANCE
-				.getMEDiagram_NewElements();
+		EReference ME_DIAGRAM__NEW_ELEMENTS = eINSTANCE.getMEDiagram_NewElements();
 
 		/**
 		 * The meta object literal for the '<em><b>Type</b></em>' attribute feature.
@@ -367,8 +365,7 @@ public interface DiagramPackage extends EPackage {
 		 * <!-- end-user-doc -->
 		 * @generated
 		 */
-		EAttribute ME_DIAGRAM__DIAGRAM_LAYOUT = eINSTANCE
-				.getMEDiagram_DiagramLayout();
+		EAttribute ME_DIAGRAM__DIAGRAM_LAYOUT = eINSTANCE.getMEDiagram_DiagramLayout();
 
 		/**
 		 * The meta object literal for the '{@link org.unicase.model.diagram.DiagramType <em>Type</em>}' enum.

@@ -54,8 +54,7 @@ public interface RationalePackage extends EPackage {
 	 * end-user-doc -->
 	 * @generated
 	 */
-	RationalePackage eINSTANCE = org.unicase.model.rationale.impl.RationalePackageImpl
-			.init();
+	RationalePackage eINSTANCE = org.unicase.model.rationale.impl.RationalePackageImpl.init();
 
 	/**
 	 * The meta object id for the '{@link org.unicase.model.rationale.impl.IssueImpl <em>Issue</em>}' class.
@@ -1194,8 +1193,7 @@ public interface RationalePackage extends EPackage {
 		 * 
 		 * @generated
 		 */
-		EReference SOLUTION__UNDERLYING_PROPOSALS = eINSTANCE
-				.getSolution_UnderlyingProposals();
+		EReference SOLUTION__UNDERLYING_PROPOSALS = eINSTANCE.getSolution_UnderlyingProposals();
 
 		/**
 		 * The meta object literal for the '<em><b>Issue</b></em>' container reference feature.
@@ -1221,8 +1219,7 @@ public interface RationalePackage extends EPackage {
 		 * <!-- begin-user-doc --> <!-- end-user-doc -->
 		 * @generated
 		 */
-		EReference CRITERION__ASSESSMENTS = eINSTANCE
-				.getCriterion_Assessments();
+		EReference CRITERION__ASSESSMENTS = eINSTANCE.getCriterion_Assessments();
 
 		/**
 		 * The meta object literal for the '{@link org.unicase.model.rationale.impl.AssessmentImpl <em>Assessment</em>}' class.

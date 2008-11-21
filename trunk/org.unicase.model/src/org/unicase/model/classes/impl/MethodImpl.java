@@ -203,12 +203,9 @@ public class MethodImpl extends ModelElementImpl implements Method {
 	 */
 	public void setVisibility(VisibilityType newVisibility) {
 		VisibilityType oldVisibility = visibility;
-		visibility = newVisibility == null ? VISIBILITY_EDEFAULT
-				: newVisibility;
+		visibility = newVisibility == null ? VISIBILITY_EDEFAULT : newVisibility;
 		if (eNotificationRequired())
-			eNotify(new ENotificationImpl(this, Notification.SET,
-					ClassesPackage.METHOD__VISIBILITY, oldVisibility,
-					visibility));
+			eNotify(new ENotificationImpl(this, Notification.SET, ClassesPackage.METHOD__VISIBILITY, oldVisibility, visibility));
 	}
 
 	/**
@@ -229,8 +226,7 @@ public class MethodImpl extends ModelElementImpl implements Method {
 		ScopeType oldScope = scope;
 		scope = newScope == null ? SCOPE_EDEFAULT : newScope;
 		if (eNotificationRequired())
-			eNotify(new ENotificationImpl(this, Notification.SET,
-					ClassesPackage.METHOD__SCOPE, oldScope, scope));
+			eNotify(new ENotificationImpl(this, Notification.SET, ClassesPackage.METHOD__SCOPE, oldScope, scope));
 	}
 
 	/**
@@ -260,11 +256,8 @@ public class MethodImpl extends ModelElementImpl implements Method {
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
-	public NotificationChain basicSetDefiningClass(
-			org.unicase.model.classes.Class newDefiningClass,
-			NotificationChain msgs) {
-		msgs = eBasicSetContainer((InternalEObject) newDefiningClass,
-				ClassesPackage.METHOD__DEFINING_CLASS, msgs);
+	public NotificationChain basicSetDefiningClass(org.unicase.model.classes.Class newDefiningClass, NotificationChain msgs) {
+		msgs = eBasicSetContainer((InternalEObject) newDefiningClass, ClassesPackage.METHOD__DEFINING_CLASS, msgs);
 		return msgs;
 	}
 
@@ -273,26 +266,22 @@ public class MethodImpl extends ModelElementImpl implements Method {
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
-	public void setDefiningClass(
-			org.unicase.model.classes.Class newDefiningClass) {
+	public void setDefiningClass(org.unicase.model.classes.Class newDefiningClass) {
 		if (newDefiningClass != eInternalContainer()
 				|| (eContainerFeatureID != ClassesPackage.METHOD__DEFINING_CLASS && newDefiningClass != null)) {
 			if (EcoreUtil.isAncestor(this, newDefiningClass))
-				throw new IllegalArgumentException(
-						"Recursive containment not allowed for " + toString());
+				throw new IllegalArgumentException("Recursive containment not allowed for " + toString());
 			NotificationChain msgs = null;
 			if (eInternalContainer() != null)
 				msgs = eBasicRemoveFromContainer(msgs);
 			if (newDefiningClass != null)
-				msgs = ((InternalEObject) newDefiningClass).eInverseAdd(this,
-						ClassesPackage.CLASS__METHODS,
+				msgs = ((InternalEObject) newDefiningClass).eInverseAdd(this, ClassesPackage.CLASS__METHODS,
 						org.unicase.model.classes.Class.class, msgs);
 			msgs = basicSetDefiningClass(newDefiningClass, msgs);
 			if (msgs != null)
 				msgs.dispatch();
 		} else if (eNotificationRequired())
-			eNotify(new ENotificationImpl(this, Notification.SET,
-					ClassesPackage.METHOD__DEFINING_CLASS, newDefiningClass,
+			eNotify(new ENotificationImpl(this, Notification.SET, ClassesPackage.METHOD__DEFINING_CLASS, newDefiningClass,
 					newDefiningClass));
 	}
 
@@ -314,9 +303,7 @@ public class MethodImpl extends ModelElementImpl implements Method {
 		String oldReturnType = returnType;
 		returnType = newReturnType;
 		if (eNotificationRequired())
-			eNotify(new ENotificationImpl(this, Notification.SET,
-					ClassesPackage.METHOD__RETURN_TYPE, oldReturnType,
-					returnType));
+			eNotify(new ENotificationImpl(this, Notification.SET, ClassesPackage.METHOD__RETURN_TYPE, oldReturnType, returnType));
 	}
 
 	/**
@@ -346,8 +333,7 @@ public class MethodImpl extends ModelElementImpl implements Method {
 
 		if (arguments != null && !arguments.isEmpty()) {
 			signature += "(";
-			for (Iterator<MethodArgument> argumentIterator = this
-					.getArguments().iterator(); argumentIterator.hasNext();) {
+			for (Iterator<MethodArgument> argumentIterator = this.getArguments().iterator(); argumentIterator.hasNext();) {
 				MethodArgument currentArgument = argumentIterator.next();
 				signature += currentArgument.getLabel();
 
@@ -382,8 +368,7 @@ public class MethodImpl extends ModelElementImpl implements Method {
 	 */
 	public EList<MethodArgument> getArguments() {
 		if (arguments == null) {
-			arguments = new EObjectContainmentEList.Resolving<MethodArgument>(
-					MethodArgument.class, this,
+			arguments = new EObjectContainmentEList.Resolving<MethodArgument>(MethodArgument.class, this,
 					ClassesPackage.METHOD__ARGUMENTS);
 		}
 		return arguments;
@@ -395,14 +380,12 @@ public class MethodImpl extends ModelElementImpl implements Method {
 	 * @generated
 	 */
 	@Override
-	public NotificationChain eInverseAdd(InternalEObject otherEnd,
-			int featureID, NotificationChain msgs) {
+	public NotificationChain eInverseAdd(InternalEObject otherEnd, int featureID, NotificationChain msgs) {
 		switch (featureID) {
 		case ClassesPackage.METHOD__DEFINING_CLASS:
 			if (eInternalContainer() != null)
 				msgs = eBasicRemoveFromContainer(msgs);
-			return basicSetDefiningClass(
-					(org.unicase.model.classes.Class) otherEnd, msgs);
+			return basicSetDefiningClass((org.unicase.model.classes.Class) otherEnd, msgs);
 		}
 		return super.eInverseAdd(otherEnd, featureID, msgs);
 	}
@@ -413,14 +396,12 @@ public class MethodImpl extends ModelElementImpl implements Method {
 	 * @generated
 	 */
 	@Override
-	public NotificationChain eInverseRemove(InternalEObject otherEnd,
-			int featureID, NotificationChain msgs) {
+	public NotificationChain eInverseRemove(InternalEObject otherEnd, int featureID, NotificationChain msgs) {
 		switch (featureID) {
 		case ClassesPackage.METHOD__DEFINING_CLASS:
 			return basicSetDefiningClass(null, msgs);
 		case ClassesPackage.METHOD__ARGUMENTS:
-			return ((InternalEList<?>) getArguments()).basicRemove(otherEnd,
-					msgs);
+			return ((InternalEList<?>) getArguments()).basicRemove(otherEnd, msgs);
 		}
 		return super.eInverseRemove(otherEnd, featureID, msgs);
 	}
@@ -431,12 +412,10 @@ public class MethodImpl extends ModelElementImpl implements Method {
 	 * @generated
 	 */
 	@Override
-	public NotificationChain eBasicRemoveFromContainerFeature(
-			NotificationChain msgs) {
+	public NotificationChain eBasicRemoveFromContainerFeature(NotificationChain msgs) {
 		switch (eContainerFeatureID) {
 		case ClassesPackage.METHOD__DEFINING_CLASS:
-			return eInternalContainer().eInverseRemove(this,
-					ClassesPackage.CLASS__METHODS,
+			return eInternalContainer().eInverseRemove(this, ClassesPackage.CLASS__METHODS,
 					org.unicase.model.classes.Class.class, msgs);
 		}
 		return super.eBasicRemoveFromContainerFeature(msgs);
@@ -495,8 +474,7 @@ public class MethodImpl extends ModelElementImpl implements Method {
 			return;
 		case ClassesPackage.METHOD__ARGUMENTS:
 			getArguments().clear();
-			getArguments().addAll(
-					(Collection<? extends MethodArgument>) newValue);
+			getArguments().addAll((Collection<? extends MethodArgument>) newValue);
 			return;
 		case ClassesPackage.METHOD__PROPERTIES:
 			setProperties((String) newValue);
@@ -556,19 +534,15 @@ public class MethodImpl extends ModelElementImpl implements Method {
 		case ClassesPackage.METHOD__DEFINING_CLASS:
 			return basicGetDefiningClass() != null;
 		case ClassesPackage.METHOD__RETURN_TYPE:
-			return RETURN_TYPE_EDEFAULT == null ? returnType != null
-					: !RETURN_TYPE_EDEFAULT.equals(returnType);
+			return RETURN_TYPE_EDEFAULT == null ? returnType != null : !RETURN_TYPE_EDEFAULT.equals(returnType);
 		case ClassesPackage.METHOD__SIGNATURE:
-			return SIGNATURE_EDEFAULT == null ? getSignature() != null
-					: !SIGNATURE_EDEFAULT.equals(getSignature());
+			return SIGNATURE_EDEFAULT == null ? getSignature() != null : !SIGNATURE_EDEFAULT.equals(getSignature());
 		case ClassesPackage.METHOD__ARGUMENTS:
 			return arguments != null && !arguments.isEmpty();
 		case ClassesPackage.METHOD__PROPERTIES:
-			return PROPERTIES_EDEFAULT == null ? properties != null
-					: !PROPERTIES_EDEFAULT.equals(properties);
+			return PROPERTIES_EDEFAULT == null ? properties != null : !PROPERTIES_EDEFAULT.equals(properties);
 		case ClassesPackage.METHOD__LABEL:
-			return LABEL_EDEFAULT == null ? label != null : !LABEL_EDEFAULT
-					.equals(label);
+			return LABEL_EDEFAULT == null ? label != null : !LABEL_EDEFAULT.equals(label);
 		}
 		return super.eIsSet(featureID);
 	}
@@ -616,9 +590,7 @@ public class MethodImpl extends ModelElementImpl implements Method {
 		String oldProperties = properties;
 		properties = newProperties;
 		if (eNotificationRequired())
-			eNotify(new ENotificationImpl(this, Notification.SET,
-					ClassesPackage.METHOD__PROPERTIES, oldProperties,
-					properties));
+			eNotify(new ENotificationImpl(this, Notification.SET, ClassesPackage.METHOD__PROPERTIES, oldProperties, properties));
 	}
 
 	/**
@@ -706,8 +678,7 @@ public class MethodImpl extends ModelElementImpl implements Method {
 		}
 
 		if (eNotificationRequired()) {
-			eNotify(new ENotificationImpl(this, Notification.SET,
-					ClassesPackage.METHOD__SIGNATURE, oldLabel, getLabel()));
+			eNotify(new ENotificationImpl(this, Notification.SET, ClassesPackage.METHOD__SIGNATURE, oldLabel, getLabel()));
 		}
 	}
 

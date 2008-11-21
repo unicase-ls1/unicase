@@ -29,10 +29,8 @@ import org.unicase.model.meeting.MeetingPackage;
  * <!-- end-user-doc -->
  * @generated
  */
-public class CompositeMeetingSectionItemProvider extends
-		MeetingSectionItemProvider implements IEditingDomainItemProvider,
-		IStructuredItemContentProvider, ITreeItemContentProvider,
-		IItemLabelProvider, IItemPropertySource {
+public class CompositeMeetingSectionItemProvider extends MeetingSectionItemProvider implements IEditingDomainItemProvider,
+		IStructuredItemContentProvider, ITreeItemContentProvider, IItemLabelProvider, IItemPropertySource {
 	/**
 	 * This constructs an instance from a factory and a notifier.
 	 * <!-- begin-user-doc -->
@@ -67,12 +65,10 @@ public class CompositeMeetingSectionItemProvider extends
 	 * @generated
 	 */
 	@Override
-	public Collection<? extends EStructuralFeature> getChildrenFeatures(
-			Object object) {
+	public Collection<? extends EStructuralFeature> getChildrenFeatures(Object object) {
 		if (childrenFeatures == null) {
 			super.getChildrenFeatures(object);
-			childrenFeatures
-					.add(MeetingPackage.Literals.COMPOSITE_MEETING_SECTION__SUBSECTIONS);
+			childrenFeatures.add(MeetingPackage.Literals.COMPOSITE_MEETING_SECTION__SUBSECTIONS);
 		}
 		return childrenFeatures;
 	}
@@ -98,8 +94,7 @@ public class CompositeMeetingSectionItemProvider extends
 	 */
 	@Override
 	public Object getImage(Object object) {
-		return overlayImage(object, getResourceLocator().getImage(
-				"full/obj16/CompositeMeetingSection"));
+		return overlayImage(object, getResourceLocator().getImage("full/obj16/CompositeMeetingSection"));
 	}
 
 	/**
@@ -127,8 +122,7 @@ public class CompositeMeetingSectionItemProvider extends
 
 		switch (notification.getFeatureID(CompositeMeetingSection.class)) {
 		case MeetingPackage.COMPOSITE_MEETING_SECTION__SUBSECTIONS:
-			fireNotifyChanged(new ViewerNotification(notification, notification
-					.getNotifier(), true, false));
+			fireNotifyChanged(new ViewerNotification(notification, notification.getNotifier(), true, false));
 			return;
 		}
 		super.notifyChanged(notification);
@@ -142,20 +136,16 @@ public class CompositeMeetingSectionItemProvider extends
 	 * @generated
 	 */
 	@Override
-	protected void collectNewChildDescriptors(
-			Collection<Object> newChildDescriptors, Object object) {
+	protected void collectNewChildDescriptors(Collection<Object> newChildDescriptors, Object object) {
 		super.collectNewChildDescriptors(newChildDescriptors, object);
 
-		newChildDescriptors.add(createChildParameter(
-				MeetingPackage.Literals.COMPOSITE_MEETING_SECTION__SUBSECTIONS,
+		newChildDescriptors.add(createChildParameter(MeetingPackage.Literals.COMPOSITE_MEETING_SECTION__SUBSECTIONS,
 				MeetingFactory.eINSTANCE.createCompositeMeetingSection()));
 
-		newChildDescriptors.add(createChildParameter(
-				MeetingPackage.Literals.COMPOSITE_MEETING_SECTION__SUBSECTIONS,
+		newChildDescriptors.add(createChildParameter(MeetingPackage.Literals.COMPOSITE_MEETING_SECTION__SUBSECTIONS,
 				MeetingFactory.eINSTANCE.createIssueMeetingSection()));
 
-		newChildDescriptors.add(createChildParameter(
-				MeetingPackage.Literals.COMPOSITE_MEETING_SECTION__SUBSECTIONS,
+		newChildDescriptors.add(createChildParameter(MeetingPackage.Literals.COMPOSITE_MEETING_SECTION__SUBSECTIONS,
 				MeetingFactory.eINSTANCE.createWorkItemMeetingSection()));
 	}
 

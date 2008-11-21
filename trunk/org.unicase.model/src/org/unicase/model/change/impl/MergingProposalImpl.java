@@ -32,8 +32,7 @@ import org.unicase.model.rationale.impl.ProposalImpl;
  *
  * @generated
  */
-public class MergingProposalImpl extends ProposalImpl implements
-		MergingProposal {
+public class MergingProposalImpl extends ProposalImpl implements MergingProposal {
 	/**
 	 * The cached value of the '{@link #getConflictingProposals() <em>Conflicting Proposals</em>}' reference list.
 	 * <!-- begin-user-doc -->
@@ -77,8 +76,7 @@ public class MergingProposalImpl extends ProposalImpl implements
 	 */
 	public EList<MergingProposal> getConflictingProposals() {
 		if (conflictingProposals == null) {
-			conflictingProposals = new EObjectResolvingEList<MergingProposal>(
-					MergingProposal.class, this,
+			conflictingProposals = new EObjectResolvingEList<MergingProposal>(MergingProposal.class, this,
 					ChangePackage.MERGING_PROPOSAL__CONFLICTING_PROPOSALS);
 		}
 		return conflictingProposals;
@@ -94,8 +92,7 @@ public class MergingProposalImpl extends ProposalImpl implements
 			pendingChanges = (ModelChangePackage) eResolveProxy(oldPendingChanges);
 			if (pendingChanges != oldPendingChanges) {
 				if (eNotificationRequired())
-					eNotify(new ENotificationImpl(this, Notification.RESOLVE,
-							ChangePackage.MERGING_PROPOSAL__PENDING_CHANGES,
+					eNotify(new ENotificationImpl(this, Notification.RESOLVE, ChangePackage.MERGING_PROPOSAL__PENDING_CHANGES,
 							oldPendingChanges, pendingChanges));
 			}
 		}
@@ -118,8 +115,7 @@ public class MergingProposalImpl extends ProposalImpl implements
 		ModelChangePackage oldPendingChanges = pendingChanges;
 		pendingChanges = newPendingChanges;
 		if (eNotificationRequired())
-			eNotify(new ENotificationImpl(this, Notification.SET,
-					ChangePackage.MERGING_PROPOSAL__PENDING_CHANGES,
+			eNotify(new ENotificationImpl(this, Notification.SET, ChangePackage.MERGING_PROPOSAL__PENDING_CHANGES,
 					oldPendingChanges, pendingChanges));
 	}
 
@@ -150,8 +146,7 @@ public class MergingProposalImpl extends ProposalImpl implements
 		switch (featureID) {
 		case ChangePackage.MERGING_PROPOSAL__CONFLICTING_PROPOSALS:
 			getConflictingProposals().clear();
-			getConflictingProposals().addAll(
-					(Collection<? extends MergingProposal>) newValue);
+			getConflictingProposals().addAll((Collection<? extends MergingProposal>) newValue);
 			return;
 		case ChangePackage.MERGING_PROPOSAL__PENDING_CHANGES:
 			setPendingChanges((ModelChangePackage) newValue);
@@ -185,8 +180,7 @@ public class MergingProposalImpl extends ProposalImpl implements
 	public boolean eIsSet(int featureID) {
 		switch (featureID) {
 		case ChangePackage.MERGING_PROPOSAL__CONFLICTING_PROPOSALS:
-			return conflictingProposals != null
-					&& !conflictingProposals.isEmpty();
+			return conflictingProposals != null && !conflictingProposals.isEmpty();
 		case ChangePackage.MERGING_PROPOSAL__PENDING_CHANGES:
 			return pendingChanges != null;
 		}

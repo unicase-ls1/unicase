@@ -32,9 +32,8 @@ import org.unicase.model.provider.ModelElementItemProvider;
  * <!-- end-user-doc -->
  * @generated
  */
-public class MeetingSectionItemProvider extends ModelElementItemProvider
-		implements IEditingDomainItemProvider, IStructuredItemContentProvider,
-		ITreeItemContentProvider, IItemLabelProvider, IItemPropertySource {
+public class MeetingSectionItemProvider extends ModelElementItemProvider implements IEditingDomainItemProvider,
+		IStructuredItemContentProvider, ITreeItemContentProvider, IItemLabelProvider, IItemPropertySource {
 	/**
 	 * This constructs an instance from a factory and a notifier.
 	 * <!-- begin-user-doc -->
@@ -68,16 +67,11 @@ public class MeetingSectionItemProvider extends ModelElementItemProvider
 	 * @generated
 	 */
 	protected void addAllocatedTimePropertyDescriptor(Object object) {
-		itemPropertyDescriptors.add(createItemPropertyDescriptor(
-				((ComposeableAdapterFactory) adapterFactory)
-						.getRootAdapterFactory(), getResourceLocator(),
-				getString("_UI_MeetingSection_allocatedTime_feature"),
-				getString("_UI_PropertyDescriptor_description",
-						"_UI_MeetingSection_allocatedTime_feature",
-						"_UI_MeetingSection_type"),
-				MeetingPackage.Literals.MEETING_SECTION__ALLOCATED_TIME, true,
-				false, false, ItemPropertyDescriptor.INTEGRAL_VALUE_IMAGE,
-				null, null));
+		itemPropertyDescriptors.add(createItemPropertyDescriptor(((ComposeableAdapterFactory) adapterFactory)
+				.getRootAdapterFactory(), getResourceLocator(), getString("_UI_MeetingSection_allocatedTime_feature"), getString(
+				"_UI_PropertyDescriptor_description", "_UI_MeetingSection_allocatedTime_feature", "_UI_MeetingSection_type"),
+				MeetingPackage.Literals.MEETING_SECTION__ALLOCATED_TIME, true, false, false,
+				ItemPropertyDescriptor.INTEGRAL_VALUE_IMAGE, null, null));
 	}
 
 	/**
@@ -105,8 +99,7 @@ public class MeetingSectionItemProvider extends ModelElementItemProvider
 
 		switch (notification.getFeatureID(MeetingSection.class)) {
 		case MeetingPackage.MEETING_SECTION__ALLOCATED_TIME:
-			fireNotifyChanged(new ViewerNotification(notification, notification
-					.getNotifier(), false, true));
+			fireNotifyChanged(new ViewerNotification(notification, notification.getNotifier(), false, true));
 			return;
 		}
 		super.notifyChanged(notification);
@@ -120,8 +113,7 @@ public class MeetingSectionItemProvider extends ModelElementItemProvider
 	 * @generated
 	 */
 	@Override
-	protected void collectNewChildDescriptors(
-			Collection<Object> newChildDescriptors, Object object) {
+	protected void collectNewChildDescriptors(Collection<Object> newChildDescriptors, Object object) {
 		super.collectNewChildDescriptors(newChildDescriptors, object);
 	}
 

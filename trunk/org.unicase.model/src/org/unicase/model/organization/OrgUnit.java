@@ -69,6 +69,7 @@ public interface OrgUnit extends ModelElement {
 	 * @see org.unicase.model.organization.OrganizationPackage#getOrgUnit_GroupMemberships()
 	 * @see org.unicase.model.organization.Group#getOrgUnits
 	 * @model opposite="orgUnits" keys="identifier"
+	 *        annotation="org.unicase.ui.meeditor priority='10.0' position='right'"
 	 * @generated
 	 */
 	EList<Group> getGroupMemberships();
@@ -87,6 +88,7 @@ public interface OrgUnit extends ModelElement {
 	 * @see org.unicase.model.organization.OrganizationPackage#getOrgUnit_Assignments()
 	 * @see org.unicase.model.task.WorkItem#getAssignee
 	 * @model opposite="assignee" keys="identifier"
+	 *        annotation="org.unicase.ui.meeditor priority='11.0' position='right'"
 	 * @generated
 	 */
 	EList<WorkItem> getAssignments();

@@ -30,9 +30,8 @@ import org.unicase.model.requirement.UserTask;
  * <!-- end-user-doc -->
  * @generated
  */
-public class UserTaskItemProvider extends ModelElementItemProvider implements
-		IEditingDomainItemProvider, IStructuredItemContentProvider,
-		ITreeItemContentProvider, IItemLabelProvider, IItemPropertySource {
+public class UserTaskItemProvider extends ModelElementItemProvider implements IEditingDomainItemProvider,
+		IStructuredItemContentProvider, ITreeItemContentProvider, IItemLabelProvider, IItemPropertySource {
 	/**
 	 * This constructs an instance from a factory and a notifier.
 	 * <!-- begin-user-doc -->
@@ -68,15 +67,10 @@ public class UserTaskItemProvider extends ModelElementItemProvider implements
 	 * @generated
 	 */
 	protected void addInitiatingActorPropertyDescriptor(Object object) {
-		itemPropertyDescriptors.add(createItemPropertyDescriptor(
-				((ComposeableAdapterFactory) adapterFactory)
-						.getRootAdapterFactory(), getResourceLocator(),
-				getString("_UI_UserTask_initiatingActor_feature"), getString(
-						"_UI_PropertyDescriptor_description",
-						"_UI_UserTask_initiatingActor_feature",
-						"_UI_UserTask_type"),
-				RequirementPackage.Literals.USER_TASK__INITIATING_ACTOR, true,
-				false, true, null, null, null));
+		itemPropertyDescriptors.add(createItemPropertyDescriptor(((ComposeableAdapterFactory) adapterFactory)
+				.getRootAdapterFactory(), getResourceLocator(), getString("_UI_UserTask_initiatingActor_feature"), getString(
+				"_UI_PropertyDescriptor_description", "_UI_UserTask_initiatingActor_feature", "_UI_UserTask_type"),
+				RequirementPackage.Literals.USER_TASK__INITIATING_ACTOR, true, false, true, null, null, null));
 	}
 
 	/**
@@ -86,15 +80,10 @@ public class UserTaskItemProvider extends ModelElementItemProvider implements
 	 * @generated
 	 */
 	protected void addParticipatingActorPropertyDescriptor(Object object) {
-		itemPropertyDescriptors.add(createItemPropertyDescriptor(
-				((ComposeableAdapterFactory) adapterFactory)
-						.getRootAdapterFactory(), getResourceLocator(),
-				getString("_UI_UserTask_participatingActor_feature"),
-				getString("_UI_PropertyDescriptor_description",
-						"_UI_UserTask_participatingActor_feature",
-						"_UI_UserTask_type"),
-				RequirementPackage.Literals.USER_TASK__PARTICIPATING_ACTOR,
-				true, false, true, null, null, null));
+		itemPropertyDescriptors.add(createItemPropertyDescriptor(((ComposeableAdapterFactory) adapterFactory)
+				.getRootAdapterFactory(), getResourceLocator(), getString("_UI_UserTask_participatingActor_feature"), getString(
+				"_UI_PropertyDescriptor_description", "_UI_UserTask_participatingActor_feature", "_UI_UserTask_type"),
+				RequirementPackage.Literals.USER_TASK__PARTICIPATING_ACTOR, true, false, true, null, null, null));
 	}
 
 	/**
@@ -104,15 +93,10 @@ public class UserTaskItemProvider extends ModelElementItemProvider implements
 	 * @generated
 	 */
 	protected void addRealizingUseCasesPropertyDescriptor(Object object) {
-		itemPropertyDescriptors.add(createItemPropertyDescriptor(
-				((ComposeableAdapterFactory) adapterFactory)
-						.getRootAdapterFactory(), getResourceLocator(),
-				getString("_UI_UserTask_realizingUseCases_feature"), getString(
-						"_UI_PropertyDescriptor_description",
-						"_UI_UserTask_realizingUseCases_feature",
-						"_UI_UserTask_type"),
-				RequirementPackage.Literals.USER_TASK__REALIZING_USE_CASES,
-				true, false, true, null, null, null));
+		itemPropertyDescriptors.add(createItemPropertyDescriptor(((ComposeableAdapterFactory) adapterFactory)
+				.getRootAdapterFactory(), getResourceLocator(), getString("_UI_UserTask_realizingUseCases_feature"), getString(
+				"_UI_PropertyDescriptor_description", "_UI_UserTask_realizingUseCases_feature", "_UI_UserTask_type"),
+				RequirementPackage.Literals.USER_TASK__REALIZING_USE_CASES, true, false, true, null, null, null));
 	}
 
 	/**
@@ -123,8 +107,7 @@ public class UserTaskItemProvider extends ModelElementItemProvider implements
 	 */
 	@Override
 	public Object getImage(Object object) {
-		return overlayImage(object, getResourceLocator().getImage(
-				"full/obj16/UserTask"));
+		return overlayImage(object, getResourceLocator().getImage("full/obj16/UserTask"));
 	}
 
 	/**
@@ -136,8 +119,8 @@ public class UserTaskItemProvider extends ModelElementItemProvider implements
 	@Override
 	public String getText(Object object) {
 		String label = ((UserTask) object).getName();
-		return label == null || label.length() == 0 ? getString("_UI_UserTask_type")
-				: getString("_UI_UserTask_type") + " " + label;
+		return label == null || label.length() == 0 ? getString("_UI_UserTask_type") : getString("_UI_UserTask_type") + " "
+				+ label;
 	}
 
 	/**
@@ -161,8 +144,7 @@ public class UserTaskItemProvider extends ModelElementItemProvider implements
 	 * @generated
 	 */
 	@Override
-	protected void collectNewChildDescriptors(
-			Collection<Object> newChildDescriptors, Object object) {
+	protected void collectNewChildDescriptors(Collection<Object> newChildDescriptors, Object object) {
 		super.collectNewChildDescriptors(newChildDescriptors, object);
 	}
 

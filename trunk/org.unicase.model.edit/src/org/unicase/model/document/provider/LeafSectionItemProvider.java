@@ -44,9 +44,8 @@ import org.unicase.model.task.TaskFactory;
  * --> <!-- end-user-doc -->
  * @generated
  */
-public class LeafSectionItemProvider extends ModelElementItemProvider implements
-		IEditingDomainItemProvider, IStructuredItemContentProvider,
-		ITreeItemContentProvider, IItemLabelProvider, IItemPropertySource {
+public class LeafSectionItemProvider extends ModelElementItemProvider implements IEditingDomainItemProvider,
+		IStructuredItemContentProvider, ITreeItemContentProvider, IItemLabelProvider, IItemPropertySource {
 	/**
 	 * This constructs an instance from a factory and a notifier. <!--
 	 * begin-user-doc --> <!-- end-user-doc -->
@@ -81,15 +80,10 @@ public class LeafSectionItemProvider extends ModelElementItemProvider implements
 	 * @generated
 	 */
 	protected void addModelElementsPropertyDescriptor(Object object) {
-		itemPropertyDescriptors.add(createItemPropertyDescriptor(
-				((ComposeableAdapterFactory) adapterFactory)
-						.getRootAdapterFactory(), getResourceLocator(),
-				getString("_UI_LeafSection_modelElements_feature"), getString(
-						"_UI_PropertyDescriptor_description",
-						"_UI_LeafSection_modelElements_feature",
-						"_UI_LeafSection_type"),
-				DocumentPackage.Literals.LEAF_SECTION__MODEL_ELEMENTS, true,
-				false, false, null, null, null));
+		itemPropertyDescriptors.add(createItemPropertyDescriptor(((ComposeableAdapterFactory) adapterFactory)
+				.getRootAdapterFactory(), getResourceLocator(), getString("_UI_LeafSection_modelElements_feature"), getString(
+				"_UI_PropertyDescriptor_description", "_UI_LeafSection_modelElements_feature", "_UI_LeafSection_type"),
+				DocumentPackage.Literals.LEAF_SECTION__MODEL_ELEMENTS, true, false, false, null, null, null));
 	}
 
 	/**
@@ -98,18 +92,11 @@ public class LeafSectionItemProvider extends ModelElementItemProvider implements
 	 * @generated
 	 */
 	protected void addReferencedModelElementsPropertyDescriptor(Object object) {
-		itemPropertyDescriptors
-				.add(createItemPropertyDescriptor(
-						((ComposeableAdapterFactory) adapterFactory)
-								.getRootAdapterFactory(),
-						getResourceLocator(),
-						getString("_UI_LeafSection_referencedModelElements_feature"),
-						getString(
-								"_UI_PropertyDescriptor_description",
-								"_UI_LeafSection_referencedModelElements_feature",
-								"_UI_LeafSection_type"),
-						DocumentPackage.Literals.LEAF_SECTION__REFERENCED_MODEL_ELEMENTS,
-						true, false, true, null, null, null));
+		itemPropertyDescriptors.add(createItemPropertyDescriptor(((ComposeableAdapterFactory) adapterFactory)
+				.getRootAdapterFactory(), getResourceLocator(), getString("_UI_LeafSection_referencedModelElements_feature"),
+				getString("_UI_PropertyDescriptor_description", "_UI_LeafSection_referencedModelElements_feature",
+						"_UI_LeafSection_type"), DocumentPackage.Literals.LEAF_SECTION__REFERENCED_MODEL_ELEMENTS, true, false,
+				true, null, null, null));
 	}
 
 	/**
@@ -120,12 +107,10 @@ public class LeafSectionItemProvider extends ModelElementItemProvider implements
 	 * @generated
 	 */
 	@Override
-	public Collection<? extends EStructuralFeature> getChildrenFeatures(
-			Object object) {
+	public Collection<? extends EStructuralFeature> getChildrenFeatures(Object object) {
 		if (childrenFeatures == null) {
 			super.getChildrenFeatures(object);
-			childrenFeatures
-					.add(DocumentPackage.Literals.LEAF_SECTION__MODEL_ELEMENTS);
+			childrenFeatures.add(DocumentPackage.Literals.LEAF_SECTION__MODEL_ELEMENTS);
 		}
 		return childrenFeatures;
 	}
@@ -150,8 +135,7 @@ public class LeafSectionItemProvider extends ModelElementItemProvider implements
 	 */
 	@Override
 	public Object getImage(Object object) {
-		return overlayImage(object, getResourceLocator().getImage(
-				"full/obj16/LeafSection"));
+		return overlayImage(object, getResourceLocator().getImage("full/obj16/LeafSection"));
 	}
 
 	/**
@@ -179,8 +163,7 @@ public class LeafSectionItemProvider extends ModelElementItemProvider implements
 
 		switch (notification.getFeatureID(LeafSection.class)) {
 		case DocumentPackage.LEAF_SECTION__MODEL_ELEMENTS:
-			fireNotifyChanged(new ViewerNotification(notification, notification
-					.getNotifier(), true, false));
+			fireNotifyChanged(new ViewerNotification(notification, notification.getNotifier(), true, false));
 			return;
 		}
 		super.notifyChanged(notification);
@@ -194,180 +177,136 @@ public class LeafSectionItemProvider extends ModelElementItemProvider implements
 	 * @generated
 	 */
 	@Override
-	protected void collectNewChildDescriptors(
-			Collection<Object> newChildDescriptors, Object object) {
+	protected void collectNewChildDescriptors(Collection<Object> newChildDescriptors, Object object) {
 		super.collectNewChildDescriptors(newChildDescriptors, object);
 
-		newChildDescriptors.add(createChildParameter(
-				DocumentPackage.Literals.LEAF_SECTION__MODEL_ELEMENTS,
+		newChildDescriptors.add(createChildParameter(DocumentPackage.Literals.LEAF_SECTION__MODEL_ELEMENTS,
 				DocumentFactory.eINSTANCE.createLeafSection()));
 
-		newChildDescriptors.add(createChildParameter(
-				DocumentPackage.Literals.LEAF_SECTION__MODEL_ELEMENTS,
+		newChildDescriptors.add(createChildParameter(DocumentPackage.Literals.LEAF_SECTION__MODEL_ELEMENTS,
 				DocumentFactory.eINSTANCE.createCompositeSection()));
 
-		newChildDescriptors.add(createChildParameter(
-				DocumentPackage.Literals.LEAF_SECTION__MODEL_ELEMENTS,
+		newChildDescriptors.add(createChildParameter(DocumentPackage.Literals.LEAF_SECTION__MODEL_ELEMENTS,
 				OrganizationFactory.eINSTANCE.createUser()));
 
-		newChildDescriptors.add(createChildParameter(
-				DocumentPackage.Literals.LEAF_SECTION__MODEL_ELEMENTS,
+		newChildDescriptors.add(createChildParameter(DocumentPackage.Literals.LEAF_SECTION__MODEL_ELEMENTS,
 				OrganizationFactory.eINSTANCE.createGroup()));
 
-		newChildDescriptors.add(createChildParameter(
-				DocumentPackage.Literals.LEAF_SECTION__MODEL_ELEMENTS,
-				TaskFactory.eINSTANCE.createActionItem()));
+		newChildDescriptors.add(createChildParameter(DocumentPackage.Literals.LEAF_SECTION__MODEL_ELEMENTS, TaskFactory.eINSTANCE
+				.createActionItem()));
 
-		newChildDescriptors.add(createChildParameter(
-				DocumentPackage.Literals.LEAF_SECTION__MODEL_ELEMENTS,
-				TaskFactory.eINSTANCE.createWorkPackage()));
+		newChildDescriptors.add(createChildParameter(DocumentPackage.Literals.LEAF_SECTION__MODEL_ELEMENTS, TaskFactory.eINSTANCE
+				.createWorkPackage()));
 
-		newChildDescriptors.add(createChildParameter(
-				DocumentPackage.Literals.LEAF_SECTION__MODEL_ELEMENTS,
-				TaskFactory.eINSTANCE.createMilestone()));
+		newChildDescriptors.add(createChildParameter(DocumentPackage.Literals.LEAF_SECTION__MODEL_ELEMENTS, TaskFactory.eINSTANCE
+				.createMilestone()));
 
-		newChildDescriptors.add(createChildParameter(
-				DocumentPackage.Literals.LEAF_SECTION__MODEL_ELEMENTS,
+		newChildDescriptors.add(createChildParameter(DocumentPackage.Literals.LEAF_SECTION__MODEL_ELEMENTS,
 				DiagramFactory.eINSTANCE.createMEDiagram()));
 
-		newChildDescriptors.add(createChildParameter(
-				DocumentPackage.Literals.LEAF_SECTION__MODEL_ELEMENTS,
+		newChildDescriptors.add(createChildParameter(DocumentPackage.Literals.LEAF_SECTION__MODEL_ELEMENTS,
 				ClassesFactory.eINSTANCE.createClass()));
 
-		newChildDescriptors.add(createChildParameter(
-				DocumentPackage.Literals.LEAF_SECTION__MODEL_ELEMENTS,
+		newChildDescriptors.add(createChildParameter(DocumentPackage.Literals.LEAF_SECTION__MODEL_ELEMENTS,
 				ClassesFactory.eINSTANCE.createPackage()));
 
-		newChildDescriptors.add(createChildParameter(
-				DocumentPackage.Literals.LEAF_SECTION__MODEL_ELEMENTS,
+		newChildDescriptors.add(createChildParameter(DocumentPackage.Literals.LEAF_SECTION__MODEL_ELEMENTS,
 				ClassesFactory.eINSTANCE.createAssociation()));
 
-		newChildDescriptors.add(createChildParameter(
-				DocumentPackage.Literals.LEAF_SECTION__MODEL_ELEMENTS,
+		newChildDescriptors.add(createChildParameter(DocumentPackage.Literals.LEAF_SECTION__MODEL_ELEMENTS,
 				ClassesFactory.eINSTANCE.createAttribute()));
 
-		newChildDescriptors.add(createChildParameter(
-				DocumentPackage.Literals.LEAF_SECTION__MODEL_ELEMENTS,
+		newChildDescriptors.add(createChildParameter(DocumentPackage.Literals.LEAF_SECTION__MODEL_ELEMENTS,
 				ClassesFactory.eINSTANCE.createMethod()));
 
-		newChildDescriptors.add(createChildParameter(
-				DocumentPackage.Literals.LEAF_SECTION__MODEL_ELEMENTS,
+		newChildDescriptors.add(createChildParameter(DocumentPackage.Literals.LEAF_SECTION__MODEL_ELEMENTS,
 				ClassesFactory.eINSTANCE.createMethodArgument()));
 
-		newChildDescriptors.add(createChildParameter(
-				DocumentPackage.Literals.LEAF_SECTION__MODEL_ELEMENTS,
+		newChildDescriptors.add(createChildParameter(DocumentPackage.Literals.LEAF_SECTION__MODEL_ELEMENTS,
 				ClassesFactory.eINSTANCE.createDependency()));
 
-		newChildDescriptors.add(createChildParameter(
-				DocumentPackage.Literals.LEAF_SECTION__MODEL_ELEMENTS,
+		newChildDescriptors.add(createChildParameter(DocumentPackage.Literals.LEAF_SECTION__MODEL_ELEMENTS,
 				RequirementFactory.eINSTANCE.createNonFunctionalRequirement()));
 
-		newChildDescriptors.add(createChildParameter(
-				DocumentPackage.Literals.LEAF_SECTION__MODEL_ELEMENTS,
+		newChildDescriptors.add(createChildParameter(DocumentPackage.Literals.LEAF_SECTION__MODEL_ELEMENTS,
 				RequirementFactory.eINSTANCE.createFunctionalRequirement()));
 
-		newChildDescriptors.add(createChildParameter(
-				DocumentPackage.Literals.LEAF_SECTION__MODEL_ELEMENTS,
+		newChildDescriptors.add(createChildParameter(DocumentPackage.Literals.LEAF_SECTION__MODEL_ELEMENTS,
 				RequirementFactory.eINSTANCE.createUseCase()));
 
-		newChildDescriptors.add(createChildParameter(
-				DocumentPackage.Literals.LEAF_SECTION__MODEL_ELEMENTS,
+		newChildDescriptors.add(createChildParameter(DocumentPackage.Literals.LEAF_SECTION__MODEL_ELEMENTS,
 				RequirementFactory.eINSTANCE.createScenario()));
 
-		newChildDescriptors.add(createChildParameter(
-				DocumentPackage.Literals.LEAF_SECTION__MODEL_ELEMENTS,
+		newChildDescriptors.add(createChildParameter(DocumentPackage.Literals.LEAF_SECTION__MODEL_ELEMENTS,
 				RequirementFactory.eINSTANCE.createActor()));
 
-		newChildDescriptors.add(createChildParameter(
-				DocumentPackage.Literals.LEAF_SECTION__MODEL_ELEMENTS,
+		newChildDescriptors.add(createChildParameter(DocumentPackage.Literals.LEAF_SECTION__MODEL_ELEMENTS,
 				RequirementFactory.eINSTANCE.createActorInstance()));
 
-		newChildDescriptors.add(createChildParameter(
-				DocumentPackage.Literals.LEAF_SECTION__MODEL_ELEMENTS,
+		newChildDescriptors.add(createChildParameter(DocumentPackage.Literals.LEAF_SECTION__MODEL_ELEMENTS,
 				RequirementFactory.eINSTANCE.createStep()));
 
-		newChildDescriptors.add(createChildParameter(
-				DocumentPackage.Literals.LEAF_SECTION__MODEL_ELEMENTS,
+		newChildDescriptors.add(createChildParameter(DocumentPackage.Literals.LEAF_SECTION__MODEL_ELEMENTS,
 				RequirementFactory.eINSTANCE.createSystemFunction()));
 
-		newChildDescriptors.add(createChildParameter(
-				DocumentPackage.Literals.LEAF_SECTION__MODEL_ELEMENTS,
+		newChildDescriptors.add(createChildParameter(DocumentPackage.Literals.LEAF_SECTION__MODEL_ELEMENTS,
 				RequirementFactory.eINSTANCE.createUserTask()));
 
-		newChildDescriptors.add(createChildParameter(
-				DocumentPackage.Literals.LEAF_SECTION__MODEL_ELEMENTS,
+		newChildDescriptors.add(createChildParameter(DocumentPackage.Literals.LEAF_SECTION__MODEL_ELEMENTS,
 				RationaleFactory.eINSTANCE.createIssue()));
 
-		newChildDescriptors.add(createChildParameter(
-				DocumentPackage.Literals.LEAF_SECTION__MODEL_ELEMENTS,
+		newChildDescriptors.add(createChildParameter(DocumentPackage.Literals.LEAF_SECTION__MODEL_ELEMENTS,
 				RationaleFactory.eINSTANCE.createProposal()));
 
-		newChildDescriptors.add(createChildParameter(
-				DocumentPackage.Literals.LEAF_SECTION__MODEL_ELEMENTS,
+		newChildDescriptors.add(createChildParameter(DocumentPackage.Literals.LEAF_SECTION__MODEL_ELEMENTS,
 				RationaleFactory.eINSTANCE.createSolution()));
 
-		newChildDescriptors.add(createChildParameter(
-				DocumentPackage.Literals.LEAF_SECTION__MODEL_ELEMENTS,
+		newChildDescriptors.add(createChildParameter(DocumentPackage.Literals.LEAF_SECTION__MODEL_ELEMENTS,
 				RationaleFactory.eINSTANCE.createCriterion()));
 
-		newChildDescriptors.add(createChildParameter(
-				DocumentPackage.Literals.LEAF_SECTION__MODEL_ELEMENTS,
+		newChildDescriptors.add(createChildParameter(DocumentPackage.Literals.LEAF_SECTION__MODEL_ELEMENTS,
 				RationaleFactory.eINSTANCE.createAssessment()));
 
-		newChildDescriptors.add(createChildParameter(
-				DocumentPackage.Literals.LEAF_SECTION__MODEL_ELEMENTS,
+		newChildDescriptors.add(createChildParameter(DocumentPackage.Literals.LEAF_SECTION__MODEL_ELEMENTS,
 				RationaleFactory.eINSTANCE.createComment()));
 
-		newChildDescriptors.add(createChildParameter(
-				DocumentPackage.Literals.LEAF_SECTION__MODEL_ELEMENTS,
+		newChildDescriptors.add(createChildParameter(DocumentPackage.Literals.LEAF_SECTION__MODEL_ELEMENTS,
 				ChangeFactory.eINSTANCE.createModelChangePackage()));
 
-		newChildDescriptors.add(createChildParameter(
-				DocumentPackage.Literals.LEAF_SECTION__MODEL_ELEMENTS,
+		newChildDescriptors.add(createChildParameter(DocumentPackage.Literals.LEAF_SECTION__MODEL_ELEMENTS,
 				ChangeFactory.eINSTANCE.createMergingIssue()));
 
-		newChildDescriptors.add(createChildParameter(
-				DocumentPackage.Literals.LEAF_SECTION__MODEL_ELEMENTS,
+		newChildDescriptors.add(createChildParameter(DocumentPackage.Literals.LEAF_SECTION__MODEL_ELEMENTS,
 				ChangeFactory.eINSTANCE.createMergingProposal()));
 
-		newChildDescriptors.add(createChildParameter(
-				DocumentPackage.Literals.LEAF_SECTION__MODEL_ELEMENTS,
+		newChildDescriptors.add(createChildParameter(DocumentPackage.Literals.LEAF_SECTION__MODEL_ELEMENTS,
 				ChangeFactory.eINSTANCE.createMergingSolution()));
 
-		newChildDescriptors.add(createChildParameter(
-				DocumentPackage.Literals.LEAF_SECTION__MODEL_ELEMENTS,
-				BugFactory.eINSTANCE.createBugReport()));
+		newChildDescriptors.add(createChildParameter(DocumentPackage.Literals.LEAF_SECTION__MODEL_ELEMENTS, BugFactory.eINSTANCE
+				.createBugReport()));
 
-		newChildDescriptors.add(createChildParameter(
-				DocumentPackage.Literals.LEAF_SECTION__MODEL_ELEMENTS,
+		newChildDescriptors.add(createChildParameter(DocumentPackage.Literals.LEAF_SECTION__MODEL_ELEMENTS,
 				ComponentFactory.eINSTANCE.createComponent()));
 
-		newChildDescriptors.add(createChildParameter(
-				DocumentPackage.Literals.LEAF_SECTION__MODEL_ELEMENTS,
+		newChildDescriptors.add(createChildParameter(DocumentPackage.Literals.LEAF_SECTION__MODEL_ELEMENTS,
 				ComponentFactory.eINSTANCE.createComponentService()));
 
-		newChildDescriptors.add(createChildParameter(
-				DocumentPackage.Literals.LEAF_SECTION__MODEL_ELEMENTS,
+		newChildDescriptors.add(createChildParameter(DocumentPackage.Literals.LEAF_SECTION__MODEL_ELEMENTS,
 				ComponentFactory.eINSTANCE.createDeploymentNode()));
 
-		newChildDescriptors.add(createChildParameter(
-				DocumentPackage.Literals.LEAF_SECTION__MODEL_ELEMENTS,
+		newChildDescriptors.add(createChildParameter(DocumentPackage.Literals.LEAF_SECTION__MODEL_ELEMENTS,
 				MeetingFactory.eINSTANCE.createMeeting()));
 
-		newChildDescriptors.add(createChildParameter(
-				DocumentPackage.Literals.LEAF_SECTION__MODEL_ELEMENTS,
+		newChildDescriptors.add(createChildParameter(DocumentPackage.Literals.LEAF_SECTION__MODEL_ELEMENTS,
 				MeetingFactory.eINSTANCE.createCompositeMeetingSection()));
 
-		newChildDescriptors.add(createChildParameter(
-				DocumentPackage.Literals.LEAF_SECTION__MODEL_ELEMENTS,
+		newChildDescriptors.add(createChildParameter(DocumentPackage.Literals.LEAF_SECTION__MODEL_ELEMENTS,
 				MeetingFactory.eINSTANCE.createIssueMeetingSection()));
 
-		newChildDescriptors.add(createChildParameter(
-				DocumentPackage.Literals.LEAF_SECTION__MODEL_ELEMENTS,
+		newChildDescriptors.add(createChildParameter(DocumentPackage.Literals.LEAF_SECTION__MODEL_ELEMENTS,
 				MeetingFactory.eINSTANCE.createWorkItemMeetingSection()));
 
-		newChildDescriptors.add(createChildParameter(
-				DocumentPackage.Literals.LEAF_SECTION__MODEL_ELEMENTS,
+		newChildDescriptors.add(createChildParameter(DocumentPackage.Literals.LEAF_SECTION__MODEL_ELEMENTS,
 				AttachmentFactory.eINSTANCE.createUrlAttachment()));
 	}
 

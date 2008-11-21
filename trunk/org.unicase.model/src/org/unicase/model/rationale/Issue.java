@@ -45,6 +45,7 @@ public interface Issue extends Annotation, Checkable, WorkItem {
 	 * @see org.unicase.model.rationale.RationalePackage#getIssue_Proposals()
 	 * @see org.unicase.model.rationale.Proposal#getIssue
 	 * @model opposite="issue" containment="true" resolveProxies="true" keys="identifier"
+	 *        annotation="org.unicase.ui.meeditor priority='21.0' position='left'"
 	 * @generated
 	 */
 	EList<Proposal> getProposals();
@@ -63,6 +64,7 @@ public interface Issue extends Annotation, Checkable, WorkItem {
 	 * @see org.unicase.model.rationale.RationalePackage#getIssue_Solution()
 	 * @see org.unicase.model.rationale.Solution#getIssue
 	 * @model opposite="issue" containment="true" resolveProxies="true" keys="identifier"
+	 *        annotation="org.unicase.ui.meeditor priority='20.0' position='left'"
 	 * @generated
 	 */
 	Solution getSolution();
@@ -88,6 +90,7 @@ public interface Issue extends Annotation, Checkable, WorkItem {
 	 * @return the value of the '<em>Criteria</em>' reference list.
 	 * @see org.unicase.model.rationale.RationalePackage#getIssue_Criteria()
 	 * @model keys="identifier"
+	 *        annotation="org.unicase.ui.meeditor priority='22.0' position='left'"
 	 * @generated
 	 */
 	EList<Criterion> getCriteria();
@@ -105,7 +108,7 @@ public interface Issue extends Annotation, Checkable, WorkItem {
 	 * @see org.unicase.model.task.ActivityType
 	 * @see #setActivity(ActivityType)
 	 * @see org.unicase.model.rationale.RationalePackage#getIssue_Activity()
-	 * @model
+	 * @model annotation="org.unicase.ui.meeditor priority='9.5' position='left'"
 	 * @generated
 	 */
 	ActivityType getActivity();

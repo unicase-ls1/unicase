@@ -103,8 +103,7 @@ public enum DiagramType implements Enumerator {
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
-	private static final DiagramType[] VALUES_ARRAY = new DiagramType[] {
-			CLASS_DIAGRAM, USECASE_DIAGRAM, COMPONENT_DIAGRAM, };
+	private static final DiagramType[] VALUES_ARRAY = new DiagramType[] { CLASS_DIAGRAM, USECASE_DIAGRAM, COMPONENT_DIAGRAM, };
 
 	/**
 	 * A public read-only list of all the '<em><b>Type</b></em>' enumerators.
@@ -112,8 +111,7 @@ public enum DiagramType implements Enumerator {
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
-	public static final List<DiagramType> VALUES = Collections
-			.unmodifiableList(Arrays.asList(VALUES_ARRAY));
+	public static final List<DiagramType> VALUES = Collections.unmodifiableList(Arrays.asList(VALUES_ARRAY));
 
 	/**
 	 * Returns the '<em><b>Type</b></em>' literal with the specified literal value.

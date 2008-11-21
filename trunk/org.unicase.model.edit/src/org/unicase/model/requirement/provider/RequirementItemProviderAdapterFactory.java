@@ -34,8 +34,7 @@ import org.unicase.model.requirement.util.RequirementAdapterFactory;
  * end-user-doc -->
  * @generated
  */
-public class RequirementItemProviderAdapterFactory extends
-		RequirementAdapterFactory implements ComposeableAdapterFactory,
+public class RequirementItemProviderAdapterFactory extends RequirementAdapterFactory implements ComposeableAdapterFactory,
 		IChangeNotifier, IDisposable {
 	/**
 	 * This keeps track of the root adapter factory that delegates to this adapter factory.
@@ -92,8 +91,7 @@ public class RequirementItemProviderAdapterFactory extends
 	@Override
 	public Adapter createNonFunctionalRequirementAdapter() {
 		if (nonFunctionalRequirementItemProvider == null) {
-			nonFunctionalRequirementItemProvider = new NonFunctionalRequirementItemProvider(
-					this);
+			nonFunctionalRequirementItemProvider = new NonFunctionalRequirementItemProvider(this);
 		}
 
 		return nonFunctionalRequirementItemProvider;
@@ -116,8 +114,7 @@ public class RequirementItemProviderAdapterFactory extends
 	@Override
 	public Adapter createFunctionalRequirementAdapter() {
 		if (functionalRequirementItemProvider == null) {
-			functionalRequirementItemProvider = new FunctionalRequirementItemProvider(
-					this);
+			functionalRequirementItemProvider = new FunctionalRequirementItemProvider(this);
 		}
 
 		return functionalRequirementItemProvider;
@@ -293,8 +290,7 @@ public class RequirementItemProviderAdapterFactory extends
 	 * @generated
 	 */
 	public ComposeableAdapterFactory getRootAdapterFactory() {
-		return parentAdapterFactory == null ? this : parentAdapterFactory
-				.getRootAdapterFactory();
+		return parentAdapterFactory == null ? this : parentAdapterFactory.getRootAdapterFactory();
 	}
 
 	/**
@@ -303,8 +299,7 @@ public class RequirementItemProviderAdapterFactory extends
 	 * 
 	 * @generated
 	 */
-	public void setParentAdapterFactory(
-			ComposedAdapterFactory parentAdapterFactory) {
+	public void setParentAdapterFactory(ComposedAdapterFactory parentAdapterFactory) {
 		this.parentAdapterFactory = parentAdapterFactory;
 	}
 
@@ -335,8 +330,7 @@ public class RequirementItemProviderAdapterFactory extends
 	public Object adapt(Object object, Object type) {
 		if (isFactoryForType(type)) {
 			Object adapter = super.adapt(object, type);
-			if (!(type instanceof Class)
-					|| (((Class<?>) type).isInstance(adapter))) {
+			if (!(type instanceof Class) || (((Class<?>) type).isInstance(adapter))) {
 				return adapter;
 			}
 		}

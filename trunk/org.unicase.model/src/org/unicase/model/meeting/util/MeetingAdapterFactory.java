@@ -85,8 +85,7 @@ public class MeetingAdapterFactory extends AdapterFactoryImpl {
 		}
 
 		@Override
-		public Adapter caseCompositeMeetingSection(
-				CompositeMeetingSection object) {
+		public Adapter caseCompositeMeetingSection(CompositeMeetingSection object) {
 			return createCompositeMeetingSectionAdapter();
 		}
 

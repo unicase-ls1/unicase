@@ -71,8 +71,7 @@ public class MeetingFactoryImpl extends EFactoryImpl implements MeetingFactory {
 		case MeetingPackage.WORK_ITEM_MEETING_SECTION:
 			return createWorkItemMeetingSection();
 		default:
-			throw new IllegalArgumentException("The class '" + eClass.getName()
-					+ "' is not a valid classifier");
+			throw new IllegalArgumentException("The class '" + eClass.getName() + "' is not a valid classifier");
 		}
 	}
 

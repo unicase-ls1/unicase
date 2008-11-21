@@ -136,12 +136,10 @@ public class MeetingPackageImpl extends EPackageImpl implements MeetingPackage {
 	 */
 	public static MeetingPackage init() {
 		if (isInited)
-			return (MeetingPackage) EPackage.Registry.INSTANCE
-					.getEPackage(MeetingPackage.eNS_URI);
+			return (MeetingPackage) EPackage.Registry.INSTANCE.getEPackage(MeetingPackage.eNS_URI);
 
 		// Obtain or create and register package
-		MeetingPackageImpl theMeetingPackage = (MeetingPackageImpl) (EPackage.Registry.INSTANCE
-				.getEPackage(eNS_URI) instanceof MeetingPackageImpl ? EPackage.Registry.INSTANCE
+		MeetingPackageImpl theMeetingPackage = (MeetingPackageImpl) (EPackage.Registry.INSTANCE.getEPackage(eNS_URI) instanceof MeetingPackageImpl ? EPackage.Registry.INSTANCE
 				.getEPackage(eNS_URI)
 				: new MeetingPackageImpl());
 
@@ -151,54 +149,42 @@ public class MeetingPackageImpl extends EPackageImpl implements MeetingPackage {
 		NotationPackage.eINSTANCE.eClass();
 
 		// Obtain or create and register interdependencies
-		ModelPackageImpl theModelPackage = (ModelPackageImpl) (EPackage.Registry.INSTANCE
-				.getEPackage(ModelPackage.eNS_URI) instanceof ModelPackageImpl ? EPackage.Registry.INSTANCE
+		ModelPackageImpl theModelPackage = (ModelPackageImpl) (EPackage.Registry.INSTANCE.getEPackage(ModelPackage.eNS_URI) instanceof ModelPackageImpl ? EPackage.Registry.INSTANCE
 				.getEPackage(ModelPackage.eNS_URI)
 				: ModelPackage.eINSTANCE);
 		OrganizationPackageImpl theOrganizationPackage = (OrganizationPackageImpl) (EPackage.Registry.INSTANCE
 				.getEPackage(OrganizationPackage.eNS_URI) instanceof OrganizationPackageImpl ? EPackage.Registry.INSTANCE
-				.getEPackage(OrganizationPackage.eNS_URI)
-				: OrganizationPackage.eINSTANCE);
-		TaskPackageImpl theTaskPackage = (TaskPackageImpl) (EPackage.Registry.INSTANCE
-				.getEPackage(TaskPackage.eNS_URI) instanceof TaskPackageImpl ? EPackage.Registry.INSTANCE
+				.getEPackage(OrganizationPackage.eNS_URI) : OrganizationPackage.eINSTANCE);
+		TaskPackageImpl theTaskPackage = (TaskPackageImpl) (EPackage.Registry.INSTANCE.getEPackage(TaskPackage.eNS_URI) instanceof TaskPackageImpl ? EPackage.Registry.INSTANCE
 				.getEPackage(TaskPackage.eNS_URI)
 				: TaskPackage.eINSTANCE);
 		DiagramPackageImpl theDiagramPackage = (DiagramPackageImpl) (EPackage.Registry.INSTANCE
 				.getEPackage(DiagramPackage.eNS_URI) instanceof DiagramPackageImpl ? EPackage.Registry.INSTANCE
-				.getEPackage(DiagramPackage.eNS_URI)
-				: DiagramPackage.eINSTANCE);
+				.getEPackage(DiagramPackage.eNS_URI) : DiagramPackage.eINSTANCE);
 		ClassesPackageImpl theClassesPackage = (ClassesPackageImpl) (EPackage.Registry.INSTANCE
 				.getEPackage(ClassesPackage.eNS_URI) instanceof ClassesPackageImpl ? EPackage.Registry.INSTANCE
-				.getEPackage(ClassesPackage.eNS_URI)
-				: ClassesPackage.eINSTANCE);
+				.getEPackage(ClassesPackage.eNS_URI) : ClassesPackage.eINSTANCE);
 		DocumentPackageImpl theDocumentPackage = (DocumentPackageImpl) (EPackage.Registry.INSTANCE
 				.getEPackage(DocumentPackage.eNS_URI) instanceof DocumentPackageImpl ? EPackage.Registry.INSTANCE
-				.getEPackage(DocumentPackage.eNS_URI)
-				: DocumentPackage.eINSTANCE);
+				.getEPackage(DocumentPackage.eNS_URI) : DocumentPackage.eINSTANCE);
 		RequirementPackageImpl theRequirementPackage = (RequirementPackageImpl) (EPackage.Registry.INSTANCE
 				.getEPackage(RequirementPackage.eNS_URI) instanceof RequirementPackageImpl ? EPackage.Registry.INSTANCE
-				.getEPackage(RequirementPackage.eNS_URI)
-				: RequirementPackage.eINSTANCE);
+				.getEPackage(RequirementPackage.eNS_URI) : RequirementPackage.eINSTANCE);
 		RationalePackageImpl theRationalePackage = (RationalePackageImpl) (EPackage.Registry.INSTANCE
 				.getEPackage(RationalePackage.eNS_URI) instanceof RationalePackageImpl ? EPackage.Registry.INSTANCE
-				.getEPackage(RationalePackage.eNS_URI)
-				: RationalePackage.eINSTANCE);
-		ChangePackageImpl theChangePackage = (ChangePackageImpl) (EPackage.Registry.INSTANCE
-				.getEPackage(ChangePackage.eNS_URI) instanceof ChangePackageImpl ? EPackage.Registry.INSTANCE
+				.getEPackage(RationalePackage.eNS_URI) : RationalePackage.eINSTANCE);
+		ChangePackageImpl theChangePackage = (ChangePackageImpl) (EPackage.Registry.INSTANCE.getEPackage(ChangePackage.eNS_URI) instanceof ChangePackageImpl ? EPackage.Registry.INSTANCE
 				.getEPackage(ChangePackage.eNS_URI)
 				: ChangePackage.eINSTANCE);
-		BugPackageImpl theBugPackage = (BugPackageImpl) (EPackage.Registry.INSTANCE
-				.getEPackage(BugPackage.eNS_URI) instanceof BugPackageImpl ? EPackage.Registry.INSTANCE
+		BugPackageImpl theBugPackage = (BugPackageImpl) (EPackage.Registry.INSTANCE.getEPackage(BugPackage.eNS_URI) instanceof BugPackageImpl ? EPackage.Registry.INSTANCE
 				.getEPackage(BugPackage.eNS_URI)
 				: BugPackage.eINSTANCE);
 		ComponentPackageImpl theComponentPackage = (ComponentPackageImpl) (EPackage.Registry.INSTANCE
 				.getEPackage(ComponentPackage.eNS_URI) instanceof ComponentPackageImpl ? EPackage.Registry.INSTANCE
-				.getEPackage(ComponentPackage.eNS_URI)
-				: ComponentPackage.eINSTANCE);
+				.getEPackage(ComponentPackage.eNS_URI) : ComponentPackage.eINSTANCE);
 		AttachmentPackageImpl theAttachmentPackage = (AttachmentPackageImpl) (EPackage.Registry.INSTANCE
 				.getEPackage(AttachmentPackage.eNS_URI) instanceof AttachmentPackageImpl ? EPackage.Registry.INSTANCE
-				.getEPackage(AttachmentPackage.eNS_URI)
-				: AttachmentPackage.eINSTANCE);
+				.getEPackage(AttachmentPackage.eNS_URI) : AttachmentPackage.eINSTANCE);
 
 		// Create package meta-data objects
 		theMeetingPackage.createPackageContents();
@@ -350,8 +336,7 @@ public class MeetingPackageImpl extends EPackageImpl implements MeetingPackage {
 	 * @generated
 	 */
 	public EAttribute getMeetingSection_AllocatedTime() {
-		return (EAttribute) meetingSectionEClass.getEStructuralFeatures()
-				.get(0);
+		return (EAttribute) meetingSectionEClass.getEStructuralFeatures().get(0);
 	}
 
 	/**
@@ -369,8 +354,7 @@ public class MeetingPackageImpl extends EPackageImpl implements MeetingPackage {
 	 * @generated
 	 */
 	public EReference getCompositeMeetingSection_Subsections() {
-		return (EReference) compositeMeetingSectionEClass
-				.getEStructuralFeatures().get(0);
+		return (EReference) compositeMeetingSectionEClass.getEStructuralFeatures().get(0);
 	}
 
 	/**
@@ -388,8 +372,7 @@ public class MeetingPackageImpl extends EPackageImpl implements MeetingPackage {
 	 * @generated
 	 */
 	public EReference getIssueMeetingSection_IncludedIssues() {
-		return (EReference) issueMeetingSectionEClass.getEStructuralFeatures()
-				.get(0);
+		return (EReference) issueMeetingSectionEClass.getEStructuralFeatures().get(0);
 	}
 
 	/**
@@ -407,8 +390,7 @@ public class MeetingPackageImpl extends EPackageImpl implements MeetingPackage {
 	 * @generated
 	 */
 	public EReference getWorkItemMeetingSection_IncludedWorkItems() {
-		return (EReference) workItemMeetingSectionEClass
-				.getEStructuralFeatures().get(0);
+		return (EReference) workItemMeetingSectionEClass.getEStructuralFeatures().get(0);
 	}
 
 	/**
@@ -456,16 +438,13 @@ public class MeetingPackageImpl extends EPackageImpl implements MeetingPackage {
 		createEAttribute(meetingSectionEClass, MEETING_SECTION__ALLOCATED_TIME);
 
 		compositeMeetingSectionEClass = createEClass(COMPOSITE_MEETING_SECTION);
-		createEReference(compositeMeetingSectionEClass,
-				COMPOSITE_MEETING_SECTION__SUBSECTIONS);
+		createEReference(compositeMeetingSectionEClass, COMPOSITE_MEETING_SECTION__SUBSECTIONS);
 
 		issueMeetingSectionEClass = createEClass(ISSUE_MEETING_SECTION);
-		createEReference(issueMeetingSectionEClass,
-				ISSUE_MEETING_SECTION__INCLUDED_ISSUES);
+		createEReference(issueMeetingSectionEClass, ISSUE_MEETING_SECTION__INCLUDED_ISSUES);
 
 		workItemMeetingSectionEClass = createEClass(WORK_ITEM_MEETING_SECTION);
-		createEReference(workItemMeetingSectionEClass,
-				WORK_ITEM_MEETING_SECTION__INCLUDED_WORK_ITEMS);
+		createEReference(workItemMeetingSectionEClass, WORK_ITEM_MEETING_SECTION__INCLUDED_WORK_ITEMS);
 	}
 
 	/**
@@ -493,14 +472,12 @@ public class MeetingPackageImpl extends EPackageImpl implements MeetingPackage {
 		setNsURI(eNS_URI);
 
 		// Obtain other dependent packages
-		ModelPackage theModelPackage = (ModelPackage) EPackage.Registry.INSTANCE
-				.getEPackage(ModelPackage.eNS_URI);
+		ModelPackage theModelPackage = (ModelPackage) EPackage.Registry.INSTANCE.getEPackage(ModelPackage.eNS_URI);
 		OrganizationPackage theOrganizationPackage = (OrganizationPackage) EPackage.Registry.INSTANCE
 				.getEPackage(OrganizationPackage.eNS_URI);
 		RationalePackage theRationalePackage = (RationalePackage) EPackage.Registry.INSTANCE
 				.getEPackage(RationalePackage.eNS_URI);
-		TaskPackage theTaskPackage = (TaskPackage) EPackage.Registry.INSTANCE
-				.getEPackage(TaskPackage.eNS_URI);
+		TaskPackage theTaskPackage = (TaskPackage) EPackage.Registry.INSTANCE.getEPackage(TaskPackage.eNS_URI);
 
 		// Create type parameters
 
@@ -508,120 +485,102 @@ public class MeetingPackageImpl extends EPackageImpl implements MeetingPackage {
 
 		// Add supertypes to classes
 		meetingEClass.getESuperTypes().add(theModelPackage.getModelElement());
-		meetingSectionEClass.getESuperTypes().add(
-				theModelPackage.getModelElement());
-		compositeMeetingSectionEClass.getESuperTypes().add(
-				this.getMeetingSection());
-		issueMeetingSectionEClass.getESuperTypes()
-				.add(this.getMeetingSection());
-		workItemMeetingSectionEClass.getESuperTypes().add(
-				this.getMeetingSection());
+		meetingSectionEClass.getESuperTypes().add(theModelPackage.getModelElement());
+		compositeMeetingSectionEClass.getESuperTypes().add(this.getMeetingSection());
+		issueMeetingSectionEClass.getESuperTypes().add(this.getMeetingSection());
+		workItemMeetingSectionEClass.getESuperTypes().add(this.getMeetingSection());
 
 		// Initialize classes and features; add operations and parameters
-		initEClass(meetingEClass, Meeting.class, "Meeting", !IS_ABSTRACT,
+		initEClass(meetingEClass, Meeting.class, "Meeting", !IS_ABSTRACT, !IS_INTERFACE, IS_GENERATED_INSTANCE_CLASS);
+		initEAttribute(getMeeting_Location(), ecorePackage.getEString(), "location", null, 0, 1, Meeting.class, !IS_TRANSIENT,
+				!IS_VOLATILE, IS_CHANGEABLE, !IS_UNSETTABLE, !IS_ID, IS_UNIQUE, !IS_DERIVED, IS_ORDERED);
+		initEAttribute(getMeeting_Starttime(), ecorePackage.getEDate(), "starttime", null, 0, 1, Meeting.class, !IS_TRANSIENT,
+				!IS_VOLATILE, IS_CHANGEABLE, !IS_UNSETTABLE, !IS_ID, IS_UNIQUE, !IS_DERIVED, IS_ORDERED);
+		initEAttribute(getMeeting_Endtime(), ecorePackage.getEDate(), "endtime", null, 0, 1, Meeting.class, !IS_TRANSIENT,
+				!IS_VOLATILE, IS_CHANGEABLE, !IS_UNSETTABLE, !IS_ID, IS_UNIQUE, !IS_DERIVED, IS_ORDERED);
+		initEReference(getMeeting_Facilitator(), theOrganizationPackage.getUser(), null, "facilitator", null, 0, 1,
+				Meeting.class, !IS_TRANSIENT, !IS_VOLATILE, IS_CHANGEABLE, !IS_COMPOSITE, IS_RESOLVE_PROXIES, !IS_UNSETTABLE,
+				IS_UNIQUE, !IS_DERIVED, IS_ORDERED);
+		getMeeting_Facilitator().getEKeys().add(theModelPackage.getIdentifiableElement_Identifier());
+		initEReference(getMeeting_Minutetaker(), theOrganizationPackage.getUser(), null, "minutetaker", null, 0, 1,
+				Meeting.class, !IS_TRANSIENT, !IS_VOLATILE, IS_CHANGEABLE, !IS_COMPOSITE, IS_RESOLVE_PROXIES, !IS_UNSETTABLE,
+				IS_UNIQUE, !IS_DERIVED, IS_ORDERED);
+		getMeeting_Minutetaker().getEKeys().add(theModelPackage.getIdentifiableElement_Identifier());
+		initEReference(getMeeting_Timekeeper(), theOrganizationPackage.getUser(), null, "timekeeper", null, 0, 1, Meeting.class,
+				!IS_TRANSIENT, !IS_VOLATILE, IS_CHANGEABLE, !IS_COMPOSITE, IS_RESOLVE_PROXIES, !IS_UNSETTABLE, IS_UNIQUE,
+				!IS_DERIVED, IS_ORDERED);
+		getMeeting_Timekeeper().getEKeys().add(theModelPackage.getIdentifiableElement_Identifier());
+		initEReference(getMeeting_Participants(), theOrganizationPackage.getOrgUnit(), null, "participants", null, 0, -1,
+				Meeting.class, !IS_TRANSIENT, !IS_VOLATILE, IS_CHANGEABLE, !IS_COMPOSITE, IS_RESOLVE_PROXIES, !IS_UNSETTABLE,
+				IS_UNIQUE, !IS_DERIVED, IS_ORDERED);
+		getMeeting_Participants().getEKeys().add(theModelPackage.getIdentifiableElement_Identifier());
+		initEReference(getMeeting_Sections(), this.getMeetingSection(), null, "sections", null, 0, -1, Meeting.class,
+				!IS_TRANSIENT, !IS_VOLATILE, IS_CHANGEABLE, IS_COMPOSITE, IS_RESOLVE_PROXIES, !IS_UNSETTABLE, IS_UNIQUE,
+				!IS_DERIVED, IS_ORDERED);
+		getMeeting_Sections().getEKeys().add(theModelPackage.getIdentifiableElement_Identifier());
+		initEReference(getMeeting_IdentifiedIssuesSection(), this.getIssueMeetingSection(), null, "identifiedIssuesSection",
+				null, 0, 1, Meeting.class, !IS_TRANSIENT, !IS_VOLATILE, IS_CHANGEABLE, !IS_COMPOSITE, IS_RESOLVE_PROXIES,
+				!IS_UNSETTABLE, IS_UNIQUE, !IS_DERIVED, IS_ORDERED);
+		getMeeting_IdentifiedIssuesSection().getEKeys().add(theModelPackage.getIdentifiableElement_Identifier());
+		initEReference(getMeeting_IdentifiedWorkItemsSection(), this.getWorkItemMeetingSection(), null,
+				"identifiedWorkItemsSection", null, 0, 1, Meeting.class, !IS_TRANSIENT, !IS_VOLATILE, IS_CHANGEABLE,
+				!IS_COMPOSITE, IS_RESOLVE_PROXIES, !IS_UNSETTABLE, IS_UNIQUE, !IS_DERIVED, IS_ORDERED);
+		getMeeting_IdentifiedWorkItemsSection().getEKeys().add(theModelPackage.getIdentifiableElement_Identifier());
+
+		initEClass(meetingSectionEClass, MeetingSection.class, "MeetingSection", IS_ABSTRACT, !IS_INTERFACE,
+				IS_GENERATED_INSTANCE_CLASS);
+		initEAttribute(getMeetingSection_AllocatedTime(), ecorePackage.getEInt(), "allocatedTime", "0", 0, 1,
+				MeetingSection.class, !IS_TRANSIENT, !IS_VOLATILE, IS_CHANGEABLE, !IS_UNSETTABLE, !IS_ID, IS_UNIQUE, !IS_DERIVED,
+				IS_ORDERED);
+
+		initEClass(compositeMeetingSectionEClass, CompositeMeetingSection.class, "CompositeMeetingSection", !IS_ABSTRACT,
 				!IS_INTERFACE, IS_GENERATED_INSTANCE_CLASS);
-		initEAttribute(getMeeting_Location(), ecorePackage.getEString(),
-				"location", null, 0, 1, Meeting.class, !IS_TRANSIENT,
-				!IS_VOLATILE, IS_CHANGEABLE, !IS_UNSETTABLE, !IS_ID, IS_UNIQUE,
-				!IS_DERIVED, IS_ORDERED);
-		initEAttribute(getMeeting_Starttime(), ecorePackage.getEDate(),
-				"starttime", null, 0, 1, Meeting.class, !IS_TRANSIENT,
-				!IS_VOLATILE, IS_CHANGEABLE, !IS_UNSETTABLE, !IS_ID, IS_UNIQUE,
-				!IS_DERIVED, IS_ORDERED);
-		initEAttribute(getMeeting_Endtime(), ecorePackage.getEDate(),
-				"endtime", null, 0, 1, Meeting.class, !IS_TRANSIENT,
-				!IS_VOLATILE, IS_CHANGEABLE, !IS_UNSETTABLE, !IS_ID, IS_UNIQUE,
-				!IS_DERIVED, IS_ORDERED);
-		initEReference(getMeeting_Facilitator(), theOrganizationPackage
-				.getUser(), null, "facilitator", null, 0, 1, Meeting.class,
-				!IS_TRANSIENT, !IS_VOLATILE, IS_CHANGEABLE, !IS_COMPOSITE,
-				IS_RESOLVE_PROXIES, !IS_UNSETTABLE, IS_UNIQUE, !IS_DERIVED,
-				IS_ORDERED);
-		getMeeting_Facilitator().getEKeys().add(
-				theModelPackage.getIdentifiableElement_Identifier());
-		initEReference(getMeeting_Minutetaker(), theOrganizationPackage
-				.getUser(), null, "minutetaker", null, 0, 1, Meeting.class,
-				!IS_TRANSIENT, !IS_VOLATILE, IS_CHANGEABLE, !IS_COMPOSITE,
-				IS_RESOLVE_PROXIES, !IS_UNSETTABLE, IS_UNIQUE, !IS_DERIVED,
-				IS_ORDERED);
-		getMeeting_Minutetaker().getEKeys().add(
-				theModelPackage.getIdentifiableElement_Identifier());
-		initEReference(getMeeting_Timekeeper(), theOrganizationPackage
-				.getUser(), null, "timekeeper", null, 0, 1, Meeting.class,
-				!IS_TRANSIENT, !IS_VOLATILE, IS_CHANGEABLE, !IS_COMPOSITE,
-				IS_RESOLVE_PROXIES, !IS_UNSETTABLE, IS_UNIQUE, !IS_DERIVED,
-				IS_ORDERED);
-		getMeeting_Timekeeper().getEKeys().add(
-				theModelPackage.getIdentifiableElement_Identifier());
-		initEReference(getMeeting_Participants(), theOrganizationPackage
-				.getOrgUnit(), null, "participants", null, 0, -1,
-				Meeting.class, !IS_TRANSIENT, !IS_VOLATILE, IS_CHANGEABLE,
-				!IS_COMPOSITE, IS_RESOLVE_PROXIES, !IS_UNSETTABLE, IS_UNIQUE,
-				!IS_DERIVED, IS_ORDERED);
-		getMeeting_Participants().getEKeys().add(
-				theModelPackage.getIdentifiableElement_Identifier());
-		initEReference(getMeeting_Sections(), this.getMeetingSection(), null,
-				"sections", null, 0, -1, Meeting.class, !IS_TRANSIENT,
-				!IS_VOLATILE, IS_CHANGEABLE, IS_COMPOSITE, IS_RESOLVE_PROXIES,
+		initEReference(getCompositeMeetingSection_Subsections(), this.getMeetingSection(), null, "subsections", null, 0, -1,
+				CompositeMeetingSection.class, !IS_TRANSIENT, !IS_VOLATILE, IS_CHANGEABLE, IS_COMPOSITE, IS_RESOLVE_PROXIES,
 				!IS_UNSETTABLE, IS_UNIQUE, !IS_DERIVED, IS_ORDERED);
-		getMeeting_Sections().getEKeys().add(
-				theModelPackage.getIdentifiableElement_Identifier());
-		initEReference(getMeeting_IdentifiedIssuesSection(), this
-				.getIssueMeetingSection(), null, "identifiedIssuesSection",
-				null, 0, 1, Meeting.class, !IS_TRANSIENT, !IS_VOLATILE,
-				IS_CHANGEABLE, !IS_COMPOSITE, IS_RESOLVE_PROXIES,
-				!IS_UNSETTABLE, IS_UNIQUE, !IS_DERIVED, IS_ORDERED);
-		getMeeting_IdentifiedIssuesSection().getEKeys().add(
-				theModelPackage.getIdentifiableElement_Identifier());
-		initEReference(getMeeting_IdentifiedWorkItemsSection(), this
-				.getWorkItemMeetingSection(), null,
-				"identifiedWorkItemsSection", null, 0, 1, Meeting.class,
-				!IS_TRANSIENT, !IS_VOLATILE, IS_CHANGEABLE, !IS_COMPOSITE,
-				IS_RESOLVE_PROXIES, !IS_UNSETTABLE, IS_UNIQUE, !IS_DERIVED,
-				IS_ORDERED);
-		getMeeting_IdentifiedWorkItemsSection().getEKeys().add(
-				theModelPackage.getIdentifiableElement_Identifier());
+		getCompositeMeetingSection_Subsections().getEKeys().add(theModelPackage.getIdentifiableElement_Identifier());
 
-		initEClass(meetingSectionEClass, MeetingSection.class,
-				"MeetingSection", IS_ABSTRACT, !IS_INTERFACE,
+		initEClass(issueMeetingSectionEClass, IssueMeetingSection.class, "IssueMeetingSection", !IS_ABSTRACT, !IS_INTERFACE,
 				IS_GENERATED_INSTANCE_CLASS);
-		initEAttribute(getMeetingSection_AllocatedTime(), ecorePackage
-				.getEInt(), "allocatedTime", "0", 0, 1, MeetingSection.class,
-				!IS_TRANSIENT, !IS_VOLATILE, IS_CHANGEABLE, !IS_UNSETTABLE,
-				!IS_ID, IS_UNIQUE, !IS_DERIVED, IS_ORDERED);
-
-		initEClass(compositeMeetingSectionEClass,
-				CompositeMeetingSection.class, "CompositeMeetingSection",
-				!IS_ABSTRACT, !IS_INTERFACE, IS_GENERATED_INSTANCE_CLASS);
-		initEReference(getCompositeMeetingSection_Subsections(), this
-				.getMeetingSection(), null, "subsections", null, 0, -1,
-				CompositeMeetingSection.class, !IS_TRANSIENT, !IS_VOLATILE,
-				IS_CHANGEABLE, IS_COMPOSITE, IS_RESOLVE_PROXIES,
+		initEReference(getIssueMeetingSection_IncludedIssues(), theRationalePackage.getIssue(), null, "includedIssues", null, 0,
+				-1, IssueMeetingSection.class, !IS_TRANSIENT, !IS_VOLATILE, IS_CHANGEABLE, !IS_COMPOSITE, IS_RESOLVE_PROXIES,
 				!IS_UNSETTABLE, IS_UNIQUE, !IS_DERIVED, IS_ORDERED);
-		getCompositeMeetingSection_Subsections().getEKeys().add(
-				theModelPackage.getIdentifiableElement_Identifier());
+		getIssueMeetingSection_IncludedIssues().getEKeys().add(theModelPackage.getIdentifiableElement_Identifier());
 
-		initEClass(issueMeetingSectionEClass, IssueMeetingSection.class,
-				"IssueMeetingSection", !IS_ABSTRACT, !IS_INTERFACE,
-				IS_GENERATED_INSTANCE_CLASS);
-		initEReference(getIssueMeetingSection_IncludedIssues(),
-				theRationalePackage.getIssue(), null, "includedIssues", null,
-				0, -1, IssueMeetingSection.class, !IS_TRANSIENT, !IS_VOLATILE,
-				IS_CHANGEABLE, !IS_COMPOSITE, IS_RESOLVE_PROXIES,
-				!IS_UNSETTABLE, IS_UNIQUE, !IS_DERIVED, IS_ORDERED);
-		getIssueMeetingSection_IncludedIssues().getEKeys().add(
-				theModelPackage.getIdentifiableElement_Identifier());
+		initEClass(workItemMeetingSectionEClass, WorkItemMeetingSection.class, "WorkItemMeetingSection", !IS_ABSTRACT,
+				!IS_INTERFACE, IS_GENERATED_INSTANCE_CLASS);
+		initEReference(getWorkItemMeetingSection_IncludedWorkItems(), theTaskPackage.getWorkItem(), null, "includedWorkItems",
+				null, 0, -1, WorkItemMeetingSection.class, !IS_TRANSIENT, !IS_VOLATILE, IS_CHANGEABLE, !IS_COMPOSITE,
+				IS_RESOLVE_PROXIES, !IS_UNSETTABLE, IS_UNIQUE, !IS_DERIVED, IS_ORDERED);
+		getWorkItemMeetingSection_IncludedWorkItems().getEKeys().add(theModelPackage.getIdentifiableElement_Identifier());
 
-		initEClass(workItemMeetingSectionEClass, WorkItemMeetingSection.class,
-				"WorkItemMeetingSection", !IS_ABSTRACT, !IS_INTERFACE,
-				IS_GENERATED_INSTANCE_CLASS);
-		initEReference(getWorkItemMeetingSection_IncludedWorkItems(),
-				theTaskPackage.getWorkItem(), null, "includedWorkItems", null,
-				0, -1, WorkItemMeetingSection.class, !IS_TRANSIENT,
-				!IS_VOLATILE, IS_CHANGEABLE, !IS_COMPOSITE, IS_RESOLVE_PROXIES,
-				!IS_UNSETTABLE, IS_UNIQUE, !IS_DERIVED, IS_ORDERED);
-		getWorkItemMeetingSection_IncludedWorkItems().getEKeys().add(
-				theModelPackage.getIdentifiableElement_Identifier());
+		// Create annotations
+		// org.unicase.ui.meeditor
+		createOrgAnnotations();
+	}
+
+	/**
+	 * Initializes the annotations for <b>org.unicase.ui.meeditor</b>.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 */
+	protected void createOrgAnnotations() {
+		String source = "org.unicase.ui.meeditor";
+		addAnnotation(getMeeting_Location(), source, new String[] { "priority", "10.0", "position", "left" });
+		addAnnotation(getMeeting_Starttime(), source, new String[] { "priority", "11.0", "position", "left" });
+		addAnnotation(getMeeting_Endtime(), source, new String[] { "priority", "11.0", "position", "left" });
+		addAnnotation(getMeeting_Facilitator(), source, new String[] { "priority", "12.0", "position", "left" });
+		addAnnotation(getMeeting_Minutetaker(), source, new String[] { "priority", "12.0", "position", "left" });
+		addAnnotation(getMeeting_Timekeeper(), source, new String[] { "priority", "12.0", "position", "left" });
+		addAnnotation(getMeeting_Participants(), source, new String[] { "priority", "10.0", "position", "right" });
+		addAnnotation(getMeeting_Sections(), source, new String[] { "priority", "11.0", "position", "right" });
+		addAnnotation(getMeeting_IdentifiedIssuesSection(), source, new String[] { "priority", "13.0", "position", "left" });
+		addAnnotation(getMeeting_IdentifiedWorkItemsSection(), source, new String[] { "priority", "14.0", "position", "left" });
+		addAnnotation(getMeetingSection_AllocatedTime(), source, new String[] { "priority", "10.0", "position", "left" });
+		addAnnotation(getIssueMeetingSection_IncludedIssues(), source, new String[] { "priority", "10.0", "position", "right" });
+		addAnnotation(getWorkItemMeetingSection_IncludedWorkItems(), source, new String[] { "priority", "10.0", "position",
+				"right" });
 	}
 
 } //MeetingPackageImpl

@@ -28,8 +28,7 @@ import org.unicase.model.requirement.SystemFunction;
  *
  * @generated
  */
-public class SystemFunctionImpl extends ModelElementImpl implements
-		SystemFunction {
+public class SystemFunctionImpl extends ModelElementImpl implements SystemFunction {
 	/**
 	 * The default value of the '{@link #getInput() <em>Input</em>}' attribute.
 	 * <!-- begin-user-doc -->
@@ -127,8 +126,7 @@ public class SystemFunctionImpl extends ModelElementImpl implements
 		String oldInput = input;
 		input = newInput;
 		if (eNotificationRequired())
-			eNotify(new ENotificationImpl(this, Notification.SET,
-					RequirementPackage.SYSTEM_FUNCTION__INPUT, oldInput, input));
+			eNotify(new ENotificationImpl(this, Notification.SET, RequirementPackage.SYSTEM_FUNCTION__INPUT, oldInput, input));
 	}
 
 	/**
@@ -149,9 +147,7 @@ public class SystemFunctionImpl extends ModelElementImpl implements
 		String oldOutput = output;
 		output = newOutput;
 		if (eNotificationRequired())
-			eNotify(new ENotificationImpl(this, Notification.SET,
-					RequirementPackage.SYSTEM_FUNCTION__OUTPUT, oldOutput,
-					output));
+			eNotify(new ENotificationImpl(this, Notification.SET, RequirementPackage.SYSTEM_FUNCTION__OUTPUT, oldOutput, output));
 	}
 
 	/**
@@ -172,9 +168,8 @@ public class SystemFunctionImpl extends ModelElementImpl implements
 		String oldException = exception;
 		exception = newException;
 		if (eNotificationRequired())
-			eNotify(new ENotificationImpl(this, Notification.SET,
-					RequirementPackage.SYSTEM_FUNCTION__EXCEPTION,
-					oldException, exception));
+			eNotify(new ENotificationImpl(this, Notification.SET, RequirementPackage.SYSTEM_FUNCTION__EXCEPTION, oldException,
+					exception));
 	}
 
 	/**
@@ -246,14 +241,11 @@ public class SystemFunctionImpl extends ModelElementImpl implements
 	public boolean eIsSet(int featureID) {
 		switch (featureID) {
 		case RequirementPackage.SYSTEM_FUNCTION__INPUT:
-			return INPUT_EDEFAULT == null ? input != null : !INPUT_EDEFAULT
-					.equals(input);
+			return INPUT_EDEFAULT == null ? input != null : !INPUT_EDEFAULT.equals(input);
 		case RequirementPackage.SYSTEM_FUNCTION__OUTPUT:
-			return OUTPUT_EDEFAULT == null ? output != null : !OUTPUT_EDEFAULT
-					.equals(output);
+			return OUTPUT_EDEFAULT == null ? output != null : !OUTPUT_EDEFAULT.equals(output);
 		case RequirementPackage.SYSTEM_FUNCTION__EXCEPTION:
-			return EXCEPTION_EDEFAULT == null ? exception != null
-					: !EXCEPTION_EDEFAULT.equals(exception);
+			return EXCEPTION_EDEFAULT == null ? exception != null : !EXCEPTION_EDEFAULT.equals(exception);
 		}
 		return super.eIsSet(featureID);
 	}

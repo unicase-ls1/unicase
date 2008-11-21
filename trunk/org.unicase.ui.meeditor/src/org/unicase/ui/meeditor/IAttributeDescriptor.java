@@ -10,23 +10,17 @@ import org.eclipse.emf.edit.provider.IItemPropertyDescriptor;
 import org.unicase.model.ModelElement;
 
 /**
- * A {@link IAttributePriorityDescriptor} using the category property in the genmodel.
+ * Provides the priorities for a given attribute of a ME.
+ * @param <A> the type of description (integer/string/double/etc.) for this attribute  
  * @author shterevg
  *
  */
-public class CategoryPriorityDescriptor implements IAttributePriorityDescriptor{
-
-	/**
-	 * {@inheritDoc}
-	 */
-	public double getPriority(IItemPropertyDescriptor propertyDescriptor,
-			ModelElement modelElement) {
-		String s = propertyDescriptor.getCategory(modelElement);
-		if(s==null) {
-			s="100.0";
-		}
-		double ret = Double.parseDouble(s); 
-		return ret;
-	}
+public interface IAttributeDescriptor<A> {
 	
+	/**
+	 * @param propertyDescriptor the property descriptor
+	 * @param modelElement the model element
+	 * @return Returns the property from a given propertyDescriptor as an A value. 
+	 */
+	A getValue(IItemPropertyDescriptor propertyDescriptor, ModelElement modelElement);
 }

@@ -28,8 +28,7 @@ import org.unicase.model.requirement.UserTask;
  * end-user-doc -->
  * @generated
  */
-public class RequirementFactoryImpl extends EFactoryImpl implements
-		RequirementFactory {
+public class RequirementFactoryImpl extends EFactoryImpl implements RequirementFactory {
 	/**
 	 * Creates the default factory implementation.
 	 * <!-- begin-user-doc --> <!--
@@ -85,8 +84,7 @@ public class RequirementFactoryImpl extends EFactoryImpl implements
 		case RequirementPackage.USER_TASK:
 			return createUserTask();
 		default:
-			throw new IllegalArgumentException("The class '" + eClass.getName()
-					+ "' is not a valid classifier");
+			throw new IllegalArgumentException("The class '" + eClass.getName() + "' is not a valid classifier");
 		}
 	}
 

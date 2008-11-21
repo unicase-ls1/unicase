@@ -225,10 +225,9 @@ public class ActionItemImpl extends AnnotationImpl implements ActionItem {
 	 * <!-- begin-user-doc --> <!-- end-user-doc -->
 	 * @generated
 	 */
-	public NotificationChain basicSetContainingWorkpackage(
-			WorkPackage newContainingWorkpackage, NotificationChain msgs) {
-		msgs = eBasicSetContainer((InternalEObject) newContainingWorkpackage,
-				TaskPackage.ACTION_ITEM__CONTAINING_WORKPACKAGE, msgs);
+	public NotificationChain basicSetContainingWorkpackage(WorkPackage newContainingWorkpackage, NotificationChain msgs) {
+		msgs = eBasicSetContainer((InternalEObject) newContainingWorkpackage, TaskPackage.ACTION_ITEM__CONTAINING_WORKPACKAGE,
+				msgs);
 		return msgs;
 	}
 
@@ -240,22 +239,18 @@ public class ActionItemImpl extends AnnotationImpl implements ActionItem {
 		if (newContainingWorkpackage != eInternalContainer()
 				|| (eContainerFeatureID != TaskPackage.ACTION_ITEM__CONTAINING_WORKPACKAGE && newContainingWorkpackage != null)) {
 			if (EcoreUtil.isAncestor(this, newContainingWorkpackage))
-				throw new IllegalArgumentException(
-						"Recursive containment not allowed for " + toString());
+				throw new IllegalArgumentException("Recursive containment not allowed for " + toString());
 			NotificationChain msgs = null;
 			if (eInternalContainer() != null)
 				msgs = eBasicRemoveFromContainer(msgs);
 			if (newContainingWorkpackage != null)
-				msgs = ((InternalEObject) newContainingWorkpackage)
-						.eInverseAdd(this,
-								TaskPackage.WORK_PACKAGE__CONTAINED_WORK_ITEMS,
-								WorkPackage.class, msgs);
+				msgs = ((InternalEObject) newContainingWorkpackage).eInverseAdd(this,
+						TaskPackage.WORK_PACKAGE__CONTAINED_WORK_ITEMS, WorkPackage.class, msgs);
 			msgs = basicSetContainingWorkpackage(newContainingWorkpackage, msgs);
 			if (msgs != null)
 				msgs.dispatch();
 		} else if (eNotificationRequired())
-			eNotify(new ENotificationImpl(this, Notification.SET,
-					TaskPackage.ACTION_ITEM__CONTAINING_WORKPACKAGE,
+			eNotify(new ENotificationImpl(this, Notification.SET, TaskPackage.ACTION_ITEM__CONTAINING_WORKPACKAGE,
 					newContainingWorkpackage, newContainingWorkpackage));
 	}
 
@@ -265,8 +260,7 @@ public class ActionItemImpl extends AnnotationImpl implements ActionItem {
 	 */
 	public EList<ModelChangePackage> getAssociatedChangePackages() {
 		if (associatedChangePackages == null) {
-			associatedChangePackages = new EObjectResolvingEList<ModelChangePackage>(
-					ModelChangePackage.class, this,
+			associatedChangePackages = new EObjectResolvingEList<ModelChangePackage>(ModelChangePackage.class, this,
 					TaskPackage.ACTION_ITEM__ASSOCIATED_CHANGE_PACKAGES);
 		}
 		return associatedChangePackages;
@@ -278,10 +272,8 @@ public class ActionItemImpl extends AnnotationImpl implements ActionItem {
 	 */
 	public EList<WorkItem> getPredecessors() {
 		if (predecessors == null) {
-			predecessors = new EObjectWithInverseResolvingEList.ManyInverse<WorkItem>(
-					WorkItem.class, this,
-					TaskPackage.ACTION_ITEM__PREDECESSORS,
-					TaskPackage.WORK_ITEM__SUCCESSORS);
+			predecessors = new EObjectWithInverseResolvingEList.ManyInverse<WorkItem>(WorkItem.class, this,
+					TaskPackage.ACTION_ITEM__PREDECESSORS, TaskPackage.WORK_ITEM__SUCCESSORS);
 		}
 		return predecessors;
 	}
@@ -292,9 +284,8 @@ public class ActionItemImpl extends AnnotationImpl implements ActionItem {
 	 */
 	public EList<WorkItem> getSuccessors() {
 		if (successors == null) {
-			successors = new EObjectWithInverseResolvingEList.ManyInverse<WorkItem>(
-					WorkItem.class, this, TaskPackage.ACTION_ITEM__SUCCESSORS,
-					TaskPackage.WORK_ITEM__PREDECESSORS);
+			successors = new EObjectWithInverseResolvingEList.ManyInverse<WorkItem>(WorkItem.class, this,
+					TaskPackage.ACTION_ITEM__SUCCESSORS, TaskPackage.WORK_ITEM__PREDECESSORS);
 		}
 		return successors;
 	}
@@ -310,8 +301,7 @@ public class ActionItemImpl extends AnnotationImpl implements ActionItem {
 			assignee = (OrgUnit) eResolveProxy(oldAssignee);
 			if (assignee != oldAssignee) {
 				if (eNotificationRequired())
-					eNotify(new ENotificationImpl(this, Notification.RESOLVE,
-							TaskPackage.ACTION_ITEM__ASSIGNEE, oldAssignee,
+					eNotify(new ENotificationImpl(this, Notification.RESOLVE, TaskPackage.ACTION_ITEM__ASSIGNEE, oldAssignee,
 							assignee));
 			}
 		}
@@ -355,13 +345,11 @@ public class ActionItemImpl extends AnnotationImpl implements ActionItem {
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
-	public NotificationChain basicSetAssignee(OrgUnit newAssignee,
-			NotificationChain msgs) {
+	public NotificationChain basicSetAssignee(OrgUnit newAssignee, NotificationChain msgs) {
 		OrgUnit oldAssignee = assignee;
 		assignee = newAssignee;
 		if (eNotificationRequired()) {
-			ENotificationImpl notification = new ENotificationImpl(this,
-					Notification.SET, TaskPackage.ACTION_ITEM__ASSIGNEE,
+			ENotificationImpl notification = new ENotificationImpl(this, Notification.SET, TaskPackage.ACTION_ITEM__ASSIGNEE,
 					oldAssignee, newAssignee);
 			if (msgs == null)
 				msgs = notification;
@@ -380,19 +368,16 @@ public class ActionItemImpl extends AnnotationImpl implements ActionItem {
 		if (newAssignee != assignee) {
 			NotificationChain msgs = null;
 			if (assignee != null)
-				msgs = ((InternalEObject) assignee).eInverseRemove(this,
-						OrganizationPackage.ORG_UNIT__ASSIGNMENTS,
+				msgs = ((InternalEObject) assignee).eInverseRemove(this, OrganizationPackage.ORG_UNIT__ASSIGNMENTS,
 						OrgUnit.class, msgs);
 			if (newAssignee != null)
-				msgs = ((InternalEObject) newAssignee).eInverseAdd(this,
-						OrganizationPackage.ORG_UNIT__ASSIGNMENTS,
+				msgs = ((InternalEObject) newAssignee).eInverseAdd(this, OrganizationPackage.ORG_UNIT__ASSIGNMENTS,
 						OrgUnit.class, msgs);
 			msgs = basicSetAssignee(newAssignee, msgs);
 			if (msgs != null)
 				msgs.dispatch();
 		} else if (eNotificationRequired())
-			eNotify(new ENotificationImpl(this, Notification.SET,
-					TaskPackage.ACTION_ITEM__ASSIGNEE, newAssignee, newAssignee));
+			eNotify(new ENotificationImpl(this, Notification.SET, TaskPackage.ACTION_ITEM__ASSIGNEE, newAssignee, newAssignee));
 	}
 
 	/**
@@ -402,9 +387,8 @@ public class ActionItemImpl extends AnnotationImpl implements ActionItem {
 	 */
 	public EList<OrgUnit> getParticipants() {
 		if (participants == null) {
-			participants = new EObjectWithInverseResolvingEList.ManyInverse<OrgUnit>(
-					OrgUnit.class, this, TaskPackage.ACTION_ITEM__PARTICIPANTS,
-					OrganizationPackage.ORG_UNIT__PARTICIPATIONS);
+			participants = new EObjectWithInverseResolvingEList.ManyInverse<OrgUnit>(OrgUnit.class, this,
+					TaskPackage.ACTION_ITEM__PARTICIPANTS, OrganizationPackage.ORG_UNIT__PARTICIPATIONS);
 		}
 		return participants;
 	}
@@ -427,8 +411,7 @@ public class ActionItemImpl extends AnnotationImpl implements ActionItem {
 		Date oldDueDate = dueDate;
 		dueDate = newDueDate;
 		if (eNotificationRequired())
-			eNotify(new ENotificationImpl(this, Notification.SET,
-					TaskPackage.ACTION_ITEM__DUE_DATE, oldDueDate, dueDate));
+			eNotify(new ENotificationImpl(this, Notification.SET, TaskPackage.ACTION_ITEM__DUE_DATE, oldDueDate, dueDate));
 	}
 
 	/**
@@ -447,8 +430,7 @@ public class ActionItemImpl extends AnnotationImpl implements ActionItem {
 		boolean oldDone = done;
 		done = newDone;
 		if (eNotificationRequired())
-			eNotify(new ENotificationImpl(this, Notification.SET,
-					TaskPackage.ACTION_ITEM__DONE, oldDone, done));
+			eNotify(new ENotificationImpl(this, Notification.SET, TaskPackage.ACTION_ITEM__DONE, oldDone, done));
 	}
 
 	/**
@@ -467,8 +449,7 @@ public class ActionItemImpl extends AnnotationImpl implements ActionItem {
 		int oldEstimate = estimate;
 		estimate = newEstimate;
 		if (eNotificationRequired())
-			eNotify(new ENotificationImpl(this, Notification.SET,
-					TaskPackage.ACTION_ITEM__ESTIMATE, oldEstimate, estimate));
+			eNotify(new ENotificationImpl(this, Notification.SET, TaskPackage.ACTION_ITEM__ESTIMATE, oldEstimate, estimate));
 	}
 
 	/**
@@ -487,8 +468,7 @@ public class ActionItemImpl extends AnnotationImpl implements ActionItem {
 		ActivityType oldActivity = activity;
 		activity = newActivity == null ? ACTIVITY_EDEFAULT : newActivity;
 		if (eNotificationRequired())
-			eNotify(new ENotificationImpl(this, Notification.SET,
-					TaskPackage.ACTION_ITEM__ACTIVITY, oldActivity, activity));
+			eNotify(new ENotificationImpl(this, Notification.SET, TaskPackage.ACTION_ITEM__ACTIVITY, oldActivity, activity));
 	}
 
 	/**
@@ -497,28 +477,23 @@ public class ActionItemImpl extends AnnotationImpl implements ActionItem {
 	 */
 	@SuppressWarnings("unchecked")
 	@Override
-	public NotificationChain eInverseAdd(InternalEObject otherEnd,
-			int featureID, NotificationChain msgs) {
+	public NotificationChain eInverseAdd(InternalEObject otherEnd, int featureID, NotificationChain msgs) {
 		switch (featureID) {
 		case TaskPackage.ACTION_ITEM__CONTAINING_WORKPACKAGE:
 			if (eInternalContainer() != null)
 				msgs = eBasicRemoveFromContainer(msgs);
 			return basicSetContainingWorkpackage((WorkPackage) otherEnd, msgs);
 		case TaskPackage.ACTION_ITEM__PREDECESSORS:
-			return ((InternalEList<InternalEObject>) (InternalEList<?>) getPredecessors())
-					.basicAdd(otherEnd, msgs);
+			return ((InternalEList<InternalEObject>) (InternalEList<?>) getPredecessors()).basicAdd(otherEnd, msgs);
 		case TaskPackage.ACTION_ITEM__SUCCESSORS:
-			return ((InternalEList<InternalEObject>) (InternalEList<?>) getSuccessors())
-					.basicAdd(otherEnd, msgs);
+			return ((InternalEList<InternalEObject>) (InternalEList<?>) getSuccessors()).basicAdd(otherEnd, msgs);
 		case TaskPackage.ACTION_ITEM__ASSIGNEE:
 			if (assignee != null)
-				msgs = ((InternalEObject) assignee).eInverseRemove(this,
-						OrganizationPackage.ORG_UNIT__ASSIGNMENTS,
+				msgs = ((InternalEObject) assignee).eInverseRemove(this, OrganizationPackage.ORG_UNIT__ASSIGNMENTS,
 						OrgUnit.class, msgs);
 			return basicSetAssignee((OrgUnit) otherEnd, msgs);
 		case TaskPackage.ACTION_ITEM__PARTICIPANTS:
-			return ((InternalEList<InternalEObject>) (InternalEList<?>) getParticipants())
-					.basicAdd(otherEnd, msgs);
+			return ((InternalEList<InternalEObject>) (InternalEList<?>) getParticipants()).basicAdd(otherEnd, msgs);
 		}
 		return super.eInverseAdd(otherEnd, featureID, msgs);
 	}
@@ -528,22 +503,18 @@ public class ActionItemImpl extends AnnotationImpl implements ActionItem {
 	 * @generated
 	 */
 	@Override
-	public NotificationChain eInverseRemove(InternalEObject otherEnd,
-			int featureID, NotificationChain msgs) {
+	public NotificationChain eInverseRemove(InternalEObject otherEnd, int featureID, NotificationChain msgs) {
 		switch (featureID) {
 		case TaskPackage.ACTION_ITEM__CONTAINING_WORKPACKAGE:
 			return basicSetContainingWorkpackage(null, msgs);
 		case TaskPackage.ACTION_ITEM__PREDECESSORS:
-			return ((InternalEList<?>) getPredecessors()).basicRemove(otherEnd,
-					msgs);
+			return ((InternalEList<?>) getPredecessors()).basicRemove(otherEnd, msgs);
 		case TaskPackage.ACTION_ITEM__SUCCESSORS:
-			return ((InternalEList<?>) getSuccessors()).basicRemove(otherEnd,
-					msgs);
+			return ((InternalEList<?>) getSuccessors()).basicRemove(otherEnd, msgs);
 		case TaskPackage.ACTION_ITEM__ASSIGNEE:
 			return basicSetAssignee(null, msgs);
 		case TaskPackage.ACTION_ITEM__PARTICIPANTS:
-			return ((InternalEList<?>) getParticipants()).basicRemove(otherEnd,
-					msgs);
+			return ((InternalEList<?>) getParticipants()).basicRemove(otherEnd, msgs);
 		}
 		return super.eInverseRemove(otherEnd, featureID, msgs);
 	}
@@ -553,13 +524,11 @@ public class ActionItemImpl extends AnnotationImpl implements ActionItem {
 	 * @generated
 	 */
 	@Override
-	public NotificationChain eBasicRemoveFromContainerFeature(
-			NotificationChain msgs) {
+	public NotificationChain eBasicRemoveFromContainerFeature(NotificationChain msgs) {
 		switch (eContainerFeatureID) {
 		case TaskPackage.ACTION_ITEM__CONTAINING_WORKPACKAGE:
-			return eInternalContainer().eInverseRemove(this,
-					TaskPackage.WORK_PACKAGE__CONTAINED_WORK_ITEMS,
-					WorkPackage.class, msgs);
+			return eInternalContainer().eInverseRemove(this, TaskPackage.WORK_PACKAGE__CONTAINED_WORK_ITEMS, WorkPackage.class,
+					msgs);
 		}
 		return super.eBasicRemoveFromContainerFeature(msgs);
 	}
@@ -614,8 +583,7 @@ public class ActionItemImpl extends AnnotationImpl implements ActionItem {
 			return;
 		case TaskPackage.ACTION_ITEM__ASSOCIATED_CHANGE_PACKAGES:
 			getAssociatedChangePackages().clear();
-			getAssociatedChangePackages().addAll(
-					(Collection<? extends ModelChangePackage>) newValue);
+			getAssociatedChangePackages().addAll((Collection<? extends ModelChangePackage>) newValue);
 			return;
 		case TaskPackage.ACTION_ITEM__PREDECESSORS:
 			getPredecessors().clear();
@@ -705,8 +673,7 @@ public class ActionItemImpl extends AnnotationImpl implements ActionItem {
 		case TaskPackage.ACTION_ITEM__CONTAINING_WORKPACKAGE:
 			return basicGetContainingWorkpackage() != null;
 		case TaskPackage.ACTION_ITEM__ASSOCIATED_CHANGE_PACKAGES:
-			return associatedChangePackages != null
-					&& !associatedChangePackages.isEmpty();
+			return associatedChangePackages != null && !associatedChangePackages.isEmpty();
 		case TaskPackage.ACTION_ITEM__PREDECESSORS:
 			return predecessors != null && !predecessors.isEmpty();
 		case TaskPackage.ACTION_ITEM__SUCCESSORS:
@@ -716,8 +683,7 @@ public class ActionItemImpl extends AnnotationImpl implements ActionItem {
 		case TaskPackage.ACTION_ITEM__PARTICIPANTS:
 			return participants != null && !participants.isEmpty();
 		case TaskPackage.ACTION_ITEM__DUE_DATE:
-			return DUE_DATE_EDEFAULT == null ? dueDate != null
-					: !DUE_DATE_EDEFAULT.equals(dueDate);
+			return DUE_DATE_EDEFAULT == null ? dueDate != null : !DUE_DATE_EDEFAULT.equals(dueDate);
 		case TaskPackage.ACTION_ITEM__CHECKED:
 			return isChecked() != CHECKED_EDEFAULT;
 		case TaskPackage.ACTION_ITEM__DONE:

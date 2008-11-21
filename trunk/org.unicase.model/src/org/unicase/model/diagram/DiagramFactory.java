@@ -21,8 +21,7 @@ public interface DiagramFactory extends EFactory {
 	 * end-user-doc -->
 	 * @generated
 	 */
-	DiagramFactory eINSTANCE = org.unicase.model.diagram.impl.DiagramFactoryImpl
-			.init();
+	DiagramFactory eINSTANCE = org.unicase.model.diagram.impl.DiagramFactoryImpl.init();
 
 	/**
 	 * Returns a new object of class '<em>ME Diagram</em>'.

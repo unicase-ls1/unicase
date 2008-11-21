@@ -44,6 +44,7 @@ public interface Association extends ModelElement {
 	 * @see org.unicase.model.classes.ClassesPackage#getAssociation_Source()
 	 * @see org.unicase.model.classes.Class#getOutgoingAssociations
 	 * @model opposite="outgoingAssociations" keys="identifier"
+	 *        annotation="org.unicase.ui.meeditor priority='10.0' position='left'"
 	 * @generated
 	 */
 	org.unicase.model.classes.Class getSource();
@@ -71,6 +72,7 @@ public interface Association extends ModelElement {
 	 * @see org.unicase.model.classes.ClassesPackage#getAssociation_Target()
 	 * @see org.unicase.model.classes.Class#getIncomingAssociations
 	 * @model opposite="incomingAssociations" keys="identifier"
+	 *        annotation="org.unicase.ui.meeditor priority='11.0' position='left'"
 	 * @generated
 	 */
 	org.unicase.model.classes.Class getTarget();
@@ -100,6 +102,7 @@ public interface Association extends ModelElement {
 	 * @see #setType(AssociationType)
 	 * @see org.unicase.model.classes.ClassesPackage#getAssociation_Type()
 	 * @model default=""
+	 *        annotation="org.unicase.ui.meeditor priority='12.0' position='left'"
 	 * @generated
 	 */
 	AssociationType getType();
@@ -127,6 +130,7 @@ public interface Association extends ModelElement {
 	 * @see #setSourceMultiplicity(String)
 	 * @see org.unicase.model.classes.ClassesPackage#getAssociation_SourceMultiplicity()
 	 * @model default="1"
+	 *        annotation="org.unicase.ui.meeditor priority='13.0' position='left'"
 	 * @generated
 	 */
 	String getSourceMultiplicity();
@@ -154,6 +158,7 @@ public interface Association extends ModelElement {
 	 * @see #setTargetMultiplicity(String)
 	 * @see org.unicase.model.classes.ClassesPackage#getAssociation_TargetMultiplicity()
 	 * @model default="1"
+	 *        annotation="org.unicase.ui.meeditor priority='14.0' position='left'"
 	 * @generated
 	 */
 	String getTargetMultiplicity();

@@ -29,9 +29,8 @@ import org.unicase.model.ModelPackage;
  * end-user-doc -->
  * @generated
  */
-public class ModelElementItemProvider extends IdentifiableElementItemProvider
-		implements IEditingDomainItemProvider, IStructuredItemContentProvider,
-		ITreeItemContentProvider, IItemLabelProvider, IItemPropertySource {
+public class ModelElementItemProvider extends IdentifiableElementItemProvider implements IEditingDomainItemProvider,
+		IStructuredItemContentProvider, ITreeItemContentProvider, IItemLabelProvider, IItemPropertySource {
 	/**
 	 * This constructs an instance from a factory and a notifier. <!--
 	 * begin-user-doc --> <!-- end-user-doc -->
@@ -69,15 +68,11 @@ public class ModelElementItemProvider extends IdentifiableElementItemProvider
 	 * @generated
 	 */
 	protected void addNamePropertyDescriptor(Object object) {
-		itemPropertyDescriptors.add(createItemPropertyDescriptor(
-				((ComposeableAdapterFactory) adapterFactory)
-						.getRootAdapterFactory(), getResourceLocator(),
-				getString("_UI_ModelElement_name_feature"), getString(
-						"_UI_PropertyDescriptor_description",
-						"_UI_ModelElement_name_feature",
-						"_UI_ModelElement_type"),
-				ModelPackage.Literals.MODEL_ELEMENT__NAME, true, false, false,
-				ItemPropertyDescriptor.GENERIC_VALUE_IMAGE, null, null));
+		itemPropertyDescriptors.add(createItemPropertyDescriptor(((ComposeableAdapterFactory) adapterFactory)
+				.getRootAdapterFactory(), getResourceLocator(), getString("_UI_ModelElement_name_feature"), getString(
+				"_UI_PropertyDescriptor_description", "_UI_ModelElement_name_feature", "_UI_ModelElement_type"),
+				ModelPackage.Literals.MODEL_ELEMENT__NAME, true, false, false, ItemPropertyDescriptor.GENERIC_VALUE_IMAGE, null,
+				null));
 	}
 
 	/**
@@ -87,15 +82,11 @@ public class ModelElementItemProvider extends IdentifiableElementItemProvider
 	 * @generated
 	 */
 	protected void addDescriptionPropertyDescriptor(Object object) {
-		itemPropertyDescriptors.add(createItemPropertyDescriptor(
-				((ComposeableAdapterFactory) adapterFactory)
-						.getRootAdapterFactory(), getResourceLocator(),
-				getString("_UI_ModelElement_description_feature"), getString(
-						"_UI_PropertyDescriptor_description",
-						"_UI_ModelElement_description_feature",
-						"_UI_ModelElement_type"),
-				ModelPackage.Literals.MODEL_ELEMENT__DESCRIPTION, true, true,
-				false, ItemPropertyDescriptor.GENERIC_VALUE_IMAGE, null, null));
+		itemPropertyDescriptors.add(createItemPropertyDescriptor(((ComposeableAdapterFactory) adapterFactory)
+				.getRootAdapterFactory(), getResourceLocator(), getString("_UI_ModelElement_description_feature"), getString(
+				"_UI_PropertyDescriptor_description", "_UI_ModelElement_description_feature", "_UI_ModelElement_type"),
+				ModelPackage.Literals.MODEL_ELEMENT__DESCRIPTION, true, true, false, ItemPropertyDescriptor.GENERIC_VALUE_IMAGE,
+				null, null));
 	}
 
 	/**
@@ -105,15 +96,10 @@ public class ModelElementItemProvider extends IdentifiableElementItemProvider
 	 * @generated
 	 */
 	protected void addAnnotationsPropertyDescriptor(Object object) {
-		itemPropertyDescriptors.add(createItemPropertyDescriptor(
-				((ComposeableAdapterFactory) adapterFactory)
-						.getRootAdapterFactory(), getResourceLocator(),
-				getString("_UI_ModelElement_annotations_feature"), getString(
-						"_UI_PropertyDescriptor_description",
-						"_UI_ModelElement_annotations_feature",
-						"_UI_ModelElement_type"),
-				ModelPackage.Literals.MODEL_ELEMENT__ANNOTATIONS, true, false,
-				true, null, null, null));
+		itemPropertyDescriptors.add(createItemPropertyDescriptor(((ComposeableAdapterFactory) adapterFactory)
+				.getRootAdapterFactory(), getResourceLocator(), getString("_UI_ModelElement_annotations_feature"), getString(
+				"_UI_PropertyDescriptor_description", "_UI_ModelElement_annotations_feature", "_UI_ModelElement_type"),
+				ModelPackage.Literals.MODEL_ELEMENT__ANNOTATIONS, true, false, true, null, null, null));
 	}
 
 	/**
@@ -123,15 +109,10 @@ public class ModelElementItemProvider extends IdentifiableElementItemProvider
 	 * @generated
 	 */
 	protected void addAttachmentsPropertyDescriptor(Object object) {
-		itemPropertyDescriptors.add(createItemPropertyDescriptor(
-				((ComposeableAdapterFactory) adapterFactory)
-						.getRootAdapterFactory(), getResourceLocator(),
-				getString("_UI_ModelElement_attachments_feature"), getString(
-						"_UI_PropertyDescriptor_description",
-						"_UI_ModelElement_attachments_feature",
-						"_UI_ModelElement_type"),
-				ModelPackage.Literals.MODEL_ELEMENT__ATTACHMENTS, true, false,
-				true, null, null, null));
+		itemPropertyDescriptors.add(createItemPropertyDescriptor(((ComposeableAdapterFactory) adapterFactory)
+				.getRootAdapterFactory(), getResourceLocator(), getString("_UI_ModelElement_attachments_feature"), getString(
+				"_UI_PropertyDescriptor_description", "_UI_ModelElement_attachments_feature", "_UI_ModelElement_type"),
+				ModelPackage.Literals.MODEL_ELEMENT__ATTACHMENTS, true, false, true, null, null, null));
 	}
 
 	/**
@@ -140,18 +121,11 @@ public class ModelElementItemProvider extends IdentifiableElementItemProvider
 	 * @generated
 	 */
 	protected void addIncomingDocumentReferencesPropertyDescriptor(Object object) {
-		itemPropertyDescriptors
-				.add(createItemPropertyDescriptor(
-						((ComposeableAdapterFactory) adapterFactory)
-								.getRootAdapterFactory(),
-						getResourceLocator(),
-						getString("_UI_ModelElement_incomingDocumentReferences_feature"),
-						getString(
-								"_UI_PropertyDescriptor_description",
-								"_UI_ModelElement_incomingDocumentReferences_feature",
-								"_UI_ModelElement_type"),
-						ModelPackage.Literals.MODEL_ELEMENT__INCOMING_DOCUMENT_REFERENCES,
-						true, false, true, null, null, null));
+		itemPropertyDescriptors.add(createItemPropertyDescriptor(((ComposeableAdapterFactory) adapterFactory)
+				.getRootAdapterFactory(), getResourceLocator(), getString("_UI_ModelElement_incomingDocumentReferences_feature"),
+				getString("_UI_PropertyDescriptor_description", "_UI_ModelElement_incomingDocumentReferences_feature",
+						"_UI_ModelElement_type"), ModelPackage.Literals.MODEL_ELEMENT__INCOMING_DOCUMENT_REFERENCES, true, false,
+				true, null, null, null));
 	}
 
 	/**
@@ -164,8 +138,7 @@ public class ModelElementItemProvider extends IdentifiableElementItemProvider
 	@Override
 	public String getText(Object object) {
 		String label = ((ModelElement) object).getName();
-		return label == null || label.length() == 0 ? "unnamed"
-				+ getString("_UI_ModelElement_type") : label;
+		return label == null || label.length() == 0 ? "unnamed" + getString("_UI_ModelElement_type") : label;
 	}
 
 	/**
@@ -185,8 +158,7 @@ public class ModelElementItemProvider extends IdentifiableElementItemProvider
 		case ModelPackage.MODEL_ELEMENT__CREATOR:
 		case ModelPackage.MODEL_ELEMENT__CREATION_DATE:
 		case ModelPackage.MODEL_ELEMENT__STATE:
-			fireNotifyChanged(new ViewerNotification(notification, notification
-					.getNotifier(), false, true));
+			fireNotifyChanged(new ViewerNotification(notification, notification.getNotifier(), false, true));
 			return;
 		}
 		super.notifyChanged(notification);
@@ -200,8 +172,7 @@ public class ModelElementItemProvider extends IdentifiableElementItemProvider
 	 * @generated
 	 */
 	@Override
-	protected void collectNewChildDescriptors(
-			Collection<Object> newChildDescriptors, Object object) {
+	protected void collectNewChildDescriptors(Collection<Object> newChildDescriptors, Object object) {
 		super.collectNewChildDescriptors(newChildDescriptors, object);
 	}
 

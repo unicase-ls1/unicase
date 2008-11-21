@@ -69,8 +69,7 @@ public class ChangeFactoryImpl extends EFactoryImpl implements ChangeFactory {
 		case ChangePackage.MERGING_SOLUTION:
 			return createMergingSolution();
 		default:
-			throw new IllegalArgumentException("The class '" + eClass.getName()
-					+ "' is not a valid classifier");
+			throw new IllegalArgumentException("The class '" + eClass.getName() + "' is not a valid classifier");
 		}
 	}
 

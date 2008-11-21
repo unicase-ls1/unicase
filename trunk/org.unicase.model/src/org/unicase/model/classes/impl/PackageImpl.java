@@ -32,8 +32,7 @@ import org.unicase.model.classes.PackageElement;
  *
  * @generated
  */
-public class PackageImpl extends PackageElementImpl implements
-		org.unicase.model.classes.Package {
+public class PackageImpl extends PackageElementImpl implements org.unicase.model.classes.Package {
 	/**
 	 * The cached value of the '{@link #getContainedPackageElements()
 	 * <em>Contained Package Elements</em>}' containment reference list. <!--
@@ -78,10 +77,8 @@ public class PackageImpl extends PackageElementImpl implements
 	 */
 	public EList<PackageElement> getContainedPackageElements() {
 		if (containedPackageElements == null) {
-			containedPackageElements = new EObjectContainmentWithInverseEList.Resolving<PackageElement>(
-					PackageElement.class, this,
-					ClassesPackage.PACKAGE__CONTAINED_PACKAGE_ELEMENTS,
-					ClassesPackage.PACKAGE_ELEMENT__PARENT_PACKAGE);
+			containedPackageElements = new EObjectContainmentWithInverseEList.Resolving<PackageElement>(PackageElement.class,
+					this, ClassesPackage.PACKAGE__CONTAINED_PACKAGE_ELEMENTS, ClassesPackage.PACKAGE_ELEMENT__PARENT_PACKAGE);
 		}
 		return containedPackageElements;
 	}
@@ -97,8 +94,7 @@ public class PackageImpl extends PackageElementImpl implements
 			facadeClass = (org.unicase.model.classes.Class) eResolveProxy(oldFacadeClass);
 			if (facadeClass != oldFacadeClass) {
 				if (eNotificationRequired())
-					eNotify(new ENotificationImpl(this, Notification.RESOLVE,
-							ClassesPackage.PACKAGE__FACADE_CLASS,
+					eNotify(new ENotificationImpl(this, Notification.RESOLVE, ClassesPackage.PACKAGE__FACADE_CLASS,
 							oldFacadeClass, facadeClass));
 			}
 		}
@@ -123,8 +119,7 @@ public class PackageImpl extends PackageElementImpl implements
 		org.unicase.model.classes.Class oldFacadeClass = facadeClass;
 		facadeClass = newFacadeClass;
 		if (eNotificationRequired())
-			eNotify(new ENotificationImpl(this, Notification.SET,
-					ClassesPackage.PACKAGE__FACADE_CLASS, oldFacadeClass,
+			eNotify(new ENotificationImpl(this, Notification.SET, ClassesPackage.PACKAGE__FACADE_CLASS, oldFacadeClass,
 					facadeClass));
 	}
 
@@ -134,12 +129,10 @@ public class PackageImpl extends PackageElementImpl implements
 	 */
 	@SuppressWarnings("unchecked")
 	@Override
-	public NotificationChain eInverseAdd(InternalEObject otherEnd,
-			int featureID, NotificationChain msgs) {
+	public NotificationChain eInverseAdd(InternalEObject otherEnd, int featureID, NotificationChain msgs) {
 		switch (featureID) {
 		case ClassesPackage.PACKAGE__CONTAINED_PACKAGE_ELEMENTS:
-			return ((InternalEList<InternalEObject>) (InternalEList<?>) getContainedPackageElements())
-					.basicAdd(otherEnd, msgs);
+			return ((InternalEList<InternalEObject>) (InternalEList<?>) getContainedPackageElements()).basicAdd(otherEnd, msgs);
 		}
 		return super.eInverseAdd(otherEnd, featureID, msgs);
 	}
@@ -149,12 +142,10 @@ public class PackageImpl extends PackageElementImpl implements
 	 * @generated
 	 */
 	@Override
-	public NotificationChain eInverseRemove(InternalEObject otherEnd,
-			int featureID, NotificationChain msgs) {
+	public NotificationChain eInverseRemove(InternalEObject otherEnd, int featureID, NotificationChain msgs) {
 		switch (featureID) {
 		case ClassesPackage.PACKAGE__CONTAINED_PACKAGE_ELEMENTS:
-			return ((InternalEList<?>) getContainedPackageElements())
-					.basicRemove(otherEnd, msgs);
+			return ((InternalEList<?>) getContainedPackageElements()).basicRemove(otherEnd, msgs);
 		}
 		return super.eInverseRemove(otherEnd, featureID, msgs);
 	}
@@ -186,8 +177,7 @@ public class PackageImpl extends PackageElementImpl implements
 		switch (featureID) {
 		case ClassesPackage.PACKAGE__CONTAINED_PACKAGE_ELEMENTS:
 			getContainedPackageElements().clear();
-			getContainedPackageElements().addAll(
-					(Collection<? extends PackageElement>) newValue);
+			getContainedPackageElements().addAll((Collection<? extends PackageElement>) newValue);
 			return;
 		case ClassesPackage.PACKAGE__FACADE_CLASS:
 			setFacadeClass((org.unicase.model.classes.Class) newValue);
@@ -221,8 +211,7 @@ public class PackageImpl extends PackageElementImpl implements
 	public boolean eIsSet(int featureID) {
 		switch (featureID) {
 		case ClassesPackage.PACKAGE__CONTAINED_PACKAGE_ELEMENTS:
-			return containedPackageElements != null
-					&& !containedPackageElements.isEmpty();
+			return containedPackageElements != null && !containedPackageElements.isEmpty();
 		case ClassesPackage.PACKAGE__FACADE_CLASS:
 			return facadeClass != null;
 		}

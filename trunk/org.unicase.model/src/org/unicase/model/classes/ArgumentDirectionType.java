@@ -128,8 +128,7 @@ public enum ArgumentDirectionType implements Enumerator {
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
-	private static final ArgumentDirectionType[] VALUES_ARRAY = new ArgumentDirectionType[] {
-			UNDEFINED, IN, OUT, INOUT, };
+	private static final ArgumentDirectionType[] VALUES_ARRAY = new ArgumentDirectionType[] { UNDEFINED, IN, OUT, INOUT, };
 
 	/**
 	 * A public read-only list of all the '<em><b>Argument Direction Type</b></em>' enumerators.
@@ -137,8 +136,7 @@ public enum ArgumentDirectionType implements Enumerator {
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
-	public static final List<ArgumentDirectionType> VALUES = Collections
-			.unmodifiableList(Arrays.asList(VALUES_ARRAY));
+	public static final List<ArgumentDirectionType> VALUES = Collections.unmodifiableList(Arrays.asList(VALUES_ARRAY));
 
 	/**
 	 * Returns the '<em><b>Argument Direction Type</b></em>' literal with the specified literal value.

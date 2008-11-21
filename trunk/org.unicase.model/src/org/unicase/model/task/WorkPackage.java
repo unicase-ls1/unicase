@@ -42,6 +42,7 @@ public interface WorkPackage extends WorkItem {
 	 * @see org.unicase.model.task.TaskPackage#getWorkPackage_ContainedWorkItems()
 	 * @see org.unicase.model.task.WorkItem#getContainingWorkpackage
 	 * @model opposite="containingWorkpackage" containment="true" resolveProxies="true" keys="identifier"
+	 *        annotation="org.unicase.ui.meeditor priority='20.0' position='right'"
 	 * @generated
 	 */
 	EList<WorkItem> getContainedWorkItems();
@@ -57,7 +58,7 @@ public interface WorkPackage extends WorkItem {
 	 * @return the value of the '<em>Start Date</em>' attribute.
 	 * @see #setStartDate(Date)
 	 * @see org.unicase.model.task.TaskPackage#getWorkPackage_StartDate()
-	 * @model
+	 * @model annotation="org.unicase.ui.meeditor priority='20.0' position='left'"
 	 * @generated
 	 */
 	Date getStartDate();
@@ -83,7 +84,7 @@ public interface WorkPackage extends WorkItem {
 	 * @return the value of the '<em>End Date</em>' attribute.
 	 * @see #setEndDate(Date)
 	 * @see org.unicase.model.task.TaskPackage#getWorkPackage_EndDate()
-	 * @model
+	 * @model annotation="org.unicase.ui.meeditor priority='21.0' position='left'"
 	 * @generated
 	 */
 	Date getEndDate();

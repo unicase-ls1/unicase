@@ -7,6 +7,8 @@
 package org.unicase.ui.meeditor;
 
 import java.util.ArrayList;
+import java.util.Collections;
+import java.util.Comparator;
 import java.util.HashMap;
 import java.util.List;
 import java.util.Map;
@@ -171,38 +173,35 @@ public class MEEditorPage extends FormPage {
 		List<IItemPropertyDescriptor> propertyDescriptors = adapterFactoryItemDelegator
 				.getPropertyDescriptors(modelElement);
 		if (propertyDescriptors != null){
-//			DO NOT REMOVE 
-//			
-//			final HashMap<IItemPropertyDescriptor,Double> map = new HashMap<IItemPropertyDescriptor, Double>();
-//			IAttributePriorityDescriptor priorityDescriptor = new AnnotationPriorityDescriptor();
-//			for (IItemPropertyDescriptor itemPropertyDescriptor : propertyDescriptors) {
-//				map.put(itemPropertyDescriptor,priorityDescriptor.getPriority(itemPropertyDescriptor, modelElement));
-//			}
-//			Collections.sort(propertyDescriptors, new Comparator<IItemPropertyDescriptor>(){
-//				public int compare(IItemPropertyDescriptor o1,
-//						IItemPropertyDescriptor o2) {
-//					return Double.compare(map.get(o1), map.get(o2));
-//				}
-//			});
-//			int length = propertyDescriptors.size();
-//			for(int i=0; i<length/2; i++){
-//				leftColumnAttributes.add(propertyDescriptors.get(i));
-//			}
-//			for(int i=length/2; i<length; i++){
-//				rightColumnAttributes.add(propertyDescriptors.get(i));
-//			}
-			for(IItemPropertyDescriptor pd : propertyDescriptors){
-				if(!pd.isMany(modelElement)){
-					leftColumnAttributes.add(pd);
-				}else{
-					rightColumnAttributes.add(pd);
-				}	
+			AnnotationPositionDescriptor positionDescriptor = new AnnotationPositionDescriptor();
+			for (IItemPropertyDescriptor itemPropertyDescriptor : propertyDescriptors) {
+				String value = positionDescriptor.getValue(itemPropertyDescriptor, modelElement);
+				if(value.equals("left")){
+					leftColumnAttributes.add(itemPropertyDescriptor);
+				}else if (value.equals("right")){
+					rightColumnAttributes.add(itemPropertyDescriptor);
+				}
 			}
+			
+			final HashMap<IItemPropertyDescriptor,Double> priorityMap = new HashMap<IItemPropertyDescriptor, Double>();
+			AnnotationPriorityDescriptor priorityDescriptor = new AnnotationPriorityDescriptor();
+			for (IItemPropertyDescriptor itemPropertyDescriptor : propertyDescriptors) {
+				priorityMap.put(itemPropertyDescriptor,priorityDescriptor.getValue(itemPropertyDescriptor, modelElement));
+			}
+			
+			Comparator<IItemPropertyDescriptor> comparator = new Comparator<IItemPropertyDescriptor>(){
+				public int compare(IItemPropertyDescriptor o1,
+						IItemPropertyDescriptor o2) {
+					return Double.compare(priorityMap.get(o1), priorityMap.get(o2));
+				}
+			};
+			Collections.sort(leftColumnAttributes, comparator);
+			Collections.sort(rightColumnAttributes, comparator);
 			
 		}
 
 	}
-
+	
 	private void createAttributes(Composite column, List<IItemPropertyDescriptor> attributes) {
 		Composite attributeComposite = toolkit.createComposite(column);
 		GridLayoutFactory.fillDefaults().numColumns(2).applyTo(attributeComposite);

@@ -37,6 +37,7 @@ public interface Comment extends Annotation {
 	 * @return the value of the '<em>Replies</em>' containment reference list.
 	 * @see org.unicase.model.rationale.RationalePackage#getComment_Replies()
 	 * @model containment="true" resolveProxies="true" keys="identifier"
+	 *        annotation="org.unicase.ui.meeditor priority='10.0' position='right'"
 	 * @generated
 	 */
 	EList<Comment> getReplies();

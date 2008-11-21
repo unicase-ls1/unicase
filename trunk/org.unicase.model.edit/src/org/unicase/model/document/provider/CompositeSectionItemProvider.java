@@ -34,9 +34,8 @@ import org.unicase.model.provider.ModelElementItemProvider;
  * 
  * @generated
  */
-public class CompositeSectionItemProvider extends ModelElementItemProvider
-		implements IEditingDomainItemProvider, IStructuredItemContentProvider,
-		ITreeItemContentProvider, IItemLabelProvider, IItemPropertySource {
+public class CompositeSectionItemProvider extends ModelElementItemProvider implements IEditingDomainItemProvider,
+		IStructuredItemContentProvider, ITreeItemContentProvider, IItemLabelProvider, IItemPropertySource {
 	/**
 	 * This constructs an instance from a factory and a notifier. <!--
 	 * begin-user-doc --> <!-- end-user-doc -->
@@ -70,15 +69,10 @@ public class CompositeSectionItemProvider extends ModelElementItemProvider
 	 * @generated
 	 */
 	protected void addSubsectionsPropertyDescriptor(Object object) {
-		itemPropertyDescriptors.add(createItemPropertyDescriptor(
-				((ComposeableAdapterFactory) adapterFactory)
-						.getRootAdapterFactory(), getResourceLocator(),
-				getString("_UI_CompositeSection_subsections_feature"),
-				getString("_UI_PropertyDescriptor_description",
-						"_UI_CompositeSection_subsections_feature",
-						"_UI_CompositeSection_type"),
-				DocumentPackage.Literals.COMPOSITE_SECTION__SUBSECTIONS, true,
-				false, false, null, null, null));
+		itemPropertyDescriptors.add(createItemPropertyDescriptor(((ComposeableAdapterFactory) adapterFactory)
+				.getRootAdapterFactory(), getResourceLocator(), getString("_UI_CompositeSection_subsections_feature"), getString(
+				"_UI_PropertyDescriptor_description", "_UI_CompositeSection_subsections_feature", "_UI_CompositeSection_type"),
+				DocumentPackage.Literals.COMPOSITE_SECTION__SUBSECTIONS, true, false, false, null, null, null));
 	}
 
 	/**
@@ -89,12 +83,10 @@ public class CompositeSectionItemProvider extends ModelElementItemProvider
 	 * @generated
 	 */
 	@Override
-	public Collection<? extends EStructuralFeature> getChildrenFeatures(
-			Object object) {
+	public Collection<? extends EStructuralFeature> getChildrenFeatures(Object object) {
 		if (childrenFeatures == null) {
 			super.getChildrenFeatures(object);
-			childrenFeatures
-					.add(DocumentPackage.Literals.COMPOSITE_SECTION__SUBSECTIONS);
+			childrenFeatures.add(DocumentPackage.Literals.COMPOSITE_SECTION__SUBSECTIONS);
 		}
 		return childrenFeatures;
 	}
@@ -119,8 +111,7 @@ public class CompositeSectionItemProvider extends ModelElementItemProvider
 	 */
 	@Override
 	public Object getImage(Object object) {
-		return overlayImage(object, getResourceLocator().getImage(
-				"full/obj16/CompositeSection"));
+		return overlayImage(object, getResourceLocator().getImage("full/obj16/CompositeSection"));
 	}
 
 	/**
@@ -148,8 +139,7 @@ public class CompositeSectionItemProvider extends ModelElementItemProvider
 
 		switch (notification.getFeatureID(CompositeSection.class)) {
 		case DocumentPackage.COMPOSITE_SECTION__SUBSECTIONS:
-			fireNotifyChanged(new ViewerNotification(notification, notification
-					.getNotifier(), true, false));
+			fireNotifyChanged(new ViewerNotification(notification, notification.getNotifier(), true, false));
 			return;
 		}
 		super.notifyChanged(notification);
@@ -163,16 +153,13 @@ public class CompositeSectionItemProvider extends ModelElementItemProvider
 	 * @generated
 	 */
 	@Override
-	protected void collectNewChildDescriptors(
-			Collection<Object> newChildDescriptors, Object object) {
+	protected void collectNewChildDescriptors(Collection<Object> newChildDescriptors, Object object) {
 		super.collectNewChildDescriptors(newChildDescriptors, object);
 
-		newChildDescriptors.add(createChildParameter(
-				DocumentPackage.Literals.COMPOSITE_SECTION__SUBSECTIONS,
+		newChildDescriptors.add(createChildParameter(DocumentPackage.Literals.COMPOSITE_SECTION__SUBSECTIONS,
 				DocumentFactory.eINSTANCE.createLeafSection()));
 
-		newChildDescriptors.add(createChildParameter(
-				DocumentPackage.Literals.COMPOSITE_SECTION__SUBSECTIONS,
+		newChildDescriptors.add(createChildParameter(DocumentPackage.Literals.COMPOSITE_SECTION__SUBSECTIONS,
 				DocumentFactory.eINSTANCE.createCompositeSection()));
 	}
 

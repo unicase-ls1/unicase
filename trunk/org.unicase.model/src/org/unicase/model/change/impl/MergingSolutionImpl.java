@@ -28,8 +28,7 @@ import org.unicase.model.rationale.impl.SolutionImpl;
  *
  * @generated
  */
-public class MergingSolutionImpl extends SolutionImpl implements
-		MergingSolution {
+public class MergingSolutionImpl extends SolutionImpl implements MergingSolution {
 	/**
 	 * The cached value of the '{@link #getAppliedChanges() <em>Applied Changes</em>}' reference list.
 	 * <!-- begin-user-doc --> <!--
@@ -63,8 +62,7 @@ public class MergingSolutionImpl extends SolutionImpl implements
 	 */
 	public EList<ModelChangePackage> getAppliedChanges() {
 		if (appliedChanges == null) {
-			appliedChanges = new EObjectResolvingEList<ModelChangePackage>(
-					ModelChangePackage.class, this,
+			appliedChanges = new EObjectResolvingEList<ModelChangePackage>(ModelChangePackage.class, this,
 					ChangePackage.MERGING_SOLUTION__APPLIED_CHANGES);
 		}
 		return appliedChanges;
@@ -93,8 +91,7 @@ public class MergingSolutionImpl extends SolutionImpl implements
 		switch (featureID) {
 		case ChangePackage.MERGING_SOLUTION__APPLIED_CHANGES:
 			getAppliedChanges().clear();
-			getAppliedChanges().addAll(
-					(Collection<? extends ModelChangePackage>) newValue);
+			getAppliedChanges().addAll((Collection<? extends ModelChangePackage>) newValue);
 			return;
 		}
 		super.eSet(featureID, newValue);

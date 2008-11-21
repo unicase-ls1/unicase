@@ -40,7 +40,7 @@ public interface MethodArgument extends ModelElement {
 	 * @return the value of the '<em>Type</em>' attribute.
 	 * @see #setType(String)
 	 * @see org.unicase.model.classes.ClassesPackage#getMethodArgument_Type()
-	 * @model
+	 * @model annotation="org.unicase.ui.meeditor priority='10.0' position='left'"
 	 * @generated
 	 */
 	String getType();
@@ -68,7 +68,7 @@ public interface MethodArgument extends ModelElement {
 	 * @see org.unicase.model.classes.ArgumentDirectionType
 	 * @see #setDirection(ArgumentDirectionType)
 	 * @see org.unicase.model.classes.ClassesPackage#getMethodArgument_Direction()
-	 * @model
+	 * @model annotation="org.unicase.ui.meeditor priority='11.0' position='left'"
 	 * @generated
 	 */
 	ArgumentDirectionType getDirection();
@@ -95,7 +95,7 @@ public interface MethodArgument extends ModelElement {
 	 * @return the value of the '<em>Default Value</em>' attribute.
 	 * @see #setDefaultValue(String)
 	 * @see org.unicase.model.classes.ClassesPackage#getMethodArgument_DefaultValue()
-	 * @model
+	 * @model annotation="org.unicase.ui.meeditor priority='12.0' position='left'"
 	 * @generated
 	 */
 	String getDefaultValue();
@@ -136,7 +136,7 @@ public interface MethodArgument extends ModelElement {
 	 * @return the value of the '<em>Label</em>' attribute.
 	 * @see #setLabel(String)
 	 * @see org.unicase.model.classes.ClassesPackage#getMethodArgument_Label()
-	 * @model
+	 * @model annotation="org.unicase.ui.meeditor priority='13.0' position='left'"
 	 * @generated
 	 */
 	String getLabel();

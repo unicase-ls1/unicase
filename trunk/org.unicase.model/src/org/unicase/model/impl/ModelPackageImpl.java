@@ -157,12 +157,10 @@ public class ModelPackageImpl extends EPackageImpl implements ModelPackage {
 	 */
 	public static ModelPackage init() {
 		if (isInited)
-			return (ModelPackage) EPackage.Registry.INSTANCE
-					.getEPackage(ModelPackage.eNS_URI);
+			return (ModelPackage) EPackage.Registry.INSTANCE.getEPackage(ModelPackage.eNS_URI);
 
 		// Obtain or create and register package
-		ModelPackageImpl theModelPackage = (ModelPackageImpl) (EPackage.Registry.INSTANCE
-				.getEPackage(eNS_URI) instanceof ModelPackageImpl ? EPackage.Registry.INSTANCE
+		ModelPackageImpl theModelPackage = (ModelPackageImpl) (EPackage.Registry.INSTANCE.getEPackage(eNS_URI) instanceof ModelPackageImpl ? EPackage.Registry.INSTANCE
 				.getEPackage(eNS_URI)
 				: new ModelPackageImpl());
 
@@ -174,52 +172,40 @@ public class ModelPackageImpl extends EPackageImpl implements ModelPackage {
 		// Obtain or create and register interdependencies
 		OrganizationPackageImpl theOrganizationPackage = (OrganizationPackageImpl) (EPackage.Registry.INSTANCE
 				.getEPackage(OrganizationPackage.eNS_URI) instanceof OrganizationPackageImpl ? EPackage.Registry.INSTANCE
-				.getEPackage(OrganizationPackage.eNS_URI)
-				: OrganizationPackage.eINSTANCE);
-		TaskPackageImpl theTaskPackage = (TaskPackageImpl) (EPackage.Registry.INSTANCE
-				.getEPackage(TaskPackage.eNS_URI) instanceof TaskPackageImpl ? EPackage.Registry.INSTANCE
+				.getEPackage(OrganizationPackage.eNS_URI) : OrganizationPackage.eINSTANCE);
+		TaskPackageImpl theTaskPackage = (TaskPackageImpl) (EPackage.Registry.INSTANCE.getEPackage(TaskPackage.eNS_URI) instanceof TaskPackageImpl ? EPackage.Registry.INSTANCE
 				.getEPackage(TaskPackage.eNS_URI)
 				: TaskPackage.eINSTANCE);
 		DiagramPackageImpl theDiagramPackage = (DiagramPackageImpl) (EPackage.Registry.INSTANCE
 				.getEPackage(DiagramPackage.eNS_URI) instanceof DiagramPackageImpl ? EPackage.Registry.INSTANCE
-				.getEPackage(DiagramPackage.eNS_URI)
-				: DiagramPackage.eINSTANCE);
+				.getEPackage(DiagramPackage.eNS_URI) : DiagramPackage.eINSTANCE);
 		ClassesPackageImpl theClassesPackage = (ClassesPackageImpl) (EPackage.Registry.INSTANCE
 				.getEPackage(ClassesPackage.eNS_URI) instanceof ClassesPackageImpl ? EPackage.Registry.INSTANCE
-				.getEPackage(ClassesPackage.eNS_URI)
-				: ClassesPackage.eINSTANCE);
+				.getEPackage(ClassesPackage.eNS_URI) : ClassesPackage.eINSTANCE);
 		DocumentPackageImpl theDocumentPackage = (DocumentPackageImpl) (EPackage.Registry.INSTANCE
 				.getEPackage(DocumentPackage.eNS_URI) instanceof DocumentPackageImpl ? EPackage.Registry.INSTANCE
-				.getEPackage(DocumentPackage.eNS_URI)
-				: DocumentPackage.eINSTANCE);
+				.getEPackage(DocumentPackage.eNS_URI) : DocumentPackage.eINSTANCE);
 		RequirementPackageImpl theRequirementPackage = (RequirementPackageImpl) (EPackage.Registry.INSTANCE
 				.getEPackage(RequirementPackage.eNS_URI) instanceof RequirementPackageImpl ? EPackage.Registry.INSTANCE
-				.getEPackage(RequirementPackage.eNS_URI)
-				: RequirementPackage.eINSTANCE);
+				.getEPackage(RequirementPackage.eNS_URI) : RequirementPackage.eINSTANCE);
 		RationalePackageImpl theRationalePackage = (RationalePackageImpl) (EPackage.Registry.INSTANCE
 				.getEPackage(RationalePackage.eNS_URI) instanceof RationalePackageImpl ? EPackage.Registry.INSTANCE
-				.getEPackage(RationalePackage.eNS_URI)
-				: RationalePackage.eINSTANCE);
-		ChangePackageImpl theChangePackage = (ChangePackageImpl) (EPackage.Registry.INSTANCE
-				.getEPackage(ChangePackage.eNS_URI) instanceof ChangePackageImpl ? EPackage.Registry.INSTANCE
+				.getEPackage(RationalePackage.eNS_URI) : RationalePackage.eINSTANCE);
+		ChangePackageImpl theChangePackage = (ChangePackageImpl) (EPackage.Registry.INSTANCE.getEPackage(ChangePackage.eNS_URI) instanceof ChangePackageImpl ? EPackage.Registry.INSTANCE
 				.getEPackage(ChangePackage.eNS_URI)
 				: ChangePackage.eINSTANCE);
-		BugPackageImpl theBugPackage = (BugPackageImpl) (EPackage.Registry.INSTANCE
-				.getEPackage(BugPackage.eNS_URI) instanceof BugPackageImpl ? EPackage.Registry.INSTANCE
+		BugPackageImpl theBugPackage = (BugPackageImpl) (EPackage.Registry.INSTANCE.getEPackage(BugPackage.eNS_URI) instanceof BugPackageImpl ? EPackage.Registry.INSTANCE
 				.getEPackage(BugPackage.eNS_URI)
 				: BugPackage.eINSTANCE);
 		ComponentPackageImpl theComponentPackage = (ComponentPackageImpl) (EPackage.Registry.INSTANCE
 				.getEPackage(ComponentPackage.eNS_URI) instanceof ComponentPackageImpl ? EPackage.Registry.INSTANCE
-				.getEPackage(ComponentPackage.eNS_URI)
-				: ComponentPackage.eINSTANCE);
+				.getEPackage(ComponentPackage.eNS_URI) : ComponentPackage.eINSTANCE);
 		MeetingPackageImpl theMeetingPackage = (MeetingPackageImpl) (EPackage.Registry.INSTANCE
 				.getEPackage(MeetingPackage.eNS_URI) instanceof MeetingPackageImpl ? EPackage.Registry.INSTANCE
-				.getEPackage(MeetingPackage.eNS_URI)
-				: MeetingPackage.eINSTANCE);
+				.getEPackage(MeetingPackage.eNS_URI) : MeetingPackage.eINSTANCE);
 		AttachmentPackageImpl theAttachmentPackage = (AttachmentPackageImpl) (EPackage.Registry.INSTANCE
 				.getEPackage(AttachmentPackage.eNS_URI) instanceof AttachmentPackageImpl ? EPackage.Registry.INSTANCE
-				.getEPackage(AttachmentPackage.eNS_URI)
-				: AttachmentPackage.eINSTANCE);
+				.getEPackage(AttachmentPackage.eNS_URI) : AttachmentPackage.eINSTANCE);
 
 		// Create package meta-data objects
 		theModelPackage.createPackageContents();
@@ -370,8 +356,7 @@ public class ModelPackageImpl extends EPackageImpl implements ModelPackage {
 	 * @generated
 	 */
 	public EAttribute getUniqueIdentifier_Id() {
-		return (EAttribute) uniqueIdentifierEClass.getEStructuralFeatures()
-				.get(0);
+		return (EAttribute) uniqueIdentifierEClass.getEStructuralFeatures().get(0);
 	}
 
 	/**
@@ -423,8 +408,7 @@ public class ModelPackageImpl extends EPackageImpl implements ModelPackage {
 	 * @generated
 	 */
 	public EAttribute getIdentifiableElement_Identifier() {
-		return (EAttribute) identifiableElementEClass.getEStructuralFeatures()
-				.get(0);
+		return (EAttribute) identifiableElementEClass.getEStructuralFeatures().get(0);
 	}
 
 	/**
@@ -479,8 +463,7 @@ public class ModelPackageImpl extends EPackageImpl implements ModelPackage {
 		createEAttribute(modelElementEClass, MODEL_ELEMENT__CREATION_DATE);
 		createEReference(modelElementEClass, MODEL_ELEMENT__ANNOTATIONS);
 		createEReference(modelElementEClass, MODEL_ELEMENT__ATTACHMENTS);
-		createEReference(modelElementEClass,
-				MODEL_ELEMENT__INCOMING_DOCUMENT_REFERENCES);
+		createEReference(modelElementEClass, MODEL_ELEMENT__INCOMING_DOCUMENT_REFERENCES);
 		createEReference(modelElementEClass, MODEL_ELEMENT__LEAF_SECTION);
 		createEAttribute(modelElementEClass, MODEL_ELEMENT__STATE);
 
@@ -497,8 +480,7 @@ public class ModelPackageImpl extends EPackageImpl implements ModelPackage {
 		createEReference(attachmentEClass, ATTACHMENT__REFERRING_MODEL_ELEMENTS);
 
 		identifiableElementEClass = createEClass(IDENTIFIABLE_ELEMENT);
-		createEAttribute(identifiableElementEClass,
-				IDENTIFIABLE_ELEMENT__IDENTIFIER);
+		createEAttribute(identifiableElementEClass, IDENTIFIABLE_ELEMENT__IDENTIFIER);
 
 		modelElementIdEClass = createEClass(MODEL_ELEMENT_ID);
 
@@ -531,30 +513,22 @@ public class ModelPackageImpl extends EPackageImpl implements ModelPackage {
 		// Obtain other dependent packages
 		OrganizationPackage theOrganizationPackage = (OrganizationPackage) EPackage.Registry.INSTANCE
 				.getEPackage(OrganizationPackage.eNS_URI);
-		TaskPackage theTaskPackage = (TaskPackage) EPackage.Registry.INSTANCE
-				.getEPackage(TaskPackage.eNS_URI);
-		DiagramPackage theDiagramPackage = (DiagramPackage) EPackage.Registry.INSTANCE
-				.getEPackage(DiagramPackage.eNS_URI);
-		ClassesPackage theClassesPackage = (ClassesPackage) EPackage.Registry.INSTANCE
-				.getEPackage(ClassesPackage.eNS_URI);
-		DocumentPackage theDocumentPackage = (DocumentPackage) EPackage.Registry.INSTANCE
-				.getEPackage(DocumentPackage.eNS_URI);
+		TaskPackage theTaskPackage = (TaskPackage) EPackage.Registry.INSTANCE.getEPackage(TaskPackage.eNS_URI);
+		DiagramPackage theDiagramPackage = (DiagramPackage) EPackage.Registry.INSTANCE.getEPackage(DiagramPackage.eNS_URI);
+		ClassesPackage theClassesPackage = (ClassesPackage) EPackage.Registry.INSTANCE.getEPackage(ClassesPackage.eNS_URI);
+		DocumentPackage theDocumentPackage = (DocumentPackage) EPackage.Registry.INSTANCE.getEPackage(DocumentPackage.eNS_URI);
 		RequirementPackage theRequirementPackage = (RequirementPackage) EPackage.Registry.INSTANCE
 				.getEPackage(RequirementPackage.eNS_URI);
 		RationalePackage theRationalePackage = (RationalePackage) EPackage.Registry.INSTANCE
 				.getEPackage(RationalePackage.eNS_URI);
-		ChangePackage theChangePackage = (ChangePackage) EPackage.Registry.INSTANCE
-				.getEPackage(ChangePackage.eNS_URI);
-		BugPackage theBugPackage = (BugPackage) EPackage.Registry.INSTANCE
-				.getEPackage(BugPackage.eNS_URI);
+		ChangePackage theChangePackage = (ChangePackage) EPackage.Registry.INSTANCE.getEPackage(ChangePackage.eNS_URI);
+		BugPackage theBugPackage = (BugPackage) EPackage.Registry.INSTANCE.getEPackage(BugPackage.eNS_URI);
 		ComponentPackage theComponentPackage = (ComponentPackage) EPackage.Registry.INSTANCE
 				.getEPackage(ComponentPackage.eNS_URI);
-		MeetingPackage theMeetingPackage = (MeetingPackage) EPackage.Registry.INSTANCE
-				.getEPackage(MeetingPackage.eNS_URI);
+		MeetingPackage theMeetingPackage = (MeetingPackage) EPackage.Registry.INSTANCE.getEPackage(MeetingPackage.eNS_URI);
 		AttachmentPackage theAttachmentPackage = (AttachmentPackage) EPackage.Registry.INSTANCE
 				.getEPackage(AttachmentPackage.eNS_URI);
-		EcorePackage theEcorePackage = (EcorePackage) EPackage.Registry.INSTANCE
-				.getEPackage(EcorePackage.eNS_URI);
+		EcorePackage theEcorePackage = (EcorePackage) EPackage.Registry.INSTANCE.getEPackage(EcorePackage.eNS_URI);
 
 		// Add subpackages
 		getESubpackages().add(theOrganizationPackage);
@@ -581,158 +555,102 @@ public class ModelPackageImpl extends EPackageImpl implements ModelPackage {
 		modelElementIdEClass.getESuperTypes().add(this.getUniqueIdentifier());
 
 		// Initialize classes and features; add operations and parameters
-		initEClass(modelElementEClass, ModelElement.class, "ModelElement",
-				IS_ABSTRACT, !IS_INTERFACE, IS_GENERATED_INSTANCE_CLASS);
-		initEAttribute(getModelElement_Name(), ecorePackage.getEString(),
-				"name", null, 0, 1, ModelElement.class, !IS_TRANSIENT,
-				!IS_VOLATILE, IS_CHANGEABLE, !IS_UNSETTABLE, !IS_ID, IS_UNIQUE,
+		initEClass(modelElementEClass, ModelElement.class, "ModelElement", IS_ABSTRACT, !IS_INTERFACE,
+				IS_GENERATED_INSTANCE_CLASS);
+		initEAttribute(getModelElement_Name(), ecorePackage.getEString(), "name", null, 0, 1, ModelElement.class, !IS_TRANSIENT,
+				!IS_VOLATILE, IS_CHANGEABLE, !IS_UNSETTABLE, !IS_ID, IS_UNIQUE, !IS_DERIVED, IS_ORDERED);
+		initEAttribute(getModelElement_Description(), ecorePackage.getEString(), "description", null, 0, 1, ModelElement.class,
+				!IS_TRANSIENT, !IS_VOLATILE, IS_CHANGEABLE, !IS_UNSETTABLE, !IS_ID, IS_UNIQUE, !IS_DERIVED, IS_ORDERED);
+		initEAttribute(getModelElement_Creator(), theEcorePackage.getEString(), "creator", null, 0, 1, ModelElement.class,
+				!IS_TRANSIENT, !IS_VOLATILE, IS_CHANGEABLE, !IS_UNSETTABLE, !IS_ID, IS_UNIQUE, !IS_DERIVED, IS_ORDERED);
+		initEAttribute(getModelElement_CreationDate(), ecorePackage.getEDate(), "creationDate", null, 0, 1, ModelElement.class,
+				!IS_TRANSIENT, !IS_VOLATILE, IS_CHANGEABLE, !IS_UNSETTABLE, !IS_ID, IS_UNIQUE, !IS_DERIVED, IS_ORDERED);
+		initEReference(getModelElement_Annotations(), this.getAnnotation(), this.getAnnotation_AnnotatedModelElements(),
+				"annotations", null, 0, -1, ModelElement.class, !IS_TRANSIENT, !IS_VOLATILE, IS_CHANGEABLE, !IS_COMPOSITE,
+				IS_RESOLVE_PROXIES, !IS_UNSETTABLE, IS_UNIQUE, !IS_DERIVED, IS_ORDERED);
+		getModelElement_Annotations().getEKeys().add(this.getIdentifiableElement_Identifier());
+		initEReference(getModelElement_Attachments(), this.getAttachment(), this.getAttachment_ReferringModelElements(),
+				"attachments", null, 0, -1, ModelElement.class, !IS_TRANSIENT, !IS_VOLATILE, IS_CHANGEABLE, !IS_COMPOSITE,
+				IS_RESOLVE_PROXIES, !IS_UNSETTABLE, IS_UNIQUE, !IS_DERIVED, IS_ORDERED);
+		getModelElement_Attachments().getEKeys().add(this.getIdentifiableElement_Identifier());
+		initEReference(getModelElement_IncomingDocumentReferences(), theDocumentPackage.getLeafSection(), theDocumentPackage
+				.getLeafSection_ReferencedModelElements(), "incomingDocumentReferences", null, 0, -1, ModelElement.class,
+				!IS_TRANSIENT, !IS_VOLATILE, IS_CHANGEABLE, !IS_COMPOSITE, IS_RESOLVE_PROXIES, !IS_UNSETTABLE, IS_UNIQUE,
 				!IS_DERIVED, IS_ORDERED);
-		initEAttribute(getModelElement_Description(),
-				ecorePackage.getEString(), "description", null, 0, 1,
-				ModelElement.class, !IS_TRANSIENT, !IS_VOLATILE, IS_CHANGEABLE,
-				!IS_UNSETTABLE, !IS_ID, IS_UNIQUE, !IS_DERIVED, IS_ORDERED);
-		initEAttribute(getModelElement_Creator(), theEcorePackage.getEString(),
-				"creator", null, 0, 1, ModelElement.class, !IS_TRANSIENT,
-				!IS_VOLATILE, IS_CHANGEABLE, !IS_UNSETTABLE, !IS_ID, IS_UNIQUE,
-				!IS_DERIVED, IS_ORDERED);
-		initEAttribute(getModelElement_CreationDate(), ecorePackage.getEDate(),
-				"creationDate", null, 0, 1, ModelElement.class, !IS_TRANSIENT,
-				!IS_VOLATILE, IS_CHANGEABLE, !IS_UNSETTABLE, !IS_ID, IS_UNIQUE,
-				!IS_DERIVED, IS_ORDERED);
-		initEReference(getModelElement_Annotations(), this.getAnnotation(),
-				this.getAnnotation_AnnotatedModelElements(), "annotations",
-				null, 0, -1, ModelElement.class, !IS_TRANSIENT, !IS_VOLATILE,
-				IS_CHANGEABLE, !IS_COMPOSITE, IS_RESOLVE_PROXIES,
-				!IS_UNSETTABLE, IS_UNIQUE, !IS_DERIVED, IS_ORDERED);
-		getModelElement_Annotations().getEKeys().add(
-				this.getIdentifiableElement_Identifier());
-		initEReference(getModelElement_Attachments(), this.getAttachment(),
-				this.getAttachment_ReferringModelElements(), "attachments",
-				null, 0, -1, ModelElement.class, !IS_TRANSIENT, !IS_VOLATILE,
-				IS_CHANGEABLE, !IS_COMPOSITE, IS_RESOLVE_PROXIES,
-				!IS_UNSETTABLE, IS_UNIQUE, !IS_DERIVED, IS_ORDERED);
-		getModelElement_Attachments().getEKeys().add(
-				this.getIdentifiableElement_Identifier());
-		initEReference(getModelElement_IncomingDocumentReferences(),
-				theDocumentPackage.getLeafSection(), theDocumentPackage
-						.getLeafSection_ReferencedModelElements(),
-				"incomingDocumentReferences", null, 0, -1, ModelElement.class,
-				!IS_TRANSIENT, !IS_VOLATILE, IS_CHANGEABLE, !IS_COMPOSITE,
-				IS_RESOLVE_PROXIES, !IS_UNSETTABLE, IS_UNIQUE, !IS_DERIVED,
-				IS_ORDERED);
-		getModelElement_IncomingDocumentReferences().getEKeys().add(
-				this.getIdentifiableElement_Identifier());
-		initEReference(getModelElement_LeafSection(), theDocumentPackage
-				.getLeafSection(), theDocumentPackage
-				.getLeafSection_ModelElements(), "leafSection", null, 0, 1,
-				ModelElement.class, !IS_TRANSIENT, !IS_VOLATILE, IS_CHANGEABLE,
-				!IS_COMPOSITE, IS_RESOLVE_PROXIES, !IS_UNSETTABLE, IS_UNIQUE,
-				!IS_DERIVED, IS_ORDERED);
-		getModelElement_LeafSection().getEKeys().add(
-				this.getIdentifiableElement_Identifier());
-		initEAttribute(getModelElement_State(), theEcorePackage.getEString(),
-				"state", "", 0, 1, ModelElement.class, IS_TRANSIENT,
-				IS_VOLATILE, !IS_CHANGEABLE, !IS_UNSETTABLE, !IS_ID, IS_UNIQUE,
-				IS_DERIVED, IS_ORDERED);
+		getModelElement_IncomingDocumentReferences().getEKeys().add(this.getIdentifiableElement_Identifier());
+		initEReference(getModelElement_LeafSection(), theDocumentPackage.getLeafSection(), theDocumentPackage
+				.getLeafSection_ModelElements(), "leafSection", null, 0, 1, ModelElement.class, !IS_TRANSIENT, !IS_VOLATILE,
+				IS_CHANGEABLE, !IS_COMPOSITE, IS_RESOLVE_PROXIES, !IS_UNSETTABLE, IS_UNIQUE, !IS_DERIVED, IS_ORDERED);
+		getModelElement_LeafSection().getEKeys().add(this.getIdentifiableElement_Identifier());
+		initEAttribute(getModelElement_State(), theEcorePackage.getEString(), "state", "", 0, 1, ModelElement.class,
+				IS_TRANSIENT, IS_VOLATILE, !IS_CHANGEABLE, !IS_UNSETTABLE, !IS_ID, IS_UNIQUE, IS_DERIVED, IS_ORDERED);
 
-		addEOperation(modelElementEClass, this.getProject(), "getProject", 0,
-				1, IS_UNIQUE, IS_ORDERED);
+		addEOperation(modelElementEClass, this.getProject(), "getProject", 0, 1, IS_UNIQUE, IS_ORDERED);
 
-		addEOperation(modelElementEClass, this.getModelElementId(),
-				"getModelElementId", 0, 1, IS_UNIQUE, IS_ORDERED);
+		addEOperation(modelElementEClass, this.getModelElementId(), "getModelElementId", 0, 1, IS_UNIQUE, IS_ORDERED);
 
-		initEClass(projectEClass, Project.class, "Project", !IS_ABSTRACT,
-				!IS_INTERFACE, IS_GENERATED_INSTANCE_CLASS);
-		initEReference(getProject_ModelElements(), this.getModelElement(),
-				null, "modelElements", null, 0, -1, Project.class,
-				!IS_TRANSIENT, !IS_VOLATILE, IS_CHANGEABLE, IS_COMPOSITE,
-				IS_RESOLVE_PROXIES, !IS_UNSETTABLE, IS_UNIQUE, !IS_DERIVED,
-				!IS_ORDERED);
-		getProject_ModelElements().getEKeys().add(
-				this.getIdentifiableElement_Identifier());
+		initEClass(projectEClass, Project.class, "Project", !IS_ABSTRACT, !IS_INTERFACE, IS_GENERATED_INSTANCE_CLASS);
+		initEReference(getProject_ModelElements(), this.getModelElement(), null, "modelElements", null, 0, -1, Project.class,
+				!IS_TRANSIENT, !IS_VOLATILE, IS_CHANGEABLE, IS_COMPOSITE, IS_RESOLVE_PROXIES, !IS_UNSETTABLE, IS_UNIQUE,
+				!IS_DERIVED, !IS_ORDERED);
+		getProject_ModelElements().getEKeys().add(this.getIdentifiableElement_Identifier());
 
-		EOperation op = addEOperation(projectEClass, null, "addModelElement",
-				0, 1, IS_UNIQUE, IS_ORDERED);
-		addEParameter(op, this.getModelElement(), "modelElement", 0, 1,
-				IS_UNIQUE, IS_ORDERED);
+		EOperation op = addEOperation(projectEClass, null, "addModelElement", 0, 1, IS_UNIQUE, IS_ORDERED);
+		addEParameter(op, this.getModelElement(), "modelElement", 0, 1, IS_UNIQUE, IS_ORDERED);
 
-		addEOperation(projectEClass, this.getModelElement(),
-				"getAllModelElements", 0, -1, IS_UNIQUE, !IS_ORDERED);
+		addEOperation(projectEClass, this.getModelElement(), "getAllModelElements", 0, -1, IS_UNIQUE, !IS_ORDERED);
 
-		op = addEOperation(projectEClass, null, "getAllModelElementsbyClass",
-				0, -1, IS_UNIQUE, !IS_ORDERED);
+		op = addEOperation(projectEClass, null, "getAllModelElementsbyClass", 0, -1, IS_UNIQUE, !IS_ORDERED);
 		ETypeParameter t1 = addETypeParameter(op, "T");
 		EGenericType g1 = createEGenericType(this.getModelElement());
 		t1.getEBounds().add(g1);
-		addEParameter(op, ecorePackage.getEClass(), "modelElementClass", 0, 1,
-				IS_UNIQUE, IS_ORDERED);
+		addEParameter(op, ecorePackage.getEClass(), "modelElementClass", 0, 1, IS_UNIQUE, IS_ORDERED);
 		g1 = createEGenericType(t1);
 		addEParameter(op, g1, "list", 0, -1, IS_UNIQUE, IS_ORDERED);
 		g1 = createEGenericType(t1);
 		initEOperation(op, g1);
 
-		op = addEOperation(projectEClass, null, "getModelElementsByClass", 0,
-				-1, IS_UNIQUE, !IS_ORDERED);
+		op = addEOperation(projectEClass, null, "getModelElementsByClass", 0, -1, IS_UNIQUE, !IS_ORDERED);
 		t1 = addETypeParameter(op, "T");
 		g1 = createEGenericType(this.getModelElement());
 		t1.getEBounds().add(g1);
-		addEParameter(op, theEcorePackage.getEClass(), "modelElementClass", 0,
-				1, IS_UNIQUE, IS_ORDERED);
+		addEParameter(op, theEcorePackage.getEClass(), "modelElementClass", 0, 1, IS_UNIQUE, IS_ORDERED);
 		g1 = createEGenericType(t1);
 		addEParameter(op, g1, "list", 0, -1, IS_UNIQUE, IS_ORDERED);
 		g1 = createEGenericType(t1);
 		initEOperation(op, g1);
 
-		op = addEOperation(projectEClass, theEcorePackage.getEBoolean(),
-				"contains", 0, 1, IS_UNIQUE, IS_ORDERED);
-		addEParameter(op, this.getModelElement(), "modelElement", 0, 1,
-				IS_UNIQUE, IS_ORDERED);
+		op = addEOperation(projectEClass, theEcorePackage.getEBoolean(), "contains", 0, 1, IS_UNIQUE, IS_ORDERED);
+		addEParameter(op, this.getModelElement(), "modelElement", 0, 1, IS_UNIQUE, IS_ORDERED);
 
-		initEClass(uniqueIdentifierEClass, UniqueIdentifier.class,
-				"UniqueIdentifier", IS_ABSTRACT, !IS_INTERFACE,
+		initEClass(uniqueIdentifierEClass, UniqueIdentifier.class, "UniqueIdentifier", IS_ABSTRACT, !IS_INTERFACE,
 				IS_GENERATED_INSTANCE_CLASS);
-		initEAttribute(getUniqueIdentifier_Id(), ecorePackage.getEString(),
-				"id", "Default Value Literal\t", 1, 1, UniqueIdentifier.class,
-				!IS_TRANSIENT, !IS_VOLATILE, IS_CHANGEABLE, !IS_UNSETTABLE,
-				!IS_ID, IS_UNIQUE, !IS_DERIVED, IS_ORDERED);
+		initEAttribute(getUniqueIdentifier_Id(), ecorePackage.getEString(), "id", "Default Value Literal\t", 1, 1,
+				UniqueIdentifier.class, !IS_TRANSIENT, !IS_VOLATILE, IS_CHANGEABLE, !IS_UNSETTABLE, !IS_ID, IS_UNIQUE,
+				!IS_DERIVED, IS_ORDERED);
 
-		initEClass(annotationEClass, Annotation.class, "Annotation",
-				IS_ABSTRACT, !IS_INTERFACE, IS_GENERATED_INSTANCE_CLASS);
-		initEReference(getAnnotation_AnnotatedModelElements(), this
-				.getModelElement(), this.getModelElement_Annotations(),
-				"annotatedModelElements", null, 0, -1, Annotation.class,
-				!IS_TRANSIENT, !IS_VOLATILE, IS_CHANGEABLE, !IS_COMPOSITE,
-				IS_RESOLVE_PROXIES, !IS_UNSETTABLE, IS_UNIQUE, !IS_DERIVED,
-				IS_ORDERED);
-		getAnnotation_AnnotatedModelElements().getEKeys().add(
-				this.getIdentifiableElement_Identifier());
+		initEClass(annotationEClass, Annotation.class, "Annotation", IS_ABSTRACT, !IS_INTERFACE, IS_GENERATED_INSTANCE_CLASS);
+		initEReference(getAnnotation_AnnotatedModelElements(), this.getModelElement(), this.getModelElement_Annotations(),
+				"annotatedModelElements", null, 0, -1, Annotation.class, !IS_TRANSIENT, !IS_VOLATILE, IS_CHANGEABLE,
+				!IS_COMPOSITE, IS_RESOLVE_PROXIES, !IS_UNSETTABLE, IS_UNIQUE, !IS_DERIVED, IS_ORDERED);
+		getAnnotation_AnnotatedModelElements().getEKeys().add(this.getIdentifiableElement_Identifier());
 
-		initEClass(attachmentEClass, Attachment.class, "Attachment",
-				IS_ABSTRACT, !IS_INTERFACE, IS_GENERATED_INSTANCE_CLASS);
-		initEReference(getAttachment_ReferringModelElements(), this
-				.getModelElement(), this.getModelElement_Attachments(),
-				"referringModelElements", null, 0, -1, Attachment.class,
-				!IS_TRANSIENT, !IS_VOLATILE, IS_CHANGEABLE, !IS_COMPOSITE,
-				IS_RESOLVE_PROXIES, !IS_UNSETTABLE, IS_UNIQUE, !IS_DERIVED,
-				IS_ORDERED);
-		getAttachment_ReferringModelElements().getEKeys().add(
-				this.getIdentifiableElement_Identifier());
+		initEClass(attachmentEClass, Attachment.class, "Attachment", IS_ABSTRACT, !IS_INTERFACE, IS_GENERATED_INSTANCE_CLASS);
+		initEReference(getAttachment_ReferringModelElements(), this.getModelElement(), this.getModelElement_Attachments(),
+				"referringModelElements", null, 0, -1, Attachment.class, !IS_TRANSIENT, !IS_VOLATILE, IS_CHANGEABLE,
+				!IS_COMPOSITE, IS_RESOLVE_PROXIES, !IS_UNSETTABLE, IS_UNIQUE, !IS_DERIVED, IS_ORDERED);
+		getAttachment_ReferringModelElements().getEKeys().add(this.getIdentifiableElement_Identifier());
 
-		initEClass(identifiableElementEClass, IdentifiableElement.class,
-				"IdentifiableElement", !IS_ABSTRACT, !IS_INTERFACE,
+		initEClass(identifiableElementEClass, IdentifiableElement.class, "IdentifiableElement", !IS_ABSTRACT, !IS_INTERFACE,
 				IS_GENERATED_INSTANCE_CLASS);
-		initEAttribute(getIdentifiableElement_Identifier(), ecorePackage
-				.getEString(), "identifier", null, 1, 1,
-				IdentifiableElement.class, !IS_TRANSIENT, !IS_VOLATILE,
-				IS_CHANGEABLE, !IS_UNSETTABLE, IS_ID, IS_UNIQUE, !IS_DERIVED,
-				IS_ORDERED);
+		initEAttribute(getIdentifiableElement_Identifier(), ecorePackage.getEString(), "identifier", null, 1, 1,
+				IdentifiableElement.class, !IS_TRANSIENT, !IS_VOLATILE, IS_CHANGEABLE, !IS_UNSETTABLE, IS_ID, IS_UNIQUE,
+				!IS_DERIVED, IS_ORDERED);
 
-		initEClass(modelElementIdEClass, ModelElementId.class,
-				"ModelElementId", !IS_ABSTRACT, !IS_INTERFACE,
+		initEClass(modelElementIdEClass, ModelElementId.class, "ModelElementId", !IS_ABSTRACT, !IS_INTERFACE,
 				IS_GENERATED_INSTANCE_CLASS);
 
-		initEClass(nonDomainElementEClass, NonDomainElement.class,
-				"NonDomainElement", IS_ABSTRACT, IS_INTERFACE,
+		initEClass(nonDomainElementEClass, NonDomainElement.class, "NonDomainElement", IS_ABSTRACT, IS_INTERFACE,
 				IS_GENERATED_INSTANCE_CLASS);
 
 		// Create resource
@@ -753,10 +671,13 @@ public class ModelPackageImpl extends EPackageImpl implements ModelPackage {
 	 */
 	protected void createOrgAnnotations() {
 		String source = "org.unicase.ui.meeditor";
-		addAnnotation(getModelElement_Name(), source, new String[] {
-				"priority", "1.0" });
-		addAnnotation(getModelElement_Description(), source, new String[] {
-				"priority", "1.0" });
+		addAnnotation(getModelElement_Name(), source, new String[] { "priority", "1.0", "position", "left" });
+		addAnnotation(getModelElement_Description(), source, new String[] { "priority", "1.0", "position", "left" });
+		addAnnotation(getModelElement_Annotations(), source, new String[] { "priority", "100.0", "position", "right" });
+		addAnnotation(getModelElement_Attachments(), source, new String[] { "priority", "101.0", "position", "right" });
+		addAnnotation(getModelElement_IncomingDocumentReferences(), source, new String[] { "priority", "102.0", "position",
+				"right" });
+		addAnnotation(getAnnotation_AnnotatedModelElements(), source, new String[] { "priority", "90.0", "position", "right" });
 	}
 
 	/**
@@ -767,8 +688,7 @@ public class ModelPackageImpl extends EPackageImpl implements ModelPackage {
 	 */
 	protected void createTeneoAnnotations() {
 		String source = "teneo.jpa";
-		addAnnotation(getModelElement_Description(), source, new String[] {
-				"value", "@Type(type=\"text\")" });
+		addAnnotation(getModelElement_Description(), source, new String[] { "value", "@Type(type=\"text\")" });
 	}
 
 } // ModelPackageImpl

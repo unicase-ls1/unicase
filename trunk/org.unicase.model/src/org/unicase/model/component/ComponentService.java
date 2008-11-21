@@ -40,6 +40,7 @@ public interface ComponentService extends ModelElement {
 	 * @see org.unicase.model.component.ComponentPackage#getComponentService_OfferingComponent()
 	 * @see org.unicase.model.component.Component#getOfferedServices
 	 * @model opposite="offeredServices" keys="identifier" transient="false"
+	 *        annotation="org.unicase.ui.meeditor priority='10.0' position='left'"
 	 * @generated
 	 */
 	Component getOfferingComponent();
@@ -68,6 +69,7 @@ public interface ComponentService extends ModelElement {
 	 * @see org.unicase.model.component.ComponentPackage#getComponentService_ConsumingComponents()
 	 * @see org.unicase.model.component.Component#getConsumedServices
 	 * @model opposite="consumedServices" keys="identifier"
+	 *        annotation="org.unicase.ui.meeditor priority='10.0' position='right'"
 	 * @generated
 	 */
 	EList<Component> getConsumingComponents();

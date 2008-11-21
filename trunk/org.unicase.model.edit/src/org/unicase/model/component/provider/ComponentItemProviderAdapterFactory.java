@@ -34,8 +34,7 @@ import org.unicase.model.component.util.ComponentAdapterFactory;
  * end-user-doc -->
  * @generated
  */
-public class ComponentItemProviderAdapterFactory extends
-		ComponentAdapterFactory implements ComposeableAdapterFactory,
+public class ComponentItemProviderAdapterFactory extends ComponentAdapterFactory implements ComposeableAdapterFactory,
 		IChangeNotifier, IDisposable {
 	/**
 	 * This keeps track of the root adapter factory that delegates to this adapter factory.
@@ -117,8 +116,7 @@ public class ComponentItemProviderAdapterFactory extends
 	@Override
 	public Adapter createComponentServiceAdapter() {
 		if (componentServiceItemProvider == null) {
-			componentServiceItemProvider = new ComponentServiceItemProvider(
-					this);
+			componentServiceItemProvider = new ComponentServiceItemProvider(this);
 		}
 
 		return componentServiceItemProvider;
@@ -155,8 +153,7 @@ public class ComponentItemProviderAdapterFactory extends
 	 * @generated
 	 */
 	public ComposeableAdapterFactory getRootAdapterFactory() {
-		return parentAdapterFactory == null ? this : parentAdapterFactory
-				.getRootAdapterFactory();
+		return parentAdapterFactory == null ? this : parentAdapterFactory.getRootAdapterFactory();
 	}
 
 	/**
@@ -165,8 +162,7 @@ public class ComponentItemProviderAdapterFactory extends
 	 * 
 	 * @generated
 	 */
-	public void setParentAdapterFactory(
-			ComposedAdapterFactory parentAdapterFactory) {
+	public void setParentAdapterFactory(ComposedAdapterFactory parentAdapterFactory) {
 		this.parentAdapterFactory = parentAdapterFactory;
 	}
 
@@ -197,8 +193,7 @@ public class ComponentItemProviderAdapterFactory extends
 	public Object adapt(Object object, Object type) {
 		if (isFactoryForType(type)) {
 			Object adapter = super.adapt(object, type);
-			if (!(type instanceof Class)
-					|| (((Class<?>) type).isInstance(adapter))) {
+			if (!(type instanceof Class) || (((Class<?>) type).isInstance(adapter))) {
 				return adapter;
 			}
 		}

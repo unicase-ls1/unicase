@@ -40,6 +40,7 @@ public interface Dependency extends ModelElement {
 	 * @see org.unicase.model.classes.ClassesPackage#getDependency_Source()
 	 * @see org.unicase.model.classes.PackageElement#getOutgoingDependencies
 	 * @model opposite="outgoingDependencies"
+	 *        annotation="org.unicase.ui.meeditor priority='10.0' position='left'"
 	 * @generated
 	 */
 	PackageElement getSource();
@@ -68,6 +69,7 @@ public interface Dependency extends ModelElement {
 	 * @see org.unicase.model.classes.ClassesPackage#getDependency_Target()
 	 * @see org.unicase.model.classes.PackageElement#getIncomingDependencies
 	 * @model opposite="incomingDependencies"
+	 *        annotation="org.unicase.ui.meeditor priority='11.0' position='left'"
 	 * @generated
 	 */
 	PackageElement getTarget();

@@ -34,9 +34,8 @@ import org.unicase.model.task.TaskPackage;
  * end-user-doc -->
  * @generated
  */
-public class BugReportItemProvider extends AnnotationItemProvider implements
-		IEditingDomainItemProvider, IStructuredItemContentProvider,
-		ITreeItemContentProvider, IItemLabelProvider, IItemPropertySource {
+public class BugReportItemProvider extends AnnotationItemProvider implements IEditingDomainItemProvider,
+		IStructuredItemContentProvider, ITreeItemContentProvider, IItemLabelProvider, IItemPropertySource {
 	/**
 	 * This constructs an instance from a factory and a notifier. <!--
 	 * begin-user-doc --> <!-- end-user-doc -->
@@ -78,15 +77,12 @@ public class BugReportItemProvider extends AnnotationItemProvider implements
 	 * @generated
 	 */
 	protected void addContainingWorkpackagePropertyDescriptor(Object object) {
-		itemPropertyDescriptors.add(createItemPropertyDescriptor(
-				((ComposeableAdapterFactory) adapterFactory)
-						.getRootAdapterFactory(), getResourceLocator(),
-				getString("_UI_WorkItem_containingWorkpackage_feature"),
-				getString("_UI_PropertyDescriptor_description",
-						"_UI_WorkItem_containingWorkpackage_feature",
-						"_UI_WorkItem_type"),
-				TaskPackage.Literals.WORK_ITEM__CONTAINING_WORKPACKAGE, true,
-				false, false, null, null, null));
+		itemPropertyDescriptors
+				.add(createItemPropertyDescriptor(((ComposeableAdapterFactory) adapterFactory).getRootAdapterFactory(),
+						getResourceLocator(), getString("_UI_WorkItem_containingWorkpackage_feature"), getString(
+								"_UI_PropertyDescriptor_description", "_UI_WorkItem_containingWorkpackage_feature",
+								"_UI_WorkItem_type"), TaskPackage.Literals.WORK_ITEM__CONTAINING_WORKPACKAGE, true, false, false,
+						null, null, null));
 	}
 
 	/**
@@ -96,15 +92,10 @@ public class BugReportItemProvider extends AnnotationItemProvider implements
 	 * @generated
 	 */
 	protected void addPredecessorsPropertyDescriptor(Object object) {
-		itemPropertyDescriptors.add(createItemPropertyDescriptor(
-				((ComposeableAdapterFactory) adapterFactory)
-						.getRootAdapterFactory(), getResourceLocator(),
-				getString("_UI_WorkItem_predecessors_feature"), getString(
-						"_UI_PropertyDescriptor_description",
-						"_UI_WorkItem_predecessors_feature",
-						"_UI_WorkItem_type"),
-				TaskPackage.Literals.WORK_ITEM__PREDECESSORS, true, false,
-				true, null, null, null));
+		itemPropertyDescriptors.add(createItemPropertyDescriptor(((ComposeableAdapterFactory) adapterFactory)
+				.getRootAdapterFactory(), getResourceLocator(), getString("_UI_WorkItem_predecessors_feature"), getString(
+				"_UI_PropertyDescriptor_description", "_UI_WorkItem_predecessors_feature", "_UI_WorkItem_type"),
+				TaskPackage.Literals.WORK_ITEM__PREDECESSORS, true, false, true, null, null, null));
 	}
 
 	/**
@@ -114,16 +105,10 @@ public class BugReportItemProvider extends AnnotationItemProvider implements
 	 * @generated
 	 */
 	protected void addSuccessorsPropertyDescriptor(Object object) {
-		itemPropertyDescriptors
-				.add(createItemPropertyDescriptor(
-						((ComposeableAdapterFactory) adapterFactory)
-								.getRootAdapterFactory(), getResourceLocator(),
-						getString("_UI_WorkItem_successors_feature"),
-						getString("_UI_PropertyDescriptor_description",
-								"_UI_WorkItem_successors_feature",
-								"_UI_WorkItem_type"),
-						TaskPackage.Literals.WORK_ITEM__SUCCESSORS, true,
-						false, true, null, null, null));
+		itemPropertyDescriptors.add(createItemPropertyDescriptor(((ComposeableAdapterFactory) adapterFactory)
+				.getRootAdapterFactory(), getResourceLocator(), getString("_UI_WorkItem_successors_feature"), getString(
+				"_UI_PropertyDescriptor_description", "_UI_WorkItem_successors_feature", "_UI_WorkItem_type"),
+				TaskPackage.Literals.WORK_ITEM__SUCCESSORS, true, false, true, null, null, null));
 	}
 
 	/**
@@ -133,14 +118,10 @@ public class BugReportItemProvider extends AnnotationItemProvider implements
 	 * @generated
 	 */
 	protected void addAssigneePropertyDescriptor(Object object) {
-		itemPropertyDescriptors.add(createItemPropertyDescriptor(
-				((ComposeableAdapterFactory) adapterFactory)
-						.getRootAdapterFactory(), getResourceLocator(),
-				getString("_UI_WorkItem_assignee_feature"), getString(
-						"_UI_PropertyDescriptor_description",
-						"_UI_WorkItem_assignee_feature", "_UI_WorkItem_type"),
-				TaskPackage.Literals.WORK_ITEM__ASSIGNEE, true, false, true,
-				null, null, null));
+		itemPropertyDescriptors.add(createItemPropertyDescriptor(((ComposeableAdapterFactory) adapterFactory)
+				.getRootAdapterFactory(), getResourceLocator(), getString("_UI_WorkItem_assignee_feature"), getString(
+				"_UI_PropertyDescriptor_description", "_UI_WorkItem_assignee_feature", "_UI_WorkItem_type"),
+				TaskPackage.Literals.WORK_ITEM__ASSIGNEE, true, false, true, null, null, null));
 	}
 
 	/**
@@ -150,15 +131,10 @@ public class BugReportItemProvider extends AnnotationItemProvider implements
 	 * @generated
 	 */
 	protected void addParticipantsPropertyDescriptor(Object object) {
-		itemPropertyDescriptors.add(createItemPropertyDescriptor(
-				((ComposeableAdapterFactory) adapterFactory)
-						.getRootAdapterFactory(), getResourceLocator(),
-				getString("_UI_WorkItem_participants_feature"), getString(
-						"_UI_PropertyDescriptor_description",
-						"_UI_WorkItem_participants_feature",
-						"_UI_WorkItem_type"),
-				TaskPackage.Literals.WORK_ITEM__PARTICIPANTS, true, false,
-				true, null, null, null));
+		itemPropertyDescriptors.add(createItemPropertyDescriptor(((ComposeableAdapterFactory) adapterFactory)
+				.getRootAdapterFactory(), getResourceLocator(), getString("_UI_WorkItem_participants_feature"), getString(
+				"_UI_PropertyDescriptor_description", "_UI_WorkItem_participants_feature", "_UI_WorkItem_type"),
+				TaskPackage.Literals.WORK_ITEM__PARTICIPANTS, true, false, true, null, null, null));
 	}
 
 	/**
@@ -168,14 +144,11 @@ public class BugReportItemProvider extends AnnotationItemProvider implements
 	 * @generated
 	 */
 	protected void addDueDatePropertyDescriptor(Object object) {
-		itemPropertyDescriptors.add(createItemPropertyDescriptor(
-				((ComposeableAdapterFactory) adapterFactory)
-						.getRootAdapterFactory(), getResourceLocator(),
-				getString("_UI_WorkItem_dueDate_feature"), getString(
-						"_UI_PropertyDescriptor_description",
-						"_UI_WorkItem_dueDate_feature", "_UI_WorkItem_type"),
-				TaskPackage.Literals.WORK_ITEM__DUE_DATE, true, false, false,
-				ItemPropertyDescriptor.GENERIC_VALUE_IMAGE, null, null));
+		itemPropertyDescriptors.add(createItemPropertyDescriptor(((ComposeableAdapterFactory) adapterFactory)
+				.getRootAdapterFactory(), getResourceLocator(), getString("_UI_WorkItem_dueDate_feature"), getString(
+				"_UI_PropertyDescriptor_description", "_UI_WorkItem_dueDate_feature", "_UI_WorkItem_type"),
+				TaskPackage.Literals.WORK_ITEM__DUE_DATE, true, false, false, ItemPropertyDescriptor.GENERIC_VALUE_IMAGE, null,
+				null));
 	}
 
 	/**
@@ -185,14 +158,11 @@ public class BugReportItemProvider extends AnnotationItemProvider implements
 	 * @generated
 	 */
 	protected void addStatusPropertyDescriptor(Object object) {
-		itemPropertyDescriptors.add(createItemPropertyDescriptor(
-				((ComposeableAdapterFactory) adapterFactory)
-						.getRootAdapterFactory(), getResourceLocator(),
-				getString("_UI_BugReport_Status_feature"), getString(
-						"_UI_PropertyDescriptor_description",
-						"_UI_BugReport_Status_feature", "_UI_BugReport_type"),
-				BugPackage.Literals.BUG_REPORT__STATUS, true, false, false,
-				ItemPropertyDescriptor.GENERIC_VALUE_IMAGE, null, null));
+		itemPropertyDescriptors.add(createItemPropertyDescriptor(((ComposeableAdapterFactory) adapterFactory)
+				.getRootAdapterFactory(), getResourceLocator(), getString("_UI_BugReport_Status_feature"), getString(
+				"_UI_PropertyDescriptor_description", "_UI_BugReport_Status_feature", "_UI_BugReport_type"),
+				BugPackage.Literals.BUG_REPORT__STATUS, true, false, false, ItemPropertyDescriptor.GENERIC_VALUE_IMAGE, null,
+				null));
 	}
 
 	/**
@@ -202,17 +172,11 @@ public class BugReportItemProvider extends AnnotationItemProvider implements
 	 * @generated
 	 */
 	protected void addSeverityPropertyDescriptor(Object object) {
-		itemPropertyDescriptors
-				.add(createItemPropertyDescriptor(
-						((ComposeableAdapterFactory) adapterFactory)
-								.getRootAdapterFactory(), getResourceLocator(),
-						getString("_UI_BugReport_severity_feature"), getString(
-								"_UI_PropertyDescriptor_description",
-								"_UI_BugReport_severity_feature",
-								"_UI_BugReport_type"),
-						BugPackage.Literals.BUG_REPORT__SEVERITY, true, false,
-						false, ItemPropertyDescriptor.GENERIC_VALUE_IMAGE,
-						null, null));
+		itemPropertyDescriptors.add(createItemPropertyDescriptor(((ComposeableAdapterFactory) adapterFactory)
+				.getRootAdapterFactory(), getResourceLocator(), getString("_UI_BugReport_severity_feature"), getString(
+				"_UI_PropertyDescriptor_description", "_UI_BugReport_severity_feature", "_UI_BugReport_type"),
+				BugPackage.Literals.BUG_REPORT__SEVERITY, true, false, false, ItemPropertyDescriptor.GENERIC_VALUE_IMAGE, null,
+				null));
 	}
 
 	/**
@@ -222,15 +186,11 @@ public class BugReportItemProvider extends AnnotationItemProvider implements
 	 * @generated
 	 */
 	protected void addResolutionPropertyDescriptor(Object object) {
-		itemPropertyDescriptors.add(createItemPropertyDescriptor(
-				((ComposeableAdapterFactory) adapterFactory)
-						.getRootAdapterFactory(), getResourceLocator(),
-				getString("_UI_BugReport_resolution_feature"), getString(
-						"_UI_PropertyDescriptor_description",
-						"_UI_BugReport_resolution_feature",
-						"_UI_BugReport_type"),
-				BugPackage.Literals.BUG_REPORT__RESOLUTION, true, true, false,
-				ItemPropertyDescriptor.GENERIC_VALUE_IMAGE, null, null));
+		itemPropertyDescriptors.add(createItemPropertyDescriptor(((ComposeableAdapterFactory) adapterFactory)
+				.getRootAdapterFactory(), getResourceLocator(), getString("_UI_BugReport_resolution_feature"), getString(
+				"_UI_PropertyDescriptor_description", "_UI_BugReport_resolution_feature", "_UI_BugReport_type"),
+				BugPackage.Literals.BUG_REPORT__RESOLUTION, true, true, false, ItemPropertyDescriptor.GENERIC_VALUE_IMAGE, null,
+				null));
 	}
 
 	/**
@@ -240,15 +200,11 @@ public class BugReportItemProvider extends AnnotationItemProvider implements
 	 * @generated
 	 */
 	protected void addResolutionTypePropertyDescriptor(Object object) {
-		itemPropertyDescriptors.add(createItemPropertyDescriptor(
-				((ComposeableAdapterFactory) adapterFactory)
-						.getRootAdapterFactory(), getResourceLocator(),
-				getString("_UI_BugReport_resolutionType_feature"), getString(
-						"_UI_PropertyDescriptor_description",
-						"_UI_BugReport_resolutionType_feature",
-						"_UI_BugReport_type"),
-				BugPackage.Literals.BUG_REPORT__RESOLUTION_TYPE, true, false,
-				false, ItemPropertyDescriptor.GENERIC_VALUE_IMAGE, null, null));
+		itemPropertyDescriptors.add(createItemPropertyDescriptor(((ComposeableAdapterFactory) adapterFactory)
+				.getRootAdapterFactory(), getResourceLocator(), getString("_UI_BugReport_resolutionType_feature"), getString(
+				"_UI_PropertyDescriptor_description", "_UI_BugReport_resolutionType_feature", "_UI_BugReport_type"),
+				BugPackage.Literals.BUG_REPORT__RESOLUTION_TYPE, true, false, false, ItemPropertyDescriptor.GENERIC_VALUE_IMAGE,
+				null, null));
 	}
 
 	/**
@@ -261,12 +217,10 @@ public class BugReportItemProvider extends AnnotationItemProvider implements
 		if (object instanceof BugReport) {
 			BugReport bugReport = (BugReport) object;
 			if (bugReport.getStatus().equals(BugStatus.RESOLVED)) {
-				return overlayImage(object, getResourceLocator().getImage(
-						"full/obj16/BugReportResolved"));
+				return overlayImage(object, getResourceLocator().getImage("full/obj16/BugReportResolved"));
 			}
 		}
-		return overlayImage(object, getResourceLocator().getImage(
-				"full/obj16/BugReport"));
+		return overlayImage(object, getResourceLocator().getImage("full/obj16/BugReport"));
 	}
 
 	/**
@@ -298,8 +252,7 @@ public class BugReportItemProvider extends AnnotationItemProvider implements
 		case BugPackage.BUG_REPORT__SEVERITY:
 		case BugPackage.BUG_REPORT__RESOLUTION:
 		case BugPackage.BUG_REPORT__RESOLUTION_TYPE:
-			fireNotifyChanged(new ViewerNotification(notification, notification
-					.getNotifier(), false, true));
+			fireNotifyChanged(new ViewerNotification(notification, notification.getNotifier(), false, true));
 			return;
 		}
 		super.notifyChanged(notification);
@@ -313,8 +266,7 @@ public class BugReportItemProvider extends AnnotationItemProvider implements
 	 * @generated
 	 */
 	@Override
-	protected void collectNewChildDescriptors(
-			Collection<Object> newChildDescriptors, Object object) {
+	protected void collectNewChildDescriptors(Collection<Object> newChildDescriptors, Object object) {
 		super.collectNewChildDescriptors(newChildDescriptors, object);
 	}
 

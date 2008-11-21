@@ -25,8 +25,7 @@ import org.unicase.model.rationale.Solution;
  * end-user-doc -->
  * @generated
  */
-public class RationaleFactoryImpl extends EFactoryImpl implements
-		RationaleFactory {
+public class RationaleFactoryImpl extends EFactoryImpl implements RationaleFactory {
 	/**
 	 * Creates the default factory implementation.
 	 * <!-- begin-user-doc --> <!--
@@ -76,8 +75,7 @@ public class RationaleFactoryImpl extends EFactoryImpl implements
 		case RationalePackage.COMMENT:
 			return createComment();
 		default:
-			throw new IllegalArgumentException("The class '" + eClass.getName()
-					+ "' is not a valid classifier");
+			throw new IllegalArgumentException("The class '" + eClass.getName() + "' is not a valid classifier");
 		}
 	}
 

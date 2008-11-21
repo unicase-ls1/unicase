@@ -37,8 +37,7 @@ import org.unicase.model.util.ProjectChangeObserver;
  * @generated
  */
 
-public class ProjectImpl extends EObjectImpl implements Project,
-		ProjectChangeObserver {
+public class ProjectImpl extends EObjectImpl implements Project, ProjectChangeObserver {
 	/**
 	 * The cached value of the '{@link #getModelElements() <em>Model Elements</em>}' containment reference list.
 	 * <!-- begin-user-doc
@@ -79,8 +78,7 @@ public class ProjectImpl extends EObjectImpl implements Project,
 	 */
 	public EList<ModelElement> getModelElements() {
 		if (modelElements == null) {
-			modelElements = new EObjectContainmentEList.Resolving<ModelElement>(
-					ModelElement.class, this,
+			modelElements = new EObjectContainmentEList.Resolving<ModelElement>(ModelElement.class, this,
 					ModelPackage.PROJECT__MODEL_ELEMENTS);
 		}
 		return modelElements;
@@ -104,8 +102,7 @@ public class ProjectImpl extends EObjectImpl implements Project,
 	 * @generated NOT
 	 */
 	public EList<ModelElement> getAllModelElements() {
-		return this.getAllModelElementsbyClass(ModelPackage.eINSTANCE
-				.getModelElement(), new BasicEList<ModelElement>());
+		return this.getAllModelElementsbyClass(ModelPackage.eINSTANCE.getModelElement(), new BasicEList<ModelElement>());
 	}
 
 	/**
@@ -114,8 +111,7 @@ public class ProjectImpl extends EObjectImpl implements Project,
 	 * @see org.unicase.model.Project#getAllModelElementsbyClass(org.eclipse.emf.ecore.EClass)
 	 * @generated NOT
 	 */
-	public <T extends ModelElement> EList<T> getAllModelElementsbyClass(
-			EClass modelElementClass, EList<T> list) {
+	public <T extends ModelElement> EList<T> getAllModelElementsbyClass(EClass modelElementClass, EList<T> list) {
 		return getAllModelElementsbyClass(modelElementClass, list, true);
 	}
 
@@ -126,29 +122,24 @@ public class ProjectImpl extends EObjectImpl implements Project,
 	 */
 	// two casts below are guarded by initial sanity check and if statement
 	@SuppressWarnings("unchecked")
-	public <T extends ModelElement> EList<T> getAllModelElementsbyClass(
-			EClass modelElementClass, EList<T> list, Boolean subclasses) {
+	public <T extends ModelElement> EList<T> getAllModelElementsbyClass(EClass modelElementClass, EList<T> list,
+			Boolean subclasses) {
 
 		// sanity check
-		if (!ModelPackage.eINSTANCE.getModelElement().isSuperTypeOf(
-				modelElementClass)) {
+		if (!ModelPackage.eINSTANCE.getModelElement().isSuperTypeOf(modelElementClass)) {
 			return list;
 		}
 
 		if (subclasses) {
-			for (ModelElementId modelElementId : getModelElementsFromCache()
-					.keySet()) {
-				ModelElement modelElement = this
-						.getModelElement(modelElementId);
+			for (ModelElementId modelElementId : getModelElementsFromCache().keySet()) {
+				ModelElement modelElement = this.getModelElement(modelElementId);
 				if (modelElementClass.isInstance(modelElement)) {
 					list.add((T) modelElement);
 				}
 			}
 		} else {
-			for (ModelElementId modelElementId : getModelElementsFromCache()
-					.keySet()) {
-				ModelElement modelElement = this
-						.getModelElement(modelElementId);
+			for (ModelElementId modelElementId : getModelElementsFromCache().keySet()) {
+				ModelElement modelElement = this.getModelElement(modelElementId);
 				if (modelElement.eClass() == modelElementClass) {
 					list.add((T) modelElement);
 				}
@@ -166,11 +157,9 @@ public class ProjectImpl extends EObjectImpl implements Project,
 	 */
 	// cast below is guarded by sanity check
 	@SuppressWarnings("unchecked")
-	public <T extends ModelElement> EList<T> getModelElementsByClass(
-			EClass modelElementClass, EList<T> list) {
+	public <T extends ModelElement> EList<T> getModelElementsByClass(EClass modelElementClass, EList<T> list) {
 
-		if (!ModelPackage.eINSTANCE.getModelElement().isSuperTypeOf(
-				modelElementClass)) {
+		if (!ModelPackage.eINSTANCE.getModelElement().isSuperTypeOf(modelElementClass)) {
 			return list;
 		}
 		for (ModelElement modelElement : this.getModelElements()) {
@@ -188,12 +177,10 @@ public class ProjectImpl extends EObjectImpl implements Project,
 	 * @generated
 	 */
 	@Override
-	public NotificationChain eInverseRemove(InternalEObject otherEnd,
-			int featureID, NotificationChain msgs) {
+	public NotificationChain eInverseRemove(InternalEObject otherEnd, int featureID, NotificationChain msgs) {
 		switch (featureID) {
 		case ModelPackage.PROJECT__MODEL_ELEMENTS:
-			return ((InternalEList<?>) getModelElements()).basicRemove(
-					otherEnd, msgs);
+			return ((InternalEList<?>) getModelElements()).basicRemove(otherEnd, msgs);
 		}
 		return super.eInverseRemove(otherEnd, featureID, msgs);
 	}
@@ -221,8 +208,7 @@ public class ProjectImpl extends EObjectImpl implements Project,
 		switch (featureID) {
 		case ModelPackage.PROJECT__MODEL_ELEMENTS:
 			getModelElements().clear();
-			getModelElements().addAll(
-					(Collection<? extends ModelElement>) newValue);
+			getModelElements().addAll((Collection<? extends ModelElement>) newValue);
 			return;
 		}
 		super.eSet(featureID, newValue);
@@ -290,8 +276,7 @@ public class ProjectImpl extends EObjectImpl implements Project,
 				EObject next = allContents.next();
 				if (ModelPackage.eINSTANCE.getModelElement().isInstance(next)) {
 					ModelElement modelElement = (ModelElement) next;
-					modelElementCache.put(modelElement.getModelElementId(),
-							modelElement);
+					modelElementCache.put(modelElement.getModelElementId(), modelElement);
 				}
 			}
 			// init cache update
@@ -305,13 +290,10 @@ public class ProjectImpl extends EObjectImpl implements Project,
 	 * @see org.unicase.model.util.ProjectChangeObserver#modelElementAdded(org.unicase.model.Project, org.unicase.model.ModelElement)
 	 */
 	public void modelElementAdded(Project project, ModelElement modelElement) {
-		if (this.modelElementCache
-				.containsKey(modelElement.getModelElementId())) {
-			throw new IllegalStateException(
-					"ModelElement is already in the project!");
+		if (this.modelElementCache.containsKey(modelElement.getModelElementId())) {
+			throw new IllegalStateException("ModelElement is already in the project!");
 		}
-		this.modelElementCache.put(modelElement.getModelElementId(),
-				modelElement);
+		this.modelElementCache.put(modelElement.getModelElementId(), modelElement);
 		for (ProjectChangeObserver projectChangeObserver : this.observers) {
 			projectChangeObserver.modelElementAdded(project, modelElement);
 		}
@@ -321,8 +303,7 @@ public class ProjectImpl extends EObjectImpl implements Project,
 	 * {@inheritDoc}
 	 * @see org.unicase.model.util.ProjectChangeObserver#notify(org.eclipse.emf.common.notify.Notification, org.unicase.model.Project, org.unicase.model.ModelElement)
 	 */
-	public void notify(Notification notification, Project project,
-			ModelElement modelElement) {
+	public void notify(Notification notification, Project project, ModelElement modelElement) {
 		for (ProjectChangeObserver projectChangeObserver : this.observers) {
 			projectChangeObserver.notify(notification, project, modelElement);
 		}
@@ -359,8 +340,7 @@ public class ProjectImpl extends EObjectImpl implements Project,
 	 * {@inheritDoc}
 	 * @see org.unicase.model.Project#addProjectChangeObserver(org.unicase.model.util.ProjectChangeObserver)
 	 */
-	public void addProjectChangeObserver(
-			ProjectChangeObserver projectChangeObserver) {
+	public void addProjectChangeObserver(ProjectChangeObserver projectChangeObserver) {
 		// FIXME: hack to init notifier and cache
 		getModelElementsFromCache();
 		this.observers.add(projectChangeObserver);
@@ -370,8 +350,7 @@ public class ProjectImpl extends EObjectImpl implements Project,
 	 * {@inheritDoc}
 	 * @see org.unicase.model.Project#removeProjectChangeObserver(org.unicase.model.util.ProjectChangeObserver)
 	 */
-	public void removeProjectChangeObserver(
-			ProjectChangeObserver projectChangeObserver) {
+	public void removeProjectChangeObserver(ProjectChangeObserver projectChangeObserver) {
 		this.observers.remove(projectChangeObserver);
 
 	}
@@ -385,8 +364,7 @@ public class ProjectImpl extends EObjectImpl implements Project,
 		if (!this.contains(modelElementId)) {
 			return false;
 		}
-		ModelElement element = this.getModelElementsFromCache().get(
-				modelElementId);
+		ModelElement element = this.getModelElementsFromCache().get(modelElementId);
 		return element == modelElement;
 	}
 }

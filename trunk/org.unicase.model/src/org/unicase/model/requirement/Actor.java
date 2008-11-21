@@ -89,6 +89,7 @@ public interface Actor extends ModelElement {
 	 * @see org.unicase.model.requirement.RequirementPackage#getActor_InitiatedUseCases()
 	 * @see org.unicase.model.requirement.UseCase#getInitiatingActor
 	 * @model opposite="initiatingActor" keys="identifier"
+	 *        annotation="org.unicase.ui.meeditor priority='10.0' position='right'"
 	 * @generated
 	 */
 	EList<UseCase> getInitiatedUseCases();
@@ -107,6 +108,7 @@ public interface Actor extends ModelElement {
 	 * @see org.unicase.model.requirement.RequirementPackage#getActor_ParticipatedUseCases()
 	 * @see org.unicase.model.requirement.UseCase#getParticipatingActors
 	 * @model opposite="participatingActors" keys="identifier"
+	 *        annotation="org.unicase.ui.meeditor priority='11.0' position='right'"
 	 * @generated
 	 */
 	EList<UseCase> getParticipatedUseCases();
@@ -125,6 +127,7 @@ public interface Actor extends ModelElement {
 	 * @see org.unicase.model.requirement.RequirementPackage#getActor_Instances()
 	 * @see org.unicase.model.requirement.ActorInstance#getInstantiatedActor
 	 * @model opposite="instantiatedActor" keys="identifier"
+	 *        annotation="org.unicase.ui.meeditor priority='12.0' position='right'"
 	 * @generated
 	 */
 	EList<ActorInstance> getInstances();

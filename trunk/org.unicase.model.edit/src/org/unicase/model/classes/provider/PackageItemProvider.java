@@ -29,9 +29,8 @@ import org.unicase.model.classes.ClassesPackage;
  * <!-- end-user-doc -->
  * @generated
  */
-public class PackageItemProvider extends PackageElementItemProvider implements
-		IEditingDomainItemProvider, IStructuredItemContentProvider,
-		ITreeItemContentProvider, IItemLabelProvider, IItemPropertySource {
+public class PackageItemProvider extends PackageElementItemProvider implements IEditingDomainItemProvider,
+		IStructuredItemContentProvider, ITreeItemContentProvider, IItemLabelProvider, IItemPropertySource {
 	/**
 	 * This constructs an instance from a factory and a notifier. <!--
 	 * begin-user-doc --> <!-- end-user-doc -->
@@ -65,15 +64,11 @@ public class PackageItemProvider extends PackageElementItemProvider implements
 	 * @generated
 	 */
 	protected void addContainedPackageElementsPropertyDescriptor(Object object) {
-		itemPropertyDescriptors.add(createItemPropertyDescriptor(
-				((ComposeableAdapterFactory) adapterFactory)
-						.getRootAdapterFactory(), getResourceLocator(),
-				getString("_UI_Package_containedPackageElements_feature"),
-				getString("_UI_PropertyDescriptor_description",
-						"_UI_Package_containedPackageElements_feature",
-						"_UI_Package_type"),
-				ClassesPackage.Literals.PACKAGE__CONTAINED_PACKAGE_ELEMENTS,
-				true, false, false, null, null, null));
+		itemPropertyDescriptors.add(createItemPropertyDescriptor(((ComposeableAdapterFactory) adapterFactory)
+				.getRootAdapterFactory(), getResourceLocator(), getString("_UI_Package_containedPackageElements_feature"),
+				getString("_UI_PropertyDescriptor_description", "_UI_Package_containedPackageElements_feature",
+						"_UI_Package_type"), ClassesPackage.Literals.PACKAGE__CONTAINED_PACKAGE_ELEMENTS, true, false, false,
+				null, null, null));
 	}
 
 	/**
@@ -83,14 +78,10 @@ public class PackageItemProvider extends PackageElementItemProvider implements
 	 * @generated
 	 */
 	protected void addFacadeClassPropertyDescriptor(Object object) {
-		itemPropertyDescriptors.add(createItemPropertyDescriptor(
-				((ComposeableAdapterFactory) adapterFactory)
-						.getRootAdapterFactory(), getResourceLocator(),
-				getString("_UI_Package_facadeClass_feature"), getString(
-						"_UI_PropertyDescriptor_description",
-						"_UI_Package_facadeClass_feature", "_UI_Package_type"),
-				ClassesPackage.Literals.PACKAGE__FACADE_CLASS, true, false,
-				true, null, null, null));
+		itemPropertyDescriptors.add(createItemPropertyDescriptor(((ComposeableAdapterFactory) adapterFactory)
+				.getRootAdapterFactory(), getResourceLocator(), getString("_UI_Package_facadeClass_feature"), getString(
+				"_UI_PropertyDescriptor_description", "_UI_Package_facadeClass_feature", "_UI_Package_type"),
+				ClassesPackage.Literals.PACKAGE__FACADE_CLASS, true, false, true, null, null, null));
 	}
 
 	/**
@@ -101,12 +92,10 @@ public class PackageItemProvider extends PackageElementItemProvider implements
 	 * @generated
 	 */
 	@Override
-	public Collection<? extends EStructuralFeature> getChildrenFeatures(
-			Object object) {
+	public Collection<? extends EStructuralFeature> getChildrenFeatures(Object object) {
 		if (childrenFeatures == null) {
 			super.getChildrenFeatures(object);
-			childrenFeatures
-					.add(ClassesPackage.Literals.PACKAGE__CONTAINED_PACKAGE_ELEMENTS);
+			childrenFeatures.add(ClassesPackage.Literals.PACKAGE__CONTAINED_PACKAGE_ELEMENTS);
 		}
 		return childrenFeatures;
 	}
@@ -130,8 +119,7 @@ public class PackageItemProvider extends PackageElementItemProvider implements
 	 */
 	@Override
 	public Object getImage(Object object) {
-		return overlayImage(object, getResourceLocator().getImage(
-				"full/obj16/Package"));
+		return overlayImage(object, getResourceLocator().getImage("full/obj16/Package"));
 	}
 
 	/**
@@ -156,11 +144,9 @@ public class PackageItemProvider extends PackageElementItemProvider implements
 	public void notifyChanged(Notification notification) {
 		updateChildren(notification);
 
-		switch (notification
-				.getFeatureID(org.unicase.model.classes.Package.class)) {
+		switch (notification.getFeatureID(org.unicase.model.classes.Package.class)) {
 		case ClassesPackage.PACKAGE__CONTAINED_PACKAGE_ELEMENTS:
-			fireNotifyChanged(new ViewerNotification(notification, notification
-					.getNotifier(), true, false));
+			fireNotifyChanged(new ViewerNotification(notification, notification.getNotifier(), true, false));
 			return;
 		}
 		super.notifyChanged(notification);
@@ -174,16 +160,13 @@ public class PackageItemProvider extends PackageElementItemProvider implements
 	 * @generated
 	 */
 	@Override
-	protected void collectNewChildDescriptors(
-			Collection<Object> newChildDescriptors, Object object) {
+	protected void collectNewChildDescriptors(Collection<Object> newChildDescriptors, Object object) {
 		super.collectNewChildDescriptors(newChildDescriptors, object);
 
-		newChildDescriptors.add(createChildParameter(
-				ClassesPackage.Literals.PACKAGE__CONTAINED_PACKAGE_ELEMENTS,
+		newChildDescriptors.add(createChildParameter(ClassesPackage.Literals.PACKAGE__CONTAINED_PACKAGE_ELEMENTS,
 				ClassesFactory.eINSTANCE.createClass()));
 
-		newChildDescriptors.add(createChildParameter(
-				ClassesPackage.Literals.PACKAGE__CONTAINED_PACKAGE_ELEMENTS,
+		newChildDescriptors.add(createChildParameter(ClassesPackage.Literals.PACKAGE__CONTAINED_PACKAGE_ELEMENTS,
 				ClassesFactory.eINSTANCE.createPackage()));
 	}
 

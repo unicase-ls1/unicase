@@ -117,8 +117,7 @@ public class ActorImpl extends ModelElementImpl implements Actor {
 			initiatedUserTask = (UserTask) eResolveProxy(oldInitiatedUserTask);
 			if (initiatedUserTask != oldInitiatedUserTask) {
 				if (eNotificationRequired())
-					eNotify(new ENotificationImpl(this, Notification.RESOLVE,
-							RequirementPackage.ACTOR__INITIATED_USER_TASK,
+					eNotify(new ENotificationImpl(this, Notification.RESOLVE, RequirementPackage.ACTOR__INITIATED_USER_TASK,
 							oldInitiatedUserTask, initiatedUserTask));
 			}
 		}
@@ -139,15 +138,12 @@ public class ActorImpl extends ModelElementImpl implements Actor {
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
-	public NotificationChain basicSetInitiatedUserTask(
-			UserTask newInitiatedUserTask, NotificationChain msgs) {
+	public NotificationChain basicSetInitiatedUserTask(UserTask newInitiatedUserTask, NotificationChain msgs) {
 		UserTask oldInitiatedUserTask = initiatedUserTask;
 		initiatedUserTask = newInitiatedUserTask;
 		if (eNotificationRequired()) {
-			ENotificationImpl notification = new ENotificationImpl(this,
-					Notification.SET,
-					RequirementPackage.ACTOR__INITIATED_USER_TASK,
-					oldInitiatedUserTask, newInitiatedUserTask);
+			ENotificationImpl notification = new ENotificationImpl(this, Notification.SET,
+					RequirementPackage.ACTOR__INITIATED_USER_TASK, oldInitiatedUserTask, newInitiatedUserTask);
 			if (msgs == null)
 				msgs = notification;
 			else
@@ -165,19 +161,16 @@ public class ActorImpl extends ModelElementImpl implements Actor {
 		if (newInitiatedUserTask != initiatedUserTask) {
 			NotificationChain msgs = null;
 			if (initiatedUserTask != null)
-				msgs = ((InternalEObject) initiatedUserTask).eInverseRemove(
-						this, RequirementPackage.USER_TASK__INITIATING_ACTOR,
+				msgs = ((InternalEObject) initiatedUserTask).eInverseRemove(this, RequirementPackage.USER_TASK__INITIATING_ACTOR,
 						UserTask.class, msgs);
 			if (newInitiatedUserTask != null)
-				msgs = ((InternalEObject) newInitiatedUserTask).eInverseAdd(
-						this, RequirementPackage.USER_TASK__INITIATING_ACTOR,
+				msgs = ((InternalEObject) newInitiatedUserTask).eInverseAdd(this, RequirementPackage.USER_TASK__INITIATING_ACTOR,
 						UserTask.class, msgs);
 			msgs = basicSetInitiatedUserTask(newInitiatedUserTask, msgs);
 			if (msgs != null)
 				msgs.dispatch();
 		} else if (eNotificationRequired())
-			eNotify(new ENotificationImpl(this, Notification.SET,
-					RequirementPackage.ACTOR__INITIATED_USER_TASK,
+			eNotify(new ENotificationImpl(this, Notification.SET, RequirementPackage.ACTOR__INITIATED_USER_TASK,
 					newInitiatedUserTask, newInitiatedUserTask));
 	}
 
@@ -188,10 +181,8 @@ public class ActorImpl extends ModelElementImpl implements Actor {
 	 */
 	public EList<UserTask> getParticipatedUserTasks() {
 		if (participatedUserTasks == null) {
-			participatedUserTasks = new EObjectWithInverseResolvingEList.ManyInverse<UserTask>(
-					UserTask.class, this,
-					RequirementPackage.ACTOR__PARTICIPATED_USER_TASKS,
-					RequirementPackage.USER_TASK__PARTICIPATING_ACTOR);
+			participatedUserTasks = new EObjectWithInverseResolvingEList.ManyInverse<UserTask>(UserTask.class, this,
+					RequirementPackage.ACTOR__PARTICIPATED_USER_TASKS, RequirementPackage.USER_TASK__PARTICIPATING_ACTOR);
 		}
 		return participatedUserTasks;
 	}
@@ -202,10 +193,8 @@ public class ActorImpl extends ModelElementImpl implements Actor {
 	 */
 	public EList<UseCase> getInitiatedUseCases() {
 		if (initiatedUseCases == null) {
-			initiatedUseCases = new EObjectWithInverseResolvingEList<UseCase>(
-					UseCase.class, this,
-					RequirementPackage.ACTOR__INITIATED_USE_CASES,
-					RequirementPackage.USE_CASE__INITIATING_ACTOR);
+			initiatedUseCases = new EObjectWithInverseResolvingEList<UseCase>(UseCase.class, this,
+					RequirementPackage.ACTOR__INITIATED_USE_CASES, RequirementPackage.USE_CASE__INITIATING_ACTOR);
 		}
 		return initiatedUseCases;
 	}
@@ -216,10 +205,8 @@ public class ActorImpl extends ModelElementImpl implements Actor {
 	 */
 	public EList<UseCase> getParticipatedUseCases() {
 		if (participatedUseCases == null) {
-			participatedUseCases = new EObjectWithInverseResolvingEList.ManyInverse<UseCase>(
-					UseCase.class, this,
-					RequirementPackage.ACTOR__PARTICIPATED_USE_CASES,
-					RequirementPackage.USE_CASE__PARTICIPATING_ACTORS);
+			participatedUseCases = new EObjectWithInverseResolvingEList.ManyInverse<UseCase>(UseCase.class, this,
+					RequirementPackage.ACTOR__PARTICIPATED_USE_CASES, RequirementPackage.USE_CASE__PARTICIPATING_ACTORS);
 		}
 		return participatedUseCases;
 	}
@@ -230,10 +217,8 @@ public class ActorImpl extends ModelElementImpl implements Actor {
 	 */
 	public EList<ActorInstance> getInstances() {
 		if (instances == null) {
-			instances = new EObjectWithInverseResolvingEList<ActorInstance>(
-					ActorInstance.class, this,
-					RequirementPackage.ACTOR__INSTANCES,
-					RequirementPackage.ACTOR_INSTANCE__INSTANTIATED_ACTOR);
+			instances = new EObjectWithInverseResolvingEList<ActorInstance>(ActorInstance.class, this,
+					RequirementPackage.ACTOR__INSTANCES, RequirementPackage.ACTOR_INSTANCE__INSTANTIATED_ACTOR);
 		}
 		return instances;
 	}
@@ -244,27 +229,21 @@ public class ActorImpl extends ModelElementImpl implements Actor {
 	 */
 	@SuppressWarnings("unchecked")
 	@Override
-	public NotificationChain eInverseAdd(InternalEObject otherEnd,
-			int featureID, NotificationChain msgs) {
+	public NotificationChain eInverseAdd(InternalEObject otherEnd, int featureID, NotificationChain msgs) {
 		switch (featureID) {
 		case RequirementPackage.ACTOR__INITIATED_USER_TASK:
 			if (initiatedUserTask != null)
-				msgs = ((InternalEObject) initiatedUserTask).eInverseRemove(
-						this, RequirementPackage.USER_TASK__INITIATING_ACTOR,
+				msgs = ((InternalEObject) initiatedUserTask).eInverseRemove(this, RequirementPackage.USER_TASK__INITIATING_ACTOR,
 						UserTask.class, msgs);
 			return basicSetInitiatedUserTask((UserTask) otherEnd, msgs);
 		case RequirementPackage.ACTOR__PARTICIPATED_USER_TASKS:
-			return ((InternalEList<InternalEObject>) (InternalEList<?>) getParticipatedUserTasks())
-					.basicAdd(otherEnd, msgs);
+			return ((InternalEList<InternalEObject>) (InternalEList<?>) getParticipatedUserTasks()).basicAdd(otherEnd, msgs);
 		case RequirementPackage.ACTOR__INITIATED_USE_CASES:
-			return ((InternalEList<InternalEObject>) (InternalEList<?>) getInitiatedUseCases())
-					.basicAdd(otherEnd, msgs);
+			return ((InternalEList<InternalEObject>) (InternalEList<?>) getInitiatedUseCases()).basicAdd(otherEnd, msgs);
 		case RequirementPackage.ACTOR__PARTICIPATED_USE_CASES:
-			return ((InternalEList<InternalEObject>) (InternalEList<?>) getParticipatedUseCases())
-					.basicAdd(otherEnd, msgs);
+			return ((InternalEList<InternalEObject>) (InternalEList<?>) getParticipatedUseCases()).basicAdd(otherEnd, msgs);
 		case RequirementPackage.ACTOR__INSTANCES:
-			return ((InternalEList<InternalEObject>) (InternalEList<?>) getInstances())
-					.basicAdd(otherEnd, msgs);
+			return ((InternalEList<InternalEObject>) (InternalEList<?>) getInstances()).basicAdd(otherEnd, msgs);
 		}
 		return super.eInverseAdd(otherEnd, featureID, msgs);
 	}
@@ -274,23 +253,18 @@ public class ActorImpl extends ModelElementImpl implements Actor {
 	 * @generated
 	 */
 	@Override
-	public NotificationChain eInverseRemove(InternalEObject otherEnd,
-			int featureID, NotificationChain msgs) {
+	public NotificationChain eInverseRemove(InternalEObject otherEnd, int featureID, NotificationChain msgs) {
 		switch (featureID) {
 		case RequirementPackage.ACTOR__INITIATED_USER_TASK:
 			return basicSetInitiatedUserTask(null, msgs);
 		case RequirementPackage.ACTOR__PARTICIPATED_USER_TASKS:
-			return ((InternalEList<?>) getParticipatedUserTasks()).basicRemove(
-					otherEnd, msgs);
+			return ((InternalEList<?>) getParticipatedUserTasks()).basicRemove(otherEnd, msgs);
 		case RequirementPackage.ACTOR__INITIATED_USE_CASES:
-			return ((InternalEList<?>) getInitiatedUseCases()).basicRemove(
-					otherEnd, msgs);
+			return ((InternalEList<?>) getInitiatedUseCases()).basicRemove(otherEnd, msgs);
 		case RequirementPackage.ACTOR__PARTICIPATED_USE_CASES:
-			return ((InternalEList<?>) getParticipatedUseCases()).basicRemove(
-					otherEnd, msgs);
+			return ((InternalEList<?>) getParticipatedUseCases()).basicRemove(otherEnd, msgs);
 		case RequirementPackage.ACTOR__INSTANCES:
-			return ((InternalEList<?>) getInstances()).basicRemove(otherEnd,
-					msgs);
+			return ((InternalEList<?>) getInstances()).basicRemove(otherEnd, msgs);
 		}
 		return super.eInverseRemove(otherEnd, featureID, msgs);
 	}
@@ -331,23 +305,19 @@ public class ActorImpl extends ModelElementImpl implements Actor {
 			return;
 		case RequirementPackage.ACTOR__PARTICIPATED_USER_TASKS:
 			getParticipatedUserTasks().clear();
-			getParticipatedUserTasks().addAll(
-					(Collection<? extends UserTask>) newValue);
+			getParticipatedUserTasks().addAll((Collection<? extends UserTask>) newValue);
 			return;
 		case RequirementPackage.ACTOR__INITIATED_USE_CASES:
 			getInitiatedUseCases().clear();
-			getInitiatedUseCases().addAll(
-					(Collection<? extends UseCase>) newValue);
+			getInitiatedUseCases().addAll((Collection<? extends UseCase>) newValue);
 			return;
 		case RequirementPackage.ACTOR__PARTICIPATED_USE_CASES:
 			getParticipatedUseCases().clear();
-			getParticipatedUseCases().addAll(
-					(Collection<? extends UseCase>) newValue);
+			getParticipatedUseCases().addAll((Collection<? extends UseCase>) newValue);
 			return;
 		case RequirementPackage.ACTOR__INSTANCES:
 			getInstances().clear();
-			getInstances().addAll(
-					(Collection<? extends ActorInstance>) newValue);
+			getInstances().addAll((Collection<? extends ActorInstance>) newValue);
 			return;
 		}
 		super.eSet(featureID, newValue);
@@ -389,13 +359,11 @@ public class ActorImpl extends ModelElementImpl implements Actor {
 		case RequirementPackage.ACTOR__INITIATED_USER_TASK:
 			return initiatedUserTask != null;
 		case RequirementPackage.ACTOR__PARTICIPATED_USER_TASKS:
-			return participatedUserTasks != null
-					&& !participatedUserTasks.isEmpty();
+			return participatedUserTasks != null && !participatedUserTasks.isEmpty();
 		case RequirementPackage.ACTOR__INITIATED_USE_CASES:
 			return initiatedUseCases != null && !initiatedUseCases.isEmpty();
 		case RequirementPackage.ACTOR__PARTICIPATED_USE_CASES:
-			return participatedUseCases != null
-					&& !participatedUseCases.isEmpty();
+			return participatedUseCases != null && !participatedUseCases.isEmpty();
 		case RequirementPackage.ACTOR__INSTANCES:
 			return instances != null && !instances.isEmpty();
 		}

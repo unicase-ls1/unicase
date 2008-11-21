@@ -29,8 +29,7 @@ public enum AssociationType implements Enumerator {
 	 * @generated
 	 * @ordered
 	 */
-	UNDIRECTED_ASSOCIATION(0, "UNDIRECTED_ASSOCIATION",
-			"Undirected Association"), /**
+	UNDIRECTED_ASSOCIATION(0, "UNDIRECTED_ASSOCIATION", "Undirected Association"), /**
 	 * The '<em><b>DIRECTED ASSOCIATION</b></em>' literal object.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
@@ -122,17 +121,15 @@ public enum AssociationType implements Enumerator {
 	 * 
 	 * @generated
 	 */
-	private static final AssociationType[] VALUES_ARRAY = new AssociationType[] {
-			UNDIRECTED_ASSOCIATION, DIRECTED_ASSOCIATION, AGGREGATION,
-			COMPOSITION, };
+	private static final AssociationType[] VALUES_ARRAY = new AssociationType[] { UNDIRECTED_ASSOCIATION, DIRECTED_ASSOCIATION,
+			AGGREGATION, COMPOSITION, };
 
 	/**
 	 * A public read-only list of all the '<em><b>Association Type</b></em>' enumerators.
 	 * <!-- begin-user-doc --> <!-- end-user-doc -->
 	 * @generated
 	 */
-	public static final List<AssociationType> VALUES = Collections
-			.unmodifiableList(Arrays.asList(VALUES_ARRAY));
+	public static final List<AssociationType> VALUES = Collections.unmodifiableList(Arrays.asList(VALUES_ARRAY));
 
 	/**
 	 * Returns the '<em><b>Association Type</b></em>' literal with the specified literal value.

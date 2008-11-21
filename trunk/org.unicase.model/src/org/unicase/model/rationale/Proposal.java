@@ -41,6 +41,7 @@ public interface Proposal extends ModelElement, NonDomainElement {
 	 * @see org.unicase.model.rationale.RationalePackage#getProposal_Assessments()
 	 * @see org.unicase.model.rationale.Assessment#getProposal
 	 * @model opposite="proposal" containment="true" resolveProxies="true" keys="identifier"
+	 *        annotation="org.unicase.ui.meeditor priority='10.0' position='right'"
 	 * @generated
 	 */
 	EList<Assessment> getAssessments();
@@ -59,6 +60,7 @@ public interface Proposal extends ModelElement, NonDomainElement {
 	 * @see org.unicase.model.rationale.RationalePackage#getProposal_Issue()
 	 * @see org.unicase.model.rationale.Issue#getProposals
 	 * @model opposite="proposals" keys="identifier" transient="false"
+	 *        annotation="org.unicase.ui.meeditor priority='10.0' position='left'"
 	 * @generated
 	 */
 	Issue getIssue();

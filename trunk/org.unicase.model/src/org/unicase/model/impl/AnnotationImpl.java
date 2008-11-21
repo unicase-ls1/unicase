@@ -30,8 +30,7 @@ import org.unicase.model.ModelPackage;
  *
  * @generated
  */
-public abstract class AnnotationImpl extends ModelElementImpl implements
-		Annotation {
+public abstract class AnnotationImpl extends ModelElementImpl implements Annotation {
 	/**
 	 * The cached value of the '{@link #getAnnotatedModelElements() <em>Annotated Model Elements</em>}' reference list.
 	 * <!-- begin-user-doc
@@ -65,10 +64,8 @@ public abstract class AnnotationImpl extends ModelElementImpl implements
 	 */
 	public EList<ModelElement> getAnnotatedModelElements() {
 		if (annotatedModelElements == null) {
-			annotatedModelElements = new EObjectWithInverseResolvingEList.ManyInverse<ModelElement>(
-					ModelElement.class, this,
-					ModelPackage.ANNOTATION__ANNOTATED_MODEL_ELEMENTS,
-					ModelPackage.MODEL_ELEMENT__ANNOTATIONS);
+			annotatedModelElements = new EObjectWithInverseResolvingEList.ManyInverse<ModelElement>(ModelElement.class, this,
+					ModelPackage.ANNOTATION__ANNOTATED_MODEL_ELEMENTS, ModelPackage.MODEL_ELEMENT__ANNOTATIONS);
 		}
 		return annotatedModelElements;
 	}
@@ -79,12 +76,10 @@ public abstract class AnnotationImpl extends ModelElementImpl implements
 	 */
 	@SuppressWarnings("unchecked")
 	@Override
-	public NotificationChain eInverseAdd(InternalEObject otherEnd,
-			int featureID, NotificationChain msgs) {
+	public NotificationChain eInverseAdd(InternalEObject otherEnd, int featureID, NotificationChain msgs) {
 		switch (featureID) {
 		case ModelPackage.ANNOTATION__ANNOTATED_MODEL_ELEMENTS:
-			return ((InternalEList<InternalEObject>) (InternalEList<?>) getAnnotatedModelElements())
-					.basicAdd(otherEnd, msgs);
+			return ((InternalEList<InternalEObject>) (InternalEList<?>) getAnnotatedModelElements()).basicAdd(otherEnd, msgs);
 		}
 		return super.eInverseAdd(otherEnd, featureID, msgs);
 	}
@@ -94,12 +89,10 @@ public abstract class AnnotationImpl extends ModelElementImpl implements
 	 * @generated
 	 */
 	@Override
-	public NotificationChain eInverseRemove(InternalEObject otherEnd,
-			int featureID, NotificationChain msgs) {
+	public NotificationChain eInverseRemove(InternalEObject otherEnd, int featureID, NotificationChain msgs) {
 		switch (featureID) {
 		case ModelPackage.ANNOTATION__ANNOTATED_MODEL_ELEMENTS:
-			return ((InternalEList<?>) getAnnotatedModelElements())
-					.basicRemove(otherEnd, msgs);
+			return ((InternalEList<?>) getAnnotatedModelElements()).basicRemove(otherEnd, msgs);
 		}
 		return super.eInverseRemove(otherEnd, featureID, msgs);
 	}
@@ -127,8 +120,7 @@ public abstract class AnnotationImpl extends ModelElementImpl implements
 		switch (featureID) {
 		case ModelPackage.ANNOTATION__ANNOTATED_MODEL_ELEMENTS:
 			getAnnotatedModelElements().clear();
-			getAnnotatedModelElements().addAll(
-					(Collection<? extends ModelElement>) newValue);
+			getAnnotatedModelElements().addAll((Collection<? extends ModelElement>) newValue);
 			return;
 		}
 		super.eSet(featureID, newValue);
@@ -156,8 +148,7 @@ public abstract class AnnotationImpl extends ModelElementImpl implements
 	public boolean eIsSet(int featureID) {
 		switch (featureID) {
 		case ModelPackage.ANNOTATION__ANNOTATED_MODEL_ELEMENTS:
-			return annotatedModelElements != null
-					&& !annotatedModelElements.isEmpty();
+			return annotatedModelElements != null && !annotatedModelElements.isEmpty();
 		}
 		return super.eIsSet(featureID);
 	}

@@ -26,8 +26,7 @@ import org.unicase.model.organization.OrganizationPackage;
  * <!-- end-user-doc -->
  * @generated
  */
-public class GroupItemProvider extends OrgUnitItemProvider implements
-		IEditingDomainItemProvider, IStructuredItemContentProvider,
+public class GroupItemProvider extends OrgUnitItemProvider implements IEditingDomainItemProvider, IStructuredItemContentProvider,
 		ITreeItemContentProvider, IItemLabelProvider, IItemPropertySource {
 	/**
 	 * This constructs an instance from a factory and a notifier. <!--
@@ -62,14 +61,10 @@ public class GroupItemProvider extends OrgUnitItemProvider implements
 	 * @generated
 	 */
 	protected void addOrgUnitsPropertyDescriptor(Object object) {
-		itemPropertyDescriptors.add(createItemPropertyDescriptor(
-				((ComposeableAdapterFactory) adapterFactory)
-						.getRootAdapterFactory(), getResourceLocator(),
-				getString("_UI_Group_orgUnits_feature"), getString(
-						"_UI_PropertyDescriptor_description",
-						"_UI_Group_orgUnits_feature", "_UI_Group_type"),
-				OrganizationPackage.Literals.GROUP__ORG_UNITS, true, false,
-				true, null, null, null));
+		itemPropertyDescriptors.add(createItemPropertyDescriptor(((ComposeableAdapterFactory) adapterFactory)
+				.getRootAdapterFactory(), getResourceLocator(), getString("_UI_Group_orgUnits_feature"), getString(
+				"_UI_PropertyDescriptor_description", "_UI_Group_orgUnits_feature", "_UI_Group_type"),
+				OrganizationPackage.Literals.GROUP__ORG_UNITS, true, false, true, null, null, null));
 	}
 
 	/**
@@ -79,8 +74,7 @@ public class GroupItemProvider extends OrgUnitItemProvider implements
 	 */
 	@Override
 	public Object getImage(Object object) {
-		return overlayImage(object, getResourceLocator().getImage(
-				"full/obj16/Group"));
+		return overlayImage(object, getResourceLocator().getImage("full/obj16/Group"));
 	}
 
 	/**
@@ -116,8 +110,7 @@ public class GroupItemProvider extends OrgUnitItemProvider implements
 	 * @generated
 	 */
 	@Override
-	protected void collectNewChildDescriptors(
-			Collection<Object> newChildDescriptors, Object object) {
+	protected void collectNewChildDescriptors(Collection<Object> newChildDescriptors, Object object) {
 		super.collectNewChildDescriptors(newChildDescriptors, object);
 	}
 

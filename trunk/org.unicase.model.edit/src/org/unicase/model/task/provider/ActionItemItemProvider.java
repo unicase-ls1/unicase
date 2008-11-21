@@ -32,9 +32,8 @@ import org.unicase.model.task.TaskPackage;
  * <!-- end-user-doc -->
  * @generated
  */
-public class ActionItemItemProvider extends AnnotationItemProvider implements
-		IEditingDomainItemProvider, IStructuredItemContentProvider,
-		ITreeItemContentProvider, IItemLabelProvider, IItemPropertySource {
+public class ActionItemItemProvider extends AnnotationItemProvider implements IEditingDomainItemProvider,
+		IStructuredItemContentProvider, ITreeItemContentProvider, IItemLabelProvider, IItemPropertySource {
 	/**
 	 * This constructs an instance from a factory and a notifier. <!--
 	 * begin-user-doc --> <!-- end-user-doc -->
@@ -76,15 +75,12 @@ public class ActionItemItemProvider extends AnnotationItemProvider implements
 	 * @generated
 	 */
 	protected void addContainingWorkpackagePropertyDescriptor(Object object) {
-		itemPropertyDescriptors.add(createItemPropertyDescriptor(
-				((ComposeableAdapterFactory) adapterFactory)
-						.getRootAdapterFactory(), getResourceLocator(),
-				getString("_UI_WorkItem_containingWorkpackage_feature"),
-				getString("_UI_PropertyDescriptor_description",
-						"_UI_WorkItem_containingWorkpackage_feature",
-						"_UI_WorkItem_type"),
-				TaskPackage.Literals.WORK_ITEM__CONTAINING_WORKPACKAGE, true,
-				false, false, null, null, null));
+		itemPropertyDescriptors
+				.add(createItemPropertyDescriptor(((ComposeableAdapterFactory) adapterFactory).getRootAdapterFactory(),
+						getResourceLocator(), getString("_UI_WorkItem_containingWorkpackage_feature"), getString(
+								"_UI_PropertyDescriptor_description", "_UI_WorkItem_containingWorkpackage_feature",
+								"_UI_WorkItem_type"), TaskPackage.Literals.WORK_ITEM__CONTAINING_WORKPACKAGE, true, false, false,
+						null, null, null));
 	}
 
 	/**
@@ -94,15 +90,10 @@ public class ActionItemItemProvider extends AnnotationItemProvider implements
 	 * @generated
 	 */
 	protected void addPredecessorsPropertyDescriptor(Object object) {
-		itemPropertyDescriptors.add(createItemPropertyDescriptor(
-				((ComposeableAdapterFactory) adapterFactory)
-						.getRootAdapterFactory(), getResourceLocator(),
-				getString("_UI_WorkItem_predecessors_feature"), getString(
-						"_UI_PropertyDescriptor_description",
-						"_UI_WorkItem_predecessors_feature",
-						"_UI_WorkItem_type"),
-				TaskPackage.Literals.WORK_ITEM__PREDECESSORS, true, false,
-				true, null, null, null));
+		itemPropertyDescriptors.add(createItemPropertyDescriptor(((ComposeableAdapterFactory) adapterFactory)
+				.getRootAdapterFactory(), getResourceLocator(), getString("_UI_WorkItem_predecessors_feature"), getString(
+				"_UI_PropertyDescriptor_description", "_UI_WorkItem_predecessors_feature", "_UI_WorkItem_type"),
+				TaskPackage.Literals.WORK_ITEM__PREDECESSORS, true, false, true, null, null, null));
 	}
 
 	/**
@@ -112,16 +103,10 @@ public class ActionItemItemProvider extends AnnotationItemProvider implements
 	 * @generated
 	 */
 	protected void addSuccessorsPropertyDescriptor(Object object) {
-		itemPropertyDescriptors
-				.add(createItemPropertyDescriptor(
-						((ComposeableAdapterFactory) adapterFactory)
-								.getRootAdapterFactory(), getResourceLocator(),
-						getString("_UI_WorkItem_successors_feature"),
-						getString("_UI_PropertyDescriptor_description",
-								"_UI_WorkItem_successors_feature",
-								"_UI_WorkItem_type"),
-						TaskPackage.Literals.WORK_ITEM__SUCCESSORS, true,
-						false, true, null, null, null));
+		itemPropertyDescriptors.add(createItemPropertyDescriptor(((ComposeableAdapterFactory) adapterFactory)
+				.getRootAdapterFactory(), getResourceLocator(), getString("_UI_WorkItem_successors_feature"), getString(
+				"_UI_PropertyDescriptor_description", "_UI_WorkItem_successors_feature", "_UI_WorkItem_type"),
+				TaskPackage.Literals.WORK_ITEM__SUCCESSORS, true, false, true, null, null, null));
 	}
 
 	/**
@@ -131,14 +116,10 @@ public class ActionItemItemProvider extends AnnotationItemProvider implements
 	 * @generated
 	 */
 	protected void addAssigneePropertyDescriptor(Object object) {
-		itemPropertyDescriptors.add(createItemPropertyDescriptor(
-				((ComposeableAdapterFactory) adapterFactory)
-						.getRootAdapterFactory(), getResourceLocator(),
-				getString("_UI_WorkItem_assignee_feature"), getString(
-						"_UI_PropertyDescriptor_description",
-						"_UI_WorkItem_assignee_feature", "_UI_WorkItem_type"),
-				TaskPackage.Literals.WORK_ITEM__ASSIGNEE, true, false, true,
-				null, null, null));
+		itemPropertyDescriptors.add(createItemPropertyDescriptor(((ComposeableAdapterFactory) adapterFactory)
+				.getRootAdapterFactory(), getResourceLocator(), getString("_UI_WorkItem_assignee_feature"), getString(
+				"_UI_PropertyDescriptor_description", "_UI_WorkItem_assignee_feature", "_UI_WorkItem_type"),
+				TaskPackage.Literals.WORK_ITEM__ASSIGNEE, true, false, true, null, null, null));
 	}
 
 	/**
@@ -148,15 +129,10 @@ public class ActionItemItemProvider extends AnnotationItemProvider implements
 	 * @generated
 	 */
 	protected void addParticipantsPropertyDescriptor(Object object) {
-		itemPropertyDescriptors.add(createItemPropertyDescriptor(
-				((ComposeableAdapterFactory) adapterFactory)
-						.getRootAdapterFactory(), getResourceLocator(),
-				getString("_UI_WorkItem_participants_feature"), getString(
-						"_UI_PropertyDescriptor_description",
-						"_UI_WorkItem_participants_feature",
-						"_UI_WorkItem_type"),
-				TaskPackage.Literals.WORK_ITEM__PARTICIPANTS, true, false,
-				true, null, null, null));
+		itemPropertyDescriptors.add(createItemPropertyDescriptor(((ComposeableAdapterFactory) adapterFactory)
+				.getRootAdapterFactory(), getResourceLocator(), getString("_UI_WorkItem_participants_feature"), getString(
+				"_UI_PropertyDescriptor_description", "_UI_WorkItem_participants_feature", "_UI_WorkItem_type"),
+				TaskPackage.Literals.WORK_ITEM__PARTICIPANTS, true, false, true, null, null, null));
 	}
 
 	/**
@@ -166,14 +142,11 @@ public class ActionItemItemProvider extends AnnotationItemProvider implements
 	 * @generated
 	 */
 	protected void addDueDatePropertyDescriptor(Object object) {
-		itemPropertyDescriptors.add(createItemPropertyDescriptor(
-				((ComposeableAdapterFactory) adapterFactory)
-						.getRootAdapterFactory(), getResourceLocator(),
-				getString("_UI_WorkItem_dueDate_feature"), getString(
-						"_UI_PropertyDescriptor_description",
-						"_UI_WorkItem_dueDate_feature", "_UI_WorkItem_type"),
-				TaskPackage.Literals.WORK_ITEM__DUE_DATE, true, false, false,
-				ItemPropertyDescriptor.GENERIC_VALUE_IMAGE, null, null));
+		itemPropertyDescriptors.add(createItemPropertyDescriptor(((ComposeableAdapterFactory) adapterFactory)
+				.getRootAdapterFactory(), getResourceLocator(), getString("_UI_WorkItem_dueDate_feature"), getString(
+				"_UI_PropertyDescriptor_description", "_UI_WorkItem_dueDate_feature", "_UI_WorkItem_type"),
+				TaskPackage.Literals.WORK_ITEM__DUE_DATE, true, false, false, ItemPropertyDescriptor.GENERIC_VALUE_IMAGE, null,
+				null));
 	}
 
 	/**
@@ -183,14 +156,11 @@ public class ActionItemItemProvider extends AnnotationItemProvider implements
 	 * @generated
 	 */
 	protected void addDonePropertyDescriptor(Object object) {
-		itemPropertyDescriptors.add(createItemPropertyDescriptor(
-				((ComposeableAdapterFactory) adapterFactory)
-						.getRootAdapterFactory(), getResourceLocator(),
-				getString("_UI_ActionItem_done_feature"), getString(
-						"_UI_PropertyDescriptor_description",
-						"_UI_ActionItem_done_feature", "_UI_ActionItem_type"),
-				TaskPackage.Literals.ACTION_ITEM__DONE, true, false, false,
-				ItemPropertyDescriptor.BOOLEAN_VALUE_IMAGE, null, null));
+		itemPropertyDescriptors.add(createItemPropertyDescriptor(((ComposeableAdapterFactory) adapterFactory)
+				.getRootAdapterFactory(), getResourceLocator(), getString("_UI_ActionItem_done_feature"), getString(
+				"_UI_PropertyDescriptor_description", "_UI_ActionItem_done_feature", "_UI_ActionItem_type"),
+				TaskPackage.Literals.ACTION_ITEM__DONE, true, false, false, ItemPropertyDescriptor.BOOLEAN_VALUE_IMAGE, null,
+				null));
 	}
 
 	/**
@@ -200,15 +170,11 @@ public class ActionItemItemProvider extends AnnotationItemProvider implements
 	 * @generated
 	 */
 	protected void addEstimatePropertyDescriptor(Object object) {
-		itemPropertyDescriptors.add(createItemPropertyDescriptor(
-				((ComposeableAdapterFactory) adapterFactory)
-						.getRootAdapterFactory(), getResourceLocator(),
-				getString("_UI_ActionItem_estimate_feature"), getString(
-						"_UI_PropertyDescriptor_description",
-						"_UI_ActionItem_estimate_feature",
-						"_UI_ActionItem_type"),
-				TaskPackage.Literals.ACTION_ITEM__ESTIMATE, true, false, false,
-				ItemPropertyDescriptor.INTEGRAL_VALUE_IMAGE, null, null));
+		itemPropertyDescriptors.add(createItemPropertyDescriptor(((ComposeableAdapterFactory) adapterFactory)
+				.getRootAdapterFactory(), getResourceLocator(), getString("_UI_ActionItem_estimate_feature"), getString(
+				"_UI_PropertyDescriptor_description", "_UI_ActionItem_estimate_feature", "_UI_ActionItem_type"),
+				TaskPackage.Literals.ACTION_ITEM__ESTIMATE, true, false, false, ItemPropertyDescriptor.INTEGRAL_VALUE_IMAGE,
+				null, null));
 	}
 
 	/**
@@ -218,15 +184,11 @@ public class ActionItemItemProvider extends AnnotationItemProvider implements
 	 * @generated
 	 */
 	protected void addActivityPropertyDescriptor(Object object) {
-		itemPropertyDescriptors.add(createItemPropertyDescriptor(
-				((ComposeableAdapterFactory) adapterFactory)
-						.getRootAdapterFactory(), getResourceLocator(),
-				getString("_UI_ActionItem_activity_feature"), getString(
-						"_UI_PropertyDescriptor_description",
-						"_UI_ActionItem_activity_feature",
-						"_UI_ActionItem_type"),
-				TaskPackage.Literals.ACTION_ITEM__ACTIVITY, true, false, false,
-				ItemPropertyDescriptor.GENERIC_VALUE_IMAGE, null, null));
+		itemPropertyDescriptors.add(createItemPropertyDescriptor(((ComposeableAdapterFactory) adapterFactory)
+				.getRootAdapterFactory(), getResourceLocator(), getString("_UI_ActionItem_activity_feature"), getString(
+				"_UI_PropertyDescriptor_description", "_UI_ActionItem_activity_feature", "_UI_ActionItem_type"),
+				TaskPackage.Literals.ACTION_ITEM__ACTIVITY, true, false, false, ItemPropertyDescriptor.GENERIC_VALUE_IMAGE, null,
+				null));
 	}
 
 	/**
@@ -237,8 +199,7 @@ public class ActionItemItemProvider extends AnnotationItemProvider implements
 	 */
 	@Override
 	public Object getImage(Object object) {
-		return overlayImage(object, getResourceLocator().getImage(
-				"full/obj16/ActionItem"));
+		return overlayImage(object, getResourceLocator().getImage("full/obj16/ActionItem"));
 	}
 
 	/**
@@ -270,8 +231,7 @@ public class ActionItemItemProvider extends AnnotationItemProvider implements
 		case TaskPackage.ACTION_ITEM__DONE:
 		case TaskPackage.ACTION_ITEM__ESTIMATE:
 		case TaskPackage.ACTION_ITEM__ACTIVITY:
-			fireNotifyChanged(new ViewerNotification(notification, notification
-					.getNotifier(), false, true));
+			fireNotifyChanged(new ViewerNotification(notification, notification.getNotifier(), false, true));
 			return;
 		}
 		super.notifyChanged(notification);
@@ -285,8 +245,7 @@ public class ActionItemItemProvider extends AnnotationItemProvider implements
 	 * @generated
 	 */
 	@Override
-	protected void collectNewChildDescriptors(
-			Collection<Object> newChildDescriptors, Object object) {
+	protected void collectNewChildDescriptors(Collection<Object> newChildDescriptors, Object object) {
 		super.collectNewChildDescriptors(newChildDescriptors, object);
 	}
 

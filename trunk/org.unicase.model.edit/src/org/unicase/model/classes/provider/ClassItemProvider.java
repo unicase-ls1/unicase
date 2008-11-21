@@ -29,9 +29,8 @@ import org.unicase.model.classes.ClassesPackage;
  * end-user-doc -->
  * @generated
  */
-public class ClassItemProvider extends PackageElementItemProvider implements
-		IEditingDomainItemProvider, IStructuredItemContentProvider,
-		ITreeItemContentProvider, IItemLabelProvider, IItemPropertySource {
+public class ClassItemProvider extends PackageElementItemProvider implements IEditingDomainItemProvider,
+		IStructuredItemContentProvider, ITreeItemContentProvider, IItemLabelProvider, IItemPropertySource {
 	/**
 	 * This constructs an instance from a factory and a notifier. <!--
 	 * begin-user-doc --> <!-- end-user-doc -->
@@ -70,15 +69,10 @@ public class ClassItemProvider extends PackageElementItemProvider implements
 	 * @generated
 	 */
 	protected void addParticipatedUseCasesPropertyDescriptor(Object object) {
-		itemPropertyDescriptors.add(createItemPropertyDescriptor(
-				((ComposeableAdapterFactory) adapterFactory)
-						.getRootAdapterFactory(), getResourceLocator(),
-				getString("_UI_Class_participatedUseCases_feature"), getString(
-						"_UI_PropertyDescriptor_description",
-						"_UI_Class_participatedUseCases_feature",
-						"_UI_Class_type"),
-				ClassesPackage.Literals.CLASS__PARTICIPATED_USE_CASES, true,
-				false, true, null, null, null));
+		itemPropertyDescriptors.add(createItemPropertyDescriptor(((ComposeableAdapterFactory) adapterFactory)
+				.getRootAdapterFactory(), getResourceLocator(), getString("_UI_Class_participatedUseCases_feature"), getString(
+				"_UI_PropertyDescriptor_description", "_UI_Class_participatedUseCases_feature", "_UI_Class_type"),
+				ClassesPackage.Literals.CLASS__PARTICIPATED_USE_CASES, true, false, true, null, null, null));
 	}
 
 	/**
@@ -88,14 +82,10 @@ public class ClassItemProvider extends PackageElementItemProvider implements
 	 * @generated
 	 */
 	protected void addSuperClassesPropertyDescriptor(Object object) {
-		itemPropertyDescriptors.add(createItemPropertyDescriptor(
-				((ComposeableAdapterFactory) adapterFactory)
-						.getRootAdapterFactory(), getResourceLocator(),
-				getString("_UI_Class_superClasses_feature"), getString(
-						"_UI_PropertyDescriptor_description",
-						"_UI_Class_superClasses_feature", "_UI_Class_type"),
-				ClassesPackage.Literals.CLASS__SUPER_CLASSES, true, false,
-				true, null, null, null));
+		itemPropertyDescriptors.add(createItemPropertyDescriptor(((ComposeableAdapterFactory) adapterFactory)
+				.getRootAdapterFactory(), getResourceLocator(), getString("_UI_Class_superClasses_feature"), getString(
+				"_UI_PropertyDescriptor_description", "_UI_Class_superClasses_feature", "_UI_Class_type"),
+				ClassesPackage.Literals.CLASS__SUPER_CLASSES, true, false, true, null, null, null));
 	}
 
 	/**
@@ -105,14 +95,10 @@ public class ClassItemProvider extends PackageElementItemProvider implements
 	 * @generated
 	 */
 	protected void addSubClassesPropertyDescriptor(Object object) {
-		itemPropertyDescriptors.add(createItemPropertyDescriptor(
-				((ComposeableAdapterFactory) adapterFactory)
-						.getRootAdapterFactory(), getResourceLocator(),
-				getString("_UI_Class_subClasses_feature"), getString(
-						"_UI_PropertyDescriptor_description",
-						"_UI_Class_subClasses_feature", "_UI_Class_type"),
-				ClassesPackage.Literals.CLASS__SUB_CLASSES, true, false, true,
-				null, null, null));
+		itemPropertyDescriptors.add(createItemPropertyDescriptor(((ComposeableAdapterFactory) adapterFactory)
+				.getRootAdapterFactory(), getResourceLocator(), getString("_UI_Class_subClasses_feature"), getString(
+				"_UI_PropertyDescriptor_description", "_UI_Class_subClasses_feature", "_UI_Class_type"),
+				ClassesPackage.Literals.CLASS__SUB_CLASSES, true, false, true, null, null, null));
 	}
 
 	/**
@@ -121,15 +107,10 @@ public class ClassItemProvider extends PackageElementItemProvider implements
 	 * @generated
 	 */
 	protected void addIncomingAssociationsPropertyDescriptor(Object object) {
-		itemPropertyDescriptors.add(createItemPropertyDescriptor(
-				((ComposeableAdapterFactory) adapterFactory)
-						.getRootAdapterFactory(), getResourceLocator(),
-				getString("_UI_Class_incomingAssociations_feature"), getString(
-						"_UI_PropertyDescriptor_description",
-						"_UI_Class_incomingAssociations_feature",
-						"_UI_Class_type"),
-				ClassesPackage.Literals.CLASS__INCOMING_ASSOCIATIONS, true,
-				false, true, null, null, null));
+		itemPropertyDescriptors.add(createItemPropertyDescriptor(((ComposeableAdapterFactory) adapterFactory)
+				.getRootAdapterFactory(), getResourceLocator(), getString("_UI_Class_incomingAssociations_feature"), getString(
+				"_UI_PropertyDescriptor_description", "_UI_Class_incomingAssociations_feature", "_UI_Class_type"),
+				ClassesPackage.Literals.CLASS__INCOMING_ASSOCIATIONS, true, false, true, null, null, null));
 	}
 
 	/**
@@ -138,15 +119,10 @@ public class ClassItemProvider extends PackageElementItemProvider implements
 	 * @generated
 	 */
 	protected void addOutgoingAssociationsPropertyDescriptor(Object object) {
-		itemPropertyDescriptors.add(createItemPropertyDescriptor(
-				((ComposeableAdapterFactory) adapterFactory)
-						.getRootAdapterFactory(), getResourceLocator(),
-				getString("_UI_Class_outgoingAssociations_feature"), getString(
-						"_UI_PropertyDescriptor_description",
-						"_UI_Class_outgoingAssociations_feature",
-						"_UI_Class_type"),
-				ClassesPackage.Literals.CLASS__OUTGOING_ASSOCIATIONS, true,
-				false, true, null, null, null));
+		itemPropertyDescriptors.add(createItemPropertyDescriptor(((ComposeableAdapterFactory) adapterFactory)
+				.getRootAdapterFactory(), getResourceLocator(), getString("_UI_Class_outgoingAssociations_feature"), getString(
+				"_UI_PropertyDescriptor_description", "_UI_Class_outgoingAssociations_feature", "_UI_Class_type"),
+				ClassesPackage.Literals.CLASS__OUTGOING_ASSOCIATIONS, true, false, true, null, null, null));
 	}
 
 	/**
@@ -156,14 +132,10 @@ public class ClassItemProvider extends PackageElementItemProvider implements
 	 * @generated
 	 */
 	protected void addAttributesPropertyDescriptor(Object object) {
-		itemPropertyDescriptors.add(createItemPropertyDescriptor(
-				((ComposeableAdapterFactory) adapterFactory)
-						.getRootAdapterFactory(), getResourceLocator(),
-				getString("_UI_Class_attributes_feature"), getString(
-						"_UI_PropertyDescriptor_description",
-						"_UI_Class_attributes_feature", "_UI_Class_type"),
-				ClassesPackage.Literals.CLASS__ATTRIBUTES, true, false, false,
-				null, null, null));
+		itemPropertyDescriptors.add(createItemPropertyDescriptor(((ComposeableAdapterFactory) adapterFactory)
+				.getRootAdapterFactory(), getResourceLocator(), getString("_UI_Class_attributes_feature"), getString(
+				"_UI_PropertyDescriptor_description", "_UI_Class_attributes_feature", "_UI_Class_type"),
+				ClassesPackage.Literals.CLASS__ATTRIBUTES, true, false, false, null, null, null));
 	}
 
 	/**
@@ -173,14 +145,10 @@ public class ClassItemProvider extends PackageElementItemProvider implements
 	 * @generated
 	 */
 	protected void addMethodsPropertyDescriptor(Object object) {
-		itemPropertyDescriptors.add(createItemPropertyDescriptor(
-				((ComposeableAdapterFactory) adapterFactory)
-						.getRootAdapterFactory(), getResourceLocator(),
-				getString("_UI_Class_methods_feature"), getString(
-						"_UI_PropertyDescriptor_description",
-						"_UI_Class_methods_feature", "_UI_Class_type"),
-				ClassesPackage.Literals.CLASS__METHODS, true, false, false,
-				null, null, null));
+		itemPropertyDescriptors.add(createItemPropertyDescriptor(((ComposeableAdapterFactory) adapterFactory)
+				.getRootAdapterFactory(), getResourceLocator(), getString("_UI_Class_methods_feature"), getString(
+				"_UI_PropertyDescriptor_description", "_UI_Class_methods_feature", "_UI_Class_type"),
+				ClassesPackage.Literals.CLASS__METHODS, true, false, false, null, null, null));
 	}
 
 	/**
@@ -192,8 +160,7 @@ public class ClassItemProvider extends PackageElementItemProvider implements
 	 * @generated
 	 */
 	@Override
-	public Collection<? extends EStructuralFeature> getChildrenFeatures(
-			Object object) {
+	public Collection<? extends EStructuralFeature> getChildrenFeatures(Object object) {
 		if (childrenFeatures == null) {
 			super.getChildrenFeatures(object);
 			childrenFeatures.add(ClassesPackage.Literals.CLASS__ATTRIBUTES);
@@ -222,8 +189,7 @@ public class ClassItemProvider extends PackageElementItemProvider implements
 	 */
 	@Override
 	public Object getImage(Object object) {
-		return overlayImage(object, getResourceLocator().getImage(
-				"full/obj16/Class"));
+		return overlayImage(object, getResourceLocator().getImage("full/obj16/Class"));
 	}
 
 	/**
@@ -249,12 +215,10 @@ public class ClassItemProvider extends PackageElementItemProvider implements
 	public void notifyChanged(Notification notification) {
 		updateChildren(notification);
 
-		switch (notification
-				.getFeatureID(org.unicase.model.classes.Class.class)) {
+		switch (notification.getFeatureID(org.unicase.model.classes.Class.class)) {
 		case ClassesPackage.CLASS__ATTRIBUTES:
 		case ClassesPackage.CLASS__METHODS:
-			fireNotifyChanged(new ViewerNotification(notification, notification
-					.getNotifier(), true, false));
+			fireNotifyChanged(new ViewerNotification(notification, notification.getNotifier(), true, false));
 			return;
 		}
 		super.notifyChanged(notification);
@@ -268,17 +232,14 @@ public class ClassItemProvider extends PackageElementItemProvider implements
 	 * @generated
 	 */
 	@Override
-	protected void collectNewChildDescriptors(
-			Collection<Object> newChildDescriptors, Object object) {
+	protected void collectNewChildDescriptors(Collection<Object> newChildDescriptors, Object object) {
 		super.collectNewChildDescriptors(newChildDescriptors, object);
 
-		newChildDescriptors.add(createChildParameter(
-				ClassesPackage.Literals.CLASS__ATTRIBUTES,
-				ClassesFactory.eINSTANCE.createAttribute()));
+		newChildDescriptors.add(createChildParameter(ClassesPackage.Literals.CLASS__ATTRIBUTES, ClassesFactory.eINSTANCE
+				.createAttribute()));
 
-		newChildDescriptors.add(createChildParameter(
-				ClassesPackage.Literals.CLASS__METHODS,
-				ClassesFactory.eINSTANCE.createMethod()));
+		newChildDescriptors.add(createChildParameter(ClassesPackage.Literals.CLASS__METHODS, ClassesFactory.eINSTANCE
+				.createMethod()));
 	}
 
 }
