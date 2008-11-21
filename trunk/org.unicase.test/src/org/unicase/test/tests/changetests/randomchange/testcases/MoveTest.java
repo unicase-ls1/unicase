@@ -8,6 +8,7 @@ import org.eclipse.emf.common.util.EList;
 import org.eclipse.emf.ecore.EClass;
 import org.eclipse.emf.ecore.EObject;
 import org.eclipse.emf.ecore.EReference;
+import org.eclipse.emf.ecore.util.EcoreUtil;
 import org.eclipse.emf.transaction.RecordingCommand;
 import org.eclipse.emf.transaction.TransactionalEditingDomain;
 import org.unicase.model.ModelElement;
@@ -58,11 +59,17 @@ public class MoveTest extends RandomChangeTestCase {
 				List<ModelElement> moveableMEs = getTestProject()
 						.getAllModelElementsbyClass(refType,
 								new BasicEList<ModelElement>());
+				//to be sure....
+				moveableMEs.remove(me);
 				if (moveableMEs.size() == 0) {
 					return;
 				}
 
-				ModelElement toBeMovedME = moveableMEs.get(0);
+				int size = moveableMEs.size();
+				ModelElement toBeMovedME = moveableMEs.get(size == 1 ? 0 : getRandom().nextInt(size - 1));
+				while(EcoreUtil.isAncestor(toBeMovedME, me)){
+					toBeMovedME = moveableMEs.get(size == 1 ? 0 : getRandom().nextInt(size - 1));
+				}
 
 				Object object = me.eGet(ref);
 				if(ref.isMany()){

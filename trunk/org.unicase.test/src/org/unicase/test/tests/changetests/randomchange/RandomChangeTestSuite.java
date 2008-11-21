@@ -164,13 +164,23 @@ public class RandomChangeTestSuite extends ChangeTestSuite {
 	@Override
 	public void endTestSuite() {
 
-		if (true) {
-			endTestSuiteChangePackageTests();
-		} else {
+		if (containsCompareTest()) {
 			endTestSuiteCompareTests();
-
+			//endTestSuiteChangePackageTests();
+		} else {
+			endTestSuiteChangePackageTests();
+			
 		}
 
+	}
+
+	private boolean containsCompareTest() {
+		for(TestCase testCase : getTestCases()){
+			if(!(testCase instanceof IChangePackageTest)){
+				return true;
+			}
+		}
+		return false;
 	}
 
 	/**

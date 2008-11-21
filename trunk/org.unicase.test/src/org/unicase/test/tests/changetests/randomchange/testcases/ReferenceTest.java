@@ -77,7 +77,14 @@ public class ReferenceTest extends RandomChangeTestCase  implements IChangePacka
 				.getAllModelElementsbyClass(refType,
 						new BasicEList<ModelElement>());
 		
-		ModelElement toBeReferencedME = refTypeMEs.get(getRandom().nextInt(refTypeMEs.size() - 1));
+		
+		//to be sure
+		refTypeMEs.remove(me);
+		if (refTypeMEs.size() == 0) {
+			return;
+		}
+		int size = refTypeMEs.size();
+		ModelElement toBeReferencedME = refTypeMEs.get(size == 1 ? 0 : getRandom().nextInt(size - 1));
 		
 		Object object = me.eGet(ref);
 		if(ref.isMany()){

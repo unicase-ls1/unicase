@@ -12,7 +12,6 @@ import java.util.Random;
 import org.eclipse.emf.common.util.URI;
 import org.eclipse.emf.ecore.EClass;
 import org.eclipse.emf.ecore.EObject;
-import org.eclipse.emf.ecore.EPackage;
 import org.eclipse.emf.ecore.resource.Resource;
 import org.eclipse.emf.ecore.resource.ResourceSet;
 import org.eclipse.emf.ecore.resource.impl.ResourceSetImpl;
@@ -109,10 +108,23 @@ public class ChangeTestHelper {
 	 * @param testSpace
 	 * @param compareSpace
 	 */
+	@SuppressWarnings("unchecked")
 	private static void prepareCompare(final ProjectSpace testSpace,
 			final ProjectSpace compareSpace) {
 		System.out.println("extracting operations from test project...");
-		List<AbstractOperation> operations = testSpace.getOperations();
+		////variant 1
+		//List<AbstractOperation> operations = testSpace.getOperations();
+		
+		////variant 2
+		//List<AbstractOperation> operations = new ArrayList<AbstractOperation>();
+		//operations.addAll(testSpace.getOperations());
+		
+		////variant 3
+		List<AbstractOperation> operations = new ArrayList<AbstractOperation>();
+		for(AbstractOperation op : testSpace.getOperations()){
+			operations.add((AbstractOperation)EcoreUtil.copy(op));
+		}
+		
 		System.out.println(operations.size() + " operatoins");
 		final ChangePackage changePackage = getChangePackage(operations, true);
 
@@ -322,14 +334,13 @@ public class ChangeTestHelper {
 
 		ModelElement me = null;
 
-		EPackage ePackage = refType.getEPackage();
 		if (refType.isAbstract() || refType.isInterface()) {
 			List<EClass> eClazz = ModelUtil.getSubclasses(refType);
 			int index = eClazz.size() == 1 ? 0 : random.nextInt(eClazz.size());
 			refType = eClazz.get(index);
 		}
 
-		EObject eObject = ePackage.getEFactoryInstance().create(refType);
+		EObject eObject = refType.getEPackage().getEFactoryInstance().create(refType);
 		if (eObject instanceof ModelElement) {
 			me = (ModelElement) eObject;
 		}
