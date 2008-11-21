@@ -56,9 +56,9 @@ public abstract class RandomChangeTestCase extends ChangeTestCase {
 	
 	
 	@Override
-	public void endTest() {
+	public void endTestCase() {
 		
-		super.endTest();
+		super.endTestCase();
 		if (!(this instanceof IChangePackageTest)) {
 			return;
 		}

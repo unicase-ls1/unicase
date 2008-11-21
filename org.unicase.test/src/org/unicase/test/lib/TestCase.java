@@ -15,7 +15,7 @@ public abstract class TestCase {
 	
 	
 	abstract public void runTest();
-	abstract public void endTest();
+	abstract public void endTestCase();
 	
 	
 }

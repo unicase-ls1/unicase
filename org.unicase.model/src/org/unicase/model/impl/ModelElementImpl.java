@@ -433,8 +433,9 @@ public abstract class ModelElementImpl extends IdentifiableElementImpl
 			return (Project) container;
 		}
 		// check if my container is a model element
-		else if (this.eContainer instanceof ModelElementImpl) {
-			seenModelElements.add(this);
+		else if (container instanceof ModelElementImpl) {
+			//seenModelElements.add(this);
+			seenModelElements.add((ModelElement) container);
 			return ((ModelElementImpl) container).getProject(seenModelElements);
 		} else {
 			throw new IllegalStateException(

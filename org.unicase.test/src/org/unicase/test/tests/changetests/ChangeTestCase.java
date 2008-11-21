@@ -48,7 +48,7 @@ public class ChangeTestCase extends TestCase {
 	
 	
 	@Override
-	public void endTest() {
+	public void endTestCase() {
 		System.out.println("Done: " + getTestName());
 	}
 
