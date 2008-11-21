@@ -217,7 +217,8 @@ public class MeetingImpl extends ModelElementImpl implements Meeting {
 		String oldLocation = location;
 		location = newLocation;
 		if (eNotificationRequired())
-			eNotify(new ENotificationImpl(this, Notification.SET, MeetingPackage.MEETING__LOCATION, oldLocation, location));
+			eNotify(new ENotificationImpl(this, Notification.SET,
+					MeetingPackage.MEETING__LOCATION, oldLocation, location));
 	}
 
 	/**
@@ -238,7 +239,8 @@ public class MeetingImpl extends ModelElementImpl implements Meeting {
 		Date oldStarttime = starttime;
 		starttime = newStarttime;
 		if (eNotificationRequired())
-			eNotify(new ENotificationImpl(this, Notification.SET, MeetingPackage.MEETING__STARTTIME, oldStarttime, starttime));
+			eNotify(new ENotificationImpl(this, Notification.SET,
+					MeetingPackage.MEETING__STARTTIME, oldStarttime, starttime));
 	}
 
 	/**
@@ -259,7 +261,8 @@ public class MeetingImpl extends ModelElementImpl implements Meeting {
 		Date oldEndtime = endtime;
 		endtime = newEndtime;
 		if (eNotificationRequired())
-			eNotify(new ENotificationImpl(this, Notification.SET, MeetingPackage.MEETING__ENDTIME, oldEndtime, endtime));
+			eNotify(new ENotificationImpl(this, Notification.SET,
+					MeetingPackage.MEETING__ENDTIME, oldEndtime, endtime));
 	}
 
 	/**
@@ -273,7 +276,8 @@ public class MeetingImpl extends ModelElementImpl implements Meeting {
 			facilitator = (User) eResolveProxy(oldFacilitator);
 			if (facilitator != oldFacilitator) {
 				if (eNotificationRequired())
-					eNotify(new ENotificationImpl(this, Notification.RESOLVE, MeetingPackage.MEETING__FACILITATOR,
+					eNotify(new ENotificationImpl(this, Notification.RESOLVE,
+							MeetingPackage.MEETING__FACILITATOR,
 							oldFacilitator, facilitator));
 			}
 		}
@@ -298,7 +302,8 @@ public class MeetingImpl extends ModelElementImpl implements Meeting {
 		User oldFacilitator = facilitator;
 		facilitator = newFacilitator;
 		if (eNotificationRequired())
-			eNotify(new ENotificationImpl(this, Notification.SET, MeetingPackage.MEETING__FACILITATOR, oldFacilitator,
+			eNotify(new ENotificationImpl(this, Notification.SET,
+					MeetingPackage.MEETING__FACILITATOR, oldFacilitator,
 					facilitator));
 	}
 
@@ -313,7 +318,8 @@ public class MeetingImpl extends ModelElementImpl implements Meeting {
 			minutetaker = (User) eResolveProxy(oldMinutetaker);
 			if (minutetaker != oldMinutetaker) {
 				if (eNotificationRequired())
-					eNotify(new ENotificationImpl(this, Notification.RESOLVE, MeetingPackage.MEETING__MINUTETAKER,
+					eNotify(new ENotificationImpl(this, Notification.RESOLVE,
+							MeetingPackage.MEETING__MINUTETAKER,
 							oldMinutetaker, minutetaker));
 			}
 		}
@@ -338,7 +344,8 @@ public class MeetingImpl extends ModelElementImpl implements Meeting {
 		User oldMinutetaker = minutetaker;
 		minutetaker = newMinutetaker;
 		if (eNotificationRequired())
-			eNotify(new ENotificationImpl(this, Notification.SET, MeetingPackage.MEETING__MINUTETAKER, oldMinutetaker,
+			eNotify(new ENotificationImpl(this, Notification.SET,
+					MeetingPackage.MEETING__MINUTETAKER, oldMinutetaker,
 					minutetaker));
 	}
 
@@ -353,7 +360,8 @@ public class MeetingImpl extends ModelElementImpl implements Meeting {
 			timekeeper = (User) eResolveProxy(oldTimekeeper);
 			if (timekeeper != oldTimekeeper) {
 				if (eNotificationRequired())
-					eNotify(new ENotificationImpl(this, Notification.RESOLVE, MeetingPackage.MEETING__TIMEKEEPER, oldTimekeeper,
+					eNotify(new ENotificationImpl(this, Notification.RESOLVE,
+							MeetingPackage.MEETING__TIMEKEEPER, oldTimekeeper,
 							timekeeper));
 			}
 		}
@@ -378,7 +386,9 @@ public class MeetingImpl extends ModelElementImpl implements Meeting {
 		User oldTimekeeper = timekeeper;
 		timekeeper = newTimekeeper;
 		if (eNotificationRequired())
-			eNotify(new ENotificationImpl(this, Notification.SET, MeetingPackage.MEETING__TIMEKEEPER, oldTimekeeper, timekeeper));
+			eNotify(new ENotificationImpl(this, Notification.SET,
+					MeetingPackage.MEETING__TIMEKEEPER, oldTimekeeper,
+					timekeeper));
 	}
 
 	/**
@@ -388,7 +398,8 @@ public class MeetingImpl extends ModelElementImpl implements Meeting {
 	 */
 	public EList<OrgUnit> getParticipants() {
 		if (participants == null) {
-			participants = new EObjectResolvingEList<OrgUnit>(OrgUnit.class, this, MeetingPackage.MEETING__PARTICIPANTS);
+			participants = new EObjectResolvingEList<OrgUnit>(OrgUnit.class,
+					this, MeetingPackage.MEETING__PARTICIPANTS);
 		}
 		return participants;
 	}
@@ -400,7 +411,8 @@ public class MeetingImpl extends ModelElementImpl implements Meeting {
 	 */
 	public EList<MeetingSection> getSections() {
 		if (sections == null) {
-			sections = new EObjectContainmentEList.Resolving<MeetingSection>(MeetingSection.class, this,
+			sections = new EObjectContainmentEList.Resolving<MeetingSection>(
+					MeetingSection.class, this,
 					MeetingPackage.MEETING__SECTIONS);
 		}
 		return sections;
@@ -412,12 +424,14 @@ public class MeetingImpl extends ModelElementImpl implements Meeting {
 	 * @generated
 	 */
 	public IssueMeetingSection getIdentifiedIssuesSection() {
-		if (identifiedIssuesSection != null && identifiedIssuesSection.eIsProxy()) {
+		if (identifiedIssuesSection != null
+				&& identifiedIssuesSection.eIsProxy()) {
 			InternalEObject oldIdentifiedIssuesSection = (InternalEObject) identifiedIssuesSection;
 			identifiedIssuesSection = (IssueMeetingSection) eResolveProxy(oldIdentifiedIssuesSection);
 			if (identifiedIssuesSection != oldIdentifiedIssuesSection) {
 				if (eNotificationRequired())
-					eNotify(new ENotificationImpl(this, Notification.RESOLVE, MeetingPackage.MEETING__IDENTIFIED_ISSUES_SECTION,
+					eNotify(new ENotificationImpl(this, Notification.RESOLVE,
+							MeetingPackage.MEETING__IDENTIFIED_ISSUES_SECTION,
 							oldIdentifiedIssuesSection, identifiedIssuesSection));
 			}
 		}
@@ -438,11 +452,13 @@ public class MeetingImpl extends ModelElementImpl implements Meeting {
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
-	public void setIdentifiedIssuesSection(IssueMeetingSection newIdentifiedIssuesSection) {
+	public void setIdentifiedIssuesSection(
+			IssueMeetingSection newIdentifiedIssuesSection) {
 		IssueMeetingSection oldIdentifiedIssuesSection = identifiedIssuesSection;
 		identifiedIssuesSection = newIdentifiedIssuesSection;
 		if (eNotificationRequired())
-			eNotify(new ENotificationImpl(this, Notification.SET, MeetingPackage.MEETING__IDENTIFIED_ISSUES_SECTION,
+			eNotify(new ENotificationImpl(this, Notification.SET,
+					MeetingPackage.MEETING__IDENTIFIED_ISSUES_SECTION,
 					oldIdentifiedIssuesSection, identifiedIssuesSection));
 	}
 
@@ -452,13 +468,17 @@ public class MeetingImpl extends ModelElementImpl implements Meeting {
 	 * @generated
 	 */
 	public WorkItemMeetingSection getIdentifiedWorkItemsSection() {
-		if (identifiedWorkItemsSection != null && identifiedWorkItemsSection.eIsProxy()) {
+		if (identifiedWorkItemsSection != null
+				&& identifiedWorkItemsSection.eIsProxy()) {
 			InternalEObject oldIdentifiedWorkItemsSection = (InternalEObject) identifiedWorkItemsSection;
 			identifiedWorkItemsSection = (WorkItemMeetingSection) eResolveProxy(oldIdentifiedWorkItemsSection);
 			if (identifiedWorkItemsSection != oldIdentifiedWorkItemsSection) {
 				if (eNotificationRequired())
-					eNotify(new ENotificationImpl(this, Notification.RESOLVE,
-							MeetingPackage.MEETING__IDENTIFIED_WORK_ITEMS_SECTION, oldIdentifiedWorkItemsSection,
+					eNotify(new ENotificationImpl(
+							this,
+							Notification.RESOLVE,
+							MeetingPackage.MEETING__IDENTIFIED_WORK_ITEMS_SECTION,
+							oldIdentifiedWorkItemsSection,
 							identifiedWorkItemsSection));
 			}
 		}
@@ -479,11 +499,13 @@ public class MeetingImpl extends ModelElementImpl implements Meeting {
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
-	public void setIdentifiedWorkItemsSection(WorkItemMeetingSection newIdentifiedWorkItemsSection) {
+	public void setIdentifiedWorkItemsSection(
+			WorkItemMeetingSection newIdentifiedWorkItemsSection) {
 		WorkItemMeetingSection oldIdentifiedWorkItemsSection = identifiedWorkItemsSection;
 		identifiedWorkItemsSection = newIdentifiedWorkItemsSection;
 		if (eNotificationRequired())
-			eNotify(new ENotificationImpl(this, Notification.SET, MeetingPackage.MEETING__IDENTIFIED_WORK_ITEMS_SECTION,
+			eNotify(new ENotificationImpl(this, Notification.SET,
+					MeetingPackage.MEETING__IDENTIFIED_WORK_ITEMS_SECTION,
 					oldIdentifiedWorkItemsSection, identifiedWorkItemsSection));
 	}
 
@@ -493,10 +515,12 @@ public class MeetingImpl extends ModelElementImpl implements Meeting {
 	 * @generated
 	 */
 	@Override
-	public NotificationChain eInverseRemove(InternalEObject otherEnd, int featureID, NotificationChain msgs) {
+	public NotificationChain eInverseRemove(InternalEObject otherEnd,
+			int featureID, NotificationChain msgs) {
 		switch (featureID) {
 		case MeetingPackage.MEETING__SECTIONS:
-			return ((InternalEList<?>) getSections()).basicRemove(otherEnd, msgs);
+			return ((InternalEList<?>) getSections()).basicRemove(otherEnd,
+					msgs);
 		}
 		return super.eInverseRemove(otherEnd, featureID, msgs);
 	}
@@ -576,7 +600,8 @@ public class MeetingImpl extends ModelElementImpl implements Meeting {
 			return;
 		case MeetingPackage.MEETING__SECTIONS:
 			getSections().clear();
-			getSections().addAll((Collection<? extends MeetingSection>) newValue);
+			getSections().addAll(
+					(Collection<? extends MeetingSection>) newValue);
 			return;
 		case MeetingPackage.MEETING__IDENTIFIED_ISSUES_SECTION:
 			setIdentifiedIssuesSection((IssueMeetingSection) newValue);
@@ -639,11 +664,14 @@ public class MeetingImpl extends ModelElementImpl implements Meeting {
 	public boolean eIsSet(int featureID) {
 		switch (featureID) {
 		case MeetingPackage.MEETING__LOCATION:
-			return LOCATION_EDEFAULT == null ? location != null : !LOCATION_EDEFAULT.equals(location);
+			return LOCATION_EDEFAULT == null ? location != null
+					: !LOCATION_EDEFAULT.equals(location);
 		case MeetingPackage.MEETING__STARTTIME:
-			return STARTTIME_EDEFAULT == null ? starttime != null : !STARTTIME_EDEFAULT.equals(starttime);
+			return STARTTIME_EDEFAULT == null ? starttime != null
+					: !STARTTIME_EDEFAULT.equals(starttime);
 		case MeetingPackage.MEETING__ENDTIME:
-			return ENDTIME_EDEFAULT == null ? endtime != null : !ENDTIME_EDEFAULT.equals(endtime);
+			return ENDTIME_EDEFAULT == null ? endtime != null
+					: !ENDTIME_EDEFAULT.equals(endtime);
 		case MeetingPackage.MEETING__FACILITATOR:
 			return facilitator != null;
 		case MeetingPackage.MEETING__MINUTETAKER:

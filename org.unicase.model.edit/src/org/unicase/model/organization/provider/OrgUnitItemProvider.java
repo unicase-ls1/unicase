@@ -31,8 +31,9 @@ import org.unicase.model.provider.ModelElementItemProvider;
  * --> <!-- end-user-doc -->
  * @generated
  */
-public class OrgUnitItemProvider extends ModelElementItemProvider implements IEditingDomainItemProvider,
-		IStructuredItemContentProvider, ITreeItemContentProvider, IItemLabelProvider, IItemPropertySource {
+public class OrgUnitItemProvider extends ModelElementItemProvider implements
+		IEditingDomainItemProvider, IStructuredItemContentProvider,
+		ITreeItemContentProvider, IItemLabelProvider, IItemPropertySource {
 	/**
 	 * This constructs an instance from a factory and a notifier. <!--
 	 * begin-user-doc --> <!-- end-user-doc -->
@@ -67,10 +68,15 @@ public class OrgUnitItemProvider extends ModelElementItemProvider implements IEd
 	 * @generated
 	 */
 	protected void addGroupMembershipsPropertyDescriptor(Object object) {
-		itemPropertyDescriptors.add(createItemPropertyDescriptor(((ComposeableAdapterFactory) adapterFactory)
-				.getRootAdapterFactory(), getResourceLocator(), getString("_UI_OrgUnit_groupMemberships_feature"), getString(
-				"_UI_PropertyDescriptor_description", "_UI_OrgUnit_groupMemberships_feature", "_UI_OrgUnit_type"),
-				OrganizationPackage.Literals.ORG_UNIT__GROUP_MEMBERSHIPS, true, false, true, null, null, null));
+		itemPropertyDescriptors.add(createItemPropertyDescriptor(
+				((ComposeableAdapterFactory) adapterFactory)
+						.getRootAdapterFactory(), getResourceLocator(),
+				getString("_UI_OrgUnit_groupMemberships_feature"), getString(
+						"_UI_PropertyDescriptor_description",
+						"_UI_OrgUnit_groupMemberships_feature",
+						"_UI_OrgUnit_type"),
+				OrganizationPackage.Literals.ORG_UNIT__GROUP_MEMBERSHIPS, true,
+				false, true, null, null, null));
 	}
 
 	/**
@@ -80,10 +86,14 @@ public class OrgUnitItemProvider extends ModelElementItemProvider implements IEd
 	 * @generated
 	 */
 	protected void addAssignmentsPropertyDescriptor(Object object) {
-		itemPropertyDescriptors.add(createItemPropertyDescriptor(((ComposeableAdapterFactory) adapterFactory)
-				.getRootAdapterFactory(), getResourceLocator(), getString("_UI_OrgUnit_assignments_feature"), getString(
-				"_UI_PropertyDescriptor_description", "_UI_OrgUnit_assignments_feature", "_UI_OrgUnit_type"),
-				OrganizationPackage.Literals.ORG_UNIT__ASSIGNMENTS, true, false, true, null, null, null));
+		itemPropertyDescriptors.add(createItemPropertyDescriptor(
+				((ComposeableAdapterFactory) adapterFactory)
+						.getRootAdapterFactory(), getResourceLocator(),
+				getString("_UI_OrgUnit_assignments_feature"), getString(
+						"_UI_PropertyDescriptor_description",
+						"_UI_OrgUnit_assignments_feature", "_UI_OrgUnit_type"),
+				OrganizationPackage.Literals.ORG_UNIT__ASSIGNMENTS, true,
+				false, true, null, null, null));
 	}
 
 	/**
@@ -93,7 +103,8 @@ public class OrgUnitItemProvider extends ModelElementItemProvider implements IEd
 	 */
 	@Override
 	public Object getImage(Object object) {
-		return overlayImage(object, getResourceLocator().getImage("full/obj16/OrgUnit"));
+		return overlayImage(object, getResourceLocator().getImage(
+				"full/obj16/OrgUnit"));
 	}
 
 	/**
@@ -121,7 +132,8 @@ public class OrgUnitItemProvider extends ModelElementItemProvider implements IEd
 
 		switch (notification.getFeatureID(OrgUnit.class)) {
 		case OrganizationPackage.ORG_UNIT__AC_ORG_ID:
-			fireNotifyChanged(new ViewerNotification(notification, notification.getNotifier(), false, true));
+			fireNotifyChanged(new ViewerNotification(notification, notification
+					.getNotifier(), false, true));
 			return;
 		}
 		super.notifyChanged(notification);
@@ -135,7 +147,8 @@ public class OrgUnitItemProvider extends ModelElementItemProvider implements IEd
 	 * @generated
 	 */
 	@Override
-	protected void collectNewChildDescriptors(Collection<Object> newChildDescriptors, Object object) {
+	protected void collectNewChildDescriptors(
+			Collection<Object> newChildDescriptors, Object object) {
 		super.collectNewChildDescriptors(newChildDescriptors, object);
 	}
 

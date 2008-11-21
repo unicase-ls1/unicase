@@ -44,8 +44,9 @@ import org.unicase.model.task.TaskFactory;
  * <!-- begin-user-doc --> <!-- end-user-doc -->
  * @generated
  */
-public class ProjectItemProvider extends ItemProviderAdapter implements IEditingDomainItemProvider,
-		IStructuredItemContentProvider, ITreeItemContentProvider, IItemLabelProvider, IItemPropertySource {
+public class ProjectItemProvider extends ItemProviderAdapter implements
+		IEditingDomainItemProvider, IStructuredItemContentProvider,
+		ITreeItemContentProvider, IItemLabelProvider, IItemPropertySource {
 	/**
 	 * This constructs an instance from a factory and a notifier. <!--
 	 * begin-user-doc --> <!-- end-user-doc -->
@@ -79,7 +80,8 @@ public class ProjectItemProvider extends ItemProviderAdapter implements IEditing
 	 * @generated
 	 */
 	@Override
-	public Collection<? extends EStructuralFeature> getChildrenFeatures(Object object) {
+	public Collection<? extends EStructuralFeature> getChildrenFeatures(
+			Object object) {
 		if (childrenFeatures == null) {
 			super.getChildrenFeatures(object);
 			childrenFeatures.add(ModelPackage.Literals.PROJECT__MODEL_ELEMENTS);
@@ -106,7 +108,8 @@ public class ProjectItemProvider extends ItemProviderAdapter implements IEditing
 	 */
 	@Override
 	public Object getImage(Object object) {
-		return overlayImage(object, getResourceLocator().getImage("full/obj16/Project"));
+		return overlayImage(object, getResourceLocator().getImage(
+				"full/obj16/Project"));
 	}
 
 	/**
@@ -133,7 +136,8 @@ public class ProjectItemProvider extends ItemProviderAdapter implements IEditing
 
 		switch (notification.getFeatureID(Project.class)) {
 		case ModelPackage.PROJECT__MODEL_ELEMENTS:
-			fireNotifyChanged(new ViewerNotification(notification, notification.getNotifier(), true, false));
+			fireNotifyChanged(new ViewerNotification(notification, notification
+					.getNotifier(), true, false));
 			return;
 		}
 		super.notifyChanged(notification);
@@ -147,137 +151,181 @@ public class ProjectItemProvider extends ItemProviderAdapter implements IEditing
 	 * @generated
 	 */
 	@Override
-	protected void collectNewChildDescriptors(Collection<Object> newChildDescriptors, Object object) {
+	protected void collectNewChildDescriptors(
+			Collection<Object> newChildDescriptors, Object object) {
 		super.collectNewChildDescriptors(newChildDescriptors, object);
 
-		newChildDescriptors.add(createChildParameter(ModelPackage.Literals.PROJECT__MODEL_ELEMENTS, OrganizationFactory.eINSTANCE
-				.createUser()));
+		newChildDescriptors.add(createChildParameter(
+				ModelPackage.Literals.PROJECT__MODEL_ELEMENTS,
+				OrganizationFactory.eINSTANCE.createUser()));
 
-		newChildDescriptors.add(createChildParameter(ModelPackage.Literals.PROJECT__MODEL_ELEMENTS, OrganizationFactory.eINSTANCE
-				.createGroup()));
+		newChildDescriptors.add(createChildParameter(
+				ModelPackage.Literals.PROJECT__MODEL_ELEMENTS,
+				OrganizationFactory.eINSTANCE.createGroup()));
 
-		newChildDescriptors.add(createChildParameter(ModelPackage.Literals.PROJECT__MODEL_ELEMENTS, TaskFactory.eINSTANCE
-				.createActionItem()));
+		newChildDescriptors.add(createChildParameter(
+				ModelPackage.Literals.PROJECT__MODEL_ELEMENTS,
+				TaskFactory.eINSTANCE.createActionItem()));
 
-		newChildDescriptors.add(createChildParameter(ModelPackage.Literals.PROJECT__MODEL_ELEMENTS, TaskFactory.eINSTANCE
-				.createWorkPackage()));
+		newChildDescriptors.add(createChildParameter(
+				ModelPackage.Literals.PROJECT__MODEL_ELEMENTS,
+				TaskFactory.eINSTANCE.createWorkPackage()));
 
-		newChildDescriptors.add(createChildParameter(ModelPackage.Literals.PROJECT__MODEL_ELEMENTS, TaskFactory.eINSTANCE
-				.createMilestone()));
+		newChildDescriptors.add(createChildParameter(
+				ModelPackage.Literals.PROJECT__MODEL_ELEMENTS,
+				TaskFactory.eINSTANCE.createMilestone()));
 
-		newChildDescriptors.add(createChildParameter(ModelPackage.Literals.PROJECT__MODEL_ELEMENTS, DiagramFactory.eINSTANCE
-				.createMEDiagram()));
+		newChildDescriptors.add(createChildParameter(
+				ModelPackage.Literals.PROJECT__MODEL_ELEMENTS,
+				DiagramFactory.eINSTANCE.createMEDiagram()));
 
-		newChildDescriptors.add(createChildParameter(ModelPackage.Literals.PROJECT__MODEL_ELEMENTS, ClassesFactory.eINSTANCE
-				.createClass()));
+		newChildDescriptors.add(createChildParameter(
+				ModelPackage.Literals.PROJECT__MODEL_ELEMENTS,
+				ClassesFactory.eINSTANCE.createClass()));
 
-		newChildDescriptors.add(createChildParameter(ModelPackage.Literals.PROJECT__MODEL_ELEMENTS, ClassesFactory.eINSTANCE
-				.createPackage()));
+		newChildDescriptors.add(createChildParameter(
+				ModelPackage.Literals.PROJECT__MODEL_ELEMENTS,
+				ClassesFactory.eINSTANCE.createPackage()));
 
-		newChildDescriptors.add(createChildParameter(ModelPackage.Literals.PROJECT__MODEL_ELEMENTS, ClassesFactory.eINSTANCE
-				.createAssociation()));
+		newChildDescriptors.add(createChildParameter(
+				ModelPackage.Literals.PROJECT__MODEL_ELEMENTS,
+				ClassesFactory.eINSTANCE.createAssociation()));
 
-		newChildDescriptors.add(createChildParameter(ModelPackage.Literals.PROJECT__MODEL_ELEMENTS, ClassesFactory.eINSTANCE
-				.createAttribute()));
+		newChildDescriptors.add(createChildParameter(
+				ModelPackage.Literals.PROJECT__MODEL_ELEMENTS,
+				ClassesFactory.eINSTANCE.createAttribute()));
 
-		newChildDescriptors.add(createChildParameter(ModelPackage.Literals.PROJECT__MODEL_ELEMENTS, ClassesFactory.eINSTANCE
-				.createMethod()));
+		newChildDescriptors.add(createChildParameter(
+				ModelPackage.Literals.PROJECT__MODEL_ELEMENTS,
+				ClassesFactory.eINSTANCE.createMethod()));
 
-		newChildDescriptors.add(createChildParameter(ModelPackage.Literals.PROJECT__MODEL_ELEMENTS, ClassesFactory.eINSTANCE
-				.createMethodArgument()));
+		newChildDescriptors.add(createChildParameter(
+				ModelPackage.Literals.PROJECT__MODEL_ELEMENTS,
+				ClassesFactory.eINSTANCE.createMethodArgument()));
 
-		newChildDescriptors.add(createChildParameter(ModelPackage.Literals.PROJECT__MODEL_ELEMENTS, ClassesFactory.eINSTANCE
-				.createDependency()));
+		newChildDescriptors.add(createChildParameter(
+				ModelPackage.Literals.PROJECT__MODEL_ELEMENTS,
+				ClassesFactory.eINSTANCE.createDependency()));
 
-		newChildDescriptors.add(createChildParameter(ModelPackage.Literals.PROJECT__MODEL_ELEMENTS, DocumentFactory.eINSTANCE
-				.createLeafSection()));
+		newChildDescriptors.add(createChildParameter(
+				ModelPackage.Literals.PROJECT__MODEL_ELEMENTS,
+				DocumentFactory.eINSTANCE.createLeafSection()));
 
-		newChildDescriptors.add(createChildParameter(ModelPackage.Literals.PROJECT__MODEL_ELEMENTS, DocumentFactory.eINSTANCE
-				.createCompositeSection()));
+		newChildDescriptors.add(createChildParameter(
+				ModelPackage.Literals.PROJECT__MODEL_ELEMENTS,
+				DocumentFactory.eINSTANCE.createCompositeSection()));
 
-		newChildDescriptors.add(createChildParameter(ModelPackage.Literals.PROJECT__MODEL_ELEMENTS, RequirementFactory.eINSTANCE
-				.createNonFunctionalRequirement()));
+		newChildDescriptors.add(createChildParameter(
+				ModelPackage.Literals.PROJECT__MODEL_ELEMENTS,
+				RequirementFactory.eINSTANCE.createNonFunctionalRequirement()));
 
-		newChildDescriptors.add(createChildParameter(ModelPackage.Literals.PROJECT__MODEL_ELEMENTS, RequirementFactory.eINSTANCE
-				.createFunctionalRequirement()));
+		newChildDescriptors.add(createChildParameter(
+				ModelPackage.Literals.PROJECT__MODEL_ELEMENTS,
+				RequirementFactory.eINSTANCE.createFunctionalRequirement()));
 
-		newChildDescriptors.add(createChildParameter(ModelPackage.Literals.PROJECT__MODEL_ELEMENTS, RequirementFactory.eINSTANCE
-				.createUseCase()));
+		newChildDescriptors.add(createChildParameter(
+				ModelPackage.Literals.PROJECT__MODEL_ELEMENTS,
+				RequirementFactory.eINSTANCE.createUseCase()));
 
-		newChildDescriptors.add(createChildParameter(ModelPackage.Literals.PROJECT__MODEL_ELEMENTS, RequirementFactory.eINSTANCE
-				.createScenario()));
+		newChildDescriptors.add(createChildParameter(
+				ModelPackage.Literals.PROJECT__MODEL_ELEMENTS,
+				RequirementFactory.eINSTANCE.createScenario()));
 
-		newChildDescriptors.add(createChildParameter(ModelPackage.Literals.PROJECT__MODEL_ELEMENTS, RequirementFactory.eINSTANCE
-				.createActor()));
+		newChildDescriptors.add(createChildParameter(
+				ModelPackage.Literals.PROJECT__MODEL_ELEMENTS,
+				RequirementFactory.eINSTANCE.createActor()));
 
-		newChildDescriptors.add(createChildParameter(ModelPackage.Literals.PROJECT__MODEL_ELEMENTS, RequirementFactory.eINSTANCE
-				.createActorInstance()));
+		newChildDescriptors.add(createChildParameter(
+				ModelPackage.Literals.PROJECT__MODEL_ELEMENTS,
+				RequirementFactory.eINSTANCE.createActorInstance()));
 
-		newChildDescriptors.add(createChildParameter(ModelPackage.Literals.PROJECT__MODEL_ELEMENTS, RequirementFactory.eINSTANCE
-				.createStep()));
+		newChildDescriptors.add(createChildParameter(
+				ModelPackage.Literals.PROJECT__MODEL_ELEMENTS,
+				RequirementFactory.eINSTANCE.createStep()));
 
-		newChildDescriptors.add(createChildParameter(ModelPackage.Literals.PROJECT__MODEL_ELEMENTS, RequirementFactory.eINSTANCE
-				.createSystemFunction()));
+		newChildDescriptors.add(createChildParameter(
+				ModelPackage.Literals.PROJECT__MODEL_ELEMENTS,
+				RequirementFactory.eINSTANCE.createSystemFunction()));
 
-		newChildDescriptors.add(createChildParameter(ModelPackage.Literals.PROJECT__MODEL_ELEMENTS, RequirementFactory.eINSTANCE
-				.createUserTask()));
+		newChildDescriptors.add(createChildParameter(
+				ModelPackage.Literals.PROJECT__MODEL_ELEMENTS,
+				RequirementFactory.eINSTANCE.createUserTask()));
 
-		newChildDescriptors.add(createChildParameter(ModelPackage.Literals.PROJECT__MODEL_ELEMENTS, RationaleFactory.eINSTANCE
-				.createIssue()));
+		newChildDescriptors.add(createChildParameter(
+				ModelPackage.Literals.PROJECT__MODEL_ELEMENTS,
+				RationaleFactory.eINSTANCE.createIssue()));
 
-		newChildDescriptors.add(createChildParameter(ModelPackage.Literals.PROJECT__MODEL_ELEMENTS, RationaleFactory.eINSTANCE
-				.createProposal()));
+		newChildDescriptors.add(createChildParameter(
+				ModelPackage.Literals.PROJECT__MODEL_ELEMENTS,
+				RationaleFactory.eINSTANCE.createProposal()));
 
-		newChildDescriptors.add(createChildParameter(ModelPackage.Literals.PROJECT__MODEL_ELEMENTS, RationaleFactory.eINSTANCE
-				.createSolution()));
+		newChildDescriptors.add(createChildParameter(
+				ModelPackage.Literals.PROJECT__MODEL_ELEMENTS,
+				RationaleFactory.eINSTANCE.createSolution()));
 
-		newChildDescriptors.add(createChildParameter(ModelPackage.Literals.PROJECT__MODEL_ELEMENTS, RationaleFactory.eINSTANCE
-				.createCriterion()));
+		newChildDescriptors.add(createChildParameter(
+				ModelPackage.Literals.PROJECT__MODEL_ELEMENTS,
+				RationaleFactory.eINSTANCE.createCriterion()));
 
-		newChildDescriptors.add(createChildParameter(ModelPackage.Literals.PROJECT__MODEL_ELEMENTS, RationaleFactory.eINSTANCE
-				.createAssessment()));
+		newChildDescriptors.add(createChildParameter(
+				ModelPackage.Literals.PROJECT__MODEL_ELEMENTS,
+				RationaleFactory.eINSTANCE.createAssessment()));
 
-		newChildDescriptors.add(createChildParameter(ModelPackage.Literals.PROJECT__MODEL_ELEMENTS, RationaleFactory.eINSTANCE
-				.createComment()));
+		newChildDescriptors.add(createChildParameter(
+				ModelPackage.Literals.PROJECT__MODEL_ELEMENTS,
+				RationaleFactory.eINSTANCE.createComment()));
 
-		newChildDescriptors.add(createChildParameter(ModelPackage.Literals.PROJECT__MODEL_ELEMENTS, ChangeFactory.eINSTANCE
-				.createModelChangePackage()));
+		newChildDescriptors.add(createChildParameter(
+				ModelPackage.Literals.PROJECT__MODEL_ELEMENTS,
+				ChangeFactory.eINSTANCE.createModelChangePackage()));
 
-		newChildDescriptors.add(createChildParameter(ModelPackage.Literals.PROJECT__MODEL_ELEMENTS, ChangeFactory.eINSTANCE
-				.createMergingIssue()));
+		newChildDescriptors.add(createChildParameter(
+				ModelPackage.Literals.PROJECT__MODEL_ELEMENTS,
+				ChangeFactory.eINSTANCE.createMergingIssue()));
 
-		newChildDescriptors.add(createChildParameter(ModelPackage.Literals.PROJECT__MODEL_ELEMENTS, ChangeFactory.eINSTANCE
-				.createMergingProposal()));
+		newChildDescriptors.add(createChildParameter(
+				ModelPackage.Literals.PROJECT__MODEL_ELEMENTS,
+				ChangeFactory.eINSTANCE.createMergingProposal()));
 
-		newChildDescriptors.add(createChildParameter(ModelPackage.Literals.PROJECT__MODEL_ELEMENTS, ChangeFactory.eINSTANCE
-				.createMergingSolution()));
+		newChildDescriptors.add(createChildParameter(
+				ModelPackage.Literals.PROJECT__MODEL_ELEMENTS,
+				ChangeFactory.eINSTANCE.createMergingSolution()));
 
-		newChildDescriptors.add(createChildParameter(ModelPackage.Literals.PROJECT__MODEL_ELEMENTS, BugFactory.eINSTANCE
-				.createBugReport()));
+		newChildDescriptors.add(createChildParameter(
+				ModelPackage.Literals.PROJECT__MODEL_ELEMENTS,
+				BugFactory.eINSTANCE.createBugReport()));
 
-		newChildDescriptors.add(createChildParameter(ModelPackage.Literals.PROJECT__MODEL_ELEMENTS, ComponentFactory.eINSTANCE
-				.createComponent()));
+		newChildDescriptors.add(createChildParameter(
+				ModelPackage.Literals.PROJECT__MODEL_ELEMENTS,
+				ComponentFactory.eINSTANCE.createComponent()));
 
-		newChildDescriptors.add(createChildParameter(ModelPackage.Literals.PROJECT__MODEL_ELEMENTS, ComponentFactory.eINSTANCE
-				.createComponentService()));
+		newChildDescriptors.add(createChildParameter(
+				ModelPackage.Literals.PROJECT__MODEL_ELEMENTS,
+				ComponentFactory.eINSTANCE.createComponentService()));
 
-		newChildDescriptors.add(createChildParameter(ModelPackage.Literals.PROJECT__MODEL_ELEMENTS, ComponentFactory.eINSTANCE
-				.createDeploymentNode()));
+		newChildDescriptors.add(createChildParameter(
+				ModelPackage.Literals.PROJECT__MODEL_ELEMENTS,
+				ComponentFactory.eINSTANCE.createDeploymentNode()));
 
-		newChildDescriptors.add(createChildParameter(ModelPackage.Literals.PROJECT__MODEL_ELEMENTS, MeetingFactory.eINSTANCE
-				.createMeeting()));
+		newChildDescriptors.add(createChildParameter(
+				ModelPackage.Literals.PROJECT__MODEL_ELEMENTS,
+				MeetingFactory.eINSTANCE.createMeeting()));
 
-		newChildDescriptors.add(createChildParameter(ModelPackage.Literals.PROJECT__MODEL_ELEMENTS, MeetingFactory.eINSTANCE
-				.createCompositeMeetingSection()));
+		newChildDescriptors.add(createChildParameter(
+				ModelPackage.Literals.PROJECT__MODEL_ELEMENTS,
+				MeetingFactory.eINSTANCE.createCompositeMeetingSection()));
 
-		newChildDescriptors.add(createChildParameter(ModelPackage.Literals.PROJECT__MODEL_ELEMENTS, MeetingFactory.eINSTANCE
-				.createIssueMeetingSection()));
+		newChildDescriptors.add(createChildParameter(
+				ModelPackage.Literals.PROJECT__MODEL_ELEMENTS,
+				MeetingFactory.eINSTANCE.createIssueMeetingSection()));
 
-		newChildDescriptors.add(createChildParameter(ModelPackage.Literals.PROJECT__MODEL_ELEMENTS, MeetingFactory.eINSTANCE
-				.createWorkItemMeetingSection()));
+		newChildDescriptors.add(createChildParameter(
+				ModelPackage.Literals.PROJECT__MODEL_ELEMENTS,
+				MeetingFactory.eINSTANCE.createWorkItemMeetingSection()));
 
-		newChildDescriptors.add(createChildParameter(ModelPackage.Literals.PROJECT__MODEL_ELEMENTS, AttachmentFactory.eINSTANCE
-				.createUrlAttachment()));
+		newChildDescriptors.add(createChildParameter(
+				ModelPackage.Literals.PROJECT__MODEL_ELEMENTS,
+				AttachmentFactory.eINSTANCE.createUrlAttachment()));
 	}
 
 	/**
@@ -295,7 +343,8 @@ public class ProjectItemProvider extends ItemProviderAdapter implements IEditing
 	public Collection<?> getChildren(Object object) {
 		if (object instanceof Project) {
 			Project project = (Project) object;
-			Collection<ModelElement> ret = project.getModelElementsByClass(DocumentPackage.eINSTANCE.getCompositeSection(),
+			Collection<ModelElement> ret = project.getModelElementsByClass(
+					DocumentPackage.eINSTANCE.getCompositeSection(),
 					new BasicEList<ModelElement>());
 			return ret;
 

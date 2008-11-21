@@ -29,8 +29,9 @@ import org.unicase.model.provider.ModelElementItemProvider;
  * --> <!-- end-user-doc -->
  * @generated
  */
-public class PackageElementItemProvider extends ModelElementItemProvider implements IEditingDomainItemProvider,
-		IStructuredItemContentProvider, ITreeItemContentProvider, IItemLabelProvider, IItemPropertySource {
+public class PackageElementItemProvider extends ModelElementItemProvider
+		implements IEditingDomainItemProvider, IStructuredItemContentProvider,
+		ITreeItemContentProvider, IItemLabelProvider, IItemPropertySource {
 	/**
 	 * This constructs an instance from a factory and a notifier. <!--
 	 * begin-user-doc --> <!-- end-user-doc -->
@@ -66,10 +67,15 @@ public class PackageElementItemProvider extends ModelElementItemProvider impleme
 	 * @generated
 	 */
 	protected void addParentPackagePropertyDescriptor(Object object) {
-		itemPropertyDescriptors.add(createItemPropertyDescriptor(((ComposeableAdapterFactory) adapterFactory)
-				.getRootAdapterFactory(), getResourceLocator(), getString("_UI_PackageElement_parentPackage_feature"), getString(
-				"_UI_PropertyDescriptor_description", "_UI_PackageElement_parentPackage_feature", "_UI_PackageElement_type"),
-				ClassesPackage.Literals.PACKAGE_ELEMENT__PARENT_PACKAGE, true, false, false, null, null, null));
+		itemPropertyDescriptors.add(createItemPropertyDescriptor(
+				((ComposeableAdapterFactory) adapterFactory)
+						.getRootAdapterFactory(), getResourceLocator(),
+				getString("_UI_PackageElement_parentPackage_feature"),
+				getString("_UI_PropertyDescriptor_description",
+						"_UI_PackageElement_parentPackage_feature",
+						"_UI_PackageElement_type"),
+				ClassesPackage.Literals.PACKAGE_ELEMENT__PARENT_PACKAGE, true,
+				false, false, null, null, null));
 	}
 
 	/**
@@ -79,11 +85,15 @@ public class PackageElementItemProvider extends ModelElementItemProvider impleme
 	 * @generated
 	 */
 	protected void addOutgoingDependenciesPropertyDescriptor(Object object) {
-		itemPropertyDescriptors.add(createItemPropertyDescriptor(((ComposeableAdapterFactory) adapterFactory)
-				.getRootAdapterFactory(), getResourceLocator(), getString("_UI_PackageElement_outgoingDependencies_feature"),
-				getString("_UI_PropertyDescriptor_description", "_UI_PackageElement_outgoingDependencies_feature",
-						"_UI_PackageElement_type"), ClassesPackage.Literals.PACKAGE_ELEMENT__OUTGOING_DEPENDENCIES, true, false,
-				true, null, null, null));
+		itemPropertyDescriptors.add(createItemPropertyDescriptor(
+				((ComposeableAdapterFactory) adapterFactory)
+						.getRootAdapterFactory(), getResourceLocator(),
+				getString("_UI_PackageElement_outgoingDependencies_feature"),
+				getString("_UI_PropertyDescriptor_description",
+						"_UI_PackageElement_outgoingDependencies_feature",
+						"_UI_PackageElement_type"),
+				ClassesPackage.Literals.PACKAGE_ELEMENT__OUTGOING_DEPENDENCIES,
+				true, false, true, null, null, null));
 	}
 
 	/**
@@ -93,11 +103,15 @@ public class PackageElementItemProvider extends ModelElementItemProvider impleme
 	 * @generated
 	 */
 	protected void addIncomingDependenciesPropertyDescriptor(Object object) {
-		itemPropertyDescriptors.add(createItemPropertyDescriptor(((ComposeableAdapterFactory) adapterFactory)
-				.getRootAdapterFactory(), getResourceLocator(), getString("_UI_PackageElement_incomingDependencies_feature"),
-				getString("_UI_PropertyDescriptor_description", "_UI_PackageElement_incomingDependencies_feature",
-						"_UI_PackageElement_type"), ClassesPackage.Literals.PACKAGE_ELEMENT__INCOMING_DEPENDENCIES, true, false,
-				true, null, null, null));
+		itemPropertyDescriptors.add(createItemPropertyDescriptor(
+				((ComposeableAdapterFactory) adapterFactory)
+						.getRootAdapterFactory(), getResourceLocator(),
+				getString("_UI_PackageElement_incomingDependencies_feature"),
+				getString("_UI_PropertyDescriptor_description",
+						"_UI_PackageElement_incomingDependencies_feature",
+						"_UI_PackageElement_type"),
+				ClassesPackage.Literals.PACKAGE_ELEMENT__INCOMING_DEPENDENCIES,
+				true, false, true, null, null, null));
 	}
 
 	/**
@@ -133,7 +147,8 @@ public class PackageElementItemProvider extends ModelElementItemProvider impleme
 	 * @generated
 	 */
 	@Override
-	protected void collectNewChildDescriptors(Collection<Object> newChildDescriptors, Object object) {
+	protected void collectNewChildDescriptors(
+			Collection<Object> newChildDescriptors, Object object) {
 		super.collectNewChildDescriptors(newChildDescriptors, object);
 	}
 

@@ -36,8 +36,9 @@ import org.unicase.model.task.TaskPackage;
  * <!-- end-user-doc -->
  * @generated
  */
-public class IssueItemProvider extends AnnotationItemProvider implements IEditingDomainItemProvider,
-		IStructuredItemContentProvider, ITreeItemContentProvider, IItemLabelProvider, IItemPropertySource {
+public class IssueItemProvider extends AnnotationItemProvider implements
+		IEditingDomainItemProvider, IStructuredItemContentProvider,
+		ITreeItemContentProvider, IItemLabelProvider, IItemPropertySource {
 	/**
 	 * This constructs an instance from a factory and a notifier. <!--
 	 * begin-user-doc --> <!-- end-user-doc -->
@@ -80,12 +81,15 @@ public class IssueItemProvider extends AnnotationItemProvider implements IEditin
 	 * @generated
 	 */
 	protected void addContainingWorkpackagePropertyDescriptor(Object object) {
-		itemPropertyDescriptors
-				.add(createItemPropertyDescriptor(((ComposeableAdapterFactory) adapterFactory).getRootAdapterFactory(),
-						getResourceLocator(), getString("_UI_WorkItem_containingWorkpackage_feature"), getString(
-								"_UI_PropertyDescriptor_description", "_UI_WorkItem_containingWorkpackage_feature",
-								"_UI_WorkItem_type"), TaskPackage.Literals.WORK_ITEM__CONTAINING_WORKPACKAGE, true, false, false,
-						null, null, null));
+		itemPropertyDescriptors.add(createItemPropertyDescriptor(
+				((ComposeableAdapterFactory) adapterFactory)
+						.getRootAdapterFactory(), getResourceLocator(),
+				getString("_UI_WorkItem_containingWorkpackage_feature"),
+				getString("_UI_PropertyDescriptor_description",
+						"_UI_WorkItem_containingWorkpackage_feature",
+						"_UI_WorkItem_type"),
+				TaskPackage.Literals.WORK_ITEM__CONTAINING_WORKPACKAGE, true,
+				false, false, null, null, null));
 	}
 
 	/**
@@ -95,10 +99,15 @@ public class IssueItemProvider extends AnnotationItemProvider implements IEditin
 	 * @generated
 	 */
 	protected void addPredecessorsPropertyDescriptor(Object object) {
-		itemPropertyDescriptors.add(createItemPropertyDescriptor(((ComposeableAdapterFactory) adapterFactory)
-				.getRootAdapterFactory(), getResourceLocator(), getString("_UI_WorkItem_predecessors_feature"), getString(
-				"_UI_PropertyDescriptor_description", "_UI_WorkItem_predecessors_feature", "_UI_WorkItem_type"),
-				TaskPackage.Literals.WORK_ITEM__PREDECESSORS, true, false, true, null, null, null));
+		itemPropertyDescriptors.add(createItemPropertyDescriptor(
+				((ComposeableAdapterFactory) adapterFactory)
+						.getRootAdapterFactory(), getResourceLocator(),
+				getString("_UI_WorkItem_predecessors_feature"), getString(
+						"_UI_PropertyDescriptor_description",
+						"_UI_WorkItem_predecessors_feature",
+						"_UI_WorkItem_type"),
+				TaskPackage.Literals.WORK_ITEM__PREDECESSORS, true, false,
+				true, null, null, null));
 	}
 
 	/**
@@ -108,10 +117,16 @@ public class IssueItemProvider extends AnnotationItemProvider implements IEditin
 	 * @generated
 	 */
 	protected void addSuccessorsPropertyDescriptor(Object object) {
-		itemPropertyDescriptors.add(createItemPropertyDescriptor(((ComposeableAdapterFactory) adapterFactory)
-				.getRootAdapterFactory(), getResourceLocator(), getString("_UI_WorkItem_successors_feature"), getString(
-				"_UI_PropertyDescriptor_description", "_UI_WorkItem_successors_feature", "_UI_WorkItem_type"),
-				TaskPackage.Literals.WORK_ITEM__SUCCESSORS, true, false, true, null, null, null));
+		itemPropertyDescriptors
+				.add(createItemPropertyDescriptor(
+						((ComposeableAdapterFactory) adapterFactory)
+								.getRootAdapterFactory(), getResourceLocator(),
+						getString("_UI_WorkItem_successors_feature"),
+						getString("_UI_PropertyDescriptor_description",
+								"_UI_WorkItem_successors_feature",
+								"_UI_WorkItem_type"),
+						TaskPackage.Literals.WORK_ITEM__SUCCESSORS, true,
+						false, true, null, null, null));
 	}
 
 	/**
@@ -121,10 +136,14 @@ public class IssueItemProvider extends AnnotationItemProvider implements IEditin
 	 * @generated
 	 */
 	protected void addAssigneePropertyDescriptor(Object object) {
-		itemPropertyDescriptors.add(createItemPropertyDescriptor(((ComposeableAdapterFactory) adapterFactory)
-				.getRootAdapterFactory(), getResourceLocator(), getString("_UI_WorkItem_assignee_feature"), getString(
-				"_UI_PropertyDescriptor_description", "_UI_WorkItem_assignee_feature", "_UI_WorkItem_type"),
-				TaskPackage.Literals.WORK_ITEM__ASSIGNEE, true, false, true, null, null, null));
+		itemPropertyDescriptors.add(createItemPropertyDescriptor(
+				((ComposeableAdapterFactory) adapterFactory)
+						.getRootAdapterFactory(), getResourceLocator(),
+				getString("_UI_WorkItem_assignee_feature"), getString(
+						"_UI_PropertyDescriptor_description",
+						"_UI_WorkItem_assignee_feature", "_UI_WorkItem_type"),
+				TaskPackage.Literals.WORK_ITEM__ASSIGNEE, true, false, true,
+				null, null, null));
 	}
 
 	/**
@@ -134,10 +153,14 @@ public class IssueItemProvider extends AnnotationItemProvider implements IEditin
 	 * @generated
 	 */
 	protected void addCriteriaPropertyDescriptor(Object object) {
-		itemPropertyDescriptors.add(createItemPropertyDescriptor(((ComposeableAdapterFactory) adapterFactory)
-				.getRootAdapterFactory(), getResourceLocator(), getString("_UI_Issue_criteria_feature"), getString(
-				"_UI_PropertyDescriptor_description", "_UI_Issue_criteria_feature", "_UI_Issue_type"),
-				RationalePackage.Literals.ISSUE__CRITERIA, true, false, true, null, null, null));
+		itemPropertyDescriptors.add(createItemPropertyDescriptor(
+				((ComposeableAdapterFactory) adapterFactory)
+						.getRootAdapterFactory(), getResourceLocator(),
+				getString("_UI_Issue_criteria_feature"), getString(
+						"_UI_PropertyDescriptor_description",
+						"_UI_Issue_criteria_feature", "_UI_Issue_type"),
+				RationalePackage.Literals.ISSUE__CRITERIA, true, false, true,
+				null, null, null));
 	}
 
 	/**
@@ -147,11 +170,14 @@ public class IssueItemProvider extends AnnotationItemProvider implements IEditin
 	 * @generated
 	 */
 	protected void addActivityPropertyDescriptor(Object object) {
-		itemPropertyDescriptors.add(createItemPropertyDescriptor(((ComposeableAdapterFactory) adapterFactory)
-				.getRootAdapterFactory(), getResourceLocator(), getString("_UI_Issue_activity_feature"), getString(
-				"_UI_PropertyDescriptor_description", "_UI_Issue_activity_feature", "_UI_Issue_type"),
-				RationalePackage.Literals.ISSUE__ACTIVITY, true, false, false, ItemPropertyDescriptor.GENERIC_VALUE_IMAGE, null,
-				null));
+		itemPropertyDescriptors.add(createItemPropertyDescriptor(
+				((ComposeableAdapterFactory) adapterFactory)
+						.getRootAdapterFactory(), getResourceLocator(),
+				getString("_UI_Issue_activity_feature"), getString(
+						"_UI_PropertyDescriptor_description",
+						"_UI_Issue_activity_feature", "_UI_Issue_type"),
+				RationalePackage.Literals.ISSUE__ACTIVITY, true, false, false,
+				ItemPropertyDescriptor.GENERIC_VALUE_IMAGE, null, null));
 	}
 
 	/**
@@ -161,10 +187,15 @@ public class IssueItemProvider extends AnnotationItemProvider implements IEditin
 	 * @generated
 	 */
 	protected void addParticipantsPropertyDescriptor(Object object) {
-		itemPropertyDescriptors.add(createItemPropertyDescriptor(((ComposeableAdapterFactory) adapterFactory)
-				.getRootAdapterFactory(), getResourceLocator(), getString("_UI_WorkItem_participants_feature"), getString(
-				"_UI_PropertyDescriptor_description", "_UI_WorkItem_participants_feature", "_UI_WorkItem_type"),
-				TaskPackage.Literals.WORK_ITEM__PARTICIPANTS, true, false, true, null, null, null));
+		itemPropertyDescriptors.add(createItemPropertyDescriptor(
+				((ComposeableAdapterFactory) adapterFactory)
+						.getRootAdapterFactory(), getResourceLocator(),
+				getString("_UI_WorkItem_participants_feature"), getString(
+						"_UI_PropertyDescriptor_description",
+						"_UI_WorkItem_participants_feature",
+						"_UI_WorkItem_type"),
+				TaskPackage.Literals.WORK_ITEM__PARTICIPANTS, true, false,
+				true, null, null, null));
 	}
 
 	/**
@@ -174,11 +205,14 @@ public class IssueItemProvider extends AnnotationItemProvider implements IEditin
 	 * @generated
 	 */
 	protected void addDueDatePropertyDescriptor(Object object) {
-		itemPropertyDescriptors.add(createItemPropertyDescriptor(((ComposeableAdapterFactory) adapterFactory)
-				.getRootAdapterFactory(), getResourceLocator(), getString("_UI_WorkItem_dueDate_feature"), getString(
-				"_UI_PropertyDescriptor_description", "_UI_WorkItem_dueDate_feature", "_UI_WorkItem_type"),
-				TaskPackage.Literals.WORK_ITEM__DUE_DATE, true, false, false, ItemPropertyDescriptor.GENERIC_VALUE_IMAGE, null,
-				null));
+		itemPropertyDescriptors.add(createItemPropertyDescriptor(
+				((ComposeableAdapterFactory) adapterFactory)
+						.getRootAdapterFactory(), getResourceLocator(),
+				getString("_UI_WorkItem_dueDate_feature"), getString(
+						"_UI_PropertyDescriptor_description",
+						"_UI_WorkItem_dueDate_feature", "_UI_WorkItem_type"),
+				TaskPackage.Literals.WORK_ITEM__DUE_DATE, true, false, false,
+				ItemPropertyDescriptor.GENERIC_VALUE_IMAGE, null, null));
 	}
 
 	/**
@@ -188,10 +222,14 @@ public class IssueItemProvider extends AnnotationItemProvider implements IEditin
 	 * @generated
 	 */
 	protected void addProposalsPropertyDescriptor(Object object) {
-		itemPropertyDescriptors.add(createItemPropertyDescriptor(((ComposeableAdapterFactory) adapterFactory)
-				.getRootAdapterFactory(), getResourceLocator(), getString("_UI_Issue_proposals_feature"), getString(
-				"_UI_PropertyDescriptor_description", "_UI_Issue_proposals_feature", "_UI_Issue_type"),
-				RationalePackage.Literals.ISSUE__PROPOSALS, true, false, false, null, null, null));
+		itemPropertyDescriptors.add(createItemPropertyDescriptor(
+				((ComposeableAdapterFactory) adapterFactory)
+						.getRootAdapterFactory(), getResourceLocator(),
+				getString("_UI_Issue_proposals_feature"), getString(
+						"_UI_PropertyDescriptor_description",
+						"_UI_Issue_proposals_feature", "_UI_Issue_type"),
+				RationalePackage.Literals.ISSUE__PROPOSALS, true, false, false,
+				null, null, null));
 	}
 
 	/**
@@ -201,10 +239,14 @@ public class IssueItemProvider extends AnnotationItemProvider implements IEditin
 	 * @generated
 	 */
 	protected void addSolutionPropertyDescriptor(Object object) {
-		itemPropertyDescriptors.add(createItemPropertyDescriptor(((ComposeableAdapterFactory) adapterFactory)
-				.getRootAdapterFactory(), getResourceLocator(), getString("_UI_Issue_solution_feature"), getString(
-				"_UI_PropertyDescriptor_description", "_UI_Issue_solution_feature", "_UI_Issue_type"),
-				RationalePackage.Literals.ISSUE__SOLUTION, true, false, false, null, null, null));
+		itemPropertyDescriptors.add(createItemPropertyDescriptor(
+				((ComposeableAdapterFactory) adapterFactory)
+						.getRootAdapterFactory(), getResourceLocator(),
+				getString("_UI_Issue_solution_feature"), getString(
+						"_UI_PropertyDescriptor_description",
+						"_UI_Issue_solution_feature", "_UI_Issue_type"),
+				RationalePackage.Literals.ISSUE__SOLUTION, true, false, false,
+				null, null, null));
 	}
 
 	/**
@@ -215,7 +257,8 @@ public class IssueItemProvider extends AnnotationItemProvider implements IEditin
 	 * @generated
 	 */
 	@Override
-	public Collection<? extends EStructuralFeature> getChildrenFeatures(Object object) {
+	public Collection<? extends EStructuralFeature> getChildrenFeatures(
+			Object object) {
 		if (childrenFeatures == null) {
 			super.getChildrenFeatures(object);
 			childrenFeatures.add(RationalePackage.Literals.ISSUE__PROPOSALS);
@@ -247,10 +290,12 @@ public class IssueItemProvider extends AnnotationItemProvider implements IEditin
 		if (object instanceof Issue) {
 			boolean checked = ((Issue) object).isChecked();
 			if (checked) {
-				return overlayImage(object, getResourceLocator().getImage("full/obj16/IssueClosed"));
+				return overlayImage(object, getResourceLocator().getImage(
+						"full/obj16/IssueClosed"));
 			}
 		}
-		return overlayImage(object, getResourceLocator().getImage("full/obj16/Issue"));
+		return overlayImage(object, getResourceLocator().getImage(
+				"full/obj16/Issue"));
 	}
 
 	/**
@@ -280,11 +325,13 @@ public class IssueItemProvider extends AnnotationItemProvider implements IEditin
 		case RationalePackage.ISSUE__CHECKED:
 		case RationalePackage.ISSUE__DUE_DATE:
 		case RationalePackage.ISSUE__ACTIVITY:
-			fireNotifyChanged(new ViewerNotification(notification, notification.getNotifier(), false, true));
+			fireNotifyChanged(new ViewerNotification(notification, notification
+					.getNotifier(), false, true));
 			return;
 		case RationalePackage.ISSUE__PROPOSALS:
 		case RationalePackage.ISSUE__SOLUTION:
-			fireNotifyChanged(new ViewerNotification(notification, notification.getNotifier(), true, false));
+			fireNotifyChanged(new ViewerNotification(notification, notification
+					.getNotifier(), true, false));
 			return;
 		}
 		super.notifyChanged(notification);
@@ -298,20 +345,25 @@ public class IssueItemProvider extends AnnotationItemProvider implements IEditin
 	 * @generated
 	 */
 	@Override
-	protected void collectNewChildDescriptors(Collection<Object> newChildDescriptors, Object object) {
+	protected void collectNewChildDescriptors(
+			Collection<Object> newChildDescriptors, Object object) {
 		super.collectNewChildDescriptors(newChildDescriptors, object);
 
-		newChildDescriptors.add(createChildParameter(RationalePackage.Literals.ISSUE__PROPOSALS, RationaleFactory.eINSTANCE
-				.createProposal()));
+		newChildDescriptors.add(createChildParameter(
+				RationalePackage.Literals.ISSUE__PROPOSALS,
+				RationaleFactory.eINSTANCE.createProposal()));
 
-		newChildDescriptors.add(createChildParameter(RationalePackage.Literals.ISSUE__PROPOSALS, ChangeFactory.eINSTANCE
-				.createMergingProposal()));
+		newChildDescriptors.add(createChildParameter(
+				RationalePackage.Literals.ISSUE__PROPOSALS,
+				ChangeFactory.eINSTANCE.createMergingProposal()));
 
-		newChildDescriptors.add(createChildParameter(RationalePackage.Literals.ISSUE__SOLUTION, RationaleFactory.eINSTANCE
-				.createSolution()));
+		newChildDescriptors.add(createChildParameter(
+				RationalePackage.Literals.ISSUE__SOLUTION,
+				RationaleFactory.eINSTANCE.createSolution()));
 
-		newChildDescriptors.add(createChildParameter(RationalePackage.Literals.ISSUE__SOLUTION, ChangeFactory.eINSTANCE
-				.createMergingSolution()));
+		newChildDescriptors.add(createChildParameter(
+				RationalePackage.Literals.ISSUE__SOLUTION,
+				ChangeFactory.eINSTANCE.createMergingSolution()));
 	}
 
 	/**

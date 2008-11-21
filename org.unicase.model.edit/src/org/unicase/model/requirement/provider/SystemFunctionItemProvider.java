@@ -32,8 +32,9 @@ import org.unicase.model.requirement.SystemFunction;
  * <!-- end-user-doc -->
  * @generated
  */
-public class SystemFunctionItemProvider extends ModelElementItemProvider implements IEditingDomainItemProvider,
-		IStructuredItemContentProvider, ITreeItemContentProvider, IItemLabelProvider, IItemPropertySource {
+public class SystemFunctionItemProvider extends ModelElementItemProvider
+		implements IEditingDomainItemProvider, IStructuredItemContentProvider,
+		ITreeItemContentProvider, IItemLabelProvider, IItemPropertySource {
 	/**
 	 * This constructs an instance from a factory and a notifier.
 	 * <!-- begin-user-doc -->
@@ -69,11 +70,16 @@ public class SystemFunctionItemProvider extends ModelElementItemProvider impleme
 	 * @generated
 	 */
 	protected void addInputPropertyDescriptor(Object object) {
-		itemPropertyDescriptors.add(createItemPropertyDescriptor(((ComposeableAdapterFactory) adapterFactory)
-				.getRootAdapterFactory(), getResourceLocator(), getString("_UI_SystemFunction_input_feature"), getString(
-				"_UI_PropertyDescriptor_description", "_UI_SystemFunction_input_feature", "_UI_SystemFunction_type"),
-				RequirementPackage.Literals.SYSTEM_FUNCTION__INPUT, true, false, false,
-				ItemPropertyDescriptor.GENERIC_VALUE_IMAGE, null, null));
+		itemPropertyDescriptors.add(createItemPropertyDescriptor(
+				((ComposeableAdapterFactory) adapterFactory)
+						.getRootAdapterFactory(), getResourceLocator(),
+				getString("_UI_SystemFunction_input_feature"), getString(
+						"_UI_PropertyDescriptor_description",
+						"_UI_SystemFunction_input_feature",
+						"_UI_SystemFunction_type"),
+				RequirementPackage.Literals.SYSTEM_FUNCTION__INPUT, true,
+				false, false, ItemPropertyDescriptor.GENERIC_VALUE_IMAGE, null,
+				null));
 	}
 
 	/**
@@ -83,11 +89,16 @@ public class SystemFunctionItemProvider extends ModelElementItemProvider impleme
 	 * @generated
 	 */
 	protected void addOutputPropertyDescriptor(Object object) {
-		itemPropertyDescriptors.add(createItemPropertyDescriptor(((ComposeableAdapterFactory) adapterFactory)
-				.getRootAdapterFactory(), getResourceLocator(), getString("_UI_SystemFunction_output_feature"), getString(
-				"_UI_PropertyDescriptor_description", "_UI_SystemFunction_output_feature", "_UI_SystemFunction_type"),
-				RequirementPackage.Literals.SYSTEM_FUNCTION__OUTPUT, true, false, false,
-				ItemPropertyDescriptor.GENERIC_VALUE_IMAGE, null, null));
+		itemPropertyDescriptors.add(createItemPropertyDescriptor(
+				((ComposeableAdapterFactory) adapterFactory)
+						.getRootAdapterFactory(), getResourceLocator(),
+				getString("_UI_SystemFunction_output_feature"), getString(
+						"_UI_PropertyDescriptor_description",
+						"_UI_SystemFunction_output_feature",
+						"_UI_SystemFunction_type"),
+				RequirementPackage.Literals.SYSTEM_FUNCTION__OUTPUT, true,
+				false, false, ItemPropertyDescriptor.GENERIC_VALUE_IMAGE, null,
+				null));
 	}
 
 	/**
@@ -97,11 +108,16 @@ public class SystemFunctionItemProvider extends ModelElementItemProvider impleme
 	 * @generated
 	 */
 	protected void addExceptionPropertyDescriptor(Object object) {
-		itemPropertyDescriptors.add(createItemPropertyDescriptor(((ComposeableAdapterFactory) adapterFactory)
-				.getRootAdapterFactory(), getResourceLocator(), getString("_UI_SystemFunction_exception_feature"), getString(
-				"_UI_PropertyDescriptor_description", "_UI_SystemFunction_exception_feature", "_UI_SystemFunction_type"),
-				RequirementPackage.Literals.SYSTEM_FUNCTION__EXCEPTION, true, false, false,
-				ItemPropertyDescriptor.GENERIC_VALUE_IMAGE, null, null));
+		itemPropertyDescriptors.add(createItemPropertyDescriptor(
+				((ComposeableAdapterFactory) adapterFactory)
+						.getRootAdapterFactory(), getResourceLocator(),
+				getString("_UI_SystemFunction_exception_feature"), getString(
+						"_UI_PropertyDescriptor_description",
+						"_UI_SystemFunction_exception_feature",
+						"_UI_SystemFunction_type"),
+				RequirementPackage.Literals.SYSTEM_FUNCTION__EXCEPTION, true,
+				false, false, ItemPropertyDescriptor.GENERIC_VALUE_IMAGE, null,
+				null));
 	}
 
 	/**
@@ -112,7 +128,8 @@ public class SystemFunctionItemProvider extends ModelElementItemProvider impleme
 	 */
 	@Override
 	public Object getImage(Object object) {
-		return overlayImage(object, getResourceLocator().getImage("full/obj16/SystemFunction"));
+		return overlayImage(object, getResourceLocator().getImage(
+				"full/obj16/SystemFunction"));
 	}
 
 	/**
@@ -124,8 +141,8 @@ public class SystemFunctionItemProvider extends ModelElementItemProvider impleme
 	@Override
 	public String getText(Object object) {
 		String label = ((SystemFunction) object).getName();
-		return label == null || label.length() == 0 ? getString("_UI_SystemFunction_type") : getString("_UI_SystemFunction_type")
-				+ " " + label;
+		return label == null || label.length() == 0 ? getString("_UI_SystemFunction_type")
+				: getString("_UI_SystemFunction_type") + " " + label;
 	}
 
 	/**
@@ -143,7 +160,8 @@ public class SystemFunctionItemProvider extends ModelElementItemProvider impleme
 		case RequirementPackage.SYSTEM_FUNCTION__INPUT:
 		case RequirementPackage.SYSTEM_FUNCTION__OUTPUT:
 		case RequirementPackage.SYSTEM_FUNCTION__EXCEPTION:
-			fireNotifyChanged(new ViewerNotification(notification, notification.getNotifier(), false, true));
+			fireNotifyChanged(new ViewerNotification(notification, notification
+					.getNotifier(), false, true));
 			return;
 		}
 		super.notifyChanged(notification);
@@ -157,7 +175,8 @@ public class SystemFunctionItemProvider extends ModelElementItemProvider impleme
 	 * @generated
 	 */
 	@Override
-	protected void collectNewChildDescriptors(Collection<Object> newChildDescriptors, Object object) {
+	protected void collectNewChildDescriptors(
+			Collection<Object> newChildDescriptors, Object object) {
 		super.collectNewChildDescriptors(newChildDescriptors, object);
 	}
 

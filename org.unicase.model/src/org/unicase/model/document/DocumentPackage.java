@@ -53,7 +53,8 @@ public interface DocumentPackage extends EPackage {
 	 * end-user-doc -->
 	 * @generated
 	 */
-	DocumentPackage eINSTANCE = org.unicase.model.document.impl.DocumentPackageImpl.init();
+	DocumentPackage eINSTANCE = org.unicase.model.document.impl.DocumentPackageImpl
+			.init();
 
 	/**
 	 * The meta object id for the '{@link org.unicase.model.document.Section <em>Section</em>}' class.
@@ -533,13 +534,15 @@ public interface DocumentPackage extends EPackage {
 		 * end-user-doc -->
 		 * @generated
 		 */
-		EReference LEAF_SECTION__MODEL_ELEMENTS = eINSTANCE.getLeafSection_ModelElements();
+		EReference LEAF_SECTION__MODEL_ELEMENTS = eINSTANCE
+				.getLeafSection_ModelElements();
 		/**
 		 * The meta object literal for the '<em><b>Referenced Model Elements</b></em>' reference list feature.
 		 * <!-- begin-user-doc --> <!-- end-user-doc -->
 		 * @generated
 		 */
-		EReference LEAF_SECTION__REFERENCED_MODEL_ELEMENTS = eINSTANCE.getLeafSection_ReferencedModelElements();
+		EReference LEAF_SECTION__REFERENCED_MODEL_ELEMENTS = eINSTANCE
+				.getLeafSection_ReferencedModelElements();
 		/**
 		 * The meta object literal for the '{@link org.unicase.model.document.impl.CompositeSectionImpl <em>Composite Section</em>}' class.
 		 * <!-- begin-user-doc --> <!--
@@ -555,7 +558,8 @@ public interface DocumentPackage extends EPackage {
 		 * end-user-doc -->
 		 * @generated
 		 */
-		EReference COMPOSITE_SECTION__SUBSECTIONS = eINSTANCE.getCompositeSection_Subsections();
+		EReference COMPOSITE_SECTION__SUBSECTIONS = eINSTANCE
+				.getCompositeSection_Subsections();
 		/**
 		 * The meta object literal for the '{@link org.unicase.model.document.Section <em>Section</em>}' class.
 		 * <!-- begin-user-doc --> <!-- end-user-doc -->

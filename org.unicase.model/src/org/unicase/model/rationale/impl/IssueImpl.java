@@ -256,9 +256,10 @@ public class IssueImpl extends AnnotationImpl implements Issue {
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
-	public NotificationChain basicSetContainingWorkpackage(WorkPackage newContainingWorkpackage, NotificationChain msgs) {
-		msgs = eBasicSetContainer((InternalEObject) newContainingWorkpackage, RationalePackage.ISSUE__CONTAINING_WORKPACKAGE,
-				msgs);
+	public NotificationChain basicSetContainingWorkpackage(
+			WorkPackage newContainingWorkpackage, NotificationChain msgs) {
+		msgs = eBasicSetContainer((InternalEObject) newContainingWorkpackage,
+				RationalePackage.ISSUE__CONTAINING_WORKPACKAGE, msgs);
 		return msgs;
 	}
 
@@ -271,18 +272,22 @@ public class IssueImpl extends AnnotationImpl implements Issue {
 		if (newContainingWorkpackage != eInternalContainer()
 				|| (eContainerFeatureID != RationalePackage.ISSUE__CONTAINING_WORKPACKAGE && newContainingWorkpackage != null)) {
 			if (EcoreUtil.isAncestor(this, newContainingWorkpackage))
-				throw new IllegalArgumentException("Recursive containment not allowed for " + toString());
+				throw new IllegalArgumentException(
+						"Recursive containment not allowed for " + toString());
 			NotificationChain msgs = null;
 			if (eInternalContainer() != null)
 				msgs = eBasicRemoveFromContainer(msgs);
 			if (newContainingWorkpackage != null)
-				msgs = ((InternalEObject) newContainingWorkpackage).eInverseAdd(this,
-						TaskPackage.WORK_PACKAGE__CONTAINED_WORK_ITEMS, WorkPackage.class, msgs);
+				msgs = ((InternalEObject) newContainingWorkpackage)
+						.eInverseAdd(this,
+								TaskPackage.WORK_PACKAGE__CONTAINED_WORK_ITEMS,
+								WorkPackage.class, msgs);
 			msgs = basicSetContainingWorkpackage(newContainingWorkpackage, msgs);
 			if (msgs != null)
 				msgs.dispatch();
 		} else if (eNotificationRequired())
-			eNotify(new ENotificationImpl(this, Notification.SET, RationalePackage.ISSUE__CONTAINING_WORKPACKAGE,
+			eNotify(new ENotificationImpl(this, Notification.SET,
+					RationalePackage.ISSUE__CONTAINING_WORKPACKAGE,
 					newContainingWorkpackage, newContainingWorkpackage));
 	}
 
@@ -293,7 +298,8 @@ public class IssueImpl extends AnnotationImpl implements Issue {
 	 */
 	public EList<ModelChangePackage> getAssociatedChangePackages() {
 		if (associatedChangePackages == null) {
-			associatedChangePackages = new EObjectResolvingEList<ModelChangePackage>(ModelChangePackage.class, this,
+			associatedChangePackages = new EObjectResolvingEList<ModelChangePackage>(
+					ModelChangePackage.class, this,
 					RationalePackage.ISSUE__ASSOCIATED_CHANGE_PACKAGES);
 		}
 		return associatedChangePackages;
@@ -306,8 +312,9 @@ public class IssueImpl extends AnnotationImpl implements Issue {
 	 */
 	public EList<WorkItem> getPredecessors() {
 		if (predecessors == null) {
-			predecessors = new EObjectWithInverseResolvingEList.ManyInverse<WorkItem>(WorkItem.class, this,
-					RationalePackage.ISSUE__PREDECESSORS, TaskPackage.WORK_ITEM__SUCCESSORS);
+			predecessors = new EObjectWithInverseResolvingEList.ManyInverse<WorkItem>(
+					WorkItem.class, this, RationalePackage.ISSUE__PREDECESSORS,
+					TaskPackage.WORK_ITEM__SUCCESSORS);
 		}
 		return predecessors;
 	}
@@ -319,8 +326,9 @@ public class IssueImpl extends AnnotationImpl implements Issue {
 	 */
 	public EList<WorkItem> getSuccessors() {
 		if (successors == null) {
-			successors = new EObjectWithInverseResolvingEList.ManyInverse<WorkItem>(WorkItem.class, this,
-					RationalePackage.ISSUE__SUCCESSORS, TaskPackage.WORK_ITEM__PREDECESSORS);
+			successors = new EObjectWithInverseResolvingEList.ManyInverse<WorkItem>(
+					WorkItem.class, this, RationalePackage.ISSUE__SUCCESSORS,
+					TaskPackage.WORK_ITEM__PREDECESSORS);
 		}
 		return successors;
 	}
@@ -336,7 +344,8 @@ public class IssueImpl extends AnnotationImpl implements Issue {
 			assignee = (OrgUnit) eResolveProxy(oldAssignee);
 			if (assignee != oldAssignee) {
 				if (eNotificationRequired())
-					eNotify(new ENotificationImpl(this, Notification.RESOLVE, RationalePackage.ISSUE__ASSIGNEE, oldAssignee,
+					eNotify(new ENotificationImpl(this, Notification.RESOLVE,
+							RationalePackage.ISSUE__ASSIGNEE, oldAssignee,
 							assignee));
 			}
 		}
@@ -357,11 +366,13 @@ public class IssueImpl extends AnnotationImpl implements Issue {
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
-	public NotificationChain basicSetAssignee(OrgUnit newAssignee, NotificationChain msgs) {
+	public NotificationChain basicSetAssignee(OrgUnit newAssignee,
+			NotificationChain msgs) {
 		OrgUnit oldAssignee = assignee;
 		assignee = newAssignee;
 		if (eNotificationRequired()) {
-			ENotificationImpl notification = new ENotificationImpl(this, Notification.SET, RationalePackage.ISSUE__ASSIGNEE,
+			ENotificationImpl notification = new ENotificationImpl(this,
+					Notification.SET, RationalePackage.ISSUE__ASSIGNEE,
 					oldAssignee, newAssignee);
 			if (msgs == null)
 				msgs = notification;
@@ -380,16 +391,19 @@ public class IssueImpl extends AnnotationImpl implements Issue {
 		if (newAssignee != assignee) {
 			NotificationChain msgs = null;
 			if (assignee != null)
-				msgs = ((InternalEObject) assignee).eInverseRemove(this, OrganizationPackage.ORG_UNIT__ASSIGNMENTS,
+				msgs = ((InternalEObject) assignee).eInverseRemove(this,
+						OrganizationPackage.ORG_UNIT__ASSIGNMENTS,
 						OrgUnit.class, msgs);
 			if (newAssignee != null)
-				msgs = ((InternalEObject) newAssignee).eInverseAdd(this, OrganizationPackage.ORG_UNIT__ASSIGNMENTS,
+				msgs = ((InternalEObject) newAssignee).eInverseAdd(this,
+						OrganizationPackage.ORG_UNIT__ASSIGNMENTS,
 						OrgUnit.class, msgs);
 			msgs = basicSetAssignee(newAssignee, msgs);
 			if (msgs != null)
 				msgs.dispatch();
 		} else if (eNotificationRequired())
-			eNotify(new ENotificationImpl(this, Notification.SET, RationalePackage.ISSUE__ASSIGNEE, newAssignee, newAssignee));
+			eNotify(new ENotificationImpl(this, Notification.SET,
+					RationalePackage.ISSUE__ASSIGNEE, newAssignee, newAssignee));
 	}
 
 	/**
@@ -398,8 +412,9 @@ public class IssueImpl extends AnnotationImpl implements Issue {
 	 */
 	public EList<Proposal> getProposals() {
 		if (proposals == null) {
-			proposals = new EObjectContainmentWithInverseEList.Resolving<Proposal>(Proposal.class, this,
-					RationalePackage.ISSUE__PROPOSALS, RationalePackage.PROPOSAL__ISSUE);
+			proposals = new EObjectContainmentWithInverseEList.Resolving<Proposal>(
+					Proposal.class, this, RationalePackage.ISSUE__PROPOSALS,
+					RationalePackage.PROPOSAL__ISSUE);
 		}
 		return proposals;
 	}
@@ -414,14 +429,18 @@ public class IssueImpl extends AnnotationImpl implements Issue {
 			solution = (Solution) eResolveProxy(oldSolution);
 			if (solution != oldSolution) {
 				InternalEObject newSolution = (InternalEObject) solution;
-				NotificationChain msgs = oldSolution.eInverseRemove(this, RationalePackage.SOLUTION__ISSUE, Solution.class, null);
+				NotificationChain msgs = oldSolution.eInverseRemove(this,
+						RationalePackage.SOLUTION__ISSUE, Solution.class, null);
 				if (newSolution.eInternalContainer() == null) {
-					msgs = newSolution.eInverseAdd(this, RationalePackage.SOLUTION__ISSUE, Solution.class, msgs);
+					msgs = newSolution.eInverseAdd(this,
+							RationalePackage.SOLUTION__ISSUE, Solution.class,
+							msgs);
 				}
 				if (msgs != null)
 					msgs.dispatch();
 				if (eNotificationRequired())
-					eNotify(new ENotificationImpl(this, Notification.RESOLVE, RationalePackage.ISSUE__SOLUTION, oldSolution,
+					eNotify(new ENotificationImpl(this, Notification.RESOLVE,
+							RationalePackage.ISSUE__SOLUTION, oldSolution,
 							solution));
 			}
 		}
@@ -441,11 +460,13 @@ public class IssueImpl extends AnnotationImpl implements Issue {
 	 * <!-- begin-user-doc --> <!-- end-user-doc -->
 	 * @generated
 	 */
-	public NotificationChain basicSetSolution(Solution newSolution, NotificationChain msgs) {
+	public NotificationChain basicSetSolution(Solution newSolution,
+			NotificationChain msgs) {
 		Solution oldSolution = solution;
 		solution = newSolution;
 		if (eNotificationRequired()) {
-			ENotificationImpl notification = new ENotificationImpl(this, Notification.SET, RationalePackage.ISSUE__SOLUTION,
+			ENotificationImpl notification = new ENotificationImpl(this,
+					Notification.SET, RationalePackage.ISSUE__SOLUTION,
 					oldSolution, newSolution);
 			if (msgs == null)
 				msgs = notification;
@@ -463,14 +484,17 @@ public class IssueImpl extends AnnotationImpl implements Issue {
 		if (newSolution != solution) {
 			NotificationChain msgs = null;
 			if (solution != null)
-				msgs = ((InternalEObject) solution).eInverseRemove(this, RationalePackage.SOLUTION__ISSUE, Solution.class, msgs);
+				msgs = ((InternalEObject) solution).eInverseRemove(this,
+						RationalePackage.SOLUTION__ISSUE, Solution.class, msgs);
 			if (newSolution != null)
-				msgs = ((InternalEObject) newSolution).eInverseAdd(this, RationalePackage.SOLUTION__ISSUE, Solution.class, msgs);
+				msgs = ((InternalEObject) newSolution).eInverseAdd(this,
+						RationalePackage.SOLUTION__ISSUE, Solution.class, msgs);
 			msgs = basicSetSolution(newSolution, msgs);
 			if (msgs != null)
 				msgs.dispatch();
 		} else if (eNotificationRequired())
-			eNotify(new ENotificationImpl(this, Notification.SET, RationalePackage.ISSUE__SOLUTION, newSolution, newSolution));
+			eNotify(new ENotificationImpl(this, Notification.SET,
+					RationalePackage.ISSUE__SOLUTION, newSolution, newSolution));
 	}
 
 	/**
@@ -479,7 +503,8 @@ public class IssueImpl extends AnnotationImpl implements Issue {
 	 */
 	public EList<Criterion> getCriteria() {
 		if (criteria == null) {
-			criteria = new EObjectResolvingEList<Criterion>(Criterion.class, this, RationalePackage.ISSUE__CRITERIA);
+			criteria = new EObjectResolvingEList<Criterion>(Criterion.class,
+					this, RationalePackage.ISSUE__CRITERIA);
 		}
 		return criteria;
 	}
@@ -502,7 +527,8 @@ public class IssueImpl extends AnnotationImpl implements Issue {
 		ActivityType oldActivity = activity;
 		activity = newActivity == null ? ACTIVITY_EDEFAULT : newActivity;
 		if (eNotificationRequired())
-			eNotify(new ENotificationImpl(this, Notification.SET, RationalePackage.ISSUE__ACTIVITY, oldActivity, activity));
+			eNotify(new ENotificationImpl(this, Notification.SET,
+					RationalePackage.ISSUE__ACTIVITY, oldActivity, activity));
 	}
 
 	/**
@@ -511,8 +537,9 @@ public class IssueImpl extends AnnotationImpl implements Issue {
 	 */
 	public EList<OrgUnit> getParticipants() {
 		if (participants == null) {
-			participants = new EObjectWithInverseResolvingEList.ManyInverse<OrgUnit>(OrgUnit.class, this,
-					RationalePackage.ISSUE__PARTICIPANTS, OrganizationPackage.ORG_UNIT__PARTICIPATIONS);
+			participants = new EObjectWithInverseResolvingEList.ManyInverse<OrgUnit>(
+					OrgUnit.class, this, RationalePackage.ISSUE__PARTICIPANTS,
+					OrganizationPackage.ORG_UNIT__PARTICIPATIONS);
 		}
 		return participants;
 	}
@@ -535,7 +562,8 @@ public class IssueImpl extends AnnotationImpl implements Issue {
 		Date oldDueDate = dueDate;
 		dueDate = newDueDate;
 		if (eNotificationRequired())
-			eNotify(new ENotificationImpl(this, Notification.SET, RationalePackage.ISSUE__DUE_DATE, oldDueDate, dueDate));
+			eNotify(new ENotificationImpl(this, Notification.SET,
+					RationalePackage.ISSUE__DUE_DATE, oldDueDate, dueDate));
 	}
 
 	/**
@@ -544,29 +572,36 @@ public class IssueImpl extends AnnotationImpl implements Issue {
 	 */
 	@SuppressWarnings("unchecked")
 	@Override
-	public NotificationChain eInverseAdd(InternalEObject otherEnd, int featureID, NotificationChain msgs) {
+	public NotificationChain eInverseAdd(InternalEObject otherEnd,
+			int featureID, NotificationChain msgs) {
 		switch (featureID) {
 		case RationalePackage.ISSUE__CONTAINING_WORKPACKAGE:
 			if (eInternalContainer() != null)
 				msgs = eBasicRemoveFromContainer(msgs);
 			return basicSetContainingWorkpackage((WorkPackage) otherEnd, msgs);
 		case RationalePackage.ISSUE__PREDECESSORS:
-			return ((InternalEList<InternalEObject>) (InternalEList<?>) getPredecessors()).basicAdd(otherEnd, msgs);
+			return ((InternalEList<InternalEObject>) (InternalEList<?>) getPredecessors())
+					.basicAdd(otherEnd, msgs);
 		case RationalePackage.ISSUE__SUCCESSORS:
-			return ((InternalEList<InternalEObject>) (InternalEList<?>) getSuccessors()).basicAdd(otherEnd, msgs);
+			return ((InternalEList<InternalEObject>) (InternalEList<?>) getSuccessors())
+					.basicAdd(otherEnd, msgs);
 		case RationalePackage.ISSUE__ASSIGNEE:
 			if (assignee != null)
-				msgs = ((InternalEObject) assignee).eInverseRemove(this, OrganizationPackage.ORG_UNIT__ASSIGNMENTS,
+				msgs = ((InternalEObject) assignee).eInverseRemove(this,
+						OrganizationPackage.ORG_UNIT__ASSIGNMENTS,
 						OrgUnit.class, msgs);
 			return basicSetAssignee((OrgUnit) otherEnd, msgs);
 		case RationalePackage.ISSUE__PARTICIPANTS:
-			return ((InternalEList<InternalEObject>) (InternalEList<?>) getParticipants()).basicAdd(otherEnd, msgs);
+			return ((InternalEList<InternalEObject>) (InternalEList<?>) getParticipants())
+					.basicAdd(otherEnd, msgs);
 		case RationalePackage.ISSUE__PROPOSALS:
-			return ((InternalEList<InternalEObject>) (InternalEList<?>) getProposals()).basicAdd(otherEnd, msgs);
+			return ((InternalEList<InternalEObject>) (InternalEList<?>) getProposals())
+					.basicAdd(otherEnd, msgs);
 		case RationalePackage.ISSUE__SOLUTION:
 			if (solution != null)
-				msgs = ((InternalEObject) solution).eInverseRemove(this, EOPPOSITE_FEATURE_BASE
-						- RationalePackage.ISSUE__SOLUTION, null, msgs);
+				msgs = ((InternalEObject) solution).eInverseRemove(this,
+						EOPPOSITE_FEATURE_BASE
+								- RationalePackage.ISSUE__SOLUTION, null, msgs);
 			return basicSetSolution((Solution) otherEnd, msgs);
 		}
 		return super.eInverseAdd(otherEnd, featureID, msgs);
@@ -577,20 +612,25 @@ public class IssueImpl extends AnnotationImpl implements Issue {
 	 * @generated
 	 */
 	@Override
-	public NotificationChain eInverseRemove(InternalEObject otherEnd, int featureID, NotificationChain msgs) {
+	public NotificationChain eInverseRemove(InternalEObject otherEnd,
+			int featureID, NotificationChain msgs) {
 		switch (featureID) {
 		case RationalePackage.ISSUE__CONTAINING_WORKPACKAGE:
 			return basicSetContainingWorkpackage(null, msgs);
 		case RationalePackage.ISSUE__PREDECESSORS:
-			return ((InternalEList<?>) getPredecessors()).basicRemove(otherEnd, msgs);
+			return ((InternalEList<?>) getPredecessors()).basicRemove(otherEnd,
+					msgs);
 		case RationalePackage.ISSUE__SUCCESSORS:
-			return ((InternalEList<?>) getSuccessors()).basicRemove(otherEnd, msgs);
+			return ((InternalEList<?>) getSuccessors()).basicRemove(otherEnd,
+					msgs);
 		case RationalePackage.ISSUE__ASSIGNEE:
 			return basicSetAssignee(null, msgs);
 		case RationalePackage.ISSUE__PARTICIPANTS:
-			return ((InternalEList<?>) getParticipants()).basicRemove(otherEnd, msgs);
+			return ((InternalEList<?>) getParticipants()).basicRemove(otherEnd,
+					msgs);
 		case RationalePackage.ISSUE__PROPOSALS:
-			return ((InternalEList<?>) getProposals()).basicRemove(otherEnd, msgs);
+			return ((InternalEList<?>) getProposals()).basicRemove(otherEnd,
+					msgs);
 		case RationalePackage.ISSUE__SOLUTION:
 			return basicSetSolution(null, msgs);
 		}
@@ -602,11 +642,13 @@ public class IssueImpl extends AnnotationImpl implements Issue {
 	 * @generated
 	 */
 	@Override
-	public NotificationChain eBasicRemoveFromContainerFeature(NotificationChain msgs) {
+	public NotificationChain eBasicRemoveFromContainerFeature(
+			NotificationChain msgs) {
 		switch (eContainerFeatureID) {
 		case RationalePackage.ISSUE__CONTAINING_WORKPACKAGE:
-			return eInternalContainer().eInverseRemove(this, TaskPackage.WORK_PACKAGE__CONTAINED_WORK_ITEMS, WorkPackage.class,
-					msgs);
+			return eInternalContainer().eInverseRemove(this,
+					TaskPackage.WORK_PACKAGE__CONTAINED_WORK_ITEMS,
+					WorkPackage.class, msgs);
 		}
 		return super.eBasicRemoveFromContainerFeature(msgs);
 	}
@@ -668,7 +710,8 @@ public class IssueImpl extends AnnotationImpl implements Issue {
 			return;
 		case RationalePackage.ISSUE__ASSOCIATED_CHANGE_PACKAGES:
 			getAssociatedChangePackages().clear();
-			getAssociatedChangePackages().addAll((Collection<? extends ModelChangePackage>) newValue);
+			getAssociatedChangePackages().addAll(
+					(Collection<? extends ModelChangePackage>) newValue);
 			return;
 		case RationalePackage.ISSUE__PREDECESSORS:
 			getPredecessors().clear();
@@ -765,7 +808,8 @@ public class IssueImpl extends AnnotationImpl implements Issue {
 		case RationalePackage.ISSUE__CONTAINING_WORKPACKAGE:
 			return basicGetContainingWorkpackage() != null;
 		case RationalePackage.ISSUE__ASSOCIATED_CHANGE_PACKAGES:
-			return associatedChangePackages != null && !associatedChangePackages.isEmpty();
+			return associatedChangePackages != null
+					&& !associatedChangePackages.isEmpty();
 		case RationalePackage.ISSUE__PREDECESSORS:
 			return predecessors != null && !predecessors.isEmpty();
 		case RationalePackage.ISSUE__SUCCESSORS:
@@ -775,7 +819,8 @@ public class IssueImpl extends AnnotationImpl implements Issue {
 		case RationalePackage.ISSUE__PARTICIPANTS:
 			return participants != null && !participants.isEmpty();
 		case RationalePackage.ISSUE__DUE_DATE:
-			return DUE_DATE_EDEFAULT == null ? dueDate != null : !DUE_DATE_EDEFAULT.equals(dueDate);
+			return DUE_DATE_EDEFAULT == null ? dueDate != null
+					: !DUE_DATE_EDEFAULT.equals(dueDate);
 		case RationalePackage.ISSUE__PROPOSALS:
 			return proposals != null && !proposals.isEmpty();
 		case RationalePackage.ISSUE__SOLUTION:

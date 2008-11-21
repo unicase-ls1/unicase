@@ -31,7 +31,8 @@ import org.unicase.model.meeting.MeetingSection;
  *
  * @generated
  */
-public class CompositeMeetingSectionImpl extends MeetingSectionImpl implements CompositeMeetingSection {
+public class CompositeMeetingSectionImpl extends MeetingSectionImpl implements
+		CompositeMeetingSection {
 	/**
 	 * The cached value of the '{@link #getSubsections() <em>Subsections</em>}' containment reference list.
 	 * <!-- begin-user-doc -->
@@ -68,7 +69,8 @@ public class CompositeMeetingSectionImpl extends MeetingSectionImpl implements C
 	 */
 	public EList<MeetingSection> getSubsections() {
 		if (subsections == null) {
-			subsections = new EObjectContainmentEList.Resolving<MeetingSection>(MeetingSection.class, this,
+			subsections = new EObjectContainmentEList.Resolving<MeetingSection>(
+					MeetingSection.class, this,
 					MeetingPackage.COMPOSITE_MEETING_SECTION__SUBSECTIONS);
 		}
 		return subsections;
@@ -80,10 +82,12 @@ public class CompositeMeetingSectionImpl extends MeetingSectionImpl implements C
 	 * @generated
 	 */
 	@Override
-	public NotificationChain eInverseRemove(InternalEObject otherEnd, int featureID, NotificationChain msgs) {
+	public NotificationChain eInverseRemove(InternalEObject otherEnd,
+			int featureID, NotificationChain msgs) {
 		switch (featureID) {
 		case MeetingPackage.COMPOSITE_MEETING_SECTION__SUBSECTIONS:
-			return ((InternalEList<?>) getSubsections()).basicRemove(otherEnd, msgs);
+			return ((InternalEList<?>) getSubsections()).basicRemove(otherEnd,
+					msgs);
 		}
 		return super.eInverseRemove(otherEnd, featureID, msgs);
 	}
@@ -113,7 +117,8 @@ public class CompositeMeetingSectionImpl extends MeetingSectionImpl implements C
 		switch (featureID) {
 		case MeetingPackage.COMPOSITE_MEETING_SECTION__SUBSECTIONS:
 			getSubsections().clear();
-			getSubsections().addAll((Collection<? extends MeetingSection>) newValue);
+			getSubsections().addAll(
+					(Collection<? extends MeetingSection>) newValue);
 			return;
 		}
 		super.eSet(featureID, newValue);

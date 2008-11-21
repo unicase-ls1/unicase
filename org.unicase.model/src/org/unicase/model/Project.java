@@ -71,7 +71,8 @@ public interface Project extends EObject, IAdaptable {
 	 * @model ordered="false" listMany="true"
 	 * @generated
 	 */
-	<T extends ModelElement> EList<T> getAllModelElementsbyClass(EClass modelElementClass, EList<T> list);
+	<T extends ModelElement> EList<T> getAllModelElementsbyClass(
+			EClass modelElementClass, EList<T> list);
 
 	/**
 	 * <!-- begin-user-doc -->
@@ -79,7 +80,8 @@ public interface Project extends EObject, IAdaptable {
 	 * @model ordered="false" listMany="true"
 	 * @generated
 	 */
-	<T extends ModelElement> EList<T> getModelElementsByClass(EClass modelElementClass, EList<T> list);
+	<T extends ModelElement> EList<T> getModelElementsByClass(
+			EClass modelElementClass, EList<T> list);
 
 	/**
 	 * <!-- begin-user-doc -->
@@ -96,7 +98,8 @@ public interface Project extends EObject, IAdaptable {
 	 * @model ordered="false" listMany="true" subclasses ="false"
 	 * @generated NOT
 	 */
-	<T extends ModelElement> EList<T> getAllModelElementsbyClass(EClass modelElementClass, EList<T> list, Boolean subclasses);
+	<T extends ModelElement> EList<T> getAllModelElementsbyClass(
+			EClass modelElementClass, EList<T> list, Boolean subclasses);
 
 	/**
 	 * <!-- begin-user-doc -->

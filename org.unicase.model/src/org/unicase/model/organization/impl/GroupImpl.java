@@ -65,8 +65,9 @@ public class GroupImpl extends OrgUnitImpl implements Group {
 	 */
 	public EList<OrgUnit> getOrgUnits() {
 		if (orgUnits == null) {
-			orgUnits = new EObjectWithInverseResolvingEList.ManyInverse<OrgUnit>(OrgUnit.class, this,
-					OrganizationPackage.GROUP__ORG_UNITS, OrganizationPackage.ORG_UNIT__GROUP_MEMBERSHIPS);
+			orgUnits = new EObjectWithInverseResolvingEList.ManyInverse<OrgUnit>(
+					OrgUnit.class, this, OrganizationPackage.GROUP__ORG_UNITS,
+					OrganizationPackage.ORG_UNIT__GROUP_MEMBERSHIPS);
 		}
 		return orgUnits;
 	}
@@ -78,10 +79,12 @@ public class GroupImpl extends OrgUnitImpl implements Group {
 	 */
 	@SuppressWarnings("unchecked")
 	@Override
-	public NotificationChain eInverseAdd(InternalEObject otherEnd, int featureID, NotificationChain msgs) {
+	public NotificationChain eInverseAdd(InternalEObject otherEnd,
+			int featureID, NotificationChain msgs) {
 		switch (featureID) {
 		case OrganizationPackage.GROUP__ORG_UNITS:
-			return ((InternalEList<InternalEObject>) (InternalEList<?>) getOrgUnits()).basicAdd(otherEnd, msgs);
+			return ((InternalEList<InternalEObject>) (InternalEList<?>) getOrgUnits())
+					.basicAdd(otherEnd, msgs);
 		}
 		return super.eInverseAdd(otherEnd, featureID, msgs);
 	}
@@ -92,10 +95,12 @@ public class GroupImpl extends OrgUnitImpl implements Group {
 	 * @generated
 	 */
 	@Override
-	public NotificationChain eInverseRemove(InternalEObject otherEnd, int featureID, NotificationChain msgs) {
+	public NotificationChain eInverseRemove(InternalEObject otherEnd,
+			int featureID, NotificationChain msgs) {
 		switch (featureID) {
 		case OrganizationPackage.GROUP__ORG_UNITS:
-			return ((InternalEList<?>) getOrgUnits()).basicRemove(otherEnd, msgs);
+			return ((InternalEList<?>) getOrgUnits()).basicRemove(otherEnd,
+					msgs);
 		}
 		return super.eInverseRemove(otherEnd, featureID, msgs);
 	}

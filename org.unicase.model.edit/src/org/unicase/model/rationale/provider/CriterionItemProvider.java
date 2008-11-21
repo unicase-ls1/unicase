@@ -29,8 +29,9 @@ import org.unicase.model.rationale.RationalePackage;
  * <!-- end-user-doc -->
  * @generated
  */
-public class CriterionItemProvider extends ModelElementItemProvider implements IEditingDomainItemProvider,
-		IStructuredItemContentProvider, ITreeItemContentProvider, IItemLabelProvider, IItemPropertySource {
+public class CriterionItemProvider extends ModelElementItemProvider implements
+		IEditingDomainItemProvider, IStructuredItemContentProvider,
+		ITreeItemContentProvider, IItemLabelProvider, IItemPropertySource {
 	/**
 	 * This constructs an instance from a factory and a notifier. <!--
 	 * begin-user-doc --> <!-- end-user-doc -->
@@ -64,10 +65,15 @@ public class CriterionItemProvider extends ModelElementItemProvider implements I
 	 * @generated
 	 */
 	protected void addAssessmentsPropertyDescriptor(Object object) {
-		itemPropertyDescriptors.add(createItemPropertyDescriptor(((ComposeableAdapterFactory) adapterFactory)
-				.getRootAdapterFactory(), getResourceLocator(), getString("_UI_Criterion_assessments_feature"), getString(
-				"_UI_PropertyDescriptor_description", "_UI_Criterion_assessments_feature", "_UI_Criterion_type"),
-				RationalePackage.Literals.CRITERION__ASSESSMENTS, true, false, true, null, null, null));
+		itemPropertyDescriptors.add(createItemPropertyDescriptor(
+				((ComposeableAdapterFactory) adapterFactory)
+						.getRootAdapterFactory(), getResourceLocator(),
+				getString("_UI_Criterion_assessments_feature"), getString(
+						"_UI_PropertyDescriptor_description",
+						"_UI_Criterion_assessments_feature",
+						"_UI_Criterion_type"),
+				RationalePackage.Literals.CRITERION__ASSESSMENTS, true, false,
+				true, null, null, null));
 	}
 
 	/**
@@ -77,7 +83,8 @@ public class CriterionItemProvider extends ModelElementItemProvider implements I
 	 */
 	@Override
 	public Object getImage(Object object) {
-		return overlayImage(object, getResourceLocator().getImage("full/obj16/Criterion"));
+		return overlayImage(object, getResourceLocator().getImage(
+				"full/obj16/Criterion"));
 	}
 
 	/**
@@ -112,7 +119,8 @@ public class CriterionItemProvider extends ModelElementItemProvider implements I
 	 * @generated
 	 */
 	@Override
-	protected void collectNewChildDescriptors(Collection<Object> newChildDescriptors, Object object) {
+	protected void collectNewChildDescriptors(
+			Collection<Object> newChildDescriptors, Object object) {
 		super.collectNewChildDescriptors(newChildDescriptors, object);
 	}
 

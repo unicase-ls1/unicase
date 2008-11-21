@@ -25,8 +25,9 @@ import org.unicase.model.ModelPackage;
  * <!-- begin-user-doc --> <!-- end-user-doc -->
  * @generated
  */
-public class AttachmentItemProvider extends ModelElementItemProvider implements IEditingDomainItemProvider,
-		IStructuredItemContentProvider, ITreeItemContentProvider, IItemLabelProvider, IItemPropertySource {
+public class AttachmentItemProvider extends ModelElementItemProvider implements
+		IEditingDomainItemProvider, IStructuredItemContentProvider,
+		ITreeItemContentProvider, IItemLabelProvider, IItemPropertySource {
 	/**
 	 * This constructs an instance from a factory and a notifier. <!--
 	 * begin-user-doc --> <!-- end-user-doc -->
@@ -59,11 +60,15 @@ public class AttachmentItemProvider extends ModelElementItemProvider implements 
 	 * @generated
 	 */
 	protected void addReferringModelElementsPropertyDescriptor(Object object) {
-		itemPropertyDescriptors.add(createItemPropertyDescriptor(((ComposeableAdapterFactory) adapterFactory)
-				.getRootAdapterFactory(), getResourceLocator(), getString("_UI_Attachment_referringModelElements_feature"),
-				getString("_UI_PropertyDescriptor_description", "_UI_Attachment_referringModelElements_feature",
-						"_UI_Attachment_type"), ModelPackage.Literals.ATTACHMENT__REFERRING_MODEL_ELEMENTS, true, false, true,
-				null, null, null));
+		itemPropertyDescriptors.add(createItemPropertyDescriptor(
+				((ComposeableAdapterFactory) adapterFactory)
+						.getRootAdapterFactory(), getResourceLocator(),
+				getString("_UI_Attachment_referringModelElements_feature"),
+				getString("_UI_PropertyDescriptor_description",
+						"_UI_Attachment_referringModelElements_feature",
+						"_UI_Attachment_type"),
+				ModelPackage.Literals.ATTACHMENT__REFERRING_MODEL_ELEMENTS,
+				true, false, true, null, null, null));
 	}
 
 	/**
@@ -99,7 +104,8 @@ public class AttachmentItemProvider extends ModelElementItemProvider implements 
 	 * @generated
 	 */
 	@Override
-	protected void collectNewChildDescriptors(Collection<Object> newChildDescriptors, Object object) {
+	protected void collectNewChildDescriptors(
+			Collection<Object> newChildDescriptors, Object object) {
 		super.collectNewChildDescriptors(newChildDescriptors, object);
 	}
 

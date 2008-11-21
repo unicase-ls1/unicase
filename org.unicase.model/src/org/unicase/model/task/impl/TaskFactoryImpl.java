@@ -33,7 +33,8 @@ public class TaskFactoryImpl extends EFactoryImpl implements TaskFactory {
 	 */
 	public static TaskFactory init() {
 		try {
-			TaskFactory theTaskFactory = (TaskFactory) EPackage.Registry.INSTANCE.getEFactory("http://unicase.org/model/task");
+			TaskFactory theTaskFactory = (TaskFactory) EPackage.Registry.INSTANCE
+					.getEFactory("http://unicase.org/model/task");
 			if (theTaskFactory != null) {
 				return theTaskFactory;
 			}
@@ -67,7 +68,8 @@ public class TaskFactoryImpl extends EFactoryImpl implements TaskFactory {
 		case TaskPackage.MILESTONE:
 			return createMilestone();
 		default:
-			throw new IllegalArgumentException("The class '" + eClass.getName() + "' is not a valid classifier");
+			throw new IllegalArgumentException("The class '" + eClass.getName()
+					+ "' is not a valid classifier");
 		}
 	}
 
@@ -82,7 +84,8 @@ public class TaskFactoryImpl extends EFactoryImpl implements TaskFactory {
 		case TaskPackage.ACTIVITY_TYPE:
 			return createActivityTypeFromString(eDataType, initialValue);
 		default:
-			throw new IllegalArgumentException("The datatype '" + eDataType.getName() + "' is not a valid classifier");
+			throw new IllegalArgumentException("The datatype '"
+					+ eDataType.getName() + "' is not a valid classifier");
 		}
 	}
 
@@ -97,7 +100,8 @@ public class TaskFactoryImpl extends EFactoryImpl implements TaskFactory {
 		case TaskPackage.ACTIVITY_TYPE:
 			return convertActivityTypeToString(eDataType, instanceValue);
 		default:
-			throw new IllegalArgumentException("The datatype '" + eDataType.getName() + "' is not a valid classifier");
+			throw new IllegalArgumentException("The datatype '"
+					+ eDataType.getName() + "' is not a valid classifier");
 		}
 	}
 
@@ -134,11 +138,13 @@ public class TaskFactoryImpl extends EFactoryImpl implements TaskFactory {
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
-	public ActivityType createActivityTypeFromString(EDataType eDataType, String initialValue) {
+	public ActivityType createActivityTypeFromString(EDataType eDataType,
+			String initialValue) {
 		ActivityType result = ActivityType.get(initialValue);
 		if (result == null)
-			throw new IllegalArgumentException("The value '" + initialValue + "' is not a valid enumerator of '"
-					+ eDataType.getName() + "'");
+			throw new IllegalArgumentException("The value '" + initialValue
+					+ "' is not a valid enumerator of '" + eDataType.getName()
+					+ "'");
 		return result;
 	}
 
@@ -147,7 +153,8 @@ public class TaskFactoryImpl extends EFactoryImpl implements TaskFactory {
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
-	public String convertActivityTypeToString(EDataType eDataType, Object instanceValue) {
+	public String convertActivityTypeToString(EDataType eDataType,
+			Object instanceValue) {
 		return instanceValue == null ? null : instanceValue.toString();
 	}
 

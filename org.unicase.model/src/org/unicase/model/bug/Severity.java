@@ -152,14 +152,16 @@ public enum Severity implements Enumerator {
 	 * 
 	 * @generated
 	 */
-	private static final Severity[] VALUES_ARRAY = new Severity[] { FEATURE, TRIVIAL, MINOR, MAJOR, BLOCKER, };
+	private static final Severity[] VALUES_ARRAY = new Severity[] { FEATURE,
+			TRIVIAL, MINOR, MAJOR, BLOCKER, };
 
 	/**
 	 * A public read-only list of all the '<em><b>Severity</b></em>' enumerators.
 	 * <!-- begin-user-doc --> <!-- end-user-doc -->
 	 * @generated
 	 */
-	public static final List<Severity> VALUES = Collections.unmodifiableList(Arrays.asList(VALUES_ARRAY));
+	public static final List<Severity> VALUES = Collections
+			.unmodifiableList(Arrays.asList(VALUES_ARRAY));
 
 	/**
 	 * Returns the '<em><b>Severity</b></em>' literal with the specified literal value.

@@ -101,8 +101,10 @@ public class LeafSectionImpl extends ModelElementImpl implements LeafSection {
 	 * <!-- begin-user-doc --> <!-- end-user-doc -->
 	 * @generated
 	 */
-	public NotificationChain basicSetParent(CompositeSection newParent, NotificationChain msgs) {
-		msgs = eBasicSetContainer((InternalEObject) newParent, DocumentPackage.LEAF_SECTION__PARENT, msgs);
+	public NotificationChain basicSetParent(CompositeSection newParent,
+			NotificationChain msgs) {
+		msgs = eBasicSetContainer((InternalEObject) newParent,
+				DocumentPackage.LEAF_SECTION__PARENT, msgs);
 		return msgs;
 	}
 
@@ -114,18 +116,21 @@ public class LeafSectionImpl extends ModelElementImpl implements LeafSection {
 		if (newParent != eInternalContainer()
 				|| (eContainerFeatureID != DocumentPackage.LEAF_SECTION__PARENT && newParent != null)) {
 			if (EcoreUtil.isAncestor(this, newParent))
-				throw new IllegalArgumentException("Recursive containment not allowed for " + toString());
+				throw new IllegalArgumentException(
+						"Recursive containment not allowed for " + toString());
 			NotificationChain msgs = null;
 			if (eInternalContainer() != null)
 				msgs = eBasicRemoveFromContainer(msgs);
 			if (newParent != null)
-				msgs = ((InternalEObject) newParent).eInverseAdd(this, DocumentPackage.COMPOSITE_SECTION__SUBSECTIONS,
+				msgs = ((InternalEObject) newParent).eInverseAdd(this,
+						DocumentPackage.COMPOSITE_SECTION__SUBSECTIONS,
 						CompositeSection.class, msgs);
 			msgs = basicSetParent(newParent, msgs);
 			if (msgs != null)
 				msgs.dispatch();
 		} else if (eNotificationRequired())
-			eNotify(new ENotificationImpl(this, Notification.SET, DocumentPackage.LEAF_SECTION__PARENT, newParent, newParent));
+			eNotify(new ENotificationImpl(this, Notification.SET,
+					DocumentPackage.LEAF_SECTION__PARENT, newParent, newParent));
 	}
 
 	/**
@@ -134,8 +139,10 @@ public class LeafSectionImpl extends ModelElementImpl implements LeafSection {
 	 */
 	public EList<ModelElement> getModelElements() {
 		if (modelElements == null) {
-			modelElements = new EObjectContainmentWithInverseEList.Resolving<ModelElement>(ModelElement.class, this,
-					DocumentPackage.LEAF_SECTION__MODEL_ELEMENTS, ModelPackage.MODEL_ELEMENT__LEAF_SECTION);
+			modelElements = new EObjectContainmentWithInverseEList.Resolving<ModelElement>(
+					ModelElement.class, this,
+					DocumentPackage.LEAF_SECTION__MODEL_ELEMENTS,
+					ModelPackage.MODEL_ELEMENT__LEAF_SECTION);
 		}
 		return modelElements;
 	}
@@ -146,7 +153,8 @@ public class LeafSectionImpl extends ModelElementImpl implements LeafSection {
 	 */
 	public EList<ModelElement> getReferencedModelElements() {
 		if (referencedModelElements == null) {
-			referencedModelElements = new EObjectWithInverseResolvingEList.ManyInverse<ModelElement>(ModelElement.class, this,
+			referencedModelElements = new EObjectWithInverseResolvingEList.ManyInverse<ModelElement>(
+					ModelElement.class, this,
 					DocumentPackage.LEAF_SECTION__REFERENCED_MODEL_ELEMENTS,
 					ModelPackage.MODEL_ELEMENT__INCOMING_DOCUMENT_REFERENCES);
 		}
@@ -159,16 +167,19 @@ public class LeafSectionImpl extends ModelElementImpl implements LeafSection {
 	 */
 	@SuppressWarnings("unchecked")
 	@Override
-	public NotificationChain eInverseAdd(InternalEObject otherEnd, int featureID, NotificationChain msgs) {
+	public NotificationChain eInverseAdd(InternalEObject otherEnd,
+			int featureID, NotificationChain msgs) {
 		switch (featureID) {
 		case DocumentPackage.LEAF_SECTION__PARENT:
 			if (eInternalContainer() != null)
 				msgs = eBasicRemoveFromContainer(msgs);
 			return basicSetParent((CompositeSection) otherEnd, msgs);
 		case DocumentPackage.LEAF_SECTION__MODEL_ELEMENTS:
-			return ((InternalEList<InternalEObject>) (InternalEList<?>) getModelElements()).basicAdd(otherEnd, msgs);
+			return ((InternalEList<InternalEObject>) (InternalEList<?>) getModelElements())
+					.basicAdd(otherEnd, msgs);
 		case DocumentPackage.LEAF_SECTION__REFERENCED_MODEL_ELEMENTS:
-			return ((InternalEList<InternalEObject>) (InternalEList<?>) getReferencedModelElements()).basicAdd(otherEnd, msgs);
+			return ((InternalEList<InternalEObject>) (InternalEList<?>) getReferencedModelElements())
+					.basicAdd(otherEnd, msgs);
 		}
 		return super.eInverseAdd(otherEnd, featureID, msgs);
 	}
@@ -178,14 +189,17 @@ public class LeafSectionImpl extends ModelElementImpl implements LeafSection {
 	 * @generated
 	 */
 	@Override
-	public NotificationChain eInverseRemove(InternalEObject otherEnd, int featureID, NotificationChain msgs) {
+	public NotificationChain eInverseRemove(InternalEObject otherEnd,
+			int featureID, NotificationChain msgs) {
 		switch (featureID) {
 		case DocumentPackage.LEAF_SECTION__PARENT:
 			return basicSetParent(null, msgs);
 		case DocumentPackage.LEAF_SECTION__MODEL_ELEMENTS:
-			return ((InternalEList<?>) getModelElements()).basicRemove(otherEnd, msgs);
+			return ((InternalEList<?>) getModelElements()).basicRemove(
+					otherEnd, msgs);
 		case DocumentPackage.LEAF_SECTION__REFERENCED_MODEL_ELEMENTS:
-			return ((InternalEList<?>) getReferencedModelElements()).basicRemove(otherEnd, msgs);
+			return ((InternalEList<?>) getReferencedModelElements())
+					.basicRemove(otherEnd, msgs);
 		}
 		return super.eInverseRemove(otherEnd, featureID, msgs);
 	}
@@ -195,10 +209,12 @@ public class LeafSectionImpl extends ModelElementImpl implements LeafSection {
 	 * @generated
 	 */
 	@Override
-	public NotificationChain eBasicRemoveFromContainerFeature(NotificationChain msgs) {
+	public NotificationChain eBasicRemoveFromContainerFeature(
+			NotificationChain msgs) {
 		switch (eContainerFeatureID) {
 		case DocumentPackage.LEAF_SECTION__PARENT:
-			return eInternalContainer().eInverseRemove(this, DocumentPackage.COMPOSITE_SECTION__SUBSECTIONS,
+			return eInternalContainer().eInverseRemove(this,
+					DocumentPackage.COMPOSITE_SECTION__SUBSECTIONS,
 					CompositeSection.class, msgs);
 		}
 		return super.eBasicRemoveFromContainerFeature(msgs);
@@ -236,11 +252,13 @@ public class LeafSectionImpl extends ModelElementImpl implements LeafSection {
 			return;
 		case DocumentPackage.LEAF_SECTION__MODEL_ELEMENTS:
 			getModelElements().clear();
-			getModelElements().addAll((Collection<? extends ModelElement>) newValue);
+			getModelElements().addAll(
+					(Collection<? extends ModelElement>) newValue);
 			return;
 		case DocumentPackage.LEAF_SECTION__REFERENCED_MODEL_ELEMENTS:
 			getReferencedModelElements().clear();
-			getReferencedModelElements().addAll((Collection<? extends ModelElement>) newValue);
+			getReferencedModelElements().addAll(
+					(Collection<? extends ModelElement>) newValue);
 			return;
 		}
 		super.eSet(featureID, newValue);
@@ -278,7 +296,8 @@ public class LeafSectionImpl extends ModelElementImpl implements LeafSection {
 		case DocumentPackage.LEAF_SECTION__MODEL_ELEMENTS:
 			return modelElements != null && !modelElements.isEmpty();
 		case DocumentPackage.LEAF_SECTION__REFERENCED_MODEL_ELEMENTS:
-			return referencedModelElements != null && !referencedModelElements.isEmpty();
+			return referencedModelElements != null
+					&& !referencedModelElements.isEmpty();
 		}
 		return super.eIsSet(featureID);
 	}

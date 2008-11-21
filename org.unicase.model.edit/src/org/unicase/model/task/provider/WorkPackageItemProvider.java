@@ -37,8 +37,9 @@ import org.unicase.model.task.WorkPackage;
  * <!-- end-user-doc -->
  * @generated
  */
-public class WorkPackageItemProvider extends AnnotationItemProvider implements IEditingDomainItemProvider,
-		IStructuredItemContentProvider, ITreeItemContentProvider, IItemLabelProvider, IItemPropertySource {
+public class WorkPackageItemProvider extends AnnotationItemProvider implements
+		IEditingDomainItemProvider, IStructuredItemContentProvider,
+		ITreeItemContentProvider, IItemLabelProvider, IItemPropertySource {
 	/**
 	 * This constructs an instance from a factory and a notifier.
 	 * <!-- begin-user-doc -->
@@ -79,12 +80,15 @@ public class WorkPackageItemProvider extends AnnotationItemProvider implements I
 	 * @generated
 	 */
 	protected void addContainingWorkpackagePropertyDescriptor(Object object) {
-		itemPropertyDescriptors
-				.add(createItemPropertyDescriptor(((ComposeableAdapterFactory) adapterFactory).getRootAdapterFactory(),
-						getResourceLocator(), getString("_UI_WorkItem_containingWorkpackage_feature"), getString(
-								"_UI_PropertyDescriptor_description", "_UI_WorkItem_containingWorkpackage_feature",
-								"_UI_WorkItem_type"), TaskPackage.Literals.WORK_ITEM__CONTAINING_WORKPACKAGE, true, false, false,
-						null, null, null));
+		itemPropertyDescriptors.add(createItemPropertyDescriptor(
+				((ComposeableAdapterFactory) adapterFactory)
+						.getRootAdapterFactory(), getResourceLocator(),
+				getString("_UI_WorkItem_containingWorkpackage_feature"),
+				getString("_UI_PropertyDescriptor_description",
+						"_UI_WorkItem_containingWorkpackage_feature",
+						"_UI_WorkItem_type"),
+				TaskPackage.Literals.WORK_ITEM__CONTAINING_WORKPACKAGE, true,
+				false, false, null, null, null));
 	}
 
 	/**
@@ -94,10 +98,15 @@ public class WorkPackageItemProvider extends AnnotationItemProvider implements I
 	 * @generated
 	 */
 	protected void addPredecessorsPropertyDescriptor(Object object) {
-		itemPropertyDescriptors.add(createItemPropertyDescriptor(((ComposeableAdapterFactory) adapterFactory)
-				.getRootAdapterFactory(), getResourceLocator(), getString("_UI_WorkItem_predecessors_feature"), getString(
-				"_UI_PropertyDescriptor_description", "_UI_WorkItem_predecessors_feature", "_UI_WorkItem_type"),
-				TaskPackage.Literals.WORK_ITEM__PREDECESSORS, true, false, true, null, null, null));
+		itemPropertyDescriptors.add(createItemPropertyDescriptor(
+				((ComposeableAdapterFactory) adapterFactory)
+						.getRootAdapterFactory(), getResourceLocator(),
+				getString("_UI_WorkItem_predecessors_feature"), getString(
+						"_UI_PropertyDescriptor_description",
+						"_UI_WorkItem_predecessors_feature",
+						"_UI_WorkItem_type"),
+				TaskPackage.Literals.WORK_ITEM__PREDECESSORS, true, false,
+				true, null, null, null));
 	}
 
 	/**
@@ -107,10 +116,16 @@ public class WorkPackageItemProvider extends AnnotationItemProvider implements I
 	 * @generated
 	 */
 	protected void addSuccessorsPropertyDescriptor(Object object) {
-		itemPropertyDescriptors.add(createItemPropertyDescriptor(((ComposeableAdapterFactory) adapterFactory)
-				.getRootAdapterFactory(), getResourceLocator(), getString("_UI_WorkItem_successors_feature"), getString(
-				"_UI_PropertyDescriptor_description", "_UI_WorkItem_successors_feature", "_UI_WorkItem_type"),
-				TaskPackage.Literals.WORK_ITEM__SUCCESSORS, true, false, true, null, null, null));
+		itemPropertyDescriptors
+				.add(createItemPropertyDescriptor(
+						((ComposeableAdapterFactory) adapterFactory)
+								.getRootAdapterFactory(), getResourceLocator(),
+						getString("_UI_WorkItem_successors_feature"),
+						getString("_UI_PropertyDescriptor_description",
+								"_UI_WorkItem_successors_feature",
+								"_UI_WorkItem_type"),
+						TaskPackage.Literals.WORK_ITEM__SUCCESSORS, true,
+						false, true, null, null, null));
 	}
 
 	/**
@@ -120,11 +135,15 @@ public class WorkPackageItemProvider extends AnnotationItemProvider implements I
 	 * @generated
 	 */
 	protected void addContainedWorkItemsPropertyDescriptor(Object object) {
-		itemPropertyDescriptors.add(createItemPropertyDescriptor(((ComposeableAdapterFactory) adapterFactory)
-				.getRootAdapterFactory(), getResourceLocator(), getString("_UI_WorkPackage_containedWorkItems_feature"),
-				getString("_UI_PropertyDescriptor_description", "_UI_WorkPackage_containedWorkItems_feature",
-						"_UI_WorkPackage_type"), TaskPackage.Literals.WORK_PACKAGE__CONTAINED_WORK_ITEMS, true, false, false,
-				null, null, null));
+		itemPropertyDescriptors.add(createItemPropertyDescriptor(
+				((ComposeableAdapterFactory) adapterFactory)
+						.getRootAdapterFactory(), getResourceLocator(),
+				getString("_UI_WorkPackage_containedWorkItems_feature"),
+				getString("_UI_PropertyDescriptor_description",
+						"_UI_WorkPackage_containedWorkItems_feature",
+						"_UI_WorkPackage_type"),
+				TaskPackage.Literals.WORK_PACKAGE__CONTAINED_WORK_ITEMS, true,
+				false, false, null, null, null));
 	}
 
 	/**
@@ -134,11 +153,15 @@ public class WorkPackageItemProvider extends AnnotationItemProvider implements I
 	 * @generated
 	 */
 	protected void addStartDatePropertyDescriptor(Object object) {
-		itemPropertyDescriptors.add(createItemPropertyDescriptor(((ComposeableAdapterFactory) adapterFactory)
-				.getRootAdapterFactory(), getResourceLocator(), getString("_UI_WorkPackage_startDate_feature"), getString(
-				"_UI_PropertyDescriptor_description", "_UI_WorkPackage_startDate_feature", "_UI_WorkPackage_type"),
-				TaskPackage.Literals.WORK_PACKAGE__START_DATE, true, false, false, ItemPropertyDescriptor.GENERIC_VALUE_IMAGE,
-				null, null));
+		itemPropertyDescriptors.add(createItemPropertyDescriptor(
+				((ComposeableAdapterFactory) adapterFactory)
+						.getRootAdapterFactory(), getResourceLocator(),
+				getString("_UI_WorkPackage_startDate_feature"), getString(
+						"_UI_PropertyDescriptor_description",
+						"_UI_WorkPackage_startDate_feature",
+						"_UI_WorkPackage_type"),
+				TaskPackage.Literals.WORK_PACKAGE__START_DATE, true, false,
+				false, ItemPropertyDescriptor.GENERIC_VALUE_IMAGE, null, null));
 	}
 
 	/**
@@ -148,10 +171,14 @@ public class WorkPackageItemProvider extends AnnotationItemProvider implements I
 	 * @generated
 	 */
 	protected void addAssigneePropertyDescriptor(Object object) {
-		itemPropertyDescriptors.add(createItemPropertyDescriptor(((ComposeableAdapterFactory) adapterFactory)
-				.getRootAdapterFactory(), getResourceLocator(), getString("_UI_WorkItem_assignee_feature"), getString(
-				"_UI_PropertyDescriptor_description", "_UI_WorkItem_assignee_feature", "_UI_WorkItem_type"),
-				TaskPackage.Literals.WORK_ITEM__ASSIGNEE, true, false, true, null, null, null));
+		itemPropertyDescriptors.add(createItemPropertyDescriptor(
+				((ComposeableAdapterFactory) adapterFactory)
+						.getRootAdapterFactory(), getResourceLocator(),
+				getString("_UI_WorkItem_assignee_feature"), getString(
+						"_UI_PropertyDescriptor_description",
+						"_UI_WorkItem_assignee_feature", "_UI_WorkItem_type"),
+				TaskPackage.Literals.WORK_ITEM__ASSIGNEE, true, false, true,
+				null, null, null));
 	}
 
 	/**
@@ -161,10 +188,15 @@ public class WorkPackageItemProvider extends AnnotationItemProvider implements I
 	 * @generated
 	 */
 	protected void addParticipantsPropertyDescriptor(Object object) {
-		itemPropertyDescriptors.add(createItemPropertyDescriptor(((ComposeableAdapterFactory) adapterFactory)
-				.getRootAdapterFactory(), getResourceLocator(), getString("_UI_WorkItem_participants_feature"), getString(
-				"_UI_PropertyDescriptor_description", "_UI_WorkItem_participants_feature", "_UI_WorkItem_type"),
-				TaskPackage.Literals.WORK_ITEM__PARTICIPANTS, true, false, true, null, null, null));
+		itemPropertyDescriptors.add(createItemPropertyDescriptor(
+				((ComposeableAdapterFactory) adapterFactory)
+						.getRootAdapterFactory(), getResourceLocator(),
+				getString("_UI_WorkItem_participants_feature"), getString(
+						"_UI_PropertyDescriptor_description",
+						"_UI_WorkItem_participants_feature",
+						"_UI_WorkItem_type"),
+				TaskPackage.Literals.WORK_ITEM__PARTICIPANTS, true, false,
+				true, null, null, null));
 	}
 
 	/**
@@ -174,11 +206,14 @@ public class WorkPackageItemProvider extends AnnotationItemProvider implements I
 	 * @generated
 	 */
 	protected void addDueDatePropertyDescriptor(Object object) {
-		itemPropertyDescriptors.add(createItemPropertyDescriptor(((ComposeableAdapterFactory) adapterFactory)
-				.getRootAdapterFactory(), getResourceLocator(), getString("_UI_WorkItem_dueDate_feature"), getString(
-				"_UI_PropertyDescriptor_description", "_UI_WorkItem_dueDate_feature", "_UI_WorkItem_type"),
-				TaskPackage.Literals.WORK_ITEM__DUE_DATE, true, false, false, ItemPropertyDescriptor.GENERIC_VALUE_IMAGE, null,
-				null));
+		itemPropertyDescriptors.add(createItemPropertyDescriptor(
+				((ComposeableAdapterFactory) adapterFactory)
+						.getRootAdapterFactory(), getResourceLocator(),
+				getString("_UI_WorkItem_dueDate_feature"), getString(
+						"_UI_PropertyDescriptor_description",
+						"_UI_WorkItem_dueDate_feature", "_UI_WorkItem_type"),
+				TaskPackage.Literals.WORK_ITEM__DUE_DATE, true, false, false,
+				ItemPropertyDescriptor.GENERIC_VALUE_IMAGE, null, null));
 	}
 
 	/**
@@ -190,10 +225,12 @@ public class WorkPackageItemProvider extends AnnotationItemProvider implements I
 	 * @generated
 	 */
 	@Override
-	public Collection<? extends EStructuralFeature> getChildrenFeatures(Object object) {
+	public Collection<? extends EStructuralFeature> getChildrenFeatures(
+			Object object) {
 		if (childrenFeatures == null) {
 			super.getChildrenFeatures(object);
-			childrenFeatures.add(TaskPackage.Literals.WORK_PACKAGE__CONTAINED_WORK_ITEMS);
+			childrenFeatures
+					.add(TaskPackage.Literals.WORK_PACKAGE__CONTAINED_WORK_ITEMS);
 		}
 		return childrenFeatures;
 	}
@@ -219,7 +256,8 @@ public class WorkPackageItemProvider extends AnnotationItemProvider implements I
 	 */
 	@Override
 	public Object getImage(Object object) {
-		return overlayImage(object, getResourceLocator().getImage("full/obj16/WorkPackage"));
+		return overlayImage(object, getResourceLocator().getImage(
+				"full/obj16/WorkPackage"));
 	}
 
 	/**
@@ -249,10 +287,12 @@ public class WorkPackageItemProvider extends AnnotationItemProvider implements I
 		case TaskPackage.WORK_PACKAGE__DUE_DATE:
 		case TaskPackage.WORK_PACKAGE__START_DATE:
 		case TaskPackage.WORK_PACKAGE__END_DATE:
-			fireNotifyChanged(new ViewerNotification(notification, notification.getNotifier(), false, true));
+			fireNotifyChanged(new ViewerNotification(notification, notification
+					.getNotifier(), false, true));
 			return;
 		case TaskPackage.WORK_PACKAGE__CONTAINED_WORK_ITEMS:
-			fireNotifyChanged(new ViewerNotification(notification, notification.getNotifier(), true, false));
+			fireNotifyChanged(new ViewerNotification(notification, notification
+					.getNotifier(), true, false));
 			return;
 		}
 		super.notifyChanged(notification);
@@ -266,22 +306,28 @@ public class WorkPackageItemProvider extends AnnotationItemProvider implements I
 	 * @generated
 	 */
 	@Override
-	protected void collectNewChildDescriptors(Collection<Object> newChildDescriptors, Object object) {
+	protected void collectNewChildDescriptors(
+			Collection<Object> newChildDescriptors, Object object) {
 		super.collectNewChildDescriptors(newChildDescriptors, object);
 
-		newChildDescriptors.add(createChildParameter(TaskPackage.Literals.WORK_PACKAGE__CONTAINED_WORK_ITEMS,
+		newChildDescriptors.add(createChildParameter(
+				TaskPackage.Literals.WORK_PACKAGE__CONTAINED_WORK_ITEMS,
 				TaskFactory.eINSTANCE.createActionItem()));
 
-		newChildDescriptors.add(createChildParameter(TaskPackage.Literals.WORK_PACKAGE__CONTAINED_WORK_ITEMS,
+		newChildDescriptors.add(createChildParameter(
+				TaskPackage.Literals.WORK_PACKAGE__CONTAINED_WORK_ITEMS,
 				TaskFactory.eINSTANCE.createWorkPackage()));
 
-		newChildDescriptors.add(createChildParameter(TaskPackage.Literals.WORK_PACKAGE__CONTAINED_WORK_ITEMS,
+		newChildDescriptors.add(createChildParameter(
+				TaskPackage.Literals.WORK_PACKAGE__CONTAINED_WORK_ITEMS,
 				RationaleFactory.eINSTANCE.createIssue()));
 
-		newChildDescriptors.add(createChildParameter(TaskPackage.Literals.WORK_PACKAGE__CONTAINED_WORK_ITEMS,
+		newChildDescriptors.add(createChildParameter(
+				TaskPackage.Literals.WORK_PACKAGE__CONTAINED_WORK_ITEMS,
 				ChangeFactory.eINSTANCE.createMergingIssue()));
 
-		newChildDescriptors.add(createChildParameter(TaskPackage.Literals.WORK_PACKAGE__CONTAINED_WORK_ITEMS,
+		newChildDescriptors.add(createChildParameter(
+				TaskPackage.Literals.WORK_PACKAGE__CONTAINED_WORK_ITEMS,
 				BugFactory.eINSTANCE.createBugReport()));
 	}
 

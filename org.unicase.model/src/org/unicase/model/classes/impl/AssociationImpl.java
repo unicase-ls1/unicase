@@ -178,7 +178,8 @@ public class AssociationImpl extends ModelElementImpl implements Association {
 			source = (org.unicase.model.classes.Class) eResolveProxy(oldSource);
 			if (source != oldSource) {
 				if (eNotificationRequired())
-					eNotify(new ENotificationImpl(this, Notification.RESOLVE, ClassesPackage.ASSOCIATION__SOURCE, oldSource,
+					eNotify(new ENotificationImpl(this, Notification.RESOLVE,
+							ClassesPackage.ASSOCIATION__SOURCE, oldSource,
 							source));
 			}
 		}
@@ -197,11 +198,13 @@ public class AssociationImpl extends ModelElementImpl implements Association {
 	 * <!-- begin-user-doc --> <!-- end-user-doc -->
 	 * @generated
 	 */
-	public NotificationChain basicSetSource(org.unicase.model.classes.Class newSource, NotificationChain msgs) {
+	public NotificationChain basicSetSource(
+			org.unicase.model.classes.Class newSource, NotificationChain msgs) {
 		org.unicase.model.classes.Class oldSource = source;
 		source = newSource;
 		if (eNotificationRequired()) {
-			ENotificationImpl notification = new ENotificationImpl(this, Notification.SET, ClassesPackage.ASSOCIATION__SOURCE,
+			ENotificationImpl notification = new ENotificationImpl(this,
+					Notification.SET, ClassesPackage.ASSOCIATION__SOURCE,
 					oldSource, newSource);
 			if (msgs == null)
 				msgs = notification;
@@ -219,16 +222,19 @@ public class AssociationImpl extends ModelElementImpl implements Association {
 		if (newSource != source) {
 			NotificationChain msgs = null;
 			if (source != null)
-				msgs = ((InternalEObject) source).eInverseRemove(this, ClassesPackage.CLASS__OUTGOING_ASSOCIATIONS,
+				msgs = ((InternalEObject) source).eInverseRemove(this,
+						ClassesPackage.CLASS__OUTGOING_ASSOCIATIONS,
 						org.unicase.model.classes.Class.class, msgs);
 			if (newSource != null)
-				msgs = ((InternalEObject) newSource).eInverseAdd(this, ClassesPackage.CLASS__OUTGOING_ASSOCIATIONS,
+				msgs = ((InternalEObject) newSource).eInverseAdd(this,
+						ClassesPackage.CLASS__OUTGOING_ASSOCIATIONS,
 						org.unicase.model.classes.Class.class, msgs);
 			msgs = basicSetSource(newSource, msgs);
 			if (msgs != null)
 				msgs.dispatch();
 		} else if (eNotificationRequired())
-			eNotify(new ENotificationImpl(this, Notification.SET, ClassesPackage.ASSOCIATION__SOURCE, newSource, newSource));
+			eNotify(new ENotificationImpl(this, Notification.SET,
+					ClassesPackage.ASSOCIATION__SOURCE, newSource, newSource));
 	}
 
 	/**
@@ -241,7 +247,8 @@ public class AssociationImpl extends ModelElementImpl implements Association {
 			target = (org.unicase.model.classes.Class) eResolveProxy(oldTarget);
 			if (target != oldTarget) {
 				if (eNotificationRequired())
-					eNotify(new ENotificationImpl(this, Notification.RESOLVE, ClassesPackage.ASSOCIATION__TARGET, oldTarget,
+					eNotify(new ENotificationImpl(this, Notification.RESOLVE,
+							ClassesPackage.ASSOCIATION__TARGET, oldTarget,
 							target));
 			}
 		}
@@ -260,11 +267,13 @@ public class AssociationImpl extends ModelElementImpl implements Association {
 	 * <!-- begin-user-doc --> <!-- end-user-doc -->
 	 * @generated
 	 */
-	public NotificationChain basicSetTarget(org.unicase.model.classes.Class newTarget, NotificationChain msgs) {
+	public NotificationChain basicSetTarget(
+			org.unicase.model.classes.Class newTarget, NotificationChain msgs) {
 		org.unicase.model.classes.Class oldTarget = target;
 		target = newTarget;
 		if (eNotificationRequired()) {
-			ENotificationImpl notification = new ENotificationImpl(this, Notification.SET, ClassesPackage.ASSOCIATION__TARGET,
+			ENotificationImpl notification = new ENotificationImpl(this,
+					Notification.SET, ClassesPackage.ASSOCIATION__TARGET,
 					oldTarget, newTarget);
 			if (msgs == null)
 				msgs = notification;
@@ -282,16 +291,19 @@ public class AssociationImpl extends ModelElementImpl implements Association {
 		if (newTarget != target) {
 			NotificationChain msgs = null;
 			if (target != null)
-				msgs = ((InternalEObject) target).eInverseRemove(this, ClassesPackage.CLASS__INCOMING_ASSOCIATIONS,
+				msgs = ((InternalEObject) target).eInverseRemove(this,
+						ClassesPackage.CLASS__INCOMING_ASSOCIATIONS,
 						org.unicase.model.classes.Class.class, msgs);
 			if (newTarget != null)
-				msgs = ((InternalEObject) newTarget).eInverseAdd(this, ClassesPackage.CLASS__INCOMING_ASSOCIATIONS,
+				msgs = ((InternalEObject) newTarget).eInverseAdd(this,
+						ClassesPackage.CLASS__INCOMING_ASSOCIATIONS,
 						org.unicase.model.classes.Class.class, msgs);
 			msgs = basicSetTarget(newTarget, msgs);
 			if (msgs != null)
 				msgs.dispatch();
 		} else if (eNotificationRequired())
-			eNotify(new ENotificationImpl(this, Notification.SET, ClassesPackage.ASSOCIATION__TARGET, newTarget, newTarget));
+			eNotify(new ENotificationImpl(this, Notification.SET,
+					ClassesPackage.ASSOCIATION__TARGET, newTarget, newTarget));
 	}
 
 	/**
@@ -310,7 +322,8 @@ public class AssociationImpl extends ModelElementImpl implements Association {
 		AssociationType oldType = type;
 		type = newType == null ? TYPE_EDEFAULT : newType;
 		if (eNotificationRequired())
-			eNotify(new ENotificationImpl(this, Notification.SET, ClassesPackage.ASSOCIATION__TYPE, oldType, type));
+			eNotify(new ENotificationImpl(this, Notification.SET,
+					ClassesPackage.ASSOCIATION__TYPE, oldType, type));
 	}
 
 	/**
@@ -331,7 +344,8 @@ public class AssociationImpl extends ModelElementImpl implements Association {
 		String oldSourceMultiplicity = sourceMultiplicity;
 		sourceMultiplicity = newSourceMultiplicity;
 		if (eNotificationRequired())
-			eNotify(new ENotificationImpl(this, Notification.SET, ClassesPackage.ASSOCIATION__SOURCE_MULTIPLICITY,
+			eNotify(new ENotificationImpl(this, Notification.SET,
+					ClassesPackage.ASSOCIATION__SOURCE_MULTIPLICITY,
 					oldSourceMultiplicity, sourceMultiplicity));
 	}
 
@@ -353,7 +367,8 @@ public class AssociationImpl extends ModelElementImpl implements Association {
 		String oldTargetMultiplicity = targetMultiplicity;
 		targetMultiplicity = newTargetMultiplicity;
 		if (eNotificationRequired())
-			eNotify(new ENotificationImpl(this, Notification.SET, ClassesPackage.ASSOCIATION__TARGET_MULTIPLICITY,
+			eNotify(new ENotificationImpl(this, Notification.SET,
+					ClassesPackage.ASSOCIATION__TARGET_MULTIPLICITY,
 					oldTargetMultiplicity, targetMultiplicity));
 	}
 
@@ -375,7 +390,8 @@ public class AssociationImpl extends ModelElementImpl implements Association {
 		String oldSourceRole = sourceRole;
 		sourceRole = newSourceRole;
 		if (eNotificationRequired())
-			eNotify(new ENotificationImpl(this, Notification.SET, ClassesPackage.ASSOCIATION__SOURCE_ROLE, oldSourceRole,
+			eNotify(new ENotificationImpl(this, Notification.SET,
+					ClassesPackage.ASSOCIATION__SOURCE_ROLE, oldSourceRole,
 					sourceRole));
 	}
 
@@ -397,7 +413,8 @@ public class AssociationImpl extends ModelElementImpl implements Association {
 		String oldTargetRole = targetRole;
 		targetRole = newTargetRole;
 		if (eNotificationRequired())
-			eNotify(new ENotificationImpl(this, Notification.SET, ClassesPackage.ASSOCIATION__TARGET_ROLE, oldTargetRole,
+			eNotify(new ENotificationImpl(this, Notification.SET,
+					ClassesPackage.ASSOCIATION__TARGET_ROLE, oldTargetRole,
 					targetRole));
 	}
 
@@ -406,18 +423,23 @@ public class AssociationImpl extends ModelElementImpl implements Association {
 	 * @generated
 	 */
 	@Override
-	public NotificationChain eInverseAdd(InternalEObject otherEnd, int featureID, NotificationChain msgs) {
+	public NotificationChain eInverseAdd(InternalEObject otherEnd,
+			int featureID, NotificationChain msgs) {
 		switch (featureID) {
 		case ClassesPackage.ASSOCIATION__SOURCE:
 			if (source != null)
-				msgs = ((InternalEObject) source).eInverseRemove(this, ClassesPackage.CLASS__OUTGOING_ASSOCIATIONS,
+				msgs = ((InternalEObject) source).eInverseRemove(this,
+						ClassesPackage.CLASS__OUTGOING_ASSOCIATIONS,
 						org.unicase.model.classes.Class.class, msgs);
-			return basicSetSource((org.unicase.model.classes.Class) otherEnd, msgs);
+			return basicSetSource((org.unicase.model.classes.Class) otherEnd,
+					msgs);
 		case ClassesPackage.ASSOCIATION__TARGET:
 			if (target != null)
-				msgs = ((InternalEObject) target).eInverseRemove(this, ClassesPackage.CLASS__INCOMING_ASSOCIATIONS,
+				msgs = ((InternalEObject) target).eInverseRemove(this,
+						ClassesPackage.CLASS__INCOMING_ASSOCIATIONS,
 						org.unicase.model.classes.Class.class, msgs);
-			return basicSetTarget((org.unicase.model.classes.Class) otherEnd, msgs);
+			return basicSetTarget((org.unicase.model.classes.Class) otherEnd,
+					msgs);
 		}
 		return super.eInverseAdd(otherEnd, featureID, msgs);
 	}
@@ -427,7 +449,8 @@ public class AssociationImpl extends ModelElementImpl implements Association {
 	 * @generated
 	 */
 	@Override
-	public NotificationChain eInverseRemove(InternalEObject otherEnd, int featureID, NotificationChain msgs) {
+	public NotificationChain eInverseRemove(InternalEObject otherEnd,
+			int featureID, NotificationChain msgs) {
 		switch (featureID) {
 		case ClassesPackage.ASSOCIATION__SOURCE:
 			return basicSetSource(null, msgs);
@@ -544,15 +567,17 @@ public class AssociationImpl extends ModelElementImpl implements Association {
 		case ClassesPackage.ASSOCIATION__TYPE:
 			return type != TYPE_EDEFAULT;
 		case ClassesPackage.ASSOCIATION__SOURCE_MULTIPLICITY:
-			return SOURCE_MULTIPLICITY_EDEFAULT == null ? sourceMultiplicity != null : !SOURCE_MULTIPLICITY_EDEFAULT
-					.equals(sourceMultiplicity);
+			return SOURCE_MULTIPLICITY_EDEFAULT == null ? sourceMultiplicity != null
+					: !SOURCE_MULTIPLICITY_EDEFAULT.equals(sourceMultiplicity);
 		case ClassesPackage.ASSOCIATION__TARGET_MULTIPLICITY:
-			return TARGET_MULTIPLICITY_EDEFAULT == null ? targetMultiplicity != null : !TARGET_MULTIPLICITY_EDEFAULT
-					.equals(targetMultiplicity);
+			return TARGET_MULTIPLICITY_EDEFAULT == null ? targetMultiplicity != null
+					: !TARGET_MULTIPLICITY_EDEFAULT.equals(targetMultiplicity);
 		case ClassesPackage.ASSOCIATION__SOURCE_ROLE:
-			return SOURCE_ROLE_EDEFAULT == null ? sourceRole != null : !SOURCE_ROLE_EDEFAULT.equals(sourceRole);
+			return SOURCE_ROLE_EDEFAULT == null ? sourceRole != null
+					: !SOURCE_ROLE_EDEFAULT.equals(sourceRole);
 		case ClassesPackage.ASSOCIATION__TARGET_ROLE:
-			return TARGET_ROLE_EDEFAULT == null ? targetRole != null : !TARGET_ROLE_EDEFAULT.equals(targetRole);
+			return TARGET_ROLE_EDEFAULT == null ? targetRole != null
+					: !TARGET_ROLE_EDEFAULT.equals(targetRole);
 		}
 		return super.eIsSet(featureID);
 	}

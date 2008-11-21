@@ -79,7 +79,8 @@ public class MergingIssueImpl extends IssueImpl implements MergingIssue {
 		int oldResolvingRevision = resolvingRevision;
 		resolvingRevision = newResolvingRevision;
 		if (eNotificationRequired())
-			eNotify(new ENotificationImpl(this, Notification.SET, ChangePackage.MERGING_ISSUE__RESOLVING_REVISION,
+			eNotify(new ENotificationImpl(this, Notification.SET,
+					ChangePackage.MERGING_ISSUE__RESOLVING_REVISION,
 					oldResolvingRevision, resolvingRevision));
 	}
 

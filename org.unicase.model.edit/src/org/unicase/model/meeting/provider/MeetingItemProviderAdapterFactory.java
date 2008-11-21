@@ -34,8 +34,8 @@ import org.unicase.model.meeting.util.MeetingAdapterFactory;
  * <!-- end-user-doc -->
  * @generated
  */
-public class MeetingItemProviderAdapterFactory extends MeetingAdapterFactory implements ComposeableAdapterFactory,
-		IChangeNotifier, IDisposable {
+public class MeetingItemProviderAdapterFactory extends MeetingAdapterFactory
+		implements ComposeableAdapterFactory, IChangeNotifier, IDisposable {
 	/**
 	 * This keeps track of the root adapter factory that delegates to this adapter factory.
 	 * <!-- begin-user-doc -->
@@ -114,7 +114,8 @@ public class MeetingItemProviderAdapterFactory extends MeetingAdapterFactory imp
 	@Override
 	public Adapter createCompositeMeetingSectionAdapter() {
 		if (compositeMeetingSectionItemProvider == null) {
-			compositeMeetingSectionItemProvider = new CompositeMeetingSectionItemProvider(this);
+			compositeMeetingSectionItemProvider = new CompositeMeetingSectionItemProvider(
+					this);
 		}
 
 		return compositeMeetingSectionItemProvider;
@@ -137,7 +138,8 @@ public class MeetingItemProviderAdapterFactory extends MeetingAdapterFactory imp
 	@Override
 	public Adapter createIssueMeetingSectionAdapter() {
 		if (issueMeetingSectionItemProvider == null) {
-			issueMeetingSectionItemProvider = new IssueMeetingSectionItemProvider(this);
+			issueMeetingSectionItemProvider = new IssueMeetingSectionItemProvider(
+					this);
 		}
 
 		return issueMeetingSectionItemProvider;
@@ -160,7 +162,8 @@ public class MeetingItemProviderAdapterFactory extends MeetingAdapterFactory imp
 	@Override
 	public Adapter createWorkItemMeetingSectionAdapter() {
 		if (workItemMeetingSectionItemProvider == null) {
-			workItemMeetingSectionItemProvider = new WorkItemMeetingSectionItemProvider(this);
+			workItemMeetingSectionItemProvider = new WorkItemMeetingSectionItemProvider(
+					this);
 		}
 
 		return workItemMeetingSectionItemProvider;
@@ -173,7 +176,8 @@ public class MeetingItemProviderAdapterFactory extends MeetingAdapterFactory imp
 	 * @generated
 	 */
 	public ComposeableAdapterFactory getRootAdapterFactory() {
-		return parentAdapterFactory == null ? this : parentAdapterFactory.getRootAdapterFactory();
+		return parentAdapterFactory == null ? this : parentAdapterFactory
+				.getRootAdapterFactory();
 	}
 
 	/**
@@ -182,7 +186,8 @@ public class MeetingItemProviderAdapterFactory extends MeetingAdapterFactory imp
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
-	public void setParentAdapterFactory(ComposedAdapterFactory parentAdapterFactory) {
+	public void setParentAdapterFactory(
+			ComposedAdapterFactory parentAdapterFactory) {
 		this.parentAdapterFactory = parentAdapterFactory;
 	}
 
@@ -216,7 +221,8 @@ public class MeetingItemProviderAdapterFactory extends MeetingAdapterFactory imp
 	public Object adapt(Object object, Object type) {
 		if (isFactoryForType(type)) {
 			Object adapter = super.adapt(object, type);
-			if (!(type instanceof Class) || (((Class<?>) type).isInstance(adapter))) {
+			if (!(type instanceof Class)
+					|| (((Class<?>) type).isInstance(adapter))) {
 				return adapter;
 			}
 		}

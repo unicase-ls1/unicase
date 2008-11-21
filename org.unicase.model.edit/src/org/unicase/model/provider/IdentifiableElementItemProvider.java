@@ -29,8 +29,9 @@ import org.unicase.model.ModelPackage;
  * <!-- end-user-doc -->
  * @generated
  */
-public class IdentifiableElementItemProvider extends ItemProviderAdapter implements IEditingDomainItemProvider,
-		IStructuredItemContentProvider, ITreeItemContentProvider, IItemLabelProvider, IItemPropertySource {
+public class IdentifiableElementItemProvider extends ItemProviderAdapter
+		implements IEditingDomainItemProvider, IStructuredItemContentProvider,
+		ITreeItemContentProvider, IItemLabelProvider, IItemPropertySource {
 	/**
 	 * This constructs an instance from a factory and a notifier.
 	 * <!-- begin-user-doc -->
@@ -64,7 +65,8 @@ public class IdentifiableElementItemProvider extends ItemProviderAdapter impleme
 	 */
 	@Override
 	public Object getImage(Object object) {
-		return overlayImage(object, getResourceLocator().getImage("full/obj16/IdentifiableElement"));
+		return overlayImage(object, getResourceLocator().getImage(
+				"full/obj16/IdentifiableElement"));
 	}
 
 	/**
@@ -93,7 +95,8 @@ public class IdentifiableElementItemProvider extends ItemProviderAdapter impleme
 
 		switch (notification.getFeatureID(IdentifiableElement.class)) {
 		case ModelPackage.IDENTIFIABLE_ELEMENT__IDENTIFIER:
-			fireNotifyChanged(new ViewerNotification(notification, notification.getNotifier(), false, true));
+			fireNotifyChanged(new ViewerNotification(notification, notification
+					.getNotifier(), false, true));
 			return;
 		}
 		super.notifyChanged(notification);
@@ -107,7 +110,8 @@ public class IdentifiableElementItemProvider extends ItemProviderAdapter impleme
 	 * @generated
 	 */
 	@Override
-	protected void collectNewChildDescriptors(Collection<Object> newChildDescriptors, Object object) {
+	protected void collectNewChildDescriptors(
+			Collection<Object> newChildDescriptors, Object object) {
 		super.collectNewChildDescriptors(newChildDescriptors, object);
 	}
 

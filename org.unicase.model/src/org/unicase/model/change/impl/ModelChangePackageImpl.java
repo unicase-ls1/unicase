@@ -26,7 +26,8 @@ import org.unicase.model.impl.ModelElementImpl;
  *
  * @generated
  */
-public class ModelChangePackageImpl extends ModelElementImpl implements ModelChangePackage {
+public class ModelChangePackageImpl extends ModelElementImpl implements
+		ModelChangePackage {
 	/**
 	 * The default value of the '{@link #getSourceVersion() <em>Source Version</em>}' attribute.
 	 * <!-- begin-user-doc --> <!--
@@ -100,7 +101,8 @@ public class ModelChangePackageImpl extends ModelElementImpl implements ModelCha
 		int oldSourceVersion = sourceVersion;
 		sourceVersion = newSourceVersion;
 		if (eNotificationRequired())
-			eNotify(new ENotificationImpl(this, Notification.SET, ChangePackage.MODEL_CHANGE_PACKAGE__SOURCE_VERSION,
+			eNotify(new ENotificationImpl(this, Notification.SET,
+					ChangePackage.MODEL_CHANGE_PACKAGE__SOURCE_VERSION,
 					oldSourceVersion, sourceVersion));
 	}
 
@@ -120,7 +122,8 @@ public class ModelChangePackageImpl extends ModelElementImpl implements ModelCha
 		int oldTargetVersion = targetVersion;
 		targetVersion = newTargetVersion;
 		if (eNotificationRequired())
-			eNotify(new ENotificationImpl(this, Notification.SET, ChangePackage.MODEL_CHANGE_PACKAGE__TARGET_VERSION,
+			eNotify(new ENotificationImpl(this, Notification.SET,
+					ChangePackage.MODEL_CHANGE_PACKAGE__TARGET_VERSION,
 					oldTargetVersion, targetVersion));
 	}
 

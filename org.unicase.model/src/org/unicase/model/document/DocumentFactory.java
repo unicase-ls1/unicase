@@ -21,7 +21,8 @@ public interface DocumentFactory extends EFactory {
 	 * end-user-doc -->
 	 * @generated
 	 */
-	DocumentFactory eINSTANCE = org.unicase.model.document.impl.DocumentFactoryImpl.init();
+	DocumentFactory eINSTANCE = org.unicase.model.document.impl.DocumentFactoryImpl
+			.init();
 
 	/**
 	 * Returns a new object of class '<em>Leaf Section</em>'. <!--

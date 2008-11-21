@@ -1077,7 +1077,8 @@ public interface TaskPackage extends EPackage {
 		 * <!-- end-user-doc -->
 		 * @generated
 		 */
-		EReference WORK_PACKAGE__CONTAINED_WORK_ITEMS = eINSTANCE.getWorkPackage_ContainedWorkItems();
+		EReference WORK_PACKAGE__CONTAINED_WORK_ITEMS = eINSTANCE
+				.getWorkPackage_ContainedWorkItems();
 
 		/**
 		 * The meta object literal for the '<em><b>Start Date</b></em>' attribute feature.
@@ -1085,7 +1086,8 @@ public interface TaskPackage extends EPackage {
 		 * <!-- end-user-doc -->
 		 * @generated
 		 */
-		EAttribute WORK_PACKAGE__START_DATE = eINSTANCE.getWorkPackage_StartDate();
+		EAttribute WORK_PACKAGE__START_DATE = eINSTANCE
+				.getWorkPackage_StartDate();
 
 		/**
 		 * The meta object literal for the '<em><b>End Date</b></em>' attribute feature.
@@ -1109,14 +1111,16 @@ public interface TaskPackage extends EPackage {
 		 * <!-- begin-user-doc --> <!-- end-user-doc -->
 		 * @generated
 		 */
-		EReference WORK_ITEM__CONTAINING_WORKPACKAGE = eINSTANCE.getWorkItem_ContainingWorkpackage();
+		EReference WORK_ITEM__CONTAINING_WORKPACKAGE = eINSTANCE
+				.getWorkItem_ContainingWorkpackage();
 
 		/**
 		 * The meta object literal for the '<em><b>Associated Change Packages</b></em>' reference list feature.
 		 * <!-- begin-user-doc --> <!-- end-user-doc -->
 		 * @generated
 		 */
-		EReference WORK_ITEM__ASSOCIATED_CHANGE_PACKAGES = eINSTANCE.getWorkItem_AssociatedChangePackages();
+		EReference WORK_ITEM__ASSOCIATED_CHANGE_PACKAGES = eINSTANCE
+				.getWorkItem_AssociatedChangePackages();
 
 		/**
 		 * The meta object literal for the '<em><b>Predecessors</b></em>' reference list feature.
@@ -1124,7 +1128,8 @@ public interface TaskPackage extends EPackage {
 		 * <!-- end-user-doc -->
 		 * @generated
 		 */
-		EReference WORK_ITEM__PREDECESSORS = eINSTANCE.getWorkItem_Predecessors();
+		EReference WORK_ITEM__PREDECESSORS = eINSTANCE
+				.getWorkItem_Predecessors();
 
 		/**
 		 * The meta object literal for the '<em><b>Successors</b></em>' reference list feature.
@@ -1148,7 +1153,8 @@ public interface TaskPackage extends EPackage {
 		 * <!-- end-user-doc -->
 		 * @generated
 		 */
-		EReference WORK_ITEM__PARTICIPANTS = eINSTANCE.getWorkItem_Participants();
+		EReference WORK_ITEM__PARTICIPANTS = eINSTANCE
+				.getWorkItem_Participants();
 
 		/**
 		 * The meta object literal for the '<em><b>Due Date</b></em>' attribute feature.

@@ -21,7 +21,8 @@ import org.unicase.model.organization.User;
  * end-user-doc -->
  * @generated
  */
-public class OrganizationFactoryImpl extends EFactoryImpl implements OrganizationFactory {
+public class OrganizationFactoryImpl extends EFactoryImpl implements
+		OrganizationFactory {
 	/**
 	 * Creates the default factory implementation.
 	 * <!-- begin-user-doc --> <!--
@@ -63,7 +64,8 @@ public class OrganizationFactoryImpl extends EFactoryImpl implements Organizatio
 		case OrganizationPackage.GROUP:
 			return createGroup();
 		default:
-			throw new IllegalArgumentException("The class '" + eClass.getName() + "' is not a valid classifier");
+			throw new IllegalArgumentException("The class '" + eClass.getName()
+					+ "' is not a valid classifier");
 		}
 	}
 

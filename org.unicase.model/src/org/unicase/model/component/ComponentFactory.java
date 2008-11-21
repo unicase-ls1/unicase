@@ -21,7 +21,8 @@ public interface ComponentFactory extends EFactory {
 	 * end-user-doc -->
 	 * @generated
 	 */
-	ComponentFactory eINSTANCE = org.unicase.model.component.impl.ComponentFactoryImpl.init();
+	ComponentFactory eINSTANCE = org.unicase.model.component.impl.ComponentFactoryImpl
+			.init();
 
 	/**
 	 * Returns a new object of class '<em>Component</em>'.

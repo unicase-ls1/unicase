@@ -515,7 +515,12 @@
           changeable="false" volatile="true" transient="true" defaultValueLiteral=""
           derived="true"/>
       <eStructuralFeatures xsi:type="ecore:EReference" name="arguments" upperBound="-1"
-          eType="#//classes/MethodArgument" containment="true"/>
+          eType="#//classes/MethodArgument" containment="true">
+        <eAnnotations source="org.unicase.ui.meeditor">
+          <details key="priority" value="10.0"/>
+          <details key="position" value="right"/>
+        </eAnnotations>
+      </eStructuralFeatures>
       <eStructuralFeatures xsi:type="ecore:EAttribute" name="properties" eType="ecore:EDataType platform:/plugin/org.eclipse.emf.ecore/model/Ecore.ecore#//EString">
         <eAnnotations source="org.unicase.ui.meeditor">
           <details key="priority" value="14.0"/>

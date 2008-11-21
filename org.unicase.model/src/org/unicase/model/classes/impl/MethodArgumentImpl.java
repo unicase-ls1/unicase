@@ -33,7 +33,8 @@ import org.unicase.model.impl.ModelElementImpl;
  *
  * @generated
  */
-public class MethodArgumentImpl extends ModelElementImpl implements MethodArgument {
+public class MethodArgumentImpl extends ModelElementImpl implements
+		MethodArgument {
 	/**
 	 * The default value of the '{@link #getType() <em>Type</em>}' attribute.
 	 * <!-- begin-user-doc --> <!-- end-user-doc -->
@@ -150,7 +151,8 @@ public class MethodArgumentImpl extends ModelElementImpl implements MethodArgume
 		String oldType = type;
 		type = newType;
 		if (eNotificationRequired())
-			eNotify(new ENotificationImpl(this, Notification.SET, ClassesPackage.METHOD_ARGUMENT__TYPE, oldType, type));
+			eNotify(new ENotificationImpl(this, Notification.SET,
+					ClassesPackage.METHOD_ARGUMENT__TYPE, oldType, type));
 	}
 
 	/**
@@ -169,7 +171,8 @@ public class MethodArgumentImpl extends ModelElementImpl implements MethodArgume
 		ArgumentDirectionType oldDirection = direction;
 		direction = newDirection == null ? DIRECTION_EDEFAULT : newDirection;
 		if (eNotificationRequired())
-			eNotify(new ENotificationImpl(this, Notification.SET, ClassesPackage.METHOD_ARGUMENT__DIRECTION, oldDirection,
+			eNotify(new ENotificationImpl(this, Notification.SET,
+					ClassesPackage.METHOD_ARGUMENT__DIRECTION, oldDirection,
 					direction));
 	}
 
@@ -189,8 +192,9 @@ public class MethodArgumentImpl extends ModelElementImpl implements MethodArgume
 		String oldDefaultValue = defaultValue;
 		defaultValue = newDefaultValue;
 		if (eNotificationRequired())
-			eNotify(new ENotificationImpl(this, Notification.SET, ClassesPackage.METHOD_ARGUMENT__DEFAULT_VALUE, oldDefaultValue,
-					defaultValue));
+			eNotify(new ENotificationImpl(this, Notification.SET,
+					ClassesPackage.METHOD_ARGUMENT__DEFAULT_VALUE,
+					oldDefaultValue, defaultValue));
 	}
 
 	/**
@@ -299,7 +303,8 @@ public class MethodArgumentImpl extends ModelElementImpl implements MethodArgume
 		}
 
 		if (eNotificationRequired()) {
-			eNotify(new ENotificationImpl(this, Notification.SET, ClassesPackage.METHOD_ARGUMENT__LABEL, oldLabel, label));
+			eNotify(new ENotificationImpl(this, Notification.SET,
+					ClassesPackage.METHOD_ARGUMENT__LABEL, oldLabel, label));
 		}
 	}
 
@@ -378,15 +383,19 @@ public class MethodArgumentImpl extends ModelElementImpl implements MethodArgume
 	public boolean eIsSet(int featureID) {
 		switch (featureID) {
 		case ClassesPackage.METHOD_ARGUMENT__TYPE:
-			return TYPE_EDEFAULT == null ? type != null : !TYPE_EDEFAULT.equals(type);
+			return TYPE_EDEFAULT == null ? type != null : !TYPE_EDEFAULT
+					.equals(type);
 		case ClassesPackage.METHOD_ARGUMENT__DIRECTION:
 			return direction != DIRECTION_EDEFAULT;
 		case ClassesPackage.METHOD_ARGUMENT__DEFAULT_VALUE:
-			return DEFAULT_VALUE_EDEFAULT == null ? defaultValue != null : !DEFAULT_VALUE_EDEFAULT.equals(defaultValue);
+			return DEFAULT_VALUE_EDEFAULT == null ? defaultValue != null
+					: !DEFAULT_VALUE_EDEFAULT.equals(defaultValue);
 		case ClassesPackage.METHOD_ARGUMENT__SIGNATURE:
-			return SIGNATURE_EDEFAULT == null ? getSignature() != null : !SIGNATURE_EDEFAULT.equals(getSignature());
+			return SIGNATURE_EDEFAULT == null ? getSignature() != null
+					: !SIGNATURE_EDEFAULT.equals(getSignature());
 		case ClassesPackage.METHOD_ARGUMENT__LABEL:
-			return LABEL_EDEFAULT == null ? label != null : !LABEL_EDEFAULT.equals(label);
+			return LABEL_EDEFAULT == null ? label != null : !LABEL_EDEFAULT
+					.equals(label);
 		}
 		return super.eIsSet(featureID);
 	}

@@ -32,8 +32,9 @@ import org.unicase.model.provider.ModelElementItemProvider;
  * <!-- end-user-doc -->
  * @generated
  */
-public class MethodArgumentItemProvider extends ModelElementItemProvider implements IEditingDomainItemProvider,
-		IStructuredItemContentProvider, ITreeItemContentProvider, IItemLabelProvider, IItemPropertySource {
+public class MethodArgumentItemProvider extends ModelElementItemProvider
+		implements IEditingDomainItemProvider, IStructuredItemContentProvider,
+		ITreeItemContentProvider, IItemLabelProvider, IItemPropertySource {
 	/**
 	 * This constructs an instance from a factory and a notifier.
 	 * <!-- begin-user-doc -->
@@ -70,11 +71,15 @@ public class MethodArgumentItemProvider extends ModelElementItemProvider impleme
 	 * @generated
 	 */
 	protected void addTypePropertyDescriptor(Object object) {
-		itemPropertyDescriptors.add(createItemPropertyDescriptor(((ComposeableAdapterFactory) adapterFactory)
-				.getRootAdapterFactory(), getResourceLocator(), getString("_UI_MethodArgument_type_feature"), getString(
-				"_UI_PropertyDescriptor_description", "_UI_MethodArgument_type_feature", "_UI_MethodArgument_type"),
-				ClassesPackage.Literals.METHOD_ARGUMENT__TYPE, true, false, false, ItemPropertyDescriptor.GENERIC_VALUE_IMAGE,
-				null, null));
+		itemPropertyDescriptors.add(createItemPropertyDescriptor(
+				((ComposeableAdapterFactory) adapterFactory)
+						.getRootAdapterFactory(), getResourceLocator(),
+				getString("_UI_MethodArgument_type_feature"), getString(
+						"_UI_PropertyDescriptor_description",
+						"_UI_MethodArgument_type_feature",
+						"_UI_MethodArgument_type"),
+				ClassesPackage.Literals.METHOD_ARGUMENT__TYPE, true, false,
+				false, ItemPropertyDescriptor.GENERIC_VALUE_IMAGE, null, null));
 	}
 
 	/**
@@ -84,11 +89,16 @@ public class MethodArgumentItemProvider extends ModelElementItemProvider impleme
 	 * @generated
 	 */
 	protected void addDirectionPropertyDescriptor(Object object) {
-		itemPropertyDescriptors.add(createItemPropertyDescriptor(((ComposeableAdapterFactory) adapterFactory)
-				.getRootAdapterFactory(), getResourceLocator(), getString("_UI_MethodArgument_direction_feature"), getString(
-				"_UI_PropertyDescriptor_description", "_UI_MethodArgument_direction_feature", "_UI_MethodArgument_type"),
-				ClassesPackage.Literals.METHOD_ARGUMENT__DIRECTION, true, false, false,
-				ItemPropertyDescriptor.GENERIC_VALUE_IMAGE, null, null));
+		itemPropertyDescriptors.add(createItemPropertyDescriptor(
+				((ComposeableAdapterFactory) adapterFactory)
+						.getRootAdapterFactory(), getResourceLocator(),
+				getString("_UI_MethodArgument_direction_feature"), getString(
+						"_UI_PropertyDescriptor_description",
+						"_UI_MethodArgument_direction_feature",
+						"_UI_MethodArgument_type"),
+				ClassesPackage.Literals.METHOD_ARGUMENT__DIRECTION, true,
+				false, false, ItemPropertyDescriptor.GENERIC_VALUE_IMAGE, null,
+				null));
 	}
 
 	/**
@@ -98,11 +108,16 @@ public class MethodArgumentItemProvider extends ModelElementItemProvider impleme
 	 * @generated
 	 */
 	protected void addDefaultValuePropertyDescriptor(Object object) {
-		itemPropertyDescriptors.add(createItemPropertyDescriptor(((ComposeableAdapterFactory) adapterFactory)
-				.getRootAdapterFactory(), getResourceLocator(), getString("_UI_MethodArgument_defaultValue_feature"), getString(
-				"_UI_PropertyDescriptor_description", "_UI_MethodArgument_defaultValue_feature", "_UI_MethodArgument_type"),
-				ClassesPackage.Literals.METHOD_ARGUMENT__DEFAULT_VALUE, true, false, false,
-				ItemPropertyDescriptor.GENERIC_VALUE_IMAGE, null, null));
+		itemPropertyDescriptors.add(createItemPropertyDescriptor(
+				((ComposeableAdapterFactory) adapterFactory)
+						.getRootAdapterFactory(), getResourceLocator(),
+				getString("_UI_MethodArgument_defaultValue_feature"),
+				getString("_UI_PropertyDescriptor_description",
+						"_UI_MethodArgument_defaultValue_feature",
+						"_UI_MethodArgument_type"),
+				ClassesPackage.Literals.METHOD_ARGUMENT__DEFAULT_VALUE, true,
+				false, false, ItemPropertyDescriptor.GENERIC_VALUE_IMAGE, null,
+				null));
 	}
 
 	/**
@@ -112,11 +127,15 @@ public class MethodArgumentItemProvider extends ModelElementItemProvider impleme
 	 * @generated
 	 */
 	protected void addLabelPropertyDescriptor(Object object) {
-		itemPropertyDescriptors.add(createItemPropertyDescriptor(((ComposeableAdapterFactory) adapterFactory)
-				.getRootAdapterFactory(), getResourceLocator(), getString("_UI_MethodArgument_label_feature"), getString(
-				"_UI_PropertyDescriptor_description", "_UI_MethodArgument_label_feature", "_UI_MethodArgument_type"),
-				ClassesPackage.Literals.METHOD_ARGUMENT__LABEL, true, false, false, ItemPropertyDescriptor.GENERIC_VALUE_IMAGE,
-				null, null));
+		itemPropertyDescriptors.add(createItemPropertyDescriptor(
+				((ComposeableAdapterFactory) adapterFactory)
+						.getRootAdapterFactory(), getResourceLocator(),
+				getString("_UI_MethodArgument_label_feature"), getString(
+						"_UI_PropertyDescriptor_description",
+						"_UI_MethodArgument_label_feature",
+						"_UI_MethodArgument_type"),
+				ClassesPackage.Literals.METHOD_ARGUMENT__LABEL, true, false,
+				false, ItemPropertyDescriptor.GENERIC_VALUE_IMAGE, null, null));
 	}
 
 	/**
@@ -127,7 +146,8 @@ public class MethodArgumentItemProvider extends ModelElementItemProvider impleme
 	 */
 	@Override
 	public Object getImage(Object object) {
-		return overlayImage(object, getResourceLocator().getImage("full/obj16/MethodArgument"));
+		return overlayImage(object, getResourceLocator().getImage(
+				"full/obj16/MethodArgument"));
 	}
 
 	/**
@@ -140,7 +160,8 @@ public class MethodArgumentItemProvider extends ModelElementItemProvider impleme
 	@Override
 	public String getText(Object object) {
 		String label = ((MethodArgument) object).getLabel();
-		return label == null || label.length() == 0 ? getString("_UI_MethodArgument_type") : label;
+		return label == null || label.length() == 0 ? getString("_UI_MethodArgument_type")
+				: label;
 	}
 
 	/**
@@ -160,7 +181,8 @@ public class MethodArgumentItemProvider extends ModelElementItemProvider impleme
 		case ClassesPackage.METHOD_ARGUMENT__DEFAULT_VALUE:
 		case ClassesPackage.METHOD_ARGUMENT__SIGNATURE:
 		case ClassesPackage.METHOD_ARGUMENT__LABEL:
-			fireNotifyChanged(new ViewerNotification(notification, notification.getNotifier(), false, true));
+			fireNotifyChanged(new ViewerNotification(notification, notification
+					.getNotifier(), false, true));
 			return;
 		}
 		super.notifyChanged(notification);
@@ -174,7 +196,8 @@ public class MethodArgumentItemProvider extends ModelElementItemProvider impleme
 	 * @generated
 	 */
 	@Override
-	protected void collectNewChildDescriptors(Collection<Object> newChildDescriptors, Object object) {
+	protected void collectNewChildDescriptors(
+			Collection<Object> newChildDescriptors, Object object) {
 		super.collectNewChildDescriptors(newChildDescriptors, object);
 	}
 

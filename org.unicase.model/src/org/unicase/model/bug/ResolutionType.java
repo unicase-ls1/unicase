@@ -103,14 +103,16 @@ public enum ResolutionType implements Enumerator {
 	 * 
 	 * @generated
 	 */
-	private static final ResolutionType[] VALUES_ARRAY = new ResolutionType[] { FIXED, CANNOT_REPRODUCE, WONT_FIX, };
+	private static final ResolutionType[] VALUES_ARRAY = new ResolutionType[] {
+			FIXED, CANNOT_REPRODUCE, WONT_FIX, };
 
 	/**
 	 * A public read-only list of all the '<em><b>Resolution Type</b></em>' enumerators.
 	 * <!-- begin-user-doc --> <!-- end-user-doc -->
 	 * @generated
 	 */
-	public static final List<ResolutionType> VALUES = Collections.unmodifiableList(Arrays.asList(VALUES_ARRAY));
+	public static final List<ResolutionType> VALUES = Collections
+			.unmodifiableList(Arrays.asList(VALUES_ARRAY));
 
 	/**
 	 * Returns the '<em><b>Resolution Type</b></em>' literal with the specified literal value.

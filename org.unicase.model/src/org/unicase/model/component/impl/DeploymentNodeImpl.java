@@ -28,7 +28,8 @@ import org.unicase.model.impl.ModelElementImpl;
  *
  * @generated
  */
-public class DeploymentNodeImpl extends ModelElementImpl implements DeploymentNode {
+public class DeploymentNodeImpl extends ModelElementImpl implements
+		DeploymentNode {
 	/**
 	 * The cached value of the '{@link #getComponents() <em>Components</em>}' reference list.
 	 * <!-- begin-user-doc --> <!-- end-user-doc -->
@@ -61,7 +62,8 @@ public class DeploymentNodeImpl extends ModelElementImpl implements DeploymentNo
 	 */
 	public EList<Component> getComponents() {
 		if (components == null) {
-			components = new EObjectResolvingEList<Component>(Component.class, this, ComponentPackage.DEPLOYMENT_NODE__COMPONENTS);
+			components = new EObjectResolvingEList<Component>(Component.class,
+					this, ComponentPackage.DEPLOYMENT_NODE__COMPONENTS);
 		}
 		return components;
 	}

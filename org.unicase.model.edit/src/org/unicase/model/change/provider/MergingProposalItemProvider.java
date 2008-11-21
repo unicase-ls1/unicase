@@ -30,8 +30,9 @@ import org.unicase.model.rationale.provider.ProposalItemProvider;
  * --> <!-- end-user-doc -->
  * @generated
  */
-public class MergingProposalItemProvider extends ProposalItemProvider implements IEditingDomainItemProvider,
-		IStructuredItemContentProvider, ITreeItemContentProvider, IItemLabelProvider, IItemPropertySource {
+public class MergingProposalItemProvider extends ProposalItemProvider implements
+		IEditingDomainItemProvider, IStructuredItemContentProvider,
+		ITreeItemContentProvider, IItemLabelProvider, IItemPropertySource {
 	/**
 	 * This constructs an instance from a factory and a notifier. <!--
 	 * begin-user-doc --> <!-- end-user-doc -->
@@ -65,11 +66,15 @@ public class MergingProposalItemProvider extends ProposalItemProvider implements
 	 * @generated
 	 */
 	protected void addConflictingProposalsPropertyDescriptor(Object object) {
-		itemPropertyDescriptors.add(createItemPropertyDescriptor(((ComposeableAdapterFactory) adapterFactory)
-				.getRootAdapterFactory(), getResourceLocator(), getString("_UI_MergingProposal_conflictingProposals_feature"),
-				getString("_UI_PropertyDescriptor_description", "_UI_MergingProposal_conflictingProposals_feature",
-						"_UI_MergingProposal_type"), ChangePackage.Literals.MERGING_PROPOSAL__CONFLICTING_PROPOSALS, true, false,
-				true, null, null, null));
+		itemPropertyDescriptors.add(createItemPropertyDescriptor(
+				((ComposeableAdapterFactory) adapterFactory)
+						.getRootAdapterFactory(), getResourceLocator(),
+				getString("_UI_MergingProposal_conflictingProposals_feature"),
+				getString("_UI_PropertyDescriptor_description",
+						"_UI_MergingProposal_conflictingProposals_feature",
+						"_UI_MergingProposal_type"),
+				ChangePackage.Literals.MERGING_PROPOSAL__CONFLICTING_PROPOSALS,
+				true, false, true, null, null, null));
 	}
 
 	/**
@@ -79,11 +84,15 @@ public class MergingProposalItemProvider extends ProposalItemProvider implements
 	 * @generated
 	 */
 	protected void addPendingChangesPropertyDescriptor(Object object) {
-		itemPropertyDescriptors.add(createItemPropertyDescriptor(((ComposeableAdapterFactory) adapterFactory)
-				.getRootAdapterFactory(), getResourceLocator(), getString("_UI_MergingProposal_pendingChanges_feature"),
-				getString("_UI_PropertyDescriptor_description", "_UI_MergingProposal_pendingChanges_feature",
-						"_UI_MergingProposal_type"), ChangePackage.Literals.MERGING_PROPOSAL__PENDING_CHANGES, true, false, true,
-				null, null, null));
+		itemPropertyDescriptors.add(createItemPropertyDescriptor(
+				((ComposeableAdapterFactory) adapterFactory)
+						.getRootAdapterFactory(), getResourceLocator(),
+				getString("_UI_MergingProposal_pendingChanges_feature"),
+				getString("_UI_PropertyDescriptor_description",
+						"_UI_MergingProposal_pendingChanges_feature",
+						"_UI_MergingProposal_type"),
+				ChangePackage.Literals.MERGING_PROPOSAL__PENDING_CHANGES, true,
+				false, true, null, null, null));
 	}
 
 	/**
@@ -94,7 +103,8 @@ public class MergingProposalItemProvider extends ProposalItemProvider implements
 	 */
 	@Override
 	public Object getImage(Object object) {
-		return overlayImage(object, getResourceLocator().getImage("full/obj16/MergingProposal"));
+		return overlayImage(object, getResourceLocator().getImage(
+				"full/obj16/MergingProposal"));
 	}
 
 	/**
@@ -131,7 +141,8 @@ public class MergingProposalItemProvider extends ProposalItemProvider implements
 	 * @generated
 	 */
 	@Override
-	protected void collectNewChildDescriptors(Collection<Object> newChildDescriptors, Object object) {
+	protected void collectNewChildDescriptors(
+			Collection<Object> newChildDescriptors, Object object) {
 		super.collectNewChildDescriptors(newChildDescriptors, object);
 	}
 

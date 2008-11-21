@@ -76,7 +76,8 @@ public enum ScopeType implements Enumerator {
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
-	private static final ScopeType[] VALUES_ARRAY = new ScopeType[] { INSTANCE, CLASS, };
+	private static final ScopeType[] VALUES_ARRAY = new ScopeType[] { INSTANCE,
+			CLASS, };
 
 	/**
 	 * A public read-only list of all the '<em><b>Scope Type</b></em>' enumerators.
@@ -84,7 +85,8 @@ public enum ScopeType implements Enumerator {
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
-	public static final List<ScopeType> VALUES = Collections.unmodifiableList(Arrays.asList(VALUES_ARRAY));
+	public static final List<ScopeType> VALUES = Collections
+			.unmodifiableList(Arrays.asList(VALUES_ARRAY));
 
 	/**
 	 * Returns the '<em><b>Scope Type</b></em>' literal with the specified literal value.
