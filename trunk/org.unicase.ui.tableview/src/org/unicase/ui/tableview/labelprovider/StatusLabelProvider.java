@@ -43,10 +43,10 @@ public class StatusLabelProvider extends ColumnLabelProvider implements
 
 			String path = "icons/closed.jpg";
 			if (status.equals(MEState.OPEN)) {
-				path = "icons/open.jpg";
+				path = "icons/open.gif";
 			}
 			if (status.equals(MEState.BLOCKED)) {
-				path = "icons/blocked.jpg";
+				path = "icons/blocked.gif";
 			} 
 			URL url = FileLocator.find(Platform
 					.getBundle("org.unicase.ui.stem"), new Path(path), null);
