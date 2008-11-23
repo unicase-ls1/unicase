@@ -73,7 +73,7 @@ public class ChangeTestHelper {
 	}
 
 	public static ChangePackage getChangePackage(
-			final List<AbstractOperation> operations, final boolean cannonize) {
+			final List<AbstractOperation> operations, final boolean cannonize,final boolean clearOperations) {
 
 		final ChangePackage changePackage = VersioningFactory.eINSTANCE
 				.createChangePackage();
@@ -82,7 +82,14 @@ public class ChangeTestHelper {
 
 					@Override
 					protected void doExecute() {
-						changePackage.getOperations().addAll(operations);
+						for(AbstractOperation op : operations){
+							changePackage.getOperations().add((AbstractOperation) EcoreUtil.copy(op));
+							
+						}
+						if(clearOperations){
+							operations.clear();
+						}
+						
 						if (cannonize) {
 							changePackage.cannonize();
 						}
@@ -95,7 +102,7 @@ public class ChangeTestHelper {
 	public static boolean compare(ProjectSpace testSpace,
 			ProjectSpace compareSpace) {
 
-		prepareCompare(testSpace, compareSpace);
+		prepareCompare(testSpace, compareSpace, false);
 
 		System.out.println("comparing...");
 		return ModelUtil.areEqual(testSpace.getProject(), compareSpace
@@ -110,23 +117,12 @@ public class ChangeTestHelper {
 	 */
 	@SuppressWarnings("unchecked")
 	private static void prepareCompare(final ProjectSpace testSpace,
-			final ProjectSpace compareSpace) {
+			final ProjectSpace compareSpace, final boolean incremental) {
 		System.out.println("extracting operations from test project...");
-		////variant 1
-		//List<AbstractOperation> operations = testSpace.getOperations();
-		
-		////variant 2
-		//List<AbstractOperation> operations = new ArrayList<AbstractOperation>();
-		//operations.addAll(testSpace.getOperations());
-		
-		////variant 3
-		List<AbstractOperation> operations = new ArrayList<AbstractOperation>();
-		for(AbstractOperation op : testSpace.getOperations()){
-			operations.add((AbstractOperation)EcoreUtil.copy(op));
-		}
-		
+				
+		List<AbstractOperation> operations = testSpace.getOperations();
 		System.out.println(operations.size() + " operatoins");
-		final ChangePackage changePackage = getChangePackage(operations, true);
+		final ChangePackage changePackage = getChangePackage(operations, true, false);
 
 		// save change package for later reference
 		// the saved change package will be overwritten every time a test
@@ -152,6 +148,10 @@ public class ChangeTestHelper {
 								.println("applying changes to compareSpace...");
 						((ProjectSpaceImpl) compareSpace).stopChangeRecording();
 						changePackage.apply(compareSpace.getProject());
+						if(!incremental){
+							testSpace.getOperations().clear();
+						}
+						
 						// compareSpace.save();
 					}
 				});
@@ -160,7 +160,7 @@ public class ChangeTestHelper {
 	public static int[] linearCompare(ProjectSpace testSpace,
 			ProjectSpace compareSpace) {
 
-		prepareCompare(testSpace, compareSpace);
+		prepareCompare(testSpace, compareSpace, false);
 		System.out.println("linear comparing...");
 		return linearCompare(testSpace.getProject(), compareSpace.getProject());
 
