@@ -65,7 +65,8 @@ public abstract class RandomChangeTestCase extends ChangeTestCase {
 
 		File resultsFile = new File(getResultsSavePath());
 		ChangePackage changePackage = ChangeTestHelper.getChangePackage(
-				getTestProjectSpace().getOperations(), true);
+				getTestProjectSpace().getOperations(), true, false);
+		
 		if (changePackage.getOperations().size() == ((IChangePackageTest)this).getExpectedNumOfChanges()) {
 			System.out.println("ok");
 			return;

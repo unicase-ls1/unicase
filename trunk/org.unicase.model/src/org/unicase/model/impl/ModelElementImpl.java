@@ -416,7 +416,7 @@ public abstract class ModelElementImpl extends IdentifiableElementImpl
 	 * @return the project in which the modelelement is contained or null if it
 	 *         not in any project.
 	 */
-	public Project getProject(Set<ModelElement> seenModelElements) {
+	private Project getProject(Set<ModelElement> seenModelElements) {
 
 		EObject container = this.eContainer();
 

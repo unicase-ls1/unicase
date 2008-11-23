@@ -18,6 +18,7 @@ import org.unicase.test.tests.changetests.randomchange.testcases.CreateAndChange
 import org.unicase.test.tests.changetests.randomchange.testcases.CreateAndDeleteTest;
 import org.unicase.test.tests.changetests.randomchange.testcases.MoveTest;
 import org.unicase.test.tests.changetests.randomchange.testcases.ReferenceTest;
+import org.unicase.test.tests.changetests.randomchange.testcases.RemoveTest;
 import org.unicase.test.tests.changetests.randomchange.testcases.TransitivelyChangeAttributeTest;
 
 public class RandomChangeTestSuite extends ChangeTestSuite {
@@ -82,7 +83,8 @@ public class RandomChangeTestSuite extends ChangeTestSuite {
 		// createAndDeleteTest.setParameters();
 
 		// Remove Test
-		// RemoveTest removeTest = new RemoveTest("Remove", getRandomSeed());
+		RemoveTest removeTest = new RemoveTest("Remove", getRandomSeed());
+		testCases.add(removeTest);
 		// rmoveTest.setPrameters();
 
 		// CreateAndChangeRef Test
@@ -109,13 +111,13 @@ public class RandomChangeTestSuite extends ChangeTestSuite {
 
 		// this.getTestCases().add(moveTest);
 		// this.getTestCases().add(addTest);
-		this.getTestCases().add(compoundTest);
+		//this.getTestCases().add(compoundTest);
 		// this.getTestCases().add(deleteTest);
 		// this.getTestCases().add(referenceTest);
 		// this.getTestCases().add(compoundTest);
 		// this.getTestCases().add(createAndDeleteTest);
 		// this.getTestCases().add(transitivelyChangeAttribute);
-		// this.getTestCases().add(removeTest);
+		 this.getTestCases().add(removeTest);
 		// this.getTestCases().add(createAndChangeRefTest);
 		// this.getTestCases().add(createAndChangeAttrTest);
 		// this.getTestCases().add(commitTest);
@@ -216,7 +218,7 @@ public class RandomChangeTestSuite extends ChangeTestSuite {
 	private void endTestSuiteChangePackageTests() {
 
 		ChangePackage changePackage = ChangeTestHelper.getChangePackage(
-				getTestProjectSpace().getOperations(), true);
+				getTestProjectSpace().getOperations(), true, true);
 		if (changePackage.getOperations().size() == 2) {
 			System.out.println("ok");
 			return;
