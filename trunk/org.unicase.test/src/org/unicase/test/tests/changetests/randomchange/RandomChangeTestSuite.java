@@ -18,7 +18,6 @@ import org.unicase.test.tests.changetests.randomchange.testcases.CreateAndChange
 import org.unicase.test.tests.changetests.randomchange.testcases.CreateAndDeleteTest;
 import org.unicase.test.tests.changetests.randomchange.testcases.MoveTest;
 import org.unicase.test.tests.changetests.randomchange.testcases.ReferenceTest;
-import org.unicase.test.tests.changetests.randomchange.testcases.RemoveTest;
 import org.unicase.test.tests.changetests.randomchange.testcases.TransitivelyChangeAttributeTest;
 
 public class RandomChangeTestSuite extends ChangeTestSuite {
@@ -31,7 +30,7 @@ public class RandomChangeTestSuite extends ChangeTestSuite {
 	}
 
 	public RandomChangeTestSuite() {
-		// this.changePackageTest = automaticTests;
+
 	}
 
 	@Override
@@ -40,76 +39,76 @@ public class RandomChangeTestSuite extends ChangeTestSuite {
 		List<RandomChangeTestCase> testCases = new ArrayList<RandomChangeTestCase>();
 
 		// add test cases
-		// getLogger().info("adding test cases");
 		System.out.println("adding testcases...");
 
 		// ChangeSimpleAttributeTest
 		ChangeSimpleAttributeTest changeAttributeTest = new ChangeSimpleAttributeTest(
-				"ChangeSimpleAttributeTest", getRandomSeed());
+				"ChangeSimpleAttributeTest", getTestProjectPrams());
 		testCases.add(changeAttributeTest);
-		// changeAttributeTest.setParameters();
 
 		// DeleteTest
 		// DeleteTest deleteTest = new DeleteTest("Delete", getRandomSeed());
 		// testCases.add(deleteTest);
-		// deleteTest.setParameters();
 
+		
 		// MoveTest
-		MoveTest moveTest = new MoveTest("Move", getRandomSeed());
+		MoveTest moveTest = new MoveTest("Move", getTestProjectPrams());
 		testCases.add(moveTest);
-		// moveTest.setParameters();
 
+		
 		// AddTest
-		AddTest addTest = new AddTest("Add", getRandomSeed());
+		AddTest addTest = new AddTest("Add", getTestProjectPrams());
 		testCases.add(addTest);
-		// addTest.setParameters();
 
+		
 		// Reference Test
 		ReferenceTest referenceTest = new ReferenceTest("Reference",
-				getRandomSeed());
+				getTestProjectPrams());
 		testCases.add(referenceTest);
-		// referenceTest.setParameters();
 
+		
 		// CreateAndDelete Test
 		CreateAndDeleteTest createAndDeleteTest = new CreateAndDeleteTest(
-				"CreateAndDelete", getRandomSeed());
+				"CreateAndDelete", getTestProjectPrams());
 		testCases.add(createAndDeleteTest);
-		// createAndDeleteTest.setParameters();
 
+		
 		// TransitivelyChangeAttributeTest Test
 		TransitivelyChangeAttributeTest transitivelyChangeAttribute = new TransitivelyChangeAttributeTest(
-				"TransitivelyChangeAttributeTest", getRandomSeed());
+				"TransitivelyChangeAttributeTest", getTestProjectPrams());
 		testCases.add(transitivelyChangeAttribute);
-		// createAndDeleteTest.setParameters();
 
 		// Remove Test
-		RemoveTest removeTest = new RemoveTest("Remove", getRandomSeed());
-		testCases.add(removeTest);
-		// rmoveTest.setPrameters();
+		//RemoveTest removeTest = new RemoveTest("Remove", getRandomSeed());
+		//testCases.add(removeTest);
 
+		
 		// CreateAndChangeRef Test
 		CreateAndChangeRefTest createAndChangeRefTest = new CreateAndChangeRefTest(
-				"CreateAndChangeRef", getRandomSeed());
+				"CreateAndChangeRef", getTestProjectPrams());
 		testCases.add(createAndChangeRefTest);
-		// createAndChangeRefTest.setParameters();
 
+		
 		// CreateAndChangeAttribute Test
 		CreateAndChangeAttributeTest createAndChangeAttrTest = new CreateAndChangeAttributeTest(
-				"CrateAndChangeAttribute", getRandomSeed());
+				"CrateAndChangeAttribute", getTestProjectPrams());
 		testCases.add(createAndChangeAttrTest);
-		// createAndChangeAttrTest.setParameters();
 
+		
 		// CompoundTest
 		CompoundTest compoundTest = new CompoundTest("Compound",
-				getRandomSeed(), testCases);
-		// compoundTest.setParameters();
+				getTestProjectPrams() , testCases);
 
+		
+		
 		// CommitTest
 		// CommitTest commitTest = new CommitTest("Commit", getRandomSeed(),
 		// testCases);
-		// commitTest.setParameters();
 
-		// this.getTestCases().add(moveTest);
+		
+		
+		
+		 this.getTestCases().add(moveTest);
 		// this.getTestCases().add(addTest);
 		//this.getTestCases().add(compoundTest);
 		// this.getTestCases().add(deleteTest);
@@ -117,7 +116,7 @@ public class RandomChangeTestSuite extends ChangeTestSuite {
 		// this.getTestCases().add(compoundTest);
 		// this.getTestCases().add(createAndDeleteTest);
 		// this.getTestCases().add(transitivelyChangeAttribute);
-		 this.getTestCases().add(removeTest);
+		//this.getTestCases().add(removeTest);
 		// this.getTestCases().add(createAndChangeRefTest);
 		// this.getTestCases().add(createAndChangeAttrTest);
 		// this.getTestCases().add(commitTest);
@@ -219,7 +218,7 @@ public class RandomChangeTestSuite extends ChangeTestSuite {
 
 		ChangePackage changePackage = ChangeTestHelper.getChangePackage(
 				getTestProjectSpace().getOperations(), true, true);
-		if (changePackage.getOperations().size() == 2) {
+		if (changePackage.getOperations().size() == 3) {
 			System.out.println("ok");
 			return;
 

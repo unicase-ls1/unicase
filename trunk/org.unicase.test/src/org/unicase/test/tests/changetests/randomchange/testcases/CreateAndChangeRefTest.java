@@ -14,6 +14,7 @@ import org.unicase.model.ModelElement;
 import org.unicase.test.tests.changetests.ChangeTestHelper;
 import org.unicase.test.tests.changetests.randomchange.IChangePackageTest;
 import org.unicase.test.tests.changetests.randomchange.RandomChangeTestCase;
+import org.unicase.ui.test.TestProjectParmeters;
 
 /**
  * 
@@ -25,20 +26,20 @@ import org.unicase.test.tests.changetests.randomchange.RandomChangeTestCase;
  * @author Hodaie
  * 
  */
-public class CreateAndChangeRefTest extends RandomChangeTestCase implements IChangePackageTest {
+public class CreateAndChangeRefTest extends RandomChangeTestCase implements
+		IChangePackageTest {
 
-	
 	private static final int EXPECTED_NUM_OF_CHANGES = 2;
-	
-	public CreateAndChangeRefTest(String testName, long randomSeed) {
-		super(testName, randomSeed);
+
+	public CreateAndChangeRefTest(String testName, TestProjectParmeters testProjParams) {
+		super(testName, testProjParams);
 
 	}
 
 	@Override
 	public void runTest() {
 		final ModelElement me = ChangeTestHelper.createRandomME();
-		me.setName("newly created " + me.eClass().getName());
+		// me.setName("newly created " + me.eClass().getName());
 
 		TransactionalEditingDomain domain = TransactionalEditingDomain.Registry.INSTANCE
 				.getEditingDomain("org.unicase.EditingDomain");
@@ -53,7 +54,6 @@ public class CreateAndChangeRefTest extends RandomChangeTestCase implements ICha
 
 		});
 
-		
 	}
 
 	private void changeSimpleRef(ModelElement me) {
@@ -79,32 +79,18 @@ public class CreateAndChangeRefTest extends RandomChangeTestCase implements ICha
 		ModelElement toBeReferencedME = refTypeMEs.get(getRandom().nextInt(
 				refTypeMEs.size() - 1));
 
-		
 		Object object = me.eGet(ref);
-		if(ref.isMany()){
+		if (ref.isMany()) {
 			EList<EObject> eList = (EList<EObject>) object;
-			if(eList == null){
-				List<Object> list = new ArrayList<Object>();
-				list.add(toBeReferencedME);
-				me.eSet(ref, list);
-			}else{
+			if (eList == null) {
+				throw new IllegalStateException("Null list return for feature "
+						+ ref.getName() + " on " + me.getName());
+			} else {
 				eList.add(toBeReferencedME);
 			}
-		}else{
+		} else {
 			me.eSet(ref, toBeReferencedME);
 		}
-			
-		
-		
-//		ChangePackage changePackage = ChangeTestHelper.getChangePackage(
-//				WorkspaceManager.getProjectSpace(getTestProject())
-//						.getOperations(), true);
-//		if (changePackage.getOperations().size() == 1) {
-//			System.out.println("failure");
-//			return;
-//
-//		}
-
 
 	}
 

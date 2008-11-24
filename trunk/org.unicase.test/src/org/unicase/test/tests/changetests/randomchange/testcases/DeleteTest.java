@@ -1,21 +1,20 @@
 package org.unicase.test.tests.changetests.randomchange.testcases;
 
-import java.util.List;
-
 import org.eclipse.emf.ecore.util.EcoreUtil;
 import org.eclipse.emf.transaction.RecordingCommand;
 import org.eclipse.emf.transaction.TransactionalEditingDomain;
 import org.unicase.model.ModelElement;
 import org.unicase.test.tests.changetests.ChangeTestHelper;
 import org.unicase.test.tests.changetests.randomchange.RandomChangeTestCase;
+import org.unicase.ui.test.TestProjectParmeters;
 import org.unicase.workspace.WorkspaceManager;
 
 public class DeleteTest extends RandomChangeTestCase {
 
 	
 	
-	public DeleteTest(String testName, long randomSeed) {
-		super(testName, randomSeed);
+	public DeleteTest(String testName,TestProjectParmeters testProjParams) {
+		super(testName, testProjParams);
 
 	}
 

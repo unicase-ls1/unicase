@@ -3,6 +3,7 @@ package org.unicase.test.tests.changetests.randomchange.testcases;
 import java.util.List;
 
 import org.unicase.test.tests.changetests.randomchange.RandomChangeTestCase;
+import org.unicase.ui.test.TestProjectParmeters;
 
 public class CompoundTest extends RandomChangeTestCase {
 
@@ -10,9 +11,9 @@ public class CompoundTest extends RandomChangeTestCase {
 	private static final int MAX_TIMES_TO_RUN = 3;
 	private static final int ITERATIONS = 5;
 
-	public CompoundTest(String testName, long randomSeed,
+	public CompoundTest(String testName, TestProjectParmeters testProjParams,
 			List<RandomChangeTestCase> testCases) {
-		super(testName, randomSeed);
+		super(testName, testProjParams);
 		this.testCases = testCases;
 
 	}

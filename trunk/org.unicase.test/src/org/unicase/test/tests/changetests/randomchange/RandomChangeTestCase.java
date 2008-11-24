@@ -12,6 +12,7 @@ import org.unicase.emfstore.esmodel.versioning.operations.AbstractOperation;
 import org.unicase.emfstore.esmodel.versioning.operations.CreateDeleteOperation;
 import org.unicase.test.tests.changetests.ChangeTestCase;
 import org.unicase.test.tests.changetests.ChangeTestHelper;
+import org.unicase.ui.test.TestProjectParmeters;
 import org.unicase.workspace.Configuration;
 
 public abstract class RandomChangeTestCase extends ChangeTestCase {
@@ -22,8 +23,8 @@ public abstract class RandomChangeTestCase extends ChangeTestCase {
 			.getWorkspaceDirectory()
 			+ "\\tmp\\errorneousTests\\";
 
-	public RandomChangeTestCase(String testName, long randomSeed) {
-		super(testName, randomSeed);
+	public RandomChangeTestCase(String testName, TestProjectParmeters testProjParams) {
+		super(testName, testProjParams);
 
 	}
 

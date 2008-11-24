@@ -14,6 +14,7 @@ import org.unicase.model.ModelPackage;
 import org.unicase.test.tests.changetests.ChangeTestHelper;
 import org.unicase.test.tests.changetests.randomchange.IChangePackageTest;
 import org.unicase.test.tests.changetests.randomchange.RandomChangeTestCase;
+import org.unicase.ui.test.TestProjectParmeters;
 
 /**
  * This is a compare test. It takes randomly a ME from test project, changes one
@@ -31,8 +32,8 @@ public class ChangeSimpleAttributeTest extends RandomChangeTestCase implements
 
 	
 	
-	public ChangeSimpleAttributeTest(String testName, long randomSeed) {
-		super(testName, randomSeed);
+	public ChangeSimpleAttributeTest(String testName,TestProjectParmeters testProjParams) {
+		super(testName, testProjParams);
 
 	}
 
@@ -64,9 +65,8 @@ public class ChangeSimpleAttributeTest extends RandomChangeTestCase implements
 			}
 		}
 	
-		EAttribute attribute = attributes.size() == 1 ? attributes.get(0)
-				: attributes.get(getRandom().nextInt(attributes.size() - 1));
-
+		int size = attributes.size();
+		EAttribute attribute = attributes.get(size == 1 ? 0 : getRandom().nextInt(size - 1));
 
 		if (attribute.getEType().getInstanceClass().equals(String.class)) {
 			String oldValue = (String) me.eGet(attribute);
@@ -102,29 +102,3 @@ public class ChangeSimpleAttributeTest extends RandomChangeTestCase implements
 	}
 
 }
-
-// //========================================================================00
-// List<ModelElement> modelElements = getTestProject()
-// .getAllModelElements();
-// System.out.println(modelElements.size() + " MEs");
-// int numOfChanges = getRandom().nextInt(modelElements.size() / 8);
-// TransactionalEditingDomain domain =
-// TransactionalEditingDomain.Registry.INSTANCE
-// .getEditingDomain("org.unicase.EditingDomain");
-// System.out.println(numOfChanges + " renames");
-// for (int i = 0; i < numOfChanges; i++) {
-// final ModelElement me = modelElements.get(getRandom().nextInt(modelElements
-// .size() - 1));
-// final String oldName = me.getName();
-// domain.getCommandStack().execute(new RecordingCommand(domain){
-//
-// @Override
-// protected void doExecute() {
-// me.setName("Changed-" + oldName);
-// }
-//
-// });
-// }
-//
-// System.out.println(ChangeSimpleAttributeTest.class.getSimpleName() + "; " +
-// numOfChanges + " renames");

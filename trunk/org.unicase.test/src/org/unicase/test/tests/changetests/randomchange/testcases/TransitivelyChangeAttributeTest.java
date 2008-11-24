@@ -14,6 +14,7 @@ import org.unicase.model.ModelPackage;
 import org.unicase.test.tests.changetests.ChangeTestHelper;
 import org.unicase.test.tests.changetests.randomchange.IChangePackageTest;
 import org.unicase.test.tests.changetests.randomchange.RandomChangeTestCase;
+import org.unicase.ui.test.TestProjectParmeters;
 
 /**
  * This is a ChangePackageTest.
@@ -34,8 +35,9 @@ public class TransitivelyChangeAttributeTest extends RandomChangeTestCase implem
 	
 	
 
-	public TransitivelyChangeAttributeTest(String testName, long randomSeed) {
-		super(testName, randomSeed);
+	public TransitivelyChangeAttributeTest(String testName, TestProjectParmeters testProjParams) {
+		super(testName, testProjParams);
+
 		
 	}
 	
