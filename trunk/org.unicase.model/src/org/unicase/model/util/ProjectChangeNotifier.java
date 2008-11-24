@@ -72,11 +72,17 @@ public class ProjectChangeNotifier extends AdapterImpl {
 		switch (notification.getEventType()) {
 		case Notification.ADD:
 			handleAddNotification(notification);
+			//fire notification must be triggered after a (possible) create!
+			fireNotification(notification);
 			break;
 		case Notification.ADD_MANY:
 			handleAddAllNotification(notification);
+			//fire notification must be triggered after a (possible) create!
+			fireNotification(notification);
 			break;
 		case Notification.REMOVE:
+			//fire notification must be triggered before a (possible) delete!
+			fireNotification(notification);
 			// model element is removed from containment hierachy
 			if (isAboutContainment(notification)) {
 				Object oldValue = notification.getOldValue();
@@ -92,8 +98,12 @@ public class ProjectChangeNotifier extends AdapterImpl {
 			if (isAboutContainment(notification)) {
 				handleSingleAdd((EObject) notification.getNotifier());
 			}
+			//fire notification must be triggered after a (possible) create!			
+			fireNotification(notification);
 			break;
 		case Notification.REMOVE_MANY:
+			//fire notification must be triggered before a (possible) delete!
+			fireNotification(notification);
 			if (isAboutContainment(notification)) {
 				Object oldValue = notification.getOldValue();
 				if (oldValue instanceof List) {
@@ -108,17 +118,12 @@ public class ProjectChangeNotifier extends AdapterImpl {
 		default:
 			// nop
 			break;
-
 		}
-
-		fireNotification(notification);
-
 	}
 
 	private void handleSingleRemove(Notification notification,
 			ModelElement child) {
 		if (child.getProject() != project) {
-			fireNotification(notification);
 			this.projectChangeObserver.modelElementRemoved(project, child);
 			child.eAdapters().remove(this);
 		}
