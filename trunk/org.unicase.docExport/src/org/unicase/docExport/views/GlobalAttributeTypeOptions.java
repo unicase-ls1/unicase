@@ -23,8 +23,11 @@ public class GlobalAttributeTypeOptions {
 	private Composite attributeTypeOptions;
 	private Template template;
 	
-	
-	
+	/**
+	 * 
+	 * @param parent the SWT parent
+	 * @param template the template
+	 */
 	public GlobalAttributeTypeOptions(Composite parent, Template template) {
 		Composite composite = new Composite(parent, SWT.NONE);
 		GridLayout gLayout2 = new GridLayout();

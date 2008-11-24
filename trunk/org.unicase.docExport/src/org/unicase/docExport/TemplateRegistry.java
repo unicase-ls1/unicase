@@ -7,7 +7,6 @@ import java.util.ArrayList;
 import org.eclipse.core.runtime.IStatus;
 import org.eclipse.emf.common.util.EList;
 import org.eclipse.emf.common.util.URI;
-import org.eclipse.emf.ecore.EClass;
 import org.eclipse.emf.ecore.EObject;
 import org.eclipse.emf.ecore.resource.Resource;
 import org.eclipse.emf.ecore.resource.ResourceSet;
@@ -15,6 +14,7 @@ import org.eclipse.emf.ecore.resource.impl.ResourceSetImpl;
 import org.unicase.docExport.exceptions.TemplateNotFoundException;
 import org.unicase.docExport.exceptions.TemplateSaveException;
 import org.unicase.docExport.exceptions.TemplatesFileNotFoundException;
+import org.unicase.docExport.exportModel.ExportModelPackage;
 import org.unicase.docExport.exportModel.Template;
 import org.unicase.docExport.exportModel.builders.DefaultDocumentTemplateBuilder;
 import org.unicase.workspace.util.WorkspaceUtil;
@@ -40,12 +40,9 @@ public final class TemplateRegistry {
 
 	private static final String DEFAULT_TEMPLATE_NAME = "default";
 	private static final String UNICASE_FOLDER = ".unicase";
-	private static final String DOCUMENT_EXPORT_FOLDER = "docExport";
+	private static final String DOCUMENT_EXPORT_FOLDER = "docExport2";
 	private static final String TEMPLATES_FILE_NAME = "templates";
 	
-
-	private static ArrayList<EClass> modelElementTypes = new ArrayList<EClass>();
-
 	private static final int ME_COUNT_DEFAULT = 0;
 
 	/**
@@ -124,6 +121,13 @@ public final class TemplateRegistry {
 
 	
 	
+	/**
+	 * Loads a Template from the templates file.
+	 * 
+	 * @param templateName the name of the template which shall be loaded
+	 * @return the Template which shall be loaded
+	 * @throws TemplateNotFoundException -
+	 */
 	public static Template loadTemplate(String templateName) 
 	throws TemplateNotFoundException {
 		
@@ -148,11 +152,10 @@ public final class TemplateRegistry {
 	 * doesn't exist, null will be returned and an error will be added to the
 	 * eclipse error log.
 	 * 
-	 * @param fileName
-	 *            the fileName of the template
+	 * @param templateName the name of the template which shall be loaded
+	 * @param resource the resource of the EMF store object
 	 * @return the loaded template
-	 * @throws TemplatesFileNotFoundException 
-	 * @throws TemplateNotFoundException 
+	 * @throws TemplatesFileNotFoundException -
 	 */
 	public static Template getTemplate(
 			String templateName,
@@ -175,11 +178,6 @@ public final class TemplateRegistry {
 			if (object instanceof Template) {
 				Template templateObject = (Template) object;
 				if (templateObject.getName().equals(templateName)) {
-					WorkspaceUtil.log(
-							"template " + templateName + " received successfully",
-							new Exception(),
-							IStatus.OK
-					);
 					return (Template) object;
 				}
 			}
@@ -194,7 +192,7 @@ public final class TemplateRegistry {
 	 * 
 	 * @param template
 	 *            the template which shall be saved
-	 * @throws TemplateSaveException 
+	 * @throws TemplateSaveException -
 	 */
 	public static void saveTemplate(Template template) throws TemplateSaveException {
 		
@@ -252,7 +250,7 @@ public final class TemplateRegistry {
 	/**
 	 * @return an ArrayList of all templates which a stored in the template
 	 *         folder
-	 * @throws TemplateSaveException 
+	 * @throws TemplateSaveException -
 	 */
 	public static ArrayList<Template> getAllTemplates() throws TemplateSaveException {
 		ArrayList<Template> templates = new ArrayList<Template>();
@@ -280,30 +278,19 @@ public final class TemplateRegistry {
 		
 		EList<EObject> contents = resource.getContents();
 		for (EObject object : contents) {
-			if (object instanceof Template) {
+			if (ExportModelPackage.eINSTANCE.getTemplate().isInstance(object)) {
 				Template templateObject = (Template) object;
 				templates.add(templateObject);
 			}
 		}
 		
+		if (templates.size() < 1) {
+			templates.add(getTemplate());
+		}
+		
 		return templates;
 	}
 
-
-	/**
-	 * @param modelElementTypes
-	 *            the modelElementTypes to set
-	 */
-	public static void setModelElementTypes(ArrayList<EClass> modelElementTypes) {
-		TemplateRegistry.modelElementTypes = modelElementTypes;
-	}
-
-	/**
-	 * @return the modelElementTypes
-	 */
-	public static ArrayList<EClass> getModelElementTypes() {
-		return modelElementTypes;
-	}
 
 	/**
 	 * @param meCount

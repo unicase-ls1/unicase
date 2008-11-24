@@ -6,7 +6,6 @@ Bundle-Version: 0.2.12
 Bundle-Activator: org.unicase.docExport.Activator
 Require-Bundle: org.eclipse.ui,
  org.eclipse.core.runtime,
- org.unicase.docExport.exportModel,
  org.unicase.workspace,
  org.eclipse.emf.transaction.ui;bundle-version="1.2.0"
 Bundle-ActivationPolicy: lazy

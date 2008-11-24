@@ -219,7 +219,14 @@ public abstract class ITextWriter  {
 		}
 	}
 
-	protected abstract void writeSeperator(Object parent, USeperator doc2) throws DocumentException;
+	/**
+	 * write a simple horizontal seperator to the document. Probably this will be
+	 * a single horizontal line.
+	 * @param parent the iText parent object
+	 * @param seperator the seperator object to write
+	 * @throws DocumentException -
+	 */
+	protected abstract void writeSeperator(Object parent, USeperator seperator) throws DocumentException;
 
 
 	/**
@@ -250,6 +257,12 @@ public abstract class ITextWriter  {
 		addItextObject(parent, chunk);
 	}	
 	
+	/**
+	 * 
+	 * @param parent the iText parent object
+	 * @param uList the uList with the information how to write the list
+	 * @throws DocumentException -
+	 */
 	protected void writeList(Object parent, UList uList) throws DocumentException {
 		
 		ListStyle listStyle = uList.getListOption().getListStyle();
@@ -321,9 +334,9 @@ public abstract class ITextWriter  {
 	/**
 	 * @see ITextWriter#getParagraph(String, TextOption, int)
 	 * 
-	 * @param text
-	 * @param option
-	 * @return
+	 * @param text the text which shall be written
+	 * @param option the option containing font information
+	 * @return the iText paragraph
 	 */
 	protected Paragraph getParagraph(String text, TextOption option) {
 		return getParagraph(text, option, 0);
@@ -349,11 +362,9 @@ public abstract class ITextWriter  {
 	 * the depth of the indention. Additionally, UTextParts are added as chunks of the Paragraph,
 	 * if there are UTextParts contained in this UParagraph (same with UParagraph as child)
 	 * 
-	 * @param text The text (content) of the Paragraph
-	 * @param option some TextOption which can decorate the look of the text
-	 * @param indentionLeft the depth of the indention
+	 * @param paragraph the paragraph containting the information to write
 	 * @return a new iText Paragraph
-	 * @throws DocumentException 
+	 * @throws DocumentException -
 	 */
 	protected Paragraph getParagraph(UParagraph paragraph) throws DocumentException {
 		Paragraph ret = new Paragraph(paragraph.getText(), getFont(paragraph.getOption()));
@@ -374,7 +385,6 @@ public abstract class ITextWriter  {
 					
 					ret.add(image2);
 				} catch (IOException e) {
-					// TODO Auto-generated catch block
 					e.printStackTrace();
 				}
 			} else {
@@ -457,6 +467,12 @@ public abstract class ITextWriter  {
 		return DEFAULT_FONT;
 	}
 	
+	/**
+	 * 
+	 * @param parent the iText parent object
+	 * @param toAdd the iText object, which shall be added
+	 * @throws DocumentException -
+	 */
 	protected void addItextObject(Object parent, Object toAdd) throws DocumentException {
 		if (parent instanceof Document) {
 			Paragraph container = new Paragraph();
@@ -480,7 +496,11 @@ public abstract class ITextWriter  {
 
 	
 	
-	
+	/**
+	 * 
+	 * @param data hacked
+	 * @return hacked
+	 */
 	//hack code copied from java examples web page
 	  public static BufferedImage convertToAWT(ImageData data) {
 		    ColorModel colorModel = null;

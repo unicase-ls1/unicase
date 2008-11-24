@@ -27,6 +27,8 @@ import com.lowagie.text.pdf.PdfPTable;
  */
 public class PdfWriter extends ITextWriter implements DocWriter {
 
+	private static final String FILE_TYPE = "pdf";
+
 	/**
 	 * {@inheritDoc}
 	 * @see org.unicase.documentExport.docWriter.DocWriter#export(String, UCompositeSection)
@@ -107,6 +109,9 @@ public class PdfWriter extends ITextWriter implements DocWriter {
 		}
 	}
 
+	/**
+	 * {@inheritDoc}
+	 */
 	@Override
 	protected void writeSeperator(Object parent, USeperator uSeperator) throws DocumentException {
 
@@ -128,6 +133,13 @@ public class PdfWriter extends ITextWriter implements DocWriter {
 		} else if (parent instanceof Section) {
 			((Section)parent).add(containerTable);
 		}
+	}
+
+	/**
+	 * {@inheritDoc}
+	 */
+	public String getFileType() {
+		return FILE_TYPE;
 	}
 
 }

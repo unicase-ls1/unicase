@@ -7,9 +7,11 @@ import org.eclipse.swt.events.ModifyListener;
 import org.eclipse.swt.events.SelectionEvent;
 import org.eclipse.swt.events.SelectionListener;
 import org.eclipse.swt.layout.GridData;
+import org.eclipse.swt.layout.GridLayout;
 import org.eclipse.swt.widgets.Button;
 import org.eclipse.swt.widgets.Combo;
 import org.eclipse.swt.widgets.Composite;
+import org.eclipse.swt.widgets.Group;
 import org.eclipse.swt.widgets.Label;
 import org.eclipse.swt.widgets.Text;
 import org.unicase.docExport.exportModel.renderers.options.AttributeOption;
@@ -44,6 +46,7 @@ public class AttributeOptionFactory  {
 			Composite parent,
 			RendererOption option
 		) {
+
 		this.parent = parent;
 		
 		if (option instanceof AttributeOption) {
@@ -59,7 +62,7 @@ public class AttributeOptionFactory  {
 			buildLayoutOptions((LayoutOptions)option);
 		}
 		else if (option instanceof TextOption) {
-			buildTextOption((TextOption)option);
+			buildTextOption((TextOption)option, option.getName());
 		}
 		else {
 			return;
@@ -67,7 +70,7 @@ public class AttributeOptionFactory  {
 	}
 
 	private void buildListOption(final ListOption option) {
-		newLabel("List style");
+		newLabel(parent, "List style");
 		Combo listStyle = new Combo(parent, SWT.READ_ONLY);
 		for (ListStyle style : ListStyle.VALUES) {
 			listStyle.add(style.getLiteral(), style.getValue());
@@ -81,6 +84,8 @@ public class AttributeOptionFactory  {
 	}
 
 	private void buildAttributeOption(final AttributeOption option) {
+		
+		
 		new Label(parent, SWT.LEFT).setText("overwrite");
 		Button button2 = new Button(parent, SWT.CHECK);
 		button2.addSelectionListener(new SelectionListener() {
@@ -117,7 +122,7 @@ public class AttributeOptionFactory  {
 			final MultiReferenceAttributeOption option) {
 		buildReferenceOption(option.getReferenceOption(true));
 		
-		newLabel("contained");
+		newLabel(parent, "contained");
 		Button contained = new Button(parent, SWT.CHECK);
 		contained.addSelectionListener(new SelectionListener() {
 			public void widgetDefaultSelected(SelectionEvent e) {}
@@ -135,7 +140,7 @@ public class AttributeOptionFactory  {
 			final SingleReferenceAttributeOption option) {
 		buildReferenceOption(option.getReferenceOption(true));
 		
-		newLabel("contained");
+		newLabel(parent, "contained");
 		Button contained = new Button(parent, SWT.CHECK);
 		contained.addSelectionListener(new SelectionListener() {
 			public void widgetDefaultSelected(SelectionEvent e) {}
@@ -201,7 +206,16 @@ public class AttributeOptionFactory  {
 //	}
 
 	
-	private void buildTextOption(final TextOption option) {
+	private void buildTextOption(final TextOption option, String title) {
+		
+		Group group = new Group(parent, SWT.BORDER);
+		GridLayout gLayout = new GridLayout();
+		gLayout.numColumns = 2;
+		group.setLayout(gLayout);
+		GridData gData = new GridData(SWT.FILL, SWT.FILL, true, true);
+		group.setLayoutData(gData);
+		group.setText(title);
+		
 		if (option == null) {
 			WorkspaceUtil.log(
 					"A TextOption is null",
@@ -210,8 +224,8 @@ public class AttributeOptionFactory  {
 				);
 				return;
 		}
-		newLabel("bold");
-		Button bold = new Button(parent, SWT.CHECK);
+		newLabel(group, "bold");
+		Button bold = new Button(group, SWT.CHECK);
 		bold.addSelectionListener(new SelectionListener() {
 			public void widgetDefaultSelected(SelectionEvent e) {}
 
@@ -221,8 +235,8 @@ public class AttributeOptionFactory  {
 		});
 		bold.setSelection(option.isBold());
 		
-		newLabel("underline");
-		Button underline = new Button(parent, SWT.CHECK);
+		newLabel(group, "underline");
+		Button underline = new Button(group, SWT.CHECK);
 		underline.addSelectionListener(new SelectionListener() {
 			public void widgetDefaultSelected(SelectionEvent e) {}
 
@@ -233,8 +247,8 @@ public class AttributeOptionFactory  {
 		underline.setSelection(option.isUnderline());
 			
 		
-		newLabel("Font family");
-		Combo font = new Combo(parent, SWT.READ_ONLY);
+		newLabel(group, "Font family");
+		Combo font = new Combo(group, SWT.READ_ONLY);
 		for (FontFamily family : FontFamily.VALUES) {
 			font.add(family.getLiteral(), family.getValue());
 		}
@@ -246,8 +260,8 @@ public class AttributeOptionFactory  {
 		font.select(option.getFontFamily().getValue());
 
 		
-		newLabel("Font size");
-		Combo fontSize = new Combo(parent, SWT.READ_ONLY);
+		newLabel(group, "Font size");
+		Combo fontSize = new Combo(group, SWT.READ_ONLY);
 		int i2 = 0;
 		for (int i = 8; i <= 36; i++) {
 			i2++;
@@ -265,7 +279,6 @@ public class AttributeOptionFactory  {
 
 	
 	private void buildLayoutOptions(final LayoutOptions option) {
-		newLabel("Coverpage");
 		Text coverpage = new Text(parent, SWT.MULTI | SWT.BORDER);
 		coverpage.setLayoutData((new GridData(GridData.FILL_HORIZONTAL)));
 		coverpage.addModifyListener(new ModifyListener(){
@@ -276,9 +289,9 @@ public class AttributeOptionFactory  {
 		coverpage.setText(option.getCoverText());
 		
 		
-		buildTextOption(option.getCoverTextTextOption());
+		buildTextOption(option.getCoverTextTextOption(), "cover page");
 		
-		newLabel("Page numbering style");
+		newLabel(parent, "Page numbering style");
 		Combo pageNumberingStyle = new Combo(parent, SWT.READ_ONLY);
 		for (PageNumberingStyle style : PageNumberingStyle.VALUES) {
 			pageNumberingStyle.add(style.getLiteral(), style.getValue());
@@ -289,7 +302,7 @@ public class AttributeOptionFactory  {
 			}
 		});
 		
-		newLabel("hide incomingDocumentReferences");
+		newLabel(parent, "hide incomingDocumentReferences");
 		Button hideIncomingDocumentReferences = new Button(parent, SWT.CHECK);
 		hideIncomingDocumentReferences.addSelectionListener(new SelectionListener() {
 			public void widgetDefaultSelected(SelectionEvent e) {}
@@ -301,7 +314,7 @@ public class AttributeOptionFactory  {
 		hideIncomingDocumentReferences.setSelection(option.isHideIncomingDocumentReferences());
 		
 		
-		newLabel("hide annotations");
+		newLabel(parent, "hide annotations");
 		Button hideAnnotations = new Button(parent, SWT.CHECK);
 		hideAnnotations.addSelectionListener(new SelectionListener() {
 			public void widgetDefaultSelected(SelectionEvent e) {}
@@ -312,7 +325,7 @@ public class AttributeOptionFactory  {
 		});
 		hideAnnotations.setSelection(option.isHideAnnotations());
 		
-		newLabel("hide section image");
+		newLabel(parent, "hide section image");
 		Button hideSectionImage = new Button(parent, SWT.CHECK);
 		hideSectionImage.addSelectionListener(new SelectionListener() {
 			public void widgetDefaultSelected(SelectionEvent e) {}
@@ -323,7 +336,7 @@ public class AttributeOptionFactory  {
 		});
 		hideSectionImage.setSelection(option.isHideModelElementImages());
 		
-		newLabel("hide attachements");
+		newLabel(parent, "hide attachements");
 		Button hideAttachements = new Button(parent, SWT.CHECK);
 		hideAttachements.addSelectionListener(new SelectionListener() {
 			public void widgetDefaultSelected(SelectionEvent e) {}
@@ -335,38 +348,31 @@ public class AttributeOptionFactory  {
 		hideAttachements.setSelection(option.isHideAttachments());
 
 		
-		newLabel("default Text Options");
-		//parent is GridData with 2 columns
-		new Label(parent, SWT.NONE);
-		buildTextOption(option.getDefaultTextOption());
+
+		buildTextOption(option.getDefaultTextOption(), "default text option");
 		
-		
-		newLabel("section Text Option");
-		//parent is GridData with 2 columns
-		new Label(parent, SWT.NONE);
-		buildTextOption(option.getSectionTextOption());
 		
 
-		newLabel("modelElement TextOption");
-		//parent is GridData with 2 columns
-		new Label(parent, SWT.NONE);
-		buildTextOption(option.getModelElementTextOption());
+		buildTextOption(option.getSectionTextOption(), "section text option");
+		
+
+		buildTextOption(option.getModelElementTextOption(), "ModelElement text option");
 	}
 
 	
 	private void buildReferenceOption(final ReferenceOption option) {
-		buildTextOption(option.getTextOption());
+		buildTextOption(option.getTextOption(), "");
 	}
 
 	
 	private void buildStringAttributeOption(StringAttributeOption option) {
-		buildTextOption(option.getTextOption(true));	
+		buildTextOption(option.getTextOption(true), "");	
 	}
 	
 
 	
 	
-	private void newLabel(String text) {
+	private void newLabel(Composite parent, String text) {
 		new Label(parent, SWT.LEFT).setText(text);
 	}
 
