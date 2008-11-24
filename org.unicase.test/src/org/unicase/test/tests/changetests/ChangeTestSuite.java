@@ -1,6 +1,7 @@
 package org.unicase.test.tests.changetests;
 
 import java.util.Calendar;
+import java.util.Random;
 
 import org.eclipse.emf.common.util.EList;
 import org.eclipse.emf.ecore.util.EcoreUtil;
@@ -90,6 +91,7 @@ public abstract class ChangeTestSuite extends TestSuite {
 		if(testProject == null){
 			System.out.println("creating test project");
 			params = new TestProjectParmeters(5, randomSeed, 3, 2, 3, 10);
+			ChangeTestHelper.setRandom(new Random(randomSeed));
 			testProject = new TestProjectGenerator(params).generateProject();
 			System.out.println("test project created");
 		}

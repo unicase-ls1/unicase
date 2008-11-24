@@ -9,6 +9,7 @@ import org.eclipse.emf.ecore.EEnum;
 import org.eclipse.emf.ecore.EEnumLiteral;
 import org.eclipse.emf.transaction.RecordingCommand;
 import org.eclipse.emf.transaction.TransactionalEditingDomain;
+import org.unicase.emfstore.esmodel.versioning.ChangePackage;
 import org.unicase.model.ModelElement;
 import org.unicase.model.ModelPackage;
 import org.unicase.test.tests.changetests.ChangeTestHelper;
@@ -30,6 +31,7 @@ public class ChangeSimpleAttributeTest extends RandomChangeTestCase implements
 
 	private static final int EXPECTED_NUM_OF_CHANGES = 1;
 
+	private EAttribute changedAttribute; 
 	
 	
 	public ChangeSimpleAttributeTest(String testName,TestProjectParmeters testProjParams) {
@@ -57,48 +59,24 @@ public class ChangeSimpleAttributeTest extends RandomChangeTestCase implements
 	}
 
 	protected void changeAttribute(ModelElement me) {
-
-		List<EAttribute> attributes = new ArrayList<EAttribute>();
-		for (EAttribute attr : me.eClass().getEAllAttributes()) {
-			if (attr.isChangeable() && attr.getFeatureID() != ModelPackage.MODEL_ELEMENT__IDENTIFIER) {
-				attributes.add(attr);
-			}
-		}
-	
-		int size = attributes.size();
-		EAttribute attribute = attributes.get(size == 1 ? 0 : getRandom().nextInt(size - 1));
-
-		if (attribute.getEType().getInstanceClass().equals(String.class)) {
-			String oldValue = (String) me.eGet(attribute);
-			String newValue = "changed-" + oldValue;
-			me.eSet(attribute, newValue);
-		
-		} else if (attribute.getEType().getInstanceClass()
-				.equals(boolean.class)) {
-			me.eSet(attribute, !((Boolean) me.eGet(attribute)));
-			
-		} else if (attribute.getEType().getInstanceClass().equals(int.class)) {
-			me.eSet(attribute, getRandom().nextInt());
-
-		} else if (attribute.getEType().getInstanceClass().equals(Date.class)) {
-			me.eSet(attribute, getRandomDate());
-
-		}
-		if (attribute.getEType().getInstanceClass().equals(EEnum.class)) {
-			EEnum en = (EEnum) attribute;
-			int index = getRandom().nextInt(en.getELiterals().size());
-			EEnumLiteral value = en.getELiterals().get(index);
-			me.eSet(attribute, value);
-		}
-
+		changedAttribute = ChangeTestHelper.changeSimnpleAttribute(me);
 	}
 
 	public int getExpectedNumOfChanges() {
 		return EXPECTED_NUM_OF_CHANGES;
 	}
 
-	private Date getRandomDate() {
-		return new Date();
+	
+
+	public boolean isSuccessful() {
+		//temp impl
+		return EXPECTED_NUM_OF_CHANGES == 1;
+	}
+	
+	public ChangePackage getChangePackage() {
+		return ChangeTestHelper.getChangePackage(getTestProjectSpace()
+				.getOperations(), true, true);
+
 	}
 
 }

@@ -108,9 +108,9 @@ public class RandomChangeTestSuite extends ChangeTestSuite {
 		
 		
 		
-		 this.getTestCases().add(moveTest);
+		 //this.getTestCases().add(moveTest);
 		// this.getTestCases().add(addTest);
-		//this.getTestCases().add(compoundTest);
+		this.getTestCases().add(compoundTest);
 		// this.getTestCases().add(deleteTest);
 		// this.getTestCases().add(referenceTest);
 		// this.getTestCases().add(compoundTest);
@@ -199,6 +199,9 @@ public class RandomChangeTestSuite extends ChangeTestSuite {
 			// logger.info("Test failed!");
 			System.out
 					.println("XXXXXXXXXXXXXXXXXXXX----  Test failed!  ----XXXXXXXXXXXXXXXXXXXX ");
+			
+			System.out.println(getTestProjectPrams().toString());
+			
 			System.out.println("position: " + result[1]);
 			System.out.println("character: " + (char) result[2]);
 			System.out.println("lineNum: " + result[3]);

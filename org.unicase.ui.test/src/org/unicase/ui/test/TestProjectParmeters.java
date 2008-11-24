@@ -67,7 +67,7 @@ public class TestProjectParmeters {
 		sb.append("projWidth: " + projWidth + "\n");
 		sb.append("projDepth: " + projDepth+ "\n");
 		sb.append("maxNumOfManyRefs: " + maxNumOfManyRefs + "\n");
-		sb.append("maxNumOfMEsInLeafSection: " + maxNumOfMEsInLeafSection + "\n\n");
+		sb.append("maxNumOfMEsInLeafSection: " + maxNumOfMEsInLeafSection + "\n");
 		
 		
 		return sb.toString();

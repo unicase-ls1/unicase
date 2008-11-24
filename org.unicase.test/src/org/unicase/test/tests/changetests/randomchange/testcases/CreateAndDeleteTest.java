@@ -11,6 +11,7 @@ import org.eclipse.emf.ecore.EReference;
 import org.eclipse.emf.ecore.util.EcoreUtil;
 import org.eclipse.emf.transaction.RecordingCommand;
 import org.eclipse.emf.transaction.TransactionalEditingDomain;
+import org.unicase.emfstore.esmodel.versioning.ChangePackage;
 import org.unicase.model.ModelElement;
 import org.unicase.test.tests.changetests.ChangeTestHelper;
 import org.unicase.test.tests.changetests.randomchange.IChangePackageTest;
@@ -103,5 +104,16 @@ public class CreateAndDeleteTest extends RandomChangeTestCase implements IChange
 		return EXPECTED_NUM_OF_CHANGES;
 	}
 
+	public boolean isSuccessful() {
+		//temp impl
+		return EXPECTED_NUM_OF_CHANGES == 0;
+	}
+
+	
+	public ChangePackage getChangePackage() {
+		return ChangeTestHelper.getChangePackage(getTestProjectSpace()
+				.getOperations(), true, true);
+
+	}
 
 }
