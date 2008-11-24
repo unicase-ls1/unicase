@@ -377,11 +377,9 @@ public class ChangeTestHelper {
 		if (attribute.getEType().getInstanceClass().equals(String.class)) {
 			if (attribute.isMany()) {
 				Object object = me.eGet(attribute);
-				EList<EObject> eList = (EList<EObject>) object;
-				EObject eString = (EObject) EcoreFactory.eINSTANCE
-						.createFromString(EcorePackage.Literals.ESTRING,
-								"new entry for" + attribute.getName());
-				eList.add(eString);
+				EList<String> eList = (EList<String>) object;
+				eList.add("new entry for" + attribute.getName());
+				
 			} else {
 				String oldValue = (String) me.eGet(attribute);
 				String newValue = "changed-" + oldValue;
@@ -392,12 +390,8 @@ public class ChangeTestHelper {
 				.equals(boolean.class)) {
 			if (attribute.isMany()) {
 				Object object = me.eGet(attribute);
-				EList<EObject> eList = (EList<EObject>) object;
-				EObject eBoolean = (EObject) EcoreFactory.eINSTANCE
-						.createFromString(EcorePackage.Literals.EBOOLEAN,
-								((Boolean) getRandom().nextBoolean())
-										.toString());
-				eList.add(eBoolean);
+				EList<Boolean> eList = (EList<Boolean>) object;
+				eList.add((Boolean) getRandom().nextBoolean());
 			} else {
 				me.eSet(attribute, !((Boolean) me.eGet(attribute)));
 			}
@@ -405,11 +399,8 @@ public class ChangeTestHelper {
 		} else if (attribute.getEType().getInstanceClass().equals(int.class)) {
 			if (attribute.isMany()) {
 				Object object = me.eGet(attribute);
-				EList<EObject> eList = (EList<EObject>) object;
-				EObject eInt = (EObject) EcoreFactory.eINSTANCE
-						.createFromString(EcorePackage.Literals.EBOOLEAN,
-								((Integer) getRandom().nextInt()).toString());
-				eList.add(eInt);
+				EList<Integer> eList = (EList<Integer>) object;
+				eList.add((Integer) getRandom().nextInt());
 			} else {
 				me.eSet(attribute, getRandom().nextInt());
 			}
@@ -417,11 +408,8 @@ public class ChangeTestHelper {
 		} else if (attribute.getEType().getInstanceClass().equals(Date.class)) {
 			if (attribute.isMany()) {
 				Object object = me.eGet(attribute);
-				EList<EObject> eList = (EList<EObject>) object;
-				EObject eInt = (EObject) EcoreFactory.eINSTANCE
-						.createFromString(EcorePackage.Literals.EBOOLEAN,
-								((Integer) getRandom().nextInt()).toString());
-				eList.add(eInt);
+				EList<Date> eList = (EList<Date>) object;
+				eList.add(getRandomDate());
 			} else {
 				me.eSet(attribute, getRandomDate());
 			}

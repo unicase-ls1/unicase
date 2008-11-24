@@ -32,6 +32,7 @@ import org.unicase.ui.test.TestProjectParmeters;
 public class CreateAndChangeAttributeTest extends RandomChangeTestCase implements IChangePackageTest{
 
 	private static final int EXPECTED_NUM_OF_CHANGES = 1;
+	private EAttribute changedAttribute;
 	
 	
 	public CreateAndChangeAttributeTest(String testName, TestProjectParmeters testProjParams) {
@@ -63,60 +64,12 @@ public class CreateAndChangeAttributeTest extends RandomChangeTestCase implement
 	
 	
 	
-	protected boolean changeRandomAttribute(ModelElement me) {
+	protected void changeRandomAttribute(ModelElement me) {
 
-		List<EAttribute> attributes = new ArrayList<EAttribute>();
-		for (EAttribute attr : me.eClass().getEAllAttributes()) {
-			if (attr.isChangeable() && attr.getFeatureID() != ModelPackage.MODEL_ELEMENT__IDENTIFIER){
-				attributes.add(attr);
-			}
-		}
+		 changedAttribute = ChangeTestHelper.changeSimnpleAttribute(me);
+	}
+
 	
-		int size = attributes.size();
-		EAttribute attribute = attributes.get(size == 1 ? 0 : getRandom().nextInt(size - 1));
-
-		
-		if (attribute.getEType().getInstanceClass().equals(String.class)) {
-			String oldValue = (String) me.eGet(attribute);
-			String newValue = "changed-" + oldValue;
-			me.eSet(attribute, newValue);
-			return true;
-
-		} else if (attribute.getEType().getInstanceClass()
-				.equals(boolean.class)) {
-			if(!me.eIsSet(attribute)){
-				me.eSet(attribute, getRandom().nextBoolean());
-			}else{
-				me.eSet(attribute, !((Boolean) me.eGet(attribute)));
-			}
-			
-			return true;
-
-		} else if (attribute.getEType().getInstanceClass().equals(int.class)) {
-			me.eSet(attribute, getRandom().nextInt());
-			return true;
-
-		} else if (attribute.getEType().getInstanceClass().equals(Date.class)) {
-			me.eSet(attribute, getRandomDate());
-			return true;
-
-		}
-		if (attribute.getEType().getInstanceClass().equals(EEnum.class)) {
-			EEnum en = (EEnum) attribute;
-			int index = getRandom().nextInt(en.getELiterals().size());
-			EEnumLiteral value = en.getELiterals().get(index);
-			me.eSet(attribute, value);
-			return true;
-		}
-
-		return false;
-
-	}
-
-	private Date getRandomDate() {
-		return new Date();
-	}
-
 	public int getExpectedNumOfChanges() {
 		return EXPECTED_NUM_OF_CHANGES;
 	}
