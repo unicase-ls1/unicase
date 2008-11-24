@@ -65,10 +65,9 @@ public abstract class RandomChangeTestCase extends ChangeTestCase {
 		}
 
 		File resultsFile = new File(getResultsSavePath());
-		ChangePackage changePackage = ChangeTestHelper.getChangePackage(
-				getTestProjectSpace().getOperations(), true, false);
-		
-		if (changePackage.getOperations().size() == ((IChangePackageTest)this).getExpectedNumOfChanges()) {
+		ChangePackage changePackage = ((IChangePackageTest)this).getChangePackage();
+
+		if (((IChangePackageTest)this).isSuccessful()) {
 			System.out.println("ok");
 			return;
 		}
@@ -81,6 +80,9 @@ public abstract class RandomChangeTestCase extends ChangeTestCase {
 					+ Calendar.getInstance().getTime().toString());
 			bw.newLine();
 
+			bw.write(getTestProjParams().toString());
+			bw.newLine();
+			
 			bw.write("num of changes: " + changePackage.getOperations().size());
 			bw.newLine();
 

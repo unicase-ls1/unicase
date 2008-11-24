@@ -9,6 +9,7 @@ import org.eclipse.emf.ecore.EEnum;
 import org.eclipse.emf.ecore.EEnumLiteral;
 import org.eclipse.emf.transaction.RecordingCommand;
 import org.eclipse.emf.transaction.TransactionalEditingDomain;
+import org.unicase.emfstore.esmodel.versioning.ChangePackage;
 import org.unicase.model.ModelElement;
 import org.unicase.model.ModelPackage;
 import org.unicase.test.tests.changetests.ChangeTestHelper;
@@ -118,6 +119,17 @@ public class CreateAndChangeAttributeTest extends RandomChangeTestCase implement
 
 	public int getExpectedNumOfChanges() {
 		return EXPECTED_NUM_OF_CHANGES;
+	}
+
+	public boolean isSuccessful() {
+		//temp impl
+		return EXPECTED_NUM_OF_CHANGES == 1;
+	}
+	
+	public ChangePackage getChangePackage() {
+		return ChangeTestHelper.getChangePackage(getTestProjectSpace()
+				.getOperations(), true, true);
+
 	}
 
 }

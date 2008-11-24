@@ -9,9 +9,16 @@ import java.util.Date;
 import java.util.List;
 import java.util.Random;
 
+import org.eclipse.emf.common.util.EList;
 import org.eclipse.emf.common.util.URI;
+import org.eclipse.emf.ecore.EAttribute;
 import org.eclipse.emf.ecore.EClass;
+import org.eclipse.emf.ecore.EDataType;
+import org.eclipse.emf.ecore.EEnum;
+import org.eclipse.emf.ecore.EEnumLiteral;
 import org.eclipse.emf.ecore.EObject;
+import org.eclipse.emf.ecore.EcoreFactory;
+import org.eclipse.emf.ecore.EcorePackage;
 import org.eclipse.emf.ecore.resource.Resource;
 import org.eclipse.emf.ecore.resource.ResourceSet;
 import org.eclipse.emf.ecore.resource.impl.ResourceSetImpl;
@@ -40,7 +47,7 @@ public class ChangeTestHelper {
 	private static String TEMP_PATH = Configuration.getWorkspaceDirectory()
 			+ "\\tmp\\";
 
-	private static Random random = new Random();
+	private static Random random;
 	private static List<ModelElement> modelElements;
 
 	public static ProjectSpace createEmptyProjectSpace(String name) {
@@ -73,7 +80,8 @@ public class ChangeTestHelper {
 	}
 
 	public static ChangePackage getChangePackage(
-			final List<AbstractOperation> operations, final boolean cannonize,final boolean clearOperations) {
+			final List<AbstractOperation> operations, final boolean cannonize,
+			final boolean clearOperations) {
 
 		final ChangePackage changePackage = VersioningFactory.eINSTANCE
 				.createChangePackage();
@@ -82,14 +90,15 @@ public class ChangeTestHelper {
 
 					@Override
 					protected void doExecute() {
-						for(AbstractOperation op : operations){
-							changePackage.getOperations().add((AbstractOperation) EcoreUtil.copy(op));
-							
+						for (AbstractOperation op : operations) {
+							changePackage.getOperations().add(
+									(AbstractOperation) EcoreUtil.copy(op));
+
 						}
-						if(clearOperations){
+						if (clearOperations) {
 							operations.clear();
 						}
-						
+
 						if (cannonize) {
 							changePackage.cannonize();
 						}
@@ -119,10 +128,11 @@ public class ChangeTestHelper {
 	private static void prepareCompare(final ProjectSpace testSpace,
 			final ProjectSpace compareSpace, final boolean incremental) {
 		System.out.println("extracting operations from test project...");
-				
+
 		List<AbstractOperation> operations = testSpace.getOperations();
 		System.out.println(operations.size() + " operatoins");
-		final ChangePackage changePackage = getChangePackage(operations, true, false);
+		final ChangePackage changePackage = getChangePackage(operations, true,
+				false);
 
 		// save change package for later reference
 		// the saved change package will be overwritten every time a test
@@ -148,10 +158,10 @@ public class ChangeTestHelper {
 								.println("applying changes to compareSpace...");
 						((ProjectSpaceImpl) compareSpace).stopChangeRecording();
 						changePackage.apply(compareSpace.getProject());
-						if(!incremental){
+						if (!incremental) {
 							testSpace.getOperations().clear();
 						}
-						
+
 						// compareSpace.save();
 					}
 				});
@@ -296,8 +306,8 @@ public class ChangeTestHelper {
 
 		if (unique) {
 			do {
-				final ModelElement me = modelElements.get(random
-						.nextInt(numOfMEs - 1));
+				final ModelElement me = modelElements.get(getRandom().nextInt(
+						numOfMEs - 1));
 				if (!result.contains(me)) {
 					result.add(me);
 				}
@@ -306,8 +316,8 @@ public class ChangeTestHelper {
 
 		} else {
 			for (int i = 0; i < num; i++) {
-				final ModelElement me = modelElements.get(random
-						.nextInt(numOfMEs - 1));
+				final ModelElement me = modelElements.get(getRandom().nextInt(
+						numOfMEs - 1));
 				result.add(me);
 			}
 
@@ -323,7 +333,7 @@ public class ChangeTestHelper {
 	public static ModelElement createRandomME() {
 		List<EClass> eClazz = ModelUtil.getSubclasses(ModelPackage.eINSTANCE
 				.getModelElement());
-		EClass eClass = eClazz.get(random.nextInt(eClazz.size() - 1));
+		EClass eClass = eClazz.get(getRandom().nextInt(eClazz.size() - 1));
 		ModelElement me = (ModelElement) eClass.getEPackage()
 				.getEFactoryInstance().create(eClass);
 
@@ -336,17 +346,108 @@ public class ChangeTestHelper {
 
 		if (refType.isAbstract() || refType.isInterface()) {
 			List<EClass> eClazz = ModelUtil.getSubclasses(refType);
-			int index = eClazz.size() == 1 ? 0 : random.nextInt(eClazz.size());
+			int index = eClazz.size() == 1 ? 0 : getRandom().nextInt(
+					eClazz.size());
 			refType = eClazz.get(index);
 		}
 
-		EObject eObject = refType.getEPackage().getEFactoryInstance().create(refType);
+		EObject eObject = refType.getEPackage().getEFactoryInstance().create(
+				refType);
 		if (eObject instanceof ModelElement) {
 			me = (ModelElement) eObject;
 		}
 
 		return me;
 
+	}
+
+	public static EAttribute changeSimnpleAttribute(ModelElement me) {
+		List<EAttribute> attributes = new ArrayList<EAttribute>();
+		for (EAttribute attr : me.eClass().getEAllAttributes()) {
+			if (attr.isChangeable()
+					&& attr.getFeatureID() != ModelPackage.MODEL_ELEMENT__IDENTIFIER) {
+				attributes.add(attr);
+			}
+		}
+
+		int size = attributes.size();
+		EAttribute attribute = attributes.get(size == 1 ? 0 : getRandom()
+				.nextInt(size - 1));
+
+		if (attribute.getEType().getInstanceClass().equals(String.class)) {
+			if (attribute.isMany()) {
+				Object object = me.eGet(attribute);
+				EList<EObject> eList = (EList<EObject>) object;
+				EObject eString = (EObject) EcoreFactory.eINSTANCE
+						.createFromString(EcorePackage.Literals.ESTRING,
+								"new entry for" + attribute.getName());
+				eList.add(eString);
+			} else {
+				String oldValue = (String) me.eGet(attribute);
+				String newValue = "changed-" + oldValue;
+				me.eSet(attribute, newValue);
+			}
+
+		} else if (attribute.getEType().getInstanceClass()
+				.equals(boolean.class)) {
+			if (attribute.isMany()) {
+				Object object = me.eGet(attribute);
+				EList<EObject> eList = (EList<EObject>) object;
+				EObject eBoolean = (EObject) EcoreFactory.eINSTANCE
+						.createFromString(EcorePackage.Literals.EBOOLEAN,
+								((Boolean) getRandom().nextBoolean())
+										.toString());
+				eList.add(eBoolean);
+			} else {
+				me.eSet(attribute, !((Boolean) me.eGet(attribute)));
+			}
+
+		} else if (attribute.getEType().getInstanceClass().equals(int.class)) {
+			if (attribute.isMany()) {
+				Object object = me.eGet(attribute);
+				EList<EObject> eList = (EList<EObject>) object;
+				EObject eInt = (EObject) EcoreFactory.eINSTANCE
+						.createFromString(EcorePackage.Literals.EBOOLEAN,
+								((Integer) getRandom().nextInt()).toString());
+				eList.add(eInt);
+			} else {
+				me.eSet(attribute, getRandom().nextInt());
+			}
+
+		} else if (attribute.getEType().getInstanceClass().equals(Date.class)) {
+			if (attribute.isMany()) {
+				Object object = me.eGet(attribute);
+				EList<EObject> eList = (EList<EObject>) object;
+				EObject eInt = (EObject) EcoreFactory.eINSTANCE
+						.createFromString(EcorePackage.Literals.EBOOLEAN,
+								((Integer) getRandom().nextInt()).toString());
+				eList.add(eInt);
+			} else {
+				me.eSet(attribute, getRandomDate());
+			}
+
+		}
+		if (attribute.getEType().getInstanceClass().equals(EEnum.class)) {
+			EEnum en = (EEnum) attribute;
+			int index = getRandom().nextInt(en.getELiterals().size());
+			EEnumLiteral value = en.getELiterals().get(index);
+			me.eSet(attribute, value);
+		}
+
+		return attribute;
+
+	}
+
+	public static void setRandom(Random random) {
+		ChangeTestHelper.random = random;
+	}
+
+	public static Random getRandom() {
+		return random;
+	}
+
+	private static Date getRandomDate() {
+		return new Date();
 	}
 
 }
