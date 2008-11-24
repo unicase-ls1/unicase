@@ -37,6 +37,7 @@ import org.unicase.model.provider.AttachmentItemProvider;
 import org.unicase.model.provider.ModelEditPlugin;
 import org.unicase.model.rationale.RationaleFactory;
 import org.unicase.model.requirement.RequirementFactory;
+import org.unicase.model.state.StateFactory;
 import org.unicase.model.task.TaskFactory;
 
 /**
@@ -367,6 +368,14 @@ public class MEDiagramItemProvider extends AttachmentItemProvider implements
 		newChildDescriptors.add(createChildParameter(
 				DiagramPackage.Literals.ME_DIAGRAM__ELEMENTS,
 				MeetingFactory.eINSTANCE.createWorkItemMeetingSection()));
+
+		newChildDescriptors.add(createChildParameter(
+				DiagramPackage.Literals.ME_DIAGRAM__ELEMENTS,
+				StateFactory.eINSTANCE.createState()));
+
+		newChildDescriptors.add(createChildParameter(
+				DiagramPackage.Literals.ME_DIAGRAM__ELEMENTS,
+				StateFactory.eINSTANCE.createTransition()));
 
 		newChildDescriptors.add(createChildParameter(
 				DiagramPackage.Literals.ME_DIAGRAM__ELEMENTS,

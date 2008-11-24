@@ -132,19 +132,20 @@ public class MEDiagramResource extends ResourceImpl implements Resource,
 		String id = null;
 		if (meDiagram.getType().equals(DiagramType.USECASE_DIAGRAM)) {
 			id = "UseCase";
-		}
-		if (meDiagram.getType().equals(DiagramType.CLASS_DIAGRAM)) {
+		}else if (meDiagram.getType().equals(DiagramType.CLASS_DIAGRAM)) {
+			id = "Model";
+		}else if (meDiagram.getType().equals(DiagramType.COMPONENT_DIAGRAM)) {
+			id = "Component";
+		}else if (meDiagram.getType().equals(DiagramType.STATE_DIAGRAM)) {
 			id = "Model";
 		}
-		if (meDiagram.getType().equals(DiagramType.COMPONENT_DIAGRAM)) {
-			id = "Component";
-		}
+		
 		if (id == null) {
 			throw new RuntimeException("Unsupported diagram type");
 		}
 		// JH: Build switch for different diagram types
 		diagram = ViewService.createDiagram(meDiagram, id, new PreferencesHint(
-				"org.unicase.ui.componentDiagram"));
+				"org.unicase.ui.stateDiagram"));
 		diagram.setElement(meDiagram);
 		TransactionalEditingDomain domain = TransactionUtil
 				.getEditingDomain(meDiagram);

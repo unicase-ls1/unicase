@@ -75,8 +75,8 @@ public final class ActionHelper {
 		if (partId.equals(MEEDITOR_ID)) {
 			// extract model element from editor input
 			IEditorInput editorInput = PlatformUI.getWorkbench()
-					.getActiveWorkbenchWindow().getActivePage()
-					.getActiveEditor().getEditorInput();
+			.getActiveWorkbenchWindow().getActivePage()
+			.getActiveEditor().getEditorInput();
 			Object obj = editorInput.getAdapter(ModelElement.class);
 
 			if (obj instanceof ModelElement) {
@@ -112,13 +112,13 @@ public final class ActionHelper {
 		ModelElement me = (ModelElement) obj;
 		final StringBuffer creator = new StringBuffer();
 		TransactionalEditingDomain domain = TransactionalEditingDomain.Registry.INSTANCE
-				.getEditingDomain("org.unicase.EditingDomain");
+		.getEditingDomain("org.unicase.EditingDomain");
 		domain.getCommandStack().execute(new RecordingCommand(domain) {
 			@Override
 			protected void doExecute() {
 				Usersession usersession = WorkspaceManager.getInstance()
-						.getCurrentWorkspace().getActiveProjectSpace()
-						.getUsersession();
+				.getCurrentWorkspace().getActiveProjectSpace()
+				.getUsersession();
 				if (usersession != null) {
 					creator.append(usersession.getACUser().getName());
 				}
@@ -140,20 +140,20 @@ public final class ActionHelper {
 		if (me == null) {
 			return;
 		}
-		
+
 		boolean openWithMeDiagram = false;
 		if (me instanceof MEDiagram) {
 			openWithMeDiagram = true;
 		}
 		final boolean isDiagram = openWithMeDiagram;
 		TransactionalEditingDomain domain = TransactionalEditingDomain.Registry.INSTANCE
-				.getEditingDomain("org.unicase.EditingDomain");
+		.getEditingDomain("org.unicase.EditingDomain");
 		domain.getCommandStack().execute(new RecordingCommand(domain) {
 			@Override
 			protected void doExecute() {
 				ProjectSpace activeProjectSpace = WorkspaceManager
-						.getInstance().getCurrentWorkspace()
-						.getActiveProjectSpace();
+				.getInstance().getCurrentWorkspace()
+				.getActiveProjectSpace();
 				String readView;
 				if (isDiagram) {
 					readView = "org.unicase.ui.MEDiagramEditor";
@@ -182,7 +182,7 @@ public final class ActionHelper {
 		// using
 		// HandlerService
 		IHandlerService handlerService = (IHandlerService) PlatformUI
-				.getWorkbench().getService(IHandlerService.class);
+		.getWorkbench().getService(IHandlerService.class);
 
 		IEvaluationContext context = handlerService.getCurrentState();
 		context.addVariable(ME_TO_OPEN_EVALUATIONCONTEXT_VARIABLE, me);
@@ -220,13 +220,14 @@ public final class ActionHelper {
 		String id = null;
 		if (diagram.getType().equals(DiagramType.CLASS_DIAGRAM)) {
 			id = "org.unicase.model.classDiagram.part.ModelDiagramEditorID";
-		}
-		if (diagram.getType().equals(DiagramType.USECASE_DIAGRAM)) {
+		}else if (diagram.getType().equals(DiagramType.USECASE_DIAGRAM)) {
 			id = "org.unicase.ui.usecaseDiagram.part.ModelDiagramEditorID";
-		}
-		if (diagram.getType().equals(DiagramType.COMPONENT_DIAGRAM)) {
+		}else if (diagram.getType().equals(DiagramType.COMPONENT_DIAGRAM)) {
 			id = "org.unicase.ui.componentDiagram.part.ModelDiagramEditorID";
+		}else if (diagram.getType().equals(DiagramType.STATE_DIAGRAM)) {
+			id = "org.unicase.ui.stateDiagram.part.ModelDiagramEditorID";
 		}
+
 		if (id == null) {
 			throw new RuntimeException("Unsupported diagram type");
 		}
@@ -236,7 +237,7 @@ public final class ActionHelper {
 
 		try {
 			PlatformUI.getWorkbench().getActiveWorkbenchWindow()
-					.getActivePage().openEditor(input, id, true);
+			.getActivePage().openEditor(input, id, true);
 		} catch (PartInitException e) {
 			ErrorDialog.openError(PlatformUI.getWorkbench()
 					.getActiveWorkbenchWindow().getShell(), "Error", e
@@ -284,7 +285,7 @@ public final class ActionHelper {
 	 */
 	public static Object getSelection() {
 		ISelectionService selectionService = PlatformUI.getWorkbench()
-				.getActiveWorkbenchWindow().getSelectionService();
+		.getActiveWorkbenchWindow().getSelectionService();
 
 		ISelection sel = selectionService.getSelection();
 		if (!(sel instanceof IStructuredSelection)) {

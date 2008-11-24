@@ -538,6 +538,52 @@
           text="\u00ABinitiate\u00BB"/>
     </descriptors>
   </figures>
+  <figures
+      name="StateDiagram">
+    <descriptors
+        name="StateFigure">
+      <actualFigure
+          xsi:type="gmfgraph:RoundedRectangle"
+          name="StateFigure">
+        <border
+            xsi:type="gmfgraph:MarginBorder">
+          <insets
+              top="5"
+              left="5"/>
+        </border>
+        <children
+            xsi:type="gmfgraph:Label"
+            name="StateFigure_name"
+            text="unnamed">
+          <border
+              xsi:type="gmfgraph:LineBorder"/>
+        </children>
+        <children
+            xsi:type="gmfgraph:Rectangle"
+            name="StateFigure_EntryConditions"
+            outline="false"/>
+      </actualFigure>
+      <accessors
+          accessor="getFigureStateFigure_name"
+          figure="//@figures.3/@descriptors.0/@actualFigure/@children.0"/>
+    </descriptors>
+    <descriptors
+        name="TransitionFigure">
+      <actualFigure
+          xsi:type="gmfgraph:PolylineConnection"
+          name="TransitionPolyline">
+        <layout
+            xsi:type="gmfgraph:FlowLayout"/>
+        <children
+            xsi:type="gmfgraph:Label"
+            name="TransitionFigure_name"
+            text="unnamed"/>
+      </actualFigure>
+      <accessors
+          accessor="getFigureTransitionFigure_name"
+          figure="//@figures.3/@descriptors.1/@actualFigure/@children.0"/>
+    </descriptors>
+  </figures>
   <nodes
       name="Class"
       figure="ClassFigure"/>
@@ -577,6 +623,10 @@
           dy="110"/>
     </facets>
   </nodes>
+  <nodes
+      name="State"
+      figure="StateFigure"
+      resizeConstraint="NONE"/>
   <connections
       name="Association"
       figure="AssociationFigure"/>
@@ -604,6 +654,9 @@
   <connections
       name="Dependency"
       figure="DependencyFigure"/>
+  <connections
+      name="Transition"
+      figure="TransitionFigure"/>
   <compartments
       name="ClassNode_attributes"
       figure="ClassFigure"
@@ -726,4 +779,13 @@
       figure="PackageFigure"
       elementIcon="false"
       accessor="//@figures.0/@descriptors.5/@accessors.0"/>
+  <labels
+      name="StateNode_name"
+      figure="StateFigure"
+      elementIcon="false"
+      accessor="//@figures.3/@descriptors.0/@accessors.0"/>
+  <labels
+      name="TransitionLine_condition"
+      figure="TransitionFigure"
+      accessor="//@figures.3/@descriptors.1/@accessors.0"/>
 </gmfgraph:Canvas>
