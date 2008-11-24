@@ -18,5 +18,12 @@ public interface DocWriter {
 	 * @param fileName the filename where the document shall be saved
 	 * @param doc the document which shall be written to a file
 	 */
-	 public void export(String fileName, UCompositeSection doc);
+	 void export(String fileName, UCompositeSection doc);
+	 
+	 /**
+	  * Returns the file type, which will be used for this export.
+	  * For example "pdf"
+	  * @return the String of the file type
+	  */
+	 String getFileType();
 }

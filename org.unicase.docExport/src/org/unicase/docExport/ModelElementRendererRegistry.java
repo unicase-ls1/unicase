@@ -13,8 +13,26 @@ import org.unicase.docExport.exportModel.renderers.specialRenderers.SpecialRende
 import org.unicase.model.ModelPackage;
 import org.unicase.workspace.util.WorkspaceUtil;
 
-public class ModelElementRendererRegistry {
+/**
+ * 
+ * @author Sebastian Höcht
+ * 
+ */
+public final class ModelElementRendererRegistry {
 
+	private ModelElementRendererRegistry() {
+		
+	}
+	
+	/**
+	 * Returns all possible ModelElementRenderers for a given modelElement EClass.
+	 * 
+	 * @param modelElementEClass the EClass of the ModelElement type
+	 * @param template the template where the ModelElementRenderers are needed. This 
+	 * parameter is required, because the a new default model element renderer is created.
+	 * The build requires a template (because of the global renderer options)
+	 * @return all possible ModelElementRenderers
+	 */
 	public static ArrayList<ModelElementRenderer> getSupportedModelElementRenderers(
 			String modelElementEClass, 
 			Template template) {
@@ -38,6 +56,12 @@ public class ModelElementRendererRegistry {
 		return renderers;
 	}
 	
+	/**
+	 * Returns the EClass of a ModelElement type given the clazz name of the ModelELement.
+	 * 
+	 * @param clazz thez class name of the ModelElement
+	 * @return the EClass of the ModelElement
+	 */
 	public static EClass getEClassOfString(String clazz) {
 		ArrayList<EClass> modelElementTypes = 
 			DefaultDocumentTemplateBuilder.getModelElements(ModelPackage.eINSTANCE.eContents());

@@ -8,6 +8,9 @@ import org.osgi.framework.BundleContext;
  */
 public class Activator extends Plugin {
 
+	/**
+	 * constructor.
+	 */
 	public Activator() {
 		super();
 	}

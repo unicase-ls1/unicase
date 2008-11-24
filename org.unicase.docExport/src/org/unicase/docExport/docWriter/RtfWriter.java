@@ -18,6 +18,9 @@ import com.lowagie.text.DocumentException;
  * @author Sebastian Höcht
  */
 public class RtfWriter extends ITextWriter implements DocWriter {
+	
+	private static final String FILE_TYPE = "rtf";
+
 	/**
 	 * {@inheritDoc}
 	 * @see org.unicase.documentExport.docWriter.DocWriter#export(String, UCompositeSection)
@@ -50,9 +53,19 @@ public class RtfWriter extends ITextWriter implements DocWriter {
 		
 	}
 
+	/**
+	 * {@inheritDoc}
+	 */
 	@Override
 	protected void writeSeperator(Object parent, USeperator doc2) {
 		// TODO Auto-generated method stub
 		
+	}
+	
+	/**
+	 * {@inheritDoc}
+	 */
+	public String getFileType() {
+		return FILE_TYPE;
 	}
 }
