@@ -9,6 +9,7 @@ import org.eclipse.emf.transaction.TransactionalEditingDomain;
 import org.unicase.model.Project;
 import org.unicase.test.lib.TestSuite;
 import org.unicase.ui.test.TestProjectGenerator;
+import org.unicase.ui.test.TestProjectParmeters;
 import org.unicase.workspace.ProjectSpace;
 import org.unicase.workspace.WorkspaceManager;
 import org.unicase.workspace.impl.ProjectSpaceImpl;
@@ -24,8 +25,10 @@ public abstract class ChangeTestSuite extends TestSuite {
 	private ProjectSpace compareSpace;
 	
 	private Long randomSeed = Calendar.getInstance().getTimeInMillis();
+	private TestProjectParmeters params;
 	
 	private TransactionalEditingDomain domain;
+	
 
 
 
@@ -86,7 +89,8 @@ public abstract class ChangeTestSuite extends TestSuite {
 	public Project getTestProject(){
 		if(testProject == null){
 			System.out.println("creating test project");
-			testProject = new TestProjectGenerator(5, randomSeed, 3, 2, 3, 10).generateProject();
+			params = new TestProjectParmeters(5, randomSeed, 3, 2, 3, 10);
+			testProject = new TestProjectGenerator(params).generateProject();
 			System.out.println("test project created");
 		}
 		return testProject;
@@ -95,6 +99,10 @@ public abstract class ChangeTestSuite extends TestSuite {
 	
 	public long getRandomSeed(){
 		return randomSeed;
+	}
+	
+	public TestProjectParmeters getTestProjectPrams(){
+		return params;
 	}
 	
 }

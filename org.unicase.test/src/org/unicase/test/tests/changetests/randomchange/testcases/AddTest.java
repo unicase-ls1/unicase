@@ -13,6 +13,7 @@ import org.unicase.model.ModelElement;
 import org.unicase.test.tests.changetests.ChangeTestHelper;
 import org.unicase.test.tests.changetests.randomchange.IChangePackageTest;
 import org.unicase.test.tests.changetests.randomchange.RandomChangeTestCase;
+import org.unicase.ui.test.TestProjectParmeters;
 
 /**
  * 
@@ -26,118 +27,66 @@ import org.unicase.test.tests.changetests.randomchange.RandomChangeTestCase;
  * @author Hodaie
  * 
  */
-public class AddTest extends RandomChangeTestCase  implements IChangePackageTest{
+public class AddTest extends RandomChangeTestCase implements IChangePackageTest {
 
-	private int totalOps;
 	private static final int EXPECTED_NUM_OF_CHANGES = 2;
-	
-	
 
-	public AddTest(String testName, long randomSeed) {
-		super(testName, randomSeed);
+	public AddTest(String testName, TestProjectParmeters testProjParams) {
+		super(testName, testProjParams);
 
 	}
 
 	@Override
 	public void runTest() {
 
-
 		TransactionalEditingDomain domain = TransactionalEditingDomain.Registry.INSTANCE
 				.getEditingDomain("org.unicase.EditingDomain");
-
-		runSimpleTest(domain);
-		//runFullRandomTest(domain);
-
-	}
-
-	private void runSimpleTest(TransactionalEditingDomain domain) {
-
 		domain.getCommandStack().execute(new RecordingCommand(domain) {
 
 			@Override
 			protected void doExecute() {
-				ModelElement me = ChangeTestHelper
-						.getRandomME(getTestProject());
-				List<EReference> containments = me.eClass()
-						.getEAllContainments();
+				doAddTest();
+			}
 
-				while (containments.size() == 0) {
-					me = ChangeTestHelper.getRandomME(getTestProject());
-					containments = me.eClass().getEAllContainments();
-				}
+		});
 
-				EReference ref = containments.get(0);
-				EClass refType = ref.getEReferenceType();
+	}
 
-				ModelElement newInstance = ChangeTestHelper
-						.createInstance(refType);
+	private void doAddTest() {
 
-				if (newInstance == null) {
-					return;
-				}
+		ModelElement me = ChangeTestHelper.getRandomME(getTestProject());
+		List<EReference> containments = me.eClass().getEAllContainments();
 
-				Object object = me.eGet(ref);
-				EList<EObject> eList = (EList<EObject>) object;
+		while (containments.size() == 0) {
+			me = ChangeTestHelper.getRandomME(getTestProject());
+			containments = me.eClass().getEAllContainments();
+		}
+
+		int size = containments.size();
+		EReference ref = containments.get(size == 1 ? 0 : getRandom().nextInt(
+				size - 1));
+		EClass refType = ref.getEReferenceType();
+
+		ModelElement newInstance = ChangeTestHelper.createInstance(refType);
+
+		if (newInstance == null) {
+			return;
+		}
+
+		Object object = me.eGet(ref);
+		if (ref.isMany()) {
+			EList<EObject> eList = (EList<EObject>) object;
+			if (eList == null) {
+				throw new IllegalStateException("Null list return for feature "
+						+ ref.getName() + " on " + me.getName());
+			} else {
 				eList.add(newInstance);
-				totalOps++;
-
 			}
-
-		});
+		} else {
+			me.eSet(ref, newInstance);
+		}
 
 	}
-
-	private void runFullRandomTest(TransactionalEditingDomain domain) {
-
-		domain.getCommandStack().execute(new RecordingCommand(domain) {
-
-			@Override
-			protected void doExecute() {
-				ModelElement me = ChangeTestHelper
-						.getRandomME(getTestProject());
-				List<EReference> containments = me.eClass()
-						.getEAllContainments();
-
-				while (containments.size() == 0) {
-					me = ChangeTestHelper.getRandomME(getTestProject());
-					containments = me.eClass().getEAllContainments();
-				}
-
-				final EReference ref = containments
-						.get(containments.size() == 1 ? 0 : getRandom()
-								.nextInt(containments.size() - 1));
-				EClass refType = ref.getEReferenceType();
-
-				ModelElement newInstance = ChangeTestHelper
-						.createInstance(refType);
-
-				if (newInstance == null) {
-					return;
-				}
-
-				
-				Object object = me.eGet(ref);
-				if(ref.isMany()){
-					EList<EObject> eList = (EList<EObject>) object;
-					if(eList == null){
-						List<Object> list = new ArrayList<Object>();
-						list.add(newInstance);
-						me.eSet(ref, list);
-					}else{
-						eList.add(newInstance);
-					}
-				}else{
-					me.eSet(ref, newInstance);
-				}
-				
-				totalOps++;
-
-			}
-
-		});
-
-	}
-
 
 	public int getExpectedNumOfChanges() {
 		return EXPECTED_NUM_OF_CHANGES;

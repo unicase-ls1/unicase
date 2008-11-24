@@ -15,6 +15,7 @@ import org.unicase.model.ModelElement;
 import org.unicase.test.tests.changetests.ChangeTestHelper;
 import org.unicase.test.tests.changetests.randomchange.IChangePackageTest;
 import org.unicase.test.tests.changetests.randomchange.RandomChangeTestCase;
+import org.unicase.ui.test.TestProjectParmeters;
 
 
 /**
@@ -31,8 +32,8 @@ public class CreateAndDeleteTest extends RandomChangeTestCase implements IChange
 
 	private static final int EXPECTED_NUM_OF_CHANGES = 0;
 	
-	public CreateAndDeleteTest(String testName, long randomSeed) {
-		super(testName, randomSeed);
+	public CreateAndDeleteTest(String testName, TestProjectParmeters testProjParams) {
+		super(testName, testProjParams);
 
 	}
 
@@ -80,9 +81,7 @@ public class CreateAndDeleteTest extends RandomChangeTestCase implements IChange
 		if(ref.isMany()){
 			EList<EObject> eList = (EList<EObject>) object;
 			if(eList == null){
-				List<Object> list = new ArrayList<Object>();
-				list.add(toBeReferencedME);
-				me.eSet(ref, list);
+				throw new IllegalStateException("Null list return for feature " + ref.getName() + " on " + me.getName()); 
 			}else{
 				eList.add(toBeReferencedME);
 			}

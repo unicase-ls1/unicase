@@ -11,6 +11,7 @@ import org.unicase.emfstore.esmodel.versioning.VersioningFactory;
 import org.unicase.emfstore.exceptions.EmfStoreException;
 import org.unicase.model.Project;
 import org.unicase.test.tests.changetests.randomchange.RandomChangeTestCase;
+import org.unicase.ui.test.TestProjectParmeters;
 import org.unicase.workspace.ProjectSpace;
 import org.unicase.workspace.ServerInfo;
 import org.unicase.workspace.Usersession;
@@ -22,9 +23,9 @@ public class CommitTest extends RandomChangeTestCase {
 	private Usersession userSession;
 	private TransactionalEditingDomain domain;
 
-	public CommitTest(String testName, long randomSeed,
+	public CommitTest(String testName, TestProjectParmeters testProjParams,
 			List<RandomChangeTestCase> testCases) {
-		super(testName, randomSeed);
+		super(testName, testProjParams);
 		this.testCases = testCases;
 		userSession = WorkspaceFactory.eINSTANCE.createUsersession();
 
@@ -77,7 +78,7 @@ public class CommitTest extends RandomChangeTestCase {
 	@Override
 	public void runTest() {
 		CompoundTest compoundTest = new CompoundTest("CompoundTest",
-				getRandom().nextLong(), testCases);
+				getTestProjParams(), testCases);
 		compoundTest.setTestProject(getTestProject());
 		compoundTest.runTest();
 	}

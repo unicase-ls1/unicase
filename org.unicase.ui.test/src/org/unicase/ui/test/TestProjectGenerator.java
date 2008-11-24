@@ -34,7 +34,6 @@ import org.unicase.model.ModelElement;
 import org.unicase.model.ModelFactory;
 import org.unicase.model.ModelPackage;
 import org.unicase.model.Project;
-import org.unicase.model.UniqueIdentifier;
 import org.unicase.model.document.CompositeSection;
 import org.unicase.model.document.DocumentPackage;
 import org.unicase.model.document.LeafSection;
@@ -88,8 +87,9 @@ public class TestProjectGenerator {
 	private List<EClass> meNonAbstractClasses = new ArrayList<EClass>();
 	private List<EClass> nonMEnonAbstractClasses = new ArrayList<EClass>();
 
+	
 	/**
-	 * . Constructor: set test project parameters
+	 *  Constructor: set test project parameters.
 	 * 
 	 * @param numOfEachME
 	 *            minimum number of each ME
@@ -97,7 +97,7 @@ public class TestProjectGenerator {
 	 *            random seed
 	 * @param projWidth
 	 *            number of sub-Sections in each composite section
-	 * @param porjDepth
+	 * @param projDepth
 	 *            number of levels in project structure
 	 * @param maxNumOfManyRefs
 	 *            maximum number of references
@@ -105,17 +105,33 @@ public class TestProjectGenerator {
 	 *            max number of MEs to show on a LeafSection
 	 */
 	public TestProjectGenerator(int numOfEachME, long randomSeed, int projWidth,
-			int porjDepth, int maxNumOfManyRefs, int maxNumOfMEsInLeafSection) {
+			int projDepth, int maxNumOfManyRefs, int maxNumOfMEsInLeafSection) {
 
 		this.numOfEachME = numOfEachME;
 		this.projectWidth = projWidth;
-		this.projectDepth = porjDepth;
+		this.projectDepth = projDepth;
 		this.maxNumOfManyRefs = maxNumOfManyRefs;
 		this.maxNumOfMEsInLeafSection = maxNumOfMEsInLeafSection;
 
 		random = new Random(randomSeed);
 		initClassLists();
 
+	}
+	
+	/**
+	 * Constructor.
+	 * 
+	 * @param params test parameters
+	 */
+	public TestProjectGenerator(TestProjectParmeters params){
+		this.numOfEachME = params.getNumOfEachME();
+		this.projectWidth = params.getProjWidth();
+		this.projectDepth = params.getProjDepth();
+		this.maxNumOfManyRefs = params.getMaxNumOfManyRefs();
+		this.maxNumOfMEsInLeafSection = params.getMaxNumOfMEsInLeafSection();
+
+		random = new Random(params.getRandomSeed());
+		initClassLists();
 	}
 
 	// at the beginning, initialize a list of all non-Abstract, ME- and non-ME
@@ -696,10 +712,7 @@ public class TestProjectGenerator {
 				} else if (instance instanceof IdentifiableElement
 						&& attribute.getName().equalsIgnoreCase("identifier")) {
 					// special case for identifier attribute
-					IdentifiableElement identifiableElement = (IdentifiableElement) instance;
-					UniqueIdentifier meId = ModelFactory.eINSTANCE
-							.createModelElementId();
-					identifiableElement.setIdentifier(meId.getId());
+					//do nothing 
 					continue;
 				}
 

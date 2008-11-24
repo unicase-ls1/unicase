@@ -12,15 +12,20 @@ import org.eclipse.emf.ecore.util.EcoreUtil;
 import org.eclipse.emf.transaction.RecordingCommand;
 import org.eclipse.emf.transaction.TransactionalEditingDomain;
 import org.unicase.model.ModelElement;
+import org.unicase.model.rationale.RationalePackage;
 import org.unicase.test.tests.changetests.ChangeTestHelper;
+import org.unicase.test.tests.changetests.randomchange.IChangePackageTest;
 import org.unicase.test.tests.changetests.randomchange.RandomChangeTestCase;
+import org.unicase.ui.test.TestProjectParmeters;
 
-public class MoveTest extends RandomChangeTestCase {
+public class MoveTest extends RandomChangeTestCase  implements IChangePackageTest{
 
-	private int totalOps = 0;
 
-	public MoveTest(String testName, long randomSeed) {
-		super(testName, randomSeed);
+	private static final int EXPECTED_NUM_OF_CHANGES = 2;
+	
+	
+	public MoveTest(String testName, TestProjectParmeters testProjParams) {
+		super(testName, testProjParams);
 
 	}
 
@@ -31,7 +36,6 @@ public class MoveTest extends RandomChangeTestCase {
 				.getEditingDomain("org.unicase.EditingDomain");
 
 		doMove(domain);
-		// runFullRandomTest(domain);
 
 	}
 
@@ -44,12 +48,21 @@ public class MoveTest extends RandomChangeTestCase {
 				ModelElement me = ChangeTestHelper
 						.getRandomME(getTestProject());
 
-				List<EReference> containments = me.eClass()
-						.getEAllContainments();
+				List<EReference> containments = new ArrayList<EReference>();
+				for(EReference containment : me.eClass().getEAllContainments()){
+					if(!containment.isContainer()){
+						containments.add(containment);
+					}
+				}
+				
 
 				while (containments.size() == 0) {
 					me = ChangeTestHelper.getRandomME(getTestProject());
-					containments = me.eClass().getEAllContainments();
+					for(EReference containment : me.eClass().getEAllContainments()){
+						if(!containment.isContainer()){
+							containments.add(containment);
+						}
+					}
 				}
 
 				EReference ref = containments
@@ -65,6 +78,7 @@ public class MoveTest extends RandomChangeTestCase {
 					return;
 				}
 
+				
 				int size = moveableMEs.size();
 				ModelElement toBeMovedME = moveableMEs.get(size == 1 ? 0 : getRandom().nextInt(size - 1));
 				while(EcoreUtil.isAncestor(toBeMovedME, me)){
@@ -75,9 +89,7 @@ public class MoveTest extends RandomChangeTestCase {
 				if(ref.isMany()){
 					EList<EObject> eList = (EList<EObject>) object;
 					if(eList == null){
-						List<Object> list = new ArrayList<Object>();
-						list.add(toBeMovedME);
-						me.eSet(ref, list);
+						throw new IllegalStateException("Null list return for feature " + ref.getName() + " on " + me.getName());					
 					}else{
 						eList.add(toBeMovedME);
 					}
@@ -85,12 +97,18 @@ public class MoveTest extends RandomChangeTestCase {
 					me.eSet(ref, toBeMovedME);
 				}
 				
-				totalOps++;
 
 			}
 
 		});
 
+	}
+	
+	
+
+	public int getExpectedNumOfChanges() {
+		
+		return EXPECTED_NUM_OF_CHANGES;
 	}
 
 }
