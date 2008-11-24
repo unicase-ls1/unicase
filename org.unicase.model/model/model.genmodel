@@ -124,6 +124,7 @@
         <genEnumLiterals ecoreEnumLiteral="model.ecore#//diagram/DiagramType/CLASS_DIAGRAM"/>
         <genEnumLiterals ecoreEnumLiteral="model.ecore#//diagram/DiagramType/USECASE_DIAGRAM"/>
         <genEnumLiterals ecoreEnumLiteral="model.ecore#//diagram/DiagramType/COMPONENT_DIAGRAM"/>
+        <genEnumLiterals ecoreEnumLiteral="model.ecore#//diagram/DiagramType/STATE_DIAGRAM"/>
       </genEnums>
       <genClasses ecoreClass="model.ecore#//diagram/MEDiagram">
         <genFeatures children="true" createChild="true" propertyDescription="" propertySortChoices="true"
@@ -483,6 +484,25 @@
       <genClasses ecoreClass="model.ecore#//meeting/WorkItemMeetingSection">
         <genFeatures notify="false" children="true" createChild="false" propertySortChoices="true"
             ecoreFeature="ecore:EReference model.ecore#//meeting/WorkItemMeetingSection/includedWorkItems"/>
+      </genClasses>
+    </nestedGenPackages>
+    <nestedGenPackages prefix="State" basePackage="org.unicase.model" disposableProviderFactory="true"
+        ecorePackage="model.ecore#//state">
+      <genClasses ecoreClass="model.ecore#//state/State">
+        <genFeatures createChild="false" ecoreFeature="ecore:EAttribute model.ecore#//state/State/exitConditions"/>
+        <genFeatures createChild="false" ecoreFeature="ecore:EAttribute model.ecore#//state/State/activities"/>
+        <genFeatures createChild="false" ecoreFeature="ecore:EAttribute model.ecore#//state/State/entryConditions"/>
+        <genFeatures notify="false" createChild="false" propertySortChoices="true"
+            ecoreFeature="ecore:EReference model.ecore#//state/State/outgoingTransitions"/>
+        <genFeatures notify="false" createChild="false" propertySortChoices="true"
+            ecoreFeature="ecore:EReference model.ecore#//state/State/incomingTransitions"/>
+      </genClasses>
+      <genClasses ecoreClass="model.ecore#//state/Transition">
+        <genFeatures createChild="false" ecoreFeature="ecore:EAttribute model.ecore#//state/Transition/condition"/>
+        <genFeatures notify="false" createChild="false" propertySortChoices="true"
+            ecoreFeature="ecore:EReference model.ecore#//state/Transition/source"/>
+        <genFeatures notify="false" createChild="false" propertySortChoices="true"
+            ecoreFeature="ecore:EReference model.ecore#//state/Transition/target"/>
       </genClasses>
     </nestedGenPackages>
     <nestedGenPackages prefix="Attachment" basePackage="org.unicase.model" disposableProviderFactory="true"

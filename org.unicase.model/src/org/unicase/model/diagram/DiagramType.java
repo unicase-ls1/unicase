@@ -50,7 +50,15 @@ public enum DiagramType implements Enumerator {
 	 * @generated
 	 * @ordered
 	 */
-	COMPONENT_DIAGRAM(2, "COMPONENT_DIAGRAM", "COMPONENT_DIAGRAM");
+	COMPONENT_DIAGRAM(2, "COMPONENT_DIAGRAM", "COMPONENT_DIAGRAM"), /**
+	 * The '<em><b>STATE DIAGRAM</b></em>' literal object.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @see #STATE_DIAGRAM_VALUE
+	 * @generated
+	 * @ordered
+	 */
+	STATE_DIAGRAM(3, "STATE_DIAGRAM", "STATE_DIAGRAM");
 
 	/**
 	 * The '<em><b>CLASS DIAGRAM</b></em>' literal value.
@@ -98,13 +106,28 @@ public enum DiagramType implements Enumerator {
 	public static final int COMPONENT_DIAGRAM_VALUE = 2;
 
 	/**
+	 * The '<em><b>STATE DIAGRAM</b></em>' literal value.
+	 * <!-- begin-user-doc -->
+	 * <p>
+	 * If the meaning of '<em><b>STATE DIAGRAM</b></em>' literal object isn't clear,
+	 * there really should be more of a description here...
+	 * </p>
+	 * <!-- end-user-doc -->
+	 * @see #STATE_DIAGRAM
+	 * @model
+	 * @generated
+	 * @ordered
+	 */
+	public static final int STATE_DIAGRAM_VALUE = 3;
+
+	/**
 	 * An array of all the '<em><b>Type</b></em>' enumerators.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
 	private static final DiagramType[] VALUES_ARRAY = new DiagramType[] {
-			CLASS_DIAGRAM, USECASE_DIAGRAM, COMPONENT_DIAGRAM, };
+			CLASS_DIAGRAM, USECASE_DIAGRAM, COMPONENT_DIAGRAM, STATE_DIAGRAM, };
 
 	/**
 	 * A public read-only list of all the '<em><b>Type</b></em>' enumerators.
@@ -161,6 +184,8 @@ public enum DiagramType implements Enumerator {
 			return USECASE_DIAGRAM;
 		case COMPONENT_DIAGRAM_VALUE:
 			return COMPONENT_DIAGRAM;
+		case STATE_DIAGRAM_VALUE:
+			return STATE_DIAGRAM;
 		}
 		return null;
 	}

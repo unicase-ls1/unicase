@@ -41,6 +41,8 @@ import org.unicase.model.rationale.RationalePackage;
 import org.unicase.model.rationale.impl.RationalePackageImpl;
 import org.unicase.model.requirement.RequirementPackage;
 import org.unicase.model.requirement.impl.RequirementPackageImpl;
+import org.unicase.model.state.StatePackage;
+import org.unicase.model.state.impl.StatePackageImpl;
 import org.unicase.model.task.TaskPackage;
 import org.unicase.model.task.impl.TaskPackageImpl;
 
@@ -195,6 +197,10 @@ public class MeetingPackageImpl extends EPackageImpl implements MeetingPackage {
 				.getEPackage(ComponentPackage.eNS_URI) instanceof ComponentPackageImpl ? EPackage.Registry.INSTANCE
 				.getEPackage(ComponentPackage.eNS_URI)
 				: ComponentPackage.eINSTANCE);
+		StatePackageImpl theStatePackage = (StatePackageImpl) (EPackage.Registry.INSTANCE
+				.getEPackage(StatePackage.eNS_URI) instanceof StatePackageImpl ? EPackage.Registry.INSTANCE
+				.getEPackage(StatePackage.eNS_URI)
+				: StatePackage.eINSTANCE);
 		AttachmentPackageImpl theAttachmentPackage = (AttachmentPackageImpl) (EPackage.Registry.INSTANCE
 				.getEPackage(AttachmentPackage.eNS_URI) instanceof AttachmentPackageImpl ? EPackage.Registry.INSTANCE
 				.getEPackage(AttachmentPackage.eNS_URI)
@@ -213,6 +219,7 @@ public class MeetingPackageImpl extends EPackageImpl implements MeetingPackage {
 		theChangePackage.createPackageContents();
 		theBugPackage.createPackageContents();
 		theComponentPackage.createPackageContents();
+		theStatePackage.createPackageContents();
 		theAttachmentPackage.createPackageContents();
 
 		// Initialize created meta-data
@@ -228,6 +235,7 @@ public class MeetingPackageImpl extends EPackageImpl implements MeetingPackage {
 		theChangePackage.initializePackageContents();
 		theBugPackage.initializePackageContents();
 		theComponentPackage.initializePackageContents();
+		theStatePackage.initializePackageContents();
 		theAttachmentPackage.initializePackageContents();
 
 		// Mark meta-data to indicate it can't be changed

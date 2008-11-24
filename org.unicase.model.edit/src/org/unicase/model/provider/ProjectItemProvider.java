@@ -37,6 +37,7 @@ import org.unicase.model.meeting.MeetingFactory;
 import org.unicase.model.organization.OrganizationFactory;
 import org.unicase.model.rationale.RationaleFactory;
 import org.unicase.model.requirement.RequirementFactory;
+import org.unicase.model.state.StateFactory;
 import org.unicase.model.task.TaskFactory;
 
 /**
@@ -322,6 +323,14 @@ public class ProjectItemProvider extends ItemProviderAdapter implements
 		newChildDescriptors.add(createChildParameter(
 				ModelPackage.Literals.PROJECT__MODEL_ELEMENTS,
 				MeetingFactory.eINSTANCE.createWorkItemMeetingSection()));
+
+		newChildDescriptors.add(createChildParameter(
+				ModelPackage.Literals.PROJECT__MODEL_ELEMENTS,
+				StateFactory.eINSTANCE.createState()));
+
+		newChildDescriptors.add(createChildParameter(
+				ModelPackage.Literals.PROJECT__MODEL_ELEMENTS,
+				StateFactory.eINSTANCE.createTransition()));
 
 		newChildDescriptors.add(createChildParameter(
 				ModelPackage.Literals.PROJECT__MODEL_ELEMENTS,

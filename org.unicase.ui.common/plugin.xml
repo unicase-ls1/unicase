@@ -328,6 +328,10 @@
          <elementType ref="org.unicase.classDiagram.Association_4004"/>
          <elementType ref="org.unicase.classDiagram.ClassSubClasses_4005"/>
 		 <elementType ref="org.unicase.classDiagram.Dependency_4006"/>
+         <elementType ref="org.unicase.ui.stateDiagram.MEDiagram_55"/>
+         <elementType ref="org.unicase.ui.stateDiagram.State_2001"/>
+         <elementType ref="org.unicase.ui.stateDiagram.Transition_4001"/>
+         
          <advice ref="org.eclipse.gmf.runtime.diagram.core.advice.notationDepdendents"/>
       </binding>
    </extension>

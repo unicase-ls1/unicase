@@ -1,27 +1,21 @@
 /**
- * <copyright> Copyright (c) 2008 Jonas Helming, Maximilian Koegel. All rights reserved. This program and the accompanying materials are made available under the terms of the Eclipse Public License v1.0 which accompanies this distribution, and is available at http://www.eclipse.org/legal/epl-v10.html
- * </copyright>
+ * <copyright>Copyright (c) 2008 Jonas Helming, Maximilian Koegel. All rights reserved. This program and the accompanying materials are made available under the terms of the Eclipse Public License v1.0 which accompanies this distribution, and is available at http://www.eclipse.org/legal/epl-v10.html</copyright>
  *
  * $Id$
  */
-package org.unicase.model.bug.impl;
+package org.unicase.model.state.impl;
 
 import org.eclipse.emf.ecore.EAttribute;
 import org.eclipse.emf.ecore.EClass;
-import org.eclipse.emf.ecore.EEnum;
 import org.eclipse.emf.ecore.EPackage;
-import org.eclipse.emf.ecore.EcorePackage;
+import org.eclipse.emf.ecore.EReference;
 import org.eclipse.emf.ecore.impl.EPackageImpl;
 import org.eclipse.gmf.runtime.notation.NotationPackage;
 import org.unicase.model.ModelPackage;
 import org.unicase.model.attachment.AttachmentPackage;
 import org.unicase.model.attachment.impl.AttachmentPackageImpl;
-import org.unicase.model.bug.BugFactory;
 import org.unicase.model.bug.BugPackage;
-import org.unicase.model.bug.BugReport;
-import org.unicase.model.bug.BugStatus;
-import org.unicase.model.bug.ResolutionType;
-import org.unicase.model.bug.Severity;
+import org.unicase.model.bug.impl.BugPackageImpl;
 import org.unicase.model.change.ChangePackage;
 import org.unicase.model.change.impl.ChangePackageImpl;
 import org.unicase.model.classes.ClassesPackage;
@@ -41,62 +35,56 @@ import org.unicase.model.rationale.RationalePackage;
 import org.unicase.model.rationale.impl.RationalePackageImpl;
 import org.unicase.model.requirement.RequirementPackage;
 import org.unicase.model.requirement.impl.RequirementPackageImpl;
+import org.unicase.model.state.State;
+import org.unicase.model.state.StateFactory;
 import org.unicase.model.state.StatePackage;
-import org.unicase.model.state.impl.StatePackageImpl;
+import org.unicase.model.state.Transition;
 import org.unicase.model.task.TaskPackage;
 import org.unicase.model.task.impl.TaskPackageImpl;
 
 /**
- * <!-- begin-user-doc --> An implementation of the model <b>Package</b>. <!--
- * end-user-doc -->
+ * <!-- begin-user-doc -->
+ * An implementation of the model <b>Package</b>.
+ * <!-- end-user-doc -->
  * @generated
  */
-public class BugPackageImpl extends EPackageImpl implements BugPackage {
+public class StatePackageImpl extends EPackageImpl implements StatePackage {
 	/**
-	 * <!-- begin-user-doc --> <!-- end-user-doc -->
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
 	 * @generated
 	 */
-	private EClass bugReportEClass = null;
+	private EClass stateEClass = null;
 
 	/**
-	 * <!-- begin-user-doc --> <!-- end-user-doc -->
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
 	 * @generated
 	 */
-	private EEnum bugStatusEEnum = null;
-
-	/**
-	 * <!-- begin-user-doc --> <!-- end-user-doc -->
-	 * @generated
-	 */
-	private EEnum severityEEnum = null;
-
-	/**
-	 * <!-- begin-user-doc --> <!-- end-user-doc -->
-	 * @generated
-	 */
-	private EEnum resolutionTypeEEnum = null;
+	private EClass transitionEClass = null;
 
 	/**
 	 * Creates an instance of the model <b>Package</b>, registered with
-	 * {@link org.eclipse.emf.ecore.EPackage.Registry EPackage.Registry} by the
-	 * package package URI value.
-	 * <p>
-	 * Note: the correct way to create the package is via the static factory
-	 * method {@link #init init()}, which also performs initialization of the
-	 * package, or returns the registered package, if one already exists. <!--
-	 * begin-user-doc --> <!-- end-user-doc -->
-	 * 
+	 * {@link org.eclipse.emf.ecore.EPackage.Registry EPackage.Registry} by the package
+	 * package URI value.
+	 * <p>Note: the correct way to create the package is via the static
+	 * factory method {@link #init init()}, which also performs
+	 * initialization of the package, or returns the registered package,
+	 * if one already exists.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
 	 * @see org.eclipse.emf.ecore.EPackage.Registry
-	 * @see org.unicase.model.bug.BugPackage#eNS_URI
+	 * @see org.unicase.model.state.StatePackage#eNS_URI
 	 * @see #init()
 	 * @generated
 	 */
-	private BugPackageImpl() {
-		super(eNS_URI, BugFactory.eINSTANCE);
+	private StatePackageImpl() {
+		super(eNS_URI, StateFactory.eINSTANCE);
 	}
 
 	/**
-	 * <!-- begin-user-doc --> <!-- end-user-doc -->
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
 	 * @generated
 	 */
 	private static boolean isInited = false;
@@ -116,22 +104,23 @@ public class BugPackageImpl extends EPackageImpl implements BugPackage {
 	 * those of another.
 	 * <p>Invocation of this method will not affect any packages that have
 	 * already been initialized.
-	 * <!-- begin-user-doc --> <!-- end-user-doc -->
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
 	 * @see #eNS_URI
 	 * @see #createPackageContents()
 	 * @see #initializePackageContents()
 	 * @generated
 	 */
-	public static BugPackage init() {
+	public static StatePackage init() {
 		if (isInited)
-			return (BugPackage) EPackage.Registry.INSTANCE
-					.getEPackage(BugPackage.eNS_URI);
+			return (StatePackage) EPackage.Registry.INSTANCE
+					.getEPackage(StatePackage.eNS_URI);
 
 		// Obtain or create and register package
-		BugPackageImpl theBugPackage = (BugPackageImpl) (EPackage.Registry.INSTANCE
-				.getEPackage(eNS_URI) instanceof BugPackageImpl ? EPackage.Registry.INSTANCE
+		StatePackageImpl theStatePackage = (StatePackageImpl) (EPackage.Registry.INSTANCE
+				.getEPackage(eNS_URI) instanceof StatePackageImpl ? EPackage.Registry.INSTANCE
 				.getEPackage(eNS_URI)
-				: new BugPackageImpl());
+				: new StatePackageImpl());
 
 		isInited = true;
 
@@ -175,6 +164,10 @@ public class BugPackageImpl extends EPackageImpl implements BugPackage {
 				.getEPackage(ChangePackage.eNS_URI) instanceof ChangePackageImpl ? EPackage.Registry.INSTANCE
 				.getEPackage(ChangePackage.eNS_URI)
 				: ChangePackage.eINSTANCE);
+		BugPackageImpl theBugPackage = (BugPackageImpl) (EPackage.Registry.INSTANCE
+				.getEPackage(BugPackage.eNS_URI) instanceof BugPackageImpl ? EPackage.Registry.INSTANCE
+				.getEPackage(BugPackage.eNS_URI)
+				: BugPackage.eINSTANCE);
 		ComponentPackageImpl theComponentPackage = (ComponentPackageImpl) (EPackage.Registry.INSTANCE
 				.getEPackage(ComponentPackage.eNS_URI) instanceof ComponentPackageImpl ? EPackage.Registry.INSTANCE
 				.getEPackage(ComponentPackage.eNS_URI)
@@ -183,17 +176,13 @@ public class BugPackageImpl extends EPackageImpl implements BugPackage {
 				.getEPackage(MeetingPackage.eNS_URI) instanceof MeetingPackageImpl ? EPackage.Registry.INSTANCE
 				.getEPackage(MeetingPackage.eNS_URI)
 				: MeetingPackage.eINSTANCE);
-		StatePackageImpl theStatePackage = (StatePackageImpl) (EPackage.Registry.INSTANCE
-				.getEPackage(StatePackage.eNS_URI) instanceof StatePackageImpl ? EPackage.Registry.INSTANCE
-				.getEPackage(StatePackage.eNS_URI)
-				: StatePackage.eINSTANCE);
 		AttachmentPackageImpl theAttachmentPackage = (AttachmentPackageImpl) (EPackage.Registry.INSTANCE
 				.getEPackage(AttachmentPackage.eNS_URI) instanceof AttachmentPackageImpl ? EPackage.Registry.INSTANCE
 				.getEPackage(AttachmentPackage.eNS_URI)
 				: AttachmentPackage.eINSTANCE);
 
 		// Create package meta-data objects
-		theBugPackage.createPackageContents();
+		theStatePackage.createPackageContents();
 		theModelPackage.createPackageContents();
 		theOrganizationPackage.createPackageContents();
 		theTaskPackage.createPackageContents();
@@ -203,13 +192,13 @@ public class BugPackageImpl extends EPackageImpl implements BugPackage {
 		theRequirementPackage.createPackageContents();
 		theRationalePackage.createPackageContents();
 		theChangePackage.createPackageContents();
+		theBugPackage.createPackageContents();
 		theComponentPackage.createPackageContents();
 		theMeetingPackage.createPackageContents();
-		theStatePackage.createPackageContents();
 		theAttachmentPackage.createPackageContents();
 
 		// Initialize created meta-data
-		theBugPackage.initializePackageContents();
+		theStatePackage.initializePackageContents();
 		theModelPackage.initializePackageContents();
 		theOrganizationPackage.initializePackageContents();
 		theTaskPackage.initializePackageContents();
@@ -219,39 +208,15 @@ public class BugPackageImpl extends EPackageImpl implements BugPackage {
 		theRequirementPackage.initializePackageContents();
 		theRationalePackage.initializePackageContents();
 		theChangePackage.initializePackageContents();
+		theBugPackage.initializePackageContents();
 		theComponentPackage.initializePackageContents();
 		theMeetingPackage.initializePackageContents();
-		theStatePackage.initializePackageContents();
 		theAttachmentPackage.initializePackageContents();
 
 		// Mark meta-data to indicate it can't be changed
-		theBugPackage.freeze();
+		theStatePackage.freeze();
 
-		return theBugPackage;
-	}
-
-	/**
-	 * <!-- begin-user-doc --> <!-- end-user-doc -->
-	 * @generated
-	 */
-	public EClass getBugReport() {
-		return bugReportEClass;
-	}
-
-	/**
-	 * <!-- begin-user-doc --> <!-- end-user-doc -->
-	 * @generated
-	 */
-	public EAttribute getBugReport_Status() {
-		return (EAttribute) bugReportEClass.getEStructuralFeatures().get(0);
-	}
-
-	/**
-	 * <!-- begin-user-doc --> <!-- end-user-doc -->
-	 * @generated
-	 */
-	public EAttribute getBugReport_Severity() {
-		return (EAttribute) bugReportEClass.getEStructuralFeatures().get(1);
+		return theStatePackage;
 	}
 
 	/**
@@ -259,8 +224,8 @@ public class BugPackageImpl extends EPackageImpl implements BugPackage {
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
-	public EAttribute getBugReport_Resolution() {
-		return (EAttribute) bugReportEClass.getEStructuralFeatures().get(2);
+	public EClass getState() {
+		return stateEClass;
 	}
 
 	/**
@@ -268,44 +233,94 @@ public class BugPackageImpl extends EPackageImpl implements BugPackage {
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
-	public EAttribute getBugReport_ResolutionType() {
-		return (EAttribute) bugReportEClass.getEStructuralFeatures().get(3);
+	public EAttribute getState_ExitConditions() {
+		return (EAttribute) stateEClass.getEStructuralFeatures().get(0);
 	}
 
 	/**
-	 * <!-- begin-user-doc --> <!-- end-user-doc -->
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
 	 * @generated
 	 */
-	public EEnum getBugStatus() {
-		return bugStatusEEnum;
+	public EAttribute getState_Activities() {
+		return (EAttribute) stateEClass.getEStructuralFeatures().get(1);
 	}
 
 	/**
-	 * <!-- begin-user-doc --> <!-- end-user-doc -->
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
 	 * @generated
 	 */
-	public EEnum getSeverity() {
-		return severityEEnum;
+	public EAttribute getState_EntryConditions() {
+		return (EAttribute) stateEClass.getEStructuralFeatures().get(2);
 	}
 
 	/**
-	 * <!-- begin-user-doc --> <!-- end-user-doc -->
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
 	 * @generated
 	 */
-	public EEnum getResolutionType() {
-		return resolutionTypeEEnum;
+	public EReference getState_OutgoingTransitions() {
+		return (EReference) stateEClass.getEStructuralFeatures().get(3);
 	}
 
 	/**
-	 * <!-- begin-user-doc --> <!-- end-user-doc -->
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
 	 * @generated
 	 */
-	public BugFactory getBugFactory() {
-		return (BugFactory) getEFactoryInstance();
+	public EReference getState_IncomingTransitions() {
+		return (EReference) stateEClass.getEStructuralFeatures().get(4);
 	}
 
 	/**
-	 * <!-- begin-user-doc --> <!-- end-user-doc -->
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 */
+	public EClass getTransition() {
+		return transitionEClass;
+	}
+
+	/**
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 */
+	public EAttribute getTransition_Condition() {
+		return (EAttribute) transitionEClass.getEStructuralFeatures().get(0);
+	}
+
+	/**
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 */
+	public EReference getTransition_Source() {
+		return (EReference) transitionEClass.getEStructuralFeatures().get(1);
+	}
+
+	/**
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 */
+	public EReference getTransition_Target() {
+		return (EReference) transitionEClass.getEStructuralFeatures().get(2);
+	}
+
+	/**
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 */
+	public StateFactory getStateFactory() {
+		return (StateFactory) getEFactoryInstance();
+	}
+
+	/**
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
 	 * @generated
 	 */
 	private boolean isCreated = false;
@@ -323,29 +338,31 @@ public class BugPackageImpl extends EPackageImpl implements BugPackage {
 		isCreated = true;
 
 		// Create classes and their features
-		bugReportEClass = createEClass(BUG_REPORT);
-		createEAttribute(bugReportEClass, BUG_REPORT__STATUS);
-		createEAttribute(bugReportEClass, BUG_REPORT__SEVERITY);
-		createEAttribute(bugReportEClass, BUG_REPORT__RESOLUTION);
-		createEAttribute(bugReportEClass, BUG_REPORT__RESOLUTION_TYPE);
+		stateEClass = createEClass(STATE);
+		createEAttribute(stateEClass, STATE__EXIT_CONDITIONS);
+		createEAttribute(stateEClass, STATE__ACTIVITIES);
+		createEAttribute(stateEClass, STATE__ENTRY_CONDITIONS);
+		createEReference(stateEClass, STATE__OUTGOING_TRANSITIONS);
+		createEReference(stateEClass, STATE__INCOMING_TRANSITIONS);
 
-		// Create enums
-		bugStatusEEnum = createEEnum(BUG_STATUS);
-		severityEEnum = createEEnum(SEVERITY);
-		resolutionTypeEEnum = createEEnum(RESOLUTION_TYPE);
+		transitionEClass = createEClass(TRANSITION);
+		createEAttribute(transitionEClass, TRANSITION__CONDITION);
+		createEReference(transitionEClass, TRANSITION__SOURCE);
+		createEReference(transitionEClass, TRANSITION__TARGET);
 	}
 
 	/**
-	 * <!-- begin-user-doc --> <!-- end-user-doc -->
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
 	 * @generated
 	 */
 	private boolean isInitialized = false;
 
 	/**
-	 * Complete the initialization of the package and its meta-model. This
-	 * method is guarded to have no affect on any invocation but its first. <!--
-	 * begin-user-doc --> <!-- end-user-doc -->
-	 * 
+	 * Complete the initialization of the package and its meta-model.  This
+	 * method is guarded to have no affect on any invocation but its first.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
 	 * @generated
 	 */
 	public void initializePackageContents() {
@@ -359,80 +376,68 @@ public class BugPackageImpl extends EPackageImpl implements BugPackage {
 		setNsURI(eNS_URI);
 
 		// Obtain other dependent packages
-		TaskPackage theTaskPackage = (TaskPackage) EPackage.Registry.INSTANCE
-				.getEPackage(TaskPackage.eNS_URI);
-		EcorePackage theEcorePackage = (EcorePackage) EPackage.Registry.INSTANCE
-				.getEPackage(EcorePackage.eNS_URI);
+		ModelPackage theModelPackage = (ModelPackage) EPackage.Registry.INSTANCE
+				.getEPackage(ModelPackage.eNS_URI);
 
 		// Create type parameters
 
 		// Set bounds for type parameters
 
 		// Add supertypes to classes
-		bugReportEClass.getESuperTypes().add(theTaskPackage.getWorkItem());
-		bugReportEClass.getESuperTypes().add(theTaskPackage.getCheckable());
+		stateEClass.getESuperTypes().add(theModelPackage.getModelElement());
+		transitionEClass.getESuperTypes()
+				.add(theModelPackage.getModelElement());
 
 		// Initialize classes and features; add operations and parameters
-		initEClass(bugReportEClass, BugReport.class, "BugReport", !IS_ABSTRACT,
+		initEClass(stateEClass, State.class, "State", !IS_ABSTRACT,
 				!IS_INTERFACE, IS_GENERATED_INSTANCE_CLASS);
-		initEAttribute(getBugReport_Status(), this.getBugStatus(), "Status",
-				null, 0, 1, BugReport.class, !IS_TRANSIENT, !IS_VOLATILE,
-				IS_CHANGEABLE, !IS_UNSETTABLE, !IS_ID, IS_UNIQUE, !IS_DERIVED,
-				IS_ORDERED);
-		initEAttribute(getBugReport_Severity(), this.getSeverity(), "severity",
-				null, 0, 1, BugReport.class, !IS_TRANSIENT, !IS_VOLATILE,
-				IS_CHANGEABLE, !IS_UNSETTABLE, !IS_ID, IS_UNIQUE, !IS_DERIVED,
-				IS_ORDERED);
-		initEAttribute(getBugReport_Resolution(), theEcorePackage.getEString(),
-				"resolution", null, 0, 1, BugReport.class, !IS_TRANSIENT,
+		initEAttribute(getState_ExitConditions(), ecorePackage.getEString(),
+				"exitConditions", null, 0, -1, State.class, !IS_TRANSIENT,
 				!IS_VOLATILE, IS_CHANGEABLE, !IS_UNSETTABLE, !IS_ID, IS_UNIQUE,
 				!IS_DERIVED, IS_ORDERED);
-		initEAttribute(getBugReport_ResolutionType(), this.getResolutionType(),
-				"resolutionType", null, 0, 1, BugReport.class, !IS_TRANSIENT,
+		initEAttribute(getState_Activities(), ecorePackage.getEString(),
+				"activities", null, 0, -1, State.class, !IS_TRANSIENT,
 				!IS_VOLATILE, IS_CHANGEABLE, !IS_UNSETTABLE, !IS_ID, IS_UNIQUE,
 				!IS_DERIVED, IS_ORDERED);
+		initEAttribute(getState_EntryConditions(), ecorePackage.getEString(),
+				"entryConditions", null, 0, -1, State.class, !IS_TRANSIENT,
+				!IS_VOLATILE, IS_CHANGEABLE, !IS_UNSETTABLE, !IS_ID, IS_UNIQUE,
+				!IS_DERIVED, IS_ORDERED);
+		initEReference(getState_OutgoingTransitions(), this.getTransition(),
+				this.getTransition_Source(), "outgoingTransitions", null, 0,
+				-1, State.class, !IS_TRANSIENT, !IS_VOLATILE, IS_CHANGEABLE,
+				!IS_COMPOSITE, IS_RESOLVE_PROXIES, !IS_UNSETTABLE, IS_UNIQUE,
+				!IS_DERIVED, IS_ORDERED);
+		getState_OutgoingTransitions().getEKeys().add(
+				theModelPackage.getIdentifiableElement_Identifier());
+		initEReference(getState_IncomingTransitions(), this.getTransition(),
+				this.getTransition_Target(), "incomingTransitions", null, 0,
+				-1, State.class, !IS_TRANSIENT, !IS_VOLATILE, IS_CHANGEABLE,
+				!IS_COMPOSITE, IS_RESOLVE_PROXIES, !IS_UNSETTABLE, IS_UNIQUE,
+				!IS_DERIVED, IS_ORDERED);
+		getState_IncomingTransitions().getEKeys().add(
+				theModelPackage.getIdentifiableElement_Identifier());
 
-		// Initialize enums and add enum literals
-		initEEnum(bugStatusEEnum, BugStatus.class, "BugStatus");
-		addEEnumLiteral(bugStatusEEnum, BugStatus.NEW);
-		addEEnumLiteral(bugStatusEEnum, BugStatus.CONFIRMED);
-		addEEnumLiteral(bugStatusEEnum, BugStatus.ASSIGNED);
-		addEEnumLiteral(bugStatusEEnum, BugStatus.RESOLVED);
-		addEEnumLiteral(bugStatusEEnum, BugStatus.CLOSED);
-
-		initEEnum(severityEEnum, Severity.class, "Severity");
-		addEEnumLiteral(severityEEnum, Severity.FEATURE);
-		addEEnumLiteral(severityEEnum, Severity.TRIVIAL);
-		addEEnumLiteral(severityEEnum, Severity.MINOR);
-		addEEnumLiteral(severityEEnum, Severity.MAJOR);
-		addEEnumLiteral(severityEEnum, Severity.BLOCKER);
-
-		initEEnum(resolutionTypeEEnum, ResolutionType.class, "ResolutionType");
-		addEEnumLiteral(resolutionTypeEEnum, ResolutionType.FIXED);
-		addEEnumLiteral(resolutionTypeEEnum, ResolutionType.CANNOT_REPRODUCE);
-		addEEnumLiteral(resolutionTypeEEnum, ResolutionType.WONT_FIX);
-
-		// Create annotations
-		// org.unicase.ui.meeditor
-		createOrgAnnotations();
+		initEClass(transitionEClass, Transition.class, "Transition",
+				!IS_ABSTRACT, !IS_INTERFACE, IS_GENERATED_INSTANCE_CLASS);
+		initEAttribute(getTransition_Condition(), ecorePackage.getEString(),
+				"condition", "", 0, 1, Transition.class, !IS_TRANSIENT,
+				!IS_VOLATILE, IS_CHANGEABLE, !IS_UNSETTABLE, !IS_ID, IS_UNIQUE,
+				!IS_DERIVED, IS_ORDERED);
+		initEReference(getTransition_Source(), this.getState(), this
+				.getState_OutgoingTransitions(), "source", null, 0, 1,
+				Transition.class, !IS_TRANSIENT, !IS_VOLATILE, IS_CHANGEABLE,
+				!IS_COMPOSITE, IS_RESOLVE_PROXIES, !IS_UNSETTABLE, IS_UNIQUE,
+				!IS_DERIVED, IS_ORDERED);
+		getTransition_Source().getEKeys().add(
+				theModelPackage.getIdentifiableElement_Identifier());
+		initEReference(getTransition_Target(), this.getState(), this
+				.getState_IncomingTransitions(), "target", null, 0, 1,
+				Transition.class, !IS_TRANSIENT, !IS_VOLATILE, IS_CHANGEABLE,
+				!IS_COMPOSITE, IS_RESOLVE_PROXIES, !IS_UNSETTABLE, IS_UNIQUE,
+				!IS_DERIVED, IS_ORDERED);
+		getTransition_Target().getEKeys().add(
+				theModelPackage.getIdentifiableElement_Identifier());
 	}
 
-	/**
-	 * Initializes the annotations for <b>org.unicase.ui.meeditor</b>.
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
-	 * @generated
-	 */
-	protected void createOrgAnnotations() {
-		String source = "org.unicase.ui.meeditor";
-		addAnnotation(getBugReport_Status(), source, new String[] { "priority",
-				"20.0", "position", "left" });
-		addAnnotation(getBugReport_Severity(), source, new String[] {
-				"priority", "9.5", "position", "left" });
-		addAnnotation(getBugReport_Resolution(), source, new String[] {
-				"priority", "21.0", "position", "left" });
-		addAnnotation(getBugReport_ResolutionType(), source, new String[] {
-				"priority", "22.0", "position", "left" });
-	}
-
-} // BugPackageImpl
+} //StatePackageImpl

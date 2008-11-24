@@ -36,6 +36,7 @@ import org.unicase.model.provider.ModelEditPlugin;
 import org.unicase.model.provider.ModelElementItemProvider;
 import org.unicase.model.rationale.RationaleFactory;
 import org.unicase.model.requirement.RequirementFactory;
+import org.unicase.model.state.StateFactory;
 import org.unicase.model.task.TaskFactory;
 
 /**
@@ -365,6 +366,14 @@ public class LeafSectionItemProvider extends ModelElementItemProvider implements
 		newChildDescriptors.add(createChildParameter(
 				DocumentPackage.Literals.LEAF_SECTION__MODEL_ELEMENTS,
 				MeetingFactory.eINSTANCE.createWorkItemMeetingSection()));
+
+		newChildDescriptors.add(createChildParameter(
+				DocumentPackage.Literals.LEAF_SECTION__MODEL_ELEMENTS,
+				StateFactory.eINSTANCE.createState()));
+
+		newChildDescriptors.add(createChildParameter(
+				DocumentPackage.Literals.LEAF_SECTION__MODEL_ELEMENTS,
+				StateFactory.eINSTANCE.createTransition()));
 
 		newChildDescriptors.add(createChildParameter(
 				DocumentPackage.Literals.LEAF_SECTION__MODEL_ELEMENTS,
