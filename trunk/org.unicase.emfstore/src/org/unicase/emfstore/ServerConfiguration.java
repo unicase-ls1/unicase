@@ -98,6 +98,16 @@ public final class ServerConfiguration {
 	public static final String PROJECTSPACE_VERSION_PERSISTENCE_DEFAULT = PROJECTSTATE_VERSION_PERSISTENCE_EVERYXVERSIONS;
 
 	/**
+	 * Property for the count of versions, needed by the BACKUP everyXVersion policy.
+	 */
+	public static final String PROJECTSTATE_VERSION_BACKUP_PERSISTENCE_EVERYXVERSIONS_X = "emfstore.persistence.version.backup.projectstate.everyxversions";
+
+	/**
+	 * Default value for the BACKUP everyXVersion policy.
+	 */
+	public static final String PROJECTSTATE_VERSION_BACKUP_PERSISTENCE_EVERYXVERSIONS_X_DEFAULT = "1";
+	
+	/**
 	 * Property for timeout time of a user session.
 	 */
 	public static final String SESSION_TIMEOUT = "emfstore.accesscontrol.session.timeout";
@@ -343,7 +353,7 @@ public final class ServerConfiguration {
 	 */
 	public static String getServerMainFile() {
 		//TODO convert storage file as well
-		return getServerHome()+"storage";
-		//return getServerHome()+"storage"+FILE_EXTENSION_MAINSTORAGE;
+		//return getServerHome()+"storage";
+		return getServerHome()+"storage"+FILE_EXTENSION_MAINSTORAGE;
 	}
 }

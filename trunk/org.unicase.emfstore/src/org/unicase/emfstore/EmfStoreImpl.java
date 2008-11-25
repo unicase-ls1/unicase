@@ -155,35 +155,21 @@ public class EmfStoreImpl implements EmfStore {
 
 			if (property
 					.equals(ServerConfiguration.PROJECTSTATE_VERSION_PERSISTENCE_EVERYXVERSIONS)) {
-				int x;
-				try {
-					x = Integer
-							.parseInt(ServerConfiguration
-									.getProperties()
-									.getProperty(
-											ServerConfiguration.PROJECTSTATE_VERSION_PERSISTENCE_EVERYXVERSIONS_X,
-											ServerConfiguration.PROJECTSTATE_VERSION_PERSISTENCE_EVERYXVERSIONS_X_DEFAULT));
-				} catch (NumberFormatException e) {
-					x = 1;
-					LOGGER
-							.warn("Couldn't read property: "
-									+ ServerConfiguration.PROJECTSTATE_VERSION_PERSISTENCE_EVERYXVERSIONS_X
-									+ " , x set to 1");
-				}
-				if (x == 0) {
-					x = 1;
-					LOGGER
-							.warn("Persistence policy everyXVersion with x = 0 not possible, x set to 1.");
-				}
+
+				int x = getXFromPolicy(
+						ServerConfiguration.PROJECTSTATE_VERSION_PERSISTENCE_EVERYXVERSIONS_X,
+						ServerConfiguration.PROJECTSTATE_VERSION_PERSISTENCE_EVERYXVERSIONS_X_DEFAULT,
+						false);
 
 				// always save projecstate of first version
 				int lastVersion = previousHeadVersion.getPrimarySpec()
 						.getIdentifier();
 				if (lastVersion != 0 && lastVersion % x != 0) {
-					previousHeadVersion.setProjectState(null);
-					// TODO delete projectestate file too?
+					deleteProjectState(projectId, previousHeadVersion);
 				}
 
+			} else {
+				deleteProjectState(projectId, previousHeadVersion);
 			}
 			save(previousHeadVersion);
 			save(projectHistory);
@@ -196,6 +182,50 @@ public class EmfStoreImpl implements EmfStore {
 		LOGGER.info("Total time for commit: "
 				+ (System.currentTimeMillis() - currentTimeMillis));
 		return newVersionSpec;
+	}
+
+	private void deleteProjectState(ProjectId projectId,
+			Version previousHeadVersion) {
+		previousHeadVersion.setProjectState(null);
+
+		// the projectstate is set null in the containment tree. Then the
+		// emfstore checks whether he should the containing file, or if it
+		// should be backuped.
+
+		int lastVersion = previousHeadVersion.getPrimarySpec().getIdentifier();
+		int x = getXFromPolicy(
+				ServerConfiguration.PROJECTSTATE_VERSION_BACKUP_PERSISTENCE_EVERYXVERSIONS_X,
+				ServerConfiguration.PROJECTSTATE_VERSION_BACKUP_PERSISTENCE_EVERYXVERSIONS_X_DEFAULT,
+				true);
+		File file = new File(getProjectFolder(projectId) + getProjectFile(lastVersion));
+		if (lastVersion != 0 && lastVersion % x != 0) {
+			file.delete();
+		} else {
+			file.renameTo(new File(getProjectFolder(projectId)+"backup_"+getProjectFile(lastVersion)));
+		}
+	}
+
+	private int getXFromPolicy(String policy, String defaultPolicy,
+			boolean allowZero) {
+		int x;
+		try {
+			x = Integer.parseInt(ServerConfiguration.getProperties()
+					.getProperty(policy, defaultPolicy));
+		} catch (NumberFormatException e) {
+			x = 1;
+			LOGGER.warn("Couldn't read property: " + policy + " , x set to 1");
+		}
+		if (x < 0) {
+			x = 1;
+			LOGGER.warn("Policy " + policy
+					+ " with x < 0 not possible, x set to 1.");
+		}
+		if (!allowZero && x == 0) {
+			x = 1;
+			LOGGER.warn("Policy " + policy
+					+ " with x = 0 not possible, x set to 1.");
+		}
+		return x;
 	}
 
 	/**
@@ -524,10 +554,14 @@ public class EmfStoreImpl implements EmfStore {
 	private void createResourceForProject(Project project,
 			PrimaryVersionSpec versionId, ProjectId projectId)
 			throws FatalEmfStoreException {
-		String filename = getProjectFolder(projectId) + "projectstate-"
-				+ versionId.getIdentifier()
-				+ ServerConfiguration.FILE_EXTENSION_PROJECTSTATE;
+		String filename = getProjectFolder(projectId)
+				+ getProjectFile(versionId.getIdentifier());
 		saveInResource(project, filename);
+	}
+
+	private String getProjectFile(int versionNumber) {
+		return "projectstate-" + versionNumber
+				+ ServerConfiguration.FILE_EXTENSION_PROJECTSTATE;
 	}
 
 	private String getProjectFolder(ProjectId projectId) {
@@ -648,7 +682,8 @@ public class EmfStoreImpl implements EmfStore {
 	/**
 	 * Unloads all projecstates which are not in the headrevision.
 	 */
-	//TODO OW move this function to clean memory task when monitor object is introduced.
+	// TODO OW move this function to clean memory task when monitor object is
+	// introduced.
 	public synchronized void unloadProjectStates() {
 		ResourceSet resourceSet = getServerSpace().eResource().getResourceSet();
 		for (Resource res : resourceSet.getResources()) {
