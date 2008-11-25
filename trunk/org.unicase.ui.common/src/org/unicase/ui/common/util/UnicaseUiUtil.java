@@ -65,14 +65,16 @@ public final class UnicaseUiUtil {
 	
 	/**
 	 * 
-	 * This checks a user session for project administrator rights.
+	 * This checks a user session for project administrator rights. If there is no session, the user is project admin.
 	 * 
 	 * @param session User session to check 
 	 * @param projectSpace ProjectSpace
 	 * @return true if user has project administrator rights
 	 */
 	public static boolean isProjectAdmin(Usersession session, ProjectSpace projectSpace){
-		
+		if(session==null){
+			return true;
+		}
 		ACUser user = session.getACUser();
 		List<Role> roles = user.getRoles();
 		for(Role role : roles){
