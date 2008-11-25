@@ -360,6 +360,24 @@ public interface ChangePackage extends EPackage {
 	int MERGING_ISSUE__DUE_DATE = RationalePackage.ISSUE__DUE_DATE;
 
 	/**
+	 * The feature id for the '<em><b>Estimate</b></em>' attribute.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 * @ordered
+	 */
+	int MERGING_ISSUE__ESTIMATE = RationalePackage.ISSUE__ESTIMATE;
+
+	/**
+	 * The feature id for the '<em><b>Effort</b></em>' attribute.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 * @ordered
+	 */
+	int MERGING_ISSUE__EFFORT = RationalePackage.ISSUE__EFFORT;
+
+	/**
 	 * The feature id for the '<em><b>Proposals</b></em>' containment reference list.
 	 * <!-- begin-user-doc --> <!-- end-user-doc -->
 	 * @generated

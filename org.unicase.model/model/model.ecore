@@ -168,12 +168,6 @@
           <details key="position" value="left"/>
         </eAnnotations>
       </eStructuralFeatures>
-      <eStructuralFeatures xsi:type="ecore:EAttribute" name="estimate" eType="ecore:EDataType http://www.eclipse.org/emf/2002/Ecore#//EInt">
-        <eAnnotations source="org.unicase.ui.meeditor">
-          <details key="priority" value="21.0"/>
-          <details key="position" value="left"/>
-        </eAnnotations>
-      </eStructuralFeatures>
       <eStructuralFeatures xsi:type="ecore:EAttribute" name="activity" eType="#//task/ActivityType">
         <eAnnotations source="org.unicase.ui.meeditor">
           <details key="priority" value="9.5"/>
@@ -250,6 +244,8 @@
           <details key="position" value="left"/>
         </eAnnotations>
       </eStructuralFeatures>
+      <eStructuralFeatures xsi:type="ecore:EAttribute" name="estimate" eType="ecore:EDataType http://www.eclipse.org/emf/2002/Ecore#//EInt"/>
+      <eStructuralFeatures xsi:type="ecore:EAttribute" name="effort" eType="ecore:EDataType http://www.eclipse.org/emf/2002/Ecore#//EInt"/>
     </eClassifiers>
     <eClassifiers xsi:type="ecore:EClass" name="Milestone" eSuperTypes="#//ModelElement"/>
     <eClassifiers xsi:type="ecore:EEnum" name="ActivityType">

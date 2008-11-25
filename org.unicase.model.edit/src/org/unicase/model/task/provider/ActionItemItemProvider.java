@@ -62,8 +62,9 @@ public class ActionItemItemProvider extends AnnotationItemProvider implements
 			addAssigneePropertyDescriptor(object);
 			addParticipantsPropertyDescriptor(object);
 			addDueDatePropertyDescriptor(object);
-			addDonePropertyDescriptor(object);
 			addEstimatePropertyDescriptor(object);
+			addEffortPropertyDescriptor(object);
+			addDonePropertyDescriptor(object);
 			addActivityPropertyDescriptor(object);
 		}
 		return itemPropertyDescriptors;
@@ -203,11 +204,27 @@ public class ActionItemItemProvider extends AnnotationItemProvider implements
 		itemPropertyDescriptors.add(createItemPropertyDescriptor(
 				((ComposeableAdapterFactory) adapterFactory)
 						.getRootAdapterFactory(), getResourceLocator(),
-				getString("_UI_ActionItem_estimate_feature"), getString(
+				getString("_UI_WorkItem_estimate_feature"), getString(
 						"_UI_PropertyDescriptor_description",
-						"_UI_ActionItem_estimate_feature",
-						"_UI_ActionItem_type"),
-				TaskPackage.Literals.ACTION_ITEM__ESTIMATE, true, false, false,
+						"_UI_WorkItem_estimate_feature", "_UI_WorkItem_type"),
+				TaskPackage.Literals.WORK_ITEM__ESTIMATE, true, false, false,
+				ItemPropertyDescriptor.INTEGRAL_VALUE_IMAGE, null, null));
+	}
+
+	/**
+	 * This adds a property descriptor for the Effort feature.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 */
+	protected void addEffortPropertyDescriptor(Object object) {
+		itemPropertyDescriptors.add(createItemPropertyDescriptor(
+				((ComposeableAdapterFactory) adapterFactory)
+						.getRootAdapterFactory(), getResourceLocator(),
+				getString("_UI_WorkItem_effort_feature"), getString(
+						"_UI_PropertyDescriptor_description",
+						"_UI_WorkItem_effort_feature", "_UI_WorkItem_type"),
+				TaskPackage.Literals.WORK_ITEM__EFFORT, true, false, false,
 				ItemPropertyDescriptor.INTEGRAL_VALUE_IMAGE, null, null));
 	}
 
@@ -266,9 +283,10 @@ public class ActionItemItemProvider extends AnnotationItemProvider implements
 
 		switch (notification.getFeatureID(ActionItem.class)) {
 		case TaskPackage.ACTION_ITEM__DUE_DATE:
+		case TaskPackage.ACTION_ITEM__ESTIMATE:
+		case TaskPackage.ACTION_ITEM__EFFORT:
 		case TaskPackage.ACTION_ITEM__CHECKED:
 		case TaskPackage.ACTION_ITEM__DONE:
-		case TaskPackage.ACTION_ITEM__ESTIMATE:
 		case TaskPackage.ACTION_ITEM__ACTIVITY:
 			fireNotifyChanged(new ViewerNotification(notification, notification
 					.getNotifier(), false, true));

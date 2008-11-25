@@ -225,6 +225,24 @@ public interface BugPackage extends EPackage {
 	int BUG_REPORT__DUE_DATE = TaskPackage.WORK_ITEM__DUE_DATE;
 
 	/**
+	 * The feature id for the '<em><b>Estimate</b></em>' attribute.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 * @ordered
+	 */
+	int BUG_REPORT__ESTIMATE = TaskPackage.WORK_ITEM__ESTIMATE;
+
+	/**
+	 * The feature id for the '<em><b>Effort</b></em>' attribute.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 * @ordered
+	 */
+	int BUG_REPORT__EFFORT = TaskPackage.WORK_ITEM__EFFORT;
+
+	/**
 	 * The feature id for the '<em><b>Checked</b></em>' attribute.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->

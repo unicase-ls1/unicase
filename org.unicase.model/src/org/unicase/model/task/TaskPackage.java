@@ -223,13 +223,31 @@ public interface TaskPackage extends EPackage {
 	int WORK_ITEM__DUE_DATE = ModelPackage.ANNOTATION_FEATURE_COUNT + 6;
 
 	/**
+	 * The feature id for the '<em><b>Estimate</b></em>' attribute.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 * @ordered
+	 */
+	int WORK_ITEM__ESTIMATE = ModelPackage.ANNOTATION_FEATURE_COUNT + 7;
+
+	/**
+	 * The feature id for the '<em><b>Effort</b></em>' attribute.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 * @ordered
+	 */
+	int WORK_ITEM__EFFORT = ModelPackage.ANNOTATION_FEATURE_COUNT + 8;
+
+	/**
 	 * The number of structural features of the '<em>Work Item</em>' class. <!--
 	 * begin-user-doc --> <!-- end-user-doc -->
 	 * 
 	 * @generated
 	 * @ordered
 	 */
-	int WORK_ITEM_FEATURE_COUNT = ModelPackage.ANNOTATION_FEATURE_COUNT + 7;
+	int WORK_ITEM_FEATURE_COUNT = ModelPackage.ANNOTATION_FEATURE_COUNT + 9;
 
 	/**
 	 * The meta object id for the '{@link org.unicase.model.task.impl.ActionItemImpl <em>Action Item</em>}' class.
@@ -397,6 +415,24 @@ public interface TaskPackage extends EPackage {
 	int ACTION_ITEM__DUE_DATE = WORK_ITEM__DUE_DATE;
 
 	/**
+	 * The feature id for the '<em><b>Estimate</b></em>' attribute. <!--
+	 * begin-user-doc --> <!-- end-user-doc -->
+	 * 
+	 * @generated
+	 * @ordered
+	 */
+	int ACTION_ITEM__ESTIMATE = WORK_ITEM__ESTIMATE;
+
+	/**
+	 * The feature id for the '<em><b>Effort</b></em>' attribute.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 * @ordered
+	 */
+	int ACTION_ITEM__EFFORT = WORK_ITEM__EFFORT;
+
+	/**
 	 * The feature id for the '<em><b>Checked</b></em>' attribute.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
@@ -415,22 +451,13 @@ public interface TaskPackage extends EPackage {
 	int ACTION_ITEM__DONE = WORK_ITEM_FEATURE_COUNT + 1;
 
 	/**
-	 * The feature id for the '<em><b>Estimate</b></em>' attribute. <!--
-	 * begin-user-doc --> <!-- end-user-doc -->
-	 * 
-	 * @generated
-	 * @ordered
-	 */
-	int ACTION_ITEM__ESTIMATE = WORK_ITEM_FEATURE_COUNT + 2;
-
-	/**
 	 * The feature id for the '<em><b>Activity</b></em>' attribute.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
 	 * @generated
 	 * @ordered
 	 */
-	int ACTION_ITEM__ACTIVITY = WORK_ITEM_FEATURE_COUNT + 3;
+	int ACTION_ITEM__ACTIVITY = WORK_ITEM_FEATURE_COUNT + 2;
 
 	/**
 	 * The number of structural features of the '<em>Action Item</em>' class.
@@ -438,7 +465,7 @@ public interface TaskPackage extends EPackage {
 	 * @generated
 	 * @ordered
 	 */
-	int ACTION_ITEM_FEATURE_COUNT = WORK_ITEM_FEATURE_COUNT + 4;
+	int ACTION_ITEM_FEATURE_COUNT = WORK_ITEM_FEATURE_COUNT + 3;
 
 	/**
 	 * The meta object id for the '{@link org.unicase.model.task.impl.WorkPackageImpl <em>Work Package</em>}' class.
@@ -607,6 +634,24 @@ public interface TaskPackage extends EPackage {
 	 * @ordered
 	 */
 	int WORK_PACKAGE__DUE_DATE = WORK_ITEM__DUE_DATE;
+
+	/**
+	 * The feature id for the '<em><b>Estimate</b></em>' attribute.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 * @ordered
+	 */
+	int WORK_PACKAGE__ESTIMATE = WORK_ITEM__ESTIMATE;
+
+	/**
+	 * The feature id for the '<em><b>Effort</b></em>' attribute.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 * @ordered
+	 */
+	int WORK_PACKAGE__EFFORT = WORK_ITEM__EFFORT;
 
 	/**
 	 * The feature id for the '<em><b>Contained Work Items</b></em>' containment reference list.
@@ -814,16 +859,6 @@ public interface TaskPackage extends EPackage {
 	EAttribute getActionItem_Done();
 
 	/**
-	 * Returns the meta object for the attribute '{@link org.unicase.model.task.ActionItem#getEstimate <em>Estimate</em>}'.
-	 * <!-- begin-user-doc --> <!-- end-user-doc -->
-	 * @return the meta object for the attribute '<em>Estimate</em>'.
-	 * @see org.unicase.model.task.ActionItem#getEstimate()
-	 * @see #getActionItem()
-	 * @generated
-	 */
-	EAttribute getActionItem_Estimate();
-
-	/**
 	 * Returns the meta object for the attribute '{@link org.unicase.model.task.ActionItem#getActivity <em>Activity</em>}'.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
@@ -967,6 +1002,28 @@ public interface TaskPackage extends EPackage {
 	EAttribute getWorkItem_DueDate();
 
 	/**
+	 * Returns the meta object for the attribute '{@link org.unicase.model.task.WorkItem#getEstimate <em>Estimate</em>}'.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @return the meta object for the attribute '<em>Estimate</em>'.
+	 * @see org.unicase.model.task.WorkItem#getEstimate()
+	 * @see #getWorkItem()
+	 * @generated
+	 */
+	EAttribute getWorkItem_Estimate();
+
+	/**
+	 * Returns the meta object for the attribute '{@link org.unicase.model.task.WorkItem#getEffort <em>Effort</em>}'.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @return the meta object for the attribute '<em>Effort</em>'.
+	 * @see org.unicase.model.task.WorkItem#getEffort()
+	 * @see #getWorkItem()
+	 * @generated
+	 */
+	EAttribute getWorkItem_Effort();
+
+	/**
 	 * Returns the meta object for class '{@link org.unicase.model.task.Milestone <em>Milestone</em>}'.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
@@ -1045,13 +1102,6 @@ public interface TaskPackage extends EPackage {
 		 * @generated
 		 */
 		EAttribute ACTION_ITEM__DONE = eINSTANCE.getActionItem_Done();
-
-		/**
-		 * The meta object literal for the '<em><b>Estimate</b></em>' attribute feature.
-		 * <!-- begin-user-doc --> <!-- end-user-doc -->
-		 * @generated
-		 */
-		EAttribute ACTION_ITEM__ESTIMATE = eINSTANCE.getActionItem_Estimate();
 
 		/**
 		 * The meta object literal for the '<em><b>Activity</b></em>' attribute feature.
@@ -1163,6 +1213,22 @@ public interface TaskPackage extends EPackage {
 		 * @generated
 		 */
 		EAttribute WORK_ITEM__DUE_DATE = eINSTANCE.getWorkItem_DueDate();
+
+		/**
+		 * The meta object literal for the '<em><b>Estimate</b></em>' attribute feature.
+		 * <!-- begin-user-doc -->
+		 * <!-- end-user-doc -->
+		 * @generated
+		 */
+		EAttribute WORK_ITEM__ESTIMATE = eINSTANCE.getWorkItem_Estimate();
+
+		/**
+		 * The meta object literal for the '<em><b>Effort</b></em>' attribute feature.
+		 * <!-- begin-user-doc -->
+		 * <!-- end-user-doc -->
+		 * @generated
+		 */
+		EAttribute WORK_ITEM__EFFORT = eINSTANCE.getWorkItem_Effort();
 
 		/**
 		 * The meta object literal for the '{@link org.unicase.model.task.impl.MilestoneImpl <em>Milestone</em>}' class.
