@@ -6,12 +6,15 @@
  */
 package org.unicase.workspace.provider;
 
+import java.util.ArrayList;
 import java.util.Collection;
 import java.util.List;
 
 import org.eclipse.emf.common.notify.AdapterFactory;
 import org.eclipse.emf.common.notify.Notification;
+import org.eclipse.emf.common.util.BasicEList;
 import org.eclipse.emf.common.util.ResourceLocator;
+import org.eclipse.emf.ecore.EObject;
 import org.eclipse.emf.ecore.EStructuralFeature;
 import org.eclipse.emf.edit.provider.ComposeableAdapterFactory;
 import org.eclipse.emf.edit.provider.IEditingDomainItemProvider;
@@ -28,10 +31,11 @@ import org.unicase.emfstore.esmodel.EsmodelFactory;
 import org.unicase.emfstore.esmodel.versioning.VersioningFactory;
 import org.unicase.emfstore.esmodel.versioning.events.EventsFactory;
 import org.unicase.emfstore.esmodel.versioning.operations.OperationsFactory;
+import org.unicase.model.ModelElement;
 import org.unicase.model.ModelFactory;
+import org.unicase.model.Project;
+import org.unicase.model.document.DocumentPackage;
 import org.unicase.model.provider.IdentifiableElementItemProvider;
-import org.unicase.model.provider.ModelItemProviderAdapterFactory;
-import org.unicase.model.provider.ProjectItemProvider;
 import org.unicase.workspace.ProjectSpace;
 import org.unicase.workspace.WorkspacePackage;
 
@@ -438,15 +442,24 @@ public class ProjectSpaceItemProvider extends IdentifiableElementItemProvider
 		return WorkspaceEditPlugin.INSTANCE;
 	}
 
+	
+	
+	 
 	@Override
 	public Collection<?> getChildren(Object object) {
-		if (object instanceof ProjectSpace) {
-			ProjectSpace projectSpace = (ProjectSpace) object;
-			return new ProjectItemProvider(
-					new ModelItemProviderAdapterFactory())
-					.getChildren(projectSpace.getProject());
+		if(object instanceof ProjectSpace){
+			final Project project = ((ProjectSpace) object).getProject();
+			final Collection<ModelElement> compositesections = project
+			.getModelElementsByClass(DocumentPackage.eINSTANCE
+					.getCompositeSection(),
+					new BasicEList<ModelElement>());
+			Collection<EObject> ret = new ArrayList<EObject>();
+			ret.addAll(compositesections);
+			ret.add(project);
+			return ret;
 		}
-		return super.getChildren(object);
+		return new ArrayList<Object>();
+		
 	}
 
 }

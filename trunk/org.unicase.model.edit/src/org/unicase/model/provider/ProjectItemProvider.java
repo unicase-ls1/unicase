@@ -6,13 +6,15 @@
  */
 package org.unicase.model.provider;
 
+import java.util.ArrayList;
 import java.util.Collection;
 import java.util.List;
 
 import org.eclipse.emf.common.notify.AdapterFactory;
 import org.eclipse.emf.common.notify.Notification;
-import org.eclipse.emf.common.util.BasicEList;
+import org.eclipse.emf.common.util.EList;
 import org.eclipse.emf.common.util.ResourceLocator;
+import org.eclipse.emf.ecore.EObject;
 import org.eclipse.emf.ecore.EStructuralFeature;
 import org.eclipse.emf.edit.provider.IEditingDomainItemProvider;
 import org.eclipse.emf.edit.provider.IItemLabelProvider;
@@ -31,8 +33,8 @@ import org.unicase.model.change.ChangeFactory;
 import org.unicase.model.classes.ClassesFactory;
 import org.unicase.model.component.ComponentFactory;
 import org.unicase.model.diagram.DiagramFactory;
+import org.unicase.model.document.CompositeSection;
 import org.unicase.model.document.DocumentFactory;
-import org.unicase.model.document.DocumentPackage;
 import org.unicase.model.meeting.MeetingFactory;
 import org.unicase.model.organization.OrganizationFactory;
 import org.unicase.model.rationale.RationaleFactory;
@@ -74,10 +76,13 @@ public class ProjectItemProvider extends ItemProviderAdapter implements
 	}
 
 	/**
-	 * This specifies how to implement {@link #getChildren} and is used to deduce an appropriate feature for an
-	 * {@link org.eclipse.emf.edit.command.AddCommand}, {@link org.eclipse.emf.edit.command.RemoveCommand} or
-	 * {@link org.eclipse.emf.edit.command.MoveCommand} in {@link #createCommand}.
-	 * <!-- begin-user-doc --> <!-- end-user-doc -->
+	 * This specifies how to implement {@link #getChildren} and is used to
+	 * deduce an appropriate feature for an
+	 * {@link org.eclipse.emf.edit.command.AddCommand},
+	 * {@link org.eclipse.emf.edit.command.RemoveCommand} or
+	 * {@link org.eclipse.emf.edit.command.MoveCommand} in
+	 * {@link #createCommand}. <!-- begin-user-doc --> <!-- end-user-doc -->
+	 * 
 	 * @generated
 	 */
 	@Override
@@ -92,43 +97,48 @@ public class ProjectItemProvider extends ItemProviderAdapter implements
 
 	/**
 	 * <!-- begin-user-doc --> <!-- end-user-doc -->
+	 * 
 	 * @generated
 	 */
 	@Override
 	protected EStructuralFeature getChildFeature(Object object, Object child) {
-		// Check the type of the specified child object and return the proper feature to use for
+		// Check the type of the specified child object and return the proper
+		// feature to use for
 		// adding (see {@link AddCommand}) it as a child.
 
 		return super.getChildFeature(object, child);
 	}
 
 	/**
-	 * This returns Project.gif.
-	 * <!-- begin-user-doc --> <!-- end-user-doc -->
-	 * @generated
+	 * This returns Project.gif. <!-- begin-user-doc --> <!-- end-user-doc -->
+	 * 
+	 * @generated NOT
+	 * {@inheritDoc}
 	 */
 	@Override
 	public Object getImage(Object object) {
 		return overlayImage(object, getResourceLocator().getImage(
-				"full/obj16/Project"));
+				"full/obj16/folder_database.png"));
 	}
 
 	/**
-	 * This returns the label text for the adapted class.
-	 * <!-- begin-user-doc
-	 * --> <!-- end-user-doc -->
-	 * @generated
+	 * This returns the label text for the adapted class. <!-- begin-user-doc
+	 * --> .<!-- end-user-doc -->
+	 * 
+	 * @generated NOT
+	 * {@inheritDoc}
 	 */
 	@Override
 	public String getText(Object object) {
-		return getString("_UI_Project_type");
+		return "Orphans";
 	}
 
 	/**
-	 * This handles model notifications by calling {@link #updateChildren} to update any cached
-	 * children and by creating a viewer notification, which it passes to {@link #fireNotifyChanged}.
-	 * <!-- begin-user-doc --> <!--
+	 * This handles model notifications by calling {@link #updateChildren} to
+	 * update any cached children and by creating a viewer notification, which
+	 * it passes to {@link #fireNotifyChanged}. <!-- begin-user-doc --> <!--
 	 * end-user-doc -->
+	 * 
 	 * @generated
 	 */
 	@Override
@@ -347,18 +357,34 @@ public class ProjectItemProvider extends ItemProviderAdapter implements
 	public ResourceLocator getResourceLocator() {
 		return ModelEditPlugin.INSTANCE;
 	}
+	
+	
+	
 
 	@Override
 	public Collection<?> getChildren(Object object) {
-		if (object instanceof Project) {
-			Project project = (Project) object;
-			Collection<ModelElement> ret = project.getModelElementsByClass(
-					DocumentPackage.eINSTANCE.getCompositeSection(),
-					new BasicEList<ModelElement>());
-			return ret;
+		if (object instanceof Project) 
+		{	
+			final Project project = (Project) object;
+			final Collection<ModelElement> ret = new ArrayList<ModelElement>(); 
+			EObject econtainer = null;
+			EList<ModelElement> allmes = project.getAllModelElements();
+			for ( ModelElement temp : allmes ) 
+			{
+				econtainer = temp.eContainer();
+				if ( (econtainer instanceof Project)  && !(temp instanceof CompositeSection) ) 
+				{	
+					ret.add(temp); 	 
+				}
 
-		} else {
+			} 
+			return ret;
+		} else {	
 			return super.getChildren(object);
 		}
 	}
+	
+	
+	
+	
 }
