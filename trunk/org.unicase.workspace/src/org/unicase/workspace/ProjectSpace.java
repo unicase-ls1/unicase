@@ -8,11 +8,13 @@ package org.unicase.workspace;
 
 import java.io.IOException;
 import java.util.Date;
+import java.util.List;
 
 import org.eclipse.emf.common.util.EList;
 import org.eclipse.emf.ecore.resource.ResourceSet;
 import org.unicase.emfstore.esmodel.ProjectId;
 import org.unicase.emfstore.esmodel.ProjectInfo;
+import org.unicase.emfstore.esmodel.versioning.ChangePackage;
 import org.unicase.emfstore.esmodel.versioning.LogMessage;
 import org.unicase.emfstore.esmodel.versioning.PrimaryVersionSpec;
 import org.unicase.emfstore.esmodel.versioning.TagVersionSpec;
@@ -574,6 +576,20 @@ public interface ProjectSpace extends IdentifiableElement {
 	 */
 	void addEvent(Event event);
 
+	/**
+	 * @return a list of the change packages between two PrimarySpecVersions.
+	 * @param sourceVersion
+	 *            the source version spec
+	 * @param targetVersion
+	 *            the target version spec
+	 * @throws EmfStoreException
+	 *             if any error in the EmfStore occurs
+	 * @generated NOT
+	 */
+	List<ChangePackage> getChanges(VersionSpec sourceVersion,
+			VersionSpec targetVersion) throws EmfStoreException;
+			
+	
 	/**
 	 * Adds a tag to the specified version of this project.
 	 * 

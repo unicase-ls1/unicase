@@ -908,6 +908,22 @@ public class ProjectSpaceImpl extends IdentifiableElementImpl implements
 
 	/**
 	 * {@inheritDoc}
+	 * @generated NOT
+	 */
+	public List<ChangePackage> getChanges(VersionSpec sourceVersion,
+			VersionSpec targetVersion) throws EmfStoreException {
+		final ConnectionManager connectionManager = WorkspaceManager
+				.getInstance().getConnectionManager();
+
+		List<ChangePackage> changes = connectionManager.getChanges(
+				getUsersession().getSessionId(), projectId, sourceVersion,
+				targetVersion);
+		return changes;
+
+	}
+
+	/**
+	 * {@inheritDoc}
 	 * 
 	 * @see org.unicase.workspace.ProjectSpace#update(org.unicase.emfstore.esmodel.versioning.VersionSpec)
 	 * @generated NOT
