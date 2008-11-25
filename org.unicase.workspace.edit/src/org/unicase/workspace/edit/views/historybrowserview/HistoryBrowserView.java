@@ -63,16 +63,8 @@ public class HistoryBrowserView extends AbstractSCMView {
 	}
 
 	private void openHistoryBrowser() {
-		ProjectSpace activeProjectSpace = WorkspaceManager.getInstance()
-				.getCurrentWorkspace().getActiveProjectSpace();
+		ProjectSpace activeProjectSpace = getActiveProjectSpace();
 		if (activeProjectSpace == null) {
-			DialogHandler.showErrorDialog("No active project chosen.");
-			historyInfos.clear();
-			return;
-		}
-		if (activeProjectSpace.getUsersession() == null
-				|| !activeProjectSpace.getUsersession().isLoggedIn()) {
-			DialogHandler.showErrorDialog("Chosen Project is not logged in.");
 			historyInfos.clear();
 			return;
 		}
@@ -97,6 +89,21 @@ public class HistoryBrowserView extends AbstractSCMView {
 		} catch (EmfStoreException e) {
 			DialogHandler.showExceptionDialog(e);
 		}
+	}
+
+	private ProjectSpace getActiveProjectSpace() {
+		ProjectSpace activeProjectSpace = WorkspaceManager.getInstance()
+				.getCurrentWorkspace().getActiveProjectSpace();
+		if (activeProjectSpace == null) {
+			DialogHandler.showErrorDialog("No active project chosen.");
+			return null;
+		}
+		if (activeProjectSpace.getUsersession() == null
+				|| !activeProjectSpace.getUsersession().isLoggedIn()) {
+			DialogHandler.showErrorDialog("Chosen Project is not logged in.");
+			return null;
+		}
+		return activeProjectSpace;
 	}
 
 	private HistoryQuery getQuery(ProjectSpace activeProjectSpace)
@@ -137,6 +144,26 @@ public class HistoryBrowserView extends AbstractSCMView {
 	 */
 	public List<HistoryInfo> getHistoryInfos() {
 		return historyInfos;
+	}
+
+	/**
+	 * Adds a tag to a version.
+	 * 
+	 * @param versionSpec
+	 *            the version
+	 * @param tag
+	 *            the tag
+	 */
+	public void addTag(PrimaryVersionSpec versionSpec, TagVersionSpec tag) {
+		try {
+			ProjectSpace activeProjectSpace = getActiveProjectSpace();
+			if (activeProjectSpace == null) {
+				return;
+			}
+			activeProjectSpace.addTag(versionSpec, tag);
+		} catch (EmfStoreException e) {
+			DialogHandler.showExceptionDialog(e);
+		}
 	}
 
 	/**
