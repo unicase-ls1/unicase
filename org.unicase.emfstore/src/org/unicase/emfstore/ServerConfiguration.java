@@ -201,6 +201,30 @@ public final class ServerConfiguration {
 	 */
 	public static final String MULTI_PROPERTY_SEPERATOR = ",";
 
+	/*
+	 * FILE EXTENSIONS
+	 */
+	
+	/**
+	 * File extension for main file: unicase  server storage.
+	 */
+	public static final String FILE_EXTENSION_MAINSTORAGE = ".uss";
+
+	/**
+	 * File extension for main file: unicase  project historyF.
+	 */
+	public static final String FILE_EXTENSION_PROJECTHISTORY= ".uph";
+
+	/**
+	 * File extension for main file: unicase  project version.
+	 */
+	public static final String FILE_EXTENSION_VERSION = ".upv";
+	
+	/**
+	 * File extension for main file: unicase  project state.
+	 */
+	public static final String FILE_EXTENSION_PROJECTSTATE = ".ups";
+
 	private static Properties properties;
 
 	private ServerConfiguration() {
@@ -310,5 +334,15 @@ public final class ServerConfiguration {
 	 */
 	public static boolean isReleaseVersion() {
 		return !getServerVersion().endsWith("qualifier");
+	}
+
+	/**
+	 * Returns path to emfstore's main file.
+	 * 
+	 * @return path
+	 */
+	public static String getServerMainFile() {
+		return getServerHome()+"storage";
+		//return getServerHome()+"storage"+FILE_EXTENSION_MAINSTORAGE;
 	}
 }
