@@ -15,9 +15,10 @@ import org.unicase.emfstore.taskmanager.Task;
  */
 public class CleanMemoryTask extends Task {
 
-	//private static final long PERIOD = 1000*60*5;
+	private static final long PERIOD = 1000*60*5;
 	
-	private static final long PERIOD = 10000;
+	//for debugging
+	//private static final long PERIOD = 10000;
 	
 	private EmfStoreImpl emfStoreImpl;
 	
