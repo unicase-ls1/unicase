@@ -15,6 +15,7 @@ import org.eclipse.emf.ecore.EClass;
 import org.eclipse.emf.ecore.InternalEObject;
 import org.eclipse.emf.ecore.impl.ENotificationImpl;
 import org.eclipse.emf.ecore.util.EObjectContainmentWithInverseEList;
+import org.eclipse.emf.ecore.util.EObjectResolvingEList;
 import org.eclipse.emf.ecore.util.EObjectWithInverseResolvingEList;
 import org.eclipse.emf.ecore.util.InternalEList;
 import org.unicase.model.classes.ClassesPackage;
@@ -48,8 +49,6 @@ import org.unicase.model.requirement.UserTask;
  *   <li>{@link org.unicase.model.requirement.impl.UseCaseImpl#getIdentifiedClasses <em>Identified Classes</em>}</li>
  *   <li>{@link org.unicase.model.requirement.impl.UseCaseImpl#getIncludedUseCases <em>Included Use Cases</em>}</li>
  *   <li>{@link org.unicase.model.requirement.impl.UseCaseImpl#getExtendedUseCases <em>Extended Use Cases</em>}</li>
- *   <li>{@link org.unicase.model.requirement.impl.UseCaseImpl#getIncludingUseCases <em>Including Use Cases</em>}</li>
- *   <li>{@link org.unicase.model.requirement.impl.UseCaseImpl#getExtendingUseCases <em>Extending Use Cases</em>}</li>
  * </ul>
  * </p>
  *
@@ -237,26 +236,6 @@ public class UseCaseImpl extends ModelElementImpl implements UseCase {
 	protected EList<UseCase> extendedUseCases;
 
 	/**
-	 * The cached value of the '{@link #getIncludingUseCases() <em>Including Use Cases</em>}' reference list.
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
-	 * @see #getIncludingUseCases()
-	 * @generated
-	 * @ordered
-	 */
-	protected EList<UseCase> includingUseCases;
-
-	/**
-	 * The cached value of the '{@link #getExtendingUseCases() <em>Extending Use Cases</em>}' reference list.
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
-	 * @see #getExtendingUseCases()
-	 * @generated
-	 * @ordered
-	 */
-	protected EList<UseCase> extendingUseCases;
-
-	/**
 	 * <!-- begin-user-doc --> <!-- end-user-doc -->
 	 * @generated
 	 */
@@ -408,10 +387,9 @@ public class UseCaseImpl extends ModelElementImpl implements UseCase {
 	 */
 	public EList<UseCase> getIncludedUseCases() {
 		if (includedUseCases == null) {
-			includedUseCases = new EObjectWithInverseResolvingEList.ManyInverse<UseCase>(
+			includedUseCases = new EObjectResolvingEList<UseCase>(
 					UseCase.class, this,
-					RequirementPackage.USE_CASE__INCLUDED_USE_CASES,
-					RequirementPackage.USE_CASE__INCLUDING_USE_CASES);
+					RequirementPackage.USE_CASE__INCLUDED_USE_CASES);
 		}
 		return includedUseCases;
 	}
@@ -423,42 +401,11 @@ public class UseCaseImpl extends ModelElementImpl implements UseCase {
 	 */
 	public EList<UseCase> getExtendedUseCases() {
 		if (extendedUseCases == null) {
-			extendedUseCases = new EObjectWithInverseResolvingEList.ManyInverse<UseCase>(
+			extendedUseCases = new EObjectResolvingEList<UseCase>(
 					UseCase.class, this,
-					RequirementPackage.USE_CASE__EXTENDED_USE_CASES,
-					RequirementPackage.USE_CASE__EXTENDING_USE_CASES);
-		}
-		return extendedUseCases;
-	}
-
-	/**
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
-	 * @generated
-	 */
-	public EList<UseCase> getIncludingUseCases() {
-		if (includingUseCases == null) {
-			includingUseCases = new EObjectWithInverseResolvingEList.ManyInverse<UseCase>(
-					UseCase.class, this,
-					RequirementPackage.USE_CASE__INCLUDING_USE_CASES,
-					RequirementPackage.USE_CASE__INCLUDED_USE_CASES);
-		}
-		return includingUseCases;
-	}
-
-	/**
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
-	 * @generated
-	 */
-	public EList<UseCase> getExtendingUseCases() {
-		if (extendingUseCases == null) {
-			extendingUseCases = new EObjectWithInverseResolvingEList.ManyInverse<UseCase>(
-					UseCase.class, this,
-					RequirementPackage.USE_CASE__EXTENDING_USE_CASES,
 					RequirementPackage.USE_CASE__EXTENDED_USE_CASES);
 		}
-		return extendingUseCases;
+		return extendedUseCases;
 	}
 
 	/**
@@ -698,18 +645,6 @@ public class UseCaseImpl extends ModelElementImpl implements UseCase {
 		case RequirementPackage.USE_CASE__IDENTIFIED_CLASSES:
 			return ((InternalEList<InternalEObject>) (InternalEList<?>) getIdentifiedClasses())
 					.basicAdd(otherEnd, msgs);
-		case RequirementPackage.USE_CASE__INCLUDED_USE_CASES:
-			return ((InternalEList<InternalEObject>) (InternalEList<?>) getIncludedUseCases())
-					.basicAdd(otherEnd, msgs);
-		case RequirementPackage.USE_CASE__EXTENDED_USE_CASES:
-			return ((InternalEList<InternalEObject>) (InternalEList<?>) getExtendedUseCases())
-					.basicAdd(otherEnd, msgs);
-		case RequirementPackage.USE_CASE__INCLUDING_USE_CASES:
-			return ((InternalEList<InternalEObject>) (InternalEList<?>) getIncludingUseCases())
-					.basicAdd(otherEnd, msgs);
-		case RequirementPackage.USE_CASE__EXTENDING_USE_CASES:
-			return ((InternalEList<InternalEObject>) (InternalEList<?>) getExtendingUseCases())
-					.basicAdd(otherEnd, msgs);
 		}
 		return super.eInverseAdd(otherEnd, featureID, msgs);
 	}
@@ -743,18 +678,6 @@ public class UseCaseImpl extends ModelElementImpl implements UseCase {
 					.basicRemove(otherEnd, msgs);
 		case RequirementPackage.USE_CASE__IDENTIFIED_CLASSES:
 			return ((InternalEList<?>) getIdentifiedClasses()).basicRemove(
-					otherEnd, msgs);
-		case RequirementPackage.USE_CASE__INCLUDED_USE_CASES:
-			return ((InternalEList<?>) getIncludedUseCases()).basicRemove(
-					otherEnd, msgs);
-		case RequirementPackage.USE_CASE__EXTENDED_USE_CASES:
-			return ((InternalEList<?>) getExtendedUseCases()).basicRemove(
-					otherEnd, msgs);
-		case RequirementPackage.USE_CASE__INCLUDING_USE_CASES:
-			return ((InternalEList<?>) getIncludingUseCases()).basicRemove(
-					otherEnd, msgs);
-		case RequirementPackage.USE_CASE__EXTENDING_USE_CASES:
-			return ((InternalEList<?>) getExtendingUseCases()).basicRemove(
 					otherEnd, msgs);
 		}
 		return super.eInverseRemove(otherEnd, featureID, msgs);
@@ -799,10 +722,6 @@ public class UseCaseImpl extends ModelElementImpl implements UseCase {
 			return getIncludedUseCases();
 		case RequirementPackage.USE_CASE__EXTENDED_USE_CASES:
 			return getExtendedUseCases();
-		case RequirementPackage.USE_CASE__INCLUDING_USE_CASES:
-			return getIncludingUseCases();
-		case RequirementPackage.USE_CASE__EXTENDING_USE_CASES:
-			return getExtendingUseCases();
 		}
 		return super.eGet(featureID, resolve, coreType);
 	}
@@ -872,16 +791,6 @@ public class UseCaseImpl extends ModelElementImpl implements UseCase {
 			getExtendedUseCases().addAll(
 					(Collection<? extends UseCase>) newValue);
 			return;
-		case RequirementPackage.USE_CASE__INCLUDING_USE_CASES:
-			getIncludingUseCases().clear();
-			getIncludingUseCases().addAll(
-					(Collection<? extends UseCase>) newValue);
-			return;
-		case RequirementPackage.USE_CASE__EXTENDING_USE_CASES:
-			getExtendingUseCases().clear();
-			getExtendingUseCases().addAll(
-					(Collection<? extends UseCase>) newValue);
-			return;
 		}
 		super.eSet(featureID, newValue);
 	}
@@ -935,12 +844,6 @@ public class UseCaseImpl extends ModelElementImpl implements UseCase {
 		case RequirementPackage.USE_CASE__EXTENDED_USE_CASES:
 			getExtendedUseCases().clear();
 			return;
-		case RequirementPackage.USE_CASE__INCLUDING_USE_CASES:
-			getIncludingUseCases().clear();
-			return;
-		case RequirementPackage.USE_CASE__EXTENDING_USE_CASES:
-			getExtendingUseCases().clear();
-			return;
 		}
 		super.eUnset(featureID);
 	}
@@ -987,10 +890,6 @@ public class UseCaseImpl extends ModelElementImpl implements UseCase {
 			return includedUseCases != null && !includedUseCases.isEmpty();
 		case RequirementPackage.USE_CASE__EXTENDED_USE_CASES:
 			return extendedUseCases != null && !extendedUseCases.isEmpty();
-		case RequirementPackage.USE_CASE__INCLUDING_USE_CASES:
-			return includingUseCases != null && !includingUseCases.isEmpty();
-		case RequirementPackage.USE_CASE__EXTENDING_USE_CASES:
-			return extendingUseCases != null && !extendingUseCases.isEmpty();
 		}
 		return super.eIsSet(featureID);
 	}

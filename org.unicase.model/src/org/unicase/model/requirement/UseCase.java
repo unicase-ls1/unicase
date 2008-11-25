@@ -30,8 +30,6 @@ import org.unicase.model.ModelElement;
  *   <li>{@link org.unicase.model.requirement.UseCase#getIdentifiedClasses <em>Identified Classes</em>}</li>
  *   <li>{@link org.unicase.model.requirement.UseCase#getIncludedUseCases <em>Included Use Cases</em>}</li>
  *   <li>{@link org.unicase.model.requirement.UseCase#getExtendedUseCases <em>Extended Use Cases</em>}</li>
- *   <li>{@link org.unicase.model.requirement.UseCase#getIncludingUseCases <em>Including Use Cases</em>}</li>
- *   <li>{@link org.unicase.model.requirement.UseCase#getExtendingUseCases <em>Extending Use Cases</em>}</li>
  * </ul>
  * </p>
  *
@@ -148,7 +146,6 @@ public interface UseCase extends ModelElement {
 	/**
 	 * Returns the value of the '<em><b>Included Use Cases</b></em>' reference list.
 	 * The list contents are of type {@link org.unicase.model.requirement.UseCase}.
-	 * It is bidirectional and its opposite is '{@link org.unicase.model.requirement.UseCase#getIncludingUseCases <em>Including Use Cases</em>}'.
 	 * <!-- begin-user-doc -->
 	 * <p>
 	 * If the meaning of the '<em>Included Use Cases</em>' reference list isn't clear,
@@ -157,8 +154,7 @@ public interface UseCase extends ModelElement {
 	 * <!-- end-user-doc -->
 	 * @return the value of the '<em>Included Use Cases</em>' reference list.
 	 * @see org.unicase.model.requirement.RequirementPackage#getUseCase_IncludedUseCases()
-	 * @see org.unicase.model.requirement.UseCase#getIncludingUseCases
-	 * @model opposite="includingUseCases" keys="identifier"
+	 * @model keys="identifier"
 	 *        annotation="org.unicase.ui.meeditor priority='12.0' position='left'"
 	 * @generated
 	 */
@@ -167,7 +163,6 @@ public interface UseCase extends ModelElement {
 	/**
 	 * Returns the value of the '<em><b>Extended Use Cases</b></em>' reference list.
 	 * The list contents are of type {@link org.unicase.model.requirement.UseCase}.
-	 * It is bidirectional and its opposite is '{@link org.unicase.model.requirement.UseCase#getExtendingUseCases <em>Extending Use Cases</em>}'.
 	 * <!-- begin-user-doc -->
 	 * <p>
 	 * If the meaning of the '<em>Extended Use Cases</em>' reference list isn't clear,
@@ -176,50 +171,11 @@ public interface UseCase extends ModelElement {
 	 * <!-- end-user-doc -->
 	 * @return the value of the '<em>Extended Use Cases</em>' reference list.
 	 * @see org.unicase.model.requirement.RequirementPackage#getUseCase_ExtendedUseCases()
-	 * @see org.unicase.model.requirement.UseCase#getExtendingUseCases
-	 * @model opposite="extendingUseCases" keys="identifier"
+	 * @model keys="identifier"
 	 *        annotation="org.unicase.ui.meeditor priority='13.0' position='left'"
 	 * @generated
 	 */
 	EList<UseCase> getExtendedUseCases();
-
-	/**
-	 * Returns the value of the '<em><b>Including Use Cases</b></em>' reference list.
-	 * The list contents are of type {@link org.unicase.model.requirement.UseCase}.
-	 * It is bidirectional and its opposite is '{@link org.unicase.model.requirement.UseCase#getIncludedUseCases <em>Included Use Cases</em>}'.
-	 * <!-- begin-user-doc -->
-	 * <p>
-	 * If the meaning of the '<em>Including Use Cases</em>' reference list isn't clear,
-	 * there really should be more of a description here...
-	 * </p>
-	 * <!-- end-user-doc -->
-	 * @return the value of the '<em>Including Use Cases</em>' reference list.
-	 * @see org.unicase.model.requirement.RequirementPackage#getUseCase_IncludingUseCases()
-	 * @see org.unicase.model.requirement.UseCase#getIncludedUseCases
-	 * @model opposite="includedUseCases" keys="identifier"
-	 *        annotation="org.unicase.ui.meeditor priority='12.0' position='left'"
-	 * @generated
-	 */
-	EList<UseCase> getIncludingUseCases();
-
-	/**
-	 * Returns the value of the '<em><b>Extending Use Cases</b></em>' reference list.
-	 * The list contents are of type {@link org.unicase.model.requirement.UseCase}.
-	 * It is bidirectional and its opposite is '{@link org.unicase.model.requirement.UseCase#getExtendedUseCases <em>Extended Use Cases</em>}'.
-	 * <!-- begin-user-doc -->
-	 * <p>
-	 * If the meaning of the '<em>Extending Use Cases</em>' reference list isn't clear,
-	 * there really should be more of a description here...
-	 * </p>
-	 * <!-- end-user-doc -->
-	 * @return the value of the '<em>Extending Use Cases</em>' reference list.
-	 * @see org.unicase.model.requirement.RequirementPackage#getUseCase_ExtendingUseCases()
-	 * @see org.unicase.model.requirement.UseCase#getExtendedUseCases
-	 * @model opposite="extendedUseCases" keys="identifier"
-	 *        annotation="org.unicase.ui.meeditor priority='13.0' position='left'"
-	 * @generated
-	 */
-	EList<UseCase> getExtendingUseCases();
 
 	/**
 	 * Returns the value of the '<em><b>Participating Actors</b></em>' reference list.

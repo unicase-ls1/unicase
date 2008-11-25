@@ -442,24 +442,6 @@ public class RequirementPackageImpl extends EPackageImpl implements
 	}
 
 	/**
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
-	 * @generated
-	 */
-	public EReference getUseCase_IncludingUseCases() {
-		return (EReference) useCaseEClass.getEStructuralFeatures().get(14);
-	}
-
-	/**
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
-	 * @generated
-	 */
-	public EReference getUseCase_ExtendingUseCases() {
-		return (EReference) useCaseEClass.getEStructuralFeatures().get(15);
-	}
-
-	/**
 	 * <!-- begin-user-doc --> <!-- end-user-doc -->
 	 * @generated
 	 */
@@ -843,8 +825,6 @@ public class RequirementPackageImpl extends EPackageImpl implements
 		createEReference(useCaseEClass, USE_CASE__IDENTIFIED_CLASSES);
 		createEReference(useCaseEClass, USE_CASE__INCLUDED_USE_CASES);
 		createEReference(useCaseEClass, USE_CASE__EXTENDED_USE_CASES);
-		createEReference(useCaseEClass, USE_CASE__INCLUDING_USE_CASES);
-		createEReference(useCaseEClass, USE_CASE__EXTENDING_USE_CASES);
 
 		scenarioEClass = createEClass(SCENARIO);
 		createEReference(scenarioEClass, SCENARIO__STEPS);
@@ -1104,33 +1084,17 @@ public class RequirementPackageImpl extends EPackageImpl implements
 				!IS_UNSETTABLE, IS_UNIQUE, !IS_DERIVED, IS_ORDERED);
 		getUseCase_IdentifiedClasses().getEKeys().add(
 				theModelPackage.getIdentifiableElement_Identifier());
-		initEReference(getUseCase_IncludedUseCases(), this.getUseCase(), this
-				.getUseCase_IncludingUseCases(), "includedUseCases", null, 0,
-				-1, UseCase.class, !IS_TRANSIENT, !IS_VOLATILE, IS_CHANGEABLE,
-				!IS_COMPOSITE, IS_RESOLVE_PROXIES, !IS_UNSETTABLE, IS_UNIQUE,
-				!IS_DERIVED, IS_ORDERED);
+		initEReference(getUseCase_IncludedUseCases(), this.getUseCase(), null,
+				"includedUseCases", null, 0, -1, UseCase.class, !IS_TRANSIENT,
+				!IS_VOLATILE, IS_CHANGEABLE, !IS_COMPOSITE, IS_RESOLVE_PROXIES,
+				!IS_UNSETTABLE, IS_UNIQUE, !IS_DERIVED, IS_ORDERED);
 		getUseCase_IncludedUseCases().getEKeys().add(
 				theModelPackage.getIdentifiableElement_Identifier());
-		initEReference(getUseCase_ExtendedUseCases(), this.getUseCase(), this
-				.getUseCase_ExtendingUseCases(), "extendedUseCases", null, 0,
-				-1, UseCase.class, !IS_TRANSIENT, !IS_VOLATILE, IS_CHANGEABLE,
-				!IS_COMPOSITE, IS_RESOLVE_PROXIES, !IS_UNSETTABLE, IS_UNIQUE,
-				!IS_DERIVED, IS_ORDERED);
+		initEReference(getUseCase_ExtendedUseCases(), this.getUseCase(), null,
+				"extendedUseCases", null, 0, -1, UseCase.class, !IS_TRANSIENT,
+				!IS_VOLATILE, IS_CHANGEABLE, !IS_COMPOSITE, IS_RESOLVE_PROXIES,
+				!IS_UNSETTABLE, IS_UNIQUE, !IS_DERIVED, IS_ORDERED);
 		getUseCase_ExtendedUseCases().getEKeys().add(
-				theModelPackage.getIdentifiableElement_Identifier());
-		initEReference(getUseCase_IncludingUseCases(), this.getUseCase(), this
-				.getUseCase_IncludedUseCases(), "includingUseCases", null, 0,
-				-1, UseCase.class, !IS_TRANSIENT, !IS_VOLATILE, IS_CHANGEABLE,
-				!IS_COMPOSITE, IS_RESOLVE_PROXIES, !IS_UNSETTABLE, IS_UNIQUE,
-				!IS_DERIVED, IS_ORDERED);
-		getUseCase_IncludingUseCases().getEKeys().add(
-				theModelPackage.getIdentifiableElement_Identifier());
-		initEReference(getUseCase_ExtendingUseCases(), this.getUseCase(), this
-				.getUseCase_ExtendedUseCases(), "extendingUseCases", null, 0,
-				-1, UseCase.class, !IS_TRANSIENT, !IS_VOLATILE, IS_CHANGEABLE,
-				!IS_COMPOSITE, IS_RESOLVE_PROXIES, !IS_UNSETTABLE, IS_UNIQUE,
-				!IS_DERIVED, IS_ORDERED);
-		getUseCase_ExtendingUseCases().getEKeys().add(
 				theModelPackage.getIdentifiableElement_Identifier());
 
 		initEClass(scenarioEClass, Scenario.class, "Scenario", !IS_ABSTRACT,
@@ -1365,10 +1329,6 @@ public class RequirementPackageImpl extends EPackageImpl implements
 		addAnnotation(getUseCase_IncludedUseCases(), source, new String[] {
 				"priority", "12.0", "position", "left" });
 		addAnnotation(getUseCase_ExtendedUseCases(), source, new String[] {
-				"priority", "13.0", "position", "left" });
-		addAnnotation(getUseCase_IncludingUseCases(), source, new String[] {
-				"priority", "12.0", "position", "left" });
-		addAnnotation(getUseCase_ExtendingUseCases(), source, new String[] {
 				"priority", "13.0", "position", "left" });
 		addAnnotation(getScenario_InitiatingActorInstance(), source,
 				new String[] { "priority", "10.0", "position", "left" });

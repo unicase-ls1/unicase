@@ -64,8 +64,6 @@ public class UseCaseItemProvider extends ModelElementItemProvider implements
 			addIdentifiedClassesPropertyDescriptor(object);
 			addIncludedUseCasesPropertyDescriptor(object);
 			addExtendedUseCasesPropertyDescriptor(object);
-			addIncludingUseCasesPropertyDescriptor(object);
-			addExtendingUseCasesPropertyDescriptor(object);
 		}
 		return itemPropertyDescriptors;
 	}
@@ -194,42 +192,6 @@ public class UseCaseItemProvider extends ModelElementItemProvider implements
 						"_UI_UseCase_type"),
 				RequirementPackage.Literals.USE_CASE__EXTENDED_USE_CASES, true,
 				false, true, null, null, null));
-	}
-
-	/**
-	 * This adds a property descriptor for the Including Use Cases feature.
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
-	 * @generated
-	 */
-	protected void addIncludingUseCasesPropertyDescriptor(Object object) {
-		itemPropertyDescriptors.add(createItemPropertyDescriptor(
-				((ComposeableAdapterFactory) adapterFactory)
-						.getRootAdapterFactory(), getResourceLocator(),
-				getString("_UI_UseCase_includingUseCases_feature"), getString(
-						"_UI_PropertyDescriptor_description",
-						"_UI_UseCase_includingUseCases_feature",
-						"_UI_UseCase_type"),
-				RequirementPackage.Literals.USE_CASE__INCLUDING_USE_CASES,
-				true, false, true, null, null, null));
-	}
-
-	/**
-	 * This adds a property descriptor for the Extending Use Cases feature.
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
-	 * @generated
-	 */
-	protected void addExtendingUseCasesPropertyDescriptor(Object object) {
-		itemPropertyDescriptors.add(createItemPropertyDescriptor(
-				((ComposeableAdapterFactory) adapterFactory)
-						.getRootAdapterFactory(), getResourceLocator(),
-				getString("_UI_UseCase_extendingUseCases_feature"), getString(
-						"_UI_PropertyDescriptor_description",
-						"_UI_UseCase_extendingUseCases_feature",
-						"_UI_UseCase_type"),
-				RequirementPackage.Literals.USE_CASE__EXTENDING_USE_CASES,
-				true, false, true, null, null, null));
 	}
 
 	/**

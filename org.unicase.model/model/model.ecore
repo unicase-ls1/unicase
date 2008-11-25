@@ -749,32 +749,14 @@
         </eAnnotations>
       </eStructuralFeatures>
       <eStructuralFeatures xsi:type="ecore:EReference" name="includedUseCases" upperBound="-1"
-          eType="#//requirement/UseCase" eOpposite="#//requirement/UseCase/includingUseCases"
-          eKeys="#//IdentifiableElement/identifier">
+          eType="#//requirement/UseCase" eKeys="#//IdentifiableElement/identifier">
         <eAnnotations source="org.unicase.ui.meeditor">
           <details key="priority" value="12.0"/>
           <details key="position" value="left"/>
         </eAnnotations>
       </eStructuralFeatures>
       <eStructuralFeatures xsi:type="ecore:EReference" name="extendedUseCases" upperBound="-1"
-          eType="#//requirement/UseCase" eOpposite="#//requirement/UseCase/extendingUseCases"
-          eKeys="#//IdentifiableElement/identifier">
-        <eAnnotations source="org.unicase.ui.meeditor">
-          <details key="priority" value="13.0"/>
-          <details key="position" value="left"/>
-        </eAnnotations>
-      </eStructuralFeatures>
-      <eStructuralFeatures xsi:type="ecore:EReference" name="includingUseCases" upperBound="-1"
-          eType="#//requirement/UseCase" eOpposite="#//requirement/UseCase/includedUseCases"
-          eKeys="#//IdentifiableElement/identifier">
-        <eAnnotations source="org.unicase.ui.meeditor">
-          <details key="priority" value="12.0"/>
-          <details key="position" value="left"/>
-        </eAnnotations>
-      </eStructuralFeatures>
-      <eStructuralFeatures xsi:type="ecore:EReference" name="extendingUseCases" upperBound="-1"
-          eType="#//requirement/UseCase" eOpposite="#//requirement/UseCase/extendedUseCases"
-          eKeys="#//IdentifiableElement/identifier">
+          eType="#//requirement/UseCase" eKeys="#//IdentifiableElement/identifier">
         <eAnnotations source="org.unicase.ui.meeditor">
           <details key="priority" value="13.0"/>
           <details key="position" value="left"/>

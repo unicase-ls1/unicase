@@ -583,31 +583,13 @@ public interface RequirementPackage extends EPackage {
 	int USE_CASE__EXTENDED_USE_CASES = ModelPackage.MODEL_ELEMENT_FEATURE_COUNT + 13;
 
 	/**
-	 * The feature id for the '<em><b>Including Use Cases</b></em>' reference list.
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
-	 * @generated
-	 * @ordered
-	 */
-	int USE_CASE__INCLUDING_USE_CASES = ModelPackage.MODEL_ELEMENT_FEATURE_COUNT + 14;
-
-	/**
-	 * The feature id for the '<em><b>Extending Use Cases</b></em>' reference list.
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
-	 * @generated
-	 * @ordered
-	 */
-	int USE_CASE__EXTENDING_USE_CASES = ModelPackage.MODEL_ELEMENT_FEATURE_COUNT + 15;
-
-	/**
 	 * The number of structural features of the '<em>Use Case</em>' class. <!--
 	 * begin-user-doc --> <!-- end-user-doc -->
 	 * 
 	 * @generated
 	 * @ordered
 	 */
-	int USE_CASE_FEATURE_COUNT = ModelPackage.MODEL_ELEMENT_FEATURE_COUNT + 16;
+	int USE_CASE_FEATURE_COUNT = ModelPackage.MODEL_ELEMENT_FEATURE_COUNT + 14;
 
 	/**
 	 * The meta object id for the '{@link org.unicase.model.requirement.impl.ScenarioImpl <em>Scenario</em>}' class.
@@ -1673,28 +1655,6 @@ public interface RequirementPackage extends EPackage {
 	EReference getUseCase_ExtendedUseCases();
 
 	/**
-	 * Returns the meta object for the reference list '{@link org.unicase.model.requirement.UseCase#getIncludingUseCases <em>Including Use Cases</em>}'.
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
-	 * @return the meta object for the reference list '<em>Including Use Cases</em>'.
-	 * @see org.unicase.model.requirement.UseCase#getIncludingUseCases()
-	 * @see #getUseCase()
-	 * @generated
-	 */
-	EReference getUseCase_IncludingUseCases();
-
-	/**
-	 * Returns the meta object for the reference list '{@link org.unicase.model.requirement.UseCase#getExtendingUseCases <em>Extending Use Cases</em>}'.
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
-	 * @return the meta object for the reference list '<em>Extending Use Cases</em>'.
-	 * @see org.unicase.model.requirement.UseCase#getExtendingUseCases()
-	 * @see #getUseCase()
-	 * @generated
-	 */
-	EReference getUseCase_ExtendingUseCases();
-
-	/**
 	 * Returns the meta object for the reference list '{@link org.unicase.model.requirement.UseCase#getParticipatingActors <em>Participating Actors</em>}'.
 	 * <!-- begin-user-doc --> <!--
 	 * end-user-doc -->
@@ -2282,22 +2242,6 @@ public interface RequirementPackage extends EPackage {
 		 */
 		EReference USE_CASE__EXTENDED_USE_CASES = eINSTANCE
 				.getUseCase_ExtendedUseCases();
-		/**
-		 * The meta object literal for the '<em><b>Including Use Cases</b></em>' reference list feature.
-		 * <!-- begin-user-doc -->
-		 * <!-- end-user-doc -->
-		 * @generated
-		 */
-		EReference USE_CASE__INCLUDING_USE_CASES = eINSTANCE
-				.getUseCase_IncludingUseCases();
-		/**
-		 * The meta object literal for the '<em><b>Extending Use Cases</b></em>' reference list feature.
-		 * <!-- begin-user-doc -->
-		 * <!-- end-user-doc -->
-		 * @generated
-		 */
-		EReference USE_CASE__EXTENDING_USE_CASES = eINSTANCE
-				.getUseCase_ExtendingUseCases();
 		/**
 		 * The meta object literal for the '<em><b>Participating Actors</b></em>
 		 * ' reference list feature. <!-- begin-user-doc --> <!-- end-user-doc
