@@ -4,7 +4,7 @@
  *
  * $Id$
  */
-package org.unicase.workspace.edit.views;
+package org.unicase.workspace.edit.views.changescomposite;
 
 import java.util.List;
 
@@ -25,16 +25,30 @@ public class ChangesTreeContentProvider extends AdapterFactoryContentProvider
 		implements IContentProvider {
 
 	/**
-	 * . Constructor
+	 * Identifier for the operation context.
 	 */
-	public ChangesTreeContentProvider() {
+	public static final int DETAILED = 1; 
+
+	/**
+	 * Identifier for the ME context.
+	 */
+	public static final int COMPACT = 2;
+
+	private int context; 
+	
+	/**
+	 * Constructor.
+	 * @param context The context the viewer should be built upon. Allowed values are {@link #COMPACT} and {@link #DETAILED}.  
+	 */
+	public ChangesTreeContentProvider(int context) {
 		super(new ComposedAdapterFactory(
 				ComposedAdapterFactory.Descriptor.Registry.INSTANCE));
+		this.context = context;
 
 	}
 
 	/**
-	 * .
+	 * 
 	 * {@inheritDoc}
 	 */
 	@SuppressWarnings("unchecked")
@@ -44,25 +58,31 @@ public class ChangesTreeContentProvider extends AdapterFactoryContentProvider
 		return packages.toArray(new Object[packages.size()]);
 	}
 
-	/**.
+	/**
 	 * {@inheritDoc}
 	 */
 	@Override
 	public Object[] getChildren(Object object) {
-		if (object instanceof ChangePackage){
-			return ((ChangePackage) object).getOperations().toArray();
+		if (object instanceof ChangePackage && context==DETAILED){
+			ChangePackage cPackage = (ChangePackage)object;
+			return cPackage.getOperations().toArray();
 		}
 		if (object instanceof CompositeOperation) {
 			return ((CompositeOperation) object)
 					.getSubOperations().toArray();
-		} else {
-			return super.getChildren(object);
 		}
+//TODO AS: implement
+//		if (object instanceof ChangePackage && context==COMPACT){
+//			ChangePackage cPackage = (ChangePackage)object;
+//			ChangePackageVisualizationHelper helper = new ChangePackageVisualizationHelper(Arrays.asList(cPackage), null);
+//			return helper.getAllModelElements(cPackage).toArray();
+//		}
+		return super.getChildren(object);
 
 	}
 
 	
-	/**.
+	/**
 	 * {@inheritDoc}
 	 */
 	@Override

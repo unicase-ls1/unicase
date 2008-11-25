@@ -6,13 +6,18 @@
  */
 package org.unicase.workspace.edit.views;
 
+import java.util.List;
+
 import org.eclipse.jface.viewers.ColumnLabelProvider;
+import org.eclipse.jface.viewers.TreeViewer;
 import org.eclipse.jface.viewers.TreeViewerColumn;
 import org.eclipse.swt.SWT;
 import org.eclipse.swt.graphics.Color;
 import org.eclipse.swt.widgets.Composite;
 import org.eclipse.swt.widgets.Display;
+import org.unicase.emfstore.esmodel.versioning.ChangePackage;
 import org.unicase.emfstore.esmodel.versioning.operations.AbstractOperation;
+import org.unicase.workspace.edit.views.changescomposite.CheckboxChangesTreeComposite;
 
 /**
  * Composite for the merge tree viewer.
@@ -20,7 +25,7 @@ import org.unicase.emfstore.esmodel.versioning.operations.AbstractOperation;
  * @author Shterev
  * 
  */
-public class MergeTreeComposite extends ChangesCheckboxTreeComposite {
+public class MergeTreeComposite extends CheckboxChangesTreeComposite {
 
 	private TreeViewerColumn statusColumn;
 
@@ -28,20 +33,21 @@ public class MergeTreeComposite extends ChangesCheckboxTreeComposite {
 	 * Default constructor.
 	 * @param parent the parent composite
 	 * @param style the style
+	 * @param changes the initial input
 	 */
-	public MergeTreeComposite(Composite parent, int style) {
-		super(parent, style);
+	public MergeTreeComposite(Composite parent, int style, List<ChangePackage> changes) {
+		super(parent, style, changes);
 	}
 
 	/**
 	 * {@inheritDoc}
 	 */
 	@Override
-	protected void createAdditionalColumns() {
+	protected void createAdditionalColumns(TreeViewer treeViewer) {
 		
 		
 		// username column
-		TreeViewerColumn tclmUsername = new TreeViewerColumn(getTreeViewer(),
+		TreeViewerColumn tclmUsername = new TreeViewerColumn(treeViewer,
 				SWT.NONE);
 		tclmUsername.getColumn().setText("Username");
 		tclmUsername.getColumn().setWidth(75);
@@ -54,7 +60,7 @@ public class MergeTreeComposite extends ChangesCheckboxTreeComposite {
 		});
 
 
-		statusColumn = new TreeViewerColumn(getTreeViewer(),
+		statusColumn = new TreeViewerColumn(treeViewer,
 				SWT.NONE);
 		statusColumn.getColumn().setText("Status");
 		statusColumn.getColumn().setWidth(75);

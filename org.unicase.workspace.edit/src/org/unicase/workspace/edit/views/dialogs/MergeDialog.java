@@ -28,6 +28,7 @@ import org.unicase.workspace.edit.views.MergeStatusEditingSupport;
 import org.unicase.workspace.edit.views.MergeTreeComposite;
 import org.unicase.workspace.impl.ProjectSpaceImpl;
 
+
 /**
  * . This is the merge dialog. It shows three ChangesTreeComposites (my changes,
  * merged changes, and their changes)
@@ -94,11 +95,6 @@ public class MergeDialog extends TitleAreaDialog {
 		sashForm.setLayoutData(new GridData(SWT.FILL, SWT.FILL, true, true, 4,
 				1));
 
-		// my changes tree
-		MergeTreeComposite myChangesTree = new MergeTreeComposite(sashForm,
-				SWT.BORDER);
-		myChangesTree
-				.setLayoutData(new GridData(SWT.FILL, SWT.FILL, true, true));
 		ChangePackage changePackage = VersioningFactory.eINSTANCE
 				.createChangePackage();
 		// FIXME AS MK: add the correct operations
@@ -108,18 +104,23 @@ public class MergeDialog extends TitleAreaDialog {
 						.getOperations());
 		ArrayList<ChangePackage> changePackages = new ArrayList<ChangePackage>();
 		changePackages.add(changePackage);
+		// my changes tree
+		MergeTreeComposite myChangesTree = new MergeTreeComposite(sashForm,
+				SWT.BORDER, changePackages);
+		myChangesTree
+		.setLayoutData(new GridData(SWT.FILL, SWT.FILL, true, true));
 		myChangesTree.setInput(changePackages);
 		
 		// their changes
 		MergeTreeComposite theirChangesTree = new MergeTreeComposite(sashForm,
-				SWT.BORDER);
+				SWT.BORDER, changePackages);
 		theirChangesTree.setLayoutData(new GridData(SWT.FILL, SWT.FILL, true,
 				true));
 		theirChangesTree.setInput(newChangePackages);
 
 		
 		MergeStatusEditingSupport myChangesEditingSupport = new MergeStatusEditingSupport(
-				myChangesTree.getTreeViewer(), myChangesTree.getTreeViewer()
+				myChangesTree.getActiveTreeViewer(), myChangesTree.getActiveTreeViewer()
 						.getTree());
 		List<AbstractOperation> myOperations = new ArrayList<AbstractOperation>();
 		for(ChangePackage chPackage : changePackages){
