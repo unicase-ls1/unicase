@@ -648,6 +648,7 @@ public class EmfStoreImpl implements EmfStore {
 	/**
 	 * Unloads all projecstates which are not in the headrevision.
 	 */
+	//TODO OW move this function to clean memory task when monitor object is introduced.
 	public synchronized void unloadProjectStates() {
 		ResourceSet resourceSet = getServerSpace().eResource().getResourceSet();
 		for (Resource res : resourceSet.getResources()) {

@@ -342,6 +342,7 @@ public final class ServerConfiguration {
 	 * @return path
 	 */
 	public static String getServerMainFile() {
+		//TODO convert storage file as well
 		return getServerHome()+"storage";
 		//return getServerHome()+"storage"+FILE_EXTENSION_MAINSTORAGE;
 	}

@@ -30,7 +30,7 @@ public class XMLStorage implements ResourceStorage {
 	 */
 	public URI init(Properties properties) throws FatalEmfStoreException {
 		ResourceSet resourceSet = new ResourceSetImpl();
-		String pathName = ServerConfiguration.getServerHome()+"storage";
+		String pathName = ServerConfiguration.getServerMainFile();
 		URI fileURI = URI.createFileURI(pathName);
 		File serverFile = new File(pathName);
 		if(!serverFile.exists()) {
