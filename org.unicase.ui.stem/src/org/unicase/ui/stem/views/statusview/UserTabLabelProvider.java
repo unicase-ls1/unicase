@@ -6,18 +6,11 @@
  */
 package org.unicase.ui.stem.views.statusview;
 
-import java.util.Arrays;
-import java.util.List;
-
 import org.eclipse.emf.edit.provider.ComposedAdapterFactory;
 import org.eclipse.emf.edit.ui.provider.AdapterFactoryLabelProvider;
 import org.eclipse.jface.viewers.IColorProvider;
-import org.eclipse.swt.SWT;
-import org.eclipse.swt.graphics.Color;
-import org.eclipse.swt.widgets.Display;
-import org.unicase.model.ModelElement;
-import org.unicase.model.organization.OrgUnit;
-import org.unicase.model.task.util.MEState;
+import org.eclipse.swt.graphics.Image;
+import org.unicase.ui.stem.Activator;
 
 /**
  * .
@@ -33,59 +26,35 @@ import org.unicase.model.task.util.MEState;
 public class UserTabLabelProvider extends AdapterFactoryLabelProvider implements
 		IColorProvider {
 
-	private UserTabContentProvider contentProvider;
-
-	/**.
-	 * Constructor
-	 * @param contentProvider ContentProvider. This is used to check if all children (assignables)
-	 * 							of an OrgUnit are closed.
+	/**
+	 * . Constructor
 	 */
-	public UserTabLabelProvider(UserTabContentProvider contentProvider) {
+	public UserTabLabelProvider() {
 		super(new ComposedAdapterFactory(
 				ComposedAdapterFactory.Descriptor.Registry.INSTANCE));
-
-		this.contentProvider = contentProvider;
 	}
 
-	
-	/**.
+	/**
 	 * {@inheritDoc}
-	 * 
-	 * Assignables that are closed are shown in green. 
-	 * If all Assignables of an OrgUnit are closed, 
-	 * it will be also shown green.
 	 */
 	@Override
-	public Color getBackground(Object object) {
-		if (object instanceof OrgUnit) {
-			if (isAllTodosDone((OrgUnit) object)) {
-				return Display.getDefault().getSystemColor(SWT.COLOR_GREEN);
-			}
-
-		} else if (object instanceof ModelElement) {
-			if (((ModelElement) object).getState().equals(MEState.CLOSED)) {
-				return Display.getDefault().getSystemColor(SWT.COLOR_GREEN);
-			}
+	public Image getImage(Object object) {
+		if (object instanceof NotAssigned) {
+			return Activator.getImageDescriptor("icons/backlog.png")
+					.createImage();
 		}
-
-		return super.getBackground(object);
-
+		return super.getImage(object);
 	}
 
-	
-	private boolean isAllTodosDone(OrgUnit orgUnit) {
-		List<Object> assignables = Arrays.asList(contentProvider
-				.getChildren(orgUnit));
-		for (Object obj : assignables) {
-			if (obj instanceof ModelElement) {
-				ModelElement assignable = (ModelElement) obj;
-				if (!assignable.getState().equals(MEState.CLOSED)) {
-					return false;
-				}
-			}
-
+	/**
+	 * {@inheritDoc}
+	 */
+	@Override
+	public String getText(Object object) {
+		if (object instanceof NotAssigned) {
+			return "Not Assigned";
 		}
-		return true;
+		return super.getText(object);
 	}
 
 }

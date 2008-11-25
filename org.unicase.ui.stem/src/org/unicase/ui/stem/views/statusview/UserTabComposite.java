@@ -17,6 +17,7 @@ import org.eclipse.swt.layout.GridLayout;
 import org.eclipse.swt.widgets.Composite;
 import org.unicase.model.ModelElement;
 import org.unicase.ui.common.commands.ActionHelper;
+import org.unicase.ui.stem.views.TaskTableUtil;
 
 
 /**.
@@ -55,10 +56,9 @@ public class UserTabComposite extends Composite {
 
 		UserTabContentProvider contentProvider = new UserTabContentProvider();
 		treeViewer.setContentProvider(contentProvider);
-		//we need the content provider in LabelProvider in order to 
-		//check the children of an OrgUnit for their state (for background color)
-		treeViewer.setLabelProvider(new UserTabLabelProvider(contentProvider));
+		treeViewer.setLabelProvider(new UserTabLabelProvider());
 		treeViewer.setComparator(new ViewerComparator());
+		TaskTableUtil.addColumns(treeViewer);
 		
 		treeViewer.addDoubleClickListener(new IDoubleClickListener() {
 
