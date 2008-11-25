@@ -11,6 +11,8 @@ import java.util.List;
 import org.eclipse.jface.action.Action;
 import org.eclipse.jface.action.MenuManager;
 import org.eclipse.jface.action.Separator;
+import org.eclipse.jface.dialogs.IInputValidator;
+import org.eclipse.jface.dialogs.InputDialog;
 import org.eclipse.jface.viewers.IStructuredSelection;
 import org.eclipse.jface.viewers.TableViewer;
 import org.eclipse.jface.viewers.TableViewerColumn;
@@ -25,6 +27,8 @@ import org.eclipse.ui.IWorkbenchPage;
 import org.eclipse.ui.PartInitException;
 import org.eclipse.ui.PlatformUI;
 import org.unicase.emfstore.esmodel.versioning.HistoryInfo;
+import org.unicase.emfstore.esmodel.versioning.TagVersionSpec;
+import org.unicase.emfstore.esmodel.versioning.VersioningFactory;
 import org.unicase.ui.common.exceptions.DialogHandler;
 import org.unicase.workspace.edit.views.changebrowserview.ChangeBrowserView;
 
@@ -141,6 +145,7 @@ public class HistoryComposite extends Composite {
 			}
 
 		};
+		actionSetSource.setEnabled(false);
 
 		Action actionSetTarget = new Action("Set as target") {
 			@Override
@@ -153,6 +158,7 @@ public class HistoryComposite extends Composite {
 				}
 			}
 		};
+		actionSetTarget.setEnabled(false);
 
 		Action actionShowChangePackages = new Action(
 				"Show associated change packages...") {
@@ -166,12 +172,46 @@ public class HistoryComposite extends Composite {
 				}
 			}
 		};
+		actionShowChangePackages.setEnabled(false);
+		
+		Action actionAddTag = new Action("Add tag") {
+			@Override
+			public void run() {
+				IStructuredSelection selection = (IStructuredSelection) tableViewer
+						.getSelection();
+				if (!selection.isEmpty()) {
+					HistoryInfo info = (HistoryInfo) selection.getFirstElement();
+					InputDialog inputDialog = new InputDialog(getShell(), "Add tag", "Please enter the tag's name.","",null);
+					inputDialog.open();
+					String str = inputDialog.getValue().trim();
+					if(!(str == null || str.equals(""))) {
+						TagVersionSpec tag = VersioningFactory.eINSTANCE.createTagVersionSpec();
+						tag.setName(str);
+						parentView.addTag(info.getPrimerySpec(), tag);
+						parentView.refreshClicked();						
+					}
+				}
+			}
+
+		};
+		
+		Action actionRemoveTag = new Action("Remove tag") {
+			@Override
+			public void run() {
+				//TODO OW: implement
+			}
+
+		};
+		actionRemoveTag.setEnabled(false);
 
 		MenuManager mgr = new MenuManager();
 		mgr.add(actionSetSource);
 		mgr.add(actionSetTarget);
 		mgr.add(new Separator());
 		mgr.add(actionShowChangePackages);
+		mgr.add(new Separator());
+		mgr.add(actionAddTag);
+		mgr.add(actionRemoveTag);
 
 		tableViewer.getControl().setMenu(
 				mgr.createContextMenu(tableViewer.getControl()));

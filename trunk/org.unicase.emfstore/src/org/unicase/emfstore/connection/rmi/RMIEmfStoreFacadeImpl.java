@@ -25,6 +25,7 @@ import org.unicase.emfstore.esmodel.versioning.HistoryInfo;
 import org.unicase.emfstore.esmodel.versioning.HistoryQuery;
 import org.unicase.emfstore.esmodel.versioning.LogMessage;
 import org.unicase.emfstore.esmodel.versioning.PrimaryVersionSpec;
+import org.unicase.emfstore.esmodel.versioning.TagVersionSpec;
 import org.unicase.emfstore.esmodel.versioning.VersionSpec;
 import org.unicase.emfstore.exceptions.EmfStoreException;
 import org.unicase.emfstore.exceptions.FatalEmfStoreException;
@@ -93,9 +94,10 @@ public class RMIEmfStoreFacadeImpl extends AbstractUnicaseRMIFacade implements
 		ChangePackage changePackageObject = (ChangePackage) SerializationUtil
 				.stringToEObject(changePackage);
 
-		return SerializationUtil.eObjectToString(emfStore.createVersion(sessionIdObject,
-				projectIdObject, primaryVersionSpec, changePackageObject,
-				(LogMessage) SerializationUtil.stringToEObject(logMessage)));
+		return SerializationUtil.eObjectToString(emfStore.createVersion(
+				sessionIdObject, projectIdObject, primaryVersionSpec,
+				changePackageObject, (LogMessage) SerializationUtil
+						.stringToEObject(logMessage)));
 	}
 
 	/**
@@ -109,11 +111,11 @@ public class RMIEmfStoreFacadeImpl extends AbstractUnicaseRMIFacade implements
 			EmfStoreException {
 		LOGGER.debug("Client call on getChanges RECEIVED.");
 		List<String> result = new ArrayList<String>();
-		for (ChangePackage cp : emfStore.getChanges((SessionId) SerializationUtil
-				.stringToEObject(sessionId), (ProjectId) SerializationUtil
-				.stringToEObject(projectId), (VersionSpec) SerializationUtil
-				.stringToEObject(source), (VersionSpec) SerializationUtil
-				.stringToEObject(target))) {
+		for (ChangePackage cp : emfStore.getChanges(
+				(SessionId) SerializationUtil.stringToEObject(sessionId),
+				(ProjectId) SerializationUtil.stringToEObject(projectId),
+				(VersionSpec) SerializationUtil.stringToEObject(source),
+				(VersionSpec) SerializationUtil.stringToEObject(target))) {
 
 			result.add(SerializationUtil.eObjectToString(cp));
 		}
@@ -127,13 +129,42 @@ public class RMIEmfStoreFacadeImpl extends AbstractUnicaseRMIFacade implements
 			String query) throws RemoteException, EmfStoreException {
 		LOGGER.debug("Client call on getHistoryInfo with query RECEIVED.");
 		List<String> result = new ArrayList<String>();
-		for (HistoryInfo info : emfStore.getHistoryInfo((SessionId) SerializationUtil
-				.stringToEObject(sessionId), (ProjectId) SerializationUtil
-				.stringToEObject(projectId), (HistoryQuery) SerializationUtil
-				.stringToEObject(query))) {
+		for (HistoryInfo info : emfStore.getHistoryInfo(
+				(SessionId) SerializationUtil.stringToEObject(sessionId),
+				(ProjectId) SerializationUtil.stringToEObject(projectId),
+				(HistoryQuery) SerializationUtil.stringToEObject(query))) {
 			result.add(SerializationUtil.eObjectToString(info));
 		}
 		return result;
+	}
+
+	/**
+	 * {@inheritDoc}
+	 */
+	public void addTag(String sessionId, String projectId, String versionSpec,
+			String tag) throws RemoteException, EmfStoreException {
+		LOGGER.debug("Client call on addTag with query RECEIVED.");
+		emfStore.addTag((SessionId) SerializationUtil
+				.stringToEObject(sessionId), (ProjectId) SerializationUtil
+				.stringToEObject(projectId),
+				(PrimaryVersionSpec) SerializationUtil
+						.stringToEObject(versionSpec),
+				(TagVersionSpec) SerializationUtil.stringToEObject(tag));
+	}
+
+	/**
+	 * {@inheritDoc}
+	 */
+	public void removeTag(String sessionId, String projectId,
+			String versionSpec, String tag) throws RemoteException,
+			EmfStoreException {
+		LOGGER.debug("Client call on removeTag with query RECEIVED.");
+		emfStore.removeTag((SessionId) SerializationUtil
+				.stringToEObject(sessionId), (ProjectId) SerializationUtil
+				.stringToEObject(projectId),
+				(PrimaryVersionSpec) SerializationUtil
+						.stringToEObject(versionSpec),
+				(TagVersionSpec) SerializationUtil.stringToEObject(tag));
 	}
 
 	/**
@@ -145,10 +176,10 @@ public class RMIEmfStoreFacadeImpl extends AbstractUnicaseRMIFacade implements
 	public String getProject(String sessionId, String projectId,
 			String versionSpec) throws RemoteException, EmfStoreException {
 		LOGGER.debug("Client call on getProject RECEIVED.");
-		return SerializationUtil.eObjectToString(emfStore.getProject((SessionId) SerializationUtil
-				.stringToEObject(sessionId), (ProjectId) SerializationUtil
-				.stringToEObject(projectId), (VersionSpec) SerializationUtil
-				.stringToEObject(versionSpec)));
+		return SerializationUtil.eObjectToString(emfStore.getProject(
+				(SessionId) SerializationUtil.stringToEObject(sessionId),
+				(ProjectId) SerializationUtil.stringToEObject(projectId),
+				(VersionSpec) SerializationUtil.stringToEObject(versionSpec)));
 	}
 
 	/**
@@ -160,8 +191,9 @@ public class RMIEmfStoreFacadeImpl extends AbstractUnicaseRMIFacade implements
 			throws RemoteException, EmfStoreException {
 		LOGGER.debug("Client call on getProjectList RECEIVED.");
 		List<String> result = new ArrayList<String>();
-		for (ProjectInfo pi : emfStore.getProjectList((SessionId) SerializationUtil
-				.stringToEObject(sessionId))) {
+		for (ProjectInfo pi : emfStore
+				.getProjectList((SessionId) SerializationUtil
+						.stringToEObject(sessionId))) {
 			result.add(SerializationUtil.eObjectToString(pi));
 		}
 		return result;
@@ -173,12 +205,13 @@ public class RMIEmfStoreFacadeImpl extends AbstractUnicaseRMIFacade implements
 	 * @see org.unicase.emfstore.connection.rmi.RMIEmfStoreFacade#login(java.lang.String,
 	 *      java.lang.String, java.lang.String)
 	 */
-	public String login(String username, String password, String serverInfo, String version)
-			throws RemoteException, AccessControlException {
+	public String login(String username, String password, String serverInfo,
+			String version) throws RemoteException, AccessControlException {
 		LOGGER.debug("Client call on login RECEIVED.");
 		try {
-			return SerializationUtil.eObjectToString(accessControl.logIn(username,
-					password, (ClientVersionInfo) SerializationUtil.stringToEObject(version)));
+			return SerializationUtil.eObjectToString(accessControl.logIn(
+					username, password, (ClientVersionInfo) SerializationUtil
+							.stringToEObject(version)));
 		} catch (RMISerializationException e) {
 			throw new AccessControlException(SERIALEX);
 		}
@@ -211,7 +244,8 @@ public class RMIEmfStoreFacadeImpl extends AbstractUnicaseRMIFacade implements
 		LOGGER.debug("Client call on createProject RECEIVED.");
 		return SerializationUtil.eObjectToString(emfStore.createProject(
 				(SessionId) SerializationUtil.stringToEObject(sessionId), name,
-				description, (LogMessage) SerializationUtil.stringToEObject(logMessage)));
+				description, (LogMessage) SerializationUtil
+						.stringToEObject(logMessage)));
 	}
 
 	/**
@@ -223,7 +257,8 @@ public class RMIEmfStoreFacadeImpl extends AbstractUnicaseRMIFacade implements
 		LOGGER.debug("Client call on createProject RECEIVED.");
 		return SerializationUtil.eObjectToString(emfStore.createProject(
 				(SessionId) SerializationUtil.stringToEObject(sessionId), name,
-				description, (LogMessage) SerializationUtil.stringToEObject(logMessage),
+				description, (LogMessage) SerializationUtil
+						.stringToEObject(logMessage),
 				(Project) SerializationUtil.stringToEObject(project)));
 	}
 
@@ -233,8 +268,8 @@ public class RMIEmfStoreFacadeImpl extends AbstractUnicaseRMIFacade implements
 	public String resolveUser(String sessionId, String orgUnitId)
 			throws EmfStoreException, RemoteException {
 		LOGGER.debug("Client call on resolveUser RECEIVED.");
-		return SerializationUtil.eObjectToString(emfStore.resolveUser((SessionId) SerializationUtil
-				.stringToEObject(sessionId), (ACOrgUnitId) SerializationUtil
-				.stringToEObject(orgUnitId)));
+		return SerializationUtil.eObjectToString(emfStore.resolveUser(
+				(SessionId) SerializationUtil.stringToEObject(sessionId),
+				(ACOrgUnitId) SerializationUtil.stringToEObject(orgUnitId)));
 	}
 }

@@ -19,6 +19,7 @@ import org.unicase.emfstore.esmodel.versioning.HistoryInfo;
 import org.unicase.emfstore.esmodel.versioning.HistoryQuery;
 import org.unicase.emfstore.esmodel.versioning.LogMessage;
 import org.unicase.emfstore.esmodel.versioning.PrimaryVersionSpec;
+import org.unicase.emfstore.esmodel.versioning.TagVersionSpec;
 import org.unicase.emfstore.esmodel.versioning.VersionSpec;
 import org.unicase.emfstore.exceptions.EmfStoreException;
 import org.unicase.emfstore.exceptions.InvalidVersionSpecException;
@@ -166,6 +167,42 @@ public interface EmfStore extends EmfStoreInterface {
 	 */
 	List<HistoryInfo> getHistoryInfo(SessionId sessionId, ProjectId projectId,
 			HistoryQuery historyQuery) throws EmfStoreException;
+
+	/**
+	 * Adds a tag to a version of the specified project.
+	 * 
+	 * @param sessionId
+	 *            the session id
+	 * @param projectId
+	 *            the project id
+	 * @param versionSpec
+	 *            the version versionSpec
+	 * @param tag
+	 *            the tag
+	 * @throws EmfStoreException
+	 *             if any error in the EmfStore occurs
+	 */
+	void addTag(SessionId sessionId, ProjectId projectId,
+			PrimaryVersionSpec versionSpec, TagVersionSpec tag)
+			throws EmfStoreException;
+
+	/**
+	 * Removes a tag to a version of the specified project.
+	 * 
+	 * @param sessionId
+	 *            the session id
+	 * @param projectId
+	 *            the project id
+	 * @param versionSpec
+	 *            the version versionSpec
+	 * @param tag
+	 *            the tags
+	 * @throws EmfStoreException
+	 *             if any error in the EmfStore occurs
+	 */
+	void removeTag(SessionId sessionId, ProjectId projectId,
+			PrimaryVersionSpec versionSpec, TagVersionSpec tag)
+			throws EmfStoreException;
 
 	/**
 	 * Create a new project on the server.

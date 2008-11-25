@@ -133,6 +133,9 @@ public interface RMIEmfStoreFacade extends Remote {
 	/**
 	 * String typed implementation of method in {@link EmfStore}.
 	 * 
+	 * @see org.unicase.emfstore.EmfStore#getHistoryInfo(org.unicase.emfstore.esmodel.SessionId,
+	 *      org.unicase.emfstore.esmodel.ProjectId,
+	 *      org.unicase.emfstore.esmodel.versioning.HistoryQuery);
 	 * @param sessionId
 	 *            the session id
 	 * @param projectId
@@ -147,6 +150,55 @@ public interface RMIEmfStoreFacade extends Remote {
 	 */
 	List<String> getHistoryInfo(String sessionId, String projectId, String query)
 			throws RemoteException, EmfStoreException;
+
+	/**
+	 * String typed implementation of method in {@link EmfStore}.
+	 * 
+	 * @see org.unicase.emfstore.EmfStore#addTag(org.unicase.emfstore.esmodel.
+	 *      SessionId, org.unicase.emfstore.esmodel.ProjectId,
+	 *      org.unicase.emfstore.esmodel.versioning.PrimaryVersionSpec,
+	 *      org.unicase.emfstore.esmodel.versioning.TagVersionSpec);
+	 * 
+	 * @param sessionId
+	 *            the session id
+	 * @param projectId
+	 *            the project id
+	 * @param versionSpec
+	 *            the version spec
+	 * @param tag
+	 *            the tag
+	 * @throws RemoteException
+	 *             if RMI remote invocation fails
+	 * @throws EmfStoreException
+	 *             if a problem in the element store occurs
+	 */
+	void addTag(String sessionId, String projectId, String versionSpec,
+			String tag) throws RemoteException, EmfStoreException;
+
+	/**
+	 * String typed implementation of method in {@link EmfStore}.
+	 * 
+	 * @see org.unicase
+	 *      .emfstore.EmfStore#removeTag(org.unicase.emfstore.esmodel.SessionId,
+	 *      org.unicase.emfstore.esmodel.ProjectId,
+	 *      org.unicase.emfstore.esmodel.versioning.PrimaryVersionSpec,
+	 *      org.unicase.emfstore.esmodel.versioning.TagVersionSpec)
+	 * 
+	 * @param sessionId
+	 *            the session id
+	 * @param projectId
+	 *            the project id
+	 * @param versionSpec
+	 *            the version spec
+	 * @param tag
+	 *            the tag
+	 * @throws RemoteException
+	 *             if RMI remote invocation fails
+	 * @throws EmfStoreException
+	 *             if a problem in the element store occurs
+	 */
+	void removeTag(String sessionId, String projectId, String versionSpec,
+			String tag) throws RemoteException, EmfStoreException;
 
 	/**
 	 * String typed implementation of method in {@link EmfStore}.
@@ -214,7 +266,8 @@ public interface RMIEmfStoreFacade extends Remote {
 	 *             if access was denied
 	 */
 	String login(String username, String password, String serverInfo,
-			String clientVersionInfo) throws RemoteException, AccessControlException;
+			String clientVersionInfo) throws RemoteException,
+			AccessControlException;
 
 	/**
 	 * Resolves the user's rights.

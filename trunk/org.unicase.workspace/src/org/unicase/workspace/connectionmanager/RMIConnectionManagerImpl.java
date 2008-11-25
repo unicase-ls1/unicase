@@ -30,6 +30,7 @@ import org.unicase.emfstore.esmodel.versioning.HistoryInfo;
 import org.unicase.emfstore.esmodel.versioning.HistoryQuery;
 import org.unicase.emfstore.esmodel.versioning.LogMessage;
 import org.unicase.emfstore.esmodel.versioning.PrimaryVersionSpec;
+import org.unicase.emfstore.esmodel.versioning.TagVersionSpec;
 import org.unicase.emfstore.esmodel.versioning.VersionSpec;
 import org.unicase.emfstore.exceptions.ClientVersionOutOfDateException;
 import org.unicase.emfstore.exceptions.ConnectionException;
@@ -128,6 +129,41 @@ public class RMIConnectionManagerImpl implements ConnectionManager {
 								.stringToEObject(str));
 			}
 			return result;
+		} catch (RemoteException e) {
+			throw new ConnectionException(REMOTE, e);
+		}
+	}
+
+	/**
+	 * {@inheritDoc}
+	 */
+	public void addTag(SessionId sessionId, ProjectId projectId,
+			PrimaryVersionSpec versionSpec, TagVersionSpec tag)
+			throws EmfStoreException {
+		RMIEmfStoreFacade facade = getFacade(sessionId);
+		try {
+			facade.addTag(SerializationUtil.eObjectToString(sessionId),
+					SerializationUtil.eObjectToString(projectId),
+					SerializationUtil.eObjectToString(versionSpec),
+					SerializationUtil.eObjectToString(tag));
+		} catch (RemoteException e) {
+			throw new ConnectionException(REMOTE, e);
+		}
+
+	}
+
+	/**
+	 * {@inheritDoc}
+	 */
+	public void removeTag(SessionId sessionId, ProjectId projectId,
+			PrimaryVersionSpec versionSpec, TagVersionSpec tag)
+			throws EmfStoreException {
+		RMIEmfStoreFacade facade = getFacade(sessionId);
+		try {
+			facade.removeTag(SerializationUtil.eObjectToString(sessionId),
+					SerializationUtil.eObjectToString(projectId),
+					SerializationUtil.eObjectToString(versionSpec),
+					SerializationUtil.eObjectToString(tag));
 		} catch (RemoteException e) {
 			throw new ConnectionException(REMOTE, e);
 		}
@@ -261,7 +297,8 @@ public class RMIConnectionManagerImpl implements ConnectionManager {
 			throw new ConnectionException(UNSUPPORTED_ENCODING, e);
 		} catch (ClientVersionOutOfDateException e) {
 			throw new ConnectionException(
-					"Client version not compatible with server. Please update your client.", e);
+					"Client version not compatible with server. Please update your client.",
+					e);
 		} catch (AccessControlException e) {
 			throw new ConnectionException("Login refused.", e);
 		}
