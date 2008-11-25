@@ -49,6 +49,8 @@ import org.unicase.model.task.WorkPackage;
  *   <li>{@link org.unicase.model.rationale.impl.IssueImpl#getAssignee <em>Assignee</em>}</li>
  *   <li>{@link org.unicase.model.rationale.impl.IssueImpl#getParticipants <em>Participants</em>}</li>
  *   <li>{@link org.unicase.model.rationale.impl.IssueImpl#getDueDate <em>Due Date</em>}</li>
+ *   <li>{@link org.unicase.model.rationale.impl.IssueImpl#getEstimate <em>Estimate</em>}</li>
+ *   <li>{@link org.unicase.model.rationale.impl.IssueImpl#getEffort <em>Effort</em>}</li>
  *   <li>{@link org.unicase.model.rationale.impl.IssueImpl#getProposals <em>Proposals</em>}</li>
  *   <li>{@link org.unicase.model.rationale.impl.IssueImpl#getSolution <em>Solution</em>}</li>
  *   <li>{@link org.unicase.model.rationale.impl.IssueImpl#getCriteria <em>Criteria</em>}</li>
@@ -136,6 +138,46 @@ public class IssueImpl extends AnnotationImpl implements Issue {
 	 * @ordered
 	 */
 	protected Date dueDate = DUE_DATE_EDEFAULT;
+
+	/**
+	 * The default value of the '{@link #getEstimate() <em>Estimate</em>}' attribute.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @see #getEstimate()
+	 * @generated
+	 * @ordered
+	 */
+	protected static final int ESTIMATE_EDEFAULT = 0;
+
+	/**
+	 * The cached value of the '{@link #getEstimate() <em>Estimate</em>}' attribute.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @see #getEstimate()
+	 * @generated
+	 * @ordered
+	 */
+	protected int estimate = ESTIMATE_EDEFAULT;
+
+	/**
+	 * The default value of the '{@link #getEffort() <em>Effort</em>}' attribute.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @see #getEffort()
+	 * @generated
+	 * @ordered
+	 */
+	protected static final int EFFORT_EDEFAULT = 0;
+
+	/**
+	 * The cached value of the '{@link #getEffort() <em>Effort</em>}' attribute.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @see #getEffort()
+	 * @generated
+	 * @ordered
+	 */
+	protected int effort = EFFORT_EDEFAULT;
 
 	/**
 	 * The cached value of the '{@link #getProposals() <em>Proposals</em>}' containment reference list.
@@ -567,6 +609,50 @@ public class IssueImpl extends AnnotationImpl implements Issue {
 	}
 
 	/**
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 */
+	public int getEstimate() {
+		return estimate;
+	}
+
+	/**
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 */
+	public void setEstimate(int newEstimate) {
+		int oldEstimate = estimate;
+		estimate = newEstimate;
+		if (eNotificationRequired())
+			eNotify(new ENotificationImpl(this, Notification.SET,
+					RationalePackage.ISSUE__ESTIMATE, oldEstimate, estimate));
+	}
+
+	/**
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 */
+	public int getEffort() {
+		return effort;
+	}
+
+	/**
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 */
+	public void setEffort(int newEffort) {
+		int oldEffort = effort;
+		effort = newEffort;
+		if (eNotificationRequired())
+			eNotify(new ENotificationImpl(this, Notification.SET,
+					RationalePackage.ISSUE__EFFORT, oldEffort, effort));
+	}
+
+	/**
 	 * <!-- begin-user-doc --> <!-- end-user-doc -->
 	 * @generated
 	 */
@@ -680,6 +766,10 @@ public class IssueImpl extends AnnotationImpl implements Issue {
 			return getParticipants();
 		case RationalePackage.ISSUE__DUE_DATE:
 			return getDueDate();
+		case RationalePackage.ISSUE__ESTIMATE:
+			return new Integer(getEstimate());
+		case RationalePackage.ISSUE__EFFORT:
+			return new Integer(getEffort());
 		case RationalePackage.ISSUE__PROPOSALS:
 			return getProposals();
 		case RationalePackage.ISSUE__SOLUTION:
@@ -731,6 +821,12 @@ public class IssueImpl extends AnnotationImpl implements Issue {
 		case RationalePackage.ISSUE__DUE_DATE:
 			setDueDate((Date) newValue);
 			return;
+		case RationalePackage.ISSUE__ESTIMATE:
+			setEstimate(((Integer) newValue).intValue());
+			return;
+		case RationalePackage.ISSUE__EFFORT:
+			setEffort(((Integer) newValue).intValue());
+			return;
 		case RationalePackage.ISSUE__PROPOSALS:
 			getProposals().clear();
 			getProposals().addAll((Collection<? extends Proposal>) newValue);
@@ -780,6 +876,12 @@ public class IssueImpl extends AnnotationImpl implements Issue {
 		case RationalePackage.ISSUE__DUE_DATE:
 			setDueDate(DUE_DATE_EDEFAULT);
 			return;
+		case RationalePackage.ISSUE__ESTIMATE:
+			setEstimate(ESTIMATE_EDEFAULT);
+			return;
+		case RationalePackage.ISSUE__EFFORT:
+			setEffort(EFFORT_EDEFAULT);
+			return;
 		case RationalePackage.ISSUE__PROPOSALS:
 			getProposals().clear();
 			return;
@@ -821,6 +923,10 @@ public class IssueImpl extends AnnotationImpl implements Issue {
 		case RationalePackage.ISSUE__DUE_DATE:
 			return DUE_DATE_EDEFAULT == null ? dueDate != null
 					: !DUE_DATE_EDEFAULT.equals(dueDate);
+		case RationalePackage.ISSUE__ESTIMATE:
+			return estimate != ESTIMATE_EDEFAULT;
+		case RationalePackage.ISSUE__EFFORT:
+			return effort != EFFORT_EDEFAULT;
 		case RationalePackage.ISSUE__PROPOSALS:
 			return proposals != null && !proposals.isEmpty();
 		case RationalePackage.ISSUE__SOLUTION:
@@ -863,6 +969,10 @@ public class IssueImpl extends AnnotationImpl implements Issue {
 				return TaskPackage.WORK_ITEM__PARTICIPANTS;
 			case RationalePackage.ISSUE__DUE_DATE:
 				return TaskPackage.WORK_ITEM__DUE_DATE;
+			case RationalePackage.ISSUE__ESTIMATE:
+				return TaskPackage.WORK_ITEM__ESTIMATE;
+			case RationalePackage.ISSUE__EFFORT:
+				return TaskPackage.WORK_ITEM__EFFORT;
 			default:
 				return -1;
 			}
@@ -900,6 +1010,10 @@ public class IssueImpl extends AnnotationImpl implements Issue {
 				return RationalePackage.ISSUE__PARTICIPANTS;
 			case TaskPackage.WORK_ITEM__DUE_DATE:
 				return RationalePackage.ISSUE__DUE_DATE;
+			case TaskPackage.WORK_ITEM__ESTIMATE:
+				return RationalePackage.ISSUE__ESTIMATE;
+			case TaskPackage.WORK_ITEM__EFFORT:
+				return RationalePackage.ISSUE__EFFORT;
 			default:
 				return -1;
 			}
@@ -920,6 +1034,10 @@ public class IssueImpl extends AnnotationImpl implements Issue {
 		StringBuffer result = new StringBuffer(super.toString());
 		result.append(" (dueDate: ");
 		result.append(dueDate);
+		result.append(", estimate: ");
+		result.append(estimate);
+		result.append(", effort: ");
+		result.append(effort);
 		result.append(", activity: ");
 		result.append(activity);
 		result.append(')');

@@ -14,7 +14,6 @@ package org.unicase.model.task;
  * The following features are supported:
  * <ul>
  *   <li>{@link org.unicase.model.task.ActionItem#isDone <em>Done</em>}</li>
- *   <li>{@link org.unicase.model.task.ActionItem#getEstimate <em>Estimate</em>}</li>
  *   <li>{@link org.unicase.model.task.ActionItem#getActivity <em>Activity</em>}</li>
  * </ul>
  * </p>
@@ -49,32 +48,6 @@ public interface ActionItem extends WorkItem, Checkable {
 	 * @generated
 	 */
 	void setDone(boolean value);
-
-	/**
-	 * Returns the value of the '<em><b>Estimate</b></em>' attribute. <!--
-	 * begin-user-doc -->
-	 * <p>
-	 * If the meaning of the '<em>Estimate</em>' attribute isn't clear, there
-	 * really should be more of a description here...
-	 * </p>
-	 * <!-- end-user-doc -->
-	 * 
-	 * @return the value of the '<em>Estimate</em>' attribute.
-	 * @see #setEstimate(int)
-	 * @see org.unicase.model.task.TaskPackage#getActionItem_Estimate()
-	 * @model
-	 * @generated
-	 */
-	int getEstimate();
-
-	/**
-	 * Sets the value of the '{@link org.unicase.model.task.ActionItem#getEstimate <em>Estimate</em>}' attribute.
-	 * <!-- begin-user-doc --> <!-- end-user-doc -->
-	 * @param value the new value of the '<em>Estimate</em>' attribute.
-	 * @see #getEstimate()
-	 * @generated
-	 */
-	void setEstimate(int value);
 
 	/**
 	 * Returns the value of the '<em><b>Activity</b></em>' attribute.

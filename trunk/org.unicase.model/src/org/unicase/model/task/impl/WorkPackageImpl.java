@@ -41,6 +41,8 @@ import org.unicase.model.task.WorkPackage;
  *   <li>{@link org.unicase.model.task.impl.WorkPackageImpl#getAssignee <em>Assignee</em>}</li>
  *   <li>{@link org.unicase.model.task.impl.WorkPackageImpl#getParticipants <em>Participants</em>}</li>
  *   <li>{@link org.unicase.model.task.impl.WorkPackageImpl#getDueDate <em>Due Date</em>}</li>
+ *   <li>{@link org.unicase.model.task.impl.WorkPackageImpl#getEstimate <em>Estimate</em>}</li>
+ *   <li>{@link org.unicase.model.task.impl.WorkPackageImpl#getEffort <em>Effort</em>}</li>
  *   <li>{@link org.unicase.model.task.impl.WorkPackageImpl#getContainedWorkItems <em>Contained Work Items</em>}</li>
  *   <li>{@link org.unicase.model.task.impl.WorkPackageImpl#getStartDate <em>Start Date</em>}</li>
  *   <li>{@link org.unicase.model.task.impl.WorkPackageImpl#getEndDate <em>End Date</em>}</li>
@@ -113,6 +115,42 @@ public class WorkPackageImpl extends AnnotationImpl implements WorkPackage {
 	 * @ordered
 	 */
 	protected Date dueDate = DUE_DATE_EDEFAULT;
+	/**
+	 * The default value of the '{@link #getEstimate() <em>Estimate</em>}' attribute.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @see #getEstimate()
+	 * @generated
+	 * @ordered
+	 */
+	protected static final int ESTIMATE_EDEFAULT = 0;
+	/**
+	 * The cached value of the '{@link #getEstimate() <em>Estimate</em>}' attribute.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @see #getEstimate()
+	 * @generated
+	 * @ordered
+	 */
+	protected int estimate = ESTIMATE_EDEFAULT;
+	/**
+	 * The default value of the '{@link #getEffort() <em>Effort</em>}' attribute.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @see #getEffort()
+	 * @generated
+	 * @ordered
+	 */
+	protected static final int EFFORT_EDEFAULT = 0;
+	/**
+	 * The cached value of the '{@link #getEffort() <em>Effort</em>}' attribute.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @see #getEffort()
+	 * @generated
+	 * @ordered
+	 */
+	protected int effort = EFFORT_EDEFAULT;
 	/**
 	 * The cached value of the '{@link #getContainedWorkItems() <em>Contained Work Items</em>}' containment reference list.
 	 * <!-- begin-user-doc -->
@@ -457,6 +495,50 @@ public class WorkPackageImpl extends AnnotationImpl implements WorkPackage {
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
+	public int getEstimate() {
+		return estimate;
+	}
+
+	/**
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 */
+	public void setEstimate(int newEstimate) {
+		int oldEstimate = estimate;
+		estimate = newEstimate;
+		if (eNotificationRequired())
+			eNotify(new ENotificationImpl(this, Notification.SET,
+					TaskPackage.WORK_PACKAGE__ESTIMATE, oldEstimate, estimate));
+	}
+
+	/**
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 */
+	public int getEffort() {
+		return effort;
+	}
+
+	/**
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 */
+	public void setEffort(int newEffort) {
+		int oldEffort = effort;
+		effort = newEffort;
+		if (eNotificationRequired())
+			eNotify(new ENotificationImpl(this, Notification.SET,
+					TaskPackage.WORK_PACKAGE__EFFORT, oldEffort, effort));
+	}
+
+	/**
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 */
 	@SuppressWarnings("unchecked")
 	@Override
 	public NotificationChain eInverseAdd(InternalEObject otherEnd,
@@ -559,6 +641,10 @@ public class WorkPackageImpl extends AnnotationImpl implements WorkPackage {
 			return getParticipants();
 		case TaskPackage.WORK_PACKAGE__DUE_DATE:
 			return getDueDate();
+		case TaskPackage.WORK_PACKAGE__ESTIMATE:
+			return new Integer(getEstimate());
+		case TaskPackage.WORK_PACKAGE__EFFORT:
+			return new Integer(getEffort());
 		case TaskPackage.WORK_PACKAGE__CONTAINED_WORK_ITEMS:
 			return getContainedWorkItems();
 		case TaskPackage.WORK_PACKAGE__START_DATE:
@@ -603,6 +689,12 @@ public class WorkPackageImpl extends AnnotationImpl implements WorkPackage {
 		case TaskPackage.WORK_PACKAGE__DUE_DATE:
 			setDueDate((Date) newValue);
 			return;
+		case TaskPackage.WORK_PACKAGE__ESTIMATE:
+			setEstimate(((Integer) newValue).intValue());
+			return;
+		case TaskPackage.WORK_PACKAGE__EFFORT:
+			setEffort(((Integer) newValue).intValue());
+			return;
 		case TaskPackage.WORK_PACKAGE__CONTAINED_WORK_ITEMS:
 			getContainedWorkItems().clear();
 			getContainedWorkItems().addAll(
@@ -646,6 +738,12 @@ public class WorkPackageImpl extends AnnotationImpl implements WorkPackage {
 		case TaskPackage.WORK_PACKAGE__DUE_DATE:
 			setDueDate(DUE_DATE_EDEFAULT);
 			return;
+		case TaskPackage.WORK_PACKAGE__ESTIMATE:
+			setEstimate(ESTIMATE_EDEFAULT);
+			return;
+		case TaskPackage.WORK_PACKAGE__EFFORT:
+			setEffort(EFFORT_EDEFAULT);
+			return;
 		case TaskPackage.WORK_PACKAGE__CONTAINED_WORK_ITEMS:
 			getContainedWorkItems().clear();
 			return;
@@ -682,6 +780,10 @@ public class WorkPackageImpl extends AnnotationImpl implements WorkPackage {
 		case TaskPackage.WORK_PACKAGE__DUE_DATE:
 			return DUE_DATE_EDEFAULT == null ? dueDate != null
 					: !DUE_DATE_EDEFAULT.equals(dueDate);
+		case TaskPackage.WORK_PACKAGE__ESTIMATE:
+			return estimate != ESTIMATE_EDEFAULT;
+		case TaskPackage.WORK_PACKAGE__EFFORT:
+			return effort != EFFORT_EDEFAULT;
 		case TaskPackage.WORK_PACKAGE__CONTAINED_WORK_ITEMS:
 			return containedWorkItems != null && !containedWorkItems.isEmpty();
 		case TaskPackage.WORK_PACKAGE__START_DATE:
@@ -707,6 +809,10 @@ public class WorkPackageImpl extends AnnotationImpl implements WorkPackage {
 		StringBuffer result = new StringBuffer(super.toString());
 		result.append(" (dueDate: ");
 		result.append(dueDate);
+		result.append(", estimate: ");
+		result.append(estimate);
+		result.append(", effort: ");
+		result.append(effort);
 		result.append(", startDate: ");
 		result.append(startDate);
 		result.append(", endDate: ");

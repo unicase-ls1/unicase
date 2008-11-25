@@ -264,20 +264,12 @@ public class TaskPackageImpl extends EPackageImpl implements TaskPackage {
 	}
 
 	/**
-	 * <!-- begin-user-doc --> <!-- end-user-doc -->
-	 * @generated
-	 */
-	public EAttribute getActionItem_Estimate() {
-		return (EAttribute) actionItemEClass.getEStructuralFeatures().get(1);
-	}
-
-	/**
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
 	public EAttribute getActionItem_Activity() {
-		return (EAttribute) actionItemEClass.getEStructuralFeatures().get(2);
+		return (EAttribute) actionItemEClass.getEStructuralFeatures().get(1);
 	}
 
 	/**
@@ -389,6 +381,24 @@ public class TaskPackageImpl extends EPackageImpl implements TaskPackage {
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
+	public EAttribute getWorkItem_Estimate() {
+		return (EAttribute) workItemEClass.getEStructuralFeatures().get(7);
+	}
+
+	/**
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 */
+	public EAttribute getWorkItem_Effort() {
+		return (EAttribute) workItemEClass.getEStructuralFeatures().get(8);
+	}
+
+	/**
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 */
 	public EClass getMilestone() {
 		return milestoneEClass;
 	}
@@ -449,7 +459,6 @@ public class TaskPackageImpl extends EPackageImpl implements TaskPackage {
 		// Create classes and their features
 		actionItemEClass = createEClass(ACTION_ITEM);
 		createEAttribute(actionItemEClass, ACTION_ITEM__DONE);
-		createEAttribute(actionItemEClass, ACTION_ITEM__ESTIMATE);
 		createEAttribute(actionItemEClass, ACTION_ITEM__ACTIVITY);
 
 		workPackageEClass = createEClass(WORK_PACKAGE);
@@ -465,6 +474,8 @@ public class TaskPackageImpl extends EPackageImpl implements TaskPackage {
 		createEReference(workItemEClass, WORK_ITEM__ASSIGNEE);
 		createEReference(workItemEClass, WORK_ITEM__PARTICIPANTS);
 		createEAttribute(workItemEClass, WORK_ITEM__DUE_DATE);
+		createEAttribute(workItemEClass, WORK_ITEM__ESTIMATE);
+		createEAttribute(workItemEClass, WORK_ITEM__EFFORT);
 
 		milestoneEClass = createEClass(MILESTONE);
 
@@ -524,10 +535,6 @@ public class TaskPackageImpl extends EPackageImpl implements TaskPackage {
 				!IS_ABSTRACT, !IS_INTERFACE, IS_GENERATED_INSTANCE_CLASS);
 		initEAttribute(getActionItem_Done(), ecorePackage.getEBoolean(),
 				"done", null, 0, 1, ActionItem.class, !IS_TRANSIENT,
-				!IS_VOLATILE, IS_CHANGEABLE, !IS_UNSETTABLE, !IS_ID, IS_UNIQUE,
-				!IS_DERIVED, IS_ORDERED);
-		initEAttribute(getActionItem_Estimate(), ecorePackage.getEInt(),
-				"estimate", null, 0, 1, ActionItem.class, !IS_TRANSIENT,
 				!IS_VOLATILE, IS_CHANGEABLE, !IS_UNSETTABLE, !IS_ID, IS_UNIQUE,
 				!IS_DERIVED, IS_ORDERED);
 		initEAttribute(getActionItem_Activity(), this.getActivityType(),
@@ -603,6 +610,14 @@ public class TaskPackageImpl extends EPackageImpl implements TaskPackage {
 				"dueDate", null, 0, 1, WorkItem.class, !IS_TRANSIENT,
 				!IS_VOLATILE, IS_CHANGEABLE, !IS_UNSETTABLE, !IS_ID, IS_UNIQUE,
 				!IS_DERIVED, IS_ORDERED);
+		initEAttribute(getWorkItem_Estimate(), ecorePackage.getEInt(),
+				"estimate", null, 0, 1, WorkItem.class, !IS_TRANSIENT,
+				!IS_VOLATILE, IS_CHANGEABLE, !IS_UNSETTABLE, !IS_ID, IS_UNIQUE,
+				!IS_DERIVED, IS_ORDERED);
+		initEAttribute(getWorkItem_Effort(), ecorePackage.getEInt(), "effort",
+				null, 0, 1, WorkItem.class, !IS_TRANSIENT, !IS_VOLATILE,
+				IS_CHANGEABLE, !IS_UNSETTABLE, !IS_ID, IS_UNIQUE, !IS_DERIVED,
+				IS_ORDERED);
 
 		initEClass(milestoneEClass, Milestone.class, "Milestone", !IS_ABSTRACT,
 				!IS_INTERFACE, IS_GENERATED_INSTANCE_CLASS);
@@ -639,8 +654,6 @@ public class TaskPackageImpl extends EPackageImpl implements TaskPackage {
 		String source = "org.unicase.ui.meeditor";
 		addAnnotation(getActionItem_Done(), source, new String[] { "priority",
 				"20.0", "position", "left" });
-		addAnnotation(getActionItem_Estimate(), source, new String[] {
-				"priority", "21.0", "position", "left" });
 		addAnnotation(getActionItem_Activity(), source, new String[] {
 				"priority", "9.5", "position", "left" });
 		addAnnotation(getWorkPackage_ContainedWorkItems(), source,
