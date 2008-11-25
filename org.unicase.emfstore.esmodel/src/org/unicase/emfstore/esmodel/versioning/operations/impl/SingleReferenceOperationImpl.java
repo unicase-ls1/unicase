@@ -6,6 +6,7 @@
  */
 package org.unicase.emfstore.esmodel.versioning.operations.impl;
 
+import java.util.HashSet;
 import java.util.List;
 import java.util.Set;
 
@@ -425,8 +426,16 @@ public class SingleReferenceOperationImpl extends ReferenceOperationImpl
 	 * @see org.unicase.emfstore.esmodel.versioning.operations.ReferenceOperation#getOtherInvolvedModelElements()
 	 */
 	public Set<ModelElementId> getOtherInvolvedModelElements() {
-		// TODO Auto-generated method stub
-		return null;
+		HashSet<ModelElementId> result = new HashSet<ModelElementId>();
+		ModelElementId newValue = getNewValue();
+		if (newValue != null) {
+			result.add(newValue);
+		}
+		ModelElementId oldValue = getOldValue();
+		if (oldValue != null) {
+			result.add(oldValue);
+		}
+		return result;
 	}
 
 } //SingleReferenceOperationImpl
