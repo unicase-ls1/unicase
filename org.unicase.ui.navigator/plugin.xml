@@ -82,6 +82,10 @@
             id="org.unicase.ui.navigator.newCompositeSection"
             name="newCompositeSection">
       </command>
+      <command
+            id="org.unicase.ui.navigator.followupMeeting"
+            name="followupMeeting">
+      </command>
    </extension>
     <!--    -->
    <extension
@@ -132,6 +136,19 @@
                </iterate>
             </visibleWhen>
              </command>
+         <command
+               commandId="org.unicase.ui.navigator.followupMeeting"
+               label="Follow-up meeting..."
+               style="push">
+            <visibleWhen
+                  checkEnabled="false">
+               <iterate>
+                  <instanceof
+                        value="org.unicase.model.meeting.Meeting">
+                  </instanceof>
+               </iterate>
+            </visibleWhen>
+         </command>
       </menuContribution>
       <menuContribution
          locationURI="popup:org.unicase.ui.navigator.viewer?after=org.unicase.ui.common.commands.annotateActionItemSeperator">
@@ -178,6 +195,10 @@
       <handler
             class="org.unicase.ui.navigator.commands.NewCompositeSectionHandler"
             commandId="org.unicase.ui.navigator.newCompositeSection">
+      </handler>
+      <handler
+            class="org.unicase.ui.navigator.commands.FollowupMeetingWizardHandler"
+            commandId="org.unicase.ui.navigator.followupMeeting">
       </handler>
    </extension>
   
