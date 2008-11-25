@@ -49,7 +49,6 @@ public class WorkpackageContentProvider extends
 		super.dispose();
 	}
 
-	private boolean teamFilter;
 	private Backlog backlog;
 
 	/**
@@ -63,12 +62,12 @@ public class WorkpackageContentProvider extends
 		final WorkpackageContentProvider instance = this;
 		final Workspace currentWorkspace = WorkspaceManager.getInstance()
 				.getCurrentWorkspace();
-		ProjectSpace activeProjectSapce = currentWorkspace.getActiveProjectSpace();
-		if(activeProjectSapce != null){
-			activeProjectSapce.getProject()
-				.addProjectChangeObserver(this);
+		ProjectSpace activeProjectSapce = currentWorkspace
+				.getActiveProjectSpace();
+		if (activeProjectSapce != null) {
+			activeProjectSapce.getProject().addProjectChangeObserver(this);
 		}
-		
+
 		currentWorkspace.eAdapters().add(new AdapterImpl() {
 			@Override
 			public void notifyChanged(Notification msg) {
@@ -110,25 +109,8 @@ public class WorkpackageContentProvider extends
 				}
 			}
 
-			if (teamFilter) {
-				filterByTeam(ret);
-			}
-
 		}
 		return ret.toArray();
-	}
-
-	private void filterByTeam(List<EObject> ret) {
-		// JH. Activate after model reviewed
-		// List<WorkPackage> cache = new ArrayList<WorkPackage>();
-		// List<OrgUnit> team = new ArrayList<OrgUnit>();
-		// for(WorkPackage workPackage: ret){
-		// if(team.contains(workPackage.getAssignedto())){
-		// cache.add(workPackage);
-		// }
-		// }
-		//		
-		// ret=cache;
 	}
 
 	/**
@@ -168,17 +150,6 @@ public class WorkpackageContentProvider extends
 			}
 		}
 		return ret;
-	}
-
-	/**
-	 * sets if the workpackages are filtered to the team of the current user.
-	 * 
-	 * @param checked
-	 *            If the filter is turned on
-	 */
-	public void setTeamFilter(boolean checked) {
-		teamFilter = checked;
-		viewer.refresh();
 	}
 
 	/**

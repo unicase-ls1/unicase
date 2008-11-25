@@ -15,6 +15,8 @@ import org.eclipse.core.runtime.FileLocator;
 import org.eclipse.core.runtime.Path;
 import org.eclipse.core.runtime.Platform;
 import org.eclipse.emf.edit.ui.dnd.LocalTransfer;
+import org.eclipse.jface.action.Action;
+import org.eclipse.jface.action.IToolBarManager;
 import org.eclipse.jface.resource.ImageDescriptor;
 import org.eclipse.jface.viewers.TreeSelection;
 import org.eclipse.swt.SWT;
@@ -36,6 +38,7 @@ import org.eclipse.swt.widgets.ProgressBar;
 import org.eclipse.swt.widgets.TabFolder;
 import org.eclipse.swt.widgets.TabItem;
 import org.eclipse.swt.widgets.Widget;
+import org.eclipse.ui.IActionBars;
 import org.eclipse.ui.part.ViewPart;
 import org.unicase.model.ModelElement;
 import org.unicase.model.task.ActionItem;
@@ -43,6 +46,7 @@ import org.unicase.model.task.util.MEState;
 import org.unicase.model.task.util.TaxonomyAccess;
 import org.unicase.ui.common.MEClassLabelProvider;
 import org.unicase.ui.common.commands.ActionHelper;
+import org.unicase.ui.stem.Activator;
 import org.unicase.workspace.WorkspaceManager;
 import org.unicase.workspace.util.EventUtil;
 
@@ -103,6 +107,18 @@ public class StatusView extends ViewPart {
 		createTopComposite(sash);
 		createTabs(sash);
 		sash.setWeights(new int[] { 20, 80 });
+		IActionBars bars = getViewSite().getActionBars();
+		IToolBarManager menuManager = bars.getToolBarManager();
+		Action refresh = new Action() {
+			@Override
+			public void run() {
+				setInput(input);
+			}
+
+		};
+		refresh.setImageDescriptor(Activator
+				.getImageDescriptor("/icons/refresh.png"));
+		menuManager.add(refresh);
 
 	}
 
@@ -379,9 +395,9 @@ public class StatusView extends ViewPart {
 
 		tabFolder.addSelectionListener(new SelectionAdapter() {
 
-		/**
-		 * @author helming
-		 */
+			/**
+			 * @author helming
+			 */
 			@Override
 			public void widgetSelected(SelectionEvent e) {
 				Widget item = e.item;

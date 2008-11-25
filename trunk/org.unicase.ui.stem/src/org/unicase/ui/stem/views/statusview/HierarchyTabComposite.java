@@ -10,13 +10,22 @@ import org.eclipse.jface.viewers.DoubleClickEvent;
 import org.eclipse.jface.viewers.IDoubleClickListener;
 import org.eclipse.jface.viewers.IStructuredSelection;
 import org.eclipse.jface.viewers.TreeViewer;
+import org.eclipse.jface.viewers.TreeViewerColumn;
 import org.eclipse.jface.viewers.ViewerComparator;
 import org.eclipse.swt.SWT;
 import org.eclipse.swt.layout.GridData;
 import org.eclipse.swt.layout.GridLayout;
 import org.eclipse.swt.widgets.Composite;
+import org.eclipse.swt.widgets.Tree;
 import org.unicase.model.ModelElement;
+import org.unicase.ui.common.TreeViewerColumnSorter;
 import org.unicase.ui.common.commands.ActionHelper;
+import org.unicase.ui.stem.views.AssignedToLabelProvider;
+import org.unicase.ui.stem.views.iterationplanningview.AssignedToEditingSupport;
+import org.unicase.ui.stem.views.iterationplanningview.EMFColumnLabelProvider;
+import org.unicase.ui.stem.views.iterationplanningview.TaskObjectEditingSupport;
+import org.unicase.ui.stem.views.iterationplanningview.TaskObjectLabelProvider;
+import org.unicase.ui.tableview.labelprovider.StatusLabelProvider;
 
 /**.
  * 
@@ -63,9 +72,52 @@ public class HierarchyTabComposite extends Composite {
 		//sort contents
 		treeViewer.setComparator(new ViewerComparator());
 		
+		addColumns(treeViewer);
+		
 		hookDoubleClick();
 		
 	}
+
+	private void addColumns(TreeViewer viewer) {
+		Tree tree = viewer.getTree();
+		tree.setHeaderVisible(true);
+
+		// root nodes (WorkPackage) and their contained WorkItems
+		TreeViewerColumn tclmWorkItem = new TreeViewerColumn(viewer, SWT.NONE);
+		tclmWorkItem.getColumn().setText("WorkItem");
+		tclmWorkItem.getColumn().setWidth(400);
+		EMFColumnLabelProvider emfColumnLabelProvider = new EMFColumnLabelProvider();
+		tclmWorkItem.setLabelProvider(emfColumnLabelProvider);
+		new TreeViewerColumnSorter(viewer, tclmWorkItem, emfColumnLabelProvider);
+
+		TreeViewerColumn status = new TreeViewerColumn(viewer, SWT.NONE);
+		status.getColumn().setWidth(20);
+		status.setLabelProvider(new StatusLabelProvider());
+		status.getColumn().setText("State");
+		
+
+		// annotated model element
+		TreeViewerColumn tclmAnnotatedME = new TreeViewerColumn(viewer,
+				SWT.NONE);
+		tclmAnnotatedME.getColumn().setText("Annotated");
+		tclmAnnotatedME.getColumn().setWidth(100);
+		TaskObjectLabelProvider taskObjectLabelProvider = new TaskObjectLabelProvider();
+		tclmAnnotatedME.setLabelProvider(taskObjectLabelProvider);
+		tclmAnnotatedME.setEditingSupport(new TaskObjectEditingSupport(viewer));
+		new TreeViewerColumnSorter(viewer, tclmAnnotatedME,
+				taskObjectLabelProvider);
+
+		// Assignee
+		TreeViewerColumn tclmAssignedTo = new TreeViewerColumn(viewer, SWT.NONE);
+		tclmAssignedTo.getColumn().setText("Assigned to");
+		tclmAssignedTo.getColumn().setWidth(100);
+		AssignedToLabelProvider assignedToLabelProvider = new AssignedToLabelProvider();
+		tclmAssignedTo.setLabelProvider(assignedToLabelProvider);
+		tclmAssignedTo.setEditingSupport(new AssignedToEditingSupport(viewer));
+		new TreeViewerColumnSorter(viewer, tclmAssignedTo,
+				assignedToLabelProvider);		
+	}
+
 
 	//on double-click open the selection
 	private void hookDoubleClick() {
