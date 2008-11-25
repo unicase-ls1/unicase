@@ -41,7 +41,7 @@ public class StatusLabelProvider extends ColumnLabelProvider implements
 				e.printStackTrace();
 			}
 
-			String path = "icons/closed.jpg";
+			String path = "icons/closed.gif";
 			if (status.equals(MEState.OPEN)) {
 				path = "icons/open.gif";
 			}
