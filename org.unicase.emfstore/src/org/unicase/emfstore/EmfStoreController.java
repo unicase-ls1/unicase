@@ -43,6 +43,8 @@ import org.unicase.emfstore.exceptions.EmfStoreException;
 import org.unicase.emfstore.exceptions.FatalEmfStoreException;
 import org.unicase.emfstore.exceptions.StorageException;
 import org.unicase.emfstore.storage.ResourceStorage;
+import org.unicase.emfstore.taskmanager.TaskManager;
+import org.unicase.emfstore.taskmanager.tasks.CleanMemoryTask;
 import org.unicase.emfstore.update.UpdateController;
 
 /**
@@ -98,6 +100,11 @@ public class EmfStoreController implements IApplication {
 		adminEmfStore = new AdminEmfStoreImpl(serverSpace, accessControl);
 
 		connectionHandlers = initConnectionHandlers();
+
+		TaskManager taskManager = TaskManager.getInstance();
+		taskManager.addTask(new CleanMemoryTask(emfStore));
+		taskManager.start();
+		
 
 		logger.info("Initialitation COMPLETE.");
 		logger.info("Server is RUNNING...");
@@ -163,8 +170,8 @@ public class EmfStoreController implements IApplication {
 				break;
 			}
 		}
-		
-		//only happens after initial creation of serverspace
+
+		// only happens after initial creation of serverspace
 		if (versionInformation == null) {
 			versionInformation = EsmodelFactory.eINSTANCE.createVersionInfo();
 			versionInformation.setEmfStoreVersionString(EmfStoreImpl
@@ -366,7 +373,8 @@ public class EmfStoreController implements IApplication {
 			fis.close();
 			logger.info("Property file read.");
 		} catch (IOException e) {
-			logger.warn("Property initialization failed, using default properties.");
+			logger
+					.warn("Property initialization failed, using default properties.");
 		}
 		return properties;
 	}
