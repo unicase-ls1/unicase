@@ -11,26 +11,31 @@ import java.util.List;
 import org.eclipse.jface.action.Action;
 import org.eclipse.jface.action.MenuManager;
 import org.eclipse.jface.action.Separator;
-import org.eclipse.jface.dialogs.IInputValidator;
 import org.eclipse.jface.dialogs.InputDialog;
+import org.eclipse.jface.layout.GridDataFactory;
+import org.eclipse.jface.layout.GridLayoutFactory;
+import org.eclipse.jface.viewers.ISelectionChangedListener;
 import org.eclipse.jface.viewers.IStructuredSelection;
+import org.eclipse.jface.viewers.SelectionChangedEvent;
 import org.eclipse.jface.viewers.TableViewer;
 import org.eclipse.jface.viewers.TableViewerColumn;
 import org.eclipse.swt.SWT;
+import org.eclipse.swt.custom.SashForm;
 import org.eclipse.swt.layout.GridData;
 import org.eclipse.swt.layout.GridLayout;
 import org.eclipse.swt.widgets.Composite;
+import org.eclipse.swt.widgets.Display;
 import org.eclipse.swt.widgets.Label;
 import org.eclipse.swt.widgets.Table;
 import org.eclipse.swt.widgets.TableColumn;
-import org.eclipse.ui.IWorkbenchPage;
-import org.eclipse.ui.PartInitException;
-import org.eclipse.ui.PlatformUI;
+import org.unicase.emfstore.esmodel.versioning.ChangePackage;
 import org.unicase.emfstore.esmodel.versioning.HistoryInfo;
+import org.unicase.emfstore.esmodel.versioning.PrimaryVersionSpec;
 import org.unicase.emfstore.esmodel.versioning.TagVersionSpec;
 import org.unicase.emfstore.esmodel.versioning.VersioningFactory;
-import org.unicase.ui.common.exceptions.DialogHandler;
-import org.unicase.workspace.edit.views.changebrowserview.ChangeBrowserView;
+import org.unicase.emfstore.exceptions.EmfStoreException;
+import org.unicase.workspace.WorkspaceManager;
+import org.unicase.workspace.edit.views.changescomposite.ChangesTreeComposite;
 
 /**
  * . This class provides contents of borwser tab of HistoryBrowserView. It
@@ -43,7 +48,7 @@ import org.unicase.workspace.edit.views.changebrowserview.ChangeBrowserView;
  * @author Hodaie
  * 
  */
-public class HistoryComposite extends Composite {
+public class HistoryComposite extends Composite implements ISelectionChangedListener{
 
 	private TableViewer tableViewer;
 	private HistoryBrowserView parentView;
@@ -51,9 +56,13 @@ public class HistoryComposite extends Composite {
 	private HistoryInfo targetHistoryInfo;
 	private Label lblSourceVersion;
 	private Label lblTargetVersion;
+	private ChangesTreeComposite changesComposite;
+	private SashForm sash;
+	private Composite bottom;
+	private Composite top;
 
 	/**
-	 * . Constructor
+	 * Constructor.
 	 * 
 	 * @param parentView
 	 *            the parent view
@@ -68,8 +77,18 @@ public class HistoryComposite extends Composite {
 		super(parent, style);
 		this.parentView = parentView;
 		this.setLayout(new GridLayout());
+		sash = new SashForm(this,SWT.VERTICAL);
+		GridDataFactory.fillDefaults().align(SWT.FILL, SWT.FILL).grab(true, true).applyTo(this);
+		GridDataFactory.fillDefaults().align(SWT.FILL, SWT.FILL).grab(true, true).applyTo(sash);
+		top = new Composite(sash,SWT.NONE);
+		bottom = new Composite(sash,SWT.NONE);
+		top.setBackground(Display.getCurrent().getSystemColor(SWT.COLOR_BLUE));
+		GridLayoutFactory.fillDefaults().numColumns(1).equalWidth(false).applyTo(top);
+		GridLayoutFactory.fillDefaults().numColumns(1).equalWidth(false).applyTo(bottom);
+		int[] topWeights = {50,50};
+		sash.setWeights(topWeights);
+		
 		createTable();
-
 		tableViewer.setInput(getHistoryInfos());
 		for (TableColumn column : tableViewer.getTable().getColumns()) {
 			column.pack();
@@ -91,9 +110,10 @@ public class HistoryComposite extends Composite {
 	}
 
 	private void createTable() {
-		tableViewer = new TableViewer(this, SWT.FULL_SELECTION);
+		tableViewer = new TableViewer(top, SWT.FULL_SELECTION);
 		tableViewer.getTable().setLayoutData(
 				new GridData(SWT.FILL, SWT.FILL, true, true));
+		tableViewer.addSelectionChangedListener(this);
 
 		Table table = tableViewer.getTable();
 		table.setHeaderVisible(true);
@@ -225,22 +245,7 @@ public class HistoryComposite extends Composite {
 	 */
 	protected void showChangePackages(HistoryInfo info) {
 		// show ChangeBrowserView with version.ChangePackage as input
-
-		IWorkbenchPage page = PlatformUI.getWorkbench()
-				.getActiveWorkbenchWindow().getActivePage();
-		ChangeBrowserView changeBrowserView = null;
-		try {
-			changeBrowserView = (ChangeBrowserView) page
-					.showView("org.unicase.ui.stem.ChangeBrowserView");
-		} catch (PartInitException e) {
-			DialogHandler.showExceptionDialog(e);
-		}
-
-		if (changeBrowserView != null) {
-			// FIXME: OW ZH was muss hier hin?
-			// changeBrowserView.setInput(version.getChanges());
-		}
-
+		// do nothing
 	}
 
 	private List<HistoryInfo> getHistoryInfos() {
@@ -354,6 +359,39 @@ public class HistoryComposite extends Composite {
 	 */
 	public HistoryInfo getTargetHistoryInfo() {
 		return targetHistoryInfo;
+	}
+	
+	/**
+	 * {@inheritDoc}
+	 */
+	public void selectionChanged(SelectionChangedEvent event) {
+		Object selection = ((IStructuredSelection)event.getSelection()).getFirstElement(); 
+		if(selection != null && selection instanceof HistoryInfo){
+			HistoryInfo historyInfo = (HistoryInfo) selection;
+			PrimaryVersionSpec currentVersionSpec = historyInfo.getPrimerySpec();
+			int current = currentVersionSpec.getIdentifier();
+			
+			if(changesComposite!=null && !changesComposite.isDisposed()){
+				changesComposite.dispose();
+			}
+			//skip the initial change package
+			if(current!=0){
+				int prev = current-1;
+				PrimaryVersionSpec prevVersionSpec = VersioningFactory.eINSTANCE.createPrimaryVersionSpec();
+				prevVersionSpec.setIdentifier(prev);
+				List<ChangePackage> changes = null;
+				try {
+					changes = WorkspaceManager.getInstance().getCurrentWorkspace().getActiveProjectSpace().getChanges(prevVersionSpec, currentVersionSpec);
+				} catch (EmfStoreException e) {
+					// TODO Auto-generated catch block
+					e.printStackTrace();
+				}
+				changesComposite = new ChangesTreeComposite(bottom,SWT.NONE,changes);
+				GridDataFactory.fillDefaults().align(SWT.FILL, SWT.FILL).grab(true, true).applyTo(changesComposite);
+				changesComposite.setInput(changes);
+			}
+			bottom.layout(true);
+		}
 	}
 
 }

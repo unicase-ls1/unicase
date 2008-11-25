@@ -27,15 +27,15 @@ import org.eclipse.swt.widgets.Text;
 import org.unicase.emfstore.esmodel.versioning.ChangePackage;
 import org.unicase.workspace.WorkspaceManager;
 import org.unicase.workspace.edit.Activator;
-import org.unicase.workspace.edit.views.ChangesTreeComposite;
+import org.unicase.workspace.edit.views.changescomposite.ChangesTreeComposite;
 
-/**.
- * This class shows a ChangesTreeComposite and a Text control to enter
- * commit message.
+/**
+ * This class shows a ChangesTreeComposite and a Text control to enter commit
+ * message.
  * 
  * @author Hodaie
  * @author Shterev
- *
+ * 
  */
 public class CommitDialog extends TitleAreaDialog {
 
@@ -47,16 +47,17 @@ public class CommitDialog extends TitleAreaDialog {
 	/**
 	 * Constructor.
 	 * 
-	 * @param parentShell shell
-	 * @param changes the {@link ChangePackage} to be displayed
+	 * @param parentShell
+	 *            shell
+	 * @param changes
+	 *            the {@link ChangePackage} to be displayed
 	 */
 	public CommitDialog(Shell parentShell, ChangePackage changes) {
 		super(parentShell);
-		this.setShellStyle(this.getShellStyle() | SWT.RESIZE );
+		this.setShellStyle(this.getShellStyle() | SWT.RESIZE);
 		this.changes = changes;
 	}
 
-	
 	/**
 	 * {@inheritDoc}
 	 */
@@ -65,30 +66,33 @@ public class CommitDialog extends TitleAreaDialog {
 		Composite contents = new Composite(parent, SWT.NONE);
 		contents.setLayoutData(new GridData(SWT.FILL, SWT.FILL, true, true));
 		contents.setLayout(new GridLayout(2, false));
-		
+
 		setTitle("Commit your changes");
 		setMessage("Don't forget the commit message!");
-		setTitleImage(Activator.getImageDescriptor("icons/dontForget.png").createImage());
-		
-		//Log message
+		setTitleImage(Activator.getImageDescriptor("icons/dontForget.png")
+				.createImage());
+
+		// Log message
 		Label lblLogMsg = new Label(contents, SWT.NONE);
 		lblLogMsg.setLayoutData(new GridData(SWT.BEGINNING, SWT.CENTER, false,
 				false, 2, 1));
 		lblLogMsg.setText("Log message:");
-		
+
 		txtLogMsg = new Text(contents, SWT.MULTI | SWT.LEAD | SWT.BORDER);
-		GridDataFactory.fillDefaults().grab(true,false).span(2, 1).
-		align(SWT.FILL, SWT.TOP).hint(1, 150).applyTo(txtLogMsg);
+		GridDataFactory.fillDefaults().grab(true, false).span(2, 1).align(
+				SWT.FILL, SWT.TOP).hint(1, 150).applyTo(txtLogMsg);
 		txtLogMsg.setText("");
-		
-		//previous log messages
-		Label oldLabel = new Label(contents,SWT.NONE);
+
+		// previous log messages
+		Label oldLabel = new Label(contents, SWT.NONE);
 		oldLabel.setText("Previous messages:");
-		final Combo oldMsg = new Combo(contents,SWT.READ_ONLY);
-		GridDataFactory.fillDefaults().align(SWT.FILL, SWT.TOP).grab(true, false).applyTo(oldMsg);
-		oldLogMessages = WorkspaceManager.getInstance().getCurrentWorkspace().getActiveProjectSpace().getOldLogMessages();
+		final Combo oldMsg = new Combo(contents, SWT.READ_ONLY);
+		GridDataFactory.fillDefaults().align(SWT.FILL, SWT.TOP).grab(true,
+				false).applyTo(oldMsg);
+		oldLogMessages = WorkspaceManager.getInstance().getCurrentWorkspace()
+				.getActiveProjectSpace().getOldLogMessages();
 		oldMsg.setItems((String[]) oldLogMessages.toArray());
-		oldMsg.addSelectionListener(new SelectionListener(){
+		oldMsg.addSelectionListener(new SelectionListener() {
 
 			public void widgetDefaultSelected(SelectionEvent e) {
 				// nothing to do here
@@ -97,66 +101,64 @@ public class CommitDialog extends TitleAreaDialog {
 			public void widgetSelected(SelectionEvent e) {
 				txtLogMsg.setText(oldMsg.getItem(oldMsg.getSelectionIndex()));
 			}
-			
+
 		});
-		
-		//ChangesTree	
-		ChangesTreeComposite changesTree = new ChangesTreeComposite(contents,
-				SWT.BORDER);
-		changesTree.setLayoutData(new GridData(SWT.FILL, SWT.FILL, true, true, 2, 1));
+
+		// ChangesTree
 		ArrayList<ChangePackage> changePackages = new ArrayList<ChangePackage>();
 		changePackages.add(changes);
+		ChangesTreeComposite changesTree = new ChangesTreeComposite(contents,
+				SWT.BORDER, changePackages);
+		GridDataFactory.fillDefaults().align(SWT.FILL, SWT.FILL).grab(true,
+				true).span(2, 1).applyTo(changesTree);
 		changesTree.setInput(changePackages);
-		
+
 		return contents;
 
 	}
-	
-	/**.
-	 * {@inheritDoc}
+
+	/**
+	 * . {@inheritDoc}
 	 * 
 	 */
 	@Override
 	protected void configureShell(Shell newShell) {
-		
+
 		super.configureShell(newShell);
 		newShell.setText("Commit");
 		Rectangle area = Display.getCurrent().getClientArea();
-		int width = area.width*2/3;
-		int height = area.height*2/3;
-		newShell.setBounds((area.width-width)/2, (area.height-height)/2, width, height);
+		int width = area.width * 2 / 3;
+		int height = area.height * 2 / 3;
+		newShell.setBounds((area.width - width) / 2,
+				(area.height - height) / 2, width, height);
 	}
 
-
-	/**.
+	/**
 	 * {@inheritDoc}
-	 * 
-	 * 
 	 */
 	@Override
 	protected void okPressed() {
 		logMsg = txtLogMsg.getText();
-		
-		//suppress duplicates
-		if(!oldLogMessages.contains(logMsg)){
+
+		// suppress duplicates
+		if (!oldLogMessages.contains(logMsg)) {
 			oldLogMessages.add(logMsg);
 		}
-		
-		//remove older messages
-		if(oldLogMessages.size()>10){
-			//the list can only grow one element at a time,
+
+		// remove older messages
+		if (oldLogMessages.size() > 10) {
+			// the list can only grow one element at a time,
 			// so only one element should be deleted
 			oldLogMessages.remove(0);
 		}
 		super.okPressed();
 	}
-	
+
 	/**
 	 * @return the log message that has been set by the user.
 	 */
-	public String getLogText(){
-		return logMsg.equals("")?"<Empty log message>":logMsg;
+	public String getLogText() {
+		return logMsg.equals("") ? "<Empty log message>" : logMsg;
 	}
-	
-}
 
+}

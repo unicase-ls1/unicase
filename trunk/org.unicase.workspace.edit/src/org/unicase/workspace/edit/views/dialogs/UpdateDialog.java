@@ -18,73 +18,76 @@ import org.eclipse.swt.widgets.Control;
 import org.eclipse.swt.widgets.Display;
 import org.eclipse.swt.widgets.Shell;
 import org.unicase.emfstore.esmodel.versioning.ChangePackage;
-import org.unicase.workspace.edit.views.ChangesTreeComposite;
+import org.unicase.workspace.edit.views.changescomposite.ChangesTreeComposite;
 
-/**.
- * This is the update dialog. It shows just a ChangesTreeComposite
+/**
+ * . This is the update dialog. It shows just a ChangesTreeComposite
+ * 
  * @author Hodaie
- *
+ * 
  */
 
 public class UpdateDialog extends TitleAreaDialog {
 
 	private List<ChangePackage> changes;
 
-
-	/**.
-	 * Constructor.
-	 * @param parentShell the parent shell
-	 * @param changes the list of changes
+	/**
+	 * . Constructor.
+	 * 
+	 * @param parentShell
+	 *            the parent shell
+	 * @param changes
+	 *            the list of changes
 	 */
 	public UpdateDialog(Shell parentShell, List<ChangePackage> changes) {
 		super(parentShell);
-		this.setShellStyle(this.getShellStyle() | SWT.RESIZE );
+		this.setShellStyle(this.getShellStyle() | SWT.RESIZE);
 		this.changes = changes;
 	}
 
-	
-
-	/**.
-	 * {@inheritDoc}
+	/**
+	 * . {@inheritDoc}
 	 */
 	@Override
 	protected Control createDialogArea(Composite parent) {
 		Composite contents = new Composite(parent, SWT.NONE);
 		contents.setLayoutData(new GridData(SWT.FILL, SWT.FILL, true, true));
 		contents.setLayout(new GridLayout(2, false));
-			
-		//changes tree
-		ChangesTreeComposite changesTree = new ChangesTreeComposite(contents,
-				SWT.BORDER);
-		changesTree.setLayoutData(new GridData(SWT.FILL, SWT.FILL, true, true, 2, 1));
 
-		if(changes!=null){
+		// changes tree
+		ChangesTreeComposite changesTree = new ChangesTreeComposite(contents,
+				SWT.BORDER, changes);
+		changesTree.setLayoutData(new GridData(SWT.FILL, SWT.FILL, true, true,
+				2, 1));
+
+		if (changes != null) {
 			changesTree.setInput(changes);
 		}
-		
-		//show number of changes on dialog title
+
+		// show number of changes on dialog title
 		setTitle("Changes from repository");
-		setMessage(changesTree.getNumOfChanges() + " changes will be merged in your project.");
+		setMessage(changesTree.getNumOfChanges()
+				+ " changes will be merged in your project.");
 		return contents;
-		
+
 	}
-	
-	/**.
-	 * {@inheritDoc}
+
+	/**
+	 * . {@inheritDoc}
 	 */
 	@Override
 	protected void configureShell(Shell newShell) {
 		super.configureShell(newShell);
 		newShell.setText("Update");
 		Rectangle area = Display.getCurrent().getClientArea();
-		int width = area.width*2/3;
-		int height = area.height*2/3;
-		newShell.setBounds((area.width-width)/2, (area.height-height)/2, width, height);
+		int width = area.width * 2 / 3;
+		int height = area.height * 2 / 3;
+		newShell.setBounds((area.width - width) / 2,
+				(area.height - height) / 2, width, height);
 	}
-	
-	
-	/**.
-	 * {@inheritDoc}
+
+	/**
+	 * . {@inheritDoc}
 	 * 
 	 */
 	@Override
@@ -94,4 +97,3 @@ public class UpdateDialog extends TitleAreaDialog {
 	}
 
 }
-

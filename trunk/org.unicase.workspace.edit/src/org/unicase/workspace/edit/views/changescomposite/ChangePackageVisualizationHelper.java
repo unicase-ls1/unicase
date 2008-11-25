@@ -1,4 +1,4 @@
-package org.unicase.workspace.edit.views;
+package org.unicase.workspace.edit.views.changescomposite;
 
 import java.util.HashMap;
 import java.util.HashSet;
@@ -7,6 +7,7 @@ import java.util.Map;
 import java.util.Set;
 
 import org.eclipse.emf.common.util.EList;
+import org.eclipse.emf.ecore.EObject;
 import org.eclipse.jface.resource.ImageDescriptor;
 import org.eclipse.jface.viewers.ILabelProvider;
 import org.eclipse.swt.graphics.Image;
@@ -18,6 +19,7 @@ import org.unicase.emfstore.esmodel.versioning.operations.CreateDeleteOperation;
 import org.unicase.emfstore.esmodel.versioning.operations.MultiAttributeOperation;
 import org.unicase.emfstore.esmodel.versioning.operations.MultiReferenceMoveOperation;
 import org.unicase.emfstore.esmodel.versioning.operations.MultiReferenceOperation;
+import org.unicase.emfstore.esmodel.versioning.operations.ReferenceOperation;
 import org.unicase.emfstore.esmodel.versioning.operations.SingleReferenceOperation;
 import org.unicase.model.ModelElement;
 import org.unicase.model.ModelElementId;
@@ -26,6 +28,7 @@ import org.unicase.model.Project;
 /**
  * A helper class for the visualization of change packages.
  * @author koegel
+ * @author shterev
  *
  */
 public class ChangePackageVisualizationHelper {
@@ -33,6 +36,7 @@ public class ChangePackageVisualizationHelper {
 	private Project project;
 	private Map<ModelElementId, ModelElement> modelElementMap;
 	private Map<ChangePackage,Set<ModelElementId>> touchedModelElements;
+	private List<ChangePackage> changePackages;
 	
 	/**
 	 * Constructor.
@@ -45,6 +49,7 @@ public class ChangePackageVisualizationHelper {
 		for (ChangePackage changePackage : changePackages) {
 			initModelELementMap(changePackage);
 		}
+		this.changePackages = changePackages;
 		this.project=project;
 	}
 	
@@ -108,26 +113,14 @@ public class ChangePackageVisualizationHelper {
 	 * @param operation the operation
 	 * @return a set of model elements
 	 */
-	public Set<ModelElement> getAffectedElements(AbstractOperation operation){
-		Set<ModelElement> set = new HashSet<ModelElement>();
-		if (operation instanceof SingleReferenceOperation) {
-			SingleReferenceOperation op = (SingleReferenceOperation) operation;
-			if (op.getNewValue() != null) {
-				set.add(getModelElement(op.getNewValue()));
-			}
-			if (op.getOldValue() != null) {
-				set.add(getModelElement(op.getOldValue()));
-			}
-		}
-		if (operation instanceof MultiReferenceOperation) {
-			MultiReferenceOperation op = (MultiReferenceOperation) operation;
-			for (ModelElementId id : op.getReferencedModelElements()) {
+	public Set<EObject> getAffectedElements(AbstractOperation operation){
+		Set<EObject> set = new HashSet<EObject>();
+		if (operation instanceof ReferenceOperation) {
+			ReferenceOperation op = (ReferenceOperation) operation;
+			Set<ModelElementId> others = op.getOtherInvolvedModelElements();
+			for(ModelElementId id : others){
 				set.add(getModelElement(id));
 			}
-		}
-		if (operation instanceof MultiReferenceMoveOperation){
-			MultiReferenceMoveOperation op = (MultiReferenceMoveOperation) operation;
-			set.add(getModelElement(op.getReferencedModelElementId()));
 		}
 		return set;
 	}
@@ -219,11 +212,34 @@ public class ChangePackageVisualizationHelper {
 	 * @param changePackage the change package
 	 * @return a set of touched model elements
 	 */
-	public Set<ModelElement> getAllModelElements(ChangePackage changePackage) {
-		Set<ModelElement> set = new HashSet<ModelElement>();
+	public Set<EObject> getAllModelElements(ChangePackage changePackage) {
+		Set<EObject> set = new HashSet<EObject>();
 		Set<ModelElementId> tempSet = this.touchedModelElements.get(changePackage);
 		for(ModelElementId id: tempSet){
 			set.add(getModelElement(id));
+		}
+		return set;
+	}
+
+	/**
+	 * Get all operations for this ModelElement in the current list of ChangePackages.
+	 * @param me the ModelElement
+	 * @return the operations
+	 */
+	public Set<EObject> getOperations(ModelElement me){
+		Set<EObject> set = new HashSet<EObject>();
+		for(ChangePackage cp : changePackages){
+			for(AbstractOperation op : cp.getOperations()){
+				if(op.getModelElementId().equals(me.getModelElementId())){
+					set.add(op);
+				}else if (op instanceof ReferenceOperation) {
+					ReferenceOperation rop = (ReferenceOperation) op;
+					Set<ModelElementId> others = rop.getOtherInvolvedModelElements();
+					if(others.contains(me.getModelElementId())){
+						set.add(rop);
+					}
+				}
+			}
 		}
 		return set;
 	}
