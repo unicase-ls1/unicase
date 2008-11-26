@@ -13,6 +13,8 @@ import org.eclipse.jface.dialogs.TitleAreaDialog;
 import org.eclipse.jface.layout.GridLayoutFactory;
 import org.eclipse.jface.layout.LayoutConstants;
 import org.eclipse.swt.SWT;
+import org.eclipse.swt.events.ModifyEvent;
+import org.eclipse.swt.events.ModifyListener;
 import org.eclipse.swt.events.SelectionEvent;
 import org.eclipse.swt.events.SelectionListener;
 import org.eclipse.swt.graphics.Point;
@@ -58,6 +60,7 @@ public class LoginDialog extends TitleAreaDialog implements SelectionListener {
 	private Composite contents;
 	private ServerInfo server;
 	private String exception;
+	private boolean canFinish;
 
 	/**
 	 * Default constructor.
@@ -107,7 +110,7 @@ public class LoginDialog extends TitleAreaDialog implements SelectionListener {
 		sessionsCombo = new Combo(contents, SWT.READ_ONLY);
 		sessionsCombo.add("<new session>");
 		for (Usersession tempSession : sessionsList) {
-			sessionsCombo.add(tempSession.getUsername());
+			sessionsCombo.add(tempSession.getUsername()+"@"+tempSession.getServerInfo().getName());
 		}
 		sessionsCombo.addSelectionListener(this);
 
@@ -116,6 +119,22 @@ public class LoginDialog extends TitleAreaDialog implements SelectionListener {
 		user.setText("Username:");
 		username = new Text(contents, SWT.SINGLE | SWT.BORDER);
 		username.setSize(150, 20);
+		username.addModifyListener(new ModifyListener(){
+
+			public void modifyText(ModifyEvent e) {
+				//TODO AS: Add a proper input validation
+				for(Usersession u : sessionsList){
+					if(username.getText().equals(u.getUsername())){
+						setErrorMessage("Duplicate username!");
+						canFinish = false;
+						return;
+					}
+				}
+				setErrorMessage(null);
+				canFinish = true;
+			}
+			
+		});
 
 		Label pass = new Label(contents, SWT.NULL);
 		pass.setText("Password:");
@@ -148,6 +167,9 @@ public class LoginDialog extends TitleAreaDialog implements SelectionListener {
 	 */
 	@Override
 	public void okPressed() {
+		if(!canFinish){
+			return;
+		}
 		if (session==null) {
 			session = WorkspaceFactory.eINSTANCE.createUsersession();
 			session.setServerInfo(server);

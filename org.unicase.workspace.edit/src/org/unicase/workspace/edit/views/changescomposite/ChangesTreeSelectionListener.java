@@ -10,7 +10,9 @@ import java.util.Set;
 
 import org.eclipse.emf.ecore.EObject;
 import org.eclipse.jface.layout.GridDataFactory;
+import org.eclipse.jface.viewers.CellLabelProvider;
 import org.eclipse.jface.viewers.ColumnLabelProvider;
+import org.eclipse.jface.viewers.ColumnViewerToolTipSupport;
 import org.eclipse.jface.viewers.ILabelProvider;
 import org.eclipse.jface.viewers.ISelectionChangedListener;
 import org.eclipse.jface.viewers.SelectionChangedEvent;
@@ -29,24 +31,30 @@ import org.unicase.model.ModelElement;
 /**
  * 
  * @author Shterev
- *
+ * 
  */
-public class ChangesTreeSelectionListener implements
-		ISelectionChangedListener {
+public class ChangesTreeSelectionListener implements ISelectionChangedListener {
 	private ILabelProvider emfProvider;
 	private Composite affectedTableComposite;
 	private TableViewer affectedTable;
 	private Composite parent;
 	private ChangePackageVisualizationHelper visualizationHelper;
-	
+	private TableViewerColumn affectedTableColumn;
+
 	/**
 	 * Default constructor.
-	 * @param treeViewer the treeviewer notifier. 
-	 * @param emfProvider the emfprovider for the visualization of the affected elements table.
-	 * @param visualizationHelper the visualizationHelper for collecting the affected elements.
+	 * 
+	 * @param treeViewer
+	 *            the treeviewer notifier.
+	 * @param emfProvider
+	 *            the emfprovider for the visualization of the affected elements
+	 *            table.
+	 * @param visualizationHelper
+	 *            the visualizationHelper for collecting the affected elements.
 	 */
 	public ChangesTreeSelectionListener(TreeViewer treeViewer,
-			ILabelProvider emfProvider, ChangePackageVisualizationHelper visualizationHelper) {
+			ILabelProvider emfProvider,
+			ChangePackageVisualizationHelper visualizationHelper) {
 		this.emfProvider = emfProvider;
 		this.visualizationHelper = visualizationHelper;
 		parent = treeViewer.getControl().getParent();
@@ -58,55 +66,12 @@ public class ChangesTreeSelectionListener implements
 	public void selectionChanged(SelectionChangedEvent event) {
 		Object selected = ((TreeSelection) event.getSelection())
 				.getFirstElement();
-		if (affectedTable != null
-				&& !affectedTable.getTable().isDisposed()) {
+		if (affectedTable != null && !affectedTable.getTable().isDisposed()) {
 			affectedTable.getTable().dispose();
 			affectedTableComposite.dispose();
 		}
 
-		if (selected instanceof AbstractOperation) {
-			AbstractOperation operation = (AbstractOperation) selected;
-			Set<EObject> affectedList = visualizationHelper
-					.getAffectedElements(operation);
-			if (affectedList.size() > 0) {
-				createAffectedElementsTable(parent,emfProvider, affectedList);
-			}
-		} else if (selected instanceof ChangePackage) {
-			ChangePackage cPackage = (ChangePackage) selected;
-			Set<EObject> affectedList = visualizationHelper
-					.getAllModelElements(cPackage);
-			if (affectedList.size() > 0) {
-				createAffectedElementsTable(parent, emfProvider, affectedList);
-			}
-		} else if (selected instanceof ModelElement) {
-			ModelElement me = (ModelElement) selected;
-			Set<EObject> affectedList = visualizationHelper
-					.getOperations(me);
-			if (affectedList.size() > 0) {
-				createAffectedElementsTable(parent, emfProvider, affectedList);
-			}
-		}
-		parent.layout(true);
-	}
-	
-	private void createAffectedElementsTable(Composite parent, final ILabelProvider emfProvider,
-			Set<EObject> affected) {
-		affectedTableComposite = new Composite(parent, SWT.NO_BACKGROUND);
-		GridDataFactory.fillDefaults().hint(200, 100).grab(false, true)
-				.applyTo(affectedTableComposite);
-		affectedTableComposite.setLayout(new GridLayout());
-		affectedTable = new TableViewer(affectedTableComposite, SWT.SINGLE);
-		affectedTable.getTable().setHeaderVisible(true);
-		GridDataFactory.fillDefaults().grab(true, true).applyTo(
-				affectedTable.getTable());
-		TableViewerColumn theList = new TableViewerColumn(affectedTable,
-				SWT.LEFT);
-		theList.getColumn().setText("Affected Model Elements");
-		theList.getColumn().setWidth(170);
-		theList.getColumn().setResizable(false);
-		affectedTableComposite.layout(true);
-
-		theList.setLabelProvider(new ColumnLabelProvider() {
+		ColumnLabelProvider columnLabelProvider = new ColumnLabelProvider() {
 			@Override
 			public Image getImage(Object element) {
 				return emfProvider.getImage(element);
@@ -116,7 +81,58 @@ public class ChangesTreeSelectionListener implements
 			public String getText(Object element) {
 				return emfProvider.getText(element);
 			}
-		});
+		};
+		if (selected instanceof AbstractOperation) {
+			AbstractOperation operation = (AbstractOperation) selected;
+			Set<EObject> affectedList = visualizationHelper
+					.getAffectedElements(operation);
+			if (affectedList.size() > 0) {
+				createAffectedElementsTable(parent, columnLabelProvider,
+						affectedList, "Affected Model Elements");
+			}
+		} else if (selected instanceof ChangePackage) {
+			ChangePackage cPackage = (ChangePackage) selected;
+			Set<EObject> affectedList = visualizationHelper
+					.getAllModelElements(cPackage);
+			if (affectedList.size() > 0) {
+				createAffectedElementsTable(parent, columnLabelProvider,
+						affectedList, "Included Model Elements");
+			}
+		} else if (selected instanceof ModelElement) {
+			ModelElement me = (ModelElement) selected;
+			Set<EObject> affectedList = visualizationHelper.getOperations(me);
+			if (affectedList.size() > 0) {
+				createAffectedElementsTable(parent, new OperationsDescLabelProvider(
+						emfProvider, visualizationHelper), affectedList,
+						"Related Operations");
+				GridDataFactory.fillDefaults().hint(400, 100).grab(false, true)
+						.applyTo(affectedTableComposite);
+				affectedTableColumn.getColumn().setWidth(370);
+				
+			}
+		}
+		parent.layout(true);
+	}
+
+	private void createAffectedElementsTable(Composite parent,
+			CellLabelProvider labelProvider, Set<EObject> affected, String title) {
+		affectedTableComposite = new Composite(parent, SWT.NONE);
+		GridDataFactory.fillDefaults().hint(200, 100).grab(false, true)
+				.applyTo(affectedTableComposite);
+		affectedTableComposite.setLayout(new GridLayout());
+		affectedTable = new TableViewer(affectedTableComposite, SWT.SINGLE);
+		ColumnViewerToolTipSupport.enableFor(affectedTable);
+		affectedTable.getTable().setHeaderVisible(true);
+		GridDataFactory.fillDefaults().grab(true, true).applyTo(
+				affectedTable.getTable());
+		affectedTableColumn = new TableViewerColumn(affectedTable,
+				SWT.LEFT);
+		affectedTableColumn.getColumn().setText(title);
+		affectedTableColumn.getColumn().setWidth(170);
+		affectedTableColumn.getColumn().setResizable(false);
+		affectedTableComposite.layout(true);
+
+		affectedTableColumn.setLabelProvider(labelProvider);
 		affectedTable.setContentProvider(new ChangesTreeAffectedProvider(
 				affected));
 		affectedTable.setInput(new Object());

@@ -6,15 +6,11 @@
  */
 package org.unicase.workspace.edit.views.changescomposite;
 
-import java.text.SimpleDateFormat;
-
 import org.eclipse.jface.resource.ImageDescriptor;
 import org.eclipse.jface.viewers.ColumnLabelProvider;
 import org.eclipse.jface.viewers.ILabelProvider;
 import org.eclipse.jface.viewers.ViewerCell;
 import org.eclipse.swt.graphics.Image;
-import org.unicase.emfstore.esmodel.versioning.ChangePackage;
-import org.unicase.emfstore.esmodel.versioning.LogMessage;
 import org.unicase.emfstore.esmodel.versioning.operations.AbstractOperation;
 import org.unicase.ui.common.decorators.OverlayImageDescriptor;
 
@@ -24,7 +20,7 @@ import org.unicase.ui.common.decorators.OverlayImageDescriptor;
  * @author Shterev
  * 
  */
-public class OperationsLabelProvider extends
+public class OperationsDescLabelProvider extends
 		ColumnLabelProvider {
 	private final ILabelProvider emfProvider;
 	private ChangePackageVisualizationHelper visualizationHelper;
@@ -34,7 +30,7 @@ public class OperationsLabelProvider extends
 	 * @param emfProvider the default label provider.
 	 * @param visualizationHelper the visualizationHelper
 	 */
-	public OperationsLabelProvider(ILabelProvider emfProvider, ChangePackageVisualizationHelper visualizationHelper) {
+	public OperationsDescLabelProvider(ILabelProvider emfProvider, ChangePackageVisualizationHelper visualizationHelper) {
 		this.emfProvider = emfProvider;
 		this.visualizationHelper = visualizationHelper;
 	}
@@ -47,7 +43,7 @@ public class OperationsLabelProvider extends
 		Object element = cell.getElement();
 		if (element instanceof AbstractOperation) {
 			AbstractOperation op = (AbstractOperation) element;
-			cell.setText(op.getName());
+			cell.setText(op.getDescription());
 			Image image = visualizationHelper.getImage(emfProvider, op);
 			ImageDescriptor overlay = visualizationHelper
 					.getOverlayImage(op);
@@ -56,28 +52,11 @@ public class OperationsLabelProvider extends
 						image, overlay, OverlayImageDescriptor.LOWER_RIGHT);
 				cell.setImage(imageDescriptor.createImage());
 			}
-		} else if (element instanceof ChangePackage) {
-			ChangePackage cPackage = (ChangePackage) element;
-			LogMessage logMessage = cPackage.getLogMessage();
-			if(logMessage!=null){
-				StringBuffer log = new StringBuffer();
-				log.append("[");
-				log.append(logMessage.getAuthor());
-				log.append("@");
-				SimpleDateFormat format = new SimpleDateFormat("yyyy-MM-dd HH:mm");
-				log.append(format.format(logMessage.getDate()));
-				log.append("]");
-				log.append(" \'");
-				log.append(logMessage.getMessage());
-				log.append("\' ");
-				cell.setText(log.toString());
-			}else{
-				cell.setText(""); //No log message in case of commit change tree
-			}
+		}else{
+				cell.setText("");
 		}
-
 	}
-
+	
 	/**
 	 * {@inheritDoc}
 	 */
