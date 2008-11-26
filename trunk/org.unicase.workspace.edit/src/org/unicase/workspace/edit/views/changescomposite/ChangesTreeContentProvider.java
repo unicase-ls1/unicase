@@ -6,13 +6,17 @@
  */
 package org.unicase.workspace.edit.views.changescomposite;
 
+import java.util.ArrayList;
+import java.util.Arrays;
 import java.util.List;
 
+import org.eclipse.emf.ecore.EObject;
 import org.eclipse.emf.edit.provider.ComposedAdapterFactory;
 import org.eclipse.emf.edit.ui.provider.AdapterFactoryContentProvider;
 import org.eclipse.jface.viewers.IContentProvider;
 import org.unicase.emfstore.esmodel.versioning.ChangePackage;
 import org.unicase.emfstore.esmodel.versioning.operations.CompositeOperation;
+import org.unicase.workspace.WorkspaceManager;
 
 /**
  * This is the content provider for TreeViewer on ChangesTreeComposite.
@@ -63,6 +67,7 @@ public class ChangesTreeContentProvider extends AdapterFactoryContentProvider
 	 */
 	@Override
 	public Object[] getChildren(Object object) {
+		ArrayList<EObject> ret = new ArrayList<EObject>();
 		if (object instanceof ChangePackage && context==DETAILED){
 			ChangePackage cPackage = (ChangePackage)object;
 			return cPackage.getOperations().toArray();
@@ -71,12 +76,14 @@ public class ChangesTreeContentProvider extends AdapterFactoryContentProvider
 			return ((CompositeOperation) object)
 					.getSubOperations().toArray();
 		}
-//TODO AS: implement
-//		if (object instanceof ChangePackage && context==COMPACT){
-//			ChangePackage cPackage = (ChangePackage)object;
-//			ChangePackageVisualizationHelper helper = new ChangePackageVisualizationHelper(Arrays.asList(cPackage), null);
-//			return helper.getAllModelElements(cPackage).toArray();
-//		}
+		if (object instanceof ChangePackage && context==COMPACT){
+			ChangePackage cPackage = (ChangePackage)object;
+			ChangePackageVisualizationHelper helper = new ChangePackageVisualizationHelper(Arrays.asList(cPackage), WorkspaceManager.getInstance()
+					.getCurrentWorkspace().getActiveProjectSpace()
+					.getProject());
+			ret.addAll(helper.getAllModelElements(cPackage));
+			return ret.toArray();
+		}
 		return super.getChildren(object);
 
 	}
@@ -90,9 +97,8 @@ public class ChangesTreeContentProvider extends AdapterFactoryContentProvider
 		if (object instanceof CompositeOperation
 				|| object instanceof ChangePackage) {
 			return true;
-		} else {
-			return super.hasChildren(object);
-		}
+		} 
+		return false;
 	}
 
 }

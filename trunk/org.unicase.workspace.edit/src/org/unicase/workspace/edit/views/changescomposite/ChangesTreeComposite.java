@@ -13,11 +13,9 @@ import org.eclipse.emf.edit.provider.ComposedAdapterFactory;
 import org.eclipse.emf.edit.ui.provider.AdapterFactoryLabelProvider;
 import org.eclipse.jface.layout.GridDataFactory;
 import org.eclipse.jface.layout.GridLayoutFactory;
-import org.eclipse.jface.viewers.ColumnLabelProvider;
 import org.eclipse.jface.viewers.ColumnViewerToolTipSupport;
 import org.eclipse.jface.viewers.TreeViewer;
 import org.eclipse.jface.viewers.TreeViewerColumn;
-import org.eclipse.jface.viewers.ViewerCell;
 import org.eclipse.swt.SWT;
 import org.eclipse.swt.events.SelectionEvent;
 import org.eclipse.swt.events.SelectionListener;
@@ -28,8 +26,6 @@ import org.eclipse.swt.widgets.TabFolder;
 import org.eclipse.swt.widgets.TabItem;
 import org.eclipse.swt.widgets.Tree;
 import org.unicase.emfstore.esmodel.versioning.ChangePackage;
-import org.unicase.emfstore.esmodel.versioning.operations.AbstractOperation;
-import org.unicase.model.ModelElement;
 import org.unicase.workspace.WorkspaceManager;
 
 /**
@@ -80,9 +76,9 @@ public class ChangesTreeComposite extends Composite {
 						.getProject());
 		tabTreeMap = new HashMap<TabItem, TreeViewer>();
 
-		createOperationsTab(style);
+		createModelElementTab(style);
 
-//		createModelElementTab(style);
+		createOperationsTab(style);
 
 		folder.addSelectionListener(new SelectionListener() {
 
@@ -112,14 +108,12 @@ public class ChangesTreeComposite extends Composite {
 		tclmOp = new TreeViewerColumn(opTree, SWT.NONE);
 		tclmOp.getColumn().setText("Operation");
 		tclmOp.getColumn().setWidth(getShell().getSize().x / 2);
-		tclmOp.setLabelProvider(new OperationsLabelProvider(
+		tclmOp.setLabelProvider(new OperationsNameLabelProvider(
 				emfLabelProvider, visualizationHelper));
 		tabTreeMap.put(opTab, opTree);
 		activeTreeViewer = opTree;
 	}
 	
-	// TODO AS: implement
-	@SuppressWarnings("unused")
 	private void createModelElementTab(int style) {
 		Composite meComposite = new Composite(folder, style);
 		GridLayoutFactory.fillDefaults().numColumns(2).equalWidth(false)
@@ -169,28 +163,9 @@ public class ChangesTreeComposite extends Composite {
 
 		// the changed model element
 		TreeViewerColumn tclmME = new TreeViewerColumn(treeViewer, SWT.NONE);
-		tclmME.getColumn().setWidth(250);
+		tclmME.getColumn().setWidth(300);
 		tclmME.getColumn().setText("ModelElement");
-		tclmME.setLabelProvider(new ColumnLabelProvider() {
-			@Override
-			public void update(ViewerCell cell) {
-				Object element = cell.getElement();
-				if (element instanceof AbstractOperation) {
-					AbstractOperation operation = (AbstractOperation) element;
-					ModelElement me = visualizationHelper
-							.getModelElement(operation.getModelElementId());
-					// hack for missing model elements
-					if (me != null) {
-						cell.setText(me.getName());
-						cell.setImage(emfLabelProvider.getImage(me));
-					} else {
-						cell.setText("(Missing Element)");
-					}
-				} else {
-					cell.setText("Change Package");
-				}
-			}
-		});
+		tclmME.setLabelProvider(new ChangesTreeLabelProvider(emfLabelProvider,visualizationHelper));
 
 		ColumnViewerToolTipSupport.enableFor(treeViewer);
 
