@@ -21,39 +21,68 @@ import org.unicase.workspace.ProjectSpace;
  * 
  */
 public class RevertHandler extends ProjectActionHandler {
-
 	/**
-	 * {@inheritDoc}
+	 * Command to revert a project.
+	 * 
+	 * @author helming
+	 * 
 	 */
-	public Object execute(final ExecutionEvent event) throws ExecutionException {
-		final ProjectSpace projectSpace;
-		projectSpace = getProjectSpace(event);
-		
-		if (projectSpace==null) {
-			DialogHandler.showErrorDialog("No Project selected.");
+	private final class RevertCommand extends RecordingCommand {
+		private final ProgressMonitorDialog progressDialog;
+		private final ProjectSpace projectSpace;
+
+		private RevertCommand(TransactionalEditingDomain domain,
+				ProgressMonitorDialog progressDialog, ProjectSpace projectSpace) {
+			super(domain);
+			this.progressDialog = progressDialog;
+			this.projectSpace = projectSpace;
 		}
-		TransactionalEditingDomain domain = TransactionalEditingDomain.Registry.INSTANCE
-				.getEditingDomain("org.unicase.EditingDomain");
-		final ProgressMonitorDialog progressDialog = new ProgressMonitorDialog(PlatformUI.getWorkbench()
-			       .getActiveWorkbenchWindow().getShell());
-		domain.getCommandStack().execute(new RecordingCommand(domain) {
-			@Override
-			protected void doExecute() {
-				
+
+		@Override
+		protected void doExecute() {
+			try {
 				MessageDialog dialog = new MessageDialog(null, "Confirmation",
-						null, "Do you really want to revert all your changes on project " + projectSpace.getProjectName(),
+						null,
+						"Do you really want to revert all your changes on project "
+								+ projectSpace.getProjectName(),
 						MessageDialog.QUESTION, new String[] { "Yes", "No" }, 0);
 				int result = dialog.open();
 				if (result == 0) {
 					progressDialog.open();
-					progressDialog.getProgressMonitor().beginTask("Revert project...", 100);
+					progressDialog.getProgressMonitor().beginTask(
+							"Revert project...", 100);
 					progressDialog.getProgressMonitor().worked(10);
 					projectSpace.revert();
 					progressDialog.getProgressMonitor().done();
 					progressDialog.close();
 				}
+			} finally {
+				progressDialog.getProgressMonitor().done();
+				progressDialog.close();
 			}
-		});
+
+		}
+	}
+
+	/**
+	 * {@inheritDoc}
+	 */
+	public Object execute(final ExecutionEvent event) throws ExecutionException {
+
+		final ProjectSpace projectSpace;
+		projectSpace = getProjectSpace(event);
+
+		if (projectSpace == null) {
+			DialogHandler.showErrorDialog("No Project selected.");
+		}
+		TransactionalEditingDomain domain = TransactionalEditingDomain.Registry.INSTANCE
+				.getEditingDomain("org.unicase.EditingDomain");
+		final ProgressMonitorDialog progressDialog = new ProgressMonitorDialog(
+				PlatformUI.getWorkbench().getActiveWorkbenchWindow().getShell());
+		domain.getCommandStack().execute(
+				new RevertCommand(domain, progressDialog, projectSpace));
+
+		MessageDialog.openInformation(null, "Revert", "Reverted project ");
 		return null;
 	}
 }
