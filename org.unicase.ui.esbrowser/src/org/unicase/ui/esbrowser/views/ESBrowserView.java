@@ -189,9 +189,8 @@ public class ESBrowserView extends ViewPart {
 						progressDialog.getProgressMonitor().beginTask(
 								"Checkout project...", 100);
 						progressDialog.getProgressMonitor().worked(10);
-						ProjectSpace projectSpace = contentProvider
-								.getProjectServerMap().get(element)
-								.getLastUsersession().checkout(element);
+						ProjectSpace projectSpace = contentProvider.getProjectServerMap()
+							.get(element).getLastUsersession().checkout(element);
 						WorkspaceUtil.logCheckout(projectSpace, projectSpace
 								.getBaseVersion());
 					} catch (EmfStoreException e) {
