@@ -14,6 +14,7 @@ import org.eclipse.core.commands.ExecutionException;
 import org.eclipse.emf.transaction.RecordingCommand;
 import org.eclipse.emf.transaction.TransactionalEditingDomain;
 import org.eclipse.jface.dialogs.MessageDialog;
+import org.eclipse.jface.dialogs.ProgressMonitorDialog;
 import org.eclipse.swt.SWT;
 import org.eclipse.swt.widgets.FileDialog;
 import org.eclipse.ui.PlatformUI;
@@ -23,8 +24,9 @@ import org.unicase.workspace.WorkspaceManager;
 
 /**
  * Handler for import project menu item.
+ * 
  * @author helming
- *
+ * 
  */
 public class ImportProjectHandler extends ProjectActionHandler {
 
@@ -39,8 +41,9 @@ public class ImportProjectHandler extends ProjectActionHandler {
 	 */
 	public static final String[] FILTER_EXTS = { "*.ucp", "*.*" };
 
-	/** 
+	/**
 	 * {@inheritDoc}
+	 * 
 	 * @see org.eclipse.core.commands.AbstractHandler#execute(org.eclipse.core.commands.ExecutionEvent)
 	 */
 	public Object execute(ExecutionEvent event) throws ExecutionException {
@@ -61,6 +64,8 @@ public class ImportProjectHandler extends ProjectActionHandler {
 		}
 		stringBuilder.append(fileName);
 		final String absoluteFileName = stringBuilder.toString();
+		final ProgressMonitorDialog progressDialog = new ProgressMonitorDialog(
+				PlatformUI.getWorkbench().getActiveWorkbenchWindow().getShell());
 
 		TransactionalEditingDomain domain = TransactionalEditingDomain.Registry.INSTANCE
 				.getEditingDomain("org.unicase.EditingDomain");
@@ -68,19 +73,20 @@ public class ImportProjectHandler extends ProjectActionHandler {
 			@Override
 			protected void doExecute() {
 				try {
+					progressDialog.open();
+					progressDialog.getProgressMonitor().beginTask(
+							"Import project...", 100);
+					progressDialog.getProgressMonitor().worked(10);
 					Workspace currentWorkspace = WorkspaceManager.getInstance()
 							.getCurrentWorkspace();
-					currentWorkspace
-							.importProject(absoluteFileName);
-	
+					currentWorkspace.importProject(absoluteFileName);
+
 				} catch (IOException e) {
 					DialogHandler.showExceptionDialog(e);
-					// BEGIN SUPRESS CATCH EXCEPTION
-				} catch (RuntimeException e) {
-					DialogHandler.showExceptionDialog(e);
-					throw e;
+				} finally {
+					progressDialog.getProgressMonitor().done();
+					progressDialog.close();
 				}
-				// END SUPRESS CATCH EXCEPTION
 			}
 		});
 
