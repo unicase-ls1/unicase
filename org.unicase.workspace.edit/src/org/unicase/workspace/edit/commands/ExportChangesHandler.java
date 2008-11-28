@@ -79,16 +79,12 @@ public class ExportChangesHandler extends ProjectActionHandler {
 					progressDialog.getProgressMonitor().worked(10);
                     projectSpace.exportLocalChanges(absoluteFileName);
 				} catch (IOException e) {
-					DialogHandler.showExceptionDialog(e);
-					// BEGIN SUPRESS CATCH EXCEPTION
-				} catch (Exception e) {
-					DialogHandler.showExceptionDialog(e);
-				}
+					DialogHandler.showExceptionDialog(e);	
+				} 
 				finally {
 					progressDialog.getProgressMonitor().done();
 					progressDialog.close();
 				}
-				// END SUPRESS CATCH EXCEPTION
 			}
 		});
 		MessageDialog.openInformation(null, "Export",
