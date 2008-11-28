@@ -145,7 +145,7 @@ public class NewReferenceAction extends Action {
 		} else if (attribute.endsWith("s")) {
 			attribute = attribute.substring(0, attribute.length() - 1);
 		}
-		setToolTipText("Create and add new " + attribute);
+		setToolTipText("Create and link new " + attribute);
 
 	}
 

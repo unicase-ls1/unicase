@@ -162,13 +162,8 @@ public class AddReferenceAction extends Action {
 			attribute = attribute.substring(0, attribute.length() - 1);
 		}
 
-		String action;
-		if (isMultiReference()) {
-			action = "Add";
-		} else {
-			action = "Set";
-		}
-		setToolTipText(action + " new " + attribute);
+		
+		setToolTipText("Link " + attribute);
 
 	}
 
