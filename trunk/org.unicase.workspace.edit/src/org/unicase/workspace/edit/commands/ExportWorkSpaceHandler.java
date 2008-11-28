@@ -7,6 +7,8 @@ import org.eclipse.core.commands.ExecutionEvent;
 import org.eclipse.core.commands.ExecutionException;
 import org.eclipse.emf.transaction.RecordingCommand;
 import org.eclipse.emf.transaction.TransactionalEditingDomain;
+import org.eclipse.jface.dialogs.MessageDialog;
+import org.eclipse.jface.dialogs.ProgressMonitorDialog;
 import org.eclipse.swt.SWT;
 import org.eclipse.swt.widgets.FileDialog;
 import org.eclipse.ui.PlatformUI;
@@ -43,18 +45,30 @@ public class ExportWorkSpaceHandler extends ProjectActionHandler {
 		}
 		stringBuilder.append(fileName);
 		final String absoluteFileName = stringBuilder.toString();
+		final ProgressMonitorDialog progressDialog = new ProgressMonitorDialog(PlatformUI.getWorkbench()
+			       .getActiveWorkbenchWindow().getShell());
+
 		TransactionalEditingDomain domain = TransactionalEditingDomain.Registry.INSTANCE
 				.getEditingDomain("org.unicase.EditingDomain");
 		domain.getCommandStack().execute(new RecordingCommand(domain) {
 			@Override
 			protected void doExecute() {
 				try {
-					WorkspaceManager.getInstance().getCurrentWorkspace().exportWorkSpace(absoluteFileName);
+					progressDialog.open();
+					progressDialog.getProgressMonitor().beginTask("Export workspace...", 100);
+					progressDialog.getProgressMonitor().worked(10);
+                    WorkspaceManager.getInstance().getCurrentWorkspace().exportWorkSpace(absoluteFileName);
 				} catch (IOException e) {
 					DialogHandler.showExceptionDialog(e);
 				}
+				finally {
+					progressDialog.getProgressMonitor().done();
+					progressDialog.close();
+				}
 			}
 		});
+		MessageDialog.openInformation(null, "Export",
+				"Exported workspace to file " + fileName);
 		return null;
 	}
 
