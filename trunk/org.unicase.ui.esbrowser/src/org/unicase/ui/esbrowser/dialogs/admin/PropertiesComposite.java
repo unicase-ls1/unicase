@@ -330,6 +330,10 @@ public abstract class PropertiesComposite extends Composite {
 		return result;
 	}
 
+	/**
+	 * Returns selected item in TableViewer.
+	 * @return selected item in table viewer
+	 */
 	protected EObject getSelectedItem() {
 		EObject result = null;
 		ISelection sel = tableViewer.getSelection();
@@ -433,6 +437,12 @@ public abstract class PropertiesComposite extends Composite {
 
 	}// TableContentProvider
 
+	
+	/**
+	 * 
+	 * @author Hodaie
+	 *
+	 */
 	private class TableLabelProvider extends
 			TransactionalAdapterFactoryLabelProvider {
 
