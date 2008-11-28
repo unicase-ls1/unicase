@@ -9,6 +9,7 @@ package org.unicase.docExport.exportModel.renderers.defaultRenderers.impl;
 import org.eclipse.core.runtime.IStatus;
 import org.eclipse.emf.common.util.EList;
 import org.eclipse.emf.ecore.EClass;
+import org.unicase.docExport.ModelElementRendererRegistry;
 import org.unicase.docExport.exportModel.Template;
 import org.unicase.docExport.exportModel.builders.DefaultModelElementRendererBuilder;
 import org.unicase.docExport.exportModel.renderers.ModelElementRenderer;
@@ -226,7 +227,9 @@ public class DefaultDocumentRendererImpl extends DocumentRendererImpl implements
 //				new Exception(), 
 //				IStatus.WARNING
 //			);
-		return DefaultModelElementRendererBuilder.build(eClass, template);
+//		return DefaultModelElementRendererBuilder.build(eClass, template);
+		
+		return ModelElementRendererRegistry.getDefaultSpecialModelElementRenderer(eClass, template);
 	}
 	
 	

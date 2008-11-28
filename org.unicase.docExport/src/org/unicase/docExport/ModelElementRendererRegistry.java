@@ -57,6 +57,29 @@ public final class ModelElementRendererRegistry {
 	}
 	
 	/**
+	 * Returns the deafult renderer which shall be used, if no renderer has been selected.
+	 * 
+	 * @param modelElementEClass the modelElement type a renderer is needed for
+	 * @param template the template where this renderer is used
+	 * @return the fully configured default special renderer or a DefaultModelElementRenderer
+	 */
+	public static ModelElementRenderer getDefaultSpecialModelElementRenderer(
+			EClass modelElementEClass, 
+			Template template) {
+		
+		if (modelElementEClass.getName().equals("Meeting")) {
+			return SpecialRenderersFactory.eINSTANCE.createMeetingRenderer(template);
+		} else if (modelElementEClass.getName().equals("Milestone")) {
+			return SpecialRenderersFactory.eINSTANCE.createMilestoneRenderer();
+		} else {
+			return DefaultModelElementRendererBuilder.build(
+					modelElementEClass, 
+					template
+				);		
+		}
+	}
+	
+	/**
 	 * Returns the EClass of a ModelElement type given the clazz name of the ModelELement.
 	 * 
 	 * @param clazz thez class name of the ModelElement
