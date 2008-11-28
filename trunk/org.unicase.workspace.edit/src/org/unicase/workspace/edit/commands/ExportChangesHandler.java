@@ -13,6 +13,8 @@ import org.eclipse.core.commands.ExecutionEvent;
 import org.eclipse.core.commands.ExecutionException;
 import org.eclipse.emf.transaction.RecordingCommand;
 import org.eclipse.emf.transaction.TransactionalEditingDomain;
+import org.eclipse.jface.dialogs.MessageDialog;
+import org.eclipse.jface.dialogs.ProgressMonitorDialog;
 import org.eclipse.swt.SWT;
 import org.eclipse.swt.widgets.FileDialog;
 import org.eclipse.ui.PlatformUI;
@@ -63,18 +65,34 @@ public class ExportChangesHandler extends ProjectActionHandler {
 		stringBuilder.append(fileName);
 		final String absoluteFileName = stringBuilder.toString();
 		final ProjectSpace projectSpace = this.getProjectSpace(event);
+		final ProgressMonitorDialog progressDialog = new ProgressMonitorDialog(PlatformUI.getWorkbench()
+			       .getActiveWorkbenchWindow().getShell());
+
 		TransactionalEditingDomain domain = TransactionalEditingDomain.Registry.INSTANCE
 				.getEditingDomain("org.unicase.EditingDomain");
 		domain.getCommandStack().execute(new RecordingCommand(domain) {
 			@Override
 			protected void doExecute() {
 				try {
-					projectSpace.exportLocalChanges(absoluteFileName);
+					progressDialog.open();
+					progressDialog.getProgressMonitor().beginTask("Export changs...", 100);
+					progressDialog.getProgressMonitor().worked(10);
+                    projectSpace.exportLocalChanges(absoluteFileName);
 				} catch (IOException e) {
 					DialogHandler.showExceptionDialog(e);
+					// BEGIN SUPRESS CATCH EXCEPTION
+				} catch (Exception e) {
+					DialogHandler.showExceptionDialog(e);
 				}
+				finally {
+					progressDialog.getProgressMonitor().done();
+					progressDialog.close();
+				}
+				// END SUPRESS CATCH EXCEPTION
 			}
 		});
+		MessageDialog.openInformation(null, "Export",
+				"Exported changes to file " + fileName);
 		return null;
 	}
 
