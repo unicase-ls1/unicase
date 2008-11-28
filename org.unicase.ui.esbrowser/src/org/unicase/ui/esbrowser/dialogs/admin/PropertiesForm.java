@@ -89,6 +89,7 @@ public class PropertiesForm extends Form {
 		if(input != null && !(getBody().isVisible())){
 			getBody().setVisible(true);
 		}
+		
 		if (input instanceof ProjectInfo) {
 			ProjectInfo projectInfo = (ProjectInfo) input;
 			title = "Project: " + projectInfo.getName();
