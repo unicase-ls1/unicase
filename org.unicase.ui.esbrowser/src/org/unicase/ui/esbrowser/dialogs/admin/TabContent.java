@@ -1,7 +1,8 @@
 package org.unicase.ui.esbrowser.dialogs.admin;
 
-import org.eclipse.emf.common.util.BasicEList;
-import org.eclipse.emf.common.util.EList;
+import java.util.ArrayList;
+import java.util.List;
+
 import org.eclipse.emf.ecore.EObject;
 import org.eclipse.emf.edit.provider.ComposedAdapterFactory;
 import org.eclipse.emf.edit.ui.provider.AdapterFactoryContentProvider;
@@ -25,37 +26,61 @@ import org.eclipse.swt.layout.GridData;
 import org.eclipse.swt.layout.GridLayout;
 import org.eclipse.swt.widgets.Button;
 import org.eclipse.swt.widgets.Composite;
-import org.eclipse.swt.widgets.Control;
 import org.eclipse.swt.widgets.TabFolder;
 import org.unicase.emfstore.esmodel.ProjectInfo;
 import org.unicase.emfstore.esmodel.accesscontrol.ACGroup;
 import org.unicase.emfstore.esmodel.accesscontrol.ACOrgUnit;
 import org.unicase.emfstore.esmodel.accesscontrol.ACUser;
 import org.unicase.emfstore.exceptions.EmfStoreException;
+import org.unicase.ui.common.exceptions.DialogHandler;
 import org.unicase.workspace.AdminBroker;
 
+/**
+ * This class sets the contents of tabs on the left side of OrgUnitManagmentGUI.
+ * 
+ * @author Hodaie
+ * 
+ */
 public class TabContent {
 
-	private ListViewer list;
-	private Composite tabContents;
+	private ListViewer listViewer;
 	private String tabName;
-	private AdminBroker adminBroker;
-	private OrgUnitManagementGUI orgUnitMgmtGUI;
 
+	// AdminBroker is needed to communicate with server.
+	private AdminBroker adminBroker;
+
+	// used to set input to properties form and update its
+	// table viewer upon deletion of OrgUnits
 	private PropertiesForm frm;
 
-	public TabContent(String tabName, AdminBroker adminBroker, OrgUnitManagementGUI orgUnitManagementGUI) {
+	/**
+	 * Constructor.
+	 * 
+	 * @param tabName
+	 *            tab name
+	 * @param adminBroker
+	 *            AdminBroker
+	 * @param frm
+	 *            ProperitesForm
+	 */
+	public TabContent(String tabName, AdminBroker adminBroker,
+			PropertiesForm frm) {
 		this.tabName = tabName;
 		this.adminBroker = adminBroker;
-		this.orgUnitMgmtGUI = orgUnitManagementGUI;
+		this.frm = frm;
+
 	}
 
+	/**
+	 * Creates contents of each tab.
+	 * 
+	 * @param tabFolder
+	 *            parent
+	 * @return contents composite
+	 */
 	public Composite createContents(TabFolder tabFolder) {
 
-		Control[] controlsOnSash = tabFolder.getParent().getChildren();
-		frm = (PropertiesForm) controlsOnSash[1];
-
-		tabContents = new Composite(tabFolder, SWT.NONE);
+		Composite tabContents = new Composite(tabFolder, SWT.NONE);
 		tabContents.setLayoutData(new GridData(SWT.FILL, SWT.FILL, true, true));
 
 		tabContents.setLayout(new GridLayout(2, false));
@@ -70,8 +95,30 @@ public class TabContent {
 
 	}
 
+	private void initList(Composite tabPage) {
+
+		listViewer = new ListViewer(tabPage, SWT.V_SCROLL | SWT.BORDER);
+		GridData gridData = new GridData(SWT.FILL, SWT.FILL, true, true);
+		gridData.horizontalSpan = 2;
+		listViewer.getList().setLayoutData(gridData);
+
+		listViewer.setLabelProvider(new ListLabelProvider());
+		listViewer.setContentProvider(new ListContentProvider());
+		listViewer.setInput(new Object());
+
+		listViewer.addDoubleClickListener(new IDoubleClickListener() {
+			public void doubleClick(DoubleClickEvent event) {
+				frm.setInput(getSelectedItem(event));
+			}
+		});
+
+		addDragNDropSupport();
+
+	}
+
 	private void createButtons(Composite tabContents) {
-		Button btnNew = new Button(tabContents, SWT.PUSH );
+		// Create and configure the "New" button
+		Button btnNew = new Button(tabContents, SWT.PUSH);
 		if (this.tabName.equals("Users")) {
 			btnNew.setText("New User");
 		} else {
@@ -95,38 +142,33 @@ public class TabContent {
 		}
 
 		btnDelete.addSelectionListener(new SelectionAdapter() {
-
 			// Remove the selection and refresh the view
 			public void widgetSelected(SelectionEvent e) {
-//				int selectedIndex = list.getList().getSelectionIndex();
-				ACOrgUnit ou = (ACOrgUnit) ((IStructuredSelection) list
-						.getSelection()).getFirstElement();
-				if (ou != null) {
-					deleteOrgUnit(ou);
-				}
-				if(frm.getCurrentInput() instanceof ACOrgUnit 
-						&& ((ACOrgUnit)frm.getCurrentInput()).equals(ou)){
-					frm.setInput(null);
-					return;
-				}
-				orgUnitMgmtGUI.getFormTableViewer().refresh();
-//				if (selectedIndex != 0){
-//					list.getList().setSelection(selectedIndex -1);
-//				}else if(list.getList().getItemCount() == 0){
-//					frm.setInput(null);
-//					return;
-//				}else{
-//					list.getList().setSelection(0);
-//				}
-//				frm.setInput((EObject)((IStructuredSelection) list
-//						.getSelection()).getFirstElement());
+
+				deleteOrgUnit();
+				// If form input is a project, and from users of groups tab one
+				// of participants of this project is deleted, then the table
+				// viewer on project properties must be updated.
+				// Accordingly, if a group is open and one of its users is
+				// deleted, or if a user is open and one of its groups is
+				// deleted.
+				frm.getTableViewer().refresh();
 			}
 		});
-		
 
 	}
 
-	protected void deleteOrgUnit(ACOrgUnit ou) {
+	/**
+	 * Delete OrgUnit and refresh properties form if needed.
+	 */
+	private void deleteOrgUnit() {
+
+		ACOrgUnit ou = (ACOrgUnit) ((IStructuredSelection) listViewer
+				.getSelection()).getFirstElement();
+		if (ou == null) {
+			return;
+		}
+
 		try {
 			if (ou instanceof ACGroup) {
 
@@ -136,58 +178,42 @@ public class TabContent {
 				adminBroker.deleteUser(((ACUser) ou).getId());
 			}
 		} catch (EmfStoreException e) {
-			// ZH Auto-generated catch block
-			e.printStackTrace();
+
+			DialogHandler.showExceptionDialog(e);
 		}
-		list.refresh();
+
+		listViewer.refresh();
+		if (frm.getCurrentInput() instanceof ACOrgUnit
+				&& ((ACOrgUnit) frm.getCurrentInput()).equals(ou)) {
+			frm.setInput(null);
+		}
+
 	}
 
-	protected void newOrgUnit() {
+	private void newOrgUnit() {
 		try {
 			if (tabName.equals("Users")) {
 
 				adminBroker.createUser("New User");
-				
+
 			} else {
 				adminBroker.createGroup("New Group");
 			}
 		} catch (EmfStoreException e) {
-			// ZH Auto-generated catch block
-			e.printStackTrace();
+
+			DialogHandler.showExceptionDialog(e);
 		}
-		list.refresh();
+		listViewer.refresh();
 	}
 
-	public void setPropertiesForm(PropertiesForm frm) {
-		this.frm = frm;
-
-	}
-
+	/**
+	 * This is used during first creation of tab folder to set initial input to
+	 * properties form.
+	 */
 	public void viewStarted() {
 		if (frm.getCurrentInput() == null) {
-			frm.setInput((EObject) list.getElementAt(0));
+			frm.setInput((EObject) listViewer.getElementAt(0));
 		}
-
-	}
-
-	private void initList(Composite tabPage) {
-
-		list = new ListViewer(tabPage, SWT.V_SCROLL | SWT.BORDER);
-		GridData gridData = new GridData(SWT.FILL, SWT.FILL, true, true); 
-		gridData.horizontalSpan = 2;
-		list.getList().setLayoutData(gridData);
-
-		list.setLabelProvider(new ListLabelProvider());
-		list.setContentProvider(new ListContentProvider());
-		list.setInput(new Object());
-
-		list.addDoubleClickListener(new IDoubleClickListener() {
-			public void doubleClick(DoubleClickEvent event) {
-				frm.setInput(getSelectedItem(event));
-			}
-		});
-
-		addDragNDropSupport();
 
 	}
 
@@ -198,11 +224,12 @@ public class TabContent {
 
 		DragSourceListener dragListener = new DragSourceListener() {
 			public void dragFinished(DragSourceEvent event) {
-				PropertiesForm.dragNDropObject = null;
+				PropertiesForm.setDragNDropObject(null);
+				PropertiesForm.setDragSource("");
 			}
 
 			public void dragStart(DragSourceEvent event) {
-				PropertiesForm.dragSource = getName();
+				PropertiesForm.setDragSource(getName());
 			}
 
 			public void dragSetData(DragSourceEvent event) {
@@ -210,45 +237,36 @@ public class TabContent {
 				if (eObject != null) {
 					if (eObject instanceof ACOrgUnit) {
 						ACOrgUnit orgUnit = (ACOrgUnit) eObject;
-						PropertiesForm.dragNDropObject = orgUnit;
+						PropertiesForm.setDragNDropObject(orgUnit);
 					}
 				}
 			}
 		};
-		list.addDragSupport(ops, transfers, dragListener);
+		listViewer.addDragSupport(ops, transfers, dragListener);
 
 		ops = DND.DROP_MOVE;
 		DropTargetListener dropListener = new DropTargetListener() {
 
-			public void dragEnter(DropTargetEvent event) {
-			}
-
 			public void drop(DropTargetEvent event) {
-				if (PropertiesForm.dragNDropObject instanceof ACOrgUnit) {
-					ACOrgUnit orgUnit = (ACOrgUnit) PropertiesForm.dragNDropObject;
+				if (PropertiesForm.getDragNDropObject() instanceof ACOrgUnit) {
+					ACOrgUnit orgUnit = (ACOrgUnit) PropertiesForm.getDragNDropObject();
 					doDrop(orgUnit);
-					PropertiesForm.dragNDropObject = null;
+					PropertiesForm.setDragNDropObject(null);
 				}
 			}
 
-			public void dragLeave(DropTargetEvent event) {
-			}
-
-			public void dragOperationChanged(DropTargetEvent event) {
-			}
-
-			public void dragOver(DropTargetEvent event) {
-			}
-
-			public void dropAccept(DropTargetEvent event) {
-			}
+			public void dragEnter(DropTargetEvent event) {	}
+			public void dragLeave(DropTargetEvent event) {	}
+			public void dragOperationChanged(DropTargetEvent event) {	}
+			public void dragOver(DropTargetEvent event) {  }
+			public void dropAccept(DropTargetEvent event) { 	}
 
 		};
-		list.addDropSupport(ops, transfers, dropListener);
+		listViewer.addDropSupport(ops, transfers, dropListener);
 
 	}
 
-	protected void doDrop(ACOrgUnit orgUnit) {
+	private void doDrop(ACOrgUnit orgUnit) {
 		EObject currentInput = frm.getCurrentInput();
 		if (currentInput == null) {
 			return;
@@ -262,39 +280,47 @@ public class TabContent {
 
 			} else if (currentInput instanceof ACGroup) {
 				ACGroup group = (ACGroup) currentInput;
-				try {
-					adminBroker.removeMember(group.getId(), orgUnit.getId());
+				adminBroker.removeMember(group.getId(), orgUnit.getId());
 
-				} catch (EmfStoreException e) {
-					// ZH Auto-generated catch block
-					e.printStackTrace();
-				}
 			} else if (currentInput instanceof ACUser) {
 				ACUser user = (ACUser) currentInput;
 				adminBroker.removeGroup(user.getId(), ((ACGroup) orgUnit)
 						.getId());
 			}
 		} catch (EmfStoreException e) {
-			// ZH Auto-generated catch block
-			e.printStackTrace();
+			DialogHandler.showExceptionDialog(e);
 		}
 	}
 
+	/**
+	 * 
+	 * @return name of this tab
+	 */
 	public String getName() {
 		return tabName;
 	}
-	
-	public ListViewer getListViewer(){
-		return this.list;
+
+	/**
+	 * This is called from user and group properties composites in order to update 
+	 * ListViewer, For example when name of an OrgUnit is changed.
+	 * @return listViewer
+	 */
+	public ListViewer getListViewer() {
+		return this.listViewer;
 	}
 
+	
+	/**
+	 * returns selected item in ListViewer.
+	 * 
+	 */
 	private EObject getSelectedItem(DoubleClickEvent event) {
 		EObject result = null;
 		ISelection sel;
 		if (event != null) {
 			sel = event.getSelection();
 		} else {
-			sel = list.getSelection();
+			sel = listViewer.getSelection();
 		}
 
 		IStructuredSelection ssel = null;
@@ -315,23 +341,32 @@ public class TabContent {
 
 	}
 
-	private class ListLabelProvider extends
-			AdapterFactoryLabelProvider  {
+	/**
+	 * This is the LabelProvider for ListViewer.
+	 * 
+	 * @author Hodaie
+	 *
+	 */
+	private class ListLabelProvider extends AdapterFactoryLabelProvider {
 
 		public ListLabelProvider() {
 
-			super( new ComposedAdapterFactory(
+			super(new ComposedAdapterFactory(
 					ComposedAdapterFactory.Descriptor.Registry.INSTANCE));
 		}
 
 	}// ListLabelProvider
-
-	private class ListContentProvider extends
-			AdapterFactoryContentProvider {
+	
+	/**
+	 * This is the ContentProvider for ListViewer. 
+	 * @author Hodaie
+	 *
+	 */
+	private class ListContentProvider extends AdapterFactoryContentProvider {
 
 		public ListContentProvider() {
 
-			super( new ComposedAdapterFactory(
+			super(new ComposedAdapterFactory(
 					ComposedAdapterFactory.Descriptor.Registry.INSTANCE));
 		}
 
@@ -339,31 +374,27 @@ public class TabContent {
 		public Object[] getElements(Object object) {
 
 			Object[] result = new Object[0];
-//			String tabName = (String) object;
 			try {
 				if (tabName.equals("Projects")) {
 					// return a list of Projects in project space
-					EList<ProjectInfo> projectInfos = new BasicEList<ProjectInfo>();
-
+					List<ProjectInfo> projectInfos = new ArrayList<ProjectInfo>();
 					projectInfos.addAll(adminBroker.getProjectInfos());
-
 					result = projectInfos.toArray(new ProjectInfo[projectInfos
 							.size()]);
 
 				} else if (tabName.equals("Groups")) {
 					// return a list of Groups in project space
-					EList<ACGroup> groups = new BasicEList<ACGroup>();
+					List<ACGroup> groups = new ArrayList<ACGroup>();
 					groups.addAll(adminBroker.getGroups());
 					result = groups.toArray(new ACGroup[groups.size()]);
 				} else if (tabName.equals("Users")) {
 					// return a list of Users in project space
-					EList<ACUser> users = new BasicEList<ACUser>();
+					List<ACUser> users = new ArrayList<ACUser>();
 					users.addAll(adminBroker.getUsers());
 					result = users.toArray(new ACUser[users.size()]);
 				}
 			} catch (EmfStoreException e) {
-				// ZH Auto-generated catch block
-				e.printStackTrace();
+				DialogHandler.showExceptionDialog(e);
 			}
 			return result;
 		}

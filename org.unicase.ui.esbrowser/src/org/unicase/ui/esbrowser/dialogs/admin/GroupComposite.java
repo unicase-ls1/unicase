@@ -5,67 +5,78 @@ import java.util.Collection;
 import org.eclipse.emf.common.util.BasicEList;
 import org.eclipse.emf.common.util.EList;
 import org.eclipse.emf.ecore.EObject;
+import org.eclipse.jface.util.LocalSelectionTransfer;
+import org.eclipse.swt.dnd.DND;
+import org.eclipse.swt.dnd.DragSourceEvent;
+import org.eclipse.swt.dnd.DragSourceListener;
+import org.eclipse.swt.dnd.DropTargetEvent;
+import org.eclipse.swt.dnd.DropTargetListener;
+import org.eclipse.swt.dnd.Transfer;
 import org.eclipse.swt.widgets.Composite;
 import org.eclipse.ui.forms.widgets.Form;
 import org.unicase.emfstore.esmodel.accesscontrol.ACGroup;
 import org.unicase.emfstore.esmodel.accesscontrol.ACOrgUnit;
+import org.unicase.emfstore.esmodel.accesscontrol.ACUser;
 import org.unicase.emfstore.exceptions.EmfStoreException;
+import org.unicase.ui.common.exceptions.DialogHandler;
 import org.unicase.workspace.AdminBroker;
 
-public class GroupComposite extends FormContents {
+public class GroupComposite extends PropertiesComposite {
 
 	private ACGroup group;
 	private OrgUnitManagementGUI orgUnitMgmtGUI;
 
-	public GroupComposite(Composite parent, int style, AdminBroker adminBroker, OrgUnitManagementGUI orgUnitMgmtGUI) {
+	public GroupComposite(Composite parent, int style, AdminBroker adminBroker,
+			OrgUnitManagementGUI orgUnitMgmtGUI) {
 		super(parent, style, adminBroker);
 		this.orgUnitMgmtGUI = orgUnitMgmtGUI;
 		createControls();
 	}
 
 	protected void removeOrgUnit(ACOrgUnit orgUnit) {
-	
+
 		try {
-			adminBroker.removeMember(group.getId(),orgUnit.getId());
-		
+			getAdminBroker().removeMember(group.getId(), orgUnit.getId());
+
 		} catch (EmfStoreException e) {
 			// ZH Auto-generated catch block
 			e.printStackTrace();
 		}
-		tableViewer.refresh();
+		getTableViewer().refresh();
 	}
 
-	protected void addOrgUnit(ACOrgUnit orgUnit) {
-		// 1. show a list of all AcOrgUnits that do not participate in this
-		// project
-		// (get list of all AcOrgUnits, remove those who take part in this
-		// Project)
-		// 2. add the selected participant to the project
+	@Override
+	protected void addExistingOrgUnit(ACOrgUnit orgUnit) {
+
 		if (orgUnit != null) {
 			if (!orgUnit.equals(group)) {
 				try {
-					adminBroker.addMember(group.getId(), orgUnit.getId());
-					
+					getAdminBroker().addMember(group.getId(), orgUnit.getId());
+
 				} catch (EmfStoreException e) {
-					// ZH Auto-generated catch block
-					e.printStackTrace();
+					DialogHandler.showExceptionDialog(e);
 				}
 			}
 
-		} else {
-			EList<ACOrgUnit> members = getNewMembers();
-			for (ACOrgUnit ou : members) {
-				try {
-					adminBroker.addMember(group.getId(), ou.getId());
-					
-				} catch (EmfStoreException e) {
-					// ZH Auto-generated catch block
-					e.printStackTrace();
-				}
+		}
+		getTableViewer().refresh();
+
+	}
+
+	@Override
+	protected void addNewOrgUnit() {
+		EList<ACOrgUnit> members = getNewMembers();
+		for (ACOrgUnit ou : members) {
+			try {
+				getAdminBroker().addMember(group.getId(), ou.getId());
+
+			} catch (EmfStoreException e) {
+				// ZH Auto-generated catch block
+				e.printStackTrace();
 			}
 		}
-		tableViewer.refresh();
 
+		getTableViewer().refresh();
 	}
 
 	private EList<ACOrgUnit> getNewMembers() {
@@ -76,9 +87,8 @@ public class GroupComposite extends FormContents {
 		Collection<ACOrgUnit> allOrgUnits = new BasicEList<ACOrgUnit>();
 		EList<ACOrgUnit> members = new BasicEList<ACOrgUnit>();
 		try {
-			allOrgUnits.addAll(adminBroker.getOrgUnits());
-			allOrgUnits.removeAll(adminBroker
-								.getMembers(group.getId()));
+			allOrgUnits.addAll(getAdminBroker().getOrgUnits());
+			allOrgUnits.removeAll(getAdminBroker().getMembers(group.getId()));
 			if (allOrgUnits.contains(group)) {
 				allOrgUnits.remove(group);
 			}
@@ -98,60 +108,87 @@ public class GroupComposite extends FormContents {
 	}
 
 	protected void createTableGroup() {
-		super.createTableGroup();
-		grpTable.setText("Members");
+		super.createTableGroup("Members");
 	}
 
 	@Override
 	public void updateControls(EObject input) {
-		
-		super.updateControls(input);		
-		if(input != null && input instanceof ACGroup){
-			
+
+		super.updateControls(input);
+		if (input != null && input instanceof ACGroup) {
+
 			this.group = (ACGroup) input;
 
-			
-			
-			txtName.setText(group.getName());
-			txtDescription.setText((group.getDescription()==null) ? "" : group.getDescription() );
-			tableViewer.setInput(group);
-			orgUnitMgmtGUI.setFormTableViewer(tableViewer);
-			
-//			IObservableValue model = EMFEditObservables.observeValue(editingDomain,
-//					group, AccesscontrolPackage.eINSTANCE.getACOrgUnit_Name());
-//			EMFDataBindingContext dbc = new EMFDataBindingContext();
-//			dbc.bindValue(SWTObservables.observeText(txtName, SWT.FocusOut), model,
-//					null, null);
-//			
-//			model = EMFEditObservables.observeValue(editingDomain,
-//					group, AccesscontrolPackage.eINSTANCE.getACOrgUnit_Description());
-//			dbc = new EMFDataBindingContext();
-//			dbc.bindValue(SWTObservables.observeText(txtDescription, SWT.FocusOut), model,
-//					null, null);
+			getTxtName().setText(group.getName());
+			getTxtDescription().setText(
+					(group.getDescription() == null) ? "" : group
+							.getDescription());
+			getTableViewer().setInput(group);
+
 		}
-		
+
 	}
-	
+
 	@Override
-	protected  void saveOrgUnitAttributes() {
-		if(txtName == null || txtDescription == null ){
+	protected void saveOrgUnitAttributes() {
+		if (getTxtName() == null || getTxtDescription() == null) {
 			return;
 		}
-		if(group == null) {
+		if (group == null) {
 			return;
 		}
-		if (!(group.getName().equals(txtName.getText())
-				  && group.getDescription().equals(txtDescription.getText()) )){
-				try {
-					adminBroker.changeOrgUnit(group.getId(), txtName.getText(), txtDescription.getText());
-					((Form)(this.getParent().getParent())).setText("Group: " + txtName.getText());
-					orgUnitMgmtGUI.getActiveTabContent().getListViewer().refresh();
-				} catch (EmfStoreException e) {
-					// ZH Auto-generated catch block
-					e.printStackTrace();
+		if (!(group.getName().equals(getTxtName().getText()) && group
+				.getDescription().equals(getTxtDescription().getText()))) {
+			try {
+				getAdminBroker().changeOrgUnit(group.getId(),
+						getTxtName().getText(), getTxtDescription().getText());
+				((Form) (this.getParent().getParent())).setText("Group: "
+						+ getTxtName().getText());
+				orgUnitMgmtGUI.getActiveTabContent().getListViewer().refresh();
+			} catch (EmfStoreException e) {
+				DialogHandler.showExceptionDialog(e);
+			}
+		}
+
+	}
+
+	@Override
+	protected void addDragNDropSupport() {
+
+		// add drag support
+		super.addDragNDropSupport();
+
+		// add drop support
+		int ops = DND.DROP_COPY;
+		Transfer[] transfers = new Transfer[] { LocalSelectionTransfer
+				.getTransfer() };
+		DropTargetListener dropListener = new DropTargetListener() {
+			public void dragEnter(DropTargetEvent event) {
+				if (PropertiesForm.getDragSource().equals("Projects")) {
+					event.detail = DND.DROP_NONE;
+				} else {
+					event.detail = DND.DROP_COPY;
 				}
 			}
-		
+			
+			public void drop(DropTargetEvent event) {
+				if (PropertiesForm.getDragNDropObject() != null) {
+					if (PropertiesForm.getDragNDropObject() instanceof ACOrgUnit) {
+						ACOrgUnit orgUnit = (ACOrgUnit) PropertiesForm
+								.getDragNDropObject();
+						addExistingOrgUnit(orgUnit);
+						PropertiesForm.setDragNDropObject(null);
+						getTableViewer().refresh();
+					}
+				}
+			}
+			public void dragLeave(DropTargetEvent event) {	}
+			public void dragOperationChanged(DropTargetEvent event) {		}
+			public void dragOver(DropTargetEvent event) {		}
+			public void dropAccept(DropTargetEvent event) {		}
+		};
+		getTableViewer().addDropSupport(ops, transfers, dropListener);
+
 	}
 
 } // GroupComposite

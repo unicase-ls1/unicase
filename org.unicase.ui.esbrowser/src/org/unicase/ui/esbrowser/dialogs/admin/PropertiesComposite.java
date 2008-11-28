@@ -18,9 +18,6 @@ import org.eclipse.swt.SWT;
 import org.eclipse.swt.dnd.DND;
 import org.eclipse.swt.dnd.DragSourceEvent;
 import org.eclipse.swt.dnd.DragSourceListener;
-import org.eclipse.swt.dnd.DropTarget;
-import org.eclipse.swt.dnd.DropTargetEvent;
-import org.eclipse.swt.dnd.DropTargetListener;
 import org.eclipse.swt.dnd.Transfer;
 import org.eclipse.swt.events.FocusEvent;
 import org.eclipse.swt.events.FocusListener;
@@ -31,7 +28,6 @@ import org.eclipse.swt.layout.GridData;
 import org.eclipse.swt.layout.GridLayout;
 import org.eclipse.swt.widgets.Button;
 import org.eclipse.swt.widgets.Composite;
-import org.eclipse.swt.widgets.Control;
 import org.eclipse.swt.widgets.Group;
 import org.eclipse.swt.widgets.Label;
 import org.eclipse.swt.widgets.Table;
@@ -46,30 +42,47 @@ import org.unicase.emfstore.exceptions.EmfStoreException;
 import org.unicase.workspace.AdminBroker;
 import org.unicase.workspace.WorkspaceManager;
 
-public abstract class FormContents extends Composite {
+/**
+ * This is the super class of property composites shown on properties form
+ * (right side of OrgUnitManagmentGUI). It contains an attributes group at top,
+ * a TableViewer and button to add/remove OrgUnits.
+ * 
+ * @author Hodaie
+ * 
+ */
+public abstract class PropertiesComposite extends Composite {
 
-	protected AdminBroker adminBroker;
-	
-	protected Group grpTable;
-	protected Group grpAttributes;
+	private AdminBroker adminBroker;
 
-	protected Label lblName;
-	protected Text txtName;
-	protected Label lblDescription;
-	protected Text txtDescription;
+	private Group grpTable;
+	private Group grpAttributes;
 
-	protected Table table;
-	protected TableViewer tableViewer;
+	private Label lblName;
+	private Text txtName;
+	private Label lblDescription;
+	private Text txtDescription;
 
-	//protected AdapterFactoryEditingDomain editingDomain;
+	private TableViewer tableViewer;
 
-	public FormContents(Composite parent, int style, AdminBroker adminBroker) {
+	/**
+	 * Constructor.
+	 * 
+	 * @param parent
+	 *            parent
+	 * @param style
+	 *            style
+	 * @param adminBroker
+	 *            adminBroker
+	 */
+	public PropertiesComposite(Composite parent, int style,
+			AdminBroker adminBroker) {
 		super(parent, style);
 		this.adminBroker = adminBroker;
-//		editingDomain = new AdapterFactoryEditingDomain(
-//				new ModelAdapterFactory(), new BasicCommandStack());
 	}
 
+	/**
+	 * This creates attributes, and table group controls.
+	 */
 	protected void createControls() {
 		this.setLayout(new GridLayout());
 
@@ -79,6 +92,9 @@ public abstract class FormContents extends Composite {
 
 	}
 
+	/**
+	 * This creates attributes group control.
+	 */
 	protected void createSimpleAttributes() {
 		grpAttributes = new Group(this, SWT.V_SCROLL);
 		grpAttributes.setLayoutData(new GridData(SWT.FILL, SWT.FILL, true,
@@ -90,7 +106,7 @@ public abstract class FormContents extends Composite {
 		lblName = new Label(grpAttributes, SWT.NONE);
 		lblName.setText("Name: ");
 		txtName = new Text(grpAttributes, SWT.BORDER);
-		
+
 		txtName.setLayoutData(new GridData(GridData.FILL_HORIZONTAL));
 		txtName.addFocusListener(new FocusListener() {
 
@@ -103,7 +119,6 @@ public abstract class FormContents extends Composite {
 			}
 
 		});
-		// txtName.setEnabled(false);
 
 		lblDescription = new Label(grpAttributes, SWT.NONE);
 		lblDescription.setText("Description: ");
@@ -120,39 +135,46 @@ public abstract class FormContents extends Composite {
 			}
 
 		});
-		// txtDescription.setEnabled(false);
 
 	}
 
+	/**
+	 * This creates table viewer group control. Subclasses must override it.
+	 */
+	protected abstract void createTableGroup();
+
+	/**
+	 * This saves an OrgUnit when txtName or txtDescription lose focus.
+	 * GroupComposite and UserComposite Subclasses must override this method.
+	 */
 	protected void saveOrgUnitAttributes() {
 	}
 
-	protected void createTableGroup() {
+	/**
+	 * This creates table viewer group control.
+	 * @param groupName group name
+	 */
+	protected void createTableGroup(String groupName) {
 		grpTable = new Group(this, SWT.NONE);
 		grpTable.setLayoutData(new GridData(SWT.FILL, SWT.FILL, true, true));
-		grpTable.setText("Table");
+		grpTable.setText(groupName);
 		grpTable.setLayout(new GridLayout(5, true));
 
-		createTable(grpTable);
-		createTableViewer();
+		createTableViewer(grpTable);
 
 	}
 
-	protected void createTableViewer() {
-		tableViewer = new TableViewer(table);
-		tableViewer.setUseHashlookup(true);
-		tableViewer.setContentProvider(new TableContentProvider());
-		tableViewer.setLabelProvider(new TableLabelProvider());
-		addDragNDropSupport();
-
-	}
-
-	protected void createTable(Composite parent) {
+	/**
+	 * This creates TableViewer.
+	 * 
+	 * @param parent parent
+	 */
+	protected void createTableViewer(Composite parent) {
 
 		int style = SWT.SINGLE | SWT.BORDER | SWT.V_SCROLL | SWT.H_SCROLL
 				| SWT.FULL_SELECTION;
 
-		table = new Table(parent, style);
+		Table table = new Table(parent, style);
 		GridData gridData = new GridData(SWT.FILL, SWT.FILL, true, true);
 		gridData.horizontalSpan = 5;
 		table.setLayoutData(gridData);
@@ -164,32 +186,26 @@ public abstract class FormContents extends Composite {
 		column.setText("(/*\\)");
 		column.setWidth(20);
 
-		// 2nd column with task Description
 		column = new TableColumn(table, SWT.LEFT, 1);
 		column.setText("Name");
 		column.setWidth(100);
-		// Add listener to column so tasks are sorted by description when
-		// clicked
-		// column.addSelectionListener(new SelectionAdapter() {
-		// public void widgetSelected(SelectionEvent e) {
-		// tableViewer.setSorter(new ExampleTaskSorter(
-		// ExampleTaskSorter.DESCRIPTION));
-		// }
-		// });
 
-		// 3rd column with task Owner
 		column = new TableColumn(table, SWT.LEFT, 2);
 		column.setText("Description");
 		column.setWidth(200);
-		// Add listener to column so tasks are sorted by owner when clicked
-		// column.addSelectionListener(new SelectionAdapter() {
-		// public void widgetSelected(SelectionEvent e) {
-		// tableViewer.setSorter(new ExampleTaskSorter(
-		// ExampleTaskSorter.OWNER));
-		// }
-		// });
+
+		tableViewer = new TableViewer(table);
+		tableViewer.setUseHashlookup(true);
+		tableViewer.setContentProvider(new TableContentProvider());
+		tableViewer.setLabelProvider(new TableLabelProvider());
+		addDragNDropSupport();
+
 	}
 
+	/**
+	 * This creates add/remove Buttons underneath TableViewer.
+	 * @param parent parent
+	 */
 	protected void createButtons(Composite parent) {
 		// Create and configure the "Add" button
 		Button add = new Button(parent, SWT.PUSH | SWT.CENTER);
@@ -202,10 +218,9 @@ public abstract class FormContents extends Composite {
 		add.setLayoutData(gridData);
 		add.addSelectionListener(new SelectionAdapter() {
 
-			// Add a task to the ExampleTaskList and refresh the view
 			@Override
 			public void widgetSelected(SelectionEvent e) {
-				addOrgUnit(null);
+				addNewOrgUnit();
 			}
 
 		});
@@ -230,85 +245,16 @@ public abstract class FormContents extends Composite {
 			}
 		});
 
-		// Button btn = new Button(parent, SWT.PUSH | SWT.CENTER);
-		// btn.setText("add test users and groups");
-		// gridData = new GridData(SWT.END);
-		// gridData.widthHint = 80;
-		// btn.setLayoutData(gridData);
-		//
-		// btn.addSelectionListener(new SelectionAdapter() {
-		//
-		// // Remove the selection and refresh the view
-		// public void widgetSelected(SelectionEvent e) {
-		// // ACOrgUnit ou = (ACOrgUnit) ((IStructuredSelection) tableViewer
-		// // .getSelection()).getFirstElement();
-		// // if (ou != null) {
-		// // removeOrgUnit(ou);
-		// // }
-		// MessageDialog.openInformation(getShell(), "",
-		// "create test user/groups");
-		// }
-		// });
-
 	}
 
-	protected void addDragNDropSupport() {
-		int ops = DND.DROP_COPY;
+	protected void addDragNDropSupport(){
+		int ops = DND.DROP_MOVE;
 		Transfer[] transfers = new Transfer[] { LocalSelectionTransfer
 				.getTransfer() };
-		DropTargetListener dropListener = new DropTargetListener() {
-			public void dragEnter(DropTargetEvent event) {
-				if (PropertiesForm.dragSource.equals("Projects")) {
-					event.detail = DND.DROP_NONE;
-				} else if (PropertiesForm.dragSource.equals("Users")) {
-					DropTarget dropTarget = (DropTarget) event.getSource();
-					Control targetControl = dropTarget.getControl();
-					Composite targetParent = targetControl.getParent();
-					String target = "";
-					if (targetParent instanceof Group) {
-						target = ((Group) targetParent).getText();
-					}
-					if (target.equals("Groups")) {
-						event.detail = DND.DROP_NONE;
-					} else {
-						event.detail = DND.DROP_COPY;
-					}
-
-				} else {
-					event.detail = DND.DROP_COPY;
-				}
-			}
-
-			public void drop(DropTargetEvent event) {
-				if (PropertiesForm.dragNDropObject != null) {
-					if (PropertiesForm.dragNDropObject instanceof ACOrgUnit) {
-						ACOrgUnit orgUnit = (ACOrgUnit) PropertiesForm.dragNDropObject;
-						addOrgUnit(orgUnit);
-						PropertiesForm.dragNDropObject = null;
-						tableViewer.refresh();
-					}
-				}
-			}
-
-			public void dragLeave(DropTargetEvent event) {
-			}
-
-			public void dragOperationChanged(DropTargetEvent event) {
-			}
-
-			public void dragOver(DropTargetEvent event) {
-			}
-
-			public void dropAccept(DropTargetEvent event) {
-			}
-		};
-		tableViewer.addDropSupport(ops, transfers, dropListener);
-
-		ops = DND.DROP_MOVE;
 		DragSourceListener dragListener = new DragSourceListener() {
 			public void dragFinished(DragSourceEvent event) {
-				tableViewer.refresh();
-				PropertiesForm.dragNDropObject = null;
+				getTableViewer().refresh();
+				PropertiesForm.setDragNDropObject(null);
 			}
 
 			public void dragSetData(DragSourceEvent event) {
@@ -316,7 +262,7 @@ public abstract class FormContents extends Composite {
 				if (eObject != null) {
 					if (eObject instanceof ACOrgUnit) {
 						ACOrgUnit orgUnit = (ACOrgUnit) eObject;
-						PropertiesForm.dragNDropObject = orgUnit;
+						PropertiesForm.setDragNDropObject(orgUnit);
 					}
 				}
 			}
@@ -324,13 +270,37 @@ public abstract class FormContents extends Composite {
 			public void dragStart(DragSourceEvent event) {
 			}
 		};
-		tableViewer.addDragSupport(ops, transfers, dragListener);
+		getTableViewer().addDragSupport(ops, transfers, dragListener);
 	}
+		
 
-	protected abstract void addOrgUnit(ACOrgUnit orgUnit);
+	/**
+	 * This adds an a new OrgUnit using an object selectin dialog. Subclasses must override this.
+	 */
+	protected void addNewOrgUnit() {
+		
+	}
+	
+	/**
+	 * This adds an existing OrgUnit. Subclasses must override this.
+	 * @param orgUnit orgUnit
+	 */
+	protected void addExistingOrgUnit(ACOrgUnit orgUnit){
+		
+	}
+	
 
+	/**
+	 * This removes an OrgUnit. Subclasses must override this. 
+	 * @param orgUnit OrgUnit
+	 */
 	protected abstract void removeOrgUnit(ACOrgUnit orgUnit);
 
+	/**
+	 * 
+	 * @param input
+	 *            Input
+	 */
 	public void updateControls(EObject input) {
 		if (input == null) {
 			this.grpAttributes.setVisible(false);
@@ -342,6 +312,7 @@ public abstract class FormContents extends Composite {
 
 	}
 
+	
 	protected Object[] showDialog(Collection<ACOrgUnit> content, String title) {
 		ElementListSelectionDialog dlg = new ElementListSelectionDialog(this
 				.getShell(), new AdapterFactoryLabelProvider(
@@ -359,7 +330,7 @@ public abstract class FormContents extends Composite {
 		return result;
 	}
 
-	private EObject getSelectedItem() {
+	protected EObject getSelectedItem() {
 		EObject result = null;
 		ISelection sel = tableViewer.getSelection();
 		IStructuredSelection ssel = null;
@@ -372,6 +343,54 @@ public abstract class FormContents extends Composite {
 			result = (ACOrgUnit) obj;
 		}
 		return result;
+	}
+
+	/**
+	 * 
+	 * @return group control containing TabelViewer
+	 */
+	protected Group getTableGroup() {
+		return grpTable;
+	}
+
+	/**
+	 * 
+	 * @return group control containing name, description, and version.
+	 */
+	protected Group getAttributesGroup() {
+		return grpAttributes;
+	}
+
+	/**
+	 * 
+	 * @return adminBroker
+	 */
+	protected AdminBroker getAdminBroker() {
+		return adminBroker;
+	}
+
+	/**
+	 * 
+	 * @return txtName
+	 */
+	protected Text getTxtName() {
+		return txtName;
+	}
+
+	/**
+	 * 
+	 * @return txtDescription
+	 */
+	protected Text getTxtDescription() {
+		return txtDescription;
+	}
+
+	/**
+	 * 
+	 * @return tableViewer
+	 */
+	public TableViewer getTableViewer() {
+		return tableViewer;
 	}
 
 	private class TableContentProvider implements IStructuredContentProvider {
