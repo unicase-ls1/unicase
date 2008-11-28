@@ -1,13 +1,12 @@
 package org.unicase.ui.esbrowser.dialogs.admin;
 
 import java.util.ArrayList;
-import java.util.Collection;
 import java.util.List;
 
-import org.eclipse.emf.common.util.BasicEList;
 import org.eclipse.emf.ecore.EObject;
 import org.eclipse.jface.util.LocalSelectionTransfer;
 import org.eclipse.swt.dnd.DND;
+import org.eclipse.swt.dnd.DropTargetAdapter;
 import org.eclipse.swt.dnd.DropTargetEvent;
 import org.eclipse.swt.dnd.DropTargetListener;
 import org.eclipse.swt.dnd.Transfer;
@@ -20,11 +19,32 @@ import org.unicase.emfstore.exceptions.EmfStoreException;
 import org.unicase.ui.common.exceptions.DialogHandler;
 import org.unicase.workspace.AdminBroker;
 
+/**
+ * This shows attributes of a ACUser (name, description) and show a list of
+ * groups this user belongs to. You can use drag and drop to drop a group on
+ * list of user's groups to add user to that group.
+ * 
+ * @author Hodaie
+ * 
+ */
 public class UserComposite extends PropertiesComposite {
 
 	private ACUser user;
 	private OrgUnitManagementGUI orgUnitMgmtGUI;
 
+	/**
+	 * Constructor.
+	 * 
+	 * @param parent
+	 *            parent
+	 * @param style
+	 *            style
+	 * @param adminBroker
+	 *            used to communicate with server
+	 * @param orgUnitMgmtGUI
+	 *            used to find out what which tab is active, so that if needed
+	 *            update its list viewer
+	 */
 	public UserComposite(Composite parent, int style, AdminBroker adminBroker,
 			OrgUnitManagementGUI orgUnitMgmtGUI) {
 		super(parent, style, adminBroker);
@@ -32,6 +52,10 @@ public class UserComposite extends PropertiesComposite {
 		createControls();
 	}
 
+	/**
+	 * {@inheritDoc}
+	 * 
+	 */
 	protected void removeOrgUnit(ACOrgUnit group) {
 		try {
 			getAdminBroker().removeGroup(user.getId(),
@@ -42,6 +66,9 @@ public class UserComposite extends PropertiesComposite {
 		getTableViewer().refresh();
 	}
 
+	/**
+	 * {@inheritDoc}
+	 */
 	@Override
 	protected void addExistingOrgUnit(ACOrgUnit group) {
 
@@ -57,6 +84,10 @@ public class UserComposite extends PropertiesComposite {
 		getTableViewer().refresh();
 	}
 
+	/**
+	 * {@inheritDoc}
+	 * 
+	 */
 	@Override
 	protected void addNewOrgUnit() {
 
@@ -74,27 +105,21 @@ public class UserComposite extends PropertiesComposite {
 		getTableViewer().refresh();
 	}
 
+	/**
+	 * This is used when adding a group using add button. It shows an element
+	 * selection dialog.
+	 * 
+	 * @return a list of selected groups to which this ACUser will be added.
+	 */
 	private List<ACGroup> getGroups() {
-		// 1. show a list of all AcOrgUnits that do not participate in this
-		// project
-		// (get list of all AcOrgUnits, remove those who take part in this
-		// Project)
-		// 2. return the selected participant
-		// EClass clazz = eReference.getEReferenceType();
 
-		// JH: fill only with right elements
-		Collection<ACOrgUnit> allGroups = new BasicEList<ACOrgUnit>();
+		List<ACOrgUnit> allGroups = new ArrayList<ACOrgUnit>();
 		List<ACGroup> groups = new ArrayList<ACGroup>();
 
 		try {
 			allGroups.addAll(getAdminBroker().getGroups());
 			List<ACGroup> groupsToRemove = new ArrayList<ACGroup>();
 			groupsToRemove.addAll(getAdminBroker().getGroups(user.getId()));
-			// its really funnyyyyyyy!!!!!!!! :((
-			// you should implement all typical list operations yourself.
-			// because contains(), remove(), indexof(), .... all require a test
-			// of
-			// equality and here we have a problem.
 
 			allGroups.removeAll(groupsToRemove);
 
@@ -111,13 +136,18 @@ public class UserComposite extends PropertiesComposite {
 		return groups;
 	}
 
+	/**
+	 * {@inheritDoc}
+	 */
 	protected void createTableGroup() {
 		super.createTableGroup("Groups");
 	}
 
+	/**
+	 * {@inheritDoc}
+	 */
 	@Override
 	public void updateControls(EObject input) {
-		super.updateControls(input);
 		if (input != null && input instanceof ACUser) {
 
 			this.user = (ACUser) input;
@@ -132,6 +162,10 @@ public class UserComposite extends PropertiesComposite {
 
 	}
 
+	/**
+	 * {@inheritDoc}
+	 * 
+	 */
 	@Override
 	protected void addDragNDropSupport() {
 		// add drag support
@@ -141,7 +175,8 @@ public class UserComposite extends PropertiesComposite {
 		int ops = DND.DROP_COPY;
 		Transfer[] transfers = new Transfer[] { LocalSelectionTransfer
 				.getTransfer() };
-		DropTargetListener dropListener = new DropTargetListener() {
+		DropTargetListener dropListener = new DropTargetAdapter() {
+
 			public void dragEnter(DropTargetEvent event) {
 				if (PropertiesForm.getDragSource().equals("Projects")
 						|| PropertiesForm.getDragSource().equals("Users")) {
@@ -163,24 +198,15 @@ public class UserComposite extends PropertiesComposite {
 					}
 				}
 			}
-
-			public void dragLeave(DropTargetEvent event) {
-			}
-
-			public void dragOperationChanged(DropTargetEvent event) {
-			}
-
-			public void dragOver(DropTargetEvent event) {
-			}
-
-			public void dropAccept(DropTargetEvent event) {
-			}
-
 		};
 		getTableViewer().addDropSupport(ops, transfers, dropListener);
 
 	}
 
+	/**
+	 * {@inheritDoc}
+	 * 
+	 */
 	@Override
 	protected void saveOrgUnitAttributes() {
 		if (getTxtName() == null || getTxtDescription() == null) {
@@ -199,8 +225,7 @@ public class UserComposite extends PropertiesComposite {
 				orgUnitMgmtGUI.getActiveTabContent().getListViewer().refresh();
 
 			} catch (EmfStoreException e) {
-				// ZH Auto-generated catch block
-				e.printStackTrace();
+				DialogHandler.showExceptionDialog(e);
 			}
 		}
 	}

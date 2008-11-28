@@ -4,6 +4,7 @@ import java.util.Collection;
 
 import org.eclipse.emf.common.util.BasicEList;
 import org.eclipse.emf.common.util.EList;
+import org.eclipse.emf.ecore.EObject;
 import org.eclipse.jface.util.LocalSelectionTransfer;
 import org.eclipse.jface.viewers.CellEditor;
 import org.eclipse.jface.viewers.ColumnLabelProvider;
@@ -13,6 +14,7 @@ import org.eclipse.jface.viewers.EditingSupport;
 import org.eclipse.jface.viewers.TableViewerColumn;
 import org.eclipse.swt.SWT;
 import org.eclipse.swt.dnd.DND;
+import org.eclipse.swt.dnd.DropTargetAdapter;
 import org.eclipse.swt.dnd.DropTargetEvent;
 import org.eclipse.swt.dnd.DropTargetListener;
 import org.eclipse.swt.dnd.Transfer;
@@ -21,7 +23,6 @@ import org.eclipse.swt.widgets.Composite;
 import org.eclipse.swt.widgets.Label;
 import org.eclipse.swt.widgets.Text;
 import org.unicase.emfstore.esmodel.ProjectInfo;
-import org.unicase.emfstore.esmodel.accesscontrol.ACGroup;
 import org.unicase.emfstore.esmodel.accesscontrol.ACOrgUnit;
 import org.unicase.emfstore.esmodel.accesscontrol.roles.Role;
 import org.unicase.emfstore.esmodel.accesscontrol.roles.RolesPackage;
@@ -29,6 +30,14 @@ import org.unicase.emfstore.exceptions.EmfStoreException;
 import org.unicase.ui.common.exceptions.DialogHandler;
 import org.unicase.workspace.AdminBroker;
 
+/**
+ * This is shows the properties of a project (name, ...) and a list of its
+ * participants. The user can change the role of a participant in TableViewer
+ * using a ComboboxCellEditor.
+ * 
+ * @author Hodaie
+ * 
+ */
 public class ProjectComposite extends PropertiesComposite {
 
 	private static final int READER_ROLE = 0;
@@ -45,41 +54,43 @@ public class ProjectComposite extends PropertiesComposite {
 
 	private ProjectInfo projectInfo;
 
+	/**
+	 * Constructor.
+	 * 
+	 * @param parent
+	 *            parent
+	 * @param style
+	 *            style
+	 * @param adminBroker
+	 *            used to communicate with server.
+	 */
 	public ProjectComposite(Composite parent, int style, AdminBroker adminBroker) {
 		super(parent, style, adminBroker);
 		createControls();
 	}
 
+	/**
+	 * {@inheritDoc}
+	 */
 	protected void removeOrgUnit(ACOrgUnit orgUnit) {
 		try {
 			getAdminBroker().removeParticipant(projectInfo.getProjectId(),
 					orgUnit.getId());
 		} catch (EmfStoreException e) {
-			// ZH Auto-generated catch block
-			e.printStackTrace();
+			DialogHandler.showExceptionDialog(e);
 		}
 		getTableViewer().refresh();
 	}
 
+	/**
+	 * {@inheritDoc}
+	 */
 	@Override
 	protected void addExistingOrgUnit(ACOrgUnit participant) {
-		// 1. show a list of all AcOrgUnits that do not participate in this
-		// project
-		// (get list of all AcOrgUnits, remove those who take part in this
-		// Project)
-		// 2. add the selected participant to the project
 		try {
 			if (participant != null) {
 				getAdminBroker().addParticipant(projectInfo.getProjectId(),
 						participant.getId());
-			} else {
-				EList<ACOrgUnit> participants = getParticipants();
-				for (ACOrgUnit orgUnit : participants) {
-
-					getAdminBroker().addParticipant(projectInfo.getProjectId(),
-							orgUnit.getId());
-
-				}
 			}
 		} catch (EmfStoreException e) {
 			DialogHandler.showExceptionDialog(e);
@@ -87,6 +98,9 @@ public class ProjectComposite extends PropertiesComposite {
 		getTableViewer().refresh();
 	}
 
+	/**
+	 * {@inheritDoc}
+	 */
 	@Override
 	protected void addNewOrgUnit() {
 		try {
@@ -103,15 +117,16 @@ public class ProjectComposite extends PropertiesComposite {
 		}
 		getTableViewer().refresh();
 	}
-	
-	
 
+	/**
+	 * This will be used when adding a new participant using add button. 1. show
+	 * a list of all AcOrgUnits that do not participate in this project (get
+	 * list of all AcOrgUnits, remove those who take part in this Project) 2.
+	 * return the selected participant
+	 * 
+	 * @return
+	 */
 	private EList<ACOrgUnit> getParticipants() {
-		// 1. show a list of all AcOrgUnits that do not participate in this
-		// project
-		// (get list of all AcOrgUnits, remove those who take part in this
-		// Project)
-		// 2. return the selected participant
 
 		Collection<ACOrgUnit> allOrgUnits = new BasicEList<ACOrgUnit>();
 		EList<ACOrgUnit> participants = new BasicEList<ACOrgUnit>();
@@ -135,14 +150,22 @@ public class ProjectComposite extends PropertiesComposite {
 
 	}
 
-	
-	
+	/**
+	 * {@inheritDoc}
+	 */
 	protected void createTableGroup() {
 
 		super.createTableGroup("Participants");
 
 	}
 
+	/**
+	 * This adds role column to table viewer. Using role column user can see and
+	 * change role of a participant.
+	 * 
+	 * @param parent
+	 *            parent
+	 */
 	protected void createTableViewer(Composite parent) {
 
 		super.createTableViewer(parent);
@@ -165,6 +188,9 @@ public class ProjectComposite extends PropertiesComposite {
 
 	}
 
+	/**
+	 * {@inheritDoc}
+	 */
 	@Override
 	protected void addDragNDropSupport() {
 		// add drag support
@@ -174,7 +200,7 @@ public class ProjectComposite extends PropertiesComposite {
 		int ops = DND.DROP_COPY;
 		Transfer[] transfers = new Transfer[] { LocalSelectionTransfer
 				.getTransfer() };
-		DropTargetListener dropListener = new DropTargetListener() {
+		DropTargetListener dropListener = new DropTargetAdapter() {
 			public void dragEnter(DropTargetEvent event) {
 				if (PropertiesForm.getDragSource().equals("Projects")) {
 					event.detail = DND.DROP_NONE;
@@ -186,32 +212,29 @@ public class ProjectComposite extends PropertiesComposite {
 
 			public void drop(DropTargetEvent event) {
 				if (PropertiesForm.getDragNDropObject() != null) {
-					if (PropertiesForm.getDragNDropObject() instanceof ACGroup) {
-						ACGroup group = (ACGroup) PropertiesForm
+					if (PropertiesForm.getDragNDropObject() instanceof ACOrgUnit) {
+						ACOrgUnit orgUnit = (ACOrgUnit) PropertiesForm
 								.getDragNDropObject();
-						addExistingOrgUnit(group);
+						addExistingOrgUnit(orgUnit);
 						PropertiesForm.setDragNDropObject(null);
 						getTableViewer().refresh();
 					}
 				}
 			}
 
-			public void dragLeave(DropTargetEvent event) {
-			}
-
-			public void dragOperationChanged(DropTargetEvent event) {
-			}
-
-			public void dragOver(DropTargetEvent event) {
-			}
-
-			public void dropAccept(DropTargetEvent event) {
-			}
-
 		};
 		getTableViewer().addDropSupport(ops, transfers, dropListener);
 	}
 
+	/**
+	 * This changes the role of an OrgUnit for current project. This will be
+	 * called form RoleEditinSupport.setValue().
+	 * 
+	 * @param orgUnit
+	 *            orgUnit
+	 * @param role
+	 *            new role
+	 */
 	public void changeRole(ACOrgUnit orgUnit, int role) {
 		try {
 			switch (role) {
@@ -241,6 +264,8 @@ public class ProjectComposite extends PropertiesComposite {
 						orgUnit.getId(),
 						RolesPackage.eINSTANCE.getServerAdmin());
 				break;
+			default:
+				break;
 
 			}
 		} catch (EmfStoreException e) {
@@ -249,6 +274,9 @@ public class ProjectComposite extends PropertiesComposite {
 		getTableViewer().refresh();
 	}
 
+	/**
+	 * {@inheritDoc}
+	 */
 	protected void createSimpleAttributes() {
 
 		super.createSimpleAttributes();
@@ -263,22 +291,31 @@ public class ProjectComposite extends PropertiesComposite {
 		txtVersion.setEnabled(false);
 	}
 
-	public void updateControls(ProjectInfo projectInfo) {
-		if (!getAttributesGroup().isVisible()) {
-			getAttributesGroup().setVisible(true);
-			getTableGroup().setVisible(true);
+	/**
+	 * {@inheritDoc}
+	 * 
+	 * @param projectInfo
+	 */
+	public void updateControls(EObject input) {
+
+		if (input instanceof ProjectInfo) {
+			this.projectInfo = (ProjectInfo) input;
+
+			getTxtName().setText(projectInfo.getName());
+			getTxtDescription().setText(projectInfo.getDescription());
+			txtVersion.setText(String.valueOf(projectInfo.getVersion()
+					.getIdentifier()));
+			getTableViewer().setInput(projectInfo);
 		}
-
-		this.projectInfo = projectInfo;
-
-		getTxtName().setText(projectInfo.getName());
-		getTxtDescription().setText(projectInfo.getDescription());
-		txtVersion.setText(String.valueOf(projectInfo.getVersion()
-				.getIdentifier()));
-		getTableViewer().setInput(projectInfo);
 
 	}
 
+	/**
+	 * This returns an integer representing the actual role of an OrgUnit.
+	 * 
+	 * @param orgUnit orgUnit
+	 * @return integer
+	 */
 	public int getCurrentRoleIndex(ACOrgUnit orgUnit) {
 		int result = 0;
 		Role role;
@@ -299,12 +336,19 @@ public class ProjectComposite extends PropertiesComposite {
 				result = SERVER_ADMIN_ROLE;
 			}
 		} catch (EmfStoreException e) {
-			// ZH Auto-generated catch block
-			e.printStackTrace();
+			DialogHandler.showExceptionDialog(e);
 		}
 		return result;
 	}
 
+	
+	/**
+	 * This class provides editing support for Role column in TableViewer. 
+	 * It uses a ComboBoxCellEditor.
+	 * 
+	 * @author Hodaie
+	 *
+	 */
 	private class RoleEditingSupport extends EditingSupport {
 
 		private ComboBoxCellEditor cellEditor;
