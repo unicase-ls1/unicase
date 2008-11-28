@@ -4,6 +4,7 @@ import java.util.Collection;
 
 import org.eclipse.emf.common.util.BasicEList;
 import org.eclipse.emf.common.util.EList;
+import org.eclipse.jface.util.LocalSelectionTransfer;
 import org.eclipse.jface.viewers.CellEditor;
 import org.eclipse.jface.viewers.ColumnLabelProvider;
 import org.eclipse.jface.viewers.ColumnViewer;
@@ -11,18 +12,24 @@ import org.eclipse.jface.viewers.ComboBoxCellEditor;
 import org.eclipse.jface.viewers.EditingSupport;
 import org.eclipse.jface.viewers.TableViewerColumn;
 import org.eclipse.swt.SWT;
+import org.eclipse.swt.dnd.DND;
+import org.eclipse.swt.dnd.DropTargetEvent;
+import org.eclipse.swt.dnd.DropTargetListener;
+import org.eclipse.swt.dnd.Transfer;
 import org.eclipse.swt.layout.GridData;
 import org.eclipse.swt.widgets.Composite;
 import org.eclipse.swt.widgets.Label;
 import org.eclipse.swt.widgets.Text;
 import org.unicase.emfstore.esmodel.ProjectInfo;
+import org.unicase.emfstore.esmodel.accesscontrol.ACGroup;
 import org.unicase.emfstore.esmodel.accesscontrol.ACOrgUnit;
 import org.unicase.emfstore.esmodel.accesscontrol.roles.Role;
 import org.unicase.emfstore.esmodel.accesscontrol.roles.RolesPackage;
 import org.unicase.emfstore.exceptions.EmfStoreException;
+import org.unicase.ui.common.exceptions.DialogHandler;
 import org.unicase.workspace.AdminBroker;
 
-public class ProjectComposite extends FormContents {
+public class ProjectComposite extends PropertiesComposite {
 
 	private static final int READER_ROLE = 0;
 	private static final int WRITER_ROLE = 1;
@@ -37,27 +44,25 @@ public class ProjectComposite extends FormContents {
 	private Text txtVersion;
 
 	private ProjectInfo projectInfo;
-	private OrgUnitManagementGUI orgUnitMgmtGUI;
 
-	public ProjectComposite(Composite parent, int style, AdminBroker adminBroker, OrgUnitManagementGUI orgUnitMgmtGUI) {
+	public ProjectComposite(Composite parent, int style, AdminBroker adminBroker) {
 		super(parent, style, adminBroker);
-		this.orgUnitMgmtGUI = orgUnitMgmtGUI;
 		createControls();
 	}
 
 	protected void removeOrgUnit(ACOrgUnit orgUnit) {
 		try {
-			adminBroker
-					.removeParticipant(projectInfo.getProjectId(),
-							orgUnit.getId());
+			getAdminBroker().removeParticipant(projectInfo.getProjectId(),
+					orgUnit.getId());
 		} catch (EmfStoreException e) {
 			// ZH Auto-generated catch block
 			e.printStackTrace();
 		}
-		tableViewer.refresh();
+		getTableViewer().refresh();
 	}
 
-	protected void addOrgUnit(ACOrgUnit participant) {
+	@Override
+	protected void addExistingOrgUnit(ACOrgUnit participant) {
 		// 1. show a list of all AcOrgUnits that do not participate in this
 		// project
 		// (get list of all AcOrgUnits, remove those who take part in this
@@ -65,25 +70,41 @@ public class ProjectComposite extends FormContents {
 		// 2. add the selected participant to the project
 		try {
 			if (participant != null) {
-				adminBroker
-						.addParticipant(projectInfo.getProjectId(),
-								participant.getId());
+				getAdminBroker().addParticipant(projectInfo.getProjectId(),
+						participant.getId());
 			} else {
 				EList<ACOrgUnit> participants = getParticipants();
 				for (ACOrgUnit orgUnit : participants) {
 
-					adminBroker
-							.addParticipant(projectInfo.getProjectId(),
-									orgUnit.getId());
+					getAdminBroker().addParticipant(projectInfo.getProjectId(),
+							orgUnit.getId());
 
 				}
 			}
 		} catch (EmfStoreException e) {
-			// ZH Auto-generated catch block
-			e.printStackTrace();
+			DialogHandler.showExceptionDialog(e);
 		}
-		tableViewer.refresh();
+		getTableViewer().refresh();
 	}
+
+	@Override
+	protected void addNewOrgUnit() {
+		try {
+			EList<ACOrgUnit> participants = getParticipants();
+			for (ACOrgUnit orgUnit : participants) {
+
+				getAdminBroker().addParticipant(projectInfo.getProjectId(),
+						orgUnit.getId());
+
+			}
+
+		} catch (EmfStoreException e) {
+			DialogHandler.showExceptionDialog(e);
+		}
+		getTableViewer().refresh();
+	}
+	
+	
 
 	private EList<ACOrgUnit> getParticipants() {
 		// 1. show a list of all AcOrgUnits that do not participate in this
@@ -96,9 +117,9 @@ public class ProjectComposite extends FormContents {
 		EList<ACOrgUnit> participants = new BasicEList<ACOrgUnit>();
 
 		try {
-			allOrgUnits.addAll(adminBroker.getOrgUnits());
-			allOrgUnits.removeAll(adminBroker.getParticipants(
-							projectInfo.getProjectId()));
+			allOrgUnits.addAll(getAdminBroker().getOrgUnits());
+			allOrgUnits.removeAll(getAdminBroker().getParticipants(
+					projectInfo.getProjectId()));
 
 			Object[] result = showDialog(allOrgUnits, "Select a participant");
 
@@ -108,42 +129,26 @@ public class ProjectComposite extends FormContents {
 				}
 			}
 		} catch (EmfStoreException e) {
-			// ZH Auto-generated catch block
-			e.printStackTrace();
+			DialogHandler.showExceptionDialog(e);
 		}
 		return participants;
 
 	}
 
+	
+	
 	protected void createTableGroup() {
 
-		super.createTableGroup();
-		grpTable.setText("Participants");
+		super.createTableGroup("Participants");
 
 	}
 
-	protected void createTable(Composite parent) {
+	protected void createTableViewer(Composite parent) {
 
-		super.createTable(parent);
+		super.createTableViewer(parent);
 
-		// TableColumn column = new TableColumn(table, SWT.LEFT, 3);
-		// column.setText("Role");
-		// column.setWidth(120);
-		// Add listener to column so tasks are sorted by percent when clicked
-		// column.addSelectionListener(new SelectionAdapter() {
-		// public void widgetSelected(SelectionEvent e) {
-		// tableViewer.setSorter(new ExampleTaskSorter(
-		// ExampleTaskSorter.PERCENT_COMPLETE));
-		// }
-		// });
-	}
-
-	protected void createTableViewer() {
-
-		super.createTableViewer();
-
-		TableViewerColumn roleColumnViewer = new TableViewerColumn(tableViewer,
-				SWT.NONE);
+		TableViewerColumn roleColumnViewer = new TableViewerColumn(
+				getTableViewer(), SWT.NONE);
 		roleColumnViewer.getColumn().setText("Role");
 		roleColumnViewer.getColumn().setWidth(120);
 		roleColumnViewer.setLabelProvider(new ColumnLabelProvider() {
@@ -155,100 +160,122 @@ public class ProjectComposite extends FormContents {
 			}
 
 		});
-		roleColumnViewer.setEditingSupport(new RoleEditingSupport(tableViewer));
+		roleColumnViewer.setEditingSupport(new RoleEditingSupport(
+				getTableViewer()));
 
-		// Create the cell editors
-		// CellEditor[] editors = new CellEditor[columnNames.length];
-		//
-		// // Column 1 : icon
-		// editors[0] = null;
-		//
-		// // // Column 2 : name (Free text)
-		// // TextCellEditor textEditor = new TextCellEditor(table);
-		// // ((Text) textEditor.getControl()).setTextLimit(60);
-		// editors[1] = null;
-		//
-		// // Column 3 : description (Text with digits only)
-		// // textEditor = new TextCellEditor(table);
-		// editors[2] = null;
-		//
-		// // Column 4: role (Combo Box)
-		// editors[3] = new ComboBoxCellEditor(table, roleNames, SWT.READ_ONLY);
-		//
-		// // Assign the cell editors to the viewer
-		// tableViewer.setCellEditors(editors);
-		// // Set the cell modifier for the viewer
-		// tableViewer.setCellModifier(new TableCellModifier());
-		// // Set the default sorter for the viewer
-		// // tableViewer.setSorter(new
-		// // ExampleTaskSorter(ExampleTaskSorter.DESCRIPTION));
+	}
 
+	@Override
+	protected void addDragNDropSupport() {
+		// add drag support
+		super.addDragNDropSupport();
+
+		// add drop support
+		int ops = DND.DROP_COPY;
+		Transfer[] transfers = new Transfer[] { LocalSelectionTransfer
+				.getTransfer() };
+		DropTargetListener dropListener = new DropTargetListener() {
+			public void dragEnter(DropTargetEvent event) {
+				if (PropertiesForm.getDragSource().equals("Projects")) {
+					event.detail = DND.DROP_NONE;
+
+				} else {
+					event.detail = DND.DROP_COPY;
+				}
+			}
+
+			public void drop(DropTargetEvent event) {
+				if (PropertiesForm.getDragNDropObject() != null) {
+					if (PropertiesForm.getDragNDropObject() instanceof ACGroup) {
+						ACGroup group = (ACGroup) PropertiesForm
+								.getDragNDropObject();
+						addExistingOrgUnit(group);
+						PropertiesForm.setDragNDropObject(null);
+						getTableViewer().refresh();
+					}
+				}
+			}
+
+			public void dragLeave(DropTargetEvent event) {
+			}
+
+			public void dragOperationChanged(DropTargetEvent event) {
+			}
+
+			public void dragOver(DropTargetEvent event) {
+			}
+
+			public void dropAccept(DropTargetEvent event) {
+			}
+
+		};
+		getTableViewer().addDropSupport(ops, transfers, dropListener);
 	}
 
 	public void changeRole(ACOrgUnit orgUnit, int role) {
 		try {
 			switch (role) {
 			case READER_ROLE:
-				adminBroker.changeRole(
-						projectInfo.getProjectId(), orgUnit.getId(),
-						RolesPackage.eINSTANCE.getReaderRole());
+				getAdminBroker()
+						.changeRole(projectInfo.getProjectId(),
+								orgUnit.getId(),
+								RolesPackage.eINSTANCE.getReaderRole());
 
 				break;
 
 			case WRITER_ROLE:
-				adminBroker.changeRole(
-						projectInfo.getProjectId(), orgUnit.getId(),
-						RolesPackage.eINSTANCE.getWriterRole());
+				getAdminBroker()
+						.changeRole(projectInfo.getProjectId(),
+								orgUnit.getId(),
+								RolesPackage.eINSTANCE.getWriterRole());
 				break;
 
 			case PROJECT_ADMIN_ROLE:
-				adminBroker.changeRole(
-						projectInfo.getProjectId(), orgUnit.getId(),
+				getAdminBroker().changeRole(projectInfo.getProjectId(),
+						orgUnit.getId(),
 						RolesPackage.eINSTANCE.getProjectAdminRole());
 				break;
-			
+
 			case SERVER_ADMIN_ROLE:
-				adminBroker.changeRole(
-						projectInfo.getProjectId(), orgUnit.getId(),
+				getAdminBroker().changeRole(projectInfo.getProjectId(),
+						orgUnit.getId(),
 						RolesPackage.eINSTANCE.getServerAdmin());
 				break;
-			
+
 			}
 		} catch (EmfStoreException e) {
-			// ZH Auto-generated catch block
-			e.printStackTrace();
+			DialogHandler.showExceptionDialog(e);
 		}
-		tableViewer.refresh();
+		getTableViewer().refresh();
 	}
 
 	protected void createSimpleAttributes() {
 
 		super.createSimpleAttributes();
 
-		txtName.setEnabled(false);
-		txtDescription.setEnabled(false);
+		getTxtName().setEnabled(false);
+		getTxtDescription().setEnabled(false);
 
-		lblVersion = new Label(grpAttributes, SWT.NONE);
+		lblVersion = new Label(getAttributesGroup(), SWT.NONE);
 		lblVersion.setText("Version: ");
-		txtVersion = new Text(grpAttributes, SWT.BORDER);
+		txtVersion = new Text(getAttributesGroup(), SWT.BORDER);
 		txtVersion.setLayoutData(new GridData(GridData.FILL_HORIZONTAL));
 		txtVersion.setEnabled(false);
 	}
 
 	public void updateControls(ProjectInfo projectInfo) {
-		if(!grpAttributes.isVisible()){
-			grpAttributes.setVisible(true);
-			grpTable.setVisible(true);
+		if (!getAttributesGroup().isVisible()) {
+			getAttributesGroup().setVisible(true);
+			getTableGroup().setVisible(true);
 		}
-		
+
 		this.projectInfo = projectInfo;
 
-		txtName.setText(projectInfo.getName());
-		txtDescription.setText(projectInfo.getDescription());
+		getTxtName().setText(projectInfo.getName());
+		getTxtDescription().setText(projectInfo.getDescription());
 		txtVersion.setText(String.valueOf(projectInfo.getVersion()
 				.getIdentifier()));
-		tableViewer.setInput(projectInfo);
-		orgUnitMgmtGUI.setFormTableViewer(tableViewer);
+		getTableViewer().setInput(projectInfo);
 
 	}
 
@@ -256,8 +283,8 @@ public class ProjectComposite extends FormContents {
 		int result = 0;
 		Role role;
 		try {
-			role = adminBroker.getRole(
-					projectInfo.getProjectId(), orgUnit.getId());
+			role = getAdminBroker().getRole(projectInfo.getProjectId(),
+					orgUnit.getId());
 			if (role.eClass().equals(RolesPackage.eINSTANCE.getReaderRole())) {
 				result = READER_ROLE;
 			} else if (role.eClass().equals(
@@ -267,7 +294,8 @@ public class ProjectComposite extends FormContents {
 			} else if (role.eClass().equals(
 					RolesPackage.eINSTANCE.getProjectAdminRole())) {
 				result = PROJECT_ADMIN_ROLE;
-			} else if(role.eClass().equals(RolesPackage.eINSTANCE.getServerAdmin())){
+			} else if (role.eClass().equals(
+					RolesPackage.eINSTANCE.getServerAdmin())) {
 				result = SERVER_ADMIN_ROLE;
 			}
 		} catch (EmfStoreException e) {
@@ -283,7 +311,8 @@ public class ProjectComposite extends FormContents {
 
 		public RoleEditingSupport(ColumnViewer viewer) {
 			super(viewer);
-			cellEditor = new ComboBoxCellEditor(table, roleNames, SWT.READ_ONLY);
+			cellEditor = new ComboBoxCellEditor(getTableViewer().getTable(),
+					roleNames, SWT.READ_ONLY);
 		}
 
 		@Override
