@@ -10,27 +10,20 @@ package org.unicase.ui.common.commands;
  * Contributors:
  *    IBM Corporation - initial API and implementation 
  ****************************************************************************/
+import java.util.Collection;
+
 import org.eclipse.core.commands.ExecutionException;
 import org.eclipse.core.runtime.IAdaptable;
 import org.eclipse.core.runtime.IProgressMonitor;
-import org.eclipse.core.runtime.NullProgressMonitor;
 import org.eclipse.emf.ecore.EObject;
+import org.eclipse.emf.ecore.EStructuralFeature.Setting;
 import org.eclipse.emf.ecore.resource.Resource;
-import org.eclipse.emf.transaction.util.TransactionUtil;
 import org.eclipse.gef.EditPart;
 import org.eclipse.gmf.runtime.common.core.command.CommandResult;
-import org.eclipse.gmf.runtime.common.core.command.ICommand;
-import org.eclipse.gmf.runtime.common.core.util.Log;
-import org.eclipse.gmf.runtime.common.core.util.Trace;
-import org.eclipse.gmf.runtime.emf.type.core.ElementTypeRegistry;
-import org.eclipse.gmf.runtime.emf.type.core.IElementType;
-import org.eclipse.gmf.runtime.emf.type.core.internal.EMFTypeDebugOptions;
-import org.eclipse.gmf.runtime.emf.type.core.internal.EMFTypePlugin;
-import org.eclipse.gmf.runtime.emf.type.core.internal.EMFTypePluginStatusCodes;
-import org.eclipse.gmf.runtime.emf.type.core.internal.l10n.EMFTypeCoreMessages;
+import org.eclipse.gmf.runtime.emf.core.util.CrossReferenceAdapter;
 import org.eclipse.gmf.runtime.emf.type.core.requests.DestroyElementRequest;
 import org.eclipse.gmf.runtime.notation.View;
-import org.eclipse.osgi.util.NLS;
+import org.unicase.model.classes.Association;
 import org.unicase.model.diagram.MEDiagram;
 import org.unicase.ui.common.diagram.MEDiagramEditPart;
 
@@ -41,7 +34,6 @@ import org.unicase.ui.common.diagram.MEDiagramEditPart;
  * @author ldamus
  * @author Christian W. Damus (cdamus)
  */
-@SuppressWarnings("restriction")
 public class DeleteFromViewCommand
 	extends org.eclipse.gmf.runtime.emf.type.core.commands.EditElementCommand {
 
@@ -77,6 +69,7 @@ public class DeleteFromViewCommand
 	 * 
 	 * @param eObject an element to destroy
 	 */
+	/*
 	public static void destroy(EObject eObject) {
 
 		Resource resource = eObject.eResource();
@@ -107,7 +100,7 @@ public class DeleteFromViewCommand
 			}
 		}
 	}
-	
+	*/
 	/**
 	 * {@inheritDoc}
 	 * @see org.eclipse.gmf.runtime.emf.commands.core.command.AbstractTransactionalCommand#doExecuteWithResult(org.eclipse.core.runtime.IProgressMonitor, org.eclipse.core.runtime.IAdaptable)
@@ -124,16 +117,53 @@ public class DeleteFromViewCommand
 			MEDiagram diag = (MEDiagram) ((View) me.getModel()).getElement();
 			diag.getElements().remove(destructee);
 	
+			// tear down incoming references
+			tearDownIncomingReferences(destructee);
+				
 			// in case it was cross-resource-contained
 			Resource res = destructee.eResource();
 			if (res != null) {
 				res.getContents().remove(destructee);
-			}
+			}			
 		}
 		
 		return CommandResult.newOKCommandResult();
 	}	
+	/**
+	 * Tears down references to the object that we are destroying, from all other
+	 * objects in the resource set.
+	 * 
+	 * @param destructee the object being destroyed
+	 */
+	protected void tearDownIncomingReferences(EObject destructee) {
+		MEDiagramEditPart me = (MEDiagramEditPart) editpart.getParent();
+		MEDiagram diag = (MEDiagram) ((View) me.getModel()).getElement();
 	
+		CrossReferenceAdapter crossReferencer = CrossReferenceAdapter
+				.getCrossReferenceAdapter(destructee.eResource()
+						.getResourceSet());
+		if (crossReferencer != null) {
+			Collection<Setting> inverseReferences = crossReferencer
+					.getInverseReferences(destructee);
+			if (inverseReferences == null) {
+				return;
+			}
+			int size = inverseReferences.size();
+			if (size > 0) {
+				Setting setting;
+				Setting[] settings = inverseReferences
+						.toArray(new Setting[size]);
+				for (int i = 0; i < size; ++i) {
+					setting = settings[i];
+					EObject obj = setting.getEObject();
+					if (obj != null && obj instanceof Association) {
+						diag.getElements().remove(obj);
+					}
+				}
+
+			}
+		}
+	}
 	/**
 	 * Gets the element to be destroyed.
 	 * @return the element to be destroyed

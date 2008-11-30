@@ -6,12 +6,18 @@
  */
 package org.unicase.ui.common.commands;
 
+import java.util.Collection;
+
 import org.eclipse.emf.ecore.EClass;
 import org.eclipse.emf.ecore.EObject;
+import org.eclipse.emf.ecore.EStructuralFeature.Setting;
+import org.eclipse.gmf.runtime.emf.core.util.CrossReferenceAdapter;
 import org.eclipse.gmf.runtime.emf.type.core.commands.CreateElementCommand;
 import org.eclipse.gmf.runtime.emf.type.core.requests.CreateElementRequest;
 import org.eclipse.gmf.runtime.notation.View;
 import org.unicase.model.ModelElement;
+import org.unicase.model.classes.Association;
+import org.unicase.model.classes.impl.AssociationImpl;
 import org.unicase.model.diagram.DiagramPackage;
 import org.unicase.model.diagram.MEDiagram;
 
@@ -67,6 +73,39 @@ public class DiagramElementAddCommand extends CreateElementCommand {
 	protected EObject doDefaultElementCreation() {
 	
 		MEDiagram childHolder = (MEDiagram) getElementToEdit();
+				
+		CrossReferenceAdapter crossReferencer = CrossReferenceAdapter.
+		getCrossReferenceAdapter(this.newElement.eResource().getResourceSet());
+		if (crossReferencer != null) {
+			Collection<Setting> inverseReferences = crossReferencer
+					.getInverseReferences(this.newElement);
+			if (inverseReferences == null) {
+				return newElement;
+			}
+			int size = inverseReferences.size();
+			if (size > 0) {
+				Setting setting;
+				Setting[] settings = inverseReferences
+						.toArray(new Setting[size]);
+				for (int i = 0; i < size; ++i) {
+					setting = settings[i];
+					EObject settingObj = setting.getEObject();
+					if (settingObj != null && settingObj instanceof Association) {
+						AssociationImpl assoc = (AssociationImpl) settingObj;
+						if (!childHolder.getElements().contains(settingObj)
+								&& (childHolder.getElements().contains(
+										assoc.getSource()) || childHolder
+										.getElements().contains(
+												assoc.getTarget()))) {
+							childHolder.getElements().add(
+									(ModelElement) settingObj);
+						}
+					}
+				}
+				
+			}
+		}
+		
 		childHolder.getElements().add((ModelElement)this.newElement);
 		return newElement;
 	}
