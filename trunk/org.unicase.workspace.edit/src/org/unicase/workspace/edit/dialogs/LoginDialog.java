@@ -124,7 +124,7 @@ public class LoginDialog extends TitleAreaDialog implements SelectionListener {
 			public void modifyText(ModifyEvent e) {
 				//TODO AS: Add a proper input validation
 				for(Usersession u : sessionsList){
-					if(username.getText().equals(u.getUsername())){
+					if(username.getText().equals(u.getUsername()) && username.isEnabled()){
 						setErrorMessage("Duplicate username!");
 						canFinish = false;
 						return;
