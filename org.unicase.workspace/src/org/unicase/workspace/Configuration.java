@@ -41,8 +41,15 @@ public final class Configuration {
 		sb.append(File.separatorChar);
 		sb.append(".unicase");
 		if (!isReleaseVersion()) {
-			sb.append(".dev");
+			if (isInternalReleaseVersion()) {
+				sb.append(".internal");
+			}
+			else {
+				sb.append(".dev");
+			}
 		}
+		
+		
 		sb.append(File.separatorChar);
 		File workspace = new File(sb.toString());
 		if (!workspace.exists()) {
@@ -154,6 +161,14 @@ public final class Configuration {
 	 * @return true if it is a release version
 	 */
 	public static boolean isReleaseVersion() {
-		return !getClientVersion().getVersion().endsWith("qualifier");
+		return !isInternalReleaseVersion() && !getClientVersion().getVersion().endsWith("qualifier");
+	}
+	
+	/**
+	 * Determines if this is an internal release or not.
+	 * @return true if it an internal release
+	 */
+	public static boolean isInternalReleaseVersion() {
+		return getClientVersion().getVersion().endsWith("internal");
 	}
 }
