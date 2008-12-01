@@ -61,6 +61,7 @@ public abstract class AbstractAuthenticationControl implements
 			}
 			String[] splitedVersions = versions.split(ServerConfiguration.MULTI_PROPERTY_SEPERATOR);
 			for(String str : splitedVersions) {
+				str=str.trim();
 				if(str.equals(clientVersionInfo.getVersion()) || str.equals(ServerConfiguration.ACCEPTED_VERSIONS_ANY)) {
 					return;
 				}
