@@ -32,6 +32,8 @@ public class AddTest extends RandomChangeTestCase implements IChangePackageTest 
 
 	private static final int EXPECTED_NUM_OF_CHANGES = 2;
 
+	private ChangePackage changePackage;
+
 	public AddTest(String testName, TestProjectParmeters testProjParams) {
 		super(testName, testProjParams);
 
@@ -87,6 +89,8 @@ public class AddTest extends RandomChangeTestCase implements IChangePackageTest 
 			me.eSet(ref, newInstance);
 		}
 
+		changePackage = getChangePackage(true);
+
 	}
 
 	public int getExpectedNumOfChanges() {
@@ -95,12 +99,16 @@ public class AddTest extends RandomChangeTestCase implements IChangePackageTest 
 
 	public boolean isSuccessful() {
 		// temp impl
-		return EXPECTED_NUM_OF_CHANGES == 2;
+		return changePackage.getOperations().size() == EXPECTED_NUM_OF_CHANGES;
 	}
 
 	public ChangePackage getChangePackage(boolean removeChanges) {
-		return ChangeTestHelper.getChangePackage(getTestProjectSpace()
-				.getOperations(), true, removeChanges);
+
+		if (changePackage == null) {
+			changePackage = ChangeTestHelper.getChangePackage(
+					getTestProjectSpace().getOperations(), true, removeChanges);
+		}
+		return changePackage;
 
 	}
 

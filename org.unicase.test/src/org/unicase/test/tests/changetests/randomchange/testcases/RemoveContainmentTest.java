@@ -3,8 +3,10 @@ package org.unicase.test.tests.changetests.randomchange.testcases;
 import java.util.List;
 
 import org.eclipse.emf.common.util.EList;
+import org.eclipse.emf.common.util.TreeIterator;
 import org.eclipse.emf.ecore.EObject;
 import org.eclipse.emf.ecore.EReference;
+import org.eclipse.emf.ecore.util.EcoreUtil;
 import org.eclipse.emf.transaction.RecordingCommand;
 import org.eclipse.emf.transaction.TransactionalEditingDomain;
 import org.unicase.emfstore.esmodel.versioning.ChangePackage;
@@ -29,7 +31,10 @@ import org.unicase.ui.test.TestProjectParmeters;
 public class RemoveContainmentTest extends RandomChangeTestCase implements
 		IChangePackageTest {
 
-	private static final int EXPECTED_NUM_OF_CHANGES = 2;
+	
+	private ModelElement meToRemove;
+	private ModelElement me;
+	private ChangePackage changePackage;
 
 	public RemoveContainmentTest(String testName, TestProjectParmeters testProjParams) {
 		super(testName, testProjParams);
@@ -54,24 +59,28 @@ public class RemoveContainmentTest extends RandomChangeTestCase implements
 	
 	
 	private void doRemoveContainment() {
-		ModelElement me = ChangeTestHelper
+		me = ChangeTestHelper
 				.getRandomME(getTestProject());
-		ModelElement meToRemove = getMEToRemove(me);
+		meToRemove = getMEToRemove(me);
 		while (meToRemove == null) {
 			me = ChangeTestHelper.getRandomME(getTestProject());
 			meToRemove = getMEToRemove(me);
 		}
 
 		EReference ref = (EReference) meToRemove.eContainingFeature();
-
-		Object object = me.eGet(ref);
-		if (ref.isMany()) {
-			EList<EObject> eList = (EList<EObject>) object;
-			eList.remove(meToRemove);
-		} else {
-			
-			me.eSet(ref, null);
-		}
+		EcoreUtil.remove(me, ref, meToRemove);
+		
+//	
+//		EReference ref = (EReference) meToRemove.eContainingFeature();
+//		Object object = me.eGet(ref);
+//		if (ref.isMany()) {
+//			EList<EObject> eList = (EList<EObject>) object;
+//			eList.remove(meToRemove);
+//		} else {
+//			me.eSet(ref, null);
+//		}
+		
+		changePackage = getChangePackage(true);
 	}
 	
 	
@@ -82,7 +91,6 @@ public class RemoveContainmentTest extends RandomChangeTestCase implements
 		// 3. see if ref contains an element
 		// 4. if ref has a list of objects select one of them in random
 		// 5. if ref has only one object (ref is not many) return it.
-		ModelElement meToRemove = null;
 		List<EReference> containments = me.eClass().getEAllContainments();
 		if(containments.size() == 0){
 			return null;
@@ -114,22 +122,34 @@ public class RemoveContainmentTest extends RandomChangeTestCase implements
 	
 	public int getExpectedNumOfChanges() {
 
-		return EXPECTED_NUM_OF_CHANGES;
+		//a multiRefOp for container, 
+		//a deleteOp for meToRemove
+		//+ meToRemove.crossrefs.size()
+		//+ meToRemove.contents().size()
+		//+ for each(content in contents) content.crossref.size()
+		
+		int numOfOps = 1 + 1 + meToRemove.eCrossReferences().size();
+		for(TreeIterator<EObject> iter = meToRemove.eAllContents(); iter.hasNext(); ){
+			numOfOps ++;
+			numOfOps += iter.next().eCrossReferences().size();
+			
+		}
+		return numOfOps;
 	}
 
 	public boolean isSuccessful() {
-		//compute number of changes:
-		// 1. # of deletions = 1 + allContents().size()
-		// 2. # of multirefs = me.crossrefs().size() 
-		//                    + foreach(element in allContents){ element.crossrefs().size()}
-		//
-		return EXPECTED_NUM_OF_CHANGES == 2;
+		
+		return changePackage.getOperations().size() == getExpectedNumOfChanges();
+		 
 	}
 	
 	
 	public ChangePackage getChangePackage(boolean removeChanges) {
-		return ChangeTestHelper.getChangePackage(getTestProjectSpace()
+		if(changePackage == null){
+			changePackage = ChangeTestHelper.getChangePackage(getTestProjectSpace()
 				.getOperations(), true, removeChanges);
+		}
+		return changePackage;
 
 	}
 
