@@ -23,7 +23,7 @@ public abstract class TestSuite {
 				System.out.println("========= Running TestCase: "
 						+ testCase.getTestName() + " =========  " + i);
 				testCase.runTest();
-				testCase.endTestCase();
+				testCase.endTestCase(false);
 			}
 			endTestSuite();
 		}

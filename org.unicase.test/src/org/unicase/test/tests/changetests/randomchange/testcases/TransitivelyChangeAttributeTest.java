@@ -138,9 +138,9 @@ public class TransitivelyChangeAttributeTest extends RandomChangeTestCase implem
 	}
 	
 	
-	public ChangePackage getChangePackage() {
+	public ChangePackage getChangePackage(boolean removeChanges) {
 		return ChangeTestHelper.getChangePackage(getTestProjectSpace()
-				.getOperations(), true, true);
+				.getOperations(), true, removeChanges);
 
 	}
 

@@ -84,7 +84,7 @@ public class CommitTest extends RandomChangeTestCase {
 	}
 
 	@Override
-	public void endTestCase() {
+	public void endTestCase(boolean outputToFile) {
 
 		final LogMessage logMessage = VersioningFactory.eINSTANCE
 				.createLogMessage();

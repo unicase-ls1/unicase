@@ -8,6 +8,6 @@ public interface IChangePackageTest {
 	
 	public int getExpectedNumOfChanges();
 	public boolean isSuccessful();
-	public ChangePackage getChangePackage();
+	public ChangePackage getChangePackage(boolean removeChanges);
 	
 }

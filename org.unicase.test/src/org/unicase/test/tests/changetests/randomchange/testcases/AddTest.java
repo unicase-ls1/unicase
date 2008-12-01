@@ -98,9 +98,9 @@ public class AddTest extends RandomChangeTestCase implements IChangePackageTest 
 		return EXPECTED_NUM_OF_CHANGES == 2;
 	}
 
-	public ChangePackage getChangePackage() {
+	public ChangePackage getChangePackage(boolean removeChanges) {
 		return ChangeTestHelper.getChangePackage(getTestProjectSpace()
-				.getOperations(), true, true);
+				.getOperations(), true, removeChanges);
 
 	}
 

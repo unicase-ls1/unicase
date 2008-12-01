@@ -50,50 +50,16 @@ public class CreateAndChangeRefTest extends RandomChangeTestCase implements
 			@Override
 			protected void doExecute() {
 				getTestProject().getModelElements().add(me);
-				changeSimpleRef(me);
+				ChangeTestHelper.changeSimpleRef(me, getTestProject());
 			}
 
 		});
 
 	}
 
-	private void changeSimpleRef(ModelElement me) {
+	
 
-		List<EReference> nonContainmentRefs = new ArrayList<EReference>();
-		for (EReference ref : me.eClass().getEAllReferences()) {
-			if (!ref.isContainment() && !ref.isContainer()) {
-				nonContainmentRefs.add(ref);
-			}
-		}
-
-		EReference ref = nonContainmentRefs.get(getRandom().nextInt(
-				nonContainmentRefs.size() - 1));
-		EClass refType = ref.getEReferenceType();
-		List<ModelElement> refTypeMEs = getTestProject()
-				.getAllModelElementsbyClass(refType,
-						new BasicEList<ModelElement>());
-
-		if (refTypeMEs.contains(me)) {
-			refTypeMEs.remove(me);
-		}
-
-		ModelElement toBeReferencedME = refTypeMEs.get(getRandom().nextInt(
-				refTypeMEs.size() - 1));
-
-		Object object = me.eGet(ref);
-		if (ref.isMany()) {
-			EList<EObject> eList = (EList<EObject>) object;
-			if (eList == null) {
-				throw new IllegalStateException("Null list return for feature "
-						+ ref.getName() + " on " + me.getName());
-			} else {
-				eList.add(toBeReferencedME);
-			}
-		} else {
-			me.eSet(ref, toBeReferencedME);
-		}
-
-	}
+		
 
 	public int getExpectedNumOfChanges() {
 		return EXPECTED_NUM_OF_CHANGES;
@@ -104,9 +70,9 @@ public class CreateAndChangeRefTest extends RandomChangeTestCase implements
 		return EXPECTED_NUM_OF_CHANGES == 1;
 	}
 	
-	public ChangePackage getChangePackage() {
+	public ChangePackage getChangePackage(boolean removeChanges) {
 		return ChangeTestHelper.getChangePackage(getTestProjectSpace()
-				.getOperations(), true, true);
+				.getOperations(), true, removeChanges);
 
 	}
 

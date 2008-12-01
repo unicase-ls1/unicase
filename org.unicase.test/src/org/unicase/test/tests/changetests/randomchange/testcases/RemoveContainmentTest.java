@@ -1,13 +1,10 @@
 package org.unicase.test.tests.changetests.randomchange.testcases;
 
-import java.util.ArrayList;
 import java.util.List;
 
-import org.eclipse.emf.common.util.BasicEList;
 import org.eclipse.emf.common.util.EList;
 import org.eclipse.emf.ecore.EObject;
 import org.eclipse.emf.ecore.EReference;
-import org.eclipse.emf.ecore.EStructuralFeature;
 import org.eclipse.emf.transaction.RecordingCommand;
 import org.eclipse.emf.transaction.TransactionalEditingDomain;
 import org.unicase.emfstore.esmodel.versioning.ChangePackage;
@@ -29,12 +26,12 @@ import org.unicase.ui.test.TestProjectParmeters;
  * @author Hodaie
  * 
  */
-public class RemoveTest extends RandomChangeTestCase implements
+public class RemoveContainmentTest extends RandomChangeTestCase implements
 		IChangePackageTest {
 
 	private static final int EXPECTED_NUM_OF_CHANGES = 2;
 
-	public RemoveTest(String testName, TestProjectParmeters testProjParams) {
+	public RemoveContainmentTest(String testName, TestProjectParmeters testProjParams) {
 		super(testName, testProjParams);
 
 
@@ -49,14 +46,14 @@ public class RemoveTest extends RandomChangeTestCase implements
 
 			@Override
 			protected void doExecute() {
-				doRemove();
+				doRemoveContainment();
 			}
 		});
 
 	}
 	
 	
-	private void doRemove() {
+	private void doRemoveContainment() {
 		ModelElement me = ChangeTestHelper
 				.getRandomME(getTestProject());
 		ModelElement meToRemove = getMEToRemove(me);
@@ -72,7 +69,8 @@ public class RemoveTest extends RandomChangeTestCase implements
 			EList<EObject> eList = (EList<EObject>) object;
 			eList.remove(meToRemove);
 		} else {
-			me.eUnset(ref);
+			
+			me.eSet(ref, null);
 		}
 	}
 	
@@ -120,14 +118,18 @@ public class RemoveTest extends RandomChangeTestCase implements
 	}
 
 	public boolean isSuccessful() {
-		//temp impl
+		//compute number of changes:
+		// 1. # of deletions = 1 + allContents().size()
+		// 2. # of multirefs = me.crossrefs().size() 
+		//                    + foreach(element in allContents){ element.crossrefs().size()}
+		//
 		return EXPECTED_NUM_OF_CHANGES == 2;
 	}
 	
 	
-	public ChangePackage getChangePackage() {
+	public ChangePackage getChangePackage(boolean removeChanges) {
 		return ChangeTestHelper.getChangePackage(getTestProjectSpace()
-				.getOperations(), true, true);
+				.getOperations(), true, removeChanges);
 
 	}
 

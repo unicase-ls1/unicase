@@ -17,7 +17,8 @@ import org.unicase.test.tests.changetests.randomchange.testcases.CreateAndChange
 import org.unicase.test.tests.changetests.randomchange.testcases.CreateAndChangeRefTest;
 import org.unicase.test.tests.changetests.randomchange.testcases.CreateAndDeleteTest;
 import org.unicase.test.tests.changetests.randomchange.testcases.MoveTest;
-import org.unicase.test.tests.changetests.randomchange.testcases.ReferenceTest;
+import org.unicase.test.tests.changetests.randomchange.testcases.ChangeSimpleRefTest;
+import org.unicase.test.tests.changetests.randomchange.testcases.RemoveSimpleRefTest;
 import org.unicase.test.tests.changetests.randomchange.testcases.TransitivelyChangeAttributeTest;
 
 public class RandomChangeTestSuite extends ChangeTestSuite {
@@ -62,9 +63,9 @@ public class RandomChangeTestSuite extends ChangeTestSuite {
 
 		
 		// Reference Test
-		ReferenceTest referenceTest = new ReferenceTest("Reference",
+		ChangeSimpleRefTest changeSimpleRefTest = new ChangeSimpleRefTest("Reference",
 				getTestProjectPrams());
-		testCases.add(referenceTest);
+		testCases.add(changeSimpleRefTest);
 
 		
 		// CreateAndDelete Test
@@ -78,10 +79,13 @@ public class RandomChangeTestSuite extends ChangeTestSuite {
 				"TransitivelyChangeAttributeTest", getTestProjectPrams());
 		testCases.add(transitivelyChangeAttribute);
 
-		// Remove Test
-		//RemoveTest removeTest = new RemoveTest("Remove", getRandomSeed());
-		//testCases.add(removeTest);
+		// RemoveContainment Test
+		//RemoveContainmentTest removeContainmentTest = new RemoveContainmentTest("Remove", getRandomSeed());
+		//testCases.add(removeContainmentTest);
 
+		// RemoveSimpleRef Test
+		RemoveSimpleRefTest removeSimpleRefTest = new RemoveSimpleRefTest("RemoveSimpleRef", getTestProjectPrams());
+		testCases.add(removeSimpleRefTest);
 		
 		// CreateAndChangeRef Test
 		CreateAndChangeRefTest createAndChangeRefTest = new CreateAndChangeRefTest(
@@ -110,13 +114,14 @@ public class RandomChangeTestSuite extends ChangeTestSuite {
 		
 		 //this.getTestCases().add(moveTest);
 		// this.getTestCases().add(addTest);
-		this.getTestCases().add(compoundTest);
+		//this.getTestCases().add(compoundTest);
 		// this.getTestCases().add(deleteTest);
 		// this.getTestCases().add(referenceTest);
 		// this.getTestCases().add(compoundTest);
 		// this.getTestCases().add(createAndDeleteTest);
 		// this.getTestCases().add(transitivelyChangeAttribute);
-		//this.getTestCases().add(removeTest);
+		// this.getTestCases().add(removeContainmentTest);
+		 this.getTestCases().add(removeSimpleRefTest);
 		// this.getTestCases().add(createAndChangeRefTest);
 		// this.getTestCases().add(createAndChangeAttrTest);
 		// this.getTestCases().add(commitTest);
@@ -133,45 +138,18 @@ public class RandomChangeTestSuite extends ChangeTestSuite {
 
 	}
 
-	//
-	// @Override
-	// public void endTestCase(String testName) {
-	//
-	// // if(ChangeTestHelper.compare(getTestProjectSpace(),
-	// // getCompareProjectSpace())){
-	// // System.out.println("Test succeeded: " + testName + "!");
-	// // }else{
-	// // logger.info("Test failed: " + testName + "!");
-	// // //System.out.println();
-	// // }
-	//
-	// System.out.println("Done: " + testName);
-	// // int[] result = ChangeTestHelper.linearCompare(getTestProjectSpace(),
-	// // getCompareProjectSpace());
-	// // //int[] result = ChangeTestHelper.linearCompare(testProject,
-	// // compareProject);
-	// // if(result[0] == 1){
-	// // System.out.println("Test succeeded: " + testName + "!");
-	// // }else{
-	// // logger.info("Test failed: " + testName + "!");
-	// // //System.out.println("Test failed: " + testName + "!");
-	// // System.out.println("position: " + result[1]);
-	// // System.out.println("character: " + (char)result[2]);
-	// // System.out.println("lineNum: " + result[3]);
-	// // System.out.println("colNum: " + result[4]);
-	// // }
-	// }
+	
 
 	@Override
 	public void endTestSuite() {
 
-		if (containsCompareTest()) {
-			endTestSuiteCompareTests();
-			//endTestSuiteChangePackageTests();
-		} else {
-			endTestSuiteChangePackageTests();
-			
-		}
+//		if (containsCompareTest()) {
+//			endTestSuiteCompareTests();
+//			//endTestSuiteChangePackageTests();
+//		} else {
+//			endTestSuiteChangePackageTests();
+//			
+//		}
 
 	}
 

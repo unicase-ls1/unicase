@@ -18,32 +18,29 @@ import org.unicase.workspace.Configuration;
 public abstract class RandomChangeTestCase extends ChangeTestCase {
 
 	private boolean isCompareTest;
-	
+
 	private static final String REUSLTS_SAVE_DIR = Configuration
 			.getWorkspaceDirectory()
 			+ "\\tmp\\errorneousTests\\";
 
-	public RandomChangeTestCase(String testName, TestProjectParmeters testProjParams) {
+	public RandomChangeTestCase(String testName,
+			TestProjectParmeters testProjParams) {
 		super(testName, testProjParams);
 
 	}
 
-	
 	public void setCompareTest(boolean isCompareTest) {
 		this.isCompareTest = isCompareTest;
 	}
 
-	
 	public boolean isCompareTest() {
 		return isCompareTest;
 	}
 
-	
 	public boolean isChangePackageTest() {
 		return this instanceof IChangePackageTest;
 	}
 
-	
 	public String getResultsSavePath() {
 		File file = new File(REUSLTS_SAVE_DIR);
 		if (!file.exists()) {
@@ -53,79 +50,136 @@ public abstract class RandomChangeTestCase extends ChangeTestCase {
 		return REUSLTS_SAVE_DIR + getClass().getSimpleName() + ".txt";
 	}
 
-	
-	
-	
 	@Override
-	public void endTestCase() {
-		
-		super.endTestCase();
+	public void endTestCase(boolean outputToFile) {
+
+		super.endTestCase(false);
 		if (!(this instanceof IChangePackageTest)) {
 			return;
 		}
 
-		File resultsFile = new File(getResultsSavePath());
-		ChangePackage changePackage = ((IChangePackageTest)this).getChangePackage();
-
-		if (((IChangePackageTest)this).isSuccessful()) {
+		ChangePackage changePackage = ((IChangePackageTest) this)
+				.getChangePackage(true);
+		if (((IChangePackageTest) this).isSuccessful()) {
 			System.out.println("ok");
 			return;
 		}
+		
+//		ChangePackage changePackage = ((IChangePackageTest) this)
+//				.getChangePackage(true);
+		File resultsFile = new File(getResultsSavePath());
+		
+		StringBuilder sb = new StringBuilder();
+//		sb.append("============== " + getTestName() + " ============="
+//				+ Calendar.getInstance().getTime().toString());
+//		sb.append("\n");
 
-		try {
-			FileWriter fw = new FileWriter(resultsFile, true);
-			BufferedWriter bw = new BufferedWriter(fw);
+//		sb.append(getTestProjParams().toString());
+//		sb.append("\n");
 
-			bw.write("============== " + getTestName() + " ============="
-					+ Calendar.getInstance().getTime().toString());
-			bw.newLine();
+		sb.append("num of changes: " + changePackage.getOperations().size());
+		sb.append("\n");
 
-			bw.write(getTestProjParams().toString());
-			bw.newLine();
-			
-			bw.write("num of changes: " + changePackage.getOperations().size());
-			bw.newLine();
-
-			int i = 1;
-			for (AbstractOperation op : changePackage.getOperations()) {
-				bw.write("-------------------------------------");
-				bw.newLine();
-				bw.write(i + ". ");
-				if (op instanceof CreateDeleteOperation) {
-					bw.write(op.getName()
-							+ " ("
-							+ ((CreateDeleteOperation) op).getModelElement()
-									.getName() + ")");
-					bw.newLine();
-				} else {
-					bw.write(op.getName()
-							+ " ("
-							+ getTestProject().getModelElement(
-									op.getModelElementId()).getName() + ")");
-					bw.newLine();
-
-				}
-				bw.write(op.getDescription());
-				bw.newLine();
-				// System.out.println("-------------------------------------");
-				i++;
+		int i = 1;
+		for (AbstractOperation op : changePackage.getOperations()) {
+			sb.append("-------------------------------------");
+			sb.append("\n");
+			sb.append(i + ". ");
+			if (op instanceof CreateDeleteOperation) {
+				sb.append(op.getName()
+						+ " ("
+						+ ((CreateDeleteOperation) op).getModelElement()
+								.getName() + ")");
+				sb.append("\n");
+			} else {
+				sb.append(op.getName() + "(" + op.getClass().getSimpleName() + ")" 
+						+ " ("
+						+ getTestProject().getModelElement(
+								op.getModelElementId()).getName() + ")");
+				sb.append("\n");
 
 			}
+			sb.append(op.getDescription());
+			sb.append("\n");
+			i++;
 
-			bw.flush();
-			bw.close();
-			fw.close();	
-		
-		} catch (FileNotFoundException e) {
+		}
 
-			e.printStackTrace();
-		} catch (IOException e) {
+		if (outputToFile) {
+			try {
+				FileWriter fw = new FileWriter(resultsFile, true);
+				fw.write(sb.toString());
+				fw.flush();
+				fw.close();
 
-			e.printStackTrace();
+			} catch (FileNotFoundException e) {
+				e.printStackTrace();
+			} catch (IOException e) {
+				e.printStackTrace();
+			}
+		} else {
+			System.out.println(sb.toString());
 		}
 
 	}
 
-
-	
 }
+
+// //====================================================0
+// try {
+//	
+//	
+//	
+//	
+// FileWriter fw = new FileWriter(resultsFile, true);
+// BufferedWriter bw = new BufferedWriter(fw);
+//
+// bw.write("============== " + getTestName() + " ============="
+// + Calendar.getInstance().getTime().toString());
+// bw.newLine();
+//
+// bw.write(getTestProjParams().toString());
+// bw.newLine();
+//	
+// bw.write("num of changes: " + changePackage.getOperations().size());
+// bw.newLine();
+//
+// int i = 1;
+// for (AbstractOperation op : changePackage.getOperations()) {
+// bw.write("-------------------------------------");
+// bw.newLine();
+// bw.write(i + ". ");
+// if (op instanceof CreateDeleteOperation) {
+// bw.write(op.getName()
+// + " ("
+// + ((CreateDeleteOperation) op).getModelElement()
+// .getName() + ")");
+// bw.newLine();
+// } else {
+// bw.write(op.getName()
+// + " ("
+// + getTestProject().getModelElement(
+// op.getModelElementId()).getName() + ")");
+// bw.newLine();
+//
+// }
+// bw.write(op.getDescription());
+// bw.newLine();
+// // System.out.println("-------------------------------------");
+// i++;
+//
+// }
+//
+// bw.flush();
+// bw.close();
+// fw.close();
+//
+// } catch (FileNotFoundException e) {
+//
+// e.printStackTrace();
+// } catch (IOException e) {
+//
+// e.printStackTrace();
+// }
+// }
+

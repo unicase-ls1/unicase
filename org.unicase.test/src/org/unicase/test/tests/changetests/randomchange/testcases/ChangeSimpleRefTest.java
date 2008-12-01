@@ -1,6 +1,5 @@
 package org.unicase.test.tests.changetests.randomchange.testcases;
 
-import org.eclipse.emf.ecore.util.EcoreUtil;
 import org.eclipse.emf.transaction.RecordingCommand;
 import org.eclipse.emf.transaction.TransactionalEditingDomain;
 import org.unicase.emfstore.esmodel.versioning.ChangePackage;
@@ -9,13 +8,22 @@ import org.unicase.test.tests.changetests.ChangeTestHelper;
 import org.unicase.test.tests.changetests.randomchange.IChangePackageTest;
 import org.unicase.test.tests.changetests.randomchange.RandomChangeTestCase;
 import org.unicase.ui.test.TestProjectParmeters;
-import org.unicase.workspace.WorkspaceManager;
 
-public class DeleteTest extends RandomChangeTestCase implements IChangePackageTest {
+/**
+ * This is a change package test. It takes a random model element from test
+ * project and changes one of its non-containment references, applies this
+ * change to compare project. Test succeeds when both projects are identical,
+ * and fails otherwise.
+ * 
+ * @author Hodaie
+ * 
+ */
+public class ChangeSimpleRefTest extends RandomChangeTestCase implements
+		IChangePackageTest {
 
-	
-	
-	public DeleteTest(String testName,TestProjectParmeters testProjParams) {
+	private static final int EXPECTED_NUM_OF_CHANGES = 1;
+
+	public ChangeSimpleRefTest(String testName, TestProjectParmeters testProjParams) {
 		super(testName, testProjParams);
 
 	}
@@ -23,53 +31,34 @@ public class DeleteTest extends RandomChangeTestCase implements IChangePackageTe
 	@Override
 	public void runTest() {
 
+		final ModelElement me = ChangeTestHelper.getRandomME(getTestProject());
 
 		TransactionalEditingDomain domain = TransactionalEditingDomain.Registry.INSTANCE
 				.getEditingDomain("org.unicase.EditingDomain");
-
-
-		final ModelElement me = ChangeTestHelper.getRandomME(getTestProject());
 
 		domain.getCommandStack().execute(new RecordingCommand(domain) {
 
 			@Override
 			protected void doExecute() {
-				System.out.println("deleting ME...");
-				EcoreUtil.delete(me, true);
-				// WorkspaceManager.getProjectSpace(getTestProject()).save();
-				WorkspaceManager.getInstance().getCurrentWorkspace()
-						.getActiveProjectSpace().save();
-				
-			
+				ChangeTestHelper.changeSimpleRef(me, getTestProject());
 			}
 
 		});
-
-
-
-	}
-
-	public ChangePackage getChangePackage(boolean removeChanges) {
-		
-		return ChangeTestHelper.getChangePackage(getTestProjectSpace()
-				.getOperations(), true, removeChanges);
 	}
 
 	public int getExpectedNumOfChanges() {
-		//compute number of changes:
-		// 1. # of deletions = 1 + allContents().size()
-		// 2. # of multirefs = me.crossrefs().size() 
-		//                    + foreach(element in allContents){ element.crossrefs().size()}
-		//
-		return 0;
+
+		return EXPECTED_NUM_OF_CHANGES;
 	}
 
 	public boolean isSuccessful() {
-		// TODO Auto-generated method stub
-		return false;
+		
+		return EXPECTED_NUM_OF_CHANGES == 1;
 	}
 
-	
-	
+	public ChangePackage getChangePackage(boolean removeChanges) {
+		return ChangeTestHelper.getChangePackage(getTestProjectSpace()
+				.getOperations(), true, removeChanges);
 
+	}
 }

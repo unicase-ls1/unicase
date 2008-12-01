@@ -57,7 +57,7 @@ public class ChangeTestCase extends TestCase {
 	
 	
 	@Override
-	public void endTestCase() {
+	public void endTestCase(boolean outputToFile) {
 		System.out.println("Done: " + getTestName());
 	}
 
