@@ -44,6 +44,8 @@ public class HistoryBrowserView extends AbstractSCMView {
 
 	private HistoryComposite historyComposite;
 
+	private ProjectSpace activeProjectSpace;
+
 	/**
 	 * . Constructor
 	 */
@@ -63,7 +65,6 @@ public class HistoryBrowserView extends AbstractSCMView {
 	}
 
 	private void openHistoryBrowser() {
-		ProjectSpace activeProjectSpace = getActiveProjectSpace();
 		if (activeProjectSpace == null) {
 			historyInfos.clear();
 			return;
@@ -218,6 +219,15 @@ public class HistoryBrowserView extends AbstractSCMView {
 	protected Control setBrowserTabControl() {
 		historyComposite = new HistoryComposite(this, getTabFolder(), SWT.NONE);
 		return historyComposite;
+	}
+	
+	/**
+	 * Set the input for the History Browser.
+	 * @param projectSpace the input project space
+	 */
+	public void setInput(ProjectSpace projectSpace){
+		activeProjectSpace = projectSpace;
+		refreshClicked();
 	}
 
 }

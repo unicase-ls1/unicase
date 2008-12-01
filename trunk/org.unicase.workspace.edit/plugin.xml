@@ -165,6 +165,11 @@
            name="Revert">
      </command>
      <command
+           defaultHandler="org.unicase.workspace.edit.commands.ShowHistoryHandler"
+           id="org.unicase.workspace.edit.showHistory"
+           name="showHistory">
+     </command>
+     <command
            defaultHandler="org.unicase.workspace.edit.commands.CompareProjectsHandler"
            id="org.unicase.workspace.edit.compareProjects"
            name="compareProjects">
@@ -470,6 +475,21 @@
               </visibleWhen>
            </command>
            <command
+                 commandId="org.unicase.workspace.edit.showHistory"
+                 icon="icons/historyview.png"
+                 label="Show history"
+                 style="push">
+              <visibleWhen
+                    checkEnabled="false">
+                 <iterate
+                       ifEmpty="false">
+                    <instanceof
+                          value="org.unicase.workspace.ProjectSpace">
+                    </instanceof>
+                 </iterate>
+              </visibleWhen>
+           </command>
+           <command
                  commandId="org.unicase.workspace.edit.compareProjects"
                  icon="icons/full/obj16/compare.png"
                  label="Compare to ..."
@@ -520,14 +540,14 @@
             category="org.unicase"
             class="org.unicase.workspace.edit.views.historybrowserview.HistoryBrowserView"
             icon="icons/historyview.png"
-            id="org.unicase.ui.repository.views.HistoryView"
+            id="org.unicase.workspace.edit.views.historybrowserview.HistoryBrowserView"
             name="History Browser"
             restorable="true">
       </view>
       <view
             category="org.unicase"
             class="org.unicase.workspace.edit.views.validationview.ValidationView"
-            id="org.unicase.ui.repository.views.ValidationView"
+            id="org.unicase.workspace.edit.views.validationview.ValidationView"
             name="Validation View"
             restorable="true">
       </view>
