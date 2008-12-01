@@ -9,16 +9,15 @@ import java.util.Date;
 import java.util.List;
 import java.util.Random;
 
+import org.eclipse.emf.common.util.BasicEList;
 import org.eclipse.emf.common.util.EList;
 import org.eclipse.emf.common.util.URI;
 import org.eclipse.emf.ecore.EAttribute;
 import org.eclipse.emf.ecore.EClass;
-import org.eclipse.emf.ecore.EDataType;
 import org.eclipse.emf.ecore.EEnum;
 import org.eclipse.emf.ecore.EEnumLiteral;
 import org.eclipse.emf.ecore.EObject;
-import org.eclipse.emf.ecore.EcoreFactory;
-import org.eclipse.emf.ecore.EcorePackage;
+import org.eclipse.emf.ecore.EReference;
 import org.eclipse.emf.ecore.resource.Resource;
 import org.eclipse.emf.ecore.resource.ResourceSet;
 import org.eclipse.emf.ecore.resource.impl.ResourceSetImpl;
@@ -379,7 +378,7 @@ public class ChangeTestHelper {
 				Object object = me.eGet(attribute);
 				EList<String> eList = (EList<String>) object;
 				eList.add("new entry for" + attribute.getName());
-				
+
 			} else {
 				String oldValue = (String) me.eGet(attribute);
 				String newValue = "changed-" + oldValue;
@@ -436,6 +435,43 @@ public class ChangeTestHelper {
 
 	private static Date getRandomDate() {
 		return new Date();
+	}
+
+	public static void changeSimpleRef(ModelElement me, Project project) {
+		List<EReference> nonContainmentRefs = new ArrayList<EReference>();
+		for (EReference ref : me.eClass().getEAllReferences()) {
+			if (!ref.isContainment() && !ref.isContainer()) {
+				nonContainmentRefs.add(ref);
+			}
+		}
+
+		EReference ref = nonContainmentRefs.get(getRandom().nextInt(
+				nonContainmentRefs.size() - 1));
+		EClass refType = ref.getEReferenceType();
+		List<ModelElement> refTypeMEs = project
+				.getAllModelElementsbyClass(refType,
+						new BasicEList<ModelElement>());
+
+		if (refTypeMEs.contains(me)) {
+			refTypeMEs.remove(me);
+		}
+
+		ModelElement toBeReferencedME = refTypeMEs.get(getRandom().nextInt(
+				refTypeMEs.size() - 1));
+
+		Object object = me.eGet(ref);
+		if (ref.isMany()) {
+			EList<EObject> eList = (EList<EObject>) object;
+			if (eList == null) {
+				throw new IllegalStateException("Null list return for feature "
+						+ ref.getName() + " on " + me.getName());
+			} else {
+				eList.add(toBeReferencedME);
+			}
+		} else {
+			me.eSet(ref, toBeReferencedME);
+		}
+
 	}
 
 }

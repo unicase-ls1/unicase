@@ -110,9 +110,9 @@ public class CreateAndDeleteTest extends RandomChangeTestCase implements IChange
 	}
 
 	
-	public ChangePackage getChangePackage() {
+	public ChangePackage getChangePackage(boolean removeChanges) {
 		return ChangeTestHelper.getChangePackage(getTestProjectSpace()
-				.getOperations(), true, true);
+				.getOperations(), true, removeChanges);
 
 	}
 

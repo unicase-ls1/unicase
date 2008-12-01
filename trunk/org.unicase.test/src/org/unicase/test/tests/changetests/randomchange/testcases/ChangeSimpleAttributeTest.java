@@ -73,9 +73,9 @@ public class ChangeSimpleAttributeTest extends RandomChangeTestCase implements
 		return EXPECTED_NUM_OF_CHANGES == 1;
 	}
 	
-	public ChangePackage getChangePackage() {
+	public ChangePackage getChangePackage(boolean removeChanges) {
 		return ChangeTestHelper.getChangePackage(getTestProjectSpace()
-				.getOperations(), true, true);
+				.getOperations(), true, removeChanges);
 
 	}
 
