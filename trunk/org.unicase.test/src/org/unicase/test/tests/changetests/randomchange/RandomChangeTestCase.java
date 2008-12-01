@@ -58,16 +58,13 @@ public abstract class RandomChangeTestCase extends ChangeTestCase {
 			return;
 		}
 
-		ChangePackage changePackage = ((IChangePackageTest) this)
-				.getChangePackage(true);
 		if (((IChangePackageTest) this).isSuccessful()) {
 			System.out.println("ok");
 			return;
 		}
 		
-//		ChangePackage changePackage = ((IChangePackageTest) this)
-//				.getChangePackage(true);
-		File resultsFile = new File(getResultsSavePath());
+		ChangePackage changePackage = ((IChangePackageTest) this)
+				.getChangePackage(true);
 		
 		StringBuilder sb = new StringBuilder();
 //		sb.append("============== " + getTestName() + " ============="
@@ -107,6 +104,7 @@ public abstract class RandomChangeTestCase extends ChangeTestCase {
 
 		if (outputToFile) {
 			try {
+				File resultsFile = new File(getResultsSavePath());
 				FileWriter fw = new FileWriter(resultsFile, true);
 				fw.write(sb.toString());
 				fw.flush();

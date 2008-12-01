@@ -12,12 +12,14 @@ import org.unicase.test.tests.changetests.ChangeTestHelper;
 import org.unicase.test.tests.changetests.ChangeTestSuite;
 import org.unicase.test.tests.changetests.randomchange.testcases.AddTest;
 import org.unicase.test.tests.changetests.randomchange.testcases.ChangeSimpleAttributeTest;
+import org.unicase.test.tests.changetests.randomchange.testcases.ChangeSimpleRefTest;
 import org.unicase.test.tests.changetests.randomchange.testcases.CompoundTest;
 import org.unicase.test.tests.changetests.randomchange.testcases.CreateAndChangeAttributeTest;
 import org.unicase.test.tests.changetests.randomchange.testcases.CreateAndChangeRefTest;
 import org.unicase.test.tests.changetests.randomchange.testcases.CreateAndDeleteTest;
+import org.unicase.test.tests.changetests.randomchange.testcases.DeleteTest;
 import org.unicase.test.tests.changetests.randomchange.testcases.MoveTest;
-import org.unicase.test.tests.changetests.randomchange.testcases.ChangeSimpleRefTest;
+import org.unicase.test.tests.changetests.randomchange.testcases.RemoveContainmentTest;
 import org.unicase.test.tests.changetests.randomchange.testcases.RemoveSimpleRefTest;
 import org.unicase.test.tests.changetests.randomchange.testcases.TransitivelyChangeAttributeTest;
 
@@ -48,8 +50,8 @@ public class RandomChangeTestSuite extends ChangeTestSuite {
 		testCases.add(changeAttributeTest);
 
 		// DeleteTest
-		// DeleteTest deleteTest = new DeleteTest("Delete", getRandomSeed());
-		// testCases.add(deleteTest);
+		 DeleteTest deleteTest = new DeleteTest("Delete", getTestProjectPrams());
+		 testCases.add(deleteTest);
 
 		
 		// MoveTest
@@ -80,8 +82,8 @@ public class RandomChangeTestSuite extends ChangeTestSuite {
 		testCases.add(transitivelyChangeAttribute);
 
 		// RemoveContainment Test
-		//RemoveContainmentTest removeContainmentTest = new RemoveContainmentTest("Remove", getRandomSeed());
-		//testCases.add(removeContainmentTest);
+		RemoveContainmentTest removeContainmentTest = new RemoveContainmentTest("Remove", getTestProjectPrams());
+		testCases.add(removeContainmentTest);
 
 		// RemoveSimpleRef Test
 		RemoveSimpleRefTest removeSimpleRefTest = new RemoveSimpleRefTest("RemoveSimpleRef", getTestProjectPrams());
@@ -112,16 +114,16 @@ public class RandomChangeTestSuite extends ChangeTestSuite {
 		
 		
 		
-		 //this.getTestCases().add(moveTest);
+		// this.getTestCases().add(moveTest);
 		// this.getTestCases().add(addTest);
-		//this.getTestCases().add(compoundTest);
+		// this.getTestCases().add(compoundTest);
 		// this.getTestCases().add(deleteTest);
 		// this.getTestCases().add(referenceTest);
 		// this.getTestCases().add(compoundTest);
 		// this.getTestCases().add(createAndDeleteTest);
 		// this.getTestCases().add(transitivelyChangeAttribute);
-		// this.getTestCases().add(removeContainmentTest);
-		 this.getTestCases().add(removeSimpleRefTest);
+	       this.getTestCases().add(removeContainmentTest);
+		// this.getTestCases().add(removeSimpleRefTest);
 		// this.getTestCases().add(createAndChangeRefTest);
 		// this.getTestCases().add(createAndChangeAttrTest);
 		// this.getTestCases().add(commitTest);
