@@ -64,7 +64,7 @@ public class ShowHistoryHandler extends ProjectActionHandler {
 					IWorkbenchPage page = PlatformUI.getWorkbench().getActiveWorkbenchWindow().getActivePage();
 					HistoryBrowserView historyBrowserView = null;
 					try {
-						historyBrowserView = (HistoryBrowserView) page.showView("org.unicase.workspace.edit.views.historybrowserview.HistoryBrowserView");
+						historyBrowserView = (HistoryBrowserView) page.showView("org.unicase.ui.repository.views.HistoryView");
 					} catch (PartInitException e) {
 						DialogHandler.showExceptionDialog(e);
 					}
