@@ -12,8 +12,6 @@ import java.rmi.registry.LocateRegistry;
 import java.rmi.registry.Registry;
 import java.rmi.server.RemoteServer;
 
-import org.eclipse.core.runtime.FileLocator;
-import org.eclipse.core.runtime.Path;
 import org.unicase.emfstore.Activator;
 
 /**
@@ -33,8 +31,7 @@ public final class RMIRegistryManager {
 		/**
 		 * Little hack to solve classloading issues. Is there a better solution?
 		 */
-		URL url = FileLocator.find(Activator.getDefault().getBundle(),
-				new Path("/bin/"), null);
+		URL url = Activator.getDefault().getBundle().getEntry("/bin/");
 		System.setProperty("java.rmi.server.codebase", url.toExternalForm());
 		System.setSecurityManager(new UnicaseSecurityManager());
 		LocateRegistry.createRegistry(port);
