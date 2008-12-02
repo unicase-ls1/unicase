@@ -17,9 +17,12 @@ import org.eclipse.core.runtime.Platform;
 import org.eclipse.emf.edit.ui.dnd.LocalTransfer;
 import org.eclipse.jface.action.Action;
 import org.eclipse.jface.action.IToolBarManager;
+import org.eclipse.jface.layout.GridDataFactory;
+import org.eclipse.jface.layout.GridLayoutFactory;
 import org.eclipse.jface.resource.ImageDescriptor;
 import org.eclipse.jface.viewers.TreeSelection;
 import org.eclipse.swt.SWT;
+import org.eclipse.swt.custom.CLabel;
 import org.eclipse.swt.custom.SashForm;
 import org.eclipse.swt.dnd.DND;
 import org.eclipse.swt.dnd.DropTarget;
@@ -28,9 +31,8 @@ import org.eclipse.swt.dnd.DropTargetListener;
 import org.eclipse.swt.dnd.Transfer;
 import org.eclipse.swt.events.SelectionAdapter;
 import org.eclipse.swt.events.SelectionEvent;
+import org.eclipse.swt.graphics.Color;
 import org.eclipse.swt.graphics.Font;
-import org.eclipse.swt.layout.GridData;
-import org.eclipse.swt.layout.GridLayout;
 import org.eclipse.swt.widgets.Composite;
 import org.eclipse.swt.widgets.Display;
 import org.eclipse.swt.widgets.Label;
@@ -61,6 +63,7 @@ import org.unicase.workspace.util.EventUtil;
  * dropping a model element of top part of the view.
  * 
  * @author Hodaie
+ * @author Shterev
  * 
  */
 public class StatusView extends ViewPart {
@@ -73,8 +76,6 @@ public class StatusView extends ViewPart {
 	// used to get image of model element's class
 	private MEClassLabelProvider labelProvider;
 
-	private Label lblImage;
-	private Label lblName;
 	private Label lblProjectName;
 	private Composite topComposite;
 
@@ -83,13 +84,16 @@ public class StatusView extends ViewPart {
 	private HierarchyTabComposite hierarchyTabComposite;
 	private UserTabComposite userTabComposite;
 	private Label lblLatestDueDateName;
-	private Composite leftComposite;
+	private Composite dropComposite;
 	private ProgressBar pbEstimate;
 	private Label lblProgressName;
 	private Label lblEstimateProgressName;
+	private Composite descComposite;
+	private Composite section;
+	private CLabel lblName;
 
 	/**
-	 * . Constructor
+	 * Constructor.
 	 */
 	public StatusView() {
 		this.input = null;
@@ -97,7 +101,7 @@ public class StatusView extends ViewPart {
 	}
 
 	/**
-	 * . {@inheritDoc}
+	 * {@inheritDoc}
 	 * 
 	 */
 	@Override
@@ -124,93 +128,92 @@ public class StatusView extends ViewPart {
 
 	private void createTopComposite(SashForm sash) {
 		topComposite = new Composite(sash, SWT.NONE);
-		topComposite.setLayout(new GridLayout(2, true));
-		topComposite
-				.setLayoutData(new GridData(SWT.FILL, SWT.FILL, true, true));
+		GridLayoutFactory.fillDefaults().numColumns(2).equalWidth(false).applyTo(topComposite);
+		GridDataFactory.fillDefaults().align(SWT.FILL, SWT.FILL).grab(true, true).applyTo(topComposite);
+		
+		dropComposite = new Composite(topComposite, SWT.NONE);
+		dropComposite.setBackground(Display.getCurrent().getSystemColor(SWT.COLOR_WIDGET_BACKGROUND));
+		GridLayoutFactory.fillDefaults().numColumns(1).equalWidth(false).applyTo(dropComposite);
+		GridDataFactory.fillDefaults().align(SWT.BEGINNING, SWT.CENTER).grab(false, false).hint(80, 80).indent(5, 0).applyTo(dropComposite);
+		dropComposite.setBackgroundImage(Activator.getImageDescriptor("icons/dropBox.png").createImage());
 
-		leftComposite = new Composite(topComposite, SWT.NONE);
-		leftComposite.setLayout(new GridLayout(2, false));
-		GridData gridData = new GridData(SWT.FILL, SWT.TOP, true, false);
-		leftComposite.setLayoutData(gridData);
-
-		// image of model element's class
-		lblImage = new Label(leftComposite, SWT.NONE);
-		gridData = new GridData(SWT.BEGINNING, SWT.TOP, false, false);
-		gridData.heightHint = 25;
-		gridData.widthHint = 25;
-		lblImage.setLayoutData(gridData);
-		lblImage.setText("Drag a model element here");
-		lblImage.setImage(labelProvider.getImage(input));
-
+		section = new Composite(topComposite,SWT.NONE);
+		GridDataFactory.fillDefaults().align(SWT.FILL, SWT.FILL).grab(true, true).applyTo(section);
+		GridLayoutFactory.fillDefaults().numColumns(1).equalWidth(false).applyTo(section);
+		
 		// name of model element
-		lblName = new Label(leftComposite, SWT.NONE);
-		lblName.setLayoutData(new GridData(SWT.FILL, SWT.CENTER, true, false));
-		lblName.setText("Drag a model element here");
-		lblName.setFont(new Font(Display.getDefault(), "Tahoma", 10, SWT.BOLD));
+		lblName = new CLabel(section, SWT.SHADOW_NONE);
+		GridDataFactory.fillDefaults().align(SWT.FILL, SWT.BEGINNING).grab(false, false).applyTo(lblName);
+		if(input!=null){
+			lblName.setImage(labelProvider.getImage(input));
+		}
+		lblName.setText("Drag a model element in the drop box to the left");
+		lblName.setFont(new Font(Display.getDefault(), "Tahoma", 12, SWT.BOLD));
+		Color bgColor = Display.getCurrent().getSystemColor(SWT.COLOR_TITLE_BACKGROUND);
+		Color bgColor2 = Display.getCurrent().getSystemColor(SWT.COLOR_TITLE_BACKGROUND_GRADIENT);
+		lblName.setBackground(new Color[] {bgColor,bgColor2}, new int[] {100}, true);
+		lblName.setForeground(Display.getCurrent().getSystemColor(SWT.COLOR_WHITE));
+		
+		Composite sectionComposite = new Composite(section, SWT.NONE);
+		GridLayoutFactory.fillDefaults().numColumns(2).equalWidth(false).applyTo(sectionComposite);
+		GridDataFactory.fillDefaults().align(SWT.FILL, SWT.FILL).grab(true, true).applyTo(sectionComposite);
+		
+		descComposite = new Composite(sectionComposite, SWT.NONE);
+		GridLayoutFactory.fillDefaults().numColumns(2).equalWidth(false).applyTo(descComposite);
+		GridDataFactory.fillDefaults().align(SWT.FILL, SWT.BEGINNING).grab(true, false).applyTo(descComposite);
+		
 
 		// project model element belongs to
-		Label lblProject = new Label(leftComposite, SWT.NONE);
-		lblProject.setLayoutData(new GridData(SWT.BEGINNING, SWT.TOP, false,
-				false));
+		Label lblProject = new Label(descComposite, SWT.NONE);
+		GridDataFactory.fillDefaults().align(SWT.FILL, SWT.BEGINNING).grab(false, false).applyTo(lblProject);
 		lblProject.setText("Project:");
-		lblProjectName = new Label(leftComposite, SWT.NONE);
-		lblProjectName.setLayoutData(new GridData(SWT.FILL, SWT.CENTER, true,
-				false));
+		lblProjectName = new Label(descComposite, SWT.NONE);
+		GridDataFactory.fillDefaults().align(SWT.FILL, SWT.BEGINNING).grab(false, false).applyTo(lblProjectName);
 		lblProjectName.setText("");
 
 		// Last DueDate
-		Label lbllastDueDate = new Label(leftComposite, SWT.NONE);
-		lbllastDueDate.setLayoutData(new GridData(SWT.BEGINNING, SWT.TOP,
-				false, false));
+		Label lbllastDueDate = new Label(descComposite, SWT.NONE);
+		GridDataFactory.fillDefaults().align(SWT.FILL, SWT.BEGINNING).grab(false, false).applyTo(lbllastDueDate);
 		lbllastDueDate.setText("Latest Due Date:");
-		lblLatestDueDateName = new Label(leftComposite, SWT.NONE);
-		lblLatestDueDateName.setLayoutData(new GridData(SWT.FILL, SWT.TOP,
-				true, false));
+		lblLatestDueDateName = new Label(descComposite, SWT.NONE);
+		GridDataFactory.fillDefaults().align(SWT.FILL, SWT.BEGINNING).grab(false, false).applyTo(lblLatestDueDateName);
 		lblLatestDueDateName.setText("");
 
 		// Right Composite
-		Composite rightComposite = new Composite(topComposite, SWT.NONE);
-		rightComposite.setLayout(new GridLayout(3, false));
-		gridData = new GridData(SWT.FILL, SWT.TOP, true, false);
-		rightComposite.setLayoutData(gridData);
+		Composite progressComposite = new Composite(sectionComposite, SWT.NONE);
+		GridLayoutFactory.fillDefaults().numColumns(3).equalWidth(false).applyTo(progressComposite);
+		GridDataFactory.fillDefaults().align(SWT.BEGINNING, SWT.BEGINNING).grab(false, false).applyTo(progressComposite);
 
 		// progress bar for number
-		Label lblProgress = new Label(rightComposite, SWT.NONE);
-		lblProgress.setLayoutData(new GridData(SWT.BEGINNING, SWT.TOP, false,
-				false));
+		Label lblProgress = new Label(progressComposite, SWT.NONE);
+		GridDataFactory.fillDefaults().align(SWT.BEGINNING, SWT.BEGINNING).grab(false, false).applyTo(lblProgress);
 		lblProgress.setText("Closed workitems:");
-		lblProgressName = new Label(rightComposite, SWT.NONE);
-		gridData = new GridData(SWT.FILL, SWT.TOP, false, false);
-		lblProgressName.setLayoutData(gridData);
-		lblProgressName.setText(0 + "/" + 0);
 
-		pbTasks = new ProgressBar(rightComposite, SWT.HORIZONTAL);
-		gridData = new GridData(SWT.BEGINNING, SWT.CENTER, true, false);
-		pbTasks.setLayoutData(gridData);
+		pbTasks = new ProgressBar(progressComposite, SWT.HORIZONTAL);
+		GridDataFactory.fillDefaults().align(SWT.FILL, SWT.BEGINNING).grab(true, false).applyTo(pbTasks);
 		pbTasks.setMinimum(0);
 		pbTasks.setMaximum(100);
 		pbTasks.setSelection(0);
 
+		lblProgressName = new Label(progressComposite, SWT.NONE);
+		GridDataFactory.fillDefaults().align(SWT.FILL, SWT.BEGINNING).grab(true, false).applyTo(lblProgressName);
+		lblProgressName.setText(0 + "/" + 0);
+		
 		// progress bar for estimate
-		Label lblEstimateProgress = new Label(rightComposite, SWT.NONE);
-		lblEstimateProgress.setLayoutData(new GridData(SWT.BEGINNING, SWT.TOP,
-				false, false));
+		Label lblEstimateProgress = new Label(progressComposite, SWT.NONE);
+		GridDataFactory.fillDefaults().align(SWT.FILL, SWT.BEGINNING).grab(true, false).applyTo(lblEstimateProgress);
 		lblEstimateProgress.setText("Closed estimate:");
-		lblEstimateProgressName = new Label(rightComposite, SWT.None);
-		lblEstimateProgressName.setLayoutData(new GridData(SWT.FILL, SWT.TOP,
-				false, false));
-		lblEstimateProgressName.setText("0/0");
-		pbEstimate = new ProgressBar(rightComposite, SWT.HORIZONTAL);
-		pbEstimate.setLayoutData(new GridData(SWT.BEGINNING, SWT.CENTER, true,
-				false));
+		pbEstimate = new ProgressBar(progressComposite, SWT.HORIZONTAL);
+		GridDataFactory.fillDefaults().align(SWT.FILL, SWT.BEGINNING).grab(true, false).applyTo(pbEstimate);
 		pbEstimate.setMinimum(0);
 		pbEstimate.setMaximum(100);
 		pbEstimate.setSelection(0);
 
-		addDNDSupport(topComposite);
-		addDNDSupport(leftComposite);
-		addDNDSupport(rightComposite);
-		addDNDSupport(topComposite.getShell());
+		lblEstimateProgressName = new Label(progressComposite, SWT.None);
+		GridDataFactory.fillDefaults().align(SWT.FILL, SWT.BEGINNING).grab(true, false).applyTo(lblEstimateProgressName);
+		lblEstimateProgressName.setText("0/0");
+		
+		addDNDSupport(dropComposite);
 	}
 
 	/**
@@ -222,10 +225,12 @@ public class StatusView extends ViewPart {
 			return;
 		}
 		// update attributes
-		lblImage.setImage(labelProvider.getImage(input));
+		lblName.setImage(labelProvider.getImage(input));
 		lblName.setText(input.getName());
+		
 		lblProjectName.setText(WorkspaceManager.getProjectSpace(input)
 				.getProjectName());
+		lblProjectName.pack(true);
 
 		// get number of all Openers for this model element
 		// in a hierarchical manner
@@ -242,6 +247,7 @@ public class StatusView extends ViewPart {
 		Date latestDueDate = getLatestDueDate(leafOpeners);
 		if (latestDueDate != null) {
 			lblLatestDueDateName.setText(latestDueDate.toString());
+			lblLatestDueDateName.pack(true);
 		}
 
 		// if this model element has no set progress
@@ -351,7 +357,6 @@ public class StatusView extends ViewPart {
 		}
 		if (newInput != null) {
 			this.input = newInput;
-			System.out.println(input.getName());
 			// refresh attributes group and three different views
 			refreshView();
 
