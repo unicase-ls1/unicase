@@ -1,22 +1,18 @@
 package org.unicase.ui.stateDiagram.edit.parts;
 
-import org.eclipse.draw2d.FlowLayout;
 import org.eclipse.draw2d.IFigure;
 import org.eclipse.draw2d.MarginBorder;
-import org.eclipse.draw2d.Polyline;
-import org.eclipse.draw2d.RectangleFigure;
 import org.eclipse.draw2d.RoundedRectangle;
 import org.eclipse.draw2d.StackLayout;
+import org.eclipse.draw2d.ToolbarLayout;
 import org.eclipse.draw2d.geometry.Dimension;
-import org.eclipse.draw2d.geometry.Point;
 import org.eclipse.gef.EditPart;
 import org.eclipse.gef.EditPolicy;
-import org.eclipse.gef.commands.Command;
-import org.eclipse.gef.editpolicies.FlowLayoutEditPolicy;
 import org.eclipse.gef.editpolicies.LayoutEditPolicy;
-import org.eclipse.gef.requests.CreateRequest;
 import org.eclipse.gmf.runtime.diagram.ui.editparts.IGraphicalEditPart;
+import org.eclipse.gmf.runtime.diagram.ui.editparts.ITextAwareEditPart;
 import org.eclipse.gmf.runtime.diagram.ui.editparts.ShapeNodeEditPart;
+import org.eclipse.gmf.runtime.diagram.ui.editpolicies.ConstrainedToolbarLayoutEditPolicy;
 import org.eclipse.gmf.runtime.diagram.ui.editpolicies.EditPolicyRoles;
 import org.eclipse.gmf.runtime.draw2d.ui.figures.ConstrainedToolbarLayout;
 import org.eclipse.gmf.runtime.draw2d.ui.figures.WrappingLabel;
@@ -24,9 +20,9 @@ import org.eclipse.gmf.runtime.gef.ui.figures.DefaultSizeNodeFigure;
 import org.eclipse.gmf.runtime.gef.ui.figures.NodeFigure;
 import org.eclipse.gmf.runtime.notation.View;
 import org.eclipse.swt.SWT;
-import org.eclipse.swt.graphics.Color;
 import org.eclipse.swt.graphics.Font;
 import org.eclipse.swt.widgets.Display;
+import org.unicase.ui.common.diagram.ConfigurableRectangleFigure;
 
 /**
  * @generated
@@ -73,19 +69,15 @@ public class StateEditPart extends ShapeNodeEditPart {
 	 */
 	protected LayoutEditPolicy createLayoutEditPolicy() {
 
-		FlowLayoutEditPolicy lep = new FlowLayoutEditPolicy() {
+		ConstrainedToolbarLayoutEditPolicy lep = new ConstrainedToolbarLayoutEditPolicy() {
 
-			protected Command createAddCommand(EditPart child, EditPart after) {
-				return null;
-			}
-
-			protected Command createMoveChildCommand(EditPart child,
-					EditPart after) {
-				return null;
-			}
-
-			protected Command getCreateCommand(CreateRequest request) {
-				return null;
+			protected EditPolicy createChildEditPolicy(EditPart child) {
+				if (child.getEditPolicy(EditPolicy.PRIMARY_DRAG_ROLE) == null) {
+					if (child instanceof ITextAwareEditPart) {
+						return new org.unicase.ui.stateDiagram.edit.policies.ModelTextSelectionEditPolicy();
+					}
+				}
+				return super.createChildEditPolicy(child);
 			}
 		};
 		return lep;
@@ -259,22 +251,20 @@ public class StateEditPart extends ShapeNodeEditPart {
 		 */
 		public StateFigure() {
 
-			FlowLayout layoutThis = new FlowLayout();
-			layoutThis.setStretchMinorAxis(false);
-			layoutThis.setMinorAlignment(FlowLayout.ALIGN_LEFTTOP);
+			ToolbarLayout layoutThis = new ToolbarLayout();
+			layoutThis.setStretchMinorAxis(true);
+			layoutThis.setMinorAlignment(ToolbarLayout.ALIGN_CENTER);
 
-			layoutThis.setMajorAlignment(FlowLayout.ALIGN_LEFTTOP);
-			layoutThis.setMajorSpacing(5);
-			layoutThis.setMinorSpacing(5);
-			layoutThis.setHorizontal(true);
+			layoutThis.setSpacing(0);
+			layoutThis.setVertical(true);
 
 			this.setLayoutManager(layoutThis);
 
 			this.setCornerDimensions(new Dimension(getMapMode().DPtoLP(8),
 					getMapMode().DPtoLP(8)));
 			this.setBorder(new MarginBorder(getMapMode().DPtoLP(8),
-					getMapMode().DPtoLP(1), getMapMode().DPtoLP(8),
-					getMapMode().DPtoLP(1)));
+					getMapMode().DPtoLP(0), getMapMode().DPtoLP(8),
+					getMapMode().DPtoLP(0)));
 			createContents();
 		}
 
@@ -283,15 +273,19 @@ public class StateEditPart extends ShapeNodeEditPart {
 		 */
 		private void createContents() {
 
-			RectangleFigure state0 = new RectangleFigure();
-			state0.setOutlineXOR(true);
-			state0.setForegroundColor(STATE0_FORE);
+			ConfigurableRectangleFigure stateFigure_name0 = new ConfigurableRectangleFigure();
 
-			this.add(state0);
+			stateFigure_name0.setBorders("SEW");
 
-			org.unicase.ui.stateDiagram.unicase.CenterLayout layoutState0 = new org.unicase.ui.stateDiagram.unicase.CenterLayout();
+			stateFigure_name0.setBorder(new MarginBorder(
+					getMapMode().DPtoLP(2), getMapMode().DPtoLP(5),
+					getMapMode().DPtoLP(2), getMapMode().DPtoLP(5)));
 
-			state0.setLayoutManager(layoutState0);
+			this.add(stateFigure_name0);
+
+			org.unicase.ui.stateDiagram.unicase.CenterLayout layoutStateFigure_name0 = new org.unicase.ui.stateDiagram.unicase.CenterLayout();
+
+			stateFigure_name0.setLayoutManager(layoutStateFigure_name0);
 
 			fFigureStateFigure_name = new WrappingLabel();
 			fFigureStateFigure_name.setText("unnamed");
@@ -302,33 +296,19 @@ public class StateEditPart extends ShapeNodeEditPart {
 					.DPtoLP(0), getMapMode().DPtoLP(5), getMapMode().DPtoLP(5),
 					getMapMode().DPtoLP(5)));
 
-			state0.add(fFigureStateFigure_name);
+			stateFigure_name0.add(fFigureStateFigure_name);
 
-			Polyline polyline0 = new Polyline();
-			polyline0.setLocation(new Point(getMapMode().DPtoLP(0),
-					getMapMode().DPtoLP(0)));
-			polyline0.setSize(getMapMode().DPtoLP(10), getMapMode().DPtoLP(10));
+			ConfigurableRectangleFigure stateFigure_entryConditions0 = new ConfigurableRectangleFigure();
 
-			this.add(polyline0);
-
-			RectangleFigure stateFigure_entryConditions0 = new RectangleFigure();
+			stateFigure_entryConditions0.setBorders("EW");
 
 			stateFigure_entryConditions0.setBorder(new MarginBorder(
-					getMapMode().DPtoLP(0), getMapMode().DPtoLP(-2),
-					getMapMode().DPtoLP(0), getMapMode().DPtoLP(-2)));
+					getMapMode().DPtoLP(2), getMapMode().DPtoLP(5),
+					getMapMode().DPtoLP(2), getMapMode().DPtoLP(5)));
 
 			this.add(stateFigure_entryConditions0);
 
-			FlowLayout layoutStateFigure_entryConditions0 = new FlowLayout();
-			layoutStateFigure_entryConditions0.setStretchMinorAxis(false);
-			layoutStateFigure_entryConditions0
-					.setMinorAlignment(FlowLayout.ALIGN_LEFTTOP);
-
-			layoutStateFigure_entryConditions0
-					.setMajorAlignment(FlowLayout.ALIGN_LEFTTOP);
-			layoutStateFigure_entryConditions0.setMajorSpacing(5);
-			layoutStateFigure_entryConditions0.setMinorSpacing(5);
-			layoutStateFigure_entryConditions0.setHorizontal(true);
+			org.unicase.ui.stateDiagram.unicase.CenterLayout layoutStateFigure_entryConditions0 = new org.unicase.ui.stateDiagram.unicase.CenterLayout();
 
 			stateFigure_entryConditions0
 					.setLayoutManager(layoutStateFigure_entryConditions0);
@@ -346,24 +326,17 @@ public class StateEditPart extends ShapeNodeEditPart {
 			stateFigure_entryConditions0
 					.add(fFigureStateFigure_entryConditions);
 
-			RectangleFigure stateFigure_activities0 = new RectangleFigure();
+			ConfigurableRectangleFigure stateFigure_activities0 = new ConfigurableRectangleFigure();
+
+			stateFigure_activities0.setBorders("EW");
 
 			stateFigure_activities0.setBorder(new MarginBorder(getMapMode()
-					.DPtoLP(0), getMapMode().DPtoLP(-5),
-					getMapMode().DPtoLP(0), getMapMode().DPtoLP(-5)));
+					.DPtoLP(2), getMapMode().DPtoLP(5), getMapMode().DPtoLP(2),
+					getMapMode().DPtoLP(5)));
 
 			this.add(stateFigure_activities0);
 
-			FlowLayout layoutStateFigure_activities0 = new FlowLayout();
-			layoutStateFigure_activities0.setStretchMinorAxis(false);
-			layoutStateFigure_activities0
-					.setMinorAlignment(FlowLayout.ALIGN_LEFTTOP);
-
-			layoutStateFigure_activities0
-					.setMajorAlignment(FlowLayout.ALIGN_LEFTTOP);
-			layoutStateFigure_activities0.setMajorSpacing(5);
-			layoutStateFigure_activities0.setMinorSpacing(5);
-			layoutStateFigure_activities0.setHorizontal(true);
+			org.unicase.ui.stateDiagram.unicase.CenterLayout layoutStateFigure_activities0 = new org.unicase.ui.stateDiagram.unicase.CenterLayout();
 
 			stateFigure_activities0
 					.setLayoutManager(layoutStateFigure_activities0);
@@ -376,28 +349,21 @@ public class StateEditPart extends ShapeNodeEditPart {
 
 			fFigureStateFigure_activities.setBorder(new MarginBorder(
 					getMapMode().DPtoLP(0), getMapMode().DPtoLP(5),
-					getMapMode().DPtoLP(5), getMapMode().DPtoLP(5)));
+					getMapMode().DPtoLP(0), getMapMode().DPtoLP(5)));
 
 			stateFigure_activities0.add(fFigureStateFigure_activities);
 
-			RectangleFigure stateFigure_exitConditions0 = new RectangleFigure();
+			ConfigurableRectangleFigure stateFigure_exitConditions0 = new ConfigurableRectangleFigure();
+
+			stateFigure_exitConditions0.setBorders("EW");
 
 			stateFigure_exitConditions0.setBorder(new MarginBorder(getMapMode()
-					.DPtoLP(0), getMapMode().DPtoLP(-1),
-					getMapMode().DPtoLP(0), getMapMode().DPtoLP(-1)));
+					.DPtoLP(2), getMapMode().DPtoLP(5), getMapMode().DPtoLP(2),
+					getMapMode().DPtoLP(5)));
 
 			this.add(stateFigure_exitConditions0);
 
-			FlowLayout layoutStateFigure_exitConditions0 = new FlowLayout();
-			layoutStateFigure_exitConditions0.setStretchMinorAxis(false);
-			layoutStateFigure_exitConditions0
-					.setMinorAlignment(FlowLayout.ALIGN_LEFTTOP);
-
-			layoutStateFigure_exitConditions0
-					.setMajorAlignment(FlowLayout.ALIGN_LEFTTOP);
-			layoutStateFigure_exitConditions0.setMajorSpacing(5);
-			layoutStateFigure_exitConditions0.setMinorSpacing(5);
-			layoutStateFigure_exitConditions0.setHorizontal(true);
+			org.unicase.ui.stateDiagram.unicase.CenterLayout layoutStateFigure_exitConditions0 = new org.unicase.ui.stateDiagram.unicase.CenterLayout();
 
 			stateFigure_exitConditions0
 					.setLayoutManager(layoutStateFigure_exitConditions0);
@@ -410,7 +376,7 @@ public class StateEditPart extends ShapeNodeEditPart {
 
 			fFigureStateFigure_exitConditions.setBorder(new MarginBorder(
 					getMapMode().DPtoLP(0), getMapMode().DPtoLP(5),
-					getMapMode().DPtoLP(5), getMapMode().DPtoLP(5)));
+					getMapMode().DPtoLP(0), getMapMode().DPtoLP(5)));
 
 			stateFigure_exitConditions0.add(fFigureStateFigure_exitConditions);
 
@@ -419,7 +385,7 @@ public class StateEditPart extends ShapeNodeEditPart {
 		/**
 		 * @generated
 		 */
-		private boolean myUseLocalCoordinates = true;
+		private boolean myUseLocalCoordinates = false;
 
 		/**
 		 * @generated
@@ -464,11 +430,6 @@ public class StateEditPart extends ShapeNodeEditPart {
 		}
 
 	}
-
-	/**
-	 * @generated
-	 */
-	static final Color STATE0_FORE = new Color(null, 120, 120, 120);
 
 	/**
 	 * @generated

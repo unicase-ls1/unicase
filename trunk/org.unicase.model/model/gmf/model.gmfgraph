@@ -545,27 +545,30 @@
           xsi:type="gmfgraph:RoundedRectangle"
           name="StateFigure">
         <layout
-            xsi:type="gmfgraph:FlowLayout"/>
+            xsi:type="gmfgraph:FlowLayout"
+            vertical="true"
+            matchMinorSize="true"
+            forceSingleLine="true"
+            minorAlignment="CENTER"
+            majorSpacing="0"/>
         <border
             xsi:type="gmfgraph:MarginBorder">
           <insets
               top="8"
-              left="1"
-              bottom="8"
-              right="1"/>
+              bottom="8"/>
         </border>
         <children
-            xsi:type="gmfgraph:Rectangle"
-            name="State"
-            xorOutline="true">
+            xsi:type="gmfgraph:CustomFigure"
+            name="StateFigure_name"
+            qualifiedClassName="org.unicase.ui.common.diagram.ConfigurableRectangleFigure">
           <layout
               xsi:type="gmfgraph:CustomLayout"
               qualifiedClassName="org.unicase.ui.stateDiagram.unicase.CenterLayout"/>
-          <foregroundColor
-              xsi:type="gmfgraph:RGBColor"
-              red="120"
-              green="120"
-              blue="120"/>
+          <insets
+              top="2"
+              left="5"
+              bottom="2"
+              right="5"/>
           <children
               xsi:type="gmfgraph:Label"
               name="StateFigure_name"
@@ -577,15 +580,22 @@
                 bottom="5"
                 right="5"/>
           </children>
+          <attributes
+              name="Borders"
+              value="&quot;SEW&quot;"/>
         </children>
         <children
-            xsi:type="gmfgraph:Rectangle"
-            name="StateFigure_entryConditions">
+            xsi:type="gmfgraph:CustomFigure"
+            name="StateFigure_entryConditions"
+            qualifiedClassName="org.unicase.ui.common.diagram.ConfigurableRectangleFigure">
           <layout
-              xsi:type="gmfgraph:FlowLayout"/>
+              xsi:type="gmfgraph:CustomLayout"
+              qualifiedClassName="org.unicase.ui.stateDiagram.unicase.CenterLayout"/>
           <insets
-              left="-2"
-              right="-2"/>
+              top="2"
+              left="5"
+              bottom="2"
+              right="5"/>
           <children
               xsi:type="gmfgraph:Label"
               name="StateFigure_entryConditions">
@@ -595,15 +605,22 @@
                 left="5"
                 right="5"/>
           </children>
+          <attributes
+              name="Borders"
+              value="&quot;EW&quot;"/>
         </children>
         <children
-            xsi:type="gmfgraph:Rectangle"
-            name="StateFigure_activities">
+            xsi:type="gmfgraph:CustomFigure"
+            name="StateFigure_activities"
+            qualifiedClassName="org.unicase.ui.common.diagram.ConfigurableRectangleFigure">
           <layout
-              xsi:type="gmfgraph:FlowLayout"/>
+              xsi:type="gmfgraph:CustomLayout"
+              qualifiedClassName="org.unicase.ui.stateDiagram.unicase.CenterLayout"/>
           <insets
-              left="-5"
-              right="-5"/>
+              top="2"
+              left="5"
+              bottom="2"
+              right="5"/>
           <children
               xsi:type="gmfgraph:Label"
               name="StateFigure_activities"
@@ -612,18 +629,24 @@
                 xsi:type="gmfgraph:BasicFont"/>
             <insets
                 left="5"
-                bottom="5"
                 right="5"/>
           </children>
+          <attributes
+              name="Borders"
+              value="&quot;EW&quot;"/>
         </children>
         <children
-            xsi:type="gmfgraph:Rectangle"
-            name="StateFigure_exitConditions">
+            xsi:type="gmfgraph:CustomFigure"
+            name="StateFigure_exitConditions"
+            qualifiedClassName="org.unicase.ui.common.diagram.ConfigurableRectangleFigure">
           <layout
-              xsi:type="gmfgraph:FlowLayout"/>
+              xsi:type="gmfgraph:CustomLayout"
+              qualifiedClassName="org.unicase.ui.stateDiagram.unicase.CenterLayout"/>
           <insets
-              left="-1"
-              right="-1"/>
+              top="2"
+              left="5"
+              bottom="2"
+              right="5"/>
           <children
               xsi:type="gmfgraph:Label"
               name="StateFigure_exitConditions">
@@ -631,9 +654,11 @@
                 xsi:type="gmfgraph:BasicFont"/>
             <insets
                 left="5"
-                bottom="5"
                 right="5"/>
           </children>
+          <attributes
+              name="Borders"
+              value="&quot;EW&quot;"/>
         </children>
       </actualFigure>
       <accessors
@@ -863,7 +888,6 @@
   <labels
       name="StateNode_name"
       figure="StateFigure"
-      elementIcon="false"
       accessor="//@figures.3/@descriptors.0/@accessors.0"/>
   <labels
       name="TransitionLine_condition"
