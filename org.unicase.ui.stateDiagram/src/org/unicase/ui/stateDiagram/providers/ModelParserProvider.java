@@ -70,8 +70,8 @@ public class ModelParserProvider extends AbstractProvider implements
 		org.unicase.ui.stateDiagram.parsers.MessageFormatParser parser = new org.unicase.ui.stateDiagram.parsers.MessageFormatParser(
 				features);
 		parser.setViewPattern("ENTRY/{0}");
-		parser.setEditorPattern("ENTRY/{0}");
-		parser.setEditPattern("ENTRY/{0}");
+		parser.setEditorPattern("{0}");
+		parser.setEditPattern("{0}");
 		return parser;
 	}
 
@@ -99,8 +99,8 @@ public class ModelParserProvider extends AbstractProvider implements
 		org.unicase.ui.stateDiagram.parsers.MessageFormatParser parser = new org.unicase.ui.stateDiagram.parsers.MessageFormatParser(
 				features);
 		parser.setViewPattern("DO/{0}");
-		parser.setEditorPattern("DO/{0}");
-		parser.setEditPattern("DO/{0}");
+		parser.setEditorPattern("{0}");
+		parser.setEditPattern("{0}");
 		return parser;
 	}
 
@@ -128,8 +128,8 @@ public class ModelParserProvider extends AbstractProvider implements
 		org.unicase.ui.stateDiagram.parsers.MessageFormatParser parser = new org.unicase.ui.stateDiagram.parsers.MessageFormatParser(
 				features);
 		parser.setViewPattern("EXIT/{0}");
-		parser.setEditorPattern("EXIT/{0}");
-		parser.setEditPattern("EXIT/{0}");
+		parser.setEditorPattern("{0}");
+		parser.setEditPattern("{0}");
 		return parser;
 	}
 

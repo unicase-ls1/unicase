@@ -191,7 +191,12 @@ public class StateNameEditPart extends CompartmentEditPart implements
 	 * @generated
 	 */
 	protected Image getLabelIcon() {
-		return null;
+		EObject parserElement = getParserElement();
+		if (parserElement == null) {
+			return null;
+		}
+		return org.unicase.ui.stateDiagram.providers.ModelElementTypes
+				.getImage(parserElement.eClass());
 	}
 
 	/**

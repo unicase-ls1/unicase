@@ -23,7 +23,9 @@
       </labelMappings>
       <labelMappings
           xsi:type="gmfmap:FeatureLabelMapping"
-          viewPattern="ENTRY/{0}">
+          viewPattern="ENTRY/{0}"
+          editorPattern="{0}"
+          editPattern="{0}">
         <diagramLabel
             href="../model.gmfgraph#StateNode_entryConditions"/>
         <features
@@ -31,7 +33,9 @@
       </labelMappings>
       <labelMappings
           xsi:type="gmfmap:FeatureLabelMapping"
-          viewPattern="DO/{0}">
+          viewPattern="DO/{0}"
+          editorPattern="{0}"
+          editPattern="{0}">
         <diagramLabel
             href="../model.gmfgraph#StateNode_activities"/>
         <features
@@ -39,7 +43,9 @@
       </labelMappings>
       <labelMappings
           xsi:type="gmfmap:FeatureLabelMapping"
-          viewPattern="EXIT/{0}">
+          viewPattern="EXIT/{0}"
+          editorPattern="{0}"
+          editPattern="{0}">
         <diagramLabel
             href="../model.gmfgraph#StateNode_exitConditions"/>
         <features
