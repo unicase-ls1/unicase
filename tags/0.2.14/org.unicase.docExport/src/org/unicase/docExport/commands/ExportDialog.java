@@ -360,9 +360,7 @@ public class ExportDialog extends TitleAreaDialog {
 		 * {@inheritDoc}
 		 */
 		@Override
-		public void widgetSelected(SelectionEvent e) {
-			System.out.println("test");
-			
+		public void widgetSelected(SelectionEvent e) {			
 			DirectoryDialog fd = new DirectoryDialog(((Button) e.widget).getParent().getShell());
 		    fd.setText("select the folder where you want to save the exported document ");
 		    String selected = fd.open();

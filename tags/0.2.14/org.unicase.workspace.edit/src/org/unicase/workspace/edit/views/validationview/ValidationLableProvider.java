@@ -4,6 +4,8 @@ import org.eclipse.emf.ecore.EObject;
 import org.eclipse.emf.edit.provider.ComposedAdapterFactory;
 import org.eclipse.emf.edit.ui.provider.AdapterFactoryLabelProvider;
 import org.eclipse.emf.validation.model.IConstraintStatus;
+import org.eclipse.jface.viewers.ColumnLabelProvider;
+import org.eclipse.swt.graphics.Image;
 import org.unicase.model.ModelElement;
 
 /**
@@ -11,42 +13,46 @@ import org.unicase.model.ModelElement;
  * 
  * @author wesendon
  */
-public class ValidationLableProvider extends AdapterFactoryLabelProvider {
+public class ValidationLableProvider extends ColumnLabelProvider {
 
-	private static final int SEVERITY = 0;
-	private static final int DESCRIPTION = 1;
-	private static final int MODELELEMENT = 2;
+	private AdapterFactoryLabelProvider adapterFactoryLabelProvider;
 
 	/**
 	 * Default constructor.
 	 */
 	public ValidationLableProvider() {
-		super(new ComposedAdapterFactory(
-				ComposedAdapterFactory.Descriptor.Registry.INSTANCE));
+		super();
+		this.adapterFactoryLabelProvider = new AdapterFactoryLabelProvider(
+				new ComposedAdapterFactory(
+						ComposedAdapterFactory.Descriptor.Registry.INSTANCE));
 	}
 
 	/**
 	 * {@inheritDoc}
 	 */
 	@Override
-	public String getColumnText(Object object, int columnIndex) {
-		if(object instanceof IConstraintStatus) {
-			IConstraintStatus constraint = (IConstraintStatus) object;
-			switch (columnIndex) {
-			case SEVERITY:
-				return ""+constraint.getSeverity();
-			case DESCRIPTION:
-				return constraint.getMessage();
-			case MODELELEMENT:
-				EObject target = constraint.getTarget();
-				if(target instanceof ModelElement) {
-					return ((ModelElement) target).getName();
-				}
-				break;
-			default:
-					break;
+	public Image getImage(Object object) {
+		if (object instanceof IConstraintStatus) {
+			EObject target = ((IConstraintStatus) object).getTarget();
+			if (target instanceof ModelElement) {
+				return adapterFactoryLabelProvider.getImage(target);
 			}
-		} 
-		return super.getColumnText(object, columnIndex);
+		}
+		return super.getImage(object);
 	}
+
+	/**
+	 * {@inheritDoc}
+	 */
+	@Override
+	public String getText(Object object) {
+		if (object instanceof IConstraintStatus) {
+			EObject target = ((IConstraintStatus) object).getTarget();
+			if (target instanceof ModelElement) {
+				return adapterFactoryLabelProvider.getText(target);
+			}
+		}
+		return super.getText(object);
+	}
+
 }
