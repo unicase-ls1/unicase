@@ -40,6 +40,18 @@ public class ModelEditPartFactory implements EditPartFactory {
 				return new org.unicase.ui.stateDiagram.edit.parts.StateNameEditPart(
 						view);
 
+			case org.unicase.ui.stateDiagram.edit.parts.StateEntryConditionsEditPart.VISUAL_ID:
+				return new org.unicase.ui.stateDiagram.edit.parts.StateEntryConditionsEditPart(
+						view);
+
+			case org.unicase.ui.stateDiagram.edit.parts.StateActivitiesEditPart.VISUAL_ID:
+				return new org.unicase.ui.stateDiagram.edit.parts.StateActivitiesEditPart(
+						view);
+
+			case org.unicase.ui.stateDiagram.edit.parts.StateExitConditionsEditPart.VISUAL_ID:
+				return new org.unicase.ui.stateDiagram.edit.parts.StateExitConditionsEditPart(
+						view);
+
 			case org.unicase.ui.stateDiagram.edit.parts.TransitionEditPart.VISUAL_ID:
 				return new org.unicase.ui.stateDiagram.edit.parts.TransitionEditPart(
 						view);

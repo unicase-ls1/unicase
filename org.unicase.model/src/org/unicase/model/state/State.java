@@ -30,52 +30,82 @@ import org.unicase.model.ModelElement;
  */
 public interface State extends ModelElement {
 	/**
-	 * Returns the value of the '<em><b>Exit Conditions</b></em>' attribute list.
-	 * The list contents are of type {@link java.lang.String}.
+	 * Returns the value of the '<em><b>Exit Conditions</b></em>' attribute.
 	 * <!-- begin-user-doc -->
 	 * <p>
 	 * If the meaning of the '<em>Exit Conditions</em>' attribute list isn't clear,
 	 * there really should be more of a description here...
 	 * </p>
 	 * <!-- end-user-doc -->
-	 * @return the value of the '<em>Exit Conditions</em>' attribute list.
+	 * @return the value of the '<em>Exit Conditions</em>' attribute.
+	 * @see #setExitConditions(String)
 	 * @see org.unicase.model.state.StatePackage#getState_ExitConditions()
 	 * @model
 	 * @generated
 	 */
-	EList<String> getExitConditions();
+	String getExitConditions();
 
 	/**
-	 * Returns the value of the '<em><b>Activities</b></em>' attribute list.
-	 * The list contents are of type {@link java.lang.String}.
+	 * Sets the value of the '{@link org.unicase.model.state.State#getExitConditions <em>Exit Conditions</em>}' attribute.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @param value the new value of the '<em>Exit Conditions</em>' attribute.
+	 * @see #getExitConditions()
+	 * @generated
+	 */
+	void setExitConditions(String value);
+
+	/**
+	 * Returns the value of the '<em><b>Activities</b></em>' attribute.
 	 * <!-- begin-user-doc -->
 	 * <p>
 	 * If the meaning of the '<em>Activities</em>' attribute list isn't clear,
 	 * there really should be more of a description here...
 	 * </p>
 	 * <!-- end-user-doc -->
-	 * @return the value of the '<em>Activities</em>' attribute list.
+	 * @return the value of the '<em>Activities</em>' attribute.
+	 * @see #setActivities(String)
 	 * @see org.unicase.model.state.StatePackage#getState_Activities()
 	 * @model
 	 * @generated
 	 */
-	EList<String> getActivities();
+	String getActivities();
 
 	/**
-	 * Returns the value of the '<em><b>Entry Conditions</b></em>' attribute list.
-	 * The list contents are of type {@link java.lang.String}.
+	 * Sets the value of the '{@link org.unicase.model.state.State#getActivities <em>Activities</em>}' attribute.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @param value the new value of the '<em>Activities</em>' attribute.
+	 * @see #getActivities()
+	 * @generated
+	 */
+	void setActivities(String value);
+
+	/**
+	 * Returns the value of the '<em><b>Entry Conditions</b></em>' attribute.
 	 * <!-- begin-user-doc -->
 	 * <p>
 	 * If the meaning of the '<em>Entry Conditions</em>' attribute list isn't clear,
 	 * there really should be more of a description here...
 	 * </p>
 	 * <!-- end-user-doc -->
-	 * @return the value of the '<em>Entry Conditions</em>' attribute list.
+	 * @return the value of the '<em>Entry Conditions</em>' attribute.
+	 * @see #setEntryConditions(String)
 	 * @see org.unicase.model.state.StatePackage#getState_EntryConditions()
 	 * @model
 	 * @generated
 	 */
-	EList<String> getEntryConditions();
+	String getEntryConditions();
+
+	/**
+	 * Sets the value of the '{@link org.unicase.model.state.State#getEntryConditions <em>Entry Conditions</em>}' attribute.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @param value the new value of the '<em>Entry Conditions</em>' attribute.
+	 * @see #getEntryConditions()
+	 * @generated
+	 */
+	void setEntryConditions(String value);
 
 	/**
 	 * Returns the value of the '<em><b>Outgoing Transitions</b></em>' reference list.

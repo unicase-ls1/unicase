@@ -157,6 +157,15 @@ public class ModelVisualIDRegistry {
 			if (org.unicase.ui.stateDiagram.edit.parts.StateNameEditPart.VISUAL_ID == nodeVisualID) {
 				return true;
 			}
+			if (org.unicase.ui.stateDiagram.edit.parts.StateEntryConditionsEditPart.VISUAL_ID == nodeVisualID) {
+				return true;
+			}
+			if (org.unicase.ui.stateDiagram.edit.parts.StateActivitiesEditPart.VISUAL_ID == nodeVisualID) {
+				return true;
+			}
+			if (org.unicase.ui.stateDiagram.edit.parts.StateExitConditionsEditPart.VISUAL_ID == nodeVisualID) {
+				return true;
+			}
 			break;
 		case org.unicase.ui.stateDiagram.edit.parts.MEDiagramEditPart.VISUAL_ID:
 			if (org.unicase.ui.stateDiagram.edit.parts.StateEditPart.VISUAL_ID == nodeVisualID) {

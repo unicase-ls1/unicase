@@ -12,6 +12,7 @@ import org.eclipse.gmf.runtime.emf.type.core.IElementType;
 import org.eclipse.gmf.runtime.emf.ui.services.parser.ParserHintAdapter;
 import org.eclipse.gmf.runtime.notation.View;
 import org.unicase.model.ModelPackage;
+import org.unicase.model.state.StatePackage;
 
 /**
  * @generated
@@ -48,6 +49,93 @@ public class ModelParserProvider extends AbstractProvider implements
 	/**
 	 * @generated
 	 */
+	private IParser stateEntryConditions_5002Parser;
+
+	/**
+	 * @generated
+	 */
+	private IParser getStateEntryConditions_5002Parser() {
+		if (stateEntryConditions_5002Parser == null) {
+			stateEntryConditions_5002Parser = createStateEntryConditions_5002Parser();
+		}
+		return stateEntryConditions_5002Parser;
+	}
+
+	/**
+	 * @generated
+	 */
+	protected IParser createStateEntryConditions_5002Parser() {
+		EAttribute[] features = new EAttribute[] { StatePackage.eINSTANCE
+				.getState_EntryConditions(), };
+		org.unicase.ui.stateDiagram.parsers.MessageFormatParser parser = new org.unicase.ui.stateDiagram.parsers.MessageFormatParser(
+				features);
+		parser.setViewPattern("ENTRY/{0}");
+		parser.setEditorPattern("ENTRY/{0}");
+		parser.setEditPattern("ENTRY/{0}");
+		return parser;
+	}
+
+	/**
+	 * @generated
+	 */
+	private IParser stateActivities_5003Parser;
+
+	/**
+	 * @generated
+	 */
+	private IParser getStateActivities_5003Parser() {
+		if (stateActivities_5003Parser == null) {
+			stateActivities_5003Parser = createStateActivities_5003Parser();
+		}
+		return stateActivities_5003Parser;
+	}
+
+	/**
+	 * @generated
+	 */
+	protected IParser createStateActivities_5003Parser() {
+		EAttribute[] features = new EAttribute[] { StatePackage.eINSTANCE
+				.getState_Activities(), };
+		org.unicase.ui.stateDiagram.parsers.MessageFormatParser parser = new org.unicase.ui.stateDiagram.parsers.MessageFormatParser(
+				features);
+		parser.setViewPattern("DO/{0}");
+		parser.setEditorPattern("DO/{0}");
+		parser.setEditPattern("DO/{0}");
+		return parser;
+	}
+
+	/**
+	 * @generated
+	 */
+	private IParser stateExitConditions_5004Parser;
+
+	/**
+	 * @generated
+	 */
+	private IParser getStateExitConditions_5004Parser() {
+		if (stateExitConditions_5004Parser == null) {
+			stateExitConditions_5004Parser = createStateExitConditions_5004Parser();
+		}
+		return stateExitConditions_5004Parser;
+	}
+
+	/**
+	 * @generated
+	 */
+	protected IParser createStateExitConditions_5004Parser() {
+		EAttribute[] features = new EAttribute[] { StatePackage.eINSTANCE
+				.getState_ExitConditions(), };
+		org.unicase.ui.stateDiagram.parsers.MessageFormatParser parser = new org.unicase.ui.stateDiagram.parsers.MessageFormatParser(
+				features);
+		parser.setViewPattern("EXIT/{0}");
+		parser.setEditorPattern("EXIT/{0}");
+		parser.setEditPattern("EXIT/{0}");
+		return parser;
+	}
+
+	/**
+	 * @generated
+	 */
 	private IParser transitionName_6001Parser;
 
 	/**
@@ -78,6 +166,12 @@ public class ModelParserProvider extends AbstractProvider implements
 		switch (visualID) {
 		case org.unicase.ui.stateDiagram.edit.parts.StateNameEditPart.VISUAL_ID:
 			return getStateName_5001Parser();
+		case org.unicase.ui.stateDiagram.edit.parts.StateEntryConditionsEditPart.VISUAL_ID:
+			return getStateEntryConditions_5002Parser();
+		case org.unicase.ui.stateDiagram.edit.parts.StateActivitiesEditPart.VISUAL_ID:
+			return getStateActivities_5003Parser();
+		case org.unicase.ui.stateDiagram.edit.parts.StateExitConditionsEditPart.VISUAL_ID:
+			return getStateExitConditions_5004Parser();
 		case org.unicase.ui.stateDiagram.edit.parts.TransitionNameEditPart.VISUAL_ID:
 			return getTransitionName_6001Parser();
 		}

@@ -258,7 +258,7 @@ public class Messages extends NLS {
 	/**
 	 * @generated
 	 */
-	public static String NavigatorGroupName_MEDiagram_1000_links;
+	public static String NavigatorGroupName_MEDiagram_55_links;
 
 	/**
 	 * @generated

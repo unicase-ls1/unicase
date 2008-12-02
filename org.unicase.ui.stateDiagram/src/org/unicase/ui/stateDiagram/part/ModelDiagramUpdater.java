@@ -29,7 +29,7 @@ public class ModelDiagramUpdater {
 		switch (org.unicase.ui.stateDiagram.part.ModelVisualIDRegistry
 				.getVisualID(view)) {
 		case org.unicase.ui.stateDiagram.edit.parts.MEDiagramEditPart.VISUAL_ID:
-			return getMEDiagram_1000SemanticChildren(view);
+			return getMEDiagram_55SemanticChildren(view);
 		}
 		return Collections.EMPTY_LIST;
 	}
@@ -37,7 +37,7 @@ public class ModelDiagramUpdater {
 	/**
 	 * @generated
 	 */
-	public static List getMEDiagram_1000SemanticChildren(View view) {
+	public static List getMEDiagram_55SemanticChildren(View view) {
 		if (!view.isSetElement()) {
 			return Collections.EMPTY_LIST;
 		}
@@ -64,7 +64,7 @@ public class ModelDiagramUpdater {
 		switch (org.unicase.ui.stateDiagram.part.ModelVisualIDRegistry
 				.getVisualID(view)) {
 		case org.unicase.ui.stateDiagram.edit.parts.MEDiagramEditPart.VISUAL_ID:
-			return getMEDiagram_1000ContainedLinks(view);
+			return getMEDiagram_55ContainedLinks(view);
 		case org.unicase.ui.stateDiagram.edit.parts.StateEditPart.VISUAL_ID:
 			return getState_2001ContainedLinks(view);
 		case org.unicase.ui.stateDiagram.edit.parts.TransitionEditPart.VISUAL_ID:
@@ -104,7 +104,7 @@ public class ModelDiagramUpdater {
 	/**
 	 * @generated
 	 */
-	public static List getMEDiagram_1000ContainedLinks(View view) {
+	public static List getMEDiagram_55ContainedLinks(View view) {
 		MEDiagram modelElement = (MEDiagram) view.getElement();
 		List result = new LinkedList();
 		result

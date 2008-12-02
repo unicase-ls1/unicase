@@ -49,13 +49,13 @@ import org.eclipse.swt.graphics.Image;
 /**
  * @generated
  */
-public class StateNameEditPart extends CompartmentEditPart implements
+public class StateEntryConditionsEditPart extends CompartmentEditPart implements
 		ITextAwareEditPart {
 
 	/**
 	 * @generated
 	 */
-	public static final int VISUAL_ID = 5001;
+	public static final int VISUAL_ID = 5002;
 
 	/**
 	 * @generated
@@ -80,7 +80,7 @@ public class StateNameEditPart extends CompartmentEditPart implements
 	/**
 	 * @generated
 	 */
-	public StateNameEditPart(View view) {
+	public StateEntryConditionsEditPart(View view) {
 		super(view);
 	}
 

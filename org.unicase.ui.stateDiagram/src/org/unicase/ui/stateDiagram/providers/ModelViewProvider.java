@@ -90,6 +90,9 @@ public class ModelViewProvider extends AbstractViewProvider {
 					}
 					break;
 				case org.unicase.ui.stateDiagram.edit.parts.StateNameEditPart.VISUAL_ID:
+				case org.unicase.ui.stateDiagram.edit.parts.StateEntryConditionsEditPart.VISUAL_ID:
+				case org.unicase.ui.stateDiagram.edit.parts.StateActivitiesEditPart.VISUAL_ID:
+				case org.unicase.ui.stateDiagram.edit.parts.StateExitConditionsEditPart.VISUAL_ID:
 					if (org.unicase.ui.stateDiagram.edit.parts.StateEditPart.VISUAL_ID != org.unicase.ui.stateDiagram.part.ModelVisualIDRegistry
 							.getVisualID(containerView)
 							|| containerView.getElement() != domainElement) {
@@ -125,6 +128,12 @@ public class ModelViewProvider extends AbstractViewProvider {
 			return org.unicase.ui.stateDiagram.view.factories.StateViewFactory.class;
 		case org.unicase.ui.stateDiagram.edit.parts.StateNameEditPart.VISUAL_ID:
 			return org.unicase.ui.stateDiagram.view.factories.StateNameViewFactory.class;
+		case org.unicase.ui.stateDiagram.edit.parts.StateEntryConditionsEditPart.VISUAL_ID:
+			return org.unicase.ui.stateDiagram.view.factories.StateEntryConditionsViewFactory.class;
+		case org.unicase.ui.stateDiagram.edit.parts.StateActivitiesEditPart.VISUAL_ID:
+			return org.unicase.ui.stateDiagram.view.factories.StateActivitiesViewFactory.class;
+		case org.unicase.ui.stateDiagram.edit.parts.StateExitConditionsEditPart.VISUAL_ID:
+			return org.unicase.ui.stateDiagram.view.factories.StateExitConditionsViewFactory.class;
 		case org.unicase.ui.stateDiagram.edit.parts.TransitionNameEditPart.VISUAL_ID:
 			return org.unicase.ui.stateDiagram.view.factories.TransitionNameViewFactory.class;
 		}

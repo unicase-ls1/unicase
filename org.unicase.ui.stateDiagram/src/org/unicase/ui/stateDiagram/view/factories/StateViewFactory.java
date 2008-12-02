@@ -64,5 +64,26 @@ public class StateViewFactory extends AbstractShapeViewFactory {
 						org.unicase.ui.stateDiagram.part.ModelVisualIDRegistry
 								.getType(org.unicase.ui.stateDiagram.edit.parts.StateNameEditPart.VISUAL_ID),
 						ViewUtil.APPEND, true, getPreferencesHint());
+		getViewService()
+				.createNode(
+						eObjectAdapter,
+						view,
+						org.unicase.ui.stateDiagram.part.ModelVisualIDRegistry
+								.getType(org.unicase.ui.stateDiagram.edit.parts.StateEntryConditionsEditPart.VISUAL_ID),
+						ViewUtil.APPEND, true, getPreferencesHint());
+		getViewService()
+				.createNode(
+						eObjectAdapter,
+						view,
+						org.unicase.ui.stateDiagram.part.ModelVisualIDRegistry
+								.getType(org.unicase.ui.stateDiagram.edit.parts.StateActivitiesEditPart.VISUAL_ID),
+						ViewUtil.APPEND, true, getPreferencesHint());
+		getViewService()
+				.createNode(
+						eObjectAdapter,
+						view,
+						org.unicase.ui.stateDiagram.part.ModelVisualIDRegistry
+								.getType(org.unicase.ui.stateDiagram.edit.parts.StateExitConditionsEditPart.VISUAL_ID),
+						ViewUtil.APPEND, true, getPreferencesHint());
 	}
 }
