@@ -9,12 +9,12 @@ package org.unicase.docExport.exportModel.renderers.impl;
 import org.eclipse.emf.ecore.EClass;
 import org.eclipse.emf.ecore.EObject;
 import org.eclipse.emf.ecore.EPackage;
-
 import org.eclipse.emf.ecore.impl.EFactoryImpl;
-
 import org.eclipse.emf.ecore.plugin.EcorePlugin;
-
-import org.unicase.docExport.exportModel.renderers.*;
+import org.unicase.docExport.exportModel.renderers.AttributeRendererMapping;
+import org.unicase.docExport.exportModel.renderers.ModelElementRendererMapping;
+import org.unicase.docExport.exportModel.renderers.RenderersFactory;
+import org.unicase.docExport.exportModel.renderers.RenderersPackage;
 
 /**
  * <!-- begin-user-doc -->

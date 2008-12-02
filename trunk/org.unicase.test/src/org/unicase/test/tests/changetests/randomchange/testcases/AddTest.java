@@ -1,6 +1,5 @@
 package org.unicase.test.tests.changetests.randomchange.testcases;
 
-import java.util.ArrayList;
 import java.util.List;
 
 import org.eclipse.emf.common.util.EList;

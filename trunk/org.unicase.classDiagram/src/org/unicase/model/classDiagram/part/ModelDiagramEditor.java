@@ -34,6 +34,7 @@ import org.eclipse.ui.IEditorReference;
 import org.eclipse.ui.IFileEditorInput;
 import org.eclipse.ui.PlatformUI;
 import org.eclipse.ui.dialogs.SaveAsDialog;
+import org.eclipse.ui.ide.IGotoMarker;
 import org.eclipse.ui.navigator.resources.ProjectExplorer;
 import org.eclipse.ui.part.FileEditorInput;
 import org.eclipse.ui.part.IShowInTargetList;
@@ -42,8 +43,12 @@ import org.eclipse.ui.part.ShowInContext;
 /**
  * @generated
  * @extends org.unicase.ui.common.diagram.ModelDiagramEditor
+ * 
+ * public class ModelDiagramEditor extends org.unicase.ui.common.diagram.ModelDiagramEditor implements
+ IGotoMarker {
  */
-public class ModelDiagramEditor extends org.unicase.ui.common.diagram.ModelDiagramEditor {
+public class ModelDiagramEditor extends org.unicase.ui.common.diagram.ModelDiagramEditor implements
+IGotoMarker {
 
 	/**
 	 * @generated

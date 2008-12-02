@@ -11,7 +11,6 @@ import org.eclipse.emf.common.util.EList;
 import org.eclipse.emf.ecore.EClass;
 import org.unicase.docExport.ModelElementRendererRegistry;
 import org.unicase.docExport.exportModel.Template;
-import org.unicase.docExport.exportModel.builders.DefaultModelElementRendererBuilder;
 import org.unicase.docExport.exportModel.renderers.ModelElementRenderer;
 import org.unicase.docExport.exportModel.renderers.ModelElementRendererMapping;
 import org.unicase.docExport.exportModel.renderers.defaultRenderers.DefaultDocumentRenderer;

@@ -9,12 +9,13 @@ package org.unicase.docExport.exportModel.renderers.defaultRenderers.impl;
 import org.eclipse.emf.ecore.EClass;
 import org.eclipse.emf.ecore.EObject;
 import org.eclipse.emf.ecore.EPackage;
-
 import org.eclipse.emf.ecore.impl.EFactoryImpl;
-
 import org.eclipse.emf.ecore.plugin.EcorePlugin;
-
-import org.unicase.docExport.exportModel.renderers.defaultRenderers.*;
+import org.unicase.docExport.exportModel.renderers.defaultRenderers.DefaultAttributeRenderer;
+import org.unicase.docExport.exportModel.renderers.defaultRenderers.DefaultDocumentRenderer;
+import org.unicase.docExport.exportModel.renderers.defaultRenderers.DefaultModelElementRenderer;
+import org.unicase.docExport.exportModel.renderers.defaultRenderers.DefaultRenderersFactory;
+import org.unicase.docExport.exportModel.renderers.defaultRenderers.DefaultRenderersPackage;
 
 /**
  * <!-- begin-user-doc -->

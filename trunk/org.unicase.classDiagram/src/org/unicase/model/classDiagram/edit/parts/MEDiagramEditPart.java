@@ -1,12 +1,13 @@
 package org.unicase.model.classDiagram.edit.parts;
 
+import org.eclipse.gmf.runtime.diagram.ui.editparts.DiagramEditPart;
 import org.eclipse.gmf.runtime.diagram.ui.editpolicies.EditPolicyRoles;
 import org.eclipse.gmf.runtime.notation.View;
 
 /**
  * @generated
  */
-public class MEDiagramEditPart extends org.unicase.ui.common.diagram.MEDiagramEditPart {
+public class MEDiagramEditPart extends DiagramEditPart {
 
 	/**
 	 * @generated
@@ -16,7 +17,7 @@ public class MEDiagramEditPart extends org.unicase.ui.common.diagram.MEDiagramEd
 	/**
 	 * @generated
 	 */
-	public static final int VISUAL_ID = 88;
+	public static final int VISUAL_ID = 1000;
 
 	/**
 	 * @generated

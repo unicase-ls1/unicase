@@ -10,10 +10,12 @@ import java.util.List;
 
 import org.eclipse.emf.ecore.EClass;
 import org.eclipse.emf.ecore.EObject;
-
 import org.unicase.docExport.exportModel.renderers.AttributeRenderer;
 import org.unicase.docExport.exportModel.renderers.ModelElementRenderer;
-import org.unicase.docExport.exportModel.renderers.specialRenderers.*;
+import org.unicase.docExport.exportModel.renderers.specialRenderers.MeetingRenderer;
+import org.unicase.docExport.exportModel.renderers.specialRenderers.MilestoneRenderer;
+import org.unicase.docExport.exportModel.renderers.specialRenderers.SpecialRenderersPackage;
+import org.unicase.docExport.exportModel.renderers.specialRenderers.StepsAttributeRenderer;
 
 
 /**

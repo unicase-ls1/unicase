@@ -7,7 +7,6 @@ import org.unicase.docExport.exportModel.renderers.elements.UCompositeSection;
 import org.unicase.docExport.exportModel.renderers.elements.USeperator;
 import org.unicase.docExport.exportModel.renderers.elements.UTable;
 
-
 import com.lowagie.text.DocumentException;
 
 /**
