@@ -1,21 +1,35 @@
 package org.unicase.workspace.edit.views.validationview;
 
+import java.io.IOException;
 import java.util.List;
 
+import org.eclipse.core.runtime.IPath;
 import org.eclipse.emf.ecore.EObject;
 import org.eclipse.emf.validation.model.IConstraintStatus;
+import org.eclipse.jface.action.Action;
+import org.eclipse.jface.action.IToolBarManager;
+import org.eclipse.jface.dialogs.DialogSettings;
+import org.eclipse.jface.viewers.ColumnLabelProvider;
 import org.eclipse.jface.viewers.DoubleClickEvent;
 import org.eclipse.jface.viewers.IDoubleClickListener;
 import org.eclipse.jface.viewers.IStructuredSelection;
 import org.eclipse.jface.viewers.TableViewer;
+import org.eclipse.jface.viewers.TableViewerColumn;
+import org.eclipse.jface.viewers.ViewerComparator;
 import org.eclipse.swt.SWT;
 import org.eclipse.swt.layout.GridData;
 import org.eclipse.swt.widgets.Composite;
 import org.eclipse.swt.widgets.Table;
-import org.eclipse.swt.widgets.TableColumn;
+import org.eclipse.ui.IActionBars;
 import org.eclipse.ui.part.ViewPart;
 import org.unicase.model.ModelElement;
+import org.unicase.model.organization.User;
+import org.unicase.ui.common.TableViewerColumnSorter;
 import org.unicase.ui.common.commands.ActionHelper;
+import org.unicase.workspace.WorkspaceManager;
+import org.unicase.workspace.util.EventUtil;
+import org.unicase.workspace.util.NoCurrentUserException;
+import org.unicase.workspace.util.OrgUnitHelper;
 
 /**
  * Validation view.
@@ -25,12 +39,27 @@ import org.unicase.ui.common.commands.ActionHelper;
 public class ValidationView extends ViewPart {
 
 	private TableViewer tableViewer;
+	private Action filterToMyTeam;
+	private ValidationTeamFilter teamFilter;
+	private ValidationUserFilter userFilter;
+	private Action filterToMe;
+	private DialogSettings settings;
+	private String filename;
+	private final String viewId = getClass().getName();
 
 	/**
 	 * Default constructor.
 	 */
 	public ValidationView() {
-		
+		IPath path = org.unicase.ui.common.Activator.getDefault()
+				.getStateLocation();
+		filename = path.append("settings.txt").toOSString();
+		settings = new DialogSettings("Top");
+		try {
+			settings.load(filename);
+		} catch (IOException e) {
+			// Do nothing.
+		}
 	}
 
 	/**
@@ -38,9 +67,15 @@ public class ValidationView extends ViewPart {
 	 */
 	@Override
 	public void createPartControl(Composite parent) {
-		tableViewer = new TableViewer(parent, SWT.SINGLE | SWT.BORDER | SWT.V_SCROLL | SWT.H_SCROLL
-				| SWT.FULL_SELECTION);
+		tableViewer = new TableViewer(parent, SWT.SINGLE | SWT.BORDER
+				| SWT.V_SCROLL | SWT.H_SCROLL | SWT.FULL_SELECTION);
 		createTable();
+		initFilters();
+
+		IActionBars bars = getViewSite().getActionBars();
+		IToolBarManager menuManager = bars.getToolBarManager();
+		menuManager.add(filterToMe);
+		menuManager.add(filterToMyTeam);
 		hookDoubleClickAction();
 	}
 
@@ -52,32 +87,56 @@ public class ValidationView extends ViewPart {
 		table.setLinesVisible(true);
 		table.setHeaderVisible(true);
 
-		TableColumn column = new TableColumn(table, SWT.CENTER, 0);
-		column.setText("Severity");
-		column.setWidth(100);
+		TableViewerColumn column = new TableViewerColumn(tableViewer,
+				SWT.CENTER, 0);
+		column.getColumn().setText("Severity");
+		column.getColumn().setWidth(100);
+		ColumnLabelProvider labelProvider = new SeverityLabelProvider();
+		column.setLabelProvider(labelProvider);
+		ViewerComparator comp = new TableViewerColumnSorter(tableViewer,
+				column, labelProvider);
+		column.getViewer().setComparator(comp);
 
-		column = new TableColumn(table, SWT.LEFT, 1);
-		column.setText("Description");
-		column.setWidth(300);
+		column = new TableViewerColumn(tableViewer, SWT.LEFT, 1);
+		column.getColumn().setText("Description");
+		column.getColumn().setWidth(300);
+		labelProvider = new DescriptionLabelProvider();
+		column.setLabelProvider(labelProvider);
+		comp = new TableViewerColumnSorter(tableViewer, column, labelProvider);
+		column.getViewer().setComparator(comp);
 
-		column = new TableColumn(table, SWT.LEFT, 2);
-		column.setText("ModelElement");
-		column.setWidth(200);
-		
-		//content provider
+		column = new TableViewerColumn(tableViewer, SWT.LEFT, 2);
+		column.getColumn().setText("Affected ModelElement");
+		column.getColumn().setWidth(200);
+		labelProvider = new ValidationLableProvider();
+		column.setLabelProvider(labelProvider);
+		comp = new TableViewerColumnSorter(tableViewer, column, labelProvider);
+		column.getViewer().setComparator(comp);
+
+		column = new TableViewerColumn(tableViewer, SWT.LEFT, 3);
+		column.getColumn().setText("Creator");
+		column.getColumn().setWidth(200);
+		labelProvider = new CreatorLabelProvider();
+		column.setLabelProvider(labelProvider);
+		comp = new TableViewerColumnSorter(tableViewer, column, labelProvider);
+		column.getViewer().setComparator(comp);
+
+		// content provider
 		tableViewer.setContentProvider(new ValidationContentProvider());
-		
-		//label provider
-		tableViewer.setLabelProvider(new ValidationLableProvider());		
+		initFilters();
+
 	}
 
 	private void hookDoubleClickAction() {
 		tableViewer.addDoubleClickListener(new IDoubleClickListener() {
 			public void doubleClick(DoubleClickEvent event) {
-				IStructuredSelection selection = (IStructuredSelection) event.getSelection();
-				EObject me = ((IConstraintStatus)selection.getFirstElement()).getTarget();
-				if(me instanceof ModelElement) {					
-					ActionHelper.openModelElement((ModelElement) me, tableViewer.getClass().getName());
+				IStructuredSelection selection = (IStructuredSelection) event
+						.getSelection();
+				EObject me = ((IConstraintStatus) selection.getFirstElement())
+						.getTarget();
+				if (me instanceof ModelElement) {
+					ActionHelper.openModelElement((ModelElement) me,
+							viewId);
 				}
 			}
 		});
@@ -88,15 +147,119 @@ public class ValidationView extends ViewPart {
 	 */
 	@Override
 	public void setFocus() {
+		EventUtil.logFocusEvent(viewId);
 	}
 
 	/**
 	 * Updates the validation view table.
 	 * 
-	 * @param validationResults validation results.
+	 * @param validationResults
+	 *            validation results.
 	 */
 	public void updateTable(List<IConstraintStatus> validationResults) {
 		tableViewer.setInput(validationResults);
 	}
 
+	private void initFilters() {
+		User user;
+		try {
+			user = OrgUnitHelper.getCurrentUser(WorkspaceManager.getInstance()
+					.getCurrentWorkspace());
+			createTeamFilter(user);
+			createUserFilter(user);
+		} catch (NoCurrentUserException e) {
+			createTeamFilter(null);
+			createUserFilter(null);
+		}
+
+	}
+
+	private void createUserFilter(User user) {
+		// Create User filter
+
+		if (filterToMe == null) {
+			filterToMe = new Action("", SWT.TOGGLE) {
+				@Override
+				public void run() {
+					setUserFilter(isChecked());
+				}
+
+			};
+			filterToMe.setImageDescriptor(org.unicase.ui.common.Activator
+					.getImageDescriptor("/icons/filtertouser.png"));
+		}
+		if (user == null) {
+			setUserFilter(false);
+			filterToMe.setEnabled(false);
+			return;
+		}
+		filterToMe.setEnabled(true);
+		Boolean isFilter = Boolean.parseBoolean(settings.get("UserFilter"));
+		userFilter = new ValidationUserFilter(user);
+		filterToMe.setChecked(isFilter);
+		setUserFilter(isFilter);
+	}
+
+	/**
+	 * Sets if the user filter is turned on.
+	 * 
+	 * @param checked
+	 *            if the filter is turned on.
+	 */
+	protected void setUserFilter(boolean checked) {
+		if (checked) {
+			EventUtil.logPresentationChangeEvent(viewId, "UserFilter");
+			tableViewer.addFilter(userFilter);
+		} else {
+			if (userFilter != null) {
+				EventUtil.logPresentationChangeEvent(viewId, "NoUserFilter");
+				tableViewer.removeFilter(userFilter);
+			}
+		}
+
+	}
+
+	private void createTeamFilter(User user) {
+		// Create Team filter
+		if (filterToMyTeam == null) {
+			filterToMyTeam = new Action("", SWT.TOGGLE) {
+				@Override
+				public void run() {
+					setTeamFilter(isChecked());
+				}
+
+			};
+			filterToMyTeam.setImageDescriptor(org.unicase.ui.common.Activator
+					.getImageDescriptor("/icons/filtertomyteam.png"));
+		}
+		if (user == null) {
+			setTeamFilter(false);
+			filterToMyTeam.setEnabled(false);
+			return;
+		}
+		filterToMyTeam.setEnabled(true);
+		teamFilter = new ValidationTeamFilter(user);
+		Boolean isteamFilter = Boolean.parseBoolean(settings.get("TeamFilter"));
+		filterToMyTeam.setChecked(isteamFilter);
+		setTeamFilter(isteamFilter);
+	}
+
+	/**
+	 * Sets the team filter.
+	 * 
+	 * @param checked
+	 *            if the team filter is turned on.
+	 */
+	protected void setTeamFilter(boolean checked) {
+		if (checked) {
+			EventUtil.logPresentationChangeEvent(viewId, "TeamFilter");
+			tableViewer.addFilter(teamFilter);
+		} else {
+			if (teamFilter != null) {
+				EventUtil.logPresentationChangeEvent(viewId, "NoTeamFilter");
+				tableViewer.removeFilter(teamFilter);
+			}
+		}
+
+	}
 }
