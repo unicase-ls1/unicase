@@ -19,7 +19,7 @@ public class Activator extends AbstractUIPlugin {
 	/**.
 	 *  The plug-in ID
 	 */
-	public static final String PLUGIN_ID = "org.unicase.ui.stem";
+	public static final String PLUGIN_ID = "org.unicase.workspace.edit";
 
 	// The shared instance
 	private static Activator plugin;

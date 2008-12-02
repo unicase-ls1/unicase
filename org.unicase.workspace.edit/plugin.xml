@@ -506,7 +506,7 @@
            </command>
            <command
                  commandId="org.unicase.ui.common.validate"
-                 icon="icons/revert.png"
+                 icon="icons/validation.png"
                  label="Validate Project"
                  style="push">
               <visibleWhen
@@ -540,14 +540,15 @@
             category="org.unicase"
             class="org.unicase.workspace.edit.views.historybrowserview.HistoryBrowserView"
             icon="icons/historyview.png"
-            id="org.unicase.ui.repository.views.HistoryView"
+            id="org.unicase.workspace.edit.views.historybrowserview.HistoryBrowserView"
             name="History Browser"
             restorable="true">
       </view>
       <view
             category="org.unicase"
             class="org.unicase.workspace.edit.views.validationview.ValidationView"
-            id="org.unicase.ui.repository.views.ValidationView"
+            icon="icons/validation.png"
+            id="org.unicase.workspace.edit.views.validationview.ValidationView"
             name="Validation View"
             restorable="true">
       </view>
