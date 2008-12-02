@@ -57,7 +57,7 @@ public abstract class AbstractAuthenticationControl implements
 			}
 			String versions = ServerConfiguration.getProperties().getProperty(ServerConfiguration.ACCEPTED_VERSIONS);
 			if(versions==null) {
-				throw new ClientVersionOutOfDateException();
+				throw new ClientVersionOutOfDateException("No server versions supplied");
 			}
 			String[] splitedVersions = versions.split(ServerConfiguration.MULTI_PROPERTY_SEPERATOR);
 			for(String str : splitedVersions) {
@@ -66,7 +66,7 @@ public abstract class AbstractAuthenticationControl implements
 					return;
 				}
 			}
-			throw new ClientVersionOutOfDateException();
+			throw new ClientVersionOutOfDateException("Client version: " + clientVersionInfo.getVersion() + " - Accepted versions: " + versions);
 		}
 		
 		/**
