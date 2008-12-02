@@ -11,27 +11,17 @@ import org.eclipse.emf.ecore.EClass;
 import org.eclipse.emf.ecore.EPackage;
 import org.eclipse.emf.ecore.EReference;
 import org.eclipse.emf.ecore.EcorePackage;
-
 import org.eclipse.emf.ecore.impl.EPackageImpl;
-
 import org.unicase.docExport.exportModel.ExportModelFactory;
 import org.unicase.docExport.exportModel.ExportModelPackage;
 import org.unicase.docExport.exportModel.Template;
-
 import org.unicase.docExport.exportModel.renderers.RenderersPackage;
-
 import org.unicase.docExport.exportModel.renderers.defaultRenderers.DefaultRenderersPackage;
-
 import org.unicase.docExport.exportModel.renderers.defaultRenderers.impl.DefaultRenderersPackageImpl;
-
 import org.unicase.docExport.exportModel.renderers.impl.RenderersPackageImpl;
-
 import org.unicase.docExport.exportModel.renderers.options.OptionsPackage;
-
 import org.unicase.docExport.exportModel.renderers.options.impl.OptionsPackageImpl;
-
 import org.unicase.docExport.exportModel.renderers.specialRenderers.SpecialRenderersPackage;
-
 import org.unicase.docExport.exportModel.renderers.specialRenderers.impl.SpecialRenderersPackageImpl;
 
 /**

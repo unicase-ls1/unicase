@@ -8,7 +8,6 @@ package org.unicase.docExport.exportModel.renderers.specialRenderers;
 
 import org.eclipse.emf.ecore.EClass;
 import org.eclipse.emf.ecore.EPackage;
-
 import org.unicase.docExport.exportModel.renderers.RenderersPackage;
 
 /**

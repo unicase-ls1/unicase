@@ -65,7 +65,6 @@ public class DiagramEditorContextMenuProvider extends
 											DiagramEditorContextMenuProvider.this,
 											part);
 							menu.remove(ActionIds.ACTION_DELETE_FROM_MODEL);
-							menu.remove(ActionIds.ACTION_DELETE_FROM_DIAGRAM);
 							menu.appendToGroup("editGroup", deleteAction);
 						}
 					});

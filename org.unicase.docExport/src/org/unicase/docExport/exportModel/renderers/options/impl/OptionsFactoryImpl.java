@@ -10,12 +10,21 @@ import org.eclipse.emf.ecore.EClass;
 import org.eclipse.emf.ecore.EDataType;
 import org.eclipse.emf.ecore.EObject;
 import org.eclipse.emf.ecore.EPackage;
-
 import org.eclipse.emf.ecore.impl.EFactoryImpl;
-
 import org.eclipse.emf.ecore.plugin.EcorePlugin;
-
-import org.unicase.docExport.exportModel.renderers.options.*;
+import org.unicase.docExport.exportModel.renderers.options.FontFamily;
+import org.unicase.docExport.exportModel.renderers.options.LayoutOptions;
+import org.unicase.docExport.exportModel.renderers.options.ListOption;
+import org.unicase.docExport.exportModel.renderers.options.ListStyle;
+import org.unicase.docExport.exportModel.renderers.options.MultiReferenceAttributeOption;
+import org.unicase.docExport.exportModel.renderers.options.OptionsFactory;
+import org.unicase.docExport.exportModel.renderers.options.OptionsPackage;
+import org.unicase.docExport.exportModel.renderers.options.PageNumberingStyle;
+import org.unicase.docExport.exportModel.renderers.options.ReferenceOption;
+import org.unicase.docExport.exportModel.renderers.options.SingleReferenceAttributeOption;
+import org.unicase.docExport.exportModel.renderers.options.StringAttributeOption;
+import org.unicase.docExport.exportModel.renderers.options.TextOption;
+import org.unicase.docExport.exportModel.renderers.options.UColor;
 
 /**
  * <!-- begin-user-doc -->

@@ -1,17 +1,14 @@
 package org.unicase.test.tests.changetests.randomchange;
 
-import java.io.BufferedWriter;
 import java.io.File;
 import java.io.FileNotFoundException;
 import java.io.FileWriter;
 import java.io.IOException;
-import java.util.Calendar;
 
 import org.unicase.emfstore.esmodel.versioning.ChangePackage;
 import org.unicase.emfstore.esmodel.versioning.operations.AbstractOperation;
 import org.unicase.emfstore.esmodel.versioning.operations.CreateDeleteOperation;
 import org.unicase.test.tests.changetests.ChangeTestCase;
-import org.unicase.test.tests.changetests.ChangeTestHelper;
 import org.unicase.ui.test.TestProjectParmeters;
 import org.unicase.workspace.Configuration;
 

@@ -21,6 +21,7 @@ import org.eclipse.jface.resource.ImageDescriptor;
 import org.eclipse.swt.graphics.Image;
 import org.eclipse.ui.plugin.AbstractUIPlugin;
 import org.osgi.framework.BundleContext;
+import org.unicase.model.attachment.provider.AttachmentItemProviderAdapterFactory;
 import org.unicase.model.bug.provider.BugItemProviderAdapterFactory;
 import org.unicase.model.change.provider.ChangeItemProviderAdapterFactory;
 import org.unicase.model.classes.provider.ClassesItemProviderAdapterFactory;
@@ -32,6 +33,7 @@ import org.unicase.model.organization.provider.OrganizationItemProviderAdapterFa
 import org.unicase.model.provider.ModelItemProviderAdapterFactory;
 import org.unicase.model.rationale.provider.RationaleItemProviderAdapterFactory;
 import org.unicase.model.requirement.provider.RequirementItemProviderAdapterFactory;
+import org.unicase.model.state.provider.StateItemProviderAdapterFactory;
 import org.unicase.model.task.provider.TaskItemProviderAdapterFactory;
 
 /**
@@ -124,6 +126,8 @@ public class ModelDiagramEditorPlugin extends AbstractUIPlugin {
 		factories.add(new BugItemProviderAdapterFactory());
 		factories.add(new ComponentItemProviderAdapterFactory());
 		factories.add(new MeetingItemProviderAdapterFactory());
+		factories.add(new StateItemProviderAdapterFactory());
+		factories.add(new AttachmentItemProviderAdapterFactory());
 		factories.add(new EcoreItemProviderAdapterFactory());
 		factories.add(new NotationItemProviderAdapterFactory());
 		factories.add(new ResourceItemProviderAdapterFactory());

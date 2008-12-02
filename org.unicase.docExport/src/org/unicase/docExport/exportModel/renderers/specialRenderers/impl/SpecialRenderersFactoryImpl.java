@@ -11,7 +11,6 @@ import org.eclipse.emf.ecore.EObject;
 import org.eclipse.emf.ecore.EPackage;
 import org.eclipse.emf.ecore.impl.EFactoryImpl;
 import org.eclipse.emf.ecore.plugin.EcorePlugin;
-import org.unicase.docExport.exportModel.renderers.specialRenderers.*;
 import org.unicase.docExport.exportModel.Template;
 import org.unicase.docExport.exportModel.renderers.options.OptionsFactory;
 import org.unicase.docExport.exportModel.renderers.options.TextOption;
@@ -19,6 +18,7 @@ import org.unicase.docExport.exportModel.renderers.specialRenderers.MeetingRende
 import org.unicase.docExport.exportModel.renderers.specialRenderers.MilestoneRenderer;
 import org.unicase.docExport.exportModel.renderers.specialRenderers.SpecialRenderersFactory;
 import org.unicase.docExport.exportModel.renderers.specialRenderers.SpecialRenderersPackage;
+import org.unicase.docExport.exportModel.renderers.specialRenderers.StepsAttributeRenderer;
 
 /**
  * <!-- begin-user-doc -->

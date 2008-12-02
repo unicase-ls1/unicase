@@ -1,17 +1,10 @@
 package org.unicase.test.tests.changetests.randomchange.testcases;
 
-import java.util.ArrayList;
-import java.util.Date;
-import java.util.List;
-
 import org.eclipse.emf.ecore.EAttribute;
-import org.eclipse.emf.ecore.EEnum;
-import org.eclipse.emf.ecore.EEnumLiteral;
 import org.eclipse.emf.transaction.RecordingCommand;
 import org.eclipse.emf.transaction.TransactionalEditingDomain;
 import org.unicase.emfstore.esmodel.versioning.ChangePackage;
 import org.unicase.model.ModelElement;
-import org.unicase.model.ModelPackage;
 import org.unicase.test.tests.changetests.ChangeTestHelper;
 import org.unicase.test.tests.changetests.randomchange.IChangePackageTest;
 import org.unicase.test.tests.changetests.randomchange.RandomChangeTestCase;

@@ -8,15 +8,15 @@ package org.unicase.docExport.exportModel.renderers.defaultRenderers.util;
 
 import org.eclipse.emf.common.notify.Adapter;
 import org.eclipse.emf.common.notify.Notifier;
-
 import org.eclipse.emf.common.notify.impl.AdapterFactoryImpl;
-
 import org.eclipse.emf.ecore.EObject;
-
 import org.unicase.docExport.exportModel.renderers.AttributeRenderer;
 import org.unicase.docExport.exportModel.renderers.DocumentRenderer;
 import org.unicase.docExport.exportModel.renderers.ModelElementRenderer;
-import org.unicase.docExport.exportModel.renderers.defaultRenderers.*;
+import org.unicase.docExport.exportModel.renderers.defaultRenderers.DefaultAttributeRenderer;
+import org.unicase.docExport.exportModel.renderers.defaultRenderers.DefaultDocumentRenderer;
+import org.unicase.docExport.exportModel.renderers.defaultRenderers.DefaultModelElementRenderer;
+import org.unicase.docExport.exportModel.renderers.defaultRenderers.DefaultRenderersPackage;
 
 
 /**

@@ -8,12 +8,20 @@ package org.unicase.docExport.exportModel.renderers.options.util;
 
 import org.eclipse.emf.common.notify.Adapter;
 import org.eclipse.emf.common.notify.Notifier;
-
 import org.eclipse.emf.common.notify.impl.AdapterFactoryImpl;
-
 import org.eclipse.emf.ecore.EObject;
-
-import org.unicase.docExport.exportModel.renderers.options.*;
+import org.unicase.docExport.exportModel.renderers.options.AttributeOption;
+import org.unicase.docExport.exportModel.renderers.options.LayoutOptions;
+import org.unicase.docExport.exportModel.renderers.options.ListOption;
+import org.unicase.docExport.exportModel.renderers.options.MultiReferenceAttributeOption;
+import org.unicase.docExport.exportModel.renderers.options.OptionsPackage;
+import org.unicase.docExport.exportModel.renderers.options.ReferenceAttributeOption;
+import org.unicase.docExport.exportModel.renderers.options.ReferenceOption;
+import org.unicase.docExport.exportModel.renderers.options.RendererOption;
+import org.unicase.docExport.exportModel.renderers.options.SingleReferenceAttributeOption;
+import org.unicase.docExport.exportModel.renderers.options.StringAttributeOption;
+import org.unicase.docExport.exportModel.renderers.options.TextOption;
+import org.unicase.docExport.exportModel.renderers.options.UColor;
 
 /**
  * <!-- begin-user-doc -->

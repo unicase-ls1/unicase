@@ -13,7 +13,6 @@ import java.util.GregorianCalendar;
 
 import org.eclipse.emf.common.util.EList;
 import org.eclipse.emf.ecore.EClass;
-
 import org.unicase.docExport.exportModel.renderers.elements.UCompositeSection;
 import org.unicase.docExport.exportModel.renderers.elements.UEntry;
 import org.unicase.docExport.exportModel.renderers.elements.UParagraph;
@@ -25,7 +24,6 @@ import org.unicase.docExport.exportModel.renderers.options.RendererOption;
 import org.unicase.docExport.exportModel.renderers.options.TextOption;
 import org.unicase.docExport.exportModel.renderers.specialRenderers.MeetingRenderer;
 import org.unicase.docExport.exportModel.renderers.specialRenderers.SpecialRenderersPackage;
-
 import org.unicase.model.ModelElement;
 import org.unicase.model.bug.BugReport;
 import org.unicase.model.meeting.CompositeMeetingSection;

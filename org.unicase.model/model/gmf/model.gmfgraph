@@ -34,52 +34,51 @@
             minorAlignment="CENTER"
             majorSpacing="0"/>
         <children
-            xsi:type="gmfgraph:Rectangle"
-            name="ClassFigure_Header">
+            xsi:type="gmfgraph:CustomFigure"
+            name="ClassFigure_Header"
+            qualifiedClassName="org.unicase.ui.common.diagram.ConfigurableRectangleFigure">
           <layout
-              xsi:type="gmfgraph:FlowLayout"
-              vertical="true"
-              matchMinorSize="true"
-              forceSingleLine="true"
-              majorSpacing="0"/>
-          <border
-              xsi:type="gmfgraph:LineBorder"/>
+              xsi:type="gmfgraph:CustomLayout"
+              qualifiedClassName="org.unicase.model.classDiagram.unicase.CenterLayout"/>
           <children
-              xsi:type="gmfgraph:Rectangle"
-              name="ClassFigure_NameContainer"
-              outline="false">
-            <layout
-                xsi:type="gmfgraph:CustomLayout"
-                qualifiedClassName="org.unicase.model.classDiagram.unicase.CenterLayout"/>
-            <children
-                xsi:type="gmfgraph:Label"
-                name="ClassFigure_name"
-                text="unnamed">
-              <font
-                  xsi:type="gmfgraph:BasicFont"/>
-              <insets
-                  left="5"
-                  bottom="5"
-                  right="5"/>
-            </children>
+              xsi:type="gmfgraph:Label"
+              name="ClassFigure_name"
+              text="unnamed">
+            <font
+                xsi:type="gmfgraph:BasicFont"/>
+            <insets
+                left="5"
+                bottom="5"
+                right="5"/>
           </children>
+          <attributes
+              name="Borders"
+              value="&quot;NEW&quot;"/>
         </children>
         <children
-            xsi:type="gmfgraph:Rectangle"
-            name="ClassFigure_Attributes">
+            xsi:type="gmfgraph:CustomFigure"
+            name="ClassFigure_Attributes"
+            qualifiedClassName="org.unicase.ui.common.diagram.ConfigurableRectangleFigure">
           <layout
               xsi:type="gmfgraph:StackLayout"/>
+          <attributes
+              name="Borders"
+              value="&quot;EW&quot;"/>
         </children>
         <children
-            xsi:type="gmfgraph:Rectangle"
-            name="ClassFigure_Methods">
+            xsi:type="gmfgraph:CustomFigure"
+            name="ClassFigure_Methods"
+            qualifiedClassName="org.unicase.ui.common.diagram.ConfigurableRectangleFigure">
           <layout
               xsi:type="gmfgraph:StackLayout"/>
+          <attributes
+              name="Borders"
+              value="&quot;EW&quot;"/>
         </children>
       </actualFigure>
       <accessors
           accessor="getFigureClassFigure_name"
-          figure="//@figures.0/@descriptors.0/@actualFigure/@children.0/@children.0/@children.0"/>
+          figure="//@figures.0/@descriptors.0/@actualFigure/@children.0/@children.0"/>
       <accessors
           accessor="getFigureClassFigure_attributes"
           figure="//@figures.0/@descriptors.0/@actualFigure/@children.1"/>

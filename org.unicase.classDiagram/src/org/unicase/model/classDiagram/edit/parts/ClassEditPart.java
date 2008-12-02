@@ -1,7 +1,6 @@
 package org.unicase.model.classDiagram.edit.parts;
 
 import org.eclipse.draw2d.IFigure;
-import org.eclipse.draw2d.LineBorder;
 import org.eclipse.draw2d.MarginBorder;
 import org.eclipse.draw2d.RectangleFigure;
 import org.eclipse.draw2d.StackLayout;
@@ -28,6 +27,7 @@ import org.eclipse.gmf.runtime.notation.View;
 import org.eclipse.swt.SWT;
 import org.eclipse.swt.graphics.Font;
 import org.eclipse.swt.widgets.Display;
+import org.unicase.ui.common.diagram.ConfigurableRectangleFigure;
 
 /**
  * @generated
@@ -291,11 +291,11 @@ public class ClassEditPart extends ShapeNodeEditPart {
 		/**
 		 * @generated
 		 */
-		private RectangleFigure fFigureClassFigure_attributes;
+		private ConfigurableRectangleFigure fFigureClassFigure_attributes;
 		/**
 		 * @generated
 		 */
-		private RectangleFigure fFigureClassFigure_methods;
+		private ConfigurableRectangleFigure fFigureClassFigure_methods;
 
 		/**
 		 * @generated
@@ -319,31 +319,15 @@ public class ClassEditPart extends ShapeNodeEditPart {
 		 */
 		private void createContents() {
 
-			RectangleFigure classFigure_Header0 = new RectangleFigure();
-			classFigure_Header0.setBorder(new LineBorder(null, getMapMode()
-					.DPtoLP(1)));
+			ConfigurableRectangleFigure classFigure_Header0 = new ConfigurableRectangleFigure();
+
+			classFigure_Header0.setBorders("NEW");
 
 			this.add(classFigure_Header0);
 
-			ToolbarLayout layoutClassFigure_Header0 = new ToolbarLayout();
-			layoutClassFigure_Header0.setStretchMinorAxis(true);
-			layoutClassFigure_Header0
-					.setMinorAlignment(ToolbarLayout.ALIGN_TOPLEFT);
-
-			layoutClassFigure_Header0.setSpacing(0);
-			layoutClassFigure_Header0.setVertical(true);
+			org.unicase.model.classDiagram.unicase.CenterLayout layoutClassFigure_Header0 = new org.unicase.model.classDiagram.unicase.CenterLayout();
 
 			classFigure_Header0.setLayoutManager(layoutClassFigure_Header0);
-
-			RectangleFigure classFigure_NameContainer1 = new RectangleFigure();
-			classFigure_NameContainer1.setOutline(false);
-
-			classFigure_Header0.add(classFigure_NameContainer1);
-
-			org.unicase.model.classDiagram.unicase.CenterLayout layoutClassFigure_NameContainer1 = new org.unicase.model.classDiagram.unicase.CenterLayout();
-
-			classFigure_NameContainer1
-					.setLayoutManager(layoutClassFigure_NameContainer1);
 
 			fFigureClassFigure_name = new WrappingLabel();
 			fFigureClassFigure_name.setText("unnamed");
@@ -354,14 +338,18 @@ public class ClassEditPart extends ShapeNodeEditPart {
 					.DPtoLP(0), getMapMode().DPtoLP(5), getMapMode().DPtoLP(5),
 					getMapMode().DPtoLP(5)));
 
-			classFigure_NameContainer1.add(fFigureClassFigure_name);
+			classFigure_Header0.add(fFigureClassFigure_name);
 
-			fFigureClassFigure_attributes = new RectangleFigure();
+			fFigureClassFigure_attributes = new ConfigurableRectangleFigure();
+
+			fFigureClassFigure_attributes.setBorders("EW");
 
 			this.add(fFigureClassFigure_attributes);
 			fFigureClassFigure_attributes.setLayoutManager(new StackLayout());
 
-			fFigureClassFigure_methods = new RectangleFigure();
+			fFigureClassFigure_methods = new ConfigurableRectangleFigure();
+
+			fFigureClassFigure_methods.setBorders("EW");
 
 			this.add(fFigureClassFigure_methods);
 			fFigureClassFigure_methods.setLayoutManager(new StackLayout());
@@ -397,14 +385,14 @@ public class ClassEditPart extends ShapeNodeEditPart {
 		/**
 		 * @generated
 		 */
-		public RectangleFigure getFigureClassFigure_attributes() {
+		public ConfigurableRectangleFigure getFigureClassFigure_attributes() {
 			return fFigureClassFigure_attributes;
 		}
 
 		/**
 		 * @generated
 		 */
-		public RectangleFigure getFigureClassFigure_methods() {
+		public ConfigurableRectangleFigure getFigureClassFigure_methods() {
 			return fFigureClassFigure_methods;
 		}
 

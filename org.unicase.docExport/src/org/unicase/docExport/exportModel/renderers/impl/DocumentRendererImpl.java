@@ -7,9 +7,7 @@
 package org.unicase.docExport.exportModel.renderers.impl;
 
 import org.eclipse.emf.ecore.EClass;
-
 import org.eclipse.emf.ecore.impl.EObjectImpl;
-
 import org.unicase.docExport.exportModel.renderers.DocumentRenderer;
 import org.unicase.docExport.exportModel.renderers.RenderersPackage;
 
