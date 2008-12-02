@@ -161,7 +161,7 @@ public interface StatePackage extends EPackage {
 	int STATE__STATE = ModelPackage.MODEL_ELEMENT__STATE;
 
 	/**
-	 * The feature id for the '<em><b>Exit Conditions</b></em>' attribute list.
+	 * The feature id for the '<em><b>Exit Conditions</b></em>' attribute.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
 	 * @generated
@@ -170,7 +170,7 @@ public interface StatePackage extends EPackage {
 	int STATE__EXIT_CONDITIONS = ModelPackage.MODEL_ELEMENT_FEATURE_COUNT + 0;
 
 	/**
-	 * The feature id for the '<em><b>Activities</b></em>' attribute list.
+	 * The feature id for the '<em><b>Activities</b></em>' attribute.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
 	 * @generated
@@ -179,7 +179,7 @@ public interface StatePackage extends EPackage {
 	int STATE__ACTIVITIES = ModelPackage.MODEL_ELEMENT_FEATURE_COUNT + 1;
 
 	/**
-	 * The feature id for the '<em><b>Entry Conditions</b></em>' attribute list.
+	 * The feature id for the '<em><b>Entry Conditions</b></em>' attribute.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
 	 * @generated
@@ -361,10 +361,10 @@ public interface StatePackage extends EPackage {
 	EClass getState();
 
 	/**
-	 * Returns the meta object for the attribute list '{@link org.unicase.model.state.State#getExitConditions <em>Exit Conditions</em>}'.
+	 * Returns the meta object for the attribute '{@link org.unicase.model.state.State#getExitConditions <em>Exit Conditions</em>}'.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
-	 * @return the meta object for the attribute list '<em>Exit Conditions</em>'.
+	 * @return the meta object for the attribute '<em>Exit Conditions</em>'.
 	 * @see org.unicase.model.state.State#getExitConditions()
 	 * @see #getState()
 	 * @generated
@@ -372,10 +372,10 @@ public interface StatePackage extends EPackage {
 	EAttribute getState_ExitConditions();
 
 	/**
-	 * Returns the meta object for the attribute list '{@link org.unicase.model.state.State#getActivities <em>Activities</em>}'.
+	 * Returns the meta object for the attribute '{@link org.unicase.model.state.State#getActivities <em>Activities</em>}'.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
-	 * @return the meta object for the attribute list '<em>Activities</em>'.
+	 * @return the meta object for the attribute '<em>Activities</em>'.
 	 * @see org.unicase.model.state.State#getActivities()
 	 * @see #getState()
 	 * @generated
@@ -383,10 +383,10 @@ public interface StatePackage extends EPackage {
 	EAttribute getState_Activities();
 
 	/**
-	 * Returns the meta object for the attribute list '{@link org.unicase.model.state.State#getEntryConditions <em>Entry Conditions</em>}'.
+	 * Returns the meta object for the attribute '{@link org.unicase.model.state.State#getEntryConditions <em>Entry Conditions</em>}'.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
-	 * @return the meta object for the attribute list '<em>Entry Conditions</em>'.
+	 * @return the meta object for the attribute '<em>Entry Conditions</em>'.
 	 * @see org.unicase.model.state.State#getEntryConditions()
 	 * @see #getState()
 	 * @generated
@@ -491,7 +491,7 @@ public interface StatePackage extends EPackage {
 		EClass STATE = eINSTANCE.getState();
 
 		/**
-		 * The meta object literal for the '<em><b>Exit Conditions</b></em>' attribute list feature.
+		 * The meta object literal for the '<em><b>Exit Conditions</b></em>' attribute feature.
 		 * <!-- begin-user-doc -->
 		 * <!-- end-user-doc -->
 		 * @generated
@@ -499,7 +499,7 @@ public interface StatePackage extends EPackage {
 		EAttribute STATE__EXIT_CONDITIONS = eINSTANCE.getState_ExitConditions();
 
 		/**
-		 * The meta object literal for the '<em><b>Activities</b></em>' attribute list feature.
+		 * The meta object literal for the '<em><b>Activities</b></em>' attribute feature.
 		 * <!-- begin-user-doc -->
 		 * <!-- end-user-doc -->
 		 * @generated
@@ -507,7 +507,7 @@ public interface StatePackage extends EPackage {
 		EAttribute STATE__ACTIVITIES = eINSTANCE.getState_Activities();
 
 		/**
-		 * The meta object literal for the '<em><b>Entry Conditions</b></em>' attribute list feature.
+		 * The meta object literal for the '<em><b>Entry Conditions</b></em>' attribute feature.
 		 * <!-- begin-user-doc -->
 		 * <!-- end-user-doc -->
 		 * @generated

@@ -7,8 +7,10 @@ import org.eclipse.gmf.runtime.notation.View;
  * @generated
  * @extends org.unicase.ui.common.diagram.MEDiagramEditPart
  * @implements org.unicase.ui.common.diagram.MEDiagramEditPart
+ * 
+ * public class MEDiagramEditPart extends org.unicase.ui.common.diagram.MEDiagramEditPart {
  */
-public class MEDiagramEditPart extends org.unicase.ui.common.diagram.MEDiagramEditPart  {
+public class MEDiagramEditPart extends org.unicase.ui.common.diagram.MEDiagramEditPart {
 
 	/**
 	 * @generated
@@ -18,7 +20,7 @@ public class MEDiagramEditPart extends org.unicase.ui.common.diagram.MEDiagramEd
 	/**
 	 * @generated
 	 */
-	public static final int VISUAL_ID = 1000;
+	public static final int VISUAL_ID = 55;
 
 	/**
 	 * @generated

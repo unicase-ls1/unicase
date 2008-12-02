@@ -14,11 +14,36 @@
       <domainMetaElement
           href="../../model.ecore#//state/State"/>
       <labelMappings
-          xsi:type="gmfmap:FeatureLabelMapping">
+          xsi:type="gmfmap:FeatureLabelMapping"
+          viewPattern="">
         <diagramLabel
             href="../model.gmfgraph#StateNode_name"/>
         <features
             href="../../model.ecore#//ModelElement/name"/>
+      </labelMappings>
+      <labelMappings
+          xsi:type="gmfmap:FeatureLabelMapping"
+          viewPattern="ENTRY/{0}">
+        <diagramLabel
+            href="../model.gmfgraph#StateNode_entryConditions"/>
+        <features
+            href="../../model.ecore#//state/State/entryConditions"/>
+      </labelMappings>
+      <labelMappings
+          xsi:type="gmfmap:FeatureLabelMapping"
+          viewPattern="DO/{0}">
+        <diagramLabel
+            href="../model.gmfgraph#StateNode_activities"/>
+        <features
+            href="../../model.ecore#//state/State/activities"/>
+      </labelMappings>
+      <labelMappings
+          xsi:type="gmfmap:FeatureLabelMapping"
+          viewPattern="EXIT/{0}">
+        <diagramLabel
+            href="../model.gmfgraph#StateNode_exitConditions"/>
+        <features
+            href="../../model.ecore#//state/State/exitConditions"/>
       </labelMappings>
       <tool
           xsi:type="gmftool:CreationTool"

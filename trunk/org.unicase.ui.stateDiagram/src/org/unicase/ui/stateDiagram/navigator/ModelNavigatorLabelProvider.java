@@ -83,7 +83,7 @@ public class ModelNavigatorLabelProvider extends LabelProvider implements
 				.getVisualID(view)) {
 		case org.unicase.ui.stateDiagram.edit.parts.MEDiagramEditPart.VISUAL_ID:
 			return getImage(
-					"Navigator?Diagram?http://unicase.org/model/diagram?MEDiagram", org.unicase.ui.stateDiagram.providers.ModelElementTypes.MEDiagram_1000); //$NON-NLS-1$
+					"Navigator?Diagram?http://unicase.org/model/diagram?MEDiagram", org.unicase.ui.stateDiagram.providers.ModelElementTypes.MEDiagram_55); //$NON-NLS-1$
 		case org.unicase.ui.stateDiagram.edit.parts.StateEditPart.VISUAL_ID:
 			return getImage(
 					"Navigator?TopLevelNode?http://unicase.org/model/state?State", org.unicase.ui.stateDiagram.providers.ModelElementTypes.State_2001); //$NON-NLS-1$
@@ -147,7 +147,7 @@ public class ModelNavigatorLabelProvider extends LabelProvider implements
 		switch (org.unicase.ui.stateDiagram.part.ModelVisualIDRegistry
 				.getVisualID(view)) {
 		case org.unicase.ui.stateDiagram.edit.parts.MEDiagramEditPart.VISUAL_ID:
-			return getMEDiagram_1000Text(view);
+			return getMEDiagram_55Text(view);
 		case org.unicase.ui.stateDiagram.edit.parts.StateEditPart.VISUAL_ID:
 			return getState_2001Text(view);
 		case org.unicase.ui.stateDiagram.edit.parts.TransitionEditPart.VISUAL_ID:
@@ -159,15 +159,14 @@ public class ModelNavigatorLabelProvider extends LabelProvider implements
 	/**
 	 * @generated
 	 */
-	private String getMEDiagram_1000Text(View view) {
+	private String getMEDiagram_55Text(View view) {
 		MEDiagram domainModelElement = (MEDiagram) view.getElement();
 		if (domainModelElement != null) {
 			return domainModelElement.getName();
 		} else {
 			org.unicase.ui.stateDiagram.part.ModelDiagramEditorPlugin
-					.getInstance()
-					.logError(
-							"No domain element for view with visualID = " + 1000); //$NON-NLS-1$
+					.getInstance().logError(
+							"No domain element for view with visualID = " + 55); //$NON-NLS-1$
 			return ""; //$NON-NLS-1$
 		}
 	}

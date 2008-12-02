@@ -7,11 +7,12 @@ package org.unicase.model.state.impl;
 
 import java.util.Collection;
 
+import org.eclipse.emf.common.notify.Notification;
 import org.eclipse.emf.common.notify.NotificationChain;
 import org.eclipse.emf.common.util.EList;
 import org.eclipse.emf.ecore.EClass;
 import org.eclipse.emf.ecore.InternalEObject;
-import org.eclipse.emf.ecore.util.EDataTypeUniqueEList;
+import org.eclipse.emf.ecore.impl.ENotificationImpl;
 import org.eclipse.emf.ecore.util.EObjectWithInverseResolvingEList;
 import org.eclipse.emf.ecore.util.InternalEList;
 import org.unicase.model.impl.ModelElementImpl;
@@ -38,34 +39,64 @@ import org.unicase.model.state.Transition;
  */
 public class StateImpl extends ModelElementImpl implements State {
 	/**
-	 * The cached value of the '{@link #getExitConditions() <em>Exit Conditions</em>}' attribute list.
+	 * The default value of the '{@link #getExitConditions() <em>Exit Conditions</em>}' attribute.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
 	 * @see #getExitConditions()
 	 * @generated
 	 * @ordered
 	 */
-	protected EList<String> exitConditions;
+	protected static final String EXIT_CONDITIONS_EDEFAULT = null;
 
 	/**
-	 * The cached value of the '{@link #getActivities() <em>Activities</em>}' attribute list.
+	 * The cached value of the '{@link #getExitConditions() <em>Exit Conditions</em>}' attribute.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @see #getExitConditions()
+	 * @generated
+	 * @ordered
+	 */
+	protected String exitConditions = EXIT_CONDITIONS_EDEFAULT;
+
+	/**
+	 * The default value of the '{@link #getActivities() <em>Activities</em>}' attribute.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
 	 * @see #getActivities()
 	 * @generated
 	 * @ordered
 	 */
-	protected EList<String> activities;
+	protected static final String ACTIVITIES_EDEFAULT = null;
 
 	/**
-	 * The cached value of the '{@link #getEntryConditions() <em>Entry Conditions</em>}' attribute list.
+	 * The cached value of the '{@link #getActivities() <em>Activities</em>}' attribute.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @see #getActivities()
+	 * @generated
+	 * @ordered
+	 */
+	protected String activities = ACTIVITIES_EDEFAULT;
+
+	/**
+	 * The default value of the '{@link #getEntryConditions() <em>Entry Conditions</em>}' attribute.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
 	 * @see #getEntryConditions()
 	 * @generated
 	 * @ordered
 	 */
-	protected EList<String> entryConditions;
+	protected static final String ENTRY_CONDITIONS_EDEFAULT = null;
+
+	/**
+	 * The cached value of the '{@link #getEntryConditions() <em>Entry Conditions</em>}' attribute.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @see #getEntryConditions()
+	 * @generated
+	 * @ordered
+	 */
+	protected String entryConditions = ENTRY_CONDITIONS_EDEFAULT;
 
 	/**
 	 * The cached value of the '{@link #getOutgoingTransitions() <em>Outgoing Transitions</em>}' reference list.
@@ -111,11 +142,7 @@ public class StateImpl extends ModelElementImpl implements State {
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
-	public EList<String> getExitConditions() {
-		if (exitConditions == null) {
-			exitConditions = new EDataTypeUniqueEList<String>(String.class,
-					this, StatePackage.STATE__EXIT_CONDITIONS);
-		}
+	public String getExitConditions() {
 		return exitConditions;
 	}
 
@@ -124,11 +151,21 @@ public class StateImpl extends ModelElementImpl implements State {
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
-	public EList<String> getActivities() {
-		if (activities == null) {
-			activities = new EDataTypeUniqueEList<String>(String.class, this,
-					StatePackage.STATE__ACTIVITIES);
-		}
+	public void setExitConditions(String newExitConditions) {
+		String oldExitConditions = exitConditions;
+		exitConditions = newExitConditions;
+		if (eNotificationRequired())
+			eNotify(new ENotificationImpl(this, Notification.SET,
+					StatePackage.STATE__EXIT_CONDITIONS, oldExitConditions,
+					exitConditions));
+	}
+
+	/**
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 */
+	public String getActivities() {
 		return activities;
 	}
 
@@ -137,12 +174,35 @@ public class StateImpl extends ModelElementImpl implements State {
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
-	public EList<String> getEntryConditions() {
-		if (entryConditions == null) {
-			entryConditions = new EDataTypeUniqueEList<String>(String.class,
-					this, StatePackage.STATE__ENTRY_CONDITIONS);
-		}
+	public void setActivities(String newActivities) {
+		String oldActivities = activities;
+		activities = newActivities;
+		if (eNotificationRequired())
+			eNotify(new ENotificationImpl(this, Notification.SET,
+					StatePackage.STATE__ACTIVITIES, oldActivities, activities));
+	}
+
+	/**
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 */
+	public String getEntryConditions() {
 		return entryConditions;
+	}
+
+	/**
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 */
+	public void setEntryConditions(String newEntryConditions) {
+		String oldEntryConditions = entryConditions;
+		entryConditions = newEntryConditions;
+		if (eNotificationRequired())
+			eNotify(new ENotificationImpl(this, Notification.SET,
+					StatePackage.STATE__ENTRY_CONDITIONS, oldEntryConditions,
+					entryConditions));
 	}
 
 	/**
@@ -246,17 +306,13 @@ public class StateImpl extends ModelElementImpl implements State {
 	public void eSet(int featureID, Object newValue) {
 		switch (featureID) {
 		case StatePackage.STATE__EXIT_CONDITIONS:
-			getExitConditions().clear();
-			getExitConditions().addAll((Collection<? extends String>) newValue);
+			setExitConditions((String) newValue);
 			return;
 		case StatePackage.STATE__ACTIVITIES:
-			getActivities().clear();
-			getActivities().addAll((Collection<? extends String>) newValue);
+			setActivities((String) newValue);
 			return;
 		case StatePackage.STATE__ENTRY_CONDITIONS:
-			getEntryConditions().clear();
-			getEntryConditions()
-					.addAll((Collection<? extends String>) newValue);
+			setEntryConditions((String) newValue);
 			return;
 		case StatePackage.STATE__OUTGOING_TRANSITIONS:
 			getOutgoingTransitions().clear();
@@ -281,13 +337,13 @@ public class StateImpl extends ModelElementImpl implements State {
 	public void eUnset(int featureID) {
 		switch (featureID) {
 		case StatePackage.STATE__EXIT_CONDITIONS:
-			getExitConditions().clear();
+			setExitConditions(EXIT_CONDITIONS_EDEFAULT);
 			return;
 		case StatePackage.STATE__ACTIVITIES:
-			getActivities().clear();
+			setActivities(ACTIVITIES_EDEFAULT);
 			return;
 		case StatePackage.STATE__ENTRY_CONDITIONS:
-			getEntryConditions().clear();
+			setEntryConditions(ENTRY_CONDITIONS_EDEFAULT);
 			return;
 		case StatePackage.STATE__OUTGOING_TRANSITIONS:
 			getOutgoingTransitions().clear();
@@ -308,11 +364,14 @@ public class StateImpl extends ModelElementImpl implements State {
 	public boolean eIsSet(int featureID) {
 		switch (featureID) {
 		case StatePackage.STATE__EXIT_CONDITIONS:
-			return exitConditions != null && !exitConditions.isEmpty();
+			return EXIT_CONDITIONS_EDEFAULT == null ? exitConditions != null
+					: !EXIT_CONDITIONS_EDEFAULT.equals(exitConditions);
 		case StatePackage.STATE__ACTIVITIES:
-			return activities != null && !activities.isEmpty();
+			return ACTIVITIES_EDEFAULT == null ? activities != null
+					: !ACTIVITIES_EDEFAULT.equals(activities);
 		case StatePackage.STATE__ENTRY_CONDITIONS:
-			return entryConditions != null && !entryConditions.isEmpty();
+			return ENTRY_CONDITIONS_EDEFAULT == null ? entryConditions != null
+					: !ENTRY_CONDITIONS_EDEFAULT.equals(entryConditions);
 		case StatePackage.STATE__OUTGOING_TRANSITIONS:
 			return outgoingTransitions != null
 					&& !outgoingTransitions.isEmpty();

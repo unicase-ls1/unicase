@@ -392,15 +392,15 @@ public class StatePackageImpl extends EPackageImpl implements StatePackage {
 		initEClass(stateEClass, State.class, "State", !IS_ABSTRACT,
 				!IS_INTERFACE, IS_GENERATED_INSTANCE_CLASS);
 		initEAttribute(getState_ExitConditions(), ecorePackage.getEString(),
-				"exitConditions", null, 0, -1, State.class, !IS_TRANSIENT,
+				"exitConditions", null, 0, 1, State.class, !IS_TRANSIENT,
 				!IS_VOLATILE, IS_CHANGEABLE, !IS_UNSETTABLE, !IS_ID, IS_UNIQUE,
 				!IS_DERIVED, IS_ORDERED);
 		initEAttribute(getState_Activities(), ecorePackage.getEString(),
-				"activities", null, 0, -1, State.class, !IS_TRANSIENT,
+				"activities", null, 0, 1, State.class, !IS_TRANSIENT,
 				!IS_VOLATILE, IS_CHANGEABLE, !IS_UNSETTABLE, !IS_ID, IS_UNIQUE,
 				!IS_DERIVED, IS_ORDERED);
 		initEAttribute(getState_EntryConditions(), ecorePackage.getEString(),
-				"entryConditions", null, 0, -1, State.class, !IS_TRANSIENT,
+				"entryConditions", null, 0, 1, State.class, !IS_TRANSIENT,
 				!IS_VOLATILE, IS_CHANGEABLE, !IS_UNSETTABLE, !IS_ID, IS_UNIQUE,
 				!IS_DERIVED, IS_ORDERED);
 		initEReference(getState_OutgoingTransitions(), this.getTransition(),

@@ -214,7 +214,7 @@ public class ModelNavigatorContentProvider implements ICommonContentProvider {
 		case org.unicase.ui.stateDiagram.edit.parts.MEDiagramEditPart.VISUAL_ID: {
 			Collection result = new ArrayList();
 			org.unicase.ui.stateDiagram.navigator.ModelNavigatorGroup links = new org.unicase.ui.stateDiagram.navigator.ModelNavigatorGroup(
-					org.unicase.ui.stateDiagram.part.Messages.NavigatorGroupName_MEDiagram_1000_links,
+					org.unicase.ui.stateDiagram.part.Messages.NavigatorGroupName_MEDiagram_55_links,
 					"icons/linksNavigatorGroup.gif", parentElement); //$NON-NLS-1$
 			Collection connectedViews = getChildrenByType(
 					Collections.singleton(view),
