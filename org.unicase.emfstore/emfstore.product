@@ -1,27 +1,25 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <?pde version="3.4"?>
 
-<product name="unicase EmfStore" id="org.unicase.emfstore.unicaseEmfstoreProduct" application="org.unicase.emfstore.id1" version="0.2.5" useFeatures="false">
-
+<product name="unicase EmfStore" id="org.unicase.emfstore.unicaseEmfstoreProduct" application="org.unicase.emfstore.id1" version="0.2.14" useFeatures="false">
 
    <configIni use="default">
    </configIni>
 
    <launcherArgs>
-      <vmArgs>-Xms64m-Xmx1526m</vmArgs>
+      <vmArgs>-Xms64m
+-Xmx1526m</vmArgs>
       <vmArgsMac>-XstartOnFirstThread -Dorg.eclipse.swt.internal.carbon.smallFonts</vmArgsMac>
    </launcherArgs>
 
    <windowImages/>
 
-
-   <launcher>
+   <launcher name="emfstore">
       <solaris/>
       <win useIco="false">
          <bmp/>
       </win>
    </launcher>
-
 
    <vm>
    </vm>
