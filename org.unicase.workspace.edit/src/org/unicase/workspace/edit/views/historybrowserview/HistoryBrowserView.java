@@ -31,17 +31,16 @@ import org.unicase.workspace.ProjectSpace;
 import org.unicase.workspace.WorkspaceManager;
 import org.unicase.workspace.edit.Activator;
 import org.unicase.workspace.edit.views.AbstractSCMView;
-import org.unicase.workspace.edit.views.Query;
-import org.unicase.workspace.edit.views.Query.QueryRangeType;
 import org.unicase.workspace.util.EventUtil;
 
 /**
- * . This the History Browser view. It inherits AbstractSCMView and hence has a
+ * This the History Browser view. It inherits AbstractSCMView and hence has a
  * query tab, where the user can set criteria for view's content. It also has a
  * browser tab (a HistoryComposite).
  * 
  * @author Hodaie
- * @author wesendonk
+ * @author Wesendonk
+ * @author Shterev
  * 
  */
 public class HistoryBrowserView extends AbstractSCMView {
@@ -52,25 +51,31 @@ public class HistoryBrowserView extends AbstractSCMView {
 
 	private ProjectSpace activeProjectSpace;
 
+	private int startOffset = 24;
+
+	private int currentEnd;
+
+	private int headVersion;
+
 	/**
-	 * . Constructor
+	 * Constructor.
 	 */
 	public HistoryBrowserView() {
 		historyInfos = new ArrayList<HistoryInfo>();
 	}
 
-	private void reload() {
+	private void load(final int end) {
 		TransactionalEditingDomain domain = TransactionalEditingDomain.Registry.INSTANCE
 				.getEditingDomain("org.unicase.EditingDomain");
 		domain.getCommandStack().execute(new RecordingCommand(domain) {
 			@Override
 			protected void doExecute() {
-				openHistoryBrowser();
+				loadContent(end);
 			}
 		});
 	}
 
-	private void openHistoryBrowser() {
+	private void loadContent(int end) {
 		if (activeProjectSpace == null) {
 			historyInfos.clear();
 			return;
@@ -78,7 +83,7 @@ public class HistoryBrowserView extends AbstractSCMView {
 		try {
 			List<HistoryInfo> historyInfo = activeProjectSpace.getUsersession()
 					.getHistoryInfo(activeProjectSpace.getProjectId(),
-							getQuery(activeProjectSpace));
+							getQuery(activeProjectSpace,end));
 			if (historyInfo != null) {
 				for (HistoryInfo hi : historyInfo) {
 					if (hi.getPrimerySpec().equals(
@@ -112,25 +117,37 @@ public class HistoryBrowserView extends AbstractSCMView {
 		}
 		return activeProjectSpace;
 	}
+	
+	private void getHeadVersionIdentifier() throws EmfStoreException{
+		PrimaryVersionSpec resolveVersionSpec = activeProjectSpace
+		.resolveVersionSpec(VersionSpec.HEAD_VERSION);
+		int identifier = resolveVersionSpec.getIdentifier();
+		headVersion = identifier;
+	}
 
-	private HistoryQuery getQuery(ProjectSpace activeProjectSpace)
+	private HistoryQuery getQuery(ProjectSpace activeProjectSpace, int end)
 			throws EmfStoreException {
 		HistoryQuery query = VersioningFactory.eINSTANCE.createHistoryQuery();
-
-		int start = 0;
-		int end = 0;
-
-		Query qury = getQueryComposite().getQuery();
-		if (qury.getQueryRangeType().equals(QueryRangeType.VERSION)
-				&& qury.getStartVersion() != -1 && qury.getEndVersion() != -1) {
-			start = qury.getStartVersion();
-			end = qury.getEndVersion();
-		} else {
-			PrimaryVersionSpec resolveVersionSpec = activeProjectSpace
-					.resolveVersionSpec(VersionSpec.HEAD_VERSION);
-			end = resolveVersionSpec.getIdentifier();
-			start = (end > 20) ? end - 20 : 0;
+		
+		getHeadVersionIdentifier();
+		if(end==-1){
+			end = headVersion;
+			currentEnd = headVersion;
 		}
+		int temp = end-startOffset;
+		int start = (temp>0?temp:0);
+
+//		Query qury = getQueryComposite().getQuery();
+//		if (qury.getQueryRangeType().equals(QueryRangeType.VERSION)
+//				&& qury.getStartVersion() != -1 && qury.getEndVersion() != -1) {
+//			start = qury.getStartVersion();
+//			end = qury.getEndVersion();
+//		} else {
+//			PrimaryVersionSpec resolveVersionSpec = activeProjectSpace
+//					.resolveVersionSpec(VersionSpec.HEAD_VERSION);
+//			end = resolveVersionSpec.getIdentifier();
+//			start = (end > 20) ? end - 20 : 0;
+//		}
 
 		PrimaryVersionSpec source = VersioningFactory.eINSTANCE
 				.createPrimaryVersionSpec();
@@ -179,20 +196,55 @@ public class HistoryBrowserView extends AbstractSCMView {
 	@Override
 	public void createPartControl(Composite parent) {
 		super.createPartControl(parent);
+		getBrowserTab().setText("History");
+		
+		IActionBars bars = getViewSite().getActionBars();
+		IToolBarManager menuManager = bars.getToolBarManager();
+
 		Action refresh = new Action() {
 			@Override
 			public void run() {
-				setInput(activeProjectSpace);
+				refresh();
 			}
 
 		};
-		IActionBars bars = getViewSite().getActionBars();
-		IToolBarManager menuManager = bars.getToolBarManager();
 		refresh.setImageDescriptor(Activator
 				.getImageDescriptor("/icons/refresh.png"));
 		refresh.setToolTipText("Refresh");
 		menuManager.add(refresh);
-		getBrowserTab().setText("History");
+
+		Action prev = new Action() {
+			@Override
+			public void run() {
+				int temp = currentEnd+startOffset;
+				if(temp<=headVersion){
+					currentEnd=temp;
+				}
+				refresh();
+			}
+			
+		};
+		prev.setImageDescriptor(Activator
+				.getImageDescriptor("/icons/prev.png"));
+		prev.setToolTipText("Previous "+(startOffset+1)+" items");
+		menuManager.add(prev);
+
+		Action next = new Action() {
+			@Override
+			public void run() {
+				int temp = currentEnd-startOffset;
+				if(temp>0){
+					currentEnd=temp;
+				}
+				refresh();
+			}
+			
+		};
+		next.setImageDescriptor(Activator
+				.getImageDescriptor("/icons/next.png"));
+		next.setToolTipText("Next "+(startOffset+1)+" items");
+		menuManager.add(next);
+		
 	}
 
 	/**
@@ -202,13 +254,14 @@ public class HistoryBrowserView extends AbstractSCMView {
 	public void setFocus() {
 		EventUtil.logFocusEvent("org.unicase.ui.repository.views.HistoryView");
 	}
-
+	
+	
 	/**
-	 * TODO final implementation.
+	 * Refreshes the view using the current end point.
 	 */
 	@Override
-	protected void refreshClicked() {
-		reload();
+	protected void refresh() {
+		load(currentEnd);
 		historyComposite.updateTable();
 		// lblCriteria.setText(queryComposite.getQuery().getDescription());
 
@@ -250,7 +303,8 @@ public class HistoryBrowserView extends AbstractSCMView {
 	 */
 	public void setInput(ProjectSpace projectSpace){
 		activeProjectSpace = projectSpace;
-		refreshClicked();
+		currentEnd = -1;
+		refresh();
 	}
 
 }
