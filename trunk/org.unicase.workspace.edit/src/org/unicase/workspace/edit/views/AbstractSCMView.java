@@ -7,11 +7,8 @@
 package org.unicase.workspace.edit.views;
 
 import org.eclipse.swt.SWT;
-import org.eclipse.swt.events.SelectionEvent;
-import org.eclipse.swt.events.SelectionListener;
 import org.eclipse.swt.layout.GridData;
 import org.eclipse.swt.layout.GridLayout;
-import org.eclipse.swt.widgets.Button;
 import org.eclipse.swt.widgets.Composite;
 import org.eclipse.swt.widgets.Control;
 import org.eclipse.swt.widgets.Label;
@@ -112,33 +109,7 @@ public abstract class AbstractSCMView extends ViewPart {
 		//view
 		GridLayout gridLayout = new GridLayout();
 		parent.setLayout(gridLayout);
-		
-
-		//toolBar
-		Composite toolBar = new Composite(parent, SWT.BORDER);
-		toolBar.setLayout(new GridLayout(2, false));
-		toolBar.setLayoutData(new GridData(SWT.FILL, SWT.NONE, true, false));
-	
-		
-		//btnRefresh
-		Button btnRefresh = new Button(toolBar, SWT.PUSH);
-		btnRefresh.setLayoutData(new GridData());
-		btnRefresh.setText("Refresh");
-		btnRefresh.addSelectionListener(new SelectionListener(){
-
-			public void widgetDefaultSelected(SelectionEvent e) {
-			}
-
-			public void widgetSelected(SelectionEvent e) {
-				refreshClicked();
-			}
-			
-		});
-		
-		lblCriteria = new Label(toolBar, SWT.NONE );
-		lblCriteria.setLayoutData(new GridData(SWT.FILL, SWT.CENTER, true, true));
-		lblCriteria.setText("Click to reload the information.");
-		
+				
 		tabFolder = new TabFolder(parent, SWT.TOP);
 		tabFolder.setLayoutData(new GridData(SWT.FILL, SWT.FILL, true, true));
 		
