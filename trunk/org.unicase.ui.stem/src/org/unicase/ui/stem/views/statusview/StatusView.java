@@ -32,7 +32,6 @@ import org.eclipse.swt.dnd.Transfer;
 import org.eclipse.swt.events.SelectionAdapter;
 import org.eclipse.swt.events.SelectionEvent;
 import org.eclipse.swt.graphics.Color;
-import org.eclipse.swt.graphics.Font;
 import org.eclipse.swt.widgets.Composite;
 import org.eclipse.swt.widgets.Display;
 import org.eclipse.swt.widgets.Label;
@@ -122,6 +121,7 @@ public class StatusView extends ViewPart {
 		};
 		refresh.setImageDescriptor(Activator
 				.getImageDescriptor("/icons/refresh.png"));
+		refresh.setToolTipText("Refresh");
 		menuManager.add(refresh);
 
 	}
@@ -148,11 +148,9 @@ public class StatusView extends ViewPart {
 			lblName.setImage(labelProvider.getImage(input));
 		}
 		lblName.setText("Drag a model element in the drop box to the left");
-		lblName.setFont(new Font(Display.getDefault(), "Tahoma", 12, SWT.BOLD));
-		Color bgColor = Display.getCurrent().getSystemColor(SWT.COLOR_TITLE_BACKGROUND);
-		Color bgColor2 = Display.getCurrent().getSystemColor(SWT.COLOR_TITLE_BACKGROUND_GRADIENT);
+		Color bgColor = Display.getCurrent().getSystemColor(SWT.COLOR_TITLE_BACKGROUND_GRADIENT);
+		Color bgColor2 = Display.getCurrent().getSystemColor(SWT.COLOR_WIDGET_BACKGROUND);
 		lblName.setBackground(new Color[] {bgColor,bgColor2}, new int[] {100}, true);
-		lblName.setForeground(Display.getCurrent().getSystemColor(SWT.COLOR_WHITE));
 		
 		Composite sectionComposite = new Composite(section, SWT.NONE);
 		GridLayoutFactory.fillDefaults().numColumns(2).equalWidth(false).applyTo(sectionComposite);
