@@ -13,6 +13,7 @@ import org.eclipse.swt.graphics.Image;
 import org.eclipse.ui.IDecoratorManager;
 import org.eclipse.ui.PlatformUI;
 import org.unicase.ui.stem.Activator;
+import org.unicase.ui.stem.views.statusview.NotAssigned;
 
 /**
  * . LabelProvider for annotated model element column in IterationPlaningView
@@ -43,7 +44,7 @@ public class EMFColumnLabelProvider extends IterationPlanningLabelProvider {
 	 */
 	@Override
 	public Image getImage(Object element) {
-		if(element instanceof Backlog){
+		if(element instanceof Backlog||element instanceof NotAssigned){
 			return Activator.getImageDescriptor("icons/backlog.png").createImage();
 		}
 		Image image = decoratingLabelProvider.getImage(element);
@@ -60,6 +61,9 @@ public class EMFColumnLabelProvider extends IterationPlanningLabelProvider {
 	 */
 	@Override
 	public String getText(Object element) {
+		if (element instanceof NotAssigned) {
+			return "Not Assigned";
+		}
 		if(element instanceof Backlog){
 			return "Backlog";
 		}
