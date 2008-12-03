@@ -13,7 +13,7 @@ Require-Bundle: org.eclipse.core.runtime,
  org.unicase.emfstore.esmodel;bundle-version="0.2.14";visibility:=reexport,
  org.unicase.model;bundle-version="0.2.14";visibility:=reexport
 Bundle-RequiredExecutionEnvironment: J2SE-1.5
-Bundle-ClassPath: .,
+Bundle-ClassPath: bin/,
  conf/
 Export-Package: org.unicase.emfstore,
  org.unicase.emfstore.accesscontrol,
