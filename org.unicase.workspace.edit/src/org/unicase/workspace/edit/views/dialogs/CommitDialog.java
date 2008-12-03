@@ -26,7 +26,6 @@ import org.eclipse.swt.widgets.Shell;
 import org.eclipse.swt.widgets.Text;
 import org.unicase.emfstore.esmodel.versioning.ChangePackage;
 import org.unicase.workspace.WorkspaceManager;
-import org.unicase.workspace.edit.Activator;
 import org.unicase.workspace.edit.views.changescomposite.ChangesTreeComposite;
 
 /**
@@ -69,8 +68,8 @@ public class CommitDialog extends TitleAreaDialog {
 
 		setTitle("Commit your changes");
 		setMessage("Don't forget the commit message!");
-		setTitleImage(Activator.getImageDescriptor("icons/dontForget.png")
-				.createImage());
+//		setTitleImage(Activator.getImageDescriptor("icons/dontForget.png")
+//				.createImage());
 
 		// Log message
 		Label lblLogMsg = new Label(contents, SWT.NONE);
