@@ -118,10 +118,10 @@ public abstract class AbstractSCMView extends ViewPart {
 		browserTab.setControl(setBrowserTabControl());
 				
 		//tabItem queryTab
-		TabItem queryTab = new TabItem(tabFolder, SWT.NONE);
-		queryTab.setText("Query");
-		this.queryComposite = new QueryComosite(tabFolder, SWT.NONE);
-		queryTab.setControl(queryComposite);
+//		TabItem queryTab = new TabItem(tabFolder, SWT.NONE);
+//		queryTab.setText("Query");
+//		this.queryComposite = new QueryComosite(tabFolder, SWT.NONE);
+//		queryTab.setControl(queryComposite);
 						
 		//tabFolder.setSelection(1);
 
