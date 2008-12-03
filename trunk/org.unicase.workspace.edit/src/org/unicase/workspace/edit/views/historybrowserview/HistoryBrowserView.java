@@ -13,8 +13,6 @@ import org.eclipse.emf.transaction.RecordingCommand;
 import org.eclipse.emf.transaction.TransactionalEditingDomain;
 import org.eclipse.jface.action.Action;
 import org.eclipse.jface.action.IToolBarManager;
-import org.eclipse.jface.layout.GridDataFactory;
-import org.eclipse.jface.layout.GridLayoutFactory;
 import org.eclipse.swt.SWT;
 import org.eclipse.swt.widgets.Composite;
 import org.eclipse.swt.widgets.Control;
@@ -289,11 +287,7 @@ public class HistoryBrowserView extends AbstractSCMView {
 	 */
 	@Override
 	protected Control setBrowserTabControl() {
-		historyComposite = new HistoryComposite(this, getTabFolder(), SWT.NONE);
-		Composite navHistory = new Composite(getTabFolder(),SWT.NONE);
-		GridDataFactory.fillDefaults().align(SWT.RIGHT, SWT.END).grab(true, false).applyTo(navHistory);
-		GridLayoutFactory.fillDefaults().numColumns(3).equalWidth(false).applyTo(navHistory);
-		
+		historyComposite = new HistoryComposite(this, getTabFolder(), SWT.NONE);		
 		return historyComposite;
 	}
 	
