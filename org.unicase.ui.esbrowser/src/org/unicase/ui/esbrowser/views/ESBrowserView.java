@@ -21,6 +21,7 @@ import org.eclipse.jface.action.IToolBarManager;
 import org.eclipse.jface.action.MenuManager;
 import org.eclipse.jface.action.Separator;
 import org.eclipse.jface.dialogs.MessageDialog;
+import org.eclipse.jface.dialogs.MessageDialogWithToggle;
 import org.eclipse.jface.dialogs.ProgressMonitorDialog;
 import org.eclipse.jface.viewers.DoubleClickEvent;
 import org.eclipse.jface.viewers.IDoubleClickListener;
@@ -214,6 +215,7 @@ public class ESBrowserView extends ViewPart {
 	private Action addRepository;
 	private Action serverLogin;
 	private Action serverAddProject;
+	private Action serverDeleteProject;
 	private Action serverChangeSession;
 	private Action serverProperties;
 	private Action manageOrgUnits;
@@ -332,9 +334,15 @@ public class ESBrowserView extends ViewPart {
 			manager.add(deleteAction);
 			manager.add(serverProperties);
 		} else if (obj instanceof ProjectInfo) {
-			manager.add(new Separator("Userspace"));
 			manager.add(projectCheckout);
 			manager.add(projectProperties);
+			try {
+				accessControl.checkServerAdminAccess();
+				manager.add(new Separator("Administrative"));
+				manager.add(serverDeleteProject);
+			} catch (EmfStoreException e) {
+				// access denied
+			}
 		}
 	}
 
@@ -357,8 +365,7 @@ public class ESBrowserView extends ViewPart {
 			}
 		};
 		serverLogin.setText("Login...");
-		serverLogin
-				.setToolTipText("Click to login with the last used username");
+		serverLogin.setToolTipText("Click to login with the last used username");
 		serverLogin.setImageDescriptor(Activator
 				.getImageDescriptor("icons/serverLogin.png"));
 
@@ -370,8 +377,7 @@ public class ESBrowserView extends ViewPart {
 						ISharedImages.IMG_TOOL_FORWARD));
 
 		serverChangeSession = new ChangeSessionAction();
-		serverChangeSession
-				.setToolTipText("Click to login with a different username");
+		serverChangeSession.setToolTipText("Click to login with a different username");
 		serverChangeSession.setImageDescriptor(Activator
 				.getImageDescriptor("icons/serverLoginAs.png"));
 
@@ -379,31 +385,48 @@ public class ESBrowserView extends ViewPart {
 			@Override
 			public void run() {
 				ISelection selection = viewer.getSelection();
-				Object obj = ((IStructuredSelection) selection)
-						.getFirstElement();
+				Object obj = ((IStructuredSelection) selection).getFirstElement();
 				ServerInfo serverInfo = ((ServerInfo) obj);
 				if (serverInfo.getLastUsersession().isLoggedIn()) {
-					CreateProjectDialog dialog = new CreateProjectDialog(
-							PlatformUI.getWorkbench().getDisplay()
-									.getActiveShell(), serverInfo
-									.getLastUsersession());
+					CreateProjectDialog dialog = new CreateProjectDialog(PlatformUI.getWorkbench().getDisplay().getActiveShell(),
+							serverInfo.getLastUsersession());
 					dialog.open();
 					viewer.refresh(obj);
 				}
 			}
 		};
 		serverAddProject.setText("Create new project");
-		serverAddProject
-				.setToolTipText("Click to create new project on the server");
+		serverAddProject.setToolTipText("Click to create new project on the server");
 		serverAddProject.setImageDescriptor(Activator
 				.getImageDescriptor("icons/projectAdd.png"));
+
+		serverDeleteProject = new Action() {
+			@Override
+			public void run() {
+				ISelection selection = viewer.getSelection();
+				Object obj = ((IStructuredSelection) selection).getFirstElement();
+				ProjectInfo projectInfo = ((ProjectInfo) obj);
+				MessageDialogWithToggle dialog = MessageDialogWithToggle.openOkCancelConfirm(PlatformUI.getWorkbench().getDisplay()
+							.getActiveShell(), "Delete "+projectInfo.getName(),
+							"Are you sure you want to delete \'"+projectInfo.getName()+"\'",
+							"Delete project contents (cannot be undone)",
+							false, null, null);
+				if(dialog.getReturnCode() == MessageDialog.OK){
+//					Usersession session = contentProvider.getProjectServerMap().get(projectInfo).getLastUsersession();
+//					viewer.refresh(obj);
+				}
+			}
+		};
+		serverDeleteProject.setText("Delete on server");
+		serverDeleteProject.setToolTipText("Delete this project on the server");
+		serverDeleteProject.setImageDescriptor(org.unicase.ui.common.Activator
+				.getImageDescriptor("icons/delete.gif"));
 
 		serverProperties = new Action() {
 			@Override
 			public void run() {
 				ISelection selection = viewer.getSelection();
-				Object obj = ((IStructuredSelection) selection)
-						.getFirstElement();
+				Object obj = ((IStructuredSelection) selection).getFirstElement();
 				ServerInfo serverInfo = ((ServerInfo) obj);
 				RepositoryWizard wizard = new RepositoryWizard(
 						ESBrowserView.this);
