@@ -140,7 +140,7 @@ public abstract class AbstractSCMView extends ViewPart {
 	 * information shown on browser tab based on criteria selected in 
 	 * Query tab.
 	 */
-	protected abstract void refreshClicked();
+	protected abstract void refresh();
 
 	
 	/**.

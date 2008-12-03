@@ -208,7 +208,7 @@ public class HistoryComposite extends Composite implements ISelectionChangedList
 						TagVersionSpec tag = VersioningFactory.eINSTANCE.createTagVersionSpec();
 						tag.setName(str);
 						parentView.addTag(info.getPrimerySpec(), tag);
-						parentView.refreshClicked();						
+						parentView.refresh();						
 					}
 				}
 			}
