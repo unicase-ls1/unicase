@@ -2,7 +2,7 @@ Manifest-Version: 1.0
 Bundle-ManifestVersion: 2
 Bundle-Name: %pluginName
 Bundle-SymbolicName: org.unicase.ui.stateDiagram; singleton:=true
-Bundle-Version: 0.2.14
+Bundle-Version: 0.2.15
 Bundle-ClassPath: .
 Bundle-Activator: org.unicase.ui.stateDiagram.part.ModelDiagramEditorPlugin
 Bundle-Vendor: %providerName
@@ -39,5 +39,5 @@ Require-Bundle: org.eclipse.core.runtime,
  org.eclipse.gmf.runtime.notation.edit;visibility:=reexport,
  org.eclipse.gmf.runtime.draw2d.ui;visibility:=reexport,
  org.eclipse.gef;visibility:=reexport,
- org.unicase.ui.common;bundle-version="[0.2.14,0.2.14]"
+ org.unicase.ui.common;bundle-version="[0.2.15,0.2.15]"
 Eclipse-LazyStart: true
