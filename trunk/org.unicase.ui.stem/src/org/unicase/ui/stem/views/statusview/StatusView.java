@@ -90,6 +90,8 @@ public class StatusView extends ViewPart {
 	private Composite descComposite;
 	private Composite section;
 	private CLabel lblName;
+	private Composite progressComposite;
+	private Composite sectionComposite;
 
 	/**
 	 * Constructor.
@@ -152,7 +154,7 @@ public class StatusView extends ViewPart {
 		Color bgColor2 = Display.getCurrent().getSystemColor(SWT.COLOR_WIDGET_BACKGROUND);
 		lblName.setBackground(new Color[] {bgColor,bgColor2}, new int[] {100}, true);
 		
-		Composite sectionComposite = new Composite(section, SWT.NONE);
+		sectionComposite = new Composite(section, SWT.NONE);
 		GridLayoutFactory.fillDefaults().numColumns(2).equalWidth(false).applyTo(sectionComposite);
 		GridDataFactory.fillDefaults().align(SWT.FILL, SWT.FILL).grab(true, true).applyTo(sectionComposite);
 		
@@ -178,7 +180,7 @@ public class StatusView extends ViewPart {
 		lblLatestDueDateName.setText("");
 
 		// Right Composite
-		Composite progressComposite = new Composite(sectionComposite, SWT.NONE);
+		progressComposite = new Composite(sectionComposite, SWT.NONE);
 		GridLayoutFactory.fillDefaults().numColumns(3).equalWidth(false).applyTo(progressComposite);
 		GridDataFactory.fillDefaults().align(SWT.BEGINNING, SWT.BEGINNING).grab(false, false).applyTo(progressComposite);
 
@@ -215,7 +217,7 @@ public class StatusView extends ViewPart {
 	}
 
 	/**
-	 * . Refresh top composite and tabs based on input.
+	 * Refresh top composite and tabs based on input.
 	 * 
 	 */
 	private void refreshView() {
@@ -241,6 +243,9 @@ public class StatusView extends ViewPart {
 
 		lblProgressName.setText(closedTasks + "/" + tasks);
 		lblEstimateProgressName.setText(closedEstimate + "/" + estimate);
+		lblProgressName.pack(true);
+		lblEstimateProgressName.pack(true);
+		sectionComposite.layout(true);
 
 		Date latestDueDate = getLatestDueDate(leafOpeners);
 		if (latestDueDate != null) {
@@ -348,17 +353,10 @@ public class StatusView extends ViewPart {
 		if (newInput == null) {
 			newInput = ActionHelper.getSelectedModelElement();
 		}
-		if (input == null) {
+		if (input == null || newInput!=null) {
 			input = newInput;
-			refreshView();
-
 		}
-		if (newInput != null) {
-			this.input = newInput;
-			// refresh attributes group and three different views
-			refreshView();
-
-		}
+		refreshView();
 
 	}
 
