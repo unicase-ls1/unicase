@@ -11,9 +11,12 @@ import java.util.List;
 
 import org.eclipse.emf.transaction.RecordingCommand;
 import org.eclipse.emf.transaction.TransactionalEditingDomain;
+import org.eclipse.jface.action.Action;
+import org.eclipse.jface.action.IToolBarManager;
 import org.eclipse.swt.SWT;
 import org.eclipse.swt.widgets.Composite;
 import org.eclipse.swt.widgets.Control;
+import org.eclipse.ui.IActionBars;
 import org.unicase.emfstore.esmodel.versioning.HistoryInfo;
 import org.unicase.emfstore.esmodel.versioning.HistoryQuery;
 import org.unicase.emfstore.esmodel.versioning.PrimaryVersionSpec;
@@ -24,6 +27,7 @@ import org.unicase.emfstore.exceptions.EmfStoreException;
 import org.unicase.ui.common.exceptions.DialogHandler;
 import org.unicase.workspace.ProjectSpace;
 import org.unicase.workspace.WorkspaceManager;
+import org.unicase.workspace.edit.Activator;
 import org.unicase.workspace.edit.views.AbstractSCMView;
 import org.unicase.workspace.edit.views.Query;
 import org.unicase.workspace.edit.views.Query.QueryRangeType;
@@ -173,6 +177,19 @@ public class HistoryBrowserView extends AbstractSCMView {
 	@Override
 	public void createPartControl(Composite parent) {
 		super.createPartControl(parent);
+		Action refresh = new Action() {
+			@Override
+			public void run() {
+				setInput(activeProjectSpace);
+			}
+
+		};
+		IActionBars bars = getViewSite().getActionBars();
+		IToolBarManager menuManager = bars.getToolBarManager();
+		refresh.setImageDescriptor(Activator
+				.getImageDescriptor("/icons/refresh.png"));
+		refresh.setToolTipText("Refresh");
+		menuManager.add(refresh);
 		getBrowserTab().setText("History");
 	}
 
