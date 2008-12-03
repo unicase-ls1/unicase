@@ -64,7 +64,7 @@ public class MELinkControl extends AbstractMEControl {
 	/**
 	 * {@inheritDoc}
 	 */
-	public Control createControl(Composite parent, int style) {
+	public Control createControl(final Composite parent, int style) {
 		linkComposite = getToolkit().createComposite(parent, style);
 		linkComposite.setLayout(new GridLayout(3, false));
 		labelProvider = new MELinkLabelProvider();
@@ -72,8 +72,8 @@ public class MELinkControl extends AbstractMEControl {
 			public void labelProviderChanged(LabelProviderChangedEvent event) {
 				if(hyperlink!=null){
 					hyperlink.setText(labelProvider.getText(getModelElement()));
-					linkComposite.pack(true);
-					linkComposite.layout();
+					linkComposite.layout(true);
+					parent.getParent().layout(true);
 				}
 			}
 		};

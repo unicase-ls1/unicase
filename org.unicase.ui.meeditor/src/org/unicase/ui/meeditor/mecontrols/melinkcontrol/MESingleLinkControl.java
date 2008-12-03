@@ -120,18 +120,7 @@ public class MESingleLinkControl extends AbstractMEControl {
 
 		});
 		Button newButton = getToolkit().createButton(composite, "", SWT.PUSH);
-		newButton.setImage(newAction.getImageDescriptor().createImage());// Activator
-		// .
-		// getImageDescriptor
-		// (
-		// "icons/link.png"
-		// )
-		// .
-		// createImage
-		// (
-		// )
-		// )
-		// ;
+		newButton.setImage(newAction.getImageDescriptor().createImage());
 		newButton.addSelectionListener(new SelectionAdapter() {
 			@Override
 			public void widgetSelected(SelectionEvent e) {
@@ -168,6 +157,7 @@ public class MESingleLinkControl extends AbstractMEControl {
 					labelWidget.setForeground(parent.getShell().getDisplay()
 							.getSystemColor(SWT.COLOR_DARK_GRAY));
 				}
+				linkArea.layout(true);
 				composite.layout(true);
 
 			}
