@@ -352,7 +352,7 @@
              class="org.unicase.ui.common.perspectives.UnicasePerspective"
              icon="icons/unicase.png"
              id="org.unicase.ui.common.perspectives.UnicasePerspective"
-             name="Unicase Perspective">
+             name="Unicase">
        </perspective>
     </extension>
     <extension
