@@ -19,12 +19,12 @@ import org.unicase.workspace.ProjectSpace;
  * @author Hodaie
  * 
  */
-public class TransitivelyChangeAttributeTest extends ChangePackageTest {
+public class AttributeTransitiveChangeTest extends ChangePackageTest {
 
 	private static final int EXPECTED_NUM_OF_CHANGES = 1;
 	private ModelElement me;
 
-	public TransitivelyChangeAttributeTest(ProjectSpace testProjectSpace, String testName,
+	public AttributeTransitiveChangeTest(ProjectSpace testProjectSpace, String testName,
 			TestProjectParmeters testProjParams) {
 		super(testProjectSpace, testName, testProjParams);
 

@@ -9,7 +9,9 @@ import org.unicase.emfstore.esmodel.versioning.operations.CreateDeleteOperation;
 import org.unicase.test.TestCase;
 import org.unicase.test.tests.change.ChangeTestHelper;
 import org.unicase.test.tests.change.ChangeTestSuite;
-import org.unicase.test.tests.change.random.testcases.CompoundTest;
+import org.unicase.test.tests.change.random.testcases.AttributeChangeTest;
+import org.unicase.test.tests.change.random.testcases.AttributeTransitiveChangeTest;
+import org.unicase.test.tests.change.random.testcases.CompositeTest;
 import org.unicase.test.tests.change.random.testcases.ContainmentReferenceAddNewTest;
 import org.unicase.test.tests.change.random.testcases.ContainmentReferenceMoveTest;
 import org.unicase.test.tests.change.random.testcases.CreateAndChangeAttributeTest;
@@ -17,10 +19,7 @@ import org.unicase.test.tests.change.random.testcases.CreateAndChangeRefTest;
 import org.unicase.test.tests.change.random.testcases.CreateAndDeleteTest;
 import org.unicase.test.tests.change.random.testcases.DeleteTest;
 import org.unicase.test.tests.change.random.testcases.NonContainmentReferenceAddTest;
-import org.unicase.test.tests.change.random.testcases.RemoveContainmentTest;
-import org.unicase.test.tests.change.random.testcases.RemoveSimpleRefTest;
-import org.unicase.test.tests.change.random.testcases.SimpleAttributeChangeTest;
-import org.unicase.test.tests.change.random.testcases.TransitivelyChangeAttributeTest;
+import org.unicase.test.tests.change.random.testcases.NonContainmentReferenceRemoveTest;
 
 public class RandomChangeTestSuite extends ChangeTestSuite {
 
@@ -32,9 +31,9 @@ public class RandomChangeTestSuite extends ChangeTestSuite {
 		// add test cases
 		System.out.println("adding testcases...");
 
-		// SimpleAttributeChangeTest
-		SimpleAttributeChangeTest changeAttributeTest = new SimpleAttributeChangeTest(getTestProjectSpace(), 
-				"SimpleAttributeChangeTest", getTestProjectPrams());
+		// AttributeChangeTest
+		AttributeChangeTest changeAttributeTest = new AttributeChangeTest(getTestProjectSpace(), 
+				"AttributeChangeTest", getTestProjectPrams());
 		testCases.add(changeAttributeTest);
 
 		// DeleteTest
@@ -64,17 +63,14 @@ public class RandomChangeTestSuite extends ChangeTestSuite {
 		testCases.add(createAndDeleteTest);
 
 		
-		// TransitivelyChangeAttributeTest Test
-		TransitivelyChangeAttributeTest transitivelyChangeAttribute = new TransitivelyChangeAttributeTest(getTestProjectSpace(), 
-				"TransitivelyChangeAttributeTest", getTestProjectPrams());
+		// AttributeTransitiveChangeTest Test
+		AttributeTransitiveChangeTest transitivelyChangeAttribute = new AttributeTransitiveChangeTest(getTestProjectSpace(), 
+				"AttributeTransitiveChangeTest", getTestProjectPrams());
 		testCases.add(transitivelyChangeAttribute);
 
-		// RemoveContainment Test
-		RemoveContainmentTest removeContainmentTest = new RemoveContainmentTest(getTestProjectSpace(), "Remove", getTestProjectPrams());
-		testCases.add(removeContainmentTest);
 
 		// RemoveSimpleRef Test
-		RemoveSimpleRefTest removeSimpleRefTest = new RemoveSimpleRefTest(getTestProjectSpace(), "RemoveSimpleRef", getTestProjectPrams());
+		NonContainmentReferenceRemoveTest removeSimpleRefTest = new NonContainmentReferenceRemoveTest(getTestProjectSpace(), "RemoveSimpleRef", getTestProjectPrams());
 		testCases.add(removeSimpleRefTest);
 		
 		// CreateAndChangeRef Test
@@ -89,8 +85,8 @@ public class RandomChangeTestSuite extends ChangeTestSuite {
 		testCases.add(createAndChangeAttrTest);
 
 		
-		// CompoundTest
-		CompoundTest compoundTest = new CompoundTest(getTestProjectSpace(), "Compound",
+		// CompositeTest
+		CompositeTest compoundTest = new CompositeTest(getTestProjectSpace(), "Compound",
 				getTestProjectPrams() , testCases);
 
 		
