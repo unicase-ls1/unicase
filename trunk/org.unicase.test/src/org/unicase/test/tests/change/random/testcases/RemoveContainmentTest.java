@@ -9,12 +9,9 @@ import org.eclipse.emf.ecore.EReference;
 import org.eclipse.emf.ecore.util.EcoreUtil;
 import org.eclipse.emf.transaction.RecordingCommand;
 import org.eclipse.emf.transaction.TransactionalEditingDomain;
-import org.unicase.emfstore.esmodel.versioning.ChangePackage;
 import org.unicase.model.ModelElement;
-import org.unicase.model.Project;
 import org.unicase.test.tests.change.ChangeTestHelper;
-import org.unicase.test.tests.change.random.IChangePackageTest;
-import org.unicase.test.tests.change.random.RandomChangeTestCase;
+import org.unicase.test.tests.change.random.ChangePackageTest;
 import org.unicase.ui.test.TestProjectParmeters;
 import org.unicase.workspace.ProjectSpace;
 
@@ -30,8 +27,7 @@ import org.unicase.workspace.ProjectSpace;
  * @author Hodaie
  * 
  */
-public class RemoveContainmentTest extends RandomChangeTestCase implements
-		IChangePackageTest {
+public class RemoveContainmentTest extends ChangePackageTest {
 
 	
 	private ModelElement meToRemove;

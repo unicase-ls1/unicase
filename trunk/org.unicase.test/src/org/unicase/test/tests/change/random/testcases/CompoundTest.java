@@ -2,7 +2,6 @@ package org.unicase.test.tests.change.random.testcases;
 
 import java.util.List;
 
-import org.unicase.model.Project;
 import org.unicase.test.tests.change.random.RandomChangeTestCase;
 import org.unicase.ui.test.TestProjectParmeters;
 import org.unicase.workspace.ProjectSpace;
