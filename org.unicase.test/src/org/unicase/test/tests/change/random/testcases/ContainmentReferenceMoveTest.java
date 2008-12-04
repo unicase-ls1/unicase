@@ -18,13 +18,13 @@ import org.unicase.test.tests.change.random.IChangePackageTest;
 import org.unicase.test.tests.change.random.RandomChangeTestCase;
 import org.unicase.ui.test.TestProjectParmeters;
 
-public class MoveTest extends RandomChangeTestCase  implements IChangePackageTest{
+public class ContainmentReferenceMoveTest extends RandomChangeTestCase  implements IChangePackageTest{
 
 
 	private static final int EXPECTED_NUM_OF_CHANGES = 2;
 	
 	
-	public MoveTest(String testName, TestProjectParmeters testProjParams) {
+	public ContainmentReferenceMoveTest(String testName, TestProjectParmeters testProjParams) {
 		super(testName, testProjParams);
 
 	}

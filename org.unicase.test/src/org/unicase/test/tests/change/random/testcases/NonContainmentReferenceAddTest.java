@@ -18,12 +18,12 @@ import org.unicase.ui.test.TestProjectParmeters;
  * @author Hodaie
  * 
  */
-public class ChangeSimpleRefTest extends RandomChangeTestCase implements
+public class NonContainmentReferenceAddTest extends RandomChangeTestCase implements
 		IChangePackageTest {
 
 	private static final int EXPECTED_NUM_OF_CHANGES = 1;
 
-	public ChangeSimpleRefTest(String testName, TestProjectParmeters testProjParams) {
+	public NonContainmentReferenceAddTest(String testName, TestProjectParmeters testProjParams) {
 		super(testName, testProjParams);
 
 	}

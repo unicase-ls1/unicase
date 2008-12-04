@@ -19,7 +19,7 @@ import org.unicase.ui.test.TestProjectParmeters;
  * @author Hodaie
  * 
  */
-public class ChangeSimpleAttributeTest extends RandomChangeTestCase implements
+public class SimpleAttributeChangeTest extends RandomChangeTestCase implements
 		IChangePackageTest {
 
 	private static final int EXPECTED_NUM_OF_CHANGES = 1;
@@ -29,7 +29,7 @@ public class ChangeSimpleAttributeTest extends RandomChangeTestCase implements
 	private EAttribute changedAttribute; 
 	
 	
-	public ChangeSimpleAttributeTest(String testName,TestProjectParmeters testProjParams) {
+	public SimpleAttributeChangeTest(String testName,TestProjectParmeters testProjParams) {
 		super(testName, testProjParams);
 
 	}
