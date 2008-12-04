@@ -127,6 +127,7 @@ public class TabContent {
 
 		btnNew.addSelectionListener(new SelectionAdapter() {
 			// create a new OrgUnit
+			@Override
 			public void widgetSelected(SelectionEvent e) {
 				newOrgUnit();
 			}
@@ -143,6 +144,7 @@ public class TabContent {
 
 		btnDelete.addSelectionListener(new SelectionAdapter() {
 			// Remove the selection and refresh the view
+			@Override
 			public void widgetSelected(SelectionEvent e) {
 
 				deleteOrgUnit();
