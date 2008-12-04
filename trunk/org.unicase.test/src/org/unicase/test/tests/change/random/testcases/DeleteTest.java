@@ -17,7 +17,7 @@ import org.unicase.workspace.ProjectSpace;
 public class DeleteTest extends RandomChangeTestCase implements
 		IChangePackageTest {
 
-	private ChangePackage changePackage;
+	
 	private ModelElement me;
 	private int expectedNumOfOperations;
 
@@ -33,7 +33,7 @@ public class DeleteTest extends RandomChangeTestCase implements
 				.getEditingDomain("org.unicase.EditingDomain");
 
 		me = ChangeTestHelper.getRandomME(getTestProject());
-		expectedNumOfOperations = getExpectedNumOfChanges();
+		expectedNumOfOperations = calculateExpectedNumOfChanges();
 
 		domain.getCommandStack().execute(new RecordingCommand(domain) {
 
@@ -45,23 +45,16 @@ public class DeleteTest extends RandomChangeTestCase implements
 
 		});
 
-		changePackage = getChangePackage(true);
-
+		
 	}
 
 	private void doDelete() {
 		EcoreUtil.delete(me, true);
 	}
 
-	public ChangePackage getChangePackage(boolean removeChanges) {
-		if (changePackage == null) {
-			changePackage = ChangeTestHelper.getChangePackage(
-					getTestProjectSpace().getOperations(), false, removeChanges);
-		}
-		return changePackage;
-	}
 
-	public int getExpectedNumOfChanges() {
+
+	private int calculateExpectedNumOfChanges() {
 		//a multiRefOp for container, 
 		//a deleteOp for meToRemove
 		//+ multiRefOp for meToRemove.crossrefs.size()
@@ -79,7 +72,7 @@ public class DeleteTest extends RandomChangeTestCase implements
 
 	public boolean isSuccessful() {
 
-		return changePackage.getOperations().size() == expectedNumOfOperations;
+		return getChangePackage(true).getOperations().size() == expectedNumOfOperations;
 	}
 
 }

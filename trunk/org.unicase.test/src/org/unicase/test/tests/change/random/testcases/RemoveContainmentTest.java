@@ -36,7 +36,6 @@ public class RemoveContainmentTest extends RandomChangeTestCase implements
 	
 	private ModelElement meToRemove;
 	private ModelElement me;
-	private ChangePackage changePackage;
 
 	public RemoveContainmentTest(ProjectSpace testProjectSpace, String testName, TestProjectParmeters testProjParams) {
 		super(testProjectSpace, testName, testProjParams);
@@ -82,7 +81,7 @@ public class RemoveContainmentTest extends RandomChangeTestCase implements
 //			me.eSet(ref, null);
 //		}
 		
-		changePackage = getChangePackage(true);
+	
 	}
 	
 	
@@ -120,10 +119,8 @@ public class RemoveContainmentTest extends RandomChangeTestCase implements
 		return meToRemove;
 	}
 
-	
-	
-	public int getExpectedNumOfChanges() {
-
+	public boolean isSuccessful() {
+		
 		//a multiRefOp for container, 
 		//a deleteOp for meToRemove
 		//+ multiRefOp for meToRemove.crossrefs.size()
@@ -136,24 +133,12 @@ public class RemoveContainmentTest extends RandomChangeTestCase implements
 			numOfOps += iter.next().eCrossReferences().size();
 			
 		}
-		return numOfOps;
-	}
-
-	public boolean isSuccessful() {
-		
 		//todo: test the operations too
-		return changePackage.getOperations().size() == getExpectedNumOfChanges();
+		return getChangePackage(true).getOperations().size() == numOfOps;
 		 
 	}
 	
 	
-	public ChangePackage getChangePackage(boolean removeChanges) {
-		if(changePackage == null){
-			changePackage = ChangeTestHelper.getChangePackage(getTestProjectSpace()
-				.getOperations(), true, removeChanges);
-		}
-		return changePackage;
-
-	}
+	
 
 }

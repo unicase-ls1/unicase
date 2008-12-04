@@ -23,7 +23,6 @@ public class RemoveSimpleRefTest extends RandomChangeTestCase implements
 		IChangePackageTest {
 
 	private static final int EXPECTED_NUM_OF_CHANGES = 1;
-	private ChangePackage changePackage; 
 	
 	public RemoveSimpleRefTest(ProjectSpace testProjectSpace, String testName,
 			TestProjectParmeters testProjParams) {
@@ -64,8 +63,6 @@ public class RemoveSimpleRefTest extends RandomChangeTestCase implements
 		} else {
 			me.eSet(ref, null);
 		}
-		
-		changePackage = getChangePackage(true);
 	}
 
 	private Map.Entry<Object, Integer> getMEToRemove(ModelElement me) {
@@ -105,15 +102,6 @@ public class RemoveSimpleRefTest extends RandomChangeTestCase implements
 
 	}
 
-	public ChangePackage getChangePackage(boolean removeChanges) {
-
-		if(changePackage == null){
-			changePackage = ChangeTestHelper.getChangePackage(getTestProjectSpace()
-				.getOperations(), true, removeChanges);
-		}
-		 return changePackage;
-	}
-
 	public int getExpectedNumOfChanges() {
 
 		return EXPECTED_NUM_OF_CHANGES;
@@ -122,7 +110,7 @@ public class RemoveSimpleRefTest extends RandomChangeTestCase implements
 	public boolean isSuccessful() {
 
 		//todo: test the operations too
-		return changePackage.getOperations().size() == EXPECTED_NUM_OF_CHANGES;
+		return getChangePackage(true).getOperations().size() == EXPECTED_NUM_OF_CHANGES;
 	}
 
 }
