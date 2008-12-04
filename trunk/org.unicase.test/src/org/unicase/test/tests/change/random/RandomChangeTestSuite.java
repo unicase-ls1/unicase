@@ -1,4 +1,4 @@
-package org.unicase.test.tests.change.randomchange;
+package org.unicase.test.tests.change.random;
 
 import java.util.ArrayList;
 import java.util.List;
@@ -10,18 +10,18 @@ import org.unicase.test.lib.TestCase;
 import org.unicase.test.tests.change.ChangeTestCase;
 import org.unicase.test.tests.change.ChangeTestHelper;
 import org.unicase.test.tests.change.ChangeTestSuite;
-import org.unicase.test.tests.change.randomchange.testcases.AddTest;
-import org.unicase.test.tests.change.randomchange.testcases.ChangeSimpleAttributeTest;
-import org.unicase.test.tests.change.randomchange.testcases.ChangeSimpleRefTest;
-import org.unicase.test.tests.change.randomchange.testcases.CompoundTest;
-import org.unicase.test.tests.change.randomchange.testcases.CreateAndChangeAttributeTest;
-import org.unicase.test.tests.change.randomchange.testcases.CreateAndChangeRefTest;
-import org.unicase.test.tests.change.randomchange.testcases.CreateAndDeleteTest;
-import org.unicase.test.tests.change.randomchange.testcases.DeleteTest;
-import org.unicase.test.tests.change.randomchange.testcases.MoveTest;
-import org.unicase.test.tests.change.randomchange.testcases.RemoveContainmentTest;
-import org.unicase.test.tests.change.randomchange.testcases.RemoveSimpleRefTest;
-import org.unicase.test.tests.change.randomchange.testcases.TransitivelyChangeAttributeTest;
+import org.unicase.test.tests.change.random.testcases.AddTest;
+import org.unicase.test.tests.change.random.testcases.ChangeSimpleAttributeTest;
+import org.unicase.test.tests.change.random.testcases.ChangeSimpleRefTest;
+import org.unicase.test.tests.change.random.testcases.CompoundTest;
+import org.unicase.test.tests.change.random.testcases.CreateAndChangeAttributeTest;
+import org.unicase.test.tests.change.random.testcases.CreateAndChangeRefTest;
+import org.unicase.test.tests.change.random.testcases.CreateAndDeleteTest;
+import org.unicase.test.tests.change.random.testcases.DeleteTest;
+import org.unicase.test.tests.change.random.testcases.MoveTest;
+import org.unicase.test.tests.change.random.testcases.RemoveContainmentTest;
+import org.unicase.test.tests.change.random.testcases.RemoveSimpleRefTest;
+import org.unicase.test.tests.change.random.testcases.TransitivelyChangeAttributeTest;
 
 public class RandomChangeTestSuite extends ChangeTestSuite {
 
