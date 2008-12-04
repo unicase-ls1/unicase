@@ -15,7 +15,7 @@ public abstract class TestCase {
 	
 	
 	public abstract void runTest();
-	public abstract void endTestCase(boolean outputToFile);
+	public abstract void outputResults(boolean outputToFile);
 	
 	
 }

@@ -45,64 +45,64 @@ public class RandomChangeTestSuite extends ChangeTestSuite {
 		System.out.println("adding testcases...");
 
 		// SimpleAttributeChangeTest
-		SimpleAttributeChangeTest changeAttributeTest = new SimpleAttributeChangeTest(
+		SimpleAttributeChangeTest changeAttributeTest = new SimpleAttributeChangeTest(getTestProjectSpace(), 
 				"SimpleAttributeChangeTest", getTestProjectPrams());
 		testCases.add(changeAttributeTest);
 
 		// DeleteTest
-		 DeleteTest deleteTest = new DeleteTest("Delete", getTestProjectPrams());
+		 DeleteTest deleteTest = new DeleteTest(getTestProjectSpace(), "Delete", getTestProjectPrams());
 		 testCases.add(deleteTest);
 
 		
 		// ContainmentReferenceMoveTest
-		ContainmentReferenceMoveTest moveTest = new ContainmentReferenceMoveTest("Move", getTestProjectPrams());
+		ContainmentReferenceMoveTest moveTest = new ContainmentReferenceMoveTest(getTestProjectSpace(), "Move", getTestProjectPrams());
 		testCases.add(moveTest);
 
 		
 		// ContainmentReferenceAddNewTest
-		ContainmentReferenceAddNewTest addTest = new ContainmentReferenceAddNewTest("Add", getTestProjectPrams());
+		ContainmentReferenceAddNewTest addTest = new ContainmentReferenceAddNewTest(getTestProjectSpace(), "Add", getTestProjectPrams());
 		testCases.add(addTest);
 
 		
 		// Reference Test
-		NonContainmentReferenceAddTest changeSimpleRefTest = new NonContainmentReferenceAddTest("Reference",
+		NonContainmentReferenceAddTest changeSimpleRefTest = new NonContainmentReferenceAddTest(getTestProjectSpace(), "Reference",
 				getTestProjectPrams());
 		testCases.add(changeSimpleRefTest);
 
 		
 		// CreateAndDelete Test
 		CreateAndDeleteTest createAndDeleteTest = new CreateAndDeleteTest(
-				"CreateAndDelete", getTestProjectPrams());
+				getTestProjectSpace(), "CreateAndDelete", getTestProjectPrams());
 		testCases.add(createAndDeleteTest);
 
 		
 		// TransitivelyChangeAttributeTest Test
-		TransitivelyChangeAttributeTest transitivelyChangeAttribute = new TransitivelyChangeAttributeTest(
+		TransitivelyChangeAttributeTest transitivelyChangeAttribute = new TransitivelyChangeAttributeTest(getTestProjectSpace(), 
 				"TransitivelyChangeAttributeTest", getTestProjectPrams());
 		testCases.add(transitivelyChangeAttribute);
 
 		// RemoveContainment Test
-		RemoveContainmentTest removeContainmentTest = new RemoveContainmentTest("Remove", getTestProjectPrams());
+		RemoveContainmentTest removeContainmentTest = new RemoveContainmentTest(getTestProjectSpace(), "Remove", getTestProjectPrams());
 		testCases.add(removeContainmentTest);
 
 		// RemoveSimpleRef Test
-		RemoveSimpleRefTest removeSimpleRefTest = new RemoveSimpleRefTest("RemoveSimpleRef", getTestProjectPrams());
+		RemoveSimpleRefTest removeSimpleRefTest = new RemoveSimpleRefTest(getTestProjectSpace(), "RemoveSimpleRef", getTestProjectPrams());
 		testCases.add(removeSimpleRefTest);
 		
 		// CreateAndChangeRef Test
 		CreateAndChangeRefTest createAndChangeRefTest = new CreateAndChangeRefTest(
-				"CreateAndChangeRef", getTestProjectPrams());
+				getTestProjectSpace(), "CreateAndChangeRef", getTestProjectPrams());
 		testCases.add(createAndChangeRefTest);
 
 		
 		// CreateAndChangeAttribute Test
 		CreateAndChangeAttributeTest createAndChangeAttrTest = new CreateAndChangeAttributeTest(
-				"CrateAndChangeAttribute", getTestProjectPrams());
+				getTestProjectSpace(), "CrateAndChangeAttribute", getTestProjectPrams());
 		testCases.add(createAndChangeAttrTest);
 
 		
 		// CompoundTest
-		CompoundTest compoundTest = new CompoundTest("Compound",
+		CompoundTest compoundTest = new CompoundTest(getTestProjectSpace(), "Compound",
 				getTestProjectPrams() , testCases);
 
 		
@@ -128,15 +128,7 @@ public class RandomChangeTestSuite extends ChangeTestSuite {
 		// this.getTestCases().add(createAndChangeAttrTest);
 		// this.getTestCases().add(commitTest);
 
-		for (TestCase test : getTestCases()) {
-			if (test instanceof ChangeTestCase) {
-				((ChangeTestCase) test)
-						.setTestProjectSpace(getTestProjectSpace());
-				((ChangeTestCase) test).setTestProject(getTestProjectSpace()
-						.getProject());
-			}
-
-		}
+		
 
 	}
 

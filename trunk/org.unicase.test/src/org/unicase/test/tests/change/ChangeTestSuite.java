@@ -97,13 +97,9 @@ public abstract class ChangeTestSuite extends TestSuite {
 		}
 		return testProject;
 	}
+
 	
-	
-	public long getRandomSeed(){
-		return randomSeed;
-	}
-	
-	public TestProjectParmeters getTestProjectPrams(){
+	protected TestProjectParmeters getTestProjectPrams(){
 		return params;
 	}
 	

@@ -40,7 +40,7 @@ import org.unicase.workspace.ProjectSpace;
 import org.unicase.workspace.WorkspaceFactory;
 import org.unicase.workspace.impl.ProjectSpaceImpl;
 
-public class ChangeTestHelper {
+public final class ChangeTestHelper {
 
 	private static TransactionalEditingDomain domain;
 	private static String TEMP_PATH = Configuration.getWorkspaceDirectory()

@@ -12,10 +12,12 @@ import org.eclipse.emf.transaction.TransactionalEditingDomain;
 import org.unicase.emfstore.esmodel.versioning.ChangePackage;
 import org.unicase.model.ModelElement;
 import org.unicase.model.ModelPackage;
+import org.unicase.model.Project;
 import org.unicase.test.tests.change.ChangeTestHelper;
 import org.unicase.test.tests.change.random.IChangePackageTest;
 import org.unicase.test.tests.change.random.RandomChangeTestCase;
 import org.unicase.ui.test.TestProjectParmeters;
+import org.unicase.workspace.ProjectSpace;
 
 /**
  * This is a ChangePackageTest. This test takes a random ME A. Change
@@ -33,9 +35,9 @@ public class TransitivelyChangeAttributeTest extends RandomChangeTestCase
 	private static final int EXPECTED_NUM_OF_CHANGES = 1;
 	private ModelElement me;
 
-	public TransitivelyChangeAttributeTest(String testName,
+	public TransitivelyChangeAttributeTest(ProjectSpace testProjectSpace, String testName,
 			TestProjectParmeters testProjParams) {
-		super(testName, testProjParams);
+		super(testProjectSpace, testName, testProjParams);
 
 	}
 
