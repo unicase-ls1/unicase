@@ -6,13 +6,13 @@ import org.unicase.test.tests.change.random.RandomChangeTestCase;
 import org.unicase.ui.test.TestProjectParmeters;
 import org.unicase.workspace.ProjectSpace;
 
-public class CompoundTest extends RandomChangeTestCase {
+public class CompositeTest extends RandomChangeTestCase {
 
 	private List<RandomChangeTestCase> testCases;
 	private static final int MAX_TIMES_TO_RUN = 3;
 	private static final int ITERATIONS = 5;
 
-	public CompoundTest(ProjectSpace testProjectSpace, String testName, TestProjectParmeters testProjParams,
+	public CompositeTest(ProjectSpace testProjectSpace, String testName, TestProjectParmeters testProjParams,
 			List<RandomChangeTestCase> testCases) {
 		super(testProjectSpace, testName, testProjParams);
 		this.testCases = testCases;
@@ -41,7 +41,7 @@ public class CompoundTest extends RandomChangeTestCase {
 
 	private void runTestCase(RandomChangeTestCase testCase, int timesToRun) {
 		for (int i = 0; i < timesToRun; i++) {
-			System.out.println("**** CompoundTest: " + testCase.getTestName()
+			System.out.println("**** CompositeTest: " + testCase.getTestName()
 					+ " ****");
 			testCase.runTest();
 			System.out.println();

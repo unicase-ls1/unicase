@@ -16,11 +16,11 @@ import org.unicase.test.tests.change.random.ChangePackageTest;
 import org.unicase.ui.test.TestProjectParmeters;
 import org.unicase.workspace.ProjectSpace;
 
-public class RemoveSimpleRefTest extends ChangePackageTest {
+public class NonContainmentReferenceRemoveTest extends ChangePackageTest {
 
 	private static final int EXPECTED_NUM_OF_CHANGES = 1;
 	
-	public RemoveSimpleRefTest(ProjectSpace testProjectSpace, String testName,
+	public NonContainmentReferenceRemoveTest(ProjectSpace testProjectSpace, String testName,
 			TestProjectParmeters testProjParams) {
 		super(testProjectSpace, testName, testProjParams);
 

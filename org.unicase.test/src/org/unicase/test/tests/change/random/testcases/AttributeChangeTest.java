@@ -18,7 +18,7 @@ import org.unicase.workspace.ProjectSpace;
  * @author Hodaie
  * 
  */
-public class SimpleAttributeChangeTest extends ChangePackageTest {
+public class AttributeChangeTest extends ChangePackageTest {
 
 	private static final int EXPECTED_NUM_OF_CHANGES = 1;
 	
@@ -27,7 +27,7 @@ public class SimpleAttributeChangeTest extends ChangePackageTest {
 	private EAttribute changedAttribute; 
 	
 	
-	public SimpleAttributeChangeTest(ProjectSpace testProjectSpace, String testName,TestProjectParmeters testProjParams) {
+	public AttributeChangeTest(ProjectSpace testProjectSpace, String testName,TestProjectParmeters testProjParams) {
 		super(testProjectSpace, testName, testProjParams);
 
 	}

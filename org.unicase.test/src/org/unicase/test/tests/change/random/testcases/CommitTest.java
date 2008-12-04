@@ -75,7 +75,7 @@ public class CommitTest extends RandomChangeTestCase {
 
 	@Override
 	public void runTest() {
-//		CompoundTest compoundTest = new CompoundTest(getTestProject(), "CompoundTest",
+//		CompositeTest compoundTest = new CompositeTest(getTestProject(), "CompositeTest",
 //				getTestProjParams(), testCases);
 //		compoundTest.runTest();
 	}

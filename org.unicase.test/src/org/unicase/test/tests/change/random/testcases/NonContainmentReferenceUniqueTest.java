@@ -15,11 +15,11 @@ import org.unicase.workspace.ProjectSpace;
  * @author Hodaie
  *
  */
-public class UniqueReferenceTest extends ChangePackageTest {
+public class NonContainmentReferenceUniqueTest extends ChangePackageTest {
 	
 	private ModelElement me; 
 
-	public UniqueReferenceTest(ProjectSpace testProjectSpace, String testName,
+	public NonContainmentReferenceUniqueTest(ProjectSpace testProjectSpace, String testName,
 			TestProjectParmeters testProjParams) {
 		super(testProjectSpace, testName, testProjParams);
 		
