@@ -1,4 +1,4 @@
-package org.unicase.test.tests.changetests;
+package org.unicase.test.tests.change;
 
 import java.io.ByteArrayOutputStream;
 import java.io.File;
@@ -360,18 +360,14 @@ public class ChangeTestHelper {
 
 	}
 
-	public static EAttribute changeSimnpleAttribute(ModelElement me) {
-		List<EAttribute> attributes = new ArrayList<EAttribute>();
-		for (EAttribute attr : me.eClass().getEAllAttributes()) {
-			if (attr.isChangeable()
-					&& attr.getFeatureID() != ModelPackage.MODEL_ELEMENT__IDENTIFIER) {
-				attributes.add(attr);
-			}
+	public static EAttribute changeSimpleAttribute(ModelElement me,
+			EAttribute attr) {
+		EAttribute attribute = null;
+		if (attr == null) {
+			attribute = getRandomAttribute(me);
+		}else{
+			attribute = attr;
 		}
-
-		int size = attributes.size();
-		EAttribute attribute = attributes.get(size == 1 ? 0 : getRandom()
-				.nextInt(size - 1));
 
 		if (attribute.getEType().getInstanceClass().equals(String.class)) {
 			if (attribute.isMany()) {
@@ -437,7 +433,25 @@ public class ChangeTestHelper {
 		return new Date();
 	}
 
-	public static void changeSimpleRef(ModelElement me, Project project) {
+	public static EAttribute getRandomAttribute(ModelElement me){
+		List<EAttribute> attributes = new ArrayList<EAttribute>();
+		for (EAttribute tmpAttr : me.eClass().getEAllAttributes()) {
+			if (tmpAttr.isChangeable()
+					&& tmpAttr.getFeatureID() != ModelPackage.MODEL_ELEMENT__IDENTIFIER) {
+				attributes.add(tmpAttr);
+			}
+		}
+
+		int size = attributes.size();
+		EAttribute attribute = attributes.get(size == 1 ? 0 : getRandom().nextInt(
+				size - 1));
+		
+		return attribute;
+		
+	}
+	
+	
+	public static EReference getRandomNonContainmentRef(ModelElement me){
 		List<EReference> nonContainmentRefs = new ArrayList<EReference>();
 		for (EReference ref : me.eClass().getEAllReferences()) {
 			if (!ref.isContainment() && !ref.isContainer()) {
@@ -447,10 +461,17 @@ public class ChangeTestHelper {
 
 		EReference ref = nonContainmentRefs.get(getRandom().nextInt(
 				nonContainmentRefs.size() - 1));
+		
+		return ref;
+		
+	}
+	
+	public static void changeSimpleRef(ModelElement me, Project project) {
+		
+		EReference ref = getRandomNonContainmentRef(me);
 		EClass refType = ref.getEReferenceType();
-		List<ModelElement> refTypeMEs = project
-				.getAllModelElementsbyClass(refType,
-						new BasicEList<ModelElement>());
+		List<ModelElement> refTypeMEs = project.getAllModelElementsbyClass(
+				refType, new BasicEList<ModelElement>());
 
 		if (refTypeMEs.contains(me)) {
 			refTypeMEs.remove(me);

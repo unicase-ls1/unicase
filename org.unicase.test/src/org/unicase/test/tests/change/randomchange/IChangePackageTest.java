@@ -1,4 +1,4 @@
-package org.unicase.test.tests.changetests.randomchange;
+package org.unicase.test.tests.change.randomchange;
 
 import org.unicase.emfstore.esmodel.versioning.ChangePackage;
 

@@ -1,4 +1,4 @@
-package org.unicase.test.tests.changetests.randomchange.testcases;
+package org.unicase.test.tests.change.randomchange.testcases;
 
 import java.util.ArrayList;
 import java.util.List;
@@ -13,9 +13,9 @@ import org.eclipse.emf.transaction.RecordingCommand;
 import org.eclipse.emf.transaction.TransactionalEditingDomain;
 import org.unicase.emfstore.esmodel.versioning.ChangePackage;
 import org.unicase.model.ModelElement;
-import org.unicase.test.tests.changetests.ChangeTestHelper;
-import org.unicase.test.tests.changetests.randomchange.IChangePackageTest;
-import org.unicase.test.tests.changetests.randomchange.RandomChangeTestCase;
+import org.unicase.test.tests.change.ChangeTestHelper;
+import org.unicase.test.tests.change.randomchange.IChangePackageTest;
+import org.unicase.test.tests.change.randomchange.RandomChangeTestCase;
 import org.unicase.ui.test.TestProjectParmeters;
 
 

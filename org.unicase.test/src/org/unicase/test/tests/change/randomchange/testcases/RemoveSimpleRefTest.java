@@ -1,4 +1,4 @@
-package org.unicase.test.tests.changetests.randomchange.testcases;
+package org.unicase.test.tests.change.randomchange.testcases;
 
 import java.util.ArrayList;
 import java.util.HashMap;
@@ -12,9 +12,9 @@ import org.eclipse.emf.transaction.RecordingCommand;
 import org.eclipse.emf.transaction.TransactionalEditingDomain;
 import org.unicase.emfstore.esmodel.versioning.ChangePackage;
 import org.unicase.model.ModelElement;
-import org.unicase.test.tests.changetests.ChangeTestHelper;
-import org.unicase.test.tests.changetests.randomchange.IChangePackageTest;
-import org.unicase.test.tests.changetests.randomchange.RandomChangeTestCase;
+import org.unicase.test.tests.change.ChangeTestHelper;
+import org.unicase.test.tests.change.randomchange.IChangePackageTest;
+import org.unicase.test.tests.change.randomchange.RandomChangeTestCase;
 import org.unicase.ui.test.TestProjectParmeters;
 
 public class RemoveSimpleRefTest extends RandomChangeTestCase implements
@@ -54,7 +54,7 @@ public class RemoveSimpleRefTest extends RandomChangeTestCase implements
 
 		EReference ref = (EReference)me.eClass().getEStructuralFeature( meToRemove.getValue().intValue());
 		
-
+		// maybe we can user ECoreUtil.remove()
 		Object object = me.eGet(ref);
 		if (ref.isMany()) {
 			EList<EObject> eList = (EList<EObject>) object;
@@ -119,6 +119,7 @@ public class RemoveSimpleRefTest extends RandomChangeTestCase implements
 
 	public boolean isSuccessful() {
 
+		//todo: test the operations too
 		return changePackage.getOperations().size() == EXPECTED_NUM_OF_CHANGES;
 	}
 

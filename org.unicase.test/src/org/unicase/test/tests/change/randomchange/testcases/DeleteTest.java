@@ -1,4 +1,4 @@
-package org.unicase.test.tests.changetests.randomchange.testcases;
+package org.unicase.test.tests.change.randomchange.testcases;
 
 import org.eclipse.emf.common.util.TreeIterator;
 import org.eclipse.emf.ecore.EObject;
@@ -7,9 +7,9 @@ import org.eclipse.emf.transaction.RecordingCommand;
 import org.eclipse.emf.transaction.TransactionalEditingDomain;
 import org.unicase.emfstore.esmodel.versioning.ChangePackage;
 import org.unicase.model.ModelElement;
-import org.unicase.test.tests.changetests.ChangeTestHelper;
-import org.unicase.test.tests.changetests.randomchange.IChangePackageTest;
-import org.unicase.test.tests.changetests.randomchange.RandomChangeTestCase;
+import org.unicase.test.tests.change.ChangeTestHelper;
+import org.unicase.test.tests.change.randomchange.IChangePackageTest;
+import org.unicase.test.tests.change.randomchange.RandomChangeTestCase;
 import org.unicase.ui.test.TestProjectParmeters;
 
 public class DeleteTest extends RandomChangeTestCase implements
@@ -17,6 +17,7 @@ public class DeleteTest extends RandomChangeTestCase implements
 
 	private ChangePackage changePackage;
 	private ModelElement me;
+	private int expectedNumOfOperations;
 
 	public DeleteTest(String testName, TestProjectParmeters testProjParams) {
 		super(testName, testProjParams);
@@ -30,6 +31,7 @@ public class DeleteTest extends RandomChangeTestCase implements
 				.getEditingDomain("org.unicase.EditingDomain");
 
 		me = ChangeTestHelper.getRandomME(getTestProject());
+		expectedNumOfOperations = getExpectedNumOfChanges();
 
 		domain.getCommandStack().execute(new RecordingCommand(domain) {
 
@@ -52,19 +54,19 @@ public class DeleteTest extends RandomChangeTestCase implements
 	public ChangePackage getChangePackage(boolean removeChanges) {
 		if (changePackage == null) {
 			changePackage = ChangeTestHelper.getChangePackage(
-					getTestProjectSpace().getOperations(), true, removeChanges);
+					getTestProjectSpace().getOperations(), false, removeChanges);
 		}
 		return changePackage;
 	}
 
 	public int getExpectedNumOfChanges() {
-		// compute number of changes:
-		// 1. # of deletions = 1 + allContents().size()
-		// 2. # of multirefs = me.crossrefs().size()
-		// + foreach(element in allContents){ element.crossrefs().size()}
-		//
+		//a multiRefOp for container, 
+		//a deleteOp for meToRemove
+		//+ multiRefOp for meToRemove.crossrefs.size()
+		//+ deleteOp for meToRemove.contents().size()
+		//+ multiRefOp for each(content in contents) content.crossref.size()
 		
-		int numOfOps = 1 + me.eCrossReferences().size();
+		int numOfOps =  1 + 1 + me.eCrossReferences().size();
 		for(TreeIterator<EObject> iter = me.eAllContents(); iter.hasNext(); ){
 			numOfOps ++;
 			numOfOps += iter.next().eCrossReferences().size();
@@ -75,7 +77,7 @@ public class DeleteTest extends RandomChangeTestCase implements
 
 	public boolean isSuccessful() {
 
-		return changePackage.getOperations().size() == getExpectedNumOfChanges();
+		return changePackage.getOperations().size() == expectedNumOfOperations;
 	}
 
 }

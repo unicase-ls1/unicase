@@ -1,37 +1,38 @@
-package org.unicase.test.tests.changetests.randomchange.testcases;
+package org.unicase.test.tests.change.randomchange.testcases;
 
 import org.eclipse.emf.transaction.RecordingCommand;
 import org.eclipse.emf.transaction.TransactionalEditingDomain;
 import org.unicase.emfstore.esmodel.versioning.ChangePackage;
 import org.unicase.model.ModelElement;
-import org.unicase.test.tests.changetests.ChangeTestHelper;
-import org.unicase.test.tests.changetests.randomchange.IChangePackageTest;
-import org.unicase.test.tests.changetests.randomchange.RandomChangeTestCase;
+import org.unicase.test.tests.change.ChangeTestHelper;
+import org.unicase.test.tests.change.randomchange.IChangePackageTest;
+import org.unicase.test.tests.change.randomchange.RandomChangeTestCase;
 import org.unicase.ui.test.TestProjectParmeters;
 
 /**
- * This is a change package test. It takes a random model element from test
- * project and changes one of its non-containment references, applies this
- * change to compare project. Test succeeds when both projects are identical,
- * and fails otherwise.
+ * 
+ * This is a change package test. It creates randomly a ME A, changes one of its
+ * non-containment references. The expected change package should contain two
+ * operations - a create operation: created A - a change operation: either A.ref
+ * changed to B or B.oppositeRef changed to A
  * 
  * @author Hodaie
  * 
  */
-public class ChangeSimpleRefTest extends RandomChangeTestCase implements
+public class CreateAndChangeRefTest extends RandomChangeTestCase implements
 		IChangePackageTest {
 
-	private static final int EXPECTED_NUM_OF_CHANGES = 1;
+	private static final int EXPECTED_NUM_OF_CHANGES = 2;
 
-	public ChangeSimpleRefTest(String testName, TestProjectParmeters testProjParams) {
+	public CreateAndChangeRefTest(String testName, TestProjectParmeters testProjParams) {
 		super(testName, testProjParams);
 
 	}
 
 	@Override
 	public void runTest() {
-
-		final ModelElement me = ChangeTestHelper.getRandomME(getTestProject());
+		final ModelElement me = ChangeTestHelper.createRandomME();
+		// me.setName("newly created " + me.eClass().getName());
 
 		TransactionalEditingDomain domain = TransactionalEditingDomain.Registry.INSTANCE
 				.getEditingDomain("org.unicase.EditingDomain");
@@ -40,25 +41,31 @@ public class ChangeSimpleRefTest extends RandomChangeTestCase implements
 
 			@Override
 			protected void doExecute() {
+				getTestProject().getModelElements().add(me);
 				ChangeTestHelper.changeSimpleRef(me, getTestProject());
 			}
 
 		});
+
 	}
 
-	public int getExpectedNumOfChanges() {
+	
 
+		
+
+	public int getExpectedNumOfChanges() {
 		return EXPECTED_NUM_OF_CHANGES;
 	}
 
 	public boolean isSuccessful() {
-		
+		//temp impl
 		return EXPECTED_NUM_OF_CHANGES == 1;
 	}
-
+	
 	public ChangePackage getChangePackage(boolean removeChanges) {
 		return ChangeTestHelper.getChangePackage(getTestProjectSpace()
 				.getOperations(), true, removeChanges);
 
 	}
+
 }

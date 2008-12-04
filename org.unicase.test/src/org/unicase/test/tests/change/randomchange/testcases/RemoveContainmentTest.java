@@ -1,4 +1,4 @@
-package org.unicase.test.tests.changetests.randomchange.testcases;
+package org.unicase.test.tests.change.randomchange.testcases;
 
 import java.util.List;
 
@@ -11,9 +11,9 @@ import org.eclipse.emf.transaction.RecordingCommand;
 import org.eclipse.emf.transaction.TransactionalEditingDomain;
 import org.unicase.emfstore.esmodel.versioning.ChangePackage;
 import org.unicase.model.ModelElement;
-import org.unicase.test.tests.changetests.ChangeTestHelper;
-import org.unicase.test.tests.changetests.randomchange.IChangePackageTest;
-import org.unicase.test.tests.changetests.randomchange.RandomChangeTestCase;
+import org.unicase.test.tests.change.ChangeTestHelper;
+import org.unicase.test.tests.change.randomchange.IChangePackageTest;
+import org.unicase.test.tests.change.randomchange.RandomChangeTestCase;
 import org.unicase.ui.test.TestProjectParmeters;
 
 /**
@@ -68,10 +68,10 @@ public class RemoveContainmentTest extends RandomChangeTestCase implements
 		}
 
 		EReference ref = (EReference) meToRemove.eContainingFeature();
-		EcoreUtil.remove(me, ref, meToRemove);
 		
-//	
-//		EReference ref = (EReference) meToRemove.eContainingFeature();
+		//we can also use this
+		EcoreUtil.remove(me, ref, meToRemove);
+
 //		Object object = me.eGet(ref);
 //		if (ref.isMany()) {
 //			EList<EObject> eList = (EList<EObject>) object;
@@ -124,9 +124,9 @@ public class RemoveContainmentTest extends RandomChangeTestCase implements
 
 		//a multiRefOp for container, 
 		//a deleteOp for meToRemove
-		//+ meToRemove.crossrefs.size()
-		//+ meToRemove.contents().size()
-		//+ for each(content in contents) content.crossref.size()
+		//+ multiRefOp for meToRemove.crossrefs.size()
+		//+ deleteOp for meToRemove.contents().size()
+		//+ multiRefOp for each(content in contents) content.crossref.size()
 		
 		int numOfOps = 1 + 1 + meToRemove.eCrossReferences().size();
 		for(TreeIterator<EObject> iter = meToRemove.eAllContents(); iter.hasNext(); ){
@@ -139,6 +139,7 @@ public class RemoveContainmentTest extends RandomChangeTestCase implements
 
 	public boolean isSuccessful() {
 		
+		//todo: test the operations too
 		return changePackage.getOperations().size() == getExpectedNumOfChanges();
 		 
 	}

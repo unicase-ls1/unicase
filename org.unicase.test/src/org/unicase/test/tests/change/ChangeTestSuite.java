@@ -1,4 +1,4 @@
-package org.unicase.test.tests.changetests;
+package org.unicase.test.tests.change;
 
 import java.util.Calendar;
 import java.util.Random;
@@ -90,7 +90,7 @@ public abstract class ChangeTestSuite extends TestSuite {
 	public Project getTestProject(){
 		if(testProject == null){
 			System.out.println("creating test project");
-			params = new TestProjectParmeters(5, randomSeed, 3, 2, 3, 10);
+			params = new TestProjectParmeters(10, randomSeed, 3, 2, 20, 10);
 			ChangeTestHelper.setRandom(new Random(randomSeed));
 			testProject = new TestProjectGenerator(params).generateProject();
 			System.out.println("test project created");
