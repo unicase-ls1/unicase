@@ -56,6 +56,7 @@ public class UserComposite extends PropertiesComposite {
 	 * {@inheritDoc}
 	 * 
 	 */
+	@Override
 	protected void removeOrgUnit(ACOrgUnit group) {
 		try {
 			getAdminBroker().removeGroup(user.getId(),
@@ -139,6 +140,7 @@ public class UserComposite extends PropertiesComposite {
 	/**
 	 * {@inheritDoc}
 	 */
+	@Override
 	protected void createTableGroup() {
 		super.createTableGroup("Groups");
 	}
@@ -176,7 +178,7 @@ public class UserComposite extends PropertiesComposite {
 		Transfer[] transfers = new Transfer[] { LocalSelectionTransfer
 				.getTransfer() };
 		DropTargetListener dropListener = new DropTargetAdapter() {
-
+			@Override
 			public void dragEnter(DropTargetEvent event) {
 				if (PropertiesForm.getDragSource().equals("Projects")
 						|| PropertiesForm.getDragSource().equals("Users")) {
@@ -187,6 +189,7 @@ public class UserComposite extends PropertiesComposite {
 				}
 			}
 
+			@Override
 			public void drop(DropTargetEvent event) {
 				if (PropertiesForm.getDragNDropObject() != null) {
 					if (PropertiesForm.getDragNDropObject() instanceof ACGroup) {
@@ -200,7 +203,6 @@ public class UserComposite extends PropertiesComposite {
 			}
 		};
 		getTableViewer().addDropSupport(ops, transfers, dropListener);
-
 	}
 
 	/**

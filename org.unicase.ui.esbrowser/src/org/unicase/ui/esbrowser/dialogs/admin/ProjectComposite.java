@@ -72,6 +72,7 @@ public class ProjectComposite extends PropertiesComposite {
 	/**
 	 * {@inheritDoc}
 	 */
+	@Override
 	protected void removeOrgUnit(ACOrgUnit orgUnit) {
 		try {
 			getAdminBroker().removeParticipant(projectInfo.getProjectId(),
@@ -153,6 +154,7 @@ public class ProjectComposite extends PropertiesComposite {
 	/**
 	 * {@inheritDoc}
 	 */
+	@Override
 	protected void createTableGroup() {
 
 		super.createTableGroup("Participants");
@@ -166,6 +168,7 @@ public class ProjectComposite extends PropertiesComposite {
 	 * @param parent
 	 *            parent
 	 */
+	@Override
 	protected void createTableViewer(Composite parent) {
 
 		super.createTableViewer(parent);
@@ -201,6 +204,7 @@ public class ProjectComposite extends PropertiesComposite {
 		Transfer[] transfers = new Transfer[] { LocalSelectionTransfer
 				.getTransfer() };
 		DropTargetListener dropListener = new DropTargetAdapter() {
+			@Override
 			public void dragEnter(DropTargetEvent event) {
 				if (PropertiesForm.getDragSource().equals("Projects")) {
 					event.detail = DND.DROP_NONE;
@@ -210,6 +214,7 @@ public class ProjectComposite extends PropertiesComposite {
 				}
 			}
 
+			@Override
 			public void drop(DropTargetEvent event) {
 				if (PropertiesForm.getDragNDropObject() != null) {
 					if (PropertiesForm.getDragNDropObject() instanceof ACOrgUnit) {
@@ -277,6 +282,7 @@ public class ProjectComposite extends PropertiesComposite {
 	/**
 	 * {@inheritDoc}
 	 */
+	@Override
 	protected void createSimpleAttributes() {
 
 		super.createSimpleAttributes();
@@ -296,6 +302,7 @@ public class ProjectComposite extends PropertiesComposite {
 	 * 
 	 * @param projectInfo
 	 */
+	@Override
 	public void updateControls(EObject input) {
 
 		if (input instanceof ProjectInfo) {

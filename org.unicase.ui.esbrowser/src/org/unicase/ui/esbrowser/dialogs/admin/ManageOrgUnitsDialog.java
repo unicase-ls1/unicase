@@ -63,6 +63,7 @@ public class ManageOrgUnitsDialog extends Dialog {
 	 * {@inheritDoc}
 	 * 
 	 */
+	@Override
 	protected void cancelPressed() {
 
 		super.cancelPressed();
@@ -72,6 +73,7 @@ public class ManageOrgUnitsDialog extends Dialog {
 	 * {@inheritDoc}
 	 * 
 	 */
+	@Override
 	protected void okPressed() {
 
 		super.okPressed();

@@ -56,6 +56,7 @@ public class GroupComposite extends PropertiesComposite {
 	 * {@inheritDoc}
 	 * 
 	 */
+	@Override
 	protected void removeOrgUnit(ACOrgUnit orgUnit) {
 
 		try {
@@ -146,6 +147,7 @@ public class GroupComposite extends PropertiesComposite {
 	 * {@inheritDoc}
 	 * 
 	 */
+	@Override
 	protected void createTableGroup() {
 		super.createTableGroup("Members");
 	}
@@ -213,6 +215,7 @@ public class GroupComposite extends PropertiesComposite {
 		Transfer[] transfers = new Transfer[] { LocalSelectionTransfer
 				.getTransfer() };
 		DropTargetListener dropListener = new DropTargetAdapter() {
+			@Override
 			public void dragEnter(DropTargetEvent event) {
 				if (PropertiesForm.getDragSource().equals("Projects")) {
 					event.detail = DND.DROP_NONE;
@@ -221,6 +224,7 @@ public class GroupComposite extends PropertiesComposite {
 				}
 			}
 
+			@Override
 			public void drop(DropTargetEvent event) {
 				if (PropertiesForm.getDragNDropObject() != null) {
 					if (PropertiesForm.getDragNDropObject() instanceof ACOrgUnit) {
