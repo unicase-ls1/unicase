@@ -1,4 +1,4 @@
-package org.unicase.test.tests.change.randomchange;
+package org.unicase.test.tests.change.random;
 
 import java.io.File;
 import java.io.FileNotFoundException;

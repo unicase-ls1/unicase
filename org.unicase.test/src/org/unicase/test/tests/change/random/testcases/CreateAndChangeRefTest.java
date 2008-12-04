@@ -1,12 +1,12 @@
-package org.unicase.test.tests.change.randomchange.testcases;
+package org.unicase.test.tests.change.random.testcases;
 
 import org.eclipse.emf.transaction.RecordingCommand;
 import org.eclipse.emf.transaction.TransactionalEditingDomain;
 import org.unicase.emfstore.esmodel.versioning.ChangePackage;
 import org.unicase.model.ModelElement;
 import org.unicase.test.tests.change.ChangeTestHelper;
-import org.unicase.test.tests.change.randomchange.IChangePackageTest;
-import org.unicase.test.tests.change.randomchange.RandomChangeTestCase;
+import org.unicase.test.tests.change.random.IChangePackageTest;
+import org.unicase.test.tests.change.random.RandomChangeTestCase;
 import org.unicase.ui.test.TestProjectParmeters;
 
 /**

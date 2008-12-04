@@ -1,4 +1,4 @@
-package org.unicase.test.tests.change.randomchange.testcases;
+package org.unicase.test.tests.change.random.testcases;
 
 import java.util.Calendar;
 import java.util.List;
@@ -10,7 +10,7 @@ import org.unicase.emfstore.esmodel.versioning.LogMessage;
 import org.unicase.emfstore.esmodel.versioning.VersioningFactory;
 import org.unicase.emfstore.exceptions.EmfStoreException;
 import org.unicase.model.Project;
-import org.unicase.test.tests.change.randomchange.RandomChangeTestCase;
+import org.unicase.test.tests.change.random.RandomChangeTestCase;
 import org.unicase.ui.test.TestProjectParmeters;
 import org.unicase.workspace.ProjectSpace;
 import org.unicase.workspace.ServerInfo;

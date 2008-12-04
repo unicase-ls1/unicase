@@ -1,8 +1,8 @@
-package org.unicase.test.tests.change.randomchange.testcases;
+package org.unicase.test.tests.change.random.testcases;
 
 import java.util.List;
 
-import org.unicase.test.tests.change.randomchange.RandomChangeTestCase;
+import org.unicase.test.tests.change.random.RandomChangeTestCase;
 import org.unicase.ui.test.TestProjectParmeters;
 
 public class CompoundTest extends RandomChangeTestCase {
