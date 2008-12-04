@@ -1,4 +1,4 @@
-package org.unicase.test.lib;
+package org.unicase.test;
 
 
 public abstract class TestCase {
@@ -14,8 +14,8 @@ public abstract class TestCase {
 	}
 	
 	
-	abstract public void runTest();
-	abstract public void endTestCase(boolean outputToFile);
+	public abstract void runTest();
+	public abstract void endTestCase(boolean outputToFile);
 	
 	
 }

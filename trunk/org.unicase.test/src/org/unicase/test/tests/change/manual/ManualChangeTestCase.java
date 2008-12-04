@@ -7,7 +7,6 @@ public class ManualChangeTestCase extends ChangeTestCase {
 
 	public ManualChangeTestCase(String testName,TestProjectParmeters testProjParams) {
 		super(testName, testProjParams);
-
 	}
 
 }

@@ -27,13 +27,13 @@ import org.unicase.ui.test.TestProjectParmeters;
  * @author Hodaie
  * 
  */
-public class AddTest extends RandomChangeTestCase implements IChangePackageTest {
+public class ContainmentReferenceAddNewTest extends RandomChangeTestCase implements IChangePackageTest {
 
 	private static final int EXPECTED_NUM_OF_CHANGES = 2;
 
 	private ChangePackage changePackage;
 
-	public AddTest(String testName, TestProjectParmeters testProjParams) {
+	public ContainmentReferenceAddNewTest(String testName, TestProjectParmeters testProjParams) {
 		super(testName, testProjParams);
 
 	}
@@ -54,6 +54,7 @@ public class AddTest extends RandomChangeTestCase implements IChangePackageTest 
 
 	}
 
+	@SuppressWarnings("unchecked")
 	private void doAddTest() {
 
 		ModelElement me = ChangeTestHelper.getRandomME(getTestProject());

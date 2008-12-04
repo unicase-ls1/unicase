@@ -1,7 +1,8 @@
-package org.unicase.test.lib;
+package org.unicase.test;
 
 import java.util.ArrayList;
 import java.util.List;
+
 
 
 public abstract class TestSuite {
@@ -29,16 +30,13 @@ public abstract class TestSuite {
 		}
 	}
 
-	public void initTestSuite() {
-	}
+	public abstract void initTestSuite();
 
-	public void endTestSuite() {
-	}
+	public abstract void endTestSuite();
 
-	public void initTestCases() {
-	}
-
-	public List<TestCase> getTestCases() {
+	public abstract void initTestCases();
+	
+	protected List<TestCase> getTestCases() {
 		return testcases;
 	}
 

@@ -3,7 +3,7 @@ package org.unicase.test.tests.change;
 import java.util.Random;
 
 import org.unicase.model.Project;
-import org.unicase.test.lib.TestCase;
+import org.unicase.test.TestCase;
 import org.unicase.ui.test.TestProjectParmeters;
 import org.unicase.workspace.ProjectSpace;
 

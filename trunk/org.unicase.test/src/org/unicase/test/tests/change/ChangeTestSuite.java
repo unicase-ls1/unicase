@@ -8,7 +8,7 @@ import org.eclipse.emf.ecore.util.EcoreUtil;
 import org.eclipse.emf.transaction.RecordingCommand;
 import org.eclipse.emf.transaction.TransactionalEditingDomain;
 import org.unicase.model.Project;
-import org.unicase.test.lib.TestSuite;
+import org.unicase.test.TestSuite;
 import org.unicase.ui.test.TestProjectGenerator;
 import org.unicase.ui.test.TestProjectParmeters;
 import org.unicase.workspace.ProjectSpace;
@@ -33,11 +33,11 @@ public abstract class ChangeTestSuite extends TestSuite {
 
 
 
-	public ProjectSpace getTestProjectSpace() {
+	protected ProjectSpace getTestProjectSpace() {
 		return testSpace;
 	}
 
-	public ProjectSpace getCompareProjectSpace() {
+	protected ProjectSpace getCompareProjectSpace() {
 		return compareSpace;
 	}
 
@@ -73,7 +73,7 @@ public abstract class ChangeTestSuite extends TestSuite {
 		});
 	}
 
-	public Project getCompareProject(){
+	protected Project getCompareProject(){
 		
 		if(testProject == null){
 			testProject = getTestProject();
@@ -87,7 +87,7 @@ public abstract class ChangeTestSuite extends TestSuite {
 	}
 	
 
-	public Project getTestProject(){
+	protected Project getTestProject(){
 		if(testProject == null){
 			System.out.println("creating test project");
 			params = new TestProjectParmeters(10, randomSeed, 3, 2, 20, 10);
