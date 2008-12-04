@@ -11,10 +11,12 @@ import org.eclipse.emf.transaction.RecordingCommand;
 import org.eclipse.emf.transaction.TransactionalEditingDomain;
 import org.unicase.emfstore.esmodel.versioning.ChangePackage;
 import org.unicase.model.ModelElement;
+import org.unicase.model.Project;
 import org.unicase.test.tests.change.ChangeTestHelper;
 import org.unicase.test.tests.change.random.IChangePackageTest;
 import org.unicase.test.tests.change.random.RandomChangeTestCase;
 import org.unicase.ui.test.TestProjectParmeters;
+import org.unicase.workspace.ProjectSpace;
 
 /**
  * 
@@ -36,8 +38,8 @@ public class RemoveContainmentTest extends RandomChangeTestCase implements
 	private ModelElement me;
 	private ChangePackage changePackage;
 
-	public RemoveContainmentTest(String testName, TestProjectParmeters testProjParams) {
-		super(testName, testProjParams);
+	public RemoveContainmentTest(ProjectSpace testProjectSpace, String testName, TestProjectParmeters testProjParams) {
+		super(testProjectSpace, testName, testProjParams);
 
 
 	}

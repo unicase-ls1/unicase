@@ -24,17 +24,17 @@ public abstract class TestSuite {
 				System.out.println("========= Running TestCase: "
 						+ testCase.getTestName() + " =========  " + i);
 				testCase.runTest();
-				testCase.endTestCase(false);
+				testCase.outputResults(false);
 			}
 			endTestSuite();
 		}
 	}
 
-	public abstract void initTestSuite();
+	protected abstract void initTestSuite();
 
-	public abstract void endTestSuite();
+	protected abstract void endTestSuite();
 
-	public abstract void initTestCases();
+	protected abstract void initTestCases();
 	
 	protected List<TestCase> getTestCases() {
 		return testcases;

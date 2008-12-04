@@ -7,57 +7,43 @@ import org.unicase.test.TestCase;
 import org.unicase.ui.test.TestProjectParmeters;
 import org.unicase.workspace.ProjectSpace;
 
-public class ChangeTestCase extends TestCase {
+public abstract class ChangeTestCase extends TestCase {
 
 	private Random rnd;
 	private TestProjectParmeters testProjParams;
-	private Project testProject;
 	private ProjectSpace testProjectSpace;
 	
 	
-	public ChangeTestCase(String testName, TestProjectParmeters testProjParams) {
+	public ChangeTestCase(ProjectSpace testProjectSpace, String testName, TestProjectParmeters testProjParams) {
 		super(testName);
 		this.testProjParams = testProjParams;
+		this.testProjectSpace = testProjectSpace;
 		rnd = new Random(testProjParams.getRandomSeed());
 		
 	}
 
-	@Override
-	public void runTest() {
-	}
-
-	
-	public Random getRandom() {
+	protected Random getRandom() {
 		return rnd;
 	}
 	
-	public TestProjectParmeters getTestProjParams() {
+	protected TestProjectParmeters getTestProjParams() {
 		return testProjParams;
 	}
 
 
-	public void setTestProject(Project testProject) {
-		this.testProject = testProject;
+	protected Project getTestProject() {
+		return testProjectSpace.getProject();
 	}
-
-	public Project getTestProject() {
-		return testProject;
-	}
-
 	
 	
-	public void setTestProjectSpace(ProjectSpace testProjectSpace) {
-		this.testProjectSpace = testProjectSpace;
-	}
-
-	public ProjectSpace getTestProjectSpace() {
+	protected ProjectSpace getTestProjectSpace() {
 		return testProjectSpace;
 	}
 	
 	
 	
 	@Override
-	public void endTestCase(boolean outputToFile) {
+	public void outputResults(boolean outputToFile) {
 		System.out.println("Done: " + getTestName());
 	}
 

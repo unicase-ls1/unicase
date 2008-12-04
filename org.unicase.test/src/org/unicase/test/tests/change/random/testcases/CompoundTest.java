@@ -2,8 +2,10 @@ package org.unicase.test.tests.change.random.testcases;
 
 import java.util.List;
 
+import org.unicase.model.Project;
 import org.unicase.test.tests.change.random.RandomChangeTestCase;
 import org.unicase.ui.test.TestProjectParmeters;
+import org.unicase.workspace.ProjectSpace;
 
 public class CompoundTest extends RandomChangeTestCase {
 
@@ -11,9 +13,9 @@ public class CompoundTest extends RandomChangeTestCase {
 	private static final int MAX_TIMES_TO_RUN = 3;
 	private static final int ITERATIONS = 5;
 
-	public CompoundTest(String testName, TestProjectParmeters testProjParams,
+	public CompoundTest(ProjectSpace testProjectSpace, String testName, TestProjectParmeters testProjParams,
 			List<RandomChangeTestCase> testCases) {
-		super(testName, testProjParams);
+		super(testProjectSpace, testName, testProjParams);
 		this.testCases = testCases;
 
 	}
@@ -42,7 +44,6 @@ public class CompoundTest extends RandomChangeTestCase {
 		for (int i = 0; i < timesToRun; i++) {
 			System.out.println("**** CompoundTest: " + testCase.getTestName()
 					+ " ****");
-			testCase.setTestProject(getTestProject());
 			testCase.runTest();
 			System.out.println();
 		}

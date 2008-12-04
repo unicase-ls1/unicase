@@ -8,34 +8,22 @@ import java.io.IOException;
 import org.unicase.emfstore.esmodel.versioning.ChangePackage;
 import org.unicase.emfstore.esmodel.versioning.operations.AbstractOperation;
 import org.unicase.emfstore.esmodel.versioning.operations.CreateDeleteOperation;
+import org.unicase.model.Project;
 import org.unicase.test.tests.change.ChangeTestCase;
 import org.unicase.ui.test.TestProjectParmeters;
 import org.unicase.workspace.Configuration;
+import org.unicase.workspace.ProjectSpace;
 
 public abstract class RandomChangeTestCase extends ChangeTestCase {
-
-	private boolean isCompareTest;
 
 	private static final String REUSLTS_SAVE_DIR = Configuration
 			.getWorkspaceDirectory()
 			+ "\\tmp\\errorneousTests\\";
 
-	public RandomChangeTestCase(String testName,
+	public RandomChangeTestCase(ProjectSpace testProjectSpace, String testName,
 			TestProjectParmeters testProjParams) {
-		super(testName, testProjParams);
+		super(testProjectSpace, testName, testProjParams);
 
-	}
-
-	public void setCompareTest(boolean isCompareTest) {
-		this.isCompareTest = isCompareTest;
-	}
-
-	public boolean isCompareTest() {
-		return isCompareTest;
-	}
-
-	public boolean isChangePackageTest() {
-		return this instanceof IChangePackageTest;
 	}
 
 	public String getResultsSavePath() {
@@ -48,9 +36,9 @@ public abstract class RandomChangeTestCase extends ChangeTestCase {
 	}
 
 	@Override
-	public void endTestCase(boolean outputToFile) {
+	public void outputResults(boolean outputToFile) {
 
-		super.endTestCase(false);
+		super.outputResults(false);
 		if (!(this instanceof IChangePackageTest)) {
 			return;
 		}
