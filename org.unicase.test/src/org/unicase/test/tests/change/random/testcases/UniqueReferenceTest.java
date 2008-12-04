@@ -44,10 +44,7 @@ public class UniqueReferenceTest extends RandomChangeTestCase implements
 		
 	}
 
-	public ChangePackage getChangePackage(boolean removeChanges) {
-		
-		return null;
-	}
+	
 
 	public int getExpectedNumOfChanges() {
 		return 0;

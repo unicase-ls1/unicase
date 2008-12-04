@@ -33,8 +33,6 @@ public class ContainmentReferenceAddNewTest extends RandomChangeTestCase impleme
 
 	private static final int EXPECTED_NUM_OF_CHANGES = 2;
 
-	private ChangePackage changePackage;
-
 	public ContainmentReferenceAddNewTest(ProjectSpace testProjectSpace, String testName, TestProjectParmeters testProjParams) {
 		super(testProjectSpace, testName, testProjParams);
 
@@ -90,9 +88,6 @@ public class ContainmentReferenceAddNewTest extends RandomChangeTestCase impleme
 		} else {
 			me.eSet(ref, newInstance);
 		}
-
-		changePackage = getChangePackage(true);
-
 	}
 
 	public int getExpectedNumOfChanges() {
@@ -101,17 +96,6 @@ public class ContainmentReferenceAddNewTest extends RandomChangeTestCase impleme
 
 	public boolean isSuccessful() {
 		// temp impl
-		return changePackage.getOperations().size() == EXPECTED_NUM_OF_CHANGES;
+		return getChangePackage(true).getOperations().size() == EXPECTED_NUM_OF_CHANGES;
 	}
-
-	public ChangePackage getChangePackage(boolean removeChanges) {
-
-		if (changePackage == null) {
-			changePackage = ChangeTestHelper.getChangePackage(
-					getTestProjectSpace().getOperations(), true, removeChanges);
-		}
-		return changePackage;
-
-	}
-
 }

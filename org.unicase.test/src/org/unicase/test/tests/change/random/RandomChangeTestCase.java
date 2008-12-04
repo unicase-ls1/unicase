@@ -10,12 +10,15 @@ import org.unicase.emfstore.esmodel.versioning.operations.AbstractOperation;
 import org.unicase.emfstore.esmodel.versioning.operations.CreateDeleteOperation;
 import org.unicase.model.Project;
 import org.unicase.test.tests.change.ChangeTestCase;
+import org.unicase.test.tests.change.ChangeTestHelper;
 import org.unicase.ui.test.TestProjectParmeters;
 import org.unicase.workspace.Configuration;
 import org.unicase.workspace.ProjectSpace;
 
 public abstract class RandomChangeTestCase extends ChangeTestCase {
-
+	
+	private ChangePackage changePackage; 
+	
 	private static final String REUSLTS_SAVE_DIR = Configuration
 			.getWorkspaceDirectory()
 			+ "\\tmp\\errorneousTests\\";
@@ -48,8 +51,7 @@ public abstract class RandomChangeTestCase extends ChangeTestCase {
 			return;
 		}
 		
-		ChangePackage changePackage = ((IChangePackageTest) this)
-				.getChangePackage(true);
+		ChangePackage changePackage = getChangePackage(true);
 		
 		StringBuilder sb = new StringBuilder();
 //		sb.append("============== " + getTestName() + " ============="
@@ -105,64 +107,14 @@ public abstract class RandomChangeTestCase extends ChangeTestCase {
 		}
 
 	}
+	
+	public ChangePackage getChangePackage(boolean removeChanges) {
+
+		if(changePackage == null){
+			changePackage = ChangeTestHelper.getChangePackage(getTestProjectSpace()
+				.getOperations(), true, removeChanges);
+		}
+		 return changePackage;
+	}
 
 }
-
-// //====================================================0
-// try {
-//	
-//	
-//	
-//	
-// FileWriter fw = new FileWriter(resultsFile, true);
-// BufferedWriter bw = new BufferedWriter(fw);
-//
-// bw.write("============== " + getTestName() + " ============="
-// + Calendar.getInstance().getTime().toString());
-// bw.newLine();
-//
-// bw.write(getTestProjParams().toString());
-// bw.newLine();
-//	
-// bw.write("num of changes: " + changePackage.getOperations().size());
-// bw.newLine();
-//
-// int i = 1;
-// for (AbstractOperation op : changePackage.getOperations()) {
-// bw.write("-------------------------------------");
-// bw.newLine();
-// bw.write(i + ". ");
-// if (op instanceof CreateDeleteOperation) {
-// bw.write(op.getName()
-// + " ("
-// + ((CreateDeleteOperation) op).getModelElement()
-// .getName() + ")");
-// bw.newLine();
-// } else {
-// bw.write(op.getName()
-// + " ("
-// + getTestProject().getModelElement(
-// op.getModelElementId()).getName() + ")");
-// bw.newLine();
-//
-// }
-// bw.write(op.getDescription());
-// bw.newLine();
-// // System.out.println("-------------------------------------");
-// i++;
-//
-// }
-//
-// bw.flush();
-// bw.close();
-// fw.close();
-//
-// } catch (FileNotFoundException e) {
-//
-// e.printStackTrace();
-// } catch (IOException e) {
-//
-// e.printStackTrace();
-// }
-// }
-

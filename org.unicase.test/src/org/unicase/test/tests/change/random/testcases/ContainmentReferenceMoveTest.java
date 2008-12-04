@@ -119,9 +119,4 @@ public class ContainmentReferenceMoveTest extends RandomChangeTestCase  implemen
 	}
 
 	
-	public ChangePackage getChangePackage(boolean removeChanges) {
-		return ChangeTestHelper.getChangePackage(getTestProjectSpace()
-				.getOperations(), true, removeChanges);
-
-	}
 }

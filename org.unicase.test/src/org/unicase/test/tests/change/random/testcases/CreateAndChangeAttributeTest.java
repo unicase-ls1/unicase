@@ -74,10 +74,5 @@ public class CreateAndChangeAttributeTest extends RandomChangeTestCase implement
 		return EXPECTED_NUM_OF_CHANGES == 1;
 	}
 	
-	public ChangePackage getChangePackage(boolean removeChanges) {
-		return ChangeTestHelper.getChangePackage(getTestProjectSpace()
-				.getOperations(), true, removeChanges);
-
-	}
-
+	
 }
