@@ -7,34 +7,22 @@ import org.unicase.emfstore.esmodel.versioning.ChangePackage;
 import org.unicase.emfstore.esmodel.versioning.operations.AbstractOperation;
 import org.unicase.emfstore.esmodel.versioning.operations.CreateDeleteOperation;
 import org.unicase.test.TestCase;
-import org.unicase.test.tests.change.ChangeTestCase;
 import org.unicase.test.tests.change.ChangeTestHelper;
 import org.unicase.test.tests.change.ChangeTestSuite;
-import org.unicase.test.tests.change.random.testcases.ContainmentReferenceAddNewTest;
-import org.unicase.test.tests.change.random.testcases.SimpleAttributeChangeTest;
-import org.unicase.test.tests.change.random.testcases.NonContainmentReferenceAddTest;
 import org.unicase.test.tests.change.random.testcases.CompoundTest;
+import org.unicase.test.tests.change.random.testcases.ContainmentReferenceAddNewTest;
+import org.unicase.test.tests.change.random.testcases.ContainmentReferenceMoveTest;
 import org.unicase.test.tests.change.random.testcases.CreateAndChangeAttributeTest;
 import org.unicase.test.tests.change.random.testcases.CreateAndChangeRefTest;
 import org.unicase.test.tests.change.random.testcases.CreateAndDeleteTest;
 import org.unicase.test.tests.change.random.testcases.DeleteTest;
-import org.unicase.test.tests.change.random.testcases.ContainmentReferenceMoveTest;
+import org.unicase.test.tests.change.random.testcases.NonContainmentReferenceAddTest;
 import org.unicase.test.tests.change.random.testcases.RemoveContainmentTest;
 import org.unicase.test.tests.change.random.testcases.RemoveSimpleRefTest;
+import org.unicase.test.tests.change.random.testcases.SimpleAttributeChangeTest;
 import org.unicase.test.tests.change.random.testcases.TransitivelyChangeAttributeTest;
 
 public class RandomChangeTestSuite extends ChangeTestSuite {
-
-	// private static Log logger = LogFactory.getLog("test");
-	// private boolean changePackageTest;
-
-	public enum RandomTestCases {
-		ADD_TEST, CHANGE_SIMPLE_ATTRIBUTE_TEST, DELETE_TEST, MOVE_TEST, REFERENCE_TEST, REMOVE_TEST, CREATE_AND_DELETE_TEST, CREATE_AND_CHANGE_REF_TEST, CREATE_AND_CHANGE_ATTRIBUTE_TEST, TRANSITIVELY_CHANGE_ATTRIBUTE_TEST, COMPOUND_TEST
-	}
-
-	public RandomChangeTestSuite() {
-
-	}
 
 	@Override
 	public void initTestCases() {
@@ -149,7 +137,7 @@ public class RandomChangeTestSuite extends ChangeTestSuite {
 
 	private boolean containsCompareTest() {
 		for(TestCase testCase : getTestCases()){
-			if(!(testCase instanceof IChangePackageTest)){
+			if(!(testCase instanceof ChangePackageTest)){
 				return true;
 			}
 		}

@@ -40,8 +40,6 @@ public abstract class ChangeTestCase extends TestCase {
 		return testProjectSpace;
 	}
 	
-	
-	
 	@Override
 	public void outputResults(boolean outputToFile) {
 		System.out.println("Done: " + getTestName());
