@@ -1,38 +1,42 @@
-package org.unicase.test.tests.changetests.randomchange.testcases;
+package org.unicase.test.tests.change.randomchange.testcases;
 
+import org.eclipse.emf.ecore.EAttribute;
 import org.eclipse.emf.transaction.RecordingCommand;
 import org.eclipse.emf.transaction.TransactionalEditingDomain;
 import org.unicase.emfstore.esmodel.versioning.ChangePackage;
 import org.unicase.model.ModelElement;
-import org.unicase.test.tests.changetests.ChangeTestHelper;
-import org.unicase.test.tests.changetests.randomchange.IChangePackageTest;
-import org.unicase.test.tests.changetests.randomchange.RandomChangeTestCase;
+import org.unicase.test.tests.change.ChangeTestHelper;
+import org.unicase.test.tests.change.randomchange.IChangePackageTest;
+import org.unicase.test.tests.change.randomchange.RandomChangeTestCase;
 import org.unicase.ui.test.TestProjectParmeters;
 
 /**
  * 
- * This is a change package test. It creates randomly a ME A, changes one of its
- * non-containment references. The expected change package should contain two
- * operations - a create operation: created A - a change operation: either A.ref
- * changed to B or B.oppositeRef changed to A
+ * This is change package test. It does the following: creates randomly a ME A
+ * in test project, changes randomly one of its simple attributes attr
+ * 
+ * The expected change package should contain only one operation: -create
+ * operation: created A (note that A.attr should be set)
  * 
  * @author Hodaie
  * 
  */
-public class CreateAndChangeRefTest extends RandomChangeTestCase implements
-		IChangePackageTest {
 
-	private static final int EXPECTED_NUM_OF_CHANGES = 2;
+public class CreateAndChangeAttributeTest extends RandomChangeTestCase implements IChangePackageTest{
 
-	public CreateAndChangeRefTest(String testName, TestProjectParmeters testProjParams) {
+	private static final int EXPECTED_NUM_OF_CHANGES = 1;
+	private EAttribute changedAttribute;
+	
+	
+	public CreateAndChangeAttributeTest(String testName, TestProjectParmeters testProjParams) {
 		super(testName, testProjParams);
 
 	}
 
 	@Override
 	public void runTest() {
+
 		final ModelElement me = ChangeTestHelper.createRandomME();
-		// me.setName("newly created " + me.eClass().getName());
 
 		TransactionalEditingDomain domain = TransactionalEditingDomain.Registry.INSTANCE
 				.getEditingDomain("org.unicase.EditingDomain");
@@ -42,17 +46,23 @@ public class CreateAndChangeRefTest extends RandomChangeTestCase implements
 			@Override
 			protected void doExecute() {
 				getTestProject().getModelElements().add(me);
-				ChangeTestHelper.changeSimpleRef(me, getTestProject());
+				//me.setName("newly created " + me.eClass().getName());
+				changeRandomAttribute(me);
 			}
 
 		});
 
 	}
+	
+	
+	
+	
+	protected void changeRandomAttribute(ModelElement me) {
+
+		 changedAttribute = ChangeTestHelper.changeSimpleAttribute(me, null);
+	}
 
 	
-
-		
-
 	public int getExpectedNumOfChanges() {
 		return EXPECTED_NUM_OF_CHANGES;
 	}

@@ -1,6 +1,6 @@
-package org.unicase.test.tests.changetests.manualchange;
+package org.unicase.test.tests.change.manualchange;
 
-import org.unicase.test.tests.changetests.ChangeTestCase;
+import org.unicase.test.tests.change.ChangeTestCase;
 import org.unicase.ui.test.TestProjectParmeters;
 
 public class ManualChangeTestCase extends ChangeTestCase {

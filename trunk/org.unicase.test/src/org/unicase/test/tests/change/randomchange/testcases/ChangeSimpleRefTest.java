@@ -1,33 +1,29 @@
-package org.unicase.test.tests.changetests.randomchange.testcases;
+package org.unicase.test.tests.change.randomchange.testcases;
 
-import org.eclipse.emf.ecore.EAttribute;
 import org.eclipse.emf.transaction.RecordingCommand;
 import org.eclipse.emf.transaction.TransactionalEditingDomain;
 import org.unicase.emfstore.esmodel.versioning.ChangePackage;
 import org.unicase.model.ModelElement;
-import org.unicase.test.tests.changetests.ChangeTestHelper;
-import org.unicase.test.tests.changetests.randomchange.IChangePackageTest;
-import org.unicase.test.tests.changetests.randomchange.RandomChangeTestCase;
+import org.unicase.test.tests.change.ChangeTestHelper;
+import org.unicase.test.tests.change.randomchange.IChangePackageTest;
+import org.unicase.test.tests.change.randomchange.RandomChangeTestCase;
 import org.unicase.ui.test.TestProjectParmeters;
 
 /**
- * This is a compare test. It takes randomly a ME from test project, changes one
- * of its EAttributes, extract changes from test project, applies changes to
- * compare project. Test succeeds when compare project and test project are
- * identical.
+ * This is a change package test. It takes a random model element from test
+ * project and changes one of its non-containment references, applies this
+ * change to compare project. Test succeeds when both projects are identical,
+ * and fails otherwise.
  * 
  * @author Hodaie
  * 
  */
-public class ChangeSimpleAttributeTest extends RandomChangeTestCase implements
+public class ChangeSimpleRefTest extends RandomChangeTestCase implements
 		IChangePackageTest {
 
 	private static final int EXPECTED_NUM_OF_CHANGES = 1;
 
-	private EAttribute changedAttribute; 
-	
-	
-	public ChangeSimpleAttributeTest(String testName,TestProjectParmeters testProjParams) {
+	public ChangeSimpleRefTest(String testName, TestProjectParmeters testProjParams) {
 		super(testName, testProjParams);
 
 	}
@@ -35,41 +31,34 @@ public class ChangeSimpleAttributeTest extends RandomChangeTestCase implements
 	@Override
 	public void runTest() {
 
+		final ModelElement me = ChangeTestHelper.getRandomME(getTestProject());
+
 		TransactionalEditingDomain domain = TransactionalEditingDomain.Registry.INSTANCE
 				.getEditingDomain("org.unicase.EditingDomain");
-
-		final ModelElement me = ChangeTestHelper.getRandomME(getTestProject());
 
 		domain.getCommandStack().execute(new RecordingCommand(domain) {
 
 			@Override
 			protected void doExecute() {
-				changeAttribute(me);
+				ChangeTestHelper.changeSimpleRef(me, getTestProject());
 			}
 
 		});
-
-	}
-
-	protected void changeAttribute(ModelElement me) {
-		changedAttribute = ChangeTestHelper.changeSimnpleAttribute(me);
 	}
 
 	public int getExpectedNumOfChanges() {
+
 		return EXPECTED_NUM_OF_CHANGES;
 	}
 
-	
-
 	public boolean isSuccessful() {
-		//temp impl
+		
 		return EXPECTED_NUM_OF_CHANGES == 1;
 	}
-	
+
 	public ChangePackage getChangePackage(boolean removeChanges) {
 		return ChangeTestHelper.getChangePackage(getTestProjectSpace()
 				.getOperations(), true, removeChanges);
 
 	}
-
 }

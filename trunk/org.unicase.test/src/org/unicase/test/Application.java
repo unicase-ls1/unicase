@@ -2,8 +2,8 @@ package org.unicase.test;
 
 import org.eclipse.equinox.app.IApplication;
 import org.eclipse.equinox.app.IApplicationContext;
-import org.unicase.test.tests.changetests.ChangeTestSuite;
-import org.unicase.test.tests.changetests.randomchange.RandomChangeTestSuite;
+import org.unicase.test.tests.change.ChangeTestSuite;
+import org.unicase.test.tests.change.randomchange.RandomChangeTestSuite;
 
 /**
  * This class controls all aspects of the application's execution
@@ -18,7 +18,7 @@ public class Application implements IApplication {
 		
 	
 		ChangeTestSuite changeTest = new RandomChangeTestSuite();
-		changeTest.runTest(1);
+		changeTest.runTest(3);
 		
 		return IApplication.EXIT_OK;
 	}

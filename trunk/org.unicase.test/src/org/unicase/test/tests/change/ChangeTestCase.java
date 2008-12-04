@@ -1,4 +1,4 @@
-package org.unicase.test.tests.changetests;
+package org.unicase.test.tests.change;
 
 import java.util.Random;
 
