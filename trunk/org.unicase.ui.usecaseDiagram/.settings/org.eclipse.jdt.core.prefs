@@ -1,11 +1,11 @@
-#Fri Dec 05 15:40:10 CET 2008
+#Fri Dec 05 15:43:03 CET 2008
 eclipse.preferences.version=1
 org.eclipse.jdt.core.compiler.problem.annotationSuperInterface=warning
 org.eclipse.jdt.core.compiler.problem.autoboxing=ignore
 org.eclipse.jdt.core.compiler.problem.deprecation=warning
 org.eclipse.jdt.core.compiler.problem.deprecationInDeprecatedCode=disabled
 org.eclipse.jdt.core.compiler.problem.deprecationWhenOverridingDeprecatedMethod=disabled
-org.eclipse.jdt.core.compiler.problem.discouragedReference=warning
+org.eclipse.jdt.core.compiler.problem.discouragedReference=ignore
 org.eclipse.jdt.core.compiler.problem.emptyStatement=ignore
 org.eclipse.jdt.core.compiler.problem.fallthroughCase=warning
 org.eclipse.jdt.core.compiler.problem.fatalOptionalError=enabled
