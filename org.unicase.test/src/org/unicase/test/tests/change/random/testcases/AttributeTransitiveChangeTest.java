@@ -63,6 +63,7 @@ public class AttributeTransitiveChangeTest extends ChangePackageTest {
 		return EXPECTED_NUM_OF_CHANGES;
 	}
 
+	@Override
 	public boolean isSuccessful() {
 		// todo: test operations
 		// result must be an attribOp containing me with old of vlaue its attrib

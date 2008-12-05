@@ -17,6 +17,7 @@ import org.unicase.workspace.WorkspaceFactory;
 
 public class CommitTest extends RandomChangeTestCase {
 
+	@SuppressWarnings("unused")
 	private List<RandomChangeTestCase> testCases;
 	private Usersession userSession;
 	private TransactionalEditingDomain domain;

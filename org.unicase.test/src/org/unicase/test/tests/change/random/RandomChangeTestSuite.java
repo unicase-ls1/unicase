@@ -86,6 +86,7 @@ public class RandomChangeTestSuite extends ChangeTestSuite {
 
 		
 		// CompositeTest
+		@SuppressWarnings("unused")
 		CompositeTest compoundTest = new CompositeTest(getTestProjectSpace(), "Compound",
 				getTestProjectPrams() , testCases);
 
@@ -100,15 +101,15 @@ public class RandomChangeTestSuite extends ChangeTestSuite {
 		
 		// this.getTestCases().add(moveTest);
 		// this.getTestCases().add(addTest);
-		// this.getTestCases().add(compoundTest);
-		 this.getTestCases().add(deleteTest);
+		 //this.getTestCases().add(compoundTest);
+		 //this.getTestCases().add(deleteTest);
 		// this.getTestCases().add(referenceTest);
 		// this.getTestCases().add(compoundTest);
 		// this.getTestCases().add(createAndDeleteTest);
 		// this.getTestCases().add(transitivelyChangeAttribute);
 	    // this.getTestCases().add(removeContainmentTest);
 		// this.getTestCases().add(removeSimpleRefTest);
-		// this.getTestCases().add(createAndChangeRefTest);
+		 this.getTestCases().add(createAndChangeRefTest);
 		// this.getTestCases().add(createAndChangeAttrTest);
 		// this.getTestCases().add(commitTest);
 
@@ -131,6 +132,7 @@ public class RandomChangeTestSuite extends ChangeTestSuite {
 
 	}
 
+	@SuppressWarnings("unused")
 	private boolean containsCompareTest() {
 		for(TestCase testCase : getTestCases()){
 			if(!(testCase instanceof ChangePackageTest)){
@@ -146,6 +148,7 @@ public class RandomChangeTestSuite extends ChangeTestSuite {
 	 * compare both projects. If test project and compare project are identical
 	 * test succeeds, otherwise test fails.
 	 */
+	@SuppressWarnings("unused")
 	private void endTestSuiteCompareTests() {
 		int[] result = ChangeTestHelper.linearCompare(getTestProjectSpace(),
 				getCompareProjectSpace());
@@ -173,6 +176,7 @@ public class RandomChangeTestSuite extends ChangeTestSuite {
 	 * succeeded. It is up to user to investigate the change package after
 	 * running test, and it up to user to say if test succeeded of failed.
 	 */
+	@SuppressWarnings("unused")
 	private void endTestSuiteChangePackageTests() {
 
 		ChangePackage changePackage = ChangeTestHelper.getChangePackage(

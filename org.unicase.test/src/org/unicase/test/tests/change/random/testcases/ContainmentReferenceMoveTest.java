@@ -42,6 +42,7 @@ public class ContainmentReferenceMoveTest extends ChangePackageTest{
 
 		domain.getCommandStack().execute(new RecordingCommand(domain) {
 
+			@SuppressWarnings("unchecked")
 			@Override
 			protected void doExecute() {
 				ModelElement me = ChangeTestHelper
@@ -110,6 +111,7 @@ public class ContainmentReferenceMoveTest extends ChangePackageTest{
 		return EXPECTED_NUM_OF_CHANGES;
 	}
 
+	@Override
 	public boolean isSuccessful() {
 		//temp impl
 		return EXPECTED_NUM_OF_CHANGES == 2;

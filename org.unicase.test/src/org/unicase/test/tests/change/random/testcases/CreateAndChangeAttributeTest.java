@@ -24,6 +24,7 @@ import org.unicase.workspace.ProjectSpace;
 public class CreateAndChangeAttributeTest extends ChangePackageTest{
 
 	private static final int EXPECTED_NUM_OF_CHANGES = 1;
+	@SuppressWarnings("unused")
 	private EAttribute changedAttribute;
 	
 	
@@ -66,6 +67,7 @@ public class CreateAndChangeAttributeTest extends ChangePackageTest{
 		return EXPECTED_NUM_OF_CHANGES;
 	}
 
+	@Override
 	public boolean isSuccessful() {
 		//temp impl
 		return EXPECTED_NUM_OF_CHANGES == 1;

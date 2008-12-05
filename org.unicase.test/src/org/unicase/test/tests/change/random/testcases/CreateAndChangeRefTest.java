@@ -55,6 +55,7 @@ public class CreateAndChangeRefTest extends	ChangePackageTest {
 		return EXPECTED_NUM_OF_CHANGES;
 	}
 
+	@Override
 	public boolean isSuccessful() {
 		//temp impl
 		return EXPECTED_NUM_OF_CHANGES == 1;

@@ -59,6 +59,7 @@ public class CreateAndDeleteTest extends ChangePackageTest{
 	}
 
 	
+	@SuppressWarnings("unchecked")
 	private void changeSimpleRef(ModelElement me) {
 		
 		List<EReference> nonContainmentRefs = new ArrayList<EReference>();
@@ -94,15 +95,15 @@ public class CreateAndDeleteTest extends ChangePackageTest{
 	
 	
 	protected void deleteME(ModelElement me) {
-		//EcoreUtil.delete(me, true);
-		EcoreUtil.delete(me);
+		EcoreUtil.delete(me, true);
 	}
 
 	public int getExpectedNumOfChanges() {
-		// TODO Auto-generated method stub
+		
 		return EXPECTED_NUM_OF_CHANGES;
 	}
 
+	@Override
 	public boolean isSuccessful() {
 		//temp impl
 		return EXPECTED_NUM_OF_CHANGES == 0;

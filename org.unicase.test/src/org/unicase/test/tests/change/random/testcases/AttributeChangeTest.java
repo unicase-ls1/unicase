@@ -24,6 +24,7 @@ public class AttributeChangeTest extends ChangePackageTest {
 	
 	 private ModelElement me;
 
+	@SuppressWarnings("unused")
 	private EAttribute changedAttribute; 
 	
 	
@@ -61,6 +62,7 @@ public class AttributeChangeTest extends ChangePackageTest {
 
 	
 
+	@Override
 	public boolean isSuccessful() {
 		//temp impl
 		return EXPECTED_NUM_OF_CHANGES == 1;
