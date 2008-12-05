@@ -25,7 +25,6 @@ import org.eclipse.ui.PartInitException;
 import org.eclipse.ui.forms.editor.SharedHeaderFormEditor;
 import org.unicase.model.ModelElement;
 import org.unicase.model.provider.ModelItemProviderAdapterFactory;
-import org.unicase.workspace.WorkspaceManager;
 
 /**
  * GUI view for editing MEs.
@@ -78,20 +77,7 @@ public class MEEditor extends SharedHeaderFormEditor {
 	 */
 	@Override
 	public void doSave(IProgressMonitor monitor) {
-		//FIXME JH: can we remove this method?
-		monitor.beginTask("Saving...", 1);
-		editingDomain.getCommandStack().execute(
-				new RecordingCommand(editingDomain) {
-
-					@Override
-					protected void doExecute() {
-						WorkspaceManager.getProjectSpace(modelElement).save();
-
-					}
-
-				});
-		editorDirtyStateChanged();
-		monitor.done();
+		//do nothing (Jonas said so)
 	}
 
 	/**
