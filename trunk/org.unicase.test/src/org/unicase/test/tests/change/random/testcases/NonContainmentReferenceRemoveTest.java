@@ -41,6 +41,7 @@ public class NonContainmentReferenceRemoveTest extends ChangePackageTest {
 
 	}
 
+	@SuppressWarnings("unchecked")
 	private void doRemoveSimpleRef() {
 		ModelElement me = ChangeTestHelper.getRandomME(getTestProject());
 		Map.Entry<Object, Integer> meToRemove = getMEToRemove(me);
@@ -61,6 +62,7 @@ public class NonContainmentReferenceRemoveTest extends ChangePackageTest {
 		}
 	}
 
+	@SuppressWarnings("unchecked")
 	private Map.Entry<Object, Integer> getMEToRemove(ModelElement me) {
 
 		List<EReference> allNonContainmentRefs = new ArrayList<EReference>();
@@ -103,6 +105,7 @@ public class NonContainmentReferenceRemoveTest extends ChangePackageTest {
 		return EXPECTED_NUM_OF_CHANGES;
 	}
 
+	@Override
 	public boolean isSuccessful() {
 
 		//todo: test the operations too

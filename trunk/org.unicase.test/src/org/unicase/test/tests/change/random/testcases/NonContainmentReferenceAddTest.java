@@ -49,6 +49,9 @@ public class NonContainmentReferenceAddTest extends ChangePackageTest {
 		return EXPECTED_NUM_OF_CHANGES;
 	}
 
+	
+	
+	@Override
 	public boolean isSuccessful() {
 		
 		return EXPECTED_NUM_OF_CHANGES == 1;

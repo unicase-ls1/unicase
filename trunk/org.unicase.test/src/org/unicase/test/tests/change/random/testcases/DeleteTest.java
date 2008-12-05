@@ -66,6 +66,7 @@ public class DeleteTest extends ChangePackageTest {
 		return numOfOps;
 	}
 
+	@Override
 	public boolean isSuccessful() {
 
 		return getChangePackage(true).getOperations().size() == expectedNumOfOperations;

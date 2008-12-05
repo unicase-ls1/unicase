@@ -91,6 +91,7 @@ public class ContainmentReferenceAddNewTest extends ChangePackageTest {
 		return EXPECTED_NUM_OF_CHANGES;
 	}
 
+	@Override
 	public boolean isSuccessful() {
 		// temp impl
 		return getChangePackage(true).getOperations().size() == EXPECTED_NUM_OF_CHANGES;

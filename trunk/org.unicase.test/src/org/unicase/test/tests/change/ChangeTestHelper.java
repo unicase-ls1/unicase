@@ -123,9 +123,8 @@ public final class ChangeTestHelper {
 	 * @param testSpace
 	 * @param compareSpace
 	 */
-	@SuppressWarnings("unchecked")
 	private static void prepareCompare(final ProjectSpace testSpace,
-			final ProjectSpace compareSpace, final boolean incremental) {
+			final ProjectSpace compareSpace, final boolean accumulative) {
 		System.out.println("extracting operations from test project...");
 
 		List<AbstractOperation> operations = testSpace.getOperations();
@@ -133,8 +132,8 @@ public final class ChangeTestHelper {
 		final ChangePackage changePackage = getChangePackage(operations, true,
 				false);
 
-		// save change package for later reference
-		// the saved change package will be overwritten every time a test
+		// Save change package for later reference to disk.
+		// The saved change package will be overwritten every time a test
 		// succeeds.
 		EObject copyChangePackage = EcoreUtil.copy(changePackage);
 		ResourceSet reseourceSet = new ResourceSetImpl();
@@ -144,7 +143,7 @@ public final class ChangeTestHelper {
 		try {
 			resource.save(null);
 		} catch (IOException e) {
-			// TODO Auto-generated catch block
+			
 			e.printStackTrace();
 		}
 
@@ -157,11 +156,9 @@ public final class ChangeTestHelper {
 								.println("applying changes to compareSpace...");
 						((ProjectSpaceImpl) compareSpace).stopChangeRecording();
 						changePackage.apply(compareSpace.getProject());
-						if (!incremental) {
+						if (!accumulative) {
 							testSpace.getOperations().clear();
 						}
-
-						// compareSpace.save();
 					}
 				});
 	}
@@ -212,7 +209,6 @@ public final class ChangeTestHelper {
 			fos.write(out.toByteArray());
 			fos.close();
 		} catch (IOException e) {
-			// TODO Auto-generated catch block
 			e.printStackTrace();
 		}
 
@@ -360,6 +356,7 @@ public final class ChangeTestHelper {
 
 	}
 
+	@SuppressWarnings("unchecked")
 	public static EAttribute changeSimpleAttribute(ModelElement me,
 			EAttribute attr) {
 		EAttribute attribute = null;
@@ -386,7 +383,7 @@ public final class ChangeTestHelper {
 			if (attribute.isMany()) {
 				Object object = me.eGet(attribute);
 				EList<Boolean> eList = (EList<Boolean>) object;
-				eList.add((Boolean) getRandom().nextBoolean());
+				eList.add(getRandom().nextBoolean());
 			} else {
 				me.eSet(attribute, !((Boolean) me.eGet(attribute)));
 			}
@@ -395,7 +392,7 @@ public final class ChangeTestHelper {
 			if (attribute.isMany()) {
 				Object object = me.eGet(attribute);
 				EList<Integer> eList = (EList<Integer>) object;
-				eList.add((Integer) getRandom().nextInt());
+				eList.add(getRandom().nextInt());
 			} else {
 				me.eSet(attribute, getRandom().nextInt());
 			}
@@ -466,6 +463,7 @@ public final class ChangeTestHelper {
 		
 	}
 	
+	@SuppressWarnings("unchecked")
 	public static void changeSimpleRef(ModelElement me, Project project) {
 		
 		EReference ref = getRandomNonContainmentRef(me);
