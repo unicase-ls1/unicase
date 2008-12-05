@@ -54,7 +54,6 @@
       <eParameters name="version" eType="ecore:EClass ../../org.unicase.emfstore.esmodel/model/esmodel.ecore#//versioning/VersionSpec"/>
     </eOperations>
     <eOperations name="revert"/>
-    <eOperations name="save"/>
     <eOperations name="init"/>
     <eOperations name="getProjectInfo" eType="ecore:EClass ../../org.unicase.emfstore.esmodel/model/esmodel.ecore#//ProjectInfo"/>
     <eOperations name="resolveVersionSpec" eType="ecore:EClass ../../org.unicase.emfstore.esmodel/model/esmodel.ecore#//versioning/PrimaryVersionSpec">

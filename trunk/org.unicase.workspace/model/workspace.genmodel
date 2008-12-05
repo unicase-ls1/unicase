@@ -65,7 +65,6 @@
         <genParameters ecoreParameter="workspace.ecore#//ProjectSpace/update.1/version"/>
       </genOperations>
       <genOperations ecoreOperation="workspace.ecore#//ProjectSpace/revert"/>
-      <genOperations ecoreOperation="workspace.ecore#//ProjectSpace/save"/>
       <genOperations ecoreOperation="workspace.ecore#//ProjectSpace/init"/>
       <genOperations ecoreOperation="workspace.ecore#//ProjectSpace/getProjectInfo"/>
       <genOperations ecoreOperation="workspace.ecore#//ProjectSpace/resolveVersionSpec">

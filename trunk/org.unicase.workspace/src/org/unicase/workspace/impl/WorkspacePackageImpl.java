@@ -692,9 +692,6 @@ public class WorkspacePackageImpl extends EPackageImpl implements
 		addEOperation(projectSpaceEClass, null, "revert", 0, 1, IS_UNIQUE,
 				IS_ORDERED);
 
-		addEOperation(projectSpaceEClass, null, "save", 0, 1, IS_UNIQUE,
-				IS_ORDERED);
-
 		addEOperation(projectSpaceEClass, null, "init", 0, 1, IS_UNIQUE,
 				IS_ORDERED);
 
