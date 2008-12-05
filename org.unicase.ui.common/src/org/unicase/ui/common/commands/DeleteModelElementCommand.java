@@ -18,7 +18,6 @@ import org.eclipse.ui.PartInitException;
 import org.eclipse.ui.PlatformUI;
 import org.unicase.model.ModelElement;
 import org.unicase.ui.common.exceptions.DialogHandler;
-import org.unicase.workspace.WorkspaceManager;
 
 /**
  * Command to delete a modelelement.
@@ -59,10 +58,6 @@ public final class DeleteModelElementCommand extends RecordingCommand {
 			if (result == MessageDialog.OK) {
 
 				EcoreUtil.delete(me, true);
-
-				// MK: remove save here if save problems are all solved
-				WorkspaceManager.getInstance().getCurrentWorkspace()
-						.getActiveProjectSpace().save();
 			}
 		}
 	}
