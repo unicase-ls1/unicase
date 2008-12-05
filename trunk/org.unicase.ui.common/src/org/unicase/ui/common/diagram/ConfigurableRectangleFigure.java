@@ -22,6 +22,7 @@ public class ConfigurableRectangleFigure extends Shape {
 	* {@inheritDoc}
 	* @see org.eclipse.draw2d.StackLayout#layout(org.eclipse.draw2d.IFigure)
 	*/
+	@Override
 	protected void fillShape(Graphics graphics) {
 		graphics.fillRectangle(getBounds());
 	}
@@ -30,6 +31,7 @@ public class ConfigurableRectangleFigure extends Shape {
 	* {@inheritDoc}
 	* @see org.eclipse.draw2d.StackLayout#layout(org.eclipse.draw2d.IFigure)
 	*/
+	@Override
 	protected void outlineShape(Graphics graphics) {
 
 		Rectangle r = getBounds();
