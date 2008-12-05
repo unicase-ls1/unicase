@@ -427,6 +427,62 @@ public class ProjectSpaceItemProvider extends IdentifiableElementItemProvider
 				EventsFactory.eINSTANCE.createPluginStartEvent()));
 
 		newChildDescriptors.add(createChildParameter(
+				WorkspacePackage.Literals.PROJECT_SPACE__EVENTS,
+				EventsFactory.eINSTANCE.createUpdateEvent()));
+
+		newChildDescriptors.add(createChildParameter(
+				WorkspacePackage.Literals.PROJECT_SPACE__EVENTS,
+				EventsFactory.eINSTANCE.createAnnotationEvent()));
+
+		newChildDescriptors.add(createChildParameter(
+				WorkspacePackage.Literals.PROJECT_SPACE__EVENTS,
+				EventsFactory.eINSTANCE.createRevertEvent()));
+
+		newChildDescriptors.add(createChildParameter(
+				WorkspacePackage.Literals.PROJECT_SPACE__EVENTS,
+				EventsFactory.eINSTANCE.createShowHistoryEvent()));
+
+		newChildDescriptors.add(createChildParameter(
+				WorkspacePackage.Literals.PROJECT_SPACE__EVENTS,
+				EventsFactory.eINSTANCE.createPerspectiveEvent()));
+
+		newChildDescriptors.add(createChildParameter(
+				WorkspacePackage.Literals.PROJECT_SPACE__EVENTS,
+				EventsFactory.eINSTANCE.createDNDEvent()));
+
+		newChildDescriptors.add(createChildParameter(
+				WorkspacePackage.Literals.PROJECT_SPACE__EVENTS,
+				EventsFactory.eINSTANCE.createLinkEvent()));
+
+		newChildDescriptors.add(createChildParameter(
+				WorkspacePackage.Literals.PROJECT_SPACE__EVENTS,
+				EventsFactory.eINSTANCE.createTraceEvent()));
+
+		newChildDescriptors.add(createChildParameter(
+				WorkspacePackage.Literals.PROJECT_SPACE__EVENTS,
+				EventsFactory.eINSTANCE.createNavigatorCreateEvent()));
+
+		newChildDescriptors.add(createChildParameter(
+				WorkspacePackage.Literals.PROJECT_SPACE__EVENTS,
+				EventsFactory.eINSTANCE.createPluginFocusEvent()));
+
+		newChildDescriptors.add(createChildParameter(
+				WorkspacePackage.Literals.PROJECT_SPACE__EVENTS,
+				EventsFactory.eINSTANCE.createPresentationSwitchEvent()));
+
+		newChildDescriptors.add(createChildParameter(
+				WorkspacePackage.Literals.PROJECT_SPACE__EVENTS,
+				EventsFactory.eINSTANCE.createUndoEvent()));
+
+		newChildDescriptors.add(createChildParameter(
+				WorkspacePackage.Literals.PROJECT_SPACE__EVENTS,
+				EventsFactory.eINSTANCE.createValidate()));
+
+		newChildDescriptors.add(createChildParameter(
+				WorkspacePackage.Literals.PROJECT_SPACE__EVENTS,
+				EventsFactory.eINSTANCE.createShowChangesEvent()));
+
+		newChildDescriptors.add(createChildParameter(
 				WorkspacePackage.Literals.PROJECT_SPACE__BASE_VERSION,
 				VersioningFactory.eINSTANCE.createPrimaryVersionSpec()));
 	}
@@ -442,24 +498,21 @@ public class ProjectSpaceItemProvider extends IdentifiableElementItemProvider
 		return WorkspaceEditPlugin.INSTANCE;
 	}
 
-	
-	
-	 
 	@Override
 	public Collection<?> getChildren(Object object) {
-		if(object instanceof ProjectSpace){
+		if (object instanceof ProjectSpace) {
 			final Project project = ((ProjectSpace) object).getProject();
 			final Collection<ModelElement> compositesections = project
-			.getModelElementsByClass(DocumentPackage.eINSTANCE
-					.getCompositeSection(),
-					new BasicEList<ModelElement>());
+					.getModelElementsByClass(DocumentPackage.eINSTANCE
+							.getCompositeSection(),
+							new BasicEList<ModelElement>());
 			Collection<EObject> ret = new ArrayList<EObject>();
 			ret.addAll(compositesections);
 			ret.add(project);
 			return ret;
 		}
 		return new ArrayList<Object>();
-		
+
 	}
 
 }

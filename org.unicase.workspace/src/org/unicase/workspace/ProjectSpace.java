@@ -32,34 +32,25 @@ import org.unicase.workspace.util.UpdateObserver;
 /**
  * <!-- begin-user-doc --> A representation of the model object '
  * <em><b>Project Container</b></em>'. <!-- end-user-doc -->
- * 
+ *
  * <p>
  * The following features are supported:
  * <ul>
- * <li>{@link org.unicase.workspace.ProjectSpace#getProject <em>Project</em>}</li>
- * <li>{@link org.unicase.workspace.ProjectSpace#getProjectId <em>Project Id
- * </em>}</li>
- * <li>{@link org.unicase.workspace.ProjectSpace#getProjectName <em>Project Name
- * </em>}</li>
- * <li>{@link org.unicase.workspace.ProjectSpace#getProjectDescription <em>
- * Project Description</em>}</li>
- * <li>{@link org.unicase.workspace.ProjectSpace#getOperations <em>Operations
- * </em>}</li>
- * <li>{@link org.unicase.workspace.ProjectSpace#getEvents <em>Events</em>}</li>
- * <li>{@link org.unicase.workspace.ProjectSpace#getUsersession <em>Usersession
- * </em>}</li>
- * <li>{@link org.unicase.workspace.ProjectSpace#getLastUpdated <em>Last Updated
- * </em>}</li>
- * <li>{@link org.unicase.workspace.ProjectSpace#getBaseVersion <em>Base Version
- * </em>}</li>
- * <li>{@link org.unicase.workspace.ProjectSpace#getResourceCount <em>Resource
- * Count</em>}</li>
- * <li>{@link org.unicase.workspace.ProjectSpace#isDirty <em>Dirty</em>}</li>
- * <li>{@link org.unicase.workspace.ProjectSpace#getOldLogMessages <em>Old Log
- * Messages</em>}</li>
+ *   <li>{@link org.unicase.workspace.ProjectSpace#getProject <em>Project</em>}</li>
+ *   <li>{@link org.unicase.workspace.ProjectSpace#getProjectId <em>Project Id</em>}</li>
+ *   <li>{@link org.unicase.workspace.ProjectSpace#getProjectName <em>Project Name</em>}</li>
+ *   <li>{@link org.unicase.workspace.ProjectSpace#getProjectDescription <em>Project Description</em>}</li>
+ *   <li>{@link org.unicase.workspace.ProjectSpace#getOperations <em>Operations</em>}</li>
+ *   <li>{@link org.unicase.workspace.ProjectSpace#getEvents <em>Events</em>}</li>
+ *   <li>{@link org.unicase.workspace.ProjectSpace#getUsersession <em>Usersession</em>}</li>
+ *   <li>{@link org.unicase.workspace.ProjectSpace#getLastUpdated <em>Last Updated</em>}</li>
+ *   <li>{@link org.unicase.workspace.ProjectSpace#getBaseVersion <em>Base Version</em>}</li>
+ *   <li>{@link org.unicase.workspace.ProjectSpace#getResourceCount <em>Resource Count</em>}</li>
+ *   <li>{@link org.unicase.workspace.ProjectSpace#isDirty <em>Dirty</em>}</li>
+ *   <li>{@link org.unicase.workspace.ProjectSpace#getOldLogMessages <em>Old Log Messages</em>}</li>
  * </ul>
  * </p>
- * 
+ *
  * @see org.unicase.workspace.WorkspacePackage#getProjectSpace()
  * @model
  * @generated
@@ -73,7 +64,6 @@ public interface ProjectSpace extends IdentifiableElement {
 	 * really should be more of a description here...
 	 * </p>
 	 * <!-- end-user-doc -->
-	 * 
 	 * @return the value of the '<em>Project</em>' containment reference.
 	 * @see #setProject(Project)
 	 * @see org.unicase.workspace.WorkspacePackage#getProjectSpace_Project()
@@ -83,26 +73,22 @@ public interface ProjectSpace extends IdentifiableElement {
 	Project getProject();
 
 	/**
-	 * Sets the value of the '
-	 * {@link org.unicase.workspace.ProjectSpace#getProject <em>Project</em>}'
-	 * containment reference. <!-- begin-user-doc --> <!-- end-user-doc -->
-	 * 
-	 * @param value
-	 *            the new value of the '<em>Project</em>' containment reference.
+	 * Sets the value of the '{@link org.unicase.workspace.ProjectSpace#getProject <em>Project</em>}' containment reference.
+	 * <!-- begin-user-doc --> <!-- end-user-doc -->
+	 * @param value the new value of the '<em>Project</em>' containment reference.
 	 * @see #getProject()
 	 * @generated
 	 */
 	void setProject(Project value);
 
 	/**
-	 * Returns the value of the '<em><b>Project Id</b></em>' containment
-	 * reference. <!-- begin-user-doc -->
+	 * Returns the value of the '<em><b>Project Id</b></em>' containment reference.
+	 * <!-- begin-user-doc -->
 	 * <p>
 	 * If the meaning of the '<em>Project Id</em>' containment reference isn't
 	 * clear, there really should be more of a description here...
 	 * </p>
 	 * <!-- end-user-doc -->
-	 * 
 	 * @return the value of the '<em>Project Id</em>' containment reference.
 	 * @see #setProjectId(ProjectId)
 	 * @see org.unicase.workspace.WorkspacePackage#getProjectSpace_ProjectId()
@@ -112,14 +98,10 @@ public interface ProjectSpace extends IdentifiableElement {
 	ProjectId getProjectId();
 
 	/**
-	 * Sets the value of the '
-	 * {@link org.unicase.workspace.ProjectSpace#getProjectId
-	 * <em>Project Id</em>}' containment reference. <!-- begin-user-doc --> <!--
+	 * Sets the value of the '{@link org.unicase.workspace.ProjectSpace#getProjectId <em>Project Id</em>}' containment reference.
+	 * <!-- begin-user-doc --> <!--
 	 * end-user-doc -->
-	 * 
-	 * @param value
-	 *            the new value of the '<em>Project Id</em>' containment
-	 *            reference.
+	 * @param value the new value of the '<em>Project Id</em>' containment reference.
 	 * @see #getProjectId()
 	 * @generated
 	 */
@@ -143,13 +125,10 @@ public interface ProjectSpace extends IdentifiableElement {
 	String getProjectName();
 
 	/**
-	 * Sets the value of the '
-	 * {@link org.unicase.workspace.ProjectSpace#getProjectName
-	 * <em>Project Name</em>}' attribute. <!-- begin-user-doc --> <!--
+	 * Sets the value of the '{@link org.unicase.workspace.ProjectSpace#getProjectName <em>Project Name</em>}' attribute.
+	 * <!-- begin-user-doc --> <!--
 	 * end-user-doc -->
-	 * 
-	 * @param value
-	 *            the new value of the '<em>Project Name</em>' attribute.
+	 * @param value the new value of the '<em>Project Name</em>' attribute.
 	 * @see #getProjectName()
 	 * @generated
 	 */
@@ -163,7 +142,6 @@ public interface ProjectSpace extends IdentifiableElement {
 	 * clear, there really should be more of a description here...
 	 * </p>
 	 * <!-- end-user-doc -->
-	 * 
 	 * @return the value of the '<em>Project Description</em>' attribute.
 	 * @see #setProjectDescription(String)
 	 * @see org.unicase.workspace.WorkspacePackage#getProjectSpace_ProjectDescription()
@@ -173,31 +151,25 @@ public interface ProjectSpace extends IdentifiableElement {
 	String getProjectDescription();
 
 	/**
-	 * Sets the value of the '
-	 * {@link org.unicase.workspace.ProjectSpace#getProjectDescription
-	 * <em>Project Description</em>}' attribute. <!-- begin-user-doc --> <!--
+	 * Sets the value of the '{@link org.unicase.workspace.ProjectSpace#getProjectDescription <em>Project Description</em>}' attribute.
+	 * <!-- begin-user-doc --> <!--
 	 * end-user-doc -->
-	 * 
-	 * @param value
-	 *            the new value of the '<em>Project Description</em>' attribute.
+	 * @param value the new value of the '<em>Project Description</em>' attribute.
 	 * @see #getProjectDescription()
 	 * @generated
 	 */
 	void setProjectDescription(String value);
 
 	/**
-	 * Returns the value of the '<em><b>Operations</b></em>' containment
-	 * reference list. The list contents are of type
-	 * {@link org.unicase.emfstore.esmodel.versioning.operations.AbstractOperation}
-	 * . <!-- begin-user-doc -->
+	 * Returns the value of the '<em><b>Operations</b></em>' containment reference list.
+	 * The list contents are of type {@link org.unicase.emfstore.esmodel.versioning.operations.AbstractOperation}.
+	 * <!-- begin-user-doc -->
 	 * <p>
 	 * If the meaning of the '<em>Operations</em>' containment reference list
 	 * isn't clear, there really should be more of a description here...
 	 * </p>
 	 * <!-- end-user-doc -->
-	 * 
-	 * @return the value of the '<em>Operations</em>' containment reference
-	 *         list.
+	 * @return the value of the '<em>Operations</em>' containment reference list.
 	 * @see org.unicase.workspace.WorkspacePackage#getProjectSpace_Operations()
 	 * @model containment="true" resolveProxies="true"
 	 * @generated
@@ -240,13 +212,10 @@ public interface ProjectSpace extends IdentifiableElement {
 	Usersession getUsersession();
 
 	/**
-	 * Sets the value of the '
-	 * {@link org.unicase.workspace.ProjectSpace#getUsersession
-	 * <em>Usersession</em>}' reference. <!-- begin-user-doc --> <!--
+	 * Sets the value of the '{@link org.unicase.workspace.ProjectSpace#getUsersession <em>Usersession</em>}' reference.
+	 * <!-- begin-user-doc --> <!--
 	 * end-user-doc -->
-	 * 
-	 * @param value
-	 *            the new value of the '<em>Usersession</em>' reference.
+	 * @param value the new value of the '<em>Usersession</em>' reference.
 	 * @see #getUsersession()
 	 * @generated
 	 */
@@ -270,27 +239,23 @@ public interface ProjectSpace extends IdentifiableElement {
 	Date getLastUpdated();
 
 	/**
-	 * Sets the value of the '
-	 * {@link org.unicase.workspace.ProjectSpace#getLastUpdated
-	 * <em>Last Updated</em>}' attribute. <!-- begin-user-doc --> <!--
+	 * Sets the value of the '{@link org.unicase.workspace.ProjectSpace#getLastUpdated <em>Last Updated</em>}' attribute.
+	 * <!-- begin-user-doc --> <!--
 	 * end-user-doc -->
-	 * 
-	 * @param value
-	 *            the new value of the '<em>Last Updated</em>' attribute.
+	 * @param value the new value of the '<em>Last Updated</em>' attribute.
 	 * @see #getLastUpdated()
 	 * @generated
 	 */
 	void setLastUpdated(Date value);
 
 	/**
-	 * Returns the value of the '<em><b>Base Version</b></em>' containment
-	 * reference. <!-- begin-user-doc -->
+	 * Returns the value of the '<em><b>Base Version</b></em>' containment reference.
+	 * <!-- begin-user-doc -->
 	 * <p>
 	 * If the meaning of the '<em>Base Version</em>' containment reference isn't
 	 * clear, there really should be more of a description here...
 	 * </p>
 	 * <!-- end-user-doc -->
-	 * 
 	 * @return the value of the '<em>Base Version</em>' containment reference.
 	 * @see #setBaseVersion(PrimaryVersionSpec)
 	 * @see org.unicase.workspace.WorkspacePackage#getProjectSpace_BaseVersion()
@@ -300,14 +265,10 @@ public interface ProjectSpace extends IdentifiableElement {
 	PrimaryVersionSpec getBaseVersion();
 
 	/**
-	 * Sets the value of the '
-	 * {@link org.unicase.workspace.ProjectSpace#getBaseVersion
-	 * <em>Base Version</em>}' containment reference. <!-- begin-user-doc -->
+	 * Sets the value of the '{@link org.unicase.workspace.ProjectSpace#getBaseVersion <em>Base Version</em>}' containment reference.
+	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
-	 * 
-	 * @param value
-	 *            the new value of the '<em>Base Version</em>' containment
-	 *            reference.
+	 * @param value the new value of the '<em>Base Version</em>' containment reference.
 	 * @see #getBaseVersion()
 	 * @generated
 	 */
@@ -331,13 +292,10 @@ public interface ProjectSpace extends IdentifiableElement {
 	int getResourceCount();
 
 	/**
-	 * Sets the value of the '
-	 * {@link org.unicase.workspace.ProjectSpace#getResourceCount
-	 * <em>Resource Count</em>}' attribute. <!-- begin-user-doc --> <!--
+	 * Sets the value of the '{@link org.unicase.workspace.ProjectSpace#getResourceCount <em>Resource Count</em>}' attribute.
+	 * <!-- begin-user-doc --> <!--
 	 * end-user-doc -->
-	 * 
-	 * @param value
-	 *            the new value of the '<em>Resource Count</em>' attribute.
+	 * @param value the new value of the '<em>Resource Count</em>' attribute.
 	 * @see #getResourceCount()
 	 * @generated
 	 */
@@ -361,11 +319,9 @@ public interface ProjectSpace extends IdentifiableElement {
 	boolean isDirty();
 
 	/**
-	 * Sets the value of the '{@link org.unicase.workspace.ProjectSpace#isDirty
-	 * <em>Dirty</em>}' attribute. <!-- begin-user-doc --> <!-- end-user-doc -->
-	 * 
-	 * @param value
-	 *            the new value of the '<em>Dirty</em>' attribute.
+	 * Sets the value of the '{@link org.unicase.workspace.ProjectSpace#isDirty <em>Dirty</em>}' attribute.
+	 * <!-- begin-user-doc --> <!-- end-user-doc -->
+	 * @param value the new value of the '<em>Dirty</em>' attribute.
 	 * @see #isDirty()
 	 * @generated
 	 */
@@ -432,25 +388,14 @@ public interface ProjectSpace extends IdentifiableElement {
 	/**
 	 * <!-- begin-user-doc --> Drop all changes to the local project. <!--
 	 * end-user-doc -->
-	 * 
 	 * @model
 	 * @generated
 	 */
 	void revert();
 
 	/**
-	 * <!-- begin-user-doc --> Save the current state and changes. <!--
-	 * end-user-doc -->
-	 * 
-	 * @model
-	 * @generated
-	 */
-	void save();
-
-	/**
 	 * <!-- begin-user-doc --> Initialize project space. Start change tracking.
 	 * <!-- end-user-doc -->
-	 * 
 	 * @model
 	 * @generated
 	 */
@@ -458,7 +403,6 @@ public interface ProjectSpace extends IdentifiableElement {
 
 	/**
 	 * <!-- begin-user-doc --> Retrieve the project info. <!-- end-user-doc -->
-	 * 
 	 * @model kind="operation"
 	 * @generated
 	 */
@@ -588,8 +532,7 @@ public interface ProjectSpace extends IdentifiableElement {
 	 */
 	List<ChangePackage> getChanges(VersionSpec sourceVersion,
 			VersionSpec targetVersion) throws EmfStoreException;
-			
-	
+
 	/**
 	 * Adds a tag to the specified version of this project.
 	 * 
