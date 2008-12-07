@@ -23,6 +23,10 @@ import org.unicase.workspace.ProjectSpace;
 public class AttributeTransitiveChangeTest extends ChangePackageTest {
 
 	private ModelElement me;
+	private EAttribute attributeToChange;
+	private Object firstValue;
+	private Object secondValue;
+	private Object thirdValue;
 
 	public AttributeTransitiveChangeTest(ProjectSpace testProjectSpace, String testName,
 			TestProjectParmeters testProjParams) {
@@ -34,6 +38,7 @@ public class AttributeTransitiveChangeTest extends ChangePackageTest {
 	public void runTest() {
 
 		me = ChangeTestHelper.getRandomME(getTestProject());
+		attributeToChange = ChangeTestHelper.getRandomAttribute(me);
 		
 		
 		TransactionalEditingDomain domain = TransactionalEditingDomain.Registry.INSTANCE
@@ -53,15 +58,24 @@ public class AttributeTransitiveChangeTest extends ChangePackageTest {
 
 	protected void transChangeAttr() {
 		// from unset or a to b
-		EAttribute attribute = ChangeTestHelper.changeSimpleAttribute(me, null);
+		firstValue = me.eGet(attributeToChange);
+		ChangeTestHelper.changeSimpleAttribute(me, attributeToChange);
+		
+		secondValue = me.eGet(attributeToChange);
 
 		// from b to c
-		ChangeTestHelper.changeSimpleAttribute(me, attribute);
+		ChangeTestHelper.changeSimpleAttribute(me, attributeToChange);
+		thirdValue = me.eGet(attributeToChange);
 	}
 
 	public int getExpectedNumOfChanges() {
 
-		
+		if(firstValue == null){
+			return 1;
+		}
+		if(firstValue.equals(secondValue) && secondValue.equals(thirdValue)){
+			return 0;
+		}
 		return 1;
 	}
 
