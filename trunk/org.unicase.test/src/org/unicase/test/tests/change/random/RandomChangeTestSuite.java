@@ -106,11 +106,11 @@ public class RandomChangeTestSuite extends ChangeTestSuite {
 		// this.getTestCases().add(referenceTest);
 		// this.getTestCases().add(compoundTest);
 		// this.getTestCases().add(createAndDeleteTest);
-		//  this.getTestCases().add(attributeTransitiveChangeTest);
+		  this.getTestCases().add(attributeTransitiveChangeTest);
 	    // this.getTestCases().add(removeContainmentTest);
 		// this.getTestCases().add(removeSimpleRefTest);
 		// this.getTestCases().add(createAndChangeRefTest);
-		 this.getTestCases().add(attributeChangeTest);
+		// this.getTestCases().add(attributeChangeTest);
 		// this.getTestCases().add(createAndChangeAttrTest);
 		// this.getTestCases().add(commitTest);
 
