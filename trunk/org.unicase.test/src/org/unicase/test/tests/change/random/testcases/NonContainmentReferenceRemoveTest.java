@@ -10,6 +10,7 @@ import org.eclipse.emf.ecore.EObject;
 import org.eclipse.emf.ecore.EReference;
 import org.eclipse.emf.transaction.RecordingCommand;
 import org.eclipse.emf.transaction.TransactionalEditingDomain;
+import org.unicase.emfstore.esmodel.versioning.ChangePackage;
 import org.unicase.model.ModelElement;
 import org.unicase.test.tests.change.ChangeTestHelper;
 import org.unicase.test.tests.change.random.ChangePackageTest;
@@ -106,7 +107,7 @@ public class NonContainmentReferenceRemoveTest extends ChangePackageTest {
 	}
 
 	@Override
-	public boolean isSuccessful() {
+	public boolean isSuccessful(ChangePackage changePackage) {
 
 		//todo: test the operations too
 		return getChangePackage(true).getOperations().size() == EXPECTED_NUM_OF_CHANGES;

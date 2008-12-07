@@ -3,6 +3,7 @@ package org.unicase.test.tests.change.random.testcases;
 import org.eclipse.emf.ecore.EAttribute;
 import org.eclipse.emf.transaction.RecordingCommand;
 import org.eclipse.emf.transaction.TransactionalEditingDomain;
+import org.unicase.emfstore.esmodel.versioning.ChangePackage;
 import org.unicase.model.ModelElement;
 import org.unicase.test.tests.change.ChangeTestHelper;
 import org.unicase.test.tests.change.random.ChangePackageTest;
@@ -21,7 +22,6 @@ import org.unicase.workspace.ProjectSpace;
  */
 public class AttributeTransitiveChangeTest extends ChangePackageTest {
 
-	private static final int EXPECTED_NUM_OF_CHANGES = 1;
 	private ModelElement me;
 
 	public AttributeTransitiveChangeTest(ProjectSpace testProjectSpace, String testName,
@@ -34,7 +34,8 @@ public class AttributeTransitiveChangeTest extends ChangePackageTest {
 	public void runTest() {
 
 		me = ChangeTestHelper.getRandomME(getTestProject());
-
+		
+		
 		TransactionalEditingDomain domain = TransactionalEditingDomain.Registry.INSTANCE
 				.getEditingDomain("org.unicase.EditingDomain");
 
@@ -60,15 +61,16 @@ public class AttributeTransitiveChangeTest extends ChangePackageTest {
 
 	public int getExpectedNumOfChanges() {
 
-		return EXPECTED_NUM_OF_CHANGES;
+		
+		return 1;
 	}
 
 	@Override
-	public boolean isSuccessful() {
+	public boolean isSuccessful(ChangePackage changePackage) {
 		// todo: test operations
 		// result must be an attribOp containing me with old of vlaue its attrib
 		// = a or unset and new value = c
-		return EXPECTED_NUM_OF_CHANGES == 1;
+		return changePackage.getOperations().size() == getExpectedNumOfChanges();
 	}
 
 	

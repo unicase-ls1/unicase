@@ -47,7 +47,7 @@ public final class ChangeTestHelper {
 			+ "\\tmp\\";
 
 	private static Random random;
-	private static List<ModelElement> modelElements;
+	private static List<ModelElement> allMEsInProject;
 
 	public static ProjectSpace createEmptyProjectSpace(String name) {
 
@@ -286,14 +286,14 @@ public final class ChangeTestHelper {
 			boolean unique) {
 
 		List<ModelElement> result = new ArrayList<ModelElement>();
-		if (modelElements == null) {
+		if (allMEsInProject == null) {
 			System.out
 					.println("getting list of all model elements in project...");
-			modelElements = project.getAllModelElements();
-			System.out.println(modelElements.size() + " MEs in project...");
+			allMEsInProject = project.getAllModelElements();
+			System.out.println(allMEsInProject.size() + " MEs in project...");
 		}
 
-		int numOfMEs = modelElements.size();
+		int numOfMEs = allMEsInProject.size();
 		if (num > numOfMEs) {
 			throw new IllegalArgumentException(
 					"Number of random MEs to return is greater than total number of MEs in project.");
@@ -301,7 +301,7 @@ public final class ChangeTestHelper {
 
 		if (unique) {
 			do {
-				final ModelElement me = modelElements.get(getRandom().nextInt(
+				final ModelElement me = allMEsInProject.get(getRandom().nextInt(
 						numOfMEs - 1));
 				if (!result.contains(me)) {
 					result.add(me);
@@ -311,7 +311,7 @@ public final class ChangeTestHelper {
 
 		} else {
 			for (int i = 0; i < num; i++) {
-				final ModelElement me = modelElements.get(getRandom().nextInt(
+				final ModelElement me = allMEsInProject.get(getRandom().nextInt(
 						numOfMEs - 1));
 				result.add(me);
 			}
@@ -407,11 +407,12 @@ public final class ChangeTestHelper {
 			}
 
 		}
-		if (attribute.getEType().getInstanceClass().equals(EEnum.class)) {
-			EEnum en = (EEnum) attribute;
-			int index = getRandom().nextInt(en.getELiterals().size());
+		if (attribute.getEType() instanceof EEnum) {
+			EEnum en = (EEnum) attribute.getEType();
+			int numOfLiterals = en.getELiterals().size();
+			int index = numOfLiterals == 1 ? 0 : getRandom().nextInt(numOfLiterals - 1); 
 			EEnumLiteral value = en.getELiterals().get(index);
-			me.eSet(attribute, value);
+			me.eSet(attribute, value.getInstance());
 		}
 
 		return attribute;
