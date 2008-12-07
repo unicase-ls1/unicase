@@ -32,9 +32,9 @@ public class RandomChangeTestSuite extends ChangeTestSuite {
 		System.out.println("adding testcases...");
 
 		// AttributeChangeTest
-		AttributeChangeTest changeAttributeTest = new AttributeChangeTest(getTestProjectSpace(), 
+		AttributeChangeTest attributeChangeTest = new AttributeChangeTest(getTestProjectSpace(), 
 				"AttributeChangeTest", getTestProjectPrams());
-		testCases.add(changeAttributeTest);
+		testCases.add(attributeChangeTest);
 
 		// DeleteTest
 		 DeleteTest deleteTest = new DeleteTest(getTestProjectSpace(), "Delete", getTestProjectPrams());
@@ -64,9 +64,9 @@ public class RandomChangeTestSuite extends ChangeTestSuite {
 
 		
 		// AttributeTransitiveChangeTest Test
-		AttributeTransitiveChangeTest transitivelyChangeAttribute = new AttributeTransitiveChangeTest(getTestProjectSpace(), 
+		AttributeTransitiveChangeTest attributeTransitiveChangeTest = new AttributeTransitiveChangeTest(getTestProjectSpace(), 
 				"AttributeTransitiveChangeTest", getTestProjectPrams());
-		testCases.add(transitivelyChangeAttribute);
+		testCases.add(attributeTransitiveChangeTest);
 
 
 		// RemoveSimpleRef Test
@@ -101,15 +101,16 @@ public class RandomChangeTestSuite extends ChangeTestSuite {
 		
 		// this.getTestCases().add(moveTest);
 		// this.getTestCases().add(addTest);
-		 //this.getTestCases().add(compoundTest);
-		 //this.getTestCases().add(deleteTest);
+		// this.getTestCases().add(compoundTest);
+		// this.getTestCases().add(deleteTest);
 		// this.getTestCases().add(referenceTest);
 		// this.getTestCases().add(compoundTest);
 		// this.getTestCases().add(createAndDeleteTest);
-		// this.getTestCases().add(transitivelyChangeAttribute);
+		//  this.getTestCases().add(attributeTransitiveChangeTest);
 	    // this.getTestCases().add(removeContainmentTest);
 		// this.getTestCases().add(removeSimpleRefTest);
-		 this.getTestCases().add(createAndChangeRefTest);
+		// this.getTestCases().add(createAndChangeRefTest);
+		 this.getTestCases().add(attributeChangeTest);
 		// this.getTestCases().add(createAndChangeAttrTest);
 		// this.getTestCases().add(commitTest);
 

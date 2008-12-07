@@ -5,6 +5,7 @@ import org.eclipse.emf.ecore.EObject;
 import org.eclipse.emf.ecore.util.EcoreUtil;
 import org.eclipse.emf.transaction.RecordingCommand;
 import org.eclipse.emf.transaction.TransactionalEditingDomain;
+import org.unicase.emfstore.esmodel.versioning.ChangePackage;
 import org.unicase.model.ModelElement;
 import org.unicase.test.tests.change.ChangeTestHelper;
 import org.unicase.test.tests.change.random.ChangePackageTest;
@@ -67,7 +68,7 @@ public class DeleteTest extends ChangePackageTest {
 	}
 
 	@Override
-	public boolean isSuccessful() {
+	public boolean isSuccessful(ChangePackage changePackage) {
 
 		return getChangePackage(true).getOperations().size() == expectedNumOfOperations;
 	}

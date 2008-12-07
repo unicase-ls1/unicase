@@ -3,6 +3,7 @@ package org.unicase.test.tests.change.random.testcases;
 import org.eclipse.emf.ecore.EAttribute;
 import org.eclipse.emf.transaction.RecordingCommand;
 import org.eclipse.emf.transaction.TransactionalEditingDomain;
+import org.unicase.emfstore.esmodel.versioning.ChangePackage;
 import org.unicase.model.ModelElement;
 import org.unicase.test.tests.change.ChangeTestHelper;
 import org.unicase.test.tests.change.random.ChangePackageTest;
@@ -20,12 +21,14 @@ import org.unicase.workspace.ProjectSpace;
  */
 public class AttributeChangeTest extends ChangePackageTest {
 
-	private static final int EXPECTED_NUM_OF_CHANGES = 1;
+	
 	
 	 private ModelElement me;
 
 	@SuppressWarnings("unused")
-	private EAttribute changedAttribute; 
+	private EAttribute attributeToChange; 
+	private Object oldAttrValue;
+	private Object newAttrValue;
 	
 	
 	public AttributeChangeTest(ProjectSpace testProjectSpace, String testName,TestProjectParmeters testProjParams) {
@@ -40,6 +43,8 @@ public class AttributeChangeTest extends ChangePackageTest {
 				.getEditingDomain("org.unicase.EditingDomain");
 
 		 me = ChangeTestHelper.getRandomME(getTestProject());
+		 attributeToChange = ChangeTestHelper.getRandomAttribute(me);
+		 
 
 		domain.getCommandStack().execute(new RecordingCommand(domain) {
 
@@ -49,23 +54,35 @@ public class AttributeChangeTest extends ChangePackageTest {
 			}
 
 		});
-
+		
 	}
 
 	protected void changeAttribute() {
-		changedAttribute = ChangeTestHelper.changeSimpleAttribute(me, null);
+		oldAttrValue = me.eGet(attributeToChange);
+		ChangeTestHelper.changeSimpleAttribute(me, attributeToChange);
+		newAttrValue = me.eGet(attributeToChange);
+		
 	}
 
 	public int getExpectedNumOfChanges() {
-		return EXPECTED_NUM_OF_CHANGES;
+		//expected num of changes is 1 or 0
+		// 0 if new value of attribute is equal its old value. (notification is touch)
+		if(oldAttrValue == null){
+			return 1;
+		}
+		if(oldAttrValue.equals(newAttrValue)){
+			return 0;
+		}else{
+			return 1;
+		}
 	}
 
 	
 
 	@Override
-	public boolean isSuccessful() {
+	public boolean isSuccessful(ChangePackage changePackage) {
 		//temp impl
-		return EXPECTED_NUM_OF_CHANGES == 1;
+		return changePackage.getOperations().size() == getExpectedNumOfChanges();
 	}
 
 }

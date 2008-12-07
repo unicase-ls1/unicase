@@ -24,7 +24,9 @@ import org.eclipse.emf.ecore.EObject;
 import org.eclipse.emf.ecore.EPackage;
 import org.eclipse.emf.ecore.EReference;
 import org.eclipse.emf.ecore.impl.ETypedElementImpl;
+import org.eclipse.emf.ecore.provider.EEnumLiteralItemProvider;
 import org.eclipse.emf.ecore.util.EcoreUtil;
+import org.eclipse.emf.edit.provider.ComposedAdapterFactory;
 import org.eclipse.emf.transaction.RecordingCommand;
 import org.eclipse.emf.transaction.TransactionalEditingDomain;
 import org.eclipse.ui.PartInitException;
@@ -736,11 +738,13 @@ public class TestProjectGenerator {
 				instance.eSet(attribute, getRandomDate());
 				continue;
 			}
-			if (attribute.getEType().getInstanceClass().equals(EEnum.class)) {
-				EEnum en = (EEnum) attribute;
-				int index = random.nextInt(en.getELiterals().size());
+			if (attribute.getEType() instanceof EEnum) {
+				EEnum en = (EEnum) attribute.getEType();
+				int numOfLiterals = en.getELiterals().size();
+				int index = numOfLiterals == 1 ? 0 : random.nextInt(numOfLiterals - 1); 
 				EEnumLiteral value = en.getELiterals().get(index);
-				instance.eSet(attribute, value);
+				instance.eSet(attribute, value.getInstance());
+				
 				continue;
 			}
 

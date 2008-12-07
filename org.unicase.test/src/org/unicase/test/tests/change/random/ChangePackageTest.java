@@ -19,20 +19,22 @@ public abstract class ChangePackageTest extends RandomChangeTestCase {
 		super(testProjectSpace, testName, testProjParams);
 	}
 
-	public abstract boolean isSuccessful();
+	
+	public abstract boolean isSuccessful(ChangePackage changePackage);
 	
 	@Override
 	public void outputResults(boolean outputToFile) {
 
 		super.outputResults(false);
-
-		if (this.isSuccessful()) {
-			System.out.println("ok");
-			return;
-		}
 		
 		ChangePackage changePackage = getChangePackage(true);
+
+		if (this.isSuccessful(changePackage)) {
+			System.out.println("ok");
+//			return;
+		}
 		
+			
 		StringBuilder sb = new StringBuilder();
 //		sb.append("============== " + getTestName() + " ============="
 //				+ Calendar.getInstance().getTime().toString());
