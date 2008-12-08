@@ -147,8 +147,15 @@ public class UCDropAdapter extends DropTargetAdapter {
 						}
 					});
 		} else if (target instanceof MEDiagram) {
-			super.drop(event);
-			MEDiagram diagram = (MEDiagram) target;
+			final MEDiagram diagram = (MEDiagram) target;
+			domain.getCommandStack().execute(
+					new RecordingCommand((TransactionalEditingDomain) domain) {
+						@Override
+						protected void doExecute() {
+							diagram.getElements().addAll(source);
+						}
+					});
+			
 			ActionHelper.openModelElement(diagram, this.getClass().getName());
 
 		} else {
