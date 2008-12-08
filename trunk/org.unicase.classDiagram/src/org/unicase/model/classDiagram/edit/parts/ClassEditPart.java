@@ -311,6 +311,9 @@ public class ClassEditPart extends ShapeNodeEditPart {
 
 			this.setLayoutManager(layoutThis);
 
+			this.setBorder(new MarginBorder(getMapMode().DPtoLP(0),
+					getMapMode().DPtoLP(0), getMapMode().DPtoLP(1),
+					getMapMode().DPtoLP(0)));
 			createContents();
 		}
 

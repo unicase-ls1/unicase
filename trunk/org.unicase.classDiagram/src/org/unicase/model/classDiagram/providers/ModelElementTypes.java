@@ -47,7 +47,7 @@ public class ModelElementTypes extends ElementInitializers {
 	/**
 	 * @generated
 	 */
-	public static final IElementType MEDiagram_1000 = getElementType("org.unicase.classDiagram.MEDiagram_1000"); //$NON-NLS-1$
+	public static final IElementType MEDiagram_88 = getElementType("org.unicase.classDiagram.MEDiagram_88"); //$NON-NLS-1$
 
 	/**
 	 * @generated
@@ -210,8 +210,7 @@ public class ModelElementTypes extends ElementInitializers {
 		if (elements == null) {
 			elements = new IdentityHashMap();
 
-			elements.put(MEDiagram_1000, DiagramPackage.eINSTANCE
-					.getMEDiagram());
+			elements.put(MEDiagram_88, DiagramPackage.eINSTANCE.getMEDiagram());
 
 			elements.put(Class_2001, ClassesPackage.eINSTANCE.getClass_());
 
@@ -256,7 +255,7 @@ public class ModelElementTypes extends ElementInitializers {
 	public static boolean isKnownElementType(IElementType elementType) {
 		if (KNOWN_ELEMENT_TYPES == null) {
 			KNOWN_ELEMENT_TYPES = new HashSet();
-			KNOWN_ELEMENT_TYPES.add(MEDiagram_1000);
+			KNOWN_ELEMENT_TYPES.add(MEDiagram_88);
 			KNOWN_ELEMENT_TYPES.add(Class_2001);
 			KNOWN_ELEMENT_TYPES.add(Package_2002);
 			KNOWN_ELEMENT_TYPES.add(Attribute_3001);

@@ -276,12 +276,12 @@
       <?gmfgen generated="true"?>
       <metamodel nsURI="http://unicase.org/model/diagram">
          <metamodelType
-               id="org.unicase.classDiagram.MEDiagram_1000"
-               name="%metatype.name.MEDiagram_1000"
+               id="org.unicase.classDiagram.MEDiagram_88"
+               name="%metatype.name.MEDiagram_88"
                kind="org.eclipse.gmf.runtime.emf.type.core.IHintedType"
                eclass="MEDiagram"
                edithelper="org.unicase.model.classDiagram.edit.helpers.MEDiagramEditHelper">
-            <param name="semanticHint" value="1000"/>
+            <param name="semanticHint" value="88"/>
          </metamodelType>
       </metamodel>
       <metamodel nsURI="http://unicase.org/model/classes">
@@ -570,4 +570,5 @@
          </action>
       </objectContribution>
 </extension>
+
 </plugin>
