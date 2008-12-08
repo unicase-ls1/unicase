@@ -25,7 +25,6 @@ public class AttributeChangeTest extends ChangePackageTest {
 	
 	 private ModelElement me;
 
-	@SuppressWarnings("unused")
 	private EAttribute attributeToChange; 
 	private Object oldAttrValue;
 	private Object newAttrValue;
