@@ -24,9 +24,8 @@ import org.unicase.workspace.ProjectSpace;
 
 public class CreateAndChangeAttributeTest extends ChangePackageTest{
 
-	private static final int EXPECTED_NUM_OF_CHANGES = 1;
-	@SuppressWarnings("unused")
-	private EAttribute changedAttribute;
+	private ModelElement me;
+	private EAttribute attributeToChange;
 	
 	
 	public CreateAndChangeAttributeTest(ProjectSpace testProjectSpace, String testName, TestProjectParmeters testProjParams) {
@@ -37,7 +36,13 @@ public class CreateAndChangeAttributeTest extends ChangePackageTest{
 	@Override
 	public void runTest() {
 
-		final ModelElement me = ChangeTestHelper.createRandomME();
+		me = ChangeTestHelper.createRandomME();
+		attributeToChange = ChangeTestHelper.getRandomAttribute(me);
+		
+		while(attributeToChange == null){
+			me = ChangeTestHelper.createRandomME();
+			attributeToChange = ChangeTestHelper.getRandomAttribute(me);
+		}
 
 		TransactionalEditingDomain domain = TransactionalEditingDomain.Registry.INSTANCE
 				.getEditingDomain("org.unicase.EditingDomain");
@@ -46,9 +51,9 @@ public class CreateAndChangeAttributeTest extends ChangePackageTest{
 
 			@Override
 			protected void doExecute() {
-				getTestProject().getModelElements().add(me);
-				//me.setName("newly created " + me.eClass().getName());
-				changeRandomAttribute(me);
+				
+				doAddAndChangeAttribute();
+				
 			}
 
 		});
@@ -58,20 +63,26 @@ public class CreateAndChangeAttributeTest extends ChangePackageTest{
 	
 	
 	
-	protected void changeRandomAttribute(ModelElement me) {
-
-		 changedAttribute = ChangeTestHelper.changeSimpleAttribute(me, null);
+	private void doAddAndChangeAttribute() {
+		getTestProject().getModelElements().add(me);
+		ChangeTestHelper.changeSimpleAttribute(me, attributeToChange);
 	}
 
 	
+
+		
+	
+
+	
 	public int getExpectedNumOfChanges() {
-		return EXPECTED_NUM_OF_CHANGES;
+		//only one CreateDeleteOp for newly created me.
+		return 1;
 	}
 
 	@Override
 	public boolean isSuccessful(ChangePackage changePackage) {
 		//temp impl
-		return EXPECTED_NUM_OF_CHANGES == 1;
+		return changePackage.getOperations().size() == getExpectedNumOfChanges();
 	}
 	
 	

@@ -143,7 +143,7 @@ public final class ChangeTestHelper {
 		try {
 			resource.save(null);
 		} catch (IOException e) {
-			
+
 			e.printStackTrace();
 		}
 
@@ -301,8 +301,8 @@ public final class ChangeTestHelper {
 
 		if (unique) {
 			do {
-				final ModelElement me = allMEsInProject.get(getRandom().nextInt(
-						numOfMEs - 1));
+				final ModelElement me = allMEsInProject.get(getRandom()
+						.nextInt(numOfMEs - 1));
 				if (!result.contains(me)) {
 					result.add(me);
 				}
@@ -311,8 +311,8 @@ public final class ChangeTestHelper {
 
 		} else {
 			for (int i = 0; i < num; i++) {
-				final ModelElement me = allMEsInProject.get(getRandom().nextInt(
-						numOfMEs - 1));
+				final ModelElement me = allMEsInProject.get(getRandom()
+						.nextInt(numOfMEs - 1));
 				result.add(me);
 			}
 
@@ -335,37 +335,29 @@ public final class ChangeTestHelper {
 		return me;
 	}
 
-	public static ModelElement createInstance(EClass refType) {
+	public static EObject createInstance(EClass refType) {
 
-		ModelElement me = null;
+		EObject ret = null;
 
 		if (refType.isAbstract() || refType.isInterface()) {
-			List<EClass> eClazz = ModelUtil.getSubclasses(refType);
+			List<EClass> eClazz = ModelUtil.getSubclasses(refType, refType.getEPackage());
 			int index = eClazz.size() == 1 ? 0 : getRandom().nextInt(
 					eClazz.size());
 			refType = eClazz.get(index);
 		}
 
-		EObject eObject = refType.getEPackage().getEFactoryInstance().create(
+		ret = refType.getEPackage().getEFactoryInstance().create(
 				refType);
-		if (eObject instanceof ModelElement) {
-			me = (ModelElement) eObject;
-		}
+		
 
-		return me;
+		return ret;
 
 	}
 
 	@SuppressWarnings("unchecked")
-	public static EAttribute changeSimpleAttribute(ModelElement me,
-			EAttribute attr) {
-		EAttribute attribute = null;
-		if (attr == null) {
-			attribute = getRandomAttribute(me);
-		}else{
-			attribute = attr;
-		}
-
+	public static void changeSimpleAttribute(ModelElement me,
+			EAttribute attribute) {
+	
 		if (attribute.getEType().getInstanceClass().equals(String.class)) {
 			if (attribute.isMany()) {
 				Object object = me.eGet(attribute);
@@ -410,12 +402,11 @@ public final class ChangeTestHelper {
 		if (attribute.getEType() instanceof EEnum) {
 			EEnum en = (EEnum) attribute.getEType();
 			int numOfLiterals = en.getELiterals().size();
-			int index = numOfLiterals == 1 ? 0 : getRandom().nextInt(numOfLiterals - 1); 
+			int index = numOfLiterals == 1 ? 0 : getRandom().nextInt(
+					numOfLiterals - 1);
 			EEnumLiteral value = en.getELiterals().get(index);
 			me.eSet(attribute, value.getInstance());
 		}
-
-		return attribute;
 
 	}
 
@@ -431,43 +422,68 @@ public final class ChangeTestHelper {
 		return new Date();
 	}
 
-	public static EAttribute getRandomAttribute(ModelElement me){
+	public static EAttribute getRandomAttribute(ModelElement me) {
+		EAttribute attribute = null;
 		List<EAttribute> attributes = new ArrayList<EAttribute>();
 		for (EAttribute tmpAttr : me.eClass().getEAllAttributes()) {
 			if (tmpAttr.isChangeable()
-					&& tmpAttr.getFeatureID() != ModelPackage.MODEL_ELEMENT__IDENTIFIER) {
+					&& tmpAttr.getFeatureID() != ModelPackage.MODEL_ELEMENT__IDENTIFIER
+					&& !tmpAttr.isTransient()) {
 				attributes.add(tmpAttr);
 			}
 		}
 
+		
 		int size = attributes.size();
-		EAttribute attribute = attributes.get(size == 1 ? 0 : getRandom().nextInt(
-				size - 1));
+		if(size != 0){
+			 attribute = attributes.get(size == 1 ? 0 : getRandom()
+				.nextInt(size - 1));
+
+		}
 		
 		return attribute;
-		
+
 	}
-	
-	
-	public static EReference getRandomNonContainmentRef(ModelElement me){
+
+	public static EReference getRandomNonContainmentRef(ModelElement me) {
+		EReference nonContainmentRef = null;
 		List<EReference> nonContainmentRefs = new ArrayList<EReference>();
 		for (EReference ref : me.eClass().getEAllReferences()) {
-			if (!ref.isContainment() && !ref.isContainer()) {
+			if (!ref.isContainment() && !ref.isContainer() && ref.isChangeable() && !ref.isTransient()) {
 				nonContainmentRefs.add(ref);
 			}
 		}
 
-		EReference ref = nonContainmentRefs.get(getRandom().nextInt(
-				nonContainmentRefs.size() - 1));
+		int size = nonContainmentRefs.size();
+		if (size != 0) {
+			nonContainmentRef = nonContainmentRefs.get(size == 1 ? 0 : getRandom()
+					.nextInt(size - 1));
+		}
 		
-		return ref;
-		
+		return nonContainmentRef;
+
 	}
-	
+
+	public static EReference getRandomContainmentRef(ModelElement me) {
+		EReference containmentRef = null;
+		List<EReference> containments = new ArrayList<EReference>();
+		for (EReference ref : me.eClass().getEAllContainments()) {
+			if (ref.isChangeable() && !ref.isTransient()) {
+				containments.add(ref);
+			}
+		}
+		int size = containments.size();
+		if (size != 0) {
+			containmentRef = containments.get(size == 1 ? 0 : getRandom()
+					.nextInt(size - 1));
+		}
+
+		return containmentRef;
+	}
+
 	@SuppressWarnings("unchecked")
-	public static void changeSimpleRef(ModelElement me, Project project) {
-		
-		EReference ref = getRandomNonContainmentRef(me);
+	public static void changeSimpleRef(ModelElement me, EReference ref, Project project) {
+
 		EClass refType = ref.getEReferenceType();
 		List<ModelElement> refTypeMEs = project.getAllModelElementsbyClass(
 				refType, new BasicEList<ModelElement>());

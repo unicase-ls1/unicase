@@ -1,5 +1,6 @@
 package org.unicase.test.tests.change.random.testcases;
 
+import org.eclipse.emf.ecore.EReference;
 import org.eclipse.emf.transaction.RecordingCommand;
 import org.eclipse.emf.transaction.TransactionalEditingDomain;
 import org.unicase.emfstore.esmodel.versioning.ChangePackage;
@@ -20,8 +21,10 @@ import org.unicase.workspace.ProjectSpace;
  */
 public class NonContainmentReferenceAddTest extends ChangePackageTest {
 
-	private static final int EXPECTED_NUM_OF_CHANGES = 1;
-
+	private ModelElement me;
+	private EReference refToChange;
+	
+	
 	public NonContainmentReferenceAddTest(ProjectSpace testProjectSpace, String testName, TestProjectParmeters testProjParams) {
 		super(testProjectSpace, testName, testProjParams);
 
@@ -30,7 +33,13 @@ public class NonContainmentReferenceAddTest extends ChangePackageTest {
 	@Override
 	public void runTest() {
 
-		final ModelElement me = ChangeTestHelper.getRandomME(getTestProject());
+		me = ChangeTestHelper.getRandomME(getTestProject());
+		refToChange = ChangeTestHelper.getRandomNonContainmentRef(me);
+		
+		while(refToChange == null){
+			me = ChangeTestHelper.createRandomME();
+			refToChange = ChangeTestHelper.getRandomNonContainmentRef(me);
+		}
 
 		TransactionalEditingDomain domain = TransactionalEditingDomain.Registry.INSTANCE
 				.getEditingDomain("org.unicase.EditingDomain");
@@ -39,15 +48,19 @@ public class NonContainmentReferenceAddTest extends ChangePackageTest {
 
 			@Override
 			protected void doExecute() {
-				ChangeTestHelper.changeSimpleRef(me, getTestProject());
+				doChangeSimpleRef();
 			}
 
 		});
 	}
+	
+	private void doChangeSimpleRef(){
+		ChangeTestHelper.changeSimpleRef(me, refToChange, getTestProject());
+	}
 
 	public int getExpectedNumOfChanges() {
 
-		return EXPECTED_NUM_OF_CHANGES;
+		return 1;
 	}
 
 	
@@ -55,7 +68,7 @@ public class NonContainmentReferenceAddTest extends ChangePackageTest {
 	@Override
 	public boolean isSuccessful(ChangePackage changePackage) {
 		
-		return EXPECTED_NUM_OF_CHANGES == 1;
+		return changePackage.getOperations().size() == getExpectedNumOfChanges();
 	}
 
 	

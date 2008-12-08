@@ -1,7 +1,5 @@
 package org.unicase.test.tests.change.random.testcases;
 
-import java.util.List;
-
 import org.eclipse.emf.common.util.EList;
 import org.eclipse.emf.ecore.EClass;
 import org.eclipse.emf.ecore.EObject;
@@ -29,9 +27,13 @@ import org.unicase.workspace.ProjectSpace;
  */
 public class ContainmentReferenceAddNewTest extends ChangePackageTest {
 
-	private static final int EXPECTED_NUM_OF_CHANGES = 2;
 
-	public ContainmentReferenceAddNewTest(ProjectSpace testProjectSpace, String testName, TestProjectParmeters testProjParams) {
+	private ModelElement me;
+	private EReference refToChange;
+	private EObject newInstance;
+	
+	public ContainmentReferenceAddNewTest(ProjectSpace testProjectSpace,
+			String testName, TestProjectParmeters testProjParams) {
 		super(testProjectSpace, testName, testProjParams);
 
 	}
@@ -53,48 +55,53 @@ public class ContainmentReferenceAddNewTest extends ChangePackageTest {
 	}
 
 	@SuppressWarnings("unchecked")
-	private void doAddTest() {
+	private void doAddTest()  {
 
-		ModelElement me = ChangeTestHelper.getRandomME(getTestProject());
-		List<EReference> containments = me.eClass().getEAllContainments();
+		me = ChangeTestHelper.getRandomME(getTestProject());
+		refToChange = ChangeTestHelper.getRandomContainmentRef(me);
 
-		while (containments.size() == 0) {
+		while (refToChange == null) {
 			me = ChangeTestHelper.getRandomME(getTestProject());
-			containments = me.eClass().getEAllContainments();
+			refToChange = ChangeTestHelper.getRandomContainmentRef(me);
 		}
+		
+		EClass refType = refToChange.getEReferenceType();
 
-		int size = containments.size();
-		EReference ref = containments.get(size == 1 ? 0 : getRandom().nextInt(
-				size - 1));
-		EClass refType = ref.getEReferenceType();
-
-		ModelElement newInstance = ChangeTestHelper.createInstance(refType);
+		newInstance = ChangeTestHelper.createInstance(refType);
 
 		if (newInstance == null) {
-			return;
+			throw new IllegalStateException("could not create a model element of specified type.");
 		}
 
-		Object object = me.eGet(ref);
-		if (ref.isMany()) {
+		Object object = me.eGet(refToChange);
+		if (refToChange.isMany()) {
 			EList<EObject> eList = (EList<EObject>) object;
+			
 			if (eList == null) {
 				throw new IllegalStateException("Null list return for feature "
-						+ ref.getName() + " on " + me.getName());
+						+ refToChange.getName() + " on " + me.getName());
+				
+				
 			} else {
 				eList.add(newInstance);
 			}
+			
 		} else {
-			me.eSet(ref, newInstance);
+			me.eSet(refToChange, newInstance);
 		}
+		
+	
 	}
 
 	public int getExpectedNumOfChanges() {
-		return EXPECTED_NUM_OF_CHANGES;
+		//1. a CreateDeleteOp for new ME
+		//2. a MultiRefOp for parent.
+		return 2; 
 	}
 
 	@Override
 	public boolean isSuccessful(ChangePackage changePackage) {
 		// temp impl
-		return getChangePackage(true).getOperations().size() == EXPECTED_NUM_OF_CHANGES;
+		return changePackage.getOperations().size() == getExpectedNumOfChanges();
 	}
 }

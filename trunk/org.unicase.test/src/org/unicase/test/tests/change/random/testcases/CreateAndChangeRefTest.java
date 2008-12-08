@@ -1,5 +1,6 @@
 package org.unicase.test.tests.change.random.testcases;
 
+import org.eclipse.emf.ecore.EReference;
 import org.eclipse.emf.transaction.RecordingCommand;
 import org.eclipse.emf.transaction.TransactionalEditingDomain;
 import org.unicase.emfstore.esmodel.versioning.ChangePackage;
@@ -19,19 +20,26 @@ import org.unicase.workspace.ProjectSpace;
  * @author Hodaie
  * 
  */
-public class CreateAndChangeRefTest extends	ChangePackageTest {
+public class CreateAndChangeRefTest extends ChangePackageTest {
 
-	private static final int EXPECTED_NUM_OF_CHANGES = 2;
+	private ModelElement me;
+	private EReference refToChange;
 
-	public CreateAndChangeRefTest(ProjectSpace testProjectSpace, String testName, TestProjectParmeters testProjParams) {
+	public CreateAndChangeRefTest(ProjectSpace testProjectSpace,
+			String testName, TestProjectParmeters testProjParams) {
 		super(testProjectSpace, testName, testProjParams);
 
 	}
 
 	@Override
 	public void runTest() {
-		final ModelElement me = ChangeTestHelper.createRandomME();
-		// me.setName("newly created " + me.eClass().getName());
+		me = ChangeTestHelper.createRandomME();
+		refToChange = ChangeTestHelper.getRandomNonContainmentRef(me);
+		
+		while(refToChange == null){
+			me = ChangeTestHelper.createRandomME();
+			refToChange = ChangeTestHelper.getRandomNonContainmentRef(me);
+		}
 
 		TransactionalEditingDomain domain = TransactionalEditingDomain.Registry.INSTANCE
 				.getEditingDomain("org.unicase.EditingDomain");
@@ -40,27 +48,30 @@ public class CreateAndChangeRefTest extends	ChangePackageTest {
 
 			@Override
 			protected void doExecute() {
-				getTestProject().getModelElements().add(me);
-				ChangeTestHelper.changeSimpleRef(me, getTestProject());
+
+				doAddAndChangeRef();
+
 			}
 
 		});
 
 	}
 
-	
+	protected void doAddAndChangeRef() {
 
+		getTestProject().getModelElements().add(me);
+		ChangeTestHelper.changeSimpleRef(me, refToChange, getTestProject());
 		
+	}
 
 	public int getExpectedNumOfChanges() {
-		return EXPECTED_NUM_OF_CHANGES;
+		return 2;
 	}
 
 	@Override
 	public boolean isSuccessful(ChangePackage changePackage) {
-		//temp impl
-		return EXPECTED_NUM_OF_CHANGES == 1;
+		// temp impl
+		return changePackage.getOperations().size() == getExpectedNumOfChanges();
 	}
-
 
 }

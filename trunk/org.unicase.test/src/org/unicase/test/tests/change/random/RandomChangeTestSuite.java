@@ -47,8 +47,8 @@ public class RandomChangeTestSuite extends ChangeTestSuite {
 
 		
 		// ContainmentReferenceAddNewTest
-		ContainmentReferenceAddNewTest addTest = new ContainmentReferenceAddNewTest(getTestProjectSpace(), "Add", getTestProjectPrams());
-		testCases.add(addTest);
+		ContainmentReferenceAddNewTest containmentReferenceAddNewTest = new ContainmentReferenceAddNewTest(getTestProjectSpace(), "ContainmentReferenceAddNewTest", getTestProjectPrams());
+		testCases.add(containmentReferenceAddNewTest);
 
 		
 		// Reference Test
@@ -100,13 +100,13 @@ public class RandomChangeTestSuite extends ChangeTestSuite {
 		
 		
 		// this.getTestCases().add(moveTest);
-		// this.getTestCases().add(addTest);
+		 this.getTestCases().add(containmentReferenceAddNewTest);
 		// this.getTestCases().add(compoundTest);
 		// this.getTestCases().add(deleteTest);
 		// this.getTestCases().add(referenceTest);
 		// this.getTestCases().add(compoundTest);
 		// this.getTestCases().add(createAndDeleteTest);
-		  this.getTestCases().add(attributeTransitiveChangeTest);
+		// this.getTestCases().add(attributeTransitiveChangeTest);
 	    // this.getTestCases().add(removeContainmentTest);
 		// this.getTestCases().add(removeSimpleRefTest);
 		// this.getTestCases().add(createAndChangeRefTest);
