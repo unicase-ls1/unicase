@@ -7,16 +7,22 @@
 
 package org.unicase.ui.common.util;
 
+import java.util.ArrayList;
 import java.util.Collection;
 import java.util.List;
 
+import org.eclipse.emf.ecore.EObject;
+import org.eclipse.emf.ecore.EStructuralFeature.Setting;
 import org.eclipse.emf.edit.provider.ComposedAdapterFactory;
 import org.eclipse.emf.edit.ui.provider.AdapterFactoryLabelProvider;
+import org.eclipse.gmf.runtime.emf.core.util.CrossReferenceAdapter;
 import org.eclipse.jface.window.Window;
 import org.eclipse.swt.widgets.Shell;
 import org.eclipse.ui.dialogs.ElementListSelectionDialog;
 import org.unicase.emfstore.esmodel.accesscontrol.ACUser;
 import org.unicase.emfstore.esmodel.accesscontrol.roles.Role;
+import org.unicase.model.ModelElement;
+import org.unicase.model.classes.Association;
 import org.unicase.workspace.ProjectSpace;
 import org.unicase.workspace.Usersession;
 
@@ -24,6 +30,7 @@ import org.unicase.workspace.Usersession;
  * Utility class for the unicase project. 
  * @author shterev
  * @author hodaie
+ * @author denglerm
  *
  */
 public final class UnicaseUiUtil {
@@ -62,7 +69,32 @@ public final class UnicaseUiUtil {
 		}
 		return result;
 	}
-	
+	/**.
+	 * 
+	 * This method searches for in- and outgoing associations of a node and returns them in an ArrayList
+	 * 
+	 * @param node The diagram node
+	 * @return The list of associations
+	 */
+	public static ArrayList<Association> getDiagramNodeReferences(ModelElement node){
+		ArrayList<Association> assocs = new ArrayList<Association>();
+		CrossReferenceAdapter crossReferencer = CrossReferenceAdapter
+				.getCrossReferenceAdapter(node.eResource().getResourceSet());
+		if (crossReferencer != null) {
+			Collection<Setting> inverseReferences = crossReferencer
+					.getInverseReferences(node);
+			if (inverseReferences != null) {
+
+				for (Setting setting : inverseReferences) {
+					EObject settingObj = setting.getEObject();
+					if (settingObj != null && settingObj instanceof Association) {
+						assocs.add((Association) settingObj);
+					}
+				}
+			}
+		}
+		return assocs;
+	}
 	/**
 	 * 
 	 * This checks a user session for project administrator rights. If there is no session, the user is project admin.
