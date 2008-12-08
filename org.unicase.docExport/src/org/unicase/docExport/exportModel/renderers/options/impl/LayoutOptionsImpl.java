@@ -215,6 +215,7 @@ public class LayoutOptionsImpl extends RendererOptionImpl implements LayoutOptio
 
 	/**
 	 * <!-- begin-user-doc -->
+	 * .
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */

@@ -51,6 +51,7 @@ public class SingleReferenceAttributeOptionImpl extends ReferenceAttributeOption
 
 	/**
 	 * <!-- begin-user-doc -->
+	 * .
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
@@ -114,6 +115,7 @@ public class SingleReferenceAttributeOptionImpl extends ReferenceAttributeOption
 	
 	/**
 	 * <!-- begin-user-doc -->
+	 * .
 	 * @return the ReferenceOption the object. This could be the globalOption if the overwrite flag 
 	 * hasn't been set
 	 * <!-- end-user-doc -->
@@ -126,6 +128,7 @@ public class SingleReferenceAttributeOptionImpl extends ReferenceAttributeOption
 
 	/**
 	 * <!-- begin-user-doc -->
+	 * .
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */

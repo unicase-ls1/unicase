@@ -2,6 +2,8 @@ package org.unicase.docExport;
 
 import java.util.ArrayList;
 
+import org.eclipse.emf.ecore.EClass;
+import org.eclipse.emf.ecore.EReference;
 import org.eclipse.emf.ecore.EStructuralFeature;
 import org.unicase.docExport.exportModel.Template;
 import org.unicase.docExport.exportModel.builders.DefaultAttributeRendererBuilder;
@@ -32,8 +34,18 @@ public final class AttributeRendererRegistry {
 		
 		ret.add(DefaultAttributeRendererBuilder.build(feature, template));
 		
-		if (feature.eContainmentFeature().eClass().equals(RequirementPackage.eINSTANCE.getStep())) {
-			ret.add(SpecialRenderersFactory.eINSTANCE.createStepsAttributeRenderer());
+		
+		
+		if (feature instanceof EReference) {
+			EClass referenceType = ((EReference)feature).getEReferenceType();
+			if (referenceType.getInstanceTypeName().equals(RequirementPackage.eINSTANCE.getStep().getInstanceTypeName())) {
+				ret.add(SpecialRenderersFactory.eINSTANCE.createStepsAttributeRenderer());
+			}
+		}
+		
+		if (feature instanceof EReference &&
+				((EReference)feature).getEReferenceType().eClass().equals(RequirementPackage.eINSTANCE.getStep().getInstanceTypeName())) {
+			
 		}
 		
 		return ret;

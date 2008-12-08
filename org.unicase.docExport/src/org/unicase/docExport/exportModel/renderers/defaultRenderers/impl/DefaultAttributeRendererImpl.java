@@ -162,7 +162,7 @@ public class DefaultAttributeRendererImpl extends AttributeRendererImpl implemen
 		parent.add(name);
 		
 		if (false) {
-			addDescription(parent, content.getDescriptionPlainText());
+			addDescription(parent, WorkspaceUtil.cleanFormatedText(content.getDescription()));
 		}
 	}
 

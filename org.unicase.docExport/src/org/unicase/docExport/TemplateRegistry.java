@@ -41,7 +41,7 @@ public final class TemplateRegistry {
 	private static final String DEFAULT_TEMPLATE_NAME = "default";
 	private static final String UNICASE_FOLDER = ".unicase";
 	private static final String DOCUMENT_EXPORT_FOLDER = "docExport2";
-	private static final String TEMPLATES_FILE_NAME = "templates";
+	private static final String TEMPLATES_FILE_NAME = "templates3";
 	
 	private static final int ME_COUNT_DEFAULT = 0;
 

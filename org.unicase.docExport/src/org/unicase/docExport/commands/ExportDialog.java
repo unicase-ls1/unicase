@@ -1,11 +1,9 @@
 package org.unicase.docExport.commands;
 
 import java.io.File;
-import java.io.IOException;
 import java.lang.reflect.InvocationTargetException;
 import java.util.ArrayList;
 
-import org.eclipse.core.runtime.IStatus;
 import org.eclipse.jface.dialogs.IMessageProvider;
 import org.eclipse.jface.dialogs.ProgressMonitorDialog;
 import org.eclipse.jface.dialogs.TitleAreaDialog;
@@ -205,35 +203,6 @@ public class ExportDialog extends TitleAreaDialog {
 			e.printStackTrace();
 		}
 	}
-	
-	private void openFile(String fileUrl) {
-		String lcOSName = System.getProperty("os.name").toLowerCase();
-		String cmd = "";
-		
-		if (lcOSName.startsWith("mac os x")) {
-			cmd = "open " + fileUrl;
-		} else if (lcOSName.startsWith("linux")) {
-			//works for ubuntu and the most common linux systems
-			cmd = "xdg-open " + fileUrl;
-		} else if (lcOSName.startsWith("windows")) {
-			cmd = "cmd.exe /c start " + fileUrl;
-		} else {
-			//bad luck .. java 1.5 ;(
-			//fall through
-		}
-		
-		if (!cmd.equals("")) {
-			try {
-				Runtime.getRuntime().exec(cmd);
-			} catch (IOException e) {
-				WorkspaceUtil.log(
-						"could not open the file with the system dependant command: " + cmd,
-						new Exception(),
-						IStatus.WARNING
-					);
-			}
-		}
-	}
 
 	/**
 	 * Check if the file already exists and returns true, if the file shall be written.
@@ -328,7 +297,7 @@ public class ExportDialog extends TitleAreaDialog {
 				
 				if (checkFileName(fileUrl)) {
 					exportDocument(docExport, fileUrl);
-					openFile(fileUrl);
+					WorkspaceUtil.openFile(fileUrl);
 					close();
 				}
 			}
@@ -361,8 +330,6 @@ public class ExportDialog extends TitleAreaDialog {
 		 */
 		@Override
 		public void widgetSelected(SelectionEvent e) {
-			System.out.println("test");
-			
 			DirectoryDialog fd = new DirectoryDialog(((Button) e.widget).getParent().getShell());
 		    fd.setText("select the folder where you want to save the exported document ");
 		    String selected = fd.open();

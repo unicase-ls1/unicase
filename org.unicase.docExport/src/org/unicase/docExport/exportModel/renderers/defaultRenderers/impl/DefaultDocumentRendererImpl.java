@@ -105,7 +105,7 @@ public class DefaultDocumentRendererImpl extends DocumentRendererImpl implements
 			);
 		getDoc().add(section);
 				
-		section.add(new UParagraph(modelElement.getDescriptionPlainText() + "\n", layoutOptions.getDefaultTextOption()));
+		section.add(new UParagraph(WorkspaceUtil.cleanFormatedText(modelElement.getDescription()) + "\n", layoutOptions.getDefaultTextOption()));
 		
 		EList<ModelElement>  subSections = modelElement.getModelElements();
 		for (ModelElement child : subSections) {
@@ -124,7 +124,7 @@ public class DefaultDocumentRendererImpl extends DocumentRendererImpl implements
 				layoutOptions.getSectionTextOption()
 			);
 		getDoc().add(section);
-		section.add(new UParagraph(modelElement.getDescriptionPlainText() + "\n", layoutOptions.getDefaultTextOption()));
+		section.add(new UParagraph(WorkspaceUtil.cleanFormatedText(modelElement.getDescription()) + "\n", layoutOptions.getDefaultTextOption()));
 		
 		EList<Section>  subSections = modelElement.getSubsections();
 		for (Section child : subSections) {
@@ -154,7 +154,7 @@ public class DefaultDocumentRendererImpl extends DocumentRendererImpl implements
 		
 			
 		section.add(new UParagraph(
-				compositeSection.getDescriptionPlainText() + "\n", 
+				WorkspaceUtil.cleanFormatedText(compositeSection.getDescription()) + "\n", 
 				layoutOptions.getDefaultTextOption())
 			);
 		
@@ -186,7 +186,7 @@ public class DefaultDocumentRendererImpl extends DocumentRendererImpl implements
 			
 			
 		section.add(new UParagraph(
-				leafSection.getDescriptionPlainText() + "\n", 
+				WorkspaceUtil.cleanFormatedText(leafSection.getDescription()) + "\n", 
 				layoutOptions.getDefaultTextOption())
 			);	
 		

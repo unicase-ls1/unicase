@@ -19,7 +19,6 @@ import org.unicase.docExport.exportModel.renderers.elements.UParagraph;
 import org.unicase.docExport.exportModel.renderers.elements.USection;
 import org.unicase.docExport.exportModel.renderers.elements.UTable;
 import org.unicase.docExport.exportModel.renderers.impl.ModelElementRendererImpl;
-import org.unicase.docExport.exportModel.renderers.options.OptionsFactory;
 import org.unicase.docExport.exportModel.renderers.options.RendererOption;
 import org.unicase.docExport.exportModel.renderers.options.TextOption;
 import org.unicase.docExport.exportModel.renderers.specialRenderers.MeetingRenderer;
@@ -38,6 +37,7 @@ import org.unicase.model.rationale.Proposal;
 import org.unicase.model.task.ActionItem;
 import org.unicase.model.task.WorkItem;
 import org.unicase.model.task.WorkPackage;
+import org.unicase.workspace.util.WorkspaceUtil;
 
 /**
  * <!-- begin-user-doc -->
@@ -60,6 +60,7 @@ public class MeetingRendererImpl extends ModelElementRendererImpl implements Mee
 
 	/**
 	 * <!-- begin-user-doc -->
+	 * .
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
@@ -81,7 +82,6 @@ public class MeetingRendererImpl extends ModelElementRendererImpl implements Mee
 	public static final String TOPIC_PROTOKOLL = "Protokoll: ";
 	
 	private transient Meeting meeting;
-	private transient UCompositeSection parent;
 	private TextOption workItemTextOption;
 
 	
@@ -100,25 +100,24 @@ public class MeetingRendererImpl extends ModelElementRendererImpl implements Mee
 		}
 		
 		this.meeting = (Meeting) modelElement;
-		this.parent = section;
 		
-		String topic;
+		String topic ="";
 		if (meeting.getStarttime() == null) {
-			topic = TOPIC_AGENDA;
+			topic += TOPIC_AGENDA;
 		} else if (meeting.getStarttime().compareTo(Calendar.getInstance().getTime()) > 0) {
-			topic = TOPIC_PROTOKOLL;
+			topic += TOPIC_PROTOKOLL;
 		} else {
-			topic = TOPIC_AGENDA;
+			topic += TOPIC_AGENDA;
 		}
+		
+
 		UParagraph topic2 = new UParagraph(topic + meeting.getName());
-		TextOption topicOption = OptionsFactory.eINSTANCE.createTextOption();
-		topicOption.setFontSize(20);
-		topic2.setOption(topicOption);
-		section.add(topic2);
+		topic2.getOption().setFontSize(20);
+		USection title = new USection(topic2);
+		section.add(title);
 		
-		createMeetingTable();
-		
-		renderMeetingSections();
+		createMeetingTable(title);
+		renderMeetingSections(title);
 		
 	}
 
@@ -127,7 +126,7 @@ public class MeetingRendererImpl extends ModelElementRendererImpl implements Mee
 	 * creates the meeting table of this meeting containing the most important
 	 * information.
 	 */
-	private void createMeetingTable() {
+	private void createMeetingTable(USection parent) {
 		UTable table = new UTable(2);
 		table.setCellBorder((float)1.2);
 		table.setCellBorderTop(0);
@@ -245,10 +244,11 @@ public class MeetingRendererImpl extends ModelElementRendererImpl implements Mee
 	}
 
 	
-	private void renderMeetingSections() {
+	private void renderMeetingSections(USection title) {
+		
 		EList<MeetingSection> sections = meeting.getSections();
 		for (MeetingSection meetingSection : sections) {
-			renderMeetingSection(parent, meetingSection);
+			renderMeetingSection(title, meetingSection);
 		}
 	}	
 	
@@ -414,7 +414,7 @@ public class MeetingRendererImpl extends ModelElementRendererImpl implements Mee
 	
 	private void renderDescription(UCompositeSection parent, ModelElement me) {
 		
-		UParagraph descr = new UParagraph(me.getDescriptionPlainText() + "\n", getTemplate().getLayoutOptions().getDefaultTextOption());
+		UParagraph descr = new UParagraph(WorkspaceUtil.cleanFormatedText(me.getDescription()) + "\n", getTemplate().getLayoutOptions().getDefaultTextOption());
 		descr.setIndentionLeft(0);
 		parent.add(descr);	
 	}

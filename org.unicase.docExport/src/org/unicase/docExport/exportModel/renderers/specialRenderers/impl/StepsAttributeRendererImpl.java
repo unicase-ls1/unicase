@@ -88,11 +88,11 @@ public class StepsAttributeRendererImpl extends AttributeRendererImpl implements
 		
 		for (Step step :steps) {
 			if (step.isUserStep()) {
-				table.addEntry(step.getDescriptionPlainText());
+				table.addEntry(WorkspaceUtil.cleanFormatedText(step.getDescription()));
 				table.addEntry("");
 			} else {
 				table.addEntry("");
-				table.addEntry(step.getDescriptionPlainText());
+				table.addEntry(WorkspaceUtil.cleanFormatedText(step.getDescription()));
 			}
 		}
 		

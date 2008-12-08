@@ -65,6 +65,7 @@ public class MultiReferenceAttributeOptionImpl extends ReferenceAttributeOptionI
 
 	/**
 	 * <!-- begin-user-doc -->
+	 * .
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */

@@ -501,10 +501,13 @@ public abstract class ModelElementImpl extends IdentifiableElementImpl
 	}
 
 	/**
+	 * use WorkspaceUtil.cleanFormatedText() instead.
+	 * @see org.unciase.workspace.util.WorkspaceUtil#cleanFormatedText()
 	 * {@inheritDoc}
 	 * 
 	 * @see org.unicase.model.ModelElement#getDescriptionPlainText()
 	 * @generated NOT
+	 * @deprecated
 	 */
 	public String getDescriptionPlainText() {
 		String ret = "";

@@ -43,7 +43,7 @@ public final class DefaultDocumentTemplateBuilder {
 		LayoutOptions layoutOptions = OptionsFactory.eINSTANCE.createLayoutOptions();
 		template.setLayoutOptions(layoutOptions);
 		
-		layoutOptions.setCoverText("Lehrstuhl für Angewandte Softwaretechnik \n DOLLI2-Projekt");
+		layoutOptions.setCoverText("Chair for Applied Software Engineering \n DOLLI2-Project");
 		layoutOptions.getCoverTextTextOption().setFontFamily(FontFamily.HELVETICA);
 		layoutOptions.getCoverTextTextOption().setFontSize(10);
 		layoutOptions.getCoverTextTextOption().setBold(true);
@@ -54,7 +54,7 @@ public final class DefaultDocumentTemplateBuilder {
 		layoutOptions.getModelElementTextOption().setFontSize(12);
 		layoutOptions.getModelElementTextOption().setBold(true);
 		
-		layoutOptions.getDefaultTextOption().setFontSize(10);
+		layoutOptions.getDefaultTextOption().setFontSize(12);
 		
 		layoutOptions.setHideAnnotations(true);
 		layoutOptions.setHideAttachments(true);

@@ -86,10 +86,8 @@ public class SelectRendererDialog extends TitleAreaDialog {
 			
 			@Override
 			public void widgetSelected(SelectionEvent e) {
-				System.out.println("selected!");
 				if (combo.getSelectionIndex() == 1) {
 					template.setModelElementRenderer(propertyEClass, SpecialRenderersFactory.eINSTANCE.createMeetingRenderer(template));
-					System.out.println("meetingrenderer set");
 				} else {
 					template.setModelElementRenderer(propertyEClass, DefaultModelElementRendererBuilder.build(MeetingPackage.eINSTANCE.getMeeting(), template));
 				}

@@ -63,6 +63,7 @@ public class StringAttributeOptionImpl extends AttributeOptionImpl implements St
 
 	/**
 	 * <!-- begin-user-doc -->
+	 * .
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
@@ -126,6 +127,7 @@ public class StringAttributeOptionImpl extends AttributeOptionImpl implements St
 	
 	/**
 	 * <!-- begin-user-doc -->
+	 * .
 	 * @return the TextOption the object. This could be the globalOption if the overwrite flag 
 	 * hasn't been set
 	 * <!-- end-user-doc -->s
@@ -137,6 +139,7 @@ public class StringAttributeOptionImpl extends AttributeOptionImpl implements St
 
 	/**
 	 * <!-- begin-user-doc -->
+	 * .
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
