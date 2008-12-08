@@ -10,22 +10,22 @@ package org.unicase.ui.common.commands;
  * Contributors:
  *    IBM Corporation - initial API and implementation 
  ****************************************************************************/
-import java.util.Collection;
+import java.util.ArrayList;
 
 import org.eclipse.core.commands.ExecutionException;
 import org.eclipse.core.runtime.IAdaptable;
 import org.eclipse.core.runtime.IProgressMonitor;
 import org.eclipse.emf.ecore.EObject;
-import org.eclipse.emf.ecore.EStructuralFeature.Setting;
 import org.eclipse.emf.ecore.resource.Resource;
 import org.eclipse.gef.EditPart;
 import org.eclipse.gmf.runtime.common.core.command.CommandResult;
-import org.eclipse.gmf.runtime.emf.core.util.CrossReferenceAdapter;
 import org.eclipse.gmf.runtime.emf.type.core.requests.DestroyElementRequest;
 import org.eclipse.gmf.runtime.notation.View;
+import org.unicase.model.ModelElement;
 import org.unicase.model.classes.Association;
 import org.unicase.model.diagram.MEDiagram;
 import org.unicase.ui.common.diagram.MEDiagramEditPart;
+import org.unicase.ui.common.util.UnicaseUiUtil;
 
 /**
  * Command to create a model element using the EMF action protocol.
@@ -138,30 +138,10 @@ public class DeleteFromViewCommand
 	protected void tearDownIncomingReferences(EObject destructee) {
 		MEDiagramEditPart me = (MEDiagramEditPart) editpart.getParent();
 		MEDiagram diag = (MEDiagram) ((View) me.getModel()).getElement();
-	
-		CrossReferenceAdapter crossReferencer = CrossReferenceAdapter
-				.getCrossReferenceAdapter(destructee.eResource()
-						.getResourceSet());
-		if (crossReferencer != null) {
-			Collection<Setting> inverseReferences = crossReferencer
-					.getInverseReferences(destructee);
-			if (inverseReferences == null) {
-				return;
-			}
-			int size = inverseReferences.size();
-			if (size > 0) {
-				Setting setting;
-				Setting[] settings = inverseReferences
-						.toArray(new Setting[size]);
-				for (int i = 0; i < size; ++i) {
-					setting = settings[i];
-					EObject obj = setting.getEObject();
-					if (obj != null && obj instanceof Association) {
-						diag.getElements().remove(obj);
-					}
-				}
-
-			}
+		ArrayList<Association> assocs = UnicaseUiUtil.getDiagramNodeReferences((ModelElement)destructee);
+		for(Association assoc:assocs){
+			if(diag.getElements().contains(assoc)){				
+			diag.getElements().remove(assoc);}
 		}
 	}
 	/**
