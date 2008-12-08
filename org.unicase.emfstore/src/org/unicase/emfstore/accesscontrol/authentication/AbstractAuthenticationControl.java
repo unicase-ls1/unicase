@@ -57,6 +57,9 @@ public abstract class AbstractAuthenticationControl implements
 			}
 			String versions = ServerConfiguration.getProperties().getProperty(ServerConfiguration.ACCEPTED_VERSIONS);
 			if(versions==null) {
+				if(!ServerConfiguration.isReleaseVersion()) {
+					return;
+				}
 				throw new ClientVersionOutOfDateException("No server versions supplied");
 			}
 			String[] splitedVersions = versions.split(ServerConfiguration.MULTI_PROPERTY_SEPERATOR);
