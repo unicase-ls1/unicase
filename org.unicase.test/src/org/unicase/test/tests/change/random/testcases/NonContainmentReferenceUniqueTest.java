@@ -31,7 +31,7 @@ public class NonContainmentReferenceUniqueTest extends ChangePackageTest {
 	public void runTest() {
 		me = ChangeTestHelper.getRandomME(getTestProject());
 		EReference ref = ChangeTestHelper.getRandomNonContainmentRef(me);
-		while(!ref.isUnique()){
+		while(ref == null || !ref.isUnique()){
 			me = ChangeTestHelper.getRandomME(getTestProject());
 			ref = ChangeTestHelper.getRandomNonContainmentRef(me);
 		}
