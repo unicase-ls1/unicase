@@ -408,6 +408,15 @@ public class TaskPackageImpl extends EPackageImpl implements TaskPackage {
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
+	public EReference getMilestone_ContainedModelElements() {
+		return (EReference) milestoneEClass.getEStructuralFeatures().get(0);
+	}
+
+	/**
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 */
 	public EClass getCheckable() {
 		return checkableEClass;
 	}
@@ -478,6 +487,7 @@ public class TaskPackageImpl extends EPackageImpl implements TaskPackage {
 		createEAttribute(workItemEClass, WORK_ITEM__EFFORT);
 
 		milestoneEClass = createEClass(MILESTONE);
+		createEReference(milestoneEClass, MILESTONE__CONTAINED_MODEL_ELEMENTS);
 
 		checkableEClass = createEClass(CHECKABLE);
 		createEAttribute(checkableEClass, CHECKABLE__CHECKED);
@@ -528,7 +538,7 @@ public class TaskPackageImpl extends EPackageImpl implements TaskPackage {
 		actionItemEClass.getESuperTypes().add(this.getCheckable());
 		workPackageEClass.getESuperTypes().add(this.getWorkItem());
 		workItemEClass.getESuperTypes().add(theModelPackage.getAnnotation());
-		milestoneEClass.getESuperTypes().add(theModelPackage.getModelElement());
+		milestoneEClass.getESuperTypes().add(this.getWorkItem());
 
 		// Initialize classes and features; add operations and parameters
 		initEClass(actionItemEClass, ActionItem.class, "ActionItem",
@@ -621,6 +631,13 @@ public class TaskPackageImpl extends EPackageImpl implements TaskPackage {
 
 		initEClass(milestoneEClass, Milestone.class, "Milestone", !IS_ABSTRACT,
 				!IS_INTERFACE, IS_GENERATED_INSTANCE_CLASS);
+		initEReference(getMilestone_ContainedModelElements(), theModelPackage
+				.getModelElement(), null, "containedModelElements", null, 0,
+				-1, Milestone.class, !IS_TRANSIENT, !IS_VOLATILE,
+				IS_CHANGEABLE, !IS_COMPOSITE, IS_RESOLVE_PROXIES,
+				!IS_UNSETTABLE, IS_UNIQUE, !IS_DERIVED, IS_ORDERED);
+		getMilestone_ContainedModelElements().getEKeys().add(
+				theModelPackage.getIdentifiableElement_Identifier());
 
 		initEClass(checkableEClass, Checkable.class, "Checkable", IS_ABSTRACT,
 				IS_INTERFACE, IS_GENERATED_INSTANCE_CLASS);
@@ -674,6 +691,8 @@ public class TaskPackageImpl extends EPackageImpl implements TaskPackage {
 				"priority", "10.0", "position", "right" });
 		addAnnotation(getWorkItem_DueDate(), source, new String[] { "priority",
 				"12.0", "position", "left" });
+		addAnnotation(getMilestone_ContainedModelElements(), source,
+				new String[] { "priority", "1", "position", "right" });
 	}
 
 } // TaskPackageImpl

@@ -705,7 +705,7 @@ public interface TaskPackage extends EPackage {
 	 * @generated
 	 * @ordered
 	 */
-	int MILESTONE__IDENTIFIER = ModelPackage.MODEL_ELEMENT__IDENTIFIER;
+	int MILESTONE__IDENTIFIER = WORK_ITEM__IDENTIFIER;
 
 	/**
 	 * The feature id for the '<em><b>Name</b></em>' attribute.
@@ -714,7 +714,7 @@ public interface TaskPackage extends EPackage {
 	 * @generated
 	 * @ordered
 	 */
-	int MILESTONE__NAME = ModelPackage.MODEL_ELEMENT__NAME;
+	int MILESTONE__NAME = WORK_ITEM__NAME;
 
 	/**
 	 * The feature id for the '<em><b>Description</b></em>' attribute.
@@ -723,7 +723,7 @@ public interface TaskPackage extends EPackage {
 	 * @generated
 	 * @ordered
 	 */
-	int MILESTONE__DESCRIPTION = ModelPackage.MODEL_ELEMENT__DESCRIPTION;
+	int MILESTONE__DESCRIPTION = WORK_ITEM__DESCRIPTION;
 
 	/**
 	 * The feature id for the '<em><b>Creator</b></em>' attribute.
@@ -732,7 +732,7 @@ public interface TaskPackage extends EPackage {
 	 * @generated
 	 * @ordered
 	 */
-	int MILESTONE__CREATOR = ModelPackage.MODEL_ELEMENT__CREATOR;
+	int MILESTONE__CREATOR = WORK_ITEM__CREATOR;
 
 	/**
 	 * The feature id for the '<em><b>Creation Date</b></em>' attribute.
@@ -741,7 +741,7 @@ public interface TaskPackage extends EPackage {
 	 * @generated
 	 * @ordered
 	 */
-	int MILESTONE__CREATION_DATE = ModelPackage.MODEL_ELEMENT__CREATION_DATE;
+	int MILESTONE__CREATION_DATE = WORK_ITEM__CREATION_DATE;
 
 	/**
 	 * The feature id for the '<em><b>Annotations</b></em>' reference list.
@@ -750,7 +750,7 @@ public interface TaskPackage extends EPackage {
 	 * @generated
 	 * @ordered
 	 */
-	int MILESTONE__ANNOTATIONS = ModelPackage.MODEL_ELEMENT__ANNOTATIONS;
+	int MILESTONE__ANNOTATIONS = WORK_ITEM__ANNOTATIONS;
 
 	/**
 	 * The feature id for the '<em><b>Attachments</b></em>' reference list.
@@ -759,7 +759,7 @@ public interface TaskPackage extends EPackage {
 	 * @generated
 	 * @ordered
 	 */
-	int MILESTONE__ATTACHMENTS = ModelPackage.MODEL_ELEMENT__ATTACHMENTS;
+	int MILESTONE__ATTACHMENTS = WORK_ITEM__ATTACHMENTS;
 
 	/**
 	 * The feature id for the '<em><b>Incoming Document References</b></em>' reference list.
@@ -768,7 +768,7 @@ public interface TaskPackage extends EPackage {
 	 * @generated
 	 * @ordered
 	 */
-	int MILESTONE__INCOMING_DOCUMENT_REFERENCES = ModelPackage.MODEL_ELEMENT__INCOMING_DOCUMENT_REFERENCES;
+	int MILESTONE__INCOMING_DOCUMENT_REFERENCES = WORK_ITEM__INCOMING_DOCUMENT_REFERENCES;
 
 	/**
 	 * The feature id for the '<em><b>Leaf Section</b></em>' container reference.
@@ -777,7 +777,7 @@ public interface TaskPackage extends EPackage {
 	 * @generated
 	 * @ordered
 	 */
-	int MILESTONE__LEAF_SECTION = ModelPackage.MODEL_ELEMENT__LEAF_SECTION;
+	int MILESTONE__LEAF_SECTION = WORK_ITEM__LEAF_SECTION;
 
 	/**
 	 * The feature id for the '<em><b>State</b></em>' attribute.
@@ -786,7 +786,106 @@ public interface TaskPackage extends EPackage {
 	 * @generated
 	 * @ordered
 	 */
-	int MILESTONE__STATE = ModelPackage.MODEL_ELEMENT__STATE;
+	int MILESTONE__STATE = WORK_ITEM__STATE;
+
+	/**
+	 * The feature id for the '<em><b>Annotated Model Elements</b></em>' reference list.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 * @ordered
+	 */
+	int MILESTONE__ANNOTATED_MODEL_ELEMENTS = WORK_ITEM__ANNOTATED_MODEL_ELEMENTS;
+
+	/**
+	 * The feature id for the '<em><b>Containing Workpackage</b></em>' container reference.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 * @ordered
+	 */
+	int MILESTONE__CONTAINING_WORKPACKAGE = WORK_ITEM__CONTAINING_WORKPACKAGE;
+
+	/**
+	 * The feature id for the '<em><b>Associated Change Packages</b></em>' reference list.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 * @ordered
+	 */
+	int MILESTONE__ASSOCIATED_CHANGE_PACKAGES = WORK_ITEM__ASSOCIATED_CHANGE_PACKAGES;
+
+	/**
+	 * The feature id for the '<em><b>Predecessors</b></em>' reference list.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 * @ordered
+	 */
+	int MILESTONE__PREDECESSORS = WORK_ITEM__PREDECESSORS;
+
+	/**
+	 * The feature id for the '<em><b>Successors</b></em>' reference list.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 * @ordered
+	 */
+	int MILESTONE__SUCCESSORS = WORK_ITEM__SUCCESSORS;
+
+	/**
+	 * The feature id for the '<em><b>Assignee</b></em>' reference.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 * @ordered
+	 */
+	int MILESTONE__ASSIGNEE = WORK_ITEM__ASSIGNEE;
+
+	/**
+	 * The feature id for the '<em><b>Participants</b></em>' reference list.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 * @ordered
+	 */
+	int MILESTONE__PARTICIPANTS = WORK_ITEM__PARTICIPANTS;
+
+	/**
+	 * The feature id for the '<em><b>Due Date</b></em>' attribute.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 * @ordered
+	 */
+	int MILESTONE__DUE_DATE = WORK_ITEM__DUE_DATE;
+
+	/**
+	 * The feature id for the '<em><b>Estimate</b></em>' attribute.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 * @ordered
+	 */
+	int MILESTONE__ESTIMATE = WORK_ITEM__ESTIMATE;
+
+	/**
+	 * The feature id for the '<em><b>Effort</b></em>' attribute.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 * @ordered
+	 */
+	int MILESTONE__EFFORT = WORK_ITEM__EFFORT;
+
+	/**
+	 * The feature id for the '<em><b>Contained Model Elements</b></em>' reference list.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 * @ordered
+	 */
+	int MILESTONE__CONTAINED_MODEL_ELEMENTS = WORK_ITEM_FEATURE_COUNT + 0;
 
 	/**
 	 * The number of structural features of the '<em>Milestone</em>' class.
@@ -795,7 +894,7 @@ public interface TaskPackage extends EPackage {
 	 * @generated
 	 * @ordered
 	 */
-	int MILESTONE_FEATURE_COUNT = ModelPackage.MODEL_ELEMENT_FEATURE_COUNT + 0;
+	int MILESTONE_FEATURE_COUNT = WORK_ITEM_FEATURE_COUNT + 1;
 
 	/**
 	 * The meta object id for the '{@link org.unicase.model.task.Checkable <em>Checkable</em>}' class.
@@ -1034,6 +1133,17 @@ public interface TaskPackage extends EPackage {
 	EClass getMilestone();
 
 	/**
+	 * Returns the meta object for the reference list '{@link org.unicase.model.task.Milestone#getContainedModelElements <em>Contained Model Elements</em>}'.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @return the meta object for the reference list '<em>Contained Model Elements</em>'.
+	 * @see org.unicase.model.task.Milestone#getContainedModelElements()
+	 * @see #getMilestone()
+	 * @generated
+	 */
+	EReference getMilestone_ContainedModelElements();
+
+	/**
 	 * Returns the meta object for class '{@link org.unicase.model.task.Checkable <em>Checkable</em>}'.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
@@ -1239,6 +1349,15 @@ public interface TaskPackage extends EPackage {
 		 * @generated
 		 */
 		EClass MILESTONE = eINSTANCE.getMilestone();
+
+		/**
+		 * The meta object literal for the '<em><b>Contained Model Elements</b></em>' reference list feature.
+		 * <!-- begin-user-doc -->
+		 * <!-- end-user-doc -->
+		 * @generated
+		 */
+		EReference MILESTONE__CONTAINED_MODEL_ELEMENTS = eINSTANCE
+				.getMilestone_ContainedModelElements();
 
 		/**
 		 * The meta object literal for the '{@link org.unicase.model.task.Checkable <em>Checkable</em>}' class.

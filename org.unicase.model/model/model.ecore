@@ -247,7 +247,15 @@
       <eStructuralFeatures xsi:type="ecore:EAttribute" name="estimate" eType="ecore:EDataType http://www.eclipse.org/emf/2002/Ecore#//EInt"/>
       <eStructuralFeatures xsi:type="ecore:EAttribute" name="effort" eType="ecore:EDataType http://www.eclipse.org/emf/2002/Ecore#//EInt"/>
     </eClassifiers>
-    <eClassifiers xsi:type="ecore:EClass" name="Milestone" eSuperTypes="#//ModelElement"/>
+    <eClassifiers xsi:type="ecore:EClass" name="Milestone" eSuperTypes="#//task/WorkItem">
+      <eStructuralFeatures xsi:type="ecore:EReference" name="containedModelElements"
+          upperBound="-1" eType="#//ModelElement" eKeys="#//IdentifiableElement/identifier">
+        <eAnnotations source="org.unicase.ui.meeditor">
+          <details key="priority" value="1"/>
+          <details key="position" value="right"/>
+        </eAnnotations>
+      </eStructuralFeatures>
+    </eClassifiers>
     <eClassifiers xsi:type="ecore:EEnum" name="ActivityType">
       <eLiterals name="NONE" literal="&lt;please select>"/>
       <eLiterals name="ANALYSIS" value="1" literal="Analysis"/>

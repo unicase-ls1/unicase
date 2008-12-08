@@ -12,14 +12,19 @@ import java.util.List;
 import org.eclipse.emf.common.notify.AdapterFactory;
 import org.eclipse.emf.common.notify.Notification;
 import org.eclipse.emf.common.util.ResourceLocator;
+import org.eclipse.emf.edit.provider.ComposeableAdapterFactory;
 import org.eclipse.emf.edit.provider.IEditingDomainItemProvider;
 import org.eclipse.emf.edit.provider.IItemLabelProvider;
 import org.eclipse.emf.edit.provider.IItemPropertyDescriptor;
 import org.eclipse.emf.edit.provider.IItemPropertySource;
 import org.eclipse.emf.edit.provider.IStructuredItemContentProvider;
 import org.eclipse.emf.edit.provider.ITreeItemContentProvider;
+import org.eclipse.emf.edit.provider.ItemPropertyDescriptor;
+import org.eclipse.emf.edit.provider.ViewerNotification;
+import org.unicase.model.provider.AnnotationItemProvider;
 import org.unicase.model.provider.ModelEditPlugin;
-import org.unicase.model.provider.ModelElementItemProvider;
+import org.unicase.model.task.Milestone;
+import org.unicase.model.task.TaskPackage;
 
 /**
  * This is the item provider adapter for a {@link org.unicase.model.task.Milestone} object.
@@ -27,7 +32,7 @@ import org.unicase.model.provider.ModelElementItemProvider;
  * <!-- end-user-doc -->
  * @generated
  */
-public class MilestoneItemProvider extends ModelElementItemProvider implements
+public class MilestoneItemProvider extends AnnotationItemProvider implements
 		IEditingDomainItemProvider, IStructuredItemContentProvider,
 		ITreeItemContentProvider, IItemLabelProvider, IItemPropertySource {
 	/**
@@ -51,8 +56,176 @@ public class MilestoneItemProvider extends ModelElementItemProvider implements
 		if (itemPropertyDescriptors == null) {
 			super.getPropertyDescriptors(object);
 
+			addContainingWorkpackagePropertyDescriptor(object);
+			addPredecessorsPropertyDescriptor(object);
+			addSuccessorsPropertyDescriptor(object);
+			addAssigneePropertyDescriptor(object);
+			addParticipantsPropertyDescriptor(object);
+			addDueDatePropertyDescriptor(object);
+			addEstimatePropertyDescriptor(object);
+			addEffortPropertyDescriptor(object);
+			addContainedModelElementsPropertyDescriptor(object);
 		}
 		return itemPropertyDescriptors;
+	}
+
+	/**
+	 * This adds a property descriptor for the Containing Workpackage feature.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 */
+	protected void addContainingWorkpackagePropertyDescriptor(Object object) {
+		itemPropertyDescriptors.add(createItemPropertyDescriptor(
+				((ComposeableAdapterFactory) adapterFactory)
+						.getRootAdapterFactory(), getResourceLocator(),
+				getString("_UI_WorkItem_containingWorkpackage_feature"),
+				getString("_UI_PropertyDescriptor_description",
+						"_UI_WorkItem_containingWorkpackage_feature",
+						"_UI_WorkItem_type"),
+				TaskPackage.Literals.WORK_ITEM__CONTAINING_WORKPACKAGE, true,
+				false, false, null, null, null));
+	}
+
+	/**
+	 * This adds a property descriptor for the Predecessors feature.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 */
+	protected void addPredecessorsPropertyDescriptor(Object object) {
+		itemPropertyDescriptors.add(createItemPropertyDescriptor(
+				((ComposeableAdapterFactory) adapterFactory)
+						.getRootAdapterFactory(), getResourceLocator(),
+				getString("_UI_WorkItem_predecessors_feature"), getString(
+						"_UI_PropertyDescriptor_description",
+						"_UI_WorkItem_predecessors_feature",
+						"_UI_WorkItem_type"),
+				TaskPackage.Literals.WORK_ITEM__PREDECESSORS, true, false,
+				true, null, null, null));
+	}
+
+	/**
+	 * This adds a property descriptor for the Successors feature.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 */
+	protected void addSuccessorsPropertyDescriptor(Object object) {
+		itemPropertyDescriptors
+				.add(createItemPropertyDescriptor(
+						((ComposeableAdapterFactory) adapterFactory)
+								.getRootAdapterFactory(), getResourceLocator(),
+						getString("_UI_WorkItem_successors_feature"),
+						getString("_UI_PropertyDescriptor_description",
+								"_UI_WorkItem_successors_feature",
+								"_UI_WorkItem_type"),
+						TaskPackage.Literals.WORK_ITEM__SUCCESSORS, true,
+						false, true, null, null, null));
+	}
+
+	/**
+	 * This adds a property descriptor for the Assignee feature.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 */
+	protected void addAssigneePropertyDescriptor(Object object) {
+		itemPropertyDescriptors.add(createItemPropertyDescriptor(
+				((ComposeableAdapterFactory) adapterFactory)
+						.getRootAdapterFactory(), getResourceLocator(),
+				getString("_UI_WorkItem_assignee_feature"), getString(
+						"_UI_PropertyDescriptor_description",
+						"_UI_WorkItem_assignee_feature", "_UI_WorkItem_type"),
+				TaskPackage.Literals.WORK_ITEM__ASSIGNEE, true, false, true,
+				null, null, null));
+	}
+
+	/**
+	 * This adds a property descriptor for the Participants feature.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 */
+	protected void addParticipantsPropertyDescriptor(Object object) {
+		itemPropertyDescriptors.add(createItemPropertyDescriptor(
+				((ComposeableAdapterFactory) adapterFactory)
+						.getRootAdapterFactory(), getResourceLocator(),
+				getString("_UI_WorkItem_participants_feature"), getString(
+						"_UI_PropertyDescriptor_description",
+						"_UI_WorkItem_participants_feature",
+						"_UI_WorkItem_type"),
+				TaskPackage.Literals.WORK_ITEM__PARTICIPANTS, true, false,
+				true, null, null, null));
+	}
+
+	/**
+	 * This adds a property descriptor for the Due Date feature.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 */
+	protected void addDueDatePropertyDescriptor(Object object) {
+		itemPropertyDescriptors.add(createItemPropertyDescriptor(
+				((ComposeableAdapterFactory) adapterFactory)
+						.getRootAdapterFactory(), getResourceLocator(),
+				getString("_UI_WorkItem_dueDate_feature"), getString(
+						"_UI_PropertyDescriptor_description",
+						"_UI_WorkItem_dueDate_feature", "_UI_WorkItem_type"),
+				TaskPackage.Literals.WORK_ITEM__DUE_DATE, true, false, false,
+				ItemPropertyDescriptor.GENERIC_VALUE_IMAGE, null, null));
+	}
+
+	/**
+	 * This adds a property descriptor for the Estimate feature.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 */
+	protected void addEstimatePropertyDescriptor(Object object) {
+		itemPropertyDescriptors.add(createItemPropertyDescriptor(
+				((ComposeableAdapterFactory) adapterFactory)
+						.getRootAdapterFactory(), getResourceLocator(),
+				getString("_UI_WorkItem_estimate_feature"), getString(
+						"_UI_PropertyDescriptor_description",
+						"_UI_WorkItem_estimate_feature", "_UI_WorkItem_type"),
+				TaskPackage.Literals.WORK_ITEM__ESTIMATE, true, false, false,
+				ItemPropertyDescriptor.INTEGRAL_VALUE_IMAGE, null, null));
+	}
+
+	/**
+	 * This adds a property descriptor for the Effort feature.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 */
+	protected void addEffortPropertyDescriptor(Object object) {
+		itemPropertyDescriptors.add(createItemPropertyDescriptor(
+				((ComposeableAdapterFactory) adapterFactory)
+						.getRootAdapterFactory(), getResourceLocator(),
+				getString("_UI_WorkItem_effort_feature"), getString(
+						"_UI_PropertyDescriptor_description",
+						"_UI_WorkItem_effort_feature", "_UI_WorkItem_type"),
+				TaskPackage.Literals.WORK_ITEM__EFFORT, true, false, false,
+				ItemPropertyDescriptor.INTEGRAL_VALUE_IMAGE, null, null));
+	}
+
+	/**
+	 * This adds a property descriptor for the Contained Model Elements feature.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 */
+	protected void addContainedModelElementsPropertyDescriptor(Object object) {
+		itemPropertyDescriptors.add(createItemPropertyDescriptor(
+				((ComposeableAdapterFactory) adapterFactory)
+						.getRootAdapterFactory(), getResourceLocator(),
+				getString("_UI_Milestone_containedModelElements_feature"),
+				getString("_UI_PropertyDescriptor_description",
+						"_UI_Milestone_containedModelElements_feature",
+						"_UI_Milestone_type"),
+				TaskPackage.Literals.MILESTONE__CONTAINED_MODEL_ELEMENTS, true,
+				false, true, null, null, null));
 	}
 
 	/**
@@ -89,6 +262,15 @@ public class MilestoneItemProvider extends ModelElementItemProvider implements
 	@Override
 	public void notifyChanged(Notification notification) {
 		updateChildren(notification);
+
+		switch (notification.getFeatureID(Milestone.class)) {
+		case TaskPackage.MILESTONE__DUE_DATE:
+		case TaskPackage.MILESTONE__ESTIMATE:
+		case TaskPackage.MILESTONE__EFFORT:
+			fireNotifyChanged(new ViewerNotification(notification, notification
+					.getNotifier(), false, true));
+			return;
+		}
 		super.notifyChanged(notification);
 	}
 

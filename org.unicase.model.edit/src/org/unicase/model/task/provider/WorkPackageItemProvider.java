@@ -358,6 +358,10 @@ public class WorkPackageItemProvider extends AnnotationItemProvider implements
 
 		newChildDescriptors.add(createChildParameter(
 				TaskPackage.Literals.WORK_PACKAGE__CONTAINED_WORK_ITEMS,
+				TaskFactory.eINSTANCE.createMilestone()));
+
+		newChildDescriptors.add(createChildParameter(
+				TaskPackage.Literals.WORK_PACKAGE__CONTAINED_WORK_ITEMS,
 				RationaleFactory.eINSTANCE.createIssue()));
 
 		newChildDescriptors.add(createChildParameter(

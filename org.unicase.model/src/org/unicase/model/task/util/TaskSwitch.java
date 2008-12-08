@@ -136,6 +136,10 @@ public class TaskSwitch<T> {
 			Milestone milestone = (Milestone) theEObject;
 			T result = caseMilestone(milestone);
 			if (result == null)
+				result = caseWorkItem(milestone);
+			if (result == null)
+				result = caseAnnotation(milestone);
+			if (result == null)
 				result = caseModelElement(milestone);
 			if (result == null)
 				result = caseIdentifiableElement(milestone);
