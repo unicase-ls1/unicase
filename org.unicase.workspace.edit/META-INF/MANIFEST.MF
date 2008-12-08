@@ -13,7 +13,7 @@ Export-Package:
  org.unicase.workspace.edit.dialogs,
  org.unicase.workspace.edit.views.dialogs,
  org.unicase.workspace.provider
-Require-Bundle: org.eclipse.ui,
+Require-Bundle: org.eclipse.ui;visibility:=reexport,
  org.eclipse.emf.transaction,
  org.eclipse.gmf.runtime.notation.edit,
  org.eclipse.emf.edit.ui,
