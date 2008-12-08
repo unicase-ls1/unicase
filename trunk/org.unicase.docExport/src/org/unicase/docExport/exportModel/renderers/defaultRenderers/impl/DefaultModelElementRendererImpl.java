@@ -78,7 +78,7 @@ public class DefaultModelElementRendererImpl extends ModelElementRendererImpl im
 	public void render(ModelElement modelElement, UCompositeSection parent) {
 		UCompositeSection modelElementContainer;
 
-		UParagraph titleParagraph = new UParagraph("      " + modelElement.getName());
+		UParagraph titleParagraph = new UParagraph(modelElement.getName());
 
 		Image image = new TransactionalAdapterFactoryLabelProvider(
 				WorkspaceManager.getInstance().getCurrentWorkspace().getEditingDomain(),
@@ -112,7 +112,7 @@ public class DefaultModelElementRendererImpl extends ModelElementRendererImpl im
 		modelElementContainer = section;
 		
 		UParagraph description = new UParagraph(
-				modelElement.getDescriptionPlainText(), 
+				WorkspaceUtil.cleanFormatedText(modelElement.getDescription()), 
 				getTemplate().getLayoutOptions().getDefaultTextOption()
 			);
 		section.add(description);

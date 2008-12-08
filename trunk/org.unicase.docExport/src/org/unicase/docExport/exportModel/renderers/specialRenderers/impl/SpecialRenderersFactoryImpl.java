@@ -83,6 +83,8 @@ public class SpecialRenderersFactoryImpl extends EFactoryImpl implements Special
 	}
 
 	/**
+	 * @param template the template where this renderer is used
+	 * @return a new Meeting renderer 
 	 * @generated NOT
 	 */
 	public MeetingRenderer createMeetingRenderer(Template template) {
@@ -97,6 +99,7 @@ public class SpecialRenderersFactoryImpl extends EFactoryImpl implements Special
 	
 	/**
 	 * <!-- begin-user-doc -->
+	 * .
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */

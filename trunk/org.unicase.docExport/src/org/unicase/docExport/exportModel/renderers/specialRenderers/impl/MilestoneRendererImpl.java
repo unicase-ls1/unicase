@@ -19,6 +19,7 @@ import org.unicase.docExport.exportModel.renderers.specialRenderers.MilestoneRen
 import org.unicase.docExport.exportModel.renderers.specialRenderers.SpecialRenderersPackage;
 import org.unicase.model.ModelElement;
 import org.unicase.model.task.util.OpeningLinkTaxonomy;
+import org.unicase.workspace.util.WorkspaceUtil;
 
 /**
  * <!-- begin-user-doc -->
@@ -59,7 +60,7 @@ public class MilestoneRendererImpl extends ModelElementRendererImpl implements M
 				getTemplate().getLayoutOptions().getSectionTextOption()
 			);
 		UParagraph description = new UParagraph(
-				modelElement.getDescriptionPlainText(),
+				WorkspaceUtil.cleanFormatedText(modelElement.getDescription()),
 				getTemplate().getLayoutOptions().getDefaultTextOption()
 			);
 		description.setIndentionLeft(1);

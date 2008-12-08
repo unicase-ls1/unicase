@@ -11,7 +11,6 @@ import org.eclipse.emf.edit.provider.AdapterFactoryItemDelegator;
 import org.eclipse.emf.edit.provider.ComposedAdapterFactory;
 import org.eclipse.emf.edit.provider.IItemPropertyDescriptor;
 import org.eclipse.swt.SWT;
-import org.eclipse.swt.custom.ScrolledComposite;
 import org.eclipse.swt.events.ModifyEvent;
 import org.eclipse.swt.events.ModifyListener;
 import org.eclipse.swt.layout.GridData;
@@ -50,8 +49,8 @@ public class TemplateEditor extends EditorPart {
 
 	private TabFolder tabFolder;
 	
-	private Composite globalAttributeOptionsTab;
-	private Composite layoutOptionsTab;
+//	private Composite globalAttributeOptionsTab;
+//	private Composite layoutOptionsTab;
 	private Composite modelElementRenderersTab;
 	
 	private Composite rendererSelectContainer;
@@ -156,42 +155,43 @@ public class TemplateEditor extends EditorPart {
 	
 		TabItem tabItem1 = new TabItem(tabFolder, SWT.None);
 		tabItem1.setText("ModelElement Renderers");
-		ScrolledComposite sc1 = new ScrolledComposite(tabFolder, SWT.H_SCROLL | SWT.V_SCROLL);
+		Composite sc1 = new Composite(tabFolder, SWT.NONE);
 		GridLayout gLayout = new GridLayout();
 		GridData gData = new GridData(SWT.FILL, SWT.FILL, true, true);
 		sc1.setLayout(gLayout);
 		sc1.setLayoutData(gData);
 		tabItem1.setControl(sc1);	
-		modelElementRenderersTab = rebuildTabContainer(modelElementRenderersTab, sc1);
-		
-		TabItem tabItem2 = new TabItem(tabFolder, SWT.None);
-		tabItem2.setText("Layout options");
-		ScrolledComposite sc2 = new ScrolledComposite(tabFolder, SWT.H_SCROLL | SWT.V_SCROLL);
-		GridLayout gLayout2 = new GridLayout();
-		GridData gData2 = new GridData(SWT.FILL, SWT.FILL, true, true);
-		sc1.setLayout(gLayout2);
-		sc1.setLayoutData(gData2);
-		tabItem1.setControl(sc2);	
-		layoutOptionsTab = rebuildTabContainer(layoutOptionsTab, sc2);
-		
-		AttributeOptionFactory factory = new AttributeOptionFactory();
-		factory.buildOptionsFormular(layoutOptionsTab, template.getLayoutOptions());
-		
-		TabItem tabItem3 = new TabItem(tabFolder, SWT.None);
-		tabItem3.setText("global attribute options");
-		ScrolledComposite sc3 = new ScrolledComposite(tabFolder, SWT.H_SCROLL | SWT.V_SCROLL);
-		GridLayout gLayout3 = new GridLayout();
-		GridData gData3 = new GridData(SWT.FILL, SWT.FILL, true, true);
-		sc1.setLayout(gLayout3);
-		sc1.setLayoutData(gData3);
-		tabItem1.setControl(sc3);	
-		globalAttributeOptionsTab = rebuildTabContainer(globalAttributeOptionsTab, sc3);
-		
-		
 
+		modelElementRenderersTab = rebuildTabContainer(modelElementRenderersTab, sc1);
+//		
+//		TabItem tabItem2 = new TabItem(tabFolder, SWT.None);
+//		tabItem2.setText("Layout options");
+//		ScrolledComposite sc2 = new ScrolledComposite(tabFolder, SWT.H_SCROLL | SWT.V_SCROLL);
+//		GridLayout gLayout2 = new GridLayout();
+//		GridData gData2 = new GridData(SWT.FILL, SWT.FILL, true, true);
+//		sc1.setLayout(gLayout2);
+//		sc1.setLayoutData(gData2);
+//		tabItem1.setControl(sc2);	
+//		layoutOptionsTab = rebuildTabContainer(layoutOptionsTab, sc2);
+//		
+//		AttributeOptionFactory factory = new AttributeOptionFactory();
+//		factory.buildOptionsFormular(layoutOptionsTab, template.getLayoutOptions());
+//		
+//		TabItem tabItem3 = new TabItem(tabFolder, SWT.None);
+//		tabItem3.setText("global attribute options");
+//		ScrolledComposite sc3 = new ScrolledComposite(tabFolder, SWT.H_SCROLL | SWT.V_SCROLL);
+//		GridLayout gLayout3 = new GridLayout();
+//		GridData gData3 = new GridData(SWT.FILL, SWT.FILL, true, true);
+//		sc1.setLayout(gLayout3);
+//		sc1.setLayoutData(gData3);
+//		tabItem1.setControl(sc3);	
+//		globalAttributeOptionsTab = rebuildTabContainer(globalAttributeOptionsTab, sc3);
+//		
+//		
+//
 		rendererSelectContainer = new Composite(modelElementRenderersTab, SWT.FILL);
 		GridLayout gLayout5 = new GridLayout();
-		gLayout2.numColumns = 2;
+		gLayout5.numColumns = 2;
 		GridData gData5 = new GridData(GridData.FILL_HORIZONTAL);
 		rendererSelectContainer.setLayout(gLayout5);
 		rendererSelectContainer.setLayoutData(gData5);
@@ -205,7 +205,7 @@ public class TemplateEditor extends EditorPart {
 		
 		optionsContainer = new Composite(modelElementRenderersTab, SWT.FILL);
 		GridLayout gLayout4 = new GridLayout();
-		gLayout.numColumns = 2;
+		gLayout4.numColumns = 2;
 		GridData gData4 = new GridData(GridData.FILL_HORIZONTAL);
 		optionsContainer.setLayout(gLayout4);
 		optionsContainer.setLayoutData(gData4);	
@@ -225,9 +225,7 @@ public class TemplateEditor extends EditorPart {
 		modelElementType.select(0);
 		
 		
-		layout(modelElementRenderersTab);
-		layout(layoutOptionsTab);
-		layout(globalAttributeOptionsTab);
+//		layout(modelElementRenderersTab);
 
 	}
 	
@@ -369,7 +367,7 @@ public class TemplateEditor extends EditorPart {
 	}
 
 	
-	private Composite rebuildTabContainer(Composite container, ScrolledComposite parent) {
+	private Composite rebuildTabContainer(Composite container, Composite parent) {
 		if (container != null) {
 			container.dispose();
 		}
@@ -380,30 +378,34 @@ public class TemplateEditor extends EditorPart {
 		container.setLayoutData(gData);
 		
 
-		parent.setContent(container);
-		parent.setExpandHorizontal(true);
-		parent.setExpandVertical(true);
-		parent.setMinSize(container.computeSize(SWT.DEFAULT, SWT.DEFAULT));
+//		parent.setContent(container);
+//		parent.setExpandHorizontal(true);
+//		parent.setExpandVertical(true);
+//		parent.setMinSize(container.computeSize(SWT.DEFAULT, SWT.DEFAULT));
 		
 		return container;
 	}
 	
-	private void layout(Composite container) {
-		ScrolledComposite sc = (ScrolledComposite) container.getParent();
-		
-		container.layout(true);
-		
-		sc.setContent(container);
-		sc.setExpandHorizontal(true);
-		sc.setExpandVertical(true);
-		sc.setMinSize(container.computeSize(SWT.DEFAULT, SWT.DEFAULT));
-		
-	}
+//	private void layout(Composite container) {
+////		ScrolledComposite sc = (ScrolledComposite) container.getParent();
+//		
+//		Composite sc = container.getParent();
+//		container.layout(true);
+//		
+////		sc.setContent(container);
+////		sc.setExpandHorizontal(true);
+////		sc.setExpandVertical(true);
+////		sc.setMinSize(container.computeSize(SWT.DEFAULT, SWT.DEFAULT));
+//		
+//	}
 	
 	private void createAttributeRendererSelector(
 			final EStructuralFeature feature,
 			final ModelElementRenderer modelElementRenderer) {
 		final ArrayList<AttributeRenderer> renderers = AttributeRendererRegistry.getSupportedAttributeRenderers(feature, template);
+		if (attributeRendererSelector != null) {
+			attributeRendererSelector.dispose();
+		}
 		
 		attributeRendererSelector = new Combo(attributeOptionsContainer, SWT.READ_ONLY);
 		
@@ -411,6 +413,8 @@ public class TemplateEditor extends EditorPart {
 		for (int i = 0; i < renderers.size(); i++) {
 			attributeRendererSelector.add(renderers.get(i).getClass().getSimpleName(), i + 1);
 		}
+		
+		attributeRendererSelector.getParent().layout(true);
 		
 		attributeRendererSelector.addModifyListener(new ModifyListener() {
 			public void modifyText(ModifyEvent e) {

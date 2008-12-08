@@ -116,6 +116,7 @@ public class TemplateImpl extends EObjectImpl implements Template {
 
 	/**
 	 * <!-- begin-user-doc -->
+	 * .
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */

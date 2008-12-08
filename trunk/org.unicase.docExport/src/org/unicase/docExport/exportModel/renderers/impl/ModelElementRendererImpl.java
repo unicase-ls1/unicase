@@ -282,7 +282,9 @@ public abstract class ModelElementRendererImpl extends EObjectImpl implements Mo
 	}
 
 	public void removeAttributeRenderer(EStructuralFeature feature) {
-		System.out.println(".." + getAttributeRendererMapping());
+		if (getAttributeRendererMapping().size() < 1) {
+			return;
+		}
 		for (AttributeRendererMapping mapping : getAttributeRendererMapping()) {
 			if (mapping.getFeatureName().equals(feature.getName())) {
 				getAttributeRendererMapping().remove(mapping);

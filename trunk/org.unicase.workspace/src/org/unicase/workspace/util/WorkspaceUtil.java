@@ -5,6 +5,7 @@
 
 package org.unicase.workspace.util;
 
+import java.io.IOException;
 import java.util.Date;
 
 import org.eclipse.core.runtime.IStatus;
@@ -25,6 +26,8 @@ import org.unicase.workspace.ProjectSpace;
  *
  */
 public final class WorkspaceUtil {
+	
+	private static final String BEGINNTEXT = "%BEGINNTEXT%";
 	
 	/**
 	 * Private constructor.
@@ -97,5 +100,59 @@ public final class WorkspaceUtil {
 		readEvent.setTimestamp(new Date());
 		projectSpace.addEvent(readEvent);
 	}
+	
+	/**
+	 * Clean a formatted text from the list formatting.
+	 * @param text the text which shall be cleaned
+	 * @return a string only containing the plain text
+	 */
+	public static String cleanFormatedText(String text) {
+		String ret = "";
+		if (text != null && text.length() > 0) {
+			String[] split = text.split(BEGINNTEXT);
+			if (split.length > 1) {
+				ret = split[split.length - 1];
+			}
+		}
+		return ret;	
+	}
 
+	/**
+	 * Opens a file with the default program used on the current computer.
+	 * This is just the same as Desktop.open() of java 1.6.
+	 * This should work with 
+	 * - Mac os X, 
+	 * - windows xp, 
+	 * - as well as the most linux distributions
+	 * 
+	 * @param fileUrl the url of the file which shall be opened
+	 */
+	public static void openFile(String fileUrl) {
+		String lcOSName = System.getProperty("os.name").toLowerCase();
+		String cmd = "";
+		
+		if (lcOSName.startsWith("mac os x")) {
+			cmd = "open " + fileUrl;
+		} else if (lcOSName.startsWith("linux")) {
+			//works for ubuntu and the most common linux systems
+			cmd = "xdg-open " + fileUrl;
+		} else if (lcOSName.startsWith("windows")) {
+			cmd = "cmd.exe /c start " + fileUrl;
+		} else {
+			//bad luck .. java 1.5 ;(
+			//fall through
+		}
+		
+		if (!cmd.equals("")) {
+			try {
+				Runtime.getRuntime().exec(cmd);
+			} catch (IOException e) {
+				WorkspaceUtil.log(
+						"could not open the file with the system dependant command: " + cmd,
+						new Exception(),
+						IStatus.ERROR
+					);
+			}
+		}
+	}
 }
