@@ -33,6 +33,11 @@
             forceSingleLine="true"
             minorAlignment="CENTER"
             majorSpacing="0"/>
+        <border
+            xsi:type="gmfgraph:MarginBorder">
+          <insets
+              bottom="1"/>
+        </border>
         <children
             xsi:type="gmfgraph:CustomFigure"
             name="ClassFigure_Header"

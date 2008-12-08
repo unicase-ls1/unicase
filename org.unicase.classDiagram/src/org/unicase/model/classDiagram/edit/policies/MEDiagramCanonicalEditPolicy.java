@@ -43,7 +43,7 @@ public class MEDiagramCanonicalEditPolicy extends CanonicalConnectionEditPolicy 
 		View viewObject = (View) getHost().getModel();
 		List result = new LinkedList();
 		for (Iterator it = org.unicase.model.classDiagram.part.ModelDiagramUpdater
-				.getMEDiagram_1000SemanticChildren(viewObject).iterator(); it
+				.getMEDiagram_88SemanticChildren(viewObject).iterator(); it
 				.hasNext();) {
 			result
 					.add(((org.unicase.model.classDiagram.part.ModelNodeDescriptor) it
@@ -209,7 +209,7 @@ public class MEDiagramCanonicalEditPolicy extends CanonicalConnectionEditPolicy 
 			if (!domain2NotationMap.containsKey(view.getElement())) {
 				result
 						.addAll(org.unicase.model.classDiagram.part.ModelDiagramUpdater
-								.getMEDiagram_1000ContainedLinks(view));
+								.getMEDiagram_88ContainedLinks(view));
 			}
 			if (!domain2NotationMap.containsKey(view.getElement())
 					|| view.getEAnnotation("Shortcut") == null) { //$NON-NLS-1$
