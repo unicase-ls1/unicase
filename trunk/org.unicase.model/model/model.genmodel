@@ -114,7 +114,10 @@
         <genFeatures createChild="false" ecoreFeature="ecore:EAttribute model.ecore#//task/WorkItem/estimate"/>
         <genFeatures createChild="false" ecoreFeature="ecore:EAttribute model.ecore#//task/WorkItem/effort"/>
       </genClasses>
-      <genClasses ecoreClass="model.ecore#//task/Milestone"/>
+      <genClasses ecoreClass="model.ecore#//task/Milestone">
+        <genFeatures notify="false" createChild="false" propertySortChoices="true"
+            ecoreFeature="ecore:EReference model.ecore#//task/Milestone/containedModelElements"/>
+      </genClasses>
       <genClasses image="false" ecoreClass="model.ecore#//task/Checkable">
         <genFeatures property="None" createChild="false" ecoreFeature="ecore:EAttribute model.ecore#//task/Checkable/checked"/>
       </genClasses>

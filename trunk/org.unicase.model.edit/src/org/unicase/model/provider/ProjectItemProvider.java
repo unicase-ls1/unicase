@@ -76,13 +76,10 @@ public class ProjectItemProvider extends ItemProviderAdapter implements
 	}
 
 	/**
-	 * This specifies how to implement {@link #getChildren} and is used to
-	 * deduce an appropriate feature for an
-	 * {@link org.eclipse.emf.edit.command.AddCommand},
-	 * {@link org.eclipse.emf.edit.command.RemoveCommand} or
-	 * {@link org.eclipse.emf.edit.command.MoveCommand} in
-	 * {@link #createCommand}. <!-- begin-user-doc --> <!-- end-user-doc -->
-	 * 
+	 * This specifies how to implement {@link #getChildren} and is used to deduce an appropriate feature for an
+	 * {@link org.eclipse.emf.edit.command.AddCommand}, {@link org.eclipse.emf.edit.command.RemoveCommand} or
+	 * {@link org.eclipse.emf.edit.command.MoveCommand} in {@link #createCommand}.
+	 * <!-- begin-user-doc --> <!-- end-user-doc -->
 	 * @generated
 	 */
 	@Override
@@ -97,13 +94,11 @@ public class ProjectItemProvider extends ItemProviderAdapter implements
 
 	/**
 	 * <!-- begin-user-doc --> <!-- end-user-doc -->
-	 * 
 	 * @generated
 	 */
 	@Override
 	protected EStructuralFeature getChildFeature(Object object, Object child) {
-		// Check the type of the specified child object and return the proper
-		// feature to use for
+		// Check the type of the specified child object and return the proper feature to use for
 		// adding (see {@link AddCommand}) it as a child.
 
 		return super.getChildFeature(object, child);
@@ -134,11 +129,10 @@ public class ProjectItemProvider extends ItemProviderAdapter implements
 	}
 
 	/**
-	 * This handles model notifications by calling {@link #updateChildren} to
-	 * update any cached children and by creating a viewer notification, which
-	 * it passes to {@link #fireNotifyChanged}. <!-- begin-user-doc --> <!--
+	 * This handles model notifications by calling {@link #updateChildren} to update any cached
+	 * children and by creating a viewer notification, which it passes to {@link #fireNotifyChanged}.
+	 * <!-- begin-user-doc --> <!--
 	 * end-user-doc -->
-	 * 
 	 * @generated
 	 */
 	@Override
@@ -357,34 +351,26 @@ public class ProjectItemProvider extends ItemProviderAdapter implements
 	public ResourceLocator getResourceLocator() {
 		return ModelEditPlugin.INSTANCE;
 	}
-	
-	
-	
 
 	@Override
 	public Collection<?> getChildren(Object object) {
-		if (object instanceof Project) 
-		{	
+		if (object instanceof Project) {
 			final Project project = (Project) object;
-			final Collection<ModelElement> ret = new ArrayList<ModelElement>(); 
+			final Collection<ModelElement> ret = new ArrayList<ModelElement>();
 			EObject econtainer = null;
 			EList<ModelElement> allmes = project.getAllModelElements();
-			for ( ModelElement temp : allmes ) 
-			{
+			for (ModelElement temp : allmes) {
 				econtainer = temp.eContainer();
-				if ( (econtainer instanceof Project)  && !(temp instanceof CompositeSection) ) 
-				{	
-					ret.add(temp); 	 
+				if ((econtainer instanceof Project)
+						&& !(temp instanceof CompositeSection)) {
+					ret.add(temp);
 				}
 
-			} 
+			}
 			return ret;
-		} else {	
+		} else {
 			return super.getChildren(object);
 		}
 	}
-	
-	
-	
-	
+
 }
