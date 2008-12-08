@@ -686,7 +686,9 @@ public class EmfStoreImpl implements EmfStore {
 	// introduced.
 	public synchronized void unloadProjectStates() {
 		ResourceSet resourceSet = getServerSpace().eResource().getResourceSet();
-		for (Resource res : resourceSet.getResources()) {
+		EList<Resource> resources = resourceSet.getResources();
+		for (int i = 0; i < resources.size(); i++) {
+			Resource res = resources.get(i);
 			if (res.isLoaded()) {
 				EList<EObject> contents = res.getContents();
 				if (contents.size() == 1 && contents.get(0) instanceof Project) {
@@ -700,6 +702,7 @@ public class EmfStoreImpl implements EmfStore {
 				}
 			}
 		}
+		System.gc();
 	}
 
 	private void save() throws FatalEmfStoreException {

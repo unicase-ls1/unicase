@@ -25,6 +25,7 @@ import org.eclipse.emf.ecore.resource.Resource;
 import org.eclipse.emf.ecore.resource.ResourceSet;
 import org.eclipse.emf.ecore.resource.Resource.Diagnostic;
 import org.eclipse.emf.ecore.resource.impl.ResourceSetImpl;
+import org.eclipse.emf.ecore.util.EcoreUtil;
 import org.eclipse.equinox.app.IApplication;
 import org.eclipse.equinox.app.IApplicationContext;
 import org.unicase.emfstore.accesscontrol.AccessControlImpl;
@@ -46,6 +47,7 @@ import org.unicase.emfstore.storage.ResourceStorage;
 import org.unicase.emfstore.taskmanager.TaskManager;
 import org.unicase.emfstore.taskmanager.tasks.CleanMemoryTask;
 import org.unicase.emfstore.update.UpdateController;
+import org.unicase.model.Project;
 
 /**
  * The {@link EmfStoreController} is controlling startup and shutdown of the
@@ -95,6 +97,8 @@ public class EmfStoreController implements IApplication {
 
 		performNecessaryUpdates();
 
+//		updateProjectStructure();
+
 		accessControl = initAccessControl(serverSpace);
 		emfStore = new EmfStoreImpl(serverSpace, accessControl);
 		adminEmfStore = new AdminEmfStoreImpl(serverSpace, accessControl);
@@ -104,7 +108,6 @@ public class EmfStoreController implements IApplication {
 		TaskManager taskManager = TaskManager.getInstance();
 		taskManager.addTask(new CleanMemoryTask(emfStore));
 		taskManager.start();
-		
 
 		logger.info("Initialitation COMPLETE.");
 		logger.info("Server is RUNNING...");
@@ -115,6 +118,91 @@ public class EmfStoreController implements IApplication {
 		logger.info("Server is STOPPED.");
 		return IApplication.EXIT_OK;
 	}
+
+	
+	/////////// Transformation
+	
+	@SuppressWarnings("unused")
+	private void updateProjectStructure() {
+		long timeNeeded = System.currentTimeMillis();
+		String filepath = ServerConfiguration.getServerHome() + "/converted/";
+
+		ServerSpace serverSpace = (ServerSpace) EcoreUtil.copy(this.serverSpace);
+		
+		for (ProjectHistory project : serverSpace.getProjects()) {
+			String projectPath = filepath + "project-" + project.getProjectId().getId()
+					+ "/";
+			String projectHistoryPath = projectPath +"projectHistory"
+					+ ServerConfiguration.FILE_EXTENSION_PROJECTHISTORY;
+			saveInResource(project, projectHistoryPath);
+			int versionCount = 0;
+
+			Project tmpProject = null;
+
+			for (Version version : project.getVersions()) {
+
+				if (version.getProjectState() == null) {
+					version.getChanges().apply(tmpProject);
+				} else {
+					tmpProject = (Project) EcoreUtil.copy(version.getProjectState());
+				}
+
+				if (versionCount % 10 == 0 || version.getNextVersion() == null) {
+					version.setProjectState(tmpProject);
+					
+					String fileName = "";
+					if(versionCount % 50 == 0 || version.getNextVersion() == null) {
+						fileName = projectPath + "projectstate-"
+						+ versionCount
+						+ ServerConfiguration.FILE_EXTENSION_PROJECTSTATE;
+					} else {
+						fileName = projectPath + "backup_projectstate-"
+						+ versionCount
+						+ ServerConfiguration.FILE_EXTENSION_PROJECTSTATE;
+					}
+					saveInResource(tmpProject, fileName);
+					if(!(versionCount % 50 == 0 || version.getNextVersion() == null)) {
+						version.setProjectState(null);
+					}
+				} else {
+					version.setProjectState(null);
+				}
+
+				saveInResource(version, projectPath + "version-"
+						+ version.getPrimarySpec().getIdentifier()
+						+ ServerConfiguration.FILE_EXTENSION_VERSION);
+
+				tmpProject = (Project) EcoreUtil.copy(tmpProject);
+				versionCount++;
+			}
+		}
+		saveInResource(serverSpace, filepath+"storage"+ServerConfiguration.FILE_EXTENSION_MAINSTORAGE);
+		
+		for(Resource res : serverSpace.eResource().getResourceSet().getResources()) {
+			try {
+				res.save(null);
+			} catch (IOException e) {
+				e.printStackTrace();
+			}
+		}
+		
+		System.out.println("Time needed for conversion: "+(System.currentTimeMillis()-timeNeeded));
+		System.out.println("EXIT");
+		System.exit(0);
+	}
+
+	private void saveInResource(EObject obj, String fileName) {
+		Resource resource = serverSpace.eResource().getResourceSet()
+				.createResource(URI.createFileURI(fileName));
+		resource.getContents().add(obj);
+		try {
+			resource.save(null);
+		} catch (IOException e) {
+		}
+	}
+	
+	
+	//////////////////
 
 	private Set<ConnectionHandler<? extends EmfStoreInterface>> initConnectionHandlers()
 			throws FatalEmfStoreException, EmfStoreException {
