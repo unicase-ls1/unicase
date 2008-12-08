@@ -19,28 +19,31 @@ import org.unicase.model.ModelElement;
 import org.unicase.ui.common.commands.ActionHelper;
 import org.unicase.ui.stem.views.TaskTableUtil;
 
-
-/**.
+/**
+ * .
  * 
  * This class provides contents of users tab in Status view. It contains a
- * TreeViewer showing all OrgUnits participating in progress of input model 
+ * TreeViewer showing all OrgUnits participating in progress of input model
  * element. The TreeView has only two levels. At root level are the OrgUnits.
- * The children are Assignables corresponding the input element which are assigned
- * to this OrgUnit.
- *  
+ * The children are Assignables corresponding the input element which are
+ * assigned to this OrgUnit.
+ * 
  * @author Hodaie
- *
+ * 
  */
 public class UserTabComposite extends Composite {
 
 	private TreeViewer treeViewer;
-	//private ModelElement input;
 
-	
-	/**.
-	 * Constructor
-	 * @param parent parent
-	 * @param style style
+	// private ModelElement input;
+
+	/**
+	 * . Constructor
+	 * 
+	 * @param parent
+	 *            parent
+	 * @param style
+	 *            style
 	 */
 	public UserTabComposite(Composite parent, int style) {
 		super(parent, style);
@@ -48,7 +51,6 @@ public class UserTabComposite extends Composite {
 		createTree();
 	}
 
-	
 	private void createTree() {
 		treeViewer = new TreeViewer(this, SWT.BORDER);
 		treeViewer.getTree().setLayoutData(
@@ -59,28 +61,33 @@ public class UserTabComposite extends Composite {
 		treeViewer.setLabelProvider(new UserTabLabelProvider());
 		treeViewer.setComparator(new ViewerComparator());
 		TaskTableUtil.addColumns(treeViewer);
-		
+
 		treeViewer.addDoubleClickListener(new IDoubleClickListener() {
 
 			public void doubleClick(DoubleClickEvent event) {
 				IStructuredSelection sel = (IStructuredSelection) event
 						.getSelection();
-				ActionHelper.openModelElement((ModelElement) sel
-						.getFirstElement(), treeViewer.getClass().getName());
+				if (sel.getFirstElement() instanceof ModelElement) {
+					ActionHelper
+							.openModelElement((ModelElement) sel
+									.getFirstElement(), treeViewer.getClass()
+									.getName());
+				}
 			}
 
 		});
 	}
-	
-	/**.
-	 * set input to TreeViewer
+
+	/**
+	 * . set input to TreeViewer
 	 * 
-	 * @param me input model element
+	 * @param me
+	 *            input model element
 	 */
 	public void setInput(ModelElement me) {
-		//this.input = me;
+		// this.input = me;
 		treeViewer.setInput(me);
-	
+
 	}
-	
+
 }
