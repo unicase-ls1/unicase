@@ -353,7 +353,7 @@ public final class ServerConfiguration {
 	 */
 	public static String getServerMainFile() {
 		//TODO convert storage file as well
-		//return getServerHome()+"storage";
-		return getServerHome()+"storage"+FILE_EXTENSION_MAINSTORAGE;
+		return getServerHome()+"storage";
+//		return getServerHome()+"storage"+FILE_EXTENSION_MAINSTORAGE;
 	}
 }
