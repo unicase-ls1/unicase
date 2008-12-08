@@ -1814,6 +1814,7 @@ public class ProjectSpaceImpl extends IdentifiableElementImpl implements
 			ModelElement modelElement) {
 		if (isRecording) {
 			createOperations(notification, modelElement);
+			saveProjectSpaceOnly();
 			save(modelElement);
 			setDirty(getOperations().size() > 0);
 		}
