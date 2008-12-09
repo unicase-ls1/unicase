@@ -38,6 +38,9 @@ Import-Package: org.eclipse.draw2d,
  org.eclipse.gmf.runtime.diagram.ui.resources.editor.document,
  org.eclipse.ui.views.properties.tabbed
 Export-Package: org.eclipse.swt.nebula.widgets.cdatetime,
+ org.sharemedia.ui.sat,
+ org.sharemedia.ui.sat.effects,
+ org.sharemedia.ui.sat.movement,
  org.unicase.ui.common;uses:="org.osgi.framework,org.eclipse.ui.plugin",
  org.unicase.ui.common.commands;uses:="org.eclipse.core.commands,org.unicase.model",
  org.unicase.ui.common.decorators,
@@ -49,4 +52,5 @@ Export-Package: org.eclipse.swt.nebula.widgets.cdatetime,
  org.unicase.ui.common.perspectives,
  org.unicase.ui.common.util
 Bundle-ClassPath: .,
- lib/nebula_cdatetime_0.9.0.jar
+ lib/nebula_cdatetime_0.9.0.jar,
+ lib/org.sharemedia.ui.sat.jar

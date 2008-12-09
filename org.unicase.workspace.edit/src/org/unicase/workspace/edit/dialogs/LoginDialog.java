@@ -26,6 +26,8 @@ import org.eclipse.swt.widgets.Control;
 import org.eclipse.swt.widgets.Label;
 import org.eclipse.swt.widgets.Shell;
 import org.eclipse.swt.widgets.Text;
+import org.sharemedia.ui.sat.SATRunner;
+import org.sharemedia.ui.sat.movement.SinusVariation;
 import org.unicase.emfstore.exceptions.EmfStoreException;
 import org.unicase.workspace.ServerInfo;
 import org.unicase.workspace.Usersession;
@@ -165,6 +167,7 @@ public class LoginDialog extends TitleAreaDialog implements SelectionListener {
 	/**
 	 * {@inheritDoc}
 	 */
+	@SuppressWarnings("deprecation")
 	@Override
 	public void okPressed() {
 		if(!canFinish){
@@ -190,6 +193,7 @@ public class LoginDialog extends TitleAreaDialog implements SelectionListener {
 			close();
 		} catch (EmfStoreException e) {
 			//e.printStackTrace(); //is shown for debugging purposes only, proper handling is being done.
+			new SATRunner().shake(this.getShell(), 300, new SinusVariation(10, 1), null, null);
 			setErrorMessage(e.getMessage());
 			password.selectAll();
 			setReturnCode(FAILED);
