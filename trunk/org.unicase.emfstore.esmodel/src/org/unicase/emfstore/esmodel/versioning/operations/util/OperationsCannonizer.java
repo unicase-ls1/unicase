@@ -5,6 +5,7 @@
 
 package org.unicase.emfstore.esmodel.versioning.operations.util;
 
+import java.util.ArrayList;
 import java.util.HashMap;
 import java.util.HashSet;
 import java.util.List;
@@ -108,22 +109,59 @@ public final class OperationsCannonizer {
 		// aggregate the two multi reference changes if possible
 		MultiReferenceOperation lastMultiReferenceOperation = (MultiReferenceOperation) changedReferences
 				.get(key);
-		// the two ops must be both add or both remove
-		if (multiReferenceOperation.isAdd() == lastMultiReferenceOperation
-				.isAdd()) {
+		// the two ops must be both remvoe
+		EList<ModelElementId> referencedModelElements = multiReferenceOperation.getReferencedModelElements();
+		EList<ModelElementId> referencedModelElementsOfLast = lastMultiReferenceOperation.getReferencedModelElements();
+		if (multiReferenceOperation.isAdd() == false && lastMultiReferenceOperation
+				.isAdd() == false) {
 
 			int indexDifference = lastMultiReferenceOperation.getIndex()
 					- multiReferenceOperation.getIndex();
 			if (indexDifference > 0
-					&& indexDifference < multiReferenceOperation
-							.getReferencedModelElements().size()) {
-				multiReferenceOperation.getReferencedModelElements().addAll(
+					&& indexDifference <= referencedModelElements.size()) {
+				referencedModelElements.addAll(
 						lastMultiReferenceOperation.getIndex(),
-						lastMultiReferenceOperation
-								.getReferencedModelElements());
+						referencedModelElementsOfLast);
 				changedReferences.put(key, multiReferenceOperation);
 				operationsToBeDeleted.add(lastMultiReferenceOperation);
 				return;
+			}
+		}
+		// the two ops must be both add
+		else if (multiReferenceOperation.isAdd() == true  && lastMultiReferenceOperation
+				.isAdd() == true) {
+
+			int indexDifference = lastMultiReferenceOperation.getIndex()
+					- multiReferenceOperation.getIndex();
+			if (indexDifference > 0
+					&& indexDifference <= referencedModelElements.size()) {
+				referencedModelElements.addAll(
+						lastMultiReferenceOperation.getIndex(),
+						referencedModelElementsOfLast);
+				referencedModelElementsOfLast.clear();
+				referencedModelElementsOfLast.addAll(referencedModelElements);
+				changedReferences.put(key, lastMultiReferenceOperation);
+				operationsToBeDeleted.add(multiReferenceOperation);
+				return;
+			}
+		}
+		else if (multiReferenceOperation.isAdd() != lastMultiReferenceOperation
+				.isAdd()) {
+			List<ModelElementId> idsToRemove = new ArrayList<ModelElementId>();
+			for (ModelElementId modelElementId: referencedModelElements) {
+				for (ModelElementId otherModelElementId: referencedModelElementsOfLast) {
+					if (otherModelElementId.equals(modelElementId)) {
+						idsToRemove.add(modelElementId);
+					}
+				}
+			}
+			referencedModelElements.removeAll(idsToRemove);
+			referencedModelElementsOfLast.removeAll(idsToRemove);
+			if (referencedModelElements.isEmpty()) {
+				operationsToBeDeleted.add(multiReferenceOperation);
+			}
+			if (referencedModelElementsOfLast.isEmpty()) {
+				operationsToBeDeleted.add(lastMultiReferenceOperation);
 			}
 		}
 		changedReferences.put(key, multiReferenceOperation);
@@ -313,7 +351,15 @@ public final class OperationsCannonizer {
 			lastAttributeOperation
 					.setOldValue(attributeOperation.getOldValue());
 			operationsToBeDeleted.add(attributeOperation);
+			if (lastAttributeOperation.getNewValue().equals(lastAttributeOperation.getOldValue())) {
+				operationsToBeDeleted.add(attributeOperation);
+				changedAttributes.remove(key);
+			}
 		} else {
+			if (attributeOperation.getNewValue().equals(attributeOperation.getOldValue())) {
+				operationsToBeDeleted.add(attributeOperation);
+				return;
+			}
 			changedAttributes.put(key, attributeOperation);
 			Set<AttributeOperation> set = modelElementAttributeChangeMap
 					.get(attributeOperation.getModelElementId());
