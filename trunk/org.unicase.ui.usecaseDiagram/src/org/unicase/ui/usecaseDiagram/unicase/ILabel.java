@@ -19,14 +19,14 @@ import org.eclipse.draw2d.IFigure;
  */
 public interface ILabel extends IFigure {
 
-	/**
+	/**.
 	 * Set the new text to the label
 	 * 
 	 * @param s the new text
 	 */
 	void setText(String s);
 	
-	/**
+	/**.
 	 * Get the text of the label
 	 * 
 	 * @return the text of the label

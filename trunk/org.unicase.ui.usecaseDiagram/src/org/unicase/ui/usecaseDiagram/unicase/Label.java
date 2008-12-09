@@ -16,13 +16,13 @@ import org.eclipse.draw2d.PositionConstants;
 import org.eclipse.gmf.runtime.draw2d.ui.figures.WrappingLabel;
 import org.eclipse.swt.graphics.Image;
 
-/**
+/**.
  * This is the Label class of eclipse draw2d with the generic
  * representation of the label (ILabel)
  */
 public class Label extends WrappingLabel implements ILabel {
 
-	/**
+	/**.
 	 * The default contructor
 	 */
 	public Label() {
@@ -30,7 +30,7 @@ public class Label extends WrappingLabel implements ILabel {
 		setAlignment(PositionConstants.CENTER);
 	}
 
-	/**
+	/**.
 	 * Constructor
 	 * 
 	 * @param s the text of the label
@@ -40,7 +40,7 @@ public class Label extends WrappingLabel implements ILabel {
         setAlignment(PositionConstants.CENTER);
 	}
 	
-	/**
+	/**.
 	 * Constructor
 	 * 
 	 * @param i the image of the label
@@ -51,7 +51,7 @@ public class Label extends WrappingLabel implements ILabel {
         setAlignment(PositionConstants.CENTER);
     }
 
-	/**
+	/**.
 	 * Constructor
 	 * 
 	 * @param s the text of the label
@@ -65,6 +65,7 @@ public class Label extends WrappingLabel implements ILabel {
 
     /**
      * @see org.eclipse.draw2d.Figure#getToolTip()
+	 * @return the IFigure {@link IFigure}
      */
     public IFigure getToolTip()
     {

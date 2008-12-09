@@ -4,20 +4,39 @@ import org.eclipse.draw2d.Shape;
 import org.eclipse.draw2d.geometry.Dimension;
 import org.eclipse.draw2d.geometry.Rectangle;
 
+/**
+ * @author denglerm
+ * This class is necessary for the StickMan figure
+ */
+
 public abstract class AbstractProportionalShape extends Shape {
 
+	/**.
+	 * The constructor
+	 */
 	public AbstractProportionalShape() {
 	}
 
+	/**.
+	 * This method sets the Width to Height Ratio
+	 * @param w2hRatio the ratio
+	 */
 	protected void setW2HRatio(float w2hRatio) {
 		myW2HRatio = w2hRatio;
 		myIsKeepingProportions = true;
 	}
 
+	/**.
+	 * This method sets if the proportions should be kept
+	 * @param newValue the boolean value
+	 */
 	protected void setKeepingProportions(boolean newValue) {
 		myIsKeepingProportions = newValue;
 	}
 
+	/**.
+	 * @return true if proportions should be kept
+	 */
 	protected boolean isKeepingProportions() {
 		return myIsKeepingProportions;
 	}
@@ -26,6 +45,7 @@ public abstract class AbstractProportionalShape extends Shape {
 	 * If keeping proportions, returns the maximum rectangle that is fully
 	 * inside the bounds and has the specified proportions. 
 	 * Otherwise, returns the bounds.
+	 * @return the bounding {@link Rectangle}
 	 */
 	public Rectangle getProportionalBounds() {
 		Rectangle area = getClientArea();
@@ -57,6 +77,8 @@ public abstract class AbstractProportionalShape extends Shape {
 	 * If keeping proportions, returns the dimension tweaked by the same 
 	 * factor as the proportional bounds relate to the original bounds.
 	 * Otherwise, returns the original dimension.
+	 * @param d the Dimension
+	 * @return the original {@link Dimension}
 	 */
 	public Dimension adjustDimension(Dimension d) {
 		Rectangle area = getClientArea();
