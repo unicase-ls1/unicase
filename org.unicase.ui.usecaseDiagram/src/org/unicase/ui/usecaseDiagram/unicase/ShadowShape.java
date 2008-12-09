@@ -9,11 +9,22 @@ import org.eclipse.draw2d.geometry.Insets;
 import org.eclipse.draw2d.geometry.Rectangle;
 import org.eclipse.swt.graphics.Color;
 
+/**
+ * @author denglerm
+ * This class is necessary for the StickMan figure
+ */
 public abstract class ShadowShape extends AbstractProportionalShape {
 
 	private static final Color SHADOW_COLOR = new Color(null, 150, 150, 150);
 	private static final int SHADOW_SIZE = 3;
 	private static final Insets SHADOW_INSETS = new Insets(0, 0, SHADOW_SIZE, SHADOW_SIZE);
+
+	/**.
+	 * The constructor
+	 * @param is3D true for 3D appearance
+	 * @param backgroundColor the background color
+	 * @param foregroundColor the foreground color
+	 */
 
 	public ShadowShape(boolean is3D, Color backgroundColor, Color foregroundColor) {
 		setForegroundColor(foregroundColor);
@@ -23,10 +34,17 @@ public abstract class ShadowShape extends AbstractProportionalShape {
 		set3D(is3D);
 	}
 
+	/**
+	 * @return true of 3D is enabled
+	 */
 	protected boolean is3D() {
 		return my3D;
 	}
 
+	/**.
+	 * This method enables or disabled 3D appearance
+	 * @param is3D true to enable 3D
+	 */
 	public void set3D(boolean is3D) {
 		if (my3D == is3D) {
 			return;
@@ -34,7 +52,12 @@ public abstract class ShadowShape extends AbstractProportionalShape {
 		my3D = is3D;
 		repaint();
 	}
-
+	/**.
+	 * This method returns the preferred size
+	 * @param wHint a hint for the width
+	 * @param hHint a hint for the height
+	 * @return the Dimension
+	 */
 	public Dimension getPreferredSize(int wHint, int hHint) {
 		Dimension original = super.getPreferredSize(wHint, hHint);
 		if (is3D()) {
@@ -44,33 +67,56 @@ public abstract class ShadowShape extends AbstractProportionalShape {
 	}
 
 	/**
+	 * @param graphics
+	 * The Graphics object
 	 * Paints this figure, including its border and children.
 	 * Border is painted first.
 	 */
 	public void paint(Graphics graphics) {
 		paintBorder(graphics);
-		if (getBackgroundColor() != null)
+		if (getBackgroundColor() != null) {
 			graphics.setBackgroundColor(getBackgroundColor());
-		if (getForegroundColor() != null)
+		}
+		if (getForegroundColor() != null) {
 			graphics.setForegroundColor(getForegroundColor());
-		if (getFont() != null)
+		}
+		if (getFont() != null) {
 			graphics.setFont(getFont());
+		}
 		paintFigure(graphics);
 		paintClientArea(graphics);
 	}
 
+	/**
+	 * @param graphics
+	 * The Graphics object
+	 */
 	protected void fillShape(Graphics graphics) {
 		fillShape(graphics, getProportionalBounds());
 	}
 
+	/**
+	 * @param graphics The Graphics object
+	 * @param bounds The bounding rectangle
+	 */
 	protected abstract void fillShape(Graphics graphics, Rectangle bounds);
 
+	/**
+	 * @param graphics The Graphics object
+	 */
 	protected void outlineShape(Graphics graphics) {
 		outlineShape(graphics, getProportionalBounds());
 	}
-
+	/**
+	 * @param graphics The Graphics object
+	 * @param bounds The bounding rectangle
+	 */
 	protected abstract void outlineShape(Graphics graphics, Rectangle bounds);
 
+	/**
+	 * @author denglerm
+	 * This class is necessary for the StickMan figure
+	 */
 	private class ShadowBorder extends AbstractBorder {
 
 		public Insets getInsets(IFigure figure) {

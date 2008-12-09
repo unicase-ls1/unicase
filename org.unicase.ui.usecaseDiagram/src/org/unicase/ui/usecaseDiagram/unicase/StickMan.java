@@ -5,68 +5,89 @@ import org.eclipse.draw2d.geometry.PointList;
 import org.eclipse.draw2d.geometry.Rectangle;
 import org.eclipse.swt.graphics.Color;
 
+/**
+ * @author denglerm
+ * This class represents the Stickman figure
+ */
 public class StickMan extends ShadowShape {
-    public StickMan() {
+	/**.
+	 * The constructor
+	 */
+	public StickMan() {
         this(false, ColorConstants.white, ColorConstants.black);
     }
-
+	/**.
+	 * The constructor
+	 * @param is3D true for 3D appearance
+	 * @param backgroundColor the background color
+	 * @param foregroundColor the foreground color
+	 */
     public StickMan(boolean is3D, Color backgroundColor, Color foregroundColor) {
         super(is3D, backgroundColor, foregroundColor);
         setKeepingProportions(true);
         setW2HRatio(BASE_W / BASE_H);
     }
-
+	/**
+	 * @param graphics The Graphics object
+	 * @param bounds The bounding rectangle
+	 */
     protected void outlineShape( Graphics graphics, Rectangle bounds ) {
         PointList pl = setupPoints( bounds );
         graphics.drawPolygon( pl );
         int add = graphics.getLineWidth() / 2;
         graphics.drawOval( new Rectangle( ovalX, ovalY, ovalD + add, ovalD + add ) );
     }
-
+	/**
+	 * @param graphics The Graphics object
+	 * @param bounds The bounding rectangle
+	 */
     protected void fillShape( Graphics graphics, Rectangle bounds ) {
         PointList pl = setupPoints( bounds );
         graphics.fillPolygon( pl );
         int add = graphics.getLineWidth() / 2;
         graphics.fillOval( new Rectangle( ovalX, ovalY, ovalD + add, ovalD + add ) );
     }
-
+	/**
+	 * @param rect The Rectangle
+	 * @return the PointList for the Stickman
+	 */
     protected PointList setupPoints( Rectangle rect ) {
         int[] xPoints = new int[ P_NUM ];
         int[] yPoints = new int[ P_NUM ];
 
         PointList pl = new PointList( 10 );
-        int W = ( rect.width / 2 ) * 2;
-        int H = rect.height;
-        int X1 = W / 2;
-        int Y1 = ( Math.round( H * FACTOR1 ) / 2 ) * 2;
-        int Y2 = Math.round( H * FACTOR2 );
-        int Y3 = H - ( X1 - 1 );
-        int STEP = Math.round( W / BASE_W );
-        if( STEP < 1 ) {
-            STEP = 1;
+        int w = ( rect.width / 2 ) * 2;
+        int h = rect.height;
+        int x1 = w / 2;
+        int y1 = ( Math.round( h * FACTOR1 ) / 2 ) * 2;
+        int y2 = Math.round( h * FACTOR2 );
+        int y3 = h - ( x1 - 1 );
+        int step = Math.round( w / BASE_W );
+        if( step < 1 ) {
+            step = 1;
         }
 
         // set positive points. (0...9)
-        xPoints[ 0 ] = STEP;
-        yPoints[ 0 ] = Y1;
-        xPoints[ 1 ] = STEP;
-        yPoints[ 1 ] = Y2 - STEP;
-        xPoints[ 2 ] = X1;
-        yPoints[ 2 ] = Y2 - STEP;
-        xPoints[ 3 ] = X1;
-        yPoints[ 3 ] = Y2 + STEP;
-        xPoints[ 4 ] = STEP;
-        yPoints[ 4 ] = Y2 + STEP;
-        xPoints[ 5 ] = STEP;
-        yPoints[ 5 ] = Y3 - STEP;
-        xPoints[ 6 ] = X1;
-        yPoints[ 6 ] = H - STEP;
-        xPoints[ 7 ] = X1;
-        yPoints[ 7 ] = H;
-        xPoints[ 8 ] = X1 - 2 * STEP;
-        yPoints[ 8 ] = H;
+        xPoints[ 0 ] = step;
+        yPoints[ 0 ] = y1;
+        xPoints[ 1 ] = step;
+        yPoints[ 1 ] = y2 - step;
+        xPoints[ 2 ] = x1;
+        yPoints[ 2 ] = y2 - step;
+        xPoints[ 3 ] = x1;
+        yPoints[ 3 ] = y2 + step;
+        xPoints[ 4 ] = step;
+        yPoints[ 4 ] = y2 + step;
+        xPoints[ 5 ] = step;
+        yPoints[ 5 ] = y3 - step;
+        xPoints[ 6 ] = x1;
+        yPoints[ 6 ] = h - step;
+        xPoints[ 7 ] = x1;
+        yPoints[ 7 ] = h;
+        xPoints[ 8 ] = x1 - 2 * step;
+        yPoints[ 8 ] = h;
         xPoints[ 9 ] = 0;
-        yPoints[ 9 ] = Y3 + STEP;
+        yPoints[ 9 ] = y3 + step;
 
         // reflect points 0..8
         for( int i = 0; i <= 8; i++ ) {
@@ -80,7 +101,7 @@ public class StickMan extends ShadowShape {
 
         // shift all points and copy to integer.
         for( int i = 0; i < P_NUM; i++ ) {
-            xPoints[ i ] += X1;
+            xPoints[ i ] += x1;
 
             xPoints[ i ] += rect.x;
             yPoints[ i ] += rect.y;
@@ -91,8 +112,8 @@ public class StickMan extends ShadowShape {
         }
 
         // head-oval
-        ovalD = Y1;
-        ovalX = X1 - ovalD / 2 + rect.x;
+        ovalD = y1;
+        ovalX = x1 - ovalD / 2 + rect.x;
         ovalY = rect.y;
 
         return pl;

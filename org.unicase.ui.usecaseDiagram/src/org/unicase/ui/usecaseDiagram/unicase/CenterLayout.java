@@ -19,15 +19,31 @@ import org.eclipse.draw2d.StackLayout;
 import org.eclipse.draw2d.geometry.Dimension;
 import org.eclipse.draw2d.geometry.Rectangle;
 
+/**
+ * @author denglerm
+ * This class is uses by the usecase ellipse
+ */
+
 public class CenterLayout extends StackLayout {
 		
-	Rectangle clientRect=null;
+	private Rectangle clientRect;
+	/** .
+	 * The constructor
+	 * @param clientRect the client rectangle
+	 */
 	public CenterLayout(Rectangle clientRect){
 		this.clientRect=clientRect;
 	}
+	/** .
+	 * The constructor
+	 */
 	public CenterLayout(){
 		super();		
 	}
+	/** .
+	 * {@inheritDoc}
+	 * @see StackLayout#layout(IFigure figure)
+	 */
 	public void layout(IFigure figure) {
 		
 		Rectangle r=figure.getClientArea();

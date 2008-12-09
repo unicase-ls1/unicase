@@ -149,11 +149,12 @@ public class ModelDocumentProvider extends AbstractDocumentProvider implements
 
 	/**
 	 * @generated NOT
+	 * 
+	 * {@inheritDoc}
+	 * @see org.eclipse.gmf.runtime.diagram.ui.resources.editor.document.AbstractDocumentProvider#createEmptyDocument()
 	 */
 	protected IDocument createEmptyDocument() {
 		DiagramDocument document = new DiagramDocument();
-		//document.setEditingDomain(TransactionalEditingDomain.Registry.INSTANCE
-		//		.getEditingDomain("org.unicase.EditingDomain"));
 		document.setEditingDomain(WorkspaceManager.getInstance()
 				.getCurrentWorkspace().getEditingDomain());
 		return document;
@@ -205,6 +206,14 @@ public class ModelDocumentProvider extends AbstractDocumentProvider implements
 
 	/**
 	 * @generated NOT
+	 * 
+	 * @param document
+	 * The document whose content should be set
+	 * @param element
+	 * The new content element
+	 * 
+	 * @throws CoreException if an exceptional error occurs
+	 * 
 	 */
 	protected void setDocumentContent(IDocument document, IEditorInput element)
 			throws CoreException {
@@ -219,12 +228,12 @@ public class ModelDocumentProvider extends AbstractDocumentProvider implements
 			URI uri = ((URIEditorInput) element).getURI();
 			Resource resource = null;
 			try {
-				//				resource = domain.getResourceSet().getResource(
-				//						uri.trimFragment(), false);
+				// resource = domain.getResourceSet().getResource(
+				// uri.trimFragment(), false);
 				if (resource == null) {
 					resource = domain.getResourceSet().createResource(uri,
-							"MEDiagram");
-				}
+					"MEDiagram");
+		}
 				if (!resource.isLoaded()) {
 					try {
 						Map options = new HashMap(GMFResourceFactory
@@ -321,18 +330,6 @@ public class ModelDocumentProvider extends AbstractDocumentProvider implements
 	 */
 	public ResourceSetInfo getResourceSetInfo(Object editorInput) {
 		return (ResourceSetInfo) super.getElementInfo(editorInput);
-	}
-
-	/**
-	 * @generated NOT
-	 */
-	protected void disposeElementInfo(Object element, ElementInfo info) {
-		// JH we should do sth.
-		// if (info instanceof ResourceSetInfo) {
-		// ResourceSetInfo resourceSetInfo = (ResourceSetInfo) info;
-		// resourceSetInfo.dispose();
-		// }
-		// super.disposeElementInfo(element, info);
 	}
 
 	/**
