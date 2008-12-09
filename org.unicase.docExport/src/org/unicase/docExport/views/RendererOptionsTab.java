@@ -21,7 +21,7 @@ import org.unicase.docExport.exportModel.renderers.options.RendererOption;
 
 /**
  * 
- * @author Sebastian Höcht
+ * @author Sebastian Hoecht
  *
  */
 public class RendererOptionsTab {
