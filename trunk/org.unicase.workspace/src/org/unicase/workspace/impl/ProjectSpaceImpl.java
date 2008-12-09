@@ -56,6 +56,7 @@ import org.unicase.emfstore.esmodel.versioning.operations.MultiReferenceOperatio
 import org.unicase.emfstore.esmodel.versioning.operations.OperationsFactory;
 import org.unicase.emfstore.esmodel.versioning.operations.ReferenceOperation;
 import org.unicase.emfstore.esmodel.versioning.operations.SingleReferenceOperation;
+import org.unicase.emfstore.esmodel.versioning.operations.util.OperationsCannonizer;
 import org.unicase.emfstore.exceptions.BaseVersionOutdatedException;
 import org.unicase.emfstore.exceptions.EmfStoreException;
 import org.unicase.model.ModelElement;
@@ -1814,6 +1815,7 @@ public class ProjectSpaceImpl extends IdentifiableElementImpl implements
 			ModelElement modelElement) {
 		if (isRecording) {
 			createOperations(notification, modelElement);
+			OperationsCannonizer.cannonize(getOperations());
 			saveProjectSpaceOnly();
 			save(modelElement);
 			setDirty(getOperations().size() > 0);
@@ -1871,7 +1873,7 @@ public class ProjectSpaceImpl extends IdentifiableElementImpl implements
 		if (directContents.size() != 1
 				&& (!(directContents.get(0) instanceof ChangePackage))) {
 			throw new IOException(
-					"File is corrupt, does not contain a Project.");
+					"File is corrupt, does not contain Changes.");
 		}
 
 		ChangePackage changePackage = (ChangePackage) directContents.get(0);
