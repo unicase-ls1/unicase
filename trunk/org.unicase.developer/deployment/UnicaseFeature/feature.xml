@@ -2,7 +2,7 @@
 <feature
       id="org.unicase.client"
       label="Unicase Client"
-      version="0.2.16.internal"
+      version="0.2.16"
       provider-name="unicase.org">
 
    <description url="http://www.unicase.org">
@@ -281,7 +281,7 @@ This Agreement is governed by the laws of the State of New York and the intellec
          id="org.unicase.ui.stateDiagram"
          download-size="0"
          install-size="0"
-         version="1.0.0.qualifier"
+         version="0.2.16.internal"
          unpack="false"/>
 
 </feature>
