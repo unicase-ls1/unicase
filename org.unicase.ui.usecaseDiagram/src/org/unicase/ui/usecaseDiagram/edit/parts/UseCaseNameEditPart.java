@@ -310,6 +310,7 @@ public class UseCaseNameEditPart extends CompartmentEditPart implements
 	/**
 	 * @generated
 	 */
+	@SuppressWarnings("deprecation")
 	protected DirectEditManager getManager() {
 		if (manager == null) {
 			setManager(new TextDirectEditManager(

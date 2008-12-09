@@ -307,6 +307,7 @@ public class LabelEditPart extends
 	/**
 	 * @generated
 	 */
+	@SuppressWarnings("deprecation")
 	protected DirectEditManager getManager() {
 		if (manager == null) {
 			setManager(new TextDirectEditManager(

@@ -307,6 +307,7 @@ public class ExtendLabelEditPart extends LabelEditPart implements
 	/**
 	 * @generated
 	 */
+	@SuppressWarnings("deprecation")
 	protected DirectEditManager getManager() {
 		if (manager == null) {
 			setManager(new TextDirectEditManager(
