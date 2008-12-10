@@ -1,10 +1,12 @@
 package org.unicase.workspace.edit.views.validationview;
 
 import java.io.IOException;
+import java.util.Iterator;
 import java.util.List;
 
 import org.eclipse.core.runtime.IPath;
 import org.eclipse.emf.ecore.EObject;
+import org.eclipse.emf.ecore.EStructuralFeature;
 import org.eclipse.emf.validation.model.IConstraintStatus;
 import org.eclipse.jface.action.Action;
 import org.eclipse.jface.action.IToolBarManager;
@@ -132,16 +134,36 @@ public class ValidationView extends ViewPart {
 			public void doubleClick(DoubleClickEvent event) {
 				IStructuredSelection selection = (IStructuredSelection) event
 						.getSelection();
-				EObject me = ((IConstraintStatus) selection.getFirstElement())
-						.getTarget();
+				IConstraintStatus constraintStatus = (IConstraintStatus) selection
+						.getFirstElement();
+
+				EObject me = constraintStatus.getTarget();
+				Iterator<EObject> iterator = constraintStatus.getResultLocus()
+						.iterator();
 				if (me instanceof ModelElement) {
-					ActionHelper.openModelElement((ModelElement) me,
-							viewId);
+					EStructuralFeature errorLocation = null;
+					errorLocation = getErrorLocation(iterator, errorLocation);
+					if(errorLocation != null) {
+						ActionHelper.openModelElement((ModelElement) me, errorLocation, viewId);
+					} else {
+						ActionHelper.openModelElement((ModelElement) me, viewId);
+					}
 				}
 			}
 		});
 	}
-
+	private EStructuralFeature getErrorLocation(
+			Iterator<EObject> iterator, EStructuralFeature errorLocation) {
+		while (iterator.hasNext()) {
+			EObject next = iterator.next();
+			if(next instanceof EStructuralFeature) {
+				errorLocation = (EStructuralFeature) next;
+				break;
+			}
+		}
+		return errorLocation;
+	}
+	
 	/**
 	 * {@inheritDoc}
 	 */

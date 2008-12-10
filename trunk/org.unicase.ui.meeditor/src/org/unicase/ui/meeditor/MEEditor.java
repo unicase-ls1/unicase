@@ -30,6 +30,7 @@ import org.unicase.model.provider.ModelItemProviderAdapterFactory;
  * GUI view for editing MEs.
  * 
  * @author helming
+ * @author naughton
  * 
  */
 public class MEEditor extends SharedHeaderFormEditor {
@@ -60,9 +61,14 @@ public class MEEditor extends SharedHeaderFormEditor {
 	 */
 	@Override
 	protected void addPages() {
-
-		form = new MEEditorPage(this, "1", "Standard View", editingDomain,
-				modelElement);
+		MEEditorInput editorInput = (MEEditorInput) getEditorInput();
+		if (editorInput.getProblemFeature() != null) {
+			form = new MEEditorPage(this, "1", "Standard View", editingDomain,
+					modelElement, editorInput.getProblemFeature());
+		} else {
+			form = new MEEditorPage(this, "1", "Standard View", editingDomain,
+					modelElement);
+		}
 		try {
 			addPage(form);
 		} catch (PartInitException e) {
