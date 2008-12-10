@@ -90,6 +90,9 @@
           containment="true"/>
       <eStructuralFeatures xsi:type="ecore:EReference" name="target" eType="#//versioning/PrimaryVersionSpec"
           containment="true"/>
+      <eStructuralFeatures xsi:type="ecore:EReference" name="modelElements" upperBound="-1"
+          eType="ecore:EClass ../../org.unicase.model/model/model.ecore#//ModelElementId"
+          containment="true"/>
     </eClassifiers>
     <eClassifiers xsi:type="ecore:EClass" name="Version">
       <eStructuralFeatures xsi:type="ecore:EReference" name="projectState" eType="ecore:EClass ../../org.unicase.model/model/model.ecore#//Project"

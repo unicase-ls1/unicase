@@ -6,7 +6,9 @@
  */
 package org.unicase.emfstore.esmodel.versioning;
 
+import org.eclipse.emf.common.util.EList;
 import org.eclipse.emf.ecore.EObject;
+import org.unicase.model.ModelElementId;
 
 /**
  * <!-- begin-user-doc -->
@@ -18,6 +20,7 @@ import org.eclipse.emf.ecore.EObject;
  * <ul>
  *   <li>{@link org.unicase.emfstore.esmodel.versioning.HistoryQuery#getSource <em>Source</em>}</li>
  *   <li>{@link org.unicase.emfstore.esmodel.versioning.HistoryQuery#getTarget <em>Target</em>}</li>
+ *   <li>{@link org.unicase.emfstore.esmodel.versioning.HistoryQuery#getModelElements <em>Model Elements</em>}</li>
  * </ul>
  * </p>
  *
@@ -77,5 +80,21 @@ public interface HistoryQuery extends EObject {
 	 * @generated
 	 */
 	void setTarget(PrimaryVersionSpec value);
+
+	/**
+	 * Returns the value of the '<em><b>Model Elements</b></em>' containment reference list.
+	 * The list contents are of type {@link org.unicase.model.ModelElementId}.
+	 * <!-- begin-user-doc -->
+	 * <p>
+	 * If the meaning of the '<em>Model Elements</em>' containment reference list isn't clear,
+	 * there really should be more of a description here...
+	 * </p>
+	 * <!-- end-user-doc -->
+	 * @return the value of the '<em>Model Elements</em>' containment reference list.
+	 * @see org.unicase.emfstore.esmodel.versioning.VersioningPackage#getHistoryQuery_ModelElements()
+	 * @model containment="true" resolveProxies="true"
+	 * @generated
+	 */
+	EList<ModelElementId> getModelElements();
 
 } // HistoryQuery

@@ -6,15 +6,21 @@
  */
 package org.unicase.emfstore.esmodel.versioning.impl;
 
+import java.util.Collection;
+
 import org.eclipse.emf.common.notify.Notification;
 import org.eclipse.emf.common.notify.NotificationChain;
+import org.eclipse.emf.common.util.EList;
 import org.eclipse.emf.ecore.EClass;
 import org.eclipse.emf.ecore.InternalEObject;
 import org.eclipse.emf.ecore.impl.ENotificationImpl;
 import org.eclipse.emf.ecore.impl.EObjectImpl;
+import org.eclipse.emf.ecore.util.EObjectContainmentEList;
+import org.eclipse.emf.ecore.util.InternalEList;
 import org.unicase.emfstore.esmodel.versioning.HistoryQuery;
 import org.unicase.emfstore.esmodel.versioning.PrimaryVersionSpec;
 import org.unicase.emfstore.esmodel.versioning.VersioningPackage;
+import org.unicase.model.ModelElementId;
 
 /**
  * <!-- begin-user-doc -->
@@ -25,6 +31,7 @@ import org.unicase.emfstore.esmodel.versioning.VersioningPackage;
  * <ul>
  *   <li>{@link org.unicase.emfstore.esmodel.versioning.impl.HistoryQueryImpl#getSource <em>Source</em>}</li>
  *   <li>{@link org.unicase.emfstore.esmodel.versioning.impl.HistoryQueryImpl#getTarget <em>Target</em>}</li>
+ *   <li>{@link org.unicase.emfstore.esmodel.versioning.impl.HistoryQueryImpl#getModelElements <em>Model Elements</em>}</li>
  * </ul>
  * </p>
  *
@@ -50,6 +57,16 @@ public class HistoryQueryImpl extends EObjectImpl implements HistoryQuery {
 	 * @ordered
 	 */
 	protected PrimaryVersionSpec target;
+
+	/**
+	 * The cached value of the '{@link #getModelElements() <em>Model Elements</em>}' containment reference list.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @see #getModelElements()
+	 * @generated
+	 * @ordered
+	 */
+	protected EList<ModelElementId> modelElements;
 
 	/**
 	 * <!-- begin-user-doc -->
@@ -251,6 +268,20 @@ public class HistoryQueryImpl extends EObjectImpl implements HistoryQuery {
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
+	public EList<ModelElementId> getModelElements() {
+		if (modelElements == null) {
+			modelElements = new EObjectContainmentEList.Resolving<ModelElementId>(
+					ModelElementId.class, this,
+					VersioningPackage.HISTORY_QUERY__MODEL_ELEMENTS);
+		}
+		return modelElements;
+	}
+
+	/**
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 */
 	@Override
 	public NotificationChain eInverseRemove(InternalEObject otherEnd,
 			int featureID, NotificationChain msgs) {
@@ -259,6 +290,9 @@ public class HistoryQueryImpl extends EObjectImpl implements HistoryQuery {
 			return basicSetSource(null, msgs);
 		case VersioningPackage.HISTORY_QUERY__TARGET:
 			return basicSetTarget(null, msgs);
+		case VersioningPackage.HISTORY_QUERY__MODEL_ELEMENTS:
+			return ((InternalEList<?>) getModelElements()).basicRemove(
+					otherEnd, msgs);
 		}
 		return super.eInverseRemove(otherEnd, featureID, msgs);
 	}
@@ -279,6 +313,8 @@ public class HistoryQueryImpl extends EObjectImpl implements HistoryQuery {
 			if (resolve)
 				return getTarget();
 			return basicGetTarget();
+		case VersioningPackage.HISTORY_QUERY__MODEL_ELEMENTS:
+			return getModelElements();
 		}
 		return super.eGet(featureID, resolve, coreType);
 	}
@@ -288,6 +324,7 @@ public class HistoryQueryImpl extends EObjectImpl implements HistoryQuery {
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
+	@SuppressWarnings("unchecked")
 	@Override
 	public void eSet(int featureID, Object newValue) {
 		switch (featureID) {
@@ -296,6 +333,11 @@ public class HistoryQueryImpl extends EObjectImpl implements HistoryQuery {
 			return;
 		case VersioningPackage.HISTORY_QUERY__TARGET:
 			setTarget((PrimaryVersionSpec) newValue);
+			return;
+		case VersioningPackage.HISTORY_QUERY__MODEL_ELEMENTS:
+			getModelElements().clear();
+			getModelElements().addAll(
+					(Collection<? extends ModelElementId>) newValue);
 			return;
 		}
 		super.eSet(featureID, newValue);
@@ -315,6 +357,9 @@ public class HistoryQueryImpl extends EObjectImpl implements HistoryQuery {
 		case VersioningPackage.HISTORY_QUERY__TARGET:
 			setTarget((PrimaryVersionSpec) null);
 			return;
+		case VersioningPackage.HISTORY_QUERY__MODEL_ELEMENTS:
+			getModelElements().clear();
+			return;
 		}
 		super.eUnset(featureID);
 	}
@@ -331,6 +376,8 @@ public class HistoryQueryImpl extends EObjectImpl implements HistoryQuery {
 			return source != null;
 		case VersioningPackage.HISTORY_QUERY__TARGET:
 			return target != null;
+		case VersioningPackage.HISTORY_QUERY__MODEL_ELEMENTS:
+			return modelElements != null && !modelElements.isEmpty();
 		}
 		return super.eIsSet(featureID);
 	}
