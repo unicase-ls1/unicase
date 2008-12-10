@@ -1,6 +1,5 @@
 package org.unicase.workspace.edit.views.validationview;
 
-import org.eclipse.core.resources.IMarker;
 import org.eclipse.emf.validation.model.IConstraintStatus;
 import org.eclipse.jface.viewers.ColumnLabelProvider;
 import org.eclipse.swt.graphics.Image;
@@ -25,10 +24,10 @@ public class SeverityLabelProvider extends ColumnLabelProvider {
 			int severity = constraint.getSeverity();
 			String imageName = ISharedImages.IMG_OBJS_ERROR_TSK;
 			switch (severity) {
-			case IMarker.SEVERITY_ERROR:
+			case IConstraintStatus.ERROR:
 				imageName = ISharedImages.IMG_OBJS_ERROR_TSK;
 				break;
-			case IMarker.SEVERITY_WARNING:
+			case IConstraintStatus.WARNING:
 				imageName = ISharedImages.IMG_OBJS_WARN_TSK;
 				break;
 			default:
