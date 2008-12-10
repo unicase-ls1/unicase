@@ -507,7 +507,7 @@ public abstract class ModelElementImpl extends IdentifiableElementImpl
 	 * 
 	 * @see org.unicase.model.ModelElement#getDescriptionPlainText()
 	 * @generated NOT
-	 * @deprecated
+	 * @Deprecated
 	 */
 	public String getDescriptionPlainText() {
 		String ret = "";
