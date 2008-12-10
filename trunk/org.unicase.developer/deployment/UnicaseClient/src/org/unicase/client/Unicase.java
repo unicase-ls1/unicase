@@ -7,11 +7,14 @@ import org.eclipse.ui.IWorkbench;
 import org.eclipse.ui.PlatformUI;
 
 /**
- * This class controls all aspects of the application's execution
+ * This class controls all aspects of the application's execution.
  */
 public class Unicase implements IApplication {
 
-	/* (non-Javadoc)
+	
+	// BEGIN SUPRESS CATCH EXCEPTION
+	/** 
+	 * {@inheritDoc}
 	 * @see org.eclipse.equinox.app.IApplication#start(org.eclipse.equinox.app.IApplicationContext)
 	 */
 	public Object start(IApplicationContext context) throws Exception {
@@ -27,21 +30,24 @@ public class Unicase implements IApplication {
 		} finally {
 			display.dispose();
 		}
-		
 	}
 
-	/* (non-Javadoc)
+	// END SUPRESS CATCH EXCEPTION
+	/** 
+	 * {@inheritDoc}
 	 * @see org.eclipse.equinox.app.IApplication#stop()
 	 */
 	public void stop() {
 		final IWorkbench workbench = PlatformUI.getWorkbench();
-		if (workbench == null)
+		if (workbench == null) {
 			return;
+		}
 		final Display display = workbench.getDisplay();
 		display.syncExec(new Runnable() {
 			public void run() {
-				if (!display.isDisposed())
+				if (!display.isDisposed()) {
 					workbench.close();
+				}
 			}
 		});
 	}
