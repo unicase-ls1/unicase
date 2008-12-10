@@ -339,13 +339,22 @@ public interface VersioningPackage extends EPackage {
 	int HISTORY_QUERY__TARGET = 1;
 
 	/**
+	 * The feature id for the '<em><b>Model Elements</b></em>' containment reference list.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 * @ordered
+	 */
+	int HISTORY_QUERY__MODEL_ELEMENTS = 2;
+
+	/**
 	 * The number of structural features of the '<em>History Query</em>' class.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
 	 * @generated
 	 * @ordered
 	 */
-	int HISTORY_QUERY_FEATURE_COUNT = 2;
+	int HISTORY_QUERY_FEATURE_COUNT = 3;
 
 	/**
 	 * The meta object id for the '{@link org.unicase.emfstore.esmodel.versioning.impl.VersionImpl <em>Version</em>}' class.
@@ -694,6 +703,17 @@ public interface VersioningPackage extends EPackage {
 	EReference getHistoryQuery_Target();
 
 	/**
+	 * Returns the meta object for the containment reference list '{@link org.unicase.emfstore.esmodel.versioning.HistoryQuery#getModelElements <em>Model Elements</em>}'.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @return the meta object for the containment reference list '<em>Model Elements</em>'.
+	 * @see org.unicase.emfstore.esmodel.versioning.HistoryQuery#getModelElements()
+	 * @see #getHistoryQuery()
+	 * @generated
+	 */
+	EReference getHistoryQuery_ModelElements();
+
+	/**
 	 * Returns the meta object for class '{@link org.unicase.emfstore.esmodel.versioning.Version <em>Version</em>}'.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
@@ -1019,6 +1039,15 @@ public interface VersioningPackage extends EPackage {
 		 * @generated
 		 */
 		EReference HISTORY_QUERY__TARGET = eINSTANCE.getHistoryQuery_Target();
+
+		/**
+		 * The meta object literal for the '<em><b>Model Elements</b></em>' containment reference list feature.
+		 * <!-- begin-user-doc -->
+		 * <!-- end-user-doc -->
+		 * @generated
+		 */
+		EReference HISTORY_QUERY__MODEL_ELEMENTS = eINSTANCE
+				.getHistoryQuery_ModelElements();
 
 		/**
 		 * The meta object literal for the '{@link org.unicase.emfstore.esmodel.versioning.impl.VersionImpl <em>Version</em>}' class.

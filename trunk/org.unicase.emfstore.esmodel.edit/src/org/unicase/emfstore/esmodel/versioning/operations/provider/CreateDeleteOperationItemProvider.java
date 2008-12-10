@@ -34,6 +34,7 @@ import org.unicase.model.meeting.MeetingFactory;
 import org.unicase.model.organization.OrganizationFactory;
 import org.unicase.model.rationale.RationaleFactory;
 import org.unicase.model.requirement.RequirementFactory;
+import org.unicase.model.state.StateFactory;
 import org.unicase.model.task.TaskFactory;
 
 /**
@@ -396,6 +397,16 @@ public class CreateDeleteOperationItemProvider extends
 				.add(createChildParameter(
 						OperationsPackage.Literals.CREATE_DELETE_OPERATION__MODEL_ELEMENT,
 						MeetingFactory.eINSTANCE.createWorkItemMeetingSection()));
+
+		newChildDescriptors
+				.add(createChildParameter(
+						OperationsPackage.Literals.CREATE_DELETE_OPERATION__MODEL_ELEMENT,
+						StateFactory.eINSTANCE.createState()));
+
+		newChildDescriptors
+				.add(createChildParameter(
+						OperationsPackage.Literals.CREATE_DELETE_OPERATION__MODEL_ELEMENT,
+						StateFactory.eINSTANCE.createTransition()));
 
 		newChildDescriptors
 				.add(createChildParameter(
