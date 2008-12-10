@@ -18,10 +18,12 @@ public class Unicase implements IApplication {
 		Display display = PlatformUI.createDisplay();
 		try {
 			int returnCode = PlatformUI.createAndRunWorkbench(display, new UnicaseWorkbenchAdvisor());
-			if (returnCode == PlatformUI.RETURN_RESTART)
+			if (returnCode == PlatformUI.RETURN_RESTART) {
 				return IApplication.EXIT_RESTART;
-			else
+			}
+			else {
 				return IApplication.EXIT_OK;
+			}
 		} finally {
 			display.dispose();
 		}
