@@ -4,7 +4,7 @@
  *
  * $Id$
  */
-package org.unicase.workspace.edit.views.changescomposite;
+package org.unicase.workspace.edit.views.changes;
 
 import java.util.Set;
 
@@ -20,7 +20,7 @@ import org.eclipse.jface.viewers.IContentProvider;
  * @author Shterev
  * 
  */
-public class ChangesTreeAffectedProvider extends
+public class RelatedElementsContentProvider extends
 		AdapterFactoryContentProvider implements IContentProvider {
 
 	private Set<EObject> affected;
@@ -29,7 +29,7 @@ public class ChangesTreeAffectedProvider extends
 	 * Default constructor.
 	 * @param affected the affected elements
 	 */
-	public ChangesTreeAffectedProvider(Set<EObject> affected) {
+	public RelatedElementsContentProvider(Set<EObject> affected) {
 		super(new ComposedAdapterFactory(
 				ComposedAdapterFactory.Descriptor.Registry.INSTANCE));
 		this.affected = affected;

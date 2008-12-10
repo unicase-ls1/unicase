@@ -4,7 +4,7 @@
  *
  * $Id$
  */
-package org.unicase.workspace.edit.views.changescomposite;
+package org.unicase.workspace.edit.views.changes;
 
 import org.eclipse.jface.resource.ImageDescriptor;
 import org.eclipse.jface.viewers.ColumnLabelProvider;

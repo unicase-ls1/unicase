@@ -35,7 +35,7 @@ import org.unicase.emfstore.esmodel.versioning.TagVersionSpec;
 import org.unicase.emfstore.esmodel.versioning.VersioningFactory;
 import org.unicase.emfstore.exceptions.EmfStoreException;
 import org.unicase.workspace.WorkspaceManager;
-import org.unicase.workspace.edit.views.changescomposite.ChangesTreeComposite;
+import org.unicase.workspace.edit.views.changes.TabbedChangesComposite;
 
 /**
  * . This class provides contents of borwser tab of HistoryBrowserView. It
@@ -56,7 +56,7 @@ public class HistoryComposite extends Composite implements ISelectionChangedList
 	private HistoryInfo targetHistoryInfo;
 	private Label lblSourceVersion;
 	private Label lblTargetVersion;
-	private ChangesTreeComposite changesComposite;
+	private TabbedChangesComposite changesComposite;
 	private SashForm sash;
 	private Composite bottom;
 	private Composite top;
@@ -386,9 +386,8 @@ public class HistoryComposite extends Composite implements ISelectionChangedList
 					// TODO Auto-generated catch block
 					e.printStackTrace();
 				}
-				changesComposite = new ChangesTreeComposite(bottom,SWT.NONE,changes);
+				changesComposite = new TabbedChangesComposite(bottom, SWT.NONE, changes);
 				GridDataFactory.fillDefaults().align(SWT.FILL, SWT.FILL).grab(true, true).applyTo(changesComposite);
-				changesComposite.setInput(changes);
 			}
 			bottom.layout(true);
 		}

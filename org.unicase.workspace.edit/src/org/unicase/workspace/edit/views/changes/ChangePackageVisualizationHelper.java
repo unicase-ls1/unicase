@@ -1,4 +1,4 @@
-package org.unicase.workspace.edit.views.changescomposite;
+package org.unicase.workspace.edit.views.changes;
 
 import java.util.HashMap;
 import java.util.HashSet;
