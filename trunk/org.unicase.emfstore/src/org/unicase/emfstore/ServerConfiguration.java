@@ -98,7 +98,8 @@ public final class ServerConfiguration {
 	public static final String PROJECTSPACE_VERSION_PERSISTENCE_DEFAULT = PROJECTSTATE_VERSION_PERSISTENCE_EVERYXVERSIONS;
 
 	/**
-	 * Property for the count of versions, needed by the BACKUP everyXVersion policy.
+	 * Property for the count of versions, needed by the BACKUP everyXVersion
+	 * policy.
 	 */
 	public static final String PROJECTSTATE_VERSION_BACKUP_PERSISTENCE_EVERYXVERSIONS_X = "emfstore.persistence.version.backup.projectstate.everyxversions";
 
@@ -106,7 +107,7 @@ public final class ServerConfiguration {
 	 * Default value for the BACKUP everyXVersion policy.
 	 */
 	public static final String PROJECTSTATE_VERSION_BACKUP_PERSISTENCE_EVERYXVERSIONS_X_DEFAULT = "1";
-	
+
 	/**
 	 * Property for timeout time of a user session.
 	 */
@@ -150,11 +151,13 @@ public final class ServerConfiguration {
 
 	/**
 	 * Beginng tag of every ldap property. Format for ldap configuration is
-	 * {@link #AUTHENTICATION_LDAP_PREFIX}.[numberOfLdapConfiguration].{ {@link #AUTHENTICATION_LDAP_URL}/
-	 * {@link #AUTHENTICATION_LDAP_BASE_DEFAULT}/{@link #AUTHENTICATION_LDAP_SEARCHDN} .
+	 * {@link #AUTHENTICATION_LDAP_PREFIX}.[numberOfLdapConfiguration].{
+	 * {@link #AUTHENTICATION_LDAP_URL}/
+	 * {@link #AUTHENTICATION_LDAP_BASE_DEFAULT}/
+	 * {@link #AUTHENTICATION_LDAP_SEARCHDN} .
 	 */
 	public static final String AUTHENTICATION_LDAP_PREFIX = "emfstore.accesscontrol.authentication.ldap";
-	
+
 	/**
 	 * Ldap url.
 	 */
@@ -184,11 +187,12 @@ public final class ServerConfiguration {
 	 * Path to property file for spfv authentication.
 	 */
 	public static final String AUTHENTICATION_SPFV_FILEPATH = "emfstore.accesscontrol.authentication.spfv";
-	
+
 	/**
 	 * Default filepath for spfv authentication.
 	 */
-	public static final String AUTHENTICATION_SPFV_FILEPATH_DEFAULT = getConfDirectory()+"user.properties";
+	public static final String AUTHENTICATION_SPFV_FILEPATH_DEFAULT = getConfDirectory()
+			+ "user.properties";
 
 	/**
 	 * Property to validate server on start up.
@@ -214,24 +218,24 @@ public final class ServerConfiguration {
 	/*
 	 * FILE EXTENSIONS
 	 */
-	
+
 	/**
-	 * File extension for main file: unicase  server storage.
+	 * File extension for main file: unicase server storage.
 	 */
 	public static final String FILE_EXTENSION_MAINSTORAGE = ".uss";
 
 	/**
-	 * File extension for main file: unicase  project historyF.
+	 * File extension for main file: unicase project historyF.
 	 */
-	public static final String FILE_EXTENSION_PROJECTHISTORY= ".uph";
+	public static final String FILE_EXTENSION_PROJECTHISTORY = ".uph";
 
 	/**
-	 * File extension for main file: unicase  project version.
+	 * File extension for main file: unicase project version.
 	 */
 	public static final String FILE_EXTENSION_VERSION = ".upv";
-	
+
 	/**
-	 * File extension for main file: unicase  project state.
+	 * File extension for main file: unicase project state.
 	 */
 	public static final String FILE_EXTENSION_PROJECTSTATE = ".ups";
 
@@ -273,7 +277,11 @@ public final class ServerConfiguration {
 		StringBuffer sb = new StringBuffer(getUserHome());
 		sb.append(".unicase");
 		if (!isReleaseVersion()) {
-			sb.append(".dev");
+			if (isInternalReleaseVersion()) {
+				sb.append(".internal");
+			} else {
+				sb.append(".dev");
+			}
 		}
 		sb.append(File.separatorChar);
 		sb.append("emfstore");
@@ -345,6 +353,14 @@ public final class ServerConfiguration {
 	public static boolean isReleaseVersion() {
 		return !getServerVersion().endsWith("qualifier");
 	}
+	
+	/**
+	 * Determines if this is an internal release or not.
+	 * @return true if it an internal release
+	 */
+	public static boolean isInternalReleaseVersion() {
+		return getServerVersion().endsWith("internal");
+	}
 
 	/**
 	 * Returns path to emfstore's main file.
@@ -352,6 +368,6 @@ public final class ServerConfiguration {
 	 * @return path
 	 */
 	public static String getServerMainFile() {
-		return getServerHome()+"storage"+FILE_EXTENSION_MAINSTORAGE;
+		return getServerHome() + "storage" + FILE_EXTENSION_MAINSTORAGE;
 	}
 }
