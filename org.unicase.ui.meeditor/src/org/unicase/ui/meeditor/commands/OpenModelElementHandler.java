@@ -9,6 +9,7 @@ package org.unicase.ui.meeditor.commands;
 import org.eclipse.core.commands.AbstractHandler;
 import org.eclipse.core.commands.ExecutionEvent;
 import org.eclipse.core.commands.ExecutionException;
+import org.eclipse.emf.ecore.EStructuralFeature;
 import org.eclipse.ui.PartInitException;
 import org.eclipse.ui.PlatformUI;
 import org.eclipse.ui.handlers.HandlerUtil;
@@ -25,6 +26,7 @@ import org.unicase.ui.meeditor.MEEditorInput;
 public class OpenModelElementHandler extends AbstractHandler {
 
 	private static final String ME_TO_OPEN_EVALUATIONCONTEXT_VARIABLE = "meToOpen";
+	private static final String FEATURE_TO_MARK_EVALUATIONCONTEXT_VARIABLE = "featureToMark";
 	
 	/**
 	 * . ({@inheritDoc})
@@ -47,8 +49,22 @@ public class OpenModelElementHandler extends AbstractHandler {
 		Object o = HandlerUtil.getVariableChecked(event, ME_TO_OPEN_EVALUATIONCONTEXT_VARIABLE);
 		ModelElement me = (ModelElement) o;
 
+		EStructuralFeature problemFeature;
+		
+		try {
+			problemFeature = (EStructuralFeature) HandlerUtil.getVariableChecked(event, FEATURE_TO_MARK_EVALUATIONCONTEXT_VARIABLE);
+		} catch (ExecutionException executionException) {
+			problemFeature = null;
+		}
+		
+		
 		if (o != null) {
-			MEEditorInput input = new MEEditorInput(me);
+			MEEditorInput input;
+			if(problemFeature==null) {
+				input = new MEEditorInput(me);
+			} else {
+				input = new MEEditorInput(me, problemFeature);
+			}
 			try {
 				PlatformUI.getWorkbench().getActiveWorkbenchWindow()
 						.getActivePage().openEditor(input,

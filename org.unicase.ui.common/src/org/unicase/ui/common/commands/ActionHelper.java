@@ -20,6 +20,7 @@ import org.eclipse.emf.common.util.URI;
 import org.eclipse.emf.ecore.EClass;
 import org.eclipse.emf.ecore.EFactory;
 import org.eclipse.emf.ecore.EObject;
+import org.eclipse.emf.ecore.EStructuralFeature;
 import org.eclipse.emf.ecore.util.EcoreUtil;
 import org.eclipse.emf.transaction.RecordingCommand;
 import org.eclipse.emf.transaction.TransactionalEditingDomain;
@@ -51,6 +52,7 @@ public final class ActionHelper {
 	private static final String MEEDITOR_ID = "org.unicase.ui.meeditor";
 	private static final String MEEDITOR_OPENMODELELEMENT_COMMAND_ID = "org.unicase.ui.meeditor.openModelElement";
 	private static final String ME_TO_OPEN_EVALUATIONCONTEXT_VARIABLE = "meToOpen";
+	private static final String FEATURE_TO_MARK_EVALUATIONCONTEXT_VARIABLE = "featureToMark";
 
 	private ActionHelper() {
 
@@ -201,6 +203,70 @@ public final class ActionHelper {
 			DialogHandler.showExceptionDialog(e);
 		}
 
+	}
+	
+	/**
+	 * This opens the model element and marks the feature as having a problem
+	 * (error, warning, etc.).
+	 * 
+	 * @param me
+	 *            ModelElement to open
+	 * @param problemFeature
+	 *            the feature to be marked as having a problem
+	 * @param sourceView
+	 *            the view that requested the open model element
+	 */
+	public static void openModelElement(final ModelElement me,
+			EStructuralFeature problemFeature, final String sourceView) {
+		if (me == null) {
+			return;
+		}
+		if (problemFeature == null) {
+			openModelElement(me, sourceView);
+		}
+
+		// TODO: at some point add validation markings in diagrams
+		TransactionalEditingDomain domain = TransactionalEditingDomain.Registry.INSTANCE
+				.getEditingDomain("org.unicase.EditingDomain");
+		domain.getCommandStack().execute(new RecordingCommand(domain) {
+			@Override
+			protected void doExecute() {
+				ProjectSpace activeProjectSpace = WorkspaceManager
+						.getInstance().getCurrentWorkspace()
+						.getActiveProjectSpace();
+				String readView = "org.unicase.ui.meeditor.MEEditor";
+				WorkspaceUtil.logReadEvent(activeProjectSpace, me
+						.getModelElementId(), sourceView, readView);
+			}
+		});
+
+		openAndMarkMEWithMEEditor(me, problemFeature);
+	}
+	
+	private static void openAndMarkMEWithMEEditor(ModelElement me,
+			EStructuralFeature problemFeature) {
+		// this method works as the one above but in addition marks a feature as having a problem
+		
+		IHandlerService handlerService = (IHandlerService) PlatformUI
+				.getWorkbench().getService(IHandlerService.class);
+
+		IEvaluationContext context = handlerService.getCurrentState();
+		context.addVariable(ME_TO_OPEN_EVALUATIONCONTEXT_VARIABLE, me);
+		context.addVariable(FEATURE_TO_MARK_EVALUATIONCONTEXT_VARIABLE, problemFeature);
+
+		try {
+			handlerService.executeCommand(MEEDITOR_OPENMODELELEMENT_COMMAND_ID,
+					null);
+
+		} catch (ExecutionException e) {
+			DialogHandler.showExceptionDialog(e);
+		} catch (NotDefinedException e) {
+			DialogHandler.showExceptionDialog(e);
+		} catch (NotEnabledException e) {
+			DialogHandler.showExceptionDialog(e);
+		} catch (NotHandledException e) {
+			DialogHandler.showExceptionDialog(e);
+		}
 	}
 
 	/**

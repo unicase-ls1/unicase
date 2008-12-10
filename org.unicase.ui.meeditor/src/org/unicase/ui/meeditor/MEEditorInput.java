@@ -6,6 +6,7 @@
  */
 package org.unicase.ui.meeditor;
 
+import org.eclipse.emf.ecore.EStructuralFeature;
 import org.eclipse.emf.edit.provider.ComposedAdapterFactory;
 import org.eclipse.emf.edit.ui.provider.AdapterFactoryLabelProvider;
 import org.eclipse.jface.resource.ImageDescriptor;
@@ -16,11 +17,13 @@ import org.unicase.model.ModelElement;
 /**
  * The {@link IEditorInput} for the {@link MEEditor}.
  * @author helming
+ * @author naughton
  *
  */
 public class MEEditorInput implements IEditorInput {
 
 	private ModelElement modelElement;
+	private EStructuralFeature problemFeature;
 
 	/**
 	 * Default constructor.
@@ -29,6 +32,17 @@ public class MEEditorInput implements IEditorInput {
 	public MEEditorInput(ModelElement me) {
 		super();
 		this.modelElement = me;
+	}
+	
+	/**
+	 * Constructor marking a feature as having a problem.
+	 * 
+	 * @param me the modelElement
+	 * @param problemFeature the feature having a problem
+	 */
+	public MEEditorInput(ModelElement me, EStructuralFeature problemFeature) {
+		this(me);
+		this.problemFeature = problemFeature;
 	}
 	
 	/**
@@ -89,6 +103,20 @@ public class MEEditorInput implements IEditorInput {
 	 */
 	public void setModelElement(ModelElement modelElement) {
 		this.modelElement = modelElement;
+	}
+
+	/**
+	 * @return the problemFeature
+	 */
+	public EStructuralFeature getProblemFeature() {
+		return problemFeature;
+	}
+
+	/**
+	 * @param problemFeature the problemFeature to set
+	 */
+	public void setProblemFeature(EStructuralFeature problemFeature) {
+		this.problemFeature = problemFeature;
 	}
 
 	/**

@@ -13,12 +13,15 @@ import java.util.HashMap;
 import java.util.List;
 import java.util.Map;
 
+import org.eclipse.emf.ecore.EStructuralFeature;
 import org.eclipse.emf.edit.domain.EditingDomain;
 import org.eclipse.emf.edit.provider.AdapterFactoryItemDelegator;
 import org.eclipse.emf.edit.provider.ComposedAdapterFactory;
 import org.eclipse.emf.edit.provider.IItemPropertyDescriptor;
 import org.eclipse.emf.edit.ui.provider.AdapterFactoryLabelProvider;
+import org.eclipse.emf.transaction.TransactionalEditingDomain;
 import org.eclipse.jface.action.ContributionManager;
+import org.eclipse.jface.fieldassist.ControlDecoration;
 import org.eclipse.jface.layout.GridDataFactory;
 import org.eclipse.jface.layout.GridLayoutFactory;
 import org.eclipse.swt.SWT;
@@ -28,6 +31,7 @@ import org.eclipse.swt.widgets.Composite;
 import org.eclipse.swt.widgets.Control;
 import org.eclipse.swt.widgets.Label;
 import org.eclipse.ui.AbstractSourceProvider;
+import org.eclipse.ui.ISharedImages;
 import org.eclipse.ui.ISourceProvider;
 import org.eclipse.ui.PlatformUI;
 import org.eclipse.ui.forms.IManagedForm;
@@ -45,9 +49,11 @@ import org.unicase.ui.meeditor.mecontrols.uccontrol.UseCaseStepsControl;
 
 /**
  * The editor page for the {@link MEEditor}.
+ * 
  * @author helming
  * @author shterev
- *
+ * @author naughton
+ * 
  */
 public class MEEditorPage extends FormPage {
 
@@ -55,7 +61,7 @@ public class MEEditorPage extends FormPage {
 	private ModelElement modelElement;
 	private FormToolkit toolkit;
 	private List<MEControl> meControls = new ArrayList<MEControl>();
-	
+
 	private static String activeModelelement = "activeModelelement";
 	private ScrolledForm form;
 	private List<IItemPropertyDescriptor> leftColumnAttributes = new ArrayList<IItemPropertyDescriptor>();
@@ -63,14 +69,21 @@ public class MEEditorPage extends FormPage {
 	private Composite leftColumnComposite;
 	private Composite rightColumnComposite;
 	private Composite bottom;
+	private EStructuralFeature problemFeature;
 
 	/**
 	 * Default constructor.
-	 * @param editor the {@link MEEditor}
-	 * @param id @see {@link FormPage#id}
-	 * @param title the title
-	 * @param editingDomain the editingDomain
-	 * @param modelElement the modelElement
+	 * 
+	 * @param editor
+	 *            the {@link MEEditor}
+	 * @param id
+	 *            the {@link FormPage#id}
+	 * @param title
+	 *            the title
+	 * @param editingDomain
+	 *            the editingDomain
+	 * @param modelElement
+	 *            the modelElement
 	 */
 	public MEEditorPage(MEEditor editor, String id, String title,
 			EditingDomain editingDomain, ModelElement modelElement) {
@@ -80,40 +93,71 @@ public class MEEditorPage extends FormPage {
 	}
 
 	/**
+	 * Default constructor.
+	 * 
+	 * @param editor
+	 *            the {@link MEEditor}
+	 * @param id
+	 *            the {@link FormPage#id}
+	 * @param title
+	 *            the title
+	 * @param editingDomain
+	 *            the editingDomain
+	 * @param modelElement
+	 *            the modelElement
+	 *@param problemFeature
+	 *            the problemFeature
+	 */
+	public MEEditorPage(MEEditor editor, String id, String title,
+			TransactionalEditingDomain editingDomain,
+			ModelElement modelElement, EStructuralFeature problemFeature) {
+		this(editor, id, title, editingDomain, modelElement);
+		this.problemFeature = problemFeature;
+	}
+
+	/**
 	 * {@inheritDoc}
 	 */
 	@Override
 	protected void createFormContent(IManagedForm managedForm) {
 		super.createFormContent(managedForm);
-		
+
 		toolkit = this.getEditor().getToolkit();
 		form = managedForm.getForm();
 		toolkit.decorateFormHeading(form.getForm());
 		Composite body = form.getBody();
 		body.setLayout(new GridLayout());
 		SashForm globalSash = new SashForm(body, SWT.VERTICAL);
-		GridDataFactory.fillDefaults().align(SWT.FILL, SWT.FILL).grab(true, true).applyTo(globalSash);
+		GridDataFactory.fillDefaults().align(SWT.FILL, SWT.FILL).grab(true,
+				true).applyTo(globalSash);
 		toolkit.adapt(globalSash, true, true);
 
 		SashForm topSash = new SashForm(globalSash, SWT.HORIZONTAL);
-		GridDataFactory.fillDefaults().align(SWT.FILL, SWT.FILL).grab(true, true).applyTo(topSash);
+		GridDataFactory.fillDefaults().align(SWT.FILL, SWT.FILL).grab(true,
+				true).applyTo(topSash);
 		toolkit.adapt(topSash, true, true);
 		topSash.setSashWidth(4);
-		
+
 		leftColumnComposite = toolkit.createComposite(topSash, SWT.NONE);
-		GridLayoutFactory.fillDefaults().numColumns(1).equalWidth(false).extendedMargins(2, 5, 5, 5).applyTo(leftColumnComposite);
-		GridDataFactory.fillDefaults().align(SWT.FILL, SWT.FILL).applyTo(leftColumnComposite);
+		GridLayoutFactory.fillDefaults().numColumns(1).equalWidth(false)
+				.extendedMargins(2, 5, 5, 5).applyTo(leftColumnComposite);
+		GridDataFactory.fillDefaults().align(SWT.FILL, SWT.FILL).applyTo(
+				leftColumnComposite);
 
 		rightColumnComposite = toolkit.createComposite(topSash, SWT.NONE);
-		GridLayoutFactory.fillDefaults().numColumns(1).equalWidth(false).extendedMargins(5, 2, 5, 5).applyTo(rightColumnComposite);
-		GridDataFactory.fillDefaults().align(SWT.FILL, SWT.FILL).applyTo(rightColumnComposite);
-		
-		int[] topWeights = {50,50};
+		GridLayoutFactory.fillDefaults().numColumns(1).equalWidth(false)
+				.extendedMargins(5, 2, 5, 5).applyTo(rightColumnComposite);
+		GridDataFactory.fillDefaults().align(SWT.FILL, SWT.FILL).applyTo(
+				rightColumnComposite);
+
+		int[] topWeights = { 50, 50 };
 		topSash.setWeights(topWeights);
-		
+
 		bottom = toolkit.createComposite(globalSash);
-		GridLayoutFactory.fillDefaults().numColumns(1).equalWidth(false).extendedMargins(5, 5, 5, 5).applyTo(bottom);
-		GridDataFactory.fillDefaults().align(SWT.LEFT, SWT.TOP).grab(true, false).applyTo(bottom);
+		GridLayoutFactory.fillDefaults().numColumns(1).equalWidth(false)
+				.extendedMargins(5, 5, 5, 5).applyTo(bottom);
+		GridDataFactory.fillDefaults().align(SWT.LEFT, SWT.TOP).grab(true,
+				false).applyTo(bottom);
 
 		// Layout form
 		form.setText(modelElement.getName());
@@ -125,15 +169,15 @@ public class MEEditorPage extends FormPage {
 		// Sort and order attributes
 		sortAndOrderAttributes();
 		// Create attributes
-		createAttributes(leftColumnComposite,leftColumnAttributes);
-		createAttributes(rightColumnComposite,rightColumnAttributes);
+		createAttributes(leftColumnComposite, leftColumnAttributes);
+		createAttributes(rightColumnComposite, rightColumnAttributes);
 		// Create special ME Control
 		createSpecificMEControls();
 		createToolbar();
 		form.pack();
 	}
 
-		private void createToolbar() {
+	private void createToolbar() {
 		IMenuService menuService = (IMenuService) PlatformUI.getWorkbench()
 				.getService(IMenuService.class);
 		ISourceProvider sourceProvider = new AbstractSourceProvider() {
@@ -172,113 +216,137 @@ public class MEEditorPage extends FormPage {
 
 		List<IItemPropertyDescriptor> propertyDescriptors = adapterFactoryItemDelegator
 				.getPropertyDescriptors(modelElement);
-		if (propertyDescriptors != null){
+		if (propertyDescriptors != null) {
 			AnnotationPositionDescriptor positionDescriptor = new AnnotationPositionDescriptor();
 			for (IItemPropertyDescriptor itemPropertyDescriptor : propertyDescriptors) {
-				String value = positionDescriptor.getValue(itemPropertyDescriptor, modelElement);
-				if(value.equals("left")){
+				String value = positionDescriptor.getValue(
+						itemPropertyDescriptor, modelElement);
+				if (value.equals("left")) {
 					leftColumnAttributes.add(itemPropertyDescriptor);
-				}else if (value.equals("right")){
+				} else if (value.equals("right")) {
 					rightColumnAttributes.add(itemPropertyDescriptor);
 				}
 			}
-			
-			final HashMap<IItemPropertyDescriptor,Double> priorityMap = new HashMap<IItemPropertyDescriptor, Double>();
+
+			final HashMap<IItemPropertyDescriptor, Double> priorityMap = new HashMap<IItemPropertyDescriptor, Double>();
 			AnnotationPriorityDescriptor priorityDescriptor = new AnnotationPriorityDescriptor();
 			for (IItemPropertyDescriptor itemPropertyDescriptor : propertyDescriptors) {
-				priorityMap.put(itemPropertyDescriptor,priorityDescriptor.getValue(itemPropertyDescriptor, modelElement));
+				priorityMap.put(itemPropertyDescriptor, priorityDescriptor
+						.getValue(itemPropertyDescriptor, modelElement));
 			}
-			
-			Comparator<IItemPropertyDescriptor> comparator = new Comparator<IItemPropertyDescriptor>(){
+
+			Comparator<IItemPropertyDescriptor> comparator = new Comparator<IItemPropertyDescriptor>() {
 				public int compare(IItemPropertyDescriptor o1,
 						IItemPropertyDescriptor o2) {
-					return Double.compare(priorityMap.get(o1), priorityMap.get(o2));
+					return Double.compare(priorityMap.get(o1), priorityMap
+							.get(o2));
 				}
 			};
 			Collections.sort(leftColumnAttributes, comparator);
 			Collections.sort(rightColumnAttributes, comparator);
-			
+
 		}
 
 	}
-	
-	private void createAttributes(Composite column, List<IItemPropertyDescriptor> attributes) {
+
+	private void createAttributes(Composite column,
+			List<IItemPropertyDescriptor> attributes) {
 		Composite attributeComposite = toolkit.createComposite(column);
-		GridLayoutFactory.fillDefaults().numColumns(2).applyTo(attributeComposite);
-		GridDataFactory.fillDefaults().grab(true, true).align(SWT.FILL, SWT.BEGINNING).applyTo(attributeComposite);
-		
-		ControlFactory controlFactory = new ControlFactory(editingDomain, modelElement, this.getEditor().getToolkit());
-		
+		GridLayoutFactory.fillDefaults().numColumns(2).applyTo(
+				attributeComposite);
+		GridDataFactory.fillDefaults().grab(true, true).align(SWT.FILL,
+				SWT.BEGINNING).indent(10, 0).applyTo(attributeComposite);
+
+		ControlFactory controlFactory = new ControlFactory(editingDomain,
+				modelElement, this.getEditor().getToolkit());
+
 		for (IItemPropertyDescriptor itemPropertyDescriptor : attributes) {
-			MEControl meControl = controlFactory.createControl(itemPropertyDescriptor);
-			if(meControl==null){
+			MEControl meControl = controlFactory
+					.createControl(itemPropertyDescriptor);
+			if (meControl == null) {
 				continue;
 			}
 			meControls.add(meControl);
 			Control control;
-			if(!itemPropertyDescriptor.isMany(modelElement)){
-				Label label = toolkit.createLabel(attributeComposite, itemPropertyDescriptor.getDisplayName(modelElement));
+			if (!itemPropertyDescriptor.isMany(modelElement)) {
+				Label label = toolkit.createLabel(attributeComposite,
+						itemPropertyDescriptor.getDisplayName(modelElement));
 				control = meControl.createControl(attributeComposite, SWT.WRAP);
-				GridDataFactory.fillDefaults().align(SWT.LEFT, SWT.CENTER).applyTo(label);
-				GridDataFactory.fillDefaults().grab(true, false).align(SWT.FILL, SWT.BEGINNING).applyTo(control);
-				if(meControl instanceof AbstractMEControl){
-					((AbstractMEControl)meControl).applyCustomLayoutData();
+				GridDataFactory.fillDefaults().align(SWT.LEFT, SWT.CENTER)
+						.applyTo(label);
+				GridDataFactory.fillDefaults().grab(true, false).align(
+						SWT.FILL, SWT.BEGINNING).indent(10, 0).applyTo(control);
+				if (meControl instanceof AbstractMEControl) {
+					((AbstractMEControl) meControl).applyCustomLayoutData();
 				}
-			}else{
-				if(meControl instanceof UseCaseStepsControl){
+			} else {
+				if (meControl instanceof UseCaseStepsControl) {
 					control = meControl.createControl(bottom, SWT.WRAP);
-				}else{
-					control = meControl.createControl(attributeComposite, SWT.WRAP);
+				} else {
+					control = meControl.createControl(attributeComposite,
+							SWT.WRAP);
 				}
-				GridDataFactory.fillDefaults().span(2,1).grab(true, false).align(SWT.FILL, SWT.BEGINNING).applyTo(control);
+				GridDataFactory.fillDefaults().span(2, 1).grab(true, false)
+						.align(SWT.FILL, SWT.BEGINNING).indent(10, 0).applyTo(
+								control);
 			}
+			if (itemPropertyDescriptor.getFeature(modelElement) == problemFeature) {
+				ControlDecoration dec = new ControlDecoration(control, SWT.TOP
+						| SWT.LEFT);
+				dec.setImage(PlatformUI.getWorkbench().getSharedImages()
+						.getImage(ISharedImages.IMG_OBJS_ERROR_TSK));
+				dec.setDescriptionText("Problem detected.");
+			}
+
 		}
 
 	}
-	
+
 	/**
 	 * {@inheritDoc}
 	 */
 	@Override
-	public void dispose(){
-		for(MEControl control : meControls){
+	public void dispose() {
+		for (MEControl control : meControls) {
 			control.dispose();
 		}
 		super.dispose();
 	}
 
-	/**.
-	 * {@inheritDoc}
-	 * This method is added to solve the focus bug of navigator.
-	 * Every time that a ME is opened in editor, navigator has to lose focus
-	 * so that its action contributions are set correctly for next time.
-	 *  
+	/**
+	 * . {@inheritDoc} This method is added to solve the focus bug of navigator.
+	 * Every time that a ME is opened in editor, navigator has to lose focus so
+	 * that its action contributions are set correctly for next time.
+	 * 
 	 */
 	@Override
 	public void setFocus() {
-			super.setFocus();
-			//set keyboard focus on the first Text control
-			for(MEControl meControl : this.meControls){
-				if(meControl instanceof METextControl){
-					((METextControl)meControl).setFocus();
-					break;
-				}
+		super.setFocus();
+		// set keyboard focus on the first Text control
+		for (MEControl meControl : this.meControls) {
+			if (meControl instanceof METextControl) {
+				((METextControl) meControl).setFocus();
+				break;
 			}
+		}
 	}
-	
+
 	private void createSpecificMEControls() {
-		if(this.modelElement instanceof Issue) {
-			MEControl meControl = ControlFactory.createMEIssueAssessmentMatrixControl((Issue)this.modelElement, toolkit, editingDomain);
+		if (this.modelElement instanceof Issue) {
+			MEControl meControl = ControlFactory
+					.createMEIssueAssessmentMatrixControl(
+							(Issue) this.modelElement, toolkit, editingDomain);
 			if (meControl != null) {
 				meControls.add(meControl);
 				Control control;
-				control = meControl.createControl(bottom, SWT.WRAP);				
-//				control.setLayoutData(new TableWrapData(TableWrapData.FILL_GRAB));
-				GridDataFactory.fillDefaults().grab(true, true).align(SWT.FILL, SWT.FILL).applyTo(control);
+				control = meControl.createControl(bottom, SWT.WRAP);
+				// control.setLayoutData(new
+				// TableWrapData(TableWrapData.FILL_GRAB));
+				GridDataFactory.fillDefaults().grab(true, true).align(SWT.FILL,
+						SWT.FILL).indent(10, 0).applyTo(control);
 			}
 		}
-		
+
 	}
 
-	
 }

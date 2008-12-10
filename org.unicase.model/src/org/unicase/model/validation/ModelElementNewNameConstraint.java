@@ -2,15 +2,18 @@ package org.unicase.model.validation;
 
 import org.eclipse.core.runtime.IStatus;
 import org.eclipse.emf.ecore.EObject;
+import org.eclipse.emf.ecore.EStructuralFeature;
 import org.eclipse.emf.validation.AbstractModelConstraint;
 import org.eclipse.emf.validation.EMFEventType;
 import org.eclipse.emf.validation.IValidationContext;
 import org.unicase.model.ModelElement;
+import org.unicase.model.util.ValidationConstraintHelper;
 
 /**
  * Checks whether a model element has a default "new: ..." name.
  * 
  * @author wesendonk
+ * @author naughton
  */
 public class ModelElementNewNameConstraint extends AbstractModelConstraint {
 
@@ -24,8 +27,14 @@ public class ModelElementNewNameConstraint extends AbstractModelConstraint {
 
 		if (eType == EMFEventType.NULL) {
 			if (eObj instanceof ModelElement) {
-				String name = ((ModelElement) eObj).getName();
-				if (name.equals("new "+eObj.eClass().getName())) {
+				ModelElement modelElement = (ModelElement) eObj;
+				String defaultName = "new " + eObj.eClass().getName();
+				if (defaultName.equals(modelElement.getName())) {
+					EStructuralFeature errorFeature = ValidationConstraintHelper
+							.getErrorFeatureForModelElement(modelElement,
+									"name");
+					ctx.addResult(errorFeature);
+
 					return ctx.createFailureStatus(new Object[] { eObj.eClass()
 							.getName()
 							+ ": '" + ((ModelElement) eObj).getName() + "'" });
@@ -34,5 +43,4 @@ public class ModelElementNewNameConstraint extends AbstractModelConstraint {
 		}
 		return ctx.createSuccessStatus();
 	}
-
 }
