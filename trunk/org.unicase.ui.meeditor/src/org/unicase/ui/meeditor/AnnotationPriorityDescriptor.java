@@ -13,10 +13,12 @@ import org.unicase.model.ModelElement;
 
 /**
  * A {@link IAttributeDescriptor} using the annotation in the genmodel.
- * @author shterevg
- *
+ * 
+ * @author Shterev
+ * 
  */
-public class AnnotationPriorityDescriptor implements IAttributeDescriptor<Double>{
+public class AnnotationPriorityDescriptor implements
+		IAttributeDescriptor<Double> {
 
 	private double defaultValue = 100.0;
 
@@ -25,14 +27,14 @@ public class AnnotationPriorityDescriptor implements IAttributeDescriptor<Double
 	 */
 	public Double getValue(IItemPropertyDescriptor propertyDescriptor,
 			ModelElement modelElement) {
-		EAnnotation priority = ((EStructuralFeature)propertyDescriptor.getFeature(modelElement)).getEAnnotation("org.unicase.ui.meeditor");
-		try{
-			String s = priority.getDetails().get("priority");
-			return Double.parseDouble(s);
-		}catch (NullPointerException e){
-			//no annotation set -> continue with the default value
+		EAnnotation priority = ((EStructuralFeature) propertyDescriptor
+				.getFeature(modelElement))
+				.getEAnnotation("org.unicase.ui.meeditor");
+		if (priority == null || priority.getDetails() == null) {
+			return defaultValue;
 		}
-		return defaultValue;
+		String s = priority.getDetails().get("priority");
+		return Double.parseDouble(s);
 	}
 
 }

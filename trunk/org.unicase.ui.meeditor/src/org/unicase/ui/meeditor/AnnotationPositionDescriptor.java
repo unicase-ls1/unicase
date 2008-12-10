@@ -13,10 +13,12 @@ import org.unicase.model.ModelElement;
 
 /**
  * A {@link IAttributeDescriptor} using the annotation in the genmodel.
- * @author shterevg
- *
+ * 
+ * @author Shterev
+ * 
  */
-public class AnnotationPositionDescriptor implements IAttributeDescriptor<String>{
+public class AnnotationPositionDescriptor implements
+		IAttributeDescriptor<String> {
 
 	private String defaultValue = "left";
 
@@ -25,14 +27,14 @@ public class AnnotationPositionDescriptor implements IAttributeDescriptor<String
 	 */
 	public String getValue(IItemPropertyDescriptor propertyDescriptor,
 			ModelElement modelElement) {
-		EAnnotation priority = ((EStructuralFeature)propertyDescriptor.getFeature(modelElement)).getEAnnotation("org.unicase.ui.meeditor");
-		try{
-			String s = priority.getDetails().get("position");
-			return s;
-		}catch (NullPointerException e){
-			//no annotation set -> continue with the default value
+		EAnnotation priority = ((EStructuralFeature) propertyDescriptor
+				.getFeature(modelElement))
+				.getEAnnotation("org.unicase.ui.meeditor");
+		if (priority == null || priority.getDetails() == null) {
+			return defaultValue;
 		}
-		return defaultValue;
+		String s = priority.getDetails().get("position");
+		return s;
 	}
 
 }
