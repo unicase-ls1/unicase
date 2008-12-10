@@ -145,15 +145,15 @@ public class ExportDialog extends TitleAreaDialog {
 		container2.setLayoutData(gData);
 		
 		Button saveButton = new Button(container2, SWT.PUSH);
-		saveButton.setText("export");
+		saveButton.setText("Export");
 		saveButton.addSelectionListener(new SaveSelectionListener());
 		
 		Button saveAndOpenButton = new Button(container2, SWT.PUSH);
-		saveAndOpenButton.setText("export and open");
+		saveAndOpenButton.setText("Export and open");
 		saveAndOpenButton.addSelectionListener(new SaveAndOpenSelectionListener());
 		
 		Button cancelButton = new Button(container2, SWT.PUSH);
-		cancelButton.setText("cancel");
+		cancelButton.setText("Cancel");
 		cancelButton.addSelectionListener(new CancelSelectionListener());
 		
 		return parent;
