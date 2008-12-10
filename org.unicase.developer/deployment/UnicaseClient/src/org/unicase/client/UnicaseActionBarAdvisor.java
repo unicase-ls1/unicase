@@ -17,6 +17,11 @@ import org.eclipse.ui.actions.ActionFactory.IWorkbenchAction;
 import org.eclipse.ui.application.ActionBarAdvisor;
 import org.eclipse.ui.application.IActionBarConfigurer;
 
+/**
+ * Action bar advisor for unicase.
+ * @author naughton
+ *
+ */
 public class UnicaseActionBarAdvisor extends ActionBarAdvisor {
 
 	// Declaring all the Workbench Actions
@@ -34,10 +39,18 @@ public class UnicaseActionBarAdvisor extends ActionBarAdvisor {
 	// Declaring the ContributionItem
 	private IContributionItem showViewItem;
 
+	/**
+	 * Default Constructor.
+	 * @param configurer the configurer
+	 */
 	public UnicaseActionBarAdvisor(IActionBarConfigurer configurer) {
 		super(configurer);
 	}
 
+	/** 
+	 * {@inheritDoc}
+	 * @see org.eclipse.ui.application.ActionBarAdvisor#makeActions(org.eclipse.ui.IWorkbenchWindow)
+	 */
 	@Override
 	protected void makeActions(IWorkbenchWindow window) {
 
@@ -75,6 +88,10 @@ public class UnicaseActionBarAdvisor extends ActionBarAdvisor {
 		register(openPerspective);
 	}
 
+	/** 
+	 * {@inheritDoc}
+	 * @see org.eclipse.ui.application.ActionBarAdvisor#fillCoolBar(org.eclipse.jface.action.ICoolBarManager)
+	 */
 	@Override
 	protected void fillCoolBar(ICoolBarManager coolBar) {
 		// Adding the Actions to the CoolBar.
@@ -87,6 +104,10 @@ public class UnicaseActionBarAdvisor extends ActionBarAdvisor {
 
 	}
 
+	/** 
+	 * {@inheritDoc}
+	 * @see org.eclipse.ui.application.ActionBarAdvisor#fillMenuBar(org.eclipse.jface.action.IMenuManager)
+	 */
 	@Override
 	protected void fillMenuBar(IMenuManager menuBar) {
 		// Adding the Actions to the Menu Bar.
