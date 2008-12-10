@@ -11,7 +11,6 @@ Bundle-RequiredExecutionEnvironment: J2SE-1.5
 Export-Package: 
  org.unicase.workspace.edit.commands,
  org.unicase.workspace.edit.dialogs,
- org.unicase.workspace.edit.views.dialogs,
  org.unicase.workspace.provider
 Require-Bundle: org.eclipse.ui;visibility:=reexport,
  org.eclipse.emf.transaction,

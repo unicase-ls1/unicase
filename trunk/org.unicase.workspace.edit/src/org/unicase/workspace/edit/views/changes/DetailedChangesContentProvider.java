@@ -4,19 +4,15 @@
  *
  * $Id$
  */
-package org.unicase.workspace.edit.views.changescomposite;
+package org.unicase.workspace.edit.views.changes;
 
-import java.util.ArrayList;
-import java.util.Arrays;
 import java.util.List;
 
-import org.eclipse.emf.ecore.EObject;
 import org.eclipse.emf.edit.provider.ComposedAdapterFactory;
 import org.eclipse.emf.edit.ui.provider.AdapterFactoryContentProvider;
 import org.eclipse.jface.viewers.IContentProvider;
 import org.unicase.emfstore.esmodel.versioning.ChangePackage;
 import org.unicase.emfstore.esmodel.versioning.operations.CompositeOperation;
-import org.unicase.workspace.WorkspaceManager;
 
 /**
  * This is the content provider for TreeViewer on ChangesTreeComposite.
@@ -25,30 +21,15 @@ import org.unicase.workspace.WorkspaceManager;
  * @author Shterev
  * 
  */
-public class ChangesTreeContentProvider extends AdapterFactoryContentProvider
+public class DetailedChangesContentProvider extends AdapterFactoryContentProvider
 		implements IContentProvider {
 
 	/**
-	 * Identifier for the operation context.
-	 */
-	public static final int DETAILED = 1; 
-
-	/**
-	 * Identifier for the ME context.
-	 */
-	public static final int COMPACT = 2;
-
-	private int context; 
-	
-	/**
 	 * Constructor.
-	 * @param context The context the viewer should be built upon. Allowed values are {@link #COMPACT} and {@link #DETAILED}.  
 	 */
-	public ChangesTreeContentProvider(int context) {
+	public DetailedChangesContentProvider() {
 		super(new ComposedAdapterFactory(
 				ComposedAdapterFactory.Descriptor.Registry.INSTANCE));
-		this.context = context;
-
 	}
 
 	/**
@@ -67,22 +48,13 @@ public class ChangesTreeContentProvider extends AdapterFactoryContentProvider
 	 */
 	@Override
 	public Object[] getChildren(Object object) {
-		ArrayList<EObject> ret = new ArrayList<EObject>();
-		if (object instanceof ChangePackage && context==DETAILED){
+		if (object instanceof ChangePackage){
 			ChangePackage cPackage = (ChangePackage)object;
 			return cPackage.getOperations().toArray();
 		}
 		if (object instanceof CompositeOperation) {
 			return ((CompositeOperation) object)
 					.getSubOperations().toArray();
-		}
-		if (object instanceof ChangePackage && context==COMPACT){
-			ChangePackage cPackage = (ChangePackage)object;
-			ChangePackageVisualizationHelper helper = new ChangePackageVisualizationHelper(Arrays.asList(cPackage), WorkspaceManager.getInstance()
-					.getCurrentWorkspace().getActiveProjectSpace()
-					.getProject());
-			ret.addAll(helper.getAllModelElements(cPackage));
-			return ret.toArray();
 		}
 		return super.getChildren(object);
 

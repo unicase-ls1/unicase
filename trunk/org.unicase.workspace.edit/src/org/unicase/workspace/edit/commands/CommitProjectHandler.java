@@ -28,8 +28,8 @@ import org.unicase.ui.common.exceptions.DialogHandler;
 import org.unicase.workspace.ProjectSpace;
 import org.unicase.workspace.Usersession;
 import org.unicase.workspace.WorkspaceManager;
+import org.unicase.workspace.edit.dialogs.CommitDialog;
 import org.unicase.workspace.edit.dialogs.LoginDialog;
-import org.unicase.workspace.edit.views.dialogs.CommitDialog;
 import org.unicase.workspace.exceptions.NoLocalChangesException;
 import org.unicase.workspace.util.CommitObserver;
 

@@ -4,7 +4,7 @@
  *
  * $Id$
  */
-package org.unicase.workspace.edit.views.changescomposite;
+package org.unicase.workspace.edit.views.changes;
 
 import java.text.SimpleDateFormat;
 
@@ -22,7 +22,7 @@ import org.unicase.model.ModelElement;
  * @author Shterev
  * 
  */
-public class ChangesTreeLabelProvider extends ColumnLabelProvider {
+public class MENameLabelProvider extends ColumnLabelProvider {
 
 	private ILabelProvider emfProvider;
 	private ChangePackageVisualizationHelper visualizationHelper;
@@ -32,7 +32,7 @@ public class ChangesTreeLabelProvider extends ColumnLabelProvider {
 	 * @param emfProvider the default label provider.
 	 * @param visualizationHelper the visualizationHelper
 	 */
-	public ChangesTreeLabelProvider(ILabelProvider emfProvider, ChangePackageVisualizationHelper visualizationHelper) {
+	public MENameLabelProvider(ILabelProvider emfProvider, ChangePackageVisualizationHelper visualizationHelper) {
 		this.emfProvider = emfProvider;
 		this.visualizationHelper = visualizationHelper;
 	}

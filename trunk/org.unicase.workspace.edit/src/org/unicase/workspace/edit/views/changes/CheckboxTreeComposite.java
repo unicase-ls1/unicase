@@ -4,9 +4,7 @@
  *
  * $Id$
  */
-package org.unicase.workspace.edit.views.changescomposite;
-
-import java.util.List;
+package org.unicase.workspace.edit.views.changes;
 
 import org.eclipse.emf.ecore.EObject;
 import org.eclipse.jface.viewers.CheckStateChangedEvent;
@@ -23,7 +21,7 @@ import org.unicase.emfstore.esmodel.versioning.operations.AbstractOperation;
  * @author Shterev
  *
  */
-public class CheckboxChangesTreeComposite extends ChangesTreeComposite implements ICheckStateListener{
+public class CheckboxTreeComposite extends TreeComposite implements ICheckStateListener{
 	
 	/**
 	 * The {@link CheckboxTreeViewer}.
@@ -34,10 +32,9 @@ public class CheckboxChangesTreeComposite extends ChangesTreeComposite implement
 	 * Default constructor.
 	 * @param parent the parent compostie
 	 * @param style the rendering style
-	 * @param changePackages the initial input
 	 */
-	public CheckboxChangesTreeComposite(Composite parent, int style, List<ChangePackage> changePackages) {
-		super(parent, style, changePackages);
+	public CheckboxTreeComposite(Composite parent, int style) {
+		super(parent, style);
 	}
 	
 	/**
@@ -45,7 +42,7 @@ public class CheckboxChangesTreeComposite extends ChangesTreeComposite implement
 	 */
 	@Override
 	protected TreeViewer createTreeViewer(Composite parent){
-		checkBoxViewer = new CheckboxTreeViewer(this, SWT.FULL_SELECTION);
+		checkBoxViewer = new CheckboxTreeViewer(parent, SWT.FULL_SELECTION);
 		checkBoxViewer.addCheckStateListener(this);
 		return checkBoxViewer;
 	}
@@ -56,7 +53,7 @@ public class CheckboxChangesTreeComposite extends ChangesTreeComposite implement
 	public void checkStateChanged(CheckStateChangedEvent event) {
 		Object element = event.getElement();
 		if (element instanceof ChangePackage) {
-			Object[] elements = ((ChangesTreeContentProvider) checkBoxViewer
+			Object[] elements = ((DetailedChangesContentProvider) checkBoxViewer
 					.getContentProvider()).getChildren(element);
 			for (Object op : elements) {
 				checkBoxViewer.setChecked(op, event.getChecked());
@@ -69,7 +66,7 @@ public class CheckboxChangesTreeComposite extends ChangesTreeComposite implement
 				checkBoxViewer.setGrayChecked(container, true);
 				return;
 			}
-			Object[] elements = ((ChangesTreeContentProvider) checkBoxViewer
+			Object[] elements = ((DetailedChangesContentProvider) checkBoxViewer
 					.getContentProvider()).getChildren(container);
 			boolean empty = true;
 			for (Object o : elements) {
@@ -81,5 +78,4 @@ public class CheckboxChangesTreeComposite extends ChangesTreeComposite implement
 			checkBoxViewer.setGrayChecked(container, !empty);
 		}		
 	}
-
 }

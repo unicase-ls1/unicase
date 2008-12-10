@@ -4,7 +4,7 @@
  *
  * $Id$
  */
-package org.unicase.workspace.edit.views.changescomposite;
+package org.unicase.workspace.edit.views.changes;
 
 import java.util.Set;
 
@@ -19,7 +19,6 @@ import org.eclipse.jface.viewers.SelectionChangedEvent;
 import org.eclipse.jface.viewers.TableViewer;
 import org.eclipse.jface.viewers.TableViewerColumn;
 import org.eclipse.jface.viewers.TreeSelection;
-import org.eclipse.jface.viewers.TreeViewer;
 import org.eclipse.swt.SWT;
 import org.eclipse.swt.graphics.Image;
 import org.eclipse.swt.layout.GridLayout;
@@ -29,11 +28,13 @@ import org.unicase.emfstore.esmodel.versioning.operations.AbstractOperation;
 import org.unicase.model.ModelElement;
 
 /**
+ * A listener to display the model elements related to the current selection in
+ * the changes tree. Supports ChangePackages, ModelElements, AbstractOperations
+ * as input.
  * 
  * @author Shterev
- * 
  */
-public class ChangesTreeSelectionListener implements ISelectionChangedListener {
+public class RelatedElementsListener implements ISelectionChangedListener {
 	private ILabelProvider emfProvider;
 	private Composite affectedTableComposite;
 	private TableViewer affectedTable;
@@ -44,20 +45,20 @@ public class ChangesTreeSelectionListener implements ISelectionChangedListener {
 	/**
 	 * Default constructor.
 	 * 
-	 * @param treeViewer
-	 *            the treeviewer notifier.
+	 * @param parent
+	 *            the composite where the table should be painted in
 	 * @param emfProvider
 	 *            the emfprovider for the visualization of the affected elements
 	 *            table.
 	 * @param visualizationHelper
 	 *            the visualizationHelper for collecting the affected elements.
 	 */
-	public ChangesTreeSelectionListener(TreeViewer treeViewer,
+	public RelatedElementsListener(Composite parent,
 			ILabelProvider emfProvider,
 			ChangePackageVisualizationHelper visualizationHelper) {
 		this.emfProvider = emfProvider;
 		this.visualizationHelper = visualizationHelper;
-		parent = treeViewer.getControl().getParent();
+		this.parent = parent;
 	}
 
 	/**
@@ -87,35 +88,35 @@ public class ChangesTreeSelectionListener implements ISelectionChangedListener {
 			Set<EObject> affectedList = visualizationHelper
 					.getAffectedElements(operation);
 			if (affectedList.size() > 0) {
-				createAffectedElementsTable(parent, columnLabelProvider,
-						affectedList, "Affected Model Elements");
+				createTable(parent, columnLabelProvider, affectedList,
+						"Affected Model Elements");
 			}
 		} else if (selected instanceof ChangePackage) {
 			ChangePackage cPackage = (ChangePackage) selected;
 			Set<EObject> affectedList = visualizationHelper
 					.getAllModelElements(cPackage);
 			if (affectedList.size() > 0) {
-				createAffectedElementsTable(parent, columnLabelProvider,
-						affectedList, "Included Model Elements");
+				createTable(parent, columnLabelProvider, affectedList,
+						"Included Model Elements");
 			}
 		} else if (selected instanceof ModelElement) {
 			ModelElement me = (ModelElement) selected;
 			Set<EObject> affectedList = visualizationHelper.getOperations(me);
 			if (affectedList.size() > 0) {
-				createAffectedElementsTable(parent, new OperationsDescLabelProvider(
+				createTable(parent, new OperationsDescLabelProvider(
 						emfProvider, visualizationHelper), affectedList,
 						"Related Operations");
 				GridDataFactory.fillDefaults().hint(400, 100).grab(false, true)
 						.applyTo(affectedTableComposite);
 				affectedTableColumn.getColumn().setWidth(370);
-				
+
 			}
 		}
 		parent.layout(true);
 	}
 
-	private void createAffectedElementsTable(Composite parent,
-			CellLabelProvider labelProvider, Set<EObject> affected, String title) {
+	private void createTable(Composite parent, CellLabelProvider labelProvider,
+			Set<EObject> affected, String title) {
 		affectedTableComposite = new Composite(parent, SWT.NONE);
 		GridDataFactory.fillDefaults().hint(200, 100).grab(false, true)
 				.applyTo(affectedTableComposite);
@@ -125,15 +126,14 @@ public class ChangesTreeSelectionListener implements ISelectionChangedListener {
 		affectedTable.getTable().setHeaderVisible(true);
 		GridDataFactory.fillDefaults().grab(true, true).applyTo(
 				affectedTable.getTable());
-		affectedTableColumn = new TableViewerColumn(affectedTable,
-				SWT.LEFT);
+		affectedTableColumn = new TableViewerColumn(affectedTable, SWT.LEFT);
 		affectedTableColumn.getColumn().setText(title);
 		affectedTableColumn.getColumn().setWidth(170);
 		affectedTableColumn.getColumn().setResizable(false);
 		affectedTableComposite.layout(true);
 
 		affectedTableColumn.setLabelProvider(labelProvider);
-		affectedTable.setContentProvider(new ChangesTreeAffectedProvider(
+		affectedTable.setContentProvider(new RelatedElementsContentProvider(
 				affected));
 		affectedTable.setInput(new Object());
 	}
