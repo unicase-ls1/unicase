@@ -112,8 +112,8 @@ public final class OperationsCannonizer {
 		// the two ops must be both remvoe
 		EList<ModelElementId> referencedModelElements = multiReferenceOperation.getReferencedModelElements();
 		EList<ModelElementId> referencedModelElementsOfLast = lastMultiReferenceOperation.getReferencedModelElements();
-		if (multiReferenceOperation.isAdd() == false && lastMultiReferenceOperation
-				.isAdd() == false) {
+		if (!multiReferenceOperation.isAdd() && !lastMultiReferenceOperation
+				.isAdd()) {
 
 			int indexDifference = lastMultiReferenceOperation.getIndex()
 					- multiReferenceOperation.getIndex();
@@ -128,8 +128,8 @@ public final class OperationsCannonizer {
 			}
 		}
 		// the two ops must be both add
-		else if (multiReferenceOperation.isAdd() == true  && lastMultiReferenceOperation
-				.isAdd() == true) {
+		else if (multiReferenceOperation.isAdd() && lastMultiReferenceOperation
+				.isAdd()) {
 
 			int indexDifference = lastMultiReferenceOperation.getIndex()
 					- multiReferenceOperation.getIndex();
