@@ -1028,7 +1028,7 @@ public class ProjectSpaceImpl extends IdentifiableElementImpl implements
 		resources.add(resource);
 		setResourceCount(getResourceCount() + 1);
 		List<ModelElement> modelElements = getProject().getAllModelElements();
-		int counter = 0;
+		int counter = Configuration.getMaxMECountPerResource()+1;
 		for (ModelElement modelElement : modelElements) {
 			if (counter > Configuration.getMaxMECountPerResource()) {
 				fileName = Configuration.getWorkspaceDirectory() + "ps-"
