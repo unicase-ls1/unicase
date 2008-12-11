@@ -324,6 +324,22 @@ public final class ChangeTestHelper {
 		List<ModelElement> modelElements = getRandomMEs(project, 1, false);
 		return modelElements.get(0);
 	}
+	
+	public static ModelElement getRandomMEofType(Project project, EClass type){
+		
+		List<ModelElement> refTypeMEs = project.getAllModelElementsbyClass(
+				type, new BasicEList<ModelElement>());
+
+		int size = refTypeMEs.size();
+		if(size == 0){
+			throw new IllegalStateException("There is no ME of this type in Project: "
+					+ type.getName());
+		}
+		
+		ModelElement me  = refTypeMEs.get(size == 1 ? 0 : getRandom().nextInt(
+				size - 1));
+		return me;
+	}
 
 	public static ModelElement createRandomME() {
 		List<EClass> eClazz = ModelUtil.getSubclasses(ModelPackage.eINSTANCE
@@ -491,7 +507,7 @@ public final class ChangeTestHelper {
 	 * @param project the project
 	 */
 	@SuppressWarnings("unchecked")
-	public static void changeSimpleRef(ModelElement me, EReference ref, Project project) {
+	public static ModelElement changeSimpleRef(ModelElement me, EReference ref, Project project) {
 
 		EClass refType = ref.getEReferenceType();
 		List<ModelElement> refTypeMEs = project.getAllModelElementsbyClass(
@@ -516,7 +532,26 @@ public final class ChangeTestHelper {
 		} else {
 			me.eSet(ref, toBeReferencedME);
 		}
+		
+		return toBeReferencedME;
 
+	}
+	
+	@SuppressWarnings("unchecked")
+	public static void changeSimpleRef(ModelElement me, EReference ref, ModelElement toBeReferencedME){
+		Object object = me.eGet(ref);
+		if (ref.isMany()) {
+			EList<EObject> eList = (EList<EObject>) object;
+			if (eList == null) {
+				throw new IllegalStateException("Null list return for feature "
+						+ ref.getName() + " on " + me.getName());
+			} else {
+				eList.add(toBeReferencedME);
+			}
+		} else {
+			me.eSet(ref, toBeReferencedME);
+		}
+		
 	}
 
 }
