@@ -246,6 +246,7 @@ public class MEDiagramImpl extends AttachmentImpl implements MEDiagram {
 	 */
 	public EList<ModelElement> getNewElements() {
 
+		//JH: remove this line
 		// this line is needed in order to avoid exception when
 		// initializing Teneo. Otherwise getProjects() throws an exception
 		// because eContainer is null. Returning null in this case shouldn't be
