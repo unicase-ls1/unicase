@@ -2,7 +2,7 @@ Manifest-Version: 1.0
 Bundle-ManifestVersion: 2
 Bundle-Name: %pluginName
 Bundle-SymbolicName: org.unicase.classDiagram; singleton:=true
-Bundle-Version: 0.2.17.internal
+Bundle-Version: 0.2.17.qualifier
 Bundle-ClassPath: .
 Bundle-Activator: org.unicase.model.classDiagram.part.ModelDiagramEditorPlugin
 Bundle-Vendor: %providerName
@@ -38,8 +38,8 @@ Require-Bundle: org.eclipse.core.runtime,
  org.eclipse.gmf.runtime.draw2d.ui;visibility:=reexport,
  org.eclipse.draw2d;visibility:=reexport,
  org.eclipse.ocl.ecore;visibility:=reexport,
- org.unicase.ui.common;bundle-version="0.2.17.internal",
- org.unicase.model.edit;bundle-version="0.2.17.internal",
+ org.unicase.ui.common;bundle-version="0.2.17.qualifier",
+ org.unicase.model.edit;bundle-version="0.2.17.qualifier",
  org.unicase.model;visibility:=reexport
 Bundle-ActivationPolicy: lazy
 Bundle-RequiredExecutionEnvironment: J2SE-1.5
