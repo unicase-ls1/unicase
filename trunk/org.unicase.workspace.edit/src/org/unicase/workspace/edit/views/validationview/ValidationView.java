@@ -92,22 +92,30 @@ public class ValidationView extends ViewPart {
 		TableViewerColumn column = new TableViewerColumn(tableViewer,
 				SWT.CENTER, 0);
 		column.getColumn().setText("Severity");
-		column.getColumn().setWidth(100);
+		column.getColumn().setWidth(50);
 		ColumnLabelProvider labelProvider = new SeverityLabelProvider();
 		column.setLabelProvider(labelProvider);
 		ViewerComparator comp = new TableViewerColumnSorter(tableViewer,
 				column, labelProvider);
 		column.getViewer().setComparator(comp);
-
+		
 		column = new TableViewerColumn(tableViewer, SWT.LEFT, 1);
-		column.getColumn().setText("Description");
-		column.getColumn().setWidth(300);
-		labelProvider = new DescriptionLabelProvider();
+		column.getColumn().setText("Constraint");
+		column.getColumn().setWidth(200);
+		labelProvider = new ConstraintLabelProvider();
 		column.setLabelProvider(labelProvider);
 		comp = new TableViewerColumnSorter(tableViewer, column, labelProvider);
 		column.getViewer().setComparator(comp);
 
 		column = new TableViewerColumn(tableViewer, SWT.LEFT, 2);
+		column.getColumn().setText("Description");
+		column.getColumn().setWidth(400);
+		labelProvider = new DescriptionLabelProvider();
+		column.setLabelProvider(labelProvider);
+		comp = new TableViewerColumnSorter(tableViewer, column, labelProvider);
+		column.getViewer().setComparator(comp);
+
+		column = new TableViewerColumn(tableViewer, SWT.LEFT, 3);
 		column.getColumn().setText("Affected ModelElement");
 		column.getColumn().setWidth(200);
 		labelProvider = new ValidationLableProvider();
@@ -115,9 +123,9 @@ public class ValidationView extends ViewPart {
 		comp = new TableViewerColumnSorter(tableViewer, column, labelProvider);
 		column.getViewer().setComparator(comp);
 
-		column = new TableViewerColumn(tableViewer, SWT.LEFT, 3);
+		column = new TableViewerColumn(tableViewer, SWT.LEFT, 4);
 		column.getColumn().setText("Creator");
-		column.getColumn().setWidth(200);
+		column.getColumn().setWidth(100);
 		labelProvider = new CreatorLabelProvider();
 		column.setLabelProvider(labelProvider);
 		comp = new TableViewerColumnSorter(tableViewer, column, labelProvider);
