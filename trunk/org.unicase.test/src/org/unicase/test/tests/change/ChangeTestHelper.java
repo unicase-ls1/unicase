@@ -481,6 +481,15 @@ public final class ChangeTestHelper {
 		return containmentRef;
 	}
 
+	/**
+	 * This method takes a model element and a non-containment reference. 
+	 * It gathers all model elements in project which have the type of that reference.
+	 * Takes one of these in random, and adds it to reference list of input model element.
+	 * 
+	 * @param me the input model element
+	 * @param ref the non-containment reference to change
+	 * @param project the project
+	 */
 	@SuppressWarnings("unchecked")
 	public static void changeSimpleRef(ModelElement me, EReference ref, Project project) {
 

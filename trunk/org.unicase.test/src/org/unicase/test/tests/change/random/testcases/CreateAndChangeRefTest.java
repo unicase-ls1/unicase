@@ -62,9 +62,14 @@ public class CreateAndChangeRefTest extends ChangePackageTest {
 		getTestProject().getModelElements().add(me);
 		ChangeTestHelper.changeSimpleRef(me, refToChange, getTestProject());
 		
+		Object obj = new Object();
+		obj.toString();
+		
 	}
 
 	public int getExpectedNumOfChanges() {
+		// a CreateDeleteOperation
+		// and a MultiReferenceOpertaion
 		return 2;
 	}
 
