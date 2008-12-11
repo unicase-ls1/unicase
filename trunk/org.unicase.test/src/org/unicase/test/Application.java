@@ -27,7 +27,7 @@ public class Application implements IApplication {
 			changeTest = new ManualChangeTestSuite();
 		}
 
-		changeTest.runTest(1);
+		changeTest.runTest(10);
 
 		return IApplication.EXIT_OK;
 	}
@@ -41,23 +41,3 @@ public class Application implements IApplication {
 		// nothing to do
 	}
 }
-
-// //===================================================================
-// for(int i = 0; i < 5; i++){
-// System.out.println("==== test " + i + " ====");
-// long randomSeed = Calendar.getInstance().getTimeInMillis();
-// Project p = new TestProjectGenerator(5, randomSeed, 3, 2, 5,
-// 10).generateProject();
-// System.out.println("project created: " + p.getAllModelElements().size() +
-// " MEs");
-// int[] result = ChangeTestHelper.linearCompare(p, (Project)EcoreUtil.copy(p));
-// if(result[0] == 1){
-// System.out.println("Test succeeded: " + "!");
-// }else{
-// System.out.println("Test failed: " + "!");
-// System.out.println("character: " + (char)result[2]);
-// System.out.println("position: " + result[1]);
-// System.out.println("lineNum: " + result[3]);
-// System.out.println("colNum: " + result[4]);
-// }
-// }
