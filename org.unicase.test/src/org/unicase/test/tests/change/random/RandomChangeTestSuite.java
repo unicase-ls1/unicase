@@ -100,7 +100,7 @@ public class RandomChangeTestSuite extends ChangeTestSuite {
 		
 		
 		// this.getTestCases().add(moveTest);
-		 this.getTestCases().add(containmentReferenceAddNewTest);
+		// this.getTestCases().add(containmentReferenceAddNewTest);
 		// this.getTestCases().add(compoundTest);
 		// this.getTestCases().add(deleteTest);
 		// this.getTestCases().add(referenceTest);
@@ -109,7 +109,7 @@ public class RandomChangeTestSuite extends ChangeTestSuite {
 		// this.getTestCases().add(attributeTransitiveChangeTest);
 	    // this.getTestCases().add(removeContainmentTest);
 		// this.getTestCases().add(removeSimpleRefTest);
-		// this.getTestCases().add(createAndChangeRefTest);
+		 this.getTestCases().add(createAndChangeRefTest);
 		// this.getTestCases().add(attributeChangeTest);
 		// this.getTestCases().add(createAndChangeAttrTest);
 		// this.getTestCases().add(commitTest);

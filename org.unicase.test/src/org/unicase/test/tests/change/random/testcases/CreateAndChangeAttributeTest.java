@@ -26,7 +26,7 @@ public class CreateAndChangeAttributeTest extends ChangePackageTest{
 
 	private ModelElement me;
 	private EAttribute attributeToChange;
-	
+		
 	
 	public CreateAndChangeAttributeTest(ProjectSpace testProjectSpace, String testName, TestProjectParmeters testProjParams) {
 		super(testProjectSpace, testName, testProjParams);
@@ -65,14 +65,9 @@ public class CreateAndChangeAttributeTest extends ChangePackageTest{
 	
 	private void doAddAndChangeAttribute() {
 		getTestProject().getModelElements().add(me);
+		
 		ChangeTestHelper.changeSimpleAttribute(me, attributeToChange);
 	}
-
-	
-
-		
-	
-
 	
 	public int getExpectedNumOfChanges() {
 		//only one CreateDeleteOp for newly created me.
