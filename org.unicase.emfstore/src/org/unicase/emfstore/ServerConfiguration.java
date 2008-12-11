@@ -351,7 +351,7 @@ public final class ServerConfiguration {
 	 * @return true if it is a release version
 	 */
 	public static boolean isReleaseVersion() {
-		return !getServerVersion().endsWith("qualifier");
+		return !getServerVersion().endsWith("qualifier") && !isInternalReleaseVersion();
 	}
 	
 	/**
