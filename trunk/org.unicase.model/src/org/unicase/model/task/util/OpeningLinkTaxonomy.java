@@ -14,6 +14,9 @@ import org.eclipse.emf.common.util.EList;
 import org.eclipse.emf.ecore.EObject;
 import org.unicase.model.Annotation;
 import org.unicase.model.ModelElement;
+import org.unicase.model.requirement.FunctionalRequirement;
+import org.unicase.model.requirement.Scenario;
+import org.unicase.model.requirement.UseCase;
 import org.unicase.model.task.Checkable;
 import org.unicase.model.task.WorkPackage;
 
@@ -26,10 +29,11 @@ import org.unicase.model.task.WorkPackage;
 public class OpeningLinkTaxonomy {
 
 	/**
-	 * Get all openers of a modelelement. Includes Subelements.
-	 * zardosht: I had to implement this method with a set<> because it 
-	 * returned many duplicate opener instances. The other methods that 
-	 * worked with method should have set<> implementation accordingly.
+	 * Get all openers of a modelelement. Includes Subelements. zardosht: I had
+	 * to implement this method with a set<> because it returned many duplicate
+	 * opener instances. The other methods that worked with method should have
+	 * set<> implementation accordingly.
+	 * 
 	 * @param me
 	 *            the Modelelement
 	 * @return a list of modelelements, the openers
@@ -37,53 +41,37 @@ public class OpeningLinkTaxonomy {
 	public Set<ModelElement> getOpeners(ModelElement me) {
 		Set<ModelElement> openers = new HashSet<ModelElement>();
 		EList<EObject> contents = me.eContents();
-		for(EObject eObject:contents){
-			if(eObject instanceof ModelElement){
+		for (EObject eObject : contents) {
+			if (eObject instanceof ModelElement) {
 				openers.add((ModelElement) eObject);
 			}
 		}
-		for(ModelElement annotation: me.getAnnotations()){
+		for (ModelElement annotation : me.getAnnotations()) {
 			openers.add(annotation);
 		}
-		
-		if(me instanceof WorkPackage){
-			getWorkPackageOpeners((WorkPackage)me, openers);
-		}
-		openers.remove(me);
-		return openers;
-	}
-	
-	/**.
-	 * zardosht: I thought that we need also a transitive concept of opener.
-	 * This concept is implemented in this method and is used in status view.
-	 * @param me The source modelelement
-	 * @return all openers recursive collected
-	 */
-	public Set<ModelElement> getOpenersRecursive(ModelElement me) {
-		Set<ModelElement> openers = new HashSet<ModelElement>();
-		EList<EObject> contents = me.eContents();
-		for(EObject eObject:contents){
-			if(eObject instanceof ModelElement){
-				openers.add((ModelElement) eObject);
-				openers.addAll(getOpenersRecursive((ModelElement) eObject));
-			}
-		}
-		for(ModelElement annotation: me.getAnnotations()){
-			openers.add(annotation);
-		}
-		
-		if(me instanceof WorkPackage){
-			getWorkPackageOpeners((WorkPackage)me, openers);
-		}
-		openers.remove(me);
-		return openers;
-	}
-	
 
-	private void getWorkPackageOpeners(WorkPackage wp,
-			Set<ModelElement> openers) {
+		if (me instanceof WorkPackage) {
+			getWorkPackageOpeners((WorkPackage) me, openers);
+		}
+		if (me instanceof UseCase) {
+			EList<FunctionalRequirement> functionalRequirements = ((UseCase) me)
+					.getFunctionalRequirements();
+			openers.addAll(functionalRequirements);
+		}
+		if (me instanceof Scenario) {
+			EList<UseCase> instantiatedUseCases = ((Scenario) me)
+					.getInstantiatedUseCases();
+			openers.addAll(instantiatedUseCases);
+
+		}
+		openers.remove(me);
+		return openers;
+	}
+
+	private void getWorkPackageOpeners(WorkPackage wp, Set<ModelElement> openers) {
 		openers.addAll(wp.getContainedWorkItems());
 	}
+
 	/**
 	 * Returns all elements which are opened by the source model element. That
 	 * means, they are connected with the source by a opening link. The target
@@ -96,23 +84,37 @@ public class OpeningLinkTaxonomy {
 	public ArrayList<ModelElement> getOpened(ModelElement modelElement) {
 		ArrayList<ModelElement> opened = new ArrayList<ModelElement>();
 		EObject container = modelElement.eContainer();
-		if(container instanceof ModelElement){
+		if (container instanceof ModelElement) {
 			opened.add((ModelElement) container);
 		}
-		if(modelElement instanceof Annotation){
+		if (modelElement instanceof Annotation) {
 			Annotation annotation = (Annotation) modelElement;
 			opened.addAll(annotation.getAnnotatedModelElements());
+		}
+		if (modelElement instanceof FunctionalRequirement) {
+			EList<UseCase> useCases = ((FunctionalRequirement) modelElement)
+					.getUseCases();
+			opened.addAll(useCases);
+		}
+		if (modelElement instanceof UseCase) {
+			EList<Scenario> scenarios = ((UseCase) modelElement).getScenarios();
+			opened.addAll(scenarios);
 		}
 		opened.remove(modelElement);
 		return opened;
 	}
+
 	/**
-	 * Returns all leaf openers, that means all checkables which causes the source to be open.
-	 * @param modelElement the source
+	 * Returns all leaf openers, that means all checkables which causes the
+	 * source to be open.
+	 * 
+	 * @param modelElement
+	 *            the source
 	 * @return a set of modelelement
 	 */
-	public Set<ModelElement> getLeafOpeners(ModelElement modelElement){
-		return getRecursiveLeafOpeners(modelElement, new HashSet<ModelElement>());
+	public Set<ModelElement> getLeafOpeners(ModelElement modelElement) {
+		return getRecursiveLeafOpeners(modelElement,
+				new HashSet<ModelElement>());
 	}
 
 	private Set<ModelElement> getRecursiveLeafOpeners(
@@ -120,14 +122,14 @@ public class OpeningLinkTaxonomy {
 		Set<ModelElement> leafOpeners = new HashSet<ModelElement>();
 		Set<ModelElement> openers = getOpeners(modelElement);
 		visited.add(modelElement);
-		for(ModelElement opener: openers){
-			if(visited.contains(opener)){
+		for (ModelElement opener : openers) {
+			if (visited.contains(opener)) {
 				continue;
 			}
-			if (opener instanceof Checkable){
+			if (opener instanceof Checkable) {
 				leafOpeners.add(opener);
 			}
-			leafOpeners.addAll(getRecursiveLeafOpeners(opener, visited)); 
+			leafOpeners.addAll(getRecursiveLeafOpeners(opener, visited));
 		}
 		leafOpeners.remove(modelElement);
 		return leafOpeners;
