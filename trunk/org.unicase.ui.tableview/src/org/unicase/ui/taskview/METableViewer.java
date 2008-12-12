@@ -196,9 +196,14 @@ public class METableViewer extends TableViewer {
 
 		currentColumn.getColumn().setMoveable(true);
 		currentColumn.getColumn().setResizable(true);
-
-		ColumnLabelProvider provider = new GenericColumnLabelProvider(this,
+		ColumnLabelProvider provider;
+		if (currentFeature.equals(ModelPackage.Literals.MODEL_ELEMENT__CREATION_DATE) ){
+    	    provider = new CreationDateColumnLabelProvider(this,
+   				currentFeature);
+			} 
+       else { provider = new GenericColumnLabelProvider(this,
 				currentFeature);
+       		}
 		currentColumn.setLabelProvider(provider);
 
 		ViewerComparator comp = new TableViewerColumnSorter(this,
