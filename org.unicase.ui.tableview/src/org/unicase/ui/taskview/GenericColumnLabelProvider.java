@@ -128,7 +128,8 @@ public class GenericColumnLabelProvider extends
 		if (element instanceof EObject) {
 			Object attr = ((EObject) element).eGet(getFeature(), true);
 			if ((attr == null)
-					|| (getFeature().equals(TaskPackage.Literals.CHECKABLE__CHECKED))) {
+					|| (getFeature()
+							.equals(TaskPackage.Literals.CHECKABLE__CHECKED))) {
 				return "";
 			}
 			Method getName;
@@ -172,7 +173,8 @@ public class GenericColumnLabelProvider extends
 					element);
 		}
 		if ((element instanceof Checkable)
-				&& (getFeature().equals(TaskPackage.Literals.CHECKABLE__CHECKED))) {
+				&& (getFeature()
+						.equals(TaskPackage.Literals.CHECKABLE__CHECKED))) {
 			Checkable c = (Checkable) element;
 			if (c.isChecked()) {
 				return JFaceResources.getImageRegistry().getDescriptor(
@@ -185,10 +187,21 @@ public class GenericColumnLabelProvider extends
 		return image;
 	}
 
+	/**
+	 * set the feature.
+	 * 
+	 * @param feature
+	 *            the feature.
+	 */
 	public void setFeature(EStructuralFeature feature) {
 		this.feature = feature;
 	}
 
+	/**
+	 * get the feature.
+	 * 
+	 * @return the feature.
+	 */
 	public EStructuralFeature getFeature() {
 		return feature;
 	}
