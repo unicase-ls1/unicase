@@ -43,8 +43,10 @@ import org.unicase.model.task.TaskPackage;
  */
 public class GenericColumnLabelProvider extends
 		org.eclipse.jface.viewers.ColumnLabelProvider {
-
-	protected EStructuralFeature feature;
+	/**
+	 * The feature.
+	 */
+	private EStructuralFeature feature;
 	private DecoratingLabelProvider decoratingLabelProvider;
 	private static final String CHECKED_KEY = "CHECKED";
 	private static final String UNCHECK_KEY = "UNCHECKED";
@@ -63,7 +65,7 @@ public class GenericColumnLabelProvider extends
 	public GenericColumnLabelProvider(METableViewer viewer,
 			EStructuralFeature feature) {
 		super();
-		this.feature = feature;
+		this.setFeature(feature);
 		IDecoratorManager decoratorManager = PlatformUI.getWorkbench()
 				.getDecoratorManager();
 		decoratingLabelProvider = new DecoratingLabelProvider(
@@ -124,9 +126,9 @@ public class GenericColumnLabelProvider extends
 	@Override
 	public String getText(Object element) {
 		if (element instanceof EObject) {
-			Object attr = ((EObject) element).eGet(feature, true);
+			Object attr = ((EObject) element).eGet(getFeature(), true);
 			if ((attr == null)
-					|| (feature.equals(TaskPackage.Literals.CHECKABLE__CHECKED))) {
+					|| (getFeature().equals(TaskPackage.Literals.CHECKABLE__CHECKED))) {
 				return "";
 			}
 			Method getName;
@@ -164,13 +166,13 @@ public class GenericColumnLabelProvider extends
 	@Override
 	public Image getImage(Object element) {
 		Image image = null;
-		if (this.feature.equals(ModelPackage.Literals.MODEL_ELEMENT__NAME)) {
+		if (this.getFeature().equals(ModelPackage.Literals.MODEL_ELEMENT__NAME)) {
 			image = decoratingLabelProvider.getImage(element);
 			decoratingLabelProvider.getLabelDecorator().decorateImage(image,
 					element);
 		}
 		if ((element instanceof Checkable)
-				&& (feature.equals(TaskPackage.Literals.CHECKABLE__CHECKED))) {
+				&& (getFeature().equals(TaskPackage.Literals.CHECKABLE__CHECKED))) {
 			Checkable c = (Checkable) element;
 			if (c.isChecked()) {
 				return JFaceResources.getImageRegistry().getDescriptor(
@@ -181,5 +183,13 @@ public class GenericColumnLabelProvider extends
 			}
 		}
 		return image;
+	}
+
+	public void setFeature(EStructuralFeature feature) {
+		this.feature = feature;
+	}
+
+	public EStructuralFeature getFeature() {
+		return feature;
 	}
 }
