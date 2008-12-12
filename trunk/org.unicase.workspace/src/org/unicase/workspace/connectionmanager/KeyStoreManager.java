@@ -28,13 +28,15 @@ import org.unicase.workspace.Configuration;
  * certificates for multiple unicase server can be stored.
  * 
  * @author Wesendonk
+ * 
  */
+
 public final class KeyStoreManager {
 
 	private static KeyStoreManager instance;
 
 	private static final String KEYSTOREPASSWORD = "jsFTga3rGTR833329GFQEfas";
-//	private static final String KEYSTOREPASSWORD = "123456";
+	// private static final String KEYSTOREPASSWORD = "123456";
 
 	private static final String KEYSTORENAME = "unicaseClient.keystore";
 
@@ -68,7 +70,8 @@ public final class KeyStoreManager {
 
 			try {
 				// configure file
-				InputStream inputStream = getClass().getResourceAsStream(KEYSTORENAME);
+				InputStream inputStream = getClass().getResourceAsStream(
+						KEYSTORENAME);
 
 				File clientKeyTarget = new File(Configuration
 						.getWorkspaceDirectory()
@@ -83,7 +86,7 @@ public final class KeyStoreManager {
 				// throw new ConnectionException("Couldn't find keystore.");
 			}
 		}
-		
+
 		System.setProperty("javax.net.ssl.trustStore", getPathToKeyStore());
 		System.setProperty("javax.net.ssl.keyStore", getPathToKeyStore());
 		System.setProperty("javax.net.ssl.keyStorePassword", KEYSTOREPASSWORD);
@@ -130,8 +133,10 @@ public final class KeyStoreManager {
 	/**
 	 * Adds a certificate to the keystore.
 	 * 
-	 * @param alias alias for the certificate
-	 * @param path path to the certificate file
+	 * @param alias
+	 *            alias for the certificate
+	 * @param path
+	 *            path to the certificate file
 	 */
 	public void addCertificate(String alias, String path) {
 		loadKeyStore();
@@ -219,4 +224,60 @@ public final class KeyStoreManager {
 	public String getPathToKeyStore() {
 		return Configuration.getWorkspaceDirectory() + KEYSTORENAME;
 	}
-}
+    /**
+     * Encrypts a password to save it locally.
+     * @param value String
+     * @param key int
+     * @return String
+     */
+	public static String enCrypt(String value, int key) {
+		
+			String edited = value;
+			StringBuffer ergebnis = new StringBuffer();
+
+			for (int i = 0; i < edited.length(); i++) {
+				int c = edited.charAt(i);
+
+				if ((c >= 'A') && (c <= 'z')) {
+					c += key;
+					if (c > 'z') {
+						c = 'a' + c % 'z' - 1;
+					}
+					if ((c > 'Z') && (c < 'a')) {
+						c = 'A' + c % 'Z' - 1;
+					}
+				}
+				ergebnis.append((char) c);
+			}
+			return  ergebnis.toString();
+
+		
+	}
+    /**
+     * Decrypt a password which was saved locally.
+     * @param value String
+     * @param key int
+     * @return String
+     */
+	public static String deCrypt(String value, int key) { 
+	    
+	      String edited = value; 
+	      StringBuffer ergebnis = new StringBuffer(); 
+	       
+	       for( int i = 0; i < edited.length(); i++ ) 
+	       { 
+	         int c = edited.charAt( i ); 
+
+	         if ( (c >= 'A') && (c <= 'z') ) { 
+	           c -= key; 
+	           if( (c < 'a') && (c > 'Z') ) {
+	             c = 'a' + ('z' - c % 'a') - 1; }
+	           if( c < 'A' ){ 
+	             c = 'A' + ('Z' - c % 'A') - 1; }
+	         } 
+	         ergebnis.append( (char) c ); 
+	       } 
+	       return ergebnis.toString(); 
+	}
+
+ }

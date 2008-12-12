@@ -37,6 +37,7 @@ import org.unicase.workspace.Usersession;
 import org.unicase.workspace.WorkspaceManager;
 import org.unicase.workspace.WorkspacePackage;
 import org.unicase.workspace.connectionmanager.ConnectionManager;
+import org.unicase.workspace.connectionmanager.KeyStoreManager;
 
 /**
  * <!-- begin-user-doc --> An implementation of the model object '
@@ -220,7 +221,7 @@ public class UsersessionImpl extends EObjectImpl implements Usersession {
 	 */
 	public String getPassword() {
 		if (isSavePassword()) {
-			return getPersistentPassword();
+			return KeyStoreManager.deCrypt(getPersistentPassword(),1);
 		} else {
 			return getPasswordGen();
 		}
@@ -250,10 +251,11 @@ public class UsersessionImpl extends EObjectImpl implements Usersession {
 	 */
 	public void setPassword(String newPassword) {
 		setPasswordGen(newPassword);
-		if (isSavePassword() && getPasswordGen() != null
-				&& !getPasswordGen().equals(newPassword)) {
-			setPersistentPassword(newPassword);
+		if (isSavePassword()) {
+			setPersistentPassword(KeyStoreManager.enCrypt(newPassword,1));
 		}
+		
+
 	}
 
 	// end of custom code
@@ -326,9 +328,7 @@ public class UsersessionImpl extends EObjectImpl implements Usersession {
 	 * @generated NOT
 	 */
 	public void setPersistentPassword(String newPersistentPassword) {
-		if (isSavePassword()) {
-			setPassword(newPersistentPassword);
-		}
+
 		setPersistentPasswordGen(newPersistentPassword);
 	}
 
@@ -400,9 +400,7 @@ public class UsersessionImpl extends EObjectImpl implements Usersession {
 	 * @generated NOT
 	 */
 	public void setSavePassword(boolean newSavePassword) {
-		if (getPasswordGen() != null && newSavePassword) {
-			setPersistentPassword(getPassword());
-		}
+
 		if (!newSavePassword) {
 			setPersistentPassword(null);
 		}

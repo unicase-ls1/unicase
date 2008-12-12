@@ -94,7 +94,6 @@ public class LoginDialog extends TitleAreaDialog implements SelectionListener {
 		if(exception!=null){
 			setErrorMessage(exception);
 		}
-
 		Label sessionsLabel = new Label(contents, SWT.NULL);
 		sessionsLabel.setText("Saved sessions:");
 
@@ -146,6 +145,25 @@ public class LoginDialog extends TitleAreaDialog implements SelectionListener {
 		Label savePasswordLabel = new Label(contents, SWT.NULL);
 		savePasswordLabel.setText("Save password");
 		savePassword = new Button(contents, SWT.CHECK);
+		savePassword.addSelectionListener(new SelectionListener(){
+
+			public void widgetDefaultSelected(SelectionEvent e) {
+				
+			}
+
+			public void widgetSelected(SelectionEvent e) {
+				if (session==null) {
+			session = WorkspaceFactory.eINSTANCE.createUsersession();
+			session.setServerInfo(server);
+			
+		}
+				if(session != null){
+					session.setSavePassword(savePassword.getSelection());
+				}
+				
+			}
+			
+		});
 
 		// select entry for a new session
 		if (session == null) {
@@ -176,7 +194,10 @@ public class LoginDialog extends TitleAreaDialog implements SelectionListener {
 		if (session==null) {
 			session = WorkspaceFactory.eINSTANCE.createUsersession();
 			session.setServerInfo(server);
+			
 		}
+	
+		
 		session.setUsername(username.getText());
 		session.setPassword(password.getText());
 		session.setSavePassword(savePassword.getSelection());
@@ -187,6 +208,7 @@ public class LoginDialog extends TitleAreaDialog implements SelectionListener {
 			if(username.getEnabled()){
 				// add the newly created session
 				WorkspaceManager.getInstance().getCurrentWorkspace().getUsersessions().add(session);
+				
 			}
 			WorkspaceManager.getInstance().getCurrentWorkspace().save();
 			setReturnCode(SUCCESSFUL);
@@ -196,6 +218,9 @@ public class LoginDialog extends TitleAreaDialog implements SelectionListener {
 			new SATRunner().shake(this.getShell(), 300, new SinusVariation(10, 1), null, null);
 			setErrorMessage(e.getMessage());
 			password.selectAll();
+			WorkspaceManager.getInstance().getCurrentWorkspace().getUsersessions().remove(session);
+			session=null;
+			password.setText("");
 			setReturnCode(FAILED);
 		}
 	}
