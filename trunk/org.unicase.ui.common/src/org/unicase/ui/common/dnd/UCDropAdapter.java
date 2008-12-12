@@ -23,11 +23,13 @@ import org.eclipse.gmf.runtime.emf.type.core.ElementTypeRegistry;
 import org.eclipse.gmf.runtime.emf.type.core.IClientContext;
 import org.eclipse.gmf.runtime.emf.type.core.IElementType;
 import org.eclipse.jface.viewers.Viewer;
+import org.eclipse.jface.wizard.WizardDialog;
 import org.eclipse.swt.dnd.DND;
 import org.eclipse.swt.dnd.DropTargetAdapter;
 import org.eclipse.swt.dnd.DropTargetEvent;
 import org.eclipse.swt.graphics.Point;
 import org.eclipse.swt.graphics.Rectangle;
+import org.eclipse.swt.widgets.Display;
 import org.eclipse.swt.widgets.TreeItem;
 import org.unicase.model.Annotation;
 import org.unicase.model.ModelElement;
@@ -39,6 +41,7 @@ import org.unicase.model.document.CompositeSection;
 import org.unicase.model.document.DocumentPackage;
 import org.unicase.model.document.LeafSection;
 import org.unicase.model.document.Section;
+import org.unicase.model.meeting.Meeting;
 import org.unicase.model.meeting.WorkItemMeetingSection;
 import org.unicase.model.task.ActionItem;
 import org.unicase.model.task.TaskFactory;
@@ -46,6 +49,7 @@ import org.unicase.model.task.WorkItem;
 import org.unicase.model.task.WorkPackage;
 import org.unicase.ui.common.commands.ActionHelper;
 import org.unicase.ui.common.util.UnicaseUiUtil;
+import org.unicase.ui.common.wizards.WorkPackageReviewWizard;
 import org.unicase.workspace.ProjectSpace;
 import org.unicase.workspace.Usersession;
 import org.unicase.workspace.WorkspaceManager;
@@ -120,6 +124,12 @@ public class UCDropAdapter extends DropTargetAdapter {
 			return;
 		}
 
+		doSpecialDragCases(event, source, dropee, target);
+	}
+
+	private void doSpecialDragCases(final DropTargetEvent event,
+			final List<ModelElement> source, ModelElement dropee,
+			final ModelElement target) {
 		if (target instanceof WorkPackage && !(dropee instanceof Annotation)) {
 			// create an ActionItem for each dropee
 			// add the AI to target
@@ -131,6 +141,8 @@ public class UCDropAdapter extends DropTargetAdapter {
 			dropWorkItemOnMeetingSection((WorkItemMeetingSection) target,
 					source);
 
+		} else if (target instanceof Meeting && dropee instanceof WorkPackage){
+			dropWorkPackageOnMeeting((Meeting) target, (WorkPackage) dropee);
 		} else if ((dropee instanceof Annotation)
 				&& !(target instanceof Section || target instanceof WorkPackage || target
 						.eContainer() instanceof WorkPackage)) {
@@ -169,6 +181,15 @@ public class UCDropAdapter extends DropTargetAdapter {
 					});
 
 		}
+	}
+
+	private void dropWorkPackageOnMeeting(Meeting meeting, WorkPackage workPackage) {
+		WorkPackageReviewWizard wizard = new WorkPackageReviewWizard();
+		wizard.init(meeting, workPackage.getContainedWorkItems());
+		WizardDialog dialog = new WizardDialog(Display.getCurrent().getActiveShell(), wizard);
+		wizard.setWindowTitle("Workpackage review wizard.");
+		dialog.create();
+		dialog.open();
 	}
 
 	private void dropWorkItemOnMeetingSection(
