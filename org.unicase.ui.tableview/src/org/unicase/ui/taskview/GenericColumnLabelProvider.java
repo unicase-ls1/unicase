@@ -44,7 +44,7 @@ import org.unicase.model.task.TaskPackage;
 public class GenericColumnLabelProvider extends
 		org.eclipse.jface.viewers.ColumnLabelProvider {
 
-	private EStructuralFeature feature;
+	protected EStructuralFeature feature;
 	private DecoratingLabelProvider decoratingLabelProvider;
 	private static final String CHECKED_KEY = "CHECKED";
 	private static final String UNCHECK_KEY = "UNCHECKED";
