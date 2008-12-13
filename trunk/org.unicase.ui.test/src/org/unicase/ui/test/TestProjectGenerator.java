@@ -282,6 +282,12 @@ public class TestProjectGenerator {
 		if (SECTION_ECLASS.isSuperTypeOf(eClass)) {
 			return;
 		}
+		
+		//do not create non domain elements
+		if(ModelPackage.eINSTANCE.getNonDomainElement().isSuperTypeOf(eClass)){
+			return;
+		}
+		
 		// create the specified minimum number of instances of this EClass
 		for (int i = 0; i < numOfEachME; i++) {
 			EObject obj = createInstance(eClass, false);
