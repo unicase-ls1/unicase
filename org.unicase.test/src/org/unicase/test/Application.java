@@ -27,7 +27,7 @@ public class Application implements IApplication {
 			changeTest = new ManualChangeTestSuite();
 		}
 
-		changeTest.runTest(100);
+		changeTest.runTest(500);
 
 		return IApplication.EXIT_OK;
 	}
