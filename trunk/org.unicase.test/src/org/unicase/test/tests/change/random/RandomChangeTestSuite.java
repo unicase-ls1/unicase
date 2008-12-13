@@ -42,8 +42,8 @@ public class RandomChangeTestSuite extends ChangeTestSuite {
 
 		
 		// ContainmentReferenceMoveTest
-		ContainmentReferenceMoveTest moveTest = new ContainmentReferenceMoveTest(getTestProjectSpace(), "Move", getTestProjectPrams());
-		testCases.add(moveTest);
+		ContainmentReferenceMoveTest containmentReferenceMoveTest = new ContainmentReferenceMoveTest(getTestProjectSpace(), "Move", getTestProjectPrams());
+		testCases.add(containmentReferenceMoveTest);
 
 		
 		// ContainmentReferenceAddNewTest
@@ -52,9 +52,9 @@ public class RandomChangeTestSuite extends ChangeTestSuite {
 
 		
 		// Reference Test
-		NonContainmentReferenceAddTest changeSimpleRefTest = new NonContainmentReferenceAddTest(getTestProjectSpace(), "Reference",
+		NonContainmentReferenceAddTest nonContainmentReferenceAddTest = new NonContainmentReferenceAddTest(getTestProjectSpace(), "Reference",
 				getTestProjectPrams());
-		testCases.add(changeSimpleRefTest);
+		testCases.add(nonContainmentReferenceAddTest);
 
 		
 		// CreateAndDelete Test
@@ -70,8 +70,8 @@ public class RandomChangeTestSuite extends ChangeTestSuite {
 
 
 		// RemoveSimpleRef Test
-		NonContainmentReferenceRemoveTest removeSimpleRefTest = new NonContainmentReferenceRemoveTest(getTestProjectSpace(), "RemoveSimpleRef", getTestProjectPrams());
-		testCases.add(removeSimpleRefTest);
+		NonContainmentReferenceRemoveTest nonContainmentRefRemoveTest = new NonContainmentReferenceRemoveTest(getTestProjectSpace(), "RemoveSimpleRef", getTestProjectPrams());
+		testCases.add(nonContainmentRefRemoveTest);
 		
 		// CreateAndChangeRef Test
 		CreateAndChangeRefTest createAndChangeRefTest = new CreateAndChangeRefTest(
@@ -99,17 +99,17 @@ public class RandomChangeTestSuite extends ChangeTestSuite {
 		
 		
 		
-		// this.getTestCases().add(moveTest);
+		// this.getTestCases().add(containmentReferenceMoveTest);
 		// this.getTestCases().add(containmentReferenceAddNewTest);
 		// this.getTestCases().add(compoundTest);
 		// this.getTestCases().add(deleteTest);
-		// this.getTestCases().add(referenceTest);
+		 this.getTestCases().add(nonContainmentReferenceAddTest);
 		// this.getTestCases().add(compoundTest);
 		// this.getTestCases().add(createAndDeleteTest);
 		// this.getTestCases().add(attributeTransitiveChangeTest);
 	    // this.getTestCases().add(removeContainmentTest);
-		// this.getTestCases().add(removeSimpleRefTest);
-		 this.getTestCases().add(createAndChangeRefTest);
+		// this.getTestCases().add(nonContainmentRefRemoveTest);
+		// this.getTestCases().add(createAndChangeRefTest);
 		// this.getTestCases().add(attributeChangeTest);
 		// this.getTestCases().add(createAndChangeAttrTest);
 		// this.getTestCases().add(commitTest);
