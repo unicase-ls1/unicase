@@ -112,6 +112,7 @@ public class NonContainmentReferenceRemoveTest extends ChangePackageTest {
 
 	public int getExpectedNumOfChanges() {
 
+		//a MultiRefOperation or a SingleRefOperation
 		return 1;
 	}
 
