@@ -124,9 +124,7 @@ public class NonContainmentReferenceAddTest extends ChangePackageTest {
 
 		ChangeTestHelper.changeSimpleRef(me, refToChange, meToReference);
 
-		Object obj = new Object();
-		obj.toString();
-
+		
 	}
 
 	public int getExpectedNumOfChanges() {
