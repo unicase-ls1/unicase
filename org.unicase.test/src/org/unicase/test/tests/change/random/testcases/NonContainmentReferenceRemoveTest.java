@@ -24,7 +24,6 @@ public class NonContainmentReferenceRemoveTest extends ChangePackageTest {
 	private ModelElement me;
 	private ModelElement meToRemove;
 	private EReference refToChange;
-	private Object oldVlueOfRef;
 
 	public NonContainmentReferenceRemoveTest(ProjectSpace testProjectSpace,
 			String testName, TestProjectParmeters testProjParams) {
@@ -61,7 +60,6 @@ public class NonContainmentReferenceRemoveTest extends ChangePackageTest {
 
 		refToChange = findReference(me, meToRemove);
 
-		oldVlueOfRef = me.eGet(refToChange);
 
 		Object object = me.eGet(refToChange);
 		if (refToChange.isMany()) {
@@ -128,127 +126,3 @@ public class NonContainmentReferenceRemoveTest extends ChangePackageTest {
 }
 
 
-
-
-
-
-
-
-//public class NonContainmentReferenceRemoveTest extends ChangePackageTest {
-//
-//	private ModelElement me;
-//	private Map.Entry<Object, Integer> meToRemove;
-//	private EReference refToChange;
-//	private Object oldValueOfRef;
-//	
-//	
-//	public NonContainmentReferenceRemoveTest(ProjectSpace testProjectSpace,
-//			String testName, TestProjectParmeters testProjParams) {
-//		super(testProjectSpace, testName, testProjParams);
-//
-//	}
-//
-//	@Override
-//	public void runTest() {
-//
-//		TransactionalEditingDomain domain = TransactionalEditingDomain.Registry.INSTANCE
-//				.getEditingDomain("org.unicase.EditingDomain");
-//		domain.getCommandStack().execute(new RecordingCommand(domain) {
-//
-//			@Override
-//			protected void doExecute() {
-//				doRemoveSimpleRef();
-//			}
-//		});
-//
-//	}
-//	
-//	
-//
-//	@SuppressWarnings("unchecked")
-//	private void doRemoveSimpleRef() {
-//		
-//		oldValueOfRef = null;
-//		
-//		me = ChangeTestHelper.getRandomME(getTestProject());
-//		meToRemove = getMEToRemove(me);
-//		while (meToRemove == null) {
-//			me = ChangeTestHelper.getRandomME(getTestProject());
-//			meToRemove = getMEToRemove(me);
-//		}
-//
-//		refToChange = (EReference) me.eClass().getEStructuralFeature(
-//				meToRemove.getValue().intValue());
-//		
-//		oldValueOfRef = me.eGet(refToChange);
-//
-//		// maybe we can user ECoreUtil.remove()
-//		Object object = me.eGet(refToChange);
-//		if (refToChange.isMany()) {
-//			EList<EObject> eList = (EList<EObject>) object;
-//			eList.remove(meToRemove.getKey());
-//		} else {
-//			me.eSet(refToChange, null);
-//		}
-//	}
-//
-//	
-//	
-//	@SuppressWarnings("unchecked")
-//	private Map.Entry<Object, Integer> getMEToRemove(ModelElement me) {
-//
-//		List<EReference> allNonContainmentRefs = new ArrayList<EReference>();
-//		for (EReference tmpRef : me.eClass().getEAllReferences()) {
-//			if (!tmpRef.isContainer() && !tmpRef.isContainment()) {
-//				allNonContainmentRefs.add(tmpRef);
-//			}
-//		}
-//
-//		// a map of <eobject, featureId>
-//		Map<Object, Integer> referencedMEs = new HashMap<Object, Integer>();
-//		for (EReference ref : allNonContainmentRefs) {
-//			Object object = me.eGet(ref);
-//			if(object == null){
-//				continue;
-//			}
-//			if (ref.isMany()) {
-//				EList<EObject> eList = (EList<EObject>) object;
-//				for (Object obj : eList) {
-//					referencedMEs.put(obj, ref.getFeatureID());
-//				}
-//
-//			} else {
-//
-//				referencedMEs.put(object, ref.getFeatureID());
-//			}
-//
-//		}
-//
-//		if (referencedMEs.size() == 0) {
-//			return null;
-//		}
-//
-//		Object[] entries = referencedMEs.entrySet().toArray();
-//		int length = entries.length;
-//		int index = (length == 1 ? 0 : getRandom().nextInt(length - 1));
-//		return (Map.Entry<Object, Integer>) entries[index];
-//
-//	}
-//	
-//	
-//	
-//
-//	public int getExpectedNumOfChanges() {
-//
-//		return 1;
-//	}
-//
-//	@Override
-//	public boolean isSuccessful(ChangePackage changePackage) {
-//
-//		// todo: test the operations too
-//		boolean ret = (changePackage.getOperations().size() == getExpectedNumOfChanges());
-//		return ret;
-//	}
-//
-//}
