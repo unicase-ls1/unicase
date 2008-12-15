@@ -10,10 +10,6 @@ import java.util.ArrayList;
 import java.util.List;
 
 import org.eclipse.jface.dialogs.TitleAreaDialog;
-import org.eclipse.jface.viewers.CheckStateChangedEvent;
-import org.eclipse.jface.viewers.ICheckStateListener;
-import org.eclipse.jface.viewers.ISelectionChangedListener;
-import org.eclipse.jface.viewers.SelectionChangedEvent;
 import org.eclipse.swt.SWT;
 import org.eclipse.swt.graphics.Rectangle;
 import org.eclipse.swt.layout.GridData;
@@ -25,9 +21,7 @@ import org.eclipse.swt.widgets.Label;
 import org.eclipse.swt.widgets.Shell;
 import org.unicase.emfstore.esmodel.versioning.ChangePackage;
 import org.unicase.emfstore.esmodel.versioning.VersioningFactory;
-import org.unicase.emfstore.esmodel.versioning.operations.AbstractOperation;
 import org.unicase.workspace.WorkspaceManager;
-import org.unicase.workspace.edit.views.changes.CheckboxTreeComposite;
 import org.unicase.workspace.edit.views.changes.MergeChangesComposite;
 import org.unicase.workspace.impl.ProjectSpaceImpl;
 
@@ -36,14 +30,11 @@ import org.unicase.workspace.impl.ProjectSpaceImpl;
  * merged changes, and their changes)
  * 
  * @author Hodaie
- * 
+ * @author Shterev
  */
-public class MergeDialog extends TitleAreaDialog implements
-		ICheckStateListener, ISelectionChangedListener {
+public class MergeDialog extends TitleAreaDialog {
 
 	private List<ChangePackage> newChangePackages;
-	private CheckboxTreeComposite myChangesTree;
-	private CheckboxTreeComposite theirChangesTree;
 
 	/**
 	 * Constructor.
@@ -107,22 +98,6 @@ public class MergeDialog extends TitleAreaDialog implements
 		MergeChangesComposite composite = new MergeChangesComposite(contents,SWT.NONE,myChangePackages,newChangePackages);
 		composite.setLayoutData(new GridData(SWT.FILL, SWT.FILL, true, true, 2,
 				1));
-//		List<AbstractOperation> myOperations = new ArrayList<AbstractOperation>();
-//		for (ChangePackage chPackage : myChangePackages) {
-//			myOperations.addAll(chPackage.getOperations());
-//		}
-		// myChangesEditingSupport.setMyOperations(myOperations);
-
-//		List<AbstractOperation> theirOperations = new ArrayList<AbstractOperation>();
-//		for (ChangePackage chPackage : newChangePackages) {
-//			theirOperations.addAll(chPackage.getOperations());
-//		}
-		// myChangesEditingSupport.setTheirOperations(theirOperations);
-		//		
-		// myChangesTree.getStatusColumn().setEditingSupport(
-		// myChangesEditingSupport);
-
-//		sashForm.setWeights(new int[] { 50, 50 });
 
 		return contents;
 
@@ -143,32 +118,6 @@ public class MergeDialog extends TitleAreaDialog implements
 	@Override
 	public int open() {
 		return super.open();
-	}
-
-	/**
-	 * {@inheritDoc}
-	 */
-	public void checkStateChanged(CheckStateChangedEvent event) {
-		Object element = event.getElement();
-		if (element instanceof ChangePackage) {
-			ChangePackage cp = (ChangePackage) element;
-			for (AbstractOperation op : cp.getOperations()) {
-				checkOperation(op);
-			}
-		}
-		if (element instanceof AbstractOperation) {
-			AbstractOperation op = (AbstractOperation) element;
-			checkOperation(op);
-		}
-	}
-
-	private void checkOperation(AbstractOperation op) {
-
-	}
-
-	public void selectionChanged(SelectionChangedEvent event) {
-		// TODO Auto-generated method stub
-
 	}
 
 }

@@ -62,20 +62,24 @@ public class CheckboxTreeComposite extends TreeComposite implements ICheckStateL
 		if (element instanceof AbstractOperation) {
 			EObject container = ((AbstractOperation) element)
 					.eContainer();
-			if (event.getChecked()) {
-				checkBoxViewer.setGrayChecked(container, true);
-				return;
-			}
 			Object[] elements = ((DetailedChangesContentProvider) checkBoxViewer
 					.getContentProvider()).getChildren(container);
-			boolean empty = true;
+			int checked = 0;
 			for (Object o : elements) {
 				if (checkBoxViewer.getChecked(o)) {
-					empty = false;
-					break;
+					checked++;
 				}
 			}
-			checkBoxViewer.setGrayChecked(container, !empty);
+			if(checked==elements.length){
+				checkBoxViewer.setGrayChecked(container, false);
+				checkBoxViewer.setChecked(container, true);
+			}else if(checked>0){
+				checkBoxViewer.setChecked(container, false);
+				checkBoxViewer.setGrayChecked(container, true);
+			}else{
+				checkBoxViewer.setGrayChecked(container, false);
+				checkBoxViewer.setChecked(container, false);
+			}
 		}		
 	}
 }
