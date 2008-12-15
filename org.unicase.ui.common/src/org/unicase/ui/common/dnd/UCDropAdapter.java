@@ -372,6 +372,7 @@ public class UCDropAdapter extends DropTargetAdapter {
 
 		if(target instanceof CompositeSection && source.get(0) instanceof CompositeSection && target.eContainer() instanceof Project){
 			moveFirstLevelCompSection(target, source, true);
+			return;
 		}
 		
 		int targetIndex = getTargetIndex(target, source);
@@ -415,6 +416,7 @@ public class UCDropAdapter extends DropTargetAdapter {
 		
 		if(target instanceof CompositeSection && source.get(0) instanceof CompositeSection && target.eContainer() instanceof Project){
 			moveFirstLevelCompSection(target, source, false);
+			return;
 		}
 		
 		int targetIndex = getTargetIndex(target, source);
@@ -459,10 +461,14 @@ public class UCDropAdapter extends DropTargetAdapter {
 		EList<ModelElement> modelElements = project.getModelElements();
 		int targetIndex = modelElements.indexOf(target);
 		if(after){
-			modelElements.addAll(targetIndex + 1, source);
+			for(int i = source.size() - 1; i >= 0; i--){
+				modelElements.move(targetIndex + 1, source.get(i));
+			}
+			
 		}else{
-			modelElements.addAll(targetIndex, source);
-			//modelElements.addAll(targetIndex == 0? 0 : targetIndex - 1, source);
+			for(int i = source.size() - 1; i >= 0; i--){
+				modelElements.move(targetIndex, source.get(i));
+			}
 			
 		}
 		
@@ -827,10 +833,16 @@ public class UCDropAdapter extends DropTargetAdapter {
 	@SuppressWarnings("unchecked")
 	private boolean canDrop(DropTargetEvent event) {
 		boolean result = true;
-		final List<ModelElement> source = (List<ModelElement>) DragSourcePlaceHolder
+		final List<Object> source = (List<Object>) DragSourcePlaceHolder
 				.getDragSource();
 		if (source == null) {
 			result = false;
+		}
+
+		for (Object obj : source) {
+			if (!(obj instanceof ModelElement)) {
+				result = false;
+			}
 		}
 
 		// take care that you cannot drop anything on project (project is not a
@@ -841,8 +853,12 @@ public class UCDropAdapter extends DropTargetAdapter {
 		}
 
 		// check if source and target are in the same project
-		ModelElement dropee = source.get(0);
-		if (event.item != null && event.item.getData() != null && event.item.getData() instanceof ModelElement) {
+		if (!(source.get(0) instanceof ModelElement)) {
+			result = false;
+		}
+		
+		if (result) {
+			ModelElement dropee = (ModelElement) source.get(0);
 			ModelElement target = (ModelElement) event.item.getData();
 			if (!target.getProject().equals(dropee.getProject())) {
 				result = false;
