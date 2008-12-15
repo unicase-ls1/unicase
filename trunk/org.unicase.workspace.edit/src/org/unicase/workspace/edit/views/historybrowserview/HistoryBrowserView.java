@@ -13,10 +13,12 @@ import org.eclipse.emf.transaction.RecordingCommand;
 import org.eclipse.emf.transaction.TransactionalEditingDomain;
 import org.eclipse.jface.action.Action;
 import org.eclipse.jface.action.IToolBarManager;
+import org.eclipse.jface.dialogs.ProgressMonitorDialog;
 import org.eclipse.swt.SWT;
 import org.eclipse.swt.widgets.Composite;
 import org.eclipse.swt.widgets.Control;
 import org.eclipse.ui.IActionBars;
+import org.eclipse.ui.PlatformUI;
 import org.unicase.emfstore.esmodel.versioning.HistoryInfo;
 import org.unicase.emfstore.esmodel.versioning.HistoryQuery;
 import org.unicase.emfstore.esmodel.versioning.PrimaryVersionSpec;
@@ -259,8 +261,16 @@ public class HistoryBrowserView extends AbstractSCMView {
 	 */
 	@Override
 	protected void refresh() {
+		ProgressMonitorDialog progressDialog = new ProgressMonitorDialog(
+				PlatformUI.getWorkbench().getActiveWorkbenchWindow().getShell());
+		progressDialog.open();
+		progressDialog.getProgressMonitor().beginTask("Resolving project versions...", 100);
+		progressDialog.getProgressMonitor().worked(10);
 		load(currentEnd);
+		progressDialog.getProgressMonitor().worked(80);
 		historyComposite.updateTable();
+		progressDialog.getProgressMonitor().done();
+		progressDialog.close();
 		// lblCriteria.setText(queryComposite.getQuery().getDescription());
 
 		// ************************************************
