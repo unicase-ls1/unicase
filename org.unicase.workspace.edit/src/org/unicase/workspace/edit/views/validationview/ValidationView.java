@@ -98,7 +98,7 @@ public class ValidationView extends ViewPart {
 		ViewerComparator comp = new TableViewerColumnSorter(tableViewer,
 				column, labelProvider);
 		column.getViewer().setComparator(comp);
-		
+
 		column = new TableViewerColumn(tableViewer, SWT.LEFT, 1);
 		column.getColumn().setText("Constraint");
 		column.getColumn().setWidth(200);
@@ -151,27 +151,30 @@ public class ValidationView extends ViewPart {
 				if (me instanceof ModelElement) {
 					EStructuralFeature errorLocation = null;
 					errorLocation = getErrorLocation(iterator, errorLocation);
-					if(errorLocation != null) {
-						ActionHelper.openModelElement((ModelElement) me, errorLocation, viewId);
+					if (errorLocation != null) {
+						ActionHelper.openModelElement((ModelElement) me,
+								errorLocation, viewId);
 					} else {
-						ActionHelper.openModelElement((ModelElement) me, viewId);
+						ActionHelper
+								.openModelElement((ModelElement) me, viewId);
 					}
 				}
 			}
 		});
 	}
-	private EStructuralFeature getErrorLocation(
-			Iterator<EObject> iterator, EStructuralFeature errorLocation) {
+
+	private EStructuralFeature getErrorLocation(Iterator<EObject> iterator,
+			EStructuralFeature errorLocation) {
 		while (iterator.hasNext()) {
 			EObject next = iterator.next();
-			if(next instanceof EStructuralFeature) {
+			if (next instanceof EStructuralFeature) {
 				errorLocation = (EStructuralFeature) next;
 				break;
 			}
 		}
 		return errorLocation;
 	}
-	
+
 	/**
 	 * {@inheritDoc}
 	 */
@@ -188,6 +191,10 @@ public class ValidationView extends ViewPart {
 	 */
 	public void updateTable(List<IConstraintStatus> validationResults) {
 		tableViewer.setInput(validationResults);
+
+		// this is added to fix the bug regarding context menu not being shown
+		// correctly in navigator, after validation viewer was shown.
+		tableViewer.getTable().setFocus();
 	}
 
 	private void initFilters() {
