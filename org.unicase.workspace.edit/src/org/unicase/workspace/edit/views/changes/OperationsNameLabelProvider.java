@@ -26,6 +26,7 @@ public class OperationsNameLabelProvider extends
 		ColumnLabelProvider {
 	private final ILabelProvider emfProvider;
 	private ChangePackageVisualizationHelper visualizationHelper;
+	private OperationColorLabelProvider opBackgroundLabelProvider;
 
 	/**
 	 * Default constructor.
@@ -35,6 +36,17 @@ public class OperationsNameLabelProvider extends
 	public OperationsNameLabelProvider(ILabelProvider emfProvider, ChangePackageVisualizationHelper visualizationHelper) {
 		this.emfProvider = emfProvider;
 		this.visualizationHelper = visualizationHelper;
+	}
+
+	/**
+	 * Default constructor.
+	 * @param emfProvider the default label provider.
+	 * @param visualizationHelper the visualizationHelper
+	 * @param opBackgroundLabelProvider the visualizationHelper
+	 */
+	public OperationsNameLabelProvider(ILabelProvider emfProvider, ChangePackageVisualizationHelper visualizationHelper, OperationColorLabelProvider opBackgroundLabelProvider) {
+		this(emfProvider, visualizationHelper);
+		this.opBackgroundLabelProvider = opBackgroundLabelProvider;
 	}
 
 	/**
@@ -53,6 +65,9 @@ public class OperationsNameLabelProvider extends
 				OverlayImageDescriptor imageDescriptor = new OverlayImageDescriptor(
 						image, overlay, OverlayImageDescriptor.LOWER_RIGHT);
 				cell.setImage(imageDescriptor.createImage());
+			}
+			if(opBackgroundLabelProvider!=null){
+				cell.setBackground(opBackgroundLabelProvider.getColor(op));
 			}
 		} else if (element instanceof ChangePackage) {
 			ChangePackage cPackage = (ChangePackage) element;

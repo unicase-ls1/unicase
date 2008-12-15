@@ -16,6 +16,7 @@ import org.unicase.emfstore.esmodel.versioning.ChangePackage;
  */
 public class CompactChangesComposite extends AbstractChangesComposite{
 
+	private TreeViewerColumn meColumn;
 	/**
 	 * Default constructor.
 	 * @param parent @see {@link AbstractChangesComposite}
@@ -47,14 +48,19 @@ public class CompactChangesComposite extends AbstractChangesComposite{
 		
 		getTreeViewer().setContentProvider(contentProvider);
 		
-		// the main column
-		TreeViewerColumn column = new TreeViewerColumn(getTreeViewer(), SWT.NONE);
-		column.getColumn().setWidth(300);
-		column.getColumn().setText("ModelElement");
-		column.setLabelProvider(new MENameLabelProvider(getEmfLabelProvider(),
+		meColumn = new TreeViewerColumn(getTreeViewer(), SWT.NONE);
+		meColumn.getColumn().setWidth(300);
+		meColumn.getColumn().setText("ModelElement");
+		meColumn.setLabelProvider(new MENameLabelProvider(getEmfLabelProvider(),
 				getVisualizationHelper()));
 		
 		ColumnViewerToolTipSupport.enableFor(getTreeViewer());
+	}
+	/**
+	 * @return the meColumn
+	 */
+	public TreeViewerColumn getMeColumn() {
+		return meColumn;
 	}
 
 }

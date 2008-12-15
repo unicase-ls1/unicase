@@ -15,6 +15,10 @@ import org.unicase.emfstore.esmodel.versioning.ChangePackage;
  */
 public class DetailedChangesComposite extends AbstractChangesComposite{
 	
+	private TreeViewerColumn meColumn;
+	private TreeViewerColumn opColumn;
+
+
 	/**
 	 * Default constructor.
 	 * @param parent @see {@link AbstractChangesComposite}
@@ -47,13 +51,13 @@ public class DetailedChangesComposite extends AbstractChangesComposite{
 		super.buildColumns(contentProvider);
 
 		// the main column
-		TreeViewerColumn mainColumn = new TreeViewerColumn(getTreeViewer(), SWT.NONE);
-		mainColumn.getColumn().setWidth(300);
-		mainColumn.getColumn().setText("ModelElement");
-		mainColumn.setLabelProvider(new MENameLabelProvider(getEmfLabelProvider(),
+		meColumn = new TreeViewerColumn(getTreeViewer(), SWT.NONE);
+		meColumn.getColumn().setWidth(300);
+		meColumn.getColumn().setText("ModelElement");
+		meColumn.setLabelProvider(new MENameLabelProvider(getEmfLabelProvider(),
 				getVisualizationHelper()));
 
-		TreeViewerColumn opColumn = new TreeViewerColumn(getTreeViewer(), SWT.NONE);
+		opColumn = new TreeViewerColumn(getTreeViewer(), SWT.NONE);
 		opColumn.getColumn().setWidth(300);
 		opColumn.getColumn().setText("Operation");
 		opColumn.getColumn().setWidth(getShell().getSize().x / 2);
@@ -61,6 +65,20 @@ public class DetailedChangesComposite extends AbstractChangesComposite{
 				getVisualizationHelper()));
 		
 		
+	}
+
+	/**
+	 * @return the meColumn
+	 */
+	public TreeViewerColumn getMeColumn() {
+		return meColumn;
+	}
+
+	/**
+	 * @return the opColumn
+	 */
+	public TreeViewerColumn getOpColumn() {
+		return opColumn;
 	}
 
 }

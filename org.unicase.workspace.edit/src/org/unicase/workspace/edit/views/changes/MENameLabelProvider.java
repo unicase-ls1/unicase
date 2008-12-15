@@ -26,6 +26,7 @@ public class MENameLabelProvider extends ColumnLabelProvider {
 
 	private ILabelProvider emfProvider;
 	private ChangePackageVisualizationHelper visualizationHelper;
+	private OperationColorLabelProvider opBackgroundLabelProvider;
 
 	/**
 	 * Default constructor.
@@ -35,6 +36,17 @@ public class MENameLabelProvider extends ColumnLabelProvider {
 	public MENameLabelProvider(ILabelProvider emfProvider, ChangePackageVisualizationHelper visualizationHelper) {
 		this.emfProvider = emfProvider;
 		this.visualizationHelper = visualizationHelper;
+	}
+
+	/**
+	 * Default constructor.
+	 * @param emfProvider the default label provider.
+	 * @param visualizationHelper the visualizationHelper
+	 * @param opBackgroundLabelProvider the visualizationHelper
+	 */
+	public MENameLabelProvider(ILabelProvider emfProvider, ChangePackageVisualizationHelper visualizationHelper, OperationColorLabelProvider opBackgroundLabelProvider) {
+		this(emfProvider, visualizationHelper);
+		this.opBackgroundLabelProvider = opBackgroundLabelProvider;
 	}
 	
 	/**
@@ -53,6 +65,9 @@ public class MENameLabelProvider extends ColumnLabelProvider {
 				cell.setImage(emfProvider.getImage(me));
 			} else {
 				cell.setText("(Missing Element)");
+			}
+			if(opBackgroundLabelProvider!=null){
+				cell.setBackground(opBackgroundLabelProvider.getColor(operation));
 			}
 		} else if (element instanceof ChangePackage){
 			ChangePackage cPackage = (ChangePackage) element;
@@ -75,5 +90,19 @@ public class MENameLabelProvider extends ColumnLabelProvider {
 			cell.setText(emfProvider.getText(element));
 			cell.setImage(emfProvider.getImage(element));
 		}
+	}
+
+	/**
+	 * @param opBackgroundLabelProvider the opBackgroundLabelProvider to set
+	 */
+	public void setOpBackgroundLabelProvider(OperationColorLabelProvider opBackgroundLabelProvider) {
+		this.opBackgroundLabelProvider = opBackgroundLabelProvider;
+	}
+
+	/**
+	 * @return the opBackgroundLabelProvider
+	 */
+	public OperationColorLabelProvider getOpBackgroundLabelProvider() {
+		return opBackgroundLabelProvider;
 	}
 }
