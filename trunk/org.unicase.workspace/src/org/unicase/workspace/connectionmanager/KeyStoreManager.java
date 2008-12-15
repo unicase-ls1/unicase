@@ -260,7 +260,7 @@ public final class KeyStoreManager {
      * @return String
      */
 	public static String deCrypt(String value, int key) { 
-	    
+	    if (value!=null){
 	      String edited = value; 
 	      StringBuffer ergebnis = new StringBuffer(); 
 	       
@@ -279,5 +279,7 @@ public final class KeyStoreManager {
 	       } 
 	       return ergebnis.toString(); 
 	}
-
- }
+	    return "";
+	    }
+  
+}
