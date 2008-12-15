@@ -1,7 +1,5 @@
 package org.unicase.ui.common.wizards.wizardpages;
 
-import java.util.List;
-
 import org.eclipse.emf.common.util.BasicEList;
 import org.eclipse.emf.common.util.EList;
 import org.eclipse.emf.edit.provider.ComposedAdapterFactory;

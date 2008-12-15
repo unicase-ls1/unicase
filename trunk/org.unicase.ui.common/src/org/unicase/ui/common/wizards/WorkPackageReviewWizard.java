@@ -1,8 +1,5 @@
 package org.unicase.ui.common.wizards;
 
-import java.util.List;
-
-import org.eclipse.emf.common.notify.Notification;
 import org.eclipse.emf.common.util.EList;
 import org.eclipse.emf.transaction.RecordingCommand;
 import org.eclipse.emf.transaction.TransactionalEditingDomain;
