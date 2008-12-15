@@ -10,7 +10,6 @@ import org.eclipse.jface.viewers.IStructuredSelection;
 import org.eclipse.jface.viewers.Viewer;
 import org.eclipse.swt.dnd.DragSourceEvent;
 import org.eclipse.swt.dnd.Transfer;
-import org.unicase.model.ModelElement;
 
 /**
  * This class is just a ViewerDragAdpter, with the difference that in 
@@ -42,7 +41,7 @@ public class UCDragAdapter extends ViewerDragAdapter implements	TransferDragSour
 	public void dragStart(DragSourceEvent event) {
 		super.dragStart(event);
 		
-		List<ModelElement> dragSource = null; 
+		List<Object> dragSource = null; 
 		ISelection sel = viewer.getSelection();
 		if(sel instanceof IStructuredSelection){
 			IStructuredSelection ssel = (IStructuredSelection) sel;
