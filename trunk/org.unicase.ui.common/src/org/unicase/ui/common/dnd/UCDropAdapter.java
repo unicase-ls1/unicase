@@ -18,10 +18,13 @@ import org.eclipse.emf.ecore.util.EcoreUtil;
 import org.eclipse.emf.edit.domain.EditingDomain;
 import org.eclipse.emf.transaction.RecordingCommand;
 import org.eclipse.emf.transaction.TransactionalEditingDomain;
+import org.eclipse.gmf.runtime.diagram.ui.commands.ICommandProxy;
+import org.eclipse.gmf.runtime.diagram.ui.resources.editor.parts.DiagramDocumentEditor;
 import org.eclipse.gmf.runtime.emf.type.core.ClientContextManager;
 import org.eclipse.gmf.runtime.emf.type.core.ElementTypeRegistry;
 import org.eclipse.gmf.runtime.emf.type.core.IClientContext;
 import org.eclipse.gmf.runtime.emf.type.core.IElementType;
+import org.eclipse.gmf.runtime.emf.type.core.requests.CreateElementRequest;
 import org.eclipse.jface.viewers.Viewer;
 import org.eclipse.jface.wizard.WizardDialog;
 import org.eclipse.swt.dnd.DND;
@@ -31,6 +34,8 @@ import org.eclipse.swt.graphics.Point;
 import org.eclipse.swt.graphics.Rectangle;
 import org.eclipse.swt.widgets.Display;
 import org.eclipse.swt.widgets.TreeItem;
+import org.eclipse.ui.IEditorPart;
+import org.eclipse.ui.PlatformUI;
 import org.unicase.model.Annotation;
 import org.unicase.model.ModelElement;
 import org.unicase.model.ModelPackage;
@@ -48,6 +53,7 @@ import org.unicase.model.task.TaskFactory;
 import org.unicase.model.task.WorkItem;
 import org.unicase.model.task.WorkPackage;
 import org.unicase.ui.common.commands.ActionHelper;
+import org.unicase.ui.common.commands.DiagramElementAddCommand;
 import org.unicase.ui.common.util.UnicaseUiUtil;
 import org.unicase.ui.common.wizards.WorkPackageReviewWizard;
 import org.unicase.workspace.ProjectSpace;
@@ -159,16 +165,18 @@ public class UCDropAdapter extends DropTargetAdapter {
 						}
 					});
 		} else if (target instanceof MEDiagram) {
-			final MEDiagram diagram = (MEDiagram) target;
-			domain.getCommandStack().execute(
-					new RecordingCommand((TransactionalEditingDomain) domain) {
-						@Override
-						protected void doExecute() {
-							diagram.getElements().addAll(source);
-						}
-					});
-			
-			ActionHelper.openModelElement(diagram, this.getClass().getName());
+			IEditorPart iep = PlatformUI.getWorkbench()
+					.getActiveWorkbenchWindow().getActivePage()
+					.getActiveEditor();
+			if (iep instanceof DiagramDocumentEditor) {
+				CreateElementRequest req = new CreateElementRequest(target,
+						ElementTypeRegistry.getInstance().getElementType(
+								dropee));
+				req.setNewElement(dropee);
+				DiagramDocumentEditor dde = (DiagramDocumentEditor)iep;
+			    dde.getDiagramEditPart().getViewer().getEditDomain().getCommandStack().execute(new ICommandProxy(new DiagramElementAddCommand(req)));
+			}
+			ActionHelper.openModelElement(target, this.getClass().getName());
 
 		} else {
 			domain.getCommandStack().execute(
