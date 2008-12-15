@@ -9,6 +9,7 @@ package org.unicase.workspace.edit.dialogs;
 import java.util.ArrayList;
 import java.util.List;
 
+import org.eclipse.emf.ecore.util.EcoreUtil;
 import org.eclipse.jface.dialogs.TitleAreaDialog;
 import org.eclipse.swt.SWT;
 import org.eclipse.swt.graphics.Rectangle;
@@ -21,6 +22,7 @@ import org.eclipse.swt.widgets.Label;
 import org.eclipse.swt.widgets.Shell;
 import org.unicase.emfstore.esmodel.versioning.ChangePackage;
 import org.unicase.emfstore.esmodel.versioning.VersioningFactory;
+import org.unicase.emfstore.esmodel.versioning.operations.AbstractOperation;
 import org.unicase.workspace.WorkspaceManager;
 import org.unicase.workspace.edit.views.changes.MergeChangesComposite;
 import org.unicase.workspace.impl.ProjectSpaceImpl;
@@ -89,10 +91,11 @@ public class MergeDialog extends TitleAreaDialog {
 		ChangePackage changePackage = VersioningFactory.eINSTANCE
 		.createChangePackage();
 		// FIXME AS MK: add the correct operations
-		changePackage.getOperations().addAll(
-				((ProjectSpaceImpl) WorkspaceManager.getInstance()
-						.getCurrentWorkspace().getActiveProjectSpace())
-						.getOperations());
+		for (AbstractOperation operation : ((ProjectSpaceImpl) WorkspaceManager.getInstance()
+				.getCurrentWorkspace().getActiveProjectSpace())
+				.getOperations()) {
+			changePackage.getOperations().add((AbstractOperation) EcoreUtil.copy(operation));
+		}
 		ArrayList<ChangePackage> myChangePackages = new ArrayList<ChangePackage>();
 		myChangePackages.add(changePackage);
 		MergeChangesComposite composite = new MergeChangesComposite(contents,SWT.NONE,myChangePackages,newChangePackages);
