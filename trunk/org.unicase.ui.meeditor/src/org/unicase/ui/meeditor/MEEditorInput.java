@@ -10,15 +10,19 @@ import org.eclipse.emf.ecore.EStructuralFeature;
 import org.eclipse.emf.edit.provider.ComposedAdapterFactory;
 import org.eclipse.emf.edit.ui.provider.AdapterFactoryLabelProvider;
 import org.eclipse.jface.resource.ImageDescriptor;
+import org.eclipse.jface.viewers.DecoratingLabelProvider;
+import org.eclipse.ui.IDecoratorManager;
 import org.eclipse.ui.IEditorInput;
 import org.eclipse.ui.IPersistableElement;
+import org.eclipse.ui.PlatformUI;
 import org.unicase.model.ModelElement;
 
 /**
  * The {@link IEditorInput} for the {@link MEEditor}.
+ * 
  * @author helming
  * @author naughton
- *
+ * 
  */
 public class MEEditorInput implements IEditorInput {
 
@@ -27,24 +31,28 @@ public class MEEditorInput implements IEditorInput {
 
 	/**
 	 * Default constructor.
-	 * @param me the modelElement
+	 * 
+	 * @param me
+	 *            the modelElement
 	 */
 	public MEEditorInput(ModelElement me) {
 		super();
 		this.modelElement = me;
 	}
-	
+
 	/**
 	 * Constructor marking a feature as having a problem.
 	 * 
-	 * @param me the modelElement
-	 * @param problemFeature the feature having a problem
+	 * @param me
+	 *            the modelElement
+	 * @param problemFeature
+	 *            the feature having a problem
 	 */
 	public MEEditorInput(ModelElement me, EStructuralFeature problemFeature) {
 		this(me);
 		this.problemFeature = problemFeature;
 	}
-	
+
 	/**
 	 * {@inheritDoc}
 	 */
@@ -57,11 +65,16 @@ public class MEEditorInput implements IEditorInput {
 	 * {@inheritDoc}
 	 */
 	public ImageDescriptor getImageDescriptor() {
+		AdapterFactoryLabelProvider adapterFactoryLabelProvider = new AdapterFactoryLabelProvider(
+				new ComposedAdapterFactory(
+						ComposedAdapterFactory.Descriptor.Registry.INSTANCE));
+		IDecoratorManager decoratorManager = PlatformUI.getWorkbench()
+				.getDecoratorManager();
+		DecoratingLabelProvider labelProvider = new DecoratingLabelProvider(
+				adapterFactoryLabelProvider, decoratorManager
+						.getLabelDecorator());
 		ImageDescriptor descriptor = ImageDescriptor
-				.createFromImage(new AdapterFactoryLabelProvider(
-						new ComposedAdapterFactory(
-								ComposedAdapterFactory.Descriptor.Registry.INSTANCE))
-						.getImage(modelElement));
+				.createFromImage(labelProvider.getImage(modelElement));
 		return descriptor;
 	}
 
@@ -70,7 +83,7 @@ public class MEEditorInput implements IEditorInput {
 	 */
 	public String getName() {
 		String name = modelElement.getName();
-		return (name==null?"":name);
+		return (name == null ? "" : name);
 	}
 
 	/**
@@ -91,6 +104,7 @@ public class MEEditorInput implements IEditorInput {
 
 	/**
 	 * Getter for the modelElement.
+	 * 
 	 * @return the modelElement
 	 */
 	public ModelElement getModelElement() {
@@ -99,7 +113,9 @@ public class MEEditorInput implements IEditorInput {
 
 	/**
 	 * Setter for the modelElement.
-	 * @param modelElement the modelElement
+	 * 
+	 * @param modelElement
+	 *            the modelElement
 	 */
 	public void setModelElement(ModelElement modelElement) {
 		this.modelElement = modelElement;
@@ -113,7 +129,8 @@ public class MEEditorInput implements IEditorInput {
 	}
 
 	/**
-	 * @param problemFeature the problemFeature to set
+	 * @param problemFeature
+	 *            the problemFeature to set
 	 */
 	public void setProblemFeature(EStructuralFeature problemFeature) {
 		this.problemFeature = problemFeature;
@@ -121,9 +138,10 @@ public class MEEditorInput implements IEditorInput {
 
 	/**
 	 * Custom equals() for this class.
-	 * @param obj the compared object.
-	 * @return the boolean state.
-	 * {@inheritDoc}
+	 * 
+	 * @param obj
+	 *            the compared object.
+	 * @return the boolean state. {@inheritDoc}
 	 */
 	@Override
 	public boolean equals(Object obj) {
@@ -134,9 +152,7 @@ public class MEEditorInput implements IEditorInput {
 		}
 		return false;
 	}
-	
 
-	
 	/**
 	 * {@inheritDoc}
 	 */
@@ -150,8 +166,8 @@ public class MEEditorInput implements IEditorInput {
 	 */
 	@SuppressWarnings("unchecked")
 	public Object getAdapter(Class clazz) {
-		
-		if(clazz.equals(ModelElement.class)){
+
+		if (clazz.equals(ModelElement.class)) {
 			return getModelElement();
 		}
 		return null;

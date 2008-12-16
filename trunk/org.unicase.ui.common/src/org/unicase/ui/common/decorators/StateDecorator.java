@@ -16,6 +16,7 @@ import org.eclipse.jface.viewers.IDecoration;
 import org.eclipse.jface.viewers.ILabelProviderListener;
 import org.eclipse.jface.viewers.ILightweightLabelDecorator;
 import org.unicase.model.ModelElement;
+import org.unicase.model.bug.BugReport;
 import org.unicase.model.task.util.CircularDependencyException;
 import org.unicase.model.task.util.MEState;
 
@@ -98,6 +99,10 @@ public class StateDecorator implements ILightweightLabelDecorator {
 		}
 		try {
 			if (me.getMEState().getStatus().equals(MEState.OPEN)) {
+				// explicitly turn off for bugreports
+				if (me instanceof BugReport){
+					return;
+				}
 				url = FileLocator.find(Platform
 						.getBundle("org.unicase.ui.common"),
 						new Path(openPath), null);
