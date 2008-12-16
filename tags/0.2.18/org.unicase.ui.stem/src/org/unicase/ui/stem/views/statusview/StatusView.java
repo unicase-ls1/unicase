@@ -82,6 +82,7 @@ public class StatusView extends ViewPart {
 	private FlatTabComposite flatTabComposite;
 	private HierarchyTabComposite hierarchyTabComposite;
 	private UserTabComposite userTabComposite;
+	private ActivityTabComposite activityTabComposite;
 	private Label lblLatestDueDateName;
 	private Composite dropComposite;
 	private ProgressBar pbEstimate;
@@ -313,6 +314,7 @@ public class StatusView extends ViewPart {
 		flatTabComposite.setInput(input);
 		hierarchyTabComposite.setInput(input);
 		userTabComposite.setInput(input);
+		activityTabComposite.setInput(input);
 
 	}
 
@@ -387,7 +389,7 @@ public class StatusView extends ViewPart {
 		if (newInput == null) {
 			newInput = ActionHelper.getSelectedModelElement();
 		}
-		if (input == null || newInput!=null) {
+		if (input == null || newInput != null) {
 			input = newInput;
 		}
 		refreshView();
@@ -427,6 +429,15 @@ public class StatusView extends ViewPart {
 		userTab.setImage(imageDescriptor.createImage());
 		userTabComposite = new UserTabComposite(tabFolder, SWT.NONE);
 		userTab.setControl(userTabComposite);
+
+		url = FileLocator.find(Platform.getBundle("org.unicase.ui.stem"),
+				new Path("icons/ganttChart.png"), null);
+		imageDescriptor = ImageDescriptor.createFromURL(url);
+		TabItem activityTab = new TabItem(tabFolder, SWT.None);
+		activityTab.setText("Activity view");
+		activityTab.setImage(imageDescriptor.createImage());
+		activityTabComposite = new ActivityTabComposite(tabFolder, SWT.NONE);
+		activityTab.setControl(activityTabComposite);
 
 		tabFolder.addSelectionListener(new SelectionAdapter() {
 

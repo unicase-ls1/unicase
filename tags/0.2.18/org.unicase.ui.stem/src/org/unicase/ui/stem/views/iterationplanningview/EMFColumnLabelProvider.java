@@ -12,6 +12,7 @@ import org.eclipse.jface.viewers.DecoratingLabelProvider;
 import org.eclipse.swt.graphics.Image;
 import org.eclipse.ui.IDecoratorManager;
 import org.eclipse.ui.PlatformUI;
+import org.unicase.model.task.ActivityType;
 import org.unicase.ui.stem.Activator;
 import org.unicase.ui.stem.views.statusview.NotAssigned;
 
@@ -47,6 +48,10 @@ public class EMFColumnLabelProvider extends IterationPlanningLabelProvider {
 		if(element instanceof Backlog||element instanceof NotAssigned){
 			return Activator.getImageDescriptor("icons/backlog.png").createImage();
 		}
+		if (element instanceof ActivityType) {
+			return Activator.getImageDescriptor("icons/backlog.png")
+					.createImage();
+		}
 		Image image = decoratingLabelProvider.getImage(element);
 		decoratingLabelProvider.getLabelDecorator().decorateImage(image,
 				element);
@@ -66,6 +71,9 @@ public class EMFColumnLabelProvider extends IterationPlanningLabelProvider {
 		}
 		if(element instanceof Backlog){
 			return "Backlog";
+		}
+		if (element instanceof ActivityType) {
+			return ((ActivityType) element).getLiteral();
 		}
 		return decoratingLabelProvider.getText(element);
 	}
