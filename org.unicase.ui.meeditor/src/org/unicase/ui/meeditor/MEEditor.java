@@ -17,6 +17,7 @@ import org.eclipse.emf.ecore.EAttribute;
 import org.eclipse.emf.edit.provider.ComposedAdapterFactory;
 import org.eclipse.emf.edit.provider.ReflectiveItemProviderAdapterFactory;
 import org.eclipse.emf.edit.provider.resource.ResourceItemProviderAdapterFactory;
+import org.eclipse.emf.edit.ui.provider.AdapterFactoryLabelProvider;
 import org.eclipse.emf.transaction.RecordingCommand;
 import org.eclipse.emf.transaction.TransactionalEditingDomain;
 import org.eclipse.ui.IEditorInput;
@@ -45,7 +46,7 @@ public class MEEditor extends SharedHeaderFormEditor {
 	private ModelElement modelElement;
 	private ComposedAdapterFactory adapterFactory;
 	private TransactionalEditingDomain editingDomain;
-	private MEEditorPage form;
+	private MEEditorPage mePage;
 
 	private Adapter eAdapter;
 
@@ -63,14 +64,14 @@ public class MEEditor extends SharedHeaderFormEditor {
 	protected void addPages() {
 		MEEditorInput editorInput = (MEEditorInput) getEditorInput();
 		if (editorInput.getProblemFeature() != null) {
-			form = new MEEditorPage(this, "1", "Standard View", editingDomain,
+			mePage = new MEEditorPage(this, "1", "Standard View", editingDomain,
 					modelElement, editorInput.getProblemFeature());
 		} else {
-			form = new MEEditorPage(this, "1", "Standard View", editingDomain,
+			mePage = new MEEditorPage(this, "1", "Standard View", editingDomain,
 					modelElement);
 		}
 		try {
-			addPage(form);
+			addPage(mePage);
 		} catch (PartInitException e) {
 			// JH Auto-generated catch block
 			e.printStackTrace();
@@ -107,7 +108,7 @@ public class MEEditor extends SharedHeaderFormEditor {
 	 * {@inheritDoc}
 	 */
 	@Override
-	public void init(IEditorSite site, IEditorInput input)
+	public void init(IEditorSite site, final IEditorInput input)
 			throws PartInitException {
 		super.init(site, input);
 		if (input instanceof MEEditorInput) {
@@ -121,13 +122,20 @@ public class MEEditor extends SharedHeaderFormEditor {
 			eAdapter = new AdapterImpl() {
 				@Override
 				public void notifyChanged(Notification msg) {
+					if(msg.isTouch()){
+						return;
+					}
 					if (msg.getFeature() instanceof EAttribute && ((EAttribute)msg.getFeature()).getName().equals("name")) {
 						setPartName(getLimitedTitle(msg.getNewStringValue()));
-						if(form!=null){
-							form.getManagedForm().getForm().setText(msg.getNewStringValue());
+						if(mePage!=null){
+							mePage.getManagedForm().getForm().setText(msg.getNewStringValue());
 						}
 					}
-					
+					setTitleImage(input.getImageDescriptor().createImage());
+					mePage.getManagedForm().getForm().setImage(new AdapterFactoryLabelProvider(
+							new ComposedAdapterFactory(
+									ComposedAdapterFactory.Descriptor.Registry.INSTANCE))
+							.getImage(modelElement));					
 				}
 				
 			};			
@@ -218,7 +226,7 @@ public class MEEditor extends SharedHeaderFormEditor {
 	public void setFocus() {
 
 		super.setFocus();
-		form.setFocus();
+		mePage.setFocus();
 
 	}
 	

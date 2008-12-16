@@ -24,6 +24,7 @@ import org.eclipse.emf.edit.provider.ViewerNotification;
 import org.unicase.model.bug.BugPackage;
 import org.unicase.model.bug.BugReport;
 import org.unicase.model.bug.BugStatus;
+import org.unicase.model.bug.Severity;
 import org.unicase.model.provider.AnnotationItemProvider;
 import org.unicase.model.provider.ModelEditPlugin;
 import org.unicase.model.task.TaskPackage;
@@ -298,7 +299,31 @@ public class BugReportItemProvider extends AnnotationItemProvider implements
 			BugReport bugReport = (BugReport) object;
 			if (bugReport.getStatus().equals(BugStatus.RESOLVED)) {
 				return overlayImage(object, getResourceLocator().getImage(
-						"full/obj16/BugReportResolved"));
+						"full/obj16/Bug_resolved.png"));
+			}
+			if (bugReport.getStatus().equals(BugStatus.CLOSED)) {
+				return overlayImage(object, getResourceLocator().getImage(
+				"full/obj16/Bug_closed.png"));
+			}
+			if (bugReport.getSeverity().equals(Severity.FEATURE)) {
+				return overlayImage(object, getResourceLocator().getImage(
+				"full/obj16/Bug_feature.png"));
+			}
+			if (bugReport.getSeverity().equals(Severity.BLOCKER)) {
+				return overlayImage(object, getResourceLocator().getImage(
+				"full/obj16/Bug_blocker.png"));
+			}
+			if (bugReport.getSeverity().equals(Severity.TRIVIAL)) {
+				return overlayImage(object, getResourceLocator().getImage(
+				"full/obj16/Bug_trivial.png"));
+			}
+			if (bugReport.getSeverity().equals(Severity.MINOR)) {
+				return overlayImage(object, getResourceLocator().getImage(
+				"full/obj16/Bug_minor.png"));
+			}
+			if (bugReport.getSeverity().equals(Severity.MAJOR)) {
+				return overlayImage(object, getResourceLocator().getImage(
+				"full/obj16/Bug_major.png"));
 			}
 		}
 		return overlayImage(object, getResourceLocator().getImage(
