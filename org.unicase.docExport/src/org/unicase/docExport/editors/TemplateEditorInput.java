@@ -104,4 +104,16 @@ public class TemplateEditorInput implements IEditorInput {
 		return false;
 	}
 
+
+	/** 
+	 * {@inheritDoc}
+	 * @see java.lang.Object#hashCode()
+	 */
+	@Override
+	public int hashCode() {
+		return template.hashCode();
+	}
+	
+	
+
 }
