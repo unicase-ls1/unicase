@@ -10,8 +10,9 @@
                label="Open in new TOM window..."
                style="push">
             <visibleWhen
-                  checkEnabled="false">
-               <iterate>
+                  checkEnabled="true">
+               <iterate
+                     ifEmpty="false">
                   <instanceof
                         value="org.unicase.model.diagram.MEDiagram">
                   </instanceof>
@@ -27,7 +28,8 @@
                style="push">
             <visibleWhen
                   checkEnabled="false">
-               <iterate>
+               <iterate
+                     ifEmpty="true">
                   <instanceof
                         value="org.unicase.model.diagram.MEDiagram">
                   </instanceof>
@@ -51,23 +53,44 @@
             </visibleWhen>
          </command>
       </menuContribution>
+      <menuContribution
+            locationURI="popup:org.unicase.ui.navigator.viewer?after=org.unicase.ui.common.commands.annotateActionItemSeperator">
+         <command
+               commandId="org.unicase.ui.tom.openClass"
+               label="Open in TOM Diagram Editor"
+               style="push">
+            <visibleWhen
+                  checkEnabled="false">
+               <iterate>
+                  <instanceof
+                        value="org.unicase.model.diagram.MEDiagram">
+                  </instanceof>
+               </iterate>
+            </visibleWhen>
+         </command>
+      </menuContribution>
    </extension>
    <extension
          point="org.eclipse.ui.commands">
       <command
-            defaultHandler="org.unicase.ui.tom.commands.NewTOMWindowHandler"
+            defaultHandler="org.unicase.ui.tom.handler.NewTOMWindowHandler"
             id="org.unicase.ui.touchtable.newTOMWindow"
             name="New TOM Window">
       </command>
       <command
-            defaultHandler="org.unicase.ui.tom.commands.ShowMultiTouchOverlayHandler"
+            defaultHandler="org.unicase.ui.tom.handler.ShowMultiTouchOverlayHandler"
             id="org.unicase.ui.touchtable.showMultitouchOverlay"
             name="Show multi-touch overlay">
       </command>
       <command
-            defaultHandler="org.unicase.ui.tom.commands.DebugHandler"
+            defaultHandler="org.unicase.ui.tom.handler.DebugHandler"
             id="org.unicase.ui.touchtable.debug"
             name="Debug">
+      </command>
+      <command
+            defaultHandler="org.unicase.ui.tom.handler.OpenDiagramEditorHandler"
+            id="org.unicase.ui.tom.openClass"
+            name="Open in TOM Diagram Editor">
       </command>
    </extension>
    <extension

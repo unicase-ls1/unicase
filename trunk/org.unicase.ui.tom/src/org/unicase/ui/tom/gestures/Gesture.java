@@ -13,7 +13,7 @@ public interface Gesture extends GestureNotifier{
 	
 	public void reset();
 
-	public DiagramEditPart getEditor();
+	public DiagramEditPart getDiagramEditPart();
 
-	public void setEditor(DiagramEditPart editor); 
+	public void setDiagramEditPart(DiagramEditPart editor); 
 }

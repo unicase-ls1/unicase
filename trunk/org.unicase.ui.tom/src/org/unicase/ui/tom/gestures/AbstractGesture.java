@@ -1,9 +1,15 @@
 package org.unicase.ui.tom.gestures;
 
+import java.util.Collection;
+import java.util.Collections;
+
+import org.eclipse.draw2d.ConnectionLayer;
+import org.eclipse.draw2d.FreeformLayer;
 import org.eclipse.draw2d.IFigure;
 import org.eclipse.gef.EditPart;
+import org.eclipse.gef.LayerConstants;
 import org.eclipse.gmf.runtime.diagram.ui.editparts.DiagramEditPart;
-import org.eclipse.swt.widgets.Display;
+import org.eclipse.gmf.runtime.diagram.ui.editparts.ShapeNodeEditPart;
 import org.unicase.ui.tom.TouchDispatch;
 import org.unicase.ui.tom.notifications.GestureNotification;
 import org.unicase.ui.tom.notifications.GestureNotificationImpl;
@@ -15,29 +21,42 @@ import org.unicase.ui.tom.touches.Touch;
 public abstract class AbstractGesture extends GestureNotifierImpl 
 implements TouchAdapter, Gesture{
 
+	protected static final int TOUCH_DIAMETER = 30;
+	
 	private TouchDispatch dispatch;
-	protected boolean acceptsTouches;
-	protected DiagramEditPart editor;
-	protected boolean canExecute;
+	private boolean acceptsTouches;
+	private DiagramEditPart diagramEditPart;
+	private boolean canExecute;
 
 	public AbstractGesture(TouchDispatch dispatch, DiagramEditPart editor) {
 		setDispatch(dispatch);
-		setEditor(editor);
+		setDiagramEditPart(editor);
 		acceptsTouches = true;
 		canExecute = false;
 	}
 
 	public void execute(){
-		final Display current = Display.getDefault();
-		if (current != null) {
-			current.syncExec(new Runnable(){
-				public void run() {
-					current.beep();						
-				}
-			});
-		}
+		//do nothing
 	}
 
+	public FreeformLayer getNodeLayer() {
+		IFigure layer = getDiagramEditPart().getLayer(LayerConstants.PRIMARY_LAYER);
+		if (layer instanceof FreeformLayer) {
+			return (FreeformLayer) layer;	
+		}
+
+		return null;
+	}
+	
+	public ConnectionLayer getConnectionLayer() {
+		IFigure layer = getDiagramEditPart().getLayer(LayerConstants.CONNECTION_LAYER);
+		if (layer instanceof ConnectionLayer) {
+			return (ConnectionLayer) layer;	
+		}
+
+		return null;
+	}
+	
 	public void notifyChanged(TouchNotification notification){
 		int eventType = notification.getEventType();
 		switch (eventType) {
@@ -73,12 +92,26 @@ implements TouchAdapter, Gesture{
 		}
 	}
 
-	public EditPart getTouchedEditPart(Touch touch){
-		IFigure figure = getEditor().getFigure().findFigureAt(touch.getPosition());
+	
+	public EditPart findTouchedEditPart(Touch touch){
+		return findTouchedEditPartExcluding(touch, Collections.EMPTY_LIST);
+	}
+	
+	public EditPart findFigureEditPart(IFigure figure){
+		EditPart part = (EditPart)getDiagramEditPart().getViewer().getVisualPartMap().get(figure);
+		return part;
+	}
+	
+	@SuppressWarnings("unchecked")
+	public EditPart findTouchedEditPartExcluding(Touch touch, Collection exclusions){
+		IFigure figure = getDiagramEditPart().getFigure().findFigureAt(touch.getPosition());
 		
 		EditPart part = null;
 		while (part == null && figure != null) {
-			part = (EditPart)getEditor().getViewer().getVisualPartMap().get(figure);
+			part = findFigureEditPart(figure);
+			if (exclusions.contains(part)) {
+				part = null;
+			}
 			figure = figure.getParent();
 		}
 
@@ -87,6 +120,11 @@ implements TouchAdapter, Gesture{
 	
 	public boolean pointsInDistance(Touch firstTouch, Touch secondTouch, float distance){
 		return (firstTouch.getPosition().getDistance(secondTouch.getPosition()) < distance);
+	}
+	
+	public void reset(){
+		acceptsTouches = true;
+		canExecute = false;
 	}
 	
 	public TouchDispatch getDispatch() {
@@ -114,11 +152,22 @@ implements TouchAdapter, Gesture{
 	public boolean getCanExecute() {
 		return canExecute;
 	}
-	public DiagramEditPart getEditor() {
-		return editor;
+	
+	public DiagramEditPart getDiagramEditPart() {
+		return diagramEditPart;
 	}
 
-	public void setEditor(DiagramEditPart editor) {
-		this.editor = editor;
+	public void setDiagramEditPart(DiagramEditPart editor) {
+		this.diagramEditPart = editor;
+	}
+
+	protected EditPart getPrimaryEditPart(EditPart touchedEditPart) {
+		EditPart primaryEditPart = touchedEditPart;
+		while (primaryEditPart  != null 
+				&& !(primaryEditPart  instanceof ShapeNodeEditPart)
+				&& !(primaryEditPart  instanceof DiagramEditPart)) {
+			primaryEditPart = primaryEditPart.getParent();
+		}
+		return primaryEditPart;
 	}
 }
