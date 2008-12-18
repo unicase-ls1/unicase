@@ -8,6 +8,10 @@ import org.unicase.ui.tom.touches.Touch;
 
 public abstract class CreateGesture extends AbstractGesture{
 
+	protected static final int CREATION_TO_STATIONARY_TOUCH_THRESHOLD = 80;
+	protected static final long CREATION_TOUCH_LIFESPAN = 100;
+	protected static final int ANY_TOUCH_MAXIMUM_MOVE = 50;
+	
 	private Touch stationaryTouch = null;
 	private Touch creationTouch = null;
 
@@ -56,8 +60,7 @@ public abstract class CreateGesture extends AbstractGesture{
 			Point center = path.getBounds().getCenter();
 			Point position = touch.getPosition();
 	
-			if (position.getDistance(center) > 50) {
-				System.out.println("Touch moved too much, not accepting any more touches");
+			if (position.getDistance(center) > ANY_TOUCH_MAXIMUM_MOVE) {
 				setAcceptsTouches(false);			
 			}			
 		}

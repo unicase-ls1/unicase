@@ -27,9 +27,13 @@ public class TUIOTouchDispatch extends TouchDispatch implements TuioListener{
 
 	public void addTuioCursor(TuioCursor tuioCursor) {
 		
+		if (tuioCursor.getX() < 0
+			|| tuioCursor.getY() < 0){
+			//discard the cursor
+		}
+		
 		TUIOTouch touch = new TUIOTouch(tuioCursor);
 		
-		System.out.println("x: " + touch.getX() + "y: " + touch.getY());
 		addTouch(touch);
 		touchMap.put(tuioCursor, touch);
 	}
@@ -40,16 +44,20 @@ public class TUIOTouchDispatch extends TouchDispatch implements TuioListener{
 
 	public void removeTuioCursor(TuioCursor tuioCursor) {		
 		Touch touch = touchMap.get(tuioCursor);
-		touch.setTouchUpDate(new Date(tuioCursor.getUpdateTime()));
-		
-		removeTouch(touch);
-		
-		touchMap.remove(tuioCursor);
+		if (touch != null) {
+			touch.setTouchUpDate(new Date(tuioCursor.getUpdateTime()));
+			
+			removeTouch(touch);
+			
+			touchMap.remove(tuioCursor);			
+		}
 	}
 
 	public void updateTuioCursor(TuioCursor tuioCursor) {
 		Touch touch = touchMap.get(tuioCursor);
-		updateTouch(touch);
+		if (touch != null) {
+			updateTouch(touch);	
+		}
 	}
 
 	public void updateTuioObject(TuioObject tuioObject) {

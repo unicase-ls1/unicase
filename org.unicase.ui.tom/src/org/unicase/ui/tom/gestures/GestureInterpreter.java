@@ -4,6 +4,7 @@ import java.util.ArrayList;
 import java.util.List;
 
 import org.unicase.ui.tom.TouchDispatch;
+import org.unicase.ui.tom.Utility;
 import org.unicase.ui.tom.notifications.GestureAdapter;
 import org.unicase.ui.tom.notifications.GestureNotification;
 import org.unicase.ui.tom.notifications.TouchAdapter;
@@ -13,22 +14,22 @@ import org.unicase.ui.tom.notifications.TouchNotifierImpl;
 import org.unicase.ui.tom.touches.Touch;
 
 public class GestureInterpreter extends TouchNotifierImpl 
-	implements TouchAdapter, GestureAdapter{
+implements TouchAdapter, GestureAdapter{
 
 	private TouchDispatch dispatch;
 	private List<Gesture> gestures;
-	
+
 	public GestureInterpreter(TouchDispatch dispatch) {
 		setDispatch(dispatch);
-		gestures = new ArrayList<Gesture>();
+		setGestures(new ArrayList<Gesture>());
 	}
-	
+
 	public GestureInterpreter() {
 		this(null);
 	}
-	
+
 	public void addGesture(Gesture gesture) {
-		gestures.add(gesture);
+		getGestures().add(gesture);
 		gesture.getAdapters().add(this);
 	}
 
@@ -48,7 +49,7 @@ public class GestureInterpreter extends TouchNotifierImpl
 			break;
 		}
 	}
-	
+
 	public void handleTouchAdded(Touch touch) {
 		//don't do anything
 	}
@@ -60,9 +61,9 @@ public class GestureInterpreter extends TouchNotifierImpl
 
 	public void handleTouchRemoved(Touch touch) {
 		notifyAdapters(new TouchNotificationImpl(touch, TouchNotification.touchRemoved));
-		
+
 		if (getDispatch().getActiveTouches().size() == 0) {
-			for (Gesture gesture : gestures) {
+			for (Gesture gesture : getGestures()) {
 				gesture.reset();
 			}
 		}
@@ -73,13 +74,26 @@ public class GestureInterpreter extends TouchNotifierImpl
 		case GestureNotification.gestureExecutionChange:
 			handleGestureExecutionChanged(notification.getGesture());
 			break;
-
+		case GestureNotification.gestureAcceptanceChange:
+			handleGestureAcceptanceChanged(notification.getGesture());
 		default:
 			break;
 		}
-		
+
 	}
-	
+
+	private void handleGestureAcceptanceChanged(Gesture gesture) {
+		if (!gesture.getAcceptsTouches()) {
+			for (Gesture currentGesture : getGestures()) {
+				if (currentGesture.getAcceptsTouches()) {
+					return;
+				}
+			}
+			System.out.println("There are no more gestures accepting touches");
+			Utility.beep(1);
+		}
+	}
+
 	public void handleGestureExecutionChanged(Gesture gesture){
 		if (gesture.getCanExecute()) {
 			gesture.execute();			
@@ -100,5 +114,13 @@ public class GestureInterpreter extends TouchNotifierImpl
 
 	public TouchDispatch getDispatch() {
 		return dispatch;
+	}
+
+	public void setGestures(List<Gesture> gestures) {
+		this.gestures = gestures;
+	}
+
+	public List<Gesture> getGestures() {
+		return gestures;
 	}
 }

@@ -1,4 +1,4 @@
-package org.unicase.ui.tom.commands;
+package org.unicase.ui.tom.handler;
 
 import org.eclipse.core.commands.AbstractHandler;
 import org.eclipse.core.commands.ExecutionEvent;

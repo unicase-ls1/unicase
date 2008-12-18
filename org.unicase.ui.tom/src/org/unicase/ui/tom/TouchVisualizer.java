@@ -62,12 +62,12 @@ public class TouchVisualizer extends TouchAdapterImpl implements IPageListener{
 		}
 
 		IEditorPart editor = activeWorkbenchWindow.getActivePage().getActiveEditor();
-		
+
 		if (editor == null
 				|| !(editor instanceof ModelDiagramEditor)) {	 
 			return;
 		}
-		
+
 		activeEditor = (ModelDiagramEditor) editor;
 
 		shell = activeEditor.getSite().getShell();
@@ -106,9 +106,9 @@ public class TouchVisualizer extends TouchAdapterImpl implements IPageListener{
 		Point point = new Point(
 				addedTouch.getX()-touchFigure.getSize().width/2+clientArea.x,
 				addedTouch.getY()-touchFigure.getSize().height/2+clientArea.y);
-		
-//		System.out.println("Touch added: " + point);
-		
+
+		//		System.out.println("Touch added: " + point);
+
 		touchFigure.setLocation(point);
 	}
 
@@ -134,7 +134,7 @@ public class TouchVisualizer extends TouchAdapterImpl implements IPageListener{
 			setMinimumSize(new Dimension(20,20));
 
 			setSize(new Dimension(20,20));
-			
+
 			setBackgroundColor(org.eclipse.draw2d.ColorConstants.lightGreen);
 		}
 
@@ -142,42 +142,44 @@ public class TouchVisualizer extends TouchAdapterImpl implements IPageListener{
 
 	public void handleTouchAdded(Touch addedTouch){
 
-//		Display current = Display.getDefault();
-//
-//		if (current == null) {
-//			return;
-//		}
-//
-//		RunnableWithResult<org.eclipse.swt.graphics.Rectangle> runnable 
-//			= new RunnableWithResult.Impl<org.eclipse.swt.graphics.Rectangle>(){
-//			public void run() {
-//				setResult(shell.getBounds());
-//			}
-//		};
-//
-//		current.syncExec(runnable);
-//
-//		org.eclipse.swt.graphics.Rectangle result = runnable.getResult();
+		//		Display current = Display.getDefault();
+		//
+		//		if (current == null) {
+		//			return;
+		//		}
+		//
+		//		RunnableWithResult<org.eclipse.swt.graphics.Rectangle> runnable 
+		//			= new RunnableWithResult.Impl<org.eclipse.swt.graphics.Rectangle>(){
+		//			public void run() {
+		//				setResult(shell.getBounds());
+		//			}
+		//		};
+		//
+		//		current.syncExec(runnable);
+		//
+		//		org.eclipse.swt.graphics.Rectangle result = runnable.getResult();
 
-//		if (result.contains(addedTouch.getPosition().getSWTPoint())) {
-			addTouch(addedTouch);
-//		}
+		//		if (result.contains(addedTouch.getPosition().getSWTPoint())) {
+		addTouch(addedTouch);
+		//		}
 	}
 
 	public void handleTouchChanged(Touch changedTouch) {
 		TouchFigure touchFigure = touchMap.get(changedTouch);
-
+		if (touchFigure == null) {
+			return;
+		}
 		org.eclipse.draw2d.geometry.Rectangle clientArea = canvasViewport.getClientArea();
-		
-//		Point location = canvasViewport.getLocation();
-//		canvasViewport.translateToAbsolute(location);
-		
+
+		//		Point location = canvasViewport.getLocation();
+		//		canvasViewport.translateToAbsolute(location);
+
 		Point point = new Point(
 				changedTouch.getX()-touchFigure.getSize().width/2 + clientArea.x,
 				changedTouch.getY()-touchFigure.getSize().height/2 + clientArea.y);
-		
+
 		//System.out.println("Touch changed: " + point);
-		
+
 		touchFigure.setLocation(point);
 	}
 

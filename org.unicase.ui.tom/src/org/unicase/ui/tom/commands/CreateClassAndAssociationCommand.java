@@ -14,6 +14,7 @@ import org.eclipse.gmf.runtime.diagram.ui.editparts.IGraphicalEditPart;
 import org.eclipse.gmf.runtime.diagram.ui.requests.CreateConnectionViewAndElementRequest;
 import org.eclipse.gmf.runtime.diagram.ui.requests.CreateViewAndElementRequest;
 import org.eclipse.gmf.runtime.emf.core.util.EObjectAdapter;
+import org.eclipse.gmf.runtime.emf.type.core.IElementType;
 import org.eclipse.gmf.runtime.emf.type.core.IHintedType;
 import org.unicase.model.classDiagram.providers.ModelElementTypes;
 
@@ -25,6 +26,7 @@ public class CreateClassAndAssociationCommand extends AbstractCommand {
 	private final Point targetPoint;
 	private CreateClassCommand sourceCreationCommand;
 	private CreateClassCommand targetCreationCommand;
+	private IElementType elementType;
 
 	private CreateClassAndAssociationCommand(
 			DiagramEditPart editor,
@@ -37,6 +39,8 @@ public class CreateClassAndAssociationCommand extends AbstractCommand {
 		this.targetPoint = targetPoint;
 		this.sourceObject = sourceObject;
 		this.targetObject = targetObject;
+		
+		elementType = ModelElementTypes.Association_4002;
 	}
 
 	public CreateClassAndAssociationCommand(
@@ -71,8 +75,8 @@ public class CreateClassAndAssociationCommand extends AbstractCommand {
 	public Request createRequest() {
 		CreateConnectionViewAndElementRequest newRequest 
 		= new CreateConnectionViewAndElementRequest(
-				ModelElementTypes.Association_4001,
-				((IHintedType) ModelElementTypes.Association_4001).getSemanticHint(),
+				elementType,
+				((IHintedType) elementType).getSemanticHint(),
 				((IGraphicalEditPart)getDiagramEditPart()).getDiagramPreferencesHint());
 
 		return newRequest;
@@ -127,7 +131,7 @@ public class CreateClassAndAssociationCommand extends AbstractCommand {
 		return null;
 	}
 
-	private org.unicase.ui.tom.commands.Command getSourceCreationCommand(){
+	private CreateClassCommand getSourceCreationCommand(){
 		if (getSourceObject() == null) {
 			if (sourceCreationCommand == null) {
 				sourceCreationCommand = new CreateClassCommand(getDiagramEditPart(), sourcePoint);	
@@ -136,7 +140,7 @@ public class CreateClassAndAssociationCommand extends AbstractCommand {
 		return sourceCreationCommand;
 	}
 
-	private org.unicase.ui.tom.commands.Command getTargetCreationCommand(){
+	private CreateClassCommand getTargetCreationCommand(){
 		if (getTargetObject() == null) {
 			if (targetCreationCommand == null) {
 				targetCreationCommand = new CreateClassCommand(getDiagramEditPart(), targetPoint);	
