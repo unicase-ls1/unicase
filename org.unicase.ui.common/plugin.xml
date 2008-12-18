@@ -55,9 +55,10 @@
            name="Quick open modelelement">
      </command>
      <command
+           categoryId="org.unicase.workspace.edit.project"
            defaultHandler="org.unicase.ui.common.handlers.OpenMEShortcutHandler"
            id="org.unicase.ui.common.handlers.open_me_ID"
-           name="OpenMEShortcutCommand">
+           name="Open Modelelements Selectiondialog">
      </command>
    
   </extension>
@@ -416,5 +417,16 @@
              schemeId="org.eclipse.ui.defaultAcceleratorConfiguration"
              sequence="Alt+M">
        </key>
+    </extension>
+    <extension
+          point="org.eclipse.ui.views">
+       <view
+             category="org.unicase"
+             class="org.unicase.ui.common.views.Preview"
+             icon="icons/user_comment.png"
+             id="org.unicase.ui.common.views.previewID"
+             name="Preview"
+             restorable="true">
+       </view>
     </extension>
 </plugin>
