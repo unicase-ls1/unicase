@@ -15,6 +15,7 @@ import org.unicase.ui.tom.gestures.CreateNodeAndConnectionGesture;
 import org.unicase.ui.tom.gestures.CreateNodeGesture;
 import org.unicase.ui.tom.gestures.Gesture;
 import org.unicase.ui.tom.gestures.GestureInterpreter;
+import org.unicase.ui.tom.gestures.MoveCanvasGesture;
 import org.unicase.ui.tom.gestures.MoveConnectionBendpointGesture;
 import org.unicase.ui.tom.gestures.MoveNodeGesture;
 
@@ -50,6 +51,9 @@ public class ShowMultiTouchOverlayHandler extends AbstractHandler implements IHa
 		
 		Gesture moveConnectionBendpointGesture = new MoveConnectionBendpointGesture(dispatcher, diagramEditPart);
 		interpreter.addGesture(moveConnectionBendpointGesture);
+		
+		Gesture moveCanvasGesture = new MoveCanvasGesture(dispatcher, diagramEditPart);
+		interpreter.addGesture(moveCanvasGesture);
 		
 		return null;
 	}

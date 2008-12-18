@@ -13,7 +13,6 @@ import org.eclipse.draw2d.geometry.Dimension;
 import org.eclipse.draw2d.geometry.Point;
 import org.eclipse.draw2d.geometry.Rectangle;
 import org.eclipse.gef.GraphicalViewer;
-import org.eclipse.swt.widgets.Shell;
 import org.eclipse.ui.IEditorPart;
 import org.eclipse.ui.IPageListener;
 import org.eclipse.ui.IWorkbenchPage;
@@ -28,10 +27,11 @@ public class TouchVisualizer extends TouchAdapterImpl implements IPageListener{
 	private Map<Touch,TouchFigure> touchMap;
 
 	private FreeformViewport freeformViewport;
-	private Shell shell;
 	private Viewport canvasViewport;
 
 	private ModelDiagramEditor activeEditor;
+
+//	private BorderItemsAwareFreeFormLayer borderItemsAwareFreeformLayer;
 
 	public TouchVisualizer() {
 
@@ -51,7 +51,7 @@ public class TouchVisualizer extends TouchAdapterImpl implements IPageListener{
 		activeEditor = null;
 		freeformViewport = null;
 		canvasViewport = null;
-		shell = null;
+//		borderItemsAwareFreeformLayer = null;
 	}
 
 	private void hookEditor(){
@@ -70,8 +70,6 @@ public class TouchVisualizer extends TouchAdapterImpl implements IPageListener{
 
 		activeEditor = (ModelDiagramEditor) editor;
 
-		shell = activeEditor.getSite().getShell();
-
 		FigureCanvas canvas;
 		ModelDiagramEditor activeModelDiagramEditor;
 		GraphicalViewer graphicalViewer;
@@ -86,29 +84,49 @@ public class TouchVisualizer extends TouchAdapterImpl implements IPageListener{
 
 			if (rootFigure != null) {
 				freeformViewport = (FreeformViewport) rootFigure.getChildren().get(0);
+//				borderItemsAwareFreeformLayer = (BorderItemsAwareFreeFormLayer) getBorderItemsAwareFreeformLayer(freeformViewport);
+//				borderItemsAwareFreeformLayer = (BorderItemsAwareFreeFormLayer) borderItemsAwareFreeformLayer.getChildren().get(0);
 			}
 
+			
 			if (canvas != null) {
 				canvasViewport = canvas.getViewport();
 			}
 		}
 	}
 
+//	@SuppressWarnings("unchecked")
+//	private Figure getBorderItemsAwareFreeformLayer(Figure figure) {
+//		List children = figure.getChildren();
+//		for (Object child : children) {
+//			if (child instanceof Figure) {
+//				if (child instanceof BorderItemsAwareFreeFormLayer){
+//					return (Figure) child;
+//				}else{
+//					Figure nextFigure = getBorderItemsAwareFreeformLayer((Figure) child);
+//					if (nextFigure != null) {
+//						return nextFigure;
+//					}
+//				}
+//			}
+//		}
+//		return null;
+//	}
+
 	private void addTouch(Touch addedTouch){
 
 		TouchFigure touchFigure = new TouchFigure(addedTouch);
-
+ 
 		touchMap.put(addedTouch,touchFigure);
 		freeformViewport.add(touchFigure);
-
+		//borderItemsAwareFreeformLayer.add(touchFigure);
+		
 		Rectangle clientArea = canvasViewport.getClientArea();
 
 		Point point = new Point(
 				addedTouch.getX()-touchFigure.getSize().width/2+clientArea.x,
 				addedTouch.getY()-touchFigure.getSize().height/2+clientArea.y);
-
-		//		System.out.println("Touch added: " + point);
-
+		
 		touchFigure.setLocation(point);
 	}
 

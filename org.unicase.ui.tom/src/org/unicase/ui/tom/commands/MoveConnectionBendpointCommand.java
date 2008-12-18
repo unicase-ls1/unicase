@@ -1,7 +1,6 @@
 package org.unicase.ui.tom.commands;
 
 import org.eclipse.draw2d.geometry.Point;
-import org.eclipse.gef.DragTracker;
 import org.eclipse.gef.Request;
 import org.eclipse.gmf.runtime.diagram.ui.editparts.ConnectionEditPart;
 import org.eclipse.gmf.runtime.diagram.ui.editparts.DiagramEditPart;
@@ -15,7 +14,6 @@ public class MoveConnectionBendpointCommand extends MoveCommand implements
 		super(diagramEditPart);
 	}
 
-	@Override
 	public void execute() {
 		
 

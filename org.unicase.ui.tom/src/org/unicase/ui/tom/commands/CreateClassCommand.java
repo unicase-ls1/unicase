@@ -48,7 +48,6 @@ public class CreateClassCommand extends AbstractCommand{
 		return command;
 	}
 	
-	@Override
 	public void execute() {
 		Command command = getCommand();
 		getDiagramEditPart().getDiagramEditDomain().getDiagramCommandStack().execute(command);

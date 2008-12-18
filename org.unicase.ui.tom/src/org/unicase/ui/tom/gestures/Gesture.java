@@ -3,17 +3,42 @@ package org.unicase.ui.tom.gestures;
 import org.eclipse.gmf.runtime.diagram.ui.editparts.DiagramEditPart;
 import org.unicase.ui.tom.notifications.GestureNotifier;
 
+/**
+ * @author schroech
+ *
+ */
 public interface Gesture extends GestureNotifier{
 
-	public boolean getAcceptsTouches();
+	/**
+	 * Indicates if a gesture accepts the current constellation of touches.
+	 * Acceptance means it may be able to interpret the 
+	 * touches and may become executable in the future. 
+	 * @return the touch acceptance state 
+	 */
+	boolean getAcceptsTouches();
 	
-	public boolean getCanExecute();
+	/**
+	 * Indicates the gesture's ability to execute.
+	 * It is up to the gesture interpreter to decide 
+	 * whether this gesture should be executed
+	 * @return the execution state
+	 */
+	boolean getCanExecute();
 	
-	public void execute();
+	/**
+	 * Executes the gesture.
+	 */
+	void execute();
 	
-	public void reset();
+	/**
+	 * Resets the gesture.
+	 * Sets volatile fields to null, 
+	 * sets touch acceptance state to true, 
+	 * sets execution state to false
+	 */
+	void reset();
 
-	public DiagramEditPart getDiagramEditPart();
+	DiagramEditPart getDiagramEditPart();
 
-	public void setDiagramEditPart(DiagramEditPart editor); 
+	void setDiagramEditPart(DiagramEditPart editor); 
 }

@@ -6,6 +6,7 @@ import java.util.Collections;
 import org.eclipse.draw2d.ConnectionLayer;
 import org.eclipse.draw2d.FreeformLayer;
 import org.eclipse.draw2d.IFigure;
+import org.eclipse.draw2d.geometry.Point;
 import org.eclipse.gef.EditPart;
 import org.eclipse.gef.LayerConstants;
 import org.eclipse.gmf.runtime.diagram.ui.editparts.DiagramEditPart;
@@ -22,15 +23,16 @@ public abstract class AbstractGesture extends GestureNotifierImpl
 implements TouchAdapter, Gesture{
 
 	protected static final int TOUCH_DIAMETER = 30;
+	protected static final int TOUCH_MOVEMENT_THRESHOLD = 10;
 	
 	private TouchDispatch dispatch;
 	private boolean acceptsTouches;
 	private DiagramEditPart diagramEditPart;
 	private boolean canExecute;
 
-	public AbstractGesture(TouchDispatch dispatch, DiagramEditPart editor) {
+	public AbstractGesture(TouchDispatch dispatch, DiagramEditPart diagramEditPart) {
 		setDispatch(dispatch);
-		setDiagramEditPart(editor);
+		setDiagramEditPart(diagramEditPart);
 		acceptsTouches = true;
 		canExecute = false;
 	}
@@ -104,7 +106,11 @@ implements TouchAdapter, Gesture{
 	
 	@SuppressWarnings("unchecked")
 	public EditPart findTouchedEditPartExcluding(Touch touch, Collection exclusions){
-		IFigure figure = getDiagramEditPart().getFigure().findFigureAt(touch.getPosition());
+		
+		Point position = touch.getPosition().getCopy();
+		getDiagramEditPart().getFigure().translateToRelative(position);
+		
+		IFigure figure = getDiagramEditPart().getFigure().findFigureAt(position);
 		
 		EditPart part = null;
 		while (part == null && figure != null) {

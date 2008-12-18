@@ -14,7 +14,6 @@ public class SelectCommand extends AbstractCommand {
 		this.targetEditPart = targetEditPart;
 	}
 
-	@Override
 	public void execute() {
 		getTargetEditPart().showTargetFeedback(getRequest());	
 	}

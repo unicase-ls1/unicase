@@ -162,7 +162,6 @@ public class CreateClassAndAssociationCommand extends AbstractCommand {
 	}
 
 
-	@Override
 	public void execute() {
 		org.eclipse.gef.commands.Command command = getCommand();
 		getDiagramEditPart().getDiagramEditDomain().getDiagramCommandStack().execute(command);
