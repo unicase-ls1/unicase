@@ -79,7 +79,7 @@ public class Preview extends ViewPart implements ISelectionListener {
 		iconlabel.setBackground(display.getSystemColor(SWT.COLOR_WHITE));
 		iconlabel
 				.setLayoutData(new GridData(SWT.LEFT, SWT.CENTER, false, false));
-		//Get standard image.
+		// Get standard image.
 		Image initicon = labelprovider.getImage(null);
 		iconlabel.setImage(initicon);
 
@@ -157,29 +157,11 @@ public class Preview extends ViewPart implements ISelectionListener {
 		if (selection.isEmpty()) {
 			return;
 		}
-
 		IStructuredSelection selected = (IStructuredSelection) selection;
 		Object object = selected.getFirstElement();
 		if (object instanceof ModelElement) {
 			ModelElement me = (ModelElement) object;
-			Image icon = labelprovider.getImage(object);
-			if (iconlabel != null) {
-				iconlabel.setImage(icon);
-			}
-			if (namelabel != null) {
-				namelabel.setText(labelprovider.getText(me));
-					}
-			if (creatorAndDatelabel != null) {
-				creatorAndDatelabel.setText(" " + me.getCreator() + " "
-						+ me.getCreationDate().toString());
-			}
-			if (textwidget != null) {
-				String name = me.getDescriptionPlainText();
-				if (name.equals(null)) {
-					textwidget.setText(nocomment);
-				}
-				textwidget.setText(name);
-			}
+			setModelElement(me);
 
 		} else {
 			if (iconlabel != null) {
@@ -207,6 +189,27 @@ public class Preview extends ViewPart implements ISelectionListener {
 			composite.layout();
 		}
 
+	}
+
+	private void setModelElement(ModelElement me) {
+		Image icon = labelprovider.getImage(me);
+		if (iconlabel != null) {
+			iconlabel.setImage(icon);
+		}
+		if (namelabel != null) {
+			namelabel.setText(labelprovider.getText(me));
+		}
+		if (creatorAndDatelabel != null) {
+			creatorAndDatelabel.setText(" " + me.getCreator() + " "
+					+ me.getCreationDate().toString());
+		}
+		if (textwidget != null) {
+			String name = me.getDescriptionPlainText();
+			if (name.equals(null)) {
+				textwidget.setText(nocomment);
+			}
+			textwidget.setText(name);
+		}
 	}
 
 }
