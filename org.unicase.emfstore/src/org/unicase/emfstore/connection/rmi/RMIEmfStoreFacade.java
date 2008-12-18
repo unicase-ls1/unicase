@@ -10,7 +10,11 @@ import java.rmi.Remote;
 import java.rmi.RemoteException;
 import java.util.List;
 
+// BEGIN IGNORE UNNECCESSARY IMPORT
+// import caused by comment
 import org.unicase.emfstore.EmfStore;
+// END IGNORE UNNECCESSARY IMPORT
+
 import org.unicase.emfstore.accesscontrol.AccessControlException;
 import org.unicase.emfstore.exceptions.EmfStoreException;
 
