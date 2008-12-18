@@ -18,7 +18,6 @@ import org.eclipse.ui.IWorkbenchPart;
 import org.eclipse.ui.part.ViewPart;
 import org.unicase.model.ModelElement;
 import org.unicase.ui.common.MEClassLabelProvider;
-import org.unicase.workspace.ProjectSpace;
 
 /**
  * @author abdelhamidbarzali this class extends ViewPart.
