@@ -25,6 +25,9 @@ public abstract class MoveCommand extends AbstractCommand {
 	}
 
 	protected MouseEvent createMouseEventAtPosition(Point position) {
+		
+		getDiagramEditPart().getFigure().translateToRelative(position);
+		
 		org.eclipse.swt.widgets.Event event = new org.eclipse.swt.widgets.Event();
 		event.x = position.x;
 		event.y = position.y;
@@ -33,6 +36,7 @@ public abstract class MoveCommand extends AbstractCommand {
 		event.widget = getDiagramEditPart().getViewer().getControl();
 	
 		MouseEvent mouseEvent = new MouseEvent(event);
+		
 		
 		return mouseEvent;
 	}

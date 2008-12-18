@@ -12,7 +12,6 @@ import org.eclipse.gmf.runtime.diagram.ui.editparts.DiagramEditPart;
 import org.unicase.model.classDiagram.edit.parts.ClassEditPart;
 import org.unicase.ui.tom.TouchDispatch;
 import org.unicase.ui.tom.commands.Command;
-import org.unicase.ui.tom.commands.MoveCommand;
 import org.unicase.ui.tom.commands.MoveNodeCommand;
 import org.unicase.ui.tom.touches.Touch;
 
@@ -71,9 +70,6 @@ public class MoveMultiNodeGesture extends AbstractGesture{
 
 	}
 
-	private void handleThresholdPassed(Touch touch) {
-
-	}
 
 	public void reset() {
 		// TODO Auto-generated method stub

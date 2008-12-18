@@ -159,7 +159,9 @@ Gesture {
 			if (touch == getMoveTouch()) {
 				getMoveConnectionBendpointCommand().updateMove(
 						getMoveTouch().getPosition());
-			}else if (touch.getPath().getMidpoint().getDistance(touch.getPosition()) > 10) {
+			}else if (touch.getPath().getMidpoint()
+					.getDistance(touch.getPosition()) 
+					> TOUCH_MOVEMENT_THRESHOLD) {
 				
 				setMoveTouch(touch);
 				

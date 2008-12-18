@@ -4,20 +4,21 @@ import java.util.ArrayList;
 import java.util.Collection;
 import java.util.List;
 
-import org.eclipse.draw2d.Shape;
+import org.eclipse.draw2d.Figure;
+import org.eclipse.draw2d.IFigure;
 import org.eclipse.draw2d.geometry.Point;
 import org.eclipse.draw2d.geometry.Rectangle;
 import org.eclipse.gef.EditPart;
 import org.eclipse.gmf.runtime.diagram.ui.editparts.DiagramEditPart;
 import org.eclipse.gmf.runtime.diagram.ui.editparts.GraphicalEditPart;
+import org.eclipse.gmf.runtime.diagram.ui.figures.BorderItemsAwareFreeFormLayer;
 import org.eclipse.gmf.runtime.draw2d.ui.figures.IOvalAnchorableFigure;
 import org.eclipse.gmf.runtime.draw2d.ui.figures.IPolygonAnchorableFigure;
-import org.unicase.model.classDiagram.edit.parts.ClassEditPart;
 import org.unicase.ui.tom.TouchDispatch;
 import org.unicase.ui.tom.commands.MoveNodeCommand;
 import org.unicase.ui.tom.touches.Touch;
 
-public class MoveNodeGesture extends AbstractGesture implements Gesture {
+public class MoveNodeGesture extends AbstractGesture {
 
 	private Touch candidateTouch;
 	private Touch moveTouch;
@@ -59,13 +60,20 @@ public class MoveNodeGesture extends AbstractGesture implements Gesture {
 			return touchedEditPart;
 		}
 
-		List nodes = getNodeLayer().getChildren();
+		List children = getNodeLayer().getChildren();
+		List nodes = null;
+		for (Object child: children) {
+			if (child instanceof BorderItemsAwareFreeFormLayer) {
+				 nodes = ((BorderItemsAwareFreeFormLayer)child).getChildren();
+			}
+		}
+		
 		for (Object node : nodes) {
-			if (node instanceof Shape) {
+			if (node instanceof Figure) {
 				if (shapeContainsPoint(
-						(Shape) node,
+						(Figure) node,
 						touch.getPosition())) {
-					EditPart editPart = findFigureEditPart((Shape) node);
+					EditPart editPart = findFigureEditPart((Figure) node);
 					return editPart;
 				}
 			}
@@ -74,20 +82,20 @@ public class MoveNodeGesture extends AbstractGesture implements Gesture {
 		return null;
 	}
 	
-	private boolean shapeContainsPoint(Shape node, Point position) {
+	private boolean shapeContainsPoint(IFigure figure, Point position) {
 		
 		boolean containsPoint = false;
 		
-		if (node instanceof IOvalAnchorableFigure) {
+		if (figure instanceof IOvalAnchorableFigure) {
 			//If the figure is an oval we assume the 
 			//oval's hit testing is good enough   
-			containsPoint =  node.containsPoint(position);	
-		}else if (node instanceof IPolygonAnchorableFigure) {
-			Rectangle bounds = ((IPolygonAnchorableFigure) node).getPolygonPoints().getBounds().getCopy();
+			containsPoint =  figure.containsPoint(position);	
+		}else if (figure instanceof IPolygonAnchorableFigure) {
+			Rectangle bounds = ((IPolygonAnchorableFigure) figure).getPolygonPoints().getBounds().getCopy();
 			bounds.expand(TOUCH_DIAMETER/2, TOUCH_DIAMETER/2);
 			containsPoint = bounds.contains(position);
 		}else{
-			Rectangle bounds = node.getBounds().getCopy();
+			Rectangle bounds = figure.getBounds().getCopy();
 			bounds.expand(TOUCH_DIAMETER/2, TOUCH_DIAMETER/2);
 			containsPoint = bounds.contains(position);
 		}
@@ -131,7 +139,9 @@ public class MoveNodeGesture extends AbstractGesture implements Gesture {
 	@Override
 	public void handleTouchChanged(Touch touch) {
 		if (touch == getCandidateTouch()) {
-			if (getCandidateTouch().getPath().getMidpoint().getDistance(getCandidateTouch().getPosition()) > 10) {
+			if (getCandidateTouch().getPath().getMidpoint()
+					.getDistance(getCandidateTouch().getPosition()) 
+							> TOUCH_MOVEMENT_THRESHOLD) {
 				setCanExecute(true);
 			}
 		}else if (touch == getMoveTouch()) {
