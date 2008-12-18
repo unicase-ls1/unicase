@@ -505,12 +505,12 @@ public class ProjectSpaceItemProvider extends IdentifiableElementItemProvider
 			final Project project = ((ProjectSpace) object).getProject();
 			final Collection<ModelElement> compositesections = project
 					.getModelElementsByClass(ModelPackage.eINSTANCE
-							.getSection(),
-							new BasicEList<ModelElement>());
-			
+							.getSection(), new BasicEList<ModelElement>());
+
 			Collection<EObject> nonRootSections = new ArrayList<EObject>();
-			for (ModelElement section: compositesections) {
-				if (section instanceof Section && ((Section)section).getParentSection()!=null) {
+			for (ModelElement section : compositesections) {
+				if (section instanceof Section
+						&& ((Section) section).getParentSection() != null) {
 					nonRootSections.add(section);
 				}
 			}

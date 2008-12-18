@@ -221,7 +221,7 @@ public class UsersessionImpl extends EObjectImpl implements Usersession {
 	 */
 	public String getPassword() {
 		if (isSavePassword()) {
-			return KeyStoreManager.deCrypt(getPersistentPassword(),1);
+			return KeyStoreManager.deCrypt(getPersistentPassword(), 1);
 		} else {
 			return getPasswordGen();
 		}
@@ -252,9 +252,8 @@ public class UsersessionImpl extends EObjectImpl implements Usersession {
 	public void setPassword(String newPassword) {
 		setPasswordGen(newPassword);
 		if (isSavePassword()) {
-			setPersistentPassword(KeyStoreManager.enCrypt(newPassword,1));
+			setPersistentPassword(KeyStoreManager.enCrypt(newPassword, 1));
 		}
-		
 
 	}
 

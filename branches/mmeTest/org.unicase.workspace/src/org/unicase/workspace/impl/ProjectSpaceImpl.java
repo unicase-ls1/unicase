@@ -1028,7 +1028,7 @@ public class ProjectSpaceImpl extends IdentifiableElementImpl implements
 		resources.add(resource);
 		setResourceCount(getResourceCount() + 1);
 		List<ModelElement> modelElements = getProject().getAllModelElements();
-		int counter = Configuration.getMaxMECountPerResource()+1;
+		int counter = Configuration.getMaxMECountPerResource() + 1;
 		for (ModelElement modelElement : modelElements) {
 			if (counter > Configuration.getMaxMECountPerResource()) {
 				fileName = Configuration.getWorkspaceDirectory() + "ps-"
@@ -1381,8 +1381,7 @@ public class ProjectSpaceImpl extends IdentifiableElementImpl implements
 							+ "ps-" + getIdentifier() + File.separatorChar
 							+ getResourceCount() + ".ucf";
 					URI fileURI = URI.createFileURI(newfileName);
-					oldResource.getResourceSet()
-							.createResource(fileURI);
+					oldResource.getResourceSet().createResource(fileURI);
 					setResourceCount(getResourceCount() + 1);
 				}
 			}
@@ -1872,8 +1871,7 @@ public class ProjectSpaceImpl extends IdentifiableElementImpl implements
 
 		if (directContents.size() != 1
 				&& (!(directContents.get(0) instanceof ChangePackage))) {
-			throw new IOException(
-					"File is corrupt, does not contain Changes.");
+			throw new IOException("File is corrupt, does not contain Changes.");
 		}
 
 		ChangePackage changePackage = (ChangePackage) directContents.get(0);
