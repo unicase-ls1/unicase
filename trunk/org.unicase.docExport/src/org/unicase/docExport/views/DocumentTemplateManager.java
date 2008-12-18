@@ -223,13 +223,11 @@ public class DocumentTemplateManager extends ViewPart {
 	
 	private void createTemplateOptions(Template template) {
 		cleanTab1(tabContainer1.getParent());
-		new RendererOptionsTab(tabContainer1, template);
 		layoutTabs();
 	}
 	
 	private void createAttributeTypeOptions(Template template)  {
 		cleanTab2(tabContainer2.getParent());
-		new GlobalAttributeTypeOptions(tabContainer2, template);
 		layoutTabs();	
 	}
 	
