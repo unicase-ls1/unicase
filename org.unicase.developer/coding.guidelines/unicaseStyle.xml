@@ -3,7 +3,7 @@
     This configuration file was written by the eclipse-cs plugin configuration editor
 -->
 <!--
-    Checkstyle-Configuration: Unicase
+    Checkstyle-Configuration: unicase Style
     Description: none
 -->
 <!DOCTYPE module PUBLIC "-//Puppy Crawl//DTD Check Configuration 1.2//EN" "http://www.puppycrawl.com/dtds/configuration_1_2.dtd">
@@ -189,5 +189,11 @@
         <property name="offCommentFormat" value="// BEGIN SUPRESS CATCH EXCEPTION"/>
         <property name="onCommentFormat" value="// END SUPRESS CATCH EXCEPTION"/>
         <property name="messageFormat" value=".*Exception.*"/>
+    </module>
+    <module name="SuppressionCommentFilter">
+        <metadata name="com.atlassw.tools.eclipse.checkstyle.comment" value="Ignore unneccessary import warnings"/>
+        <property name="offCommentFormat" value="// BEGIN IGNORE UNNECCESSARY IMPORT"/>
+        <property name="onCommentFormat" value="// END IGNORE UNNECCESSARY IMPORT"/>
+        <property name="messageFormat" value=".*import.*"/>
     </module>
 </module>
