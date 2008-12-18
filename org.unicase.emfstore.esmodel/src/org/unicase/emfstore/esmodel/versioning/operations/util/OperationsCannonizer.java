@@ -364,7 +364,7 @@ public final class OperationsCannonizer {
 				changedAttributes.remove(key);
 			}
 		} else {
-			if (attributeOperation.getNewValue().equals(
+			if (attributeOperation.getNewValue()!=null && attributeOperation.getNewValue().equals(
 					attributeOperation.getOldValue())) {
 				operationsToBeDeleted.add(attributeOperation);
 				return;
