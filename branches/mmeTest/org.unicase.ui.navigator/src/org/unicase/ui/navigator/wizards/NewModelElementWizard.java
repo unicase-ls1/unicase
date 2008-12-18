@@ -15,9 +15,9 @@ import org.eclipse.jface.wizard.Wizard;
 import org.eclipse.ui.IWorkbench;
 import org.eclipse.ui.IWorkbenchWizard;
 import org.unicase.model.ModelElement;
+import org.unicase.model.Section;
 import org.unicase.model.diagram.DiagramType;
 import org.unicase.model.diagram.MEDiagram;
-import org.unicase.model.document.LeafSection;
 import org.unicase.model.meeting.CompositeMeetingSection;
 import org.unicase.model.meeting.IssueMeetingSection;
 import org.unicase.model.meeting.Meeting;
@@ -88,14 +88,14 @@ public class NewModelElementWizard extends Wizard implements IWorkbenchWizard {
 			}
 			// 2.add the newly created ME to LeafSection that was selected in
 			// navigator
-			if (selectedME instanceof LeafSection) {
+			if (selectedME instanceof Section) {
 
 				TransactionalEditingDomain domain = WorkspaceManager
 						.getInstance().getCurrentWorkspace().getEditingDomain();
 				domain.getCommandStack().execute(new RecordingCommand(domain) {
 					@Override
 					protected void doExecute() {
-						((LeafSection) selectedME).getModelElements().add(
+						((Section) selectedME).getModelElements().add(
 								newMEInstance);
 					}
 				});

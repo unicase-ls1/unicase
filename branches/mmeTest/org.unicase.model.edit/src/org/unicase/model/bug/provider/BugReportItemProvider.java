@@ -303,27 +303,27 @@ public class BugReportItemProvider extends AnnotationItemProvider implements
 			}
 			if (bugReport.getStatus().equals(BugStatus.CLOSED)) {
 				return overlayImage(object, getResourceLocator().getImage(
-				"full/obj16/Bug_closed.png"));
+						"full/obj16/Bug_closed.png"));
 			}
 			if (bugReport.getSeverity().equals(Severity.FEATURE)) {
 				return overlayImage(object, getResourceLocator().getImage(
-				"full/obj16/Bug_feature.png"));
+						"full/obj16/Bug_feature.png"));
 			}
 			if (bugReport.getSeverity().equals(Severity.BLOCKER)) {
 				return overlayImage(object, getResourceLocator().getImage(
-				"full/obj16/Bug_blocker.png"));
+						"full/obj16/Bug_blocker.png"));
 			}
 			if (bugReport.getSeverity().equals(Severity.TRIVIAL)) {
 				return overlayImage(object, getResourceLocator().getImage(
-				"full/obj16/Bug_trivial.png"));
+						"full/obj16/Bug_trivial.png"));
 			}
 			if (bugReport.getSeverity().equals(Severity.MINOR)) {
 				return overlayImage(object, getResourceLocator().getImage(
-				"full/obj16/Bug_minor.png"));
+						"full/obj16/Bug_minor.png"));
 			}
 			if (bugReport.getSeverity().equals(Severity.MAJOR)) {
 				return overlayImage(object, getResourceLocator().getImage(
-				"full/obj16/Bug_major.png"));
+						"full/obj16/Bug_major.png"));
 			}
 		}
 		return overlayImage(object, getResourceLocator().getImage(

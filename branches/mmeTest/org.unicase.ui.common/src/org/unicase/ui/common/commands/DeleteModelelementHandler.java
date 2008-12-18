@@ -13,7 +13,7 @@ import org.eclipse.emf.transaction.TransactionalEditingDomain;
 import org.eclipse.jface.dialogs.MessageDialog;
 import org.eclipse.ui.handlers.HandlerUtil;
 import org.unicase.model.ModelElement;
-import org.unicase.model.document.Section;
+import org.unicase.model.Section;
 import org.unicase.ui.common.util.UnicaseUiUtil;
 import org.unicase.workspace.ProjectSpace;
 import org.unicase.workspace.Usersession;

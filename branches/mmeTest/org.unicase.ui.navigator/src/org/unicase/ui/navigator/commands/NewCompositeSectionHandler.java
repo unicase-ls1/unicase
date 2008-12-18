@@ -12,8 +12,8 @@ import org.eclipse.core.commands.ExecutionException;
 import org.eclipse.emf.transaction.RecordingCommand;
 import org.eclipse.emf.transaction.TransactionalEditingDomain;
 import org.unicase.model.ModelElement;
-import org.unicase.model.document.CompositeSection;
-import org.unicase.model.document.DocumentFactory;
+import org.unicase.model.ModelFactory;
+import org.unicase.model.Section;
 import org.unicase.ui.common.commands.ActionHelper;
 import org.unicase.workspace.WorkspaceManager;
 
@@ -39,13 +39,13 @@ public class NewCompositeSectionHandler extends AbstractHandler  {
 			return null;
 		}
 		
-		if (!(me instanceof CompositeSection)) {
+		if (!(me instanceof Section)) {
 			return null;
 		}
-		final CompositeSection compositeSection = (CompositeSection) me;
+		final Section compositeSection = (Section) me;
 
-		final CompositeSection createCompositeSection = DocumentFactory.eINSTANCE
-				.createCompositeSection();
+		final Section createCompositeSection = ModelFactory.eINSTANCE
+				.createSection();
 		createCompositeSection.setName(NEW_COMPOSITESECTION_NAME);
 
 		TransactionalEditingDomain domain = WorkspaceManager.getInstance()
@@ -54,7 +54,7 @@ public class NewCompositeSectionHandler extends AbstractHandler  {
 
 			@Override
 			protected void doExecute() {
-				compositeSection.getSubsections().add(createCompositeSection);
+				compositeSection.getModelElements().add(createCompositeSection);
 			}
 		});
 

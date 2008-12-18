@@ -12,9 +12,8 @@ import org.eclipse.core.commands.ExecutionException;
 import org.eclipse.emf.ecore.EObject;
 import org.eclipse.emf.transaction.RecordingCommand;
 import org.eclipse.emf.transaction.TransactionalEditingDomain;
-import org.unicase.model.document.CompositeSection;
-import org.unicase.model.document.DocumentFactory;
-import org.unicase.model.document.LeafSection;
+import org.unicase.model.ModelFactory;
+import org.unicase.model.Section;
 import org.unicase.ui.common.commands.ActionHelper;
 import org.unicase.workspace.WorkspaceManager;
 
@@ -41,14 +40,14 @@ public class NewLeafSection extends AbstractHandler {
 			return null;
 		}
 		
-		if (!(eObject instanceof CompositeSection)) {
+		if (!(eObject instanceof Section)) {
 			return null;
 		}
 		
-		final CompositeSection compositeSection = (CompositeSection) eObject;
+		final Section compositeSection = (Section) eObject;
 
-		final LeafSection createLeafSection = DocumentFactory.eINSTANCE
-				.createLeafSection();
+		final Section createLeafSection = ModelFactory.eINSTANCE
+				.createSection();
 		
 		createLeafSection.setName(NEW_LEAFSECTION_NAME);
 
@@ -58,7 +57,7 @@ public class NewLeafSection extends AbstractHandler {
 
 			@Override
 			protected void doExecute() {
-				compositeSection.getSubsections().add(createLeafSection);
+				compositeSection.getModelElements().add(createLeafSection);
 			}
 		});
 		

@@ -12,8 +12,8 @@ import org.eclipse.core.commands.ExecutionException;
 import org.eclipse.emf.ecore.EObject;
 import org.eclipse.emf.transaction.RecordingCommand;
 import org.eclipse.emf.transaction.TransactionalEditingDomain;
-import org.unicase.model.document.CompositeSection;
-import org.unicase.model.document.DocumentFactory;
+import org.unicase.model.ModelFactory;
+import org.unicase.model.Section;
 import org.unicase.workspace.ProjectSpace;
 import org.unicase.workspace.WorkspaceManager;
 
@@ -41,10 +41,10 @@ public class NewDocumentHandler extends AbstractHandler {
 
 			@Override
 			protected void doExecute() {
-				CompositeSection compositeSection = DocumentFactory.eINSTANCE
-						.createCompositeSection();
-				compositeSection.setName("new Document");
-				projectSpace.getProject().addModelElement(compositeSection);
+				Section section = ModelFactory.eINSTANCE
+						.createSection();
+				section.setName("new Document");
+				projectSpace.getProject().addModelElement(section);
 			}
 		});
 

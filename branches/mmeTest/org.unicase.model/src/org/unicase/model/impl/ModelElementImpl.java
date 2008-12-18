@@ -28,8 +28,7 @@ import org.unicase.model.ModelElementId;
 import org.unicase.model.ModelFactory;
 import org.unicase.model.ModelPackage;
 import org.unicase.model.Project;
-import org.unicase.model.document.DocumentPackage;
-import org.unicase.model.document.LeafSection;
+import org.unicase.model.Section;
 import org.unicase.model.task.util.CircularDependencyException;
 import org.unicase.model.task.util.MEState;
 import org.unicase.model.task.util.MEStateImpl;
@@ -46,8 +45,7 @@ import org.unicase.model.task.util.MEStateImpl;
  *   <li>{@link org.unicase.model.impl.ModelElementImpl#getCreationDate <em>Creation Date</em>}</li>
  *   <li>{@link org.unicase.model.impl.ModelElementImpl#getAnnotations <em>Annotations</em>}</li>
  *   <li>{@link org.unicase.model.impl.ModelElementImpl#getAttachments <em>Attachments</em>}</li>
- *   <li>{@link org.unicase.model.impl.ModelElementImpl#getIncomingDocumentReferences <em>Incoming Document References</em>}</li>
- *   <li>{@link org.unicase.model.impl.ModelElementImpl#getLeafSection <em>Leaf Section</em>}</li>
+ *   <li>{@link org.unicase.model.impl.ModelElementImpl#getParentSection <em>Parent Section</em>}</li>
  *   <li>{@link org.unicase.model.impl.ModelElementImpl#getState <em>State</em>}</li>
  * </ul>
  * </p>
@@ -149,17 +147,6 @@ public abstract class ModelElementImpl extends IdentifiableElementImpl
 	 * @ordered
 	 */
 	protected EList<Attachment> attachments;
-
-	/**
-	 * The cached value of the '{@link #getIncomingDocumentReferences()
-	 * <em>Incoming Document References</em>}' reference list. <!--
-	 * begin-user-doc --> <!-- end-user-doc -->
-	 * 
-	 * @see #getIncomingDocumentReferences()
-	 * @generated
-	 * @ordered
-	 */
-	protected EList<LeafSection> incomingDocumentReferences;
 
 	/**
 	 * The default value of the '{@link #getState() <em>State</em>}' attribute.
@@ -307,74 +294,64 @@ public abstract class ModelElementImpl extends IdentifiableElementImpl
 	}
 
 	/**
-	 * <!-- begin-user-doc --> <!-- end-user-doc -->
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
 	 * @generated
 	 */
-	public EList<LeafSection> getIncomingDocumentReferences() {
-		if (incomingDocumentReferences == null) {
-			incomingDocumentReferences = new EObjectWithInverseResolvingEList.ManyInverse<LeafSection>(
-					LeafSection.class, this,
-					ModelPackage.MODEL_ELEMENT__INCOMING_DOCUMENT_REFERENCES,
-					DocumentPackage.LEAF_SECTION__REFERENCED_MODEL_ELEMENTS);
-		}
-		return incomingDocumentReferences;
-	}
-
-	/**
-	 * <!-- begin-user-doc --> <!-- end-user-doc -->
-	 * @generated
-	 */
-	public LeafSection getLeafSection() {
-		if (eContainerFeatureID != ModelPackage.MODEL_ELEMENT__LEAF_SECTION)
+	public Section getParentSection() {
+		if (eContainerFeatureID != ModelPackage.MODEL_ELEMENT__PARENT_SECTION)
 			return null;
-		return (LeafSection) eContainer();
+		return (Section) eContainer();
 	}
 
 	/**
-	 * <!-- begin-user-doc --> <!-- end-user-doc -->
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
 	 * @generated
 	 */
-	public LeafSection basicGetLeafSection() {
-		if (eContainerFeatureID != ModelPackage.MODEL_ELEMENT__LEAF_SECTION)
+	public Section basicGetParentSection() {
+		if (eContainerFeatureID != ModelPackage.MODEL_ELEMENT__PARENT_SECTION)
 			return null;
-		return (LeafSection) eInternalContainer();
+		return (Section) eInternalContainer();
 	}
 
 	/**
-	 * <!-- begin-user-doc --> <!-- end-user-doc -->
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
 	 * @generated
 	 */
-	public NotificationChain basicSetLeafSection(LeafSection newLeafSection,
+	public NotificationChain basicSetParentSection(Section newParentSection,
 			NotificationChain msgs) {
-		msgs = eBasicSetContainer((InternalEObject) newLeafSection,
-				ModelPackage.MODEL_ELEMENT__LEAF_SECTION, msgs);
+		msgs = eBasicSetContainer((InternalEObject) newParentSection,
+				ModelPackage.MODEL_ELEMENT__PARENT_SECTION, msgs);
 		return msgs;
 	}
 
 	/**
-	 * <!-- begin-user-doc --> <!-- end-user-doc -->
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
 	 * @generated
 	 */
-	public void setLeafSection(LeafSection newLeafSection) {
-		if (newLeafSection != eInternalContainer()
-				|| (eContainerFeatureID != ModelPackage.MODEL_ELEMENT__LEAF_SECTION && newLeafSection != null)) {
-			if (EcoreUtil.isAncestor(this, newLeafSection))
+	public void setParentSection(Section newParentSection) {
+		if (newParentSection != eInternalContainer()
+				|| (eContainerFeatureID != ModelPackage.MODEL_ELEMENT__PARENT_SECTION && newParentSection != null)) {
+			if (EcoreUtil.isAncestor(this, newParentSection))
 				throw new IllegalArgumentException(
 						"Recursive containment not allowed for " + toString());
 			NotificationChain msgs = null;
 			if (eInternalContainer() != null)
 				msgs = eBasicRemoveFromContainer(msgs);
-			if (newLeafSection != null)
-				msgs = ((InternalEObject) newLeafSection).eInverseAdd(this,
-						DocumentPackage.LEAF_SECTION__MODEL_ELEMENTS,
-						LeafSection.class, msgs);
-			msgs = basicSetLeafSection(newLeafSection, msgs);
+			if (newParentSection != null)
+				msgs = ((InternalEObject) newParentSection).eInverseAdd(this,
+						ModelPackage.SECTION__MODEL_ELEMENTS, Section.class,
+						msgs);
+			msgs = basicSetParentSection(newParentSection, msgs);
 			if (msgs != null)
 				msgs.dispatch();
 		} else if (eNotificationRequired())
 			eNotify(new ENotificationImpl(this, Notification.SET,
-					ModelPackage.MODEL_ELEMENT__LEAF_SECTION, newLeafSection,
-					newLeafSection));
+					ModelPackage.MODEL_ELEMENT__PARENT_SECTION,
+					newParentSection, newParentSection));
 	}
 
 	/**
@@ -538,13 +515,10 @@ public abstract class ModelElementImpl extends IdentifiableElementImpl
 		case ModelPackage.MODEL_ELEMENT__ATTACHMENTS:
 			return ((InternalEList<InternalEObject>) (InternalEList<?>) getAttachments())
 					.basicAdd(otherEnd, msgs);
-		case ModelPackage.MODEL_ELEMENT__INCOMING_DOCUMENT_REFERENCES:
-			return ((InternalEList<InternalEObject>) (InternalEList<?>) getIncomingDocumentReferences())
-					.basicAdd(otherEnd, msgs);
-		case ModelPackage.MODEL_ELEMENT__LEAF_SECTION:
+		case ModelPackage.MODEL_ELEMENT__PARENT_SECTION:
 			if (eInternalContainer() != null)
 				msgs = eBasicRemoveFromContainer(msgs);
-			return basicSetLeafSection((LeafSection) otherEnd, msgs);
+			return basicSetParentSection((Section) otherEnd, msgs);
 		}
 		return super.eInverseAdd(otherEnd, featureID, msgs);
 	}
@@ -563,11 +537,8 @@ public abstract class ModelElementImpl extends IdentifiableElementImpl
 		case ModelPackage.MODEL_ELEMENT__ATTACHMENTS:
 			return ((InternalEList<?>) getAttachments()).basicRemove(otherEnd,
 					msgs);
-		case ModelPackage.MODEL_ELEMENT__INCOMING_DOCUMENT_REFERENCES:
-			return ((InternalEList<?>) getIncomingDocumentReferences())
-					.basicRemove(otherEnd, msgs);
-		case ModelPackage.MODEL_ELEMENT__LEAF_SECTION:
-			return basicSetLeafSection(null, msgs);
+		case ModelPackage.MODEL_ELEMENT__PARENT_SECTION:
+			return basicSetParentSection(null, msgs);
 		}
 		return super.eInverseRemove(otherEnd, featureID, msgs);
 	}
@@ -580,10 +551,9 @@ public abstract class ModelElementImpl extends IdentifiableElementImpl
 	public NotificationChain eBasicRemoveFromContainerFeature(
 			NotificationChain msgs) {
 		switch (eContainerFeatureID) {
-		case ModelPackage.MODEL_ELEMENT__LEAF_SECTION:
+		case ModelPackage.MODEL_ELEMENT__PARENT_SECTION:
 			return eInternalContainer().eInverseRemove(this,
-					DocumentPackage.LEAF_SECTION__MODEL_ELEMENTS,
-					LeafSection.class, msgs);
+					ModelPackage.SECTION__MODEL_ELEMENTS, Section.class, msgs);
 		}
 		return super.eBasicRemoveFromContainerFeature(msgs);
 	}
@@ -607,12 +577,10 @@ public abstract class ModelElementImpl extends IdentifiableElementImpl
 			return getAnnotations();
 		case ModelPackage.MODEL_ELEMENT__ATTACHMENTS:
 			return getAttachments();
-		case ModelPackage.MODEL_ELEMENT__INCOMING_DOCUMENT_REFERENCES:
-			return getIncomingDocumentReferences();
-		case ModelPackage.MODEL_ELEMENT__LEAF_SECTION:
+		case ModelPackage.MODEL_ELEMENT__PARENT_SECTION:
 			if (resolve)
-				return getLeafSection();
-			return basicGetLeafSection();
+				return getParentSection();
+			return basicGetParentSection();
 		case ModelPackage.MODEL_ELEMENT__STATE:
 			return getState();
 		}
@@ -649,13 +617,8 @@ public abstract class ModelElementImpl extends IdentifiableElementImpl
 			getAttachments()
 					.addAll((Collection<? extends Attachment>) newValue);
 			return;
-		case ModelPackage.MODEL_ELEMENT__INCOMING_DOCUMENT_REFERENCES:
-			getIncomingDocumentReferences().clear();
-			getIncomingDocumentReferences().addAll(
-					(Collection<? extends LeafSection>) newValue);
-			return;
-		case ModelPackage.MODEL_ELEMENT__LEAF_SECTION:
-			setLeafSection((LeafSection) newValue);
+		case ModelPackage.MODEL_ELEMENT__PARENT_SECTION:
+			setParentSection((Section) newValue);
 			return;
 		}
 		super.eSet(featureID, newValue);
@@ -686,11 +649,8 @@ public abstract class ModelElementImpl extends IdentifiableElementImpl
 		case ModelPackage.MODEL_ELEMENT__ATTACHMENTS:
 			getAttachments().clear();
 			return;
-		case ModelPackage.MODEL_ELEMENT__INCOMING_DOCUMENT_REFERENCES:
-			getIncomingDocumentReferences().clear();
-			return;
-		case ModelPackage.MODEL_ELEMENT__LEAF_SECTION:
-			setLeafSection((LeafSection) null);
+		case ModelPackage.MODEL_ELEMENT__PARENT_SECTION:
+			setParentSection((Section) null);
 			return;
 		}
 		super.eUnset(featureID);
@@ -719,11 +679,8 @@ public abstract class ModelElementImpl extends IdentifiableElementImpl
 			return annotations != null && !annotations.isEmpty();
 		case ModelPackage.MODEL_ELEMENT__ATTACHMENTS:
 			return attachments != null && !attachments.isEmpty();
-		case ModelPackage.MODEL_ELEMENT__INCOMING_DOCUMENT_REFERENCES:
-			return incomingDocumentReferences != null
-					&& !incomingDocumentReferences.isEmpty();
-		case ModelPackage.MODEL_ELEMENT__LEAF_SECTION:
-			return basicGetLeafSection() != null;
+		case ModelPackage.MODEL_ELEMENT__PARENT_SECTION:
+			return basicGetParentSection() != null;
 		case ModelPackage.MODEL_ELEMENT__STATE:
 			return STATE_EDEFAULT == null ? getState() != null
 					: !STATE_EDEFAULT.equals(getState());

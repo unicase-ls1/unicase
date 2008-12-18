@@ -23,13 +23,13 @@ import org.eclipse.emf.edit.provider.ItemPropertyDescriptor;
 import org.eclipse.emf.edit.provider.ViewerNotification;
 import org.unicase.emfstore.esmodel.versioning.operations.CreateDeleteOperation;
 import org.unicase.emfstore.esmodel.versioning.operations.OperationsPackage;
+import org.unicase.model.ModelFactory;
 import org.unicase.model.attachment.AttachmentFactory;
 import org.unicase.model.bug.BugFactory;
 import org.unicase.model.change.ChangeFactory;
 import org.unicase.model.classes.ClassesFactory;
 import org.unicase.model.component.ComponentFactory;
 import org.unicase.model.diagram.DiagramFactory;
-import org.unicase.model.document.DocumentFactory;
 import org.unicase.model.meeting.MeetingFactory;
 import org.unicase.model.organization.OrganizationFactory;
 import org.unicase.model.rationale.RationaleFactory;
@@ -188,6 +188,11 @@ public class CreateDeleteOperationItemProvider extends
 		newChildDescriptors
 				.add(createChildParameter(
 						OperationsPackage.Literals.CREATE_DELETE_OPERATION__MODEL_ELEMENT,
+						ModelFactory.eINSTANCE.createSection()));
+
+		newChildDescriptors
+				.add(createChildParameter(
+						OperationsPackage.Literals.CREATE_DELETE_OPERATION__MODEL_ELEMENT,
 						OrganizationFactory.eINSTANCE.createUser()));
 
 		newChildDescriptors
@@ -249,16 +254,6 @@ public class CreateDeleteOperationItemProvider extends
 				.add(createChildParameter(
 						OperationsPackage.Literals.CREATE_DELETE_OPERATION__MODEL_ELEMENT,
 						ClassesFactory.eINSTANCE.createDependency()));
-
-		newChildDescriptors
-				.add(createChildParameter(
-						OperationsPackage.Literals.CREATE_DELETE_OPERATION__MODEL_ELEMENT,
-						DocumentFactory.eINSTANCE.createLeafSection()));
-
-		newChildDescriptors
-				.add(createChildParameter(
-						OperationsPackage.Literals.CREATE_DELETE_OPERATION__MODEL_ELEMENT,
-						DocumentFactory.eINSTANCE.createCompositeSection()));
 
 		newChildDescriptors
 				.add(createChildParameter(

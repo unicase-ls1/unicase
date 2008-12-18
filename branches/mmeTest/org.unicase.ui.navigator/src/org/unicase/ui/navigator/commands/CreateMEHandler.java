@@ -14,9 +14,9 @@ import org.eclipse.emf.ecore.EClass;
 import org.eclipse.emf.transaction.RecordingCommand;
 import org.eclipse.emf.transaction.TransactionalEditingDomain;
 import org.unicase.model.ModelElement;
+import org.unicase.model.Section;
 import org.unicase.model.diagram.DiagramType;
 import org.unicase.model.diagram.MEDiagram;
-import org.unicase.model.document.LeafSection;
 import org.unicase.model.meeting.CompositeMeetingSection;
 import org.unicase.model.meeting.IssueMeetingSection;
 import org.unicase.model.meeting.Meeting;
@@ -77,7 +77,7 @@ public class CreateMEHandler extends AbstractHandler implements IHandler {
 			}
 			
 			// add this newly created model element to LeafSection
-			final LeafSection leafSection = (LeafSection)ActionHelper.getSelectedModelElement();
+			final Section leafSection = (Section)ActionHelper.getSelectedModelElement();
 			if (leafSection != null) {
 				TransactionalEditingDomain domain = WorkspaceManager.getInstance().getCurrentWorkspace().getEditingDomain();
 				domain.getCommandStack().execute(new RecordingCommand(domain) {

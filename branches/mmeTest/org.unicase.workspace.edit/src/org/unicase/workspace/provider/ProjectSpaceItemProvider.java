@@ -33,8 +33,9 @@ import org.unicase.emfstore.esmodel.versioning.events.EventsFactory;
 import org.unicase.emfstore.esmodel.versioning.operations.OperationsFactory;
 import org.unicase.model.ModelElement;
 import org.unicase.model.ModelFactory;
+import org.unicase.model.ModelPackage;
 import org.unicase.model.Project;
-import org.unicase.model.document.DocumentPackage;
+import org.unicase.model.Section;
 import org.unicase.model.provider.IdentifiableElementItemProvider;
 import org.unicase.workspace.ProjectSpace;
 import org.unicase.workspace.WorkspacePackage;
@@ -503,11 +504,19 @@ public class ProjectSpaceItemProvider extends IdentifiableElementItemProvider
 		if (object instanceof ProjectSpace) {
 			final Project project = ((ProjectSpace) object).getProject();
 			final Collection<ModelElement> compositesections = project
-					.getModelElementsByClass(DocumentPackage.eINSTANCE
-							.getCompositeSection(),
+					.getModelElementsByClass(ModelPackage.eINSTANCE
+							.getSection(),
 							new BasicEList<ModelElement>());
+			
+			Collection<EObject> nonRootSections = new ArrayList<EObject>();
+			for (ModelElement section: compositesections) {
+				if (section instanceof Section && ((Section)section).getParentSection()!=null) {
+					nonRootSections.add(section);
+				}
+			}
 			Collection<EObject> ret = new ArrayList<EObject>();
 			ret.addAll(compositesections);
+			ret.removeAll(nonRootSections);
 			ret.add(project);
 			return ret;
 		}

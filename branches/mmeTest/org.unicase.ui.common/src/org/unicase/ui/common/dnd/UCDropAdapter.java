@@ -40,12 +40,9 @@ import org.unicase.model.Annotation;
 import org.unicase.model.ModelElement;
 import org.unicase.model.ModelPackage;
 import org.unicase.model.Project;
+import org.unicase.model.Section;
 import org.unicase.model.diagram.DiagramType;
 import org.unicase.model.diagram.MEDiagram;
-import org.unicase.model.document.CompositeSection;
-import org.unicase.model.document.DocumentPackage;
-import org.unicase.model.document.LeafSection;
-import org.unicase.model.document.Section;
 import org.unicase.model.meeting.Meeting;
 import org.unicase.model.meeting.WorkItemMeetingSection;
 import org.unicase.model.task.ActionItem;
@@ -370,7 +367,7 @@ public class UCDropAdapter extends DropTargetAdapter {
 	private void doDropAfter(final ModelElement target,
 			final List<ModelElement> source) {
 
-		if(target instanceof CompositeSection && source.get(0) instanceof CompositeSection && target.eContainer() instanceof Project){
+		if(target instanceof Section && source.get(0) instanceof Section && target.eContainer() instanceof Project){
 			moveFirstLevelCompSection(target, source, true);
 			return;
 		}
@@ -414,7 +411,7 @@ public class UCDropAdapter extends DropTargetAdapter {
 	private void doDropBefore(final ModelElement target,
 			final List<ModelElement> source) {
 		
-		if(target instanceof CompositeSection && source.get(0) instanceof CompositeSection && target.eContainer() instanceof Project){
+		if(target instanceof Section && source.get(0) instanceof Section && target.eContainer() instanceof Project){
 			moveFirstLevelCompSection(target, source, false);
 			return;
 		}
@@ -724,7 +721,7 @@ public class UCDropAdapter extends DropTargetAdapter {
 
 		// a composite section should only contain sections
 		// do not drop anything else on it
-		if (target instanceof CompositeSection) {
+		if (target instanceof Section) {
 			if (!(dropee instanceof Section)) {
 				event.detail = DND.DROP_NONE;
 				return false;
@@ -791,14 +788,6 @@ public class UCDropAdapter extends DropTargetAdapter {
 					&& (ref.getEReferenceType().equals(refType) || ref
 							.getEReferenceType().isSuperTypeOf(refType))) {
 
-				// consider LeafSection.modelElements() reference
-				// A Composite- or LeafSection is not allowed to be dropped on a
-				// LeafSection.
-				if (target instanceof LeafSection
-						&& DocumentPackage.eINSTANCE.getSection()
-								.isSuperTypeOf(refType)) {
-					continue;
-				}
 				result = true;
 				break;
 			}
@@ -811,7 +800,7 @@ public class UCDropAdapter extends DropTargetAdapter {
 				result = true;
 			}
 			// to move LeafSections inside a CompositeSection
-			if (target.eContainer() instanceof CompositeSection) {
+			if (target.eContainer() instanceof Section) {
 				result = true;
 				if (!(refType instanceof Section)) {
 					result = false;

@@ -57,7 +57,7 @@ public class ModelElementItemProvider extends IdentifiableElementItemProvider
 			addDescriptionPropertyDescriptor(object);
 			addAnnotationsPropertyDescriptor(object);
 			addAttachmentsPropertyDescriptor(object);
-			addIncomingDocumentReferencesPropertyDescriptor(object);
+			addParentSectionPropertyDescriptor(object);
 		}
 		return itemPropertyDescriptors;
 	}
@@ -135,23 +135,21 @@ public class ModelElementItemProvider extends IdentifiableElementItemProvider
 	}
 
 	/**
-	 * This adds a property descriptor for the Incoming Document References feature.
-	 * <!-- begin-user-doc --> <!-- end-user-doc -->
+	 * This adds a property descriptor for the Parent Section feature.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
 	 * @generated
 	 */
-	protected void addIncomingDocumentReferencesPropertyDescriptor(Object object) {
-		itemPropertyDescriptors
-				.add(createItemPropertyDescriptor(
-						((ComposeableAdapterFactory) adapterFactory)
-								.getRootAdapterFactory(),
-						getResourceLocator(),
-						getString("_UI_ModelElement_incomingDocumentReferences_feature"),
-						getString(
-								"_UI_PropertyDescriptor_description",
-								"_UI_ModelElement_incomingDocumentReferences_feature",
-								"_UI_ModelElement_type"),
-						ModelPackage.Literals.MODEL_ELEMENT__INCOMING_DOCUMENT_REFERENCES,
-						true, false, true, null, null, null));
+	protected void addParentSectionPropertyDescriptor(Object object) {
+		itemPropertyDescriptors.add(createItemPropertyDescriptor(
+				((ComposeableAdapterFactory) adapterFactory)
+						.getRootAdapterFactory(), getResourceLocator(),
+				getString("_UI_ModelElement_parentSection_feature"), getString(
+						"_UI_PropertyDescriptor_description",
+						"_UI_ModelElement_parentSection_feature",
+						"_UI_ModelElement_type"),
+				ModelPackage.Literals.MODEL_ELEMENT__PARENT_SECTION, true,
+				false, false, null, null, null));
 	}
 
 	/**

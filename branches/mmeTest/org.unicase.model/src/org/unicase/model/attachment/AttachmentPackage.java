@@ -133,22 +133,13 @@ public interface AttachmentPackage extends EPackage {
 	int URL_ATTACHMENT__ATTACHMENTS = ModelPackage.ATTACHMENT__ATTACHMENTS;
 
 	/**
-	 * The feature id for the '<em><b>Incoming Document References</b></em>' reference list.
+	 * The feature id for the '<em><b>Parent Section</b></em>' container reference.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
 	 * @generated
 	 * @ordered
 	 */
-	int URL_ATTACHMENT__INCOMING_DOCUMENT_REFERENCES = ModelPackage.ATTACHMENT__INCOMING_DOCUMENT_REFERENCES;
-
-	/**
-	 * The feature id for the '<em><b>Leaf Section</b></em>' container reference.
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
-	 * @generated
-	 * @ordered
-	 */
-	int URL_ATTACHMENT__LEAF_SECTION = ModelPackage.ATTACHMENT__LEAF_SECTION;
+	int URL_ATTACHMENT__PARENT_SECTION = ModelPackage.ATTACHMENT__PARENT_SECTION;
 
 	/**
 	 * The feature id for the '<em><b>State</b></em>' attribute.

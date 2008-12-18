@@ -135,22 +135,13 @@ public interface MeetingPackage extends EPackage {
 	int MEETING__ATTACHMENTS = ModelPackage.MODEL_ELEMENT__ATTACHMENTS;
 
 	/**
-	 * The feature id for the '<em><b>Incoming Document References</b></em>' reference list.
+	 * The feature id for the '<em><b>Parent Section</b></em>' container reference.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
 	 * @generated
 	 * @ordered
 	 */
-	int MEETING__INCOMING_DOCUMENT_REFERENCES = ModelPackage.MODEL_ELEMENT__INCOMING_DOCUMENT_REFERENCES;
-
-	/**
-	 * The feature id for the '<em><b>Leaf Section</b></em>' container reference.
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
-	 * @generated
-	 * @ordered
-	 */
-	int MEETING__LEAF_SECTION = ModelPackage.MODEL_ELEMENT__LEAF_SECTION;
+	int MEETING__PARENT_SECTION = ModelPackage.MODEL_ELEMENT__PARENT_SECTION;
 
 	/**
 	 * The feature id for the '<em><b>State</b></em>' attribute.
@@ -334,22 +325,13 @@ public interface MeetingPackage extends EPackage {
 	int MEETING_SECTION__ATTACHMENTS = ModelPackage.MODEL_ELEMENT__ATTACHMENTS;
 
 	/**
-	 * The feature id for the '<em><b>Incoming Document References</b></em>' reference list.
+	 * The feature id for the '<em><b>Parent Section</b></em>' container reference.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
 	 * @generated
 	 * @ordered
 	 */
-	int MEETING_SECTION__INCOMING_DOCUMENT_REFERENCES = ModelPackage.MODEL_ELEMENT__INCOMING_DOCUMENT_REFERENCES;
-
-	/**
-	 * The feature id for the '<em><b>Leaf Section</b></em>' container reference.
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
-	 * @generated
-	 * @ordered
-	 */
-	int MEETING_SECTION__LEAF_SECTION = ModelPackage.MODEL_ELEMENT__LEAF_SECTION;
+	int MEETING_SECTION__PARENT_SECTION = ModelPackage.MODEL_ELEMENT__PARENT_SECTION;
 
 	/**
 	 * The feature id for the '<em><b>State</b></em>' attribute.
@@ -452,22 +434,13 @@ public interface MeetingPackage extends EPackage {
 	int COMPOSITE_MEETING_SECTION__ATTACHMENTS = MEETING_SECTION__ATTACHMENTS;
 
 	/**
-	 * The feature id for the '<em><b>Incoming Document References</b></em>' reference list.
+	 * The feature id for the '<em><b>Parent Section</b></em>' container reference.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
 	 * @generated
 	 * @ordered
 	 */
-	int COMPOSITE_MEETING_SECTION__INCOMING_DOCUMENT_REFERENCES = MEETING_SECTION__INCOMING_DOCUMENT_REFERENCES;
-
-	/**
-	 * The feature id for the '<em><b>Leaf Section</b></em>' container reference.
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
-	 * @generated
-	 * @ordered
-	 */
-	int COMPOSITE_MEETING_SECTION__LEAF_SECTION = MEETING_SECTION__LEAF_SECTION;
+	int COMPOSITE_MEETING_SECTION__PARENT_SECTION = MEETING_SECTION__PARENT_SECTION;
 
 	/**
 	 * The feature id for the '<em><b>State</b></em>' attribute.
@@ -579,22 +552,13 @@ public interface MeetingPackage extends EPackage {
 	int ISSUE_MEETING_SECTION__ATTACHMENTS = MEETING_SECTION__ATTACHMENTS;
 
 	/**
-	 * The feature id for the '<em><b>Incoming Document References</b></em>' reference list.
+	 * The feature id for the '<em><b>Parent Section</b></em>' container reference.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
 	 * @generated
 	 * @ordered
 	 */
-	int ISSUE_MEETING_SECTION__INCOMING_DOCUMENT_REFERENCES = MEETING_SECTION__INCOMING_DOCUMENT_REFERENCES;
-
-	/**
-	 * The feature id for the '<em><b>Leaf Section</b></em>' container reference.
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
-	 * @generated
-	 * @ordered
-	 */
-	int ISSUE_MEETING_SECTION__LEAF_SECTION = MEETING_SECTION__LEAF_SECTION;
+	int ISSUE_MEETING_SECTION__PARENT_SECTION = MEETING_SECTION__PARENT_SECTION;
 
 	/**
 	 * The feature id for the '<em><b>State</b></em>' attribute.
@@ -706,22 +670,13 @@ public interface MeetingPackage extends EPackage {
 	int WORK_ITEM_MEETING_SECTION__ATTACHMENTS = MEETING_SECTION__ATTACHMENTS;
 
 	/**
-	 * The feature id for the '<em><b>Incoming Document References</b></em>' reference list.
+	 * The feature id for the '<em><b>Parent Section</b></em>' container reference.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
 	 * @generated
 	 * @ordered
 	 */
-	int WORK_ITEM_MEETING_SECTION__INCOMING_DOCUMENT_REFERENCES = MEETING_SECTION__INCOMING_DOCUMENT_REFERENCES;
-
-	/**
-	 * The feature id for the '<em><b>Leaf Section</b></em>' container reference.
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
-	 * @generated
-	 * @ordered
-	 */
-	int WORK_ITEM_MEETING_SECTION__LEAF_SECTION = MEETING_SECTION__LEAF_SECTION;
+	int WORK_ITEM_MEETING_SECTION__PARENT_SECTION = MEETING_SECTION__PARENT_SECTION;
 
 	/**
 	 * The feature id for the '<em><b>State</b></em>' attribute.

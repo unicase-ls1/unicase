@@ -27,8 +27,6 @@ import org.unicase.model.component.ComponentService;
 import org.unicase.model.component.DeploymentNode;
 import org.unicase.model.diagram.DiagramPackage;
 import org.unicase.model.diagram.impl.DiagramPackageImpl;
-import org.unicase.model.document.DocumentPackage;
-import org.unicase.model.document.impl.DocumentPackageImpl;
 import org.unicase.model.impl.ModelPackageImpl;
 import org.unicase.model.meeting.MeetingPackage;
 import org.unicase.model.meeting.impl.MeetingPackageImpl;
@@ -151,10 +149,6 @@ public class ComponentPackageImpl extends EPackageImpl implements
 				.getEPackage(ClassesPackage.eNS_URI) instanceof ClassesPackageImpl ? EPackage.Registry.INSTANCE
 				.getEPackage(ClassesPackage.eNS_URI)
 				: ClassesPackage.eINSTANCE);
-		DocumentPackageImpl theDocumentPackage = (DocumentPackageImpl) (EPackage.Registry.INSTANCE
-				.getEPackage(DocumentPackage.eNS_URI) instanceof DocumentPackageImpl ? EPackage.Registry.INSTANCE
-				.getEPackage(DocumentPackage.eNS_URI)
-				: DocumentPackage.eINSTANCE);
 		RequirementPackageImpl theRequirementPackage = (RequirementPackageImpl) (EPackage.Registry.INSTANCE
 				.getEPackage(RequirementPackage.eNS_URI) instanceof RequirementPackageImpl ? EPackage.Registry.INSTANCE
 				.getEPackage(RequirementPackage.eNS_URI)
@@ -191,7 +185,6 @@ public class ComponentPackageImpl extends EPackageImpl implements
 		theTaskPackage.createPackageContents();
 		theDiagramPackage.createPackageContents();
 		theClassesPackage.createPackageContents();
-		theDocumentPackage.createPackageContents();
 		theRequirementPackage.createPackageContents();
 		theRationalePackage.createPackageContents();
 		theChangePackage.createPackageContents();
@@ -207,7 +200,6 @@ public class ComponentPackageImpl extends EPackageImpl implements
 		theTaskPackage.initializePackageContents();
 		theDiagramPackage.initializePackageContents();
 		theClassesPackage.initializePackageContents();
-		theDocumentPackage.initializePackageContents();
 		theRequirementPackage.initializePackageContents();
 		theRationalePackage.initializePackageContents();
 		theChangePackage.initializePackageContents();

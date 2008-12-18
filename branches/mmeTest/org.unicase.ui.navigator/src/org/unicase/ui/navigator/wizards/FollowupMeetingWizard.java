@@ -8,7 +8,7 @@ import org.eclipse.jface.viewers.IStructuredSelection;
 import org.eclipse.jface.wizard.Wizard;
 import org.eclipse.ui.IWorkbench;
 import org.eclipse.ui.IWorkbenchWizard;
-import org.unicase.model.document.LeafSection;
+import org.unicase.model.Section;
 import org.unicase.model.meeting.CompositeMeetingSection;
 import org.unicase.model.meeting.IssueMeetingSection;
 import org.unicase.model.meeting.Meeting;
@@ -108,7 +108,7 @@ public class FollowupMeetingWizard extends Wizard implements IWorkbenchWizard {
 	 */
 	@Override
 	public boolean performFinish() {
-		if (!(selectedMeeting.eContainer() instanceof LeafSection)) {
+		if (!(selectedMeeting.eContainer() instanceof Section)) {
 			return false;
 		} else {
 			createFollowupMeeting();
@@ -117,7 +117,7 @@ public class FollowupMeetingWizard extends Wizard implements IWorkbenchWizard {
 	}
 
 	private void createFollowupMeeting() {
-		final LeafSection leafSection = (LeafSection) selectedMeeting.eContainer();
+		final Section leafSection = (Section) selectedMeeting.eContainer();
 		TransactionalEditingDomain domain = WorkspaceManager.getInstance()
 				.getCurrentWorkspace().getEditingDomain();
 		

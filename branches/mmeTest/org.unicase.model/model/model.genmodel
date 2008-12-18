@@ -9,6 +9,9 @@
   <foreignModel>model.ecore</foreignModel>
   <genPackages prefix="Model" basePackage="org.unicase" disposableProviderFactory="true"
       ecorePackage="model.ecore#/">
+    <genClasses ecoreClass="model.ecore#//Section">
+      <genFeatures children="true" createChild="true" ecoreFeature="ecore:EReference model.ecore#//Section/modelElements"/>
+    </genClasses>
     <genClasses image="false" ecoreClass="model.ecore#//ModelElement">
       <genFeatures createChild="false" propertyDescription="" ecoreFeature="ecore:EAttribute model.ecore#//ModelElement/name"/>
       <genFeatures createChild="false" propertyCategory="" propertyDescription=""
@@ -17,8 +20,7 @@
       <genFeatures property="None" createChild="false" ecoreFeature="ecore:EAttribute model.ecore#//ModelElement/creationDate"/>
       <genFeatures notify="false" createChild="false" propertySortChoices="true" ecoreFeature="ecore:EReference model.ecore#//ModelElement/annotations"/>
       <genFeatures notify="false" createChild="false" propertySortChoices="true" ecoreFeature="ecore:EReference model.ecore#//ModelElement/attachments"/>
-      <genFeatures notify="false" createChild="false" propertySortChoices="true" ecoreFeature="ecore:EReference model.ecore#//ModelElement/incomingDocumentReferences"/>
-      <genFeatures property="None" notify="false" createChild="false" ecoreFeature="ecore:EReference model.ecore#//ModelElement/leafSection"/>
+      <genFeatures notify="false" createChild="false" ecoreFeature="ecore:EReference model.ecore#//ModelElement/parentSection"/>
       <genFeatures property="None" createChild="false" ecoreFeature="ecore:EAttribute model.ecore#//ModelElement/state"/>
       <genOperations ecoreOperation="model.ecore#//ModelElement/getProject"/>
       <genOperations ecoreOperation="model.ecore#//ModelElement/getModelElementId"/>
@@ -234,20 +236,6 @@
             ecoreFeature="ecore:EReference model.ecore#//classes/Dependency/source"/>
         <genFeatures notify="false" createChild="false" propertySortChoices="true"
             ecoreFeature="ecore:EReference model.ecore#//classes/Dependency/target"/>
-      </genClasses>
-    </nestedGenPackages>
-    <nestedGenPackages prefix="Document" basePackage="org.unicase.model" disposableProviderFactory="true"
-        ecorePackage="model.ecore#//document">
-      <genClasses ecoreClass="model.ecore#//document/LeafSection">
-        <genFeatures children="true" createChild="true" ecoreFeature="ecore:EReference model.ecore#//document/LeafSection/modelElements"/>
-        <genFeatures notify="false" createChild="false" propertySortChoices="true"
-            ecoreFeature="ecore:EReference model.ecore#//document/LeafSection/referencedModelElements"/>
-      </genClasses>
-      <genClasses ecoreClass="model.ecore#//document/CompositeSection">
-        <genFeatures children="true" createChild="true" ecoreFeature="ecore:EReference model.ecore#//document/CompositeSection/subsections"/>
-      </genClasses>
-      <genClasses image="false" ecoreClass="model.ecore#//document/Section">
-        <genFeatures property="None" notify="false" createChild="false" ecoreFeature="ecore:EReference model.ecore#//document/Section/parent"/>
       </genClasses>
     </nestedGenPackages>
     <nestedGenPackages prefix="Requirement" basePackage="org.unicase.model" disposableProviderFactory="true"

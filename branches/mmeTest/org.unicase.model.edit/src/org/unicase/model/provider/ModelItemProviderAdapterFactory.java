@@ -75,6 +75,29 @@ public class ModelItemProviderAdapterFactory extends ModelAdapterFactory
 	}
 
 	/**
+	 * This keeps track of the one adapter used for all {@link org.unicase.model.Section} instances.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 */
+	protected SectionItemProvider sectionItemProvider;
+
+	/**
+	 * This creates an adapter for a {@link org.unicase.model.Section}.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 */
+	@Override
+	public Adapter createSectionAdapter() {
+		if (sectionItemProvider == null) {
+			sectionItemProvider = new SectionItemProvider(this);
+		}
+
+		return sectionItemProvider;
+	}
+
+	/**
 	 * This keeps track of the one adapter used for all {@link org.unicase.model.Project} instances.
 	 * <!-- begin-user-doc --> <!--
 	 * end-user-doc -->
@@ -242,6 +265,8 @@ public class ModelItemProviderAdapterFactory extends ModelAdapterFactory
 	 * @generated
 	 */
 	public void dispose() {
+		if (sectionItemProvider != null)
+			sectionItemProvider.dispose();
 		if (projectItemProvider != null)
 			projectItemProvider.dispose();
 		if (identifiableElementItemProvider != null)

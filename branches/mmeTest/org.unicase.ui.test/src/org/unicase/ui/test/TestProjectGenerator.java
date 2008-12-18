@@ -34,10 +34,7 @@ import org.unicase.model.ModelElement;
 import org.unicase.model.ModelFactory;
 import org.unicase.model.ModelPackage;
 import org.unicase.model.Project;
-import org.unicase.model.document.CompositeSection;
-import org.unicase.model.document.DocumentPackage;
-import org.unicase.model.document.LeafSection;
-import org.unicase.model.document.Section;
+import org.unicase.model.Section;
 import org.unicase.ui.meeditor.MEEditor;
 import org.unicase.ui.meeditor.MEEditorInput;
 import org.unicase.workspace.ProjectSpace;
@@ -75,7 +72,7 @@ public class TestProjectGenerator {
 	// these two are just shortcuts in order to save typing
 	private static final EClass MODELELEMENT_ECLASS = ModelPackage.eINSTANCE
 			.getModelElement();
-	private static final EClass SECTION_ECLASS = DocumentPackage.eINSTANCE
+	private static final EClass SECTION_ECLASS = ModelPackage.eINSTANCE
 			.getSection();
 
 	// maintain a list of instances of every class. This is to avoid
@@ -87,9 +84,8 @@ public class TestProjectGenerator {
 	private List<EClass> meNonAbstractClasses = new ArrayList<EClass>();
 	private List<EClass> nonMEnonAbstractClasses = new ArrayList<EClass>();
 
-	
 	/**
-	 *  Constructor: set test project parameters.
+	 * Constructor: set test project parameters.
 	 * 
 	 * @param numOfEachME
 	 *            minimum number of each ME
@@ -104,8 +100,9 @@ public class TestProjectGenerator {
 	 * @param maxNumOfMEsInLeafSection
 	 *            max number of MEs to show on a LeafSection
 	 */
-	public TestProjectGenerator(int numOfEachME, long randomSeed, int projWidth,
-			int projDepth, int maxNumOfManyRefs, int maxNumOfMEsInLeafSection) {
+	public TestProjectGenerator(int numOfEachME, long randomSeed,
+			int projWidth, int projDepth, int maxNumOfManyRefs,
+			int maxNumOfMEsInLeafSection) {
 
 		this.numOfEachME = numOfEachME;
 		this.projectWidth = projWidth;
@@ -117,13 +114,14 @@ public class TestProjectGenerator {
 		initClassLists();
 
 	}
-	
+
 	/**
 	 * Constructor.
 	 * 
-	 * @param params test parameters
+	 * @param params
+	 *            test parameters
 	 */
-	public TestProjectGenerator(TestProjectParmeters params){
+	public TestProjectGenerator(TestProjectParmeters params) {
 		this.numOfEachME = params.getNumOfEachME();
 		this.projectWidth = params.getProjWidth();
 		this.projectDepth = params.getProjDepth();
@@ -155,7 +153,7 @@ public class TestProjectGenerator {
 					if (!(eClass.isAbstract() || eClass.isInterface() || eClass
 							.equals(ModelPackage.eINSTANCE.getProject()))) {
 						// this can be instantiated
-							meNonAbstractClasses.add(eClass);
+						meNonAbstractClasses.add(eClass);
 					}
 				} else {
 					if (!(eClass.isAbstract() || eClass.isInterface())) {
@@ -170,17 +168,19 @@ public class TestProjectGenerator {
 		}
 	}
 
-	/**.
-	 * This creates the test project and adds it to workspace.
+	/**
+	 * . This creates the test project and adds it to workspace.
 	 * 
-	 * @param workspace Workspace to which the project will be added
-	 * @param project Project to be added
+	 * @param workspace
+	 *            Workspace to which the project will be added
+	 * @param project
+	 *            Project to be added
 	 */
 	public void addProjectToWorkspace(final Workspace workspace, Project project) {
 		final ProjectSpace projectSpace = WorkspaceFactory.eINSTANCE
 				.createProjectSpace();
 		projectSpace.setProject(project);
-		
+
 		projectSpace.setProjectDescription("Test project description");
 		projectSpace.setProjectName("ModelTestProject");
 
@@ -188,16 +188,17 @@ public class TestProjectGenerator {
 		domain.getCommandStack().execute(new RecordingCommand(domain) {
 			@Override
 			protected void doExecute() {
-				//FIXME: ugly code
-				projectSpace.initResources(workspace.eResource().getResourceSet());
+				// FIXME: ugly code
+				projectSpace.initResources(workspace.eResource()
+						.getResourceSet());
 				workspace.getProjectSpaces().add(projectSpace);
 				workspace.save();
 			}
 		});
 	}
 
-	/**.
-	 * Creates a test project
+	/**
+	 * . Creates a test project
 	 * 
 	 * @return a Project
 	 */
@@ -207,8 +208,8 @@ public class TestProjectGenerator {
 		// create document structure in project
 		int depth = projectDepth - 2;
 		for (int i = 0; i < projectWidth; i++) {
-			CompositeSection comp = (CompositeSection) createInstance(
-					DocumentPackage.eINSTANCE.getCompositeSection(), false);
+			Section comp = (Section) createInstance(ModelPackage.eINSTANCE
+					.getSection(), false);
 			createDocStructure(depth, comp);
 			project.addModelElement(comp);
 		}
@@ -224,10 +225,10 @@ public class TestProjectGenerator {
 
 		// distribute some model elements on LeafSections
 		EList<ModelElement> leafSections = project.getAllModelElementsbyClass(
-				DocumentPackage.eINSTANCE.getLeafSection(),
+				ModelPackage.eINSTANCE.getSection(),
 				new BasicEList<ModelElement>());
 		for (EObject ls : leafSections) {
-			distributeMEsOnLeafSection((LeafSection) ls);
+			distributeMEsOnLeafSection((Section) ls);
 		}
 		return project;
 
@@ -235,22 +236,22 @@ public class TestProjectGenerator {
 
 	// recursively create the subsections (Composite and LeafSections)
 	// under a Composite section (based of projectWidth and projectDepth)
-	private void createDocStructure(int remainingDepth, CompositeSection comp) {
+	private void createDocStructure(int remainingDepth, Section comp) {
 
 		if (remainingDepth > 0) {
 			// create CompositeSections
 			for (int i = 0; i < projectWidth; i++) {
-				CompositeSection newComp = (CompositeSection) createInstance(
-						DocumentPackage.eINSTANCE.getCompositeSection(), false);
-				comp.getSubsections().add(newComp);
+				Section newComp = (Section) createInstance(
+						ModelPackage.eINSTANCE.getSection(), false);
+				comp.getModelElements().add(newComp);
 				createDocStructure(--remainingDepth, newComp);
 			}
 		} else {
 			// remainingDepth == 0 now create LeafSections
 			for (int i = 0; i < projectWidth; i++) {
-				LeafSection ls = (LeafSection) createInstance(
-						DocumentPackage.eINSTANCE.getLeafSection(), false);
-				comp.getSubsections().add(ls);
+				Section ls = (Section) createInstance(ModelPackage.eINSTANCE
+						.getSection(), false);
+				comp.getModelElements().add(ls);
 			}
 		}
 	}
@@ -282,12 +283,12 @@ public class TestProjectGenerator {
 		if (SECTION_ECLASS.isSuperTypeOf(eClass)) {
 			return;
 		}
-		
-		//do not create non domain elements
-		if(ModelPackage.eINSTANCE.getNonDomainElement().isSuperTypeOf(eClass)){
+
+		// do not create non domain elements
+		if (ModelPackage.eINSTANCE.getNonDomainElement().isSuperTypeOf(eClass)) {
 			return;
 		}
-		
+
 		// create the specified minimum number of instances of this EClass
 		for (int i = 0; i < numOfEachME; i++) {
 			EObject obj = createInstance(eClass, false);
@@ -420,7 +421,7 @@ public class TestProjectGenerator {
 		} else if (referencedInstances.size() != 0) {
 			me.eSet(ref, referencedInstances.get(0));
 		} else {
-			//me.eSet(ref, null);
+			// me.eSet(ref, null);
 		}
 	}
 
@@ -498,11 +499,7 @@ public class TestProjectGenerator {
 			// during creation in createInstances method
 			result = true;
 		}
-		if (me instanceof Section && ref.getName().equals("subsections")) {
-			// subsections are set during building of document structure
-			result = true;
-		}
-		if (me instanceof LeafSection && ref.getName().equals("modelElements")) {
+		if (me instanceof Section && ref.getName().equals("modelElements")) {
 			// distribution of model elements among leaf sections occurs
 			// in the last step in createTestProject method
 			// distributeMEsOnLeafSection((LeafSection)me);
@@ -515,7 +512,7 @@ public class TestProjectGenerator {
 			result = true;
 		}
 		return result;
-		
+
 	}
 
 	// returns a random number for number of references
@@ -549,9 +546,7 @@ public class TestProjectGenerator {
 
 		if (SECTION_ECLASS.isSuperTypeOf(ref.getEReferenceType())) {
 			if (ref.getEReferenceType().equals(
-					DocumentPackage.eINSTANCE.getCompositeSection())
-					|| ref.getEReferenceType().equals(
-							DocumentPackage.eINSTANCE.getLeafSection())) {
+					ModelPackage.eINSTANCE.getSection())) {
 				// if ref type is CompositeSection or LeafSection
 				numOfRefs = random.nextInt(meInstancesByClass.get(
 						ref.getEReferenceType()).size());
@@ -602,7 +597,7 @@ public class TestProjectGenerator {
 	// after all instances are created and references are set
 	// distribute some instances which are not contained in some other,
 	// on leaf sections
-	private void distributeMEsOnLeafSection(LeafSection ls) {
+	private void distributeMEsOnLeafSection(Section ls) {
 
 		int numOfRefs = random.nextInt(maxNumOfMEsInLeafSection);
 		// get a list of all MEs in project
@@ -654,7 +649,7 @@ public class TestProjectGenerator {
 	// a Section to be created. noSection parameter takes care of it.
 	private EObject createInstance(EClass eClass, boolean noSection) {
 		EObject obj = null;
-		
+
 		if (!(eClass.isAbstract() || eClass.isInterface())) {
 			obj = eClass.getEPackage().getEFactoryInstance().create(eClass);
 
@@ -706,7 +701,7 @@ public class TestProjectGenerator {
 
 		for (EAttribute attribute : instance.eClass().getEAllAttributes()) {
 
-			if (attribute.getEType().getInstanceClass().equals(String.class) 
+			if (attribute.getEType().getInstanceClass().equals(String.class)
 					&& attribute.isChangeable()) {
 				if (instance instanceof ModelElement
 						&& attribute.getName().equalsIgnoreCase("name")) {
@@ -718,14 +713,15 @@ public class TestProjectGenerator {
 				} else if (instance instanceof IdentifiableElement
 						&& attribute.getName().equalsIgnoreCase("identifier")) {
 					// special case for identifier attribute
-					//do nothing 
+					// do nothing
 					continue;
 				}
 
 				// in any other case create a random text
-				//FIXME ZH, JH: description is not shown. StackOverflow, NullPointer
-//				instance.eSet(attribute, getRandomText(instance.eClass()
-//						 .getName()));
+				// FIXME ZH, JH: description is not shown. StackOverflow,
+				// NullPointer
+				// instance.eSet(attribute, getRandomText(instance.eClass()
+				// .getName()));
 				getRandomText("some text");
 				continue;
 			}
@@ -745,10 +741,11 @@ public class TestProjectGenerator {
 			if (attribute.getEType() instanceof EEnum) {
 				EEnum en = (EEnum) attribute.getEType();
 				int numOfLiterals = en.getELiterals().size();
-				int index = numOfLiterals == 1 ? 0 : random.nextInt(numOfLiterals - 1); 
+				int index = numOfLiterals == 1 ? 0 : random
+						.nextInt(numOfLiterals - 1);
 				EEnumLiteral value = en.getELiterals().get(index);
 				instance.eSet(attribute, value.getInstance());
-				
+
 				continue;
 			}
 
@@ -796,10 +793,11 @@ public class TestProjectGenerator {
 		return new Date();
 	}
 
-	/**.
-	 * Opens some model elements randomly.
+	/**
+	 * . Opens some model elements randomly.
 	 * 
-	 * @param count number of model elements to be opened.
+	 * @param count
+	 *            number of model elements to be opened.
 	 */
 	public void openSomeModelElements(int count) {
 		List<EObject> modelElements = new ArrayList<EObject>();
@@ -819,7 +817,7 @@ public class TestProjectGenerator {
 			PlatformUI.getWorkbench().getActiveWorkbenchWindow()
 					.getActivePage().openEditor(input, MEEditor.ID, true);
 		} catch (PartInitException e) {
-			//ZH: exception handling
+			// ZH: exception handling
 			e.printStackTrace();
 		}
 
@@ -838,10 +836,11 @@ public class TestProjectGenerator {
 		return totalCount;
 	}
 
-	/**.
-	 * Generates a test project and adds it to workspace.
-	 *  
-	 * @param currentWorkspace Workspace
+	/**
+	 * . Generates a test project and adds it to workspace.
+	 * 
+	 * @param currentWorkspace
+	 *            Workspace
 	 */
 	public void generateProjectIntoWorkspace(final Workspace currentWorkspace) {
 		Project generatedProject = generateProject();

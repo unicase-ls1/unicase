@@ -20,10 +20,10 @@ import org.eclipse.ui.actions.CompoundContributionItem;
 import org.eclipse.ui.menus.CommandContributionItem;
 import org.eclipse.ui.menus.CommandContributionItemParameter;
 import org.unicase.model.ModelElement;
+import org.unicase.model.Section;
 import org.unicase.model.diagram.DiagramFactory;
 import org.unicase.model.diagram.DiagramType;
 import org.unicase.model.diagram.MEDiagram;
-import org.unicase.model.document.LeafSection;
 import org.unicase.ui.common.commands.ActionHelper;
 
 /**
@@ -49,7 +49,7 @@ public class DynamicMECreationCommands extends CompoundContributionItem {
 		// get the leaf section right clicked on in navigator.
 		// For each ME type contained in this leaf section is a
 		// creation command added to context menu.
-		LeafSection leafSection = (LeafSection)ActionHelper.getSelectedModelElement();
+		Section leafSection = (Section)ActionHelper.getSelectedModelElement();
 		if (leafSection == null) {
 			return new IContributionItem[0];
 		}
@@ -106,7 +106,7 @@ public class DynamicMECreationCommands extends CompoundContributionItem {
 	 * @param leafSection
 	 * @return
 	 */
-	private Object[] getContentTypes(LeafSection leafSection) {
+	private Object[] getContentTypes(Section leafSection) {
 		// create a map of (EClass, EClassCount)
 		Map<Object, Countable> meCounts = new HashMap<Object, Countable>();
 		

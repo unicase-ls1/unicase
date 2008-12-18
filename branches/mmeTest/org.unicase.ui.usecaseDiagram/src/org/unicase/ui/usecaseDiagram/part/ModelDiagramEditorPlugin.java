@@ -26,7 +26,6 @@ import org.unicase.model.change.provider.ChangeItemProviderAdapterFactory;
 import org.unicase.model.classes.provider.ClassesItemProviderAdapterFactory;
 import org.unicase.model.component.provider.ComponentItemProviderAdapterFactory;
 import org.unicase.model.diagram.provider.DiagramItemProviderAdapterFactory;
-import org.unicase.model.document.provider.DocumentItemProviderAdapterFactory;
 import org.unicase.model.meeting.provider.MeetingItemProviderAdapterFactory;
 import org.unicase.model.organization.provider.OrganizationItemProviderAdapterFactory;
 import org.unicase.model.provider.ModelItemProviderAdapterFactory;
@@ -117,7 +116,6 @@ public class ModelDiagramEditorPlugin extends AbstractUIPlugin {
 		factories.add(new TaskItemProviderAdapterFactory());
 		factories.add(new DiagramItemProviderAdapterFactory());
 		factories.add(new ClassesItemProviderAdapterFactory());
-		factories.add(new DocumentItemProviderAdapterFactory());
 		factories.add(new RequirementItemProviderAdapterFactory());
 		factories.add(new RationaleItemProviderAdapterFactory());
 		factories.add(new ChangeItemProviderAdapterFactory());

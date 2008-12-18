@@ -9,7 +9,6 @@ package org.unicase.model;
 import java.util.Date;
 
 import org.eclipse.emf.common.util.EList;
-import org.unicase.model.document.LeafSection;
 import org.unicase.model.task.util.CircularDependencyException;
 import org.unicase.model.task.util.MEState;
 
@@ -26,8 +25,7 @@ import org.unicase.model.task.util.MEState;
  *   <li>{@link org.unicase.model.ModelElement#getCreationDate <em>Creation Date</em>}</li>
  *   <li>{@link org.unicase.model.ModelElement#getAnnotations <em>Annotations</em>}</li>
  *   <li>{@link org.unicase.model.ModelElement#getAttachments <em>Attachments</em>}</li>
- *   <li>{@link org.unicase.model.ModelElement#getIncomingDocumentReferences <em>Incoming Document References</em>}</li>
- *   <li>{@link org.unicase.model.ModelElement#getLeafSection <em>Leaf Section</em>}</li>
+ *   <li>{@link org.unicase.model.ModelElement#getParentSection <em>Parent Section</em>}</li>
  *   <li>{@link org.unicase.model.ModelElement#getState <em>State</em>}</li>
  * </ul>
  * </p>
@@ -184,51 +182,32 @@ public interface ModelElement extends IdentifiableElement {
 	EList<Attachment> getAttachments();
 
 	/**
-	 * Returns the value of the '<em><b>Incoming Document References</b></em>' reference list.
-	 * The list contents are of type {@link org.unicase.model.document.LeafSection}.
-	 * It is bidirectional and its opposite is '{@link org.unicase.model.document.LeafSection#getReferencedModelElements <em>Referenced Model Elements</em>}'.
+	 * Returns the value of the '<em><b>Parent Section</b></em>' container reference.
+	 * It is bidirectional and its opposite is '{@link org.unicase.model.Section#getModelElements <em>Model Elements</em>}'.
 	 * <!-- begin-user-doc -->
 	 * <p>
-	 * If the meaning of the '<em>Incoming Document References</em>' reference
-	 * list isn't clear, there really should be more of a description here...
+	 * If the meaning of the '<em>Parent Section</em>' container reference isn't clear,
+	 * there really should be more of a description here...
 	 * </p>
 	 * <!-- end-user-doc -->
-	 * @return the value of the '<em>Incoming Document References</em>' reference list.
-	 * @see org.unicase.model.ModelPackage#getModelElement_IncomingDocumentReferences()
-	 * @see org.unicase.model.document.LeafSection#getReferencedModelElements
-	 * @model opposite="referencedModelElements" keys="identifier"
-	 *        annotation="org.unicase.ui.meeditor priority='102.0' position='right'"
-	 * @generated
-	 */
-	EList<LeafSection> getIncomingDocumentReferences();
-
-	/**
-	 * Returns the value of the '<em><b>Leaf Section</b></em>' container reference.
-	 * It is bidirectional and its opposite is '{@link org.unicase.model.document.LeafSection#getModelElements <em>Model Elements</em>}'.
-	 * <!-- begin-user-doc -->
-	 * <p>
-	 * If the meaning of the '<em>Leaf Section</em>' container reference isn't
-	 * clear, there really should be more of a description here...
-	 * </p>
-	 * <!-- end-user-doc -->
-	 * @return the value of the '<em>Leaf Section</em>' container reference.
-	 * @see #setLeafSection(LeafSection)
-	 * @see org.unicase.model.ModelPackage#getModelElement_LeafSection()
-	 * @see org.unicase.model.document.LeafSection#getModelElements
+	 * @return the value of the '<em>Parent Section</em>' container reference.
+	 * @see #setParentSection(Section)
+	 * @see org.unicase.model.ModelPackage#getModelElement_ParentSection()
+	 * @see org.unicase.model.Section#getModelElements
 	 * @model opposite="modelElements" keys="identifier" transient="false"
 	 * @generated
 	 */
-	LeafSection getLeafSection();
+	Section getParentSection();
 
 	/**
-	 * Sets the value of the '{@link org.unicase.model.ModelElement#getLeafSection <em>Leaf Section</em>}' container reference.
-	 * <!-- begin-user-doc --> <!--
-	 * end-user-doc -->
-	 * @param value the new value of the '<em>Leaf Section</em>' container reference.
-	 * @see #getLeafSection()
+	 * Sets the value of the '{@link org.unicase.model.ModelElement#getParentSection <em>Parent Section</em>}' container reference.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @param value the new value of the '<em>Parent Section</em>' container reference.
+	 * @see #getParentSection()
 	 * @generated
 	 */
-	void setLeafSection(LeafSection value);
+	void setParentSection(Section value);
 
 	/**
 	 * Returns the value of the '<em><b>State</b></em>' attribute.

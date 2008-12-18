@@ -18,6 +18,7 @@ import org.unicase.model.ModelElementId;
 import org.unicase.model.ModelPackage;
 import org.unicase.model.NonDomainElement;
 import org.unicase.model.Project;
+import org.unicase.model.Section;
 import org.unicase.model.UniqueIdentifier;
 
 /**
@@ -73,6 +74,11 @@ public class ModelAdapterFactory extends AdapterFactoryImpl {
 	 * @generated
 	 */
 	protected ModelSwitch<Adapter> modelSwitch = new ModelSwitch<Adapter>() {
+		@Override
+		public Adapter caseSection(Section object) {
+			return createSectionAdapter();
+		}
+
 		@Override
 		public Adapter caseModelElement(ModelElement object) {
 			return createModelElementAdapter();
@@ -130,6 +136,20 @@ public class ModelAdapterFactory extends AdapterFactoryImpl {
 	@Override
 	public Adapter createAdapter(Notifier target) {
 		return modelSwitch.doSwitch((EObject) target);
+	}
+
+	/**
+	 * Creates a new adapter for an object of class '{@link org.unicase.model.Section <em>Section</em>}'.
+	 * <!-- begin-user-doc -->
+	 * This default implementation returns null so that we can easily ignore cases;
+	 * it's useful to ignore a case when inheritance will catch all the cases anyway.
+	 * <!-- end-user-doc -->
+	 * @return the new adapter.
+	 * @see org.unicase.model.Section
+	 * @generated
+	 */
+	public Adapter createSectionAdapter() {
+		return null;
 	}
 
 	/**

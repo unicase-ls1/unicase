@@ -25,16 +25,16 @@ import org.eclipse.emf.edit.provider.ITreeItemContentProvider;
 import org.eclipse.emf.edit.provider.ItemProviderAdapter;
 import org.eclipse.emf.edit.provider.ViewerNotification;
 import org.unicase.model.ModelElement;
+import org.unicase.model.ModelFactory;
 import org.unicase.model.ModelPackage;
 import org.unicase.model.Project;
+import org.unicase.model.Section;
 import org.unicase.model.attachment.AttachmentFactory;
 import org.unicase.model.bug.BugFactory;
 import org.unicase.model.change.ChangeFactory;
 import org.unicase.model.classes.ClassesFactory;
 import org.unicase.model.component.ComponentFactory;
 import org.unicase.model.diagram.DiagramFactory;
-import org.unicase.model.document.CompositeSection;
-import org.unicase.model.document.DocumentFactory;
 import org.unicase.model.meeting.MeetingFactory;
 import org.unicase.model.organization.OrganizationFactory;
 import org.unicase.model.rationale.RationaleFactory;
@@ -162,6 +162,10 @@ public class ProjectItemProvider extends ItemProviderAdapter implements
 
 		newChildDescriptors.add(createChildParameter(
 				ModelPackage.Literals.PROJECT__MODEL_ELEMENTS,
+				ModelFactory.eINSTANCE.createSection()));
+
+		newChildDescriptors.add(createChildParameter(
+				ModelPackage.Literals.PROJECT__MODEL_ELEMENTS,
 				OrganizationFactory.eINSTANCE.createUser()));
 
 		newChildDescriptors.add(createChildParameter(
@@ -211,14 +215,6 @@ public class ProjectItemProvider extends ItemProviderAdapter implements
 		newChildDescriptors.add(createChildParameter(
 				ModelPackage.Literals.PROJECT__MODEL_ELEMENTS,
 				ClassesFactory.eINSTANCE.createDependency()));
-
-		newChildDescriptors.add(createChildParameter(
-				ModelPackage.Literals.PROJECT__MODEL_ELEMENTS,
-				DocumentFactory.eINSTANCE.createLeafSection()));
-
-		newChildDescriptors.add(createChildParameter(
-				ModelPackage.Literals.PROJECT__MODEL_ELEMENTS,
-				DocumentFactory.eINSTANCE.createCompositeSection()));
 
 		newChildDescriptors.add(createChildParameter(
 				ModelPackage.Literals.PROJECT__MODEL_ELEMENTS,
@@ -362,7 +358,7 @@ public class ProjectItemProvider extends ItemProviderAdapter implements
 			for (ModelElement temp : allmes) {
 				econtainer = temp.eContainer();
 				if ((econtainer instanceof Project)
-						&& !(temp instanceof CompositeSection)) {
+						&& !(temp instanceof Section)) {
 					ret.add(temp);
 				}
 
