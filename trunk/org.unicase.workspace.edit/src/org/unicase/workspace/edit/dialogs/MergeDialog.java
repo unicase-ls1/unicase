@@ -7,6 +7,7 @@
 package org.unicase.workspace.edit.dialogs;
 
 import java.util.ArrayList;
+import java.util.HashMap;
 import java.util.List;
 
 import org.eclipse.emf.ecore.util.EcoreUtil;
@@ -37,6 +38,7 @@ import org.unicase.workspace.impl.ProjectSpaceImpl;
 public class MergeDialog extends TitleAreaDialog {
 
 	private List<ChangePackage> newChangePackages;
+	private MergeChangesComposite mergeComposite;
 
 	/**
 	 * Constructor.
@@ -71,6 +73,9 @@ public class MergeDialog extends TitleAreaDialog {
 	 */
 	@Override
 	protected Control createDialogArea(Composite parent) {
+		setMessage("Please select the changes you want to accept using the checkboxes. \n" +
+		"To show a quick conflict preview just mark the given operation.");
+		
 		Composite contents = new Composite(parent, SWT.NONE);
 		contents.setLayoutData(new GridData(SWT.FILL, SWT.FILL, true, true));
 		contents.setLayout(new GridLayout(2, false));
@@ -79,13 +84,13 @@ public class MergeDialog extends TitleAreaDialog {
 		Label lblMyChanges = new Label(contents, SWT.NONE);
 		lblMyChanges.setLayoutData(new GridData(SWT.BEGINNING, SWT.CENTER,
 				false, false, 1, 1));
-		lblMyChanges.setText("My changes: ");
+		lblMyChanges.setText("My changes");
 
 		// lblTheirChanges
 		Label lblTheirChanges = new Label(contents, SWT.NONE);
 		lblTheirChanges.setLayoutData(new GridData(SWT.END, SWT.CENTER, false,
 				false, 1, 1));
-		lblTheirChanges.setText("Their changes: ");
+		lblTheirChanges.setText("Their changes");
 
 		// Sash
 		ChangePackage changePackage = VersioningFactory.eINSTANCE
@@ -98,8 +103,8 @@ public class MergeDialog extends TitleAreaDialog {
 		}
 		ArrayList<ChangePackage> myChangePackages = new ArrayList<ChangePackage>();
 		myChangePackages.add(changePackage);
-		MergeChangesComposite composite = new MergeChangesComposite(contents,SWT.NONE,myChangePackages,newChangePackages);
-		composite.setLayoutData(new GridData(SWT.FILL, SWT.FILL, true, true, 2,
+		mergeComposite = new MergeChangesComposite(contents,SWT.NONE,myChangePackages,newChangePackages);
+		mergeComposite.setLayoutData(new GridData(SWT.FILL, SWT.FILL, true, true, 2,
 				1));
 
 		return contents;
@@ -111,7 +116,16 @@ public class MergeDialog extends TitleAreaDialog {
 	 */
 	@Override
 	protected void okPressed() {
-		// TODO final implementation
+		
+		//TODO MK: deal with the checked changes
+		HashMap<String, List<AbstractOperation>> resultSet = mergeComposite.getResultSet();
+		@SuppressWarnings("unused")
+		List<AbstractOperation> theirChanges = resultSet.get("theirs");
+		@SuppressWarnings("unused")
+		List<AbstractOperation> myChanges = resultSet.get("mineChecked");
+		@SuppressWarnings("unused")
+		List<AbstractOperation> theirNotChecked = resultSet.get("theirsNotChecked");
+		
 		super.okPressed();
 	}
 
