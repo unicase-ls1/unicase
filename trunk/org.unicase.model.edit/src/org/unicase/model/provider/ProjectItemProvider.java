@@ -37,6 +37,7 @@ import org.unicase.model.document.CompositeSection;
 import org.unicase.model.document.DocumentFactory;
 import org.unicase.model.meeting.MeetingFactory;
 import org.unicase.model.organization.OrganizationFactory;
+import org.unicase.model.profile.ProfileFactory;
 import org.unicase.model.rationale.RationaleFactory;
 import org.unicase.model.requirement.RequirementFactory;
 import org.unicase.model.state.StateFactory;
@@ -339,6 +340,27 @@ public class ProjectItemProvider extends ItemProviderAdapter implements
 		newChildDescriptors.add(createChildParameter(
 				ModelPackage.Literals.PROJECT__MODEL_ELEMENTS,
 				AttachmentFactory.eINSTANCE.createUrlAttachment()));
+
+		newChildDescriptors.add(createChildParameter(
+				ModelPackage.Literals.PROJECT__MODEL_ELEMENTS,
+				ProfileFactory.eINSTANCE.createProfile()));
+
+		newChildDescriptors.add(createChildParameter(
+				ModelPackage.Literals.PROJECT__MODEL_ELEMENTS,
+				ProfileFactory.eINSTANCE.createStereotype()));
+
+		newChildDescriptors.add(createChildParameter(
+				ModelPackage.Literals.PROJECT__MODEL_ELEMENTS,
+				ProfileFactory.eINSTANCE.createStereotypeInstance()));
+
+		newChildDescriptors.add(createChildParameter(
+				ModelPackage.Literals.PROJECT__MODEL_ELEMENTS,
+				ProfileFactory.eINSTANCE.createStereotypeAttributeSimple()));
+
+		newChildDescriptors.add(createChildParameter(
+				ModelPackage.Literals.PROJECT__MODEL_ELEMENTS,
+				ProfileFactory.eINSTANCE
+						.createStereotypeAttributeInstanceString()));
 	}
 
 	/**

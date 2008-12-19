@@ -154,6 +154,15 @@ public interface TaskPackage extends EPackage {
 	int WORK_ITEM__STATE = ModelPackage.ANNOTATION__STATE;
 
 	/**
+	 * The feature id for the '<em><b>Applied Stereotype Instances</b></em>' containment reference list.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 * @ordered
+	 */
+	int WORK_ITEM__APPLIED_STEREOTYPE_INSTANCES = ModelPackage.ANNOTATION__APPLIED_STEREOTYPE_INSTANCES;
+
+	/**
 	 * The feature id for the '<em><b>Annotated Model Elements</b></em>' reference list.
 	 * <!-- begin-user-doc --> <!-- end-user-doc -->
 	 * @generated
@@ -344,6 +353,15 @@ public interface TaskPackage extends EPackage {
 	 * @ordered
 	 */
 	int ACTION_ITEM__STATE = WORK_ITEM__STATE;
+
+	/**
+	 * The feature id for the '<em><b>Applied Stereotype Instances</b></em>' containment reference list.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 * @ordered
+	 */
+	int ACTION_ITEM__APPLIED_STEREOTYPE_INSTANCES = WORK_ITEM__APPLIED_STEREOTYPE_INSTANCES;
 
 	/**
 	 * The feature id for the '<em><b>Annotated Model Elements</b></em>' reference list.
@@ -562,6 +580,15 @@ public interface TaskPackage extends EPackage {
 	 * @ordered
 	 */
 	int WORK_PACKAGE__STATE = WORK_ITEM__STATE;
+
+	/**
+	 * The feature id for the '<em><b>Applied Stereotype Instances</b></em>' containment reference list.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 * @ordered
+	 */
+	int WORK_PACKAGE__APPLIED_STEREOTYPE_INSTANCES = WORK_ITEM__APPLIED_STEREOTYPE_INSTANCES;
 
 	/**
 	 * The feature id for the '<em><b>Annotated Model Elements</b></em>' reference list.
@@ -787,6 +814,15 @@ public interface TaskPackage extends EPackage {
 	 * @ordered
 	 */
 	int MILESTONE__STATE = WORK_ITEM__STATE;
+
+	/**
+	 * The feature id for the '<em><b>Applied Stereotype Instances</b></em>' containment reference list.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 * @ordered
+	 */
+	int MILESTONE__APPLIED_STEREOTYPE_INSTANCES = WORK_ITEM__APPLIED_STEREOTYPE_INSTANCES;
 
 	/**
 	 * The feature id for the '<em><b>Annotated Model Elements</b></em>' reference list.

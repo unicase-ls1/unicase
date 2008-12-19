@@ -32,6 +32,8 @@ import org.unicase.model.meeting.MeetingPackage;
 import org.unicase.model.meeting.impl.MeetingPackageImpl;
 import org.unicase.model.organization.OrganizationPackage;
 import org.unicase.model.organization.impl.OrganizationPackageImpl;
+import org.unicase.model.profile.ProfilePackage;
+import org.unicase.model.profile.impl.ProfilePackageImpl;
 import org.unicase.model.rationale.Assessment;
 import org.unicase.model.rationale.Comment;
 import org.unicase.model.rationale.Criterion;
@@ -205,6 +207,10 @@ public class RationalePackageImpl extends EPackageImpl implements
 				.getEPackage(AttachmentPackage.eNS_URI) instanceof AttachmentPackageImpl ? EPackage.Registry.INSTANCE
 				.getEPackage(AttachmentPackage.eNS_URI)
 				: AttachmentPackage.eINSTANCE);
+		ProfilePackageImpl theProfilePackage = (ProfilePackageImpl) (EPackage.Registry.INSTANCE
+				.getEPackage(ProfilePackage.eNS_URI) instanceof ProfilePackageImpl ? EPackage.Registry.INSTANCE
+				.getEPackage(ProfilePackage.eNS_URI)
+				: ProfilePackage.eINSTANCE);
 
 		// Create package meta-data objects
 		theRationalePackage.createPackageContents();
@@ -221,6 +227,7 @@ public class RationalePackageImpl extends EPackageImpl implements
 		theMeetingPackage.createPackageContents();
 		theStatePackage.createPackageContents();
 		theAttachmentPackage.createPackageContents();
+		theProfilePackage.createPackageContents();
 
 		// Initialize created meta-data
 		theRationalePackage.initializePackageContents();
@@ -237,6 +244,7 @@ public class RationalePackageImpl extends EPackageImpl implements
 		theMeetingPackage.initializePackageContents();
 		theStatePackage.initializePackageContents();
 		theAttachmentPackage.initializePackageContents();
+		theProfilePackage.initializePackageContents();
 
 		// Mark meta-data to indicate it can't be changed
 		theRationalePackage.freeze();

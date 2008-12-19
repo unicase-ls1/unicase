@@ -153,6 +153,15 @@ public interface ComponentPackage extends EPackage {
 	int COMPONENT__STATE = ModelPackage.MODEL_ELEMENT__STATE;
 
 	/**
+	 * The feature id for the '<em><b>Applied Stereotype Instances</b></em>' containment reference list.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 * @ordered
+	 */
+	int COMPONENT__APPLIED_STEREOTYPE_INSTANCES = ModelPackage.MODEL_ELEMENT__APPLIED_STEREOTYPE_INSTANCES;
+
+	/**
 	 * The feature id for the '<em><b>Packages</b></em>' reference list. <!--
 	 * begin-user-doc --> <!-- end-user-doc -->
 	 * 
@@ -292,6 +301,15 @@ public interface ComponentPackage extends EPackage {
 	int COMPONENT_SERVICE__STATE = ModelPackage.MODEL_ELEMENT__STATE;
 
 	/**
+	 * The feature id for the '<em><b>Applied Stereotype Instances</b></em>' containment reference list.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 * @ordered
+	 */
+	int COMPONENT_SERVICE__APPLIED_STEREOTYPE_INSTANCES = ModelPackage.MODEL_ELEMENT__APPLIED_STEREOTYPE_INSTANCES;
+
+	/**
 	 * The feature id for the '<em><b>Offering Component</b></em>' container reference.
 	 * <!-- begin-user-doc --> <!-- end-user-doc -->
 	 * @generated
@@ -412,6 +430,15 @@ public interface ComponentPackage extends EPackage {
 	 * @ordered
 	 */
 	int DEPLOYMENT_NODE__STATE = ModelPackage.MODEL_ELEMENT__STATE;
+
+	/**
+	 * The feature id for the '<em><b>Applied Stereotype Instances</b></em>' containment reference list.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 * @ordered
+	 */
+	int DEPLOYMENT_NODE__APPLIED_STEREOTYPE_INSTANCES = ModelPackage.MODEL_ELEMENT__APPLIED_STEREOTYPE_INSTANCES;
 
 	/**
 	 * The feature id for the '<em><b>Components</b></em>' reference list. <!--

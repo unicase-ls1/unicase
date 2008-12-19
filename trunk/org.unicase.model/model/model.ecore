@@ -21,7 +21,7 @@
         <details key="position" value="left"/>
       </eAnnotations>
     </eStructuralFeatures>
-    <eStructuralFeatures xsi:type="ecore:EAttribute" name="creator" eType="ecore:EDataType platform:/plugin/org.eclipse.emf.ecore/model/Ecore.ecore#//EString"/>
+    <eStructuralFeatures xsi:type="ecore:EAttribute" name="creator" eType="ecore:EDataType http://www.eclipse.org/emf/2002/Ecore#//EString"/>
     <eStructuralFeatures xsi:type="ecore:EAttribute" name="creationDate" eType="ecore:EDataType http://www.eclipse.org/emf/2002/Ecore#//EDate"/>
     <eStructuralFeatures xsi:type="ecore:EReference" name="annotations" upperBound="-1"
         eType="#//Annotation" eOpposite="#//Annotation/annotatedModelElements" eKeys="#//IdentifiableElement/identifier">
@@ -47,9 +47,12 @@
     </eStructuralFeatures>
     <eStructuralFeatures xsi:type="ecore:EReference" name="leafSection" eType="#//document/LeafSection"
         eOpposite="#//document/LeafSection/modelElements" eKeys="#//IdentifiableElement/identifier"/>
-    <eStructuralFeatures xsi:type="ecore:EAttribute" name="state" eType="ecore:EDataType platform:/plugin/org.eclipse.emf.ecore/model/Ecore.ecore#//EString"
+    <eStructuralFeatures xsi:type="ecore:EAttribute" name="state" eType="ecore:EDataType http://www.eclipse.org/emf/2002/Ecore#//EString"
         changeable="false" volatile="true" transient="true" defaultValueLiteral=""
         derived="true"/>
+    <eStructuralFeatures xsi:type="ecore:EReference" name="appliedStereotypeInstances"
+        upperBound="-1" eType="#//profile/StereotypeInstance" containment="true" eOpposite="#//profile/StereotypeInstance/modelElement"
+        eKeys="#//IdentifiableElement/identifier"/>
   </eClassifiers>
   <eClassifiers xsi:type="ecore:EClass" name="Project">
     <eOperations name="addModelElement">
@@ -71,12 +74,12 @@
       <eTypeParameters name="T">
         <eBounds eClassifier="#//ModelElement"/>
       </eTypeParameters>
-      <eParameters name="modelElementClass" eType="ecore:EClass platform:/plugin/org.eclipse.emf.ecore/model/Ecore.ecore#//EClass"/>
+      <eParameters name="modelElementClass" eType="ecore:EClass http://www.eclipse.org/emf/2002/Ecore#//EClass"/>
       <eParameters name="list" upperBound="-1">
         <eGenericType eTypeParameter="#//Project/getModelElementsByClass/T"/>
       </eParameters>
     </eOperations>
-    <eOperations name="contains" eType="ecore:EDataType platform:/plugin/org.eclipse.emf.ecore/model/Ecore.ecore#//EBoolean">
+    <eOperations name="contains" eType="ecore:EDataType http://www.eclipse.org/emf/2002/Ecore#//EBoolean">
       <eParameters name="modelElement" eType="#//ModelElement"/>
     </eOperations>
     <eStructuralFeatures xsi:type="ecore:EReference" name="modelElements" ordered="false"
@@ -184,13 +187,13 @@
           <details key="position" value="right"/>
         </eAnnotations>
       </eStructuralFeatures>
-      <eStructuralFeatures xsi:type="ecore:EAttribute" name="startDate" eType="ecore:EDataType platform:/plugin/org.eclipse.emf.ecore/model/Ecore.ecore#//EDate">
+      <eStructuralFeatures xsi:type="ecore:EAttribute" name="startDate" eType="ecore:EDataType http://www.eclipse.org/emf/2002/Ecore#//EDate">
         <eAnnotations source="org.unicase.ui.meeditor">
           <details key="priority" value="20.0"/>
           <details key="position" value="left"/>
         </eAnnotations>
       </eStructuralFeatures>
-      <eStructuralFeatures xsi:type="ecore:EAttribute" name="endDate" eType="ecore:EDataType platform:/plugin/org.eclipse.emf.ecore/model/Ecore.ecore#//EDate">
+      <eStructuralFeatures xsi:type="ecore:EAttribute" name="endDate" eType="ecore:EDataType http://www.eclipse.org/emf/2002/Ecore#//EDate">
         <eAnnotations source="org.unicase.ui.meeditor">
           <details key="priority" value="21.0"/>
           <details key="position" value="left"/>
@@ -266,7 +269,7 @@
       <eLiterals name="MANAGEMENT" value="6" literal="Management"/>
     </eClassifiers>
     <eClassifiers xsi:type="ecore:EClass" name="Checkable" abstract="true" interface="true">
-      <eStructuralFeatures xsi:type="ecore:EAttribute" name="checked" eType="ecore:EDataType platform:/plugin/org.eclipse.emf.ecore/model/Ecore.ecore#//EBoolean"
+      <eStructuralFeatures xsi:type="ecore:EAttribute" name="checked" eType="ecore:EDataType http://www.eclipse.org/emf/2002/Ecore#//EBoolean"
           volatile="true" transient="true" derived="true"/>
     </eClassifiers>
   </eSubpackages>
@@ -279,7 +282,7 @@
       <eStructuralFeatures xsi:type="ecore:EReference" name="newElements" upperBound="-1"
           eType="#//ModelElement" transient="true" containment="true" eKeys="#//IdentifiableElement/identifier"/>
       <eStructuralFeatures xsi:type="ecore:EAttribute" name="type" eType="#//diagram/DiagramType"/>
-      <eStructuralFeatures xsi:type="ecore:EAttribute" name="diagramLayout" eType="ecore:EDataType platform:/plugin/org.eclipse.emf.ecore/model/Ecore.ecore#//EString"/>
+      <eStructuralFeatures xsi:type="ecore:EAttribute" name="diagramLayout" eType="ecore:EDataType http://www.eclipse.org/emf/2002/Ecore#//EString"/>
     </eClassifiers>
     <eClassifiers xsi:type="ecore:EEnum" name="DiagramType">
       <eLiterals name="CLASS_DIAGRAM" literal="CLASS_DIAGRAM"/>
@@ -451,28 +454,28 @@
           <details key="position" value="left"/>
         </eAnnotations>
       </eStructuralFeatures>
-      <eStructuralFeatures xsi:type="ecore:EAttribute" name="signature" eType="ecore:EDataType platform:/plugin/org.eclipse.emf.ecore/model/Ecore.ecore#//EString"
+      <eStructuralFeatures xsi:type="ecore:EAttribute" name="signature" eType="ecore:EDataType http://www.eclipse.org/emf/2002/Ecore#//EString"
           changeable="false" volatile="true" transient="true" derived="true"/>
-      <eStructuralFeatures xsi:type="ecore:EAttribute" name="type" eType="ecore:EDataType platform:/plugin/org.eclipse.emf.ecore/model/Ecore.ecore#//EString"
+      <eStructuralFeatures xsi:type="ecore:EAttribute" name="type" eType="ecore:EDataType http://www.eclipse.org/emf/2002/Ecore#//EString"
           defaultValueLiteral="">
         <eAnnotations source="org.unicase.ui.meeditor">
           <details key="priority" value="13.0"/>
           <details key="position" value="left"/>
         </eAnnotations>
       </eStructuralFeatures>
-      <eStructuralFeatures xsi:type="ecore:EAttribute" name="defaultValue" eType="ecore:EDataType platform:/plugin/org.eclipse.emf.ecore/model/Ecore.ecore#//EString">
+      <eStructuralFeatures xsi:type="ecore:EAttribute" name="defaultValue" eType="ecore:EDataType http://www.eclipse.org/emf/2002/Ecore#//EString">
         <eAnnotations source="org.unicase.ui.meeditor">
           <details key="priority" value="14.0"/>
           <details key="position" value="left"/>
         </eAnnotations>
       </eStructuralFeatures>
-      <eStructuralFeatures xsi:type="ecore:EAttribute" name="properties" eType="ecore:EDataType platform:/plugin/org.eclipse.emf.ecore/model/Ecore.ecore#//EString">
+      <eStructuralFeatures xsi:type="ecore:EAttribute" name="properties" eType="ecore:EDataType http://www.eclipse.org/emf/2002/Ecore#//EString">
         <eAnnotations source="org.unicase.ui.meeditor">
           <details key="priority" value="15.0"/>
           <details key="position" value="left"/>
         </eAnnotations>
       </eStructuralFeatures>
-      <eStructuralFeatures xsi:type="ecore:EAttribute" name="label" eType="ecore:EDataType platform:/plugin/org.eclipse.emf.ecore/model/Ecore.ecore#//EString">
+      <eStructuralFeatures xsi:type="ecore:EAttribute" name="label" eType="ecore:EDataType http://www.eclipse.org/emf/2002/Ecore#//EString">
         <eAnnotations source="org.unicase.ui.meeditor">
           <details key="priority" value="16.0"/>
           <details key="position" value="left"/>
@@ -510,13 +513,13 @@
           <details key="position" value="left"/>
         </eAnnotations>
       </eStructuralFeatures>
-      <eStructuralFeatures xsi:type="ecore:EAttribute" name="returnType" eType="ecore:EDataType platform:/plugin/org.eclipse.emf.ecore/model/Ecore.ecore#//EString">
+      <eStructuralFeatures xsi:type="ecore:EAttribute" name="returnType" eType="ecore:EDataType http://www.eclipse.org/emf/2002/Ecore#//EString">
         <eAnnotations source="org.unicase.ui.meeditor">
           <details key="priority" value="13.0"/>
           <details key="position" value="left"/>
         </eAnnotations>
       </eStructuralFeatures>
-      <eStructuralFeatures xsi:type="ecore:EAttribute" name="signature" eType="ecore:EDataType platform:/plugin/org.eclipse.emf.ecore/model/Ecore.ecore#//EString"
+      <eStructuralFeatures xsi:type="ecore:EAttribute" name="signature" eType="ecore:EDataType http://www.eclipse.org/emf/2002/Ecore#//EString"
           changeable="false" volatile="true" transient="true" defaultValueLiteral=""
           derived="true"/>
       <eStructuralFeatures xsi:type="ecore:EReference" name="arguments" upperBound="-1"
@@ -526,13 +529,13 @@
           <details key="position" value="right"/>
         </eAnnotations>
       </eStructuralFeatures>
-      <eStructuralFeatures xsi:type="ecore:EAttribute" name="properties" eType="ecore:EDataType platform:/plugin/org.eclipse.emf.ecore/model/Ecore.ecore#//EString">
+      <eStructuralFeatures xsi:type="ecore:EAttribute" name="properties" eType="ecore:EDataType http://www.eclipse.org/emf/2002/Ecore#//EString">
         <eAnnotations source="org.unicase.ui.meeditor">
           <details key="priority" value="14.0"/>
           <details key="position" value="left"/>
         </eAnnotations>
       </eStructuralFeatures>
-      <eStructuralFeatures xsi:type="ecore:EAttribute" name="label" eType="ecore:EDataType platform:/plugin/org.eclipse.emf.ecore/model/Ecore.ecore#//EString">
+      <eStructuralFeatures xsi:type="ecore:EAttribute" name="label" eType="ecore:EDataType http://www.eclipse.org/emf/2002/Ecore#//EString">
         <eAnnotations source="org.unicase.ui.meeditor">
           <details key="priority" value="15.0"/>
           <details key="position" value="left"/>
@@ -540,7 +543,7 @@
       </eStructuralFeatures>
     </eClassifiers>
     <eClassifiers xsi:type="ecore:EClass" name="MethodArgument" eSuperTypes="#//ModelElement">
-      <eStructuralFeatures xsi:type="ecore:EAttribute" name="type" eType="ecore:EDataType platform:/plugin/org.eclipse.emf.ecore/model/Ecore.ecore#//EString">
+      <eStructuralFeatures xsi:type="ecore:EAttribute" name="type" eType="ecore:EDataType http://www.eclipse.org/emf/2002/Ecore#//EString">
         <eAnnotations source="org.unicase.ui.meeditor">
           <details key="priority" value="10.0"/>
           <details key="position" value="left"/>
@@ -552,16 +555,16 @@
           <details key="position" value="left"/>
         </eAnnotations>
       </eStructuralFeatures>
-      <eStructuralFeatures xsi:type="ecore:EAttribute" name="defaultValue" eType="ecore:EDataType platform:/plugin/org.eclipse.emf.ecore/model/Ecore.ecore#//EString">
+      <eStructuralFeatures xsi:type="ecore:EAttribute" name="defaultValue" eType="ecore:EDataType http://www.eclipse.org/emf/2002/Ecore#//EString">
         <eAnnotations source="org.unicase.ui.meeditor">
           <details key="priority" value="12.0"/>
           <details key="position" value="left"/>
         </eAnnotations>
       </eStructuralFeatures>
       <eStructuralFeatures xsi:type="ecore:EAttribute" name="signature" unique="false"
-          eType="ecore:EDataType platform:/plugin/org.eclipse.emf.ecore/model/Ecore.ecore#//EString"
+          eType="ecore:EDataType http://www.eclipse.org/emf/2002/Ecore#//EString"
           changeable="false" volatile="true" transient="true" derived="true"/>
-      <eStructuralFeatures xsi:type="ecore:EAttribute" name="label" eType="ecore:EDataType platform:/plugin/org.eclipse.emf.ecore/model/Ecore.ecore#//EString">
+      <eStructuralFeatures xsi:type="ecore:EAttribute" name="label" eType="ecore:EDataType http://www.eclipse.org/emf/2002/Ecore#//EString">
         <eAnnotations source="org.unicase.ui.meeditor">
           <details key="priority" value="13.0"/>
           <details key="position" value="left"/>
@@ -716,14 +719,14 @@
       </eStructuralFeatures>
       <eStructuralFeatures xsi:type="ecore:EReference" name="realizedUserTask" eType="#//requirement/UserTask"
           eOpposite="#//requirement/UserTask/realizingUseCases" eKeys="#//IdentifiableElement/identifier"/>
-      <eStructuralFeatures xsi:type="ecore:EAttribute" name="precondition" eType="ecore:EDataType platform:/plugin/org.eclipse.emf.ecore/model/Ecore.ecore#//EString"/>
+      <eStructuralFeatures xsi:type="ecore:EAttribute" name="precondition" eType="ecore:EDataType http://www.eclipse.org/emf/2002/Ecore#//EString"/>
       <eStructuralFeatures xsi:type="ecore:EReference" name="useCaseSteps" upperBound="-1"
           eType="#//requirement/Step" containment="true" eOpposite="#//requirement/Step/useCase"
           eKeys="#//IdentifiableElement/identifier"/>
-      <eStructuralFeatures xsi:type="ecore:EAttribute" name="postcondition" eType="ecore:EDataType platform:/plugin/org.eclipse.emf.ecore/model/Ecore.ecore#//EString"/>
-      <eStructuralFeatures xsi:type="ecore:EAttribute" name="rules" eType="ecore:EDataType platform:/plugin/org.eclipse.emf.ecore/model/Ecore.ecore#//EString"
+      <eStructuralFeatures xsi:type="ecore:EAttribute" name="postcondition" eType="ecore:EDataType http://www.eclipse.org/emf/2002/Ecore#//EString"/>
+      <eStructuralFeatures xsi:type="ecore:EAttribute" name="rules" eType="ecore:EDataType http://www.eclipse.org/emf/2002/Ecore#//EString"
           defaultValueLiteral=""/>
-      <eStructuralFeatures xsi:type="ecore:EAttribute" name="exception" eType="ecore:EDataType platform:/plugin/org.eclipse.emf.ecore/model/Ecore.ecore#//EString"/>
+      <eStructuralFeatures xsi:type="ecore:EAttribute" name="exception" eType="ecore:EDataType http://www.eclipse.org/emf/2002/Ecore#//EString"/>
       <eStructuralFeatures xsi:type="ecore:EReference" name="scenarios" upperBound="-1"
           eType="#//requirement/Scenario" eOpposite="#//requirement/Scenario/instantiatedUseCases"
           eKeys="#//IdentifiableElement/identifier">
@@ -882,9 +885,9 @@
           eOpposite="#//requirement/UseCase/useCaseSteps" eKeys="#//IdentifiableElement/identifier"/>
     </eClassifiers>
     <eClassifiers xsi:type="ecore:EClass" name="SystemFunction" eSuperTypes="#//ModelElement #//NonDomainElement">
-      <eStructuralFeatures xsi:type="ecore:EAttribute" name="input" eType="ecore:EDataType platform:/plugin/org.eclipse.emf.ecore/model/Ecore.ecore#//EString"/>
-      <eStructuralFeatures xsi:type="ecore:EAttribute" name="output" eType="ecore:EDataType platform:/plugin/org.eclipse.emf.ecore/model/Ecore.ecore#//EString"/>
-      <eStructuralFeatures xsi:type="ecore:EAttribute" name="exception" eType="ecore:EDataType platform:/plugin/org.eclipse.emf.ecore/model/Ecore.ecore#//EString"/>
+      <eStructuralFeatures xsi:type="ecore:EAttribute" name="input" eType="ecore:EDataType http://www.eclipse.org/emf/2002/Ecore#//EString"/>
+      <eStructuralFeatures xsi:type="ecore:EAttribute" name="output" eType="ecore:EDataType http://www.eclipse.org/emf/2002/Ecore#//EString"/>
+      <eStructuralFeatures xsi:type="ecore:EAttribute" name="exception" eType="ecore:EDataType http://www.eclipse.org/emf/2002/Ecore#//EString"/>
     </eClassifiers>
     <eClassifiers xsi:type="ecore:EClass" name="UserTask" eSuperTypes="#//ModelElement #//NonDomainElement">
       <eStructuralFeatures xsi:type="ecore:EReference" name="initiatingActor" eType="#//requirement/Actor"
@@ -1021,7 +1024,7 @@
           <details key="position" value="left"/>
         </eAnnotations>
       </eStructuralFeatures>
-      <eStructuralFeatures xsi:type="ecore:EAttribute" name="resolution" eType="ecore:EDataType platform:/plugin/org.eclipse.emf.ecore/model/Ecore.ecore#//EString">
+      <eStructuralFeatures xsi:type="ecore:EAttribute" name="resolution" eType="ecore:EDataType http://www.eclipse.org/emf/2002/Ecore#//EString">
         <eAnnotations source="org.unicase.ui.meeditor">
           <details key="priority" value="21.0"/>
           <details key="position" value="left"/>
@@ -1220,6 +1223,58 @@
   <eSubpackages name="attachment" nsURI="http://unicase.org/model/attachment" nsPrefix="org.unicase.model.attachment">
     <eClassifiers xsi:type="ecore:EClass" name="UrlAttachment" eSuperTypes="#//Attachment">
       <eStructuralFeatures xsi:type="ecore:EAttribute" name="url" eType="ecore:EDataType http://www.eclipse.org/emf/2002/Ecore#//EString"/>
+    </eClassifiers>
+  </eSubpackages>
+  <eSubpackages name="profile" nsURI="http://unicase.org/model/profile" nsPrefix="org.unicase.model.profile">
+    <eClassifiers xsi:type="ecore:EClass" name="Profile" eSuperTypes="#//ModelElement">
+      <eStructuralFeatures xsi:type="ecore:EReference" name="affectedContainers" upperBound="-1"
+          eType="#//ModelElement" eKeys="#//IdentifiableElement/identifier"/>
+      <eStructuralFeatures xsi:type="ecore:EReference" name="stereotypes" upperBound="-1"
+          eType="#//profile/Stereotype" containment="true" eOpposite="#//profile/Stereotype/profile"
+          eKeys="#//IdentifiableElement/identifier"/>
+    </eClassifiers>
+    <eClassifiers xsi:type="ecore:EClass" name="Stereotype" eSuperTypes="#//ModelElement">
+      <eStructuralFeatures xsi:type="ecore:EAttribute" name="required" eType="ecore:EDataType http://www.eclipse.org/emf/2002/Ecore#//EBoolean"/>
+      <eStructuralFeatures xsi:type="ecore:EReference" name="profile" eType="#//profile/Profile"
+          eOpposite="#//profile/Profile/stereotypes" eKeys="#//IdentifiableElement/identifier"/>
+      <eStructuralFeatures xsi:type="ecore:EReference" name="stereotypeInstances"
+          upperBound="-1" eType="#//profile/StereotypeInstance" eOpposite="#//profile/StereotypeInstance/stereotype"
+          eKeys="#//IdentifiableElement/identifier"/>
+      <eStructuralFeatures xsi:type="ecore:EReference" name="stereotypeAttributes"
+          upperBound="-1" eType="#//profile/StereotypeAttribute" containment="true"
+          eOpposite="#//profile/StereotypeAttribute/stereotype" eKeys="#//IdentifiableElement/identifier"/>
+    </eClassifiers>
+    <eClassifiers xsi:type="ecore:EClass" name="StereotypeInstance" eSuperTypes="#//ModelElement">
+      <eStructuralFeatures xsi:type="ecore:EReference" name="stereotype" eType="#//profile/Stereotype"
+          eOpposite="#//profile/Stereotype/stereotypeInstances" eKeys="#//IdentifiableElement/identifier"/>
+      <eStructuralFeatures xsi:type="ecore:EReference" name="modelElement" eType="#//ModelElement"
+          eOpposite="#//ModelElement/appliedStereotypeInstances" eKeys="#//IdentifiableElement/identifier"/>
+      <eStructuralFeatures xsi:type="ecore:EReference" name="stereotypeAttributeInstances"
+          upperBound="-1" eType="#//profile/StereotypeAttributeInstance" containment="true"
+          eOpposite="#//profile/StereotypeAttributeInstance/stereotypeInstance" eKeys="#//IdentifiableElement/identifier"/>
+    </eClassifiers>
+    <eClassifiers xsi:type="ecore:EClass" name="StereotypeAttribute" abstract="true"
+        eSuperTypes="#//ModelElement">
+      <eStructuralFeatures xsi:type="ecore:EReference" name="stereotype" eType="#//profile/Stereotype"
+          eOpposite="#//profile/Stereotype/stereotypeAttributes" eKeys="#//IdentifiableElement/identifier"/>
+      <eStructuralFeatures xsi:type="ecore:EReference" name="stereotypeAttributeInstances"
+          upperBound="-1" eType="#//profile/StereotypeAttributeInstance" eOpposite="#//profile/StereotypeAttributeInstance/stereotypeAttribute"
+          eKeys="#//IdentifiableElement/identifier"/>
+    </eClassifiers>
+    <eClassifiers xsi:type="ecore:EClass" name="StereotypeAttributeSimple" eSuperTypes="#//profile/StereotypeAttribute">
+      <eStructuralFeatures xsi:type="ecore:EAttribute" name="type" eType="ecore:EDataType http://www.eclipse.org/emf/2002/Ecore#//EString"/>
+    </eClassifiers>
+    <eClassifiers xsi:type="ecore:EClass" name="StereotypeAttributeInstance" abstract="true"
+        eSuperTypes="#//ModelElement">
+      <eStructuralFeatures xsi:type="ecore:EReference" name="stereotypeInstance" eType="#//profile/StereotypeInstance"
+          eOpposite="#//profile/StereotypeInstance/stereotypeAttributeInstances" eKeys="#//IdentifiableElement/identifier"/>
+      <eStructuralFeatures xsi:type="ecore:EReference" name="stereotypeAttribute"
+          eType="#//profile/StereotypeAttribute" eOpposite="#//profile/StereotypeAttribute/stereotypeAttributeInstances"
+          eKeys="#//IdentifiableElement/identifier"/>
+    </eClassifiers>
+    <eClassifiers xsi:type="ecore:EClass" name="StereotypeAttributeInstanceString"
+        eSuperTypes="#//profile/StereotypeAttributeInstance">
+      <eStructuralFeatures xsi:type="ecore:EAttribute" name="value" eType="ecore:EDataType http://www.eclipse.org/emf/2002/Ecore#//EString"/>
     </eClassifiers>
   </eSubpackages>
 </ecore:EPackage>

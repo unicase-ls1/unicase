@@ -162,6 +162,15 @@ public interface MeetingPackage extends EPackage {
 	int MEETING__STATE = ModelPackage.MODEL_ELEMENT__STATE;
 
 	/**
+	 * The feature id for the '<em><b>Applied Stereotype Instances</b></em>' containment reference list.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 * @ordered
+	 */
+	int MEETING__APPLIED_STEREOTYPE_INSTANCES = ModelPackage.MODEL_ELEMENT__APPLIED_STEREOTYPE_INSTANCES;
+
+	/**
 	 * The feature id for the '<em><b>Location</b></em>' attribute.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
@@ -361,6 +370,15 @@ public interface MeetingPackage extends EPackage {
 	int MEETING_SECTION__STATE = ModelPackage.MODEL_ELEMENT__STATE;
 
 	/**
+	 * The feature id for the '<em><b>Applied Stereotype Instances</b></em>' containment reference list.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 * @ordered
+	 */
+	int MEETING_SECTION__APPLIED_STEREOTYPE_INSTANCES = ModelPackage.MODEL_ELEMENT__APPLIED_STEREOTYPE_INSTANCES;
+
+	/**
 	 * The feature id for the '<em><b>Allocated Time</b></em>' attribute.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
@@ -477,6 +495,15 @@ public interface MeetingPackage extends EPackage {
 	 * @ordered
 	 */
 	int COMPOSITE_MEETING_SECTION__STATE = MEETING_SECTION__STATE;
+
+	/**
+	 * The feature id for the '<em><b>Applied Stereotype Instances</b></em>' containment reference list.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 * @ordered
+	 */
+	int COMPOSITE_MEETING_SECTION__APPLIED_STEREOTYPE_INSTANCES = MEETING_SECTION__APPLIED_STEREOTYPE_INSTANCES;
 
 	/**
 	 * The feature id for the '<em><b>Allocated Time</b></em>' attribute.
@@ -606,6 +633,15 @@ public interface MeetingPackage extends EPackage {
 	int ISSUE_MEETING_SECTION__STATE = MEETING_SECTION__STATE;
 
 	/**
+	 * The feature id for the '<em><b>Applied Stereotype Instances</b></em>' containment reference list.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 * @ordered
+	 */
+	int ISSUE_MEETING_SECTION__APPLIED_STEREOTYPE_INSTANCES = MEETING_SECTION__APPLIED_STEREOTYPE_INSTANCES;
+
+	/**
 	 * The feature id for the '<em><b>Allocated Time</b></em>' attribute.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
@@ -731,6 +767,15 @@ public interface MeetingPackage extends EPackage {
 	 * @ordered
 	 */
 	int WORK_ITEM_MEETING_SECTION__STATE = MEETING_SECTION__STATE;
+
+	/**
+	 * The feature id for the '<em><b>Applied Stereotype Instances</b></em>' containment reference list.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 * @ordered
+	 */
+	int WORK_ITEM_MEETING_SECTION__APPLIED_STEREOTYPE_INSTANCES = MEETING_SECTION__APPLIED_STEREOTYPE_INSTANCES;
 
 	/**
 	 * The feature id for the '<em><b>Allocated Time</b></em>' attribute.

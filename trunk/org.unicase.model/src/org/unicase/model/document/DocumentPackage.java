@@ -153,6 +153,15 @@ public interface DocumentPackage extends EPackage {
 	int SECTION__STATE = ModelPackage.MODEL_ELEMENT__STATE;
 
 	/**
+	 * The feature id for the '<em><b>Applied Stereotype Instances</b></em>' containment reference list.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 * @ordered
+	 */
+	int SECTION__APPLIED_STEREOTYPE_INSTANCES = ModelPackage.MODEL_ELEMENT__APPLIED_STEREOTYPE_INSTANCES;
+
+	/**
 	 * The feature id for the '<em><b>Parent</b></em>' container reference. <!--
 	 * begin-user-doc --> <!-- end-user-doc -->
 	 * 
@@ -268,6 +277,15 @@ public interface DocumentPackage extends EPackage {
 	 * @ordered
 	 */
 	int LEAF_SECTION__STATE = SECTION__STATE;
+
+	/**
+	 * The feature id for the '<em><b>Applied Stereotype Instances</b></em>' containment reference list.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 * @ordered
+	 */
+	int LEAF_SECTION__APPLIED_STEREOTYPE_INSTANCES = SECTION__APPLIED_STEREOTYPE_INSTANCES;
 
 	/**
 	 * The feature id for the '<em><b>Parent</b></em>' container reference. <!--
@@ -398,6 +416,15 @@ public interface DocumentPackage extends EPackage {
 	 * @ordered
 	 */
 	int COMPOSITE_SECTION__STATE = SECTION__STATE;
+
+	/**
+	 * The feature id for the '<em><b>Applied Stereotype Instances</b></em>' containment reference list.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 * @ordered
+	 */
+	int COMPOSITE_SECTION__APPLIED_STEREOTYPE_INSTANCES = SECTION__APPLIED_STEREOTYPE_INSTANCES;
 
 	/**
 	 * The feature id for the '<em><b>Parent</b></em>' container reference. <!--

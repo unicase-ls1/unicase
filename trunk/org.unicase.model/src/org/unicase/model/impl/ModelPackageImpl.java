@@ -13,7 +13,6 @@ import org.eclipse.emf.ecore.EOperation;
 import org.eclipse.emf.ecore.EPackage;
 import org.eclipse.emf.ecore.EReference;
 import org.eclipse.emf.ecore.ETypeParameter;
-import org.eclipse.emf.ecore.EcorePackage;
 import org.eclipse.emf.ecore.impl.EPackageImpl;
 import org.eclipse.gmf.runtime.notation.NotationPackage;
 import org.unicase.model.Annotation;
@@ -44,6 +43,8 @@ import org.unicase.model.meeting.MeetingPackage;
 import org.unicase.model.meeting.impl.MeetingPackageImpl;
 import org.unicase.model.organization.OrganizationPackage;
 import org.unicase.model.organization.impl.OrganizationPackageImpl;
+import org.unicase.model.profile.ProfilePackage;
+import org.unicase.model.profile.impl.ProfilePackageImpl;
 import org.unicase.model.rationale.RationalePackage;
 import org.unicase.model.rationale.impl.RationalePackageImpl;
 import org.unicase.model.requirement.RequirementPackage;
@@ -226,6 +227,10 @@ public class ModelPackageImpl extends EPackageImpl implements ModelPackage {
 				.getEPackage(AttachmentPackage.eNS_URI) instanceof AttachmentPackageImpl ? EPackage.Registry.INSTANCE
 				.getEPackage(AttachmentPackage.eNS_URI)
 				: AttachmentPackage.eINSTANCE);
+		ProfilePackageImpl theProfilePackage = (ProfilePackageImpl) (EPackage.Registry.INSTANCE
+				.getEPackage(ProfilePackage.eNS_URI) instanceof ProfilePackageImpl ? EPackage.Registry.INSTANCE
+				.getEPackage(ProfilePackage.eNS_URI)
+				: ProfilePackage.eINSTANCE);
 
 		// Create package meta-data objects
 		theModelPackage.createPackageContents();
@@ -242,6 +247,7 @@ public class ModelPackageImpl extends EPackageImpl implements ModelPackage {
 		theMeetingPackage.createPackageContents();
 		theStatePackage.createPackageContents();
 		theAttachmentPackage.createPackageContents();
+		theProfilePackage.createPackageContents();
 
 		// Initialize created meta-data
 		theModelPackage.initializePackageContents();
@@ -258,6 +264,7 @@ public class ModelPackageImpl extends EPackageImpl implements ModelPackage {
 		theMeetingPackage.initializePackageContents();
 		theStatePackage.initializePackageContents();
 		theAttachmentPackage.initializePackageContents();
+		theProfilePackage.initializePackageContents();
 
 		// Mark meta-data to indicate it can't be changed
 		theModelPackage.freeze();
@@ -347,6 +354,15 @@ public class ModelPackageImpl extends EPackageImpl implements ModelPackage {
 	 */
 	public EAttribute getModelElement_State() {
 		return (EAttribute) modelElementEClass.getEStructuralFeatures().get(8);
+	}
+
+	/**
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 */
+	public EReference getModelElement_AppliedStereotypeInstances() {
+		return (EReference) modelElementEClass.getEStructuralFeatures().get(9);
 	}
 
 	/**
@@ -491,6 +507,8 @@ public class ModelPackageImpl extends EPackageImpl implements ModelPackage {
 				MODEL_ELEMENT__INCOMING_DOCUMENT_REFERENCES);
 		createEReference(modelElementEClass, MODEL_ELEMENT__LEAF_SECTION);
 		createEAttribute(modelElementEClass, MODEL_ELEMENT__STATE);
+		createEReference(modelElementEClass,
+				MODEL_ELEMENT__APPLIED_STEREOTYPE_INSTANCES);
 
 		projectEClass = createEClass(PROJECT);
 		createEReference(projectEClass, PROJECT__MODEL_ELEMENTS);
@@ -563,8 +581,8 @@ public class ModelPackageImpl extends EPackageImpl implements ModelPackage {
 				.getEPackage(StatePackage.eNS_URI);
 		AttachmentPackage theAttachmentPackage = (AttachmentPackage) EPackage.Registry.INSTANCE
 				.getEPackage(AttachmentPackage.eNS_URI);
-		EcorePackage theEcorePackage = (EcorePackage) EPackage.Registry.INSTANCE
-				.getEPackage(EcorePackage.eNS_URI);
+		ProfilePackage theProfilePackage = (ProfilePackage) EPackage.Registry.INSTANCE
+				.getEPackage(ProfilePackage.eNS_URI);
 
 		// Add subpackages
 		getESubpackages().add(theOrganizationPackage);
@@ -580,6 +598,7 @@ public class ModelPackageImpl extends EPackageImpl implements ModelPackage {
 		getESubpackages().add(theMeetingPackage);
 		getESubpackages().add(theStatePackage);
 		getESubpackages().add(theAttachmentPackage);
+		getESubpackages().add(theProfilePackage);
 
 		// Create type parameters
 
@@ -602,7 +621,7 @@ public class ModelPackageImpl extends EPackageImpl implements ModelPackage {
 				ecorePackage.getEString(), "description", null, 0, 1,
 				ModelElement.class, !IS_TRANSIENT, !IS_VOLATILE, IS_CHANGEABLE,
 				!IS_UNSETTABLE, !IS_ID, IS_UNIQUE, !IS_DERIVED, IS_ORDERED);
-		initEAttribute(getModelElement_Creator(), theEcorePackage.getEString(),
+		initEAttribute(getModelElement_Creator(), ecorePackage.getEString(),
 				"creator", null, 0, 1, ModelElement.class, !IS_TRANSIENT,
 				!IS_VOLATILE, IS_CHANGEABLE, !IS_UNSETTABLE, !IS_ID, IS_UNIQUE,
 				!IS_DERIVED, IS_ORDERED);
@@ -641,10 +660,19 @@ public class ModelPackageImpl extends EPackageImpl implements ModelPackage {
 				!IS_DERIVED, IS_ORDERED);
 		getModelElement_LeafSection().getEKeys().add(
 				this.getIdentifiableElement_Identifier());
-		initEAttribute(getModelElement_State(), theEcorePackage.getEString(),
+		initEAttribute(getModelElement_State(), ecorePackage.getEString(),
 				"state", "", 0, 1, ModelElement.class, IS_TRANSIENT,
 				IS_VOLATILE, !IS_CHANGEABLE, !IS_UNSETTABLE, !IS_ID, IS_UNIQUE,
 				IS_DERIVED, IS_ORDERED);
+		initEReference(getModelElement_AppliedStereotypeInstances(),
+				theProfilePackage.getStereotypeInstance(), theProfilePackage
+						.getStereotypeInstance_ModelElement(),
+				"appliedStereotypeInstances", null, 0, -1, ModelElement.class,
+				!IS_TRANSIENT, !IS_VOLATILE, IS_CHANGEABLE, IS_COMPOSITE,
+				IS_RESOLVE_PROXIES, !IS_UNSETTABLE, IS_UNIQUE, !IS_DERIVED,
+				IS_ORDERED);
+		getModelElement_AppliedStereotypeInstances().getEKeys().add(
+				this.getIdentifiableElement_Identifier());
 
 		addEOperation(modelElementEClass, this.getProject(), "getProject", 0,
 				1, IS_UNIQUE, IS_ORDERED);
@@ -687,14 +715,14 @@ public class ModelPackageImpl extends EPackageImpl implements ModelPackage {
 		t1 = addETypeParameter(op, "T");
 		g1 = createEGenericType(this.getModelElement());
 		t1.getEBounds().add(g1);
-		addEParameter(op, theEcorePackage.getEClass(), "modelElementClass", 0,
-				1, IS_UNIQUE, IS_ORDERED);
+		addEParameter(op, ecorePackage.getEClass(), "modelElementClass", 0, 1,
+				IS_UNIQUE, IS_ORDERED);
 		g1 = createEGenericType(t1);
 		addEParameter(op, g1, "list", 0, -1, IS_UNIQUE, IS_ORDERED);
 		g1 = createEGenericType(t1);
 		initEOperation(op, g1);
 
-		op = addEOperation(projectEClass, theEcorePackage.getEBoolean(),
+		op = addEOperation(projectEClass, ecorePackage.getEBoolean(),
 				"contains", 0, 1, IS_UNIQUE, IS_ORDERED);
 		addEParameter(op, this.getModelElement(), "modelElement", 0, 1,
 				IS_UNIQUE, IS_ORDERED);

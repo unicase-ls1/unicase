@@ -10,7 +10,6 @@ import org.eclipse.emf.ecore.EAttribute;
 import org.eclipse.emf.ecore.EClass;
 import org.eclipse.emf.ecore.EEnum;
 import org.eclipse.emf.ecore.EPackage;
-import org.eclipse.emf.ecore.EcorePackage;
 import org.eclipse.emf.ecore.impl.EPackageImpl;
 import org.eclipse.gmf.runtime.notation.NotationPackage;
 import org.unicase.model.ModelPackage;
@@ -37,6 +36,8 @@ import org.unicase.model.meeting.MeetingPackage;
 import org.unicase.model.meeting.impl.MeetingPackageImpl;
 import org.unicase.model.organization.OrganizationPackage;
 import org.unicase.model.organization.impl.OrganizationPackageImpl;
+import org.unicase.model.profile.ProfilePackage;
+import org.unicase.model.profile.impl.ProfilePackageImpl;
 import org.unicase.model.rationale.RationalePackage;
 import org.unicase.model.rationale.impl.RationalePackageImpl;
 import org.unicase.model.requirement.RequirementPackage;
@@ -191,6 +192,10 @@ public class BugPackageImpl extends EPackageImpl implements BugPackage {
 				.getEPackage(AttachmentPackage.eNS_URI) instanceof AttachmentPackageImpl ? EPackage.Registry.INSTANCE
 				.getEPackage(AttachmentPackage.eNS_URI)
 				: AttachmentPackage.eINSTANCE);
+		ProfilePackageImpl theProfilePackage = (ProfilePackageImpl) (EPackage.Registry.INSTANCE
+				.getEPackage(ProfilePackage.eNS_URI) instanceof ProfilePackageImpl ? EPackage.Registry.INSTANCE
+				.getEPackage(ProfilePackage.eNS_URI)
+				: ProfilePackage.eINSTANCE);
 
 		// Create package meta-data objects
 		theBugPackage.createPackageContents();
@@ -207,6 +212,7 @@ public class BugPackageImpl extends EPackageImpl implements BugPackage {
 		theMeetingPackage.createPackageContents();
 		theStatePackage.createPackageContents();
 		theAttachmentPackage.createPackageContents();
+		theProfilePackage.createPackageContents();
 
 		// Initialize created meta-data
 		theBugPackage.initializePackageContents();
@@ -223,6 +229,7 @@ public class BugPackageImpl extends EPackageImpl implements BugPackage {
 		theMeetingPackage.initializePackageContents();
 		theStatePackage.initializePackageContents();
 		theAttachmentPackage.initializePackageContents();
+		theProfilePackage.initializePackageContents();
 
 		// Mark meta-data to indicate it can't be changed
 		theBugPackage.freeze();
@@ -361,8 +368,6 @@ public class BugPackageImpl extends EPackageImpl implements BugPackage {
 		// Obtain other dependent packages
 		TaskPackage theTaskPackage = (TaskPackage) EPackage.Registry.INSTANCE
 				.getEPackage(TaskPackage.eNS_URI);
-		EcorePackage theEcorePackage = (EcorePackage) EPackage.Registry.INSTANCE
-				.getEPackage(EcorePackage.eNS_URI);
 
 		// Create type parameters
 
@@ -383,7 +388,7 @@ public class BugPackageImpl extends EPackageImpl implements BugPackage {
 				null, 0, 1, BugReport.class, !IS_TRANSIENT, !IS_VOLATILE,
 				IS_CHANGEABLE, !IS_UNSETTABLE, !IS_ID, IS_UNIQUE, !IS_DERIVED,
 				IS_ORDERED);
-		initEAttribute(getBugReport_Resolution(), theEcorePackage.getEString(),
+		initEAttribute(getBugReport_Resolution(), ecorePackage.getEString(),
 				"resolution", null, 0, 1, BugReport.class, !IS_TRANSIENT,
 				!IS_VOLATILE, IS_CHANGEABLE, !IS_UNSETTABLE, !IS_ID, IS_UNIQUE,
 				!IS_DERIVED, IS_ORDERED);

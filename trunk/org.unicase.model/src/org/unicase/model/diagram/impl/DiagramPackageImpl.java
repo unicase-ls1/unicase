@@ -11,7 +11,6 @@ import org.eclipse.emf.ecore.EClass;
 import org.eclipse.emf.ecore.EEnum;
 import org.eclipse.emf.ecore.EPackage;
 import org.eclipse.emf.ecore.EReference;
-import org.eclipse.emf.ecore.EcorePackage;
 import org.eclipse.emf.ecore.impl.EPackageImpl;
 import org.eclipse.gmf.runtime.notation.NotationPackage;
 import org.unicase.model.ModelPackage;
@@ -36,6 +35,8 @@ import org.unicase.model.meeting.MeetingPackage;
 import org.unicase.model.meeting.impl.MeetingPackageImpl;
 import org.unicase.model.organization.OrganizationPackage;
 import org.unicase.model.organization.impl.OrganizationPackageImpl;
+import org.unicase.model.profile.ProfilePackage;
+import org.unicase.model.profile.impl.ProfilePackageImpl;
 import org.unicase.model.rationale.RationalePackage;
 import org.unicase.model.rationale.impl.RationalePackageImpl;
 import org.unicase.model.requirement.RequirementPackage;
@@ -179,6 +180,10 @@ public class DiagramPackageImpl extends EPackageImpl implements DiagramPackage {
 				.getEPackage(AttachmentPackage.eNS_URI) instanceof AttachmentPackageImpl ? EPackage.Registry.INSTANCE
 				.getEPackage(AttachmentPackage.eNS_URI)
 				: AttachmentPackage.eINSTANCE);
+		ProfilePackageImpl theProfilePackage = (ProfilePackageImpl) (EPackage.Registry.INSTANCE
+				.getEPackage(ProfilePackage.eNS_URI) instanceof ProfilePackageImpl ? EPackage.Registry.INSTANCE
+				.getEPackage(ProfilePackage.eNS_URI)
+				: ProfilePackage.eINSTANCE);
 
 		// Create package meta-data objects
 		theDiagramPackage.createPackageContents();
@@ -195,6 +200,7 @@ public class DiagramPackageImpl extends EPackageImpl implements DiagramPackage {
 		theMeetingPackage.createPackageContents();
 		theStatePackage.createPackageContents();
 		theAttachmentPackage.createPackageContents();
+		theProfilePackage.createPackageContents();
 
 		// Initialize created meta-data
 		theDiagramPackage.initializePackageContents();
@@ -211,6 +217,7 @@ public class DiagramPackageImpl extends EPackageImpl implements DiagramPackage {
 		theMeetingPackage.initializePackageContents();
 		theStatePackage.initializePackageContents();
 		theAttachmentPackage.initializePackageContents();
+		theProfilePackage.initializePackageContents();
 
 		// Mark meta-data to indicate it can't be changed
 		theDiagramPackage.freeze();
@@ -343,8 +350,6 @@ public class DiagramPackageImpl extends EPackageImpl implements DiagramPackage {
 				.getEPackage(ModelPackage.eNS_URI);
 		NotationPackage theNotationPackage = (NotationPackage) EPackage.Registry.INSTANCE
 				.getEPackage(NotationPackage.eNS_URI);
-		EcorePackage theEcorePackage = (EcorePackage) EPackage.Registry.INSTANCE
-				.getEPackage(EcorePackage.eNS_URI);
 
 		// Create type parameters
 
@@ -379,10 +384,10 @@ public class DiagramPackageImpl extends EPackageImpl implements DiagramPackage {
 				null, 0, 1, MEDiagram.class, !IS_TRANSIENT, !IS_VOLATILE,
 				IS_CHANGEABLE, !IS_UNSETTABLE, !IS_ID, IS_UNIQUE, !IS_DERIVED,
 				IS_ORDERED);
-		initEAttribute(getMEDiagram_DiagramLayout(), theEcorePackage
-				.getEString(), "diagramLayout", null, 0, 1, MEDiagram.class,
-				!IS_TRANSIENT, !IS_VOLATILE, IS_CHANGEABLE, !IS_UNSETTABLE,
-				!IS_ID, IS_UNIQUE, !IS_DERIVED, IS_ORDERED);
+		initEAttribute(getMEDiagram_DiagramLayout(), ecorePackage.getEString(),
+				"diagramLayout", null, 0, 1, MEDiagram.class, !IS_TRANSIENT,
+				!IS_VOLATILE, IS_CHANGEABLE, !IS_UNSETTABLE, !IS_ID, IS_UNIQUE,
+				!IS_DERIVED, IS_ORDERED);
 
 		// Initialize enums and add enum literals
 		initEEnum(diagramTypeEEnum, DiagramType.class, "DiagramType");
