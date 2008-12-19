@@ -230,10 +230,8 @@ public class ModelDocumentProvider extends AbstractDocumentProvider implements
 			try {
 				// resource = domain.getResourceSet().getResource(
 				// uri.trimFragment(), false);
-				if (resource == null) {
 					resource = domain.getResourceSet().createResource(uri,
 					"MEDiagram");
-		}
 				if (!resource.isLoaded()) {
 					try {
 						Map options = new HashMap(GMFResourceFactory
@@ -265,23 +263,20 @@ public class ModelDocumentProvider extends AbstractDocumentProvider implements
 				//				}
 				throw new RuntimeException(
 						org.unicase.ui.usecaseDiagram.part.Messages.ModelDocumentProvider_NoDiagramInResourceError);
-			} catch (Exception e) {
-				CoreException thrownExcp = null;
-				if (e instanceof CoreException) {
-					thrownExcp = (CoreException) e;
-				} else {
-					String msg = e.getLocalizedMessage();
-					thrownExcp = new CoreException(
-							new Status(
-									IStatus.ERROR,
-									org.unicase.ui.usecaseDiagram.part.ModelDiagramEditorPlugin.ID,
-									0,
-									msg != null ? msg
-											: org.unicase.ui.usecaseDiagram.part.Messages.ModelDocumentProvider_DiagramLoadingError,
-									e));
-				}
+			} catch (IOException e) {
+				String msg = e.getLocalizedMessage();
+				CoreException thrownExcp = new CoreException(
+						new Status(
+								IStatus.ERROR,
+								org.unicase.ui.usecaseDiagram.part.ModelDiagramEditorPlugin.ID,
+								0,
+								msg != null ? msg
+										: org.unicase.ui.usecaseDiagram.part.Messages.ModelDocumentProvider_DiagramLoadingError,
+								e));
 				throw thrownExcp;
+				
 			}
+			
 		} else {
 			throw new CoreException(
 					new Status(
