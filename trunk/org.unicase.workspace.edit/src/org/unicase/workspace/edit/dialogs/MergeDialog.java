@@ -29,8 +29,8 @@ import org.unicase.workspace.edit.views.changes.MergeChangesComposite;
 import org.unicase.workspace.impl.ProjectSpaceImpl;
 
 /**
- * . This is the merge dialog. It shows three ChangesTreeComposites (my changes,
- * merged changes, and their changes)
+ * This is the merge dialog. It shows three ChangesTreeComposites (my changes,
+ * merged changes, and their changes).
  * 
  * @author Hodaie
  * @author Shterev
