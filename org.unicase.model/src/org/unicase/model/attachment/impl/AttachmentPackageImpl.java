@@ -31,6 +31,8 @@ import org.unicase.model.meeting.MeetingPackage;
 import org.unicase.model.meeting.impl.MeetingPackageImpl;
 import org.unicase.model.organization.OrganizationPackage;
 import org.unicase.model.organization.impl.OrganizationPackageImpl;
+import org.unicase.model.profile.ProfilePackage;
+import org.unicase.model.profile.impl.ProfilePackageImpl;
 import org.unicase.model.rationale.RationalePackage;
 import org.unicase.model.rationale.impl.RationalePackageImpl;
 import org.unicase.model.requirement.RequirementPackage;
@@ -172,6 +174,10 @@ public class AttachmentPackageImpl extends EPackageImpl implements
 				.getEPackage(StatePackage.eNS_URI) instanceof StatePackageImpl ? EPackage.Registry.INSTANCE
 				.getEPackage(StatePackage.eNS_URI)
 				: StatePackage.eINSTANCE);
+		ProfilePackageImpl theProfilePackage = (ProfilePackageImpl) (EPackage.Registry.INSTANCE
+				.getEPackage(ProfilePackage.eNS_URI) instanceof ProfilePackageImpl ? EPackage.Registry.INSTANCE
+				.getEPackage(ProfilePackage.eNS_URI)
+				: ProfilePackage.eINSTANCE);
 
 		// Create package meta-data objects
 		theAttachmentPackage.createPackageContents();
@@ -188,6 +194,7 @@ public class AttachmentPackageImpl extends EPackageImpl implements
 		theComponentPackage.createPackageContents();
 		theMeetingPackage.createPackageContents();
 		theStatePackage.createPackageContents();
+		theProfilePackage.createPackageContents();
 
 		// Initialize created meta-data
 		theAttachmentPackage.initializePackageContents();
@@ -204,6 +211,7 @@ public class AttachmentPackageImpl extends EPackageImpl implements
 		theComponentPackage.initializePackageContents();
 		theMeetingPackage.initializePackageContents();
 		theStatePackage.initializePackageContents();
+		theProfilePackage.initializePackageContents();
 
 		// Mark meta-data to indicate it can't be changed
 		theAttachmentPackage.freeze();

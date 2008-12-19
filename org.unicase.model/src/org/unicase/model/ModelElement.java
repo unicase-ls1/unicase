@@ -10,6 +10,7 @@ import java.util.Date;
 
 import org.eclipse.emf.common.util.EList;
 import org.unicase.model.document.LeafSection;
+import org.unicase.model.profile.StereotypeInstance;
 import org.unicase.model.task.util.CircularDependencyException;
 import org.unicase.model.task.util.MEState;
 
@@ -29,6 +30,7 @@ import org.unicase.model.task.util.MEState;
  *   <li>{@link org.unicase.model.ModelElement#getIncomingDocumentReferences <em>Incoming Document References</em>}</li>
  *   <li>{@link org.unicase.model.ModelElement#getLeafSection <em>Leaf Section</em>}</li>
  *   <li>{@link org.unicase.model.ModelElement#getState <em>State</em>}</li>
+ *   <li>{@link org.unicase.model.ModelElement#getAppliedStereotypeInstances <em>Applied Stereotype Instances</em>}</li>
  * </ul>
  * </p>
  *
@@ -245,6 +247,24 @@ public interface ModelElement extends IdentifiableElement {
 	 * @generated
 	 */
 	String getState();
+
+	/**
+	 * Returns the value of the '<em><b>Applied Stereotype Instances</b></em>' containment reference list.
+	 * The list contents are of type {@link org.unicase.model.profile.StereotypeInstance}.
+	 * It is bidirectional and its opposite is '{@link org.unicase.model.profile.StereotypeInstance#getModelElement <em>Model Element</em>}'.
+	 * <!-- begin-user-doc -->
+	 * <p>
+	 * If the meaning of the '<em>Applied Stereotype Instances</em>' containment reference list isn't clear,
+	 * there really should be more of a description here...
+	 * </p>
+	 * <!-- end-user-doc -->
+	 * @return the value of the '<em>Applied Stereotype Instances</em>' containment reference list.
+	 * @see org.unicase.model.ModelPackage#getModelElement_AppliedStereotypeInstances()
+	 * @see org.unicase.model.profile.StereotypeInstance#getModelElement
+	 * @model opposite="modelElement" containment="true" resolveProxies="true" keys="identifier"
+	 * @generated
+	 */
+	EList<StereotypeInstance> getAppliedStereotypeInstances();
 
 	/**
 	 * <!-- begin-user-doc -->

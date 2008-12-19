@@ -180,13 +180,22 @@ public interface ModelPackage extends EPackage {
 	int MODEL_ELEMENT__STATE = IDENTIFIABLE_ELEMENT_FEATURE_COUNT + 8;
 
 	/**
+	 * The feature id for the '<em><b>Applied Stereotype Instances</b></em>' containment reference list.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 * @ordered
+	 */
+	int MODEL_ELEMENT__APPLIED_STEREOTYPE_INSTANCES = IDENTIFIABLE_ELEMENT_FEATURE_COUNT + 9;
+
+	/**
 	 * The number of structural features of the '<em>Element</em>' class. <!--
 	 * begin-user-doc --> <!-- end-user-doc -->
 	 * 
 	 * @generated
 	 * @ordered
 	 */
-	int MODEL_ELEMENT_FEATURE_COUNT = IDENTIFIABLE_ELEMENT_FEATURE_COUNT + 9;
+	int MODEL_ELEMENT_FEATURE_COUNT = IDENTIFIABLE_ELEMENT_FEATURE_COUNT + 10;
 
 	/**
 	 * The meta object id for the '{@link org.unicase.model.impl.ProjectImpl <em>Project</em>}' class.
@@ -340,6 +349,15 @@ public interface ModelPackage extends EPackage {
 	int ANNOTATION__STATE = MODEL_ELEMENT__STATE;
 
 	/**
+	 * The feature id for the '<em><b>Applied Stereotype Instances</b></em>' containment reference list.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 * @ordered
+	 */
+	int ANNOTATION__APPLIED_STEREOTYPE_INSTANCES = MODEL_ELEMENT__APPLIED_STEREOTYPE_INSTANCES;
+
+	/**
 	 * The feature id for the '<em><b>Annotated Model Elements</b></em>' reference list.
 	 * <!-- begin-user-doc --> <!-- end-user-doc -->
 	 * @generated
@@ -454,6 +472,15 @@ public interface ModelPackage extends EPackage {
 	 * @ordered
 	 */
 	int ATTACHMENT__STATE = MODEL_ELEMENT__STATE;
+
+	/**
+	 * The feature id for the '<em><b>Applied Stereotype Instances</b></em>' containment reference list.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 * @ordered
+	 */
+	int ATTACHMENT__APPLIED_STEREOTYPE_INSTANCES = MODEL_ELEMENT__APPLIED_STEREOTYPE_INSTANCES;
 
 	/**
 	 * The feature id for the '<em><b>Referring Model Elements</b></em>' reference list.
@@ -625,6 +652,17 @@ public interface ModelPackage extends EPackage {
 	 * @generated
 	 */
 	EAttribute getModelElement_State();
+
+	/**
+	 * Returns the meta object for the containment reference list '{@link org.unicase.model.ModelElement#getAppliedStereotypeInstances <em>Applied Stereotype Instances</em>}'.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @return the meta object for the containment reference list '<em>Applied Stereotype Instances</em>'.
+	 * @see org.unicase.model.ModelElement#getAppliedStereotypeInstances()
+	 * @see #getModelElement()
+	 * @generated
+	 */
+	EReference getModelElement_AppliedStereotypeInstances();
 
 	/**
 	 * Returns the meta object for class '{@link org.unicase.model.Project <em>Project</em>}'.
@@ -852,6 +890,15 @@ public interface ModelPackage extends EPackage {
 		 * @generated
 		 */
 		EAttribute MODEL_ELEMENT__STATE = eINSTANCE.getModelElement_State();
+
+		/**
+		 * The meta object literal for the '<em><b>Applied Stereotype Instances</b></em>' containment reference list feature.
+		 * <!-- begin-user-doc -->
+		 * <!-- end-user-doc -->
+		 * @generated
+		 */
+		EReference MODEL_ELEMENT__APPLIED_STEREOTYPE_INSTANCES = eINSTANCE
+				.getModelElement_AppliedStereotypeInstances();
 
 		/**
 		 * The meta object literal for the '{@link org.unicase.model.impl.ProjectImpl <em>Project</em>}' class.

@@ -255,7 +255,7 @@ public class ActionItemItemProvider extends AnnotationItemProvider implements
 	@Override
 	public Object getImage(Object object) {
 		return overlayImage(object, getResourceLocator().getImage(
-				"full/obj16/ActionItem.png"));
+				"full/obj16/ActionItem"));
 	}
 
 	/**

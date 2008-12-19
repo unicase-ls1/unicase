@@ -21,6 +21,7 @@ import org.eclipse.emf.edit.provider.IItemPropertySource;
 import org.eclipse.emf.edit.provider.IStructuredItemContentProvider;
 import org.eclipse.emf.edit.provider.ITreeItemContentProvider;
 import org.eclipse.emf.edit.provider.ViewerNotification;
+import org.unicase.model.ModelPackage;
 import org.unicase.model.attachment.AttachmentFactory;
 import org.unicase.model.bug.BugFactory;
 import org.unicase.model.change.ChangeFactory;
@@ -32,6 +33,7 @@ import org.unicase.model.document.DocumentPackage;
 import org.unicase.model.document.LeafSection;
 import org.unicase.model.meeting.MeetingFactory;
 import org.unicase.model.organization.OrganizationFactory;
+import org.unicase.model.profile.ProfileFactory;
 import org.unicase.model.provider.ModelEditPlugin;
 import org.unicase.model.provider.ModelElementItemProvider;
 import org.unicase.model.rationale.RationaleFactory;
@@ -378,6 +380,50 @@ public class LeafSectionItemProvider extends ModelElementItemProvider implements
 		newChildDescriptors.add(createChildParameter(
 				DocumentPackage.Literals.LEAF_SECTION__MODEL_ELEMENTS,
 				AttachmentFactory.eINSTANCE.createUrlAttachment()));
+
+		newChildDescriptors.add(createChildParameter(
+				DocumentPackage.Literals.LEAF_SECTION__MODEL_ELEMENTS,
+				ProfileFactory.eINSTANCE.createProfile()));
+
+		newChildDescriptors.add(createChildParameter(
+				DocumentPackage.Literals.LEAF_SECTION__MODEL_ELEMENTS,
+				ProfileFactory.eINSTANCE.createStereotype()));
+
+		newChildDescriptors.add(createChildParameter(
+				DocumentPackage.Literals.LEAF_SECTION__MODEL_ELEMENTS,
+				ProfileFactory.eINSTANCE.createStereotypeInstance()));
+
+		newChildDescriptors.add(createChildParameter(
+				DocumentPackage.Literals.LEAF_SECTION__MODEL_ELEMENTS,
+				ProfileFactory.eINSTANCE.createStereotypeAttributeSimple()));
+
+		newChildDescriptors.add(createChildParameter(
+				DocumentPackage.Literals.LEAF_SECTION__MODEL_ELEMENTS,
+				ProfileFactory.eINSTANCE
+						.createStereotypeAttributeInstanceString()));
+	}
+
+	/**
+	 * This returns the label text for {@link org.eclipse.emf.edit.command.CreateChildCommand}.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 */
+	@Override
+	public String getCreateChildText(Object owner, Object feature,
+			Object child, Collection<?> selection) {
+		Object childFeature = feature;
+		Object childObject = child;
+
+		boolean qualify = childFeature == ModelPackage.Literals.MODEL_ELEMENT__APPLIED_STEREOTYPE_INSTANCES
+				|| childFeature == DocumentPackage.Literals.LEAF_SECTION__MODEL_ELEMENTS;
+
+		if (qualify) {
+			return getString("_UI_CreateChild_text2", new Object[] {
+					getTypeText(childObject), getFeatureText(childFeature),
+					getTypeText(owner) });
+		}
+		return super.getCreateChildText(owner, feature, child, selection);
 	}
 
 	/**

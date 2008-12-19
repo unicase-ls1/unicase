@@ -10,7 +10,6 @@ import org.eclipse.emf.ecore.EAttribute;
 import org.eclipse.emf.ecore.EClass;
 import org.eclipse.emf.ecore.EPackage;
 import org.eclipse.emf.ecore.EReference;
-import org.eclipse.emf.ecore.EcorePackage;
 import org.eclipse.emf.ecore.impl.EPackageImpl;
 import org.eclipse.gmf.runtime.notation.NotationPackage;
 import org.unicase.model.ModelPackage;
@@ -33,6 +32,8 @@ import org.unicase.model.meeting.MeetingPackage;
 import org.unicase.model.meeting.impl.MeetingPackageImpl;
 import org.unicase.model.organization.OrganizationPackage;
 import org.unicase.model.organization.impl.OrganizationPackageImpl;
+import org.unicase.model.profile.ProfilePackage;
+import org.unicase.model.profile.impl.ProfilePackageImpl;
 import org.unicase.model.rationale.RationalePackage;
 import org.unicase.model.rationale.impl.RationalePackageImpl;
 import org.unicase.model.requirement.Actor;
@@ -229,6 +230,10 @@ public class RequirementPackageImpl extends EPackageImpl implements
 				.getEPackage(AttachmentPackage.eNS_URI) instanceof AttachmentPackageImpl ? EPackage.Registry.INSTANCE
 				.getEPackage(AttachmentPackage.eNS_URI)
 				: AttachmentPackage.eINSTANCE);
+		ProfilePackageImpl theProfilePackage = (ProfilePackageImpl) (EPackage.Registry.INSTANCE
+				.getEPackage(ProfilePackage.eNS_URI) instanceof ProfilePackageImpl ? EPackage.Registry.INSTANCE
+				.getEPackage(ProfilePackage.eNS_URI)
+				: ProfilePackage.eINSTANCE);
 
 		// Create package meta-data objects
 		theRequirementPackage.createPackageContents();
@@ -245,6 +250,7 @@ public class RequirementPackageImpl extends EPackageImpl implements
 		theMeetingPackage.createPackageContents();
 		theStatePackage.createPackageContents();
 		theAttachmentPackage.createPackageContents();
+		theProfilePackage.createPackageContents();
 
 		// Initialize created meta-data
 		theRequirementPackage.initializePackageContents();
@@ -261,6 +267,7 @@ public class RequirementPackageImpl extends EPackageImpl implements
 		theMeetingPackage.initializePackageContents();
 		theStatePackage.initializePackageContents();
 		theAttachmentPackage.initializePackageContents();
+		theProfilePackage.initializePackageContents();
 
 		// Mark meta-data to indicate it can't be changed
 		theRequirementPackage.freeze();
@@ -897,8 +904,6 @@ public class RequirementPackageImpl extends EPackageImpl implements
 				.getEPackage(ModelPackage.eNS_URI);
 		OrganizationPackage theOrganizationPackage = (OrganizationPackage) EPackage.Registry.INSTANCE
 				.getEPackage(OrganizationPackage.eNS_URI);
-		EcorePackage theEcorePackage = (EcorePackage) EPackage.Registry.INSTANCE
-				.getEPackage(EcorePackage.eNS_URI);
 		ClassesPackage theClassesPackage = (ClassesPackage) EPackage.Registry.INSTANCE
 				.getEPackage(ClassesPackage.eNS_URI);
 
@@ -1029,7 +1034,7 @@ public class RequirementPackageImpl extends EPackageImpl implements
 				!IS_DERIVED, IS_ORDERED);
 		getUseCase_RealizedUserTask().getEKeys().add(
 				theModelPackage.getIdentifiableElement_Identifier());
-		initEAttribute(getUseCase_Precondition(), theEcorePackage.getEString(),
+		initEAttribute(getUseCase_Precondition(), ecorePackage.getEString(),
 				"precondition", null, 0, 1, UseCase.class, !IS_TRANSIENT,
 				!IS_VOLATILE, IS_CHANGEABLE, !IS_UNSETTABLE, !IS_ID, IS_UNIQUE,
 				!IS_DERIVED, IS_ORDERED);
@@ -1040,15 +1045,15 @@ public class RequirementPackageImpl extends EPackageImpl implements
 				IS_ORDERED);
 		getUseCase_UseCaseSteps().getEKeys().add(
 				theModelPackage.getIdentifiableElement_Identifier());
-		initEAttribute(getUseCase_Postcondition(),
-				theEcorePackage.getEString(), "postcondition", null, 0, 1,
-				UseCase.class, !IS_TRANSIENT, !IS_VOLATILE, IS_CHANGEABLE,
-				!IS_UNSETTABLE, !IS_ID, IS_UNIQUE, !IS_DERIVED, IS_ORDERED);
-		initEAttribute(getUseCase_Rules(), theEcorePackage.getEString(),
-				"rules", "", 0, 1, UseCase.class, !IS_TRANSIENT, !IS_VOLATILE,
+		initEAttribute(getUseCase_Postcondition(), ecorePackage.getEString(),
+				"postcondition", null, 0, 1, UseCase.class, !IS_TRANSIENT,
+				!IS_VOLATILE, IS_CHANGEABLE, !IS_UNSETTABLE, !IS_ID, IS_UNIQUE,
+				!IS_DERIVED, IS_ORDERED);
+		initEAttribute(getUseCase_Rules(), ecorePackage.getEString(), "rules",
+				"", 0, 1, UseCase.class, !IS_TRANSIENT, !IS_VOLATILE,
 				IS_CHANGEABLE, !IS_UNSETTABLE, !IS_ID, IS_UNIQUE, !IS_DERIVED,
 				IS_ORDERED);
-		initEAttribute(getUseCase_Exception(), theEcorePackage.getEString(),
+		initEAttribute(getUseCase_Exception(), ecorePackage.getEString(),
 				"exception", null, 0, 1, UseCase.class, !IS_TRANSIENT,
 				!IS_VOLATILE, IS_CHANGEABLE, !IS_UNSETTABLE, !IS_ID, IS_UNIQUE,
 				!IS_DERIVED, IS_ORDERED);
@@ -1243,19 +1248,19 @@ public class RequirementPackageImpl extends EPackageImpl implements
 		initEClass(systemFunctionEClass, SystemFunction.class,
 				"SystemFunction", !IS_ABSTRACT, !IS_INTERFACE,
 				IS_GENERATED_INSTANCE_CLASS);
-		initEAttribute(getSystemFunction_Input(), theEcorePackage.getEString(),
+		initEAttribute(getSystemFunction_Input(), ecorePackage.getEString(),
 				"input", null, 0, 1, SystemFunction.class, !IS_TRANSIENT,
 				!IS_VOLATILE, IS_CHANGEABLE, !IS_UNSETTABLE, !IS_ID, IS_UNIQUE,
 				!IS_DERIVED, IS_ORDERED);
-		initEAttribute(getSystemFunction_Output(),
-				theEcorePackage.getEString(), "output", null, 0, 1,
+		initEAttribute(getSystemFunction_Output(), ecorePackage.getEString(),
+				"output", null, 0, 1, SystemFunction.class, !IS_TRANSIENT,
+				!IS_VOLATILE, IS_CHANGEABLE, !IS_UNSETTABLE, !IS_ID, IS_UNIQUE,
+				!IS_DERIVED, IS_ORDERED);
+		initEAttribute(getSystemFunction_Exception(),
+				ecorePackage.getEString(), "exception", null, 0, 1,
 				SystemFunction.class, !IS_TRANSIENT, !IS_VOLATILE,
 				IS_CHANGEABLE, !IS_UNSETTABLE, !IS_ID, IS_UNIQUE, !IS_DERIVED,
 				IS_ORDERED);
-		initEAttribute(getSystemFunction_Exception(), theEcorePackage
-				.getEString(), "exception", null, 0, 1, SystemFunction.class,
-				!IS_TRANSIENT, !IS_VOLATILE, IS_CHANGEABLE, !IS_UNSETTABLE,
-				!IS_ID, IS_UNIQUE, !IS_DERIVED, IS_ORDERED);
 
 		initEClass(userTaskEClass, UserTask.class, "UserTask", !IS_ABSTRACT,
 				!IS_INTERFACE, IS_GENERATED_INSTANCE_CLASS);

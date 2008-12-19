@@ -18,6 +18,7 @@ import org.eclipse.emf.ecore.EClass;
 import org.eclipse.emf.ecore.EObject;
 import org.eclipse.emf.ecore.InternalEObject;
 import org.eclipse.emf.ecore.impl.ENotificationImpl;
+import org.eclipse.emf.ecore.util.EObjectContainmentWithInverseEList;
 import org.eclipse.emf.ecore.util.EObjectWithInverseResolvingEList;
 import org.eclipse.emf.ecore.util.EcoreUtil;
 import org.eclipse.emf.ecore.util.InternalEList;
@@ -30,6 +31,8 @@ import org.unicase.model.ModelPackage;
 import org.unicase.model.Project;
 import org.unicase.model.document.DocumentPackage;
 import org.unicase.model.document.LeafSection;
+import org.unicase.model.profile.ProfilePackage;
+import org.unicase.model.profile.StereotypeInstance;
 import org.unicase.model.task.util.CircularDependencyException;
 import org.unicase.model.task.util.MEState;
 import org.unicase.model.task.util.MEStateImpl;
@@ -49,6 +52,7 @@ import org.unicase.model.task.util.MEStateImpl;
  *   <li>{@link org.unicase.model.impl.ModelElementImpl#getIncomingDocumentReferences <em>Incoming Document References</em>}</li>
  *   <li>{@link org.unicase.model.impl.ModelElementImpl#getLeafSection <em>Leaf Section</em>}</li>
  *   <li>{@link org.unicase.model.impl.ModelElementImpl#getState <em>State</em>}</li>
+ *   <li>{@link org.unicase.model.impl.ModelElementImpl#getAppliedStereotypeInstances <em>Applied Stereotype Instances</em>}</li>
  * </ul>
  * </p>
  *
@@ -169,6 +173,16 @@ public abstract class ModelElementImpl extends IdentifiableElementImpl
 	 * @ordered
 	 */
 	protected static final String STATE_EDEFAULT = "";
+
+	/**
+	 * The cached value of the '{@link #getAppliedStereotypeInstances() <em>Applied Stereotype Instances</em>}' containment reference list.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @see #getAppliedStereotypeInstances()
+	 * @generated
+	 * @ordered
+	 */
+	protected EList<StereotypeInstance> appliedStereotypeInstances;
 
 	private boolean calculatingState;
 
@@ -394,6 +408,21 @@ public abstract class ModelElementImpl extends IdentifiableElementImpl
 	}
 
 	/**
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 */
+	public EList<StereotypeInstance> getAppliedStereotypeInstances() {
+		if (appliedStereotypeInstances == null) {
+			appliedStereotypeInstances = new EObjectContainmentWithInverseEList.Resolving<StereotypeInstance>(
+					StereotypeInstance.class, this,
+					ModelPackage.MODEL_ELEMENT__APPLIED_STEREOTYPE_INSTANCES,
+					ProfilePackage.STEREOTYPE_INSTANCE__MODEL_ELEMENT);
+		}
+		return appliedStereotypeInstances;
+	}
+
+	/**
 	 * <!-- begin-user-doc --> <!-- end-user-doc -->.
 	 * 
 	 * @generated NOT
@@ -545,6 +574,9 @@ public abstract class ModelElementImpl extends IdentifiableElementImpl
 			if (eInternalContainer() != null)
 				msgs = eBasicRemoveFromContainer(msgs);
 			return basicSetLeafSection((LeafSection) otherEnd, msgs);
+		case ModelPackage.MODEL_ELEMENT__APPLIED_STEREOTYPE_INSTANCES:
+			return ((InternalEList<InternalEObject>) (InternalEList<?>) getAppliedStereotypeInstances())
+					.basicAdd(otherEnd, msgs);
 		}
 		return super.eInverseAdd(otherEnd, featureID, msgs);
 	}
@@ -568,6 +600,9 @@ public abstract class ModelElementImpl extends IdentifiableElementImpl
 					.basicRemove(otherEnd, msgs);
 		case ModelPackage.MODEL_ELEMENT__LEAF_SECTION:
 			return basicSetLeafSection(null, msgs);
+		case ModelPackage.MODEL_ELEMENT__APPLIED_STEREOTYPE_INSTANCES:
+			return ((InternalEList<?>) getAppliedStereotypeInstances())
+					.basicRemove(otherEnd, msgs);
 		}
 		return super.eInverseRemove(otherEnd, featureID, msgs);
 	}
@@ -615,6 +650,8 @@ public abstract class ModelElementImpl extends IdentifiableElementImpl
 			return basicGetLeafSection();
 		case ModelPackage.MODEL_ELEMENT__STATE:
 			return getState();
+		case ModelPackage.MODEL_ELEMENT__APPLIED_STEREOTYPE_INSTANCES:
+			return getAppliedStereotypeInstances();
 		}
 		return super.eGet(featureID, resolve, coreType);
 	}
@@ -657,6 +694,11 @@ public abstract class ModelElementImpl extends IdentifiableElementImpl
 		case ModelPackage.MODEL_ELEMENT__LEAF_SECTION:
 			setLeafSection((LeafSection) newValue);
 			return;
+		case ModelPackage.MODEL_ELEMENT__APPLIED_STEREOTYPE_INSTANCES:
+			getAppliedStereotypeInstances().clear();
+			getAppliedStereotypeInstances().addAll(
+					(Collection<? extends StereotypeInstance>) newValue);
+			return;
 		}
 		super.eSet(featureID, newValue);
 	}
@@ -691,6 +733,9 @@ public abstract class ModelElementImpl extends IdentifiableElementImpl
 			return;
 		case ModelPackage.MODEL_ELEMENT__LEAF_SECTION:
 			setLeafSection((LeafSection) null);
+			return;
+		case ModelPackage.MODEL_ELEMENT__APPLIED_STEREOTYPE_INSTANCES:
+			getAppliedStereotypeInstances().clear();
 			return;
 		}
 		super.eUnset(featureID);
@@ -727,6 +772,9 @@ public abstract class ModelElementImpl extends IdentifiableElementImpl
 		case ModelPackage.MODEL_ELEMENT__STATE:
 			return STATE_EDEFAULT == null ? getState() != null
 					: !STATE_EDEFAULT.equals(getState());
+		case ModelPackage.MODEL_ELEMENT__APPLIED_STEREOTYPE_INSTANCES:
+			return appliedStereotypeInstances != null
+					&& !appliedStereotypeInstances.isEmpty();
 		}
 		return super.eIsSet(featureID);
 	}
