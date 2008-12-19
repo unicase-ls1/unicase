@@ -67,7 +67,7 @@ public class OperationsNameLabelProvider extends
 				cell.setImage(imageDescriptor.createImage());
 			}
 			if(opBackgroundLabelProvider!=null){
-				cell.setBackground(opBackgroundLabelProvider.getColor(op));
+				cell.setForeground(opBackgroundLabelProvider.getColor(op));
 			}
 		} else if (element instanceof ChangePackage) {
 			ChangePackage cPackage = (ChangePackage) element;

@@ -67,7 +67,7 @@ public class MENameLabelProvider extends ColumnLabelProvider {
 				cell.setText("(Missing Element)");
 			}
 			if(opBackgroundLabelProvider!=null){
-				cell.setBackground(opBackgroundLabelProvider.getColor(operation));
+				cell.setForeground(opBackgroundLabelProvider.getColor(operation));
 			}
 		} else if (element instanceof ChangePackage){
 			ChangePackage cPackage = (ChangePackage) element;

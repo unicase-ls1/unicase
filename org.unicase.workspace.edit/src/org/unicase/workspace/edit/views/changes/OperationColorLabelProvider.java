@@ -31,11 +31,11 @@ public class OperationColorLabelProvider {
 		OperationState state = map.get(op);
 		Display display = Display.getCurrent();
 		if(state.getPreviewState()==OperationState.ACCEPTED){
-			return display.getSystemColor(SWT.COLOR_DARK_GREEN);
+			return display.getSystemColor(SWT.COLOR_GREEN);
 		}else if(state.getPreviewState()==OperationState.REJECTED){
-			return display.getSystemColor(SWT.COLOR_DARK_RED);
+			return display.getSystemColor(SWT.COLOR_RED);
 		}
-		return display.getSystemColor(SWT.COLOR_WHITE);
+		return display.getSystemColor(SWT.COLOR_BLACK);
 	}
 	
 }
