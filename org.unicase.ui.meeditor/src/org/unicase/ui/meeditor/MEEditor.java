@@ -17,7 +17,6 @@ import org.eclipse.emf.ecore.EAttribute;
 import org.eclipse.emf.edit.provider.ComposedAdapterFactory;
 import org.eclipse.emf.edit.provider.ReflectiveItemProviderAdapterFactory;
 import org.eclipse.emf.edit.provider.resource.ResourceItemProviderAdapterFactory;
-import org.eclipse.emf.edit.ui.provider.AdapterFactoryLabelProvider;
 import org.eclipse.emf.transaction.RecordingCommand;
 import org.eclipse.emf.transaction.TransactionalEditingDomain;
 import org.eclipse.ui.IEditorInput;
@@ -132,10 +131,11 @@ public class MEEditor extends SharedHeaderFormEditor {
 						}
 					}
 					setTitleImage(input.getImageDescriptor().createImage());
-					mePage.getManagedForm().getForm().setImage(new AdapterFactoryLabelProvider(
-							new ComposedAdapterFactory(
-									ComposedAdapterFactory.Descriptor.Registry.INSTANCE))
-							.getImage(modelElement));					
+					//TODO AS: Debug why sometimes the page is null - not disposed Adapter?
+					if(mePage!=null){
+						//TODO AS: Replace with a SeverityDecorator.
+						mePage.getManagedForm().getForm().setImage(input.getImageDescriptor().createImage());
+					}
 				}
 				
 			};			
