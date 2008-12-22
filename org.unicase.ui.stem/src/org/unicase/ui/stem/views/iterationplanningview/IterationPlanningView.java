@@ -39,8 +39,8 @@ import org.unicase.model.Project;
 import org.unicase.model.organization.User;
 import org.unicase.ui.common.TreeViewerColumnSorter;
 import org.unicase.ui.common.commands.ActionHelper;
+import org.unicase.ui.common.dnd.DropAdapterOriginal;
 import org.unicase.ui.common.dnd.UCDragAdapter;
-import org.unicase.ui.common.dnd.UCDropAdapter;
 import org.unicase.ui.common.filter.UserFilter;
 import org.unicase.ui.stem.Activator;
 import org.unicase.ui.stem.views.AssignedToLabelProvider;
@@ -385,7 +385,7 @@ public class IterationPlanningView extends ViewPart {
 		viewer.addDragSupport(dndOperations, transfers, new UCDragAdapter(
 				viewer));
 		viewer
-				.addDropSupport(dndOperations, transfers, new UCDropAdapter(
+				.addDropSupport(dndOperations, transfers, new DropAdapterOriginal(
 						TransactionalEditingDomain.Registry.INSTANCE
 								.getEditingDomain("org.unicase.EditingDomain"),
 						viewer));
