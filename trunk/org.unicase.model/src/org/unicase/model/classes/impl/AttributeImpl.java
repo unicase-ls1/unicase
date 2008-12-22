@@ -1,8 +1,7 @@
 /**
- * <copyright> Copyright (c) 2008 Jonas Helming, Maximilian Koegel. All rights reserved. This program and the accompanying materials are made available under the terms of the Eclipse Public License v1.0 which accompanies this distribution, and is available at http://www.eclipse.org/legal/epl-v10.html
- * </copyright>
- *
- * $Id$
+ * <copyright> Copyright (c) 2008 Jonas Helming, Maximilian Koegel. All rights reserved. This program and the
+ * accompanying materials are made available under the terms of the Eclipse Public License v1.0 which accompanies this
+ * distribution, and is available at http://www.eclipse.org/legal/epl-v10.html </copyright> $Id$
  */
 package org.unicase.model.classes.impl;
 
@@ -22,53 +21,56 @@ import org.unicase.model.classes.VisibilityType;
 import org.unicase.model.impl.ModelElementImpl;
 
 /**
- * <!-- begin-user-doc --> An implementation of the model object '
- * <em><b>Attribute</b></em>'. <!-- end-user-doc -->
+ * <!-- begin-user-doc --> An implementation of the model object ' <em><b>Attribute</b></em>'. <!-- end-user-doc -->
  * <p>
  * The following features are implemented:
  * <ul>
- *   <li>{@link org.unicase.model.classes.impl.AttributeImpl#getDefiningClass <em>Defining Class</em>}</li>
- *   <li>{@link org.unicase.model.classes.impl.AttributeImpl#getVisibility <em>Visibility</em>}</li>
- *   <li>{@link org.unicase.model.classes.impl.AttributeImpl#getScope <em>Scope</em>}</li>
- *   <li>{@link org.unicase.model.classes.impl.AttributeImpl#getSignature <em>Signature</em>}</li>
- *   <li>{@link org.unicase.model.classes.impl.AttributeImpl#getType <em>Type</em>}</li>
- *   <li>{@link org.unicase.model.classes.impl.AttributeImpl#getDefaultValue <em>Default Value</em>}</li>
- *   <li>{@link org.unicase.model.classes.impl.AttributeImpl#getProperties <em>Properties</em>}</li>
- *   <li>{@link org.unicase.model.classes.impl.AttributeImpl#getLabel <em>Label</em>}</li>
+ * <li>{@link org.unicase.model.classes.impl.AttributeImpl#getDefiningClass <em>Defining Class</em>}</li>
+ * <li>{@link org.unicase.model.classes.impl.AttributeImpl#getVisibility <em>Visibility</em>}</li>
+ * <li>{@link org.unicase.model.classes.impl.AttributeImpl#getScope <em>Scope</em>}</li>
+ * <li>{@link org.unicase.model.classes.impl.AttributeImpl#getSignature <em>Signature</em>}</li>
+ * <li>{@link org.unicase.model.classes.impl.AttributeImpl#getType <em>Type</em>}</li>
+ * <li>{@link org.unicase.model.classes.impl.AttributeImpl#getDefaultValue <em>Default Value</em>}</li>
+ * <li>{@link org.unicase.model.classes.impl.AttributeImpl#getProperties <em>Properties</em>}</li>
+ * <li>{@link org.unicase.model.classes.impl.AttributeImpl#getLabel <em>Label</em>}</li>
  * </ul>
  * </p>
- *
+ * 
  * @generated
  */
 public class AttributeImpl extends ModelElementImpl implements Attribute {
 
 	/**
-	 * The default value of the '{@link #getVisibility() <em>Visibility</em>}' attribute.
-	 * <!-- begin-user-doc --> <!-- end-user-doc -->
+	 * The default value of the '{@link #getVisibility() <em>Visibility</em>}' attribute. <!-- begin-user-doc --> <!--
+	 * end-user-doc -->
+	 * 
 	 * @see #getVisibility()
 	 * @generated
 	 * @ordered
 	 */
 	protected static final VisibilityType VISIBILITY_EDEFAULT = VisibilityType.UNDEFINED;
 	/**
-	 * The cached value of the '{@link #getVisibility() <em>Visibility</em>}' attribute.
-	 * <!-- begin-user-doc --> <!-- end-user-doc -->
+	 * The cached value of the '{@link #getVisibility() <em>Visibility</em>}' attribute. <!-- begin-user-doc --> <!--
+	 * end-user-doc -->
+	 * 
 	 * @see #getVisibility()
 	 * @generated
 	 * @ordered
 	 */
 	protected VisibilityType visibility = VISIBILITY_EDEFAULT;
 	/**
-	 * The default value of the '{@link #getScope() <em>Scope</em>}' attribute.
-	 * <!-- begin-user-doc --> <!-- end-user-doc -->
+	 * The default value of the '{@link #getScope() <em>Scope</em>}' attribute. <!-- begin-user-doc --> <!--
+	 * end-user-doc -->
+	 * 
 	 * @see #getScope()
 	 * @generated
 	 * @ordered
 	 */
 	protected static final ScopeType SCOPE_EDEFAULT = ScopeType.INSTANCE;
 	/**
-	 * The cached value of the '{@link #getScope() <em>Scope</em>}' attribute.
-	 * <!-- begin-user-doc --> <!-- end-user-doc -->
+	 * The cached value of the '{@link #getScope() <em>Scope</em>}' attribute. <!-- begin-user-doc --> <!-- end-user-doc
+	 * -->
+	 * 
 	 * @see #getScope()
 	 * @generated
 	 * @ordered
@@ -76,8 +78,9 @@ public class AttributeImpl extends ModelElementImpl implements Attribute {
 	protected ScopeType scope = SCOPE_EDEFAULT;
 
 	/**
-	 * The default value of the '{@link #getSignature() <em>Signature</em>}' attribute.
-	 * <!-- begin-user-doc --> <!-- end-user-doc -->
+	 * The default value of the '{@link #getSignature() <em>Signature</em>}' attribute. <!-- begin-user-doc --> <!--
+	 * end-user-doc -->
+	 * 
 	 * @see #getSignature()
 	 * @generated
 	 * @ordered
@@ -85,16 +88,18 @@ public class AttributeImpl extends ModelElementImpl implements Attribute {
 	protected static final String SIGNATURE_EDEFAULT = null;
 
 	/**
-	 * The default value of the '{@link #getType() <em>Type</em>}' attribute.
-	 * <!-- begin-user-doc --> <!-- end-user-doc -->
+	 * The default value of the '{@link #getType() <em>Type</em>}' attribute. <!-- begin-user-doc --> <!-- end-user-doc
+	 * -->
+	 * 
 	 * @see #getType()
 	 * @generated
 	 * @ordered
 	 */
 	protected static final String TYPE_EDEFAULT = "";
 	/**
-	 * The cached value of the '{@link #getType() <em>Type</em>}' attribute.
-	 * <!-- begin-user-doc --> <!-- end-user-doc -->
+	 * The cached value of the '{@link #getType() <em>Type</em>}' attribute. <!-- begin-user-doc --> <!-- end-user-doc
+	 * -->
+	 * 
 	 * @see #getType()
 	 * @generated
 	 * @ordered
@@ -102,34 +107,36 @@ public class AttributeImpl extends ModelElementImpl implements Attribute {
 	protected String type = TYPE_EDEFAULT;
 
 	/**
-	 * The default value of the '{@link #getDefaultValue() <em>Default Value</em>}' attribute.
-	 * <!-- begin-user-doc --> <!--
-	 * end-user-doc -->
+	 * The default value of the '{@link #getDefaultValue() <em>Default Value</em>}' attribute. <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * 
 	 * @see #getDefaultValue()
 	 * @generated
 	 * @ordered
 	 */
 	protected static final String DEFAULT_VALUE_EDEFAULT = null;
 	/**
-	 * The cached value of the '{@link #getDefaultValue() <em>Default Value</em>}' attribute.
-	 * <!-- begin-user-doc --> <!--
-	 * end-user-doc -->
+	 * The cached value of the '{@link #getDefaultValue() <em>Default Value</em>}' attribute. <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * 
 	 * @see #getDefaultValue()
 	 * @generated
 	 * @ordered
 	 */
 	protected String defaultValue = DEFAULT_VALUE_EDEFAULT;
 	/**
-	 * The default value of the '{@link #getProperties() <em>Properties</em>}' attribute.
-	 * <!-- begin-user-doc --> <!-- end-user-doc -->
+	 * The default value of the '{@link #getProperties() <em>Properties</em>}' attribute. <!-- begin-user-doc --> <!--
+	 * end-user-doc -->
+	 * 
 	 * @see #getProperties()
 	 * @generated
 	 * @ordered
 	 */
 	protected static final String PROPERTIES_EDEFAULT = null;
 	/**
-	 * The cached value of the '{@link #getProperties() <em>Properties</em>}' attribute.
-	 * <!-- begin-user-doc --> <!-- end-user-doc -->
+	 * The cached value of the '{@link #getProperties() <em>Properties</em>}' attribute. <!-- begin-user-doc --> <!--
+	 * end-user-doc -->
+	 * 
 	 * @see #getProperties()
 	 * @generated
 	 * @ordered
@@ -137,16 +144,18 @@ public class AttributeImpl extends ModelElementImpl implements Attribute {
 	protected String properties = PROPERTIES_EDEFAULT;
 
 	/**
-	 * The default value of the '{@link #getLabel() <em>Label</em>}' attribute.
-	 * <!-- begin-user-doc --> <!-- end-user-doc -->
+	 * The default value of the '{@link #getLabel() <em>Label</em>}' attribute. <!-- begin-user-doc --> <!--
+	 * end-user-doc -->
+	 * 
 	 * @see #getLabel()
 	 * @generated
 	 * @ordered
 	 */
 	protected static final String LABEL_EDEFAULT = null;
 	/**
-	 * The cached value of the '{@link #getLabel() <em>Label</em>}' attribute.
-	 * <!-- begin-user-doc --> <!-- end-user-doc -->
+	 * The cached value of the '{@link #getLabel() <em>Label</em>}' attribute. <!-- begin-user-doc --> <!-- end-user-doc
+	 * -->
+	 * 
 	 * @see #getLabel()
 	 * @generated
 	 * @ordered
@@ -155,6 +164,7 @@ public class AttributeImpl extends ModelElementImpl implements Attribute {
 
 	/**
 	 * <!-- begin-user-doc --> <!-- end-user-doc -->
+	 * 
 	 * @generated
 	 */
 	protected AttributeImpl() {
@@ -163,6 +173,7 @@ public class AttributeImpl extends ModelElementImpl implements Attribute {
 
 	/**
 	 * <!-- begin-user-doc --> <!-- end-user-doc -->
+	 * 
 	 * @generated
 	 */
 	@Override
@@ -172,6 +183,7 @@ public class AttributeImpl extends ModelElementImpl implements Attribute {
 
 	/**
 	 * <!-- begin-user-doc --> <!-- end-user-doc -->
+	 * 
 	 * @generated
 	 */
 	public org.unicase.model.classes.Class getDefiningClass() {
@@ -182,6 +194,7 @@ public class AttributeImpl extends ModelElementImpl implements Attribute {
 
 	/**
 	 * <!-- begin-user-doc --> <!-- end-user-doc -->
+	 * 
 	 * @generated
 	 */
 	public org.unicase.model.classes.Class basicGetDefiningClass() {
@@ -192,45 +205,42 @@ public class AttributeImpl extends ModelElementImpl implements Attribute {
 
 	/**
 	 * <!-- begin-user-doc --> <!-- end-user-doc -->
+	 * 
 	 * @generated
 	 */
-	public NotificationChain basicSetDefiningClass(
-			org.unicase.model.classes.Class newDefiningClass,
-			NotificationChain msgs) {
-		msgs = eBasicSetContainer((InternalEObject) newDefiningClass,
-				ClassesPackage.ATTRIBUTE__DEFINING_CLASS, msgs);
+	public NotificationChain basicSetDefiningClass(org.unicase.model.classes.Class newDefiningClass,
+		NotificationChain msgs) {
+		msgs = eBasicSetContainer((InternalEObject) newDefiningClass, ClassesPackage.ATTRIBUTE__DEFINING_CLASS, msgs);
 		return msgs;
 	}
 
 	/**
 	 * <!-- begin-user-doc --> <!-- end-user-doc -->
+	 * 
 	 * @generated
 	 */
-	public void setDefiningClass(
-			org.unicase.model.classes.Class newDefiningClass) {
+	public void setDefiningClass(org.unicase.model.classes.Class newDefiningClass) {
 		if (newDefiningClass != eInternalContainer()
-				|| (eContainerFeatureID != ClassesPackage.ATTRIBUTE__DEFINING_CLASS && newDefiningClass != null)) {
+			|| (eContainerFeatureID != ClassesPackage.ATTRIBUTE__DEFINING_CLASS && newDefiningClass != null)) {
 			if (EcoreUtil.isAncestor(this, newDefiningClass))
-				throw new IllegalArgumentException(
-						"Recursive containment not allowed for " + toString());
+				throw new IllegalArgumentException("Recursive containment not allowed for " + toString());
 			NotificationChain msgs = null;
 			if (eInternalContainer() != null)
 				msgs = eBasicRemoveFromContainer(msgs);
 			if (newDefiningClass != null)
-				msgs = ((InternalEObject) newDefiningClass).eInverseAdd(this,
-						ClassesPackage.CLASS__ATTRIBUTES,
-						org.unicase.model.classes.Class.class, msgs);
+				msgs = ((InternalEObject) newDefiningClass).eInverseAdd(this, ClassesPackage.CLASS__ATTRIBUTES,
+					org.unicase.model.classes.Class.class, msgs);
 			msgs = basicSetDefiningClass(newDefiningClass, msgs);
 			if (msgs != null)
 				msgs.dispatch();
 		} else if (eNotificationRequired())
-			eNotify(new ENotificationImpl(this, Notification.SET,
-					ClassesPackage.ATTRIBUTE__DEFINING_CLASS, newDefiningClass,
-					newDefiningClass));
+			eNotify(new ENotificationImpl(this, Notification.SET, ClassesPackage.ATTRIBUTE__DEFINING_CLASS,
+				newDefiningClass, newDefiningClass));
 	}
 
 	/**
 	 * <!-- begin-user-doc --> <!-- end-user-doc -->
+	 * 
 	 * @generated
 	 */
 	public VisibilityType getVisibility() {
@@ -239,20 +249,20 @@ public class AttributeImpl extends ModelElementImpl implements Attribute {
 
 	/**
 	 * <!-- begin-user-doc --> <!-- end-user-doc -->
+	 * 
 	 * @generated
 	 */
 	public void setVisibility(VisibilityType newVisibility) {
 		VisibilityType oldVisibility = visibility;
-		visibility = newVisibility == null ? VISIBILITY_EDEFAULT
-				: newVisibility;
+		visibility = newVisibility == null ? VISIBILITY_EDEFAULT : newVisibility;
 		if (eNotificationRequired())
-			eNotify(new ENotificationImpl(this, Notification.SET,
-					ClassesPackage.ATTRIBUTE__VISIBILITY, oldVisibility,
-					visibility));
+			eNotify(new ENotificationImpl(this, Notification.SET, ClassesPackage.ATTRIBUTE__VISIBILITY, oldVisibility,
+				visibility));
 	}
 
 	/**
 	 * <!-- begin-user-doc --> <!-- end-user-doc -->
+	 * 
 	 * @generated
 	 */
 	public ScopeType getScope() {
@@ -261,14 +271,14 @@ public class AttributeImpl extends ModelElementImpl implements Attribute {
 
 	/**
 	 * <!-- begin-user-doc --> <!-- end-user-doc -->
+	 * 
 	 * @generated
 	 */
 	public void setScope(ScopeType newScope) {
 		ScopeType oldScope = scope;
 		scope = newScope == null ? SCOPE_EDEFAULT : newScope;
 		if (eNotificationRequired())
-			eNotify(new ENotificationImpl(this, Notification.SET,
-					ClassesPackage.ATTRIBUTE__SCOPE, oldScope, scope));
+			eNotify(new ENotificationImpl(this, Notification.SET, ClassesPackage.ATTRIBUTE__SCOPE, oldScope, scope));
 	}
 
 	/**
@@ -276,7 +286,6 @@ public class AttributeImpl extends ModelElementImpl implements Attribute {
 	 * 
 	 * @generated NOT
 	 * @return the signature of the method
-	 * 
 	 */
 	public String getSignature() {
 		String signature;
@@ -320,13 +329,11 @@ public class AttributeImpl extends ModelElementImpl implements Attribute {
 	}
 
 	/**
-	 * <!-- begin-user-doc --> Sets and tries to parse the label. If it can be
-	 * parsed, label attribute stays null and signature is used instead. <!--
-	 * end-user-doc -->
+	 * <!-- begin-user-doc --> Sets and tries to parse the label. If it can be parsed, label attribute stays null and
+	 * signature is used instead. <!-- end-user-doc -->
 	 * 
 	 * @generated NOT
-	 * @param newLabel
-	 *            the input string which will be parsed.
+	 * @param newLabel the input string which will be parsed.
 	 */
 	public void setLabel(String newLabel) {
 		String oldLabel = label;
@@ -379,15 +386,15 @@ public class AttributeImpl extends ModelElementImpl implements Attribute {
 			}
 
 			if (eNotificationRequired()) {
-				eNotify(new ENotificationImpl(this, Notification.SET,
-						ClassesPackage.ATTRIBUTE__SIGNATURE, oldLabel,
-						getLabel()));
+				eNotify(new ENotificationImpl(this, Notification.SET, ClassesPackage.ATTRIBUTE__SIGNATURE, oldLabel,
+					getLabel()));
 			}
 		}
 	}
 
 	/**
 	 * <!-- begin-user-doc --> .<!-- end-user-doc -->
+	 * 
 	 * @generated
 	 */
 	public String getType() {
@@ -396,18 +403,19 @@ public class AttributeImpl extends ModelElementImpl implements Attribute {
 
 	/**
 	 * <!-- begin-user-doc --> <!-- end-user-doc -->
+	 * 
 	 * @generated
 	 */
 	public void setType(String newType) {
 		String oldType = type;
 		type = newType;
 		if (eNotificationRequired())
-			eNotify(new ENotificationImpl(this, Notification.SET,
-					ClassesPackage.ATTRIBUTE__TYPE, oldType, type));
+			eNotify(new ENotificationImpl(this, Notification.SET, ClassesPackage.ATTRIBUTE__TYPE, oldType, type));
 	}
 
 	/**
 	 * <!-- begin-user-doc --> <!-- end-user-doc -->
+	 * 
 	 * @generated
 	 */
 	public String getDefaultValue() {
@@ -416,19 +424,20 @@ public class AttributeImpl extends ModelElementImpl implements Attribute {
 
 	/**
 	 * <!-- begin-user-doc --> <!-- end-user-doc -->
+	 * 
 	 * @generated
 	 */
 	public void setDefaultValue(String newDefaultValue) {
 		String oldDefaultValue = defaultValue;
 		defaultValue = newDefaultValue;
 		if (eNotificationRequired())
-			eNotify(new ENotificationImpl(this, Notification.SET,
-					ClassesPackage.ATTRIBUTE__DEFAULT_VALUE, oldDefaultValue,
-					defaultValue));
+			eNotify(new ENotificationImpl(this, Notification.SET, ClassesPackage.ATTRIBUTE__DEFAULT_VALUE,
+				oldDefaultValue, defaultValue));
 	}
 
 	/**
 	 * <!-- begin-user-doc --> <!-- end-user-doc -->
+	 * 
 	 * @generated
 	 */
 	public String getProperties() {
@@ -437,21 +446,21 @@ public class AttributeImpl extends ModelElementImpl implements Attribute {
 
 	/**
 	 * <!-- begin-user-doc --> <!-- end-user-doc -->
+	 * 
 	 * @generated
 	 */
 	public void setProperties(String newProperties) {
 		String oldProperties = properties;
 		properties = newProperties;
 		if (eNotificationRequired())
-			eNotify(new ENotificationImpl(this, Notification.SET,
-					ClassesPackage.ATTRIBUTE__PROPERTIES, oldProperties,
-					properties));
+			eNotify(new ENotificationImpl(this, Notification.SET, ClassesPackage.ATTRIBUTE__PROPERTIES, oldProperties,
+				properties));
 	}
 
 	/**
-	 * <!-- begin-user-doc -->
-	 * If the label can not be parsed it is a string field. otherwise this returns the signature.
-	 * <!-- end-user-doc -->
+	 * <!-- begin-user-doc --> If the label can not be parsed it is a string field. otherwise this returns the
+	 * signature. <!-- end-user-doc -->
+	 * 
 	 * @generated NOT
 	 * @return The displayable label.
 	 */
@@ -465,28 +474,27 @@ public class AttributeImpl extends ModelElementImpl implements Attribute {
 
 	/**
 	 * <!-- begin-user-doc --> .<!-- end-user-doc -->
+	 * 
 	 * @generated
 	 */
 	@Override
-	public NotificationChain eInverseAdd(InternalEObject otherEnd,
-			int featureID, NotificationChain msgs) {
+	public NotificationChain eInverseAdd(InternalEObject otherEnd, int featureID, NotificationChain msgs) {
 		switch (featureID) {
 		case ClassesPackage.ATTRIBUTE__DEFINING_CLASS:
 			if (eInternalContainer() != null)
 				msgs = eBasicRemoveFromContainer(msgs);
-			return basicSetDefiningClass(
-					(org.unicase.model.classes.Class) otherEnd, msgs);
+			return basicSetDefiningClass((org.unicase.model.classes.Class) otherEnd, msgs);
 		}
 		return super.eInverseAdd(otherEnd, featureID, msgs);
 	}
 
 	/**
 	 * <!-- begin-user-doc --> <!-- end-user-doc -->
+	 * 
 	 * @generated
 	 */
 	@Override
-	public NotificationChain eInverseRemove(InternalEObject otherEnd,
-			int featureID, NotificationChain msgs) {
+	public NotificationChain eInverseRemove(InternalEObject otherEnd, int featureID, NotificationChain msgs) {
 		switch (featureID) {
 		case ClassesPackage.ATTRIBUTE__DEFINING_CLASS:
 			return basicSetDefiningClass(null, msgs);
@@ -496,22 +504,22 @@ public class AttributeImpl extends ModelElementImpl implements Attribute {
 
 	/**
 	 * <!-- begin-user-doc --> <!-- end-user-doc -->
+	 * 
 	 * @generated
 	 */
 	@Override
-	public NotificationChain eBasicRemoveFromContainerFeature(
-			NotificationChain msgs) {
+	public NotificationChain eBasicRemoveFromContainerFeature(NotificationChain msgs) {
 		switch (eContainerFeatureID) {
 		case ClassesPackage.ATTRIBUTE__DEFINING_CLASS:
-			return eInternalContainer().eInverseRemove(this,
-					ClassesPackage.CLASS__ATTRIBUTES,
-					org.unicase.model.classes.Class.class, msgs);
+			return eInternalContainer().eInverseRemove(this, ClassesPackage.CLASS__ATTRIBUTES,
+				org.unicase.model.classes.Class.class, msgs);
 		}
 		return super.eBasicRemoveFromContainerFeature(msgs);
 	}
 
 	/**
 	 * <!-- begin-user-doc --> <!-- end-user-doc -->
+	 * 
 	 * @generated
 	 */
 	@Override
@@ -541,6 +549,7 @@ public class AttributeImpl extends ModelElementImpl implements Attribute {
 
 	/**
 	 * <!-- begin-user-doc --> <!-- end-user-doc -->
+	 * 
 	 * @generated
 	 */
 	@Override
@@ -573,6 +582,7 @@ public class AttributeImpl extends ModelElementImpl implements Attribute {
 
 	/**
 	 * <!-- begin-user-doc --> <!-- end-user-doc -->
+	 * 
 	 * @generated
 	 */
 	@Override
@@ -605,6 +615,7 @@ public class AttributeImpl extends ModelElementImpl implements Attribute {
 
 	/**
 	 * <!-- begin-user-doc --> <!-- end-user-doc -->
+	 * 
 	 * @generated
 	 */
 	@Override
@@ -617,26 +628,22 @@ public class AttributeImpl extends ModelElementImpl implements Attribute {
 		case ClassesPackage.ATTRIBUTE__SCOPE:
 			return scope != SCOPE_EDEFAULT;
 		case ClassesPackage.ATTRIBUTE__SIGNATURE:
-			return SIGNATURE_EDEFAULT == null ? getSignature() != null
-					: !SIGNATURE_EDEFAULT.equals(getSignature());
+			return SIGNATURE_EDEFAULT == null ? getSignature() != null : !SIGNATURE_EDEFAULT.equals(getSignature());
 		case ClassesPackage.ATTRIBUTE__TYPE:
-			return TYPE_EDEFAULT == null ? type != null : !TYPE_EDEFAULT
-					.equals(type);
+			return TYPE_EDEFAULT == null ? type != null : !TYPE_EDEFAULT.equals(type);
 		case ClassesPackage.ATTRIBUTE__DEFAULT_VALUE:
-			return DEFAULT_VALUE_EDEFAULT == null ? defaultValue != null
-					: !DEFAULT_VALUE_EDEFAULT.equals(defaultValue);
+			return DEFAULT_VALUE_EDEFAULT == null ? defaultValue != null : !DEFAULT_VALUE_EDEFAULT.equals(defaultValue);
 		case ClassesPackage.ATTRIBUTE__PROPERTIES:
-			return PROPERTIES_EDEFAULT == null ? properties != null
-					: !PROPERTIES_EDEFAULT.equals(properties);
+			return PROPERTIES_EDEFAULT == null ? properties != null : !PROPERTIES_EDEFAULT.equals(properties);
 		case ClassesPackage.ATTRIBUTE__LABEL:
-			return LABEL_EDEFAULT == null ? label != null : !LABEL_EDEFAULT
-					.equals(label);
+			return LABEL_EDEFAULT == null ? label != null : !LABEL_EDEFAULT.equals(label);
 		}
 		return super.eIsSet(featureID);
 	}
 
 	/**
 	 * <!-- begin-user-doc --> <!-- end-user-doc -->
+	 * 
 	 * @generated
 	 */
 	@Override

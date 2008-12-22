@@ -1,8 +1,7 @@
 /**
- * <copyright> Copyright (c) 2008 Jonas Helming, Maximilian Koegel. All rights reserved. This program and the accompanying materials are made available under the terms of the Eclipse Public License v1.0 which accompanies this distribution, and is available at http://www.eclipse.org/legal/epl-v10.html
- * </copyright>
- *
- * $Id$
+ * <copyright> Copyright (c) 2008 Jonas Helming, Maximilian Koegel. All rights reserved. This program and the
+ * accompanying materials are made available under the terms of the Eclipse Public License v1.0 which accompanies this
+ * distribution, and is available at http://www.eclipse.org/legal/epl-v10.html </copyright> $Id$
  */
 package org.unicase.model.task.util;
 
@@ -24,18 +23,15 @@ import org.unicase.model.task.WorkPackage;
  * Taxonomy to define opening links.
  * 
  * @author helming
- * 
  */
 public class OpeningLinkTaxonomy {
 
 	/**
-	 * Get all openers of a modelelement. Includes Subelements. zardosht: I had
-	 * to implement this method with a set<> because it returned many duplicate
-	 * opener instances. The other methods that worked with method should have
-	 * set<> implementation accordingly.
+	 * Get all openers of a modelelement. Includes Subelements. zardosht: I had to implement this method with a set<>
+	 * because it returned many duplicate opener instances. The other methods that worked with method should have set<>
+	 * implementation accordingly.
 	 * 
-	 * @param me
-	 *            the Modelelement
+	 * @param me the Modelelement
 	 * @return a list of modelelements, the openers
 	 */
 	public Set<ModelElement> getOpeners(ModelElement me) {
@@ -54,13 +50,11 @@ public class OpeningLinkTaxonomy {
 			getWorkPackageOpeners((WorkPackage) me, openers);
 		}
 		if (me instanceof UseCase) {
-			EList<FunctionalRequirement> functionalRequirements = ((UseCase) me)
-					.getFunctionalRequirements();
+			EList<FunctionalRequirement> functionalRequirements = ((UseCase) me).getFunctionalRequirements();
 			openers.addAll(functionalRequirements);
 		}
 		if (me instanceof Scenario) {
-			EList<UseCase> instantiatedUseCases = ((Scenario) me)
-					.getInstantiatedUseCases();
+			EList<UseCase> instantiatedUseCases = ((Scenario) me).getInstantiatedUseCases();
 			openers.addAll(instantiatedUseCases);
 
 		}
@@ -73,12 +67,10 @@ public class OpeningLinkTaxonomy {
 	}
 
 	/**
-	 * Returns all elements which are opened by the source model element. That
-	 * means, they are connected with the source by a opening link. The target
-	 * element has not to be open until the source is open or blocked.
+	 * Returns all elements which are opened by the source model element. That means, they are connected with the source
+	 * by a opening link. The target element has not to be open until the source is open or blocked.
 	 * 
-	 * @param modelElement
-	 *            The source modelelement
+	 * @param modelElement The source modelelement
 	 * @return all opened modelelements
 	 */
 	public ArrayList<ModelElement> getOpened(ModelElement modelElement) {
@@ -92,8 +84,7 @@ public class OpeningLinkTaxonomy {
 			opened.addAll(annotation.getAnnotatedModelElements());
 		}
 		if (modelElement instanceof FunctionalRequirement) {
-			EList<UseCase> useCases = ((FunctionalRequirement) modelElement)
-					.getUseCases();
+			EList<UseCase> useCases = ((FunctionalRequirement) modelElement).getUseCases();
 			opened.addAll(useCases);
 		}
 		if (modelElement instanceof UseCase) {
@@ -105,20 +96,16 @@ public class OpeningLinkTaxonomy {
 	}
 
 	/**
-	 * Returns all leaf openers, that means all checkables which causes the
-	 * source to be open.
+	 * Returns all leaf openers, that means all checkables which causes the source to be open.
 	 * 
-	 * @param modelElement
-	 *            the source
+	 * @param modelElement the source
 	 * @return a set of modelelement
 	 */
 	public Set<ModelElement> getLeafOpeners(ModelElement modelElement) {
-		return getRecursiveLeafOpeners(modelElement,
-				new HashSet<ModelElement>());
+		return getRecursiveLeafOpeners(modelElement, new HashSet<ModelElement>());
 	}
 
-	private Set<ModelElement> getRecursiveLeafOpeners(
-			ModelElement modelElement, HashSet<ModelElement> visited) {
+	private Set<ModelElement> getRecursiveLeafOpeners(ModelElement modelElement, HashSet<ModelElement> visited) {
 		Set<ModelElement> leafOpeners = new HashSet<ModelElement>();
 		Set<ModelElement> openers = getOpeners(modelElement);
 		visited.add(modelElement);

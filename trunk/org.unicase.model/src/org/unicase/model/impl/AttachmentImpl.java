@@ -1,8 +1,7 @@
 /**
- * <copyright> Copyright (c) 2008 Jonas Helming, Maximilian Koegel. All rights reserved. This program and the accompanying materials are made available under the terms of the Eclipse Public License v1.0 which accompanies this distribution, and is available at http://www.eclipse.org/legal/epl-v10.html
- * </copyright>
- *
- * $Id$
+ * <copyright> Copyright (c) 2008 Jonas Helming, Maximilian Koegel. All rights reserved. This program and the
+ * accompanying materials are made available under the terms of the Eclipse Public License v1.0 which accompanies this
+ * distribution, and is available at http://www.eclipse.org/legal/epl-v10.html </copyright> $Id$
  */
 package org.unicase.model.impl;
 
@@ -19,24 +18,21 @@ import org.unicase.model.ModelElement;
 import org.unicase.model.ModelPackage;
 
 /**
- * <!-- begin-user-doc -->
- * An implementation of the model object '<em><b>Attachment</b></em>'.
- * <!-- end-user-doc -->
+ * <!-- begin-user-doc --> An implementation of the model object '<em><b>Attachment</b></em>'. <!-- end-user-doc -->
  * <p>
  * The following features are implemented:
  * <ul>
- *   <li>{@link org.unicase.model.impl.AttachmentImpl#getReferringModelElements <em>Referring Model Elements</em>}</li>
+ * <li>{@link org.unicase.model.impl.AttachmentImpl#getReferringModelElements <em>Referring Model Elements</em>}</li>
  * </ul>
  * </p>
- *
+ * 
  * @generated
  */
-public abstract class AttachmentImpl extends ModelElementImpl implements
-		Attachment {
+public abstract class AttachmentImpl extends ModelElementImpl implements Attachment {
 	/**
 	 * The cached value of the '{@link #getReferringModelElements() <em>Referring Model Elements</em>}' reference list.
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
+	 * <!-- begin-user-doc --> <!-- end-user-doc -->
+	 * 
 	 * @see #getReferringModelElements()
 	 * @generated
 	 * @ordered
@@ -44,8 +40,8 @@ public abstract class AttachmentImpl extends ModelElementImpl implements
 	protected EList<ModelElement> referringModelElements;
 
 	/**
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
+	 * <!-- begin-user-doc --> <!-- end-user-doc -->
+	 * 
 	 * @generated
 	 */
 	protected AttachmentImpl() {
@@ -53,8 +49,8 @@ public abstract class AttachmentImpl extends ModelElementImpl implements
 	}
 
 	/**
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
+	 * <!-- begin-user-doc --> <!-- end-user-doc -->
+	 * 
 	 * @generated
 	 */
 	@Override
@@ -63,56 +59,51 @@ public abstract class AttachmentImpl extends ModelElementImpl implements
 	}
 
 	/**
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
+	 * <!-- begin-user-doc --> <!-- end-user-doc -->
+	 * 
 	 * @generated
 	 */
 	public EList<ModelElement> getReferringModelElements() {
 		if (referringModelElements == null) {
-			referringModelElements = new EObjectWithInverseResolvingEList.ManyInverse<ModelElement>(
-					ModelElement.class, this,
-					ModelPackage.ATTACHMENT__REFERRING_MODEL_ELEMENTS,
-					ModelPackage.MODEL_ELEMENT__ATTACHMENTS);
+			referringModelElements = new EObjectWithInverseResolvingEList.ManyInverse<ModelElement>(ModelElement.class,
+				this, ModelPackage.ATTACHMENT__REFERRING_MODEL_ELEMENTS, ModelPackage.MODEL_ELEMENT__ATTACHMENTS);
 		}
 		return referringModelElements;
 	}
 
 	/**
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
+	 * <!-- begin-user-doc --> <!-- end-user-doc -->
+	 * 
 	 * @generated
 	 */
 	@SuppressWarnings("unchecked")
 	@Override
-	public NotificationChain eInverseAdd(InternalEObject otherEnd,
-			int featureID, NotificationChain msgs) {
+	public NotificationChain eInverseAdd(InternalEObject otherEnd, int featureID, NotificationChain msgs) {
 		switch (featureID) {
 		case ModelPackage.ATTACHMENT__REFERRING_MODEL_ELEMENTS:
-			return ((InternalEList<InternalEObject>) (InternalEList<?>) getReferringModelElements())
-					.basicAdd(otherEnd, msgs);
+			return ((InternalEList<InternalEObject>) (InternalEList<?>) getReferringModelElements()).basicAdd(otherEnd,
+				msgs);
 		}
 		return super.eInverseAdd(otherEnd, featureID, msgs);
 	}
 
 	/**
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
+	 * <!-- begin-user-doc --> <!-- end-user-doc -->
+	 * 
 	 * @generated
 	 */
 	@Override
-	public NotificationChain eInverseRemove(InternalEObject otherEnd,
-			int featureID, NotificationChain msgs) {
+	public NotificationChain eInverseRemove(InternalEObject otherEnd, int featureID, NotificationChain msgs) {
 		switch (featureID) {
 		case ModelPackage.ATTACHMENT__REFERRING_MODEL_ELEMENTS:
-			return ((InternalEList<?>) getReferringModelElements())
-					.basicRemove(otherEnd, msgs);
+			return ((InternalEList<?>) getReferringModelElements()).basicRemove(otherEnd, msgs);
 		}
 		return super.eInverseRemove(otherEnd, featureID, msgs);
 	}
 
 	/**
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
+	 * <!-- begin-user-doc --> <!-- end-user-doc -->
+	 * 
 	 * @generated
 	 */
 	@Override
@@ -125,8 +116,8 @@ public abstract class AttachmentImpl extends ModelElementImpl implements
 	}
 
 	/**
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
+	 * <!-- begin-user-doc --> <!-- end-user-doc -->
+	 * 
 	 * @generated
 	 */
 	@SuppressWarnings("unchecked")
@@ -135,16 +126,15 @@ public abstract class AttachmentImpl extends ModelElementImpl implements
 		switch (featureID) {
 		case ModelPackage.ATTACHMENT__REFERRING_MODEL_ELEMENTS:
 			getReferringModelElements().clear();
-			getReferringModelElements().addAll(
-					(Collection<? extends ModelElement>) newValue);
+			getReferringModelElements().addAll((Collection<? extends ModelElement>) newValue);
 			return;
 		}
 		super.eSet(featureID, newValue);
 	}
 
 	/**
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
+	 * <!-- begin-user-doc --> <!-- end-user-doc -->
+	 * 
 	 * @generated
 	 */
 	@Override
@@ -158,18 +148,17 @@ public abstract class AttachmentImpl extends ModelElementImpl implements
 	}
 
 	/**
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
+	 * <!-- begin-user-doc --> <!-- end-user-doc -->
+	 * 
 	 * @generated
 	 */
 	@Override
 	public boolean eIsSet(int featureID) {
 		switch (featureID) {
 		case ModelPackage.ATTACHMENT__REFERRING_MODEL_ELEMENTS:
-			return referringModelElements != null
-					&& !referringModelElements.isEmpty();
+			return referringModelElements != null && !referringModelElements.isEmpty();
 		}
 		return super.eIsSet(featureID);
 	}
 
-} //AttachmentImpl
+} // AttachmentImpl

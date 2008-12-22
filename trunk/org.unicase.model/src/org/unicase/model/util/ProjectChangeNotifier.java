@@ -1,8 +1,7 @@
 /**
- * <copyright> Copyright (c) 2008 Jonas Helming, Maximilian Koegel. All rights reserved. This program and the accompanying materials are made available under the terms of the Eclipse Public License v1.0 which accompanies this distribution, and is available at http://www.eclipse.org/legal/epl-v10.html
- * </copyright>
- *
- * $Id$
+ * <copyright> Copyright (c) 2008 Jonas Helming, Maximilian Koegel. All rights reserved. This program and the
+ * accompanying materials are made available under the terms of the Eclipse Public License v1.0 which accompanies this
+ * distribution, and is available at http://www.eclipse.org/legal/epl-v10.html </copyright> $Id$
  */
 package org.unicase.model.util;
 
@@ -18,11 +17,10 @@ import org.unicase.model.ModelPackage;
 import org.unicase.model.Project;
 
 /**
- * Notifies about changes in a project. WARNING: Only for use in Project! Use
- * addProjectObserver of Project to listen for a Project.
+ * Notifies about changes in a project. WARNING: Only for use in Project! Use addProjectObserver of Project to listen
+ * for a Project.
  * 
  * @author koegel
- * 
  */
 public class ProjectChangeNotifier extends AdapterImpl {
 
@@ -32,17 +30,13 @@ public class ProjectChangeNotifier extends AdapterImpl {
 	/**
 	 * Constructor.
 	 * 
-	 * @param project
-	 *            the project
-	 * @param projectChangeObserver
-	 *            the listener
+	 * @param project the project
+	 * @param projectChangeObserver the listener
 	 */
-	public ProjectChangeNotifier(Project project,
-			ProjectChangeObserver projectChangeObserver) {
+	public ProjectChangeNotifier(Project project, ProjectChangeObserver projectChangeObserver) {
 
 		if (!(projectChangeObserver instanceof Project)) {
-			throw new IllegalArgumentException(
-					"This Notifier is only to be used by Project!");
+			throw new IllegalArgumentException("This Notifier is only to be used by Project!");
 		}
 
 		this.projectChangeObserver = projectChangeObserver;
@@ -72,16 +66,16 @@ public class ProjectChangeNotifier extends AdapterImpl {
 		switch (notification.getEventType()) {
 		case Notification.ADD:
 			handleAddNotification(notification);
-			//fire notification must be triggered after a (possible) create!
+			// fire notification must be triggered after a (possible) create!
 			fireNotification(notification);
 			break;
 		case Notification.ADD_MANY:
 			handleAddAllNotification(notification);
-			//fire notification must be triggered after a (possible) create!
+			// fire notification must be triggered after a (possible) create!
 			fireNotification(notification);
 			break;
 		case Notification.REMOVE:
-			//fire notification must be triggered before a (possible) delete!
+			// fire notification must be triggered before a (possible) delete!
 			fireNotification(notification);
 			// model element is removed from containment hierachy
 			if (isAboutContainment(notification)) {
@@ -98,11 +92,11 @@ public class ProjectChangeNotifier extends AdapterImpl {
 			if (isAboutContainment(notification)) {
 				handleSingleAdd((EObject) notification.getNotifier());
 			}
-			//fire notification must be triggered after a (possible) create!			
+			// fire notification must be triggered after a (possible) create!
 			fireNotification(notification);
 			break;
 		case Notification.REMOVE_MANY:
-			//fire notification must be triggered before a (possible) delete!
+			// fire notification must be triggered before a (possible) delete!
 			fireNotification(notification);
 			if (isAboutContainment(notification)) {
 				Object oldValue = notification.getOldValue();
@@ -121,8 +115,7 @@ public class ProjectChangeNotifier extends AdapterImpl {
 		}
 	}
 
-	private void handleSingleRemove(Notification notification,
-			ModelElement child) {
+	private void handleSingleRemove(Notification notification, ModelElement child) {
 		if (child.getProject() != project) {
 			this.projectChangeObserver.modelElementRemoved(project, child);
 			child.eAdapters().remove(this);
@@ -132,8 +125,7 @@ public class ProjectChangeNotifier extends AdapterImpl {
 	private void fireNotification(Notification notification) {
 		Object notifier = notification.getNotifier();
 		if (notifier instanceof ModelElement) {
-			this.projectChangeObserver.notify(notification, project,
-					(ModelElement) notifier);
+			this.projectChangeObserver.notify(notification, project, (ModelElement) notifier);
 		}
 	}
 
@@ -141,8 +133,7 @@ public class ProjectChangeNotifier extends AdapterImpl {
 	@SuppressWarnings("unchecked")
 	private void handleAddAllNotification(Notification notification) {
 		if (isAboutContainment(notification)) {
-			List<EObject> newValues = (List<EObject>) notification
-					.getNewValue();
+			List<EObject> newValues = (List<EObject>) notification.getNewValue();
 			for (EObject newElement : newValues) {
 				handleSingleAdd(newElement);
 			}
@@ -174,12 +165,10 @@ public class ProjectChangeNotifier extends AdapterImpl {
 			// this works only because the contains cache is not yet updated
 			if (!project.contains(modelElement)) {
 				newValue.eAdapters().add(this);
-				this.projectChangeObserver.modelElementAdded(project,
-						(ModelElement) newValue);
+				this.projectChangeObserver.modelElementAdded(project, (ModelElement) newValue);
 			} else {
 				if (project.getModelElement(modelElement.getModelElementId()) != modelElement) {
-					throw new IllegalStateException(
-							"Two elements with the same id but different instance detected!");
+					throw new IllegalStateException("Two elements with the same id but different instance detected!");
 				}
 			}
 		}

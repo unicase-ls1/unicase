@@ -31,13 +31,11 @@ public class ActorInstanceActorConstraint extends AbstractModelConstraint {
 			if (eObj instanceof ActorInstance) {
 				Actor actor = ((ActorInstance) eObj).getInstantiatedActor();
 				if (actor == null) {
-					EStructuralFeature errorFeature = ValidationConstraintHelper
-							.getErrorFeatureForModelElement(
-									(ModelElement) eObj, "instantiatedActor");
+					EStructuralFeature errorFeature = ValidationConstraintHelper.getErrorFeatureForModelElement(
+						(ModelElement) eObj, "instantiatedActor");
 					ctx.addResult(errorFeature);
-					return ctx.createFailureStatus(new Object[] { eObj.eClass()
-							.getName()
-							+ ": '" + ((ActorInstance) eObj).getName() + "'" });
+					return ctx.createFailureStatus(new Object[] { eObj.eClass().getName() + ": '"
+						+ ((ActorInstance) eObj).getName() + "'" });
 				}
 			}
 		}

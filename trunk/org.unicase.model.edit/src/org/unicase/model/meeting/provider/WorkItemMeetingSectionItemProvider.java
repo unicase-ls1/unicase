@@ -1,8 +1,7 @@
 /**
- * <copyright> Copyright (c) 2008 Jonas Helming, Maximilian Koegel. All rights reserved. This program and the accompanying materials are made available under the terms of the Eclipse Public License v1.0 which accompanies this distribution, and is available at http://www.eclipse.org/legal/epl-v10.html
- * </copyright>
- *
- * $Id$
+ * <copyright> Copyright (c) 2008 Jonas Helming, Maximilian Koegel. All rights reserved. This program and the
+ * accompanying materials are made available under the terms of the Eclipse Public License v1.0 which accompanies this
+ * distribution, and is available at http://www.eclipse.org/legal/epl-v10.html </copyright> $Id$
  */
 package org.unicase.model.meeting.provider;
 
@@ -22,19 +21,17 @@ import org.eclipse.emf.edit.provider.ITreeItemContentProvider;
 import org.unicase.model.meeting.MeetingPackage;
 
 /**
- * This is the item provider adapter for a {@link org.unicase.model.meeting.WorkItemMeetingSection} object.
- * <!-- begin-user-doc -->
- * <!-- end-user-doc -->
+ * This is the item provider adapter for a {@link org.unicase.model.meeting.WorkItemMeetingSection} object. <!--
+ * begin-user-doc --> <!-- end-user-doc -->
+ * 
  * @generated
  */
-public class WorkItemMeetingSectionItemProvider extends
-		MeetingSectionItemProvider implements IEditingDomainItemProvider,
-		IStructuredItemContentProvider, ITreeItemContentProvider,
-		IItemLabelProvider, IItemPropertySource {
+public class WorkItemMeetingSectionItemProvider extends MeetingSectionItemProvider implements
+	IEditingDomainItemProvider, IStructuredItemContentProvider, ITreeItemContentProvider, IItemLabelProvider,
+	IItemPropertySource {
 	/**
-	 * This constructs an instance from a factory and a notifier.
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
+	 * This constructs an instance from a factory and a notifier. <!-- begin-user-doc --> <!-- end-user-doc -->
+	 * 
 	 * @generated
 	 */
 	public WorkItemMeetingSectionItemProvider(AdapterFactory adapterFactory) {
@@ -42,9 +39,8 @@ public class WorkItemMeetingSectionItemProvider extends
 	}
 
 	/**
-	 * This returns the property descriptors for the adapted class.
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
+	 * This returns the property descriptors for the adapted class. <!-- begin-user-doc --> <!-- end-user-doc -->
+	 * 
 	 * @generated
 	 */
 	@Override
@@ -58,48 +54,41 @@ public class WorkItemMeetingSectionItemProvider extends
 	}
 
 	/**
-	 * This adds a property descriptor for the Included Work Items feature.
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
+	 * This adds a property descriptor for the Included Work Items feature. <!-- begin-user-doc --> <!-- end-user-doc
+	 * -->
+	 * 
 	 * @generated
 	 */
 	protected void addIncludedWorkItemsPropertyDescriptor(Object object) {
 		itemPropertyDescriptors
-				.add(createItemPropertyDescriptor(
-						((ComposeableAdapterFactory) adapterFactory)
-								.getRootAdapterFactory(),
-						getResourceLocator(),
-						getString("_UI_WorkItemMeetingSection_includedWorkItems_feature"),
-						getString(
-								"_UI_PropertyDescriptor_description",
-								"_UI_WorkItemMeetingSection_includedWorkItems_feature",
-								"_UI_WorkItemMeetingSection_type"),
-						MeetingPackage.Literals.WORK_ITEM_MEETING_SECTION__INCLUDED_WORK_ITEMS,
-						true, false, true, null, null, null));
+			.add(createItemPropertyDescriptor(((ComposeableAdapterFactory) adapterFactory).getRootAdapterFactory(),
+				getResourceLocator(), getString("_UI_WorkItemMeetingSection_includedWorkItems_feature"), getString(
+					"_UI_PropertyDescriptor_description", "_UI_WorkItemMeetingSection_includedWorkItems_feature",
+					"_UI_WorkItemMeetingSection_type"),
+				MeetingPackage.Literals.WORK_ITEM_MEETING_SECTION__INCLUDED_WORK_ITEMS, true, false, true, null, null,
+				null));
 	}
 
 	/**
 	 * This specifies how to implement {@link #getChildren} and is used to deduce an appropriate feature for an
 	 * {@link org.eclipse.emf.edit.command.AddCommand}, {@link org.eclipse.emf.edit.command.RemoveCommand} or
-	 * {@link org.eclipse.emf.edit.command.MoveCommand} in {@link #createCommand}.
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
+	 * {@link org.eclipse.emf.edit.command.MoveCommand} in {@link #createCommand}. <!-- begin-user-doc --> <!--
+	 * end-user-doc -->
+	 * 
 	 * @generated
 	 */
 	@Override
-	public Collection<? extends EStructuralFeature> getChildrenFeatures(
-			Object object) {
+	public Collection<? extends EStructuralFeature> getChildrenFeatures(Object object) {
 		if (childrenFeatures == null) {
 			super.getChildrenFeatures(object);
-			childrenFeatures
-					.add(MeetingPackage.Literals.WORK_ITEM_MEETING_SECTION__INCLUDED_WORK_ITEMS);
+			childrenFeatures.add(MeetingPackage.Literals.WORK_ITEM_MEETING_SECTION__INCLUDED_WORK_ITEMS);
 		}
 		return childrenFeatures;
 	}
 
 	/**
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
+	 * <!-- begin-user-doc --> <!-- end-user-doc -->
+	 * 
 	 * @generated
 	 */
 	@Override
@@ -111,23 +100,19 @@ public class WorkItemMeetingSectionItemProvider extends
 	}
 
 	/**
-	 * This returns WorkItemMeetingSection.gif.
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
+	 * This returns WorkItemMeetingSection.gif. <!-- begin-user-doc --> <!-- end-user-doc -->
+	 * 
 	 * @generated
 	 */
 	@Override
 	public Object getImage(Object object) {
-		return overlayImage(object, getResourceLocator().getImage(
-				"full/obj16/WorkItemMeetingSection"));
+		return overlayImage(object, getResourceLocator().getImage("full/obj16/WorkItemMeetingSection"));
 	}
 
 	/**
-	 * This returns the label text for the adapted class.
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
-	 * @generated NOT
-	 * {@inheritDoc}
+	 * This returns the label text for the adapted class. <!-- begin-user-doc --> <!-- end-user-doc -->
+	 * 
+	 * @generated NOT {@inheritDoc}
 	 */
 	@Override
 	public String getText(Object object) {
@@ -135,10 +120,10 @@ public class WorkItemMeetingSectionItemProvider extends
 	}
 
 	/**
-	 * This handles model notifications by calling {@link #updateChildren} to update any cached
-	 * children and by creating a viewer notification, which it passes to {@link #fireNotifyChanged}.
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
+	 * This handles model notifications by calling {@link #updateChildren} to update any cached children and by creating
+	 * a viewer notification, which it passes to {@link #fireNotifyChanged}. <!-- begin-user-doc --> <!-- end-user-doc
+	 * -->
+	 * 
 	 * @generated
 	 */
 	@Override
@@ -148,15 +133,13 @@ public class WorkItemMeetingSectionItemProvider extends
 	}
 
 	/**
-	 * This adds {@link org.eclipse.emf.edit.command.CommandParameter}s describing the children
-	 * that can be created under this object.
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
+	 * This adds {@link org.eclipse.emf.edit.command.CommandParameter}s describing the children that can be created
+	 * under this object. <!-- begin-user-doc --> <!-- end-user-doc -->
+	 * 
 	 * @generated
 	 */
 	@Override
-	protected void collectNewChildDescriptors(
-			Collection<Object> newChildDescriptors, Object object) {
+	protected void collectNewChildDescriptors(Collection<Object> newChildDescriptors, Object object) {
 		super.collectNewChildDescriptors(newChildDescriptors, object);
 	}
 

@@ -1,7 +1,7 @@
 /**
- * <copyright>Copyright (c) 2008 Jonas Helming, Maximilian Koegel. All rights reserved. This program and the accompanying materials are made available under the terms of the Eclipse Public License v1.0 which accompanies this distribution, and is available at http://www.eclipse.org/legal/epl-v10.html</copyright>
- *
- * $Id$
+ * <copyright>Copyright (c) 2008 Jonas Helming, Maximilian Koegel. All rights reserved. This program and the
+ * accompanying materials are made available under the terms of the Eclipse Public License v1.0 which accompanies this
+ * distribution, and is available at http://www.eclipse.org/legal/epl-v10.html</copyright> $Id$
  */
 package org.unicase.model.state.impl;
 
@@ -16,22 +16,20 @@ import org.unicase.model.state.StatePackage;
 import org.unicase.model.state.Transition;
 
 /**
- * <!-- begin-user-doc -->
- * An implementation of the model <b>Factory</b>.
- * <!-- end-user-doc -->
+ * <!-- begin-user-doc --> An implementation of the model <b>Factory</b>. <!-- end-user-doc -->
+ * 
  * @generated
  */
 public class StateFactoryImpl extends EFactoryImpl implements StateFactory {
 	/**
-	 * Creates the default factory implementation.
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
+	 * Creates the default factory implementation. <!-- begin-user-doc --> <!-- end-user-doc -->
+	 * 
 	 * @generated
 	 */
 	public static StateFactory init() {
 		try {
 			StateFactory theStateFactory = (StateFactory) EPackage.Registry.INSTANCE
-					.getEFactory("http://unicase.org/model/state");
+				.getEFactory("http://unicase.org/model/state");
 			if (theStateFactory != null) {
 				return theStateFactory;
 			}
@@ -42,9 +40,8 @@ public class StateFactoryImpl extends EFactoryImpl implements StateFactory {
 	}
 
 	/**
-	 * Creates an instance of the factory.
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
+	 * Creates an instance of the factory. <!-- begin-user-doc --> <!-- end-user-doc -->
+	 * 
 	 * @generated
 	 */
 	public StateFactoryImpl() {
@@ -52,8 +49,8 @@ public class StateFactoryImpl extends EFactoryImpl implements StateFactory {
 	}
 
 	/**
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
+	 * <!-- begin-user-doc --> <!-- end-user-doc -->
+	 * 
 	 * @generated
 	 */
 	@Override
@@ -64,14 +61,13 @@ public class StateFactoryImpl extends EFactoryImpl implements StateFactory {
 		case StatePackage.TRANSITION:
 			return createTransition();
 		default:
-			throw new IllegalArgumentException("The class '" + eClass.getName()
-					+ "' is not a valid classifier");
+			throw new IllegalArgumentException("The class '" + eClass.getName() + "' is not a valid classifier");
 		}
 	}
 
 	/**
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
+	 * <!-- begin-user-doc --> <!-- end-user-doc -->
+	 * 
 	 * @generated
 	 */
 	public State createState() {
@@ -80,8 +76,8 @@ public class StateFactoryImpl extends EFactoryImpl implements StateFactory {
 	}
 
 	/**
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
+	 * <!-- begin-user-doc --> <!-- end-user-doc -->
+	 * 
 	 * @generated
 	 */
 	public Transition createTransition() {
@@ -90,8 +86,8 @@ public class StateFactoryImpl extends EFactoryImpl implements StateFactory {
 	}
 
 	/**
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
+	 * <!-- begin-user-doc --> <!-- end-user-doc -->
+	 * 
 	 * @generated
 	 */
 	public StatePackage getStatePackage() {
@@ -99,8 +95,8 @@ public class StateFactoryImpl extends EFactoryImpl implements StateFactory {
 	}
 
 	/**
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
+	 * <!-- begin-user-doc --> <!-- end-user-doc -->
+	 * 
 	 * @deprecated
 	 * @generated
 	 */
@@ -109,4 +105,4 @@ public class StateFactoryImpl extends EFactoryImpl implements StateFactory {
 		return StatePackage.eINSTANCE;
 	}
 
-} //StateFactoryImpl
+} // StateFactoryImpl

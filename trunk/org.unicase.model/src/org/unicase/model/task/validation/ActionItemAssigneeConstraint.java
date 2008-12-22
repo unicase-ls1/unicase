@@ -15,7 +15,6 @@ import org.unicase.model.util.ValidationConstraintHelper;
  * 
  * @author wesendonk
  * @author naughton
- * 
  */
 public class ActionItemAssigneeConstraint extends AbstractModelConstraint {
 
@@ -31,13 +30,11 @@ public class ActionItemAssigneeConstraint extends AbstractModelConstraint {
 		if (eType == EMFEventType.NULL) {
 			if (eObj instanceof ActionItem) {
 				if (((ActionItem) eObj).getAssignee() == null) {
-					EStructuralFeature errorFeature = ValidationConstraintHelper
-							.getErrorFeatureForModelElement(
-									(ModelElement) eObj, "assignee");
+					EStructuralFeature errorFeature = ValidationConstraintHelper.getErrorFeatureForModelElement(
+						(ModelElement) eObj, "assignee");
 					ctx.addResult(errorFeature);
-					return ctx.createFailureStatus(new Object[] { eObj.eClass()
-							.getName()
-							+ ": '" + ((ActionItem) eObj).getName() + "'" });
+					return ctx.createFailureStatus(new Object[] { eObj.eClass().getName() + ": '"
+						+ ((ActionItem) eObj).getName() + "'" });
 				}
 			}
 		}

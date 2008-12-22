@@ -10,7 +10,7 @@ import org.eclipse.emf.validation.model.IClientSelector;
 public class ValidationClientSelector implements IClientSelector {
 
 	private static boolean running;
-	
+
 	/**
 	 * {@inheritDoc}
 	 */
@@ -20,6 +20,7 @@ public class ValidationClientSelector implements IClientSelector {
 
 	/**
 	 * running ...
+	 * 
 	 * @param running ...
 	 */
 	public static void setRunning(boolean running) {

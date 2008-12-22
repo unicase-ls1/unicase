@@ -1,8 +1,7 @@
 /**
- * <copyright> Copyright (c) 2008 Jonas Helming, Maximilian Koegel. All rights reserved. This program and the accompanying materials are made available under the terms of the Eclipse Public License v1.0 which accompanies this distribution, and is available at http://www.eclipse.org/legal/epl-v10.html
- * </copyright>
- *
- * $Id$
+ * <copyright> Copyright (c) 2008 Jonas Helming, Maximilian Koegel. All rights reserved. This program and the
+ * accompanying materials are made available under the terms of the Eclipse Public License v1.0 which accompanies this
+ * distribution, and is available at http://www.eclipse.org/legal/epl-v10.html </copyright> $Id$
  */
 package org.unicase.model.organization.impl;
 
@@ -19,22 +18,21 @@ import org.unicase.model.organization.OrgUnit;
 import org.unicase.model.organization.OrganizationPackage;
 
 /**
- * <!-- begin-user-doc --> An implementation of the model object '
- * <em><b>Group</b></em>'. <!-- end-user-doc -->
+ * <!-- begin-user-doc --> An implementation of the model object ' <em><b>Group</b></em>'. <!-- end-user-doc -->
  * <p>
  * The following features are implemented:
  * <ul>
- *   <li>{@link org.unicase.model.organization.impl.GroupImpl#getOrgUnits <em>Org Units</em>}</li>
+ * <li>{@link org.unicase.model.organization.impl.GroupImpl#getOrgUnits <em>Org Units</em>}</li>
  * </ul>
  * </p>
- *
+ * 
  * @generated
  */
 public class GroupImpl extends OrgUnitImpl implements Group {
 	/**
-	 * The cached value of the '{@link #getOrgUnits() <em>Org Units</em>}' reference list.
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
+	 * The cached value of the '{@link #getOrgUnits() <em>Org Units</em>}' reference list. <!-- begin-user-doc --> <!--
+	 * end-user-doc -->
+	 * 
 	 * @see #getOrgUnits()
 	 * @generated
 	 * @ordered
@@ -43,6 +41,7 @@ public class GroupImpl extends OrgUnitImpl implements Group {
 
 	/**
 	 * <!-- begin-user-doc --> <!-- end-user-doc -->
+	 * 
 	 * @generated
 	 */
 	protected GroupImpl() {
@@ -51,6 +50,7 @@ public class GroupImpl extends OrgUnitImpl implements Group {
 
 	/**
 	 * <!-- begin-user-doc --> <!-- end-user-doc -->
+	 * 
 	 * @generated
 	 */
 	@Override
@@ -59,55 +59,50 @@ public class GroupImpl extends OrgUnitImpl implements Group {
 	}
 
 	/**
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
+	 * <!-- begin-user-doc --> <!-- end-user-doc -->
+	 * 
 	 * @generated
 	 */
 	public EList<OrgUnit> getOrgUnits() {
 		if (orgUnits == null) {
-			orgUnits = new EObjectWithInverseResolvingEList.ManyInverse<OrgUnit>(
-					OrgUnit.class, this, OrganizationPackage.GROUP__ORG_UNITS,
-					OrganizationPackage.ORG_UNIT__GROUP_MEMBERSHIPS);
+			orgUnits = new EObjectWithInverseResolvingEList.ManyInverse<OrgUnit>(OrgUnit.class, this,
+				OrganizationPackage.GROUP__ORG_UNITS, OrganizationPackage.ORG_UNIT__GROUP_MEMBERSHIPS);
 		}
 		return orgUnits;
 	}
 
 	/**
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
+	 * <!-- begin-user-doc --> <!-- end-user-doc -->
+	 * 
 	 * @generated
 	 */
 	@SuppressWarnings("unchecked")
 	@Override
-	public NotificationChain eInverseAdd(InternalEObject otherEnd,
-			int featureID, NotificationChain msgs) {
+	public NotificationChain eInverseAdd(InternalEObject otherEnd, int featureID, NotificationChain msgs) {
 		switch (featureID) {
 		case OrganizationPackage.GROUP__ORG_UNITS:
-			return ((InternalEList<InternalEObject>) (InternalEList<?>) getOrgUnits())
-					.basicAdd(otherEnd, msgs);
+			return ((InternalEList<InternalEObject>) (InternalEList<?>) getOrgUnits()).basicAdd(otherEnd, msgs);
 		}
 		return super.eInverseAdd(otherEnd, featureID, msgs);
 	}
 
 	/**
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
+	 * <!-- begin-user-doc --> <!-- end-user-doc -->
+	 * 
 	 * @generated
 	 */
 	@Override
-	public NotificationChain eInverseRemove(InternalEObject otherEnd,
-			int featureID, NotificationChain msgs) {
+	public NotificationChain eInverseRemove(InternalEObject otherEnd, int featureID, NotificationChain msgs) {
 		switch (featureID) {
 		case OrganizationPackage.GROUP__ORG_UNITS:
-			return ((InternalEList<?>) getOrgUnits()).basicRemove(otherEnd,
-					msgs);
+			return ((InternalEList<?>) getOrgUnits()).basicRemove(otherEnd, msgs);
 		}
 		return super.eInverseRemove(otherEnd, featureID, msgs);
 	}
 
 	/**
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
+	 * <!-- begin-user-doc --> <!-- end-user-doc -->
+	 * 
 	 * @generated
 	 */
 	@Override
@@ -120,8 +115,8 @@ public class GroupImpl extends OrgUnitImpl implements Group {
 	}
 
 	/**
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
+	 * <!-- begin-user-doc --> <!-- end-user-doc -->
+	 * 
 	 * @generated
 	 */
 	@SuppressWarnings("unchecked")
@@ -137,8 +132,8 @@ public class GroupImpl extends OrgUnitImpl implements Group {
 	}
 
 	/**
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
+	 * <!-- begin-user-doc --> <!-- end-user-doc -->
+	 * 
 	 * @generated
 	 */
 	@Override
@@ -152,8 +147,8 @@ public class GroupImpl extends OrgUnitImpl implements Group {
 	}
 
 	/**
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
+	 * <!-- begin-user-doc --> <!-- end-user-doc -->
+	 * 
 	 * @generated
 	 */
 	@Override

@@ -1,8 +1,7 @@
 /**
- * <copyright> Copyright (c) 2008 Jonas Helming, Maximilian Koegel. All rights reserved. This program and the accompanying materials are made available under the terms of the Eclipse Public License v1.0 which accompanies this distribution, and is available at http://www.eclipse.org/legal/epl-v10.html
- * </copyright>
- *
- * $Id$
+ * <copyright> Copyright (c) 2008 Jonas Helming, Maximilian Koegel. All rights reserved. This program and the
+ * accompanying materials are made available under the terms of the Eclipse Public License v1.0 which accompanies this
+ * distribution, and is available at http://www.eclipse.org/legal/epl-v10.html </copyright> $Id$
  */
 package org.unicase.model.change.impl;
 
@@ -14,22 +13,21 @@ import org.unicase.model.change.MergingIssue;
 import org.unicase.model.rationale.impl.IssueImpl;
 
 /**
- * <!-- begin-user-doc --> An implementation of the model object '
- * <em><b>Merging Issue</b></em>'. <!-- end-user-doc -->
+ * <!-- begin-user-doc --> An implementation of the model object ' <em><b>Merging Issue</b></em>'. <!-- end-user-doc -->
  * <p>
  * The following features are implemented:
  * <ul>
- *   <li>{@link org.unicase.model.change.impl.MergingIssueImpl#getResolvingRevision <em>Resolving Revision</em>}</li>
+ * <li>{@link org.unicase.model.change.impl.MergingIssueImpl#getResolvingRevision <em>Resolving Revision</em>}</li>
  * </ul>
  * </p>
- *
+ * 
  * @generated
  */
 public class MergingIssueImpl extends IssueImpl implements MergingIssue {
 	/**
-	 * The default value of the '{@link #getResolvingRevision() <em>Resolving Revision</em>}' attribute.
-	 * <!-- begin-user-doc --> <!--
-	 * end-user-doc -->
+	 * The default value of the '{@link #getResolvingRevision() <em>Resolving Revision</em>}' attribute. <!--
+	 * begin-user-doc --> <!-- end-user-doc -->
+	 * 
 	 * @see #getResolvingRevision()
 	 * @generated
 	 * @ordered
@@ -37,9 +35,9 @@ public class MergingIssueImpl extends IssueImpl implements MergingIssue {
 	protected static final int RESOLVING_REVISION_EDEFAULT = 0;
 
 	/**
-	 * The cached value of the '{@link #getResolvingRevision() <em>Resolving Revision</em>}' attribute.
-	 * <!-- begin-user-doc --> <!--
-	 * end-user-doc -->
+	 * The cached value of the '{@link #getResolvingRevision() <em>Resolving Revision</em>}' attribute. <!--
+	 * begin-user-doc --> <!-- end-user-doc -->
+	 * 
 	 * @see #getResolvingRevision()
 	 * @generated
 	 * @ordered
@@ -48,6 +46,7 @@ public class MergingIssueImpl extends IssueImpl implements MergingIssue {
 
 	/**
 	 * <!-- begin-user-doc --> <!-- end-user-doc -->
+	 * 
 	 * @generated
 	 */
 	protected MergingIssueImpl() {
@@ -56,6 +55,7 @@ public class MergingIssueImpl extends IssueImpl implements MergingIssue {
 
 	/**
 	 * <!-- begin-user-doc --> <!-- end-user-doc -->
+	 * 
 	 * @generated
 	 */
 	@Override
@@ -65,6 +65,7 @@ public class MergingIssueImpl extends IssueImpl implements MergingIssue {
 
 	/**
 	 * <!-- begin-user-doc --> <!-- end-user-doc -->
+	 * 
 	 * @generated
 	 */
 	public int getResolvingRevision() {
@@ -73,19 +74,20 @@ public class MergingIssueImpl extends IssueImpl implements MergingIssue {
 
 	/**
 	 * <!-- begin-user-doc --> <!-- end-user-doc -->
+	 * 
 	 * @generated
 	 */
 	public void setResolvingRevision(int newResolvingRevision) {
 		int oldResolvingRevision = resolvingRevision;
 		resolvingRevision = newResolvingRevision;
 		if (eNotificationRequired())
-			eNotify(new ENotificationImpl(this, Notification.SET,
-					ChangePackage.MERGING_ISSUE__RESOLVING_REVISION,
-					oldResolvingRevision, resolvingRevision));
+			eNotify(new ENotificationImpl(this, Notification.SET, ChangePackage.MERGING_ISSUE__RESOLVING_REVISION,
+				oldResolvingRevision, resolvingRevision));
 	}
 
 	/**
 	 * <!-- begin-user-doc --> <!-- end-user-doc -->
+	 * 
 	 * @generated
 	 */
 	@Override
@@ -99,6 +101,7 @@ public class MergingIssueImpl extends IssueImpl implements MergingIssue {
 
 	/**
 	 * <!-- begin-user-doc --> <!-- end-user-doc -->
+	 * 
 	 * @generated
 	 */
 	@Override
@@ -113,6 +116,7 @@ public class MergingIssueImpl extends IssueImpl implements MergingIssue {
 
 	/**
 	 * <!-- begin-user-doc --> <!-- end-user-doc -->
+	 * 
 	 * @generated
 	 */
 	@Override
@@ -127,6 +131,7 @@ public class MergingIssueImpl extends IssueImpl implements MergingIssue {
 
 	/**
 	 * <!-- begin-user-doc --> <!-- end-user-doc -->
+	 * 
 	 * @generated
 	 */
 	@Override
@@ -140,6 +145,7 @@ public class MergingIssueImpl extends IssueImpl implements MergingIssue {
 
 	/**
 	 * <!-- begin-user-doc --> <!-- end-user-doc -->
+	 * 
 	 * @generated
 	 */
 	@Override

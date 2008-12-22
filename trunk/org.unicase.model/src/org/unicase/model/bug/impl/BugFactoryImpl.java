@@ -1,8 +1,7 @@
 /**
- * <copyright> Copyright (c) 2008 Jonas Helming, Maximilian Koegel. All rights reserved. This program and the accompanying materials are made available under the terms of the Eclipse Public License v1.0 which accompanies this distribution, and is available at http://www.eclipse.org/legal/epl-v10.html
- * </copyright>
- *
- * $Id$
+ * <copyright> Copyright (c) 2008 Jonas Helming, Maximilian Koegel. All rights reserved. This program and the
+ * accompanying materials are made available under the terms of the Eclipse Public License v1.0 which accompanies this
+ * distribution, and is available at http://www.eclipse.org/legal/epl-v10.html </copyright> $Id$
  */
 package org.unicase.model.bug.impl;
 
@@ -20,21 +19,20 @@ import org.unicase.model.bug.ResolutionType;
 import org.unicase.model.bug.Severity;
 
 /**
- * <!-- begin-user-doc --> An implementation of the model <b>Factory</b>. <!--
- * end-user-doc -->
+ * <!-- begin-user-doc --> An implementation of the model <b>Factory</b>. <!-- end-user-doc -->
+ * 
  * @generated
  */
 public class BugFactoryImpl extends EFactoryImpl implements BugFactory {
 	/**
-	 * Creates the default factory implementation.
-	 * <!-- begin-user-doc --> <!--
-	 * end-user-doc -->
+	 * Creates the default factory implementation. <!-- begin-user-doc --> <!-- end-user-doc -->
+	 * 
 	 * @generated
 	 */
 	public static BugFactory init() {
 		try {
 			BugFactory theBugFactory = (BugFactory) EPackage.Registry.INSTANCE
-					.getEFactory("http://unicase.org/model/bug");
+				.getEFactory("http://unicase.org/model/bug");
 			if (theBugFactory != null) {
 				return theBugFactory;
 			}
@@ -45,9 +43,8 @@ public class BugFactoryImpl extends EFactoryImpl implements BugFactory {
 	}
 
 	/**
-	 * Creates an instance of the factory.
-	 * <!-- begin-user-doc --> <!--
-	 * end-user-doc -->
+	 * Creates an instance of the factory. <!-- begin-user-doc --> <!-- end-user-doc -->
+	 * 
 	 * @generated
 	 */
 	public BugFactoryImpl() {
@@ -56,6 +53,7 @@ public class BugFactoryImpl extends EFactoryImpl implements BugFactory {
 
 	/**
 	 * <!-- begin-user-doc --> <!-- end-user-doc -->
+	 * 
 	 * @generated
 	 */
 	@Override
@@ -64,13 +62,13 @@ public class BugFactoryImpl extends EFactoryImpl implements BugFactory {
 		case BugPackage.BUG_REPORT:
 			return createBugReport();
 		default:
-			throw new IllegalArgumentException("The class '" + eClass.getName()
-					+ "' is not a valid classifier");
+			throw new IllegalArgumentException("The class '" + eClass.getName() + "' is not a valid classifier");
 		}
 	}
 
 	/**
 	 * <!-- begin-user-doc --> <!-- end-user-doc -->
+	 * 
 	 * @generated
 	 */
 	@Override
@@ -83,13 +81,13 @@ public class BugFactoryImpl extends EFactoryImpl implements BugFactory {
 		case BugPackage.RESOLUTION_TYPE:
 			return createResolutionTypeFromString(eDataType, initialValue);
 		default:
-			throw new IllegalArgumentException("The datatype '"
-					+ eDataType.getName() + "' is not a valid classifier");
+			throw new IllegalArgumentException("The datatype '" + eDataType.getName() + "' is not a valid classifier");
 		}
 	}
 
 	/**
 	 * <!-- begin-user-doc --> <!-- end-user-doc -->
+	 * 
 	 * @generated
 	 */
 	@Override
@@ -102,13 +100,13 @@ public class BugFactoryImpl extends EFactoryImpl implements BugFactory {
 		case BugPackage.RESOLUTION_TYPE:
 			return convertResolutionTypeToString(eDataType, instanceValue);
 		default:
-			throw new IllegalArgumentException("The datatype '"
-					+ eDataType.getName() + "' is not a valid classifier");
+			throw new IllegalArgumentException("The datatype '" + eDataType.getName() + "' is not a valid classifier");
 		}
 	}
 
 	/**
 	 * <!-- begin-user-doc --> <!-- end-user-doc -->
+	 * 
 	 * @generated
 	 */
 	public BugReport createBugReport() {
@@ -118,75 +116,73 @@ public class BugFactoryImpl extends EFactoryImpl implements BugFactory {
 
 	/**
 	 * <!-- begin-user-doc --> <!-- end-user-doc -->
+	 * 
 	 * @generated
 	 */
-	public BugStatus createBugStatusFromString(EDataType eDataType,
-			String initialValue) {
+	public BugStatus createBugStatusFromString(EDataType eDataType, String initialValue) {
 		BugStatus result = BugStatus.get(initialValue);
 		if (result == null)
-			throw new IllegalArgumentException("The value '" + initialValue
-					+ "' is not a valid enumerator of '" + eDataType.getName()
-					+ "'");
+			throw new IllegalArgumentException("The value '" + initialValue + "' is not a valid enumerator of '"
+				+ eDataType.getName() + "'");
 		return result;
 	}
 
 	/**
 	 * <!-- begin-user-doc --> <!-- end-user-doc -->
+	 * 
 	 * @generated
 	 */
-	public String convertBugStatusToString(EDataType eDataType,
-			Object instanceValue) {
+	public String convertBugStatusToString(EDataType eDataType, Object instanceValue) {
 		return instanceValue == null ? null : instanceValue.toString();
 	}
 
 	/**
 	 * <!-- begin-user-doc --> <!-- end-user-doc -->
+	 * 
 	 * @generated
 	 */
-	public Severity createSeverityFromString(EDataType eDataType,
-			String initialValue) {
+	public Severity createSeverityFromString(EDataType eDataType, String initialValue) {
 		Severity result = Severity.get(initialValue);
 		if (result == null)
-			throw new IllegalArgumentException("The value '" + initialValue
-					+ "' is not a valid enumerator of '" + eDataType.getName()
-					+ "'");
+			throw new IllegalArgumentException("The value '" + initialValue + "' is not a valid enumerator of '"
+				+ eDataType.getName() + "'");
 		return result;
 	}
 
 	/**
 	 * <!-- begin-user-doc --> <!-- end-user-doc -->
+	 * 
 	 * @generated
 	 */
-	public String convertSeverityToString(EDataType eDataType,
-			Object instanceValue) {
+	public String convertSeverityToString(EDataType eDataType, Object instanceValue) {
 		return instanceValue == null ? null : instanceValue.toString();
 	}
 
 	/**
 	 * <!-- begin-user-doc --> <!-- end-user-doc -->
+	 * 
 	 * @generated
 	 */
-	public ResolutionType createResolutionTypeFromString(EDataType eDataType,
-			String initialValue) {
+	public ResolutionType createResolutionTypeFromString(EDataType eDataType, String initialValue) {
 		ResolutionType result = ResolutionType.get(initialValue);
 		if (result == null)
-			throw new IllegalArgumentException("The value '" + initialValue
-					+ "' is not a valid enumerator of '" + eDataType.getName()
-					+ "'");
+			throw new IllegalArgumentException("The value '" + initialValue + "' is not a valid enumerator of '"
+				+ eDataType.getName() + "'");
 		return result;
 	}
 
 	/**
 	 * <!-- begin-user-doc --> <!-- end-user-doc -->
+	 * 
 	 * @generated
 	 */
-	public String convertResolutionTypeToString(EDataType eDataType,
-			Object instanceValue) {
+	public String convertResolutionTypeToString(EDataType eDataType, Object instanceValue) {
 		return instanceValue == null ? null : instanceValue.toString();
 	}
 
 	/**
 	 * <!-- begin-user-doc --> <!-- end-user-doc -->
+	 * 
 	 * @generated
 	 */
 	public BugPackage getBugPackage() {
@@ -195,6 +191,7 @@ public class BugFactoryImpl extends EFactoryImpl implements BugFactory {
 
 	/**
 	 * <!-- begin-user-doc --> <!-- end-user-doc -->
+	 * 
 	 * @deprecated
 	 * @generated
 	 */

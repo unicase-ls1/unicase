@@ -1,7 +1,7 @@
 /**
- * <copyright>Copyright (c) 2008 Jonas Helming, Maximilian Koegel. All rights reserved. This program and the accompanying materials are made available under the terms of the Eclipse Public License v1.0 which accompanies this distribution, and is available at http://www.eclipse.org/legal/epl-v10.html</copyright>
- *
- * $Id$
+ * <copyright>Copyright (c) 2008 Jonas Helming, Maximilian Koegel. All rights reserved. This program and the
+ * accompanying materials are made available under the terms of the Eclipse Public License v1.0 which accompanies this
+ * distribution, and is available at http://www.eclipse.org/legal/epl-v10.html</copyright> $Id$
  */
 package org.unicase.model.profile.impl;
 
@@ -19,22 +19,20 @@ import org.unicase.model.profile.StereotypeAttributeSimple;
 import org.unicase.model.profile.StereotypeInstance;
 
 /**
- * <!-- begin-user-doc -->
- * An implementation of the model <b>Factory</b>.
- * <!-- end-user-doc -->
+ * <!-- begin-user-doc --> An implementation of the model <b>Factory</b>. <!-- end-user-doc -->
+ * 
  * @generated
  */
 public class ProfileFactoryImpl extends EFactoryImpl implements ProfileFactory {
 	/**
-	 * Creates the default factory implementation.
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
+	 * Creates the default factory implementation. <!-- begin-user-doc --> <!-- end-user-doc -->
+	 * 
 	 * @generated
 	 */
 	public static ProfileFactory init() {
 		try {
 			ProfileFactory theProfileFactory = (ProfileFactory) EPackage.Registry.INSTANCE
-					.getEFactory("http://unicase.org/model/profile");
+				.getEFactory("http://unicase.org/model/profile");
 			if (theProfileFactory != null) {
 				return theProfileFactory;
 			}
@@ -45,9 +43,8 @@ public class ProfileFactoryImpl extends EFactoryImpl implements ProfileFactory {
 	}
 
 	/**
-	 * Creates an instance of the factory.
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
+	 * Creates an instance of the factory. <!-- begin-user-doc --> <!-- end-user-doc -->
+	 * 
 	 * @generated
 	 */
 	public ProfileFactoryImpl() {
@@ -55,8 +52,8 @@ public class ProfileFactoryImpl extends EFactoryImpl implements ProfileFactory {
 	}
 
 	/**
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
+	 * <!-- begin-user-doc --> <!-- end-user-doc -->
+	 * 
 	 * @generated
 	 */
 	@Override
@@ -73,14 +70,13 @@ public class ProfileFactoryImpl extends EFactoryImpl implements ProfileFactory {
 		case ProfilePackage.STEREOTYPE_ATTRIBUTE_INSTANCE_STRING:
 			return createStereotypeAttributeInstanceString();
 		default:
-			throw new IllegalArgumentException("The class '" + eClass.getName()
-					+ "' is not a valid classifier");
+			throw new IllegalArgumentException("The class '" + eClass.getName() + "' is not a valid classifier");
 		}
 	}
 
 	/**
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
+	 * <!-- begin-user-doc --> <!-- end-user-doc -->
+	 * 
 	 * @generated
 	 */
 	public Profile createProfile() {
@@ -89,8 +85,8 @@ public class ProfileFactoryImpl extends EFactoryImpl implements ProfileFactory {
 	}
 
 	/**
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
+	 * <!-- begin-user-doc --> <!-- end-user-doc -->
+	 * 
 	 * @generated
 	 */
 	public Stereotype createStereotype() {
@@ -99,8 +95,8 @@ public class ProfileFactoryImpl extends EFactoryImpl implements ProfileFactory {
 	}
 
 	/**
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
+	 * <!-- begin-user-doc --> <!-- end-user-doc -->
+	 * 
 	 * @generated
 	 */
 	public StereotypeInstance createStereotypeInstance() {
@@ -109,8 +105,8 @@ public class ProfileFactoryImpl extends EFactoryImpl implements ProfileFactory {
 	}
 
 	/**
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
+	 * <!-- begin-user-doc --> <!-- end-user-doc -->
+	 * 
 	 * @generated
 	 */
 	public StereotypeAttributeSimple createStereotypeAttributeSimple() {
@@ -119,8 +115,8 @@ public class ProfileFactoryImpl extends EFactoryImpl implements ProfileFactory {
 	}
 
 	/**
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
+	 * <!-- begin-user-doc --> <!-- end-user-doc -->
+	 * 
 	 * @generated
 	 */
 	public StereotypeAttributeInstanceString createStereotypeAttributeInstanceString() {
@@ -129,8 +125,8 @@ public class ProfileFactoryImpl extends EFactoryImpl implements ProfileFactory {
 	}
 
 	/**
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
+	 * <!-- begin-user-doc --> <!-- end-user-doc -->
+	 * 
 	 * @generated
 	 */
 	public ProfilePackage getProfilePackage() {
@@ -138,8 +134,8 @@ public class ProfileFactoryImpl extends EFactoryImpl implements ProfileFactory {
 	}
 
 	/**
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
+	 * <!-- begin-user-doc --> <!-- end-user-doc -->
+	 * 
 	 * @deprecated
 	 * @generated
 	 */
@@ -148,4 +144,4 @@ public class ProfileFactoryImpl extends EFactoryImpl implements ProfileFactory {
 		return ProfilePackage.eINSTANCE;
 	}
 
-} //ProfileFactoryImpl
+} // ProfileFactoryImpl

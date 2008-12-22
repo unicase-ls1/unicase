@@ -1,8 +1,7 @@
 /**
- * <copyright> Copyright (c) 2008 Jonas Helming, Maximilian Koegel. All rights reserved. This program and the accompanying materials are made available under the terms of the Eclipse Public License v1.0 which accompanies this distribution, and is available at http://www.eclipse.org/legal/epl-v10.html
- * </copyright>
- *
- * $Id$
+ * <copyright> Copyright (c) 2008 Jonas Helming, Maximilian Koegel. All rights reserved. This program and the
+ * accompanying materials are made available under the terms of the Eclipse Public License v1.0 which accompanies this
+ * distribution, and is available at http://www.eclipse.org/legal/epl-v10.html </copyright> $Id$
  */
 package org.unicase.model.requirement.impl;
 
@@ -21,33 +20,34 @@ import org.unicase.model.requirement.Scenario;
 import org.unicase.model.requirement.UseCase;
 
 /**
- * <!-- begin-user-doc --> An implementation of the model object '
- * <em><b>Non Functional Requirement</b></em>'. <!-- end-user-doc -->
+ * <!-- begin-user-doc --> An implementation of the model object ' <em><b>Non Functional Requirement</b></em>'. <!--
+ * end-user-doc -->
  * <p>
  * The following features are implemented:
  * <ul>
- *   <li>{@link org.unicase.model.requirement.impl.NonFunctionalRequirementImpl#getRestrictedScenarios <em>Restricted Scenarios</em>}</li>
- *   <li>{@link org.unicase.model.requirement.impl.NonFunctionalRequirementImpl#getRestrictedUseCases <em>Restricted Use Cases</em>}</li>
+ * <li>{@link org.unicase.model.requirement.impl.NonFunctionalRequirementImpl#getRestrictedScenarios <em>Restricted
+ * Scenarios</em>}</li>
+ * <li>{@link org.unicase.model.requirement.impl.NonFunctionalRequirementImpl#getRestrictedUseCases <em>Restricted Use
+ * Cases</em>}</li>
  * </ul>
  * </p>
- *
+ * 
  * @generated
  */
-public class NonFunctionalRequirementImpl extends CriterionImpl implements
-		NonFunctionalRequirement {
+public class NonFunctionalRequirementImpl extends CriterionImpl implements NonFunctionalRequirement {
 	/**
-	 * The cached value of the '{@link #getRestrictedScenarios() <em>Restricted Scenarios</em>}' reference list.
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
+	 * The cached value of the '{@link #getRestrictedScenarios() <em>Restricted Scenarios</em>}' reference list. <!--
+	 * begin-user-doc --> <!-- end-user-doc -->
+	 * 
 	 * @see #getRestrictedScenarios()
 	 * @generated
 	 * @ordered
 	 */
 	protected EList<Scenario> restrictedScenarios;
 	/**
-	 * The cached value of the '{@link #getRestrictedUseCases() <em>Restricted Use Cases</em>}' reference list.
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
+	 * The cached value of the '{@link #getRestrictedUseCases() <em>Restricted Use Cases</em>}' reference list. <!--
+	 * begin-user-doc --> <!-- end-user-doc -->
+	 * 
 	 * @see #getRestrictedUseCases()
 	 * @generated
 	 * @ordered
@@ -56,6 +56,7 @@ public class NonFunctionalRequirementImpl extends CriterionImpl implements
 
 	/**
 	 * <!-- begin-user-doc --> <!-- end-user-doc -->
+	 * 
 	 * @generated
 	 */
 	protected NonFunctionalRequirementImpl() {
@@ -64,6 +65,7 @@ public class NonFunctionalRequirementImpl extends CriterionImpl implements
 
 	/**
 	 * <!-- begin-user-doc --> <!-- end-user-doc -->
+	 * 
 	 * @generated
 	 */
 	@Override
@@ -73,73 +75,70 @@ public class NonFunctionalRequirementImpl extends CriterionImpl implements
 
 	/**
 	 * <!-- begin-user-doc --> <!-- end-user-doc -->
+	 * 
 	 * @generated
 	 */
 	public EList<Scenario> getRestrictedScenarios() {
 		if (restrictedScenarios == null) {
-			restrictedScenarios = new EObjectWithInverseResolvingEList.ManyInverse<Scenario>(
-					Scenario.class,
-					this,
-					RequirementPackage.NON_FUNCTIONAL_REQUIREMENT__RESTRICTED_SCENARIOS,
-					RequirementPackage.SCENARIO__NON_FUNCTIONAL_REQUIREMENTS);
+			restrictedScenarios = new EObjectWithInverseResolvingEList.ManyInverse<Scenario>(Scenario.class, this,
+				RequirementPackage.NON_FUNCTIONAL_REQUIREMENT__RESTRICTED_SCENARIOS,
+				RequirementPackage.SCENARIO__NON_FUNCTIONAL_REQUIREMENTS);
 		}
 		return restrictedScenarios;
 	}
 
 	/**
 	 * <!-- begin-user-doc --> <!-- end-user-doc -->
+	 * 
 	 * @generated
 	 */
 	public EList<UseCase> getRestrictedUseCases() {
 		if (restrictedUseCases == null) {
-			restrictedUseCases = new EObjectWithInverseResolvingEList.ManyInverse<UseCase>(
-					UseCase.class,
-					this,
-					RequirementPackage.NON_FUNCTIONAL_REQUIREMENT__RESTRICTED_USE_CASES,
-					RequirementPackage.USE_CASE__NON_FUNCTIONAL_REQUIREMENTS);
+			restrictedUseCases = new EObjectWithInverseResolvingEList.ManyInverse<UseCase>(UseCase.class, this,
+				RequirementPackage.NON_FUNCTIONAL_REQUIREMENT__RESTRICTED_USE_CASES,
+				RequirementPackage.USE_CASE__NON_FUNCTIONAL_REQUIREMENTS);
 		}
 		return restrictedUseCases;
 	}
 
 	/**
 	 * <!-- begin-user-doc --> <!-- end-user-doc -->
+	 * 
 	 * @generated
 	 */
 	@SuppressWarnings("unchecked")
 	@Override
-	public NotificationChain eInverseAdd(InternalEObject otherEnd,
-			int featureID, NotificationChain msgs) {
+	public NotificationChain eInverseAdd(InternalEObject otherEnd, int featureID, NotificationChain msgs) {
 		switch (featureID) {
 		case RequirementPackage.NON_FUNCTIONAL_REQUIREMENT__RESTRICTED_SCENARIOS:
-			return ((InternalEList<InternalEObject>) (InternalEList<?>) getRestrictedScenarios())
-					.basicAdd(otherEnd, msgs);
+			return ((InternalEList<InternalEObject>) (InternalEList<?>) getRestrictedScenarios()).basicAdd(otherEnd,
+				msgs);
 		case RequirementPackage.NON_FUNCTIONAL_REQUIREMENT__RESTRICTED_USE_CASES:
-			return ((InternalEList<InternalEObject>) (InternalEList<?>) getRestrictedUseCases())
-					.basicAdd(otherEnd, msgs);
+			return ((InternalEList<InternalEObject>) (InternalEList<?>) getRestrictedUseCases()).basicAdd(otherEnd,
+				msgs);
 		}
 		return super.eInverseAdd(otherEnd, featureID, msgs);
 	}
 
 	/**
 	 * <!-- begin-user-doc --> <!-- end-user-doc -->
+	 * 
 	 * @generated
 	 */
 	@Override
-	public NotificationChain eInverseRemove(InternalEObject otherEnd,
-			int featureID, NotificationChain msgs) {
+	public NotificationChain eInverseRemove(InternalEObject otherEnd, int featureID, NotificationChain msgs) {
 		switch (featureID) {
 		case RequirementPackage.NON_FUNCTIONAL_REQUIREMENT__RESTRICTED_SCENARIOS:
-			return ((InternalEList<?>) getRestrictedScenarios()).basicRemove(
-					otherEnd, msgs);
+			return ((InternalEList<?>) getRestrictedScenarios()).basicRemove(otherEnd, msgs);
 		case RequirementPackage.NON_FUNCTIONAL_REQUIREMENT__RESTRICTED_USE_CASES:
-			return ((InternalEList<?>) getRestrictedUseCases()).basicRemove(
-					otherEnd, msgs);
+			return ((InternalEList<?>) getRestrictedUseCases()).basicRemove(otherEnd, msgs);
 		}
 		return super.eInverseRemove(otherEnd, featureID, msgs);
 	}
 
 	/**
 	 * <!-- begin-user-doc --> <!-- end-user-doc -->
+	 * 
 	 * @generated
 	 */
 	@Override
@@ -155,6 +154,7 @@ public class NonFunctionalRequirementImpl extends CriterionImpl implements
 
 	/**
 	 * <!-- begin-user-doc --> <!-- end-user-doc -->
+	 * 
 	 * @generated
 	 */
 	@SuppressWarnings("unchecked")
@@ -163,13 +163,11 @@ public class NonFunctionalRequirementImpl extends CriterionImpl implements
 		switch (featureID) {
 		case RequirementPackage.NON_FUNCTIONAL_REQUIREMENT__RESTRICTED_SCENARIOS:
 			getRestrictedScenarios().clear();
-			getRestrictedScenarios().addAll(
-					(Collection<? extends Scenario>) newValue);
+			getRestrictedScenarios().addAll((Collection<? extends Scenario>) newValue);
 			return;
 		case RequirementPackage.NON_FUNCTIONAL_REQUIREMENT__RESTRICTED_USE_CASES:
 			getRestrictedUseCases().clear();
-			getRestrictedUseCases().addAll(
-					(Collection<? extends UseCase>) newValue);
+			getRestrictedUseCases().addAll((Collection<? extends UseCase>) newValue);
 			return;
 		}
 		super.eSet(featureID, newValue);
@@ -177,6 +175,7 @@ public class NonFunctionalRequirementImpl extends CriterionImpl implements
 
 	/**
 	 * <!-- begin-user-doc --> <!-- end-user-doc -->
+	 * 
 	 * @generated
 	 */
 	@Override
@@ -194,14 +193,14 @@ public class NonFunctionalRequirementImpl extends CriterionImpl implements
 
 	/**
 	 * <!-- begin-user-doc --> <!-- end-user-doc -->
+	 * 
 	 * @generated
 	 */
 	@Override
 	public boolean eIsSet(int featureID) {
 		switch (featureID) {
 		case RequirementPackage.NON_FUNCTIONAL_REQUIREMENT__RESTRICTED_SCENARIOS:
-			return restrictedScenarios != null
-					&& !restrictedScenarios.isEmpty();
+			return restrictedScenarios != null && !restrictedScenarios.isEmpty();
 		case RequirementPackage.NON_FUNCTIONAL_REQUIREMENT__RESTRICTED_USE_CASES:
 			return restrictedUseCases != null && !restrictedUseCases.isEmpty();
 		}

@@ -1,8 +1,7 @@
 /**
- * <copyright> Copyright (c) 2008 Jonas Helming, Maximilian Koegel. All rights reserved. This program and the accompanying materials are made available under the terms of the Eclipse Public License v1.0 which accompanies this distribution, and is available at http://www.eclipse.org/legal/epl-v10.html
- * </copyright>
- *
- * $Id$
+ * <copyright> Copyright (c) 2008 Jonas Helming, Maximilian Koegel. All rights reserved. This program and the
+ * accompanying materials are made available under the terms of the Eclipse Public License v1.0 which accompanies this
+ * distribution, and is available at http://www.eclipse.org/legal/epl-v10.html </copyright> $Id$
  */
 package org.unicase.model.util;
 
@@ -20,20 +19,19 @@ import org.unicase.model.Project;
  * Helps with the validation of EMF models.
  * 
  * @author koegel
- *
  */
 public final class ModelValidationHelper {
 
-	
 	/**
 	 * Private constructor.
 	 */
 	private ModelValidationHelper() {
-		//nothing to do
+		// nothing to do
 	}
-		
+
 	/**
 	 * Find dangling references in a resource.
+	 * 
 	 * @param resource the resource
 	 * @return a list of dangling objects that are referenced but not contained in any resource
 	 */
@@ -59,15 +57,12 @@ public final class ModelValidationHelper {
 	/**
 	 * Check project for dangling references and fix them.
 	 * 
-	 * @param project
-	 *            the project (must be contained in a resource)
-	 * @return false if no problems were found and nothing was fixed, true
-	 *         otherwise
+	 * @param project the project (must be contained in a resource)
+	 * @return false if no problems were found and nothing was fixed, true otherwise
 	 */
 	public static boolean checkAndFixProject(Project project) {
 		if (project.eResource() == null) {
-			throw new IllegalArgumentException(
-					"The given project is not contained in a resource.");
+			throw new IllegalArgumentException("The given project is not contained in a resource.");
 		}
 		List<EObject> danglingEObjects = findDanglingEObjects(project);
 		boolean result = false;
@@ -92,6 +87,7 @@ public final class ModelValidationHelper {
 
 	/**
 	 * Find dangling references in a project.
+	 * 
 	 * @param project the project
 	 * @return a list of dangling objects that are referenced but not contained in any resource
 	 */

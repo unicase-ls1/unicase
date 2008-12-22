@@ -30,14 +30,12 @@ public class ModelElementNewNameConstraint extends AbstractModelConstraint {
 				ModelElement modelElement = (ModelElement) eObj;
 				String defaultName = "new " + eObj.eClass().getName();
 				if (defaultName.equals(modelElement.getName())) {
-					EStructuralFeature errorFeature = ValidationConstraintHelper
-							.getErrorFeatureForModelElement(modelElement,
-									"name");
+					EStructuralFeature errorFeature = ValidationConstraintHelper.getErrorFeatureForModelElement(
+						modelElement, "name");
 					ctx.addResult(errorFeature);
 
-					return ctx.createFailureStatus(new Object[] { eObj.eClass()
-							.getName()
-							+ ": '" + ((ModelElement) eObj).getName() + "'" });
+					return ctx.createFailureStatus(new Object[] { eObj.eClass().getName() + ": '"
+						+ ((ModelElement) eObj).getName() + "'" });
 				}
 			}
 		}

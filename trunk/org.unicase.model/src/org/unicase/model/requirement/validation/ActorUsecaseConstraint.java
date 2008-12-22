@@ -31,18 +31,14 @@ public class ActorUsecaseConstraint extends AbstractModelConstraint {
 		if (eType == EMFEventType.NULL) {
 			if (eObj instanceof Actor) {
 				EList<UseCase> useCases = ((Actor) eObj).getInitiatedUseCases();
-				EList<UseCase> useCases2 = ((Actor) eObj)
-						.getParticipatedUseCases();
+				EList<UseCase> useCases2 = ((Actor) eObj).getParticipatedUseCases();
 				if (useCases.size() < 1 && useCases2.size() < 1) {
-					//HN: extend to both
-					EStructuralFeature errorFeature = ValidationConstraintHelper
-							.getErrorFeatureForModelElement(
-									(ModelElement) eObj,
-									"initiatedUseCases");
+					// HN: extend to both
+					EStructuralFeature errorFeature = ValidationConstraintHelper.getErrorFeatureForModelElement(
+						(ModelElement) eObj, "initiatedUseCases");
 					ctx.addResult(errorFeature);
-					return ctx.createFailureStatus(new Object[] { eObj.eClass()
-							.getName()
-							+ ": '" + ((Actor) eObj).getName() + "'" });
+					return ctx.createFailureStatus(new Object[] { eObj.eClass().getName() + ": '"
+						+ ((Actor) eObj).getName() + "'" });
 				}
 			}
 		}

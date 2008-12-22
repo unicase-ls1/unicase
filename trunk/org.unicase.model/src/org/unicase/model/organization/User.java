@@ -1,24 +1,21 @@
 /**
- * <copyright> Copyright (c) 2008 Jonas Helming, Maximilian Koegel. All rights reserved. This program and the accompanying materials are made available under the terms of the Eclipse Public License v1.0 which accompanies this distribution, and is available at http://www.eclipse.org/legal/epl-v10.html
- * </copyright>
- *
- * $Id$
+ * <copyright> Copyright (c) 2008 Jonas Helming, Maximilian Koegel. All rights reserved. This program and the
+ * accompanying materials are made available under the terms of the Eclipse Public License v1.0 which accompanies this
+ * distribution, and is available at http://www.eclipse.org/legal/epl-v10.html </copyright> $Id$
  */
 package org.unicase.model.organization;
 
 /**
- * <!-- begin-user-doc --> A representation of the model object '
- * <em><b>User</b></em>'. <!-- end-user-doc -->
- *
+ * <!-- begin-user-doc --> A representation of the model object ' <em><b>User</b></em>'. <!-- end-user-doc -->
  * <p>
  * The following features are supported:
  * <ul>
- *   <li>{@link org.unicase.model.organization.User#getEmail <em>Email</em>}</li>
- *   <li>{@link org.unicase.model.organization.User#getFirstName <em>First Name</em>}</li>
- *   <li>{@link org.unicase.model.organization.User#getLastName <em>Last Name</em>}</li>
+ * <li>{@link org.unicase.model.organization.User#getEmail <em>Email</em>}</li>
+ * <li>{@link org.unicase.model.organization.User#getFirstName <em>First Name</em>}</li>
+ * <li>{@link org.unicase.model.organization.User#getLastName <em>Last Name</em>}</li>
  * </ul>
  * </p>
- *
+ * 
  * @see org.unicase.model.organization.OrganizationPackage#getUser()
  * @model
  * @generated
@@ -26,13 +23,13 @@ package org.unicase.model.organization;
 public interface User extends OrgUnit {
 
 	/**
-	 * Returns the value of the '<em><b>Email</b></em>' attribute.
-	 * <!-- begin-user-doc -->
+	 * Returns the value of the '<em><b>Email</b></em>' attribute. <!-- begin-user-doc -->
 	 * <p>
-	 * If the meaning of the '<em>Email</em>' attribute isn't clear,
-	 * there really should be more of a description here...
+	 * If the meaning of the '<em>Email</em>' attribute isn't clear, there really should be more of a description
+	 * here...
 	 * </p>
 	 * <!-- end-user-doc -->
+	 * 
 	 * @return the value of the '<em>Email</em>' attribute.
 	 * @see #setEmail(String)
 	 * @see org.unicase.model.organization.OrganizationPackage#getUser_Email()
@@ -42,9 +39,9 @@ public interface User extends OrgUnit {
 	String getEmail();
 
 	/**
-	 * Sets the value of the '{@link org.unicase.model.organization.User#getEmail <em>Email</em>}' attribute.
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
+	 * Sets the value of the '{@link org.unicase.model.organization.User#getEmail <em>Email</em>}' attribute. <!--
+	 * begin-user-doc --> <!-- end-user-doc -->
+	 * 
 	 * @param value the new value of the '<em>Email</em>' attribute.
 	 * @see #getEmail()
 	 * @generated
@@ -52,13 +49,13 @@ public interface User extends OrgUnit {
 	void setEmail(String value);
 
 	/**
-	 * Returns the value of the '<em><b>First Name</b></em>' attribute.
-	 * <!-- begin-user-doc -->
+	 * Returns the value of the '<em><b>First Name</b></em>' attribute. <!-- begin-user-doc -->
 	 * <p>
-	 * If the meaning of the '<em>First Name</em>' attribute isn't clear,
-	 * there really should be more of a description here...
+	 * If the meaning of the '<em>First Name</em>' attribute isn't clear, there really should be more of a description
+	 * here...
 	 * </p>
 	 * <!-- end-user-doc -->
+	 * 
 	 * @return the value of the '<em>First Name</em>' attribute.
 	 * @see #setFirstName(String)
 	 * @see org.unicase.model.organization.OrganizationPackage#getUser_FirstName()
@@ -69,8 +66,8 @@ public interface User extends OrgUnit {
 
 	/**
 	 * Sets the value of the '{@link org.unicase.model.organization.User#getFirstName <em>First Name</em>}' attribute.
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
+	 * <!-- begin-user-doc --> <!-- end-user-doc -->
+	 * 
 	 * @param value the new value of the '<em>First Name</em>' attribute.
 	 * @see #getFirstName()
 	 * @generated
@@ -78,13 +75,13 @@ public interface User extends OrgUnit {
 	void setFirstName(String value);
 
 	/**
-	 * Returns the value of the '<em><b>Last Name</b></em>' attribute.
-	 * <!-- begin-user-doc -->
+	 * Returns the value of the '<em><b>Last Name</b></em>' attribute. <!-- begin-user-doc -->
 	 * <p>
-	 * If the meaning of the '<em>Last Name</em>' attribute isn't clear,
-	 * there really should be more of a description here...
+	 * If the meaning of the '<em>Last Name</em>' attribute isn't clear, there really should be more of a description
+	 * here...
 	 * </p>
 	 * <!-- end-user-doc -->
+	 * 
 	 * @return the value of the '<em>Last Name</em>' attribute.
 	 * @see #setLastName(String)
 	 * @see org.unicase.model.organization.OrganizationPackage#getUser_LastName()
@@ -95,8 +92,8 @@ public interface User extends OrgUnit {
 
 	/**
 	 * Sets the value of the '{@link org.unicase.model.organization.User#getLastName <em>Last Name</em>}' attribute.
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
+	 * <!-- begin-user-doc --> <!-- end-user-doc -->
+	 * 
 	 * @param value the new value of the '<em>Last Name</em>' attribute.
 	 * @see #getLastName()
 	 * @generated

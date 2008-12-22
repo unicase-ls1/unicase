@@ -1,8 +1,7 @@
 /**
- * <copyright> Copyright (c) 2008 Jonas Helming, Maximilian Koegel. All rights reserved. This program and the accompanying materials are made available under the terms of the Eclipse Public License v1.0 which accompanies this distribution, and is available at http://www.eclipse.org/legal/epl-v10.html
- * </copyright>
- *
- * $Id$
+ * <copyright> Copyright (c) 2008 Jonas Helming, Maximilian Koegel. All rights reserved. This program and the
+ * accompanying materials are made available under the terms of the Eclipse Public License v1.0 which accompanies this
+ * distribution, and is available at http://www.eclipse.org/legal/epl-v10.html </copyright> $Id$
  */
 package org.unicase.model.component.impl;
 
@@ -17,22 +16,21 @@ import org.unicase.model.component.DeploymentNode;
 import org.unicase.model.impl.ModelElementImpl;
 
 /**
- * <!-- begin-user-doc --> An implementation of the model object '
- * <em><b>Node</b></em>'. <!-- end-user-doc -->
+ * <!-- begin-user-doc --> An implementation of the model object ' <em><b>Node</b></em>'. <!-- end-user-doc -->
  * <p>
  * The following features are implemented:
  * <ul>
- *   <li>{@link org.unicase.model.component.impl.DeploymentNodeImpl#getComponents <em>Components</em>}</li>
+ * <li>{@link org.unicase.model.component.impl.DeploymentNodeImpl#getComponents <em>Components</em>}</li>
  * </ul>
  * </p>
- *
+ * 
  * @generated
  */
-public class DeploymentNodeImpl extends ModelElementImpl implements
-		DeploymentNode {
+public class DeploymentNodeImpl extends ModelElementImpl implements DeploymentNode {
 	/**
-	 * The cached value of the '{@link #getComponents() <em>Components</em>}' reference list.
-	 * <!-- begin-user-doc --> <!-- end-user-doc -->
+	 * The cached value of the '{@link #getComponents() <em>Components</em>}' reference list. <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * 
 	 * @see #getComponents()
 	 * @generated
 	 * @ordered
@@ -41,6 +39,7 @@ public class DeploymentNodeImpl extends ModelElementImpl implements
 
 	/**
 	 * <!-- begin-user-doc --> <!-- end-user-doc -->
+	 * 
 	 * @generated
 	 */
 	protected DeploymentNodeImpl() {
@@ -49,6 +48,7 @@ public class DeploymentNodeImpl extends ModelElementImpl implements
 
 	/**
 	 * <!-- begin-user-doc --> <!-- end-user-doc -->
+	 * 
 	 * @generated
 	 */
 	@Override
@@ -58,18 +58,20 @@ public class DeploymentNodeImpl extends ModelElementImpl implements
 
 	/**
 	 * <!-- begin-user-doc --> <!-- end-user-doc -->
+	 * 
 	 * @generated
 	 */
 	public EList<Component> getComponents() {
 		if (components == null) {
-			components = new EObjectResolvingEList<Component>(Component.class,
-					this, ComponentPackage.DEPLOYMENT_NODE__COMPONENTS);
+			components = new EObjectResolvingEList<Component>(Component.class, this,
+				ComponentPackage.DEPLOYMENT_NODE__COMPONENTS);
 		}
 		return components;
 	}
 
 	/**
 	 * <!-- begin-user-doc --> <!-- end-user-doc -->
+	 * 
 	 * @generated
 	 */
 	@Override
@@ -83,6 +85,7 @@ public class DeploymentNodeImpl extends ModelElementImpl implements
 
 	/**
 	 * <!-- begin-user-doc --> <!-- end-user-doc -->
+	 * 
 	 * @generated
 	 */
 	@SuppressWarnings("unchecked")
@@ -99,6 +102,7 @@ public class DeploymentNodeImpl extends ModelElementImpl implements
 
 	/**
 	 * <!-- begin-user-doc --> <!-- end-user-doc -->
+	 * 
 	 * @generated
 	 */
 	@Override
@@ -113,6 +117,7 @@ public class DeploymentNodeImpl extends ModelElementImpl implements
 
 	/**
 	 * <!-- begin-user-doc --> <!-- end-user-doc -->
+	 * 
 	 * @generated
 	 */
 	@Override

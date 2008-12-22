@@ -1,8 +1,7 @@
 /**
- * <copyright> Copyright (c) 2008 Jonas Helming, Maximilian Koegel. All rights reserved. This program and the accompanying materials are made available under the terms of the Eclipse Public License v1.0 which accompanies this distribution, and is available at http://www.eclipse.org/legal/epl-v10.html
- * </copyright>
- *
- * $Id$
+ * <copyright> Copyright (c) 2008 Jonas Helming, Maximilian Koegel. All rights reserved. This program and the
+ * accompanying materials are made available under the terms of the Eclipse Public License v1.0 which accompanies this
+ * distribution, and is available at http://www.eclipse.org/legal/epl-v10.html </copyright> $Id$
  */
 package org.unicase.model.diagram.impl;
 
@@ -37,19 +36,18 @@ import org.unicase.model.diagram.MEDiagram;
 import org.unicase.model.impl.AttachmentImpl;
 
 /**
- * <!-- begin-user-doc --> An implementation of the model object '
- * <em><b>ME Diagram</b></em>'. <!-- end-user-doc -->
+ * <!-- begin-user-doc --> An implementation of the model object ' <em><b>ME Diagram</b></em>'. <!-- end-user-doc -->
  * <p>
  * The following features are implemented:
  * <ul>
- *   <li>{@link org.unicase.model.diagram.impl.MEDiagramImpl#getElements <em>Elements</em>}</li>
- *   <li>{@link org.unicase.model.diagram.impl.MEDiagramImpl#getGmfdiagram <em>Gmfdiagram</em>}</li>
- *   <li>{@link org.unicase.model.diagram.impl.MEDiagramImpl#getNewElements <em>New Elements</em>}</li>
- *   <li>{@link org.unicase.model.diagram.impl.MEDiagramImpl#getType <em>Type</em>}</li>
- *   <li>{@link org.unicase.model.diagram.impl.MEDiagramImpl#getDiagramLayout <em>Diagram Layout</em>}</li>
+ * <li>{@link org.unicase.model.diagram.impl.MEDiagramImpl#getElements <em>Elements</em>}</li>
+ * <li>{@link org.unicase.model.diagram.impl.MEDiagramImpl#getGmfdiagram <em>Gmfdiagram</em>}</li>
+ * <li>{@link org.unicase.model.diagram.impl.MEDiagramImpl#getNewElements <em>New Elements</em>}</li>
+ * <li>{@link org.unicase.model.diagram.impl.MEDiagramImpl#getType <em>Type</em>}</li>
+ * <li>{@link org.unicase.model.diagram.impl.MEDiagramImpl#getDiagramLayout <em>Diagram Layout</em>}</li>
  * </ul>
  * </p>
- *
+ * 
  * @generated
  */
 public class MEDiagramImpl extends AttachmentImpl implements MEDiagram {
@@ -59,8 +57,9 @@ public class MEDiagramImpl extends AttachmentImpl implements MEDiagram {
 	private static final long serialVersionUID = -1316169257375326716L;
 
 	/**
-	 * The cached value of the '{@link #getElements() <em>Elements</em>}' reference list.
-	 * <!-- begin-user-doc --> <!-- end-user-doc -->
+	 * The cached value of the '{@link #getElements() <em>Elements</em>}' reference list. <!-- begin-user-doc --> <!--
+	 * end-user-doc -->
+	 * 
 	 * @see #getElements()
 	 * @generated
 	 * @ordered
@@ -68,8 +67,9 @@ public class MEDiagramImpl extends AttachmentImpl implements MEDiagram {
 	protected EList<ModelElement> elements;
 
 	/**
-	 * The cached value of the '{@link #getGmfdiagram() <em>Gmfdiagram</em>}' containment reference.
-	 * <!-- begin-user-doc --> <!-- end-user-doc -->
+	 * The cached value of the '{@link #getGmfdiagram() <em>Gmfdiagram</em>}' containment reference. <!-- begin-user-doc
+	 * --> <!-- end-user-doc -->
+	 * 
 	 * @see #getGmfdiagram()
 	 * @generated
 	 * @ordered
@@ -77,8 +77,9 @@ public class MEDiagramImpl extends AttachmentImpl implements MEDiagram {
 	protected Diagram gmfdiagram;
 
 	/**
-	 * The cached value of the '{@link #getNewElements() <em>New Elements</em>}' containment reference list.
-	 * <!-- begin-user-doc --> <!-- end-user-doc -->
+	 * The cached value of the '{@link #getNewElements() <em>New Elements</em>}' containment reference list. <!--
+	 * begin-user-doc --> <!-- end-user-doc -->
+	 * 
 	 * @see #getNewElements()
 	 * @generated
 	 * @ordered
@@ -86,8 +87,9 @@ public class MEDiagramImpl extends AttachmentImpl implements MEDiagram {
 	protected EList<ModelElement> newElements;
 
 	/**
-	 * The default value of the '{@link #getType() <em>Type</em>}' attribute.
-	 * <!-- begin-user-doc --> <!-- end-user-doc -->
+	 * The default value of the '{@link #getType() <em>Type</em>}' attribute. <!-- begin-user-doc --> <!-- end-user-doc
+	 * -->
+	 * 
 	 * @see #getType()
 	 * @generated
 	 * @ordered
@@ -95,8 +97,9 @@ public class MEDiagramImpl extends AttachmentImpl implements MEDiagram {
 	protected static final DiagramType TYPE_EDEFAULT = DiagramType.CLASS_DIAGRAM;
 
 	/**
-	 * The cached value of the '{@link #getType() <em>Type</em>}' attribute.
-	 * <!-- begin-user-doc --> <!-- end-user-doc -->
+	 * The cached value of the '{@link #getType() <em>Type</em>}' attribute. <!-- begin-user-doc --> <!-- end-user-doc
+	 * -->
+	 * 
 	 * @see #getType()
 	 * @generated
 	 * @ordered
@@ -104,9 +107,9 @@ public class MEDiagramImpl extends AttachmentImpl implements MEDiagram {
 	protected DiagramType type = TYPE_EDEFAULT;
 
 	/**
-	 * The default value of the '{@link #getDiagramLayout() <em>Diagram Layout</em>}' attribute.
-	 * <!-- begin-user-doc --> <!--
-	 * end-user-doc -->
+	 * The default value of the '{@link #getDiagramLayout() <em>Diagram Layout</em>}' attribute. <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * 
 	 * @see #getDiagramLayout()
 	 * @generated
 	 * @ordered
@@ -114,9 +117,9 @@ public class MEDiagramImpl extends AttachmentImpl implements MEDiagram {
 	protected static final String DIAGRAM_LAYOUT_EDEFAULT = null;
 
 	/**
-	 * The cached value of the '{@link #getDiagramLayout() <em>Diagram Layout</em>}' attribute.
-	 * <!-- begin-user-doc --> <!--
-	 * end-user-doc -->
+	 * The cached value of the '{@link #getDiagramLayout() <em>Diagram Layout</em>}' attribute. <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * 
 	 * @see #getDiagramLayout()
 	 * @generated
 	 * @ordered
@@ -125,6 +128,7 @@ public class MEDiagramImpl extends AttachmentImpl implements MEDiagram {
 
 	/**
 	 * <!-- begin-user-doc --> <!-- end-user-doc -->
+	 * 
 	 * @generated
 	 */
 	protected MEDiagramImpl() {
@@ -133,6 +137,7 @@ public class MEDiagramImpl extends AttachmentImpl implements MEDiagram {
 
 	/**
 	 * <!-- begin-user-doc --> <!-- end-user-doc -->
+	 * 
 	 * @generated
 	 */
 	@Override
@@ -142,19 +147,20 @@ public class MEDiagramImpl extends AttachmentImpl implements MEDiagram {
 
 	/**
 	 * <!-- begin-user-doc --> <!-- end-user-doc -->
+	 * 
 	 * @generated
 	 */
 	public EList<ModelElement> getElements() {
 		if (elements == null) {
-			elements = new EObjectResolvingEList<ModelElement>(
-					ModelElement.class, this,
-					DiagramPackage.ME_DIAGRAM__ELEMENTS);
+			elements = new EObjectResolvingEList<ModelElement>(ModelElement.class, this,
+				DiagramPackage.ME_DIAGRAM__ELEMENTS);
 		}
 		return elements;
 	}
 
 	/**
 	 * <!-- begin-user-doc --> <!-- end-user-doc -->
+	 * 
 	 * @generated
 	 */
 	public Diagram getGmfdiagram() {
@@ -163,22 +169,17 @@ public class MEDiagramImpl extends AttachmentImpl implements MEDiagram {
 			gmfdiagram = (Diagram) eResolveProxy(oldGmfdiagram);
 			if (gmfdiagram != oldGmfdiagram) {
 				InternalEObject newGmfdiagram = (InternalEObject) gmfdiagram;
-				NotificationChain msgs = oldGmfdiagram.eInverseRemove(this,
-						EOPPOSITE_FEATURE_BASE
-								- DiagramPackage.ME_DIAGRAM__GMFDIAGRAM, null,
-						null);
+				NotificationChain msgs = oldGmfdiagram.eInverseRemove(this, EOPPOSITE_FEATURE_BASE
+					- DiagramPackage.ME_DIAGRAM__GMFDIAGRAM, null, null);
 				if (newGmfdiagram.eInternalContainer() == null) {
-					msgs = newGmfdiagram.eInverseAdd(this,
-							EOPPOSITE_FEATURE_BASE
-									- DiagramPackage.ME_DIAGRAM__GMFDIAGRAM,
-							null, msgs);
+					msgs = newGmfdiagram.eInverseAdd(this, EOPPOSITE_FEATURE_BASE
+						- DiagramPackage.ME_DIAGRAM__GMFDIAGRAM, null, msgs);
 				}
 				if (msgs != null)
 					msgs.dispatch();
 				if (eNotificationRequired())
-					eNotify(new ENotificationImpl(this, Notification.RESOLVE,
-							DiagramPackage.ME_DIAGRAM__GMFDIAGRAM,
-							oldGmfdiagram, gmfdiagram));
+					eNotify(new ENotificationImpl(this, Notification.RESOLVE, DiagramPackage.ME_DIAGRAM__GMFDIAGRAM,
+						oldGmfdiagram, gmfdiagram));
 			}
 		}
 		return gmfdiagram;
@@ -186,6 +187,7 @@ public class MEDiagramImpl extends AttachmentImpl implements MEDiagram {
 
 	/**
 	 * <!-- begin-user-doc --> <!-- end-user-doc -->
+	 * 
 	 * @generated
 	 */
 	public Diagram basicGetGmfdiagram() {
@@ -194,16 +196,15 @@ public class MEDiagramImpl extends AttachmentImpl implements MEDiagram {
 
 	/**
 	 * <!-- begin-user-doc --> <!-- end-user-doc -->
+	 * 
 	 * @generated
 	 */
-	public NotificationChain basicSetGmfdiagram(Diagram newGmfdiagram,
-			NotificationChain msgs) {
+	public NotificationChain basicSetGmfdiagram(Diagram newGmfdiagram, NotificationChain msgs) {
 		Diagram oldGmfdiagram = gmfdiagram;
 		gmfdiagram = newGmfdiagram;
 		if (eNotificationRequired()) {
-			ENotificationImpl notification = new ENotificationImpl(this,
-					Notification.SET, DiagramPackage.ME_DIAGRAM__GMFDIAGRAM,
-					oldGmfdiagram, newGmfdiagram);
+			ENotificationImpl notification = new ENotificationImpl(this, Notification.SET,
+				DiagramPackage.ME_DIAGRAM__GMFDIAGRAM, oldGmfdiagram, newGmfdiagram);
 			if (msgs == null)
 				msgs = notification;
 			else
@@ -214,28 +215,24 @@ public class MEDiagramImpl extends AttachmentImpl implements MEDiagram {
 
 	/**
 	 * <!-- begin-user-doc --> <!-- end-user-doc -->
+	 * 
 	 * @generated
 	 */
 	public void setGmfdiagram(Diagram newGmfdiagram) {
 		if (newGmfdiagram != gmfdiagram) {
 			NotificationChain msgs = null;
 			if (gmfdiagram != null)
-				msgs = ((InternalEObject) gmfdiagram).eInverseRemove(this,
-						EOPPOSITE_FEATURE_BASE
-								- DiagramPackage.ME_DIAGRAM__GMFDIAGRAM, null,
-						msgs);
+				msgs = ((InternalEObject) gmfdiagram).eInverseRemove(this, EOPPOSITE_FEATURE_BASE
+					- DiagramPackage.ME_DIAGRAM__GMFDIAGRAM, null, msgs);
 			if (newGmfdiagram != null)
-				msgs = ((InternalEObject) newGmfdiagram).eInverseAdd(this,
-						EOPPOSITE_FEATURE_BASE
-								- DiagramPackage.ME_DIAGRAM__GMFDIAGRAM, null,
-						msgs);
+				msgs = ((InternalEObject) newGmfdiagram).eInverseAdd(this, EOPPOSITE_FEATURE_BASE
+					- DiagramPackage.ME_DIAGRAM__GMFDIAGRAM, null, msgs);
 			msgs = basicSetGmfdiagram(newGmfdiagram, msgs);
 			if (msgs != null)
 				msgs.dispatch();
 		} else if (eNotificationRequired())
-			eNotify(new ENotificationImpl(this, Notification.SET,
-					DiagramPackage.ME_DIAGRAM__GMFDIAGRAM, newGmfdiagram,
-					newGmfdiagram));
+			eNotify(new ENotificationImpl(this, Notification.SET, DiagramPackage.ME_DIAGRAM__GMFDIAGRAM, newGmfdiagram,
+				newGmfdiagram));
 	}
 
 	/**
@@ -246,7 +243,7 @@ public class MEDiagramImpl extends AttachmentImpl implements MEDiagram {
 	 */
 	public EList<ModelElement> getNewElements() {
 
-		//JH: remove this line
+		// JH: remove this line
 		// this line is needed in order to avoid exception when
 		// initializing Teneo. Otherwise getProjects() throws an exception
 		// because eContainer is null. Returning null in this case shouldn't be
@@ -261,6 +258,7 @@ public class MEDiagramImpl extends AttachmentImpl implements MEDiagram {
 
 	/**
 	 * <!-- begin-user-doc --> .<!-- end-user-doc -->
+	 * 
 	 * @generated
 	 */
 	public DiagramType getType() {
@@ -269,18 +267,19 @@ public class MEDiagramImpl extends AttachmentImpl implements MEDiagram {
 
 	/**
 	 * <!-- begin-user-doc --> <!-- end-user-doc -->
+	 * 
 	 * @generated
 	 */
 	public void setType(DiagramType newType) {
 		DiagramType oldType = type;
 		type = newType == null ? TYPE_EDEFAULT : newType;
 		if (eNotificationRequired())
-			eNotify(new ENotificationImpl(this, Notification.SET,
-					DiagramPackage.ME_DIAGRAM__TYPE, oldType, type));
+			eNotify(new ENotificationImpl(this, Notification.SET, DiagramPackage.ME_DIAGRAM__TYPE, oldType, type));
 	}
 
 	/**
 	 * <!-- begin-user-doc --> <!-- end-user-doc -->
+	 * 
 	 * @generated
 	 */
 	public String getDiagramLayout() {
@@ -289,36 +288,36 @@ public class MEDiagramImpl extends AttachmentImpl implements MEDiagram {
 
 	/**
 	 * <!-- begin-user-doc --> <!-- end-user-doc -->
+	 * 
 	 * @generated
 	 */
 	public void setDiagramLayout(String newDiagramLayout) {
 		String oldDiagramLayout = diagramLayout;
 		diagramLayout = newDiagramLayout;
 		if (eNotificationRequired())
-			eNotify(new ENotificationImpl(this, Notification.SET,
-					DiagramPackage.ME_DIAGRAM__DIAGRAM_LAYOUT,
-					oldDiagramLayout, diagramLayout));
+			eNotify(new ENotificationImpl(this, Notification.SET, DiagramPackage.ME_DIAGRAM__DIAGRAM_LAYOUT,
+				oldDiagramLayout, diagramLayout));
 	}
 
 	/**
 	 * <!-- begin-user-doc --> <!-- end-user-doc -->
+	 * 
 	 * @generated
 	 */
 	@Override
-	public NotificationChain eInverseRemove(InternalEObject otherEnd,
-			int featureID, NotificationChain msgs) {
+	public NotificationChain eInverseRemove(InternalEObject otherEnd, int featureID, NotificationChain msgs) {
 		switch (featureID) {
 		case DiagramPackage.ME_DIAGRAM__GMFDIAGRAM:
 			return basicSetGmfdiagram(null, msgs);
 		case DiagramPackage.ME_DIAGRAM__NEW_ELEMENTS:
-			return ((InternalEList<?>) getNewElements()).basicRemove(otherEnd,
-					msgs);
+			return ((InternalEList<?>) getNewElements()).basicRemove(otherEnd, msgs);
 		}
 		return super.eInverseRemove(otherEnd, featureID, msgs);
 	}
 
 	/**
 	 * <!-- begin-user-doc --> <!-- end-user-doc -->
+	 * 
 	 * @generated
 	 */
 	@Override
@@ -342,6 +341,7 @@ public class MEDiagramImpl extends AttachmentImpl implements MEDiagram {
 
 	/**
 	 * <!-- begin-user-doc --> <!-- end-user-doc -->
+	 * 
 	 * @generated
 	 */
 	@SuppressWarnings("unchecked")
@@ -357,8 +357,7 @@ public class MEDiagramImpl extends AttachmentImpl implements MEDiagram {
 			return;
 		case DiagramPackage.ME_DIAGRAM__NEW_ELEMENTS:
 			getNewElements().clear();
-			getNewElements().addAll(
-					(Collection<? extends ModelElement>) newValue);
+			getNewElements().addAll((Collection<? extends ModelElement>) newValue);
 			return;
 		case DiagramPackage.ME_DIAGRAM__TYPE:
 			setType((DiagramType) newValue);
@@ -372,6 +371,7 @@ public class MEDiagramImpl extends AttachmentImpl implements MEDiagram {
 
 	/**
 	 * <!-- begin-user-doc --> <!-- end-user-doc -->
+	 * 
 	 * @generated
 	 */
 	@Override
@@ -398,6 +398,7 @@ public class MEDiagramImpl extends AttachmentImpl implements MEDiagram {
 
 	/**
 	 * <!-- begin-user-doc --> <!-- end-user-doc -->
+	 * 
 	 * @generated
 	 */
 	@Override
@@ -412,14 +413,15 @@ public class MEDiagramImpl extends AttachmentImpl implements MEDiagram {
 		case DiagramPackage.ME_DIAGRAM__TYPE:
 			return type != TYPE_EDEFAULT;
 		case DiagramPackage.ME_DIAGRAM__DIAGRAM_LAYOUT:
-			return DIAGRAM_LAYOUT_EDEFAULT == null ? diagramLayout != null
-					: !DIAGRAM_LAYOUT_EDEFAULT.equals(diagramLayout);
+			return DIAGRAM_LAYOUT_EDEFAULT == null ? diagramLayout != null : !DIAGRAM_LAYOUT_EDEFAULT
+				.equals(diagramLayout);
 		}
 		return super.eIsSet(featureID);
 	}
 
 	/**
 	 * <!-- begin-user-doc --> <!-- end-user-doc -->
+	 * 
 	 * @generated
 	 */
 	@Override
@@ -436,17 +438,13 @@ public class MEDiagramImpl extends AttachmentImpl implements MEDiagram {
 		return result.toString();
 	}
 
-	private static final URI VIRTUAL_DIAGRAM_URI = URI
-			.createURI("virtual.diagram.uri");
-	private static final URI VIRTUAL_DIAGRAM_ELEMENTS_URI = URI
-			.createURI("virtual.diagram.elements.uri");
+	private static final URI VIRTUAL_DIAGRAM_URI = URI.createURI("virtual.diagram.uri");
+	private static final URI VIRTUAL_DIAGRAM_ELEMENTS_URI = URI.createURI("virtual.diagram.elements.uri");
 
 	/**
 	 * Load a gmf diagram from a String.
 	 * 
-	 * @throws DiagramLoadException
-	 *             if load fails
-	 *            
+	 * @throws DiagramLoadException if load fails
 	 * @generated NOT
 	 */
 	public void loadDiagramLayout() throws DiagramLoadException {
@@ -455,44 +453,36 @@ public class MEDiagramImpl extends AttachmentImpl implements MEDiagram {
 		EList<ModelElement> elements = this.getElements();
 		Map<ModelElement, Resource> resourceMap = new HashMap<ModelElement, Resource>();
 		for (ModelElement modelElement : elements) {
-			if (modelElement.eResource() != modelElement.eContainer()
-					.eResource()) {
+			if (modelElement.eResource() != modelElement.eContainer().eResource()) {
 				resourceMap.put(modelElement, modelElement.eResource());
 			}
 		}
 
 		// put all involved elements into a virtual resource set
 		ResourceSet resourceSet = new ResourceSetImpl();
-		Resource diagramResource = resourceSet
-				.createResource(VIRTUAL_DIAGRAM_URI);
-		Resource elementsResource = resourceSet
-				.createResource(VIRTUAL_DIAGRAM_ELEMENTS_URI);
+		Resource diagramResource = resourceSet.createResource(VIRTUAL_DIAGRAM_URI);
+		Resource elementsResource = resourceSet.createResource(VIRTUAL_DIAGRAM_ELEMENTS_URI);
 		elementsResource.getContents().addAll(elements);
 
 		String diagramLayout = getDiagramLayout();
 		if (diagramLayout == null) {
-			throw new DiagramLoadException(
-					"Diagram string is null, load failed.");
+			throw new DiagramLoadException("Diagram string is null, load failed.");
 		}
 		// load diagram
 		try {
-			diagramResource.load(new ByteArrayInputStream(diagramLayout
-					.getBytes("UTF-8")), null);
+			diagramResource.load(new ByteArrayInputStream(diagramLayout.getBytes("UTF-8")), null);
 		} catch (UnsupportedEncodingException e) {
-			throw new DiagramLoadException(
-					"Diagram string encoding is malformed, load failed.", e);
+			throw new DiagramLoadException("Diagram string encoding is malformed, load failed.", e);
 		} catch (IOException e) {
 			throw new DiagramLoadException("Diagram load failed.", e);
 		}
 
 		if (diagramResource.getContents().size() < 1) {
-			throw new DiagramLoadException(
-					"Diagram String does not contain anything, load failed!");
+			throw new DiagramLoadException("Diagram String does not contain anything, load failed!");
 		}
 		EObject object = diagramResource.getContents().get(0);
 		if (!(object instanceof Diagram)) {
-			throw new DiagramLoadException(
-					"Diagram String contains unexpected content: first entry is not a diagram");
+			throw new DiagramLoadException("Diagram String contains unexpected content: first entry is not a diagram");
 		}
 		@SuppressWarnings("unused")
 		EObject object2;
@@ -513,13 +503,12 @@ public class MEDiagramImpl extends AttachmentImpl implements MEDiagram {
 			resourceMap.get(modelElement).getContents().add(modelElement);
 		}
 		gmfDiagram.setElement(this);
-		//MK change this
+		// MK change this
 		saveAllResources();
 	}
 
 	private void saveAllResources() {
-		EList<Resource> resources = this.eResource().getResourceSet()
-				.getResources();
+		EList<Resource> resources = this.eResource().getResourceSet().getResources();
 		for (Resource resource : resources) {
 			try {
 				resource.save(null);
@@ -531,12 +520,9 @@ public class MEDiagramImpl extends AttachmentImpl implements MEDiagram {
 	}
 
 	/**
-	 * 
 	 * Save gmf diagram to a String.
 	 * 
-	 * @throws DiagramStoreException
-	 *             if saving to a string fails
-	 * 
+	 * @throws DiagramStoreException if saving to a string fails
 	 * @generated NOT
 	 */
 	public void saveDiagramLayout() throws DiagramStoreException {
@@ -545,19 +531,16 @@ public class MEDiagramImpl extends AttachmentImpl implements MEDiagram {
 		EList<ModelElement> elements = this.getElements();
 		Map<ModelElement, Resource> resourceMap = new HashMap<ModelElement, Resource>();
 		for (ModelElement modelElement : elements) {
-			if (modelElement.eResource() != modelElement.eContainer()
-					.eResource()) {
+			if (modelElement.eResource() != modelElement.eContainer().eResource()) {
 				resourceMap.put(modelElement, modelElement.eResource());
 			}
 		}
 
 		// put all involved elements into a virtual resource set
 		ResourceSet resourceSet = new ResourceSetImpl();
-		Resource diagramResource = resourceSet
-				.createResource(VIRTUAL_DIAGRAM_URI);
+		Resource diagramResource = resourceSet.createResource(VIRTUAL_DIAGRAM_URI);
 
-		Resource elementsResource = resourceSet
-				.createResource(VIRTUAL_DIAGRAM_ELEMENTS_URI);
+		Resource elementsResource = resourceSet.createResource(VIRTUAL_DIAGRAM_ELEMENTS_URI);
 		elementsResource.getContents().addAll(elements);
 		diagramResource.getContents().add(getGmfdiagram());
 

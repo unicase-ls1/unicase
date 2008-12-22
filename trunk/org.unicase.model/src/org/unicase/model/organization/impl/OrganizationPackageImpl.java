@@ -1,8 +1,7 @@
 /**
- * <copyright> Copyright (c) 2008 Jonas Helming, Maximilian Koegel. All rights reserved. This program and the accompanying materials are made available under the terms of the Eclipse Public License v1.0 which accompanies this distribution, and is available at http://www.eclipse.org/legal/epl-v10.html
- * </copyright>
- *
- * $Id$
+ * <copyright> Copyright (c) 2008 Jonas Helming, Maximilian Koegel. All rights reserved. This program and the
+ * accompanying materials are made available under the terms of the Eclipse Public License v1.0 which accompanies this
+ * distribution, and is available at http://www.eclipse.org/legal/epl-v10.html </copyright> $Id$
  */
 package org.unicase.model.organization.impl;
 
@@ -47,37 +46,37 @@ import org.unicase.model.task.TaskPackage;
 import org.unicase.model.task.impl.TaskPackageImpl;
 
 /**
- * <!-- begin-user-doc --> An implementation of the model <b>Package</b>. <!--
- * end-user-doc -->
+ * <!-- begin-user-doc --> An implementation of the model <b>Package</b>. <!-- end-user-doc -->
+ * 
  * @generated
  */
-public class OrganizationPackageImpl extends EPackageImpl implements
-		OrganizationPackage {
+public class OrganizationPackageImpl extends EPackageImpl implements OrganizationPackage {
 	/**
 	 * <!-- begin-user-doc --> <!-- end-user-doc -->
+	 * 
 	 * @generated
 	 */
 	private EClass userEClass = null;
 
 	/**
 	 * <!-- begin-user-doc --> <!-- end-user-doc -->
+	 * 
 	 * @generated
 	 */
 	private EClass orgUnitEClass = null;
 	/**
 	 * <!-- begin-user-doc --> <!-- end-user-doc -->
+	 * 
 	 * @generated
 	 */
 	private EClass groupEClass = null;
 
 	/**
-	 * Creates an instance of the model <b>Package</b>, registered with
-	 * {@link org.eclipse.emf.ecore.EPackage.Registry EPackage.Registry} by the
-	 * package package URI value.
+	 * Creates an instance of the model <b>Package</b>, registered with {@link org.eclipse.emf.ecore.EPackage.Registry
+	 * EPackage.Registry} by the package package URI value.
 	 * <p>
-	 * Note: the correct way to create the package is via the static factory
-	 * method {@link #init init()}, which also performs initialization of the
-	 * package, or returns the registered package, if one already exists. <!--
+	 * Note: the correct way to create the package is via the static factory method {@link #init init()}, which also
+	 * performs initialization of the package, or returns the registered package, if one already exists. <!--
 	 * begin-user-doc --> <!-- end-user-doc -->
 	 * 
 	 * @see org.eclipse.emf.ecore.EPackage.Registry
@@ -91,26 +90,24 @@ public class OrganizationPackageImpl extends EPackageImpl implements
 
 	/**
 	 * <!-- begin-user-doc --> <!-- end-user-doc -->
+	 * 
 	 * @generated
 	 */
 	private static boolean isInited = false;
 
 	/**
-	 * Creates, registers, and initializes the <b>Package</b> for this
-	 * model, and for any others upon which it depends.  Simple
-	 * dependencies are satisfied by calling this method on all
-	 * dependent packages before doing anything else.  This method drives
-	 * initialization for interdependent packages directly, in parallel
-	 * with this package, itself.
-	 * <p>Of this package and its interdependencies, all packages which
-	 * have not yet been registered by their URI values are first created
-	 * and registered.  The packages are then initialized in two steps:
-	 * meta-model objects for all of the packages are created before any
-	 * are initialized, since one package's meta-model objects may refer to
-	 * those of another.
-	 * <p>Invocation of this method will not affect any packages that have
-	 * already been initialized.
-	 * <!-- begin-user-doc --> <!-- end-user-doc -->
+	 * Creates, registers, and initializes the <b>Package</b> for this model, and for any others upon which it depends.
+	 * Simple dependencies are satisfied by calling this method on all dependent packages before doing anything else.
+	 * This method drives initialization for interdependent packages directly, in parallel with this package, itself.
+	 * <p>
+	 * Of this package and its interdependencies, all packages which have not yet been registered by their URI values
+	 * are first created and registered. The packages are then initialized in two steps: meta-model objects for all of
+	 * the packages are created before any are initialized, since one package's meta-model objects may refer to those of
+	 * another.
+	 * <p>
+	 * Invocation of this method will not affect any packages that have already been initialized. <!-- begin-user-doc
+	 * --> <!-- end-user-doc -->
+	 * 
 	 * @see #eNS_URI
 	 * @see #createPackageContents()
 	 * @see #initializePackageContents()
@@ -118,14 +115,12 @@ public class OrganizationPackageImpl extends EPackageImpl implements
 	 */
 	public static OrganizationPackage init() {
 		if (isInited)
-			return (OrganizationPackage) EPackage.Registry.INSTANCE
-					.getEPackage(OrganizationPackage.eNS_URI);
+			return (OrganizationPackage) EPackage.Registry.INSTANCE.getEPackage(OrganizationPackage.eNS_URI);
 
 		// Obtain or create and register package
 		OrganizationPackageImpl theOrganizationPackage = (OrganizationPackageImpl) (EPackage.Registry.INSTANCE
-				.getEPackage(eNS_URI) instanceof OrganizationPackageImpl ? EPackage.Registry.INSTANCE
-				.getEPackage(eNS_URI)
-				: new OrganizationPackageImpl());
+			.getEPackage(eNS_URI) instanceof OrganizationPackageImpl ? EPackage.Registry.INSTANCE.getEPackage(eNS_URI)
+			: new OrganizationPackageImpl());
 
 		isInited = true;
 
@@ -134,61 +129,47 @@ public class OrganizationPackageImpl extends EPackageImpl implements
 
 		// Obtain or create and register interdependencies
 		ModelPackageImpl theModelPackage = (ModelPackageImpl) (EPackage.Registry.INSTANCE
-				.getEPackage(ModelPackage.eNS_URI) instanceof ModelPackageImpl ? EPackage.Registry.INSTANCE
-				.getEPackage(ModelPackage.eNS_URI)
-				: ModelPackage.eINSTANCE);
-		TaskPackageImpl theTaskPackage = (TaskPackageImpl) (EPackage.Registry.INSTANCE
-				.getEPackage(TaskPackage.eNS_URI) instanceof TaskPackageImpl ? EPackage.Registry.INSTANCE
-				.getEPackage(TaskPackage.eNS_URI)
-				: TaskPackage.eINSTANCE);
+			.getEPackage(ModelPackage.eNS_URI) instanceof ModelPackageImpl ? EPackage.Registry.INSTANCE
+			.getEPackage(ModelPackage.eNS_URI) : ModelPackage.eINSTANCE);
+		TaskPackageImpl theTaskPackage = (TaskPackageImpl) (EPackage.Registry.INSTANCE.getEPackage(TaskPackage.eNS_URI) instanceof TaskPackageImpl ? EPackage.Registry.INSTANCE
+			.getEPackage(TaskPackage.eNS_URI)
+			: TaskPackage.eINSTANCE);
 		DiagramPackageImpl theDiagramPackage = (DiagramPackageImpl) (EPackage.Registry.INSTANCE
-				.getEPackage(DiagramPackage.eNS_URI) instanceof DiagramPackageImpl ? EPackage.Registry.INSTANCE
-				.getEPackage(DiagramPackage.eNS_URI)
-				: DiagramPackage.eINSTANCE);
+			.getEPackage(DiagramPackage.eNS_URI) instanceof DiagramPackageImpl ? EPackage.Registry.INSTANCE
+			.getEPackage(DiagramPackage.eNS_URI) : DiagramPackage.eINSTANCE);
 		ClassesPackageImpl theClassesPackage = (ClassesPackageImpl) (EPackage.Registry.INSTANCE
-				.getEPackage(ClassesPackage.eNS_URI) instanceof ClassesPackageImpl ? EPackage.Registry.INSTANCE
-				.getEPackage(ClassesPackage.eNS_URI)
-				: ClassesPackage.eINSTANCE);
+			.getEPackage(ClassesPackage.eNS_URI) instanceof ClassesPackageImpl ? EPackage.Registry.INSTANCE
+			.getEPackage(ClassesPackage.eNS_URI) : ClassesPackage.eINSTANCE);
 		DocumentPackageImpl theDocumentPackage = (DocumentPackageImpl) (EPackage.Registry.INSTANCE
-				.getEPackage(DocumentPackage.eNS_URI) instanceof DocumentPackageImpl ? EPackage.Registry.INSTANCE
-				.getEPackage(DocumentPackage.eNS_URI)
-				: DocumentPackage.eINSTANCE);
+			.getEPackage(DocumentPackage.eNS_URI) instanceof DocumentPackageImpl ? EPackage.Registry.INSTANCE
+			.getEPackage(DocumentPackage.eNS_URI) : DocumentPackage.eINSTANCE);
 		RequirementPackageImpl theRequirementPackage = (RequirementPackageImpl) (EPackage.Registry.INSTANCE
-				.getEPackage(RequirementPackage.eNS_URI) instanceof RequirementPackageImpl ? EPackage.Registry.INSTANCE
-				.getEPackage(RequirementPackage.eNS_URI)
-				: RequirementPackage.eINSTANCE);
+			.getEPackage(RequirementPackage.eNS_URI) instanceof RequirementPackageImpl ? EPackage.Registry.INSTANCE
+			.getEPackage(RequirementPackage.eNS_URI) : RequirementPackage.eINSTANCE);
 		RationalePackageImpl theRationalePackage = (RationalePackageImpl) (EPackage.Registry.INSTANCE
-				.getEPackage(RationalePackage.eNS_URI) instanceof RationalePackageImpl ? EPackage.Registry.INSTANCE
-				.getEPackage(RationalePackage.eNS_URI)
-				: RationalePackage.eINSTANCE);
+			.getEPackage(RationalePackage.eNS_URI) instanceof RationalePackageImpl ? EPackage.Registry.INSTANCE
+			.getEPackage(RationalePackage.eNS_URI) : RationalePackage.eINSTANCE);
 		ChangePackageImpl theChangePackage = (ChangePackageImpl) (EPackage.Registry.INSTANCE
-				.getEPackage(ChangePackage.eNS_URI) instanceof ChangePackageImpl ? EPackage.Registry.INSTANCE
-				.getEPackage(ChangePackage.eNS_URI)
-				: ChangePackage.eINSTANCE);
-		BugPackageImpl theBugPackage = (BugPackageImpl) (EPackage.Registry.INSTANCE
-				.getEPackage(BugPackage.eNS_URI) instanceof BugPackageImpl ? EPackage.Registry.INSTANCE
-				.getEPackage(BugPackage.eNS_URI)
-				: BugPackage.eINSTANCE);
+			.getEPackage(ChangePackage.eNS_URI) instanceof ChangePackageImpl ? EPackage.Registry.INSTANCE
+			.getEPackage(ChangePackage.eNS_URI) : ChangePackage.eINSTANCE);
+		BugPackageImpl theBugPackage = (BugPackageImpl) (EPackage.Registry.INSTANCE.getEPackage(BugPackage.eNS_URI) instanceof BugPackageImpl ? EPackage.Registry.INSTANCE
+			.getEPackage(BugPackage.eNS_URI)
+			: BugPackage.eINSTANCE);
 		ComponentPackageImpl theComponentPackage = (ComponentPackageImpl) (EPackage.Registry.INSTANCE
-				.getEPackage(ComponentPackage.eNS_URI) instanceof ComponentPackageImpl ? EPackage.Registry.INSTANCE
-				.getEPackage(ComponentPackage.eNS_URI)
-				: ComponentPackage.eINSTANCE);
+			.getEPackage(ComponentPackage.eNS_URI) instanceof ComponentPackageImpl ? EPackage.Registry.INSTANCE
+			.getEPackage(ComponentPackage.eNS_URI) : ComponentPackage.eINSTANCE);
 		MeetingPackageImpl theMeetingPackage = (MeetingPackageImpl) (EPackage.Registry.INSTANCE
-				.getEPackage(MeetingPackage.eNS_URI) instanceof MeetingPackageImpl ? EPackage.Registry.INSTANCE
-				.getEPackage(MeetingPackage.eNS_URI)
-				: MeetingPackage.eINSTANCE);
+			.getEPackage(MeetingPackage.eNS_URI) instanceof MeetingPackageImpl ? EPackage.Registry.INSTANCE
+			.getEPackage(MeetingPackage.eNS_URI) : MeetingPackage.eINSTANCE);
 		StatePackageImpl theStatePackage = (StatePackageImpl) (EPackage.Registry.INSTANCE
-				.getEPackage(StatePackage.eNS_URI) instanceof StatePackageImpl ? EPackage.Registry.INSTANCE
-				.getEPackage(StatePackage.eNS_URI)
-				: StatePackage.eINSTANCE);
+			.getEPackage(StatePackage.eNS_URI) instanceof StatePackageImpl ? EPackage.Registry.INSTANCE
+			.getEPackage(StatePackage.eNS_URI) : StatePackage.eINSTANCE);
 		AttachmentPackageImpl theAttachmentPackage = (AttachmentPackageImpl) (EPackage.Registry.INSTANCE
-				.getEPackage(AttachmentPackage.eNS_URI) instanceof AttachmentPackageImpl ? EPackage.Registry.INSTANCE
-				.getEPackage(AttachmentPackage.eNS_URI)
-				: AttachmentPackage.eINSTANCE);
+			.getEPackage(AttachmentPackage.eNS_URI) instanceof AttachmentPackageImpl ? EPackage.Registry.INSTANCE
+			.getEPackage(AttachmentPackage.eNS_URI) : AttachmentPackage.eINSTANCE);
 		ProfilePackageImpl theProfilePackage = (ProfilePackageImpl) (EPackage.Registry.INSTANCE
-				.getEPackage(ProfilePackage.eNS_URI) instanceof ProfilePackageImpl ? EPackage.Registry.INSTANCE
-				.getEPackage(ProfilePackage.eNS_URI)
-				: ProfilePackage.eINSTANCE);
+			.getEPackage(ProfilePackage.eNS_URI) instanceof ProfilePackageImpl ? EPackage.Registry.INSTANCE
+			.getEPackage(ProfilePackage.eNS_URI) : ProfilePackage.eINSTANCE);
 
 		// Create package meta-data objects
 		theOrganizationPackage.createPackageContents();
@@ -232,6 +213,7 @@ public class OrganizationPackageImpl extends EPackageImpl implements
 
 	/**
 	 * <!-- begin-user-doc --> <!-- end-user-doc -->
+	 * 
 	 * @generated
 	 */
 	public EClass getUser() {
@@ -239,8 +221,8 @@ public class OrganizationPackageImpl extends EPackageImpl implements
 	}
 
 	/**
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
+	 * <!-- begin-user-doc --> <!-- end-user-doc -->
+	 * 
 	 * @generated
 	 */
 	public EAttribute getUser_Email() {
@@ -248,8 +230,8 @@ public class OrganizationPackageImpl extends EPackageImpl implements
 	}
 
 	/**
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
+	 * <!-- begin-user-doc --> <!-- end-user-doc -->
+	 * 
 	 * @generated
 	 */
 	public EAttribute getUser_FirstName() {
@@ -257,8 +239,8 @@ public class OrganizationPackageImpl extends EPackageImpl implements
 	}
 
 	/**
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
+	 * <!-- begin-user-doc --> <!-- end-user-doc -->
+	 * 
 	 * @generated
 	 */
 	public EAttribute getUser_LastName() {
@@ -267,6 +249,7 @@ public class OrganizationPackageImpl extends EPackageImpl implements
 
 	/**
 	 * <!-- begin-user-doc --> <!-- end-user-doc -->
+	 * 
 	 * @generated
 	 */
 	public EClass getOrgUnit() {
@@ -274,8 +257,8 @@ public class OrganizationPackageImpl extends EPackageImpl implements
 	}
 
 	/**
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
+	 * <!-- begin-user-doc --> <!-- end-user-doc -->
+	 * 
 	 * @generated
 	 */
 	public EAttribute getOrgUnit_AcOrgId() {
@@ -283,8 +266,8 @@ public class OrganizationPackageImpl extends EPackageImpl implements
 	}
 
 	/**
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
+	 * <!-- begin-user-doc --> <!-- end-user-doc -->
+	 * 
 	 * @generated
 	 */
 	public EReference getOrgUnit_GroupMemberships() {
@@ -292,8 +275,8 @@ public class OrganizationPackageImpl extends EPackageImpl implements
 	}
 
 	/**
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
+	 * <!-- begin-user-doc --> <!-- end-user-doc -->
+	 * 
 	 * @generated
 	 */
 	public EReference getOrgUnit_Assignments() {
@@ -301,8 +284,8 @@ public class OrganizationPackageImpl extends EPackageImpl implements
 	}
 
 	/**
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
+	 * <!-- begin-user-doc --> <!-- end-user-doc -->
+	 * 
 	 * @generated
 	 */
 	public EReference getOrgUnit_Participations() {
@@ -311,6 +294,7 @@ public class OrganizationPackageImpl extends EPackageImpl implements
 
 	/**
 	 * <!-- begin-user-doc --> <!-- end-user-doc -->
+	 * 
 	 * @generated
 	 */
 	public EClass getGroup() {
@@ -318,8 +302,8 @@ public class OrganizationPackageImpl extends EPackageImpl implements
 	}
 
 	/**
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
+	 * <!-- begin-user-doc --> <!-- end-user-doc -->
+	 * 
 	 * @generated
 	 */
 	public EReference getGroup_OrgUnits() {
@@ -328,6 +312,7 @@ public class OrganizationPackageImpl extends EPackageImpl implements
 
 	/**
 	 * <!-- begin-user-doc --> <!-- end-user-doc -->
+	 * 
 	 * @generated
 	 */
 	public OrganizationFactory getOrganizationFactory() {
@@ -336,15 +321,15 @@ public class OrganizationPackageImpl extends EPackageImpl implements
 
 	/**
 	 * <!-- begin-user-doc --> <!-- end-user-doc -->
+	 * 
 	 * @generated
 	 */
 	private boolean isCreated = false;
 
 	/**
-	 * Creates the meta-model objects for the package.  This method is
-	 * guarded to have no affect on any invocation but its first.
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
+	 * Creates the meta-model objects for the package. This method is guarded to have no affect on any invocation but
+	 * its first. <!-- begin-user-doc --> <!-- end-user-doc -->
+	 * 
 	 * @generated
 	 */
 	public void createPackageContents() {
@@ -370,14 +355,14 @@ public class OrganizationPackageImpl extends EPackageImpl implements
 
 	/**
 	 * <!-- begin-user-doc --> <!-- end-user-doc -->
+	 * 
 	 * @generated
 	 */
 	private boolean isInitialized = false;
 
 	/**
-	 * Complete the initialization of the package and its meta-model. This
-	 * method is guarded to have no affect on any invocation but its first. <!--
-	 * begin-user-doc --> <!-- end-user-doc -->
+	 * Complete the initialization of the package and its meta-model. This method is guarded to have no affect on any
+	 * invocation but its first. <!-- begin-user-doc --> <!-- end-user-doc -->
 	 * 
 	 * @generated
 	 */
@@ -392,10 +377,8 @@ public class OrganizationPackageImpl extends EPackageImpl implements
 		setNsURI(eNS_URI);
 
 		// Obtain other dependent packages
-		ModelPackage theModelPackage = (ModelPackage) EPackage.Registry.INSTANCE
-				.getEPackage(ModelPackage.eNS_URI);
-		TaskPackage theTaskPackage = (TaskPackage) EPackage.Registry.INSTANCE
-				.getEPackage(TaskPackage.eNS_URI);
+		ModelPackage theModelPackage = (ModelPackage) EPackage.Registry.INSTANCE.getEPackage(ModelPackage.eNS_URI);
+		TaskPackage theTaskPackage = (TaskPackage) EPackage.Registry.INSTANCE.getEPackage(TaskPackage.eNS_URI);
 
 		// Create type parameters
 
@@ -407,58 +390,35 @@ public class OrganizationPackageImpl extends EPackageImpl implements
 		groupEClass.getESuperTypes().add(this.getOrgUnit());
 
 		// Initialize classes and features; add operations and parameters
-		initEClass(userEClass, User.class, "User", !IS_ABSTRACT, !IS_INTERFACE,
-				IS_GENERATED_INSTANCE_CLASS);
-		initEAttribute(getUser_Email(), ecorePackage.getEString(), "email",
-				null, 0, 1, User.class, !IS_TRANSIENT, !IS_VOLATILE,
-				IS_CHANGEABLE, !IS_UNSETTABLE, !IS_ID, IS_UNIQUE, !IS_DERIVED,
-				IS_ORDERED);
-		initEAttribute(getUser_FirstName(), ecorePackage.getEString(),
-				"firstName", null, 0, 1, User.class, !IS_TRANSIENT,
-				!IS_VOLATILE, IS_CHANGEABLE, !IS_UNSETTABLE, !IS_ID, IS_UNIQUE,
-				!IS_DERIVED, IS_ORDERED);
-		initEAttribute(getUser_LastName(), ecorePackage.getEString(),
-				"lastName", null, 0, 1, User.class, !IS_TRANSIENT,
-				!IS_VOLATILE, IS_CHANGEABLE, !IS_UNSETTABLE, !IS_ID, IS_UNIQUE,
-				!IS_DERIVED, IS_ORDERED);
+		initEClass(userEClass, User.class, "User", !IS_ABSTRACT, !IS_INTERFACE, IS_GENERATED_INSTANCE_CLASS);
+		initEAttribute(getUser_Email(), ecorePackage.getEString(), "email", null, 0, 1, User.class, !IS_TRANSIENT,
+			!IS_VOLATILE, IS_CHANGEABLE, !IS_UNSETTABLE, !IS_ID, IS_UNIQUE, !IS_DERIVED, IS_ORDERED);
+		initEAttribute(getUser_FirstName(), ecorePackage.getEString(), "firstName", null, 0, 1, User.class,
+			!IS_TRANSIENT, !IS_VOLATILE, IS_CHANGEABLE, !IS_UNSETTABLE, !IS_ID, IS_UNIQUE, !IS_DERIVED, IS_ORDERED);
+		initEAttribute(getUser_LastName(), ecorePackage.getEString(), "lastName", null, 0, 1, User.class,
+			!IS_TRANSIENT, !IS_VOLATILE, IS_CHANGEABLE, !IS_UNSETTABLE, !IS_ID, IS_UNIQUE, !IS_DERIVED, IS_ORDERED);
 
-		initEClass(orgUnitEClass, OrgUnit.class, "OrgUnit", IS_ABSTRACT,
-				!IS_INTERFACE, IS_GENERATED_INSTANCE_CLASS);
-		initEAttribute(getOrgUnit_AcOrgId(), ecorePackage.getEString(),
-				"acOrgId", null, 0, 1, OrgUnit.class, !IS_TRANSIENT,
-				!IS_VOLATILE, IS_CHANGEABLE, !IS_UNSETTABLE, !IS_ID, IS_UNIQUE,
-				!IS_DERIVED, IS_ORDERED);
-		initEReference(getOrgUnit_GroupMemberships(), this.getGroup(), this
-				.getGroup_OrgUnits(), "groupMemberships", null, 0, -1,
-				OrgUnit.class, !IS_TRANSIENT, !IS_VOLATILE, IS_CHANGEABLE,
-				!IS_COMPOSITE, IS_RESOLVE_PROXIES, !IS_UNSETTABLE, IS_UNIQUE,
-				!IS_DERIVED, IS_ORDERED);
-		getOrgUnit_GroupMemberships().getEKeys().add(
-				theModelPackage.getIdentifiableElement_Identifier());
-		initEReference(getOrgUnit_Assignments(), theTaskPackage.getWorkItem(),
-				theTaskPackage.getWorkItem_Assignee(), "assignments", null, 0,
-				-1, OrgUnit.class, !IS_TRANSIENT, !IS_VOLATILE, IS_CHANGEABLE,
-				!IS_COMPOSITE, IS_RESOLVE_PROXIES, !IS_UNSETTABLE, IS_UNIQUE,
-				!IS_DERIVED, IS_ORDERED);
-		getOrgUnit_Assignments().getEKeys().add(
-				theModelPackage.getIdentifiableElement_Identifier());
-		initEReference(getOrgUnit_Participations(), theTaskPackage
-				.getWorkItem(), theTaskPackage.getWorkItem_Participants(),
-				"participations", null, 0, -1, OrgUnit.class, !IS_TRANSIENT,
-				!IS_VOLATILE, IS_CHANGEABLE, !IS_COMPOSITE, IS_RESOLVE_PROXIES,
-				!IS_UNSETTABLE, IS_UNIQUE, !IS_DERIVED, IS_ORDERED);
-		getOrgUnit_Participations().getEKeys().add(
-				theModelPackage.getIdentifiableElement_Identifier());
+		initEClass(orgUnitEClass, OrgUnit.class, "OrgUnit", IS_ABSTRACT, !IS_INTERFACE, IS_GENERATED_INSTANCE_CLASS);
+		initEAttribute(getOrgUnit_AcOrgId(), ecorePackage.getEString(), "acOrgId", null, 0, 1, OrgUnit.class,
+			!IS_TRANSIENT, !IS_VOLATILE, IS_CHANGEABLE, !IS_UNSETTABLE, !IS_ID, IS_UNIQUE, !IS_DERIVED, IS_ORDERED);
+		initEReference(getOrgUnit_GroupMemberships(), this.getGroup(), this.getGroup_OrgUnits(), "groupMemberships",
+			null, 0, -1, OrgUnit.class, !IS_TRANSIENT, !IS_VOLATILE, IS_CHANGEABLE, !IS_COMPOSITE, IS_RESOLVE_PROXIES,
+			!IS_UNSETTABLE, IS_UNIQUE, !IS_DERIVED, IS_ORDERED);
+		getOrgUnit_GroupMemberships().getEKeys().add(theModelPackage.getIdentifiableElement_Identifier());
+		initEReference(getOrgUnit_Assignments(), theTaskPackage.getWorkItem(), theTaskPackage.getWorkItem_Assignee(),
+			"assignments", null, 0, -1, OrgUnit.class, !IS_TRANSIENT, !IS_VOLATILE, IS_CHANGEABLE, !IS_COMPOSITE,
+			IS_RESOLVE_PROXIES, !IS_UNSETTABLE, IS_UNIQUE, !IS_DERIVED, IS_ORDERED);
+		getOrgUnit_Assignments().getEKeys().add(theModelPackage.getIdentifiableElement_Identifier());
+		initEReference(getOrgUnit_Participations(), theTaskPackage.getWorkItem(), theTaskPackage
+			.getWorkItem_Participants(), "participations", null, 0, -1, OrgUnit.class, !IS_TRANSIENT, !IS_VOLATILE,
+			IS_CHANGEABLE, !IS_COMPOSITE, IS_RESOLVE_PROXIES, !IS_UNSETTABLE, IS_UNIQUE, !IS_DERIVED, IS_ORDERED);
+		getOrgUnit_Participations().getEKeys().add(theModelPackage.getIdentifiableElement_Identifier());
 
-		initEClass(groupEClass, Group.class, "Group", !IS_ABSTRACT,
-				!IS_INTERFACE, IS_GENERATED_INSTANCE_CLASS);
-		initEReference(getGroup_OrgUnits(), this.getOrgUnit(), this
-				.getOrgUnit_GroupMemberships(), "orgUnits", null, 0, -1,
-				Group.class, !IS_TRANSIENT, !IS_VOLATILE, IS_CHANGEABLE,
-				!IS_COMPOSITE, IS_RESOLVE_PROXIES, !IS_UNSETTABLE, IS_UNIQUE,
-				!IS_DERIVED, IS_ORDERED);
-		getGroup_OrgUnits().getEKeys().add(
-				theModelPackage.getIdentifiableElement_Identifier());
+		initEClass(groupEClass, Group.class, "Group", !IS_ABSTRACT, !IS_INTERFACE, IS_GENERATED_INSTANCE_CLASS);
+		initEReference(getGroup_OrgUnits(), this.getOrgUnit(), this.getOrgUnit_GroupMemberships(), "orgUnits", null, 0,
+			-1, Group.class, !IS_TRANSIENT, !IS_VOLATILE, IS_CHANGEABLE, !IS_COMPOSITE, IS_RESOLVE_PROXIES,
+			!IS_UNSETTABLE, IS_UNIQUE, !IS_DERIVED, IS_ORDERED);
+		getGroup_OrgUnits().getEKeys().add(theModelPackage.getIdentifiableElement_Identifier());
 
 		// Create annotations
 		// org.unicase.ui.meeditor
@@ -466,25 +426,18 @@ public class OrganizationPackageImpl extends EPackageImpl implements
 	}
 
 	/**
-	 * Initializes the annotations for <b>org.unicase.ui.meeditor</b>.
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
+	 * Initializes the annotations for <b>org.unicase.ui.meeditor</b>. <!-- begin-user-doc --> <!-- end-user-doc -->
+	 * 
 	 * @generated
 	 */
 	protected void createOrgAnnotations() {
 		String source = "org.unicase.ui.meeditor";
-		addAnnotation(getUser_Email(), source, new String[] { "priority",
-				"10.0", "position", "left" });
-		addAnnotation(getUser_FirstName(), source, new String[] { "priority",
-				"11.0", "position", "left" });
-		addAnnotation(getUser_LastName(), source, new String[] { "priority",
-				"12.0", "position", "left" });
-		addAnnotation(getOrgUnit_GroupMemberships(), source, new String[] {
-				"priority", "10.0", "position", "right" });
-		addAnnotation(getOrgUnit_Assignments(), source, new String[] {
-				"priority", "11.0", "position", "right" });
-		addAnnotation(getGroup_OrgUnits(), source, new String[] { "priority",
-				"10.5", "position", "right" });
+		addAnnotation(getUser_Email(), source, new String[] { "priority", "10.0", "position", "left" });
+		addAnnotation(getUser_FirstName(), source, new String[] { "priority", "11.0", "position", "left" });
+		addAnnotation(getUser_LastName(), source, new String[] { "priority", "12.0", "position", "left" });
+		addAnnotation(getOrgUnit_GroupMemberships(), source, new String[] { "priority", "10.0", "position", "right" });
+		addAnnotation(getOrgUnit_Assignments(), source, new String[] { "priority", "11.0", "position", "right" });
+		addAnnotation(getGroup_OrgUnits(), source, new String[] { "priority", "10.5", "position", "right" });
 	}
 
 } // OrganizationPackageImpl

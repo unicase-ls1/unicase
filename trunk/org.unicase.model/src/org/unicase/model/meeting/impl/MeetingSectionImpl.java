@@ -1,8 +1,7 @@
 /**
- * <copyright> Copyright (c) 2008 Jonas Helming, Maximilian Koegel. All rights reserved. This program and the accompanying materials are made available under the terms of the Eclipse Public License v1.0 which accompanies this distribution, and is available at http://www.eclipse.org/legal/epl-v10.html
- * </copyright>
- *
- * $Id$
+ * <copyright> Copyright (c) 2008 Jonas Helming, Maximilian Koegel. All rights reserved. This program and the
+ * accompanying materials are made available under the terms of the Eclipse Public License v1.0 which accompanies this
+ * distribution, and is available at http://www.eclipse.org/legal/epl-v10.html </copyright> $Id$
  */
 package org.unicase.model.meeting.impl;
 
@@ -14,24 +13,21 @@ import org.unicase.model.meeting.MeetingPackage;
 import org.unicase.model.meeting.MeetingSection;
 
 /**
- * <!-- begin-user-doc -->
- * An implementation of the model object '<em><b>Section</b></em>'.
- * <!-- end-user-doc -->
+ * <!-- begin-user-doc --> An implementation of the model object '<em><b>Section</b></em>'. <!-- end-user-doc -->
  * <p>
  * The following features are implemented:
  * <ul>
- *   <li>{@link org.unicase.model.meeting.impl.MeetingSectionImpl#getAllocatedTime <em>Allocated Time</em>}</li>
+ * <li>{@link org.unicase.model.meeting.impl.MeetingSectionImpl#getAllocatedTime <em>Allocated Time</em>}</li>
  * </ul>
  * </p>
- *
+ * 
  * @generated
  */
-public abstract class MeetingSectionImpl extends ModelElementImpl implements
-		MeetingSection {
+public abstract class MeetingSectionImpl extends ModelElementImpl implements MeetingSection {
 	/**
-	 * The default value of the '{@link #getAllocatedTime() <em>Allocated Time</em>}' attribute.
-	 * <!-- begin-user-doc -->
+	 * The default value of the '{@link #getAllocatedTime() <em>Allocated Time</em>}' attribute. <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
+	 * 
 	 * @see #getAllocatedTime()
 	 * @generated
 	 * @ordered
@@ -39,9 +35,9 @@ public abstract class MeetingSectionImpl extends ModelElementImpl implements
 	protected static final int ALLOCATED_TIME_EDEFAULT = 0;
 
 	/**
-	 * The cached value of the '{@link #getAllocatedTime() <em>Allocated Time</em>}' attribute.
-	 * <!-- begin-user-doc -->
+	 * The cached value of the '{@link #getAllocatedTime() <em>Allocated Time</em>}' attribute. <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
+	 * 
 	 * @see #getAllocatedTime()
 	 * @generated
 	 * @ordered
@@ -49,8 +45,8 @@ public abstract class MeetingSectionImpl extends ModelElementImpl implements
 	protected int allocatedTime = ALLOCATED_TIME_EDEFAULT;
 
 	/**
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
+	 * <!-- begin-user-doc --> <!-- end-user-doc -->
+	 * 
 	 * @generated
 	 */
 	protected MeetingSectionImpl() {
@@ -58,8 +54,8 @@ public abstract class MeetingSectionImpl extends ModelElementImpl implements
 	}
 
 	/**
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
+	 * <!-- begin-user-doc --> <!-- end-user-doc -->
+	 * 
 	 * @generated
 	 */
 	@Override
@@ -68,8 +64,8 @@ public abstract class MeetingSectionImpl extends ModelElementImpl implements
 	}
 
 	/**
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
+	 * <!-- begin-user-doc --> <!-- end-user-doc -->
+	 * 
 	 * @generated
 	 */
 	public int getAllocatedTime() {
@@ -77,22 +73,21 @@ public abstract class MeetingSectionImpl extends ModelElementImpl implements
 	}
 
 	/**
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
+	 * <!-- begin-user-doc --> <!-- end-user-doc -->
+	 * 
 	 * @generated
 	 */
 	public void setAllocatedTime(int newAllocatedTime) {
 		int oldAllocatedTime = allocatedTime;
 		allocatedTime = newAllocatedTime;
 		if (eNotificationRequired())
-			eNotify(new ENotificationImpl(this, Notification.SET,
-					MeetingPackage.MEETING_SECTION__ALLOCATED_TIME,
-					oldAllocatedTime, allocatedTime));
+			eNotify(new ENotificationImpl(this, Notification.SET, MeetingPackage.MEETING_SECTION__ALLOCATED_TIME,
+				oldAllocatedTime, allocatedTime));
 	}
 
 	/**
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
+	 * <!-- begin-user-doc --> <!-- end-user-doc -->
+	 * 
 	 * @generated
 	 */
 	@Override
@@ -105,8 +100,8 @@ public abstract class MeetingSectionImpl extends ModelElementImpl implements
 	}
 
 	/**
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
+	 * <!-- begin-user-doc --> <!-- end-user-doc -->
+	 * 
 	 * @generated
 	 */
 	@Override
@@ -120,8 +115,8 @@ public abstract class MeetingSectionImpl extends ModelElementImpl implements
 	}
 
 	/**
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
+	 * <!-- begin-user-doc --> <!-- end-user-doc -->
+	 * 
 	 * @generated
 	 */
 	@Override
@@ -135,8 +130,8 @@ public abstract class MeetingSectionImpl extends ModelElementImpl implements
 	}
 
 	/**
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
+	 * <!-- begin-user-doc --> <!-- end-user-doc -->
+	 * 
 	 * @generated
 	 */
 	@Override
@@ -149,8 +144,8 @@ public abstract class MeetingSectionImpl extends ModelElementImpl implements
 	}
 
 	/**
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
+	 * <!-- begin-user-doc --> <!-- end-user-doc -->
+	 * 
 	 * @generated
 	 */
 	@Override
@@ -165,4 +160,4 @@ public abstract class MeetingSectionImpl extends ModelElementImpl implements
 		return result.toString();
 	}
 
-} //MeetingSectionImpl
+} // MeetingSectionImpl

@@ -1,8 +1,7 @@
 /**
- * <copyright> Copyright (c) 2008 Jonas Helming, Maximilian Koegel. All rights reserved. This program and the accompanying materials are made available under the terms of the Eclipse Public License v1.0 which accompanies this distribution, and is available at http://www.eclipse.org/legal/epl-v10.html
- * </copyright>
- *
- * $Id$
+ * <copyright> Copyright (c) 2008 Jonas Helming, Maximilian Koegel. All rights reserved. This program and the
+ * accompanying materials are made available under the terms of the Eclipse Public License v1.0 which accompanies this
+ * distribution, and is available at http://www.eclipse.org/legal/epl-v10.html </copyright> $Id$
  */
 package org.unicase.model.classes.impl;
 
@@ -28,30 +27,28 @@ import org.unicase.model.classes.VisibilityType;
 import org.unicase.model.impl.ModelElementImpl;
 
 /**
- * <!-- begin-user-doc -->
- * An implementation of the model object '<em><b>Method</b></em>'.
- * <!-- end-user-doc -->
+ * <!-- begin-user-doc --> An implementation of the model object '<em><b>Method</b></em>'. <!-- end-user-doc -->
  * <p>
  * The following features are implemented:
  * <ul>
- *   <li>{@link org.unicase.model.classes.impl.MethodImpl#getVisibility <em>Visibility</em>}</li>
- *   <li>{@link org.unicase.model.classes.impl.MethodImpl#getScope <em>Scope</em>}</li>
- *   <li>{@link org.unicase.model.classes.impl.MethodImpl#getDefiningClass <em>Defining Class</em>}</li>
- *   <li>{@link org.unicase.model.classes.impl.MethodImpl#getReturnType <em>Return Type</em>}</li>
- *   <li>{@link org.unicase.model.classes.impl.MethodImpl#getSignature <em>Signature</em>}</li>
- *   <li>{@link org.unicase.model.classes.impl.MethodImpl#getArguments <em>Arguments</em>}</li>
- *   <li>{@link org.unicase.model.classes.impl.MethodImpl#getProperties <em>Properties</em>}</li>
- *   <li>{@link org.unicase.model.classes.impl.MethodImpl#getLabel <em>Label</em>}</li>
+ * <li>{@link org.unicase.model.classes.impl.MethodImpl#getVisibility <em>Visibility</em>}</li>
+ * <li>{@link org.unicase.model.classes.impl.MethodImpl#getScope <em>Scope</em>}</li>
+ * <li>{@link org.unicase.model.classes.impl.MethodImpl#getDefiningClass <em>Defining Class</em>}</li>
+ * <li>{@link org.unicase.model.classes.impl.MethodImpl#getReturnType <em>Return Type</em>}</li>
+ * <li>{@link org.unicase.model.classes.impl.MethodImpl#getSignature <em>Signature</em>}</li>
+ * <li>{@link org.unicase.model.classes.impl.MethodImpl#getArguments <em>Arguments</em>}</li>
+ * <li>{@link org.unicase.model.classes.impl.MethodImpl#getProperties <em>Properties</em>}</li>
+ * <li>{@link org.unicase.model.classes.impl.MethodImpl#getLabel <em>Label</em>}</li>
  * </ul>
  * </p>
- *
+ * 
  * @generated
  */
 public class MethodImpl extends ModelElementImpl implements Method {
 	/**
-	 * The default value of the '{@link #getVisibility() <em>Visibility</em>}' attribute.
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
+	 * The default value of the '{@link #getVisibility() <em>Visibility</em>}' attribute. <!-- begin-user-doc --> <!--
+	 * end-user-doc -->
+	 * 
 	 * @see #getVisibility()
 	 * @generated
 	 * @ordered
@@ -59,9 +56,9 @@ public class MethodImpl extends ModelElementImpl implements Method {
 	protected static final VisibilityType VISIBILITY_EDEFAULT = VisibilityType.UNDEFINED;
 
 	/**
-	 * The cached value of the '{@link #getVisibility() <em>Visibility</em>}' attribute.
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
+	 * The cached value of the '{@link #getVisibility() <em>Visibility</em>}' attribute. <!-- begin-user-doc --> <!--
+	 * end-user-doc -->
+	 * 
 	 * @see #getVisibility()
 	 * @generated
 	 * @ordered
@@ -69,9 +66,9 @@ public class MethodImpl extends ModelElementImpl implements Method {
 	protected VisibilityType visibility = VISIBILITY_EDEFAULT;
 
 	/**
-	 * The default value of the '{@link #getScope() <em>Scope</em>}' attribute.
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
+	 * The default value of the '{@link #getScope() <em>Scope</em>}' attribute. <!-- begin-user-doc --> <!--
+	 * end-user-doc -->
+	 * 
 	 * @see #getScope()
 	 * @generated
 	 * @ordered
@@ -79,9 +76,9 @@ public class MethodImpl extends ModelElementImpl implements Method {
 	protected static final ScopeType SCOPE_EDEFAULT = ScopeType.INSTANCE;
 
 	/**
-	 * The cached value of the '{@link #getScope() <em>Scope</em>}' attribute.
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
+	 * The cached value of the '{@link #getScope() <em>Scope</em>}' attribute. <!-- begin-user-doc --> <!-- end-user-doc
+	 * -->
+	 * 
 	 * @see #getScope()
 	 * @generated
 	 * @ordered
@@ -89,9 +86,9 @@ public class MethodImpl extends ModelElementImpl implements Method {
 	protected ScopeType scope = SCOPE_EDEFAULT;
 
 	/**
-	 * The default value of the '{@link #getReturnType() <em>Return Type</em>}' attribute.
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
+	 * The default value of the '{@link #getReturnType() <em>Return Type</em>}' attribute. <!-- begin-user-doc --> <!--
+	 * end-user-doc -->
+	 * 
 	 * @see #getReturnType()
 	 * @generated
 	 * @ordered
@@ -99,9 +96,9 @@ public class MethodImpl extends ModelElementImpl implements Method {
 	protected static final String RETURN_TYPE_EDEFAULT = null;
 
 	/**
-	 * The cached value of the '{@link #getReturnType() <em>Return Type</em>}' attribute.
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
+	 * The cached value of the '{@link #getReturnType() <em>Return Type</em>}' attribute. <!-- begin-user-doc --> <!--
+	 * end-user-doc -->
+	 * 
 	 * @see #getReturnType()
 	 * @generated
 	 * @ordered
@@ -109,9 +106,9 @@ public class MethodImpl extends ModelElementImpl implements Method {
 	protected String returnType = RETURN_TYPE_EDEFAULT;
 
 	/**
-	 * The default value of the '{@link #getSignature() <em>Signature</em>}' attribute.
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
+	 * The default value of the '{@link #getSignature() <em>Signature</em>}' attribute. <!-- begin-user-doc --> <!--
+	 * end-user-doc -->
+	 * 
 	 * @see #getSignature()
 	 * @generated
 	 * @ordered
@@ -119,9 +116,9 @@ public class MethodImpl extends ModelElementImpl implements Method {
 	protected static final String SIGNATURE_EDEFAULT = "";
 
 	/**
-	 * The cached value of the '{@link #getArguments() <em>Arguments</em>}' containment reference list.
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
+	 * The cached value of the '{@link #getArguments() <em>Arguments</em>}' containment reference list. <!--
+	 * begin-user-doc --> <!-- end-user-doc -->
+	 * 
 	 * @see #getArguments()
 	 * @generated
 	 * @ordered
@@ -129,9 +126,9 @@ public class MethodImpl extends ModelElementImpl implements Method {
 	protected EList<MethodArgument> arguments;
 
 	/**
-	 * The default value of the '{@link #getProperties() <em>Properties</em>}' attribute.
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
+	 * The default value of the '{@link #getProperties() <em>Properties</em>}' attribute. <!-- begin-user-doc --> <!--
+	 * end-user-doc -->
+	 * 
 	 * @see #getProperties()
 	 * @generated
 	 * @ordered
@@ -139,9 +136,9 @@ public class MethodImpl extends ModelElementImpl implements Method {
 	protected static final String PROPERTIES_EDEFAULT = null;
 
 	/**
-	 * The cached value of the '{@link #getProperties() <em>Properties</em>}' attribute.
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
+	 * The cached value of the '{@link #getProperties() <em>Properties</em>}' attribute. <!-- begin-user-doc --> <!--
+	 * end-user-doc -->
+	 * 
 	 * @see #getProperties()
 	 * @generated
 	 * @ordered
@@ -149,9 +146,9 @@ public class MethodImpl extends ModelElementImpl implements Method {
 	protected String properties = PROPERTIES_EDEFAULT;
 
 	/**
-	 * The default value of the '{@link #getLabel() <em>Label</em>}' attribute.
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
+	 * The default value of the '{@link #getLabel() <em>Label</em>}' attribute. <!-- begin-user-doc --> <!--
+	 * end-user-doc -->
+	 * 
 	 * @see #getLabel()
 	 * @generated
 	 * @ordered
@@ -159,9 +156,9 @@ public class MethodImpl extends ModelElementImpl implements Method {
 	protected static final String LABEL_EDEFAULT = null;
 
 	/**
-	 * The cached value of the '{@link #getLabel() <em>Label</em>}' attribute.
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
+	 * The cached value of the '{@link #getLabel() <em>Label</em>}' attribute. <!-- begin-user-doc --> <!-- end-user-doc
+	 * -->
+	 * 
 	 * @see #getLabel()
 	 * @generated
 	 * @ordered
@@ -169,8 +166,8 @@ public class MethodImpl extends ModelElementImpl implements Method {
 	protected String label = LABEL_EDEFAULT;
 
 	/**
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
+	 * <!-- begin-user-doc --> <!-- end-user-doc -->
+	 * 
 	 * @generated
 	 */
 	protected MethodImpl() {
@@ -178,8 +175,8 @@ public class MethodImpl extends ModelElementImpl implements Method {
 	}
 
 	/**
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
+	 * <!-- begin-user-doc --> <!-- end-user-doc -->
+	 * 
 	 * @generated
 	 */
 	@Override
@@ -188,8 +185,8 @@ public class MethodImpl extends ModelElementImpl implements Method {
 	}
 
 	/**
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
+	 * <!-- begin-user-doc --> <!-- end-user-doc -->
+	 * 
 	 * @generated
 	 */
 	public VisibilityType getVisibility() {
@@ -197,23 +194,21 @@ public class MethodImpl extends ModelElementImpl implements Method {
 	}
 
 	/**
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
+	 * <!-- begin-user-doc --> <!-- end-user-doc -->
+	 * 
 	 * @generated
 	 */
 	public void setVisibility(VisibilityType newVisibility) {
 		VisibilityType oldVisibility = visibility;
-		visibility = newVisibility == null ? VISIBILITY_EDEFAULT
-				: newVisibility;
+		visibility = newVisibility == null ? VISIBILITY_EDEFAULT : newVisibility;
 		if (eNotificationRequired())
-			eNotify(new ENotificationImpl(this, Notification.SET,
-					ClassesPackage.METHOD__VISIBILITY, oldVisibility,
-					visibility));
+			eNotify(new ENotificationImpl(this, Notification.SET, ClassesPackage.METHOD__VISIBILITY, oldVisibility,
+				visibility));
 	}
 
 	/**
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
+	 * <!-- begin-user-doc --> <!-- end-user-doc -->
+	 * 
 	 * @generated
 	 */
 	public ScopeType getScope() {
@@ -221,21 +216,20 @@ public class MethodImpl extends ModelElementImpl implements Method {
 	}
 
 	/**
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
+	 * <!-- begin-user-doc --> <!-- end-user-doc -->
+	 * 
 	 * @generated
 	 */
 	public void setScope(ScopeType newScope) {
 		ScopeType oldScope = scope;
 		scope = newScope == null ? SCOPE_EDEFAULT : newScope;
 		if (eNotificationRequired())
-			eNotify(new ENotificationImpl(this, Notification.SET,
-					ClassesPackage.METHOD__SCOPE, oldScope, scope));
+			eNotify(new ENotificationImpl(this, Notification.SET, ClassesPackage.METHOD__SCOPE, oldScope, scope));
 	}
 
 	/**
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
+	 * <!-- begin-user-doc --> <!-- end-user-doc -->
+	 * 
 	 * @generated
 	 */
 	public org.unicase.model.classes.Class getDefiningClass() {
@@ -245,8 +239,8 @@ public class MethodImpl extends ModelElementImpl implements Method {
 	}
 
 	/**
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
+	 * <!-- begin-user-doc --> <!-- end-user-doc -->
+	 * 
 	 * @generated
 	 */
 	public org.unicase.model.classes.Class basicGetDefiningClass() {
@@ -256,49 +250,43 @@ public class MethodImpl extends ModelElementImpl implements Method {
 	}
 
 	/**
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
+	 * <!-- begin-user-doc --> <!-- end-user-doc -->
+	 * 
 	 * @generated
 	 */
-	public NotificationChain basicSetDefiningClass(
-			org.unicase.model.classes.Class newDefiningClass,
-			NotificationChain msgs) {
-		msgs = eBasicSetContainer((InternalEObject) newDefiningClass,
-				ClassesPackage.METHOD__DEFINING_CLASS, msgs);
+	public NotificationChain basicSetDefiningClass(org.unicase.model.classes.Class newDefiningClass,
+		NotificationChain msgs) {
+		msgs = eBasicSetContainer((InternalEObject) newDefiningClass, ClassesPackage.METHOD__DEFINING_CLASS, msgs);
 		return msgs;
 	}
 
 	/**
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
+	 * <!-- begin-user-doc --> <!-- end-user-doc -->
+	 * 
 	 * @generated
 	 */
-	public void setDefiningClass(
-			org.unicase.model.classes.Class newDefiningClass) {
+	public void setDefiningClass(org.unicase.model.classes.Class newDefiningClass) {
 		if (newDefiningClass != eInternalContainer()
-				|| (eContainerFeatureID != ClassesPackage.METHOD__DEFINING_CLASS && newDefiningClass != null)) {
+			|| (eContainerFeatureID != ClassesPackage.METHOD__DEFINING_CLASS && newDefiningClass != null)) {
 			if (EcoreUtil.isAncestor(this, newDefiningClass))
-				throw new IllegalArgumentException(
-						"Recursive containment not allowed for " + toString());
+				throw new IllegalArgumentException("Recursive containment not allowed for " + toString());
 			NotificationChain msgs = null;
 			if (eInternalContainer() != null)
 				msgs = eBasicRemoveFromContainer(msgs);
 			if (newDefiningClass != null)
-				msgs = ((InternalEObject) newDefiningClass).eInverseAdd(this,
-						ClassesPackage.CLASS__METHODS,
-						org.unicase.model.classes.Class.class, msgs);
+				msgs = ((InternalEObject) newDefiningClass).eInverseAdd(this, ClassesPackage.CLASS__METHODS,
+					org.unicase.model.classes.Class.class, msgs);
 			msgs = basicSetDefiningClass(newDefiningClass, msgs);
 			if (msgs != null)
 				msgs.dispatch();
 		} else if (eNotificationRequired())
-			eNotify(new ENotificationImpl(this, Notification.SET,
-					ClassesPackage.METHOD__DEFINING_CLASS, newDefiningClass,
-					newDefiningClass));
+			eNotify(new ENotificationImpl(this, Notification.SET, ClassesPackage.METHOD__DEFINING_CLASS,
+				newDefiningClass, newDefiningClass));
 	}
 
 	/**
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
+	 * <!-- begin-user-doc --> <!-- end-user-doc -->
+	 * 
 	 * @generated
 	 */
 	public String getReturnType() {
@@ -306,23 +294,22 @@ public class MethodImpl extends ModelElementImpl implements Method {
 	}
 
 	/**
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
+	 * <!-- begin-user-doc --> <!-- end-user-doc -->
+	 * 
 	 * @generated
 	 */
 	public void setReturnType(String newReturnType) {
 		String oldReturnType = returnType;
 		returnType = newReturnType;
 		if (eNotificationRequired())
-			eNotify(new ENotificationImpl(this, Notification.SET,
-					ClassesPackage.METHOD__RETURN_TYPE, oldReturnType,
-					returnType));
+			eNotify(new ENotificationImpl(this, Notification.SET, ClassesPackage.METHOD__RETURN_TYPE, oldReturnType,
+				returnType));
 	}
 
 	/**
-	 * <!-- begin-user-doc -->
-	 * Creates the complete signature of the method, derived from name, arguments, etc.
-	 * <!-- end-user-doc -->
+	 * <!-- begin-user-doc --> Creates the complete signature of the method, derived from name, arguments, etc. <!--
+	 * end-user-doc -->
+	 * 
 	 * @generated NOT
 	 * @return the signature
 	 */
@@ -346,8 +333,7 @@ public class MethodImpl extends ModelElementImpl implements Method {
 
 		if (arguments != null && !arguments.isEmpty()) {
 			signature += "(";
-			for (Iterator<MethodArgument> argumentIterator = this
-					.getArguments().iterator(); argumentIterator.hasNext();) {
+			for (Iterator<MethodArgument> argumentIterator = this.getArguments().iterator(); argumentIterator.hasNext();) {
 				MethodArgument currentArgument = argumentIterator.next();
 				signature += currentArgument.getLabel();
 
@@ -375,76 +361,68 @@ public class MethodImpl extends ModelElementImpl implements Method {
 	}
 
 	/**
-	 * <!-- begin-user-doc -->
-	 * .
-	 * <!-- end-user-doc -->
+	 * <!-- begin-user-doc --> . <!-- end-user-doc -->
+	 * 
 	 * @generated
 	 */
 	public EList<MethodArgument> getArguments() {
 		if (arguments == null) {
-			arguments = new EObjectContainmentEList.Resolving<MethodArgument>(
-					MethodArgument.class, this,
-					ClassesPackage.METHOD__ARGUMENTS);
+			arguments = new EObjectContainmentEList.Resolving<MethodArgument>(MethodArgument.class, this,
+				ClassesPackage.METHOD__ARGUMENTS);
 		}
 		return arguments;
 	}
 
 	/**
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
+	 * <!-- begin-user-doc --> <!-- end-user-doc -->
+	 * 
 	 * @generated
 	 */
 	@Override
-	public NotificationChain eInverseAdd(InternalEObject otherEnd,
-			int featureID, NotificationChain msgs) {
+	public NotificationChain eInverseAdd(InternalEObject otherEnd, int featureID, NotificationChain msgs) {
 		switch (featureID) {
 		case ClassesPackage.METHOD__DEFINING_CLASS:
 			if (eInternalContainer() != null)
 				msgs = eBasicRemoveFromContainer(msgs);
-			return basicSetDefiningClass(
-					(org.unicase.model.classes.Class) otherEnd, msgs);
+			return basicSetDefiningClass((org.unicase.model.classes.Class) otherEnd, msgs);
 		}
 		return super.eInverseAdd(otherEnd, featureID, msgs);
 	}
 
 	/**
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
+	 * <!-- begin-user-doc --> <!-- end-user-doc -->
+	 * 
 	 * @generated
 	 */
 	@Override
-	public NotificationChain eInverseRemove(InternalEObject otherEnd,
-			int featureID, NotificationChain msgs) {
+	public NotificationChain eInverseRemove(InternalEObject otherEnd, int featureID, NotificationChain msgs) {
 		switch (featureID) {
 		case ClassesPackage.METHOD__DEFINING_CLASS:
 			return basicSetDefiningClass(null, msgs);
 		case ClassesPackage.METHOD__ARGUMENTS:
-			return ((InternalEList<?>) getArguments()).basicRemove(otherEnd,
-					msgs);
+			return ((InternalEList<?>) getArguments()).basicRemove(otherEnd, msgs);
 		}
 		return super.eInverseRemove(otherEnd, featureID, msgs);
 	}
 
 	/**
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
+	 * <!-- begin-user-doc --> <!-- end-user-doc -->
+	 * 
 	 * @generated
 	 */
 	@Override
-	public NotificationChain eBasicRemoveFromContainerFeature(
-			NotificationChain msgs) {
+	public NotificationChain eBasicRemoveFromContainerFeature(NotificationChain msgs) {
 		switch (eContainerFeatureID) {
 		case ClassesPackage.METHOD__DEFINING_CLASS:
-			return eInternalContainer().eInverseRemove(this,
-					ClassesPackage.CLASS__METHODS,
-					org.unicase.model.classes.Class.class, msgs);
+			return eInternalContainer().eInverseRemove(this, ClassesPackage.CLASS__METHODS,
+				org.unicase.model.classes.Class.class, msgs);
 		}
 		return super.eBasicRemoveFromContainerFeature(msgs);
 	}
 
 	/**
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
+	 * <!-- begin-user-doc --> <!-- end-user-doc -->
+	 * 
 	 * @generated
 	 */
 	@Override
@@ -473,8 +451,8 @@ public class MethodImpl extends ModelElementImpl implements Method {
 	}
 
 	/**
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
+	 * <!-- begin-user-doc --> <!-- end-user-doc -->
+	 * 
 	 * @generated
 	 */
 	@SuppressWarnings("unchecked")
@@ -495,8 +473,7 @@ public class MethodImpl extends ModelElementImpl implements Method {
 			return;
 		case ClassesPackage.METHOD__ARGUMENTS:
 			getArguments().clear();
-			getArguments().addAll(
-					(Collection<? extends MethodArgument>) newValue);
+			getArguments().addAll((Collection<? extends MethodArgument>) newValue);
 			return;
 		case ClassesPackage.METHOD__PROPERTIES:
 			setProperties((String) newValue);
@@ -509,8 +486,8 @@ public class MethodImpl extends ModelElementImpl implements Method {
 	}
 
 	/**
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
+	 * <!-- begin-user-doc --> <!-- end-user-doc -->
+	 * 
 	 * @generated
 	 */
 	@Override
@@ -542,8 +519,8 @@ public class MethodImpl extends ModelElementImpl implements Method {
 	}
 
 	/**
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
+	 * <!-- begin-user-doc --> <!-- end-user-doc -->
+	 * 
 	 * @generated
 	 */
 	@Override
@@ -556,26 +533,22 @@ public class MethodImpl extends ModelElementImpl implements Method {
 		case ClassesPackage.METHOD__DEFINING_CLASS:
 			return basicGetDefiningClass() != null;
 		case ClassesPackage.METHOD__RETURN_TYPE:
-			return RETURN_TYPE_EDEFAULT == null ? returnType != null
-					: !RETURN_TYPE_EDEFAULT.equals(returnType);
+			return RETURN_TYPE_EDEFAULT == null ? returnType != null : !RETURN_TYPE_EDEFAULT.equals(returnType);
 		case ClassesPackage.METHOD__SIGNATURE:
-			return SIGNATURE_EDEFAULT == null ? getSignature() != null
-					: !SIGNATURE_EDEFAULT.equals(getSignature());
+			return SIGNATURE_EDEFAULT == null ? getSignature() != null : !SIGNATURE_EDEFAULT.equals(getSignature());
 		case ClassesPackage.METHOD__ARGUMENTS:
 			return arguments != null && !arguments.isEmpty();
 		case ClassesPackage.METHOD__PROPERTIES:
-			return PROPERTIES_EDEFAULT == null ? properties != null
-					: !PROPERTIES_EDEFAULT.equals(properties);
+			return PROPERTIES_EDEFAULT == null ? properties != null : !PROPERTIES_EDEFAULT.equals(properties);
 		case ClassesPackage.METHOD__LABEL:
-			return LABEL_EDEFAULT == null ? label != null : !LABEL_EDEFAULT
-					.equals(label);
+			return LABEL_EDEFAULT == null ? label != null : !LABEL_EDEFAULT.equals(label);
 		}
 		return super.eIsSet(featureID);
 	}
 
 	/**
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
+	 * <!-- begin-user-doc --> <!-- end-user-doc -->
+	 * 
 	 * @generated
 	 */
 	@Override
@@ -599,8 +572,8 @@ public class MethodImpl extends ModelElementImpl implements Method {
 	}
 
 	/**
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
+	 * <!-- begin-user-doc --> <!-- end-user-doc -->
+	 * 
 	 * @generated
 	 */
 	public String getProperties() {
@@ -608,23 +581,22 @@ public class MethodImpl extends ModelElementImpl implements Method {
 	}
 
 	/**
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
+	 * <!-- begin-user-doc --> <!-- end-user-doc -->
+	 * 
 	 * @generated
 	 */
 	public void setProperties(String newProperties) {
 		String oldProperties = properties;
 		properties = newProperties;
 		if (eNotificationRequired())
-			eNotify(new ENotificationImpl(this, Notification.SET,
-					ClassesPackage.METHOD__PROPERTIES, oldProperties,
-					properties));
+			eNotify(new ENotificationImpl(this, Notification.SET, ClassesPackage.METHOD__PROPERTIES, oldProperties,
+				properties));
 	}
 
 	/**
-	 * <!-- begin-user-doc -->
-	 * If the label can not be parsed it is a string field. otherwise this returns the signature.
-	 * <!-- end-user-doc -->
+	 * <!-- begin-user-doc --> If the label can not be parsed it is a string field. otherwise this returns the
+	 * signature. <!-- end-user-doc -->
+	 * 
 	 * @generated NOT
 	 * @return The displayable label.
 	 */
@@ -637,13 +609,11 @@ public class MethodImpl extends ModelElementImpl implements Method {
 	}
 
 	/**
-	 * <!-- begin-user-doc --> Sets and tries to parse the label. If it can be
-	 * parsed, label attribute stays null and signature is used instead. <!--
-	 * end-user-doc -->
+	 * <!-- begin-user-doc --> Sets and tries to parse the label. If it can be parsed, label attribute stays null and
+	 * signature is used instead. <!-- end-user-doc -->
 	 * 
 	 * @generated NOT
-	 * @param newLabel
-	 *            the input string which will be parsed.
+	 * @param newLabel the input string which will be parsed.
 	 */
 	public void setLabel(String newLabel) {
 		String oldLabel = label;
@@ -653,13 +623,13 @@ public class MethodImpl extends ModelElementImpl implements Method {
 			String signatureRegExp;
 
 			signatureRegExp = "";
-			signatureRegExp += "(\\+|\\-|\\~|\\#)?\\s*"; //group1 -> visibility 
-			signatureRegExp += "(\\w+)\\s*"; //group2 -> name
-			signatureRegExp += "(?:\\(("; //opening parenthesis 
-			signatureRegExp += "(?:.*\\,)*(?:.*)"; //group3 -> arguments separated by commas				
-			signatureRegExp += ")\\))?\\s*"; //matching closing parenthesis 
-			signatureRegExp += "(?::\\s*(\\w+))?\\s*"; //group4 -> returnType 					
-			signatureRegExp += "(?:\\{(.*)\\})?\\s*"; //group5 -> properties
+			signatureRegExp += "(\\+|\\-|\\~|\\#)?\\s*"; // group1 -> visibility
+			signatureRegExp += "(\\w+)\\s*"; // group2 -> name
+			signatureRegExp += "(?:\\(("; // opening parenthesis
+			signatureRegExp += "(?:.*\\,)*(?:.*)"; // group3 -> arguments separated by commas
+			signatureRegExp += ")\\))?\\s*"; // matching closing parenthesis
+			signatureRegExp += "(?::\\s*(\\w+))?\\s*"; // group4 -> returnType
+			signatureRegExp += "(?:\\{(.*)\\})?\\s*"; // group5 -> properties
 
 			Pattern p = Pattern.compile(signatureRegExp);
 			Matcher m = p.matcher(newLabel);
@@ -706,9 +676,9 @@ public class MethodImpl extends ModelElementImpl implements Method {
 		}
 
 		if (eNotificationRequired()) {
-			eNotify(new ENotificationImpl(this, Notification.SET,
-					ClassesPackage.METHOD__SIGNATURE, oldLabel, getLabel()));
+			eNotify(new ENotificationImpl(this, Notification.SET, ClassesPackage.METHOD__SIGNATURE, oldLabel,
+				getLabel()));
 		}
 	}
 
-} //MethodImpl
+} // MethodImpl

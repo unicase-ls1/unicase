@@ -1,8 +1,7 @@
 /**
- * <copyright> Copyright (c) 2008 Jonas Helming, Maximilian Koegel. All rights reserved. This program and the accompanying materials are made available under the terms of the Eclipse Public License v1.0 which accompanies this distribution, and is available at http://www.eclipse.org/legal/epl-v10.html
- * </copyright>
- *
- * $Id$
+ * <copyright> Copyright (c) 2008 Jonas Helming, Maximilian Koegel. All rights reserved. This program and the
+ * accompanying materials are made available under the terms of the Eclipse Public License v1.0 which accompanies this
+ * distribution, and is available at http://www.eclipse.org/legal/epl-v10.html </copyright> $Id$
  */
 package org.unicase.model.task.impl;
 
@@ -51,57 +50,58 @@ import org.unicase.model.task.WorkItem;
 import org.unicase.model.task.WorkPackage;
 
 /**
- * <!-- begin-user-doc --> An implementation of the model <b>Package</b>. <!--
- * end-user-doc -->
+ * <!-- begin-user-doc --> An implementation of the model <b>Package</b>. <!-- end-user-doc -->
+ * 
  * @generated
  */
 public class TaskPackageImpl extends EPackageImpl implements TaskPackage {
 	/**
 	 * <!-- begin-user-doc --> <!-- end-user-doc -->
+	 * 
 	 * @generated
 	 */
 	private EClass actionItemEClass = null;
 
 	/**
 	 * <!-- begin-user-doc --> <!-- end-user-doc -->
+	 * 
 	 * @generated
 	 */
 	private EClass workPackageEClass = null;
 	/**
 	 * <!-- begin-user-doc --> <!-- end-user-doc -->
+	 * 
 	 * @generated
 	 */
 	private EClass workItemEClass = null;
 
 	/**
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
+	 * <!-- begin-user-doc --> <!-- end-user-doc -->
+	 * 
 	 * @generated
 	 */
 	private EClass milestoneEClass = null;
 
 	/**
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
+	 * <!-- begin-user-doc --> <!-- end-user-doc -->
+	 * 
 	 * @generated
 	 */
 	private EClass checkableEClass = null;
 
 	/**
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
+	 * <!-- begin-user-doc --> <!-- end-user-doc -->
+	 * 
 	 * @generated
 	 */
 	private EEnum activityTypeEEnum = null;
 
 	/**
-	 * Creates an instance of the model <b>Package</b>, registered with
-	 * {@link org.eclipse.emf.ecore.EPackage.Registry EPackage.Registry} by the
-	 * package package URI value.
+	 * Creates an instance of the model <b>Package</b>, registered with {@link org.eclipse.emf.ecore.EPackage.Registry
+	 * EPackage.Registry} by the package package URI value.
 	 * <p>
-	 * Note: the correct way to create the package is via the static factory
-	 * method {@link #init init()}, which also performs initialization of the
-	 * package, or returns the registered package, if one already exists. <!--
+	 * Note: the correct way to create the package is via the static factory method {@link #init init()}, which also
+	 * performs initialization of the package, or returns the registered package, if one already exists. <!--
 	 * begin-user-doc --> <!-- end-user-doc -->
 	 * 
 	 * @see org.eclipse.emf.ecore.EPackage.Registry
@@ -115,26 +115,24 @@ public class TaskPackageImpl extends EPackageImpl implements TaskPackage {
 
 	/**
 	 * <!-- begin-user-doc --> <!-- end-user-doc -->
+	 * 
 	 * @generated
 	 */
 	private static boolean isInited = false;
 
 	/**
-	 * Creates, registers, and initializes the <b>Package</b> for this
-	 * model, and for any others upon which it depends.  Simple
-	 * dependencies are satisfied by calling this method on all
-	 * dependent packages before doing anything else.  This method drives
-	 * initialization for interdependent packages directly, in parallel
-	 * with this package, itself.
-	 * <p>Of this package and its interdependencies, all packages which
-	 * have not yet been registered by their URI values are first created
-	 * and registered.  The packages are then initialized in two steps:
-	 * meta-model objects for all of the packages are created before any
-	 * are initialized, since one package's meta-model objects may refer to
-	 * those of another.
-	 * <p>Invocation of this method will not affect any packages that have
-	 * already been initialized.
-	 * <!-- begin-user-doc --> <!-- end-user-doc -->
+	 * Creates, registers, and initializes the <b>Package</b> for this model, and for any others upon which it depends.
+	 * Simple dependencies are satisfied by calling this method on all dependent packages before doing anything else.
+	 * This method drives initialization for interdependent packages directly, in parallel with this package, itself.
+	 * <p>
+	 * Of this package and its interdependencies, all packages which have not yet been registered by their URI values
+	 * are first created and registered. The packages are then initialized in two steps: meta-model objects for all of
+	 * the packages are created before any are initialized, since one package's meta-model objects may refer to those of
+	 * another.
+	 * <p>
+	 * Invocation of this method will not affect any packages that have already been initialized. <!-- begin-user-doc
+	 * --> <!-- end-user-doc -->
+	 * 
 	 * @see #eNS_URI
 	 * @see #createPackageContents()
 	 * @see #initializePackageContents()
@@ -142,14 +140,12 @@ public class TaskPackageImpl extends EPackageImpl implements TaskPackage {
 	 */
 	public static TaskPackage init() {
 		if (isInited)
-			return (TaskPackage) EPackage.Registry.INSTANCE
-					.getEPackage(TaskPackage.eNS_URI);
+			return (TaskPackage) EPackage.Registry.INSTANCE.getEPackage(TaskPackage.eNS_URI);
 
 		// Obtain or create and register package
-		TaskPackageImpl theTaskPackage = (TaskPackageImpl) (EPackage.Registry.INSTANCE
-				.getEPackage(eNS_URI) instanceof TaskPackageImpl ? EPackage.Registry.INSTANCE
-				.getEPackage(eNS_URI)
-				: new TaskPackageImpl());
+		TaskPackageImpl theTaskPackage = (TaskPackageImpl) (EPackage.Registry.INSTANCE.getEPackage(eNS_URI) instanceof TaskPackageImpl ? EPackage.Registry.INSTANCE
+			.getEPackage(eNS_URI)
+			: new TaskPackageImpl());
 
 		isInited = true;
 
@@ -158,61 +154,47 @@ public class TaskPackageImpl extends EPackageImpl implements TaskPackage {
 
 		// Obtain or create and register interdependencies
 		ModelPackageImpl theModelPackage = (ModelPackageImpl) (EPackage.Registry.INSTANCE
-				.getEPackage(ModelPackage.eNS_URI) instanceof ModelPackageImpl ? EPackage.Registry.INSTANCE
-				.getEPackage(ModelPackage.eNS_URI)
-				: ModelPackage.eINSTANCE);
+			.getEPackage(ModelPackage.eNS_URI) instanceof ModelPackageImpl ? EPackage.Registry.INSTANCE
+			.getEPackage(ModelPackage.eNS_URI) : ModelPackage.eINSTANCE);
 		OrganizationPackageImpl theOrganizationPackage = (OrganizationPackageImpl) (EPackage.Registry.INSTANCE
-				.getEPackage(OrganizationPackage.eNS_URI) instanceof OrganizationPackageImpl ? EPackage.Registry.INSTANCE
-				.getEPackage(OrganizationPackage.eNS_URI)
-				: OrganizationPackage.eINSTANCE);
+			.getEPackage(OrganizationPackage.eNS_URI) instanceof OrganizationPackageImpl ? EPackage.Registry.INSTANCE
+			.getEPackage(OrganizationPackage.eNS_URI) : OrganizationPackage.eINSTANCE);
 		DiagramPackageImpl theDiagramPackage = (DiagramPackageImpl) (EPackage.Registry.INSTANCE
-				.getEPackage(DiagramPackage.eNS_URI) instanceof DiagramPackageImpl ? EPackage.Registry.INSTANCE
-				.getEPackage(DiagramPackage.eNS_URI)
-				: DiagramPackage.eINSTANCE);
+			.getEPackage(DiagramPackage.eNS_URI) instanceof DiagramPackageImpl ? EPackage.Registry.INSTANCE
+			.getEPackage(DiagramPackage.eNS_URI) : DiagramPackage.eINSTANCE);
 		ClassesPackageImpl theClassesPackage = (ClassesPackageImpl) (EPackage.Registry.INSTANCE
-				.getEPackage(ClassesPackage.eNS_URI) instanceof ClassesPackageImpl ? EPackage.Registry.INSTANCE
-				.getEPackage(ClassesPackage.eNS_URI)
-				: ClassesPackage.eINSTANCE);
+			.getEPackage(ClassesPackage.eNS_URI) instanceof ClassesPackageImpl ? EPackage.Registry.INSTANCE
+			.getEPackage(ClassesPackage.eNS_URI) : ClassesPackage.eINSTANCE);
 		DocumentPackageImpl theDocumentPackage = (DocumentPackageImpl) (EPackage.Registry.INSTANCE
-				.getEPackage(DocumentPackage.eNS_URI) instanceof DocumentPackageImpl ? EPackage.Registry.INSTANCE
-				.getEPackage(DocumentPackage.eNS_URI)
-				: DocumentPackage.eINSTANCE);
+			.getEPackage(DocumentPackage.eNS_URI) instanceof DocumentPackageImpl ? EPackage.Registry.INSTANCE
+			.getEPackage(DocumentPackage.eNS_URI) : DocumentPackage.eINSTANCE);
 		RequirementPackageImpl theRequirementPackage = (RequirementPackageImpl) (EPackage.Registry.INSTANCE
-				.getEPackage(RequirementPackage.eNS_URI) instanceof RequirementPackageImpl ? EPackage.Registry.INSTANCE
-				.getEPackage(RequirementPackage.eNS_URI)
-				: RequirementPackage.eINSTANCE);
+			.getEPackage(RequirementPackage.eNS_URI) instanceof RequirementPackageImpl ? EPackage.Registry.INSTANCE
+			.getEPackage(RequirementPackage.eNS_URI) : RequirementPackage.eINSTANCE);
 		RationalePackageImpl theRationalePackage = (RationalePackageImpl) (EPackage.Registry.INSTANCE
-				.getEPackage(RationalePackage.eNS_URI) instanceof RationalePackageImpl ? EPackage.Registry.INSTANCE
-				.getEPackage(RationalePackage.eNS_URI)
-				: RationalePackage.eINSTANCE);
+			.getEPackage(RationalePackage.eNS_URI) instanceof RationalePackageImpl ? EPackage.Registry.INSTANCE
+			.getEPackage(RationalePackage.eNS_URI) : RationalePackage.eINSTANCE);
 		ChangePackageImpl theChangePackage = (ChangePackageImpl) (EPackage.Registry.INSTANCE
-				.getEPackage(ChangePackage.eNS_URI) instanceof ChangePackageImpl ? EPackage.Registry.INSTANCE
-				.getEPackage(ChangePackage.eNS_URI)
-				: ChangePackage.eINSTANCE);
-		BugPackageImpl theBugPackage = (BugPackageImpl) (EPackage.Registry.INSTANCE
-				.getEPackage(BugPackage.eNS_URI) instanceof BugPackageImpl ? EPackage.Registry.INSTANCE
-				.getEPackage(BugPackage.eNS_URI)
-				: BugPackage.eINSTANCE);
+			.getEPackage(ChangePackage.eNS_URI) instanceof ChangePackageImpl ? EPackage.Registry.INSTANCE
+			.getEPackage(ChangePackage.eNS_URI) : ChangePackage.eINSTANCE);
+		BugPackageImpl theBugPackage = (BugPackageImpl) (EPackage.Registry.INSTANCE.getEPackage(BugPackage.eNS_URI) instanceof BugPackageImpl ? EPackage.Registry.INSTANCE
+			.getEPackage(BugPackage.eNS_URI)
+			: BugPackage.eINSTANCE);
 		ComponentPackageImpl theComponentPackage = (ComponentPackageImpl) (EPackage.Registry.INSTANCE
-				.getEPackage(ComponentPackage.eNS_URI) instanceof ComponentPackageImpl ? EPackage.Registry.INSTANCE
-				.getEPackage(ComponentPackage.eNS_URI)
-				: ComponentPackage.eINSTANCE);
+			.getEPackage(ComponentPackage.eNS_URI) instanceof ComponentPackageImpl ? EPackage.Registry.INSTANCE
+			.getEPackage(ComponentPackage.eNS_URI) : ComponentPackage.eINSTANCE);
 		MeetingPackageImpl theMeetingPackage = (MeetingPackageImpl) (EPackage.Registry.INSTANCE
-				.getEPackage(MeetingPackage.eNS_URI) instanceof MeetingPackageImpl ? EPackage.Registry.INSTANCE
-				.getEPackage(MeetingPackage.eNS_URI)
-				: MeetingPackage.eINSTANCE);
+			.getEPackage(MeetingPackage.eNS_URI) instanceof MeetingPackageImpl ? EPackage.Registry.INSTANCE
+			.getEPackage(MeetingPackage.eNS_URI) : MeetingPackage.eINSTANCE);
 		StatePackageImpl theStatePackage = (StatePackageImpl) (EPackage.Registry.INSTANCE
-				.getEPackage(StatePackage.eNS_URI) instanceof StatePackageImpl ? EPackage.Registry.INSTANCE
-				.getEPackage(StatePackage.eNS_URI)
-				: StatePackage.eINSTANCE);
+			.getEPackage(StatePackage.eNS_URI) instanceof StatePackageImpl ? EPackage.Registry.INSTANCE
+			.getEPackage(StatePackage.eNS_URI) : StatePackage.eINSTANCE);
 		AttachmentPackageImpl theAttachmentPackage = (AttachmentPackageImpl) (EPackage.Registry.INSTANCE
-				.getEPackage(AttachmentPackage.eNS_URI) instanceof AttachmentPackageImpl ? EPackage.Registry.INSTANCE
-				.getEPackage(AttachmentPackage.eNS_URI)
-				: AttachmentPackage.eINSTANCE);
+			.getEPackage(AttachmentPackage.eNS_URI) instanceof AttachmentPackageImpl ? EPackage.Registry.INSTANCE
+			.getEPackage(AttachmentPackage.eNS_URI) : AttachmentPackage.eINSTANCE);
 		ProfilePackageImpl theProfilePackage = (ProfilePackageImpl) (EPackage.Registry.INSTANCE
-				.getEPackage(ProfilePackage.eNS_URI) instanceof ProfilePackageImpl ? EPackage.Registry.INSTANCE
-				.getEPackage(ProfilePackage.eNS_URI)
-				: ProfilePackage.eINSTANCE);
+			.getEPackage(ProfilePackage.eNS_URI) instanceof ProfilePackageImpl ? EPackage.Registry.INSTANCE
+			.getEPackage(ProfilePackage.eNS_URI) : ProfilePackage.eINSTANCE);
 
 		// Create package meta-data objects
 		theTaskPackage.createPackageContents();
@@ -256,6 +238,7 @@ public class TaskPackageImpl extends EPackageImpl implements TaskPackage {
 
 	/**
 	 * <!-- begin-user-doc --> <!-- end-user-doc -->
+	 * 
 	 * @generated
 	 */
 	public EClass getActionItem() {
@@ -264,6 +247,7 @@ public class TaskPackageImpl extends EPackageImpl implements TaskPackage {
 
 	/**
 	 * <!-- begin-user-doc --> <!-- end-user-doc -->
+	 * 
 	 * @generated
 	 */
 	public EAttribute getActionItem_Done() {
@@ -271,8 +255,8 @@ public class TaskPackageImpl extends EPackageImpl implements TaskPackage {
 	}
 
 	/**
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
+	 * <!-- begin-user-doc --> <!-- end-user-doc -->
+	 * 
 	 * @generated
 	 */
 	public EAttribute getActionItem_Activity() {
@@ -281,6 +265,7 @@ public class TaskPackageImpl extends EPackageImpl implements TaskPackage {
 
 	/**
 	 * <!-- begin-user-doc --> <!-- end-user-doc -->
+	 * 
 	 * @generated
 	 */
 	public EClass getWorkPackage() {
@@ -288,8 +273,8 @@ public class TaskPackageImpl extends EPackageImpl implements TaskPackage {
 	}
 
 	/**
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
+	 * <!-- begin-user-doc --> <!-- end-user-doc -->
+	 * 
 	 * @generated
 	 */
 	public EReference getWorkPackage_ContainedWorkItems() {
@@ -297,8 +282,8 @@ public class TaskPackageImpl extends EPackageImpl implements TaskPackage {
 	}
 
 	/**
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
+	 * <!-- begin-user-doc --> <!-- end-user-doc -->
+	 * 
 	 * @generated
 	 */
 	public EAttribute getWorkPackage_StartDate() {
@@ -306,8 +291,8 @@ public class TaskPackageImpl extends EPackageImpl implements TaskPackage {
 	}
 
 	/**
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
+	 * <!-- begin-user-doc --> <!-- end-user-doc -->
+	 * 
 	 * @generated
 	 */
 	public EAttribute getWorkPackage_EndDate() {
@@ -316,6 +301,7 @@ public class TaskPackageImpl extends EPackageImpl implements TaskPackage {
 
 	/**
 	 * <!-- begin-user-doc --> <!-- end-user-doc -->
+	 * 
 	 * @generated
 	 */
 	public EClass getWorkItem() {
@@ -324,6 +310,7 @@ public class TaskPackageImpl extends EPackageImpl implements TaskPackage {
 
 	/**
 	 * <!-- begin-user-doc --> <!-- end-user-doc -->
+	 * 
 	 * @generated
 	 */
 	public EReference getWorkItem_ContainingWorkpackage() {
@@ -332,6 +319,7 @@ public class TaskPackageImpl extends EPackageImpl implements TaskPackage {
 
 	/**
 	 * <!-- begin-user-doc --> <!-- end-user-doc -->
+	 * 
 	 * @generated
 	 */
 	public EReference getWorkItem_AssociatedChangePackages() {
@@ -339,8 +327,8 @@ public class TaskPackageImpl extends EPackageImpl implements TaskPackage {
 	}
 
 	/**
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
+	 * <!-- begin-user-doc --> <!-- end-user-doc -->
+	 * 
 	 * @generated
 	 */
 	public EReference getWorkItem_Predecessors() {
@@ -348,8 +336,8 @@ public class TaskPackageImpl extends EPackageImpl implements TaskPackage {
 	}
 
 	/**
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
+	 * <!-- begin-user-doc --> <!-- end-user-doc -->
+	 * 
 	 * @generated
 	 */
 	public EReference getWorkItem_Successors() {
@@ -357,8 +345,8 @@ public class TaskPackageImpl extends EPackageImpl implements TaskPackage {
 	}
 
 	/**
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
+	 * <!-- begin-user-doc --> <!-- end-user-doc -->
+	 * 
 	 * @generated
 	 */
 	public EReference getWorkItem_Assignee() {
@@ -366,8 +354,8 @@ public class TaskPackageImpl extends EPackageImpl implements TaskPackage {
 	}
 
 	/**
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
+	 * <!-- begin-user-doc --> <!-- end-user-doc -->
+	 * 
 	 * @generated
 	 */
 	public EReference getWorkItem_Participants() {
@@ -375,8 +363,8 @@ public class TaskPackageImpl extends EPackageImpl implements TaskPackage {
 	}
 
 	/**
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
+	 * <!-- begin-user-doc --> <!-- end-user-doc -->
+	 * 
 	 * @generated
 	 */
 	public EAttribute getWorkItem_DueDate() {
@@ -384,8 +372,8 @@ public class TaskPackageImpl extends EPackageImpl implements TaskPackage {
 	}
 
 	/**
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
+	 * <!-- begin-user-doc --> <!-- end-user-doc -->
+	 * 
 	 * @generated
 	 */
 	public EAttribute getWorkItem_Estimate() {
@@ -393,8 +381,8 @@ public class TaskPackageImpl extends EPackageImpl implements TaskPackage {
 	}
 
 	/**
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
+	 * <!-- begin-user-doc --> <!-- end-user-doc -->
+	 * 
 	 * @generated
 	 */
 	public EAttribute getWorkItem_Effort() {
@@ -402,8 +390,8 @@ public class TaskPackageImpl extends EPackageImpl implements TaskPackage {
 	}
 
 	/**
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
+	 * <!-- begin-user-doc --> <!-- end-user-doc -->
+	 * 
 	 * @generated
 	 */
 	public EClass getMilestone() {
@@ -411,8 +399,8 @@ public class TaskPackageImpl extends EPackageImpl implements TaskPackage {
 	}
 
 	/**
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
+	 * <!-- begin-user-doc --> <!-- end-user-doc -->
+	 * 
 	 * @generated
 	 */
 	public EReference getMilestone_ContainedModelElements() {
@@ -420,8 +408,8 @@ public class TaskPackageImpl extends EPackageImpl implements TaskPackage {
 	}
 
 	/**
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
+	 * <!-- begin-user-doc --> <!-- end-user-doc -->
+	 * 
 	 * @generated
 	 */
 	public EClass getCheckable() {
@@ -429,8 +417,8 @@ public class TaskPackageImpl extends EPackageImpl implements TaskPackage {
 	}
 
 	/**
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
+	 * <!-- begin-user-doc --> <!-- end-user-doc -->
+	 * 
 	 * @generated
 	 */
 	public EAttribute getCheckable_Checked() {
@@ -438,8 +426,8 @@ public class TaskPackageImpl extends EPackageImpl implements TaskPackage {
 	}
 
 	/**
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
+	 * <!-- begin-user-doc --> <!-- end-user-doc -->
+	 * 
 	 * @generated
 	 */
 	public EEnum getActivityType() {
@@ -448,6 +436,7 @@ public class TaskPackageImpl extends EPackageImpl implements TaskPackage {
 
 	/**
 	 * <!-- begin-user-doc --> <!-- end-user-doc -->
+	 * 
 	 * @generated
 	 */
 	public TaskFactory getTaskFactory() {
@@ -456,15 +445,15 @@ public class TaskPackageImpl extends EPackageImpl implements TaskPackage {
 
 	/**
 	 * <!-- begin-user-doc --> <!-- end-user-doc -->
+	 * 
 	 * @generated
 	 */
 	private boolean isCreated = false;
 
 	/**
-	 * Creates the meta-model objects for the package.  This method is
-	 * guarded to have no affect on any invocation but its first.
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
+	 * Creates the meta-model objects for the package. This method is guarded to have no affect on any invocation but
+	 * its first. <!-- begin-user-doc --> <!-- end-user-doc -->
+	 * 
 	 * @generated
 	 */
 	public void createPackageContents() {
@@ -505,14 +494,14 @@ public class TaskPackageImpl extends EPackageImpl implements TaskPackage {
 
 	/**
 	 * <!-- begin-user-doc --> <!-- end-user-doc -->
+	 * 
 	 * @generated
 	 */
 	private boolean isInitialized = false;
 
 	/**
-	 * Complete the initialization of the package and its meta-model. This
-	 * method is guarded to have no affect on any invocation but its first. <!--
-	 * begin-user-doc --> <!-- end-user-doc -->
+	 * Complete the initialization of the package and its meta-model. This method is guarded to have no affect on any
+	 * invocation but its first. <!-- begin-user-doc --> <!-- end-user-doc -->
 	 * 
 	 * @generated
 	 */
@@ -527,12 +516,10 @@ public class TaskPackageImpl extends EPackageImpl implements TaskPackage {
 		setNsURI(eNS_URI);
 
 		// Obtain other dependent packages
-		ModelPackage theModelPackage = (ModelPackage) EPackage.Registry.INSTANCE
-				.getEPackage(ModelPackage.eNS_URI);
-		ChangePackage theChangePackage = (ChangePackage) EPackage.Registry.INSTANCE
-				.getEPackage(ChangePackage.eNS_URI);
+		ModelPackage theModelPackage = (ModelPackage) EPackage.Registry.INSTANCE.getEPackage(ModelPackage.eNS_URI);
+		ChangePackage theChangePackage = (ChangePackage) EPackage.Registry.INSTANCE.getEPackage(ChangePackage.eNS_URI);
 		OrganizationPackage theOrganizationPackage = (OrganizationPackage) EPackage.Registry.INSTANCE
-				.getEPackage(OrganizationPackage.eNS_URI);
+			.getEPackage(OrganizationPackage.eNS_URI);
 
 		// Create type parameters
 
@@ -546,110 +533,69 @@ public class TaskPackageImpl extends EPackageImpl implements TaskPackage {
 		milestoneEClass.getESuperTypes().add(this.getWorkItem());
 
 		// Initialize classes and features; add operations and parameters
-		initEClass(actionItemEClass, ActionItem.class, "ActionItem",
-				!IS_ABSTRACT, !IS_INTERFACE, IS_GENERATED_INSTANCE_CLASS);
-		initEAttribute(getActionItem_Done(), ecorePackage.getEBoolean(),
-				"done", null, 0, 1, ActionItem.class, !IS_TRANSIENT,
-				!IS_VOLATILE, IS_CHANGEABLE, !IS_UNSETTABLE, !IS_ID, IS_UNIQUE,
-				!IS_DERIVED, IS_ORDERED);
-		initEAttribute(getActionItem_Activity(), this.getActivityType(),
-				"activity", null, 0, 1, ActionItem.class, !IS_TRANSIENT,
-				!IS_VOLATILE, IS_CHANGEABLE, !IS_UNSETTABLE, !IS_ID, IS_UNIQUE,
-				!IS_DERIVED, IS_ORDERED);
+		initEClass(actionItemEClass, ActionItem.class, "ActionItem", !IS_ABSTRACT, !IS_INTERFACE,
+			IS_GENERATED_INSTANCE_CLASS);
+		initEAttribute(getActionItem_Done(), ecorePackage.getEBoolean(), "done", null, 0, 1, ActionItem.class,
+			!IS_TRANSIENT, !IS_VOLATILE, IS_CHANGEABLE, !IS_UNSETTABLE, !IS_ID, IS_UNIQUE, !IS_DERIVED, IS_ORDERED);
+		initEAttribute(getActionItem_Activity(), this.getActivityType(), "activity", null, 0, 1, ActionItem.class,
+			!IS_TRANSIENT, !IS_VOLATILE, IS_CHANGEABLE, !IS_UNSETTABLE, !IS_ID, IS_UNIQUE, !IS_DERIVED, IS_ORDERED);
 
-		initEClass(workPackageEClass, WorkPackage.class, "WorkPackage",
-				!IS_ABSTRACT, !IS_INTERFACE, IS_GENERATED_INSTANCE_CLASS);
-		initEReference(getWorkPackage_ContainedWorkItems(), this.getWorkItem(),
-				this.getWorkItem_ContainingWorkpackage(), "containedWorkItems",
-				null, 0, -1, WorkPackage.class, !IS_TRANSIENT, !IS_VOLATILE,
-				IS_CHANGEABLE, IS_COMPOSITE, IS_RESOLVE_PROXIES,
-				!IS_UNSETTABLE, IS_UNIQUE, !IS_DERIVED, IS_ORDERED);
-		getWorkPackage_ContainedWorkItems().getEKeys().add(
-				theModelPackage.getIdentifiableElement_Identifier());
-		initEAttribute(getWorkPackage_StartDate(), ecorePackage.getEDate(),
-				"startDate", null, 0, 1, WorkPackage.class, !IS_TRANSIENT,
-				!IS_VOLATILE, IS_CHANGEABLE, !IS_UNSETTABLE, !IS_ID, IS_UNIQUE,
-				!IS_DERIVED, IS_ORDERED);
-		initEAttribute(getWorkPackage_EndDate(), ecorePackage.getEDate(),
-				"endDate", null, 0, 1, WorkPackage.class, !IS_TRANSIENT,
-				!IS_VOLATILE, IS_CHANGEABLE, !IS_UNSETTABLE, !IS_ID, IS_UNIQUE,
-				!IS_DERIVED, IS_ORDERED);
+		initEClass(workPackageEClass, WorkPackage.class, "WorkPackage", !IS_ABSTRACT, !IS_INTERFACE,
+			IS_GENERATED_INSTANCE_CLASS);
+		initEReference(getWorkPackage_ContainedWorkItems(), this.getWorkItem(), this
+			.getWorkItem_ContainingWorkpackage(), "containedWorkItems", null, 0, -1, WorkPackage.class, !IS_TRANSIENT,
+			!IS_VOLATILE, IS_CHANGEABLE, IS_COMPOSITE, IS_RESOLVE_PROXIES, !IS_UNSETTABLE, IS_UNIQUE, !IS_DERIVED,
+			IS_ORDERED);
+		getWorkPackage_ContainedWorkItems().getEKeys().add(theModelPackage.getIdentifiableElement_Identifier());
+		initEAttribute(getWorkPackage_StartDate(), ecorePackage.getEDate(), "startDate", null, 0, 1, WorkPackage.class,
+			!IS_TRANSIENT, !IS_VOLATILE, IS_CHANGEABLE, !IS_UNSETTABLE, !IS_ID, IS_UNIQUE, !IS_DERIVED, IS_ORDERED);
+		initEAttribute(getWorkPackage_EndDate(), ecorePackage.getEDate(), "endDate", null, 0, 1, WorkPackage.class,
+			!IS_TRANSIENT, !IS_VOLATILE, IS_CHANGEABLE, !IS_UNSETTABLE, !IS_ID, IS_UNIQUE, !IS_DERIVED, IS_ORDERED);
 
-		initEClass(workItemEClass, WorkItem.class, "WorkItem", IS_ABSTRACT,
-				IS_INTERFACE, IS_GENERATED_INSTANCE_CLASS);
-		initEReference(getWorkItem_ContainingWorkpackage(), this
-				.getWorkPackage(), this.getWorkPackage_ContainedWorkItems(),
-				"containingWorkpackage", null, 0, 1, WorkItem.class,
-				!IS_TRANSIENT, !IS_VOLATILE, IS_CHANGEABLE, !IS_COMPOSITE,
-				IS_RESOLVE_PROXIES, !IS_UNSETTABLE, IS_UNIQUE, !IS_DERIVED,
-				IS_ORDERED);
-		getWorkItem_ContainingWorkpackage().getEKeys().add(
-				theModelPackage.getIdentifiableElement_Identifier());
-		initEReference(getWorkItem_AssociatedChangePackages(), theChangePackage
-				.getModelChangePackage(), null, "associatedChangePackages",
-				null, 0, -1, WorkItem.class, !IS_TRANSIENT, !IS_VOLATILE,
-				IS_CHANGEABLE, !IS_COMPOSITE, IS_RESOLVE_PROXIES,
-				!IS_UNSETTABLE, IS_UNIQUE, !IS_DERIVED, IS_ORDERED);
-		getWorkItem_AssociatedChangePackages().getEKeys().add(
-				theModelPackage.getIdentifiableElement_Identifier());
-		initEReference(getWorkItem_Predecessors(), this.getWorkItem(), this
-				.getWorkItem_Successors(), "predecessors", null, 0, -1,
-				WorkItem.class, !IS_TRANSIENT, !IS_VOLATILE, IS_CHANGEABLE,
-				!IS_COMPOSITE, IS_RESOLVE_PROXIES, !IS_UNSETTABLE, IS_UNIQUE,
-				!IS_DERIVED, IS_ORDERED);
-		getWorkItem_Predecessors().getEKeys().add(
-				theModelPackage.getIdentifiableElement_Identifier());
-		initEReference(getWorkItem_Successors(), this.getWorkItem(), this
-				.getWorkItem_Predecessors(), "successors", null, 0, -1,
-				WorkItem.class, !IS_TRANSIENT, !IS_VOLATILE, IS_CHANGEABLE,
-				!IS_COMPOSITE, IS_RESOLVE_PROXIES, !IS_UNSETTABLE, IS_UNIQUE,
-				!IS_DERIVED, IS_ORDERED);
-		getWorkItem_Successors().getEKeys().add(
-				theModelPackage.getIdentifiableElement_Identifier());
-		initEReference(getWorkItem_Assignee(), theOrganizationPackage
-				.getOrgUnit(), theOrganizationPackage.getOrgUnit_Assignments(),
-				"assignee", null, 0, 1, WorkItem.class, !IS_TRANSIENT,
-				!IS_VOLATILE, IS_CHANGEABLE, !IS_COMPOSITE, IS_RESOLVE_PROXIES,
-				!IS_UNSETTABLE, IS_UNIQUE, !IS_DERIVED, IS_ORDERED);
-		getWorkItem_Assignee().getEKeys().add(
-				theModelPackage.getIdentifiableElement_Identifier());
-		initEReference(getWorkItem_Participants(), theOrganizationPackage
-				.getOrgUnit(), theOrganizationPackage
-				.getOrgUnit_Participations(), "participants", null, 0, -1,
-				WorkItem.class, !IS_TRANSIENT, !IS_VOLATILE, IS_CHANGEABLE,
-				!IS_COMPOSITE, IS_RESOLVE_PROXIES, !IS_UNSETTABLE, IS_UNIQUE,
-				!IS_DERIVED, IS_ORDERED);
-		getWorkItem_Participants().getEKeys().add(
-				theModelPackage.getIdentifiableElement_Identifier());
-		initEAttribute(getWorkItem_DueDate(), ecorePackage.getEDate(),
-				"dueDate", null, 0, 1, WorkItem.class, !IS_TRANSIENT,
-				!IS_VOLATILE, IS_CHANGEABLE, !IS_UNSETTABLE, !IS_ID, IS_UNIQUE,
-				!IS_DERIVED, IS_ORDERED);
-		initEAttribute(getWorkItem_Estimate(), ecorePackage.getEInt(),
-				"estimate", null, 0, 1, WorkItem.class, !IS_TRANSIENT,
-				!IS_VOLATILE, IS_CHANGEABLE, !IS_UNSETTABLE, !IS_ID, IS_UNIQUE,
-				!IS_DERIVED, IS_ORDERED);
-		initEAttribute(getWorkItem_Effort(), ecorePackage.getEInt(), "effort",
-				null, 0, 1, WorkItem.class, !IS_TRANSIENT, !IS_VOLATILE,
-				IS_CHANGEABLE, !IS_UNSETTABLE, !IS_ID, IS_UNIQUE, !IS_DERIVED,
-				IS_ORDERED);
+		initEClass(workItemEClass, WorkItem.class, "WorkItem", IS_ABSTRACT, IS_INTERFACE, IS_GENERATED_INSTANCE_CLASS);
+		initEReference(getWorkItem_ContainingWorkpackage(), this.getWorkPackage(), this
+			.getWorkPackage_ContainedWorkItems(), "containingWorkpackage", null, 0, 1, WorkItem.class, !IS_TRANSIENT,
+			!IS_VOLATILE, IS_CHANGEABLE, !IS_COMPOSITE, IS_RESOLVE_PROXIES, !IS_UNSETTABLE, IS_UNIQUE, !IS_DERIVED,
+			IS_ORDERED);
+		getWorkItem_ContainingWorkpackage().getEKeys().add(theModelPackage.getIdentifiableElement_Identifier());
+		initEReference(getWorkItem_AssociatedChangePackages(), theChangePackage.getModelChangePackage(), null,
+			"associatedChangePackages", null, 0, -1, WorkItem.class, !IS_TRANSIENT, !IS_VOLATILE, IS_CHANGEABLE,
+			!IS_COMPOSITE, IS_RESOLVE_PROXIES, !IS_UNSETTABLE, IS_UNIQUE, !IS_DERIVED, IS_ORDERED);
+		getWorkItem_AssociatedChangePackages().getEKeys().add(theModelPackage.getIdentifiableElement_Identifier());
+		initEReference(getWorkItem_Predecessors(), this.getWorkItem(), this.getWorkItem_Successors(), "predecessors",
+			null, 0, -1, WorkItem.class, !IS_TRANSIENT, !IS_VOLATILE, IS_CHANGEABLE, !IS_COMPOSITE, IS_RESOLVE_PROXIES,
+			!IS_UNSETTABLE, IS_UNIQUE, !IS_DERIVED, IS_ORDERED);
+		getWorkItem_Predecessors().getEKeys().add(theModelPackage.getIdentifiableElement_Identifier());
+		initEReference(getWorkItem_Successors(), this.getWorkItem(), this.getWorkItem_Predecessors(), "successors",
+			null, 0, -1, WorkItem.class, !IS_TRANSIENT, !IS_VOLATILE, IS_CHANGEABLE, !IS_COMPOSITE, IS_RESOLVE_PROXIES,
+			!IS_UNSETTABLE, IS_UNIQUE, !IS_DERIVED, IS_ORDERED);
+		getWorkItem_Successors().getEKeys().add(theModelPackage.getIdentifiableElement_Identifier());
+		initEReference(getWorkItem_Assignee(), theOrganizationPackage.getOrgUnit(), theOrganizationPackage
+			.getOrgUnit_Assignments(), "assignee", null, 0, 1, WorkItem.class, !IS_TRANSIENT, !IS_VOLATILE,
+			IS_CHANGEABLE, !IS_COMPOSITE, IS_RESOLVE_PROXIES, !IS_UNSETTABLE, IS_UNIQUE, !IS_DERIVED, IS_ORDERED);
+		getWorkItem_Assignee().getEKeys().add(theModelPackage.getIdentifiableElement_Identifier());
+		initEReference(getWorkItem_Participants(), theOrganizationPackage.getOrgUnit(), theOrganizationPackage
+			.getOrgUnit_Participations(), "participants", null, 0, -1, WorkItem.class, !IS_TRANSIENT, !IS_VOLATILE,
+			IS_CHANGEABLE, !IS_COMPOSITE, IS_RESOLVE_PROXIES, !IS_UNSETTABLE, IS_UNIQUE, !IS_DERIVED, IS_ORDERED);
+		getWorkItem_Participants().getEKeys().add(theModelPackage.getIdentifiableElement_Identifier());
+		initEAttribute(getWorkItem_DueDate(), ecorePackage.getEDate(), "dueDate", null, 0, 1, WorkItem.class,
+			!IS_TRANSIENT, !IS_VOLATILE, IS_CHANGEABLE, !IS_UNSETTABLE, !IS_ID, IS_UNIQUE, !IS_DERIVED, IS_ORDERED);
+		initEAttribute(getWorkItem_Estimate(), ecorePackage.getEInt(), "estimate", null, 0, 1, WorkItem.class,
+			!IS_TRANSIENT, !IS_VOLATILE, IS_CHANGEABLE, !IS_UNSETTABLE, !IS_ID, IS_UNIQUE, !IS_DERIVED, IS_ORDERED);
+		initEAttribute(getWorkItem_Effort(), ecorePackage.getEInt(), "effort", null, 0, 1, WorkItem.class,
+			!IS_TRANSIENT, !IS_VOLATILE, IS_CHANGEABLE, !IS_UNSETTABLE, !IS_ID, IS_UNIQUE, !IS_DERIVED, IS_ORDERED);
 
-		initEClass(milestoneEClass, Milestone.class, "Milestone", !IS_ABSTRACT,
-				!IS_INTERFACE, IS_GENERATED_INSTANCE_CLASS);
-		initEReference(getMilestone_ContainedModelElements(), theModelPackage
-				.getModelElement(), null, "containedModelElements", null, 0,
-				-1, Milestone.class, !IS_TRANSIENT, !IS_VOLATILE,
-				IS_CHANGEABLE, !IS_COMPOSITE, IS_RESOLVE_PROXIES,
-				!IS_UNSETTABLE, IS_UNIQUE, !IS_DERIVED, IS_ORDERED);
-		getMilestone_ContainedModelElements().getEKeys().add(
-				theModelPackage.getIdentifiableElement_Identifier());
+		initEClass(milestoneEClass, Milestone.class, "Milestone", !IS_ABSTRACT, !IS_INTERFACE,
+			IS_GENERATED_INSTANCE_CLASS);
+		initEReference(getMilestone_ContainedModelElements(), theModelPackage.getModelElement(), null,
+			"containedModelElements", null, 0, -1, Milestone.class, !IS_TRANSIENT, !IS_VOLATILE, IS_CHANGEABLE,
+			!IS_COMPOSITE, IS_RESOLVE_PROXIES, !IS_UNSETTABLE, IS_UNIQUE, !IS_DERIVED, IS_ORDERED);
+		getMilestone_ContainedModelElements().getEKeys().add(theModelPackage.getIdentifiableElement_Identifier());
 
-		initEClass(checkableEClass, Checkable.class, "Checkable", IS_ABSTRACT,
-				IS_INTERFACE, IS_GENERATED_INSTANCE_CLASS);
-		initEAttribute(getCheckable_Checked(), ecorePackage.getEBoolean(),
-				"checked", null, 0, 1, Checkable.class, IS_TRANSIENT,
-				IS_VOLATILE, IS_CHANGEABLE, !IS_UNSETTABLE, !IS_ID, IS_UNIQUE,
-				IS_DERIVED, IS_ORDERED);
+		initEClass(checkableEClass, Checkable.class, "Checkable", IS_ABSTRACT, IS_INTERFACE,
+			IS_GENERATED_INSTANCE_CLASS);
+		initEAttribute(getCheckable_Checked(), ecorePackage.getEBoolean(), "checked", null, 0, 1, Checkable.class,
+			IS_TRANSIENT, IS_VOLATILE, IS_CHANGEABLE, !IS_UNSETTABLE, !IS_ID, IS_UNIQUE, IS_DERIVED, IS_ORDERED);
 
 		// Initialize enums and add enum literals
 		initEEnum(activityTypeEEnum, ActivityType.class, "ActivityType");
@@ -667,37 +613,27 @@ public class TaskPackageImpl extends EPackageImpl implements TaskPackage {
 	}
 
 	/**
-	 * Initializes the annotations for <b>org.unicase.ui.meeditor</b>.
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
+	 * Initializes the annotations for <b>org.unicase.ui.meeditor</b>. <!-- begin-user-doc --> <!-- end-user-doc -->
+	 * 
 	 * @generated
 	 */
 	protected void createOrgAnnotations() {
 		String source = "org.unicase.ui.meeditor";
-		addAnnotation(getActionItem_Done(), source, new String[] { "priority",
-				"20.0", "position", "left" });
-		addAnnotation(getActionItem_Activity(), source, new String[] {
-				"priority", "9.5", "position", "left" });
-		addAnnotation(getWorkPackage_ContainedWorkItems(), source,
-				new String[] { "priority", "20.0", "position", "right" });
-		addAnnotation(getWorkPackage_StartDate(), source, new String[] {
-				"priority", "20.0", "position", "left" });
-		addAnnotation(getWorkPackage_EndDate(), source, new String[] {
-				"priority", "21.0", "position", "left" });
-		addAnnotation(getWorkItem_ContainingWorkpackage(), source,
-				new String[] { "priority", "10.0", "position", "left" });
-		addAnnotation(getWorkItem_Predecessors(), source, new String[] {
-				"priority", "11.0", "position", "right" });
-		addAnnotation(getWorkItem_Successors(), source, new String[] {
-				"priority", "12.0", "position", "right" });
-		addAnnotation(getWorkItem_Assignee(), source, new String[] {
-				"priority", "11.0", "position", "left" });
-		addAnnotation(getWorkItem_Participants(), source, new String[] {
-				"priority", "10.0", "position", "right" });
-		addAnnotation(getWorkItem_DueDate(), source, new String[] { "priority",
-				"12.0", "position", "left" });
-		addAnnotation(getMilestone_ContainedModelElements(), source,
-				new String[] { "priority", "1", "position", "right" });
+		addAnnotation(getActionItem_Done(), source, new String[] { "priority", "20.0", "position", "left" });
+		addAnnotation(getActionItem_Activity(), source, new String[] { "priority", "9.5", "position", "left" });
+		addAnnotation(getWorkPackage_ContainedWorkItems(), source, new String[] { "priority", "20.0", "position",
+			"right" });
+		addAnnotation(getWorkPackage_StartDate(), source, new String[] { "priority", "20.0", "position", "left" });
+		addAnnotation(getWorkPackage_EndDate(), source, new String[] { "priority", "21.0", "position", "left" });
+		addAnnotation(getWorkItem_ContainingWorkpackage(), source, new String[] { "priority", "10.0", "position",
+			"left" });
+		addAnnotation(getWorkItem_Predecessors(), source, new String[] { "priority", "11.0", "position", "right" });
+		addAnnotation(getWorkItem_Successors(), source, new String[] { "priority", "12.0", "position", "right" });
+		addAnnotation(getWorkItem_Assignee(), source, new String[] { "priority", "11.0", "position", "left" });
+		addAnnotation(getWorkItem_Participants(), source, new String[] { "priority", "10.0", "position", "right" });
+		addAnnotation(getWorkItem_DueDate(), source, new String[] { "priority", "12.0", "position", "left" });
+		addAnnotation(getMilestone_ContainedModelElements(), source, new String[] { "priority", "1", "position",
+			"right" });
 	}
 
 } // TaskPackageImpl

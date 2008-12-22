@@ -1,8 +1,7 @@
 /**
- * <copyright> Copyright (c) 2008 Jonas Helming, Maximilian Koegel. All rights reserved. This program and the accompanying materials are made available under the terms of the Eclipse Public License v1.0 which accompanies this distribution, and is available at http://www.eclipse.org/legal/epl-v10.html
- * </copyright>
- *
- * $Id$
+ * <copyright> Copyright (c) 2008 Jonas Helming, Maximilian Koegel. All rights reserved. This program and the
+ * accompanying materials are made available under the terms of the Eclipse Public License v1.0 which accompanies this
+ * distribution, and is available at http://www.eclipse.org/legal/epl-v10.html </copyright> $Id$
  */
 package org.unicase.model.change.impl;
 
@@ -14,24 +13,23 @@ import org.unicase.model.change.ModelChangePackage;
 import org.unicase.model.impl.ModelElementImpl;
 
 /**
- * <!-- begin-user-doc --> An implementation of the model object '
- * <em><b>Model Change Package</b></em>'. <!-- end-user-doc -->
+ * <!-- begin-user-doc --> An implementation of the model object ' <em><b>Model Change Package</b></em>'. <!--
+ * end-user-doc -->
  * <p>
  * The following features are implemented:
  * <ul>
- *   <li>{@link org.unicase.model.change.impl.ModelChangePackageImpl#getSourceVersion <em>Source Version</em>}</li>
- *   <li>{@link org.unicase.model.change.impl.ModelChangePackageImpl#getTargetVersion <em>Target Version</em>}</li>
+ * <li>{@link org.unicase.model.change.impl.ModelChangePackageImpl#getSourceVersion <em>Source Version</em>}</li>
+ * <li>{@link org.unicase.model.change.impl.ModelChangePackageImpl#getTargetVersion <em>Target Version</em>}</li>
  * </ul>
  * </p>
- *
+ * 
  * @generated
  */
-public class ModelChangePackageImpl extends ModelElementImpl implements
-		ModelChangePackage {
+public class ModelChangePackageImpl extends ModelElementImpl implements ModelChangePackage {
 	/**
-	 * The default value of the '{@link #getSourceVersion() <em>Source Version</em>}' attribute.
-	 * <!-- begin-user-doc --> <!--
-	 * end-user-doc -->
+	 * The default value of the '{@link #getSourceVersion() <em>Source Version</em>}' attribute. <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * 
 	 * @see #getSourceVersion()
 	 * @generated
 	 * @ordered
@@ -39,9 +37,9 @@ public class ModelChangePackageImpl extends ModelElementImpl implements
 	protected static final int SOURCE_VERSION_EDEFAULT = 0;
 
 	/**
-	 * The cached value of the '{@link #getSourceVersion() <em>Source Version</em>}' attribute.
-	 * <!-- begin-user-doc --> <!--
-	 * end-user-doc -->
+	 * The cached value of the '{@link #getSourceVersion() <em>Source Version</em>}' attribute. <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * 
 	 * @see #getSourceVersion()
 	 * @generated
 	 * @ordered
@@ -49,9 +47,9 @@ public class ModelChangePackageImpl extends ModelElementImpl implements
 	protected int sourceVersion = SOURCE_VERSION_EDEFAULT;
 
 	/**
-	 * The default value of the '{@link #getTargetVersion() <em>Target Version</em>}' attribute.
-	 * <!-- begin-user-doc --> <!--
-	 * end-user-doc -->
+	 * The default value of the '{@link #getTargetVersion() <em>Target Version</em>}' attribute. <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * 
 	 * @see #getTargetVersion()
 	 * @generated
 	 * @ordered
@@ -59,9 +57,9 @@ public class ModelChangePackageImpl extends ModelElementImpl implements
 	protected static final int TARGET_VERSION_EDEFAULT = 0;
 
 	/**
-	 * The cached value of the '{@link #getTargetVersion() <em>Target Version</em>}' attribute.
-	 * <!-- begin-user-doc --> <!--
-	 * end-user-doc -->
+	 * The cached value of the '{@link #getTargetVersion() <em>Target Version</em>}' attribute. <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * 
 	 * @see #getTargetVersion()
 	 * @generated
 	 * @ordered
@@ -70,6 +68,7 @@ public class ModelChangePackageImpl extends ModelElementImpl implements
 
 	/**
 	 * <!-- begin-user-doc --> <!-- end-user-doc -->
+	 * 
 	 * @generated
 	 */
 	protected ModelChangePackageImpl() {
@@ -78,6 +77,7 @@ public class ModelChangePackageImpl extends ModelElementImpl implements
 
 	/**
 	 * <!-- begin-user-doc --> <!-- end-user-doc -->
+	 * 
 	 * @generated
 	 */
 	@Override
@@ -87,6 +87,7 @@ public class ModelChangePackageImpl extends ModelElementImpl implements
 
 	/**
 	 * <!-- begin-user-doc --> <!-- end-user-doc -->
+	 * 
 	 * @generated
 	 */
 	public int getSourceVersion() {
@@ -95,19 +96,20 @@ public class ModelChangePackageImpl extends ModelElementImpl implements
 
 	/**
 	 * <!-- begin-user-doc --> <!-- end-user-doc -->
+	 * 
 	 * @generated
 	 */
 	public void setSourceVersion(int newSourceVersion) {
 		int oldSourceVersion = sourceVersion;
 		sourceVersion = newSourceVersion;
 		if (eNotificationRequired())
-			eNotify(new ENotificationImpl(this, Notification.SET,
-					ChangePackage.MODEL_CHANGE_PACKAGE__SOURCE_VERSION,
-					oldSourceVersion, sourceVersion));
+			eNotify(new ENotificationImpl(this, Notification.SET, ChangePackage.MODEL_CHANGE_PACKAGE__SOURCE_VERSION,
+				oldSourceVersion, sourceVersion));
 	}
 
 	/**
 	 * <!-- begin-user-doc --> <!-- end-user-doc -->
+	 * 
 	 * @generated
 	 */
 	public int getTargetVersion() {
@@ -116,19 +118,20 @@ public class ModelChangePackageImpl extends ModelElementImpl implements
 
 	/**
 	 * <!-- begin-user-doc --> <!-- end-user-doc -->
+	 * 
 	 * @generated
 	 */
 	public void setTargetVersion(int newTargetVersion) {
 		int oldTargetVersion = targetVersion;
 		targetVersion = newTargetVersion;
 		if (eNotificationRequired())
-			eNotify(new ENotificationImpl(this, Notification.SET,
-					ChangePackage.MODEL_CHANGE_PACKAGE__TARGET_VERSION,
-					oldTargetVersion, targetVersion));
+			eNotify(new ENotificationImpl(this, Notification.SET, ChangePackage.MODEL_CHANGE_PACKAGE__TARGET_VERSION,
+				oldTargetVersion, targetVersion));
 	}
 
 	/**
 	 * <!-- begin-user-doc --> <!-- end-user-doc -->
+	 * 
 	 * @generated
 	 */
 	@Override
@@ -144,6 +147,7 @@ public class ModelChangePackageImpl extends ModelElementImpl implements
 
 	/**
 	 * <!-- begin-user-doc --> <!-- end-user-doc -->
+	 * 
 	 * @generated
 	 */
 	@Override
@@ -161,6 +165,7 @@ public class ModelChangePackageImpl extends ModelElementImpl implements
 
 	/**
 	 * <!-- begin-user-doc --> <!-- end-user-doc -->
+	 * 
 	 * @generated
 	 */
 	@Override
@@ -178,6 +183,7 @@ public class ModelChangePackageImpl extends ModelElementImpl implements
 
 	/**
 	 * <!-- begin-user-doc --> <!-- end-user-doc -->
+	 * 
 	 * @generated
 	 */
 	@Override
@@ -193,6 +199,7 @@ public class ModelChangePackageImpl extends ModelElementImpl implements
 
 	/**
 	 * <!-- begin-user-doc --> <!-- end-user-doc -->
+	 * 
 	 * @generated
 	 */
 	@Override

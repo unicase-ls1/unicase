@@ -15,7 +15,6 @@ import org.unicase.model.util.ValidationConstraintHelper;
  * 
  * @author wesendonk
  * @author naughton
- * 
  */
 public class ActionItemWorkpackageConstraint extends AbstractModelConstraint {
 
@@ -31,13 +30,11 @@ public class ActionItemWorkpackageConstraint extends AbstractModelConstraint {
 			if (eObj instanceof ActionItem) {
 
 				if (((ActionItem) eObj).getContainingWorkpackage() == null) {
-					EStructuralFeature errorFeature = ValidationConstraintHelper
-							.getErrorFeatureForModelElement(
-									(ModelElement) eObj, "containingWorkpackage");
+					EStructuralFeature errorFeature = ValidationConstraintHelper.getErrorFeatureForModelElement(
+						(ModelElement) eObj, "containingWorkpackage");
 					ctx.addResult(errorFeature);
-					return ctx.createFailureStatus(new Object[] { eObj.eClass()
-							.getName()
-							+ ": '" + ((ActionItem) eObj).getName() + "'" });
+					return ctx.createFailureStatus(new Object[] { eObj.eClass().getName() + ": '"
+						+ ((ActionItem) eObj).getName() + "'" });
 				}
 			}
 		}

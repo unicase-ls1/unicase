@@ -1,8 +1,7 @@
 /**
- * <copyright> Copyright (c) 2008 Jonas Helming, Maximilian Koegel. All rights reserved. This program and the accompanying materials are made available under the terms of the Eclipse Public License v1.0 which accompanies this distribution, and is available at http://www.eclipse.org/legal/epl-v10.html
- * </copyright>
- *
- * $Id$
+ * <copyright> Copyright (c) 2008 Jonas Helming, Maximilian Koegel. All rights reserved. This program and the
+ * accompanying materials are made available under the terms of the Eclipse Public License v1.0 which accompanies this
+ * distribution, and is available at http://www.eclipse.org/legal/epl-v10.html </copyright> $Id$
  */
 package org.unicase.model.rationale.impl;
 
@@ -19,21 +18,21 @@ import org.unicase.model.rationale.Comment;
 import org.unicase.model.rationale.RationalePackage;
 
 /**
- * <!-- begin-user-doc --> An implementation of the model object '
- * <em><b>Comment</b></em>'. <!-- end-user-doc -->
+ * <!-- begin-user-doc --> An implementation of the model object ' <em><b>Comment</b></em>'. <!-- end-user-doc -->
  * <p>
  * The following features are implemented:
  * <ul>
- *   <li>{@link org.unicase.model.rationale.impl.CommentImpl#getReplies <em>Replies</em>}</li>
+ * <li>{@link org.unicase.model.rationale.impl.CommentImpl#getReplies <em>Replies</em>}</li>
  * </ul>
  * </p>
- *
+ * 
  * @generated
  */
 public class CommentImpl extends AnnotationImpl implements Comment {
 	/**
-	 * The cached value of the '{@link #getReplies() <em>Replies</em>}' containment reference list.
-	 * <!-- begin-user-doc --> <!-- end-user-doc -->
+	 * The cached value of the '{@link #getReplies() <em>Replies</em>}' containment reference list. <!-- begin-user-doc
+	 * --> <!-- end-user-doc -->
+	 * 
 	 * @see #getReplies()
 	 * @generated
 	 * @ordered
@@ -42,6 +41,7 @@ public class CommentImpl extends AnnotationImpl implements Comment {
 
 	/**
 	 * <!-- begin-user-doc --> <!-- end-user-doc -->
+	 * 
 	 * @generated
 	 */
 	protected CommentImpl() {
@@ -50,6 +50,7 @@ public class CommentImpl extends AnnotationImpl implements Comment {
 
 	/**
 	 * <!-- begin-user-doc --> <!-- end-user-doc -->
+	 * 
 	 * @generated
 	 */
 	@Override
@@ -59,34 +60,34 @@ public class CommentImpl extends AnnotationImpl implements Comment {
 
 	/**
 	 * <!-- begin-user-doc --> <!-- end-user-doc -->
+	 * 
 	 * @generated
 	 */
 	public EList<Comment> getReplies() {
 		if (replies == null) {
-			replies = new EObjectContainmentEList.Resolving<Comment>(
-					Comment.class, this, RationalePackage.COMMENT__REPLIES);
+			replies = new EObjectContainmentEList.Resolving<Comment>(Comment.class, this,
+				RationalePackage.COMMENT__REPLIES);
 		}
 		return replies;
 	}
 
 	/**
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
+	 * <!-- begin-user-doc --> <!-- end-user-doc -->
+	 * 
 	 * @generated
 	 */
 	@Override
-	public NotificationChain eInverseRemove(InternalEObject otherEnd,
-			int featureID, NotificationChain msgs) {
+	public NotificationChain eInverseRemove(InternalEObject otherEnd, int featureID, NotificationChain msgs) {
 		switch (featureID) {
 		case RationalePackage.COMMENT__REPLIES:
-			return ((InternalEList<?>) getReplies())
-					.basicRemove(otherEnd, msgs);
+			return ((InternalEList<?>) getReplies()).basicRemove(otherEnd, msgs);
 		}
 		return super.eInverseRemove(otherEnd, featureID, msgs);
 	}
 
 	/**
 	 * <!-- begin-user-doc --> <!-- end-user-doc -->
+	 * 
 	 * @generated
 	 */
 	@Override
@@ -100,6 +101,7 @@ public class CommentImpl extends AnnotationImpl implements Comment {
 
 	/**
 	 * <!-- begin-user-doc --> <!-- end-user-doc -->
+	 * 
 	 * @generated
 	 */
 	@SuppressWarnings("unchecked")
@@ -116,6 +118,7 @@ public class CommentImpl extends AnnotationImpl implements Comment {
 
 	/**
 	 * <!-- begin-user-doc --> <!-- end-user-doc -->
+	 * 
 	 * @generated
 	 */
 	@Override
@@ -130,6 +133,7 @@ public class CommentImpl extends AnnotationImpl implements Comment {
 
 	/**
 	 * <!-- begin-user-doc --> <!-- end-user-doc -->
+	 * 
 	 * @generated
 	 */
 	@Override

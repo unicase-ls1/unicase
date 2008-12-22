@@ -1,8 +1,7 @@
 /**
- * <copyright> Copyright (c) 2008 Jonas Helming, Maximilian Koegel. All rights reserved. This program and the accompanying materials are made available under the terms of the Eclipse Public License v1.0 which accompanies this distribution, and is available at http://www.eclipse.org/legal/epl-v10.html
- * </copyright>
- *
- * $Id$
+ * <copyright> Copyright (c) 2008 Jonas Helming, Maximilian Koegel. All rights reserved. This program and the
+ * accompanying materials are made available under the terms of the Eclipse Public License v1.0 which accompanies this
+ * distribution, and is available at http://www.eclipse.org/legal/epl-v10.html </copyright> $Id$
  */
 package org.unicase.model.classes.impl;
 
@@ -17,27 +16,27 @@ import org.unicase.model.classes.ClassesPackage;
 import org.unicase.model.impl.ModelElementImpl;
 
 /**
- * <!-- begin-user-doc --> An implementation of the model object '
- * <em><b>Association</b></em>'. <!-- end-user-doc -->
+ * <!-- begin-user-doc --> An implementation of the model object ' <em><b>Association</b></em>'. <!-- end-user-doc -->
  * <p>
  * The following features are implemented:
  * <ul>
- *   <li>{@link org.unicase.model.classes.impl.AssociationImpl#getSource <em>Source</em>}</li>
- *   <li>{@link org.unicase.model.classes.impl.AssociationImpl#getTarget <em>Target</em>}</li>
- *   <li>{@link org.unicase.model.classes.impl.AssociationImpl#getType <em>Type</em>}</li>
- *   <li>{@link org.unicase.model.classes.impl.AssociationImpl#getSourceMultiplicity <em>Source Multiplicity</em>}</li>
- *   <li>{@link org.unicase.model.classes.impl.AssociationImpl#getTargetMultiplicity <em>Target Multiplicity</em>}</li>
- *   <li>{@link org.unicase.model.classes.impl.AssociationImpl#getSourceRole <em>Source Role</em>}</li>
- *   <li>{@link org.unicase.model.classes.impl.AssociationImpl#getTargetRole <em>Target Role</em>}</li>
+ * <li>{@link org.unicase.model.classes.impl.AssociationImpl#getSource <em>Source</em>}</li>
+ * <li>{@link org.unicase.model.classes.impl.AssociationImpl#getTarget <em>Target</em>}</li>
+ * <li>{@link org.unicase.model.classes.impl.AssociationImpl#getType <em>Type</em>}</li>
+ * <li>{@link org.unicase.model.classes.impl.AssociationImpl#getSourceMultiplicity <em>Source Multiplicity</em>}</li>
+ * <li>{@link org.unicase.model.classes.impl.AssociationImpl#getTargetMultiplicity <em>Target Multiplicity</em>}</li>
+ * <li>{@link org.unicase.model.classes.impl.AssociationImpl#getSourceRole <em>Source Role</em>}</li>
+ * <li>{@link org.unicase.model.classes.impl.AssociationImpl#getTargetRole <em>Target Role</em>}</li>
  * </ul>
  * </p>
- *
+ * 
  * @generated
  */
 public class AssociationImpl extends ModelElementImpl implements Association {
 	/**
-	 * The cached value of the '{@link #getSource() <em>Source</em>}' reference.
-	 * <!-- begin-user-doc --> <!-- end-user-doc -->
+	 * The cached value of the '{@link #getSource() <em>Source</em>}' reference. <!-- begin-user-doc --> <!--
+	 * end-user-doc -->
+	 * 
 	 * @see #getSource()
 	 * @generated
 	 * @ordered
@@ -45,8 +44,9 @@ public class AssociationImpl extends ModelElementImpl implements Association {
 	protected org.unicase.model.classes.Class source;
 
 	/**
-	 * The cached value of the '{@link #getTarget() <em>Target</em>}' reference.
-	 * <!-- begin-user-doc --> <!-- end-user-doc -->
+	 * The cached value of the '{@link #getTarget() <em>Target</em>}' reference. <!-- begin-user-doc --> <!--
+	 * end-user-doc -->
+	 * 
 	 * @see #getTarget()
 	 * @generated
 	 * @ordered
@@ -54,8 +54,9 @@ public class AssociationImpl extends ModelElementImpl implements Association {
 	protected org.unicase.model.classes.Class target;
 
 	/**
-	 * The default value of the '{@link #getType() <em>Type</em>}' attribute.
-	 * <!-- begin-user-doc --> <!-- end-user-doc -->
+	 * The default value of the '{@link #getType() <em>Type</em>}' attribute. <!-- begin-user-doc --> <!-- end-user-doc
+	 * -->
+	 * 
 	 * @see #getType()
 	 * @generated
 	 * @ordered
@@ -63,8 +64,9 @@ public class AssociationImpl extends ModelElementImpl implements Association {
 	protected static final AssociationType TYPE_EDEFAULT = AssociationType.UNDIRECTED_ASSOCIATION;
 
 	/**
-	 * The cached value of the '{@link #getType() <em>Type</em>}' attribute.
-	 * <!-- begin-user-doc --> <!-- end-user-doc -->
+	 * The cached value of the '{@link #getType() <em>Type</em>}' attribute. <!-- begin-user-doc --> <!-- end-user-doc
+	 * -->
+	 * 
 	 * @see #getType()
 	 * @generated
 	 * @ordered
@@ -72,9 +74,9 @@ public class AssociationImpl extends ModelElementImpl implements Association {
 	protected AssociationType type = TYPE_EDEFAULT;
 
 	/**
-	 * The default value of the '{@link #getSourceMultiplicity() <em>Source Multiplicity</em>}' attribute.
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
+	 * The default value of the '{@link #getSourceMultiplicity() <em>Source Multiplicity</em>}' attribute. <!--
+	 * begin-user-doc --> <!-- end-user-doc -->
+	 * 
 	 * @see #getSourceMultiplicity()
 	 * @generated
 	 * @ordered
@@ -82,9 +84,9 @@ public class AssociationImpl extends ModelElementImpl implements Association {
 	protected static final String SOURCE_MULTIPLICITY_EDEFAULT = "1";
 
 	/**
-	 * The cached value of the '{@link #getSourceMultiplicity() <em>Source Multiplicity</em>}' attribute.
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
+	 * The cached value of the '{@link #getSourceMultiplicity() <em>Source Multiplicity</em>}' attribute. <!--
+	 * begin-user-doc --> <!-- end-user-doc -->
+	 * 
 	 * @see #getSourceMultiplicity()
 	 * @generated
 	 * @ordered
@@ -92,9 +94,9 @@ public class AssociationImpl extends ModelElementImpl implements Association {
 	protected String sourceMultiplicity = SOURCE_MULTIPLICITY_EDEFAULT;
 
 	/**
-	 * The default value of the '{@link #getTargetMultiplicity() <em>Target Multiplicity</em>}' attribute.
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
+	 * The default value of the '{@link #getTargetMultiplicity() <em>Target Multiplicity</em>}' attribute. <!--
+	 * begin-user-doc --> <!-- end-user-doc -->
+	 * 
 	 * @see #getTargetMultiplicity()
 	 * @generated
 	 * @ordered
@@ -102,9 +104,9 @@ public class AssociationImpl extends ModelElementImpl implements Association {
 	protected static final String TARGET_MULTIPLICITY_EDEFAULT = "1";
 
 	/**
-	 * The cached value of the '{@link #getTargetMultiplicity() <em>Target Multiplicity</em>}' attribute.
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
+	 * The cached value of the '{@link #getTargetMultiplicity() <em>Target Multiplicity</em>}' attribute. <!--
+	 * begin-user-doc --> <!-- end-user-doc -->
+	 * 
 	 * @see #getTargetMultiplicity()
 	 * @generated
 	 * @ordered
@@ -112,9 +114,9 @@ public class AssociationImpl extends ModelElementImpl implements Association {
 	protected String targetMultiplicity = TARGET_MULTIPLICITY_EDEFAULT;
 
 	/**
-	 * The default value of the '{@link #getSourceRole() <em>Source Role</em>}' attribute.
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
+	 * The default value of the '{@link #getSourceRole() <em>Source Role</em>}' attribute. <!-- begin-user-doc --> <!--
+	 * end-user-doc -->
+	 * 
 	 * @see #getSourceRole()
 	 * @generated
 	 * @ordered
@@ -122,9 +124,9 @@ public class AssociationImpl extends ModelElementImpl implements Association {
 	protected static final String SOURCE_ROLE_EDEFAULT = "1";
 
 	/**
-	 * The cached value of the '{@link #getSourceRole() <em>Source Role</em>}' attribute.
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
+	 * The cached value of the '{@link #getSourceRole() <em>Source Role</em>}' attribute. <!-- begin-user-doc --> <!--
+	 * end-user-doc -->
+	 * 
 	 * @see #getSourceRole()
 	 * @generated
 	 * @ordered
@@ -132,9 +134,9 @@ public class AssociationImpl extends ModelElementImpl implements Association {
 	protected String sourceRole = SOURCE_ROLE_EDEFAULT;
 
 	/**
-	 * The default value of the '{@link #getTargetRole() <em>Target Role</em>}' attribute.
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
+	 * The default value of the '{@link #getTargetRole() <em>Target Role</em>}' attribute. <!-- begin-user-doc --> <!--
+	 * end-user-doc -->
+	 * 
 	 * @see #getTargetRole()
 	 * @generated
 	 * @ordered
@@ -142,9 +144,9 @@ public class AssociationImpl extends ModelElementImpl implements Association {
 	protected static final String TARGET_ROLE_EDEFAULT = "1";
 
 	/**
-	 * The cached value of the '{@link #getTargetRole() <em>Target Role</em>}' attribute.
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
+	 * The cached value of the '{@link #getTargetRole() <em>Target Role</em>}' attribute. <!-- begin-user-doc --> <!--
+	 * end-user-doc -->
+	 * 
 	 * @see #getTargetRole()
 	 * @generated
 	 * @ordered
@@ -153,6 +155,7 @@ public class AssociationImpl extends ModelElementImpl implements Association {
 
 	/**
 	 * <!-- begin-user-doc --> <!-- end-user-doc -->
+	 * 
 	 * @generated
 	 */
 	protected AssociationImpl() {
@@ -161,6 +164,7 @@ public class AssociationImpl extends ModelElementImpl implements Association {
 
 	/**
 	 * <!-- begin-user-doc --> <!-- end-user-doc -->
+	 * 
 	 * @generated
 	 */
 	@Override
@@ -170,6 +174,7 @@ public class AssociationImpl extends ModelElementImpl implements Association {
 
 	/**
 	 * <!-- begin-user-doc --> <!-- end-user-doc -->
+	 * 
 	 * @generated
 	 */
 	public org.unicase.model.classes.Class getSource() {
@@ -178,9 +183,8 @@ public class AssociationImpl extends ModelElementImpl implements Association {
 			source = (org.unicase.model.classes.Class) eResolveProxy(oldSource);
 			if (source != oldSource) {
 				if (eNotificationRequired())
-					eNotify(new ENotificationImpl(this, Notification.RESOLVE,
-							ClassesPackage.ASSOCIATION__SOURCE, oldSource,
-							source));
+					eNotify(new ENotificationImpl(this, Notification.RESOLVE, ClassesPackage.ASSOCIATION__SOURCE,
+						oldSource, source));
 			}
 		}
 		return source;
@@ -188,6 +192,7 @@ public class AssociationImpl extends ModelElementImpl implements Association {
 
 	/**
 	 * <!-- begin-user-doc --> <!-- end-user-doc -->
+	 * 
 	 * @generated
 	 */
 	public org.unicase.model.classes.Class basicGetSource() {
@@ -196,16 +201,15 @@ public class AssociationImpl extends ModelElementImpl implements Association {
 
 	/**
 	 * <!-- begin-user-doc --> <!-- end-user-doc -->
+	 * 
 	 * @generated
 	 */
-	public NotificationChain basicSetSource(
-			org.unicase.model.classes.Class newSource, NotificationChain msgs) {
+	public NotificationChain basicSetSource(org.unicase.model.classes.Class newSource, NotificationChain msgs) {
 		org.unicase.model.classes.Class oldSource = source;
 		source = newSource;
 		if (eNotificationRequired()) {
-			ENotificationImpl notification = new ENotificationImpl(this,
-					Notification.SET, ClassesPackage.ASSOCIATION__SOURCE,
-					oldSource, newSource);
+			ENotificationImpl notification = new ENotificationImpl(this, Notification.SET,
+				ClassesPackage.ASSOCIATION__SOURCE, oldSource, newSource);
 			if (msgs == null)
 				msgs = notification;
 			else
@@ -216,29 +220,29 @@ public class AssociationImpl extends ModelElementImpl implements Association {
 
 	/**
 	 * <!-- begin-user-doc --> <!-- end-user-doc -->
+	 * 
 	 * @generated
 	 */
 	public void setSource(org.unicase.model.classes.Class newSource) {
 		if (newSource != source) {
 			NotificationChain msgs = null;
 			if (source != null)
-				msgs = ((InternalEObject) source).eInverseRemove(this,
-						ClassesPackage.CLASS__OUTGOING_ASSOCIATIONS,
-						org.unicase.model.classes.Class.class, msgs);
+				msgs = ((InternalEObject) source).eInverseRemove(this, ClassesPackage.CLASS__OUTGOING_ASSOCIATIONS,
+					org.unicase.model.classes.Class.class, msgs);
 			if (newSource != null)
-				msgs = ((InternalEObject) newSource).eInverseAdd(this,
-						ClassesPackage.CLASS__OUTGOING_ASSOCIATIONS,
-						org.unicase.model.classes.Class.class, msgs);
+				msgs = ((InternalEObject) newSource).eInverseAdd(this, ClassesPackage.CLASS__OUTGOING_ASSOCIATIONS,
+					org.unicase.model.classes.Class.class, msgs);
 			msgs = basicSetSource(newSource, msgs);
 			if (msgs != null)
 				msgs.dispatch();
 		} else if (eNotificationRequired())
-			eNotify(new ENotificationImpl(this, Notification.SET,
-					ClassesPackage.ASSOCIATION__SOURCE, newSource, newSource));
+			eNotify(new ENotificationImpl(this, Notification.SET, ClassesPackage.ASSOCIATION__SOURCE, newSource,
+				newSource));
 	}
 
 	/**
 	 * <!-- begin-user-doc --> <!-- end-user-doc -->
+	 * 
 	 * @generated
 	 */
 	public org.unicase.model.classes.Class getTarget() {
@@ -247,9 +251,8 @@ public class AssociationImpl extends ModelElementImpl implements Association {
 			target = (org.unicase.model.classes.Class) eResolveProxy(oldTarget);
 			if (target != oldTarget) {
 				if (eNotificationRequired())
-					eNotify(new ENotificationImpl(this, Notification.RESOLVE,
-							ClassesPackage.ASSOCIATION__TARGET, oldTarget,
-							target));
+					eNotify(new ENotificationImpl(this, Notification.RESOLVE, ClassesPackage.ASSOCIATION__TARGET,
+						oldTarget, target));
 			}
 		}
 		return target;
@@ -257,6 +260,7 @@ public class AssociationImpl extends ModelElementImpl implements Association {
 
 	/**
 	 * <!-- begin-user-doc --> <!-- end-user-doc -->
+	 * 
 	 * @generated
 	 */
 	public org.unicase.model.classes.Class basicGetTarget() {
@@ -265,16 +269,15 @@ public class AssociationImpl extends ModelElementImpl implements Association {
 
 	/**
 	 * <!-- begin-user-doc --> <!-- end-user-doc -->
+	 * 
 	 * @generated
 	 */
-	public NotificationChain basicSetTarget(
-			org.unicase.model.classes.Class newTarget, NotificationChain msgs) {
+	public NotificationChain basicSetTarget(org.unicase.model.classes.Class newTarget, NotificationChain msgs) {
 		org.unicase.model.classes.Class oldTarget = target;
 		target = newTarget;
 		if (eNotificationRequired()) {
-			ENotificationImpl notification = new ENotificationImpl(this,
-					Notification.SET, ClassesPackage.ASSOCIATION__TARGET,
-					oldTarget, newTarget);
+			ENotificationImpl notification = new ENotificationImpl(this, Notification.SET,
+				ClassesPackage.ASSOCIATION__TARGET, oldTarget, newTarget);
 			if (msgs == null)
 				msgs = notification;
 			else
@@ -285,29 +288,29 @@ public class AssociationImpl extends ModelElementImpl implements Association {
 
 	/**
 	 * <!-- begin-user-doc --> <!-- end-user-doc -->
+	 * 
 	 * @generated
 	 */
 	public void setTarget(org.unicase.model.classes.Class newTarget) {
 		if (newTarget != target) {
 			NotificationChain msgs = null;
 			if (target != null)
-				msgs = ((InternalEObject) target).eInverseRemove(this,
-						ClassesPackage.CLASS__INCOMING_ASSOCIATIONS,
-						org.unicase.model.classes.Class.class, msgs);
+				msgs = ((InternalEObject) target).eInverseRemove(this, ClassesPackage.CLASS__INCOMING_ASSOCIATIONS,
+					org.unicase.model.classes.Class.class, msgs);
 			if (newTarget != null)
-				msgs = ((InternalEObject) newTarget).eInverseAdd(this,
-						ClassesPackage.CLASS__INCOMING_ASSOCIATIONS,
-						org.unicase.model.classes.Class.class, msgs);
+				msgs = ((InternalEObject) newTarget).eInverseAdd(this, ClassesPackage.CLASS__INCOMING_ASSOCIATIONS,
+					org.unicase.model.classes.Class.class, msgs);
 			msgs = basicSetTarget(newTarget, msgs);
 			if (msgs != null)
 				msgs.dispatch();
 		} else if (eNotificationRequired())
-			eNotify(new ENotificationImpl(this, Notification.SET,
-					ClassesPackage.ASSOCIATION__TARGET, newTarget, newTarget));
+			eNotify(new ENotificationImpl(this, Notification.SET, ClassesPackage.ASSOCIATION__TARGET, newTarget,
+				newTarget));
 	}
 
 	/**
 	 * <!-- begin-user-doc --> <!-- end-user-doc -->
+	 * 
 	 * @generated
 	 */
 	public AssociationType getType() {
@@ -316,19 +319,19 @@ public class AssociationImpl extends ModelElementImpl implements Association {
 
 	/**
 	 * <!-- begin-user-doc --> <!-- end-user-doc -->
+	 * 
 	 * @generated
 	 */
 	public void setType(AssociationType newType) {
 		AssociationType oldType = type;
 		type = newType == null ? TYPE_EDEFAULT : newType;
 		if (eNotificationRequired())
-			eNotify(new ENotificationImpl(this, Notification.SET,
-					ClassesPackage.ASSOCIATION__TYPE, oldType, type));
+			eNotify(new ENotificationImpl(this, Notification.SET, ClassesPackage.ASSOCIATION__TYPE, oldType, type));
 	}
 
 	/**
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
+	 * <!-- begin-user-doc --> <!-- end-user-doc -->
+	 * 
 	 * @generated
 	 */
 	public String getSourceMultiplicity() {
@@ -336,22 +339,21 @@ public class AssociationImpl extends ModelElementImpl implements Association {
 	}
 
 	/**
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
+	 * <!-- begin-user-doc --> <!-- end-user-doc -->
+	 * 
 	 * @generated
 	 */
 	public void setSourceMultiplicity(String newSourceMultiplicity) {
 		String oldSourceMultiplicity = sourceMultiplicity;
 		sourceMultiplicity = newSourceMultiplicity;
 		if (eNotificationRequired())
-			eNotify(new ENotificationImpl(this, Notification.SET,
-					ClassesPackage.ASSOCIATION__SOURCE_MULTIPLICITY,
-					oldSourceMultiplicity, sourceMultiplicity));
+			eNotify(new ENotificationImpl(this, Notification.SET, ClassesPackage.ASSOCIATION__SOURCE_MULTIPLICITY,
+				oldSourceMultiplicity, sourceMultiplicity));
 	}
 
 	/**
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
+	 * <!-- begin-user-doc --> <!-- end-user-doc -->
+	 * 
 	 * @generated
 	 */
 	public String getTargetMultiplicity() {
@@ -359,22 +361,21 @@ public class AssociationImpl extends ModelElementImpl implements Association {
 	}
 
 	/**
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
+	 * <!-- begin-user-doc --> <!-- end-user-doc -->
+	 * 
 	 * @generated
 	 */
 	public void setTargetMultiplicity(String newTargetMultiplicity) {
 		String oldTargetMultiplicity = targetMultiplicity;
 		targetMultiplicity = newTargetMultiplicity;
 		if (eNotificationRequired())
-			eNotify(new ENotificationImpl(this, Notification.SET,
-					ClassesPackage.ASSOCIATION__TARGET_MULTIPLICITY,
-					oldTargetMultiplicity, targetMultiplicity));
+			eNotify(new ENotificationImpl(this, Notification.SET, ClassesPackage.ASSOCIATION__TARGET_MULTIPLICITY,
+				oldTargetMultiplicity, targetMultiplicity));
 	}
 
 	/**
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
+	 * <!-- begin-user-doc --> <!-- end-user-doc -->
+	 * 
 	 * @generated
 	 */
 	public String getSourceRole() {
@@ -382,22 +383,21 @@ public class AssociationImpl extends ModelElementImpl implements Association {
 	}
 
 	/**
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
+	 * <!-- begin-user-doc --> <!-- end-user-doc -->
+	 * 
 	 * @generated
 	 */
 	public void setSourceRole(String newSourceRole) {
 		String oldSourceRole = sourceRole;
 		sourceRole = newSourceRole;
 		if (eNotificationRequired())
-			eNotify(new ENotificationImpl(this, Notification.SET,
-					ClassesPackage.ASSOCIATION__SOURCE_ROLE, oldSourceRole,
-					sourceRole));
+			eNotify(new ENotificationImpl(this, Notification.SET, ClassesPackage.ASSOCIATION__SOURCE_ROLE,
+				oldSourceRole, sourceRole));
 	}
 
 	/**
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
+	 * <!-- begin-user-doc --> <!-- end-user-doc -->
+	 * 
 	 * @generated
 	 */
 	public String getTargetRole() {
@@ -405,52 +405,47 @@ public class AssociationImpl extends ModelElementImpl implements Association {
 	}
 
 	/**
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
+	 * <!-- begin-user-doc --> <!-- end-user-doc -->
+	 * 
 	 * @generated
 	 */
 	public void setTargetRole(String newTargetRole) {
 		String oldTargetRole = targetRole;
 		targetRole = newTargetRole;
 		if (eNotificationRequired())
-			eNotify(new ENotificationImpl(this, Notification.SET,
-					ClassesPackage.ASSOCIATION__TARGET_ROLE, oldTargetRole,
-					targetRole));
+			eNotify(new ENotificationImpl(this, Notification.SET, ClassesPackage.ASSOCIATION__TARGET_ROLE,
+				oldTargetRole, targetRole));
 	}
 
 	/**
 	 * <!-- begin-user-doc --> <!-- end-user-doc -->
+	 * 
 	 * @generated
 	 */
 	@Override
-	public NotificationChain eInverseAdd(InternalEObject otherEnd,
-			int featureID, NotificationChain msgs) {
+	public NotificationChain eInverseAdd(InternalEObject otherEnd, int featureID, NotificationChain msgs) {
 		switch (featureID) {
 		case ClassesPackage.ASSOCIATION__SOURCE:
 			if (source != null)
-				msgs = ((InternalEObject) source).eInverseRemove(this,
-						ClassesPackage.CLASS__OUTGOING_ASSOCIATIONS,
-						org.unicase.model.classes.Class.class, msgs);
-			return basicSetSource((org.unicase.model.classes.Class) otherEnd,
-					msgs);
+				msgs = ((InternalEObject) source).eInverseRemove(this, ClassesPackage.CLASS__OUTGOING_ASSOCIATIONS,
+					org.unicase.model.classes.Class.class, msgs);
+			return basicSetSource((org.unicase.model.classes.Class) otherEnd, msgs);
 		case ClassesPackage.ASSOCIATION__TARGET:
 			if (target != null)
-				msgs = ((InternalEObject) target).eInverseRemove(this,
-						ClassesPackage.CLASS__INCOMING_ASSOCIATIONS,
-						org.unicase.model.classes.Class.class, msgs);
-			return basicSetTarget((org.unicase.model.classes.Class) otherEnd,
-					msgs);
+				msgs = ((InternalEObject) target).eInverseRemove(this, ClassesPackage.CLASS__INCOMING_ASSOCIATIONS,
+					org.unicase.model.classes.Class.class, msgs);
+			return basicSetTarget((org.unicase.model.classes.Class) otherEnd, msgs);
 		}
 		return super.eInverseAdd(otherEnd, featureID, msgs);
 	}
 
 	/**
 	 * <!-- begin-user-doc --> <!-- end-user-doc -->
+	 * 
 	 * @generated
 	 */
 	@Override
-	public NotificationChain eInverseRemove(InternalEObject otherEnd,
-			int featureID, NotificationChain msgs) {
+	public NotificationChain eInverseRemove(InternalEObject otherEnd, int featureID, NotificationChain msgs) {
 		switch (featureID) {
 		case ClassesPackage.ASSOCIATION__SOURCE:
 			return basicSetSource(null, msgs);
@@ -462,6 +457,7 @@ public class AssociationImpl extends ModelElementImpl implements Association {
 
 	/**
 	 * <!-- begin-user-doc --> <!-- end-user-doc -->
+	 * 
 	 * @generated
 	 */
 	@Override
@@ -491,6 +487,7 @@ public class AssociationImpl extends ModelElementImpl implements Association {
 
 	/**
 	 * <!-- begin-user-doc --> <!-- end-user-doc -->
+	 * 
 	 * @generated
 	 */
 	@Override
@@ -523,6 +520,7 @@ public class AssociationImpl extends ModelElementImpl implements Association {
 
 	/**
 	 * <!-- begin-user-doc --> <!-- end-user-doc -->
+	 * 
 	 * @generated
 	 */
 	@Override
@@ -555,6 +553,7 @@ public class AssociationImpl extends ModelElementImpl implements Association {
 
 	/**
 	 * <!-- begin-user-doc --> <!-- end-user-doc -->
+	 * 
 	 * @generated
 	 */
 	@Override
@@ -567,23 +566,22 @@ public class AssociationImpl extends ModelElementImpl implements Association {
 		case ClassesPackage.ASSOCIATION__TYPE:
 			return type != TYPE_EDEFAULT;
 		case ClassesPackage.ASSOCIATION__SOURCE_MULTIPLICITY:
-			return SOURCE_MULTIPLICITY_EDEFAULT == null ? sourceMultiplicity != null
-					: !SOURCE_MULTIPLICITY_EDEFAULT.equals(sourceMultiplicity);
+			return SOURCE_MULTIPLICITY_EDEFAULT == null ? sourceMultiplicity != null : !SOURCE_MULTIPLICITY_EDEFAULT
+				.equals(sourceMultiplicity);
 		case ClassesPackage.ASSOCIATION__TARGET_MULTIPLICITY:
-			return TARGET_MULTIPLICITY_EDEFAULT == null ? targetMultiplicity != null
-					: !TARGET_MULTIPLICITY_EDEFAULT.equals(targetMultiplicity);
+			return TARGET_MULTIPLICITY_EDEFAULT == null ? targetMultiplicity != null : !TARGET_MULTIPLICITY_EDEFAULT
+				.equals(targetMultiplicity);
 		case ClassesPackage.ASSOCIATION__SOURCE_ROLE:
-			return SOURCE_ROLE_EDEFAULT == null ? sourceRole != null
-					: !SOURCE_ROLE_EDEFAULT.equals(sourceRole);
+			return SOURCE_ROLE_EDEFAULT == null ? sourceRole != null : !SOURCE_ROLE_EDEFAULT.equals(sourceRole);
 		case ClassesPackage.ASSOCIATION__TARGET_ROLE:
-			return TARGET_ROLE_EDEFAULT == null ? targetRole != null
-					: !TARGET_ROLE_EDEFAULT.equals(targetRole);
+			return TARGET_ROLE_EDEFAULT == null ? targetRole != null : !TARGET_ROLE_EDEFAULT.equals(targetRole);
 		}
 		return super.eIsSet(featureID);
 	}
 
 	/**
 	 * <!-- begin-user-doc --> <!-- end-user-doc -->
+	 * 
 	 * @generated
 	 */
 	@Override
