@@ -32,8 +32,8 @@ import org.eclipse.ui.actions.ActionFactory;
 import org.eclipse.ui.part.ViewPart;
 import org.unicase.model.ModelElement;
 import org.unicase.ui.common.commands.ActionHelper;
+import org.unicase.ui.common.dnd.DropAdapterOriginal;
 import org.unicase.ui.common.dnd.UCDragAdapter;
-import org.unicase.ui.common.dnd.UCDropAdapter;
 import org.unicase.ui.navigator.commands.RedoAction;
 import org.unicase.ui.navigator.commands.UndoAction;
 import org.unicase.workspace.ProjectSpace;
@@ -181,7 +181,7 @@ public class TreeView extends ViewPart  { //implements IShowInSource
 				viewer));
 
 		viewer
-				.addDropSupport(dndOperations, transfers, new UCDropAdapter(
+				.addDropSupport(dndOperations, transfers, new DropAdapterOriginal(
 						TransactionalEditingDomain.Registry.INSTANCE
 								.getEditingDomain("org.unicase.EditingDomain"),
 						viewer));
