@@ -1,8 +1,7 @@
 /**
- * <copyright> Copyright (c) 2008 Jonas Helming, Maximilian Koegel. All rights reserved. This program and the accompanying materials are made available under the terms of the Eclipse Public License v1.0 which accompanies this distribution, and is available at http://www.eclipse.org/legal/epl-v10.html
- * </copyright>
- *
- * $Id$
+ * <copyright> Copyright (c) 2008 Jonas Helming, Maximilian Koegel. All rights reserved. This program and the
+ * accompanying materials are made available under the terms of the Eclipse Public License v1.0 which accompanies this
+ * distribution, and is available at http://www.eclipse.org/legal/epl-v10.html </copyright> $Id$
  */
 package org.unicase.model.util;
 
@@ -27,23 +26,23 @@ import org.unicase.model.Project;
 
 /**
  * Utility class for ModelElements.
+ * 
  * @author koegel
- *
  */
 public final class ModelUtil {
-	
+
 	private static final URI VIRTUAL_URI = URI.createURI("virtualUnicaseUri");
-	
+
 	/**
 	 * Private constructor.
 	 */
 	private ModelUtil() {
-		//nothing to do
+		// nothing to do
 	}
-	
+
 	/**
-	 * Clone the model element. 
-	 * The model element id will be the same in the clone.
+	 * Clone the model element. The model element id will be the same in the clone.
+	 * 
 	 * @param modelElement the model element to clone
 	 * @return a clone
 	 */
@@ -53,22 +52,23 @@ public final class ModelUtil {
 	}
 
 	/**
-	 * Copy a model element.
-	 * The new model element has a new unique id.
+	 * Copy a model element. The new model element has a new unique id.
+	 * 
 	 * @param modelElement the model element
 	 * @return a copy of the given model element
 	 */
 	public static ModelElement copy(ModelElement modelElement) {
 		ModelElement copy = (ModelElement) EcoreUtil.copy(modelElement);
-		//reset id
+		// reset id
 		ModelElementId modelElementId = ModelFactory.eINSTANCE.createModelElementId();
 		copy.setIdentifier(modelElementId.getId());
-		//FIXME what about the containment tree is it copied, do we have to change ids too?
+		// FIXME what about the containment tree is it copied, do we have to change ids too?
 		return copy;
 	}
-	
+
 	/**
 	 * Clone a project. Clones all model elements in the project.
+	 * 
 	 * @param project the project
 	 * @return a clone of the project.
 	 */
@@ -76,9 +76,9 @@ public final class ModelUtil {
 		EObject copy = EcoreUtil.copy(project);
 		return (Project) copy;
 	}
-	
+
 	/**
-	 * Clone the model element id. 
+	 * Clone the model element id.
 	 * 
 	 * @param modelElementId the model element id to clone
 	 * @return a clone
@@ -87,9 +87,10 @@ public final class ModelUtil {
 		EObject copy = EcoreUtil.copy(modelElementId);
 		return (ModelElementId) copy;
 	}
-	
+
 	/**
 	 * Compares to projects. Two projects are equal if all model elements are equal.
+	 * 
 	 * @param projectA the first project
 	 * @param projectB the second project
 	 * @return true if the projects are equal
@@ -104,17 +105,15 @@ public final class ModelUtil {
 			return false;
 		}
 		return stringA.equals(stringB);
-		
+
 	}
-	
+
 	/**
 	 * Converts an EObject to a String.
 	 * 
-	 * @param object
-	 *            the eObject
+	 * @param object the eObject
 	 * @return String representation of the EObject
-	 * @throws SerializationException
-	 *             if a serialization problem occurs
+	 * @throws SerializationException if a serialization problem occurs
 	 */
 	public static String eObjectToString(EObject object) throws SerializationException {
 		if (object == null) {
@@ -135,14 +134,11 @@ public final class ModelUtil {
 	 * Converts a String to an EObject. Note: String must be the result of
 	 * {@link SerializationUtil#eObjectToString(EObject)}
 	 * 
-	 * @param object
-	 *            the String representation of the EObject
+	 * @param object the String representation of the EObject
 	 * @return the deserialized EObject
-	 * @throws SerializationException
-	 *             if deserialization fails
+	 * @throws SerializationException if deserialization fails
 	 */
-	public static EObject stringToEObject(String object)
-			throws SerializationException {
+	public static EObject stringToEObject(String object) throws SerializationException {
 		if (object == null) {
 			return null;
 		}
@@ -159,7 +155,7 @@ public final class ModelUtil {
 		res.getContents().remove(result);
 		return result;
 	}
-	
+
 	/**
 	 * @param clazz the input class
 	 * @param ePackage the input package
@@ -175,7 +171,7 @@ public final class ModelUtil {
 					if (clazz.isSuperTypeOf(eClass) && !(eClass.isAbstract() || eClass.isInterface())) {
 						ret.add(eClass);
 					}
-				}else if (eObject instanceof EPackage) {
+				} else if (eObject instanceof EPackage) {
 					EPackage eSubPackage = (EPackage) eObject;
 					ret.addAll(getSubclasses(clazz, eSubPackage));
 				}
@@ -188,8 +184,8 @@ public final class ModelUtil {
 
 	/**
 	 * @param clazz the input super class
-	 * @return Returns all non-abstract, non-interface subclasses of the given input.
-	 * Looks in whole graph starting from the root package - i.e. ModelPackage.
+	 * @return Returns all non-abstract, non-interface subclasses of the given input. Looks in whole graph starting from
+	 *         the root package - i.e. ModelPackage.
 	 */
 	public static ArrayList<EClass> getSubclasses(EClass clazz) {
 		return getSubclasses(clazz, ModelPackage.eINSTANCE);

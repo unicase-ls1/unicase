@@ -1,8 +1,7 @@
 /**
- * <copyright> Copyright (c) 2008 Jonas Helming, Maximilian Koegel. All rights reserved. This program and the accompanying materials are made available under the terms of the Eclipse Public License v1.0 which accompanies this distribution, and is available at http://www.eclipse.org/legal/epl-v10.html
- * </copyright>
- *
- * $Id$
+ * <copyright> Copyright (c) 2008 Jonas Helming, Maximilian Koegel. All rights reserved. This program and the
+ * accompanying materials are made available under the terms of the Eclipse Public License v1.0 which accompanies this
+ * distribution, and is available at http://www.eclipse.org/legal/epl-v10.html </copyright> $Id$
  */
 package org.unicase.model.rationale.impl;
 
@@ -20,21 +19,21 @@ import org.unicase.model.rationale.Criterion;
 import org.unicase.model.rationale.RationalePackage;
 
 /**
- * <!-- begin-user-doc --> An implementation of the model object '
- * <em><b>Criterion</b></em>'. <!-- end-user-doc -->
+ * <!-- begin-user-doc --> An implementation of the model object ' <em><b>Criterion</b></em>'. <!-- end-user-doc -->
  * <p>
  * The following features are implemented:
  * <ul>
- *   <li>{@link org.unicase.model.rationale.impl.CriterionImpl#getAssessments <em>Assessments</em>}</li>
+ * <li>{@link org.unicase.model.rationale.impl.CriterionImpl#getAssessments <em>Assessments</em>}</li>
  * </ul>
  * </p>
- *
+ * 
  * @generated
  */
 public class CriterionImpl extends ModelElementImpl implements Criterion {
 	/**
-	 * The cached value of the '{@link #getAssessments() <em>Assessments</em>}' reference list.
-	 * <!-- begin-user-doc --> <!-- end-user-doc -->
+	 * The cached value of the '{@link #getAssessments() <em>Assessments</em>}' reference list. <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * 
 	 * @see #getAssessments()
 	 * @generated
 	 * @ordered
@@ -43,6 +42,7 @@ public class CriterionImpl extends ModelElementImpl implements Criterion {
 
 	/**
 	 * <!-- begin-user-doc --> <!-- end-user-doc -->
+	 * 
 	 * @generated
 	 */
 	protected CriterionImpl() {
@@ -51,6 +51,7 @@ public class CriterionImpl extends ModelElementImpl implements Criterion {
 
 	/**
 	 * <!-- begin-user-doc --> <!-- end-user-doc -->
+	 * 
 	 * @generated
 	 */
 	@Override
@@ -60,51 +61,49 @@ public class CriterionImpl extends ModelElementImpl implements Criterion {
 
 	/**
 	 * <!-- begin-user-doc --> <!-- end-user-doc -->
+	 * 
 	 * @generated
 	 */
 	public EList<Assessment> getAssessments() {
 		if (assessments == null) {
-			assessments = new EObjectWithInverseResolvingEList<Assessment>(
-					Assessment.class, this,
-					RationalePackage.CRITERION__ASSESSMENTS,
-					RationalePackage.ASSESSMENT__CRITERION);
+			assessments = new EObjectWithInverseResolvingEList<Assessment>(Assessment.class, this,
+				RationalePackage.CRITERION__ASSESSMENTS, RationalePackage.ASSESSMENT__CRITERION);
 		}
 		return assessments;
 	}
 
 	/**
 	 * <!-- begin-user-doc --> <!-- end-user-doc -->
+	 * 
 	 * @generated
 	 */
 	@SuppressWarnings("unchecked")
 	@Override
-	public NotificationChain eInverseAdd(InternalEObject otherEnd,
-			int featureID, NotificationChain msgs) {
+	public NotificationChain eInverseAdd(InternalEObject otherEnd, int featureID, NotificationChain msgs) {
 		switch (featureID) {
 		case RationalePackage.CRITERION__ASSESSMENTS:
-			return ((InternalEList<InternalEObject>) (InternalEList<?>) getAssessments())
-					.basicAdd(otherEnd, msgs);
+			return ((InternalEList<InternalEObject>) (InternalEList<?>) getAssessments()).basicAdd(otherEnd, msgs);
 		}
 		return super.eInverseAdd(otherEnd, featureID, msgs);
 	}
 
 	/**
 	 * <!-- begin-user-doc --> <!-- end-user-doc -->
+	 * 
 	 * @generated
 	 */
 	@Override
-	public NotificationChain eInverseRemove(InternalEObject otherEnd,
-			int featureID, NotificationChain msgs) {
+	public NotificationChain eInverseRemove(InternalEObject otherEnd, int featureID, NotificationChain msgs) {
 		switch (featureID) {
 		case RationalePackage.CRITERION__ASSESSMENTS:
-			return ((InternalEList<?>) getAssessments()).basicRemove(otherEnd,
-					msgs);
+			return ((InternalEList<?>) getAssessments()).basicRemove(otherEnd, msgs);
 		}
 		return super.eInverseRemove(otherEnd, featureID, msgs);
 	}
 
 	/**
 	 * <!-- begin-user-doc --> <!-- end-user-doc -->
+	 * 
 	 * @generated
 	 */
 	@Override
@@ -118,6 +117,7 @@ public class CriterionImpl extends ModelElementImpl implements Criterion {
 
 	/**
 	 * <!-- begin-user-doc --> <!-- end-user-doc -->
+	 * 
 	 * @generated
 	 */
 	@SuppressWarnings("unchecked")
@@ -126,8 +126,7 @@ public class CriterionImpl extends ModelElementImpl implements Criterion {
 		switch (featureID) {
 		case RationalePackage.CRITERION__ASSESSMENTS:
 			getAssessments().clear();
-			getAssessments()
-					.addAll((Collection<? extends Assessment>) newValue);
+			getAssessments().addAll((Collection<? extends Assessment>) newValue);
 			return;
 		}
 		super.eSet(featureID, newValue);
@@ -135,6 +134,7 @@ public class CriterionImpl extends ModelElementImpl implements Criterion {
 
 	/**
 	 * <!-- begin-user-doc --> <!-- end-user-doc -->
+	 * 
 	 * @generated
 	 */
 	@Override
@@ -149,6 +149,7 @@ public class CriterionImpl extends ModelElementImpl implements Criterion {
 
 	/**
 	 * <!-- begin-user-doc --> <!-- end-user-doc -->
+	 * 
 	 * @generated
 	 */
 	@Override

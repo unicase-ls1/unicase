@@ -1,8 +1,7 @@
 /**
- * <copyright> Copyright (c) 2008 Jonas Helming, Maximilian Koegel. All rights reserved. This program and the accompanying materials are made available under the terms of the Eclipse Public License v1.0 which accompanies this distribution, and is available at http://www.eclipse.org/legal/epl-v10.html
- * </copyright>
- *
- * $Id$
+ * <copyright> Copyright (c) 2008 Jonas Helming, Maximilian Koegel. All rights reserved. This program and the
+ * accompanying materials are made available under the terms of the Eclipse Public License v1.0 which accompanies this
+ * distribution, and is available at http://www.eclipse.org/legal/epl-v10.html </copyright> $Id$
  */
 package org.unicase.model.impl;
 
@@ -38,33 +37,34 @@ import org.unicase.model.task.util.MEState;
 import org.unicase.model.task.util.MEStateImpl;
 
 /**
- * <!-- begin-user-doc --> An implementation of the model object '
- * <em><b>Element</b></em>'. <!-- end-user-doc -->
+ * <!-- begin-user-doc --> An implementation of the model object ' <em><b>Element</b></em>'. <!-- end-user-doc -->
  * <p>
  * The following features are implemented:
  * <ul>
- *   <li>{@link org.unicase.model.impl.ModelElementImpl#getName <em>Name</em>}</li>
- *   <li>{@link org.unicase.model.impl.ModelElementImpl#getDescription <em>Description</em>}</li>
- *   <li>{@link org.unicase.model.impl.ModelElementImpl#getCreator <em>Creator</em>}</li>
- *   <li>{@link org.unicase.model.impl.ModelElementImpl#getCreationDate <em>Creation Date</em>}</li>
- *   <li>{@link org.unicase.model.impl.ModelElementImpl#getAnnotations <em>Annotations</em>}</li>
- *   <li>{@link org.unicase.model.impl.ModelElementImpl#getAttachments <em>Attachments</em>}</li>
- *   <li>{@link org.unicase.model.impl.ModelElementImpl#getIncomingDocumentReferences <em>Incoming Document References</em>}</li>
- *   <li>{@link org.unicase.model.impl.ModelElementImpl#getLeafSection <em>Leaf Section</em>}</li>
- *   <li>{@link org.unicase.model.impl.ModelElementImpl#getState <em>State</em>}</li>
- *   <li>{@link org.unicase.model.impl.ModelElementImpl#getAppliedStereotypeInstances <em>Applied Stereotype Instances</em>}</li>
+ * <li>{@link org.unicase.model.impl.ModelElementImpl#getName <em>Name</em>}</li>
+ * <li>{@link org.unicase.model.impl.ModelElementImpl#getDescription <em>Description</em>}</li>
+ * <li>{@link org.unicase.model.impl.ModelElementImpl#getCreator <em>Creator</em>}</li>
+ * <li>{@link org.unicase.model.impl.ModelElementImpl#getCreationDate <em>Creation Date</em>}</li>
+ * <li>{@link org.unicase.model.impl.ModelElementImpl#getAnnotations <em>Annotations</em>}</li>
+ * <li>{@link org.unicase.model.impl.ModelElementImpl#getAttachments <em>Attachments</em>}</li>
+ * <li>{@link org.unicase.model.impl.ModelElementImpl#getIncomingDocumentReferences <em>Incoming Document References
+ * </em>}</li>
+ * <li>{@link org.unicase.model.impl.ModelElementImpl#getLeafSection <em>Leaf Section</em>}</li>
+ * <li>{@link org.unicase.model.impl.ModelElementImpl#getState <em>State</em>}</li>
+ * <li>{@link org.unicase.model.impl.ModelElementImpl#getAppliedStereotypeInstances <em>Applied Stereotype Instances
+ * </em>}</li>
  * </ul>
  * </p>
- *
+ * 
  * @generated
  */
-public abstract class ModelElementImpl extends IdentifiableElementImpl
-		implements ModelElement {
+public abstract class ModelElementImpl extends IdentifiableElementImpl implements ModelElement {
 	private static final String BEGINNTEXT = "%BEGINNTEXT%";
 
 	/**
-	 * The default value of the '{@link #getName() <em>Name</em>}' attribute.
-	 * <!-- begin-user-doc --> <!-- end-user-doc -->
+	 * The default value of the '{@link #getName() <em>Name</em>}' attribute. <!-- begin-user-doc --> <!-- end-user-doc
+	 * -->
+	 * 
 	 * @see #getName()
 	 * @generated
 	 * @ordered
@@ -72,8 +72,9 @@ public abstract class ModelElementImpl extends IdentifiableElementImpl
 	protected static final String NAME_EDEFAULT = null;
 
 	/**
-	 * The cached value of the '{@link #getName() <em>Name</em>}' attribute.
-	 * <!-- begin-user-doc --> <!-- end-user-doc -->
+	 * The cached value of the '{@link #getName() <em>Name</em>}' attribute. <!-- begin-user-doc --> <!-- end-user-doc
+	 * -->
+	 * 
 	 * @see #getName()
 	 * @generated
 	 * @ordered
@@ -81,8 +82,9 @@ public abstract class ModelElementImpl extends IdentifiableElementImpl
 	protected String name = NAME_EDEFAULT;
 
 	/**
-	 * The default value of the '{@link #getDescription() <em>Description</em>}' attribute.
-	 * <!-- begin-user-doc --> <!-- end-user-doc -->
+	 * The default value of the '{@link #getDescription() <em>Description</em>}' attribute. <!-- begin-user-doc --> <!--
+	 * end-user-doc -->
+	 * 
 	 * @see #getDescription()
 	 * @generated
 	 * @ordered
@@ -90,8 +92,9 @@ public abstract class ModelElementImpl extends IdentifiableElementImpl
 	protected static final String DESCRIPTION_EDEFAULT = null;
 
 	/**
-	 * The cached value of the '{@link #getDescription() <em>Description</em>}' attribute.
-	 * <!-- begin-user-doc --> <!-- end-user-doc -->
+	 * The cached value of the '{@link #getDescription() <em>Description</em>}' attribute. <!-- begin-user-doc --> <!--
+	 * end-user-doc -->
+	 * 
 	 * @see #getDescription()
 	 * @generated
 	 * @ordered
@@ -99,8 +102,9 @@ public abstract class ModelElementImpl extends IdentifiableElementImpl
 	protected String description = DESCRIPTION_EDEFAULT;
 
 	/**
-	 * The default value of the '{@link #getCreator() <em>Creator</em>}' attribute.
-	 * <!-- begin-user-doc --> <!-- end-user-doc -->
+	 * The default value of the '{@link #getCreator() <em>Creator</em>}' attribute. <!-- begin-user-doc --> <!--
+	 * end-user-doc -->
+	 * 
 	 * @see #getCreator()
 	 * @generated
 	 * @ordered
@@ -108,8 +112,9 @@ public abstract class ModelElementImpl extends IdentifiableElementImpl
 	protected static final String CREATOR_EDEFAULT = null;
 
 	/**
-	 * The cached value of the '{@link #getCreator() <em>Creator</em>}' attribute.
-	 * <!-- begin-user-doc --> <!-- end-user-doc -->
+	 * The cached value of the '{@link #getCreator() <em>Creator</em>}' attribute. <!-- begin-user-doc --> <!--
+	 * end-user-doc -->
+	 * 
 	 * @see #getCreator()
 	 * @generated
 	 * @ordered
@@ -117,9 +122,9 @@ public abstract class ModelElementImpl extends IdentifiableElementImpl
 	protected String creator = CREATOR_EDEFAULT;
 
 	/**
-	 * The default value of the '{@link #getCreationDate() <em>Creation Date</em>}' attribute.
-	 * <!-- begin-user-doc --> <!--
-	 * end-user-doc -->
+	 * The default value of the '{@link #getCreationDate() <em>Creation Date</em>}' attribute. <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * 
 	 * @see #getCreationDate()
 	 * @generated
 	 * @ordered
@@ -127,9 +132,9 @@ public abstract class ModelElementImpl extends IdentifiableElementImpl
 	protected static final Date CREATION_DATE_EDEFAULT = null;
 
 	/**
-	 * The cached value of the '{@link #getCreationDate() <em>Creation Date</em>}' attribute.
-	 * <!-- begin-user-doc --> <!--
-	 * end-user-doc -->
+	 * The cached value of the '{@link #getCreationDate() <em>Creation Date</em>}' attribute. <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * 
 	 * @see #getCreationDate()
 	 * @generated
 	 * @ordered
@@ -137,8 +142,9 @@ public abstract class ModelElementImpl extends IdentifiableElementImpl
 	protected Date creationDate = CREATION_DATE_EDEFAULT;
 
 	/**
-	 * The cached value of the '{@link #getAnnotations() <em>Annotations</em>}' reference list.
-	 * <!-- begin-user-doc --> <!-- end-user-doc -->
+	 * The cached value of the '{@link #getAnnotations() <em>Annotations</em>}' reference list. <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * 
 	 * @see #getAnnotations()
 	 * @generated
 	 * @ordered
@@ -146,8 +152,9 @@ public abstract class ModelElementImpl extends IdentifiableElementImpl
 	protected EList<Annotation> annotations;
 
 	/**
-	 * The cached value of the '{@link #getAttachments() <em>Attachments</em>}' reference list.
-	 * <!-- begin-user-doc --> <!-- end-user-doc -->
+	 * The cached value of the '{@link #getAttachments() <em>Attachments</em>}' reference list. <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * 
 	 * @see #getAttachments()
 	 * @generated
 	 * @ordered
@@ -155,9 +162,8 @@ public abstract class ModelElementImpl extends IdentifiableElementImpl
 	protected EList<Attachment> attachments;
 
 	/**
-	 * The cached value of the '{@link #getIncomingDocumentReferences()
-	 * <em>Incoming Document References</em>}' reference list. <!--
-	 * begin-user-doc --> <!-- end-user-doc -->
+	 * The cached value of the '{@link #getIncomingDocumentReferences() <em>Incoming Document References</em>}'
+	 * reference list. <!-- begin-user-doc --> <!-- end-user-doc -->
 	 * 
 	 * @see #getIncomingDocumentReferences()
 	 * @generated
@@ -166,8 +172,9 @@ public abstract class ModelElementImpl extends IdentifiableElementImpl
 	protected EList<LeafSection> incomingDocumentReferences;
 
 	/**
-	 * The default value of the '{@link #getState() <em>State</em>}' attribute.
-	 * <!-- begin-user-doc --> <!-- end-user-doc -->
+	 * The default value of the '{@link #getState() <em>State</em>}' attribute. <!-- begin-user-doc --> <!--
+	 * end-user-doc -->
+	 * 
 	 * @see #getState()
 	 * @generated
 	 * @ordered
@@ -175,9 +182,9 @@ public abstract class ModelElementImpl extends IdentifiableElementImpl
 	protected static final String STATE_EDEFAULT = "";
 
 	/**
-	 * The cached value of the '{@link #getAppliedStereotypeInstances() <em>Applied Stereotype Instances</em>}' containment reference list.
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
+	 * The cached value of the '{@link #getAppliedStereotypeInstances() <em>Applied Stereotype Instances</em>}'
+	 * containment reference list. <!-- begin-user-doc --> <!-- end-user-doc -->
+	 * 
 	 * @see #getAppliedStereotypeInstances()
 	 * @generated
 	 * @ordered
@@ -203,6 +210,7 @@ public abstract class ModelElementImpl extends IdentifiableElementImpl
 
 	/**
 	 * <!-- begin-user-doc --> .<!-- end-user-doc -->
+	 * 
 	 * @generated
 	 */
 	@Override
@@ -212,6 +220,7 @@ public abstract class ModelElementImpl extends IdentifiableElementImpl
 
 	/**
 	 * <!-- begin-user-doc --> <!-- end-user-doc -->
+	 * 
 	 * @generated
 	 */
 	public String getName() {
@@ -220,18 +229,19 @@ public abstract class ModelElementImpl extends IdentifiableElementImpl
 
 	/**
 	 * <!-- begin-user-doc --> <!-- end-user-doc -->
+	 * 
 	 * @generated
 	 */
 	public void setName(String newName) {
 		String oldName = name;
 		name = newName;
 		if (eNotificationRequired())
-			eNotify(new ENotificationImpl(this, Notification.SET,
-					ModelPackage.MODEL_ELEMENT__NAME, oldName, name));
+			eNotify(new ENotificationImpl(this, Notification.SET, ModelPackage.MODEL_ELEMENT__NAME, oldName, name));
 	}
 
 	/**
 	 * <!-- begin-user-doc --> <!-- end-user-doc -->
+	 * 
 	 * @generated
 	 */
 	public String getDescription() {
@@ -240,19 +250,20 @@ public abstract class ModelElementImpl extends IdentifiableElementImpl
 
 	/**
 	 * <!-- begin-user-doc --> <!-- end-user-doc -->
+	 * 
 	 * @generated
 	 */
 	public void setDescription(String newDescription) {
 		String oldDescription = description;
 		description = newDescription;
 		if (eNotificationRequired())
-			eNotify(new ENotificationImpl(this, Notification.SET,
-					ModelPackage.MODEL_ELEMENT__DESCRIPTION, oldDescription,
-					description));
+			eNotify(new ENotificationImpl(this, Notification.SET, ModelPackage.MODEL_ELEMENT__DESCRIPTION,
+				oldDescription, description));
 	}
 
 	/**
 	 * <!-- begin-user-doc --> <!-- end-user-doc -->
+	 * 
 	 * @generated
 	 */
 	public String getCreator() {
@@ -261,18 +272,20 @@ public abstract class ModelElementImpl extends IdentifiableElementImpl
 
 	/**
 	 * <!-- begin-user-doc --> <!-- end-user-doc -->
+	 * 
 	 * @generated
 	 */
 	public void setCreator(String newCreator) {
 		String oldCreator = creator;
 		creator = newCreator;
 		if (eNotificationRequired())
-			eNotify(new ENotificationImpl(this, Notification.SET,
-					ModelPackage.MODEL_ELEMENT__CREATOR, oldCreator, creator));
+			eNotify(new ENotificationImpl(this, Notification.SET, ModelPackage.MODEL_ELEMENT__CREATOR, oldCreator,
+				creator));
 	}
 
 	/**
 	 * <!-- begin-user-doc --> <!-- end-user-doc -->
+	 * 
 	 * @generated
 	 */
 	public Date getCreationDate() {
@@ -281,61 +294,60 @@ public abstract class ModelElementImpl extends IdentifiableElementImpl
 
 	/**
 	 * <!-- begin-user-doc --> <!-- end-user-doc -->
+	 * 
 	 * @generated
 	 */
 	public void setCreationDate(Date newCreationDate) {
 		Date oldCreationDate = creationDate;
 		creationDate = newCreationDate;
 		if (eNotificationRequired())
-			eNotify(new ENotificationImpl(this, Notification.SET,
-					ModelPackage.MODEL_ELEMENT__CREATION_DATE, oldCreationDate,
-					creationDate));
+			eNotify(new ENotificationImpl(this, Notification.SET, ModelPackage.MODEL_ELEMENT__CREATION_DATE,
+				oldCreationDate, creationDate));
 	}
 
 	/**
 	 * <!-- begin-user-doc --> <!-- end-user-doc -->
+	 * 
 	 * @generated
 	 */
 	public EList<Annotation> getAnnotations() {
 		if (annotations == null) {
-			annotations = new EObjectWithInverseResolvingEList.ManyInverse<Annotation>(
-					Annotation.class, this,
-					ModelPackage.MODEL_ELEMENT__ANNOTATIONS,
-					ModelPackage.ANNOTATION__ANNOTATED_MODEL_ELEMENTS);
+			annotations = new EObjectWithInverseResolvingEList.ManyInverse<Annotation>(Annotation.class, this,
+				ModelPackage.MODEL_ELEMENT__ANNOTATIONS, ModelPackage.ANNOTATION__ANNOTATED_MODEL_ELEMENTS);
 		}
 		return annotations;
 	}
 
 	/**
 	 * <!-- begin-user-doc --> <!-- end-user-doc -->
+	 * 
 	 * @generated
 	 */
 	public EList<Attachment> getAttachments() {
 		if (attachments == null) {
-			attachments = new EObjectWithInverseResolvingEList.ManyInverse<Attachment>(
-					Attachment.class, this,
-					ModelPackage.MODEL_ELEMENT__ATTACHMENTS,
-					ModelPackage.ATTACHMENT__REFERRING_MODEL_ELEMENTS);
+			attachments = new EObjectWithInverseResolvingEList.ManyInverse<Attachment>(Attachment.class, this,
+				ModelPackage.MODEL_ELEMENT__ATTACHMENTS, ModelPackage.ATTACHMENT__REFERRING_MODEL_ELEMENTS);
 		}
 		return attachments;
 	}
 
 	/**
 	 * <!-- begin-user-doc --> <!-- end-user-doc -->
+	 * 
 	 * @generated
 	 */
 	public EList<LeafSection> getIncomingDocumentReferences() {
 		if (incomingDocumentReferences == null) {
 			incomingDocumentReferences = new EObjectWithInverseResolvingEList.ManyInverse<LeafSection>(
-					LeafSection.class, this,
-					ModelPackage.MODEL_ELEMENT__INCOMING_DOCUMENT_REFERENCES,
-					DocumentPackage.LEAF_SECTION__REFERENCED_MODEL_ELEMENTS);
+				LeafSection.class, this, ModelPackage.MODEL_ELEMENT__INCOMING_DOCUMENT_REFERENCES,
+				DocumentPackage.LEAF_SECTION__REFERENCED_MODEL_ELEMENTS);
 		}
 		return incomingDocumentReferences;
 	}
 
 	/**
 	 * <!-- begin-user-doc --> <!-- end-user-doc -->
+	 * 
 	 * @generated
 	 */
 	public LeafSection getLeafSection() {
@@ -346,6 +358,7 @@ public abstract class ModelElementImpl extends IdentifiableElementImpl
 
 	/**
 	 * <!-- begin-user-doc --> <!-- end-user-doc -->
+	 * 
 	 * @generated
 	 */
 	public LeafSection basicGetLeafSection() {
@@ -356,39 +369,36 @@ public abstract class ModelElementImpl extends IdentifiableElementImpl
 
 	/**
 	 * <!-- begin-user-doc --> <!-- end-user-doc -->
+	 * 
 	 * @generated
 	 */
-	public NotificationChain basicSetLeafSection(LeafSection newLeafSection,
-			NotificationChain msgs) {
-		msgs = eBasicSetContainer((InternalEObject) newLeafSection,
-				ModelPackage.MODEL_ELEMENT__LEAF_SECTION, msgs);
+	public NotificationChain basicSetLeafSection(LeafSection newLeafSection, NotificationChain msgs) {
+		msgs = eBasicSetContainer((InternalEObject) newLeafSection, ModelPackage.MODEL_ELEMENT__LEAF_SECTION, msgs);
 		return msgs;
 	}
 
 	/**
 	 * <!-- begin-user-doc --> <!-- end-user-doc -->
+	 * 
 	 * @generated
 	 */
 	public void setLeafSection(LeafSection newLeafSection) {
 		if (newLeafSection != eInternalContainer()
-				|| (eContainerFeatureID != ModelPackage.MODEL_ELEMENT__LEAF_SECTION && newLeafSection != null)) {
+			|| (eContainerFeatureID != ModelPackage.MODEL_ELEMENT__LEAF_SECTION && newLeafSection != null)) {
 			if (EcoreUtil.isAncestor(this, newLeafSection))
-				throw new IllegalArgumentException(
-						"Recursive containment not allowed for " + toString());
+				throw new IllegalArgumentException("Recursive containment not allowed for " + toString());
 			NotificationChain msgs = null;
 			if (eInternalContainer() != null)
 				msgs = eBasicRemoveFromContainer(msgs);
 			if (newLeafSection != null)
 				msgs = ((InternalEObject) newLeafSection).eInverseAdd(this,
-						DocumentPackage.LEAF_SECTION__MODEL_ELEMENTS,
-						LeafSection.class, msgs);
+					DocumentPackage.LEAF_SECTION__MODEL_ELEMENTS, LeafSection.class, msgs);
 			msgs = basicSetLeafSection(newLeafSection, msgs);
 			if (msgs != null)
 				msgs.dispatch();
 		} else if (eNotificationRequired())
-			eNotify(new ENotificationImpl(this, Notification.SET,
-					ModelPackage.MODEL_ELEMENT__LEAF_SECTION, newLeafSection,
-					newLeafSection));
+			eNotify(new ENotificationImpl(this, Notification.SET, ModelPackage.MODEL_ELEMENT__LEAF_SECTION,
+				newLeafSection, newLeafSection));
 	}
 
 	/**
@@ -402,22 +412,21 @@ public abstract class ModelElementImpl extends IdentifiableElementImpl
 			return getMEState().getStatus();
 		} catch (CircularDependencyException e) {
 			// JH: insert proper exception handling
-			//			e.printStackTrace();
+			// e.printStackTrace();
 			return MEState.CLOSED;
 		}
 	}
 
 	/**
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
+	 * <!-- begin-user-doc --> <!-- end-user-doc -->
+	 * 
 	 * @generated
 	 */
 	public EList<StereotypeInstance> getAppliedStereotypeInstances() {
 		if (appliedStereotypeInstances == null) {
 			appliedStereotypeInstances = new EObjectContainmentWithInverseEList.Resolving<StereotypeInstance>(
-					StereotypeInstance.class, this,
-					ModelPackage.MODEL_ELEMENT__APPLIED_STEREOTYPE_INSTANCES,
-					ProfilePackage.STEREOTYPE_INSTANCE__MODEL_ELEMENT);
+				StereotypeInstance.class, this, ModelPackage.MODEL_ELEMENT__APPLIED_STEREOTYPE_INSTANCES,
+				ProfilePackage.STEREOTYPE_INSTANCE__MODEL_ELEMENT);
 		}
 		return appliedStereotypeInstances;
 	}
@@ -426,8 +435,7 @@ public abstract class ModelElementImpl extends IdentifiableElementImpl
 	 * <!-- begin-user-doc --> <!-- end-user-doc -->.
 	 * 
 	 * @generated NOT
-	 * @return the project in which the modelelement is contained or null if it
-	 *         not in any project.
+	 * @return the project in which the modelelement is contained or null if it not in any project.
 	 */
 	public Project getProject() {
 
@@ -437,13 +445,10 @@ public abstract class ModelElementImpl extends IdentifiableElementImpl
 	}
 
 	/**
-	 * <!-- begin-user-doc -->
-	 * 
-	 * <!-- end-user-doc -->.
+	 * <!-- begin-user-doc --> <!-- end-user-doc -->.
 	 * 
 	 * @generated NOT
-	 * @return the project in which the modelelement is contained or null if it
-	 *         not in any project.
+	 * @return the project in which the modelelement is contained or null if it not in any project.
 	 */
 	private Project getProject(Set<ModelElement> seenModelElements) {
 
@@ -454,8 +459,7 @@ public abstract class ModelElementImpl extends IdentifiableElementImpl
 		}
 
 		if (seenModelElements.contains(container)) {
-			throw new IllegalStateException(
-					"ModelElement is in a containment cycle");
+			throw new IllegalStateException("ModelElement is in a containment cycle");
 		}
 		// check if my container is a project
 		if (ModelPackage.eINSTANCE.getProject().isInstance(container)) {
@@ -463,12 +467,11 @@ public abstract class ModelElementImpl extends IdentifiableElementImpl
 		}
 		// check if my container is a model element
 		else if (container instanceof ModelElementImpl) {
-			//seenModelElements.add(this);
+			// seenModelElements.add(this);
 			seenModelElements.add((ModelElement) container);
 			return ((ModelElementImpl) container).getProject(seenModelElements);
 		} else {
-			throw new IllegalStateException(
-					"ModelElement is not contained by any project");
+			throw new IllegalStateException("ModelElement is not contained by any project");
 		}
 	}
 
@@ -476,8 +479,7 @@ public abstract class ModelElementImpl extends IdentifiableElementImpl
 	/**
 	 * Adds a reader to the list of readers.
 	 * 
-	 * @param acOrgId
-	 *            the reader's AcOrgId
+	 * @param acOrgId the reader's AcOrgId
 	 * @generated NOT
 	 */
 	public void addReader(String acOrgId) {
@@ -495,8 +497,7 @@ public abstract class ModelElementImpl extends IdentifiableElementImpl
 	 * @throws CircularDependencyException
 	 * @generated NOT
 	 */
-	public org.unicase.model.task.util.MEState getMEState()
-			throws CircularDependencyException {
+	public org.unicase.model.task.util.MEState getMEState() throws CircularDependencyException {
 		if (meState == null) {
 			synchronized (this) {
 				if (meState == null) {
@@ -520,21 +521,19 @@ public abstract class ModelElementImpl extends IdentifiableElementImpl
 	 */
 	public ModelElementId getModelElementId() {
 		if (this.identifier == null) {
-			throw new IllegalStateException(
-					"Model element does not have an identifier");
+			throw new IllegalStateException("Model element does not have an identifier");
 		}
-		ModelElementId modelElementId = ModelFactory.eINSTANCE
-				.createModelElementId();
+		ModelElementId modelElementId = ModelFactory.eINSTANCE.createModelElementId();
 		modelElementId.setId(this.identifier);
 		return modelElementId;
 	}
 
 	/**
 	 * use WorkspaceUtil.cleanFormatedText() instead.
-	 * @see org.unciase.workspace.util.WorkspaceUtil#cleanFormatedText()
-	 * {@inheritDoc}
 	 * 
+	 * @see org.unciase.workspace.util.WorkspaceUtil#cleanFormatedText() {@inheritDoc}
 	 * @see org.unicase.model.ModelElement#getDescriptionPlainText()
+	 * @return the plain description text
 	 * @generated NOT
 	 * @Deprecated
 	 */
@@ -554,77 +553,71 @@ public abstract class ModelElementImpl extends IdentifiableElementImpl
 
 	/**
 	 * <!-- begin-user-doc --> <!-- end-user-doc -->
+	 * 
 	 * @generated
 	 */
 	@SuppressWarnings("unchecked")
 	@Override
-	public NotificationChain eInverseAdd(InternalEObject otherEnd,
-			int featureID, NotificationChain msgs) {
+	public NotificationChain eInverseAdd(InternalEObject otherEnd, int featureID, NotificationChain msgs) {
 		switch (featureID) {
 		case ModelPackage.MODEL_ELEMENT__ANNOTATIONS:
-			return ((InternalEList<InternalEObject>) (InternalEList<?>) getAnnotations())
-					.basicAdd(otherEnd, msgs);
+			return ((InternalEList<InternalEObject>) (InternalEList<?>) getAnnotations()).basicAdd(otherEnd, msgs);
 		case ModelPackage.MODEL_ELEMENT__ATTACHMENTS:
-			return ((InternalEList<InternalEObject>) (InternalEList<?>) getAttachments())
-					.basicAdd(otherEnd, msgs);
+			return ((InternalEList<InternalEObject>) (InternalEList<?>) getAttachments()).basicAdd(otherEnd, msgs);
 		case ModelPackage.MODEL_ELEMENT__INCOMING_DOCUMENT_REFERENCES:
-			return ((InternalEList<InternalEObject>) (InternalEList<?>) getIncomingDocumentReferences())
-					.basicAdd(otherEnd, msgs);
+			return ((InternalEList<InternalEObject>) (InternalEList<?>) getIncomingDocumentReferences()).basicAdd(
+				otherEnd, msgs);
 		case ModelPackage.MODEL_ELEMENT__LEAF_SECTION:
 			if (eInternalContainer() != null)
 				msgs = eBasicRemoveFromContainer(msgs);
 			return basicSetLeafSection((LeafSection) otherEnd, msgs);
 		case ModelPackage.MODEL_ELEMENT__APPLIED_STEREOTYPE_INSTANCES:
-			return ((InternalEList<InternalEObject>) (InternalEList<?>) getAppliedStereotypeInstances())
-					.basicAdd(otherEnd, msgs);
+			return ((InternalEList<InternalEObject>) (InternalEList<?>) getAppliedStereotypeInstances()).basicAdd(
+				otherEnd, msgs);
 		}
 		return super.eInverseAdd(otherEnd, featureID, msgs);
 	}
 
 	/**
 	 * <!-- begin-user-doc --> <!-- end-user-doc -->
+	 * 
 	 * @generated
 	 */
 	@Override
-	public NotificationChain eInverseRemove(InternalEObject otherEnd,
-			int featureID, NotificationChain msgs) {
+	public NotificationChain eInverseRemove(InternalEObject otherEnd, int featureID, NotificationChain msgs) {
 		switch (featureID) {
 		case ModelPackage.MODEL_ELEMENT__ANNOTATIONS:
-			return ((InternalEList<?>) getAnnotations()).basicRemove(otherEnd,
-					msgs);
+			return ((InternalEList<?>) getAnnotations()).basicRemove(otherEnd, msgs);
 		case ModelPackage.MODEL_ELEMENT__ATTACHMENTS:
-			return ((InternalEList<?>) getAttachments()).basicRemove(otherEnd,
-					msgs);
+			return ((InternalEList<?>) getAttachments()).basicRemove(otherEnd, msgs);
 		case ModelPackage.MODEL_ELEMENT__INCOMING_DOCUMENT_REFERENCES:
-			return ((InternalEList<?>) getIncomingDocumentReferences())
-					.basicRemove(otherEnd, msgs);
+			return ((InternalEList<?>) getIncomingDocumentReferences()).basicRemove(otherEnd, msgs);
 		case ModelPackage.MODEL_ELEMENT__LEAF_SECTION:
 			return basicSetLeafSection(null, msgs);
 		case ModelPackage.MODEL_ELEMENT__APPLIED_STEREOTYPE_INSTANCES:
-			return ((InternalEList<?>) getAppliedStereotypeInstances())
-					.basicRemove(otherEnd, msgs);
+			return ((InternalEList<?>) getAppliedStereotypeInstances()).basicRemove(otherEnd, msgs);
 		}
 		return super.eInverseRemove(otherEnd, featureID, msgs);
 	}
 
 	/**
 	 * <!-- begin-user-doc --> <!-- end-user-doc -->
+	 * 
 	 * @generated
 	 */
 	@Override
-	public NotificationChain eBasicRemoveFromContainerFeature(
-			NotificationChain msgs) {
+	public NotificationChain eBasicRemoveFromContainerFeature(NotificationChain msgs) {
 		switch (eContainerFeatureID) {
 		case ModelPackage.MODEL_ELEMENT__LEAF_SECTION:
-			return eInternalContainer().eInverseRemove(this,
-					DocumentPackage.LEAF_SECTION__MODEL_ELEMENTS,
-					LeafSection.class, msgs);
+			return eInternalContainer().eInverseRemove(this, DocumentPackage.LEAF_SECTION__MODEL_ELEMENTS,
+				LeafSection.class, msgs);
 		}
 		return super.eBasicRemoveFromContainerFeature(msgs);
 	}
 
 	/**
 	 * <!-- begin-user-doc --> <!-- end-user-doc -->
+	 * 
 	 * @generated
 	 */
 	@Override
@@ -658,6 +651,7 @@ public abstract class ModelElementImpl extends IdentifiableElementImpl
 
 	/**
 	 * <!-- begin-user-doc --> <!-- end-user-doc -->
+	 * 
 	 * @generated
 	 */
 	@SuppressWarnings("unchecked")
@@ -678,26 +672,22 @@ public abstract class ModelElementImpl extends IdentifiableElementImpl
 			return;
 		case ModelPackage.MODEL_ELEMENT__ANNOTATIONS:
 			getAnnotations().clear();
-			getAnnotations()
-					.addAll((Collection<? extends Annotation>) newValue);
+			getAnnotations().addAll((Collection<? extends Annotation>) newValue);
 			return;
 		case ModelPackage.MODEL_ELEMENT__ATTACHMENTS:
 			getAttachments().clear();
-			getAttachments()
-					.addAll((Collection<? extends Attachment>) newValue);
+			getAttachments().addAll((Collection<? extends Attachment>) newValue);
 			return;
 		case ModelPackage.MODEL_ELEMENT__INCOMING_DOCUMENT_REFERENCES:
 			getIncomingDocumentReferences().clear();
-			getIncomingDocumentReferences().addAll(
-					(Collection<? extends LeafSection>) newValue);
+			getIncomingDocumentReferences().addAll((Collection<? extends LeafSection>) newValue);
 			return;
 		case ModelPackage.MODEL_ELEMENT__LEAF_SECTION:
 			setLeafSection((LeafSection) newValue);
 			return;
 		case ModelPackage.MODEL_ELEMENT__APPLIED_STEREOTYPE_INSTANCES:
 			getAppliedStereotypeInstances().clear();
-			getAppliedStereotypeInstances().addAll(
-					(Collection<? extends StereotypeInstance>) newValue);
+			getAppliedStereotypeInstances().addAll((Collection<? extends StereotypeInstance>) newValue);
 			return;
 		}
 		super.eSet(featureID, newValue);
@@ -705,6 +695,7 @@ public abstract class ModelElementImpl extends IdentifiableElementImpl
 
 	/**
 	 * <!-- begin-user-doc --> <!-- end-user-doc -->
+	 * 
 	 * @generated
 	 */
 	@Override
@@ -743,44 +734,39 @@ public abstract class ModelElementImpl extends IdentifiableElementImpl
 
 	/**
 	 * <!-- begin-user-doc --> <!-- end-user-doc -->
+	 * 
 	 * @generated
 	 */
 	@Override
 	public boolean eIsSet(int featureID) {
 		switch (featureID) {
 		case ModelPackage.MODEL_ELEMENT__NAME:
-			return NAME_EDEFAULT == null ? name != null : !NAME_EDEFAULT
-					.equals(name);
+			return NAME_EDEFAULT == null ? name != null : !NAME_EDEFAULT.equals(name);
 		case ModelPackage.MODEL_ELEMENT__DESCRIPTION:
-			return DESCRIPTION_EDEFAULT == null ? description != null
-					: !DESCRIPTION_EDEFAULT.equals(description);
+			return DESCRIPTION_EDEFAULT == null ? description != null : !DESCRIPTION_EDEFAULT.equals(description);
 		case ModelPackage.MODEL_ELEMENT__CREATOR:
-			return CREATOR_EDEFAULT == null ? creator != null
-					: !CREATOR_EDEFAULT.equals(creator);
+			return CREATOR_EDEFAULT == null ? creator != null : !CREATOR_EDEFAULT.equals(creator);
 		case ModelPackage.MODEL_ELEMENT__CREATION_DATE:
-			return CREATION_DATE_EDEFAULT == null ? creationDate != null
-					: !CREATION_DATE_EDEFAULT.equals(creationDate);
+			return CREATION_DATE_EDEFAULT == null ? creationDate != null : !CREATION_DATE_EDEFAULT.equals(creationDate);
 		case ModelPackage.MODEL_ELEMENT__ANNOTATIONS:
 			return annotations != null && !annotations.isEmpty();
 		case ModelPackage.MODEL_ELEMENT__ATTACHMENTS:
 			return attachments != null && !attachments.isEmpty();
 		case ModelPackage.MODEL_ELEMENT__INCOMING_DOCUMENT_REFERENCES:
-			return incomingDocumentReferences != null
-					&& !incomingDocumentReferences.isEmpty();
+			return incomingDocumentReferences != null && !incomingDocumentReferences.isEmpty();
 		case ModelPackage.MODEL_ELEMENT__LEAF_SECTION:
 			return basicGetLeafSection() != null;
 		case ModelPackage.MODEL_ELEMENT__STATE:
-			return STATE_EDEFAULT == null ? getState() != null
-					: !STATE_EDEFAULT.equals(getState());
+			return STATE_EDEFAULT == null ? getState() != null : !STATE_EDEFAULT.equals(getState());
 		case ModelPackage.MODEL_ELEMENT__APPLIED_STEREOTYPE_INSTANCES:
-			return appliedStereotypeInstances != null
-					&& !appliedStereotypeInstances.isEmpty();
+			return appliedStereotypeInstances != null && !appliedStereotypeInstances.isEmpty();
 		}
 		return super.eIsSet(featureID);
 	}
 
 	/**
 	 * <!-- begin-user-doc --> <!-- end-user-doc -->
+	 * 
 	 * @generated
 	 */
 	@Override

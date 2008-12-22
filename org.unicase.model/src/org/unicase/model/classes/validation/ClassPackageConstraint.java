@@ -28,18 +28,13 @@ public class ClassPackageConstraint extends AbstractModelConstraint {
 
 		if (eType == EMFEventType.NULL) {
 			if (eObj instanceof org.unicase.model.classes.Class) {
-				Package package1 = ((org.unicase.model.classes.Class) eObj)
-						.getParentPackage();
+				Package package1 = ((org.unicase.model.classes.Class) eObj).getParentPackage();
 				if (package1 == null) {
-					EStructuralFeature errorFeature = ValidationConstraintHelper
-							.getErrorFeatureForModelElement((ModelElement) eObj,
-									"parentPackage");
+					EStructuralFeature errorFeature = ValidationConstraintHelper.getErrorFeatureForModelElement(
+						(ModelElement) eObj, "parentPackage");
 					ctx.addResult(errorFeature);
-					return ctx.createFailureStatus(new Object[] { eObj.eClass()
-							.getName()
-							+ ": '"
-							+ ((org.unicase.model.classes.Class) eObj)
-									.getName() + "'" });
+					return ctx.createFailureStatus(new Object[] { eObj.eClass().getName() + ": '"
+						+ ((org.unicase.model.classes.Class) eObj).getName() + "'" });
 				}
 			}
 		}

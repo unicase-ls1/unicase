@@ -1,8 +1,7 @@
 /**
- * <copyright> Copyright (c) 2008 Jonas Helming, Maximilian Koegel. All rights reserved. This program and the accompanying materials are made available under the terms of the Eclipse Public License v1.0 which accompanies this distribution, and is available at http://www.eclipse.org/legal/epl-v10.html
- * </copyright>
- *
- * $Id$
+ * <copyright> Copyright (c) 2008 Jonas Helming, Maximilian Koegel. All rights reserved. This program and the
+ * accompanying materials are made available under the terms of the Eclipse Public License v1.0 which accompanies this
+ * distribution, and is available at http://www.eclipse.org/legal/epl-v10.html </copyright> $Id$
  */
 package org.unicase.model.meeting.impl;
 
@@ -16,24 +15,22 @@ import org.unicase.model.meeting.MeetingPackage;
 import org.unicase.model.rationale.Issue;
 
 /**
- * <!-- begin-user-doc -->
- * An implementation of the model object '<em><b>Issue Meeting Section</b></em>'.
- * <!-- end-user-doc -->
+ * <!-- begin-user-doc --> An implementation of the model object '<em><b>Issue Meeting Section</b></em>'. <!--
+ * end-user-doc -->
  * <p>
  * The following features are implemented:
  * <ul>
- *   <li>{@link org.unicase.model.meeting.impl.IssueMeetingSectionImpl#getIncludedIssues <em>Included Issues</em>}</li>
+ * <li>{@link org.unicase.model.meeting.impl.IssueMeetingSectionImpl#getIncludedIssues <em>Included Issues</em>}</li>
  * </ul>
  * </p>
- *
+ * 
  * @generated
  */
-public class IssueMeetingSectionImpl extends MeetingSectionImpl implements
-		IssueMeetingSection {
+public class IssueMeetingSectionImpl extends MeetingSectionImpl implements IssueMeetingSection {
 	/**
-	 * The cached value of the '{@link #getIncludedIssues() <em>Included Issues</em>}' reference list.
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
+	 * The cached value of the '{@link #getIncludedIssues() <em>Included Issues</em>}' reference list. <!--
+	 * begin-user-doc --> <!-- end-user-doc -->
+	 * 
 	 * @see #getIncludedIssues()
 	 * @generated
 	 * @ordered
@@ -41,8 +38,8 @@ public class IssueMeetingSectionImpl extends MeetingSectionImpl implements
 	protected EList<Issue> includedIssues;
 
 	/**
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
+	 * <!-- begin-user-doc --> <!-- end-user-doc -->
+	 * 
 	 * @generated
 	 */
 	protected IssueMeetingSectionImpl() {
@@ -50,8 +47,8 @@ public class IssueMeetingSectionImpl extends MeetingSectionImpl implements
 	}
 
 	/**
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
+	 * <!-- begin-user-doc --> <!-- end-user-doc -->
+	 * 
 	 * @generated
 	 */
 	@Override
@@ -60,21 +57,21 @@ public class IssueMeetingSectionImpl extends MeetingSectionImpl implements
 	}
 
 	/**
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
+	 * <!-- begin-user-doc --> <!-- end-user-doc -->
+	 * 
 	 * @generated
 	 */
 	public EList<Issue> getIncludedIssues() {
 		if (includedIssues == null) {
-			includedIssues = new EObjectResolvingEList<Issue>(Issue.class,
-					this, MeetingPackage.ISSUE_MEETING_SECTION__INCLUDED_ISSUES);
+			includedIssues = new EObjectResolvingEList<Issue>(Issue.class, this,
+				MeetingPackage.ISSUE_MEETING_SECTION__INCLUDED_ISSUES);
 		}
 		return includedIssues;
 	}
 
 	/**
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
+	 * <!-- begin-user-doc --> <!-- end-user-doc -->
+	 * 
 	 * @generated
 	 */
 	@Override
@@ -87,8 +84,8 @@ public class IssueMeetingSectionImpl extends MeetingSectionImpl implements
 	}
 
 	/**
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
+	 * <!-- begin-user-doc --> <!-- end-user-doc -->
+	 * 
 	 * @generated
 	 */
 	@SuppressWarnings("unchecked")
@@ -104,8 +101,8 @@ public class IssueMeetingSectionImpl extends MeetingSectionImpl implements
 	}
 
 	/**
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
+	 * <!-- begin-user-doc --> <!-- end-user-doc -->
+	 * 
 	 * @generated
 	 */
 	@Override
@@ -119,8 +116,8 @@ public class IssueMeetingSectionImpl extends MeetingSectionImpl implements
 	}
 
 	/**
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
+	 * <!-- begin-user-doc --> <!-- end-user-doc -->
+	 * 
 	 * @generated
 	 */
 	@Override
@@ -132,4 +129,4 @@ public class IssueMeetingSectionImpl extends MeetingSectionImpl implements
 		return super.eIsSet(featureID);
 	}
 
-} //IssueMeetingSectionImpl
+} // IssueMeetingSectionImpl

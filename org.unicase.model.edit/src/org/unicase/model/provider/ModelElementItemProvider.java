@@ -1,8 +1,7 @@
 /**
- * <copyright> Copyright (c) 2008 Jonas Helming, Maximilian Koegel. All rights reserved. This program and the accompanying materials are made available under the terms of the Eclipse Public License v1.0 which accompanies this distribution, and is available at http://www.eclipse.org/legal/epl-v10.html
- * </copyright>
- *
- * $Id$
+ * <copyright> Copyright (c) 2008 Jonas Helming, Maximilian Koegel. All rights reserved. This program and the
+ * accompanying materials are made available under the terms of the Eclipse Public License v1.0 which accompanies this
+ * distribution, and is available at http://www.eclipse.org/legal/epl-v10.html </copyright> $Id$
  */
 package org.unicase.model.provider;
 
@@ -26,17 +25,15 @@ import org.unicase.model.ModelPackage;
 import org.unicase.model.profile.ProfileFactory;
 
 /**
- * This is the item provider adapter for a {@link org.unicase.model.ModelElement} object.
- * <!-- begin-user-doc --> <!--
+ * This is the item provider adapter for a {@link org.unicase.model.ModelElement} object. <!-- begin-user-doc --> <!--
  * end-user-doc -->
+ * 
  * @generated
  */
-public class ModelElementItemProvider extends IdentifiableElementItemProvider
-		implements IEditingDomainItemProvider, IStructuredItemContentProvider,
-		ITreeItemContentProvider, IItemLabelProvider, IItemPropertySource {
+public class ModelElementItemProvider extends IdentifiableElementItemProvider implements IEditingDomainItemProvider,
+	IStructuredItemContentProvider, ITreeItemContentProvider, IItemLabelProvider, IItemPropertySource {
 	/**
-	 * This constructs an instance from a factory and a notifier. <!--
-	 * begin-user-doc --> <!-- end-user-doc -->
+	 * This constructs an instance from a factory and a notifier. <!-- begin-user-doc --> <!-- end-user-doc -->
 	 * 
 	 * @generated
 	 */
@@ -45,8 +42,7 @@ public class ModelElementItemProvider extends IdentifiableElementItemProvider
 	}
 
 	/**
-	 * This returns the property descriptors for the adapted class. <!--
-	 * begin-user-doc --> <!-- end-user-doc -->
+	 * This returns the property descriptors for the adapted class. <!-- begin-user-doc --> <!-- end-user-doc -->
 	 * 
 	 * @generated
 	 */
@@ -65,119 +61,92 @@ public class ModelElementItemProvider extends IdentifiableElementItemProvider
 	}
 
 	/**
-	 * This adds a property descriptor for the Name feature.
-	 * <!-- begin-user-doc
-	 * --> <!-- end-user-doc -->
+	 * This adds a property descriptor for the Name feature. <!-- begin-user-doc --> <!-- end-user-doc -->
+	 * 
 	 * @generated
 	 */
 	protected void addNamePropertyDescriptor(Object object) {
-		itemPropertyDescriptors.add(createItemPropertyDescriptor(
-				((ComposeableAdapterFactory) adapterFactory)
-						.getRootAdapterFactory(), getResourceLocator(),
-				getString("_UI_ModelElement_name_feature"), getString(
-						"_UI_PropertyDescriptor_description",
-						"_UI_ModelElement_name_feature",
-						"_UI_ModelElement_type"),
-				ModelPackage.Literals.MODEL_ELEMENT__NAME, true, false, false,
-				ItemPropertyDescriptor.GENERIC_VALUE_IMAGE, null, null));
+		itemPropertyDescriptors.add(createItemPropertyDescriptor(((ComposeableAdapterFactory) adapterFactory)
+			.getRootAdapterFactory(), getResourceLocator(), getString("_UI_ModelElement_name_feature"), getString(
+			"_UI_PropertyDescriptor_description", "_UI_ModelElement_name_feature", "_UI_ModelElement_type"),
+			ModelPackage.Literals.MODEL_ELEMENT__NAME, true, false, false, ItemPropertyDescriptor.GENERIC_VALUE_IMAGE,
+			null, null));
 	}
 
 	/**
-	 * This adds a property descriptor for the Description feature. <!--
-	 * begin-user-doc --> <!-- end-user-doc -->
+	 * This adds a property descriptor for the Description feature. <!-- begin-user-doc --> <!-- end-user-doc -->
 	 * 
 	 * @generated
 	 */
 	protected void addDescriptionPropertyDescriptor(Object object) {
-		itemPropertyDescriptors.add(createItemPropertyDescriptor(
-				((ComposeableAdapterFactory) adapterFactory)
-						.getRootAdapterFactory(), getResourceLocator(),
-				getString("_UI_ModelElement_description_feature"), getString(
-						"_UI_PropertyDescriptor_description",
-						"_UI_ModelElement_description_feature",
-						"_UI_ModelElement_type"),
-				ModelPackage.Literals.MODEL_ELEMENT__DESCRIPTION, true, true,
-				false, ItemPropertyDescriptor.GENERIC_VALUE_IMAGE, null, null));
+		itemPropertyDescriptors.add(createItemPropertyDescriptor(((ComposeableAdapterFactory) adapterFactory)
+			.getRootAdapterFactory(), getResourceLocator(), getString("_UI_ModelElement_description_feature"),
+			getString("_UI_PropertyDescriptor_description", "_UI_ModelElement_description_feature",
+				"_UI_ModelElement_type"), ModelPackage.Literals.MODEL_ELEMENT__DESCRIPTION, true, true, false,
+			ItemPropertyDescriptor.GENERIC_VALUE_IMAGE, null, null));
 	}
 
 	/**
-	 * This adds a property descriptor for the Annotations feature. <!--
-	 * begin-user-doc --> <!-- end-user-doc -->
+	 * This adds a property descriptor for the Annotations feature. <!-- begin-user-doc --> <!-- end-user-doc -->
 	 * 
 	 * @generated
 	 */
 	protected void addAnnotationsPropertyDescriptor(Object object) {
-		itemPropertyDescriptors.add(createItemPropertyDescriptor(
-				((ComposeableAdapterFactory) adapterFactory)
-						.getRootAdapterFactory(), getResourceLocator(),
-				getString("_UI_ModelElement_annotations_feature"), getString(
-						"_UI_PropertyDescriptor_description",
-						"_UI_ModelElement_annotations_feature",
-						"_UI_ModelElement_type"),
-				ModelPackage.Literals.MODEL_ELEMENT__ANNOTATIONS, true, false,
-				true, null, null, null));
+		itemPropertyDescriptors.add(createItemPropertyDescriptor(((ComposeableAdapterFactory) adapterFactory)
+			.getRootAdapterFactory(), getResourceLocator(), getString("_UI_ModelElement_annotations_feature"),
+			getString("_UI_PropertyDescriptor_description", "_UI_ModelElement_annotations_feature",
+				"_UI_ModelElement_type"), ModelPackage.Literals.MODEL_ELEMENT__ANNOTATIONS, true, false, true, null,
+			null, null));
 	}
 
 	/**
-	 * This adds a property descriptor for the Attachments feature.
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
+	 * This adds a property descriptor for the Attachments feature. <!-- begin-user-doc --> <!-- end-user-doc -->
+	 * 
 	 * @generated
 	 */
 	protected void addAttachmentsPropertyDescriptor(Object object) {
-		itemPropertyDescriptors.add(createItemPropertyDescriptor(
-				((ComposeableAdapterFactory) adapterFactory)
-						.getRootAdapterFactory(), getResourceLocator(),
-				getString("_UI_ModelElement_attachments_feature"), getString(
-						"_UI_PropertyDescriptor_description",
-						"_UI_ModelElement_attachments_feature",
-						"_UI_ModelElement_type"),
-				ModelPackage.Literals.MODEL_ELEMENT__ATTACHMENTS, true, false,
-				true, null, null, null));
+		itemPropertyDescriptors.add(createItemPropertyDescriptor(((ComposeableAdapterFactory) adapterFactory)
+			.getRootAdapterFactory(), getResourceLocator(), getString("_UI_ModelElement_attachments_feature"),
+			getString("_UI_PropertyDescriptor_description", "_UI_ModelElement_attachments_feature",
+				"_UI_ModelElement_type"), ModelPackage.Literals.MODEL_ELEMENT__ATTACHMENTS, true, false, true, null,
+			null, null));
 	}
 
 	/**
-	 * This adds a property descriptor for the Incoming Document References feature.
-	 * <!-- begin-user-doc --> <!-- end-user-doc -->
+	 * This adds a property descriptor for the Incoming Document References feature. <!-- begin-user-doc --> <!--
+	 * end-user-doc -->
+	 * 
 	 * @generated
 	 */
 	protected void addIncomingDocumentReferencesPropertyDescriptor(Object object) {
-		itemPropertyDescriptors
-				.add(createItemPropertyDescriptor(
-						((ComposeableAdapterFactory) adapterFactory)
-								.getRootAdapterFactory(),
-						getResourceLocator(),
-						getString("_UI_ModelElement_incomingDocumentReferences_feature"),
-						getString(
-								"_UI_PropertyDescriptor_description",
-								"_UI_ModelElement_incomingDocumentReferences_feature",
-								"_UI_ModelElement_type"),
-						ModelPackage.Literals.MODEL_ELEMENT__INCOMING_DOCUMENT_REFERENCES,
-						true, false, true, null, null, null));
+		itemPropertyDescriptors.add(createItemPropertyDescriptor(((ComposeableAdapterFactory) adapterFactory)
+			.getRootAdapterFactory(), getResourceLocator(),
+			getString("_UI_ModelElement_incomingDocumentReferences_feature"), getString(
+				"_UI_PropertyDescriptor_description", "_UI_ModelElement_incomingDocumentReferences_feature",
+				"_UI_ModelElement_type"), ModelPackage.Literals.MODEL_ELEMENT__INCOMING_DOCUMENT_REFERENCES, true,
+			false, true, null, null, null));
 	}
 
 	/**
 	 * This specifies how to implement {@link #getChildren} and is used to deduce an appropriate feature for an
 	 * {@link org.eclipse.emf.edit.command.AddCommand}, {@link org.eclipse.emf.edit.command.RemoveCommand} or
-	 * {@link org.eclipse.emf.edit.command.MoveCommand} in {@link #createCommand}.
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
+	 * {@link org.eclipse.emf.edit.command.MoveCommand} in {@link #createCommand}. <!-- begin-user-doc --> <!--
+	 * end-user-doc -->
+	 * 
 	 * @generated
 	 */
 	@Override
-	public Collection<? extends EStructuralFeature> getChildrenFeatures(
-			Object object) {
+	public Collection<? extends EStructuralFeature> getChildrenFeatures(Object object) {
 		if (childrenFeatures == null) {
 			super.getChildrenFeatures(object);
-			childrenFeatures
-					.add(ModelPackage.Literals.MODEL_ELEMENT__APPLIED_STEREOTYPE_INSTANCES);
+			childrenFeatures.add(ModelPackage.Literals.MODEL_ELEMENT__APPLIED_STEREOTYPE_INSTANCES);
 		}
 		return childrenFeatures;
 	}
 
 	/**
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
+	 * <!-- begin-user-doc --> <!-- end-user-doc -->
+	 * 
 	 * @generated
 	 */
 	@Override
@@ -189,24 +158,21 @@ public class ModelElementItemProvider extends IdentifiableElementItemProvider
 	}
 
 	/**
-	 * This returns the label text for the adapted class.
-	 * <!-- begin-user-doc
-	 * --> <!-- end-user-doc -->
-	 * @generated NOT
-	 * {@inheritDoc}
+	 * This returns the label text for the adapted class. <!-- begin-user-doc --> <!-- end-user-doc -->
+	 * 
+	 * @generated NOT {@inheritDoc}
 	 */
 	@Override
 	public String getText(Object object) {
 		String label = ((ModelElement) object).getName();
-		return label == null || label.length() == 0 ? "unnamed"
-				+ getString("_UI_ModelElement_type") : label;
+		return label == null || label.length() == 0 ? "unnamed" + getString("_UI_ModelElement_type") : label;
 	}
 
 	/**
-	 * This handles model notifications by calling {@link #updateChildren} to update any cached
-	 * children and by creating a viewer notification, which it passes to {@link #fireNotifyChanged}.
-	 * <!-- begin-user-doc --> <!--
-	 * end-user-doc -->
+	 * This handles model notifications by calling {@link #updateChildren} to update any cached children and by creating
+	 * a viewer notification, which it passes to {@link #fireNotifyChanged}. <!-- begin-user-doc --> <!-- end-user-doc
+	 * -->
+	 * 
 	 * @generated
 	 */
 	@Override
@@ -219,39 +185,32 @@ public class ModelElementItemProvider extends IdentifiableElementItemProvider
 		case ModelPackage.MODEL_ELEMENT__CREATOR:
 		case ModelPackage.MODEL_ELEMENT__CREATION_DATE:
 		case ModelPackage.MODEL_ELEMENT__STATE:
-			fireNotifyChanged(new ViewerNotification(notification, notification
-					.getNotifier(), false, true));
+			fireNotifyChanged(new ViewerNotification(notification, notification.getNotifier(), false, true));
 			return;
 		case ModelPackage.MODEL_ELEMENT__APPLIED_STEREOTYPE_INSTANCES:
-			fireNotifyChanged(new ViewerNotification(notification, notification
-					.getNotifier(), true, false));
+			fireNotifyChanged(new ViewerNotification(notification, notification.getNotifier(), true, false));
 			return;
 		}
 		super.notifyChanged(notification);
 	}
 
 	/**
-	 * This adds {@link org.eclipse.emf.edit.command.CommandParameter}s
-	 * describing the children that can be created under this object. <!--
-	 * begin-user-doc --> <!-- end-user-doc -->
+	 * This adds {@link org.eclipse.emf.edit.command.CommandParameter}s describing the children that can be created
+	 * under this object. <!-- begin-user-doc --> <!-- end-user-doc -->
 	 * 
 	 * @generated
 	 */
 	@Override
-	protected void collectNewChildDescriptors(
-			Collection<Object> newChildDescriptors, Object object) {
+	protected void collectNewChildDescriptors(Collection<Object> newChildDescriptors, Object object) {
 		super.collectNewChildDescriptors(newChildDescriptors, object);
 
-		newChildDescriptors
-				.add(createChildParameter(
-						ModelPackage.Literals.MODEL_ELEMENT__APPLIED_STEREOTYPE_INSTANCES,
-						ProfileFactory.eINSTANCE.createStereotypeInstance()));
+		newChildDescriptors.add(createChildParameter(ModelPackage.Literals.MODEL_ELEMENT__APPLIED_STEREOTYPE_INSTANCES,
+			ProfileFactory.eINSTANCE.createStereotypeInstance()));
 	}
 
 	/**
 	 * @return the ImageDescriptor for this class.
-	 * @generated NOT
-	 * {@inheritDoc}
+	 * @generated NOT {@inheritDoc}
 	 */
 	@Override
 	public Object getImage(Object object) {

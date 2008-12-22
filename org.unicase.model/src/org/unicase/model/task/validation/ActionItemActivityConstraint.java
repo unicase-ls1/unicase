@@ -31,13 +31,11 @@ public class ActionItemActivityConstraint extends AbstractModelConstraint {
 			if (eObj instanceof ActionItem) {
 				ActivityType activity = ((ActionItem) eObj).getActivity();
 				if (activity.getValue() == ActivityType.NONE_VALUE) {
-					EStructuralFeature errorFeature = ValidationConstraintHelper
-							.getErrorFeatureForModelElement(
-									(ModelElement) eObj, "activity");
+					EStructuralFeature errorFeature = ValidationConstraintHelper.getErrorFeatureForModelElement(
+						(ModelElement) eObj, "activity");
 					ctx.addResult(errorFeature);
-					return ctx.createFailureStatus(new Object[] { eObj.eClass()
-							.getName()
-							+ ": '" + ((ActionItem) eObj).getName() + "'" });
+					return ctx.createFailureStatus(new Object[] { eObj.eClass().getName() + ": '"
+						+ ((ActionItem) eObj).getName() + "'" });
 				}
 			}
 		}

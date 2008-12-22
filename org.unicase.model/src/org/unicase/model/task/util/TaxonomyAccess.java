@@ -1,8 +1,7 @@
 /**
- * <copyright> Copyright (c) 2008 Jonas Helming, Maximilian Koegel. All rights reserved. This program and the accompanying materials are made available under the terms of the Eclipse Public License v1.0 which accompanies this distribution, and is available at http://www.eclipse.org/legal/epl-v10.html
- * </copyright>
- *
- * $Id$
+ * <copyright> Copyright (c) 2008 Jonas Helming, Maximilian Koegel. All rights reserved. This program and the
+ * accompanying materials are made available under the terms of the Eclipse Public License v1.0 which accompanies this
+ * distribution, and is available at http://www.eclipse.org/legal/epl-v10.html </copyright> $Id$
  */
 package org.unicase.model.task.util;
 
@@ -13,7 +12,6 @@ import java.util.HashMap;
  * 
  * @see Taxonomy
  * @author helming
- * 
  */
 public final class TaxonomyAccess {
 
@@ -23,7 +21,6 @@ public final class TaxonomyAccess {
 
 	/**
 	 * Default constructor.
-	 * 
 	 */
 	public TaxonomyAccess() {
 		addInternalTaxonomies();
@@ -49,11 +46,9 @@ public final class TaxonomyAccess {
 	/**
 	 * Returns a taxonomy.
 	 * 
-	 * @param name
-	 *            of the taxonomy
+	 * @param name of the taxonomy
 	 * @return the taxonomy
-	 * @throws TaxonomyNotFoundException
-	 *             if the taxonomy is not found
+	 * @throws TaxonomyNotFoundException if the taxonomy is not found
 	 */
 	public Taxonomy getTaxonomy(String name) throws TaxonomyNotFoundException {
 		Taxonomy taxonomy = taxonomies.get(name);
@@ -65,8 +60,7 @@ public final class TaxonomyAccess {
 	}
 
 	/**
-	 * Returns the taxonomy which defines which ModelLinks are
-	 * OpeningDependencies.
+	 * Returns the taxonomy which defines which ModelLinks are OpeningDependencies.
 	 * 
 	 * @return the {@link OpeningLinkTaxonomy}
 	 */
@@ -75,8 +69,7 @@ public final class TaxonomyAccess {
 	}
 
 	/**
-	 * Returns the taxonomy which defines which ModelLink are
-	 * BlockingDependencies.
+	 * Returns the taxonomy which defines which ModelLink are BlockingDependencies.
 	 * 
 	 * @return the {@link BlockingLinkTaxonomy}
 	 */

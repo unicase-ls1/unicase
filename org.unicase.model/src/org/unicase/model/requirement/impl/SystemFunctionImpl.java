@@ -1,8 +1,7 @@
 /**
- * <copyright> Copyright (c) 2008 Jonas Helming, Maximilian Koegel. All rights reserved. This program and the accompanying materials are made available under the terms of the Eclipse Public License v1.0 which accompanies this distribution, and is available at http://www.eclipse.org/legal/epl-v10.html
- * </copyright>
- *
- * $Id$
+ * <copyright> Copyright (c) 2008 Jonas Helming, Maximilian Koegel. All rights reserved. This program and the
+ * accompanying materials are made available under the terms of the Eclipse Public License v1.0 which accompanies this
+ * distribution, and is available at http://www.eclipse.org/legal/epl-v10.html </copyright> $Id$
  */
 package org.unicase.model.requirement.impl;
 
@@ -14,26 +13,24 @@ import org.unicase.model.requirement.RequirementPackage;
 import org.unicase.model.requirement.SystemFunction;
 
 /**
- * <!-- begin-user-doc -->
- * An implementation of the model object '<em><b>System Function</b></em>'.
- * <!-- end-user-doc -->
+ * <!-- begin-user-doc --> An implementation of the model object '<em><b>System Function</b></em>'. <!-- end-user-doc
+ * -->
  * <p>
  * The following features are implemented:
  * <ul>
- *   <li>{@link org.unicase.model.requirement.impl.SystemFunctionImpl#getInput <em>Input</em>}</li>
- *   <li>{@link org.unicase.model.requirement.impl.SystemFunctionImpl#getOutput <em>Output</em>}</li>
- *   <li>{@link org.unicase.model.requirement.impl.SystemFunctionImpl#getException <em>Exception</em>}</li>
+ * <li>{@link org.unicase.model.requirement.impl.SystemFunctionImpl#getInput <em>Input</em>}</li>
+ * <li>{@link org.unicase.model.requirement.impl.SystemFunctionImpl#getOutput <em>Output</em>}</li>
+ * <li>{@link org.unicase.model.requirement.impl.SystemFunctionImpl#getException <em>Exception</em>}</li>
  * </ul>
  * </p>
- *
+ * 
  * @generated
  */
-public class SystemFunctionImpl extends ModelElementImpl implements
-		SystemFunction {
+public class SystemFunctionImpl extends ModelElementImpl implements SystemFunction {
 	/**
-	 * The default value of the '{@link #getInput() <em>Input</em>}' attribute.
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
+	 * The default value of the '{@link #getInput() <em>Input</em>}' attribute. <!-- begin-user-doc --> <!--
+	 * end-user-doc -->
+	 * 
 	 * @see #getInput()
 	 * @generated
 	 * @ordered
@@ -41,9 +38,9 @@ public class SystemFunctionImpl extends ModelElementImpl implements
 	protected static final String INPUT_EDEFAULT = null;
 
 	/**
-	 * The cached value of the '{@link #getInput() <em>Input</em>}' attribute.
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
+	 * The cached value of the '{@link #getInput() <em>Input</em>}' attribute. <!-- begin-user-doc --> <!-- end-user-doc
+	 * -->
+	 * 
 	 * @see #getInput()
 	 * @generated
 	 * @ordered
@@ -51,9 +48,9 @@ public class SystemFunctionImpl extends ModelElementImpl implements
 	protected String input = INPUT_EDEFAULT;
 
 	/**
-	 * The default value of the '{@link #getOutput() <em>Output</em>}' attribute.
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
+	 * The default value of the '{@link #getOutput() <em>Output</em>}' attribute. <!-- begin-user-doc --> <!--
+	 * end-user-doc -->
+	 * 
 	 * @see #getOutput()
 	 * @generated
 	 * @ordered
@@ -61,9 +58,9 @@ public class SystemFunctionImpl extends ModelElementImpl implements
 	protected static final String OUTPUT_EDEFAULT = null;
 
 	/**
-	 * The cached value of the '{@link #getOutput() <em>Output</em>}' attribute.
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
+	 * The cached value of the '{@link #getOutput() <em>Output</em>}' attribute. <!-- begin-user-doc --> <!--
+	 * end-user-doc -->
+	 * 
 	 * @see #getOutput()
 	 * @generated
 	 * @ordered
@@ -71,9 +68,9 @@ public class SystemFunctionImpl extends ModelElementImpl implements
 	protected String output = OUTPUT_EDEFAULT;
 
 	/**
-	 * The default value of the '{@link #getException() <em>Exception</em>}' attribute.
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
+	 * The default value of the '{@link #getException() <em>Exception</em>}' attribute. <!-- begin-user-doc --> <!--
+	 * end-user-doc -->
+	 * 
 	 * @see #getException()
 	 * @generated
 	 * @ordered
@@ -81,9 +78,9 @@ public class SystemFunctionImpl extends ModelElementImpl implements
 	protected static final String EXCEPTION_EDEFAULT = null;
 
 	/**
-	 * The cached value of the '{@link #getException() <em>Exception</em>}' attribute.
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
+	 * The cached value of the '{@link #getException() <em>Exception</em>}' attribute. <!-- begin-user-doc --> <!--
+	 * end-user-doc -->
+	 * 
 	 * @see #getException()
 	 * @generated
 	 * @ordered
@@ -91,8 +88,8 @@ public class SystemFunctionImpl extends ModelElementImpl implements
 	protected String exception = EXCEPTION_EDEFAULT;
 
 	/**
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
+	 * <!-- begin-user-doc --> <!-- end-user-doc -->
+	 * 
 	 * @generated
 	 */
 	protected SystemFunctionImpl() {
@@ -100,8 +97,8 @@ public class SystemFunctionImpl extends ModelElementImpl implements
 	}
 
 	/**
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
+	 * <!-- begin-user-doc --> <!-- end-user-doc -->
+	 * 
 	 * @generated
 	 */
 	@Override
@@ -110,8 +107,8 @@ public class SystemFunctionImpl extends ModelElementImpl implements
 	}
 
 	/**
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
+	 * <!-- begin-user-doc --> <!-- end-user-doc -->
+	 * 
 	 * @generated
 	 */
 	public String getInput() {
@@ -119,21 +116,21 @@ public class SystemFunctionImpl extends ModelElementImpl implements
 	}
 
 	/**
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
+	 * <!-- begin-user-doc --> <!-- end-user-doc -->
+	 * 
 	 * @generated
 	 */
 	public void setInput(String newInput) {
 		String oldInput = input;
 		input = newInput;
 		if (eNotificationRequired())
-			eNotify(new ENotificationImpl(this, Notification.SET,
-					RequirementPackage.SYSTEM_FUNCTION__INPUT, oldInput, input));
+			eNotify(new ENotificationImpl(this, Notification.SET, RequirementPackage.SYSTEM_FUNCTION__INPUT, oldInput,
+				input));
 	}
 
 	/**
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
+	 * <!-- begin-user-doc --> <!-- end-user-doc -->
+	 * 
 	 * @generated
 	 */
 	public String getOutput() {
@@ -141,22 +138,21 @@ public class SystemFunctionImpl extends ModelElementImpl implements
 	}
 
 	/**
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
+	 * <!-- begin-user-doc --> <!-- end-user-doc -->
+	 * 
 	 * @generated
 	 */
 	public void setOutput(String newOutput) {
 		String oldOutput = output;
 		output = newOutput;
 		if (eNotificationRequired())
-			eNotify(new ENotificationImpl(this, Notification.SET,
-					RequirementPackage.SYSTEM_FUNCTION__OUTPUT, oldOutput,
-					output));
+			eNotify(new ENotificationImpl(this, Notification.SET, RequirementPackage.SYSTEM_FUNCTION__OUTPUT,
+				oldOutput, output));
 	}
 
 	/**
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
+	 * <!-- begin-user-doc --> <!-- end-user-doc -->
+	 * 
 	 * @generated
 	 */
 	public String getException() {
@@ -164,22 +160,21 @@ public class SystemFunctionImpl extends ModelElementImpl implements
 	}
 
 	/**
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
+	 * <!-- begin-user-doc --> <!-- end-user-doc -->
+	 * 
 	 * @generated
 	 */
 	public void setException(String newException) {
 		String oldException = exception;
 		exception = newException;
 		if (eNotificationRequired())
-			eNotify(new ENotificationImpl(this, Notification.SET,
-					RequirementPackage.SYSTEM_FUNCTION__EXCEPTION,
-					oldException, exception));
+			eNotify(new ENotificationImpl(this, Notification.SET, RequirementPackage.SYSTEM_FUNCTION__EXCEPTION,
+				oldException, exception));
 	}
 
 	/**
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
+	 * <!-- begin-user-doc --> <!-- end-user-doc -->
+	 * 
 	 * @generated
 	 */
 	@Override
@@ -196,8 +191,8 @@ public class SystemFunctionImpl extends ModelElementImpl implements
 	}
 
 	/**
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
+	 * <!-- begin-user-doc --> <!-- end-user-doc -->
+	 * 
 	 * @generated
 	 */
 	@Override
@@ -217,8 +212,8 @@ public class SystemFunctionImpl extends ModelElementImpl implements
 	}
 
 	/**
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
+	 * <!-- begin-user-doc --> <!-- end-user-doc -->
+	 * 
 	 * @generated
 	 */
 	@Override
@@ -238,29 +233,26 @@ public class SystemFunctionImpl extends ModelElementImpl implements
 	}
 
 	/**
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
+	 * <!-- begin-user-doc --> <!-- end-user-doc -->
+	 * 
 	 * @generated
 	 */
 	@Override
 	public boolean eIsSet(int featureID) {
 		switch (featureID) {
 		case RequirementPackage.SYSTEM_FUNCTION__INPUT:
-			return INPUT_EDEFAULT == null ? input != null : !INPUT_EDEFAULT
-					.equals(input);
+			return INPUT_EDEFAULT == null ? input != null : !INPUT_EDEFAULT.equals(input);
 		case RequirementPackage.SYSTEM_FUNCTION__OUTPUT:
-			return OUTPUT_EDEFAULT == null ? output != null : !OUTPUT_EDEFAULT
-					.equals(output);
+			return OUTPUT_EDEFAULT == null ? output != null : !OUTPUT_EDEFAULT.equals(output);
 		case RequirementPackage.SYSTEM_FUNCTION__EXCEPTION:
-			return EXCEPTION_EDEFAULT == null ? exception != null
-					: !EXCEPTION_EDEFAULT.equals(exception);
+			return EXCEPTION_EDEFAULT == null ? exception != null : !EXCEPTION_EDEFAULT.equals(exception);
 		}
 		return super.eIsSet(featureID);
 	}
 
 	/**
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
+	 * <!-- begin-user-doc --> <!-- end-user-doc -->
+	 * 
 	 * @generated
 	 */
 	@Override
@@ -279,4 +271,4 @@ public class SystemFunctionImpl extends ModelElementImpl implements
 		return result.toString();
 	}
 
-} //SystemFunctionImpl
+} // SystemFunctionImpl

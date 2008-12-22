@@ -1,8 +1,7 @@
 /**
- * <copyright> Copyright (c) 2008 Jonas Helming, Maximilian Koegel. All rights reserved. This program and the accompanying materials are made available under the terms of the Eclipse Public License v1.0 which accompanies this distribution, and is available at http://www.eclipse.org/legal/epl-v10.html
- * </copyright>
- *
- * $Id$
+ * <copyright> Copyright (c) 2008 Jonas Helming, Maximilian Koegel. All rights reserved. This program and the
+ * accompanying materials are made available under the terms of the Eclipse Public License v1.0 which accompanies this
+ * distribution, and is available at http://www.eclipse.org/legal/epl-v10.html </copyright> $Id$
  */
 package org.unicase.model.task.util;
 
@@ -26,7 +25,6 @@ import org.unicase.model.task.WorkPackage;
  * Implementation of MEState.
  * 
  * @author helming
- * 
  */
 public class MEStateImpl implements MEState {
 
@@ -39,8 +37,7 @@ public class MEStateImpl implements MEState {
 	/**
 	 * default constructor.
 	 * 
-	 * @param modelElement
-	 *            The modelelement this state is related to.
+	 * @param modelElement The modelelement this state is related to.
 	 */
 	public MEStateImpl(ModelElement modelElement) {
 		this.modelElement = modelElement;
@@ -52,8 +49,7 @@ public class MEStateImpl implements MEState {
 
 			@Override
 			public void notifyChanged(Notification msg) {
-				if (!msg.isTouch()
-						&& !(msg.getFeatureID(ModelElement.class) == ModelPackage.MODEL_ELEMENT__STATE)) {
+				if (!msg.isTouch() && !(msg.getFeatureID(ModelElement.class) == ModelPackage.MODEL_ELEMENT__STATE)) {
 					if (msg.getEventType() == Notification.REMOVE) {
 						Object oldValue = msg.getOldValue();
 						if (effectiveBlocker.contains(oldValue)) {
@@ -73,13 +69,11 @@ public class MEStateImpl implements MEState {
 
 	private void updateEffectiveBlockers() {
 		effectiveBlocker.clear();
-		Set<ModelElement> blockers = TaxonomyAccess.getInstance()
-				.getBlockingLinkTaxonomy().getBlockers(modelElement);
+		Set<ModelElement> blockers = TaxonomyAccess.getInstance().getBlockingLinkTaxonomy().getBlockers(modelElement);
 
 		for (ModelElement blocker : blockers) {
 			try {
-				if (blocker.getMEState().getStatus().equals(OPEN)
-						|| blocker.getMEState().getStatus().equals(BLOCKED)) {
+				if (blocker.getMEState().getStatus().equals(OPEN) || blocker.getMEState().getStatus().equals(BLOCKED)) {
 					effectiveBlocker.add(blocker);
 				}
 			} catch (CircularDependencyException e) {
@@ -91,13 +85,11 @@ public class MEStateImpl implements MEState {
 
 	private void updateEffectiveOpeners() {
 		effectiveOpeners.clear();
-		Set<ModelElement> openers = TaxonomyAccess.getInstance()
-				.getOpeningLinkTaxonomy().getOpeners(modelElement);
+		Set<ModelElement> openers = TaxonomyAccess.getInstance().getOpeningLinkTaxonomy().getOpeners(modelElement);
 
 		for (ModelElement opener : openers) {
 			try {
-				if (opener.getMEState().getStatus().equals(OPEN)
-						|| opener.getMEState().getStatus().equals(BLOCKED)) {
+				if (opener.getMEState().getStatus().equals(OPEN) || opener.getMEState().getStatus().equals(BLOCKED)) {
 					effectiveOpeners.add(opener);
 				}
 			} catch (CircularDependencyException e) {
@@ -116,9 +108,9 @@ public class MEStateImpl implements MEState {
 		}
 		effectiveBlocker.add(me);
 		if (effectiveBlocker.size() == 1) {
-			if(modelElement instanceof WorkPackage){
+			if (modelElement instanceof WorkPackage) {
 				EList<WorkItem> containedWorkItems = ((WorkPackage) modelElement).getContainedWorkItems();
-				for(WorkItem workItem:containedWorkItems){
+				for (WorkItem workItem : containedWorkItems) {
 					try {
 						workItem.getMEState().removeBlocker(modelElement);
 					} catch (CircularDependencyException e) {
@@ -156,8 +148,7 @@ public class MEStateImpl implements MEState {
 	 */
 	public String getStatus() {
 		if (modelElement instanceof WorkItem) {
-			WorkPackage containingWorkpackage = ((WorkItem) modelElement)
-					.getContainingWorkpackage();
+			WorkPackage containingWorkpackage = ((WorkItem) modelElement).getContainingWorkpackage();
 			if (containingWorkpackage != null) {
 				if (containingWorkpackage.getState().equals(MEState.BLOCKED)) {
 					return BLOCKED;
@@ -208,9 +199,9 @@ public class MEStateImpl implements MEState {
 	public boolean removeBlocker(ModelElement me) {
 		boolean ret = effectiveBlocker.remove(me);
 		if (effectiveBlocker.size() == 0) {
-			if(modelElement instanceof WorkPackage){
+			if (modelElement instanceof WorkPackage) {
 				EList<WorkItem> containedWorkItems = ((WorkPackage) modelElement).getContainedWorkItems();
-				for(WorkItem workItem:containedWorkItems){
+				for (WorkItem workItem : containedWorkItems) {
 					try {
 						workItem.getMEState().removeBlocker(modelElement);
 					} catch (CircularDependencyException e) {
@@ -243,16 +234,14 @@ public class MEStateImpl implements MEState {
 
 	private void recursivlyUpdateStatus(String status) {
 		//		
-		ENotificationImpl notificationImpl = new ENotificationImpl(
-				(InternalEObject) modelElement, Notification.RESOLVE,
-				ModelPackage.MODEL_ELEMENT__STATE, OPEN, OPEN);
+		ENotificationImpl notificationImpl = new ENotificationImpl((InternalEObject) modelElement,
+			Notification.RESOLVE, ModelPackage.MODEL_ELEMENT__STATE, OPEN, OPEN);
 
 		modelElement.eNotify(notificationImpl);
 
-		ArrayList<ModelElement> opened = TaxonomyAccess.getInstance()
-				.getOpeningLinkTaxonomy().getOpened(modelElement);
-		ArrayList<ModelElement> blocked = TaxonomyAccess.getInstance()
-				.getBlockingLinkTaxonomy().getBlocked(modelElement);
+		ArrayList<ModelElement> opened = TaxonomyAccess.getInstance().getOpeningLinkTaxonomy().getOpened(modelElement);
+		ArrayList<ModelElement> blocked = TaxonomyAccess.getInstance().getBlockingLinkTaxonomy().getBlocked(
+			modelElement);
 		try {
 			if (status.equals(OPEN) || status.equals(BLOCKED)) {
 				for (ModelElement open : opened) {

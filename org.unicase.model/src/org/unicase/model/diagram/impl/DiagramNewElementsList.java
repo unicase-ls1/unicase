@@ -1,8 +1,7 @@
 /**
- * <copyright> Copyright (c) 2008 Jonas Helming, Maximilian Koegel. All rights reserved. This program and the accompanying materials are made available under the terms of the Eclipse Public License v1.0 which accompanies this distribution, and is available at http://www.eclipse.org/legal/epl-v10.html
- * </copyright>
- *
- * $Id$
+ * <copyright> Copyright (c) 2008 Jonas Helming, Maximilian Koegel. All rights reserved. This program and the
+ * accompanying materials are made available under the terms of the Eclipse Public License v1.0 which accompanies this
+ * distribution, and is available at http://www.eclipse.org/legal/epl-v10.html </copyright> $Id$
  */
 package org.unicase.model.diagram.impl;
 
@@ -17,13 +16,11 @@ import org.unicase.model.ModelElement;
 import org.unicase.model.Project;
 
 /**
- * This list should only be used with diagrams. I changes the behavior to add
- * new elements on a diagram to the project and to the diagram itself. Most of
- * the methods forward to the elements list, which is the reference feature of
- * the according diagram.
+ * This list should only be used with diagrams. I changes the behavior to add new elements on a diagram to the project
+ * and to the diagram itself. Most of the methods forward to the elements list, which is the reference feature of the
+ * according diagram.
  * 
  * @author helming
- * 
  */
 @SuppressWarnings("serial")
 public class DiagramNewElementsList extends BasicInternalEList<ModelElement> {
@@ -34,10 +31,8 @@ public class DiagramNewElementsList extends BasicInternalEList<ModelElement> {
 	/**
 	 * default constructor.
 	 * 
-	 * @param elements
-	 *            The reference feature of the according diagram
-	 * @param project
-	 *            The project of the diagram
+	 * @param elements The reference feature of the according diagram
+	 * @param project The project of the diagram
 	 */
 	public DiagramNewElementsList(EList<ModelElement> elements, Project project) {
 		super(ModelElement.class);
@@ -71,13 +66,11 @@ public class DiagramNewElementsList extends BasicInternalEList<ModelElement> {
 	}
 
 	/**
-	 * Adds the new modelelement to the project. There is no need to add it to
-	 * the elements list, cause the diagram code does this additionally.
+	 * Adds the new modelelement to the project. There is no need to add it to the elements list, cause the diagram code
+	 * does this additionally.
 	 * 
-	 * @param arg0
-	 *            The position
-	 * @param arg1
-	 *            The new modelelement
+	 * @param arg0 The position
+	 * @param arg1 The new modelelement
 	 */
 	@Override
 	public void add(int arg0, ModelElement arg1) {
@@ -85,11 +78,10 @@ public class DiagramNewElementsList extends BasicInternalEList<ModelElement> {
 	}
 
 	/**
-	 * Appends the new modelelements to the project. There is no need to add it
-	 * to the elements list, cause the diagram code does this additionally.
+	 * Appends the new modelelements to the project. There is no need to add it to the elements list, cause the diagram
+	 * code does this additionally.
 	 * 
-	 * @param arg0
-	 *            The list of new modelelements
+	 * @param arg0 The list of new modelelements
 	 * @return true if the list changed as a result of the calls
 	 */
 	@Override
@@ -98,13 +90,11 @@ public class DiagramNewElementsList extends BasicInternalEList<ModelElement> {
 	}
 
 	/**
-	 * Inserts the new modelelements to the project. There is no need to add it
-	 * to the elements list, cause the diagram code does this additionally.
+	 * Inserts the new modelelements to the project. There is no need to add it to the elements list, cause the diagram
+	 * code does this additionally.
 	 * 
-	 * @param arg0
-	 *            The position to insert
-	 * @param arg1
-	 *            The list of new modelelements
+	 * @param arg0 The position to insert
+	 * @param arg1 The list of new modelelements
 	 * @return true if the list changed as a result of the calls
 	 */
 	@Override

@@ -1,8 +1,7 @@
 /**
- * <copyright> Copyright (c) 2008 Jonas Helming, Maximilian Koegel. All rights reserved. This program and the accompanying materials are made available under the terms of the Eclipse Public License v1.0 which accompanies this distribution, and is available at http://www.eclipse.org/legal/epl-v10.html
- * </copyright>
- *
- * $Id$
+ * <copyright> Copyright (c) 2008 Jonas Helming, Maximilian Koegel. All rights reserved. This program and the
+ * accompanying materials are made available under the terms of the Eclipse Public License v1.0 which accompanies this
+ * distribution, and is available at http://www.eclipse.org/legal/epl-v10.html </copyright> $Id$
  */
 package org.unicase.model.change.impl;
 
@@ -20,24 +19,23 @@ import org.unicase.model.change.ModelChangePackage;
 import org.unicase.model.rationale.impl.ProposalImpl;
 
 /**
- * <!-- begin-user-doc --> An implementation of the model object '
- * <em><b>Merging Proposal</b></em>'. <!-- end-user-doc -->
+ * <!-- begin-user-doc --> An implementation of the model object ' <em><b>Merging Proposal</b></em>'. <!-- end-user-doc
+ * -->
  * <p>
  * The following features are implemented:
  * <ul>
- *   <li>{@link org.unicase.model.change.impl.MergingProposalImpl#getConflictingProposals <em>Conflicting Proposals</em>}</li>
- *   <li>{@link org.unicase.model.change.impl.MergingProposalImpl#getPendingChanges <em>Pending Changes</em>}</li>
+ * <li>{@link org.unicase.model.change.impl.MergingProposalImpl#getConflictingProposals <em>Conflicting Proposals</em>}</li>
+ * <li>{@link org.unicase.model.change.impl.MergingProposalImpl#getPendingChanges <em>Pending Changes</em>}</li>
  * </ul>
  * </p>
- *
+ * 
  * @generated
  */
-public class MergingProposalImpl extends ProposalImpl implements
-		MergingProposal {
+public class MergingProposalImpl extends ProposalImpl implements MergingProposal {
 	/**
-	 * The cached value of the '{@link #getConflictingProposals() <em>Conflicting Proposals</em>}' reference list.
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
+	 * The cached value of the '{@link #getConflictingProposals() <em>Conflicting Proposals</em>}' reference list. <!--
+	 * begin-user-doc --> <!-- end-user-doc -->
+	 * 
 	 * @see #getConflictingProposals()
 	 * @generated
 	 * @ordered
@@ -45,9 +43,9 @@ public class MergingProposalImpl extends ProposalImpl implements
 	protected EList<MergingProposal> conflictingProposals;
 
 	/**
-	 * The cached value of the '{@link #getPendingChanges() <em>Pending Changes</em>}' reference.
-	 * <!-- begin-user-doc --> <!--
-	 * end-user-doc -->
+	 * The cached value of the '{@link #getPendingChanges() <em>Pending Changes</em>}' reference. <!-- begin-user-doc
+	 * --> <!-- end-user-doc -->
+	 * 
 	 * @see #getPendingChanges()
 	 * @generated
 	 * @ordered
@@ -56,6 +54,7 @@ public class MergingProposalImpl extends ProposalImpl implements
 
 	/**
 	 * <!-- begin-user-doc --> <!-- end-user-doc -->
+	 * 
 	 * @generated
 	 */
 	protected MergingProposalImpl() {
@@ -64,6 +63,7 @@ public class MergingProposalImpl extends ProposalImpl implements
 
 	/**
 	 * <!-- begin-user-doc --> <!-- end-user-doc -->
+	 * 
 	 * @generated
 	 */
 	@Override
@@ -73,19 +73,20 @@ public class MergingProposalImpl extends ProposalImpl implements
 
 	/**
 	 * <!-- begin-user-doc --> <!-- end-user-doc -->
+	 * 
 	 * @generated
 	 */
 	public EList<MergingProposal> getConflictingProposals() {
 		if (conflictingProposals == null) {
-			conflictingProposals = new EObjectResolvingEList<MergingProposal>(
-					MergingProposal.class, this,
-					ChangePackage.MERGING_PROPOSAL__CONFLICTING_PROPOSALS);
+			conflictingProposals = new EObjectResolvingEList<MergingProposal>(MergingProposal.class, this,
+				ChangePackage.MERGING_PROPOSAL__CONFLICTING_PROPOSALS);
 		}
 		return conflictingProposals;
 	}
 
 	/**
 	 * <!-- begin-user-doc --> <!-- end-user-doc -->
+	 * 
 	 * @generated
 	 */
 	public ModelChangePackage getPendingChanges() {
@@ -95,8 +96,7 @@ public class MergingProposalImpl extends ProposalImpl implements
 			if (pendingChanges != oldPendingChanges) {
 				if (eNotificationRequired())
 					eNotify(new ENotificationImpl(this, Notification.RESOLVE,
-							ChangePackage.MERGING_PROPOSAL__PENDING_CHANGES,
-							oldPendingChanges, pendingChanges));
+						ChangePackage.MERGING_PROPOSAL__PENDING_CHANGES, oldPendingChanges, pendingChanges));
 			}
 		}
 		return pendingChanges;
@@ -104,6 +104,7 @@ public class MergingProposalImpl extends ProposalImpl implements
 
 	/**
 	 * <!-- begin-user-doc --> <!-- end-user-doc -->
+	 * 
 	 * @generated
 	 */
 	public ModelChangePackage basicGetPendingChanges() {
@@ -112,19 +113,20 @@ public class MergingProposalImpl extends ProposalImpl implements
 
 	/**
 	 * <!-- begin-user-doc --> <!-- end-user-doc -->
+	 * 
 	 * @generated
 	 */
 	public void setPendingChanges(ModelChangePackage newPendingChanges) {
 		ModelChangePackage oldPendingChanges = pendingChanges;
 		pendingChanges = newPendingChanges;
 		if (eNotificationRequired())
-			eNotify(new ENotificationImpl(this, Notification.SET,
-					ChangePackage.MERGING_PROPOSAL__PENDING_CHANGES,
-					oldPendingChanges, pendingChanges));
+			eNotify(new ENotificationImpl(this, Notification.SET, ChangePackage.MERGING_PROPOSAL__PENDING_CHANGES,
+				oldPendingChanges, pendingChanges));
 	}
 
 	/**
 	 * <!-- begin-user-doc --> <!-- end-user-doc -->
+	 * 
 	 * @generated
 	 */
 	@Override
@@ -142,6 +144,7 @@ public class MergingProposalImpl extends ProposalImpl implements
 
 	/**
 	 * <!-- begin-user-doc --> <!-- end-user-doc -->
+	 * 
 	 * @generated
 	 */
 	@SuppressWarnings("unchecked")
@@ -150,8 +153,7 @@ public class MergingProposalImpl extends ProposalImpl implements
 		switch (featureID) {
 		case ChangePackage.MERGING_PROPOSAL__CONFLICTING_PROPOSALS:
 			getConflictingProposals().clear();
-			getConflictingProposals().addAll(
-					(Collection<? extends MergingProposal>) newValue);
+			getConflictingProposals().addAll((Collection<? extends MergingProposal>) newValue);
 			return;
 		case ChangePackage.MERGING_PROPOSAL__PENDING_CHANGES:
 			setPendingChanges((ModelChangePackage) newValue);
@@ -162,6 +164,7 @@ public class MergingProposalImpl extends ProposalImpl implements
 
 	/**
 	 * <!-- begin-user-doc --> <!-- end-user-doc -->
+	 * 
 	 * @generated
 	 */
 	@Override
@@ -179,14 +182,14 @@ public class MergingProposalImpl extends ProposalImpl implements
 
 	/**
 	 * <!-- begin-user-doc --> <!-- end-user-doc -->
+	 * 
 	 * @generated
 	 */
 	@Override
 	public boolean eIsSet(int featureID) {
 		switch (featureID) {
 		case ChangePackage.MERGING_PROPOSAL__CONFLICTING_PROPOSALS:
-			return conflictingProposals != null
-					&& !conflictingProposals.isEmpty();
+			return conflictingProposals != null && !conflictingProposals.isEmpty();
 		case ChangePackage.MERGING_PROPOSAL__PENDING_CHANGES:
 			return pendingChanges != null;
 		}

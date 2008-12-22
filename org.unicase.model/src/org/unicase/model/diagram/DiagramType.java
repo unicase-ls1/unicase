@@ -1,8 +1,7 @@
 /**
- * <copyright> Copyright (c) 2008 Jonas Helming, Maximilian Koegel. All rights reserved. This program and the accompanying materials are made available under the terms of the Eclipse Public License v1.0 which accompanies this distribution, and is available at http://www.eclipse.org/legal/epl-v10.html
- * </copyright>
- *
- * $Id$
+ * <copyright> Copyright (c) 2008 Jonas Helming, Maximilian Koegel. All rights reserved. This program and the
+ * accompanying materials are made available under the terms of the Eclipse Public License v1.0 which accompanies this
+ * distribution, and is available at http://www.eclipse.org/legal/epl-v10.html </copyright> $Id$
  */
 package org.unicase.model.diagram;
 
@@ -13,19 +12,17 @@ import java.util.List;
 import org.eclipse.emf.common.util.Enumerator;
 
 /**
- * <!-- begin-user-doc -->
- * A representation of the literals of the enumeration '<em><b>Type</b></em>',
- * and utility methods for working with them.
- * <!-- end-user-doc -->
+ * <!-- begin-user-doc --> A representation of the literals of the enumeration '<em><b>Type</b></em>', and utility
+ * methods for working with them. <!-- end-user-doc -->
+ * 
  * @see org.unicase.model.diagram.DiagramPackage#getDiagramType()
  * @model
  * @generated
  */
 public enum DiagramType implements Enumerator {
 	/**
-	 * The '<em><b>CLASS DIAGRAM</b></em>' literal object.
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
+	 * The '<em><b>CLASS DIAGRAM</b></em>' literal object. <!-- begin-user-doc --> <!-- end-user-doc -->
+	 * 
 	 * @see #CLASS_DIAGRAM_VALUE
 	 * @generated
 	 * @ordered
@@ -33,9 +30,8 @@ public enum DiagramType implements Enumerator {
 	CLASS_DIAGRAM(0, "CLASS_DIAGRAM", "CLASS_DIAGRAM"),
 
 	/**
-	 * The '<em><b>USECASE DIAGRAM</b></em>' literal object.
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
+	 * The '<em><b>USECASE DIAGRAM</b></em>' literal object. <!-- begin-user-doc --> <!-- end-user-doc -->
+	 * 
 	 * @see #USECASE_DIAGRAM_VALUE
 	 * @generated
 	 * @ordered
@@ -43,17 +39,16 @@ public enum DiagramType implements Enumerator {
 	USECASE_DIAGRAM(1, "USECASE_DIAGRAM", "USECASE_DIAGRAM"),
 
 	/**
-	 * The '<em><b>COMPONENT DIAGRAM</b></em>' literal object.
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
+	 * The '<em><b>COMPONENT DIAGRAM</b></em>' literal object. <!-- begin-user-doc --> <!-- end-user-doc -->
+	 * 
 	 * @see #COMPONENT_DIAGRAM_VALUE
 	 * @generated
 	 * @ordered
 	 */
 	COMPONENT_DIAGRAM(2, "COMPONENT_DIAGRAM", "COMPONENT_DIAGRAM"), /**
-	 * The '<em><b>STATE DIAGRAM</b></em>' literal object.
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
+	 * The '<em><b>STATE DIAGRAM</b></em>' literal
+	 * object. <!-- begin-user-doc --> <!-- end-user-doc -->
+	 * 
 	 * @see #STATE_DIAGRAM_VALUE
 	 * @generated
 	 * @ordered
@@ -61,13 +56,13 @@ public enum DiagramType implements Enumerator {
 	STATE_DIAGRAM(3, "STATE_DIAGRAM", "STATE_DIAGRAM");
 
 	/**
-	 * The '<em><b>CLASS DIAGRAM</b></em>' literal value.
-	 * <!-- begin-user-doc -->
+	 * The '<em><b>CLASS DIAGRAM</b></em>' literal value. <!-- begin-user-doc -->
 	 * <p>
-	 * If the meaning of '<em><b>CLASS DIAGRAM</b></em>' literal object isn't clear,
-	 * there really should be more of a description here...
+	 * If the meaning of '<em><b>CLASS DIAGRAM</b></em>' literal object isn't clear, there really should be more of a
+	 * description here...
 	 * </p>
 	 * <!-- end-user-doc -->
+	 * 
 	 * @see #CLASS_DIAGRAM
 	 * @model
 	 * @generated
@@ -76,13 +71,13 @@ public enum DiagramType implements Enumerator {
 	public static final int CLASS_DIAGRAM_VALUE = 0;
 
 	/**
-	 * The '<em><b>USECASE DIAGRAM</b></em>' literal value.
-	 * <!-- begin-user-doc -->
+	 * The '<em><b>USECASE DIAGRAM</b></em>' literal value. <!-- begin-user-doc -->
 	 * <p>
-	 * If the meaning of '<em><b>USECASE DIAGRAM</b></em>' literal object isn't clear,
-	 * there really should be more of a description here...
+	 * If the meaning of '<em><b>USECASE DIAGRAM</b></em>' literal object isn't clear, there really should be more of a
+	 * description here...
 	 * </p>
 	 * <!-- end-user-doc -->
+	 * 
 	 * @see #USECASE_DIAGRAM
 	 * @model
 	 * @generated
@@ -91,13 +86,13 @@ public enum DiagramType implements Enumerator {
 	public static final int USECASE_DIAGRAM_VALUE = 1;
 
 	/**
-	 * The '<em><b>COMPONENT DIAGRAM</b></em>' literal value.
-	 * <!-- begin-user-doc -->
+	 * The '<em><b>COMPONENT DIAGRAM</b></em>' literal value. <!-- begin-user-doc -->
 	 * <p>
-	 * If the meaning of '<em><b>COMPONENT DIAGRAM</b></em>' literal object isn't clear,
-	 * there really should be more of a description here...
+	 * If the meaning of '<em><b>COMPONENT DIAGRAM</b></em>' literal object isn't clear, there really should be more of
+	 * a description here...
 	 * </p>
 	 * <!-- end-user-doc -->
+	 * 
 	 * @see #COMPONENT_DIAGRAM
 	 * @model
 	 * @generated
@@ -106,13 +101,13 @@ public enum DiagramType implements Enumerator {
 	public static final int COMPONENT_DIAGRAM_VALUE = 2;
 
 	/**
-	 * The '<em><b>STATE DIAGRAM</b></em>' literal value.
-	 * <!-- begin-user-doc -->
+	 * The '<em><b>STATE DIAGRAM</b></em>' literal value. <!-- begin-user-doc -->
 	 * <p>
-	 * If the meaning of '<em><b>STATE DIAGRAM</b></em>' literal object isn't clear,
-	 * there really should be more of a description here...
+	 * If the meaning of '<em><b>STATE DIAGRAM</b></em>' literal object isn't clear, there really should be more of a
+	 * description here...
 	 * </p>
 	 * <!-- end-user-doc -->
+	 * 
 	 * @see #STATE_DIAGRAM
 	 * @model
 	 * @generated
@@ -121,27 +116,25 @@ public enum DiagramType implements Enumerator {
 	public static final int STATE_DIAGRAM_VALUE = 3;
 
 	/**
-	 * An array of all the '<em><b>Type</b></em>' enumerators.
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
+	 * An array of all the '<em><b>Type</b></em>' enumerators. <!-- begin-user-doc --> <!-- end-user-doc -->
+	 * 
 	 * @generated
 	 */
-	private static final DiagramType[] VALUES_ARRAY = new DiagramType[] {
-			CLASS_DIAGRAM, USECASE_DIAGRAM, COMPONENT_DIAGRAM, STATE_DIAGRAM, };
+	private static final DiagramType[] VALUES_ARRAY = new DiagramType[] { CLASS_DIAGRAM, USECASE_DIAGRAM,
+		COMPONENT_DIAGRAM, STATE_DIAGRAM, };
 
 	/**
-	 * A public read-only list of all the '<em><b>Type</b></em>' enumerators.
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
+	 * A public read-only list of all the '<em><b>Type</b></em>' enumerators. <!-- begin-user-doc --> <!-- end-user-doc
+	 * -->
+	 * 
 	 * @generated
 	 */
-	public static final List<DiagramType> VALUES = Collections
-			.unmodifiableList(Arrays.asList(VALUES_ARRAY));
+	public static final List<DiagramType> VALUES = Collections.unmodifiableList(Arrays.asList(VALUES_ARRAY));
 
 	/**
-	 * Returns the '<em><b>Type</b></em>' literal with the specified literal value.
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
+	 * Returns the '<em><b>Type</b></em>' literal with the specified literal value. <!-- begin-user-doc --> <!--
+	 * end-user-doc -->
+	 * 
 	 * @generated
 	 */
 	public static DiagramType get(String literal) {
@@ -155,9 +148,8 @@ public enum DiagramType implements Enumerator {
 	}
 
 	/**
-	 * Returns the '<em><b>Type</b></em>' literal with the specified name.
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
+	 * Returns the '<em><b>Type</b></em>' literal with the specified name. <!-- begin-user-doc --> <!-- end-user-doc -->
+	 * 
 	 * @generated
 	 */
 	public static DiagramType getByName(String name) {
@@ -171,9 +163,9 @@ public enum DiagramType implements Enumerator {
 	}
 
 	/**
-	 * Returns the '<em><b>Type</b></em>' literal with the specified integer value.
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
+	 * Returns the '<em><b>Type</b></em>' literal with the specified integer value. <!-- begin-user-doc --> <!--
+	 * end-user-doc -->
+	 * 
 	 * @generated
 	 */
 	public static DiagramType get(int value) {
@@ -191,30 +183,29 @@ public enum DiagramType implements Enumerator {
 	}
 
 	/**
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
+	 * <!-- begin-user-doc --> <!-- end-user-doc -->
+	 * 
 	 * @generated
 	 */
 	private final int value;
 
 	/**
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
+	 * <!-- begin-user-doc --> <!-- end-user-doc -->
+	 * 
 	 * @generated
 	 */
 	private final String name;
 
 	/**
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
+	 * <!-- begin-user-doc --> <!-- end-user-doc -->
+	 * 
 	 * @generated
 	 */
 	private final String literal;
 
 	/**
-	 * Only this class can construct instances.
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
+	 * Only this class can construct instances. <!-- begin-user-doc --> <!-- end-user-doc -->
+	 * 
 	 * @generated
 	 */
 	private DiagramType(int value, String name, String literal) {
@@ -224,8 +215,8 @@ public enum DiagramType implements Enumerator {
 	}
 
 	/**
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
+	 * <!-- begin-user-doc --> <!-- end-user-doc -->
+	 * 
 	 * @generated
 	 */
 	public int getValue() {
@@ -233,8 +224,8 @@ public enum DiagramType implements Enumerator {
 	}
 
 	/**
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
+	 * <!-- begin-user-doc --> <!-- end-user-doc -->
+	 * 
 	 * @generated
 	 */
 	public String getName() {
@@ -242,8 +233,8 @@ public enum DiagramType implements Enumerator {
 	}
 
 	/**
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
+	 * <!-- begin-user-doc --> <!-- end-user-doc -->
+	 * 
 	 * @generated
 	 */
 	public String getLiteral() {
@@ -251,9 +242,9 @@ public enum DiagramType implements Enumerator {
 	}
 
 	/**
-	 * Returns the literal value of the enumerator, which is its string representation.
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
+	 * Returns the literal value of the enumerator, which is its string representation. <!-- begin-user-doc --> <!--
+	 * end-user-doc -->
+	 * 
 	 * @generated
 	 */
 	@Override
@@ -261,4 +252,4 @@ public enum DiagramType implements Enumerator {
 		return literal;
 	}
 
-} //DiagramType
+} // DiagramType

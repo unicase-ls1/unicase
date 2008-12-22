@@ -31,13 +31,11 @@ public class ScenarioUsecaseConstraint extends AbstractModelConstraint {
 			if (eObj instanceof Scenario) {
 				EList<UseCase> useCases = ((Scenario) eObj).getInstantiatedUseCases();
 				if (useCases.size() < 1) {
-					EStructuralFeature errorFeature = ValidationConstraintHelper
-							.getErrorFeatureForModelElement(
-									(ModelElement) eObj, "instantiatedUseCases");
+					EStructuralFeature errorFeature = ValidationConstraintHelper.getErrorFeatureForModelElement(
+						(ModelElement) eObj, "instantiatedUseCases");
 					ctx.addResult(errorFeature);
-					return ctx.createFailureStatus(new Object[] { eObj.eClass()
-							.getName()
-							+ ": '" + ((Scenario) eObj).getName() + "'" });
+					return ctx.createFailureStatus(new Object[] { eObj.eClass().getName() + ": '"
+						+ ((Scenario) eObj).getName() + "'" });
 				}
 			}
 		}

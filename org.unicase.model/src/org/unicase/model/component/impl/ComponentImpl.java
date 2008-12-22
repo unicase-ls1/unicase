@@ -1,8 +1,7 @@
 /**
- * <copyright> Copyright (c) 2008 Jonas Helming, Maximilian Koegel. All rights reserved. This program and the accompanying materials are made available under the terms of the Eclipse Public License v1.0 which accompanies this distribution, and is available at http://www.eclipse.org/legal/epl-v10.html
- * </copyright>
- *
- * $Id$
+ * <copyright> Copyright (c) 2008 Jonas Helming, Maximilian Koegel. All rights reserved. This program and the
+ * accompanying materials are made available under the terms of the Eclipse Public License v1.0 which accompanies this
+ * distribution, and is available at http://www.eclipse.org/legal/epl-v10.html </copyright> $Id$
  */
 package org.unicase.model.component.impl;
 
@@ -22,24 +21,24 @@ import org.unicase.model.component.ComponentService;
 import org.unicase.model.impl.ModelElementImpl;
 
 /**
- * <!-- begin-user-doc --> An implementation of the model object '
- * <em><b>Component</b></em>'. <!-- end-user-doc -->
+ * <!-- begin-user-doc --> An implementation of the model object ' <em><b>Component</b></em>'. <!-- end-user-doc -->
  * <p>
  * The following features are implemented:
  * <ul>
- *   <li>{@link org.unicase.model.component.impl.ComponentImpl#getPackages <em>Packages</em>}</li>
- *   <li>{@link org.unicase.model.component.impl.ComponentImpl#getOfferedServices <em>Offered Services</em>}</li>
- *   <li>{@link org.unicase.model.component.impl.ComponentImpl#getConsumedServices <em>Consumed Services</em>}</li>
- *   <li>{@link org.unicase.model.component.impl.ComponentImpl#getSubsystems <em>Subsystems</em>}</li>
+ * <li>{@link org.unicase.model.component.impl.ComponentImpl#getPackages <em>Packages</em>}</li>
+ * <li>{@link org.unicase.model.component.impl.ComponentImpl#getOfferedServices <em>Offered Services</em>}</li>
+ * <li>{@link org.unicase.model.component.impl.ComponentImpl#getConsumedServices <em>Consumed Services</em>}</li>
+ * <li>{@link org.unicase.model.component.impl.ComponentImpl#getSubsystems <em>Subsystems</em>}</li>
  * </ul>
  * </p>
- *
+ * 
  * @generated
  */
 public class ComponentImpl extends ModelElementImpl implements Component {
 	/**
-	 * The cached value of the '{@link #getPackages() <em>Packages</em>}' reference list.
-	 * <!-- begin-user-doc --> <!-- end-user-doc -->
+	 * The cached value of the '{@link #getPackages() <em>Packages</em>}' reference list. <!-- begin-user-doc --> <!--
+	 * end-user-doc -->
+	 * 
 	 * @see #getPackages()
 	 * @generated
 	 * @ordered
@@ -47,9 +46,8 @@ public class ComponentImpl extends ModelElementImpl implements Component {
 	protected EList<org.unicase.model.classes.Package> packages;
 
 	/**
-	 * The cached value of the '{@link #getOfferedServices()
-	 * <em>Offered Services</em>}' containment reference list. <!--
-	 * begin-user-doc --> <!-- end-user-doc -->
+	 * The cached value of the '{@link #getOfferedServices() <em>Offered Services</em>}' containment reference list.
+	 * <!-- begin-user-doc --> <!-- end-user-doc -->
 	 * 
 	 * @see #getOfferedServices()
 	 * @generated
@@ -58,9 +56,9 @@ public class ComponentImpl extends ModelElementImpl implements Component {
 	protected EList<ComponentService> offeredServices;
 
 	/**
-	 * The cached value of the '{@link #getConsumedServices() <em>Consumed Services</em>}' reference list.
-	 * <!-- begin-user-doc --> <!--
-	 * end-user-doc -->
+	 * The cached value of the '{@link #getConsumedServices() <em>Consumed Services</em>}' reference list. <!--
+	 * begin-user-doc --> <!-- end-user-doc -->
+	 * 
 	 * @see #getConsumedServices()
 	 * @generated
 	 * @ordered
@@ -68,9 +66,9 @@ public class ComponentImpl extends ModelElementImpl implements Component {
 	protected EList<ComponentService> consumedServices;
 
 	/**
-	 * The cached value of the '{@link #getSubsystems() <em>Subsystems</em>}' reference list.
-	 * <!-- begin-user-doc -->
+	 * The cached value of the '{@link #getSubsystems() <em>Subsystems</em>}' reference list. <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
+	 * 
 	 * @see #getSubsystems()
 	 * @generated
 	 * @ordered
@@ -79,6 +77,7 @@ public class ComponentImpl extends ModelElementImpl implements Component {
 
 	/**
 	 * <!-- begin-user-doc --> <!-- end-user-doc -->
+	 * 
 	 * @generated
 	 */
 	protected ComponentImpl() {
@@ -87,6 +86,7 @@ public class ComponentImpl extends ModelElementImpl implements Component {
 
 	/**
 	 * <!-- begin-user-doc --> <!-- end-user-doc -->
+	 * 
 	 * @generated
 	 */
 	@Override
@@ -96,98 +96,94 @@ public class ComponentImpl extends ModelElementImpl implements Component {
 
 	/**
 	 * <!-- begin-user-doc --> <!-- end-user-doc -->
+	 * 
 	 * @generated
 	 */
 	public EList<org.unicase.model.classes.Package> getPackages() {
 		if (packages == null) {
 			packages = new EObjectResolvingEList<org.unicase.model.classes.Package>(
-					org.unicase.model.classes.Package.class, this,
-					ComponentPackage.COMPONENT__PACKAGES);
+				org.unicase.model.classes.Package.class, this, ComponentPackage.COMPONENT__PACKAGES);
 		}
 		return packages;
 	}
 
 	/**
 	 * <!-- begin-user-doc --> <!-- end-user-doc -->
+	 * 
 	 * @generated
 	 */
 	public EList<ComponentService> getOfferedServices() {
 		if (offeredServices == null) {
 			offeredServices = new EObjectContainmentWithInverseEList.Resolving<ComponentService>(
-					ComponentService.class, this,
-					ComponentPackage.COMPONENT__OFFERED_SERVICES,
-					ComponentPackage.COMPONENT_SERVICE__OFFERING_COMPONENT);
+				ComponentService.class, this, ComponentPackage.COMPONENT__OFFERED_SERVICES,
+				ComponentPackage.COMPONENT_SERVICE__OFFERING_COMPONENT);
 		}
 		return offeredServices;
 	}
 
 	/**
 	 * <!-- begin-user-doc --> <!-- end-user-doc -->
+	 * 
 	 * @generated
 	 */
 	public EList<ComponentService> getConsumedServices() {
 		if (consumedServices == null) {
 			consumedServices = new EObjectWithInverseResolvingEList.ManyInverse<ComponentService>(
-					ComponentService.class, this,
-					ComponentPackage.COMPONENT__CONSUMED_SERVICES,
-					ComponentPackage.COMPONENT_SERVICE__CONSUMING_COMPONENTS);
+				ComponentService.class, this, ComponentPackage.COMPONENT__CONSUMED_SERVICES,
+				ComponentPackage.COMPONENT_SERVICE__CONSUMING_COMPONENTS);
 		}
 		return consumedServices;
 	}
 
 	/**
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
+	 * <!-- begin-user-doc --> <!-- end-user-doc -->
+	 * 
 	 * @generated
 	 */
 	public EList<org.unicase.model.classes.Package> getSubsystems() {
 		if (subsystems == null) {
 			subsystems = new EObjectResolvingEList<org.unicase.model.classes.Package>(
-					org.unicase.model.classes.Package.class, this,
-					ComponentPackage.COMPONENT__SUBSYSTEMS);
+				org.unicase.model.classes.Package.class, this, ComponentPackage.COMPONENT__SUBSYSTEMS);
 		}
 		return subsystems;
 	}
 
 	/**
 	 * <!-- begin-user-doc --> <!-- end-user-doc -->
+	 * 
 	 * @generated
 	 */
 	@SuppressWarnings("unchecked")
 	@Override
-	public NotificationChain eInverseAdd(InternalEObject otherEnd,
-			int featureID, NotificationChain msgs) {
+	public NotificationChain eInverseAdd(InternalEObject otherEnd, int featureID, NotificationChain msgs) {
 		switch (featureID) {
 		case ComponentPackage.COMPONENT__OFFERED_SERVICES:
-			return ((InternalEList<InternalEObject>) (InternalEList<?>) getOfferedServices())
-					.basicAdd(otherEnd, msgs);
+			return ((InternalEList<InternalEObject>) (InternalEList<?>) getOfferedServices()).basicAdd(otherEnd, msgs);
 		case ComponentPackage.COMPONENT__CONSUMED_SERVICES:
-			return ((InternalEList<InternalEObject>) (InternalEList<?>) getConsumedServices())
-					.basicAdd(otherEnd, msgs);
+			return ((InternalEList<InternalEObject>) (InternalEList<?>) getConsumedServices()).basicAdd(otherEnd, msgs);
 		}
 		return super.eInverseAdd(otherEnd, featureID, msgs);
 	}
 
 	/**
 	 * <!-- begin-user-doc --> <!-- end-user-doc -->
+	 * 
 	 * @generated
 	 */
 	@Override
-	public NotificationChain eInverseRemove(InternalEObject otherEnd,
-			int featureID, NotificationChain msgs) {
+	public NotificationChain eInverseRemove(InternalEObject otherEnd, int featureID, NotificationChain msgs) {
 		switch (featureID) {
 		case ComponentPackage.COMPONENT__OFFERED_SERVICES:
-			return ((InternalEList<?>) getOfferedServices()).basicRemove(
-					otherEnd, msgs);
+			return ((InternalEList<?>) getOfferedServices()).basicRemove(otherEnd, msgs);
 		case ComponentPackage.COMPONENT__CONSUMED_SERVICES:
-			return ((InternalEList<?>) getConsumedServices()).basicRemove(
-					otherEnd, msgs);
+			return ((InternalEList<?>) getConsumedServices()).basicRemove(otherEnd, msgs);
 		}
 		return super.eInverseRemove(otherEnd, featureID, msgs);
 	}
 
 	/**
 	 * <!-- begin-user-doc --> <!-- end-user-doc -->
+	 * 
 	 * @generated
 	 */
 	@Override
@@ -207,6 +203,7 @@ public class ComponentImpl extends ModelElementImpl implements Component {
 
 	/**
 	 * <!-- begin-user-doc --> <!-- end-user-doc -->
+	 * 
 	 * @generated
 	 */
 	@SuppressWarnings("unchecked")
@@ -215,25 +212,19 @@ public class ComponentImpl extends ModelElementImpl implements Component {
 		switch (featureID) {
 		case ComponentPackage.COMPONENT__PACKAGES:
 			getPackages().clear();
-			getPackages()
-					.addAll(
-							(Collection<? extends org.unicase.model.classes.Package>) newValue);
+			getPackages().addAll((Collection<? extends org.unicase.model.classes.Package>) newValue);
 			return;
 		case ComponentPackage.COMPONENT__OFFERED_SERVICES:
 			getOfferedServices().clear();
-			getOfferedServices().addAll(
-					(Collection<? extends ComponentService>) newValue);
+			getOfferedServices().addAll((Collection<? extends ComponentService>) newValue);
 			return;
 		case ComponentPackage.COMPONENT__CONSUMED_SERVICES:
 			getConsumedServices().clear();
-			getConsumedServices().addAll(
-					(Collection<? extends ComponentService>) newValue);
+			getConsumedServices().addAll((Collection<? extends ComponentService>) newValue);
 			return;
 		case ComponentPackage.COMPONENT__SUBSYSTEMS:
 			getSubsystems().clear();
-			getSubsystems()
-					.addAll(
-							(Collection<? extends org.unicase.model.classes.Package>) newValue);
+			getSubsystems().addAll((Collection<? extends org.unicase.model.classes.Package>) newValue);
 			return;
 		}
 		super.eSet(featureID, newValue);
@@ -241,6 +232,7 @@ public class ComponentImpl extends ModelElementImpl implements Component {
 
 	/**
 	 * <!-- begin-user-doc --> <!-- end-user-doc -->
+	 * 
 	 * @generated
 	 */
 	@Override
@@ -264,6 +256,7 @@ public class ComponentImpl extends ModelElementImpl implements Component {
 
 	/**
 	 * <!-- begin-user-doc --> <!-- end-user-doc -->
+	 * 
 	 * @generated
 	 */
 	@Override

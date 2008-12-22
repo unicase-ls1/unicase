@@ -29,17 +29,13 @@ public class ScenarioActorInstanceConstraint extends AbstractModelConstraint {
 
 		if (eType == EMFEventType.NULL) {
 			if (eObj instanceof Scenario) {
-				ActorInstance actorInstance = ((Scenario) eObj)
-						.getInitiatingActorInstance();
+				ActorInstance actorInstance = ((Scenario) eObj).getInitiatingActorInstance();
 				if (actorInstance == null) {
-					EStructuralFeature errorFeature = ValidationConstraintHelper
-							.getErrorFeatureForModelElement(
-									(ModelElement) eObj,
-									"initiatingActorInstance");
+					EStructuralFeature errorFeature = ValidationConstraintHelper.getErrorFeatureForModelElement(
+						(ModelElement) eObj, "initiatingActorInstance");
 					ctx.addResult(errorFeature);
-					return ctx.createFailureStatus(new Object[] { eObj.eClass()
-							.getName()
-							+ ": '" + ((Scenario) eObj).getName() + "'" });
+					return ctx.createFailureStatus(new Object[] { eObj.eClass().getName() + ": '"
+						+ ((Scenario) eObj).getName() + "'" });
 				}
 			}
 		}

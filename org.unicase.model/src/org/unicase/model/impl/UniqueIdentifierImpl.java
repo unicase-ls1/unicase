@@ -1,8 +1,7 @@
 /**
- * <copyright> Copyright (c) 2008 Jonas Helming, Maximilian Koegel. All rights reserved. This program and the accompanying materials are made available under the terms of the Eclipse Public License v1.0 which accompanies this distribution, and is available at http://www.eclipse.org/legal/epl-v10.html
- * </copyright>
- *
- * $Id$
+ * <copyright> Copyright (c) 2008 Jonas Helming, Maximilian Koegel. All rights reserved. This program and the
+ * accompanying materials are made available under the terms of the Eclipse Public License v1.0 which accompanies this
+ * distribution, and is available at http://www.eclipse.org/legal/epl-v10.html </copyright> $Id$
  */
 package org.unicase.model.impl;
 
@@ -15,23 +14,21 @@ import org.unicase.model.ModelPackage;
 import org.unicase.model.UniqueIdentifier;
 
 /**
- * <!-- begin-user-doc --> An implementation of the model object '
- * <em><b>Unique Identifier</b></em>'. <!-- end-user-doc -->
+ * <!-- begin-user-doc --> An implementation of the model object ' <em><b>Unique Identifier</b></em>'. <!-- end-user-doc
+ * -->
  * <p>
  * The following features are implemented:
  * <ul>
- *   <li>{@link org.unicase.model.impl.UniqueIdentifierImpl#getId <em>Id</em>}</li>
+ * <li>{@link org.unicase.model.impl.UniqueIdentifierImpl#getId <em>Id</em>}</li>
  * </ul>
  * </p>
- *
+ * 
  * @generated
  */
-public abstract class UniqueIdentifierImpl extends EObjectImpl implements
-		UniqueIdentifier {
+public abstract class UniqueIdentifierImpl extends EObjectImpl implements UniqueIdentifier {
 
 	/**
-	 * The default value of the '{@link #getId() <em>Id</em>}' attribute. <!--
-	 * begin-user-doc --> <!-- end-user-doc -->
+	 * The default value of the '{@link #getId() <em>Id</em>}' attribute. <!-- begin-user-doc --> <!-- end-user-doc -->
 	 * 
 	 * @see #getId()
 	 * @generated
@@ -40,8 +37,7 @@ public abstract class UniqueIdentifierImpl extends EObjectImpl implements
 	protected static final String ID_EDEFAULT = "Default Value Literal\t";
 
 	/**
-	 * The cached value of the '{@link #getId() <em>Id</em>}' attribute. <!--
-	 * begin-user-doc --> <!-- end-user-doc -->
+	 * The cached value of the '{@link #getId() <em>Id</em>}' attribute. <!-- begin-user-doc --> <!-- end-user-doc -->
 	 * 
 	 * @see #getId()
 	 * @generated
@@ -64,6 +60,7 @@ public abstract class UniqueIdentifierImpl extends EObjectImpl implements
 
 	/**
 	 * <!-- begin-user-doc -->. <!-- end-user-doc -->
+	 * 
 	 * @generated
 	 */
 	@Override
@@ -73,6 +70,7 @@ public abstract class UniqueIdentifierImpl extends EObjectImpl implements
 
 	/**
 	 * <!-- begin-user-doc --> <!-- end-user-doc -->
+	 * 
 	 * @generated
 	 */
 	public String getId() {
@@ -81,18 +79,19 @@ public abstract class UniqueIdentifierImpl extends EObjectImpl implements
 
 	/**
 	 * <!-- begin-user-doc --> <!-- end-user-doc -->
+	 * 
 	 * @generated
 	 */
 	public void setId(String newId) {
 		String oldId = id;
 		id = newId;
 		if (eNotificationRequired())
-			eNotify(new ENotificationImpl(this, Notification.SET,
-					ModelPackage.UNIQUE_IDENTIFIER__ID, oldId, id));
+			eNotify(new ENotificationImpl(this, Notification.SET, ModelPackage.UNIQUE_IDENTIFIER__ID, oldId, id));
 	}
 
 	/**
 	 * <!-- begin-user-doc --> <!-- end-user-doc -->
+	 * 
 	 * @generated
 	 */
 	@Override
@@ -106,6 +105,7 @@ public abstract class UniqueIdentifierImpl extends EObjectImpl implements
 
 	/**
 	 * <!-- begin-user-doc --> <!-- end-user-doc -->
+	 * 
 	 * @generated
 	 */
 	@Override
@@ -120,6 +120,7 @@ public abstract class UniqueIdentifierImpl extends EObjectImpl implements
 
 	/**
 	 * <!-- begin-user-doc --> <!-- end-user-doc -->
+	 * 
 	 * @generated
 	 */
 	@Override
@@ -134,6 +135,7 @@ public abstract class UniqueIdentifierImpl extends EObjectImpl implements
 
 	/**
 	 * <!-- begin-user-doc --> <!-- end-user-doc -->
+	 * 
 	 * @generated
 	 */
 	@Override
@@ -146,10 +148,9 @@ public abstract class UniqueIdentifierImpl extends EObjectImpl implements
 	}
 
 	/**
-	 * <!-- begin-user-doc --> 
-	 * Returns a string representation.
-	 * @return the string
-	 * <!-- end-user-doc -->
+	 * <!-- begin-user-doc --> Returns a string representation.
+	 * 
+	 * @return the string <!-- end-user-doc -->
 	 * @generated NOT
 	 */
 	@Override
@@ -166,8 +167,8 @@ public abstract class UniqueIdentifierImpl extends EObjectImpl implements
 	}
 
 	/**
-	 * Returns true if the two identifiers are identical. False in any other
-	 * case.
+	 * Returns true if the two identifiers are identical. False in any other case.
+	 * 
 	 * @param otherObject the other object
 	 * @return true if the two object are considered equal
 	 * @see java.lang.Object#equals(java.lang.Object)
@@ -183,8 +184,9 @@ public abstract class UniqueIdentifierImpl extends EObjectImpl implements
 		}
 	}
 
-	/** 
+	/**
 	 * {@inheritDoc}
+	 * 
 	 * @see java.lang.Object#hashCode()
 	 */
 	@Override

@@ -1,7 +1,7 @@
 /**
- * <copyright>Copyright (c) 2008 Jonas Helming, Maximilian Koegel. All rights reserved. This program and the accompanying materials are made available under the terms of the Eclipse Public License v1.0 which accompanies this distribution, and is available at http://www.eclipse.org/legal/epl-v10.html</copyright>
- *
- * $Id$
+ * <copyright>Copyright (c) 2008 Jonas Helming, Maximilian Koegel. All rights reserved. This program and the
+ * accompanying materials are made available under the terms of the Eclipse Public License v1.0 which accompanies this
+ * distribution, and is available at http://www.eclipse.org/legal/epl-v10.html</copyright> $Id$
  */
 package org.unicase.model.profile.impl;
 
@@ -21,24 +21,22 @@ import org.unicase.model.profile.ProfilePackage;
 import org.unicase.model.profile.Stereotype;
 
 /**
- * <!-- begin-user-doc -->
- * An implementation of the model object '<em><b>Profile</b></em>'.
- * <!-- end-user-doc -->
+ * <!-- begin-user-doc --> An implementation of the model object '<em><b>Profile</b></em>'. <!-- end-user-doc -->
  * <p>
  * The following features are implemented:
  * <ul>
- *   <li>{@link org.unicase.model.profile.impl.ProfileImpl#getAffectedContainers <em>Affected Containers</em>}</li>
- *   <li>{@link org.unicase.model.profile.impl.ProfileImpl#getStereotypes <em>Stereotypes</em>}</li>
+ * <li>{@link org.unicase.model.profile.impl.ProfileImpl#getAffectedContainers <em>Affected Containers</em>}</li>
+ * <li>{@link org.unicase.model.profile.impl.ProfileImpl#getStereotypes <em>Stereotypes</em>}</li>
  * </ul>
  * </p>
- *
+ * 
  * @generated
  */
 public class ProfileImpl extends ModelElementImpl implements Profile {
 	/**
-	 * The cached value of the '{@link #getAffectedContainers() <em>Affected Containers</em>}' reference list.
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
+	 * The cached value of the '{@link #getAffectedContainers() <em>Affected Containers</em>}' reference list. <!--
+	 * begin-user-doc --> <!-- end-user-doc -->
+	 * 
 	 * @see #getAffectedContainers()
 	 * @generated
 	 * @ordered
@@ -46,9 +44,9 @@ public class ProfileImpl extends ModelElementImpl implements Profile {
 	protected EList<ModelElement> affectedContainers;
 
 	/**
-	 * The cached value of the '{@link #getStereotypes() <em>Stereotypes</em>}' containment reference list.
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
+	 * The cached value of the '{@link #getStereotypes() <em>Stereotypes</em>}' containment reference list. <!--
+	 * begin-user-doc --> <!-- end-user-doc -->
+	 * 
 	 * @see #getStereotypes()
 	 * @generated
 	 * @ordered
@@ -56,8 +54,8 @@ public class ProfileImpl extends ModelElementImpl implements Profile {
 	protected EList<Stereotype> stereotypes;
 
 	/**
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
+	 * <!-- begin-user-doc --> <!-- end-user-doc -->
+	 * 
 	 * @generated
 	 */
 	protected ProfileImpl() {
@@ -65,8 +63,8 @@ public class ProfileImpl extends ModelElementImpl implements Profile {
 	}
 
 	/**
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
+	 * <!-- begin-user-doc --> <!-- end-user-doc -->
+	 * 
 	 * @generated
 	 */
 	@Override
@@ -75,70 +73,63 @@ public class ProfileImpl extends ModelElementImpl implements Profile {
 	}
 
 	/**
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
+	 * <!-- begin-user-doc --> <!-- end-user-doc -->
+	 * 
 	 * @generated
 	 */
 	public EList<ModelElement> getAffectedContainers() {
 		if (affectedContainers == null) {
-			affectedContainers = new EObjectResolvingEList<ModelElement>(
-					ModelElement.class, this,
-					ProfilePackage.PROFILE__AFFECTED_CONTAINERS);
+			affectedContainers = new EObjectResolvingEList<ModelElement>(ModelElement.class, this,
+				ProfilePackage.PROFILE__AFFECTED_CONTAINERS);
 		}
 		return affectedContainers;
 	}
 
 	/**
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
+	 * <!-- begin-user-doc --> <!-- end-user-doc -->
+	 * 
 	 * @generated
 	 */
 	public EList<Stereotype> getStereotypes() {
 		if (stereotypes == null) {
-			stereotypes = new EObjectContainmentWithInverseEList.Resolving<Stereotype>(
-					Stereotype.class, this,
-					ProfilePackage.PROFILE__STEREOTYPES,
-					ProfilePackage.STEREOTYPE__PROFILE);
+			stereotypes = new EObjectContainmentWithInverseEList.Resolving<Stereotype>(Stereotype.class, this,
+				ProfilePackage.PROFILE__STEREOTYPES, ProfilePackage.STEREOTYPE__PROFILE);
 		}
 		return stereotypes;
 	}
 
 	/**
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
+	 * <!-- begin-user-doc --> <!-- end-user-doc -->
+	 * 
 	 * @generated
 	 */
 	@SuppressWarnings("unchecked")
 	@Override
-	public NotificationChain eInverseAdd(InternalEObject otherEnd,
-			int featureID, NotificationChain msgs) {
+	public NotificationChain eInverseAdd(InternalEObject otherEnd, int featureID, NotificationChain msgs) {
 		switch (featureID) {
 		case ProfilePackage.PROFILE__STEREOTYPES:
-			return ((InternalEList<InternalEObject>) (InternalEList<?>) getStereotypes())
-					.basicAdd(otherEnd, msgs);
+			return ((InternalEList<InternalEObject>) (InternalEList<?>) getStereotypes()).basicAdd(otherEnd, msgs);
 		}
 		return super.eInverseAdd(otherEnd, featureID, msgs);
 	}
 
 	/**
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
+	 * <!-- begin-user-doc --> <!-- end-user-doc -->
+	 * 
 	 * @generated
 	 */
 	@Override
-	public NotificationChain eInverseRemove(InternalEObject otherEnd,
-			int featureID, NotificationChain msgs) {
+	public NotificationChain eInverseRemove(InternalEObject otherEnd, int featureID, NotificationChain msgs) {
 		switch (featureID) {
 		case ProfilePackage.PROFILE__STEREOTYPES:
-			return ((InternalEList<?>) getStereotypes()).basicRemove(otherEnd,
-					msgs);
+			return ((InternalEList<?>) getStereotypes()).basicRemove(otherEnd, msgs);
 		}
 		return super.eInverseRemove(otherEnd, featureID, msgs);
 	}
 
 	/**
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
+	 * <!-- begin-user-doc --> <!-- end-user-doc -->
+	 * 
 	 * @generated
 	 */
 	@Override
@@ -153,8 +144,8 @@ public class ProfileImpl extends ModelElementImpl implements Profile {
 	}
 
 	/**
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
+	 * <!-- begin-user-doc --> <!-- end-user-doc -->
+	 * 
 	 * @generated
 	 */
 	@SuppressWarnings("unchecked")
@@ -163,21 +154,19 @@ public class ProfileImpl extends ModelElementImpl implements Profile {
 		switch (featureID) {
 		case ProfilePackage.PROFILE__AFFECTED_CONTAINERS:
 			getAffectedContainers().clear();
-			getAffectedContainers().addAll(
-					(Collection<? extends ModelElement>) newValue);
+			getAffectedContainers().addAll((Collection<? extends ModelElement>) newValue);
 			return;
 		case ProfilePackage.PROFILE__STEREOTYPES:
 			getStereotypes().clear();
-			getStereotypes()
-					.addAll((Collection<? extends Stereotype>) newValue);
+			getStereotypes().addAll((Collection<? extends Stereotype>) newValue);
 			return;
 		}
 		super.eSet(featureID, newValue);
 	}
 
 	/**
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
+	 * <!-- begin-user-doc --> <!-- end-user-doc -->
+	 * 
 	 * @generated
 	 */
 	@Override
@@ -194,8 +183,8 @@ public class ProfileImpl extends ModelElementImpl implements Profile {
 	}
 
 	/**
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
+	 * <!-- begin-user-doc --> <!-- end-user-doc -->
+	 * 
 	 * @generated
 	 */
 	@Override
@@ -209,4 +198,4 @@ public class ProfileImpl extends ModelElementImpl implements Profile {
 		return super.eIsSet(featureID);
 	}
 
-} //ProfileImpl
+} // ProfileImpl

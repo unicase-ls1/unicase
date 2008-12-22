@@ -1,8 +1,7 @@
 /**
- * <copyright> Copyright (c) 2008 Jonas Helming, Maximilian Koegel. All rights reserved. This program and the accompanying materials are made available under the terms of the Eclipse Public License v1.0 which accompanies this distribution, and is available at http://www.eclipse.org/legal/epl-v10.html
- * </copyright>
- *
- * $Id$
+ * <copyright> Copyright (c) 2008 Jonas Helming, Maximilian Koegel. All rights reserved. This program and the
+ * accompanying materials are made available under the terms of the Eclipse Public License v1.0 which accompanies this
+ * distribution, and is available at http://www.eclipse.org/legal/epl-v10.html </copyright> $Id$
  */
 package org.unicase.model.bug.impl;
 
@@ -34,35 +33,34 @@ import org.unicase.model.task.WorkItem;
 import org.unicase.model.task.WorkPackage;
 
 /**
- * <!-- begin-user-doc --> An implementation of the model object '
- * <em><b>Report</b></em>'. <!-- end-user-doc -->
+ * <!-- begin-user-doc --> An implementation of the model object ' <em><b>Report</b></em>'. <!-- end-user-doc -->
  * <p>
  * The following features are implemented:
  * <ul>
- *   <li>{@link org.unicase.model.bug.impl.BugReportImpl#getContainingWorkpackage <em>Containing Workpackage</em>}</li>
- *   <li>{@link org.unicase.model.bug.impl.BugReportImpl#getAssociatedChangePackages <em>Associated Change Packages</em>}</li>
- *   <li>{@link org.unicase.model.bug.impl.BugReportImpl#getPredecessors <em>Predecessors</em>}</li>
- *   <li>{@link org.unicase.model.bug.impl.BugReportImpl#getSuccessors <em>Successors</em>}</li>
- *   <li>{@link org.unicase.model.bug.impl.BugReportImpl#getAssignee <em>Assignee</em>}</li>
- *   <li>{@link org.unicase.model.bug.impl.BugReportImpl#getParticipants <em>Participants</em>}</li>
- *   <li>{@link org.unicase.model.bug.impl.BugReportImpl#getDueDate <em>Due Date</em>}</li>
- *   <li>{@link org.unicase.model.bug.impl.BugReportImpl#getEstimate <em>Estimate</em>}</li>
- *   <li>{@link org.unicase.model.bug.impl.BugReportImpl#getEffort <em>Effort</em>}</li>
- *   <li>{@link org.unicase.model.bug.impl.BugReportImpl#isChecked <em>Checked</em>}</li>
- *   <li>{@link org.unicase.model.bug.impl.BugReportImpl#getStatus <em>Status</em>}</li>
- *   <li>{@link org.unicase.model.bug.impl.BugReportImpl#getSeverity <em>Severity</em>}</li>
- *   <li>{@link org.unicase.model.bug.impl.BugReportImpl#getResolution <em>Resolution</em>}</li>
- *   <li>{@link org.unicase.model.bug.impl.BugReportImpl#getResolutionType <em>Resolution Type</em>}</li>
+ * <li>{@link org.unicase.model.bug.impl.BugReportImpl#getContainingWorkpackage <em>Containing Workpackage</em>}</li>
+ * <li>{@link org.unicase.model.bug.impl.BugReportImpl#getAssociatedChangePackages <em>Associated Change Packages</em>}</li>
+ * <li>{@link org.unicase.model.bug.impl.BugReportImpl#getPredecessors <em>Predecessors</em>}</li>
+ * <li>{@link org.unicase.model.bug.impl.BugReportImpl#getSuccessors <em>Successors</em>}</li>
+ * <li>{@link org.unicase.model.bug.impl.BugReportImpl#getAssignee <em>Assignee</em>}</li>
+ * <li>{@link org.unicase.model.bug.impl.BugReportImpl#getParticipants <em>Participants</em>}</li>
+ * <li>{@link org.unicase.model.bug.impl.BugReportImpl#getDueDate <em>Due Date</em>}</li>
+ * <li>{@link org.unicase.model.bug.impl.BugReportImpl#getEstimate <em>Estimate</em>}</li>
+ * <li>{@link org.unicase.model.bug.impl.BugReportImpl#getEffort <em>Effort</em>}</li>
+ * <li>{@link org.unicase.model.bug.impl.BugReportImpl#isChecked <em>Checked</em>}</li>
+ * <li>{@link org.unicase.model.bug.impl.BugReportImpl#getStatus <em>Status</em>}</li>
+ * <li>{@link org.unicase.model.bug.impl.BugReportImpl#getSeverity <em>Severity</em>}</li>
+ * <li>{@link org.unicase.model.bug.impl.BugReportImpl#getResolution <em>Resolution</em>}</li>
+ * <li>{@link org.unicase.model.bug.impl.BugReportImpl#getResolutionType <em>Resolution Type</em>}</li>
  * </ul>
  * </p>
- *
+ * 
  * @generated
  */
 public class BugReportImpl extends AnnotationImpl implements BugReport {
 	/**
-	 * The cached value of the '{@link #getAssociatedChangePackages() <em>Associated Change Packages</em>}' reference list.
-	 * <!-- begin-user-doc
-	 * --> <!-- end-user-doc -->
+	 * The cached value of the '{@link #getAssociatedChangePackages() <em>Associated Change Packages</em>}' reference
+	 * list. <!-- begin-user-doc --> <!-- end-user-doc -->
+	 * 
 	 * @see #getAssociatedChangePackages()
 	 * @generated
 	 * @ordered
@@ -70,8 +68,9 @@ public class BugReportImpl extends AnnotationImpl implements BugReport {
 	protected EList<ModelChangePackage> associatedChangePackages;
 
 	/**
-	 * The cached value of the '{@link #getPredecessors() <em>Predecessors</em>}' reference list.
-	 * <!-- begin-user-doc --> <!-- end-user-doc -->
+	 * The cached value of the '{@link #getPredecessors() <em>Predecessors</em>}' reference list. <!-- begin-user-doc
+	 * --> <!-- end-user-doc -->
+	 * 
 	 * @see #getPredecessors()
 	 * @generated
 	 * @ordered
@@ -79,8 +78,9 @@ public class BugReportImpl extends AnnotationImpl implements BugReport {
 	protected EList<WorkItem> predecessors;
 
 	/**
-	 * The cached value of the '{@link #getSuccessors() <em>Successors</em>}' reference list.
-	 * <!-- begin-user-doc --> <!-- end-user-doc -->
+	 * The cached value of the '{@link #getSuccessors() <em>Successors</em>}' reference list. <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * 
 	 * @see #getSuccessors()
 	 * @generated
 	 * @ordered
@@ -88,9 +88,9 @@ public class BugReportImpl extends AnnotationImpl implements BugReport {
 	protected EList<WorkItem> successors;
 
 	/**
-	 * The cached value of the '{@link #getAssignee() <em>Assignee</em>}' reference.
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
+	 * The cached value of the '{@link #getAssignee() <em>Assignee</em>}' reference. <!-- begin-user-doc --> <!--
+	 * end-user-doc -->
+	 * 
 	 * @see #getAssignee()
 	 * @generated
 	 * @ordered
@@ -98,9 +98,9 @@ public class BugReportImpl extends AnnotationImpl implements BugReport {
 	protected OrgUnit assignee;
 
 	/**
-	 * The cached value of the '{@link #getParticipants() <em>Participants</em>}' reference list.
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
+	 * The cached value of the '{@link #getParticipants() <em>Participants</em>}' reference list. <!-- begin-user-doc
+	 * --> <!-- end-user-doc -->
+	 * 
 	 * @see #getParticipants()
 	 * @generated
 	 * @ordered
@@ -108,9 +108,9 @@ public class BugReportImpl extends AnnotationImpl implements BugReport {
 	protected EList<OrgUnit> participants;
 
 	/**
-	 * The default value of the '{@link #getDueDate() <em>Due Date</em>}' attribute.
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
+	 * The default value of the '{@link #getDueDate() <em>Due Date</em>}' attribute. <!-- begin-user-doc --> <!--
+	 * end-user-doc -->
+	 * 
 	 * @see #getDueDate()
 	 * @generated
 	 * @ordered
@@ -118,9 +118,9 @@ public class BugReportImpl extends AnnotationImpl implements BugReport {
 	protected static final Date DUE_DATE_EDEFAULT = null;
 
 	/**
-	 * The cached value of the '{@link #getDueDate() <em>Due Date</em>}' attribute.
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
+	 * The cached value of the '{@link #getDueDate() <em>Due Date</em>}' attribute. <!-- begin-user-doc --> <!--
+	 * end-user-doc -->
+	 * 
 	 * @see #getDueDate()
 	 * @generated
 	 * @ordered
@@ -128,9 +128,9 @@ public class BugReportImpl extends AnnotationImpl implements BugReport {
 	protected Date dueDate = DUE_DATE_EDEFAULT;
 
 	/**
-	 * The default value of the '{@link #getEstimate() <em>Estimate</em>}' attribute.
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
+	 * The default value of the '{@link #getEstimate() <em>Estimate</em>}' attribute. <!-- begin-user-doc --> <!--
+	 * end-user-doc -->
+	 * 
 	 * @see #getEstimate()
 	 * @generated
 	 * @ordered
@@ -138,9 +138,9 @@ public class BugReportImpl extends AnnotationImpl implements BugReport {
 	protected static final int ESTIMATE_EDEFAULT = 0;
 
 	/**
-	 * The cached value of the '{@link #getEstimate() <em>Estimate</em>}' attribute.
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
+	 * The cached value of the '{@link #getEstimate() <em>Estimate</em>}' attribute. <!-- begin-user-doc --> <!--
+	 * end-user-doc -->
+	 * 
 	 * @see #getEstimate()
 	 * @generated
 	 * @ordered
@@ -148,9 +148,9 @@ public class BugReportImpl extends AnnotationImpl implements BugReport {
 	protected int estimate = ESTIMATE_EDEFAULT;
 
 	/**
-	 * The default value of the '{@link #getEffort() <em>Effort</em>}' attribute.
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
+	 * The default value of the '{@link #getEffort() <em>Effort</em>}' attribute. <!-- begin-user-doc --> <!--
+	 * end-user-doc -->
+	 * 
 	 * @see #getEffort()
 	 * @generated
 	 * @ordered
@@ -158,9 +158,9 @@ public class BugReportImpl extends AnnotationImpl implements BugReport {
 	protected static final int EFFORT_EDEFAULT = 0;
 
 	/**
-	 * The cached value of the '{@link #getEffort() <em>Effort</em>}' attribute.
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
+	 * The cached value of the '{@link #getEffort() <em>Effort</em>}' attribute. <!-- begin-user-doc --> <!--
+	 * end-user-doc -->
+	 * 
 	 * @see #getEffort()
 	 * @generated
 	 * @ordered
@@ -168,9 +168,9 @@ public class BugReportImpl extends AnnotationImpl implements BugReport {
 	protected int effort = EFFORT_EDEFAULT;
 
 	/**
-	 * The default value of the '{@link #isChecked() <em>Checked</em>}' attribute.
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
+	 * The default value of the '{@link #isChecked() <em>Checked</em>}' attribute. <!-- begin-user-doc --> <!--
+	 * end-user-doc -->
+	 * 
 	 * @see #isChecked()
 	 * @generated
 	 * @ordered
@@ -178,8 +178,9 @@ public class BugReportImpl extends AnnotationImpl implements BugReport {
 	protected static final boolean CHECKED_EDEFAULT = false;
 
 	/**
-	 * The default value of the '{@link #getStatus() <em>Status</em>}' attribute.
-	 * <!-- begin-user-doc --> <!-- end-user-doc -->
+	 * The default value of the '{@link #getStatus() <em>Status</em>}' attribute. <!-- begin-user-doc --> <!--
+	 * end-user-doc -->
+	 * 
 	 * @see #getStatus()
 	 * @generated
 	 * @ordered
@@ -187,8 +188,9 @@ public class BugReportImpl extends AnnotationImpl implements BugReport {
 	protected static final BugStatus STATUS_EDEFAULT = BugStatus.NEW;
 
 	/**
-	 * The cached value of the '{@link #getStatus() <em>Status</em>}' attribute.
-	 * <!-- begin-user-doc --> <!-- end-user-doc -->
+	 * The cached value of the '{@link #getStatus() <em>Status</em>}' attribute. <!-- begin-user-doc --> <!--
+	 * end-user-doc -->
+	 * 
 	 * @see #getStatus()
 	 * @generated
 	 * @ordered
@@ -196,8 +198,9 @@ public class BugReportImpl extends AnnotationImpl implements BugReport {
 	protected BugStatus status = STATUS_EDEFAULT;
 
 	/**
-	 * The default value of the '{@link #getSeverity() <em>Severity</em>}' attribute.
-	 * <!-- begin-user-doc --> <!-- end-user-doc -->
+	 * The default value of the '{@link #getSeverity() <em>Severity</em>}' attribute. <!-- begin-user-doc --> <!--
+	 * end-user-doc -->
+	 * 
 	 * @see #getSeverity()
 	 * @generated
 	 * @ordered
@@ -205,8 +208,9 @@ public class BugReportImpl extends AnnotationImpl implements BugReport {
 	protected static final Severity SEVERITY_EDEFAULT = Severity.FEATURE;
 
 	/**
-	 * The cached value of the '{@link #getSeverity() <em>Severity</em>}' attribute.
-	 * <!-- begin-user-doc --> <!-- end-user-doc -->
+	 * The cached value of the '{@link #getSeverity() <em>Severity</em>}' attribute. <!-- begin-user-doc --> <!--
+	 * end-user-doc -->
+	 * 
 	 * @see #getSeverity()
 	 * @generated
 	 * @ordered
@@ -214,9 +218,9 @@ public class BugReportImpl extends AnnotationImpl implements BugReport {
 	protected Severity severity = SEVERITY_EDEFAULT;
 
 	/**
-	 * The default value of the '{@link #getResolution() <em>Resolution</em>}' attribute.
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
+	 * The default value of the '{@link #getResolution() <em>Resolution</em>}' attribute. <!-- begin-user-doc --> <!--
+	 * end-user-doc -->
+	 * 
 	 * @see #getResolution()
 	 * @generated
 	 * @ordered
@@ -224,9 +228,9 @@ public class BugReportImpl extends AnnotationImpl implements BugReport {
 	protected static final String RESOLUTION_EDEFAULT = null;
 
 	/**
-	 * The cached value of the '{@link #getResolution() <em>Resolution</em>}' attribute.
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
+	 * The cached value of the '{@link #getResolution() <em>Resolution</em>}' attribute. <!-- begin-user-doc --> <!--
+	 * end-user-doc -->
+	 * 
 	 * @see #getResolution()
 	 * @generated
 	 * @ordered
@@ -234,9 +238,9 @@ public class BugReportImpl extends AnnotationImpl implements BugReport {
 	protected String resolution = RESOLUTION_EDEFAULT;
 
 	/**
-	 * The default value of the '{@link #getResolutionType() <em>Resolution Type</em>}' attribute.
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
+	 * The default value of the '{@link #getResolutionType() <em>Resolution Type</em>}' attribute. <!-- begin-user-doc
+	 * --> <!-- end-user-doc -->
+	 * 
 	 * @see #getResolutionType()
 	 * @generated
 	 * @ordered
@@ -244,9 +248,9 @@ public class BugReportImpl extends AnnotationImpl implements BugReport {
 	protected static final ResolutionType RESOLUTION_TYPE_EDEFAULT = ResolutionType.FIXED;
 
 	/**
-	 * The cached value of the '{@link #getResolutionType() <em>Resolution Type</em>}' attribute.
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
+	 * The cached value of the '{@link #getResolutionType() <em>Resolution Type</em>}' attribute. <!-- begin-user-doc
+	 * --> <!-- end-user-doc -->
+	 * 
 	 * @see #getResolutionType()
 	 * @generated
 	 * @ordered
@@ -255,6 +259,7 @@ public class BugReportImpl extends AnnotationImpl implements BugReport {
 
 	/**
 	 * <!-- begin-user-doc --> <!-- end-user-doc -->
+	 * 
 	 * @generated
 	 */
 	protected BugReportImpl() {
@@ -263,6 +268,7 @@ public class BugReportImpl extends AnnotationImpl implements BugReport {
 
 	/**
 	 * <!-- begin-user-doc --> <!-- end-user-doc -->
+	 * 
 	 * @generated
 	 */
 	@Override
@@ -272,6 +278,7 @@ public class BugReportImpl extends AnnotationImpl implements BugReport {
 
 	/**
 	 * <!-- begin-user-doc --> <!-- end-user-doc -->
+	 * 
 	 * @generated
 	 */
 	public WorkPackage getContainingWorkpackage() {
@@ -281,8 +288,8 @@ public class BugReportImpl extends AnnotationImpl implements BugReport {
 	}
 
 	/**
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
+	 * <!-- begin-user-doc --> <!-- end-user-doc -->
+	 * 
 	 * @generated
 	 */
 	public WorkPackage basicGetContainingWorkpackage() {
@@ -293,84 +300,81 @@ public class BugReportImpl extends AnnotationImpl implements BugReport {
 
 	/**
 	 * <!-- begin-user-doc --> <!-- end-user-doc -->
+	 * 
 	 * @generated
 	 */
-	public NotificationChain basicSetContainingWorkpackage(
-			WorkPackage newContainingWorkpackage, NotificationChain msgs) {
+	public NotificationChain basicSetContainingWorkpackage(WorkPackage newContainingWorkpackage, NotificationChain msgs) {
 		msgs = eBasicSetContainer((InternalEObject) newContainingWorkpackage,
-				BugPackage.BUG_REPORT__CONTAINING_WORKPACKAGE, msgs);
+			BugPackage.BUG_REPORT__CONTAINING_WORKPACKAGE, msgs);
 		return msgs;
 	}
 
 	/**
 	 * <!-- begin-user-doc --> <!-- end-user-doc -->
+	 * 
 	 * @generated
 	 */
 	public void setContainingWorkpackage(WorkPackage newContainingWorkpackage) {
 		if (newContainingWorkpackage != eInternalContainer()
-				|| (eContainerFeatureID != BugPackage.BUG_REPORT__CONTAINING_WORKPACKAGE && newContainingWorkpackage != null)) {
+			|| (eContainerFeatureID != BugPackage.BUG_REPORT__CONTAINING_WORKPACKAGE && newContainingWorkpackage != null)) {
 			if (EcoreUtil.isAncestor(this, newContainingWorkpackage))
-				throw new IllegalArgumentException(
-						"Recursive containment not allowed for " + toString());
+				throw new IllegalArgumentException("Recursive containment not allowed for " + toString());
 			NotificationChain msgs = null;
 			if (eInternalContainer() != null)
 				msgs = eBasicRemoveFromContainer(msgs);
 			if (newContainingWorkpackage != null)
-				msgs = ((InternalEObject) newContainingWorkpackage)
-						.eInverseAdd(this,
-								TaskPackage.WORK_PACKAGE__CONTAINED_WORK_ITEMS,
-								WorkPackage.class, msgs);
+				msgs = ((InternalEObject) newContainingWorkpackage).eInverseAdd(this,
+					TaskPackage.WORK_PACKAGE__CONTAINED_WORK_ITEMS, WorkPackage.class, msgs);
 			msgs = basicSetContainingWorkpackage(newContainingWorkpackage, msgs);
 			if (msgs != null)
 				msgs.dispatch();
 		} else if (eNotificationRequired())
-			eNotify(new ENotificationImpl(this, Notification.SET,
-					BugPackage.BUG_REPORT__CONTAINING_WORKPACKAGE,
-					newContainingWorkpackage, newContainingWorkpackage));
+			eNotify(new ENotificationImpl(this, Notification.SET, BugPackage.BUG_REPORT__CONTAINING_WORKPACKAGE,
+				newContainingWorkpackage, newContainingWorkpackage));
 	}
 
 	/**
 	 * <!-- begin-user-doc --> <!-- end-user-doc -->
+	 * 
 	 * @generated
 	 */
 	public EList<ModelChangePackage> getAssociatedChangePackages() {
 		if (associatedChangePackages == null) {
-			associatedChangePackages = new EObjectResolvingEList<ModelChangePackage>(
-					ModelChangePackage.class, this,
-					BugPackage.BUG_REPORT__ASSOCIATED_CHANGE_PACKAGES);
+			associatedChangePackages = new EObjectResolvingEList<ModelChangePackage>(ModelChangePackage.class, this,
+				BugPackage.BUG_REPORT__ASSOCIATED_CHANGE_PACKAGES);
 		}
 		return associatedChangePackages;
 	}
 
 	/**
 	 * <!-- begin-user-doc --> <!-- end-user-doc -->
+	 * 
 	 * @generated
 	 */
 	public EList<WorkItem> getPredecessors() {
 		if (predecessors == null) {
-			predecessors = new EObjectWithInverseResolvingEList.ManyInverse<WorkItem>(
-					WorkItem.class, this, BugPackage.BUG_REPORT__PREDECESSORS,
-					TaskPackage.WORK_ITEM__SUCCESSORS);
+			predecessors = new EObjectWithInverseResolvingEList.ManyInverse<WorkItem>(WorkItem.class, this,
+				BugPackage.BUG_REPORT__PREDECESSORS, TaskPackage.WORK_ITEM__SUCCESSORS);
 		}
 		return predecessors;
 	}
 
 	/**
 	 * <!-- begin-user-doc --> <!-- end-user-doc -->
+	 * 
 	 * @generated
 	 */
 	public EList<WorkItem> getSuccessors() {
 		if (successors == null) {
-			successors = new EObjectWithInverseResolvingEList.ManyInverse<WorkItem>(
-					WorkItem.class, this, BugPackage.BUG_REPORT__SUCCESSORS,
-					TaskPackage.WORK_ITEM__PREDECESSORS);
+			successors = new EObjectWithInverseResolvingEList.ManyInverse<WorkItem>(WorkItem.class, this,
+				BugPackage.BUG_REPORT__SUCCESSORS, TaskPackage.WORK_ITEM__PREDECESSORS);
 		}
 		return successors;
 	}
 
 	/**
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
+	 * <!-- begin-user-doc --> <!-- end-user-doc -->
+	 * 
 	 * @generated
 	 */
 	public OrgUnit getAssignee() {
@@ -379,17 +383,16 @@ public class BugReportImpl extends AnnotationImpl implements BugReport {
 			assignee = (OrgUnit) eResolveProxy(oldAssignee);
 			if (assignee != oldAssignee) {
 				if (eNotificationRequired())
-					eNotify(new ENotificationImpl(this, Notification.RESOLVE,
-							BugPackage.BUG_REPORT__ASSIGNEE, oldAssignee,
-							assignee));
+					eNotify(new ENotificationImpl(this, Notification.RESOLVE, BugPackage.BUG_REPORT__ASSIGNEE,
+						oldAssignee, assignee));
 			}
 		}
 		return assignee;
 	}
 
 	/**
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
+	 * <!-- begin-user-doc --> <!-- end-user-doc -->
+	 * 
 	 * @generated
 	 */
 	public OrgUnit basicGetAssignee() {
@@ -397,18 +400,16 @@ public class BugReportImpl extends AnnotationImpl implements BugReport {
 	}
 
 	/**
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
+	 * <!-- begin-user-doc --> <!-- end-user-doc -->
+	 * 
 	 * @generated
 	 */
-	public NotificationChain basicSetAssignee(OrgUnit newAssignee,
-			NotificationChain msgs) {
+	public NotificationChain basicSetAssignee(OrgUnit newAssignee, NotificationChain msgs) {
 		OrgUnit oldAssignee = assignee;
 		assignee = newAssignee;
 		if (eNotificationRequired()) {
-			ENotificationImpl notification = new ENotificationImpl(this,
-					Notification.SET, BugPackage.BUG_REPORT__ASSIGNEE,
-					oldAssignee, newAssignee);
+			ENotificationImpl notification = new ENotificationImpl(this, Notification.SET,
+				BugPackage.BUG_REPORT__ASSIGNEE, oldAssignee, newAssignee);
 			if (msgs == null)
 				msgs = notification;
 			else
@@ -418,46 +419,43 @@ public class BugReportImpl extends AnnotationImpl implements BugReport {
 	}
 
 	/**
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
+	 * <!-- begin-user-doc --> <!-- end-user-doc -->
+	 * 
 	 * @generated
 	 */
 	public void setAssignee(OrgUnit newAssignee) {
 		if (newAssignee != assignee) {
 			NotificationChain msgs = null;
 			if (assignee != null)
-				msgs = ((InternalEObject) assignee).eInverseRemove(this,
-						OrganizationPackage.ORG_UNIT__ASSIGNMENTS,
-						OrgUnit.class, msgs);
+				msgs = ((InternalEObject) assignee).eInverseRemove(this, OrganizationPackage.ORG_UNIT__ASSIGNMENTS,
+					OrgUnit.class, msgs);
 			if (newAssignee != null)
-				msgs = ((InternalEObject) newAssignee).eInverseAdd(this,
-						OrganizationPackage.ORG_UNIT__ASSIGNMENTS,
-						OrgUnit.class, msgs);
+				msgs = ((InternalEObject) newAssignee).eInverseAdd(this, OrganizationPackage.ORG_UNIT__ASSIGNMENTS,
+					OrgUnit.class, msgs);
 			msgs = basicSetAssignee(newAssignee, msgs);
 			if (msgs != null)
 				msgs.dispatch();
 		} else if (eNotificationRequired())
-			eNotify(new ENotificationImpl(this, Notification.SET,
-					BugPackage.BUG_REPORT__ASSIGNEE, newAssignee, newAssignee));
+			eNotify(new ENotificationImpl(this, Notification.SET, BugPackage.BUG_REPORT__ASSIGNEE, newAssignee,
+				newAssignee));
 	}
 
 	/**
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
+	 * <!-- begin-user-doc --> <!-- end-user-doc -->
+	 * 
 	 * @generated
 	 */
 	public EList<OrgUnit> getParticipants() {
 		if (participants == null) {
-			participants = new EObjectWithInverseResolvingEList.ManyInverse<OrgUnit>(
-					OrgUnit.class, this, BugPackage.BUG_REPORT__PARTICIPANTS,
-					OrganizationPackage.ORG_UNIT__PARTICIPATIONS);
+			participants = new EObjectWithInverseResolvingEList.ManyInverse<OrgUnit>(OrgUnit.class, this,
+				BugPackage.BUG_REPORT__PARTICIPANTS, OrganizationPackage.ORG_UNIT__PARTICIPATIONS);
 		}
 		return participants;
 	}
 
 	/**
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
+	 * <!-- begin-user-doc --> <!-- end-user-doc -->
+	 * 
 	 * @generated
 	 */
 	public Date getDueDate() {
@@ -465,21 +463,20 @@ public class BugReportImpl extends AnnotationImpl implements BugReport {
 	}
 
 	/**
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
+	 * <!-- begin-user-doc --> <!-- end-user-doc -->
+	 * 
 	 * @generated
 	 */
 	public void setDueDate(Date newDueDate) {
 		Date oldDueDate = dueDate;
 		dueDate = newDueDate;
 		if (eNotificationRequired())
-			eNotify(new ENotificationImpl(this, Notification.SET,
-					BugPackage.BUG_REPORT__DUE_DATE, oldDueDate, dueDate));
+			eNotify(new ENotificationImpl(this, Notification.SET, BugPackage.BUG_REPORT__DUE_DATE, oldDueDate, dueDate));
 	}
 
 	/**
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
+	 * <!-- begin-user-doc --> <!-- end-user-doc -->
+	 * 
 	 * @generated
 	 */
 	public int getEstimate() {
@@ -487,21 +484,21 @@ public class BugReportImpl extends AnnotationImpl implements BugReport {
 	}
 
 	/**
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
+	 * <!-- begin-user-doc --> <!-- end-user-doc -->
+	 * 
 	 * @generated
 	 */
 	public void setEstimate(int newEstimate) {
 		int oldEstimate = estimate;
 		estimate = newEstimate;
 		if (eNotificationRequired())
-			eNotify(new ENotificationImpl(this, Notification.SET,
-					BugPackage.BUG_REPORT__ESTIMATE, oldEstimate, estimate));
+			eNotify(new ENotificationImpl(this, Notification.SET, BugPackage.BUG_REPORT__ESTIMATE, oldEstimate,
+				estimate));
 	}
 
 	/**
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
+	 * <!-- begin-user-doc --> <!-- end-user-doc -->
+	 * 
 	 * @generated
 	 */
 	public int getEffort() {
@@ -509,22 +506,20 @@ public class BugReportImpl extends AnnotationImpl implements BugReport {
 	}
 
 	/**
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
+	 * <!-- begin-user-doc --> <!-- end-user-doc -->
+	 * 
 	 * @generated
 	 */
 	public void setEffort(int newEffort) {
 		int oldEffort = effort;
 		effort = newEffort;
 		if (eNotificationRequired())
-			eNotify(new ENotificationImpl(this, Notification.SET,
-					BugPackage.BUG_REPORT__EFFORT, oldEffort, effort));
+			eNotify(new ENotificationImpl(this, Notification.SET, BugPackage.BUG_REPORT__EFFORT, oldEffort, effort));
 	}
 
 	/**
-	 * <!-- begin-user-doc -->
-	 * .
-	 * <!-- end-user-doc -->
+	 * <!-- begin-user-doc --> . <!-- end-user-doc -->
+	 * 
 	 * @generated NOT
 	 * @return if the bugreport is closed
 	 */
@@ -533,9 +528,8 @@ public class BugReportImpl extends AnnotationImpl implements BugReport {
 	}
 
 	/**
-	 * <!-- begin-user-doc -->
-	 * Sets the bug to closed if checked.
-	 * <!-- end-user-doc -->
+	 * <!-- begin-user-doc --> Sets the bug to closed if checked. <!-- end-user-doc -->
+	 * 
 	 * @generated NOT
 	 * @param newChecked if the bug should be closed
 	 */
@@ -549,6 +543,7 @@ public class BugReportImpl extends AnnotationImpl implements BugReport {
 
 	/**
 	 * <!-- begin-user-doc --> .<!-- end-user-doc -->
+	 * 
 	 * @generated
 	 */
 	public BugStatus getStatus() {
@@ -557,18 +552,19 @@ public class BugReportImpl extends AnnotationImpl implements BugReport {
 
 	/**
 	 * <!-- begin-user-doc --> <!-- end-user-doc -->
+	 * 
 	 * @generated
 	 */
 	public void setStatus(BugStatus newStatus) {
 		BugStatus oldStatus = status;
 		status = newStatus == null ? STATUS_EDEFAULT : newStatus;
 		if (eNotificationRequired())
-			eNotify(new ENotificationImpl(this, Notification.SET,
-					BugPackage.BUG_REPORT__STATUS, oldStatus, status));
+			eNotify(new ENotificationImpl(this, Notification.SET, BugPackage.BUG_REPORT__STATUS, oldStatus, status));
 	}
 
 	/**
 	 * <!-- begin-user-doc --> <!-- end-user-doc -->
+	 * 
 	 * @generated
 	 */
 	public Severity getSeverity() {
@@ -577,19 +573,20 @@ public class BugReportImpl extends AnnotationImpl implements BugReport {
 
 	/**
 	 * <!-- begin-user-doc --> <!-- end-user-doc -->
+	 * 
 	 * @generated
 	 */
 	public void setSeverity(Severity newSeverity) {
 		Severity oldSeverity = severity;
 		severity = newSeverity == null ? SEVERITY_EDEFAULT : newSeverity;
 		if (eNotificationRequired())
-			eNotify(new ENotificationImpl(this, Notification.SET,
-					BugPackage.BUG_REPORT__SEVERITY, oldSeverity, severity));
+			eNotify(new ENotificationImpl(this, Notification.SET, BugPackage.BUG_REPORT__SEVERITY, oldSeverity,
+				severity));
 	}
 
 	/**
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
+	 * <!-- begin-user-doc --> <!-- end-user-doc -->
+	 * 
 	 * @generated
 	 */
 	public String getResolution() {
@@ -597,22 +594,21 @@ public class BugReportImpl extends AnnotationImpl implements BugReport {
 	}
 
 	/**
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
+	 * <!-- begin-user-doc --> <!-- end-user-doc -->
+	 * 
 	 * @generated
 	 */
 	public void setResolution(String newResolution) {
 		String oldResolution = resolution;
 		resolution = newResolution;
 		if (eNotificationRequired())
-			eNotify(new ENotificationImpl(this, Notification.SET,
-					BugPackage.BUG_REPORT__RESOLUTION, oldResolution,
-					resolution));
+			eNotify(new ENotificationImpl(this, Notification.SET, BugPackage.BUG_REPORT__RESOLUTION, oldResolution,
+				resolution));
 	}
 
 	/**
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
+	 * <!-- begin-user-doc --> <!-- end-user-doc -->
+	 * 
 	 * @generated
 	 */
 	public ResolutionType getResolutionType() {
@@ -620,95 +616,86 @@ public class BugReportImpl extends AnnotationImpl implements BugReport {
 	}
 
 	/**
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
+	 * <!-- begin-user-doc --> <!-- end-user-doc -->
+	 * 
 	 * @generated
 	 */
 	public void setResolutionType(ResolutionType newResolutionType) {
 		ResolutionType oldResolutionType = resolutionType;
-		resolutionType = newResolutionType == null ? RESOLUTION_TYPE_EDEFAULT
-				: newResolutionType;
+		resolutionType = newResolutionType == null ? RESOLUTION_TYPE_EDEFAULT : newResolutionType;
 		if (eNotificationRequired())
-			eNotify(new ENotificationImpl(this, Notification.SET,
-					BugPackage.BUG_REPORT__RESOLUTION_TYPE, oldResolutionType,
-					resolutionType));
+			eNotify(new ENotificationImpl(this, Notification.SET, BugPackage.BUG_REPORT__RESOLUTION_TYPE,
+				oldResolutionType, resolutionType));
 	}
 
 	/**
 	 * <!-- begin-user-doc --> <!-- end-user-doc -->
+	 * 
 	 * @generated
 	 */
 	@SuppressWarnings("unchecked")
 	@Override
-	public NotificationChain eInverseAdd(InternalEObject otherEnd,
-			int featureID, NotificationChain msgs) {
+	public NotificationChain eInverseAdd(InternalEObject otherEnd, int featureID, NotificationChain msgs) {
 		switch (featureID) {
 		case BugPackage.BUG_REPORT__CONTAINING_WORKPACKAGE:
 			if (eInternalContainer() != null)
 				msgs = eBasicRemoveFromContainer(msgs);
 			return basicSetContainingWorkpackage((WorkPackage) otherEnd, msgs);
 		case BugPackage.BUG_REPORT__PREDECESSORS:
-			return ((InternalEList<InternalEObject>) (InternalEList<?>) getPredecessors())
-					.basicAdd(otherEnd, msgs);
+			return ((InternalEList<InternalEObject>) (InternalEList<?>) getPredecessors()).basicAdd(otherEnd, msgs);
 		case BugPackage.BUG_REPORT__SUCCESSORS:
-			return ((InternalEList<InternalEObject>) (InternalEList<?>) getSuccessors())
-					.basicAdd(otherEnd, msgs);
+			return ((InternalEList<InternalEObject>) (InternalEList<?>) getSuccessors()).basicAdd(otherEnd, msgs);
 		case BugPackage.BUG_REPORT__ASSIGNEE:
 			if (assignee != null)
-				msgs = ((InternalEObject) assignee).eInverseRemove(this,
-						OrganizationPackage.ORG_UNIT__ASSIGNMENTS,
-						OrgUnit.class, msgs);
+				msgs = ((InternalEObject) assignee).eInverseRemove(this, OrganizationPackage.ORG_UNIT__ASSIGNMENTS,
+					OrgUnit.class, msgs);
 			return basicSetAssignee((OrgUnit) otherEnd, msgs);
 		case BugPackage.BUG_REPORT__PARTICIPANTS:
-			return ((InternalEList<InternalEObject>) (InternalEList<?>) getParticipants())
-					.basicAdd(otherEnd, msgs);
+			return ((InternalEList<InternalEObject>) (InternalEList<?>) getParticipants()).basicAdd(otherEnd, msgs);
 		}
 		return super.eInverseAdd(otherEnd, featureID, msgs);
 	}
 
 	/**
 	 * <!-- begin-user-doc --> <!-- end-user-doc -->
+	 * 
 	 * @generated
 	 */
 	@Override
-	public NotificationChain eInverseRemove(InternalEObject otherEnd,
-			int featureID, NotificationChain msgs) {
+	public NotificationChain eInverseRemove(InternalEObject otherEnd, int featureID, NotificationChain msgs) {
 		switch (featureID) {
 		case BugPackage.BUG_REPORT__CONTAINING_WORKPACKAGE:
 			return basicSetContainingWorkpackage(null, msgs);
 		case BugPackage.BUG_REPORT__PREDECESSORS:
-			return ((InternalEList<?>) getPredecessors()).basicRemove(otherEnd,
-					msgs);
+			return ((InternalEList<?>) getPredecessors()).basicRemove(otherEnd, msgs);
 		case BugPackage.BUG_REPORT__SUCCESSORS:
-			return ((InternalEList<?>) getSuccessors()).basicRemove(otherEnd,
-					msgs);
+			return ((InternalEList<?>) getSuccessors()).basicRemove(otherEnd, msgs);
 		case BugPackage.BUG_REPORT__ASSIGNEE:
 			return basicSetAssignee(null, msgs);
 		case BugPackage.BUG_REPORT__PARTICIPANTS:
-			return ((InternalEList<?>) getParticipants()).basicRemove(otherEnd,
-					msgs);
+			return ((InternalEList<?>) getParticipants()).basicRemove(otherEnd, msgs);
 		}
 		return super.eInverseRemove(otherEnd, featureID, msgs);
 	}
 
 	/**
 	 * <!-- begin-user-doc --> <!-- end-user-doc -->
+	 * 
 	 * @generated
 	 */
 	@Override
-	public NotificationChain eBasicRemoveFromContainerFeature(
-			NotificationChain msgs) {
+	public NotificationChain eBasicRemoveFromContainerFeature(NotificationChain msgs) {
 		switch (eContainerFeatureID) {
 		case BugPackage.BUG_REPORT__CONTAINING_WORKPACKAGE:
-			return eInternalContainer().eInverseRemove(this,
-					TaskPackage.WORK_PACKAGE__CONTAINED_WORK_ITEMS,
-					WorkPackage.class, msgs);
+			return eInternalContainer().eInverseRemove(this, TaskPackage.WORK_PACKAGE__CONTAINED_WORK_ITEMS,
+				WorkPackage.class, msgs);
 		}
 		return super.eBasicRemoveFromContainerFeature(msgs);
 	}
 
 	/**
 	 * <!-- begin-user-doc --> <!-- end-user-doc -->
+	 * 
 	 * @generated
 	 */
 	@Override
@@ -752,6 +739,7 @@ public class BugReportImpl extends AnnotationImpl implements BugReport {
 
 	/**
 	 * <!-- begin-user-doc --> <!-- end-user-doc -->
+	 * 
 	 * @generated
 	 */
 	@SuppressWarnings("unchecked")
@@ -763,8 +751,7 @@ public class BugReportImpl extends AnnotationImpl implements BugReport {
 			return;
 		case BugPackage.BUG_REPORT__ASSOCIATED_CHANGE_PACKAGES:
 			getAssociatedChangePackages().clear();
-			getAssociatedChangePackages().addAll(
-					(Collection<? extends ModelChangePackage>) newValue);
+			getAssociatedChangePackages().addAll((Collection<? extends ModelChangePackage>) newValue);
 			return;
 		case BugPackage.BUG_REPORT__PREDECESSORS:
 			getPredecessors().clear();
@@ -811,6 +798,7 @@ public class BugReportImpl extends AnnotationImpl implements BugReport {
 
 	/**
 	 * <!-- begin-user-doc --> <!-- end-user-doc -->
+	 * 
 	 * @generated
 	 */
 	@Override
@@ -864,6 +852,7 @@ public class BugReportImpl extends AnnotationImpl implements BugReport {
 
 	/**
 	 * <!-- begin-user-doc --> <!-- end-user-doc -->
+	 * 
 	 * @generated
 	 */
 	@Override
@@ -872,8 +861,7 @@ public class BugReportImpl extends AnnotationImpl implements BugReport {
 		case BugPackage.BUG_REPORT__CONTAINING_WORKPACKAGE:
 			return basicGetContainingWorkpackage() != null;
 		case BugPackage.BUG_REPORT__ASSOCIATED_CHANGE_PACKAGES:
-			return associatedChangePackages != null
-					&& !associatedChangePackages.isEmpty();
+			return associatedChangePackages != null && !associatedChangePackages.isEmpty();
 		case BugPackage.BUG_REPORT__PREDECESSORS:
 			return predecessors != null && !predecessors.isEmpty();
 		case BugPackage.BUG_REPORT__SUCCESSORS:
@@ -883,8 +871,7 @@ public class BugReportImpl extends AnnotationImpl implements BugReport {
 		case BugPackage.BUG_REPORT__PARTICIPANTS:
 			return participants != null && !participants.isEmpty();
 		case BugPackage.BUG_REPORT__DUE_DATE:
-			return DUE_DATE_EDEFAULT == null ? dueDate != null
-					: !DUE_DATE_EDEFAULT.equals(dueDate);
+			return DUE_DATE_EDEFAULT == null ? dueDate != null : !DUE_DATE_EDEFAULT.equals(dueDate);
 		case BugPackage.BUG_REPORT__ESTIMATE:
 			return estimate != ESTIMATE_EDEFAULT;
 		case BugPackage.BUG_REPORT__EFFORT:
@@ -896,8 +883,7 @@ public class BugReportImpl extends AnnotationImpl implements BugReport {
 		case BugPackage.BUG_REPORT__SEVERITY:
 			return severity != SEVERITY_EDEFAULT;
 		case BugPackage.BUG_REPORT__RESOLUTION:
-			return RESOLUTION_EDEFAULT == null ? resolution != null
-					: !RESOLUTION_EDEFAULT.equals(resolution);
+			return RESOLUTION_EDEFAULT == null ? resolution != null : !RESOLUTION_EDEFAULT.equals(resolution);
 		case BugPackage.BUG_REPORT__RESOLUTION_TYPE:
 			return resolutionType != RESOLUTION_TYPE_EDEFAULT;
 		}
@@ -905,8 +891,8 @@ public class BugReportImpl extends AnnotationImpl implements BugReport {
 	}
 
 	/**
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
+	 * <!-- begin-user-doc --> <!-- end-user-doc -->
+	 * 
 	 * @generated
 	 */
 	@Override
@@ -923,8 +909,8 @@ public class BugReportImpl extends AnnotationImpl implements BugReport {
 	}
 
 	/**
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
+	 * <!-- begin-user-doc --> <!-- end-user-doc -->
+	 * 
 	 * @generated
 	 */
 	@Override
@@ -942,6 +928,7 @@ public class BugReportImpl extends AnnotationImpl implements BugReport {
 
 	/**
 	 * <!-- begin-user-doc --> <!-- end-user-doc -->
+	 * 
 	 * @generated
 	 */
 	@Override

@@ -31,14 +31,12 @@ public class UsecaseIdentifiedClassConstraint extends AbstractModelConstraint {
 		if (eType == EMFEventType.NULL) {
 			if (eObj instanceof UseCase) {
 				EList<Class> identifiedClasses = ((UseCase) eObj).getIdentifiedClasses();
-				if (identifiedClasses.size()<1) {
-					EStructuralFeature errorFeature = ValidationConstraintHelper
-							.getErrorFeatureForModelElement(
-									(ModelElement) eObj, "identifiedClasses");
+				if (identifiedClasses.size() < 1) {
+					EStructuralFeature errorFeature = ValidationConstraintHelper.getErrorFeatureForModelElement(
+						(ModelElement) eObj, "identifiedClasses");
 					ctx.addResult(errorFeature);
-					return ctx.createFailureStatus(new Object[] { eObj.eClass()
-							.getName()
-							+ ": '" + ((UseCase) eObj).getName() + "'" });
+					return ctx.createFailureStatus(new Object[] { eObj.eClass().getName() + ": '"
+						+ ((UseCase) eObj).getName() + "'" });
 				}
 			}
 		}

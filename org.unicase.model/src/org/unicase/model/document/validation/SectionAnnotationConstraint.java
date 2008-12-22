@@ -30,16 +30,13 @@ public class SectionAnnotationConstraint extends AbstractModelConstraint {
 
 		if (eType == EMFEventType.NULL) {
 			if (eObj instanceof Section) {
-				EList<Annotation> annotations = ((Section) eObj)
-						.getAnnotations();
+				EList<Annotation> annotations = ((Section) eObj).getAnnotations();
 				if (annotations.size() > 0) {
-					EStructuralFeature errorFeature = ValidationConstraintHelper
-							.getErrorFeatureForModelElement(
-									(ModelElement) eObj, "annotations");
+					EStructuralFeature errorFeature = ValidationConstraintHelper.getErrorFeatureForModelElement(
+						(ModelElement) eObj, "annotations");
 					ctx.addResult(errorFeature);
-					return ctx.createFailureStatus(new Object[] { eObj.eClass()
-							.getName()
-							+ ": '" + ((Section) eObj).getName() + "'" });
+					return ctx.createFailureStatus(new Object[] { eObj.eClass().getName() + ": '"
+						+ ((Section) eObj).getName() + "'" });
 				}
 			}
 		}

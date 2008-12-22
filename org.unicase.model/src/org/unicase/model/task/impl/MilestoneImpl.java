@@ -1,8 +1,7 @@
 /**
- * <copyright> Copyright (c) 2008 Jonas Helming, Maximilian Koegel. All rights reserved. This program and the accompanying materials are made available under the terms of the Eclipse Public License v1.0 which accompanies this distribution, and is available at http://www.eclipse.org/legal/epl-v10.html
- * </copyright>
- *
- * $Id$
+ * <copyright> Copyright (c) 2008 Jonas Helming, Maximilian Koegel. All rights reserved. This program and the
+ * accompanying materials are made available under the terms of the Eclipse Public License v1.0 which accompanies this
+ * distribution, and is available at http://www.eclipse.org/legal/epl-v10.html </copyright> $Id$
  */
 package org.unicase.model.task.impl;
 
@@ -30,122 +29,121 @@ import org.unicase.model.task.WorkItem;
 import org.unicase.model.task.WorkPackage;
 
 /**
- * <!-- begin-user-doc -->
- * An implementation of the model object '<em><b>Milestone</b></em>'.
- * <!-- end-user-doc -->
+ * <!-- begin-user-doc --> An implementation of the model object '<em><b>Milestone</b></em>'. <!-- end-user-doc -->
  * <p>
  * The following features are implemented:
  * <ul>
- *   <li>{@link org.unicase.model.task.impl.MilestoneImpl#getContainingWorkpackage <em>Containing Workpackage</em>}</li>
- *   <li>{@link org.unicase.model.task.impl.MilestoneImpl#getAssociatedChangePackages <em>Associated Change Packages</em>}</li>
- *   <li>{@link org.unicase.model.task.impl.MilestoneImpl#getPredecessors <em>Predecessors</em>}</li>
- *   <li>{@link org.unicase.model.task.impl.MilestoneImpl#getSuccessors <em>Successors</em>}</li>
- *   <li>{@link org.unicase.model.task.impl.MilestoneImpl#getAssignee <em>Assignee</em>}</li>
- *   <li>{@link org.unicase.model.task.impl.MilestoneImpl#getParticipants <em>Participants</em>}</li>
- *   <li>{@link org.unicase.model.task.impl.MilestoneImpl#getDueDate <em>Due Date</em>}</li>
- *   <li>{@link org.unicase.model.task.impl.MilestoneImpl#getEstimate <em>Estimate</em>}</li>
- *   <li>{@link org.unicase.model.task.impl.MilestoneImpl#getEffort <em>Effort</em>}</li>
- *   <li>{@link org.unicase.model.task.impl.MilestoneImpl#getContainedModelElements <em>Contained Model Elements</em>}</li>
+ * <li>{@link org.unicase.model.task.impl.MilestoneImpl#getContainingWorkpackage <em>Containing Workpackage</em>}</li>
+ * <li>{@link org.unicase.model.task.impl.MilestoneImpl#getAssociatedChangePackages <em>Associated Change Packages</em>}
+ * </li>
+ * <li>{@link org.unicase.model.task.impl.MilestoneImpl#getPredecessors <em>Predecessors</em>}</li>
+ * <li>{@link org.unicase.model.task.impl.MilestoneImpl#getSuccessors <em>Successors</em>}</li>
+ * <li>{@link org.unicase.model.task.impl.MilestoneImpl#getAssignee <em>Assignee</em>}</li>
+ * <li>{@link org.unicase.model.task.impl.MilestoneImpl#getParticipants <em>Participants</em>}</li>
+ * <li>{@link org.unicase.model.task.impl.MilestoneImpl#getDueDate <em>Due Date</em>}</li>
+ * <li>{@link org.unicase.model.task.impl.MilestoneImpl#getEstimate <em>Estimate</em>}</li>
+ * <li>{@link org.unicase.model.task.impl.MilestoneImpl#getEffort <em>Effort</em>}</li>
+ * <li>{@link org.unicase.model.task.impl.MilestoneImpl#getContainedModelElements <em>Contained Model Elements</em>}</li>
  * </ul>
  * </p>
- *
+ * 
  * @generated
  */
 public class MilestoneImpl extends AnnotationImpl implements Milestone {
 	/**
-	 * The cached value of the '{@link #getAssociatedChangePackages() <em>Associated Change Packages</em>}' reference list.
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
+	 * The cached value of the '{@link #getAssociatedChangePackages() <em>Associated Change Packages</em>}' reference
+	 * list. <!-- begin-user-doc --> <!-- end-user-doc -->
+	 * 
 	 * @see #getAssociatedChangePackages()
 	 * @generated
 	 * @ordered
 	 */
 	protected EList<ModelChangePackage> associatedChangePackages;
 	/**
-	 * The cached value of the '{@link #getPredecessors() <em>Predecessors</em>}' reference list.
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
+	 * The cached value of the '{@link #getPredecessors() <em>Predecessors</em>}' reference list. <!-- begin-user-doc
+	 * --> <!-- end-user-doc -->
+	 * 
 	 * @see #getPredecessors()
 	 * @generated
 	 * @ordered
 	 */
 	protected EList<WorkItem> predecessors;
 	/**
-	 * The cached value of the '{@link #getSuccessors() <em>Successors</em>}' reference list.
-	 * <!-- begin-user-doc -->
+	 * The cached value of the '{@link #getSuccessors() <em>Successors</em>}' reference list. <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
+	 * 
 	 * @see #getSuccessors()
 	 * @generated
 	 * @ordered
 	 */
 	protected EList<WorkItem> successors;
 	/**
-	 * The cached value of the '{@link #getAssignee() <em>Assignee</em>}' reference.
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
+	 * The cached value of the '{@link #getAssignee() <em>Assignee</em>}' reference. <!-- begin-user-doc --> <!--
+	 * end-user-doc -->
+	 * 
 	 * @see #getAssignee()
 	 * @generated
 	 * @ordered
 	 */
 	protected OrgUnit assignee;
 	/**
-	 * The cached value of the '{@link #getParticipants() <em>Participants</em>}' reference list.
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
+	 * The cached value of the '{@link #getParticipants() <em>Participants</em>}' reference list. <!-- begin-user-doc
+	 * --> <!-- end-user-doc -->
+	 * 
 	 * @see #getParticipants()
 	 * @generated
 	 * @ordered
 	 */
 	protected EList<OrgUnit> participants;
 	/**
-	 * The default value of the '{@link #getDueDate() <em>Due Date</em>}' attribute.
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
+	 * The default value of the '{@link #getDueDate() <em>Due Date</em>}' attribute. <!-- begin-user-doc --> <!--
+	 * end-user-doc -->
+	 * 
 	 * @see #getDueDate()
 	 * @generated
 	 * @ordered
 	 */
 	protected static final Date DUE_DATE_EDEFAULT = null;
 	/**
-	 * The cached value of the '{@link #getDueDate() <em>Due Date</em>}' attribute.
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
+	 * The cached value of the '{@link #getDueDate() <em>Due Date</em>}' attribute. <!-- begin-user-doc --> <!--
+	 * end-user-doc -->
+	 * 
 	 * @see #getDueDate()
 	 * @generated
 	 * @ordered
 	 */
 	protected Date dueDate = DUE_DATE_EDEFAULT;
 	/**
-	 * The default value of the '{@link #getEstimate() <em>Estimate</em>}' attribute.
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
+	 * The default value of the '{@link #getEstimate() <em>Estimate</em>}' attribute. <!-- begin-user-doc --> <!--
+	 * end-user-doc -->
+	 * 
 	 * @see #getEstimate()
 	 * @generated
 	 * @ordered
 	 */
 	protected static final int ESTIMATE_EDEFAULT = 0;
 	/**
-	 * The cached value of the '{@link #getEstimate() <em>Estimate</em>}' attribute.
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
+	 * The cached value of the '{@link #getEstimate() <em>Estimate</em>}' attribute. <!-- begin-user-doc --> <!--
+	 * end-user-doc -->
+	 * 
 	 * @see #getEstimate()
 	 * @generated
 	 * @ordered
 	 */
 	protected int estimate = ESTIMATE_EDEFAULT;
 	/**
-	 * The default value of the '{@link #getEffort() <em>Effort</em>}' attribute.
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
+	 * The default value of the '{@link #getEffort() <em>Effort</em>}' attribute. <!-- begin-user-doc --> <!--
+	 * end-user-doc -->
+	 * 
 	 * @see #getEffort()
 	 * @generated
 	 * @ordered
 	 */
 	protected static final int EFFORT_EDEFAULT = 0;
 	/**
-	 * The cached value of the '{@link #getEffort() <em>Effort</em>}' attribute.
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
+	 * The cached value of the '{@link #getEffort() <em>Effort</em>}' attribute. <!-- begin-user-doc --> <!--
+	 * end-user-doc -->
+	 * 
 	 * @see #getEffort()
 	 * @generated
 	 * @ordered
@@ -153,8 +151,8 @@ public class MilestoneImpl extends AnnotationImpl implements Milestone {
 	protected int effort = EFFORT_EDEFAULT;
 	/**
 	 * The cached value of the '{@link #getContainedModelElements() <em>Contained Model Elements</em>}' reference list.
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
+	 * <!-- begin-user-doc --> <!-- end-user-doc -->
+	 * 
 	 * @see #getContainedModelElements()
 	 * @generated
 	 * @ordered
@@ -162,8 +160,8 @@ public class MilestoneImpl extends AnnotationImpl implements Milestone {
 	protected EList<ModelElement> containedModelElements;
 
 	/**
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
+	 * <!-- begin-user-doc --> <!-- end-user-doc -->
+	 * 
 	 * @generated
 	 */
 	protected MilestoneImpl() {
@@ -171,8 +169,8 @@ public class MilestoneImpl extends AnnotationImpl implements Milestone {
 	}
 
 	/**
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
+	 * <!-- begin-user-doc --> <!-- end-user-doc -->
+	 * 
 	 * @generated
 	 */
 	@Override
@@ -181,8 +179,8 @@ public class MilestoneImpl extends AnnotationImpl implements Milestone {
 	}
 
 	/**
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
+	 * <!-- begin-user-doc --> <!-- end-user-doc -->
+	 * 
 	 * @generated
 	 */
 	public WorkPackage getContainingWorkpackage() {
@@ -192,8 +190,8 @@ public class MilestoneImpl extends AnnotationImpl implements Milestone {
 	}
 
 	/**
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
+	 * <!-- begin-user-doc --> <!-- end-user-doc -->
+	 * 
 	 * @generated
 	 */
 	public WorkPackage basicGetContainingWorkpackage() {
@@ -203,90 +201,82 @@ public class MilestoneImpl extends AnnotationImpl implements Milestone {
 	}
 
 	/**
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
+	 * <!-- begin-user-doc --> <!-- end-user-doc -->
+	 * 
 	 * @generated
 	 */
-	public NotificationChain basicSetContainingWorkpackage(
-			WorkPackage newContainingWorkpackage, NotificationChain msgs) {
+	public NotificationChain basicSetContainingWorkpackage(WorkPackage newContainingWorkpackage, NotificationChain msgs) {
 		msgs = eBasicSetContainer((InternalEObject) newContainingWorkpackage,
-				TaskPackage.MILESTONE__CONTAINING_WORKPACKAGE, msgs);
+			TaskPackage.MILESTONE__CONTAINING_WORKPACKAGE, msgs);
 		return msgs;
 	}
 
 	/**
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
+	 * <!-- begin-user-doc --> <!-- end-user-doc -->
+	 * 
 	 * @generated
 	 */
 	public void setContainingWorkpackage(WorkPackage newContainingWorkpackage) {
 		if (newContainingWorkpackage != eInternalContainer()
-				|| (eContainerFeatureID != TaskPackage.MILESTONE__CONTAINING_WORKPACKAGE && newContainingWorkpackage != null)) {
+			|| (eContainerFeatureID != TaskPackage.MILESTONE__CONTAINING_WORKPACKAGE && newContainingWorkpackage != null)) {
 			if (EcoreUtil.isAncestor(this, newContainingWorkpackage))
-				throw new IllegalArgumentException(
-						"Recursive containment not allowed for " + toString());
+				throw new IllegalArgumentException("Recursive containment not allowed for " + toString());
 			NotificationChain msgs = null;
 			if (eInternalContainer() != null)
 				msgs = eBasicRemoveFromContainer(msgs);
 			if (newContainingWorkpackage != null)
-				msgs = ((InternalEObject) newContainingWorkpackage)
-						.eInverseAdd(this,
-								TaskPackage.WORK_PACKAGE__CONTAINED_WORK_ITEMS,
-								WorkPackage.class, msgs);
+				msgs = ((InternalEObject) newContainingWorkpackage).eInverseAdd(this,
+					TaskPackage.WORK_PACKAGE__CONTAINED_WORK_ITEMS, WorkPackage.class, msgs);
 			msgs = basicSetContainingWorkpackage(newContainingWorkpackage, msgs);
 			if (msgs != null)
 				msgs.dispatch();
 		} else if (eNotificationRequired())
-			eNotify(new ENotificationImpl(this, Notification.SET,
-					TaskPackage.MILESTONE__CONTAINING_WORKPACKAGE,
-					newContainingWorkpackage, newContainingWorkpackage));
+			eNotify(new ENotificationImpl(this, Notification.SET, TaskPackage.MILESTONE__CONTAINING_WORKPACKAGE,
+				newContainingWorkpackage, newContainingWorkpackage));
 	}
 
 	/**
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
+	 * <!-- begin-user-doc --> <!-- end-user-doc -->
+	 * 
 	 * @generated
 	 */
 	public EList<ModelChangePackage> getAssociatedChangePackages() {
 		if (associatedChangePackages == null) {
-			associatedChangePackages = new EObjectResolvingEList<ModelChangePackage>(
-					ModelChangePackage.class, this,
-					TaskPackage.MILESTONE__ASSOCIATED_CHANGE_PACKAGES);
+			associatedChangePackages = new EObjectResolvingEList<ModelChangePackage>(ModelChangePackage.class, this,
+				TaskPackage.MILESTONE__ASSOCIATED_CHANGE_PACKAGES);
 		}
 		return associatedChangePackages;
 	}
 
 	/**
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
+	 * <!-- begin-user-doc --> <!-- end-user-doc -->
+	 * 
 	 * @generated
 	 */
 	public EList<WorkItem> getPredecessors() {
 		if (predecessors == null) {
-			predecessors = new EObjectWithInverseResolvingEList.ManyInverse<WorkItem>(
-					WorkItem.class, this, TaskPackage.MILESTONE__PREDECESSORS,
-					TaskPackage.WORK_ITEM__SUCCESSORS);
+			predecessors = new EObjectWithInverseResolvingEList.ManyInverse<WorkItem>(WorkItem.class, this,
+				TaskPackage.MILESTONE__PREDECESSORS, TaskPackage.WORK_ITEM__SUCCESSORS);
 		}
 		return predecessors;
 	}
 
 	/**
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
+	 * <!-- begin-user-doc --> <!-- end-user-doc -->
+	 * 
 	 * @generated
 	 */
 	public EList<WorkItem> getSuccessors() {
 		if (successors == null) {
-			successors = new EObjectWithInverseResolvingEList.ManyInverse<WorkItem>(
-					WorkItem.class, this, TaskPackage.MILESTONE__SUCCESSORS,
-					TaskPackage.WORK_ITEM__PREDECESSORS);
+			successors = new EObjectWithInverseResolvingEList.ManyInverse<WorkItem>(WorkItem.class, this,
+				TaskPackage.MILESTONE__SUCCESSORS, TaskPackage.WORK_ITEM__PREDECESSORS);
 		}
 		return successors;
 	}
 
 	/**
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
+	 * <!-- begin-user-doc --> <!-- end-user-doc -->
+	 * 
 	 * @generated
 	 */
 	public OrgUnit getAssignee() {
@@ -295,17 +285,16 @@ public class MilestoneImpl extends AnnotationImpl implements Milestone {
 			assignee = (OrgUnit) eResolveProxy(oldAssignee);
 			if (assignee != oldAssignee) {
 				if (eNotificationRequired())
-					eNotify(new ENotificationImpl(this, Notification.RESOLVE,
-							TaskPackage.MILESTONE__ASSIGNEE, oldAssignee,
-							assignee));
+					eNotify(new ENotificationImpl(this, Notification.RESOLVE, TaskPackage.MILESTONE__ASSIGNEE,
+						oldAssignee, assignee));
 			}
 		}
 		return assignee;
 	}
 
 	/**
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
+	 * <!-- begin-user-doc --> <!-- end-user-doc -->
+	 * 
 	 * @generated
 	 */
 	public OrgUnit basicGetAssignee() {
@@ -313,18 +302,16 @@ public class MilestoneImpl extends AnnotationImpl implements Milestone {
 	}
 
 	/**
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
+	 * <!-- begin-user-doc --> <!-- end-user-doc -->
+	 * 
 	 * @generated
 	 */
-	public NotificationChain basicSetAssignee(OrgUnit newAssignee,
-			NotificationChain msgs) {
+	public NotificationChain basicSetAssignee(OrgUnit newAssignee, NotificationChain msgs) {
 		OrgUnit oldAssignee = assignee;
 		assignee = newAssignee;
 		if (eNotificationRequired()) {
-			ENotificationImpl notification = new ENotificationImpl(this,
-					Notification.SET, TaskPackage.MILESTONE__ASSIGNEE,
-					oldAssignee, newAssignee);
+			ENotificationImpl notification = new ENotificationImpl(this, Notification.SET,
+				TaskPackage.MILESTONE__ASSIGNEE, oldAssignee, newAssignee);
 			if (msgs == null)
 				msgs = notification;
 			else
@@ -334,46 +321,43 @@ public class MilestoneImpl extends AnnotationImpl implements Milestone {
 	}
 
 	/**
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
+	 * <!-- begin-user-doc --> <!-- end-user-doc -->
+	 * 
 	 * @generated
 	 */
 	public void setAssignee(OrgUnit newAssignee) {
 		if (newAssignee != assignee) {
 			NotificationChain msgs = null;
 			if (assignee != null)
-				msgs = ((InternalEObject) assignee).eInverseRemove(this,
-						OrganizationPackage.ORG_UNIT__ASSIGNMENTS,
-						OrgUnit.class, msgs);
+				msgs = ((InternalEObject) assignee).eInverseRemove(this, OrganizationPackage.ORG_UNIT__ASSIGNMENTS,
+					OrgUnit.class, msgs);
 			if (newAssignee != null)
-				msgs = ((InternalEObject) newAssignee).eInverseAdd(this,
-						OrganizationPackage.ORG_UNIT__ASSIGNMENTS,
-						OrgUnit.class, msgs);
+				msgs = ((InternalEObject) newAssignee).eInverseAdd(this, OrganizationPackage.ORG_UNIT__ASSIGNMENTS,
+					OrgUnit.class, msgs);
 			msgs = basicSetAssignee(newAssignee, msgs);
 			if (msgs != null)
 				msgs.dispatch();
 		} else if (eNotificationRequired())
-			eNotify(new ENotificationImpl(this, Notification.SET,
-					TaskPackage.MILESTONE__ASSIGNEE, newAssignee, newAssignee));
+			eNotify(new ENotificationImpl(this, Notification.SET, TaskPackage.MILESTONE__ASSIGNEE, newAssignee,
+				newAssignee));
 	}
 
 	/**
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
+	 * <!-- begin-user-doc --> <!-- end-user-doc -->
+	 * 
 	 * @generated
 	 */
 	public EList<OrgUnit> getParticipants() {
 		if (participants == null) {
-			participants = new EObjectWithInverseResolvingEList.ManyInverse<OrgUnit>(
-					OrgUnit.class, this, TaskPackage.MILESTONE__PARTICIPANTS,
-					OrganizationPackage.ORG_UNIT__PARTICIPATIONS);
+			participants = new EObjectWithInverseResolvingEList.ManyInverse<OrgUnit>(OrgUnit.class, this,
+				TaskPackage.MILESTONE__PARTICIPANTS, OrganizationPackage.ORG_UNIT__PARTICIPATIONS);
 		}
 		return participants;
 	}
 
 	/**
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
+	 * <!-- begin-user-doc --> <!-- end-user-doc -->
+	 * 
 	 * @generated
 	 */
 	public Date getDueDate() {
@@ -381,21 +365,20 @@ public class MilestoneImpl extends AnnotationImpl implements Milestone {
 	}
 
 	/**
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
+	 * <!-- begin-user-doc --> <!-- end-user-doc -->
+	 * 
 	 * @generated
 	 */
 	public void setDueDate(Date newDueDate) {
 		Date oldDueDate = dueDate;
 		dueDate = newDueDate;
 		if (eNotificationRequired())
-			eNotify(new ENotificationImpl(this, Notification.SET,
-					TaskPackage.MILESTONE__DUE_DATE, oldDueDate, dueDate));
+			eNotify(new ENotificationImpl(this, Notification.SET, TaskPackage.MILESTONE__DUE_DATE, oldDueDate, dueDate));
 	}
 
 	/**
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
+	 * <!-- begin-user-doc --> <!-- end-user-doc -->
+	 * 
 	 * @generated
 	 */
 	public int getEstimate() {
@@ -403,21 +386,21 @@ public class MilestoneImpl extends AnnotationImpl implements Milestone {
 	}
 
 	/**
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
+	 * <!-- begin-user-doc --> <!-- end-user-doc -->
+	 * 
 	 * @generated
 	 */
 	public void setEstimate(int newEstimate) {
 		int oldEstimate = estimate;
 		estimate = newEstimate;
 		if (eNotificationRequired())
-			eNotify(new ENotificationImpl(this, Notification.SET,
-					TaskPackage.MILESTONE__ESTIMATE, oldEstimate, estimate));
+			eNotify(new ENotificationImpl(this, Notification.SET, TaskPackage.MILESTONE__ESTIMATE, oldEstimate,
+				estimate));
 	}
 
 	/**
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
+	 * <!-- begin-user-doc --> <!-- end-user-doc -->
+	 * 
 	 * @generated
 	 */
 	public int getEffort() {
@@ -425,111 +408,98 @@ public class MilestoneImpl extends AnnotationImpl implements Milestone {
 	}
 
 	/**
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
+	 * <!-- begin-user-doc --> <!-- end-user-doc -->
+	 * 
 	 * @generated
 	 */
 	public void setEffort(int newEffort) {
 		int oldEffort = effort;
 		effort = newEffort;
 		if (eNotificationRequired())
-			eNotify(new ENotificationImpl(this, Notification.SET,
-					TaskPackage.MILESTONE__EFFORT, oldEffort, effort));
+			eNotify(new ENotificationImpl(this, Notification.SET, TaskPackage.MILESTONE__EFFORT, oldEffort, effort));
 	}
 
 	/**
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
+	 * <!-- begin-user-doc --> <!-- end-user-doc -->
+	 * 
 	 * @generated
 	 */
 	public EList<ModelElement> getContainedModelElements() {
 		if (containedModelElements == null) {
-			containedModelElements = new EObjectResolvingEList<ModelElement>(
-					ModelElement.class, this,
-					TaskPackage.MILESTONE__CONTAINED_MODEL_ELEMENTS);
+			containedModelElements = new EObjectResolvingEList<ModelElement>(ModelElement.class, this,
+				TaskPackage.MILESTONE__CONTAINED_MODEL_ELEMENTS);
 		}
 		return containedModelElements;
 	}
 
 	/**
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
+	 * <!-- begin-user-doc --> <!-- end-user-doc -->
+	 * 
 	 * @generated
 	 */
 	@SuppressWarnings("unchecked")
 	@Override
-	public NotificationChain eInverseAdd(InternalEObject otherEnd,
-			int featureID, NotificationChain msgs) {
+	public NotificationChain eInverseAdd(InternalEObject otherEnd, int featureID, NotificationChain msgs) {
 		switch (featureID) {
 		case TaskPackage.MILESTONE__CONTAINING_WORKPACKAGE:
 			if (eInternalContainer() != null)
 				msgs = eBasicRemoveFromContainer(msgs);
 			return basicSetContainingWorkpackage((WorkPackage) otherEnd, msgs);
 		case TaskPackage.MILESTONE__PREDECESSORS:
-			return ((InternalEList<InternalEObject>) (InternalEList<?>) getPredecessors())
-					.basicAdd(otherEnd, msgs);
+			return ((InternalEList<InternalEObject>) (InternalEList<?>) getPredecessors()).basicAdd(otherEnd, msgs);
 		case TaskPackage.MILESTONE__SUCCESSORS:
-			return ((InternalEList<InternalEObject>) (InternalEList<?>) getSuccessors())
-					.basicAdd(otherEnd, msgs);
+			return ((InternalEList<InternalEObject>) (InternalEList<?>) getSuccessors()).basicAdd(otherEnd, msgs);
 		case TaskPackage.MILESTONE__ASSIGNEE:
 			if (assignee != null)
-				msgs = ((InternalEObject) assignee).eInverseRemove(this,
-						OrganizationPackage.ORG_UNIT__ASSIGNMENTS,
-						OrgUnit.class, msgs);
+				msgs = ((InternalEObject) assignee).eInverseRemove(this, OrganizationPackage.ORG_UNIT__ASSIGNMENTS,
+					OrgUnit.class, msgs);
 			return basicSetAssignee((OrgUnit) otherEnd, msgs);
 		case TaskPackage.MILESTONE__PARTICIPANTS:
-			return ((InternalEList<InternalEObject>) (InternalEList<?>) getParticipants())
-					.basicAdd(otherEnd, msgs);
+			return ((InternalEList<InternalEObject>) (InternalEList<?>) getParticipants()).basicAdd(otherEnd, msgs);
 		}
 		return super.eInverseAdd(otherEnd, featureID, msgs);
 	}
 
 	/**
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
+	 * <!-- begin-user-doc --> <!-- end-user-doc -->
+	 * 
 	 * @generated
 	 */
 	@Override
-	public NotificationChain eInverseRemove(InternalEObject otherEnd,
-			int featureID, NotificationChain msgs) {
+	public NotificationChain eInverseRemove(InternalEObject otherEnd, int featureID, NotificationChain msgs) {
 		switch (featureID) {
 		case TaskPackage.MILESTONE__CONTAINING_WORKPACKAGE:
 			return basicSetContainingWorkpackage(null, msgs);
 		case TaskPackage.MILESTONE__PREDECESSORS:
-			return ((InternalEList<?>) getPredecessors()).basicRemove(otherEnd,
-					msgs);
+			return ((InternalEList<?>) getPredecessors()).basicRemove(otherEnd, msgs);
 		case TaskPackage.MILESTONE__SUCCESSORS:
-			return ((InternalEList<?>) getSuccessors()).basicRemove(otherEnd,
-					msgs);
+			return ((InternalEList<?>) getSuccessors()).basicRemove(otherEnd, msgs);
 		case TaskPackage.MILESTONE__ASSIGNEE:
 			return basicSetAssignee(null, msgs);
 		case TaskPackage.MILESTONE__PARTICIPANTS:
-			return ((InternalEList<?>) getParticipants()).basicRemove(otherEnd,
-					msgs);
+			return ((InternalEList<?>) getParticipants()).basicRemove(otherEnd, msgs);
 		}
 		return super.eInverseRemove(otherEnd, featureID, msgs);
 	}
 
 	/**
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
+	 * <!-- begin-user-doc --> <!-- end-user-doc -->
+	 * 
 	 * @generated
 	 */
 	@Override
-	public NotificationChain eBasicRemoveFromContainerFeature(
-			NotificationChain msgs) {
+	public NotificationChain eBasicRemoveFromContainerFeature(NotificationChain msgs) {
 		switch (eContainerFeatureID) {
 		case TaskPackage.MILESTONE__CONTAINING_WORKPACKAGE:
-			return eInternalContainer().eInverseRemove(this,
-					TaskPackage.WORK_PACKAGE__CONTAINED_WORK_ITEMS,
-					WorkPackage.class, msgs);
+			return eInternalContainer().eInverseRemove(this, TaskPackage.WORK_PACKAGE__CONTAINED_WORK_ITEMS,
+				WorkPackage.class, msgs);
 		}
 		return super.eBasicRemoveFromContainerFeature(msgs);
 	}
 
 	/**
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
+	 * <!-- begin-user-doc --> <!-- end-user-doc -->
+	 * 
 	 * @generated
 	 */
 	@Override
@@ -564,8 +534,8 @@ public class MilestoneImpl extends AnnotationImpl implements Milestone {
 	}
 
 	/**
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
+	 * <!-- begin-user-doc --> <!-- end-user-doc -->
+	 * 
 	 * @generated
 	 */
 	@SuppressWarnings("unchecked")
@@ -577,8 +547,7 @@ public class MilestoneImpl extends AnnotationImpl implements Milestone {
 			return;
 		case TaskPackage.MILESTONE__ASSOCIATED_CHANGE_PACKAGES:
 			getAssociatedChangePackages().clear();
-			getAssociatedChangePackages().addAll(
-					(Collection<? extends ModelChangePackage>) newValue);
+			getAssociatedChangePackages().addAll((Collection<? extends ModelChangePackage>) newValue);
 			return;
 		case TaskPackage.MILESTONE__PREDECESSORS:
 			getPredecessors().clear();
@@ -606,16 +575,15 @@ public class MilestoneImpl extends AnnotationImpl implements Milestone {
 			return;
 		case TaskPackage.MILESTONE__CONTAINED_MODEL_ELEMENTS:
 			getContainedModelElements().clear();
-			getContainedModelElements().addAll(
-					(Collection<? extends ModelElement>) newValue);
+			getContainedModelElements().addAll((Collection<? extends ModelElement>) newValue);
 			return;
 		}
 		super.eSet(featureID, newValue);
 	}
 
 	/**
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
+	 * <!-- begin-user-doc --> <!-- end-user-doc -->
+	 * 
 	 * @generated
 	 */
 	@Override
@@ -656,8 +624,8 @@ public class MilestoneImpl extends AnnotationImpl implements Milestone {
 	}
 
 	/**
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
+	 * <!-- begin-user-doc --> <!-- end-user-doc -->
+	 * 
 	 * @generated
 	 */
 	@Override
@@ -666,8 +634,7 @@ public class MilestoneImpl extends AnnotationImpl implements Milestone {
 		case TaskPackage.MILESTONE__CONTAINING_WORKPACKAGE:
 			return basicGetContainingWorkpackage() != null;
 		case TaskPackage.MILESTONE__ASSOCIATED_CHANGE_PACKAGES:
-			return associatedChangePackages != null
-					&& !associatedChangePackages.isEmpty();
+			return associatedChangePackages != null && !associatedChangePackages.isEmpty();
 		case TaskPackage.MILESTONE__PREDECESSORS:
 			return predecessors != null && !predecessors.isEmpty();
 		case TaskPackage.MILESTONE__SUCCESSORS:
@@ -677,22 +644,20 @@ public class MilestoneImpl extends AnnotationImpl implements Milestone {
 		case TaskPackage.MILESTONE__PARTICIPANTS:
 			return participants != null && !participants.isEmpty();
 		case TaskPackage.MILESTONE__DUE_DATE:
-			return DUE_DATE_EDEFAULT == null ? dueDate != null
-					: !DUE_DATE_EDEFAULT.equals(dueDate);
+			return DUE_DATE_EDEFAULT == null ? dueDate != null : !DUE_DATE_EDEFAULT.equals(dueDate);
 		case TaskPackage.MILESTONE__ESTIMATE:
 			return estimate != ESTIMATE_EDEFAULT;
 		case TaskPackage.MILESTONE__EFFORT:
 			return effort != EFFORT_EDEFAULT;
 		case TaskPackage.MILESTONE__CONTAINED_MODEL_ELEMENTS:
-			return containedModelElements != null
-					&& !containedModelElements.isEmpty();
+			return containedModelElements != null && !containedModelElements.isEmpty();
 		}
 		return super.eIsSet(featureID);
 	}
 
 	/**
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
+	 * <!-- begin-user-doc --> <!-- end-user-doc -->
+	 * 
 	 * @generated
 	 */
 	@Override
@@ -711,4 +676,4 @@ public class MilestoneImpl extends AnnotationImpl implements Milestone {
 		return result.toString();
 	}
 
-} //MilestoneImpl
+} // MilestoneImpl
