@@ -225,7 +225,7 @@ public class UseCaseEditPart extends ShapeNodeEditPart {
 		 */
 		public UseCaseFigure() {
 
-			org.unicase.ui.usecaseDiagram.unicase.CenterLayout layoutThis = new org.unicase.ui.usecaseDiagram.unicase.CenterLayout();
+			org.unicase.ui.common.diagram.CenterLayout layoutThis = new org.unicase.ui.common.diagram.CenterLayout();
 
 			this.setLayoutManager(layoutThis);
 
