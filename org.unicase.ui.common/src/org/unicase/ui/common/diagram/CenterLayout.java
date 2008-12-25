@@ -20,17 +20,6 @@ import org.eclipse.draw2d.geometry.Rectangle;
 
 public class CenterLayout extends StackLayout {
 
-	private Rectangle clientRect;
-
-	/**
-	 * . The constructor
-	 * 
-	 * @param clientRect the client rectangle
-	 */
-	public CenterLayout(Rectangle clientRect) {
-		this.clientRect = clientRect;
-	}
-
 	/**
 	 * . The constructor
 	 */
@@ -43,6 +32,7 @@ public class CenterLayout extends StackLayout {
 	 * 
 	 * @see org.eclipse.draw2d.StackLayout#layout(org.eclipse.draw2d.IFigure)
 	 */
+	@SuppressWarnings("unchecked")
 	@Override
 	public void layout(IFigure figure) {
 
