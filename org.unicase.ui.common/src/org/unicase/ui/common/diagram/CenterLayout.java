@@ -1,13 +1,8 @@
 /*
- * Copyright (c) 2006 Borland Software Corporation
- * 
- * All rights reserved. This program and the accompanying materials
- * are made available under the terms of the Eclipse Public License v1.0
- * which accompanies this distribution, and is available at
- * http://www.eclipse.org/legal/epl-v10.html
- *
- * Contributors:
- *    Michael Golubev (Borland) - initial API and implementation
+ * Copyright (c) 2006 Borland Software Corporation All rights reserved. This program and the accompanying materials are
+ * made available under the terms of the Eclipse Public License v1.0 which accompanies this distribution, and is
+ * available at http://www.eclipse.org/legal/epl-v10.html Contributors: Michael Golubev (Borland) - initial API and
+ * implementation
  */
 
 package org.unicase.ui.common.diagram;
@@ -20,33 +15,49 @@ import org.eclipse.draw2d.geometry.Dimension;
 import org.eclipse.draw2d.geometry.Rectangle;
 
 /**
- * @author schroech
- *
+ * @author denglerm This class is uses by the usecase ellipse
  */
+
 public class CenterLayout extends StackLayout {
-	private static final Rectangle RECTANGLE = new Rectangle();
-	
+
+	private Rectangle clientRect;
+
 	/**
-	* {@inheritDoc}
-	* @see org.eclipse.draw2d.StackLayout#layout(org.eclipse.draw2d.IFigure)
-	*/
+	 * . The constructor
+	 * 
+	 * @param clientRect the client rectangle
+	 */
+	public CenterLayout(Rectangle clientRect) {
+		this.clientRect = clientRect;
+	}
+
+	/**
+	 * . The constructor
+	 */
+	public CenterLayout() {
+		super();
+	}
+
+	/**
+	 * . {@inheritDoc}
+	 * 
+	 * @see org.eclipse.draw2d.StackLayout#layout(org.eclipse.draw2d.IFigure)
+	 */
 	@Override
-	@SuppressWarnings("unchecked")
 	public void layout(IFigure figure) {
+
 		Rectangle r = figure.getClientArea();
-		final int centerX = r.x + r.width / 2;
-		final int centerY = r.y + r.height / 2;
 		List children = figure.getChildren();
 		IFigure child;
+		Dimension d;
 		for (int i = 0; i < children.size(); i++) {
-			child = (IFigure)children.get(i);
-			Dimension prefSize = child.getPreferredSize(r.width, r.height);
-			RECTANGLE.x = centerX - prefSize.width / 2;
-			RECTANGLE.y = centerY - prefSize.height / 2;
-			RECTANGLE.width = prefSize.width;
-			RECTANGLE.height = prefSize.height;
-			//Workaround for 209648
-			child.setBounds(RECTANGLE);
+			child = (IFigure) children.get(i);
+			d = child.getPreferredSize(r.width, r.height);
+			d.width = Math.min(d.width, r.width);
+			d.height = Math.min(d.height, r.height);
+			Rectangle childRect = new Rectangle(r.x + (r.width - d.width) / 2, r.y + (r.height - d.height) / 2,
+				d.width, d.height);
+			child.setBounds(childRect);
 		}
 	}
 }
