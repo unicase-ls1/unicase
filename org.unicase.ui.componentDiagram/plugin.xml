@@ -464,49 +464,4 @@
          schemeId="org.eclipse.ui.defaultAcceleratorConfiguration"
          sequence="F5"/>
    </extension>
-   
-<extension point="org.eclipse.ui.popupMenus">
-      <objectContribution
-            adaptable="false"
-            id="DeleteFromDiagramActionComponent"
-            objectClass="org.unicase.ui.componentDiagram.edit.parts.ComponentEditPart">
-         <action
-               class="org.unicase.ui.common.diagram.DeleteFromDiagramAction"
-               enablesFor="1"
-               icon="icons/delete_edit.gif"
-               id="DeleteFromDiagramActionIDComp"
-               label="Delete From Diagram">
-         </action>
-      </objectContribution>
-</extension>
-
-<extension point="org.eclipse.ui.popupMenus">
-      <objectContribution
-            adaptable="false"
-            id="DeleteFromDiagramActionComponent"
-            objectClass="org.unicase.ui.componentDiagram.edit.parts.Component2EditPart">
-         <action
-               class="org.unicase.ui.common.diagram.DeleteFromDiagramAction"
-               enablesFor="1"
-               icon="icons/delete_edit.gif"
-               id="DeleteFromDiagramActionIDComponent"
-               label="Delete From Diagram">
-         </action>
-      </objectContribution>
-</extension>
-
-<extension point="org.eclipse.ui.popupMenus">
-      <objectContribution
-            adaptable="false"
-            id="DeleteFromDiagramActionComponentService"
-            objectClass="org.unicase.ui.componentDiagram.edit.parts.ComponentNameEditPart">
-         <action
-               class="org.unicase.ui.common.diagram.DeleteFromDiagramAction"
-               enablesFor="1"
-               icon="icons/delete_edit.gif"
-               id="DeleteFromDiagramActionIDComponentService"
-               label="Delete From Diagram">
-         </action>
-      </objectContribution>
-</extension>
 </plugin>
