@@ -541,34 +541,4 @@
 </popupContribution>
 </contributionItemProvider>
 </extension>
-
-<extension point="org.eclipse.ui.popupMenus">
-      <objectContribution
-            adaptable="false"
-            id="DeleteFromDiagramActionClass"
-            objectClass="org.unicase.model.classDiagram.edit.parts.ClassEditPart">
-         <action
-               class="org.unicase.ui.common.diagram.DeleteFromDiagramAction"
-               enablesFor="1"
-               icon="icons/delete_edit.gif"
-               id="DeleteFromDiagramActionIDClass"
-               label="Delete From Diagram">
-         </action>
-      </objectContribution>
-</extension>
-<extension point="org.eclipse.ui.popupMenus">
-      <objectContribution
-            adaptable="false"
-            id="DeleteFromDiagramActionPackage"
-            objectClass="org.unicase.model.classDiagram.edit.parts.PackageEditPart">
-         <action
-               class="org.unicase.ui.common.diagram.DeleteFromDiagramAction"
-               enablesFor="1"
-               icon="icons/delete_edit.gif"
-               id="DeleteFromDiagramActionIDPackage"
-               label="Delete From Diagram">
-         </action>
-      </objectContribution>
-</extension>
-
 </plugin>
