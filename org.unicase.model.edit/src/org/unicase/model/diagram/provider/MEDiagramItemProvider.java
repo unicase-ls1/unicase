@@ -29,6 +29,7 @@ import org.unicase.model.classes.ClassesFactory;
 import org.unicase.model.component.ComponentFactory;
 import org.unicase.model.diagram.DiagramFactory;
 import org.unicase.model.diagram.DiagramPackage;
+import org.unicase.model.diagram.DiagramType;
 import org.unicase.model.diagram.MEDiagram;
 import org.unicase.model.document.DocumentFactory;
 import org.unicase.model.meeting.MeetingFactory;
@@ -136,7 +137,17 @@ public class MEDiagramItemProvider extends AttachmentItemProvider implements IEd
 	 */
 	@Override
 	public Object getImage(Object object) {
-		return overlayImage(object, getResourceLocator().getImage("full/obj16/MEDiagram"));
+		String imgStr = "full/obj16/MEDiagram";
+		DiagramType type = ((MEDiagram) object).getType();
+		if (type == DiagramType.CLASS_DIAGRAM) {
+			imgStr = "full/obj16/ClassDiagram.gif";
+		} else if (type == DiagramType.USECASE_DIAGRAM) {
+			imgStr = "full/obj16/UsecaseDiagram.gif";
+		} else if (type == DiagramType.COMPONENT_DIAGRAM) {
+			imgStr = "full/obj16/ComponentDiagram.gif";
+		}
+
+		return overlayImage(object, getResourceLocator().getImage(imgStr));
 	}
 
 	/**
