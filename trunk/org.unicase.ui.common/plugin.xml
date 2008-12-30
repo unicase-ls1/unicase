@@ -435,7 +435,7 @@
             id="org.unicase.ui.common.diagram.DeleteFromDiagramAction"
             objectClass="org.eclipse.gmf.runtime.diagram.ui.editparts.ShapeNodeEditPart">
          <action
-               class="org.unicase.ui.common.diagram.DeleteFromDiagramAction"
+               class="org.unicase.ui.common.diagram.DeleteFromDiagramContextMenuAction"
                enablesFor="1"
                icon="icons/delete_edit.gif"
                id="org.unicase.ui.common.diagram.DeleteFromDiagramAction"
