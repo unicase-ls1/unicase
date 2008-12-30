@@ -1,8 +1,7 @@
 /**
- * <copyright> Copyright (c) 2008 Jonas Helming, Maximilian Koegel. All rights reserved. This program and the accompanying materials are made available under the terms of the Eclipse Public License v1.0 which accompanies this distribution, and is available at http://www.eclipse.org/legal/epl-v10.html
- * </copyright>
- *
- * $Id$
+ * <copyright> Copyright (c) 2008 Jonas Helming, Maximilian Koegel. All rights reserved. This program and the
+ * accompanying materials are made available under the terms of the Eclipse Public License v1.0 which accompanies this
+ * distribution, and is available at http://www.eclipse.org/legal/epl-v10.html </copyright> $Id$
  */
 package org.unicase.ui.common.diagram;
 
@@ -21,9 +20,11 @@ import org.eclipse.emf.ecore.resource.Resource;
 import org.eclipse.emf.edit.ui.dnd.LocalTransfer;
 import org.eclipse.emf.transaction.RecordingCommand;
 import org.eclipse.gef.EditPartViewer;
+import org.eclipse.gef.KeyStroke;
 import org.eclipse.gmf.runtime.diagram.ui.parts.DiagramDropTargetListener;
 import org.eclipse.gmf.runtime.diagram.ui.resources.editor.parts.DiagramDocumentEditor;
 import org.eclipse.jface.dialogs.ErrorDialog;
+import org.eclipse.swt.SWT;
 import org.eclipse.swt.dnd.Transfer;
 import org.eclipse.swt.dnd.TransferData;
 import org.eclipse.swt.widgets.Shell;
@@ -34,8 +35,7 @@ import org.unicase.model.diagram.impl.DiagramStoreException;
 import org.unicase.ui.common.dnd.DragSourcePlaceHolder;
 
 /**
- * @author denglerm This class is a superclass for the specific
- *         ModelDiagramEditor in each diagram.
+ * @author denglerm This class is a superclass for the specific ModelDiagramEditor in each diagram.
  */
 public class ModelDiagramEditor extends DiagramDocumentEditor {
 
@@ -49,8 +49,7 @@ public class ModelDiagramEditor extends DiagramDocumentEditor {
 	/**
 	 * Constructs a diagram editor with optional flyout palette.
 	 * 
-	 * @param hasFlyoutPalette
-	 *            creates a palette if true, else no palette
+	 * @param hasFlyoutPalette creates a palette if true, else no palette
 	 */
 	public ModelDiagramEditor(boolean hasFlyoutPalette) {
 		super(hasFlyoutPalette);
@@ -61,25 +60,23 @@ public class ModelDiagramEditor extends DiagramDocumentEditor {
 	 */
 	@Override
 	public void doSave(IProgressMonitor progressMonitor) {
-		getEditingDomain().getCommandStack().execute(
-				new RecordingCommand(getEditingDomain()) {
+		getEditingDomain().getCommandStack().execute(new RecordingCommand(getEditingDomain()) {
 
-					@Override
-					protected void doExecute() {
-						try {
-							((MEDiagram) ModelDiagramEditor.this.getDiagram()
-									.eContainer()).saveDiagramLayout();
+			@Override
+			protected void doExecute() {
+				try {
+					((MEDiagram) ModelDiagramEditor.this.getDiagram().eContainer()).saveDiagramLayout();
 
-						} catch (DiagramStoreException e) {
-							// TODO Auto-generated catch block
-							e.printStackTrace();
-						}
-						// WorkspaceManager.getProjectSpace(
-						// (MEDiagram) ModelDiagramEditor.this
-						// .getDiagram().eContainer()).save();
-					}
+				} catch (DiagramStoreException e) {
+					// TODO Auto-generated catch block
+					e.printStackTrace();
+				}
+				// WorkspaceManager.getProjectSpace(
+				// (MEDiagram) ModelDiagramEditor.this
+				// .getDiagram().eContainer()).save();
+			}
 
-				});
+		});
 	}
 
 	/**
@@ -89,20 +86,19 @@ public class ModelDiagramEditor extends DiagramDocumentEditor {
 	protected void initializeGraphicalViewer() {
 		super.initializeGraphicalViewer();
 		getDiagramGraphicalViewer().addDropTargetListener(
-				new DropTargetListener(getDiagramGraphicalViewer(),
-						LocalTransfer.getInstance()) {
+			new DropTargetListener(getDiagramGraphicalViewer(), LocalTransfer.getInstance()) {
 
-					@Override
-					protected Object getJavaObject(TransferData data) {
-						return DragSourcePlaceHolder.getDragSource();
-					}
+				@Override
+				protected Object getJavaObject(TransferData data) {
+					return DragSourcePlaceHolder.getDragSource();
+				}
 
-				});
+			});
+		getGraphicalViewer().getKeyHandler().put(KeyStroke.getPressed(SWT.DEL, 127, 0), new DeleteFromDiagramAction());
 	}
 
 	/**
-	 * @author denglerm This class implements the abstract
-	 *         DiagramDropTargetListener
+	 * @author denglerm This class implements the abstract DiagramDropTargetListener
 	 * @see org.eclipse.gmf.runtime.diagram.ui.parts.DiagramDropTargetListener
 	 */
 	private abstract class DropTargetListener extends DiagramDropTargetListener {
@@ -118,25 +114,21 @@ public class ModelDiagramEditor extends DiagramDocumentEditor {
 			Collection<URI> uris = new HashSet<URI>();
 
 			Object transferedObject = getJavaObject(data);
-			
+
 			if (transferedObject instanceof List) {
 				List<ModelElement> selection = (List<ModelElement>) transferedObject;
-				for (Iterator it = selection.iterator(); it
-						.hasNext();) {
+				for (Iterator it = selection.iterator(); it.hasNext();) {
 					Object nextSelectedObject = it.next();
 					if (nextSelectedObject instanceof IAdaptable) {
 						IAdaptable adaptable = (IAdaptable) nextSelectedObject;
-						nextSelectedObject = adaptable
-						.getAdapter(EObject.class);
+						nextSelectedObject = adaptable.getAdapter(EObject.class);
 					}
 
 					if (nextSelectedObject instanceof EObject) {
 						EObject modelElement = (EObject) nextSelectedObject;
-						Resource modelElementResource = modelElement
-						.eResource();
+						Resource modelElementResource = modelElement.eResource();
 						uris.add(modelElementResource.getURI().appendFragment(
-								modelElementResource
-								.getURIFragment(modelElement)));
+							modelElementResource.getURIFragment(modelElement)));
 					}
 				}
 			}
@@ -144,8 +136,7 @@ public class ModelDiagramEditor extends DiagramDocumentEditor {
 			List<EObject> result = new ArrayList<EObject>();
 			for (Iterator<URI> it = uris.iterator(); it.hasNext();) {
 				URI nextURI = it.next();
-				EObject modelObject = getEditingDomain().getResourceSet()
-				.getEObject(nextURI, true);
+				EObject modelObject = getEditingDomain().getResourceSet().getEObject(nextURI, true);
 				result.add(modelObject);
 			}
 			return result;
@@ -157,8 +148,8 @@ public class ModelDiagramEditor extends DiagramDocumentEditor {
 
 	/**
 	 * @generated NOT
-     * @see org.eclipse.ui.part.EditorPart#setInput(IEditorInput)
-     * @param input the editor input
+	 * @see org.eclipse.ui.part.EditorPart#setInput(IEditorInput)
+	 * @param input the editor input
 	 */
 	@Override
 	public void setInput(IEditorInput input) {
