@@ -1,8 +1,7 @@
 /**
- * <copyright> Copyright (c) 2008 Jonas Helming, Maximilian Koegel. All rights reserved. This program and the accompanying materials are made available under the terms of the Eclipse Public License v1.0 which accompanies this distribution, and is available at http://www.eclipse.org/legal/epl-v10.html
- * </copyright>
- *
- * $Id$
+ * <copyright> Copyright (c) 2008 Jonas Helming, Maximilian Koegel. All rights reserved. This program and the
+ * accompanying materials are made available under the terms of the Eclipse Public License v1.0 which accompanies this
+ * distribution, and is available at http://www.eclipse.org/legal/epl-v10.html </copyright> $Id$
  */
 package org.unicase.workspace;
 
@@ -20,7 +19,6 @@ import org.unicase.emfstore.esmodel.EsmodelFactory;
  * Represents the current Workspace Configuration.
  * 
  * @author koegel
- * 
  */
 public final class Configuration {
 
@@ -43,13 +41,11 @@ public final class Configuration {
 		if (!isReleaseVersion()) {
 			if (isInternalReleaseVersion()) {
 				sb.append(".internal");
-			}
-			else {
+			} else {
 				sb.append(".dev");
 			}
 		}
-		
-		
+
 		sb.append(File.separatorChar);
 		File workspace = new File(sb.toString());
 		if (!workspace.exists()) {
@@ -92,31 +88,51 @@ public final class Configuration {
 	public static List<ServerInfo> getDefaultServerInfos() {
 		List<ServerInfo> serverInfos = new ArrayList<ServerInfo>();
 
-		if (!isReleaseVersion()) {
-			ServerInfo serverInfo1 = WorkspaceFactory.eINSTANCE
-					.createServerInfo();
-			serverInfo1.setDisplayName("Localhost Server");
-			serverInfo1.setName("Localhost Server");
-			serverInfo1.setPort(1099);
-			serverInfo1.setUrl("localhost");
-			Usersession superUsersession = WorkspaceFactory.eINSTANCE
-					.createUsersession();
-			superUsersession.setPassword("super");
-			superUsersession.setSavePassword(true);
-			superUsersession.setServerInfo(serverInfo1);
-			superUsersession.setUsername("super");
-			serverInfo1.setLastUsersession(superUsersession);
-			serverInfos.add(serverInfo1);
+		if (isReleaseVersion()) {
+			serverInfos.add(getReleaseServerInfo());
 		}
-
-		ServerInfo serverInfo2 = WorkspaceFactory.eINSTANCE.createServerInfo();
-		serverInfo2.setDisplayName("unicase Server");
-		serverInfo2.setName("unicase Server");
-		serverInfo2.setPort(1099);
-		serverInfo2.setUrl("sysiphus.in.tum.de");
-		serverInfos.add(serverInfo2);
-
+		if (isInternalReleaseVersion()) {
+			serverInfos.add(getInternalServerInfo());
+		}
+		if (isDeveloperVersion()) {
+			serverInfos.add(getLocalhostServerInfo());
+		}
 		return serverInfos;
+	}
+
+	private static ServerInfo getReleaseServerInfo() {
+		ServerInfo serverInfo = WorkspaceFactory.eINSTANCE.createServerInfo();
+		serverInfo.setDisplayName("unicase Server");
+		serverInfo.setName("unicase Server");
+		serverInfo.setPort(1099);
+		serverInfo.setUrl("unicase.in.tum.de");
+		return serverInfo;
+	}
+
+	private static ServerInfo getInternalServerInfo() {
+		ServerInfo serverInfo = WorkspaceFactory.eINSTANCE.createServerInfo();
+		serverInfo.setDisplayName("unicase Developer Server");
+		serverInfo.setName("unicase Developer Server");
+		serverInfo.setPort(1099);
+		serverInfo.setUrl("unicase-dev.in.tum.de");
+		return serverInfo;
+	}
+
+	private static ServerInfo getLocalhostServerInfo() {
+		ServerInfo serverInfo = WorkspaceFactory.eINSTANCE.createServerInfo();
+		serverInfo.setDisplayName("Localhost Server");
+		serverInfo.setName("Localhost Server");
+		serverInfo.setPort(1099);
+		serverInfo.setUrl("localhost");
+
+		Usersession superUsersession = WorkspaceFactory.eINSTANCE.createUsersession();
+		superUsersession.setPassword("super");
+		superUsersession.setSavePassword(true);
+		superUsersession.setServerInfo(serverInfo);
+		superUsersession.setUsername("super");
+		serverInfo.setLastUsersession(superUsersession);
+
+		return serverInfo;
 	}
 
 	/**
@@ -143,13 +159,12 @@ public final class Configuration {
 	 * @return the client version number
 	 */
 	public static ClientVersionInfo getClientVersion() {
-		ClientVersionInfo clientVersionInfo = EsmodelFactory.eINSTANCE
-				.createClientVersionInfo();
+		ClientVersionInfo clientVersionInfo = EsmodelFactory.eINSTANCE.createClientVersionInfo();
 		clientVersionInfo.setName("unicase.org eclipse client");
 
 		Bundle emfStoreBundle = Platform.getBundle("org.unicase.workspace");
-		String emfStoreVersionString = (String) emfStoreBundle.getHeaders()
-				.get(org.osgi.framework.Constants.BUNDLE_VERSION);
+		String emfStoreVersionString = (String) emfStoreBundle.getHeaders().get(
+			org.osgi.framework.Constants.BUNDLE_VERSION);
 
 		clientVersionInfo.setVersion(emfStoreVersionString);
 		return clientVersionInfo;
@@ -163,12 +178,22 @@ public final class Configuration {
 	public static boolean isReleaseVersion() {
 		return !isInternalReleaseVersion() && !getClientVersion().getVersion().endsWith("qualifier");
 	}
-	
+
 	/**
 	 * Determines if this is an internal release or not.
-	 * @return true if it an internal release
+	 * 
+	 * @return true if it is an internal release
 	 */
 	public static boolean isInternalReleaseVersion() {
 		return getClientVersion().getVersion().endsWith("internal");
+	}
+
+	/**
+	 * Determines if this is an developer version or not.
+	 * 
+	 * @return true if it is a developer version
+	 */
+	public static boolean isDeveloperVersion() {
+		return !isReleaseVersion() && !isInternalReleaseVersion();
 	}
 }
