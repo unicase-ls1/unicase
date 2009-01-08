@@ -86,6 +86,11 @@
             id="org.unicase.ui.navigator.followupMeeting"
             name="followupMeeting">
       </command>
+      <command
+            defaultHandler="org.unicase.ui.navigator.commands.ShowMEInNavigatorHandler"
+            id="org.unicase.ui.navigator.ShowMEInNavigator"
+            name="ShowMEInNavigator">
+      </command>
    </extension>
     <!--    -->
    <extension

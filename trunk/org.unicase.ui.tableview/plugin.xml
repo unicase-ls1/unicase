@@ -16,5 +16,17 @@
             restorable="true">
       </view>
    </extension>
+   <extension
+         point="org.eclipse.ui.menus">
+      <menuContribution
+            locationURI="toolbar:org.unicase.ui.taskview?after=additions">
+         <command
+               commandId="org.unicase.ui.navigator.ShowMEInNavigator"
+               icon="icons/link_with_navigator.png"
+               style="push"
+               tooltip="show selected item in navigator">
+         </command>
+      </menuContribution>
+   </extension>
 
 </plugin>

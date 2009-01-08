@@ -18,5 +18,24 @@
             name="OpenModelElement">
       </command>
    </extension>
+   <extension
+         point="org.eclipse.ui.menus">
+      <menuContribution
+            locationURI="toolbar:org.unicase.ui.meeditor.MEEditorPage?after=additions">
+         <separator
+               name="org.unicase.ui.meeditor.separator1"
+               visible="true">
+         </separator>
+      </menuContribution>
+      <menuContribution
+            locationURI="toolbar:org.unicase.ui.meeditor.MEEditorPage?after=org.unicase.ui.meeditor.separator1">
+         <command
+               commandId="org.unicase.ui.navigator.ShowMEInNavigator"
+               icon="icons/link_with_navigator.png"
+               style="push"
+               tooltip="show this model element in navigator">
+         </command>
+      </menuContribution>
+   </extension>
 
 </plugin>

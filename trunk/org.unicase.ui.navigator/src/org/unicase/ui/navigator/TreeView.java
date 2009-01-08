@@ -9,7 +9,6 @@ import org.eclipse.emf.edit.ui.dnd.LocalTransfer;
 import org.eclipse.emf.transaction.RecordingCommand;
 import org.eclipse.emf.transaction.TransactionalEditingDomain;
 import org.eclipse.jface.action.Action;
-import org.eclipse.jface.action.IToolBarManager;
 import org.eclipse.jface.action.MenuManager;
 import org.eclipse.jface.action.Separator;
 import org.eclipse.jface.viewers.DecoratingLabelProvider;
@@ -32,7 +31,6 @@ import org.unicase.model.ModelElement;
 import org.unicase.ui.common.commands.ActionHelper;
 import org.unicase.ui.common.dnd.UCDragAdapter;
 import org.unicase.ui.common.dnd.UCDropAdapter;
-import org.unicase.ui.navigator.commands.LinkWithEditorAction;
 import org.unicase.ui.navigator.commands.RedoAction;
 import org.unicase.ui.navigator.commands.UndoAction;
 import org.unicase.workspace.ProjectSpace;
@@ -45,7 +43,7 @@ import org.unicase.workspace.WorkspaceManager;
  */
 public class TreeView extends ViewPart { // implements IShowInSource
 
-	private TreeViewer viewer;
+	private static TreeViewer viewer;
 	private Action doubleClickAction, undoAction, redoAction;
 	private MenuManager menuMgr;
 
@@ -92,13 +90,13 @@ public class TreeView extends ViewPart { // implements IShowInSource
 
 		}
 
-		IToolBarManager toolbarMgr = getViewSite().getActionBars().getToolBarManager();
-
-		LinkWithEditorAction linkWithEditorAction = new LinkWithEditorAction(viewer);
-		linkWithEditorAction.setImageDescriptor(Activator.getImageDescriptor("/icons/sample.png"));
-		linkWithEditorAction.setToolTipText("Link with MEEditor");
-
-		toolbarMgr.add(linkWithEditorAction);
+		// IToolBarManager toolbarMgr = getViewSite().getActionBars().getToolBarManager();
+		//
+		// LinkWithEditorAction linkWithEditorAction = new LinkWithEditorAction(viewer);
+		// linkWithEditorAction.setImageDescriptor(Activator.getImageDescriptor("/icons/sample.png"));
+		// linkWithEditorAction.setToolTipText("Link with MEEditor");
+		//
+		// toolbarMgr.add(linkWithEditorAction);
 	}
 
 	private void addSelectionListener() {
@@ -198,17 +196,13 @@ public class TreeView extends ViewPart { // implements IShowInSource
 
 	}
 
-	// public ShowInContext getShowInContext() {
-	// IStructuredSelection sel = (IStructuredSelection)viewer.getSelection();
-	// ModelElement me = null;
-	// if(!sel.isEmpty()){
-	// Object obj = sel.getFirstElement();
-	// if(obj instanceof ModelElement){
-	// me = (ModelElement) obj;
-	// }
-	//			
-	// }
-	// return new ShowInContext(me, viewer.getSelection());
-	// }
+	/**
+	 * This returns TreeViewer of navigator.
+	 * 
+	 * @return TreeViewer of navigator
+	 */
+	public static TreeViewer getTreeViewer() {
+		return viewer;
+	}
 
 }
