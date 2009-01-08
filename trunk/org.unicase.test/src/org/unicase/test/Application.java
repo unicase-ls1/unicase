@@ -20,14 +20,14 @@ public class Application implements IApplication {
 	public Object start(IApplicationContext context) throws Exception {
 
 		ChangeTestSuite changeTest;
-		boolean randomTest = true;
+		boolean randomTest = false;
 		if (randomTest) {
 			changeTest = new RandomChangeTestSuite();
 		} else {
 			changeTest = new ManualChangeTestSuite();
 		}
 
-		changeTest.runTest(10);
+		changeTest.runTest(1);
 
 		return IApplication.EXIT_OK;
 	}
