@@ -1,8 +1,7 @@
 /**
- * <copyright> Copyright (c) 2008 Jonas Helming, Maximilian Koegel. All rights reserved. This program and the accompanying materials are made available under the terms of the Eclipse Public License v1.0 which accompanies this distribution, and is available at http://www.eclipse.org/legal/epl-v10.html
- * </copyright>
- *
- * $Id$
+ * <copyright> Copyright (c) 2008 Jonas Helming, Maximilian Koegel. All rights reserved. This program and the
+ * accompanying materials are made available under the terms of the Eclipse Public License v1.0 which accompanies this
+ * distribution, and is available at http://www.eclipse.org/legal/epl-v10.html </copyright> $Id$
  */
 package org.unicase.ui.taskview;
 
@@ -38,7 +37,6 @@ import org.unicase.workspace.util.OrgUnitHelper;
  * A specialized TableView to display Action Items.
  * 
  * @author Florian Schneider
- * 
  */
 public class TaskView extends ViewPart {
 
@@ -88,7 +86,6 @@ public class TaskView extends ViewPart {
 	}
 
 	/**
-	 * 
 	 * {@inheritDoc}
 	 * 
 	 * @see org.eclipse.ui.part.WorkbenchPart#createPartControl(org.eclipse.swt.widgets.Composite)
@@ -96,8 +93,7 @@ public class TaskView extends ViewPart {
 	@Override
 	public void createPartControl(Composite parent) {
 		adapterFactory = new FilteredItemProviderAdapterFactory();
-		adapterFactory.setFilteredItemProvider(new EClassFilterItemProvider(
-				adapterFactory, itemMetaClass));
+		adapterFactory.setFilteredItemProvider(new EClassFilterItemProvider(adapterFactory, itemMetaClass));
 		viewer = new METableViewer(parent, adapterFactory, itemMetaClass);
 		// the task view shall only display objects that are instance of
 		// Checkable
@@ -131,13 +127,10 @@ public class TaskView extends ViewPart {
 			}
 
 		};
-		filterToBlocked.setImageDescriptor(Activator
-				.getImageDescriptor("/icons/blocked.gif"));
-		Boolean blockedFilterBoolean = Boolean.parseBoolean(settings
-				.get("BlockedFilter"));
+		filterToBlocked.setImageDescriptor(Activator.getImageDescriptor("/icons/blocked.gif"));
+		Boolean blockedFilterBoolean = Boolean.parseBoolean(settings.get("BlockedFilter"));
 		filterToBlocked.setChecked(blockedFilterBoolean);
-		filterToBlocked
-				.setToolTipText("Besides the unblocked elements, the blocked ones will be shown as well.");
+		filterToBlocked.setToolTipText("Besides the unblocked elements, the blocked ones will be shown as well.");
 		setBlockedFilter(blockedFilterBoolean);
 
 	}
@@ -145,8 +138,7 @@ public class TaskView extends ViewPart {
 	/**
 	 * Sets the blocked filter.
 	 * 
-	 * @param checked
-	 *            if the blocked filter is activated.
+	 * @param checked if the blocked filter is activated.
 	 */
 	protected void setBlockedFilter(boolean checked) {
 		if (checked) {
@@ -160,8 +152,7 @@ public class TaskView extends ViewPart {
 	private void initUserFilter() {
 		try {
 			User user;
-			user = OrgUnitHelper.getCurrentUser(WorkspaceManager.getInstance()
-					.getCurrentWorkspace());
+			user = OrgUnitHelper.getCurrentUser(WorkspaceManager.getInstance().getCurrentWorkspace());
 			// Create User filter
 			createUserFilter(user);
 			// Create Team Filter
@@ -183,10 +174,8 @@ public class TaskView extends ViewPart {
 				}
 
 			};
-			filterToMyTeam.setImageDescriptor(Activator
-					.getImageDescriptor("/icons/filtertomyteam.png"));
-			Boolean teamFilter = Boolean.parseBoolean(settings
-					.get("TeamFilter"));
+			filterToMyTeam.setImageDescriptor(Activator.getImageDescriptor("/icons/filtertomyteam.png"));
+			Boolean teamFilter = Boolean.parseBoolean(settings.get("TeamFilter"));
 			filterToMyTeam.setChecked(teamFilter);
 		}
 		if (user == null) {
@@ -198,7 +187,7 @@ public class TaskView extends ViewPart {
 			viewer.removeFilter(teamFilter);
 		}
 		filterToMyTeam
-				.setToolTipText("Restricts the displayed table items to items owned by the current user and it's teammates.");
+			.setToolTipText("Restricts the displayed table items to items owned by the current user and it's teammates.");
 		filterToMyTeam.setEnabled(true);
 		teamFilter = new TeamFilter(user);
 		setTeamFilter(filterToMyTeam.isChecked());
@@ -207,8 +196,7 @@ public class TaskView extends ViewPart {
 	/**
 	 * Sets the teamfilter.
 	 * 
-	 * @param checked
-	 *            if filtered
+	 * @param checked if filtered
 	 */
 	protected void setTeamFilter(boolean checked) {
 		if (checked) {
@@ -230,13 +218,10 @@ public class TaskView extends ViewPart {
 			}
 
 		};
-		filterToUnchecked.setImageDescriptor(Activator
-				.getImageDescriptor("/icons/tick.png"));
-		Boolean uncheckedFilter = Boolean.parseBoolean(settings
-				.get("UncheckedFilter"));
+		filterToUnchecked.setImageDescriptor(Activator.getImageDescriptor("/icons/tick.png"));
+		Boolean uncheckedFilter = Boolean.parseBoolean(settings.get("UncheckedFilter"));
 		filterToUnchecked.setChecked(uncheckedFilter);
-		filterToUnchecked
-				.setToolTipText("Besides the unchecked elements, the checked ones will be shown as well.");
+		filterToUnchecked.setToolTipText("Besides the unchecked elements, the checked ones will be shown as well.");
 		setUncheckedFilter(uncheckedFilter);
 	}
 
@@ -249,10 +234,8 @@ public class TaskView extends ViewPart {
 				}
 
 			};
-			filterToMe.setImageDescriptor(Activator
-					.getImageDescriptor("/icons/filtertouser.png"));
-			Boolean isUserFilter = Boolean.parseBoolean(settings
-					.get("UserFilter"));
+			filterToMe.setImageDescriptor(Activator.getImageDescriptor("/icons/filtertouser.png"));
+			Boolean isUserFilter = Boolean.parseBoolean(settings.get("UserFilter"));
 			filterToMe.setChecked(isUserFilter);
 		}
 		if (user == null) {
@@ -265,16 +248,14 @@ public class TaskView extends ViewPart {
 		}
 		filterToMe.setEnabled(true);
 		userFilter = new UserFilter(user);
-		filterToMe
-				.setToolTipText("Restricts the displayed table items to items owned by the current user.");
+		filterToMe.setToolTipText("Restricts the displayed table items to items owned by the current user.");
 		setUserFilter(filterToMe.isChecked());
 	}
 
 	/**
 	 * sets the uncheckd filter.
 	 * 
-	 * @param checked
-	 *            if filtered
+	 * @param checked if filtered
 	 */
 	protected void setUncheckedFilter(boolean checked) {
 		if (checked) {
@@ -288,8 +269,7 @@ public class TaskView extends ViewPart {
 	/**
 	 * sets the userfilter.
 	 * 
-	 * @param checked
-	 *            if fileterd.
+	 * @param checked if fileterd.
 	 */
 	protected void setUserFilter(boolean checked) {
 		if (checked) {
@@ -315,14 +295,12 @@ public class TaskView extends ViewPart {
 		doubleClickAction = new Action() {
 			@Override
 			public void run() {
-				ActionHelper.openModelElement(ActionHelper
-						.getSelectedModelElement(), TaskView.class.getName());
+				ActionHelper.openModelElement(ActionHelper.getSelectedModelElement(), TaskView.class.getName());
 			}
 		};
 	}
 
 	/**
-	 * 
 	 * {@inheritDoc}
 	 * 
 	 * @see org.eclipse.ui.part.WorkbenchPart#setFocus()
