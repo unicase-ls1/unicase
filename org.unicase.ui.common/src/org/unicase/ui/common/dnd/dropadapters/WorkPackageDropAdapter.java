@@ -7,12 +7,14 @@ import org.eclipse.emf.ecore.EObject;
 import org.eclipse.emf.transaction.TransactionalEditingDomain;
 import org.eclipse.jface.viewers.StructuredViewer;
 import org.eclipse.swt.dnd.DropTargetEvent;
+import org.eclipse.ui.PlatformUI;
 import org.unicase.model.Annotation;
 import org.unicase.model.ModelElement;
 import org.unicase.model.task.ActionItem;
 import org.unicase.model.task.TaskFactory;
 import org.unicase.model.task.WorkItem;
 import org.unicase.model.task.WorkPackage;
+import org.unicase.ui.common.commands.ActionHelper;
 
 /**
  * This is the drop adapter for WorkPackages.
@@ -46,7 +48,6 @@ public class WorkPackageDropAdapter extends MEDropAdapter {
 				}
 			}
 
-			super.drop(event, target, source);
 		} else {
 			dropMEOnWorkpackage(target, source);
 		}
@@ -79,11 +80,14 @@ public class WorkPackageDropAdapter extends MEDropAdapter {
 	 */
 	private void dropMEOnWorkpackage(final ModelElement target, final List<ModelElement> source) {
 
+		String viewId = PlatformUI.getWorkbench().getActiveWorkbenchWindow().getActivePage().getActivePart().getSite()
+			.getId();
 		for (ModelElement me : source) {
 			ActionItem ai = TaskFactory.eINSTANCE.createActionItem();
 			ai.setName("New Action Item relating " + me.getName());
 			ai.getAnnotatedModelElements().add(me);
 			((WorkPackage) target).getContainedWorkItems().add(ai);
+			ActionHelper.openModelElement(ai, viewId);
 		}
 	}
 
