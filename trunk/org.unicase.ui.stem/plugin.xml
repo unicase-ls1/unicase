@@ -31,5 +31,37 @@
             file="contexts.xml">
       </contexts>
    </extension>
+   <extension
+         point="org.eclipse.ui.commands">
+      <command
+            defaultHandler="org.unicase.ui.stem.commands.ShowInStausViewHandler"
+            id="org.unicase.ui.stem.ShowInStatusView"
+            name="ShowInStatusView">
+      </command>
+   </extension>
+   <extension
+         point="org.eclipse.ui.menus">
+      <menuContribution
+            locationURI="popup:org.unicase.ui.navigator.viewer?after=org.unicase.ui.common.commands.annotateActionItemSeperator">
+         <command
+               commandId="org.unicase.ui.stem.ShowInStatusView"
+               icon="icons/StatusView.gif"
+               label="Show Status"
+               style="push">
+            <visibleWhen
+                  checkEnabled="false">
+               <iterate>
+                  <reference
+                        definitionId="org.unicase.ui.common.commands.modelElement">
+                  </reference>
+               </iterate>
+            </visibleWhen>
+         </command>
+         <separator
+               name="org.unicase.ui.stem.ShowInStautsViewSeperator"
+               visible="true">
+         </separator>
+      </menuContribution>
+   </extension>  
 
 </plugin>
