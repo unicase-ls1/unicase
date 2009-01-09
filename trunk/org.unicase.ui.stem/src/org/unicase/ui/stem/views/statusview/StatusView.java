@@ -216,7 +216,7 @@ public class StatusView extends ViewPart {
 	/**
 	 * Refresh top composite and tabs based on input.
 	 */
-	private void refreshView() {
+	public void refreshView() {
 		if (input == null) {
 			return;
 		}
@@ -276,7 +276,7 @@ public class StatusView extends ViewPart {
 		}
 
 		// set input for tabs
-		flatTabComposite.setInput(input);
+		flatTabComposite.setInput(input, this);
 		hierarchyTabComposite.setInput(input);
 		userTabComposite.setInput(input);
 		activityTabComposite.setInput(input);
