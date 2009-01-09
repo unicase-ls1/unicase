@@ -1,4 +1,4 @@
-package org.unicase.ui.common.dnd;
+package org.unicase.ui.stem.views.statusview.dnd;
 
 import java.util.List;
 
@@ -7,23 +7,22 @@ import org.eclipse.jface.viewers.ISelection;
 import org.eclipse.jface.viewers.IStructuredSelection;
 import org.eclipse.jface.viewers.Viewer;
 import org.eclipse.swt.dnd.DragSourceEvent;
+import org.unicase.ui.common.dnd.DragSourcePlaceHolder;
 
 /**
- * This class is just a ViewerDragAdpter, with the difference that in dragStart event the selection is extracted from
- * viewer and set as drag source in DragSourcePlaceHolder.
+ * This is the drag adapter for flat tab in status view.
  * 
  * @author Hodaie
  */
-public class UCDragAdapter extends ViewerDragAdapter {
+public class FlatTabDragAdapter extends ViewerDragAdapter {
 
 	/**
 	 * Constructor.
 	 * 
-	 * @param viewer The viewer
+	 * @param viewer viewer
 	 */
-	public UCDragAdapter(Viewer viewer) {
+	protected FlatTabDragAdapter(Viewer viewer) {
 		super(viewer);
-
 	}
 
 	/**
@@ -43,6 +42,17 @@ public class UCDragAdapter extends ViewerDragAdapter {
 
 		DragSourcePlaceHolder.setDragSource(dragSource);
 
+	}
+
+	/**
+	 * {@inheritDoc}
+	 * 
+	 * @see org.eclipse.emf.edit.ui.dnd.ViewerDragAdapter#dragFinished(org.eclipse.swt.dnd.DragSourceEvent)
+	 */
+	@Override
+	public void dragFinished(DragSourceEvent event) {
+		super.dragFinished(event);
+		viewer.refresh();
 	}
 
 }

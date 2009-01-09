@@ -90,13 +90,6 @@ public class TreeView extends ViewPart { // implements IShowInSource
 
 		}
 
-		// IToolBarManager toolbarMgr = getViewSite().getActionBars().getToolBarManager();
-		//
-		// LinkWithEditorAction linkWithEditorAction = new LinkWithEditorAction(viewer);
-		// linkWithEditorAction.setImageDescriptor(Activator.getImageDescriptor("/icons/sample.png"));
-		// linkWithEditorAction.setToolTipText("Link with MEEditor");
-		//
-		// toolbarMgr.add(linkWithEditorAction);
 	}
 
 	private void addSelectionListener() {
