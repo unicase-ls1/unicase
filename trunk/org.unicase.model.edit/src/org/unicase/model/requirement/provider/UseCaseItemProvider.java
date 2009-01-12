@@ -24,17 +24,16 @@ import org.unicase.model.provider.ModelElementItemProvider;
 import org.unicase.model.requirement.RequirementPackage;
 import org.unicase.model.requirement.UseCase;
 
-/**
+/*
  * This is the item provider adapter for a {@link org.unicase.model.requirement.UseCase} object. <!-- begin-user-doc -->
  * <!-- end-user-doc -->
- * 
  * @generated
  */
 public class UseCaseItemProvider extends ModelElementItemProvider implements IEditingDomainItemProvider,
 	IStructuredItemContentProvider, ITreeItemContentProvider, IItemLabelProvider, IItemPropertySource {
 	/**
-	 * This constructs an instance from a factory and a notifier. <!-- begin-user-doc --> <!-- end-user-doc -->
-	 * 
+	 * This constructs an instance from a factory and a notifier.
+	 * <!-- begin-user-doc --> <!-- end-user-doc -->
 	 * @generated
 	 */
 	public UseCaseItemProvider(AdapterFactory adapterFactory) {
@@ -42,8 +41,8 @@ public class UseCaseItemProvider extends ModelElementItemProvider implements IEd
 	}
 
 	/**
-	 * This returns the property descriptors for the adapted class. <!-- begin-user-doc --> <!-- end-user-doc -->
-	 * 
+	 * This returns the property descriptors for the adapted class.
+	 * <!-- begin-user-doc --> <!-- end-user-doc -->
 	 * @generated
 	 */
 	@Override
@@ -65,8 +64,8 @@ public class UseCaseItemProvider extends ModelElementItemProvider implements IEd
 	}
 
 	/**
-	 * This adds a property descriptor for the Initiating Actor feature. <!-- begin-user-doc --> <!-- end-user-doc -->
-	 * 
+	 * This adds a property descriptor for the Initiating Actor feature.
+	 * <!-- begin-user-doc --> <!-- end-user-doc -->
 	 * @generated
 	 */
 	protected void addInitiatingActorPropertyDescriptor(Object object) {
@@ -77,8 +76,8 @@ public class UseCaseItemProvider extends ModelElementItemProvider implements IEd
 	}
 
 	/**
-	 * This adds a property descriptor for the Scenarios feature. <!-- begin-user-doc --> <!-- end-user-doc -->
-	 * 
+	 * This adds a property descriptor for the Scenarios feature.
+	 * <!-- begin-user-doc --> <!-- end-user-doc -->
 	 * @generated
 	 */
 	protected void addScenariosPropertyDescriptor(Object object) {
@@ -89,9 +88,9 @@ public class UseCaseItemProvider extends ModelElementItemProvider implements IEd
 	}
 
 	/**
-	 * This adds a property descriptor for the Functional Requirements feature. <!-- begin-user-doc --> <!--
+	 * This adds a property descriptor for the Functional Requirements feature.
+	 * <!-- begin-user-doc --> <!--
 	 * end-user-doc -->
-	 * 
 	 * @generated
 	 */
 	protected void addFunctionalRequirementsPropertyDescriptor(Object object) {
@@ -103,9 +102,9 @@ public class UseCaseItemProvider extends ModelElementItemProvider implements IEd
 	}
 
 	/**
-	 * This adds a property descriptor for the Non Functional Requirements feature. <!-- begin-user-doc --> <!--
+	 * This adds a property descriptor for the Non Functional Requirements feature.
+	 * <!-- begin-user-doc --> <!--
 	 * end-user-doc -->
-	 * 
 	 * @generated
 	 */
 	protected void addNonFunctionalRequirementsPropertyDescriptor(Object object) {
@@ -117,8 +116,8 @@ public class UseCaseItemProvider extends ModelElementItemProvider implements IEd
 	}
 
 	/**
-	 * This adds a property descriptor for the Identified Classes feature. <!-- begin-user-doc --> <!-- end-user-doc -->
-	 * 
+	 * This adds a property descriptor for the Identified Classes feature.
+	 * <!-- begin-user-doc --> <!-- end-user-doc -->
 	 * @generated
 	 */
 	protected void addIdentifiedClassesPropertyDescriptor(Object object) {
@@ -130,8 +129,8 @@ public class UseCaseItemProvider extends ModelElementItemProvider implements IEd
 	}
 
 	/**
-	 * This adds a property descriptor for the Included Use Cases feature. <!-- begin-user-doc --> <!-- end-user-doc -->
-	 * 
+	 * This adds a property descriptor for the Included Use Cases feature.
+	 * <!-- begin-user-doc --> <!-- end-user-doc -->
 	 * @generated
 	 */
 	protected void addIncludedUseCasesPropertyDescriptor(Object object) {
@@ -143,8 +142,8 @@ public class UseCaseItemProvider extends ModelElementItemProvider implements IEd
 	}
 
 	/**
-	 * This adds a property descriptor for the Extended Use Cases feature. <!-- begin-user-doc --> <!-- end-user-doc -->
-	 * 
+	 * This adds a property descriptor for the Extended Use Cases feature.
+	 * <!-- begin-user-doc --> <!-- end-user-doc -->
 	 * @generated
 	 */
 	protected void addExtendedUseCasesPropertyDescriptor(Object object) {
@@ -170,8 +169,8 @@ public class UseCaseItemProvider extends ModelElementItemProvider implements IEd
 	}
 
 	/**
-	 * This adds a property descriptor for the Use Case Steps feature. <!-- begin-user-doc --> <!-- end-user-doc -->
-	 * 
+	 * This adds a property descriptor for the Use Case Steps feature.
+	 * <!-- begin-user-doc --> <!-- end-user-doc -->
 	 * @generated
 	 */
 	protected void addUseCaseStepsPropertyDescriptor(Object object) {
@@ -182,8 +181,8 @@ public class UseCaseItemProvider extends ModelElementItemProvider implements IEd
 	}
 
 	/**
-	 * This returns UseCase.gif. <!-- begin-user-doc --> <!-- end-user-doc -->
-	 * 
+	 * This returns UseCase.gif.
+	 * <!-- begin-user-doc --> <!-- end-user-doc -->
 	 * @generated
 	 */
 	@Override
@@ -224,9 +223,9 @@ public class UseCaseItemProvider extends ModelElementItemProvider implements IEd
 	}
 
 	/**
-	 * This adds {@link org.eclipse.emf.edit.command.CommandParameter}s describing the children that can be created
-	 * under this object. <!-- begin-user-doc --> <!-- end-user-doc -->
-	 * 
+	 * This adds {@link org.eclipse.emf.edit.command.CommandParameter}s describing the children
+	 * that can be created under this object.
+	 * <!-- begin-user-doc --> <!-- end-user-doc -->
 	 * @generated
 	 */
 	@Override
@@ -235,8 +234,8 @@ public class UseCaseItemProvider extends ModelElementItemProvider implements IEd
 	}
 
 	/**
-	 * Return the resource locator for this item provider's resources. <!-- begin-user-doc --> <!-- end-user-doc -->
-	 * 
+	 * Return the resource locator for this item provider's resources.
+	 * <!-- begin-user-doc --> <!-- end-user-doc -->
 	 * @generated
 	 */
 	@Override

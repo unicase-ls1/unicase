@@ -25,17 +25,16 @@ import org.unicase.model.provider.ModelElementItemProvider;
 import org.unicase.model.requirement.RequirementPackage;
 import org.unicase.model.requirement.Step;
 
-/**
+/*
  * This is the item provider adapter for a {@link org.unicase.model.requirement.Step} object. <!-- begin-user-doc -->
  * <!-- end-user-doc -->
- * 
  * @generated
  */
 public class StepItemProvider extends ModelElementItemProvider implements IEditingDomainItemProvider,
 	IStructuredItemContentProvider, ITreeItemContentProvider, IItemLabelProvider, IItemPropertySource {
 	/**
-	 * This constructs an instance from a factory and a notifier. <!-- begin-user-doc --> <!-- end-user-doc -->
-	 * 
+	 * This constructs an instance from a factory and a notifier.
+	 * <!-- begin-user-doc --> <!-- end-user-doc -->
 	 * @generated
 	 */
 	public StepItemProvider(AdapterFactory adapterFactory) {
@@ -43,8 +42,8 @@ public class StepItemProvider extends ModelElementItemProvider implements IEditi
 	}
 
 	/**
-	 * This returns the property descriptors for the adapted class. <!-- begin-user-doc --> <!-- end-user-doc -->
-	 * 
+	 * This returns the property descriptors for the adapted class.
+	 * <!-- begin-user-doc --> <!-- end-user-doc -->
 	 * @generated
 	 */
 	@Override
@@ -60,8 +59,8 @@ public class StepItemProvider extends ModelElementItemProvider implements IEditi
 	}
 
 	/**
-	 * This adds a property descriptor for the User Step feature. <!-- begin-user-doc --> <!-- end-user-doc -->
-	 * 
+	 * This adds a property descriptor for the User Step feature.
+	 * <!-- begin-user-doc --> <!-- end-user-doc -->
 	 * @generated
 	 */
 	protected void addUserStepPropertyDescriptor(Object object) {
@@ -73,8 +72,8 @@ public class StepItemProvider extends ModelElementItemProvider implements IEditi
 	}
 
 	/**
-	 * This adds a property descriptor for the Included Use Case feature. <!-- begin-user-doc --> <!-- end-user-doc -->
-	 * 
+	 * This adds a property descriptor for the Included Use Case feature.
+	 * <!-- begin-user-doc --> <!-- end-user-doc -->
 	 * @generated
 	 */
 	protected void addIncludedUseCasePropertyDescriptor(Object object) {
@@ -85,9 +84,9 @@ public class StepItemProvider extends ModelElementItemProvider implements IEditi
 	}
 
 	/**
-	 * This adds a property descriptor for the Included System Function feature. <!-- begin-user-doc --> <!--
+	 * This adds a property descriptor for the Included System Function feature.
+	 * <!-- begin-user-doc --> <!--
 	 * end-user-doc -->
-	 * 
 	 * @generated
 	 */
 	protected void addIncludedSystemFunctionPropertyDescriptor(Object object) {
@@ -99,8 +98,8 @@ public class StepItemProvider extends ModelElementItemProvider implements IEditi
 	}
 
 	/**
-	 * This returns Step.gif. <!-- begin-user-doc --> <!-- end-user-doc -->
-	 * 
+	 * This returns Step.gif.
+	 * <!-- begin-user-doc --> <!-- end-user-doc -->
 	 * @generated
 	 */
 	@Override
@@ -109,8 +108,8 @@ public class StepItemProvider extends ModelElementItemProvider implements IEditi
 	}
 
 	/**
-	 * This returns the label text for the adapted class. <!-- begin-user-doc --> <!-- end-user-doc -->
-	 * 
+	 * This returns the label text for the adapted class.
+	 * <!-- begin-user-doc --> <!-- end-user-doc -->
 	 * @generated
 	 */
 	@Override
@@ -140,9 +139,9 @@ public class StepItemProvider extends ModelElementItemProvider implements IEditi
 	}
 
 	/**
-	 * This adds {@link org.eclipse.emf.edit.command.CommandParameter}s describing the children that can be created
-	 * under this object. <!-- begin-user-doc --> <!-- end-user-doc -->
-	 * 
+	 * This adds {@link org.eclipse.emf.edit.command.CommandParameter}s describing the children
+	 * that can be created under this object.
+	 * <!-- begin-user-doc --> <!-- end-user-doc -->
 	 * @generated
 	 */
 	@Override
@@ -151,8 +150,8 @@ public class StepItemProvider extends ModelElementItemProvider implements IEditi
 	}
 
 	/**
-	 * Return the resource locator for this item provider's resources. <!-- begin-user-doc --> <!-- end-user-doc -->
-	 * 
+	 * Return the resource locator for this item provider's resources.
+	 * <!-- begin-user-doc --> <!-- end-user-doc -->
 	 * @generated
 	 */
 	@Override

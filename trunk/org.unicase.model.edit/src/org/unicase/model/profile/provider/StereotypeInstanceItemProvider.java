@@ -26,17 +26,16 @@ import org.unicase.model.profile.StereotypeInstance;
 import org.unicase.model.provider.ModelEditPlugin;
 import org.unicase.model.provider.ModelElementItemProvider;
 
-/**
+/*
  * This is the item provider adapter for a {@link org.unicase.model.profile.StereotypeInstance} object. <!--
  * begin-user-doc --> <!-- end-user-doc -->
- * 
  * @generated
  */
 public class StereotypeInstanceItemProvider extends ModelElementItemProvider implements IEditingDomainItemProvider,
 	IStructuredItemContentProvider, ITreeItemContentProvider, IItemLabelProvider, IItemPropertySource {
 	/**
-	 * This constructs an instance from a factory and a notifier. <!-- begin-user-doc --> <!-- end-user-doc -->
-	 * 
+	 * This constructs an instance from a factory and a notifier.
+	 * <!-- begin-user-doc --> <!-- end-user-doc -->
 	 * @generated
 	 */
 	public StereotypeInstanceItemProvider(AdapterFactory adapterFactory) {
@@ -44,8 +43,8 @@ public class StereotypeInstanceItemProvider extends ModelElementItemProvider imp
 	}
 
 	/**
-	 * This returns the property descriptors for the adapted class. <!-- begin-user-doc --> <!-- end-user-doc -->
-	 * 
+	 * This returns the property descriptors for the adapted class.
+	 * <!-- begin-user-doc --> <!-- end-user-doc -->
 	 * @generated
 	 */
 	@Override
@@ -61,8 +60,8 @@ public class StereotypeInstanceItemProvider extends ModelElementItemProvider imp
 	}
 
 	/**
-	 * This adds a property descriptor for the Stereotype feature. <!-- begin-user-doc --> <!-- end-user-doc -->
-	 * 
+	 * This adds a property descriptor for the Stereotype feature.
+	 * <!-- begin-user-doc --> <!-- end-user-doc -->
 	 * @generated
 	 */
 	protected void addStereotypePropertyDescriptor(Object object) {
@@ -74,8 +73,8 @@ public class StereotypeInstanceItemProvider extends ModelElementItemProvider imp
 	}
 
 	/**
-	 * This adds a property descriptor for the Model Element feature. <!-- begin-user-doc --> <!-- end-user-doc -->
-	 * 
+	 * This adds a property descriptor for the Model Element feature.
+	 * <!-- begin-user-doc --> <!-- end-user-doc -->
 	 * @generated
 	 */
 	protected void addModelElementPropertyDescriptor(Object object) {
@@ -87,9 +86,9 @@ public class StereotypeInstanceItemProvider extends ModelElementItemProvider imp
 	}
 
 	/**
-	 * This adds a property descriptor for the Stereotype Attribute Instances feature. <!-- begin-user-doc --> <!--
+	 * This adds a property descriptor for the Stereotype Attribute Instances feature.
+	 * <!-- begin-user-doc --> <!--
 	 * end-user-doc -->
-	 * 
 	 * @generated
 	 */
 	protected void addStereotypeAttributeInstancesPropertyDescriptor(Object object) {
@@ -105,9 +104,9 @@ public class StereotypeInstanceItemProvider extends ModelElementItemProvider imp
 	/**
 	 * This specifies how to implement {@link #getChildren} and is used to deduce an appropriate feature for an
 	 * {@link org.eclipse.emf.edit.command.AddCommand}, {@link org.eclipse.emf.edit.command.RemoveCommand} or
-	 * {@link org.eclipse.emf.edit.command.MoveCommand} in {@link #createCommand}. <!-- begin-user-doc --> <!--
+	 * {@link org.eclipse.emf.edit.command.MoveCommand} in {@link #createCommand}.
+	 * <!-- begin-user-doc --> <!--
 	 * end-user-doc -->
-	 * 
 	 * @generated
 	 */
 	@Override
@@ -121,7 +120,6 @@ public class StereotypeInstanceItemProvider extends ModelElementItemProvider imp
 
 	/**
 	 * <!-- begin-user-doc --> <!-- end-user-doc -->
-	 * 
 	 * @generated
 	 */
 	@Override
@@ -133,8 +131,8 @@ public class StereotypeInstanceItemProvider extends ModelElementItemProvider imp
 	}
 
 	/**
-	 * This returns StereotypeInstance.gif. <!-- begin-user-doc --> <!-- end-user-doc -->
-	 * 
+	 * This returns StereotypeInstance.gif.
+	 * <!-- begin-user-doc --> <!-- end-user-doc -->
 	 * @generated
 	 */
 	@Override
@@ -143,8 +141,8 @@ public class StereotypeInstanceItemProvider extends ModelElementItemProvider imp
 	}
 
 	/**
-	 * This returns the label text for the adapted class. <!-- begin-user-doc --> <!-- end-user-doc -->
-	 * 
+	 * This returns the label text for the adapted class.
+	 * <!-- begin-user-doc --> <!-- end-user-doc -->
 	 * @generated
 	 */
 	@Override
@@ -174,9 +172,9 @@ public class StereotypeInstanceItemProvider extends ModelElementItemProvider imp
 	}
 
 	/**
-	 * This adds {@link org.eclipse.emf.edit.command.CommandParameter}s describing the children that can be created
-	 * under this object. <!-- begin-user-doc --> <!-- end-user-doc -->
-	 * 
+	 * This adds {@link org.eclipse.emf.edit.command.CommandParameter}s describing the children
+	 * that can be created under this object.
+	 * <!-- begin-user-doc --> <!-- end-user-doc -->
 	 * @generated
 	 */
 	@Override
@@ -189,8 +187,8 @@ public class StereotypeInstanceItemProvider extends ModelElementItemProvider imp
 	}
 
 	/**
-	 * Return the resource locator for this item provider's resources. <!-- begin-user-doc --> <!-- end-user-doc -->
-	 * 
+	 * Return the resource locator for this item provider's resources.
+	 * <!-- begin-user-doc --> <!-- end-user-doc -->
 	 * @generated
 	 */
 	@Override

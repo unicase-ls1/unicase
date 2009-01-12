@@ -32,35 +32,29 @@ import org.unicase.model.task.TaskPackage;
 import org.unicase.model.task.WorkItem;
 import org.unicase.model.task.WorkPackage;
 
-/**
- * <!-- begin-user-doc --> An implementation of the model object ' <em><b>Report</b></em>'. <!-- end-user-doc -->
- * <p>
- * The following features are implemented:
- * <ul>
- * <li>{@link org.unicase.model.bug.impl.BugReportImpl#getContainingWorkpackage <em>Containing Workpackage</em>}</li>
- * <li>{@link org.unicase.model.bug.impl.BugReportImpl#getAssociatedChangePackages <em>Associated Change Packages</em>}</li>
- * <li>{@link org.unicase.model.bug.impl.BugReportImpl#getPredecessors <em>Predecessors</em>}</li>
- * <li>{@link org.unicase.model.bug.impl.BugReportImpl#getSuccessors <em>Successors</em>}</li>
- * <li>{@link org.unicase.model.bug.impl.BugReportImpl#getAssignee <em>Assignee</em>}</li>
- * <li>{@link org.unicase.model.bug.impl.BugReportImpl#getParticipants <em>Participants</em>}</li>
- * <li>{@link org.unicase.model.bug.impl.BugReportImpl#getDueDate <em>Due Date</em>}</li>
- * <li>{@link org.unicase.model.bug.impl.BugReportImpl#getEstimate <em>Estimate</em>}</li>
- * <li>{@link org.unicase.model.bug.impl.BugReportImpl#getEffort <em>Effort</em>}</li>
- * <li>{@link org.unicase.model.bug.impl.BugReportImpl#isChecked <em>Checked</em>}</li>
- * <li>{@link org.unicase.model.bug.impl.BugReportImpl#getStatus <em>Status</em>}</li>
- * <li>{@link org.unicase.model.bug.impl.BugReportImpl#getSeverity <em>Severity</em>}</li>
- * <li>{@link org.unicase.model.bug.impl.BugReportImpl#getResolution <em>Resolution</em>}</li>
- * <li>{@link org.unicase.model.bug.impl.BugReportImpl#getResolutionType <em>Resolution Type</em>}</li>
- * </ul>
- * </p>
- * 
+/*
+ * <!-- begin-user-doc --> An implementation of the model object ' <em><b>Report</b></em>'. <!-- end-user-doc --> <p>
+ * The following features are implemented: <ul> <li>{@link
+ * org.unicase.model.bug.impl.BugReportImpl#getContainingWorkpackage <em>Containing Workpackage</em>}</li> <li>{@link
+ * org.unicase.model.bug.impl.BugReportImpl#getAssociatedChangePackages <em>Associated Change Packages</em>}</li>
+ * <li>{@link org.unicase.model.bug.impl.BugReportImpl#getPredecessors <em>Predecessors</em>}</li> <li>{@link
+ * org.unicase.model.bug.impl.BugReportImpl#getSuccessors <em>Successors</em>}</li> <li>{@link
+ * org.unicase.model.bug.impl.BugReportImpl#getAssignee <em>Assignee</em>}</li> <li>{@link
+ * org.unicase.model.bug.impl.BugReportImpl#getParticipants <em>Participants</em>}</li> <li>{@link
+ * org.unicase.model.bug.impl.BugReportImpl#getDueDate <em>Due Date</em>}</li> <li>{@link
+ * org.unicase.model.bug.impl.BugReportImpl#getEstimate <em>Estimate</em>}</li> <li>{@link
+ * org.unicase.model.bug.impl.BugReportImpl#getEffort <em>Effort</em>}</li> <li>{@link
+ * org.unicase.model.bug.impl.BugReportImpl#isChecked <em>Checked</em>}</li> <li>{@link
+ * org.unicase.model.bug.impl.BugReportImpl#getStatus <em>Status</em>}</li> <li>{@link
+ * org.unicase.model.bug.impl.BugReportImpl#getSeverity <em>Severity</em>}</li> <li>{@link
+ * org.unicase.model.bug.impl.BugReportImpl#getResolution <em>Resolution</em>}</li> <li>{@link
+ * org.unicase.model.bug.impl.BugReportImpl#getResolutionType <em>Resolution Type</em>}</li> </ul> </p>
  * @generated
  */
 public class BugReportImpl extends AnnotationImpl implements BugReport {
 	/**
-	 * The cached value of the '{@link #getAssociatedChangePackages() <em>Associated Change Packages</em>}' reference
-	 * list. <!-- begin-user-doc --> <!-- end-user-doc -->
-	 * 
+	 * The cached value of the '{@link #getAssociatedChangePackages() <em>Associated Change Packages</em>}' reference list.
+	 * <!-- begin-user-doc --> <!-- end-user-doc -->
 	 * @see #getAssociatedChangePackages()
 	 * @generated
 	 * @ordered
@@ -68,9 +62,9 @@ public class BugReportImpl extends AnnotationImpl implements BugReport {
 	protected EList<ModelChangePackage> associatedChangePackages;
 
 	/**
-	 * The cached value of the '{@link #getPredecessors() <em>Predecessors</em>}' reference list. <!-- begin-user-doc
+	 * The cached value of the '{@link #getPredecessors() <em>Predecessors</em>}' reference list.
+	 * <!-- begin-user-doc
 	 * --> <!-- end-user-doc -->
-	 * 
 	 * @see #getPredecessors()
 	 * @generated
 	 * @ordered
@@ -78,9 +72,9 @@ public class BugReportImpl extends AnnotationImpl implements BugReport {
 	protected EList<WorkItem> predecessors;
 
 	/**
-	 * The cached value of the '{@link #getSuccessors() <em>Successors</em>}' reference list. <!-- begin-user-doc -->
+	 * The cached value of the '{@link #getSuccessors() <em>Successors</em>}' reference list.
+	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
-	 * 
 	 * @see #getSuccessors()
 	 * @generated
 	 * @ordered
@@ -88,9 +82,9 @@ public class BugReportImpl extends AnnotationImpl implements BugReport {
 	protected EList<WorkItem> successors;
 
 	/**
-	 * The cached value of the '{@link #getAssignee() <em>Assignee</em>}' reference. <!-- begin-user-doc --> <!--
+	 * The cached value of the '{@link #getAssignee() <em>Assignee</em>}' reference.
+	 * <!-- begin-user-doc --> <!--
 	 * end-user-doc -->
-	 * 
 	 * @see #getAssignee()
 	 * @generated
 	 * @ordered
@@ -98,9 +92,9 @@ public class BugReportImpl extends AnnotationImpl implements BugReport {
 	protected OrgUnit assignee;
 
 	/**
-	 * The cached value of the '{@link #getParticipants() <em>Participants</em>}' reference list. <!-- begin-user-doc
+	 * The cached value of the '{@link #getParticipants() <em>Participants</em>}' reference list.
+	 * <!-- begin-user-doc
 	 * --> <!-- end-user-doc -->
-	 * 
 	 * @see #getParticipants()
 	 * @generated
 	 * @ordered
@@ -108,9 +102,9 @@ public class BugReportImpl extends AnnotationImpl implements BugReport {
 	protected EList<OrgUnit> participants;
 
 	/**
-	 * The default value of the '{@link #getDueDate() <em>Due Date</em>}' attribute. <!-- begin-user-doc --> <!--
+	 * The default value of the '{@link #getDueDate() <em>Due Date</em>}' attribute.
+	 * <!-- begin-user-doc --> <!--
 	 * end-user-doc -->
-	 * 
 	 * @see #getDueDate()
 	 * @generated
 	 * @ordered
@@ -118,9 +112,9 @@ public class BugReportImpl extends AnnotationImpl implements BugReport {
 	protected static final Date DUE_DATE_EDEFAULT = null;
 
 	/**
-	 * The cached value of the '{@link #getDueDate() <em>Due Date</em>}' attribute. <!-- begin-user-doc --> <!--
+	 * The cached value of the '{@link #getDueDate() <em>Due Date</em>}' attribute.
+	 * <!-- begin-user-doc --> <!--
 	 * end-user-doc -->
-	 * 
 	 * @see #getDueDate()
 	 * @generated
 	 * @ordered
@@ -128,9 +122,9 @@ public class BugReportImpl extends AnnotationImpl implements BugReport {
 	protected Date dueDate = DUE_DATE_EDEFAULT;
 
 	/**
-	 * The default value of the '{@link #getEstimate() <em>Estimate</em>}' attribute. <!-- begin-user-doc --> <!--
+	 * The default value of the '{@link #getEstimate() <em>Estimate</em>}' attribute.
+	 * <!-- begin-user-doc --> <!--
 	 * end-user-doc -->
-	 * 
 	 * @see #getEstimate()
 	 * @generated
 	 * @ordered
@@ -138,9 +132,9 @@ public class BugReportImpl extends AnnotationImpl implements BugReport {
 	protected static final int ESTIMATE_EDEFAULT = 0;
 
 	/**
-	 * The cached value of the '{@link #getEstimate() <em>Estimate</em>}' attribute. <!-- begin-user-doc --> <!--
+	 * The cached value of the '{@link #getEstimate() <em>Estimate</em>}' attribute.
+	 * <!-- begin-user-doc --> <!--
 	 * end-user-doc -->
-	 * 
 	 * @see #getEstimate()
 	 * @generated
 	 * @ordered
@@ -148,9 +142,9 @@ public class BugReportImpl extends AnnotationImpl implements BugReport {
 	protected int estimate = ESTIMATE_EDEFAULT;
 
 	/**
-	 * The default value of the '{@link #getEffort() <em>Effort</em>}' attribute. <!-- begin-user-doc --> <!--
+	 * The default value of the '{@link #getEffort() <em>Effort</em>}' attribute.
+	 * <!-- begin-user-doc --> <!--
 	 * end-user-doc -->
-	 * 
 	 * @see #getEffort()
 	 * @generated
 	 * @ordered
@@ -158,9 +152,9 @@ public class BugReportImpl extends AnnotationImpl implements BugReport {
 	protected static final int EFFORT_EDEFAULT = 0;
 
 	/**
-	 * The cached value of the '{@link #getEffort() <em>Effort</em>}' attribute. <!-- begin-user-doc --> <!--
+	 * The cached value of the '{@link #getEffort() <em>Effort</em>}' attribute.
+	 * <!-- begin-user-doc --> <!--
 	 * end-user-doc -->
-	 * 
 	 * @see #getEffort()
 	 * @generated
 	 * @ordered
@@ -168,9 +162,9 @@ public class BugReportImpl extends AnnotationImpl implements BugReport {
 	protected int effort = EFFORT_EDEFAULT;
 
 	/**
-	 * The default value of the '{@link #isChecked() <em>Checked</em>}' attribute. <!-- begin-user-doc --> <!--
+	 * The default value of the '{@link #isChecked() <em>Checked</em>}' attribute.
+	 * <!-- begin-user-doc --> <!--
 	 * end-user-doc -->
-	 * 
 	 * @see #isChecked()
 	 * @generated
 	 * @ordered
@@ -178,9 +172,9 @@ public class BugReportImpl extends AnnotationImpl implements BugReport {
 	protected static final boolean CHECKED_EDEFAULT = false;
 
 	/**
-	 * The default value of the '{@link #getStatus() <em>Status</em>}' attribute. <!-- begin-user-doc --> <!--
+	 * The default value of the '{@link #getStatus() <em>Status</em>}' attribute.
+	 * <!-- begin-user-doc --> <!--
 	 * end-user-doc -->
-	 * 
 	 * @see #getStatus()
 	 * @generated
 	 * @ordered
@@ -188,9 +182,9 @@ public class BugReportImpl extends AnnotationImpl implements BugReport {
 	protected static final BugStatus STATUS_EDEFAULT = BugStatus.NEW;
 
 	/**
-	 * The cached value of the '{@link #getStatus() <em>Status</em>}' attribute. <!-- begin-user-doc --> <!--
+	 * The cached value of the '{@link #getStatus() <em>Status</em>}' attribute.
+	 * <!-- begin-user-doc --> <!--
 	 * end-user-doc -->
-	 * 
 	 * @see #getStatus()
 	 * @generated
 	 * @ordered
@@ -198,9 +192,9 @@ public class BugReportImpl extends AnnotationImpl implements BugReport {
 	protected BugStatus status = STATUS_EDEFAULT;
 
 	/**
-	 * The default value of the '{@link #getSeverity() <em>Severity</em>}' attribute. <!-- begin-user-doc --> <!--
+	 * The default value of the '{@link #getSeverity() <em>Severity</em>}' attribute.
+	 * <!-- begin-user-doc --> <!--
 	 * end-user-doc -->
-	 * 
 	 * @see #getSeverity()
 	 * @generated
 	 * @ordered
@@ -208,9 +202,9 @@ public class BugReportImpl extends AnnotationImpl implements BugReport {
 	protected static final Severity SEVERITY_EDEFAULT = Severity.FEATURE;
 
 	/**
-	 * The cached value of the '{@link #getSeverity() <em>Severity</em>}' attribute. <!-- begin-user-doc --> <!--
+	 * The cached value of the '{@link #getSeverity() <em>Severity</em>}' attribute.
+	 * <!-- begin-user-doc --> <!--
 	 * end-user-doc -->
-	 * 
 	 * @see #getSeverity()
 	 * @generated
 	 * @ordered
@@ -218,9 +212,9 @@ public class BugReportImpl extends AnnotationImpl implements BugReport {
 	protected Severity severity = SEVERITY_EDEFAULT;
 
 	/**
-	 * The default value of the '{@link #getResolution() <em>Resolution</em>}' attribute. <!-- begin-user-doc --> <!--
+	 * The default value of the '{@link #getResolution() <em>Resolution</em>}' attribute.
+	 * <!-- begin-user-doc --> <!--
 	 * end-user-doc -->
-	 * 
 	 * @see #getResolution()
 	 * @generated
 	 * @ordered
@@ -228,9 +222,9 @@ public class BugReportImpl extends AnnotationImpl implements BugReport {
 	protected static final String RESOLUTION_EDEFAULT = null;
 
 	/**
-	 * The cached value of the '{@link #getResolution() <em>Resolution</em>}' attribute. <!-- begin-user-doc --> <!--
+	 * The cached value of the '{@link #getResolution() <em>Resolution</em>}' attribute.
+	 * <!-- begin-user-doc --> <!--
 	 * end-user-doc -->
-	 * 
 	 * @see #getResolution()
 	 * @generated
 	 * @ordered
@@ -238,9 +232,9 @@ public class BugReportImpl extends AnnotationImpl implements BugReport {
 	protected String resolution = RESOLUTION_EDEFAULT;
 
 	/**
-	 * The default value of the '{@link #getResolutionType() <em>Resolution Type</em>}' attribute. <!-- begin-user-doc
+	 * The default value of the '{@link #getResolutionType() <em>Resolution Type</em>}' attribute.
+	 * <!-- begin-user-doc
 	 * --> <!-- end-user-doc -->
-	 * 
 	 * @see #getResolutionType()
 	 * @generated
 	 * @ordered
@@ -248,9 +242,9 @@ public class BugReportImpl extends AnnotationImpl implements BugReport {
 	protected static final ResolutionType RESOLUTION_TYPE_EDEFAULT = ResolutionType.FIXED;
 
 	/**
-	 * The cached value of the '{@link #getResolutionType() <em>Resolution Type</em>}' attribute. <!-- begin-user-doc
+	 * The cached value of the '{@link #getResolutionType() <em>Resolution Type</em>}' attribute.
+	 * <!-- begin-user-doc
 	 * --> <!-- end-user-doc -->
-	 * 
 	 * @see #getResolutionType()
 	 * @generated
 	 * @ordered
@@ -259,7 +253,6 @@ public class BugReportImpl extends AnnotationImpl implements BugReport {
 
 	/**
 	 * <!-- begin-user-doc --> <!-- end-user-doc -->
-	 * 
 	 * @generated
 	 */
 	protected BugReportImpl() {
@@ -268,7 +261,6 @@ public class BugReportImpl extends AnnotationImpl implements BugReport {
 
 	/**
 	 * <!-- begin-user-doc --> <!-- end-user-doc -->
-	 * 
 	 * @generated
 	 */
 	@Override
@@ -278,7 +270,6 @@ public class BugReportImpl extends AnnotationImpl implements BugReport {
 
 	/**
 	 * <!-- begin-user-doc --> <!-- end-user-doc -->
-	 * 
 	 * @generated
 	 */
 	public WorkPackage getContainingWorkpackage() {
@@ -289,7 +280,6 @@ public class BugReportImpl extends AnnotationImpl implements BugReport {
 
 	/**
 	 * <!-- begin-user-doc --> <!-- end-user-doc -->
-	 * 
 	 * @generated
 	 */
 	public WorkPackage basicGetContainingWorkpackage() {
@@ -300,7 +290,6 @@ public class BugReportImpl extends AnnotationImpl implements BugReport {
 
 	/**
 	 * <!-- begin-user-doc --> <!-- end-user-doc -->
-	 * 
 	 * @generated
 	 */
 	public NotificationChain basicSetContainingWorkpackage(WorkPackage newContainingWorkpackage, NotificationChain msgs) {
@@ -311,7 +300,6 @@ public class BugReportImpl extends AnnotationImpl implements BugReport {
 
 	/**
 	 * <!-- begin-user-doc --> <!-- end-user-doc -->
-	 * 
 	 * @generated
 	 */
 	public void setContainingWorkpackage(WorkPackage newContainingWorkpackage) {
@@ -335,7 +323,6 @@ public class BugReportImpl extends AnnotationImpl implements BugReport {
 
 	/**
 	 * <!-- begin-user-doc --> <!-- end-user-doc -->
-	 * 
 	 * @generated
 	 */
 	public EList<ModelChangePackage> getAssociatedChangePackages() {
@@ -348,7 +335,6 @@ public class BugReportImpl extends AnnotationImpl implements BugReport {
 
 	/**
 	 * <!-- begin-user-doc --> <!-- end-user-doc -->
-	 * 
 	 * @generated
 	 */
 	public EList<WorkItem> getPredecessors() {
@@ -361,7 +347,6 @@ public class BugReportImpl extends AnnotationImpl implements BugReport {
 
 	/**
 	 * <!-- begin-user-doc --> <!-- end-user-doc -->
-	 * 
 	 * @generated
 	 */
 	public EList<WorkItem> getSuccessors() {
@@ -374,7 +359,6 @@ public class BugReportImpl extends AnnotationImpl implements BugReport {
 
 	/**
 	 * <!-- begin-user-doc --> <!-- end-user-doc -->
-	 * 
 	 * @generated
 	 */
 	public OrgUnit getAssignee() {
@@ -392,7 +376,6 @@ public class BugReportImpl extends AnnotationImpl implements BugReport {
 
 	/**
 	 * <!-- begin-user-doc --> <!-- end-user-doc -->
-	 * 
 	 * @generated
 	 */
 	public OrgUnit basicGetAssignee() {
@@ -401,7 +384,6 @@ public class BugReportImpl extends AnnotationImpl implements BugReport {
 
 	/**
 	 * <!-- begin-user-doc --> <!-- end-user-doc -->
-	 * 
 	 * @generated
 	 */
 	public NotificationChain basicSetAssignee(OrgUnit newAssignee, NotificationChain msgs) {
@@ -420,7 +402,6 @@ public class BugReportImpl extends AnnotationImpl implements BugReport {
 
 	/**
 	 * <!-- begin-user-doc --> <!-- end-user-doc -->
-	 * 
 	 * @generated
 	 */
 	public void setAssignee(OrgUnit newAssignee) {
@@ -442,7 +423,6 @@ public class BugReportImpl extends AnnotationImpl implements BugReport {
 
 	/**
 	 * <!-- begin-user-doc --> <!-- end-user-doc -->
-	 * 
 	 * @generated
 	 */
 	public EList<OrgUnit> getParticipants() {
@@ -455,7 +435,6 @@ public class BugReportImpl extends AnnotationImpl implements BugReport {
 
 	/**
 	 * <!-- begin-user-doc --> <!-- end-user-doc -->
-	 * 
 	 * @generated
 	 */
 	public Date getDueDate() {
@@ -464,7 +443,6 @@ public class BugReportImpl extends AnnotationImpl implements BugReport {
 
 	/**
 	 * <!-- begin-user-doc --> <!-- end-user-doc -->
-	 * 
 	 * @generated
 	 */
 	public void setDueDate(Date newDueDate) {
@@ -476,7 +454,6 @@ public class BugReportImpl extends AnnotationImpl implements BugReport {
 
 	/**
 	 * <!-- begin-user-doc --> <!-- end-user-doc -->
-	 * 
 	 * @generated
 	 */
 	public int getEstimate() {
@@ -485,7 +462,6 @@ public class BugReportImpl extends AnnotationImpl implements BugReport {
 
 	/**
 	 * <!-- begin-user-doc --> <!-- end-user-doc -->
-	 * 
 	 * @generated
 	 */
 	public void setEstimate(int newEstimate) {
@@ -498,7 +474,6 @@ public class BugReportImpl extends AnnotationImpl implements BugReport {
 
 	/**
 	 * <!-- begin-user-doc --> <!-- end-user-doc -->
-	 * 
 	 * @generated
 	 */
 	public int getEffort() {
@@ -507,7 +482,6 @@ public class BugReportImpl extends AnnotationImpl implements BugReport {
 
 	/**
 	 * <!-- begin-user-doc --> <!-- end-user-doc -->
-	 * 
 	 * @generated
 	 */
 	public void setEffort(int newEffort) {
@@ -543,7 +517,6 @@ public class BugReportImpl extends AnnotationImpl implements BugReport {
 
 	/**
 	 * <!-- begin-user-doc --> .<!-- end-user-doc -->
-	 * 
 	 * @generated
 	 */
 	public BugStatus getStatus() {
@@ -552,7 +525,6 @@ public class BugReportImpl extends AnnotationImpl implements BugReport {
 
 	/**
 	 * <!-- begin-user-doc --> <!-- end-user-doc -->
-	 * 
 	 * @generated
 	 */
 	public void setStatus(BugStatus newStatus) {
@@ -564,7 +536,6 @@ public class BugReportImpl extends AnnotationImpl implements BugReport {
 
 	/**
 	 * <!-- begin-user-doc --> <!-- end-user-doc -->
-	 * 
 	 * @generated
 	 */
 	public Severity getSeverity() {
@@ -573,7 +544,6 @@ public class BugReportImpl extends AnnotationImpl implements BugReport {
 
 	/**
 	 * <!-- begin-user-doc --> <!-- end-user-doc -->
-	 * 
 	 * @generated
 	 */
 	public void setSeverity(Severity newSeverity) {
@@ -586,7 +556,6 @@ public class BugReportImpl extends AnnotationImpl implements BugReport {
 
 	/**
 	 * <!-- begin-user-doc --> <!-- end-user-doc -->
-	 * 
 	 * @generated
 	 */
 	public String getResolution() {
@@ -595,7 +564,6 @@ public class BugReportImpl extends AnnotationImpl implements BugReport {
 
 	/**
 	 * <!-- begin-user-doc --> <!-- end-user-doc -->
-	 * 
 	 * @generated
 	 */
 	public void setResolution(String newResolution) {
@@ -608,7 +576,6 @@ public class BugReportImpl extends AnnotationImpl implements BugReport {
 
 	/**
 	 * <!-- begin-user-doc --> <!-- end-user-doc -->
-	 * 
 	 * @generated
 	 */
 	public ResolutionType getResolutionType() {
@@ -617,7 +584,6 @@ public class BugReportImpl extends AnnotationImpl implements BugReport {
 
 	/**
 	 * <!-- begin-user-doc --> <!-- end-user-doc -->
-	 * 
 	 * @generated
 	 */
 	public void setResolutionType(ResolutionType newResolutionType) {
@@ -630,7 +596,6 @@ public class BugReportImpl extends AnnotationImpl implements BugReport {
 
 	/**
 	 * <!-- begin-user-doc --> <!-- end-user-doc -->
-	 * 
 	 * @generated
 	 */
 	@SuppressWarnings("unchecked")
@@ -658,7 +623,6 @@ public class BugReportImpl extends AnnotationImpl implements BugReport {
 
 	/**
 	 * <!-- begin-user-doc --> <!-- end-user-doc -->
-	 * 
 	 * @generated
 	 */
 	@Override
@@ -680,7 +644,6 @@ public class BugReportImpl extends AnnotationImpl implements BugReport {
 
 	/**
 	 * <!-- begin-user-doc --> <!-- end-user-doc -->
-	 * 
 	 * @generated
 	 */
 	@Override
@@ -695,7 +658,6 @@ public class BugReportImpl extends AnnotationImpl implements BugReport {
 
 	/**
 	 * <!-- begin-user-doc --> <!-- end-user-doc -->
-	 * 
 	 * @generated
 	 */
 	@Override
@@ -739,7 +701,6 @@ public class BugReportImpl extends AnnotationImpl implements BugReport {
 
 	/**
 	 * <!-- begin-user-doc --> <!-- end-user-doc -->
-	 * 
 	 * @generated
 	 */
 	@SuppressWarnings("unchecked")
@@ -798,7 +759,6 @@ public class BugReportImpl extends AnnotationImpl implements BugReport {
 
 	/**
 	 * <!-- begin-user-doc --> <!-- end-user-doc -->
-	 * 
 	 * @generated
 	 */
 	@Override
@@ -852,7 +812,6 @@ public class BugReportImpl extends AnnotationImpl implements BugReport {
 
 	/**
 	 * <!-- begin-user-doc --> <!-- end-user-doc -->
-	 * 
 	 * @generated
 	 */
 	@Override
@@ -892,7 +851,6 @@ public class BugReportImpl extends AnnotationImpl implements BugReport {
 
 	/**
 	 * <!-- begin-user-doc --> <!-- end-user-doc -->
-	 * 
 	 * @generated
 	 */
 	@Override
@@ -910,7 +868,6 @@ public class BugReportImpl extends AnnotationImpl implements BugReport {
 
 	/**
 	 * <!-- begin-user-doc --> <!-- end-user-doc -->
-	 * 
 	 * @generated
 	 */
 	@Override
@@ -928,7 +885,6 @@ public class BugReportImpl extends AnnotationImpl implements BugReport {
 
 	/**
 	 * <!-- begin-user-doc --> <!-- end-user-doc -->
-	 * 
 	 * @generated
 	 */
 	@Override

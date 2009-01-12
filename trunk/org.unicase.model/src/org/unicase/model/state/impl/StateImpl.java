@@ -20,26 +20,20 @@ import org.unicase.model.state.State;
 import org.unicase.model.state.StatePackage;
 import org.unicase.model.state.Transition;
 
-/**
- * <!-- begin-user-doc --> An implementation of the model object '<em><b>State</b></em>'. <!-- end-user-doc -->
- * <p>
- * The following features are implemented:
- * <ul>
- * <li>{@link org.unicase.model.state.impl.StateImpl#getExitConditions <em>Exit Conditions</em>}</li>
- * <li>{@link org.unicase.model.state.impl.StateImpl#getActivities <em>Activities</em>}</li>
- * <li>{@link org.unicase.model.state.impl.StateImpl#getEntryConditions <em>Entry Conditions</em>}</li>
- * <li>{@link org.unicase.model.state.impl.StateImpl#getOutgoingTransitions <em>Outgoing Transitions</em>}</li>
- * <li>{@link org.unicase.model.state.impl.StateImpl#getIncomingTransitions <em>Incoming Transitions</em>}</li>
- * </ul>
- * </p>
- * 
+/*
+ * <!-- begin-user-doc --> An implementation of the model object '<em><b>State</b></em>'. <!-- end-user-doc --> <p> The
+ * following features are implemented: <ul> <li>{@link org.unicase.model.state.impl.StateImpl#getExitConditions <em>Exit
+ * Conditions</em>}</li> <li>{@link org.unicase.model.state.impl.StateImpl#getActivities <em>Activities</em>}</li>
+ * <li>{@link org.unicase.model.state.impl.StateImpl#getEntryConditions <em>Entry Conditions</em>}</li> <li>{@link
+ * org.unicase.model.state.impl.StateImpl#getOutgoingTransitions <em>Outgoing Transitions</em>}</li> <li>{@link
+ * org.unicase.model.state.impl.StateImpl#getIncomingTransitions <em>Incoming Transitions</em>}</li> </ul> </p>
  * @generated
  */
 public class StateImpl extends ModelElementImpl implements State {
 	/**
-	 * The default value of the '{@link #getExitConditions() <em>Exit Conditions</em>}' attribute. <!-- begin-user-doc
+	 * The default value of the '{@link #getExitConditions() <em>Exit Conditions</em>}' attribute.
+	 * <!-- begin-user-doc
 	 * --> <!-- end-user-doc -->
-	 * 
 	 * @see #getExitConditions()
 	 * @generated
 	 * @ordered
@@ -47,9 +41,9 @@ public class StateImpl extends ModelElementImpl implements State {
 	protected static final String EXIT_CONDITIONS_EDEFAULT = null;
 
 	/**
-	 * The cached value of the '{@link #getExitConditions() <em>Exit Conditions</em>}' attribute. <!-- begin-user-doc
+	 * The cached value of the '{@link #getExitConditions() <em>Exit Conditions</em>}' attribute.
+	 * <!-- begin-user-doc
 	 * --> <!-- end-user-doc -->
-	 * 
 	 * @see #getExitConditions()
 	 * @generated
 	 * @ordered
@@ -57,9 +51,9 @@ public class StateImpl extends ModelElementImpl implements State {
 	protected String exitConditions = EXIT_CONDITIONS_EDEFAULT;
 
 	/**
-	 * The default value of the '{@link #getActivities() <em>Activities</em>}' attribute. <!-- begin-user-doc --> <!--
+	 * The default value of the '{@link #getActivities() <em>Activities</em>}' attribute.
+	 * <!-- begin-user-doc --> <!--
 	 * end-user-doc -->
-	 * 
 	 * @see #getActivities()
 	 * @generated
 	 * @ordered
@@ -67,9 +61,9 @@ public class StateImpl extends ModelElementImpl implements State {
 	protected static final String ACTIVITIES_EDEFAULT = null;
 
 	/**
-	 * The cached value of the '{@link #getActivities() <em>Activities</em>}' attribute. <!-- begin-user-doc --> <!--
+	 * The cached value of the '{@link #getActivities() <em>Activities</em>}' attribute.
+	 * <!-- begin-user-doc --> <!--
 	 * end-user-doc -->
-	 * 
 	 * @see #getActivities()
 	 * @generated
 	 * @ordered
@@ -77,9 +71,9 @@ public class StateImpl extends ModelElementImpl implements State {
 	protected String activities = ACTIVITIES_EDEFAULT;
 
 	/**
-	 * The default value of the '{@link #getEntryConditions() <em>Entry Conditions</em>}' attribute. <!-- begin-user-doc
+	 * The default value of the '{@link #getEntryConditions() <em>Entry Conditions</em>}' attribute.
+	 * <!-- begin-user-doc
 	 * --> <!-- end-user-doc -->
-	 * 
 	 * @see #getEntryConditions()
 	 * @generated
 	 * @ordered
@@ -87,9 +81,9 @@ public class StateImpl extends ModelElementImpl implements State {
 	protected static final String ENTRY_CONDITIONS_EDEFAULT = null;
 
 	/**
-	 * The cached value of the '{@link #getEntryConditions() <em>Entry Conditions</em>}' attribute. <!-- begin-user-doc
+	 * The cached value of the '{@link #getEntryConditions() <em>Entry Conditions</em>}' attribute.
+	 * <!-- begin-user-doc
 	 * --> <!-- end-user-doc -->
-	 * 
 	 * @see #getEntryConditions()
 	 * @generated
 	 * @ordered
@@ -118,7 +112,6 @@ public class StateImpl extends ModelElementImpl implements State {
 
 	/**
 	 * <!-- begin-user-doc --> <!-- end-user-doc -->
-	 * 
 	 * @generated
 	 */
 	protected StateImpl() {
@@ -127,7 +120,6 @@ public class StateImpl extends ModelElementImpl implements State {
 
 	/**
 	 * <!-- begin-user-doc --> <!-- end-user-doc -->
-	 * 
 	 * @generated
 	 */
 	@Override
@@ -137,7 +129,6 @@ public class StateImpl extends ModelElementImpl implements State {
 
 	/**
 	 * <!-- begin-user-doc --> <!-- end-user-doc -->
-	 * 
 	 * @generated
 	 */
 	public String getExitConditions() {
@@ -146,7 +137,6 @@ public class StateImpl extends ModelElementImpl implements State {
 
 	/**
 	 * <!-- begin-user-doc --> <!-- end-user-doc -->
-	 * 
 	 * @generated
 	 */
 	public void setExitConditions(String newExitConditions) {
@@ -159,7 +149,6 @@ public class StateImpl extends ModelElementImpl implements State {
 
 	/**
 	 * <!-- begin-user-doc --> <!-- end-user-doc -->
-	 * 
 	 * @generated
 	 */
 	public String getActivities() {
@@ -168,7 +157,6 @@ public class StateImpl extends ModelElementImpl implements State {
 
 	/**
 	 * <!-- begin-user-doc --> <!-- end-user-doc -->
-	 * 
 	 * @generated
 	 */
 	public void setActivities(String newActivities) {
@@ -181,7 +169,6 @@ public class StateImpl extends ModelElementImpl implements State {
 
 	/**
 	 * <!-- begin-user-doc --> <!-- end-user-doc -->
-	 * 
 	 * @generated
 	 */
 	public String getEntryConditions() {
@@ -190,7 +177,6 @@ public class StateImpl extends ModelElementImpl implements State {
 
 	/**
 	 * <!-- begin-user-doc --> <!-- end-user-doc -->
-	 * 
 	 * @generated
 	 */
 	public void setEntryConditions(String newEntryConditions) {
@@ -203,7 +189,6 @@ public class StateImpl extends ModelElementImpl implements State {
 
 	/**
 	 * <!-- begin-user-doc --> <!-- end-user-doc -->
-	 * 
 	 * @generated
 	 */
 	public EList<Transition> getOutgoingTransitions() {
@@ -216,7 +201,6 @@ public class StateImpl extends ModelElementImpl implements State {
 
 	/**
 	 * <!-- begin-user-doc --> <!-- end-user-doc -->
-	 * 
 	 * @generated
 	 */
 	public EList<Transition> getIncomingTransitions() {
@@ -229,7 +213,6 @@ public class StateImpl extends ModelElementImpl implements State {
 
 	/**
 	 * <!-- begin-user-doc --> <!-- end-user-doc -->
-	 * 
 	 * @generated
 	 */
 	@SuppressWarnings("unchecked")
@@ -248,7 +231,6 @@ public class StateImpl extends ModelElementImpl implements State {
 
 	/**
 	 * <!-- begin-user-doc --> <!-- end-user-doc -->
-	 * 
 	 * @generated
 	 */
 	@Override
@@ -264,7 +246,6 @@ public class StateImpl extends ModelElementImpl implements State {
 
 	/**
 	 * <!-- begin-user-doc --> <!-- end-user-doc -->
-	 * 
 	 * @generated
 	 */
 	@Override
@@ -286,7 +267,6 @@ public class StateImpl extends ModelElementImpl implements State {
 
 	/**
 	 * <!-- begin-user-doc --> <!-- end-user-doc -->
-	 * 
 	 * @generated
 	 */
 	@SuppressWarnings("unchecked")
@@ -316,7 +296,6 @@ public class StateImpl extends ModelElementImpl implements State {
 
 	/**
 	 * <!-- begin-user-doc --> <!-- end-user-doc -->
-	 * 
 	 * @generated
 	 */
 	@Override
@@ -343,7 +322,6 @@ public class StateImpl extends ModelElementImpl implements State {
 
 	/**
 	 * <!-- begin-user-doc --> <!-- end-user-doc -->
-	 * 
 	 * @generated
 	 */
 	@Override
@@ -367,7 +345,6 @@ public class StateImpl extends ModelElementImpl implements State {
 
 	/**
 	 * <!-- begin-user-doc --> <!-- end-user-doc -->
-	 * 
 	 * @generated
 	 */
 	@Override
