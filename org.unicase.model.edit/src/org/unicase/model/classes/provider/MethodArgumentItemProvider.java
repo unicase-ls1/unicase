@@ -25,17 +25,16 @@ import org.unicase.model.classes.MethodArgument;
 import org.unicase.model.provider.ModelEditPlugin;
 import org.unicase.model.provider.ModelElementItemProvider;
 
-/**
+/*
  * This is the item provider adapter for a {@link org.unicase.model.classes.MethodArgument} object. <!-- begin-user-doc
  * --> <!-- end-user-doc -->
- * 
  * @generated
  */
 public class MethodArgumentItemProvider extends ModelElementItemProvider implements IEditingDomainItemProvider,
 	IStructuredItemContentProvider, ITreeItemContentProvider, IItemLabelProvider, IItemPropertySource {
 	/**
-	 * This constructs an instance from a factory and a notifier. <!-- begin-user-doc --> <!-- end-user-doc -->
-	 * 
+	 * This constructs an instance from a factory and a notifier.
+	 * <!-- begin-user-doc --> <!-- end-user-doc -->
 	 * @generated
 	 */
 	public MethodArgumentItemProvider(AdapterFactory adapterFactory) {
@@ -43,8 +42,8 @@ public class MethodArgumentItemProvider extends ModelElementItemProvider impleme
 	}
 
 	/**
-	 * This returns the property descriptors for the adapted class. <!-- begin-user-doc --> <!-- end-user-doc -->
-	 * 
+	 * This returns the property descriptors for the adapted class.
+	 * <!-- begin-user-doc --> <!-- end-user-doc -->
 	 * @generated
 	 */
 	@Override
@@ -61,8 +60,8 @@ public class MethodArgumentItemProvider extends ModelElementItemProvider impleme
 	}
 
 	/**
-	 * This adds a property descriptor for the Type feature. <!-- begin-user-doc --> <!-- end-user-doc -->
-	 * 
+	 * This adds a property descriptor for the Type feature.
+	 * <!-- begin-user-doc --> <!-- end-user-doc -->
 	 * @generated
 	 */
 	protected void addTypePropertyDescriptor(Object object) {
@@ -74,8 +73,8 @@ public class MethodArgumentItemProvider extends ModelElementItemProvider impleme
 	}
 
 	/**
-	 * This adds a property descriptor for the Direction feature. <!-- begin-user-doc --> <!-- end-user-doc -->
-	 * 
+	 * This adds a property descriptor for the Direction feature.
+	 * <!-- begin-user-doc --> <!-- end-user-doc -->
 	 * @generated
 	 */
 	protected void addDirectionPropertyDescriptor(Object object) {
@@ -87,8 +86,8 @@ public class MethodArgumentItemProvider extends ModelElementItemProvider impleme
 	}
 
 	/**
-	 * This adds a property descriptor for the Default Value feature. <!-- begin-user-doc --> <!-- end-user-doc -->
-	 * 
+	 * This adds a property descriptor for the Default Value feature.
+	 * <!-- begin-user-doc --> <!-- end-user-doc -->
 	 * @generated
 	 */
 	protected void addDefaultValuePropertyDescriptor(Object object) {
@@ -100,8 +99,8 @@ public class MethodArgumentItemProvider extends ModelElementItemProvider impleme
 	}
 
 	/**
-	 * This adds a property descriptor for the Label feature. <!-- begin-user-doc --> <!-- end-user-doc -->
-	 * 
+	 * This adds a property descriptor for the Label feature.
+	 * <!-- begin-user-doc --> <!-- end-user-doc -->
 	 * @generated
 	 */
 	protected void addLabelPropertyDescriptor(Object object) {
@@ -113,8 +112,8 @@ public class MethodArgumentItemProvider extends ModelElementItemProvider impleme
 	}
 
 	/**
-	 * This returns MethodArgument.gif. <!-- begin-user-doc --> <!-- end-user-doc -->
-	 * 
+	 * This returns MethodArgument.gif.
+	 * <!-- begin-user-doc --> <!-- end-user-doc -->
 	 * @generated
 	 */
 	@Override
@@ -157,9 +156,9 @@ public class MethodArgumentItemProvider extends ModelElementItemProvider impleme
 	}
 
 	/**
-	 * This adds {@link org.eclipse.emf.edit.command.CommandParameter}s describing the children that can be created
-	 * under this object. <!-- begin-user-doc --> <!-- end-user-doc -->
-	 * 
+	 * This adds {@link org.eclipse.emf.edit.command.CommandParameter}s describing the children
+	 * that can be created under this object.
+	 * <!-- begin-user-doc --> <!-- end-user-doc -->
 	 * @generated
 	 */
 	@Override
@@ -168,8 +167,8 @@ public class MethodArgumentItemProvider extends ModelElementItemProvider impleme
 	}
 
 	/**
-	 * Return the resource locator for this item provider's resources. <!-- begin-user-doc --> <!-- end-user-doc -->
-	 * 
+	 * Return the resource locator for this item provider's resources.
+	 * <!-- begin-user-doc --> <!-- end-user-doc -->
 	 * @generated
 	 */
 	@Override

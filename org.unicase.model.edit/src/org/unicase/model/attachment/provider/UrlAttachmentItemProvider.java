@@ -25,17 +25,16 @@ import org.unicase.model.attachment.UrlAttachment;
 import org.unicase.model.provider.AttachmentItemProvider;
 import org.unicase.model.provider.ModelEditPlugin;
 
-/**
+/*
  * This is the item provider adapter for a {@link org.unicase.model.attachment.UrlAttachment} object. <!--
  * begin-user-doc --> <!-- end-user-doc -->
- * 
  * @generated
  */
 public class UrlAttachmentItemProvider extends AttachmentItemProvider implements IEditingDomainItemProvider,
 	IStructuredItemContentProvider, ITreeItemContentProvider, IItemLabelProvider, IItemPropertySource {
 	/**
-	 * This constructs an instance from a factory and a notifier. <!-- begin-user-doc --> <!-- end-user-doc -->
-	 * 
+	 * This constructs an instance from a factory and a notifier.
+	 * <!-- begin-user-doc --> <!-- end-user-doc -->
 	 * @generated
 	 */
 	public UrlAttachmentItemProvider(AdapterFactory adapterFactory) {
@@ -43,8 +42,8 @@ public class UrlAttachmentItemProvider extends AttachmentItemProvider implements
 	}
 
 	/**
-	 * This returns the property descriptors for the adapted class. <!-- begin-user-doc --> <!-- end-user-doc -->
-	 * 
+	 * This returns the property descriptors for the adapted class.
+	 * <!-- begin-user-doc --> <!-- end-user-doc -->
 	 * @generated
 	 */
 	@Override
@@ -58,8 +57,8 @@ public class UrlAttachmentItemProvider extends AttachmentItemProvider implements
 	}
 
 	/**
-	 * This adds a property descriptor for the Url feature. <!-- begin-user-doc --> <!-- end-user-doc -->
-	 * 
+	 * This adds a property descriptor for the Url feature.
+	 * <!-- begin-user-doc --> <!-- end-user-doc -->
 	 * @generated
 	 */
 	protected void addUrlPropertyDescriptor(Object object) {
@@ -71,8 +70,8 @@ public class UrlAttachmentItemProvider extends AttachmentItemProvider implements
 	}
 
 	/**
-	 * This returns UrlAttachment.gif. <!-- begin-user-doc --> <!-- end-user-doc -->
-	 * 
+	 * This returns UrlAttachment.gif.
+	 * <!-- begin-user-doc --> <!-- end-user-doc -->
 	 * @generated
 	 */
 	@Override
@@ -81,8 +80,8 @@ public class UrlAttachmentItemProvider extends AttachmentItemProvider implements
 	}
 
 	/**
-	 * This returns the label text for the adapted class. <!-- begin-user-doc --> <!-- end-user-doc -->
-	 * 
+	 * This returns the label text for the adapted class.
+	 * <!-- begin-user-doc --> <!-- end-user-doc -->
 	 * @generated
 	 */
 	@Override
@@ -112,9 +111,9 @@ public class UrlAttachmentItemProvider extends AttachmentItemProvider implements
 	}
 
 	/**
-	 * This adds {@link org.eclipse.emf.edit.command.CommandParameter}s describing the children that can be created
-	 * under this object. <!-- begin-user-doc --> <!-- end-user-doc -->
-	 * 
+	 * This adds {@link org.eclipse.emf.edit.command.CommandParameter}s describing the children
+	 * that can be created under this object.
+	 * <!-- begin-user-doc --> <!-- end-user-doc -->
 	 * @generated
 	 */
 	@Override
@@ -123,8 +122,8 @@ public class UrlAttachmentItemProvider extends AttachmentItemProvider implements
 	}
 
 	/**
-	 * Return the resource locator for this item provider's resources. <!-- begin-user-doc --> <!-- end-user-doc -->
-	 * 
+	 * Return the resource locator for this item provider's resources.
+	 * <!-- begin-user-doc --> <!-- end-user-doc -->
 	 * @generated
 	 */
 	@Override

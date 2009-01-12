@@ -29,17 +29,16 @@ import org.unicase.model.rationale.RationaleFactory;
 import org.unicase.model.rationale.RationalePackage;
 import org.unicase.model.task.TaskPackage;
 
-/**
+/*
  * This is the item provider adapter for a {@link org.unicase.model.rationale.Issue} object. <!-- begin-user-doc -->
  * <!-- end-user-doc -->
- * 
  * @generated
  */
 public class IssueItemProvider extends AnnotationItemProvider implements IEditingDomainItemProvider,
 	IStructuredItemContentProvider, ITreeItemContentProvider, IItemLabelProvider, IItemPropertySource {
 	/**
-	 * This constructs an instance from a factory and a notifier. <!-- begin-user-doc --> <!-- end-user-doc -->
-	 * 
+	 * This constructs an instance from a factory and a notifier.
+	 * <!-- begin-user-doc --> <!-- end-user-doc -->
 	 * @generated
 	 */
 	public IssueItemProvider(AdapterFactory adapterFactory) {
@@ -47,8 +46,8 @@ public class IssueItemProvider extends AnnotationItemProvider implements IEditin
 	}
 
 	/**
-	 * This returns the property descriptors for the adapted class. <!-- begin-user-doc --> <!-- end-user-doc -->
-	 * 
+	 * This returns the property descriptors for the adapted class.
+	 * <!-- begin-user-doc --> <!-- end-user-doc -->
 	 * @generated
 	 */
 	@Override
@@ -87,8 +86,8 @@ public class IssueItemProvider extends AnnotationItemProvider implements IEditin
 	}
 
 	/**
-	 * This adds a property descriptor for the Predecessors feature. <!-- begin-user-doc --> <!-- end-user-doc -->
-	 * 
+	 * This adds a property descriptor for the Predecessors feature.
+	 * <!-- begin-user-doc --> <!-- end-user-doc -->
 	 * @generated
 	 */
 	protected void addPredecessorsPropertyDescriptor(Object object) {
@@ -99,8 +98,8 @@ public class IssueItemProvider extends AnnotationItemProvider implements IEditin
 	}
 
 	/**
-	 * This adds a property descriptor for the Successors feature. <!-- begin-user-doc --> <!-- end-user-doc -->
-	 * 
+	 * This adds a property descriptor for the Successors feature.
+	 * <!-- begin-user-doc --> <!-- end-user-doc -->
 	 * @generated
 	 */
 	protected void addSuccessorsPropertyDescriptor(Object object) {
@@ -111,8 +110,8 @@ public class IssueItemProvider extends AnnotationItemProvider implements IEditin
 	}
 
 	/**
-	 * This adds a property descriptor for the Assignee feature. <!-- begin-user-doc --> <!-- end-user-doc -->
-	 * 
+	 * This adds a property descriptor for the Assignee feature.
+	 * <!-- begin-user-doc --> <!-- end-user-doc -->
 	 * @generated
 	 */
 	protected void addAssigneePropertyDescriptor(Object object) {
@@ -123,8 +122,8 @@ public class IssueItemProvider extends AnnotationItemProvider implements IEditin
 	}
 
 	/**
-	 * This adds a property descriptor for the Criteria feature. <!-- begin-user-doc --> <!-- end-user-doc -->
-	 * 
+	 * This adds a property descriptor for the Criteria feature.
+	 * <!-- begin-user-doc --> <!-- end-user-doc -->
 	 * @generated
 	 */
 	protected void addCriteriaPropertyDescriptor(Object object) {
@@ -135,8 +134,8 @@ public class IssueItemProvider extends AnnotationItemProvider implements IEditin
 	}
 
 	/**
-	 * This adds a property descriptor for the Activity feature. <!-- begin-user-doc --> <!-- end-user-doc -->
-	 * 
+	 * This adds a property descriptor for the Activity feature.
+	 * <!-- begin-user-doc --> <!-- end-user-doc -->
 	 * @generated
 	 */
 	protected void addActivityPropertyDescriptor(Object object) {
@@ -148,8 +147,8 @@ public class IssueItemProvider extends AnnotationItemProvider implements IEditin
 	}
 
 	/**
-	 * This adds a property descriptor for the Participants feature. <!-- begin-user-doc --> <!-- end-user-doc -->
-	 * 
+	 * This adds a property descriptor for the Participants feature.
+	 * <!-- begin-user-doc --> <!-- end-user-doc -->
 	 * @generated
 	 */
 	protected void addParticipantsPropertyDescriptor(Object object) {
@@ -160,8 +159,8 @@ public class IssueItemProvider extends AnnotationItemProvider implements IEditin
 	}
 
 	/**
-	 * This adds a property descriptor for the Due Date feature. <!-- begin-user-doc --> <!-- end-user-doc -->
-	 * 
+	 * This adds a property descriptor for the Due Date feature.
+	 * <!-- begin-user-doc --> <!-- end-user-doc -->
 	 * @generated
 	 */
 	protected void addDueDatePropertyDescriptor(Object object) {
@@ -173,8 +172,8 @@ public class IssueItemProvider extends AnnotationItemProvider implements IEditin
 	}
 
 	/**
-	 * This adds a property descriptor for the Estimate feature. <!-- begin-user-doc --> <!-- end-user-doc -->
-	 * 
+	 * This adds a property descriptor for the Estimate feature.
+	 * <!-- begin-user-doc --> <!-- end-user-doc -->
 	 * @generated
 	 */
 	protected void addEstimatePropertyDescriptor(Object object) {
@@ -186,8 +185,8 @@ public class IssueItemProvider extends AnnotationItemProvider implements IEditin
 	}
 
 	/**
-	 * This adds a property descriptor for the Effort feature. <!-- begin-user-doc --> <!-- end-user-doc -->
-	 * 
+	 * This adds a property descriptor for the Effort feature.
+	 * <!-- begin-user-doc --> <!-- end-user-doc -->
 	 * @generated
 	 */
 	protected void addEffortPropertyDescriptor(Object object) {
@@ -199,8 +198,8 @@ public class IssueItemProvider extends AnnotationItemProvider implements IEditin
 	}
 
 	/**
-	 * This adds a property descriptor for the Proposals feature. <!-- begin-user-doc --> <!-- end-user-doc -->
-	 * 
+	 * This adds a property descriptor for the Proposals feature.
+	 * <!-- begin-user-doc --> <!-- end-user-doc -->
 	 * @generated
 	 */
 	protected void addProposalsPropertyDescriptor(Object object) {
@@ -211,8 +210,8 @@ public class IssueItemProvider extends AnnotationItemProvider implements IEditin
 	}
 
 	/**
-	 * This adds a property descriptor for the Solution feature. <!-- begin-user-doc --> <!-- end-user-doc -->
-	 * 
+	 * This adds a property descriptor for the Solution feature.
+	 * <!-- begin-user-doc --> <!-- end-user-doc -->
 	 * @generated
 	 */
 	protected void addSolutionPropertyDescriptor(Object object) {
@@ -225,9 +224,9 @@ public class IssueItemProvider extends AnnotationItemProvider implements IEditin
 	/**
 	 * This specifies how to implement {@link #getChildren} and is used to deduce an appropriate feature for an
 	 * {@link org.eclipse.emf.edit.command.AddCommand}, {@link org.eclipse.emf.edit.command.RemoveCommand} or
-	 * {@link org.eclipse.emf.edit.command.MoveCommand} in {@link #createCommand}. <!-- begin-user-doc --> <!--
+	 * {@link org.eclipse.emf.edit.command.MoveCommand} in {@link #createCommand}.
+	 * <!-- begin-user-doc --> <!--
 	 * end-user-doc -->
-	 * 
 	 * @generated
 	 */
 	@Override
@@ -242,7 +241,6 @@ public class IssueItemProvider extends AnnotationItemProvider implements IEditin
 
 	/**
 	 * <!-- begin-user-doc --> <!-- end-user-doc -->
-	 * 
 	 * @generated
 	 */
 	@Override
@@ -307,9 +305,9 @@ public class IssueItemProvider extends AnnotationItemProvider implements IEditin
 	}
 
 	/**
-	 * This adds {@link org.eclipse.emf.edit.command.CommandParameter}s describing the children that can be created
-	 * under this object. <!-- begin-user-doc --> <!-- end-user-doc -->
-	 * 
+	 * This adds {@link org.eclipse.emf.edit.command.CommandParameter}s describing the children
+	 * that can be created under this object.
+	 * <!-- begin-user-doc --> <!-- end-user-doc -->
 	 * @generated
 	 */
 	@Override
@@ -330,8 +328,8 @@ public class IssueItemProvider extends AnnotationItemProvider implements IEditin
 	}
 
 	/**
-	 * Return the resource locator for this item provider's resources. <!-- begin-user-doc --> <!-- end-user-doc -->
-	 * 
+	 * Return the resource locator for this item provider's resources.
+	 * <!-- begin-user-doc --> <!-- end-user-doc -->
 	 * @generated
 	 */
 	@Override

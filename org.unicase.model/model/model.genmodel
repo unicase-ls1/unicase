@@ -271,6 +271,7 @@
         <genFeatures createChild="false" ecoreFeature="ecore:EAttribute model.ecore#//requirement/FunctionalRequirement/reviewed"/>
         <genFeatures notify="false" createChild="false" propertySortChoices="true"
             ecoreFeature="ecore:EReference model.ecore#//requirement/FunctionalRequirement/stakeholder"/>
+        <genFeatures createChild="false" ecoreFeature="ecore:EAttribute model.ecore#//requirement/FunctionalRequirement/cost"/>
       </genClasses>
       <genClasses ecoreClass="model.ecore#//requirement/UseCase">
         <genFeatures notify="false" createChild="false" propertySortChoices="true"

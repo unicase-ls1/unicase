@@ -20,48 +20,42 @@ import org.unicase.model.classes.ScopeType;
 import org.unicase.model.classes.VisibilityType;
 import org.unicase.model.impl.ModelElementImpl;
 
-/**
- * <!-- begin-user-doc --> An implementation of the model object ' <em><b>Attribute</b></em>'. <!-- end-user-doc -->
- * <p>
- * The following features are implemented:
- * <ul>
- * <li>{@link org.unicase.model.classes.impl.AttributeImpl#getDefiningClass <em>Defining Class</em>}</li>
- * <li>{@link org.unicase.model.classes.impl.AttributeImpl#getVisibility <em>Visibility</em>}</li>
- * <li>{@link org.unicase.model.classes.impl.AttributeImpl#getScope <em>Scope</em>}</li>
- * <li>{@link org.unicase.model.classes.impl.AttributeImpl#getSignature <em>Signature</em>}</li>
- * <li>{@link org.unicase.model.classes.impl.AttributeImpl#getType <em>Type</em>}</li>
- * <li>{@link org.unicase.model.classes.impl.AttributeImpl#getDefaultValue <em>Default Value</em>}</li>
- * <li>{@link org.unicase.model.classes.impl.AttributeImpl#getProperties <em>Properties</em>}</li>
- * <li>{@link org.unicase.model.classes.impl.AttributeImpl#getLabel <em>Label</em>}</li>
- * </ul>
- * </p>
- * 
+/*
+ * <!-- begin-user-doc --> An implementation of the model object ' <em><b>Attribute</b></em>'. <!-- end-user-doc --> <p>
+ * The following features are implemented: <ul> <li>{@link org.unicase.model.classes.impl.AttributeImpl#getDefiningClass
+ * <em>Defining Class</em>}</li> <li>{@link org.unicase.model.classes.impl.AttributeImpl#getVisibility
+ * <em>Visibility</em>}</li> <li>{@link org.unicase.model.classes.impl.AttributeImpl#getScope <em>Scope</em>}</li>
+ * <li>{@link org.unicase.model.classes.impl.AttributeImpl#getSignature <em>Signature</em>}</li> <li>{@link
+ * org.unicase.model.classes.impl.AttributeImpl#getType <em>Type</em>}</li> <li>{@link
+ * org.unicase.model.classes.impl.AttributeImpl#getDefaultValue <em>Default Value</em>}</li> <li>{@link
+ * org.unicase.model.classes.impl.AttributeImpl#getProperties <em>Properties</em>}</li> <li>{@link
+ * org.unicase.model.classes.impl.AttributeImpl#getLabel <em>Label</em>}</li> </ul> </p>
  * @generated
  */
 public class AttributeImpl extends ModelElementImpl implements Attribute {
 
 	/**
-	 * The default value of the '{@link #getVisibility() <em>Visibility</em>}' attribute. <!-- begin-user-doc --> <!--
+	 * The default value of the '{@link #getVisibility() <em>Visibility</em>}' attribute.
+	 * <!-- begin-user-doc --> <!--
 	 * end-user-doc -->
-	 * 
 	 * @see #getVisibility()
 	 * @generated
 	 * @ordered
 	 */
 	protected static final VisibilityType VISIBILITY_EDEFAULT = VisibilityType.UNDEFINED;
 	/**
-	 * The cached value of the '{@link #getVisibility() <em>Visibility</em>}' attribute. <!-- begin-user-doc --> <!--
+	 * The cached value of the '{@link #getVisibility() <em>Visibility</em>}' attribute.
+	 * <!-- begin-user-doc --> <!--
 	 * end-user-doc -->
-	 * 
 	 * @see #getVisibility()
 	 * @generated
 	 * @ordered
 	 */
 	protected VisibilityType visibility = VISIBILITY_EDEFAULT;
 	/**
-	 * The default value of the '{@link #getScope() <em>Scope</em>}' attribute. <!-- begin-user-doc --> <!--
+	 * The default value of the '{@link #getScope() <em>Scope</em>}' attribute.
+	 * <!-- begin-user-doc --> <!--
 	 * end-user-doc -->
-	 * 
 	 * @see #getScope()
 	 * @generated
 	 * @ordered
@@ -78,9 +72,9 @@ public class AttributeImpl extends ModelElementImpl implements Attribute {
 	protected ScopeType scope = SCOPE_EDEFAULT;
 
 	/**
-	 * The default value of the '{@link #getSignature() <em>Signature</em>}' attribute. <!-- begin-user-doc --> <!--
+	 * The default value of the '{@link #getSignature() <em>Signature</em>}' attribute.
+	 * <!-- begin-user-doc --> <!--
 	 * end-user-doc -->
-	 * 
 	 * @see #getSignature()
 	 * @generated
 	 * @ordered
@@ -107,36 +101,36 @@ public class AttributeImpl extends ModelElementImpl implements Attribute {
 	protected String type = TYPE_EDEFAULT;
 
 	/**
-	 * The default value of the '{@link #getDefaultValue() <em>Default Value</em>}' attribute. <!-- begin-user-doc -->
+	 * The default value of the '{@link #getDefaultValue() <em>Default Value</em>}' attribute.
+	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
-	 * 
 	 * @see #getDefaultValue()
 	 * @generated
 	 * @ordered
 	 */
 	protected static final String DEFAULT_VALUE_EDEFAULT = null;
 	/**
-	 * The cached value of the '{@link #getDefaultValue() <em>Default Value</em>}' attribute. <!-- begin-user-doc -->
+	 * The cached value of the '{@link #getDefaultValue() <em>Default Value</em>}' attribute.
+	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
-	 * 
 	 * @see #getDefaultValue()
 	 * @generated
 	 * @ordered
 	 */
 	protected String defaultValue = DEFAULT_VALUE_EDEFAULT;
 	/**
-	 * The default value of the '{@link #getProperties() <em>Properties</em>}' attribute. <!-- begin-user-doc --> <!--
+	 * The default value of the '{@link #getProperties() <em>Properties</em>}' attribute.
+	 * <!-- begin-user-doc --> <!--
 	 * end-user-doc -->
-	 * 
 	 * @see #getProperties()
 	 * @generated
 	 * @ordered
 	 */
 	protected static final String PROPERTIES_EDEFAULT = null;
 	/**
-	 * The cached value of the '{@link #getProperties() <em>Properties</em>}' attribute. <!-- begin-user-doc --> <!--
+	 * The cached value of the '{@link #getProperties() <em>Properties</em>}' attribute.
+	 * <!-- begin-user-doc --> <!--
 	 * end-user-doc -->
-	 * 
 	 * @see #getProperties()
 	 * @generated
 	 * @ordered
@@ -144,9 +138,9 @@ public class AttributeImpl extends ModelElementImpl implements Attribute {
 	protected String properties = PROPERTIES_EDEFAULT;
 
 	/**
-	 * The default value of the '{@link #getLabel() <em>Label</em>}' attribute. <!-- begin-user-doc --> <!--
+	 * The default value of the '{@link #getLabel() <em>Label</em>}' attribute.
+	 * <!-- begin-user-doc --> <!--
 	 * end-user-doc -->
-	 * 
 	 * @see #getLabel()
 	 * @generated
 	 * @ordered
@@ -164,7 +158,6 @@ public class AttributeImpl extends ModelElementImpl implements Attribute {
 
 	/**
 	 * <!-- begin-user-doc --> <!-- end-user-doc -->
-	 * 
 	 * @generated
 	 */
 	protected AttributeImpl() {
@@ -173,7 +166,6 @@ public class AttributeImpl extends ModelElementImpl implements Attribute {
 
 	/**
 	 * <!-- begin-user-doc --> <!-- end-user-doc -->
-	 * 
 	 * @generated
 	 */
 	@Override
@@ -183,7 +175,6 @@ public class AttributeImpl extends ModelElementImpl implements Attribute {
 
 	/**
 	 * <!-- begin-user-doc --> <!-- end-user-doc -->
-	 * 
 	 * @generated
 	 */
 	public org.unicase.model.classes.Class getDefiningClass() {
@@ -194,7 +185,6 @@ public class AttributeImpl extends ModelElementImpl implements Attribute {
 
 	/**
 	 * <!-- begin-user-doc --> <!-- end-user-doc -->
-	 * 
 	 * @generated
 	 */
 	public org.unicase.model.classes.Class basicGetDefiningClass() {
@@ -205,7 +195,6 @@ public class AttributeImpl extends ModelElementImpl implements Attribute {
 
 	/**
 	 * <!-- begin-user-doc --> <!-- end-user-doc -->
-	 * 
 	 * @generated
 	 */
 	public NotificationChain basicSetDefiningClass(org.unicase.model.classes.Class newDefiningClass,
@@ -216,7 +205,6 @@ public class AttributeImpl extends ModelElementImpl implements Attribute {
 
 	/**
 	 * <!-- begin-user-doc --> <!-- end-user-doc -->
-	 * 
 	 * @generated
 	 */
 	public void setDefiningClass(org.unicase.model.classes.Class newDefiningClass) {
@@ -240,7 +228,6 @@ public class AttributeImpl extends ModelElementImpl implements Attribute {
 
 	/**
 	 * <!-- begin-user-doc --> <!-- end-user-doc -->
-	 * 
 	 * @generated
 	 */
 	public VisibilityType getVisibility() {
@@ -249,7 +236,6 @@ public class AttributeImpl extends ModelElementImpl implements Attribute {
 
 	/**
 	 * <!-- begin-user-doc --> <!-- end-user-doc -->
-	 * 
 	 * @generated
 	 */
 	public void setVisibility(VisibilityType newVisibility) {
@@ -262,7 +248,6 @@ public class AttributeImpl extends ModelElementImpl implements Attribute {
 
 	/**
 	 * <!-- begin-user-doc --> <!-- end-user-doc -->
-	 * 
 	 * @generated
 	 */
 	public ScopeType getScope() {
@@ -271,7 +256,6 @@ public class AttributeImpl extends ModelElementImpl implements Attribute {
 
 	/**
 	 * <!-- begin-user-doc --> <!-- end-user-doc -->
-	 * 
 	 * @generated
 	 */
 	public void setScope(ScopeType newScope) {
@@ -394,7 +378,6 @@ public class AttributeImpl extends ModelElementImpl implements Attribute {
 
 	/**
 	 * <!-- begin-user-doc --> .<!-- end-user-doc -->
-	 * 
 	 * @generated
 	 */
 	public String getType() {
@@ -403,7 +386,6 @@ public class AttributeImpl extends ModelElementImpl implements Attribute {
 
 	/**
 	 * <!-- begin-user-doc --> <!-- end-user-doc -->
-	 * 
 	 * @generated
 	 */
 	public void setType(String newType) {
@@ -415,7 +397,6 @@ public class AttributeImpl extends ModelElementImpl implements Attribute {
 
 	/**
 	 * <!-- begin-user-doc --> <!-- end-user-doc -->
-	 * 
 	 * @generated
 	 */
 	public String getDefaultValue() {
@@ -424,7 +405,6 @@ public class AttributeImpl extends ModelElementImpl implements Attribute {
 
 	/**
 	 * <!-- begin-user-doc --> <!-- end-user-doc -->
-	 * 
 	 * @generated
 	 */
 	public void setDefaultValue(String newDefaultValue) {
@@ -437,7 +417,6 @@ public class AttributeImpl extends ModelElementImpl implements Attribute {
 
 	/**
 	 * <!-- begin-user-doc --> <!-- end-user-doc -->
-	 * 
 	 * @generated
 	 */
 	public String getProperties() {
@@ -446,7 +425,6 @@ public class AttributeImpl extends ModelElementImpl implements Attribute {
 
 	/**
 	 * <!-- begin-user-doc --> <!-- end-user-doc -->
-	 * 
 	 * @generated
 	 */
 	public void setProperties(String newProperties) {
@@ -474,7 +452,6 @@ public class AttributeImpl extends ModelElementImpl implements Attribute {
 
 	/**
 	 * <!-- begin-user-doc --> .<!-- end-user-doc -->
-	 * 
 	 * @generated
 	 */
 	@Override
@@ -490,7 +467,6 @@ public class AttributeImpl extends ModelElementImpl implements Attribute {
 
 	/**
 	 * <!-- begin-user-doc --> <!-- end-user-doc -->
-	 * 
 	 * @generated
 	 */
 	@Override
@@ -504,7 +480,6 @@ public class AttributeImpl extends ModelElementImpl implements Attribute {
 
 	/**
 	 * <!-- begin-user-doc --> <!-- end-user-doc -->
-	 * 
 	 * @generated
 	 */
 	@Override
@@ -519,7 +494,6 @@ public class AttributeImpl extends ModelElementImpl implements Attribute {
 
 	/**
 	 * <!-- begin-user-doc --> <!-- end-user-doc -->
-	 * 
 	 * @generated
 	 */
 	@Override
@@ -549,7 +523,6 @@ public class AttributeImpl extends ModelElementImpl implements Attribute {
 
 	/**
 	 * <!-- begin-user-doc --> <!-- end-user-doc -->
-	 * 
 	 * @generated
 	 */
 	@Override
@@ -582,7 +555,6 @@ public class AttributeImpl extends ModelElementImpl implements Attribute {
 
 	/**
 	 * <!-- begin-user-doc --> <!-- end-user-doc -->
-	 * 
 	 * @generated
 	 */
 	@Override
@@ -615,7 +587,6 @@ public class AttributeImpl extends ModelElementImpl implements Attribute {
 
 	/**
 	 * <!-- begin-user-doc --> <!-- end-user-doc -->
-	 * 
 	 * @generated
 	 */
 	@Override
@@ -643,7 +614,6 @@ public class AttributeImpl extends ModelElementImpl implements Attribute {
 
 	/**
 	 * <!-- begin-user-doc --> <!-- end-user-doc -->
-	 * 
 	 * @generated
 	 */
 	@Override
