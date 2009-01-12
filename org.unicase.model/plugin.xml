@@ -216,6 +216,28 @@
            </constraint>
         </constraints>
      </constraintProvider>
+     <constraintProvider
+           cache="true"
+           mode="Batch">
+        <package
+              namespaceUri="http://unicase.org/model/meeting">
+        </package>
+        <constraints
+              categories="org.unicase.model">
+           <constraint
+                 class="org.unicase.model.meeting.validation.MeetingSectionAnnotationConstraint"
+                 id="org.unicase.model.document.MeetingSectionAnnotation"
+                 lang="Java"
+                 mode="Batch"
+                 name="MeetingSection Annotation Constraint"
+                 severity="WARNING"
+                 statusCode="1">
+              <message>
+                 {0} has annotations, this should be avoided.
+              </message>
+           </constraint>
+        </constraints>
+     </constraintProvider>
   </extension>
   <extension
         point="org.eclipse.emf.validation.constraintBindings">
