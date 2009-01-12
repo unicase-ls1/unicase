@@ -6,6 +6,7 @@
 package org.unicase.model.util;
 
 import java.io.File;
+import java.io.FileInputStream;
 import java.io.FileOutputStream;
 import java.io.IOException;
 import java.io.InputStream;
@@ -45,6 +46,17 @@ public final class FileUtil {
 				throw new IOException("Deletion of folder: " + folder.getAbsolutePath() + " failed.");
 			}
 		}
+	}
+
+	/**
+	 * This method copies a single file.
+	 * 
+	 * @param source the source
+	 * @param destination the destination
+	 * @throws IOException copy problem
+	 */
+	public static void copyFile(File source, File destination) throws IOException {
+		copyFile(new FileInputStream(source), destination);
 	}
 
 	/**
