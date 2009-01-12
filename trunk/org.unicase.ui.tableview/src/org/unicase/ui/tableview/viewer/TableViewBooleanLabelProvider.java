@@ -1,8 +1,7 @@
 /**
- * <copyright> Copyright (c) 2008 Jonas Helming, Maximilian Koegel. All rights reserved. This program and the accompanying materials are made available under the terms of the Eclipse Public License v1.0 which accompanies this distribution, and is available at http://www.eclipse.org/legal/epl-v10.html
- * </copyright>
- *
- * $Id$
+ * <copyright> Copyright (c) 2008 Jonas Helming, Maximilian Koegel. All rights reserved. This program and the
+ * accompanying materials are made available under the terms of the Eclipse Public License v1.0 which accompanies this
+ * distribution, and is available at http://www.eclipse.org/legal/epl-v10.html </copyright> $Id$
  */
 package org.unicase.ui.tableview.viewer;
 
@@ -23,15 +22,9 @@ import org.eclipse.swt.widgets.Shell;
 import org.eclipse.swt.widgets.TableItem;
 
 /**
- * 
- * @author Hodaie
- * 
- *         This class displays a checkbox image for columns representing boolean
- *         attributes.
- * 
+ * @author Hodaie This class displays a checkbox image for columns representing boolean attributes.
  */
-public class TableViewBooleanLabelProvider extends OwnerDrawLabelProvider
-		implements ILabelProvider {
+public class TableViewBooleanLabelProvider extends OwnerDrawLabelProvider implements ILabelProvider {
 
 	private IItemPropertyDescriptor propertyDescriptor;
 
@@ -41,38 +34,28 @@ public class TableViewBooleanLabelProvider extends OwnerDrawLabelProvider
 	/**
 	 * .
 	 * 
-	 * @param viewer
-	 *            The ColumnViwer, on which a checkbox for boolean attribute is
-	 *            shown.
-	 * @param propertyDescriptor
-	 *            An IItemPropertyDescriptor to query the boolean value of
-	 *            attribute.
+	 * @param viewer The ColumnViwer, on which a checkbox for boolean attribute is shown.
+	 * @param propertyDescriptor An IItemPropertyDescriptor to query the boolean value of attribute.
 	 */
-	public TableViewBooleanLabelProvider(ColumnViewer viewer,
-			IItemPropertyDescriptor propertyDescriptor) {
+	public TableViewBooleanLabelProvider(ColumnViewer viewer, IItemPropertyDescriptor propertyDescriptor) {
 
 		this.propertyDescriptor = propertyDescriptor;
 
 		// create images of a checked and an unchecked checkbox
 		if (JFaceResources.getImageRegistry().getDescriptor(CHECKED_KEY) == null) {
-			JFaceResources.getImageRegistry().put(UNCHECK_KEY,
-					makeShot(viewer.getControl().getShell(), false));
-			JFaceResources.getImageRegistry().put(CHECKED_KEY,
-					makeShot(viewer.getControl().getShell(), true));
+			JFaceResources.getImageRegistry().put(UNCHECK_KEY, makeShot(viewer.getControl().getShell(), false));
+			JFaceResources.getImageRegistry().put(CHECKED_KEY, makeShot(viewer.getControl().getShell(), true));
 
 		}
 
 	}
 
 	/**
-	 * We need images of a checked and unchecked checkbox. These are created
-	 * using this method, so that they look native on different platforms. The
-	 * trick here is, to create a temporary checkbox, and make an image of it.
+	 * We need images of a checked and unchecked checkbox. These are created using this method, so that they look native
+	 * on different platforms. The trick here is, to create a temporary checkbox, and make an image of it.
 	 * 
-	 * @param Shell
-	 *            shell
-	 * @param Boolean
-	 *            type
+	 * @param Shell shell
+	 * @param Boolean type
 	 * @return Image image
 	 */
 	private Image makeShot(Shell shell, boolean type) {
@@ -94,32 +77,24 @@ public class TableViewBooleanLabelProvider extends OwnerDrawLabelProvider
 
 	/**
 	 * . ({@inheritDoc})
-	 * 
 	 */
 	public Image getImage(Object element) {
 		if (isChecked(element)) {
-			return JFaceResources.getImageRegistry().getDescriptor(CHECKED_KEY)
-					.createImage();
+			return JFaceResources.getImageRegistry().get(CHECKED_KEY);
 		} else {
-			return JFaceResources.getImageRegistry().getDescriptor(UNCHECK_KEY)
-					.createImage();
+			return JFaceResources.getImageRegistry().get(UNCHECK_KEY);
 		}
 	}
 
 	/**
-	 * ({@inheritDoc})
-	 * 
-	 * Boolean attributes are shown using a checkbox image. Therefore getText()
-	 * returns null.
+	 * ({@inheritDoc}) Boolean attributes are shown using a checkbox image. Therefore getText() returns null.
 	 */
 	public String getText(Object element) {
 		return "";
 	}
 
 	/**
-	 * ({@inheritDoc})
-	 * 
-	 * This returns the value of boolean attribute.
+	 * ({@inheritDoc}) This returns the value of boolean attribute.
 	 * 
 	 * @param element
 	 * @return
@@ -128,7 +103,7 @@ public class TableViewBooleanLabelProvider extends OwnerDrawLabelProvider
 		Boolean result;
 		if (propertyDescriptor.isPropertySet(element)) {
 			ItemPropertyDescriptor.PropertyValueWrapper valueWrapper = (ItemPropertyDescriptor.PropertyValueWrapper) propertyDescriptor
-					.getPropertyValue(element);
+				.getPropertyValue(element);
 			result = (Boolean) valueWrapper.getEditableValue(element);
 		} else {
 			result = new Boolean(false);
@@ -138,10 +113,7 @@ public class TableViewBooleanLabelProvider extends OwnerDrawLabelProvider
 	}
 
 	/**
-	 * ({@inheritDoc})
-	 * 
-	 * This changes table row height. The default height is too narrow to show
-	 * the checkebox gracefully.
+	 * ({@inheritDoc}) This changes table row height. The default height is too narrow to show the checkebox gracefully.
 	 */
 	@Override
 	protected void measure(Event event, Object element) {
@@ -149,18 +121,13 @@ public class TableViewBooleanLabelProvider extends OwnerDrawLabelProvider
 		TableItem item = (TableItem) event.item;
 		int rowHeight = TableView.ROW_HEIGHT;
 
-		event.setBounds(new Rectangle(event.x, event.y, item.getBounds().width,
-				rowHeight));
+		event.setBounds(new Rectangle(event.x, event.y, item.getBounds().width, rowHeight));
 
 	}
 
 	/**
-	 * . ({@inheritDoc})
-	 * 
-	 * I had to draw the checkbox image in center of table cell myself. This is
-	 * because the checkbox was drawn left aligned. And changing the
-	 * tableColumn.setAlignment(SWT.CENTER) did not have any effects.
-	 * 
+	 * . ({@inheritDoc}) I had to draw the checkbox image in center of table cell myself. This is because the checkbox
+	 * was drawn left aligned. And changing the tableColumn.setAlignment(SWT.CENTER) did not have any effects.
 	 */
 	@Override
 	protected void paint(Event event, Object element) {
