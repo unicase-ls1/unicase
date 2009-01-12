@@ -236,6 +236,20 @@
                  {0} has annotations, this should be avoided.
               </message>
            </constraint>
+           <constraint
+				lang="OCL"
+				severity="ERROR"
+				mode="Batch"
+				name="Meeting Location Constraint"
+				id="org.unicase.model.document.MeetingLocation"
+				statusCode="1">
+			<message>{0} has no location set</message>
+			<target class="Meeting"/>
+			
+				<![CDATA[
+					not self.location.oclIsUndefined()
+				]]>
+		   </constraint>
         </constraints>
      </constraintProvider>
   </extension>
