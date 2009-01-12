@@ -7,7 +7,9 @@ import org.eclipse.jface.viewers.ISelection;
 import org.eclipse.jface.viewers.IStructuredSelection;
 import org.eclipse.jface.viewers.Viewer;
 import org.eclipse.swt.dnd.DragSourceEvent;
+import org.unicase.model.ModelElement;
 import org.unicase.ui.common.dnd.DragSourcePlaceHolder;
+import org.unicase.ui.stem.views.statusview.StatusView;
 
 /**
  * This is the drag adapter for flat tab in status view.
@@ -16,12 +18,15 @@ import org.unicase.ui.common.dnd.DragSourcePlaceHolder;
  */
 public class FlatTabDragAdapter extends ViewerDragAdapter {
 
+	private ModelElement currentOpenME;
+	private StatusView statusView;
+
 	/**
 	 * Constructor.
 	 * 
 	 * @param viewer viewer
 	 */
-	protected FlatTabDragAdapter(Viewer viewer) {
+	public FlatTabDragAdapter(Viewer viewer) {
 		super(viewer);
 	}
 
@@ -52,7 +57,17 @@ public class FlatTabDragAdapter extends ViewerDragAdapter {
 	@Override
 	public void dragFinished(DragSourceEvent event) {
 		super.dragFinished(event);
-		viewer.refresh();
+		statusView.setInput(currentOpenME);
 	}
 
+	/**
+	 * This makes drop adapter aware of model element currently open in status view.
+	 * 
+	 * @param currentME model element that is currently opened in StatusView
+	 * @param statusView active status view
+	 */
+	public void setCurrentOpenMe(ModelElement currentME, StatusView statusView) {
+		this.currentOpenME = currentME;
+		this.statusView = statusView;
+	}
 }

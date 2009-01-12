@@ -169,6 +169,10 @@ public class FlatTabDropAdapter extends DropTargetAdapter {
 			result = false;
 		}
 
+		if (currentOpenME == null) {
+			result = false;
+		}
+
 		// check if source and target are in the same project
 		if (result) {
 			source = (ModelElement) tmpSource.get(0);

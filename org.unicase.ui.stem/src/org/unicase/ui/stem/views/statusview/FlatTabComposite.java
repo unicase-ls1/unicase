@@ -29,6 +29,7 @@ import org.unicase.ui.common.TableViewerColumnSorter;
 import org.unicase.ui.common.commands.ActionHelper;
 import org.unicase.ui.stem.views.AssignedToLabelProvider;
 import org.unicase.ui.stem.views.iterationplanningview.TaskObjectLabelProvider;
+import org.unicase.ui.stem.views.statusview.dnd.FlatTabDragAdapter;
 import org.unicase.ui.stem.views.statusview.dnd.FlatTabDropAdapter;
 import org.unicase.ui.tableview.labelprovider.StatusLabelProvider;
 
@@ -80,6 +81,7 @@ public class FlatTabComposite extends Composite {
 
 	private TableViewer tableViewer;
 	private FlatTabDropAdapter flatTabDropAdapter;
+	private FlatTabDragAdapter flatTabDragAdapter;
 
 	// //for future use maybe
 	// private ModelElement input;
@@ -121,7 +123,8 @@ public class FlatTabComposite extends Composite {
 		int dndOperations = DND.DROP_COPY | DND.DROP_MOVE | DND.DROP_LINK;
 		Transfer[] transfers = new Transfer[] { LocalTransfer.getInstance() };
 
-		// viewer.addDragSupport(dndOperations, transfers, new UCDragAdapter(viewer));
+		flatTabDragAdapter = new FlatTabDragAdapter(tableViewer);
+		tableViewer.addDragSupport(dndOperations, transfers, flatTabDragAdapter);
 
 		flatTabDropAdapter = new FlatTabDropAdapter();
 		tableViewer.addDropSupport(dndOperations, transfers, flatTabDropAdapter);
@@ -227,6 +230,7 @@ public class FlatTabComposite extends Composite {
 	public void setInput(ModelElement me, StatusView statusView) {
 		// this.input = me;
 		flatTabDropAdapter.setCurrentOpenMe(me, statusView);
+		flatTabDragAdapter.setCurrentOpenMe(me, statusView);
 		tableViewer.setInput(me);
 		for (TableColumn column : tableViewer.getTable().getColumns()) {
 			column.pack();
