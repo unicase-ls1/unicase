@@ -137,7 +137,8 @@ public final class WorkspaceUtil {
 			//works for ubuntu and the most common linux systems
 			cmd = "xdg-open " + fileUrl;
 		} else if (lcOSName.startsWith("windows")) {
-			cmd = "cmd.exe /c start " + fileUrl;
+//			fileUrl = fileUrl.replace(" ", "%20");
+			cmd = "cmd.exe /c start \"\" \"" + fileUrl + "\"";
 		} else {
 			//bad luck .. java 1.5 ;(
 			//fall through
