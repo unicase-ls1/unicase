@@ -106,7 +106,14 @@ public class FlatTabDropAdapter extends DropTargetAdapter {
 	}
 
 	private void dropWorkItemOnNonWorkPackage() {
-
+		// dorp WorkItem B on ME (non work package) A:
+		// if B somewhere exists in annotations of A (hierachical),
+		// do nothing; otherwise Annotate A with B
+		Set<ModelElement> openersForCurrenOpenME = TaxonomyAccess.getInstance().getOpeningLinkTaxonomy()
+			.getLeafOpeners(currentOpenME);
+		if (!openersForCurrenOpenME.contains(source)) {
+			((WorkItem) source).getAnnotatedModelElements().add(currentOpenME);
+		}
 	}
 
 	private void dropNonWorkItemOnWorkPackage() {

@@ -50,7 +50,8 @@
                style="push">
             <visibleWhen
                   checkEnabled="false">
-               <iterate>
+               <iterate
+                     ifEmpty="false">
                   <reference
                         definitionId="org.unicase.ui.common.commands.modelElement">
                   </reference>
