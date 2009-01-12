@@ -93,10 +93,17 @@ public class MEDiagramEditPart extends DiagramEditPart {
 	protected void handleNotificationEvent(Notification event) {
 		Object feature = event.getFeature();
 		if (DiagramPackage.eINSTANCE.getMEDiagram_Elements().equals(feature)) {
-			CanonicalEditPolicy canonicalEditPolicy = (CanonicalEditPolicy) this
-				.getEditPolicy(EditPolicyRoles.CANONICAL_ROLE);
-			canonicalEditPolicy.refresh();
+			this.updateView();
 		}
 		super.handleNotificationEvent(event);
+	}
+
+	/**
+	 * Workaround if view gets not updated automatically.
+	 */
+	public void updateView() {
+		CanonicalEditPolicy canonicalEditPolicy = (CanonicalEditPolicy) this
+			.getEditPolicy(EditPolicyRoles.CANONICAL_ROLE);
+		canonicalEditPolicy.refresh();
 	}
 }

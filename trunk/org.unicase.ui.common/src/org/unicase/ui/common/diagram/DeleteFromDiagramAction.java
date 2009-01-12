@@ -5,6 +5,7 @@ import org.eclipse.core.commands.operations.OperationHistoryFactory;
 import org.eclipse.core.runtime.NullProgressMonitor;
 import org.eclipse.gef.EditPart;
 import org.eclipse.gmf.runtime.common.core.command.ICommand;
+import org.eclipse.gmf.runtime.diagram.ui.editparts.DiagramRootEditPart;
 import org.eclipse.gmf.runtime.emf.type.core.ElementTypeRegistry;
 import org.eclipse.gmf.runtime.emf.type.core.IElementType;
 import org.eclipse.gmf.runtime.emf.type.core.commands.DestroyReferenceCommand;
@@ -50,6 +51,11 @@ public class DeleteFromDiagramAction extends Action {
 			OperationHistoryFactory.getOperationHistory().execute(command, new NullProgressMonitor(), null);
 		} catch (ExecutionException e) {
 			e.printStackTrace();
+		}
+		if (view instanceof EdgeImpl) {
+			MEDiagramEditPart me = (MEDiagramEditPart) ((DiagramRootEditPart) selectedElement.getParent())
+				.getContents();
+			me.updateView();
 		}
 	}
 }
