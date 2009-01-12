@@ -1,8 +1,7 @@
 /**
- * <copyright> Copyright (c) 2008 Jonas Helming, Maximilian Koegel. All rights reserved. This program and the accompanying materials are made available under the terms of the Eclipse Public License v1.0 which accompanies this distribution, and is available at http://www.eclipse.org/legal/epl-v10.html
- * </copyright>
- *
- * $Id$
+ * <copyright> Copyright (c) 2008 Jonas Helming, Maximilian Koegel. All rights reserved. This program and the
+ * accompanying materials are made available under the terms of the Eclipse Public License v1.0 which accompanies this
+ * distribution, and is available at http://www.eclipse.org/legal/epl-v10.html </copyright> $Id$
  */
 package org.unicase.ui.stem.views.statusview;
 
@@ -21,12 +20,9 @@ import org.unicase.model.task.WorkItem;
 import org.unicase.model.task.util.TaxonomyAccess;
 
 /**
- * .
- * 
  * This is the ContentProvider for Users tab.
  * 
  * @author helming
- * 
  */
 public class UserTabContentProvider extends AdapterFactoryContentProvider {
 
@@ -34,16 +30,14 @@ public class UserTabContentProvider extends AdapterFactoryContentProvider {
 	private ModelElement root;
 
 	/**
-	 * . Constructor
+	 * Constructor.
 	 */
 	public UserTabContentProvider() {
-		super(new ComposedAdapterFactory(
-				ComposedAdapterFactory.Descriptor.Registry.INSTANCE));
+		super(new ComposedAdapterFactory(ComposedAdapterFactory.Descriptor.Registry.INSTANCE));
 	}
 
 	/**
-	 * . {@inheritDoc}
-	 * 
+	 * {@inheritDoc}
 	 */
 	@Override
 	public Object[] getElements(Object object) {
@@ -58,12 +52,9 @@ public class UserTabContentProvider extends AdapterFactoryContentProvider {
 	}
 
 	/**
-	 * This returns a recursive list of all OrgUnits participating in progress
-	 * of a model element.
+	 * This returns a recursive list of all OrgUnits participating in progress of a model element.
 	 * 
-	 * 
-	 * @param object
-	 *            input model element
+	 * @param object input model element
 	 * @return
 	 */
 	private Object[] getAssignees(Object object) {
@@ -71,8 +62,7 @@ public class UserTabContentProvider extends AdapterFactoryContentProvider {
 		if (object instanceof ModelElement) {
 			ModelElement me = (ModelElement) object;
 			// then check its openers (the openers are considered hierarchical)
-			Set<ModelElement> openers = TaxonomyAccess.getInstance()
-					.getOpeningLinkTaxonomy().getLeafOpeners(me);
+			Set<ModelElement> openers = TaxonomyAccess.getInstance().getOpeningLinkTaxonomy().getLeafOpeners(me);
 			for (ModelElement opener : openers) {
 				if (opener instanceof Checkable && opener instanceof WorkItem) {
 					OrgUnit assignee = ((WorkItem) opener).getAssignee();
@@ -87,8 +77,7 @@ public class UserTabContentProvider extends AdapterFactoryContentProvider {
 	}
 
 	/**
-	 * . {@inheritDoc}
-	 * 
+	 * {@inheritDoc}
 	 */
 	@Override
 	public boolean hasChildren(Object object) {
@@ -104,8 +93,7 @@ public class UserTabContentProvider extends AdapterFactoryContentProvider {
 	}
 
 	/**
-	 * . {@inheritDoc}
-	 * 
+	 * {@inheritDoc}
 	 */
 	@Override
 	public Object[] getChildren(Object object) {
@@ -126,8 +114,7 @@ public class UserTabContentProvider extends AdapterFactoryContentProvider {
 		Set<Checkable> checkable = new HashSet<Checkable>();
 
 		// then check its openers (hierarchical)
-		Set<ModelElement> openers = TaxonomyAccess.getInstance()
-				.getOpeningLinkTaxonomy().getLeafOpeners(root);
+		Set<ModelElement> openers = TaxonomyAccess.getInstance().getOpeningLinkTaxonomy().getLeafOpeners(root);
 		for (ModelElement opener : openers) {
 			if (opener instanceof Checkable && opener instanceof WorkItem) {
 				OrgUnit assignee2 = ((WorkItem) opener).getAssignee();
@@ -140,14 +127,10 @@ public class UserTabContentProvider extends AdapterFactoryContentProvider {
 	}
 
 	/**
-	 * .
+	 * This goes through openers hierarchy and gathers all Assignables assigned to this Assignee. I think it would be
+	 * more convenient to change the model, so that any OrgUnit maintains a list of all its assigned tasks.
 	 * 
-	 * This goes through openers hierarchy and gathers all Assignables assigned
-	 * to this Assignee. I think it would be more convenient to change the
-	 * model, so that any OrgUnit maintains a list of all its assigned tasks.
-	 * 
-	 * @param assignee
-	 *            OrgUnit assignee
+	 * @param assignee OrgUnit assignee
 	 * @return
 	 */
 	private Object[] getWorkItems(OrgUnit assignee) {
@@ -155,8 +138,7 @@ public class UserTabContentProvider extends AdapterFactoryContentProvider {
 		Set<Checkable> checkable = new HashSet<Checkable>();
 
 		// then check its openers (hierarchical)
-		Set<ModelElement> openers = TaxonomyAccess.getInstance()
-				.getOpeningLinkTaxonomy().getLeafOpeners(root);
+		Set<ModelElement> openers = TaxonomyAccess.getInstance().getOpeningLinkTaxonomy().getLeafOpeners(root);
 		for (ModelElement opener : openers) {
 			if (opener instanceof Checkable && opener instanceof WorkItem) {
 				OrgUnit assignee2 = ((WorkItem) opener).getAssignee();
@@ -169,12 +151,11 @@ public class UserTabContentProvider extends AdapterFactoryContentProvider {
 	}
 
 	/**
-	 * . {@inheritDoc}
-	 * 
+	 * {@inheritDoc}
 	 */
 	@Override
 	public void inputChanged(Viewer viewer, Object oldInput, Object newInput) {
-		// TODO Auto-generated method stub
+
 		super.inputChanged(viewer, oldInput, newInput);
 
 		// keep track of input to status view
