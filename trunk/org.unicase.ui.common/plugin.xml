@@ -449,6 +449,7 @@
          <action
                class="org.unicase.ui.common.diagram.OpenMEEditorAction"
                enablesFor="1"
+                  icon="icons/application_edit.png"
                id="OpenMEEComponentID"
                label="Open with MEEditor">
          </action>
