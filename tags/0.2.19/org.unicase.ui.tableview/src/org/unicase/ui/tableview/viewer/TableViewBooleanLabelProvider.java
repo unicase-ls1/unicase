@@ -98,11 +98,9 @@ public class TableViewBooleanLabelProvider extends OwnerDrawLabelProvider
 	 */
 	public Image getImage(Object element) {
 		if (isChecked(element)) {
-			return JFaceResources.getImageRegistry().getDescriptor(CHECKED_KEY)
-					.createImage();
+			return JFaceResources.getImageRegistry().get(CHECKED_KEY);
 		} else {
-			return JFaceResources.getImageRegistry().getDescriptor(UNCHECK_KEY)
-					.createImage();
+			return JFaceResources.getImageRegistry().get(UNCHECK_KEY);
 		}
 	}
 

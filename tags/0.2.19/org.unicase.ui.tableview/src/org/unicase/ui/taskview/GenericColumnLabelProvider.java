@@ -173,11 +173,10 @@ public class GenericColumnLabelProvider extends
 				&& (feature.equals(TaskPackage.Literals.CHECKABLE__CHECKED))) {
 			Checkable c = (Checkable) element;
 			if (c.isChecked()) {
-				return JFaceResources.getImageRegistry().getDescriptor(
-						CHECKED_KEY).createImage();
+				return JFaceResources.getImageRegistry().get(CHECKED_KEY);
 			} else {
-				return JFaceResources.getImageRegistry().getDescriptor(
-						UNCHECK_KEY).createImage();
+				return JFaceResources.getImageRegistry().get(UNCHECK_KEY);
+				
 			}
 		}
 		return image;
