@@ -484,14 +484,4 @@
          schemeId="org.eclipse.ui.defaultAcceleratorConfiguration"
          sequence="F5"/>
    </extension>
-       <extension point="org.eclipse.gmf.runtime.common.ui.services.action.contributionItemProviders">
-<contributionItemProvider class="org.eclipse.gmf.runtime.diagram.ui.providers.DiagramContributionItemProvider" checkPluginLoaded="false">
-<Priority name="Low"/>
-<popupContribution class="org.eclipse.gmf.runtime.diagram.ui.providers.DiagramContextMenuProvider">
-<popupStructuredContributionCriteria objectClass="org.eclipse.gmf.runtime.diagram.ui.editparts.DiagramEditPart"/>
-<popupPredefinedItem id="deleteFromDiagramAction" remove="true"/>
-</popupContribution>
-</contributionItemProvider>
-</extension>
-
 </plugin>
