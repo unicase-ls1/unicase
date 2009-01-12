@@ -4,16 +4,13 @@ import java.io.IOException;
 import java.util.ArrayList;
 import java.util.Collection;
 import java.util.Collections;
-import java.util.HashMap;
 import java.util.Iterator;
 import java.util.List;
-import java.util.Map;
 
 import org.eclipse.core.commands.ExecutionException;
 import org.eclipse.core.resources.IFile;
 import org.eclipse.core.resources.IResource;
 import org.eclipse.core.resources.IResourceStatus;
-import org.eclipse.core.resources.IStorage;
 import org.eclipse.core.resources.ResourcesPlugin;
 import org.eclipse.core.runtime.CoreException;
 import org.eclipse.core.runtime.IAdaptable;
@@ -41,9 +38,7 @@ import org.eclipse.gmf.runtime.diagram.ui.resources.editor.document.IDiagramDocu
 import org.eclipse.gmf.runtime.diagram.ui.resources.editor.document.IDiagramDocumentProvider;
 import org.eclipse.gmf.runtime.diagram.ui.resources.editor.document.IDocument;
 import org.eclipse.gmf.runtime.diagram.ui.resources.editor.internal.EditorStatusCodes;
-import org.eclipse.gmf.runtime.diagram.ui.resources.editor.internal.util.DiagramIOUtil;
 import org.eclipse.gmf.runtime.emf.commands.core.command.AbstractTransactionalCommand;
-import org.eclipse.gmf.runtime.emf.core.resources.GMFResourceFactory;
 import org.eclipse.gmf.runtime.notation.Diagram;
 import org.eclipse.jface.operation.IRunnableContext;
 import org.eclipse.osgi.util.NLS;
@@ -166,74 +161,6 @@ public class ModelDocumentProvider extends org.unicase.ui.common.diagram.ModelDo
 		});
 
 		return editingDomain;
-	}
-
-	/**
-	 * @generated NOT
-	 * @param document The document whose content should be set
-	 * @param element The new content element
-	 * @throws CoreException if an exceptional error occurs
-	 */
-	protected void setDocumentContent(IDocument document, IEditorInput element) throws CoreException {
-		IDiagramDocument diagramDocument = (IDiagramDocument) document;
-		TransactionalEditingDomain domain = diagramDocument.getEditingDomain();
-		if (element instanceof FileEditorInput) {
-			IStorage storage = ((FileEditorInput) element).getStorage();
-			Diagram diagram = DiagramIOUtil.load(domain, storage, true, getProgressMonitor());
-			document.setContent(diagram);
-		} else if (element instanceof URIEditorInput) {
-			URI uri = ((URIEditorInput) element).getURI();
-			Resource resource = null;
-			try {
-				// resource = domain.getResourceSet().getResource(
-				// uri.trimFragment(), false);
-				resource = domain.getResourceSet().createResource(uri, "MEDiagram");
-				if (!resource.isLoaded()) {
-					try {
-						Map options = new HashMap(GMFResourceFactory.getDefaultLoadOptions());
-						// @see 171060
-						// options.put(org.eclipse.emf.ecore.xmi.XMLResource.
-						// OPTION_RECORD_UNKNOWN_FEATURE, Boolean.TRUE);
-						resource.load(options);
-					} catch (IOException e) {
-						resource.unload();
-						throw e;
-					}
-				}
-				// if (uri.fragment() != null) {
-				// EObject rootElement = resource.getEObject(uri.fragment());
-				// if (rootElement instanceof Diagram) {
-				// document.setContent((Diagram) rootElement);
-				// return;
-				// }
-				// } else {
-				for (Iterator it = resource.getContents().iterator(); it.hasNext();) {
-					Object rootElement = it.next();
-					if (rootElement instanceof Diagram) {
-						document.setContent(rootElement);
-						return;
-					}
-				}
-				// }
-				throw new RuntimeException(
-					org.unicase.ui.usecaseDiagram.part.Messages.ModelDocumentProvider_NoDiagramInResourceError);
-			} catch (IOException e) {
-				String msg = e.getLocalizedMessage();
-				CoreException thrownExcp = new CoreException(new Status(IStatus.ERROR,
-					org.unicase.ui.usecaseDiagram.part.ModelDiagramEditorPlugin.ID, 0, msg != null ? msg
-						: org.unicase.ui.usecaseDiagram.part.Messages.ModelDocumentProvider_DiagramLoadingError, e));
-				throw thrownExcp;
-
-			}
-
-		} else {
-			throw new CoreException(new Status(IStatus.ERROR,
-				org.unicase.ui.usecaseDiagram.part.ModelDiagramEditorPlugin.ID, 0, NLS.bind(
-					org.unicase.ui.usecaseDiagram.part.Messages.ModelDocumentProvider_IncorrectInputError,
-					new Object[] { element,
-						"org.eclipse.ui.part.FileEditorInput", "org.eclipse.emf.common.ui.URIEditorInput" }), //$NON-NLS-1$ //$NON-NLS-2$ 
-				null));
-		}
 	}
 
 	/**
