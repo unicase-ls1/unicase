@@ -66,6 +66,7 @@ public class FunctionalRequirementItemProvider extends ModelElementItemProvider
 			addScenariosPropertyDescriptor(object);
 			addReviewedPropertyDescriptor(object);
 			addStakeholderPropertyDescriptor(object);
+			addCostPropertyDescriptor(object);
 		}
 		return itemPropertyDescriptors;
 	}
@@ -108,6 +109,25 @@ public class FunctionalRequirementItemProvider extends ModelElementItemProvider
 								"_UI_FunctionalRequirement_type"),
 						RequirementPackage.Literals.FUNCTIONAL_REQUIREMENT__STAKEHOLDER,
 						true, false, true, null, null, null));
+	}
+
+	/**
+	 * This adds a property descriptor for the Cost feature.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 */
+	protected void addCostPropertyDescriptor(Object object) {
+		itemPropertyDescriptors.add(createItemPropertyDescriptor(
+				((ComposeableAdapterFactory) adapterFactory)
+						.getRootAdapterFactory(), getResourceLocator(),
+				getString("_UI_FunctionalRequirement_cost_feature"), getString(
+						"_UI_PropertyDescriptor_description",
+						"_UI_FunctionalRequirement_cost_feature",
+						"_UI_FunctionalRequirement_type"),
+				RequirementPackage.Literals.FUNCTIONAL_REQUIREMENT__COST, true,
+				false, false, ItemPropertyDescriptor.INTEGRAL_VALUE_IMAGE,
+				null, null));
 	}
 
 	/**
@@ -276,6 +296,7 @@ public class FunctionalRequirementItemProvider extends ModelElementItemProvider
 		case RequirementPackage.FUNCTIONAL_REQUIREMENT__STORY_POINTS:
 		case RequirementPackage.FUNCTIONAL_REQUIREMENT__PRIORITY:
 		case RequirementPackage.FUNCTIONAL_REQUIREMENT__REVIEWED:
+		case RequirementPackage.FUNCTIONAL_REQUIREMENT__COST:
 			fireNotifyChanged(new ViewerNotification(notification, notification
 					.getNotifier(), false, true));
 			return;

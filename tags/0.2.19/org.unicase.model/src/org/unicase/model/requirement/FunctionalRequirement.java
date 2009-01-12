@@ -25,6 +25,7 @@ import org.unicase.model.organization.OrgUnit;
  *   <li>{@link org.unicase.model.requirement.FunctionalRequirement#getScenarios <em>Scenarios</em>}</li>
  *   <li>{@link org.unicase.model.requirement.FunctionalRequirement#isReviewed <em>Reviewed</em>}</li>
  *   <li>{@link org.unicase.model.requirement.FunctionalRequirement#getStakeholder <em>Stakeholder</em>}</li>
+ *   <li>{@link org.unicase.model.requirement.FunctionalRequirement#getCost <em>Cost</em>}</li>
  * </ul>
  * </p>
  *
@@ -89,6 +90,32 @@ public interface FunctionalRequirement extends ModelElement {
 	 * @generated
 	 */
 	void setStakeholder(OrgUnit value);
+
+	/**
+	 * Returns the value of the '<em><b>Cost</b></em>' attribute.
+	 * <!-- begin-user-doc -->
+	 * <p>
+	 * If the meaning of the '<em>Cost</em>' attribute isn't clear,
+	 * there really should be more of a description here...
+	 * </p>
+	 * <!-- end-user-doc -->
+	 * @return the value of the '<em>Cost</em>' attribute.
+	 * @see #setCost(int)
+	 * @see org.unicase.model.requirement.RequirementPackage#getFunctionalRequirement_Cost()
+	 * @model
+	 * @generated
+	 */
+	int getCost();
+
+	/**
+	 * Sets the value of the '{@link org.unicase.model.requirement.FunctionalRequirement#getCost <em>Cost</em>}' attribute.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @param value the new value of the '<em>Cost</em>' attribute.
+	 * @see #getCost()
+	 * @generated
+	 */
+	void setCost(int value);
 
 	/**
 	 * Returns the value of the '<em><b>Story Points</b></em>' attribute. <!--

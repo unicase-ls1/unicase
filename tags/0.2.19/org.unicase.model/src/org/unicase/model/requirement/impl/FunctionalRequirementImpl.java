@@ -39,6 +39,7 @@ import org.unicase.model.requirement.UseCase;
  *   <li>{@link org.unicase.model.requirement.impl.FunctionalRequirementImpl#getScenarios <em>Scenarios</em>}</li>
  *   <li>{@link org.unicase.model.requirement.impl.FunctionalRequirementImpl#isReviewed <em>Reviewed</em>}</li>
  *   <li>{@link org.unicase.model.requirement.impl.FunctionalRequirementImpl#getStakeholder <em>Stakeholder</em>}</li>
+ *   <li>{@link org.unicase.model.requirement.impl.FunctionalRequirementImpl#getCost <em>Cost</em>}</li>
  * </ul>
  * </p>
  *
@@ -141,6 +142,26 @@ public class FunctionalRequirementImpl extends ModelElementImpl implements
 	protected OrgUnit stakeholder;
 
 	/**
+	 * The default value of the '{@link #getCost() <em>Cost</em>}' attribute.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @see #getCost()
+	 * @generated
+	 * @ordered
+	 */
+	protected static final int COST_EDEFAULT = 0;
+
+	/**
+	 * The cached value of the '{@link #getCost() <em>Cost</em>}' attribute.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @see #getCost()
+	 * @generated
+	 * @ordered
+	 */
+	protected int cost = COST_EDEFAULT;
+
+	/**
 	 * <!-- begin-user-doc --> <!-- end-user-doc -->
 	 * @generated
 	 */
@@ -220,6 +241,29 @@ public class FunctionalRequirementImpl extends ModelElementImpl implements
 			eNotify(new ENotificationImpl(this, Notification.SET,
 					RequirementPackage.FUNCTIONAL_REQUIREMENT__STAKEHOLDER,
 					oldStakeholder, stakeholder));
+	}
+
+	/**
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 */
+	public int getCost() {
+		return cost;
+	}
+
+	/**
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 */
+	public void setCost(int newCost) {
+		int oldCost = cost;
+		cost = newCost;
+		if (eNotificationRequired())
+			eNotify(new ENotificationImpl(this, Notification.SET,
+					RequirementPackage.FUNCTIONAL_REQUIREMENT__COST, oldCost,
+					cost));
 	}
 
 	/**
@@ -466,6 +510,8 @@ public class FunctionalRequirementImpl extends ModelElementImpl implements
 			if (resolve)
 				return getStakeholder();
 			return basicGetStakeholder();
+		case RequirementPackage.FUNCTIONAL_REQUIREMENT__COST:
+			return new Integer(getCost());
 		}
 		return super.eGet(featureID, resolve, coreType);
 	}
@@ -506,6 +552,9 @@ public class FunctionalRequirementImpl extends ModelElementImpl implements
 		case RequirementPackage.FUNCTIONAL_REQUIREMENT__STAKEHOLDER:
 			setStakeholder((OrgUnit) newValue);
 			return;
+		case RequirementPackage.FUNCTIONAL_REQUIREMENT__COST:
+			setCost(((Integer) newValue).intValue());
+			return;
 		}
 		super.eSet(featureID, newValue);
 	}
@@ -541,6 +590,9 @@ public class FunctionalRequirementImpl extends ModelElementImpl implements
 		case RequirementPackage.FUNCTIONAL_REQUIREMENT__STAKEHOLDER:
 			setStakeholder((OrgUnit) null);
 			return;
+		case RequirementPackage.FUNCTIONAL_REQUIREMENT__COST:
+			setCost(COST_EDEFAULT);
+			return;
 		}
 		super.eUnset(featureID);
 	}
@@ -569,6 +621,8 @@ public class FunctionalRequirementImpl extends ModelElementImpl implements
 			return reviewed != REVIEWED_EDEFAULT;
 		case RequirementPackage.FUNCTIONAL_REQUIREMENT__STAKEHOLDER:
 			return stakeholder != null;
+		case RequirementPackage.FUNCTIONAL_REQUIREMENT__COST:
+			return cost != COST_EDEFAULT;
 		}
 		return super.eIsSet(featureID);
 	}
@@ -589,6 +643,8 @@ public class FunctionalRequirementImpl extends ModelElementImpl implements
 		result.append(priority);
 		result.append(", reviewed: ");
 		result.append(reviewed);
+		result.append(", cost: ");
+		result.append(cost);
 		result.append(')');
 		return result.toString();
 	}

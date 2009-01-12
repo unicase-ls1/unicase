@@ -322,6 +322,16 @@ public class RequirementPackageImpl extends EPackageImpl implements
 	}
 
 	/**
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 */
+	public EAttribute getFunctionalRequirement_Cost() {
+		return (EAttribute) functionalRequirementEClass
+				.getEStructuralFeatures().get(8);
+	}
+
+	/**
 	 * <!-- begin-user-doc --> <!-- end-user-doc -->
 	 * @generated
 	 */
@@ -809,6 +819,8 @@ public class RequirementPackageImpl extends EPackageImpl implements
 				FUNCTIONAL_REQUIREMENT__REVIEWED);
 		createEReference(functionalRequirementEClass,
 				FUNCTIONAL_REQUIREMENT__STAKEHOLDER);
+		createEAttribute(functionalRequirementEClass,
+				FUNCTIONAL_REQUIREMENT__COST);
 
 		useCaseEClass = createEClass(USE_CASE);
 		createEReference(useCaseEClass, USE_CASE__INITIATING_ACTOR);
@@ -1005,6 +1017,10 @@ public class RequirementPackageImpl extends EPackageImpl implements
 				!IS_UNSETTABLE, IS_UNIQUE, !IS_DERIVED, IS_ORDERED);
 		getFunctionalRequirement_Stakeholder().getEKeys().add(
 				theModelPackage.getIdentifiableElement_Identifier());
+		initEAttribute(getFunctionalRequirement_Cost(), theEcorePackage
+				.getEInt(), "cost", null, 0, 1, FunctionalRequirement.class,
+				!IS_TRANSIENT, !IS_VOLATILE, IS_CHANGEABLE, !IS_UNSETTABLE,
+				!IS_ID, IS_UNIQUE, !IS_DERIVED, IS_ORDERED);
 
 		initEClass(useCaseEClass, UseCase.class, "UseCase", !IS_ABSTRACT,
 				!IS_INTERFACE, IS_GENERATED_INSTANCE_CLASS);
