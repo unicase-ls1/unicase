@@ -1,8 +1,7 @@
 /**
- * <copyright> Copyright (c) 2008 Jonas Helming, Maximilian Koegel. All rights reserved. This program and the accompanying materials are made available under the terms of the Eclipse Public License v1.0 which accompanies this distribution, and is available at http://www.eclipse.org/legal/epl-v10.html
- * </copyright>
- *
- * $Id$
+ * <copyright> Copyright (c) 2008 Jonas Helming, Maximilian Koegel. All rights reserved. This program and the
+ * accompanying materials are made available under the terms of the Eclipse Public License v1.0 which accompanies this
+ * distribution, and is available at http://www.eclipse.org/legal/epl-v10.html </copyright> $Id$
  */
 package org.unicase.workspace.impl;
 
@@ -40,21 +39,20 @@ import org.unicase.workspace.connectionmanager.ConnectionManager;
 import org.unicase.workspace.connectionmanager.KeyStoreManager;
 
 /**
- * <!-- begin-user-doc --> An implementation of the model object '
- * <em><b>Usersession</b></em>'. <!-- end-user-doc -->
+ * <!-- begin-user-doc --> An implementation of the model object ' <em><b>Usersession</b></em>'. <!-- end-user-doc -->
  * <p>
  * The following features are implemented:
  * <ul>
- *   <li>{@link org.unicase.workspace.impl.UsersessionImpl#getUsername <em>Username</em>}</li>
- *   <li>{@link org.unicase.workspace.impl.UsersessionImpl#getPassword <em>Password</em>}</li>
- *   <li>{@link org.unicase.workspace.impl.UsersessionImpl#getSessionId <em>Session Id</em>}</li>
- *   <li>{@link org.unicase.workspace.impl.UsersessionImpl#getPersistentPassword <em>Persistent Password</em>}</li>
- *   <li>{@link org.unicase.workspace.impl.UsersessionImpl#getServerInfo <em>Server Info</em>}</li>
- *   <li>{@link org.unicase.workspace.impl.UsersessionImpl#isSavePassword <em>Save Password</em>}</li>
- *   <li>{@link org.unicase.workspace.impl.UsersessionImpl#getACUser <em>AC User</em>}</li>
+ * <li>{@link org.unicase.workspace.impl.UsersessionImpl#getUsername <em>Username</em>}</li>
+ * <li>{@link org.unicase.workspace.impl.UsersessionImpl#getPassword <em>Password</em>}</li>
+ * <li>{@link org.unicase.workspace.impl.UsersessionImpl#getSessionId <em>Session Id</em>}</li>
+ * <li>{@link org.unicase.workspace.impl.UsersessionImpl#getPersistentPassword <em>Persistent Password</em>}</li>
+ * <li>{@link org.unicase.workspace.impl.UsersessionImpl#getServerInfo <em>Server Info</em>}</li>
+ * <li>{@link org.unicase.workspace.impl.UsersessionImpl#isSavePassword <em>Save Password</em>}</li>
+ * <li>{@link org.unicase.workspace.impl.UsersessionImpl#getACUser <em>AC User</em>}</li>
  * </ul>
  * </p>
- *
+ * 
  * @generated
  */
 public class UsersessionImpl extends EObjectImpl implements Usersession {
@@ -65,8 +63,9 @@ public class UsersessionImpl extends EObjectImpl implements Usersession {
 	private WorkspaceManager workspaceManager;
 
 	/**
-	 * The default value of the '{@link #getUsername() <em>Username</em>}' attribute.
-	 * <!-- begin-user-doc --> <!-- end-user-doc -->
+	 * The default value of the '{@link #getUsername() <em>Username</em>}' attribute. <!-- begin-user-doc --> <!--
+	 * end-user-doc -->
+	 * 
 	 * @see #getUsername()
 	 * @generated
 	 * @ordered
@@ -74,8 +73,9 @@ public class UsersessionImpl extends EObjectImpl implements Usersession {
 	protected static final String USERNAME_EDEFAULT = null;
 
 	/**
-	 * The cached value of the '{@link #getUsername() <em>Username</em>}' attribute.
-	 * <!-- begin-user-doc --> <!-- end-user-doc -->
+	 * The cached value of the '{@link #getUsername() <em>Username</em>}' attribute. <!-- begin-user-doc --> <!--
+	 * end-user-doc -->
+	 * 
 	 * @see #getUsername()
 	 * @generated
 	 * @ordered
@@ -83,8 +83,9 @@ public class UsersessionImpl extends EObjectImpl implements Usersession {
 	protected String username = USERNAME_EDEFAULT;
 
 	/**
-	 * The default value of the '{@link #getPassword() <em>Password</em>}' attribute.
-	 * <!-- begin-user-doc --> <!-- end-user-doc -->
+	 * The default value of the '{@link #getPassword() <em>Password</em>}' attribute. <!-- begin-user-doc --> <!--
+	 * end-user-doc -->
+	 * 
 	 * @see #getPassword()
 	 * @generated
 	 * @ordered
@@ -92,8 +93,9 @@ public class UsersessionImpl extends EObjectImpl implements Usersession {
 	protected static final String PASSWORD_EDEFAULT = null;
 
 	/**
-	 * The cached value of the '{@link #getPassword() <em>Password</em>}' attribute.
-	 * <!-- begin-user-doc --> <!-- end-user-doc -->
+	 * The cached value of the '{@link #getPassword() <em>Password</em>}' attribute. <!-- begin-user-doc --> <!--
+	 * end-user-doc -->
+	 * 
 	 * @see #getPassword()
 	 * @generated
 	 * @ordered
@@ -101,8 +103,9 @@ public class UsersessionImpl extends EObjectImpl implements Usersession {
 	protected String password = PASSWORD_EDEFAULT;
 
 	/**
-	 * The cached value of the '{@link #getSessionId() <em>Session Id</em>}' reference.
-	 * <!-- begin-user-doc --> <!-- end-user-doc -->
+	 * The cached value of the '{@link #getSessionId() <em>Session Id</em>}' reference. <!-- begin-user-doc --> <!--
+	 * end-user-doc -->
+	 * 
 	 * @see #getSessionId()
 	 * @generated
 	 * @ordered
@@ -110,9 +113,9 @@ public class UsersessionImpl extends EObjectImpl implements Usersession {
 	protected SessionId sessionId;
 
 	/**
-	 * The default value of the '{@link #getPersistentPassword() <em>Persistent Password</em>}' attribute.
-	 * <!-- begin-user-doc --> <!--
-	 * end-user-doc -->
+	 * The default value of the '{@link #getPersistentPassword() <em>Persistent Password</em>}' attribute. <!--
+	 * begin-user-doc --> <!-- end-user-doc -->
+	 * 
 	 * @see #getPersistentPassword()
 	 * @generated
 	 * @ordered
@@ -120,9 +123,9 @@ public class UsersessionImpl extends EObjectImpl implements Usersession {
 	protected static final String PERSISTENT_PASSWORD_EDEFAULT = null;
 
 	/**
-	 * The cached value of the '{@link #getPersistentPassword() <em>Persistent Password</em>}' attribute.
-	 * <!-- begin-user-doc --> <!--
-	 * end-user-doc -->
+	 * The cached value of the '{@link #getPersistentPassword() <em>Persistent Password</em>}' attribute. <!--
+	 * begin-user-doc --> <!-- end-user-doc -->
+	 * 
 	 * @see #getPersistentPassword()
 	 * @generated
 	 * @ordered
@@ -130,8 +133,9 @@ public class UsersessionImpl extends EObjectImpl implements Usersession {
 	protected String persistentPassword = PERSISTENT_PASSWORD_EDEFAULT;
 
 	/**
-	 * The cached value of the '{@link #getServerInfo() <em>Server Info</em>}' reference.
-	 * <!-- begin-user-doc --> <!-- end-user-doc -->
+	 * The cached value of the '{@link #getServerInfo() <em>Server Info</em>}' reference. <!-- begin-user-doc --> <!--
+	 * end-user-doc -->
+	 * 
 	 * @see #getServerInfo()
 	 * @generated
 	 * @ordered
@@ -139,9 +143,9 @@ public class UsersessionImpl extends EObjectImpl implements Usersession {
 	protected ServerInfo serverInfo;
 
 	/**
-	 * The default value of the '{@link #isSavePassword() <em>Save Password</em>}' attribute.
-	 * <!-- begin-user-doc --> <!--
-	 * end-user-doc -->
+	 * The default value of the '{@link #isSavePassword() <em>Save Password</em>}' attribute. <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * 
 	 * @see #isSavePassword()
 	 * @generated
 	 * @ordered
@@ -149,8 +153,9 @@ public class UsersessionImpl extends EObjectImpl implements Usersession {
 	protected static final boolean SAVE_PASSWORD_EDEFAULT = false;
 
 	/**
-	 * The cached value of the '{@link #isSavePassword() <em>Save Password</em>}' attribute.
-	 * <!-- begin-user-doc --> <!-- end-user-doc -->
+	 * The cached value of the '{@link #isSavePassword() <em>Save Password</em>}' attribute. <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * 
 	 * @see #isSavePassword()
 	 * @generated
 	 * @ordered
@@ -158,8 +163,9 @@ public class UsersessionImpl extends EObjectImpl implements Usersession {
 	protected boolean savePassword = SAVE_PASSWORD_EDEFAULT;
 
 	/**
-	 * The cached value of the '{@link #getACUser() <em>AC User</em>}' containment reference.
-	 * <!-- begin-user-doc --> <!-- end-user-doc -->
+	 * The cached value of the '{@link #getACUser() <em>AC User</em>}' containment reference. <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * 
 	 * @see #getACUser()
 	 * @generated
 	 * @ordered
@@ -168,6 +174,7 @@ public class UsersessionImpl extends EObjectImpl implements Usersession {
 
 	/**
 	 * <!-- begin-user-doc --> <!-- end-user-doc -->
+	 * 
 	 * @generated
 	 */
 	protected UsersessionImpl() {
@@ -176,6 +183,7 @@ public class UsersessionImpl extends EObjectImpl implements Usersession {
 
 	/**
 	 * <!-- begin-user-doc --> <!-- end-user-doc -->
+	 * 
 	 * @generated
 	 */
 	@Override
@@ -185,6 +193,7 @@ public class UsersessionImpl extends EObjectImpl implements Usersession {
 
 	/**
 	 * <!-- begin-user-doc --> <!-- end-user-doc -->
+	 * 
 	 * @generated
 	 */
 	public String getUsername() {
@@ -193,19 +202,20 @@ public class UsersessionImpl extends EObjectImpl implements Usersession {
 
 	/**
 	 * <!-- begin-user-doc --> <!-- end-user-doc -->
+	 * 
 	 * @generated
 	 */
 	public void setUsername(String newUsername) {
 		String oldUsername = username;
 		username = newUsername;
 		if (eNotificationRequired())
-			eNotify(new ENotificationImpl(this, Notification.SET,
-					WorkspacePackage.USERSESSION__USERNAME, oldUsername,
-					username));
+			eNotify(new ENotificationImpl(this, Notification.SET, WorkspacePackage.USERSESSION__USERNAME, oldUsername,
+				username));
 	}
 
 	/**
 	 * <!-- begin-user-doc --> <!-- end-user-doc -->
+	 * 
 	 * @generated
 	 */
 	public String getPasswordGen() {
@@ -221,7 +231,7 @@ public class UsersessionImpl extends EObjectImpl implements Usersession {
 	 */
 	public String getPassword() {
 		if (isSavePassword()) {
-			return KeyStoreManager.deCrypt(getPersistentPassword(),1);
+			return KeyStoreManager.deCrypt(getPersistentPassword(), 1);
 		} else {
 			return getPasswordGen();
 		}
@@ -231,15 +241,15 @@ public class UsersessionImpl extends EObjectImpl implements Usersession {
 
 	/**
 	 * <!-- begin-user-doc --> <!-- end-user-doc -->
+	 * 
 	 * @generated
 	 */
 	public void setPasswordGen(String newPassword) {
 		String oldPassword = password;
 		password = newPassword;
 		if (eNotificationRequired())
-			eNotify(new ENotificationImpl(this, Notification.SET,
-					WorkspacePackage.USERSESSION__PASSWORD, oldPassword,
-					password));
+			eNotify(new ENotificationImpl(this, Notification.SET, WorkspacePackage.USERSESSION__PASSWORD, oldPassword,
+				password));
 	}
 
 	// begin of custom code
@@ -252,9 +262,8 @@ public class UsersessionImpl extends EObjectImpl implements Usersession {
 	public void setPassword(String newPassword) {
 		setPasswordGen(newPassword);
 		if (isSavePassword()) {
-			setPersistentPassword(KeyStoreManager.enCrypt(newPassword,1));
+			setPersistentPassword(KeyStoreManager.enCrypt(newPassword, 1));
 		}
-		
 
 	}
 
@@ -262,6 +271,7 @@ public class UsersessionImpl extends EObjectImpl implements Usersession {
 
 	/**
 	 * <!-- begin-user-doc --> <!-- end-user-doc -->
+	 * 
 	 * @generated
 	 */
 	public SessionId getSessionIdGen() {
@@ -270,9 +280,8 @@ public class UsersessionImpl extends EObjectImpl implements Usersession {
 			sessionId = (SessionId) eResolveProxy(oldSessionId);
 			if (sessionId != oldSessionId) {
 				if (eNotificationRequired())
-					eNotify(new ENotificationImpl(this, Notification.RESOLVE,
-							WorkspacePackage.USERSESSION__SESSION_ID,
-							oldSessionId, sessionId));
+					eNotify(new ENotificationImpl(this, Notification.RESOLVE, WorkspacePackage.USERSESSION__SESSION_ID,
+						oldSessionId, sessionId));
 			}
 		}
 		return sessionId;
@@ -280,6 +289,7 @@ public class UsersessionImpl extends EObjectImpl implements Usersession {
 
 	/**
 	 * <!-- begin-user-doc --> <!-- end-user-doc -->
+	 * 
 	 * @generated
 	 */
 	public SessionId basicGetSessionId() {
@@ -288,19 +298,20 @@ public class UsersessionImpl extends EObjectImpl implements Usersession {
 
 	/**
 	 * <!-- begin-user-doc --> <!-- end-user-doc -->
+	 * 
 	 * @generated
 	 */
 	public void setSessionId(SessionId newSessionId) {
 		SessionId oldSessionId = sessionId;
 		sessionId = newSessionId;
 		if (eNotificationRequired())
-			eNotify(new ENotificationImpl(this, Notification.SET,
-					WorkspacePackage.USERSESSION__SESSION_ID, oldSessionId,
-					sessionId));
+			eNotify(new ENotificationImpl(this, Notification.SET, WorkspacePackage.USERSESSION__SESSION_ID,
+				oldSessionId, sessionId));
 	}
 
 	/**
 	 * <!-- begin-user-doc --> <!-- end-user-doc -->
+	 * 
 	 * @generated
 	 */
 	public String getPersistentPassword() {
@@ -309,22 +320,21 @@ public class UsersessionImpl extends EObjectImpl implements Usersession {
 
 	/**
 	 * <!-- begin-user-doc --> <!-- end-user-doc -->
+	 * 
 	 * @generated
 	 */
 	public void setPersistentPasswordGen(String newPersistentPassword) {
 		String oldPersistentPassword = persistentPassword;
 		persistentPassword = newPersistentPassword;
 		if (eNotificationRequired())
-			eNotify(new ENotificationImpl(this, Notification.SET,
-					WorkspacePackage.USERSESSION__PERSISTENT_PASSWORD,
-					oldPersistentPassword, persistentPassword));
+			eNotify(new ENotificationImpl(this, Notification.SET, WorkspacePackage.USERSESSION__PERSISTENT_PASSWORD,
+				oldPersistentPassword, persistentPassword));
 	}
 
 	/**
 	 * {@inheritDoc}
 	 * 
 	 * @see org.unicase.workspace.Usersession#setPersistentPassword(java.lang.String)
-	 * 
 	 * @generated NOT
 	 */
 	public void setPersistentPassword(String newPersistentPassword) {
@@ -334,6 +344,7 @@ public class UsersessionImpl extends EObjectImpl implements Usersession {
 
 	/**
 	 * <!-- begin-user-doc --> <!-- end-user-doc -->
+	 * 
 	 * @generated
 	 */
 	public ServerInfo getServerInfo() {
@@ -343,8 +354,7 @@ public class UsersessionImpl extends EObjectImpl implements Usersession {
 			if (serverInfo != oldServerInfo) {
 				if (eNotificationRequired())
 					eNotify(new ENotificationImpl(this, Notification.RESOLVE,
-							WorkspacePackage.USERSESSION__SERVER_INFO,
-							oldServerInfo, serverInfo));
+						WorkspacePackage.USERSESSION__SERVER_INFO, oldServerInfo, serverInfo));
 			}
 		}
 		return serverInfo;
@@ -352,6 +362,7 @@ public class UsersessionImpl extends EObjectImpl implements Usersession {
 
 	/**
 	 * <!-- begin-user-doc --> <!-- end-user-doc -->
+	 * 
 	 * @generated
 	 */
 	public ServerInfo basicGetServerInfo() {
@@ -360,19 +371,20 @@ public class UsersessionImpl extends EObjectImpl implements Usersession {
 
 	/**
 	 * <!-- begin-user-doc --> <!-- end-user-doc -->
+	 * 
 	 * @generated
 	 */
 	public void setServerInfo(ServerInfo newServerInfo) {
 		ServerInfo oldServerInfo = serverInfo;
 		serverInfo = newServerInfo;
 		if (eNotificationRequired())
-			eNotify(new ENotificationImpl(this, Notification.SET,
-					WorkspacePackage.USERSESSION__SERVER_INFO, oldServerInfo,
-					serverInfo));
+			eNotify(new ENotificationImpl(this, Notification.SET, WorkspacePackage.USERSESSION__SERVER_INFO,
+				oldServerInfo, serverInfo));
 	}
 
 	/**
 	 * <!-- begin-user-doc --> <!-- end-user-doc -->
+	 * 
 	 * @generated
 	 */
 	public boolean isSavePassword() {
@@ -381,15 +393,15 @@ public class UsersessionImpl extends EObjectImpl implements Usersession {
 
 	/**
 	 * <!-- begin-user-doc --> <!-- end-user-doc -->
+	 * 
 	 * @generated
 	 */
 	public void setSavePasswordGen(boolean newSavePassword) {
 		boolean oldSavePassword = savePassword;
 		savePassword = newSavePassword;
 		if (eNotificationRequired())
-			eNotify(new ENotificationImpl(this, Notification.SET,
-					WorkspacePackage.USERSESSION__SAVE_PASSWORD,
-					oldSavePassword, savePassword));
+			eNotify(new ENotificationImpl(this, Notification.SET, WorkspacePackage.USERSESSION__SAVE_PASSWORD,
+				oldSavePassword, savePassword));
 	}
 
 	// begin of custom code
@@ -411,6 +423,7 @@ public class UsersessionImpl extends EObjectImpl implements Usersession {
 
 	/**
 	 * <!-- begin-user-doc --> <!-- end-user-doc -->
+	 * 
 	 * @generated
 	 */
 	public ACUser getACUser() {
@@ -419,22 +432,17 @@ public class UsersessionImpl extends EObjectImpl implements Usersession {
 			acUser = (ACUser) eResolveProxy(oldACUser);
 			if (acUser != oldACUser) {
 				InternalEObject newACUser = (InternalEObject) acUser;
-				NotificationChain msgs = oldACUser.eInverseRemove(this,
-						EOPPOSITE_FEATURE_BASE
-								- WorkspacePackage.USERSESSION__AC_USER, null,
-						null);
+				NotificationChain msgs = oldACUser.eInverseRemove(this, EOPPOSITE_FEATURE_BASE
+					- WorkspacePackage.USERSESSION__AC_USER, null, null);
 				if (newACUser.eInternalContainer() == null) {
-					msgs = newACUser
-							.eInverseAdd(this, EOPPOSITE_FEATURE_BASE
-									- WorkspacePackage.USERSESSION__AC_USER,
-									null, msgs);
+					msgs = newACUser.eInverseAdd(this, EOPPOSITE_FEATURE_BASE - WorkspacePackage.USERSESSION__AC_USER,
+						null, msgs);
 				}
 				if (msgs != null)
 					msgs.dispatch();
 				if (eNotificationRequired())
-					eNotify(new ENotificationImpl(this, Notification.RESOLVE,
-							WorkspacePackage.USERSESSION__AC_USER, oldACUser,
-							acUser));
+					eNotify(new ENotificationImpl(this, Notification.RESOLVE, WorkspacePackage.USERSESSION__AC_USER,
+						oldACUser, acUser));
 			}
 		}
 		return acUser;
@@ -442,6 +450,7 @@ public class UsersessionImpl extends EObjectImpl implements Usersession {
 
 	/**
 	 * <!-- begin-user-doc --> <!-- end-user-doc -->
+	 * 
 	 * @generated
 	 */
 	public ACUser basicGetACUser() {
@@ -450,16 +459,15 @@ public class UsersessionImpl extends EObjectImpl implements Usersession {
 
 	/**
 	 * <!-- begin-user-doc --> <!-- end-user-doc -->
+	 * 
 	 * @generated
 	 */
-	public NotificationChain basicSetACUser(ACUser newACUser,
-			NotificationChain msgs) {
+	public NotificationChain basicSetACUser(ACUser newACUser, NotificationChain msgs) {
 		ACUser oldACUser = acUser;
 		acUser = newACUser;
 		if (eNotificationRequired()) {
-			ENotificationImpl notification = new ENotificationImpl(this,
-					Notification.SET, WorkspacePackage.USERSESSION__AC_USER,
-					oldACUser, newACUser);
+			ENotificationImpl notification = new ENotificationImpl(this, Notification.SET,
+				WorkspacePackage.USERSESSION__AC_USER, oldACUser, newACUser);
 			if (msgs == null)
 				msgs = notification;
 			else
@@ -470,27 +478,24 @@ public class UsersessionImpl extends EObjectImpl implements Usersession {
 
 	/**
 	 * <!-- begin-user-doc --> <!-- end-user-doc -->
+	 * 
 	 * @generated
 	 */
 	public void setACUser(ACUser newACUser) {
 		if (newACUser != acUser) {
 			NotificationChain msgs = null;
 			if (acUser != null)
-				msgs = ((InternalEObject) acUser).eInverseRemove(this,
-						EOPPOSITE_FEATURE_BASE
-								- WorkspacePackage.USERSESSION__AC_USER, null,
-						msgs);
+				msgs = ((InternalEObject) acUser).eInverseRemove(this, EOPPOSITE_FEATURE_BASE
+					- WorkspacePackage.USERSESSION__AC_USER, null, msgs);
 			if (newACUser != null)
-				msgs = ((InternalEObject) newACUser).eInverseAdd(this,
-						EOPPOSITE_FEATURE_BASE
-								- WorkspacePackage.USERSESSION__AC_USER, null,
-						msgs);
+				msgs = ((InternalEObject) newACUser).eInverseAdd(this, EOPPOSITE_FEATURE_BASE
+					- WorkspacePackage.USERSESSION__AC_USER, null, msgs);
 			msgs = basicSetACUser(newACUser, msgs);
 			if (msgs != null)
 				msgs.dispatch();
 		} else if (eNotificationRequired())
-			eNotify(new ENotificationImpl(this, Notification.SET,
-					WorkspacePackage.USERSESSION__AC_USER, newACUser, newACUser));
+			eNotify(new ENotificationImpl(this, Notification.SET, WorkspacePackage.USERSESSION__AC_USER, newACUser,
+				newACUser));
 	}
 
 	// begin of custom code
@@ -498,7 +503,6 @@ public class UsersessionImpl extends EObjectImpl implements Usersession {
 	 * <!-- begin-user-doc --> Return whether session is logged in.
 	 * 
 	 * @return true if session is logged in <!-- end-user-doc -->
-	 * 
 	 * @generated NOT
 	 */
 	public boolean isLoggedIn() {
@@ -512,8 +516,7 @@ public class UsersessionImpl extends EObjectImpl implements Usersession {
 	 * @generated NOT
 	 */
 	public void logIn() throws EmfStoreException, AccessControlException {
-		ConnectionManager connectionManager = this.getWorkspaceManager()
-				.getConnectionManager();
+		ConnectionManager connectionManager = this.getWorkspaceManager().getConnectionManager();
 		// sanity checks
 		if (getUsername() == null || getPassword() == null) {
 			throw new AccessControlException("Username or Password not set!");
@@ -530,8 +533,8 @@ public class UsersessionImpl extends EObjectImpl implements Usersession {
 		ServerInfo copy = (ServerInfo) EcoreUtil.copy(serverInfo);
 		copy.setLastUsersession(null);
 
-		SessionId newSessionId = connectionManager.logIn(username,
-				getPassword(), copy, Configuration.getClientVersion());
+		SessionId newSessionId = connectionManager.logIn(username, getPassword(), copy, Configuration
+			.getClientVersion());
 		this.setSessionId(newSessionId);
 		setACUser(connectionManager.resolveUser(newSessionId, null));
 	}
@@ -543,21 +546,19 @@ public class UsersessionImpl extends EObjectImpl implements Usersession {
 	 * @see org.unicase.workspace.Usersession#checkout(org.unicase.emfstore.esmodel.ProjectIfo)
 	 * @generated NOT
 	 */
-	public ProjectSpace checkout(ProjectInfo projectInfo)
-			throws EmfStoreException {
-		return this.getWorkspaceManager().getCurrentWorkspace().checkout(this,
-				projectInfo);
+	public ProjectSpace checkout(ProjectInfo projectInfo) throws EmfStoreException {
+		return this.getWorkspaceManager().getCurrentWorkspace().checkout(this, projectInfo);
 	}
 
 	// end of custom code
 
 	/**
 	 * <!-- begin-user-doc --> <!-- end-user-doc -->
+	 * 
 	 * @generated
 	 */
 	@Override
-	public NotificationChain eInverseRemove(InternalEObject otherEnd,
-			int featureID, NotificationChain msgs) {
+	public NotificationChain eInverseRemove(InternalEObject otherEnd, int featureID, NotificationChain msgs) {
 		switch (featureID) {
 		case WorkspacePackage.USERSESSION__AC_USER:
 			return basicSetACUser(null, msgs);
@@ -579,6 +580,7 @@ public class UsersessionImpl extends EObjectImpl implements Usersession {
 	// end of custom code
 	/**
 	 * <!-- begin-user-doc --> <!-- end-user-doc -->
+	 * 
 	 * @generated
 	 */
 	@Override
@@ -610,6 +612,7 @@ public class UsersessionImpl extends EObjectImpl implements Usersession {
 
 	/**
 	 * <!-- begin-user-doc --> <!-- end-user-doc -->
+	 * 
 	 * @generated
 	 */
 	@Override
@@ -642,6 +645,7 @@ public class UsersessionImpl extends EObjectImpl implements Usersession {
 
 	/**
 	 * <!-- begin-user-doc --> <!-- end-user-doc -->
+	 * 
 	 * @generated
 	 */
 	@Override
@@ -674,22 +678,21 @@ public class UsersessionImpl extends EObjectImpl implements Usersession {
 
 	/**
 	 * <!-- begin-user-doc --> <!-- end-user-doc -->
+	 * 
 	 * @generated
 	 */
 	@Override
 	public boolean eIsSet(int featureID) {
 		switch (featureID) {
 		case WorkspacePackage.USERSESSION__USERNAME:
-			return USERNAME_EDEFAULT == null ? username != null
-					: !USERNAME_EDEFAULT.equals(username);
+			return USERNAME_EDEFAULT == null ? username != null : !USERNAME_EDEFAULT.equals(username);
 		case WorkspacePackage.USERSESSION__PASSWORD:
-			return PASSWORD_EDEFAULT == null ? password != null
-					: !PASSWORD_EDEFAULT.equals(password);
+			return PASSWORD_EDEFAULT == null ? password != null : !PASSWORD_EDEFAULT.equals(password);
 		case WorkspacePackage.USERSESSION__SESSION_ID:
 			return sessionId != null;
 		case WorkspacePackage.USERSESSION__PERSISTENT_PASSWORD:
-			return PERSISTENT_PASSWORD_EDEFAULT == null ? persistentPassword != null
-					: !PERSISTENT_PASSWORD_EDEFAULT.equals(persistentPassword);
+			return PERSISTENT_PASSWORD_EDEFAULT == null ? persistentPassword != null : !PERSISTENT_PASSWORD_EDEFAULT
+				.equals(persistentPassword);
 		case WorkspacePackage.USERSESSION__SERVER_INFO:
 			return serverInfo != null;
 		case WorkspacePackage.USERSESSION__SAVE_PASSWORD:
@@ -702,7 +705,8 @@ public class UsersessionImpl extends EObjectImpl implements Usersession {
 
 	/**
 	 * <!-- begin-user-doc --> <!-- end-user-doc -->
-	 * @generated
+	 * 
+	 * @generated NOT
 	 */
 	@Override
 	public String toString() {
@@ -712,39 +716,28 @@ public class UsersessionImpl extends EObjectImpl implements Usersession {
 		StringBuffer result = new StringBuffer(super.toString());
 		result.append(" (username: ");
 		result.append(username);
-		result.append(", password: ");
-		result.append(password);
-		result.append(", persistentPassword: ");
-		result.append(persistentPassword);
-		result.append(", savePassword: ");
-		result.append(savePassword);
 		result.append(')');
 		return result.toString();
 	}
 
 	public List<ProjectInfo> getRemoteProjectList() throws EmfStoreException {
 		// MK sanity checks for usersession state
-		return getWorkspaceManager().getConnectionManager().getProjectList(
-				sessionId);
+		return getWorkspaceManager().getConnectionManager().getProjectList(sessionId);
 	}
 
 	/**
 	 * {@inheritDoc}
 	 * 
-	 * @see org.unicase.workspace.Usersession#createProject(java.lang.String,
-	 *      java.lang.String)
+	 * @see org.unicase.workspace.Usersession#createProject(java.lang.String, java.lang.String)
 	 * @generated NOT
 	 */
-	public ProjectInfo createProject(String name, String description)
-			throws AccessControlException, EmfStoreException {
-		ConnectionManager connectionManager = this.getWorkspaceManager()
-				.getConnectionManager();
+	public ProjectInfo createProject(String name, String description) throws AccessControlException, EmfStoreException {
+		ConnectionManager connectionManager = this.getWorkspaceManager().getConnectionManager();
 		LogMessage log = VersioningFactory.eINSTANCE.createLogMessage();
 		log.setMessage("Creating project '" + name + "'");
 		log.setAuthor(this.getUsername());
 		log.setClientDate(new Date());
-		return connectionManager.createProject(this.getSessionId(), name,
-				description, log);
+		return connectionManager.createProject(this.getSessionId(), name, description, log);
 
 	}
 
@@ -777,12 +770,9 @@ public class UsersessionImpl extends EObjectImpl implements Usersession {
 	 * 
 	 * @generated NOT
 	 */
-	public PrimaryVersionSpec resolveVersionSpec(VersionSpec versionSpec,
-			ProjectId projectId) throws EmfStoreException {
-		ConnectionManager connectionManager = WorkspaceManager.getInstance()
-				.getConnectionManager();
-		return connectionManager.resolveVersionSpec(getSessionId(), projectId,
-				versionSpec);
+	public PrimaryVersionSpec resolveVersionSpec(VersionSpec versionSpec, ProjectId projectId) throws EmfStoreException {
+		ConnectionManager connectionManager = WorkspaceManager.getInstance().getConnectionManager();
+		return connectionManager.resolveVersionSpec(getSessionId(), projectId, versionSpec);
 	}
 
 	/**
@@ -790,12 +780,9 @@ public class UsersessionImpl extends EObjectImpl implements Usersession {
 	 * 
 	 * @generated NOT
 	 */
-	public List<HistoryInfo> getHistoryInfo(ProjectId projectId,
-			HistoryQuery query) throws EmfStoreException {
-		ConnectionManager connectionManager = WorkspaceManager.getInstance()
-				.getConnectionManager();
-		return connectionManager.getHistoryInfo(getSessionId(), projectId,
-				query);
+	public List<HistoryInfo> getHistoryInfo(ProjectId projectId, HistoryQuery query) throws EmfStoreException {
+		ConnectionManager connectionManager = WorkspaceManager.getInstance().getConnectionManager();
+		return connectionManager.getHistoryInfo(getSessionId(), projectId, query);
 	}
 
 } // UsersessionImpl
