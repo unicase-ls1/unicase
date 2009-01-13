@@ -11,6 +11,9 @@ import java.util.List;
 import org.eclipse.emf.ecore.EClass;
 import org.eclipse.emf.ecore.EObject;
 import org.unicase.docExport.exportModel.renderers.options.AttributeOption;
+import org.unicase.docExport.exportModel.renderers.options.BooleanAttributeOption;
+import org.unicase.docExport.exportModel.renderers.options.BoxModelOption;
+import org.unicase.docExport.exportModel.renderers.options.DateAttributeOption;
 import org.unicase.docExport.exportModel.renderers.options.LayoutOptions;
 import org.unicase.docExport.exportModel.renderers.options.ListOption;
 import org.unicase.docExport.exportModel.renderers.options.MultiReferenceAttributeOption;
@@ -18,6 +21,7 @@ import org.unicase.docExport.exportModel.renderers.options.OptionsPackage;
 import org.unicase.docExport.exportModel.renderers.options.ReferenceAttributeOption;
 import org.unicase.docExport.exportModel.renderers.options.ReferenceOption;
 import org.unicase.docExport.exportModel.renderers.options.RendererOption;
+import org.unicase.docExport.exportModel.renderers.options.SectionOption;
 import org.unicase.docExport.exportModel.renderers.options.SingleReferenceAttributeOption;
 import org.unicase.docExport.exportModel.renderers.options.StringAttributeOption;
 import org.unicase.docExport.exportModel.renderers.options.TextOption;
@@ -176,6 +180,36 @@ public class OptionsSwitch<T> {
 				UColor uColor = (UColor)theEObject;
 				T result = caseUColor(uColor);
 				if (result == null) result = caseRendererOption(uColor);
+				if (result == null) result = defaultCase(theEObject);
+				return result;
+			}
+			case OptionsPackage.BOX_MODEL_OPTION: {
+				BoxModelOption boxModelOption = (BoxModelOption)theEObject;
+				T result = caseBoxModelOption(boxModelOption);
+				if (result == null) result = caseRendererOption(boxModelOption);
+				if (result == null) result = defaultCase(theEObject);
+				return result;
+			}
+			case OptionsPackage.SECTION_OPTION: {
+				SectionOption sectionOption = (SectionOption)theEObject;
+				T result = caseSectionOption(sectionOption);
+				if (result == null) result = caseRendererOption(sectionOption);
+				if (result == null) result = defaultCase(theEObject);
+				return result;
+			}
+			case OptionsPackage.BOOLEAN_ATTRIBUTE_OPTION: {
+				BooleanAttributeOption booleanAttributeOption = (BooleanAttributeOption)theEObject;
+				T result = caseBooleanAttributeOption(booleanAttributeOption);
+				if (result == null) result = caseAttributeOption(booleanAttributeOption);
+				if (result == null) result = caseRendererOption(booleanAttributeOption);
+				if (result == null) result = defaultCase(theEObject);
+				return result;
+			}
+			case OptionsPackage.DATE_ATTRIBUTE_OPTION: {
+				DateAttributeOption dateAttributeOption = (DateAttributeOption)theEObject;
+				T result = caseDateAttributeOption(dateAttributeOption);
+				if (result == null) result = caseAttributeOption(dateAttributeOption);
+				if (result == null) result = caseRendererOption(dateAttributeOption);
 				if (result == null) result = defaultCase(theEObject);
 				return result;
 			}
@@ -345,6 +379,66 @@ public class OptionsSwitch<T> {
 	 * @generated
 	 */
 	public T caseUColor(UColor object) {
+		return null;
+	}
+
+	/**
+	 * Returns the result of interpreting the object as an instance of '<em>Box Model Option</em>'.
+	 * <!-- begin-user-doc -->
+	 * This implementation returns null;
+	 * returning a non-null result will terminate the switch.
+	 * <!-- end-user-doc -->
+	 * @param object the target of the switch.
+	 * @return the result of interpreting the object as an instance of '<em>Box Model Option</em>'.
+	 * @see #doSwitch(org.eclipse.emf.ecore.EObject) doSwitch(EObject)
+	 * @generated
+	 */
+	public T caseBoxModelOption(BoxModelOption object) {
+		return null;
+	}
+
+	/**
+	 * Returns the result of interpreting the object as an instance of '<em>Section Option</em>'.
+	 * <!-- begin-user-doc -->
+	 * This implementation returns null;
+	 * returning a non-null result will terminate the switch.
+	 * <!-- end-user-doc -->
+	 * @param object the target of the switch.
+	 * @return the result of interpreting the object as an instance of '<em>Section Option</em>'.
+	 * @see #doSwitch(org.eclipse.emf.ecore.EObject) doSwitch(EObject)
+	 * @generated
+	 */
+	public T caseSectionOption(SectionOption object) {
+		return null;
+	}
+
+	/**
+	 * Returns the result of interpreting the object as an instance of '<em>Boolean Attribute Option</em>'.
+	 * <!-- begin-user-doc -->
+	 * This implementation returns null;
+	 * returning a non-null result will terminate the switch.
+	 * <!-- end-user-doc -->
+	 * @param object the target of the switch.
+	 * @return the result of interpreting the object as an instance of '<em>Boolean Attribute Option</em>'.
+	 * @see #doSwitch(org.eclipse.emf.ecore.EObject) doSwitch(EObject)
+	 * @generated
+	 */
+	public T caseBooleanAttributeOption(BooleanAttributeOption object) {
+		return null;
+	}
+
+	/**
+	 * Returns the result of interpreting the object as an instance of '<em>Date Attribute Option</em>'.
+	 * <!-- begin-user-doc -->
+	 * This implementation returns null;
+	 * returning a non-null result will terminate the switch.
+	 * <!-- end-user-doc -->
+	 * @param object the target of the switch.
+	 * @return the result of interpreting the object as an instance of '<em>Date Attribute Option</em>'.
+	 * @see #doSwitch(org.eclipse.emf.ecore.EObject) doSwitch(EObject)
+	 * @generated
+	 */
+	public T caseDateAttributeOption(DateAttributeOption object) {
 		return null;
 	}
 

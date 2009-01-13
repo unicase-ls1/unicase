@@ -173,6 +173,15 @@ public class ExportModelPackageImpl extends EPackageImpl implements ExportModelP
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
+	public EAttribute getTemplate_LogoImage() {
+		return (EAttribute)templateEClass.getEStructuralFeatures().get(4);
+	}
+
+	/**
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 */
 	public ExportModelFactory getExportModelFactory() {
 		return (ExportModelFactory)getEFactoryInstance();
 	}
@@ -201,6 +210,7 @@ public class ExportModelPackageImpl extends EPackageImpl implements ExportModelP
 		createEReference(templateEClass, TEMPLATE__LAYOUT_OPTIONS);
 		createEReference(templateEClass, TEMPLATE__GLOBAL_RENDERER_OPTIONS);
 		createEAttribute(templateEClass, TEMPLATE__NAME);
+		createEAttribute(templateEClass, TEMPLATE__LOGO_IMAGE);
 	}
 
 	/**
@@ -246,6 +256,7 @@ public class ExportModelPackageImpl extends EPackageImpl implements ExportModelP
 		initEReference(getTemplate_LayoutOptions(), theOptionsPackage.getLayoutOptions(), null, "layoutOptions", null, 0, 1, Template.class, !IS_TRANSIENT, !IS_VOLATILE, IS_CHANGEABLE, IS_COMPOSITE, !IS_RESOLVE_PROXIES, !IS_UNSETTABLE, IS_UNIQUE, !IS_DERIVED, IS_ORDERED);
 		initEReference(getTemplate_GlobalRendererOptions(), theOptionsPackage.getAttributeOption(), null, "globalRendererOptions", null, 0, -1, Template.class, !IS_TRANSIENT, !IS_VOLATILE, IS_CHANGEABLE, IS_COMPOSITE, !IS_RESOLVE_PROXIES, !IS_UNSETTABLE, IS_UNIQUE, !IS_DERIVED, IS_ORDERED);
 		initEAttribute(getTemplate_Name(), theEcorePackage.getEString(), "name", null, 0, 1, Template.class, !IS_TRANSIENT, !IS_VOLATILE, IS_CHANGEABLE, !IS_UNSETTABLE, !IS_ID, IS_UNIQUE, !IS_DERIVED, IS_ORDERED);
+		initEAttribute(getTemplate_LogoImage(), theEcorePackage.getEString(), "logoImage", null, 0, 1, Template.class, !IS_TRANSIENT, !IS_VOLATILE, IS_CHANGEABLE, !IS_UNSETTABLE, !IS_ID, IS_UNIQUE, !IS_DERIVED, IS_ORDERED);
 
 		// Create resource
 		createResource(eNS_URI);

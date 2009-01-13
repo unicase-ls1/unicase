@@ -13,14 +13,17 @@ import java.util.GregorianCalendar;
 
 import org.eclipse.emf.common.util.EList;
 import org.eclipse.emf.ecore.EClass;
+import org.eclipse.emf.ecore.util.EcoreUtil;
 import org.unicase.docExport.exportModel.renderers.elements.UCompositeSection;
-import org.unicase.docExport.exportModel.renderers.elements.UEntry;
 import org.unicase.docExport.exportModel.renderers.elements.UParagraph;
 import org.unicase.docExport.exportModel.renderers.elements.USection;
 import org.unicase.docExport.exportModel.renderers.elements.UTable;
+import org.unicase.docExport.exportModel.renderers.elements.UTableCell;
 import org.unicase.docExport.exportModel.renderers.impl.ModelElementRendererImpl;
 import org.unicase.docExport.exportModel.renderers.options.RendererOption;
+import org.unicase.docExport.exportModel.renderers.options.SectionNumberingStyle;
 import org.unicase.docExport.exportModel.renderers.options.TextOption;
+import org.unicase.docExport.exportModel.renderers.options.UBorderStyle;
 import org.unicase.docExport.exportModel.renderers.specialRenderers.MeetingRenderer;
 import org.unicase.docExport.exportModel.renderers.specialRenderers.SpecialRenderersPackage;
 import org.unicase.model.ModelElement;
@@ -111,10 +114,23 @@ public class MeetingRendererImpl extends ModelElementRendererImpl implements Mee
 		}
 		
 
-		UParagraph topic2 = new UParagraph(topic + meeting.getName());
-		topic2.getOption().setFontSize(20);
+		UParagraph topic2 = new UParagraph(
+				topic + meeting.getName(), 
+				(TextOption) EcoreUtil.copy(getTemplate().getLayoutOptions().getSectionTextOption())
+			);
+
 		USection title = new USection(topic2);
 		section.add(title);
+		title.getSectionOption().setLeaveOutPreviousSectionNumbering(true);
+		title.getSectionOption().setSectionNumberingStyle(SectionNumberingStyle.NONE);
+		title.getBoxModel().setMarginTop(20);
+		
+		if (title.getDepth() > 1 && title.getDepth() < 4) {
+			title.getTitlParagraph().getOption().setFontSize(
+					getTemplate().getLayoutOptions().getSectionTextOption().getFontSize() 
+					- getTemplate().getLayoutOptions().getSectionFontSizeDecreaseStep() * title.getDepth()
+				);
+		}
 		
 		createMeetingTable(title);
 		renderMeetingSections(title);
@@ -128,20 +144,25 @@ public class MeetingRendererImpl extends ModelElementRendererImpl implements Mee
 	 */
 	private void createMeetingTable(USection parent) {
 		UTable table = new UTable(2);
-		table.setCellBorder((float)1.2);
-		table.setCellBorderTop(0);
+		table.getBoxModel().setMarginTop(5);
+		table.getDefaultCellBoxModel().setBorder(0.8);
+		table.getDefaultCellBoxModel().setBorderStyle(UBorderStyle.SOLID);
 		
-		UEntry wannUndWo = new UEntry("Wann und Wo");
-		UEntry rollen = new UEntry("Rollen");
+		table.getBoxModel().setMarginBottom(5);
+		table.getBoxModel().setKeepTogether(true);
+		table.getBoxModel().setKeepWithPrevious(true);
+		
+		UTableCell wannUndWo = new UTableCell("Wann und Wo");
+		UTableCell rollen = new UTableCell("Rollen");
 		Color background = new Color(210, 210, 210);
-		wannUndWo.setBackgroundColor(background);
-		wannUndWo.setBorderWidth((float)1.2);
-		rollen.setBorderWidth((float)1.2);
-		rollen.setBackgroundColor(background);
-		table.addEntry(wannUndWo);
-		table.addEntry(rollen);
-
-		
+		wannUndWo.getBoxModel().setBackgroundColor(background);
+		wannUndWo.getBoxModel().setBorder(0.8);
+		wannUndWo.getBoxModel().setBorderStyle(UBorderStyle.SOLID);
+		rollen.getBoxModel().setBorder(0.8);
+		rollen.getBoxModel().setBackgroundColor(background);
+		rollen.getBoxModel().setBorderStyle(UBorderStyle.SOLID);
+		table.addCell(wannUndWo);
+		table.addCell(rollen);
 		
 		String text;
 		if (meeting.getStarttime() != null) {
@@ -155,7 +176,7 @@ public class MeetingRendererImpl extends ModelElementRendererImpl implements Mee
 		} else {
 			text = "";
 		}
-		table.addEntry("Datum: " + text);
+		table.addCell("Datum: " + text);
 		
 		
 		if (meeting.getFacilitator() != null) {
@@ -163,7 +184,7 @@ public class MeetingRendererImpl extends ModelElementRendererImpl implements Mee
 		} else {
 			text = "";
 		}
-		table.addEntry("Moderator: " + text);
+		table.addCell("Moderator: " + text);
 		
 		
 		if (meeting.getStarttime() != null) {
@@ -173,7 +194,7 @@ public class MeetingRendererImpl extends ModelElementRendererImpl implements Mee
 		} else {
 			text = "";
 		}
-		table.addEntry("Start: " + text);
+		table.addCell("Start: " + text);
 		
 		
 		if (meeting.getTimekeeper() != null) {
@@ -181,7 +202,7 @@ public class MeetingRendererImpl extends ModelElementRendererImpl implements Mee
 		} else {
 			text = "";
 		}
-		table.addEntry("Zeitnehmer: " + text);
+		table.addCell("Zeitnehmer: " + text);
 		
 		
 		if (meeting.getEndtime() != null) {
@@ -191,7 +212,7 @@ public class MeetingRendererImpl extends ModelElementRendererImpl implements Mee
 		} else {
 			text = "";
 		}
-		table.addEntry("Ende: " + text);
+		table.addCell("Ende: " + text);
 		
 		
 		if (meeting.getMinutetaker() != null) {
@@ -199,7 +220,7 @@ public class MeetingRendererImpl extends ModelElementRendererImpl implements Mee
 		} else {
 			text = "";
 		}
-		table.addEntry("Protokollant: " + text);
+		table.addCell("Protokollant: " + text);
 		
 		
 		if (meeting.getLocation() != null) {
@@ -207,11 +228,10 @@ public class MeetingRendererImpl extends ModelElementRendererImpl implements Mee
 		} else {
 			text = "";
 		}
-		UEntry ort = new UEntry("Ort: " + text);
+		UTableCell ort = new UTableCell("Ort: " + text);
 		ort.setColspan(2);
-		ort.setBorderWidth((float)1.2);
-		ort.setBorderTop(0);
-		table.addEntry(ort);
+		ort.setBoxModel(table.getDefaultCellBoxModel());
+		table.addCell(ort);
 		
 		String text2 = "Teilnehmer: ";
 		for (OrgUnit orgUnit : meeting.getParticipants()) {
@@ -219,11 +239,10 @@ public class MeetingRendererImpl extends ModelElementRendererImpl implements Mee
 		}
 		text2 = text2.substring(0, text2.length() - 2);
 		
-		UEntry teilnehmer = new UEntry(text2);
+		UTableCell teilnehmer = new UTableCell(text2);
 		teilnehmer.setColspan(2);
-		teilnehmer.setBorderWidth((float)1.2);
-		teilnehmer.setBorderTop(0);
-		table.addEntry(teilnehmer);
+		teilnehmer.setBoxModel(table.getDefaultCellBoxModel());
+		table.addCell(teilnehmer);
 		
 		parent.add(table);
 	}
@@ -275,9 +294,11 @@ public class MeetingRendererImpl extends ModelElementRendererImpl implements Mee
 		
 		USection uSection = new USection(
 				getMeetingSectionTitle(meetingSection), 
-				getTemplate().getLayoutOptions().getSectionTextOption()
+				getTemplate().getLayoutOptions().getModelElementTextOption()
 			);
 		parent.add(uSection);
+//		uSection.getSectionOption().setLeaveOutPreviousSectionNumbering(true);
+		uSection.getBoxModel().setMarginTop(12);
 		
 		renderDescription(uSection, meetingSection);
 
@@ -297,9 +318,10 @@ public class MeetingRendererImpl extends ModelElementRendererImpl implements Mee
 		
 		USection issueSection = new USection(
 				getMeetingSectionTitle(meetingSection), 
-				getTemplate().getLayoutOptions().getSectionTextOption()
+				getTemplate().getLayoutOptions().getModelElementTextOption()
 			);
 		parent.add(issueSection);
+		issueSection.getBoxModel().setMarginTop(10);
 
 		renderDescription(issueSection, meetingSection);
 		
@@ -324,10 +346,10 @@ public class MeetingRendererImpl extends ModelElementRendererImpl implements Mee
 			WorkItemMeetingSection meetingSection) {
 		USection workItemSection = new USection(
 				getMeetingSectionTitle(meetingSection), 
-				getTemplate().getLayoutOptions().getSectionTextOption()
+				getTemplate().getLayoutOptions().getModelElementTextOption()
 			);
-		
 		parent.add(new UParagraph(" "));
+		workItemSection.getBoxModel().setMarginTop(10);
 		
 		parent.add(workItemSection);	
 		
@@ -377,7 +399,7 @@ public class MeetingRendererImpl extends ModelElementRendererImpl implements Mee
 		} else {
 			text += "WI";
 		}
-			workItemText += " (" + workItem.getState() + ")";
+		workItemText += " (" + workItem.getState() + ")";
 		
 		UParagraph par = new UParagraph(text + workItemText, workItemTextOption);
 		par.setIndentionLeft(1);
@@ -413,10 +435,10 @@ public class MeetingRendererImpl extends ModelElementRendererImpl implements Mee
 	}
 	
 	private void renderDescription(UCompositeSection parent, ModelElement me) {
-		
 		UParagraph descr = new UParagraph(WorkspaceUtil.cleanFormatedText(me.getDescription()) + "\n", getTemplate().getLayoutOptions().getDefaultTextOption());
-		descr.setIndentionLeft(0);
+		descr.setIndentionLeft(1);
 		parent.add(descr);	
+		descr.getBoxModel().setKeepWithPrevious(true);
 	}
 	
 	private String getOrgUnitName(OrgUnit orgUnit) {

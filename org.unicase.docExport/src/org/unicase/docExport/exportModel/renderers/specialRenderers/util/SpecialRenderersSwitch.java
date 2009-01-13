@@ -13,7 +13,9 @@ import org.eclipse.emf.ecore.EObject;
 import org.unicase.docExport.exportModel.renderers.AttributeRenderer;
 import org.unicase.docExport.exportModel.renderers.ModelElementRenderer;
 import org.unicase.docExport.exportModel.renderers.specialRenderers.MeetingRenderer;
+import org.unicase.docExport.exportModel.renderers.specialRenderers.MethodRenderer;
 import org.unicase.docExport.exportModel.renderers.specialRenderers.MilestoneRenderer;
+import org.unicase.docExport.exportModel.renderers.specialRenderers.PackageFlatRenderer;
 import org.unicase.docExport.exportModel.renderers.specialRenderers.SpecialRenderersPackage;
 import org.unicase.docExport.exportModel.renderers.specialRenderers.StepsAttributeRenderer;
 
@@ -113,6 +115,20 @@ public class SpecialRenderersSwitch<T> {
 				if (result == null) result = defaultCase(theEObject);
 				return result;
 			}
+			case SpecialRenderersPackage.METHOD_RENDERER: {
+				MethodRenderer methodRenderer = (MethodRenderer)theEObject;
+				T result = caseMethodRenderer(methodRenderer);
+				if (result == null) result = caseAttributeRenderer(methodRenderer);
+				if (result == null) result = defaultCase(theEObject);
+				return result;
+			}
+			case SpecialRenderersPackage.PACKAGE_FLAT_RENDERER: {
+				PackageFlatRenderer packageFlatRenderer = (PackageFlatRenderer)theEObject;
+				T result = casePackageFlatRenderer(packageFlatRenderer);
+				if (result == null) result = caseModelElementRenderer(packageFlatRenderer);
+				if (result == null) result = defaultCase(theEObject);
+				return result;
+			}
 			default: return defaultCase(theEObject);
 		}
 	}
@@ -159,6 +175,36 @@ public class SpecialRenderersSwitch<T> {
 	 * @generated
 	 */
 	public T caseStepsAttributeRenderer(StepsAttributeRenderer object) {
+		return null;
+	}
+
+	/**
+	 * Returns the result of interpreting the object as an instance of '<em>Method Renderer</em>'.
+	 * <!-- begin-user-doc -->
+	 * This implementation returns null;
+	 * returning a non-null result will terminate the switch.
+	 * <!-- end-user-doc -->
+	 * @param object the target of the switch.
+	 * @return the result of interpreting the object as an instance of '<em>Method Renderer</em>'.
+	 * @see #doSwitch(org.eclipse.emf.ecore.EObject) doSwitch(EObject)
+	 * @generated
+	 */
+	public T caseMethodRenderer(MethodRenderer object) {
+		return null;
+	}
+
+	/**
+	 * Returns the result of interpreting the object as an instance of '<em>Package Flat Renderer</em>'.
+	 * <!-- begin-user-doc -->
+	 * This implementation returns null;
+	 * returning a non-null result will terminate the switch.
+	 * <!-- end-user-doc -->
+	 * @param object the target of the switch.
+	 * @return the result of interpreting the object as an instance of '<em>Package Flat Renderer</em>'.
+	 * @see #doSwitch(org.eclipse.emf.ecore.EObject) doSwitch(EObject)
+	 * @generated
+	 */
+	public T casePackageFlatRenderer(PackageFlatRenderer object) {
 		return null;
 	}
 

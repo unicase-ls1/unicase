@@ -11,10 +11,12 @@ import org.eclipse.emf.common.notify.NotificationChain;
 import org.eclipse.emf.ecore.EClass;
 import org.eclipse.emf.ecore.InternalEObject;
 import org.eclipse.emf.ecore.impl.ENotificationImpl;
+import org.unicase.docExport.exportModel.renderers.options.AppendixStyle;
 import org.unicase.docExport.exportModel.renderers.options.LayoutOptions;
 import org.unicase.docExport.exportModel.renderers.options.OptionsFactory;
 import org.unicase.docExport.exportModel.renderers.options.OptionsPackage;
 import org.unicase.docExport.exportModel.renderers.options.PageNumberingStyle;
+import org.unicase.docExport.exportModel.renderers.options.SectionOption;
 import org.unicase.docExport.exportModel.renderers.options.TextOption;
 
 /**
@@ -34,6 +36,14 @@ import org.unicase.docExport.exportModel.renderers.options.TextOption;
  *   <li>{@link org.unicase.docExport.exportModel.renderers.options.impl.LayoutOptionsImpl#getPageNumberingStyle <em>Page Numbering Style</em>}</li>
  *   <li>{@link org.unicase.docExport.exportModel.renderers.options.impl.LayoutOptionsImpl#isHideModelElementImages <em>Hide Model Element Images</em>}</li>
  *   <li>{@link org.unicase.docExport.exportModel.renderers.options.impl.LayoutOptionsImpl#getModelElementTextOption <em>Model Element Text Option</em>}</li>
+ *   <li>{@link org.unicase.docExport.exportModel.renderers.options.impl.LayoutOptionsImpl#getHeaderText <em>Header Text</em>}</li>
+ *   <li>{@link org.unicase.docExport.exportModel.renderers.options.impl.LayoutOptionsImpl#getFooterText <em>Footer Text</em>}</li>
+ *   <li>{@link org.unicase.docExport.exportModel.renderers.options.impl.LayoutOptionsImpl#getSectionOption <em>Section Option</em>}</li>
+ *   <li>{@link org.unicase.docExport.exportModel.renderers.options.impl.LayoutOptionsImpl#getSectionFontSizeDecreaseStep <em>Section Font Size Decrease Step</em>}</li>
+ *   <li>{@link org.unicase.docExport.exportModel.renderers.options.impl.LayoutOptionsImpl#getDocumentTitleTextOption <em>Document Title Text Option</em>}</li>
+ *   <li>{@link org.unicase.docExport.exportModel.renderers.options.impl.LayoutOptionsImpl#isShowModelElementTypeInSectionTitle <em>Show Model Element Type In Section Title</em>}</li>
+ *   <li>{@link org.unicase.docExport.exportModel.renderers.options.impl.LayoutOptionsImpl#getAttributeTextOption <em>Attribute Text Option</em>}</li>
+ *   <li>{@link org.unicase.docExport.exportModel.renderers.options.impl.LayoutOptionsImpl#getAppendixStyle <em>Appendix Style</em>}</li>
  * </ul>
  * </p>
  *
@@ -201,6 +211,136 @@ public class LayoutOptionsImpl extends RendererOptionImpl implements LayoutOptio
 	protected TextOption modelElementTextOption;
 
 	/**
+	 * The default value of the '{@link #getHeaderText() <em>Header Text</em>}' attribute.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @see #getHeaderText()
+	 * @generated
+	 * @ordered
+	 */
+	protected static final String HEADER_TEXT_EDEFAULT = null;
+
+	/**
+	 * The cached value of the '{@link #getHeaderText() <em>Header Text</em>}' attribute.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @see #getHeaderText()
+	 * @generated
+	 * @ordered
+	 */
+	protected String headerText = HEADER_TEXT_EDEFAULT;
+
+	/**
+	 * The default value of the '{@link #getFooterText() <em>Footer Text</em>}' attribute.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @see #getFooterText()
+	 * @generated
+	 * @ordered
+	 */
+	protected static final String FOOTER_TEXT_EDEFAULT = null;
+
+	/**
+	 * The cached value of the '{@link #getFooterText() <em>Footer Text</em>}' attribute.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @see #getFooterText()
+	 * @generated
+	 * @ordered
+	 */
+	protected String footerText = FOOTER_TEXT_EDEFAULT;
+
+	/**
+	 * The cached value of the '{@link #getSectionOption() <em>Section Option</em>}' containment reference.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @see #getSectionOption()
+	 * @generated
+	 * @ordered
+	 */
+	protected SectionOption sectionOption;
+
+	/**
+	 * The default value of the '{@link #getSectionFontSizeDecreaseStep() <em>Section Font Size Decrease Step</em>}' attribute.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @see #getSectionFontSizeDecreaseStep()
+	 * @generated
+	 * @ordered
+	 */
+	protected static final int SECTION_FONT_SIZE_DECREASE_STEP_EDEFAULT = 0;
+
+	/**
+	 * The cached value of the '{@link #getSectionFontSizeDecreaseStep() <em>Section Font Size Decrease Step</em>}' attribute.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @see #getSectionFontSizeDecreaseStep()
+	 * @generated
+	 * @ordered
+	 */
+	protected int sectionFontSizeDecreaseStep = SECTION_FONT_SIZE_DECREASE_STEP_EDEFAULT;
+
+	/**
+	 * The cached value of the '{@link #getDocumentTitleTextOption() <em>Document Title Text Option</em>}' containment reference.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @see #getDocumentTitleTextOption()
+	 * @generated
+	 * @ordered
+	 */
+	protected TextOption documentTitleTextOption;
+
+	/**
+	 * The default value of the '{@link #isShowModelElementTypeInSectionTitle() <em>Show Model Element Type In Section Title</em>}' attribute.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @see #isShowModelElementTypeInSectionTitle()
+	 * @generated
+	 * @ordered
+	 */
+	protected static final boolean SHOW_MODEL_ELEMENT_TYPE_IN_SECTION_TITLE_EDEFAULT = false;
+
+	/**
+	 * The cached value of the '{@link #isShowModelElementTypeInSectionTitle() <em>Show Model Element Type In Section Title</em>}' attribute.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @see #isShowModelElementTypeInSectionTitle()
+	 * @generated
+	 * @ordered
+	 */
+	protected boolean showModelElementTypeInSectionTitle = SHOW_MODEL_ELEMENT_TYPE_IN_SECTION_TITLE_EDEFAULT;
+
+	/**
+	 * The cached value of the '{@link #getAttributeTextOption() <em>Attribute Text Option</em>}' containment reference.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @see #getAttributeTextOption()
+	 * @generated
+	 * @ordered
+	 */
+	protected TextOption attributeTextOption;
+
+	/**
+	 * The default value of the '{@link #getAppendixStyle() <em>Appendix Style</em>}' attribute.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @see #getAppendixStyle()
+	 * @generated
+	 * @ordered
+	 */
+	protected static final AppendixStyle APPENDIX_STYLE_EDEFAULT = AppendixStyle.HIDE;
+
+	/**
+	 * The cached value of the '{@link #getAppendixStyle() <em>Appendix Style</em>}' attribute.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @see #getAppendixStyle()
+	 * @generated
+	 * @ordered
+	 */
+	protected AppendixStyle appendixStyle = APPENDIX_STYLE_EDEFAULT;
+
+	/**
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
 	 * @generated NOT
@@ -211,6 +351,9 @@ public class LayoutOptionsImpl extends RendererOptionImpl implements LayoutOptio
 		defaultTextOption = OptionsFactory.eINSTANCE.createTextOption();
 		sectionTextOption = OptionsFactory.eINSTANCE.createTextOption();
 		modelElementTextOption = OptionsFactory.eINSTANCE.createTextOption();
+		sectionOption = OptionsFactory.eINSTANCE.createSectionOption();
+		documentTitleTextOption = OptionsFactory.eINSTANCE.createTextOption();
+		attributeTextOption = OptionsFactory.eINSTANCE.createTextOption();
 	}
 
 	/**
@@ -527,6 +670,240 @@ public class LayoutOptionsImpl extends RendererOptionImpl implements LayoutOptio
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
+	public String getHeaderText() {
+		return headerText;
+	}
+
+	/**
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 */
+	public void setHeaderText(String newHeaderText) {
+		String oldHeaderText = headerText;
+		headerText = newHeaderText;
+		if (eNotificationRequired())
+			eNotify(new ENotificationImpl(this, Notification.SET, OptionsPackage.LAYOUT_OPTIONS__HEADER_TEXT, oldHeaderText, headerText));
+	}
+
+	/**
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 */
+	public String getFooterText() {
+		return footerText;
+	}
+
+	/**
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 */
+	public void setFooterText(String newFooterText) {
+		String oldFooterText = footerText;
+		footerText = newFooterText;
+		if (eNotificationRequired())
+			eNotify(new ENotificationImpl(this, Notification.SET, OptionsPackage.LAYOUT_OPTIONS__FOOTER_TEXT, oldFooterText, footerText));
+	}
+
+	/**
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 */
+	public SectionOption getSectionOption() {
+		return sectionOption;
+	}
+
+	/**
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 */
+	public NotificationChain basicSetSectionOption(SectionOption newSectionOption, NotificationChain msgs) {
+		SectionOption oldSectionOption = sectionOption;
+		sectionOption = newSectionOption;
+		if (eNotificationRequired()) {
+			ENotificationImpl notification = new ENotificationImpl(this, Notification.SET, OptionsPackage.LAYOUT_OPTIONS__SECTION_OPTION, oldSectionOption, newSectionOption);
+			if (msgs == null) msgs = notification; else msgs.add(notification);
+		}
+		return msgs;
+	}
+
+	/**
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 */
+	public void setSectionOption(SectionOption newSectionOption) {
+		if (newSectionOption != sectionOption) {
+			NotificationChain msgs = null;
+			if (sectionOption != null)
+				msgs = ((InternalEObject)sectionOption).eInverseRemove(this, EOPPOSITE_FEATURE_BASE - OptionsPackage.LAYOUT_OPTIONS__SECTION_OPTION, null, msgs);
+			if (newSectionOption != null)
+				msgs = ((InternalEObject)newSectionOption).eInverseAdd(this, EOPPOSITE_FEATURE_BASE - OptionsPackage.LAYOUT_OPTIONS__SECTION_OPTION, null, msgs);
+			msgs = basicSetSectionOption(newSectionOption, msgs);
+			if (msgs != null) msgs.dispatch();
+		}
+		else if (eNotificationRequired())
+			eNotify(new ENotificationImpl(this, Notification.SET, OptionsPackage.LAYOUT_OPTIONS__SECTION_OPTION, newSectionOption, newSectionOption));
+	}
+
+	/**
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 */
+	public int getSectionFontSizeDecreaseStep() {
+		return sectionFontSizeDecreaseStep;
+	}
+
+	/**
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 */
+	public void setSectionFontSizeDecreaseStep(int newSectionFontSizeDecreaseStep) {
+		int oldSectionFontSizeDecreaseStep = sectionFontSizeDecreaseStep;
+		sectionFontSizeDecreaseStep = newSectionFontSizeDecreaseStep;
+		if (eNotificationRequired())
+			eNotify(new ENotificationImpl(this, Notification.SET, OptionsPackage.LAYOUT_OPTIONS__SECTION_FONT_SIZE_DECREASE_STEP, oldSectionFontSizeDecreaseStep, sectionFontSizeDecreaseStep));
+	}
+
+	/**
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 */
+	public TextOption getDocumentTitleTextOption() {
+		return documentTitleTextOption;
+	}
+
+	/**
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 */
+	public NotificationChain basicSetDocumentTitleTextOption(TextOption newDocumentTitleTextOption, NotificationChain msgs) {
+		TextOption oldDocumentTitleTextOption = documentTitleTextOption;
+		documentTitleTextOption = newDocumentTitleTextOption;
+		if (eNotificationRequired()) {
+			ENotificationImpl notification = new ENotificationImpl(this, Notification.SET, OptionsPackage.LAYOUT_OPTIONS__DOCUMENT_TITLE_TEXT_OPTION, oldDocumentTitleTextOption, newDocumentTitleTextOption);
+			if (msgs == null) msgs = notification; else msgs.add(notification);
+		}
+		return msgs;
+	}
+
+	/**
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 */
+	public void setDocumentTitleTextOption(TextOption newDocumentTitleTextOption) {
+		if (newDocumentTitleTextOption != documentTitleTextOption) {
+			NotificationChain msgs = null;
+			if (documentTitleTextOption != null)
+				msgs = ((InternalEObject)documentTitleTextOption).eInverseRemove(this, EOPPOSITE_FEATURE_BASE - OptionsPackage.LAYOUT_OPTIONS__DOCUMENT_TITLE_TEXT_OPTION, null, msgs);
+			if (newDocumentTitleTextOption != null)
+				msgs = ((InternalEObject)newDocumentTitleTextOption).eInverseAdd(this, EOPPOSITE_FEATURE_BASE - OptionsPackage.LAYOUT_OPTIONS__DOCUMENT_TITLE_TEXT_OPTION, null, msgs);
+			msgs = basicSetDocumentTitleTextOption(newDocumentTitleTextOption, msgs);
+			if (msgs != null) msgs.dispatch();
+		}
+		else if (eNotificationRequired())
+			eNotify(new ENotificationImpl(this, Notification.SET, OptionsPackage.LAYOUT_OPTIONS__DOCUMENT_TITLE_TEXT_OPTION, newDocumentTitleTextOption, newDocumentTitleTextOption));
+	}
+
+	/**
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 */
+	public boolean isShowModelElementTypeInSectionTitle() {
+		return showModelElementTypeInSectionTitle;
+	}
+
+	/**
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 */
+	public void setShowModelElementTypeInSectionTitle(boolean newShowModelElementTypeInSectionTitle) {
+		boolean oldShowModelElementTypeInSectionTitle = showModelElementTypeInSectionTitle;
+		showModelElementTypeInSectionTitle = newShowModelElementTypeInSectionTitle;
+		if (eNotificationRequired())
+			eNotify(new ENotificationImpl(this, Notification.SET, OptionsPackage.LAYOUT_OPTIONS__SHOW_MODEL_ELEMENT_TYPE_IN_SECTION_TITLE, oldShowModelElementTypeInSectionTitle, showModelElementTypeInSectionTitle));
+	}
+
+	/**
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 */
+	public TextOption getAttributeTextOption() {
+		return attributeTextOption;
+	}
+
+	/**
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 */
+	public NotificationChain basicSetAttributeTextOption(TextOption newAttributeTextOption, NotificationChain msgs) {
+		TextOption oldAttributeTextOption = attributeTextOption;
+		attributeTextOption = newAttributeTextOption;
+		if (eNotificationRequired()) {
+			ENotificationImpl notification = new ENotificationImpl(this, Notification.SET, OptionsPackage.LAYOUT_OPTIONS__ATTRIBUTE_TEXT_OPTION, oldAttributeTextOption, newAttributeTextOption);
+			if (msgs == null) msgs = notification; else msgs.add(notification);
+		}
+		return msgs;
+	}
+
+	/**
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 */
+	public void setAttributeTextOption(TextOption newAttributeTextOption) {
+		if (newAttributeTextOption != attributeTextOption) {
+			NotificationChain msgs = null;
+			if (attributeTextOption != null)
+				msgs = ((InternalEObject)attributeTextOption).eInverseRemove(this, EOPPOSITE_FEATURE_BASE - OptionsPackage.LAYOUT_OPTIONS__ATTRIBUTE_TEXT_OPTION, null, msgs);
+			if (newAttributeTextOption != null)
+				msgs = ((InternalEObject)newAttributeTextOption).eInverseAdd(this, EOPPOSITE_FEATURE_BASE - OptionsPackage.LAYOUT_OPTIONS__ATTRIBUTE_TEXT_OPTION, null, msgs);
+			msgs = basicSetAttributeTextOption(newAttributeTextOption, msgs);
+			if (msgs != null) msgs.dispatch();
+		}
+		else if (eNotificationRequired())
+			eNotify(new ENotificationImpl(this, Notification.SET, OptionsPackage.LAYOUT_OPTIONS__ATTRIBUTE_TEXT_OPTION, newAttributeTextOption, newAttributeTextOption));
+	}
+
+	/**
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 */
+	public AppendixStyle getAppendixStyle() {
+		return appendixStyle;
+	}
+
+	/**
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 */
+	public void setAppendixStyle(AppendixStyle newAppendixStyle) {
+		AppendixStyle oldAppendixStyle = appendixStyle;
+		appendixStyle = newAppendixStyle == null ? APPENDIX_STYLE_EDEFAULT : newAppendixStyle;
+		if (eNotificationRequired())
+			eNotify(new ENotificationImpl(this, Notification.SET, OptionsPackage.LAYOUT_OPTIONS__APPENDIX_STYLE, oldAppendixStyle, appendixStyle));
+	}
+
+	/**
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 */
 	@Override
 	public NotificationChain eInverseRemove(InternalEObject otherEnd, int featureID, NotificationChain msgs) {
 		switch (featureID) {
@@ -538,6 +915,12 @@ public class LayoutOptionsImpl extends RendererOptionImpl implements LayoutOptio
 				return basicSetSectionTextOption(null, msgs);
 			case OptionsPackage.LAYOUT_OPTIONS__MODEL_ELEMENT_TEXT_OPTION:
 				return basicSetModelElementTextOption(null, msgs);
+			case OptionsPackage.LAYOUT_OPTIONS__SECTION_OPTION:
+				return basicSetSectionOption(null, msgs);
+			case OptionsPackage.LAYOUT_OPTIONS__DOCUMENT_TITLE_TEXT_OPTION:
+				return basicSetDocumentTitleTextOption(null, msgs);
+			case OptionsPackage.LAYOUT_OPTIONS__ATTRIBUTE_TEXT_OPTION:
+				return basicSetAttributeTextOption(null, msgs);
 		}
 		return super.eInverseRemove(otherEnd, featureID, msgs);
 	}
@@ -570,6 +953,22 @@ public class LayoutOptionsImpl extends RendererOptionImpl implements LayoutOptio
 				return isHideModelElementImages() ? Boolean.TRUE : Boolean.FALSE;
 			case OptionsPackage.LAYOUT_OPTIONS__MODEL_ELEMENT_TEXT_OPTION:
 				return getModelElementTextOption();
+			case OptionsPackage.LAYOUT_OPTIONS__HEADER_TEXT:
+				return getHeaderText();
+			case OptionsPackage.LAYOUT_OPTIONS__FOOTER_TEXT:
+				return getFooterText();
+			case OptionsPackage.LAYOUT_OPTIONS__SECTION_OPTION:
+				return getSectionOption();
+			case OptionsPackage.LAYOUT_OPTIONS__SECTION_FONT_SIZE_DECREASE_STEP:
+				return new Integer(getSectionFontSizeDecreaseStep());
+			case OptionsPackage.LAYOUT_OPTIONS__DOCUMENT_TITLE_TEXT_OPTION:
+				return getDocumentTitleTextOption();
+			case OptionsPackage.LAYOUT_OPTIONS__SHOW_MODEL_ELEMENT_TYPE_IN_SECTION_TITLE:
+				return isShowModelElementTypeInSectionTitle() ? Boolean.TRUE : Boolean.FALSE;
+			case OptionsPackage.LAYOUT_OPTIONS__ATTRIBUTE_TEXT_OPTION:
+				return getAttributeTextOption();
+			case OptionsPackage.LAYOUT_OPTIONS__APPENDIX_STYLE:
+				return getAppendixStyle();
 		}
 		return super.eGet(featureID, resolve, coreType);
 	}
@@ -611,6 +1010,30 @@ public class LayoutOptionsImpl extends RendererOptionImpl implements LayoutOptio
 				return;
 			case OptionsPackage.LAYOUT_OPTIONS__MODEL_ELEMENT_TEXT_OPTION:
 				setModelElementTextOption((TextOption)newValue);
+				return;
+			case OptionsPackage.LAYOUT_OPTIONS__HEADER_TEXT:
+				setHeaderText((String)newValue);
+				return;
+			case OptionsPackage.LAYOUT_OPTIONS__FOOTER_TEXT:
+				setFooterText((String)newValue);
+				return;
+			case OptionsPackage.LAYOUT_OPTIONS__SECTION_OPTION:
+				setSectionOption((SectionOption)newValue);
+				return;
+			case OptionsPackage.LAYOUT_OPTIONS__SECTION_FONT_SIZE_DECREASE_STEP:
+				setSectionFontSizeDecreaseStep(((Integer)newValue).intValue());
+				return;
+			case OptionsPackage.LAYOUT_OPTIONS__DOCUMENT_TITLE_TEXT_OPTION:
+				setDocumentTitleTextOption((TextOption)newValue);
+				return;
+			case OptionsPackage.LAYOUT_OPTIONS__SHOW_MODEL_ELEMENT_TYPE_IN_SECTION_TITLE:
+				setShowModelElementTypeInSectionTitle(((Boolean)newValue).booleanValue());
+				return;
+			case OptionsPackage.LAYOUT_OPTIONS__ATTRIBUTE_TEXT_OPTION:
+				setAttributeTextOption((TextOption)newValue);
+				return;
+			case OptionsPackage.LAYOUT_OPTIONS__APPENDIX_STYLE:
+				setAppendixStyle((AppendixStyle)newValue);
 				return;
 		}
 		super.eSet(featureID, newValue);
@@ -654,6 +1077,30 @@ public class LayoutOptionsImpl extends RendererOptionImpl implements LayoutOptio
 			case OptionsPackage.LAYOUT_OPTIONS__MODEL_ELEMENT_TEXT_OPTION:
 				setModelElementTextOption((TextOption)null);
 				return;
+			case OptionsPackage.LAYOUT_OPTIONS__HEADER_TEXT:
+				setHeaderText(HEADER_TEXT_EDEFAULT);
+				return;
+			case OptionsPackage.LAYOUT_OPTIONS__FOOTER_TEXT:
+				setFooterText(FOOTER_TEXT_EDEFAULT);
+				return;
+			case OptionsPackage.LAYOUT_OPTIONS__SECTION_OPTION:
+				setSectionOption((SectionOption)null);
+				return;
+			case OptionsPackage.LAYOUT_OPTIONS__SECTION_FONT_SIZE_DECREASE_STEP:
+				setSectionFontSizeDecreaseStep(SECTION_FONT_SIZE_DECREASE_STEP_EDEFAULT);
+				return;
+			case OptionsPackage.LAYOUT_OPTIONS__DOCUMENT_TITLE_TEXT_OPTION:
+				setDocumentTitleTextOption((TextOption)null);
+				return;
+			case OptionsPackage.LAYOUT_OPTIONS__SHOW_MODEL_ELEMENT_TYPE_IN_SECTION_TITLE:
+				setShowModelElementTypeInSectionTitle(SHOW_MODEL_ELEMENT_TYPE_IN_SECTION_TITLE_EDEFAULT);
+				return;
+			case OptionsPackage.LAYOUT_OPTIONS__ATTRIBUTE_TEXT_OPTION:
+				setAttributeTextOption((TextOption)null);
+				return;
+			case OptionsPackage.LAYOUT_OPTIONS__APPENDIX_STYLE:
+				setAppendixStyle(APPENDIX_STYLE_EDEFAULT);
+				return;
 		}
 		super.eUnset(featureID);
 	}
@@ -686,6 +1133,22 @@ public class LayoutOptionsImpl extends RendererOptionImpl implements LayoutOptio
 				return hideModelElementImages != HIDE_MODEL_ELEMENT_IMAGES_EDEFAULT;
 			case OptionsPackage.LAYOUT_OPTIONS__MODEL_ELEMENT_TEXT_OPTION:
 				return modelElementTextOption != null;
+			case OptionsPackage.LAYOUT_OPTIONS__HEADER_TEXT:
+				return HEADER_TEXT_EDEFAULT == null ? headerText != null : !HEADER_TEXT_EDEFAULT.equals(headerText);
+			case OptionsPackage.LAYOUT_OPTIONS__FOOTER_TEXT:
+				return FOOTER_TEXT_EDEFAULT == null ? footerText != null : !FOOTER_TEXT_EDEFAULT.equals(footerText);
+			case OptionsPackage.LAYOUT_OPTIONS__SECTION_OPTION:
+				return sectionOption != null;
+			case OptionsPackage.LAYOUT_OPTIONS__SECTION_FONT_SIZE_DECREASE_STEP:
+				return sectionFontSizeDecreaseStep != SECTION_FONT_SIZE_DECREASE_STEP_EDEFAULT;
+			case OptionsPackage.LAYOUT_OPTIONS__DOCUMENT_TITLE_TEXT_OPTION:
+				return documentTitleTextOption != null;
+			case OptionsPackage.LAYOUT_OPTIONS__SHOW_MODEL_ELEMENT_TYPE_IN_SECTION_TITLE:
+				return showModelElementTypeInSectionTitle != SHOW_MODEL_ELEMENT_TYPE_IN_SECTION_TITLE_EDEFAULT;
+			case OptionsPackage.LAYOUT_OPTIONS__ATTRIBUTE_TEXT_OPTION:
+				return attributeTextOption != null;
+			case OptionsPackage.LAYOUT_OPTIONS__APPENDIX_STYLE:
+				return appendixStyle != APPENDIX_STYLE_EDEFAULT;
 		}
 		return super.eIsSet(featureID);
 	}
@@ -712,6 +1175,16 @@ public class LayoutOptionsImpl extends RendererOptionImpl implements LayoutOptio
 		result.append(pageNumberingStyle);
 		result.append(", hideModelElementImages: ");
 		result.append(hideModelElementImages);
+		result.append(", headerText: ");
+		result.append(headerText);
+		result.append(", footerText: ");
+		result.append(footerText);
+		result.append(", sectionFontSizeDecreaseStep: ");
+		result.append(sectionFontSizeDecreaseStep);
+		result.append(", showModelElementTypeInSectionTitle: ");
+		result.append(showModelElementTypeInSectionTitle);
+		result.append(", appendixStyle: ");
+		result.append(appendixStyle);
 		result.append(')');
 		return result.toString();
 	}

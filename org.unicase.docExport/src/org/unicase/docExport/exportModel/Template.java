@@ -13,7 +13,6 @@ import org.unicase.docExport.exportModel.renderers.ModelElementRenderer;
 import org.unicase.docExport.exportModel.renderers.ModelElementRendererMapping;
 import org.unicase.docExport.exportModel.renderers.options.AttributeOption;
 import org.unicase.docExport.exportModel.renderers.options.LayoutOptions;
-import org.unicase.model.ModelElement;
 
 /**
  * <!-- begin-user-doc -->
@@ -27,6 +26,7 @@ import org.unicase.model.ModelElement;
  *   <li>{@link org.unicase.docExport.exportModel.Template#getLayoutOptions <em>Layout Options</em>}</li>
  *   <li>{@link org.unicase.docExport.exportModel.Template#getGlobalRendererOptions <em>Global Renderer Options</em>}</li>
  *   <li>{@link org.unicase.docExport.exportModel.Template#getName <em>Name</em>}</li>
+ *   <li>{@link org.unicase.docExport.exportModel.Template#getLogoImage <em>Logo Image</em>}</li>
  * </ul>
  * </p>
  *
@@ -119,14 +119,35 @@ public interface Template extends EObject {
 	 */
 	void setName(String value);
 
+	/**
+	 * Returns the value of the '<em><b>Logo Image</b></em>' attribute.
+	 * <!-- begin-user-doc -->
+	 * <p>
+	 * If the meaning of the '<em>Logo Image</em>' attribute isn't clear,
+	 * there really should be more of a description here...
+	 * </p>
+	 * <!-- end-user-doc -->
+	 * @return the value of the '<em>Logo Image</em>' attribute.
+	 * @see #setLogoImage(String)
+	 * @see org.unicase.docExport.exportModel.ExportModelPackage#getTemplate_LogoImage()
+	 * @model
+	 * @generated
+	 */
+	String getLogoImage();
+
+	/**
+	 * Sets the value of the '{@link org.unicase.docExport.exportModel.Template#getLogoImage <em>Logo Image</em>}' attribute.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @param value the new value of the '<em>Logo Image</em>' attribute.
+	 * @see #getLogoImage()
+	 * @generated
+	 */
+	void setLogoImage(String value);
+
 	//begin custom code
 	AttributeOption getGlobalAttributeRendererOption(Class<? extends AttributeOption> clazz);
-	
-	boolean hasAlreadyBeenRendered(ModelElement me);
-	
-	void initiateRenderedModelElements();
-
-	void addRenderedModelElement(ModelElement me);
+	ModelElementRenderer getModelElementRendererNotNull(EClass eClass, Template template);
 	void setModelElementRenderer(String eClassName, ModelElementRenderer renderer);
 	ModelElementRenderer getModelElementRenderer(EClass modelElementEClass);
 	void removeModelElementRenderer(EClass modelElementEClass);

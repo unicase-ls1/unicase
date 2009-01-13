@@ -6,11 +6,24 @@
  */
 package org.unicase.docExport.exportModel.renderers.defaultRenderers.impl;
 
+import java.io.File;
+import java.io.IOException;
+import java.net.URL;
+import java.util.Calendar;
+import java.util.Collections;
+import java.util.Date;
+import java.util.GregorianCalendar;
+
+import org.eclipse.core.runtime.FileLocator;
 import org.eclipse.core.runtime.IStatus;
+import org.eclipse.core.runtime.Path;
 import org.eclipse.emf.common.util.EList;
 import org.eclipse.emf.ecore.EAttribute;
 import org.eclipse.emf.ecore.EClass;
 import org.eclipse.emf.ecore.EStructuralFeature;
+import org.unicase.docExport.Activator;
+import org.unicase.docExport.DocumentExport;
+import org.unicase.docExport.TemplateRegistry;
 import org.unicase.docExport.exportModel.Template;
 import org.unicase.docExport.exportModel.builders.DefaultModelElementRendererBuilder;
 import org.unicase.docExport.exportModel.renderers.ModelElementRenderer;
@@ -18,10 +31,15 @@ import org.unicase.docExport.exportModel.renderers.ModelElementRendererMapping;
 import org.unicase.docExport.exportModel.renderers.defaultRenderers.DefaultAttributeRenderer;
 import org.unicase.docExport.exportModel.renderers.defaultRenderers.DefaultRenderersPackage;
 import org.unicase.docExport.exportModel.renderers.elements.UCompositeSection;
+import org.unicase.docExport.exportModel.renderers.elements.UImage;
 import org.unicase.docExport.exportModel.renderers.elements.UList;
 import org.unicase.docExport.exportModel.renderers.elements.UParagraph;
 import org.unicase.docExport.exportModel.renderers.impl.AttributeRendererImpl;
 import org.unicase.docExport.exportModel.renderers.options.AttributeOption;
+import org.unicase.docExport.exportModel.renderers.options.BooleanAttributeOption;
+import org.unicase.docExport.exportModel.renderers.options.BooleanStyle;
+import org.unicase.docExport.exportModel.renderers.options.DateAttributeOption;
+import org.unicase.docExport.exportModel.renderers.options.DateStyle;
 import org.unicase.docExport.exportModel.renderers.options.LayoutOptions;
 import org.unicase.docExport.exportModel.renderers.options.ListOption;
 import org.unicase.docExport.exportModel.renderers.options.ListStyle;
@@ -30,7 +48,6 @@ import org.unicase.docExport.exportModel.renderers.options.OptionsFactory;
 import org.unicase.docExport.exportModel.renderers.options.ReferenceAttributeOption;
 import org.unicase.docExport.exportModel.renderers.options.ReferenceOption;
 import org.unicase.docExport.exportModel.renderers.options.SingleReferenceAttributeOption;
-import org.unicase.docExport.exportModel.renderers.options.StringAttributeOption;
 import org.unicase.model.ModelElement;
 import org.unicase.workspace.util.WorkspaceUtil;
 
@@ -102,8 +119,9 @@ public class DefaultAttributeRendererImpl extends AttributeRendererImpl implemen
 			if (content != null) {
 				if (((SingleReferenceAttributeOption)getAttributeOption()).isContained() ) {
 					renderContainedReference((ModelElement)content, parent, feature);
-					template.addRenderedModelElement((ModelElement) content);
+					DocumentExport.addRenderedModelElement((ModelElement) content);
 				} else {
+					TemplateRegistry.setMeCount(TemplateRegistry.getMeCount());
 					renderLinkedReference((ModelElement)content, parent, feature);
 				}
 			}
@@ -116,27 +134,181 @@ public class DefaultAttributeRendererImpl extends AttributeRendererImpl implemen
 			EStructuralFeature feature
 		) {
 		
-		if (getAttributeOption() instanceof StringAttributeOption) {
-			StringAttributeOption option = (StringAttributeOption) getAttributeOption();
+		if (getAttributeOption() instanceof BooleanAttributeOption) {
+			renderBooleanFeature(parent, feature, content);
+		} else if (getAttributeOption() instanceof DateAttributeOption) {
+			renderDateFeature(parent, feature, content);
+		} else {
+			//StringAttributeOption
 			UParagraph name = new UParagraph(
-					"" + feature.getName() + ": " + 
 					content.toString(), 
-					option.getTextOption()
+					template.getLayoutOptions().getDefaultTextOption()
 				);
-			name.setIndentionLeft(1);
-			parent.add(name);		
+			parent.add(name);			
 		}
 
 	}
 
+	
+	private void renderBooleanFeature(
+			UCompositeSection parent, 
+			EStructuralFeature feature,
+			Object content
+	) {
+		BooleanAttributeOption option = (BooleanAttributeOption) getAttributeOption();
+		Boolean booleanContent = (Boolean) content;
+		
+		if (option.getBooleanStyle().equals(BooleanStyle.IMAGE)) {
+			try {
+				URL templateFolder = FileLocator.find(Activator.getDefault()
+						.getBundle(), new Path("docExportImages/"),
+						Collections.EMPTY_MAP);
+				String fileName = "";
+				
+				if (content.toString().equals("true")) {
+					fileName = "true.svg";
+				} else {
+					fileName = "false.svg";
+				}
+				
+				File imageFile = new File(
+						FileLocator.resolve(templateFolder).getPath()
+						+ fileName
+					);
+				
+				UImage booleanImage = new UImage(new Path(imageFile.getAbsolutePath()));
+				booleanImage.setWidth(template.getLayoutOptions().getDefaultTextOption().getFontSize());
+				booleanImage.setHeight(template.getLayoutOptions().getDefaultTextOption().getFontSize());
+				parent.add(booleanImage);
+			} catch (IOException e) {
+				// TODO Auto-generated catch block
+				e.printStackTrace();
+			}
+		} else if (option.getBooleanStyle().equals(BooleanStyle.NUMBERS)) {
+			String text;
+			if (booleanContent) {
+				text = "1";
+			} else {
+				text = "0";
+			}
+			UParagraph number = new UParagraph(
+					text, 
+					template.getLayoutOptions().getDefaultTextOption()
+				);
+			parent.add(number);
+		} else if (option.getBooleanStyle().equals(BooleanStyle.TRUE_FALSE)) {
+			String text;
+			if (booleanContent) {
+				text = "true";
+			} else {
+				text = "false";
+			}
+			UParagraph number = new UParagraph(
+					text, 
+					template.getLayoutOptions().getDefaultTextOption()
+				);
+			parent.add(number);		
+		} else if (option.getBooleanStyle().equals(BooleanStyle.YES_NO)) {
+			String text;
+			if (booleanContent) {
+				text = "yes";
+			} else {
+				text = "no";
+			}
+			UParagraph number = new UParagraph(
+					text, 
+					template.getLayoutOptions().getDefaultTextOption()
+				);
+			parent.add(number);		
+		} else {
+			WorkspaceUtil.log(
+					"unimplemented Boolean Style: " + option.getBooleanStyle(), 
+					new Exception(), 
+					IStatus.WARNING
+				);
+		}
+	}
+	
+	private void renderDateFeature(
+			UCompositeSection parent, 
+			EStructuralFeature feature,
+			Object content
+	) {
+		DateAttributeOption option = (DateAttributeOption) getAttributeOption();
+		Date date = (Date) content;
+		
+		UParagraph par = new UParagraph("", template.getLayoutOptions().getDefaultTextOption());
+		parent.add(par);
+		Calendar cal = new GregorianCalendar();
+		cal.setTime(date);
+		
+		if (option.getDateStyle().equals(DateStyle.FULL)) {
+			par.setText(date.toString());
+		} else if (option.getDateStyle().equals(DateStyle.NUMERIC_TIME_WITH_SECONDS)) {
+			par.setText(
+					cal.get(Calendar.HOUR) 
+					+ ":" 
+					+ cal.get(Calendar.MINUTE) 
+					+ ":" 
+					+ cal.get(Calendar.SECOND)
+				);
+		} else if (option.getDateStyle().equals(DateStyle.NUMERIC_TIME)) {
+			par.setText(
+					cal.get(Calendar.HOUR) 
+					+ ":" 
+					+ cal.get(Calendar.MINUTE) 
+				);			
+		} else if (option.getDateStyle().equals(DateStyle.NUMERIC_DAY)) {
+			par.setText(
+					cal.get(Calendar.DATE)
+					+ " "
+					+ cal.get(Calendar.HOUR) 
+					+ ":" 
+					+ cal.get(Calendar.MINUTE) 
+				);			
+		} else if (option.getDateStyle().equals(DateStyle.NUMERIC_MONTH)) {
+			par.setText(
+					cal.get(Calendar.DATE)
+					+ "."
+					+ cal.get(Calendar.MONTH) 
+					+ " "
+					+ cal.get(Calendar.HOUR) 
+					+ ":" 
+					+ cal.get(Calendar.MINUTE) 
+				);				
+		} else if (option.getDateStyle().equals(DateStyle.NUMERIC_YEAR)) {
+			par.setText(
+					cal.get(Calendar.DATE)
+					+ "."
+					+ cal.get(Calendar.MONTH) 
+					+ "." 
+					+ cal.get(Calendar.YEAR)
+					+ " "
+					+ cal.get(Calendar.HOUR) 
+					+ ":" 
+					+ cal.get(Calendar.MINUTE) 
+				);			
+		} else if (option.getDateStyle().equals(DateStyle.NICE1)) {
+			//TODO create string of day and month instead of integer
+			par.setText(
+					cal.get(Calendar.DATE)
+					+ "."
+					+ cal.get(Calendar.MONTH) 
+					+ "." 
+					+ cal.get(Calendar.YEAR)
+					+ " "
+					+ cal.get(Calendar.HOUR) 
+					+ ":" 
+					+ cal.get(Calendar.MINUTE) 
+				);		
+		}
+	}	
+	
 	private void renderLinkedReference(
 			ModelElement content, 
 			UCompositeSection parent, 
 			EStructuralFeature feature
 		) {
-		
-		
-
 		String text = "" + feature.getName() + ": " + 
 		content.getName();
 		
@@ -171,7 +343,6 @@ public class DefaultAttributeRendererImpl extends AttributeRendererImpl implemen
 			UCompositeSection attributeSection, 
 			EStructuralFeature feature
 		) {
-		
 		ModelElementRenderer renderer = getModelElementRenderer(content.eClass());
 		try {
 			renderer.render(content, attributeSection);
@@ -190,7 +361,7 @@ public class DefaultAttributeRendererImpl extends AttributeRendererImpl implemen
 			if (mapping.getEClassName().equals(eClass.getName()))
 				return mapping.getRenderer();
 		}
-		
+
 		return DefaultModelElementRendererBuilder.build(eClass, template);
 	}
 

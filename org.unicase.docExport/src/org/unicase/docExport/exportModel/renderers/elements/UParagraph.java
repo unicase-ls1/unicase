@@ -1,6 +1,8 @@
 package org.unicase.docExport.exportModel.renderers.elements;
 
 import org.eclipse.core.runtime.IStatus;
+import org.eclipse.emf.ecore.util.EcoreUtil;
+import org.unicase.docExport.exportModel.renderers.options.BoxModelOption;
 import org.unicase.docExport.exportModel.renderers.options.OptionsFactory;
 import org.unicase.docExport.exportModel.renderers.options.TextOption;
 import org.unicase.workspace.util.WorkspaceUtil;
@@ -14,7 +16,7 @@ import org.unicase.workspace.util.WorkspaceUtil;
 public class UParagraph extends UCompositeSection {
 	
 	private TextOption option = OptionsFactory.eINSTANCE.createTextOption();
-	
+
 	private String text = "";
 	private int indentionLeft;
 	
@@ -24,6 +26,18 @@ public class UParagraph extends UCompositeSection {
 	public UParagraph(String text) {
 		this.setText(text);
 	}
+	
+	/**
+	 * 
+	 * @param text the content of the paragraph
+	 * @param option the TextOption which decorates the content
+	 * @param boxModelOption defines padding border and margin of the box.
+	 */
+	public UParagraph(String text, TextOption option, BoxModelOption boxModelOption) {
+		this.setBoxModel(boxModelOption);
+		this.setOption(option);
+		this.setText(text);
+	}	
 	
 	/**
 	 * 
@@ -81,15 +95,14 @@ public class UParagraph extends UCompositeSection {
 					IStatus.WARNING
 				);
 		} else {
-			this.option = option;
+			this.option = (TextOption) EcoreUtil.copy(option);
 		}
 	}
 
 	/**
 	 * @return the option
 	 */
-	@Override
 	public TextOption getOption() {
 		return option;
-	}	
+	}
 }

@@ -63,7 +63,15 @@ public enum ListStyle implements Enumerator {
 	 * @generated
 	 * @ordered
 	 */
-	ALPHA(4, "ALPHA", "alpha");
+	ALPHA(4, "ALPHA", "alpha"), /**
+	 * The '<em><b>TABLE</b></em>' literal object.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @see #TABLE_VALUE
+	 * @generated
+	 * @ordered
+	 */
+	TABLE(5, "TABLE", "table");
 
 	/**
 	 * The '<em><b>BULLETED</b></em>' literal value.
@@ -141,6 +149,21 @@ public enum ListStyle implements Enumerator {
 	public static final int ALPHA_VALUE = 4;
 
 	/**
+	 * The '<em><b>TABLE</b></em>' literal value.
+	 * <!-- begin-user-doc -->
+	 * <p>
+	 * If the meaning of '<em><b>TABLE</b></em>' literal object isn't clear,
+	 * there really should be more of a description here...
+	 * </p>
+	 * <!-- end-user-doc -->
+	 * @see #TABLE
+	 * @model literal="table"
+	 * @generated
+	 * @ordered
+	 */
+	public static final int TABLE_VALUE = 5;
+
+	/**
 	 * An array of all the '<em><b>List Style</b></em>' enumerators.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
@@ -153,6 +176,7 @@ public enum ListStyle implements Enumerator {
 			SEPERATED_LIST,
 			NUMBERED,
 			ALPHA,
+			TABLE,
 		};
 
 	/**
@@ -208,6 +232,7 @@ public enum ListStyle implements Enumerator {
 			case SEPERATED_LIST_VALUE: return SEPERATED_LIST;
 			case NUMBERED_VALUE: return NUMBERED;
 			case ALPHA_VALUE: return ALPHA;
+			case TABLE_VALUE: return TABLE;
 		}
 		return null;
 	}

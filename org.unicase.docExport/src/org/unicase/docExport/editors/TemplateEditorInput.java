@@ -104,7 +104,6 @@ public class TemplateEditorInput implements IEditorInput {
 		return false;
 	}
 
-
 	/** 
 	 * {@inheritDoc}
 	 * @see java.lang.Object#hashCode()
@@ -113,7 +112,4 @@ public class TemplateEditorInput implements IEditorInput {
 	public int hashCode() {
 		return template.hashCode();
 	}
-	
-	
-
 }

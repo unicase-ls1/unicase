@@ -11,6 +11,9 @@ import org.eclipse.emf.common.notify.Notifier;
 import org.eclipse.emf.common.notify.impl.AdapterFactoryImpl;
 import org.eclipse.emf.ecore.EObject;
 import org.unicase.docExport.exportModel.renderers.options.AttributeOption;
+import org.unicase.docExport.exportModel.renderers.options.BooleanAttributeOption;
+import org.unicase.docExport.exportModel.renderers.options.BoxModelOption;
+import org.unicase.docExport.exportModel.renderers.options.DateAttributeOption;
 import org.unicase.docExport.exportModel.renderers.options.LayoutOptions;
 import org.unicase.docExport.exportModel.renderers.options.ListOption;
 import org.unicase.docExport.exportModel.renderers.options.MultiReferenceAttributeOption;
@@ -18,6 +21,7 @@ import org.unicase.docExport.exportModel.renderers.options.OptionsPackage;
 import org.unicase.docExport.exportModel.renderers.options.ReferenceAttributeOption;
 import org.unicase.docExport.exportModel.renderers.options.ReferenceOption;
 import org.unicase.docExport.exportModel.renderers.options.RendererOption;
+import org.unicase.docExport.exportModel.renderers.options.SectionOption;
 import org.unicase.docExport.exportModel.renderers.options.SingleReferenceAttributeOption;
 import org.unicase.docExport.exportModel.renderers.options.StringAttributeOption;
 import org.unicase.docExport.exportModel.renderers.options.TextOption;
@@ -122,6 +126,22 @@ public class OptionsAdapterFactory extends AdapterFactoryImpl {
 			@Override
 			public Adapter caseUColor(UColor object) {
 				return createUColorAdapter();
+			}
+			@Override
+			public Adapter caseBoxModelOption(BoxModelOption object) {
+				return createBoxModelOptionAdapter();
+			}
+			@Override
+			public Adapter caseSectionOption(SectionOption object) {
+				return createSectionOptionAdapter();
+			}
+			@Override
+			public Adapter caseBooleanAttributeOption(BooleanAttributeOption object) {
+				return createBooleanAttributeOptionAdapter();
+			}
+			@Override
+			public Adapter caseDateAttributeOption(DateAttributeOption object) {
+				return createDateAttributeOptionAdapter();
 			}
 			@Override
 			public Adapter defaultCase(EObject object) {
@@ -294,6 +314,62 @@ public class OptionsAdapterFactory extends AdapterFactoryImpl {
 	 * @generated
 	 */
 	public Adapter createUColorAdapter() {
+		return null;
+	}
+
+	/**
+	 * Creates a new adapter for an object of class '{@link org.unicase.docExport.exportModel.renderers.options.BoxModelOption <em>Box Model Option</em>}'.
+	 * <!-- begin-user-doc -->
+	 * This default implementation returns null so that we can easily ignore cases;
+	 * it's useful to ignore a case when inheritance will catch all the cases anyway.
+	 * <!-- end-user-doc -->
+	 * @return the new adapter.
+	 * @see org.unicase.docExport.exportModel.renderers.options.BoxModelOption
+	 * @generated
+	 */
+	public Adapter createBoxModelOptionAdapter() {
+		return null;
+	}
+
+	/**
+	 * Creates a new adapter for an object of class '{@link org.unicase.docExport.exportModel.renderers.options.SectionOption <em>Section Option</em>}'.
+	 * <!-- begin-user-doc -->
+	 * This default implementation returns null so that we can easily ignore cases;
+	 * it's useful to ignore a case when inheritance will catch all the cases anyway.
+	 * <!-- end-user-doc -->
+	 * @return the new adapter.
+	 * @see org.unicase.docExport.exportModel.renderers.options.SectionOption
+	 * @generated
+	 */
+	public Adapter createSectionOptionAdapter() {
+		return null;
+	}
+
+	/**
+	 * Creates a new adapter for an object of class '{@link org.unicase.docExport.exportModel.renderers.options.BooleanAttributeOption <em>Boolean Attribute Option</em>}'.
+	 * <!-- begin-user-doc -->
+	 * This default implementation returns null so that we can easily ignore cases;
+	 * it's useful to ignore a case when inheritance will catch all the cases anyway.
+	 * <!-- end-user-doc -->
+	 * @return the new adapter.
+	 * @see org.unicase.docExport.exportModel.renderers.options.BooleanAttributeOption
+	 * @generated
+	 */
+	public Adapter createBooleanAttributeOptionAdapter() {
+		return null;
+	}
+
+	/**
+	 * Creates a new adapter for an object of class '{@link org.unicase.docExport.exportModel.renderers.options.DateAttributeOption <em>Date Attribute Option</em>}'.
+	 * <!-- begin-user-doc -->
+	 * This default implementation returns null so that we can easily ignore cases;
+	 * it's useful to ignore a case when inheritance will catch all the cases anyway.
+	 * <!-- end-user-doc -->
+	 * @return the new adapter.
+	 * @see org.unicase.docExport.exportModel.renderers.options.DateAttributeOption
+	 * @generated
+	 */
+	public Adapter createDateAttributeOptionAdapter() {
 		return null;
 	}
 

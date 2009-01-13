@@ -19,7 +19,9 @@ import org.unicase.docExport.exportModel.renderers.impl.RenderersPackageImpl;
 import org.unicase.docExport.exportModel.renderers.options.OptionsPackage;
 import org.unicase.docExport.exportModel.renderers.options.impl.OptionsPackageImpl;
 import org.unicase.docExport.exportModel.renderers.specialRenderers.MeetingRenderer;
+import org.unicase.docExport.exportModel.renderers.specialRenderers.MethodRenderer;
 import org.unicase.docExport.exportModel.renderers.specialRenderers.MilestoneRenderer;
+import org.unicase.docExport.exportModel.renderers.specialRenderers.PackageFlatRenderer;
 import org.unicase.docExport.exportModel.renderers.specialRenderers.SpecialRenderersFactory;
 import org.unicase.docExport.exportModel.renderers.specialRenderers.SpecialRenderersPackage;
 import org.unicase.docExport.exportModel.renderers.specialRenderers.StepsAttributeRenderer;
@@ -51,6 +53,20 @@ public class SpecialRenderersPackageImpl extends EPackageImpl implements Special
 	 * @generated
 	 */
 	private EClass stepsAttributeRendererEClass = null;
+
+	/**
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 */
+	private EClass methodRendererEClass = null;
+
+	/**
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 */
+	private EClass packageFlatRendererEClass = null;
 
 	/**
 	 * Creates an instance of the model <b>Package</b>, registered with
@@ -169,6 +185,24 @@ public class SpecialRenderersPackageImpl extends EPackageImpl implements Special
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
+	public EClass getMethodRenderer() {
+		return methodRendererEClass;
+	}
+
+	/**
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 */
+	public EClass getPackageFlatRenderer() {
+		return packageFlatRendererEClass;
+	}
+
+	/**
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 */
 	public SpecialRenderersFactory getSpecialRenderersFactory() {
 		return (SpecialRenderersFactory)getEFactoryInstance();
 	}
@@ -197,6 +231,10 @@ public class SpecialRenderersPackageImpl extends EPackageImpl implements Special
 		milestoneRendererEClass = createEClass(MILESTONE_RENDERER);
 
 		stepsAttributeRendererEClass = createEClass(STEPS_ATTRIBUTE_RENDERER);
+
+		methodRendererEClass = createEClass(METHOD_RENDERER);
+
+		packageFlatRendererEClass = createEClass(PACKAGE_FLAT_RENDERER);
 	}
 
 	/**
@@ -233,6 +271,8 @@ public class SpecialRenderersPackageImpl extends EPackageImpl implements Special
 		meetingRendererEClass.getESuperTypes().add(theRenderersPackage.getModelElementRenderer());
 		milestoneRendererEClass.getESuperTypes().add(theRenderersPackage.getModelElementRenderer());
 		stepsAttributeRendererEClass.getESuperTypes().add(theRenderersPackage.getAttributeRenderer());
+		methodRendererEClass.getESuperTypes().add(theRenderersPackage.getAttributeRenderer());
+		packageFlatRendererEClass.getESuperTypes().add(theRenderersPackage.getModelElementRenderer());
 
 		// Initialize classes and features; add operations and parameters
 		initEClass(meetingRendererEClass, MeetingRenderer.class, "MeetingRenderer", !IS_ABSTRACT, !IS_INTERFACE, IS_GENERATED_INSTANCE_CLASS);
@@ -240,6 +280,10 @@ public class SpecialRenderersPackageImpl extends EPackageImpl implements Special
 		initEClass(milestoneRendererEClass, MilestoneRenderer.class, "MilestoneRenderer", !IS_ABSTRACT, !IS_INTERFACE, IS_GENERATED_INSTANCE_CLASS);
 
 		initEClass(stepsAttributeRendererEClass, StepsAttributeRenderer.class, "StepsAttributeRenderer", !IS_ABSTRACT, !IS_INTERFACE, IS_GENERATED_INSTANCE_CLASS);
+
+		initEClass(methodRendererEClass, MethodRenderer.class, "MethodRenderer", !IS_ABSTRACT, !IS_INTERFACE, IS_GENERATED_INSTANCE_CLASS);
+
+		initEClass(packageFlatRendererEClass, PackageFlatRenderer.class, "PackageFlatRenderer", !IS_ABSTRACT, !IS_INTERFACE, IS_GENERATED_INSTANCE_CLASS);
 	}
 
 } //SpecialRenderersPackageImpl

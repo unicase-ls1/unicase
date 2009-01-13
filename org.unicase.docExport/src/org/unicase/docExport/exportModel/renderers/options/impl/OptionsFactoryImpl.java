@@ -12,6 +12,12 @@ import org.eclipse.emf.ecore.EObject;
 import org.eclipse.emf.ecore.EPackage;
 import org.eclipse.emf.ecore.impl.EFactoryImpl;
 import org.eclipse.emf.ecore.plugin.EcorePlugin;
+import org.unicase.docExport.exportModel.renderers.options.AppendixStyle;
+import org.unicase.docExport.exportModel.renderers.options.BooleanAttributeOption;
+import org.unicase.docExport.exportModel.renderers.options.BooleanStyle;
+import org.unicase.docExport.exportModel.renderers.options.BoxModelOption;
+import org.unicase.docExport.exportModel.renderers.options.DateAttributeOption;
+import org.unicase.docExport.exportModel.renderers.options.DateStyle;
 import org.unicase.docExport.exportModel.renderers.options.FontFamily;
 import org.unicase.docExport.exportModel.renderers.options.LayoutOptions;
 import org.unicase.docExport.exportModel.renderers.options.ListOption;
@@ -21,9 +27,13 @@ import org.unicase.docExport.exportModel.renderers.options.OptionsFactory;
 import org.unicase.docExport.exportModel.renderers.options.OptionsPackage;
 import org.unicase.docExport.exportModel.renderers.options.PageNumberingStyle;
 import org.unicase.docExport.exportModel.renderers.options.ReferenceOption;
+import org.unicase.docExport.exportModel.renderers.options.SectionNumberingStyle;
+import org.unicase.docExport.exportModel.renderers.options.SectionOption;
 import org.unicase.docExport.exportModel.renderers.options.SingleReferenceAttributeOption;
 import org.unicase.docExport.exportModel.renderers.options.StringAttributeOption;
+import org.unicase.docExport.exportModel.renderers.options.TextAlign;
 import org.unicase.docExport.exportModel.renderers.options.TextOption;
+import org.unicase.docExport.exportModel.renderers.options.UBorderStyle;
 import org.unicase.docExport.exportModel.renderers.options.UColor;
 
 /**
@@ -78,6 +88,10 @@ public class OptionsFactoryImpl extends EFactoryImpl implements OptionsFactory {
 			case OptionsPackage.LIST_OPTION: return createListOption();
 			case OptionsPackage.TEXT_OPTION: return createTextOption();
 			case OptionsPackage.UCOLOR: return createUColor();
+			case OptionsPackage.BOX_MODEL_OPTION: return createBoxModelOption();
+			case OptionsPackage.SECTION_OPTION: return createSectionOption();
+			case OptionsPackage.BOOLEAN_ATTRIBUTE_OPTION: return createBooleanAttributeOption();
+			case OptionsPackage.DATE_ATTRIBUTE_OPTION: return createDateAttributeOption();
 			default:
 				throw new IllegalArgumentException("The class '" + eClass.getName() + "' is not a valid classifier");
 		}
@@ -91,12 +105,24 @@ public class OptionsFactoryImpl extends EFactoryImpl implements OptionsFactory {
 	@Override
 	public Object createFromString(EDataType eDataType, String initialValue) {
 		switch (eDataType.getClassifierID()) {
+			case OptionsPackage.APPENDIX_STYLE:
+				return createAppendixStyleFromString(eDataType, initialValue);
 			case OptionsPackage.FONT_FAMILY:
 				return createFontFamilyFromString(eDataType, initialValue);
 			case OptionsPackage.LIST_STYLE:
 				return createListStyleFromString(eDataType, initialValue);
 			case OptionsPackage.PAGE_NUMBERING_STYLE:
 				return createPageNumberingStyleFromString(eDataType, initialValue);
+			case OptionsPackage.UBORDER_STYLE:
+				return createUBorderStyleFromString(eDataType, initialValue);
+			case OptionsPackage.SECTION_NUMBERING_STYLE:
+				return createSectionNumberingStyleFromString(eDataType, initialValue);
+			case OptionsPackage.TEXT_ALIGN:
+				return createTextAlignFromString(eDataType, initialValue);
+			case OptionsPackage.BOOLEAN_STYLE:
+				return createBooleanStyleFromString(eDataType, initialValue);
+			case OptionsPackage.DATE_STYLE:
+				return createDateStyleFromString(eDataType, initialValue);
 			default:
 				throw new IllegalArgumentException("The datatype '" + eDataType.getName() + "' is not a valid classifier");
 		}
@@ -110,12 +136,24 @@ public class OptionsFactoryImpl extends EFactoryImpl implements OptionsFactory {
 	@Override
 	public String convertToString(EDataType eDataType, Object instanceValue) {
 		switch (eDataType.getClassifierID()) {
+			case OptionsPackage.APPENDIX_STYLE:
+				return convertAppendixStyleToString(eDataType, instanceValue);
 			case OptionsPackage.FONT_FAMILY:
 				return convertFontFamilyToString(eDataType, instanceValue);
 			case OptionsPackage.LIST_STYLE:
 				return convertListStyleToString(eDataType, instanceValue);
 			case OptionsPackage.PAGE_NUMBERING_STYLE:
 				return convertPageNumberingStyleToString(eDataType, instanceValue);
+			case OptionsPackage.UBORDER_STYLE:
+				return convertUBorderStyleToString(eDataType, instanceValue);
+			case OptionsPackage.SECTION_NUMBERING_STYLE:
+				return convertSectionNumberingStyleToString(eDataType, instanceValue);
+			case OptionsPackage.TEXT_ALIGN:
+				return convertTextAlignToString(eDataType, instanceValue);
+			case OptionsPackage.BOOLEAN_STYLE:
+				return convertBooleanStyleToString(eDataType, instanceValue);
+			case OptionsPackage.DATE_STYLE:
+				return convertDateStyleToString(eDataType, instanceValue);
 			default:
 				throw new IllegalArgumentException("The datatype '" + eDataType.getName() + "' is not a valid classifier");
 		}
@@ -206,6 +244,66 @@ public class OptionsFactoryImpl extends EFactoryImpl implements OptionsFactory {
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
+	public BoxModelOption createBoxModelOption() {
+		BoxModelOptionImpl boxModelOption = new BoxModelOptionImpl();
+		return boxModelOption;
+	}
+
+	/**
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 */
+	public SectionOption createSectionOption() {
+		SectionOptionImpl sectionOption = new SectionOptionImpl();
+		return sectionOption;
+	}
+
+	/**
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 */
+	public BooleanAttributeOption createBooleanAttributeOption() {
+		BooleanAttributeOptionImpl booleanAttributeOption = new BooleanAttributeOptionImpl();
+		return booleanAttributeOption;
+	}
+
+	/**
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 */
+	public DateAttributeOption createDateAttributeOption() {
+		DateAttributeOptionImpl dateAttributeOption = new DateAttributeOptionImpl();
+		return dateAttributeOption;
+	}
+
+	/**
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 */
+	public AppendixStyle createAppendixStyleFromString(EDataType eDataType, String initialValue) {
+		AppendixStyle result = AppendixStyle.get(initialValue);
+		if (result == null) throw new IllegalArgumentException("The value '" + initialValue + "' is not a valid enumerator of '" + eDataType.getName() + "'");
+		return result;
+	}
+
+	/**
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 */
+	public String convertAppendixStyleToString(EDataType eDataType, Object instanceValue) {
+		return instanceValue == null ? null : instanceValue.toString();
+	}
+
+	/**
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 */
 	public FontFamily createFontFamilyFromString(EDataType eDataType, String initialValue) {
 		FontFamily result = FontFamily.get(initialValue);
 		if (result == null) throw new IllegalArgumentException("The value '" + initialValue + "' is not a valid enumerator of '" + eDataType.getName() + "'");
@@ -258,6 +356,106 @@ public class OptionsFactoryImpl extends EFactoryImpl implements OptionsFactory {
 	 * @generated
 	 */
 	public String convertPageNumberingStyleToString(EDataType eDataType, Object instanceValue) {
+		return instanceValue == null ? null : instanceValue.toString();
+	}
+
+	/**
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 */
+	public UBorderStyle createUBorderStyleFromString(EDataType eDataType, String initialValue) {
+		UBorderStyle result = UBorderStyle.get(initialValue);
+		if (result == null) throw new IllegalArgumentException("The value '" + initialValue + "' is not a valid enumerator of '" + eDataType.getName() + "'");
+		return result;
+	}
+
+	/**
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 */
+	public String convertUBorderStyleToString(EDataType eDataType, Object instanceValue) {
+		return instanceValue == null ? null : instanceValue.toString();
+	}
+
+	/**
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 */
+	public SectionNumberingStyle createSectionNumberingStyleFromString(EDataType eDataType, String initialValue) {
+		SectionNumberingStyle result = SectionNumberingStyle.get(initialValue);
+		if (result == null) throw new IllegalArgumentException("The value '" + initialValue + "' is not a valid enumerator of '" + eDataType.getName() + "'");
+		return result;
+	}
+
+	/**
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 */
+	public String convertSectionNumberingStyleToString(EDataType eDataType, Object instanceValue) {
+		return instanceValue == null ? null : instanceValue.toString();
+	}
+
+	/**
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 */
+	public TextAlign createTextAlignFromString(EDataType eDataType, String initialValue) {
+		TextAlign result = TextAlign.get(initialValue);
+		if (result == null) throw new IllegalArgumentException("The value '" + initialValue + "' is not a valid enumerator of '" + eDataType.getName() + "'");
+		return result;
+	}
+
+	/**
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 */
+	public String convertTextAlignToString(EDataType eDataType, Object instanceValue) {
+		return instanceValue == null ? null : instanceValue.toString();
+	}
+
+	/**
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 */
+	public BooleanStyle createBooleanStyleFromString(EDataType eDataType, String initialValue) {
+		BooleanStyle result = BooleanStyle.get(initialValue);
+		if (result == null) throw new IllegalArgumentException("The value '" + initialValue + "' is not a valid enumerator of '" + eDataType.getName() + "'");
+		return result;
+	}
+
+	/**
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 */
+	public String convertBooleanStyleToString(EDataType eDataType, Object instanceValue) {
+		return instanceValue == null ? null : instanceValue.toString();
+	}
+
+	/**
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 */
+	public DateStyle createDateStyleFromString(EDataType eDataType, String initialValue) {
+		DateStyle result = DateStyle.get(initialValue);
+		if (result == null) throw new IllegalArgumentException("The value '" + initialValue + "' is not a valid enumerator of '" + eDataType.getName() + "'");
+		return result;
+	}
+
+	/**
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 */
+	public String convertDateStyleToString(EDataType eDataType, Object instanceValue) {
 		return instanceValue == null ? null : instanceValue.toString();
 	}
 

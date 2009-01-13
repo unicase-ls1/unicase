@@ -11,11 +11,13 @@ import org.eclipse.emf.ecore.EObject;
 import org.eclipse.emf.ecore.EPackage;
 import org.eclipse.emf.ecore.impl.EFactoryImpl;
 import org.eclipse.emf.ecore.plugin.EcorePlugin;
+import org.eclipse.emf.ecore.util.EcoreUtil;
 import org.unicase.docExport.exportModel.Template;
-import org.unicase.docExport.exportModel.renderers.options.OptionsFactory;
 import org.unicase.docExport.exportModel.renderers.options.TextOption;
 import org.unicase.docExport.exportModel.renderers.specialRenderers.MeetingRenderer;
+import org.unicase.docExport.exportModel.renderers.specialRenderers.MethodRenderer;
 import org.unicase.docExport.exportModel.renderers.specialRenderers.MilestoneRenderer;
+import org.unicase.docExport.exportModel.renderers.specialRenderers.PackageFlatRenderer;
 import org.unicase.docExport.exportModel.renderers.specialRenderers.SpecialRenderersFactory;
 import org.unicase.docExport.exportModel.renderers.specialRenderers.SpecialRenderersPackage;
 import org.unicase.docExport.exportModel.renderers.specialRenderers.StepsAttributeRenderer;
@@ -67,6 +69,8 @@ public class SpecialRenderersFactoryImpl extends EFactoryImpl implements Special
 			case SpecialRenderersPackage.MEETING_RENDERER: return createMeetingRenderer();
 			case SpecialRenderersPackage.MILESTONE_RENDERER: return createMilestoneRenderer();
 			case SpecialRenderersPackage.STEPS_ATTRIBUTE_RENDERER: return createStepsAttributeRenderer();
+			case SpecialRenderersPackage.METHOD_RENDERER: return createMethodRenderer();
+			case SpecialRenderersPackage.PACKAGE_FLAT_RENDERER: return createPackageFlatRenderer();
 			default:
 				throw new IllegalArgumentException("The class '" + eClass.getName() + "' is not a valid classifier");
 		}
@@ -90,7 +94,8 @@ public class SpecialRenderersFactoryImpl extends EFactoryImpl implements Special
 	public MeetingRenderer createMeetingRenderer(Template template) {
 		MeetingRendererImpl meetingRenderer = new MeetingRendererImpl();
 		meetingRenderer.setTemplate(template);
-		TextOption workItemTextOption = OptionsFactory.eINSTANCE.createTextOption();
+		TextOption workItemTextOption = 
+			(TextOption)  EcoreUtil.copy(template.getLayoutOptions().getDefaultTextOption());
 		workItemTextOption.setName("workItem");
 		meetingRenderer.getRendererOptions().add(workItemTextOption);
 		return meetingRenderer;
@@ -116,6 +121,26 @@ public class SpecialRenderersFactoryImpl extends EFactoryImpl implements Special
 	public StepsAttributeRenderer createStepsAttributeRenderer() {
 		StepsAttributeRendererImpl stepsAttributeRenderer = new StepsAttributeRendererImpl();
 		return stepsAttributeRenderer;
+	}
+
+	/**
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 */
+	public MethodRenderer createMethodRenderer() {
+		MethodRendererImpl methodRenderer = new MethodRendererImpl();
+		return methodRenderer;
+	}
+
+	/**
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 */
+	public PackageFlatRenderer createPackageFlatRenderer() {
+		PackageFlatRendererImpl packageFlatRenderer = new PackageFlatRendererImpl();
+		return packageFlatRenderer;
 	}
 
 	/**

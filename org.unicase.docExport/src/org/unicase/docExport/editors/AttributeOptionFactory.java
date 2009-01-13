@@ -1,4 +1,4 @@
-package org.unicase.docExport.views;
+package org.unicase.docExport.editors;
 
 import org.eclipse.core.runtime.IStatus;
 import org.eclipse.swt.SWT;
@@ -23,8 +23,11 @@ import org.unicase.docExport.exportModel.renderers.options.MultiReferenceAttribu
 import org.unicase.docExport.exportModel.renderers.options.PageNumberingStyle;
 import org.unicase.docExport.exportModel.renderers.options.ReferenceOption;
 import org.unicase.docExport.exportModel.renderers.options.RendererOption;
+import org.unicase.docExport.exportModel.renderers.options.SectionNumberingStyle;
+import org.unicase.docExport.exportModel.renderers.options.SectionOption;
 import org.unicase.docExport.exportModel.renderers.options.SingleReferenceAttributeOption;
 import org.unicase.docExport.exportModel.renderers.options.StringAttributeOption;
+import org.unicase.docExport.exportModel.renderers.options.TextAlign;
 import org.unicase.docExport.exportModel.renderers.options.TextOption;
 import org.unicase.workspace.util.WorkspaceUtil;
 
@@ -60,6 +63,9 @@ public class AttributeOptionFactory  {
 		}
 		else if (option instanceof LayoutOptions) {
 			buildLayoutOptions((LayoutOptions)option);
+		} 
+		else  if (option instanceof SectionOption) {
+			buildSectionOption((SectionOption)option);
 		}
 		else if (option instanceof TextOption) {
 			buildTextOption((TextOption)option, option.getName());
@@ -69,9 +75,39 @@ public class AttributeOptionFactory  {
 		}
 	}
 
+	private void buildSectionOption(final SectionOption option) {
+		Composite container = createContainer();
+		new Label(container, SWT.NONE).setText("section style");
+		Combo sectionStyle = new Combo(container, SWT.READ_ONLY);
+		for (SectionNumberingStyle style : SectionNumberingStyle.VALUES) {
+			sectionStyle.add(style.getLiteral(), style.getValue());
+		}
+		sectionStyle.addModifyListener(new ModifyListener() {
+			public void modifyText(ModifyEvent e) {
+				option.setSectionNumberingStyle(SectionNumberingStyle.get(((Combo)e.widget).getSelectionIndex()));
+			}
+		});
+		sectionStyle.select(option.getSectionNumberingStyle().getValue());
+		
+		
+		Composite container2 = createContainer();
+		new Label(container2, SWT.NONE).setText("leave out previous section numbering");
+		Button button = new Button(container2, SWT.CHECK);
+		button.addSelectionListener(new SelectionListener()  {
+			public void widgetDefaultSelected(SelectionEvent e) {
+			}
+
+			public void widgetSelected(SelectionEvent e) {
+				option.setLeaveOutPreviousSectionNumbering(((Button) e.widget).getSelection());
+			}
+		});
+		button.setSelection(option.isLeaveOutPreviousSectionNumbering());
+	}
+
 	private void buildListOption(final ListOption option) {
-		newLabel(parent, "List style");
-		Combo listStyle = new Combo(parent, SWT.READ_ONLY);
+		Composite container = createContainer();
+		newLabel(container, "List style");
+		Combo listStyle = new Combo(container, SWT.READ_ONLY);
 		for (ListStyle style : ListStyle.VALUES) {
 			listStyle.add(style.getLiteral(), style.getValue());
 		}
@@ -85,9 +121,21 @@ public class AttributeOptionFactory  {
 
 	private void buildAttributeOption(final AttributeOption option) {
 		
+
+		Text attributeText = new Text(parent, SWT.MULTI | SWT.BORDER);
+		attributeText.setLayoutData((new GridData(GridData.FILL_HORIZONTAL)));
+		attributeText.addModifyListener(new ModifyListener(){
+			public void modifyText(ModifyEvent e) {
+				option.setAttributeText((((Text)e.widget).getText()));
+			}
+		});
+		attributeText.setText(option.getAttributeText());
 		
-		new Label(parent, SWT.LEFT).setText("overwrite");
-		Button button2 = new Button(parent, SWT.CHECK);
+		
+
+		
+		Composite container1 = createContainer();
+		Button button2 = new Button(container1, SWT.CHECK);
 		button2.addSelectionListener(new SelectionListener() {
 			public void widgetDefaultSelected(SelectionEvent e) {}
 
@@ -96,9 +144,11 @@ public class AttributeOptionFactory  {
 			}
 		});
 		button2.setSelection(option.isOverwriteGlobalOption());
+		new Label(container1, SWT.LEFT).setText("overwrite");
 		
-		new Label(parent, SWT.LEFT).setText("hide");
-		Button button = new Button(parent, SWT.CHECK);
+		
+		Composite container2 = createContainer();
+		Button button = new Button(container2, SWT.CHECK);
 		button.addSelectionListener(new SelectionListener() {
 			public void widgetDefaultSelected(SelectionEvent e) {}
 
@@ -107,6 +157,7 @@ public class AttributeOptionFactory  {
 			}
 		});
 		button.setSelection(option.isHide());
+		new Label(container2, SWT.LEFT).setText("hide");
 		
 		
 		if (option instanceof StringAttributeOption) {
@@ -122,8 +173,9 @@ public class AttributeOptionFactory  {
 			final MultiReferenceAttributeOption option) {
 		buildReferenceOption(option.getReferenceOption(true));
 		
-		newLabel(parent, "contained");
-		Button contained = new Button(parent, SWT.CHECK);
+		Composite container = createContainer();
+		
+		Button contained = new Button(container, SWT.CHECK);
 		contained.addSelectionListener(new SelectionListener() {
 			public void widgetDefaultSelected(SelectionEvent e) {}
 
@@ -132,6 +184,7 @@ public class AttributeOptionFactory  {
 			}
 		});
 		contained.setSelection(option.isContained());
+		newLabel(container, "contained");
 		
 		buildListOption(option.getListOption(true));
 	}
@@ -140,8 +193,9 @@ public class AttributeOptionFactory  {
 			final SingleReferenceAttributeOption option) {
 		buildReferenceOption(option.getReferenceOption(true));
 		
-		newLabel(parent, "contained");
-		Button contained = new Button(parent, SWT.CHECK);
+		Composite container = createContainer();
+		
+		Button contained = new Button(container, SWT.CHECK);
 		contained.addSelectionListener(new SelectionListener() {
 			public void widgetDefaultSelected(SelectionEvent e) {}
 
@@ -150,6 +204,7 @@ public class AttributeOptionFactory  {
 			}
 		});
 		contained.setSelection(option.isContained());
+		newLabel(container, "contained");
 	}
 
 
@@ -274,6 +329,19 @@ public class AttributeOptionFactory  {
 			}
 		});
 		fontSize.select(option.getFontSize() - 8);
+		
+		
+		newLabel(group, "Text align");
+		Combo textAlign = new Combo(group, SWT.READ_ONLY);
+		for (TextAlign style : TextAlign.VALUES) {
+			textAlign.add(style.getLiteral(), style.getValue());
+		}
+		textAlign.addModifyListener(new ModifyListener() {
+			public void modifyText(ModifyEvent e) {
+				option.setTextAlign(TextAlign.get(((Combo)e.widget).getSelectionIndex()));
+			}
+		}); 
+		textAlign.select(option.getTextAlign().getValue());
 	}
 	
 
@@ -357,6 +425,8 @@ public class AttributeOptionFactory  {
 		
 
 		buildTextOption(option.getModelElementTextOption(), "ModelElement text option");
+		
+		buildTextOption(option.getDocumentTitleTextOption(), "Document title text option");
 	}
 
 	
@@ -374,6 +444,17 @@ public class AttributeOptionFactory  {
 	
 	private void newLabel(Composite parent, String text) {
 		new Label(parent, SWT.LEFT).setText(text);
+	}
+	
+	private Composite createContainer() {
+		Composite container = new Composite(parent, SWT.NONE);
+		GridLayout gLayout = new GridLayout();
+		GridData gData = new GridData();
+		container.setLayout(gLayout);
+		container.setLayoutData(gData);
+		gLayout.numColumns = 2;
+		
+		return container;
 	}
 
 }

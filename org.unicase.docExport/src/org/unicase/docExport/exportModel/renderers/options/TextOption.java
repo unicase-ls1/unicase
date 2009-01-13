@@ -20,6 +20,7 @@ package org.unicase.docExport.exportModel.renderers.options;
  *   <li>{@link org.unicase.docExport.exportModel.renderers.options.TextOption#isBold <em>Bold</em>}</li>
  *   <li>{@link org.unicase.docExport.exportModel.renderers.options.TextOption#isUnderline <em>Underline</em>}</li>
  *   <li>{@link org.unicase.docExport.exportModel.renderers.options.TextOption#getFontColor <em>Font Color</em>}</li>
+ *   <li>{@link org.unicase.docExport.exportModel.renderers.options.TextOption#getTextAlign <em>Text Align</em>}</li>
  * </ul>
  * </p>
  *
@@ -110,6 +111,35 @@ public interface TextOption extends RendererOption {
 	 * @generated
 	 */
 	void setFontColor(UColor value);
+
+	/**
+	 * Returns the value of the '<em><b>Text Align</b></em>' attribute.
+	 * The literals are from the enumeration {@link org.unicase.docExport.exportModel.renderers.options.TextAlign}.
+	 * <!-- begin-user-doc -->
+	 * <p>
+	 * If the meaning of the '<em>Text Align</em>' attribute isn't clear,
+	 * there really should be more of a description here...
+	 * </p>
+	 * <!-- end-user-doc -->
+	 * @return the value of the '<em>Text Align</em>' attribute.
+	 * @see org.unicase.docExport.exportModel.renderers.options.TextAlign
+	 * @see #setTextAlign(TextAlign)
+	 * @see org.unicase.docExport.exportModel.renderers.options.OptionsPackage#getTextOption_TextAlign()
+	 * @model
+	 * @generated
+	 */
+	TextAlign getTextAlign();
+
+	/**
+	 * Sets the value of the '{@link org.unicase.docExport.exportModel.renderers.options.TextOption#getTextAlign <em>Text Align</em>}' attribute.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @param value the new value of the '<em>Text Align</em>' attribute.
+	 * @see org.unicase.docExport.exportModel.renderers.options.TextAlign
+	 * @see #getTextAlign()
+	 * @generated
+	 */
+	void setTextAlign(TextAlign value);
 
 	/**
 	 * Returns the value of the '<em><b>Bold</b></em>' attribute.

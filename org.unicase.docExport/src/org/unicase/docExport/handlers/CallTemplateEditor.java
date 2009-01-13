@@ -32,7 +32,7 @@ public class CallTemplateEditor extends AbstractHandler implements IHandler {
 		IWorkbenchPage page = window.getActivePage();
 		
 		TemplatesView view = (TemplatesView) page.findView(TemplatesView.ID);
-
+		
 		ISelection sel = view.getSite().getSelectionProvider().getSelection();
 		if (!(sel instanceof IStructuredSelection)) {
 			return null;

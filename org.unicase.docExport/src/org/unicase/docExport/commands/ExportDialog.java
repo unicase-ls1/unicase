@@ -51,6 +51,8 @@ public class ExportDialog extends TitleAreaDialog {
 	private Text fileLocation;
 	private Text fileName;
 	
+	private static Shell platformShell;
+	
 	
 	/**
 	 * the constructor.
@@ -66,6 +68,9 @@ public class ExportDialog extends TitleAreaDialog {
 			ModelElement modelElement
 	) throws TemplateSaveException {
 		super(parentShell);
+		
+		platformShell = parentShell;
+		
 		setHelpAvailable(false);
 		this.docRenderer = docRenderer;
 		this.docWriters = DocWriterRegistry.getDocWriters();
@@ -99,6 +104,7 @@ public class ExportDialog extends TitleAreaDialog {
 		fileName = new Text(container, SWT.BORDER);
 		GridData gData2 = new GridData(GridData.FILL_HORIZONTAL);
 		fileName.setLayoutData(gData2);
+		fileName.setText(modelElement.getName().replace(" ", "_"));
 		
 		Label label2 = new Label(container, SWT.READ_ONLY);
 		label2.setText("File location");
@@ -188,15 +194,17 @@ public class ExportDialog extends TitleAreaDialog {
 		ProgressMonitorDialog dialog = new ProgressMonitorDialog(PlatformUI.getWorkbench().getActiveWorkbenchWindow().getShell());
 		
 		try {
+			TemplateRegistry.setMeCount(0);
 			dialog.run(true, true, docExport);
+//			System.out.println(TemplateRegistry.getMeCount());
 		} catch (InvocationTargetException e) {
-			MessageBox finished = new MessageBox(new Shell(), SWT.OK | SWT.ICON_WORKING);
+			MessageBox finished = new MessageBox(ExportDialog.platformShell, SWT.OK | SWT.ICON_WORKING);
 			finished.setText("Export status");
 			finished.setMessage(e.getClass().getSimpleName() + ": " + e.getMessage());
 			finished.open();
 			e.printStackTrace();
 		} catch (InterruptedException e) {
-			MessageBox finished = new MessageBox(new Shell(), SWT.OK | SWT.ICON_WORKING);
+			MessageBox finished = new MessageBox(ExportDialog.platformShell, SWT.OK | SWT.ICON_WORKING);
 			finished.setText("Export status");
 			finished.setMessage("Export interrupted");
 			finished.open();
@@ -217,8 +225,10 @@ public class ExportDialog extends TitleAreaDialog {
 		Boolean doIt = true;
 		
 		if (f.exists()) {
-			MessageBox messageBox = new MessageBox(new Shell(), 
-					SWT.YES | SWT.NO | SWT.ICON_WARNING | SWT.CENTER );
+			MessageBox messageBox = new MessageBox(
+					ExportDialog.platformShell, 
+					SWT.YES | SWT.NO | SWT.ICON_WARNING | SWT.CENTER
+				);
 			messageBox.setMessage("The file '" + fileUrl + "' already exists. Do you want to overwrite it?");
 			messageBox.setText("File already exists");
 			int result = messageBox.open();

@@ -7,6 +7,7 @@ import org.eclipse.core.runtime.IStatus;
 import org.eclipse.jface.viewers.ISelection;
 import org.eclipse.jface.viewers.IStructuredSelection;
 import org.eclipse.swt.widgets.Shell;
+import org.eclipse.ui.PlatformUI;
 import org.eclipse.ui.handlers.HandlerUtil;
 import org.unicase.docExport.exceptions.TemplateSaveException;
 import org.unicase.docExport.exportModel.renderers.defaultRenderers.DefaultRenderersFactory;
@@ -44,7 +45,7 @@ public class ExportDocument extends AbstractHandler {
 		
 		ModelElementImpl modelElement = (ModelElementImpl) o;
 		
-	    Shell shell = new Shell();
+	    Shell shell = PlatformUI.getWorkbench().getDisplay().getActiveShell();
 	    
 		try {
 			ExportDialog dialog = new ExportDialog(
