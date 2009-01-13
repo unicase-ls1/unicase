@@ -1,8 +1,7 @@
 /**
- * <copyright> Copyright (c) 2008 Jonas Helming, Maximilian Koegel. All rights reserved. This program and the accompanying materials are made available under the terms of the Eclipse Public License v1.0 which accompanies this distribution, and is available at http://www.eclipse.org/legal/epl-v10.html
- * </copyright>
- *
- * $Id$
+ * <copyright> Copyright (c) 2008 Jonas Helming, Maximilian Koegel. All rights reserved. This program and the
+ * accompanying materials are made available under the terms of the Eclipse Public License v1.0 which accompanies this
+ * distribution, and is available at http://www.eclipse.org/legal/epl-v10.html </copyright> $Id$
  */
 package org.unicase.ui.common.commands;
 
@@ -13,6 +12,7 @@ import org.eclipse.emf.ecore.util.EcoreUtil;
 import org.eclipse.emf.transaction.RecordingCommand;
 import org.eclipse.emf.transaction.TransactionalEditingDomain;
 import org.eclipse.jface.dialogs.MessageDialog;
+import org.eclipse.jface.dialogs.ProgressMonitorDialog;
 import org.eclipse.ui.IEditorReference;
 import org.eclipse.ui.PartInitException;
 import org.eclipse.ui.PlatformUI;
@@ -24,7 +24,6 @@ import org.unicase.ui.common.exceptions.DialogHandler;
  * 
  * @author helming
  * @author shterev
- * 
  */
 public final class DeleteModelElementCommand extends RecordingCommand {
 	private final ModelElement me;
@@ -32,13 +31,10 @@ public final class DeleteModelElementCommand extends RecordingCommand {
 	/**
 	 * Default constructor.
 	 * 
-	 * @param domain
-	 *            the domain
-	 * @param me
-	 *            the {@link ModelElement} to be deleted.
+	 * @param domain the domain
+	 * @param me the {@link ModelElement} to be deleted.
 	 */
-	public DeleteModelElementCommand(TransactionalEditingDomain domain,
-			ModelElement me) {
+	public DeleteModelElementCommand(TransactionalEditingDomain domain, ModelElement me) {
 		super(domain);
 		this.me = me;
 	}
@@ -51,13 +47,18 @@ public final class DeleteModelElementCommand extends RecordingCommand {
 		// check if this model element is already opened in an editor
 		// and if yes, prompt to close editor.
 		if (closeEditor(me)) {
-			MessageDialog dialog = new MessageDialog(null, "Confirmation",
-					null, "Do you really want to delete " + me.getName(),
-					MessageDialog.QUESTION, new String[] { "Yes", "No" }, 0);
+			MessageDialog dialog = new MessageDialog(null, "Confirmation", null, "Do you really want to delete "
+				+ me.getName(), MessageDialog.QUESTION, new String[] { "Yes", "No" }, 0);
 			int result = dialog.open();
 			if (result == MessageDialog.OK) {
-
+				ProgressMonitorDialog progressDialog = new ProgressMonitorDialog(PlatformUI.getWorkbench()
+					.getActiveWorkbenchWindow().getShell());
+				progressDialog.open();
+				progressDialog.getProgressMonitor().beginTask("Deleting " + me.getName() + "...", 100);
+				progressDialog.getProgressMonitor().worked(20);
 				EcoreUtil.delete(me, true);
+				progressDialog.getProgressMonitor().done();
+				progressDialog.close();
 			}
 		}
 	}
@@ -69,9 +70,8 @@ public final class DeleteModelElementCommand extends RecordingCommand {
 		// we could find editors with this ME as input
 		// but we don't want to have a dependency on meeditor plug-in
 		// Therefore we have no access to MEEditorInput class
-		IEditorReference[] openEditors = PlatformUI.getWorkbench()
-				.getActiveWorkbenchWindow().getActivePage()
-				.getEditorReferences();
+		IEditorReference[] openEditors = PlatformUI.getWorkbench().getActiveWorkbenchWindow().getActivePage()
+			.getEditorReferences();
 
 		List<IEditorReference> toCloseEditors = new ArrayList<IEditorReference>();
 		for (int i = 0; i < openEditors.length; i++) {
@@ -79,8 +79,7 @@ public final class DeleteModelElementCommand extends RecordingCommand {
 				// JH: remove this hack, adapter is null if editor is
 				// mediagrameditor
 				// ZH: set adapter for MEDiagramEditor
-				Object adapter = openEditors[i].getEditorInput().getAdapter(
-						ModelElement.class);
+				Object adapter = openEditors[i].getEditorInput().getAdapter(ModelElement.class);
 				if (adapter != null && adapter.equals(me)) {
 					toCloseEditors.add(openEditors[i]);
 				}
@@ -91,14 +90,8 @@ public final class DeleteModelElementCommand extends RecordingCommand {
 		}
 
 		if (toCloseEditors.size() > 0) {
-			result = PlatformUI
-					.getWorkbench()
-					.getActiveWorkbenchWindow()
-					.getActivePage()
-					.closeEditors(
-							toCloseEditors
-									.toArray(new IEditorReference[toCloseEditors
-											.size()]), true);
+			result = PlatformUI.getWorkbench().getActiveWorkbenchWindow().getActivePage().closeEditors(
+				toCloseEditors.toArray(new IEditorReference[toCloseEditors.size()]), true);
 
 		}
 
