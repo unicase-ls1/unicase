@@ -126,13 +126,22 @@ public interface OptionsPackage extends EPackage {
 	int ATTRIBUTE_OPTION__OVERWRITE_GLOBAL_OPTION = RENDERER_OPTION_FEATURE_COUNT + 1;
 
 	/**
+	 * The feature id for the '<em><b>Attribute Text</b></em>' attribute.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 * @ordered
+	 */
+	int ATTRIBUTE_OPTION__ATTRIBUTE_TEXT = RENDERER_OPTION_FEATURE_COUNT + 2;
+
+	/**
 	 * The number of structural features of the '<em>Attribute Option</em>' class.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
 	 * @generated
 	 * @ordered
 	 */
-	int ATTRIBUTE_OPTION_FEATURE_COUNT = RENDERER_OPTION_FEATURE_COUNT + 2;
+	int ATTRIBUTE_OPTION_FEATURE_COUNT = RENDERER_OPTION_FEATURE_COUNT + 3;
 
 	/**
 	 * The meta object id for the '{@link org.unicase.docExport.exportModel.renderers.options.impl.ReferenceAttributeOptionImpl <em>Reference Attribute Option</em>}' class.
@@ -170,6 +179,15 @@ public interface OptionsPackage extends EPackage {
 	 * @ordered
 	 */
 	int REFERENCE_ATTRIBUTE_OPTION__OVERWRITE_GLOBAL_OPTION = ATTRIBUTE_OPTION__OVERWRITE_GLOBAL_OPTION;
+
+	/**
+	 * The feature id for the '<em><b>Attribute Text</b></em>' attribute.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 * @ordered
+	 */
+	int REFERENCE_ATTRIBUTE_OPTION__ATTRIBUTE_TEXT = ATTRIBUTE_OPTION__ATTRIBUTE_TEXT;
 
 	/**
 	 * The feature id for the '<em><b>Contained</b></em>' attribute.
@@ -234,6 +252,15 @@ public interface OptionsPackage extends EPackage {
 	 * @ordered
 	 */
 	int SINGLE_REFERENCE_ATTRIBUTE_OPTION__OVERWRITE_GLOBAL_OPTION = REFERENCE_ATTRIBUTE_OPTION__OVERWRITE_GLOBAL_OPTION;
+
+	/**
+	 * The feature id for the '<em><b>Attribute Text</b></em>' attribute.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 * @ordered
+	 */
+	int SINGLE_REFERENCE_ATTRIBUTE_OPTION__ATTRIBUTE_TEXT = REFERENCE_ATTRIBUTE_OPTION__ATTRIBUTE_TEXT;
 
 	/**
 	 * The feature id for the '<em><b>Contained</b></em>' attribute.
@@ -307,6 +334,15 @@ public interface OptionsPackage extends EPackage {
 	 * @ordered
 	 */
 	int MULTI_REFERENCE_ATTRIBUTE_OPTION__OVERWRITE_GLOBAL_OPTION = REFERENCE_ATTRIBUTE_OPTION__OVERWRITE_GLOBAL_OPTION;
+
+	/**
+	 * The feature id for the '<em><b>Attribute Text</b></em>' attribute.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 * @ordered
+	 */
+	int MULTI_REFERENCE_ATTRIBUTE_OPTION__ATTRIBUTE_TEXT = REFERENCE_ATTRIBUTE_OPTION__ATTRIBUTE_TEXT;
 
 	/**
 	 * The feature id for the '<em><b>Contained</b></em>' attribute.
@@ -426,6 +462,15 @@ public interface OptionsPackage extends EPackage {
 	 * @ordered
 	 */
 	int STRING_ATTRIBUTE_OPTION__OVERWRITE_GLOBAL_OPTION = ATTRIBUTE_OPTION__OVERWRITE_GLOBAL_OPTION;
+
+	/**
+	 * The feature id for the '<em><b>Attribute Text</b></em>' attribute.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 * @ordered
+	 */
+	int STRING_ATTRIBUTE_OPTION__ATTRIBUTE_TEXT = ATTRIBUTE_OPTION__ATTRIBUTE_TEXT;
 
 	/**
 	 * The feature id for the '<em><b>Global Option</b></em>' reference.
@@ -564,13 +609,85 @@ public interface OptionsPackage extends EPackage {
 	int LAYOUT_OPTIONS__MODEL_ELEMENT_TEXT_OPTION = RENDERER_OPTION_FEATURE_COUNT + 9;
 
 	/**
+	 * The feature id for the '<em><b>Header Text</b></em>' attribute.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 * @ordered
+	 */
+	int LAYOUT_OPTIONS__HEADER_TEXT = RENDERER_OPTION_FEATURE_COUNT + 10;
+
+	/**
+	 * The feature id for the '<em><b>Footer Text</b></em>' attribute.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 * @ordered
+	 */
+	int LAYOUT_OPTIONS__FOOTER_TEXT = RENDERER_OPTION_FEATURE_COUNT + 11;
+
+	/**
+	 * The feature id for the '<em><b>Section Option</b></em>' containment reference.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 * @ordered
+	 */
+	int LAYOUT_OPTIONS__SECTION_OPTION = RENDERER_OPTION_FEATURE_COUNT + 12;
+
+	/**
+	 * The feature id for the '<em><b>Section Font Size Decrease Step</b></em>' attribute.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 * @ordered
+	 */
+	int LAYOUT_OPTIONS__SECTION_FONT_SIZE_DECREASE_STEP = RENDERER_OPTION_FEATURE_COUNT + 13;
+
+	/**
+	 * The feature id for the '<em><b>Document Title Text Option</b></em>' containment reference.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 * @ordered
+	 */
+	int LAYOUT_OPTIONS__DOCUMENT_TITLE_TEXT_OPTION = RENDERER_OPTION_FEATURE_COUNT + 14;
+
+	/**
+	 * The feature id for the '<em><b>Show Model Element Type In Section Title</b></em>' attribute.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 * @ordered
+	 */
+	int LAYOUT_OPTIONS__SHOW_MODEL_ELEMENT_TYPE_IN_SECTION_TITLE = RENDERER_OPTION_FEATURE_COUNT + 15;
+
+	/**
+	 * The feature id for the '<em><b>Attribute Text Option</b></em>' containment reference.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 * @ordered
+	 */
+	int LAYOUT_OPTIONS__ATTRIBUTE_TEXT_OPTION = RENDERER_OPTION_FEATURE_COUNT + 16;
+
+	/**
+	 * The feature id for the '<em><b>Appendix Style</b></em>' attribute.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 * @ordered
+	 */
+	int LAYOUT_OPTIONS__APPENDIX_STYLE = RENDERER_OPTION_FEATURE_COUNT + 17;
+
+	/**
 	 * The number of structural features of the '<em>Layout Options</em>' class.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
 	 * @generated
 	 * @ordered
 	 */
-	int LAYOUT_OPTIONS_FEATURE_COUNT = RENDERER_OPTION_FEATURE_COUNT + 10;
+	int LAYOUT_OPTIONS_FEATURE_COUNT = RENDERER_OPTION_FEATURE_COUNT + 18;
 
 	/**
 	 * The meta object id for the '{@link org.unicase.docExport.exportModel.renderers.options.impl.ListOptionImpl <em>List Option</em>}' class.
@@ -674,13 +791,22 @@ public interface OptionsPackage extends EPackage {
 	int TEXT_OPTION__FONT_COLOR = RENDERER_OPTION_FEATURE_COUNT + 4;
 
 	/**
+	 * The feature id for the '<em><b>Text Align</b></em>' attribute.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 * @ordered
+	 */
+	int TEXT_OPTION__TEXT_ALIGN = RENDERER_OPTION_FEATURE_COUNT + 5;
+
+	/**
 	 * The number of structural features of the '<em>Text Option</em>' class.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
 	 * @generated
 	 * @ordered
 	 */
-	int TEXT_OPTION_FEATURE_COUNT = RENDERER_OPTION_FEATURE_COUNT + 5;
+	int TEXT_OPTION_FEATURE_COUNT = RENDERER_OPTION_FEATURE_COUNT + 6;
 
 	/**
 	 * The meta object id for the '{@link org.unicase.docExport.exportModel.renderers.options.impl.UColorImpl <em>UColor</em>}' class.
@@ -738,6 +864,434 @@ public interface OptionsPackage extends EPackage {
 	int UCOLOR_FEATURE_COUNT = RENDERER_OPTION_FEATURE_COUNT + 3;
 
 	/**
+	 * The meta object id for the '{@link org.unicase.docExport.exportModel.renderers.options.impl.BoxModelOptionImpl <em>Box Model Option</em>}' class.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @see org.unicase.docExport.exportModel.renderers.options.impl.BoxModelOptionImpl
+	 * @see org.unicase.docExport.exportModel.renderers.options.impl.OptionsPackageImpl#getBoxModelOption()
+	 * @generated
+	 */
+	int BOX_MODEL_OPTION = 11;
+
+	/**
+	 * The feature id for the '<em><b>Name</b></em>' attribute.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 * @ordered
+	 */
+	int BOX_MODEL_OPTION__NAME = RENDERER_OPTION__NAME;
+
+	/**
+	 * The feature id for the '<em><b>Margin</b></em>' attribute.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 * @ordered
+	 */
+	int BOX_MODEL_OPTION__MARGIN = RENDERER_OPTION_FEATURE_COUNT + 0;
+
+	/**
+	 * The feature id for the '<em><b>Margin Top</b></em>' attribute.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 * @ordered
+	 */
+	int BOX_MODEL_OPTION__MARGIN_TOP = RENDERER_OPTION_FEATURE_COUNT + 1;
+
+	/**
+	 * The feature id for the '<em><b>Margin Left</b></em>' attribute.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 * @ordered
+	 */
+	int BOX_MODEL_OPTION__MARGIN_LEFT = RENDERER_OPTION_FEATURE_COUNT + 2;
+
+	/**
+	 * The feature id for the '<em><b>Margin Bottom</b></em>' attribute.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 * @ordered
+	 */
+	int BOX_MODEL_OPTION__MARGIN_BOTTOM = RENDERER_OPTION_FEATURE_COUNT + 3;
+
+	/**
+	 * The feature id for the '<em><b>Margin Right</b></em>' attribute.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 * @ordered
+	 */
+	int BOX_MODEL_OPTION__MARGIN_RIGHT = RENDERER_OPTION_FEATURE_COUNT + 4;
+
+	/**
+	 * The feature id for the '<em><b>Border</b></em>' attribute.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 * @ordered
+	 */
+	int BOX_MODEL_OPTION__BORDER = RENDERER_OPTION_FEATURE_COUNT + 5;
+
+	/**
+	 * The feature id for the '<em><b>Border Top</b></em>' attribute.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 * @ordered
+	 */
+	int BOX_MODEL_OPTION__BORDER_TOP = RENDERER_OPTION_FEATURE_COUNT + 6;
+
+	/**
+	 * The feature id for the '<em><b>Border Left</b></em>' attribute.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 * @ordered
+	 */
+	int BOX_MODEL_OPTION__BORDER_LEFT = RENDERER_OPTION_FEATURE_COUNT + 7;
+
+	/**
+	 * The feature id for the '<em><b>Border Bottom</b></em>' attribute.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 * @ordered
+	 */
+	int BOX_MODEL_OPTION__BORDER_BOTTOM = RENDERER_OPTION_FEATURE_COUNT + 8;
+
+	/**
+	 * The feature id for the '<em><b>Border Right</b></em>' attribute.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 * @ordered
+	 */
+	int BOX_MODEL_OPTION__BORDER_RIGHT = RENDERER_OPTION_FEATURE_COUNT + 9;
+
+	/**
+	 * The feature id for the '<em><b>Border Style</b></em>' attribute.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 * @ordered
+	 */
+	int BOX_MODEL_OPTION__BORDER_STYLE = RENDERER_OPTION_FEATURE_COUNT + 10;
+
+	/**
+	 * The feature id for the '<em><b>Border Color</b></em>' containment reference.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 * @ordered
+	 */
+	int BOX_MODEL_OPTION__BORDER_COLOR = RENDERER_OPTION_FEATURE_COUNT + 11;
+
+	/**
+	 * The feature id for the '<em><b>Padding</b></em>' attribute.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 * @ordered
+	 */
+	int BOX_MODEL_OPTION__PADDING = RENDERER_OPTION_FEATURE_COUNT + 12;
+
+	/**
+	 * The feature id for the '<em><b>Padding Top</b></em>' attribute.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 * @ordered
+	 */
+	int BOX_MODEL_OPTION__PADDING_TOP = RENDERER_OPTION_FEATURE_COUNT + 13;
+
+	/**
+	 * The feature id for the '<em><b>Padding Left</b></em>' attribute.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 * @ordered
+	 */
+	int BOX_MODEL_OPTION__PADDING_LEFT = RENDERER_OPTION_FEATURE_COUNT + 14;
+
+	/**
+	 * The feature id for the '<em><b>Padding Bottom</b></em>' attribute.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 * @ordered
+	 */
+	int BOX_MODEL_OPTION__PADDING_BOTTOM = RENDERER_OPTION_FEATURE_COUNT + 15;
+
+	/**
+	 * The feature id for the '<em><b>Padding Right</b></em>' attribute.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 * @ordered
+	 */
+	int BOX_MODEL_OPTION__PADDING_RIGHT = RENDERER_OPTION_FEATURE_COUNT + 16;
+
+	/**
+	 * The feature id for the '<em><b>Background Color</b></em>' reference.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 * @ordered
+	 */
+	int BOX_MODEL_OPTION__BACKGROUND_COLOR = RENDERER_OPTION_FEATURE_COUNT + 17;
+
+	/**
+	 * The feature id for the '<em><b>Keep Together</b></em>' attribute.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 * @ordered
+	 */
+	int BOX_MODEL_OPTION__KEEP_TOGETHER = RENDERER_OPTION_FEATURE_COUNT + 18;
+
+	/**
+	 * The feature id for the '<em><b>Keep With Previous</b></em>' attribute.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 * @ordered
+	 */
+	int BOX_MODEL_OPTION__KEEP_WITH_PREVIOUS = RENDERER_OPTION_FEATURE_COUNT + 19;
+
+	/**
+	 * The feature id for the '<em><b>Keep With Next</b></em>' attribute.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 * @ordered
+	 */
+	int BOX_MODEL_OPTION__KEEP_WITH_NEXT = RENDERER_OPTION_FEATURE_COUNT + 20;
+
+	/**
+	 * The feature id for the '<em><b>Break Before</b></em>' attribute.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 * @ordered
+	 */
+	int BOX_MODEL_OPTION__BREAK_BEFORE = RENDERER_OPTION_FEATURE_COUNT + 21;
+
+	/**
+	 * The number of structural features of the '<em>Box Model Option</em>' class.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 * @ordered
+	 */
+	int BOX_MODEL_OPTION_FEATURE_COUNT = RENDERER_OPTION_FEATURE_COUNT + 22;
+
+	/**
+	 * The meta object id for the '{@link org.unicase.docExport.exportModel.renderers.options.impl.SectionOptionImpl <em>Section Option</em>}' class.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @see org.unicase.docExport.exportModel.renderers.options.impl.SectionOptionImpl
+	 * @see org.unicase.docExport.exportModel.renderers.options.impl.OptionsPackageImpl#getSectionOption()
+	 * @generated
+	 */
+	int SECTION_OPTION = 12;
+
+	/**
+	 * The feature id for the '<em><b>Name</b></em>' attribute.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 * @ordered
+	 */
+	int SECTION_OPTION__NAME = RENDERER_OPTION__NAME;
+
+	/**
+	 * The feature id for the '<em><b>Section Numbering Style</b></em>' attribute.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 * @ordered
+	 */
+	int SECTION_OPTION__SECTION_NUMBERING_STYLE = RENDERER_OPTION_FEATURE_COUNT + 0;
+
+	/**
+	 * The feature id for the '<em><b>Leave Out Previous Section Numbering</b></em>' attribute.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 * @ordered
+	 */
+	int SECTION_OPTION__LEAVE_OUT_PREVIOUS_SECTION_NUMBERING = RENDERER_OPTION_FEATURE_COUNT + 1;
+
+	/**
+	 * The number of structural features of the '<em>Section Option</em>' class.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 * @ordered
+	 */
+	int SECTION_OPTION_FEATURE_COUNT = RENDERER_OPTION_FEATURE_COUNT + 2;
+
+	/**
+	 * The meta object id for the '{@link org.unicase.docExport.exportModel.renderers.options.impl.BooleanAttributeOptionImpl <em>Boolean Attribute Option</em>}' class.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @see org.unicase.docExport.exportModel.renderers.options.impl.BooleanAttributeOptionImpl
+	 * @see org.unicase.docExport.exportModel.renderers.options.impl.OptionsPackageImpl#getBooleanAttributeOption()
+	 * @generated
+	 */
+	int BOOLEAN_ATTRIBUTE_OPTION = 13;
+
+	/**
+	 * The feature id for the '<em><b>Name</b></em>' attribute.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 * @ordered
+	 */
+	int BOOLEAN_ATTRIBUTE_OPTION__NAME = ATTRIBUTE_OPTION__NAME;
+
+	/**
+	 * The feature id for the '<em><b>Hide</b></em>' attribute.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 * @ordered
+	 */
+	int BOOLEAN_ATTRIBUTE_OPTION__HIDE = ATTRIBUTE_OPTION__HIDE;
+
+	/**
+	 * The feature id for the '<em><b>Overwrite Global Option</b></em>' attribute.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 * @ordered
+	 */
+	int BOOLEAN_ATTRIBUTE_OPTION__OVERWRITE_GLOBAL_OPTION = ATTRIBUTE_OPTION__OVERWRITE_GLOBAL_OPTION;
+
+	/**
+	 * The feature id for the '<em><b>Attribute Text</b></em>' attribute.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 * @ordered
+	 */
+	int BOOLEAN_ATTRIBUTE_OPTION__ATTRIBUTE_TEXT = ATTRIBUTE_OPTION__ATTRIBUTE_TEXT;
+
+	/**
+	 * The feature id for the '<em><b>Global Option</b></em>' reference.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 * @ordered
+	 */
+	int BOOLEAN_ATTRIBUTE_OPTION__GLOBAL_OPTION = ATTRIBUTE_OPTION_FEATURE_COUNT + 0;
+
+	/**
+	 * The feature id for the '<em><b>Boolean Style</b></em>' attribute.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 * @ordered
+	 */
+	int BOOLEAN_ATTRIBUTE_OPTION__BOOLEAN_STYLE = ATTRIBUTE_OPTION_FEATURE_COUNT + 1;
+
+	/**
+	 * The number of structural features of the '<em>Boolean Attribute Option</em>' class.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 * @ordered
+	 */
+	int BOOLEAN_ATTRIBUTE_OPTION_FEATURE_COUNT = ATTRIBUTE_OPTION_FEATURE_COUNT + 2;
+
+	/**
+	 * The meta object id for the '{@link org.unicase.docExport.exportModel.renderers.options.impl.DateAttributeOptionImpl <em>Date Attribute Option</em>}' class.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @see org.unicase.docExport.exportModel.renderers.options.impl.DateAttributeOptionImpl
+	 * @see org.unicase.docExport.exportModel.renderers.options.impl.OptionsPackageImpl#getDateAttributeOption()
+	 * @generated
+	 */
+	int DATE_ATTRIBUTE_OPTION = 14;
+
+	/**
+	 * The feature id for the '<em><b>Name</b></em>' attribute.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 * @ordered
+	 */
+	int DATE_ATTRIBUTE_OPTION__NAME = ATTRIBUTE_OPTION__NAME;
+
+	/**
+	 * The feature id for the '<em><b>Hide</b></em>' attribute.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 * @ordered
+	 */
+	int DATE_ATTRIBUTE_OPTION__HIDE = ATTRIBUTE_OPTION__HIDE;
+
+	/**
+	 * The feature id for the '<em><b>Overwrite Global Option</b></em>' attribute.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 * @ordered
+	 */
+	int DATE_ATTRIBUTE_OPTION__OVERWRITE_GLOBAL_OPTION = ATTRIBUTE_OPTION__OVERWRITE_GLOBAL_OPTION;
+
+	/**
+	 * The feature id for the '<em><b>Attribute Text</b></em>' attribute.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 * @ordered
+	 */
+	int DATE_ATTRIBUTE_OPTION__ATTRIBUTE_TEXT = ATTRIBUTE_OPTION__ATTRIBUTE_TEXT;
+
+	/**
+	 * The feature id for the '<em><b>Global Option</b></em>' reference.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 * @ordered
+	 */
+	int DATE_ATTRIBUTE_OPTION__GLOBAL_OPTION = ATTRIBUTE_OPTION_FEATURE_COUNT + 0;
+
+	/**
+	 * The feature id for the '<em><b>Date Style</b></em>' attribute.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 * @ordered
+	 */
+	int DATE_ATTRIBUTE_OPTION__DATE_STYLE = ATTRIBUTE_OPTION_FEATURE_COUNT + 1;
+
+	/**
+	 * The number of structural features of the '<em>Date Attribute Option</em>' class.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 * @ordered
+	 */
+	int DATE_ATTRIBUTE_OPTION_FEATURE_COUNT = ATTRIBUTE_OPTION_FEATURE_COUNT + 2;
+
+	/**
+	 * The meta object id for the '{@link org.unicase.docExport.exportModel.renderers.options.AppendixStyle <em>Appendix Style</em>}' enum.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @see org.unicase.docExport.exportModel.renderers.options.AppendixStyle
+	 * @see org.unicase.docExport.exportModel.renderers.options.impl.OptionsPackageImpl#getAppendixStyle()
+	 * @generated
+	 */
+	int APPENDIX_STYLE = 15;
+
+	/**
 	 * The meta object id for the '{@link org.unicase.docExport.exportModel.renderers.options.FontFamily <em>Font Family</em>}' enum.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
@@ -745,7 +1299,7 @@ public interface OptionsPackage extends EPackage {
 	 * @see org.unicase.docExport.exportModel.renderers.options.impl.OptionsPackageImpl#getFontFamily()
 	 * @generated
 	 */
-	int FONT_FAMILY = 11;
+	int FONT_FAMILY = 16;
 
 
 	/**
@@ -756,7 +1310,7 @@ public interface OptionsPackage extends EPackage {
 	 * @see org.unicase.docExport.exportModel.renderers.options.impl.OptionsPackageImpl#getListStyle()
 	 * @generated
 	 */
-	int LIST_STYLE = 12;
+	int LIST_STYLE = 17;
 
 
 	/**
@@ -767,7 +1321,62 @@ public interface OptionsPackage extends EPackage {
 	 * @see org.unicase.docExport.exportModel.renderers.options.impl.OptionsPackageImpl#getPageNumberingStyle()
 	 * @generated
 	 */
-	int PAGE_NUMBERING_STYLE = 13;
+	int PAGE_NUMBERING_STYLE = 18;
+
+
+	/**
+	 * The meta object id for the '{@link org.unicase.docExport.exportModel.renderers.options.UBorderStyle <em>UBorder Style</em>}' enum.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @see org.unicase.docExport.exportModel.renderers.options.UBorderStyle
+	 * @see org.unicase.docExport.exportModel.renderers.options.impl.OptionsPackageImpl#getUBorderStyle()
+	 * @generated
+	 */
+	int UBORDER_STYLE = 19;
+
+
+	/**
+	 * The meta object id for the '{@link org.unicase.docExport.exportModel.renderers.options.SectionNumberingStyle <em>Section Numbering Style</em>}' enum.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @see org.unicase.docExport.exportModel.renderers.options.SectionNumberingStyle
+	 * @see org.unicase.docExport.exportModel.renderers.options.impl.OptionsPackageImpl#getSectionNumberingStyle()
+	 * @generated
+	 */
+	int SECTION_NUMBERING_STYLE = 20;
+
+
+	/**
+	 * The meta object id for the '{@link org.unicase.docExport.exportModel.renderers.options.TextAlign <em>Text Align</em>}' enum.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @see org.unicase.docExport.exportModel.renderers.options.TextAlign
+	 * @see org.unicase.docExport.exportModel.renderers.options.impl.OptionsPackageImpl#getTextAlign()
+	 * @generated
+	 */
+	int TEXT_ALIGN = 21;
+
+
+	/**
+	 * The meta object id for the '{@link org.unicase.docExport.exportModel.renderers.options.BooleanStyle <em>Boolean Style</em>}' enum.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @see org.unicase.docExport.exportModel.renderers.options.BooleanStyle
+	 * @see org.unicase.docExport.exportModel.renderers.options.impl.OptionsPackageImpl#getBooleanStyle()
+	 * @generated
+	 */
+	int BOOLEAN_STYLE = 22;
+
+
+	/**
+	 * The meta object id for the '{@link org.unicase.docExport.exportModel.renderers.options.DateStyle <em>Date Style</em>}' enum.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @see org.unicase.docExport.exportModel.renderers.options.DateStyle
+	 * @see org.unicase.docExport.exportModel.renderers.options.impl.OptionsPackageImpl#getDateStyle()
+	 * @generated
+	 */
+	int DATE_STYLE = 23;
 
 
 	/**
@@ -822,6 +1431,17 @@ public interface OptionsPackage extends EPackage {
 	 * @generated
 	 */
 	EAttribute getAttributeOption_OverwriteGlobalOption();
+
+	/**
+	 * Returns the meta object for the attribute '{@link org.unicase.docExport.exportModel.renderers.options.AttributeOption#getAttributeText <em>Attribute Text</em>}'.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @return the meta object for the attribute '<em>Attribute Text</em>'.
+	 * @see org.unicase.docExport.exportModel.renderers.options.AttributeOption#getAttributeText()
+	 * @see #getAttributeOption()
+	 * @generated
+	 */
+	EAttribute getAttributeOption_AttributeText();
 
 	/**
 	 * Returns the meta object for class '{@link org.unicase.docExport.exportModel.renderers.options.SingleReferenceAttributeOption <em>Single Reference Attribute Option</em>}'.
@@ -1050,6 +1670,94 @@ public interface OptionsPackage extends EPackage {
 	EReference getLayoutOptions_ModelElementTextOption();
 
 	/**
+	 * Returns the meta object for the attribute '{@link org.unicase.docExport.exportModel.renderers.options.LayoutOptions#getHeaderText <em>Header Text</em>}'.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @return the meta object for the attribute '<em>Header Text</em>'.
+	 * @see org.unicase.docExport.exportModel.renderers.options.LayoutOptions#getHeaderText()
+	 * @see #getLayoutOptions()
+	 * @generated
+	 */
+	EAttribute getLayoutOptions_HeaderText();
+
+	/**
+	 * Returns the meta object for the attribute '{@link org.unicase.docExport.exportModel.renderers.options.LayoutOptions#getFooterText <em>Footer Text</em>}'.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @return the meta object for the attribute '<em>Footer Text</em>'.
+	 * @see org.unicase.docExport.exportModel.renderers.options.LayoutOptions#getFooterText()
+	 * @see #getLayoutOptions()
+	 * @generated
+	 */
+	EAttribute getLayoutOptions_FooterText();
+
+	/**
+	 * Returns the meta object for the containment reference '{@link org.unicase.docExport.exportModel.renderers.options.LayoutOptions#getSectionOption <em>Section Option</em>}'.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @return the meta object for the containment reference '<em>Section Option</em>'.
+	 * @see org.unicase.docExport.exportModel.renderers.options.LayoutOptions#getSectionOption()
+	 * @see #getLayoutOptions()
+	 * @generated
+	 */
+	EReference getLayoutOptions_SectionOption();
+
+	/**
+	 * Returns the meta object for the attribute '{@link org.unicase.docExport.exportModel.renderers.options.LayoutOptions#getSectionFontSizeDecreaseStep <em>Section Font Size Decrease Step</em>}'.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @return the meta object for the attribute '<em>Section Font Size Decrease Step</em>'.
+	 * @see org.unicase.docExport.exportModel.renderers.options.LayoutOptions#getSectionFontSizeDecreaseStep()
+	 * @see #getLayoutOptions()
+	 * @generated
+	 */
+	EAttribute getLayoutOptions_SectionFontSizeDecreaseStep();
+
+	/**
+	 * Returns the meta object for the containment reference '{@link org.unicase.docExport.exportModel.renderers.options.LayoutOptions#getDocumentTitleTextOption <em>Document Title Text Option</em>}'.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @return the meta object for the containment reference '<em>Document Title Text Option</em>'.
+	 * @see org.unicase.docExport.exportModel.renderers.options.LayoutOptions#getDocumentTitleTextOption()
+	 * @see #getLayoutOptions()
+	 * @generated
+	 */
+	EReference getLayoutOptions_DocumentTitleTextOption();
+
+	/**
+	 * Returns the meta object for the attribute '{@link org.unicase.docExport.exportModel.renderers.options.LayoutOptions#isShowModelElementTypeInSectionTitle <em>Show Model Element Type In Section Title</em>}'.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @return the meta object for the attribute '<em>Show Model Element Type In Section Title</em>'.
+	 * @see org.unicase.docExport.exportModel.renderers.options.LayoutOptions#isShowModelElementTypeInSectionTitle()
+	 * @see #getLayoutOptions()
+	 * @generated
+	 */
+	EAttribute getLayoutOptions_ShowModelElementTypeInSectionTitle();
+
+	/**
+	 * Returns the meta object for the containment reference '{@link org.unicase.docExport.exportModel.renderers.options.LayoutOptions#getAttributeTextOption <em>Attribute Text Option</em>}'.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @return the meta object for the containment reference '<em>Attribute Text Option</em>'.
+	 * @see org.unicase.docExport.exportModel.renderers.options.LayoutOptions#getAttributeTextOption()
+	 * @see #getLayoutOptions()
+	 * @generated
+	 */
+	EReference getLayoutOptions_AttributeTextOption();
+
+	/**
+	 * Returns the meta object for the attribute '{@link org.unicase.docExport.exportModel.renderers.options.LayoutOptions#getAppendixStyle <em>Appendix Style</em>}'.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @return the meta object for the attribute '<em>Appendix Style</em>'.
+	 * @see org.unicase.docExport.exportModel.renderers.options.LayoutOptions#getAppendixStyle()
+	 * @see #getLayoutOptions()
+	 * @generated
+	 */
+	EAttribute getLayoutOptions_AppendixStyle();
+
+	/**
 	 * Returns the meta object for class '{@link org.unicase.docExport.exportModel.renderers.options.ListOption <em>List Option</em>}'.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
@@ -1112,6 +1820,17 @@ public interface OptionsPackage extends EPackage {
 	 * @generated
 	 */
 	EReference getTextOption_FontColor();
+
+	/**
+	 * Returns the meta object for the attribute '{@link org.unicase.docExport.exportModel.renderers.options.TextOption#getTextAlign <em>Text Align</em>}'.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @return the meta object for the attribute '<em>Text Align</em>'.
+	 * @see org.unicase.docExport.exportModel.renderers.options.TextOption#getTextAlign()
+	 * @see #getTextOption()
+	 * @generated
+	 */
+	EAttribute getTextOption_TextAlign();
 
 	/**
 	 * Returns the meta object for the attribute '{@link org.unicase.docExport.exportModel.renderers.options.TextOption#isBold <em>Bold</em>}'.
@@ -1211,6 +1930,364 @@ public interface OptionsPackage extends EPackage {
 	EAttribute getUColor_Blue();
 
 	/**
+	 * Returns the meta object for class '{@link org.unicase.docExport.exportModel.renderers.options.BoxModelOption <em>Box Model Option</em>}'.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @return the meta object for class '<em>Box Model Option</em>'.
+	 * @see org.unicase.docExport.exportModel.renderers.options.BoxModelOption
+	 * @generated
+	 */
+	EClass getBoxModelOption();
+
+	/**
+	 * Returns the meta object for the attribute '{@link org.unicase.docExport.exportModel.renderers.options.BoxModelOption#getMargin <em>Margin</em>}'.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @return the meta object for the attribute '<em>Margin</em>'.
+	 * @see org.unicase.docExport.exportModel.renderers.options.BoxModelOption#getMargin()
+	 * @see #getBoxModelOption()
+	 * @generated
+	 */
+	EAttribute getBoxModelOption_Margin();
+
+	/**
+	 * Returns the meta object for the attribute '{@link org.unicase.docExport.exportModel.renderers.options.BoxModelOption#getMarginTop <em>Margin Top</em>}'.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @return the meta object for the attribute '<em>Margin Top</em>'.
+	 * @see org.unicase.docExport.exportModel.renderers.options.BoxModelOption#getMarginTop()
+	 * @see #getBoxModelOption()
+	 * @generated
+	 */
+	EAttribute getBoxModelOption_MarginTop();
+
+	/**
+	 * Returns the meta object for the attribute '{@link org.unicase.docExport.exportModel.renderers.options.BoxModelOption#getMarginLeft <em>Margin Left</em>}'.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @return the meta object for the attribute '<em>Margin Left</em>'.
+	 * @see org.unicase.docExport.exportModel.renderers.options.BoxModelOption#getMarginLeft()
+	 * @see #getBoxModelOption()
+	 * @generated
+	 */
+	EAttribute getBoxModelOption_MarginLeft();
+
+	/**
+	 * Returns the meta object for the attribute '{@link org.unicase.docExport.exportModel.renderers.options.BoxModelOption#getMarginBottom <em>Margin Bottom</em>}'.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @return the meta object for the attribute '<em>Margin Bottom</em>'.
+	 * @see org.unicase.docExport.exportModel.renderers.options.BoxModelOption#getMarginBottom()
+	 * @see #getBoxModelOption()
+	 * @generated
+	 */
+	EAttribute getBoxModelOption_MarginBottom();
+
+	/**
+	 * Returns the meta object for the attribute '{@link org.unicase.docExport.exportModel.renderers.options.BoxModelOption#getMarginRight <em>Margin Right</em>}'.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @return the meta object for the attribute '<em>Margin Right</em>'.
+	 * @see org.unicase.docExport.exportModel.renderers.options.BoxModelOption#getMarginRight()
+	 * @see #getBoxModelOption()
+	 * @generated
+	 */
+	EAttribute getBoxModelOption_MarginRight();
+
+	/**
+	 * Returns the meta object for the attribute '{@link org.unicase.docExport.exportModel.renderers.options.BoxModelOption#getBorder <em>Border</em>}'.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @return the meta object for the attribute '<em>Border</em>'.
+	 * @see org.unicase.docExport.exportModel.renderers.options.BoxModelOption#getBorder()
+	 * @see #getBoxModelOption()
+	 * @generated
+	 */
+	EAttribute getBoxModelOption_Border();
+
+	/**
+	 * Returns the meta object for the attribute '{@link org.unicase.docExport.exportModel.renderers.options.BoxModelOption#getBorderTop <em>Border Top</em>}'.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @return the meta object for the attribute '<em>Border Top</em>'.
+	 * @see org.unicase.docExport.exportModel.renderers.options.BoxModelOption#getBorderTop()
+	 * @see #getBoxModelOption()
+	 * @generated
+	 */
+	EAttribute getBoxModelOption_BorderTop();
+
+	/**
+	 * Returns the meta object for the attribute '{@link org.unicase.docExport.exportModel.renderers.options.BoxModelOption#getBorderLeft <em>Border Left</em>}'.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @return the meta object for the attribute '<em>Border Left</em>'.
+	 * @see org.unicase.docExport.exportModel.renderers.options.BoxModelOption#getBorderLeft()
+	 * @see #getBoxModelOption()
+	 * @generated
+	 */
+	EAttribute getBoxModelOption_BorderLeft();
+
+	/**
+	 * Returns the meta object for the attribute '{@link org.unicase.docExport.exportModel.renderers.options.BoxModelOption#getBorderBottom <em>Border Bottom</em>}'.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @return the meta object for the attribute '<em>Border Bottom</em>'.
+	 * @see org.unicase.docExport.exportModel.renderers.options.BoxModelOption#getBorderBottom()
+	 * @see #getBoxModelOption()
+	 * @generated
+	 */
+	EAttribute getBoxModelOption_BorderBottom();
+
+	/**
+	 * Returns the meta object for the attribute '{@link org.unicase.docExport.exportModel.renderers.options.BoxModelOption#getBorderRight <em>Border Right</em>}'.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @return the meta object for the attribute '<em>Border Right</em>'.
+	 * @see org.unicase.docExport.exportModel.renderers.options.BoxModelOption#getBorderRight()
+	 * @see #getBoxModelOption()
+	 * @generated
+	 */
+	EAttribute getBoxModelOption_BorderRight();
+
+	/**
+	 * Returns the meta object for the attribute '{@link org.unicase.docExport.exportModel.renderers.options.BoxModelOption#getBorderStyle <em>Border Style</em>}'.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @return the meta object for the attribute '<em>Border Style</em>'.
+	 * @see org.unicase.docExport.exportModel.renderers.options.BoxModelOption#getBorderStyle()
+	 * @see #getBoxModelOption()
+	 * @generated
+	 */
+	EAttribute getBoxModelOption_BorderStyle();
+
+	/**
+	 * Returns the meta object for the containment reference '{@link org.unicase.docExport.exportModel.renderers.options.BoxModelOption#getBorderColor <em>Border Color</em>}'.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @return the meta object for the containment reference '<em>Border Color</em>'.
+	 * @see org.unicase.docExport.exportModel.renderers.options.BoxModelOption#getBorderColor()
+	 * @see #getBoxModelOption()
+	 * @generated
+	 */
+	EReference getBoxModelOption_BorderColor();
+
+	/**
+	 * Returns the meta object for the attribute '{@link org.unicase.docExport.exportModel.renderers.options.BoxModelOption#getPadding <em>Padding</em>}'.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @return the meta object for the attribute '<em>Padding</em>'.
+	 * @see org.unicase.docExport.exportModel.renderers.options.BoxModelOption#getPadding()
+	 * @see #getBoxModelOption()
+	 * @generated
+	 */
+	EAttribute getBoxModelOption_Padding();
+
+	/**
+	 * Returns the meta object for the attribute '{@link org.unicase.docExport.exportModel.renderers.options.BoxModelOption#getPaddingTop <em>Padding Top</em>}'.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @return the meta object for the attribute '<em>Padding Top</em>'.
+	 * @see org.unicase.docExport.exportModel.renderers.options.BoxModelOption#getPaddingTop()
+	 * @see #getBoxModelOption()
+	 * @generated
+	 */
+	EAttribute getBoxModelOption_PaddingTop();
+
+	/**
+	 * Returns the meta object for the attribute '{@link org.unicase.docExport.exportModel.renderers.options.BoxModelOption#getPaddingLeft <em>Padding Left</em>}'.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @return the meta object for the attribute '<em>Padding Left</em>'.
+	 * @see org.unicase.docExport.exportModel.renderers.options.BoxModelOption#getPaddingLeft()
+	 * @see #getBoxModelOption()
+	 * @generated
+	 */
+	EAttribute getBoxModelOption_PaddingLeft();
+
+	/**
+	 * Returns the meta object for the attribute '{@link org.unicase.docExport.exportModel.renderers.options.BoxModelOption#getPaddingBottom <em>Padding Bottom</em>}'.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @return the meta object for the attribute '<em>Padding Bottom</em>'.
+	 * @see org.unicase.docExport.exportModel.renderers.options.BoxModelOption#getPaddingBottom()
+	 * @see #getBoxModelOption()
+	 * @generated
+	 */
+	EAttribute getBoxModelOption_PaddingBottom();
+
+	/**
+	 * Returns the meta object for the attribute '{@link org.unicase.docExport.exportModel.renderers.options.BoxModelOption#getPaddingRight <em>Padding Right</em>}'.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @return the meta object for the attribute '<em>Padding Right</em>'.
+	 * @see org.unicase.docExport.exportModel.renderers.options.BoxModelOption#getPaddingRight()
+	 * @see #getBoxModelOption()
+	 * @generated
+	 */
+	EAttribute getBoxModelOption_PaddingRight();
+
+	/**
+	 * Returns the meta object for the reference '{@link org.unicase.docExport.exportModel.renderers.options.BoxModelOption#getBackgroundColor <em>Background Color</em>}'.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @return the meta object for the reference '<em>Background Color</em>'.
+	 * @see org.unicase.docExport.exportModel.renderers.options.BoxModelOption#getBackgroundColor()
+	 * @see #getBoxModelOption()
+	 * @generated
+	 */
+	EReference getBoxModelOption_BackgroundColor();
+
+	/**
+	 * Returns the meta object for the attribute '{@link org.unicase.docExport.exportModel.renderers.options.BoxModelOption#isKeepTogether <em>Keep Together</em>}'.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @return the meta object for the attribute '<em>Keep Together</em>'.
+	 * @see org.unicase.docExport.exportModel.renderers.options.BoxModelOption#isKeepTogether()
+	 * @see #getBoxModelOption()
+	 * @generated
+	 */
+	EAttribute getBoxModelOption_KeepTogether();
+
+	/**
+	 * Returns the meta object for the attribute '{@link org.unicase.docExport.exportModel.renderers.options.BoxModelOption#isKeepWithPrevious <em>Keep With Previous</em>}'.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @return the meta object for the attribute '<em>Keep With Previous</em>'.
+	 * @see org.unicase.docExport.exportModel.renderers.options.BoxModelOption#isKeepWithPrevious()
+	 * @see #getBoxModelOption()
+	 * @generated
+	 */
+	EAttribute getBoxModelOption_KeepWithPrevious();
+
+	/**
+	 * Returns the meta object for the attribute '{@link org.unicase.docExport.exportModel.renderers.options.BoxModelOption#isKeepWithNext <em>Keep With Next</em>}'.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @return the meta object for the attribute '<em>Keep With Next</em>'.
+	 * @see org.unicase.docExport.exportModel.renderers.options.BoxModelOption#isKeepWithNext()
+	 * @see #getBoxModelOption()
+	 * @generated
+	 */
+	EAttribute getBoxModelOption_KeepWithNext();
+
+	/**
+	 * Returns the meta object for the attribute '{@link org.unicase.docExport.exportModel.renderers.options.BoxModelOption#isBreakBefore <em>Break Before</em>}'.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @return the meta object for the attribute '<em>Break Before</em>'.
+	 * @see org.unicase.docExport.exportModel.renderers.options.BoxModelOption#isBreakBefore()
+	 * @see #getBoxModelOption()
+	 * @generated
+	 */
+	EAttribute getBoxModelOption_BreakBefore();
+
+	/**
+	 * Returns the meta object for class '{@link org.unicase.docExport.exportModel.renderers.options.SectionOption <em>Section Option</em>}'.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @return the meta object for class '<em>Section Option</em>'.
+	 * @see org.unicase.docExport.exportModel.renderers.options.SectionOption
+	 * @generated
+	 */
+	EClass getSectionOption();
+
+	/**
+	 * Returns the meta object for the attribute '{@link org.unicase.docExport.exportModel.renderers.options.SectionOption#getSectionNumberingStyle <em>Section Numbering Style</em>}'.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @return the meta object for the attribute '<em>Section Numbering Style</em>'.
+	 * @see org.unicase.docExport.exportModel.renderers.options.SectionOption#getSectionNumberingStyle()
+	 * @see #getSectionOption()
+	 * @generated
+	 */
+	EAttribute getSectionOption_SectionNumberingStyle();
+
+	/**
+	 * Returns the meta object for the attribute '{@link org.unicase.docExport.exportModel.renderers.options.SectionOption#isLeaveOutPreviousSectionNumbering <em>Leave Out Previous Section Numbering</em>}'.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @return the meta object for the attribute '<em>Leave Out Previous Section Numbering</em>'.
+	 * @see org.unicase.docExport.exportModel.renderers.options.SectionOption#isLeaveOutPreviousSectionNumbering()
+	 * @see #getSectionOption()
+	 * @generated
+	 */
+	EAttribute getSectionOption_LeaveOutPreviousSectionNumbering();
+
+	/**
+	 * Returns the meta object for class '{@link org.unicase.docExport.exportModel.renderers.options.BooleanAttributeOption <em>Boolean Attribute Option</em>}'.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @return the meta object for class '<em>Boolean Attribute Option</em>'.
+	 * @see org.unicase.docExport.exportModel.renderers.options.BooleanAttributeOption
+	 * @generated
+	 */
+	EClass getBooleanAttributeOption();
+
+	/**
+	 * Returns the meta object for the reference '{@link org.unicase.docExport.exportModel.renderers.options.BooleanAttributeOption#getGlobalOption <em>Global Option</em>}'.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @return the meta object for the reference '<em>Global Option</em>'.
+	 * @see org.unicase.docExport.exportModel.renderers.options.BooleanAttributeOption#getGlobalOption()
+	 * @see #getBooleanAttributeOption()
+	 * @generated
+	 */
+	EReference getBooleanAttributeOption_GlobalOption();
+
+	/**
+	 * Returns the meta object for the attribute '{@link org.unicase.docExport.exportModel.renderers.options.BooleanAttributeOption#getBooleanStyle <em>Boolean Style</em>}'.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @return the meta object for the attribute '<em>Boolean Style</em>'.
+	 * @see org.unicase.docExport.exportModel.renderers.options.BooleanAttributeOption#getBooleanStyle()
+	 * @see #getBooleanAttributeOption()
+	 * @generated
+	 */
+	EAttribute getBooleanAttributeOption_BooleanStyle();
+
+	/**
+	 * Returns the meta object for class '{@link org.unicase.docExport.exportModel.renderers.options.DateAttributeOption <em>Date Attribute Option</em>}'.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @return the meta object for class '<em>Date Attribute Option</em>'.
+	 * @see org.unicase.docExport.exportModel.renderers.options.DateAttributeOption
+	 * @generated
+	 */
+	EClass getDateAttributeOption();
+
+	/**
+	 * Returns the meta object for the reference '{@link org.unicase.docExport.exportModel.renderers.options.DateAttributeOption#getGlobalOption <em>Global Option</em>}'.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @return the meta object for the reference '<em>Global Option</em>'.
+	 * @see org.unicase.docExport.exportModel.renderers.options.DateAttributeOption#getGlobalOption()
+	 * @see #getDateAttributeOption()
+	 * @generated
+	 */
+	EReference getDateAttributeOption_GlobalOption();
+
+	/**
+	 * Returns the meta object for the attribute '{@link org.unicase.docExport.exportModel.renderers.options.DateAttributeOption#getDateStyle <em>Date Style</em>}'.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @return the meta object for the attribute '<em>Date Style</em>'.
+	 * @see org.unicase.docExport.exportModel.renderers.options.DateAttributeOption#getDateStyle()
+	 * @see #getDateAttributeOption()
+	 * @generated
+	 */
+	EAttribute getDateAttributeOption_DateStyle();
+
+	/**
+	 * Returns the meta object for enum '{@link org.unicase.docExport.exportModel.renderers.options.AppendixStyle <em>Appendix Style</em>}'.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @return the meta object for enum '<em>Appendix Style</em>'.
+	 * @see org.unicase.docExport.exportModel.renderers.options.AppendixStyle
+	 * @generated
+	 */
+	EEnum getAppendixStyle();
+
+	/**
 	 * Returns the meta object for enum '{@link org.unicase.docExport.exportModel.renderers.options.FontFamily <em>Font Family</em>}'.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
@@ -1239,6 +2316,56 @@ public interface OptionsPackage extends EPackage {
 	 * @generated
 	 */
 	EEnum getPageNumberingStyle();
+
+	/**
+	 * Returns the meta object for enum '{@link org.unicase.docExport.exportModel.renderers.options.UBorderStyle <em>UBorder Style</em>}'.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @return the meta object for enum '<em>UBorder Style</em>'.
+	 * @see org.unicase.docExport.exportModel.renderers.options.UBorderStyle
+	 * @generated
+	 */
+	EEnum getUBorderStyle();
+
+	/**
+	 * Returns the meta object for enum '{@link org.unicase.docExport.exportModel.renderers.options.SectionNumberingStyle <em>Section Numbering Style</em>}'.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @return the meta object for enum '<em>Section Numbering Style</em>'.
+	 * @see org.unicase.docExport.exportModel.renderers.options.SectionNumberingStyle
+	 * @generated
+	 */
+	EEnum getSectionNumberingStyle();
+
+	/**
+	 * Returns the meta object for enum '{@link org.unicase.docExport.exportModel.renderers.options.TextAlign <em>Text Align</em>}'.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @return the meta object for enum '<em>Text Align</em>'.
+	 * @see org.unicase.docExport.exportModel.renderers.options.TextAlign
+	 * @generated
+	 */
+	EEnum getTextAlign();
+
+	/**
+	 * Returns the meta object for enum '{@link org.unicase.docExport.exportModel.renderers.options.BooleanStyle <em>Boolean Style</em>}'.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @return the meta object for enum '<em>Boolean Style</em>'.
+	 * @see org.unicase.docExport.exportModel.renderers.options.BooleanStyle
+	 * @generated
+	 */
+	EEnum getBooleanStyle();
+
+	/**
+	 * Returns the meta object for enum '{@link org.unicase.docExport.exportModel.renderers.options.DateStyle <em>Date Style</em>}'.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @return the meta object for enum '<em>Date Style</em>'.
+	 * @see org.unicase.docExport.exportModel.renderers.options.DateStyle
+	 * @generated
+	 */
+	EEnum getDateStyle();
 
 	/**
 	 * Returns the factory that creates the instances of the model.
@@ -1305,6 +2432,14 @@ public interface OptionsPackage extends EPackage {
 		 * @generated
 		 */
 		EAttribute ATTRIBUTE_OPTION__OVERWRITE_GLOBAL_OPTION = eINSTANCE.getAttributeOption_OverwriteGlobalOption();
+
+		/**
+		 * The meta object literal for the '<em><b>Attribute Text</b></em>' attribute feature.
+		 * <!-- begin-user-doc -->
+		 * <!-- end-user-doc -->
+		 * @generated
+		 */
+		EAttribute ATTRIBUTE_OPTION__ATTRIBUTE_TEXT = eINSTANCE.getAttributeOption_AttributeText();
 
 		/**
 		 * The meta object literal for the '{@link org.unicase.docExport.exportModel.renderers.options.impl.SingleReferenceAttributeOptionImpl <em>Single Reference Attribute Option</em>}' class.
@@ -1485,6 +2620,70 @@ public interface OptionsPackage extends EPackage {
 		EReference LAYOUT_OPTIONS__MODEL_ELEMENT_TEXT_OPTION = eINSTANCE.getLayoutOptions_ModelElementTextOption();
 
 		/**
+		 * The meta object literal for the '<em><b>Header Text</b></em>' attribute feature.
+		 * <!-- begin-user-doc -->
+		 * <!-- end-user-doc -->
+		 * @generated
+		 */
+		EAttribute LAYOUT_OPTIONS__HEADER_TEXT = eINSTANCE.getLayoutOptions_HeaderText();
+
+		/**
+		 * The meta object literal for the '<em><b>Footer Text</b></em>' attribute feature.
+		 * <!-- begin-user-doc -->
+		 * <!-- end-user-doc -->
+		 * @generated
+		 */
+		EAttribute LAYOUT_OPTIONS__FOOTER_TEXT = eINSTANCE.getLayoutOptions_FooterText();
+
+		/**
+		 * The meta object literal for the '<em><b>Section Option</b></em>' containment reference feature.
+		 * <!-- begin-user-doc -->
+		 * <!-- end-user-doc -->
+		 * @generated
+		 */
+		EReference LAYOUT_OPTIONS__SECTION_OPTION = eINSTANCE.getLayoutOptions_SectionOption();
+
+		/**
+		 * The meta object literal for the '<em><b>Section Font Size Decrease Step</b></em>' attribute feature.
+		 * <!-- begin-user-doc -->
+		 * <!-- end-user-doc -->
+		 * @generated
+		 */
+		EAttribute LAYOUT_OPTIONS__SECTION_FONT_SIZE_DECREASE_STEP = eINSTANCE.getLayoutOptions_SectionFontSizeDecreaseStep();
+
+		/**
+		 * The meta object literal for the '<em><b>Document Title Text Option</b></em>' containment reference feature.
+		 * <!-- begin-user-doc -->
+		 * <!-- end-user-doc -->
+		 * @generated
+		 */
+		EReference LAYOUT_OPTIONS__DOCUMENT_TITLE_TEXT_OPTION = eINSTANCE.getLayoutOptions_DocumentTitleTextOption();
+
+		/**
+		 * The meta object literal for the '<em><b>Show Model Element Type In Section Title</b></em>' attribute feature.
+		 * <!-- begin-user-doc -->
+		 * <!-- end-user-doc -->
+		 * @generated
+		 */
+		EAttribute LAYOUT_OPTIONS__SHOW_MODEL_ELEMENT_TYPE_IN_SECTION_TITLE = eINSTANCE.getLayoutOptions_ShowModelElementTypeInSectionTitle();
+
+		/**
+		 * The meta object literal for the '<em><b>Attribute Text Option</b></em>' containment reference feature.
+		 * <!-- begin-user-doc -->
+		 * <!-- end-user-doc -->
+		 * @generated
+		 */
+		EReference LAYOUT_OPTIONS__ATTRIBUTE_TEXT_OPTION = eINSTANCE.getLayoutOptions_AttributeTextOption();
+
+		/**
+		 * The meta object literal for the '<em><b>Appendix Style</b></em>' attribute feature.
+		 * <!-- begin-user-doc -->
+		 * <!-- end-user-doc -->
+		 * @generated
+		 */
+		EAttribute LAYOUT_OPTIONS__APPENDIX_STYLE = eINSTANCE.getLayoutOptions_AppendixStyle();
+
+		/**
 		 * The meta object literal for the '{@link org.unicase.docExport.exportModel.renderers.options.impl.ListOptionImpl <em>List Option</em>}' class.
 		 * <!-- begin-user-doc -->
 		 * <!-- end-user-doc -->
@@ -1535,6 +2734,14 @@ public interface OptionsPackage extends EPackage {
 		 * @generated
 		 */
 		EReference TEXT_OPTION__FONT_COLOR = eINSTANCE.getTextOption_FontColor();
+
+		/**
+		 * The meta object literal for the '<em><b>Text Align</b></em>' attribute feature.
+		 * <!-- begin-user-doc -->
+		 * <!-- end-user-doc -->
+		 * @generated
+		 */
+		EAttribute TEXT_OPTION__TEXT_ALIGN = eINSTANCE.getTextOption_TextAlign();
 
 		/**
 		 * The meta object literal for the '<em><b>Bold</b></em>' attribute feature.
@@ -1613,6 +2820,280 @@ public interface OptionsPackage extends EPackage {
 		EAttribute UCOLOR__BLUE = eINSTANCE.getUColor_Blue();
 
 		/**
+		 * The meta object literal for the '{@link org.unicase.docExport.exportModel.renderers.options.impl.BoxModelOptionImpl <em>Box Model Option</em>}' class.
+		 * <!-- begin-user-doc -->
+		 * <!-- end-user-doc -->
+		 * @see org.unicase.docExport.exportModel.renderers.options.impl.BoxModelOptionImpl
+		 * @see org.unicase.docExport.exportModel.renderers.options.impl.OptionsPackageImpl#getBoxModelOption()
+		 * @generated
+		 */
+		EClass BOX_MODEL_OPTION = eINSTANCE.getBoxModelOption();
+
+		/**
+		 * The meta object literal for the '<em><b>Margin</b></em>' attribute feature.
+		 * <!-- begin-user-doc -->
+		 * <!-- end-user-doc -->
+		 * @generated
+		 */
+		EAttribute BOX_MODEL_OPTION__MARGIN = eINSTANCE.getBoxModelOption_Margin();
+
+		/**
+		 * The meta object literal for the '<em><b>Margin Top</b></em>' attribute feature.
+		 * <!-- begin-user-doc -->
+		 * <!-- end-user-doc -->
+		 * @generated
+		 */
+		EAttribute BOX_MODEL_OPTION__MARGIN_TOP = eINSTANCE.getBoxModelOption_MarginTop();
+
+		/**
+		 * The meta object literal for the '<em><b>Margin Left</b></em>' attribute feature.
+		 * <!-- begin-user-doc -->
+		 * <!-- end-user-doc -->
+		 * @generated
+		 */
+		EAttribute BOX_MODEL_OPTION__MARGIN_LEFT = eINSTANCE.getBoxModelOption_MarginLeft();
+
+		/**
+		 * The meta object literal for the '<em><b>Margin Bottom</b></em>' attribute feature.
+		 * <!-- begin-user-doc -->
+		 * <!-- end-user-doc -->
+		 * @generated
+		 */
+		EAttribute BOX_MODEL_OPTION__MARGIN_BOTTOM = eINSTANCE.getBoxModelOption_MarginBottom();
+
+		/**
+		 * The meta object literal for the '<em><b>Margin Right</b></em>' attribute feature.
+		 * <!-- begin-user-doc -->
+		 * <!-- end-user-doc -->
+		 * @generated
+		 */
+		EAttribute BOX_MODEL_OPTION__MARGIN_RIGHT = eINSTANCE.getBoxModelOption_MarginRight();
+
+		/**
+		 * The meta object literal for the '<em><b>Border</b></em>' attribute feature.
+		 * <!-- begin-user-doc -->
+		 * <!-- end-user-doc -->
+		 * @generated
+		 */
+		EAttribute BOX_MODEL_OPTION__BORDER = eINSTANCE.getBoxModelOption_Border();
+
+		/**
+		 * The meta object literal for the '<em><b>Border Top</b></em>' attribute feature.
+		 * <!-- begin-user-doc -->
+		 * <!-- end-user-doc -->
+		 * @generated
+		 */
+		EAttribute BOX_MODEL_OPTION__BORDER_TOP = eINSTANCE.getBoxModelOption_BorderTop();
+
+		/**
+		 * The meta object literal for the '<em><b>Border Left</b></em>' attribute feature.
+		 * <!-- begin-user-doc -->
+		 * <!-- end-user-doc -->
+		 * @generated
+		 */
+		EAttribute BOX_MODEL_OPTION__BORDER_LEFT = eINSTANCE.getBoxModelOption_BorderLeft();
+
+		/**
+		 * The meta object literal for the '<em><b>Border Bottom</b></em>' attribute feature.
+		 * <!-- begin-user-doc -->
+		 * <!-- end-user-doc -->
+		 * @generated
+		 */
+		EAttribute BOX_MODEL_OPTION__BORDER_BOTTOM = eINSTANCE.getBoxModelOption_BorderBottom();
+
+		/**
+		 * The meta object literal for the '<em><b>Border Right</b></em>' attribute feature.
+		 * <!-- begin-user-doc -->
+		 * <!-- end-user-doc -->
+		 * @generated
+		 */
+		EAttribute BOX_MODEL_OPTION__BORDER_RIGHT = eINSTANCE.getBoxModelOption_BorderRight();
+
+		/**
+		 * The meta object literal for the '<em><b>Border Style</b></em>' attribute feature.
+		 * <!-- begin-user-doc -->
+		 * <!-- end-user-doc -->
+		 * @generated
+		 */
+		EAttribute BOX_MODEL_OPTION__BORDER_STYLE = eINSTANCE.getBoxModelOption_BorderStyle();
+
+		/**
+		 * The meta object literal for the '<em><b>Border Color</b></em>' containment reference feature.
+		 * <!-- begin-user-doc -->
+		 * <!-- end-user-doc -->
+		 * @generated
+		 */
+		EReference BOX_MODEL_OPTION__BORDER_COLOR = eINSTANCE.getBoxModelOption_BorderColor();
+
+		/**
+		 * The meta object literal for the '<em><b>Padding</b></em>' attribute feature.
+		 * <!-- begin-user-doc -->
+		 * <!-- end-user-doc -->
+		 * @generated
+		 */
+		EAttribute BOX_MODEL_OPTION__PADDING = eINSTANCE.getBoxModelOption_Padding();
+
+		/**
+		 * The meta object literal for the '<em><b>Padding Top</b></em>' attribute feature.
+		 * <!-- begin-user-doc -->
+		 * <!-- end-user-doc -->
+		 * @generated
+		 */
+		EAttribute BOX_MODEL_OPTION__PADDING_TOP = eINSTANCE.getBoxModelOption_PaddingTop();
+
+		/**
+		 * The meta object literal for the '<em><b>Padding Left</b></em>' attribute feature.
+		 * <!-- begin-user-doc -->
+		 * <!-- end-user-doc -->
+		 * @generated
+		 */
+		EAttribute BOX_MODEL_OPTION__PADDING_LEFT = eINSTANCE.getBoxModelOption_PaddingLeft();
+
+		/**
+		 * The meta object literal for the '<em><b>Padding Bottom</b></em>' attribute feature.
+		 * <!-- begin-user-doc -->
+		 * <!-- end-user-doc -->
+		 * @generated
+		 */
+		EAttribute BOX_MODEL_OPTION__PADDING_BOTTOM = eINSTANCE.getBoxModelOption_PaddingBottom();
+
+		/**
+		 * The meta object literal for the '<em><b>Padding Right</b></em>' attribute feature.
+		 * <!-- begin-user-doc -->
+		 * <!-- end-user-doc -->
+		 * @generated
+		 */
+		EAttribute BOX_MODEL_OPTION__PADDING_RIGHT = eINSTANCE.getBoxModelOption_PaddingRight();
+
+		/**
+		 * The meta object literal for the '<em><b>Background Color</b></em>' reference feature.
+		 * <!-- begin-user-doc -->
+		 * <!-- end-user-doc -->
+		 * @generated
+		 */
+		EReference BOX_MODEL_OPTION__BACKGROUND_COLOR = eINSTANCE.getBoxModelOption_BackgroundColor();
+
+		/**
+		 * The meta object literal for the '<em><b>Keep Together</b></em>' attribute feature.
+		 * <!-- begin-user-doc -->
+		 * <!-- end-user-doc -->
+		 * @generated
+		 */
+		EAttribute BOX_MODEL_OPTION__KEEP_TOGETHER = eINSTANCE.getBoxModelOption_KeepTogether();
+
+		/**
+		 * The meta object literal for the '<em><b>Keep With Previous</b></em>' attribute feature.
+		 * <!-- begin-user-doc -->
+		 * <!-- end-user-doc -->
+		 * @generated
+		 */
+		EAttribute BOX_MODEL_OPTION__KEEP_WITH_PREVIOUS = eINSTANCE.getBoxModelOption_KeepWithPrevious();
+
+		/**
+		 * The meta object literal for the '<em><b>Keep With Next</b></em>' attribute feature.
+		 * <!-- begin-user-doc -->
+		 * <!-- end-user-doc -->
+		 * @generated
+		 */
+		EAttribute BOX_MODEL_OPTION__KEEP_WITH_NEXT = eINSTANCE.getBoxModelOption_KeepWithNext();
+
+		/**
+		 * The meta object literal for the '<em><b>Break Before</b></em>' attribute feature.
+		 * <!-- begin-user-doc -->
+		 * <!-- end-user-doc -->
+		 * @generated
+		 */
+		EAttribute BOX_MODEL_OPTION__BREAK_BEFORE = eINSTANCE.getBoxModelOption_BreakBefore();
+
+		/**
+		 * The meta object literal for the '{@link org.unicase.docExport.exportModel.renderers.options.impl.SectionOptionImpl <em>Section Option</em>}' class.
+		 * <!-- begin-user-doc -->
+		 * <!-- end-user-doc -->
+		 * @see org.unicase.docExport.exportModel.renderers.options.impl.SectionOptionImpl
+		 * @see org.unicase.docExport.exportModel.renderers.options.impl.OptionsPackageImpl#getSectionOption()
+		 * @generated
+		 */
+		EClass SECTION_OPTION = eINSTANCE.getSectionOption();
+
+		/**
+		 * The meta object literal for the '<em><b>Section Numbering Style</b></em>' attribute feature.
+		 * <!-- begin-user-doc -->
+		 * <!-- end-user-doc -->
+		 * @generated
+		 */
+		EAttribute SECTION_OPTION__SECTION_NUMBERING_STYLE = eINSTANCE.getSectionOption_SectionNumberingStyle();
+
+		/**
+		 * The meta object literal for the '<em><b>Leave Out Previous Section Numbering</b></em>' attribute feature.
+		 * <!-- begin-user-doc -->
+		 * <!-- end-user-doc -->
+		 * @generated
+		 */
+		EAttribute SECTION_OPTION__LEAVE_OUT_PREVIOUS_SECTION_NUMBERING = eINSTANCE.getSectionOption_LeaveOutPreviousSectionNumbering();
+
+		/**
+		 * The meta object literal for the '{@link org.unicase.docExport.exportModel.renderers.options.impl.BooleanAttributeOptionImpl <em>Boolean Attribute Option</em>}' class.
+		 * <!-- begin-user-doc -->
+		 * <!-- end-user-doc -->
+		 * @see org.unicase.docExport.exportModel.renderers.options.impl.BooleanAttributeOptionImpl
+		 * @see org.unicase.docExport.exportModel.renderers.options.impl.OptionsPackageImpl#getBooleanAttributeOption()
+		 * @generated
+		 */
+		EClass BOOLEAN_ATTRIBUTE_OPTION = eINSTANCE.getBooleanAttributeOption();
+
+		/**
+		 * The meta object literal for the '<em><b>Global Option</b></em>' reference feature.
+		 * <!-- begin-user-doc -->
+		 * <!-- end-user-doc -->
+		 * @generated
+		 */
+		EReference BOOLEAN_ATTRIBUTE_OPTION__GLOBAL_OPTION = eINSTANCE.getBooleanAttributeOption_GlobalOption();
+
+		/**
+		 * The meta object literal for the '<em><b>Boolean Style</b></em>' attribute feature.
+		 * <!-- begin-user-doc -->
+		 * <!-- end-user-doc -->
+		 * @generated
+		 */
+		EAttribute BOOLEAN_ATTRIBUTE_OPTION__BOOLEAN_STYLE = eINSTANCE.getBooleanAttributeOption_BooleanStyle();
+
+		/**
+		 * The meta object literal for the '{@link org.unicase.docExport.exportModel.renderers.options.impl.DateAttributeOptionImpl <em>Date Attribute Option</em>}' class.
+		 * <!-- begin-user-doc -->
+		 * <!-- end-user-doc -->
+		 * @see org.unicase.docExport.exportModel.renderers.options.impl.DateAttributeOptionImpl
+		 * @see org.unicase.docExport.exportModel.renderers.options.impl.OptionsPackageImpl#getDateAttributeOption()
+		 * @generated
+		 */
+		EClass DATE_ATTRIBUTE_OPTION = eINSTANCE.getDateAttributeOption();
+
+		/**
+		 * The meta object literal for the '<em><b>Global Option</b></em>' reference feature.
+		 * <!-- begin-user-doc -->
+		 * <!-- end-user-doc -->
+		 * @generated
+		 */
+		EReference DATE_ATTRIBUTE_OPTION__GLOBAL_OPTION = eINSTANCE.getDateAttributeOption_GlobalOption();
+
+		/**
+		 * The meta object literal for the '<em><b>Date Style</b></em>' attribute feature.
+		 * <!-- begin-user-doc -->
+		 * <!-- end-user-doc -->
+		 * @generated
+		 */
+		EAttribute DATE_ATTRIBUTE_OPTION__DATE_STYLE = eINSTANCE.getDateAttributeOption_DateStyle();
+
+		/**
+		 * The meta object literal for the '{@link org.unicase.docExport.exportModel.renderers.options.AppendixStyle <em>Appendix Style</em>}' enum.
+		 * <!-- begin-user-doc -->
+		 * <!-- end-user-doc -->
+		 * @see org.unicase.docExport.exportModel.renderers.options.AppendixStyle
+		 * @see org.unicase.docExport.exportModel.renderers.options.impl.OptionsPackageImpl#getAppendixStyle()
+		 * @generated
+		 */
+		EEnum APPENDIX_STYLE = eINSTANCE.getAppendixStyle();
+
+		/**
 		 * The meta object literal for the '{@link org.unicase.docExport.exportModel.renderers.options.FontFamily <em>Font Family</em>}' enum.
 		 * <!-- begin-user-doc -->
 		 * <!-- end-user-doc -->
@@ -1641,6 +3122,56 @@ public interface OptionsPackage extends EPackage {
 		 * @generated
 		 */
 		EEnum PAGE_NUMBERING_STYLE = eINSTANCE.getPageNumberingStyle();
+
+		/**
+		 * The meta object literal for the '{@link org.unicase.docExport.exportModel.renderers.options.UBorderStyle <em>UBorder Style</em>}' enum.
+		 * <!-- begin-user-doc -->
+		 * <!-- end-user-doc -->
+		 * @see org.unicase.docExport.exportModel.renderers.options.UBorderStyle
+		 * @see org.unicase.docExport.exportModel.renderers.options.impl.OptionsPackageImpl#getUBorderStyle()
+		 * @generated
+		 */
+		EEnum UBORDER_STYLE = eINSTANCE.getUBorderStyle();
+
+		/**
+		 * The meta object literal for the '{@link org.unicase.docExport.exportModel.renderers.options.SectionNumberingStyle <em>Section Numbering Style</em>}' enum.
+		 * <!-- begin-user-doc -->
+		 * <!-- end-user-doc -->
+		 * @see org.unicase.docExport.exportModel.renderers.options.SectionNumberingStyle
+		 * @see org.unicase.docExport.exportModel.renderers.options.impl.OptionsPackageImpl#getSectionNumberingStyle()
+		 * @generated
+		 */
+		EEnum SECTION_NUMBERING_STYLE = eINSTANCE.getSectionNumberingStyle();
+
+		/**
+		 * The meta object literal for the '{@link org.unicase.docExport.exportModel.renderers.options.TextAlign <em>Text Align</em>}' enum.
+		 * <!-- begin-user-doc -->
+		 * <!-- end-user-doc -->
+		 * @see org.unicase.docExport.exportModel.renderers.options.TextAlign
+		 * @see org.unicase.docExport.exportModel.renderers.options.impl.OptionsPackageImpl#getTextAlign()
+		 * @generated
+		 */
+		EEnum TEXT_ALIGN = eINSTANCE.getTextAlign();
+
+		/**
+		 * The meta object literal for the '{@link org.unicase.docExport.exportModel.renderers.options.BooleanStyle <em>Boolean Style</em>}' enum.
+		 * <!-- begin-user-doc -->
+		 * <!-- end-user-doc -->
+		 * @see org.unicase.docExport.exportModel.renderers.options.BooleanStyle
+		 * @see org.unicase.docExport.exportModel.renderers.options.impl.OptionsPackageImpl#getBooleanStyle()
+		 * @generated
+		 */
+		EEnum BOOLEAN_STYLE = eINSTANCE.getBooleanStyle();
+
+		/**
+		 * The meta object literal for the '{@link org.unicase.docExport.exportModel.renderers.options.DateStyle <em>Date Style</em>}' enum.
+		 * <!-- begin-user-doc -->
+		 * <!-- end-user-doc -->
+		 * @see org.unicase.docExport.exportModel.renderers.options.DateStyle
+		 * @see org.unicase.docExport.exportModel.renderers.options.impl.OptionsPackageImpl#getDateStyle()
+		 * @generated
+		 */
+		EEnum DATE_STYLE = eINSTANCE.getDateStyle();
 
 	}
 

@@ -7,7 +7,6 @@
 package org.unicase.docExport.exportModel.impl;
 
 import java.util.Collection;
-import java.util.HashSet;
 
 import org.eclipse.core.runtime.IStatus;
 import org.eclipse.emf.common.notify.Notification;
@@ -21,14 +20,13 @@ import org.eclipse.emf.ecore.util.EObjectContainmentEList;
 import org.eclipse.emf.ecore.util.InternalEList;
 import org.unicase.docExport.exportModel.ExportModelPackage;
 import org.unicase.docExport.exportModel.Template;
+import org.unicase.docExport.exportModel.builders.DefaultModelElementRendererBuilder;
 import org.unicase.docExport.exportModel.renderers.ModelElementRenderer;
 import org.unicase.docExport.exportModel.renderers.ModelElementRendererMapping;
 import org.unicase.docExport.exportModel.renderers.RenderersFactory;
 import org.unicase.docExport.exportModel.renderers.options.AttributeOption;
 import org.unicase.docExport.exportModel.renderers.options.LayoutOptions;
 import org.unicase.docExport.exportModel.renderers.options.OptionsFactory;
-import org.unicase.model.ModelElement;
-import org.unicase.model.ModelElementId;
 import org.unicase.workspace.util.WorkspaceUtil;
 
 /**
@@ -42,17 +40,13 @@ import org.unicase.workspace.util.WorkspaceUtil;
  *   <li>{@link org.unicase.docExport.exportModel.impl.TemplateImpl#getLayoutOptions <em>Layout Options</em>}</li>
  *   <li>{@link org.unicase.docExport.exportModel.impl.TemplateImpl#getGlobalRendererOptions <em>Global Renderer Options</em>}</li>
  *   <li>{@link org.unicase.docExport.exportModel.impl.TemplateImpl#getName <em>Name</em>}</li>
+ *   <li>{@link org.unicase.docExport.exportModel.impl.TemplateImpl#getLogoImage <em>Logo Image</em>}</li>
  * </ul>
  * </p>
  *
  * @generated
  */
 public class TemplateImpl extends EObjectImpl implements Template {
-	
-	/**
-	 * @generated NOT
-	 */
-	private HashSet<ModelElementId> renderedModelElements;
 	
 	/**
 	 * The cached value of the '{@link #getModelElementRendererMapping() <em>Model Element Renderer Mapping</em>}' containment reference list.
@@ -103,6 +97,26 @@ public class TemplateImpl extends EObjectImpl implements Template {
 	 * @ordered
 	 */
 	protected String name = NAME_EDEFAULT;
+
+	/**
+	 * The default value of the '{@link #getLogoImage() <em>Logo Image</em>}' attribute.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @see #getLogoImage()
+	 * @generated
+	 * @ordered
+	 */
+	protected static final String LOGO_IMAGE_EDEFAULT = null;
+
+	/**
+	 * The cached value of the '{@link #getLogoImage() <em>Logo Image</em>}' attribute.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @see #getLogoImage()
+	 * @generated
+	 * @ordered
+	 */
+	protected String logoImage = LOGO_IMAGE_EDEFAULT;
 
 	/**
 	 * <!-- begin-user-doc -->
@@ -218,6 +232,27 @@ public class TemplateImpl extends EObjectImpl implements Template {
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
+	public String getLogoImage() {
+		return logoImage;
+	}
+
+	/**
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 */
+	public void setLogoImage(String newLogoImage) {
+		String oldLogoImage = logoImage;
+		logoImage = newLogoImage;
+		if (eNotificationRequired())
+			eNotify(new ENotificationImpl(this, Notification.SET, ExportModelPackage.TEMPLATE__LOGO_IMAGE, oldLogoImage, logoImage));
+	}
+
+	/**
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 */
 	@Override
 	public NotificationChain eInverseRemove(InternalEObject otherEnd, int featureID, NotificationChain msgs) {
 		switch (featureID) {
@@ -247,6 +282,8 @@ public class TemplateImpl extends EObjectImpl implements Template {
 				return getGlobalRendererOptions();
 			case ExportModelPackage.TEMPLATE__NAME:
 				return getName();
+			case ExportModelPackage.TEMPLATE__LOGO_IMAGE:
+				return getLogoImage();
 		}
 		return super.eGet(featureID, resolve, coreType);
 	}
@@ -274,6 +311,9 @@ public class TemplateImpl extends EObjectImpl implements Template {
 			case ExportModelPackage.TEMPLATE__NAME:
 				setName((String)newValue);
 				return;
+			case ExportModelPackage.TEMPLATE__LOGO_IMAGE:
+				setLogoImage((String)newValue);
+				return;
 		}
 		super.eSet(featureID, newValue);
 	}
@@ -298,6 +338,9 @@ public class TemplateImpl extends EObjectImpl implements Template {
 			case ExportModelPackage.TEMPLATE__NAME:
 				setName(NAME_EDEFAULT);
 				return;
+			case ExportModelPackage.TEMPLATE__LOGO_IMAGE:
+				setLogoImage(LOGO_IMAGE_EDEFAULT);
+				return;
 		}
 		super.eUnset(featureID);
 	}
@@ -318,6 +361,8 @@ public class TemplateImpl extends EObjectImpl implements Template {
 				return globalRendererOptions != null && !globalRendererOptions.isEmpty();
 			case ExportModelPackage.TEMPLATE__NAME:
 				return NAME_EDEFAULT == null ? name != null : !NAME_EDEFAULT.equals(name);
+			case ExportModelPackage.TEMPLATE__LOGO_IMAGE:
+				return LOGO_IMAGE_EDEFAULT == null ? logoImage != null : !LOGO_IMAGE_EDEFAULT.equals(logoImage);
 		}
 		return super.eIsSet(featureID);
 	}
@@ -334,6 +379,8 @@ public class TemplateImpl extends EObjectImpl implements Template {
 		StringBuffer result = new StringBuffer(super.toString());
 		result.append(" (name: ");
 		result.append(name);
+		result.append(", logoImage: ");
+		result.append(logoImage);
 		result.append(')');
 		return result.toString();
 	}
@@ -352,18 +399,6 @@ public class TemplateImpl extends EObjectImpl implements Template {
 				IStatus.ERROR
 			);
 		return null;
-	}
-	
-	public void addRenderedModelElement(ModelElement me) {
-		renderedModelElements.add(me.getModelElementId());
-	}
-	
-	public boolean hasAlreadyBeenRendered(ModelElement me) {
-		return renderedModelElements.contains(me.getModelElementId());
-	}
-	
-	public void initiateRenderedModelElements() {
-		renderedModelElements = new HashSet<ModelElementId>();
 	}
 	
 	public void setModelElementRenderer(String className,
@@ -391,6 +426,16 @@ public class TemplateImpl extends EObjectImpl implements Template {
 		return null;
 	}
 
+	public ModelElementRenderer getModelElementRendererNotNull(EClass eClass, Template template) {
+		for (ModelElementRendererMapping mapping : getModelElementRendererMapping()) {
+			if (mapping.getEClassName().equals(eClass.getName())) {
+				return mapping.getRenderer();
+			}
+		}		
+		
+		return DefaultModelElementRendererBuilder.build(eClass, template);
+	}
+	
 	public void removeModelElementRenderer(EClass modelElementEClass) {
 		for (ModelElementRendererMapping mapping : getModelElementRendererMapping()) {
 			if (mapping.getEClassName().equals(modelElementEClass)) {

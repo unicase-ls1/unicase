@@ -1,6 +1,6 @@
 package org.unicase.docExport.docWriter;
 
-import org.unicase.docExport.exportModel.renderers.elements.UCompositeSection;
+import org.unicase.docExport.exportModel.renderers.elements.URootCompositeSection;
 
 /**
  * 
@@ -18,7 +18,7 @@ public interface DocWriter {
 	 * @param fileName the filename where the document shall be saved
 	 * @param doc the document which shall be written to a file
 	 */
-	 void export(String fileName, UCompositeSection doc);
+	 void export(String fileName, URootCompositeSection doc);
 	 
 	 /**
 	  * Returns the file type, which will be used for this export.

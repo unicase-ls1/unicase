@@ -1,8 +1,11 @@
 package org.unicase.docExport.exportModel.renderers.elements;
 
+import java.util.ArrayList;
 import java.util.Vector;
 
 import org.unicase.docExport.exportModel.renderers.options.OptionsFactory;
+import org.unicase.docExport.exportModel.renderers.options.SectionNumberingStyle;
+import org.unicase.docExport.exportModel.renderers.options.SectionOption;
 import org.unicase.docExport.exportModel.renderers.options.TextOption;
 
 /**
@@ -11,12 +14,15 @@ import org.unicase.docExport.exportModel.renderers.options.TextOption;
  */
 public class USection extends UCompositeSection {
 
-	private static final int DEPTH_DEFAULT = 0;
-	private String title = "";
+	private static final int SECTION_NUMBER_DEFAULT = 1;
+	private static final int SECTION_DEPTH_DEFAULT = 0;
 	private UParagraph titleParagraph;
-	private int depth = DEPTH_DEFAULT;
-	private TextOption option = OptionsFactory.eINSTANCE.createTextOption();
-
+	private int sectionNumber = SECTION_NUMBER_DEFAULT;
+	private int depth = SECTION_DEPTH_DEFAULT;
+	private SectionOption sectionOption = OptionsFactory.eINSTANCE.createSectionOption();
+	
+	private int indentionLeft;
+	
 	/**
 	 * default constructor.
 	 */
@@ -27,8 +33,7 @@ public class USection extends UCompositeSection {
 	 * @param title the Title of the section
 	 */
 	public USection(String title) {
-		this.titleParagraph= new UParagraph(title);
-		this.setTitle(title);
+		this.titleParagraph = new UParagraph(title);
 	}
 
 	/**
@@ -38,7 +43,6 @@ public class USection extends UCompositeSection {
 	public USection(String title, TextOption option) {
 		this.titleParagraph = new UParagraph(title);
 		titleParagraph.setOption(option);
-		this.setTitle(title);
 	}
 	
 	/**
@@ -49,7 +53,6 @@ public class USection extends UCompositeSection {
 	 */
 	public USection(UParagraph title) {
 		this.titleParagraph = title;
-		this.option = titleParagraph.getOption();
 	}
 	
 	/**
@@ -84,19 +87,6 @@ public class USection extends UCompositeSection {
 		return ret;	
 	}
 
-	/**
-	 * @param title the title to set
-	 */
-	public void setTitle(String title) {
-		this.title = title;
-	}
-
-	/**
-	 * @return the title
-	 */
-	public String getTitle() {
-		return title;
-	}
 
 	/**
 	 * @param paragraph the UParagraph of the title to set
@@ -113,31 +103,109 @@ public class USection extends UCompositeSection {
 	}	
 	
 	/**
-	 * @param option the option to set
-	 */
-	public void setOption(TextOption option) {
-		this.option = option;
-	}
-
-	/**
-	 * @return the option
-	 */
-	@Override
-	public TextOption getOption() {
-		return option;
-	}
-	
-	/**
 	 * @param doc the UDocument which shall be appended as a child.
 	 */
 	@Override
 	public void add(UDocument doc) {
-		getChildren().add(doc);
+
 		if (doc instanceof USection)  {
-			((USection) doc).setDepth(this.depth + 1);
+			((USection) doc).setSectionNumber(getSectionCount() + 1);
+			((USection) doc).setDepth(depth + 1);
 		}
 		
+		getChildren().add(doc);
+				
 		doc.setParent(this);
+	}
+	
+	private int getSectionCount() {
+		Vector<UDocument> children = getChildren();
+		
+		int sectionCount = 0;
+		
+		for (UDocument child : children) {
+			if (child instanceof USection) {
+				sectionCount ++;
+			}
+		}
+		
+		return sectionCount;
+	}
+
+	
+	/**
+	 * @return the sectionNumber
+	 */
+	public int getSectionNumber() {
+		return sectionNumber;
+	}
+	
+	/**
+	 * set the sectionNumber.
+	 * @param number the new section number
+	 */
+	public void setSectionNumber(int number) {
+		sectionNumber = number;
+	}
+	
+	/**
+	 * returns the section number of this section as a string depending on the
+	 * sectionOption.
+	 * @return the sectionNumber (i.e. 1 or A or I)
+	 */
+	public String getSectionNumberAsString() {
+		SectionNumberingStyle style = getSectionOption().getSectionNumberingStyle();
+		if (style.equals(SectionNumberingStyle.ALPHA)) {
+			return String.valueOf(((char)(sectionNumber + 64))) + ")";
+		} else if (style.equals(SectionNumberingStyle.NONE)) {
+			return "";
+		}
+		else {
+			return String.valueOf(sectionNumber);
+		}
+	}
+	
+	/**
+	 * 
+	 * @return a string like 2.4.1
+	 */
+	public String getFullSectionNumbering()  {
+		
+		ArrayList<String> numbers = new ArrayList<String>();
+		
+		//The first section doesn't get numbered, because the root
+		//model element is always the first section, which only occurs once..
+		//so the first section is the document title
+//		if (getParent() instanceof USection) {
+//			numbers.add(getSectionNumberAsString());
+//		}
+
+		
+		UDocument parent = this;
+		while (parent != null && parent instanceof USection) {
+			USection section = (USection) parent;
+			if (parent.getParent() instanceof USection) {
+				if (!section.getSectionNumberAsString().equals("")) {
+					numbers.add(section.getSectionNumberAsString());
+				}
+			}
+			parent = parent.getParent();
+			
+			if (section.getSectionOption().isLeaveOutPreviousSectionNumbering()) {
+				break;
+			}
+		}
+		
+		String ret = "";
+		
+		for (int i = numbers.size() - 1; i >= 0 ; i--) {
+			ret += String.valueOf(numbers.get(i)) + ".";
+		}
+		
+		if (ret.length() > 1) {
+			ret = ret.substring(0, ret.length() - 1);
+		}
+		return (ret);
 	}
 
 	/**
@@ -152,5 +220,33 @@ public class USection extends UCompositeSection {
 	 */
 	public int getDepth() {
 		return depth;
+	}
+
+	/**
+	 * @param sectionOption the sectionOption to set
+	 */
+	public void setSectionOption(SectionOption sectionOption) {
+		this.sectionOption = sectionOption;
+	}
+
+	/**
+	 * @return the sectionOption
+	 */
+	public SectionOption getSectionOption() {
+		return sectionOption;
+	}
+
+	/**
+	 * @param indentionLeft the indentionLeft to set
+	 */
+	public void setIndentionLeft(int indentionLeft) {
+		this.indentionLeft = indentionLeft;
+	}
+
+	/**
+	 * @return the indentionLeft
+	 */
+	public int getIndentionLeft() {
+		return indentionLeft;
 	}
 }

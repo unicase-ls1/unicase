@@ -10,12 +10,16 @@ import org.eclipse.emf.ecore.EObject;
 import org.eclipse.emf.ecore.EPackage;
 import org.unicase.docExport.exportModel.DocumentTemplateFactory;
 import org.unicase.docExport.exportModel.Template;
+import org.unicase.docExport.exportModel.renderers.options.BooleanAttributeOption;
+import org.unicase.docExport.exportModel.renderers.options.DateAttributeOption;
 import org.unicase.docExport.exportModel.renderers.options.FontFamily;
 import org.unicase.docExport.exportModel.renderers.options.LayoutOptions;
 import org.unicase.docExport.exportModel.renderers.options.MultiReferenceAttributeOption;
 import org.unicase.docExport.exportModel.renderers.options.OptionsFactory;
 import org.unicase.docExport.exportModel.renderers.options.SingleReferenceAttributeOption;
 import org.unicase.docExport.exportModel.renderers.options.StringAttributeOption;
+import org.unicase.docExport.exportModel.renderers.options.TextAlign;
+import org.unicase.docExport.exportModel.renderers.options.UColor;
 import org.unicase.model.ModelElement;
 
 /**
@@ -43,22 +47,33 @@ public final class DefaultDocumentTemplateBuilder {
 		LayoutOptions layoutOptions = OptionsFactory.eINSTANCE.createLayoutOptions();
 		template.setLayoutOptions(layoutOptions);
 		
+		UColor darkBlue = OptionsFactory.eINSTANCE.createUColor();
+		darkBlue.setBlue(90);
+		darkBlue.setGreen(40);
+		darkBlue.setRed(0);
+		
 		layoutOptions.setCoverText("Chair for Applied Software Engineering \n DOLLI2-Project");
 		layoutOptions.getCoverTextTextOption().setFontFamily(FontFamily.HELVETICA);
 		layoutOptions.getCoverTextTextOption().setFontSize(10);
 		layoutOptions.getCoverTextTextOption().setBold(true);
 		
 		layoutOptions.getSectionTextOption().setBold(true);
-		layoutOptions.getSectionTextOption().setFontSize(16);
+		layoutOptions.getSectionTextOption().setFontSize(20);
+		layoutOptions.getSectionTextOption().setFontColor(darkBlue);
 
 		layoutOptions.getModelElementTextOption().setFontSize(12);
 		layoutOptions.getModelElementTextOption().setBold(true);
+		layoutOptions.getModelElementTextOption().setFontColor(darkBlue);
 		
-		layoutOptions.getDefaultTextOption().setFontSize(12);
+		layoutOptions.getDefaultTextOption().setFontSize(10);
 		
 		layoutOptions.setHideAnnotations(true);
 		layoutOptions.setHideAttachments(true);
 		layoutOptions.setHideIncomingDocumentReferences(true);
+		
+		layoutOptions.getDocumentTitleTextOption().setFontSize(24);
+		layoutOptions.getDocumentTitleTextOption().setTextAlign(TextAlign.CENTER);
+		layoutOptions.getDocumentTitleTextOption().setBold(true);
 		
 
 		
@@ -68,10 +83,17 @@ public final class DefaultDocumentTemplateBuilder {
 		singleReferenceAttributeOption.setName("Single reference");
 		MultiReferenceAttributeOption multiReferenceAttributeOption = OptionsFactory.eINSTANCE.createMultiReferenceAttributeOption();
 		multiReferenceAttributeOption.setName("Mutli reference");
+		DateAttributeOption dateAttributeOption = OptionsFactory.eINSTANCE.createDateAttributeOption();
+		dateAttributeOption.setName("Date attributes");
+		BooleanAttributeOption booleanAttributeOption = OptionsFactory.eINSTANCE.createBooleanAttributeOption();
+		booleanAttributeOption.setName("Boolean attributes");
 		
 		template.getGlobalRendererOptions().add(stringAttributeOption);
 		template.getGlobalRendererOptions().add(singleReferenceAttributeOption);
 		template.getGlobalRendererOptions().add(multiReferenceAttributeOption);
+		template.getGlobalRendererOptions().add(dateAttributeOption);
+		template.getGlobalRendererOptions().add(booleanAttributeOption);
+		
 
 //		for (EClass eClass : modelElementTypes) {
 //			ModelElementRenderer renderer;

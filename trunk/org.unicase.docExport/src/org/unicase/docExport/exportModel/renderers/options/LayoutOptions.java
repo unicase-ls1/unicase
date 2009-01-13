@@ -25,6 +25,14 @@ package org.unicase.docExport.exportModel.renderers.options;
  *   <li>{@link org.unicase.docExport.exportModel.renderers.options.LayoutOptions#getPageNumberingStyle <em>Page Numbering Style</em>}</li>
  *   <li>{@link org.unicase.docExport.exportModel.renderers.options.LayoutOptions#isHideModelElementImages <em>Hide Model Element Images</em>}</li>
  *   <li>{@link org.unicase.docExport.exportModel.renderers.options.LayoutOptions#getModelElementTextOption <em>Model Element Text Option</em>}</li>
+ *   <li>{@link org.unicase.docExport.exportModel.renderers.options.LayoutOptions#getHeaderText <em>Header Text</em>}</li>
+ *   <li>{@link org.unicase.docExport.exportModel.renderers.options.LayoutOptions#getFooterText <em>Footer Text</em>}</li>
+ *   <li>{@link org.unicase.docExport.exportModel.renderers.options.LayoutOptions#getSectionOption <em>Section Option</em>}</li>
+ *   <li>{@link org.unicase.docExport.exportModel.renderers.options.LayoutOptions#getSectionFontSizeDecreaseStep <em>Section Font Size Decrease Step</em>}</li>
+ *   <li>{@link org.unicase.docExport.exportModel.renderers.options.LayoutOptions#getDocumentTitleTextOption <em>Document Title Text Option</em>}</li>
+ *   <li>{@link org.unicase.docExport.exportModel.renderers.options.LayoutOptions#isShowModelElementTypeInSectionTitle <em>Show Model Element Type In Section Title</em>}</li>
+ *   <li>{@link org.unicase.docExport.exportModel.renderers.options.LayoutOptions#getAttributeTextOption <em>Attribute Text Option</em>}</li>
+ *   <li>{@link org.unicase.docExport.exportModel.renderers.options.LayoutOptions#getAppendixStyle <em>Appendix Style</em>}</li>
  * </ul>
  * </p>
  *
@@ -295,5 +303,216 @@ public interface LayoutOptions extends RendererOption {
 	 * @generated
 	 */
 	void setModelElementTextOption(TextOption value);
+
+	/**
+	 * Returns the value of the '<em><b>Header Text</b></em>' attribute.
+	 * <!-- begin-user-doc -->
+	 * <p>
+	 * If the meaning of the '<em>Header Text</em>' attribute isn't clear,
+	 * there really should be more of a description here...
+	 * </p>
+	 * <!-- end-user-doc -->
+	 * @return the value of the '<em>Header Text</em>' attribute.
+	 * @see #setHeaderText(String)
+	 * @see org.unicase.docExport.exportModel.renderers.options.OptionsPackage#getLayoutOptions_HeaderText()
+	 * @model
+	 * @generated
+	 */
+	String getHeaderText();
+
+	/**
+	 * Sets the value of the '{@link org.unicase.docExport.exportModel.renderers.options.LayoutOptions#getHeaderText <em>Header Text</em>}' attribute.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @param value the new value of the '<em>Header Text</em>' attribute.
+	 * @see #getHeaderText()
+	 * @generated
+	 */
+	void setHeaderText(String value);
+
+	/**
+	 * Returns the value of the '<em><b>Footer Text</b></em>' attribute.
+	 * <!-- begin-user-doc -->
+	 * <p>
+	 * If the meaning of the '<em>Footer Text</em>' attribute isn't clear,
+	 * there really should be more of a description here...
+	 * </p>
+	 * <!-- end-user-doc -->
+	 * @return the value of the '<em>Footer Text</em>' attribute.
+	 * @see #setFooterText(String)
+	 * @see org.unicase.docExport.exportModel.renderers.options.OptionsPackage#getLayoutOptions_FooterText()
+	 * @model
+	 * @generated
+	 */
+	String getFooterText();
+
+	/**
+	 * Sets the value of the '{@link org.unicase.docExport.exportModel.renderers.options.LayoutOptions#getFooterText <em>Footer Text</em>}' attribute.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @param value the new value of the '<em>Footer Text</em>' attribute.
+	 * @see #getFooterText()
+	 * @generated
+	 */
+	void setFooterText(String value);
+
+	/**
+	 * Returns the value of the '<em><b>Section Option</b></em>' containment reference.
+	 * <!-- begin-user-doc -->
+	 * <p>
+	 * If the meaning of the '<em>Section Option</em>' reference isn't clear,
+	 * there really should be more of a description here...
+	 * </p>
+	 * <!-- end-user-doc -->
+	 * @return the value of the '<em>Section Option</em>' containment reference.
+	 * @see #setSectionOption(SectionOption)
+	 * @see org.unicase.docExport.exportModel.renderers.options.OptionsPackage#getLayoutOptions_SectionOption()
+	 * @model containment="true"
+	 * @generated
+	 */
+	SectionOption getSectionOption();
+
+	/**
+	 * Sets the value of the '{@link org.unicase.docExport.exportModel.renderers.options.LayoutOptions#getSectionOption <em>Section Option</em>}' containment reference.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @param value the new value of the '<em>Section Option</em>' containment reference.
+	 * @see #getSectionOption()
+	 * @generated
+	 */
+	void setSectionOption(SectionOption value);
+
+	/**
+	 * Returns the value of the '<em><b>Section Font Size Decrease Step</b></em>' attribute.
+	 * <!-- begin-user-doc -->
+	 * <p>
+	 * If the meaning of the '<em>Section Font Size Decrease Step</em>' attribute isn't clear,
+	 * there really should be more of a description here...
+	 * </p>
+	 * <!-- end-user-doc -->
+	 * @return the value of the '<em>Section Font Size Decrease Step</em>' attribute.
+	 * @see #setSectionFontSizeDecreaseStep(int)
+	 * @see org.unicase.docExport.exportModel.renderers.options.OptionsPackage#getLayoutOptions_SectionFontSizeDecreaseStep()
+	 * @model
+	 * @generated
+	 */
+	int getSectionFontSizeDecreaseStep();
+
+	/**
+	 * Sets the value of the '{@link org.unicase.docExport.exportModel.renderers.options.LayoutOptions#getSectionFontSizeDecreaseStep <em>Section Font Size Decrease Step</em>}' attribute.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @param value the new value of the '<em>Section Font Size Decrease Step</em>' attribute.
+	 * @see #getSectionFontSizeDecreaseStep()
+	 * @generated
+	 */
+	void setSectionFontSizeDecreaseStep(int value);
+
+	/**
+	 * Returns the value of the '<em><b>Document Title Text Option</b></em>' containment reference.
+	 * <!-- begin-user-doc -->
+	 * <p>
+	 * If the meaning of the '<em>Document Title Text Option</em>' containment reference isn't clear,
+	 * there really should be more of a description here...
+	 * </p>
+	 * <!-- end-user-doc -->
+	 * @return the value of the '<em>Document Title Text Option</em>' containment reference.
+	 * @see #setDocumentTitleTextOption(TextOption)
+	 * @see org.unicase.docExport.exportModel.renderers.options.OptionsPackage#getLayoutOptions_DocumentTitleTextOption()
+	 * @model containment="true"
+	 * @generated
+	 */
+	TextOption getDocumentTitleTextOption();
+
+	/**
+	 * Sets the value of the '{@link org.unicase.docExport.exportModel.renderers.options.LayoutOptions#getDocumentTitleTextOption <em>Document Title Text Option</em>}' containment reference.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @param value the new value of the '<em>Document Title Text Option</em>' containment reference.
+	 * @see #getDocumentTitleTextOption()
+	 * @generated
+	 */
+	void setDocumentTitleTextOption(TextOption value);
+
+	/**
+	 * Returns the value of the '<em><b>Show Model Element Type In Section Title</b></em>' attribute.
+	 * <!-- begin-user-doc -->
+	 * <p>
+	 * If the meaning of the '<em>Show Model Element Type In Section Title</em>' attribute isn't clear,
+	 * there really should be more of a description here...
+	 * </p>
+	 * <!-- end-user-doc -->
+	 * @return the value of the '<em>Show Model Element Type In Section Title</em>' attribute.
+	 * @see #setShowModelElementTypeInSectionTitle(boolean)
+	 * @see org.unicase.docExport.exportModel.renderers.options.OptionsPackage#getLayoutOptions_ShowModelElementTypeInSectionTitle()
+	 * @model
+	 * @generated
+	 */
+	boolean isShowModelElementTypeInSectionTitle();
+
+	/**
+	 * Sets the value of the '{@link org.unicase.docExport.exportModel.renderers.options.LayoutOptions#isShowModelElementTypeInSectionTitle <em>Show Model Element Type In Section Title</em>}' attribute.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @param value the new value of the '<em>Show Model Element Type In Section Title</em>' attribute.
+	 * @see #isShowModelElementTypeInSectionTitle()
+	 * @generated
+	 */
+	void setShowModelElementTypeInSectionTitle(boolean value);
+
+	/**
+	 * Returns the value of the '<em><b>Attribute Text Option</b></em>' containment reference.
+	 * <!-- begin-user-doc -->
+	 * <p>
+	 * If the meaning of the '<em>Attribute Text Option</em>' containment reference isn't clear,
+	 * there really should be more of a description here...
+	 * </p>
+	 * <!-- end-user-doc -->
+	 * @return the value of the '<em>Attribute Text Option</em>' containment reference.
+	 * @see #setAttributeTextOption(TextOption)
+	 * @see org.unicase.docExport.exportModel.renderers.options.OptionsPackage#getLayoutOptions_AttributeTextOption()
+	 * @model containment="true"
+	 * @generated
+	 */
+	TextOption getAttributeTextOption();
+
+	/**
+	 * Sets the value of the '{@link org.unicase.docExport.exportModel.renderers.options.LayoutOptions#getAttributeTextOption <em>Attribute Text Option</em>}' containment reference.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @param value the new value of the '<em>Attribute Text Option</em>' containment reference.
+	 * @see #getAttributeTextOption()
+	 * @generated
+	 */
+	void setAttributeTextOption(TextOption value);
+
+	/**
+	 * Returns the value of the '<em><b>Appendix Style</b></em>' attribute.
+	 * The literals are from the enumeration {@link org.unicase.docExport.exportModel.renderers.options.AppendixStyle}.
+	 * <!-- begin-user-doc -->
+	 * <p>
+	 * If the meaning of the '<em>Appendix Style</em>' attribute isn't clear,
+	 * there really should be more of a description here...
+	 * </p>
+	 * <!-- end-user-doc -->
+	 * @return the value of the '<em>Appendix Style</em>' attribute.
+	 * @see org.unicase.docExport.exportModel.renderers.options.AppendixStyle
+	 * @see #setAppendixStyle(AppendixStyle)
+	 * @see org.unicase.docExport.exportModel.renderers.options.OptionsPackage#getLayoutOptions_AppendixStyle()
+	 * @model
+	 * @generated
+	 */
+	AppendixStyle getAppendixStyle();
+
+	/**
+	 * Sets the value of the '{@link org.unicase.docExport.exportModel.renderers.options.LayoutOptions#getAppendixStyle <em>Appendix Style</em>}' attribute.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @param value the new value of the '<em>Appendix Style</em>' attribute.
+	 * @see org.unicase.docExport.exportModel.renderers.options.AppendixStyle
+	 * @see #getAppendixStyle()
+	 * @generated
+	 */
+	void setAppendixStyle(AppendixStyle value);
 
 } // LayoutOptions

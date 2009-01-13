@@ -17,6 +17,7 @@ package org.unicase.docExport.exportModel.renderers.options;
  * <ul>
  *   <li>{@link org.unicase.docExport.exportModel.renderers.options.AttributeOption#isHide <em>Hide</em>}</li>
  *   <li>{@link org.unicase.docExport.exportModel.renderers.options.AttributeOption#isOverwriteGlobalOption <em>Overwrite Global Option</em>}</li>
+ *   <li>{@link org.unicase.docExport.exportModel.renderers.options.AttributeOption#getAttributeText <em>Attribute Text</em>}</li>
  * </ul>
  * </p>
  *
@@ -78,5 +79,31 @@ public interface AttributeOption extends RendererOption {
 	 * @generated
 	 */
 	void setOverwriteGlobalOption(boolean value);
+
+	/**
+	 * Returns the value of the '<em><b>Attribute Text</b></em>' attribute.
+	 * <!-- begin-user-doc -->
+	 * <p>
+	 * If the meaning of the '<em>Attribute Text</em>' attribute isn't clear,
+	 * there really should be more of a description here...
+	 * </p>
+	 * <!-- end-user-doc -->
+	 * @return the value of the '<em>Attribute Text</em>' attribute.
+	 * @see #setAttributeText(String)
+	 * @see org.unicase.docExport.exportModel.renderers.options.OptionsPackage#getAttributeOption_AttributeText()
+	 * @model
+	 * @generated
+	 */
+	String getAttributeText();
+
+	/**
+	 * Sets the value of the '{@link org.unicase.docExport.exportModel.renderers.options.AttributeOption#getAttributeText <em>Attribute Text</em>}' attribute.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @param value the new value of the '<em>Attribute Text</em>' attribute.
+	 * @see #getAttributeText()
+	 * @generated
+	 */
+	void setAttributeText(String value);
 
 } // AttributeOption

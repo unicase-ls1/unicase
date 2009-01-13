@@ -12,7 +12,9 @@ import org.eclipse.emf.ecore.EClass;
 import org.eclipse.emf.ecore.InternalEObject;
 import org.eclipse.emf.ecore.impl.ENotificationImpl;
 import org.unicase.docExport.exportModel.renderers.options.FontFamily;
+import org.unicase.docExport.exportModel.renderers.options.OptionsFactory;
 import org.unicase.docExport.exportModel.renderers.options.OptionsPackage;
+import org.unicase.docExport.exportModel.renderers.options.TextAlign;
 import org.unicase.docExport.exportModel.renderers.options.TextOption;
 import org.unicase.docExport.exportModel.renderers.options.UColor;
 
@@ -28,6 +30,7 @@ import org.unicase.docExport.exportModel.renderers.options.UColor;
  *   <li>{@link org.unicase.docExport.exportModel.renderers.options.impl.TextOptionImpl#isBold <em>Bold</em>}</li>
  *   <li>{@link org.unicase.docExport.exportModel.renderers.options.impl.TextOptionImpl#isUnderline <em>Underline</em>}</li>
  *   <li>{@link org.unicase.docExport.exportModel.renderers.options.impl.TextOptionImpl#getFontColor <em>Font Color</em>}</li>
+ *   <li>{@link org.unicase.docExport.exportModel.renderers.options.impl.TextOptionImpl#getTextAlign <em>Text Align</em>}</li>
  * </ul>
  * </p>
  *
@@ -42,7 +45,7 @@ public class TextOptionImpl extends RendererOptionImpl implements TextOption {
 	 * @generated
 	 * @ordered
 	 */
-	protected static final FontFamily FONT_FAMILY_EDEFAULT = FontFamily.ARIAL;
+	protected static final FontFamily FONT_FAMILY_EDEFAULT = FontFamily.SANS_SERIF;
 
 	/**
 	 * The cached value of the '{@link #getFontFamily() <em>Font Family</em>}' attribute.
@@ -125,16 +128,38 @@ public class TextOptionImpl extends RendererOptionImpl implements TextOption {
 	protected UColor fontColor;
 
 	/**
+	 * The default value of the '{@link #getTextAlign() <em>Text Align</em>}' attribute.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
+	 * @see #getTextAlign()
 	 * @generated
+	 * @ordered
+	 */
+	protected static final TextAlign TEXT_ALIGN_EDEFAULT = TextAlign.START;
+
+	/**
+	 * The cached value of the '{@link #getTextAlign() <em>Text Align</em>}' attribute.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @see #getTextAlign()
+	 * @generated
+	 * @ordered
+	 */
+	protected TextAlign textAlign = TEXT_ALIGN_EDEFAULT;
+
+	/**
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated NOT
 	 */
 	protected TextOptionImpl() {
 		super();
+		fontColor = OptionsFactory.eINSTANCE.createUColor();
 	}
 
 	/**
 	 * <!-- begin-user-doc -->
+	 * .
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
@@ -233,6 +258,27 @@ public class TextOptionImpl extends RendererOptionImpl implements TextOption {
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
+	public TextAlign getTextAlign() {
+		return textAlign;
+	}
+
+	/**
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 */
+	public void setTextAlign(TextAlign newTextAlign) {
+		TextAlign oldTextAlign = textAlign;
+		textAlign = newTextAlign == null ? TEXT_ALIGN_EDEFAULT : newTextAlign;
+		if (eNotificationRequired())
+			eNotify(new ENotificationImpl(this, Notification.SET, OptionsPackage.TEXT_OPTION__TEXT_ALIGN, oldTextAlign, textAlign));
+	}
+
+	/**
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 */
 	@Override
 	public NotificationChain eInverseRemove(InternalEObject otherEnd, int featureID, NotificationChain msgs) {
 		switch (featureID) {
@@ -302,6 +348,8 @@ public class TextOptionImpl extends RendererOptionImpl implements TextOption {
 				return isUnderline() ? Boolean.TRUE : Boolean.FALSE;
 			case OptionsPackage.TEXT_OPTION__FONT_COLOR:
 				return getFontColor();
+			case OptionsPackage.TEXT_OPTION__TEXT_ALIGN:
+				return getTextAlign();
 		}
 		return super.eGet(featureID, resolve, coreType);
 	}
@@ -328,6 +376,9 @@ public class TextOptionImpl extends RendererOptionImpl implements TextOption {
 				return;
 			case OptionsPackage.TEXT_OPTION__FONT_COLOR:
 				setFontColor((UColor)newValue);
+				return;
+			case OptionsPackage.TEXT_OPTION__TEXT_ALIGN:
+				setTextAlign((TextAlign)newValue);
 				return;
 		}
 		super.eSet(featureID, newValue);
@@ -356,6 +407,9 @@ public class TextOptionImpl extends RendererOptionImpl implements TextOption {
 			case OptionsPackage.TEXT_OPTION__FONT_COLOR:
 				setFontColor((UColor)null);
 				return;
+			case OptionsPackage.TEXT_OPTION__TEXT_ALIGN:
+				setTextAlign(TEXT_ALIGN_EDEFAULT);
+				return;
 		}
 		super.eUnset(featureID);
 	}
@@ -378,6 +432,8 @@ public class TextOptionImpl extends RendererOptionImpl implements TextOption {
 				return underline != UNDERLINE_EDEFAULT;
 			case OptionsPackage.TEXT_OPTION__FONT_COLOR:
 				return fontColor != null;
+			case OptionsPackage.TEXT_OPTION__TEXT_ALIGN:
+				return textAlign != TEXT_ALIGN_EDEFAULT;
 		}
 		return super.eIsSet(featureID);
 	}
@@ -400,6 +456,8 @@ public class TextOptionImpl extends RendererOptionImpl implements TextOption {
 		result.append(bold);
 		result.append(", underline: ");
 		result.append(underline);
+		result.append(", textAlign: ");
+		result.append(textAlign);
 		result.append(')');
 		return result.toString();
 	}

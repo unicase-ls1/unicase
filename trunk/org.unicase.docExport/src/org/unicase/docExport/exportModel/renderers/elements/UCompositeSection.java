@@ -2,17 +2,14 @@ package org.unicase.docExport.exportModel.renderers.elements;
 
 import java.util.Vector;
 
-import org.unicase.docExport.exportModel.renderers.options.RendererOption;
-
 /**
  * This class is just a container for more elements.
  * This is a part of the Composite Pattern.
  * @author Sebastian Höcht
  */
-public class UCompositeSection extends UDocument {
+public abstract class UCompositeSection extends UDocument {
 	
 	private Vector<UDocument> children = new Vector<UDocument>();
-	private RendererOption option;
 
 	/**
 	 * @param doc the UDocument which shall be appended as a child.
@@ -27,19 +24,5 @@ public class UCompositeSection extends UDocument {
 	 */
 	public Vector<UDocument> getChildren() {
 		return children;
-	}
-
-	/**
-	 * @param option the option to set
-	 */
-	public void setOption(RendererOption option) {
-		this.option = option;
-	}
-
-	/**
-	 * @return the option
-	 */
-	public RendererOption getOption() {
-		return option;
 	}
 }

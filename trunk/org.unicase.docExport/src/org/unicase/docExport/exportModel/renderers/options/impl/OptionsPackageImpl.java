@@ -19,7 +19,13 @@ import org.unicase.docExport.exportModel.renderers.RenderersPackage;
 import org.unicase.docExport.exportModel.renderers.defaultRenderers.DefaultRenderersPackage;
 import org.unicase.docExport.exportModel.renderers.defaultRenderers.impl.DefaultRenderersPackageImpl;
 import org.unicase.docExport.exportModel.renderers.impl.RenderersPackageImpl;
+import org.unicase.docExport.exportModel.renderers.options.AppendixStyle;
 import org.unicase.docExport.exportModel.renderers.options.AttributeOption;
+import org.unicase.docExport.exportModel.renderers.options.BooleanAttributeOption;
+import org.unicase.docExport.exportModel.renderers.options.BooleanStyle;
+import org.unicase.docExport.exportModel.renderers.options.BoxModelOption;
+import org.unicase.docExport.exportModel.renderers.options.DateAttributeOption;
+import org.unicase.docExport.exportModel.renderers.options.DateStyle;
 import org.unicase.docExport.exportModel.renderers.options.FontFamily;
 import org.unicase.docExport.exportModel.renderers.options.LayoutOptions;
 import org.unicase.docExport.exportModel.renderers.options.ListOption;
@@ -31,9 +37,13 @@ import org.unicase.docExport.exportModel.renderers.options.PageNumberingStyle;
 import org.unicase.docExport.exportModel.renderers.options.ReferenceAttributeOption;
 import org.unicase.docExport.exportModel.renderers.options.ReferenceOption;
 import org.unicase.docExport.exportModel.renderers.options.RendererOption;
+import org.unicase.docExport.exportModel.renderers.options.SectionNumberingStyle;
+import org.unicase.docExport.exportModel.renderers.options.SectionOption;
 import org.unicase.docExport.exportModel.renderers.options.SingleReferenceAttributeOption;
 import org.unicase.docExport.exportModel.renderers.options.StringAttributeOption;
+import org.unicase.docExport.exportModel.renderers.options.TextAlign;
 import org.unicase.docExport.exportModel.renderers.options.TextOption;
+import org.unicase.docExport.exportModel.renderers.options.UBorderStyle;
 import org.unicase.docExport.exportModel.renderers.options.UColor;
 import org.unicase.docExport.exportModel.renderers.specialRenderers.SpecialRenderersPackage;
 import org.unicase.docExport.exportModel.renderers.specialRenderers.impl.SpecialRenderersPackageImpl;
@@ -135,6 +145,41 @@ public class OptionsPackageImpl extends EPackageImpl implements OptionsPackage {
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
+	private EClass boxModelOptionEClass = null;
+
+	/**
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 */
+	private EClass sectionOptionEClass = null;
+
+	/**
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 */
+	private EClass booleanAttributeOptionEClass = null;
+
+	/**
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 */
+	private EClass dateAttributeOptionEClass = null;
+
+	/**
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 */
+	private EEnum appendixStyleEEnum = null;
+
+	/**
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 */
 	private EEnum fontFamilyEEnum = null;
 
 	/**
@@ -150,6 +195,41 @@ public class OptionsPackageImpl extends EPackageImpl implements OptionsPackage {
 	 * @generated
 	 */
 	private EEnum pageNumberingStyleEEnum = null;
+
+	/**
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 */
+	private EEnum uBorderStyleEEnum = null;
+
+	/**
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 */
+	private EEnum sectionNumberingStyleEEnum = null;
+
+	/**
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 */
+	private EEnum textAlignEEnum = null;
+
+	/**
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 */
+	private EEnum booleanStyleEEnum = null;
+
+	/**
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 */
+	private EEnum dateStyleEEnum = null;
 
 	/**
 	 * Creates an instance of the model <b>Package</b>, registered with
@@ -279,6 +359,15 @@ public class OptionsPackageImpl extends EPackageImpl implements OptionsPackage {
 	 */
 	public EAttribute getAttributeOption_OverwriteGlobalOption() {
 		return (EAttribute)attributeOptionEClass.getEStructuralFeatures().get(1);
+	}
+
+	/**
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 */
+	public EAttribute getAttributeOption_AttributeText() {
+		return (EAttribute)attributeOptionEClass.getEStructuralFeatures().get(2);
 	}
 
 	/**
@@ -475,6 +564,78 @@ public class OptionsPackageImpl extends EPackageImpl implements OptionsPackage {
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
+	public EAttribute getLayoutOptions_HeaderText() {
+		return (EAttribute)layoutOptionsEClass.getEStructuralFeatures().get(10);
+	}
+
+	/**
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 */
+	public EAttribute getLayoutOptions_FooterText() {
+		return (EAttribute)layoutOptionsEClass.getEStructuralFeatures().get(11);
+	}
+
+	/**
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 */
+	public EReference getLayoutOptions_SectionOption() {
+		return (EReference)layoutOptionsEClass.getEStructuralFeatures().get(12);
+	}
+
+	/**
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 */
+	public EAttribute getLayoutOptions_SectionFontSizeDecreaseStep() {
+		return (EAttribute)layoutOptionsEClass.getEStructuralFeatures().get(13);
+	}
+
+	/**
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 */
+	public EReference getLayoutOptions_DocumentTitleTextOption() {
+		return (EReference)layoutOptionsEClass.getEStructuralFeatures().get(14);
+	}
+
+	/**
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 */
+	public EAttribute getLayoutOptions_ShowModelElementTypeInSectionTitle() {
+		return (EAttribute)layoutOptionsEClass.getEStructuralFeatures().get(15);
+	}
+
+	/**
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 */
+	public EReference getLayoutOptions_AttributeTextOption() {
+		return (EReference)layoutOptionsEClass.getEStructuralFeatures().get(16);
+	}
+
+	/**
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 */
+	public EAttribute getLayoutOptions_AppendixStyle() {
+		return (EAttribute)layoutOptionsEClass.getEStructuralFeatures().get(17);
+	}
+
+	/**
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 */
 	public EClass getListOption() {
 		return listOptionEClass;
 	}
@@ -522,6 +683,15 @@ public class OptionsPackageImpl extends EPackageImpl implements OptionsPackage {
 	 */
 	public EReference getTextOption_FontColor() {
 		return (EReference)textOptionEClass.getEStructuralFeatures().get(4);
+	}
+
+	/**
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 */
+	public EAttribute getTextOption_TextAlign() {
+		return (EAttribute)textOptionEClass.getEStructuralFeatures().get(5);
 	}
 
 	/**
@@ -610,6 +780,303 @@ public class OptionsPackageImpl extends EPackageImpl implements OptionsPackage {
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
+	public EClass getBoxModelOption() {
+		return boxModelOptionEClass;
+	}
+
+	/**
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 */
+	public EAttribute getBoxModelOption_Margin() {
+		return (EAttribute)boxModelOptionEClass.getEStructuralFeatures().get(0);
+	}
+
+	/**
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 */
+	public EAttribute getBoxModelOption_MarginTop() {
+		return (EAttribute)boxModelOptionEClass.getEStructuralFeatures().get(1);
+	}
+
+	/**
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 */
+	public EAttribute getBoxModelOption_MarginLeft() {
+		return (EAttribute)boxModelOptionEClass.getEStructuralFeatures().get(2);
+	}
+
+	/**
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 */
+	public EAttribute getBoxModelOption_MarginBottom() {
+		return (EAttribute)boxModelOptionEClass.getEStructuralFeatures().get(3);
+	}
+
+	/**
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 */
+	public EAttribute getBoxModelOption_MarginRight() {
+		return (EAttribute)boxModelOptionEClass.getEStructuralFeatures().get(4);
+	}
+
+	/**
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 */
+	public EAttribute getBoxModelOption_Border() {
+		return (EAttribute)boxModelOptionEClass.getEStructuralFeatures().get(5);
+	}
+
+	/**
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 */
+	public EAttribute getBoxModelOption_BorderTop() {
+		return (EAttribute)boxModelOptionEClass.getEStructuralFeatures().get(6);
+	}
+
+	/**
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 */
+	public EAttribute getBoxModelOption_BorderLeft() {
+		return (EAttribute)boxModelOptionEClass.getEStructuralFeatures().get(7);
+	}
+
+	/**
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 */
+	public EAttribute getBoxModelOption_BorderBottom() {
+		return (EAttribute)boxModelOptionEClass.getEStructuralFeatures().get(8);
+	}
+
+	/**
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 */
+	public EAttribute getBoxModelOption_BorderRight() {
+		return (EAttribute)boxModelOptionEClass.getEStructuralFeatures().get(9);
+	}
+
+	/**
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 */
+	public EAttribute getBoxModelOption_BorderStyle() {
+		return (EAttribute)boxModelOptionEClass.getEStructuralFeatures().get(10);
+	}
+
+	/**
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 */
+	public EReference getBoxModelOption_BorderColor() {
+		return (EReference)boxModelOptionEClass.getEStructuralFeatures().get(11);
+	}
+
+	/**
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 */
+	public EAttribute getBoxModelOption_Padding() {
+		return (EAttribute)boxModelOptionEClass.getEStructuralFeatures().get(12);
+	}
+
+	/**
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 */
+	public EAttribute getBoxModelOption_PaddingTop() {
+		return (EAttribute)boxModelOptionEClass.getEStructuralFeatures().get(13);
+	}
+
+	/**
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 */
+	public EAttribute getBoxModelOption_PaddingLeft() {
+		return (EAttribute)boxModelOptionEClass.getEStructuralFeatures().get(14);
+	}
+
+	/**
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 */
+	public EAttribute getBoxModelOption_PaddingBottom() {
+		return (EAttribute)boxModelOptionEClass.getEStructuralFeatures().get(15);
+	}
+
+	/**
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 */
+	public EAttribute getBoxModelOption_PaddingRight() {
+		return (EAttribute)boxModelOptionEClass.getEStructuralFeatures().get(16);
+	}
+
+	/**
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 */
+	public EReference getBoxModelOption_BackgroundColor() {
+		return (EReference)boxModelOptionEClass.getEStructuralFeatures().get(17);
+	}
+
+	/**
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 */
+	public EAttribute getBoxModelOption_KeepTogether() {
+		return (EAttribute)boxModelOptionEClass.getEStructuralFeatures().get(18);
+	}
+
+	/**
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 */
+	public EAttribute getBoxModelOption_KeepWithPrevious() {
+		return (EAttribute)boxModelOptionEClass.getEStructuralFeatures().get(19);
+	}
+
+	/**
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 */
+	public EAttribute getBoxModelOption_KeepWithNext() {
+		return (EAttribute)boxModelOptionEClass.getEStructuralFeatures().get(20);
+	}
+
+	/**
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 */
+	public EAttribute getBoxModelOption_BreakBefore() {
+		return (EAttribute)boxModelOptionEClass.getEStructuralFeatures().get(21);
+	}
+
+	/**
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 */
+	public EClass getSectionOption() {
+		return sectionOptionEClass;
+	}
+
+	/**
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 */
+	public EAttribute getSectionOption_SectionNumberingStyle() {
+		return (EAttribute)sectionOptionEClass.getEStructuralFeatures().get(0);
+	}
+
+	/**
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 */
+	public EAttribute getSectionOption_LeaveOutPreviousSectionNumbering() {
+		return (EAttribute)sectionOptionEClass.getEStructuralFeatures().get(1);
+	}
+
+	/**
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 */
+	public EClass getBooleanAttributeOption() {
+		return booleanAttributeOptionEClass;
+	}
+
+	/**
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 */
+	public EReference getBooleanAttributeOption_GlobalOption() {
+		return (EReference)booleanAttributeOptionEClass.getEStructuralFeatures().get(0);
+	}
+
+	/**
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 */
+	public EAttribute getBooleanAttributeOption_BooleanStyle() {
+		return (EAttribute)booleanAttributeOptionEClass.getEStructuralFeatures().get(1);
+	}
+
+	/**
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 */
+	public EClass getDateAttributeOption() {
+		return dateAttributeOptionEClass;
+	}
+
+	/**
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 */
+	public EReference getDateAttributeOption_GlobalOption() {
+		return (EReference)dateAttributeOptionEClass.getEStructuralFeatures().get(0);
+	}
+
+	/**
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 */
+	public EAttribute getDateAttributeOption_DateStyle() {
+		return (EAttribute)dateAttributeOptionEClass.getEStructuralFeatures().get(1);
+	}
+
+	/**
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 */
+	public EEnum getAppendixStyle() {
+		return appendixStyleEEnum;
+	}
+
+	/**
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 */
 	public EEnum getFontFamily() {
 		return fontFamilyEEnum;
 	}
@@ -630,6 +1097,51 @@ public class OptionsPackageImpl extends EPackageImpl implements OptionsPackage {
 	 */
 	public EEnum getPageNumberingStyle() {
 		return pageNumberingStyleEEnum;
+	}
+
+	/**
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 */
+	public EEnum getUBorderStyle() {
+		return uBorderStyleEEnum;
+	}
+
+	/**
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 */
+	public EEnum getSectionNumberingStyle() {
+		return sectionNumberingStyleEEnum;
+	}
+
+	/**
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 */
+	public EEnum getTextAlign() {
+		return textAlignEEnum;
+	}
+
+	/**
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 */
+	public EEnum getBooleanStyle() {
+		return booleanStyleEEnum;
+	}
+
+	/**
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 */
+	public EEnum getDateStyle() {
+		return dateStyleEEnum;
 	}
 
 	/**
@@ -666,6 +1178,7 @@ public class OptionsPackageImpl extends EPackageImpl implements OptionsPackage {
 		attributeOptionEClass = createEClass(ATTRIBUTE_OPTION);
 		createEAttribute(attributeOptionEClass, ATTRIBUTE_OPTION__HIDE);
 		createEAttribute(attributeOptionEClass, ATTRIBUTE_OPTION__OVERWRITE_GLOBAL_OPTION);
+		createEAttribute(attributeOptionEClass, ATTRIBUTE_OPTION__ATTRIBUTE_TEXT);
 
 		singleReferenceAttributeOptionEClass = createEClass(SINGLE_REFERENCE_ATTRIBUTE_OPTION);
 		createEReference(singleReferenceAttributeOptionEClass, SINGLE_REFERENCE_ATTRIBUTE_OPTION__GLOBAL_OPTION);
@@ -692,6 +1205,14 @@ public class OptionsPackageImpl extends EPackageImpl implements OptionsPackage {
 		createEAttribute(layoutOptionsEClass, LAYOUT_OPTIONS__PAGE_NUMBERING_STYLE);
 		createEAttribute(layoutOptionsEClass, LAYOUT_OPTIONS__HIDE_MODEL_ELEMENT_IMAGES);
 		createEReference(layoutOptionsEClass, LAYOUT_OPTIONS__MODEL_ELEMENT_TEXT_OPTION);
+		createEAttribute(layoutOptionsEClass, LAYOUT_OPTIONS__HEADER_TEXT);
+		createEAttribute(layoutOptionsEClass, LAYOUT_OPTIONS__FOOTER_TEXT);
+		createEReference(layoutOptionsEClass, LAYOUT_OPTIONS__SECTION_OPTION);
+		createEAttribute(layoutOptionsEClass, LAYOUT_OPTIONS__SECTION_FONT_SIZE_DECREASE_STEP);
+		createEReference(layoutOptionsEClass, LAYOUT_OPTIONS__DOCUMENT_TITLE_TEXT_OPTION);
+		createEAttribute(layoutOptionsEClass, LAYOUT_OPTIONS__SHOW_MODEL_ELEMENT_TYPE_IN_SECTION_TITLE);
+		createEReference(layoutOptionsEClass, LAYOUT_OPTIONS__ATTRIBUTE_TEXT_OPTION);
+		createEAttribute(layoutOptionsEClass, LAYOUT_OPTIONS__APPENDIX_STYLE);
 
 		listOptionEClass = createEClass(LIST_OPTION);
 		createEAttribute(listOptionEClass, LIST_OPTION__LIST_STYLE);
@@ -702,6 +1223,7 @@ public class OptionsPackageImpl extends EPackageImpl implements OptionsPackage {
 		createEAttribute(textOptionEClass, TEXT_OPTION__BOLD);
 		createEAttribute(textOptionEClass, TEXT_OPTION__UNDERLINE);
 		createEReference(textOptionEClass, TEXT_OPTION__FONT_COLOR);
+		createEAttribute(textOptionEClass, TEXT_OPTION__TEXT_ALIGN);
 
 		referenceAttributeOptionEClass = createEClass(REFERENCE_ATTRIBUTE_OPTION);
 		createEAttribute(referenceAttributeOptionEClass, REFERENCE_ATTRIBUTE_OPTION__CONTAINED);
@@ -712,10 +1234,52 @@ public class OptionsPackageImpl extends EPackageImpl implements OptionsPackage {
 		createEAttribute(uColorEClass, UCOLOR__GREEN);
 		createEAttribute(uColorEClass, UCOLOR__BLUE);
 
+		boxModelOptionEClass = createEClass(BOX_MODEL_OPTION);
+		createEAttribute(boxModelOptionEClass, BOX_MODEL_OPTION__MARGIN);
+		createEAttribute(boxModelOptionEClass, BOX_MODEL_OPTION__MARGIN_TOP);
+		createEAttribute(boxModelOptionEClass, BOX_MODEL_OPTION__MARGIN_LEFT);
+		createEAttribute(boxModelOptionEClass, BOX_MODEL_OPTION__MARGIN_BOTTOM);
+		createEAttribute(boxModelOptionEClass, BOX_MODEL_OPTION__MARGIN_RIGHT);
+		createEAttribute(boxModelOptionEClass, BOX_MODEL_OPTION__BORDER);
+		createEAttribute(boxModelOptionEClass, BOX_MODEL_OPTION__BORDER_TOP);
+		createEAttribute(boxModelOptionEClass, BOX_MODEL_OPTION__BORDER_LEFT);
+		createEAttribute(boxModelOptionEClass, BOX_MODEL_OPTION__BORDER_BOTTOM);
+		createEAttribute(boxModelOptionEClass, BOX_MODEL_OPTION__BORDER_RIGHT);
+		createEAttribute(boxModelOptionEClass, BOX_MODEL_OPTION__BORDER_STYLE);
+		createEReference(boxModelOptionEClass, BOX_MODEL_OPTION__BORDER_COLOR);
+		createEAttribute(boxModelOptionEClass, BOX_MODEL_OPTION__PADDING);
+		createEAttribute(boxModelOptionEClass, BOX_MODEL_OPTION__PADDING_TOP);
+		createEAttribute(boxModelOptionEClass, BOX_MODEL_OPTION__PADDING_LEFT);
+		createEAttribute(boxModelOptionEClass, BOX_MODEL_OPTION__PADDING_BOTTOM);
+		createEAttribute(boxModelOptionEClass, BOX_MODEL_OPTION__PADDING_RIGHT);
+		createEReference(boxModelOptionEClass, BOX_MODEL_OPTION__BACKGROUND_COLOR);
+		createEAttribute(boxModelOptionEClass, BOX_MODEL_OPTION__KEEP_TOGETHER);
+		createEAttribute(boxModelOptionEClass, BOX_MODEL_OPTION__KEEP_WITH_PREVIOUS);
+		createEAttribute(boxModelOptionEClass, BOX_MODEL_OPTION__KEEP_WITH_NEXT);
+		createEAttribute(boxModelOptionEClass, BOX_MODEL_OPTION__BREAK_BEFORE);
+
+		sectionOptionEClass = createEClass(SECTION_OPTION);
+		createEAttribute(sectionOptionEClass, SECTION_OPTION__SECTION_NUMBERING_STYLE);
+		createEAttribute(sectionOptionEClass, SECTION_OPTION__LEAVE_OUT_PREVIOUS_SECTION_NUMBERING);
+
+		booleanAttributeOptionEClass = createEClass(BOOLEAN_ATTRIBUTE_OPTION);
+		createEReference(booleanAttributeOptionEClass, BOOLEAN_ATTRIBUTE_OPTION__GLOBAL_OPTION);
+		createEAttribute(booleanAttributeOptionEClass, BOOLEAN_ATTRIBUTE_OPTION__BOOLEAN_STYLE);
+
+		dateAttributeOptionEClass = createEClass(DATE_ATTRIBUTE_OPTION);
+		createEReference(dateAttributeOptionEClass, DATE_ATTRIBUTE_OPTION__GLOBAL_OPTION);
+		createEAttribute(dateAttributeOptionEClass, DATE_ATTRIBUTE_OPTION__DATE_STYLE);
+
 		// Create enums
+		appendixStyleEEnum = createEEnum(APPENDIX_STYLE);
 		fontFamilyEEnum = createEEnum(FONT_FAMILY);
 		listStyleEEnum = createEEnum(LIST_STYLE);
 		pageNumberingStyleEEnum = createEEnum(PAGE_NUMBERING_STYLE);
+		uBorderStyleEEnum = createEEnum(UBORDER_STYLE);
+		sectionNumberingStyleEEnum = createEEnum(SECTION_NUMBERING_STYLE);
+		textAlignEEnum = createEEnum(TEXT_ALIGN);
+		booleanStyleEEnum = createEEnum(BOOLEAN_STYLE);
+		dateStyleEEnum = createEEnum(DATE_STYLE);
 	}
 
 	/**
@@ -759,6 +1323,10 @@ public class OptionsPackageImpl extends EPackageImpl implements OptionsPackage {
 		textOptionEClass.getESuperTypes().add(this.getRendererOption());
 		referenceAttributeOptionEClass.getESuperTypes().add(this.getAttributeOption());
 		uColorEClass.getESuperTypes().add(this.getRendererOption());
+		boxModelOptionEClass.getESuperTypes().add(this.getRendererOption());
+		sectionOptionEClass.getESuperTypes().add(this.getRendererOption());
+		booleanAttributeOptionEClass.getESuperTypes().add(this.getAttributeOption());
+		dateAttributeOptionEClass.getESuperTypes().add(this.getAttributeOption());
 
 		// Initialize classes and features; add operations and parameters
 		initEClass(rendererOptionEClass, RendererOption.class, "RendererOption", IS_ABSTRACT, !IS_INTERFACE, IS_GENERATED_INSTANCE_CLASS);
@@ -767,6 +1335,7 @@ public class OptionsPackageImpl extends EPackageImpl implements OptionsPackage {
 		initEClass(attributeOptionEClass, AttributeOption.class, "AttributeOption", IS_ABSTRACT, !IS_INTERFACE, IS_GENERATED_INSTANCE_CLASS);
 		initEAttribute(getAttributeOption_Hide(), theEcorePackage.getEBoolean(), "hide", "false", 0, 1, AttributeOption.class, !IS_TRANSIENT, !IS_VOLATILE, IS_CHANGEABLE, !IS_UNSETTABLE, !IS_ID, IS_UNIQUE, !IS_DERIVED, IS_ORDERED);
 		initEAttribute(getAttributeOption_OverwriteGlobalOption(), theEcorePackage.getEBoolean(), "overwriteGlobalOption", "false", 0, 1, AttributeOption.class, !IS_TRANSIENT, !IS_VOLATILE, IS_CHANGEABLE, !IS_UNSETTABLE, !IS_ID, IS_UNIQUE, !IS_DERIVED, IS_ORDERED);
+		initEAttribute(getAttributeOption_AttributeText(), theEcorePackage.getEString(), "attributeText", null, 0, 1, AttributeOption.class, !IS_TRANSIENT, !IS_VOLATILE, IS_CHANGEABLE, !IS_UNSETTABLE, !IS_ID, IS_UNIQUE, !IS_DERIVED, IS_ORDERED);
 
 		initEClass(singleReferenceAttributeOptionEClass, SingleReferenceAttributeOption.class, "SingleReferenceAttributeOption", !IS_ABSTRACT, !IS_INTERFACE, IS_GENERATED_INSTANCE_CLASS);
 		initEReference(getSingleReferenceAttributeOption_GlobalOption(), this.getSingleReferenceAttributeOption(), null, "globalOption", null, 0, 1, SingleReferenceAttributeOption.class, !IS_TRANSIENT, !IS_VOLATILE, IS_CHANGEABLE, !IS_COMPOSITE, IS_RESOLVE_PROXIES, !IS_UNSETTABLE, IS_UNIQUE, !IS_DERIVED, IS_ORDERED);
@@ -793,6 +1362,14 @@ public class OptionsPackageImpl extends EPackageImpl implements OptionsPackage {
 		initEAttribute(getLayoutOptions_PageNumberingStyle(), this.getPageNumberingStyle(), "pageNumberingStyle", null, 0, 1, LayoutOptions.class, !IS_TRANSIENT, !IS_VOLATILE, IS_CHANGEABLE, !IS_UNSETTABLE, !IS_ID, IS_UNIQUE, !IS_DERIVED, IS_ORDERED);
 		initEAttribute(getLayoutOptions_HideModelElementImages(), theEcorePackage.getEBoolean(), "hideModelElementImages", null, 0, 1, LayoutOptions.class, !IS_TRANSIENT, !IS_VOLATILE, IS_CHANGEABLE, !IS_UNSETTABLE, !IS_ID, IS_UNIQUE, !IS_DERIVED, IS_ORDERED);
 		initEReference(getLayoutOptions_ModelElementTextOption(), this.getTextOption(), null, "modelElementTextOption", null, 0, 1, LayoutOptions.class, !IS_TRANSIENT, !IS_VOLATILE, IS_CHANGEABLE, IS_COMPOSITE, !IS_RESOLVE_PROXIES, !IS_UNSETTABLE, IS_UNIQUE, !IS_DERIVED, IS_ORDERED);
+		initEAttribute(getLayoutOptions_HeaderText(), theEcorePackage.getEString(), "headerText", null, 0, 1, LayoutOptions.class, !IS_TRANSIENT, !IS_VOLATILE, IS_CHANGEABLE, !IS_UNSETTABLE, !IS_ID, IS_UNIQUE, !IS_DERIVED, IS_ORDERED);
+		initEAttribute(getLayoutOptions_FooterText(), theEcorePackage.getEString(), "footerText", null, 0, 1, LayoutOptions.class, !IS_TRANSIENT, !IS_VOLATILE, IS_CHANGEABLE, !IS_UNSETTABLE, !IS_ID, IS_UNIQUE, !IS_DERIVED, IS_ORDERED);
+		initEReference(getLayoutOptions_SectionOption(), this.getSectionOption(), null, "sectionOption", null, 0, 1, LayoutOptions.class, !IS_TRANSIENT, !IS_VOLATILE, IS_CHANGEABLE, IS_COMPOSITE, !IS_RESOLVE_PROXIES, !IS_UNSETTABLE, IS_UNIQUE, !IS_DERIVED, IS_ORDERED);
+		initEAttribute(getLayoutOptions_SectionFontSizeDecreaseStep(), theEcorePackage.getEInt(), "sectionFontSizeDecreaseStep", null, 0, 1, LayoutOptions.class, !IS_TRANSIENT, !IS_VOLATILE, IS_CHANGEABLE, !IS_UNSETTABLE, !IS_ID, IS_UNIQUE, !IS_DERIVED, IS_ORDERED);
+		initEReference(getLayoutOptions_DocumentTitleTextOption(), this.getTextOption(), null, "documentTitleTextOption", null, 0, 1, LayoutOptions.class, !IS_TRANSIENT, !IS_VOLATILE, IS_CHANGEABLE, IS_COMPOSITE, !IS_RESOLVE_PROXIES, !IS_UNSETTABLE, IS_UNIQUE, !IS_DERIVED, IS_ORDERED);
+		initEAttribute(getLayoutOptions_ShowModelElementTypeInSectionTitle(), theEcorePackage.getEBoolean(), "showModelElementTypeInSectionTitle", null, 0, 1, LayoutOptions.class, !IS_TRANSIENT, !IS_VOLATILE, IS_CHANGEABLE, !IS_UNSETTABLE, !IS_ID, IS_UNIQUE, !IS_DERIVED, IS_ORDERED);
+		initEReference(getLayoutOptions_AttributeTextOption(), this.getTextOption(), null, "attributeTextOption", null, 0, 1, LayoutOptions.class, !IS_TRANSIENT, !IS_VOLATILE, IS_CHANGEABLE, IS_COMPOSITE, !IS_RESOLVE_PROXIES, !IS_UNSETTABLE, IS_UNIQUE, !IS_DERIVED, IS_ORDERED);
+		initEAttribute(getLayoutOptions_AppendixStyle(), this.getAppendixStyle(), "appendixStyle", null, 0, 1, LayoutOptions.class, !IS_TRANSIENT, !IS_VOLATILE, IS_CHANGEABLE, !IS_UNSETTABLE, !IS_ID, IS_UNIQUE, !IS_DERIVED, IS_ORDERED);
 
 		initEClass(listOptionEClass, ListOption.class, "ListOption", !IS_ABSTRACT, !IS_INTERFACE, IS_GENERATED_INSTANCE_CLASS);
 		initEAttribute(getListOption_ListStyle(), this.getListStyle(), "listStyle", null, 0, 1, ListOption.class, !IS_TRANSIENT, !IS_VOLATILE, IS_CHANGEABLE, !IS_UNSETTABLE, !IS_ID, IS_UNIQUE, !IS_DERIVED, IS_ORDERED);
@@ -803,6 +1380,7 @@ public class OptionsPackageImpl extends EPackageImpl implements OptionsPackage {
 		initEAttribute(getTextOption_Bold(), theEcorePackage.getEBoolean(), "bold", null, 0, 1, TextOption.class, !IS_TRANSIENT, !IS_VOLATILE, IS_CHANGEABLE, !IS_UNSETTABLE, !IS_ID, IS_UNIQUE, !IS_DERIVED, IS_ORDERED);
 		initEAttribute(getTextOption_Underline(), theEcorePackage.getEBoolean(), "underline", null, 0, 1, TextOption.class, !IS_TRANSIENT, !IS_VOLATILE, IS_CHANGEABLE, !IS_UNSETTABLE, !IS_ID, IS_UNIQUE, !IS_DERIVED, IS_ORDERED);
 		initEReference(getTextOption_FontColor(), this.getUColor(), null, "fontColor", null, 0, 1, TextOption.class, !IS_TRANSIENT, !IS_VOLATILE, IS_CHANGEABLE, IS_COMPOSITE, !IS_RESOLVE_PROXIES, !IS_UNSETTABLE, IS_UNIQUE, !IS_DERIVED, IS_ORDERED);
+		initEAttribute(getTextOption_TextAlign(), this.getTextAlign(), "textAlign", null, 0, 1, TextOption.class, !IS_TRANSIENT, !IS_VOLATILE, IS_CHANGEABLE, !IS_UNSETTABLE, !IS_ID, IS_UNIQUE, !IS_DERIVED, IS_ORDERED);
 
 		initEClass(referenceAttributeOptionEClass, ReferenceAttributeOption.class, "ReferenceAttributeOption", IS_ABSTRACT, !IS_INTERFACE, IS_GENERATED_INSTANCE_CLASS);
 		initEAttribute(getReferenceAttributeOption_Contained(), theEcorePackage.getEBoolean(), "contained", null, 0, 1, ReferenceAttributeOption.class, !IS_TRANSIENT, !IS_VOLATILE, IS_CHANGEABLE, !IS_UNSETTABLE, !IS_ID, IS_UNIQUE, !IS_DERIVED, IS_ORDERED);
@@ -813,12 +1391,56 @@ public class OptionsPackageImpl extends EPackageImpl implements OptionsPackage {
 		initEAttribute(getUColor_Green(), theEcorePackage.getEInt(), "green", null, 0, 1, UColor.class, !IS_TRANSIENT, !IS_VOLATILE, IS_CHANGEABLE, !IS_UNSETTABLE, !IS_ID, IS_UNIQUE, !IS_DERIVED, IS_ORDERED);
 		initEAttribute(getUColor_Blue(), theEcorePackage.getEInt(), "blue", null, 0, 1, UColor.class, !IS_TRANSIENT, !IS_VOLATILE, IS_CHANGEABLE, !IS_UNSETTABLE, !IS_ID, IS_UNIQUE, !IS_DERIVED, IS_ORDERED);
 
+		initEClass(boxModelOptionEClass, BoxModelOption.class, "BoxModelOption", !IS_ABSTRACT, !IS_INTERFACE, IS_GENERATED_INSTANCE_CLASS);
+		initEAttribute(getBoxModelOption_Margin(), theEcorePackage.getEDouble(), "margin", "0", 0, 1, BoxModelOption.class, !IS_TRANSIENT, !IS_VOLATILE, IS_CHANGEABLE, !IS_UNSETTABLE, !IS_ID, IS_UNIQUE, !IS_DERIVED, IS_ORDERED);
+		initEAttribute(getBoxModelOption_MarginTop(), theEcorePackage.getEDouble(), "marginTop", "0", 0, 1, BoxModelOption.class, !IS_TRANSIENT, !IS_VOLATILE, IS_CHANGEABLE, !IS_UNSETTABLE, !IS_ID, IS_UNIQUE, !IS_DERIVED, IS_ORDERED);
+		initEAttribute(getBoxModelOption_MarginLeft(), theEcorePackage.getEDouble(), "marginLeft", "0", 0, 1, BoxModelOption.class, !IS_TRANSIENT, !IS_VOLATILE, IS_CHANGEABLE, !IS_UNSETTABLE, !IS_ID, IS_UNIQUE, !IS_DERIVED, IS_ORDERED);
+		initEAttribute(getBoxModelOption_MarginBottom(), theEcorePackage.getEDouble(), "marginBottom", "0", 0, 1, BoxModelOption.class, !IS_TRANSIENT, !IS_VOLATILE, IS_CHANGEABLE, !IS_UNSETTABLE, !IS_ID, IS_UNIQUE, !IS_DERIVED, IS_ORDERED);
+		initEAttribute(getBoxModelOption_MarginRight(), theEcorePackage.getEDouble(), "marginRight", "0", 0, 1, BoxModelOption.class, !IS_TRANSIENT, !IS_VOLATILE, IS_CHANGEABLE, !IS_UNSETTABLE, !IS_ID, IS_UNIQUE, !IS_DERIVED, IS_ORDERED);
+		initEAttribute(getBoxModelOption_Border(), theEcorePackage.getEDouble(), "border", "0", 0, 1, BoxModelOption.class, !IS_TRANSIENT, !IS_VOLATILE, IS_CHANGEABLE, !IS_UNSETTABLE, !IS_ID, IS_UNIQUE, !IS_DERIVED, IS_ORDERED);
+		initEAttribute(getBoxModelOption_BorderTop(), theEcorePackage.getEDouble(), "borderTop", "0", 0, 1, BoxModelOption.class, !IS_TRANSIENT, !IS_VOLATILE, IS_CHANGEABLE, !IS_UNSETTABLE, !IS_ID, IS_UNIQUE, !IS_DERIVED, IS_ORDERED);
+		initEAttribute(getBoxModelOption_BorderLeft(), theEcorePackage.getEDouble(), "borderLeft", "0", 0, 1, BoxModelOption.class, !IS_TRANSIENT, !IS_VOLATILE, IS_CHANGEABLE, !IS_UNSETTABLE, !IS_ID, IS_UNIQUE, !IS_DERIVED, IS_ORDERED);
+		initEAttribute(getBoxModelOption_BorderBottom(), theEcorePackage.getEDouble(), "borderBottom", "0", 0, 1, BoxModelOption.class, !IS_TRANSIENT, !IS_VOLATILE, IS_CHANGEABLE, !IS_UNSETTABLE, !IS_ID, IS_UNIQUE, !IS_DERIVED, IS_ORDERED);
+		initEAttribute(getBoxModelOption_BorderRight(), theEcorePackage.getEDouble(), "borderRight", "0", 0, 1, BoxModelOption.class, !IS_TRANSIENT, !IS_VOLATILE, IS_CHANGEABLE, !IS_UNSETTABLE, !IS_ID, IS_UNIQUE, !IS_DERIVED, IS_ORDERED);
+		initEAttribute(getBoxModelOption_BorderStyle(), this.getUBorderStyle(), "borderStyle", "SOLID", 0, 1, BoxModelOption.class, !IS_TRANSIENT, !IS_VOLATILE, IS_CHANGEABLE, !IS_UNSETTABLE, !IS_ID, IS_UNIQUE, !IS_DERIVED, IS_ORDERED);
+		initEReference(getBoxModelOption_BorderColor(), this.getUColor(), null, "borderColor", null, 0, 1, BoxModelOption.class, !IS_TRANSIENT, !IS_VOLATILE, IS_CHANGEABLE, IS_COMPOSITE, !IS_RESOLVE_PROXIES, !IS_UNSETTABLE, IS_UNIQUE, !IS_DERIVED, IS_ORDERED);
+		initEAttribute(getBoxModelOption_Padding(), theEcorePackage.getEDouble(), "padding", "0", 0, 1, BoxModelOption.class, !IS_TRANSIENT, !IS_VOLATILE, IS_CHANGEABLE, !IS_UNSETTABLE, !IS_ID, IS_UNIQUE, !IS_DERIVED, IS_ORDERED);
+		initEAttribute(getBoxModelOption_PaddingTop(), theEcorePackage.getEDouble(), "paddingTop", "0", 0, 1, BoxModelOption.class, !IS_TRANSIENT, !IS_VOLATILE, IS_CHANGEABLE, !IS_UNSETTABLE, !IS_ID, IS_UNIQUE, !IS_DERIVED, IS_ORDERED);
+		initEAttribute(getBoxModelOption_PaddingLeft(), theEcorePackage.getEDouble(), "paddingLeft", "0", 0, 1, BoxModelOption.class, !IS_TRANSIENT, !IS_VOLATILE, IS_CHANGEABLE, !IS_UNSETTABLE, !IS_ID, IS_UNIQUE, !IS_DERIVED, IS_ORDERED);
+		initEAttribute(getBoxModelOption_PaddingBottom(), theEcorePackage.getEDouble(), "paddingBottom", "0", 0, 1, BoxModelOption.class, !IS_TRANSIENT, !IS_VOLATILE, IS_CHANGEABLE, !IS_UNSETTABLE, !IS_ID, IS_UNIQUE, !IS_DERIVED, IS_ORDERED);
+		initEAttribute(getBoxModelOption_PaddingRight(), theEcorePackage.getEDouble(), "paddingRight", "0", 0, 1, BoxModelOption.class, !IS_TRANSIENT, !IS_VOLATILE, IS_CHANGEABLE, !IS_UNSETTABLE, !IS_ID, IS_UNIQUE, !IS_DERIVED, IS_ORDERED);
+		initEReference(getBoxModelOption_BackgroundColor(), this.getUColor(), null, "backgroundColor", null, 0, 1, BoxModelOption.class, !IS_TRANSIENT, !IS_VOLATILE, IS_CHANGEABLE, !IS_COMPOSITE, IS_RESOLVE_PROXIES, !IS_UNSETTABLE, IS_UNIQUE, !IS_DERIVED, IS_ORDERED);
+		initEAttribute(getBoxModelOption_KeepTogether(), theEcorePackage.getEBoolean(), "keepTogether", null, 0, 1, BoxModelOption.class, !IS_TRANSIENT, !IS_VOLATILE, IS_CHANGEABLE, !IS_UNSETTABLE, !IS_ID, IS_UNIQUE, !IS_DERIVED, IS_ORDERED);
+		initEAttribute(getBoxModelOption_KeepWithPrevious(), theEcorePackage.getEBoolean(), "keepWithPrevious", null, 0, 1, BoxModelOption.class, !IS_TRANSIENT, !IS_VOLATILE, IS_CHANGEABLE, !IS_UNSETTABLE, !IS_ID, IS_UNIQUE, !IS_DERIVED, IS_ORDERED);
+		initEAttribute(getBoxModelOption_KeepWithNext(), theEcorePackage.getEBoolean(), "keepWithNext", null, 0, 1, BoxModelOption.class, !IS_TRANSIENT, !IS_VOLATILE, IS_CHANGEABLE, !IS_UNSETTABLE, !IS_ID, IS_UNIQUE, !IS_DERIVED, IS_ORDERED);
+		initEAttribute(getBoxModelOption_BreakBefore(), theEcorePackage.getEBoolean(), "breakBefore", null, 0, 1, BoxModelOption.class, !IS_TRANSIENT, !IS_VOLATILE, IS_CHANGEABLE, !IS_UNSETTABLE, !IS_ID, IS_UNIQUE, !IS_DERIVED, IS_ORDERED);
+
+		initEClass(sectionOptionEClass, SectionOption.class, "SectionOption", !IS_ABSTRACT, !IS_INTERFACE, IS_GENERATED_INSTANCE_CLASS);
+		initEAttribute(getSectionOption_SectionNumberingStyle(), this.getSectionNumberingStyle(), "sectionNumberingStyle", null, 0, 1, SectionOption.class, !IS_TRANSIENT, !IS_VOLATILE, IS_CHANGEABLE, !IS_UNSETTABLE, !IS_ID, IS_UNIQUE, !IS_DERIVED, IS_ORDERED);
+		initEAttribute(getSectionOption_LeaveOutPreviousSectionNumbering(), theEcorePackage.getEBoolean(), "leaveOutPreviousSectionNumbering", null, 0, 1, SectionOption.class, !IS_TRANSIENT, !IS_VOLATILE, IS_CHANGEABLE, !IS_UNSETTABLE, !IS_ID, IS_UNIQUE, !IS_DERIVED, IS_ORDERED);
+
+		initEClass(booleanAttributeOptionEClass, BooleanAttributeOption.class, "BooleanAttributeOption", !IS_ABSTRACT, !IS_INTERFACE, IS_GENERATED_INSTANCE_CLASS);
+		initEReference(getBooleanAttributeOption_GlobalOption(), this.getBooleanAttributeOption(), null, "globalOption", null, 0, 1, BooleanAttributeOption.class, !IS_TRANSIENT, !IS_VOLATILE, IS_CHANGEABLE, !IS_COMPOSITE, IS_RESOLVE_PROXIES, !IS_UNSETTABLE, IS_UNIQUE, !IS_DERIVED, IS_ORDERED);
+		initEAttribute(getBooleanAttributeOption_BooleanStyle(), this.getBooleanStyle(), "booleanStyle", null, 0, 1, BooleanAttributeOption.class, !IS_TRANSIENT, !IS_VOLATILE, IS_CHANGEABLE, !IS_UNSETTABLE, !IS_ID, IS_UNIQUE, !IS_DERIVED, IS_ORDERED);
+
+		initEClass(dateAttributeOptionEClass, DateAttributeOption.class, "DateAttributeOption", !IS_ABSTRACT, !IS_INTERFACE, IS_GENERATED_INSTANCE_CLASS);
+		initEReference(getDateAttributeOption_GlobalOption(), this.getDateAttributeOption(), null, "globalOption", null, 0, 1, DateAttributeOption.class, !IS_TRANSIENT, !IS_VOLATILE, IS_CHANGEABLE, !IS_COMPOSITE, IS_RESOLVE_PROXIES, !IS_UNSETTABLE, IS_UNIQUE, !IS_DERIVED, IS_ORDERED);
+		initEAttribute(getDateAttributeOption_DateStyle(), this.getDateStyle(), "dateStyle", null, 0, 1, DateAttributeOption.class, !IS_TRANSIENT, !IS_VOLATILE, IS_CHANGEABLE, !IS_UNSETTABLE, !IS_ID, IS_UNIQUE, !IS_DERIVED, IS_ORDERED);
+
 		// Initialize enums and add enum literals
+		initEEnum(appendixStyleEEnum, AppendixStyle.class, "AppendixStyle");
+		addEEnumLiteral(appendixStyleEEnum, AppendixStyle.HIDE);
+		addEEnumLiteral(appendixStyleEEnum, AppendixStyle.SHOW_FLAT);
+		addEEnumLiteral(appendixStyleEEnum, AppendixStyle.SHOW_RECURSIVE);
+
 		initEEnum(fontFamilyEEnum, FontFamily.class, "FontFamily");
-		addEEnumLiteral(fontFamilyEEnum, FontFamily.ARIAL);
+		addEEnumLiteral(fontFamilyEEnum, FontFamily.SANS_SERIF);
 		addEEnumLiteral(fontFamilyEEnum, FontFamily.VERDANA);
 		addEEnumLiteral(fontFamilyEEnum, FontFamily.TIMES_NEW_ROMAN);
+		addEEnumLiteral(fontFamilyEEnum, FontFamily.ARIAL);
 		addEEnumLiteral(fontFamilyEEnum, FontFamily.HELVETICA);
+		addEEnumLiteral(fontFamilyEEnum, FontFamily.SERIF);
+		addEEnumLiteral(fontFamilyEEnum, FontFamily.COURIER);
 
 		initEEnum(listStyleEEnum, ListStyle.class, "ListStyle");
 		addEEnumLiteral(listStyleEEnum, ListStyle.BULLETED);
@@ -826,11 +1448,50 @@ public class OptionsPackageImpl extends EPackageImpl implements OptionsPackage {
 		addEEnumLiteral(listStyleEEnum, ListStyle.SEPERATED_LIST);
 		addEEnumLiteral(listStyleEEnum, ListStyle.NUMBERED);
 		addEEnumLiteral(listStyleEEnum, ListStyle.ALPHA);
+		addEEnumLiteral(listStyleEEnum, ListStyle.TABLE);
 
 		initEEnum(pageNumberingStyleEEnum, PageNumberingStyle.class, "PageNumberingStyle");
 		addEEnumLiteral(pageNumberingStyleEEnum, PageNumberingStyle.PAGE_ONLY);
 		addEEnumLiteral(pageNumberingStyleEEnum, PageNumberingStyle.PAGE_OF_PAGE_COUNT);
 		addEEnumLiteral(pageNumberingStyleEEnum, PageNumberingStyle.EMPTY);
+
+		initEEnum(uBorderStyleEEnum, UBorderStyle.class, "UBorderStyle");
+		addEEnumLiteral(uBorderStyleEEnum, UBorderStyle.HIDDEN);
+		addEEnumLiteral(uBorderStyleEEnum, UBorderStyle.DOTTED);
+		addEEnumLiteral(uBorderStyleEEnum, UBorderStyle.DASHED);
+		addEEnumLiteral(uBorderStyleEEnum, UBorderStyle.DOUBLE);
+		addEEnumLiteral(uBorderStyleEEnum, UBorderStyle.GROOVE);
+		addEEnumLiteral(uBorderStyleEEnum, UBorderStyle.RIDGE);
+		addEEnumLiteral(uBorderStyleEEnum, UBorderStyle.INSET);
+		addEEnumLiteral(uBorderStyleEEnum, UBorderStyle.OUTSET);
+		addEEnumLiteral(uBorderStyleEEnum, UBorderStyle.SOLID);
+
+		initEEnum(sectionNumberingStyleEEnum, SectionNumberingStyle.class, "SectionNumberingStyle");
+		addEEnumLiteral(sectionNumberingStyleEEnum, SectionNumberingStyle.NUMERICAL);
+		addEEnumLiteral(sectionNumberingStyleEEnum, SectionNumberingStyle.ALPHA);
+		addEEnumLiteral(sectionNumberingStyleEEnum, SectionNumberingStyle.ROMAN);
+		addEEnumLiteral(sectionNumberingStyleEEnum, SectionNumberingStyle.NONE);
+
+		initEEnum(textAlignEEnum, TextAlign.class, "TextAlign");
+		addEEnumLiteral(textAlignEEnum, TextAlign.START);
+		addEEnumLiteral(textAlignEEnum, TextAlign.CENTER);
+		addEEnumLiteral(textAlignEEnum, TextAlign.END);
+		addEEnumLiteral(textAlignEEnum, TextAlign.JUSTIFY);
+
+		initEEnum(booleanStyleEEnum, BooleanStyle.class, "BooleanStyle");
+		addEEnumLiteral(booleanStyleEEnum, BooleanStyle.IMAGE);
+		addEEnumLiteral(booleanStyleEEnum, BooleanStyle.YES_NO);
+		addEEnumLiteral(booleanStyleEEnum, BooleanStyle.TRUE_FALSE);
+		addEEnumLiteral(booleanStyleEEnum, BooleanStyle.NUMBERS);
+
+		initEEnum(dateStyleEEnum, DateStyle.class, "DateStyle");
+		addEEnumLiteral(dateStyleEEnum, DateStyle.NICE1);
+		addEEnumLiteral(dateStyleEEnum, DateStyle.FULL);
+		addEEnumLiteral(dateStyleEEnum, DateStyle.NUMERIC_TIME_WITH_SECONDS);
+		addEEnumLiteral(dateStyleEEnum, DateStyle.NUMERIC_TIME);
+		addEEnumLiteral(dateStyleEEnum, DateStyle.NUMERIC_DAY);
+		addEEnumLiteral(dateStyleEEnum, DateStyle.NUMERIC_MONTH);
+		addEEnumLiteral(dateStyleEEnum, DateStyle.NUMERIC_YEAR);
 	}
 
 } //OptionsPackageImpl

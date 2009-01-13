@@ -98,6 +98,42 @@ public interface OptionsFactory extends EFactory {
 	UColor createUColor();
 
 	/**
+	 * Returns a new object of class '<em>Box Model Option</em>'.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @return a new object of class '<em>Box Model Option</em>'.
+	 * @generated
+	 */
+	BoxModelOption createBoxModelOption();
+
+	/**
+	 * Returns a new object of class '<em>Section Option</em>'.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @return a new object of class '<em>Section Option</em>'.
+	 * @generated
+	 */
+	SectionOption createSectionOption();
+
+	/**
+	 * Returns a new object of class '<em>Boolean Attribute Option</em>'.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @return a new object of class '<em>Boolean Attribute Option</em>'.
+	 * @generated
+	 */
+	BooleanAttributeOption createBooleanAttributeOption();
+
+	/**
+	 * Returns a new object of class '<em>Date Attribute Option</em>'.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @return a new object of class '<em>Date Attribute Option</em>'.
+	 * @generated
+	 */
+	DateAttributeOption createDateAttributeOption();
+
+	/**
 	 * Returns the package supported by this factory.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->

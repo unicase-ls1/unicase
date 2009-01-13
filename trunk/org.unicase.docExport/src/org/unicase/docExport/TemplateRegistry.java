@@ -2,15 +2,21 @@ package org.unicase.docExport;
 
 import java.io.File;
 import java.io.IOException;
+import java.net.URL;
 import java.util.ArrayList;
+import java.util.Collections;
 
+import org.eclipse.core.runtime.FileLocator;
 import org.eclipse.core.runtime.IStatus;
+import org.eclipse.core.runtime.Path;
 import org.eclipse.emf.common.util.EList;
 import org.eclipse.emf.common.util.URI;
 import org.eclipse.emf.ecore.EObject;
 import org.eclipse.emf.ecore.resource.Resource;
 import org.eclipse.emf.ecore.resource.ResourceSet;
 import org.eclipse.emf.ecore.resource.impl.ResourceSetImpl;
+import org.unicase.docExport.commands.ImportTemplate;
+import org.unicase.docExport.commands.InvalidTemplateArchiveException;
 import org.unicase.docExport.exceptions.TemplateNotFoundException;
 import org.unicase.docExport.exceptions.TemplateSaveException;
 import org.unicase.docExport.exceptions.TemplatesFileNotFoundException;
@@ -28,6 +34,8 @@ import org.unicase.workspace.util.WorkspaceUtil;
  */
 public final class TemplateRegistry {
 
+	private static final String DEFAULT_TEMPLATES_FOLDER = "defaultTemplates";
+
 	/**
 	 * The template extension string. (".template")
 	 */
@@ -38,13 +46,32 @@ public final class TemplateRegistry {
 	 */
 	private static Template template;
 
+
 	private static final String DEFAULT_TEMPLATE_NAME = "default";
 	private static final String UNICASE_FOLDER = ".unicase";
 	private static final String DOCUMENT_EXPORT_FOLDER = "docExport2";
 	private static final String TEMPLATES_FILE_NAME = "templates3";
 	
+	/**
+	 * The folder where all templates should be saved.
+	 */
+	public static final String TEMPLATE_FOLDER = System.getProperty("user.home") 
+		+ File.separatorChar
+		+ UNICASE_FOLDER
+		+ File.separatorChar
+		+ DOCUMENT_EXPORT_FOLDER
+		+ File.separatorChar;
+
+	/**
+	 * The folder where all logo images of the templates should be saved.
+	 */
+	public static final String TEMPLATE_IMAGE_FOLDER = TEMPLATE_FOLDER
+		+ "images"
+		+ File.separatorChar;
+	
 	private static final int ME_COUNT_DEFAULT = 0;
 
+	
 	/**
 	 * This is a help variable which counts the number of ModelElements
 	 * rendered. This is ONLY for benchmark purposes.
@@ -85,13 +112,36 @@ public final class TemplateRegistry {
 		TemplateRegistry.template = template;
 	}
 
+	
+	private static void loadDefaultTemplateFromZipFile() {
+
+		try {
+			URL templateFolder = FileLocator.find(Activator.getDefault()
+					.getBundle(), new Path(DEFAULT_TEMPLATES_FOLDER + "/"),
+					Collections.EMPTY_MAP);
+
+			File zipFile = new File(
+					FileLocator.resolve(templateFolder).getPath()
+					+ "default.zip"
+				);
+			
+			ImportTemplate.importTemplate(zipFile.getAbsolutePath());
+			
+		} catch (IOException e) {
+			//no problem
+		} catch (InvalidTemplateArchiveException e) {
+			//no problem
+		} catch (TemplateSaveException e) {
+			//no problem
+		}
+	}
 	/**
-	 * loads the default template from home folder. If this template
+	 * loads the default template from the home folder. If this template
 	 * doesn't exist, a new one will be created and saved.
 	 * @throws TemplateSaveException 
 	 */
 	private static void loadDefaultTemplate() throws TemplateSaveException {
-		try {
+		try {			
 			template = loadTemplate(DEFAULT_TEMPLATE_NAME);
 			WorkspaceUtil.log(
 					"The template " + DEFAULT_TEMPLATE_NAME + " has been loaded successfully",
@@ -253,6 +303,8 @@ public final class TemplateRegistry {
 	 * @throws TemplateSaveException -
 	 */
 	public static ArrayList<Template> getAllTemplates() throws TemplateSaveException {
+		loadDefaultTemplateFromZipFile();
+		
 		ArrayList<Template> templates = new ArrayList<Template>();
 
 		Resource resource;
@@ -308,17 +360,7 @@ public final class TemplateRegistry {
 	}
 	
 	private static String getTemplatesPath() {
-		//userhome folder
-		StringBuffer sb = new StringBuffer();
-		sb.append(System.getProperty("user.home"));
-		sb.append(File.separatorChar);
-	
-		sb.append(UNICASE_FOLDER);
-		sb.append(File.separatorChar);
-		sb.append(DOCUMENT_EXPORT_FOLDER);
-		sb.append(File.separatorChar);	
-	
-		String pathName = sb.toString() + TEMPLATES_FILE_NAME;
+		String pathName = TEMPLATE_FOLDER + TEMPLATES_FILE_NAME;
 		return pathName;
 	}
 	
@@ -344,53 +386,4 @@ public final class TemplateRegistry {
 			return resourceSet.getResource(fileURI, true);
 		}
 	}
-	
-//	private static Resource getStaticTemplatesResource() {
-//		
-//		URL test = FileLocator.find(
-//				org.unicase.workspace.Activator.getDefault().getBundle(), 
-//				new Path("../org.unicase.documentExport/templates/templates"), 
-//				Collections.EMPTY_MAP
-//			);
-//		
-////		try {
-////			System.out.println("URL toFileUrl " + FileLocator.toFileURL(test).toExternalForm());
-////			System.out.println("URL resolve " + FileLocator.resolve(test).toExternalForm());
-////		} catch (IOException e1) {
-////			// TODO Auto-generated catch block
-////			e1.printStackTrace();
-////		}
-////		System.out.println("URI external form " + test.toExternalForm());
-//		try {
-//			System.out.println("URI test " + test.toURI());
-//			
-//			ResourceSet resourceSet = new ResourceSetImpl();
-//			
-////			URI fileURI = URI.cr
-//			URI fileURI = URI.createPlatformPluginURI("org.unicase.documentexport/templates/templates", false);
-////					(test.toURI().toString());
-//			
-//			File templatesFile = new File(getTemplatesPath());
-//			if (!templatesFile.exists()) {
-//				try {
-//					Resource resource = resourceSet.createResource(fileURI);
-//					resource.save(null);
-//					return resource;
-//				} catch (IOException e) {
-//					WorkspaceUtil.log(
-//							"The templates file could not be saved after creating a new resource",
-//							new Exception(),
-//							IStatus.ERROR
-//					);
-//				}
-//			} else {
-//				return resourceSet.getResource(fileURI, true);
-//			}		
-//			
-//		} catch (URISyntaxException e) {
-//			// TODO Auto-generated catch block
-//			e.printStackTrace();
-//		}
-//		return null;
-//	}
 }

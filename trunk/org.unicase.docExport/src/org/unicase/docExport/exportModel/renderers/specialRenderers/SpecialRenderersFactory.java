@@ -54,6 +54,24 @@ public interface SpecialRenderersFactory extends EFactory {
 	StepsAttributeRenderer createStepsAttributeRenderer();
 
 	/**
+	 * Returns a new object of class '<em>Method Renderer</em>'.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @return a new object of class '<em>Method Renderer</em>'.
+	 * @generated
+	 */
+	MethodRenderer createMethodRenderer();
+
+	/**
+	 * Returns a new object of class '<em>Package Flat Renderer</em>'.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @return a new object of class '<em>Package Flat Renderer</em>'.
+	 * @generated
+	 */
+	PackageFlatRenderer createPackageFlatRenderer();
+
+	/**
 	 * Returns the package supported by this factory.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->

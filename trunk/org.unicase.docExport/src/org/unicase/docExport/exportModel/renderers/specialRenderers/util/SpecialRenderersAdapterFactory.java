@@ -13,7 +13,9 @@ import org.eclipse.emf.ecore.EObject;
 import org.unicase.docExport.exportModel.renderers.AttributeRenderer;
 import org.unicase.docExport.exportModel.renderers.ModelElementRenderer;
 import org.unicase.docExport.exportModel.renderers.specialRenderers.MeetingRenderer;
+import org.unicase.docExport.exportModel.renderers.specialRenderers.MethodRenderer;
 import org.unicase.docExport.exportModel.renderers.specialRenderers.MilestoneRenderer;
+import org.unicase.docExport.exportModel.renderers.specialRenderers.PackageFlatRenderer;
 import org.unicase.docExport.exportModel.renderers.specialRenderers.SpecialRenderersPackage;
 import org.unicase.docExport.exportModel.renderers.specialRenderers.StepsAttributeRenderer;
 
@@ -87,6 +89,14 @@ public class SpecialRenderersAdapterFactory extends AdapterFactoryImpl {
 				return createStepsAttributeRendererAdapter();
 			}
 			@Override
+			public Adapter caseMethodRenderer(MethodRenderer object) {
+				return createMethodRendererAdapter();
+			}
+			@Override
+			public Adapter casePackageFlatRenderer(PackageFlatRenderer object) {
+				return createPackageFlatRendererAdapter();
+			}
+			@Override
 			public Adapter caseModelElementRenderer(ModelElementRenderer object) {
 				return createModelElementRendererAdapter();
 			}
@@ -153,6 +163,34 @@ public class SpecialRenderersAdapterFactory extends AdapterFactoryImpl {
 	 * @generated
 	 */
 	public Adapter createStepsAttributeRendererAdapter() {
+		return null;
+	}
+
+	/**
+	 * Creates a new adapter for an object of class '{@link org.unicase.docExport.exportModel.renderers.specialRenderers.MethodRenderer <em>Method Renderer</em>}'.
+	 * <!-- begin-user-doc -->
+	 * This default implementation returns null so that we can easily ignore cases;
+	 * it's useful to ignore a case when inheritance will catch all the cases anyway.
+	 * <!-- end-user-doc -->
+	 * @return the new adapter.
+	 * @see org.unicase.docExport.exportModel.renderers.specialRenderers.MethodRenderer
+	 * @generated
+	 */
+	public Adapter createMethodRendererAdapter() {
+		return null;
+	}
+
+	/**
+	 * Creates a new adapter for an object of class '{@link org.unicase.docExport.exportModel.renderers.specialRenderers.PackageFlatRenderer <em>Package Flat Renderer</em>}'.
+	 * <!-- begin-user-doc -->
+	 * This default implementation returns null so that we can easily ignore cases;
+	 * it's useful to ignore a case when inheritance will catch all the cases anyway.
+	 * <!-- end-user-doc -->
+	 * @return the new adapter.
+	 * @see org.unicase.docExport.exportModel.renderers.specialRenderers.PackageFlatRenderer
+	 * @generated
+	 */
+	public Adapter createPackageFlatRendererAdapter() {
 		return null;
 	}
 
