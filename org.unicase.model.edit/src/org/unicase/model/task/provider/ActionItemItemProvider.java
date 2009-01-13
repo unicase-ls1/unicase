@@ -33,8 +33,8 @@ import org.unicase.model.task.TaskPackage;
 public class ActionItemItemProvider extends AnnotationItemProvider implements IEditingDomainItemProvider,
 	IStructuredItemContentProvider, ITreeItemContentProvider, IItemLabelProvider, IItemPropertySource {
 	/**
-	 * This constructs an instance from a factory and a notifier.
-	 * <!-- begin-user-doc --> <!-- end-user-doc -->
+	 * This constructs an instance from a factory and a notifier. <!-- begin-user-doc --> <!-- end-user-doc -->
+	 * 
 	 * @generated
 	 */
 	public ActionItemItemProvider(AdapterFactory adapterFactory) {
@@ -42,8 +42,8 @@ public class ActionItemItemProvider extends AnnotationItemProvider implements IE
 	}
 
 	/**
-	 * This returns the property descriptors for the adapted class.
-	 * <!-- begin-user-doc --> <!-- end-user-doc -->
+	 * This returns the property descriptors for the adapted class. <!-- begin-user-doc --> <!-- end-user-doc -->
+	 * 
 	 * @generated
 	 */
 	@Override
@@ -80,8 +80,8 @@ public class ActionItemItemProvider extends AnnotationItemProvider implements IE
 	}
 
 	/**
-	 * This adds a property descriptor for the Predecessors feature.
-	 * <!-- begin-user-doc --> <!-- end-user-doc -->
+	 * This adds a property descriptor for the Predecessors feature. <!-- begin-user-doc --> <!-- end-user-doc -->
+	 * 
 	 * @generated
 	 */
 	protected void addPredecessorsPropertyDescriptor(Object object) {
@@ -92,8 +92,8 @@ public class ActionItemItemProvider extends AnnotationItemProvider implements IE
 	}
 
 	/**
-	 * This adds a property descriptor for the Successors feature.
-	 * <!-- begin-user-doc --> <!-- end-user-doc -->
+	 * This adds a property descriptor for the Successors feature. <!-- begin-user-doc --> <!-- end-user-doc -->
+	 * 
 	 * @generated
 	 */
 	protected void addSuccessorsPropertyDescriptor(Object object) {
@@ -104,8 +104,8 @@ public class ActionItemItemProvider extends AnnotationItemProvider implements IE
 	}
 
 	/**
-	 * This adds a property descriptor for the Assignee feature.
-	 * <!-- begin-user-doc --> <!-- end-user-doc -->
+	 * This adds a property descriptor for the Assignee feature. <!-- begin-user-doc --> <!-- end-user-doc -->
+	 * 
 	 * @generated
 	 */
 	protected void addAssigneePropertyDescriptor(Object object) {
@@ -116,8 +116,8 @@ public class ActionItemItemProvider extends AnnotationItemProvider implements IE
 	}
 
 	/**
-	 * This adds a property descriptor for the Participants feature.
-	 * <!-- begin-user-doc --> <!-- end-user-doc -->
+	 * This adds a property descriptor for the Participants feature. <!-- begin-user-doc --> <!-- end-user-doc -->
+	 * 
 	 * @generated
 	 */
 	protected void addParticipantsPropertyDescriptor(Object object) {
@@ -128,8 +128,8 @@ public class ActionItemItemProvider extends AnnotationItemProvider implements IE
 	}
 
 	/**
-	 * This adds a property descriptor for the Due Date feature.
-	 * <!-- begin-user-doc --> <!-- end-user-doc -->
+	 * This adds a property descriptor for the Due Date feature. <!-- begin-user-doc --> <!-- end-user-doc -->
+	 * 
 	 * @generated
 	 */
 	protected void addDueDatePropertyDescriptor(Object object) {
@@ -141,8 +141,8 @@ public class ActionItemItemProvider extends AnnotationItemProvider implements IE
 	}
 
 	/**
-	 * This adds a property descriptor for the Done feature.
-	 * <!-- begin-user-doc --> <!-- end-user-doc -->
+	 * This adds a property descriptor for the Done feature. <!-- begin-user-doc --> <!-- end-user-doc -->
+	 * 
 	 * @generated
 	 */
 	protected void addDonePropertyDescriptor(Object object) {
@@ -154,8 +154,8 @@ public class ActionItemItemProvider extends AnnotationItemProvider implements IE
 	}
 
 	/**
-	 * This adds a property descriptor for the Estimate feature.
-	 * <!-- begin-user-doc --> <!-- end-user-doc -->
+	 * This adds a property descriptor for the Estimate feature. <!-- begin-user-doc --> <!-- end-user-doc -->
+	 * 
 	 * @generated
 	 */
 	protected void addEstimatePropertyDescriptor(Object object) {
@@ -167,8 +167,8 @@ public class ActionItemItemProvider extends AnnotationItemProvider implements IE
 	}
 
 	/**
-	 * This adds a property descriptor for the Effort feature.
-	 * <!-- begin-user-doc --> <!-- end-user-doc -->
+	 * This adds a property descriptor for the Effort feature. <!-- begin-user-doc --> <!-- end-user-doc -->
+	 * 
 	 * @generated
 	 */
 	protected void addEffortPropertyDescriptor(Object object) {
@@ -180,8 +180,8 @@ public class ActionItemItemProvider extends AnnotationItemProvider implements IE
 	}
 
 	/**
-	 * This adds a property descriptor for the Activity feature.
-	 * <!-- begin-user-doc --> <!-- end-user-doc -->
+	 * This adds a property descriptor for the Activity feature. <!-- begin-user-doc --> <!-- end-user-doc -->
+	 * 
 	 * @generated
 	 */
 	protected void addActivityPropertyDescriptor(Object object) {
@@ -193,13 +193,15 @@ public class ActionItemItemProvider extends AnnotationItemProvider implements IE
 	}
 
 	/**
-	 * This returns ActionItem.gif.
-	 * <!-- begin-user-doc --> <!-- end-user-doc -->
-	 * @generated
+	 * This returns ActionItem.gif. <!-- begin-user-doc --> <!-- end-user-doc -->
+	 * 
+	 * @generated NOT
+	 * @return the icon for this object.
+	 * @param object the object.
 	 */
 	@Override
 	public Object getImage(Object object) {
-		return overlayImage(object, getResourceLocator().getImage("full/obj16/ActionItem"));
+		return overlayImage(object, getResourceLocator().getImage("full/obj16/ActionItem.png"));
 	}
 
 	/**
@@ -237,9 +239,9 @@ public class ActionItemItemProvider extends AnnotationItemProvider implements IE
 	}
 
 	/**
-	 * This adds {@link org.eclipse.emf.edit.command.CommandParameter}s describing the children
-	 * that can be created under this object.
-	 * <!-- begin-user-doc --> <!-- end-user-doc -->
+	 * This adds {@link org.eclipse.emf.edit.command.CommandParameter}s describing the children that can be created
+	 * under this object. <!-- begin-user-doc --> <!-- end-user-doc -->
+	 * 
 	 * @generated
 	 */
 	@Override
@@ -248,8 +250,8 @@ public class ActionItemItemProvider extends AnnotationItemProvider implements IE
 	}
 
 	/**
-	 * Return the resource locator for this item provider's resources.
-	 * <!-- begin-user-doc --> <!-- end-user-doc -->
+	 * Return the resource locator for this item provider's resources. <!-- begin-user-doc --> <!-- end-user-doc -->
+	 * 
 	 * @generated
 	 */
 	@Override
