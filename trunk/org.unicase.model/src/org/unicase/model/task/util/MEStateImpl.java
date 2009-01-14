@@ -34,6 +34,8 @@ public class MEStateImpl implements MEState {
 
 	private HashSet<ModelElement> effectiveBlocker = new HashSet<ModelElement>();
 
+	private boolean updating;
+
 	/**
 	 * default constructor.
 	 * 
@@ -103,11 +105,12 @@ public class MEStateImpl implements MEState {
 	 * {@inheritDoc}
 	 */
 	public void addBlocker(ModelElement me) {
-		if (me == modelElement) {
+		if (me == modelElement || effectiveBlocker.contains(me)) {
 			return;
 		}
 		effectiveBlocker.add(me);
 		if (effectiveBlocker.size() == 1) {
+			// This is fake update
 			if (modelElement instanceof WorkPackage) {
 				EList<WorkItem> containedWorkItems = ((WorkPackage) modelElement).getContainedWorkItems();
 				for (WorkItem workItem : containedWorkItems) {
@@ -134,7 +137,7 @@ public class MEStateImpl implements MEState {
 	 * {@inheritDoc}
 	 */
 	public void addOpener(ModelElement me) {
-		if (me == modelElement) {
+		if (me == modelElement || effectiveOpeners.contains(me)) {
 			return;
 		}
 		effectiveOpeners.add(me);
@@ -196,9 +199,10 @@ public class MEStateImpl implements MEState {
 	/**
 	 * {@inheritDoc}
 	 */
-	public boolean removeBlocker(ModelElement me) {
-		boolean ret = effectiveBlocker.remove(me);
+	public void removeBlocker(ModelElement me) {
+		effectiveBlocker.remove(me);
 		if (effectiveBlocker.size() == 0) {
+			// This is a fake update
 			if (modelElement instanceof WorkPackage) {
 				EList<WorkItem> containedWorkItems = ((WorkPackage) modelElement).getContainedWorkItems();
 				for (WorkItem workItem : containedWorkItems) {
@@ -211,7 +215,7 @@ public class MEStateImpl implements MEState {
 			}
 			recursivlyUpdateStatus(getStatus());
 		}
-		return ret;
+
 	}
 
 	/**
@@ -224,16 +228,20 @@ public class MEStateImpl implements MEState {
 	/**
 	 * {@inheritDoc}
 	 */
-	public boolean removeOpener(ModelElement me) {
-		boolean ret = effectiveOpeners.remove(me);
+	public void removeOpener(ModelElement me) {
+		if (!effectiveOpeners.remove(me)) {
+			return;
+		}
 		if (effectiveOpeners.size() == 0) {
 			recursivlyUpdateStatus(getStatus());
 		}
-		return ret;
 	}
 
 	private void recursivlyUpdateStatus(String status) {
-		//		
+		if (updating) {
+			return;
+		}
+		updating = true;
 		ENotificationImpl notificationImpl = new ENotificationImpl((InternalEObject) modelElement,
 			Notification.RESOLVE, ModelPackage.MODEL_ELEMENT__STATE, OPEN, OPEN);
 
@@ -262,6 +270,8 @@ public class MEStateImpl implements MEState {
 		} catch (CircularDependencyException e) {
 			// JH: insert proper exception handlin
 			e.printStackTrace();
+		} finally {
+			updating = false;
 		}
 
 	}
