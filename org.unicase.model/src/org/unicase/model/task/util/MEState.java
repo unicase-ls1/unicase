@@ -62,9 +62,8 @@ public interface MEState {
 	 * Removes a modelelement from the opener list.
 	 * 
 	 * @param me the modelelement
-	 * @return if the opener was in the list
 	 */
-	boolean removeOpener(ModelElement me);
+	void removeOpener(ModelElement me);
 
 	/**
 	 * Adds a modelelement to the opener list.
@@ -77,9 +76,8 @@ public interface MEState {
 	 * Removes a modelelement from the blocker list.
 	 * 
 	 * @param me the modelelement
-	 * @return if the blocker was in the list
 	 */
-	boolean removeBlocker(ModelElement me);
+	void removeBlocker(ModelElement me);
 
 	/**
 	 * Adds a modelelement to the blocker list.
