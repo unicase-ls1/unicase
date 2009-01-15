@@ -87,7 +87,7 @@ public class DeleteFromViewCommand extends org.eclipse.gmf.runtime.emf.type.core
 			diag.getElements().remove(destructee);
 
 			// tear down incoming references
-			tearDownIncomingReferences(destructee);
+			tearDownReferences(destructee);
 
 			// in case it was cross-resource-contained
 			Resource res = destructee.eResource();
@@ -104,7 +104,7 @@ public class DeleteFromViewCommand extends org.eclipse.gmf.runtime.emf.type.core
 	 * 
 	 * @param destructee the object being destroyed
 	 */
-	protected void tearDownIncomingReferences(EObject destructee) {
+	protected void tearDownReferences(EObject destructee) {
 		MEDiagramEditPart me = (MEDiagramEditPart) editpart.getParent();
 		MEDiagram diag = (MEDiagram) ((View) me.getModel()).getElement();
 		ArrayList<Association> assocs = UnicaseUiUtil.getDiagramNodeReferences((ModelElement) destructee);
