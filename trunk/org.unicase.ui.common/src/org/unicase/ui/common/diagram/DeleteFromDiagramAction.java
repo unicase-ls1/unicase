@@ -11,9 +11,10 @@ import org.eclipse.gmf.runtime.emf.type.core.IElementType;
 import org.eclipse.gmf.runtime.emf.type.core.commands.DestroyReferenceCommand;
 import org.eclipse.gmf.runtime.emf.type.core.requests.DestroyElementRequest;
 import org.eclipse.gmf.runtime.emf.type.core.requests.DestroyReferenceRequest;
+import org.eclipse.gmf.runtime.notation.Edge;
+import org.eclipse.gmf.runtime.notation.Node;
 import org.eclipse.gmf.runtime.notation.View;
 import org.eclipse.gmf.runtime.notation.impl.EdgeImpl;
-import org.eclipse.gmf.runtime.notation.impl.NodeImpl;
 import org.eclipse.jface.action.Action;
 import org.unicase.ui.common.commands.ActionHelper;
 import org.unicase.ui.common.commands.DeleteFromViewCommand;
@@ -34,15 +35,15 @@ public class DeleteFromDiagramAction extends Action {
 		EditPart selectedElement = (EditPart) ActionHelper.getSelection();
 		ICommand command = null;
 		View view = (View) selectedElement.getModel();
-		if (view instanceof NodeImpl) {
+		if (view instanceof Node) {
 			DestroyElementRequest destroy = new DestroyElementRequest(WorkspaceManager.getInstance()
 				.getCurrentWorkspace().getEditingDomain(), view.getElement(), false);
 			IElementType type = ElementTypeRegistry.getInstance().getElementType(destroy.getEditHelperContext());
 			command = (type != null) ? new DeleteFromViewCommand(destroy, selectedElement) : null;
-		} else if (view instanceof EdgeImpl) {
+		} else if (view instanceof Edge) {
 
-			DestroyReferenceRequest req = new DestroyReferenceRequest(((EdgeImpl) view).getSource().getElement(), null,
-				((EdgeImpl) view).getTarget().getElement(), false);
+			DestroyReferenceRequest req = new DestroyReferenceRequest(((Edge) view).getSource().getElement(), null,
+				((Edge) view).getTarget().getElement(), false);
 			command = new DestroyReferenceCommand(req);
 
 		}
@@ -51,7 +52,7 @@ public class DeleteFromDiagramAction extends Action {
 			OperationHistoryFactory.getOperationHistory().execute(command, new NullProgressMonitor(), null);
 		} catch (ExecutionException e) {
 			e.printStackTrace();
-		}
+		}// Until I find out, while the Editpart is not notified in this case, the following serves as a workaround
 		if (view instanceof EdgeImpl) {
 			MEDiagramEditPart me = (MEDiagramEditPart) ((DiagramRootEditPart) selectedElement.getParent())
 				.getContents();
