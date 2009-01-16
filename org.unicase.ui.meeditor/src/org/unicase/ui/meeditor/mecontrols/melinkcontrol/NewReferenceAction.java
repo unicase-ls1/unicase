@@ -1,8 +1,7 @@
 /**
- * <copyright> Copyright (c) 2008 Jonas Helming, Maximilian Koegel. All rights reserved. This program and the accompanying materials are made available under the terms of the Eclipse Public License v1.0 which accompanies this distribution, and is available at http://www.eclipse.org/legal/epl-v10.html
- * </copyright>
- *
- * $Id$
+ * <copyright> Copyright (c) 2008 Jonas Helming, Maximilian Koegel. All rights reserved. This program and the
+ * accompanying materials are made available under the terms of the Eclipse Public License v1.0 which accompanies this
+ * distribution, and is available at http://www.eclipse.org/legal/epl-v10.html </copyright> $Id$
  */
 package org.unicase.ui.meeditor.mecontrols.melinkcontrol;
 
@@ -26,6 +25,7 @@ import org.eclipse.swt.graphics.Image;
 import org.eclipse.ui.PlatformUI;
 import org.eclipse.ui.dialogs.ElementListSelectionDialog;
 import org.unicase.model.ModelElement;
+import org.unicase.model.document.LeafSection;
 import org.unicase.model.util.ModelUtil;
 import org.unicase.ui.common.MEClassLabelProvider;
 import org.unicase.ui.common.commands.ActionHelper;
@@ -33,19 +33,15 @@ import org.unicase.ui.common.decorators.OverlayImageDescriptor;
 import org.unicase.ui.common.exceptions.DialogHandler;
 
 /**
- * 
- * An Action for adding reference links to a model element. It is mainly used in
- * the {@link MEMultiLinkControl}
+ * An Action for adding reference links to a model element. It is mainly used in the {@link MEMultiLinkControl}
  * 
  * @author shterev
- * 
  */
 public class NewReferenceAction extends Action {
 	/**
 	 * Command to create a new reference.
 	 * 
 	 * @author helming
-	 * 
 	 */
 	private final class NewReferenceCommand extends RecordingCommand {
 		private NewReferenceCommand(TransactionalEditingDomain domain) {
@@ -61,9 +57,8 @@ public class NewReferenceAction extends Action {
 			if (subclasses.size() == 1) {
 				newClass = subclasses.get(0);
 			} else {
-				ElementListSelectionDialog dlg = new ElementListSelectionDialog(
-						PlatformUI.getWorkbench().getActiveWorkbenchWindow()
-								.getShell(), new MEClassLabelProvider());
+				ElementListSelectionDialog dlg = new ElementListSelectionDialog(PlatformUI.getWorkbench()
+					.getActiveWorkbenchWindow().getShell(), new MEClassLabelProvider());
 				dlg.setElements(subclasses.toArray());
 
 				dlg.setTitle("Select Element type");
@@ -79,12 +74,20 @@ public class NewReferenceAction extends Action {
 			final ModelElement newMEInstance;
 
 			EPackage ePackage = newClass.getEPackage();
-			newMEInstance = (ModelElement) ActionHelper.createModelElement(
-					ePackage.getEFactoryInstance(), newClass);
+			newMEInstance = (ModelElement) ActionHelper.createModelElement(ePackage.getEFactoryInstance(), newClass);
 			newMEInstance.setName("new " + newClass.getName());
 
 			if (!eReference.isContainer()) {
-				modelElement.getProject().addModelElement(newMEInstance);
+				// add the modelelement to the Leafsection.
+				LeafSection leafsection = modelElement.getLeafSection();
+
+				if (leafsection != null) {
+					leafsection.getModelElements().add(newMEInstance);
+
+				} else {
+					// add the modelelment to the project (Orphans).
+					modelElement.getProject().addModelElement(newMEInstance);
+				}
 			}
 
 			// add the new object to the reference
@@ -106,35 +109,27 @@ public class NewReferenceAction extends Action {
 	/**
 	 * Default constructor.
 	 * 
-	 * @param modelElement
-	 *            the source model element
-	 * @param eReference
-	 *            the target reference
-	 * @param descriptor
-	 *            the descriptor used to generate display content
+	 * @param modelElement the source model element
+	 * @param eReference the target reference
+	 * @param descriptor the descriptor used to generate display content
 	 */
-	public NewReferenceAction(ModelElement modelElement, EReference eReference,
-			IItemPropertyDescriptor descriptor) {
+	public NewReferenceAction(ModelElement modelElement, EReference eReference, IItemPropertyDescriptor descriptor) {
 		this.modelElement = modelElement;
 		this.eReference = eReference;
 
 		Object obj = null;
-		//Only create a temporary object in order to get the correct icon from the label provider
-		//the actual ME is created later on.
+		// Only create a temporary object in order to get the correct icon from the label provider
+		// the actual ME is created later on.
 		if (!eReference.getEReferenceType().isAbstract()) {
-			obj = eReference.getEReferenceType().getEPackage()
-					.getEFactoryInstance().create(
-							eReference.getEReferenceType());
+			obj = eReference.getEReferenceType().getEPackage().getEFactoryInstance().create(
+				eReference.getEReferenceType());
 		}
-		Image image = new AdapterFactoryLabelProvider(
-				new ComposedAdapterFactory(
-						ComposedAdapterFactory.Descriptor.Registry.INSTANCE))
-				.getImage(obj);
+		Image image = new AdapterFactoryLabelProvider(new ComposedAdapterFactory(
+			ComposedAdapterFactory.Descriptor.Registry.INSTANCE)).getImage(obj);
 
-		ImageDescriptor addOverlay = org.unicase.ui.common.Activator
-				.getImageDescriptor("icons/add_overlay.png");
-		OverlayImageDescriptor imageDescriptor = new OverlayImageDescriptor(
-				image, addOverlay, OverlayImageDescriptor.LOWER_RIGHT);
+		ImageDescriptor addOverlay = org.unicase.ui.common.Activator.getImageDescriptor("icons/add_overlay.png");
+		OverlayImageDescriptor imageDescriptor = new OverlayImageDescriptor(image, addOverlay,
+			OverlayImageDescriptor.LOWER_RIGHT);
 		setImageDescriptor(imageDescriptor);
 
 		String attribute = descriptor.getDisplayName(eReference);
@@ -155,12 +150,10 @@ public class NewReferenceAction extends Action {
 	@Override
 	public void run() {
 		if (eReference.isContainer()) {
-			DialogHandler
-					.showErrorDialog("Operation not permitted for container references!");
+			DialogHandler.showErrorDialog("Operation not permitted for container references!");
 			return;
 		}
-		TransactionalEditingDomain domain = TransactionUtil
-				.getEditingDomain(modelElement);
+		TransactionalEditingDomain domain = TransactionUtil.getEditingDomain(modelElement);
 		domain.getCommandStack().execute(new NewReferenceCommand(domain));
 
 	}
