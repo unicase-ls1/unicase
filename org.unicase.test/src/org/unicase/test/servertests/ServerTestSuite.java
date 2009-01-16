@@ -11,7 +11,7 @@ public class ServerTestSuite extends TestSuite {
 
 	private ConnectionManager connectionManager;
 	private String USERNAME = "super";
-	private String PASSWORD = "super";
+	private String PASSWORD = "tiaspfu";
 	private SessionId logIn;
 
 	@Override
