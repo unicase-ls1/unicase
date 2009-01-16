@@ -32,9 +32,10 @@ public class ProjectStateTest extends TestCase {
 				System.out.println("no projects on server.");
 			}
 			for (ProjectInfo pI : projectList) {
-				System.out.println(pI + " " + pI.getProjectId());
-				if (pI.getName().contains("DOLLI")) {
-					getChanges(pI);
+				System.out.println(pI + " " + pI.getProjectId() + " at Version: " + pI.getVersion().getIdentifier());
+				if (pI.getName().contains("unicase")) {
+					// getChanges(pI, false);
+					// getChanges(pI, true);
 					getProjectStates(pI);
 
 				}
@@ -44,14 +45,24 @@ public class ProjectStateTest extends TestCase {
 		}
 	}
 
-	private void getChanges(ProjectInfo pi) {
+	private void getChanges(ProjectInfo pi, boolean turned) {
 		PrimaryVersionSpec primaryVersionSpec = VersioningFactory.eINSTANCE.createPrimaryVersionSpec();
 		primaryVersionSpec.setIdentifier(0);
 		try {
-			List<ChangePackage> changes = connectionManager.getChanges(sessionId, pi.getProjectId(),
-				primaryVersionSpec, pi.getVersion());
+
+			List<ChangePackage> changes = null;
+
+			if (turned) {
+				changes = connectionManager.getChanges(sessionId, pi.getProjectId(), pi.getVersion(),
+					primaryVersionSpec);
+			} else {
+				changes = connectionManager.getChanges(sessionId, pi.getProjectId(), primaryVersionSpec, pi
+					.getVersion());
+			}
+
+			int i = 1;
 			for (ChangePackage cp : changes) {
-				System.out.println(cp);
+				System.out.println("change " + (i++) + ": " + cp.getLogMessage().getDate());
 			}
 		} catch (EmfStoreException e) {
 			e.printStackTrace();
@@ -60,7 +71,7 @@ public class ProjectStateTest extends TestCase {
 
 	private void getProjectStates(ProjectInfo pi) {
 		PrimaryVersionSpec primaryVersionSpec = VersioningFactory.eINSTANCE.createPrimaryVersionSpec();
-		for (int i = 0; i < pi.getVersion().getIdentifier(); i++) {
+		for (int i = 1350; i <= pi.getVersion().getIdentifier(); i++) {
 			primaryVersionSpec.setIdentifier(i);
 			try {
 				System.out.print("getting version " + i + ": ");
