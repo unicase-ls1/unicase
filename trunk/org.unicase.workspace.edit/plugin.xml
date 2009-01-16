@@ -122,7 +122,7 @@
         point="org.eclipse.ui.commands">
      <category
            id="org.unicase.workspace.edit.project"
-           name="projectCategory">
+           name="Unicase">
      </category>
      <command
            categoryId="org.unicase.workspace.edit.project"
@@ -533,8 +533,8 @@
      <extension
          point="org.eclipse.ui.views">
       <category
-            name="Unicase"
-            id="org.unicase">
+            id="org.unicase"
+            name="Unicase">
       </category>
       <view
             category="org.unicase"
@@ -552,6 +552,7 @@
             name="Validation View"
             restorable="true">
       </view>
+    
    </extension>
      <extension
            point="org.eclipse.emf.validation.validationListeners">
@@ -575,7 +576,13 @@
               commandId="org.unicase.workspace.edit.updateProject"
               contextId="org.eclipse.ui.contexts.window"
               schemeId="org.eclipse.ui.defaultAcceleratorConfiguration"
-              sequence="Alt+U">
+              sequence="Alt+P">
+        </key>
+        <key
+              commandId="org.unicase.ui.common.validate"
+              contextId="org.eclipse.ui.contexts.window"
+              schemeId="org.eclipse.ui.defaultAcceleratorConfiguration"
+              sequence="Alt+V">
         </key>
      </extension>
      <extension
