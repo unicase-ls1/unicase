@@ -49,10 +49,10 @@ public class MEDiagramEditPart extends DiagramEditPart {
 				viewDescriptors.add(new CreateViewRequest.ViewDescriptor(new EObjectAdapter((EObject) nextObject),
 					Node.class, null, getDiagramPreferencesHint()));
 			}
-			return createShortcutsCommand(dropRequest, viewDescriptors);
+			return createDropCommand(dropRequest, viewDescriptors);
 		}
 
-		private Command createShortcutsCommand(DropObjectsRequest dropRequest, List<ViewDescriptor> viewDescriptors) {
+		private Command createDropCommand(DropObjectsRequest dropRequest, List<ViewDescriptor> viewDescriptors) {
 			Command command = createViewsAndArrangeCommand(dropRequest, viewDescriptors);
 			if (command != null) {
 				CreateElementRequest req = new CreateElementRequest(((View) getModel()).getElement(),
