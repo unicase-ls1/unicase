@@ -19,6 +19,7 @@ import org.unicase.model.classes.Attribute;
 import org.unicase.model.classes.ClassesPackage;
 import org.unicase.model.classes.Method;
 import org.unicase.model.requirement.RequirementPackage;
+import org.unicase.model.requirement.Scenario;
 import org.unicase.model.requirement.UseCase;
 
 /*
@@ -99,6 +100,16 @@ public class ClassImpl extends PackageElementImpl implements org.unicase.model.c
 	 * @ordered
 	 */
 	protected EList<Method> methods;
+
+	/**
+	 * The cached value of the '{@link #getDemoParticipations() <em>Demo Participations</em>}' reference list.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @see #getDemoParticipations()
+	 * @generated
+	 * @ordered
+	 */
+	protected EList<Scenario> demoParticipations;
 
 	/**
 	 * <!-- begin-user-doc --> <!-- end-user-doc -->
@@ -204,6 +215,19 @@ public class ClassImpl extends PackageElementImpl implements org.unicase.model.c
 	}
 
 	/**
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 */
+	public EList<Scenario> getDemoParticipations() {
+		if (demoParticipations == null) {
+			demoParticipations = new EObjectWithInverseResolvingEList.ManyInverse<Scenario>(Scenario.class, this,
+				ClassesPackage.CLASS__DEMO_PARTICIPATIONS, RequirementPackage.SCENARIO__PARTICIPATING_CLASSES);
+		}
+		return demoParticipations;
+	}
+
+	/**
 	 * <!-- begin-user-doc --> <!-- end-user-doc -->
 	 * @generated
 	 */
@@ -228,6 +252,9 @@ public class ClassImpl extends PackageElementImpl implements org.unicase.model.c
 			return ((InternalEList<InternalEObject>) (InternalEList<?>) getAttributes()).basicAdd(otherEnd, msgs);
 		case ClassesPackage.CLASS__METHODS:
 			return ((InternalEList<InternalEObject>) (InternalEList<?>) getMethods()).basicAdd(otherEnd, msgs);
+		case ClassesPackage.CLASS__DEMO_PARTICIPATIONS:
+			return ((InternalEList<InternalEObject>) (InternalEList<?>) getDemoParticipations()).basicAdd(otherEnd,
+				msgs);
 		}
 		return super.eInverseAdd(otherEnd, featureID, msgs);
 	}
@@ -253,6 +280,8 @@ public class ClassImpl extends PackageElementImpl implements org.unicase.model.c
 			return ((InternalEList<?>) getAttributes()).basicRemove(otherEnd, msgs);
 		case ClassesPackage.CLASS__METHODS:
 			return ((InternalEList<?>) getMethods()).basicRemove(otherEnd, msgs);
+		case ClassesPackage.CLASS__DEMO_PARTICIPATIONS:
+			return ((InternalEList<?>) getDemoParticipations()).basicRemove(otherEnd, msgs);
 		}
 		return super.eInverseRemove(otherEnd, featureID, msgs);
 	}
@@ -278,6 +307,8 @@ public class ClassImpl extends PackageElementImpl implements org.unicase.model.c
 			return getAttributes();
 		case ClassesPackage.CLASS__METHODS:
 			return getMethods();
+		case ClassesPackage.CLASS__DEMO_PARTICIPATIONS:
+			return getDemoParticipations();
 		}
 		return super.eGet(featureID, resolve, coreType);
 	}
@@ -318,6 +349,10 @@ public class ClassImpl extends PackageElementImpl implements org.unicase.model.c
 			getMethods().clear();
 			getMethods().addAll((Collection<? extends Method>) newValue);
 			return;
+		case ClassesPackage.CLASS__DEMO_PARTICIPATIONS:
+			getDemoParticipations().clear();
+			getDemoParticipations().addAll((Collection<? extends Scenario>) newValue);
+			return;
 		}
 		super.eSet(featureID, newValue);
 	}
@@ -350,6 +385,9 @@ public class ClassImpl extends PackageElementImpl implements org.unicase.model.c
 		case ClassesPackage.CLASS__METHODS:
 			getMethods().clear();
 			return;
+		case ClassesPackage.CLASS__DEMO_PARTICIPATIONS:
+			getDemoParticipations().clear();
+			return;
 		}
 		super.eUnset(featureID);
 	}
@@ -375,6 +413,8 @@ public class ClassImpl extends PackageElementImpl implements org.unicase.model.c
 			return attributes != null && !attributes.isEmpty();
 		case ClassesPackage.CLASS__METHODS:
 			return methods != null && !methods.isEmpty();
+		case ClassesPackage.CLASS__DEMO_PARTICIPATIONS:
+			return demoParticipations != null && !demoParticipations.isEmpty();
 		}
 		return super.eIsSet(featureID);
 	}

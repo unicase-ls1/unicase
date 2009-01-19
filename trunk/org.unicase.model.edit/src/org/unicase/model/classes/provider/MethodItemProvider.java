@@ -60,6 +60,10 @@ public class MethodItemProvider extends ModelElementItemProvider implements IEdi
 			addArgumentsPropertyDescriptor(object);
 			addPropertiesPropertyDescriptor(object);
 			addLabelPropertyDescriptor(object);
+			addStubbedPropertyDescriptor(object);
+			addCalledMethodsPropertyDescriptor(object);
+			addCallingMethodsPropertyDescriptor(object);
+			addDemoParticipationsPropertyDescriptor(object);
 		}
 		return itemPropertyDescriptors;
 	}
@@ -154,6 +158,60 @@ public class MethodItemProvider extends ModelElementItemProvider implements IEdi
 	}
 
 	/**
+	 * This adds a property descriptor for the Stubbed feature.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 */
+	protected void addStubbedPropertyDescriptor(Object object) {
+		itemPropertyDescriptors.add(createItemPropertyDescriptor(((ComposeableAdapterFactory) adapterFactory)
+			.getRootAdapterFactory(), getResourceLocator(), getString("_UI_Method_stubbed_feature"), getString(
+			"_UI_PropertyDescriptor_description", "_UI_Method_stubbed_feature", "_UI_Method_type"),
+			ClassesPackage.Literals.METHOD__STUBBED, true, false, false, ItemPropertyDescriptor.BOOLEAN_VALUE_IMAGE,
+			null, null));
+	}
+
+	/**
+	 * This adds a property descriptor for the Called Methods feature.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 */
+	protected void addCalledMethodsPropertyDescriptor(Object object) {
+		itemPropertyDescriptors.add(createItemPropertyDescriptor(((ComposeableAdapterFactory) adapterFactory)
+			.getRootAdapterFactory(), getResourceLocator(), getString("_UI_Method_calledMethods_feature"), getString(
+			"_UI_PropertyDescriptor_description", "_UI_Method_calledMethods_feature", "_UI_Method_type"),
+			ClassesPackage.Literals.METHOD__CALLED_METHODS, true, false, true, null, null, null));
+	}
+
+	/**
+	 * This adds a property descriptor for the Calling Methods feature.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 */
+	protected void addCallingMethodsPropertyDescriptor(Object object) {
+		itemPropertyDescriptors.add(createItemPropertyDescriptor(((ComposeableAdapterFactory) adapterFactory)
+			.getRootAdapterFactory(), getResourceLocator(), getString("_UI_Method_callingMethods_feature"), getString(
+			"_UI_PropertyDescriptor_description", "_UI_Method_callingMethods_feature", "_UI_Method_type"),
+			ClassesPackage.Literals.METHOD__CALLING_METHODS, true, false, true, null, null, null));
+	}
+
+	/**
+	 * This adds a property descriptor for the Demo Participations feature.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 */
+	protected void addDemoParticipationsPropertyDescriptor(Object object) {
+		itemPropertyDescriptors
+			.add(createItemPropertyDescriptor(((ComposeableAdapterFactory) adapterFactory).getRootAdapterFactory(),
+				getResourceLocator(), getString("_UI_Method_demoParticipations_feature"), getString(
+					"_UI_PropertyDescriptor_description", "_UI_Method_demoParticipations_feature", "_UI_Method_type"),
+				ClassesPackage.Literals.METHOD__DEMO_PARTICIPATIONS, true, false, true, null, null, null));
+	}
+
+	/**
 	 * This specifies how to implement {@link #getChildren} and is used to deduce an appropriate feature for an
 	 * {@link org.eclipse.emf.edit.command.AddCommand}, {@link org.eclipse.emf.edit.command.RemoveCommand} or
 	 * {@link org.eclipse.emf.edit.command.MoveCommand} in {@link #createCommand}.
@@ -221,6 +279,7 @@ public class MethodItemProvider extends ModelElementItemProvider implements IEdi
 		case ClassesPackage.METHOD__SIGNATURE:
 		case ClassesPackage.METHOD__PROPERTIES:
 		case ClassesPackage.METHOD__LABEL:
+		case ClassesPackage.METHOD__STUBBED:
 			fireNotifyChanged(new ViewerNotification(notification, notification.getNotifier(), false, true));
 			return;
 		case ClassesPackage.METHOD__ARGUMENTS:

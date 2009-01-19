@@ -6,6 +6,7 @@
 package org.unicase.model.classes;
 
 import org.eclipse.emf.common.util.EList;
+import org.unicase.model.requirement.Scenario;
 import org.unicase.model.requirement.UseCase;
 
 /*
@@ -156,4 +157,23 @@ public interface Class extends PackageElement {
 	 * @generated
 	 */
 	EList<Method> getMethods();
+
+	/**
+	 * Returns the value of the '<em><b>Demo Participations</b></em>' reference list.
+	 * The list contents are of type {@link org.unicase.model.requirement.Scenario}.
+	 * It is bidirectional and its opposite is '{@link org.unicase.model.requirement.Scenario#getParticipatingClasses <em>Participating Classes</em>}'.
+	 * <!-- begin-user-doc -->
+	 * <p>
+	 * If the meaning of the '<em>Demo Participations</em>' reference list isn't clear,
+	 * there really should be more of a description here...
+	 * </p>
+	 * <!-- end-user-doc -->
+	 * @return the value of the '<em>Demo Participations</em>' reference list.
+	 * @see org.unicase.model.classes.ClassesPackage#getClass_DemoParticipations()
+	 * @see org.unicase.model.requirement.Scenario#getParticipatingClasses
+	 * @model opposite="participatingClasses" keys="identifier"
+	 *        annotation="org.unicase.ui.meeditor priority='9.0' position='right'"
+	 * @generated
+	 */
+	EList<Scenario> getDemoParticipations();
 } // Class

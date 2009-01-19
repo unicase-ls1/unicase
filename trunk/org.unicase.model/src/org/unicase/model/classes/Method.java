@@ -7,6 +7,7 @@ package org.unicase.model.classes;
 
 import org.eclipse.emf.common.util.EList;
 import org.unicase.model.ModelElement;
+import org.unicase.model.requirement.Scenario;
 
 /*
  * <!-- begin-user-doc --> A representation of the model object '<em><b>Method</b></em>'. <!-- end-user-doc --> <p> The
@@ -216,5 +217,88 @@ public interface Method extends ModelElement {
 	 * @generated
 	 */
 	void setLabel(String value);
+
+	/**
+	 * Returns the value of the '<em><b>Stubbed</b></em>' attribute.
+	 * <!-- begin-user-doc -->
+	 * <p>
+	 * If the meaning of the '<em>Stubbed</em>' attribute isn't clear,
+	 * there really should be more of a description here...
+	 * </p>
+	 * <!-- end-user-doc -->
+	 * @return the value of the '<em>Stubbed</em>' attribute.
+	 * @see #setStubbed(boolean)
+	 * @see org.unicase.model.classes.ClassesPackage#getMethod_Stubbed()
+	 * @model
+	 * @generated
+	 */
+	boolean isStubbed();
+
+	/**
+	 * Sets the value of the '{@link org.unicase.model.classes.Method#isStubbed <em>Stubbed</em>}' attribute.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @param value the new value of the '<em>Stubbed</em>' attribute.
+	 * @see #isStubbed()
+	 * @generated
+	 */
+	void setStubbed(boolean value);
+
+	/**
+	 * Returns the value of the '<em><b>Called Methods</b></em>' reference list.
+	 * The list contents are of type {@link org.unicase.model.classes.Method}.
+	 * It is bidirectional and its opposite is '{@link org.unicase.model.classes.Method#getCallingMethods <em>Calling Methods</em>}'.
+	 * <!-- begin-user-doc -->
+	 * <p>
+	 * If the meaning of the '<em>Called Methods</em>' reference list isn't clear,
+	 * there really should be more of a description here...
+	 * </p>
+	 * <!-- end-user-doc -->
+	 * @return the value of the '<em>Called Methods</em>' reference list.
+	 * @see org.unicase.model.classes.ClassesPackage#getMethod_CalledMethods()
+	 * @see org.unicase.model.classes.Method#getCallingMethods
+	 * @model opposite="callingMethods" keys="identifier"
+	 *        annotation="org.unicase.ui.meeditor priority='10.1' position='right'"
+	 * @generated
+	 */
+	EList<Method> getCalledMethods();
+
+	/**
+	 * Returns the value of the '<em><b>Calling Methods</b></em>' reference list.
+	 * The list contents are of type {@link org.unicase.model.classes.Method}.
+	 * It is bidirectional and its opposite is '{@link org.unicase.model.classes.Method#getCalledMethods <em>Called Methods</em>}'.
+	 * <!-- begin-user-doc -->
+	 * <p>
+	 * If the meaning of the '<em>Calling Methods</em>' reference list isn't clear,
+	 * there really should be more of a description here...
+	 * </p>
+	 * <!-- end-user-doc -->
+	 * @return the value of the '<em>Calling Methods</em>' reference list.
+	 * @see org.unicase.model.classes.ClassesPackage#getMethod_CallingMethods()
+	 * @see org.unicase.model.classes.Method#getCalledMethods
+	 * @model opposite="calledMethods" keys="identifier"
+	 *        annotation="org.unicase.ui.meeditor priority='10.2' position='right'"
+	 * @generated
+	 */
+	EList<Method> getCallingMethods();
+
+	/**
+	 * Returns the value of the '<em><b>Demo Participations</b></em>' reference list.
+	 * The list contents are of type {@link org.unicase.model.requirement.Scenario}.
+	 * It is bidirectional and its opposite is '{@link org.unicase.model.requirement.Scenario#getParticipatingMethods <em>Participating Methods</em>}'.
+	 * <!-- begin-user-doc -->
+	 * <p>
+	 * If the meaning of the '<em>Demo Participations</em>' reference list isn't clear,
+	 * there really should be more of a description here...
+	 * </p>
+	 * <!-- end-user-doc -->
+	 * @return the value of the '<em>Demo Participations</em>' reference list.
+	 * @see org.unicase.model.classes.ClassesPackage#getMethod_DemoParticipations()
+	 * @see org.unicase.model.requirement.Scenario#getParticipatingMethods
+	 * @model opposite="participatingMethods" keys="identifier"
+	 *        annotation="org.unicase.ui.meeditor priority='9.0' position='right'"
+	 * @generated
+	 */
+	EList<Scenario> getDemoParticipations();
 
 } // Method

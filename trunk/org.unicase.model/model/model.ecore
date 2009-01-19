@@ -345,6 +345,14 @@
           <details key="position" value="left"/>
         </eAnnotations>
       </eStructuralFeatures>
+      <eStructuralFeatures xsi:type="ecore:EReference" name="demoParticipations" upperBound="-1"
+          eType="#//requirement/Scenario" eOpposite="#//requirement/Scenario/participatingClasses"
+          eKeys="#//IdentifiableElement/identifier">
+        <eAnnotations source="org.unicase.ui.meeditor">
+          <details key="priority" value="9.0"/>
+          <details key="position" value="right"/>
+        </eAnnotations>
+      </eStructuralFeatures>
     </eClassifiers>
     <eClassifiers xsi:type="ecore:EClass" name="Package" eSuperTypes="#//classes/PackageElement">
       <eStructuralFeatures xsi:type="ecore:EReference" name="containedPackageElements"
@@ -539,6 +547,29 @@
         <eAnnotations source="org.unicase.ui.meeditor">
           <details key="priority" value="15.0"/>
           <details key="position" value="left"/>
+        </eAnnotations>
+      </eStructuralFeatures>
+      <eStructuralFeatures xsi:type="ecore:EAttribute" name="stubbed" eType="ecore:EDataType http://www.eclipse.org/emf/2002/Ecore#//EBoolean"/>
+      <eStructuralFeatures xsi:type="ecore:EReference" name="calledMethods" upperBound="-1"
+          eType="#//classes/Method" eOpposite="#//classes/Method/callingMethods" eKeys="#//IdentifiableElement/identifier">
+        <eAnnotations source="org.unicase.ui.meeditor">
+          <details key="priority" value="10.1"/>
+          <details key="position" value="right"/>
+        </eAnnotations>
+      </eStructuralFeatures>
+      <eStructuralFeatures xsi:type="ecore:EReference" name="callingMethods" upperBound="-1"
+          eType="#//classes/Method" eOpposite="#//classes/Method/calledMethods" eKeys="#//IdentifiableElement/identifier">
+        <eAnnotations source="org.unicase.ui.meeditor">
+          <details key="priority" value="10.2"/>
+          <details key="position" value="right"/>
+        </eAnnotations>
+      </eStructuralFeatures>
+      <eStructuralFeatures xsi:type="ecore:EReference" name="demoParticipations" upperBound="-1"
+          eType="#//requirement/Scenario" eOpposite="#//requirement/Scenario/participatingMethods"
+          eKeys="#//IdentifiableElement/identifier">
+        <eAnnotations source="org.unicase.ui.meeditor">
+          <details key="priority" value="9.0"/>
+          <details key="position" value="right"/>
         </eAnnotations>
       </eStructuralFeatures>
     </eClassifiers>
@@ -818,6 +849,12 @@
           <details key="position" value="right"/>
         </eAnnotations>
       </eStructuralFeatures>
+      <eStructuralFeatures xsi:type="ecore:EReference" name="participatingMethods"
+          upperBound="-1" eType="#//classes/Method" eOpposite="#//classes/Method/demoParticipations"
+          eKeys="#//IdentifiableElement/identifier"/>
+      <eStructuralFeatures xsi:type="ecore:EReference" name="participatingClasses"
+          upperBound="-1" eType="#//classes/Class" eOpposite="#//classes/Class/demoParticipations"
+          eKeys="#//IdentifiableElement/identifier"/>
     </eClassifiers>
     <eClassifiers xsi:type="ecore:EClass" name="Actor" eSuperTypes="#//ModelElement">
       <eStructuralFeatures xsi:type="ecore:EReference" name="initiatedUserTask" eType="#//requirement/UserTask"

@@ -536,6 +536,24 @@ public class RequirementPackageImpl extends EPackageImpl implements RequirementP
 	}
 
 	/**
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 */
+	public EReference getScenario_ParticipatingMethods() {
+		return (EReference) scenarioEClass.getEStructuralFeatures().get(6);
+	}
+
+	/**
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 */
+	public EReference getScenario_ParticipatingClasses() {
+		return (EReference) scenarioEClass.getEStructuralFeatures().get(7);
+	}
+
+	/**
 	 * <!-- begin-user-doc --> <!-- end-user-doc -->
 	 * @generated
 	 */
@@ -783,6 +801,8 @@ public class RequirementPackageImpl extends EPackageImpl implements RequirementP
 		createEReference(scenarioEClass, SCENARIO__INSTANTIATED_USE_CASES);
 		createEReference(scenarioEClass, SCENARIO__FUNCTIONAL_REQUIREMENTS);
 		createEReference(scenarioEClass, SCENARIO__NON_FUNCTIONAL_REQUIREMENTS);
+		createEReference(scenarioEClass, SCENARIO__PARTICIPATING_METHODS);
+		createEReference(scenarioEClass, SCENARIO__PARTICIPATING_CLASSES);
 
 		actorEClass = createEClass(ACTOR);
 		createEReference(actorEClass, ACTOR__INITIATED_USER_TASK);
@@ -1003,6 +1023,16 @@ public class RequirementPackageImpl extends EPackageImpl implements RequirementP
 			Scenario.class, !IS_TRANSIENT, !IS_VOLATILE, IS_CHANGEABLE, !IS_COMPOSITE, IS_RESOLVE_PROXIES,
 			!IS_UNSETTABLE, IS_UNIQUE, !IS_DERIVED, IS_ORDERED);
 		getScenario_NonFunctionalRequirements().getEKeys().add(theModelPackage.getIdentifiableElement_Identifier());
+		initEReference(getScenario_ParticipatingMethods(), theClassesPackage.getMethod(), theClassesPackage
+			.getMethod_DemoParticipations(), "participatingMethods", null, 0, -1, Scenario.class, !IS_TRANSIENT,
+			!IS_VOLATILE, IS_CHANGEABLE, !IS_COMPOSITE, IS_RESOLVE_PROXIES, !IS_UNSETTABLE, IS_UNIQUE, !IS_DERIVED,
+			IS_ORDERED);
+		getScenario_ParticipatingMethods().getEKeys().add(theModelPackage.getIdentifiableElement_Identifier());
+		initEReference(getScenario_ParticipatingClasses(), theClassesPackage.getClass_(), theClassesPackage
+			.getClass_DemoParticipations(), "participatingClasses", null, 0, -1, Scenario.class, !IS_TRANSIENT,
+			!IS_VOLATILE, IS_CHANGEABLE, !IS_COMPOSITE, IS_RESOLVE_PROXIES, !IS_UNSETTABLE, IS_UNIQUE, !IS_DERIVED,
+			IS_ORDERED);
+		getScenario_ParticipatingClasses().getEKeys().add(theModelPackage.getIdentifiableElement_Identifier());
 
 		initEClass(actorEClass, Actor.class, "Actor", !IS_ABSTRACT, !IS_INTERFACE, IS_GENERATED_INSTANCE_CLASS);
 		initEReference(getActor_InitiatedUserTask(), this.getUserTask(), this.getUserTask_InitiatingActor(),
