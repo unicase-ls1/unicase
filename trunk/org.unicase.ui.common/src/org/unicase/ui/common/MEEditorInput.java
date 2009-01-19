@@ -1,10 +1,9 @@
 /**
- * <copyright> Copyright (c) 2008 Jonas Helming, Maximilian Koegel. All rights reserved. This program and the accompanying materials are made available under the terms of the Eclipse Public License v1.0 which accompanies this distribution, and is available at http://www.eclipse.org/legal/epl-v10.html
- * </copyright>
- *
- * $Id$
+ * <copyright> Copyright (c) 2008 Jonas Helming, Maximilian Koegel. All rights reserved. This program and the
+ * accompanying materials are made available under the terms of the Eclipse Public License v1.0 which accompanies this
+ * distribution, and is available at http://www.eclipse.org/legal/epl-v10.html </copyright> $Id$
  */
-package org.unicase.ui.meeditor;
+package org.unicase.ui.common;
 
 import org.eclipse.emf.ecore.EStructuralFeature;
 import org.eclipse.emf.edit.provider.ComposedAdapterFactory;
@@ -22,7 +21,6 @@ import org.unicase.model.ModelElement;
  * 
  * @author helming
  * @author naughton
- * 
  */
 public class MEEditorInput implements IEditorInput {
 
@@ -32,8 +30,7 @@ public class MEEditorInput implements IEditorInput {
 	/**
 	 * Default constructor.
 	 * 
-	 * @param me
-	 *            the modelElement
+	 * @param me the modelElement
 	 */
 	public MEEditorInput(ModelElement me) {
 		super();
@@ -43,10 +40,8 @@ public class MEEditorInput implements IEditorInput {
 	/**
 	 * Constructor marking a feature as having a problem.
 	 * 
-	 * @param me
-	 *            the modelElement
-	 * @param problemFeature
-	 *            the feature having a problem
+	 * @param me the modelElement
+	 * @param problemFeature the feature having a problem
 	 */
 	public MEEditorInput(ModelElement me, EStructuralFeature problemFeature) {
 		this(me);
@@ -66,15 +61,11 @@ public class MEEditorInput implements IEditorInput {
 	 */
 	public ImageDescriptor getImageDescriptor() {
 		AdapterFactoryLabelProvider adapterFactoryLabelProvider = new AdapterFactoryLabelProvider(
-				new ComposedAdapterFactory(
-						ComposedAdapterFactory.Descriptor.Registry.INSTANCE));
-		IDecoratorManager decoratorManager = PlatformUI.getWorkbench()
-				.getDecoratorManager();
-		DecoratingLabelProvider labelProvider = new DecoratingLabelProvider(
-				adapterFactoryLabelProvider, decoratorManager
-						.getLabelDecorator());
-		ImageDescriptor descriptor = ImageDescriptor
-				.createFromImage(labelProvider.getImage(modelElement));
+			new ComposedAdapterFactory(ComposedAdapterFactory.Descriptor.Registry.INSTANCE));
+		IDecoratorManager decoratorManager = PlatformUI.getWorkbench().getDecoratorManager();
+		DecoratingLabelProvider labelProvider = new DecoratingLabelProvider(adapterFactoryLabelProvider,
+			decoratorManager.getLabelDecorator());
+		ImageDescriptor descriptor = ImageDescriptor.createFromImage(labelProvider.getImage(modelElement));
 		return descriptor;
 	}
 
@@ -114,8 +105,7 @@ public class MEEditorInput implements IEditorInput {
 	/**
 	 * Setter for the modelElement.
 	 * 
-	 * @param modelElement
-	 *            the modelElement
+	 * @param modelElement the modelElement
 	 */
 	public void setModelElement(ModelElement modelElement) {
 		this.modelElement = modelElement;
@@ -129,8 +119,7 @@ public class MEEditorInput implements IEditorInput {
 	}
 
 	/**
-	 * @param problemFeature
-	 *            the problemFeature to set
+	 * @param problemFeature the problemFeature to set
 	 */
 	public void setProblemFeature(EStructuralFeature problemFeature) {
 		this.problemFeature = problemFeature;
@@ -139,8 +128,7 @@ public class MEEditorInput implements IEditorInput {
 	/**
 	 * Custom equals() for this class.
 	 * 
-	 * @param obj
-	 *            the compared object.
+	 * @param obj the compared object.
 	 * @return the boolean state. {@inheritDoc}
 	 */
 	@Override
