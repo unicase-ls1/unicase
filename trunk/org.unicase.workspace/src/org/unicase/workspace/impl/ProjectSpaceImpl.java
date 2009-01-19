@@ -1,8 +1,7 @@
 /**
- * <copyright> Copyright (c) 2008 Jonas Helming, Maximilian Koegel. All rights reserved. This program and the accompanying materials are made available under the terms of the Eclipse Public License v1.0 which accompanies this distribution, and is available at http://www.eclipse.org/legal/epl-v10.html
- * </copyright>
- *
- * $Id$
+ * <copyright> Copyright (c) 2008 Jonas Helming, Maximilian Koegel. All rights reserved. This program and the
+ * accompanying materials are made available under the terms of the Eclipse Public License v1.0 which accompanies this
+ * distribution, and is available at http://www.eclipse.org/legal/epl-v10.html </copyright> $Id$
  */
 package org.unicase.workspace.impl;
 
@@ -82,36 +81,35 @@ import org.unicase.workspace.util.UpdateObserver;
 import org.unicase.workspace.util.WorkspaceUtil;
 
 /**
- * <!-- begin-user-doc --> An implementation of the model object '
- * <em><b>Project Container</b></em>'.
+ * <!-- begin-user-doc --> An implementation of the model object ' <em><b>Project Container</b></em>'.
  * 
  * @implements ProjectChangeObserver <!-- end-user-doc -->
- * <p>
- * The following features are implemented:
- * <ul>
- *   <li>{@link org.unicase.workspace.impl.ProjectSpaceImpl#getProject <em>Project</em>}</li>
- *   <li>{@link org.unicase.workspace.impl.ProjectSpaceImpl#getProjectId <em>Project Id</em>}</li>
- *   <li>{@link org.unicase.workspace.impl.ProjectSpaceImpl#getProjectName <em>Project Name</em>}</li>
- *   <li>{@link org.unicase.workspace.impl.ProjectSpaceImpl#getProjectDescription <em>Project Description</em>}</li>
- *   <li>{@link org.unicase.workspace.impl.ProjectSpaceImpl#getOperations <em>Operations</em>}</li>
- *   <li>{@link org.unicase.workspace.impl.ProjectSpaceImpl#getEvents <em>Events</em>}</li>
- *   <li>{@link org.unicase.workspace.impl.ProjectSpaceImpl#getUsersession <em>Usersession</em>}</li>
- *   <li>{@link org.unicase.workspace.impl.ProjectSpaceImpl#getLastUpdated <em>Last Updated</em>}</li>
- *   <li>{@link org.unicase.workspace.impl.ProjectSpaceImpl#getBaseVersion <em>Base Version</em>}</li>
- *   <li>{@link org.unicase.workspace.impl.ProjectSpaceImpl#getResourceCount <em>Resource Count</em>}</li>
- *   <li>{@link org.unicase.workspace.impl.ProjectSpaceImpl#isDirty <em>Dirty</em>}</li>
- *   <li>{@link org.unicase.workspace.impl.ProjectSpaceImpl#getOldLogMessages <em>Old Log Messages</em>}</li>
- * </ul>
- * </p>
- *
+ *             <p>
+ *             The following features are implemented:
+ *             <ul>
+ *             <li>{@link org.unicase.workspace.impl.ProjectSpaceImpl#getProject <em>Project</em>}</li>
+ *             <li>{@link org.unicase.workspace.impl.ProjectSpaceImpl#getProjectId <em>Project Id</em>}</li>
+ *             <li>{@link org.unicase.workspace.impl.ProjectSpaceImpl#getProjectName <em>Project Name</em>}</li>
+ *             <li>{@link org.unicase.workspace.impl.ProjectSpaceImpl#getProjectDescription <em>Project Description
+ *             </em>}</li>
+ *             <li>{@link org.unicase.workspace.impl.ProjectSpaceImpl#getOperations <em>Operations</em>}</li>
+ *             <li>{@link org.unicase.workspace.impl.ProjectSpaceImpl#getEvents <em>Events</em>}</li>
+ *             <li>{@link org.unicase.workspace.impl.ProjectSpaceImpl#getUsersession <em>Usersession</em>}</li>
+ *             <li>{@link org.unicase.workspace.impl.ProjectSpaceImpl#getLastUpdated <em>Last Updated</em>}</li>
+ *             <li>{@link org.unicase.workspace.impl.ProjectSpaceImpl#getBaseVersion <em>Base Version</em>}</li>
+ *             <li>{@link org.unicase.workspace.impl.ProjectSpaceImpl#getResourceCount <em>Resource Count</em>}</li>
+ *             <li>{@link org.unicase.workspace.impl.ProjectSpaceImpl#isDirty <em>Dirty</em>}</li>
+ *             <li>{@link org.unicase.workspace.impl.ProjectSpaceImpl#getOldLogMessages <em>Old Log Messages</em>}</li>
+ *             </ul>
+ *             </p>
  * @generated
  */
-public class ProjectSpaceImpl extends IdentifiableElementImpl implements
-		ProjectSpace, ProjectChangeObserver {
+public class ProjectSpaceImpl extends IdentifiableElementImpl implements ProjectSpace, ProjectChangeObserver {
 
 	/**
-	 * The cached value of the '{@link #getProject() <em>Project</em>}' containment reference.
-	 * <!-- begin-user-doc --> <!-- end-user-doc -->
+	 * The cached value of the '{@link #getProject() <em>Project</em>}' containment reference. <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * 
 	 * @see #getProject()
 	 * @generated
 	 * @ordered
@@ -119,8 +117,9 @@ public class ProjectSpaceImpl extends IdentifiableElementImpl implements
 	protected Project project;
 
 	/**
-	 * The cached value of the '{@link #getProjectId() <em>Project Id</em>}' containment reference.
-	 * <!-- begin-user-doc --> <!-- end-user-doc -->
+	 * The cached value of the '{@link #getProjectId() <em>Project Id</em>}' containment reference. <!-- begin-user-doc
+	 * --> <!-- end-user-doc -->
+	 * 
 	 * @see #getProjectId()
 	 * @generated
 	 * @ordered
@@ -128,8 +127,9 @@ public class ProjectSpaceImpl extends IdentifiableElementImpl implements
 	protected ProjectId projectId;
 
 	/**
-	 * The default value of the '{@link #getProjectName() <em>Project Name</em>}' attribute.
-	 * <!-- begin-user-doc --> <!-- end-user-doc -->
+	 * The default value of the '{@link #getProjectName() <em>Project Name</em>}' attribute. <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * 
 	 * @see #getProjectName()
 	 * @generated
 	 * @ordered
@@ -137,8 +137,9 @@ public class ProjectSpaceImpl extends IdentifiableElementImpl implements
 	protected static final String PROJECT_NAME_EDEFAULT = null;
 
 	/**
-	 * The cached value of the '{@link #getProjectName() <em>Project Name</em>}' attribute.
-	 * <!-- begin-user-doc --> <!-- end-user-doc -->
+	 * The cached value of the '{@link #getProjectName() <em>Project Name</em>}' attribute. <!-- begin-user-doc --> <!--
+	 * end-user-doc -->
+	 * 
 	 * @see #getProjectName()
 	 * @generated
 	 * @ordered
@@ -146,9 +147,9 @@ public class ProjectSpaceImpl extends IdentifiableElementImpl implements
 	protected String projectName = PROJECT_NAME_EDEFAULT;
 
 	/**
-	 * The default value of the '{@link #getProjectDescription() <em>Project Description</em>}' attribute.
-	 * <!-- begin-user-doc --> <!--
-	 * end-user-doc -->
+	 * The default value of the '{@link #getProjectDescription() <em>Project Description</em>}' attribute. <!--
+	 * begin-user-doc --> <!-- end-user-doc -->
+	 * 
 	 * @see #getProjectDescription()
 	 * @generated
 	 * @ordered
@@ -156,9 +157,9 @@ public class ProjectSpaceImpl extends IdentifiableElementImpl implements
 	protected static final String PROJECT_DESCRIPTION_EDEFAULT = null;
 
 	/**
-	 * The cached value of the '{@link #getProjectDescription() <em>Project Description</em>}' attribute.
-	 * <!-- begin-user-doc --> <!--
-	 * end-user-doc -->
+	 * The cached value of the '{@link #getProjectDescription() <em>Project Description</em>}' attribute. <!--
+	 * begin-user-doc --> <!-- end-user-doc -->
+	 * 
 	 * @see #getProjectDescription()
 	 * @generated
 	 * @ordered
@@ -166,8 +167,9 @@ public class ProjectSpaceImpl extends IdentifiableElementImpl implements
 	protected String projectDescription = PROJECT_DESCRIPTION_EDEFAULT;
 
 	/**
-	 * The cached value of the '{@link #getOperations() <em>Operations</em>}' containment reference list.
-	 * <!-- begin-user-doc --> <!-- end-user-doc -->
+	 * The cached value of the '{@link #getOperations() <em>Operations</em>}' containment reference list. <!--
+	 * begin-user-doc --> <!-- end-user-doc -->
+	 * 
 	 * @see #getOperations()
 	 * @generated
 	 * @ordered
@@ -175,8 +177,9 @@ public class ProjectSpaceImpl extends IdentifiableElementImpl implements
 	protected EList<AbstractOperation> operations;
 
 	/**
-	 * The cached value of the '{@link #getEvents() <em>Events</em>}' containment reference list.
-	 * <!-- begin-user-doc --> <!-- end-user-doc -->
+	 * The cached value of the '{@link #getEvents() <em>Events</em>}' containment reference list. <!-- begin-user-doc
+	 * --> <!-- end-user-doc -->
+	 * 
 	 * @see #getEvents()
 	 * @generated
 	 * @ordered
@@ -184,8 +187,9 @@ public class ProjectSpaceImpl extends IdentifiableElementImpl implements
 	protected EList<Event> events;
 
 	/**
-	 * The cached value of the '{@link #getUsersession() <em>Usersession</em>}' reference.
-	 * <!-- begin-user-doc --> <!-- end-user-doc -->
+	 * The cached value of the '{@link #getUsersession() <em>Usersession</em>}' reference. <!-- begin-user-doc --> <!--
+	 * end-user-doc -->
+	 * 
 	 * @see #getUsersession()
 	 * @generated
 	 * @ordered
@@ -193,8 +197,9 @@ public class ProjectSpaceImpl extends IdentifiableElementImpl implements
 	protected Usersession usersession;
 
 	/**
-	 * The default value of the '{@link #getLastUpdated() <em>Last Updated</em>}' attribute.
-	 * <!-- begin-user-doc --> <!-- end-user-doc -->
+	 * The default value of the '{@link #getLastUpdated() <em>Last Updated</em>}' attribute. <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * 
 	 * @see #getLastUpdated()
 	 * @generated
 	 * @ordered
@@ -202,8 +207,9 @@ public class ProjectSpaceImpl extends IdentifiableElementImpl implements
 	protected static final Date LAST_UPDATED_EDEFAULT = null;
 
 	/**
-	 * The cached value of the '{@link #getLastUpdated() <em>Last Updated</em>}' attribute.
-	 * <!-- begin-user-doc --> <!-- end-user-doc -->
+	 * The cached value of the '{@link #getLastUpdated() <em>Last Updated</em>}' attribute. <!-- begin-user-doc --> <!--
+	 * end-user-doc -->
+	 * 
 	 * @see #getLastUpdated()
 	 * @generated
 	 * @ordered
@@ -211,8 +217,9 @@ public class ProjectSpaceImpl extends IdentifiableElementImpl implements
 	protected Date lastUpdated = LAST_UPDATED_EDEFAULT;
 
 	/**
-	 * The cached value of the '{@link #getBaseVersion() <em>Base Version</em>}' containment reference.
-	 * <!-- begin-user-doc --> <!-- end-user-doc -->
+	 * The cached value of the '{@link #getBaseVersion() <em>Base Version</em>}' containment reference. <!--
+	 * begin-user-doc --> <!-- end-user-doc -->
+	 * 
 	 * @see #getBaseVersion()
 	 * @generated
 	 * @ordered
@@ -220,9 +227,9 @@ public class ProjectSpaceImpl extends IdentifiableElementImpl implements
 	protected PrimaryVersionSpec baseVersion;
 
 	/**
-	 * The default value of the '{@link #getResourceCount() <em>Resource Count</em>}' attribute.
-	 * <!-- begin-user-doc --> <!--
-	 * end-user-doc -->
+	 * The default value of the '{@link #getResourceCount() <em>Resource Count</em>}' attribute. <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * 
 	 * @see #getResourceCount()
 	 * @generated
 	 * @ordered
@@ -230,9 +237,9 @@ public class ProjectSpaceImpl extends IdentifiableElementImpl implements
 	protected static final int RESOURCE_COUNT_EDEFAULT = 0;
 
 	/**
-	 * The cached value of the '{@link #getResourceCount() <em>Resource Count</em>}' attribute.
-	 * <!-- begin-user-doc --> <!--
-	 * end-user-doc -->
+	 * The cached value of the '{@link #getResourceCount() <em>Resource Count</em>}' attribute. <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * 
 	 * @see #getResourceCount()
 	 * @generated
 	 * @ordered
@@ -240,8 +247,9 @@ public class ProjectSpaceImpl extends IdentifiableElementImpl implements
 	protected int resourceCount = RESOURCE_COUNT_EDEFAULT;
 
 	/**
-	 * The default value of the '{@link #isDirty() <em>Dirty</em>}' attribute.
-	 * <!-- begin-user-doc --> <!-- end-user-doc -->
+	 * The default value of the '{@link #isDirty() <em>Dirty</em>}' attribute. <!-- begin-user-doc --> <!-- end-user-doc
+	 * -->
+	 * 
 	 * @see #isDirty()
 	 * @generated
 	 * @ordered
@@ -249,8 +257,9 @@ public class ProjectSpaceImpl extends IdentifiableElementImpl implements
 	protected static final boolean DIRTY_EDEFAULT = false;
 
 	/**
-	 * The cached value of the '{@link #isDirty() <em>Dirty</em>}' attribute.
-	 * <!-- begin-user-doc --> <!-- end-user-doc -->
+	 * The cached value of the '{@link #isDirty() <em>Dirty</em>}' attribute. <!-- begin-user-doc --> <!-- end-user-doc
+	 * -->
+	 * 
 	 * @see #isDirty()
 	 * @generated
 	 * @ordered
@@ -258,9 +267,9 @@ public class ProjectSpaceImpl extends IdentifiableElementImpl implements
 	protected boolean dirty = DIRTY_EDEFAULT;
 
 	/**
-	 * The cached value of the '{@link #getOldLogMessages() <em>Old Log Messages</em>}' attribute list.
-	 * <!-- begin-user-doc --> <!--
-	 * end-user-doc -->
+	 * The cached value of the '{@link #getOldLogMessages() <em>Old Log Messages</em>}' attribute list. <!--
+	 * begin-user-doc --> <!-- end-user-doc -->
+	 * 
 	 * @see #getOldLogMessages()
 	 * @generated
 	 * @ordered
@@ -283,6 +292,7 @@ public class ProjectSpaceImpl extends IdentifiableElementImpl implements
 
 	/**
 	 * <!-- begin-user-doc --> <!-- end-user-doc -->
+	 * 
 	 * @generated
 	 */
 	@Override
@@ -292,6 +302,7 @@ public class ProjectSpaceImpl extends IdentifiableElementImpl implements
 
 	/**
 	 * <!-- begin-user-doc --> <!-- end-user-doc -->
+	 * 
 	 * @generated
 	 */
 	public Project getProject() {
@@ -300,21 +311,17 @@ public class ProjectSpaceImpl extends IdentifiableElementImpl implements
 			project = (Project) eResolveProxy(oldProject);
 			if (project != oldProject) {
 				InternalEObject newProject = (InternalEObject) project;
-				NotificationChain msgs = oldProject.eInverseRemove(this,
-						EOPPOSITE_FEATURE_BASE
-								- WorkspacePackage.PROJECT_SPACE__PROJECT,
-						null, null);
+				NotificationChain msgs = oldProject.eInverseRemove(this, EOPPOSITE_FEATURE_BASE
+					- WorkspacePackage.PROJECT_SPACE__PROJECT, null, null);
 				if (newProject.eInternalContainer() == null) {
 					msgs = newProject.eInverseAdd(this, EOPPOSITE_FEATURE_BASE
-							- WorkspacePackage.PROJECT_SPACE__PROJECT, null,
-							msgs);
+						- WorkspacePackage.PROJECT_SPACE__PROJECT, null, msgs);
 				}
 				if (msgs != null)
 					msgs.dispatch();
 				if (eNotificationRequired())
-					eNotify(new ENotificationImpl(this, Notification.RESOLVE,
-							WorkspacePackage.PROJECT_SPACE__PROJECT,
-							oldProject, project));
+					eNotify(new ENotificationImpl(this, Notification.RESOLVE, WorkspacePackage.PROJECT_SPACE__PROJECT,
+						oldProject, project));
 			}
 		}
 		return project;
@@ -322,6 +329,7 @@ public class ProjectSpaceImpl extends IdentifiableElementImpl implements
 
 	/**
 	 * <!-- begin-user-doc --> <!-- end-user-doc -->
+	 * 
 	 * @generated
 	 */
 	public Project basicGetProject() {
@@ -330,16 +338,15 @@ public class ProjectSpaceImpl extends IdentifiableElementImpl implements
 
 	/**
 	 * <!-- begin-user-doc --> <!-- end-user-doc -->
+	 * 
 	 * @generated
 	 */
-	public NotificationChain basicSetProject(Project newProject,
-			NotificationChain msgs) {
+	public NotificationChain basicSetProject(Project newProject, NotificationChain msgs) {
 		Project oldProject = project;
 		project = newProject;
 		if (eNotificationRequired()) {
-			ENotificationImpl notification = new ENotificationImpl(this,
-					Notification.SET, WorkspacePackage.PROJECT_SPACE__PROJECT,
-					oldProject, newProject);
+			ENotificationImpl notification = new ENotificationImpl(this, Notification.SET,
+				WorkspacePackage.PROJECT_SPACE__PROJECT, oldProject, newProject);
 			if (msgs == null)
 				msgs = notification;
 			else
@@ -350,32 +357,29 @@ public class ProjectSpaceImpl extends IdentifiableElementImpl implements
 
 	/**
 	 * <!-- begin-user-doc --> <!-- end-user-doc -->
+	 * 
 	 * @generated
 	 */
 	public void setProject(Project newProject) {
 		if (newProject != project) {
 			NotificationChain msgs = null;
 			if (project != null)
-				msgs = ((InternalEObject) project).eInverseRemove(this,
-						EOPPOSITE_FEATURE_BASE
-								- WorkspacePackage.PROJECT_SPACE__PROJECT,
-						null, msgs);
+				msgs = ((InternalEObject) project).eInverseRemove(this, EOPPOSITE_FEATURE_BASE
+					- WorkspacePackage.PROJECT_SPACE__PROJECT, null, msgs);
 			if (newProject != null)
-				msgs = ((InternalEObject) newProject).eInverseAdd(this,
-						EOPPOSITE_FEATURE_BASE
-								- WorkspacePackage.PROJECT_SPACE__PROJECT,
-						null, msgs);
+				msgs = ((InternalEObject) newProject).eInverseAdd(this, EOPPOSITE_FEATURE_BASE
+					- WorkspacePackage.PROJECT_SPACE__PROJECT, null, msgs);
 			msgs = basicSetProject(newProject, msgs);
 			if (msgs != null)
 				msgs.dispatch();
 		} else if (eNotificationRequired())
-			eNotify(new ENotificationImpl(this, Notification.SET,
-					WorkspacePackage.PROJECT_SPACE__PROJECT, newProject,
-					newProject));
+			eNotify(new ENotificationImpl(this, Notification.SET, WorkspacePackage.PROJECT_SPACE__PROJECT, newProject,
+				newProject));
 	}
 
 	/**
 	 * <!-- begin-user-doc --> <!-- end-user-doc -->
+	 * 
 	 * @generated
 	 */
 	public ProjectId getProjectId() {
@@ -384,24 +388,17 @@ public class ProjectSpaceImpl extends IdentifiableElementImpl implements
 			projectId = (ProjectId) eResolveProxy(oldProjectId);
 			if (projectId != oldProjectId) {
 				InternalEObject newProjectId = (InternalEObject) projectId;
-				NotificationChain msgs = oldProjectId.eInverseRemove(this,
-						EOPPOSITE_FEATURE_BASE
-								- WorkspacePackage.PROJECT_SPACE__PROJECT_ID,
-						null, null);
+				NotificationChain msgs = oldProjectId.eInverseRemove(this, EOPPOSITE_FEATURE_BASE
+					- WorkspacePackage.PROJECT_SPACE__PROJECT_ID, null, null);
 				if (newProjectId.eInternalContainer() == null) {
-					msgs = newProjectId
-							.eInverseAdd(
-									this,
-									EOPPOSITE_FEATURE_BASE
-											- WorkspacePackage.PROJECT_SPACE__PROJECT_ID,
-									null, msgs);
+					msgs = newProjectId.eInverseAdd(this, EOPPOSITE_FEATURE_BASE
+						- WorkspacePackage.PROJECT_SPACE__PROJECT_ID, null, msgs);
 				}
 				if (msgs != null)
 					msgs.dispatch();
 				if (eNotificationRequired())
 					eNotify(new ENotificationImpl(this, Notification.RESOLVE,
-							WorkspacePackage.PROJECT_SPACE__PROJECT_ID,
-							oldProjectId, projectId));
+						WorkspacePackage.PROJECT_SPACE__PROJECT_ID, oldProjectId, projectId));
 			}
 		}
 		return projectId;
@@ -409,6 +406,7 @@ public class ProjectSpaceImpl extends IdentifiableElementImpl implements
 
 	/**
 	 * <!-- begin-user-doc --> <!-- end-user-doc -->
+	 * 
 	 * @generated
 	 */
 	public ProjectId basicGetProjectId() {
@@ -417,17 +415,15 @@ public class ProjectSpaceImpl extends IdentifiableElementImpl implements
 
 	/**
 	 * <!-- begin-user-doc --> <!-- end-user-doc -->
+	 * 
 	 * @generated
 	 */
-	public NotificationChain basicSetProjectId(ProjectId newProjectId,
-			NotificationChain msgs) {
+	public NotificationChain basicSetProjectId(ProjectId newProjectId, NotificationChain msgs) {
 		ProjectId oldProjectId = projectId;
 		projectId = newProjectId;
 		if (eNotificationRequired()) {
-			ENotificationImpl notification = new ENotificationImpl(this,
-					Notification.SET,
-					WorkspacePackage.PROJECT_SPACE__PROJECT_ID, oldProjectId,
-					newProjectId);
+			ENotificationImpl notification = new ENotificationImpl(this, Notification.SET,
+				WorkspacePackage.PROJECT_SPACE__PROJECT_ID, oldProjectId, newProjectId);
 			if (msgs == null)
 				msgs = notification;
 			else
@@ -438,32 +434,29 @@ public class ProjectSpaceImpl extends IdentifiableElementImpl implements
 
 	/**
 	 * <!-- begin-user-doc --> <!-- end-user-doc -->
+	 * 
 	 * @generated
 	 */
 	public void setProjectId(ProjectId newProjectId) {
 		if (newProjectId != projectId) {
 			NotificationChain msgs = null;
 			if (projectId != null)
-				msgs = ((InternalEObject) projectId).eInverseRemove(this,
-						EOPPOSITE_FEATURE_BASE
-								- WorkspacePackage.PROJECT_SPACE__PROJECT_ID,
-						null, msgs);
+				msgs = ((InternalEObject) projectId).eInverseRemove(this, EOPPOSITE_FEATURE_BASE
+					- WorkspacePackage.PROJECT_SPACE__PROJECT_ID, null, msgs);
 			if (newProjectId != null)
-				msgs = ((InternalEObject) newProjectId).eInverseAdd(this,
-						EOPPOSITE_FEATURE_BASE
-								- WorkspacePackage.PROJECT_SPACE__PROJECT_ID,
-						null, msgs);
+				msgs = ((InternalEObject) newProjectId).eInverseAdd(this, EOPPOSITE_FEATURE_BASE
+					- WorkspacePackage.PROJECT_SPACE__PROJECT_ID, null, msgs);
 			msgs = basicSetProjectId(newProjectId, msgs);
 			if (msgs != null)
 				msgs.dispatch();
 		} else if (eNotificationRequired())
-			eNotify(new ENotificationImpl(this, Notification.SET,
-					WorkspacePackage.PROJECT_SPACE__PROJECT_ID, newProjectId,
-					newProjectId));
+			eNotify(new ENotificationImpl(this, Notification.SET, WorkspacePackage.PROJECT_SPACE__PROJECT_ID,
+				newProjectId, newProjectId));
 	}
 
 	/**
 	 * <!-- begin-user-doc --> <!-- end-user-doc -->
+	 * 
 	 * @generated
 	 */
 	public String getProjectName() {
@@ -472,19 +465,20 @@ public class ProjectSpaceImpl extends IdentifiableElementImpl implements
 
 	/**
 	 * <!-- begin-user-doc --> <!-- end-user-doc -->
+	 * 
 	 * @generated
 	 */
 	public void setProjectName(String newProjectName) {
 		String oldProjectName = projectName;
 		projectName = newProjectName;
 		if (eNotificationRequired())
-			eNotify(new ENotificationImpl(this, Notification.SET,
-					WorkspacePackage.PROJECT_SPACE__PROJECT_NAME,
-					oldProjectName, projectName));
+			eNotify(new ENotificationImpl(this, Notification.SET, WorkspacePackage.PROJECT_SPACE__PROJECT_NAME,
+				oldProjectName, projectName));
 	}
 
 	/**
 	 * <!-- begin-user-doc --> <!-- end-user-doc -->
+	 * 
 	 * @generated
 	 */
 	public String getProjectDescription() {
@@ -493,44 +487,46 @@ public class ProjectSpaceImpl extends IdentifiableElementImpl implements
 
 	/**
 	 * <!-- begin-user-doc --> <!-- end-user-doc -->
+	 * 
 	 * @generated
 	 */
 	public void setProjectDescription(String newProjectDescription) {
 		String oldProjectDescription = projectDescription;
 		projectDescription = newProjectDescription;
 		if (eNotificationRequired())
-			eNotify(new ENotificationImpl(this, Notification.SET,
-					WorkspacePackage.PROJECT_SPACE__PROJECT_DESCRIPTION,
-					oldProjectDescription, projectDescription));
+			eNotify(new ENotificationImpl(this, Notification.SET, WorkspacePackage.PROJECT_SPACE__PROJECT_DESCRIPTION,
+				oldProjectDescription, projectDescription));
 	}
 
 	/**
 	 * <!-- begin-user-doc --> <!-- end-user-doc -->
+	 * 
 	 * @generated
 	 */
 	public EList<AbstractOperation> getOperations() {
 		if (operations == null) {
-			operations = new EObjectContainmentEList.Resolving<AbstractOperation>(
-					AbstractOperation.class, this,
-					WorkspacePackage.PROJECT_SPACE__OPERATIONS);
+			operations = new EObjectContainmentEList.Resolving<AbstractOperation>(AbstractOperation.class, this,
+				WorkspacePackage.PROJECT_SPACE__OPERATIONS);
 		}
 		return operations;
 	}
 
 	/**
 	 * <!-- begin-user-doc --> <!-- end-user-doc -->
+	 * 
 	 * @generated
 	 */
 	public EList<Event> getEvents() {
 		if (events == null) {
-			events = new EObjectContainmentEList.Resolving<Event>(Event.class,
-					this, WorkspacePackage.PROJECT_SPACE__EVENTS);
+			events = new EObjectContainmentEList.Resolving<Event>(Event.class, this,
+				WorkspacePackage.PROJECT_SPACE__EVENTS);
 		}
 		return events;
 	}
 
 	/**
 	 * <!-- begin-user-doc --> <!-- end-user-doc -->
+	 * 
 	 * @generated
 	 */
 	public Usersession getUsersession() {
@@ -540,8 +536,7 @@ public class ProjectSpaceImpl extends IdentifiableElementImpl implements
 			if (usersession != oldUsersession) {
 				if (eNotificationRequired())
 					eNotify(new ENotificationImpl(this, Notification.RESOLVE,
-							WorkspacePackage.PROJECT_SPACE__USERSESSION,
-							oldUsersession, usersession));
+						WorkspacePackage.PROJECT_SPACE__USERSESSION, oldUsersession, usersession));
 			}
 		}
 		return usersession;
@@ -549,6 +544,7 @@ public class ProjectSpaceImpl extends IdentifiableElementImpl implements
 
 	/**
 	 * <!-- begin-user-doc --> <!-- end-user-doc -->
+	 * 
 	 * @generated
 	 */
 	public Usersession basicGetUsersession() {
@@ -557,19 +553,20 @@ public class ProjectSpaceImpl extends IdentifiableElementImpl implements
 
 	/**
 	 * <!-- begin-user-doc --> <!-- end-user-doc -->
+	 * 
 	 * @generated
 	 */
 	public void setUsersession(Usersession newUsersession) {
 		Usersession oldUsersession = usersession;
 		usersession = newUsersession;
 		if (eNotificationRequired())
-			eNotify(new ENotificationImpl(this, Notification.SET,
-					WorkspacePackage.PROJECT_SPACE__USERSESSION,
-					oldUsersession, usersession));
+			eNotify(new ENotificationImpl(this, Notification.SET, WorkspacePackage.PROJECT_SPACE__USERSESSION,
+				oldUsersession, usersession));
 	}
 
 	/**
 	 * <!-- begin-user-doc --> <!-- end-user-doc -->
+	 * 
 	 * @generated
 	 */
 	public Date getLastUpdated() {
@@ -578,19 +575,20 @@ public class ProjectSpaceImpl extends IdentifiableElementImpl implements
 
 	/**
 	 * <!-- begin-user-doc --> <!-- end-user-doc -->
+	 * 
 	 * @generated
 	 */
 	public void setLastUpdated(Date newLastUpdated) {
 		Date oldLastUpdated = lastUpdated;
 		lastUpdated = newLastUpdated;
 		if (eNotificationRequired())
-			eNotify(new ENotificationImpl(this, Notification.SET,
-					WorkspacePackage.PROJECT_SPACE__LAST_UPDATED,
-					oldLastUpdated, lastUpdated));
+			eNotify(new ENotificationImpl(this, Notification.SET, WorkspacePackage.PROJECT_SPACE__LAST_UPDATED,
+				oldLastUpdated, lastUpdated));
 	}
 
 	/**
 	 * <!-- begin-user-doc --> <!-- end-user-doc -->
+	 * 
 	 * @generated
 	 */
 	public PrimaryVersionSpec getBaseVersion() {
@@ -599,24 +597,17 @@ public class ProjectSpaceImpl extends IdentifiableElementImpl implements
 			baseVersion = (PrimaryVersionSpec) eResolveProxy(oldBaseVersion);
 			if (baseVersion != oldBaseVersion) {
 				InternalEObject newBaseVersion = (InternalEObject) baseVersion;
-				NotificationChain msgs = oldBaseVersion.eInverseRemove(this,
-						EOPPOSITE_FEATURE_BASE
-								- WorkspacePackage.PROJECT_SPACE__BASE_VERSION,
-						null, null);
+				NotificationChain msgs = oldBaseVersion.eInverseRemove(this, EOPPOSITE_FEATURE_BASE
+					- WorkspacePackage.PROJECT_SPACE__BASE_VERSION, null, null);
 				if (newBaseVersion.eInternalContainer() == null) {
-					msgs = newBaseVersion
-							.eInverseAdd(
-									this,
-									EOPPOSITE_FEATURE_BASE
-											- WorkspacePackage.PROJECT_SPACE__BASE_VERSION,
-									null, msgs);
+					msgs = newBaseVersion.eInverseAdd(this, EOPPOSITE_FEATURE_BASE
+						- WorkspacePackage.PROJECT_SPACE__BASE_VERSION, null, msgs);
 				}
 				if (msgs != null)
 					msgs.dispatch();
 				if (eNotificationRequired())
 					eNotify(new ENotificationImpl(this, Notification.RESOLVE,
-							WorkspacePackage.PROJECT_SPACE__BASE_VERSION,
-							oldBaseVersion, baseVersion));
+						WorkspacePackage.PROJECT_SPACE__BASE_VERSION, oldBaseVersion, baseVersion));
 			}
 		}
 		return baseVersion;
@@ -624,6 +615,7 @@ public class ProjectSpaceImpl extends IdentifiableElementImpl implements
 
 	/**
 	 * <!-- begin-user-doc --> <!-- end-user-doc -->
+	 * 
 	 * @generated
 	 */
 	public PrimaryVersionSpec basicGetBaseVersion() {
@@ -632,17 +624,15 @@ public class ProjectSpaceImpl extends IdentifiableElementImpl implements
 
 	/**
 	 * <!-- begin-user-doc --> <!-- end-user-doc -->
+	 * 
 	 * @generated
 	 */
-	public NotificationChain basicSetBaseVersion(
-			PrimaryVersionSpec newBaseVersion, NotificationChain msgs) {
+	public NotificationChain basicSetBaseVersion(PrimaryVersionSpec newBaseVersion, NotificationChain msgs) {
 		PrimaryVersionSpec oldBaseVersion = baseVersion;
 		baseVersion = newBaseVersion;
 		if (eNotificationRequired()) {
-			ENotificationImpl notification = new ENotificationImpl(this,
-					Notification.SET,
-					WorkspacePackage.PROJECT_SPACE__BASE_VERSION,
-					oldBaseVersion, newBaseVersion);
+			ENotificationImpl notification = new ENotificationImpl(this, Notification.SET,
+				WorkspacePackage.PROJECT_SPACE__BASE_VERSION, oldBaseVersion, newBaseVersion);
 			if (msgs == null)
 				msgs = notification;
 			else
@@ -653,32 +643,29 @@ public class ProjectSpaceImpl extends IdentifiableElementImpl implements
 
 	/**
 	 * <!-- begin-user-doc --> <!-- end-user-doc -->
+	 * 
 	 * @generated
 	 */
 	public void setBaseVersion(PrimaryVersionSpec newBaseVersion) {
 		if (newBaseVersion != baseVersion) {
 			NotificationChain msgs = null;
 			if (baseVersion != null)
-				msgs = ((InternalEObject) baseVersion).eInverseRemove(this,
-						EOPPOSITE_FEATURE_BASE
-								- WorkspacePackage.PROJECT_SPACE__BASE_VERSION,
-						null, msgs);
+				msgs = ((InternalEObject) baseVersion).eInverseRemove(this, EOPPOSITE_FEATURE_BASE
+					- WorkspacePackage.PROJECT_SPACE__BASE_VERSION, null, msgs);
 			if (newBaseVersion != null)
-				msgs = ((InternalEObject) newBaseVersion).eInverseAdd(this,
-						EOPPOSITE_FEATURE_BASE
-								- WorkspacePackage.PROJECT_SPACE__BASE_VERSION,
-						null, msgs);
+				msgs = ((InternalEObject) newBaseVersion).eInverseAdd(this, EOPPOSITE_FEATURE_BASE
+					- WorkspacePackage.PROJECT_SPACE__BASE_VERSION, null, msgs);
 			msgs = basicSetBaseVersion(newBaseVersion, msgs);
 			if (msgs != null)
 				msgs.dispatch();
 		} else if (eNotificationRequired())
-			eNotify(new ENotificationImpl(this, Notification.SET,
-					WorkspacePackage.PROJECT_SPACE__BASE_VERSION,
-					newBaseVersion, newBaseVersion));
+			eNotify(new ENotificationImpl(this, Notification.SET, WorkspacePackage.PROJECT_SPACE__BASE_VERSION,
+				newBaseVersion, newBaseVersion));
 	}
 
 	/**
 	 * <!-- begin-user-doc --> <!-- end-user-doc -->
+	 * 
 	 * @generated
 	 */
 	public int getResourceCount() {
@@ -687,19 +674,20 @@ public class ProjectSpaceImpl extends IdentifiableElementImpl implements
 
 	/**
 	 * <!-- begin-user-doc --> <!-- end-user-doc -->
+	 * 
 	 * @generated
 	 */
 	public void setResourceCount(int newResourceCount) {
 		int oldResourceCount = resourceCount;
 		resourceCount = newResourceCount;
 		if (eNotificationRequired())
-			eNotify(new ENotificationImpl(this, Notification.SET,
-					WorkspacePackage.PROJECT_SPACE__RESOURCE_COUNT,
-					oldResourceCount, resourceCount));
+			eNotify(new ENotificationImpl(this, Notification.SET, WorkspacePackage.PROJECT_SPACE__RESOURCE_COUNT,
+				oldResourceCount, resourceCount));
 	}
 
 	/**
 	 * <!-- begin-user-doc --> <!-- end-user-doc -->
+	 * 
 	 * @generated
 	 */
 	public boolean isDirty() {
@@ -708,24 +696,26 @@ public class ProjectSpaceImpl extends IdentifiableElementImpl implements
 
 	/**
 	 * <!-- begin-user-doc --> <!-- end-user-doc -->
+	 * 
 	 * @generated
 	 */
 	public void setDirty(boolean newDirty) {
 		boolean oldDirty = dirty;
 		dirty = newDirty;
 		if (eNotificationRequired())
-			eNotify(new ENotificationImpl(this, Notification.SET,
-					WorkspacePackage.PROJECT_SPACE__DIRTY, oldDirty, dirty));
+			eNotify(new ENotificationImpl(this, Notification.SET, WorkspacePackage.PROJECT_SPACE__DIRTY, oldDirty,
+				dirty));
 	}
 
 	/**
 	 * <!-- begin-user-doc --> <!-- end-user-doc -->
+	 * 
 	 * @generated
 	 */
 	public EList<String> getOldLogMessages() {
 		if (oldLogMessages == null) {
-			oldLogMessages = new EDataTypeUniqueEList<String>(String.class,
-					this, WorkspacePackage.PROJECT_SPACE__OLD_LOG_MESSAGES);
+			oldLogMessages = new EDataTypeUniqueEList<String>(String.class, this,
+				WorkspacePackage.PROJECT_SPACE__OLD_LOG_MESSAGES);
 		}
 		return oldLogMessages;
 	}
@@ -734,12 +724,10 @@ public class ProjectSpaceImpl extends IdentifiableElementImpl implements
 	 * <!-- begin-user-doc --> <!-- end-user-doc -->
 	 * 
 	 * @throws EmfStoreException
-	 * 
 	 * @throws EmfStoreException
 	 * @generated NOT
 	 */
-	public PrimaryVersionSpec commit(final LogMessage logMessage)
-			throws EmfStoreException {
+	public PrimaryVersionSpec commit(final LogMessage logMessage) throws EmfStoreException {
 		return commit(logMessage, null);
 	}
 
@@ -749,8 +737,8 @@ public class ProjectSpaceImpl extends IdentifiableElementImpl implements
 	 * @throws EmfStoreException
 	 * @generated NOT
 	 */
-	public PrimaryVersionSpec commit(final LogMessage logMessage,
-			CommitObserver commitObserver) throws EmfStoreException {
+	public PrimaryVersionSpec commit(final LogMessage logMessage, CommitObserver commitObserver)
+		throws EmfStoreException {
 
 		stopChangeRecording();
 
@@ -773,15 +761,12 @@ public class ProjectSpaceImpl extends IdentifiableElementImpl implements
 			throw new BaseVersionOutdatedException();
 		}
 
-		final ConnectionManager connectionManager = WorkspaceManager
-				.getInstance().getConnectionManager();
+		final ConnectionManager connectionManager = WorkspaceManager.getInstance().getConnectionManager();
 
-		ChangePackage changePackage = VersioningFactory.eINSTANCE
-				.createChangePackage();
+		ChangePackage changePackage = VersioningFactory.eINSTANCE.createChangePackage();
 		// copy operations from projectspace
 		for (AbstractOperation abstractOperation : getOperations()) {
-			AbstractOperation copy = (AbstractOperation) EcoreUtil
-					.copy(abstractOperation);
+			AbstractOperation copy = (AbstractOperation) EcoreUtil.copy(abstractOperation);
 			changePackage.getOperations().add(copy);
 		}
 		// copy events from projectspace
@@ -792,17 +777,15 @@ public class ProjectSpaceImpl extends IdentifiableElementImpl implements
 
 		changePackage.cannonize();
 
-		if (commitObserver != null
-				&& !commitObserver.inspectChanges(changePackage)) {
+		if (commitObserver != null && !commitObserver.inspectChanges(changePackage)) {
 			startChangeRecording();
 			return this.getBaseVersion();
 		}
 
 		PrimaryVersionSpec newBaseVersion;
 		try {
-			newBaseVersion = connectionManager.createVersion(getUsersession()
-					.getSessionId(), getProjectId(), getBaseVersion(),
-					changePackage, logMessage);
+			newBaseVersion = connectionManager.createVersion(getUsersession().getSessionId(), getProjectId(),
+				getBaseVersion(), changePackage, logMessage);
 		} catch (EmfStoreException e) {
 			startChangeRecording();
 			throw e;
@@ -835,8 +818,7 @@ public class ProjectSpaceImpl extends IdentifiableElementImpl implements
 	 * @see org.unicase.workspace.ProjectSpace#update(org.unicase.emfstore.esmodel.versioning.VersionSpec)
 	 * @generated NOT
 	 */
-	public PrimaryVersionSpec update(final VersionSpec version)
-			throws EmfStoreException {
+	public PrimaryVersionSpec update(final VersionSpec version) throws EmfStoreException {
 		return update(version, null);
 	}
 
@@ -845,14 +827,12 @@ public class ProjectSpaceImpl extends IdentifiableElementImpl implements
 	 * 
 	 * @generated NOT
 	 */
-	public List<ChangePackage> getChanges(VersionSpec sourceVersion,
-			VersionSpec targetVersion) throws EmfStoreException {
-		final ConnectionManager connectionManager = WorkspaceManager
-				.getInstance().getConnectionManager();
+	public List<ChangePackage> getChanges(VersionSpec sourceVersion, VersionSpec targetVersion)
+		throws EmfStoreException {
+		final ConnectionManager connectionManager = WorkspaceManager.getInstance().getConnectionManager();
 
-		List<ChangePackage> changes = connectionManager.getChanges(
-				getUsersession().getSessionId(), projectId, sourceVersion,
-				targetVersion);
+		List<ChangePackage> changes = connectionManager.getChanges(getUsersession().getSessionId(), projectId,
+			sourceVersion, targetVersion);
 		return changes;
 
 	}
@@ -863,30 +843,26 @@ public class ProjectSpaceImpl extends IdentifiableElementImpl implements
 	 * @see org.unicase.workspace.ProjectSpace#update(org.unicase.emfstore.esmodel.versioning.VersionSpec)
 	 * @generated NOT
 	 */
-	public PrimaryVersionSpec update(final VersionSpec version,
-			final UpdateObserver observer) throws EmfStoreException {
+	public PrimaryVersionSpec update(final VersionSpec version, final UpdateObserver observer) throws EmfStoreException {
 
-		final ConnectionManager connectionManager = WorkspaceManager
-				.getInstance().getConnectionManager();
+		final ConnectionManager connectionManager = WorkspaceManager.getInstance().getConnectionManager();
 		final PrimaryVersionSpec resolvedVersion = resolveVersionSpec(version);
 
 		if (resolvedVersion.compareTo(baseVersion) == 0) {
 			throw new NoChangesOnServerException();
 		}
 		if (resolvedVersion.compareTo(getBaseVersion()) < 0) {
-			throw new IllegalProjectSpaceStateException(
-					"The base revision of this project space is "
-							+ getBaseVersion().getIdentifier()
-							+ ", but the server version of this project is "
-							+ resolvedVersion.getIdentifier() + "!");
+			throw new IllegalProjectSpaceStateException("The base revision of this project space is "
+				+ getBaseVersion().getIdentifier() + ", but the server version of this project is "
+				+ resolvedVersion.getIdentifier() + "!");
 		}
 		stopChangeRecording();
 
 		List<ChangePackage> changes = new ArrayList<ChangePackage>();
 		try {
 
-			changes = connectionManager.getChanges(getUsersession()
-					.getSessionId(), projectId, baseVersion, resolvedVersion);
+			changes = connectionManager.getChanges(getUsersession().getSessionId(), projectId, baseVersion,
+				resolvedVersion);
 		} catch (EmfStoreException e) {
 			startChangeRecording();
 			throw e;
@@ -895,13 +871,10 @@ public class ProjectSpaceImpl extends IdentifiableElementImpl implements
 		// detect conflicts
 		ConflictDetector conflictDetector = new ConflictDetector();
 		for (ChangePackage change : changes) {
-			ChangePackage changePackage = VersioningFactory.eINSTANCE
-					.createChangePackage();
-			EList<AbstractOperation> copiedOperations = changePackage
-					.getOperations();
+			ChangePackage changePackage = VersioningFactory.eINSTANCE.createChangePackage();
+			EList<AbstractOperation> copiedOperations = changePackage.getOperations();
 			for (AbstractOperation operation : getOperations()) {
-				copiedOperations.add((AbstractOperation) EcoreUtil
-						.copy(operation));
+				copiedOperations.add((AbstractOperation) EcoreUtil.copy(operation));
 			}
 			if (conflictDetector.doConflict(change, changePackage)) {
 				throw new ChangeConflictException(changes);
@@ -919,6 +892,9 @@ public class ProjectSpaceImpl extends IdentifiableElementImpl implements
 
 		setBaseVersion(resolvedVersion);
 		saveResourceSet();
+		if (!isRecording) {
+			startChangeRecording();
+		}
 		return resolvedVersion;
 	}
 
@@ -931,8 +907,7 @@ public class ProjectSpaceImpl extends IdentifiableElementImpl implements
 		stopChangeRecording();
 
 		// revert all local changes
-		ChangePackage changePackage = VersioningFactory.eINSTANCE
-				.createChangePackage();
+		ChangePackage changePackage = VersioningFactory.eINSTANCE.createChangePackage();
 		changePackage.getOperations().addAll(getOperations());
 		changePackage.cannonize();
 		changePackage.reverse().apply(project);
@@ -943,8 +918,7 @@ public class ProjectSpaceImpl extends IdentifiableElementImpl implements
 	}
 
 	/**
-	 * Stops current recording of changes and adds recorded changes to this
-	 * project spaces changes.
+	 * Stops current recording of changes and adds recorded changes to this project spaces changes.
 	 * 
 	 * @generated NOT
 	 */
@@ -953,8 +927,7 @@ public class ProjectSpaceImpl extends IdentifiableElementImpl implements
 	}
 
 	/**
-	 * Starts change recording on this workspace, resumes previous recordings if
-	 * there are any.
+	 * Starts change recording on this workspace, resumes previous recordings if there are any.
 	 * 
 	 * @generated NOT
 	 */
@@ -997,30 +970,24 @@ public class ProjectSpaceImpl extends IdentifiableElementImpl implements
 	 * @throws EmfStoreException
 	 * @generated NOT
 	 */
-	public PrimaryVersionSpec resolveVersionSpec(VersionSpec versionSpec)
-			throws EmfStoreException {
-		ConnectionManager connectionManager = WorkspaceManager.getInstance()
-				.getConnectionManager();
+	public PrimaryVersionSpec resolveVersionSpec(VersionSpec versionSpec) throws EmfStoreException {
+		ConnectionManager connectionManager = WorkspaceManager.getInstance().getConnectionManager();
 		// FIXME OW why head version spec
 		// FIXME use resolve version spec of usersession
-		return connectionManager.resolveVersionSpec(getUsersession()
-				.getSessionId(), getProjectId(), VersioningFactory.eINSTANCE
-				.createHeadVersionSpec());
+		return connectionManager.resolveVersionSpec(getUsersession().getSessionId(), getProjectId(),
+			VersioningFactory.eINSTANCE.createHeadVersionSpec());
 	}
 
 	/**
-	 * <!-- begin-user-doc --> <!-- end-user-doc -->
-	 * 
-	 * {@inheritDoc}
+	 * <!-- begin-user-doc --> <!-- end-user-doc --> {@inheritDoc}
 	 * 
 	 * @see org.unicase.workspace.ProjectSpace#initResources(org.eclipse.emf.ecore.resource.ResourceSet)
 	 * @generated NOT
 	 */
 	public void initResources(ResourceSet resourceSet) {
 		setResourceCount(0);
-		String fileName = Configuration.getWorkspaceDirectory() + "ps-"
-				+ getIdentifier() + File.separatorChar + getResourceCount()
-				+ ".ucf";
+		String fileName = Configuration.getWorkspaceDirectory() + "ps-" + getIdentifier() + File.separatorChar
+			+ getResourceCount() + ".ucf";
 		URI fileURI = URI.createFileURI(fileName);
 		List<Resource> resources = new ArrayList<Resource>();
 		Resource resource = resourceSet.createResource(fileURI);
@@ -1028,12 +995,11 @@ public class ProjectSpaceImpl extends IdentifiableElementImpl implements
 		resources.add(resource);
 		setResourceCount(getResourceCount() + 1);
 		List<ModelElement> modelElements = getProject().getAllModelElements();
-		int counter = Configuration.getMaxMECountPerResource()+1;
+		int counter = Configuration.getMaxMECountPerResource() + 1;
 		for (ModelElement modelElement : modelElements) {
 			if (counter > Configuration.getMaxMECountPerResource()) {
-				fileName = Configuration.getWorkspaceDirectory() + "ps-"
-						+ getIdentifier() + File.separatorChar
-						+ getResourceCount() + ".ucf";
+				fileName = Configuration.getWorkspaceDirectory() + "ps-" + getIdentifier() + File.separatorChar
+					+ getResourceCount() + ".ucf";
 				fileURI = URI.createFileURI(fileName);
 				resource = resourceSet.createResource(fileURI);
 				setResourceCount(getResourceCount() + 1);
@@ -1047,8 +1013,7 @@ public class ProjectSpaceImpl extends IdentifiableElementImpl implements
 			try {
 				currentResource.save(Configuration.getResourceSaveOptions());
 			} catch (IOException e) {
-				WorkspaceUtil.logException(
-						"Project Space resource init failed!", e);
+				WorkspaceUtil.logException("Project Space resource init failed!", e);
 
 			}
 		}
@@ -1057,19 +1022,18 @@ public class ProjectSpaceImpl extends IdentifiableElementImpl implements
 
 	/**
 	 * <!-- begin-user-doc --> <!-- end-user-doc -->
+	 * 
 	 * @generated
 	 */
 	@Override
-	public NotificationChain eInverseRemove(InternalEObject otherEnd,
-			int featureID, NotificationChain msgs) {
+	public NotificationChain eInverseRemove(InternalEObject otherEnd, int featureID, NotificationChain msgs) {
 		switch (featureID) {
 		case WorkspacePackage.PROJECT_SPACE__PROJECT:
 			return basicSetProject(null, msgs);
 		case WorkspacePackage.PROJECT_SPACE__PROJECT_ID:
 			return basicSetProjectId(null, msgs);
 		case WorkspacePackage.PROJECT_SPACE__OPERATIONS:
-			return ((InternalEList<?>) getOperations()).basicRemove(otherEnd,
-					msgs);
+			return ((InternalEList<?>) getOperations()).basicRemove(otherEnd, msgs);
 		case WorkspacePackage.PROJECT_SPACE__EVENTS:
 			return ((InternalEList<?>) getEvents()).basicRemove(otherEnd, msgs);
 		case WorkspacePackage.PROJECT_SPACE__BASE_VERSION:
@@ -1080,6 +1044,7 @@ public class ProjectSpaceImpl extends IdentifiableElementImpl implements
 
 	/**
 	 * <!-- begin-user-doc --> <!-- end-user-doc -->
+	 * 
 	 * @generated
 	 */
 	@Override
@@ -1123,6 +1088,7 @@ public class ProjectSpaceImpl extends IdentifiableElementImpl implements
 
 	/**
 	 * <!-- begin-user-doc --> <!-- end-user-doc -->
+	 * 
 	 * @generated
 	 */
 	@SuppressWarnings("unchecked")
@@ -1143,8 +1109,7 @@ public class ProjectSpaceImpl extends IdentifiableElementImpl implements
 			return;
 		case WorkspacePackage.PROJECT_SPACE__OPERATIONS:
 			getOperations().clear();
-			getOperations().addAll(
-					(Collection<? extends AbstractOperation>) newValue);
+			getOperations().addAll((Collection<? extends AbstractOperation>) newValue);
 			return;
 		case WorkspacePackage.PROJECT_SPACE__EVENTS:
 			getEvents().clear();
@@ -1175,6 +1140,7 @@ public class ProjectSpaceImpl extends IdentifiableElementImpl implements
 
 	/**
 	 * <!-- begin-user-doc --> <!-- end-user-doc -->
+	 * 
 	 * @generated
 	 */
 	@Override
@@ -1222,6 +1188,7 @@ public class ProjectSpaceImpl extends IdentifiableElementImpl implements
 
 	/**
 	 * <!-- begin-user-doc --> <!-- end-user-doc -->
+	 * 
 	 * @generated
 	 */
 	@Override
@@ -1232,11 +1199,10 @@ public class ProjectSpaceImpl extends IdentifiableElementImpl implements
 		case WorkspacePackage.PROJECT_SPACE__PROJECT_ID:
 			return projectId != null;
 		case WorkspacePackage.PROJECT_SPACE__PROJECT_NAME:
-			return PROJECT_NAME_EDEFAULT == null ? projectName != null
-					: !PROJECT_NAME_EDEFAULT.equals(projectName);
+			return PROJECT_NAME_EDEFAULT == null ? projectName != null : !PROJECT_NAME_EDEFAULT.equals(projectName);
 		case WorkspacePackage.PROJECT_SPACE__PROJECT_DESCRIPTION:
-			return PROJECT_DESCRIPTION_EDEFAULT == null ? projectDescription != null
-					: !PROJECT_DESCRIPTION_EDEFAULT.equals(projectDescription);
+			return PROJECT_DESCRIPTION_EDEFAULT == null ? projectDescription != null : !PROJECT_DESCRIPTION_EDEFAULT
+				.equals(projectDescription);
 		case WorkspacePackage.PROJECT_SPACE__OPERATIONS:
 			return operations != null && !operations.isEmpty();
 		case WorkspacePackage.PROJECT_SPACE__EVENTS:
@@ -1244,8 +1210,7 @@ public class ProjectSpaceImpl extends IdentifiableElementImpl implements
 		case WorkspacePackage.PROJECT_SPACE__USERSESSION:
 			return usersession != null;
 		case WorkspacePackage.PROJECT_SPACE__LAST_UPDATED:
-			return LAST_UPDATED_EDEFAULT == null ? lastUpdated != null
-					: !LAST_UPDATED_EDEFAULT.equals(lastUpdated);
+			return LAST_UPDATED_EDEFAULT == null ? lastUpdated != null : !LAST_UPDATED_EDEFAULT.equals(lastUpdated);
 		case WorkspacePackage.PROJECT_SPACE__BASE_VERSION:
 			return baseVersion != null;
 		case WorkspacePackage.PROJECT_SPACE__RESOURCE_COUNT:
@@ -1260,6 +1225,7 @@ public class ProjectSpaceImpl extends IdentifiableElementImpl implements
 
 	/**
 	 * <!-- begin-user-doc --> <!-- end-user-doc -->
+	 * 
 	 * @generated
 	 */
 	@Override
@@ -1297,11 +1263,9 @@ public class ProjectSpaceImpl extends IdentifiableElementImpl implements
 		logMessage.setAuthor(usersession.getUsername());
 		logMessage.setClientDate(new Date());
 		logMessage.setMessage("Initial commit");
-		ProjectInfo createdProject = WorkspaceManager.getInstance()
-				.getConnectionManager().createProject(
-						usersession.getSessionId(), this.getProjectName(),
-						this.getProjectDescription(), logMessage,
-						this.getProject());
+		ProjectInfo createdProject = WorkspaceManager.getInstance().getConnectionManager().createProject(
+			usersession.getSessionId(), this.getProjectName(), this.getProjectDescription(), logMessage,
+			this.getProject());
 		this.setBaseVersion(createdProject.getVersion());
 		this.setLastUpdated(new Date());
 		this.setProjectId(createdProject.getProjectId());
@@ -1320,20 +1284,16 @@ public class ProjectSpaceImpl extends IdentifiableElementImpl implements
 	 * @see org.unicase.workspace.ProjectSpace#exportProject(java.lang.String)
 	 */
 	public void exportProject(String absoluteFileName) throws IOException {
-		WorkspaceManager.getInstance().getCurrentWorkspace().exportProject(
-				this, absoluteFileName);
+		WorkspaceManager.getInstance().getCurrentWorkspace().exportProject(this, absoluteFileName);
 	}
 
 	/**
 	 * Save all resources that are dirty.
 	 * 
-	 * @param force
-	 *            if all resources should be saved regardless of their dirty
-	 *            state
+	 * @param force if all resources should be saved regardless of their dirty state
 	 */
 	private void saveResourceSet() {
-		EList<Resource> resources = this.eResource().getResourceSet()
-				.getResources();
+		EList<Resource> resources = this.eResource().getResourceSet().getResources();
 		for (Resource resource : resources) {
 			saveResource(resource);
 		}
@@ -1345,13 +1305,10 @@ public class ProjectSpaceImpl extends IdentifiableElementImpl implements
 		} catch (IOException e) {
 			Throwable cause = e.getCause();
 			if (cause != null && cause instanceof DanglingHREFException) {
-				boolean foundProblems = ModelValidationHelper
-						.checkAndFixProject(getProject());
+				boolean foundProblems = ModelValidationHelper.checkAndFixProject(getProject());
 				if (foundProblems) {
-					WorkspaceUtil
-							.logException(
-									"An error in the data was detected during save! Self-healing fixed the problem.",
-									e);
+					WorkspaceUtil.logException(
+						"An error in the data was detected during save! Self-healing fixed the problem.", e);
 				}
 			}
 		}
@@ -1360,29 +1317,23 @@ public class ProjectSpaceImpl extends IdentifiableElementImpl implements
 	/**
 	 * Add model element to a resource, assign a new resource if neccessary.
 	 * 
-	 * @param modelElement
-	 *            the model element
+	 * @param modelElement the model element
 	 * @generated NOT
 	 */
 	private void addToResource(final ModelElement modelElement) {
-		TransactionalEditingDomain domain = WorkspaceManager.getInstance()
-				.getCurrentWorkspace().getEditingDomain();
+		TransactionalEditingDomain domain = WorkspaceManager.getInstance().getCurrentWorkspace().getEditingDomain();
 		domain.getCommandStack().execute(new RecordingCommand(domain) {
 			@Override
 			protected void doExecute() {
 				Resource oldResource = modelElement.eResource();
-				String oldFileName = Configuration.getWorkspaceDirectory()
-						+ "ps-" + getIdentifier() + File.separatorChar
-						+ (getResourceCount() - 1) + ".ucf";
+				String oldFileName = Configuration.getWorkspaceDirectory() + "ps-" + getIdentifier()
+					+ File.separatorChar + (getResourceCount() - 1) + ".ucf";
 				// FIXME MK check if file exists
-				if (new File(oldFileName).length() > Configuration
-						.getMaxResourceFileSizeOnExpand()) {
-					String newfileName = Configuration.getWorkspaceDirectory()
-							+ "ps-" + getIdentifier() + File.separatorChar
-							+ getResourceCount() + ".ucf";
+				if (new File(oldFileName).length() > Configuration.getMaxResourceFileSizeOnExpand()) {
+					String newfileName = Configuration.getWorkspaceDirectory() + "ps-" + getIdentifier()
+						+ File.separatorChar + getResourceCount() + ".ucf";
 					URI fileURI = URI.createFileURI(newfileName);
-					oldResource.getResourceSet()
-							.createResource(fileURI);
+					oldResource.getResourceSet().createResource(fileURI);
 					setResourceCount(getResourceCount() + 1);
 				}
 			}
@@ -1393,14 +1344,11 @@ public class ProjectSpaceImpl extends IdentifiableElementImpl implements
 	/**
 	 * Create all neccessary operations for the notification.
 	 * 
-	 * @param notification
-	 *            the notification
-	 * @param modelElement
-	 *            the model element the triggered the notification
+	 * @param notification the notification
+	 * @param modelElement the model element the triggered the notification
 	 * @generated NOT
 	 */
-	private void createOperations(final Notification notification,
-			ModelElement modelElement) {
+	private void createOperations(final Notification notification, ModelElement modelElement) {
 
 		Object feature = notification.getFeature();
 		Object newValue = notification.getNewValue();
@@ -1412,28 +1360,23 @@ public class ProjectSpaceImpl extends IdentifiableElementImpl implements
 				if (attribute.isTransient()) {
 					return;
 				}
-				DiagramPackage diagramPackage = DiagramFactory.eINSTANCE
-						.getDiagramPackage();
-				if (attribute.getName().equals(
-						diagramPackage.getMEDiagram_DiagramLayout().getName())
-						&& diagramPackage.getMEDiagram().isInstance(
-								modelElement)) {
+				DiagramPackage diagramPackage = DiagramFactory.eINSTANCE.getDiagramPackage();
+				if (attribute.getName().equals(diagramPackage.getMEDiagram_DiagramLayout().getName())
+					&& diagramPackage.getMEDiagram().isInstance(modelElement)) {
 
 					DiagramLayoutOperation createDiagramLayoutOperation = OperationsFactory.eINSTANCE
-							.createDiagramLayoutOperation();
-					createDiagramLayoutOperation.setFeatureName(attribute
-							.getName());
-					createDiagramLayoutOperation
-							.setModelElementId((ModelElementId) EcoreUtil
-									.copy(modelElement.getModelElementId()));
+						.createDiagramLayoutOperation();
+					createDiagramLayoutOperation.setFeatureName(attribute.getName());
+					createDiagramLayoutOperation.setModelElementId((ModelElementId) EcoreUtil.copy(modelElement
+						.getModelElementId()));
 					createDiagramLayoutOperation.setNewValue(newValue);
 					createDiagramLayoutOperation.setOldValue(oldValue);
 					this.getOperations().add(createDiagramLayoutOperation);
 					return;
 
 				} else {
-					AttributeOperation attributeOperation = createAttributeOperation(
-							notification, feature, newValue, oldValue);
+					AttributeOperation attributeOperation = createAttributeOperation(notification, feature, newValue,
+						oldValue);
 					this.getOperations().add(attributeOperation);
 					return;
 				}
@@ -1441,8 +1384,7 @@ public class ProjectSpaceImpl extends IdentifiableElementImpl implements
 				if (((EReference) feature).isTransient()) {
 					return;
 				}
-				handleSetReference(notification, (EReference) feature,
-						(ModelElement) newValue, (ModelElement) oldValue);
+				handleSetReference(notification, (EReference) feature, (ModelElement) newValue, (ModelElement) oldValue);
 				return;
 			}
 			throw new IllegalStateException();
@@ -1450,15 +1392,14 @@ public class ProjectSpaceImpl extends IdentifiableElementImpl implements
 
 		if (notification.getEventType() == Notification.ADD) {
 			if (feature instanceof EReference) {
-				handleEReference((EReference) feature, (ModelElement) newValue,
-						notification, true);
+				handleEReference((EReference) feature, (ModelElement) newValue, notification, true);
 			} else if (feature instanceof EAttribute) {
 				EAttribute attribute = (EAttribute) feature;
 				if (attribute.isTransient()) {
 					return;
 				}
-				MultiAttributeOperation multiAttributeOperation = createMultiAttributeOperation(
-						notification, newValue, attribute, true);
+				MultiAttributeOperation multiAttributeOperation = createMultiAttributeOperation(notification, newValue,
+					attribute, true);
 				this.getOperations().add(multiAttributeOperation);
 				return;
 			} else {
@@ -1468,15 +1409,14 @@ public class ProjectSpaceImpl extends IdentifiableElementImpl implements
 
 		if (notification.getEventType() == Notification.REMOVE) {
 			if (feature instanceof EReference) {
-				handleEReference((EReference) feature, (ModelElement) oldValue,
-						notification, false);
+				handleEReference((EReference) feature, (ModelElement) oldValue, notification, false);
 			} else if (feature instanceof EAttribute) {
 				EAttribute attribute = (EAttribute) feature;
 				if (attribute.isTransient()) {
 					return;
 				}
-				MultiAttributeOperation multiAttributeOperation = createMultiAttributeOperation(
-						notification, oldValue, attribute, false);
+				MultiAttributeOperation multiAttributeOperation = createMultiAttributeOperation(notification, oldValue,
+					attribute, false);
 				this.getOperations().add(multiAttributeOperation);
 				return;
 			} else {
@@ -1505,16 +1445,13 @@ public class ProjectSpaceImpl extends IdentifiableElementImpl implements
 					return;
 				}
 				MultiReferenceMoveOperation multiReferenceMoveOperation = OperationsFactory.eINSTANCE
-						.createMultiReferenceMoveOperation();
+					.createMultiReferenceMoveOperation();
 				multiReferenceMoveOperation.setFeatureName(reference.getName());
-				multiReferenceMoveOperation
-						.setModelElementId(((ModelElement) notification
-								.getNotifier()).getModelElementId());
-				multiReferenceMoveOperation
-						.setReferencedModelElementId(((ModelElement) notification
-								.getNewValue()).getModelElementId());
-				multiReferenceMoveOperation.setNewIndex(notification
-						.getPosition());
+				multiReferenceMoveOperation.setModelElementId(((ModelElement) notification.getNotifier())
+					.getModelElementId());
+				multiReferenceMoveOperation.setReferencedModelElementId(((ModelElement) notification.getNewValue())
+					.getModelElementId());
+				multiReferenceMoveOperation.setNewIndex(notification.getPosition());
 				multiReferenceMoveOperation.setOldIndex((Integer) oldValue);
 				this.getOperations().add(multiReferenceMoveOperation);
 
@@ -1525,8 +1462,8 @@ public class ProjectSpaceImpl extends IdentifiableElementImpl implements
 
 	}
 
-	private void handleSetReference(Notification notification,
-			EReference reference, ModelElement newValue, ModelElement oldValue) {
+	private void handleSetReference(Notification notification, EReference reference, ModelElement newValue,
+		ModelElement oldValue) {
 
 		if (reference.isTransient()) {
 			return;
@@ -1536,20 +1473,15 @@ public class ProjectSpaceImpl extends IdentifiableElementImpl implements
 			if (notification instanceof NotificationImpl) {
 				Field declaredField;
 				try {
-					declaredField = NotificationImpl.class
-							.getDeclaredField("next");
+					declaredField = NotificationImpl.class.getDeclaredField("next");
 					declaredField.setAccessible(true);
 					Object object = declaredField.get(notification);
 					Notification nextNotification = (Notification) object;
-					if (nextNotification != null
-							&& nextNotification.getFeature() == reference
-									.getEOpposite()) {
-						if (newValue == null
-								&& nextNotification.getNotifier() == oldValue) {
+					if (nextNotification != null && nextNotification.getFeature() == reference.getEOpposite()) {
+						if (newValue == null && nextNotification.getNotifier() == oldValue) {
 							// skip this
 							return;
-						} else if (oldValue == null
-								&& nextNotification.getNotifier() == newValue) {
+						} else if (oldValue == null && nextNotification.getNotifier() == newValue) {
 							// skip this
 							return;
 						}
@@ -1572,42 +1504,36 @@ public class ProjectSpaceImpl extends IdentifiableElementImpl implements
 		}
 
 		// single reference set
-		SingleReferenceOperation singleReferenceOperation = createSingleReferenceOperation(
-				notification, oldValue, reference, newValue);
+		SingleReferenceOperation singleReferenceOperation = createSingleReferenceOperation(notification, oldValue,
+			reference, newValue);
 		this.getOperations().add(singleReferenceOperation);
 	}
 
-	private MultiAttributeOperation createMultiAttributeOperation(
-			Notification notification, Object newValue, EAttribute attribute,
-			boolean isAdd) {
-		MultiAttributeOperation multiAttributeOperation = OperationsFactory.eINSTANCE
-				.createMultiAttributeOperation();
+	private MultiAttributeOperation createMultiAttributeOperation(Notification notification, Object newValue,
+		EAttribute attribute, boolean isAdd) {
+		MultiAttributeOperation multiAttributeOperation = OperationsFactory.eINSTANCE.createMultiAttributeOperation();
 		multiAttributeOperation.setAdd(isAdd);
 		multiAttributeOperation.setFeatureName(attribute.getName());
 		multiAttributeOperation.setIndex(notification.getPosition());
-		multiAttributeOperation.setModelElementId(((ModelElement) notification
-				.getNotifier()).getModelElementId());
+		multiAttributeOperation.setModelElementId(((ModelElement) notification.getNotifier()).getModelElementId());
 		multiAttributeOperation.getValues().add(newValue);
 		return multiAttributeOperation;
 	}
 
-	private AttributeOperation createAttributeOperation(
-			Notification notification, Object feature, Object newValue,
-			Object oldValue) {
+	private AttributeOperation createAttributeOperation(Notification notification, Object feature, Object newValue,
+		Object oldValue) {
 		EAttribute attribute = (EAttribute) feature;
-		AttributeOperation attributeOperation = OperationsFactory.eINSTANCE
-				.createAttributeOperation();
+		AttributeOperation attributeOperation = OperationsFactory.eINSTANCE.createAttributeOperation();
 		attributeOperation.setFeatureName(attribute.getName());
 		ModelElement modelElement = (ModelElement) notification.getNotifier();
-		attributeOperation.setModelElementId((ModelElementId) EcoreUtil
-				.copy(modelElement.getModelElementId()));
+		attributeOperation.setModelElementId((ModelElementId) EcoreUtil.copy(modelElement.getModelElementId()));
 		attributeOperation.setNewValue(newValue);
 		attributeOperation.setOldValue(oldValue);
 		return attributeOperation;
 	}
 
-	private void handleEReference(EReference reference,
-			ModelElement modelElement, Notification notification, boolean isAdd) {
+	private void handleEReference(EReference reference, ModelElement modelElement, Notification notification,
+		boolean isAdd) {
 
 		if (reference.isTransient()) {
 			return;
@@ -1618,15 +1544,12 @@ public class ProjectSpaceImpl extends IdentifiableElementImpl implements
 				if (notification instanceof NotificationImpl) {
 					Field declaredField;
 					try {
-						declaredField = NotificationImpl.class
-								.getDeclaredField("next");
+						declaredField = NotificationImpl.class.getDeclaredField("next");
 						declaredField.setAccessible(true);
 						Object object = declaredField.get(notification);
 						Notification nextNotification = (Notification) object;
-						if (nextNotification != null
-								&& nextNotification.getFeature() == reference
-										.getEOpposite()
-								&& nextNotification.getNotifier() == modelElement) {
+						if (nextNotification != null && nextNotification.getFeature() == reference.getEOpposite()
+							&& nextNotification.getNotifier() == modelElement) {
 							// skip this notification
 							return;
 						}
@@ -1634,21 +1557,13 @@ public class ProjectSpaceImpl extends IdentifiableElementImpl implements
 						// not fatal if it fails, it just results in redundant
 						// operations being created.
 					} catch (SecurityException e) {
-						WorkspaceUtil.logException(
-								"Access to next field of notification failed.",
-								e);
+						WorkspaceUtil.logException("Access to next field of notification failed.", e);
 					} catch (NoSuchFieldException e) {
-						WorkspaceUtil.logException(
-								"Access to next field of notification failed.",
-								e);
+						WorkspaceUtil.logException("Access to next field of notification failed.", e);
 					} catch (IllegalArgumentException e) {
-						WorkspaceUtil.logException(
-								"Access to next field of notification failed.",
-								e);
+						WorkspaceUtil.logException("Access to next field of notification failed.", e);
 					} catch (IllegalAccessException e) {
-						WorkspaceUtil.logException(
-								"Access to next field of notification failed.",
-								e);
+						WorkspaceUtil.logException("Access to next field of notification failed.", e);
 					}
 				}
 			}
@@ -1656,8 +1571,8 @@ public class ProjectSpaceImpl extends IdentifiableElementImpl implements
 			// element was added/removed to/from a reference feature
 			ModelElement parent = (ModelElement) notification.getNotifier();
 
-			MultiReferenceOperation multiReferenceOperation = createMultiReferenceOperation(
-					notification, reference, modelElement, parent, isAdd);
+			MultiReferenceOperation multiReferenceOperation = createMultiReferenceOperation(notification, reference,
+				modelElement, parent, isAdd);
 			int index = operations.size();
 			// check if this operation refers to a previous delete
 			EList<AbstractOperation> operations = this.getOperations();
@@ -1678,62 +1593,51 @@ public class ProjectSpaceImpl extends IdentifiableElementImpl implements
 		}
 	}
 
-	private boolean isRelated(ModelElement modelElement, boolean isAdd,
-			ModelElement parent, AbstractOperation lastOperation) {
+	private boolean isRelated(ModelElement modelElement, boolean isAdd, ModelElement parent,
+		AbstractOperation lastOperation) {
 		if (!isAdd && lastOperation instanceof CreateDeleteOperation
-				&& ((CreateDeleteOperation) lastOperation).isDelete()) {
-			if (lastOperation.getModelElementId().equals(
-					parent.getModelElementId())
-					|| lastOperation.getModelElementId().equals(
-							modelElement.getModelElementId())) {
+			&& ((CreateDeleteOperation) lastOperation).isDelete()) {
+			if (lastOperation.getModelElementId().equals(parent.getModelElementId())
+				|| lastOperation.getModelElementId().equals(modelElement.getModelElementId())) {
 				return true;
 			}
 		}
 		return false;
 	}
 
-	private MultiReferenceOperation createMultiReferenceOperation(
-			Notification notification, EReference reference,
-			ModelElement modelElement, ModelElement parent, boolean isAdd) {
-		MultiReferenceOperation multiReferenceOperation = OperationsFactory.eINSTANCE
-				.createMultiReferenceOperation();
+	private MultiReferenceOperation createMultiReferenceOperation(Notification notification, EReference reference,
+		ModelElement modelElement, ModelElement parent, boolean isAdd) {
+		MultiReferenceOperation multiReferenceOperation = OperationsFactory.eINSTANCE.createMultiReferenceOperation();
 		setBidirectionalInfos(reference, multiReferenceOperation);
 		multiReferenceOperation.setFeatureName(reference.getName());
 		multiReferenceOperation.setAdd(isAdd);
 		multiReferenceOperation.setIndex(notification.getPosition());
-		multiReferenceOperation.getReferencedModelElements().add(
-				modelElement.getModelElementId());
+		multiReferenceOperation.getReferencedModelElements().add(modelElement.getModelElementId());
 		multiReferenceOperation.setModelElementId(parent.getModelElementId());
 		return multiReferenceOperation;
 	}
 
-	private SingleReferenceOperation createSingleReferenceOperation(
-			Notification notification, Object oldValue, EReference reference,
-			ModelElement newValueME) {
+	private SingleReferenceOperation createSingleReferenceOperation(Notification notification, Object oldValue,
+		EReference reference, ModelElement newValueME) {
 		SingleReferenceOperation singleReferenceOperation = OperationsFactory.eINSTANCE
-				.createSingleReferenceOperation();
+			.createSingleReferenceOperation();
 		singleReferenceOperation.setFeatureName(reference.getName());
 		setBidirectionalInfos(reference, singleReferenceOperation);
 
 		if (oldValue != null) {
-			singleReferenceOperation.setOldValue(((ModelElement) oldValue)
-					.getModelElementId());
+			singleReferenceOperation.setOldValue(((ModelElement) oldValue).getModelElementId());
 		}
 		if (newValueME != null) {
-			singleReferenceOperation
-					.setNewValue(newValueME.getModelElementId());
+			singleReferenceOperation.setNewValue(newValueME.getModelElementId());
 		}
-		singleReferenceOperation.setModelElementId(((ModelElement) notification
-				.getNotifier()).getModelElementId());
+		singleReferenceOperation.setModelElementId(((ModelElement) notification.getNotifier()).getModelElementId());
 		return singleReferenceOperation;
 	}
 
-	private void setBidirectionalInfos(EReference reference,
-			ReferenceOperation referenceOperation) {
+	private void setBidirectionalInfos(EReference reference, ReferenceOperation referenceOperation) {
 		if (reference.getEOpposite() != null) {
 			referenceOperation.setBidirectional(true);
-			referenceOperation.setOppositeFeatureName(reference.getEOpposite()
-					.getName());
+			referenceOperation.setOppositeFeatureName(reference.getEOpposite().getName());
 		} else {
 			referenceOperation.setBidirectional(false);
 		}
@@ -1742,21 +1646,15 @@ public class ProjectSpaceImpl extends IdentifiableElementImpl implements
 	/**
 	 * Create a CreateDeleteOperation
 	 * 
-	 * @param modelElement
-	 *            the model element to delete or create
-	 * @param delete
-	 *            whether the element is deleted or created
+	 * @param modelElement the model element to delete or create
+	 * @param delete whether the element is deleted or created
 	 * @return the operation
 	 */
-	private CreateDeleteOperation createCreateDeleteOperation(
-			ModelElement modelElement, boolean delete) {
-		CreateDeleteOperation createDeleteOperation = OperationsFactory.eINSTANCE
-				.createCreateDeleteOperation();
+	private CreateDeleteOperation createCreateDeleteOperation(ModelElement modelElement, boolean delete) {
+		CreateDeleteOperation createDeleteOperation = OperationsFactory.eINSTANCE.createCreateDeleteOperation();
 		createDeleteOperation.setDelete(delete);
-		createDeleteOperation.setModelElement((ModelElement) EcoreUtil
-				.copy(modelElement));
-		createDeleteOperation.setModelElementId((ModelElementId) EcoreUtil
-				.copy(modelElement.getModelElementId()));
+		createDeleteOperation.setModelElement((ModelElement) EcoreUtil.copy(modelElement));
+		createDeleteOperation.setModelElementId((ModelElementId) EcoreUtil.copy(modelElement.getModelElementId()));
 		return createDeleteOperation;
 	}
 
@@ -1776,9 +1674,7 @@ public class ProjectSpaceImpl extends IdentifiableElementImpl implements
 				AbstractOperation abstractOperation = operations.get(i);
 				if (abstractOperation instanceof CreateDeleteOperation) {
 					CreateDeleteOperation operation = (CreateDeleteOperation) abstractOperation;
-					if (operation.isDelete()
-							&& operation.getModelElementId().equals(
-									modelElement.getModelElementId())) {
+					if (operation.isDelete() && operation.getModelElementId().equals(modelElement.getModelElementId())) {
 						operations.remove(operation);
 						return;
 					}
@@ -1798,8 +1694,7 @@ public class ProjectSpaceImpl extends IdentifiableElementImpl implements
 	public void modelElementRemoved(Project project, ModelElement modelElement) {
 		// MK clean resources from deleted model elements
 		if (isRecording) {
-			CreateDeleteOperation createDeleteOperation = createCreateDeleteOperation(
-					modelElement, true);
+			CreateDeleteOperation createDeleteOperation = createCreateDeleteOperation(modelElement, true);
 			this.getOperations().add(createDeleteOperation);
 			saveProjectSpaceOnly();
 		}
@@ -1811,8 +1706,7 @@ public class ProjectSpaceImpl extends IdentifiableElementImpl implements
 	 * @see org.unicase.model.util.ProjectChangeObserver#notify(org.eclipse.emf.common.notify.Notification,
 	 *      org.unicase.model.Project, org.unicase.model.ModelElement)
 	 */
-	public void notify(Notification notification, Project project,
-			ModelElement modelElement) {
+	public void notify(Notification notification, Project project, ModelElement modelElement) {
 		if (isRecording) {
 			createOperations(notification, modelElement);
 			OperationsCannonizer.cannonize(getOperations());
@@ -1842,14 +1736,11 @@ public class ProjectSpaceImpl extends IdentifiableElementImpl implements
 	 */
 	public void exportLocalChanges(String fileName) throws IOException {
 		ResourceSet resourceSet = new ResourceSetImpl();
-		Resource resource = resourceSet.createResource(URI
-				.createFileURI(fileName));
-		ChangePackage changePackage = VersioningFactory.eINSTANCE
-				.createChangePackage();
+		Resource resource = resourceSet.createResource(URI.createFileURI(fileName));
+		ChangePackage changePackage = VersioningFactory.eINSTANCE.createChangePackage();
 		// copy operations from projectspace
 		for (AbstractOperation abstractOperation : getOperations()) {
-			AbstractOperation copy = (AbstractOperation) EcoreUtil
-					.copy(abstractOperation);
+			AbstractOperation copy = (AbstractOperation) EcoreUtil.copy(abstractOperation);
 			changePackage.getOperations().add(copy);
 		}
 
@@ -1865,15 +1756,12 @@ public class ProjectSpaceImpl extends IdentifiableElementImpl implements
 	public void importLocalChanges(String fileName) throws IOException {
 		stopChangeRecording();
 		ResourceSetImpl resourceSet = new ResourceSetImpl();
-		Resource resource = resourceSet.getResource(
-				URI.createFileURI(fileName), true);
+		Resource resource = resourceSet.getResource(URI.createFileURI(fileName), true);
 		EList<EObject> directContents = resource.getContents();
 		// sanity check
 
-		if (directContents.size() != 1
-				&& (!(directContents.get(0) instanceof ChangePackage))) {
-			throw new IOException(
-					"File is corrupt, does not contain Changes.");
+		if (directContents.size() != 1 && (!(directContents.get(0) instanceof ChangePackage))) {
+			throw new IOException("File is corrupt, does not contain Changes.");
 		}
 
 		ChangePackage changePackage = (ChangePackage) directContents.get(0);
@@ -1912,12 +1800,9 @@ public class ProjectSpaceImpl extends IdentifiableElementImpl implements
 	 * 
 	 * @generated NOT
 	 */
-	public void addTag(PrimaryVersionSpec versionSpec, TagVersionSpec tag)
-			throws EmfStoreException {
-		final ConnectionManager cm = WorkspaceManager.getInstance()
-				.getConnectionManager();
-		cm.addTag(getUsersession().getSessionId(), getProjectId(), versionSpec,
-				tag);
+	public void addTag(PrimaryVersionSpec versionSpec, TagVersionSpec tag) throws EmfStoreException {
+		final ConnectionManager cm = WorkspaceManager.getInstance().getConnectionManager();
+		cm.addTag(getUsersession().getSessionId(), getProjectId(), versionSpec, tag);
 	}
 
 } // ProjectContainerImpl
