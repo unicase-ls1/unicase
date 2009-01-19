@@ -381,12 +381,21 @@ public interface ClassesPackage extends EPackage {
 	int CLASS__METHODS = PACKAGE_ELEMENT_FEATURE_COUNT + 6;
 
 	/**
+	 * The feature id for the '<em><b>Demo Participations</b></em>' reference list.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 * @ordered
+	 */
+	int CLASS__DEMO_PARTICIPATIONS = PACKAGE_ELEMENT_FEATURE_COUNT + 7;
+
+	/**
 	 * The number of structural features of the '<em>Class</em>' class.
 	 * <!-- begin-user-doc --> <!-- end-user-doc -->
 	 * @generated
 	 * @ordered
 	 */
-	int CLASS_FEATURE_COUNT = PACKAGE_ELEMENT_FEATURE_COUNT + 7;
+	int CLASS_FEATURE_COUNT = PACKAGE_ELEMENT_FEATURE_COUNT + 8;
 
 	/**
 	 * The meta object id for the '{@link org.unicase.model.classes.impl.PackageImpl <em>Package</em>}' class. <!--
@@ -1059,12 +1068,48 @@ public interface ClassesPackage extends EPackage {
 	int METHOD__LABEL = ModelPackage.MODEL_ELEMENT_FEATURE_COUNT + 7;
 
 	/**
+	 * The feature id for the '<em><b>Stubbed</b></em>' attribute.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 * @ordered
+	 */
+	int METHOD__STUBBED = ModelPackage.MODEL_ELEMENT_FEATURE_COUNT + 8;
+
+	/**
+	 * The feature id for the '<em><b>Called Methods</b></em>' reference list.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 * @ordered
+	 */
+	int METHOD__CALLED_METHODS = ModelPackage.MODEL_ELEMENT_FEATURE_COUNT + 9;
+
+	/**
+	 * The feature id for the '<em><b>Calling Methods</b></em>' reference list.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 * @ordered
+	 */
+	int METHOD__CALLING_METHODS = ModelPackage.MODEL_ELEMENT_FEATURE_COUNT + 10;
+
+	/**
+	 * The feature id for the '<em><b>Demo Participations</b></em>' reference list.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 * @ordered
+	 */
+	int METHOD__DEMO_PARTICIPATIONS = ModelPackage.MODEL_ELEMENT_FEATURE_COUNT + 11;
+
+	/**
 	 * The number of structural features of the '<em>Method</em>' class.
 	 * <!-- begin-user-doc --> <!-- end-user-doc -->
 	 * @generated
 	 * @ordered
 	 */
-	int METHOD_FEATURE_COUNT = ModelPackage.MODEL_ELEMENT_FEATURE_COUNT + 8;
+	int METHOD_FEATURE_COUNT = ModelPackage.MODEL_ELEMENT_FEATURE_COUNT + 12;
 
 	/**
 	 * The meta object id for the '{@link org.unicase.model.classes.impl.MethodArgumentImpl <em>Method Argument</em>}' class.
@@ -1463,6 +1508,17 @@ public interface ClassesPackage extends EPackage {
 	EReference getClass_Methods();
 
 	/**
+	 * Returns the meta object for the reference list '{@link org.unicase.model.classes.Class#getDemoParticipations <em>Demo Participations</em>}'.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @return the meta object for the reference list '<em>Demo Participations</em>'.
+	 * @see org.unicase.model.classes.Class#getDemoParticipations()
+	 * @see #getClass_()
+	 * @generated
+	 */
+	EReference getClass_DemoParticipations();
+
+	/**
 	 * Returns the meta object for class ' {@link org.unicase.model.classes.Package <em>Package</em>}'. <!--
 	 * begin-user-doc --> <!-- end-user-doc -->
 	 * 
@@ -1799,6 +1855,50 @@ public interface ClassesPackage extends EPackage {
 	EAttribute getMethod_Label();
 
 	/**
+	 * Returns the meta object for the attribute '{@link org.unicase.model.classes.Method#isStubbed <em>Stubbed</em>}'.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @return the meta object for the attribute '<em>Stubbed</em>'.
+	 * @see org.unicase.model.classes.Method#isStubbed()
+	 * @see #getMethod()
+	 * @generated
+	 */
+	EAttribute getMethod_Stubbed();
+
+	/**
+	 * Returns the meta object for the reference list '{@link org.unicase.model.classes.Method#getCalledMethods <em>Called Methods</em>}'.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @return the meta object for the reference list '<em>Called Methods</em>'.
+	 * @see org.unicase.model.classes.Method#getCalledMethods()
+	 * @see #getMethod()
+	 * @generated
+	 */
+	EReference getMethod_CalledMethods();
+
+	/**
+	 * Returns the meta object for the reference list '{@link org.unicase.model.classes.Method#getCallingMethods <em>Calling Methods</em>}'.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @return the meta object for the reference list '<em>Calling Methods</em>'.
+	 * @see org.unicase.model.classes.Method#getCallingMethods()
+	 * @see #getMethod()
+	 * @generated
+	 */
+	EReference getMethod_CallingMethods();
+
+	/**
+	 * Returns the meta object for the reference list '{@link org.unicase.model.classes.Method#getDemoParticipations <em>Demo Participations</em>}'.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @return the meta object for the reference list '<em>Demo Participations</em>'.
+	 * @see org.unicase.model.classes.Method#getDemoParticipations()
+	 * @see #getMethod()
+	 * @generated
+	 */
+	EReference getMethod_DemoParticipations();
+
+	/**
 	 * Returns the meta object for class '{@link org.unicase.model.classes.MethodArgument <em>Method Argument</em>}'.
 	 * <!-- begin-user-doc --> <!-- end-user-doc -->
 	 * @return the meta object for class '<em>Method Argument</em>'.
@@ -2002,6 +2102,13 @@ public interface ClassesPackage extends EPackage {
 		 * @generated
 		 */
 		EReference CLASS__METHODS = eINSTANCE.getClass_Methods();
+		/**
+		 * The meta object literal for the '<em><b>Demo Participations</b></em>' reference list feature.
+		 * <!-- begin-user-doc -->
+		 * <!-- end-user-doc -->
+		 * @generated
+		 */
+		EReference CLASS__DEMO_PARTICIPATIONS = eINSTANCE.getClass_DemoParticipations();
 		/**
 		 * The meta object literal for the '{@link org.unicase.model.classes.impl.PackageImpl <em>Package</em>}' class.
 		 * <!-- begin-user-doc --> <!-- end-user-doc -->
@@ -2237,6 +2344,34 @@ public interface ClassesPackage extends EPackage {
 		 * @generated
 		 */
 		EAttribute METHOD__LABEL = eINSTANCE.getMethod_Label();
+		/**
+		 * The meta object literal for the '<em><b>Stubbed</b></em>' attribute feature.
+		 * <!-- begin-user-doc -->
+		 * <!-- end-user-doc -->
+		 * @generated
+		 */
+		EAttribute METHOD__STUBBED = eINSTANCE.getMethod_Stubbed();
+		/**
+		 * The meta object literal for the '<em><b>Called Methods</b></em>' reference list feature.
+		 * <!-- begin-user-doc -->
+		 * <!-- end-user-doc -->
+		 * @generated
+		 */
+		EReference METHOD__CALLED_METHODS = eINSTANCE.getMethod_CalledMethods();
+		/**
+		 * The meta object literal for the '<em><b>Calling Methods</b></em>' reference list feature.
+		 * <!-- begin-user-doc -->
+		 * <!-- end-user-doc -->
+		 * @generated
+		 */
+		EReference METHOD__CALLING_METHODS = eINSTANCE.getMethod_CallingMethods();
+		/**
+		 * The meta object literal for the '<em><b>Demo Participations</b></em>' reference list feature.
+		 * <!-- begin-user-doc -->
+		 * <!-- end-user-doc -->
+		 * @generated
+		 */
+		EReference METHOD__DEMO_PARTICIPATIONS = eINSTANCE.getMethod_DemoParticipations();
 		/**
 		 * The meta object literal for the '{@link org.unicase.model.classes.impl.MethodArgumentImpl <em>Method Argument</em>}' class.
 		 * <!-- begin-user-doc --> <!-- end-user-doc -->

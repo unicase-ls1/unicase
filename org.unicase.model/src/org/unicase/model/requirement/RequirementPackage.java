@@ -762,12 +762,30 @@ public interface RequirementPackage extends EPackage {
 	int SCENARIO__NON_FUNCTIONAL_REQUIREMENTS = ModelPackage.MODEL_ELEMENT_FEATURE_COUNT + 5;
 
 	/**
+	 * The feature id for the '<em><b>Participating Methods</b></em>' reference list.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 * @ordered
+	 */
+	int SCENARIO__PARTICIPATING_METHODS = ModelPackage.MODEL_ELEMENT_FEATURE_COUNT + 6;
+
+	/**
+	 * The feature id for the '<em><b>Participating Classes</b></em>' reference list.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 * @ordered
+	 */
+	int SCENARIO__PARTICIPATING_CLASSES = ModelPackage.MODEL_ELEMENT_FEATURE_COUNT + 7;
+
+	/**
 	 * The number of structural features of the '<em>Scenario</em>' class.
 	 * <!-- begin-user-doc --> <!-- end-user-doc -->
 	 * @generated
 	 * @ordered
 	 */
-	int SCENARIO_FEATURE_COUNT = ModelPackage.MODEL_ELEMENT_FEATURE_COUNT + 6;
+	int SCENARIO_FEATURE_COUNT = ModelPackage.MODEL_ELEMENT_FEATURE_COUNT + 8;
 
 	/**
 	 * The meta object id for the '{@link org.unicase.model.requirement.impl.ActorImpl <em>Actor</em>}' class. <!--
@@ -1850,6 +1868,28 @@ public interface RequirementPackage extends EPackage {
 	EReference getScenario_NonFunctionalRequirements();
 
 	/**
+	 * Returns the meta object for the reference list '{@link org.unicase.model.requirement.Scenario#getParticipatingMethods <em>Participating Methods</em>}'.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @return the meta object for the reference list '<em>Participating Methods</em>'.
+	 * @see org.unicase.model.requirement.Scenario#getParticipatingMethods()
+	 * @see #getScenario()
+	 * @generated
+	 */
+	EReference getScenario_ParticipatingMethods();
+
+	/**
+	 * Returns the meta object for the reference list '{@link org.unicase.model.requirement.Scenario#getParticipatingClasses <em>Participating Classes</em>}'.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @return the meta object for the reference list '<em>Participating Classes</em>'.
+	 * @see org.unicase.model.requirement.Scenario#getParticipatingClasses()
+	 * @see #getScenario()
+	 * @generated
+	 */
+	EReference getScenario_ParticipatingClasses();
+
+	/**
 	 * Returns the meta object for class ' {@link org.unicase.model.requirement.Actor <em>Actor</em>}'. <!--
 	 * begin-user-doc --> <!-- end-user-doc -->
 	 * 
@@ -2361,6 +2401,20 @@ public interface RequirementPackage extends EPackage {
 		 * @generated
 		 */
 		EReference SCENARIO__NON_FUNCTIONAL_REQUIREMENTS = eINSTANCE.getScenario_NonFunctionalRequirements();
+		/**
+		 * The meta object literal for the '<em><b>Participating Methods</b></em>' reference list feature.
+		 * <!-- begin-user-doc -->
+		 * <!-- end-user-doc -->
+		 * @generated
+		 */
+		EReference SCENARIO__PARTICIPATING_METHODS = eINSTANCE.getScenario_ParticipatingMethods();
+		/**
+		 * The meta object literal for the '<em><b>Participating Classes</b></em>' reference list feature.
+		 * <!-- begin-user-doc -->
+		 * <!-- end-user-doc -->
+		 * @generated
+		 */
+		EReference SCENARIO__PARTICIPATING_CLASSES = eINSTANCE.getScenario_ParticipatingClasses();
 		/**
 		 * The meta object literal for the '{@link org.unicase.model.requirement.impl.ActorImpl <em>Actor</em>}' class.
 		 * <!-- begin-user-doc --> <!-- end-user-doc -->

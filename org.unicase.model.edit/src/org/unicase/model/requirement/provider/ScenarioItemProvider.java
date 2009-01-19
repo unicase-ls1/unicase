@@ -57,6 +57,8 @@ public class ScenarioItemProvider extends ModelElementItemProvider implements IE
 			addInstantiatedUseCasesPropertyDescriptor(object);
 			addFunctionalRequirementsPropertyDescriptor(object);
 			addNonFunctionalRequirementsPropertyDescriptor(object);
+			addParticipatingMethodsPropertyDescriptor(object);
+			addParticipatingClassesPropertyDescriptor(object);
 		}
 		return itemPropertyDescriptors;
 	}
@@ -131,6 +133,34 @@ public class ScenarioItemProvider extends ModelElementItemProvider implements IE
 				"_UI_PropertyDescriptor_description", "_UI_Scenario_nonFunctionalRequirements_feature",
 				"_UI_Scenario_type"), RequirementPackage.Literals.SCENARIO__NON_FUNCTIONAL_REQUIREMENTS, true, false,
 			true, null, null, null));
+	}
+
+	/**
+	 * This adds a property descriptor for the Participating Methods feature.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 */
+	protected void addParticipatingMethodsPropertyDescriptor(Object object) {
+		itemPropertyDescriptors.add(createItemPropertyDescriptor(((ComposeableAdapterFactory) adapterFactory)
+			.getRootAdapterFactory(), getResourceLocator(), getString("_UI_Scenario_participatingMethods_feature"),
+			getString("_UI_PropertyDescriptor_description", "_UI_Scenario_participatingMethods_feature",
+				"_UI_Scenario_type"), RequirementPackage.Literals.SCENARIO__PARTICIPATING_METHODS, true, false, true,
+			null, null, null));
+	}
+
+	/**
+	 * This adds a property descriptor for the Participating Classes feature.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 */
+	protected void addParticipatingClassesPropertyDescriptor(Object object) {
+		itemPropertyDescriptors.add(createItemPropertyDescriptor(((ComposeableAdapterFactory) adapterFactory)
+			.getRootAdapterFactory(), getResourceLocator(), getString("_UI_Scenario_participatingClasses_feature"),
+			getString("_UI_PropertyDescriptor_description", "_UI_Scenario_participatingClasses_feature",
+				"_UI_Scenario_type"), RequirementPackage.Literals.SCENARIO__PARTICIPATING_CLASSES, true, false, true,
+			null, null, null));
 	}
 
 	/**

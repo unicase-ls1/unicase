@@ -16,6 +16,8 @@ import org.eclipse.emf.ecore.impl.ENotificationImpl;
 import org.eclipse.emf.ecore.util.EObjectContainmentEList;
 import org.eclipse.emf.ecore.util.EObjectWithInverseResolvingEList;
 import org.eclipse.emf.ecore.util.InternalEList;
+import org.unicase.model.classes.ClassesPackage;
+import org.unicase.model.classes.Method;
 import org.unicase.model.impl.ModelElementImpl;
 import org.unicase.model.requirement.ActorInstance;
 import org.unicase.model.requirement.FunctionalRequirement;
@@ -90,6 +92,25 @@ public class ScenarioImpl extends ModelElementImpl implements Scenario {
 	 * @ordered
 	 */
 	protected EList<NonFunctionalRequirement> nonFunctionalRequirements;
+
+	/**
+	 * The cached value of the '{@link #getParticipatingMethods() <em>Participating Methods</em>}' reference list.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @see #getParticipatingMethods()
+	 * @generated
+	 * @ordered
+	 */
+	protected EList<Method> participatingMethods;
+	/**
+	 * The cached value of the '{@link #getParticipatingClasses() <em>Participating Classes</em>}' reference list.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @see #getParticipatingClasses()
+	 * @generated
+	 * @ordered
+	 */
+	protected EList<org.unicase.model.classes.Class> participatingClasses;
 
 	/**
 	 * <!-- begin-user-doc --> <!-- end-user-doc -->
@@ -239,6 +260,33 @@ public class ScenarioImpl extends ModelElementImpl implements Scenario {
 	}
 
 	/**
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 */
+	public EList<Method> getParticipatingMethods() {
+		if (participatingMethods == null) {
+			participatingMethods = new EObjectWithInverseResolvingEList.ManyInverse<Method>(Method.class, this,
+				RequirementPackage.SCENARIO__PARTICIPATING_METHODS, ClassesPackage.METHOD__DEMO_PARTICIPATIONS);
+		}
+		return participatingMethods;
+	}
+
+	/**
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 */
+	public EList<org.unicase.model.classes.Class> getParticipatingClasses() {
+		if (participatingClasses == null) {
+			participatingClasses = new EObjectWithInverseResolvingEList.ManyInverse<org.unicase.model.classes.Class>(
+				org.unicase.model.classes.Class.class, this, RequirementPackage.SCENARIO__PARTICIPATING_CLASSES,
+				ClassesPackage.CLASS__DEMO_PARTICIPATIONS);
+		}
+		return participatingClasses;
+	}
+
+	/**
 	 * <!-- begin-user-doc --> <!-- end-user-doc -->
 	 * @generated
 	 */
@@ -263,6 +311,12 @@ public class ScenarioImpl extends ModelElementImpl implements Scenario {
 		case RequirementPackage.SCENARIO__NON_FUNCTIONAL_REQUIREMENTS:
 			return ((InternalEList<InternalEObject>) (InternalEList<?>) getNonFunctionalRequirements()).basicAdd(
 				otherEnd, msgs);
+		case RequirementPackage.SCENARIO__PARTICIPATING_METHODS:
+			return ((InternalEList<InternalEObject>) (InternalEList<?>) getParticipatingMethods()).basicAdd(otherEnd,
+				msgs);
+		case RequirementPackage.SCENARIO__PARTICIPATING_CLASSES:
+			return ((InternalEList<InternalEObject>) (InternalEList<?>) getParticipatingClasses()).basicAdd(otherEnd,
+				msgs);
 		}
 		return super.eInverseAdd(otherEnd, featureID, msgs);
 	}
@@ -286,6 +340,10 @@ public class ScenarioImpl extends ModelElementImpl implements Scenario {
 			return ((InternalEList<?>) getFunctionalRequirements()).basicRemove(otherEnd, msgs);
 		case RequirementPackage.SCENARIO__NON_FUNCTIONAL_REQUIREMENTS:
 			return ((InternalEList<?>) getNonFunctionalRequirements()).basicRemove(otherEnd, msgs);
+		case RequirementPackage.SCENARIO__PARTICIPATING_METHODS:
+			return ((InternalEList<?>) getParticipatingMethods()).basicRemove(otherEnd, msgs);
+		case RequirementPackage.SCENARIO__PARTICIPATING_CLASSES:
+			return ((InternalEList<?>) getParticipatingClasses()).basicRemove(otherEnd, msgs);
 		}
 		return super.eInverseRemove(otherEnd, featureID, msgs);
 	}
@@ -311,6 +369,10 @@ public class ScenarioImpl extends ModelElementImpl implements Scenario {
 			return getFunctionalRequirements();
 		case RequirementPackage.SCENARIO__NON_FUNCTIONAL_REQUIREMENTS:
 			return getNonFunctionalRequirements();
+		case RequirementPackage.SCENARIO__PARTICIPATING_METHODS:
+			return getParticipatingMethods();
+		case RequirementPackage.SCENARIO__PARTICIPATING_CLASSES:
+			return getParticipatingClasses();
 		}
 		return super.eGet(featureID, resolve, coreType);
 	}
@@ -346,6 +408,14 @@ public class ScenarioImpl extends ModelElementImpl implements Scenario {
 			getNonFunctionalRequirements().clear();
 			getNonFunctionalRequirements().addAll((Collection<? extends NonFunctionalRequirement>) newValue);
 			return;
+		case RequirementPackage.SCENARIO__PARTICIPATING_METHODS:
+			getParticipatingMethods().clear();
+			getParticipatingMethods().addAll((Collection<? extends Method>) newValue);
+			return;
+		case RequirementPackage.SCENARIO__PARTICIPATING_CLASSES:
+			getParticipatingClasses().clear();
+			getParticipatingClasses().addAll((Collection<? extends org.unicase.model.classes.Class>) newValue);
+			return;
 		}
 		super.eSet(featureID, newValue);
 	}
@@ -375,6 +445,12 @@ public class ScenarioImpl extends ModelElementImpl implements Scenario {
 		case RequirementPackage.SCENARIO__NON_FUNCTIONAL_REQUIREMENTS:
 			getNonFunctionalRequirements().clear();
 			return;
+		case RequirementPackage.SCENARIO__PARTICIPATING_METHODS:
+			getParticipatingMethods().clear();
+			return;
+		case RequirementPackage.SCENARIO__PARTICIPATING_CLASSES:
+			getParticipatingClasses().clear();
+			return;
 		}
 		super.eUnset(featureID);
 	}
@@ -398,6 +474,10 @@ public class ScenarioImpl extends ModelElementImpl implements Scenario {
 			return functionalRequirements != null && !functionalRequirements.isEmpty();
 		case RequirementPackage.SCENARIO__NON_FUNCTIONAL_REQUIREMENTS:
 			return nonFunctionalRequirements != null && !nonFunctionalRequirements.isEmpty();
+		case RequirementPackage.SCENARIO__PARTICIPATING_METHODS:
+			return participatingMethods != null && !participatingMethods.isEmpty();
+		case RequirementPackage.SCENARIO__PARTICIPATING_CLASSES:
+			return participatingClasses != null && !participatingClasses.isEmpty();
 		}
 		return super.eIsSet(featureID);
 	}
