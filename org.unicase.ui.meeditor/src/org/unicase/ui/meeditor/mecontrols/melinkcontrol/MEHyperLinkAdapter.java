@@ -12,7 +12,7 @@ import org.eclipse.ui.forms.events.HyperlinkAdapter;
 import org.eclipse.ui.forms.events.HyperlinkEvent;
 import org.eclipse.ui.forms.events.IHyperlinkListener;
 import org.unicase.model.ModelElement;
-import org.unicase.ui.meeditor.MEEditorInput;
+import org.unicase.ui.common.MEEditorInput;
 
 /**
  * A {@link HyperlinkAdapter} to the model elements.

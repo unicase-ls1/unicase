@@ -25,6 +25,7 @@ import org.eclipse.ui.PartInitException;
 import org.eclipse.ui.forms.editor.SharedHeaderFormEditor;
 import org.unicase.model.ModelElement;
 import org.unicase.model.provider.ModelItemProviderAdapterFactory;
+import org.unicase.ui.common.MEEditorInput;
 
 /**
  * GUI view for editing MEs.
