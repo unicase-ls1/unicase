@@ -286,8 +286,8 @@ public final class ActionHelper {
 	}
 
 	/**
-	 * . Extract the selected ModelElement in navigator or other StructuredViewer This will be called from Handler
-	 * classes, which pass the ExecutionEvent.
+	 * Extract the selected ModelElement in navigator or other StructuredViewer This will be called from Handler
+	 * classes, which pass the ExecutionEvent. _DO_ make sure your view has the focus before calling this method.
 	 * 
 	 * @param event ExecutionEvent to extract the selection from.
 	 * @return the selected EObject or null.
