@@ -66,6 +66,8 @@ public class EmfStoreController implements IApplication {
 	private static EmfStoreController instance;
 	private VersionInfo versionInfo;
 
+	private HistoryCache historyCache;
+
 	/**
 	 * {@inheritDoc}
 	 * 
@@ -90,6 +92,8 @@ public class EmfStoreController implements IApplication {
 
 		performNecessaryUpdates();
 
+		historyCache = initHistoryCache();
+
 		accessControl = initAccessControl(serverSpace);
 		emfStore = new EmfStoreImpl(serverSpace, accessControl);
 		adminEmfStore = new AdminEmfStoreImpl(serverSpace, accessControl);
@@ -108,6 +112,12 @@ public class EmfStoreController implements IApplication {
 		instance = null;
 		logger.info("Server is STOPPED.");
 		return IApplication.EXIT_OK;
+	}
+
+	private HistoryCache initHistoryCache() {
+		HistoryCache cache = new HistoryCache();
+		cache.initCache(serverSpace.getProjects());
+		return cache;
 	}
 
 	private Set<ConnectionHandler<? extends EmfStoreInterface>> initConnectionHandlers() throws FatalEmfStoreException,
@@ -178,6 +188,15 @@ public class EmfStoreController implements IApplication {
 		}
 
 		return versionInformation;
+	}
+
+	/**
+	 * Returns the history cache.
+	 * 
+	 * @return the history cache.
+	 */
+	public HistoryCache getHistoryCache() {
+		return historyCache;
 	}
 
 	private ServerSpace initServerSpace() throws FatalEmfStoreException {
