@@ -1,8 +1,7 @@
 /**
- * <copyright> Copyright (c) 2008 Jonas Helming, Maximilian Koegel. All rights reserved. This program and the accompanying materials are made available under the terms of the Eclipse Public License v1.0 which accompanies this distribution, and is available at http://www.eclipse.org/legal/epl-v10.html
- * </copyright>
- *
- * $Id$
+ * <copyright> Copyright (c) 2008 Jonas Helming, Maximilian Koegel. All rights reserved. This program and the
+ * accompanying materials are made available under the terms of the Eclipse Public License v1.0 which accompanies this
+ * distribution, and is available at http://www.eclipse.org/legal/epl-v10.html </copyright> $Id$
  */
 package org.unicase.emfstore;
 
@@ -17,7 +16,6 @@ import org.osgi.framework.Bundle;
  * 
  * @author koegel
  * @author wesendonk
- * 
  */
 public final class ServerConfiguration {
 
@@ -62,23 +60,19 @@ public final class ServerConfiguration {
 	public static final String SSL_PASSWORD_DEFAULT = "av374tb$VBGGtrgwa7tosdfa";
 
 	/**
-	 * Property for projectstate persistence policy in versions. Possible values
-	 * are <b>lastVersionOnly</b> and <b>everyVersion</b>. If you don't have
-	 * every project state the server has to recalulate certain revisions if
-	 * requested. On the other side saving every project state is quite
-	 * redundant.
+	 * Property for projectstate persistence policy in versions. Possible values are <b>lastVersionOnly</b> and
+	 * <b>everyVersion</b>. If you don't have every project state the server has to recalulate certain revisions if
+	 * requested. On the other side saving every project state is quite redundant.
 	 */
 	public static final String PROJECTSTATE_VERSION_PERSISTENCE = "emfstore.persistence.version.projectstate";
 
 	/**
-	 * Only the project state from the first and last version is stored, the
-	 * other states are calculated by the changes.
+	 * Only the project state from the first and last version is stored, the other states are calculated by the changes.
 	 */
 	public static final String PROJECTSTATE_VERSION_PERSISTENCE_FIRSTANDLASTVERSIONONLY = "firstAndLastVersionOnly";
 
 	/**
-	 * The projectstate of every x versions will be stored. This is used to save
-	 * memory. Use x=1 to save every version.
+	 * The projectstate of every x versions will be stored. This is used to save memory. Use x=1 to save every version.
 	 */
 	public static final String PROJECTSTATE_VERSION_PERSISTENCE_EVERYXVERSIONS = "everyXVersion";
 
@@ -98,8 +92,7 @@ public final class ServerConfiguration {
 	public static final String PROJECTSPACE_VERSION_PERSISTENCE_DEFAULT = PROJECTSTATE_VERSION_PERSISTENCE_EVERYXVERSIONS;
 
 	/**
-	 * Property for the count of versions, needed by the BACKUP everyXVersion
-	 * policy.
+	 * Property for the count of versions, needed by the BACKUP everyXVersion policy.
 	 */
 	public static final String PROJECTSTATE_VERSION_BACKUP_PERSISTENCE_EVERYXVERSIONS_X = "emfstore.persistence.version.backup.projectstate.everyxversions";
 
@@ -139,8 +132,7 @@ public final class ServerConfiguration {
 	public static final String SUPER_USER_PASSWORD_DEFAULT = "super";
 
 	/**
-	 * Property for authentication policy used by server. E.g. ldap or property
-	 * file.
+	 * Property for authentication policy used by server. E.g. ldap or property file.
 	 */
 	public static final String AUTHENTICATION_POLICY = "emfstore.accesscontrol.authentication.policy";
 
@@ -150,10 +142,8 @@ public final class ServerConfiguration {
 	public static final String AUTHENTICATION_LDAP = "ldap";
 
 	/**
-	 * Beginng tag of every ldap property. Format for ldap configuration is
-	 * {@link #AUTHENTICATION_LDAP_PREFIX}.[numberOfLdapConfiguration].{
-	 * {@link #AUTHENTICATION_LDAP_URL}/
-	 * {@link #AUTHENTICATION_LDAP_BASE_DEFAULT}/
+	 * Beginng tag of every ldap property. Format for ldap configuration is {@link #AUTHENTICATION_LDAP_PREFIX}
+	 * .[numberOfLdapConfiguration].{ {@link #AUTHENTICATION_LDAP_URL}/ {@link #AUTHENTICATION_LDAP_BASE_DEFAULT}/
 	 * {@link #AUTHENTICATION_LDAP_SEARCHDN} .
 	 */
 	public static final String AUTHENTICATION_LDAP_PREFIX = "emfstore.accesscontrol.authentication.ldap";
@@ -191,8 +181,7 @@ public final class ServerConfiguration {
 	/**
 	 * Default filepath for spfv authentication.
 	 */
-	public static final String AUTHENTICATION_SPFV_FILEPATH_DEFAULT = getConfDirectory()
-			+ "user.properties";
+	public static final String AUTHENTICATION_SPFV_FILEPATH_DEFAULT = getConfDirectory() + "user.properties";
 
 	/**
 	 * Property to validate server on start up.
@@ -200,8 +189,8 @@ public final class ServerConfiguration {
 	public static final String VALIDATE_SERVERSPACE_ON_SERVERSTART = "emfstore.validateOnLoad";
 
 	/**
-	 * Property name of accepted client versions. Enter the version's names or
-	 * any, seperate multiple entries with {@link #MULTI_PROPERTY_SEPERATOR}.
+	 * Property name of accepted client versions. Enter the version's names or any, seperate multiple entries with
+	 * {@link #MULTI_PROPERTY_SEPERATOR}.
 	 */
 	public static final String ACCEPTED_VERSIONS = "emfstore.acceptedversions";
 
@@ -238,6 +227,11 @@ public final class ServerConfiguration {
 	 * File extension for main file: unicase project state.
 	 */
 	public static final String FILE_EXTENSION_PROJECTSTATE = ".ups";
+
+	/**
+	 * File extension for main file: unicase change package.
+	 */
+	public static final String FILE_EXTENSION_CHANGEPACKAGE = ".ucp";
 
 	private static Properties properties;
 
@@ -316,8 +310,7 @@ public final class ServerConfiguration {
 	/**
 	 * Sets the server's properties.
 	 * 
-	 * @param prop
-	 *            properties
+	 * @param prop properties
 	 */
 	public static void setProperties(Properties prop) {
 		properties = prop;
@@ -340,8 +333,8 @@ public final class ServerConfiguration {
 	public static String getServerVersion() {
 
 		Bundle emfStoreBundle = Platform.getBundle("org.unicase.emfstore");
-		String emfStoreVersionString = (String) emfStoreBundle.getHeaders()
-				.get(org.osgi.framework.Constants.BUNDLE_VERSION);
+		String emfStoreVersionString = (String) emfStoreBundle.getHeaders().get(
+			org.osgi.framework.Constants.BUNDLE_VERSION);
 		return emfStoreVersionString;
 	}
 
@@ -353,9 +346,10 @@ public final class ServerConfiguration {
 	public static boolean isReleaseVersion() {
 		return !getServerVersion().endsWith("qualifier") && !isInternalReleaseVersion();
 	}
-	
+
 	/**
 	 * Determines if this is an internal release or not.
+	 * 
 	 * @return true if it an internal release
 	 */
 	public static boolean isInternalReleaseVersion() {
