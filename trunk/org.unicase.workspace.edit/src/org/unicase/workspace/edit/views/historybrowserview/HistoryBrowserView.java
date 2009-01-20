@@ -25,6 +25,7 @@ import org.unicase.emfstore.esmodel.versioning.TagVersionSpec;
 import org.unicase.emfstore.esmodel.versioning.VersionSpec;
 import org.unicase.emfstore.esmodel.versioning.VersioningFactory;
 import org.unicase.emfstore.exceptions.EmfStoreException;
+import org.unicase.model.ModelElement;
 import org.unicase.ui.common.exceptions.DialogHandler;
 import org.unicase.workspace.ProjectSpace;
 import org.unicase.workspace.WorkspaceManager;
@@ -54,6 +55,8 @@ public class HistoryBrowserView extends AbstractSCMView {
 
 	private int headVersion;
 
+	private ModelElement modelElement;
+
 	/**
 	 * Constructor.
 	 */
@@ -79,7 +82,7 @@ public class HistoryBrowserView extends AbstractSCMView {
 		}
 		try {
 			List<HistoryInfo> historyInfo = activeProjectSpace.getUsersession().getHistoryInfo(
-				activeProjectSpace.getProjectId(), getQuery(activeProjectSpace, end));
+				activeProjectSpace.getProjectId(), getQuery(end));
 			if (historyInfo != null) {
 				for (HistoryInfo hi : historyInfo) {
 					if (hi.getPrimerySpec().equals(activeProjectSpace.getBaseVersion())) {
@@ -116,7 +119,7 @@ public class HistoryBrowserView extends AbstractSCMView {
 		headVersion = identifier;
 	}
 
-	private HistoryQuery getQuery(ProjectSpace activeProjectSpace, int end) throws EmfStoreException {
+	private HistoryQuery getQuery(int end) throws EmfStoreException {
 		HistoryQuery query = VersioningFactory.eINSTANCE.createHistoryQuery();
 
 		getHeadVersionIdentifier();
@@ -145,6 +148,9 @@ public class HistoryBrowserView extends AbstractSCMView {
 		target.setIdentifier(end);
 		query.setSource(source);
 		query.setTarget(target);
+		if (modelElement != null) {
+			query.getModelElements().add(modelElement.getModelElementId());
+		}
 
 		return query;
 	}
@@ -307,7 +313,18 @@ public class HistoryBrowserView extends AbstractSCMView {
 	 * @param projectSpace the input project space
 	 */
 	public void setInput(ProjectSpace projectSpace) {
+		setInput(projectSpace, null);
+	}
+
+	/**
+	 * Set the input for the History Browser.
+	 * 
+	 * @param projectSpace the input project space
+	 * @param me the input model element
+	 */
+	public void setInput(ProjectSpace projectSpace, ModelElement me) {
 		activeProjectSpace = projectSpace;
+		modelElement = me;
 		currentEnd = -1;
 		refresh();
 	}

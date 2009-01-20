@@ -275,13 +275,13 @@ public class EmfStoreImpl implements EmfStore {
 		}
 		authorizationControl.checkReadAccess(sessionId, projectId, null);
 		if (historyQuery.getModelElements().size() > 0) {
+			return getHistoryInfo(projectId, historyQuery.getModelElements());
+		} else {
 			List<HistoryInfo> result = getHistoryInfo(projectId, historyQuery.getSource(), historyQuery.getTarget());
 			if (historyQuery.getSource().compareTo(historyQuery.getTarget()) < 0) {
 				Collections.reverse(result);
 			}
 			return result;
-		} else {
-			return getHistoryInfo(projectId, historyQuery.getModelElements());
 		}
 	}
 
