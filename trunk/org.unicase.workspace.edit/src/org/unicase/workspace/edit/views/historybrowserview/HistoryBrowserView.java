@@ -277,23 +277,6 @@ public class HistoryBrowserView extends AbstractSCMView {
 		historyComposite.updateTable();
 		progressDialog.getProgressMonitor().done();
 		progressDialog.close();
-		// lblCriteria.setText(queryComposite.getQuery().getDescription());
-
-		// ************************************************
-		// //these were just used to show different dialogs.
-		// //because i did not know how should the dialogs be shown.
-		// CommitDialog commitDialog = new CommitDialog(parent.getShell());
-		// commitDialog.create();
-		// commitDialog.open();
-
-		// UpdateDialog updateDialog = new UpdateDialog(parent.getShell());
-		// updateDialog.create();
-		// updateDialog.open();
-
-		// MergeDialog mergeDialog = new MergeDialog(parent.getShell());
-		// mergeDialog.create();
-		// mergeDialog.open();
-		// ************************************************
 	}
 
 	/**
@@ -326,6 +309,13 @@ public class HistoryBrowserView extends AbstractSCMView {
 		activeProjectSpace = projectSpace;
 		modelElement = me;
 		currentEnd = -1;
+		String label = "History for ";
+		if (me != null) {
+			label += me.getName();
+		} else {
+			label += projectSpace.getProjectName();
+		}
+		getBrowserTab().setText(label);
 		refresh();
 	}
 
