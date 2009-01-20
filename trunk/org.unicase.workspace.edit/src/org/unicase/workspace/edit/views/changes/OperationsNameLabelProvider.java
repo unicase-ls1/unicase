@@ -1,8 +1,7 @@
 /**
- * <copyright> Copyright (c) 2008 Jonas Helming, Maximilian Koegel. All rights reserved. This program and the accompanying materials are made available under the terms of the Eclipse Public License v1.0 which accompanies this distribution, and is available at http://www.eclipse.org/legal/epl-v10.html
- * </copyright>
- *
- * $Id$
+ * <copyright> Copyright (c) 2008 Jonas Helming, Maximilian Koegel. All rights reserved. This program and the
+ * accompanying materials are made available under the terms of the Eclipse Public License v1.0 which accompanies this
+ * distribution, and is available at http://www.eclipse.org/legal/epl-v10.html </copyright> $Id$
  */
 package org.unicase.workspace.edit.views.changes;
 
@@ -20,16 +19,16 @@ import org.unicase.ui.common.decorators.OverlayImageDescriptor;
  * Label provider for the operation column in the viewer.
  * 
  * @author Shterev
- * 
  */
-public class OperationsNameLabelProvider extends
-		ColumnLabelProvider {
+// FIXME AS: Integrate both operation label providers since the name provider is obsolete.
+public class OperationsNameLabelProvider extends ColumnLabelProvider {
 	private final ILabelProvider emfProvider;
 	private ChangePackageVisualizationHelper visualizationHelper;
 	private OperationColorLabelProvider opBackgroundLabelProvider;
 
 	/**
 	 * Default constructor.
+	 * 
 	 * @param emfProvider the default label provider.
 	 * @param visualizationHelper the visualizationHelper
 	 */
@@ -40,11 +39,13 @@ public class OperationsNameLabelProvider extends
 
 	/**
 	 * Default constructor.
+	 * 
 	 * @param emfProvider the default label provider.
 	 * @param visualizationHelper the visualizationHelper
 	 * @param opBackgroundLabelProvider the visualizationHelper
 	 */
-	public OperationsNameLabelProvider(ILabelProvider emfProvider, ChangePackageVisualizationHelper visualizationHelper, OperationColorLabelProvider opBackgroundLabelProvider) {
+	public OperationsNameLabelProvider(ILabelProvider emfProvider,
+		ChangePackageVisualizationHelper visualizationHelper, OperationColorLabelProvider opBackgroundLabelProvider) {
 		this(emfProvider, visualizationHelper);
 		this.opBackgroundLabelProvider = opBackgroundLabelProvider;
 	}
@@ -57,30 +58,29 @@ public class OperationsNameLabelProvider extends
 		Object element = cell.getElement();
 		if (element instanceof AbstractOperation) {
 			AbstractOperation op = (AbstractOperation) element;
-			cell.setText(op.getName());
+			cell.setText(op.getDescription());
 			Image image = visualizationHelper.getImage(emfProvider, op);
-			ImageDescriptor overlay = visualizationHelper
-					.getOverlayImage(op);
+			ImageDescriptor overlay = visualizationHelper.getOverlayImage(op);
 			if (image != null && overlay != null) {
-				OverlayImageDescriptor imageDescriptor = new OverlayImageDescriptor(
-						image, overlay, OverlayImageDescriptor.LOWER_RIGHT);
+				OverlayImageDescriptor imageDescriptor = new OverlayImageDescriptor(image, overlay,
+					OverlayImageDescriptor.LOWER_RIGHT);
 				cell.setImage(imageDescriptor.createImage());
 			}
-			if(opBackgroundLabelProvider!=null){
+			if (opBackgroundLabelProvider != null) {
 				cell.setForeground(opBackgroundLabelProvider.getColor(op));
 			}
 		} else if (element instanceof ChangePackage) {
 			ChangePackage cPackage = (ChangePackage) element;
 			LogMessage logMessage = cPackage.getLogMessage();
-			if(logMessage!=null){
+			if (logMessage != null) {
 				StringBuffer log = new StringBuffer();
 				log.append("Log message: ");
 				log.append(" \'");
 				log.append(logMessage.getMessage());
 				log.append("\' ");
 				cell.setText(log.toString());
-			}else{
-				cell.setText(""); //No log message in case of commit change tree
+			} else {
+				cell.setText(""); // No log message in case of commit change tree
 			}
 		}
 
@@ -96,6 +96,6 @@ public class OperationsNameLabelProvider extends
 			String desc = operation.getDescription();
 			return (desc != null ? desc : "No description");
 		}
-		return "";
+		return "Change package";
 	}
 }
