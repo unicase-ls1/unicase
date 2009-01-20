@@ -388,18 +388,22 @@ public class HistoryComposite extends Composite implements ISelectionChangedList
 		Object element = selection.getFirstElement();
 		Project project = WorkspaceManager.getInstance().getCurrentWorkspace().getActiveProjectSpace().getProject();
 		ModelElement me = null;
+		String message = "The element you are trying to open was deleted in a later revision.";
+		String title = "Deleted element";
 		if (element instanceof ModelElement) {
 			me = (ModelElement) element;
 		} else if (element instanceof AbstractOperation) {
 			AbstractOperation op = (AbstractOperation) element;
 			me = project.getModelElement(op.getModelElementId());
+			if (me == null) {
+				MessageDialog.openWarning(getShell(), title, message);
+			}
 		}
 		if (me != null) {
 			if (project.contains(me)) {
 				ActionHelper.openModelElement(me, parentView.getClass().getName());
 			} else {
-				MessageDialog.openWarning(getShell(), "Deleted element",
-					"The element you are trying to open was deleted in a later revision.");
+				MessageDialog.openWarning(getShell(), title, message);
 			}
 		}
 	}
