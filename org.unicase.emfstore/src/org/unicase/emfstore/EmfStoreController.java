@@ -5,9 +5,12 @@
  */
 package org.unicase.emfstore;
 
+import java.io.BufferedReader;
 import java.io.File;
 import java.io.FileInputStream;
 import java.io.IOException;
+import java.io.InputStream;
+import java.io.InputStreamReader;
 import java.lang.reflect.InvocationTargetException;
 import java.util.HashSet;
 import java.util.Properties;
@@ -80,9 +83,7 @@ public class EmfStoreController implements IApplication {
 		}
 		instance = this;
 
-		System.out.println("*------------------*");
-		System.out.println("| unicase EmfStore |");
-		System.out.println("*------------------*");
+		serverHeader();
 
 		initLogging();
 
@@ -422,6 +423,22 @@ public class EmfStoreController implements IApplication {
 
 	private synchronized void wakeForTermination() {
 		notify();
+	}
+
+	private void serverHeader() {
+		InputStream inputStream = getClass().getResourceAsStream("unicase.txt");
+		BufferedReader reader = new BufferedReader(new InputStreamReader(inputStream));
+		String line;
+		try {
+			while ((line = reader.readLine()) != null) {
+				System.out.println(line);
+			}
+		} catch (IOException e) {
+		}
+
+		System.out.println("*------------------*");
+		System.out.println("| unicase EmfStore |");
+		System.out.println("*------------------*");
 	}
 
 }

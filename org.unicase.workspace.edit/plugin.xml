@@ -204,6 +204,11 @@
            id="org.unicase.ui.common.validate"
            name="Validate">
      </command>
+     <command
+            defaultHandler="org.unicase.workspace.edit.commands.ShowHistoryHandler"
+            id="org.unicase.ui.stem.ShowHistory"
+            name="ShowHistory">
+      </command>
   </extension>
   <extension
         point="org.eclipse.ui.menus">
@@ -528,6 +533,28 @@
               visible="true">
         </separator>
      </menuContribution>
+     <menuContribution
+            locationURI="popup:org.unicase.ui.navigator.viewer?after=org.unicase.ui.stem.ShowInStatusView">
+         <command
+               commandId="org.unicase.ui.stem.ShowHistory"
+               icon="icons/historyview.png"
+               label="Show History"
+               style="push">
+            <visibleWhen
+                  checkEnabled="false">
+               <iterate
+                     ifEmpty="false">
+                  <reference
+                        definitionId="org.unicase.ui.common.commands.modelElement">
+                  </reference>
+               </iterate>
+            </visibleWhen>
+         </command>
+         <separator
+               name="org.unicase.ui.stem.ShowHistoryViewSeperator"
+               visible="true">
+         </separator>
+      </menuContribution>
   </extension>
   
      <extension

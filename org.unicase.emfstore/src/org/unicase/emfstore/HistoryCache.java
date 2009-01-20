@@ -53,7 +53,7 @@ public class HistoryCache {
 				historyCache.put(project.getProjectId(), initialHashMap);
 			}
 		}
-		printMap();
+		// printMap();
 	}
 
 	/**
