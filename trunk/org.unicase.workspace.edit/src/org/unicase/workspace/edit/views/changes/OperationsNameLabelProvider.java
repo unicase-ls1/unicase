@@ -20,7 +20,7 @@ import org.unicase.ui.common.decorators.OverlayImageDescriptor;
  * 
  * @author Shterev
  */
-// FIXME AS: Integrate both operation label providers since the name provider is obsolete.
+// FIXME AS: Integrate both operation label providers since the name provider is obsolete
 public class OperationsNameLabelProvider extends ColumnLabelProvider {
 	private final ILabelProvider emfProvider;
 	private ChangePackageVisualizationHelper visualizationHelper;
