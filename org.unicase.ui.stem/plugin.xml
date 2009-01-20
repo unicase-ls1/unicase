@@ -58,10 +58,6 @@
                </iterate>
             </visibleWhen>
          </command>
-         <separator
-               name="org.unicase.ui.stem.ShowInStautsViewSeperator"
-               visible="true">
-         </separator>
       </menuContribution>
    </extension>  
 
