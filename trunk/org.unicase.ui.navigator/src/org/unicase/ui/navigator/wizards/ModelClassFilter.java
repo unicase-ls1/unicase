@@ -31,7 +31,7 @@ public class ModelClassFilter extends ViewerFilter {
 		if (element instanceof EClass) {
 			return ((EClass) element).getName().toLowerCase().contains(searchTerm.toLowerCase());
 		} else if (element instanceof EPackage) {
-			EPackage ePackage = ((EPackage) element);
+			// EPackage ePackage = ((EPackage) element);
 		} else if (element instanceof MEDiagram) {
 			return ((MEDiagram) element).getName().toLowerCase().contains(searchTerm.toLowerCase());
 		}
