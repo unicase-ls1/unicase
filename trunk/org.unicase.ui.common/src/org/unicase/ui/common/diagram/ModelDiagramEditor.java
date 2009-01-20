@@ -24,11 +24,16 @@ import org.eclipse.gef.KeyStroke;
 import org.eclipse.gmf.runtime.diagram.ui.parts.DiagramDropTargetListener;
 import org.eclipse.gmf.runtime.diagram.ui.resources.editor.parts.DiagramDocumentEditor;
 import org.eclipse.jface.dialogs.ErrorDialog;
+import org.eclipse.jface.viewers.ISelection;
 import org.eclipse.swt.SWT;
 import org.eclipse.swt.dnd.Transfer;
 import org.eclipse.swt.dnd.TransferData;
 import org.eclipse.swt.widgets.Shell;
 import org.eclipse.ui.IEditorInput;
+import org.eclipse.ui.IWorkbench;
+import org.eclipse.ui.IWorkbenchPart;
+import org.eclipse.ui.IWorkbenchWindow;
+import org.eclipse.ui.PlatformUI;
 import org.unicase.model.ModelElement;
 import org.unicase.model.diagram.MEDiagram;
 import org.unicase.model.diagram.impl.DiagramStoreException;
@@ -155,6 +160,10 @@ public class ModelDiagramEditor extends DiagramDocumentEditor {
 	public void setInput(IEditorInput input) {
 		try {
 			doSetInput(input, true);
+			IWorkbench wb = PlatformUI.getWorkbench();
+			IWorkbenchWindow win = wb.getActiveWorkbenchWindow();
+			win.getSelectionService().addSelectionListener(this);
+
 		} catch (CoreException x) {
 			x.printStackTrace(System.err);
 			String title = x.getMessage();
@@ -162,6 +171,17 @@ public class ModelDiagramEditor extends DiagramDocumentEditor {
 			Shell shell = getSite().getShell();
 			ErrorDialog.openError(shell, title, msg, x.getStatus());
 		}
+	}
+
+	/**
+	 * . {@inheritDoc}
+	 */
+	@Override
+	public void selectionChanged(IWorkbenchPart part, ISelection selection) {
+		super.selectionChanged(part, selection);
+		IWorkbench wb = PlatformUI.getWorkbench();
+		IWorkbenchWindow win = wb.getActiveWorkbenchWindow();
+		win.getShell().setText("Java - Eclipse Platform");
 	}
 
 	/**
