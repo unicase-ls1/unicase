@@ -12,8 +12,6 @@ import org.eclipse.jface.action.Action;
 import org.eclipse.jface.action.MenuManager;
 import org.eclipse.jface.action.Separator;
 import org.eclipse.jface.viewers.DecoratingLabelProvider;
-import org.eclipse.jface.viewers.DoubleClickEvent;
-import org.eclipse.jface.viewers.IDoubleClickListener;
 import org.eclipse.jface.viewers.ISelectionChangedListener;
 import org.eclipse.jface.viewers.IStructuredSelection;
 import org.eclipse.jface.viewers.SelectionChangedEvent;
@@ -44,7 +42,7 @@ import org.unicase.workspace.WorkspaceManager;
 public class TreeView extends ViewPart { // implements IShowInSource
 
 	private static TreeViewer viewer;
-	private Action doubleClickAction, undoAction, redoAction;
+	private Action undoAction, redoAction;
 	private MenuManager menuMgr;
 
 	/**
@@ -77,7 +75,7 @@ public class TreeView extends ViewPart { // implements IShowInSource
 		control.setMenu(menu);
 
 		makeActions();
-		hookDoubleClickAction();
+		ActionHelper.createKeyHookDCAction(viewer, TreeView.class.getName());
 		addDragNDropSupport();
 		addSelectionListener();
 
@@ -166,26 +164,6 @@ public class TreeView extends ViewPart { // implements IShowInSource
 	public void setFocus() {
 		viewer.getControl().setFocus();
 		menuMgr.update();
-
-	}
-
-	private void hookDoubleClickAction() {
-
-		createDoubleClickAction();
-		viewer.addDoubleClickListener(new IDoubleClickListener() {
-			public void doubleClick(DoubleClickEvent event) {
-				doubleClickAction.run();
-			}
-		});
-	}
-
-	private void createDoubleClickAction() {
-		doubleClickAction = new Action() {
-			@Override
-			public void run() {
-				ActionHelper.openModelElement(ActionHelper.getSelectedModelElement(), TreeView.class.getName());
-			}
-		};
 
 	}
 
