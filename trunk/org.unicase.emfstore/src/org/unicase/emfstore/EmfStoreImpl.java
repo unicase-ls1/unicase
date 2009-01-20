@@ -327,6 +327,13 @@ public class EmfStoreImpl implements EmfStore {
 		authorizationControl.checkProjectAdminAccess(sessionId, projectId);
 		Version version = getVersion(projectId, versionSpec);
 		version.getTagSpecs().remove(tag);
+
+		Iterator<TagVersionSpec> iterator = version.getTagSpecs().iterator();
+		while (iterator.hasNext()) {
+			if (iterator.next().getName().equals(tag.getName())) {
+				iterator.remove();
+			}
+		}
 		try {
 			save(version);
 		} catch (FatalEmfStoreException e) {
