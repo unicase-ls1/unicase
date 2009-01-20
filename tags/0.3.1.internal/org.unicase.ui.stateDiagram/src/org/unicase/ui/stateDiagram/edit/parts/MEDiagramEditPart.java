@@ -1,5 +1,6 @@
 package org.unicase.ui.stateDiagram.edit.parts;
 
+import org.eclipse.gmf.runtime.diagram.ui.editparts.DiagramEditPart;
 import org.eclipse.gmf.runtime.diagram.ui.editpolicies.EditPolicyRoles;
 import org.eclipse.gmf.runtime.notation.View;
 
@@ -9,13 +10,13 @@ import org.eclipse.gmf.runtime.notation.View;
  * @implements org.unicase.ui.common.diagram.MEDiagramEditPart
  * 
  * public class MEDiagramEditPart extends org.unicase.ui.common.diagram.MEDiagramEditPart {
- */
+ */ 
 public class MEDiagramEditPart extends org.unicase.ui.common.diagram.MEDiagramEditPart {
 
 	/**
 	 * @generated
 	 */
-	public final static String MODEL_ID = "Model"; //$NON-NLS-1$
+	public final static String MODEL_ID = "State"; //$NON-NLS-1$
 
 	/**
 	 * @generated
