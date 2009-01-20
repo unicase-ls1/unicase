@@ -1,5 +1,6 @@
 package org.unicase.workspace.edit.views.changes;
 
+import java.util.ArrayList;
 import java.util.List;
 
 import org.eclipse.jface.layout.GridDataFactory;
@@ -11,50 +12,44 @@ import org.eclipse.swt.widgets.TabItem;
 import org.unicase.emfstore.esmodel.versioning.ChangePackage;
 
 /**
- * A composite that contains multiple tabs displaying the operation from a
- * different view - e.g. grouped by model element, or ungrouped.
+ * A composite that contains multiple tabs displaying the operation from a different view - e.g. grouped by model
+ * element, or ungrouped.
  * 
  * @author Shterev
- * 
  */
-public class TabbedChangesComposite extends Composite implements
-		ChangesComposite {
+public class TabbedChangesComposite extends Composite implements ChangesComposite {
 
 	private TabFolder folder;
 	private List<ChangePackage> changePackages;
 	private DetailedChangesComposite detailedTab;
 	private CompactChangesComposite compactTab;
+	private ArrayList<AbstractChangesComposite> tabs;
 
 	/**
 	 * Default constructor.
 	 * 
-	 * @param parent
-	 *            the composite's parent
-	 * @param style
-	 *            the style
-	 * @param changePackages
-	 *            the input of change packages as a list
+	 * @param parent the composite's parent
+	 * @param style the style
+	 * @param changePackages the input of change packages as a list
 	 */
-	public TabbedChangesComposite(Composite parent, int style,
-			List<ChangePackage> changePackages) {
+	public TabbedChangesComposite(Composite parent, int style, List<ChangePackage> changePackages) {
 		super(parent, style);
 
 		setLayout(new GridLayout());
+		tabs = new ArrayList<AbstractChangesComposite>();
 		folder = new TabFolder(this, style);
-		GridDataFactory.fillDefaults().align(SWT.FILL, SWT.FILL).grab(true,
-				true).applyTo(folder);
+		GridDataFactory.fillDefaults().align(SWT.FILL, SWT.FILL).grab(true, true).applyTo(folder);
 		this.changePackages = changePackages;
-		compactTab = new CompactChangesComposite(
-				folder, SWT.NONE, AbstractChangesComposite.HORIZONTAL,
-				changePackages);
+		compactTab = new CompactChangesComposite(folder, SWT.NONE, AbstractChangesComposite.HORIZONTAL, changePackages);
+		tabs.add(compactTab);
 		compactTab.getTreeViewer().expandAll();
 		TabItem meTab = new TabItem(folder, style);
 		meTab.setText("Compact");
 		meTab.setControl(compactTab);
 
-		detailedTab = new DetailedChangesComposite(
-				folder, SWT.NONE, AbstractChangesComposite.HORIZONTAL,
-				changePackages);
+		detailedTab = new DetailedChangesComposite(folder, SWT.NONE, AbstractChangesComposite.HORIZONTAL,
+			changePackages);
+		tabs.add(detailedTab);
 		detailedTab.getTreeViewer().expandAll();
 		TabItem opTab = new TabItem(folder, style);
 		opTab.setText("Detailed");
@@ -76,6 +71,15 @@ public class TabbedChangesComposite extends Composite implements
 		this.changePackages = changes;
 		compactTab.setInput(changes);
 		detailedTab.setInput(changes);
+	}
+
+	/**
+	 * Getter for the tabs.
+	 * 
+	 * @return the tabs as an ArrayList.
+	 */
+	public ArrayList<AbstractChangesComposite> getTabs() {
+		return tabs;
 	}
 
 }
