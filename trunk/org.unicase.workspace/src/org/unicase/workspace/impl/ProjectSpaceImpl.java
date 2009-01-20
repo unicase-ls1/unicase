@@ -1805,4 +1805,14 @@ public class ProjectSpaceImpl extends IdentifiableElementImpl implements Project
 		cm.addTag(getUsersession().getSessionId(), getProjectId(), versionSpec, tag);
 	}
 
+	/**
+	 * {@inheritDoc}
+	 * 
+	 * @generated NOT
+	 */
+	public void removeTag(PrimaryVersionSpec versionSpec, TagVersionSpec tag) throws EmfStoreException {
+		final ConnectionManager cm = WorkspaceManager.getInstance().getConnectionManager();
+		cm.removeTag(getUsersession().getSessionId(), getProjectId(), versionSpec, tag);
+	}
+
 } // ProjectContainerImpl

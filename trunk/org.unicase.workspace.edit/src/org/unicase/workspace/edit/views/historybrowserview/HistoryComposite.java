@@ -18,10 +18,12 @@ import org.eclipse.jface.viewers.DoubleClickEvent;
 import org.eclipse.jface.viewers.IDoubleClickListener;
 import org.eclipse.jface.viewers.ISelectionChangedListener;
 import org.eclipse.jface.viewers.IStructuredSelection;
+import org.eclipse.jface.viewers.LabelProvider;
 import org.eclipse.jface.viewers.SelectionChangedEvent;
 import org.eclipse.jface.viewers.TableViewer;
 import org.eclipse.jface.viewers.TableViewerColumn;
 import org.eclipse.jface.viewers.TreeSelection;
+import org.eclipse.jface.window.Window;
 import org.eclipse.swt.SWT;
 import org.eclipse.swt.custom.SashForm;
 import org.eclipse.swt.layout.GridData;
@@ -31,6 +33,8 @@ import org.eclipse.swt.widgets.Display;
 import org.eclipse.swt.widgets.Label;
 import org.eclipse.swt.widgets.Table;
 import org.eclipse.swt.widgets.TableColumn;
+import org.eclipse.ui.PlatformUI;
+import org.eclipse.ui.dialogs.ElementListSelectionDialog;
 import org.unicase.emfstore.esmodel.versioning.ChangePackage;
 import org.unicase.emfstore.esmodel.versioning.HistoryInfo;
 import org.unicase.emfstore.esmodel.versioning.PrimaryVersionSpec;
@@ -46,13 +50,55 @@ import org.unicase.workspace.edit.views.changes.AbstractChangesComposite;
 import org.unicase.workspace.edit.views.changes.TabbedChangesComposite;
 
 /**
- * . This class provides contents of borwser tab of HistoryBrowserView. It contains a table of versions based on Query
+ * This class provides contents of borwser tab of HistoryBrowserView. It contains a table of versions based on Query
  * criteria, and some buttons for different operations (diff, create tag, update, switch, rollback) There is currently
  * no implementation for how the contents should be set, nor for buttons.
  * 
  * @author Hodaie
+ * @author Shterev
  */
 public class HistoryComposite extends Composite implements ISelectionChangedListener, IDoubleClickListener {
+
+	/**
+	 * An action to remove tags.
+	 * 
+	 * @author Shterev
+	 */
+	private final class ActionExtension extends Action {
+		private ActionExtension(String text) {
+			super(text);
+		}
+
+		@Override
+		public void run() {
+			IStructuredSelection selection = (IStructuredSelection) tableViewer.getSelection();
+			if (!selection.isEmpty()) {
+				HistoryInfo info = (HistoryInfo) selection.getFirstElement();
+				ElementListSelectionDialog dlg = new ElementListSelectionDialog(PlatformUI.getWorkbench()
+					.getActiveWorkbenchWindow().getShell(), new LabelProvider() {
+
+					@Override
+					public String getText(Object element) {
+						return ((TagVersionSpec) element).getName();
+					}
+
+				});
+				dlg.setElements(info.getTagSpecs().toArray());
+				dlg.setTitle("Tag selection");
+				dlg.setBlockOnOpen(true);
+				dlg.setMultipleSelection(true);
+				int ret = dlg.open();
+				if (ret != Window.OK) {
+					return;
+				}
+				Object[] tags = dlg.getResult();
+				for (Object tag : tags) {
+					parentView.removeTag(info.getPrimerySpec(), (TagVersionSpec) tag);
+				}
+				parentView.refresh();
+			}
+		}
+	}
 
 	private TableViewer tableViewer;
 	private HistoryBrowserView parentView;
@@ -203,14 +249,7 @@ public class HistoryComposite extends Composite implements ISelectionChangedList
 
 		};
 
-		Action actionRemoveTag = new Action("Remove tag") {
-			@Override
-			public void run() {
-				// TODO OW: implement
-			}
-
-		};
-		actionRemoveTag.setEnabled(false);
+		Action actionRemoveTag = new ActionExtension("Remove tags...");
 
 		MenuManager mgr = new MenuManager();
 		mgr.add(actionSetSource);

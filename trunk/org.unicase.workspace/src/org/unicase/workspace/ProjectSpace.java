@@ -1,8 +1,7 @@
 /**
- * <copyright> Copyright (c) 2008 Jonas Helming, Maximilian Koegel. All rights reserved. This program and the accompanying materials are made available under the terms of the Eclipse Public License v1.0 which accompanies this distribution, and is available at http://www.eclipse.org/legal/epl-v10.html
- * </copyright>
- *
- * $Id$
+ * <copyright> Copyright (c) 2008 Jonas Helming, Maximilian Koegel. All rights reserved. This program and the
+ * accompanying materials are made available under the terms of the Eclipse Public License v1.0 which accompanies this
+ * distribution, and is available at http://www.eclipse.org/legal/epl-v10.html </copyright> $Id$
  */
 package org.unicase.workspace;
 
@@ -30,40 +29,39 @@ import org.unicase.workspace.util.CommitObserver;
 import org.unicase.workspace.util.UpdateObserver;
 
 /**
- * <!-- begin-user-doc --> A representation of the model object '
- * <em><b>Project Container</b></em>'. <!-- end-user-doc -->
- *
+ * <!-- begin-user-doc --> A representation of the model object ' <em><b>Project Container</b></em>'. <!-- end-user-doc
+ * -->
  * <p>
  * The following features are supported:
  * <ul>
- *   <li>{@link org.unicase.workspace.ProjectSpace#getProject <em>Project</em>}</li>
- *   <li>{@link org.unicase.workspace.ProjectSpace#getProjectId <em>Project Id</em>}</li>
- *   <li>{@link org.unicase.workspace.ProjectSpace#getProjectName <em>Project Name</em>}</li>
- *   <li>{@link org.unicase.workspace.ProjectSpace#getProjectDescription <em>Project Description</em>}</li>
- *   <li>{@link org.unicase.workspace.ProjectSpace#getOperations <em>Operations</em>}</li>
- *   <li>{@link org.unicase.workspace.ProjectSpace#getEvents <em>Events</em>}</li>
- *   <li>{@link org.unicase.workspace.ProjectSpace#getUsersession <em>Usersession</em>}</li>
- *   <li>{@link org.unicase.workspace.ProjectSpace#getLastUpdated <em>Last Updated</em>}</li>
- *   <li>{@link org.unicase.workspace.ProjectSpace#getBaseVersion <em>Base Version</em>}</li>
- *   <li>{@link org.unicase.workspace.ProjectSpace#getResourceCount <em>Resource Count</em>}</li>
- *   <li>{@link org.unicase.workspace.ProjectSpace#isDirty <em>Dirty</em>}</li>
- *   <li>{@link org.unicase.workspace.ProjectSpace#getOldLogMessages <em>Old Log Messages</em>}</li>
+ * <li>{@link org.unicase.workspace.ProjectSpace#getProject <em>Project</em>}</li>
+ * <li>{@link org.unicase.workspace.ProjectSpace#getProjectId <em>Project Id</em>}</li>
+ * <li>{@link org.unicase.workspace.ProjectSpace#getProjectName <em>Project Name</em>}</li>
+ * <li>{@link org.unicase.workspace.ProjectSpace#getProjectDescription <em>Project Description</em>}</li>
+ * <li>{@link org.unicase.workspace.ProjectSpace#getOperations <em>Operations</em>}</li>
+ * <li>{@link org.unicase.workspace.ProjectSpace#getEvents <em>Events</em>}</li>
+ * <li>{@link org.unicase.workspace.ProjectSpace#getUsersession <em>Usersession</em>}</li>
+ * <li>{@link org.unicase.workspace.ProjectSpace#getLastUpdated <em>Last Updated</em>}</li>
+ * <li>{@link org.unicase.workspace.ProjectSpace#getBaseVersion <em>Base Version</em>}</li>
+ * <li>{@link org.unicase.workspace.ProjectSpace#getResourceCount <em>Resource Count</em>}</li>
+ * <li>{@link org.unicase.workspace.ProjectSpace#isDirty <em>Dirty</em>}</li>
+ * <li>{@link org.unicase.workspace.ProjectSpace#getOldLogMessages <em>Old Log Messages</em>}</li>
  * </ul>
  * </p>
- *
+ * 
  * @see org.unicase.workspace.WorkspacePackage#getProjectSpace()
  * @model
  * @generated
  */
 public interface ProjectSpace extends IdentifiableElement {
 	/**
-	 * Returns the value of the '<em><b>Project</b></em>' containment reference.
-	 * <!-- begin-user-doc -->
+	 * Returns the value of the '<em><b>Project</b></em>' containment reference. <!-- begin-user-doc -->
 	 * <p>
-	 * If the meaning of the '<em>Project</em>' reference isn't clear, there
-	 * really should be more of a description here...
+	 * If the meaning of the '<em>Project</em>' reference isn't clear, there really should be more of a description
+	 * here...
 	 * </p>
 	 * <!-- end-user-doc -->
+	 * 
 	 * @return the value of the '<em>Project</em>' containment reference.
 	 * @see #setProject(Project)
 	 * @see org.unicase.workspace.WorkspacePackage#getProjectSpace_Project()
@@ -73,8 +71,9 @@ public interface ProjectSpace extends IdentifiableElement {
 	Project getProject();
 
 	/**
-	 * Sets the value of the '{@link org.unicase.workspace.ProjectSpace#getProject <em>Project</em>}' containment reference.
-	 * <!-- begin-user-doc --> <!-- end-user-doc -->
+	 * Sets the value of the '{@link org.unicase.workspace.ProjectSpace#getProject <em>Project</em>}' containment
+	 * reference. <!-- begin-user-doc --> <!-- end-user-doc -->
+	 * 
 	 * @param value the new value of the '<em>Project</em>' containment reference.
 	 * @see #getProject()
 	 * @generated
@@ -82,13 +81,13 @@ public interface ProjectSpace extends IdentifiableElement {
 	void setProject(Project value);
 
 	/**
-	 * Returns the value of the '<em><b>Project Id</b></em>' containment reference.
-	 * <!-- begin-user-doc -->
+	 * Returns the value of the '<em><b>Project Id</b></em>' containment reference. <!-- begin-user-doc -->
 	 * <p>
-	 * If the meaning of the '<em>Project Id</em>' containment reference isn't
-	 * clear, there really should be more of a description here...
+	 * If the meaning of the '<em>Project Id</em>' containment reference isn't clear, there really should be more of a
+	 * description here...
 	 * </p>
 	 * <!-- end-user-doc -->
+	 * 
 	 * @return the value of the '<em>Project Id</em>' containment reference.
 	 * @see #setProjectId(ProjectId)
 	 * @see org.unicase.workspace.WorkspacePackage#getProjectSpace_ProjectId()
@@ -98,9 +97,9 @@ public interface ProjectSpace extends IdentifiableElement {
 	ProjectId getProjectId();
 
 	/**
-	 * Sets the value of the '{@link org.unicase.workspace.ProjectSpace#getProjectId <em>Project Id</em>}' containment reference.
-	 * <!-- begin-user-doc --> <!--
-	 * end-user-doc -->
+	 * Sets the value of the '{@link org.unicase.workspace.ProjectSpace#getProjectId <em>Project Id</em>}' containment
+	 * reference. <!-- begin-user-doc --> <!-- end-user-doc -->
+	 * 
 	 * @param value the new value of the '<em>Project Id</em>' containment reference.
 	 * @see #getProjectId()
 	 * @generated
@@ -108,11 +107,10 @@ public interface ProjectSpace extends IdentifiableElement {
 	void setProjectId(ProjectId value);
 
 	/**
-	 * Returns the value of the '<em><b>Project Name</b></em>' attribute. <!--
-	 * begin-user-doc -->
+	 * Returns the value of the '<em><b>Project Name</b></em>' attribute. <!-- begin-user-doc -->
 	 * <p>
-	 * If the meaning of the '<em>Project Name</em>' attribute isn't clear,
-	 * there really should be more of a description here...
+	 * If the meaning of the '<em>Project Name</em>' attribute isn't clear, there really should be more of a description
+	 * here...
 	 * </p>
 	 * <!-- end-user-doc -->
 	 * 
@@ -125,9 +123,9 @@ public interface ProjectSpace extends IdentifiableElement {
 	String getProjectName();
 
 	/**
-	 * Sets the value of the '{@link org.unicase.workspace.ProjectSpace#getProjectName <em>Project Name</em>}' attribute.
-	 * <!-- begin-user-doc --> <!--
-	 * end-user-doc -->
+	 * Sets the value of the '{@link org.unicase.workspace.ProjectSpace#getProjectName <em>Project Name</em>}'
+	 * attribute. <!-- begin-user-doc --> <!-- end-user-doc -->
+	 * 
 	 * @param value the new value of the '<em>Project Name</em>' attribute.
 	 * @see #getProjectName()
 	 * @generated
@@ -135,13 +133,13 @@ public interface ProjectSpace extends IdentifiableElement {
 	void setProjectName(String value);
 
 	/**
-	 * Returns the value of the '<em><b>Project Description</b></em>' attribute.
-	 * <!-- begin-user-doc -->
+	 * Returns the value of the '<em><b>Project Description</b></em>' attribute. <!-- begin-user-doc -->
 	 * <p>
-	 * If the meaning of the '<em>Project Description</em>' attribute isn't
-	 * clear, there really should be more of a description here...
+	 * If the meaning of the '<em>Project Description</em>' attribute isn't clear, there really should be more of a
+	 * description here...
 	 * </p>
 	 * <!-- end-user-doc -->
+	 * 
 	 * @return the value of the '<em>Project Description</em>' attribute.
 	 * @see #setProjectDescription(String)
 	 * @see org.unicase.workspace.WorkspacePackage#getProjectSpace_ProjectDescription()
@@ -151,9 +149,9 @@ public interface ProjectSpace extends IdentifiableElement {
 	String getProjectDescription();
 
 	/**
-	 * Sets the value of the '{@link org.unicase.workspace.ProjectSpace#getProjectDescription <em>Project Description</em>}' attribute.
-	 * <!-- begin-user-doc --> <!--
-	 * end-user-doc -->
+	 * Sets the value of the '{@link org.unicase.workspace.ProjectSpace#getProjectDescription
+	 * <em>Project Description</em>}' attribute. <!-- begin-user-doc --> <!-- end-user-doc -->
+	 * 
 	 * @param value the new value of the '<em>Project Description</em>' attribute.
 	 * @see #getProjectDescription()
 	 * @generated
@@ -161,14 +159,14 @@ public interface ProjectSpace extends IdentifiableElement {
 	void setProjectDescription(String value);
 
 	/**
-	 * Returns the value of the '<em><b>Operations</b></em>' containment reference list.
-	 * The list contents are of type {@link org.unicase.emfstore.esmodel.versioning.operations.AbstractOperation}.
-	 * <!-- begin-user-doc -->
+	 * Returns the value of the '<em><b>Operations</b></em>' containment reference list. The list contents are of type
+	 * {@link org.unicase.emfstore.esmodel.versioning.operations.AbstractOperation}. <!-- begin-user-doc -->
 	 * <p>
-	 * If the meaning of the '<em>Operations</em>' containment reference list
-	 * isn't clear, there really should be more of a description here...
+	 * If the meaning of the '<em>Operations</em>' containment reference list isn't clear, there really should be more
+	 * of a description here...
 	 * </p>
 	 * <!-- end-user-doc -->
+	 * 
 	 * @return the value of the '<em>Operations</em>' containment reference list.
 	 * @see org.unicase.workspace.WorkspacePackage#getProjectSpace_Operations()
 	 * @model containment="true" resolveProxies="true"
@@ -177,13 +175,11 @@ public interface ProjectSpace extends IdentifiableElement {
 	EList<AbstractOperation> getOperations();
 
 	/**
-	 * Returns the value of the '<em><b>Events</b></em>' containment reference
-	 * list. The list contents are of type
-	 * {@link org.unicase.emfstore.esmodel.versioning.events.Event}. <!--
-	 * begin-user-doc -->
+	 * Returns the value of the '<em><b>Events</b></em>' containment reference list. The list contents are of type
+	 * {@link org.unicase.emfstore.esmodel.versioning.events.Event}. <!-- begin-user-doc -->
 	 * <p>
-	 * If the meaning of the '<em>Events</em>' containment reference list isn't
-	 * clear, there really should be more of a description here...
+	 * If the meaning of the '<em>Events</em>' containment reference list isn't clear, there really should be more of a
+	 * description here...
 	 * </p>
 	 * <!-- end-user-doc -->
 	 * 
@@ -195,11 +191,10 @@ public interface ProjectSpace extends IdentifiableElement {
 	EList<Event> getEvents();
 
 	/**
-	 * Returns the value of the '<em><b>Usersession</b></em>' reference. <!--
-	 * begin-user-doc -->
+	 * Returns the value of the '<em><b>Usersession</b></em>' reference. <!-- begin-user-doc -->
 	 * <p>
-	 * If the meaning of the '<em>Usersession</em>' reference isn't clear, there
-	 * really should be more of a description here...
+	 * If the meaning of the '<em>Usersession</em>' reference isn't clear, there really should be more of a description
+	 * here...
 	 * </p>
 	 * <!-- end-user-doc -->
 	 * 
@@ -213,8 +208,8 @@ public interface ProjectSpace extends IdentifiableElement {
 
 	/**
 	 * Sets the value of the '{@link org.unicase.workspace.ProjectSpace#getUsersession <em>Usersession</em>}' reference.
-	 * <!-- begin-user-doc --> <!--
-	 * end-user-doc -->
+	 * <!-- begin-user-doc --> <!-- end-user-doc -->
+	 * 
 	 * @param value the new value of the '<em>Usersession</em>' reference.
 	 * @see #getUsersession()
 	 * @generated
@@ -222,11 +217,10 @@ public interface ProjectSpace extends IdentifiableElement {
 	void setUsersession(Usersession value);
 
 	/**
-	 * Returns the value of the '<em><b>Last Updated</b></em>' attribute. <!--
-	 * begin-user-doc -->
+	 * Returns the value of the '<em><b>Last Updated</b></em>' attribute. <!-- begin-user-doc -->
 	 * <p>
-	 * If the meaning of the '<em>Last Updated</em>' attribute isn't clear,
-	 * there really should be more of a description here...
+	 * If the meaning of the '<em>Last Updated</em>' attribute isn't clear, there really should be more of a description
+	 * here...
 	 * </p>
 	 * <!-- end-user-doc -->
 	 * 
@@ -239,9 +233,9 @@ public interface ProjectSpace extends IdentifiableElement {
 	Date getLastUpdated();
 
 	/**
-	 * Sets the value of the '{@link org.unicase.workspace.ProjectSpace#getLastUpdated <em>Last Updated</em>}' attribute.
-	 * <!-- begin-user-doc --> <!--
-	 * end-user-doc -->
+	 * Sets the value of the '{@link org.unicase.workspace.ProjectSpace#getLastUpdated <em>Last Updated</em>}'
+	 * attribute. <!-- begin-user-doc --> <!-- end-user-doc -->
+	 * 
 	 * @param value the new value of the '<em>Last Updated</em>' attribute.
 	 * @see #getLastUpdated()
 	 * @generated
@@ -249,13 +243,13 @@ public interface ProjectSpace extends IdentifiableElement {
 	void setLastUpdated(Date value);
 
 	/**
-	 * Returns the value of the '<em><b>Base Version</b></em>' containment reference.
-	 * <!-- begin-user-doc -->
+	 * Returns the value of the '<em><b>Base Version</b></em>' containment reference. <!-- begin-user-doc -->
 	 * <p>
-	 * If the meaning of the '<em>Base Version</em>' containment reference isn't
-	 * clear, there really should be more of a description here...
+	 * If the meaning of the '<em>Base Version</em>' containment reference isn't clear, there really should be more of a
+	 * description here...
 	 * </p>
 	 * <!-- end-user-doc -->
+	 * 
 	 * @return the value of the '<em>Base Version</em>' containment reference.
 	 * @see #setBaseVersion(PrimaryVersionSpec)
 	 * @see org.unicase.workspace.WorkspacePackage#getProjectSpace_BaseVersion()
@@ -265,9 +259,9 @@ public interface ProjectSpace extends IdentifiableElement {
 	PrimaryVersionSpec getBaseVersion();
 
 	/**
-	 * Sets the value of the '{@link org.unicase.workspace.ProjectSpace#getBaseVersion <em>Base Version</em>}' containment reference.
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
+	 * Sets the value of the '{@link org.unicase.workspace.ProjectSpace#getBaseVersion <em>Base Version</em>}'
+	 * containment reference. <!-- begin-user-doc --> <!-- end-user-doc -->
+	 * 
 	 * @param value the new value of the '<em>Base Version</em>' containment reference.
 	 * @see #getBaseVersion()
 	 * @generated
@@ -275,11 +269,10 @@ public interface ProjectSpace extends IdentifiableElement {
 	void setBaseVersion(PrimaryVersionSpec value);
 
 	/**
-	 * Returns the value of the '<em><b>Resource Count</b></em>' attribute. <!--
-	 * begin-user-doc -->
+	 * Returns the value of the '<em><b>Resource Count</b></em>' attribute. <!-- begin-user-doc -->
 	 * <p>
-	 * If the meaning of the '<em>Resource Count</em>' attribute isn't clear,
-	 * there really should be more of a description here...
+	 * If the meaning of the '<em>Resource Count</em>' attribute isn't clear, there really should be more of a
+	 * description here...
 	 * </p>
 	 * <!-- end-user-doc -->
 	 * 
@@ -292,9 +285,9 @@ public interface ProjectSpace extends IdentifiableElement {
 	int getResourceCount();
 
 	/**
-	 * Sets the value of the '{@link org.unicase.workspace.ProjectSpace#getResourceCount <em>Resource Count</em>}' attribute.
-	 * <!-- begin-user-doc --> <!--
-	 * end-user-doc -->
+	 * Sets the value of the '{@link org.unicase.workspace.ProjectSpace#getResourceCount <em>Resource Count</em>}'
+	 * attribute. <!-- begin-user-doc --> <!-- end-user-doc -->
+	 * 
 	 * @param value the new value of the '<em>Resource Count</em>' attribute.
 	 * @see #getResourceCount()
 	 * @generated
@@ -302,11 +295,10 @@ public interface ProjectSpace extends IdentifiableElement {
 	void setResourceCount(int value);
 
 	/**
-	 * Returns the value of the '<em><b>Dirty</b></em>' attribute. <!--
-	 * begin-user-doc -->
+	 * Returns the value of the '<em><b>Dirty</b></em>' attribute. <!-- begin-user-doc -->
 	 * <p>
-	 * If the meaning of the '<em>Dirty</em>' attribute isn't clear, there
-	 * really should be more of a description here...
+	 * If the meaning of the '<em>Dirty</em>' attribute isn't clear, there really should be more of a description
+	 * here...
 	 * </p>
 	 * <!-- end-user-doc -->
 	 * 
@@ -319,8 +311,9 @@ public interface ProjectSpace extends IdentifiableElement {
 	boolean isDirty();
 
 	/**
-	 * Sets the value of the '{@link org.unicase.workspace.ProjectSpace#isDirty <em>Dirty</em>}' attribute.
-	 * <!-- begin-user-doc --> <!-- end-user-doc -->
+	 * Sets the value of the '{@link org.unicase.workspace.ProjectSpace#isDirty <em>Dirty</em>}' attribute. <!--
+	 * begin-user-doc --> <!-- end-user-doc -->
+	 * 
 	 * @param value the new value of the '<em>Dirty</em>' attribute.
 	 * @see #isDirty()
 	 * @generated
@@ -328,12 +321,11 @@ public interface ProjectSpace extends IdentifiableElement {
 	void setDirty(boolean value);
 
 	/**
-	 * Returns the value of the '<em><b>Old Log Messages</b></em>' attribute
-	 * list. The list contents are of type {@link java.lang.String}. <!--
-	 * begin-user-doc -->
+	 * Returns the value of the '<em><b>Old Log Messages</b></em>' attribute list. The list contents are of type
+	 * {@link java.lang.String}. <!-- begin-user-doc -->
 	 * <p>
-	 * If the meaning of the '<em>Old Log Messages</em>' attribute list isn't
-	 * clear, there really should be more of a description here...
+	 * If the meaning of the '<em>Old Log Messages</em>' attribute list isn't clear, there really should be more of a
+	 * description here...
 	 * </p>
 	 * <!-- end-user-doc -->
 	 * 
@@ -348,11 +340,9 @@ public interface ProjectSpace extends IdentifiableElement {
 	 * <!-- begin-user-doc --> Commit the all pending changes of the project.
 	 * 
 	 * @return new base version
-	 * @throws EmfStoreException
-	 *             if commit fails <!-- end-user-doc -->
+	 * @throws EmfStoreException if commit fails <!-- end-user-doc -->
 	 * @model
-	 * @param logMessage
-	 *            the {@link LogMessage} for this commit.
+	 * @param logMessage the {@link LogMessage} for this commit.
 	 * @generated NOT
 	 */
 	PrimaryVersionSpec commit(LogMessage logMessage) throws EmfStoreException;
@@ -361,9 +351,7 @@ public interface ProjectSpace extends IdentifiableElement {
 	 * <!-- begin-user-doc --> Update the project to the head version.
 	 * 
 	 * @return the new base version
-	 * @throws EmfStoreException
-	 *             if update fails <!-- end-user-doc -->
-	 * 
+	 * @throws EmfStoreException if update fails <!-- end-user-doc -->
 	 * @model
 	 * @generated NOT
 	 */
@@ -372,30 +360,25 @@ public interface ProjectSpace extends IdentifiableElement {
 	/**
 	 * <!-- begin-user-doc --> Update the project to the given version.
 	 * 
-	 * @param version
-	 *            the version to update to
+	 * @param version the version to update to
 	 * @return the new base version
-	 * @throws EmfStoreException
-	 *             if update fails
-	 * 
-	 *             <!-- end-user-doc -->
-	 * 
+	 * @throws EmfStoreException if update fails <!-- end-user-doc -->
 	 * @model
 	 * @generated NOT
 	 */
 	PrimaryVersionSpec update(VersionSpec version) throws EmfStoreException;
 
 	/**
-	 * <!-- begin-user-doc --> Drop all changes to the local project. <!--
-	 * end-user-doc -->
+	 * <!-- begin-user-doc --> Drop all changes to the local project. <!-- end-user-doc -->
+	 * 
 	 * @model
 	 * @generated
 	 */
 	void revert();
 
 	/**
-	 * <!-- begin-user-doc --> Initialize project space. Start change tracking.
-	 * <!-- end-user-doc -->
+	 * <!-- begin-user-doc --> Initialize project space. Start change tracking. <!-- end-user-doc -->
+	 * 
 	 * @model
 	 * @generated
 	 */
@@ -403,6 +386,7 @@ public interface ProjectSpace extends IdentifiableElement {
 
 	/**
 	 * <!-- begin-user-doc --> Retrieve the project info. <!-- end-user-doc -->
+	 * 
 	 * @model kind="operation"
 	 * @generated
 	 */
@@ -411,98 +395,75 @@ public interface ProjectSpace extends IdentifiableElement {
 	/**
 	 * <!-- begin-user-doc --> Resolve a version spec to a primary version spec.
 	 * 
-	 * @param versionSpec
-	 *            the spec to resolve
+	 * @param versionSpec the spec to resolve
 	 * @return the primary version spec <!-- end-user-doc -->
-	 * @throws EmfStoreException
-	 *             if resolving fails
+	 * @throws EmfStoreException if resolving fails
 	 * @model
 	 * @generated NOT
 	 */
-	PrimaryVersionSpec resolveVersionSpec(VersionSpec versionSpec)
-			throws EmfStoreException;
+	PrimaryVersionSpec resolveVersionSpec(VersionSpec versionSpec) throws EmfStoreException;
 
 	/**
 	 * Initialize the resources of the project space.
 	 * 
-	 * @param resourceSet
-	 *            the resource set the project space should use
+	 * @param resourceSet the resource set the project space should use
 	 */
 	void initResources(ResourceSet resourceSet);
 
 	/**
 	 * Share the project of the project space with a given usersession.
 	 * 
-	 * @param usersession
-	 *            the usersession
-	 * @throws EmfStoreException
-	 *             if sharing fails
+	 * @param usersession the usersession
+	 * @throws EmfStoreException if sharing fails
 	 */
 	void shareProject(Usersession usersession) throws EmfStoreException;
 
 	/**
 	 * Export a project to a file with the given name.
 	 * 
-	 * @param fileName
-	 *            the file name
-	 * @throws IOException
-	 *             if writing to the given file fails
+	 * @param fileName the file name
+	 * @throws IOException if writing to the given file fails
 	 */
 	void exportProject(String fileName) throws IOException;
 
 	/**
 	 * Update the workspace to the given revision.
 	 * 
-	 * @param version
-	 *            the version to update to
-	 * @param observer
-	 *            an observer that is notified of the changes performed by the
-	 *            update, maybe null
+	 * @param version the version to update to
+	 * @param observer an observer that is notified of the changes performed by the update, maybe null
 	 * @return the new base version
-	 * @throws EmfStoreException
-	 *             if the update fails
-	 * @throws ChangeConflictException
-	 *             if a conflict with local changes is detected
+	 * @throws EmfStoreException if the update fails
+	 * @throws ChangeConflictException if a conflict with local changes is detected
 	 */
-	PrimaryVersionSpec update(VersionSpec version, UpdateObserver observer)
-			throws EmfStoreException, ChangeConflictException;
+	PrimaryVersionSpec update(VersionSpec version, UpdateObserver observer) throws EmfStoreException,
+		ChangeConflictException;
 
 	/**
 	 * Commit local changes to the server.
 	 * 
-	 * @param logMessage
-	 *            the log message
-	 * @param commitObserver
-	 *            an observer that is notified about the changes being send to
-	 *            the server
+	 * @param logMessage the log message
+	 * @param commitObserver an observer that is notified about the changes being send to the server
 	 * @return the new base version
-	 * @throws EmfStoreException
-	 *             if the commit fails
-	 * @throws BaseVersionOutdatedException
-	 *             if the project space is not up to date, that is its base
-	 *             version is lower then the projects head revision
+	 * @throws EmfStoreException if the commit fails
+	 * @throws BaseVersionOutdatedException if the project space is not up to date, that is its base version is lower
+	 *             then the projects head revision
 	 */
-	PrimaryVersionSpec commit(LogMessage logMessage,
-			CommitObserver commitObserver) throws EmfStoreException,
-			BaseVersionOutdatedException;
+	PrimaryVersionSpec commit(LogMessage logMessage, CommitObserver commitObserver) throws EmfStoreException,
+		BaseVersionOutdatedException;
 
 	/**
 	 * Export all local changes to a file with the given name.
 	 * 
-	 * @param fileName
-	 *            the file name
-	 * @throws IOException
-	 *             if writing to the given file fails
+	 * @param fileName the file name
+	 * @throws IOException if writing to the given file fails
 	 */
 	void exportLocalChanges(String fileName) throws IOException;
 
 	/**
 	 * Import changes from a file.
 	 * 
-	 * @param fileName
-	 *            the file name to import from
-	 * @throws IOException
-	 *             if file access fails
+	 * @param fileName the file name to import from
+	 * @throws IOException if file access fails
 	 */
 	void importLocalChanges(String fileName) throws IOException;
 
@@ -512,38 +473,36 @@ public interface ProjectSpace extends IdentifiableElement {
 	void undoLastOperation();
 
 	/**
-	 * Add an event to the project space. Will be transfered to server on next
-	 * commit.
+	 * Add an event to the project space. Will be transfered to server on next commit.
 	 * 
-	 * @param event
-	 *            the event
+	 * @param event the event
 	 */
 	void addEvent(Event event);
 
 	/**
 	 * @return a list of the change packages between two PrimarySpecVersions.
-	 * @param sourceVersion
-	 *            the source version spec
-	 * @param targetVersion
-	 *            the target version spec
-	 * @throws EmfStoreException
-	 *             if any error in the EmfStore occurs
+	 * @param sourceVersion the source version spec
+	 * @param targetVersion the target version spec
+	 * @throws EmfStoreException if any error in the EmfStore occurs
 	 * @generated NOT
 	 */
-	List<ChangePackage> getChanges(VersionSpec sourceVersion,
-			VersionSpec targetVersion) throws EmfStoreException;
+	List<ChangePackage> getChanges(VersionSpec sourceVersion, VersionSpec targetVersion) throws EmfStoreException;
 
 	/**
 	 * Adds a tag to the specified version of this project.
 	 * 
-	 * @param versionSpec
-	 *            the versionSpec
-	 * @param tag
-	 *            the tag
-	 * @throws EmfStoreException
-	 *             if exception occurs on the server
-	 * 
+	 * @param versionSpec the versionSpec
+	 * @param tag the tag
+	 * @throws EmfStoreException if exception occurs on the server
 	 */
-	void addTag(PrimaryVersionSpec versionSpec, TagVersionSpec tag)
-			throws EmfStoreException;
+	void addTag(PrimaryVersionSpec versionSpec, TagVersionSpec tag) throws EmfStoreException;
+
+	/**
+	 * Removes a tag to the specified version of this project.
+	 * 
+	 * @param versionSpec the versionSpec
+	 * @param tag the tag
+	 * @throws EmfStoreException if exception occurs on the server
+	 */
+	void removeTag(PrimaryVersionSpec versionSpec, TagVersionSpec tag) throws EmfStoreException;
 } // ProjectContainer
