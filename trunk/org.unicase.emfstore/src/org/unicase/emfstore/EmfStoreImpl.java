@@ -9,9 +9,9 @@ import java.io.File;
 import java.util.ArrayList;
 import java.util.Collections;
 import java.util.Date;
-import java.util.HashSet;
 import java.util.Iterator;
 import java.util.List;
+import java.util.TreeSet;
 
 import org.apache.commons.logging.Log;
 import org.apache.commons.logging.LogFactory;
@@ -288,7 +288,7 @@ public class EmfStoreImpl implements EmfStore {
 
 	private List<HistoryInfo> getHistoryInfo(ProjectId projectId, List<ModelElementId> moList) throws EmfStoreException {
 		HistoryCache historyCache = EmfStoreController.getInstance().getHistoryCache();
-		HashSet<Version> elements = historyCache.getChangesForModelElement(projectId, moList.get(0));
+		TreeSet<Version> elements = historyCache.getChangesForModelElement(projectId, moList.get(0));
 		return getHistoryInfo(new ArrayList<Version>(elements), projectId);
 	}
 

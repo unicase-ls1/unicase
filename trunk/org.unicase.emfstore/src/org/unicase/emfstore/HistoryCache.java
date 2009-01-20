@@ -1,8 +1,9 @@
 package org.unicase.emfstore;
 
+import java.util.Comparator;
 import java.util.HashMap;
-import java.util.HashSet;
 import java.util.List;
+import java.util.TreeSet;
 
 import org.eclipse.emf.common.util.EList;
 import org.unicase.emfstore.esmodel.ProjectHistory;
@@ -27,13 +28,13 @@ import org.unicase.model.ModelElementId;
  */
 public class HistoryCache {
 
-	private HashMap<ProjectId, HashMap<ModelElementId, HashSet<Version>>> historyCache;
+	private HashMap<ProjectId, HashMap<ModelElementId, TreeSet<Version>>> historyCache;
 
 	/**
 	 * Default constructor.
 	 */
 	public HistoryCache() {
-		historyCache = new HashMap<ProjectId, HashMap<ModelElementId, HashSet<Version>>>();
+		historyCache = new HashMap<ProjectId, HashMap<ModelElementId, TreeSet<Version>>>();
 	}
 
 	/**
@@ -45,7 +46,7 @@ public class HistoryCache {
 		for (ProjectHistory project : projects) {
 			EList<Version> projectVersions = project.getVersions();
 			if (projectVersions.size() > 0) {
-				HashMap<ModelElementId, HashSet<Version>> initialHashMap = buildInitialHashMap(projectVersions.get(0));
+				HashMap<ModelElementId, TreeSet<Version>> initialHashMap = buildInitialHashMap(projectVersions.get(0));
 				for (Version version : projectVersions) {
 					// System.out.println("Checking version: " + version.getPrimarySpec().getIdentifier());
 					addChangePackageToCache(initialHashMap, version);
@@ -63,13 +64,13 @@ public class HistoryCache {
 	 * @param version the version
 	 */
 	public void addVersionToCache(ProjectId projectId, Version version) {
-		HashMap<ModelElementId, HashSet<Version>> hashMap = historyCache.get(projectId);
+		HashMap<ModelElementId, TreeSet<Version>> hashMap = historyCache.get(projectId);
 		if (hashMap != null & version != null) {
 			addChangePackageToCache(hashMap, version);
 		}
 	}
 
-	private void addChangePackageToCache(HashMap<ModelElementId, HashSet<Version>> hashMap, Version version) {
+	private void addChangePackageToCache(HashMap<ModelElementId, TreeSet<Version>> hashMap, Version version) {
 		ChangePackage changes = version.getChanges();
 		if (changes != null) {
 			EList<AbstractOperation> operations = changes.getOperations();
@@ -77,7 +78,7 @@ public class HistoryCache {
 		}
 	}
 
-	private void extractOperations(HashMap<ModelElementId, HashSet<Version>> hashMap, Version version,
+	private void extractOperations(HashMap<ModelElementId, TreeSet<Version>> hashMap, Version version,
 		EList<AbstractOperation> operations) {
 		for (AbstractOperation abstractOperation : operations) {
 			if (abstractOperation instanceof CreateDeleteOperation) {
@@ -112,19 +113,19 @@ public class HistoryCache {
 		}
 	}
 
-	private void addModelElement(HashMap<ModelElementId, HashSet<Version>> hashMap, Version version, ModelElementId id) {
+	private void addModelElement(HashMap<ModelElementId, TreeSet<Version>> hashMap, Version version, ModelElementId id) {
 		// System.out.println(id.getId() + " ---> " + version.getPrimarySpec().getIdentifier());
-		HashSet<Version> set = hashMap.get(id);
+		TreeSet<Version> set = hashMap.get(id);
 		if (set == null) {
-			set = new HashSet<Version>();
+			set = getTreeSet();
 			hashMap.put(id, set);
 		}
 		set.add(version);
 	}
 
-	private HashMap<ModelElementId, HashSet<Version>> buildInitialHashMap(Version version) {
+	private HashMap<ModelElementId, TreeSet<Version>> buildInitialHashMap(Version version) {
 		EList<ModelElement> allModelElements = version.getProjectState().getAllModelElements();
-		HashMap<ModelElementId, HashSet<Version>> hashMap = new HashMap<ModelElementId, HashSet<Version>>(
+		HashMap<ModelElementId, TreeSet<Version>> hashMap = new HashMap<ModelElementId, TreeSet<Version>>(
 			(int) (allModelElements.size() * 1.15) + 1);
 		for (ModelElement element : allModelElements) {
 			hashMap.put(element.getModelElementId(), initVersionSet(version));
@@ -132,8 +133,8 @@ public class HistoryCache {
 		return hashMap;
 	}
 
-	private HashSet<Version> initVersionSet(Version version) {
-		HashSet<Version> versionList = new HashSet<Version>();
+	private TreeSet<Version> initVersionSet(Version version) {
+		TreeSet<Version> versionList = getTreeSet();
 		versionList.add(version);
 		return versionList;
 	}
@@ -145,16 +146,32 @@ public class HistoryCache {
 	 * @param modelElementId modelelement id
 	 * @return set of versions
 	 */
-	public HashSet<Version> getChangesForModelElement(ProjectId projectId, ModelElementId modelElementId) {
-		HashMap<ModelElementId, HashSet<Version>> map = historyCache.get(projectId);
+	public TreeSet<Version> getChangesForModelElement(ProjectId projectId, ModelElementId modelElementId) {
+		HashMap<ModelElementId, TreeSet<Version>> map = historyCache.get(projectId);
 		if (map == null) {
-			return new HashSet<Version>();
+			return getTreeSet();
 		}
-		HashSet<Version> hashSet = map.get(modelElementId);
+		TreeSet<Version> hashSet = map.get(modelElementId);
 		if (hashSet == null) {
-			return new HashSet<Version>();
+			return getTreeSet();
 		}
 		return hashSet;
+	}
+
+	private TreeSet<Version> getTreeSet() {
+		return new TreeSet<Version>(new Comparator<Version>() {
+			public int compare(Version o1, Version o2) {
+				if (o1.getPrimarySpec().getIdentifier() == o2.getPrimarySpec().getIdentifier()) {
+					return 0;
+				}
+				if (o1.getPrimarySpec().getIdentifier() < o2.getPrimarySpec().getIdentifier()) {
+					return 1;
+				} else {
+					return -1;
+				}
+			}
+
+		});
 	}
 
 	/**
@@ -163,7 +180,7 @@ public class HistoryCache {
 	public void printMap() {
 		for (ProjectId projectId : historyCache.keySet()) {
 			System.out.println("PROJECT: " + projectId.getId());
-			HashMap<ModelElementId, HashSet<Version>> map = historyCache.get(projectId);
+			HashMap<ModelElementId, TreeSet<Version>> map = historyCache.get(projectId);
 			for (ModelElementId meId : map.keySet()) {
 				System.out.print("\tME: " + meId.getId() + " ");
 				for (Version version : map.get(meId)) {
