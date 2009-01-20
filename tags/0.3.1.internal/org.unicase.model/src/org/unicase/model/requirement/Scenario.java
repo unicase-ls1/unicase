@@ -7,6 +7,7 @@ package org.unicase.model.requirement;
 
 import org.eclipse.emf.common.util.EList;
 import org.unicase.model.ModelElement;
+import org.unicase.model.classes.Method;
 
 /*
  * <!-- begin-user-doc --> A representation of the model object ' <em><b>Scenario</b></em>'. <!-- end-user-doc --> <p>
@@ -143,5 +144,41 @@ public interface Scenario extends ModelElement {
 	 * @generated
 	 */
 	EList<NonFunctionalRequirement> getNonFunctionalRequirements();
+
+	/**
+	 * Returns the value of the '<em><b>Participating Methods</b></em>' reference list.
+	 * The list contents are of type {@link org.unicase.model.classes.Method}.
+	 * It is bidirectional and its opposite is '{@link org.unicase.model.classes.Method#getDemoParticipations <em>Demo Participations</em>}'.
+	 * <!-- begin-user-doc -->
+	 * <p>
+	 * If the meaning of the '<em>Participating Methods</em>' reference list isn't clear,
+	 * there really should be more of a description here...
+	 * </p>
+	 * <!-- end-user-doc -->
+	 * @return the value of the '<em>Participating Methods</em>' reference list.
+	 * @see org.unicase.model.requirement.RequirementPackage#getScenario_ParticipatingMethods()
+	 * @see org.unicase.model.classes.Method#getDemoParticipations
+	 * @model opposite="demoParticipations" keys="identifier"
+	 * @generated
+	 */
+	EList<Method> getParticipatingMethods();
+
+	/**
+	 * Returns the value of the '<em><b>Participating Classes</b></em>' reference list.
+	 * The list contents are of type {@link org.unicase.model.classes.Class}.
+	 * It is bidirectional and its opposite is '{@link org.unicase.model.classes.Class#getDemoParticipations <em>Demo Participations</em>}'.
+	 * <!-- begin-user-doc -->
+	 * <p>
+	 * If the meaning of the '<em>Participating Classes</em>' reference list isn't clear,
+	 * there really should be more of a description here...
+	 * </p>
+	 * <!-- end-user-doc -->
+	 * @return the value of the '<em>Participating Classes</em>' reference list.
+	 * @see org.unicase.model.requirement.RequirementPackage#getScenario_ParticipatingClasses()
+	 * @see org.unicase.model.classes.Class#getDemoParticipations
+	 * @model opposite="demoParticipations" keys="identifier"
+	 * @generated
+	 */
+	EList<org.unicase.model.classes.Class> getParticipatingClasses();
 
 } // Scenario

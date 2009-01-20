@@ -335,6 +335,15 @@ public class ClassesPackageImpl extends EPackageImpl implements ClassesPackage {
 	}
 
 	/**
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 */
+	public EReference getClass_DemoParticipations() {
+		return (EReference) classEClass.getEStructuralFeatures().get(7);
+	}
+
+	/**
 	 * <!-- begin-user-doc --> <!-- end-user-doc -->
 	 * @generated
 	 */
@@ -599,6 +608,42 @@ public class ClassesPackageImpl extends EPackageImpl implements ClassesPackage {
 	}
 
 	/**
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 */
+	public EAttribute getMethod_Stubbed() {
+		return (EAttribute) methodEClass.getEStructuralFeatures().get(8);
+	}
+
+	/**
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 */
+	public EReference getMethod_CalledMethods() {
+		return (EReference) methodEClass.getEStructuralFeatures().get(9);
+	}
+
+	/**
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 */
+	public EReference getMethod_CallingMethods() {
+		return (EReference) methodEClass.getEStructuralFeatures().get(10);
+	}
+
+	/**
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 */
+	public EReference getMethod_DemoParticipations() {
+		return (EReference) methodEClass.getEStructuralFeatures().get(11);
+	}
+
+	/**
 	 * <!-- begin-user-doc --> <!-- end-user-doc -->
 	 * @generated
 	 */
@@ -736,6 +781,7 @@ public class ClassesPackageImpl extends EPackageImpl implements ClassesPackage {
 		createEReference(classEClass, CLASS__OUTGOING_ASSOCIATIONS);
 		createEReference(classEClass, CLASS__ATTRIBUTES);
 		createEReference(classEClass, CLASS__METHODS);
+		createEReference(classEClass, CLASS__DEMO_PARTICIPATIONS);
 
 		packageEClass = createEClass(PACKAGE);
 		createEReference(packageEClass, PACKAGE__CONTAINED_PACKAGE_ELEMENTS);
@@ -774,6 +820,10 @@ public class ClassesPackageImpl extends EPackageImpl implements ClassesPackage {
 		createEReference(methodEClass, METHOD__ARGUMENTS);
 		createEAttribute(methodEClass, METHOD__PROPERTIES);
 		createEAttribute(methodEClass, METHOD__LABEL);
+		createEAttribute(methodEClass, METHOD__STUBBED);
+		createEReference(methodEClass, METHOD__CALLED_METHODS);
+		createEReference(methodEClass, METHOD__CALLING_METHODS);
+		createEReference(methodEClass, METHOD__DEMO_PARTICIPATIONS);
 
 		methodArgumentEClass = createEClass(METHOD_ARGUMENT);
 		createEAttribute(methodArgumentEClass, METHOD_ARGUMENT__TYPE);
@@ -864,6 +914,11 @@ public class ClassesPackageImpl extends EPackageImpl implements ClassesPackage {
 		initEReference(getClass_Methods(), this.getMethod(), this.getMethod_DefiningClass(), "methods", null, 0, -1,
 			org.unicase.model.classes.Class.class, !IS_TRANSIENT, !IS_VOLATILE, IS_CHANGEABLE, IS_COMPOSITE,
 			IS_RESOLVE_PROXIES, !IS_UNSETTABLE, IS_UNIQUE, !IS_DERIVED, IS_ORDERED);
+		initEReference(getClass_DemoParticipations(), theRequirementPackage.getScenario(), theRequirementPackage
+			.getScenario_ParticipatingClasses(), "demoParticipations", null, 0, -1,
+			org.unicase.model.classes.Class.class, !IS_TRANSIENT, !IS_VOLATILE, IS_CHANGEABLE, !IS_COMPOSITE,
+			IS_RESOLVE_PROXIES, !IS_UNSETTABLE, IS_UNIQUE, !IS_DERIVED, IS_ORDERED);
+		getClass_DemoParticipations().getEKeys().add(theModelPackage.getIdentifiableElement_Identifier());
 
 		initEClass(packageEClass, org.unicase.model.classes.Package.class, "Package", !IS_ABSTRACT, !IS_INTERFACE,
 			IS_GENERATED_INSTANCE_CLASS);
@@ -957,6 +1012,21 @@ public class ClassesPackageImpl extends EPackageImpl implements ClassesPackage {
 			!IS_TRANSIENT, !IS_VOLATILE, IS_CHANGEABLE, !IS_UNSETTABLE, !IS_ID, IS_UNIQUE, !IS_DERIVED, IS_ORDERED);
 		initEAttribute(getMethod_Label(), ecorePackage.getEString(), "label", null, 0, 1, Method.class, !IS_TRANSIENT,
 			!IS_VOLATILE, IS_CHANGEABLE, !IS_UNSETTABLE, !IS_ID, IS_UNIQUE, !IS_DERIVED, IS_ORDERED);
+		initEAttribute(getMethod_Stubbed(), ecorePackage.getEBoolean(), "stubbed", null, 0, 1, Method.class,
+			!IS_TRANSIENT, !IS_VOLATILE, IS_CHANGEABLE, !IS_UNSETTABLE, !IS_ID, IS_UNIQUE, !IS_DERIVED, IS_ORDERED);
+		initEReference(getMethod_CalledMethods(), this.getMethod(), this.getMethod_CallingMethods(), "calledMethods",
+			null, 0, -1, Method.class, !IS_TRANSIENT, !IS_VOLATILE, IS_CHANGEABLE, !IS_COMPOSITE, IS_RESOLVE_PROXIES,
+			!IS_UNSETTABLE, IS_UNIQUE, !IS_DERIVED, IS_ORDERED);
+		getMethod_CalledMethods().getEKeys().add(theModelPackage.getIdentifiableElement_Identifier());
+		initEReference(getMethod_CallingMethods(), this.getMethod(), this.getMethod_CalledMethods(), "callingMethods",
+			null, 0, -1, Method.class, !IS_TRANSIENT, !IS_VOLATILE, IS_CHANGEABLE, !IS_COMPOSITE, IS_RESOLVE_PROXIES,
+			!IS_UNSETTABLE, IS_UNIQUE, !IS_DERIVED, IS_ORDERED);
+		getMethod_CallingMethods().getEKeys().add(theModelPackage.getIdentifiableElement_Identifier());
+		initEReference(getMethod_DemoParticipations(), theRequirementPackage.getScenario(), theRequirementPackage
+			.getScenario_ParticipatingMethods(), "demoParticipations", null, 0, -1, Method.class, !IS_TRANSIENT,
+			!IS_VOLATILE, IS_CHANGEABLE, !IS_COMPOSITE, IS_RESOLVE_PROXIES, !IS_UNSETTABLE, IS_UNIQUE, !IS_DERIVED,
+			IS_ORDERED);
+		getMethod_DemoParticipations().getEKeys().add(theModelPackage.getIdentifiableElement_Identifier());
 
 		initEClass(methodArgumentEClass, MethodArgument.class, "MethodArgument", !IS_ABSTRACT, !IS_INTERFACE,
 			IS_GENERATED_INSTANCE_CLASS);
@@ -1026,6 +1096,7 @@ public class ClassesPackageImpl extends EPackageImpl implements ClassesPackage {
 		addAnnotation(getClass_OutgoingAssociations(), source, new String[] { "priority", "21.0", "position", "right" });
 		addAnnotation(getClass_Attributes(), source, new String[] { "priority", "23.0", "position", "left" });
 		addAnnotation(getClass_Methods(), source, new String[] { "priority", "24.0", "position", "left" });
+		addAnnotation(getClass_DemoParticipations(), source, new String[] { "priority", "9.0", "position", "right" });
 		addAnnotation(getPackage_ContainedPackageElements(), source, new String[] { "priority", "9.5", "position",
 			"right" });
 		addAnnotation(getPackage_FacadeClass(), source, new String[] { "priority", "20.0", "position", "left" });
@@ -1056,6 +1127,9 @@ public class ClassesPackageImpl extends EPackageImpl implements ClassesPackage {
 		addAnnotation(getMethod_Arguments(), source, new String[] { "priority", "10.0", "position", "right" });
 		addAnnotation(getMethod_Properties(), source, new String[] { "priority", "14.0", "position", "left" });
 		addAnnotation(getMethod_Label(), source, new String[] { "priority", "15.0", "position", "left" });
+		addAnnotation(getMethod_CalledMethods(), source, new String[] { "priority", "10.1", "position", "right" });
+		addAnnotation(getMethod_CallingMethods(), source, new String[] { "priority", "10.2", "position", "right" });
+		addAnnotation(getMethod_DemoParticipations(), source, new String[] { "priority", "9.0", "position", "right" });
 		addAnnotation(getMethodArgument_Type(), source, new String[] { "priority", "10.0", "position", "left" });
 		addAnnotation(getMethodArgument_Direction(), source, new String[] { "priority", "11.0", "position", "left" });
 		addAnnotation(getMethodArgument_DefaultValue(), source, new String[] { "priority", "12.0", "position", "left" });

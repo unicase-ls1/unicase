@@ -55,6 +55,7 @@ public class ClassItemProvider extends PackageElementItemProvider implements IEd
 			addOutgoingAssociationsPropertyDescriptor(object);
 			addAttributesPropertyDescriptor(object);
 			addMethodsPropertyDescriptor(object);
+			addDemoParticipationsPropertyDescriptor(object);
 		}
 		return itemPropertyDescriptors;
 	}
@@ -147,6 +148,19 @@ public class ClassItemProvider extends PackageElementItemProvider implements IEd
 			.getRootAdapterFactory(), getResourceLocator(), getString("_UI_Class_methods_feature"), getString(
 			"_UI_PropertyDescriptor_description", "_UI_Class_methods_feature", "_UI_Class_type"),
 			ClassesPackage.Literals.CLASS__METHODS, true, false, false, null, null, null));
+	}
+
+	/**
+	 * This adds a property descriptor for the Demo Participations feature.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 */
+	protected void addDemoParticipationsPropertyDescriptor(Object object) {
+		itemPropertyDescriptors.add(createItemPropertyDescriptor(((ComposeableAdapterFactory) adapterFactory)
+			.getRootAdapterFactory(), getResourceLocator(), getString("_UI_Class_demoParticipations_feature"),
+			getString("_UI_PropertyDescriptor_description", "_UI_Class_demoParticipations_feature", "_UI_Class_type"),
+			ClassesPackage.Literals.CLASS__DEMO_PARTICIPATIONS, true, false, true, null, null, null));
 	}
 
 	/**

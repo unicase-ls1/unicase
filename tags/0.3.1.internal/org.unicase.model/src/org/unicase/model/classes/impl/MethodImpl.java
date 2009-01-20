@@ -17,6 +17,7 @@ import org.eclipse.emf.ecore.EClass;
 import org.eclipse.emf.ecore.InternalEObject;
 import org.eclipse.emf.ecore.impl.ENotificationImpl;
 import org.eclipse.emf.ecore.util.EObjectContainmentEList;
+import org.eclipse.emf.ecore.util.EObjectWithInverseResolvingEList;
 import org.eclipse.emf.ecore.util.EcoreUtil;
 import org.eclipse.emf.ecore.util.InternalEList;
 import org.unicase.model.classes.ClassesPackage;
@@ -25,6 +26,8 @@ import org.unicase.model.classes.MethodArgument;
 import org.unicase.model.classes.ScopeType;
 import org.unicase.model.classes.VisibilityType;
 import org.unicase.model.impl.ModelElementImpl;
+import org.unicase.model.requirement.RequirementPackage;
+import org.unicase.model.requirement.Scenario;
 
 /*
  * <!-- begin-user-doc --> An implementation of the model object '<em><b>Method</b></em>'. <!-- end-user-doc --> <p> The
@@ -158,6 +161,56 @@ public class MethodImpl extends ModelElementImpl implements Method {
 	 * @ordered
 	 */
 	protected String label = LABEL_EDEFAULT;
+
+	/**
+	 * The default value of the '{@link #isStubbed() <em>Stubbed</em>}' attribute.
+	 * <!-- begin-user-doc --> <!--
+	 * end-user-doc -->
+	 * @see #isStubbed()
+	 * @generated
+	 * @ordered
+	 */
+	protected static final boolean STUBBED_EDEFAULT = false;
+
+	/**
+	 * The cached value of the '{@link #isStubbed() <em>Stubbed</em>}' attribute.
+	 * <!-- begin-user-doc --> <!--
+	 * end-user-doc -->
+	 * @see #isStubbed()
+	 * @generated
+	 * @ordered
+	 */
+	protected boolean stubbed = STUBBED_EDEFAULT;
+
+	/**
+	 * The cached value of the '{@link #getCalledMethods() <em>Called Methods</em>}' reference list.
+	 * <!-- begin-user-doc
+	 * --> <!-- end-user-doc -->
+	 * @see #getCalledMethods()
+	 * @generated
+	 * @ordered
+	 */
+	protected EList<Method> calledMethods;
+
+	/**
+	 * The cached value of the '{@link #getCallingMethods() <em>Calling Methods</em>}' reference list. <!--
+	 * begin-user-doc --> <!-- end-user-doc -->
+	 * 
+	 * @see #getCallingMethods()
+	 * @generated
+	 * @ordered
+	 */
+	protected EList<Method> callingMethods;
+
+	/**
+	 * The cached value of the '{@link #getDemoParticipations() <em>Demo Participations</em>}' reference list. <!--
+	 * begin-user-doc --> <!-- end-user-doc -->
+	 * 
+	 * @see #getDemoParticipations()
+	 * @generated
+	 * @ordered
+	 */
+	protected EList<Scenario> demoParticipations;
 
 	/**
 	 * <!-- begin-user-doc --> <!-- end-user-doc -->
@@ -358,6 +411,7 @@ public class MethodImpl extends ModelElementImpl implements Method {
 	 * <!-- begin-user-doc --> <!-- end-user-doc -->
 	 * @generated
 	 */
+	@SuppressWarnings("unchecked")
 	@Override
 	public NotificationChain eInverseAdd(InternalEObject otherEnd, int featureID, NotificationChain msgs) {
 		switch (featureID) {
@@ -365,6 +419,13 @@ public class MethodImpl extends ModelElementImpl implements Method {
 			if (eInternalContainer() != null)
 				msgs = eBasicRemoveFromContainer(msgs);
 			return basicSetDefiningClass((org.unicase.model.classes.Class) otherEnd, msgs);
+		case ClassesPackage.METHOD__CALLED_METHODS:
+			return ((InternalEList<InternalEObject>) (InternalEList<?>) getCalledMethods()).basicAdd(otherEnd, msgs);
+		case ClassesPackage.METHOD__CALLING_METHODS:
+			return ((InternalEList<InternalEObject>) (InternalEList<?>) getCallingMethods()).basicAdd(otherEnd, msgs);
+		case ClassesPackage.METHOD__DEMO_PARTICIPATIONS:
+			return ((InternalEList<InternalEObject>) (InternalEList<?>) getDemoParticipations()).basicAdd(otherEnd,
+				msgs);
 		}
 		return super.eInverseAdd(otherEnd, featureID, msgs);
 	}
@@ -380,6 +441,12 @@ public class MethodImpl extends ModelElementImpl implements Method {
 			return basicSetDefiningClass(null, msgs);
 		case ClassesPackage.METHOD__ARGUMENTS:
 			return ((InternalEList<?>) getArguments()).basicRemove(otherEnd, msgs);
+		case ClassesPackage.METHOD__CALLED_METHODS:
+			return ((InternalEList<?>) getCalledMethods()).basicRemove(otherEnd, msgs);
+		case ClassesPackage.METHOD__CALLING_METHODS:
+			return ((InternalEList<?>) getCallingMethods()).basicRemove(otherEnd, msgs);
+		case ClassesPackage.METHOD__DEMO_PARTICIPATIONS:
+			return ((InternalEList<?>) getDemoParticipations()).basicRemove(otherEnd, msgs);
 		}
 		return super.eInverseRemove(otherEnd, featureID, msgs);
 	}
@@ -423,6 +490,14 @@ public class MethodImpl extends ModelElementImpl implements Method {
 			return getProperties();
 		case ClassesPackage.METHOD__LABEL:
 			return getLabel();
+		case ClassesPackage.METHOD__STUBBED:
+			return isStubbed() ? Boolean.TRUE : Boolean.FALSE;
+		case ClassesPackage.METHOD__CALLED_METHODS:
+			return getCalledMethods();
+		case ClassesPackage.METHOD__CALLING_METHODS:
+			return getCallingMethods();
+		case ClassesPackage.METHOD__DEMO_PARTICIPATIONS:
+			return getDemoParticipations();
 		}
 		return super.eGet(featureID, resolve, coreType);
 	}
@@ -457,6 +532,21 @@ public class MethodImpl extends ModelElementImpl implements Method {
 		case ClassesPackage.METHOD__LABEL:
 			setLabel((String) newValue);
 			return;
+		case ClassesPackage.METHOD__STUBBED:
+			setStubbed(((Boolean) newValue).booleanValue());
+			return;
+		case ClassesPackage.METHOD__CALLED_METHODS:
+			getCalledMethods().clear();
+			getCalledMethods().addAll((Collection<? extends Method>) newValue);
+			return;
+		case ClassesPackage.METHOD__CALLING_METHODS:
+			getCallingMethods().clear();
+			getCallingMethods().addAll((Collection<? extends Method>) newValue);
+			return;
+		case ClassesPackage.METHOD__DEMO_PARTICIPATIONS:
+			getDemoParticipations().clear();
+			getDemoParticipations().addAll((Collection<? extends Scenario>) newValue);
+			return;
 		}
 		super.eSet(featureID, newValue);
 	}
@@ -489,6 +579,18 @@ public class MethodImpl extends ModelElementImpl implements Method {
 		case ClassesPackage.METHOD__LABEL:
 			setLabel(LABEL_EDEFAULT);
 			return;
+		case ClassesPackage.METHOD__STUBBED:
+			setStubbed(STUBBED_EDEFAULT);
+			return;
+		case ClassesPackage.METHOD__CALLED_METHODS:
+			getCalledMethods().clear();
+			return;
+		case ClassesPackage.METHOD__CALLING_METHODS:
+			getCallingMethods().clear();
+			return;
+		case ClassesPackage.METHOD__DEMO_PARTICIPATIONS:
+			getDemoParticipations().clear();
+			return;
 		}
 		super.eUnset(featureID);
 	}
@@ -516,6 +618,14 @@ public class MethodImpl extends ModelElementImpl implements Method {
 			return PROPERTIES_EDEFAULT == null ? properties != null : !PROPERTIES_EDEFAULT.equals(properties);
 		case ClassesPackage.METHOD__LABEL:
 			return LABEL_EDEFAULT == null ? label != null : !LABEL_EDEFAULT.equals(label);
+		case ClassesPackage.METHOD__STUBBED:
+			return stubbed != STUBBED_EDEFAULT;
+		case ClassesPackage.METHOD__CALLED_METHODS:
+			return calledMethods != null && !calledMethods.isEmpty();
+		case ClassesPackage.METHOD__CALLING_METHODS:
+			return callingMethods != null && !callingMethods.isEmpty();
+		case ClassesPackage.METHOD__DEMO_PARTICIPATIONS:
+			return demoParticipations != null && !demoParticipations.isEmpty();
 		}
 		return super.eIsSet(featureID);
 	}
@@ -540,6 +650,8 @@ public class MethodImpl extends ModelElementImpl implements Method {
 		result.append(properties);
 		result.append(", label: ");
 		result.append(label);
+		result.append(", stubbed: ");
+		result.append(stubbed);
 		result.append(')');
 		return result.toString();
 	}
@@ -650,6 +762,61 @@ public class MethodImpl extends ModelElementImpl implements Method {
 			eNotify(new ENotificationImpl(this, Notification.SET, ClassesPackage.METHOD__SIGNATURE, oldLabel,
 				getLabel()));
 		}
+	}
+
+	/**
+	 * <!-- begin-user-doc --> . <!-- end-user-doc -->
+	 * @generated
+	 */
+	public boolean isStubbed() {
+		return stubbed;
+	}
+
+	/**
+	 * <!-- begin-user-doc --> <!-- end-user-doc -->
+	 * @generated
+	 */
+	public void setStubbed(boolean newStubbed) {
+		boolean oldStubbed = stubbed;
+		stubbed = newStubbed;
+		if (eNotificationRequired())
+			eNotify(new ENotificationImpl(this, Notification.SET, ClassesPackage.METHOD__STUBBED, oldStubbed, stubbed));
+	}
+
+	/**
+	 * <!-- begin-user-doc --> <!-- end-user-doc -->
+	 * @generated
+	 */
+	public EList<Method> getCalledMethods() {
+		if (calledMethods == null) {
+			calledMethods = new EObjectWithInverseResolvingEList.ManyInverse<Method>(Method.class, this,
+				ClassesPackage.METHOD__CALLED_METHODS, ClassesPackage.METHOD__CALLING_METHODS);
+		}
+		return calledMethods;
+	}
+
+	/**
+	 * <!-- begin-user-doc --> <!-- end-user-doc -->
+	 * @generated
+	 */
+	public EList<Method> getCallingMethods() {
+		if (callingMethods == null) {
+			callingMethods = new EObjectWithInverseResolvingEList.ManyInverse<Method>(Method.class, this,
+				ClassesPackage.METHOD__CALLING_METHODS, ClassesPackage.METHOD__CALLED_METHODS);
+		}
+		return callingMethods;
+	}
+
+	/**
+	 * <!-- begin-user-doc --> <!-- end-user-doc -->
+	 * @generated
+	 */
+	public EList<Scenario> getDemoParticipations() {
+		if (demoParticipations == null) {
+			demoParticipations = new EObjectWithInverseResolvingEList.ManyInverse<Scenario>(Scenario.class, this,
+				ClassesPackage.METHOD__DEMO_PARTICIPATIONS, RequirementPackage.SCENARIO__PARTICIPATING_METHODS);
+		}
+		return demoParticipations;
 	}
 
 } // MethodImpl
