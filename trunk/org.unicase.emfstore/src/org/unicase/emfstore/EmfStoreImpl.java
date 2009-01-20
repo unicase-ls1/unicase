@@ -128,6 +128,7 @@ public class EmfStoreImpl implements EmfStore {
 		try {
 			try {
 				createResourceForProject(newProjectState, newVersion.getPrimarySpec(), projectHistory.getProjectId());
+				createResourceForChangePackage(changePackage, newVersion.getPrimarySpec(), projectId);
 				createResourceForVersion(newVersion, projectHistory.getProjectId());
 			} catch (FatalEmfStoreException e) {
 				// try to roll back
@@ -539,8 +540,18 @@ public class EmfStoreImpl implements EmfStore {
 		saveInResource(project, filename);
 	}
 
+	private void createResourceForChangePackage(ChangePackage changePackage, PrimaryVersionSpec versionId,
+		ProjectId projectId) throws FatalEmfStoreException {
+		String filename = getProjectFolder(projectId) + getChangePackageFile(versionId.getIdentifier());
+		saveInResource(changePackage, filename);
+	}
+
 	private String getProjectFile(int versionNumber) {
 		return "projectstate-" + versionNumber + ServerConfiguration.FILE_EXTENSION_PROJECTSTATE;
+	}
+
+	private String getChangePackageFile(int versionNumber) {
+		return "changepacke-" + versionNumber + ServerConfiguration.FILE_EXTENSION_CHANGEPACKAGE;
 	}
 
 	private String getProjectFolder(ProjectId projectId) {
