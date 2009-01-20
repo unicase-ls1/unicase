@@ -19,6 +19,7 @@ import org.unicase.ui.common.decorators.OverlayImageDescriptor;
  * @author Shterev
  */
 public class OperationsDescLabelProvider extends ColumnLabelProvider {
+
 	private final ILabelProvider emfProvider;
 	private ChangePackageVisualizationHelper visualizationHelper;
 
