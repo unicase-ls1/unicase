@@ -14,7 +14,7 @@ import org.eclipse.ui.PartInitException;
 import org.eclipse.ui.PlatformUI;
 import org.eclipse.ui.handlers.HandlerUtil;
 import org.unicase.model.ModelElement;
-import org.unicase.ui.meeditor.MEEditorInput;
+import org.unicase.ui.common.MEEditorInput;
 
 /**
  * 
