@@ -1,12 +1,13 @@
 /**
- * <copyright> Copyright (c) 2008 Jonas Helming, Maximilian Koegel. All rights reserved. This program and the accompanying materials are made available under the terms of the Eclipse Public License v1.0 which accompanies this distribution, and is available at http://www.eclipse.org/legal/epl-v10.html
- * </copyright>
- *
- * $Id$
+ * <copyright> Copyright (c) 2008 Jonas Helming, Maximilian Koegel. All rights reserved. This program and the
+ * accompanying materials are made available under the terms of the Eclipse Public License v1.0 which accompanies this
+ * distribution, and is available at http://www.eclipse.org/legal/epl-v10.html </copyright> $Id$
  */
 package org.unicase.ui.navigator.wizards;
 
 import org.eclipse.emf.ecore.EClass;
+import org.eclipse.jface.layout.GridDataFactory;
+import org.eclipse.jface.layout.GridLayoutFactory;
 import org.eclipse.jface.viewers.DoubleClickEvent;
 import org.eclipse.jface.viewers.IDoubleClickListener;
 import org.eclipse.jface.viewers.ISelection;
@@ -14,22 +15,21 @@ import org.eclipse.jface.viewers.IStructuredSelection;
 import org.eclipse.jface.viewers.TreeViewer;
 import org.eclipse.jface.wizard.WizardPage;
 import org.eclipse.swt.SWT;
-import org.eclipse.swt.layout.GridData;
-import org.eclipse.swt.layout.GridLayout;
+import org.eclipse.swt.events.ModifyEvent;
+import org.eclipse.swt.events.ModifyListener;
 import org.eclipse.swt.widgets.Composite;
 import org.eclipse.swt.widgets.Event;
+import org.eclipse.swt.widgets.Label;
 import org.eclipse.swt.widgets.Listener;
+import org.eclipse.swt.widgets.Text;
 import org.eclipse.swt.widgets.Tree;
 import org.unicase.model.diagram.MEDiagram;
 import org.unicase.ui.common.MEClassLabelProvider;
 
 /**
- * 
- * @author Hodaie This is the first page of NewModelElementWizard. On this page
- *         the model packages and their class (only those who inherit
- *         ModelElement and are not abstract) are shown in a TreeViewer. If user
- *         selects a class in this tree, the wizard can finish.
- * 
+ * @author Hodaie This is the first page of NewModelElementWizard. On this page the model packages and their class (only
+ *         those who inherit ModelElement and are not abstract) are shown in a TreeViewer. If user selects a class in
+ *         this tree, the wizard can finish.
  */
 public class ModelTreePage extends WizardPage implements Listener {
 
@@ -38,10 +38,9 @@ public class ModelTreePage extends WizardPage implements Listener {
 	private static final String PAGE_DESCRIPTION = "Select model element type";
 
 	/**
-	 * . Constructor
+	 * Constructor.
 	 * 
-	 * @param pageName
-	 *            page name
+	 * @param pageName page name
 	 */
 	protected ModelTreePage(String pageName) {
 		super(pageName);
@@ -51,34 +50,48 @@ public class ModelTreePage extends WizardPage implements Listener {
 	}
 
 	/**
-	 * . ({@inheritDoc})
+	 * {@inheritDoc}
 	 */
 	public void createControl(Composite parent) {
 
 		Composite composite = new Composite(parent, SWT.NULL);
 
-		GridLayout gl = new GridLayout();
-		gl.numColumns = 4;
-		composite.setLayout(gl);
+		GridLayoutFactory.fillDefaults().numColumns(2).equalWidth(false).applyTo(composite);
 
+		Label filterLabel = new Label(composite, SWT.LEFT);
+		filterLabel.setText("Search:");
+		final Text filterInput = new Text(composite, SWT.SEARCH);
+		filterInput.setMessage("Model Element class");
+		GridDataFactory.fillDefaults().align(SWT.FILL, SWT.FILL).grab(true, true).applyTo(filterInput);
 		Tree tree = new Tree(composite, SWT.SINGLE);
+		final ModelClassFilter filter = new ModelClassFilter();
+		filterInput.addModifyListener(new ModifyListener() {
+			public void modifyText(ModifyEvent e) {
+				filter.setSearchTerm(filterInput.getText());
+				treeViewer.expandAll();
+				treeViewer.refresh();
+			}
+		});
+
 		treeViewer = new TreeViewer(tree);
-		treeViewer.getControl().setLayoutData(new GridData(GridData.FILL_BOTH));
+		GridDataFactory.fillDefaults().align(SWT.FILL, SWT.FILL).grab(true, true).span(2, 1).applyTo(
+			treeViewer.getControl());
 		treeViewer.setContentProvider(new ModelTreeContentProvider());
 		treeViewer.setLabelProvider(new MEClassLabelProvider());
-		//give an empty object, otherwise it does not initialize
+		treeViewer.addFilter(filter);
+		// give an empty object, otherwise it does not initialize
 		treeViewer.setInput(new Object());
 		treeViewer.getTree().addListener(SWT.Selection, this);
-		treeViewer.addDoubleClickListener(new IDoubleClickListener(){
+		treeViewer.addDoubleClickListener(new IDoubleClickListener() {
 
 			public void doubleClick(DoubleClickEvent event) {
-				if(getWizard().canFinish()){
+				if (getWizard().canFinish()) {
 					getWizard().performFinish();
 					getWizard().getContainer().getShell().close();
 				}
-				
+
 			}
-			
+
 		});
 
 		setControl(composite);
@@ -86,7 +99,7 @@ public class ModelTreePage extends WizardPage implements Listener {
 	}
 
 	/**
-	 * . ({@inheritDoc}
+	 * {@inheritDoc}
 	 */
 	@Override
 	public boolean canFlipToNextPage() {
@@ -96,8 +109,8 @@ public class ModelTreePage extends WizardPage implements Listener {
 	}
 
 	/**
-	 * Check if tree selection is a ME and wizard can complete. This Method sets
-	 * the newMEType and treeCompleted fields in NewModelElementWizard
+	 * Check if tree selection is a ME and wizard can complete. This Method sets the newMEType and treeCompleted fields
+	 * in NewModelElementWizard
 	 * 
 	 * @return
 	 */
@@ -122,12 +135,12 @@ public class ModelTreePage extends WizardPage implements Listener {
 		if (o instanceof EClass) {
 			canFinish = true;
 		}
-				
+
 		else {
 			canFinish = false;
 		}
-		
-		if(o instanceof MEDiagram) {
+
+		if (o instanceof MEDiagram) {
 			wizard.setNewMEType(((MEDiagram) o).eClass());
 			wizard.setNewDiagramType(((MEDiagram) o).getType());
 			wizard.setTreePageCompleted(true);
@@ -147,8 +160,7 @@ public class ModelTreePage extends WizardPage implements Listener {
 	}
 
 	/**
-	 * . ({@inheritDoc} On selection change in TreeViewer updates wizard buttons
-	 * accordingly
+	 * {@inheritDoc} On selection change in TreeViewer updates wizard buttons accordingly.
 	 */
 	public void handleEvent(Event event) {
 
