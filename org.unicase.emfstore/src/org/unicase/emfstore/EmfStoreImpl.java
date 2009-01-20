@@ -9,6 +9,7 @@ import java.io.File;
 import java.util.ArrayList;
 import java.util.Collections;
 import java.util.Date;
+import java.util.HashSet;
 import java.util.Iterator;
 import java.util.List;
 
@@ -50,6 +51,7 @@ import org.unicase.emfstore.exceptions.InvalidInputException;
 import org.unicase.emfstore.exceptions.InvalidProjectIdException;
 import org.unicase.emfstore.exceptions.InvalidVersionSpecException;
 import org.unicase.emfstore.exceptions.StorageException;
+import org.unicase.model.ModelElementId;
 import org.unicase.model.ModelFactory;
 import org.unicase.model.Project;
 
@@ -158,6 +160,12 @@ public class EmfStoreImpl implements EmfStore {
 			}
 			save(previousHeadVersion);
 			save(projectHistory);
+
+			HistoryCache historyCache = EmfStoreController.getInstance().getHistoryCache();
+			// historyCache.printMap();
+			historyCache.addVersionToCache(projectId, newVersion);
+			// System.out.println("\n!!!!!!!!!!!");
+			// historyCache.printMap();
 		} catch (FatalEmfStoreException e) {
 			// roll back failed
 			EmfStoreController.getInstance().shutdown(e);
@@ -258,7 +266,7 @@ public class EmfStoreImpl implements EmfStore {
 	}
 
 	/**
-	 * {@inheritDoc}
+	 * {@inheritDoc} Notice: ATM only the first modelelement in the query is considered.
 	 */
 	public synchronized List<HistoryInfo> getHistoryInfo(SessionId sessionId, ProjectId projectId,
 		HistoryQuery historyQuery) throws EmfStoreException {
@@ -266,11 +274,21 @@ public class EmfStoreImpl implements EmfStore {
 			throw new InvalidInputException();
 		}
 		authorizationControl.checkReadAccess(sessionId, projectId, null);
-		List<HistoryInfo> result = getHistoryInfo(projectId, historyQuery.getSource(), historyQuery.getTarget());
-		if (historyQuery.getSource().compareTo(historyQuery.getTarget()) < 0) {
-			Collections.reverse(result);
+		if (historyQuery.getModelElements().size() > 0) {
+			List<HistoryInfo> result = getHistoryInfo(projectId, historyQuery.getSource(), historyQuery.getTarget());
+			if (historyQuery.getSource().compareTo(historyQuery.getTarget()) < 0) {
+				Collections.reverse(result);
+			}
+			return result;
+		} else {
+			return getHistoryInfo(projectId, historyQuery.getModelElements());
 		}
-		return result;
+	}
+
+	private List<HistoryInfo> getHistoryInfo(ProjectId projectId, List<ModelElementId> moList) throws EmfStoreException {
+		HistoryCache historyCache = EmfStoreController.getInstance().getHistoryCache();
+		HashSet<Version> elements = historyCache.getChangesForModelElement(projectId, moList.get(0));
+		return getHistoryInfo(new ArrayList<Version>(elements), projectId);
 	}
 
 	private List<HistoryInfo> getHistoryInfo(ProjectId projectId, PrimaryVersionSpec source, PrimaryVersionSpec target)
@@ -278,24 +296,36 @@ public class EmfStoreImpl implements EmfStore {
 		if (projectId == null || source == null || target == null) {
 			throw new InvalidInputException();
 		}
+		return getHistoryInfo(getVersions(projectId, source, target), projectId);
+	}
+
+	private List<HistoryInfo> getHistoryInfo(List<Version> versions, ProjectId projectId) throws EmfStoreException {
+		if (projectId == null || versions == null) {
+			throw new InvalidInputException();
+		}
 		List<HistoryInfo> result = new ArrayList<HistoryInfo>();
 		PrimaryVersionSpec headRevision = getProject(projectId).getLastVersion().getPrimarySpec();
-		for (Version version : getVersions(projectId, source, target)) {
-			HistoryInfo history = VersioningFactory.eINSTANCE.createHistoryInfo();
-			history.setLogMessage((LogMessage) EcoreUtil.copy(version.getLogMessage()));
-			history.setPrimerySpec((PrimaryVersionSpec) EcoreUtil.copy(version.getPrimarySpec()));
-			for (TagVersionSpec tagSpec : version.getTagSpecs()) {
-				history.getTagSpecs().add((TagVersionSpec) EcoreUtil.copy(tagSpec));
-			}
-			// add HEAD tag to history info
-			if (version.getPrimarySpec().equals(headRevision)) {
-				TagVersionSpec spec = VersioningFactory.eINSTANCE.createTagVersionSpec();
-				spec.setName(VersionSpec.HEAD);
-				history.getTagSpecs().add(spec);
-			}
+		for (Version version : versions) {
+			HistoryInfo history = createHistoryInfo(headRevision, version);
 			result.add(history);
 		}
 		return result;
+	}
+
+	private HistoryInfo createHistoryInfo(PrimaryVersionSpec headRevision, Version version) {
+		HistoryInfo history = VersioningFactory.eINSTANCE.createHistoryInfo();
+		history.setLogMessage((LogMessage) EcoreUtil.copy(version.getLogMessage()));
+		history.setPrimerySpec((PrimaryVersionSpec) EcoreUtil.copy(version.getPrimarySpec()));
+		for (TagVersionSpec tagSpec : version.getTagSpecs()) {
+			history.getTagSpecs().add((TagVersionSpec) EcoreUtil.copy(tagSpec));
+		}
+		// add HEAD tag to history info
+		if (version.getPrimarySpec().equals(headRevision)) {
+			TagVersionSpec spec = VersioningFactory.eINSTANCE.createTagVersionSpec();
+			spec.setName(VersionSpec.HEAD);
+			history.getTagSpecs().add(spec);
+		}
+		return history;
 	}
 
 	/**
