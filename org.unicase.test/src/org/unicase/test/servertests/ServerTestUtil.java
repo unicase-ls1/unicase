@@ -10,14 +10,14 @@ public class ServerTestUtil {
 	public static ClientVersionInfo createClientVersionInfo() {
 		ClientVersionInfo clientVersionInfo = EsmodelFactory.eINSTANCE.createClientVersionInfo();
 		clientVersionInfo.setName("unicase.org eclipse client");
-		clientVersionInfo.setVersion("0.3.0.internal");
+		clientVersionInfo.setVersion("0.3.2.internal");
 		return clientVersionInfo;
 	}
 
 	public static ServerInfo createServerInfo() {
 		ServerInfo serverInfo = WorkspaceFactory.eINSTANCE.createServerInfo();
 		serverInfo.setPort(1099);
-		serverInfo.setUrl("macbruegge46");
+		serverInfo.setUrl("localhost");
 		return serverInfo;
 	}
 
