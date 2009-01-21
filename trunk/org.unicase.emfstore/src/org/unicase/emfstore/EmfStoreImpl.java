@@ -289,7 +289,12 @@ public class EmfStoreImpl implements EmfStore {
 	private List<HistoryInfo> getHistoryInfo(ProjectId projectId, List<ModelElementId> moList) throws EmfStoreException {
 		HistoryCache historyCache = EmfStoreController.getInstance().getHistoryCache();
 		TreeSet<Version> elements = historyCache.getChangesForModelElement(projectId, moList.get(0));
-		return getHistoryInfo(new ArrayList<Version>(elements), projectId);
+		ArrayList<Version> versions = new ArrayList<Version>(elements);
+		if (versions.size() == 0) {
+			return new ArrayList<HistoryInfo>();
+		}
+		int historyCount = Math.min(versions.size() - 1, 20);
+		return getHistoryInfo(versions.subList(0, historyCount), projectId);
 	}
 
 	private List<HistoryInfo> getHistoryInfo(ProjectId projectId, PrimaryVersionSpec source, PrimaryVersionSpec target)
