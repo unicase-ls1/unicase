@@ -20,12 +20,17 @@ import org.eclipse.swt.SWT;
 import org.eclipse.swt.widgets.Composite;
 import org.eclipse.ui.IActionBars;
 import org.eclipse.ui.part.ViewPart;
+import org.unicase.model.ModelElement;
+import org.unicase.model.Project;
 import org.unicase.model.organization.User;
 import org.unicase.model.task.TaskPackage;
+import org.unicase.model.task.WorkItem;
+import org.unicase.model.util.ProjectChangeObserver;
 import org.unicase.ui.common.commands.ActionHelper;
 import org.unicase.ui.common.filter.TeamFilter;
 import org.unicase.ui.common.filter.UserFilter;
 import org.unicase.ui.tableview.Activator;
+import org.unicase.workspace.ProjectSpace;
 import org.unicase.workspace.Workspace;
 import org.unicase.workspace.WorkspaceManager;
 import org.unicase.workspace.WorkspacePackage;
@@ -38,7 +43,7 @@ import org.unicase.workspace.util.OrgUnitHelper;
  * 
  * @author Florian Schneider
  */
-public class TaskView extends ViewPart {
+public class TaskView extends ViewPart implements ProjectChangeObserver {
 
 	private METableViewer viewer;
 	private final EClass itemMetaClass = TaskPackage.eINSTANCE.getWorkItem();
@@ -73,15 +78,6 @@ public class TaskView extends ViewPart {
 			// Do nothing.
 		}
 		workspace = WorkspaceManager.getInstance().getCurrentWorkspace();
-		adapterImpl = new AdapterImpl() {
-			@Override
-			public void notifyChanged(Notification msg) {
-				if ((msg.getFeatureID(Workspace.class)) == WorkspacePackage.WORKSPACE__ACTIVE_PROJECT_SPACE) {
-					initUserFilter();
-				}
-			}
-		};
-		workspace.eAdapters().add(adapterImpl);
 
 	}
 
@@ -98,6 +94,26 @@ public class TaskView extends ViewPart {
 		// the task view shall only display objects that are instance of
 		// Checkable
 		viewer.addFilter(new CheckableViewerFilter());
+
+		adapterImpl = new AdapterImpl() {
+			@Override
+			public void notifyChanged(Notification msg) {
+				if ((msg.getFeatureID(Workspace.class)) == WorkspacePackage.WORKSPACE__ACTIVE_PROJECT_SPACE) {
+					initUserFilter();
+
+					// remove old listeners
+					Object oldValue = msg.getOldValue();
+					if (oldValue instanceof ProjectSpace) {
+						((ProjectSpace) oldValue).getProject().removeProjectChangeObserver(TaskView.this);
+					}
+					// add listener to get notified when work items get deleted/added/changed
+					if (workspace.getActiveProjectSpace() != null) {
+						workspace.getActiveProjectSpace().getProject().addProjectChangeObserver(TaskView.this);
+					}
+				}
+			}
+		};
+		workspace.eAdapters().add(adapterImpl);
 
 		IActionBars bars = getViewSite().getActionBars();
 		IToolBarManager menuManager = bars.getToolBarManager();
@@ -307,7 +323,6 @@ public class TaskView extends ViewPart {
 	 */
 	@Override
 	public void setFocus() {
-		viewer.refresh();
 		EventUtil.logFocusEvent("org.unicase.ui.taskview");
 	}
 
@@ -317,6 +332,7 @@ public class TaskView extends ViewPart {
 	@Override
 	public void dispose() {
 		workspace.eAdapters().remove(adapterImpl);
+		workspace.getActiveProjectSpace().getProject().removeProjectChangeObserver(this);
 		settings.put("TeamFilter", filterToMyTeam.isChecked());
 		settings.put("UncheckedFilter", filterToUnchecked.isChecked());
 		settings.put("UserFilter", filterToMe.isChecked());
@@ -329,6 +345,50 @@ public class TaskView extends ViewPart {
 		}
 
 		super.dispose();
+	}
+
+	/**
+	 * Refresh the view if a work item has been added.
+	 * 
+	 * @see org.unicase.model.util.ProjectChangeObserver#modelElementAdded(org.unicase.model.Project,
+	 *      org.unicase.model.ModelElement)
+	 * @param project the project
+	 * @param modelElement the model element
+	 */
+	public void modelElementAdded(Project project, ModelElement modelElement) {
+		if (modelElement instanceof WorkItem) {
+			viewer.refresh();
+		}
+	}
+
+	/**
+	 * Refresh the view if a work item has been removed.
+	 * 
+	 * @see org.unicase.model.util.ProjectChangeObserver#modelElementRemoved(org.unicase.model.Project,
+	 *      org.unicase.model.ModelElement)
+	 * @param project the project
+	 * @param modelElement the model element
+	 */
+	public void modelElementRemoved(Project project, ModelElement modelElement) {
+		if (modelElement instanceof WorkItem) {
+			viewer.refresh();
+		}
+	}
+
+	/**
+	 * Refresh the view if a work item if notify has been called. Notify gets called when the model element has been
+	 * changed or the container of the ME has been changed. y * @see
+	 * org.unicase.model.util.ProjectChangeObserver#notify(org.eclipse.emf.common.notify.Notification,
+	 * org.unicase.model.Project, org.unicase.model.ModelElement)
+	 * 
+	 * @param notification the notification
+	 * @param project the project
+	 * @param modelElement the model element
+	 */
+	public void notify(Notification notification, Project project, ModelElement modelElement) {
+		if (modelElement instanceof WorkItem) {
+			viewer.refresh();
+		}
 	}
 
 }
