@@ -1,8 +1,7 @@
 /**
- * <copyright> Copyright (c) 2008 Jonas Helming, Maximilian Koegel. All rights reserved. This program and the accompanying materials are made available under the terms of the Eclipse Public License v1.0 which accompanies this distribution, and is available at http://www.eclipse.org/legal/epl-v10.html
- * </copyright>
- *
- * $Id$
+ * <copyright> Copyright (c) 2008 Jonas Helming, Maximilian Koegel. All rights reserved. This program and the
+ * accompanying materials are made available under the terms of the Eclipse Public License v1.0 which accompanies this
+ * distribution, and is available at http://www.eclipse.org/legal/epl-v10.html </copyright> $Id$
  */
 package org.unicase.workspace.edit.commands;
 
@@ -35,16 +34,11 @@ import org.unicase.workspace.util.UpdateObserver;
 import org.unicase.workspace.util.WorkspaceUtil;
 
 /**
- * 
  * @author Hodaie
- * @author Shterev
- * 
- *         This handlers handles UpdateWorkspace command. This command is shown
- *         in UC View context menu only for Projects
- * 
+ * @author Shterev This handlers handles UpdateWorkspace command. This command is shown in UC View context menu only for
+ *         Projects
  */
-public class UpdateProjectHandler extends ProjectActionHandler implements
-		UpdateObserver {
+public class UpdateProjectHandler extends ProjectActionHandler implements UpdateObserver {
 
 	private Shell shell;
 	private Usersession usersession;
@@ -55,11 +49,10 @@ public class UpdateProjectHandler extends ProjectActionHandler implements
 	public Object execute(ExecutionEvent event) throws ExecutionException {
 		ProjectSpace projectSpace = getProjectSpace(event);
 		if (projectSpace == null) {
-			ProjectSpace activeProjectSpace = WorkspaceManager.getInstance()
-					.getCurrentWorkspace().getActiveProjectSpace();
+			ProjectSpace activeProjectSpace = WorkspaceManager.getInstance().getCurrentWorkspace()
+				.getActiveProjectSpace();
 			if (activeProjectSpace == null) {
-				MessageDialog.openInformation(shell, "Information",
-						"You must select the Project");
+				MessageDialog.openInformation(shell, "Information", "You must select the Project");
 				return null;
 			}
 			projectSpace = activeProjectSpace;
@@ -73,14 +66,12 @@ public class UpdateProjectHandler extends ProjectActionHandler implements
 	/**
 	 * Updates the given projectSpace to the current head revision.
 	 * 
-	 * @param projectSpace
-	 *            the project space
+	 * @param projectSpace the project space
 	 */
 	public void update(final ProjectSpace projectSpace) {
 		TransactionalEditingDomain domain = TransactionalEditingDomain.Registry.INSTANCE
-				.getEditingDomain("org.unicase.EditingDomain");
-		RecordingCommandWithResult<Integer> command = new RecordingCommandWithResult<Integer>(
-				domain) {
+			.getEditingDomain("org.unicase.EditingDomain");
+		RecordingCommandWithResult<Integer> command = new RecordingCommandWithResult<Integer>(domain) {
 			@Override
 			protected void doExecute() {
 				updateWithoutCommand(projectSpace);
@@ -91,16 +82,15 @@ public class UpdateProjectHandler extends ProjectActionHandler implements
 
 	private void updateWithoutCommand(final ProjectSpace projectSpace) {
 		usersession = projectSpace.getUsersession();
-		usersession = projectSpace.getUsersession();
-		if (usersession==null) {
+		if (usersession == null) {
 			MessageDialog.openInformation(shell, null,
-			"This project is not yet shared with a server, you cannot update.");
+				"This project is not yet shared with a server, you cannot update.");
 			return;
 		}
-		
+
 		shell = PlatformUI.getWorkbench().getActiveWorkbenchWindow().getShell();
-		ProgressMonitorDialog progressDialog = new ProgressMonitorDialog(
-				PlatformUI.getWorkbench().getActiveWorkbenchWindow().getShell());
+		ProgressMonitorDialog progressDialog = new ProgressMonitorDialog(PlatformUI.getWorkbench()
+			.getActiveWorkbenchWindow().getShell());
 		progressDialog.open();
 		progressDialog.getProgressMonitor().beginTask("Update project...", 100);
 		progressDialog.getProgressMonitor().worked(10);
@@ -113,7 +103,7 @@ public class UpdateProjectHandler extends ProjectActionHandler implements
 			handleChangeConflictException(e1);
 		} catch (NoChangesOnServerException e) {
 			MessageDialog.openInformation(shell, "No need to update",
-					"Your project is up to date, you do not need to update.");
+				"Your project is up to date, you do not need to update.");
 		} catch (ConnectionException e) {
 			try {
 				// try to reconnect once.
@@ -148,19 +138,16 @@ public class UpdateProjectHandler extends ProjectActionHandler implements
 		mergeDialog.open();
 	}
 
-	private void update(final ProjectSpace projectSpace,
-			ProgressMonitorDialog progressDialog, int loginStatus)
-			throws EmfStoreException, ChangeConflictException {
+	private void update(final ProjectSpace projectSpace, ProgressMonitorDialog progressDialog, int loginStatus)
+		throws EmfStoreException, ChangeConflictException {
 		LoginDialog login;
 		if (!usersession.isLoggedIn()) {
-			login = new LoginDialog(shell, usersession, usersession
-					.getServerInfo());
+			login = new LoginDialog(shell, usersession, usersession.getServerInfo());
 			loginStatus = login.open();
 		}
 		if (loginStatus == LoginDialog.SUCCESSFUL) {
 			PrimaryVersionSpec baseVersion = projectSpace.getBaseVersion();
-			PrimaryVersionSpec targetVersion = projectSpace.update(
-					VersionSpec.HEAD_VERSION, UpdateProjectHandler.this);
+			PrimaryVersionSpec targetVersion = projectSpace.update(VersionSpec.HEAD_VERSION, UpdateProjectHandler.this);
 			WorkspaceUtil.logUpdate(projectSpace, baseVersion, targetVersion);
 		}
 	}
