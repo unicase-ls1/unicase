@@ -1,0 +1,236 @@
+/**
+ * <copyright>Copyright (c) 2008 Jonas Helming, Maximilian Koegel. All rights reserved. This program and the
+ * accompanying materials are made available under the terms of the Eclipse Public License v1.0 which accompanies this
+ * distribution, and is available at http://www.eclipse.org/legal/epl-v10.html</copyright> $Id$
+ */
+package org.unicase.model.attachment;
+
+import org.eclipse.emf.ecore.EAttribute;
+import org.eclipse.emf.ecore.EClass;
+import org.eclipse.emf.ecore.EPackage;
+import org.unicase.model.ModelPackage;
+
+/*
+ * <!-- begin-user-doc --> The <b>Package</b> for the model. It contains accessors for the meta objects to represent
+ * <ul> <li>each class,</li> <li>each feature of each class,</li> <li>each enum,</li> <li>and each data type</li> </ul>
+ * <!-- end-user-doc -->
+ * @see org.unicase.model.attachment.AttachmentFactory
+ * @model kind="package"
+ * @generated
+ */
+public interface AttachmentPackage extends EPackage {
+	/**
+	 * The package name.
+	 * <!-- begin-user-doc --> <!-- end-user-doc -->
+	 * @generated
+	 */
+	String eNAME = "attachment";
+
+	/**
+	 * The package namespace URI.
+	 * <!-- begin-user-doc --> <!-- end-user-doc -->
+	 * @generated
+	 */
+	String eNS_URI = "http://unicase.org/model/attachment";
+
+	/**
+	 * The package namespace name.
+	 * <!-- begin-user-doc --> <!-- end-user-doc -->
+	 * @generated
+	 */
+	String eNS_PREFIX = "org.unicase.model.attachment";
+
+	/**
+	 * The singleton instance of the package.
+	 * <!-- begin-user-doc --> <!-- end-user-doc -->
+	 * @generated
+	 */
+	AttachmentPackage eINSTANCE = org.unicase.model.attachment.impl.AttachmentPackageImpl.init();
+
+	/**
+	 * The meta object id for the '{@link org.unicase.model.attachment.impl.UrlAttachmentImpl <em>Url Attachment</em>}' class.
+	 * <!-- begin-user-doc --> <!-- end-user-doc -->
+	 * @see org.unicase.model.attachment.impl.UrlAttachmentImpl
+	 * @see org.unicase.model.attachment.impl.AttachmentPackageImpl#getUrlAttachment()
+	 * @generated
+	 */
+	int URL_ATTACHMENT = 0;
+
+	/**
+	 * The feature id for the '<em><b>Identifier</b></em>' attribute.
+	 * <!-- begin-user-doc --> <!-- end-user-doc -->
+	 * @generated
+	 * @ordered
+	 */
+	int URL_ATTACHMENT__IDENTIFIER = ModelPackage.ATTACHMENT__IDENTIFIER;
+
+	/**
+	 * The feature id for the '<em><b>Name</b></em>' attribute.
+	 * <!-- begin-user-doc --> <!-- end-user-doc -->
+	 * @generated
+	 * @ordered
+	 */
+	int URL_ATTACHMENT__NAME = ModelPackage.ATTACHMENT__NAME;
+
+	/**
+	 * The feature id for the '<em><b>Description</b></em>' attribute.
+	 * <!-- begin-user-doc --> <!-- end-user-doc -->
+	 * @generated
+	 * @ordered
+	 */
+	int URL_ATTACHMENT__DESCRIPTION = ModelPackage.ATTACHMENT__DESCRIPTION;
+
+	/**
+	 * The feature id for the '<em><b>Creator</b></em>' attribute.
+	 * <!-- begin-user-doc --> <!-- end-user-doc -->
+	 * @generated
+	 * @ordered
+	 */
+	int URL_ATTACHMENT__CREATOR = ModelPackage.ATTACHMENT__CREATOR;
+
+	/**
+	 * The feature id for the '<em><b>Creation Date</b></em>' attribute.
+	 * <!-- begin-user-doc --> <!-- end-user-doc -->
+	 * @generated
+	 * @ordered
+	 */
+	int URL_ATTACHMENT__CREATION_DATE = ModelPackage.ATTACHMENT__CREATION_DATE;
+
+	/**
+	 * The feature id for the '<em><b>Annotations</b></em>' reference list. <!-- begin-user-doc --> <!-- end-user-doc
+	 * -->
+	 * 
+	 * @generated
+	 * @ordered
+	 */
+	int URL_ATTACHMENT__ANNOTATIONS = ModelPackage.ATTACHMENT__ANNOTATIONS;
+
+	/**
+	 * The feature id for the '<em><b>Attachments</b></em>' reference list. <!-- begin-user-doc --> <!-- end-user-doc
+	 * -->
+	 * 
+	 * @generated
+	 * @ordered
+	 */
+	int URL_ATTACHMENT__ATTACHMENTS = ModelPackage.ATTACHMENT__ATTACHMENTS;
+
+	/**
+	 * The feature id for the '<em><b>Incoming Document References</b></em>' reference list.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 * @ordered
+	 */
+	int URL_ATTACHMENT__INCOMING_DOCUMENT_REFERENCES = ModelPackage.ATTACHMENT__INCOMING_DOCUMENT_REFERENCES;
+
+	/**
+	 * The feature id for the '<em><b>Leaf Section</b></em>' container reference.
+	 * <!-- begin-user-doc --> <!--
+	 * end-user-doc -->
+	 * @generated
+	 * @ordered
+	 */
+	int URL_ATTACHMENT__LEAF_SECTION = ModelPackage.ATTACHMENT__LEAF_SECTION;
+
+	/**
+	 * The feature id for the '<em><b>State</b></em>' attribute.
+	 * <!-- begin-user-doc --> <!-- end-user-doc -->
+	 * @generated
+	 * @ordered
+	 */
+	int URL_ATTACHMENT__STATE = ModelPackage.ATTACHMENT__STATE;
+
+	/**
+	 * The feature id for the '<em><b>Applied Stereotype Instances</b></em>' containment reference list. <!--
+	 * begin-user-doc --> <!-- end-user-doc -->
+	 * 
+	 * @generated
+	 * @ordered
+	 */
+	int URL_ATTACHMENT__APPLIED_STEREOTYPE_INSTANCES = ModelPackage.ATTACHMENT__APPLIED_STEREOTYPE_INSTANCES;
+
+	/**
+	 * The feature id for the '<em><b>Referring Model Elements</b></em>' reference list.
+	 * <!-- begin-user-doc --> <!--
+	 * end-user-doc -->
+	 * @generated
+	 * @ordered
+	 */
+	int URL_ATTACHMENT__REFERRING_MODEL_ELEMENTS = ModelPackage.ATTACHMENT__REFERRING_MODEL_ELEMENTS;
+
+	/**
+	 * The feature id for the '<em><b>Url</b></em>' attribute.
+	 * <!-- begin-user-doc --> <!-- end-user-doc -->
+	 * @generated
+	 * @ordered
+	 */
+	int URL_ATTACHMENT__URL = ModelPackage.ATTACHMENT_FEATURE_COUNT + 0;
+
+	/**
+	 * The number of structural features of the '<em>Url Attachment</em>' class.
+	 * <!-- begin-user-doc --> <!--
+	 * end-user-doc -->
+	 * @generated
+	 * @ordered
+	 */
+	int URL_ATTACHMENT_FEATURE_COUNT = ModelPackage.ATTACHMENT_FEATURE_COUNT + 1;
+
+	/**
+	 * Returns the meta object for class '{@link org.unicase.model.attachment.UrlAttachment <em>Url Attachment</em>}'.
+	 * <!-- begin-user-doc --> <!-- end-user-doc -->
+	 * @return the meta object for class '<em>Url Attachment</em>'.
+	 * @see org.unicase.model.attachment.UrlAttachment
+	 * @generated
+	 */
+	EClass getUrlAttachment();
+
+	/**
+	 * Returns the meta object for the attribute '{@link org.unicase.model.attachment.UrlAttachment#getUrl <em>Url</em>}'.
+	 * <!-- begin-user-doc --> <!-- end-user-doc -->
+	 * @return the meta object for the attribute '<em>Url</em>'.
+	 * @see org.unicase.model.attachment.UrlAttachment#getUrl()
+	 * @see #getUrlAttachment()
+	 * @generated
+	 */
+	EAttribute getUrlAttachment_Url();
+
+	/**
+	 * Returns the factory that creates the instances of the model.
+	 * <!-- begin-user-doc --> <!-- end-user-doc -->
+	 * @return the factory that creates the instances of the model.
+	 * @generated
+	 */
+	AttachmentFactory getAttachmentFactory();
+
+	/**
+	 * <!-- begin-user-doc --> Defines literals for the meta objects that represent
+	 * <ul>
+	 * <li>each class,</li>
+	 * <li>each feature of each class,</li>
+	 * <li>each enum,</li>
+	 * <li>and each data type</li>
+	 * </ul>
+	 * <!-- end-user-doc -->
+	 * @generated
+	 */
+	interface Literals {
+		/**
+		 * The meta object literal for the '{@link org.unicase.model.attachment.impl.UrlAttachmentImpl <em>Url Attachment</em>}' class.
+		 * <!-- begin-user-doc --> <!-- end-user-doc -->
+		 * @see org.unicase.model.attachment.impl.UrlAttachmentImpl
+		 * @see org.unicase.model.attachment.impl.AttachmentPackageImpl#getUrlAttachment()
+		 * @generated
+		 */
+		EClass URL_ATTACHMENT = eINSTANCE.getUrlAttachment();
+
+		/**
+		 * The meta object literal for the '<em><b>Url</b></em>' attribute feature.
+		 * <!-- begin-user-doc --> <!--
+		 * end-user-doc -->
+		 * @generated
+		 */
+		EAttribute URL_ATTACHMENT__URL = eINSTANCE.getUrlAttachment_Url();
+
+	}
+
+} // AttachmentPackage
