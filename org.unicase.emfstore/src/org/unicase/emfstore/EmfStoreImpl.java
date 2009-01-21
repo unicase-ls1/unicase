@@ -551,7 +551,7 @@ public class EmfStoreImpl implements EmfStore {
 	}
 
 	private String getChangePackageFile(int versionNumber) {
-		return "changepacke-" + versionNumber + ServerConfiguration.FILE_EXTENSION_CHANGEPACKAGE;
+		return "changepackage-" + versionNumber + ServerConfiguration.FILE_EXTENSION_CHANGEPACKAGE;
 	}
 
 	private String getProjectFolder(ProjectId projectId) {
