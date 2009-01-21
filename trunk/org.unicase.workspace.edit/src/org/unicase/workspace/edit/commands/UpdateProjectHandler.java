@@ -150,6 +150,9 @@ public class UpdateProjectHandler extends ProjectActionHandler implements Update
 			PrimaryVersionSpec baseVersion = projectSpace.getBaseVersion();
 			PrimaryVersionSpec targetVersion = projectSpace.update(VersionSpec.HEAD_VERSION, UpdateProjectHandler.this);
 			WorkspaceUtil.logUpdate(projectSpace, baseVersion, targetVersion);
+
+			// explicitly refresh the decorator since no simple attribute has been changed
+			// (as opposed to committing where the dirty property is being set)
 			Display.getDefault().asyncExec(new Runnable() {
 				public void run() {
 					PlatformUI.getWorkbench().getDecoratorManager().update(
