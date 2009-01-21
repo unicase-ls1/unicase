@@ -12,7 +12,7 @@ public class ServerTestUtil {
 	public static ClientVersionInfo createClientVersionInfo() {
 		ClientVersionInfo clientVersionInfo = EsmodelFactory.eINSTANCE.createClientVersionInfo();
 		clientVersionInfo.setName("unicase.org eclipse client");
-		clientVersionInfo.setVersion("0.3.2.internal");
+		clientVersionInfo.setVersion("0.3.3.internal");
 		return clientVersionInfo;
 	}
 
