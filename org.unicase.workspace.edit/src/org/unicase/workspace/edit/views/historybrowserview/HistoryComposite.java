@@ -45,6 +45,7 @@ import org.unicase.emfstore.exceptions.EmfStoreException;
 import org.unicase.model.ModelElement;
 import org.unicase.model.Project;
 import org.unicase.ui.common.commands.ActionHelper;
+import org.unicase.ui.common.exceptions.DialogHandler;
 import org.unicase.workspace.WorkspaceManager;
 import org.unicase.workspace.edit.views.changes.AbstractChangesComposite;
 import org.unicase.workspace.edit.views.changes.TabbedChangesComposite;
@@ -405,15 +406,14 @@ public class HistoryComposite extends Composite implements ISelectionChangedList
 				try {
 					changes = WorkspaceManager.getInstance().getCurrentWorkspace().getActiveProjectSpace().getChanges(
 						prevVersionSpec, currentVersionSpec);
+					changesComposite = new TabbedChangesComposite(bottom, SWT.NONE, changes);
+					for (AbstractChangesComposite tab : changesComposite.getTabs()) {
+						tab.getTreeViewer().addDoubleClickListener(this);
+					}
+					GridDataFactory.fillDefaults().align(SWT.FILL, SWT.FILL).grab(true, true).applyTo(changesComposite);
 				} catch (EmfStoreException e) {
-					// TODO Auto-generated catch block
-					e.printStackTrace();
+					DialogHandler.showExceptionDialog(e);
 				}
-				changesComposite = new TabbedChangesComposite(bottom, SWT.NONE, changes);
-				for (AbstractChangesComposite tab : changesComposite.getTabs()) {
-					tab.getTreeViewer().addDoubleClickListener(this);
-				}
-				GridDataFactory.fillDefaults().align(SWT.FILL, SWT.FILL).grab(true, true).applyTo(changesComposite);
 			}
 			bottom.layout(true);
 		}
