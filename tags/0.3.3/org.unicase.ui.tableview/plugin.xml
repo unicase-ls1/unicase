@@ -1,0 +1,32 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<?eclipse version="3.2"?>
+<plugin>
+   <extension
+         point="org.eclipse.ui.views">
+      <category
+            id="org.unicase"
+            name="unicase">
+      </category>
+      <view
+            category="org.unicase"
+            class="org.unicase.ui.taskview.TaskView"
+            icon="icons/table.png"
+            id="org.unicase.ui.taskview"
+            name="Task View"
+            restorable="true">
+      </view>
+   </extension>
+   <extension
+         point="org.eclipse.ui.menus">
+      <menuContribution
+            locationURI="toolbar:org.unicase.ui.taskview?after=additions">
+         <command
+               commandId="org.unicase.ui.navigator.ShowMEInNavigator"
+               icon="icons/link_with_navigator.png"
+               style="push"
+               tooltip="show selected item in navigator">
+         </command>
+      </menuContribution>
+   </extension>
+
+</plugin>
