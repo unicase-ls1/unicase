@@ -13,6 +13,7 @@ import org.eclipse.emf.transaction.TransactionalEditingDomain;
 import org.eclipse.jface.dialogs.MessageDialog;
 import org.eclipse.jface.dialogs.ProgressMonitorDialog;
 import org.eclipse.jface.window.Window;
+import org.eclipse.swt.widgets.Display;
 import org.eclipse.swt.widgets.Shell;
 import org.eclipse.ui.PlatformUI;
 import org.unicase.emfstore.esmodel.versioning.ChangePackage;
@@ -149,6 +150,12 @@ public class UpdateProjectHandler extends ProjectActionHandler implements Update
 			PrimaryVersionSpec baseVersion = projectSpace.getBaseVersion();
 			PrimaryVersionSpec targetVersion = projectSpace.update(VersionSpec.HEAD_VERSION, UpdateProjectHandler.this);
 			WorkspaceUtil.logUpdate(projectSpace, baseVersion, targetVersion);
+			Display.getDefault().asyncExec(new Runnable() {
+				public void run() {
+					PlatformUI.getWorkbench().getDecoratorManager().update(
+						"org.unicase.ui.common.decorators.VersionDecorator");
+				}
+			});
 		}
 	}
 
