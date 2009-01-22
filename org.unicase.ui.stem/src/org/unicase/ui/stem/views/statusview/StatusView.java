@@ -7,7 +7,9 @@ package org.unicase.ui.stem.views.statusview;
 
 import java.net.URL;
 import java.util.Date;
+import java.util.HashMap;
 import java.util.Iterator;
+import java.util.Map;
 import java.util.Set;
 
 import org.eclipse.core.runtime.FileLocator;
@@ -31,6 +33,7 @@ import org.eclipse.swt.dnd.Transfer;
 import org.eclipse.swt.events.SelectionAdapter;
 import org.eclipse.swt.events.SelectionEvent;
 import org.eclipse.swt.graphics.Color;
+import org.eclipse.swt.graphics.Image;
 import org.eclipse.swt.widgets.Composite;
 import org.eclipse.swt.widgets.Display;
 import org.eclipse.swt.widgets.Label;
@@ -90,12 +93,45 @@ public class StatusView extends ViewPart {
 	private Composite progressComposite;
 	private Composite sectionComposite;
 
+	private Map<String, Image> images;
+	private static final String DROP_COMPOSITE_BACKGROUND = "drop_composite_background";
+	private static final String FLAT_TAB_IMAGE = "flat_tab_image";
+	private static final String HIERARCHY_TAB_IMAGE = "hierarchy_tab_image";
+	private static final String USER_TAB_IMAGE = "user_tab_image";
+	private static final String ACTIVITY_TAB_IMAGE = "avtivity_tab_image";
+
 	/**
 	 * Constructor.
 	 */
 	public StatusView() {
 		this.input = null;
 		this.labelProvider = new MEClassLabelProvider();
+
+		createImages();
+	}
+
+	private void createImages() {
+		images = new HashMap<String, Image>();
+
+		images.put(DROP_COMPOSITE_BACKGROUND, Activator.getImageDescriptor("icons/dropBox.png").createImage());
+
+		URL url = FileLocator.find(Platform.getBundle("org.unicase.ui.stem"), new Path("icons/flatLayout.gif"), null);
+		ImageDescriptor imageDescriptor = ImageDescriptor.createFromURL(url);
+		images.put(FLAT_TAB_IMAGE, imageDescriptor.createImage());
+
+		url = FileLocator.find(Platform.getBundle("org.unicase.ui.stem"), new Path("icons/hierarchicalLayout.gif"),
+			null);
+		imageDescriptor = ImageDescriptor.createFromURL(url);
+		images.put(HIERARCHY_TAB_IMAGE, imageDescriptor.createImage());
+
+		url = FileLocator.find(Platform.getBundle("org.unicase.ui.stem"), new Path("icons/User.gif"), null);
+		imageDescriptor = ImageDescriptor.createFromURL(url);
+		images.put(USER_TAB_IMAGE, imageDescriptor.createImage());
+
+		url = FileLocator.find(Platform.getBundle("org.unicase.ui.stem"), new Path("icons/ganttChart.png"), null);
+		imageDescriptor = ImageDescriptor.createFromURL(url);
+		images.put(ACTIVITY_TAB_IMAGE, imageDescriptor.createImage());
+
 	}
 
 	/**
@@ -133,7 +169,7 @@ public class StatusView extends ViewPart {
 		GridLayoutFactory.fillDefaults().numColumns(1).equalWidth(false).applyTo(dropComposite);
 		GridDataFactory.fillDefaults().align(SWT.BEGINNING, SWT.CENTER).grab(false, false).hint(80, 80).indent(5, 0)
 			.applyTo(dropComposite);
-		dropComposite.setBackgroundImage(Activator.getImageDescriptor("icons/dropBox.png").createImage());
+		dropComposite.setBackgroundImage(images.get(DROP_COMPOSITE_BACKGROUND));
 
 		section = new Composite(topComposite, SWT.NONE);
 		GridDataFactory.fillDefaults().align(SWT.FILL, SWT.FILL).grab(true, true).applyTo(section);
@@ -365,40 +401,31 @@ public class StatusView extends ViewPart {
 		TabFolder tabFolder = new TabFolder(sash, SWT.TOP);
 
 		// flat tab
-		URL url = FileLocator.find(Platform.getBundle("org.unicase.ui.stem"), new Path("icons/flatLayout.gif"), null);
-		ImageDescriptor imageDescriptor = ImageDescriptor.createFromURL(url);
 		TabItem flatTab = new TabItem(tabFolder, SWT.None);
 
 		flatTab.setText("Flat view");
-		flatTab.setImage(imageDescriptor.createImage());
+		flatTab.setImage(images.get(FLAT_TAB_IMAGE));
 		flatTabComposite = new FlatTabComposite(tabFolder, SWT.NONE);
 		flatTab.setControl(flatTabComposite);
 
 		// hierarchy tab
-		url = FileLocator.find(Platform.getBundle("org.unicase.ui.stem"), new Path("icons/hierarchicalLayout.gif"),
-			null);
-		imageDescriptor = ImageDescriptor.createFromURL(url);
 		TabItem hierarchyTab = new TabItem(tabFolder, SWT.None);
 		hierarchyTab.setText("Hierachical view");
-		hierarchyTab.setImage(imageDescriptor.createImage());
+		hierarchyTab.setImage(images.get(HIERARCHY_TAB_IMAGE));
 		hierarchyTabComposite = new HierarchyTabComposite(tabFolder, SWT.NONE);
 		hierarchyTab.setControl(hierarchyTabComposite);
 
 		// users tab
-		url = FileLocator.find(Platform.getBundle("org.unicase.ui.stem"), new Path("icons/User.gif"), null);
-		imageDescriptor = ImageDescriptor.createFromURL(url);
 		TabItem userTab = new TabItem(tabFolder, SWT.None);
 		userTab.setText("Users view");
-		userTab.setImage(imageDescriptor.createImage());
+		userTab.setImage(images.get(USER_TAB_IMAGE));
 		userTabComposite = new UserTabComposite(tabFolder, SWT.NONE);
 		userTab.setControl(userTabComposite);
 
 		// activity tab
-		url = FileLocator.find(Platform.getBundle("org.unicase.ui.stem"), new Path("icons/ganttChart.png"), null);
-		imageDescriptor = ImageDescriptor.createFromURL(url);
 		TabItem activityTab = new TabItem(tabFolder, SWT.None);
 		activityTab.setText("Activity view");
-		activityTab.setImage(imageDescriptor.createImage());
+		activityTab.setImage(images.get(ACTIVITY_TAB_IMAGE));
 		activityTabComposite = new ActivityTabComposite(tabFolder, SWT.NONE);
 		activityTab.setControl(activityTabComposite);
 
@@ -470,6 +497,15 @@ public class StatusView extends ViewPart {
 	@Override
 	public void dispose() {
 		dropTarget.dispose();
+
+		images.get(DROP_COMPOSITE_BACKGROUND).dispose();
+		images.get(FLAT_TAB_IMAGE).dispose();
+		images.get(HIERARCHY_TAB_IMAGE).dispose();
+		images.get(USER_TAB_IMAGE).dispose();
+		images.get(ACTIVITY_TAB_IMAGE);
+
+		images.clear();
+
 		super.dispose();
 	}
 
