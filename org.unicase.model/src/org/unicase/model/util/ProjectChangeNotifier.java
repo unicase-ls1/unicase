@@ -110,7 +110,8 @@ public class ProjectChangeNotifier extends AdapterImpl {
 			}
 			break;
 		default:
-			// nop
+			// There's no add or delete operation. Just fire notification.
+			fireNotification(notification);
 			break;
 		}
 	}
