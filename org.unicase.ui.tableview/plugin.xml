@@ -22,7 +22,7 @@
             locationURI="toolbar:org.unicase.ui.taskview?after=additions">
          <command
                commandId="org.unicase.ui.navigator.ShowMEInNavigator"
-               icon="icons/link_with_navigator.png"
+               icon="icons/link_with_navigator.gif"
                style="push"
                tooltip="show selected item in navigator">
          </command>
