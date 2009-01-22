@@ -31,7 +31,7 @@
             locationURI="toolbar:org.unicase.ui.meeditor.MEEditorPage?after=org.unicase.ui.meeditor.separator1">
          <command
                commandId="org.unicase.ui.navigator.ShowMEInNavigator"
-               icon="icons/link_with_navigator.png"
+               icon="icons/link_with_navigator.gif"
                style="push"
                tooltip="show this model element in navigator">
          </command>
