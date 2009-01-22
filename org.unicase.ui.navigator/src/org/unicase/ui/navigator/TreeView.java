@@ -8,7 +8,6 @@ package org.unicase.ui.navigator;
 import org.eclipse.emf.edit.ui.dnd.LocalTransfer;
 import org.eclipse.emf.transaction.RecordingCommand;
 import org.eclipse.emf.transaction.TransactionalEditingDomain;
-import org.eclipse.jface.action.Action;
 import org.eclipse.jface.action.MenuManager;
 import org.eclipse.jface.action.Separator;
 import org.eclipse.jface.viewers.DecoratingLabelProvider;
@@ -23,14 +22,11 @@ import org.eclipse.swt.widgets.Control;
 import org.eclipse.swt.widgets.Menu;
 import org.eclipse.ui.IDecoratorManager;
 import org.eclipse.ui.PlatformUI;
-import org.eclipse.ui.actions.ActionFactory;
 import org.eclipse.ui.part.ViewPart;
 import org.unicase.model.ModelElement;
 import org.unicase.ui.common.commands.ActionHelper;
 import org.unicase.ui.common.dnd.UCDragAdapter;
 import org.unicase.ui.common.dnd.UCDropAdapter;
-import org.unicase.ui.navigator.commands.RedoAction;
-import org.unicase.ui.navigator.commands.UndoAction;
 import org.unicase.workspace.ProjectSpace;
 import org.unicase.workspace.WorkspaceManager;
 
@@ -42,7 +38,6 @@ import org.unicase.workspace.WorkspaceManager;
 public class TreeView extends ViewPart { // implements IShowInSource
 
 	private static TreeViewer viewer;
-	private Action undoAction, redoAction;
 	private MenuManager menuMgr;
 
 	/**
@@ -74,14 +69,9 @@ public class TreeView extends ViewPart { // implements IShowInSource
 		Menu menu = menuMgr.createContextMenu(control);
 		control.setMenu(menu);
 
-		makeActions();
 		ActionHelper.createKeyHookDCAction(viewer, TreeView.class.getName());
 		addDragNDropSupport();
 		addSelectionListener();
-
-		// add global action handlers for undo/redo
-		getViewSite().getActionBars().setGlobalActionHandler(ActionFactory.UNDO.getId(), undoAction);
-		getViewSite().getActionBars().setGlobalActionHandler(ActionFactory.REDO.getId(), redoAction);
 
 		if (viewer.getTree().getItems().length > 0) {
 			setActiveProjectSpace(viewer.getTree().getItems()[0].getData());
@@ -137,13 +127,6 @@ public class TreeView extends ViewPart { // implements IShowInSource
 			});
 		}
 
-	}
-
-	private void makeActions() {
-		undoAction = new UndoAction();
-		undoAction.setEnabled(false);
-		redoAction = new RedoAction();
-		redoAction.setEnabled(false);
 	}
 
 	private void addDragNDropSupport() {
