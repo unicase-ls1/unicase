@@ -11,28 +11,39 @@ import org.unicase.ui.stem.Activator;
  * Label Provider for the activity view.
  * 
  * @author helming
- * 
  */
-public class ActivityTabLabelProvider extends AdapterFactoryLabelProvider
-		implements IColorProvider {
+public class ActivityTabLabelProvider extends AdapterFactoryLabelProvider implements IColorProvider {
+
+	private Image backlogImage;
+
 	/**
 	 * default constructor.
 	 * 
 	 * @param adapterFactory
 	 */
 	public ActivityTabLabelProvider() {
-		super(new ComposedAdapterFactory(
-				ComposedAdapterFactory.Descriptor.Registry.INSTANCE));
+		super(new ComposedAdapterFactory(ComposedAdapterFactory.Descriptor.Registry.INSTANCE));
+		backlogImage = Activator.getImageDescriptor("icons/backlog.png").createImage();
 	}
-	
+
+	/**
+	 * {@inheritDoc}
+	 * 
+	 * @see org.eclipse.jface.viewers.BaseLabelProvider#dispose()
+	 */
+	@Override
+	public void dispose() {
+		backlogImage.dispose();
+		super.dispose();
+	}
+
 	/**
 	 * {@inheritDoc}
 	 */
 	@Override
 	public Image getImage(Object object) {
 		if (object instanceof ActivityType) {
-			return Activator.getImageDescriptor("icons/backlog.png")
-					.createImage();
+			return backlogImage;
 		}
 		return super.getImage(object);
 	}
