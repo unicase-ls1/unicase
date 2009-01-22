@@ -1,8 +1,7 @@
 /**
- * <copyright> Copyright (c) 2008 Jonas Helming, Maximilian Koegel. All rights reserved. This program and the accompanying materials are made available under the terms of the Eclipse Public License v1.0 which accompanies this distribution, and is available at http://www.eclipse.org/legal/epl-v10.html
- * </copyright>
- *
- * $Id$
+ * <copyright> Copyright (c) 2008 Jonas Helming, Maximilian Koegel. All rights reserved. This program and the
+ * accompanying materials are made available under the terms of the Eclipse Public License v1.0 which accompanies this
+ * distribution, and is available at http://www.eclipse.org/legal/epl-v10.html </copyright> $Id$
  */
 package org.unicase.ui.common;
 
@@ -15,14 +14,12 @@ import org.unicase.model.ModelElement;
 import org.unicase.model.ModelPackage;
 
 /**
- * 
  * @author Hodaie LabelProvider for TreeViewer that is shown on ModelTreePage
- * 
  */
 public class MEClassLabelProvider extends AdapterFactoryLabelProvider {
 
 	/**
-	 * . Constructor
+	 * Constructor.
 	 */
 	public MEClassLabelProvider() {
 		super(new ComposedAdapterFactory(ComposedAdapterFactory.Descriptor.Registry.INSTANCE));
@@ -30,8 +27,7 @@ public class MEClassLabelProvider extends AdapterFactoryLabelProvider {
 	}
 
 	/**
-	 * . ({@inheritDoc}) If argument is instance of EClass and it inherits
-	 * ModelElement then return its display name.
+	 * . ({@inheritDoc}) If argument is instance of EClass and it inherits ModelElement then return its display name.
 	 */
 	@Override
 	public String getText(Object object) {
@@ -67,26 +63,28 @@ public class MEClassLabelProvider extends AdapterFactoryLabelProvider {
 		return super.getImage(object);
 
 	}
+
 	/**
 	 * {@inheritDoc}
 	 */
 	@Override
 	public Image getColumnImage(Object object, int columnIndex) {
-		if (columnIndex == 0 ) {
+		if (columnIndex == 0) {
 			return getImage(object);
-		}else{
+		} else {
 			return super.getImage(object);
 		}
-	
+
 	}
+
 	/**
 	 * {@inheritDoc}
 	 */
 	@Override
 	public String getColumnText(Object object, int columnIndex) {
-		if (columnIndex == 0 ) {
+		if (columnIndex == 0) {
 			return getText(object);
-		}else{
+		} else {
 			return super.getText(object);
 		}
 	}
