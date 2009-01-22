@@ -20,11 +20,15 @@ import org.unicase.ui.stem.Activator;
 
 public class UserTabLabelProvider extends AdapterFactoryLabelProvider implements IColorProvider {
 
+	private Image backlogImage;
+
 	/**
 	 * Constructor.
 	 */
 	public UserTabLabelProvider() {
 		super(new ComposedAdapterFactory(ComposedAdapterFactory.Descriptor.Registry.INSTANCE));
+		backlogImage = Activator.getImageDescriptor("icons/backlog.png").createImage();
+
 	}
 
 	/**
@@ -33,9 +37,20 @@ public class UserTabLabelProvider extends AdapterFactoryLabelProvider implements
 	@Override
 	public Image getImage(Object object) {
 		if (object instanceof NotAssigned) {
-			return Activator.getImageDescriptor("icons/backlog.png").createImage();
+			return backlogImage;
 		}
 		return super.getImage(object);
+	}
+
+	/**
+	 * {@inheritDoc}
+	 * 
+	 * @see org.eclipse.jface.viewers.BaseLabelProvider#dispose()
+	 */
+	@Override
+	public void dispose() {
+		backlogImage.dispose();
+		super.dispose();
 	}
 
 	/**
