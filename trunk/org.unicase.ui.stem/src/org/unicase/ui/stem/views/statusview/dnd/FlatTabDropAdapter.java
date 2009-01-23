@@ -1,3 +1,9 @@
+/**
+ * <copyright> Copyright (c) 2008 Jonas Helming, Maximilian Koegel. All rights reserved. This program and the
+ * accompanying materials are made available under the terms of the Eclipse Public License v1.0 which accompanies this
+ * distribution, and is available at http://www.eclipse.org/legal/epl-v10.html </copyright>
+ */
+
 package org.unicase.ui.stem.views.statusview.dnd;
 
 import java.util.List;
@@ -109,9 +115,9 @@ public class FlatTabDropAdapter extends DropTargetAdapter {
 		// dorp WorkItem B on ME (non work package) A:
 		// if B somewhere exists in annotations of A (hierachical),
 		// do nothing; otherwise Annotate A with B
-		Set<ModelElement> openersForCurrenOpenME = TaxonomyAccess.getInstance().getOpeningLinkTaxonomy()
+		Set<ModelElement> openersForCurrentOpenME = TaxonomyAccess.getInstance().getOpeningLinkTaxonomy()
 			.getLeafOpeners(currentOpenME);
-		if (!openersForCurrenOpenME.contains(source)) {
+		if (!openersForCurrentOpenME.contains(source)) {
 			((WorkItem) source).getAnnotatedModelElements().add(currentOpenME);
 		}
 	}
