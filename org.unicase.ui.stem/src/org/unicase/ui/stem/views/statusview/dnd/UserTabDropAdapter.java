@@ -9,6 +9,7 @@ package org.unicase.ui.stem.views.statusview.dnd;
 import java.util.List;
 import java.util.Set;
 
+import org.eclipse.emf.ecore.EObject;
 import org.eclipse.emf.ecore.util.EcoreUtil;
 import org.eclipse.emf.transaction.RecordingCommand;
 import org.eclipse.emf.transaction.TransactionalEditingDomain;
@@ -16,8 +17,7 @@ import org.eclipse.swt.dnd.DND;
 import org.eclipse.swt.dnd.DropTargetAdapter;
 import org.eclipse.swt.dnd.DropTargetEvent;
 import org.unicase.model.ModelElement;
-import org.unicase.model.task.ActionItem;
-import org.unicase.model.task.TaskFactory;
+import org.unicase.model.organization.OrgUnit;
 import org.unicase.model.task.WorkItem;
 import org.unicase.model.task.WorkPackage;
 import org.unicase.model.task.util.TaxonomyAccess;
@@ -25,20 +25,23 @@ import org.unicase.ui.common.dnd.DragSourcePlaceHolder;
 import org.unicase.ui.stem.views.statusview.StatusView;
 
 /**
- * This is drop adapter for flat tab in StatusView.
+ * This is the drop adapter for User tab in Status view.
  * 
  * @author Hodaie
  */
-public class FlatTabDropAdapter extends DropTargetAdapter {
+public class UserTabDropAdapter extends DropTargetAdapter {
 
 	private ModelElement currentOpenME;
-	private ModelElement source;
+	private WorkItem source;
+
+	// target can be either OrgUnit or NotAssigned
+	private EObject target;
 	private StatusView statusView;
 
 	/**
 	 * Constructor.
 	 */
-	public FlatTabDropAdapter() {
+	public UserTabDropAdapter() {
 	}
 
 	/**
@@ -68,11 +71,6 @@ public class FlatTabDropAdapter extends DropTargetAdapter {
 			return;
 		}
 
-		if (!(currentOpenME instanceof WorkPackage) && !(source instanceof WorkItem)) {
-			event.detail = DND.DROP_NONE;
-			return;
-		}
-
 		if (source.equals(currentOpenME) || EcoreUtil.isAncestor(source, currentOpenME)) {
 			event.detail = DND.DROP_NONE;
 			return;
@@ -93,60 +91,55 @@ public class FlatTabDropAdapter extends DropTargetAdapter {
 		domain.getCommandStack().execute(new RecordingCommand(domain) {
 			@Override
 			protected void doExecute() {
-				if (currentOpenME instanceof WorkPackage) {
-					if (source instanceof WorkItem) {
-						dropWorkItemOnWorkPackage();
-					} else {
-						dropNonWorkItemOnWorkPackage();
-					}
-				} else {
-					dropWorkItemOnNonWorkPackage();
 
+				if (!(target instanceof OrgUnit)) {
+					// target is NotAssigned
+					unassignWorkItem(source);
+				} else if (target instanceof OrgUnit) {
+					reassignWorkItem(source, (OrgUnit) target);
 				}
+
+				addWorkItemToCurrentOpenME(source);
+
 			}
 
 		});
 
+		// refresh status view
 		statusView.setInput(currentOpenME);
 
 	}
 
-	private void dropWorkItemOnNonWorkPackage() {
-		// dorp WorkItem B on ME (non work package) A:
-		// if B somewhere exists in annotations of A (hierachical),
-		// do nothing; otherwise Annotate A with B
+	private void unassignWorkItem(WorkItem workItem) {
+
+		// user has dropped a work item in NotAssigned
+		if (workItem.getAssignee() != null) {
+			workItem.setAssignee(null);
+		}
+	}
+
+	private void reassignWorkItem(WorkItem workItem, OrgUnit orgUnit) {
+		workItem.setAssignee(orgUnit);
+	}
+
+	/**
+	 * This checks currentOpenME and if source is not contained in opener of it, then it will be contained.
+	 * 
+	 * @param workItem drag source
+	 */
+	private void addWorkItemToCurrentOpenME(WorkItem workItem) {
+
 		Set<ModelElement> openersForCurrentOpenME = TaxonomyAccess.getInstance().getOpeningLinkTaxonomy()
 			.getLeafOpeners(currentOpenME);
-		if (!openersForCurrentOpenME.contains(source)) {
-			((WorkItem) source).getAnnotatedModelElements().add(currentOpenME);
-		}
-	}
 
-	private void dropNonWorkItemOnWorkPackage() {
-		// if some work item in currentOpenME (hierarchical) has already annotated source, do nothing
-		// otherwise create an AI annotating source and add it to work items of currentOpenME
-		Set<ModelElement> openersForSource = TaxonomyAccess.getInstance().getOpeningLinkTaxonomy().getLeafOpeners(
-			source);
-		Set<ModelElement> openersForCurrenOpenME = TaxonomyAccess.getInstance().getOpeningLinkTaxonomy()
-			.getLeafOpeners(currentOpenME);
+		if (!openersForCurrentOpenME.contains(workItem)) {
+			if (currentOpenME instanceof WorkPackage) {
+				((WorkPackage) currentOpenME).getContainedWorkItems().add(workItem);
 
-		openersForCurrenOpenME.retainAll(openersForSource);
-		if (openersForCurrenOpenME.size() == 0) {
-			ActionItem ai = TaskFactory.eINSTANCE.createActionItem();
-			ai.setName("New Action Item relating " + source.getName());
-			ai.getAnnotatedModelElements().add(source);
-			((WorkPackage) currentOpenME).getContainedWorkItems().add(ai);
-		}
+			} else {
+				workItem.getAnnotatedModelElements().add(currentOpenME);
+			}
 
-	}
-
-	private void dropWorkItemOnWorkPackage() {
-
-		// check if source (work item) is not hierarchical contained in
-		// currentOpenME (work package) and if not add it to work items of currentOpenME
-		Set<ModelElement> openers = TaxonomyAccess.getInstance().getOpeningLinkTaxonomy().getLeafOpeners(currentOpenME);
-		if (!openers.contains(source)) {
-			((WorkPackage) currentOpenME).getContainedWorkItems().add((WorkItem) source);
 		}
 
 	}
@@ -171,7 +164,7 @@ public class FlatTabDropAdapter extends DropTargetAdapter {
 		if (tmpSource.size() != 1) {
 			result = false;
 		}
-		if (!(tmpSource.get(0) instanceof ModelElement)) {
+		if (!(tmpSource.get(0) instanceof WorkItem)) {
 			result = false;
 		}
 
@@ -179,9 +172,15 @@ public class FlatTabDropAdapter extends DropTargetAdapter {
 			result = false;
 		}
 
-		// check if source and target are in the same project
+		if (event.item == null || event.item.getData() == null || !(event.item.getData() instanceof EObject)) {
+			result = false;
+		}
+
+		// check if source and currentOpenME are in the same project
 		if (result) {
-			source = (ModelElement) tmpSource.get(0);
+			source = (WorkItem) tmpSource.get(0);
+			target = (EObject) event.item.getData();
+
 			if (!currentOpenME.getProject().equals(source.getProject())) {
 				result = false;
 			}
