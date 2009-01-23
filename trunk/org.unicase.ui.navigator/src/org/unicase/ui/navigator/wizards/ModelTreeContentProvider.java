@@ -6,7 +6,6 @@
 package org.unicase.ui.navigator.wizards;
 
 import java.util.ArrayList;
-import java.util.Iterator;
 import java.util.List;
 
 import org.eclipse.emf.common.util.EList;
@@ -41,12 +40,6 @@ public class ModelTreeContentProvider extends AdapterFactoryContentProvider {
 
 		EPackage modelPackage = ModelPackageImpl.eINSTANCE;
 		EList<EPackage> array = modelPackage.getESubpackages();
-		Iterator<EPackage> it = array.iterator();
-		while (it.hasNext()) {
-			if (!hasChildren(it.next())) {
-				it.remove();
-			}
-		}
 		return array.toArray();
 	}
 

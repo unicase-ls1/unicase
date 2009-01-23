@@ -28,10 +28,13 @@ public class ModelClassFilter extends ViewerFilter {
 	 */
 	@Override
 	public boolean select(Viewer viewer, Object parentElement, Object element) {
+		if (searchTerm == null || searchTerm.length() == 0) {
+			return true;
+		}
 		if (element instanceof EClass) {
 			return ((EClass) element).getName().toLowerCase().contains(searchTerm.toLowerCase());
 		} else if (element instanceof EPackage) {
-			// EPackage ePackage = ((EPackage) element);
+			// figure out how to hide empty packages
 		} else if (element instanceof MEDiagram) {
 			return ((MEDiagram) element).getName().toLowerCase().contains(searchTerm.toLowerCase());
 		}
