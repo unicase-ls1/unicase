@@ -1,10 +1,11 @@
 /**
  * <copyright> Copyright (c) 2008 Jonas Helming, Maximilian Koegel. All rights reserved. This program and the
  * accompanying materials are made available under the terms of the Eclipse Public License v1.0 which accompanies this
- * distribution, and is available at http://www.eclipse.org/legal/epl-v10.html </copyright> $Id$
+ * distribution, and is available at http://www.eclipse.org/legal/epl-v10.html </copyright>
  */
 package org.unicase.ui.stem.views.statusview;
 
+import org.eclipse.emf.edit.ui.dnd.LocalTransfer;
 import org.eclipse.jface.viewers.DoubleClickEvent;
 import org.eclipse.jface.viewers.IDoubleClickListener;
 import org.eclipse.jface.viewers.IStructuredSelection;
@@ -12,6 +13,8 @@ import org.eclipse.jface.viewers.TreeViewer;
 import org.eclipse.jface.viewers.TreeViewerColumn;
 import org.eclipse.jface.viewers.ViewerComparator;
 import org.eclipse.swt.SWT;
+import org.eclipse.swt.dnd.DND;
+import org.eclipse.swt.dnd.Transfer;
 import org.eclipse.swt.layout.GridData;
 import org.eclipse.swt.layout.GridLayout;
 import org.eclipse.swt.widgets.Composite;
@@ -24,6 +27,8 @@ import org.unicase.ui.stem.views.iterationplanningview.AssignedToEditingSupport;
 import org.unicase.ui.stem.views.iterationplanningview.EMFColumnLabelProvider;
 import org.unicase.ui.stem.views.iterationplanningview.TaskObjectEditingSupport;
 import org.unicase.ui.stem.views.iterationplanningview.TaskObjectLabelProvider;
+import org.unicase.ui.stem.views.statusview.dnd.FlatTabDragAdapter;
+import org.unicase.ui.stem.views.statusview.dnd.UserTabDropAdapter;
 
 /**
  * This class provides contents of users tab in Status view. It contains a TreeViewer showing all OrgUnits participating
@@ -36,6 +41,8 @@ public class UserTabComposite extends Composite {
 
 	private TreeViewer treeViewer;
 	private UserTabStatusColumnLabelProvider statusColumnLabelProvider;
+	private UserTabDropAdapter userTabDropAdapter;
+	private FlatTabDragAdapter userTabDragAdapter;
 
 	// private ModelElement input;
 
@@ -72,6 +79,20 @@ public class UserTabComposite extends Composite {
 			}
 
 		});
+
+		addDnDSupport();
+
+	}
+
+	private void addDnDSupport() {
+		int dndOperations = DND.DROP_COPY | DND.DROP_MOVE | DND.DROP_LINK;
+		Transfer[] transfers = new Transfer[] { LocalTransfer.getInstance() };
+
+		userTabDropAdapter = new UserTabDropAdapter();
+		treeViewer.addDropSupport(dndOperations, transfers, userTabDropAdapter);
+		userTabDragAdapter = new FlatTabDragAdapter(treeViewer);
+		treeViewer.addDragSupport(dndOperations, transfers, userTabDragAdapter);
+
 	}
 
 	private void addColumns() {
@@ -118,11 +139,18 @@ public class UserTabComposite extends Composite {
 	 * Set input to TreeViewer.
 	 * 
 	 * @param me input model element
+	 * @param statusView the active status view. This is needed for drag and drop.
 	 */
-	public void setInput(ModelElement me) {
+	public void setInput(ModelElement me, StatusView statusView) {
 		// this.input = me;
+		userTabDropAdapter.setCurrentOpenMe(me, statusView);
+		userTabDragAdapter.setCurrentOpenMe(me, statusView);
 		statusColumnLabelProvider.setCurrentOpenME(me);
-		treeViewer.setInput(me);
+		if (!treeViewer.getInput().equals(me)) {
+			treeViewer.setInput(me);
+		} else {
+			treeViewer.refresh();
+		}
 
 	}
 
