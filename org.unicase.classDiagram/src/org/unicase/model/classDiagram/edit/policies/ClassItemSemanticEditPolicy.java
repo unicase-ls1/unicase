@@ -7,6 +7,9 @@ import org.eclipse.emf.ecore.EObject;
 import org.eclipse.gef.commands.Command;
 import org.eclipse.gef.commands.CompoundCommand;
 import org.eclipse.gmf.runtime.emf.type.core.IElementType;
+// BEGIN IGNORE UNNECCESSARY IMPORT
+import org.eclipse.gmf.runtime.emf.type.core.commands.CreateElementCommand;
+// END IGNORE UNNECCESSARY IMPORT
 import org.eclipse.gmf.runtime.emf.type.core.commands.DestroyElementCommand;
 import org.eclipse.gmf.runtime.emf.type.core.requests.CreateRelationshipRequest;
 import org.eclipse.gmf.runtime.emf.type.core.requests.DestroyElementRequest;
@@ -25,6 +28,7 @@ public class ClassItemSemanticEditPolicy
 	/**
 	 * @generated
 	 */
+	@Override
 	protected Command getDestroyElementCommand(DestroyElementRequest req) {
 		CompoundCommand cc = getDestroyEdgesCommand();
 		addDestroyChildNodesCommand(cc);
@@ -81,6 +85,7 @@ public class ClassItemSemanticEditPolicy
 	/**
 	 * @generated
 	 */
+	@Override
 	protected Command getCreateRelationshipCommand(CreateRelationshipRequest req) {
 		Command command = req.getTarget() == null ? getStartCreateRelationshipCommand(req)
 				: getCompleteCreateRelationshipCommand(req);
@@ -188,6 +193,7 @@ public class ClassItemSemanticEditPolicy
 	 * 
 	 * @generated
 	 */
+	@Override
 	protected Command getReorientRelationshipCommand(
 			ReorientRelationshipRequest req) {
 		switch (getVisualID(req)) {
@@ -216,6 +222,7 @@ public class ClassItemSemanticEditPolicy
 	 * 
 	 * @generated
 	 */
+	@Override
 	protected Command getReorientReferenceRelationshipCommand(
 			ReorientReferenceRelationshipRequest req) {
 		switch (getVisualID(req)) {

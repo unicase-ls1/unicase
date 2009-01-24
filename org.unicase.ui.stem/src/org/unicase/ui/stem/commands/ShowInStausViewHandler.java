@@ -7,8 +7,8 @@ import org.eclipse.ui.IWorkbenchPage;
 import org.eclipse.ui.PartInitException;
 import org.eclipse.ui.PlatformUI;
 import org.unicase.model.ModelElement;
-import org.unicase.ui.common.commands.ActionHelper;
 import org.unicase.ui.common.exceptions.DialogHandler;
+import org.unicase.ui.common.util.ActionHelper;
 import org.unicase.ui.stem.views.statusview.StatusView;
 
 /**

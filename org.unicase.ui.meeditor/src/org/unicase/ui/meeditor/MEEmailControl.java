@@ -1,3 +1,8 @@
+/**
+ * <copyright> Copyright (c) 2008 Jonas Helming, Maximilian Koegel. All rights reserved. This program and the
+ * accompanying materials are made available under the terms of the Eclipse Public License v1.0 which accompanies this
+ * distribution, and is available at http://www.eclipse.org/legal/epl-v10.html </copyright> $Id$
+ */
 package org.unicase.ui.meeditor;
 
 import org.eclipse.emf.ecore.EAttribute;
@@ -18,9 +23,9 @@ import org.eclipse.swt.widgets.Text;
 import org.eclipse.ui.forms.widgets.FormToolkit;
 import org.unicase.ui.meeditor.mecontrols.AbstractMEControl;
 import org.unicase.ui.meeditor.mecontrols.METextAreaControl;
+
 /**
- * @author hamid Control for an email attribute. Includes a button to send an
- *         email.
+ * @author hamid Control for an email attribute. Includes a button to send an email.
  */
 public class MEEmailControl extends AbstractMEControl {
 	private METextAreaControl meAreaControl;
@@ -28,19 +33,14 @@ public class MEEmailControl extends AbstractMEControl {
 	/**
 	 * Default constructor.
 	 * 
-	 * @param attribute
-	 *            The mail attribute
-	 * @param toolkit
-	 *            The swt toolkit
-	 * @param modelElement
-	 *            The user
-	 * @param editingDomain
-	 *            the edititng domain
+	 * @param attribute The mail attribute
+	 * @param toolkit The swt toolkit
+	 * @param modelElement The user
+	 * @param editingDomain the edititng domain
 	 */
-	public MEEmailControl(EAttribute attribute, FormToolkit toolkit,
-			EObject modelElement, EditingDomain editingDomain) {
+	public MEEmailControl(EAttribute attribute, FormToolkit toolkit, EObject modelElement, EditingDomain editingDomain) {
 		super(editingDomain, modelElement, toolkit);
-		meAreaControl = new METextAreaControl(attribute,toolkit,modelElement,editingDomain);
+		meAreaControl = new METextAreaControl(attribute, toolkit, modelElement, editingDomain);
 	}
 
 	/**
@@ -51,7 +51,7 @@ public class MEEmailControl extends AbstractMEControl {
 		GridLayout gridLayout = new GridLayout(2, false);
 		composite.setLayout(gridLayout);
 		GridDataFactory.fillDefaults().align(SWT.FILL, SWT.CENTER).grab(true, true).applyTo(composite);
-		final Text createControl = (Text)meAreaControl.createControl(composite, style);
+		final Text createControl = (Text) meAreaControl.createControl(composite, style);
 		GridDataFactory.fillDefaults().align(SWT.FILL, SWT.CENTER).grab(true, true).applyTo(createControl);
 		final Action mail = new Action("Send email", SWT.PUSH) {
 
@@ -71,11 +71,9 @@ public class MEEmailControl extends AbstractMEControl {
 
 		});
 		button.setLayoutData(new GridData(SWT.LEFT, SWT.CENTER, false, false));
-		button.setImage(Activator.getImageDescriptor("icons/mail.png")
-				.createImage());
+		button.setImage(Activator.getImageDescriptor("icons/mail.png").createImage());
 
 		return parent;
 	}
-
 
 }

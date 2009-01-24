@@ -28,9 +28,9 @@ import org.unicase.model.ModelElement;
 import org.unicase.model.document.LeafSection;
 import org.unicase.model.util.ModelUtil;
 import org.unicase.ui.common.MEClassLabelProvider;
-import org.unicase.ui.common.commands.ActionHelper;
 import org.unicase.ui.common.decorators.OverlayImageDescriptor;
 import org.unicase.ui.common.exceptions.DialogHandler;
+import org.unicase.ui.common.util.ActionHelper;
 
 /**
  * An Action for adding reference links to a model element. It is mainly used in the {@link MEMultiLinkControl}

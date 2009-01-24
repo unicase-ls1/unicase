@@ -26,7 +26,7 @@ import org.unicase.model.ModelElement;
 import org.unicase.model.task.util.CircularDependencyException;
 import org.unicase.model.task.util.MEState;
 import org.unicase.ui.common.TableViewerColumnSorter;
-import org.unicase.ui.common.commands.ActionHelper;
+import org.unicase.ui.common.util.ActionHelper;
 import org.unicase.ui.stem.views.AssignedToLabelProvider;
 import org.unicase.ui.stem.views.iterationplanningview.TaskObjectLabelProvider;
 import org.unicase.ui.stem.views.statusview.dnd.FlatTabDragAdapter;

@@ -24,7 +24,7 @@ import org.unicase.model.diagram.DiagramFactory;
 import org.unicase.model.diagram.DiagramType;
 import org.unicase.model.diagram.MEDiagram;
 import org.unicase.model.document.LeafSection;
-import org.unicase.ui.common.commands.ActionHelper;
+import org.unicase.ui.common.util.ActionHelper;
 
 /**
  * 

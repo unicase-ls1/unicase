@@ -4,13 +4,14 @@
  *
  * $Id$
  */
-package org.unicase.ui.common.commands;
+package org.unicase.ui.common.handlers;
 
 import org.eclipse.core.commands.AbstractHandler;
 import org.eclipse.core.commands.ExecutionEvent;
 import org.eclipse.core.commands.ExecutionException;
 import org.unicase.model.ModelElement;
 import org.unicase.model.diagram.MEDiagram;
+import org.unicase.ui.common.util.ActionHelper;
 
 
 /**.

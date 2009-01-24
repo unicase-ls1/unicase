@@ -10,7 +10,7 @@ import org.eclipse.swt.layout.GridData;
 import org.eclipse.swt.layout.GridLayout;
 import org.eclipse.swt.widgets.Composite;
 import org.unicase.model.ModelElement;
-import org.unicase.ui.common.commands.ActionHelper;
+import org.unicase.ui.common.util.ActionHelper;
 import org.unicase.ui.stem.views.TaskTableUtil;
 
 /**

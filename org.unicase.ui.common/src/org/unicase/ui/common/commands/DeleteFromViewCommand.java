@@ -5,7 +5,7 @@ package org.unicase.ui.common.commands;
  * are made available under the terms of the Eclipse Public License v1.0 which accompanies this distribution, and is
  * available at http://www.eclipse.org/legal/epl-v10.html Contributors: IBM Corporation - initial API and implementation
  ****************************************************************************/
-import java.util.ArrayList;
+import java.util.Collection;
 
 import org.eclipse.core.commands.ExecutionException;
 import org.eclipse.core.runtime.IAdaptable;
@@ -14,10 +14,10 @@ import org.eclipse.emf.ecore.EObject;
 import org.eclipse.emf.ecore.resource.Resource;
 import org.eclipse.gef.EditPart;
 import org.eclipse.gmf.runtime.common.core.command.CommandResult;
+import org.eclipse.gmf.runtime.diagram.ui.editparts.DiagramEditPart;
 import org.eclipse.gmf.runtime.emf.type.core.requests.DestroyElementRequest;
 import org.eclipse.gmf.runtime.notation.View;
 import org.unicase.model.ModelElement;
-import org.unicase.model.classes.Association;
 import org.unicase.model.diagram.MEDiagram;
 import org.unicase.ui.common.diagram.MEDiagramEditPart;
 import org.unicase.ui.common.util.UnicaseUiUtil;
@@ -82,7 +82,7 @@ public class DeleteFromViewCommand extends org.eclipse.gmf.runtime.emf.type.core
 
 		// only destroy attached elements
 		if ((destructee != null) && (destructee.eResource() != null)) {
-			MEDiagramEditPart me = (MEDiagramEditPart) editpart.getParent();
+			MEDiagramEditPart me = (MEDiagramEditPart) getDiagramEditPart();
 			MEDiagram diag = (MEDiagram) ((View) me.getModel()).getElement();
 			diag.getElements().remove(destructee);
 
@@ -105,12 +105,12 @@ public class DeleteFromViewCommand extends org.eclipse.gmf.runtime.emf.type.core
 	 * @param destructee the object being destroyed
 	 */
 	protected void tearDownReferences(EObject destructee) {
-		MEDiagramEditPart me = (MEDiagramEditPart) editpart.getParent();
+		MEDiagramEditPart me = (MEDiagramEditPart) getDiagramEditPart();
 		MEDiagram diag = (MEDiagram) ((View) me.getModel()).getElement();
-		ArrayList<Association> assocs = UnicaseUiUtil.getDiagramNodeReferences((ModelElement) destructee);
-		for (Association assoc : assocs) {
-			if (diag.getElements().contains(assoc)) {
-				diag.getElements().remove(assoc);
+		Collection<EObject> diagramNodeReferences = UnicaseUiUtil.getDiagramNodeReferences((ModelElement) destructee);
+		for (EObject object : diagramNodeReferences) {
+			if (diag.getElements().contains(object)) {
+				diag.getElements().remove(object);
 			}
 		}
 	}
@@ -132,4 +132,14 @@ public class DeleteFromViewCommand extends org.eclipse.gmf.runtime.emf.type.core
 		return (elementToDestroy != null) && (elementToDestroy.eResource() != null);
 	}
 
+	/**
+	 * @return the diagram editpart of our editpart
+	 */
+	DiagramEditPart getDiagramEditPart() {
+		EditPart diagramEditPart = editpart;
+		while (diagramEditPart != null && !(diagramEditPart instanceof DiagramEditPart)) {
+			diagramEditPart = diagramEditPart.getParent();
+		}
+		return (DiagramEditPart) diagramEditPart;
+	}
 }

@@ -5,7 +5,7 @@
  * $Id$
  */
 
-package org.unicase.ui.common.commands;
+package org.unicase.ui.common.handlers;
 
 import org.eclipse.core.commands.AbstractHandler;
 import org.eclipse.core.commands.ExecutionEvent;
@@ -17,6 +17,7 @@ import org.unicase.model.ModelElement;
 import org.unicase.model.Project;
 import org.unicase.model.rationale.RationaleFactory;
 import org.unicase.model.task.TaskFactory;
+import org.unicase.ui.common.util.ActionHelper;
 import org.unicase.workspace.util.EventUtil;
 
 /**.

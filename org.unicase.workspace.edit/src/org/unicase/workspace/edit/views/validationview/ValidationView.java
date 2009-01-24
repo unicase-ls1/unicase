@@ -27,7 +27,7 @@ import org.eclipse.ui.part.ViewPart;
 import org.unicase.model.ModelElement;
 import org.unicase.model.organization.User;
 import org.unicase.ui.common.TableViewerColumnSorter;
-import org.unicase.ui.common.commands.ActionHelper;
+import org.unicase.ui.common.util.ActionHelper;
 import org.unicase.workspace.WorkspaceManager;
 import org.unicase.workspace.util.EventUtil;
 import org.unicase.workspace.util.NoCurrentUserException;

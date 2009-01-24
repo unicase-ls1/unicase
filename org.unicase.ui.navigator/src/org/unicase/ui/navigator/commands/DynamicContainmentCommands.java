@@ -22,7 +22,7 @@ import org.unicase.model.ModelElement;
 import org.unicase.model.ModelPackage;
 import org.unicase.model.diagram.DiagramPackage;
 import org.unicase.model.util.ModelUtil;
-import org.unicase.ui.common.commands.ActionHelper;
+import org.unicase.ui.common.util.ActionHelper;
 
 
 /**.

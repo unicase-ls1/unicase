@@ -1,3 +1,9 @@
+/**
+ * <copyright> Copyright (c) 2008 Jonas Helming, Maximilian Koegel. All rights reserved. This program and the accompanying materials are made available under the terms of the Eclipse Public License v1.0 which accompanies this distribution, and is available at http://www.eclipse.org/legal/epl-v10.html
+ * </copyright>
+ *
+ * $Id$
+ */
 package org.unicase.model.classDiagram.edit.parts;
 
 import java.util.Collections;
@@ -94,6 +100,7 @@ public class AssociationName2EditPart extends LabelEditPart implements
 	/**
 	 * @generated
 	 */
+	@Override
 	protected void createDefaultEditPolicies() {
 		super.createDefaultEditPolicies();
 		installEditPolicy(EditPolicy.DIRECT_EDIT_ROLE,
@@ -103,6 +110,7 @@ public class AssociationName2EditPart extends LabelEditPart implements
 	/**
 	 * @generated
 	 */
+	@Override
 	public int getKeyPoint() {
 		return ConnectionLocator.MIDDLE;
 	}
@@ -165,6 +173,7 @@ public class AssociationName2EditPart extends LabelEditPart implements
 	/**
 	 * @generated
 	 */
+	@Override
 	protected List getModelChildren() {
 		return Collections.EMPTY_LIST;
 	}
@@ -172,6 +181,7 @@ public class AssociationName2EditPart extends LabelEditPart implements
 	/**
 	 * @generated
 	 */
+	@Override
 	public IGraphicalEditPart getChildBySemanticHint(String semanticHint) {
 		return null;
 	}
@@ -355,6 +365,7 @@ public class AssociationName2EditPart extends LabelEditPart implements
 	/**
 	 * @generated
 	 */
+	@Override
 	protected void performDirectEditRequest(Request request) {
 		final Request theRequest = request;
 		try {
@@ -389,6 +400,7 @@ public class AssociationName2EditPart extends LabelEditPart implements
 	/**
 	 * @generated
 	 */
+	@Override
 	protected void refreshVisuals() {
 		super.refreshVisuals();
 		refreshLabel();
@@ -437,6 +449,7 @@ public class AssociationName2EditPart extends LabelEditPart implements
 	/**
 	 * @generated
 	 */
+	@Override
 	protected void refreshFont() {
 		FontStyle style = (FontStyle) getFontStyleOwnerView().getStyle(
 				NotationPackage.eINSTANCE.getFontStyle());
@@ -451,6 +464,7 @@ public class AssociationName2EditPart extends LabelEditPart implements
 	/**
 	 * @generated
 	 */
+	@Override
 	protected void setFontColor(Color color) {
 		getFigure().setForegroundColor(color);
 	}
@@ -458,6 +472,7 @@ public class AssociationName2EditPart extends LabelEditPart implements
 	/**
 	 * @generated
 	 */
+	@Override
 	protected void addSemanticListeners() {
 		if (getParser() instanceof ISemanticParser) {
 			EObject element = resolveSemanticElement();
@@ -475,6 +490,7 @@ public class AssociationName2EditPart extends LabelEditPart implements
 	/**
 	 * @generated
 	 */
+	@Override
 	protected void removeSemanticListeners() {
 		if (parserElements != null) {
 			for (int i = 0; i < parserElements.size(); i++) {
@@ -488,10 +504,12 @@ public class AssociationName2EditPart extends LabelEditPart implements
 	/**
 	 * @generated
 	 */
+	@Override
 	protected AccessibleEditPart getAccessibleEditPart() {
 		if (accessibleEP == null) {
 			accessibleEP = new AccessibleGraphicalEditPart() {
 
+				@Override
 				public void getName(AccessibleEvent e) {
 					e.result = getLabelTextHelper(getFigure());
 				}
@@ -510,6 +528,7 @@ public class AssociationName2EditPart extends LabelEditPart implements
 	/**
 	 * @generated
 	 */
+	@Override
 	protected void handleNotificationEvent(Notification event) {
 		Object feature = event.getFeature();
 		if (NotationPackage.eINSTANCE.getFontStyle_FontColor().equals(feature)) {
@@ -553,6 +572,7 @@ public class AssociationName2EditPart extends LabelEditPart implements
 	/**
 	 * @generated
 	 */
+	@Override
 	protected IFigure createFigure() {
 		// Parent should assign one using setLabel() method
 		return null;

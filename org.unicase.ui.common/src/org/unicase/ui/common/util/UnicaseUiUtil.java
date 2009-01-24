@@ -7,9 +7,10 @@
 
 package org.unicase.ui.common.util;
 
-import java.util.ArrayList;
 import java.util.Collection;
+import java.util.HashSet;
 import java.util.List;
+import java.util.Set;
 
 import org.eclipse.emf.ecore.EObject;
 import org.eclipse.emf.ecore.EStructuralFeature.Setting;
@@ -22,42 +23,38 @@ import org.eclipse.ui.dialogs.ElementListSelectionDialog;
 import org.unicase.emfstore.esmodel.accesscontrol.ACUser;
 import org.unicase.emfstore.esmodel.accesscontrol.roles.Role;
 import org.unicase.model.ModelElement;
-import org.unicase.model.classes.Association;
 import org.unicase.workspace.ProjectSpace;
 import org.unicase.workspace.Usersession;
 
 /**
- * Utility class for the unicase project. 
+ * Utility class for the unicase project.
+ * 
  * @author shterev
  * @author hodaie
  * @author denglerm
- *
  */
 public final class UnicaseUiUtil {
-	
-	private UnicaseUiUtil(){
-		//do nothing
+
+	private UnicaseUiUtil() {
+		// do nothing
 	}
-	
-	/**.
-	 * This shows a standard dialog with some given initial contents to
-	 * select model elements.
+
+	/**
+	 * . This shows a standard dialog with some given initial contents to select model elements.
+	 * 
 	 * @param shell shell
 	 * @param initialContent initilaContents
 	 * @param title title
 	 * @param multiSelection if multiSelection is allowed
 	 * @return The selected objects
 	 */
-	//ZH Why does this return Objects?:
-	public static Object[] showMESelectionDialog(Shell shell,
-								Collection<?> initialContent,
-								String title,
-								boolean multiSelection){
-		
-		ElementListSelectionDialog dlg = new ElementListSelectionDialog(shell
-				.getShell(), new AdapterFactoryLabelProvider(
-							new ComposedAdapterFactory(
-						ComposedAdapterFactory.Descriptor.Registry.INSTANCE)));
+	// ZH Why does this return Objects?:
+	public static Object[] showMESelectionDialog(Shell shell, Collection<?> initialContent, String title,
+		boolean multiSelection) {
+
+		ElementListSelectionDialog dlg = new ElementListSelectionDialog(shell.getShell(),
+			new AdapterFactoryLabelProvider(new ComposedAdapterFactory(
+				ComposedAdapterFactory.Descriptor.Registry.INSTANCE)));
 
 		dlg.setElements(initialContent.toArray(new Object[initialContent.size()]));
 		dlg.setTitle(title);
@@ -69,52 +66,51 @@ public final class UnicaseUiUtil {
 		}
 		return result;
 	}
-	/**.
-	 * 
-	 * This method searches for in- and outgoing associations of a node and returns them in an ArrayList
+
+	/**
+	 * . This method searches for in- and outgoing associations of a node and returns them in an ArrayList
 	 * 
 	 * @param node The diagram node
 	 * @return The list of associations
 	 */
-	public static ArrayList<Association> getDiagramNodeReferences(ModelElement node){
-		ArrayList<Association> assocs = new ArrayList<Association>();
-		CrossReferenceAdapter crossReferencer = CrossReferenceAdapter
-				.getCrossReferenceAdapter(node.eResource().getResourceSet());
+	public static Set<EObject> getDiagramNodeReferences(ModelElement node) {
+		Set<EObject> references = new HashSet<EObject>();
+		CrossReferenceAdapter crossReferencer = CrossReferenceAdapter.getCrossReferenceAdapter(node.eResource()
+			.getResourceSet());
 		if (crossReferencer != null) {
-			Collection<Setting> inverseReferences = crossReferencer
-					.getInverseReferences(node);
+			Collection<Setting> inverseReferences = crossReferencer.getInverseReferences(node);
 			if (inverseReferences != null) {
 
 				for (Setting setting : inverseReferences) {
 					EObject settingObj = setting.getEObject();
-					if (settingObj != null && settingObj instanceof Association) {
-						assocs.add((Association) settingObj);
+					if (settingObj != null) {
+						references.add(settingObj);
 					}
 				}
 			}
 		}
-		return assocs;
+		return references;
 	}
+
 	/**
-	 * 
 	 * This checks a user session for project administrator rights. If there is no session, the user is project admin.
 	 * 
-	 * @param session User session to check 
+	 * @param session User session to check
 	 * @param projectSpace ProjectSpace
 	 * @return true if user has project administrator rights
 	 */
-	public static boolean isProjectAdmin(Usersession session, ProjectSpace projectSpace){
-		if(session==null){
+	public static boolean isProjectAdmin(Usersession session, ProjectSpace projectSpace) {
+		if (session == null) {
 			return true;
 		}
 		ACUser user = session.getACUser();
 		List<Role> roles = user.getRoles();
-		for(Role role : roles){
-			if(role.canAdministrate(projectSpace.getProjectId())){
+		for (Role role : roles) {
+			if (role.canAdministrate(projectSpace.getProjectId())) {
 				return true;
 			}
 		}
-		
+
 		return false;
 	}
 }
