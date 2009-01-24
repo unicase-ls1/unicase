@@ -11,15 +11,15 @@
   <extension
         point="org.eclipse.ui.handlers">
          <handler
-           class="org.unicase.ui.common.commands.DeleteModelelementHandler"
+           class="org.unicase.ui.common.handlers.DeleteModelelementHandler"
            commandId="org.unicase.ui.common.deleteModelelement">
      </handler>
          <handler
-               class="org.unicase.ui.common.commands.NewDocumentHandler"
+               class="org.unicase.ui.common.handlers.NewDocumentHandler"
                commandId="org.unicase.ui.common.newDocument">
          </handler>
          <handler
-               class="org.unicase.ui.common.commands.OpenDiagramWithMEEditorHandler"
+               class="org.unicase.ui.common.handlers.OpenDiagramWithMEEditorHandler"
                commandId="org.unicase.ui.common.openDiagramWithMEEditor">
          </handler>
     </extension>
@@ -122,19 +122,19 @@
         point="org.eclipse.ui.commands">
      <command
            categoryId="org.unicase.ui.common.commands.addAnnotations"
-           defaultHandler="org.unicase.ui.common.commands.AddAnnotationHandler"
+           defaultHandler="org.unicase.ui.common.handlers.AddAnnotationHandler"
            id="org.unicase.ui.common.commands.annotateActionItem"
            name="annotateActionItem">
      </command>
      <command
            categoryId="org.unicase.ui.common.commands.addAnnotations"
-           defaultHandler="org.unicase.ui.common.commands.AddAnnotationHandler"
+           defaultHandler="org.unicase.ui.common.handlers.AddAnnotationHandler"
            id="org.unicase.ui.common.commands.annotateIssue"
            name="annotateIssue">
      </command>
      <command
            categoryId="org.unicase.ui.common.commands.addAnnotations"
-           defaultHandler="org.unicase.ui.common.commands.AddAnnotationHandler"
+           defaultHandler="org.unicase.ui.common.handlers.AddAnnotationHandler"
            id="org.unicase.ui.common.commands.annotateComment"
            name="annotateComment">
      </command>

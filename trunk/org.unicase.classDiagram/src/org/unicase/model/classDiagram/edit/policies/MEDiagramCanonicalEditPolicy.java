@@ -13,12 +13,14 @@ import java.util.Set;
 import org.eclipse.core.runtime.IAdaptable;
 import org.eclipse.emf.ecore.EObject;
 import org.eclipse.gef.EditPart;
+import org.eclipse.gef.EditPolicy;
 import org.eclipse.gef.commands.Command;
 import org.eclipse.gmf.runtime.diagram.core.util.ViewUtil;
 import org.eclipse.gmf.runtime.diagram.ui.commands.DeferredLayoutCommand;
 import org.eclipse.gmf.runtime.diagram.ui.commands.ICommandProxy;
 import org.eclipse.gmf.runtime.diagram.ui.editparts.IGraphicalEditPart;
 import org.eclipse.gmf.runtime.diagram.ui.editpolicies.CanonicalConnectionEditPolicy;
+import org.eclipse.gmf.runtime.diagram.ui.editpolicies.EditPolicyRoles;
 import org.eclipse.gmf.runtime.diagram.ui.requests.CreateConnectionViewRequest;
 import org.eclipse.gmf.runtime.diagram.ui.requests.RequestConstants;
 import org.eclipse.gmf.runtime.notation.Diagram;
@@ -37,8 +39,15 @@ public class MEDiagramCanonicalEditPolicy extends CanonicalConnectionEditPolicy 
 	Set myFeaturesToSynchronize;
 
 	/**
-	 * @generated
+	 * @generated NOT
+	 * @see org.eclipse.gmf.runtime.diagram.ui.editpolicies.CanonicalConnectionEditPolicy#getSemanticChildrenList()
+	 * 
+	 * @return
+	 * Returns the semantic childran of this EditPolicy,
+	 * including the temporary children of the {@link MEDiagramShowElementsEditPolicy},
+	 * if such exists.
 	 */
+	@Override
 	protected List getSemanticChildrenList() {
 		View viewObject = (View) getHost().getModel();
 		List result = new LinkedList();
@@ -49,12 +58,20 @@ public class MEDiagramCanonicalEditPolicy extends CanonicalConnectionEditPolicy 
 					.add(((org.unicase.model.classDiagram.part.ModelNodeDescriptor) it
 							.next()).getModelElement());
 		}
+		
+		EditPolicy showRelatedElementsEditPolicy = getHost().getEditPolicy(EditPolicyRoles.SHOW_ELEMENTS_ROLE);
+		if (showRelatedElementsEditPolicy instanceof MEDiagramShowElementsEditPolicy) {
+			Collection<? extends EObject> relatedModelElements = ((MEDiagramShowElementsEditPolicy) showRelatedElementsEditPolicy).getRelatedNodeElements();
+			result.addAll(relatedModelElements);
+		}
+		
 		return result;
 	}
 
 	/**
 	 * @generated
 	 */
+	@Override
 	protected boolean shouldDeleteView(View view) {
 		return true;
 	}
@@ -62,6 +79,7 @@ public class MEDiagramCanonicalEditPolicy extends CanonicalConnectionEditPolicy 
 	/**
 	 * @generated
 	 */
+	@Override
 	protected boolean isOrphaned(Collection semanticChildren, final View view) {
 		int visualID = org.unicase.model.classDiagram.part.ModelVisualIDRegistry
 				.getVisualID(view);
@@ -78,6 +96,7 @@ public class MEDiagramCanonicalEditPolicy extends CanonicalConnectionEditPolicy 
 	/**
 	 * @generated
 	 */
+	@Override
 	protected String getDefaultFactoryHint() {
 		return null;
 	}
@@ -85,6 +104,7 @@ public class MEDiagramCanonicalEditPolicy extends CanonicalConnectionEditPolicy 
 	/**
 	 * @generated
 	 */
+	@Override
 	protected Set getFeaturesToSynchronize() {
 		if (myFeaturesToSynchronize == null) {
 			myFeaturesToSynchronize = new HashSet();
@@ -97,6 +117,7 @@ public class MEDiagramCanonicalEditPolicy extends CanonicalConnectionEditPolicy 
 	/**
 	 * @generated
 	 */
+	@Override
 	protected List getSemanticConnectionsList() {
 		return Collections.EMPTY_LIST;
 	}
@@ -104,6 +125,7 @@ public class MEDiagramCanonicalEditPolicy extends CanonicalConnectionEditPolicy 
 	/**
 	 * @generated
 	 */
+	@Override
 	protected EObject getSourceElement(EObject relationship) {
 		return null;
 	}
@@ -111,6 +133,7 @@ public class MEDiagramCanonicalEditPolicy extends CanonicalConnectionEditPolicy 
 	/**
 	 * @generated
 	 */
+	@Override
 	protected EObject getTargetElement(EObject relationship) {
 		return null;
 	}
@@ -118,6 +141,7 @@ public class MEDiagramCanonicalEditPolicy extends CanonicalConnectionEditPolicy 
 	/**
 	 * @generated
 	 */
+	@Override
 	protected boolean shouldIncludeConnection(Edge connector,
 			Collection children) {
 		return false;
@@ -126,6 +150,7 @@ public class MEDiagramCanonicalEditPolicy extends CanonicalConnectionEditPolicy 
 	/**
 	 * @generated
 	 */
+	@Override
 	protected void refreshSemantic() {
 		List createdViews = new LinkedList();
 		createdViews.addAll(refreshSemanticChildren());
@@ -152,7 +177,8 @@ public class MEDiagramCanonicalEditPolicy extends CanonicalConnectionEditPolicy 
 	}
 
 	/**
-	 * @generated
+	 * @generated NOT
+	 * 
 	 */
 	private Collection refreshConnections() {
 		Map domain2NotationMap = new HashMap();
@@ -174,9 +200,9 @@ public class MEDiagramCanonicalEditPolicy extends CanonicalConnectionEditPolicy 
 			EObject diagramLinkObject = nextDiagramLink.getElement();
 			EObject diagramLinkSrc = nextDiagramLink.getSource().getElement();
 			EObject diagramLinkDst = nextDiagramLink.getTarget().getElement();
-			for (Iterator LinkDescriptorsIterator = linkDescriptors.iterator(); LinkDescriptorsIterator
+			for (Iterator linkDescriptorsIterator = linkDescriptors.iterator(); linkDescriptorsIterator
 					.hasNext();) {
-				org.unicase.model.classDiagram.part.ModelLinkDescriptor nextLinkDescriptor = (org.unicase.model.classDiagram.part.ModelLinkDescriptor) LinkDescriptorsIterator
+				org.unicase.model.classDiagram.part.ModelLinkDescriptor nextLinkDescriptor = (org.unicase.model.classDiagram.part.ModelLinkDescriptor) linkDescriptorsIterator
 						.next();
 				if (diagramLinkObject == nextLinkDescriptor.getModelElement()
 						&& diagramLinkSrc == nextLinkDescriptor.getSource()
@@ -185,10 +211,17 @@ public class MEDiagramCanonicalEditPolicy extends CanonicalConnectionEditPolicy 
 						&& diagramLinkVisualID == nextLinkDescriptor
 								.getVisualID()) {
 					linksIterator.remove();
-					LinkDescriptorsIterator.remove();
+					linkDescriptorsIterator.remove();
 				}
 			}
 		}
+		
+		EditPolicy editPolicy = getHost().getEditPolicy(EditPolicyRoles.SHOW_ELEMENTS_ROLE);
+		if (editPolicy instanceof MEDiagramShowElementsEditPolicy) {
+			Collection<? extends Edge> relatedConnectionElements = ((MEDiagramShowElementsEditPolicy) editPolicy).getRelatedEdges();
+			existingLinks.removeAll(relatedConnectionElements);
+		}
+		
 		deleteViews(existingLinks.iterator());
 		return createConnections(linkDescriptors, domain2NotationMap);
 	}

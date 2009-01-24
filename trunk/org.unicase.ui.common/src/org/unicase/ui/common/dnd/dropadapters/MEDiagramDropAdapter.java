@@ -1,3 +1,9 @@
+/**
+ * <copyright> Copyright (c) 2008 Jonas Helming, Maximilian Koegel. All rights reserved. This program and the accompanying materials are made available under the terms of the Eclipse Public License v1.0 which accompanies this distribution, and is available at http://www.eclipse.org/legal/epl-v10.html
+ * </copyright>
+ *
+ * $Id$
+ */
 package org.unicase.ui.common.dnd.dropadapters;
 
 import java.util.List;
@@ -18,8 +24,8 @@ import org.eclipse.ui.PlatformUI;
 import org.unicase.model.ModelElement;
 import org.unicase.model.diagram.DiagramType;
 import org.unicase.model.diagram.MEDiagram;
-import org.unicase.ui.common.commands.ActionHelper;
-import org.unicase.ui.common.commands.DiagramElementAddCommand;
+import org.unicase.ui.common.diagram.commands.DiagramElementAddCommand;
+import org.unicase.ui.common.util.ActionHelper;
 
 /**
  * Drop adapter for MEDiagrams.

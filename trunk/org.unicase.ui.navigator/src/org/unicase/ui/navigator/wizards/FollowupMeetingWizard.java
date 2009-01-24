@@ -16,7 +16,7 @@ import org.unicase.model.meeting.MeetingFactory;
 import org.unicase.model.meeting.MeetingPackage;
 import org.unicase.model.meeting.WorkItemMeetingSection;
 import org.unicase.model.task.WorkItem;
-import org.unicase.ui.common.commands.ActionHelper;
+import org.unicase.ui.common.util.ActionHelper;
 import org.unicase.workspace.WorkspaceManager;
 
 /**

@@ -4,7 +4,7 @@
  *
  * $Id$
  */
-package org.unicase.ui.common.commands;
+package org.unicase.ui.common.handlers;
 
 import org.eclipse.core.commands.AbstractHandler;
 import org.eclipse.core.commands.ExecutionEvent;
@@ -14,6 +14,8 @@ import org.eclipse.jface.dialogs.MessageDialog;
 import org.eclipse.ui.handlers.HandlerUtil;
 import org.unicase.model.ModelElement;
 import org.unicase.model.document.Section;
+import org.unicase.ui.common.commands.DeleteModelElementCommand;
+import org.unicase.ui.common.util.ActionHelper;
 import org.unicase.ui.common.util.UnicaseUiUtil;
 import org.unicase.workspace.ProjectSpace;
 import org.unicase.workspace.Usersession;

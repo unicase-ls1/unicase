@@ -48,7 +48,7 @@ import org.unicase.model.task.WorkItem;
 import org.unicase.model.task.util.MEState;
 import org.unicase.model.task.util.TaxonomyAccess;
 import org.unicase.ui.common.MEClassLabelProvider;
-import org.unicase.ui.common.commands.ActionHelper;
+import org.unicase.ui.common.util.ActionHelper;
 import org.unicase.ui.stem.Activator;
 import org.unicase.workspace.WorkspaceManager;
 import org.unicase.workspace.util.EventUtil;

@@ -2,6 +2,7 @@ package org.unicase.model.classDiagram.edit.parts;
 
 import org.eclipse.gmf.runtime.diagram.ui.editpolicies.EditPolicyRoles;
 import org.eclipse.gmf.runtime.notation.View;
+import org.unicase.model.classDiagram.edit.policies.MEDiagramShowElementsEditPolicy;
 
 /**
  * @generated
@@ -26,10 +27,14 @@ public class MEDiagramEditPart extends org.unicase.ui.common.diagram.MEDiagramEd
 	}
 
 	/**
-	 * @generated
+	 * @generated NOT
 	 */
+	@Override
 	protected void createDefaultEditPolicies() {
 		super.createDefaultEditPolicies();
+		installEditPolicy(
+				EditPolicyRoles.SHOW_ELEMENTS_ROLE,
+				new MEDiagramShowElementsEditPolicy());
 		installEditPolicy(
 				EditPolicyRoles.SEMANTIC_ROLE,
 				new org.unicase.model.classDiagram.edit.policies.MEDiagramItemSemanticEditPolicy());
