@@ -4,6 +4,7 @@ import java.awt.Color;
 import java.util.ArrayList;
 
 import org.eclipse.core.runtime.IStatus;
+import org.eclipse.emf.ecore.util.EcoreUtil;
 import org.unicase.docExport.exportModel.renderers.options.BoxModelOption;
 import org.unicase.docExport.exportModel.renderers.options.OptionsFactory;
 import org.unicase.docExport.exportModel.renderers.options.TextOption;
@@ -12,19 +13,19 @@ import org.unicase.workspace.util.WorkspaceUtil;
 /**
  * This class represents a table in the renderer.
  * 
- * @author Sebastian Höcht
+ * @author Sebastian Hoecht
  */
 public class UTable extends UCompositeSection {
 
-
 	private BoxModelOption defaultCellBoxModel = OptionsFactory.eINSTANCE.createBoxModelOption();
 	private int widthPercentage = 90;
-	
+	private TextOption defaultTextOption = OptionsFactory.eINSTANCE.createTextOption();
+
 	private float[] columnsWidths;
 
 	private int columnsCount = 2;
 	private ArrayList<UTableCell> entries = new ArrayList<UTableCell>();
-	
+
 	/**
 	 * @param columnCount the amount of columns of this table
 	 */
@@ -33,45 +34,61 @@ public class UTable extends UCompositeSection {
 		this.getBoxModel().setBackgroundColor(new Color(255, 255, 255));
 		defaultCellBoxModel.setBackgroundColor(new Color(255, 255, 255));
 	}
-	
+
 	/**
 	 * @param entry the entry (cell) which shall be added to the table
 	 */
 	public void addCell(UTableCell entry) {
 		entries.add(entry);
 	}
-	
+
 	/**
 	 * Adds an UEntry containing the text.
+	 * 
 	 * @param text the content of the UEntry
 	 */
 	public void addCell(String text) {
-		UTableCell uEntry = new UTableCell(text);
+		UTableCell uEntry = new UTableCell(text, defaultTextOption);
 		uEntry.setBoxModel(defaultCellBoxModel);
 		entries.add(uEntry);
 	}
-	
-	
+
 	/**
 	 * Adds an UEntry containing the text.
+	 * 
 	 * @param text the content of the UEntry
 	 * @param option the TextOption which decorates the Text
 	 */
 	public void addCell(String text, TextOption option) {
 		UTableCell uEntry = new UTableCell(text, option);
+		uEntry.setBoxModel(defaultCellBoxModel);
 		entries.add(uEntry);
 	}
-	
+
 	/**
 	 * Adds an UEntry containing the text.
+	 * 
 	 * @param paragraph the paragraph containing the text of the new entry
 	 */
 	public void addCell(UParagraph paragraph) {
-		UTableCell uEntry = new UTableCell(paragraph.getText(), paragraph.getOption());
+		UTableCell uEntry = new UTableCell(paragraph);
 
 		entries.add(uEntry);
-	}	
-	
+	}
+
+	/**
+	 * @param doc the document you want to add to the table into a table cell
+	 * @see org.unicase.docExport.exportModel.renderers.elements.UCompositeSection#add(org.unicase.docExport.exportModel.renderers.elements.UDocument)
+	 */
+	@Override
+	public void add(UDocument doc) {
+		if (!(doc instanceof UParagraph)) {
+			WorkspaceUtil.log("You can only add UParagraphs to a table", new Exception(), IStatus.ERROR);
+		} else {
+			addCell((UParagraph) doc);
+		}
+	}
+
 	/**
 	 * @return all entries in this table
 	 */
@@ -91,7 +108,7 @@ public class UTable extends UCompositeSection {
 	 */
 	public int getColumnsCount() {
 		return columnsCount;
-	}	
+	}
 
 	/**
 	 * @return the widthPercentage
@@ -106,7 +123,6 @@ public class UTable extends UCompositeSection {
 	public void setWidthPercentage(int widthPercentage) {
 		this.widthPercentage = widthPercentage;
 	}
-	
 
 	/**
 	 * @return the columnsWidths
@@ -123,11 +139,8 @@ public class UTable extends UCompositeSection {
 	 */
 	public void setColumnsWidths(float[] columnsWidths) {
 		if (columnsWidths.length != columnsCount) {
-			WorkspaceUtil.log(
-					"the widths array must contain " + columnsCount + " entires", 
-					new Exception(), 
-					IStatus.WARNING
-				);
+			WorkspaceUtil.log("the widths array must contain " + columnsCount + " entires", new Exception(),
+				IStatus.WARNING);
 			return;
 		}
 		this.columnsWidths = columnsWidths;
@@ -145,6 +158,20 @@ public class UTable extends UCompositeSection {
 	 */
 	public BoxModelOption getDefaultCellBoxModel() {
 		return defaultCellBoxModel;
+	}
+
+	/**
+	 * @param defaultTextOption the defaultTextOption to set
+	 */
+	public void setDefaultTextOption(TextOption defaultTextOption) {
+		this.defaultTextOption = (TextOption) EcoreUtil.copy(defaultTextOption);
+	}
+
+	/**
+	 * @return the defaultTextOption
+	 */
+	public TextOption getDefaultTextOption() {
+		return defaultTextOption;
 	}
 
 }

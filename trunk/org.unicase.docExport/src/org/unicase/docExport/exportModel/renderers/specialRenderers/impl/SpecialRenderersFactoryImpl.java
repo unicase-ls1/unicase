@@ -1,8 +1,5 @@
 /**
- * <copyright>
- * </copyright>
- *
- * $Id$
+ * <copyright> </copyright> $Id$
  */
 package org.unicase.docExport.exportModel.renderers.specialRenderers.impl;
 
@@ -23,35 +20,32 @@ import org.unicase.docExport.exportModel.renderers.specialRenderers.SpecialRende
 import org.unicase.docExport.exportModel.renderers.specialRenderers.StepsAttributeRenderer;
 
 /**
- * <!-- begin-user-doc -->
- * An implementation of the model <b>Factory</b>.
- * <!-- end-user-doc -->
+ * <!-- begin-user-doc --> An implementation of the model <b>Factory</b>. <!-- end-user-doc -->
+ * 
  * @generated
  */
 public class SpecialRenderersFactoryImpl extends EFactoryImpl implements SpecialRenderersFactory {
 	/**
-	 * Creates the default factory implementation.
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
+	 * Creates the default factory implementation. <!-- begin-user-doc --> <!-- end-user-doc -->
+	 * 
 	 * @generated
 	 */
 	public static SpecialRenderersFactory init() {
 		try {
-			SpecialRenderersFactory theSpecialRenderersFactory = (SpecialRenderersFactory)EPackage.Registry.INSTANCE.getEFactory("http://unicase.org/docExport/exportModel/renderers/specialRenderers"); 
+			SpecialRenderersFactory theSpecialRenderersFactory = (SpecialRenderersFactory) EPackage.Registry.INSTANCE
+				.getEFactory("http://unicase.org/docExport/exportModel/renderers/specialRenderers");
 			if (theSpecialRenderersFactory != null) {
 				return theSpecialRenderersFactory;
 			}
-		}
-		catch (Exception exception) {
+		} catch (Exception exception) {
 			EcorePlugin.INSTANCE.log(exception);
 		}
 		return new SpecialRenderersFactoryImpl();
 	}
 
 	/**
-	 * Creates an instance of the factory.
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
+	 * Creates an instance of the factory. <!-- begin-user-doc --> <!-- end-user-doc -->
+	 * 
 	 * @generated
 	 */
 	public SpecialRenderersFactoryImpl() {
@@ -59,26 +53,31 @@ public class SpecialRenderersFactoryImpl extends EFactoryImpl implements Special
 	}
 
 	/**
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
+	 * <!-- begin-user-doc --> <!-- end-user-doc -->
+	 * 
 	 * @generated
 	 */
 	@Override
 	public EObject create(EClass eClass) {
 		switch (eClass.getClassifierID()) {
-			case SpecialRenderersPackage.MEETING_RENDERER: return createMeetingRenderer();
-			case SpecialRenderersPackage.MILESTONE_RENDERER: return createMilestoneRenderer();
-			case SpecialRenderersPackage.STEPS_ATTRIBUTE_RENDERER: return createStepsAttributeRenderer();
-			case SpecialRenderersPackage.METHOD_RENDERER: return createMethodRenderer();
-			case SpecialRenderersPackage.PACKAGE_FLAT_RENDERER: return createPackageFlatRenderer();
-			default:
-				throw new IllegalArgumentException("The class '" + eClass.getName() + "' is not a valid classifier");
+		case SpecialRenderersPackage.MEETING_RENDERER:
+			return createMeetingRenderer();
+		case SpecialRenderersPackage.MILESTONE_RENDERER:
+			return createMilestoneRenderer();
+		case SpecialRenderersPackage.STEPS_ATTRIBUTE_RENDERER:
+			return createStepsAttributeRenderer();
+		case SpecialRenderersPackage.METHOD_RENDERER:
+			return createMethodRenderer();
+		case SpecialRenderersPackage.PACKAGE_FLAT_RENDERER:
+			return createPackageFlatRenderer();
+		default:
+			throw new IllegalArgumentException("The class '" + eClass.getName() + "' is not a valid classifier");
 		}
 	}
 
 	/**
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
+	 * <!-- begin-user-doc --> <!-- end-user-doc -->
+	 * 
 	 * @generated
 	 */
 	public MeetingRenderer createMeetingRenderer() {
@@ -88,24 +87,21 @@ public class SpecialRenderersFactoryImpl extends EFactoryImpl implements Special
 
 	/**
 	 * @param template the template where this renderer is used
-	 * @return a new Meeting renderer 
+	 * @return a new Meeting renderer
 	 * @generated NOT
 	 */
 	public MeetingRenderer createMeetingRenderer(Template template) {
 		MeetingRendererImpl meetingRenderer = new MeetingRendererImpl();
 		meetingRenderer.setTemplate(template);
-		TextOption workItemTextOption = 
-			(TextOption)  EcoreUtil.copy(template.getLayoutOptions().getDefaultTextOption());
+		TextOption workItemTextOption = (TextOption) EcoreUtil.copy(template.getLayoutOptions().getDefaultTextOption());
 		workItemTextOption.setName("workItem");
 		meetingRenderer.getRendererOptions().add(workItemTextOption);
 		return meetingRenderer;
 	}
 
-	
 	/**
-	 * <!-- begin-user-doc -->
-	 * .
-	 * <!-- end-user-doc -->
+	 * <!-- begin-user-doc --> . <!-- end-user-doc -->
+	 * 
 	 * @generated
 	 */
 	public MilestoneRenderer createMilestoneRenderer() {
@@ -114,8 +110,8 @@ public class SpecialRenderersFactoryImpl extends EFactoryImpl implements Special
 	}
 
 	/**
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
+	 * <!-- begin-user-doc --> <!-- end-user-doc -->
+	 * 
 	 * @generated
 	 */
 	public StepsAttributeRenderer createStepsAttributeRenderer() {
@@ -124,8 +120,8 @@ public class SpecialRenderersFactoryImpl extends EFactoryImpl implements Special
 	}
 
 	/**
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
+	 * <!-- begin-user-doc --> <!-- end-user-doc -->
+	 * 
 	 * @generated
 	 */
 	public MethodRenderer createMethodRenderer() {
@@ -134,8 +130,8 @@ public class SpecialRenderersFactoryImpl extends EFactoryImpl implements Special
 	}
 
 	/**
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
+	 * <!-- begin-user-doc --> <!-- end-user-doc -->
+	 * 
 	 * @generated
 	 */
 	public PackageFlatRenderer createPackageFlatRenderer() {
@@ -144,17 +140,17 @@ public class SpecialRenderersFactoryImpl extends EFactoryImpl implements Special
 	}
 
 	/**
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
+	 * <!-- begin-user-doc --> <!-- end-user-doc -->
+	 * 
 	 * @generated
 	 */
 	public SpecialRenderersPackage getSpecialRenderersPackage() {
-		return (SpecialRenderersPackage)getEPackage();
+		return (SpecialRenderersPackage) getEPackage();
 	}
 
 	/**
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
+	 * <!-- begin-user-doc --> <!-- end-user-doc -->
+	 * 
 	 * @deprecated
 	 * @generated
 	 */
@@ -163,4 +159,4 @@ public class SpecialRenderersFactoryImpl extends EFactoryImpl implements Special
 		return SpecialRenderersPackage.eINSTANCE;
 	}
 
-} //SpecialRenderersFactoryImpl
+} // SpecialRenderersFactoryImpl

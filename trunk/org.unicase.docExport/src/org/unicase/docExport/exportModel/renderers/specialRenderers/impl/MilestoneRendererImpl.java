@@ -1,8 +1,5 @@
 /**
- * <copyright>
- * </copyright>
- *
- * $Id$
+ * <copyright> </copyright> $Id$
  */
 package org.unicase.docExport.exportModel.renderers.specialRenderers.impl;
 
@@ -22,18 +19,16 @@ import org.unicase.model.task.util.OpeningLinkTaxonomy;
 import org.unicase.workspace.util.WorkspaceUtil;
 
 /**
- * <!-- begin-user-doc -->
- * An implementation of the model object '<em><b>Milestone Renderer</b></em>'.
- * <!-- end-user-doc -->
+ * <!-- begin-user-doc --> An implementation of the model object '<em><b>Milestone Renderer</b></em>'. <!-- end-user-doc
+ * -->
  * <p>
  * </p>
- *
+ * 
  * @generated
  */
 public class MilestoneRendererImpl extends ModelElementRendererImpl implements MilestoneRenderer {
 	/**
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
+	 * <!-- begin-user-doc --> <!-- end-user-doc -->
 	 * @generated
 	 */
 	protected MilestoneRendererImpl() {
@@ -41,8 +36,7 @@ public class MilestoneRendererImpl extends ModelElementRendererImpl implements M
 	}
 
 	/**
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
+	 * <!-- begin-user-doc --> <!-- end-user-doc -->
 	 * @generated
 	 */
 	@Override
@@ -50,34 +44,30 @@ public class MilestoneRendererImpl extends ModelElementRendererImpl implements M
 		return SpecialRenderersPackage.Literals.MILESTONE_RENDERER;
 	}
 
-	//begin custom code
-	public void render(ModelElement modelElement, UCompositeSection parent) {
+	// begin custom code
+	@Override
+	public void doRender(ModelElement modelElement, UCompositeSection parent) {
 		OpeningLinkTaxonomy oLTaxonomy = new OpeningLinkTaxonomy();
 		Set<ModelElement> test = oLTaxonomy.getLeafOpeners(modelElement);
-		
-		USection section = new USection(
-				modelElement.getName(), 
-				getTemplate().getLayoutOptions().getSectionTextOption()
-			);
-		UParagraph description = new UParagraph(
-				WorkspaceUtil.cleanFormatedText(modelElement.getDescription()),
-				getTemplate().getLayoutOptions().getDefaultTextOption()
-			);
+
+		USection section = new USection(modelElement.getName(), getTemplate().getLayoutOptions().getSectionTextOption());
+		UParagraph description = new UParagraph(WorkspaceUtil.cleanFormatedText(modelElement.getDescription()),
+			getTemplate().getLayoutOptions().getDefaultTextOption());
 		description.setIndentionLeft(1);
-		
+
 		parent.add(section);
 		section.add(description);
-		
+
 		UList uList = new UList(OptionsFactory.eINSTANCE.createListOption());
 		uList.setIndentionLeft(1);
-		
+
 		for (ModelElement me : test) {
 			uList.add(me.getName());
 		}
-		
-		section.add(uList);
-		
-	}
-	//end custom code
 
-} //MilestoneRendererImpl
+		section.add(uList);
+
+	}
+	// end custom code
+
+} // MilestoneRendererImpl

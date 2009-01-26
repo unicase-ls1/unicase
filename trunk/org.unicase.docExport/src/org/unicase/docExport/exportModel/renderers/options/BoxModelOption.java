@@ -39,6 +39,7 @@ import java.awt.Color;
  *   <li>{@link org.unicase.docExport.exportModel.renderers.options.BoxModelOption#isKeepWithPrevious <em>Keep With Previous</em>}</li>
  *   <li>{@link org.unicase.docExport.exportModel.renderers.options.BoxModelOption#isKeepWithNext <em>Keep With Next</em>}</li>
  *   <li>{@link org.unicase.docExport.exportModel.renderers.options.BoxModelOption#isBreakBefore <em>Break Before</em>}</li>
+ *   <li>{@link org.unicase.docExport.exportModel.renderers.options.BoxModelOption#getWidth <em>Width</em>}</li>
  * </ul>
  * </p>
  *
@@ -646,5 +647,31 @@ public interface BoxModelOption extends RendererOption {
 	 * @generated
 	 */
 	void setBreakBefore(boolean value);
+
+	/**
+	 * Returns the value of the '<em><b>Width</b></em>' attribute.
+	 * <!-- begin-user-doc -->
+	 * <p>
+	 * If the meaning of the '<em>Width</em>' attribute isn't clear,
+	 * there really should be more of a description here...
+	 * </p>
+	 * <!-- end-user-doc -->
+	 * @return the value of the '<em>Width</em>' attribute.
+	 * @see #setWidth(int)
+	 * @see org.unicase.docExport.exportModel.renderers.options.OptionsPackage#getBoxModelOption_Width()
+	 * @model
+	 * @generated
+	 */
+	int getWidth();
+
+	/**
+	 * Sets the value of the '{@link org.unicase.docExport.exportModel.renderers.options.BoxModelOption#getWidth <em>Width</em>}' attribute.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @param value the new value of the '<em>Width</em>' attribute.
+	 * @see #getWidth()
+	 * @generated
+	 */
+	void setWidth(int value);
 
 } // BoxModelOption

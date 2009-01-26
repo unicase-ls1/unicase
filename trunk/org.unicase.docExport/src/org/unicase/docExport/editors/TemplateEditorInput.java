@@ -6,24 +6,22 @@ import org.eclipse.ui.IPersistableElement;
 import org.unicase.docExport.exportModel.Template;
 
 /**
- * 
- * @author Sebastian Höcht
- *
+ * @author Sebastian Hoecht
  */
 public class TemplateEditorInput implements IEditorInput {
 
 	private Template template;
-	
+
 	/**
 	 * Default constructor.
+	 * 
 	 * @param template the template
 	 */
 	public TemplateEditorInput(Template template) {
 		super();
 		this.setTemplate(template);
 	}
-	
-	
+
 	/**
 	 * {@inheritDoc}
 	 */
@@ -71,7 +69,6 @@ public class TemplateEditorInput implements IEditorInput {
 		return null;
 	}
 
-
 	/**
 	 * @param template the template to set
 	 */
@@ -79,20 +76,18 @@ public class TemplateEditorInput implements IEditorInput {
 		this.template = template;
 	}
 
-
 	/**
 	 * @return the template
 	 */
 	public Template getTemplate() {
 		return template;
-	}	
-	
-	
+	}
+
 	/**
 	 * Custom equals() for this class.
+	 * 
 	 * @param obj the compared object.
-	 * @return the boolean state.
-	 * {@inheritDoc}
+	 * @return the boolean state. {@inheritDoc}
 	 */
 	@Override
 	public boolean equals(Object obj) {
@@ -104,8 +99,9 @@ public class TemplateEditorInput implements IEditorInput {
 		return false;
 	}
 
-	/** 
+	/**
 	 * {@inheritDoc}
+	 * 
 	 * @see java.lang.Object#hashCode()
 	 */
 	@Override

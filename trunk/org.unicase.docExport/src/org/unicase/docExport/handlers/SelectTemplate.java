@@ -16,23 +16,18 @@ import org.unicase.docExport.views.TemplatesView;
 import org.unicase.workspace.util.WorkspaceUtil;
 
 /**
- * 
- * @author Sebastian Höcht
- *
+ * @author Sebastian Hoecht
  */
 public class SelectTemplate extends AbstractHandler implements IHandler {
 
-
-	
 	/**
 	 * {@inheritDoc}
 	 */
 	public Object execute(ExecutionEvent event) throws ExecutionException {
-		
 
 		IWorkbenchWindow window = HandlerUtil.getActiveWorkbenchWindow(event);
 		IWorkbenchPage page = window.getActivePage();
-		
+
 		TemplatesView view = (TemplatesView) page.findView(TemplatesView.ID);
 
 		ISelection sel = view.getSite().getSelectionProvider().getSelection();
@@ -48,16 +43,13 @@ public class SelectTemplate extends AbstractHandler implements IHandler {
 		Object o = ssel.getFirstElement();
 		if (!(o instanceof Template)) {
 			return null;
-		}		
-		
+		}
+
 		Template template = (Template) o;
-		
+
 		TemplateRegistry.setTemplate(template);
-		WorkspaceUtil.log(
-				"The template '" + template.getName() + "' has been selected",
-				new Exception(),
-				IStatus.OK);
-		
+		WorkspaceUtil.log("The template '" + template.getName() + "' has been selected", new Exception(), IStatus.OK);
+
 		return null;
 	}
 

@@ -26,7 +26,7 @@ import org.unicase.docExport.exportModel.renderers.options.LayoutOptions;
  *   <li>{@link org.unicase.docExport.exportModel.Template#getLayoutOptions <em>Layout Options</em>}</li>
  *   <li>{@link org.unicase.docExport.exportModel.Template#getGlobalRendererOptions <em>Global Renderer Options</em>}</li>
  *   <li>{@link org.unicase.docExport.exportModel.Template#getName <em>Name</em>}</li>
- *   <li>{@link org.unicase.docExport.exportModel.Template#getLogoImage <em>Logo Image</em>}</li>
+ *   <li>{@link org.unicase.docExport.exportModel.Template#isDefaultTemplate <em>Default Template</em>}</li>
  * </ul>
  * </p>
  *
@@ -120,30 +120,30 @@ public interface Template extends EObject {
 	void setName(String value);
 
 	/**
-	 * Returns the value of the '<em><b>Logo Image</b></em>' attribute.
+	 * Returns the value of the '<em><b>Default Template</b></em>' attribute.
 	 * <!-- begin-user-doc -->
 	 * <p>
-	 * If the meaning of the '<em>Logo Image</em>' attribute isn't clear,
+	 * If the meaning of the '<em>Default Template</em>' attribute isn't clear,
 	 * there really should be more of a description here...
 	 * </p>
 	 * <!-- end-user-doc -->
-	 * @return the value of the '<em>Logo Image</em>' attribute.
-	 * @see #setLogoImage(String)
-	 * @see org.unicase.docExport.exportModel.ExportModelPackage#getTemplate_LogoImage()
+	 * @return the value of the '<em>Default Template</em>' attribute.
+	 * @see #setDefaultTemplate(boolean)
+	 * @see org.unicase.docExport.exportModel.ExportModelPackage#getTemplate_DefaultTemplate()
 	 * @model
 	 * @generated
 	 */
-	String getLogoImage();
+	boolean isDefaultTemplate();
 
 	/**
-	 * Sets the value of the '{@link org.unicase.docExport.exportModel.Template#getLogoImage <em>Logo Image</em>}' attribute.
+	 * Sets the value of the '{@link org.unicase.docExport.exportModel.Template#isDefaultTemplate <em>Default Template</em>}' attribute.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
-	 * @param value the new value of the '<em>Logo Image</em>' attribute.
-	 * @see #getLogoImage()
+	 * @param value the new value of the '<em>Default Template</em>' attribute.
+	 * @see #isDefaultTemplate()
 	 * @generated
 	 */
-	void setLogoImage(String value);
+	void setDefaultTemplate(boolean value);
 
 	//begin custom code
 	AttributeOption getGlobalAttributeRendererOption(Class<? extends AttributeOption> clazz);

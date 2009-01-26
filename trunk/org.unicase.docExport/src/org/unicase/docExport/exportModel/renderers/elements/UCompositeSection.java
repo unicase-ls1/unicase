@@ -3,12 +3,12 @@ package org.unicase.docExport.exportModel.renderers.elements;
 import java.util.Vector;
 
 /**
- * This class is just a container for more elements.
- * This is a part of the Composite Pattern.
- * @author Sebastian Höcht
+ * This class is just a container for more elements. This is a part of the Composite Pattern.
+ * 
+ * @author Sebastian Hoecht
  */
 public abstract class UCompositeSection extends UDocument {
-	
+
 	private Vector<UDocument> children = new Vector<UDocument>();
 
 	/**
@@ -18,7 +18,7 @@ public abstract class UCompositeSection extends UDocument {
 		children.add(doc);
 		doc.setParent(this);
 	}
-	
+
 	/**
 	 * @return a vector of all children.
 	 */

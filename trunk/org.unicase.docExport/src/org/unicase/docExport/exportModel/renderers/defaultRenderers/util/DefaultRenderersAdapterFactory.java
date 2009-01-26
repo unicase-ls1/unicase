@@ -1,8 +1,5 @@
 /**
- * <copyright>
- * </copyright>
- *
- * $Id$
+ * <copyright> </copyright> $Id$
  */
 package org.unicase.docExport.exportModel.renderers.defaultRenderers.util;
 
@@ -18,28 +15,23 @@ import org.unicase.docExport.exportModel.renderers.defaultRenderers.DefaultDocum
 import org.unicase.docExport.exportModel.renderers.defaultRenderers.DefaultModelElementRenderer;
 import org.unicase.docExport.exportModel.renderers.defaultRenderers.DefaultRenderersPackage;
 
-
 /**
- * <!-- begin-user-doc -->
- * The <b>Adapter Factory</b> for the model.
- * It provides an adapter <code>createXXX</code> method for each class of the model.
- * <!-- end-user-doc -->
+ * <!-- begin-user-doc --> The <b>Adapter Factory</b> for the model. It provides an adapter <code>createXXX</code>
+ * method for each class of the model. <!-- end-user-doc -->
  * @see org.unicase.docExport.exportModel.renderers.defaultRenderers.DefaultRenderersPackage
  * @generated
  */
 public class DefaultRenderersAdapterFactory extends AdapterFactoryImpl {
 	/**
 	 * The cached model package.
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
+	 * <!-- begin-user-doc --> <!-- end-user-doc -->
 	 * @generated
 	 */
 	protected static DefaultRenderersPackage modelPackage;
 
 	/**
 	 * Creates an instance of the adapter factory.
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
+	 * <!-- begin-user-doc --> <!-- end-user-doc -->
 	 * @generated
 	 */
 	public DefaultRenderersAdapterFactory() {
@@ -50,9 +42,9 @@ public class DefaultRenderersAdapterFactory extends AdapterFactoryImpl {
 
 	/**
 	 * Returns whether this factory is applicable for the type of the object.
-	 * <!-- begin-user-doc -->
-	 * This implementation returns <code>true</code> if the object is either the model's package or is an instance object of the model.
-	 * <!-- end-user-doc -->
+	 * <!-- begin-user-doc --> This
+	 * implementation returns <code>true</code> if the object is either the model's package or is an instance object of
+	 * the model. <!-- end-user-doc -->
 	 * @return whether this factory is applicable for the type of the object.
 	 * @generated
 	 */
@@ -69,12 +61,10 @@ public class DefaultRenderersAdapterFactory extends AdapterFactoryImpl {
 
 	/**
 	 * The switch that delegates to the <code>createXXX</code> methods.
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
+	 * <!-- begin-user-doc --> <!-- end-user-doc -->
 	 * @generated
 	 */
-	protected DefaultRenderersSwitch<Adapter> modelSwitch =
-		new DefaultRenderersSwitch<Adapter>() {
+	protected DefaultRenderersSwitch<Adapter> modelSwitch = new DefaultRenderersSwitch<Adapter>() {
 			@Override
 			public Adapter caseDefaultModelElementRenderer(DefaultModelElementRenderer object) {
 				return createDefaultModelElementRendererAdapter();
@@ -107,8 +97,7 @@ public class DefaultRenderersAdapterFactory extends AdapterFactoryImpl {
 
 	/**
 	 * Creates an adapter for the <code>target</code>.
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
+	 * <!-- begin-user-doc --> <!-- end-user-doc -->
 	 * @param target the object to adapt.
 	 * @return the adapter for the <code>target</code>.
 	 * @generated
@@ -118,12 +107,10 @@ public class DefaultRenderersAdapterFactory extends AdapterFactoryImpl {
 		return modelSwitch.doSwitch((EObject)target);
 	}
 
-
 	/**
 	 * Creates a new adapter for an object of class '{@link org.unicase.docExport.exportModel.renderers.defaultRenderers.DefaultModelElementRenderer <em>Default Model Element Renderer</em>}'.
-	 * <!-- begin-user-doc -->
-	 * This default implementation returns null so that we can easily ignore cases;
-	 * it's useful to ignore a case when inheritance will catch all the cases anyway.
+	 * <!-- begin-user-doc --> This default implementation returns null so
+	 * that we can easily ignore cases; it's useful to ignore a case when inheritance will catch all the cases anyway.
 	 * <!-- end-user-doc -->
 	 * @return the new adapter.
 	 * @see org.unicase.docExport.exportModel.renderers.defaultRenderers.DefaultModelElementRenderer
@@ -135,10 +122,9 @@ public class DefaultRenderersAdapterFactory extends AdapterFactoryImpl {
 
 	/**
 	 * Creates a new adapter for an object of class '{@link org.unicase.docExport.exportModel.renderers.defaultRenderers.DefaultAttributeRenderer <em>Default Attribute Renderer</em>}'.
-	 * <!-- begin-user-doc -->
-	 * This default implementation returns null so that we can easily ignore cases;
-	 * it's useful to ignore a case when inheritance will catch all the cases anyway.
-	 * <!-- end-user-doc -->
+	 * <!-- begin-user-doc --> This default implementation returns null so that
+	 * we can easily ignore cases; it's useful to ignore a case when inheritance will catch all the cases anyway. <!--
+	 * end-user-doc -->
 	 * @return the new adapter.
 	 * @see org.unicase.docExport.exportModel.renderers.defaultRenderers.DefaultAttributeRenderer
 	 * @generated
@@ -149,10 +135,9 @@ public class DefaultRenderersAdapterFactory extends AdapterFactoryImpl {
 
 	/**
 	 * Creates a new adapter for an object of class '{@link org.unicase.docExport.exportModel.renderers.defaultRenderers.DefaultDocumentRenderer <em>Default Document Renderer</em>}'.
-	 * <!-- begin-user-doc -->
-	 * This default implementation returns null so that we can easily ignore cases;
-	 * it's useful to ignore a case when inheritance will catch all the cases anyway.
-	 * <!-- end-user-doc -->
+	 * <!-- begin-user-doc --> This default implementation returns null so that we
+	 * can easily ignore cases; it's useful to ignore a case when inheritance will catch all the cases anyway. <!--
+	 * end-user-doc -->
 	 * @return the new adapter.
 	 * @see org.unicase.docExport.exportModel.renderers.defaultRenderers.DefaultDocumentRenderer
 	 * @generated
@@ -162,11 +147,11 @@ public class DefaultRenderersAdapterFactory extends AdapterFactoryImpl {
 	}
 
 	/**
-	 * Creates a new adapter for an object of class '{@link org.unicase.docExport.exportModel.renderers.ModelElementRenderer <em>Model Element Renderer</em>}'.
-	 * <!-- begin-user-doc -->
-	 * This default implementation returns null so that we can easily ignore cases;
-	 * it's useful to ignore a case when inheritance will catch all the cases anyway.
-	 * <!-- end-user-doc -->
+	 * Creates a new adapter for an object of class '
+	 * {@link org.unicase.docExport.exportModel.renderers.ModelElementRenderer <em>Model Element Renderer</em>}'. <!--
+	 * begin-user-doc --> This default implementation returns null so that we can easily ignore cases; it's useful to
+	 * ignore a case when inheritance will catch all the cases anyway. <!-- end-user-doc -->
+	 * 
 	 * @return the new adapter.
 	 * @see org.unicase.docExport.exportModel.renderers.ModelElementRenderer
 	 * @generated
@@ -176,11 +161,11 @@ public class DefaultRenderersAdapterFactory extends AdapterFactoryImpl {
 	}
 
 	/**
-	 * Creates a new adapter for an object of class '{@link org.unicase.docExport.exportModel.renderers.AttributeRenderer <em>Attribute Renderer</em>}'.
-	 * <!-- begin-user-doc -->
-	 * This default implementation returns null so that we can easily ignore cases;
-	 * it's useful to ignore a case when inheritance will catch all the cases anyway.
-	 * <!-- end-user-doc -->
+	 * Creates a new adapter for an object of class '
+	 * {@link org.unicase.docExport.exportModel.renderers.AttributeRenderer <em>Attribute Renderer</em>}'. <!--
+	 * begin-user-doc --> This default implementation returns null so that we can easily ignore cases; it's useful to
+	 * ignore a case when inheritance will catch all the cases anyway. <!-- end-user-doc -->
+	 * 
 	 * @return the new adapter.
 	 * @see org.unicase.docExport.exportModel.renderers.AttributeRenderer
 	 * @generated
@@ -190,11 +175,11 @@ public class DefaultRenderersAdapterFactory extends AdapterFactoryImpl {
 	}
 
 	/**
-	 * Creates a new adapter for an object of class '{@link org.unicase.docExport.exportModel.renderers.DocumentRenderer <em>Document Renderer</em>}'.
-	 * <!-- begin-user-doc -->
-	 * This default implementation returns null so that we can easily ignore cases;
-	 * it's useful to ignore a case when inheritance will catch all the cases anyway.
-	 * <!-- end-user-doc -->
+	 * Creates a new adapter for an object of class '
+	 * {@link org.unicase.docExport.exportModel.renderers.DocumentRenderer <em>Document Renderer</em>}'. <!--
+	 * begin-user-doc --> This default implementation returns null so that we can easily ignore cases; it's useful to
+	 * ignore a case when inheritance will catch all the cases anyway. <!-- end-user-doc -->
+	 * 
 	 * @return the new adapter.
 	 * @see org.unicase.docExport.exportModel.renderers.DocumentRenderer
 	 * @generated
@@ -205,8 +190,7 @@ public class DefaultRenderersAdapterFactory extends AdapterFactoryImpl {
 
 	/**
 	 * Creates a new adapter for the default case.
-	 * <!-- begin-user-doc -->
-	 * This default implementation returns null.
+	 * <!-- begin-user-doc --> This default implementation returns null.
 	 * <!-- end-user-doc -->
 	 * @return the new adapter.
 	 * @generated
@@ -215,4 +199,4 @@ public class DefaultRenderersAdapterFactory extends AdapterFactoryImpl {
 		return null;
 	}
 
-} //DefaultRenderersAdapterFactory
+} // DefaultRenderersAdapterFactory

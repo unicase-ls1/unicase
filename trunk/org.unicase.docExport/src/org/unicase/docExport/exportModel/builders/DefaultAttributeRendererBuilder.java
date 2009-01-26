@@ -22,77 +22,69 @@ import org.unicase.docExport.exportModel.renderers.options.impl.SingleReferenceA
 import org.unicase.docExport.exportModel.renderers.options.impl.StringAttributeOptionImpl;
 
 /**
- * 
- * @author Sebastian Höcht
- *
+ * @author Sebastian Hoecht
  */
 public final class DefaultAttributeRendererBuilder {
 
 	private DefaultAttributeRendererBuilder() {
-		
+
 	}
+
 	/**
-	 * 
 	 * @param feature the feature of the attribute
 	 * @param template the Template where this renderer is used.
 	 * @return a new DeafultAttributeRenderer
 	 */
 	public static AttributeRenderer build(EStructuralFeature feature, Template template) {
-		
+
 		AttributeRenderer renderer;
 		renderer = DefaultRenderersFactory.eINSTANCE.createDefaultAttributeRenderer();
-		
+
 		if (feature.eClass().getInstanceClass() == EAttribute.class) {
 			if (feature.getEGenericType().getERawType().equals(EcorePackage.eINSTANCE.getEBoolean())) {
 				BooleanAttributeOption option = OptionsFactory.eINSTANCE.createBooleanAttributeOption();
-				option.setGlobalOption(
-						(BooleanAttributeOption) template.getGlobalAttributeRendererOption(
-								BooleanAttributeOptionImpl.class
-							)
-					);
+				option.setGlobalOption((BooleanAttributeOption) template
+					.getGlobalAttributeRendererOption(BooleanAttributeOptionImpl.class));
 				option.setName(feature.getName());
 				renderer.setAttributeOption(option);
 			} else if (feature.getEGenericType().getERawType().equals(EcorePackage.eINSTANCE.getEDate())) {
 				DateAttributeOption option = OptionsFactory.eINSTANCE.createDateAttributeOption();
-				option.setGlobalOption(
-						(DateAttributeOption) template.getGlobalAttributeRendererOption(
-								DateAttributeOptionImpl.class
-							)
-					);
+				option.setGlobalOption((DateAttributeOption) template
+					.getGlobalAttributeRendererOption(DateAttributeOptionImpl.class));
 				option.setName(feature.getName());
 				renderer.setAttributeOption(option);
 			} else {
 				StringAttributeOption option = OptionsFactory.eINSTANCE.createStringAttributeOption();
-				option.setGlobalOption((StringAttributeOption) template.getGlobalAttributeRendererOption(
-							StringAttributeOptionImpl.class));
+				option.setGlobalOption((StringAttributeOption) template
+					.getGlobalAttributeRendererOption(StringAttributeOptionImpl.class));
 				option.setName(feature.getName());
-				renderer.setAttributeOption(option);			
+				renderer.setAttributeOption(option);
 			}
-		} else { //EReference	
+		} else { // EReference
 			ReferenceAttributeOption option;
 			if (feature.isMany()) {
 				option = OptionsFactory.eINSTANCE.createMultiReferenceAttributeOption();
-				((MultiReferenceAttributeOption) option).setGlobalOption((MultiReferenceAttributeOption) template.getGlobalAttributeRendererOption(
-							MultiReferenceAttributeOptionImpl.class));
-				((MultiReferenceAttributeOption) option).getGlobalOption().getListOption().setListStyle(ListStyle.TABLE);
+				((MultiReferenceAttributeOption) option).setGlobalOption((MultiReferenceAttributeOption) template
+					.getGlobalAttributeRendererOption(MultiReferenceAttributeOptionImpl.class));
+				((MultiReferenceAttributeOption) option).getGlobalOption().getListOption()
+					.setListStyle(ListStyle.TABLE);
 			} else {
 				option = OptionsFactory.eINSTANCE.createSingleReferenceAttributeOption();
-				((SingleReferenceAttributeOption)option).setGlobalOption((SingleReferenceAttributeOption) template.getGlobalAttributeRendererOption(
-							SingleReferenceAttributeOptionImpl.class));
+				((SingleReferenceAttributeOption) option).setGlobalOption((SingleReferenceAttributeOption) template
+					.getGlobalAttributeRendererOption(SingleReferenceAttributeOptionImpl.class));
 			}
-			
+
 			option.setName(feature.getName());
 			if (((EReference) feature).isContainment()) {
 				option.setContained(true);
-			}
-			else {
+			} else {
 				option.setContained(false);
 			}
-			
+
 			option.setAttributeText("");
 			renderer.setAttributeOption(option);
 		}
-		
+
 		return renderer;
 	}
 }

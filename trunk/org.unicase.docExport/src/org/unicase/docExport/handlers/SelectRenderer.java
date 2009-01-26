@@ -15,9 +15,7 @@ import org.unicase.docExport.exportModel.renderers.ModelElementRendererMapping;
 import org.unicase.docExport.views.TemplatesView;
 
 /**
- * 
- * @author Sebastian Höcht
- *
+ * @author Sebastian Hoecht
  */
 public class SelectRenderer extends AbstractHandler implements IHandler {
 
@@ -25,11 +23,10 @@ public class SelectRenderer extends AbstractHandler implements IHandler {
 	 * {@inheritDoc}
 	 */
 	public Object execute(ExecutionEvent event) throws ExecutionException {
-		
 
 		IWorkbenchWindow window = HandlerUtil.getActiveWorkbenchWindow(event);
 		IWorkbenchPage page = window.getActivePage();
-		
+
 		TemplatesView view = (TemplatesView) page.findView(TemplatesView.ID);
 
 		ISelection sel = view.getSite().getSelectionProvider().getSelection();
@@ -45,18 +42,16 @@ public class SelectRenderer extends AbstractHandler implements IHandler {
 		Object o = ssel.getFirstElement();
 		if (!(o instanceof ModelElementRendererMapping)) {
 			return null;
-		}		
-		
+		}
+
 		ModelElementRenderer renderer = ((ModelElementRendererMapping) o).getRenderer();
-		Template template = ((Template)renderer.eContainer().eContainer());
-		
+		Template template = ((Template) renderer.eContainer().eContainer());
+
 		SelectRendererDialog dialog = new SelectRendererDialog(page.getActivePart().getSite().getShell(), template);
 		dialog.setPropertyEClass(((ModelElementRendererMapping) o).getEClassName());
 		dialog.open();
-		
-		
+
 		return null;
 	}
-	
 
 }

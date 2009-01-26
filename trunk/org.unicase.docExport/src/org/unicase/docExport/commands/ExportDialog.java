@@ -8,6 +8,8 @@ import org.eclipse.jface.dialogs.IMessageProvider;
 import org.eclipse.jface.dialogs.ProgressMonitorDialog;
 import org.eclipse.jface.dialogs.TitleAreaDialog;
 import org.eclipse.swt.SWT;
+import org.eclipse.swt.events.ModifyEvent;
+import org.eclipse.swt.events.ModifyListener;
 import org.eclipse.swt.events.SelectionAdapter;
 import org.eclipse.swt.events.SelectionEvent;
 import org.eclipse.swt.layout.GridData;
@@ -34,50 +36,46 @@ import org.unicase.model.ModelElement;
 import org.unicase.workspace.util.WorkspaceUtil;
 
 /**
- * 
- * @author Sebastian Höcht
- *
+ * @author Sebastian Hoecht
  */
 public class ExportDialog extends TitleAreaDialog {
 
 	private ModelElement modelElement;
-	
+
 	private ArrayList<DocWriter> docWriters;
 	private DocumentRenderer docRenderer;
 	private ArrayList<Template> templates;
-	
+
 	private Combo template;
 	private Combo exportType;
 	private Text fileLocation;
 	private Text fileName;
-	
+
+	private Combo recursionDepth;
+
 	private static Shell platformShell;
-	
-	
+
 	/**
 	 * the constructor.
+	 * 
 	 * @param parentShell the parent shell object
-	 * @param docRenderer the DocumentRenderer which will use the template to render it to an
-	 * URootCompositeSection, which is used by the DocWriter
+	 * @param docRenderer the DocumentRenderer which will use the template to render it to an URootCompositeSection,
+	 *            which is used by the DocWriter
 	 * @param modelElement the modelElement which shall be exported to a document
 	 * @throws TemplateSaveException -
 	 */
-	public ExportDialog(
-			Shell parentShell, 
-			DocumentRenderer docRenderer,
-			ModelElement modelElement
-	) throws TemplateSaveException {
+	public ExportDialog(Shell parentShell, DocumentRenderer docRenderer, ModelElement modelElement)
+		throws TemplateSaveException {
 		super(parentShell);
-		
+
 		platformShell = parentShell;
-		
+
 		setHelpAvailable(false);
 		this.docRenderer = docRenderer;
 		this.docWriters = DocWriterRegistry.getDocWriters();
 		this.templates = TemplateRegistry.getAllTemplates();
 		this.modelElement = modelElement;
 	}
-	
 
 	/**
 	 * {@inheritDoc}
@@ -85,27 +83,25 @@ public class ExportDialog extends TitleAreaDialog {
 	@Override
 	protected Control createDialogArea(Composite parent) {
 		// return super.createDialogArea(parent);
-		
+
 		GridLayout layout0 = new GridLayout();
 		layout0.numColumns = 1;
 		parent.setLayout(layout0);
-		
-		
-		
+
 		Group container = new Group(parent, SWT.BORDER);
 		GridLayout layout = new GridLayout();
 		layout.numColumns = 2;
 		container.setLayout(layout);
 		GridData gData1 = new GridData(GridData.FILL_HORIZONTAL);
 		container.setLayoutData(gData1);
-		
+
 		Label label1 = new Label(container, SWT.None);
 		label1.setText("File name");
 		fileName = new Text(container, SWT.BORDER);
 		GridData gData2 = new GridData(GridData.FILL_HORIZONTAL);
 		fileName.setLayoutData(gData2);
 		fileName.setText(modelElement.getName().replace(" ", "_"));
-		
+
 		Label label2 = new Label(container, SWT.READ_ONLY);
 		label2.setText("File location");
 		Composite fileChooser = new Composite(container, SWT.NONE);
@@ -119,10 +115,10 @@ public class ExportDialog extends TitleAreaDialog {
 		Button selectFileLocation = new Button(fileChooser, SWT.PUSH);
 		selectFileLocation.setText("choose...");
 		selectFileLocation.addSelectionListener(new FileLocationSelectionListener());
-		
+
 		fileChooser.layout();
 		fileChooser.pack();
-		
+
 		Label label4 = new Label(container, SWT.READ_ONLY);
 		label4.setText("Template");
 		template = new Combo(container, SWT.READ_ONLY);
@@ -131,8 +127,7 @@ public class ExportDialog extends TitleAreaDialog {
 			template.add(innerTemplate.getName(), i);
 		}
 		template.select(0);
-		
-		
+
 		Label label3 = new Label(container, SWT.READ_ONLY);
 		label3.setText("File type");
 		exportType = new Combo(container, SWT.BORDER);
@@ -141,7 +136,20 @@ public class ExportDialog extends TitleAreaDialog {
 			exportType.add(writer.getFileType() + " (" + writer.getClass().getSimpleName() + ")", i);
 		}
 		exportType.select(0);
-	
+
+		Label label5 = new Label(container, SWT.NONE);
+		label5.setText("recursion depth");
+
+		recursionDepth = new Combo(container, SWT.READ_ONLY);
+		for (int i = 1; i <= 10; i++) {
+			recursionDepth.add(String.valueOf(i), i - 1);
+		}
+		recursionDepth.select(9);
+		recursionDepth.addModifyListener(new ModifyListener() {
+			public void modifyText(ModifyEvent e) {
+				DocumentExport.setRecursionDepth(recursionDepth.getSelectionIndex() + 1);
+			}
+		});
 
 		Composite container2 = new Composite(parent, SWT.NONE);
 		GridLayout layout2 = new GridLayout();
@@ -149,22 +157,22 @@ public class ExportDialog extends TitleAreaDialog {
 		container2.setLayout(layout2);
 		GridData gData = new GridData(GridData.FILL_HORIZONTAL);
 		container2.setLayoutData(gData);
-		
+
 		Button saveButton = new Button(container2, SWT.PUSH);
 		saveButton.setText("Export");
 		saveButton.addSelectionListener(new SaveSelectionListener());
-		
+
 		Button saveAndOpenButton = new Button(container2, SWT.PUSH);
 		saveAndOpenButton.setText("Export and open");
 		saveAndOpenButton.addSelectionListener(new SaveAndOpenSelectionListener());
-		
+
 		Button cancelButton = new Button(container2, SWT.PUSH);
 		cancelButton.setText("Cancel");
 		cancelButton.addSelectionListener(new CancelSelectionListener());
-		
+
 		return parent;
 	}
-	
+
 	/**
 	 * {@inheritDoc}
 	 */
@@ -177,8 +185,7 @@ public class ExportDialog extends TitleAreaDialog {
 		setMessage("Please select a enter a file.", IMessageProvider.INFORMATION);
 		return contents;
 	}
-	
-	
+
 	/**
 	 * {@inheritDoc}
 	 */
@@ -187,16 +194,14 @@ public class ExportDialog extends TitleAreaDialog {
 
 	}
 
-	private void exportDocument(
-			DocumentExport docExport,
-			String fileUrl
-		) {
-		ProgressMonitorDialog dialog = new ProgressMonitorDialog(PlatformUI.getWorkbench().getActiveWorkbenchWindow().getShell());
-		
+	private void exportDocument(DocumentExport docExport, String fileUrl) {
+		ProgressMonitorDialog dialog = new ProgressMonitorDialog(PlatformUI.getWorkbench().getActiveWorkbenchWindow()
+			.getShell());
+
 		try {
 			TemplateRegistry.setMeCount(0);
 			dialog.run(true, true, docExport);
-//			System.out.println(TemplateRegistry.getMeCount());
+			// System.out.println(TemplateRegistry.getMeCount());
 		} catch (InvocationTargetException e) {
 			MessageBox finished = new MessageBox(ExportDialog.platformShell, SWT.OK | SWT.ICON_WORKING);
 			finished.setText("Export status");
@@ -213,9 +218,8 @@ public class ExportDialog extends TitleAreaDialog {
 	}
 
 	/**
-	 * Check if the file already exists and returns true, if the file shall be written.
-	 * If the file already exists, a prompt message box will appear, which asks
-	 * the users, if he really wants to overwrite the file.
+	 * Check if the file already exists and returns true, if the file shall be written. If the file already exists, a
+	 * prompt message box will appear, which asks the users, if he really wants to overwrite the file.
 	 * 
 	 * @param fileUrl the system dependent url to the file
 	 * @return true if (over)writing is allowed, else false
@@ -223,26 +227,23 @@ public class ExportDialog extends TitleAreaDialog {
 	private boolean checkFileName(String fileUrl) {
 		File f = new File(fileUrl);
 		Boolean doIt = true;
-		
+
 		if (f.exists()) {
-			MessageBox messageBox = new MessageBox(
-					ExportDialog.platformShell, 
-					SWT.YES | SWT.NO | SWT.ICON_WARNING | SWT.CENTER
-				);
+			MessageBox messageBox = new MessageBox(ExportDialog.platformShell, SWT.YES | SWT.NO | SWT.ICON_WARNING
+				| SWT.CENTER);
 			messageBox.setMessage("The file '" + fileUrl + "' already exists. Do you want to overwrite it?");
 			messageBox.setText("File already exists");
 			int result = messageBox.open();
 			if (result == SWT.NO) {
 				doIt = false;
 			}
-		} 	
-		
+		}
+
 		return doIt;
 	}
+
 	/**
-	 * 
 	 * @author Sebastian Höcht
-	 *
 	 */
 	class SaveSelectionListener extends SelectionAdapter {
 
@@ -255,20 +256,12 @@ public class ExportDialog extends TitleAreaDialog {
 				setErrorMessage("Please enter a file name");
 			} else {
 				DocWriter docWriter = docWriters.get(exportType.getSelectionIndex());
-				DocumentExport docExport = new DocumentExport(
-						modelElement, 
-						docWriter,
-						templates.get(template.getSelectionIndex()),
-						docRenderer 
-					);
-				String fileUrl = 
-					fileLocation.getText() + 
-					File.separatorChar +
-					fileName.getText() + 
-					"." +
-					docWriter.getFileType();
+				DocumentExport docExport = new DocumentExport(modelElement, docWriter, templates.get(template
+					.getSelectionIndex()), docRenderer);
+				String fileUrl = fileLocation.getText() + File.separatorChar + fileName.getText() + "."
+					+ docWriter.getFileType();
 				docExport.setFileLocation(fileUrl);
-				
+
 				if (checkFileName(fileUrl)) {
 					exportDocument(docExport, fileUrl);
 					close();
@@ -278,9 +271,7 @@ public class ExportDialog extends TitleAreaDialog {
 	}
 
 	/**
-	 * 
 	 * @author Sebastian Höcht
-	 *
 	 */
 	class SaveAndOpenSelectionListener extends SelectionAdapter {
 		/**
@@ -292,32 +283,23 @@ public class ExportDialog extends TitleAreaDialog {
 				setErrorMessage("Please enter a file name");
 			} else {
 				DocWriter docWriter = docWriters.get(exportType.getSelectionIndex());
-				DocumentExport docExport = new DocumentExport(
-						modelElement, 
-						docWriter,
-						templates.get(template.getSelectionIndex()),
-						docRenderer
-					);
-				String fileUrl = fileLocation.getText() + 
-					File.separatorChar +
-					fileName.getText() + 
-					"." +
-					docWriter.getFileType();
+				DocumentExport docExport = new DocumentExport(modelElement, docWriter, templates.get(template
+					.getSelectionIndex()), docRenderer);
+				String fileUrl = fileLocation.getText() + File.separatorChar + fileName.getText() + "."
+					+ docWriter.getFileType();
 				docExport.setFileLocation(fileUrl);
-				
+
 				if (checkFileName(fileUrl)) {
 					exportDocument(docExport, fileUrl);
 					WorkspaceUtil.openFile(fileUrl);
 					close();
 				}
 			}
-		}	
+		}
 	}
-	
+
 	/**
-	 * 
 	 * @author Sebastian Höcht
-	 *
 	 */
 	class CancelSelectionListener extends SelectionAdapter {
 		/**
@@ -326,13 +308,11 @@ public class ExportDialog extends TitleAreaDialog {
 		@Override
 		public void widgetSelected(SelectionEvent e) {
 			close();
-		}	
+		}
 	}
-	
+
 	/**
-	 * 
 	 * @author Sebastian Höcht
-	 *
 	 */
 	class FileLocationSelectionListener extends SelectionAdapter {
 		/**
@@ -341,12 +321,12 @@ public class ExportDialog extends TitleAreaDialog {
 		@Override
 		public void widgetSelected(SelectionEvent e) {
 			DirectoryDialog fd = new DirectoryDialog(((Button) e.widget).getParent().getShell());
-		    fd.setText("select the folder where you want to save the exported document ");
-		    String selected = fd.open();
-		    
-		    if (selected != null) {
-		    	fileLocation.setText(selected);
-		    }			
-		}	
+			fd.setText("select the folder where you want to save the exported document ");
+			String selected = fd.open();
+
+			if (selected != null) {
+				fileLocation.setText(selected);
+			}
+		}
 	}
 }

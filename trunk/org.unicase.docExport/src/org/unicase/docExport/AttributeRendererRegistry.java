@@ -13,16 +13,14 @@ import org.unicase.model.classes.ClassesPackage;
 import org.unicase.model.requirement.RequirementPackage;
 
 /**
- * 
- * @author Sebastian Höcht
- *
+ * @author Sebastian Hoecht
  */
 public final class AttributeRendererRegistry {
-	
+
 	private AttributeRendererRegistry() {
-		
+
 	}
-	
+
 	/**
 	 * Returns all supported Attribute renderers for a given feature.
 	 * 
@@ -30,32 +28,28 @@ public final class AttributeRendererRegistry {
 	 * @param template the Template which is needed to build the attribute renderers
 	 * @return a list of newly created attribute renderers
 	 */
-	public static ArrayList<AttributeRenderer> getSupportedAttributeRenderers(EStructuralFeature feature, Template template) {
+	public static ArrayList<AttributeRenderer> getSupportedAttributeRenderers(EStructuralFeature feature,
+		Template template) {
 		ArrayList<AttributeRenderer> ret = new ArrayList<AttributeRenderer>();
-		
+
 		ret.add(DefaultAttributeRendererBuilder.build(feature, template));
-		
-		
-		
+
 		if (feature instanceof EReference) {
-			EClass referenceType = ((EReference)feature).getEReferenceType();
-			if (referenceType.getInstanceTypeName().equals(RequirementPackage.eINSTANCE.getStep().getInstanceTypeName())) {
+			EClass referenceType = ((EReference) feature).getEReferenceType();
+			if (referenceType.getInstanceTypeName()
+				.equals(RequirementPackage.eINSTANCE.getStep().getInstanceTypeName())) {
 				ret.add(SpecialRenderersFactory.eINSTANCE.createStepsAttributeRenderer());
 			}
-		}
-		
-		if (feature instanceof EReference) {
-			EClass referenceType = ((EReference)feature).getEReferenceType();
 			if (referenceType.getInstanceTypeName().equals(ClassesPackage.eINSTANCE.getMethod().getInstanceTypeName())) {
 				ret.add(SpecialRenderersFactory.eINSTANCE.createMethodRenderer());
 			}
 		}
-		
-		if (feature instanceof EReference &&
-				((EReference)feature).getEReferenceType().eClass().equals(RequirementPackage.eINSTANCE.getStep().getInstanceTypeName())) {
-			
+
+		if (feature instanceof EReference
+			&& ((EReference) feature).getEReferenceType().eClass().equals(
+				RequirementPackage.eINSTANCE.getStep().getInstanceTypeName())) {
 		}
-		
+
 		return ret;
 	}
 }

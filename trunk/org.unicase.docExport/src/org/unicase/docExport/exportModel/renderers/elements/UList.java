@@ -7,9 +7,7 @@ import org.unicase.docExport.exportModel.renderers.options.OptionsFactory;
 import org.unicase.docExport.exportModel.renderers.options.TextOption;
 
 /**
- * 
- * @author Sebastian Höcht
- * 
+ * @author Sebastian Hoecht
  */
 public class UList extends UDocument {
 
@@ -17,26 +15,24 @@ public class UList extends UDocument {
 	private ListOption listOption = OptionsFactory.eINSTANCE.createListOption();
 	private TextOption textOption = OptionsFactory.eINSTANCE.createTextOption();
 	private int indentionLeft = INDENTION_LEFT_DEFAULT;
-	
+
 	private ArrayList<String> contents = new ArrayList<String>();
-	
+
 	/**
 	 * default constructor.
 	 */
 	public UList() {
-		
+
 	}
-	
+
 	/**
-	 * 
 	 * @param listOption the listOption which decorates the list
 	 */
 	public UList(ListOption listOption) {
 		this.setListOption(listOption);
 	}
-	
+
 	/**
-	 * 
 	 * @param listOption the listOption which decorates the list
 	 * @param textOption the TextOption which decorates the text of the list entries
 	 */
@@ -44,9 +40,10 @@ public class UList extends UDocument {
 		this.setListOption(listOption);
 		this.setTextOption(textOption);
 	}
-	
+
 	/**
 	 * add a single text item to the list.
+	 * 
 	 * @param text the text to add
 	 */
 	public void add(String text) {

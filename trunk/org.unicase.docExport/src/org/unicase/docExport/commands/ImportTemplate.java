@@ -29,9 +29,7 @@ import org.unicase.docExport.exportModel.Template;
 import org.unicase.workspace.util.WorkspaceUtil;
 
 /**
- * 
  * @author Sebastian Hoecht
- *
  */
 public class ImportTemplate extends AbstractHandler {
 
@@ -41,12 +39,12 @@ public class ImportTemplate extends AbstractHandler {
 	public Object execute(ExecutionEvent event) throws ExecutionException {
 
 		FileDialog fd = new FileDialog(PlatformUI.getWorkbench().getDisplay().getActiveShell(), SWT.OPEN);
-	    fd.setText("Enter the filename, where you want to save the template");
-	    String filePath = fd.open();
-	    
-	    if (filePath != null) {
-	    	try {
-				importTemplate(filePath);
+		fd.setText("Enter the filename, where you want to save the template");
+		String filePath = fd.open();
+
+		if (filePath != null) {
+			try {
+				importTemplate(filePath, false);
 			} catch (InvalidTemplateArchiveException e) {
 				// TODO Auto-generated catch block
 				e.printStackTrace();
@@ -54,27 +52,28 @@ public class ImportTemplate extends AbstractHandler {
 				// TODO Auto-generated catch block
 				e.printStackTrace();
 			}
-	    }
-	    
+		}
+
 		return null;
 	}
 
 	/**
-	 * Imports a Template stored in a zip file to the local folders of the client. 
-	 * The zipfile contains a resource of the Template and an image file, if there is a logo stored
-	 * in the Template.
+	 * Imports a Template stored in a zip file to the local folders of the client. The zipfile contains a resource of
+	 * the Template and an image file, if there is a logo stored in the Template.
+	 * 
 	 * @param zipFilePath the Path of the File which should contain an exported Template
+	 * @param isDefaultTemplate if the template ist imported manually, it is not a default template and therefore, it
+	 *            can be edited.
 	 * @throws InvalidTemplateArchiveException The zipFile is missing some important files
 	 * @throws TemplateSaveException The template which shall be imported could not be saved
 	 */
-	public static void importTemplate(String zipFilePath) 
-		throws InvalidTemplateArchiveException, TemplateSaveException 
-	{
+	public static void importTemplate(String zipFilePath, boolean isDefaultTemplate)
+		throws InvalidTemplateArchiveException, TemplateSaveException {
 		InputStream theFile;
 		try {
 			theFile = new FileInputStream(zipFilePath);
 			ZipInputStream stream = new ZipInputStream(theFile);
-			
+
 			try {
 				// now iterate through each item in the stream. The get next
 				// entry call will return a ZipEntry for each file in the
@@ -83,7 +82,7 @@ public class ImportTemplate extends AbstractHandler {
 				Template template = null;
 				while ((entry = stream.getNextEntry()) != null) {
 					if (entry.getName().equals(ExportTemplate.TEMPLATE_RESOURCE_FILE_NAME)) {
-						template = storeTemplate(entry, stream);
+						template = storeTemplate(entry, stream, isDefaultTemplate);
 					} else if (entry.getName().equals(ExportTemplate.LOGO_FILE_NAME)) {
 						storeImage(entry, stream, template);
 					}
@@ -91,7 +90,7 @@ public class ImportTemplate extends AbstractHandler {
 			} catch (IOException e) {
 				// TODO Auto-generated catch block
 				e.printStackTrace();
-			} finally  {
+			} finally {
 				// we must always close the zip file.
 				try {
 					stream.close();
@@ -99,63 +98,59 @@ public class ImportTemplate extends AbstractHandler {
 					// TODO Auto-generated catch block
 					e.printStackTrace();
 				}
-			}	
+			}
 		} catch (FileNotFoundException e1) {
 			throw new InvalidTemplateArchiveException();
 		}
 	}
-	
-	private static Template storeTemplate(
-		ZipEntry entry,
-		ZipInputStream stream
-	) throws 
-		InvalidTemplateArchiveException, 
-		TemplateSaveException 
-	{
+
+	private static Template storeTemplate(ZipEntry entry, ZipInputStream stream, boolean isDefaultTemplate)
+		throws InvalidTemplateArchiveException, TemplateSaveException {
 		String outPath;
 		File tmpTemplateFile;
 		try {
 			tmpTemplateFile = File.createTempFile("templateImport", ".template");
 			outPath = tmpTemplateFile.getAbsolutePath();
-			
+
 			writeZipData(outPath, stream);
-			
+
 			Template template = getTemplate(tmpTemplateFile.getAbsolutePath());
+			if (isDefaultTemplate) {
+				template.setDefaultTemplate(true);
+			} else {
+				template.setDefaultTemplate(false);
+			}
 			TemplateRegistry.saveTemplate(template);
 			return template;
 		} catch (IOException e) {
 			// TODO Auto-generated catch block
 			e.printStackTrace();
 		}
-		return null;	
+		return null;
 	}
-	
-	private static void storeImage(
-			ZipEntry entry,
-			ZipInputStream stream,
-			Template template
-		) 
-		{
-			String outPath;
-			File tmpTemplateFile;
-			try {
-				File imageFolder = new File(TemplateRegistry.TEMPLATE_IMAGE_FOLDER);
-				imageFolder.mkdirs();
-				tmpTemplateFile = File.createTempFile("templateLogoImport", ".tmp");
-				outPath = tmpTemplateFile.getAbsolutePath();
-				
-				writeZipData(outPath, stream);				
-				tmpTemplateFile.renameTo(new File(TemplateRegistry.TEMPLATE_IMAGE_FOLDER + template.getLogoImage()));
-			} catch (IOException e) {
-				// TODO Auto-generated catch block
-				e.printStackTrace();
-			}	
+
+	private static void storeImage(ZipEntry entry, ZipInputStream stream, Template template) {
+		String outPath;
+		File tmpTemplateFile;
+		try {
+			File imageFolder = new File(TemplateRegistry.TEMPLATE_IMAGE_FOLDER);
+			imageFolder.mkdirs();
+			tmpTemplateFile = File.createTempFile("templateLogoImport", ".tmp");
+			outPath = tmpTemplateFile.getAbsolutePath();
+
+			writeZipData(outPath, stream);
+			tmpTemplateFile.renameTo(new File(TemplateRegistry.TEMPLATE_IMAGE_FOLDER
+				+ template.getLayoutOptions().getLogoImage()));
+		} catch (IOException e) {
+			// TODO Auto-generated catch block
+			e.printStackTrace();
 		}
-	
+	}
+
 	private static void writeZipData(String outPath, ZipInputStream stream) {
 		// create a buffer to improve copy performance later.
 		byte[] buffer = new byte[1024];
-		
+
 		FileOutputStream output = null;
 		try {
 			try {
@@ -185,25 +180,19 @@ public class ImportTemplate extends AbstractHandler {
 		}
 	}
 
-	private static Template getTemplate(String resourceFile) 
-		throws InvalidTemplateArchiveException 
-	{
+	private static Template getTemplate(String resourceFile) throws InvalidTemplateArchiveException {
 		ResourceSet resourceSet = new ResourceSetImpl();
 		URI fileURI = URI.createFileURI(resourceFile);
-		
+
 		Resource templateResource = resourceSet.getResource(fileURI, true);
-		
+
 		try {
 			templateResource.load(templateResource.getResourceSet().getLoadOptions());
 		} catch (IOException e) {
-			WorkspaceUtil.log(
-					"Importing Template failed",
-					new TemplatesFileNotFoundException(),
-					IStatus.WARNING
-			);
+			WorkspaceUtil.log("Importing Template failed", new TemplatesFileNotFoundException(), IStatus.WARNING);
 			throw new InvalidTemplateArchiveException();
 		}
-		
+
 		EList<EObject> contents = templateResource.getContents();
 		for (EObject object : contents) {
 			if (object instanceof Template) {

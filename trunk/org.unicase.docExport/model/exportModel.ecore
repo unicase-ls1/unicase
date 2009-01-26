@@ -11,7 +11,7 @@
     <eStructuralFeatures xsi:type="ecore:EReference" name="globalRendererOptions"
         upperBound="-1" eType="#//renderers/options/AttributeOption" containment="true"/>
     <eStructuralFeatures xsi:type="ecore:EAttribute" name="name" eType="ecore:EDataType platform:/plugin/org.eclipse.emf.ecore/model/Ecore.ecore#//EString"/>
-    <eStructuralFeatures xsi:type="ecore:EAttribute" name="logoImage" eType="ecore:EDataType platform:/plugin/org.eclipse.emf.ecore/model/Ecore.ecore#//EString"/>
+    <eStructuralFeatures xsi:type="ecore:EAttribute" name="defaultTemplate" eType="ecore:EDataType platform:/plugin/org.eclipse.emf.ecore/model/Ecore.ecore#//EBoolean"/>
   </eClassifiers>
   <eSubpackages name="renderers" nsURI="http://unicase.org/docExport/exportModel/renderers"
       nsPrefix="org.unicase.docExport.exportModel.renderers">
@@ -64,6 +64,7 @@
             eType="ecore:EDataType platform:/plugin/org.eclipse.emf.ecore/model/Ecore.ecore#//EBoolean"
             defaultValueLiteral="false"/>
         <eStructuralFeatures xsi:type="ecore:EAttribute" name="attributeText" eType="ecore:EDataType platform:/plugin/org.eclipse.emf.ecore/model/Ecore.ecore#//EString"/>
+        <eStructuralFeatures xsi:type="ecore:EAttribute" name="orderNumber" eType="ecore:EDataType platform:/plugin/org.eclipse.emf.ecore/model/Ecore.ecore#//EInt"/>
       </eClassifiers>
       <eClassifiers xsi:type="ecore:EClass" name="SingleReferenceAttributeOption"
           eSuperTypes="#//renderers/options/ReferenceAttributeOption">
@@ -74,19 +75,13 @@
         <eStructuralFeatures xsi:type="ecore:EReference" name="listOption" eType="#//renderers/options/ListOption"
             containment="true"/>
       </eClassifiers>
-      <eClassifiers xsi:type="ecore:EClass" name="ReferenceOption" eSuperTypes="#//renderers/options/RendererOption">
-        <eStructuralFeatures xsi:type="ecore:EReference" name="textOption" eType="#//renderers/options/TextOption"
-            containment="true"/>
-      </eClassifiers>
+      <eClassifiers xsi:type="ecore:EClass" name="ReferenceOption" eSuperTypes="#//renderers/options/RendererOption"/>
       <eClassifiers xsi:type="ecore:EClass" name="StringAttributeOption" eSuperTypes="#//renderers/options/AttributeOption">
         <eStructuralFeatures xsi:type="ecore:EReference" name="globalOption" eType="#//renderers/options/StringAttributeOption"/>
-        <eStructuralFeatures xsi:type="ecore:EReference" name="textOption" eType="#//renderers/options/TextOption"
-            containment="true"/>
       </eClassifiers>
       <eClassifiers xsi:type="ecore:EClass" name="LayoutOptions" eSuperTypes="#//renderers/options/RendererOption">
-        <eStructuralFeatures xsi:type="ecore:EAttribute" name="coverText" eType="ecore:EDataType platform:/plugin/org.eclipse.emf.ecore/model/Ecore.ecore#//EString"/>
-        <eStructuralFeatures xsi:type="ecore:EReference" name="coverTextTextOption"
-            eType="#//renderers/options/TextOption" containment="true"/>
+        <eStructuralFeatures xsi:type="ecore:EReference" name="headerTextOption" eType="#//renderers/options/TextOption"
+            containment="true"/>
         <eStructuralFeatures xsi:type="ecore:EReference" name="defaultTextOption"
             eType="#//renderers/options/TextOption" containment="true"/>
         <eStructuralFeatures xsi:type="ecore:EReference" name="sectionTextOption"
@@ -95,8 +90,6 @@
         <eStructuralFeatures xsi:type="ecore:EAttribute" name="hideAttachments" eType="ecore:EDataType platform:/plugin/org.eclipse.emf.ecore/model/Ecore.ecore#//EBoolean"/>
         <eStructuralFeatures xsi:type="ecore:EAttribute" name="hideIncomingDocumentReferences"
             eType="ecore:EDataType platform:/plugin/org.eclipse.emf.ecore/model/Ecore.ecore#//EBoolean"/>
-        <eStructuralFeatures xsi:type="ecore:EAttribute" name="pageNumberingStyle"
-            eType="#//renderers/options/PageNumberingStyle"/>
         <eStructuralFeatures xsi:type="ecore:EAttribute" name="hideModelElementImages"
             eType="ecore:EDataType platform:/plugin/org.eclipse.emf.ecore/model/Ecore.ecore#//EBoolean"/>
         <eStructuralFeatures xsi:type="ecore:EReference" name="modelElementTextOption"
@@ -111,9 +104,33 @@
             eType="#//renderers/options/TextOption" containment="true"/>
         <eStructuralFeatures xsi:type="ecore:EAttribute" name="showModelElementTypeInSectionTitle"
             eType="ecore:EDataType platform:/plugin/org.eclipse.emf.ecore/model/Ecore.ecore#//EBoolean"/>
-        <eStructuralFeatures xsi:type="ecore:EReference" name="attributeTextOption"
-            eType="#//renderers/options/TextOption" containment="true"/>
         <eStructuralFeatures xsi:type="ecore:EAttribute" name="appendixStyle" eType="#//renderers/options/AppendixStyle"/>
+        <eStructuralFeatures xsi:type="ecore:EAttribute" name="logoImage" eType="ecore:EDataType platform:/plugin/org.eclipse.emf.ecore/model/Ecore.ecore#//EString"/>
+        <eStructuralFeatures xsi:type="ecore:EReference" name="footerTextOption" eType="#//renderers/options/TextOption"
+            containment="true"/>
+        <eStructuralFeatures xsi:type="ecore:EAttribute" name="footerShowDocumentTitle"
+            eType="ecore:EDataType platform:/plugin/org.eclipse.emf.ecore/model/Ecore.ecore#//EBoolean"/>
+        <eStructuralFeatures xsi:type="ecore:EAttribute" name="pageCitationStyle"
+            eType="#//renderers/options/PageCitationStyle"/>
+        <eStructuralFeatures xsi:type="ecore:EAttribute" name="headerStyle" eType="#//renderers/options/HeaderStyle"/>
+        <eStructuralFeatures xsi:type="ecore:EAttribute" name="logoWidth" eType="ecore:EDataType platform:/plugin/org.eclipse.emf.ecore/model/Ecore.ecore#//EInt"/>
+        <eStructuralFeatures xsi:type="ecore:EAttribute" name="logoHeight" eType="ecore:EDataType platform:/plugin/org.eclipse.emf.ecore/model/Ecore.ecore#//EInt"/>
+        <eStructuralFeatures xsi:type="ecore:EAttribute" name="logoOnCoverPage" eType="ecore:EDataType platform:/plugin/org.eclipse.emf.ecore/model/Ecore.ecore#//EBoolean"/>
+        <eStructuralFeatures xsi:type="ecore:EReference" name="tableOfContentsTextOption"
+            eType="#//renderers/options/TextOption" containment="true"/>
+        <eStructuralFeatures xsi:type="ecore:EAttribute" name="hideTableOfContents"
+            eType="ecore:EDataType platform:/plugin/org.eclipse.emf.ecore/model/Ecore.ecore#//EBoolean"/>
+        <eStructuralFeatures xsi:type="ecore:EAttribute" name="hideHeaderAndFooterOnCoverPage"
+            eType="ecore:EDataType platform:/plugin/org.eclipse.emf.ecore/model/Ecore.ecore#//EBoolean"/>
+      </eClassifiers>
+      <eClassifiers xsi:type="ecore:EEnum" name="PageCitationStyle">
+        <eLiterals name="PAGE"/>
+        <eLiterals name="EMPTY" value="1"/>
+        <eLiterals name="PAGE_AND_LAST_PAGE" value="2"/>
+      </eClassifiers>
+      <eClassifiers xsi:type="ecore:EEnum" name="HeaderStyle">
+        <eLiterals name="ONLY_TEXT"/>
+        <eLiterals name="TEXT_AND_LOGO" value="1"/>
       </eClassifiers>
       <eClassifiers xsi:type="ecore:EEnum" name="AppendixStyle">
         <eLiterals name="HIDE"/>
@@ -133,6 +150,7 @@
         <eStructuralFeatures xsi:type="ecore:EReference" name="fontColor" eType="#//renderers/options/UColor"
             containment="true"/>
         <eStructuralFeatures xsi:type="ecore:EAttribute" name="textAlign" eType="#//renderers/options/TextAlign"/>
+        <eStructuralFeatures xsi:type="ecore:EAttribute" name="italics" eType="ecore:EDataType platform:/plugin/org.eclipse.emf.ecore/model/Ecore.ecore#//EBoolean"/>
       </eClassifiers>
       <eClassifiers xsi:type="ecore:EClass" name="ReferenceAttributeOption" abstract="true"
           eSuperTypes="#//renderers/options/AttributeOption">
@@ -142,12 +160,10 @@
       </eClassifiers>
       <eClassifiers xsi:type="ecore:EEnum" name="FontFamily">
         <eLiterals name="SANS_SERIF" literal="sans-serif"/>
-        <eLiterals name="VERDANA" value="1" literal="Verdana"/>
-        <eLiterals name="TIMES_NEW_ROMAN" value="2" literal="Times new Roman"/>
-        <eLiterals name="ARIAL" value="3" literal="Arial"/>
-        <eLiterals name="HELVETICA" value="4" literal="Helvetica"/>
-        <eLiterals name="SERIF" value="5" literal="serif"/>
-        <eLiterals name="COURIER" value="6" literal="courier"/>
+        <eLiterals name="SERIF" value="1" literal="serif"/>
+        <eLiterals name="TIMES_NEW_ROMAN" value="2" literal="Times"/>
+        <eLiterals name="HELVETICA" value="3" literal="Helvetica"/>
+        <eLiterals name="COURIER" value="4" literal="Courier"/>
       </eClassifiers>
       <eClassifiers xsi:type="ecore:EEnum" name="ListStyle">
         <eLiterals name="BULLETED" literal="bulleted"/>
@@ -161,11 +177,6 @@
         <eStructuralFeatures xsi:type="ecore:EAttribute" name="red" eType="ecore:EDataType platform:/plugin/org.eclipse.emf.ecore/model/Ecore.ecore#//EInt"/>
         <eStructuralFeatures xsi:type="ecore:EAttribute" name="green" eType="ecore:EDataType platform:/plugin/org.eclipse.emf.ecore/model/Ecore.ecore#//EInt"/>
         <eStructuralFeatures xsi:type="ecore:EAttribute" name="blue" eType="ecore:EDataType platform:/plugin/org.eclipse.emf.ecore/model/Ecore.ecore#//EInt"/>
-      </eClassifiers>
-      <eClassifiers xsi:type="ecore:EEnum" name="PageNumberingStyle">
-        <eLiterals name="PAGE_ONLY" literal="&lt;page>"/>
-        <eLiterals name="PAGE_OF_PAGE_COUNT" value="1" literal="&lt;page>/&lt;page_count>"/>
-        <eLiterals name="EMPTY" value="2" literal="-"/>
       </eClassifiers>
       <eClassifiers xsi:type="ecore:EClass" name="BoxModelOption" eSuperTypes="#//renderers/options/RendererOption">
         <eStructuralFeatures xsi:type="ecore:EAttribute" name="margin" eType="ecore:EDataType platform:/plugin/org.eclipse.emf.ecore/model/Ecore.ecore#//EDouble"
@@ -207,6 +218,7 @@
         <eStructuralFeatures xsi:type="ecore:EAttribute" name="keepWithPrevious" eType="ecore:EDataType platform:/plugin/org.eclipse.emf.ecore/model/Ecore.ecore#//EBoolean"/>
         <eStructuralFeatures xsi:type="ecore:EAttribute" name="keepWithNext" eType="ecore:EDataType platform:/plugin/org.eclipse.emf.ecore/model/Ecore.ecore#//EBoolean"/>
         <eStructuralFeatures xsi:type="ecore:EAttribute" name="breakBefore" eType="ecore:EDataType platform:/plugin/org.eclipse.emf.ecore/model/Ecore.ecore#//EBoolean"/>
+        <eStructuralFeatures xsi:type="ecore:EAttribute" name="width" eType="ecore:EDataType platform:/plugin/org.eclipse.emf.ecore/model/Ecore.ecore#//EInt"/>
       </eClassifiers>
       <eClassifiers xsi:type="ecore:EEnum" name="UBorderStyle">
         <eLiterals name="HIDDEN" literal="hidden"/>

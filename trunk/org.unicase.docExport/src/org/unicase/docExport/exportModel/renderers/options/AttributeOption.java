@@ -18,6 +18,7 @@ package org.unicase.docExport.exportModel.renderers.options;
  *   <li>{@link org.unicase.docExport.exportModel.renderers.options.AttributeOption#isHide <em>Hide</em>}</li>
  *   <li>{@link org.unicase.docExport.exportModel.renderers.options.AttributeOption#isOverwriteGlobalOption <em>Overwrite Global Option</em>}</li>
  *   <li>{@link org.unicase.docExport.exportModel.renderers.options.AttributeOption#getAttributeText <em>Attribute Text</em>}</li>
+ *   <li>{@link org.unicase.docExport.exportModel.renderers.options.AttributeOption#getOrderNumber <em>Order Number</em>}</li>
  * </ul>
  * </p>
  *
@@ -105,5 +106,31 @@ public interface AttributeOption extends RendererOption {
 	 * @generated
 	 */
 	void setAttributeText(String value);
+
+	/**
+	 * Returns the value of the '<em><b>Order Number</b></em>' attribute.
+	 * <!-- begin-user-doc -->
+	 * <p>
+	 * If the meaning of the '<em>Order Number</em>' attribute isn't clear,
+	 * there really should be more of a description here...
+	 * </p>
+	 * <!-- end-user-doc -->
+	 * @return the value of the '<em>Order Number</em>' attribute.
+	 * @see #setOrderNumber(int)
+	 * @see org.unicase.docExport.exportModel.renderers.options.OptionsPackage#getAttributeOption_OrderNumber()
+	 * @model
+	 * @generated
+	 */
+	int getOrderNumber();
+
+	/**
+	 * Sets the value of the '{@link org.unicase.docExport.exportModel.renderers.options.AttributeOption#getOrderNumber <em>Order Number</em>}' attribute.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @param value the new value of the '<em>Order Number</em>' attribute.
+	 * @see #getOrderNumber()
+	 * @generated
+	 */
+	void setOrderNumber(int value);
 
 } // AttributeOption

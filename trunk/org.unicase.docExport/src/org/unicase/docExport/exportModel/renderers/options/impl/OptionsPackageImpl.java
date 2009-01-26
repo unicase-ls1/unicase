@@ -1,8 +1,5 @@
 /**
- * <copyright>
- * </copyright>
- *
- * $Id$
+ * <copyright> </copyright> $Id$
  */
 package org.unicase.docExport.exportModel.renderers.options.impl;
 
@@ -27,13 +24,14 @@ import org.unicase.docExport.exportModel.renderers.options.BoxModelOption;
 import org.unicase.docExport.exportModel.renderers.options.DateAttributeOption;
 import org.unicase.docExport.exportModel.renderers.options.DateStyle;
 import org.unicase.docExport.exportModel.renderers.options.FontFamily;
+import org.unicase.docExport.exportModel.renderers.options.HeaderStyle;
 import org.unicase.docExport.exportModel.renderers.options.LayoutOptions;
 import org.unicase.docExport.exportModel.renderers.options.ListOption;
 import org.unicase.docExport.exportModel.renderers.options.ListStyle;
 import org.unicase.docExport.exportModel.renderers.options.MultiReferenceAttributeOption;
 import org.unicase.docExport.exportModel.renderers.options.OptionsFactory;
 import org.unicase.docExport.exportModel.renderers.options.OptionsPackage;
-import org.unicase.docExport.exportModel.renderers.options.PageNumberingStyle;
+import org.unicase.docExport.exportModel.renderers.options.PageCitationStyle;
 import org.unicase.docExport.exportModel.renderers.options.ReferenceAttributeOption;
 import org.unicase.docExport.exportModel.renderers.options.ReferenceOption;
 import org.unicase.docExport.exportModel.renderers.options.RendererOption;
@@ -48,199 +46,169 @@ import org.unicase.docExport.exportModel.renderers.options.UColor;
 import org.unicase.docExport.exportModel.renderers.specialRenderers.SpecialRenderersPackage;
 import org.unicase.docExport.exportModel.renderers.specialRenderers.impl.SpecialRenderersPackageImpl;
 
-
-
-
-
-
-
-
-
 /**
- * <!-- begin-user-doc -->
- * An implementation of the model <b>Package</b>.
- * <!-- end-user-doc -->
+ * <!-- begin-user-doc --> An implementation of the model <b>Package</b>. <!-- end-user-doc -->
  * @generated
  */
 public class OptionsPackageImpl extends EPackageImpl implements OptionsPackage {
 	/**
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
+	 * <!-- begin-user-doc --> <!-- end-user-doc -->
 	 * @generated
 	 */
 	private EClass rendererOptionEClass = null;
 
 	/**
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
+	 * <!-- begin-user-doc --> <!-- end-user-doc -->
 	 * @generated
 	 */
 	private EClass attributeOptionEClass = null;
 
 	/**
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
+	 * <!-- begin-user-doc --> <!-- end-user-doc -->
 	 * @generated
 	 */
 	private EClass singleReferenceAttributeOptionEClass = null;
 
 	/**
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
+	 * <!-- begin-user-doc --> <!-- end-user-doc -->
 	 * @generated
 	 */
 	private EClass multiReferenceAttributeOptionEClass = null;
 
 	/**
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
+	 * <!-- begin-user-doc --> <!-- end-user-doc -->
 	 * @generated
 	 */
 	private EClass referenceOptionEClass = null;
 
 	/**
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
+	 * <!-- begin-user-doc --> <!-- end-user-doc -->
 	 * @generated
 	 */
 	private EClass stringAttributeOptionEClass = null;
 
 	/**
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
+	 * <!-- begin-user-doc --> <!-- end-user-doc -->
 	 * @generated
 	 */
 	private EClass layoutOptionsEClass = null;
 
 	/**
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
+	 * <!-- begin-user-doc --> <!-- end-user-doc -->
 	 * @generated
 	 */
 	private EClass listOptionEClass = null;
 
 	/**
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
+	 * <!-- begin-user-doc --> <!-- end-user-doc -->
 	 * @generated
 	 */
 	private EClass textOptionEClass = null;
 
 	/**
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
+	 * <!-- begin-user-doc --> <!-- end-user-doc -->
 	 * @generated
 	 */
 	private EClass referenceAttributeOptionEClass = null;
 
 	/**
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
+	 * <!-- begin-user-doc --> <!-- end-user-doc -->
 	 * @generated
 	 */
 	private EClass uColorEClass = null;
 
 	/**
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
+	 * <!-- begin-user-doc --> <!-- end-user-doc -->
 	 * @generated
 	 */
 	private EClass boxModelOptionEClass = null;
 
 	/**
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
+	 * <!-- begin-user-doc --> <!-- end-user-doc -->
 	 * @generated
 	 */
 	private EClass sectionOptionEClass = null;
 
 	/**
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
+	 * <!-- begin-user-doc --> <!-- end-user-doc -->
 	 * @generated
 	 */
 	private EClass booleanAttributeOptionEClass = null;
 
 	/**
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
+	 * <!-- begin-user-doc --> <!-- end-user-doc -->
 	 * @generated
 	 */
 	private EClass dateAttributeOptionEClass = null;
 
 	/**
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
+	 * <!-- begin-user-doc --> <!-- end-user-doc -->
+	 * @generated
+	 */
+	private EEnum pageCitationStyleEEnum = null;
+
+	/**
+	 * <!-- begin-user-doc --> <!-- end-user-doc -->
+	 * @generated
+	 */
+	private EEnum headerStyleEEnum = null;
+
+	/**
+	 * <!-- begin-user-doc --> <!-- end-user-doc -->
 	 * @generated
 	 */
 	private EEnum appendixStyleEEnum = null;
 
 	/**
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
+	 * <!-- begin-user-doc --> <!-- end-user-doc -->
 	 * @generated
 	 */
 	private EEnum fontFamilyEEnum = null;
 
 	/**
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
+	 * <!-- begin-user-doc --> <!-- end-user-doc -->
 	 * @generated
 	 */
 	private EEnum listStyleEEnum = null;
 
 	/**
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
-	 * @generated
-	 */
-	private EEnum pageNumberingStyleEEnum = null;
-
-	/**
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
+	 * <!-- begin-user-doc --> <!-- end-user-doc -->
 	 * @generated
 	 */
 	private EEnum uBorderStyleEEnum = null;
 
 	/**
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
+	 * <!-- begin-user-doc --> <!-- end-user-doc -->
 	 * @generated
 	 */
 	private EEnum sectionNumberingStyleEEnum = null;
 
 	/**
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
+	 * <!-- begin-user-doc --> <!-- end-user-doc -->
 	 * @generated
 	 */
 	private EEnum textAlignEEnum = null;
 
 	/**
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
+	 * <!-- begin-user-doc --> <!-- end-user-doc -->
 	 * @generated
 	 */
 	private EEnum booleanStyleEEnum = null;
 
 	/**
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
+	 * <!-- begin-user-doc --> <!-- end-user-doc -->
 	 * @generated
 	 */
 	private EEnum dateStyleEEnum = null;
 
 	/**
-	 * Creates an instance of the model <b>Package</b>, registered with
-	 * {@link org.eclipse.emf.ecore.EPackage.Registry EPackage.Registry} by the package
-	 * package URI value.
-	 * <p>Note: the correct way to create the package is via the static
-	 * factory method {@link #init init()}, which also performs
-	 * initialization of the package, or returns the registered package,
-	 * if one already exists.
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
+	 * Creates an instance of the model <b>Package</b>, registered with {@link org.eclipse.emf.ecore.EPackage.Registry
+	 * EPackage.Registry} by the package package URI value.
+	 * <p>
+	 * Note: the correct way to create the package is via the static factory method {@link #init init()}, which also
+	 * performs initialization of the package, or returns the registered package, if one already exists. <!--
+	 * begin-user-doc --> <!-- end-user-doc -->
+	 * 
 	 * @see org.eclipse.emf.ecore.EPackage.Registry
 	 * @see org.unicase.docExport.exportModel.renderers.options.OptionsPackage#eNS_URI
 	 * @see #init()
@@ -251,8 +219,7 @@ public class OptionsPackageImpl extends EPackageImpl implements OptionsPackage {
 	}
 
 	/**
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
+	 * <!-- begin-user-doc --> <!-- end-user-doc -->
 	 * @generated
 	 */
 	private static boolean isInited = false;
@@ -272,8 +239,8 @@ public class OptionsPackageImpl extends EPackageImpl implements OptionsPackage {
 	 * those of another.
 	 * <p>Invocation of this method will not affect any packages that have
 	 * already been initialized.
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
+	 * <!-- begin-user-doc
+	 * --> <!-- end-user-doc -->
 	 * @see #eNS_URI
 	 * @see #createPackageContents()
 	 * @see #initializePackageContents()
@@ -317,8 +284,7 @@ public class OptionsPackageImpl extends EPackageImpl implements OptionsPackage {
 	}
 
 	/**
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
+	 * <!-- begin-user-doc --> <!-- end-user-doc -->
 	 * @generated
 	 */
 	public EClass getRendererOption() {
@@ -326,8 +292,7 @@ public class OptionsPackageImpl extends EPackageImpl implements OptionsPackage {
 	}
 
 	/**
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
+	 * <!-- begin-user-doc --> <!-- end-user-doc -->
 	 * @generated
 	 */
 	public EAttribute getRendererOption_Name() {
@@ -335,8 +300,7 @@ public class OptionsPackageImpl extends EPackageImpl implements OptionsPackage {
 	}
 
 	/**
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
+	 * <!-- begin-user-doc --> <!-- end-user-doc -->
 	 * @generated
 	 */
 	public EClass getAttributeOption() {
@@ -344,8 +308,7 @@ public class OptionsPackageImpl extends EPackageImpl implements OptionsPackage {
 	}
 
 	/**
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
+	 * <!-- begin-user-doc --> <!-- end-user-doc -->
 	 * @generated
 	 */
 	public EAttribute getAttributeOption_Hide() {
@@ -353,8 +316,7 @@ public class OptionsPackageImpl extends EPackageImpl implements OptionsPackage {
 	}
 
 	/**
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
+	 * <!-- begin-user-doc --> <!-- end-user-doc -->
 	 * @generated
 	 */
 	public EAttribute getAttributeOption_OverwriteGlobalOption() {
@@ -362,8 +324,7 @@ public class OptionsPackageImpl extends EPackageImpl implements OptionsPackage {
 	}
 
 	/**
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
+	 * <!-- begin-user-doc --> <!-- end-user-doc -->
 	 * @generated
 	 */
 	public EAttribute getAttributeOption_AttributeText() {
@@ -375,13 +336,20 @@ public class OptionsPackageImpl extends EPackageImpl implements OptionsPackage {
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
+	public EAttribute getAttributeOption_OrderNumber() {
+		return (EAttribute)attributeOptionEClass.getEStructuralFeatures().get(3);
+	}
+
+	/**
+	 * <!-- begin-user-doc --> <!-- end-user-doc -->
+	 * @generated
+	 */
 	public EClass getSingleReferenceAttributeOption() {
 		return singleReferenceAttributeOptionEClass;
 	}
 
 	/**
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
+	 * <!-- begin-user-doc --> <!-- end-user-doc -->
 	 * @generated
 	 */
 	public EReference getSingleReferenceAttributeOption_GlobalOption() {
@@ -389,8 +357,7 @@ public class OptionsPackageImpl extends EPackageImpl implements OptionsPackage {
 	}
 
 	/**
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
+	 * <!-- begin-user-doc --> <!-- end-user-doc -->
 	 * @generated
 	 */
 	public EClass getMultiReferenceAttributeOption() {
@@ -398,8 +365,7 @@ public class OptionsPackageImpl extends EPackageImpl implements OptionsPackage {
 	}
 
 	/**
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
+	 * <!-- begin-user-doc --> <!-- end-user-doc -->
 	 * @generated
 	 */
 	public EReference getMultiReferenceAttributeOption_GlobalOption() {
@@ -407,8 +373,7 @@ public class OptionsPackageImpl extends EPackageImpl implements OptionsPackage {
 	}
 
 	/**
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
+	 * <!-- begin-user-doc --> <!-- end-user-doc -->
 	 * @generated
 	 */
 	public EReference getMultiReferenceAttributeOption_ListOption() {
@@ -416,8 +381,7 @@ public class OptionsPackageImpl extends EPackageImpl implements OptionsPackage {
 	}
 
 	/**
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
+	 * <!-- begin-user-doc --> <!-- end-user-doc -->
 	 * @generated
 	 */
 	public EClass getReferenceOption() {
@@ -425,17 +389,7 @@ public class OptionsPackageImpl extends EPackageImpl implements OptionsPackage {
 	}
 
 	/**
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
-	 * @generated
-	 */
-	public EReference getReferenceOption_TextOption() {
-		return (EReference)referenceOptionEClass.getEStructuralFeatures().get(0);
-	}
-
-	/**
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
+	 * <!-- begin-user-doc --> <!-- end-user-doc -->
 	 * @generated
 	 */
 	public EClass getStringAttributeOption() {
@@ -443,8 +397,7 @@ public class OptionsPackageImpl extends EPackageImpl implements OptionsPackage {
 	}
 
 	/**
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
+	 * <!-- begin-user-doc --> <!-- end-user-doc -->
 	 * @generated
 	 */
 	public EReference getStringAttributeOption_GlobalOption() {
@@ -452,17 +405,7 @@ public class OptionsPackageImpl extends EPackageImpl implements OptionsPackage {
 	}
 
 	/**
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
-	 * @generated
-	 */
-	public EReference getStringAttributeOption_TextOption() {
-		return (EReference)stringAttributeOptionEClass.getEStructuralFeatures().get(1);
-	}
-
-	/**
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
+	 * <!-- begin-user-doc --> <!-- end-user-doc -->
 	 * @generated
 	 */
 	public EClass getLayoutOptions() {
@@ -470,170 +413,215 @@ public class OptionsPackageImpl extends EPackageImpl implements OptionsPackage {
 	}
 
 	/**
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
+	 * <!-- begin-user-doc --> <!-- end-user-doc -->
 	 * @generated
 	 */
-	public EAttribute getLayoutOptions_CoverText() {
-		return (EAttribute)layoutOptionsEClass.getEStructuralFeatures().get(0);
+	public EReference getLayoutOptions_HeaderTextOption() {
+		return (EReference)layoutOptionsEClass.getEStructuralFeatures().get(0);
 	}
 
 	/**
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
+	 * <!-- begin-user-doc --> <!-- end-user-doc -->
 	 * @generated
 	 */
-	public EReference getLayoutOptions_CoverTextTextOption() {
+	public EReference getLayoutOptions_DefaultTextOption() {
 		return (EReference)layoutOptionsEClass.getEStructuralFeatures().get(1);
 	}
 
 	/**
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
+	 * <!-- begin-user-doc --> <!-- end-user-doc -->
 	 * @generated
 	 */
-	public EReference getLayoutOptions_DefaultTextOption() {
+	public EReference getLayoutOptions_SectionTextOption() {
 		return (EReference)layoutOptionsEClass.getEStructuralFeatures().get(2);
 	}
 
 	/**
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
-	 * @generated
-	 */
-	public EReference getLayoutOptions_SectionTextOption() {
-		return (EReference)layoutOptionsEClass.getEStructuralFeatures().get(3);
-	}
-
-	/**
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
+	 * <!-- begin-user-doc --> <!-- end-user-doc -->
 	 * @generated
 	 */
 	public EAttribute getLayoutOptions_HideAnnotations() {
+		return (EAttribute)layoutOptionsEClass.getEStructuralFeatures().get(3);
+	}
+
+	/**
+	 * <!-- begin-user-doc --> <!-- end-user-doc -->
+	 * @generated
+	 */
+	public EAttribute getLayoutOptions_HideAttachments() {
 		return (EAttribute)layoutOptionsEClass.getEStructuralFeatures().get(4);
 	}
 
 	/**
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
+	 * <!-- begin-user-doc --> <!-- end-user-doc -->
 	 * @generated
 	 */
-	public EAttribute getLayoutOptions_HideAttachments() {
+	public EAttribute getLayoutOptions_HideIncomingDocumentReferences() {
 		return (EAttribute)layoutOptionsEClass.getEStructuralFeatures().get(5);
 	}
 
 	/**
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
+	 * <!-- begin-user-doc --> <!-- end-user-doc -->
 	 * @generated
 	 */
-	public EAttribute getLayoutOptions_HideIncomingDocumentReferences() {
+	public EAttribute getLayoutOptions_HideModelElementImages() {
 		return (EAttribute)layoutOptionsEClass.getEStructuralFeatures().get(6);
 	}
 
 	/**
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
+	 * <!-- begin-user-doc --> <!-- end-user-doc -->
 	 * @generated
 	 */
-	public EAttribute getLayoutOptions_PageNumberingStyle() {
-		return (EAttribute)layoutOptionsEClass.getEStructuralFeatures().get(7);
+	public EReference getLayoutOptions_ModelElementTextOption() {
+		return (EReference)layoutOptionsEClass.getEStructuralFeatures().get(7);
 	}
 
 	/**
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
+	 * <!-- begin-user-doc --> <!-- end-user-doc -->
 	 * @generated
 	 */
-	public EAttribute getLayoutOptions_HideModelElementImages() {
+	public EAttribute getLayoutOptions_HeaderText() {
 		return (EAttribute)layoutOptionsEClass.getEStructuralFeatures().get(8);
 	}
 
 	/**
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
-	 * @generated
-	 */
-	public EReference getLayoutOptions_ModelElementTextOption() {
-		return (EReference)layoutOptionsEClass.getEStructuralFeatures().get(9);
-	}
-
-	/**
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
-	 * @generated
-	 */
-	public EAttribute getLayoutOptions_HeaderText() {
-		return (EAttribute)layoutOptionsEClass.getEStructuralFeatures().get(10);
-	}
-
-	/**
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
+	 * <!-- begin-user-doc --> <!-- end-user-doc -->
 	 * @generated
 	 */
 	public EAttribute getLayoutOptions_FooterText() {
+		return (EAttribute)layoutOptionsEClass.getEStructuralFeatures().get(9);
+	}
+
+	/**
+	 * <!-- begin-user-doc --> <!-- end-user-doc -->
+	 * @generated
+	 */
+	public EReference getLayoutOptions_SectionOption() {
+		return (EReference)layoutOptionsEClass.getEStructuralFeatures().get(10);
+	}
+
+	/**
+	 * <!-- begin-user-doc --> <!-- end-user-doc -->
+	 * @generated
+	 */
+	public EAttribute getLayoutOptions_SectionFontSizeDecreaseStep() {
 		return (EAttribute)layoutOptionsEClass.getEStructuralFeatures().get(11);
 	}
 
 	/**
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
+	 * <!-- begin-user-doc --> <!-- end-user-doc -->
 	 * @generated
 	 */
-	public EReference getLayoutOptions_SectionOption() {
+	public EReference getLayoutOptions_DocumentTitleTextOption() {
 		return (EReference)layoutOptionsEClass.getEStructuralFeatures().get(12);
 	}
 
 	/**
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
+	 * <!-- begin-user-doc --> <!-- end-user-doc -->
 	 * @generated
 	 */
-	public EAttribute getLayoutOptions_SectionFontSizeDecreaseStep() {
+	public EAttribute getLayoutOptions_ShowModelElementTypeInSectionTitle() {
 		return (EAttribute)layoutOptionsEClass.getEStructuralFeatures().get(13);
 	}
 
 	/**
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
+	 * <!-- begin-user-doc --> <!-- end-user-doc -->
 	 * @generated
 	 */
-	public EReference getLayoutOptions_DocumentTitleTextOption() {
-		return (EReference)layoutOptionsEClass.getEStructuralFeatures().get(14);
+	public EAttribute getLayoutOptions_AppendixStyle() {
+		return (EAttribute)layoutOptionsEClass.getEStructuralFeatures().get(14);
 	}
 
 	/**
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
+	 * <!-- begin-user-doc --> <!-- end-user-doc -->
 	 * @generated
 	 */
-	public EAttribute getLayoutOptions_ShowModelElementTypeInSectionTitle() {
+	public EAttribute getLayoutOptions_LogoImage() {
 		return (EAttribute)layoutOptionsEClass.getEStructuralFeatures().get(15);
 	}
 
 	/**
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
+	 * <!-- begin-user-doc --> <!-- end-user-doc -->
 	 * @generated
 	 */
-	public EReference getLayoutOptions_AttributeTextOption() {
+	public EReference getLayoutOptions_FooterTextOption() {
 		return (EReference)layoutOptionsEClass.getEStructuralFeatures().get(16);
 	}
 
 	/**
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
+	 * <!-- begin-user-doc --> <!-- end-user-doc -->
 	 * @generated
 	 */
-	public EAttribute getLayoutOptions_AppendixStyle() {
+	public EAttribute getLayoutOptions_FooterShowDocumentTitle() {
 		return (EAttribute)layoutOptionsEClass.getEStructuralFeatures().get(17);
 	}
 
 	/**
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
+	 * <!-- begin-user-doc --> <!-- end-user-doc -->
+	 * @generated
+	 */
+	public EAttribute getLayoutOptions_PageCitationStyle() {
+		return (EAttribute)layoutOptionsEClass.getEStructuralFeatures().get(18);
+	}
+
+	/**
+	 * <!-- begin-user-doc --> <!-- end-user-doc -->
+	 * @generated
+	 */
+	public EAttribute getLayoutOptions_HeaderStyle() {
+		return (EAttribute)layoutOptionsEClass.getEStructuralFeatures().get(19);
+	}
+
+	/**
+	 * <!-- begin-user-doc --> <!-- end-user-doc -->
+	 * @generated
+	 */
+	public EAttribute getLayoutOptions_LogoWidth() {
+		return (EAttribute)layoutOptionsEClass.getEStructuralFeatures().get(20);
+	}
+
+	/**
+	 * <!-- begin-user-doc --> <!-- end-user-doc -->
+	 * @generated
+	 */
+	public EAttribute getLayoutOptions_LogoHeight() {
+		return (EAttribute)layoutOptionsEClass.getEStructuralFeatures().get(21);
+	}
+
+	/**
+	 * <!-- begin-user-doc --> <!-- end-user-doc -->
+	 * @generated
+	 */
+	public EAttribute getLayoutOptions_LogoOnCoverPage() {
+		return (EAttribute)layoutOptionsEClass.getEStructuralFeatures().get(22);
+	}
+
+	/**
+	 * <!-- begin-user-doc --> <!-- end-user-doc -->
+	 * @generated
+	 */
+	public EReference getLayoutOptions_TableOfContentsTextOption() {
+		return (EReference)layoutOptionsEClass.getEStructuralFeatures().get(23);
+	}
+
+	/**
+	 * <!-- begin-user-doc --> <!-- end-user-doc -->
+	 * @generated
+	 */
+	public EAttribute getLayoutOptions_HideTableOfContents() {
+		return (EAttribute)layoutOptionsEClass.getEStructuralFeatures().get(24);
+	}
+
+	/**
+	 * <!-- begin-user-doc --> <!-- end-user-doc -->
+	 * @generated
+	 */
+	public EAttribute getLayoutOptions_HideHeaderAndFooterOnCoverPage() {
+		return (EAttribute)layoutOptionsEClass.getEStructuralFeatures().get(25);
+	}
+
+	/**
+	 * <!-- begin-user-doc --> <!-- end-user-doc -->
 	 * @generated
 	 */
 	public EClass getListOption() {
@@ -641,8 +629,7 @@ public class OptionsPackageImpl extends EPackageImpl implements OptionsPackage {
 	}
 
 	/**
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
+	 * <!-- begin-user-doc --> <!-- end-user-doc -->
 	 * @generated
 	 */
 	public EAttribute getListOption_ListStyle() {
@@ -650,8 +637,7 @@ public class OptionsPackageImpl extends EPackageImpl implements OptionsPackage {
 	}
 
 	/**
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
+	 * <!-- begin-user-doc --> <!-- end-user-doc -->
 	 * @generated
 	 */
 	public EClass getTextOption() {
@@ -659,8 +645,7 @@ public class OptionsPackageImpl extends EPackageImpl implements OptionsPackage {
 	}
 
 	/**
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
+	 * <!-- begin-user-doc --> <!-- end-user-doc -->
 	 * @generated
 	 */
 	public EAttribute getTextOption_FontFamily() {
@@ -668,8 +653,7 @@ public class OptionsPackageImpl extends EPackageImpl implements OptionsPackage {
 	}
 
 	/**
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
+	 * <!-- begin-user-doc --> <!-- end-user-doc -->
 	 * @generated
 	 */
 	public EAttribute getTextOption_FontSize() {
@@ -677,8 +661,7 @@ public class OptionsPackageImpl extends EPackageImpl implements OptionsPackage {
 	}
 
 	/**
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
+	 * <!-- begin-user-doc --> <!-- end-user-doc -->
 	 * @generated
 	 */
 	public EReference getTextOption_FontColor() {
@@ -686,8 +669,7 @@ public class OptionsPackageImpl extends EPackageImpl implements OptionsPackage {
 	}
 
 	/**
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
+	 * <!-- begin-user-doc --> <!-- end-user-doc -->
 	 * @generated
 	 */
 	public EAttribute getTextOption_TextAlign() {
@@ -695,8 +677,15 @@ public class OptionsPackageImpl extends EPackageImpl implements OptionsPackage {
 	}
 
 	/**
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
+	 * <!-- begin-user-doc --> <!-- end-user-doc -->
+	 * @generated
+	 */
+	public EAttribute getTextOption_Italics() {
+		return (EAttribute)textOptionEClass.getEStructuralFeatures().get(6);
+	}
+
+	/**
+	 * <!-- begin-user-doc --> <!-- end-user-doc -->
 	 * @generated
 	 */
 	public EAttribute getTextOption_Bold() {
@@ -704,8 +693,7 @@ public class OptionsPackageImpl extends EPackageImpl implements OptionsPackage {
 	}
 
 	/**
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
+	 * <!-- begin-user-doc --> <!-- end-user-doc -->
 	 * @generated
 	 */
 	public EAttribute getTextOption_Underline() {
@@ -713,8 +701,7 @@ public class OptionsPackageImpl extends EPackageImpl implements OptionsPackage {
 	}
 
 	/**
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
+	 * <!-- begin-user-doc --> <!-- end-user-doc -->
 	 * @generated
 	 */
 	public EClass getReferenceAttributeOption() {
@@ -722,8 +709,7 @@ public class OptionsPackageImpl extends EPackageImpl implements OptionsPackage {
 	}
 
 	/**
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
+	 * <!-- begin-user-doc --> <!-- end-user-doc -->
 	 * @generated
 	 */
 	public EAttribute getReferenceAttributeOption_Contained() {
@@ -731,8 +717,7 @@ public class OptionsPackageImpl extends EPackageImpl implements OptionsPackage {
 	}
 
 	/**
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
+	 * <!-- begin-user-doc --> <!-- end-user-doc -->
 	 * @generated
 	 */
 	public EReference getReferenceAttributeOption_ReferenceOption() {
@@ -740,8 +725,7 @@ public class OptionsPackageImpl extends EPackageImpl implements OptionsPackage {
 	}
 
 	/**
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
+	 * <!-- begin-user-doc --> <!-- end-user-doc -->
 	 * @generated
 	 */
 	public EClass getUColor() {
@@ -749,8 +733,7 @@ public class OptionsPackageImpl extends EPackageImpl implements OptionsPackage {
 	}
 
 	/**
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
+	 * <!-- begin-user-doc --> <!-- end-user-doc -->
 	 * @generated
 	 */
 	public EAttribute getUColor_Red() {
@@ -758,8 +741,7 @@ public class OptionsPackageImpl extends EPackageImpl implements OptionsPackage {
 	}
 
 	/**
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
+	 * <!-- begin-user-doc --> <!-- end-user-doc -->
 	 * @generated
 	 */
 	public EAttribute getUColor_Green() {
@@ -767,8 +749,7 @@ public class OptionsPackageImpl extends EPackageImpl implements OptionsPackage {
 	}
 
 	/**
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
+	 * <!-- begin-user-doc --> <!-- end-user-doc -->
 	 * @generated
 	 */
 	public EAttribute getUColor_Blue() {
@@ -776,8 +757,7 @@ public class OptionsPackageImpl extends EPackageImpl implements OptionsPackage {
 	}
 
 	/**
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
+	 * <!-- begin-user-doc --> <!-- end-user-doc -->
 	 * @generated
 	 */
 	public EClass getBoxModelOption() {
@@ -785,8 +765,7 @@ public class OptionsPackageImpl extends EPackageImpl implements OptionsPackage {
 	}
 
 	/**
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
+	 * <!-- begin-user-doc --> <!-- end-user-doc -->
 	 * @generated
 	 */
 	public EAttribute getBoxModelOption_Margin() {
@@ -794,8 +773,7 @@ public class OptionsPackageImpl extends EPackageImpl implements OptionsPackage {
 	}
 
 	/**
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
+	 * <!-- begin-user-doc --> <!-- end-user-doc -->
 	 * @generated
 	 */
 	public EAttribute getBoxModelOption_MarginTop() {
@@ -803,8 +781,7 @@ public class OptionsPackageImpl extends EPackageImpl implements OptionsPackage {
 	}
 
 	/**
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
+	 * <!-- begin-user-doc --> <!-- end-user-doc -->
 	 * @generated
 	 */
 	public EAttribute getBoxModelOption_MarginLeft() {
@@ -812,8 +789,7 @@ public class OptionsPackageImpl extends EPackageImpl implements OptionsPackage {
 	}
 
 	/**
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
+	 * <!-- begin-user-doc --> <!-- end-user-doc -->
 	 * @generated
 	 */
 	public EAttribute getBoxModelOption_MarginBottom() {
@@ -821,8 +797,7 @@ public class OptionsPackageImpl extends EPackageImpl implements OptionsPackage {
 	}
 
 	/**
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
+	 * <!-- begin-user-doc --> <!-- end-user-doc -->
 	 * @generated
 	 */
 	public EAttribute getBoxModelOption_MarginRight() {
@@ -830,8 +805,7 @@ public class OptionsPackageImpl extends EPackageImpl implements OptionsPackage {
 	}
 
 	/**
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
+	 * <!-- begin-user-doc --> <!-- end-user-doc -->
 	 * @generated
 	 */
 	public EAttribute getBoxModelOption_Border() {
@@ -839,8 +813,7 @@ public class OptionsPackageImpl extends EPackageImpl implements OptionsPackage {
 	}
 
 	/**
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
+	 * <!-- begin-user-doc --> <!-- end-user-doc -->
 	 * @generated
 	 */
 	public EAttribute getBoxModelOption_BorderTop() {
@@ -848,8 +821,7 @@ public class OptionsPackageImpl extends EPackageImpl implements OptionsPackage {
 	}
 
 	/**
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
+	 * <!-- begin-user-doc --> <!-- end-user-doc -->
 	 * @generated
 	 */
 	public EAttribute getBoxModelOption_BorderLeft() {
@@ -857,8 +829,7 @@ public class OptionsPackageImpl extends EPackageImpl implements OptionsPackage {
 	}
 
 	/**
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
+	 * <!-- begin-user-doc --> <!-- end-user-doc -->
 	 * @generated
 	 */
 	public EAttribute getBoxModelOption_BorderBottom() {
@@ -866,8 +837,7 @@ public class OptionsPackageImpl extends EPackageImpl implements OptionsPackage {
 	}
 
 	/**
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
+	 * <!-- begin-user-doc --> <!-- end-user-doc -->
 	 * @generated
 	 */
 	public EAttribute getBoxModelOption_BorderRight() {
@@ -875,8 +845,7 @@ public class OptionsPackageImpl extends EPackageImpl implements OptionsPackage {
 	}
 
 	/**
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
+	 * <!-- begin-user-doc --> <!-- end-user-doc -->
 	 * @generated
 	 */
 	public EAttribute getBoxModelOption_BorderStyle() {
@@ -884,8 +853,7 @@ public class OptionsPackageImpl extends EPackageImpl implements OptionsPackage {
 	}
 
 	/**
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
+	 * <!-- begin-user-doc --> <!-- end-user-doc -->
 	 * @generated
 	 */
 	public EReference getBoxModelOption_BorderColor() {
@@ -893,8 +861,7 @@ public class OptionsPackageImpl extends EPackageImpl implements OptionsPackage {
 	}
 
 	/**
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
+	 * <!-- begin-user-doc --> <!-- end-user-doc -->
 	 * @generated
 	 */
 	public EAttribute getBoxModelOption_Padding() {
@@ -902,8 +869,7 @@ public class OptionsPackageImpl extends EPackageImpl implements OptionsPackage {
 	}
 
 	/**
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
+	 * <!-- begin-user-doc --> <!-- end-user-doc -->
 	 * @generated
 	 */
 	public EAttribute getBoxModelOption_PaddingTop() {
@@ -911,8 +877,7 @@ public class OptionsPackageImpl extends EPackageImpl implements OptionsPackage {
 	}
 
 	/**
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
+	 * <!-- begin-user-doc --> <!-- end-user-doc -->
 	 * @generated
 	 */
 	public EAttribute getBoxModelOption_PaddingLeft() {
@@ -920,8 +885,7 @@ public class OptionsPackageImpl extends EPackageImpl implements OptionsPackage {
 	}
 
 	/**
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
+	 * <!-- begin-user-doc --> <!-- end-user-doc -->
 	 * @generated
 	 */
 	public EAttribute getBoxModelOption_PaddingBottom() {
@@ -929,8 +893,7 @@ public class OptionsPackageImpl extends EPackageImpl implements OptionsPackage {
 	}
 
 	/**
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
+	 * <!-- begin-user-doc --> <!-- end-user-doc -->
 	 * @generated
 	 */
 	public EAttribute getBoxModelOption_PaddingRight() {
@@ -938,8 +901,7 @@ public class OptionsPackageImpl extends EPackageImpl implements OptionsPackage {
 	}
 
 	/**
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
+	 * <!-- begin-user-doc --> <!-- end-user-doc -->
 	 * @generated
 	 */
 	public EReference getBoxModelOption_BackgroundColor() {
@@ -947,8 +909,7 @@ public class OptionsPackageImpl extends EPackageImpl implements OptionsPackage {
 	}
 
 	/**
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
+	 * <!-- begin-user-doc --> <!-- end-user-doc -->
 	 * @generated
 	 */
 	public EAttribute getBoxModelOption_KeepTogether() {
@@ -956,8 +917,7 @@ public class OptionsPackageImpl extends EPackageImpl implements OptionsPackage {
 	}
 
 	/**
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
+	 * <!-- begin-user-doc --> <!-- end-user-doc -->
 	 * @generated
 	 */
 	public EAttribute getBoxModelOption_KeepWithPrevious() {
@@ -965,8 +925,7 @@ public class OptionsPackageImpl extends EPackageImpl implements OptionsPackage {
 	}
 
 	/**
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
+	 * <!-- begin-user-doc --> <!-- end-user-doc -->
 	 * @generated
 	 */
 	public EAttribute getBoxModelOption_KeepWithNext() {
@@ -974,8 +933,7 @@ public class OptionsPackageImpl extends EPackageImpl implements OptionsPackage {
 	}
 
 	/**
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
+	 * <!-- begin-user-doc --> <!-- end-user-doc -->
 	 * @generated
 	 */
 	public EAttribute getBoxModelOption_BreakBefore() {
@@ -983,8 +941,15 @@ public class OptionsPackageImpl extends EPackageImpl implements OptionsPackage {
 	}
 
 	/**
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
+	 * <!-- begin-user-doc --> <!-- end-user-doc -->
+	 * @generated
+	 */
+	public EAttribute getBoxModelOption_Width() {
+		return (EAttribute)boxModelOptionEClass.getEStructuralFeatures().get(22);
+	}
+
+	/**
+	 * <!-- begin-user-doc --> <!-- end-user-doc -->
 	 * @generated
 	 */
 	public EClass getSectionOption() {
@@ -992,8 +957,7 @@ public class OptionsPackageImpl extends EPackageImpl implements OptionsPackage {
 	}
 
 	/**
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
+	 * <!-- begin-user-doc --> <!-- end-user-doc -->
 	 * @generated
 	 */
 	public EAttribute getSectionOption_SectionNumberingStyle() {
@@ -1001,8 +965,7 @@ public class OptionsPackageImpl extends EPackageImpl implements OptionsPackage {
 	}
 
 	/**
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
+	 * <!-- begin-user-doc --> <!-- end-user-doc -->
 	 * @generated
 	 */
 	public EAttribute getSectionOption_LeaveOutPreviousSectionNumbering() {
@@ -1010,8 +973,7 @@ public class OptionsPackageImpl extends EPackageImpl implements OptionsPackage {
 	}
 
 	/**
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
+	 * <!-- begin-user-doc --> <!-- end-user-doc -->
 	 * @generated
 	 */
 	public EClass getBooleanAttributeOption() {
@@ -1019,8 +981,7 @@ public class OptionsPackageImpl extends EPackageImpl implements OptionsPackage {
 	}
 
 	/**
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
+	 * <!-- begin-user-doc --> <!-- end-user-doc -->
 	 * @generated
 	 */
 	public EReference getBooleanAttributeOption_GlobalOption() {
@@ -1028,8 +989,7 @@ public class OptionsPackageImpl extends EPackageImpl implements OptionsPackage {
 	}
 
 	/**
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
+	 * <!-- begin-user-doc --> <!-- end-user-doc -->
 	 * @generated
 	 */
 	public EAttribute getBooleanAttributeOption_BooleanStyle() {
@@ -1037,8 +997,7 @@ public class OptionsPackageImpl extends EPackageImpl implements OptionsPackage {
 	}
 
 	/**
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
+	 * <!-- begin-user-doc --> <!-- end-user-doc -->
 	 * @generated
 	 */
 	public EClass getDateAttributeOption() {
@@ -1046,8 +1005,7 @@ public class OptionsPackageImpl extends EPackageImpl implements OptionsPackage {
 	}
 
 	/**
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
+	 * <!-- begin-user-doc --> <!-- end-user-doc -->
 	 * @generated
 	 */
 	public EReference getDateAttributeOption_GlobalOption() {
@@ -1055,8 +1013,7 @@ public class OptionsPackageImpl extends EPackageImpl implements OptionsPackage {
 	}
 
 	/**
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
+	 * <!-- begin-user-doc --> <!-- end-user-doc -->
 	 * @generated
 	 */
 	public EAttribute getDateAttributeOption_DateStyle() {
@@ -1064,8 +1021,23 @@ public class OptionsPackageImpl extends EPackageImpl implements OptionsPackage {
 	}
 
 	/**
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
+	 * <!-- begin-user-doc --> <!-- end-user-doc -->
+	 * @generated
+	 */
+	public EEnum getPageCitationStyle() {
+		return pageCitationStyleEEnum;
+	}
+
+	/**
+	 * <!-- begin-user-doc --> <!-- end-user-doc -->
+	 * @generated
+	 */
+	public EEnum getHeaderStyle() {
+		return headerStyleEEnum;
+	}
+
+	/**
+	 * <!-- begin-user-doc --> <!-- end-user-doc -->
 	 * @generated
 	 */
 	public EEnum getAppendixStyle() {
@@ -1073,8 +1045,7 @@ public class OptionsPackageImpl extends EPackageImpl implements OptionsPackage {
 	}
 
 	/**
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
+	 * <!-- begin-user-doc --> <!-- end-user-doc -->
 	 * @generated
 	 */
 	public EEnum getFontFamily() {
@@ -1082,8 +1053,7 @@ public class OptionsPackageImpl extends EPackageImpl implements OptionsPackage {
 	}
 
 	/**
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
+	 * <!-- begin-user-doc --> <!-- end-user-doc -->
 	 * @generated
 	 */
 	public EEnum getListStyle() {
@@ -1091,17 +1061,7 @@ public class OptionsPackageImpl extends EPackageImpl implements OptionsPackage {
 	}
 
 	/**
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
-	 * @generated
-	 */
-	public EEnum getPageNumberingStyle() {
-		return pageNumberingStyleEEnum;
-	}
-
-	/**
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
+	 * <!-- begin-user-doc --> <!-- end-user-doc -->
 	 * @generated
 	 */
 	public EEnum getUBorderStyle() {
@@ -1109,8 +1069,7 @@ public class OptionsPackageImpl extends EPackageImpl implements OptionsPackage {
 	}
 
 	/**
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
+	 * <!-- begin-user-doc --> <!-- end-user-doc -->
 	 * @generated
 	 */
 	public EEnum getSectionNumberingStyle() {
@@ -1118,8 +1077,7 @@ public class OptionsPackageImpl extends EPackageImpl implements OptionsPackage {
 	}
 
 	/**
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
+	 * <!-- begin-user-doc --> <!-- end-user-doc -->
 	 * @generated
 	 */
 	public EEnum getTextAlign() {
@@ -1127,8 +1085,7 @@ public class OptionsPackageImpl extends EPackageImpl implements OptionsPackage {
 	}
 
 	/**
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
+	 * <!-- begin-user-doc --> <!-- end-user-doc -->
 	 * @generated
 	 */
 	public EEnum getBooleanStyle() {
@@ -1136,8 +1093,7 @@ public class OptionsPackageImpl extends EPackageImpl implements OptionsPackage {
 	}
 
 	/**
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
+	 * <!-- begin-user-doc --> <!-- end-user-doc -->
 	 * @generated
 	 */
 	public EEnum getDateStyle() {
@@ -1145,8 +1101,7 @@ public class OptionsPackageImpl extends EPackageImpl implements OptionsPackage {
 	}
 
 	/**
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
+	 * <!-- begin-user-doc --> <!-- end-user-doc -->
 	 * @generated
 	 */
 	public OptionsFactory getOptionsFactory() {
@@ -1154,8 +1109,7 @@ public class OptionsPackageImpl extends EPackageImpl implements OptionsPackage {
 	}
 
 	/**
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
+	 * <!-- begin-user-doc --> <!-- end-user-doc -->
 	 * @generated
 	 */
 	private boolean isCreated = false;
@@ -1163,8 +1117,7 @@ public class OptionsPackageImpl extends EPackageImpl implements OptionsPackage {
 	/**
 	 * Creates the meta-model objects for the package.  This method is
 	 * guarded to have no affect on any invocation but its first.
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
+	 * <!-- begin-user-doc --> <!-- end-user-doc -->
 	 * @generated
 	 */
 	public void createPackageContents() {
@@ -1179,6 +1132,7 @@ public class OptionsPackageImpl extends EPackageImpl implements OptionsPackage {
 		createEAttribute(attributeOptionEClass, ATTRIBUTE_OPTION__HIDE);
 		createEAttribute(attributeOptionEClass, ATTRIBUTE_OPTION__OVERWRITE_GLOBAL_OPTION);
 		createEAttribute(attributeOptionEClass, ATTRIBUTE_OPTION__ATTRIBUTE_TEXT);
+		createEAttribute(attributeOptionEClass, ATTRIBUTE_OPTION__ORDER_NUMBER);
 
 		singleReferenceAttributeOptionEClass = createEClass(SINGLE_REFERENCE_ATTRIBUTE_OPTION);
 		createEReference(singleReferenceAttributeOptionEClass, SINGLE_REFERENCE_ATTRIBUTE_OPTION__GLOBAL_OPTION);
@@ -1188,21 +1142,17 @@ public class OptionsPackageImpl extends EPackageImpl implements OptionsPackage {
 		createEReference(multiReferenceAttributeOptionEClass, MULTI_REFERENCE_ATTRIBUTE_OPTION__LIST_OPTION);
 
 		referenceOptionEClass = createEClass(REFERENCE_OPTION);
-		createEReference(referenceOptionEClass, REFERENCE_OPTION__TEXT_OPTION);
 
 		stringAttributeOptionEClass = createEClass(STRING_ATTRIBUTE_OPTION);
 		createEReference(stringAttributeOptionEClass, STRING_ATTRIBUTE_OPTION__GLOBAL_OPTION);
-		createEReference(stringAttributeOptionEClass, STRING_ATTRIBUTE_OPTION__TEXT_OPTION);
 
 		layoutOptionsEClass = createEClass(LAYOUT_OPTIONS);
-		createEAttribute(layoutOptionsEClass, LAYOUT_OPTIONS__COVER_TEXT);
-		createEReference(layoutOptionsEClass, LAYOUT_OPTIONS__COVER_TEXT_TEXT_OPTION);
+		createEReference(layoutOptionsEClass, LAYOUT_OPTIONS__HEADER_TEXT_OPTION);
 		createEReference(layoutOptionsEClass, LAYOUT_OPTIONS__DEFAULT_TEXT_OPTION);
 		createEReference(layoutOptionsEClass, LAYOUT_OPTIONS__SECTION_TEXT_OPTION);
 		createEAttribute(layoutOptionsEClass, LAYOUT_OPTIONS__HIDE_ANNOTATIONS);
 		createEAttribute(layoutOptionsEClass, LAYOUT_OPTIONS__HIDE_ATTACHMENTS);
 		createEAttribute(layoutOptionsEClass, LAYOUT_OPTIONS__HIDE_INCOMING_DOCUMENT_REFERENCES);
-		createEAttribute(layoutOptionsEClass, LAYOUT_OPTIONS__PAGE_NUMBERING_STYLE);
 		createEAttribute(layoutOptionsEClass, LAYOUT_OPTIONS__HIDE_MODEL_ELEMENT_IMAGES);
 		createEReference(layoutOptionsEClass, LAYOUT_OPTIONS__MODEL_ELEMENT_TEXT_OPTION);
 		createEAttribute(layoutOptionsEClass, LAYOUT_OPTIONS__HEADER_TEXT);
@@ -1211,8 +1161,18 @@ public class OptionsPackageImpl extends EPackageImpl implements OptionsPackage {
 		createEAttribute(layoutOptionsEClass, LAYOUT_OPTIONS__SECTION_FONT_SIZE_DECREASE_STEP);
 		createEReference(layoutOptionsEClass, LAYOUT_OPTIONS__DOCUMENT_TITLE_TEXT_OPTION);
 		createEAttribute(layoutOptionsEClass, LAYOUT_OPTIONS__SHOW_MODEL_ELEMENT_TYPE_IN_SECTION_TITLE);
-		createEReference(layoutOptionsEClass, LAYOUT_OPTIONS__ATTRIBUTE_TEXT_OPTION);
 		createEAttribute(layoutOptionsEClass, LAYOUT_OPTIONS__APPENDIX_STYLE);
+		createEAttribute(layoutOptionsEClass, LAYOUT_OPTIONS__LOGO_IMAGE);
+		createEReference(layoutOptionsEClass, LAYOUT_OPTIONS__FOOTER_TEXT_OPTION);
+		createEAttribute(layoutOptionsEClass, LAYOUT_OPTIONS__FOOTER_SHOW_DOCUMENT_TITLE);
+		createEAttribute(layoutOptionsEClass, LAYOUT_OPTIONS__PAGE_CITATION_STYLE);
+		createEAttribute(layoutOptionsEClass, LAYOUT_OPTIONS__HEADER_STYLE);
+		createEAttribute(layoutOptionsEClass, LAYOUT_OPTIONS__LOGO_WIDTH);
+		createEAttribute(layoutOptionsEClass, LAYOUT_OPTIONS__LOGO_HEIGHT);
+		createEAttribute(layoutOptionsEClass, LAYOUT_OPTIONS__LOGO_ON_COVER_PAGE);
+		createEReference(layoutOptionsEClass, LAYOUT_OPTIONS__TABLE_OF_CONTENTS_TEXT_OPTION);
+		createEAttribute(layoutOptionsEClass, LAYOUT_OPTIONS__HIDE_TABLE_OF_CONTENTS);
+		createEAttribute(layoutOptionsEClass, LAYOUT_OPTIONS__HIDE_HEADER_AND_FOOTER_ON_COVER_PAGE);
 
 		listOptionEClass = createEClass(LIST_OPTION);
 		createEAttribute(listOptionEClass, LIST_OPTION__LIST_STYLE);
@@ -1224,6 +1184,7 @@ public class OptionsPackageImpl extends EPackageImpl implements OptionsPackage {
 		createEAttribute(textOptionEClass, TEXT_OPTION__UNDERLINE);
 		createEReference(textOptionEClass, TEXT_OPTION__FONT_COLOR);
 		createEAttribute(textOptionEClass, TEXT_OPTION__TEXT_ALIGN);
+		createEAttribute(textOptionEClass, TEXT_OPTION__ITALICS);
 
 		referenceAttributeOptionEClass = createEClass(REFERENCE_ATTRIBUTE_OPTION);
 		createEAttribute(referenceAttributeOptionEClass, REFERENCE_ATTRIBUTE_OPTION__CONTAINED);
@@ -1257,6 +1218,7 @@ public class OptionsPackageImpl extends EPackageImpl implements OptionsPackage {
 		createEAttribute(boxModelOptionEClass, BOX_MODEL_OPTION__KEEP_WITH_PREVIOUS);
 		createEAttribute(boxModelOptionEClass, BOX_MODEL_OPTION__KEEP_WITH_NEXT);
 		createEAttribute(boxModelOptionEClass, BOX_MODEL_OPTION__BREAK_BEFORE);
+		createEAttribute(boxModelOptionEClass, BOX_MODEL_OPTION__WIDTH);
 
 		sectionOptionEClass = createEClass(SECTION_OPTION);
 		createEAttribute(sectionOptionEClass, SECTION_OPTION__SECTION_NUMBERING_STYLE);
@@ -1271,10 +1233,11 @@ public class OptionsPackageImpl extends EPackageImpl implements OptionsPackage {
 		createEAttribute(dateAttributeOptionEClass, DATE_ATTRIBUTE_OPTION__DATE_STYLE);
 
 		// Create enums
+		pageCitationStyleEEnum = createEEnum(PAGE_CITATION_STYLE);
+		headerStyleEEnum = createEEnum(HEADER_STYLE);
 		appendixStyleEEnum = createEEnum(APPENDIX_STYLE);
 		fontFamilyEEnum = createEEnum(FONT_FAMILY);
 		listStyleEEnum = createEEnum(LIST_STYLE);
-		pageNumberingStyleEEnum = createEEnum(PAGE_NUMBERING_STYLE);
 		uBorderStyleEEnum = createEEnum(UBORDER_STYLE);
 		sectionNumberingStyleEEnum = createEEnum(SECTION_NUMBERING_STYLE);
 		textAlignEEnum = createEEnum(TEXT_ALIGN);
@@ -1283,8 +1246,7 @@ public class OptionsPackageImpl extends EPackageImpl implements OptionsPackage {
 	}
 
 	/**
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
+	 * <!-- begin-user-doc --> <!-- end-user-doc -->
 	 * @generated
 	 */
 	private boolean isInitialized = false;
@@ -1292,8 +1254,7 @@ public class OptionsPackageImpl extends EPackageImpl implements OptionsPackage {
 	/**
 	 * Complete the initialization of the package and its meta-model.  This
 	 * method is guarded to have no affect on any invocation but its first.
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
+	 * <!-- begin-user-doc --> <!-- end-user-doc -->
 	 * @generated
 	 */
 	public void initializePackageContents() {
@@ -1336,6 +1297,7 @@ public class OptionsPackageImpl extends EPackageImpl implements OptionsPackage {
 		initEAttribute(getAttributeOption_Hide(), theEcorePackage.getEBoolean(), "hide", "false", 0, 1, AttributeOption.class, !IS_TRANSIENT, !IS_VOLATILE, IS_CHANGEABLE, !IS_UNSETTABLE, !IS_ID, IS_UNIQUE, !IS_DERIVED, IS_ORDERED);
 		initEAttribute(getAttributeOption_OverwriteGlobalOption(), theEcorePackage.getEBoolean(), "overwriteGlobalOption", "false", 0, 1, AttributeOption.class, !IS_TRANSIENT, !IS_VOLATILE, IS_CHANGEABLE, !IS_UNSETTABLE, !IS_ID, IS_UNIQUE, !IS_DERIVED, IS_ORDERED);
 		initEAttribute(getAttributeOption_AttributeText(), theEcorePackage.getEString(), "attributeText", null, 0, 1, AttributeOption.class, !IS_TRANSIENT, !IS_VOLATILE, IS_CHANGEABLE, !IS_UNSETTABLE, !IS_ID, IS_UNIQUE, !IS_DERIVED, IS_ORDERED);
+		initEAttribute(getAttributeOption_OrderNumber(), theEcorePackage.getEInt(), "orderNumber", null, 0, 1, AttributeOption.class, !IS_TRANSIENT, !IS_VOLATILE, IS_CHANGEABLE, !IS_UNSETTABLE, !IS_ID, IS_UNIQUE, !IS_DERIVED, IS_ORDERED);
 
 		initEClass(singleReferenceAttributeOptionEClass, SingleReferenceAttributeOption.class, "SingleReferenceAttributeOption", !IS_ABSTRACT, !IS_INTERFACE, IS_GENERATED_INSTANCE_CLASS);
 		initEReference(getSingleReferenceAttributeOption_GlobalOption(), this.getSingleReferenceAttributeOption(), null, "globalOption", null, 0, 1, SingleReferenceAttributeOption.class, !IS_TRANSIENT, !IS_VOLATILE, IS_CHANGEABLE, !IS_COMPOSITE, IS_RESOLVE_PROXIES, !IS_UNSETTABLE, IS_UNIQUE, !IS_DERIVED, IS_ORDERED);
@@ -1345,21 +1307,17 @@ public class OptionsPackageImpl extends EPackageImpl implements OptionsPackage {
 		initEReference(getMultiReferenceAttributeOption_ListOption(), this.getListOption(), null, "listOption", null, 0, 1, MultiReferenceAttributeOption.class, !IS_TRANSIENT, !IS_VOLATILE, IS_CHANGEABLE, IS_COMPOSITE, !IS_RESOLVE_PROXIES, !IS_UNSETTABLE, IS_UNIQUE, !IS_DERIVED, IS_ORDERED);
 
 		initEClass(referenceOptionEClass, ReferenceOption.class, "ReferenceOption", !IS_ABSTRACT, !IS_INTERFACE, IS_GENERATED_INSTANCE_CLASS);
-		initEReference(getReferenceOption_TextOption(), this.getTextOption(), null, "textOption", null, 0, 1, ReferenceOption.class, !IS_TRANSIENT, !IS_VOLATILE, IS_CHANGEABLE, IS_COMPOSITE, !IS_RESOLVE_PROXIES, !IS_UNSETTABLE, IS_UNIQUE, !IS_DERIVED, IS_ORDERED);
 
 		initEClass(stringAttributeOptionEClass, StringAttributeOption.class, "StringAttributeOption", !IS_ABSTRACT, !IS_INTERFACE, IS_GENERATED_INSTANCE_CLASS);
 		initEReference(getStringAttributeOption_GlobalOption(), this.getStringAttributeOption(), null, "globalOption", null, 0, 1, StringAttributeOption.class, !IS_TRANSIENT, !IS_VOLATILE, IS_CHANGEABLE, !IS_COMPOSITE, IS_RESOLVE_PROXIES, !IS_UNSETTABLE, IS_UNIQUE, !IS_DERIVED, IS_ORDERED);
-		initEReference(getStringAttributeOption_TextOption(), this.getTextOption(), null, "textOption", null, 0, 1, StringAttributeOption.class, !IS_TRANSIENT, !IS_VOLATILE, IS_CHANGEABLE, IS_COMPOSITE, !IS_RESOLVE_PROXIES, !IS_UNSETTABLE, IS_UNIQUE, !IS_DERIVED, IS_ORDERED);
 
 		initEClass(layoutOptionsEClass, LayoutOptions.class, "LayoutOptions", !IS_ABSTRACT, !IS_INTERFACE, IS_GENERATED_INSTANCE_CLASS);
-		initEAttribute(getLayoutOptions_CoverText(), theEcorePackage.getEString(), "coverText", null, 0, 1, LayoutOptions.class, !IS_TRANSIENT, !IS_VOLATILE, IS_CHANGEABLE, !IS_UNSETTABLE, !IS_ID, IS_UNIQUE, !IS_DERIVED, IS_ORDERED);
-		initEReference(getLayoutOptions_CoverTextTextOption(), this.getTextOption(), null, "coverTextTextOption", null, 0, 1, LayoutOptions.class, !IS_TRANSIENT, !IS_VOLATILE, IS_CHANGEABLE, IS_COMPOSITE, !IS_RESOLVE_PROXIES, !IS_UNSETTABLE, IS_UNIQUE, !IS_DERIVED, IS_ORDERED);
+		initEReference(getLayoutOptions_HeaderTextOption(), this.getTextOption(), null, "headerTextOption", null, 0, 1, LayoutOptions.class, !IS_TRANSIENT, !IS_VOLATILE, IS_CHANGEABLE, IS_COMPOSITE, !IS_RESOLVE_PROXIES, !IS_UNSETTABLE, IS_UNIQUE, !IS_DERIVED, IS_ORDERED);
 		initEReference(getLayoutOptions_DefaultTextOption(), this.getTextOption(), null, "defaultTextOption", null, 0, 1, LayoutOptions.class, !IS_TRANSIENT, !IS_VOLATILE, IS_CHANGEABLE, IS_COMPOSITE, !IS_RESOLVE_PROXIES, !IS_UNSETTABLE, IS_UNIQUE, !IS_DERIVED, IS_ORDERED);
 		initEReference(getLayoutOptions_SectionTextOption(), this.getTextOption(), null, "sectionTextOption", null, 0, 1, LayoutOptions.class, !IS_TRANSIENT, !IS_VOLATILE, IS_CHANGEABLE, IS_COMPOSITE, !IS_RESOLVE_PROXIES, !IS_UNSETTABLE, IS_UNIQUE, !IS_DERIVED, IS_ORDERED);
 		initEAttribute(getLayoutOptions_HideAnnotations(), theEcorePackage.getEBoolean(), "hideAnnotations", null, 0, 1, LayoutOptions.class, !IS_TRANSIENT, !IS_VOLATILE, IS_CHANGEABLE, !IS_UNSETTABLE, !IS_ID, IS_UNIQUE, !IS_DERIVED, IS_ORDERED);
 		initEAttribute(getLayoutOptions_HideAttachments(), theEcorePackage.getEBoolean(), "hideAttachments", null, 0, 1, LayoutOptions.class, !IS_TRANSIENT, !IS_VOLATILE, IS_CHANGEABLE, !IS_UNSETTABLE, !IS_ID, IS_UNIQUE, !IS_DERIVED, IS_ORDERED);
 		initEAttribute(getLayoutOptions_HideIncomingDocumentReferences(), theEcorePackage.getEBoolean(), "hideIncomingDocumentReferences", null, 0, 1, LayoutOptions.class, !IS_TRANSIENT, !IS_VOLATILE, IS_CHANGEABLE, !IS_UNSETTABLE, !IS_ID, IS_UNIQUE, !IS_DERIVED, IS_ORDERED);
-		initEAttribute(getLayoutOptions_PageNumberingStyle(), this.getPageNumberingStyle(), "pageNumberingStyle", null, 0, 1, LayoutOptions.class, !IS_TRANSIENT, !IS_VOLATILE, IS_CHANGEABLE, !IS_UNSETTABLE, !IS_ID, IS_UNIQUE, !IS_DERIVED, IS_ORDERED);
 		initEAttribute(getLayoutOptions_HideModelElementImages(), theEcorePackage.getEBoolean(), "hideModelElementImages", null, 0, 1, LayoutOptions.class, !IS_TRANSIENT, !IS_VOLATILE, IS_CHANGEABLE, !IS_UNSETTABLE, !IS_ID, IS_UNIQUE, !IS_DERIVED, IS_ORDERED);
 		initEReference(getLayoutOptions_ModelElementTextOption(), this.getTextOption(), null, "modelElementTextOption", null, 0, 1, LayoutOptions.class, !IS_TRANSIENT, !IS_VOLATILE, IS_CHANGEABLE, IS_COMPOSITE, !IS_RESOLVE_PROXIES, !IS_UNSETTABLE, IS_UNIQUE, !IS_DERIVED, IS_ORDERED);
 		initEAttribute(getLayoutOptions_HeaderText(), theEcorePackage.getEString(), "headerText", null, 0, 1, LayoutOptions.class, !IS_TRANSIENT, !IS_VOLATILE, IS_CHANGEABLE, !IS_UNSETTABLE, !IS_ID, IS_UNIQUE, !IS_DERIVED, IS_ORDERED);
@@ -1368,8 +1326,18 @@ public class OptionsPackageImpl extends EPackageImpl implements OptionsPackage {
 		initEAttribute(getLayoutOptions_SectionFontSizeDecreaseStep(), theEcorePackage.getEInt(), "sectionFontSizeDecreaseStep", null, 0, 1, LayoutOptions.class, !IS_TRANSIENT, !IS_VOLATILE, IS_CHANGEABLE, !IS_UNSETTABLE, !IS_ID, IS_UNIQUE, !IS_DERIVED, IS_ORDERED);
 		initEReference(getLayoutOptions_DocumentTitleTextOption(), this.getTextOption(), null, "documentTitleTextOption", null, 0, 1, LayoutOptions.class, !IS_TRANSIENT, !IS_VOLATILE, IS_CHANGEABLE, IS_COMPOSITE, !IS_RESOLVE_PROXIES, !IS_UNSETTABLE, IS_UNIQUE, !IS_DERIVED, IS_ORDERED);
 		initEAttribute(getLayoutOptions_ShowModelElementTypeInSectionTitle(), theEcorePackage.getEBoolean(), "showModelElementTypeInSectionTitle", null, 0, 1, LayoutOptions.class, !IS_TRANSIENT, !IS_VOLATILE, IS_CHANGEABLE, !IS_UNSETTABLE, !IS_ID, IS_UNIQUE, !IS_DERIVED, IS_ORDERED);
-		initEReference(getLayoutOptions_AttributeTextOption(), this.getTextOption(), null, "attributeTextOption", null, 0, 1, LayoutOptions.class, !IS_TRANSIENT, !IS_VOLATILE, IS_CHANGEABLE, IS_COMPOSITE, !IS_RESOLVE_PROXIES, !IS_UNSETTABLE, IS_UNIQUE, !IS_DERIVED, IS_ORDERED);
 		initEAttribute(getLayoutOptions_AppendixStyle(), this.getAppendixStyle(), "appendixStyle", null, 0, 1, LayoutOptions.class, !IS_TRANSIENT, !IS_VOLATILE, IS_CHANGEABLE, !IS_UNSETTABLE, !IS_ID, IS_UNIQUE, !IS_DERIVED, IS_ORDERED);
+		initEAttribute(getLayoutOptions_LogoImage(), theEcorePackage.getEString(), "logoImage", null, 0, 1, LayoutOptions.class, !IS_TRANSIENT, !IS_VOLATILE, IS_CHANGEABLE, !IS_UNSETTABLE, !IS_ID, IS_UNIQUE, !IS_DERIVED, IS_ORDERED);
+		initEReference(getLayoutOptions_FooterTextOption(), this.getTextOption(), null, "footerTextOption", null, 0, 1, LayoutOptions.class, !IS_TRANSIENT, !IS_VOLATILE, IS_CHANGEABLE, IS_COMPOSITE, !IS_RESOLVE_PROXIES, !IS_UNSETTABLE, IS_UNIQUE, !IS_DERIVED, IS_ORDERED);
+		initEAttribute(getLayoutOptions_FooterShowDocumentTitle(), theEcorePackage.getEBoolean(), "footerShowDocumentTitle", null, 0, 1, LayoutOptions.class, !IS_TRANSIENT, !IS_VOLATILE, IS_CHANGEABLE, !IS_UNSETTABLE, !IS_ID, IS_UNIQUE, !IS_DERIVED, IS_ORDERED);
+		initEAttribute(getLayoutOptions_PageCitationStyle(), this.getPageCitationStyle(), "pageCitationStyle", null, 0, 1, LayoutOptions.class, !IS_TRANSIENT, !IS_VOLATILE, IS_CHANGEABLE, !IS_UNSETTABLE, !IS_ID, IS_UNIQUE, !IS_DERIVED, IS_ORDERED);
+		initEAttribute(getLayoutOptions_HeaderStyle(), this.getHeaderStyle(), "headerStyle", null, 0, 1, LayoutOptions.class, !IS_TRANSIENT, !IS_VOLATILE, IS_CHANGEABLE, !IS_UNSETTABLE, !IS_ID, IS_UNIQUE, !IS_DERIVED, IS_ORDERED);
+		initEAttribute(getLayoutOptions_LogoWidth(), theEcorePackage.getEInt(), "logoWidth", null, 0, 1, LayoutOptions.class, !IS_TRANSIENT, !IS_VOLATILE, IS_CHANGEABLE, !IS_UNSETTABLE, !IS_ID, IS_UNIQUE, !IS_DERIVED, IS_ORDERED);
+		initEAttribute(getLayoutOptions_LogoHeight(), theEcorePackage.getEInt(), "logoHeight", null, 0, 1, LayoutOptions.class, !IS_TRANSIENT, !IS_VOLATILE, IS_CHANGEABLE, !IS_UNSETTABLE, !IS_ID, IS_UNIQUE, !IS_DERIVED, IS_ORDERED);
+		initEAttribute(getLayoutOptions_LogoOnCoverPage(), theEcorePackage.getEBoolean(), "logoOnCoverPage", null, 0, 1, LayoutOptions.class, !IS_TRANSIENT, !IS_VOLATILE, IS_CHANGEABLE, !IS_UNSETTABLE, !IS_ID, IS_UNIQUE, !IS_DERIVED, IS_ORDERED);
+		initEReference(getLayoutOptions_TableOfContentsTextOption(), this.getTextOption(), null, "tableOfContentsTextOption", null, 0, 1, LayoutOptions.class, !IS_TRANSIENT, !IS_VOLATILE, IS_CHANGEABLE, IS_COMPOSITE, !IS_RESOLVE_PROXIES, !IS_UNSETTABLE, IS_UNIQUE, !IS_DERIVED, IS_ORDERED);
+		initEAttribute(getLayoutOptions_HideTableOfContents(), theEcorePackage.getEBoolean(), "hideTableOfContents", null, 0, 1, LayoutOptions.class, !IS_TRANSIENT, !IS_VOLATILE, IS_CHANGEABLE, !IS_UNSETTABLE, !IS_ID, IS_UNIQUE, !IS_DERIVED, IS_ORDERED);
+		initEAttribute(getLayoutOptions_HideHeaderAndFooterOnCoverPage(), theEcorePackage.getEBoolean(), "hideHeaderAndFooterOnCoverPage", null, 0, 1, LayoutOptions.class, !IS_TRANSIENT, !IS_VOLATILE, IS_CHANGEABLE, !IS_UNSETTABLE, !IS_ID, IS_UNIQUE, !IS_DERIVED, IS_ORDERED);
 
 		initEClass(listOptionEClass, ListOption.class, "ListOption", !IS_ABSTRACT, !IS_INTERFACE, IS_GENERATED_INSTANCE_CLASS);
 		initEAttribute(getListOption_ListStyle(), this.getListStyle(), "listStyle", null, 0, 1, ListOption.class, !IS_TRANSIENT, !IS_VOLATILE, IS_CHANGEABLE, !IS_UNSETTABLE, !IS_ID, IS_UNIQUE, !IS_DERIVED, IS_ORDERED);
@@ -1381,6 +1349,7 @@ public class OptionsPackageImpl extends EPackageImpl implements OptionsPackage {
 		initEAttribute(getTextOption_Underline(), theEcorePackage.getEBoolean(), "underline", null, 0, 1, TextOption.class, !IS_TRANSIENT, !IS_VOLATILE, IS_CHANGEABLE, !IS_UNSETTABLE, !IS_ID, IS_UNIQUE, !IS_DERIVED, IS_ORDERED);
 		initEReference(getTextOption_FontColor(), this.getUColor(), null, "fontColor", null, 0, 1, TextOption.class, !IS_TRANSIENT, !IS_VOLATILE, IS_CHANGEABLE, IS_COMPOSITE, !IS_RESOLVE_PROXIES, !IS_UNSETTABLE, IS_UNIQUE, !IS_DERIVED, IS_ORDERED);
 		initEAttribute(getTextOption_TextAlign(), this.getTextAlign(), "textAlign", null, 0, 1, TextOption.class, !IS_TRANSIENT, !IS_VOLATILE, IS_CHANGEABLE, !IS_UNSETTABLE, !IS_ID, IS_UNIQUE, !IS_DERIVED, IS_ORDERED);
+		initEAttribute(getTextOption_Italics(), theEcorePackage.getEBoolean(), "italics", null, 0, 1, TextOption.class, !IS_TRANSIENT, !IS_VOLATILE, IS_CHANGEABLE, !IS_UNSETTABLE, !IS_ID, IS_UNIQUE, !IS_DERIVED, IS_ORDERED);
 
 		initEClass(referenceAttributeOptionEClass, ReferenceAttributeOption.class, "ReferenceAttributeOption", IS_ABSTRACT, !IS_INTERFACE, IS_GENERATED_INSTANCE_CLASS);
 		initEAttribute(getReferenceAttributeOption_Contained(), theEcorePackage.getEBoolean(), "contained", null, 0, 1, ReferenceAttributeOption.class, !IS_TRANSIENT, !IS_VOLATILE, IS_CHANGEABLE, !IS_UNSETTABLE, !IS_ID, IS_UNIQUE, !IS_DERIVED, IS_ORDERED);
@@ -1414,6 +1383,7 @@ public class OptionsPackageImpl extends EPackageImpl implements OptionsPackage {
 		initEAttribute(getBoxModelOption_KeepWithPrevious(), theEcorePackage.getEBoolean(), "keepWithPrevious", null, 0, 1, BoxModelOption.class, !IS_TRANSIENT, !IS_VOLATILE, IS_CHANGEABLE, !IS_UNSETTABLE, !IS_ID, IS_UNIQUE, !IS_DERIVED, IS_ORDERED);
 		initEAttribute(getBoxModelOption_KeepWithNext(), theEcorePackage.getEBoolean(), "keepWithNext", null, 0, 1, BoxModelOption.class, !IS_TRANSIENT, !IS_VOLATILE, IS_CHANGEABLE, !IS_UNSETTABLE, !IS_ID, IS_UNIQUE, !IS_DERIVED, IS_ORDERED);
 		initEAttribute(getBoxModelOption_BreakBefore(), theEcorePackage.getEBoolean(), "breakBefore", null, 0, 1, BoxModelOption.class, !IS_TRANSIENT, !IS_VOLATILE, IS_CHANGEABLE, !IS_UNSETTABLE, !IS_ID, IS_UNIQUE, !IS_DERIVED, IS_ORDERED);
+		initEAttribute(getBoxModelOption_Width(), theEcorePackage.getEInt(), "width", null, 0, 1, BoxModelOption.class, !IS_TRANSIENT, !IS_VOLATILE, IS_CHANGEABLE, !IS_UNSETTABLE, !IS_ID, IS_UNIQUE, !IS_DERIVED, IS_ORDERED);
 
 		initEClass(sectionOptionEClass, SectionOption.class, "SectionOption", !IS_ABSTRACT, !IS_INTERFACE, IS_GENERATED_INSTANCE_CLASS);
 		initEAttribute(getSectionOption_SectionNumberingStyle(), this.getSectionNumberingStyle(), "sectionNumberingStyle", null, 0, 1, SectionOption.class, !IS_TRANSIENT, !IS_VOLATILE, IS_CHANGEABLE, !IS_UNSETTABLE, !IS_ID, IS_UNIQUE, !IS_DERIVED, IS_ORDERED);
@@ -1428,6 +1398,15 @@ public class OptionsPackageImpl extends EPackageImpl implements OptionsPackage {
 		initEAttribute(getDateAttributeOption_DateStyle(), this.getDateStyle(), "dateStyle", null, 0, 1, DateAttributeOption.class, !IS_TRANSIENT, !IS_VOLATILE, IS_CHANGEABLE, !IS_UNSETTABLE, !IS_ID, IS_UNIQUE, !IS_DERIVED, IS_ORDERED);
 
 		// Initialize enums and add enum literals
+		initEEnum(pageCitationStyleEEnum, PageCitationStyle.class, "PageCitationStyle");
+		addEEnumLiteral(pageCitationStyleEEnum, PageCitationStyle.PAGE);
+		addEEnumLiteral(pageCitationStyleEEnum, PageCitationStyle.EMPTY);
+		addEEnumLiteral(pageCitationStyleEEnum, PageCitationStyle.PAGE_AND_LAST_PAGE);
+
+		initEEnum(headerStyleEEnum, HeaderStyle.class, "HeaderStyle");
+		addEEnumLiteral(headerStyleEEnum, HeaderStyle.ONLY_TEXT);
+		addEEnumLiteral(headerStyleEEnum, HeaderStyle.TEXT_AND_LOGO);
+
 		initEEnum(appendixStyleEEnum, AppendixStyle.class, "AppendixStyle");
 		addEEnumLiteral(appendixStyleEEnum, AppendixStyle.HIDE);
 		addEEnumLiteral(appendixStyleEEnum, AppendixStyle.SHOW_FLAT);
@@ -1435,11 +1414,9 @@ public class OptionsPackageImpl extends EPackageImpl implements OptionsPackage {
 
 		initEEnum(fontFamilyEEnum, FontFamily.class, "FontFamily");
 		addEEnumLiteral(fontFamilyEEnum, FontFamily.SANS_SERIF);
-		addEEnumLiteral(fontFamilyEEnum, FontFamily.VERDANA);
-		addEEnumLiteral(fontFamilyEEnum, FontFamily.TIMES_NEW_ROMAN);
-		addEEnumLiteral(fontFamilyEEnum, FontFamily.ARIAL);
-		addEEnumLiteral(fontFamilyEEnum, FontFamily.HELVETICA);
 		addEEnumLiteral(fontFamilyEEnum, FontFamily.SERIF);
+		addEEnumLiteral(fontFamilyEEnum, FontFamily.TIMES_NEW_ROMAN);
+		addEEnumLiteral(fontFamilyEEnum, FontFamily.HELVETICA);
 		addEEnumLiteral(fontFamilyEEnum, FontFamily.COURIER);
 
 		initEEnum(listStyleEEnum, ListStyle.class, "ListStyle");
@@ -1449,11 +1426,6 @@ public class OptionsPackageImpl extends EPackageImpl implements OptionsPackage {
 		addEEnumLiteral(listStyleEEnum, ListStyle.NUMBERED);
 		addEEnumLiteral(listStyleEEnum, ListStyle.ALPHA);
 		addEEnumLiteral(listStyleEEnum, ListStyle.TABLE);
-
-		initEEnum(pageNumberingStyleEEnum, PageNumberingStyle.class, "PageNumberingStyle");
-		addEEnumLiteral(pageNumberingStyleEEnum, PageNumberingStyle.PAGE_ONLY);
-		addEEnumLiteral(pageNumberingStyleEEnum, PageNumberingStyle.PAGE_OF_PAGE_COUNT);
-		addEEnumLiteral(pageNumberingStyleEEnum, PageNumberingStyle.EMPTY);
 
 		initEEnum(uBorderStyleEEnum, UBorderStyle.class, "UBorderStyle");
 		addEEnumLiteral(uBorderStyleEEnum, UBorderStyle.HIDDEN);
@@ -1494,4 +1466,4 @@ public class OptionsPackageImpl extends EPackageImpl implements OptionsPackage {
 		addEEnumLiteral(dateStyleEEnum, DateStyle.NUMERIC_YEAR);
 	}
 
-} //OptionsPackageImpl
+} // OptionsPackageImpl

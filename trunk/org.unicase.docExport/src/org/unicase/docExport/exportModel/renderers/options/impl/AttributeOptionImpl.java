@@ -22,6 +22,7 @@ import org.unicase.docExport.exportModel.renderers.options.OptionsPackage;
  *   <li>{@link org.unicase.docExport.exportModel.renderers.options.impl.AttributeOptionImpl#isHide <em>Hide</em>}</li>
  *   <li>{@link org.unicase.docExport.exportModel.renderers.options.impl.AttributeOptionImpl#isOverwriteGlobalOption <em>Overwrite Global Option</em>}</li>
  *   <li>{@link org.unicase.docExport.exportModel.renderers.options.impl.AttributeOptionImpl#getAttributeText <em>Attribute Text</em>}</li>
+ *   <li>{@link org.unicase.docExport.exportModel.renderers.options.impl.AttributeOptionImpl#getOrderNumber <em>Order Number</em>}</li>
  * </ul>
  * </p>
  *
@@ -87,6 +88,26 @@ public abstract class AttributeOptionImpl extends RendererOptionImpl implements 
 	 * @ordered
 	 */
 	protected String attributeText = ATTRIBUTE_TEXT_EDEFAULT;
+
+	/**
+	 * The default value of the '{@link #getOrderNumber() <em>Order Number</em>}' attribute.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @see #getOrderNumber()
+	 * @generated
+	 * @ordered
+	 */
+	protected static final int ORDER_NUMBER_EDEFAULT = 0;
+
+	/**
+	 * The cached value of the '{@link #getOrderNumber() <em>Order Number</em>}' attribute.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @see #getOrderNumber()
+	 * @generated
+	 * @ordered
+	 */
+	protected int orderNumber = ORDER_NUMBER_EDEFAULT;
 
 	/**
 	 * <!-- begin-user-doc -->
@@ -181,6 +202,27 @@ public abstract class AttributeOptionImpl extends RendererOptionImpl implements 
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
+	public int getOrderNumber() {
+		return orderNumber;
+	}
+
+	/**
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 */
+	public void setOrderNumber(int newOrderNumber) {
+		int oldOrderNumber = orderNumber;
+		orderNumber = newOrderNumber;
+		if (eNotificationRequired())
+			eNotify(new ENotificationImpl(this, Notification.SET, OptionsPackage.ATTRIBUTE_OPTION__ORDER_NUMBER, oldOrderNumber, orderNumber));
+	}
+
+	/**
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 */
 	@Override
 	public Object eGet(int featureID, boolean resolve, boolean coreType) {
 		switch (featureID) {
@@ -190,6 +232,8 @@ public abstract class AttributeOptionImpl extends RendererOptionImpl implements 
 				return isOverwriteGlobalOption() ? Boolean.TRUE : Boolean.FALSE;
 			case OptionsPackage.ATTRIBUTE_OPTION__ATTRIBUTE_TEXT:
 				return getAttributeText();
+			case OptionsPackage.ATTRIBUTE_OPTION__ORDER_NUMBER:
+				return new Integer(getOrderNumber());
 		}
 		return super.eGet(featureID, resolve, coreType);
 	}
@@ -210,6 +254,9 @@ public abstract class AttributeOptionImpl extends RendererOptionImpl implements 
 				return;
 			case OptionsPackage.ATTRIBUTE_OPTION__ATTRIBUTE_TEXT:
 				setAttributeText((String)newValue);
+				return;
+			case OptionsPackage.ATTRIBUTE_OPTION__ORDER_NUMBER:
+				setOrderNumber(((Integer)newValue).intValue());
 				return;
 		}
 		super.eSet(featureID, newValue);
@@ -232,6 +279,9 @@ public abstract class AttributeOptionImpl extends RendererOptionImpl implements 
 			case OptionsPackage.ATTRIBUTE_OPTION__ATTRIBUTE_TEXT:
 				setAttributeText(ATTRIBUTE_TEXT_EDEFAULT);
 				return;
+			case OptionsPackage.ATTRIBUTE_OPTION__ORDER_NUMBER:
+				setOrderNumber(ORDER_NUMBER_EDEFAULT);
+				return;
 		}
 		super.eUnset(featureID);
 	}
@@ -250,6 +300,8 @@ public abstract class AttributeOptionImpl extends RendererOptionImpl implements 
 				return overwriteGlobalOption != OVERWRITE_GLOBAL_OPTION_EDEFAULT;
 			case OptionsPackage.ATTRIBUTE_OPTION__ATTRIBUTE_TEXT:
 				return ATTRIBUTE_TEXT_EDEFAULT == null ? attributeText != null : !ATTRIBUTE_TEXT_EDEFAULT.equals(attributeText);
+			case OptionsPackage.ATTRIBUTE_OPTION__ORDER_NUMBER:
+				return orderNumber != ORDER_NUMBER_EDEFAULT;
 		}
 		return super.eIsSet(featureID);
 	}
@@ -270,6 +322,8 @@ public abstract class AttributeOptionImpl extends RendererOptionImpl implements 
 		result.append(overwriteGlobalOption);
 		result.append(", attributeText: ");
 		result.append(attributeText);
+		result.append(", orderNumber: ");
+		result.append(orderNumber);
 		result.append(')');
 		return result.toString();
 	}

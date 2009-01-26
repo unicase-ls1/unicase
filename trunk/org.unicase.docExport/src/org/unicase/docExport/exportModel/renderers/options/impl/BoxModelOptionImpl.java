@@ -51,6 +51,7 @@ import org.unicase.docExport.exportModel.renderers.options.UColor;
  *   <li>{@link org.unicase.docExport.exportModel.renderers.options.impl.BoxModelOptionImpl#isKeepWithPrevious <em>Keep With Previous</em>}</li>
  *   <li>{@link org.unicase.docExport.exportModel.renderers.options.impl.BoxModelOptionImpl#isKeepWithNext <em>Keep With Next</em>}</li>
  *   <li>{@link org.unicase.docExport.exportModel.renderers.options.impl.BoxModelOptionImpl#isBreakBefore <em>Break Before</em>}</li>
+ *   <li>{@link org.unicase.docExport.exportModel.renderers.options.impl.BoxModelOptionImpl#getWidth <em>Width</em>}</li>
  * </ul>
  * </p>
  *
@@ -476,6 +477,26 @@ public class BoxModelOptionImpl extends RendererOptionImpl implements BoxModelOp
 	 * @ordered
 	 */
 	protected boolean breakBefore = BREAK_BEFORE_EDEFAULT;
+
+	/**
+	 * The default value of the '{@link #getWidth() <em>Width</em>}' attribute.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @see #getWidth()
+	 * @generated
+	 * @ordered
+	 */
+	protected static final int WIDTH_EDEFAULT = 0;
+
+	/**
+	 * The cached value of the '{@link #getWidth() <em>Width</em>}' attribute.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @see #getWidth()
+	 * @generated
+	 * @ordered
+	 */
+	protected int width = WIDTH_EDEFAULT;
 
 	/**
 	 * <!-- begin-user-doc -->
@@ -999,6 +1020,27 @@ public class BoxModelOptionImpl extends RendererOptionImpl implements BoxModelOp
 			eNotify(new ENotificationImpl(this, Notification.SET, OptionsPackage.BOX_MODEL_OPTION__BREAK_BEFORE, oldBreakBefore, breakBefore));
 	}
 
+	/**
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 */
+	public int getWidth() {
+		return width;
+	}
+
+	/**
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 */
+	public void setWidth(int newWidth) {
+		int oldWidth = width;
+		width = newWidth;
+		if (eNotificationRequired())
+			eNotify(new ENotificationImpl(this, Notification.SET, OptionsPackage.BOX_MODEL_OPTION__WIDTH, oldWidth, width));
+	}
+
 	//custom code begin
 	/**
 	 * {@inheritDoc}
@@ -1081,6 +1123,8 @@ public class BoxModelOptionImpl extends RendererOptionImpl implements BoxModelOp
 				return isKeepWithNext() ? Boolean.TRUE : Boolean.FALSE;
 			case OptionsPackage.BOX_MODEL_OPTION__BREAK_BEFORE:
 				return isBreakBefore() ? Boolean.TRUE : Boolean.FALSE;
+			case OptionsPackage.BOX_MODEL_OPTION__WIDTH:
+				return new Integer(getWidth());
 		}
 		return super.eGet(featureID, resolve, coreType);
 	}
@@ -1158,6 +1202,9 @@ public class BoxModelOptionImpl extends RendererOptionImpl implements BoxModelOp
 				return;
 			case OptionsPackage.BOX_MODEL_OPTION__BREAK_BEFORE:
 				setBreakBefore(((Boolean)newValue).booleanValue());
+				return;
+			case OptionsPackage.BOX_MODEL_OPTION__WIDTH:
+				setWidth(((Integer)newValue).intValue());
 				return;
 		}
 		super.eSet(featureID, newValue);
@@ -1237,6 +1284,9 @@ public class BoxModelOptionImpl extends RendererOptionImpl implements BoxModelOp
 			case OptionsPackage.BOX_MODEL_OPTION__BREAK_BEFORE:
 				setBreakBefore(BREAK_BEFORE_EDEFAULT);
 				return;
+			case OptionsPackage.BOX_MODEL_OPTION__WIDTH:
+				setWidth(WIDTH_EDEFAULT);
+				return;
 		}
 		super.eUnset(featureID);
 	}
@@ -1293,6 +1343,8 @@ public class BoxModelOptionImpl extends RendererOptionImpl implements BoxModelOp
 				return keepWithNext != KEEP_WITH_NEXT_EDEFAULT;
 			case OptionsPackage.BOX_MODEL_OPTION__BREAK_BEFORE:
 				return breakBefore != BREAK_BEFORE_EDEFAULT;
+			case OptionsPackage.BOX_MODEL_OPTION__WIDTH:
+				return width != WIDTH_EDEFAULT;
 		}
 		return super.eIsSet(featureID);
 	}
@@ -1347,6 +1399,8 @@ public class BoxModelOptionImpl extends RendererOptionImpl implements BoxModelOp
 		result.append(keepWithNext);
 		result.append(", breakBefore: ");
 		result.append(breakBefore);
+		result.append(", width: ");
+		result.append(width);
 		result.append(')');
 		return result.toString();
 	}

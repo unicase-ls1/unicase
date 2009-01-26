@@ -12,7 +12,7 @@
       <genFeatures property="None" children="true" createChild="true" ecoreFeature="ecore:EReference exportModel.ecore#//Template/layoutOptions"/>
       <genFeatures property="None" children="true" createChild="true" ecoreFeature="ecore:EReference exportModel.ecore#//Template/globalRendererOptions"/>
       <genFeatures createChild="false" ecoreFeature="ecore:EAttribute exportModel.ecore#//Template/name"/>
-      <genFeatures createChild="false" ecoreFeature="ecore:EAttribute exportModel.ecore#//Template/logoImage"/>
+      <genFeatures createChild="false" ecoreFeature="ecore:EAttribute exportModel.ecore#//Template/defaultTemplate"/>
     </genClasses>
     <nestedGenPackages prefix="Renderers" basePackage="org.unicase.docExport.exportModel"
         disposableProviderFactory="true" ecorePackage="exportModel.ecore#//renderers">
@@ -51,6 +51,15 @@
       </nestedGenPackages>
       <nestedGenPackages prefix="Options" basePackage="org.unicase.docExport.exportModel.renderers"
           disposableProviderFactory="true" ecorePackage="exportModel.ecore#//renderers/options">
+        <genEnums typeSafeEnumCompatible="false" ecoreEnum="exportModel.ecore#//renderers/options/PageCitationStyle">
+          <genEnumLiterals ecoreEnumLiteral="exportModel.ecore#//renderers/options/PageCitationStyle/PAGE"/>
+          <genEnumLiterals ecoreEnumLiteral="exportModel.ecore#//renderers/options/PageCitationStyle/EMPTY"/>
+          <genEnumLiterals ecoreEnumLiteral="exportModel.ecore#//renderers/options/PageCitationStyle/PAGE_AND_LAST_PAGE"/>
+        </genEnums>
+        <genEnums typeSafeEnumCompatible="false" ecoreEnum="exportModel.ecore#//renderers/options/HeaderStyle">
+          <genEnumLiterals ecoreEnumLiteral="exportModel.ecore#//renderers/options/HeaderStyle/ONLY_TEXT"/>
+          <genEnumLiterals ecoreEnumLiteral="exportModel.ecore#//renderers/options/HeaderStyle/TEXT_AND_LOGO"/>
+        </genEnums>
         <genEnums typeSafeEnumCompatible="false" ecoreEnum="exportModel.ecore#//renderers/options/AppendixStyle">
           <genEnumLiterals ecoreEnumLiteral="exportModel.ecore#//renderers/options/AppendixStyle/HIDE"/>
           <genEnumLiterals ecoreEnumLiteral="exportModel.ecore#//renderers/options/AppendixStyle/SHOW_FLAT"/>
@@ -58,11 +67,9 @@
         </genEnums>
         <genEnums typeSafeEnumCompatible="false" ecoreEnum="exportModel.ecore#//renderers/options/FontFamily">
           <genEnumLiterals ecoreEnumLiteral="exportModel.ecore#//renderers/options/FontFamily/SANS_SERIF"/>
-          <genEnumLiterals ecoreEnumLiteral="exportModel.ecore#//renderers/options/FontFamily/VERDANA"/>
-          <genEnumLiterals ecoreEnumLiteral="exportModel.ecore#//renderers/options/FontFamily/TIMES_NEW_ROMAN"/>
-          <genEnumLiterals ecoreEnumLiteral="exportModel.ecore#//renderers/options/FontFamily/ARIAL"/>
-          <genEnumLiterals ecoreEnumLiteral="exportModel.ecore#//renderers/options/FontFamily/HELVETICA"/>
           <genEnumLiterals ecoreEnumLiteral="exportModel.ecore#//renderers/options/FontFamily/SERIF"/>
+          <genEnumLiterals ecoreEnumLiteral="exportModel.ecore#//renderers/options/FontFamily/TIMES_NEW_ROMAN"/>
+          <genEnumLiterals ecoreEnumLiteral="exportModel.ecore#//renderers/options/FontFamily/HELVETICA"/>
           <genEnumLiterals ecoreEnumLiteral="exportModel.ecore#//renderers/options/FontFamily/COURIER"/>
         </genEnums>
         <genEnums typeSafeEnumCompatible="false" ecoreEnum="exportModel.ecore#//renderers/options/ListStyle">
@@ -72,11 +79,6 @@
           <genEnumLiterals ecoreEnumLiteral="exportModel.ecore#//renderers/options/ListStyle/NUMBERED"/>
           <genEnumLiterals ecoreEnumLiteral="exportModel.ecore#//renderers/options/ListStyle/ALPHA"/>
           <genEnumLiterals ecoreEnumLiteral="exportModel.ecore#//renderers/options/ListStyle/TABLE"/>
-        </genEnums>
-        <genEnums typeSafeEnumCompatible="false" ecoreEnum="exportModel.ecore#//renderers/options/PageNumberingStyle">
-          <genEnumLiterals ecoreEnumLiteral="exportModel.ecore#//renderers/options/PageNumberingStyle/PAGE_ONLY"/>
-          <genEnumLiterals ecoreEnumLiteral="exportModel.ecore#//renderers/options/PageNumberingStyle/PAGE_OF_PAGE_COUNT"/>
-          <genEnumLiterals ecoreEnumLiteral="exportModel.ecore#//renderers/options/PageNumberingStyle/EMPTY"/>
         </genEnums>
         <genEnums typeSafeEnumCompatible="false" ecoreEnum="exportModel.ecore#//renderers/options/UBorderStyle">
           <genEnumLiterals ecoreEnumLiteral="exportModel.ecore#//renderers/options/UBorderStyle/HIDDEN"/>
@@ -123,6 +125,7 @@
           <genFeatures createChild="false" ecoreFeature="ecore:EAttribute exportModel.ecore#//renderers/options/AttributeOption/hide"/>
           <genFeatures createChild="false" ecoreFeature="ecore:EAttribute exportModel.ecore#//renderers/options/AttributeOption/overwriteGlobalOption"/>
           <genFeatures createChild="false" ecoreFeature="ecore:EAttribute exportModel.ecore#//renderers/options/AttributeOption/attributeText"/>
+          <genFeatures createChild="false" ecoreFeature="ecore:EAttribute exportModel.ecore#//renderers/options/AttributeOption/orderNumber"/>
         </genClasses>
         <genClasses ecoreClass="exportModel.ecore#//renderers/options/SingleReferenceAttributeOption">
           <genFeatures notify="false" createChild="false" propertySortChoices="true"
@@ -133,23 +136,18 @@
               ecoreFeature="ecore:EReference exportModel.ecore#//renderers/options/MultiReferenceAttributeOption/globalOption"/>
           <genFeatures property="None" children="true" createChild="true" ecoreFeature="ecore:EReference exportModel.ecore#//renderers/options/MultiReferenceAttributeOption/listOption"/>
         </genClasses>
-        <genClasses ecoreClass="exportModel.ecore#//renderers/options/ReferenceOption">
-          <genFeatures property="None" children="true" createChild="true" ecoreFeature="ecore:EReference exportModel.ecore#//renderers/options/ReferenceOption/textOption"/>
-        </genClasses>
+        <genClasses ecoreClass="exportModel.ecore#//renderers/options/ReferenceOption"/>
         <genClasses ecoreClass="exportModel.ecore#//renderers/options/StringAttributeOption">
           <genFeatures notify="false" createChild="false" propertySortChoices="true"
               ecoreFeature="ecore:EReference exportModel.ecore#//renderers/options/StringAttributeOption/globalOption"/>
-          <genFeatures property="None" children="true" createChild="true" ecoreFeature="ecore:EReference exportModel.ecore#//renderers/options/StringAttributeOption/textOption"/>
         </genClasses>
         <genClasses ecoreClass="exportModel.ecore#//renderers/options/LayoutOptions">
-          <genFeatures createChild="false" ecoreFeature="ecore:EAttribute exportModel.ecore#//renderers/options/LayoutOptions/coverText"/>
-          <genFeatures property="None" children="true" createChild="true" ecoreFeature="ecore:EReference exportModel.ecore#//renderers/options/LayoutOptions/coverTextTextOption"/>
+          <genFeatures property="None" children="true" createChild="true" ecoreFeature="ecore:EReference exportModel.ecore#//renderers/options/LayoutOptions/headerTextOption"/>
           <genFeatures property="None" children="true" createChild="true" ecoreFeature="ecore:EReference exportModel.ecore#//renderers/options/LayoutOptions/defaultTextOption"/>
           <genFeatures property="None" children="true" createChild="true" ecoreFeature="ecore:EReference exportModel.ecore#//renderers/options/LayoutOptions/sectionTextOption"/>
           <genFeatures createChild="false" ecoreFeature="ecore:EAttribute exportModel.ecore#//renderers/options/LayoutOptions/hideAnnotations"/>
           <genFeatures createChild="false" ecoreFeature="ecore:EAttribute exportModel.ecore#//renderers/options/LayoutOptions/hideAttachments"/>
           <genFeatures createChild="false" ecoreFeature="ecore:EAttribute exportModel.ecore#//renderers/options/LayoutOptions/hideIncomingDocumentReferences"/>
-          <genFeatures createChild="false" ecoreFeature="ecore:EAttribute exportModel.ecore#//renderers/options/LayoutOptions/pageNumberingStyle"/>
           <genFeatures createChild="false" ecoreFeature="ecore:EAttribute exportModel.ecore#//renderers/options/LayoutOptions/hideModelElementImages"/>
           <genFeatures property="None" children="true" createChild="true" ecoreFeature="ecore:EReference exportModel.ecore#//renderers/options/LayoutOptions/modelElementTextOption"/>
           <genFeatures createChild="false" ecoreFeature="ecore:EAttribute exportModel.ecore#//renderers/options/LayoutOptions/headerText"/>
@@ -159,8 +157,18 @@
           <genFeatures createChild="false" ecoreFeature="ecore:EAttribute exportModel.ecore#//renderers/options/LayoutOptions/sectionFontSizeDecreaseStep"/>
           <genFeatures property="None" children="true" createChild="true" ecoreFeature="ecore:EReference exportModel.ecore#//renderers/options/LayoutOptions/documentTitleTextOption"/>
           <genFeatures createChild="false" ecoreFeature="ecore:EAttribute exportModel.ecore#//renderers/options/LayoutOptions/showModelElementTypeInSectionTitle"/>
-          <genFeatures property="None" children="true" createChild="true" ecoreFeature="ecore:EReference exportModel.ecore#//renderers/options/LayoutOptions/attributeTextOption"/>
           <genFeatures createChild="false" ecoreFeature="ecore:EAttribute exportModel.ecore#//renderers/options/LayoutOptions/appendixStyle"/>
+          <genFeatures createChild="false" ecoreFeature="ecore:EAttribute exportModel.ecore#//renderers/options/LayoutOptions/logoImage"/>
+          <genFeatures property="None" children="true" createChild="true" ecoreFeature="ecore:EReference exportModel.ecore#//renderers/options/LayoutOptions/footerTextOption"/>
+          <genFeatures createChild="false" ecoreFeature="ecore:EAttribute exportModel.ecore#//renderers/options/LayoutOptions/footerShowDocumentTitle"/>
+          <genFeatures createChild="false" ecoreFeature="ecore:EAttribute exportModel.ecore#//renderers/options/LayoutOptions/pageCitationStyle"/>
+          <genFeatures createChild="false" ecoreFeature="ecore:EAttribute exportModel.ecore#//renderers/options/LayoutOptions/headerStyle"/>
+          <genFeatures createChild="false" ecoreFeature="ecore:EAttribute exportModel.ecore#//renderers/options/LayoutOptions/logoWidth"/>
+          <genFeatures createChild="false" ecoreFeature="ecore:EAttribute exportModel.ecore#//renderers/options/LayoutOptions/logoHeight"/>
+          <genFeatures createChild="false" ecoreFeature="ecore:EAttribute exportModel.ecore#//renderers/options/LayoutOptions/logoOnCoverPage"/>
+          <genFeatures property="None" children="true" createChild="true" ecoreFeature="ecore:EReference exportModel.ecore#//renderers/options/LayoutOptions/tableOfContentsTextOption"/>
+          <genFeatures createChild="false" ecoreFeature="ecore:EAttribute exportModel.ecore#//renderers/options/LayoutOptions/hideTableOfContents"/>
+          <genFeatures createChild="false" ecoreFeature="ecore:EAttribute exportModel.ecore#//renderers/options/LayoutOptions/hideHeaderAndFooterOnCoverPage"/>
         </genClasses>
         <genClasses ecoreClass="exportModel.ecore#//renderers/options/ListOption">
           <genFeatures createChild="false" ecoreFeature="ecore:EAttribute exportModel.ecore#//renderers/options/ListOption/listStyle"/>
@@ -172,6 +180,7 @@
           <genFeatures createChild="false" ecoreFeature="ecore:EAttribute exportModel.ecore#//renderers/options/TextOption/underline"/>
           <genFeatures property="None" children="true" createChild="true" ecoreFeature="ecore:EReference exportModel.ecore#//renderers/options/TextOption/fontColor"/>
           <genFeatures createChild="false" ecoreFeature="ecore:EAttribute exportModel.ecore#//renderers/options/TextOption/textAlign"/>
+          <genFeatures createChild="false" ecoreFeature="ecore:EAttribute exportModel.ecore#//renderers/options/TextOption/italics"/>
         </genClasses>
         <genClasses image="false" ecoreClass="exportModel.ecore#//renderers/options/ReferenceAttributeOption">
           <genFeatures createChild="false" ecoreFeature="ecore:EAttribute exportModel.ecore#//renderers/options/ReferenceAttributeOption/contained"/>
@@ -206,6 +215,7 @@
           <genFeatures createChild="false" ecoreFeature="ecore:EAttribute exportModel.ecore#//renderers/options/BoxModelOption/keepWithPrevious"/>
           <genFeatures createChild="false" ecoreFeature="ecore:EAttribute exportModel.ecore#//renderers/options/BoxModelOption/keepWithNext"/>
           <genFeatures createChild="false" ecoreFeature="ecore:EAttribute exportModel.ecore#//renderers/options/BoxModelOption/breakBefore"/>
+          <genFeatures createChild="false" ecoreFeature="ecore:EAttribute exportModel.ecore#//renderers/options/BoxModelOption/width"/>
         </genClasses>
         <genClasses ecoreClass="exportModel.ecore#//renderers/options/SectionOption">
           <genFeatures createChild="false" ecoreFeature="ecore:EAttribute exportModel.ecore#//renderers/options/SectionOption/sectionNumberingStyle"/>

@@ -21,6 +21,7 @@ package org.unicase.docExport.exportModel.renderers.options;
  *   <li>{@link org.unicase.docExport.exportModel.renderers.options.TextOption#isUnderline <em>Underline</em>}</li>
  *   <li>{@link org.unicase.docExport.exportModel.renderers.options.TextOption#getFontColor <em>Font Color</em>}</li>
  *   <li>{@link org.unicase.docExport.exportModel.renderers.options.TextOption#getTextAlign <em>Text Align</em>}</li>
+ *   <li>{@link org.unicase.docExport.exportModel.renderers.options.TextOption#isItalics <em>Italics</em>}</li>
  * </ul>
  * </p>
  *
@@ -140,6 +141,32 @@ public interface TextOption extends RendererOption {
 	 * @generated
 	 */
 	void setTextAlign(TextAlign value);
+
+	/**
+	 * Returns the value of the '<em><b>Italics</b></em>' attribute.
+	 * <!-- begin-user-doc -->
+	 * <p>
+	 * If the meaning of the '<em>Italics</em>' attribute isn't clear,
+	 * there really should be more of a description here...
+	 * </p>
+	 * <!-- end-user-doc -->
+	 * @return the value of the '<em>Italics</em>' attribute.
+	 * @see #setItalics(boolean)
+	 * @see org.unicase.docExport.exportModel.renderers.options.OptionsPackage#getTextOption_Italics()
+	 * @model
+	 * @generated
+	 */
+	boolean isItalics();
+
+	/**
+	 * Sets the value of the '{@link org.unicase.docExport.exportModel.renderers.options.TextOption#isItalics <em>Italics</em>}' attribute.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @param value the new value of the '<em>Italics</em>' attribute.
+	 * @see #isItalics()
+	 * @generated
+	 */
+	void setItalics(boolean value);
 
 	/**
 	 * Returns the value of the '<em><b>Bold</b></em>' attribute.

@@ -1,8 +1,5 @@
 /**
- * <copyright>
- * </copyright>
- *
- * $Id$
+ * <copyright> </copyright> $Id$
  */
 package org.unicase.docExport.exportModel.renderers.specialRenderers.impl;
 
@@ -15,9 +12,10 @@ import org.eclipse.emf.ecore.EClass;
 import org.eclipse.emf.ecore.EStructuralFeature;
 import org.unicase.docExport.exportModel.Template;
 import org.unicase.docExport.exportModel.renderers.elements.UCompositeSection;
+import org.unicase.docExport.exportModel.renderers.elements.ULink;
 import org.unicase.docExport.exportModel.renderers.elements.UParagraph;
-import org.unicase.docExport.exportModel.renderers.elements.UTableCell;
 import org.unicase.docExport.exportModel.renderers.elements.UTable;
+import org.unicase.docExport.exportModel.renderers.elements.UTableCell;
 import org.unicase.docExport.exportModel.renderers.impl.AttributeRendererImpl;
 import org.unicase.docExport.exportModel.renderers.options.UBorderStyle;
 import org.unicase.docExport.exportModel.renderers.specialRenderers.SpecialRenderersPackage;
@@ -28,18 +26,17 @@ import org.unicase.model.requirement.Step;
 import org.unicase.workspace.util.WorkspaceUtil;
 
 /**
- * <!-- begin-user-doc -->
- * An implementation of the model object '<em><b>Steps Attribute Renderer</b></em>'.
- * <!-- end-user-doc -->
+ * <!-- begin-user-doc --> An implementation of the model object '<em><b>Steps Attribute Renderer</b></em>'. <!--
+ * end-user-doc -->
  * <p>
  * </p>
- *
+ * 
  * @generated
  */
 public class StepsAttributeRendererImpl extends AttributeRendererImpl implements StepsAttributeRenderer {
 	/**
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
+	 * <!-- begin-user-doc --> <!-- end-user-doc -->
+	 * 
 	 * @generated
 	 */
 	protected StepsAttributeRendererImpl() {
@@ -47,8 +44,8 @@ public class StepsAttributeRendererImpl extends AttributeRendererImpl implements
 	}
 
 	/**
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
+	 * <!-- begin-user-doc --> <!-- end-user-doc -->
+	 * 
 	 * @generated
 	 */
 	@Override
@@ -56,30 +53,23 @@ public class StepsAttributeRendererImpl extends AttributeRendererImpl implements
 		return SpecialRenderersPackage.Literals.STEPS_ATTRIBUTE_RENDERER;
 	}
 
-	//begin custom code
+	// begin custom code
 	@SuppressWarnings("unchecked")
-	public void render(
-			EStructuralFeature feature, 
-			ModelElement modelElement,
-			UCompositeSection section, 
-			Template template) {
+	public void render(EStructuralFeature feature, ModelElement modelElement, UCompositeSection section,
+		Template template) {
 
 		Object object = modelElement.eGet(feature);
-		
-		if (!feature.getEGenericType().getEClassifier().getName().equals(RequirementPackage.eINSTANCE.getStep().getName())
-				|| !(object instanceof EList)
-		) {
-			WorkspaceUtil.log(
-					"This Attribute renderer can only render a set of Steps.", 
-					new Exception(), 
-					IStatus.ERROR
-				);
+
+		if (!feature.getEGenericType().getEClassifier().getName().equals(
+			RequirementPackage.eINSTANCE.getStep().getName())
+			|| !(object instanceof EList)) {
+			WorkspaceUtil
+				.log("This Attribute renderer can only render a set of Steps.", new Exception(), IStatus.ERROR);
 			return;
 		}
 
-		
 		EList<Step> steps = (EList<Step>) modelElement.eGet(feature);
-		
+
 		UTable table = new UTable(2);
 		table.getBoxModel().setMarginTop(10);
 		table.getBoxModel().setMarginBottom(10);
@@ -87,42 +77,69 @@ public class StepsAttributeRendererImpl extends AttributeRendererImpl implements
 		actorSteps.getBoxModel().setBackgroundColor(new Color(230, 230, 230));
 		actorSteps.getBoxModel().setBorderStyle(UBorderStyle.SOLID);
 		actorSteps.getBoxModel().setBorderBottom(0.5);
+		actorSteps.getBoxModel().setKeepWithNext(true);
 		UTableCell systemSteps = new UTableCell("System steps", template.getLayoutOptions().getDefaultTextOption());
 		systemSteps.getBoxModel().setBackgroundColor(new Color(230, 230, 230));
 		systemSteps.getBoxModel().setBorderStyle(UBorderStyle.SOLID);
 		systemSteps.getBoxModel().setBorderBottom(0.5);
+		systemSteps.getBoxModel().setKeepWithNext(true);
 		table.addCell(actorSteps);
 		table.addCell(systemSteps);
-		
-		
+
 		for (Step step : steps) {
 			UTableCell userCol = new UTableCell("");
 			userCol.getBoxModel().setBorderStyle(UBorderStyle.DASHED);
 			userCol.getBoxModel().setBorderBottom(0.5);
-			
+
 			UTableCell systemCol = new UTableCell("");
 			systemCol.getBoxModel().setBorderStyle(UBorderStyle.DASHED);
 			systemCol.getBoxModel().setBorderBottom(0.5);
-			
+
 			table.addCell(userCol);
 			table.addCell(systemCol);
-			
+
+			UParagraph content = new UParagraph("");
+
+			if (step.getName().length() > 0) {
+				UParagraph stepName = new UParagraph(step.getName() + ":", template.getLayoutOptions()
+					.getDefaultTextOption());
+				content.add(stepName);
+				stepName.getOption().setBold(true);
+			}
+
+			UParagraph stepDescription = new UParagraph(WorkspaceUtil.cleanFormatedText(step.getDescription()),
+				template.getLayoutOptions().getDefaultTextOption());
+			stepDescription.getBoxModel().setKeepWithPrevious(true);
+			content.add(stepDescription);
+
+			if (step.getIncludedUseCase() != null) {
+				UParagraph includedUseCase = new UParagraph("Included Usecase:", template.getLayoutOptions()
+					.getDefaultTextOption());
+				includedUseCase.getBoxModel().setKeepWithPrevious(true);
+				content.add(includedUseCase);
+				includedUseCase.getOption().setUnderline(true);
+				ULink link = new ULink(step.getIncludedUseCase().getName(), step.getIncludedUseCase()
+					.getModelElementId().getId());
+				content.add(link);
+				link.getBoxModel().setKeepWithPrevious(true);
+				link.setOption(template.getLayoutOptions().getDefaultTextOption());
+			}
+
 			if (step.isUserStep()) {
-				userCol.setContent(new UParagraph(WorkspaceUtil.cleanFormatedText(step.getDescription()),  template.getLayoutOptions().getDefaultTextOption()));
-				
+				userCol.setContent(content);
 			} else {
-				systemCol.setContent(new UParagraph(WorkspaceUtil.cleanFormatedText(step.getDescription()),  template.getLayoutOptions().getDefaultTextOption()));
+				systemCol.setContent(content);
 			}
 		}
-		
+
 		ArrayList<UTableCell> entries = table.getEntries();
-		
-		//remove border line of last row
-		entries.get(entries.size()-1).getBoxModel().setBorderBottom(0);
-		entries.get(entries.size()-2).getBoxModel().setBorderBottom(0);
-		
+
+		// remove border line of last row
+		entries.get(entries.size() - 1).getBoxModel().setBorderBottom(0);
+		entries.get(entries.size() - 2).getBoxModel().setBorderBottom(0);
+
 		section.add(table);
 	}
-	//end custom code
-	
-} //StepsAttributeRendererImpl
+	// end custom code
+
+} // StepsAttributeRendererImpl

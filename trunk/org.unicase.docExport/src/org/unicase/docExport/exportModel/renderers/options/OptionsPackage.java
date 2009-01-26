@@ -135,13 +135,22 @@ public interface OptionsPackage extends EPackage {
 	int ATTRIBUTE_OPTION__ATTRIBUTE_TEXT = RENDERER_OPTION_FEATURE_COUNT + 2;
 
 	/**
+	 * The feature id for the '<em><b>Order Number</b></em>' attribute.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 * @ordered
+	 */
+	int ATTRIBUTE_OPTION__ORDER_NUMBER = RENDERER_OPTION_FEATURE_COUNT + 3;
+
+	/**
 	 * The number of structural features of the '<em>Attribute Option</em>' class.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
 	 * @generated
 	 * @ordered
 	 */
-	int ATTRIBUTE_OPTION_FEATURE_COUNT = RENDERER_OPTION_FEATURE_COUNT + 3;
+	int ATTRIBUTE_OPTION_FEATURE_COUNT = RENDERER_OPTION_FEATURE_COUNT + 4;
 
 	/**
 	 * The meta object id for the '{@link org.unicase.docExport.exportModel.renderers.options.impl.ReferenceAttributeOptionImpl <em>Reference Attribute Option</em>}' class.
@@ -188,6 +197,15 @@ public interface OptionsPackage extends EPackage {
 	 * @ordered
 	 */
 	int REFERENCE_ATTRIBUTE_OPTION__ATTRIBUTE_TEXT = ATTRIBUTE_OPTION__ATTRIBUTE_TEXT;
+
+	/**
+	 * The feature id for the '<em><b>Order Number</b></em>' attribute.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 * @ordered
+	 */
+	int REFERENCE_ATTRIBUTE_OPTION__ORDER_NUMBER = ATTRIBUTE_OPTION__ORDER_NUMBER;
 
 	/**
 	 * The feature id for the '<em><b>Contained</b></em>' attribute.
@@ -261,6 +279,15 @@ public interface OptionsPackage extends EPackage {
 	 * @ordered
 	 */
 	int SINGLE_REFERENCE_ATTRIBUTE_OPTION__ATTRIBUTE_TEXT = REFERENCE_ATTRIBUTE_OPTION__ATTRIBUTE_TEXT;
+
+	/**
+	 * The feature id for the '<em><b>Order Number</b></em>' attribute.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 * @ordered
+	 */
+	int SINGLE_REFERENCE_ATTRIBUTE_OPTION__ORDER_NUMBER = REFERENCE_ATTRIBUTE_OPTION__ORDER_NUMBER;
 
 	/**
 	 * The feature id for the '<em><b>Contained</b></em>' attribute.
@@ -345,6 +372,15 @@ public interface OptionsPackage extends EPackage {
 	int MULTI_REFERENCE_ATTRIBUTE_OPTION__ATTRIBUTE_TEXT = REFERENCE_ATTRIBUTE_OPTION__ATTRIBUTE_TEXT;
 
 	/**
+	 * The feature id for the '<em><b>Order Number</b></em>' attribute.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 * @ordered
+	 */
+	int MULTI_REFERENCE_ATTRIBUTE_OPTION__ORDER_NUMBER = REFERENCE_ATTRIBUTE_OPTION__ORDER_NUMBER;
+
+	/**
 	 * The feature id for the '<em><b>Contained</b></em>' attribute.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
@@ -409,22 +445,13 @@ public interface OptionsPackage extends EPackage {
 	int REFERENCE_OPTION__NAME = RENDERER_OPTION__NAME;
 
 	/**
-	 * The feature id for the '<em><b>Text Option</b></em>' containment reference.
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
-	 * @generated
-	 * @ordered
-	 */
-	int REFERENCE_OPTION__TEXT_OPTION = RENDERER_OPTION_FEATURE_COUNT + 0;
-
-	/**
 	 * The number of structural features of the '<em>Reference Option</em>' class.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
 	 * @generated
 	 * @ordered
 	 */
-	int REFERENCE_OPTION_FEATURE_COUNT = RENDERER_OPTION_FEATURE_COUNT + 1;
+	int REFERENCE_OPTION_FEATURE_COUNT = RENDERER_OPTION_FEATURE_COUNT + 0;
 
 	/**
 	 * The meta object id for the '{@link org.unicase.docExport.exportModel.renderers.options.impl.StringAttributeOptionImpl <em>String Attribute Option</em>}' class.
@@ -473,6 +500,15 @@ public interface OptionsPackage extends EPackage {
 	int STRING_ATTRIBUTE_OPTION__ATTRIBUTE_TEXT = ATTRIBUTE_OPTION__ATTRIBUTE_TEXT;
 
 	/**
+	 * The feature id for the '<em><b>Order Number</b></em>' attribute.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 * @ordered
+	 */
+	int STRING_ATTRIBUTE_OPTION__ORDER_NUMBER = ATTRIBUTE_OPTION__ORDER_NUMBER;
+
+	/**
 	 * The feature id for the '<em><b>Global Option</b></em>' reference.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
@@ -482,22 +518,13 @@ public interface OptionsPackage extends EPackage {
 	int STRING_ATTRIBUTE_OPTION__GLOBAL_OPTION = ATTRIBUTE_OPTION_FEATURE_COUNT + 0;
 
 	/**
-	 * The feature id for the '<em><b>Text Option</b></em>' containment reference.
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
-	 * @generated
-	 * @ordered
-	 */
-	int STRING_ATTRIBUTE_OPTION__TEXT_OPTION = ATTRIBUTE_OPTION_FEATURE_COUNT + 1;
-
-	/**
 	 * The number of structural features of the '<em>String Attribute Option</em>' class.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
 	 * @generated
 	 * @ordered
 	 */
-	int STRING_ATTRIBUTE_OPTION_FEATURE_COUNT = ATTRIBUTE_OPTION_FEATURE_COUNT + 2;
+	int STRING_ATTRIBUTE_OPTION_FEATURE_COUNT = ATTRIBUTE_OPTION_FEATURE_COUNT + 1;
 
 	/**
 	 * The meta object id for the '{@link org.unicase.docExport.exportModel.renderers.options.impl.LayoutOptionsImpl <em>Layout Options</em>}' class.
@@ -519,22 +546,13 @@ public interface OptionsPackage extends EPackage {
 	int LAYOUT_OPTIONS__NAME = RENDERER_OPTION__NAME;
 
 	/**
-	 * The feature id for the '<em><b>Cover Text</b></em>' attribute.
+	 * The feature id for the '<em><b>Header Text Option</b></em>' containment reference.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
 	 * @generated
 	 * @ordered
 	 */
-	int LAYOUT_OPTIONS__COVER_TEXT = RENDERER_OPTION_FEATURE_COUNT + 0;
-
-	/**
-	 * The feature id for the '<em><b>Cover Text Text Option</b></em>' containment reference.
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
-	 * @generated
-	 * @ordered
-	 */
-	int LAYOUT_OPTIONS__COVER_TEXT_TEXT_OPTION = RENDERER_OPTION_FEATURE_COUNT + 1;
+	int LAYOUT_OPTIONS__HEADER_TEXT_OPTION = RENDERER_OPTION_FEATURE_COUNT + 0;
 
 	/**
 	 * The feature id for the '<em><b>Default Text Option</b></em>' containment reference.
@@ -543,7 +561,7 @@ public interface OptionsPackage extends EPackage {
 	 * @generated
 	 * @ordered
 	 */
-	int LAYOUT_OPTIONS__DEFAULT_TEXT_OPTION = RENDERER_OPTION_FEATURE_COUNT + 2;
+	int LAYOUT_OPTIONS__DEFAULT_TEXT_OPTION = RENDERER_OPTION_FEATURE_COUNT + 1;
 
 	/**
 	 * The feature id for the '<em><b>Section Text Option</b></em>' containment reference.
@@ -552,7 +570,7 @@ public interface OptionsPackage extends EPackage {
 	 * @generated
 	 * @ordered
 	 */
-	int LAYOUT_OPTIONS__SECTION_TEXT_OPTION = RENDERER_OPTION_FEATURE_COUNT + 3;
+	int LAYOUT_OPTIONS__SECTION_TEXT_OPTION = RENDERER_OPTION_FEATURE_COUNT + 2;
 
 	/**
 	 * The feature id for the '<em><b>Hide Annotations</b></em>' attribute.
@@ -561,7 +579,7 @@ public interface OptionsPackage extends EPackage {
 	 * @generated
 	 * @ordered
 	 */
-	int LAYOUT_OPTIONS__HIDE_ANNOTATIONS = RENDERER_OPTION_FEATURE_COUNT + 4;
+	int LAYOUT_OPTIONS__HIDE_ANNOTATIONS = RENDERER_OPTION_FEATURE_COUNT + 3;
 
 	/**
 	 * The feature id for the '<em><b>Hide Attachments</b></em>' attribute.
@@ -570,7 +588,7 @@ public interface OptionsPackage extends EPackage {
 	 * @generated
 	 * @ordered
 	 */
-	int LAYOUT_OPTIONS__HIDE_ATTACHMENTS = RENDERER_OPTION_FEATURE_COUNT + 5;
+	int LAYOUT_OPTIONS__HIDE_ATTACHMENTS = RENDERER_OPTION_FEATURE_COUNT + 4;
 
 	/**
 	 * The feature id for the '<em><b>Hide Incoming Document References</b></em>' attribute.
@@ -579,16 +597,7 @@ public interface OptionsPackage extends EPackage {
 	 * @generated
 	 * @ordered
 	 */
-	int LAYOUT_OPTIONS__HIDE_INCOMING_DOCUMENT_REFERENCES = RENDERER_OPTION_FEATURE_COUNT + 6;
-
-	/**
-	 * The feature id for the '<em><b>Page Numbering Style</b></em>' attribute.
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
-	 * @generated
-	 * @ordered
-	 */
-	int LAYOUT_OPTIONS__PAGE_NUMBERING_STYLE = RENDERER_OPTION_FEATURE_COUNT + 7;
+	int LAYOUT_OPTIONS__HIDE_INCOMING_DOCUMENT_REFERENCES = RENDERER_OPTION_FEATURE_COUNT + 5;
 
 	/**
 	 * The feature id for the '<em><b>Hide Model Element Images</b></em>' attribute.
@@ -597,7 +606,7 @@ public interface OptionsPackage extends EPackage {
 	 * @generated
 	 * @ordered
 	 */
-	int LAYOUT_OPTIONS__HIDE_MODEL_ELEMENT_IMAGES = RENDERER_OPTION_FEATURE_COUNT + 8;
+	int LAYOUT_OPTIONS__HIDE_MODEL_ELEMENT_IMAGES = RENDERER_OPTION_FEATURE_COUNT + 6;
 
 	/**
 	 * The feature id for the '<em><b>Model Element Text Option</b></em>' containment reference.
@@ -606,7 +615,7 @@ public interface OptionsPackage extends EPackage {
 	 * @generated
 	 * @ordered
 	 */
-	int LAYOUT_OPTIONS__MODEL_ELEMENT_TEXT_OPTION = RENDERER_OPTION_FEATURE_COUNT + 9;
+	int LAYOUT_OPTIONS__MODEL_ELEMENT_TEXT_OPTION = RENDERER_OPTION_FEATURE_COUNT + 7;
 
 	/**
 	 * The feature id for the '<em><b>Header Text</b></em>' attribute.
@@ -615,7 +624,7 @@ public interface OptionsPackage extends EPackage {
 	 * @generated
 	 * @ordered
 	 */
-	int LAYOUT_OPTIONS__HEADER_TEXT = RENDERER_OPTION_FEATURE_COUNT + 10;
+	int LAYOUT_OPTIONS__HEADER_TEXT = RENDERER_OPTION_FEATURE_COUNT + 8;
 
 	/**
 	 * The feature id for the '<em><b>Footer Text</b></em>' attribute.
@@ -624,7 +633,7 @@ public interface OptionsPackage extends EPackage {
 	 * @generated
 	 * @ordered
 	 */
-	int LAYOUT_OPTIONS__FOOTER_TEXT = RENDERER_OPTION_FEATURE_COUNT + 11;
+	int LAYOUT_OPTIONS__FOOTER_TEXT = RENDERER_OPTION_FEATURE_COUNT + 9;
 
 	/**
 	 * The feature id for the '<em><b>Section Option</b></em>' containment reference.
@@ -633,7 +642,7 @@ public interface OptionsPackage extends EPackage {
 	 * @generated
 	 * @ordered
 	 */
-	int LAYOUT_OPTIONS__SECTION_OPTION = RENDERER_OPTION_FEATURE_COUNT + 12;
+	int LAYOUT_OPTIONS__SECTION_OPTION = RENDERER_OPTION_FEATURE_COUNT + 10;
 
 	/**
 	 * The feature id for the '<em><b>Section Font Size Decrease Step</b></em>' attribute.
@@ -642,7 +651,7 @@ public interface OptionsPackage extends EPackage {
 	 * @generated
 	 * @ordered
 	 */
-	int LAYOUT_OPTIONS__SECTION_FONT_SIZE_DECREASE_STEP = RENDERER_OPTION_FEATURE_COUNT + 13;
+	int LAYOUT_OPTIONS__SECTION_FONT_SIZE_DECREASE_STEP = RENDERER_OPTION_FEATURE_COUNT + 11;
 
 	/**
 	 * The feature id for the '<em><b>Document Title Text Option</b></em>' containment reference.
@@ -651,7 +660,7 @@ public interface OptionsPackage extends EPackage {
 	 * @generated
 	 * @ordered
 	 */
-	int LAYOUT_OPTIONS__DOCUMENT_TITLE_TEXT_OPTION = RENDERER_OPTION_FEATURE_COUNT + 14;
+	int LAYOUT_OPTIONS__DOCUMENT_TITLE_TEXT_OPTION = RENDERER_OPTION_FEATURE_COUNT + 12;
 
 	/**
 	 * The feature id for the '<em><b>Show Model Element Type In Section Title</b></em>' attribute.
@@ -660,16 +669,7 @@ public interface OptionsPackage extends EPackage {
 	 * @generated
 	 * @ordered
 	 */
-	int LAYOUT_OPTIONS__SHOW_MODEL_ELEMENT_TYPE_IN_SECTION_TITLE = RENDERER_OPTION_FEATURE_COUNT + 15;
-
-	/**
-	 * The feature id for the '<em><b>Attribute Text Option</b></em>' containment reference.
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
-	 * @generated
-	 * @ordered
-	 */
-	int LAYOUT_OPTIONS__ATTRIBUTE_TEXT_OPTION = RENDERER_OPTION_FEATURE_COUNT + 16;
+	int LAYOUT_OPTIONS__SHOW_MODEL_ELEMENT_TYPE_IN_SECTION_TITLE = RENDERER_OPTION_FEATURE_COUNT + 13;
 
 	/**
 	 * The feature id for the '<em><b>Appendix Style</b></em>' attribute.
@@ -678,7 +678,106 @@ public interface OptionsPackage extends EPackage {
 	 * @generated
 	 * @ordered
 	 */
-	int LAYOUT_OPTIONS__APPENDIX_STYLE = RENDERER_OPTION_FEATURE_COUNT + 17;
+	int LAYOUT_OPTIONS__APPENDIX_STYLE = RENDERER_OPTION_FEATURE_COUNT + 14;
+
+	/**
+	 * The feature id for the '<em><b>Logo Image</b></em>' attribute.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 * @ordered
+	 */
+	int LAYOUT_OPTIONS__LOGO_IMAGE = RENDERER_OPTION_FEATURE_COUNT + 15;
+
+	/**
+	 * The feature id for the '<em><b>Footer Text Option</b></em>' containment reference.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 * @ordered
+	 */
+	int LAYOUT_OPTIONS__FOOTER_TEXT_OPTION = RENDERER_OPTION_FEATURE_COUNT + 16;
+
+	/**
+	 * The feature id for the '<em><b>Footer Show Document Title</b></em>' attribute.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 * @ordered
+	 */
+	int LAYOUT_OPTIONS__FOOTER_SHOW_DOCUMENT_TITLE = RENDERER_OPTION_FEATURE_COUNT + 17;
+
+	/**
+	 * The feature id for the '<em><b>Page Citation Style</b></em>' attribute.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 * @ordered
+	 */
+	int LAYOUT_OPTIONS__PAGE_CITATION_STYLE = RENDERER_OPTION_FEATURE_COUNT + 18;
+
+	/**
+	 * The feature id for the '<em><b>Header Style</b></em>' attribute.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 * @ordered
+	 */
+	int LAYOUT_OPTIONS__HEADER_STYLE = RENDERER_OPTION_FEATURE_COUNT + 19;
+
+	/**
+	 * The feature id for the '<em><b>Logo Width</b></em>' attribute.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 * @ordered
+	 */
+	int LAYOUT_OPTIONS__LOGO_WIDTH = RENDERER_OPTION_FEATURE_COUNT + 20;
+
+	/**
+	 * The feature id for the '<em><b>Logo Height</b></em>' attribute.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 * @ordered
+	 */
+	int LAYOUT_OPTIONS__LOGO_HEIGHT = RENDERER_OPTION_FEATURE_COUNT + 21;
+
+	/**
+	 * The feature id for the '<em><b>Logo On Cover Page</b></em>' attribute.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 * @ordered
+	 */
+	int LAYOUT_OPTIONS__LOGO_ON_COVER_PAGE = RENDERER_OPTION_FEATURE_COUNT + 22;
+
+	/**
+	 * The feature id for the '<em><b>Table Of Contents Text Option</b></em>' containment reference.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 * @ordered
+	 */
+	int LAYOUT_OPTIONS__TABLE_OF_CONTENTS_TEXT_OPTION = RENDERER_OPTION_FEATURE_COUNT + 23;
+
+	/**
+	 * The feature id for the '<em><b>Hide Table Of Contents</b></em>' attribute.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 * @ordered
+	 */
+	int LAYOUT_OPTIONS__HIDE_TABLE_OF_CONTENTS = RENDERER_OPTION_FEATURE_COUNT + 24;
+
+	/**
+	 * The feature id for the '<em><b>Hide Header And Footer On Cover Page</b></em>' attribute.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 * @ordered
+	 */
+	int LAYOUT_OPTIONS__HIDE_HEADER_AND_FOOTER_ON_COVER_PAGE = RENDERER_OPTION_FEATURE_COUNT + 25;
 
 	/**
 	 * The number of structural features of the '<em>Layout Options</em>' class.
@@ -687,7 +786,7 @@ public interface OptionsPackage extends EPackage {
 	 * @generated
 	 * @ordered
 	 */
-	int LAYOUT_OPTIONS_FEATURE_COUNT = RENDERER_OPTION_FEATURE_COUNT + 18;
+	int LAYOUT_OPTIONS_FEATURE_COUNT = RENDERER_OPTION_FEATURE_COUNT + 26;
 
 	/**
 	 * The meta object id for the '{@link org.unicase.docExport.exportModel.renderers.options.impl.ListOptionImpl <em>List Option</em>}' class.
@@ -800,13 +899,22 @@ public interface OptionsPackage extends EPackage {
 	int TEXT_OPTION__TEXT_ALIGN = RENDERER_OPTION_FEATURE_COUNT + 5;
 
 	/**
+	 * The feature id for the '<em><b>Italics</b></em>' attribute.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 * @ordered
+	 */
+	int TEXT_OPTION__ITALICS = RENDERER_OPTION_FEATURE_COUNT + 6;
+
+	/**
 	 * The number of structural features of the '<em>Text Option</em>' class.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
 	 * @generated
 	 * @ordered
 	 */
-	int TEXT_OPTION_FEATURE_COUNT = RENDERER_OPTION_FEATURE_COUNT + 6;
+	int TEXT_OPTION_FEATURE_COUNT = RENDERER_OPTION_FEATURE_COUNT + 7;
 
 	/**
 	 * The meta object id for the '{@link org.unicase.docExport.exportModel.renderers.options.impl.UColorImpl <em>UColor</em>}' class.
@@ -1081,13 +1189,22 @@ public interface OptionsPackage extends EPackage {
 	int BOX_MODEL_OPTION__BREAK_BEFORE = RENDERER_OPTION_FEATURE_COUNT + 21;
 
 	/**
+	 * The feature id for the '<em><b>Width</b></em>' attribute.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 * @ordered
+	 */
+	int BOX_MODEL_OPTION__WIDTH = RENDERER_OPTION_FEATURE_COUNT + 22;
+
+	/**
 	 * The number of structural features of the '<em>Box Model Option</em>' class.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
 	 * @generated
 	 * @ordered
 	 */
-	int BOX_MODEL_OPTION_FEATURE_COUNT = RENDERER_OPTION_FEATURE_COUNT + 22;
+	int BOX_MODEL_OPTION_FEATURE_COUNT = RENDERER_OPTION_FEATURE_COUNT + 23;
 
 	/**
 	 * The meta object id for the '{@link org.unicase.docExport.exportModel.renderers.options.impl.SectionOptionImpl <em>Section Option</em>}' class.
@@ -1182,6 +1299,15 @@ public interface OptionsPackage extends EPackage {
 	int BOOLEAN_ATTRIBUTE_OPTION__ATTRIBUTE_TEXT = ATTRIBUTE_OPTION__ATTRIBUTE_TEXT;
 
 	/**
+	 * The feature id for the '<em><b>Order Number</b></em>' attribute.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 * @ordered
+	 */
+	int BOOLEAN_ATTRIBUTE_OPTION__ORDER_NUMBER = ATTRIBUTE_OPTION__ORDER_NUMBER;
+
+	/**
 	 * The feature id for the '<em><b>Global Option</b></em>' reference.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
@@ -1255,6 +1381,15 @@ public interface OptionsPackage extends EPackage {
 	int DATE_ATTRIBUTE_OPTION__ATTRIBUTE_TEXT = ATTRIBUTE_OPTION__ATTRIBUTE_TEXT;
 
 	/**
+	 * The feature id for the '<em><b>Order Number</b></em>' attribute.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 * @ordered
+	 */
+	int DATE_ATTRIBUTE_OPTION__ORDER_NUMBER = ATTRIBUTE_OPTION__ORDER_NUMBER;
+
+	/**
 	 * The feature id for the '<em><b>Global Option</b></em>' reference.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
@@ -1282,6 +1417,26 @@ public interface OptionsPackage extends EPackage {
 	int DATE_ATTRIBUTE_OPTION_FEATURE_COUNT = ATTRIBUTE_OPTION_FEATURE_COUNT + 2;
 
 	/**
+	 * The meta object id for the '{@link org.unicase.docExport.exportModel.renderers.options.PageCitationStyle <em>Page Citation Style</em>}' enum.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @see org.unicase.docExport.exportModel.renderers.options.PageCitationStyle
+	 * @see org.unicase.docExport.exportModel.renderers.options.impl.OptionsPackageImpl#getPageCitationStyle()
+	 * @generated
+	 */
+	int PAGE_CITATION_STYLE = 15;
+
+	/**
+	 * The meta object id for the '{@link org.unicase.docExport.exportModel.renderers.options.HeaderStyle <em>Header Style</em>}' enum.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @see org.unicase.docExport.exportModel.renderers.options.HeaderStyle
+	 * @see org.unicase.docExport.exportModel.renderers.options.impl.OptionsPackageImpl#getHeaderStyle()
+	 * @generated
+	 */
+	int HEADER_STYLE = 16;
+
+	/**
 	 * The meta object id for the '{@link org.unicase.docExport.exportModel.renderers.options.AppendixStyle <em>Appendix Style</em>}' enum.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
@@ -1289,7 +1444,7 @@ public interface OptionsPackage extends EPackage {
 	 * @see org.unicase.docExport.exportModel.renderers.options.impl.OptionsPackageImpl#getAppendixStyle()
 	 * @generated
 	 */
-	int APPENDIX_STYLE = 15;
+	int APPENDIX_STYLE = 17;
 
 	/**
 	 * The meta object id for the '{@link org.unicase.docExport.exportModel.renderers.options.FontFamily <em>Font Family</em>}' enum.
@@ -1299,7 +1454,7 @@ public interface OptionsPackage extends EPackage {
 	 * @see org.unicase.docExport.exportModel.renderers.options.impl.OptionsPackageImpl#getFontFamily()
 	 * @generated
 	 */
-	int FONT_FAMILY = 16;
+	int FONT_FAMILY = 18;
 
 
 	/**
@@ -1310,18 +1465,7 @@ public interface OptionsPackage extends EPackage {
 	 * @see org.unicase.docExport.exportModel.renderers.options.impl.OptionsPackageImpl#getListStyle()
 	 * @generated
 	 */
-	int LIST_STYLE = 17;
-
-
-	/**
-	 * The meta object id for the '{@link org.unicase.docExport.exportModel.renderers.options.PageNumberingStyle <em>Page Numbering Style</em>}' enum.
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
-	 * @see org.unicase.docExport.exportModel.renderers.options.PageNumberingStyle
-	 * @see org.unicase.docExport.exportModel.renderers.options.impl.OptionsPackageImpl#getPageNumberingStyle()
-	 * @generated
-	 */
-	int PAGE_NUMBERING_STYLE = 18;
+	int LIST_STYLE = 19;
 
 
 	/**
@@ -1332,7 +1476,7 @@ public interface OptionsPackage extends EPackage {
 	 * @see org.unicase.docExport.exportModel.renderers.options.impl.OptionsPackageImpl#getUBorderStyle()
 	 * @generated
 	 */
-	int UBORDER_STYLE = 19;
+	int UBORDER_STYLE = 20;
 
 
 	/**
@@ -1343,7 +1487,7 @@ public interface OptionsPackage extends EPackage {
 	 * @see org.unicase.docExport.exportModel.renderers.options.impl.OptionsPackageImpl#getSectionNumberingStyle()
 	 * @generated
 	 */
-	int SECTION_NUMBERING_STYLE = 20;
+	int SECTION_NUMBERING_STYLE = 21;
 
 
 	/**
@@ -1354,7 +1498,7 @@ public interface OptionsPackage extends EPackage {
 	 * @see org.unicase.docExport.exportModel.renderers.options.impl.OptionsPackageImpl#getTextAlign()
 	 * @generated
 	 */
-	int TEXT_ALIGN = 21;
+	int TEXT_ALIGN = 22;
 
 
 	/**
@@ -1365,7 +1509,7 @@ public interface OptionsPackage extends EPackage {
 	 * @see org.unicase.docExport.exportModel.renderers.options.impl.OptionsPackageImpl#getBooleanStyle()
 	 * @generated
 	 */
-	int BOOLEAN_STYLE = 22;
+	int BOOLEAN_STYLE = 23;
 
 
 	/**
@@ -1376,7 +1520,7 @@ public interface OptionsPackage extends EPackage {
 	 * @see org.unicase.docExport.exportModel.renderers.options.impl.OptionsPackageImpl#getDateStyle()
 	 * @generated
 	 */
-	int DATE_STYLE = 23;
+	int DATE_STYLE = 24;
 
 
 	/**
@@ -1444,6 +1588,17 @@ public interface OptionsPackage extends EPackage {
 	EAttribute getAttributeOption_AttributeText();
 
 	/**
+	 * Returns the meta object for the attribute '{@link org.unicase.docExport.exportModel.renderers.options.AttributeOption#getOrderNumber <em>Order Number</em>}'.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @return the meta object for the attribute '<em>Order Number</em>'.
+	 * @see org.unicase.docExport.exportModel.renderers.options.AttributeOption#getOrderNumber()
+	 * @see #getAttributeOption()
+	 * @generated
+	 */
+	EAttribute getAttributeOption_OrderNumber();
+
+	/**
 	 * Returns the meta object for class '{@link org.unicase.docExport.exportModel.renderers.options.SingleReferenceAttributeOption <em>Single Reference Attribute Option</em>}'.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
@@ -1507,17 +1662,6 @@ public interface OptionsPackage extends EPackage {
 	EClass getReferenceOption();
 
 	/**
-	 * Returns the meta object for the containment reference '{@link org.unicase.docExport.exportModel.renderers.options.ReferenceOption#getTextOption <em>Text Option</em>}'.
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
-	 * @return the meta object for the containment reference '<em>Text Option</em>'.
-	 * @see org.unicase.docExport.exportModel.renderers.options.ReferenceOption#getTextOption()
-	 * @see #getReferenceOption()
-	 * @generated
-	 */
-	EReference getReferenceOption_TextOption();
-
-	/**
 	 * Returns the meta object for class '{@link org.unicase.docExport.exportModel.renderers.options.StringAttributeOption <em>String Attribute Option</em>}'.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
@@ -1539,17 +1683,6 @@ public interface OptionsPackage extends EPackage {
 	EReference getStringAttributeOption_GlobalOption();
 
 	/**
-	 * Returns the meta object for the containment reference '{@link org.unicase.docExport.exportModel.renderers.options.StringAttributeOption#getTextOption <em>Text Option</em>}'.
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
-	 * @return the meta object for the containment reference '<em>Text Option</em>'.
-	 * @see org.unicase.docExport.exportModel.renderers.options.StringAttributeOption#getTextOption()
-	 * @see #getStringAttributeOption()
-	 * @generated
-	 */
-	EReference getStringAttributeOption_TextOption();
-
-	/**
 	 * Returns the meta object for class '{@link org.unicase.docExport.exportModel.renderers.options.LayoutOptions <em>Layout Options</em>}'.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
@@ -1560,26 +1693,15 @@ public interface OptionsPackage extends EPackage {
 	EClass getLayoutOptions();
 
 	/**
-	 * Returns the meta object for the attribute '{@link org.unicase.docExport.exportModel.renderers.options.LayoutOptions#getCoverText <em>Cover Text</em>}'.
+	 * Returns the meta object for the containment reference '{@link org.unicase.docExport.exportModel.renderers.options.LayoutOptions#getHeaderTextOption <em>Header Text Option</em>}'.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
-	 * @return the meta object for the attribute '<em>Cover Text</em>'.
-	 * @see org.unicase.docExport.exportModel.renderers.options.LayoutOptions#getCoverText()
+	 * @return the meta object for the containment reference '<em>Header Text Option</em>'.
+	 * @see org.unicase.docExport.exportModel.renderers.options.LayoutOptions#getHeaderTextOption()
 	 * @see #getLayoutOptions()
 	 * @generated
 	 */
-	EAttribute getLayoutOptions_CoverText();
-
-	/**
-	 * Returns the meta object for the containment reference '{@link org.unicase.docExport.exportModel.renderers.options.LayoutOptions#getCoverTextTextOption <em>Cover Text Text Option</em>}'.
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
-	 * @return the meta object for the containment reference '<em>Cover Text Text Option</em>'.
-	 * @see org.unicase.docExport.exportModel.renderers.options.LayoutOptions#getCoverTextTextOption()
-	 * @see #getLayoutOptions()
-	 * @generated
-	 */
-	EReference getLayoutOptions_CoverTextTextOption();
+	EReference getLayoutOptions_HeaderTextOption();
 
 	/**
 	 * Returns the meta object for the containment reference '{@link org.unicase.docExport.exportModel.renderers.options.LayoutOptions#getDefaultTextOption <em>Default Text Option</em>}'.
@@ -1635,17 +1757,6 @@ public interface OptionsPackage extends EPackage {
 	 * @generated
 	 */
 	EAttribute getLayoutOptions_HideIncomingDocumentReferences();
-
-	/**
-	 * Returns the meta object for the attribute '{@link org.unicase.docExport.exportModel.renderers.options.LayoutOptions#getPageNumberingStyle <em>Page Numbering Style</em>}'.
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
-	 * @return the meta object for the attribute '<em>Page Numbering Style</em>'.
-	 * @see org.unicase.docExport.exportModel.renderers.options.LayoutOptions#getPageNumberingStyle()
-	 * @see #getLayoutOptions()
-	 * @generated
-	 */
-	EAttribute getLayoutOptions_PageNumberingStyle();
 
 	/**
 	 * Returns the meta object for the attribute '{@link org.unicase.docExport.exportModel.renderers.options.LayoutOptions#isHideModelElementImages <em>Hide Model Element Images</em>}'.
@@ -1736,17 +1847,6 @@ public interface OptionsPackage extends EPackage {
 	EAttribute getLayoutOptions_ShowModelElementTypeInSectionTitle();
 
 	/**
-	 * Returns the meta object for the containment reference '{@link org.unicase.docExport.exportModel.renderers.options.LayoutOptions#getAttributeTextOption <em>Attribute Text Option</em>}'.
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
-	 * @return the meta object for the containment reference '<em>Attribute Text Option</em>'.
-	 * @see org.unicase.docExport.exportModel.renderers.options.LayoutOptions#getAttributeTextOption()
-	 * @see #getLayoutOptions()
-	 * @generated
-	 */
-	EReference getLayoutOptions_AttributeTextOption();
-
-	/**
 	 * Returns the meta object for the attribute '{@link org.unicase.docExport.exportModel.renderers.options.LayoutOptions#getAppendixStyle <em>Appendix Style</em>}'.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
@@ -1756,6 +1856,127 @@ public interface OptionsPackage extends EPackage {
 	 * @generated
 	 */
 	EAttribute getLayoutOptions_AppendixStyle();
+
+	/**
+	 * Returns the meta object for the attribute '{@link org.unicase.docExport.exportModel.renderers.options.LayoutOptions#getLogoImage <em>Logo Image</em>}'.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @return the meta object for the attribute '<em>Logo Image</em>'.
+	 * @see org.unicase.docExport.exportModel.renderers.options.LayoutOptions#getLogoImage()
+	 * @see #getLayoutOptions()
+	 * @generated
+	 */
+	EAttribute getLayoutOptions_LogoImage();
+
+	/**
+	 * Returns the meta object for the containment reference '{@link org.unicase.docExport.exportModel.renderers.options.LayoutOptions#getFooterTextOption <em>Footer Text Option</em>}'.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @return the meta object for the containment reference '<em>Footer Text Option</em>'.
+	 * @see org.unicase.docExport.exportModel.renderers.options.LayoutOptions#getFooterTextOption()
+	 * @see #getLayoutOptions()
+	 * @generated
+	 */
+	EReference getLayoutOptions_FooterTextOption();
+
+	/**
+	 * Returns the meta object for the attribute '{@link org.unicase.docExport.exportModel.renderers.options.LayoutOptions#isFooterShowDocumentTitle <em>Footer Show Document Title</em>}'.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @return the meta object for the attribute '<em>Footer Show Document Title</em>'.
+	 * @see org.unicase.docExport.exportModel.renderers.options.LayoutOptions#isFooterShowDocumentTitle()
+	 * @see #getLayoutOptions()
+	 * @generated
+	 */
+	EAttribute getLayoutOptions_FooterShowDocumentTitle();
+
+	/**
+	 * Returns the meta object for the attribute '{@link org.unicase.docExport.exportModel.renderers.options.LayoutOptions#getPageCitationStyle <em>Page Citation Style</em>}'.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @return the meta object for the attribute '<em>Page Citation Style</em>'.
+	 * @see org.unicase.docExport.exportModel.renderers.options.LayoutOptions#getPageCitationStyle()
+	 * @see #getLayoutOptions()
+	 * @generated
+	 */
+	EAttribute getLayoutOptions_PageCitationStyle();
+
+	/**
+	 * Returns the meta object for the attribute '{@link org.unicase.docExport.exportModel.renderers.options.LayoutOptions#getHeaderStyle <em>Header Style</em>}'.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @return the meta object for the attribute '<em>Header Style</em>'.
+	 * @see org.unicase.docExport.exportModel.renderers.options.LayoutOptions#getHeaderStyle()
+	 * @see #getLayoutOptions()
+	 * @generated
+	 */
+	EAttribute getLayoutOptions_HeaderStyle();
+
+	/**
+	 * Returns the meta object for the attribute '{@link org.unicase.docExport.exportModel.renderers.options.LayoutOptions#getLogoWidth <em>Logo Width</em>}'.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @return the meta object for the attribute '<em>Logo Width</em>'.
+	 * @see org.unicase.docExport.exportModel.renderers.options.LayoutOptions#getLogoWidth()
+	 * @see #getLayoutOptions()
+	 * @generated
+	 */
+	EAttribute getLayoutOptions_LogoWidth();
+
+	/**
+	 * Returns the meta object for the attribute '{@link org.unicase.docExport.exportModel.renderers.options.LayoutOptions#getLogoHeight <em>Logo Height</em>}'.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @return the meta object for the attribute '<em>Logo Height</em>'.
+	 * @see org.unicase.docExport.exportModel.renderers.options.LayoutOptions#getLogoHeight()
+	 * @see #getLayoutOptions()
+	 * @generated
+	 */
+	EAttribute getLayoutOptions_LogoHeight();
+
+	/**
+	 * Returns the meta object for the attribute '{@link org.unicase.docExport.exportModel.renderers.options.LayoutOptions#isLogoOnCoverPage <em>Logo On Cover Page</em>}'.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @return the meta object for the attribute '<em>Logo On Cover Page</em>'.
+	 * @see org.unicase.docExport.exportModel.renderers.options.LayoutOptions#isLogoOnCoverPage()
+	 * @see #getLayoutOptions()
+	 * @generated
+	 */
+	EAttribute getLayoutOptions_LogoOnCoverPage();
+
+	/**
+	 * Returns the meta object for the containment reference '{@link org.unicase.docExport.exportModel.renderers.options.LayoutOptions#getTableOfContentsTextOption <em>Table Of Contents Text Option</em>}'.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @return the meta object for the containment reference '<em>Table Of Contents Text Option</em>'.
+	 * @see org.unicase.docExport.exportModel.renderers.options.LayoutOptions#getTableOfContentsTextOption()
+	 * @see #getLayoutOptions()
+	 * @generated
+	 */
+	EReference getLayoutOptions_TableOfContentsTextOption();
+
+	/**
+	 * Returns the meta object for the attribute '{@link org.unicase.docExport.exportModel.renderers.options.LayoutOptions#isHideTableOfContents <em>Hide Table Of Contents</em>}'.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @return the meta object for the attribute '<em>Hide Table Of Contents</em>'.
+	 * @see org.unicase.docExport.exportModel.renderers.options.LayoutOptions#isHideTableOfContents()
+	 * @see #getLayoutOptions()
+	 * @generated
+	 */
+	EAttribute getLayoutOptions_HideTableOfContents();
+
+	/**
+	 * Returns the meta object for the attribute '{@link org.unicase.docExport.exportModel.renderers.options.LayoutOptions#isHideHeaderAndFooterOnCoverPage <em>Hide Header And Footer On Cover Page</em>}'.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @return the meta object for the attribute '<em>Hide Header And Footer On Cover Page</em>'.
+	 * @see org.unicase.docExport.exportModel.renderers.options.LayoutOptions#isHideHeaderAndFooterOnCoverPage()
+	 * @see #getLayoutOptions()
+	 * @generated
+	 */
+	EAttribute getLayoutOptions_HideHeaderAndFooterOnCoverPage();
 
 	/**
 	 * Returns the meta object for class '{@link org.unicase.docExport.exportModel.renderers.options.ListOption <em>List Option</em>}'.
@@ -1831,6 +2052,17 @@ public interface OptionsPackage extends EPackage {
 	 * @generated
 	 */
 	EAttribute getTextOption_TextAlign();
+
+	/**
+	 * Returns the meta object for the attribute '{@link org.unicase.docExport.exportModel.renderers.options.TextOption#isItalics <em>Italics</em>}'.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @return the meta object for the attribute '<em>Italics</em>'.
+	 * @see org.unicase.docExport.exportModel.renderers.options.TextOption#isItalics()
+	 * @see #getTextOption()
+	 * @generated
+	 */
+	EAttribute getTextOption_Italics();
 
 	/**
 	 * Returns the meta object for the attribute '{@link org.unicase.docExport.exportModel.renderers.options.TextOption#isBold <em>Bold</em>}'.
@@ -2182,6 +2414,17 @@ public interface OptionsPackage extends EPackage {
 	EAttribute getBoxModelOption_BreakBefore();
 
 	/**
+	 * Returns the meta object for the attribute '{@link org.unicase.docExport.exportModel.renderers.options.BoxModelOption#getWidth <em>Width</em>}'.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @return the meta object for the attribute '<em>Width</em>'.
+	 * @see org.unicase.docExport.exportModel.renderers.options.BoxModelOption#getWidth()
+	 * @see #getBoxModelOption()
+	 * @generated
+	 */
+	EAttribute getBoxModelOption_Width();
+
+	/**
 	 * Returns the meta object for class '{@link org.unicase.docExport.exportModel.renderers.options.SectionOption <em>Section Option</em>}'.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
@@ -2278,6 +2521,26 @@ public interface OptionsPackage extends EPackage {
 	EAttribute getDateAttributeOption_DateStyle();
 
 	/**
+	 * Returns the meta object for enum '{@link org.unicase.docExport.exportModel.renderers.options.PageCitationStyle <em>Page Citation Style</em>}'.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @return the meta object for enum '<em>Page Citation Style</em>'.
+	 * @see org.unicase.docExport.exportModel.renderers.options.PageCitationStyle
+	 * @generated
+	 */
+	EEnum getPageCitationStyle();
+
+	/**
+	 * Returns the meta object for enum '{@link org.unicase.docExport.exportModel.renderers.options.HeaderStyle <em>Header Style</em>}'.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @return the meta object for enum '<em>Header Style</em>'.
+	 * @see org.unicase.docExport.exportModel.renderers.options.HeaderStyle
+	 * @generated
+	 */
+	EEnum getHeaderStyle();
+
+	/**
 	 * Returns the meta object for enum '{@link org.unicase.docExport.exportModel.renderers.options.AppendixStyle <em>Appendix Style</em>}'.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
@@ -2306,16 +2569,6 @@ public interface OptionsPackage extends EPackage {
 	 * @generated
 	 */
 	EEnum getListStyle();
-
-	/**
-	 * Returns the meta object for enum '{@link org.unicase.docExport.exportModel.renderers.options.PageNumberingStyle <em>Page Numbering Style</em>}'.
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
-	 * @return the meta object for enum '<em>Page Numbering Style</em>'.
-	 * @see org.unicase.docExport.exportModel.renderers.options.PageNumberingStyle
-	 * @generated
-	 */
-	EEnum getPageNumberingStyle();
 
 	/**
 	 * Returns the meta object for enum '{@link org.unicase.docExport.exportModel.renderers.options.UBorderStyle <em>UBorder Style</em>}'.
@@ -2442,6 +2695,14 @@ public interface OptionsPackage extends EPackage {
 		EAttribute ATTRIBUTE_OPTION__ATTRIBUTE_TEXT = eINSTANCE.getAttributeOption_AttributeText();
 
 		/**
+		 * The meta object literal for the '<em><b>Order Number</b></em>' attribute feature.
+		 * <!-- begin-user-doc -->
+		 * <!-- end-user-doc -->
+		 * @generated
+		 */
+		EAttribute ATTRIBUTE_OPTION__ORDER_NUMBER = eINSTANCE.getAttributeOption_OrderNumber();
+
+		/**
 		 * The meta object literal for the '{@link org.unicase.docExport.exportModel.renderers.options.impl.SingleReferenceAttributeOptionImpl <em>Single Reference Attribute Option</em>}' class.
 		 * <!-- begin-user-doc -->
 		 * <!-- end-user-doc -->
@@ -2496,14 +2757,6 @@ public interface OptionsPackage extends EPackage {
 		EClass REFERENCE_OPTION = eINSTANCE.getReferenceOption();
 
 		/**
-		 * The meta object literal for the '<em><b>Text Option</b></em>' containment reference feature.
-		 * <!-- begin-user-doc -->
-		 * <!-- end-user-doc -->
-		 * @generated
-		 */
-		EReference REFERENCE_OPTION__TEXT_OPTION = eINSTANCE.getReferenceOption_TextOption();
-
-		/**
 		 * The meta object literal for the '{@link org.unicase.docExport.exportModel.renderers.options.impl.StringAttributeOptionImpl <em>String Attribute Option</em>}' class.
 		 * <!-- begin-user-doc -->
 		 * <!-- end-user-doc -->
@@ -2522,14 +2775,6 @@ public interface OptionsPackage extends EPackage {
 		EReference STRING_ATTRIBUTE_OPTION__GLOBAL_OPTION = eINSTANCE.getStringAttributeOption_GlobalOption();
 
 		/**
-		 * The meta object literal for the '<em><b>Text Option</b></em>' containment reference feature.
-		 * <!-- begin-user-doc -->
-		 * <!-- end-user-doc -->
-		 * @generated
-		 */
-		EReference STRING_ATTRIBUTE_OPTION__TEXT_OPTION = eINSTANCE.getStringAttributeOption_TextOption();
-
-		/**
 		 * The meta object literal for the '{@link org.unicase.docExport.exportModel.renderers.options.impl.LayoutOptionsImpl <em>Layout Options</em>}' class.
 		 * <!-- begin-user-doc -->
 		 * <!-- end-user-doc -->
@@ -2540,20 +2785,12 @@ public interface OptionsPackage extends EPackage {
 		EClass LAYOUT_OPTIONS = eINSTANCE.getLayoutOptions();
 
 		/**
-		 * The meta object literal for the '<em><b>Cover Text</b></em>' attribute feature.
+		 * The meta object literal for the '<em><b>Header Text Option</b></em>' containment reference feature.
 		 * <!-- begin-user-doc -->
 		 * <!-- end-user-doc -->
 		 * @generated
 		 */
-		EAttribute LAYOUT_OPTIONS__COVER_TEXT = eINSTANCE.getLayoutOptions_CoverText();
-
-		/**
-		 * The meta object literal for the '<em><b>Cover Text Text Option</b></em>' containment reference feature.
-		 * <!-- begin-user-doc -->
-		 * <!-- end-user-doc -->
-		 * @generated
-		 */
-		EReference LAYOUT_OPTIONS__COVER_TEXT_TEXT_OPTION = eINSTANCE.getLayoutOptions_CoverTextTextOption();
+		EReference LAYOUT_OPTIONS__HEADER_TEXT_OPTION = eINSTANCE.getLayoutOptions_HeaderTextOption();
 
 		/**
 		 * The meta object literal for the '<em><b>Default Text Option</b></em>' containment reference feature.
@@ -2594,14 +2831,6 @@ public interface OptionsPackage extends EPackage {
 		 * @generated
 		 */
 		EAttribute LAYOUT_OPTIONS__HIDE_INCOMING_DOCUMENT_REFERENCES = eINSTANCE.getLayoutOptions_HideIncomingDocumentReferences();
-
-		/**
-		 * The meta object literal for the '<em><b>Page Numbering Style</b></em>' attribute feature.
-		 * <!-- begin-user-doc -->
-		 * <!-- end-user-doc -->
-		 * @generated
-		 */
-		EAttribute LAYOUT_OPTIONS__PAGE_NUMBERING_STYLE = eINSTANCE.getLayoutOptions_PageNumberingStyle();
 
 		/**
 		 * The meta object literal for the '<em><b>Hide Model Element Images</b></em>' attribute feature.
@@ -2668,20 +2897,100 @@ public interface OptionsPackage extends EPackage {
 		EAttribute LAYOUT_OPTIONS__SHOW_MODEL_ELEMENT_TYPE_IN_SECTION_TITLE = eINSTANCE.getLayoutOptions_ShowModelElementTypeInSectionTitle();
 
 		/**
-		 * The meta object literal for the '<em><b>Attribute Text Option</b></em>' containment reference feature.
-		 * <!-- begin-user-doc -->
-		 * <!-- end-user-doc -->
-		 * @generated
-		 */
-		EReference LAYOUT_OPTIONS__ATTRIBUTE_TEXT_OPTION = eINSTANCE.getLayoutOptions_AttributeTextOption();
-
-		/**
 		 * The meta object literal for the '<em><b>Appendix Style</b></em>' attribute feature.
 		 * <!-- begin-user-doc -->
 		 * <!-- end-user-doc -->
 		 * @generated
 		 */
 		EAttribute LAYOUT_OPTIONS__APPENDIX_STYLE = eINSTANCE.getLayoutOptions_AppendixStyle();
+
+		/**
+		 * The meta object literal for the '<em><b>Logo Image</b></em>' attribute feature.
+		 * <!-- begin-user-doc -->
+		 * <!-- end-user-doc -->
+		 * @generated
+		 */
+		EAttribute LAYOUT_OPTIONS__LOGO_IMAGE = eINSTANCE.getLayoutOptions_LogoImage();
+
+		/**
+		 * The meta object literal for the '<em><b>Footer Text Option</b></em>' containment reference feature.
+		 * <!-- begin-user-doc -->
+		 * <!-- end-user-doc -->
+		 * @generated
+		 */
+		EReference LAYOUT_OPTIONS__FOOTER_TEXT_OPTION = eINSTANCE.getLayoutOptions_FooterTextOption();
+
+		/**
+		 * The meta object literal for the '<em><b>Footer Show Document Title</b></em>' attribute feature.
+		 * <!-- begin-user-doc -->
+		 * <!-- end-user-doc -->
+		 * @generated
+		 */
+		EAttribute LAYOUT_OPTIONS__FOOTER_SHOW_DOCUMENT_TITLE = eINSTANCE.getLayoutOptions_FooterShowDocumentTitle();
+
+		/**
+		 * The meta object literal for the '<em><b>Page Citation Style</b></em>' attribute feature.
+		 * <!-- begin-user-doc -->
+		 * <!-- end-user-doc -->
+		 * @generated
+		 */
+		EAttribute LAYOUT_OPTIONS__PAGE_CITATION_STYLE = eINSTANCE.getLayoutOptions_PageCitationStyle();
+
+		/**
+		 * The meta object literal for the '<em><b>Header Style</b></em>' attribute feature.
+		 * <!-- begin-user-doc -->
+		 * <!-- end-user-doc -->
+		 * @generated
+		 */
+		EAttribute LAYOUT_OPTIONS__HEADER_STYLE = eINSTANCE.getLayoutOptions_HeaderStyle();
+
+		/**
+		 * The meta object literal for the '<em><b>Logo Width</b></em>' attribute feature.
+		 * <!-- begin-user-doc -->
+		 * <!-- end-user-doc -->
+		 * @generated
+		 */
+		EAttribute LAYOUT_OPTIONS__LOGO_WIDTH = eINSTANCE.getLayoutOptions_LogoWidth();
+
+		/**
+		 * The meta object literal for the '<em><b>Logo Height</b></em>' attribute feature.
+		 * <!-- begin-user-doc -->
+		 * <!-- end-user-doc -->
+		 * @generated
+		 */
+		EAttribute LAYOUT_OPTIONS__LOGO_HEIGHT = eINSTANCE.getLayoutOptions_LogoHeight();
+
+		/**
+		 * The meta object literal for the '<em><b>Logo On Cover Page</b></em>' attribute feature.
+		 * <!-- begin-user-doc -->
+		 * <!-- end-user-doc -->
+		 * @generated
+		 */
+		EAttribute LAYOUT_OPTIONS__LOGO_ON_COVER_PAGE = eINSTANCE.getLayoutOptions_LogoOnCoverPage();
+
+		/**
+		 * The meta object literal for the '<em><b>Table Of Contents Text Option</b></em>' containment reference feature.
+		 * <!-- begin-user-doc -->
+		 * <!-- end-user-doc -->
+		 * @generated
+		 */
+		EReference LAYOUT_OPTIONS__TABLE_OF_CONTENTS_TEXT_OPTION = eINSTANCE.getLayoutOptions_TableOfContentsTextOption();
+
+		/**
+		 * The meta object literal for the '<em><b>Hide Table Of Contents</b></em>' attribute feature.
+		 * <!-- begin-user-doc -->
+		 * <!-- end-user-doc -->
+		 * @generated
+		 */
+		EAttribute LAYOUT_OPTIONS__HIDE_TABLE_OF_CONTENTS = eINSTANCE.getLayoutOptions_HideTableOfContents();
+
+		/**
+		 * The meta object literal for the '<em><b>Hide Header And Footer On Cover Page</b></em>' attribute feature.
+		 * <!-- begin-user-doc -->
+		 * <!-- end-user-doc -->
+		 * @generated
+		 */
+		EAttribute LAYOUT_OPTIONS__HIDE_HEADER_AND_FOOTER_ON_COVER_PAGE = eINSTANCE.getLayoutOptions_HideHeaderAndFooterOnCoverPage();
 
 		/**
 		 * The meta object literal for the '{@link org.unicase.docExport.exportModel.renderers.options.impl.ListOptionImpl <em>List Option</em>}' class.
@@ -2742,6 +3051,14 @@ public interface OptionsPackage extends EPackage {
 		 * @generated
 		 */
 		EAttribute TEXT_OPTION__TEXT_ALIGN = eINSTANCE.getTextOption_TextAlign();
+
+		/**
+		 * The meta object literal for the '<em><b>Italics</b></em>' attribute feature.
+		 * <!-- begin-user-doc -->
+		 * <!-- end-user-doc -->
+		 * @generated
+		 */
+		EAttribute TEXT_OPTION__ITALICS = eINSTANCE.getTextOption_Italics();
 
 		/**
 		 * The meta object literal for the '<em><b>Bold</b></em>' attribute feature.
@@ -3006,6 +3323,14 @@ public interface OptionsPackage extends EPackage {
 		EAttribute BOX_MODEL_OPTION__BREAK_BEFORE = eINSTANCE.getBoxModelOption_BreakBefore();
 
 		/**
+		 * The meta object literal for the '<em><b>Width</b></em>' attribute feature.
+		 * <!-- begin-user-doc -->
+		 * <!-- end-user-doc -->
+		 * @generated
+		 */
+		EAttribute BOX_MODEL_OPTION__WIDTH = eINSTANCE.getBoxModelOption_Width();
+
+		/**
 		 * The meta object literal for the '{@link org.unicase.docExport.exportModel.renderers.options.impl.SectionOptionImpl <em>Section Option</em>}' class.
 		 * <!-- begin-user-doc -->
 		 * <!-- end-user-doc -->
@@ -3084,6 +3409,26 @@ public interface OptionsPackage extends EPackage {
 		EAttribute DATE_ATTRIBUTE_OPTION__DATE_STYLE = eINSTANCE.getDateAttributeOption_DateStyle();
 
 		/**
+		 * The meta object literal for the '{@link org.unicase.docExport.exportModel.renderers.options.PageCitationStyle <em>Page Citation Style</em>}' enum.
+		 * <!-- begin-user-doc -->
+		 * <!-- end-user-doc -->
+		 * @see org.unicase.docExport.exportModel.renderers.options.PageCitationStyle
+		 * @see org.unicase.docExport.exportModel.renderers.options.impl.OptionsPackageImpl#getPageCitationStyle()
+		 * @generated
+		 */
+		EEnum PAGE_CITATION_STYLE = eINSTANCE.getPageCitationStyle();
+
+		/**
+		 * The meta object literal for the '{@link org.unicase.docExport.exportModel.renderers.options.HeaderStyle <em>Header Style</em>}' enum.
+		 * <!-- begin-user-doc -->
+		 * <!-- end-user-doc -->
+		 * @see org.unicase.docExport.exportModel.renderers.options.HeaderStyle
+		 * @see org.unicase.docExport.exportModel.renderers.options.impl.OptionsPackageImpl#getHeaderStyle()
+		 * @generated
+		 */
+		EEnum HEADER_STYLE = eINSTANCE.getHeaderStyle();
+
+		/**
 		 * The meta object literal for the '{@link org.unicase.docExport.exportModel.renderers.options.AppendixStyle <em>Appendix Style</em>}' enum.
 		 * <!-- begin-user-doc -->
 		 * <!-- end-user-doc -->
@@ -3112,16 +3457,6 @@ public interface OptionsPackage extends EPackage {
 		 * @generated
 		 */
 		EEnum LIST_STYLE = eINSTANCE.getListStyle();
-
-		/**
-		 * The meta object literal for the '{@link org.unicase.docExport.exportModel.renderers.options.PageNumberingStyle <em>Page Numbering Style</em>}' enum.
-		 * <!-- begin-user-doc -->
-		 * <!-- end-user-doc -->
-		 * @see org.unicase.docExport.exportModel.renderers.options.PageNumberingStyle
-		 * @see org.unicase.docExport.exportModel.renderers.options.impl.OptionsPackageImpl#getPageNumberingStyle()
-		 * @generated
-		 */
-		EEnum PAGE_NUMBERING_STYLE = eINSTANCE.getPageNumberingStyle();
 
 		/**
 		 * The meta object literal for the '{@link org.unicase.docExport.exportModel.renderers.options.UBorderStyle <em>UBorder Style</em>}' enum.

@@ -1,8 +1,5 @@
 /**
- * <copyright>
- * </copyright>
- *
- * $Id$
+ * <copyright> </copyright> $Id$
  */
 package org.unicase.docExport.exportModel.renderers.options.impl;
 
@@ -19,9 +16,7 @@ import org.unicase.docExport.exportModel.renderers.options.TextOption;
 import org.unicase.docExport.exportModel.renderers.options.UColor;
 
 /**
- * <!-- begin-user-doc -->
- * An implementation of the model object '<em><b>Text Option</b></em>'.
- * <!-- end-user-doc -->
+ * <!-- begin-user-doc --> An implementation of the model object '<em><b>Text Option</b></em>'. <!-- end-user-doc -->
  * <p>
  * The following features are implemented:
  * <ul>
@@ -31,6 +26,7 @@ import org.unicase.docExport.exportModel.renderers.options.UColor;
  *   <li>{@link org.unicase.docExport.exportModel.renderers.options.impl.TextOptionImpl#isUnderline <em>Underline</em>}</li>
  *   <li>{@link org.unicase.docExport.exportModel.renderers.options.impl.TextOptionImpl#getFontColor <em>Font Color</em>}</li>
  *   <li>{@link org.unicase.docExport.exportModel.renderers.options.impl.TextOptionImpl#getTextAlign <em>Text Align</em>}</li>
+ *   <li>{@link org.unicase.docExport.exportModel.renderers.options.impl.TextOptionImpl#isItalics <em>Italics</em>}</li>
  * </ul>
  * </p>
  *
@@ -39,8 +35,8 @@ import org.unicase.docExport.exportModel.renderers.options.UColor;
 public class TextOptionImpl extends RendererOptionImpl implements TextOption {
 	/**
 	 * The default value of the '{@link #getFontFamily() <em>Font Family</em>}' attribute.
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
+	 * <!-- begin-user-doc --> <!--
+	 * end-user-doc -->
 	 * @see #getFontFamily()
 	 * @generated
 	 * @ordered
@@ -49,8 +45,8 @@ public class TextOptionImpl extends RendererOptionImpl implements TextOption {
 
 	/**
 	 * The cached value of the '{@link #getFontFamily() <em>Font Family</em>}' attribute.
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
+	 * <!-- begin-user-doc --> <!--
+	 * end-user-doc -->
 	 * @see #getFontFamily()
 	 * @generated
 	 * @ordered
@@ -59,8 +55,8 @@ public class TextOptionImpl extends RendererOptionImpl implements TextOption {
 
 	/**
 	 * The default value of the '{@link #getFontSize() <em>Font Size</em>}' attribute.
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
+	 * <!-- begin-user-doc --> <!--
+	 * end-user-doc -->
 	 * @see #getFontSize()
 	 * @generated
 	 * @ordered
@@ -69,8 +65,8 @@ public class TextOptionImpl extends RendererOptionImpl implements TextOption {
 
 	/**
 	 * The cached value of the '{@link #getFontSize() <em>Font Size</em>}' attribute.
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
+	 * <!-- begin-user-doc --> <!--
+	 * end-user-doc -->
 	 * @see #getFontSize()
 	 * @generated
 	 * @ordered
@@ -78,9 +74,9 @@ public class TextOptionImpl extends RendererOptionImpl implements TextOption {
 	protected int fontSize = FONT_SIZE_EDEFAULT;
 
 	/**
-	 * The default value of the '{@link #isBold() <em>Bold</em>}' attribute.
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
+	 * The default value of the '{@link #isBold() <em>Bold</em>}' attribute. <!-- begin-user-doc --> <!-- end-user-doc
+	 * -->
+	 * 
 	 * @see #isBold()
 	 * @generated
 	 * @ordered
@@ -88,9 +84,9 @@ public class TextOptionImpl extends RendererOptionImpl implements TextOption {
 	protected static final boolean BOLD_EDEFAULT = false;
 
 	/**
-	 * The cached value of the '{@link #isBold() <em>Bold</em>}' attribute.
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
+	 * The cached value of the '{@link #isBold() <em>Bold</em>}' attribute. <!-- begin-user-doc --> <!-- end-user-doc
+	 * -->
+	 * 
 	 * @see #isBold()
 	 * @generated
 	 * @ordered
@@ -99,8 +95,8 @@ public class TextOptionImpl extends RendererOptionImpl implements TextOption {
 
 	/**
 	 * The default value of the '{@link #isUnderline() <em>Underline</em>}' attribute.
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
+	 * <!-- begin-user-doc --> <!--
+	 * end-user-doc -->
 	 * @see #isUnderline()
 	 * @generated
 	 * @ordered
@@ -109,8 +105,8 @@ public class TextOptionImpl extends RendererOptionImpl implements TextOption {
 
 	/**
 	 * The cached value of the '{@link #isUnderline() <em>Underline</em>}' attribute.
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
+	 * <!-- begin-user-doc --> <!--
+	 * end-user-doc -->
 	 * @see #isUnderline()
 	 * @generated
 	 * @ordered
@@ -119,8 +115,8 @@ public class TextOptionImpl extends RendererOptionImpl implements TextOption {
 
 	/**
 	 * The cached value of the '{@link #getFontColor() <em>Font Color</em>}' containment reference.
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
+	 * <!-- begin-user-doc
+	 * --> <!-- end-user-doc -->
 	 * @see #getFontColor()
 	 * @generated
 	 * @ordered
@@ -129,8 +125,8 @@ public class TextOptionImpl extends RendererOptionImpl implements TextOption {
 
 	/**
 	 * The default value of the '{@link #getTextAlign() <em>Text Align</em>}' attribute.
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
+	 * <!-- begin-user-doc --> <!--
+	 * end-user-doc -->
 	 * @see #getTextAlign()
 	 * @generated
 	 * @ordered
@@ -139,8 +135,8 @@ public class TextOptionImpl extends RendererOptionImpl implements TextOption {
 
 	/**
 	 * The cached value of the '{@link #getTextAlign() <em>Text Align</em>}' attribute.
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
+	 * <!-- begin-user-doc --> <!--
+	 * end-user-doc -->
 	 * @see #getTextAlign()
 	 * @generated
 	 * @ordered
@@ -148,8 +144,28 @@ public class TextOptionImpl extends RendererOptionImpl implements TextOption {
 	protected TextAlign textAlign = TEXT_ALIGN_EDEFAULT;
 
 	/**
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
+	 * The default value of the '{@link #isItalics() <em>Italics</em>}' attribute.
+	 * <!-- begin-user-doc --> <!--
+	 * end-user-doc -->
+	 * @see #isItalics()
+	 * @generated
+	 * @ordered
+	 */
+	protected static final boolean ITALICS_EDEFAULT = false;
+
+	/**
+	 * The cached value of the '{@link #isItalics() <em>Italics</em>}' attribute.
+	 * <!-- begin-user-doc --> <!--
+	 * end-user-doc -->
+	 * @see #isItalics()
+	 * @generated
+	 * @ordered
+	 */
+	protected boolean italics = ITALICS_EDEFAULT;
+
+	/**
+	 * <!-- begin-user-doc --> <!-- end-user-doc -->
+	 * 
 	 * @generated NOT
 	 */
 	protected TextOptionImpl() {
@@ -158,9 +174,7 @@ public class TextOptionImpl extends RendererOptionImpl implements TextOption {
 	}
 
 	/**
-	 * <!-- begin-user-doc -->
-	 * .
-	 * <!-- end-user-doc -->
+	 * <!-- begin-user-doc --> . <!-- end-user-doc -->
 	 * @generated
 	 */
 	@Override
@@ -169,8 +183,7 @@ public class TextOptionImpl extends RendererOptionImpl implements TextOption {
 	}
 
 	/**
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
+	 * <!-- begin-user-doc --> <!-- end-user-doc -->
 	 * @generated
 	 */
 	public FontFamily getFontFamily() {
@@ -178,8 +191,7 @@ public class TextOptionImpl extends RendererOptionImpl implements TextOption {
 	}
 
 	/**
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
+	 * <!-- begin-user-doc --> <!-- end-user-doc -->
 	 * @generated
 	 */
 	public void setFontFamily(FontFamily newFontFamily) {
@@ -190,8 +202,7 @@ public class TextOptionImpl extends RendererOptionImpl implements TextOption {
 	}
 
 	/**
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
+	 * <!-- begin-user-doc --> <!-- end-user-doc -->
 	 * @generated
 	 */
 	public int getFontSize() {
@@ -199,8 +210,7 @@ public class TextOptionImpl extends RendererOptionImpl implements TextOption {
 	}
 
 	/**
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
+	 * <!-- begin-user-doc --> <!-- end-user-doc -->
 	 * @generated
 	 */
 	public void setFontSize(int newFontSize) {
@@ -211,17 +221,19 @@ public class TextOptionImpl extends RendererOptionImpl implements TextOption {
 	}
 
 	/**
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
-	 * @generated
+	 * <!-- begin-user-doc --> <!-- end-user-doc -->
+	 * 
+	 * @generated NOT there is a strange null pointer exception... so i make sure, it cant be null here
 	 */
 	public UColor getFontColor() {
+		if (fontColor == null) {
+			fontColor = OptionsFactory.eINSTANCE.createUColor();
+		}
 		return fontColor;
 	}
 
 	/**
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
+	 * <!-- begin-user-doc --> <!-- end-user-doc -->
 	 * @generated
 	 */
 	public NotificationChain basicSetFontColor(UColor newFontColor, NotificationChain msgs) {
@@ -235,8 +247,7 @@ public class TextOptionImpl extends RendererOptionImpl implements TextOption {
 	}
 
 	/**
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
+	 * <!-- begin-user-doc --> <!-- end-user-doc -->
 	 * @generated
 	 */
 	public void setFontColor(UColor newFontColor) {
@@ -254,8 +265,7 @@ public class TextOptionImpl extends RendererOptionImpl implements TextOption {
 	}
 
 	/**
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
+	 * <!-- begin-user-doc --> <!-- end-user-doc -->
 	 * @generated
 	 */
 	public TextAlign getTextAlign() {
@@ -263,8 +273,7 @@ public class TextOptionImpl extends RendererOptionImpl implements TextOption {
 	}
 
 	/**
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
+	 * <!-- begin-user-doc --> <!-- end-user-doc -->
 	 * @generated
 	 */
 	public void setTextAlign(TextAlign newTextAlign) {
@@ -275,8 +284,26 @@ public class TextOptionImpl extends RendererOptionImpl implements TextOption {
 	}
 
 	/**
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
+	 * <!-- begin-user-doc --> <!-- end-user-doc -->
+	 * @generated
+	 */
+	public boolean isItalics() {
+		return italics;
+	}
+
+	/**
+	 * <!-- begin-user-doc --> <!-- end-user-doc -->
+	 * @generated
+	 */
+	public void setItalics(boolean newItalics) {
+		boolean oldItalics = italics;
+		italics = newItalics;
+		if (eNotificationRequired())
+			eNotify(new ENotificationImpl(this, Notification.SET, OptionsPackage.TEXT_OPTION__ITALICS, oldItalics, italics));
+	}
+
+	/**
+	 * <!-- begin-user-doc --> <!-- end-user-doc -->
 	 * @generated
 	 */
 	@Override
@@ -289,8 +316,7 @@ public class TextOptionImpl extends RendererOptionImpl implements TextOption {
 	}
 
 	/**
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
+	 * <!-- begin-user-doc --> <!-- end-user-doc -->
 	 * @generated
 	 */
 	public boolean isBold() {
@@ -298,8 +324,7 @@ public class TextOptionImpl extends RendererOptionImpl implements TextOption {
 	}
 
 	/**
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
+	 * <!-- begin-user-doc --> <!-- end-user-doc -->
 	 * @generated
 	 */
 	public void setBold(boolean newBold) {
@@ -310,8 +335,7 @@ public class TextOptionImpl extends RendererOptionImpl implements TextOption {
 	}
 
 	/**
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
+	 * <!-- begin-user-doc --> <!-- end-user-doc -->
 	 * @generated
 	 */
 	public boolean isUnderline() {
@@ -319,8 +343,7 @@ public class TextOptionImpl extends RendererOptionImpl implements TextOption {
 	}
 
 	/**
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
+	 * <!-- begin-user-doc --> <!-- end-user-doc -->
 	 * @generated
 	 */
 	public void setUnderline(boolean newUnderline) {
@@ -331,8 +354,7 @@ public class TextOptionImpl extends RendererOptionImpl implements TextOption {
 	}
 
 	/**
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
+	 * <!-- begin-user-doc --> <!-- end-user-doc -->
 	 * @generated
 	 */
 	@Override
@@ -350,13 +372,14 @@ public class TextOptionImpl extends RendererOptionImpl implements TextOption {
 				return getFontColor();
 			case OptionsPackage.TEXT_OPTION__TEXT_ALIGN:
 				return getTextAlign();
+			case OptionsPackage.TEXT_OPTION__ITALICS:
+				return isItalics() ? Boolean.TRUE : Boolean.FALSE;
 		}
 		return super.eGet(featureID, resolve, coreType);
 	}
 
 	/**
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
+	 * <!-- begin-user-doc --> <!-- end-user-doc -->
 	 * @generated
 	 */
 	@Override
@@ -380,13 +403,15 @@ public class TextOptionImpl extends RendererOptionImpl implements TextOption {
 			case OptionsPackage.TEXT_OPTION__TEXT_ALIGN:
 				setTextAlign((TextAlign)newValue);
 				return;
+			case OptionsPackage.TEXT_OPTION__ITALICS:
+				setItalics(((Boolean)newValue).booleanValue());
+				return;
 		}
 		super.eSet(featureID, newValue);
 	}
 
 	/**
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
+	 * <!-- begin-user-doc --> <!-- end-user-doc -->
 	 * @generated
 	 */
 	@Override
@@ -410,13 +435,15 @@ public class TextOptionImpl extends RendererOptionImpl implements TextOption {
 			case OptionsPackage.TEXT_OPTION__TEXT_ALIGN:
 				setTextAlign(TEXT_ALIGN_EDEFAULT);
 				return;
+			case OptionsPackage.TEXT_OPTION__ITALICS:
+				setItalics(ITALICS_EDEFAULT);
+				return;
 		}
 		super.eUnset(featureID);
 	}
 
 	/**
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
+	 * <!-- begin-user-doc --> <!-- end-user-doc -->
 	 * @generated
 	 */
 	@Override
@@ -434,13 +461,14 @@ public class TextOptionImpl extends RendererOptionImpl implements TextOption {
 				return fontColor != null;
 			case OptionsPackage.TEXT_OPTION__TEXT_ALIGN:
 				return textAlign != TEXT_ALIGN_EDEFAULT;
+			case OptionsPackage.TEXT_OPTION__ITALICS:
+				return italics != ITALICS_EDEFAULT;
 		}
 		return super.eIsSet(featureID);
 	}
 
 	/**
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
+	 * <!-- begin-user-doc --> <!-- end-user-doc -->
 	 * @generated
 	 */
 	@Override
@@ -458,8 +486,10 @@ public class TextOptionImpl extends RendererOptionImpl implements TextOption {
 		result.append(underline);
 		result.append(", textAlign: ");
 		result.append(textAlign);
+		result.append(", italics: ");
+		result.append(italics);
 		result.append(')');
 		return result.toString();
 	}
 
-} //TextOptionImpl
+} // TextOptionImpl
