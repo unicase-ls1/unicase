@@ -1,8 +1,7 @@
 /**
- * <copyright> Copyright (c) 2008 Jonas Helming, Maximilian Koegel. All rights reserved. This program and the accompanying materials are made available under the terms of the Eclipse Public License v1.0 which accompanies this distribution, and is available at http://www.eclipse.org/legal/epl-v10.html
- * </copyright>
- *
- * $Id$
+ * <copyright> Copyright (c) 2008 Jonas Helming, Maximilian Koegel. All rights reserved. This program and the
+ * accompanying materials are made available under the terms of the Eclipse Public License v1.0 which accompanies this
+ * distribution, and is available at http://www.eclipse.org/legal/epl-v10.html </copyright>
  */
 package org.unicase.workspace;
 
@@ -21,33 +20,30 @@ import org.unicase.emfstore.esmodel.versioning.VersionSpec;
 import org.unicase.emfstore.exceptions.EmfStoreException;
 
 /**
- * <!-- begin-user-doc --> A representation of the model object '
- * <em><b>Usersession</b></em>'. <!-- end-user-doc -->
- *
+ * <!-- begin-user-doc --> A representation of the model object ' <em><b>Usersession</b></em>'. <!-- end-user-doc -->
  * <p>
  * The following features are supported:
  * <ul>
- *   <li>{@link org.unicase.workspace.Usersession#getUsername <em>Username</em>}</li>
- *   <li>{@link org.unicase.workspace.Usersession#getPassword <em>Password</em>}</li>
- *   <li>{@link org.unicase.workspace.Usersession#getSessionId <em>Session Id</em>}</li>
- *   <li>{@link org.unicase.workspace.Usersession#getPersistentPassword <em>Persistent Password</em>}</li>
- *   <li>{@link org.unicase.workspace.Usersession#getServerInfo <em>Server Info</em>}</li>
- *   <li>{@link org.unicase.workspace.Usersession#isSavePassword <em>Save Password</em>}</li>
- *   <li>{@link org.unicase.workspace.Usersession#getACUser <em>AC User</em>}</li>
+ * <li>{@link org.unicase.workspace.Usersession#getUsername <em>Username</em>}</li>
+ * <li>{@link org.unicase.workspace.Usersession#getPassword <em>Password</em>}</li>
+ * <li>{@link org.unicase.workspace.Usersession#getSessionId <em>Session Id</em>}</li>
+ * <li>{@link org.unicase.workspace.Usersession#getPersistentPassword <em>Persistent Password</em>}</li>
+ * <li>{@link org.unicase.workspace.Usersession#getServerInfo <em>Server Info</em>}</li>
+ * <li>{@link org.unicase.workspace.Usersession#isSavePassword <em>Save Password</em>}</li>
+ * <li>{@link org.unicase.workspace.Usersession#getACUser <em>AC User</em>}</li>
  * </ul>
  * </p>
- *
+ * 
  * @see org.unicase.workspace.WorkspacePackage#getUsersession()
  * @model
  * @generated
  */
 public interface Usersession extends EObject {
 	/**
-	 * Returns the value of the '<em><b>Username</b></em>' attribute. <!--
-	 * begin-user-doc -->
+	 * Returns the value of the '<em><b>Username</b></em>' attribute. <!-- begin-user-doc -->
 	 * <p>
-	 * If the meaning of the '<em>Username</em>' attribute isn't clear, there
-	 * really should be more of a description here...
+	 * If the meaning of the '<em>Username</em>' attribute isn't clear, there really should be more of a description
+	 * here...
 	 * </p>
 	 * <!-- end-user-doc -->
 	 * 
@@ -60,8 +56,9 @@ public interface Usersession extends EObject {
 	String getUsername();
 
 	/**
-	 * Sets the value of the '{@link org.unicase.workspace.Usersession#getUsername <em>Username</em>}' attribute.
-	 * <!-- begin-user-doc --> <!-- end-user-doc -->
+	 * Sets the value of the '{@link org.unicase.workspace.Usersession#getUsername <em>Username</em>}' attribute. <!--
+	 * begin-user-doc --> <!-- end-user-doc -->
+	 * 
 	 * @param value the new value of the '<em>Username</em>' attribute.
 	 * @see #getUsername()
 	 * @generated
@@ -69,11 +66,10 @@ public interface Usersession extends EObject {
 	void setUsername(String value);
 
 	/**
-	 * Returns the value of the '<em><b>Password</b></em>' attribute. <!--
-	 * begin-user-doc -->
+	 * Returns the value of the '<em><b>Password</b></em>' attribute. <!-- begin-user-doc -->
 	 * <p>
-	 * If the meaning of the '<em>Password</em>' attribute isn't clear, there
-	 * really should be more of a description here...
+	 * If the meaning of the '<em>Password</em>' attribute isn't clear, there really should be more of a description
+	 * here...
 	 * </p>
 	 * <!-- end-user-doc -->
 	 * 
@@ -86,8 +82,9 @@ public interface Usersession extends EObject {
 	String getPassword();
 
 	/**
-	 * Sets the value of the '{@link org.unicase.workspace.Usersession#getPassword <em>Password</em>}' attribute.
-	 * <!-- begin-user-doc --> <!-- end-user-doc -->
+	 * Sets the value of the '{@link org.unicase.workspace.Usersession#getPassword <em>Password</em>}' attribute. <!--
+	 * begin-user-doc --> <!-- end-user-doc -->
+	 * 
 	 * @param value the new value of the '<em>Password</em>' attribute.
 	 * @see #getPassword()
 	 * @generated
@@ -95,11 +92,10 @@ public interface Usersession extends EObject {
 	void setPassword(String value);
 
 	/**
-	 * Returns the value of the '<em><b>Session Id</b></em>' reference. <!--
-	 * begin-user-doc -->
+	 * Returns the value of the '<em><b>Session Id</b></em>' reference. <!-- begin-user-doc -->
 	 * <p>
-	 * If the meaning of the '<em>Session Id</em>' reference isn't clear, there
-	 * really should be more of a description here...
+	 * If the meaning of the '<em>Session Id</em>' reference isn't clear, there really should be more of a description
+	 * here...
 	 * </p>
 	 * <!-- end-user-doc -->
 	 * 
@@ -113,8 +109,8 @@ public interface Usersession extends EObject {
 
 	/**
 	 * Sets the value of the '{@link org.unicase.workspace.Usersession#getSessionId <em>Session Id</em>}' reference.
-	 * <!-- begin-user-doc --> <!--
-	 * end-user-doc -->
+	 * <!-- begin-user-doc --> <!-- end-user-doc -->
+	 * 
 	 * @param value the new value of the '<em>Session Id</em>' reference.
 	 * @see #getSessionId()
 	 * @generated
@@ -122,13 +118,13 @@ public interface Usersession extends EObject {
 	void setSessionId(SessionId value);
 
 	/**
-	 * Returns the value of the '<em><b>Persistent Password</b></em>' attribute.
-	 * <!-- begin-user-doc -->
+	 * Returns the value of the '<em><b>Persistent Password</b></em>' attribute. <!-- begin-user-doc -->
 	 * <p>
-	 * If the meaning of the '<em>Persistent Password</em>' attribute isn't
-	 * clear, there really should be more of a description here...
+	 * If the meaning of the '<em>Persistent Password</em>' attribute isn't clear, there really should be more of a
+	 * description here...
 	 * </p>
 	 * <!-- end-user-doc -->
+	 * 
 	 * @return the value of the '<em>Persistent Password</em>' attribute.
 	 * @see #setPersistentPassword(String)
 	 * @see org.unicase.workspace.WorkspacePackage#getUsersession_PersistentPassword()
@@ -138,9 +134,9 @@ public interface Usersession extends EObject {
 	String getPersistentPassword();
 
 	/**
-	 * Sets the value of the '{@link org.unicase.workspace.Usersession#getPersistentPassword <em>Persistent Password</em>}' attribute.
-	 * <!-- begin-user-doc --> <!--
-	 * end-user-doc -->
+	 * Sets the value of the '{@link org.unicase.workspace.Usersession#getPersistentPassword
+	 * <em>Persistent Password</em>}' attribute. <!-- begin-user-doc --> <!-- end-user-doc -->
+	 * 
 	 * @param value the new value of the '<em>Persistent Password</em>' attribute.
 	 * @see #getPersistentPassword()
 	 * @generated
@@ -148,11 +144,10 @@ public interface Usersession extends EObject {
 	void setPersistentPassword(String value);
 
 	/**
-	 * Returns the value of the '<em><b>Server Info</b></em>' reference. <!--
-	 * begin-user-doc -->
+	 * Returns the value of the '<em><b>Server Info</b></em>' reference. <!-- begin-user-doc -->
 	 * <p>
-	 * If the meaning of the '<em>Server Info</em>' reference isn't clear, there
-	 * really should be more of a description here...
+	 * If the meaning of the '<em>Server Info</em>' reference isn't clear, there really should be more of a description
+	 * here...
 	 * </p>
 	 * <!-- end-user-doc -->
 	 * 
@@ -166,8 +161,8 @@ public interface Usersession extends EObject {
 
 	/**
 	 * Sets the value of the '{@link org.unicase.workspace.Usersession#getServerInfo <em>Server Info</em>}' reference.
-	 * <!-- begin-user-doc --> <!--
-	 * end-user-doc -->
+	 * <!-- begin-user-doc --> <!-- end-user-doc -->
+	 * 
 	 * @param value the new value of the '<em>Server Info</em>' reference.
 	 * @see #getServerInfo()
 	 * @generated
@@ -175,11 +170,10 @@ public interface Usersession extends EObject {
 	void setServerInfo(ServerInfo value);
 
 	/**
-	 * Returns the value of the '<em><b>Save Password</b></em>' attribute. <!--
-	 * begin-user-doc -->
+	 * Returns the value of the '<em><b>Save Password</b></em>' attribute. <!-- begin-user-doc -->
 	 * <p>
-	 * If the meaning of the '<em>Save Password</em>' attribute isn't clear,
-	 * there really should be more of a description here...
+	 * If the meaning of the '<em>Save Password</em>' attribute isn't clear, there really should be more of a
+	 * description here...
 	 * </p>
 	 * <!-- end-user-doc -->
 	 * 
@@ -192,9 +186,9 @@ public interface Usersession extends EObject {
 	boolean isSavePassword();
 
 	/**
-	 * Sets the value of the '{@link org.unicase.workspace.Usersession#isSavePassword <em>Save Password</em>}' attribute.
-	 * <!-- begin-user-doc --> <!--
-	 * end-user-doc -->
+	 * Sets the value of the '{@link org.unicase.workspace.Usersession#isSavePassword <em>Save Password</em>}'
+	 * attribute. <!-- begin-user-doc --> <!-- end-user-doc -->
+	 * 
 	 * @param value the new value of the '<em>Save Password</em>' attribute.
 	 * @see #isSavePassword()
 	 * @generated
@@ -202,13 +196,13 @@ public interface Usersession extends EObject {
 	void setSavePassword(boolean value);
 
 	/**
-	 * Returns the value of the '<em><b>AC User</b></em>' containment reference.
-	 * <!-- begin-user-doc -->
+	 * Returns the value of the '<em><b>AC User</b></em>' containment reference. <!-- begin-user-doc -->
 	 * <p>
-	 * If the meaning of the '<em>AC User</em>' containment reference isn't clear,
-	 * there really should be more of a description here...
+	 * If the meaning of the '<em>AC User</em>' containment reference isn't clear, there really should be more of a
+	 * description here...
 	 * </p>
 	 * <!-- end-user-doc -->
+	 * 
 	 * @return the value of the '<em>AC User</em>' containment reference.
 	 * @see #setACUser(ACUser)
 	 * @see org.unicase.workspace.WorkspacePackage#getUsersession_ACUser()
@@ -218,9 +212,9 @@ public interface Usersession extends EObject {
 	ACUser getACUser();
 
 	/**
-	 * Sets the value of the '{@link org.unicase.workspace.Usersession#getACUser <em>AC User</em>}' containment reference.
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
+	 * Sets the value of the '{@link org.unicase.workspace.Usersession#getACUser <em>AC User</em>}' containment
+	 * reference. <!-- begin-user-doc --> <!-- end-user-doc -->
+	 * 
 	 * @param value the new value of the '<em>AC User</em>' containment reference.
 	 * @see #getACUser()
 	 * @generated
@@ -229,6 +223,7 @@ public interface Usersession extends EObject {
 
 	/**
 	 * <!-- begin-user-doc --> <!-- end-user-doc -->
+	 * 
 	 * @model kind="operation"
 	 * @generated
 	 */
@@ -238,11 +233,8 @@ public interface Usersession extends EObject {
 	/**
 	 * <!-- begin-user-doc --> Log in.
 	 * 
-	 * @throws AccessControlException
-	 *             if login fails.
-	 * @throws EmfStoreException
-	 *             if anything else fails. <!-- end-user-doc -->
-	 * 
+	 * @throws AccessControlException if login fails.
+	 * @throws EmfStoreException if anything else fails. <!-- end-user-doc -->
 	 * @model
 	 * @generated NOT
 	 */
@@ -251,15 +243,10 @@ public interface Usersession extends EObject {
 	/**
 	 * <!-- begin-user-doc --> Checkout a project to the local workspace.
 	 * 
-	 * @param projectInfo
-	 *            a project info describing the project and its version
+	 * @param projectInfo a project info describing the project and its version
 	 * @return a Project space containing the project
-	 * @throws EmfStoreException
-	 * 
-	 *             <!-- end-user-doc -->
-	 * 
+	 * @throws EmfStoreException <!-- end-user-doc -->
 	 * @model
-	 * 
 	 * @generated NOT
 	 */
 	ProjectSpace checkout(ProjectInfo projectInfo) throws EmfStoreException;
@@ -268,9 +255,7 @@ public interface Usersession extends EObject {
 	 * Get the list of remotely available projects.
 	 * 
 	 * @return a list of project infos
-	 * @throws EmfStoreException
-	 *             if retrieval fails
-	 * 
+	 * @throws EmfStoreException if retrieval fails
 	 * @generated NOT
 	 */
 	List<ProjectInfo> getRemoteProjectList() throws EmfStoreException;
@@ -278,35 +263,26 @@ public interface Usersession extends EObject {
 	/**
 	 * Create a project on the server.
 	 * 
-	 * @param name
-	 *            the project name
-	 * @param description
-	 *            the project description
+	 * @param name the project name
+	 * @param description the project description
 	 * @return the ProjectInfo of the new Project
-	 * 
-	 * @throws AccessControlException
-	 *             if creating projects is not allowed
-	 * @throws EmfStoreException
-	 *             if creation fails
-	 * 
+	 * @throws AccessControlException if creating projects is not allowed
+	 * @throws EmfStoreException if creation fails
 	 * @generated NOT
 	 */
-	ProjectInfo createProject(String name, String description)
-			throws AccessControlException, EmfStoreException;
+	ProjectInfo createProject(String name, String description) throws AccessControlException, EmfStoreException;
 
 	/**
-	 * <!-- begin-user-doc -->
-	 * Resolve a version spec to a primary version spec.
+	 * <!-- begin-user-doc --> Resolve a version spec to a primary version spec.
+	 * 
 	 * @param versionSpec the spec to resolve
 	 * @param projectId the project id
-	 * @return the primary version spec
-	 * <!-- end-user-doc -->
+	 * @return the primary version spec <!-- end-user-doc -->
 	 * @throws EmfStoreException if resolving fails
 	 * @model
 	 * @generated NOT
 	 */
-	PrimaryVersionSpec resolveVersionSpec(VersionSpec versionSpec,
-			ProjectId projectId) throws EmfStoreException;
+	PrimaryVersionSpec resolveVersionSpec(VersionSpec versionSpec, ProjectId projectId) throws EmfStoreException;
 
 	/**
 	 * Gets a list of history infos.
@@ -317,8 +293,7 @@ public interface Usersession extends EObject {
 	 * @throws EmfStoreException if server throws an exception
 	 * @generated NOT
 	 */
-	List<HistoryInfo> getHistoryInfo(ProjectId projectId, HistoryQuery query)
-			throws EmfStoreException;
+	List<HistoryInfo> getHistoryInfo(ProjectId projectId, HistoryQuery query) throws EmfStoreException;
 
 	/**
 	 * Returns a {@link AdminBroker} related to the user session.
@@ -328,8 +303,7 @@ public interface Usersession extends EObject {
 	 * @throws AccessControlException if access is denied
 	 * @generated NOT
 	 */
-	AdminBroker getAdminBroker() throws EmfStoreException,
-			AccessControlException;
+	AdminBroker getAdminBroker() throws EmfStoreException, AccessControlException;
 
 	// end of custom code
 } // Usersession

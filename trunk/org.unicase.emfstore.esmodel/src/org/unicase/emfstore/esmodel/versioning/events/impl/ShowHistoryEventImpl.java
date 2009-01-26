@@ -1,7 +1,7 @@
 /**
- * <copyright>Copyright (c) 2008 Jonas Helming, Maximilian Koegel. All rights reserved. This program and the accompanying materials are made available under the terms of the Eclipse Public License v1.0 which accompanies this distribution, and is available at http://www.eclipse.org/legal/epl-v10.html</copyright>
- *
- * $Id$
+ * <copyright>Copyright (c) 2008 Jonas Helming, Maximilian Koegel. All rights reserved. This program and the
+ * accompanying materials are made available under the terms of the Eclipse Public License v1.0 which accompanies this
+ * distribution, and is available at http://www.eclipse.org/legal/epl-v10.html</copyright>
  */
 package org.unicase.emfstore.esmodel.versioning.events.impl;
 
@@ -15,24 +15,25 @@ import org.unicase.emfstore.esmodel.versioning.events.EventsPackage;
 import org.unicase.emfstore.esmodel.versioning.events.ShowHistoryEvent;
 
 /**
- * <!-- begin-user-doc -->
- * An implementation of the model object '<em><b>Show History Event</b></em>'.
- * <!-- end-user-doc -->
+ * <!-- begin-user-doc --> An implementation of the model object '<em><b>Show History Event</b></em>'. <!-- end-user-doc
+ * -->
  * <p>
  * The following features are implemented:
  * <ul>
- *   <li>{@link org.unicase.emfstore.esmodel.versioning.events.impl.ShowHistoryEventImpl#getSourceVersion <em>Source Version</em>}</li>
- *   <li>{@link org.unicase.emfstore.esmodel.versioning.events.impl.ShowHistoryEventImpl#getTargetVersion <em>Target Version</em>}</li>
+ * <li>{@link org.unicase.emfstore.esmodel.versioning.events.impl.ShowHistoryEventImpl#getSourceVersion <em>Source
+ * Version</em>}</li>
+ * <li>{@link org.unicase.emfstore.esmodel.versioning.events.impl.ShowHistoryEventImpl#getTargetVersion <em>Target
+ * Version</em>}</li>
  * </ul>
  * </p>
- *
+ * 
  * @generated
  */
 public class ShowHistoryEventImpl extends EventImpl implements ShowHistoryEvent {
 	/**
-	 * The cached value of the '{@link #getSourceVersion() <em>Source Version</em>}' containment reference.
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
+	 * The cached value of the '{@link #getSourceVersion() <em>Source Version</em>}' containment reference. <!--
+	 * begin-user-doc --> <!-- end-user-doc -->
+	 * 
 	 * @see #getSourceVersion()
 	 * @generated
 	 * @ordered
@@ -40,9 +41,9 @@ public class ShowHistoryEventImpl extends EventImpl implements ShowHistoryEvent 
 	protected PrimaryVersionSpec sourceVersion;
 
 	/**
-	 * The cached value of the '{@link #getTargetVersion() <em>Target Version</em>}' containment reference.
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
+	 * The cached value of the '{@link #getTargetVersion() <em>Target Version</em>}' containment reference. <!--
+	 * begin-user-doc --> <!-- end-user-doc -->
+	 * 
 	 * @see #getTargetVersion()
 	 * @generated
 	 * @ordered
@@ -50,8 +51,8 @@ public class ShowHistoryEventImpl extends EventImpl implements ShowHistoryEvent 
 	protected PrimaryVersionSpec targetVersion;
 
 	/**
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
+	 * <!-- begin-user-doc --> <!-- end-user-doc -->
+	 * 
 	 * @generated
 	 */
 	protected ShowHistoryEventImpl() {
@@ -59,8 +60,8 @@ public class ShowHistoryEventImpl extends EventImpl implements ShowHistoryEvent 
 	}
 
 	/**
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
+	 * <!-- begin-user-doc --> <!-- end-user-doc -->
+	 * 
 	 * @generated
 	 */
 	@Override
@@ -69,8 +70,8 @@ public class ShowHistoryEventImpl extends EventImpl implements ShowHistoryEvent 
 	}
 
 	/**
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
+	 * <!-- begin-user-doc --> <!-- end-user-doc -->
+	 * 
 	 * @generated
 	 */
 	public PrimaryVersionSpec getSourceVersion() {
@@ -79,34 +80,25 @@ public class ShowHistoryEventImpl extends EventImpl implements ShowHistoryEvent 
 			sourceVersion = (PrimaryVersionSpec) eResolveProxy(oldSourceVersion);
 			if (sourceVersion != oldSourceVersion) {
 				InternalEObject newSourceVersion = (InternalEObject) sourceVersion;
-				NotificationChain msgs = oldSourceVersion
-						.eInverseRemove(
-								this,
-								EOPPOSITE_FEATURE_BASE
-										- EventsPackage.SHOW_HISTORY_EVENT__SOURCE_VERSION,
-								null, null);
+				NotificationChain msgs = oldSourceVersion.eInverseRemove(this, EOPPOSITE_FEATURE_BASE
+					- EventsPackage.SHOW_HISTORY_EVENT__SOURCE_VERSION, null, null);
 				if (newSourceVersion.eInternalContainer() == null) {
-					msgs = newSourceVersion
-							.eInverseAdd(
-									this,
-									EOPPOSITE_FEATURE_BASE
-											- EventsPackage.SHOW_HISTORY_EVENT__SOURCE_VERSION,
-									null, msgs);
+					msgs = newSourceVersion.eInverseAdd(this, EOPPOSITE_FEATURE_BASE
+						- EventsPackage.SHOW_HISTORY_EVENT__SOURCE_VERSION, null, msgs);
 				}
 				if (msgs != null)
 					msgs.dispatch();
 				if (eNotificationRequired())
 					eNotify(new ENotificationImpl(this, Notification.RESOLVE,
-							EventsPackage.SHOW_HISTORY_EVENT__SOURCE_VERSION,
-							oldSourceVersion, sourceVersion));
+						EventsPackage.SHOW_HISTORY_EVENT__SOURCE_VERSION, oldSourceVersion, sourceVersion));
 			}
 		}
 		return sourceVersion;
 	}
 
 	/**
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
+	 * <!-- begin-user-doc --> <!-- end-user-doc -->
+	 * 
 	 * @generated
 	 */
 	public PrimaryVersionSpec basicGetSourceVersion() {
@@ -114,19 +106,16 @@ public class ShowHistoryEventImpl extends EventImpl implements ShowHistoryEvent 
 	}
 
 	/**
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
+	 * <!-- begin-user-doc --> <!-- end-user-doc -->
+	 * 
 	 * @generated
 	 */
-	public NotificationChain basicSetSourceVersion(
-			PrimaryVersionSpec newSourceVersion, NotificationChain msgs) {
+	public NotificationChain basicSetSourceVersion(PrimaryVersionSpec newSourceVersion, NotificationChain msgs) {
 		PrimaryVersionSpec oldSourceVersion = sourceVersion;
 		sourceVersion = newSourceVersion;
 		if (eNotificationRequired()) {
-			ENotificationImpl notification = new ENotificationImpl(this,
-					Notification.SET,
-					EventsPackage.SHOW_HISTORY_EVENT__SOURCE_VERSION,
-					oldSourceVersion, newSourceVersion);
+			ENotificationImpl notification = new ENotificationImpl(this, Notification.SET,
+				EventsPackage.SHOW_HISTORY_EVENT__SOURCE_VERSION, oldSourceVersion, newSourceVersion);
 			if (msgs == null)
 				msgs = notification;
 			else
@@ -136,39 +125,30 @@ public class ShowHistoryEventImpl extends EventImpl implements ShowHistoryEvent 
 	}
 
 	/**
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
+	 * <!-- begin-user-doc --> <!-- end-user-doc -->
+	 * 
 	 * @generated
 	 */
 	public void setSourceVersion(PrimaryVersionSpec newSourceVersion) {
 		if (newSourceVersion != sourceVersion) {
 			NotificationChain msgs = null;
 			if (sourceVersion != null)
-				msgs = ((InternalEObject) sourceVersion)
-						.eInverseRemove(
-								this,
-								EOPPOSITE_FEATURE_BASE
-										- EventsPackage.SHOW_HISTORY_EVENT__SOURCE_VERSION,
-								null, msgs);
+				msgs = ((InternalEObject) sourceVersion).eInverseRemove(this, EOPPOSITE_FEATURE_BASE
+					- EventsPackage.SHOW_HISTORY_EVENT__SOURCE_VERSION, null, msgs);
 			if (newSourceVersion != null)
-				msgs = ((InternalEObject) newSourceVersion)
-						.eInverseAdd(
-								this,
-								EOPPOSITE_FEATURE_BASE
-										- EventsPackage.SHOW_HISTORY_EVENT__SOURCE_VERSION,
-								null, msgs);
+				msgs = ((InternalEObject) newSourceVersion).eInverseAdd(this, EOPPOSITE_FEATURE_BASE
+					- EventsPackage.SHOW_HISTORY_EVENT__SOURCE_VERSION, null, msgs);
 			msgs = basicSetSourceVersion(newSourceVersion, msgs);
 			if (msgs != null)
 				msgs.dispatch();
 		} else if (eNotificationRequired())
-			eNotify(new ENotificationImpl(this, Notification.SET,
-					EventsPackage.SHOW_HISTORY_EVENT__SOURCE_VERSION,
-					newSourceVersion, newSourceVersion));
+			eNotify(new ENotificationImpl(this, Notification.SET, EventsPackage.SHOW_HISTORY_EVENT__SOURCE_VERSION,
+				newSourceVersion, newSourceVersion));
 	}
 
 	/**
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
+	 * <!-- begin-user-doc --> <!-- end-user-doc -->
+	 * 
 	 * @generated
 	 */
 	public PrimaryVersionSpec getTargetVersion() {
@@ -177,34 +157,25 @@ public class ShowHistoryEventImpl extends EventImpl implements ShowHistoryEvent 
 			targetVersion = (PrimaryVersionSpec) eResolveProxy(oldTargetVersion);
 			if (targetVersion != oldTargetVersion) {
 				InternalEObject newTargetVersion = (InternalEObject) targetVersion;
-				NotificationChain msgs = oldTargetVersion
-						.eInverseRemove(
-								this,
-								EOPPOSITE_FEATURE_BASE
-										- EventsPackage.SHOW_HISTORY_EVENT__TARGET_VERSION,
-								null, null);
+				NotificationChain msgs = oldTargetVersion.eInverseRemove(this, EOPPOSITE_FEATURE_BASE
+					- EventsPackage.SHOW_HISTORY_EVENT__TARGET_VERSION, null, null);
 				if (newTargetVersion.eInternalContainer() == null) {
-					msgs = newTargetVersion
-							.eInverseAdd(
-									this,
-									EOPPOSITE_FEATURE_BASE
-											- EventsPackage.SHOW_HISTORY_EVENT__TARGET_VERSION,
-									null, msgs);
+					msgs = newTargetVersion.eInverseAdd(this, EOPPOSITE_FEATURE_BASE
+						- EventsPackage.SHOW_HISTORY_EVENT__TARGET_VERSION, null, msgs);
 				}
 				if (msgs != null)
 					msgs.dispatch();
 				if (eNotificationRequired())
 					eNotify(new ENotificationImpl(this, Notification.RESOLVE,
-							EventsPackage.SHOW_HISTORY_EVENT__TARGET_VERSION,
-							oldTargetVersion, targetVersion));
+						EventsPackage.SHOW_HISTORY_EVENT__TARGET_VERSION, oldTargetVersion, targetVersion));
 			}
 		}
 		return targetVersion;
 	}
 
 	/**
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
+	 * <!-- begin-user-doc --> <!-- end-user-doc -->
+	 * 
 	 * @generated
 	 */
 	public PrimaryVersionSpec basicGetTargetVersion() {
@@ -212,19 +183,16 @@ public class ShowHistoryEventImpl extends EventImpl implements ShowHistoryEvent 
 	}
 
 	/**
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
+	 * <!-- begin-user-doc --> <!-- end-user-doc -->
+	 * 
 	 * @generated
 	 */
-	public NotificationChain basicSetTargetVersion(
-			PrimaryVersionSpec newTargetVersion, NotificationChain msgs) {
+	public NotificationChain basicSetTargetVersion(PrimaryVersionSpec newTargetVersion, NotificationChain msgs) {
 		PrimaryVersionSpec oldTargetVersion = targetVersion;
 		targetVersion = newTargetVersion;
 		if (eNotificationRequired()) {
-			ENotificationImpl notification = new ENotificationImpl(this,
-					Notification.SET,
-					EventsPackage.SHOW_HISTORY_EVENT__TARGET_VERSION,
-					oldTargetVersion, newTargetVersion);
+			ENotificationImpl notification = new ENotificationImpl(this, Notification.SET,
+				EventsPackage.SHOW_HISTORY_EVENT__TARGET_VERSION, oldTargetVersion, newTargetVersion);
 			if (msgs == null)
 				msgs = notification;
 			else
@@ -234,44 +202,34 @@ public class ShowHistoryEventImpl extends EventImpl implements ShowHistoryEvent 
 	}
 
 	/**
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
+	 * <!-- begin-user-doc --> <!-- end-user-doc -->
+	 * 
 	 * @generated
 	 */
 	public void setTargetVersion(PrimaryVersionSpec newTargetVersion) {
 		if (newTargetVersion != targetVersion) {
 			NotificationChain msgs = null;
 			if (targetVersion != null)
-				msgs = ((InternalEObject) targetVersion)
-						.eInverseRemove(
-								this,
-								EOPPOSITE_FEATURE_BASE
-										- EventsPackage.SHOW_HISTORY_EVENT__TARGET_VERSION,
-								null, msgs);
+				msgs = ((InternalEObject) targetVersion).eInverseRemove(this, EOPPOSITE_FEATURE_BASE
+					- EventsPackage.SHOW_HISTORY_EVENT__TARGET_VERSION, null, msgs);
 			if (newTargetVersion != null)
-				msgs = ((InternalEObject) newTargetVersion)
-						.eInverseAdd(
-								this,
-								EOPPOSITE_FEATURE_BASE
-										- EventsPackage.SHOW_HISTORY_EVENT__TARGET_VERSION,
-								null, msgs);
+				msgs = ((InternalEObject) newTargetVersion).eInverseAdd(this, EOPPOSITE_FEATURE_BASE
+					- EventsPackage.SHOW_HISTORY_EVENT__TARGET_VERSION, null, msgs);
 			msgs = basicSetTargetVersion(newTargetVersion, msgs);
 			if (msgs != null)
 				msgs.dispatch();
 		} else if (eNotificationRequired())
-			eNotify(new ENotificationImpl(this, Notification.SET,
-					EventsPackage.SHOW_HISTORY_EVENT__TARGET_VERSION,
-					newTargetVersion, newTargetVersion));
+			eNotify(new ENotificationImpl(this, Notification.SET, EventsPackage.SHOW_HISTORY_EVENT__TARGET_VERSION,
+				newTargetVersion, newTargetVersion));
 	}
 
 	/**
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
+	 * <!-- begin-user-doc --> <!-- end-user-doc -->
+	 * 
 	 * @generated
 	 */
 	@Override
-	public NotificationChain eInverseRemove(InternalEObject otherEnd,
-			int featureID, NotificationChain msgs) {
+	public NotificationChain eInverseRemove(InternalEObject otherEnd, int featureID, NotificationChain msgs) {
 		switch (featureID) {
 		case EventsPackage.SHOW_HISTORY_EVENT__SOURCE_VERSION:
 			return basicSetSourceVersion(null, msgs);
@@ -282,8 +240,8 @@ public class ShowHistoryEventImpl extends EventImpl implements ShowHistoryEvent 
 	}
 
 	/**
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
+	 * <!-- begin-user-doc --> <!-- end-user-doc -->
+	 * 
 	 * @generated
 	 */
 	@Override
@@ -302,8 +260,8 @@ public class ShowHistoryEventImpl extends EventImpl implements ShowHistoryEvent 
 	}
 
 	/**
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
+	 * <!-- begin-user-doc --> <!-- end-user-doc -->
+	 * 
 	 * @generated
 	 */
 	@Override
@@ -320,8 +278,8 @@ public class ShowHistoryEventImpl extends EventImpl implements ShowHistoryEvent 
 	}
 
 	/**
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
+	 * <!-- begin-user-doc --> <!-- end-user-doc -->
+	 * 
 	 * @generated
 	 */
 	@Override
@@ -338,8 +296,8 @@ public class ShowHistoryEventImpl extends EventImpl implements ShowHistoryEvent 
 	}
 
 	/**
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
+	 * <!-- begin-user-doc --> <!-- end-user-doc -->
+	 * 
 	 * @generated
 	 */
 	@Override
@@ -353,4 +311,4 @@ public class ShowHistoryEventImpl extends EventImpl implements ShowHistoryEvent 
 		return super.eIsSet(featureID);
 	}
 
-} //ShowHistoryEventImpl
+} // ShowHistoryEventImpl

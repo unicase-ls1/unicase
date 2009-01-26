@@ -1,7 +1,7 @@
 /**
  * <copyright> Copyright (c) 2008 Jonas Helming, Maximilian Koegel. All rights reserved. This program and the
  * accompanying materials are made available under the terms of the Eclipse Public License v1.0 which accompanies this
- * distribution, and is available at http://www.eclipse.org/legal/epl-v10.html </copyright> $Id$
+ * distribution, and is available at http://www.eclipse.org/legal/epl-v10.html </copyright>
  */
 package org.unicase.model.classes;
 
@@ -82,20 +82,18 @@ public interface Association extends ModelElement {
 	void setTarget(org.unicase.model.classes.Class value);
 
 	/**
-	 * Returns the value of the '<em><b>Type</b></em>' attribute.
-	 * The default value is <code>""</code>.
-	 * The literals are from the enumeration {@link org.unicase.model.classes.AssociationType}.
-	 * <!-- begin-user-doc -->
+	 * Returns the value of the '<em><b>Type</b></em>' attribute. The default value is <code>""</code>. The literals are
+	 * from the enumeration {@link org.unicase.model.classes.AssociationType}. <!-- begin-user-doc -->
 	 * <p>
 	 * If the meaning of the '<em>Type</em>' attribute isn't clear, there really should be more of a description here...
 	 * </p>
 	 * <!-- end-user-doc -->
+	 * 
 	 * @return the value of the '<em>Type</em>' attribute.
 	 * @see org.unicase.model.classes.AssociationType
 	 * @see #setType(AssociationType)
 	 * @see org.unicase.model.classes.ClassesPackage#getAssociation_Type()
-	 * @model default=""
-	 *        annotation="org.unicase.ui.meeditor priority='12.0' position='left'"
+	 * @model default="" annotation="org.unicase.ui.meeditor priority='12.0' position='left'"
 	 * @generated
 	 */
 	AssociationType getType();
@@ -112,26 +110,26 @@ public interface Association extends ModelElement {
 	void setType(AssociationType value);
 
 	/**
-	 * Returns the value of the '<em><b>Source Multiplicity</b></em>' attribute.
-	 * The default value is <code>"1"</code>.
+	 * Returns the value of the '<em><b>Source Multiplicity</b></em>' attribute. The default value is <code>"1"</code>.
 	 * <!-- begin-user-doc -->
 	 * <p>
 	 * If the meaning of the '<em>Source Multiplicity</em>' attribute isn't clear, there really should be more of a
 	 * description here...
 	 * </p>
 	 * <!-- end-user-doc -->
+	 * 
 	 * @return the value of the '<em>Source Multiplicity</em>' attribute.
 	 * @see #setSourceMultiplicity(String)
 	 * @see org.unicase.model.classes.ClassesPackage#getAssociation_SourceMultiplicity()
-	 * @model default="1"
-	 *        annotation="org.unicase.ui.meeditor priority='13.0' position='left'"
+	 * @model default="1" annotation="org.unicase.ui.meeditor priority='13.0' position='left'"
 	 * @generated
 	 */
 	String getSourceMultiplicity();
 
 	/**
-	 * Sets the value of the '{@link org.unicase.model.classes.Association#getSourceMultiplicity <em>Source Multiplicity</em>}' attribute.
-	 * <!-- begin-user-doc --> <!-- end-user-doc -->
+	 * Sets the value of the '{@link org.unicase.model.classes.Association#getSourceMultiplicity
+	 * <em>Source Multiplicity</em>}' attribute. <!-- begin-user-doc --> <!-- end-user-doc -->
+	 * 
 	 * @param value the new value of the '<em>Source Multiplicity</em>' attribute.
 	 * @see #getSourceMultiplicity()
 	 * @generated
@@ -139,26 +137,26 @@ public interface Association extends ModelElement {
 	void setSourceMultiplicity(String value);
 
 	/**
-	 * Returns the value of the '<em><b>Target Multiplicity</b></em>' attribute.
-	 * The default value is <code>"1"</code>.
+	 * Returns the value of the '<em><b>Target Multiplicity</b></em>' attribute. The default value is <code>"1"</code>.
 	 * <!-- begin-user-doc -->
 	 * <p>
 	 * If the meaning of the '<em>Target Multiplicity</em>' attribute isn't clear, there really should be more of a
 	 * description here...
 	 * </p>
 	 * <!-- end-user-doc -->
+	 * 
 	 * @return the value of the '<em>Target Multiplicity</em>' attribute.
 	 * @see #setTargetMultiplicity(String)
 	 * @see org.unicase.model.classes.ClassesPackage#getAssociation_TargetMultiplicity()
-	 * @model default="1"
-	 *        annotation="org.unicase.ui.meeditor priority='14.0' position='left'"
+	 * @model default="1" annotation="org.unicase.ui.meeditor priority='14.0' position='left'"
 	 * @generated
 	 */
 	String getTargetMultiplicity();
 
 	/**
-	 * Sets the value of the '{@link org.unicase.model.classes.Association#getTargetMultiplicity <em>Target Multiplicity</em>}' attribute.
-	 * <!-- begin-user-doc --> <!-- end-user-doc -->
+	 * Sets the value of the '{@link org.unicase.model.classes.Association#getTargetMultiplicity
+	 * <em>Target Multiplicity</em>}' attribute. <!-- begin-user-doc --> <!-- end-user-doc -->
+	 * 
 	 * @param value the new value of the '<em>Target Multiplicity</em>' attribute.
 	 * @see #getTargetMultiplicity()
 	 * @generated
@@ -183,8 +181,9 @@ public interface Association extends ModelElement {
 	String getSourceRole();
 
 	/**
-	 * Sets the value of the '{@link org.unicase.model.classes.Association#getSourceRole <em>Source Role</em>}' attribute.
-	 * <!-- begin-user-doc --> <!-- end-user-doc -->
+	 * Sets the value of the '{@link org.unicase.model.classes.Association#getSourceRole <em>Source Role</em>}'
+	 * attribute. <!-- begin-user-doc --> <!-- end-user-doc -->
+	 * 
 	 * @param value the new value of the '<em>Source Role</em>' attribute.
 	 * @see #getSourceRole()
 	 * @generated
@@ -209,8 +208,9 @@ public interface Association extends ModelElement {
 	String getTargetRole();
 
 	/**
-	 * Sets the value of the '{@link org.unicase.model.classes.Association#getTargetRole <em>Target Role</em>}' attribute.
-	 * <!-- begin-user-doc --> <!-- end-user-doc -->
+	 * Sets the value of the '{@link org.unicase.model.classes.Association#getTargetRole <em>Target Role</em>}'
+	 * attribute. <!-- begin-user-doc --> <!-- end-user-doc -->
+	 * 
 	 * @param value the new value of the '<em>Target Role</em>' attribute.
 	 * @see #getTargetRole()
 	 * @generated

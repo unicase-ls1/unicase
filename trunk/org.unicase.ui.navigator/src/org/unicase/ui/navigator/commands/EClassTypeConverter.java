@@ -1,8 +1,7 @@
 /**
- * <copyright> Copyright (c) 2008 Jonas Helming, Maximilian Koegel. All rights reserved. This program and the accompanying materials are made available under the terms of the Eclipse Public License v1.0 which accompanies this distribution, and is available at http://www.eclipse.org/legal/epl-v10.html
- * </copyright>
- *
- * $Id$
+ * <copyright> Copyright (c) 2008 Jonas Helming, Maximilian Koegel. All rights reserved. This program and the
+ * accompanying materials are made available under the terms of the Eclipse Public License v1.0 which accompanies this
+ * distribution, and is available at http://www.eclipse.org/legal/epl-v10.html </copyright>
  */
 package org.unicase.ui.navigator.commands;
 
@@ -12,21 +11,16 @@ import org.eclipse.emf.ecore.EClass;
 import org.eclipse.emf.ecore.EPackage;
 
 /**
- * 
- * @author Hodaie This is the converter for EClass parameter passed to createME
- *         command (org.unicase.ui.navigator.createME).
- * 
+ * @author Hodaie This is the converter for EClass parameter passed to createME command
+ *         (org.unicase.ui.navigator.createME).
  */
 public class EClassTypeConverter extends AbstractParameterValueConverter {
 
 	/**
-	 * . {@inheritDoc} This creates the EClass object back from its string
-	 * representation.
-	 * 
+	 * . {@inheritDoc} This creates the EClass object back from its string representation.
 	 */
 	@Override
-	public Object convertToObject(String parameterValue)
-			throws ParameterValueConversionException {
+	public Object convertToObject(String parameterValue) throws ParameterValueConversionException {
 
 		String[] parts = parameterValue.split(";");
 		String nsURI = parts[0];
@@ -40,12 +34,10 @@ public class EClassTypeConverter extends AbstractParameterValueConverter {
 	}
 
 	/**
-	 * . ({@inheritDoc}) This creates a string representation of EClass object
-	 * to put it in command parameters map.
+	 * . ({@inheritDoc}) This creates a string representation of EClass object to put it in command parameters map.
 	 */
 	@Override
-	public String convertToString(Object parameterValue)
-			throws ParameterValueConversionException {
+	public String convertToString(Object parameterValue) throws ParameterValueConversionException {
 		// We need and string representation of an EClass that can be
 		// turned back to an EClass object.
 		// It was tested with serialization method MRIUtil but

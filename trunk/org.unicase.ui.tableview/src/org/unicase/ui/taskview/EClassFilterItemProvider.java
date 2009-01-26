@@ -1,8 +1,7 @@
 /**
- * <copyright> Copyright (c) 2008 Jonas Helming, Maximilian Koegel. All rights reserved. This program and the accompanying materials are made available under the terms of the Eclipse Public License v1.0 which accompanies this distribution, and is available at http://www.eclipse.org/legal/epl-v10.html
- * </copyright>
- *
- * $Id$
+ * <copyright> Copyright (c) 2008 Jonas Helming, Maximilian Koegel. All rights reserved. This program and the
+ * accompanying materials are made available under the terms of the Eclipse Public License v1.0 which accompanies this
+ * distribution, and is available at http://www.eclipse.org/legal/epl-v10.html </copyright>
  */
 package org.unicase.ui.taskview;
 
@@ -22,7 +21,6 @@ import org.unicase.model.provider.IdentifiableElementItemProvider;
  * Provider which can be restricted to a certain class of modelelements.
  * 
  * @author helming
- * 
  */
 public class EClassFilterItemProvider extends IdentifiableElementItemProvider {
 
@@ -31,8 +29,7 @@ public class EClassFilterItemProvider extends IdentifiableElementItemProvider {
 	/**
 	 * Default constructor.
 	 * 
-	 * @param adapterFactory
-	 *            The adapter factory that creates this content provider.
+	 * @param adapterFactory The adapter factory that creates this content provider.
 	 */
 
 	public EClassFilterItemProvider(AdapterFactory adapterFactory) {
@@ -43,13 +40,10 @@ public class EClassFilterItemProvider extends IdentifiableElementItemProvider {
 	/**
 	 * Default constructor.
 	 * 
-	 * @param adapterFactory
-	 *            The adapter factory that creates this content provider.
-	 * @param itemClass
-	 *            The class which should be shown
+	 * @param adapterFactory The adapter factory that creates this content provider.
+	 * @param itemClass The class which should be shown
 	 */
-	public EClassFilterItemProvider(AdapterFactory adapterFactory,
-			EClass itemClass) {
+	public EClassFilterItemProvider(AdapterFactory adapterFactory, EClass itemClass) {
 		super(adapterFactory);
 		this.itemClass = itemClass;
 	}
@@ -63,12 +57,10 @@ public class EClassFilterItemProvider extends IdentifiableElementItemProvider {
 	}
 
 	/**
-	 * Modified getChildren method that test every child object whether it shall
-	 * be included in the returned collection or not. The test is performed by
-	 * {@link #permitsObject(Object)}.
+	 * Modified getChildren method that test every child object whether it shall be included in the returned collection
+	 * or not. The test is performed by {@link #permitsObject(Object)}.
 	 * 
-	 * @param object
-	 *            the object whose children shall be determined
+	 * @param object the object whose children shall be determined
 	 * @return the filtered children
 	 */
 	@Override
@@ -76,8 +68,7 @@ public class EClassFilterItemProvider extends IdentifiableElementItemProvider {
 
 		EList<ModelElement> allChildren = new BasicEList<ModelElement>();
 		if (object instanceof Project) {
-			allChildren = ((Project) object).getAllModelElementsbyClass(
-					itemClass, allChildren);
+			allChildren = ((Project) object).getAllModelElementsbyClass(itemClass, allChildren);
 		} else {
 			// FS navigate the containment hierarchy of the element (or do
 			// something similar)
@@ -93,11 +84,10 @@ public class EClassFilterItemProvider extends IdentifiableElementItemProvider {
 	}
 
 	/**
-	 * The method that tests whether an object is valid for this provider or
-	 * not. This is intended to be overridden by subclasses.
+	 * The method that tests whether an object is valid for this provider or not. This is intended to be overridden by
+	 * subclasses.
 	 * 
-	 * @param objectToTest
-	 *            the object in question
+	 * @param objectToTest the object in question
 	 * @return true if the object is valid, false otherwise.
 	 */
 	protected boolean permitsObject(Object objectToTest) {

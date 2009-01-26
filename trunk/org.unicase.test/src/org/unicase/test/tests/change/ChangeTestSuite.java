@@ -16,22 +16,18 @@ import org.unicase.workspace.WorkspaceManager;
 import org.unicase.workspace.impl.ProjectSpaceImpl;
 import org.unicase.workspace.impl.WorkspaceImpl;
 
-
 public abstract class ChangeTestSuite extends TestSuite {
 
 	private Project testProject;
 	private Project compareProject;
-	
+
 	private ProjectSpace testSpace;
 	private ProjectSpace compareSpace;
-	
+
 	private Long randomSeed = Calendar.getInstance().getTimeInMillis();
 	private TestProjectParmeters params;
-	
+
 	private TransactionalEditingDomain domain;
-	
-
-
 
 	protected ProjectSpace getTestProjectSpace() {
 		return testSpace;
@@ -46,26 +42,22 @@ public abstract class ChangeTestSuite extends TestSuite {
 		System.out.println("initializing test projectSpaces");
 		testSpace = ChangeTestHelper.createEmptyProjectSpace("test");
 		compareSpace = ChangeTestHelper.createEmptyProjectSpace("compare");
-		((ProjectSpaceImpl)compareSpace).stopChangeRecording();
-		final WorkspaceImpl currentWorkspace = (WorkspaceImpl) WorkspaceManager
-				.getInstance().getCurrentWorkspace();
+		((ProjectSpaceImpl) compareSpace).stopChangeRecording();
+		final WorkspaceImpl currentWorkspace = (WorkspaceImpl) WorkspaceManager.getInstance().getCurrentWorkspace();
 
-		domain = TransactionalEditingDomain.Registry.INSTANCE
-				.getEditingDomain("org.unicase.EditingDomain");
+		domain = TransactionalEditingDomain.Registry.INSTANCE.getEditingDomain("org.unicase.EditingDomain");
 		domain.getCommandStack().execute(new RecordingCommand(domain) {
 
 			@Override
 			protected void doExecute() {
 				getTestProjectSpace().setProject(getTestProject());
 				getCompareProjectSpace().setProject(getCompareProject());
-				testSpace.initResources(currentWorkspace
-						.getWorkspaceResourceSet());
-				compareSpace.initResources(currentWorkspace
-						.getWorkspaceResourceSet());
+				testSpace.initResources(currentWorkspace.getWorkspaceResourceSet());
+				compareSpace.initResources(currentWorkspace.getWorkspaceResourceSet());
 				EList<ProjectSpace> projectSpaces = currentWorkspace.getProjectSpaces();
 				projectSpaces.add(testSpace);
 				projectSpaces.add(compareSpace);
-				
+
 				currentWorkspace.save();
 
 			}
@@ -73,22 +65,21 @@ public abstract class ChangeTestSuite extends TestSuite {
 		});
 	}
 
-	protected Project getCompareProject(){
-		
-		if(testProject == null){
+	protected Project getCompareProject() {
+
+		if (testProject == null) {
 			testProject = getTestProject();
 		}
-		if(compareProject == null){
+		if (compareProject == null) {
 			System.out.println("coping test project");
-			compareProject = (Project)EcoreUtil.copy(testProject);
+			compareProject = (Project) EcoreUtil.copy(testProject);
 			System.out.println("test project copied");
 		}
 		return compareProject;
 	}
-	
 
-	protected Project getTestProject(){
-		if(testProject == null){
+	protected Project getTestProject() {
+		if (testProject == null) {
 			System.out.println("creating test project");
 			params = new TestProjectParmeters(10, randomSeed, 3, 2, 20, 10);
 			ChangeTestHelper.setRandom(new Random(randomSeed));
@@ -98,9 +89,8 @@ public abstract class ChangeTestSuite extends TestSuite {
 		return testProject;
 	}
 
-	
-	protected TestProjectParmeters getTestProjectPrams(){
+	protected TestProjectParmeters getTestProjectPrams() {
 		return params;
 	}
-	
+
 }

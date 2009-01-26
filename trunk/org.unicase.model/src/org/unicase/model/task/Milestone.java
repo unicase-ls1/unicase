@@ -1,7 +1,7 @@
 /**
  * <copyright> Copyright (c) 2008 Jonas Helming, Maximilian Koegel. All rights reserved. This program and the
  * accompanying materials are made available under the terms of the Eclipse Public License v1.0 which accompanies this
- * distribution, and is available at http://www.eclipse.org/legal/epl-v10.html </copyright> $Id$
+ * distribution, and is available at http://www.eclipse.org/legal/epl-v10.html </copyright>
  */
 package org.unicase.model.task;
 
@@ -19,18 +19,17 @@ import org.unicase.model.ModelElement;
 public interface Milestone extends WorkItem {
 
 	/**
-	 * Returns the value of the '<em><b>Contained Model Elements</b></em>' reference list.
-	 * The list contents are of type {@link org.unicase.model.ModelElement}.
-	 * <!-- begin-user-doc -->
+	 * Returns the value of the '<em><b>Contained Model Elements</b></em>' reference list. The list contents are of type
+	 * {@link org.unicase.model.ModelElement}. <!-- begin-user-doc -->
 	 * <p>
 	 * If the meaning of the '<em>Contained Model Elements</em>' reference list isn't clear, there really should be more
 	 * of a description here...
 	 * </p>
 	 * <!-- end-user-doc -->
+	 * 
 	 * @return the value of the '<em>Contained Model Elements</em>' reference list.
 	 * @see org.unicase.model.task.TaskPackage#getMilestone_ContainedModelElements()
-	 * @model keys="identifier"
-	 *        annotation="org.unicase.ui.meeditor priority='1' position='right'"
+	 * @model keys="identifier" annotation="org.unicase.ui.meeditor priority='1' position='right'"
 	 * @generated
 	 */
 	EList<ModelElement> getContainedModelElements();

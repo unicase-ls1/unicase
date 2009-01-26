@@ -1,8 +1,7 @@
 /**
- * <copyright> Copyright (c) 2008 Jonas Helming, Maximilian Koegel. All rights reserved. This program and the accompanying materials are made available under the terms of the Eclipse Public License v1.0 which accompanies this distribution, and is available at http://www.eclipse.org/legal/epl-v10.html
- * </copyright>
- *
- * $Id$
+ * <copyright> Copyright (c) 2008 Jonas Helming, Maximilian Koegel. All rights reserved. This program and the
+ * accompanying materials are made available under the terms of the Eclipse Public License v1.0 which accompanies this
+ * distribution, and is available at http://www.eclipse.org/legal/epl-v10.html </copyright>
  */
 package org.unicase.ui.meeditor.mecontrols.melinkcontrol;
 
@@ -44,18 +43,14 @@ public class MELinkControl extends AbstractMEControl {
 	/**
 	 * Default constructor.
 	 * 
-	 * @param editingDomain
-	 *            the editing domain
-	 * @param modelElement
-	 *            the ME
-	 * @param toolkit
-	 *            gui toolkit used for rendering
-	 * @param contextModelElement
-	 *            the context model element
-	 * @param reference
-	 *            the reference link
+	 * @param editingDomain the editing domain
+	 * @param modelElement the ME
+	 * @param toolkit gui toolkit used for rendering
+	 * @param contextModelElement the context model element
+	 * @param reference the reference link
 	 */
-	public MELinkControl(EditingDomain editingDomain, EObject modelElement, FormToolkit toolkit, EObject contextModelElement, EReference reference) {
+	public MELinkControl(EditingDomain editingDomain, EObject modelElement, FormToolkit toolkit,
+		EObject contextModelElement, EReference reference) {
 		super(editingDomain, modelElement, toolkit);
 		this.contextModelElement = contextModelElement;
 		this.reference = reference;
@@ -68,9 +63,9 @@ public class MELinkControl extends AbstractMEControl {
 		linkComposite = getToolkit().createComposite(parent, style);
 		linkComposite.setLayout(new GridLayout(3, false));
 		labelProvider = new MELinkLabelProvider();
-		labelListener = new ILabelProviderListener(){
+		labelListener = new ILabelProviderListener() {
 			public void labelProviderChanged(LabelProviderChangedEvent event) {
-				if(hyperlink!=null){
+				if (hyperlink != null) {
 					hyperlink.setText(labelProvider.getText(getModelElement()));
 					linkComposite.layout(true);
 					parent.getParent().layout(true);
@@ -87,15 +82,15 @@ public class MELinkControl extends AbstractMEControl {
 		imageHyperlink.addHyperlinkListener(listener);
 		ImageHyperlink deleteLink = getToolkit().createImageHyperlink(linkComposite, style);
 		Image deleteImage = null;
-		if(reference.isContainment() && (getModelElement() instanceof NonDomainElement)){
-			deleteImage = org.unicase.ui.common.Activator
-			.getImageDescriptor("icons/delete.gif").createImage();
-		}else{
+		if (reference.isContainment() && (getModelElement() instanceof NonDomainElement)) {
+			deleteImage = org.unicase.ui.common.Activator.getImageDescriptor("icons/delete.gif").createImage();
+		} else {
 			deleteImage = PlatformUI.getWorkbench().getSharedImages().getImage(ISharedImages.IMG_TOOL_DELETE);
 		}
 		deleteLink.setImage(deleteImage);
 
-		deleteLink.addHyperlinkListener(new MEHyperLinkDeleteAdapter(contextModelElement, reference, getModelElement()));
+		deleteLink
+			.addHyperlinkListener(new MEHyperLinkDeleteAdapter(contextModelElement, reference, getModelElement()));
 		return linkComposite;
 	}
 
@@ -106,7 +101,7 @@ public class MELinkControl extends AbstractMEControl {
 	public void dispose() {
 		labelProvider.removeListener(labelListener);
 		labelProvider.dispose();
-		if (linkComposite!=null){
+		if (linkComposite != null) {
 			linkComposite.dispose();
 		}
 	}

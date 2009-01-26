@@ -3,12 +3,10 @@ package org.unicase.workspace.edit.views.validationview;
 import org.eclipse.emf.validation.model.IConstraintStatus;
 import org.eclipse.jface.viewers.ColumnLabelProvider;
 
-
 /**
  * ColumnLabelProvider showing the constraint name.
  * 
  * @author naughton
- * 
  */
 public class ConstraintLabelProvider extends ColumnLabelProvider {
 

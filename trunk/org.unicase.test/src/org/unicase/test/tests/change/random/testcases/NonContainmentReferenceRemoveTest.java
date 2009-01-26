@@ -15,18 +15,14 @@ import org.unicase.test.tests.change.random.ChangePackageTest;
 import org.unicase.ui.test.TestProjectParmeters;
 import org.unicase.workspace.ProjectSpace;
 
-
-
-
-
 public class NonContainmentReferenceRemoveTest extends ChangePackageTest {
 
 	private ModelElement me;
 	private ModelElement meToRemove;
 	private EReference refToChange;
 
-	public NonContainmentReferenceRemoveTest(ProjectSpace testProjectSpace,
-			String testName, TestProjectParmeters testProjParams) {
+	public NonContainmentReferenceRemoveTest(ProjectSpace testProjectSpace, String testName,
+		TestProjectParmeters testProjParams) {
 		super(testProjectSpace, testName, testProjParams);
 
 	}
@@ -35,7 +31,7 @@ public class NonContainmentReferenceRemoveTest extends ChangePackageTest {
 	public void runTest() {
 
 		TransactionalEditingDomain domain = TransactionalEditingDomain.Registry.INSTANCE
-				.getEditingDomain("org.unicase.EditingDomain");
+			.getEditingDomain("org.unicase.EditingDomain");
 		domain.getCommandStack().execute(new RecordingCommand(domain) {
 
 			@Override
@@ -60,7 +56,6 @@ public class NonContainmentReferenceRemoveTest extends ChangePackageTest {
 
 		refToChange = findReference(me, meToRemove);
 
-
 		Object object = me.eGet(refToChange);
 		if (refToChange.isMany()) {
 			EList<EObject> eList = (EList<EObject>) object;
@@ -72,15 +67,13 @@ public class NonContainmentReferenceRemoveTest extends ChangePackageTest {
 	}
 
 	@SuppressWarnings("unchecked")
-	private EReference findReference(ModelElement modelElement,
-			ModelElement referencedME) {
+	private EReference findReference(ModelElement modelElement, ModelElement referencedME) {
 
 		List<EReference> refsMatchingReferencedME = new ArrayList<EReference>();
 		for (EReference ref : modelElement.eClass().getEAllReferences()) {
 			if (!(ref.isContainer() || ref.isContainment())
-					&& (ref.getEReferenceType().equals(referencedME.eClass()) || ref
-							.getEReferenceType().isSuperTypeOf(
-									referencedME.eClass()))) {
+				&& (ref.getEReferenceType().equals(referencedME.eClass()) || ref.getEReferenceType().isSuperTypeOf(
+					referencedME.eClass()))) {
 				refsMatchingReferencedME.add(ref);
 			}
 		}
@@ -91,7 +84,7 @@ public class NonContainmentReferenceRemoveTest extends ChangePackageTest {
 
 		for (EReference ref : refsMatchingReferencedME) {
 			Object object = me.eGet(ref);
-			if(object == null){
+			if (object == null) {
 				continue;
 			}
 			if (ref.isMany()) {
@@ -112,7 +105,7 @@ public class NonContainmentReferenceRemoveTest extends ChangePackageTest {
 
 	public int getExpectedNumOfChanges() {
 
-		//a MultiRefOperation or a SingleRefOperation
+		// a MultiRefOperation or a SingleRefOperation
 		return 1;
 	}
 
@@ -125,5 +118,3 @@ public class NonContainmentReferenceRemoveTest extends ChangePackageTest {
 	}
 
 }
-
-

@@ -39,8 +39,7 @@ public class ActorInitiatedUseCasesReorientCommand extends EditElementCommand {
 	/**
 	 * @generated
 	 */
-	public ActorInitiatedUseCasesReorientCommand(
-			ReorientReferenceRelationshipRequest request) {
+	public ActorInitiatedUseCasesReorientCommand(ReorientReferenceRelationshipRequest request) {
 		super(request.getLabel(), null, request);
 		reorientDirection = request.getDirection();
 		referenceOwner = request.getReferenceOwner();
@@ -72,8 +71,7 @@ public class ActorInitiatedUseCasesReorientCommand extends EditElementCommand {
 			return false;
 		}
 		return org.unicase.ui.usecaseDiagram.edit.policies.ModelBaseItemSemanticEditPolicy.LinkConstraints
-				.canExistActorInitiatedUseCases_3002(getNewSource(),
-						getOldTarget());
+			.canExistActorInitiatedUseCases_3002(getNewSource(), getOldTarget());
 	}
 
 	/**
@@ -84,18 +82,15 @@ public class ActorInitiatedUseCasesReorientCommand extends EditElementCommand {
 			return false;
 		}
 		return org.unicase.ui.usecaseDiagram.edit.policies.ModelBaseItemSemanticEditPolicy.LinkConstraints
-				.canExistActorInitiatedUseCases_3002(getOldSource(),
-						getNewTarget());
+			.canExistActorInitiatedUseCases_3002(getOldSource(), getNewTarget());
 	}
 
 	/**
 	 * @generated
 	 */
-	protected CommandResult doExecuteWithResult(IProgressMonitor monitor,
-			IAdaptable info) throws ExecutionException {
+	protected CommandResult doExecuteWithResult(IProgressMonitor monitor, IAdaptable info) throws ExecutionException {
 		if (!canExecute()) {
-			throw new ExecutionException(
-					"Invalid arguments in reorient link command"); //$NON-NLS-1$
+			throw new ExecutionException("Invalid arguments in reorient link command"); //$NON-NLS-1$
 		}
 		if (reorientDirection == ReorientRelationshipRequest.REORIENT_SOURCE) {
 			return reorientSource();

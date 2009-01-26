@@ -10,23 +10,17 @@ import org.eclipse.emf.ecore.EStructuralFeature;
 import org.unicase.model.task.TaskPackage;
 
 /**
- * 
  * @author hamidmomeny
- * 
  */
-public class CreationDateColumnLabelProvider extends
-		GenericColumnLabelProvider {
+public class CreationDateColumnLabelProvider extends GenericColumnLabelProvider {
 
 	/**
 	 * default constructor.
 	 * 
-	 * @param viewer
-	 *            the table viewer
-	 * @param feature
-	 *            the feature.
+	 * @param viewer the table viewer
+	 * @param feature the feature.
 	 */
-	public CreationDateColumnLabelProvider(METableViewer viewer,
-			EStructuralFeature feature) {
+	public CreationDateColumnLabelProvider(METableViewer viewer, EStructuralFeature feature) {
 		super(viewer, feature);
 		// TODO Auto-generated constructor stub
 	}
@@ -41,8 +35,7 @@ public class CreationDateColumnLabelProvider extends
 		Format formatter = new SimpleDateFormat("yyyy MM.dd. HH:mm:ss");
 		if (element instanceof EObject) {
 			Object attr = ((EObject) element).eGet(getFeature(), true);
-			if ((attr == null)
-					|| (getFeature().equals(TaskPackage.Literals.CHECKABLE__CHECKED))) {
+			if ((attr == null) || (getFeature().equals(TaskPackage.Literals.CHECKABLE__CHECKED))) {
 				return "";
 			}
 			Method getName;

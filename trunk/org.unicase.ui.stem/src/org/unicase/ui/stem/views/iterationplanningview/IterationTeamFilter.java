@@ -1,24 +1,24 @@
 /**
- * <copyright> Copyright (c) 2008 Jonas Helming, Maximilian Koegel. All rights reserved. This program and the accompanying materials are made available under the terms of the Eclipse Public License v1.0 which accompanies this distribution, and is available at http://www.eclipse.org/legal/epl-v10.html
- * </copyright>
- *
- * $Id$
+ * <copyright> Copyright (c) 2008 Jonas Helming, Maximilian Koegel. All rights reserved. This program and the
+ * accompanying materials are made available under the terms of the Eclipse Public License v1.0 which accompanies this
+ * distribution, and is available at http://www.eclipse.org/legal/epl-v10.html </copyright>
  */
 package org.unicase.ui.stem.views.iterationplanningview;
 
 import org.eclipse.jface.viewers.Viewer;
 import org.unicase.model.organization.User;
 import org.unicase.ui.common.filter.TeamFilter;
+
 /**
  * Class to filter the iteration planning view to my team.
+ * 
  * @author helming
- *
  */
 public class IterationTeamFilter extends TeamFilter {
-	
 
 	/**
 	 * default constructor.
+	 * 
 	 * @param user The user to whos team should be filtered.
 	 */
 	public IterationTeamFilter(User user) {

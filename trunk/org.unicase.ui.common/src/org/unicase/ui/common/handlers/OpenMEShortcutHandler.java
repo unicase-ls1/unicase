@@ -1,8 +1,7 @@
 /**
- * <copyright> Copyright (c) 2008 Jonas Helming, Maximilian Koegel. All rights reserved. This program and the accompanying materials are made available under the terms of the Eclipse Public License v1.0 which accompanies this distribution, and is available at http://www.eclipse.org/legal/epl-v10.html
- * </copyright>
- *
- * $Id$
+ * <copyright> Copyright (c) 2008 Jonas Helming, Maximilian Koegel. All rights reserved. This program and the
+ * accompanying materials are made available under the terms of the Eclipse Public License v1.0 which accompanies this
+ * distribution, and is available at http://www.eclipse.org/legal/epl-v10.html </copyright>
  */
 package org.unicase.ui.common.handlers;
 
@@ -29,8 +28,7 @@ import org.unicase.workspace.ProjectSpace;
 import org.unicase.workspace.WorkspaceManager;
 
 /**
- * This is the (ShortcutCommand)-Handler to select Modelelements out of a list
- * of elements..
+ * This is the (ShortcutCommand)-Handler to select Modelelements out of a list of elements..
  * 
  * @author Hamid
  */
@@ -50,53 +48,41 @@ public class OpenMEShortcutHandler extends AbstractHandler implements IHandler {
 	 * Opens a element selection dialog. {@inheritDoc}
 	 */
 	public Object execute(ExecutionEvent event) throws ExecutionException {
-		Shell shell = PlatformUI.getWorkbench().getActiveWorkbenchWindow()
-				.getShell();
-		ProjectSpace projectSpace = WorkspaceManager.getInstance()
-				.getCurrentWorkspace().getActiveProjectSpace();
+		Shell shell = PlatformUI.getWorkbench().getActiveWorkbenchWindow().getShell();
+		ProjectSpace projectSpace = WorkspaceManager.getInstance().getCurrentWorkspace().getActiveProjectSpace();
 
 		if (projectSpace == null) {
-			MessageDialog.openInformation(shell, "Information",
-					"You must select the Project");
+			MessageDialog.openInformation(shell, "Information", "You must select the Project");
 		} else {
 
 			project = projectSpace.getProject();
 			List<ModelElement> modelElements = new ArrayList<ModelElement>();
 			modelElements.addAll(project.getAllModelElements());
 			showShortcutDialog(shell, modelElements, "Open Model Element",
-					"   Enter model element name prefix or pattern (e.g. *Trun?)");
+				"   Enter model element name prefix or pattern (e.g. *Trun?)");
 		}
 
 		return null;
 	}
 
 	/**
-	 * This shows a standard dialog with some given initial contents to select
-	 * model elements.
+	 * This shows a standard dialog with some given initial contents to select model elements.
 	 * 
-	 * @param shell
-	 *            The parent shell
-	 * @param initialContent
-	 *            The list of model elements to select from
-	 * @param title
-	 *            The title of the dialog
-	 * @param message
-	 *            the message of the dialog
+	 * @param shell The parent shell
+	 * @param initialContent The list of model elements to select from
+	 * @param title The title of the dialog
+	 * @param message the message of the dialog
 	 * @return The selected elements
 	 */
-	public Object[] showShortcutDialog(Shell shell,
-			Collection<?> initialContent, String title, String message) {
+	public Object[] showShortcutDialog(Shell shell, Collection<?> initialContent, String title, String message) {
 
 		// adapterFactory an adapter factory that yield adapters that
 		// implement the various item label provider interfaces.
 
-		ILabelProvider renderer = new AdapterFactoryLabelProvider(
-				new ComposedAdapterFactory(
-						ComposedAdapterFactory.Descriptor.Registry.INSTANCE));
-		ElementListSelectionDialog dialog = new ElementListSelectionDialog(
-				shell.getShell(), renderer);
-		Object[] items = initialContent.toArray(new Object[initialContent
-				.size()]);
+		ILabelProvider renderer = new AdapterFactoryLabelProvider(new ComposedAdapterFactory(
+			ComposedAdapterFactory.Descriptor.Registry.INSTANCE));
+		ElementListSelectionDialog dialog = new ElementListSelectionDialog(shell.getShell(), renderer);
+		Object[] items = initialContent.toArray(new Object[initialContent.size()]);
 		dialog.setElements(items);
 
 		dialog.setTitle(title);

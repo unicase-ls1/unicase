@@ -9,11 +9,8 @@ import org.unicase.docExport.exportModel.Template;
 import org.unicase.docExport.exportModel.renderers.ModelElementRendererMapping;
 import org.unicase.workspace.util.WorkspaceUtil;
 
-
 /**
- * 
  * @author Sebastian Höcht
- *
  */
 public class TreeContentProvider implements ITreeContentProvider {
 
@@ -41,11 +38,11 @@ public class TreeContentProvider implements ITreeContentProvider {
 	 * {@inheritDoc}
 	 */
 	public boolean hasChildren(Object element) {
-	    // Get the children
-	    Object[] obj = getChildren(element);
+		// Get the children
+		Object[] obj = getChildren(element);
 
-	    // Return whether the parent has children
-	    return obj == null ? false : obj.length > 0;
+		// Return whether the parent has children
+		return obj == null ? false : obj.length > 0;
 	}
 
 	/**
@@ -55,11 +52,7 @@ public class TreeContentProvider implements ITreeContentProvider {
 		try {
 			return TemplateRegistry.getAllTemplates().toArray();
 		} catch (TemplateSaveException e) {
-			WorkspaceUtil.log(
-					"cannot load the templates",
-					e,
-					IStatus.ERROR
-				);
+			WorkspaceUtil.log("cannot load the templates", e, IStatus.ERROR);
 		}
 		return null;
 	}
@@ -69,7 +62,7 @@ public class TreeContentProvider implements ITreeContentProvider {
 	 */
 	public void dispose() {
 		// TODO Auto-generated method stub
-		
+
 	}
 
 	/**
@@ -77,8 +70,7 @@ public class TreeContentProvider implements ITreeContentProvider {
 	 */
 	public void inputChanged(Viewer viewer, Object oldInput, Object newInput) {
 		// TODO Auto-generated method stub
-		
-	}
 
+	}
 
 }

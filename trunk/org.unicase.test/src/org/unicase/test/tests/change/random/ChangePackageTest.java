@@ -11,37 +11,33 @@ import org.unicase.emfstore.esmodel.versioning.operations.CreateDeleteOperation;
 import org.unicase.ui.test.TestProjectParmeters;
 import org.unicase.workspace.ProjectSpace;
 
-
 public abstract class ChangePackageTest extends RandomChangeTestCase {
 
-	public ChangePackageTest(ProjectSpace testProjectSpace, String testName,
-			TestProjectParmeters testProjParams) {
+	public ChangePackageTest(ProjectSpace testProjectSpace, String testName, TestProjectParmeters testProjParams) {
 		super(testProjectSpace, testName, testProjParams);
 	}
 
-	
 	public abstract boolean isSuccessful(ChangePackage changePackage);
-	
+
 	@Override
 	public void outputResults(boolean outputToFile) {
 
 		super.outputResults(false);
-		
+
 		ChangePackage changePackage = getChangePackage(true);
 
 		if (this.isSuccessful(changePackage)) {
 			System.out.println("ok");
-//			return;
+			// return;
 		}
-		
-			
-		StringBuilder sb = new StringBuilder();
-//		sb.append("============== " + getTestName() + " ============="
-//				+ Calendar.getInstance().getTime().toString());
-//		sb.append("\n");
 
-//		sb.append(getTestProjParams().toString());
-//		sb.append("\n");
+		StringBuilder sb = new StringBuilder();
+		// sb.append("============== " + getTestName() + " ============="
+		// + Calendar.getInstance().getTime().toString());
+		// sb.append("\n");
+
+		// sb.append(getTestProjParams().toString());
+		// sb.append("\n");
 
 		sb.append("num of changes: " + changePackage.getOperations().size());
 		sb.append("\n");
@@ -52,16 +48,11 @@ public abstract class ChangePackageTest extends RandomChangeTestCase {
 			sb.append("\n");
 			sb.append(i + ". ");
 			if (op instanceof CreateDeleteOperation) {
-				sb.append(op.getName()
-						+ " ("
-						+ ((CreateDeleteOperation) op).getModelElement()
-								.getName() + ")");
+				sb.append(op.getName() + " (" + ((CreateDeleteOperation) op).getModelElement().getName() + ")");
 				sb.append("\n");
 			} else {
-				sb.append(op.getName() + "(" + op.getClass().getSimpleName() + ")" 
-						+ " ("
-						+ getTestProject().getModelElement(
-								op.getModelElementId()).getName() + ")");
+				sb.append(op.getName() + "(" + op.getClass().getSimpleName() + ")" + " ("
+					+ getTestProject().getModelElement(op.getModelElementId()).getName() + ")");
 				sb.append("\n");
 
 			}

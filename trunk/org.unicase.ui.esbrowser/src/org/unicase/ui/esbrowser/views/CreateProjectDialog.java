@@ -1,8 +1,7 @@
 /**
- * <copyright> Copyright (c) 2008 Jonas Helming, Maximilian Koegel. All rights reserved. This program and the accompanying materials are made available under the terms of the Eclipse Public License v1.0 which accompanies this distribution, and is available at http://www.eclipse.org/legal/epl-v10.html
- * </copyright>
- *
- * $Id$
+ * <copyright> Copyright (c) 2008 Jonas Helming, Maximilian Koegel. All rights reserved. This program and the
+ * accompanying materials are made available under the terms of the Eclipse Public License v1.0 which accompanies this
+ * distribution, and is available at http://www.eclipse.org/legal/epl-v10.html </copyright>
  */
 package org.unicase.ui.esbrowser.views;
 
@@ -38,10 +37,8 @@ public class CreateProjectDialog extends TitleAreaDialog {
 	/**
 	 * Default constructor.
 	 * 
-	 * @param parent
-	 *            the parent shell
-	 * @param session
-	 *            the target usersession
+	 * @param parent the parent shell
+	 * @param session the target usersession
 	 */
 	public CreateProjectDialog(Shell parent, Usersession session) {
 		super(parent);
@@ -70,7 +67,8 @@ public class CreateProjectDialog extends TitleAreaDialog {
 		projectdesc.setSize(150, 60);
 
 		Point defaultMargins = LayoutConstants.getMargins();
-		GridLayoutFactory.fillDefaults().numColumns(2).margins(defaultMargins.x, defaultMargins.y).generateLayout(contents);
+		GridLayoutFactory.fillDefaults().numColumns(2).margins(defaultMargins.x, defaultMargins.y).generateLayout(
+			contents);
 
 		return contents;
 	}
@@ -80,7 +78,8 @@ public class CreateProjectDialog extends TitleAreaDialog {
 	 */
 	@Override
 	public void okPressed() {
-		TransactionalEditingDomain domain = TransactionalEditingDomain.Registry.INSTANCE.getEditingDomain("org.unicase.EditingDomain");
+		TransactionalEditingDomain domain = TransactionalEditingDomain.Registry.INSTANCE
+			.getEditingDomain("org.unicase.EditingDomain");
 		domain.getCommandStack().execute(new RecordingCommand(domain) {
 			@Override
 			protected void doExecute() {

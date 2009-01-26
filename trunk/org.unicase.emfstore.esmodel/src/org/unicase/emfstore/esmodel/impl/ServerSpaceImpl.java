@@ -1,8 +1,7 @@
 /**
- * <copyright> Copyright (c) 2008 Jonas Helming, Maximilian Koegel. All rights reserved. This program and the accompanying materials are made available under the terms of the Eclipse Public License v1.0 which accompanies this distribution, and is available at http://www.eclipse.org/legal/epl-v10.html
- * </copyright>
- *
- * $Id$
+ * <copyright> Copyright (c) 2008 Jonas Helming, Maximilian Koegel. All rights reserved. This program and the
+ * accompanying materials are made available under the terms of the Eclipse Public License v1.0 which accompanies this
+ * distribution, and is available at http://www.eclipse.org/legal/epl-v10.html </copyright>
  */
 package org.unicase.emfstore.esmodel.impl;
 
@@ -26,24 +25,24 @@ import org.unicase.emfstore.esmodel.accesscontrol.ACGroup;
 import org.unicase.emfstore.esmodel.accesscontrol.ACUser;
 
 /**
- * <!-- begin-user-doc --> An implementation of the model object '
- * <em><b>Server Space</b></em>'. <!-- end-user-doc -->
+ * <!-- begin-user-doc --> An implementation of the model object ' <em><b>Server Space</b></em>'. <!-- end-user-doc -->
  * <p>
  * The following features are implemented:
  * <ul>
- *   <li>{@link org.unicase.emfstore.esmodel.impl.ServerSpaceImpl#getGroups <em>Groups</em>}</li>
- *   <li>{@link org.unicase.emfstore.esmodel.impl.ServerSpaceImpl#getProjects <em>Projects</em>}</li>
- *   <li>{@link org.unicase.emfstore.esmodel.impl.ServerSpaceImpl#getOpenSessions <em>Open Sessions</em>}</li>
- *   <li>{@link org.unicase.emfstore.esmodel.impl.ServerSpaceImpl#getUsers <em>Users</em>}</li>
+ * <li>{@link org.unicase.emfstore.esmodel.impl.ServerSpaceImpl#getGroups <em>Groups</em>}</li>
+ * <li>{@link org.unicase.emfstore.esmodel.impl.ServerSpaceImpl#getProjects <em>Projects</em>}</li>
+ * <li>{@link org.unicase.emfstore.esmodel.impl.ServerSpaceImpl#getOpenSessions <em>Open Sessions</em>}</li>
+ * <li>{@link org.unicase.emfstore.esmodel.impl.ServerSpaceImpl#getUsers <em>Users</em>}</li>
  * </ul>
  * </p>
- *
+ * 
  * @generated
  */
 public class ServerSpaceImpl extends EObjectImpl implements ServerSpace {
 	/**
-	 * The cached value of the '{@link #getGroups() <em>Groups</em>}' containment reference list.
-	 * <!-- begin-user-doc --> <!-- end-user-doc -->
+	 * The cached value of the '{@link #getGroups() <em>Groups</em>}' containment reference list. <!-- begin-user-doc
+	 * --> <!-- end-user-doc -->
+	 * 
 	 * @see #getGroups()
 	 * @generated
 	 * @ordered
@@ -51,8 +50,9 @@ public class ServerSpaceImpl extends EObjectImpl implements ServerSpace {
 	protected EList<ACGroup> groups;
 
 	/**
-	 * The cached value of the '{@link #getProjects() <em>Projects</em>}' reference list.
-	 * <!-- begin-user-doc --> <!-- end-user-doc -->
+	 * The cached value of the '{@link #getProjects() <em>Projects</em>}' reference list. <!-- begin-user-doc --> <!--
+	 * end-user-doc -->
+	 * 
 	 * @see #getProjects()
 	 * @generated
 	 * @ordered
@@ -60,9 +60,9 @@ public class ServerSpaceImpl extends EObjectImpl implements ServerSpace {
 	protected EList<ProjectHistory> projects;
 
 	/**
-	 * The cached value of the '{@link #getOpenSessions() <em>Open Sessions</em>}' containment reference list.
-	 * <!-- begin-user-doc
-	 * --> <!-- end-user-doc -->
+	 * The cached value of the '{@link #getOpenSessions() <em>Open Sessions</em>}' containment reference list. <!--
+	 * begin-user-doc --> <!-- end-user-doc -->
+	 * 
 	 * @see #getOpenSessions()
 	 * @generated
 	 * @ordered
@@ -70,8 +70,9 @@ public class ServerSpaceImpl extends EObjectImpl implements ServerSpace {
 	protected EList<SessionId> openSessions;
 
 	/**
-	 * The cached value of the '{@link #getUsers() <em>Users</em>}' containment reference list.
-	 * <!-- begin-user-doc --> <!-- end-user-doc -->
+	 * The cached value of the '{@link #getUsers() <em>Users</em>}' containment reference list. <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * 
 	 * @see #getUsers()
 	 * @generated
 	 * @ordered
@@ -82,6 +83,7 @@ public class ServerSpaceImpl extends EObjectImpl implements ServerSpace {
 
 	/**
 	 * <!-- begin-user-doc --> <!-- end-user-doc -->
+	 * 
 	 * @generated
 	 */
 	protected ServerSpaceImpl() {
@@ -90,6 +92,7 @@ public class ServerSpaceImpl extends EObjectImpl implements ServerSpace {
 
 	/**
 	 * <!-- begin-user-doc --> <!-- end-user-doc -->
+	 * 
 	 * @generated
 	 */
 	@Override
@@ -99,67 +102,68 @@ public class ServerSpaceImpl extends EObjectImpl implements ServerSpace {
 
 	/**
 	 * <!-- begin-user-doc --> <!-- end-user-doc -->
+	 * 
 	 * @generated
 	 */
 	public EList<ACGroup> getGroups() {
 		if (groups == null) {
-			groups = new EObjectContainmentEList.Resolving<ACGroup>(
-					ACGroup.class, this, EsmodelPackage.SERVER_SPACE__GROUPS);
+			groups = new EObjectContainmentEList.Resolving<ACGroup>(ACGroup.class, this,
+				EsmodelPackage.SERVER_SPACE__GROUPS);
 		}
 		return groups;
 	}
 
 	/**
 	 * <!-- begin-user-doc --> <!-- end-user-doc -->
+	 * 
 	 * @generated
 	 */
 	public EList<ProjectHistory> getProjects() {
 		if (projects == null) {
-			projects = new EObjectResolvingEList<ProjectHistory>(
-					ProjectHistory.class, this,
-					EsmodelPackage.SERVER_SPACE__PROJECTS);
+			projects = new EObjectResolvingEList<ProjectHistory>(ProjectHistory.class, this,
+				EsmodelPackage.SERVER_SPACE__PROJECTS);
 		}
 		return projects;
 	}
 
 	/**
 	 * <!-- begin-user-doc --> <!-- end-user-doc -->
+	 * 
 	 * @generated
 	 */
 	public EList<SessionId> getOpenSessions() {
 		if (openSessions == null) {
-			openSessions = new EObjectContainmentEList.Resolving<SessionId>(
-					SessionId.class, this,
-					EsmodelPackage.SERVER_SPACE__OPEN_SESSIONS);
+			openSessions = new EObjectContainmentEList.Resolving<SessionId>(SessionId.class, this,
+				EsmodelPackage.SERVER_SPACE__OPEN_SESSIONS);
 		}
 		return openSessions;
 	}
 
 	/**
 	 * <!-- begin-user-doc --> <!-- end-user-doc -->
+	 * 
 	 * @generated
 	 */
 	public EList<ACUser> getUsers() {
 		if (users == null) {
-			users = new EObjectContainmentEList.Resolving<ACUser>(ACUser.class,
-					this, EsmodelPackage.SERVER_SPACE__USERS);
+			users = new EObjectContainmentEList.Resolving<ACUser>(ACUser.class, this,
+				EsmodelPackage.SERVER_SPACE__USERS);
 		}
 		return users;
 	}
 
 	/**
 	 * <!-- begin-user-doc --> <!-- end-user-doc -->
+	 * 
 	 * @generated
 	 */
 	@Override
-	public NotificationChain eInverseRemove(InternalEObject otherEnd,
-			int featureID, NotificationChain msgs) {
+	public NotificationChain eInverseRemove(InternalEObject otherEnd, int featureID, NotificationChain msgs) {
 		switch (featureID) {
 		case EsmodelPackage.SERVER_SPACE__GROUPS:
 			return ((InternalEList<?>) getGroups()).basicRemove(otherEnd, msgs);
 		case EsmodelPackage.SERVER_SPACE__OPEN_SESSIONS:
-			return ((InternalEList<?>) getOpenSessions()).basicRemove(otherEnd,
-					msgs);
+			return ((InternalEList<?>) getOpenSessions()).basicRemove(otherEnd, msgs);
 		case EsmodelPackage.SERVER_SPACE__USERS:
 			return ((InternalEList<?>) getUsers()).basicRemove(otherEnd, msgs);
 		}
@@ -168,6 +172,7 @@ public class ServerSpaceImpl extends EObjectImpl implements ServerSpace {
 
 	/**
 	 * <!-- begin-user-doc --> <!-- end-user-doc -->
+	 * 
 	 * @generated
 	 */
 	@Override
@@ -187,6 +192,7 @@ public class ServerSpaceImpl extends EObjectImpl implements ServerSpace {
 
 	/**
 	 * <!-- begin-user-doc --> <!-- end-user-doc -->
+	 * 
 	 * @generated
 	 */
 	@SuppressWarnings("unchecked")
@@ -199,13 +205,11 @@ public class ServerSpaceImpl extends EObjectImpl implements ServerSpace {
 			return;
 		case EsmodelPackage.SERVER_SPACE__PROJECTS:
 			getProjects().clear();
-			getProjects().addAll(
-					(Collection<? extends ProjectHistory>) newValue);
+			getProjects().addAll((Collection<? extends ProjectHistory>) newValue);
 			return;
 		case EsmodelPackage.SERVER_SPACE__OPEN_SESSIONS:
 			getOpenSessions().clear();
-			getOpenSessions()
-					.addAll((Collection<? extends SessionId>) newValue);
+			getOpenSessions().addAll((Collection<? extends SessionId>) newValue);
 			return;
 		case EsmodelPackage.SERVER_SPACE__USERS:
 			getUsers().clear();
@@ -217,6 +221,7 @@ public class ServerSpaceImpl extends EObjectImpl implements ServerSpace {
 
 	/**
 	 * <!-- begin-user-doc --> <!-- end-user-doc -->
+	 * 
 	 * @generated
 	 */
 	@Override
@@ -240,6 +245,7 @@ public class ServerSpaceImpl extends EObjectImpl implements ServerSpace {
 
 	/**
 	 * <!-- begin-user-doc --> <!-- end-user-doc -->
+	 * 
 	 * @generated
 	 */
 	@Override

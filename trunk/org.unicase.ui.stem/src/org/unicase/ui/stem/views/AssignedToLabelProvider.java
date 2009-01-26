@@ -1,8 +1,7 @@
 /**
- * <copyright> Copyright (c) 2008 Jonas Helming, Maximilian Koegel. All rights reserved. This program and the accompanying materials are made available under the terms of the Eclipse Public License v1.0 which accompanies this distribution, and is available at http://www.eclipse.org/legal/epl-v10.html
- * </copyright>
- *
- * $Id$
+ * <copyright> Copyright (c) 2008 Jonas Helming, Maximilian Koegel. All rights reserved. This program and the
+ * accompanying materials are made available under the terms of the Eclipse Public License v1.0 which accompanies this
+ * distribution, and is available at http://www.eclipse.org/legal/epl-v10.html </copyright>
  */
 package org.unicase.ui.stem.views;
 
@@ -17,7 +16,6 @@ import org.unicase.ui.stem.views.iterationplanningview.IterationPlanningLabelPro
  * . LabelProvider for Assigned to column in IterationPlanningView
  * 
  * @author Helming
- * 
  */
 public class AssignedToLabelProvider extends IterationPlanningLabelProvider {
 
@@ -28,9 +26,8 @@ public class AssignedToLabelProvider extends IterationPlanningLabelProvider {
 	 */
 	public AssignedToLabelProvider() {
 		super();
-		adapterFactoryLabelProvider = new AdapterFactoryLabelProvider(
-				new ComposedAdapterFactory(
-						ComposedAdapterFactory.Descriptor.Registry.INSTANCE));
+		adapterFactoryLabelProvider = new AdapterFactoryLabelProvider(new ComposedAdapterFactory(
+			ComposedAdapterFactory.Descriptor.Registry.INSTANCE));
 	}
 
 	/**
@@ -48,8 +45,7 @@ public class AssignedToLabelProvider extends IterationPlanningLabelProvider {
 	/**
 	 * . returns the Assignee of an Assignable element
 	 * 
-	 * @param element
-	 *            the Assignable
+	 * @param element the Assignable
 	 * @return
 	 */
 	private EObject getAssignee(Object element) {
@@ -61,7 +57,6 @@ public class AssignedToLabelProvider extends IterationPlanningLabelProvider {
 
 	/**
 	 * . {@inheritDoc}
-	 * 
 	 */
 	@Override
 	public String getText(Object element) {

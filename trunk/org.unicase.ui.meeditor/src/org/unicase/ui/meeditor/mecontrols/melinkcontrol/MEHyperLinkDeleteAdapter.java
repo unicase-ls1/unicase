@@ -1,8 +1,7 @@
 /**
- * <copyright> Copyright (c) 2008 Jonas Helming, Maximilian Koegel. All rights reserved. This program and the accompanying materials are made available under the terms of the Eclipse Public License v1.0 which accompanies this distribution, and is available at http://www.eclipse.org/legal/epl-v10.html
- * </copyright>
- *
- * $Id$
+ * <copyright> Copyright (c) 2008 Jonas Helming, Maximilian Koegel. All rights reserved. This program and the
+ * accompanying materials are made available under the terms of the Eclipse Public License v1.0 which accompanies this
+ * distribution, and is available at http://www.eclipse.org/legal/epl-v10.html </copyright>
  */
 package org.unicase.ui.meeditor.mecontrols.melinkcontrol;
 
@@ -23,11 +22,8 @@ import org.unicase.ui.common.commands.DeleteReferenceCommand;
  * A {@link HyperlinkAdapter} regarding deletion of model elements.
  * 
  * @author helming
- * 
  */
-public class MEHyperLinkDeleteAdapter extends HyperlinkAdapter implements
-		IHyperlinkListener {
-
+public class MEHyperLinkDeleteAdapter extends HyperlinkAdapter implements IHyperlinkListener {
 
 	private EObject modelElement;
 	private EReference reference;
@@ -36,15 +32,11 @@ public class MEHyperLinkDeleteAdapter extends HyperlinkAdapter implements
 	/**
 	 * Default constructor.
 	 * 
-	 * @param modelElement
-	 *            the model element
-	 * @param reference
-	 *            the reference link
-	 * @param opposite
-	 *            the model element on the other side of the link
+	 * @param modelElement the model element
+	 * @param reference the reference link
+	 * @param opposite the model element on the other side of the link
 	 */
-	public MEHyperLinkDeleteAdapter(EObject modelElement, EReference reference,
-			EObject opposite) {
+	public MEHyperLinkDeleteAdapter(EObject modelElement, EReference reference, EObject opposite) {
 		this.modelElement = modelElement;
 		this.reference = reference;
 		this.opposite = opposite;
@@ -55,13 +47,13 @@ public class MEHyperLinkDeleteAdapter extends HyperlinkAdapter implements
 	 */
 	@Override
 	public void linkActivated(HyperlinkEvent e) {
-		TransactionalEditingDomain domain = TransactionUtil
-				.getEditingDomain(modelElement);
+		TransactionalEditingDomain domain = TransactionUtil.getEditingDomain(modelElement);
 		RecordingCommand command = null;
-		if(reference.isContainment() && opposite instanceof NonDomainElement){
-			command = new DeleteModelElementCommand(domain,(ModelElement)opposite); 
-		}else{
-			command = new DeleteReferenceCommand(domain,(ModelElement)modelElement,reference,(ModelElement)opposite);
+		if (reference.isContainment() && opposite instanceof NonDomainElement) {
+			command = new DeleteModelElementCommand(domain, (ModelElement) opposite);
+		} else {
+			command = new DeleteReferenceCommand(domain, (ModelElement) modelElement, reference,
+				(ModelElement) opposite);
 		}
 		domain.getCommandStack().execute(command);
 	}

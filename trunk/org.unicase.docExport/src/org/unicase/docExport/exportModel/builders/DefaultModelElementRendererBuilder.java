@@ -6,17 +6,17 @@ import org.unicase.docExport.exportModel.renderers.defaultRenderers.DefaultModel
 import org.unicase.docExport.exportModel.renderers.defaultRenderers.DefaultRenderersFactory;
 
 /**
- * This class is a builder for the complex DefaultModelElementRenderer object.
- * There is an AttributeRendererMapping, which defines which AttributeRenderer is used
- * for each Attribute of a ModelElement.
- * Additionally, a RendererOption for each Attribute is created. The RendererOption depends
- * on the Attribute type (Text, Boolean, Reference, Multi References)
+ * This class is a builder for the complex DefaultModelElementRenderer object. There is an AttributeRendererMapping,
+ * which defines which AttributeRenderer is used for each Attribute of a ModelElement. Additionally, a RendererOption
+ * for each Attribute is created. The RendererOption depends on the Attribute type (Text, Boolean, Reference, Multi
+ * References)
  */
 public final class DefaultModelElementRendererBuilder {
 
 	private DefaultModelElementRendererBuilder() {
-		
+
 	}
+
 	/**
 	 * Build the complex Object DefaultModelElementRenderer.
 	 * 
@@ -25,37 +25,37 @@ public final class DefaultModelElementRendererBuilder {
 	 * @return the ModelElementRenderer which just has been built
 	 */
 	public static DefaultModelElementRenderer build(EClass eClass, Template template) {
-		
-		//create an instance of the ModelElement which eClass refers to, to get
-		//a property list
+
+		// create an instance of the ModelElement which eClass refers to, to get
+		// a property list
 
 		DefaultModelElementRenderer renderer = DefaultRenderersFactory.eINSTANCE.createDefaultModelElementRenderer();
 		renderer.setTemplate(template);
 
-//		ModelElement modelElement = 
-//			(ModelElement)eClass.getEPackage().getEFactoryInstance().create(eClass);
-//		
-//		AdapterFactoryItemDelegator adapterFactoryItemDelegator = new AdapterFactoryItemDelegator(
-//				new ComposedAdapterFactory(
-//						ComposedAdapterFactory.Descriptor.Registry.INSTANCE
-//				)
-//		);
-//		
-//		
-//		
-//		List<IItemPropertyDescriptor> propertyDescriptors = adapterFactoryItemDelegator.
-//			getPropertyDescriptors(modelElement);
-//		if (propertyDescriptors != null) {
-//			for (IItemPropertyDescriptor itemPropertyDescriptor : propertyDescriptors) {
-//				EStructuralFeature feature = (EStructuralFeature) itemPropertyDescriptor.getFeature(modelElement);
-//				
-//				AttributeRendererMapping mapping = RenderersFactory.eINSTANCE.createAttributeRendererMapping();
-//				mapping.setAttributeRenderer(DefaultAttributeRendererBuilder.build(feature, template));
-//				mapping.setFeatureName(feature.getName());
-//				renderer.getAttributeRendererMapping().add(mapping);
-//			}
-//		}	
-		
+		// ModelElement modelElement =
+		// (ModelElement)eClass.getEPackage().getEFactoryInstance().create(eClass);
+		//		
+		// AdapterFactoryItemDelegator adapterFactoryItemDelegator = new AdapterFactoryItemDelegator(
+		// new ComposedAdapterFactory(
+		// ComposedAdapterFactory.Descriptor.Registry.INSTANCE
+		// )
+		// );
+		//		
+		//		
+		//		
+		// List<IItemPropertyDescriptor> propertyDescriptors = adapterFactoryItemDelegator.
+		// getPropertyDescriptors(modelElement);
+		// if (propertyDescriptors != null) {
+		// for (IItemPropertyDescriptor itemPropertyDescriptor : propertyDescriptors) {
+		// EStructuralFeature feature = (EStructuralFeature) itemPropertyDescriptor.getFeature(modelElement);
+		//				
+		// AttributeRendererMapping mapping = RenderersFactory.eINSTANCE.createAttributeRendererMapping();
+		// mapping.setAttributeRenderer(DefaultAttributeRendererBuilder.build(feature, template));
+		// mapping.setFeatureName(feature.getName());
+		// renderer.getAttributeRendererMapping().add(mapping);
+		// }
+		// }
+
 		return renderer;
 	}
 }

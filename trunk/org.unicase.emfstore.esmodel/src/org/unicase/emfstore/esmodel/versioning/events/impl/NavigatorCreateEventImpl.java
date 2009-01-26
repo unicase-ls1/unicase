@@ -1,7 +1,7 @@
 /**
- * <copyright>Copyright (c) 2008 Jonas Helming, Maximilian Koegel. All rights reserved. This program and the accompanying materials are made available under the terms of the Eclipse Public License v1.0 which accompanies this distribution, and is available at http://www.eclipse.org/legal/epl-v10.html</copyright>
- *
- * $Id$
+ * <copyright>Copyright (c) 2008 Jonas Helming, Maximilian Koegel. All rights reserved. This program and the
+ * accompanying materials are made available under the terms of the Eclipse Public License v1.0 which accompanies this
+ * distribution, and is available at http://www.eclipse.org/legal/epl-v10.html</copyright>
  */
 package org.unicase.emfstore.esmodel.versioning.events.impl;
 
@@ -14,26 +14,26 @@ import org.unicase.emfstore.esmodel.versioning.events.NavigatorCreateEvent;
 import org.unicase.model.ModelElementId;
 
 /**
- * <!-- begin-user-doc -->
- * An implementation of the model object '<em><b>Navigator Create Event</b></em>'.
- * <!-- end-user-doc -->
+ * <!-- begin-user-doc --> An implementation of the model object '<em><b>Navigator Create Event</b></em>'. <!--
+ * end-user-doc -->
  * <p>
  * The following features are implemented:
  * <ul>
- *   <li>{@link org.unicase.emfstore.esmodel.versioning.events.impl.NavigatorCreateEventImpl#getCreatedElement <em>Created Element</em>}</li>
- *   <li>{@link org.unicase.emfstore.esmodel.versioning.events.impl.NavigatorCreateEventImpl#getSourceSection <em>Source Section</em>}</li>
- *   <li>{@link org.unicase.emfstore.esmodel.versioning.events.impl.NavigatorCreateEventImpl#isDynamic <em>Dynamic</em>}</li>
+ * <li>{@link org.unicase.emfstore.esmodel.versioning.events.impl.NavigatorCreateEventImpl#getCreatedElement <em>Created
+ * Element</em>}</li>
+ * <li>{@link org.unicase.emfstore.esmodel.versioning.events.impl.NavigatorCreateEventImpl#getSourceSection <em>Source
+ * Section</em>}</li>
+ * <li>{@link org.unicase.emfstore.esmodel.versioning.events.impl.NavigatorCreateEventImpl#isDynamic <em>Dynamic</em>}</li>
  * </ul>
  * </p>
- *
+ * 
  * @generated
  */
-public class NavigatorCreateEventImpl extends EventImpl implements
-		NavigatorCreateEvent {
+public class NavigatorCreateEventImpl extends EventImpl implements NavigatorCreateEvent {
 	/**
-	 * The cached value of the '{@link #getCreatedElement() <em>Created Element</em>}' reference.
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
+	 * The cached value of the '{@link #getCreatedElement() <em>Created Element</em>}' reference. <!-- begin-user-doc
+	 * --> <!-- end-user-doc -->
+	 * 
 	 * @see #getCreatedElement()
 	 * @generated
 	 * @ordered
@@ -41,9 +41,9 @@ public class NavigatorCreateEventImpl extends EventImpl implements
 	protected ModelElementId createdElement;
 
 	/**
-	 * The cached value of the '{@link #getSourceSection() <em>Source Section</em>}' reference.
-	 * <!-- begin-user-doc -->
+	 * The cached value of the '{@link #getSourceSection() <em>Source Section</em>}' reference. <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
+	 * 
 	 * @see #getSourceSection()
 	 * @generated
 	 * @ordered
@@ -51,9 +51,9 @@ public class NavigatorCreateEventImpl extends EventImpl implements
 	protected ModelElementId sourceSection;
 
 	/**
-	 * The default value of the '{@link #isDynamic() <em>Dynamic</em>}' attribute.
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
+	 * The default value of the '{@link #isDynamic() <em>Dynamic</em>}' attribute. <!-- begin-user-doc --> <!--
+	 * end-user-doc -->
+	 * 
 	 * @see #isDynamic()
 	 * @generated
 	 * @ordered
@@ -61,9 +61,9 @@ public class NavigatorCreateEventImpl extends EventImpl implements
 	protected static final boolean DYNAMIC_EDEFAULT = false;
 
 	/**
-	 * The cached value of the '{@link #isDynamic() <em>Dynamic</em>}' attribute.
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
+	 * The cached value of the '{@link #isDynamic() <em>Dynamic</em>}' attribute. <!-- begin-user-doc --> <!--
+	 * end-user-doc -->
+	 * 
 	 * @see #isDynamic()
 	 * @generated
 	 * @ordered
@@ -71,8 +71,8 @@ public class NavigatorCreateEventImpl extends EventImpl implements
 	protected boolean dynamic = DYNAMIC_EDEFAULT;
 
 	/**
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
+	 * <!-- begin-user-doc --> <!-- end-user-doc -->
+	 * 
 	 * @generated
 	 */
 	protected NavigatorCreateEventImpl() {
@@ -80,8 +80,8 @@ public class NavigatorCreateEventImpl extends EventImpl implements
 	}
 
 	/**
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
+	 * <!-- begin-user-doc --> <!-- end-user-doc -->
+	 * 
 	 * @generated
 	 */
 	@Override
@@ -90,8 +90,8 @@ public class NavigatorCreateEventImpl extends EventImpl implements
 	}
 
 	/**
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
+	 * <!-- begin-user-doc --> <!-- end-user-doc -->
+	 * 
 	 * @generated
 	 */
 	public ModelElementId getCreatedElement() {
@@ -100,19 +100,16 @@ public class NavigatorCreateEventImpl extends EventImpl implements
 			createdElement = (ModelElementId) eResolveProxy(oldCreatedElement);
 			if (createdElement != oldCreatedElement) {
 				if (eNotificationRequired())
-					eNotify(new ENotificationImpl(
-							this,
-							Notification.RESOLVE,
-							EventsPackage.NAVIGATOR_CREATE_EVENT__CREATED_ELEMENT,
-							oldCreatedElement, createdElement));
+					eNotify(new ENotificationImpl(this, Notification.RESOLVE,
+						EventsPackage.NAVIGATOR_CREATE_EVENT__CREATED_ELEMENT, oldCreatedElement, createdElement));
 			}
 		}
 		return createdElement;
 	}
 
 	/**
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
+	 * <!-- begin-user-doc --> <!-- end-user-doc -->
+	 * 
 	 * @generated
 	 */
 	public ModelElementId basicGetCreatedElement() {
@@ -120,8 +117,8 @@ public class NavigatorCreateEventImpl extends EventImpl implements
 	}
 
 	/**
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
+	 * <!-- begin-user-doc --> <!-- end-user-doc -->
+	 * 
 	 * @generated
 	 */
 	public void setCreatedElement(ModelElementId newCreatedElement) {
@@ -129,13 +126,12 @@ public class NavigatorCreateEventImpl extends EventImpl implements
 		createdElement = newCreatedElement;
 		if (eNotificationRequired())
 			eNotify(new ENotificationImpl(this, Notification.SET,
-					EventsPackage.NAVIGATOR_CREATE_EVENT__CREATED_ELEMENT,
-					oldCreatedElement, createdElement));
+				EventsPackage.NAVIGATOR_CREATE_EVENT__CREATED_ELEMENT, oldCreatedElement, createdElement));
 	}
 
 	/**
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
+	 * <!-- begin-user-doc --> <!-- end-user-doc -->
+	 * 
 	 * @generated
 	 */
 	public ModelElementId getSourceSection() {
@@ -144,19 +140,16 @@ public class NavigatorCreateEventImpl extends EventImpl implements
 			sourceSection = (ModelElementId) eResolveProxy(oldSourceSection);
 			if (sourceSection != oldSourceSection) {
 				if (eNotificationRequired())
-					eNotify(new ENotificationImpl(
-							this,
-							Notification.RESOLVE,
-							EventsPackage.NAVIGATOR_CREATE_EVENT__SOURCE_SECTION,
-							oldSourceSection, sourceSection));
+					eNotify(new ENotificationImpl(this, Notification.RESOLVE,
+						EventsPackage.NAVIGATOR_CREATE_EVENT__SOURCE_SECTION, oldSourceSection, sourceSection));
 			}
 		}
 		return sourceSection;
 	}
 
 	/**
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
+	 * <!-- begin-user-doc --> <!-- end-user-doc -->
+	 * 
 	 * @generated
 	 */
 	public ModelElementId basicGetSourceSection() {
@@ -164,22 +157,21 @@ public class NavigatorCreateEventImpl extends EventImpl implements
 	}
 
 	/**
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
+	 * <!-- begin-user-doc --> <!-- end-user-doc -->
+	 * 
 	 * @generated
 	 */
 	public void setSourceSection(ModelElementId newSourceSection) {
 		ModelElementId oldSourceSection = sourceSection;
 		sourceSection = newSourceSection;
 		if (eNotificationRequired())
-			eNotify(new ENotificationImpl(this, Notification.SET,
-					EventsPackage.NAVIGATOR_CREATE_EVENT__SOURCE_SECTION,
-					oldSourceSection, sourceSection));
+			eNotify(new ENotificationImpl(this, Notification.SET, EventsPackage.NAVIGATOR_CREATE_EVENT__SOURCE_SECTION,
+				oldSourceSection, sourceSection));
 	}
 
 	/**
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
+	 * <!-- begin-user-doc --> <!-- end-user-doc -->
+	 * 
 	 * @generated
 	 */
 	public boolean isDynamic() {
@@ -187,22 +179,21 @@ public class NavigatorCreateEventImpl extends EventImpl implements
 	}
 
 	/**
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
+	 * <!-- begin-user-doc --> <!-- end-user-doc -->
+	 * 
 	 * @generated
 	 */
 	public void setDynamic(boolean newDynamic) {
 		boolean oldDynamic = dynamic;
 		dynamic = newDynamic;
 		if (eNotificationRequired())
-			eNotify(new ENotificationImpl(this, Notification.SET,
-					EventsPackage.NAVIGATOR_CREATE_EVENT__DYNAMIC, oldDynamic,
-					dynamic));
+			eNotify(new ENotificationImpl(this, Notification.SET, EventsPackage.NAVIGATOR_CREATE_EVENT__DYNAMIC,
+				oldDynamic, dynamic));
 	}
 
 	/**
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
+	 * <!-- begin-user-doc --> <!-- end-user-doc -->
+	 * 
 	 * @generated
 	 */
 	@Override
@@ -223,8 +214,8 @@ public class NavigatorCreateEventImpl extends EventImpl implements
 	}
 
 	/**
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
+	 * <!-- begin-user-doc --> <!-- end-user-doc -->
+	 * 
 	 * @generated
 	 */
 	@Override
@@ -244,8 +235,8 @@ public class NavigatorCreateEventImpl extends EventImpl implements
 	}
 
 	/**
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
+	 * <!-- begin-user-doc --> <!-- end-user-doc -->
+	 * 
 	 * @generated
 	 */
 	@Override
@@ -265,8 +256,8 @@ public class NavigatorCreateEventImpl extends EventImpl implements
 	}
 
 	/**
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
+	 * <!-- begin-user-doc --> <!-- end-user-doc -->
+	 * 
 	 * @generated
 	 */
 	@Override
@@ -283,8 +274,8 @@ public class NavigatorCreateEventImpl extends EventImpl implements
 	}
 
 	/**
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
+	 * <!-- begin-user-doc --> <!-- end-user-doc -->
+	 * 
 	 * @generated
 	 */
 	@Override
@@ -299,4 +290,4 @@ public class NavigatorCreateEventImpl extends EventImpl implements
 		return result.toString();
 	}
 
-} //NavigatorCreateEventImpl
+} // NavigatorCreateEventImpl

@@ -10,8 +10,7 @@ import org.eclipse.draw2d.geometry.Rectangle;
 import org.eclipse.swt.graphics.Color;
 
 /**
- * @author denglerm
- * This class is necessary for the StickMan figure
+ * @author denglerm This class is necessary for the StickMan figure
  */
 public abstract class ShadowShape extends AbstractProportionalShape {
 
@@ -19,8 +18,9 @@ public abstract class ShadowShape extends AbstractProportionalShape {
 	private static final int SHADOW_SIZE = 3;
 	private static final Insets SHADOW_INSETS = new Insets(0, 0, SHADOW_SIZE, SHADOW_SIZE);
 
-	/**.
-	 * The constructor
+	/**
+	 * . The constructor
+	 * 
 	 * @param is3D true for 3D appearance
 	 * @param backgroundColor the background color
 	 * @param foregroundColor the foreground color
@@ -41,8 +41,9 @@ public abstract class ShadowShape extends AbstractProportionalShape {
 		return my3D;
 	}
 
-	/**.
-	 * This method enables or disabled 3D appearance
+	/**
+	 * . This method enables or disabled 3D appearance
+	 * 
 	 * @param is3D true to enable 3D
 	 */
 	public void set3D(boolean is3D) {
@@ -52,8 +53,10 @@ public abstract class ShadowShape extends AbstractProportionalShape {
 		my3D = is3D;
 		repaint();
 	}
-	/**.
-	 * This method returns the preferred size
+
+	/**
+	 * . This method returns the preferred size
+	 * 
 	 * @param wHint a hint for the width
 	 * @param hHint a hint for the height
 	 * @return the Dimension
@@ -67,10 +70,8 @@ public abstract class ShadowShape extends AbstractProportionalShape {
 	}
 
 	/**
-	 * @param graphics
-	 * The Graphics object
-	 * Paints this figure, including its border and children.
-	 * Border is painted first.
+	 * @param graphics The Graphics object Paints this figure, including its border and children. Border is painted
+	 *            first.
 	 */
 	public void paint(Graphics graphics) {
 		paintBorder(graphics);
@@ -88,8 +89,7 @@ public abstract class ShadowShape extends AbstractProportionalShape {
 	}
 
 	/**
-	 * @param graphics
-	 * The Graphics object
+	 * @param graphics The Graphics object
 	 */
 	protected void fillShape(Graphics graphics) {
 		fillShape(graphics, getProportionalBounds());
@@ -107,6 +107,7 @@ public abstract class ShadowShape extends AbstractProportionalShape {
 	protected void outlineShape(Graphics graphics) {
 		outlineShape(graphics, getProportionalBounds());
 	}
+
 	/**
 	 * @param graphics The Graphics object
 	 * @param bounds The bounding rectangle
@@ -114,8 +115,7 @@ public abstract class ShadowShape extends AbstractProportionalShape {
 	protected abstract void outlineShape(Graphics graphics, Rectangle bounds);
 
 	/**
-	 * @author denglerm
-	 * This class is necessary for the StickMan figure
+	 * @author denglerm This class is necessary for the StickMan figure
 	 */
 	private class ShadowBorder extends AbstractBorder {
 

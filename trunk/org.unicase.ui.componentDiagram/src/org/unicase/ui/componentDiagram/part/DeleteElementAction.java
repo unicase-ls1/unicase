@@ -49,8 +49,7 @@ public class DeleteElementAction extends AbstractDeleteFromAction {
 		setText(DiagramUIMessages.DiagramEditor_Delete_from_Model);
 		setToolTipText(DiagramUIMessages.DiagramEditor_Delete_from_ModelToolTip);
 		String path = "icons/delete.gif";
-		URL url = FileLocator.find(Platform
-				.getBundle("org.unicase.ui.common"), new Path(path), null);
+		URL url = FileLocator.find(Platform.getBundle("org.unicase.ui.common"), new Path(path), null);
 		ImageDescriptor id = ImageDescriptor.createFromURL(url);
 		setHoverImageDescriptor(id);
 		setImageDescriptor(id);
@@ -73,8 +72,7 @@ public class DeleteElementAction extends AbstractDeleteFromAction {
 			return UnexecutableCommand.INSTANCE;
 		}
 		Iterator editParts = operationSet.iterator();
-		CompositeTransactionalCommand command = new CompositeTransactionalCommand(
-				getEditingDomain(), getCommandLabel());
+		CompositeTransactionalCommand command = new CompositeTransactionalCommand(getEditingDomain(), getCommandLabel());
 		while (editParts.hasNext()) {
 			EditPart editPart = (EditPart) editParts.next();
 			Command curCommand = editPart.getCommand(request);

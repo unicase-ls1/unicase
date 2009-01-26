@@ -10,7 +10,6 @@ import org.unicase.model.organization.User;
  * Filter Validations to user.
  * 
  * @author helming
- * 
  */
 public class ValidationUserFilter extends ViewerFilter {
 
@@ -19,8 +18,7 @@ public class ValidationUserFilter extends ViewerFilter {
 	/**
 	 * default constructor.
 	 * 
-	 * @param user
-	 *            The user on which validations should be filtered
+	 * @param user The user on which validations should be filtered
 	 */
 	public ValidationUserFilter(User user) {
 		this.user = user;

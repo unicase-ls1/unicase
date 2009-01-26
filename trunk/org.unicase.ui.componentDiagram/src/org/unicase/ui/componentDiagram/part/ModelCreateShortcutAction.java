@@ -50,9 +50,9 @@ public class ModelCreateShortcutAction implements IObjectActionDelegate {
 		if (selection instanceof IStructuredSelection) {
 			IStructuredSelection structuredSelection = (IStructuredSelection) selection;
 			if (structuredSelection.size() == 1
-					&& structuredSelection.getFirstElement() instanceof org.unicase.ui.componentDiagram.edit.parts.MEDiagramEditPart) {
+				&& structuredSelection.getFirstElement() instanceof org.unicase.ui.componentDiagram.edit.parts.MEDiagramEditPart) {
 				mySelectedElement = (org.unicase.ui.componentDiagram.edit.parts.MEDiagramEditPart) structuredSelection
-						.getFirstElement();
+					.getFirstElement();
 			}
 		}
 		action.setEnabled(isEnabled());
@@ -71,41 +71,34 @@ public class ModelCreateShortcutAction implements IObjectActionDelegate {
 	public void run(IAction action) {
 		final View view = (View) mySelectedElement.getModel();
 		org.unicase.ui.componentDiagram.part.ModelElementChooserDialog elementChooser = new org.unicase.ui.componentDiagram.part.ModelElementChooserDialog(
-				myShell, view);
+			myShell, view);
 		int result = elementChooser.open();
 		if (result != Window.OK) {
 			return;
 		}
-		URI selectedModelElementURI = elementChooser
-				.getSelectedModelElementURI();
+		URI selectedModelElementURI = elementChooser.getSelectedModelElementURI();
 		final EObject selectedElement;
 		try {
-			selectedElement = mySelectedElement.getEditingDomain()
-					.getResourceSet().getEObject(selectedModelElementURI, true);
+			selectedElement = mySelectedElement.getEditingDomain().getResourceSet().getEObject(selectedModelElementURI,
+				true);
 		} catch (WrappedException e) {
-			org.unicase.ui.componentDiagram.part.ModelDiagramEditorPlugin
-					.getInstance()
-					.logError(
-							"Exception while loading object: " + selectedModelElementURI.toString(), e); //$NON-NLS-1$
+			org.unicase.ui.componentDiagram.part.ModelDiagramEditorPlugin.getInstance().logError(
+				"Exception while loading object: " + selectedModelElementURI.toString(), e); //$NON-NLS-1$
 			return;
 		}
 
 		if (selectedElement == null) {
 			return;
 		}
-		CreateViewRequest.ViewDescriptor viewDescriptor = new CreateViewRequest.ViewDescriptor(
-				new EObjectAdapter(selectedElement),
-				Node.class,
-				null,
-				org.unicase.ui.componentDiagram.part.ModelDiagramEditorPlugin.DIAGRAM_PREFERENCES_HINT);
-		ICommand command = new CreateCommand(mySelectedElement
-				.getEditingDomain(), viewDescriptor, view);
+		CreateViewRequest.ViewDescriptor viewDescriptor = new CreateViewRequest.ViewDescriptor(new EObjectAdapter(
+			selectedElement), Node.class, null,
+			org.unicase.ui.componentDiagram.part.ModelDiagramEditorPlugin.DIAGRAM_PREFERENCES_HINT);
+		ICommand command = new CreateCommand(mySelectedElement.getEditingDomain(), viewDescriptor, view);
 		try {
-			OperationHistoryFactory.getOperationHistory().execute(command,
-					new NullProgressMonitor(), null);
+			OperationHistoryFactory.getOperationHistory().execute(command, new NullProgressMonitor(), null);
 		} catch (ExecutionException e) {
-			org.unicase.ui.componentDiagram.part.ModelDiagramEditorPlugin
-					.getInstance().logError("Unable to create shortcut", e); //$NON-NLS-1$
+			org.unicase.ui.componentDiagram.part.ModelDiagramEditorPlugin.getInstance().logError(
+				"Unable to create shortcut", e); //$NON-NLS-1$
 		}
 	}
 

@@ -1,8 +1,7 @@
 /**
- * <copyright> Copyright (c) 2008 Jonas Helming, Maximilian Koegel. All rights reserved. This program and the accompanying materials are made available under the terms of the Eclipse Public License v1.0 which accompanies this distribution, and is available at http://www.eclipse.org/legal/epl-v10.html
- * </copyright>
- *
- * $Id$
+ * <copyright> Copyright (c) 2008 Jonas Helming, Maximilian Koegel. All rights reserved. This program and the
+ * accompanying materials are made available under the terms of the Eclipse Public License v1.0 which accompanies this
+ * distribution, and is available at http://www.eclipse.org/legal/epl-v10.html </copyright>
  */
 package org.unicase.emfstore.connection.rmi;
 
@@ -28,21 +27,16 @@ public abstract class AbstractUnicaseRMIFacade extends UnicastRemoteObject {
 	/**
 	 * Default constructor.
 	 * 
-	 * @throws RemoteException
-	 *             rmi related exception
-	 * @throws FatalEmfStoreException
-	 *             a fatal emfstore exception
+	 * @throws RemoteException rmi related exception
+	 * @throws FatalEmfStoreException a fatal emfstore exception
 	 */
-	public AbstractUnicaseRMIFacade() throws RemoteException,
-			FatalEmfStoreException {
+	public AbstractUnicaseRMIFacade() throws RemoteException, FatalEmfStoreException {
 		super(0, getClientFactory(), getServerFactory());
 	}
 
-	private static RMIServerSocketFactory getServerFactory()
-			throws InvalidPropertyException {
-		String property = ServerConfiguration.getProperties().getProperty(
-				ServerConfiguration.RMI_ENCRYPTION,
-				ServerConfiguration.RMI_ENCRYTION_DEFAULT);
+	private static RMIServerSocketFactory getServerFactory() throws InvalidPropertyException {
+		String property = ServerConfiguration.getProperties().getProperty(ServerConfiguration.RMI_ENCRYPTION,
+			ServerConfiguration.RMI_ENCRYTION_DEFAULT);
 		if (property.equals(ServerConfiguration.TRUE)) {
 			return new RMISSLServerSocketFactory();
 		} else if (property.equals(ServerConfiguration.FALSE)) {
@@ -52,11 +46,9 @@ public abstract class AbstractUnicaseRMIFacade extends UnicastRemoteObject {
 		}
 	}
 
-	private static RMIClientSocketFactory getClientFactory()
-			throws InvalidPropertyException {
-		String property = ServerConfiguration.getProperties().getProperty(
-				ServerConfiguration.RMI_ENCRYPTION,
-				ServerConfiguration.RMI_ENCRYTION_DEFAULT);
+	private static RMIClientSocketFactory getClientFactory() throws InvalidPropertyException {
+		String property = ServerConfiguration.getProperties().getProperty(ServerConfiguration.RMI_ENCRYPTION,
+			ServerConfiguration.RMI_ENCRYTION_DEFAULT);
 		if (property.equals(ServerConfiguration.TRUE)) {
 			return new RMISSLClientSocketFactory();
 		} else if (property.equals(ServerConfiguration.FALSE)) {

@@ -15,8 +15,7 @@ import org.eclipse.gmf.runtime.notation.View;
 /**
  * @generated
  */
-public class UseCaseIncludedUseCasesEditPart extends ConnectionNodeEditPart
-		implements ITreeBranchEditPart {
+public class UseCaseIncludedUseCasesEditPart extends ConnectionNodeEditPart implements ITreeBranchEditPart {
 
 	/**
 	 * @generated
@@ -35,9 +34,8 @@ public class UseCaseIncludedUseCasesEditPart extends ConnectionNodeEditPart
 	 */
 	protected void createDefaultEditPolicies() {
 		super.createDefaultEditPolicies();
-		installEditPolicy(
-				EditPolicyRoles.SEMANTIC_ROLE,
-				new org.unicase.ui.usecaseDiagram.edit.policies.UseCaseIncludedUseCasesItemSemanticEditPolicy());
+		installEditPolicy(EditPolicyRoles.SEMANTIC_ROLE,
+			new org.unicase.ui.usecaseDiagram.edit.policies.UseCaseIncludedUseCasesItemSemanticEditPolicy());
 	}
 
 	/**
@@ -58,10 +56,8 @@ public class UseCaseIncludedUseCasesEditPart extends ConnectionNodeEditPart
 	}
 
 	/**
-	 * Creates figure for this edit part.
-	 * 
-	 * Body of this method does not depend on settings in generation model
-	 * so you may safely remove <i>generated</i> tag and modify it.
+	 * Creates figure for this edit part. Body of this method does not depend on settings in generation model so you may
+	 * safely remove <i>generated</i> tag and modify it.
 	 * 
 	 * @generated
 	 */

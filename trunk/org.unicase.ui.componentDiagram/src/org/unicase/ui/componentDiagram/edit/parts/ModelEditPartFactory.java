@@ -25,36 +25,28 @@ public class ModelEditPartFactory implements EditPartFactory {
 	public EditPart createEditPart(EditPart context, Object model) {
 		if (model instanceof View) {
 			View view = (View) model;
-			switch (org.unicase.ui.componentDiagram.part.ModelVisualIDRegistry
-					.getVisualID(view)) {
+			switch (org.unicase.ui.componentDiagram.part.ModelVisualIDRegistry.getVisualID(view)) {
 
 			case org.unicase.ui.componentDiagram.edit.parts.MEDiagramEditPart.VISUAL_ID:
-				return new org.unicase.ui.componentDiagram.edit.parts.MEDiagramEditPart(
-						view);
+				return new org.unicase.ui.componentDiagram.edit.parts.MEDiagramEditPart(view);
 
 			case org.unicase.ui.componentDiagram.edit.parts.Component2EditPart.VISUAL_ID:
-				return new org.unicase.ui.componentDiagram.edit.parts.Component2EditPart(
-						view);
+				return new org.unicase.ui.componentDiagram.edit.parts.Component2EditPart(view);
 
 			case org.unicase.ui.componentDiagram.edit.parts.ComponentServiceNameEditPart.VISUAL_ID:
-				return new org.unicase.ui.componentDiagram.edit.parts.ComponentServiceNameEditPart(
-						view);
+				return new org.unicase.ui.componentDiagram.edit.parts.ComponentServiceNameEditPart(view);
 
 			case org.unicase.ui.componentDiagram.edit.parts.ComponentEditPart.VISUAL_ID:
-				return new org.unicase.ui.componentDiagram.edit.parts.ComponentEditPart(
-						view);
+				return new org.unicase.ui.componentDiagram.edit.parts.ComponentEditPart(view);
 
 			case org.unicase.ui.componentDiagram.edit.parts.ComponentNameEditPart.VISUAL_ID:
-				return new org.unicase.ui.componentDiagram.edit.parts.ComponentNameEditPart(
-						view);
+				return new org.unicase.ui.componentDiagram.edit.parts.ComponentNameEditPart(view);
 
 			case org.unicase.ui.componentDiagram.edit.parts.ComponentOfferedServicesEditPart.VISUAL_ID:
-				return new org.unicase.ui.componentDiagram.edit.parts.ComponentOfferedServicesEditPart(
-						view);
+				return new org.unicase.ui.componentDiagram.edit.parts.ComponentOfferedServicesEditPart(view);
 
 			case org.unicase.ui.componentDiagram.edit.parts.ComponentConsumedServicesEditPart.VISUAL_ID:
-				return new org.unicase.ui.componentDiagram.edit.parts.ComponentConsumedServicesEditPart(
-						view);
+				return new org.unicase.ui.componentDiagram.edit.parts.ComponentConsumedServicesEditPart(view);
 			}
 		}
 		return createUnrecognizedEditPart(context, model);
@@ -71,8 +63,7 @@ public class ModelEditPartFactory implements EditPartFactory {
 	/**
 	 * @generated
 	 */
-	public static CellEditorLocator getTextCellEditorLocator(
-			ITextAwareEditPart source) {
+	public static CellEditorLocator getTextCellEditorLocator(ITextAwareEditPart source) {
 		if (source.getFigure() instanceof WrappingLabel)
 			return new TextCellEditorLocator((WrappingLabel) source.getFigure());
 		else {
@@ -111,15 +102,11 @@ public class ModelEditPartFactory implements EditPartFactory {
 			Text text = (Text) celleditor.getControl();
 			Rectangle rect = getWrapLabel().getTextBounds().getCopy();
 			getWrapLabel().translateToAbsolute(rect);
-			if (getWrapLabel().isTextWrapOn()
-					&& getWrapLabel().getText().length() > 0) {
-				rect.setSize(new Dimension(text.computeSize(rect.width,
-						SWT.DEFAULT)));
+			if (getWrapLabel().isTextWrapOn() && getWrapLabel().getText().length() > 0) {
+				rect.setSize(new Dimension(text.computeSize(rect.width, SWT.DEFAULT)));
 			} else {
-				int avr = FigureUtilities.getFontMetrics(text.getFont())
-						.getAverageCharWidth();
-				rect.setSize(new Dimension(text.computeSize(SWT.DEFAULT,
-						SWT.DEFAULT)).expand(avr * 2, 0));
+				int avr = FigureUtilities.getFontMetrics(text.getFont()).getAverageCharWidth();
+				rect.setSize(new Dimension(text.computeSize(SWT.DEFAULT, SWT.DEFAULT)).expand(avr * 2, 0));
 			}
 			if (!rect.equals(new Rectangle(text.getBounds()))) {
 				text.setBounds(rect.x, rect.y, rect.width, rect.height);
@@ -158,10 +145,8 @@ public class ModelEditPartFactory implements EditPartFactory {
 			Text text = (Text) celleditor.getControl();
 			Rectangle rect = getLabel().getTextBounds().getCopy();
 			getLabel().translateToAbsolute(rect);
-			int avr = FigureUtilities.getFontMetrics(text.getFont())
-					.getAverageCharWidth();
-			rect.setSize(new Dimension(text.computeSize(SWT.DEFAULT,
-					SWT.DEFAULT)).expand(avr * 2, 0));
+			int avr = FigureUtilities.getFontMetrics(text.getFont()).getAverageCharWidth();
+			rect.setSize(new Dimension(text.computeSize(SWT.DEFAULT, SWT.DEFAULT)).expand(avr * 2, 0));
 			if (!rect.equals(new Rectangle(text.getBounds()))) {
 				text.setBounds(rect.x, rect.y, rect.width, rect.height);
 			}

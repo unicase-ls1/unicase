@@ -1,8 +1,7 @@
 /**
- * <copyright> Copyright (c) 2008 Jonas Helming, Maximilian Koegel. All rights reserved. This program and the accompanying materials are made available under the terms of the Eclipse Public License v1.0 which accompanies this distribution, and is available at http://www.eclipse.org/legal/epl-v10.html
- * </copyright>
- *
- * $Id$
+ * <copyright> Copyright (c) 2008 Jonas Helming, Maximilian Koegel. All rights reserved. This program and the
+ * accompanying materials are made available under the terms of the Eclipse Public License v1.0 which accompanies this
+ * distribution, and is available at http://www.eclipse.org/legal/epl-v10.html </copyright>
  */
 package org.unicase.ui.taskview;
 
@@ -19,15 +18,13 @@ import org.unicase.model.task.Checkable;
  * Editing support for a checkbox column.
  * 
  * @author helming
- * 
  */
 public class CheckableEditingSupport extends EditingSupport {
 
 	/**
 	 * default constructor.
 	 * 
-	 * @param viewer
-	 *            The viewer
+	 * @param viewer The viewer
 	 */
 	public CheckableEditingSupport(TableViewer viewer) {
 		super(viewer);
@@ -83,8 +80,7 @@ public class CheckableEditingSupport extends EditingSupport {
 		if ((element instanceof Checkable) && (value instanceof Boolean)) {
 			final Checkable c = (Checkable) element;
 			final boolean isChecked = (Boolean) value;
-			TransactionalEditingDomain domain = TransactionUtil
-					.getEditingDomain(c);
+			TransactionalEditingDomain domain = TransactionUtil.getEditingDomain(c);
 			domain.getCommandStack().execute(new RecordingCommand(domain) {
 				@Override
 				protected void doExecute() {

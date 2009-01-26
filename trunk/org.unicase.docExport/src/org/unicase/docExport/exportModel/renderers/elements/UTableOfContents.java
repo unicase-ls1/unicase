@@ -4,17 +4,14 @@ import org.unicase.docExport.exportModel.renderers.options.OptionsFactory;
 import org.unicase.docExport.exportModel.renderers.options.TextOption;
 
 /**
- * 
  * @author Sebastian Hoecht
- *
  */
 public class UTableOfContents extends UDocument {
 
 	private USection rootSection;
 	private TextOption textOption = OptionsFactory.eINSTANCE.createTextOption();
-	
+
 	/**
-	 * 
 	 * @param rootSection the rootSection where the table of content begins
 	 * @param textOption the textOption which decorates the text
 	 */

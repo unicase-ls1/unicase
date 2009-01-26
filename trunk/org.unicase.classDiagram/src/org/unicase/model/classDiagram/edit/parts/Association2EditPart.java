@@ -1,8 +1,7 @@
 /**
- * <copyright> Copyright (c) 2008 Jonas Helming, Maximilian Koegel. All rights reserved. This program and the accompanying materials are made available under the terms of the Eclipse Public License v1.0 which accompanies this distribution, and is available at http://www.eclipse.org/legal/epl-v10.html
- * </copyright>
- *
- * $Id$
+ * <copyright> Copyright (c) 2008 Jonas Helming, Maximilian Koegel. All rights reserved. This program and the
+ * accompanying materials are made available under the terms of the Eclipse Public License v1.0 which accompanies this
+ * distribution, and is available at http://www.eclipse.org/legal/epl-v10.html </copyright>
  */
 package org.unicase.model.classDiagram.edit.parts;
 
@@ -21,8 +20,7 @@ import org.unicase.model.classes.Association;
 /**
  * @generated
  */
-public class Association2EditPart extends ConnectionNodeEditPart implements
-		ITreeBranchEditPart {
+public class Association2EditPart extends ConnectionNodeEditPart implements ITreeBranchEditPart {
 
 	/**
 	 * @generated
@@ -42,9 +40,8 @@ public class Association2EditPart extends ConnectionNodeEditPart implements
 	@Override
 	protected void createDefaultEditPolicies() {
 		super.createDefaultEditPolicies();
-		installEditPolicy(
-				EditPolicyRoles.SEMANTIC_ROLE,
-				new org.unicase.model.classDiagram.edit.policies.Association2ItemSemanticEditPolicy());
+		installEditPolicy(EditPolicyRoles.SEMANTIC_ROLE,
+			new org.unicase.model.classDiagram.edit.policies.Association2ItemSemanticEditPolicy());
 	}
 
 	/**
@@ -53,20 +50,17 @@ public class Association2EditPart extends ConnectionNodeEditPart implements
 	protected boolean addFixedChild(EditPart childEditPart) {
 		if (childEditPart instanceof org.unicase.model.classDiagram.edit.parts.AssociationName2EditPart) {
 			((org.unicase.model.classDiagram.edit.parts.AssociationName2EditPart) childEditPart)
-					.setLabel(getPrimaryShape()
-							.getFigureAssociationFigure_name());
+				.setLabel(getPrimaryShape().getFigureAssociationFigure_name());
 			return true;
 		}
 		if (childEditPart instanceof org.unicase.model.classDiagram.edit.parts.AssociationSourceMultiplicity2EditPart) {
 			((org.unicase.model.classDiagram.edit.parts.AssociationSourceMultiplicity2EditPart) childEditPart)
-					.setLabel(getPrimaryShape()
-							.getFigureAssociationFigure_sourceMultiplicity());
+				.setLabel(getPrimaryShape().getFigureAssociationFigure_sourceMultiplicity());
 			return true;
 		}
 		if (childEditPart instanceof org.unicase.model.classDiagram.edit.parts.AssociationTargetMultiplicity2EditPart) {
 			((org.unicase.model.classDiagram.edit.parts.AssociationTargetMultiplicity2EditPart) childEditPart)
-					.setLabel(getPrimaryShape()
-							.getFigureAssociationFigure_targetMultiplicity());
+				.setLabel(getPrimaryShape().getFigureAssociationFigure_targetMultiplicity());
 			return true;
 		}
 		return false;
@@ -84,10 +78,8 @@ public class Association2EditPart extends ConnectionNodeEditPart implements
 	}
 
 	/**
-	 * Creates figure for this edit part.
-	 * 
-	 * Body of this method does not depend on settings in generation model
-	 * so you may safely remove <i>generated</i> tag and modify it.
+	 * Creates figure for this edit part. Body of this method does not depend on settings in generation model so you may
+	 * safely remove <i>generated</i> tag and modify it.
 	 * 
 	 * @generated
 	 */
@@ -157,7 +149,6 @@ public class Association2EditPart extends ConnectionNodeEditPart implements
 
 		/**
 		 * @generated NOT
-		 * 
 		 * @return The sourcedecoration
 		 */
 		private RotatableDecoration createSourceDecoration() {
@@ -169,8 +160,7 @@ public class Association2EditPart extends ConnectionNodeEditPart implements
 			}
 			if (object instanceof Association) {
 				Association association = (Association) object;
-				df = new org.unicase.model.classDiagram.unicase.AssociationDecoration(
-						association, true);
+				df = new org.unicase.model.classDiagram.unicase.AssociationDecoration(association, true);
 			} else {
 				throw new IllegalArgumentException();
 			}
@@ -180,7 +170,6 @@ public class Association2EditPart extends ConnectionNodeEditPart implements
 
 		/**
 		 * @generated NOT
-		 * 
 		 * @return The target decoration
 		 */
 		private RotatableDecoration createTargetDecoration() {
@@ -192,8 +181,7 @@ public class Association2EditPart extends ConnectionNodeEditPart implements
 			}
 			if (object instanceof Association) {
 				Association association = (Association) object;
-				df = new org.unicase.model.classDiagram.unicase.AssociationDecoration(
-						association, false);
+				df = new org.unicase.model.classDiagram.unicase.AssociationDecoration(association, false);
 			} else {
 				throw new IllegalArgumentException();
 			}

@@ -7,9 +7,8 @@ import org.eclipse.gmf.runtime.emf.type.core.requests.DestroyReferenceRequest;
 /**
  * @generated
  */
-public class ActorInitiatedUseCasesItemSemanticEditPolicy
-		extends
-		org.unicase.ui.usecaseDiagram.edit.policies.ModelBaseItemSemanticEditPolicy {
+public class ActorInitiatedUseCasesItemSemanticEditPolicy extends
+	org.unicase.ui.usecaseDiagram.edit.policies.ModelBaseItemSemanticEditPolicy {
 
 	/**
 	 * @generated

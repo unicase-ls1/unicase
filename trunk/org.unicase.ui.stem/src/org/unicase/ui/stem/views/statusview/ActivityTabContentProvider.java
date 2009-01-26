@@ -18,7 +18,6 @@ import org.unicase.model.task.util.TaxonomyAccess;
  * Content Provider for the activity centric view.
  * 
  * @author helming
- * 
  */
 public class ActivityTabContentProvider extends AdapterFactoryContentProvider {
 	private ModelElement root;
@@ -27,8 +26,7 @@ public class ActivityTabContentProvider extends AdapterFactoryContentProvider {
 	 * Default constructor.
 	 */
 	public ActivityTabContentProvider() {
-		super(new ComposedAdapterFactory(
-				ComposedAdapterFactory.Descriptor.Registry.INSTANCE));
+		super(new ComposedAdapterFactory(ComposedAdapterFactory.Descriptor.Registry.INSTANCE));
 
 	}
 
@@ -70,8 +68,7 @@ public class ActivityTabContentProvider extends AdapterFactoryContentProvider {
 
 	private Set<Checkable> getActivity(ActivityType activityType) {
 		Set<Checkable> ret = new HashSet<Checkable>();
-		Set<ModelElement> openers = TaxonomyAccess.getInstance()
-				.getOpeningLinkTaxonomy().getLeafOpeners(root);
+		Set<ModelElement> openers = TaxonomyAccess.getInstance().getOpeningLinkTaxonomy().getLeafOpeners(root);
 		for (ModelElement opener : openers) {
 			if (opener instanceof Checkable) {
 				if (opener instanceof BugReport) {
@@ -80,8 +77,7 @@ public class ActivityTabContentProvider extends AdapterFactoryContentProvider {
 					}
 				}
 				if (opener instanceof ActionItem) {
-					if (((ActionItem) opener).getActivity()
-							.equals(activityType)) {
+					if (((ActionItem) opener).getActivity().equals(activityType)) {
 						ret.add((Checkable) opener);
 					}
 				}
@@ -98,7 +94,6 @@ public class ActivityTabContentProvider extends AdapterFactoryContentProvider {
 
 	/**
 	 * . {@inheritDoc}
-	 * 
 	 */
 	@Override
 	public void inputChanged(Viewer viewer, Object oldInput, Object newInput) {

@@ -11,7 +11,6 @@ public class DiagramPrintingPreferencePage extends PrintingPreferencePage {
 	 * @generated
 	 */
 	public DiagramPrintingPreferencePage() {
-		setPreferenceStore(org.unicase.ui.stateDiagram.part.ModelDiagramEditorPlugin
-				.getInstance().getPreferenceStore());
+		setPreferenceStore(org.unicase.ui.stateDiagram.part.ModelDiagramEditorPlugin.getInstance().getPreferenceStore());
 	}
 }

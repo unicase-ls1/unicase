@@ -1,8 +1,7 @@
 /**
- * <copyright> Copyright (c) 2008 Jonas Helming, Maximilian Koegel. All rights reserved. This program and the accompanying materials are made available under the terms of the Eclipse Public License v1.0 which accompanies this distribution, and is available at http://www.eclipse.org/legal/epl-v10.html
- * </copyright>
- *
- * $Id$
+ * <copyright> Copyright (c) 2008 Jonas Helming, Maximilian Koegel. All rights reserved. This program and the
+ * accompanying materials are made available under the terms of the Eclipse Public License v1.0 which accompanies this
+ * distribution, and is available at http://www.eclipse.org/legal/epl-v10.html </copyright>
  */
 package org.unicase.emfstore.connection.rmi;
 
@@ -34,11 +33,10 @@ import org.unicase.emfstore.exceptions.FatalEmfStoreException;
  * @author Wesendonk
  */
 @SuppressWarnings("serial")
-public class RMISSLServerSocketFactory implements RMIServerSocketFactory,
-		Serializable {
+public class RMISSLServerSocketFactory implements RMIServerSocketFactory, Serializable {
 
 	private static Log logger;
-	
+
 	/**
 	 * Default constructor.
 	 */
@@ -46,7 +44,7 @@ public class RMISSLServerSocketFactory implements RMIServerSocketFactory,
 		super();
 		logger = LogFactory.getLog(RMISSLServerSocketFactory.class);
 	}
-	
+
 	/**
 	 * {@inheritDoc}
 	 */
@@ -55,17 +53,15 @@ public class RMISSLServerSocketFactory implements RMIServerSocketFactory,
 		SSLContext context;
 		KeyManagerFactory keyManagerFactory;
 		KeyStore keyStore;
-		char[] passphrase = ServerConfiguration.getProperties().getProperty(
-				ServerConfiguration.SSL_PASSWORD,
-				ServerConfiguration.SSL_PASSWORD_DEFAULT).toCharArray();
+		char[] passphrase = ServerConfiguration.getProperties().getProperty(ServerConfiguration.SSL_PASSWORD,
+			ServerConfiguration.SSL_PASSWORD_DEFAULT).toCharArray();
 
 		try {
 			context = SSLContext.getInstance("TLS");
 			keyManagerFactory = KeyManagerFactory.getInstance("SunX509");
 			keyStore = KeyStore.getInstance("JKS");
 
-			keyStore.load(new FileInputStream(ServerConfiguration
-					.getServerKeyStorePath()), passphrase);
+			keyStore.load(new FileInputStream(ServerConfiguration.getServerKeyStorePath()), passphrase);
 			keyManagerFactory.init(keyStore, passphrase);
 			context.init(keyManagerFactory.getKeyManagers(), null, null);
 

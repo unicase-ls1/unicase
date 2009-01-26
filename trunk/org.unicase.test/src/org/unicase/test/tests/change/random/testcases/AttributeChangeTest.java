@@ -11,26 +11,21 @@ import org.unicase.ui.test.TestProjectParmeters;
 import org.unicase.workspace.ProjectSpace;
 
 /**
- * This is a compare test. It takes randomly a ME from test project, changes one
- * of its EAttributes, extract changes from test project, applies changes to
- * compare project. Test succeeds when compare project and test project are
+ * This is a compare test. It takes randomly a ME from test project, changes one of its EAttributes, extract changes
+ * from test project, applies changes to compare project. Test succeeds when compare project and test project are
  * identical.
  * 
  * @author Hodaie
- * 
  */
 public class AttributeChangeTest extends ChangePackageTest {
 
-	
-	
-	 private ModelElement me;
+	private ModelElement me;
 
-	private EAttribute attributeToChange; 
+	private EAttribute attributeToChange;
 	private Object oldAttrValue;
 	private Object newAttrValue;
-	
-	
-	public AttributeChangeTest(ProjectSpace testProjectSpace, String testName,TestProjectParmeters testProjParams) {
+
+	public AttributeChangeTest(ProjectSpace testProjectSpace, String testName, TestProjectParmeters testProjParams) {
 		super(testProjectSpace, testName, testProjParams);
 
 	}
@@ -39,11 +34,10 @@ public class AttributeChangeTest extends ChangePackageTest {
 	public void runTest() {
 
 		TransactionalEditingDomain domain = TransactionalEditingDomain.Registry.INSTANCE
-				.getEditingDomain("org.unicase.EditingDomain");
+			.getEditingDomain("org.unicase.EditingDomain");
 
-		 me = ChangeTestHelper.getRandomME(getTestProject());
-		 attributeToChange = ChangeTestHelper.getRandomAttribute(me);
-		 
+		me = ChangeTestHelper.getRandomME(getTestProject());
+		attributeToChange = ChangeTestHelper.getRandomAttribute(me);
 
 		domain.getCommandStack().execute(new RecordingCommand(domain) {
 
@@ -53,34 +47,32 @@ public class AttributeChangeTest extends ChangePackageTest {
 			}
 
 		});
-		
+
 	}
 
 	protected void changeAttribute() {
 		oldAttrValue = me.eGet(attributeToChange);
 		ChangeTestHelper.changeSimpleAttribute(me, attributeToChange);
 		newAttrValue = me.eGet(attributeToChange);
-		
+
 	}
 
 	public int getExpectedNumOfChanges() {
-		//expected num of changes is 1 or 0
+		// expected num of changes is 1 or 0
 		// 0 if new value of attribute is equal its old value. (notification is touch)
-		if(oldAttrValue == null){
+		if (oldAttrValue == null) {
 			return 1;
 		}
-		if(oldAttrValue.equals(newAttrValue)){
+		if (oldAttrValue.equals(newAttrValue)) {
 			return 0;
-		}else{
+		} else {
 			return 1;
 		}
 	}
 
-	
-
 	@Override
 	public boolean isSuccessful(ChangePackage changePackage) {
-		//temp impl
+		// temp impl
 		return changePackage.getOperations().size() == getExpectedNumOfChanges();
 	}
 

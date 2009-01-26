@@ -1,8 +1,5 @@
 /**
- * <copyright>
- * </copyright>
- *
- * $Id$
+ * <copyright> </copyright>
  */
 package org.unicase.docExport.exportModel.impl;
 
@@ -16,35 +13,32 @@ import org.unicase.docExport.exportModel.DocumentTemplatePackage;
 import org.unicase.docExport.exportModel.Template;
 
 /**
- * <!-- begin-user-doc -->
- * An implementation of the model <b>Factory</b>.
- * <!-- end-user-doc -->
+ * <!-- begin-user-doc --> An implementation of the model <b>Factory</b>. <!-- end-user-doc -->
+ * 
  * @generated
  */
 public class DocumentTemplateFactoryImpl extends EFactoryImpl implements DocumentTemplateFactory {
 	/**
-	 * Creates the default factory implementation.
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
+	 * Creates the default factory implementation. <!-- begin-user-doc --> <!-- end-user-doc -->
+	 * 
 	 * @generated
 	 */
 	public static DocumentTemplateFactory init() {
 		try {
-			DocumentTemplateFactory theDocumentTemplateFactory = (DocumentTemplateFactory)EPackage.Registry.INSTANCE.getEFactory("http://unicase.org/documentExport/documentTemplate"); 
+			DocumentTemplateFactory theDocumentTemplateFactory = (DocumentTemplateFactory) EPackage.Registry.INSTANCE
+				.getEFactory("http://unicase.org/documentExport/documentTemplate");
 			if (theDocumentTemplateFactory != null) {
 				return theDocumentTemplateFactory;
 			}
-		}
-		catch (Exception exception) {
+		} catch (Exception exception) {
 			EcorePlugin.INSTANCE.log(exception);
 		}
 		return new DocumentTemplateFactoryImpl();
 	}
 
 	/**
-	 * Creates an instance of the factory.
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
+	 * Creates an instance of the factory. <!-- begin-user-doc --> <!-- end-user-doc -->
+	 * 
 	 * @generated
 	 */
 	public DocumentTemplateFactoryImpl() {
@@ -52,22 +46,23 @@ public class DocumentTemplateFactoryImpl extends EFactoryImpl implements Documen
 	}
 
 	/**
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
+	 * <!-- begin-user-doc --> <!-- end-user-doc -->
+	 * 
 	 * @generated
 	 */
 	@Override
 	public EObject create(EClass eClass) {
 		switch (eClass.getClassifierID()) {
-			case DocumentTemplatePackage.TEMPLATE: return createTemplate();
-			default:
-				throw new IllegalArgumentException("The class '" + eClass.getName() + "' is not a valid classifier");
+		case DocumentTemplatePackage.TEMPLATE:
+			return createTemplate();
+		default:
+			throw new IllegalArgumentException("The class '" + eClass.getName() + "' is not a valid classifier");
 		}
 	}
 
 	/**
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
+	 * <!-- begin-user-doc --> <!-- end-user-doc -->
+	 * 
 	 * @generated
 	 */
 	public Template createTemplate() {
@@ -76,17 +71,17 @@ public class DocumentTemplateFactoryImpl extends EFactoryImpl implements Documen
 	}
 
 	/**
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
+	 * <!-- begin-user-doc --> <!-- end-user-doc -->
+	 * 
 	 * @generated
 	 */
 	public DocumentTemplatePackage getDocumentTemplatePackage() {
-		return (DocumentTemplatePackage)getEPackage();
+		return (DocumentTemplatePackage) getEPackage();
 	}
 
 	/**
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
+	 * <!-- begin-user-doc --> <!-- end-user-doc -->
+	 * 
 	 * @deprecated
 	 * @generated
 	 */
@@ -95,4 +90,4 @@ public class DocumentTemplateFactoryImpl extends EFactoryImpl implements Documen
 		return DocumentTemplatePackage.eINSTANCE;
 	}
 
-} //DocumentTemplateFactoryImpl
+} // DocumentTemplateFactoryImpl

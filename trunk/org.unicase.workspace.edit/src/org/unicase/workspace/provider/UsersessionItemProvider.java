@@ -1,8 +1,7 @@
 /**
- * <copyright> Copyright (c) 2008 Jonas Helming, Maximilian Koegel. All rights reserved. This program and the accompanying materials are made available under the terms of the Eclipse Public License v1.0 which accompanies this distribution, and is available at http://www.eclipse.org/legal/epl-v10.html
- * </copyright>
- *
- * $Id$
+ * <copyright> Copyright (c) 2008 Jonas Helming, Maximilian Koegel. All rights reserved. This program and the
+ * accompanying materials are made available under the terms of the Eclipse Public License v1.0 which accompanies this
+ * distribution, and is available at http://www.eclipse.org/legal/epl-v10.html </copyright>
  */
 package org.unicase.workspace.provider;
 
@@ -29,17 +28,15 @@ import org.unicase.workspace.Usersession;
 import org.unicase.workspace.WorkspacePackage;
 
 /**
- * This is the item provider adapter for a {@link org.unicase.workspace.Usersession} object.
- * <!-- begin-user-doc -->
+ * This is the item provider adapter for a {@link org.unicase.workspace.Usersession} object. <!-- begin-user-doc -->
  * <!-- end-user-doc -->
+ * 
  * @generated
  */
-public class UsersessionItemProvider extends ItemProviderAdapter implements
-		IEditingDomainItemProvider, IStructuredItemContentProvider,
-		ITreeItemContentProvider, IItemLabelProvider, IItemPropertySource {
+public class UsersessionItemProvider extends ItemProviderAdapter implements IEditingDomainItemProvider,
+	IStructuredItemContentProvider, ITreeItemContentProvider, IItemLabelProvider, IItemPropertySource {
 	/**
-	 * This constructs an instance from a factory and a notifier. <!--
-	 * begin-user-doc --> <!-- end-user-doc -->
+	 * This constructs an instance from a factory and a notifier. <!-- begin-user-doc --> <!-- end-user-doc -->
 	 * 
 	 * @generated
 	 */
@@ -48,8 +45,7 @@ public class UsersessionItemProvider extends ItemProviderAdapter implements
 	}
 
 	/**
-	 * This returns the property descriptors for the adapted class. <!--
-	 * begin-user-doc --> <!-- end-user-doc -->
+	 * This returns the property descriptors for the adapted class. <!-- begin-user-doc --> <!-- end-user-doc -->
 	 * 
 	 * @generated
 	 */
@@ -69,137 +65,102 @@ public class UsersessionItemProvider extends ItemProviderAdapter implements
 	}
 
 	/**
-	 * This adds a property descriptor for the Username feature. <!--
-	 * begin-user-doc --> <!-- end-user-doc -->
+	 * This adds a property descriptor for the Username feature. <!-- begin-user-doc --> <!-- end-user-doc -->
 	 * 
 	 * @generated
 	 */
 	protected void addUsernamePropertyDescriptor(Object object) {
-		itemPropertyDescriptors.add(createItemPropertyDescriptor(
-				((ComposeableAdapterFactory) adapterFactory)
-						.getRootAdapterFactory(), getResourceLocator(),
-				getString("_UI_Usersession_username_feature"), getString(
-						"_UI_PropertyDescriptor_description",
-						"_UI_Usersession_username_feature",
-						"_UI_Usersession_type"),
-				WorkspacePackage.Literals.USERSESSION__USERNAME, true, false,
-				false, ItemPropertyDescriptor.GENERIC_VALUE_IMAGE, null, null));
+		itemPropertyDescriptors.add(createItemPropertyDescriptor(((ComposeableAdapterFactory) adapterFactory)
+			.getRootAdapterFactory(), getResourceLocator(), getString("_UI_Usersession_username_feature"), getString(
+			"_UI_PropertyDescriptor_description", "_UI_Usersession_username_feature", "_UI_Usersession_type"),
+			WorkspacePackage.Literals.USERSESSION__USERNAME, true, false, false,
+			ItemPropertyDescriptor.GENERIC_VALUE_IMAGE, null, null));
 	}
 
 	/**
-	 * This adds a property descriptor for the Password feature. <!--
-	 * begin-user-doc --> <!-- end-user-doc -->
+	 * This adds a property descriptor for the Password feature. <!-- begin-user-doc --> <!-- end-user-doc -->
 	 * 
 	 * @generated
 	 */
 	protected void addPasswordPropertyDescriptor(Object object) {
-		itemPropertyDescriptors.add(createItemPropertyDescriptor(
-				((ComposeableAdapterFactory) adapterFactory)
-						.getRootAdapterFactory(), getResourceLocator(),
-				getString("_UI_Usersession_password_feature"), getString(
-						"_UI_PropertyDescriptor_description",
-						"_UI_Usersession_password_feature",
-						"_UI_Usersession_type"),
-				WorkspacePackage.Literals.USERSESSION__PASSWORD, true, false,
-				false, ItemPropertyDescriptor.GENERIC_VALUE_IMAGE, null, null));
+		itemPropertyDescriptors.add(createItemPropertyDescriptor(((ComposeableAdapterFactory) adapterFactory)
+			.getRootAdapterFactory(), getResourceLocator(), getString("_UI_Usersession_password_feature"), getString(
+			"_UI_PropertyDescriptor_description", "_UI_Usersession_password_feature", "_UI_Usersession_type"),
+			WorkspacePackage.Literals.USERSESSION__PASSWORD, true, false, false,
+			ItemPropertyDescriptor.GENERIC_VALUE_IMAGE, null, null));
 	}
 
 	/**
-	 * This adds a property descriptor for the Session Id feature. <!--
-	 * begin-user-doc --> <!-- end-user-doc -->
+	 * This adds a property descriptor for the Session Id feature. <!-- begin-user-doc --> <!-- end-user-doc -->
 	 * 
 	 * @generated
 	 */
 	protected void addSessionIdPropertyDescriptor(Object object) {
-		itemPropertyDescriptors.add(createItemPropertyDescriptor(
-				((ComposeableAdapterFactory) adapterFactory)
-						.getRootAdapterFactory(), getResourceLocator(),
-				getString("_UI_Usersession_sessionId_feature"), getString(
-						"_UI_PropertyDescriptor_description",
-						"_UI_Usersession_sessionId_feature",
-						"_UI_Usersession_type"),
-				WorkspacePackage.Literals.USERSESSION__SESSION_ID, true, false,
-				true, null, null, null));
+		itemPropertyDescriptors.add(createItemPropertyDescriptor(((ComposeableAdapterFactory) adapterFactory)
+			.getRootAdapterFactory(), getResourceLocator(), getString("_UI_Usersession_sessionId_feature"), getString(
+			"_UI_PropertyDescriptor_description", "_UI_Usersession_sessionId_feature", "_UI_Usersession_type"),
+			WorkspacePackage.Literals.USERSESSION__SESSION_ID, true, false, true, null, null, null));
 	}
 
 	/**
-	 * This adds a property descriptor for the Persistent Password feature. <!--
-	 * begin-user-doc --> <!-- end-user-doc -->
+	 * This adds a property descriptor for the Persistent Password feature. <!-- begin-user-doc --> <!-- end-user-doc
+	 * -->
 	 * 
 	 * @generated
 	 */
 	protected void addPersistentPasswordPropertyDescriptor(Object object) {
-		itemPropertyDescriptors.add(createItemPropertyDescriptor(
-				((ComposeableAdapterFactory) adapterFactory)
-						.getRootAdapterFactory(), getResourceLocator(),
-				getString("_UI_Usersession_persistentPassword_feature"),
-				getString("_UI_PropertyDescriptor_description",
-						"_UI_Usersession_persistentPassword_feature",
-						"_UI_Usersession_type"),
-				WorkspacePackage.Literals.USERSESSION__PERSISTENT_PASSWORD,
-				true, false, false, ItemPropertyDescriptor.GENERIC_VALUE_IMAGE,
-				null, null));
+		itemPropertyDescriptors.add(createItemPropertyDescriptor(((ComposeableAdapterFactory) adapterFactory)
+			.getRootAdapterFactory(), getResourceLocator(), getString("_UI_Usersession_persistentPassword_feature"),
+			getString("_UI_PropertyDescriptor_description", "_UI_Usersession_persistentPassword_feature",
+				"_UI_Usersession_type"), WorkspacePackage.Literals.USERSESSION__PERSISTENT_PASSWORD, true, false,
+			false, ItemPropertyDescriptor.GENERIC_VALUE_IMAGE, null, null));
 	}
 
 	/**
-	 * This adds a property descriptor for the Server Info feature. <!--
-	 * begin-user-doc --> <!-- end-user-doc -->
+	 * This adds a property descriptor for the Server Info feature. <!-- begin-user-doc --> <!-- end-user-doc -->
 	 * 
 	 * @generated
 	 */
 	protected void addServerInfoPropertyDescriptor(Object object) {
-		itemPropertyDescriptors.add(createItemPropertyDescriptor(
-				((ComposeableAdapterFactory) adapterFactory)
-						.getRootAdapterFactory(), getResourceLocator(),
-				getString("_UI_Usersession_serverInfo_feature"), getString(
-						"_UI_PropertyDescriptor_description",
-						"_UI_Usersession_serverInfo_feature",
-						"_UI_Usersession_type"),
-				WorkspacePackage.Literals.USERSESSION__SERVER_INFO, true,
-				false, true, null, null, null));
+		itemPropertyDescriptors.add(createItemPropertyDescriptor(((ComposeableAdapterFactory) adapterFactory)
+			.getRootAdapterFactory(), getResourceLocator(), getString("_UI_Usersession_serverInfo_feature"), getString(
+			"_UI_PropertyDescriptor_description", "_UI_Usersession_serverInfo_feature", "_UI_Usersession_type"),
+			WorkspacePackage.Literals.USERSESSION__SERVER_INFO, true, false, true, null, null, null));
 	}
 
 	/**
-	 * This adds a property descriptor for the Save Password feature. <!--
-	 * begin-user-doc --> <!-- end-user-doc -->
+	 * This adds a property descriptor for the Save Password feature. <!-- begin-user-doc --> <!-- end-user-doc -->
 	 * 
 	 * @generated
 	 */
 	protected void addSavePasswordPropertyDescriptor(Object object) {
-		itemPropertyDescriptors.add(createItemPropertyDescriptor(
-				((ComposeableAdapterFactory) adapterFactory)
-						.getRootAdapterFactory(), getResourceLocator(),
-				getString("_UI_Usersession_savePassword_feature"), getString(
-						"_UI_PropertyDescriptor_description",
-						"_UI_Usersession_savePassword_feature",
-						"_UI_Usersession_type"),
-				WorkspacePackage.Literals.USERSESSION__SAVE_PASSWORD, true,
-				false, false, ItemPropertyDescriptor.BOOLEAN_VALUE_IMAGE, null,
-				null));
+		itemPropertyDescriptors.add(createItemPropertyDescriptor(((ComposeableAdapterFactory) adapterFactory)
+			.getRootAdapterFactory(), getResourceLocator(), getString("_UI_Usersession_savePassword_feature"),
+			getString("_UI_PropertyDescriptor_description", "_UI_Usersession_savePassword_feature",
+				"_UI_Usersession_type"), WorkspacePackage.Literals.USERSESSION__SAVE_PASSWORD, true, false, false,
+			ItemPropertyDescriptor.BOOLEAN_VALUE_IMAGE, null, null));
 	}
 
 	/**
 	 * This specifies how to implement {@link #getChildren} and is used to deduce an appropriate feature for an
 	 * {@link org.eclipse.emf.edit.command.AddCommand}, {@link org.eclipse.emf.edit.command.RemoveCommand} or
-	 * {@link org.eclipse.emf.edit.command.MoveCommand} in {@link #createCommand}.
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
+	 * {@link org.eclipse.emf.edit.command.MoveCommand} in {@link #createCommand}. <!-- begin-user-doc --> <!--
+	 * end-user-doc -->
+	 * 
 	 * @generated
 	 */
 	@Override
-	public Collection<? extends EStructuralFeature> getChildrenFeatures(
-			Object object) {
+	public Collection<? extends EStructuralFeature> getChildrenFeatures(Object object) {
 		if (childrenFeatures == null) {
 			super.getChildrenFeatures(object);
-			childrenFeatures
-					.add(WorkspacePackage.Literals.USERSESSION__AC_USER);
+			childrenFeatures.add(WorkspacePackage.Literals.USERSESSION__AC_USER);
 		}
 		return childrenFeatures;
 	}
 
 	/**
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
+	 * <!-- begin-user-doc --> <!-- end-user-doc -->
+	 * 
 	 * @generated
 	 */
 	@Override
@@ -211,38 +172,34 @@ public class UsersessionItemProvider extends ItemProviderAdapter implements
 	}
 
 	/**
-	 * This returns Usersession.gif. <!-- begin-user-doc --> <!-- end-user-doc
-	 * -->
+	 * This returns Usersession.gif. <!-- begin-user-doc --> <!-- end-user-doc -->
 	 * 
 	 * @generated
 	 */
 	@Override
 	public Object getImage(Object object) {
-		return overlayImage(object, getResourceLocator().getImage(
-				"full/obj16/Usersession"));
+		return overlayImage(object, getResourceLocator().getImage("full/obj16/Usersession"));
 	}
 
 	/**
 	 * This returns the label text for the adapted class.
+	 * 
 	 * @param object the object to provide the label for
-	 * @return the label
-	 * <!-- begin-user-doc
-	 * --> <!-- end-user-doc -->
+	 * @return the label <!-- begin-user-doc --> <!-- end-user-doc -->
 	 * @generated NOT
 	 */
 	@Override
 	public String getText(Object object) {
 		Usersession session = ((Usersession) object);
 		ServerInfo server = session.getServerInfo();
-		return session.getUsername() + "@"
-				+ (server != null ? server.getName() : "unknown");
+		return session.getUsername() + "@" + (server != null ? server.getName() : "unknown");
 	}
 
 	/**
-	 * This handles model notifications by calling {@link #updateChildren} to update any cached
-	 * children and by creating a viewer notification, which it passes to {@link #fireNotifyChanged}.
-	 * <!-- begin-user-doc --> <!--
-	 * end-user-doc -->
+	 * This handles model notifications by calling {@link #updateChildren} to update any cached children and by creating
+	 * a viewer notification, which it passes to {@link #fireNotifyChanged}. <!-- begin-user-doc --> <!-- end-user-doc
+	 * -->
+	 * 
 	 * @generated
 	 */
 	@Override
@@ -254,37 +211,31 @@ public class UsersessionItemProvider extends ItemProviderAdapter implements
 		case WorkspacePackage.USERSESSION__PASSWORD:
 		case WorkspacePackage.USERSESSION__PERSISTENT_PASSWORD:
 		case WorkspacePackage.USERSESSION__SAVE_PASSWORD:
-			fireNotifyChanged(new ViewerNotification(notification, notification
-					.getNotifier(), false, true));
+			fireNotifyChanged(new ViewerNotification(notification, notification.getNotifier(), false, true));
 			return;
 		case WorkspacePackage.USERSESSION__AC_USER:
-			fireNotifyChanged(new ViewerNotification(notification, notification
-					.getNotifier(), true, false));
+			fireNotifyChanged(new ViewerNotification(notification, notification.getNotifier(), true, false));
 			return;
 		}
 		super.notifyChanged(notification);
 	}
 
 	/**
-	 * This adds {@link org.eclipse.emf.edit.command.CommandParameter}s
-	 * describing the children that can be created under this object. <!--
-	 * begin-user-doc --> <!-- end-user-doc -->
+	 * This adds {@link org.eclipse.emf.edit.command.CommandParameter}s describing the children that can be created
+	 * under this object. <!-- begin-user-doc --> <!-- end-user-doc -->
 	 * 
 	 * @generated
 	 */
 	@Override
-	protected void collectNewChildDescriptors(
-			Collection<Object> newChildDescriptors, Object object) {
+	protected void collectNewChildDescriptors(Collection<Object> newChildDescriptors, Object object) {
 		super.collectNewChildDescriptors(newChildDescriptors, object);
 
-		newChildDescriptors.add(createChildParameter(
-				WorkspacePackage.Literals.USERSESSION__AC_USER,
-				AccesscontrolFactory.eINSTANCE.createACUser()));
+		newChildDescriptors.add(createChildParameter(WorkspacePackage.Literals.USERSESSION__AC_USER,
+			AccesscontrolFactory.eINSTANCE.createACUser()));
 	}
 
 	/**
-	 * Return the resource locator for this item provider's resources. <!--
-	 * begin-user-doc --> <!-- end-user-doc -->
+	 * Return the resource locator for this item provider's resources. <!-- begin-user-doc --> <!-- end-user-doc -->
 	 * 
 	 * @generated
 	 */

@@ -1,8 +1,7 @@
 /**
- * <copyright> Copyright (c) 2008 Jonas Helming, Maximilian Koegel. All rights reserved. This program and the accompanying materials are made available under the terms of the Eclipse Public License v1.0 which accompanies this distribution, and is available at http://www.eclipse.org/legal/epl-v10.html
- * </copyright>
- *
- * $Id$
+ * <copyright> Copyright (c) 2008 Jonas Helming, Maximilian Koegel. All rights reserved. This program and the
+ * accompanying materials are made available under the terms of the Eclipse Public License v1.0 which accompanies this
+ * distribution, and is available at http://www.eclipse.org/legal/epl-v10.html </copyright>
  */
 package org.unicase.ui.meeditor.mecontrols.melinkcontrol;
 
@@ -41,20 +40,17 @@ import org.unicase.workspace.WorkspaceManager;
  * GUI Control for the ME reference multilinks.
  * 
  * @author helming
- * 
  */
 public class MEMultiLinkControl extends AbstractMEControl {
 	/**
 	 * Command to rebuild the links.
 	 * 
 	 * @author helming
-	 * 
 	 */
 	private final class RebuildLinksCommand extends RecordingCommand {
 		private final int sizeLimit;
 
-		private RebuildLinksCommand(TransactionalEditingDomain domain,
-				int sizeLimit) {
+		private RebuildLinksCommand(TransactionalEditingDomain domain, int sizeLimit) {
 			super(domain);
 			this.sizeLimit = sizeLimit;
 		}
@@ -68,18 +64,14 @@ public class MEMultiLinkControl extends AbstractMEControl {
 				if (eList.size() <= sizeLimit) {
 					linkArea = getToolkit().createComposite(composite, style);
 					linkArea.setLayout(tableLayout);
-					linkArea.setLayoutData(new GridData(
-							GridData.FILL_HORIZONTAL));
+					linkArea.setLayoutData(new GridData(GridData.FILL_HORIZONTAL));
 				} else {
 
-					scrollPane = new ScrolledComposite(composite, SWT.V_SCROLL
-							| SWT.H_SCROLL | SWT.TRANSPARENT);
+					scrollPane = new ScrolledComposite(composite, SWT.V_SCROLL | SWT.H_SCROLL | SWT.TRANSPARENT);
 					scrollClient = new Composite(scrollPane, style);
 					scrollPane.setContent(scrollClient);
-					getToolkit().getColors()
-							.createColor("white", 255, 255, 255);
-					scrollClient.setBackground(getToolkit().getColors()
-							.getColor("white"));
+					getToolkit().getColors().createColor("white", 255, 255, 255);
+					scrollClient.setBackground(getToolkit().getColors().getColor("white"));
 					scrollPane.setExpandVertical(true);
 					scrollPane.setExpandHorizontal(true);
 					RowLayout layout = new RowLayout(SWT.VERTICAL);
@@ -95,16 +87,14 @@ public class MEMultiLinkControl extends AbstractMEControl {
 				for (EObject object : eList) {
 					if (object instanceof ModelElement) {
 						ModelElement me = (ModelElement) object;
-						MELinkControl meControl = new MELinkControl(
-								getEditingDomain(), me, getToolkit(),
-								getModelElement(), eReference);
-						meControl.createControl((eList.size()<=sizeLimit?linkArea:scrollClient), style);
+						MELinkControl meControl = new MELinkControl(getEditingDomain(), me, getToolkit(),
+							getModelElement(), eReference);
+						meControl.createControl((eList.size() <= sizeLimit ? linkArea : scrollClient), style);
 						linkControls.add(meControl);
 					}
 				}
 				if (scrollPane != null && !scrollPane.isDisposed()) {
-					scrollPane.setMinSize(scrollClient.computeSize(SWT.DEFAULT,
-							SWT.DEFAULT));
+					scrollPane.setMinSize(scrollClient.computeSize(SWT.DEFAULT, SWT.DEFAULT));
 					scrollClient.layout();
 					scrollPane.layout();
 				} else {
@@ -141,20 +131,14 @@ public class MEMultiLinkControl extends AbstractMEControl {
 	/**
 	 * Default constructor. Default constructor.
 	 * 
-	 * @param toolkit
-	 *            see {@link AbstractMEControl}
-	 * @param modelElement
-	 *            see {@link AbstractMEControl}
-	 * @param editingDomain
-	 *            see {@link AbstractMEControl}
-	 * @param reference
-	 *            the reference link
-	 * @param descriptor
-	 *            ?
+	 * @param toolkit see {@link AbstractMEControl}
+	 * @param modelElement see {@link AbstractMEControl}
+	 * @param editingDomain see {@link AbstractMEControl}
+	 * @param reference the reference link
+	 * @param descriptor ?
 	 */
-	public MEMultiLinkControl(EObject modelElement, EReference reference,
-			FormToolkit toolkit, EditingDomain editingDomain,
-			IItemPropertyDescriptor descriptor) {
+	public MEMultiLinkControl(EObject modelElement, EReference reference, FormToolkit toolkit,
+		EditingDomain editingDomain, IItemPropertyDescriptor descriptor) {
 		super(editingDomain, modelElement, toolkit);
 		this.eReference = reference;
 		this.descriptor = descriptor;
@@ -162,9 +146,7 @@ public class MEMultiLinkControl extends AbstractMEControl {
 		eAdapter = new AdapterImpl() {
 			@Override
 			public void notifyChanged(Notification msg) {
-				if (msg.getFeature() != null
-						&& msg.getFeature().equals(eReference)
-						&& !msg.isTouch()) {
+				if (msg.getFeature() != null && msg.getFeature().equals(eReference) && !msg.isTouch()) {
 					rebuildLinkSection();
 				}
 				super.notifyChanged(msg);
@@ -177,8 +159,7 @@ public class MEMultiLinkControl extends AbstractMEControl {
 	private void createSectionToolbar(Section section, FormToolkit toolkit) {
 		ToolBarManager toolBarManager = new ToolBarManager(SWT.FLAT);
 		ToolBar toolbar = toolBarManager.createControl(section);
-		final Cursor handCursor = new Cursor(Display.getCurrent(),
-				SWT.CURSOR_HAND);
+		final Cursor handCursor = new Cursor(Display.getCurrent(), SWT.CURSOR_HAND);
 		toolbar.setCursor(handCursor);
 		// Cursor needs to be explicitly disposed
 		toolbar.addDisposeListener(new DisposeListener() {
@@ -189,10 +170,8 @@ public class MEMultiLinkControl extends AbstractMEControl {
 			}
 		});
 
-		toolBarManager.add(new AddReferenceAction(
-				(ModelElement) getModelElement(), eReference, descriptor));
-		toolBarManager.add(new NewReferenceAction(
-				(ModelElement) getModelElement(), eReference, descriptor));
+		toolBarManager.add(new AddReferenceAction((ModelElement) getModelElement(), eReference, descriptor));
+		toolBarManager.add(new NewReferenceAction((ModelElement) getModelElement(), eReference, descriptor));
 		toolBarManager.update(true);
 		section.setTextClient(toolbar);
 	}
@@ -203,8 +182,7 @@ public class MEMultiLinkControl extends AbstractMEControl {
 	public Control createControl(final Composite parent, int style) {
 		this.style = style;
 		tableLayout = new GridLayout(1, false);
-		section = getToolkit().createSection(parent,
-				Section.TITLE_BAR | Section.TWISTIE | Section.EXPANDED);
+		section = getToolkit().createSection(parent, Section.TITLE_BAR | Section.TWISTIE | Section.EXPANDED);
 		section.setText(descriptor.getDisplayName(getModelElement()));
 		createSectionToolbar(section, getToolkit());
 		composite = getToolkit().createComposite(section, style);
@@ -232,11 +210,9 @@ public class MEMultiLinkControl extends AbstractMEControl {
 			linkArea.dispose();
 		}
 		linkControls.clear();
-		TransactionalEditingDomain domain = WorkspaceManager.getInstance()
-				.getCurrentWorkspace().getEditingDomain();
+		TransactionalEditingDomain domain = WorkspaceManager.getInstance().getCurrentWorkspace().getEditingDomain();
 		// JH: TransactionUtil.getEditingDomain(modelElement);
-		domain.getCommandStack().execute(
-				new RebuildLinksCommand(domain, sizeLimit));
+		domain.getCommandStack().execute(new RebuildLinksCommand(domain, sizeLimit));
 	}
 
 	/**
@@ -248,7 +224,7 @@ public class MEMultiLinkControl extends AbstractMEControl {
 		for (MELinkControl link : linkControls) {
 			link.dispose();
 		}
-		
+
 	}
 
 }

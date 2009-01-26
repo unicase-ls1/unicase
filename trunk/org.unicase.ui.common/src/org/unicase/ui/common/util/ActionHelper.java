@@ -1,8 +1,7 @@
 /**
- * <copyright> Copyright (c) 2008 Jonas Helming, Maximilian Koegel. All rights reserved. This program and the accompanying materials are made available under the terms of the Eclipse Public License v1.0 which accompanies this distribution, and is available at http://www.eclipse.org/legal/epl-v10.html
- * </copyright>
- *
- * $Id$
+ * <copyright> Copyright (c) 2008 Jonas Helming, Maximilian Koegel. All rights reserved. This program and the
+ * accompanying materials are made available under the terms of the Eclipse Public License v1.0 which accompanies this
+ * distribution, and is available at http://www.eclipse.org/legal/epl-v10.html </copyright>
  */
 
 package org.unicase.ui.common.util;
@@ -43,9 +42,7 @@ import org.unicase.workspace.WorkspaceManager;
 import org.unicase.workspace.util.WorkspaceUtil;
 
 /**
- * 
- * @author Hodaie This class contains some utility method for commands and
- *         handlers.
+ * @author Hodaie This class contains some utility method for commands and handlers.
  */
 public final class ActionHelper {
 
@@ -61,8 +58,7 @@ public final class ActionHelper {
 	/**
 	 * This extracts active model element. From MEEditor or from Navigator
 	 * 
-	 * @param event
-	 *            the ExecutionEvent given by caller handler
+	 * @param event the ExecutionEvent given by caller handler
 	 * @return active model element
 	 */
 	public static ModelElement getModelElement(ExecutionEvent event) {
@@ -76,9 +72,8 @@ public final class ActionHelper {
 		String partId = HandlerUtil.getActivePartId(event);
 		if (partId.equals(MEEDITOR_ID)) {
 			// extract model element from editor input
-			IEditorInput editorInput = PlatformUI.getWorkbench()
-			.getActiveWorkbenchWindow().getActivePage()
-			.getActiveEditor().getEditorInput();
+			IEditorInput editorInput = PlatformUI.getWorkbench().getActiveWorkbenchWindow().getActivePage()
+				.getActiveEditor().getEditorInput();
 			Object obj = editorInput.getAdapter(ModelElement.class);
 
 			if (obj instanceof ModelElement) {
@@ -100,13 +95,10 @@ public final class ActionHelper {
 	}
 
 	/**
-	 * MUST BE WRAPPED IN A RECORDING COMMAND! This method creates a new model
-	 * element using:
+	 * MUST BE WRAPPED IN A RECORDING COMMAND! This method creates a new model element using:
 	 * 
-	 * @param factory
-	 *            the factory
-	 * @param clazz
-	 *            the element class
+	 * @param factory the factory
+	 * @param clazz the element class
 	 * @return the new element
 	 */
 	public static EObject createModelElement(EFactory factory, EClass clazz) {
@@ -114,13 +106,12 @@ public final class ActionHelper {
 		ModelElement me = (ModelElement) obj;
 		final StringBuffer creator = new StringBuffer();
 		TransactionalEditingDomain domain = TransactionalEditingDomain.Registry.INSTANCE
-		.getEditingDomain("org.unicase.EditingDomain");
+			.getEditingDomain("org.unicase.EditingDomain");
 		domain.getCommandStack().execute(new RecordingCommand(domain) {
 			@Override
 			protected void doExecute() {
-				Usersession usersession = WorkspaceManager.getInstance()
-				.getCurrentWorkspace().getActiveProjectSpace()
-				.getUsersession();
+				Usersession usersession = WorkspaceManager.getInstance().getCurrentWorkspace().getActiveProjectSpace()
+					.getUsersession();
 				if (usersession != null) {
 					creator.append(usersession.getACUser().getName());
 				}
@@ -134,8 +125,7 @@ public final class ActionHelper {
 	/**
 	 * This opens the model element.
 	 * 
-	 * @param me
-	 *            ModelElement to open
+	 * @param me ModelElement to open
 	 * @param sourceView the view that requested the open model element
 	 */
 	public static void openModelElement(final ModelElement me, final String sourceView) {
@@ -149,18 +139,16 @@ public final class ActionHelper {
 		}
 		final boolean isDiagram = openWithMeDiagram;
 		TransactionalEditingDomain domain = TransactionalEditingDomain.Registry.INSTANCE
-		.getEditingDomain("org.unicase.EditingDomain");
+			.getEditingDomain("org.unicase.EditingDomain");
 		domain.getCommandStack().execute(new RecordingCommand(domain) {
 			@Override
 			protected void doExecute() {
-				ProjectSpace activeProjectSpace = WorkspaceManager
-				.getInstance().getCurrentWorkspace()
-				.getActiveProjectSpace();
+				ProjectSpace activeProjectSpace = WorkspaceManager.getInstance().getCurrentWorkspace()
+					.getActiveProjectSpace();
 				String readView;
 				if (isDiagram) {
 					readView = "org.unicase.ui.MEDiagramEditor";
-				}
-				else {
+				} else {
 					readView = "org.unicase.ui.meeditor.MEEditor";
 				}
 				WorkspaceUtil.logReadEvent(activeProjectSpace, me.getModelElementId(), sourceView, readView);
@@ -183,15 +171,13 @@ public final class ActionHelper {
 		// after setting the Variable, the open command in MEEditor is invoked
 		// using
 		// HandlerService
-		IHandlerService handlerService = (IHandlerService) PlatformUI
-		.getWorkbench().getService(IHandlerService.class);
+		IHandlerService handlerService = (IHandlerService) PlatformUI.getWorkbench().getService(IHandlerService.class);
 
 		IEvaluationContext context = handlerService.getCurrentState();
 		context.addVariable(ME_TO_OPEN_EVALUATIONCONTEXT_VARIABLE, me);
 
 		try {
-			handlerService.executeCommand(MEEDITOR_OPENMODELELEMENT_COMMAND_ID,
-					null);
+			handlerService.executeCommand(MEEDITOR_OPENMODELELEMENT_COMMAND_ID, null);
 
 		} catch (ExecutionException e) {
 			DialogHandler.showExceptionDialog(e);
@@ -204,20 +190,16 @@ public final class ActionHelper {
 		}
 
 	}
-	
+
 	/**
-	 * This opens the model element and marks the feature as having a problem
-	 * (error, warning, etc.).
+	 * This opens the model element and marks the feature as having a problem (error, warning, etc.).
 	 * 
-	 * @param me
-	 *            ModelElement to open
-	 * @param problemFeature
-	 *            the feature to be marked as having a problem
-	 * @param sourceView
-	 *            the view that requested the open model element
+	 * @param me ModelElement to open
+	 * @param problemFeature the feature to be marked as having a problem
+	 * @param sourceView the view that requested the open model element
 	 */
-	public static void openModelElement(final ModelElement me,
-			EStructuralFeature problemFeature, final String sourceView) {
+	public static void openModelElement(final ModelElement me, EStructuralFeature problemFeature,
+		final String sourceView) {
 		if (me == null) {
 			return;
 		}
@@ -227,36 +209,31 @@ public final class ActionHelper {
 
 		// TODO: at some point add validation markings in diagrams
 		TransactionalEditingDomain domain = TransactionalEditingDomain.Registry.INSTANCE
-				.getEditingDomain("org.unicase.EditingDomain");
+			.getEditingDomain("org.unicase.EditingDomain");
 		domain.getCommandStack().execute(new RecordingCommand(domain) {
 			@Override
 			protected void doExecute() {
-				ProjectSpace activeProjectSpace = WorkspaceManager
-						.getInstance().getCurrentWorkspace()
-						.getActiveProjectSpace();
+				ProjectSpace activeProjectSpace = WorkspaceManager.getInstance().getCurrentWorkspace()
+					.getActiveProjectSpace();
 				String readView = "org.unicase.ui.meeditor.MEEditor";
-				WorkspaceUtil.logReadEvent(activeProjectSpace, me
-						.getModelElementId(), sourceView, readView);
+				WorkspaceUtil.logReadEvent(activeProjectSpace, me.getModelElementId(), sourceView, readView);
 			}
 		});
 
 		openAndMarkMEWithMEEditor(me, problemFeature);
 	}
-	
-	private static void openAndMarkMEWithMEEditor(ModelElement me,
-			EStructuralFeature problemFeature) {
+
+	private static void openAndMarkMEWithMEEditor(ModelElement me, EStructuralFeature problemFeature) {
 		// this method works as the one above but in addition marks a feature as having a problem
-		
-		IHandlerService handlerService = (IHandlerService) PlatformUI
-				.getWorkbench().getService(IHandlerService.class);
+
+		IHandlerService handlerService = (IHandlerService) PlatformUI.getWorkbench().getService(IHandlerService.class);
 
 		IEvaluationContext context = handlerService.getCurrentState();
 		context.addVariable(ME_TO_OPEN_EVALUATIONCONTEXT_VARIABLE, me);
 		context.addVariable(FEATURE_TO_MARK_EVALUATIONCONTEXT_VARIABLE, problemFeature);
 
 		try {
-			handlerService.executeCommand(MEEDITOR_OPENMODELELEMENT_COMMAND_ID,
-					null);
+			handlerService.executeCommand(MEEDITOR_OPENMODELELEMENT_COMMAND_ID, null);
 
 		} catch (ExecutionException e) {
 			DialogHandler.showExceptionDialog(e);
@@ -272,10 +249,8 @@ public final class ActionHelper {
 	/**
 	 * . This opens the MEDiagram.
 	 * 
-	 * @param diagram
-	 *            MEDiagram to open
-	 * @param withMEEditor
-	 *            If the diagram is open in the meeditor
+	 * @param diagram MEDiagram to open
+	 * @param withMEEditor If the diagram is open in the meeditor
 	 */
 	public static void openMEDiagram(MEDiagram diagram, boolean withMEEditor) {
 		if (withMEEditor) {
@@ -286,11 +261,11 @@ public final class ActionHelper {
 		String id = null;
 		if (diagram.getType().equals(DiagramType.CLASS_DIAGRAM)) {
 			id = "org.unicase.model.classDiagram.part.ModelDiagramEditorID";
-		}else if (diagram.getType().equals(DiagramType.USECASE_DIAGRAM)) {
+		} else if (diagram.getType().equals(DiagramType.USECASE_DIAGRAM)) {
 			id = "org.unicase.ui.usecaseDiagram.part.ModelDiagramEditorID";
-		}else if (diagram.getType().equals(DiagramType.COMPONENT_DIAGRAM)) {
+		} else if (diagram.getType().equals(DiagramType.COMPONENT_DIAGRAM)) {
 			id = "org.unicase.ui.componentDiagram.part.ModelDiagramEditorID";
-		}else if (diagram.getType().equals(DiagramType.STATE_DIAGRAM)) {
+		} else if (diagram.getType().equals(DiagramType.STATE_DIAGRAM)) {
 			id = "org.unicase.ui.stateDiagram.part.ModelDiagramEditorID";
 		}
 
@@ -302,22 +277,18 @@ public final class ActionHelper {
 		URIEditorInput input = new URIEditorInput(uri, diagram.getName());
 
 		try {
-			PlatformUI.getWorkbench().getActiveWorkbenchWindow()
-			.getActivePage().openEditor(input, id, true);
+			PlatformUI.getWorkbench().getActiveWorkbenchWindow().getActivePage().openEditor(input, id, true);
 		} catch (PartInitException e) {
-			ErrorDialog.openError(PlatformUI.getWorkbench()
-					.getActiveWorkbenchWindow().getShell(), "Error", e
-					.getMessage(), e.getStatus());
+			ErrorDialog.openError(PlatformUI.getWorkbench().getActiveWorkbenchWindow().getShell(), "Error", e
+				.getMessage(), e.getStatus());
 		}
 	}
 
 	/**
-	 * . Extract the selected ModelElement in navigator or other
-	 * StructuredViewer This will be called from Handler classes, which pass the
-	 * ExecutionEvent.
+	 * . Extract the selected ModelElement in navigator or other StructuredViewer This will be called from Handler
+	 * classes, which pass the ExecutionEvent.
 	 * 
-	 * @param event
-	 *            ExecutionEvent to extract the selection from.
+	 * @param event ExecutionEvent to extract the selection from.
 	 * @return the selected EObject or null.
 	 */
 	public static EObject getSelection(ExecutionEvent event) {
@@ -340,18 +311,14 @@ public final class ActionHelper {
 	}
 
 	/**
-	 * . Extract the selected Object in navigator or other StructuredViewer.
-	 * This method uses the general ISelectionService of Workbench to extract
-	 * the selection. Beware that the part providing the selection should have
+	 * . Extract the selected Object in navigator or other StructuredViewer. This method uses the general
+	 * ISelectionService of Workbench to extract the selection. Beware that the part providing the selection should have
 	 * registered its SelectionProvider.
 	 * 
-	 * 
-	 * @return the selected Object or null if selection is not an
-	 *         IStructuredSelection
+	 * @return the selected Object or null if selection is not an IStructuredSelection
 	 */
 	public static Object getSelection() {
-		ISelectionService selectionService = PlatformUI.getWorkbench()
-		.getActiveWorkbenchWindow().getSelectionService();
+		ISelectionService selectionService = PlatformUI.getWorkbench().getActiveWorkbenchWindow().getSelectionService();
 
 		ISelection sel = selectionService.getSelection();
 		if (!(sel instanceof IStructuredSelection)) {
@@ -368,14 +335,11 @@ public final class ActionHelper {
 	}
 
 	/**
-	 * . Extract the selected EObject in navigator or other StructuredViewer.
-	 * This method uses the general ISelectionService of Workbench to extract
-	 * the selection. Beware that the part providing the selection should have
+	 * . Extract the selected EObject in navigator or other StructuredViewer. This method uses the general
+	 * ISelectionService of Workbench to extract the selection. Beware that the part providing the selection should have
 	 * registered its SelectionProvider.
 	 * 
-	 * 
-	 * @return the selected Object or null if selection is not an
-	 *         IStructuredSelection
+	 * @return the selected Object or null if selection is not an IStructuredSelection
 	 */
 	public static EObject getSelectedEObject() {
 		Object obj = getSelection();
@@ -387,14 +351,11 @@ public final class ActionHelper {
 	}
 
 	/**
-	 * . Extract the selected ModelElement in navigator or other
-	 * StructuredViewer. This method uses the general ISelectionService of
-	 * Workbench to extract the selection. Beware that the part providing the
-	 * selection should have registered its SelectionProvider.
+	 * . Extract the selected ModelElement in navigator or other StructuredViewer. This method uses the general
+	 * ISelectionService of Workbench to extract the selection. Beware that the part providing the selection should have
+	 * registered its SelectionProvider.
 	 * 
-	 * 
-	 * @return the selected Object or null if selection is not an
-	 *         IStructuredSelection
+	 * @return the selected Object or null if selection is not an IStructuredSelection
 	 */
 	public static ModelElement getSelectedModelElement() {
 		Object obj = getSelection();

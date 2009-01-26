@@ -1,7 +1,7 @@
 /**
  * <copyright>Copyright (c) 2008 Jonas Helming, Maximilian Koegel. All rights reserved. This program and the
  * accompanying materials are made available under the terms of the Eclipse Public License v1.0 which accompanies this
- * distribution, and is available at http://www.eclipse.org/legal/epl-v10.html</copyright> $Id$
+ * distribution, and is available at http://www.eclipse.org/legal/epl-v10.html</copyright>
  */
 package org.unicase.model.profile.impl;
 
@@ -35,9 +35,9 @@ import org.unicase.model.profile.StereotypeInstance;
  */
 public class StereotypeInstanceImpl extends ModelElementImpl implements StereotypeInstance {
 	/**
-	 * The cached value of the '{@link #getStereotype() <em>Stereotype</em>}' reference.
-	 * <!-- begin-user-doc --> <!--
+	 * The cached value of the '{@link #getStereotype() <em>Stereotype</em>}' reference. <!-- begin-user-doc --> <!--
 	 * end-user-doc -->
+	 * 
 	 * @see #getStereotype()
 	 * @generated
 	 * @ordered
@@ -45,8 +45,9 @@ public class StereotypeInstanceImpl extends ModelElementImpl implements Stereoty
 	protected Stereotype stereotype;
 
 	/**
-	 * The cached value of the '{@link #getStereotypeAttributeInstances() <em>Stereotype Attribute Instances</em>}' containment reference list.
-	 * <!-- begin-user-doc --> <!-- end-user-doc -->
+	 * The cached value of the '{@link #getStereotypeAttributeInstances() <em>Stereotype Attribute Instances</em>}'
+	 * containment reference list. <!-- begin-user-doc --> <!-- end-user-doc -->
+	 * 
 	 * @see #getStereotypeAttributeInstances()
 	 * @generated
 	 * @ordered
@@ -55,6 +56,7 @@ public class StereotypeInstanceImpl extends ModelElementImpl implements Stereoty
 
 	/**
 	 * <!-- begin-user-doc --> <!-- end-user-doc -->
+	 * 
 	 * @generated
 	 */
 	protected StereotypeInstanceImpl() {
@@ -63,6 +65,7 @@ public class StereotypeInstanceImpl extends ModelElementImpl implements Stereoty
 
 	/**
 	 * <!-- begin-user-doc --> <!-- end-user-doc -->
+	 * 
 	 * @generated
 	 */
 	@Override
@@ -72,6 +75,7 @@ public class StereotypeInstanceImpl extends ModelElementImpl implements Stereoty
 
 	/**
 	 * <!-- begin-user-doc --> <!-- end-user-doc -->
+	 * 
 	 * @generated
 	 */
 	public Stereotype getStereotype() {
@@ -89,6 +93,7 @@ public class StereotypeInstanceImpl extends ModelElementImpl implements Stereoty
 
 	/**
 	 * <!-- begin-user-doc --> <!-- end-user-doc -->
+	 * 
 	 * @generated
 	 */
 	public Stereotype basicGetStereotype() {
@@ -97,6 +102,7 @@ public class StereotypeInstanceImpl extends ModelElementImpl implements Stereoty
 
 	/**
 	 * <!-- begin-user-doc --> <!-- end-user-doc -->
+	 * 
 	 * @generated
 	 */
 	public NotificationChain basicSetStereotype(Stereotype newStereotype, NotificationChain msgs) {
@@ -115,6 +121,7 @@ public class StereotypeInstanceImpl extends ModelElementImpl implements Stereoty
 
 	/**
 	 * <!-- begin-user-doc --> <!-- end-user-doc -->
+	 * 
 	 * @generated
 	 */
 	public void setStereotype(Stereotype newStereotype) {
@@ -136,6 +143,7 @@ public class StereotypeInstanceImpl extends ModelElementImpl implements Stereoty
 
 	/**
 	 * <!-- begin-user-doc --> <!-- end-user-doc -->
+	 * 
 	 * @generated
 	 */
 	public ModelElement getModelElement() {
@@ -146,6 +154,7 @@ public class StereotypeInstanceImpl extends ModelElementImpl implements Stereoty
 
 	/**
 	 * <!-- begin-user-doc --> <!-- end-user-doc -->
+	 * 
 	 * @generated
 	 */
 	public ModelElement basicGetModelElement() {
@@ -156,6 +165,7 @@ public class StereotypeInstanceImpl extends ModelElementImpl implements Stereoty
 
 	/**
 	 * <!-- begin-user-doc --> <!-- end-user-doc -->
+	 * 
 	 * @generated
 	 */
 	public NotificationChain basicSetModelElement(ModelElement newModelElement, NotificationChain msgs) {
@@ -166,6 +176,7 @@ public class StereotypeInstanceImpl extends ModelElementImpl implements Stereoty
 
 	/**
 	 * <!-- begin-user-doc --> <!-- end-user-doc -->
+	 * 
 	 * @generated
 	 */
 	public void setModelElement(ModelElement newModelElement) {
@@ -189,6 +200,7 @@ public class StereotypeInstanceImpl extends ModelElementImpl implements Stereoty
 
 	/**
 	 * <!-- begin-user-doc --> <!-- end-user-doc -->
+	 * 
 	 * @generated
 	 */
 	public EList<StereotypeAttributeInstance> getStereotypeAttributeInstances() {
@@ -203,6 +215,7 @@ public class StereotypeInstanceImpl extends ModelElementImpl implements Stereoty
 
 	/**
 	 * <!-- begin-user-doc --> <!-- end-user-doc -->
+	 * 
 	 * @generated
 	 */
 	@SuppressWarnings("unchecked")
@@ -227,6 +240,7 @@ public class StereotypeInstanceImpl extends ModelElementImpl implements Stereoty
 
 	/**
 	 * <!-- begin-user-doc --> <!-- end-user-doc -->
+	 * 
 	 * @generated
 	 */
 	@Override
@@ -244,6 +258,7 @@ public class StereotypeInstanceImpl extends ModelElementImpl implements Stereoty
 
 	/**
 	 * <!-- begin-user-doc --> <!-- end-user-doc -->
+	 * 
 	 * @generated
 	 */
 	@Override
@@ -258,6 +273,7 @@ public class StereotypeInstanceImpl extends ModelElementImpl implements Stereoty
 
 	/**
 	 * <!-- begin-user-doc --> <!-- end-user-doc -->
+	 * 
 	 * @generated
 	 */
 	@Override
@@ -279,6 +295,7 @@ public class StereotypeInstanceImpl extends ModelElementImpl implements Stereoty
 
 	/**
 	 * <!-- begin-user-doc --> <!-- end-user-doc -->
+	 * 
 	 * @generated
 	 */
 	@SuppressWarnings("unchecked")
@@ -301,6 +318,7 @@ public class StereotypeInstanceImpl extends ModelElementImpl implements Stereoty
 
 	/**
 	 * <!-- begin-user-doc --> <!-- end-user-doc -->
+	 * 
 	 * @generated
 	 */
 	@Override
@@ -321,6 +339,7 @@ public class StereotypeInstanceImpl extends ModelElementImpl implements Stereoty
 
 	/**
 	 * <!-- begin-user-doc --> <!-- end-user-doc -->
+	 * 
 	 * @generated
 	 */
 	@Override

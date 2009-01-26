@@ -1,8 +1,5 @@
 /**
- * <copyright>
- * </copyright>
- *
- * $Id$
+ * <copyright> </copyright>
  */
 package org.unicase.docExport.exportModel.renderers.specialRenderers.impl;
 
@@ -20,18 +17,17 @@ import org.unicase.model.ModelElement;
 import org.unicase.model.classes.Method;
 
 /**
- * <!-- begin-user-doc -->
- * An implementation of the model object '<em><b>Method Renderer</b></em>'.
- * <!-- end-user-doc -->
+ * <!-- begin-user-doc --> An implementation of the model object '<em><b>Method Renderer</b></em>'. <!-- end-user-doc
+ * -->
  * <p>
  * </p>
- *
+ * 
  * @generated
  */
 public class MethodRendererImpl extends AttributeRendererImpl implements MethodRenderer {
 	/**
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
+	 * <!-- begin-user-doc --> <!-- end-user-doc -->
+	 * 
 	 * @generated
 	 */
 	protected MethodRendererImpl() {
@@ -39,8 +35,8 @@ public class MethodRendererImpl extends AttributeRendererImpl implements MethodR
 	}
 
 	/**
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
+	 * <!-- begin-user-doc --> <!-- end-user-doc -->
+	 * 
 	 * @generated
 	 */
 	@Override
@@ -49,11 +45,11 @@ public class MethodRendererImpl extends AttributeRendererImpl implements MethodR
 	}
 
 	@SuppressWarnings("unchecked")
-	public void render(EStructuralFeature feature, ModelElement modelElement,
-			UCompositeSection parent, Template template) {
+	public void render(EStructuralFeature feature, ModelElement modelElement, UCompositeSection parent,
+		Template template) {
 
 		EList<Method> methods = (EList<Method>) modelElement.eGet(feature);
-		
+
 		UTable table = new UTable(1);
 		table.getBoxModel().setMarginTop(10);
 		table.getDefaultCellBoxModel().setBorderBottom(0.5);
@@ -61,8 +57,8 @@ public class MethodRendererImpl extends AttributeRendererImpl implements MethodR
 		for (Method method : methods) {
 			table.addCell(method.getLabel(), template.getLayoutOptions().getDefaultTextOption());
 		}
-		
+
 		parent.add(table);
 	}
 
-} //MethodRendererImpl
+} // MethodRendererImpl

@@ -1,8 +1,7 @@
 /**
- * <copyright> Copyright (c) 2008 Jonas Helming, Maximilian Koegel. All rights reserved. This program and the accompanying materials are made available under the terms of the Eclipse Public License v1.0 which accompanies this distribution, and is available at http://www.eclipse.org/legal/epl-v10.html
- * </copyright>
- *
- * $Id$
+ * <copyright> Copyright (c) 2008 Jonas Helming, Maximilian Koegel. All rights reserved. This program and the
+ * accompanying materials are made available under the terms of the Eclipse Public License v1.0 which accompanies this
+ * distribution, and is available at http://www.eclipse.org/legal/epl-v10.html </copyright>
  */
 package org.unicase.ui.common.diagram.util;
 
@@ -67,7 +66,7 @@ public final class CommandUtility {
 			disableCommands.add(disableCanonicalAssociation);
 
 			ToggleCanonicalModeCommand enableCanonicalAssociation = ToggleCanonicalModeCommand
-			.getToggleCanonicalModeCommand(disableCanonicalAssociation, true);
+				.getToggleCanonicalModeCommand(disableCanonicalAssociation, true);
 			enableCommands.add(enableCanonicalAssociation);
 		}
 
@@ -79,10 +78,8 @@ public final class CommandUtility {
 	}
 
 	/**
-	 * @param command
-	 * The command to be stripped
-	 * @return
-	 * The stripped command
+	 * @param command The command to be stripped
+	 * @return The stripped command
 	 */
 	public static Command stripToggleCanonicalModeCommands(Command command) {
 		if (command instanceof ToggleCanonicalModeCommand) {
@@ -92,16 +89,15 @@ public final class CommandUtility {
 		if (command instanceof CompoundCommand) {
 			CompoundCommand compoundCommand = new CompoundCommand(command.getLabel());
 			Object[] commands = ((CompoundCommand) command).getChildren();
-			for (Object currentCommand: commands) {
+			for (Object currentCommand : commands) {
 				if (currentCommand instanceof Command) {
 					Command strippedCommand = stripToggleCanonicalModeCommands((Command) currentCommand);
-					compoundCommand.add(strippedCommand);					
+					compoundCommand.add(strippedCommand);
 				}
-			}			
+			}
 			return CommandUtility.safeUnwrap(compoundCommand);
 		}
 
 		return command;
 	}
 }
-

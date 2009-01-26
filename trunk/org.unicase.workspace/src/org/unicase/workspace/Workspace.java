@@ -1,8 +1,7 @@
 /**
- * <copyright> Copyright (c) 2008 Jonas Helming, Maximilian Koegel. All rights reserved. This program and the accompanying materials are made available under the terms of the Eclipse Public License v1.0 which accompanies this distribution, and is available at http://www.eclipse.org/legal/epl-v10.html
- * </copyright>
- *
- * $Id$
+ * <copyright> Copyright (c) 2008 Jonas Helming, Maximilian Koegel. All rights reserved. This program and the
+ * accompanying materials are made available under the terms of the Eclipse Public License v1.0 which accompanies this
+ * distribution, and is available at http://www.eclipse.org/legal/epl-v10.html </copyright>
  */
 package org.unicase.workspace;
 
@@ -18,35 +17,32 @@ import org.unicase.emfstore.exceptions.EmfStoreException;
 import org.unicase.workspace.connectionmanager.ConnectionManager;
 
 /**
- * <!-- begin-user-doc --> A representation of the model object '
- * <em><b>Workspace</b></em>'.
+ * <!-- begin-user-doc --> A representation of the model object ' <em><b>Workspace</b></em>'.
  * 
  * @implements IAdaptable <!-- end-user-doc -->
- *
- * <p>
- * The following features are supported:
- * <ul>
- *   <li>{@link org.unicase.workspace.Workspace#getProjectSpaces <em>Project Spaces</em>}</li>
- *   <li>{@link org.unicase.workspace.Workspace#getServerInfos <em>Server Infos</em>}</li>
- *   <li>{@link org.unicase.workspace.Workspace#getUsersessions <em>Usersessions</em>}</li>
- *   <li>{@link org.unicase.workspace.Workspace#getActiveProjectSpace <em>Active Project Space</em>}</li>
- * </ul>
- * </p>
- *
+ *             <p>
+ *             The following features are supported:
+ *             <ul>
+ *             <li>{@link org.unicase.workspace.Workspace#getProjectSpaces <em>Project Spaces</em>}</li>
+ *             <li>{@link org.unicase.workspace.Workspace#getServerInfos <em>Server Infos</em>}</li>
+ *             <li>{@link org.unicase.workspace.Workspace#getUsersessions <em>Usersessions</em>}</li>
+ *             <li>{@link org.unicase.workspace.Workspace#getActiveProjectSpace <em>Active Project Space</em>}</li>
+ *             </ul>
+ *             </p>
  * @see org.unicase.workspace.WorkspacePackage#getWorkspace()
  * @model
  * @generated
  */
 public interface Workspace extends EObject, IAdaptable {
 	/**
-	 * Returns the value of the '<em><b>Project Spaces</b></em>' containment reference list.
-	 * The list contents are of type {@link org.unicase.workspace.ProjectSpace}.
-	 * <!-- begin-user-doc -->
+	 * Returns the value of the '<em><b>Project Spaces</b></em>' containment reference list. The list contents are of
+	 * type {@link org.unicase.workspace.ProjectSpace}. <!-- begin-user-doc -->
 	 * <p>
-	 * If the meaning of the '<em>Project Spaces</em>' reference list isn't
-	 * clear, there really should be more of a description here...
+	 * If the meaning of the '<em>Project Spaces</em>' reference list isn't clear, there really should be more of a
+	 * description here...
 	 * </p>
 	 * <!-- end-user-doc -->
+	 * 
 	 * @return the value of the '<em>Project Spaces</em>' containment reference list.
 	 * @see org.unicase.workspace.WorkspacePackage#getWorkspace_ProjectSpaces()
 	 * @model containment="true" resolveProxies="true" keys="identifier"
@@ -55,14 +51,14 @@ public interface Workspace extends EObject, IAdaptable {
 	EList<ProjectSpace> getProjectSpaces();
 
 	/**
-	 * Returns the value of the '<em><b>Server Infos</b></em>' containment reference list.
-	 * The list contents are of type {@link org.unicase.workspace.ServerInfo}.
-	 * <!-- begin-user-doc -->
+	 * Returns the value of the '<em><b>Server Infos</b></em>' containment reference list. The list contents are of type
+	 * {@link org.unicase.workspace.ServerInfo}. <!-- begin-user-doc -->
 	 * <p>
-	 * If the meaning of the '<em>Server Infos</em>' containment reference list
-	 * isn't clear, there really should be more of a description here...
+	 * If the meaning of the '<em>Server Infos</em>' containment reference list isn't clear, there really should be more
+	 * of a description here...
 	 * </p>
 	 * <!-- end-user-doc -->
+	 * 
 	 * @return the value of the '<em>Server Infos</em>' containment reference list.
 	 * @see org.unicase.workspace.WorkspacePackage#getWorkspace_ServerInfos()
 	 * @model containment="true" resolveProxies="true"
@@ -71,14 +67,14 @@ public interface Workspace extends EObject, IAdaptable {
 	EList<ServerInfo> getServerInfos();
 
 	/**
-	 * Returns the value of the '<em><b>Usersessions</b></em>' containment reference list.
-	 * The list contents are of type {@link org.unicase.workspace.Usersession}.
-	 * <!-- begin-user-doc -->
+	 * Returns the value of the '<em><b>Usersessions</b></em>' containment reference list. The list contents are of type
+	 * {@link org.unicase.workspace.Usersession}. <!-- begin-user-doc -->
 	 * <p>
-	 * If the meaning of the '<em>Usersessions</em>' containment reference list
-	 * isn't clear, there really should be more of a description here...
+	 * If the meaning of the '<em>Usersessions</em>' containment reference list isn't clear, there really should be more
+	 * of a description here...
 	 * </p>
 	 * <!-- end-user-doc -->
+	 * 
 	 * @return the value of the '<em>Usersessions</em>' containment reference list.
 	 * @see org.unicase.workspace.WorkspacePackage#getWorkspace_Usersessions()
 	 * @model containment="true" resolveProxies="true"
@@ -87,13 +83,13 @@ public interface Workspace extends EObject, IAdaptable {
 	EList<Usersession> getUsersessions();
 
 	/**
-	 * Returns the value of the '<em><b>Active Project Space</b></em>' reference.
-	 * <!-- begin-user-doc -->
+	 * Returns the value of the '<em><b>Active Project Space</b></em>' reference. <!-- begin-user-doc -->
 	 * <p>
-	 * If the meaning of the '<em>Active Project Space</em>' reference isn't clear,
-	 * there really should be more of a description here...
+	 * If the meaning of the '<em>Active Project Space</em>' reference isn't clear, there really should be more of a
+	 * description here...
 	 * </p>
 	 * <!-- end-user-doc -->
+	 * 
 	 * @return the value of the '<em>Active Project Space</em>' reference.
 	 * @see #setActiveProjectSpace(ProjectSpace)
 	 * @see org.unicase.workspace.WorkspacePackage#getWorkspace_ActiveProjectSpace()
@@ -103,9 +99,9 @@ public interface Workspace extends EObject, IAdaptable {
 	ProjectSpace getActiveProjectSpace();
 
 	/**
-	 * Sets the value of the '{@link org.unicase.workspace.Workspace#getActiveProjectSpace <em>Active Project Space</em>}' reference.
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
+	 * Sets the value of the '{@link org.unicase.workspace.Workspace#getActiveProjectSpace
+	 * <em>Active Project Space</em>}' reference. <!-- begin-user-doc --> <!-- end-user-doc -->
+	 * 
 	 * @param value the new value of the '<em>Active Project Space</em>' reference.
 	 * @see #getActiveProjectSpace()
 	 * @generated
@@ -115,22 +111,18 @@ public interface Workspace extends EObject, IAdaptable {
 	/**
 	 * Checkout a project to the workspace.
 	 * 
-	 * @param usersession
-	 *            the usersession
-	 * @param projectInfo
-	 *            the project info describing the project and version
-	 * @throws EmfStoreException
-	 *             if checkout fails
+	 * @param usersession the usersession
+	 * @param projectInfo the project info describing the project and version
+	 * @throws EmfStoreException if checkout fails
 	 * @return the project space containing the project
 	 * @model
 	 * @generated NOT
 	 */
-	ProjectSpace checkout(Usersession usersession, ProjectInfo projectInfo)
-			throws EmfStoreException;
+	ProjectSpace checkout(Usersession usersession, ProjectInfo projectInfo) throws EmfStoreException;
 
 	/**
-	 * <!-- begin-user-doc --> Save the workspace to the resource. <!--
-	 * end-user-doc -->
+	 * <!-- begin-user-doc --> Save the workspace to the resource. <!-- end-user-doc -->
+	 * 
 	 * @model
 	 * @generated
 	 */
@@ -139,9 +131,7 @@ public interface Workspace extends EObject, IAdaptable {
 	/**
 	 * Set the workspace connection manager.
 	 * 
-	 * @param connectionManager
-	 *            the connection manager
-	 * 
+	 * @param connectionManager the connection manager
 	 * @generated NOT
 	 */
 	void setConnectionManager(ConnectionManager connectionManager);
@@ -149,9 +139,7 @@ public interface Workspace extends EObject, IAdaptable {
 	/**
 	 * Set the workspace resource set.
 	 * 
-	 * @param resourceSet
-	 *            the resource set
-	 * 
+	 * @param resourceSet the resource set
 	 * @generated NOT
 	 */
 	void setWorkspaceResourceSet(ResourceSet resourceSet);
@@ -159,9 +147,7 @@ public interface Workspace extends EObject, IAdaptable {
 	/**
 	 * Init the workspace and its projectspaces.
 	 * 
-	 * @param editingDomain
-	 *            the editing domain of the workspace
-	 * 
+	 * @param editingDomain the editing domain of the workspace
 	 * @generated NOT
 	 */
 	void init(TransactionalEditingDomain editingDomain);
@@ -170,13 +156,13 @@ public interface Workspace extends EObject, IAdaptable {
 	 * Return this workspace«s transactional editing domain.
 	 * 
 	 * @return the editing domain
-	 * 
 	 * @generated NOT
 	 */
 	TransactionalEditingDomain getEditingDomain();
 
 	/**
 	 * Import a project from file.
+	 * 
 	 * @param absoluteFileName the file name to import from
 	 * @return a project space containing the imported project
 	 * @throws IOException if file access fails
@@ -185,24 +171,25 @@ public interface Workspace extends EObject, IAdaptable {
 
 	/**
 	 * Export a project to a file.
+	 * 
 	 * @param projectSpace the projectSpace containing the project
 	 * @param absoluteFileName the file name
 	 * @throws IOException if file access fails
 	 */
-	void exportProject(ProjectSpace projectSpace, String absoluteFileName)
-			throws IOException;
+	void exportProject(ProjectSpace projectSpace, String absoluteFileName) throws IOException;
 
 	/**
 	 * Export a project space to a file.
+	 * 
 	 * @param projectSpace the project space
 	 * @param absoluteFileName the file name
 	 * @throws IOException if file access fails
 	 */
-	void exportProjectSpace(ProjectSpace projectSpace, String absoluteFileName)
-			throws IOException;
+	void exportProjectSpace(ProjectSpace projectSpace, String absoluteFileName) throws IOException;
 
 	/**
 	 * Export the current workspace to a file.
+	 * 
 	 * @param absoluteFileName the file name
 	 * @throws IOException if file access fails
 	 */
@@ -210,6 +197,7 @@ public interface Workspace extends EObject, IAdaptable {
 
 	/**
 	 * Import a project space from file.
+	 * 
 	 * @param absoluteFileName the file name to import from
 	 * @return the project space
 	 * @throws IOException if file access fails

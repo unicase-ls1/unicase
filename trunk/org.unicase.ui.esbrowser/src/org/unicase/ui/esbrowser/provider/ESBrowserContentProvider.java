@@ -1,8 +1,7 @@
 /**
- * <copyright> Copyright (c) 2008 Jonas Helming, Maximilian Koegel. All rights reserved. This program and the accompanying materials are made available under the terms of the Eclipse Public License v1.0 which accompanies this distribution, and is available at http://www.eclipse.org/legal/epl-v10.html
- * </copyright>
- *
- * $Id$
+ * <copyright> Copyright (c) 2008 Jonas Helming, Maximilian Koegel. All rights reserved. This program and the
+ * accompanying materials are made available under the terms of the Eclipse Public License v1.0 which accompanies this
+ * distribution, and is available at http://www.eclipse.org/legal/epl-v10.html </copyright>
  */
 package org.unicase.ui.esbrowser.provider;
 
@@ -30,7 +29,6 @@ import org.unicase.workspace.provider.WorkspaceItemProviderAdapterFactory;
  * Content provider for the tree view.
  * 
  * @author shterev
- * 
  */
 public class ESBrowserContentProvider extends AdapterFactoryContentProvider {
 
@@ -38,9 +36,9 @@ public class ESBrowserContentProvider extends AdapterFactoryContentProvider {
 	private HashMap<ProjectInfo, ServerInfo> projectServerMap = new HashMap<ProjectInfo, ServerInfo>();
 	private AccessControlHelper accessControl;
 
-
 	/**
 	 * Default constructor.
+	 * 
 	 * @param usersession the usersession used for logging in
 	 */
 	public ESBrowserContentProvider(Usersession usersession) {
@@ -49,18 +47,18 @@ public class ESBrowserContentProvider extends AdapterFactoryContentProvider {
 	}
 
 	/**
-	 * 
 	 * @return the HashMap mapping ProjectInfos with their corresponding ServerInfo parents
 	 */
 	public HashMap<ProjectInfo, ServerInfo> getProjectServerMap() {
 		return projectServerMap;
 	}
-	
+
 	/**
 	 * Getter for the AccesscontrolHelper.
+	 * 
 	 * @return the AccesscontrolHelper
 	 */
-	public AccessControlHelper getAccesscontrolHelper(){
+	public AccessControlHelper getAccesscontrolHelper() {
 		return accessControl;
 	}
 
@@ -73,14 +71,14 @@ public class ESBrowserContentProvider extends AdapterFactoryContentProvider {
 			return ((Workspace) object).getServerInfos().toArray();
 		} else if (object instanceof ServerInfo) {
 			final ServerInfo serverInfo = (ServerInfo) object;
-			TransactionalEditingDomain domain = TransactionalEditingDomain.Registry.INSTANCE.getEditingDomain("org.unicase.EditingDomain");
-			ContentProviderRecordingCommand command = new ContentProviderRecordingCommand(session,serverInfo,domain);
+			TransactionalEditingDomain domain = TransactionalEditingDomain.Registry.INSTANCE
+				.getEditingDomain("org.unicase.EditingDomain");
+			ContentProviderRecordingCommand command = new ContentProviderRecordingCommand(session, serverInfo, domain);
 			domain.getCommandStack().execute(command);
 			Display.getDefault().asyncExec(new Runnable() {
 				public void run() {
-					PlatformUI.getWorkbench().getDecoratorManager().
-			                    update("org.unicase.ui.esbrowser.LoginDecorator");
-			        }
+					PlatformUI.getWorkbench().getDecoratorManager().update("org.unicase.ui.esbrowser.LoginDecorator");
+				}
 			});
 			List<ProjectInfo> pis = command.getResult();
 			for (ProjectInfo pi : pis) {
@@ -102,7 +100,6 @@ public class ESBrowserContentProvider extends AdapterFactoryContentProvider {
 		return false;
 	}
 
-	
 	/**
 	 * {@inheritDoc}
 	 */
@@ -111,40 +108,42 @@ public class ESBrowserContentProvider extends AdapterFactoryContentProvider {
 		return getChildren(WorkspaceManager.getInstance().getCurrentWorkspace());
 	}
 
-/**
- * The {@link RecordingCommand} for the ContentProvider.
- * @author shterev
- *
- */
-private class ContentProviderRecordingCommand extends RecordingCommand{
+	/**
+	 * The {@link RecordingCommand} for the ContentProvider.
+	 * 
+	 * @author shterev
+	 */
+	private class ContentProviderRecordingCommand extends RecordingCommand {
 
 		private ServerInfo serverInfo;
 		private Usersession session;
 		private List<ProjectInfo> result = new ArrayList<ProjectInfo>();
-		
-		
-		public ContentProviderRecordingCommand(Usersession usersession, ServerInfo serverInfo, TransactionalEditingDomain domain){
+
+		public ContentProviderRecordingCommand(Usersession usersession, ServerInfo serverInfo,
+			TransactionalEditingDomain domain) {
 			super(domain);
 			this.serverInfo = serverInfo;
 			this.session = usersession;
 		}
-		
+
 		@Override
 		protected void doExecute() {
 			session = serverInfo.getLastUsersession();
-			
+
 			// if no usersession has been set yet or if the current one is not logged in
-			if (session==null || !session.isLoggedIn()) {
-				LoginDialog dialog = new LoginDialog(PlatformUI.getWorkbench().getDisplay().getActiveShell(), session, serverInfo);
+			if (session == null || !session.isLoggedIn()) {
+				LoginDialog dialog = new LoginDialog(PlatformUI.getWorkbench().getDisplay().getActiveShell(), session,
+					serverInfo);
 				dialog.open();
-				
-				// the login has been canceled and the project list should be cleared since the user is no longer logged in
-				if(dialog.getReturnCode()==LoginDialog.CANCELED){
+
+				// the login has been canceled and the project list should be cleared since the user is no longer logged
+				// in
+				if (dialog.getReturnCode() == LoginDialog.CANCELED) {
 					return;
 				}
 				session = dialog.getSession();
 			}
-			if (session!=null && session.isLoggedIn()) {
+			if (session != null && session.isLoggedIn()) {
 				try {
 					serverInfo.getProjectInfos().clear();
 					serverInfo.getProjectInfos().addAll(session.getRemoteProjectList());
@@ -156,16 +155,17 @@ private class ContentProviderRecordingCommand extends RecordingCommand{
 				}
 			}
 		}
-		
-		/** 
+
+		/**
 		 * {@inheritDoc}
+		 * 
 		 * @see org.eclipse.emf.common.command.AbstractCommand#getResult()
 		 */
 		@Override
-		public List<ProjectInfo> getResult(){
+		public List<ProjectInfo> getResult() {
 			return result;
 		}
-		
+
 	}
 
 }

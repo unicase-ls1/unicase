@@ -1,8 +1,7 @@
 /**
- * <copyright> Copyright (c) 2008 Jonas Helming, Maximilian Koegel. All rights reserved. This program and the accompanying materials are made available under the terms of the Eclipse Public License v1.0 which accompanies this distribution, and is available at http://www.eclipse.org/legal/epl-v10.html
- * </copyright>
- *
- * $Id$
+ * <copyright> Copyright (c) 2008 Jonas Helming, Maximilian Koegel. All rights reserved. This program and the
+ * accompanying materials are made available under the terms of the Eclipse Public License v1.0 which accompanies this
+ * distribution, and is available at http://www.eclipse.org/legal/epl-v10.html </copyright>
  */
 package org.unicase.ui.meeditor;
 
@@ -16,12 +15,12 @@ import org.osgi.framework.BundleContext;
 public class Activator extends AbstractUIPlugin {
 
 	/**
-	 *  The plug-in ID.
+	 * The plug-in ID.
 	 */
 	public static final String PLUGIN_ID = "org.unicase.ui.meeditor";
 
 	/**
-	 *  The shared instance.
+	 * The shared instance.
 	 */
 	private static Activator plugin;
 
@@ -32,9 +31,7 @@ public class Activator extends AbstractUIPlugin {
 	}
 
 	/**
-	 * @see
-	 * org.eclipse.ui.plugin.AbstractUIPlugin#start(org.osgi.framework.BundleContext)
-	 * 
+	 * @see org.eclipse.ui.plugin.AbstractUIPlugin#start(org.osgi.framework.BundleContext)
 	 * @generated
 	 */
 	@Override
@@ -44,9 +41,7 @@ public class Activator extends AbstractUIPlugin {
 	}
 
 	/**
-	 * @see
-	 * org.eclipse.ui.plugin.AbstractUIPlugin#stop(org.osgi.framework.BundleContext)
-	 * 
+	 * @see org.eclipse.ui.plugin.AbstractUIPlugin#stop(org.osgi.framework.BundleContext)
 	 * @generated
 	 */
 	@Override
@@ -63,17 +58,15 @@ public class Activator extends AbstractUIPlugin {
 	public static Activator getDefault() {
 		return plugin;
 	}
-	
+
 	/**
-	 * Returns an image descriptor for the image file at the given. plug-in
-	 * relative path
+	 * Returns an image descriptor for the image file at the given. plug-in relative path
 	 * 
-	 * @param path
-	 *            the path
+	 * @param path the path
 	 * @return the image descriptor
 	 */
 	public static ImageDescriptor getImageDescriptor(String path) {
-		return imageDescriptorFromPlugin(PLUGIN_ID, path); 
+		return imageDescriptorFromPlugin(PLUGIN_ID, path);
 	}
 
 }

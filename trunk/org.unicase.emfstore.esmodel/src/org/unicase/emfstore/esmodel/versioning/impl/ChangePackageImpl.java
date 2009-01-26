@@ -1,8 +1,7 @@
 /**
- * <copyright> Copyright (c) 2008 Jonas Helming, Maximilian Koegel. All rights reserved. This program and the accompanying materials are made available under the terms of the Eclipse Public License v1.0 which accompanies this distribution, and is available at http://www.eclipse.org/legal/epl-v10.html
- * </copyright>
- *
- * $Id$
+ * <copyright> Copyright (c) 2008 Jonas Helming, Maximilian Koegel. All rights reserved. This program and the
+ * accompanying materials are made available under the terms of the Eclipse Public License v1.0 which accompanies this
+ * distribution, and is available at http://www.eclipse.org/legal/epl-v10.html </copyright>
  */
 package org.unicase.emfstore.esmodel.versioning.impl;
 
@@ -27,23 +26,24 @@ import org.unicase.emfstore.esmodel.versioning.operations.util.OperationsCannoni
 import org.unicase.model.Project;
 
 /**
- * <!-- begin-user-doc --> An implementation of the model object '
- * <em><b>Change Package</b></em>'. <!-- end-user-doc -->
+ * <!-- begin-user-doc --> An implementation of the model object ' <em><b>Change Package</b></em>'. <!-- end-user-doc
+ * -->
  * <p>
  * The following features are implemented:
  * <ul>
- *   <li>{@link org.unicase.emfstore.esmodel.versioning.impl.ChangePackageImpl#getOperations <em>Operations</em>}</li>
- *   <li>{@link org.unicase.emfstore.esmodel.versioning.impl.ChangePackageImpl#getEvents <em>Events</em>}</li>
- *   <li>{@link org.unicase.emfstore.esmodel.versioning.impl.ChangePackageImpl#getLogMessage <em>Log Message</em>}</li>
+ * <li>{@link org.unicase.emfstore.esmodel.versioning.impl.ChangePackageImpl#getOperations <em>Operations</em>}</li>
+ * <li>{@link org.unicase.emfstore.esmodel.versioning.impl.ChangePackageImpl#getEvents <em>Events</em>}</li>
+ * <li>{@link org.unicase.emfstore.esmodel.versioning.impl.ChangePackageImpl#getLogMessage <em>Log Message</em>}</li>
  * </ul>
  * </p>
- *
+ * 
  * @generated
  */
 public class ChangePackageImpl extends EObjectImpl implements ChangePackage {
 	/**
-	 * The cached value of the '{@link #getOperations() <em>Operations</em>}' containment reference list.
-	 * <!-- begin-user-doc --> <!-- end-user-doc -->
+	 * The cached value of the '{@link #getOperations() <em>Operations</em>}' containment reference list. <!--
+	 * begin-user-doc --> <!-- end-user-doc -->
+	 * 
 	 * @see #getOperations()
 	 * @generated
 	 * @ordered
@@ -51,9 +51,9 @@ public class ChangePackageImpl extends EObjectImpl implements ChangePackage {
 	protected EList<AbstractOperation> operations;
 
 	/**
-	 * The cached value of the '{@link #getEvents() <em>Events</em>}' containment reference list.
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
+	 * The cached value of the '{@link #getEvents() <em>Events</em>}' containment reference list. <!-- begin-user-doc
+	 * --> <!-- end-user-doc -->
+	 * 
 	 * @see #getEvents()
 	 * @generated
 	 * @ordered
@@ -61,9 +61,9 @@ public class ChangePackageImpl extends EObjectImpl implements ChangePackage {
 	protected EList<Event> events;
 
 	/**
-	 * The cached value of the '{@link #getLogMessage() <em>Log Message</em>}' containment reference.
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
+	 * The cached value of the '{@link #getLogMessage() <em>Log Message</em>}' containment reference. <!--
+	 * begin-user-doc --> <!-- end-user-doc -->
+	 * 
 	 * @see #getLogMessage()
 	 * @generated
 	 * @ordered
@@ -72,6 +72,7 @@ public class ChangePackageImpl extends EObjectImpl implements ChangePackage {
 
 	/**
 	 * <!-- begin-user-doc --> <!-- end-user-doc -->
+	 * 
 	 * @generated
 	 */
 	protected ChangePackageImpl() {
@@ -80,6 +81,7 @@ public class ChangePackageImpl extends EObjectImpl implements ChangePackage {
 
 	/**
 	 * <!-- begin-user-doc --> <!-- end-user-doc -->
+	 * 
 	 * @generated
 	 */
 	@Override
@@ -89,33 +91,33 @@ public class ChangePackageImpl extends EObjectImpl implements ChangePackage {
 
 	/**
 	 * <!-- begin-user-doc --> <!-- end-user-doc -->
+	 * 
 	 * @generated
 	 */
 	public EList<AbstractOperation> getOperations() {
 		if (operations == null) {
-			operations = new EObjectContainmentEList.Resolving<AbstractOperation>(
-					AbstractOperation.class, this,
-					VersioningPackage.CHANGE_PACKAGE__OPERATIONS);
+			operations = new EObjectContainmentEList.Resolving<AbstractOperation>(AbstractOperation.class, this,
+				VersioningPackage.CHANGE_PACKAGE__OPERATIONS);
 		}
 		return operations;
 	}
 
 	/**
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
+	 * <!-- begin-user-doc --> <!-- end-user-doc -->
+	 * 
 	 * @generated
 	 */
 	public EList<Event> getEvents() {
 		if (events == null) {
-			events = new EObjectContainmentEList.Resolving<Event>(Event.class,
-					this, VersioningPackage.CHANGE_PACKAGE__EVENTS);
+			events = new EObjectContainmentEList.Resolving<Event>(Event.class, this,
+				VersioningPackage.CHANGE_PACKAGE__EVENTS);
 		}
 		return events;
 	}
 
 	/**
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
+	 * <!-- begin-user-doc --> <!-- end-user-doc -->
+	 * 
 	 * @generated
 	 */
 	public LogMessage getLogMessage() {
@@ -124,34 +126,25 @@ public class ChangePackageImpl extends EObjectImpl implements ChangePackage {
 			logMessage = (LogMessage) eResolveProxy(oldLogMessage);
 			if (logMessage != oldLogMessage) {
 				InternalEObject newLogMessage = (InternalEObject) logMessage;
-				NotificationChain msgs = oldLogMessage
-						.eInverseRemove(
-								this,
-								EOPPOSITE_FEATURE_BASE
-										- VersioningPackage.CHANGE_PACKAGE__LOG_MESSAGE,
-								null, null);
+				NotificationChain msgs = oldLogMessage.eInverseRemove(this, EOPPOSITE_FEATURE_BASE
+					- VersioningPackage.CHANGE_PACKAGE__LOG_MESSAGE, null, null);
 				if (newLogMessage.eInternalContainer() == null) {
-					msgs = newLogMessage
-							.eInverseAdd(
-									this,
-									EOPPOSITE_FEATURE_BASE
-											- VersioningPackage.CHANGE_PACKAGE__LOG_MESSAGE,
-									null, msgs);
+					msgs = newLogMessage.eInverseAdd(this, EOPPOSITE_FEATURE_BASE
+						- VersioningPackage.CHANGE_PACKAGE__LOG_MESSAGE, null, msgs);
 				}
 				if (msgs != null)
 					msgs.dispatch();
 				if (eNotificationRequired())
 					eNotify(new ENotificationImpl(this, Notification.RESOLVE,
-							VersioningPackage.CHANGE_PACKAGE__LOG_MESSAGE,
-							oldLogMessage, logMessage));
+						VersioningPackage.CHANGE_PACKAGE__LOG_MESSAGE, oldLogMessage, logMessage));
 			}
 		}
 		return logMessage;
 	}
 
 	/**
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
+	 * <!-- begin-user-doc --> <!-- end-user-doc -->
+	 * 
 	 * @generated
 	 */
 	public LogMessage basicGetLogMessage() {
@@ -159,19 +152,16 @@ public class ChangePackageImpl extends EObjectImpl implements ChangePackage {
 	}
 
 	/**
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
+	 * <!-- begin-user-doc --> <!-- end-user-doc -->
+	 * 
 	 * @generated
 	 */
-	public NotificationChain basicSetLogMessage(LogMessage newLogMessage,
-			NotificationChain msgs) {
+	public NotificationChain basicSetLogMessage(LogMessage newLogMessage, NotificationChain msgs) {
 		LogMessage oldLogMessage = logMessage;
 		logMessage = newLogMessage;
 		if (eNotificationRequired()) {
-			ENotificationImpl notification = new ENotificationImpl(this,
-					Notification.SET,
-					VersioningPackage.CHANGE_PACKAGE__LOG_MESSAGE,
-					oldLogMessage, newLogMessage);
+			ENotificationImpl notification = new ENotificationImpl(this, Notification.SET,
+				VersioningPackage.CHANGE_PACKAGE__LOG_MESSAGE, oldLogMessage, newLogMessage);
 			if (msgs == null)
 				msgs = notification;
 			else
@@ -181,51 +171,39 @@ public class ChangePackageImpl extends EObjectImpl implements ChangePackage {
 	}
 
 	/**
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
+	 * <!-- begin-user-doc --> <!-- end-user-doc -->
+	 * 
 	 * @generated
 	 */
 	public void setLogMessage(LogMessage newLogMessage) {
 		if (newLogMessage != logMessage) {
 			NotificationChain msgs = null;
 			if (logMessage != null)
-				msgs = ((InternalEObject) logMessage)
-						.eInverseRemove(
-								this,
-								EOPPOSITE_FEATURE_BASE
-										- VersioningPackage.CHANGE_PACKAGE__LOG_MESSAGE,
-								null, msgs);
+				msgs = ((InternalEObject) logMessage).eInverseRemove(this, EOPPOSITE_FEATURE_BASE
+					- VersioningPackage.CHANGE_PACKAGE__LOG_MESSAGE, null, msgs);
 			if (newLogMessage != null)
-				msgs = ((InternalEObject) newLogMessage)
-						.eInverseAdd(
-								this,
-								EOPPOSITE_FEATURE_BASE
-										- VersioningPackage.CHANGE_PACKAGE__LOG_MESSAGE,
-								null, msgs);
+				msgs = ((InternalEObject) newLogMessage).eInverseAdd(this, EOPPOSITE_FEATURE_BASE
+					- VersioningPackage.CHANGE_PACKAGE__LOG_MESSAGE, null, msgs);
 			msgs = basicSetLogMessage(newLogMessage, msgs);
 			if (msgs != null)
 				msgs.dispatch();
 		} else if (eNotificationRequired())
-			eNotify(new ENotificationImpl(this, Notification.SET,
-					VersioningPackage.CHANGE_PACKAGE__LOG_MESSAGE,
-					newLogMessage, newLogMessage));
+			eNotify(new ENotificationImpl(this, Notification.SET, VersioningPackage.CHANGE_PACKAGE__LOG_MESSAGE,
+				newLogMessage, newLogMessage));
 	}
 
 	// begin of custom code
 	/**
-	 * <!-- begin-user-doc --> Reverse the change package. That applying the
-	 * change package and the reversed change package to a project is a nop.
+	 * <!-- begin-user-doc --> Reverse the change package. That applying the change package and the reversed change
+	 * package to a project is a nop.
 	 * 
 	 * @return the reversed change package <!-- end-user-doc -->
-	 * 
 	 * @generated NOT
 	 */
 	public ChangePackage reverse() {
-		ChangePackage changePackage = VersioningFactory.eINSTANCE
-				.createChangePackage();
+		ChangePackage changePackage = VersioningFactory.eINSTANCE.createChangePackage();
 		// reverse subOperations and add in reverse order
-		EList<AbstractOperation> copiedSubOperations = changePackage
-				.getOperations();
+		EList<AbstractOperation> copiedSubOperations = changePackage.getOperations();
 		for (AbstractOperation abstractOperation : getOperations()) {
 			copiedSubOperations.add(0, abstractOperation.reverse());
 		}
@@ -253,8 +231,8 @@ public class ChangePackageImpl extends EObjectImpl implements ChangePackage {
 	}
 
 	/**
-	 * <!-- begin-user-doc --> Cannonize the change package, that is remove all
-	 * operations that are masked by later operations. <!-- end-user-doc -->
+	 * <!-- begin-user-doc --> Cannonize the change package, that is remove all operations that are masked by later
+	 * operations. <!-- end-user-doc -->
 	 * 
 	 * @generated NOT
 	 */
@@ -265,15 +243,14 @@ public class ChangePackageImpl extends EObjectImpl implements ChangePackage {
 	// end of custom code
 	/**
 	 * <!-- begin-user-doc --> <!-- end-user-doc -->
+	 * 
 	 * @generated
 	 */
 	@Override
-	public NotificationChain eInverseRemove(InternalEObject otherEnd,
-			int featureID, NotificationChain msgs) {
+	public NotificationChain eInverseRemove(InternalEObject otherEnd, int featureID, NotificationChain msgs) {
 		switch (featureID) {
 		case VersioningPackage.CHANGE_PACKAGE__OPERATIONS:
-			return ((InternalEList<?>) getOperations()).basicRemove(otherEnd,
-					msgs);
+			return ((InternalEList<?>) getOperations()).basicRemove(otherEnd, msgs);
 		case VersioningPackage.CHANGE_PACKAGE__EVENTS:
 			return ((InternalEList<?>) getEvents()).basicRemove(otherEnd, msgs);
 		case VersioningPackage.CHANGE_PACKAGE__LOG_MESSAGE:
@@ -286,6 +263,7 @@ public class ChangePackageImpl extends EObjectImpl implements ChangePackage {
 
 	/**
 	 * <!-- begin-user-doc --> <!-- end-user-doc -->
+	 * 
 	 * @generated
 	 */
 	@Override
@@ -305,6 +283,7 @@ public class ChangePackageImpl extends EObjectImpl implements ChangePackage {
 
 	/**
 	 * <!-- begin-user-doc --> <!-- end-user-doc -->
+	 * 
 	 * @generated
 	 */
 	@SuppressWarnings("unchecked")
@@ -313,8 +292,7 @@ public class ChangePackageImpl extends EObjectImpl implements ChangePackage {
 		switch (featureID) {
 		case VersioningPackage.CHANGE_PACKAGE__OPERATIONS:
 			getOperations().clear();
-			getOperations().addAll(
-					(Collection<? extends AbstractOperation>) newValue);
+			getOperations().addAll((Collection<? extends AbstractOperation>) newValue);
 			return;
 		case VersioningPackage.CHANGE_PACKAGE__EVENTS:
 			getEvents().clear();
@@ -329,6 +307,7 @@ public class ChangePackageImpl extends EObjectImpl implements ChangePackage {
 
 	/**
 	 * <!-- begin-user-doc --> <!-- end-user-doc -->
+	 * 
 	 * @generated
 	 */
 	@Override
@@ -349,6 +328,7 @@ public class ChangePackageImpl extends EObjectImpl implements ChangePackage {
 
 	/**
 	 * <!-- begin-user-doc --> <!-- end-user-doc -->
+	 * 
 	 * @generated
 	 */
 	@Override

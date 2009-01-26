@@ -14,8 +14,7 @@ import org.unicase.model.component.ComponentService;
 /**
  * @generated
  */
-public class ComponentConsumedServicesReorientCommand extends
-		EditElementCommand {
+public class ComponentConsumedServicesReorientCommand extends EditElementCommand {
 
 	/**
 	 * @generated
@@ -40,8 +39,7 @@ public class ComponentConsumedServicesReorientCommand extends
 	/**
 	 * @generated
 	 */
-	public ComponentConsumedServicesReorientCommand(
-			ReorientReferenceRelationshipRequest request) {
+	public ComponentConsumedServicesReorientCommand(ReorientReferenceRelationshipRequest request) {
 		super(request.getLabel(), null, request);
 		reorientDirection = request.getDirection();
 		referenceOwner = request.getReferenceOwner();
@@ -73,8 +71,7 @@ public class ComponentConsumedServicesReorientCommand extends
 			return false;
 		}
 		return org.unicase.ui.componentDiagram.edit.policies.ModelBaseItemSemanticEditPolicy.LinkConstraints
-				.canExistComponentConsumedServices_3002(getNewSource(),
-						getOldTarget());
+			.canExistComponentConsumedServices_3002(getNewSource(), getOldTarget());
 	}
 
 	/**
@@ -85,18 +82,15 @@ public class ComponentConsumedServicesReorientCommand extends
 			return false;
 		}
 		return org.unicase.ui.componentDiagram.edit.policies.ModelBaseItemSemanticEditPolicy.LinkConstraints
-				.canExistComponentConsumedServices_3002(getOldSource(),
-						getNewTarget());
+			.canExistComponentConsumedServices_3002(getOldSource(), getNewTarget());
 	}
 
 	/**
 	 * @generated
 	 */
-	protected CommandResult doExecuteWithResult(IProgressMonitor monitor,
-			IAdaptable info) throws ExecutionException {
+	protected CommandResult doExecuteWithResult(IProgressMonitor monitor, IAdaptable info) throws ExecutionException {
 		if (!canExecute()) {
-			throw new ExecutionException(
-					"Invalid arguments in reorient link command"); //$NON-NLS-1$
+			throw new ExecutionException("Invalid arguments in reorient link command"); //$NON-NLS-1$
 		}
 		if (reorientDirection == ReorientRelationshipRequest.REORIENT_SOURCE) {
 			return reorientSource();

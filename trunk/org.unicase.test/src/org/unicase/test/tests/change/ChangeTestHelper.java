@@ -43,24 +43,21 @@ import org.unicase.workspace.impl.ProjectSpaceImpl;
 public final class ChangeTestHelper {
 
 	private static TransactionalEditingDomain domain;
-	private static String TEMP_PATH = Configuration.getWorkspaceDirectory()
-			+ "\\tmp\\";
+	private static String TEMP_PATH = Configuration.getWorkspaceDirectory() + "\\tmp\\";
 
 	private static Random random;
 	private static List<ModelElement> allMEsInProject;
 
 	public static ProjectSpace createEmptyProjectSpace(String name) {
 
-		ProjectSpace projectSpace = WorkspaceFactory.eINSTANCE
-				.createProjectSpace();
+		ProjectSpace projectSpace = WorkspaceFactory.eINSTANCE.createProjectSpace();
 		ProjectId projectId = EsmodelFactory.eINSTANCE.createProjectId();
 		projectId.setId(name);
 		projectSpace.setIdentifier(name);
 		projectSpace.setProjectId(projectId);
 		projectSpace.setProjectName(name);
 		projectSpace.setProjectDescription("description");
-		PrimaryVersionSpec versionSpec = VersioningFactory.eINSTANCE
-				.createPrimaryVersionSpec();
+		PrimaryVersionSpec versionSpec = VersioningFactory.eINSTANCE.createPrimaryVersionSpec();
 		versionSpec.setIdentifier(0);
 		projectSpace.setBaseVersion(versionSpec);
 		projectSpace.setLastUpdated(new Date());
@@ -78,43 +75,37 @@ public final class ChangeTestHelper {
 
 	}
 
-	public static ChangePackage getChangePackage(
-			final List<AbstractOperation> operations, final boolean cannonize,
-			final boolean clearOperations) {
+	public static ChangePackage getChangePackage(final List<AbstractOperation> operations, final boolean cannonize,
+		final boolean clearOperations) {
 
-		final ChangePackage changePackage = VersioningFactory.eINSTANCE
-				.createChangePackage();
-		getDomain().getCommandStack().execute(
-				new RecordingCommand(getDomain()) {
+		final ChangePackage changePackage = VersioningFactory.eINSTANCE.createChangePackage();
+		getDomain().getCommandStack().execute(new RecordingCommand(getDomain()) {
 
-					@Override
-					protected void doExecute() {
-						for (AbstractOperation op : operations) {
-							changePackage.getOperations().add(
-									(AbstractOperation) EcoreUtil.copy(op));
+			@Override
+			protected void doExecute() {
+				for (AbstractOperation op : operations) {
+					changePackage.getOperations().add((AbstractOperation) EcoreUtil.copy(op));
 
-						}
-						if (clearOperations) {
-							operations.clear();
-						}
+				}
+				if (clearOperations) {
+					operations.clear();
+				}
 
-						if (cannonize) {
-							changePackage.cannonize();
-						}
-					}
+				if (cannonize) {
+					changePackage.cannonize();
+				}
+			}
 
-				});
+		});
 		return changePackage;
 	}
 
-	public static boolean compare(ProjectSpace testSpace,
-			ProjectSpace compareSpace) {
+	public static boolean compare(ProjectSpace testSpace, ProjectSpace compareSpace) {
 
 		prepareCompare(testSpace, compareSpace, false);
 
 		System.out.println("comparing...");
-		return ModelUtil.areEqual(testSpace.getProject(), compareSpace
-				.getProject());
+		return ModelUtil.areEqual(testSpace.getProject(), compareSpace.getProject());
 	}
 
 	/**
@@ -123,22 +114,20 @@ public final class ChangeTestHelper {
 	 * @param testSpace
 	 * @param compareSpace
 	 */
-	private static void prepareCompare(final ProjectSpace testSpace,
-			final ProjectSpace compareSpace, final boolean accumulative) {
+	private static void prepareCompare(final ProjectSpace testSpace, final ProjectSpace compareSpace,
+		final boolean accumulative) {
 		System.out.println("extracting operations from test project...");
 
 		List<AbstractOperation> operations = testSpace.getOperations();
 		System.out.println(operations.size() + " operatoins");
-		final ChangePackage changePackage = getChangePackage(operations, true,
-				false);
+		final ChangePackage changePackage = getChangePackage(operations, true, false);
 
 		// Save change package for later reference to disk.
 		// The saved change package will be overwritten every time a test
 		// succeeds.
 		EObject copyChangePackage = EcoreUtil.copy(changePackage);
 		ResourceSet reseourceSet = new ResourceSetImpl();
-		Resource resource = reseourceSet.createResource(URI
-				.createFileURI(TEMP_PATH + "changePackage.txt"));
+		Resource resource = reseourceSet.createResource(URI.createFileURI(TEMP_PATH + "changePackage.txt"));
 		resource.getContents().add(copyChangePackage);
 		try {
 			resource.save(null);
@@ -148,23 +137,20 @@ public final class ChangeTestHelper {
 		}
 
 		// apply changes to compare project
-		getDomain().getCommandStack().execute(
-				new RecordingCommand(getDomain()) {
-					@Override
-					protected void doExecute() {
-						System.out
-								.println("applying changes to compareSpace...");
-						((ProjectSpaceImpl) compareSpace).stopChangeRecording();
-						changePackage.apply(compareSpace.getProject());
-						if (!accumulative) {
-							testSpace.getOperations().clear();
-						}
-					}
-				});
+		getDomain().getCommandStack().execute(new RecordingCommand(getDomain()) {
+			@Override
+			protected void doExecute() {
+				System.out.println("applying changes to compareSpace...");
+				((ProjectSpaceImpl) compareSpace).stopChangeRecording();
+				changePackage.apply(compareSpace.getProject());
+				if (!accumulative) {
+					testSpace.getOperations().clear();
+				}
+			}
+		});
 	}
 
-	public static int[] linearCompare(ProjectSpace testSpace,
-			ProjectSpace compareSpace) {
+	public static int[] linearCompare(ProjectSpace testSpace, ProjectSpace compareSpace) {
 
 		prepareCompare(testSpace, compareSpace, false);
 		System.out.println("linear comparing...");
@@ -175,20 +161,17 @@ public final class ChangeTestHelper {
 	public static TransactionalEditingDomain getDomain() {
 
 		if (domain == null) {
-			domain = TransactionalEditingDomain.Registry.INSTANCE
-					.getEditingDomain("org.unicase.EditingDomain");
+			domain = TransactionalEditingDomain.Registry.INSTANCE.getEditingDomain("org.unicase.EditingDomain");
 
 		}
 		return domain;
 	}
 
-	public static String eObjectToString(EObject object, String name)
-			throws SerializationException {
+	public static String eObjectToString(EObject object, String name) throws SerializationException {
 		if (object == null) {
 			return null;
 		}
-		Resource res = (new ResourceSetImpl()).createResource(URI
-				.createURI("virtualUnicaseUri"));
+		Resource res = (new ResourceSetImpl()).createResource(URI.createURI("virtualUnicaseUri"));
 		ByteArrayOutputStream out = new ByteArrayOutputStream();
 		res.getContents().add(EcoreUtil.copy(object));
 		try {
@@ -200,8 +183,7 @@ public final class ChangeTestHelper {
 		try {
 			if (!file.exists()) {
 
-				new File(Configuration.getWorkspaceDirectory() + "\\tmp\\")
-						.mkdir();
+				new File(Configuration.getWorkspaceDirectory() + "\\tmp\\").mkdir();
 			}
 
 			FileOutputStream fos;
@@ -282,13 +264,11 @@ public final class ChangeTestHelper {
 		return lineNum;
 	}
 
-	public static List<ModelElement> getRandomMEs(Project project, int num,
-			boolean unique) {
+	public static List<ModelElement> getRandomMEs(Project project, int num, boolean unique) {
 
 		List<ModelElement> result = new ArrayList<ModelElement>();
 		if (allMEsInProject == null) {
-			System.out
-					.println("getting list of all model elements in project...");
+			System.out.println("getting list of all model elements in project...");
 			allMEsInProject = project.getAllModelElements();
 			System.out.println(allMEsInProject.size() + " MEs in project...");
 		}
@@ -296,13 +276,12 @@ public final class ChangeTestHelper {
 		int numOfMEs = allMEsInProject.size();
 		if (num > numOfMEs) {
 			throw new IllegalArgumentException(
-					"Number of random MEs to return is greater than total number of MEs in project.");
+				"Number of random MEs to return is greater than total number of MEs in project.");
 		}
 
 		if (unique) {
 			do {
-				final ModelElement me = allMEsInProject.get(getRandom()
-						.nextInt(numOfMEs - 1));
+				final ModelElement me = allMEsInProject.get(getRandom().nextInt(numOfMEs - 1));
 				if (!result.contains(me)) {
 					result.add(me);
 				}
@@ -311,8 +290,7 @@ public final class ChangeTestHelper {
 
 		} else {
 			for (int i = 0; i < num; i++) {
-				final ModelElement me = allMEsInProject.get(getRandom()
-						.nextInt(numOfMEs - 1));
+				final ModelElement me = allMEsInProject.get(getRandom().nextInt(numOfMEs - 1));
 				result.add(me);
 			}
 
@@ -324,29 +302,24 @@ public final class ChangeTestHelper {
 		List<ModelElement> modelElements = getRandomMEs(project, 1, false);
 		return modelElements.get(0);
 	}
-	
-	public static ModelElement getRandomMEofType(Project project, EClass type){
-		
-		List<ModelElement> refTypeMEs = project.getAllModelElementsbyClass(
-				type, new BasicEList<ModelElement>());
+
+	public static ModelElement getRandomMEofType(Project project, EClass type) {
+
+		List<ModelElement> refTypeMEs = project.getAllModelElementsbyClass(type, new BasicEList<ModelElement>());
 
 		int size = refTypeMEs.size();
-		if(size == 0){
-			throw new IllegalStateException("There is no ME of this type in Project: "
-					+ type.getName());
+		if (size == 0) {
+			throw new IllegalStateException("There is no ME of this type in Project: " + type.getName());
 		}
-		
-		ModelElement me  = refTypeMEs.get(size == 1 ? 0 : getRandom().nextInt(
-				size - 1));
+
+		ModelElement me = refTypeMEs.get(size == 1 ? 0 : getRandom().nextInt(size - 1));
 		return me;
 	}
 
 	public static ModelElement createRandomME() {
-		List<EClass> eClazz = ModelUtil.getSubclasses(ModelPackage.eINSTANCE
-				.getModelElement());
+		List<EClass> eClazz = ModelUtil.getSubclasses(ModelPackage.eINSTANCE.getModelElement());
 		EClass eClass = eClazz.get(getRandom().nextInt(eClazz.size() - 1));
-		ModelElement me = (ModelElement) eClass.getEPackage()
-				.getEFactoryInstance().create(eClass);
+		ModelElement me = (ModelElement) eClass.getEPackage().getEFactoryInstance().create(eClass);
 
 		return me;
 	}
@@ -357,23 +330,19 @@ public final class ChangeTestHelper {
 
 		if (refType.isAbstract() || refType.isInterface()) {
 			List<EClass> eClazz = ModelUtil.getSubclasses(refType, refType.getEPackage());
-			int index = eClazz.size() == 1 ? 0 : getRandom().nextInt(
-					eClazz.size());
+			int index = eClazz.size() == 1 ? 0 : getRandom().nextInt(eClazz.size());
 			refType = eClazz.get(index);
 		}
 
-		ret = refType.getEPackage().getEFactoryInstance().create(
-				refType);
-		
+		ret = refType.getEPackage().getEFactoryInstance().create(refType);
 
 		return ret;
 
 	}
 
 	@SuppressWarnings("unchecked")
-	public static void changeSimpleAttribute(ModelElement me,
-			EAttribute attribute) {
-	
+	public static void changeSimpleAttribute(ModelElement me, EAttribute attribute) {
+
 		if (attribute.getEType().getInstanceClass().equals(String.class)) {
 			if (attribute.isMany()) {
 				Object object = me.eGet(attribute);
@@ -386,8 +355,7 @@ public final class ChangeTestHelper {
 				me.eSet(attribute, newValue);
 			}
 
-		} else if (attribute.getEType().getInstanceClass()
-				.equals(boolean.class)) {
+		} else if (attribute.getEType().getInstanceClass().equals(boolean.class)) {
 			if (attribute.isMany()) {
 				Object object = me.eGet(attribute);
 				EList<Boolean> eList = (EList<Boolean>) object;
@@ -418,8 +386,7 @@ public final class ChangeTestHelper {
 		if (attribute.getEType() instanceof EEnum) {
 			EEnum en = (EEnum) attribute.getEType();
 			int numOfLiterals = en.getELiterals().size();
-			int index = numOfLiterals == 1 ? 0 : getRandom().nextInt(
-					numOfLiterals - 1);
+			int index = numOfLiterals == 1 ? 0 : getRandom().nextInt(numOfLiterals - 1);
 			EEnumLiteral value = en.getELiterals().get(index);
 			me.eSet(attribute, value.getInstance());
 		}
@@ -442,21 +409,18 @@ public final class ChangeTestHelper {
 		EAttribute attribute = null;
 		List<EAttribute> attributes = new ArrayList<EAttribute>();
 		for (EAttribute tmpAttr : me.eClass().getEAllAttributes()) {
-			if (tmpAttr.isChangeable()
-					&& tmpAttr.getFeatureID() != ModelPackage.MODEL_ELEMENT__IDENTIFIER
-					&& !tmpAttr.isTransient()) {
+			if (tmpAttr.isChangeable() && tmpAttr.getFeatureID() != ModelPackage.MODEL_ELEMENT__IDENTIFIER
+				&& !tmpAttr.isTransient()) {
 				attributes.add(tmpAttr);
 			}
 		}
 
-		
 		int size = attributes.size();
-		if(size != 0){
-			 attribute = attributes.get(size == 1 ? 0 : getRandom()
-				.nextInt(size - 1));
+		if (size != 0) {
+			attribute = attributes.get(size == 1 ? 0 : getRandom().nextInt(size - 1));
 
 		}
-		
+
 		return attribute;
 
 	}
@@ -472,10 +436,9 @@ public final class ChangeTestHelper {
 
 		int size = nonContainmentRefs.size();
 		if (size != 0) {
-			nonContainmentRef = nonContainmentRefs.get(size == 1 ? 0 : getRandom()
-					.nextInt(size - 1));
+			nonContainmentRef = nonContainmentRefs.get(size == 1 ? 0 : getRandom().nextInt(size - 1));
 		}
-		
+
 		return nonContainmentRef;
 
 	}
@@ -490,17 +453,16 @@ public final class ChangeTestHelper {
 		}
 		int size = containments.size();
 		if (size != 0) {
-			containmentRef = containments.get(size == 1 ? 0 : getRandom()
-					.nextInt(size - 1));
+			containmentRef = containments.get(size == 1 ? 0 : getRandom().nextInt(size - 1));
 		}
 
 		return containmentRef;
 	}
 
 	/**
-	 * This method takes a model element and a non-containment reference. 
-	 * It gathers all model elements in project which have the type of that reference.
-	 * Takes one of these in random, and adds it to reference list of input model element.
+	 * This method takes a model element and a non-containment reference. It gathers all model elements in project which
+	 * have the type of that reference. Takes one of these in random, and adds it to reference list of input model
+	 * element.
 	 * 
 	 * @param me the input model element
 	 * @param ref the non-containment reference to change
@@ -510,48 +472,44 @@ public final class ChangeTestHelper {
 	public static ModelElement changeSimpleRef(ModelElement me, EReference ref, Project project) {
 
 		EClass refType = ref.getEReferenceType();
-		List<ModelElement> refTypeMEs = project.getAllModelElementsbyClass(
-				refType, new BasicEList<ModelElement>());
+		List<ModelElement> refTypeMEs = project.getAllModelElementsbyClass(refType, new BasicEList<ModelElement>());
 
 		if (refTypeMEs.contains(me)) {
 			refTypeMEs.remove(me);
 		}
 
-		ModelElement toBeReferencedME = refTypeMEs.get(getRandom().nextInt(
-				refTypeMEs.size() - 1));
+		ModelElement toBeReferencedME = refTypeMEs.get(getRandom().nextInt(refTypeMEs.size() - 1));
 
 		Object object = me.eGet(ref);
 		if (ref.isMany()) {
 			EList<EObject> eList = (EList<EObject>) object;
 			if (eList == null) {
-				throw new IllegalStateException("Null list return for feature "
-						+ ref.getName() + " on " + me.getName());
+				throw new IllegalStateException("Null list return for feature " + ref.getName() + " on " + me.getName());
 			} else {
 				eList.add(toBeReferencedME);
 			}
 		} else {
 			me.eSet(ref, toBeReferencedME);
 		}
-		
+
 		return toBeReferencedME;
 
 	}
-	
+
 	@SuppressWarnings("unchecked")
-	public static void changeSimpleRef(ModelElement me, EReference ref, ModelElement toBeReferencedME){
+	public static void changeSimpleRef(ModelElement me, EReference ref, ModelElement toBeReferencedME) {
 		Object object = me.eGet(ref);
 		if (ref.isMany()) {
 			EList<EObject> eList = (EList<EObject>) object;
 			if (eList == null) {
-				throw new IllegalStateException("Null list return for feature "
-						+ ref.getName() + " on " + me.getName());
+				throw new IllegalStateException("Null list return for feature " + ref.getName() + " on " + me.getName());
 			} else {
 				eList.add(toBeReferencedME);
 			}
 		} else {
 			me.eSet(ref, toBeReferencedME);
 		}
-		
+
 	}
 
 }

@@ -7,22 +7,18 @@ import org.unicase.docExport.exportModel.Template;
 import org.unicase.docExport.exportModel.renderers.ModelElementRendererMapping;
 import org.unicase.docExport.exportModel.renderers.options.RendererOption;
 
-
 /**
- * 
  * @author Sebastian Höcht
- *
  */
 public class TreeLabelProvider implements ILabelProvider {
-
 
 	/**
 	 * constructs a TreeLabelProvider.
 	 */
 	public TreeLabelProvider() {
-		
+
 	}
-	
+
 	/**
 	 * {@inheritDoc}
 	 */
@@ -57,7 +53,7 @@ public class TreeLabelProvider implements ILabelProvider {
 	 */
 	public void addListener(ILabelProviderListener listener) {
 		// TODO Auto-generated method stub
-		
+
 	}
 
 	/**
@@ -65,7 +61,7 @@ public class TreeLabelProvider implements ILabelProvider {
 	 */
 	public void dispose() {
 		// TODO Auto-generated method stub
-		
+
 	}
 
 	/**
@@ -80,9 +76,7 @@ public class TreeLabelProvider implements ILabelProvider {
 	 */
 	public void removeListener(ILabelProviderListener listener) {
 		// TODO Auto-generated method stub
-		
+
 	}
-
-
 
 }

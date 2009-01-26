@@ -1,8 +1,7 @@
 /**
- * <copyright> Copyright (c) 2008 Jonas Helming, Maximilian Koegel. All rights reserved. This program and the accompanying materials are made available under the terms of the Eclipse Public License v1.0 which accompanies this distribution, and is available at http://www.eclipse.org/legal/epl-v10.html
- * </copyright>
- *
- * $Id$
+ * <copyright> Copyright (c) 2008 Jonas Helming, Maximilian Koegel. All rights reserved. This program and the
+ * accompanying materials are made available under the terms of the Eclipse Public License v1.0 which accompanies this
+ * distribution, and is available at http://www.eclipse.org/legal/epl-v10.html </copyright>
  */
 package org.unicase.ui.meeditor.mecontrols;
 
@@ -50,7 +49,6 @@ import org.unicase.ui.meeditor.Activator;
  * The standard widget for multi line text fields.
  * 
  * @author helming
- * 
  */
 public class MERichTextControl extends AbstractMEControl {
 
@@ -61,26 +59,19 @@ public class MERichTextControl extends AbstractMEControl {
 	/**
 	 * Default constructor.
 	 * 
-	 * @param feature
-	 *            The displayed feature
-	 * @param editingDomain
-	 *            the editing domain
-	 * @param modelElement
-	 *            the modelelement
-	 * @param toolkit
-	 *            the toolkit
+	 * @param feature The displayed feature
+	 * @param editingDomain the editing domain
+	 * @param modelElement the modelelement
+	 * @param toolkit the toolkit
 	 */
-	public MERichTextControl(EAttribute feature, EditingDomain editingDomain,
-			EObject modelElement, FormToolkit toolkit) {
+	public MERichTextControl(EAttribute feature, EditingDomain editingDomain, EObject modelElement, FormToolkit toolkit) {
 		super(editingDomain, modelElement, toolkit);
 		this.attribute = feature;
 
 		eAdapter = new AdapterImpl() {
 			@Override
 			public void notifyChanged(Notification msg) {
-				if (msg.getFeature() != null
-						&& msg.getFeature().equals(
-								MERichTextControl.this.attribute)) {
+				if (msg.getFeature() != null && msg.getFeature().equals(MERichTextControl.this.attribute)) {
 					load();
 				}
 				super.notifyChanged(msg);
@@ -113,8 +104,7 @@ public class MERichTextControl extends AbstractMEControl {
 
 	private void createStyledText() {
 
-		viewer = new TextViewer(composite, SWT.BORDER | SWT.MULTI | SWT.WRAP
-				| SWT.V_SCROLL);
+		viewer = new TextViewer(composite, SWT.BORDER | SWT.MULTI | SWT.WRAP | SWT.V_SCROLL);
 		viewer.setDocument(new Document());
 
 		text = viewer.getTextWidget();
@@ -186,10 +176,8 @@ public class MERichTextControl extends AbstractMEControl {
 	/**
 	 * Removes bullets.
 	 * 
-	 * @param line
-	 *            The startline
-	 * @param count
-	 *            The number of lines
+	 * @param line The startline
+	 * @param count The number of lines
 	 */
 	protected void unbullet(int line, int count) {
 		text.setLineBullet(line + count - 1, 1, null);
@@ -212,8 +200,7 @@ public class MERichTextControl extends AbstractMEControl {
 		txt.append("%BEGINNTEXT%");
 		txt.append(text.getText());
 		final String value = txt.toString();
-		TransactionalEditingDomain domain = TransactionUtil
-				.getEditingDomain(getModelElement());
+		TransactionalEditingDomain domain = TransactionUtil.getEditingDomain(getModelElement());
 		domain.getCommandStack().execute(new RecordingCommand(domain) {
 			@Override
 			protected void doExecute() {
@@ -226,41 +213,40 @@ public class MERichTextControl extends AbstractMEControl {
 
 		List<Integer> bulletedLines = new ArrayList<Integer>();
 		String txt = "";
-			final StringBuffer value = new StringBuffer();
-			TransactionalEditingDomain domain = TransactionUtil
-					.getEditingDomain(getModelElement());
-			domain.getCommandStack().execute(new RecordingCommand(domain) {
-				@Override
-				protected void doExecute() {
-					if (getModelElement().eGet(attribute) == null) {
-						value.append("");
-					} else {
-						value.append(getModelElement().eGet(attribute));
-					}
+		final StringBuffer value = new StringBuffer();
+		TransactionalEditingDomain domain = TransactionUtil.getEditingDomain(getModelElement());
+		domain.getCommandStack().execute(new RecordingCommand(domain) {
+			@Override
+			protected void doExecute() {
+				if (getModelElement().eGet(attribute) == null) {
+					value.append("");
+				} else {
+					value.append(getModelElement().eGet(attribute));
 				}
-			});
-			txt = value.toString();
+			}
+		});
+		txt = value.toString();
 
-			String[] split = txt.split("%BEGINNTEXT%");
-			
-			if (split.length == 1) {
-				viewer.getDocument().set("");
-			} else {
+		String[] split = txt.split("%BEGINNTEXT%");
 
-				StringTokenizer stringTokenizer = new StringTokenizer(split[0], ",");
-				while (stringTokenizer.hasMoreElements()) {
-					String nextElement = (String) stringTokenizer.nextElement();
-					if (nextElement.equals(";")) {
-						break;
-					} else {
-						bulletedLines.add(Integer.parseInt(nextElement));
-					}
+		if (split.length == 1) {
+			viewer.getDocument().set("");
+		} else {
+
+			StringTokenizer stringTokenizer = new StringTokenizer(split[0], ",");
+			while (stringTokenizer.hasMoreElements()) {
+				String nextElement = (String) stringTokenizer.nextElement();
+				if (nextElement.equals(";")) {
+					break;
+				} else {
+					bulletedLines.add(Integer.parseInt(nextElement));
 				}
-				viewer.getDocument().set(split[1]);
 			}
-			for (int i = 0; i < text.getLineCount(); i++) {
-				text.setLineBullet(i, 1, null);
-			}
+			viewer.getDocument().set(split[1]);
+		}
+		for (int i = 0; i < text.getLineCount(); i++) {
+			text.setLineBullet(i, 1, null);
+		}
 		for (Integer line : bulletedLines) {
 			bullet(line, 1);
 		}
@@ -270,10 +256,8 @@ public class MERichTextControl extends AbstractMEControl {
 	/**
 	 * Adds bullets.
 	 * 
-	 * @param line
-	 *            The start line
-	 * @param count
-	 *            The number of lines
+	 * @param line The start line
+	 * @param count The number of lines
 	 */
 	protected void bullet(int line, int count) {
 

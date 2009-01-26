@@ -1,8 +1,7 @@
 /**
- * <copyright> Copyright (c) 2008 Jonas Helming, Maximilian Koegel. All rights reserved. This program and the accompanying materials are made available under the terms of the Eclipse Public License v1.0 which accompanies this distribution, and is available at http://www.eclipse.org/legal/epl-v10.html
- * </copyright>
- *
- * $Id$
+ * <copyright> Copyright (c) 2008 Jonas Helming, Maximilian Koegel. All rights reserved. This program and the
+ * accompanying materials are made available under the terms of the Eclipse Public License v1.0 which accompanies this
+ * distribution, and is available at http://www.eclipse.org/legal/epl-v10.html </copyright>
  */
 package org.unicase.emfstore.connection.rmi;
 
@@ -15,7 +14,6 @@ import org.unicase.model.util.SerializationException;
  * Helper class for serializing and deserializing EObjects for RMI transport.
  * 
  * @author wesendonk
- * 
  */
 public final class SerializationUtil {
 
@@ -29,11 +27,9 @@ public final class SerializationUtil {
 	/**
 	 * Converts an EObject to a String.
 	 * 
-	 * @param object
-	 *            the eObject
+	 * @param object the eObject
 	 * @return String representation of the EObject
-	 * @throws RMISerializationException
-	 *             if a serialization problem occurs
+	 * @throws RMISerializationException if a serialization problem occurs
 	 */
 	public static String eObjectToString(EObject object) throws RMISerializationException {
 		try {
@@ -47,14 +43,11 @@ public final class SerializationUtil {
 	 * Converts a String to an EObject. Note: String must be the result of
 	 * {@link SerializationUtil#eObjectToString(EObject)}
 	 * 
-	 * @param object
-	 *            the String representation of the EObject
+	 * @param object the String representation of the EObject
 	 * @return the deserialized EObject
-	 * @throws RMISerializationException
-	 *             if deserialization fails
+	 * @throws RMISerializationException if deserialization fails
 	 */
-	public static EObject stringToEObject(String object)
-			throws RMISerializationException {
+	public static EObject stringToEObject(String object) throws RMISerializationException {
 		try {
 			return ModelUtil.stringToEObject(object);
 		} catch (SerializationException e) {

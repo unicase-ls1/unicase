@@ -119,8 +119,7 @@ public class ModelEditPartProvider extends AbstractEditPartProvider {
 		if (operation instanceof CreateGraphicEditPartOperation) {
 			View view = ((IEditPartOperation) operation).getView();
 			if (!org.unicase.ui.usecaseDiagram.edit.parts.MEDiagramEditPart.MODEL_ID
-					.equals(org.unicase.ui.usecaseDiagram.part.ModelVisualIDRegistry
-							.getModelID(view))) {
+				.equals(org.unicase.ui.usecaseDiagram.part.ModelVisualIDRegistry.getModelID(view))) {
 				return false;
 			}
 			if (isAllowCaching() && getCachedPart(view) != null) {

@@ -1,7 +1,7 @@
 /**
  * <copyright> Copyright (c) 2008 Jonas Helming, Maximilian Koegel. All rights reserved. This program and the
  * accompanying materials are made available under the terms of the Eclipse Public License v1.0 which accompanies this
- * distribution, and is available at http://www.eclipse.org/legal/epl-v10.html </copyright> $Id$
+ * distribution, and is available at http://www.eclipse.org/legal/epl-v10.html </copyright>
  */
 package org.unicase.model.rationale;
 
@@ -23,15 +23,15 @@ import org.unicase.model.task.WorkItem;
  */
 public interface Issue extends Annotation, Checkable, WorkItem {
 	/**
-	 * Returns the value of the '<em><b>Proposals</b></em>' containment reference list.
-	 * The list contents are of type {@link org.unicase.model.rationale.Proposal}.
-	 * It is bidirectional and its opposite is '{@link org.unicase.model.rationale.Proposal#getIssue <em>Issue</em>}'.
-	 * <!-- begin-user-doc -->
+	 * Returns the value of the '<em><b>Proposals</b></em>' containment reference list. The list contents are of type
+	 * {@link org.unicase.model.rationale.Proposal}. It is bidirectional and its opposite is '
+	 * {@link org.unicase.model.rationale.Proposal#getIssue <em>Issue</em>}'. <!-- begin-user-doc -->
 	 * <p>
 	 * If the meaning of the '<em>Proposals</em>' containment reference list isn't clear, there really should be more of
 	 * a description here...
 	 * </p>
 	 * <!-- end-user-doc -->
+	 * 
 	 * @return the value of the '<em>Proposals</em>' containment reference list.
 	 * @see org.unicase.model.rationale.RationalePackage#getIssue_Proposals()
 	 * @see org.unicase.model.rationale.Proposal#getIssue
@@ -42,14 +42,14 @@ public interface Issue extends Annotation, Checkable, WorkItem {
 	EList<Proposal> getProposals();
 
 	/**
-	 * Returns the value of the '<em><b>Solution</b></em>' containment reference.
-	 * It is bidirectional and its opposite is '{@link org.unicase.model.rationale.Solution#getIssue <em>Issue</em>}'.
-	 * <!-- begin-user-doc -->
+	 * Returns the value of the '<em><b>Solution</b></em>' containment reference. It is bidirectional and its opposite
+	 * is '{@link org.unicase.model.rationale.Solution#getIssue <em>Issue</em>}'. <!-- begin-user-doc -->
 	 * <p>
 	 * If the meaning of the '<em>Solution</em>' containment reference isn't clear, there really should be more of a
 	 * description here...
 	 * </p>
 	 * <!-- end-user-doc -->
+	 * 
 	 * @return the value of the '<em>Solution</em>' containment reference.
 	 * @see #setSolution(Solution)
 	 * @see org.unicase.model.rationale.RationalePackage#getIssue_Solution()
@@ -61,8 +61,9 @@ public interface Issue extends Annotation, Checkable, WorkItem {
 	Solution getSolution();
 
 	/**
-	 * Sets the value of the '{@link org.unicase.model.rationale.Issue#getSolution <em>Solution</em>}' containment reference.
-	 * <!-- begin-user-doc --> <!-- end-user-doc -->
+	 * Sets the value of the '{@link org.unicase.model.rationale.Issue#getSolution <em>Solution</em>}' containment
+	 * reference. <!-- begin-user-doc --> <!-- end-user-doc -->
+	 * 
 	 * @param value the new value of the '<em>Solution</em>' containment reference.
 	 * @see #getSolution()
 	 * @generated
@@ -70,31 +71,30 @@ public interface Issue extends Annotation, Checkable, WorkItem {
 	void setSolution(Solution value);
 
 	/**
-	 * Returns the value of the '<em><b>Criteria</b></em>' reference list.
-	 * The list contents are of type {@link org.unicase.model.rationale.Criterion}.
-	 * <!-- begin-user-doc -->
+	 * Returns the value of the '<em><b>Criteria</b></em>' reference list. The list contents are of type
+	 * {@link org.unicase.model.rationale.Criterion}. <!-- begin-user-doc -->
 	 * <p>
 	 * If the meaning of the '<em>Criteria</em>' reference list isn't clear, there really should be more of a
 	 * description here...
 	 * </p>
 	 * <!-- end-user-doc -->
+	 * 
 	 * @return the value of the '<em>Criteria</em>' reference list.
 	 * @see org.unicase.model.rationale.RationalePackage#getIssue_Criteria()
-	 * @model keys="identifier"
-	 *        annotation="org.unicase.ui.meeditor priority='22.0' position='left'"
+	 * @model keys="identifier" annotation="org.unicase.ui.meeditor priority='22.0' position='left'"
 	 * @generated
 	 */
 	EList<Criterion> getCriteria();
 
 	/**
-	 * Returns the value of the '<em><b>Activity</b></em>' attribute.
-	 * The literals are from the enumeration {@link org.unicase.model.task.ActivityType}.
-	 * <!-- begin-user-doc -->
+	 * Returns the value of the '<em><b>Activity</b></em>' attribute. The literals are from the enumeration
+	 * {@link org.unicase.model.task.ActivityType}. <!-- begin-user-doc -->
 	 * <p>
 	 * If the meaning of the '<em>Activity</em>' attribute isn't clear, there really should be more of a description
 	 * here...
 	 * </p>
 	 * <!-- end-user-doc -->
+	 * 
 	 * @return the value of the '<em>Activity</em>' attribute.
 	 * @see org.unicase.model.task.ActivityType
 	 * @see #setActivity(ActivityType)

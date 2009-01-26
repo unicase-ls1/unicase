@@ -17,11 +17,11 @@ import org.unicase.ui.stem.views.TaskTableUtil;
  * Composite to show the activity views.
  * 
  * @author helming
- * 
  */
 public class ActivityTabComposite extends Composite {
-	
+
 	private TreeViewer treeViewer;
+
 	/**
 	 * default constructor.
 	 * 
@@ -36,8 +36,7 @@ public class ActivityTabComposite extends Composite {
 
 	private void createTree() {
 		treeViewer = new TreeViewer(this, SWT.BORDER);
-		treeViewer.getTree().setLayoutData(
-				new GridData(SWT.FILL, SWT.FILL, true, true));
+		treeViewer.getTree().setLayoutData(new GridData(SWT.FILL, SWT.FILL, true, true));
 
 		ActivityTabContentProvider contentProvider = new ActivityTabContentProvider();
 		treeViewer.setContentProvider(contentProvider);
@@ -48,13 +47,10 @@ public class ActivityTabComposite extends Composite {
 		treeViewer.addDoubleClickListener(new IDoubleClickListener() {
 
 			public void doubleClick(DoubleClickEvent event) {
-				IStructuredSelection sel = (IStructuredSelection) event
-						.getSelection();
+				IStructuredSelection sel = (IStructuredSelection) event.getSelection();
 				if (sel.getFirstElement() instanceof ModelElement) {
 					ActionHelper
-							.openModelElement((ModelElement) sel
-									.getFirstElement(), treeViewer.getClass()
-									.getName());
+						.openModelElement((ModelElement) sel.getFirstElement(), treeViewer.getClass().getName());
 				}
 			}
 
@@ -64,8 +60,7 @@ public class ActivityTabComposite extends Composite {
 	/**
 	 * . set input to TreeViewer
 	 * 
-	 * @param me
-	 *            input model element
+	 * @param me input model element
 	 */
 	public void setInput(ModelElement me) {
 		// this.input = me;

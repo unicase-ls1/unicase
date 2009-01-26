@@ -1,8 +1,7 @@
 /**
- * <copyright> Copyright (c) 2008 Jonas Helming, Maximilian Koegel. All rights reserved. This program and the accompanying materials are made available under the terms of the Eclipse Public License v1.0 which accompanies this distribution, and is available at http://www.eclipse.org/legal/epl-v10.html
- * </copyright>
- *
- * $Id$
+ * <copyright> Copyright (c) 2008 Jonas Helming, Maximilian Koegel. All rights reserved. This program and the
+ * accompanying materials are made available under the terms of the Eclipse Public License v1.0 which accompanies this
+ * distribution, and is available at http://www.eclipse.org/legal/epl-v10.html </copyright>
  */
 package org.unicase.emfstore.esmodel.accesscontrol.roles.impl;
 
@@ -21,21 +20,21 @@ import org.unicase.emfstore.esmodel.accesscontrol.roles.RolesPackage;
 import org.unicase.model.ModelElement;
 
 /**
- * <!-- begin-user-doc --> An implementation of the model object '
- * <em><b>Role</b></em>'. <!-- end-user-doc -->
+ * <!-- begin-user-doc --> An implementation of the model object ' <em><b>Role</b></em>'. <!-- end-user-doc -->
  * <p>
  * The following features are implemented:
  * <ul>
- *   <li>{@link org.unicase.emfstore.esmodel.accesscontrol.roles.impl.RoleImpl#getProjects <em>Projects</em>}</li>
+ * <li>{@link org.unicase.emfstore.esmodel.accesscontrol.roles.impl.RoleImpl#getProjects <em>Projects</em>}</li>
  * </ul>
  * </p>
- *
+ * 
  * @generated
  */
 public abstract class RoleImpl extends EObjectImpl implements Role {
 	/**
-	 * The cached value of the '{@link #getProjects() <em>Projects</em>}' containment reference list.
-	 * <!-- begin-user-doc --> <!-- end-user-doc -->
+	 * The cached value of the '{@link #getProjects() <em>Projects</em>}' containment reference list. <!--
+	 * begin-user-doc --> <!-- end-user-doc -->
+	 * 
 	 * @see #getProjects()
 	 * @generated
 	 * @ordered
@@ -44,6 +43,7 @@ public abstract class RoleImpl extends EObjectImpl implements Role {
 
 	/**
 	 * <!-- begin-user-doc --> <!-- end-user-doc -->
+	 * 
 	 * @generated
 	 */
 	protected RoleImpl() {
@@ -52,6 +52,7 @@ public abstract class RoleImpl extends EObjectImpl implements Role {
 
 	/**
 	 * <!-- begin-user-doc --> <!-- end-user-doc -->
+	 * 
 	 * @generated
 	 */
 	@Override
@@ -61,20 +62,18 @@ public abstract class RoleImpl extends EObjectImpl implements Role {
 
 	// begin of custom code
 	/**
-	 * <!-- begin-user-doc --> 
-	 * Get all projects of the role.
-	 * @return a list of project ids
-	 * <!-- end-user-doc -->
+	 * <!-- begin-user-doc --> Get all projects of the role.
+	 * 
+	 * @return a list of project ids <!-- end-user-doc -->
 	 * @generated NOT
 	 */
 	@SuppressWarnings("serial")
 	public EList<ProjectId> getProjects() {
 		if (projects == null) {
-			//the contains() method of EObjectEList uses reference equality , 
-			//because its useEquals() return false.
-			//we need to compare using equals method. 
-			projects = new EObjectResolvingEList<ProjectId>(ProjectId.class,
-					this, RolesPackage.ROLE__PROJECTS) {
+			// the contains() method of EObjectEList uses reference equality ,
+			// because its useEquals() return false.
+			// we need to compare using equals method.
+			projects = new EObjectResolvingEList<ProjectId>(ProjectId.class, this, RolesPackage.ROLE__PROJECTS) {
 
 				@Override
 				protected boolean useEquals() {
@@ -87,11 +86,9 @@ public abstract class RoleImpl extends EObjectImpl implements Role {
 	}
 
 	/**
-	 * <!-- begin-user-doc --> 
-	 * Determines if the role can administrate the project.
-	 * @return true if the role can
-	 * <!-- end-user-doc -->
-	 * {@inheritDoc}
+	 * <!-- begin-user-doc --> Determines if the role can administrate the project.
+	 * 
+	 * @return true if the role can <!-- end-user-doc --> {@inheritDoc}
 	 * @see org.unicase.emfstore.esmodel.accesscontrol.roles.Role#canAdministrate(org.unicase.emfstore.esmodel.ProjectId)
 	 * @generated NOT
 	 */
@@ -146,17 +143,15 @@ public abstract class RoleImpl extends EObjectImpl implements Role {
 	}
 
 	/**
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
+	 * <!-- begin-user-doc --> <!-- end-user-doc -->
+	 * 
 	 * @generated
 	 */
 	@Override
-	public NotificationChain eInverseRemove(InternalEObject otherEnd,
-			int featureID, NotificationChain msgs) {
+	public NotificationChain eInverseRemove(InternalEObject otherEnd, int featureID, NotificationChain msgs) {
 		switch (featureID) {
 		case RolesPackage.ROLE__PROJECTS:
-			return ((InternalEList<?>) getProjects()).basicRemove(otherEnd,
-					msgs);
+			return ((InternalEList<?>) getProjects()).basicRemove(otherEnd, msgs);
 		}
 		return super.eInverseRemove(otherEnd, featureID, msgs);
 	}
@@ -164,8 +159,7 @@ public abstract class RoleImpl extends EObjectImpl implements Role {
 	/**
 	 * {@inheritDoc}
 	 * 
-	 * @see org.eclipse.emf.ecore.impl.BasicEObjectImpl#eGet(int, boolean,
-	 *      boolean)
+	 * @see org.eclipse.emf.ecore.impl.BasicEObjectImpl#eGet(int, boolean, boolean)
 	 * @generated
 	 */
 	@Override
@@ -179,6 +173,7 @@ public abstract class RoleImpl extends EObjectImpl implements Role {
 
 	/**
 	 * <!-- begin-user-doc --> <!-- end-user-doc -->
+	 * 
 	 * @generated
 	 */
 	@SuppressWarnings("unchecked")
@@ -195,6 +190,7 @@ public abstract class RoleImpl extends EObjectImpl implements Role {
 
 	/**
 	 * <!-- begin-user-doc --> <!-- end-user-doc -->
+	 * 
 	 * @generated
 	 */
 	@Override
@@ -209,6 +205,7 @@ public abstract class RoleImpl extends EObjectImpl implements Role {
 
 	/**
 	 * <!-- begin-user-doc --> <!-- end-user-doc -->
+	 * 
 	 * @generated
 	 */
 	@Override

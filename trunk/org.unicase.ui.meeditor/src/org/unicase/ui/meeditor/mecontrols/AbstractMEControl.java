@@ -1,8 +1,7 @@
 /**
- * <copyright> Copyright (c) 2008 Jonas Helming, Maximilian Koegel. All rights reserved. This program and the accompanying materials are made available under the terms of the Eclipse Public License v1.0 which accompanies this distribution, and is available at http://www.eclipse.org/legal/epl-v10.html
- * </copyright>
- *
- * $Id$
+ * <copyright> Copyright (c) 2008 Jonas Helming, Maximilian Koegel. All rights reserved. This program and the
+ * accompanying materials are made available under the terms of the Eclipse Public License v1.0 which accompanies this
+ * distribution, and is available at http://www.eclipse.org/legal/epl-v10.html </copyright>
  */
 package org.unicase.ui.meeditor.mecontrols;
 
@@ -14,7 +13,6 @@ import org.eclipse.ui.forms.widgets.FormToolkit;
  * Abstract class for the ME controls.
  * 
  * @author helming
- * 
  */
 public abstract class AbstractMEControl implements MEControl {
 
@@ -76,33 +74,29 @@ public abstract class AbstractMEControl implements MEControl {
 	/**
 	 * Default constructor.
 	 * 
-	 * @param editingDomain
-	 *            the editing domain
-	 * @param modelElement
-	 *            the ME
-	 * @param toolkit
-	 *            gui toolkit used for rendering
+	 * @param editingDomain the editing domain
+	 * @param modelElement the ME
+	 * @param toolkit gui toolkit used for rendering
 	 */
-	public AbstractMEControl(EditingDomain editingDomain, EObject modelElement,
-			FormToolkit toolkit) {
+	public AbstractMEControl(EditingDomain editingDomain, EObject modelElement, FormToolkit toolkit) {
 		super();
 		this.editingDomain = editingDomain;
 		this.modelElement = modelElement;
 		this.toolkit = toolkit;
 	}
-	
+
 	/**
 	 * {@inheritDoc}
 	 */
-	public void dispose(){
-		
+	public void dispose() {
+
 	}
-	
+
 	/**
 	 * Method for applying a custom layout data to widgets, as for {@link MERichTextControl}.
 	 */
-	public void applyCustomLayoutData(){
-		//by default none. must me implemented by the subclass.
+	public void applyCustomLayoutData() {
+		// by default none. must me implemented by the subclass.
 	}
 
 }

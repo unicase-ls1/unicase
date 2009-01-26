@@ -44,8 +44,7 @@ public class ClassClassNode_attributesEditPart extends ListCompartmentEditPart {
 	 * @generated
 	 */
 	public IFigure createFigure() {
-		ResizableCompartmentFigure result = (ResizableCompartmentFigure) super
-				.createFigure();
+		ResizableCompartmentFigure result = (ResizableCompartmentFigure) super.createFigure();
 		result.setTitleVisibility(false);
 		return result;
 	}
@@ -55,16 +54,12 @@ public class ClassClassNode_attributesEditPart extends ListCompartmentEditPart {
 	 */
 	protected void createDefaultEditPolicies() {
 		super.createDefaultEditPolicies();
-		installEditPolicy(
-				EditPolicyRoles.SEMANTIC_ROLE,
-				new org.unicase.model.classDiagram.edit.policies.ClassClassNode_attributesItemSemanticEditPolicy());
-		installEditPolicy(EditPolicyRoles.CREATION_ROLE,
-				new CreationEditPolicy());
-		installEditPolicy(EditPolicyRoles.DRAG_DROP_ROLE,
-				new DragDropEditPolicy());
-		installEditPolicy(
-				EditPolicyRoles.CANONICAL_ROLE,
-				new org.unicase.model.classDiagram.edit.policies.ClassClassNode_attributesCanonicalEditPolicy());
+		installEditPolicy(EditPolicyRoles.SEMANTIC_ROLE,
+			new org.unicase.model.classDiagram.edit.policies.ClassClassNode_attributesItemSemanticEditPolicy());
+		installEditPolicy(EditPolicyRoles.CREATION_ROLE, new CreationEditPolicy());
+		installEditPolicy(EditPolicyRoles.DRAG_DROP_ROLE, new DragDropEditPolicy());
+		installEditPolicy(EditPolicyRoles.CANONICAL_ROLE,
+			new org.unicase.model.classDiagram.edit.policies.ClassClassNode_attributesCanonicalEditPolicy());
 	}
 
 	/**
@@ -72,7 +67,7 @@ public class ClassClassNode_attributesEditPart extends ListCompartmentEditPart {
 	 */
 	protected void setRatio(Double ratio) {
 		// nothing to do -- parent layout does not accept Double constraints as ratio
-		// super.setRatio(ratio); 
+		// super.setRatio(ratio);
 	}
 
 }

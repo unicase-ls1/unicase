@@ -1,8 +1,7 @@
 /**
- * <copyright> Copyright (c) 2008 Jonas Helming, Maximilian Koegel. All rights reserved. This program and the accompanying materials are made available under the terms of the Eclipse Public License v1.0 which accompanies this distribution, and is available at http://www.eclipse.org/legal/epl-v10.html
- * </copyright>
- *
- * $Id$
+ * <copyright> Copyright (c) 2008 Jonas Helming, Maximilian Koegel. All rights reserved. This program and the
+ * accompanying materials are made available under the terms of the Eclipse Public License v1.0 which accompanies this
+ * distribution, and is available at http://www.eclipse.org/legal/epl-v10.html </copyright>
  */
 package org.unicase.ui.common.diagram;
 
@@ -39,12 +38,10 @@ import org.w3c.dom.Node;
 import org.xml.sax.InputSource;
 
 /**
- * 
  * @author Helming
- * 
  */
-public class MEDiagramResource extends ResourceImpl implements Resource,
-		Resource.Factory, Resource.Internal, XMLResource {
+public class MEDiagramResource extends ResourceImpl implements Resource, Resource.Factory, Resource.Internal,
+	XMLResource {
 
 	private boolean initialized;
 	private MEDiagram meDiagram;
@@ -61,8 +58,7 @@ public class MEDiagramResource extends ResourceImpl implements Resource,
 	/**
 	 * . Constructor
 	 * 
-	 * @param meDiagram
-	 *            MEDiagram
+	 * @param meDiagram MEDiagram
 	 */
 	public MEDiagramResource(MEDiagram meDiagram) {
 		super();
@@ -104,19 +100,18 @@ public class MEDiagramResource extends ResourceImpl implements Resource,
 	}
 
 	private void initialize() {
-	
-		TransactionalEditingDomain domain = TransactionUtil
-				.getEditingDomain(meDiagram);
+
+		TransactionalEditingDomain domain = TransactionUtil.getEditingDomain(meDiagram);
 		domain.getCommandStack().execute(new RecordingCommand(domain) {
 			@Override
 			protected void doExecute() {
 				try {
 					meDiagram.loadDiagramLayout();
 				} catch (DiagramLoadException e) {
-					if(!(e.getCause()instanceof NullPointerException)){
+					if (!(e.getCause() instanceof NullPointerException)) {
 						e.printStackTrace();
 					}
-					
+
 				}
 
 			}
@@ -132,23 +127,21 @@ public class MEDiagramResource extends ResourceImpl implements Resource,
 		String id = null;
 		if (meDiagram.getType().equals(DiagramType.USECASE_DIAGRAM)) {
 			id = "UseCase";
-		}else if (meDiagram.getType().equals(DiagramType.CLASS_DIAGRAM)) {
+		} else if (meDiagram.getType().equals(DiagramType.CLASS_DIAGRAM)) {
 			id = "Model";
-		}else if (meDiagram.getType().equals(DiagramType.COMPONENT_DIAGRAM)) {
+		} else if (meDiagram.getType().equals(DiagramType.COMPONENT_DIAGRAM)) {
 			id = "Component";
-		}else if (meDiagram.getType().equals(DiagramType.STATE_DIAGRAM)) {
+		} else if (meDiagram.getType().equals(DiagramType.STATE_DIAGRAM)) {
 			id = "Model";
 		}
-		
+
 		if (id == null) {
 			throw new RuntimeException("Unsupported diagram type");
 		}
 		// JH: Build switch for different diagram types
-		diagram = ViewService.createDiagram(meDiagram, id, new PreferencesHint(
-				"org.unicase.ui.stateDiagram"));
+		diagram = ViewService.createDiagram(meDiagram, id, new PreferencesHint("org.unicase.ui.stateDiagram"));
 		diagram.setElement(meDiagram);
-		TransactionalEditingDomain domain = TransactionUtil
-				.getEditingDomain(meDiagram);
+		TransactionalEditingDomain domain = TransactionUtil.getEditingDomain(meDiagram);
 		domain.getCommandStack().execute(new RecordingCommand(domain) {
 			@Override
 			protected void doExecute() {
@@ -332,8 +325,7 @@ public class MEDiagramResource extends ResourceImpl implements Resource,
 	 * . {@inheritDoc}
 	 */
 	public Resource createResource(URI uri) {
-		Resource resource = WorkspaceManager.getInstance()
-				.getCurrentWorkspace().eResource();
+		Resource resource = WorkspaceManager.getInstance().getCurrentWorkspace().eResource();
 		ResourceSet rs = resource.getResourceSet();
 		EObject object = rs.getEObject(uri, false);
 		if (object instanceof MEDiagram) {
@@ -355,8 +347,7 @@ public class MEDiagramResource extends ResourceImpl implements Resource,
 	 * . {@inheritDoc}
 	 */
 	@Override
-	public NotificationChain basicSetResourceSet(ResourceSet resourceSet,
-			NotificationChain notifications) {
+	public NotificationChain basicSetResourceSet(ResourceSet resourceSet, NotificationChain notifications) {
 
 		// JH Check what this is for. This is called and maybe causes trouble
 		return super.basicSetResourceSet(resourceSet, notifications);
@@ -480,8 +471,7 @@ public class MEDiagramResource extends ResourceImpl implements Resource,
 	/**
 	 * . {@inheritDoc}
 	 */
-	public void load(InputSource inputSource, Map<?, ?> options)
-			throws IOException {
+	public void load(InputSource inputSource, Map<?, ?> options) throws IOException {
 		// TODO Auto-generated method stub
 
 	}
@@ -497,8 +487,7 @@ public class MEDiagramResource extends ResourceImpl implements Resource,
 	/**
 	 * . {@inheritDoc}
 	 */
-	public Document save(Document document, Map<?, ?> options,
-			DOMHandler handler) {
+	public Document save(Document document, Map<?, ?> options, DOMHandler handler) {
 		// TODO Auto-generated method stub
 		return null;
 	}

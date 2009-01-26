@@ -57,11 +57,11 @@ public class ComponentEditPart extends ShapeNodeEditPart {
 	 */
 	protected void createDefaultEditPolicies() {
 		super.createDefaultEditPolicies();
-		installEditPolicy(
-				EditPolicyRoles.SEMANTIC_ROLE,
-				new org.unicase.ui.componentDiagram.edit.policies.ComponentItemSemanticEditPolicy());
+		installEditPolicy(EditPolicyRoles.SEMANTIC_ROLE,
+			new org.unicase.ui.componentDiagram.edit.policies.ComponentItemSemanticEditPolicy());
 		installEditPolicy(EditPolicy.LAYOUT_ROLE, createLayoutEditPolicy());
-		// XXX need an SCR to runtime to have another abstract superclass that would let children add reasonable editpolicies
+		// XXX need an SCR to runtime to have another abstract superclass that would let children add reasonable
+		// editpolicies
 		// removeEditPolicy(org.eclipse.gmf.runtime.diagram.ui.editpolicies.EditPolicyRoles.CONNECTION_HANDLES_ROLE);
 	}
 
@@ -72,8 +72,7 @@ public class ComponentEditPart extends ShapeNodeEditPart {
 		LayoutEditPolicy lep = new LayoutEditPolicy() {
 
 			protected EditPolicy createChildEditPolicy(EditPart child) {
-				EditPolicy result = child
-						.getEditPolicy(EditPolicy.PRIMARY_DRAG_ROLE);
+				EditPolicy result = child.getEditPolicy(EditPolicy.PRIMARY_DRAG_ROLE);
 				if (result == null) {
 					result = new NonResizableEditPolicy();
 				}
@@ -112,7 +111,7 @@ public class ComponentEditPart extends ShapeNodeEditPart {
 	protected boolean addFixedChild(EditPart childEditPart) {
 		if (childEditPart instanceof org.unicase.ui.componentDiagram.edit.parts.ComponentNameEditPart) {
 			((org.unicase.ui.componentDiagram.edit.parts.ComponentNameEditPart) childEditPart)
-					.setLabel(getPrimaryShape().getFigureComponentFigure_name());
+				.setLabel(getPrimaryShape().getFigureComponentFigure_name());
 			return true;
 		}
 		return false;
@@ -158,16 +157,13 @@ public class ComponentEditPart extends ShapeNodeEditPart {
 	 * @generated
 	 */
 	protected NodeFigure createNodePlate() {
-		DefaultSizeNodeFigure result = new DefaultSizeNodeFigure(getMapMode()
-				.DPtoLP(100), getMapMode().DPtoLP(80));
+		DefaultSizeNodeFigure result = new DefaultSizeNodeFigure(getMapMode().DPtoLP(100), getMapMode().DPtoLP(80));
 		return result;
 	}
 
 	/**
-	 * Creates figure for this edit part.
-	 * 
-	 * Body of this method does not depend on settings in generation model
-	 * so you may safely remove <i>generated</i> tag and modify it.
+	 * Creates figure for this edit part. Body of this method does not depend on settings in generation model so you may
+	 * safely remove <i>generated</i> tag and modify it.
 	 * 
 	 * @generated
 	 */
@@ -181,8 +177,9 @@ public class ComponentEditPart extends ShapeNodeEditPart {
 	}
 
 	/**
-	 * Default implementation treats passed figure as content pane.
-	 * Respects layout one may have set for generated figure.
+	 * Default implementation treats passed figure as content pane. Respects layout one may have set for generated
+	 * figure.
+	 * 
 	 * @param nodeShape instance of generated figure class
 	 * @generated
 	 */
@@ -210,7 +207,7 @@ public class ComponentEditPart extends ShapeNodeEditPart {
 	 */
 	public EditPart getPrimaryChildEditPart() {
 		return getChildBySemanticHint(org.unicase.ui.componentDiagram.part.ModelVisualIDRegistry
-				.getType(org.unicase.ui.componentDiagram.edit.parts.ComponentNameEditPart.VISUAL_ID));
+			.getType(org.unicase.ui.componentDiagram.edit.parts.ComponentNameEditPart.VISUAL_ID));
 	}
 
 	/**
@@ -232,9 +229,8 @@ public class ComponentEditPart extends ShapeNodeEditPart {
 			this.setLayoutManager(layoutThis);
 
 			this.setForegroundColor(ColorConstants.black);
-			this.setBorder(new MarginBorder(getMapMode().DPtoLP(5),
-					getMapMode().DPtoLP(5), getMapMode().DPtoLP(5),
-					getMapMode().DPtoLP(5)));
+			this.setBorder(new MarginBorder(getMapMode().DPtoLP(5), getMapMode().DPtoLP(5), getMapMode().DPtoLP(5),
+				getMapMode().DPtoLP(5)));
 			createContents();
 		}
 
@@ -263,8 +259,7 @@ public class ComponentEditPart extends ShapeNodeEditPart {
 
 			org.unicase.ui.componentDiagram.unicase.ComponentIcon componentIcon2 = new org.unicase.ui.componentDiagram.unicase.ComponentIcon();
 
-			componentIcon2.setSize(getMapMode().DPtoLP(20), getMapMode()
-					.DPtoLP(22));
+			componentIcon2.setSize(getMapMode().DPtoLP(20), getMapMode().DPtoLP(22));
 
 			iconContainer1.add(componentIcon2, BorderLayout.RIGHT);
 
@@ -278,8 +273,7 @@ public class ComponentEditPart extends ShapeNodeEditPart {
 
 			fFigureComponentFigure_name = new org.unicase.ui.componentDiagram.unicase.Label();
 
-			fFigureComponentFigure_name
-					.setFont(FFIGURECOMPONENTFIGURE_NAME_FONT);
+			fFigureComponentFigure_name.setFont(FFIGURECOMPONENTFIGURE_NAME_FONT);
 
 			fig0.add(fFigureComponentFigure_name);
 
@@ -316,7 +310,6 @@ public class ComponentEditPart extends ShapeNodeEditPart {
 	/**
 	 * @generated
 	 */
-	static final Font FFIGURECOMPONENTFIGURE_NAME_FONT = new Font(Display
-			.getCurrent(), "Arial", 12, SWT.BOLD);
+	static final Font FFIGURECOMPONENTFIGURE_NAME_FONT = new Font(Display.getCurrent(), "Arial", 12, SWT.BOLD);
 
 }

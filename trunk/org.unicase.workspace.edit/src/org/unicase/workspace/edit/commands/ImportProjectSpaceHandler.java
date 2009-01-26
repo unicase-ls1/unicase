@@ -1,6 +1,7 @@
 /**
- * <copyright> Copyright (c) 2008 Jonas Helming, Maximilian Koegel. All rights reserved. This program and the accompanying materials are made available under the terms of the Eclipse Public License v1.0 which accompanies this distribution, and is available at http://www.eclipse.org/legal/epl-v10.html
- * </copyright>
+ * <copyright> Copyright (c) 2008 Jonas Helming, Maximilian Koegel. All rights reserved. This program and the
+ * accompanying materials are made available under the terms of the Eclipse Public License v1.0 which accompanies this
+ * distribution, and is available at http://www.eclipse.org/legal/epl-v10.html </copyright>
  */
 
 package org.unicase.workspace.edit.commands;
@@ -23,18 +24,18 @@ import org.unicase.workspace.WorkspaceManager;
 
 /**
  * Imports a project space to the current workspace.
+ * 
  * @author koegel
- *
  */
 public class ImportProjectSpaceHandler extends ProjectActionHandler {
 
-	/** 
+	/**
 	 * {@inheritDoc}
+	 * 
 	 * @see org.eclipse.core.commands.AbstractHandler#execute(org.eclipse.core.commands.ExecutionEvent)
 	 */
 	public Object execute(ExecutionEvent event) throws ExecutionException {
-		FileDialog dialog = new FileDialog(PlatformUI.getWorkbench()
-				.getActiveWorkbenchWindow().getShell(), SWT.OPEN);
+		FileDialog dialog = new FileDialog(PlatformUI.getWorkbench().getActiveWorkbenchWindow().getShell(), SWT.OPEN);
 		dialog.setFilterNames(ImportProjectHandler.FILTER_NAMES);
 		dialog.setFilterExtensions(ImportProjectHandler.FILTER_EXTS);
 		String fn = dialog.open();
@@ -51,10 +52,10 @@ public class ImportProjectSpaceHandler extends ProjectActionHandler {
 		stringBuilder.append(fileName);
 		final String absoluteFileName = stringBuilder.toString();
 		final ProgressMonitorDialog progressDialog = new ProgressMonitorDialog(PlatformUI.getWorkbench()
-			       .getActiveWorkbenchWindow().getShell());
+			.getActiveWorkbenchWindow().getShell());
 
 		TransactionalEditingDomain domain = TransactionalEditingDomain.Registry.INSTANCE
-				.getEditingDomain("org.unicase.EditingDomain");
+			.getEditingDomain("org.unicase.EditingDomain");
 		domain.getCommandStack().execute(new RecordingCommand(domain) {
 			@Override
 			protected void doExecute() {
@@ -62,23 +63,19 @@ public class ImportProjectSpaceHandler extends ProjectActionHandler {
 					progressDialog.open();
 					progressDialog.getProgressMonitor().beginTask("Export project...", 100);
 					progressDialog.getProgressMonitor().worked(10);
-					Workspace currentWorkspace = WorkspaceManager.getInstance()
-							.getCurrentWorkspace();
-					currentWorkspace
-							.importProjectSpace(absoluteFileName);
-	
+					Workspace currentWorkspace = WorkspaceManager.getInstance().getCurrentWorkspace();
+					currentWorkspace.importProjectSpace(absoluteFileName);
+
 				} catch (IOException e) {
 					DialogHandler.showExceptionDialog(e);
-				}
-				finally {
+				} finally {
 					progressDialog.getProgressMonitor().done();
 					progressDialog.close();
 				}
 			}
 		});
 
-		MessageDialog.openInformation(null, "Import",
-				"Imported project space from file: " + absoluteFileName);
+		MessageDialog.openInformation(null, "Import", "Imported project space from file: " + absoluteFileName);
 		return null;
 	}
 

@@ -25,116 +25,88 @@ public class ModelEditPartFactory implements EditPartFactory {
 	public EditPart createEditPart(EditPart context, Object model) {
 		if (model instanceof View) {
 			View view = (View) model;
-			switch (org.unicase.model.classDiagram.part.ModelVisualIDRegistry
-					.getVisualID(view)) {
+			switch (org.unicase.model.classDiagram.part.ModelVisualIDRegistry.getVisualID(view)) {
 
 			case org.unicase.model.classDiagram.edit.parts.MEDiagramEditPart.VISUAL_ID:
-				return new org.unicase.model.classDiagram.edit.parts.MEDiagramEditPart(
-						view);
+				return new org.unicase.model.classDiagram.edit.parts.MEDiagramEditPart(view);
 
 			case org.unicase.model.classDiagram.edit.parts.ClassEditPart.VISUAL_ID:
-				return new org.unicase.model.classDiagram.edit.parts.ClassEditPart(
-						view);
+				return new org.unicase.model.classDiagram.edit.parts.ClassEditPart(view);
 
 			case org.unicase.model.classDiagram.edit.parts.ClassNameEditPart.VISUAL_ID:
-				return new org.unicase.model.classDiagram.edit.parts.ClassNameEditPart(
-						view);
+				return new org.unicase.model.classDiagram.edit.parts.ClassNameEditPart(view);
 
 			case org.unicase.model.classDiagram.edit.parts.PackageEditPart.VISUAL_ID:
-				return new org.unicase.model.classDiagram.edit.parts.PackageEditPart(
-						view);
+				return new org.unicase.model.classDiagram.edit.parts.PackageEditPart(view);
 
 			case org.unicase.model.classDiagram.edit.parts.PackageNameEditPart.VISUAL_ID:
-				return new org.unicase.model.classDiagram.edit.parts.PackageNameEditPart(
-						view);
+				return new org.unicase.model.classDiagram.edit.parts.PackageNameEditPart(view);
 
 			case org.unicase.model.classDiagram.edit.parts.AttributeEditPart.VISUAL_ID:
-				return new org.unicase.model.classDiagram.edit.parts.AttributeEditPart(
-						view);
+				return new org.unicase.model.classDiagram.edit.parts.AttributeEditPart(view);
 
 			case org.unicase.model.classDiagram.edit.parts.MethodEditPart.VISUAL_ID:
-				return new org.unicase.model.classDiagram.edit.parts.MethodEditPart(
-						view);
+				return new org.unicase.model.classDiagram.edit.parts.MethodEditPart(view);
 
 			case org.unicase.model.classDiagram.edit.parts.ClassClassNode_attributesEditPart.VISUAL_ID:
-				return new org.unicase.model.classDiagram.edit.parts.ClassClassNode_attributesEditPart(
-						view);
+				return new org.unicase.model.classDiagram.edit.parts.ClassClassNode_attributesEditPart(view);
 
 			case org.unicase.model.classDiagram.edit.parts.ClassClassNode_methodsEditPart.VISUAL_ID:
-				return new org.unicase.model.classDiagram.edit.parts.ClassClassNode_methodsEditPart(
-						view);
+				return new org.unicase.model.classDiagram.edit.parts.ClassClassNode_methodsEditPart(view);
 
 			case org.unicase.model.classDiagram.edit.parts.Association1EditPart.VISUAL_ID:
-				return new org.unicase.model.classDiagram.edit.parts.Association1EditPart(
-						view);
+				return new org.unicase.model.classDiagram.edit.parts.Association1EditPart(view);
 
 			case org.unicase.model.classDiagram.edit.parts.AssociationNameEditPart.VISUAL_ID:
-				return new org.unicase.model.classDiagram.edit.parts.AssociationNameEditPart(
-						view);
+				return new org.unicase.model.classDiagram.edit.parts.AssociationNameEditPart(view);
 
 			case org.unicase.model.classDiagram.edit.parts.AssociationSourceMultiplicityEditPart.VISUAL_ID:
-				return new org.unicase.model.classDiagram.edit.parts.AssociationSourceMultiplicityEditPart(
-						view);
+				return new org.unicase.model.classDiagram.edit.parts.AssociationSourceMultiplicityEditPart(view);
 
 			case org.unicase.model.classDiagram.edit.parts.AssociationTargetMultiplicityEditPart.VISUAL_ID:
-				return new org.unicase.model.classDiagram.edit.parts.AssociationTargetMultiplicityEditPart(
-						view);
+				return new org.unicase.model.classDiagram.edit.parts.AssociationTargetMultiplicityEditPart(view);
 
 			case org.unicase.model.classDiagram.edit.parts.Association2EditPart.VISUAL_ID:
-				return new org.unicase.model.classDiagram.edit.parts.Association2EditPart(
-						view);
+				return new org.unicase.model.classDiagram.edit.parts.Association2EditPart(view);
 
 			case org.unicase.model.classDiagram.edit.parts.AssociationName2EditPart.VISUAL_ID:
-				return new org.unicase.model.classDiagram.edit.parts.AssociationName2EditPart(
-						view);
+				return new org.unicase.model.classDiagram.edit.parts.AssociationName2EditPart(view);
 
 			case org.unicase.model.classDiagram.edit.parts.AssociationSourceMultiplicity2EditPart.VISUAL_ID:
-				return new org.unicase.model.classDiagram.edit.parts.AssociationSourceMultiplicity2EditPart(
-						view);
+				return new org.unicase.model.classDiagram.edit.parts.AssociationSourceMultiplicity2EditPart(view);
 
 			case org.unicase.model.classDiagram.edit.parts.AssociationTargetMultiplicity2EditPart.VISUAL_ID:
-				return new org.unicase.model.classDiagram.edit.parts.AssociationTargetMultiplicity2EditPart(
-						view);
+				return new org.unicase.model.classDiagram.edit.parts.AssociationTargetMultiplicity2EditPart(view);
 
 			case org.unicase.model.classDiagram.edit.parts.Association3EditPart.VISUAL_ID:
-				return new org.unicase.model.classDiagram.edit.parts.Association3EditPart(
-						view);
+				return new org.unicase.model.classDiagram.edit.parts.Association3EditPart(view);
 
 			case org.unicase.model.classDiagram.edit.parts.AssociationName3EditPart.VISUAL_ID:
-				return new org.unicase.model.classDiagram.edit.parts.AssociationName3EditPart(
-						view);
+				return new org.unicase.model.classDiagram.edit.parts.AssociationName3EditPart(view);
 
 			case org.unicase.model.classDiagram.edit.parts.AssociationSourceMultiplicity3EditPart.VISUAL_ID:
-				return new org.unicase.model.classDiagram.edit.parts.AssociationSourceMultiplicity3EditPart(
-						view);
+				return new org.unicase.model.classDiagram.edit.parts.AssociationSourceMultiplicity3EditPart(view);
 
 			case org.unicase.model.classDiagram.edit.parts.AssociationTargetMultiplicity3EditPart.VISUAL_ID:
-				return new org.unicase.model.classDiagram.edit.parts.AssociationTargetMultiplicity3EditPart(
-						view);
+				return new org.unicase.model.classDiagram.edit.parts.AssociationTargetMultiplicity3EditPart(view);
 
 			case org.unicase.model.classDiagram.edit.parts.Association4EditPart.VISUAL_ID:
-				return new org.unicase.model.classDiagram.edit.parts.Association4EditPart(
-						view);
+				return new org.unicase.model.classDiagram.edit.parts.Association4EditPart(view);
 
 			case org.unicase.model.classDiagram.edit.parts.AssociationName4EditPart.VISUAL_ID:
-				return new org.unicase.model.classDiagram.edit.parts.AssociationName4EditPart(
-						view);
+				return new org.unicase.model.classDiagram.edit.parts.AssociationName4EditPart(view);
 
 			case org.unicase.model.classDiagram.edit.parts.AssociationSourceMultiplicity4EditPart.VISUAL_ID:
-				return new org.unicase.model.classDiagram.edit.parts.AssociationSourceMultiplicity4EditPart(
-						view);
+				return new org.unicase.model.classDiagram.edit.parts.AssociationSourceMultiplicity4EditPart(view);
 
 			case org.unicase.model.classDiagram.edit.parts.AssociationTargetMultiplicity4EditPart.VISUAL_ID:
-				return new org.unicase.model.classDiagram.edit.parts.AssociationTargetMultiplicity4EditPart(
-						view);
+				return new org.unicase.model.classDiagram.edit.parts.AssociationTargetMultiplicity4EditPart(view);
 
 			case org.unicase.model.classDiagram.edit.parts.ClassSubClassesEditPart.VISUAL_ID:
-				return new org.unicase.model.classDiagram.edit.parts.ClassSubClassesEditPart(
-						view);
+				return new org.unicase.model.classDiagram.edit.parts.ClassSubClassesEditPart(view);
 
 			case org.unicase.model.classDiagram.edit.parts.DependencyEditPart.VISUAL_ID:
-				return new org.unicase.model.classDiagram.edit.parts.DependencyEditPart(
-						view);
+				return new org.unicase.model.classDiagram.edit.parts.DependencyEditPart(view);
 			}
 		}
 		return createUnrecognizedEditPart(context, model);
@@ -151,8 +123,7 @@ public class ModelEditPartFactory implements EditPartFactory {
 	/**
 	 * @generated
 	 */
-	public static CellEditorLocator getTextCellEditorLocator(
-			ITextAwareEditPart source) {
+	public static CellEditorLocator getTextCellEditorLocator(ITextAwareEditPart source) {
 		if (source.getFigure() instanceof WrappingLabel)
 			return new TextCellEditorLocator((WrappingLabel) source.getFigure());
 		else {
@@ -191,15 +162,11 @@ public class ModelEditPartFactory implements EditPartFactory {
 			Text text = (Text) celleditor.getControl();
 			Rectangle rect = getWrapLabel().getTextBounds().getCopy();
 			getWrapLabel().translateToAbsolute(rect);
-			if (getWrapLabel().isTextWrapOn()
-					&& getWrapLabel().getText().length() > 0) {
-				rect.setSize(new Dimension(text.computeSize(rect.width,
-						SWT.DEFAULT)));
+			if (getWrapLabel().isTextWrapOn() && getWrapLabel().getText().length() > 0) {
+				rect.setSize(new Dimension(text.computeSize(rect.width, SWT.DEFAULT)));
 			} else {
-				int avr = FigureUtilities.getFontMetrics(text.getFont())
-						.getAverageCharWidth();
-				rect.setSize(new Dimension(text.computeSize(SWT.DEFAULT,
-						SWT.DEFAULT)).expand(avr * 2, 0));
+				int avr = FigureUtilities.getFontMetrics(text.getFont()).getAverageCharWidth();
+				rect.setSize(new Dimension(text.computeSize(SWT.DEFAULT, SWT.DEFAULT)).expand(avr * 2, 0));
 			}
 			if (!rect.equals(new Rectangle(text.getBounds()))) {
 				text.setBounds(rect.x, rect.y, rect.width, rect.height);
@@ -238,10 +205,8 @@ public class ModelEditPartFactory implements EditPartFactory {
 			Text text = (Text) celleditor.getControl();
 			Rectangle rect = getLabel().getTextBounds().getCopy();
 			getLabel().translateToAbsolute(rect);
-			int avr = FigureUtilities.getFontMetrics(text.getFont())
-					.getAverageCharWidth();
-			rect.setSize(new Dimension(text.computeSize(SWT.DEFAULT,
-					SWT.DEFAULT)).expand(avr * 2, 0));
+			int avr = FigureUtilities.getFontMetrics(text.getFont()).getAverageCharWidth();
+			rect.setSize(new Dimension(text.computeSize(SWT.DEFAULT, SWT.DEFAULT)).expand(avr * 2, 0));
 			if (!rect.equals(new Rectangle(text.getBounds()))) {
 				text.setBounds(rect.x, rect.y, rect.width, rect.height);
 			}

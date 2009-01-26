@@ -1,8 +1,7 @@
 /**
- * <copyright> Copyright (c) 2008 Jonas Helming, Maximilian Koegel. All rights reserved. This program and the accompanying materials are made available under the terms of the Eclipse Public License v1.0 which accompanies this distribution, and is available at http://www.eclipse.org/legal/epl-v10.html
- * </copyright>
- *
- * $Id$
+ * <copyright> Copyright (c) 2008 Jonas Helming, Maximilian Koegel. All rights reserved. This program and the
+ * accompanying materials are made available under the terms of the Eclipse Public License v1.0 which accompanies this
+ * distribution, and is available at http://www.eclipse.org/legal/epl-v10.html </copyright>
  */
 
 package org.unicase.ui.common.decorators;
@@ -14,17 +13,16 @@ import org.eclipse.swt.graphics.ImageData;
 import org.eclipse.swt.graphics.Point;
 
 /**
- * Allows one image descriptor to be overlayed on another image descriptor to
- * generate a new image. Commonly used to decorate an image with a second image
- * decoration.
+ * Allows one image descriptor to be overlayed on another image descriptor to generate a new image. Commonly used to
+ * decorate an image with a second image decoration.
  * 
  * @author Shterev
  */
 public class OverlayImageDescriptor extends CompositeImageDescriptor {
-	
+
 	/** display the overlay image in the upper left corner. */
 	public static final int UPPER_LEFT = 0;
-	
+
 	/** display the overlay image in the upper right corner. */
 	public static final int UPPER_RIGHT = 1;
 
@@ -45,7 +43,7 @@ public class OverlayImageDescriptor extends CompositeImageDescriptor {
 
 	/** overlay image. */
 	private ImageDescriptor overlayDesc;
-	
+
 	/** the position of the overlay image. */
 	private int overlayPos = LOWER_RIGHT;
 
@@ -54,12 +52,9 @@ public class OverlayImageDescriptor extends CompositeImageDescriptor {
 	/**
 	 * OverlayImageDescriptor constructor.
 	 * 
-	 * @param srcImage
-	 *            the base image
-	 * @param overlayDesc
-	 *            the overlay image
-	 * @param overlayPos
-	 *            the overlay position
+	 * @param srcImage the base image
+	 * @param overlayDesc the overlay image
+	 * @param overlayPos the overlay position
 	 */
 	public OverlayImageDescriptor(Image srcImage, ImageDescriptor overlayDesc, int overlayPos) {
 		assert null != srcImage;
@@ -69,16 +64,11 @@ public class OverlayImageDescriptor extends CompositeImageDescriptor {
 	}
 
 	/**
-	 * Draws the given source image data into this composite image at the given
-	 * position.
+	 * Draws the given source image data into this composite image at the given position.
 	 * 
-	 * @param width
-	 *            the width of the image.
-	 * @param height
-	 *            the height of the image.
-	 * 
-	 * @see org.eclipse.jface.resource.CompositeImageDescriptor#drawCompositeImage(int,
-	 *      int)
+	 * @param width the width of the image.
+	 * @param height the height of the image.
+	 * @see org.eclipse.jface.resource.CompositeImageDescriptor#drawCompositeImage(int, int)
 	 */
 	@Override
 	protected void drawCompositeImage(int width, int height) {
@@ -92,24 +82,23 @@ public class OverlayImageDescriptor extends CompositeImageDescriptor {
 		ImageData overlayData = overlayDesc.getImageData();
 		if (overlayData != null) {
 			Point pos = null;
-			switch (overlayPos){
-				case UPPER_LEFT:
-					pos = new Point(-overlayData.width/2,-overlayData.height/2);
-					break;
-				case UPPER_RIGHT:
-					pos = new Point(backgroundData.width-overlayData.width/2,0);
-					break;
-				case LOWER_RIGHT:
-					pos = new Point(backgroundData.width-overlayData.width/2,
-							backgroundData.height-overlayData.height/2);
-					break;
-				//default = LOWER_LEFT
-				default:
-					pos = new Point(0,
-							backgroundData.height-overlayData.height/2);
-					break;
+			switch (overlayPos) {
+			case UPPER_LEFT:
+				pos = new Point(-overlayData.width / 2, -overlayData.height / 2);
+				break;
+			case UPPER_RIGHT:
+				pos = new Point(backgroundData.width - overlayData.width / 2, 0);
+				break;
+			case LOWER_RIGHT:
+				pos = new Point(backgroundData.width - overlayData.width / 2, backgroundData.height
+					- overlayData.height / 2);
+				break;
+			// default = LOWER_LEFT
+			default:
+				pos = new Point(0, backgroundData.height - overlayData.height / 2);
+				break;
 			}
-			drawImage(overlayData, pos.x-offset, pos.y-offset);
+			drawImage(overlayData, pos.x - offset, pos.y - offset);
 		}
 	}
 

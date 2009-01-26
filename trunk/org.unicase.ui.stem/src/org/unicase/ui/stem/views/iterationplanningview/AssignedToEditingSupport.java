@@ -1,8 +1,7 @@
 /**
- * <copyright> Copyright (c) 2008 Jonas Helming, Maximilian Koegel. All rights reserved. This program and the accompanying materials are made available under the terms of the Eclipse Public License v1.0 which accompanies this distribution, and is available at http://www.eclipse.org/legal/epl-v10.html
- * </copyright>
- *
- * $Id$
+ * <copyright> Copyright (c) 2008 Jonas Helming, Maximilian Koegel. All rights reserved. This program and the
+ * accompanying materials are made available under the terms of the Eclipse Public License v1.0 which accompanies this
+ * distribution, and is available at http://www.eclipse.org/legal/epl-v10.html </copyright>
  */
 package org.unicase.ui.stem.views.iterationplanningview;
 
@@ -10,25 +9,26 @@ import org.eclipse.jface.viewers.CellEditor;
 import org.eclipse.jface.viewers.ColumnViewer;
 import org.eclipse.jface.viewers.EditingSupport;
 
-/**.
- * I think this class should potentially be used to change Assignee of 
- * a WorkItem in IterationPlaningView (my be using a drop-down list showing all users/groups)
+/**
+ * . I think this class should potentially be used to change Assignee of a WorkItem in IterationPlaningView (my be using
+ * a drop-down list showing all users/groups)
+ * 
  * @author Helming
- *
  */
 public class AssignedToEditingSupport extends EditingSupport {
 
-	/**.
-	 * Constructor
+	/**
+	 * . Constructor
+	 * 
 	 * @param viewer the viewer containing this column
 	 */
 	public AssignedToEditingSupport(ColumnViewer viewer) {
 		super(viewer);
 		// TODO Auto-generated constructor stub
 	}
-	
-	/**.
-	 * {@inheritDoc}
+
+	/**
+	 * . {@inheritDoc}
 	 */
 	@Override
 	protected boolean canEdit(Object element) {
@@ -36,8 +36,8 @@ public class AssignedToEditingSupport extends EditingSupport {
 		return false;
 	}
 
-	/**.
-	 * {@inheritDoc}
+	/**
+	 * . {@inheritDoc}
 	 */
 	@Override
 	protected CellEditor getCellEditor(Object element) {
@@ -45,8 +45,8 @@ public class AssignedToEditingSupport extends EditingSupport {
 		return null;
 	}
 
-	/**.
-	 * {@inheritDoc}
+	/**
+	 * . {@inheritDoc}
 	 */
 	@Override
 	protected Object getValue(Object element) {
@@ -54,8 +54,8 @@ public class AssignedToEditingSupport extends EditingSupport {
 		return null;
 	}
 
-	/**.
-	 * {@inheritDoc}
+	/**
+	 * . {@inheritDoc}
 	 */
 	@Override
 	protected void setValue(Object element, Object value) {

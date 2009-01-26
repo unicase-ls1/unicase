@@ -1,8 +1,5 @@
 /**
- * <copyright>
- * </copyright>
- *
- * $Id$
+ * <copyright> </copyright>
  */
 package org.unicase.docExport.exportModel.renderers.options.impl;
 
@@ -18,24 +15,25 @@ import org.unicase.docExport.exportModel.renderers.options.BooleanStyle;
 import org.unicase.docExport.exportModel.renderers.options.OptionsPackage;
 
 /**
- * <!-- begin-user-doc -->
- * An implementation of the model object '<em><b>Boolean Attribute Option</b></em>'.
- * <!-- end-user-doc -->
+ * <!-- begin-user-doc --> An implementation of the model object '<em><b>Boolean Attribute Option</b></em>'. <!--
+ * end-user-doc -->
  * <p>
  * The following features are implemented:
  * <ul>
- *   <li>{@link org.unicase.docExport.exportModel.renderers.options.impl.BooleanAttributeOptionImpl#getGlobalOption <em>Global Option</em>}</li>
- *   <li>{@link org.unicase.docExport.exportModel.renderers.options.impl.BooleanAttributeOptionImpl#getBooleanStyle <em>Boolean Style</em>}</li>
+ * <li>{@link org.unicase.docExport.exportModel.renderers.options.impl.BooleanAttributeOptionImpl#getGlobalOption <em>
+ * Global Option</em>}</li>
+ * <li>{@link org.unicase.docExport.exportModel.renderers.options.impl.BooleanAttributeOptionImpl#getBooleanStyle <em>
+ * Boolean Style</em>}</li>
  * </ul>
  * </p>
- *
+ * 
  * @generated
  */
 public class BooleanAttributeOptionImpl extends AttributeOptionImpl implements BooleanAttributeOption {
 	/**
-	 * The cached value of the '{@link #getGlobalOption() <em>Global Option</em>}' reference.
-	 * <!-- begin-user-doc -->
+	 * The cached value of the '{@link #getGlobalOption() <em>Global Option</em>}' reference. <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
+	 * 
 	 * @see #getGlobalOption()
 	 * @generated
 	 * @ordered
@@ -43,9 +41,9 @@ public class BooleanAttributeOptionImpl extends AttributeOptionImpl implements B
 	protected BooleanAttributeOption globalOption;
 
 	/**
-	 * The default value of the '{@link #getBooleanStyle() <em>Boolean Style</em>}' attribute.
-	 * <!-- begin-user-doc -->
+	 * The default value of the '{@link #getBooleanStyle() <em>Boolean Style</em>}' attribute. <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
+	 * 
 	 * @see #getBooleanStyle()
 	 * @generated
 	 * @ordered
@@ -53,9 +51,9 @@ public class BooleanAttributeOptionImpl extends AttributeOptionImpl implements B
 	protected static final BooleanStyle BOOLEAN_STYLE_EDEFAULT = BooleanStyle.IMAGE;
 
 	/**
-	 * The cached value of the '{@link #getBooleanStyle() <em>Boolean Style</em>}' attribute.
-	 * <!-- begin-user-doc -->
+	 * The cached value of the '{@link #getBooleanStyle() <em>Boolean Style</em>}' attribute. <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
+	 * 
 	 * @see #getBooleanStyle()
 	 * @generated
 	 * @ordered
@@ -63,8 +61,8 @@ public class BooleanAttributeOptionImpl extends AttributeOptionImpl implements B
 	protected BooleanStyle booleanStyle = BOOLEAN_STYLE_EDEFAULT;
 
 	/**
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
+	 * <!-- begin-user-doc --> <!-- end-user-doc -->
+	 * 
 	 * @generated
 	 */
 	protected BooleanAttributeOptionImpl() {
@@ -72,8 +70,8 @@ public class BooleanAttributeOptionImpl extends AttributeOptionImpl implements B
 	}
 
 	/**
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
+	 * <!-- begin-user-doc --> <!-- end-user-doc -->
+	 * 
 	 * @generated
 	 */
 	@Override
@@ -82,25 +80,26 @@ public class BooleanAttributeOptionImpl extends AttributeOptionImpl implements B
 	}
 
 	/**
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
+	 * <!-- begin-user-doc --> <!-- end-user-doc -->
+	 * 
 	 * @generated
 	 */
 	public BooleanAttributeOption getGlobalOption() {
 		if (globalOption != null && globalOption.eIsProxy()) {
-			InternalEObject oldGlobalOption = (InternalEObject)globalOption;
-			globalOption = (BooleanAttributeOption)eResolveProxy(oldGlobalOption);
+			InternalEObject oldGlobalOption = (InternalEObject) globalOption;
+			globalOption = (BooleanAttributeOption) eResolveProxy(oldGlobalOption);
 			if (globalOption != oldGlobalOption) {
 				if (eNotificationRequired())
-					eNotify(new ENotificationImpl(this, Notification.RESOLVE, OptionsPackage.BOOLEAN_ATTRIBUTE_OPTION__GLOBAL_OPTION, oldGlobalOption, globalOption));
+					eNotify(new ENotificationImpl(this, Notification.RESOLVE,
+						OptionsPackage.BOOLEAN_ATTRIBUTE_OPTION__GLOBAL_OPTION, oldGlobalOption, globalOption));
 			}
 		}
 		return globalOption;
 	}
 
 	/**
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
+	 * <!-- begin-user-doc --> <!-- end-user-doc -->
+	 * 
 	 * @generated
 	 */
 	public BooleanAttributeOption basicGetGlobalOption() {
@@ -108,20 +107,21 @@ public class BooleanAttributeOptionImpl extends AttributeOptionImpl implements B
 	}
 
 	/**
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
+	 * <!-- begin-user-doc --> <!-- end-user-doc -->
+	 * 
 	 * @generated
 	 */
 	public void setGlobalOption(BooleanAttributeOption newGlobalOption) {
 		BooleanAttributeOption oldGlobalOption = globalOption;
 		globalOption = newGlobalOption;
 		if (eNotificationRequired())
-			eNotify(new ENotificationImpl(this, Notification.SET, OptionsPackage.BOOLEAN_ATTRIBUTE_OPTION__GLOBAL_OPTION, oldGlobalOption, globalOption));
+			eNotify(new ENotificationImpl(this, Notification.SET,
+				OptionsPackage.BOOLEAN_ATTRIBUTE_OPTION__GLOBAL_OPTION, oldGlobalOption, globalOption));
 	}
 
 	/**
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
+	 * <!-- begin-user-doc --> <!-- end-user-doc -->
+	 * 
 	 * @generated
 	 */
 	public BooleanStyle getBooleanStyle() {
@@ -129,94 +129,97 @@ public class BooleanAttributeOptionImpl extends AttributeOptionImpl implements B
 	}
 
 	/**
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
+	 * <!-- begin-user-doc --> <!-- end-user-doc -->
+	 * 
 	 * @generated
 	 */
 	public void setBooleanStyle(BooleanStyle newBooleanStyle) {
 		BooleanStyle oldBooleanStyle = booleanStyle;
 		booleanStyle = newBooleanStyle == null ? BOOLEAN_STYLE_EDEFAULT : newBooleanStyle;
 		if (eNotificationRequired())
-			eNotify(new ENotificationImpl(this, Notification.SET, OptionsPackage.BOOLEAN_ATTRIBUTE_OPTION__BOOLEAN_STYLE, oldBooleanStyle, booleanStyle));
+			eNotify(new ENotificationImpl(this, Notification.SET,
+				OptionsPackage.BOOLEAN_ATTRIBUTE_OPTION__BOOLEAN_STYLE, oldBooleanStyle, booleanStyle));
 	}
 
 	/**
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
+	 * <!-- begin-user-doc --> <!-- end-user-doc -->
+	 * 
 	 * @generated
 	 */
 	@Override
 	public Object eGet(int featureID, boolean resolve, boolean coreType) {
 		switch (featureID) {
-			case OptionsPackage.BOOLEAN_ATTRIBUTE_OPTION__GLOBAL_OPTION:
-				if (resolve) return getGlobalOption();
-				return basicGetGlobalOption();
-			case OptionsPackage.BOOLEAN_ATTRIBUTE_OPTION__BOOLEAN_STYLE:
-				return getBooleanStyle();
+		case OptionsPackage.BOOLEAN_ATTRIBUTE_OPTION__GLOBAL_OPTION:
+			if (resolve)
+				return getGlobalOption();
+			return basicGetGlobalOption();
+		case OptionsPackage.BOOLEAN_ATTRIBUTE_OPTION__BOOLEAN_STYLE:
+			return getBooleanStyle();
 		}
 		return super.eGet(featureID, resolve, coreType);
 	}
 
 	/**
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
+	 * <!-- begin-user-doc --> <!-- end-user-doc -->
+	 * 
 	 * @generated
 	 */
 	@Override
 	public void eSet(int featureID, Object newValue) {
 		switch (featureID) {
-			case OptionsPackage.BOOLEAN_ATTRIBUTE_OPTION__GLOBAL_OPTION:
-				setGlobalOption((BooleanAttributeOption)newValue);
-				return;
-			case OptionsPackage.BOOLEAN_ATTRIBUTE_OPTION__BOOLEAN_STYLE:
-				setBooleanStyle((BooleanStyle)newValue);
-				return;
+		case OptionsPackage.BOOLEAN_ATTRIBUTE_OPTION__GLOBAL_OPTION:
+			setGlobalOption((BooleanAttributeOption) newValue);
+			return;
+		case OptionsPackage.BOOLEAN_ATTRIBUTE_OPTION__BOOLEAN_STYLE:
+			setBooleanStyle((BooleanStyle) newValue);
+			return;
 		}
 		super.eSet(featureID, newValue);
 	}
 
 	/**
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
+	 * <!-- begin-user-doc --> <!-- end-user-doc -->
+	 * 
 	 * @generated
 	 */
 	@Override
 	public void eUnset(int featureID) {
 		switch (featureID) {
-			case OptionsPackage.BOOLEAN_ATTRIBUTE_OPTION__GLOBAL_OPTION:
-				setGlobalOption((BooleanAttributeOption)null);
-				return;
-			case OptionsPackage.BOOLEAN_ATTRIBUTE_OPTION__BOOLEAN_STYLE:
-				setBooleanStyle(BOOLEAN_STYLE_EDEFAULT);
-				return;
+		case OptionsPackage.BOOLEAN_ATTRIBUTE_OPTION__GLOBAL_OPTION:
+			setGlobalOption((BooleanAttributeOption) null);
+			return;
+		case OptionsPackage.BOOLEAN_ATTRIBUTE_OPTION__BOOLEAN_STYLE:
+			setBooleanStyle(BOOLEAN_STYLE_EDEFAULT);
+			return;
 		}
 		super.eUnset(featureID);
 	}
 
 	/**
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
+	 * <!-- begin-user-doc --> <!-- end-user-doc -->
+	 * 
 	 * @generated
 	 */
 	@Override
 	public boolean eIsSet(int featureID) {
 		switch (featureID) {
-			case OptionsPackage.BOOLEAN_ATTRIBUTE_OPTION__GLOBAL_OPTION:
-				return globalOption != null;
-			case OptionsPackage.BOOLEAN_ATTRIBUTE_OPTION__BOOLEAN_STYLE:
-				return booleanStyle != BOOLEAN_STYLE_EDEFAULT;
+		case OptionsPackage.BOOLEAN_ATTRIBUTE_OPTION__GLOBAL_OPTION:
+			return globalOption != null;
+		case OptionsPackage.BOOLEAN_ATTRIBUTE_OPTION__BOOLEAN_STYLE:
+			return booleanStyle != BOOLEAN_STYLE_EDEFAULT;
 		}
 		return super.eIsSet(featureID);
 	}
 
 	/**
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
+	 * <!-- begin-user-doc --> <!-- end-user-doc -->
+	 * 
 	 * @generated
 	 */
 	@Override
 	public String toString() {
-		if (eIsProxy()) return super.toString();
+		if (eIsProxy())
+			return super.toString();
 
 		StringBuffer result = new StringBuffer(super.toString());
 		result.append(" (booleanStyle: ");
@@ -225,4 +228,4 @@ public class BooleanAttributeOptionImpl extends AttributeOptionImpl implements B
 		return result.toString();
 	}
 
-} //BooleanAttributeOptionImpl
+} // BooleanAttributeOptionImpl

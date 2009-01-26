@@ -9,7 +9,6 @@ import org.unicase.model.ModelElement;
  * LabelProvider for the Creator Column.
  * 
  * @author helming
- * 
  */
 public class CreatorLabelProvider extends ColumnLabelProvider {
 

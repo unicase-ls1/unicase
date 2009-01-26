@@ -1,8 +1,7 @@
 /**
- * <copyright> Copyright (c) 2008 Jonas Helming, Maximilian Koegel. All rights reserved. This program and the accompanying materials are made available under the terms of the Eclipse Public License v1.0 which accompanies this distribution, and is available at http://www.eclipse.org/legal/epl-v10.html
- * </copyright>
- *
- * $Id$
+ * <copyright> Copyright (c) 2008 Jonas Helming, Maximilian Koegel. All rights reserved. This program and the
+ * accompanying materials are made available under the terms of the Eclipse Public License v1.0 which accompanies this
+ * distribution, and is available at http://www.eclipse.org/legal/epl-v10.html </copyright>
  */
 package org.unicase.ui.tableview.viewer;
 
@@ -23,12 +22,9 @@ import org.unicase.model.task.ActionItem;
 import org.unicase.model.task.TaskFactory;
 
 /**
- * 
- * @author Hodaie This is a prototype implementation of this plug in. This class
- *         creates a dummy array of ActionItems to show them in TableView. I a
- *         real scenario this class may be initialized with a ModelElement type,
- *         and invoked from another plug-in (e.g. navigator).
- * 
+ * @author Hodaie This is a prototype implementation of this plug in. This class creates a dummy array of ActionItems to
+ *         show them in TableView. I a real scenario this class may be initialized with a ModelElement type, and invoked
+ *         from another plug-in (e.g. navigator).
  */
 public class TableView extends ViewPart {
 
@@ -47,9 +43,7 @@ public class TableView extends ViewPart {
 	}
 
 	/**
-	 * .
-	 * 
-	 * ({@inheritDoc})
+	 * . ({@inheritDoc})
 	 */
 	@Override
 	public void createPartControl(Composite parent) {
@@ -71,23 +65,19 @@ public class TableView extends ViewPart {
 	}
 
 	/**
-	 * 
-	 * This method takes a ModelElement and initializes the columns
-	 * (TableViewer's header row) with names of its simple attributes. The
-	 * boolean attributes are shown at last columns.
+	 * This method takes a ModelElement and initializes the columns (TableViewer's header row) with names of its simple
+	 * attributes. The boolean attributes are shown at last columns.
 	 * 
 	 * @param table
 	 * @param modelElement
-	 * 
 	 */
 	private void setColumns(final TableViewer table, ModelElement modelElement) {
 
 		AdapterFactoryItemDelegator adapterFactoryItemDelegator = new AdapterFactoryItemDelegator(
-				new ComposedAdapterFactory(
-						ComposedAdapterFactory.Descriptor.Registry.INSTANCE));
+			new ComposedAdapterFactory(ComposedAdapterFactory.Descriptor.Registry.INSTANCE));
 
 		List<IItemPropertyDescriptor> propertyDescriptors = adapterFactoryItemDelegator
-				.getPropertyDescriptors(modelElement);
+			.getPropertyDescriptors(modelElement);
 
 		// show non-boolean attributes first
 		// and remember a list of boolean attributes
@@ -95,35 +85,28 @@ public class TableView extends ViewPart {
 		for (IItemPropertyDescriptor propertyDescriptor : propertyDescriptors) {
 			if (!propertyDescriptor.isMany(modelElement)) {
 
-				if (((EStructuralFeature) propertyDescriptor
-						.getFeature(modelElement)).getEType()
-						.getInstanceClass().equals(boolean.class)) {
+				if (((EStructuralFeature) propertyDescriptor.getFeature(modelElement)).getEType().getInstanceClass()
+					.equals(boolean.class)) {
 
-					booleanAttributesPropertyDescriptors
-							.add(propertyDescriptor);
+					booleanAttributesPropertyDescriptors.add(propertyDescriptor);
 					continue;
 				}
 
-				TableViewerColumn column = new TableViewerColumn(table,
-						SWT.CENTER);
-				column.getColumn().setText(
-						propertyDescriptor.getDisplayName(modelElement));
+				TableViewerColumn column = new TableViewerColumn(table, SWT.CENTER);
+				column.getColumn().setText(propertyDescriptor.getDisplayName(modelElement));
 				column.getColumn().setWidth(100);
 				column.getColumn().setMoveable(true);
-				column.setLabelProvider(new TableViewColumnLabelProvider(
-						propertyDescriptor));
+				column.setLabelProvider(new TableViewColumnLabelProvider(propertyDescriptor));
 
 			}
 		}
 		// now show the boolean attributes at the end
 		for (IItemPropertyDescriptor propertyDescriptor : booleanAttributesPropertyDescriptors) {
 			TableViewerColumn column = new TableViewerColumn(table, SWT.CENTER);
-			column.getColumn().setText(
-					propertyDescriptor.getDisplayName(modelElement));
+			column.getColumn().setText(propertyDescriptor.getDisplayName(modelElement));
 			column.getColumn().setWidth(100);
 			column.getColumn().setMoveable(true);
-			column.setLabelProvider(new TableViewBooleanLabelProvider(table,
-					propertyDescriptor));
+			column.setLabelProvider(new TableViewBooleanLabelProvider(table, propertyDescriptor));
 
 		}
 
@@ -133,11 +116,9 @@ public class TableView extends ViewPart {
 	}
 
 	/**
-	 * Just for test purpose. This method return a list of dummy ActionItems to
-	 * be shown in TableView.
+	 * Just for test purpose. This method return a list of dummy ActionItems to be shown in TableView.
 	 * 
 	 * @see JavaDoc for TableView class.
-	 * 
 	 * @return ActionItem[]
 	 */
 	private ActionItem[] createActionItems() {
@@ -157,7 +138,6 @@ public class TableView extends ViewPart {
 
 	/**
 	 * . ({@inheritDoc})
-	 * 
 	 */
 	@Override
 	public void setFocus() {

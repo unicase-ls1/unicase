@@ -6,8 +6,7 @@ import java.util.Date;
 /**
  * Is needed for the {@link java.utilPriorityQueue} used in the {@link TaskManager}.
  * 
- * @param <T>
- *            a task.
+ * @param <T> a task.
  * @author wesendon
  */
 public class TaskComparator<T extends Task> implements Comparator<T> {

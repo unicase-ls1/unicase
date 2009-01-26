@@ -1,8 +1,7 @@
 /**
- * <copyright> Copyright (c) 2008 Jonas Helming, Maximilian Koegel. All rights reserved. This program and the accompanying materials are made available under the terms of the Eclipse Public License v1.0 which accompanies this distribution, and is available at http://www.eclipse.org/legal/epl-v10.html
- * </copyright>
- *
- * $Id$
+ * <copyright> Copyright (c) 2008 Jonas Helming, Maximilian Koegel. All rights reserved. This program and the
+ * accompanying materials are made available under the terms of the Eclipse Public License v1.0 which accompanies this
+ * distribution, and is available at http://www.eclipse.org/legal/epl-v10.html </copyright>
  */
 package org.unicase.workspace.edit.views.changes;
 
@@ -20,7 +19,6 @@ import org.unicase.model.ModelElement;
  * Label provider for the model element column in the viewer.
  * 
  * @author Shterev
- * 
  */
 public class MENameLabelProvider extends ColumnLabelProvider {
 
@@ -30,6 +28,7 @@ public class MENameLabelProvider extends ColumnLabelProvider {
 
 	/**
 	 * Default constructor.
+	 * 
 	 * @param emfProvider the default label provider.
 	 * @param visualizationHelper the visualizationHelper
 	 */
@@ -40,15 +39,17 @@ public class MENameLabelProvider extends ColumnLabelProvider {
 
 	/**
 	 * Default constructor.
+	 * 
 	 * @param emfProvider the default label provider.
 	 * @param visualizationHelper the visualizationHelper
 	 * @param opBackgroundLabelProvider the visualizationHelper
 	 */
-	public MENameLabelProvider(ILabelProvider emfProvider, ChangePackageVisualizationHelper visualizationHelper, OperationColorLabelProvider opBackgroundLabelProvider) {
+	public MENameLabelProvider(ILabelProvider emfProvider, ChangePackageVisualizationHelper visualizationHelper,
+		OperationColorLabelProvider opBackgroundLabelProvider) {
 		this(emfProvider, visualizationHelper);
 		this.opBackgroundLabelProvider = opBackgroundLabelProvider;
 	}
-	
+
 	/**
 	 * {@inheritDoc}
 	 */
@@ -57,8 +58,7 @@ public class MENameLabelProvider extends ColumnLabelProvider {
 		Object element = cell.getElement();
 		if (element instanceof AbstractOperation) {
 			AbstractOperation operation = (AbstractOperation) element;
-			ModelElement me = visualizationHelper
-					.getModelElement(operation.getModelElementId());
+			ModelElement me = visualizationHelper.getModelElement(operation.getModelElementId());
 			// hack for missing model elements
 			if (me != null) {
 				cell.setText(me.getName());
@@ -66,13 +66,13 @@ public class MENameLabelProvider extends ColumnLabelProvider {
 			} else {
 				cell.setText("(Missing Element)");
 			}
-			if(opBackgroundLabelProvider!=null){
+			if (opBackgroundLabelProvider != null) {
 				cell.setForeground(opBackgroundLabelProvider.getColor(operation));
 			}
-		} else if (element instanceof ChangePackage){
+		} else if (element instanceof ChangePackage) {
 			ChangePackage cPackage = (ChangePackage) element;
 			LogMessage logMessage = cPackage.getLogMessage();
-			if(logMessage!=null){
+			if (logMessage != null) {
 				StringBuffer log = new StringBuffer();
 				log.append("Change Package");
 				log.append(" ");
@@ -83,10 +83,10 @@ public class MENameLabelProvider extends ColumnLabelProvider {
 				log.append(format.format(logMessage.getDate()));
 				log.append("]");
 				cell.setText(log.toString());
-			}else{
+			} else {
 				cell.setText("Change Package");
 			}
-		} else if (element instanceof ModelElement){
+		} else if (element instanceof ModelElement) {
 			cell.setText(emfProvider.getText(element));
 			cell.setImage(emfProvider.getImage(element));
 		}

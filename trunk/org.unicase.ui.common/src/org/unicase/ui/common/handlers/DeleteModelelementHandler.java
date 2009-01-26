@@ -1,8 +1,7 @@
 /**
- * <copyright> Copyright (c) 2008 Jonas Helming, Maximilian Koegel. All rights reserved. This program and the accompanying materials are made available under the terms of the Eclipse Public License v1.0 which accompanies this distribution, and is available at http://www.eclipse.org/legal/epl-v10.html
- * </copyright>
- *
- * $Id$
+ * <copyright> Copyright (c) 2008 Jonas Helming, Maximilian Koegel. All rights reserved. This program and the
+ * accompanying materials are made available under the terms of the Eclipse Public License v1.0 which accompanies this
+ * distribution, and is available at http://www.eclipse.org/legal/epl-v10.html </copyright>
  */
 package org.unicase.ui.common.handlers;
 
@@ -25,31 +24,26 @@ import org.unicase.workspace.WorkspaceManager;
  * . This is the Handler to delete a ModelElement
  * 
  * @author Helming
- * 
  */
 public class DeleteModelelementHandler extends AbstractHandler {
-
-
 
 	/**
 	 * . {@inheritDoc}
 	 */
 	public Object execute(ExecutionEvent event) throws ExecutionException {
 		ModelElement me = ActionHelper.getModelElement(event);
-		if(me == null){
+		if (me == null) {
 			return null;
 		}
-		
-		//if it is a section check if user has administrative rights
+
+		// if it is a section check if user has administrative rights
 		if (me instanceof Section) {
 			ProjectSpace projectSpace = WorkspaceManager.getProjectSpace(me);
 			Usersession userSession = projectSpace.getUsersession();
-			if (!UnicaseUiUtil.isProjectAdmin(userSession, projectSpace)){
-				MessageDialog
-						.openInformation(HandlerUtil.getActiveShell(event),
-								"Access denied",
-								"You must have administrative rights on this project to delete a section!");
-				
+			if (!UnicaseUiUtil.isProjectAdmin(userSession, projectSpace)) {
+				MessageDialog.openInformation(HandlerUtil.getActiveShell(event), "Access denied",
+					"You must have administrative rights on this project to delete a section!");
+
 				return null;
 			}
 		}
@@ -61,7 +55,7 @@ public class DeleteModelelementHandler extends AbstractHandler {
 
 	private void deleteModelElement(final ModelElement me) {
 		TransactionalEditingDomain domain = TransactionalEditingDomain.Registry.INSTANCE
-				.getEditingDomain("org.unicase.EditingDomain");
+			.getEditingDomain("org.unicase.EditingDomain");
 		domain.getCommandStack().execute(new DeleteModelElementCommand(domain, me));
 
 	}

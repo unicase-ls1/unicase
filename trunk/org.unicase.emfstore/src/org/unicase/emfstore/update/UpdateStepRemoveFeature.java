@@ -1,8 +1,7 @@
 /**
- * <copyright> Copyright (c) 2008 Jonas Helming, Maximilian Koegel. All rights reserved. This program and the accompanying materials are made available under the terms of the Eclipse Public License v1.0 which accompanies this distribution, and is available at http://www.eclipse.org/legal/epl-v10.html
- * </copyright>
- *
- * $Id$
+ * <copyright> Copyright (c) 2008 Jonas Helming, Maximilian Koegel. All rights reserved. This program and the
+ * accompanying materials are made available under the terms of the Eclipse Public License v1.0 which accompanies this
+ * distribution, and is available at http://www.eclipse.org/legal/epl-v10.html </copyright>
  */
 package org.unicase.emfstore.update;
 
@@ -12,13 +11,12 @@ import org.unicase.model.ModelElement;
 
 /**
  * @author schroech
- *
  */
 public abstract class UpdateStepRemoveFeature extends UpdateStepTransformFeature {
 
-
 	/**
 	 * {@inheritDoc}
+	 * 
 	 * @see org.unicase.emfstore.update.UpdateStepTransformClass#updateModelElement(org.unicase.model.ModelElement)
 	 */
 	@SuppressWarnings("unchecked")
@@ -27,17 +25,12 @@ public abstract class UpdateStepRemoveFeature extends UpdateStepTransformFeature
 		int numberOfUpdatedItems = 0;
 
 		Object featureValue = modelElement.eGet(feature);
-		if (featureValue != null
-				&& !((featureValue instanceof EList)
-						&& (((EList) featureValue).size() != 0))) {
+		if (featureValue != null && !((featureValue instanceof EList) && (((EList) featureValue).size() != 0))) {
 
 			modelElement.eUnset(feature);
 
-			System.out.println("Unset feature \"" 
-					+ getFeatureName()
-					+ "\" of model element \""
-					+ modelElement.getName()
-					+ "\"");
+			System.out.println("Unset feature \"" + getFeatureName() + "\" of model element \""
+				+ modelElement.getName() + "\"");
 
 			numberOfUpdatedItems++;
 		}

@@ -1,7 +1,7 @@
 /**
  * <copyright> Copyright (c) 2008 Jonas Helming, Maximilian Koegel. All rights reserved. This program and the
  * accompanying materials are made available under the terms of the Eclipse Public License v1.0 which accompanies this
- * distribution, and is available at http://www.eclipse.org/legal/epl-v10.html </copyright> $Id$
+ * distribution, and is available at http://www.eclipse.org/legal/epl-v10.html </copyright>
  */
 package org.unicase.model.requirement.provider;
 
@@ -34,8 +34,8 @@ import org.unicase.model.requirement.Scenario;
 public class ScenarioItemProvider extends ModelElementItemProvider implements IEditingDomainItemProvider,
 	IStructuredItemContentProvider, ITreeItemContentProvider, IItemLabelProvider, IItemPropertySource {
 	/**
-	 * This constructs an instance from a factory and a notifier.
-	 * <!-- begin-user-doc --> <!-- end-user-doc -->
+	 * This constructs an instance from a factory and a notifier. <!-- begin-user-doc --> <!-- end-user-doc -->
+	 * 
 	 * @generated
 	 */
 	public ScenarioItemProvider(AdapterFactory adapterFactory) {
@@ -43,8 +43,8 @@ public class ScenarioItemProvider extends ModelElementItemProvider implements IE
 	}
 
 	/**
-	 * This returns the property descriptors for the adapted class.
-	 * <!-- begin-user-doc --> <!-- end-user-doc -->
+	 * This returns the property descriptors for the adapted class. <!-- begin-user-doc --> <!-- end-user-doc -->
+	 * 
 	 * @generated
 	 */
 	@Override
@@ -64,9 +64,9 @@ public class ScenarioItemProvider extends ModelElementItemProvider implements IE
 	}
 
 	/**
-	 * This adds a property descriptor for the Initiating Actor Instance feature.
-	 * <!-- begin-user-doc --> <!--
+	 * This adds a property descriptor for the Initiating Actor Instance feature. <!-- begin-user-doc --> <!--
 	 * end-user-doc -->
+	 * 
 	 * @generated
 	 */
 	protected void addInitiatingActorInstancePropertyDescriptor(Object object) {
@@ -78,9 +78,9 @@ public class ScenarioItemProvider extends ModelElementItemProvider implements IE
 	}
 
 	/**
-	 * This adds a property descriptor for the Participating Actor Instances feature.
-	 * <!-- begin-user-doc --> <!--
+	 * This adds a property descriptor for the Participating Actor Instances feature. <!-- begin-user-doc --> <!--
 	 * end-user-doc -->
+	 * 
 	 * @generated
 	 */
 	protected void addParticipatingActorInstancesPropertyDescriptor(Object object) {
@@ -107,9 +107,9 @@ public class ScenarioItemProvider extends ModelElementItemProvider implements IE
 	}
 
 	/**
-	 * This adds a property descriptor for the Functional Requirements feature.
-	 * <!-- begin-user-doc --> <!--
+	 * This adds a property descriptor for the Functional Requirements feature. <!-- begin-user-doc --> <!--
 	 * end-user-doc -->
+	 * 
 	 * @generated
 	 */
 	protected void addFunctionalRequirementsPropertyDescriptor(Object object) {
@@ -121,9 +121,9 @@ public class ScenarioItemProvider extends ModelElementItemProvider implements IE
 	}
 
 	/**
-	 * This adds a property descriptor for the Non Functional Requirements feature.
-	 * <!-- begin-user-doc --> <!--
+	 * This adds a property descriptor for the Non Functional Requirements feature. <!-- begin-user-doc --> <!--
 	 * end-user-doc -->
+	 * 
 	 * @generated
 	 */
 	protected void addNonFunctionalRequirementsPropertyDescriptor(Object object) {
@@ -136,9 +136,9 @@ public class ScenarioItemProvider extends ModelElementItemProvider implements IE
 	}
 
 	/**
-	 * This adds a property descriptor for the Participating Methods feature.
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
+	 * This adds a property descriptor for the Participating Methods feature. <!-- begin-user-doc --> <!-- end-user-doc
+	 * -->
+	 * 
 	 * @generated
 	 */
 	protected void addParticipatingMethodsPropertyDescriptor(Object object) {
@@ -150,9 +150,9 @@ public class ScenarioItemProvider extends ModelElementItemProvider implements IE
 	}
 
 	/**
-	 * This adds a property descriptor for the Participating Classes feature.
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
+	 * This adds a property descriptor for the Participating Classes feature. <!-- begin-user-doc --> <!-- end-user-doc
+	 * -->
+	 * 
 	 * @generated
 	 */
 	protected void addParticipatingClassesPropertyDescriptor(Object object) {
@@ -166,9 +166,9 @@ public class ScenarioItemProvider extends ModelElementItemProvider implements IE
 	/**
 	 * This specifies how to implement {@link #getChildren} and is used to deduce an appropriate feature for an
 	 * {@link org.eclipse.emf.edit.command.AddCommand}, {@link org.eclipse.emf.edit.command.RemoveCommand} or
-	 * {@link org.eclipse.emf.edit.command.MoveCommand} in {@link #createCommand}.
-	 * <!-- begin-user-doc --> <!--
+	 * {@link org.eclipse.emf.edit.command.MoveCommand} in {@link #createCommand}. <!-- begin-user-doc --> <!--
 	 * end-user-doc -->
+	 * 
 	 * @generated
 	 */
 	@Override
@@ -182,6 +182,7 @@ public class ScenarioItemProvider extends ModelElementItemProvider implements IE
 
 	/**
 	 * <!-- begin-user-doc --> <!-- end-user-doc -->
+	 * 
 	 * @generated
 	 */
 	@Override
@@ -193,8 +194,8 @@ public class ScenarioItemProvider extends ModelElementItemProvider implements IE
 	}
 
 	/**
-	 * This returns Scenario.gif.
-	 * <!-- begin-user-doc --> <!-- end-user-doc -->
+	 * This returns Scenario.gif. <!-- begin-user-doc --> <!-- end-user-doc -->
+	 * 
 	 * @generated
 	 */
 	@Override
@@ -232,9 +233,9 @@ public class ScenarioItemProvider extends ModelElementItemProvider implements IE
 	}
 
 	/**
-	 * This adds {@link org.eclipse.emf.edit.command.CommandParameter}s describing the children
-	 * that can be created under this object.
-	 * <!-- begin-user-doc --> <!-- end-user-doc -->
+	 * This adds {@link org.eclipse.emf.edit.command.CommandParameter}s describing the children that can be created
+	 * under this object. <!-- begin-user-doc --> <!-- end-user-doc -->
+	 * 
 	 * @generated
 	 */
 	@Override
@@ -246,8 +247,8 @@ public class ScenarioItemProvider extends ModelElementItemProvider implements IE
 	}
 
 	/**
-	 * Return the resource locator for this item provider's resources.
-	 * <!-- begin-user-doc --> <!-- end-user-doc -->
+	 * Return the resource locator for this item provider's resources. <!-- begin-user-doc --> <!-- end-user-doc -->
+	 * 
 	 * @generated
 	 */
 	@Override

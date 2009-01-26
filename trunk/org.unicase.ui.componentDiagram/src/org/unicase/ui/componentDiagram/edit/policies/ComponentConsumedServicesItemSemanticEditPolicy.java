@@ -7,9 +7,8 @@ import org.eclipse.gmf.runtime.emf.type.core.requests.DestroyReferenceRequest;
 /**
  * @generated
  */
-public class ComponentConsumedServicesItemSemanticEditPolicy
-		extends
-		org.unicase.ui.componentDiagram.edit.policies.ModelBaseItemSemanticEditPolicy {
+public class ComponentConsumedServicesItemSemanticEditPolicy extends
+	org.unicase.ui.componentDiagram.edit.policies.ModelBaseItemSemanticEditPolicy {
 
 	/**
 	 * @generated

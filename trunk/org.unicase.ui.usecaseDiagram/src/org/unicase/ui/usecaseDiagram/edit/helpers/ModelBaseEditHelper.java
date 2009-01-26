@@ -48,8 +48,7 @@ public class ModelBaseEditHelper extends AbstractEditHelper {
 	/**
 	 * @generated
 	 */
-	protected ICommand getCreateRelationshipCommand(
-			CreateRelationshipRequest req) {
+	protected ICommand getCreateRelationshipCommand(CreateRelationshipRequest req) {
 		return null;
 	}
 
@@ -59,7 +58,7 @@ public class ModelBaseEditHelper extends AbstractEditHelper {
 	@Override
 	protected ICommand getDestroyElementCommand(DestroyElementRequest req) {
 		return null;
-		}
+	}
 
 	/**
 	 * @generated

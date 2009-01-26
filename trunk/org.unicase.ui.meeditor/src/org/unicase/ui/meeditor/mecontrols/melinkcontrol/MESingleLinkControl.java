@@ -1,8 +1,7 @@
 /**
- * <copyright> Copyright (c) 2008 Jonas Helming, Maximilian Koegel. All rights reserved. This program and the accompanying materials are made available under the terms of the Eclipse Public License v1.0 which accompanies this distribution, and is available at http://www.eclipse.org/legal/epl-v10.html
- * </copyright>
- *
- * $Id$
+ * <copyright> Copyright (c) 2008 Jonas Helming, Maximilian Koegel. All rights reserved. This program and the
+ * accompanying materials are made available under the terms of the Eclipse Public License v1.0 which accompanies this
+ * distribution, and is available at http://www.eclipse.org/legal/epl-v10.html </copyright>
  */
 package org.unicase.ui.meeditor.mecontrols.melinkcontrol;
 
@@ -32,7 +31,6 @@ import org.unicase.ui.meeditor.mecontrols.AbstractMEControl;
  * GUI Control for the ME reference single links.
  * 
  * @author helming
- * 
  */
 public class MESingleLinkControl extends AbstractMEControl {
 
@@ -56,29 +54,21 @@ public class MESingleLinkControl extends AbstractMEControl {
 	/**
 	 * Default constructor.
 	 * 
-	 * @param editingDomain
-	 *            the editing domain
-	 * @param modelElement
-	 *            the ME
-	 * @param toolkit
-	 *            gui toolkit used for rendering
-	 * @param reference
-	 *            the reference link
-	 * @param itemPropertyDescriptor
-	 *            the item property descriptor
+	 * @param editingDomain the editing domain
+	 * @param modelElement the ME
+	 * @param toolkit gui toolkit used for rendering
+	 * @param reference the reference link
+	 * @param itemPropertyDescriptor the item property descriptor
 	 */
-	public MESingleLinkControl(EditingDomain editingDomain,
-			EObject modelElement, FormToolkit toolkit, EReference reference,
-			IItemPropertyDescriptor itemPropertyDescriptor) {
+	public MESingleLinkControl(EditingDomain editingDomain, EObject modelElement, FormToolkit toolkit,
+		EReference reference, IItemPropertyDescriptor itemPropertyDescriptor) {
 		super(editingDomain, modelElement, toolkit);
 		this.eReference = reference;
 		this.itemPropertyDescriptor = itemPropertyDescriptor;
 		eAdapter = new AdapterImpl() {
 			@Override
 			public void notifyChanged(Notification msg) {
-				if (msg.getFeature() != null
-						&& msg.getFeature().equals(eReference)
-						&& !msg.isTouch()) {
+				if (msg.getFeature() != null && msg.getFeature().equals(eReference) && !msg.isTouch()) {
 					updateLink();
 				}
 				super.notifyChanged(msg);
@@ -94,23 +84,19 @@ public class MESingleLinkControl extends AbstractMEControl {
 	public Control createControl(final Composite parent, int style) {
 		composite = getToolkit().createComposite(parent, style);
 		// composite.setLayout(new GridLayout(3, false));
-		GridLayoutFactory.fillDefaults().spacing(0, 0).numColumns(3)
-				.equalWidth(false).applyTo(composite);
+		GridLayoutFactory.fillDefaults().spacing(0, 0).numColumns(3).equalWidth(false).applyTo(composite);
 		this.parent = parent;
 		this.style = style;
 		linkArea = getToolkit().createComposite(composite);
 		linkArea.setLayout(new FillLayout());
 		updateLink();
 
-		final AddReferenceAction addAction = new AddReferenceAction(
-				(ModelElement) getModelElement(), eReference,
-				itemPropertyDescriptor);
-		final NewReferenceAction newAction = new NewReferenceAction(
-				(ModelElement) getModelElement(), eReference,
-				itemPropertyDescriptor);
+		final AddReferenceAction addAction = new AddReferenceAction((ModelElement) getModelElement(), eReference,
+			itemPropertyDescriptor);
+		final NewReferenceAction newAction = new NewReferenceAction((ModelElement) getModelElement(), eReference,
+			itemPropertyDescriptor);
 
-		Button selectButton = getToolkit()
-				.createButton(composite, "", SWT.PUSH);
+		Button selectButton = getToolkit().createButton(composite, "", SWT.PUSH);
 		selectButton.setImage(addAction.getImageDescriptor().createImage());
 		selectButton.addSelectionListener(new SelectionAdapter() {
 			@Override
@@ -138,8 +124,7 @@ public class MESingleLinkControl extends AbstractMEControl {
 		if (labelWidget != null) {
 			labelWidget.dispose();
 		}
-		TransactionalEditingDomain domain = TransactionUtil
-				.getEditingDomain(getModelElement());
+		TransactionalEditingDomain domain = TransactionUtil.getEditingDomain(getModelElement());
 		domain.getCommandStack().execute(new RecordingCommand(domain) {
 
 			@Override
@@ -147,15 +132,12 @@ public class MESingleLinkControl extends AbstractMEControl {
 				EObject opposite = (EObject) getModelElement().eGet(eReference);
 				ModelElement me = (ModelElement) getModelElement();
 				if (opposite != null) {
-					meControl = new MELinkControl(getEditingDomain(), opposite,
-							getToolkit(), me, eReference);
+					meControl = new MELinkControl(getEditingDomain(), opposite, getToolkit(), me, eReference);
 					meControl.createControl(linkArea, style);
 				} else {
-					labelWidget = getToolkit().createLabel(linkArea,
-							"(Not Set)");
+					labelWidget = getToolkit().createLabel(linkArea, "(Not Set)");
 					labelWidget.setBackground(parent.getBackground());
-					labelWidget.setForeground(parent.getShell().getDisplay()
-							.getSystemColor(SWT.COLOR_DARK_GRAY));
+					labelWidget.setForeground(parent.getShell().getDisplay().getSystemColor(SWT.COLOR_DARK_GRAY));
 				}
 				linkArea.layout(true);
 				composite.layout(true);

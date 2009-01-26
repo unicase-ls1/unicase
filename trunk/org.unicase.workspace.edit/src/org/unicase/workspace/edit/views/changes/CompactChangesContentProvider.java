@@ -1,8 +1,7 @@
 /**
- * <copyright> Copyright (c) 2008 Jonas Helming, Maximilian Koegel. All rights reserved. This program and the accompanying materials are made available under the terms of the Eclipse Public License v1.0 which accompanies this distribution, and is available at http://www.eclipse.org/legal/epl-v10.html
- * </copyright>
- *
- * $Id$
+ * <copyright> Copyright (c) 2008 Jonas Helming, Maximilian Koegel. All rights reserved. This program and the
+ * accompanying materials are made available under the terms of the Eclipse Public License v1.0 which accompanies this
+ * distribution, and is available at http://www.eclipse.org/legal/epl-v10.html </copyright>
  */
 package org.unicase.workspace.edit.views.changes;
 
@@ -22,17 +21,14 @@ import org.unicase.workspace.WorkspaceManager;
  * This is the content provider for TreeViewer on ChangesTreeComposite.
  * 
  * @author Shterev
- * 
  */
-public class CompactChangesContentProvider extends AdapterFactoryContentProvider
-		implements IContentProvider {
+public class CompactChangesContentProvider extends AdapterFactoryContentProvider implements IContentProvider {
 
 	/**
 	 * Constructor.
 	 */
 	public CompactChangesContentProvider() {
-		super(new ComposedAdapterFactory(
-				ComposedAdapterFactory.Descriptor.Registry.INSTANCE));
+		super(new ComposedAdapterFactory(ComposedAdapterFactory.Descriptor.Registry.INSTANCE));
 	}
 
 	/**
@@ -50,12 +46,11 @@ public class CompactChangesContentProvider extends AdapterFactoryContentProvider
 	 */
 	@Override
 	public Object[] getChildren(Object object) {
-		if (object instanceof ChangePackage){
+		if (object instanceof ChangePackage) {
 			ArrayList<EObject> ret = new ArrayList<EObject>();
-			ChangePackage cPackage = (ChangePackage)object;
-			ChangePackageVisualizationHelper helper = new ChangePackageVisualizationHelper(Arrays.asList(cPackage), WorkspaceManager.getInstance()
-					.getCurrentWorkspace().getActiveProjectSpace()
-					.getProject());
+			ChangePackage cPackage = (ChangePackage) object;
+			ChangePackageVisualizationHelper helper = new ChangePackageVisualizationHelper(Arrays.asList(cPackage),
+				WorkspaceManager.getInstance().getCurrentWorkspace().getActiveProjectSpace().getProject());
 			ret.addAll(helper.getAllModelElements(cPackage));
 			return ret.toArray();
 		}
@@ -63,16 +58,14 @@ public class CompactChangesContentProvider extends AdapterFactoryContentProvider
 
 	}
 
-	
 	/**
 	 * {@inheritDoc}
 	 */
 	@Override
 	public boolean hasChildren(Object object) {
-		if (object instanceof CompositeOperation
-				|| object instanceof ChangePackage) {
+		if (object instanceof CompositeOperation || object instanceof ChangePackage) {
 			return true;
-		} 
+		}
 		return false;
 	}
 

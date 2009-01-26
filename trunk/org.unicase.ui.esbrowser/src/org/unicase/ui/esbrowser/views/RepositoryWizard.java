@@ -1,8 +1,7 @@
 /**
- * <copyright> Copyright (c) 2008 Jonas Helming, Maximilian Koegel. All rights reserved. This program and the accompanying materials are made available under the terms of the Eclipse Public License v1.0 which accompanies this distribution, and is available at http://www.eclipse.org/legal/epl-v10.html
- * </copyright>
- *
- * $Id$
+ * <copyright> Copyright (c) 2008 Jonas Helming, Maximilian Koegel. All rights reserved. This program and the
+ * accompanying materials are made available under the terms of the Eclipse Public License v1.0 which accompanies this
+ * distribution, and is available at http://www.eclipse.org/legal/epl-v10.html </copyright>
  */
 package org.unicase.ui.esbrowser.views;
 
@@ -22,7 +21,6 @@ import org.unicase.workspace.WorkspaceManager;
  * Wizard for adding a new repository.
  * 
  * @author shterev
- * 
  */
 public class RepositoryWizard extends Wizard implements INewWizard {
 
@@ -40,8 +38,7 @@ public class RepositoryWizard extends Wizard implements INewWizard {
 	/**
 	 * Default constructor.
 	 * 
-	 * @param view
-	 *            callback to the repository view
+	 * @param view callback to the repository view
 	 */
 	public RepositoryWizard(ESBrowserView view) {
 		super();
@@ -59,10 +56,9 @@ public class RepositoryWizard extends Wizard implements INewWizard {
 
 	/**
 	 * {@inheritDoc}
-	 * @param workbench
-	 *            the workbench
-	 * @param selection
-	 *            the selection
+	 * 
+	 * @param workbench the workbench
+	 * @param selection the selection
 	 */
 	public void init(IWorkbench workbench, IStructuredSelection selection) {
 		this.workbench = workbench;
@@ -72,15 +68,12 @@ public class RepositoryWizard extends Wizard implements INewWizard {
 
 	/**
 	 *{@inheritDoc}
-	 * @param workbench
-	 *            the workbench
-	 * @param selection
-	 *            the selection
-	 * @param serverInfo
-	 *            the serverInfo that would be modified
+	 * 
+	 * @param workbench the workbench
+	 * @param selection the selection
+	 * @param serverInfo the serverInfo that would be modified
 	 */
-	public void init(IWorkbench workbench, IStructuredSelection selection,
-			ServerInfo serverInfo) {
+	public void init(IWorkbench workbench, IStructuredSelection selection, ServerInfo serverInfo) {
 		init(workbench, selection);
 		this.serverInfo = serverInfo;
 		this.edit = true;
@@ -100,14 +93,14 @@ public class RepositoryWizard extends Wizard implements INewWizard {
 	@Override
 	public boolean performFinish() {
 		if (this.getContainer().getCurrentPage().canFlipToNextPage()) {
-			TransactionalEditingDomain domain = TransactionalEditingDomain.Registry.INSTANCE.getEditingDomain("org.unicase.EditingDomain");
+			TransactionalEditingDomain domain = TransactionalEditingDomain.Registry.INSTANCE
+				.getEditingDomain("org.unicase.EditingDomain");
 			domain.getCommandStack().execute(new RecordingCommand(domain) {
 				@Override
 				protected void doExecute() {
 					// save serverInfo to workspace
-					Workspace workspace = WorkspaceManager.getInstance()
-					.getCurrentWorkspace();
-					if(!RepositoryWizard.this.edit){
+					Workspace workspace = WorkspaceManager.getInstance().getCurrentWorkspace();
+					if (!RepositoryWizard.this.edit) {
 						workspace.getServerInfos().add(RepositoryWizard.this.serverInfo);
 					}
 					workspace.save();
@@ -116,8 +109,8 @@ public class RepositoryWizard extends Wizard implements INewWizard {
 			view.getViewer().refresh();
 			dispose();
 		} else {
-			MessageDialog.openError(workbench.getActiveWorkbenchWindow()
-					.getShell(), "Error", "Field(s) were left blank!");
+			MessageDialog.openError(workbench.getActiveWorkbenchWindow().getShell(), "Error",
+				"Field(s) were left blank!");
 		}
 		return true;
 	}

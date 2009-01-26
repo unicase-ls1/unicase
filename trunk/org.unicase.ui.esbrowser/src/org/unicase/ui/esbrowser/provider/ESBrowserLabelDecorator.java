@@ -1,8 +1,7 @@
 /**
- * <copyright> Copyright (c) 2008 Jonas Helming, Maximilian Koegel. All rights reserved. This program and the accompanying materials are made available under the terms of the Eclipse Public License v1.0 which accompanies this distribution, and is available at http://www.eclipse.org/legal/epl-v10.html
- * </copyright>
- *
- * $Id$
+ * <copyright> Copyright (c) 2008 Jonas Helming, Maximilian Koegel. All rights reserved. This program and the
+ * accompanying materials are made available under the terms of the Eclipse Public License v1.0 which accompanies this
+ * distribution, and is available at http://www.eclipse.org/legal/epl-v10.html </copyright>
  */
 package org.unicase.ui.esbrowser.provider;
 
@@ -15,10 +14,9 @@ import org.unicase.workspace.ServerInfo;
  * @see ILightweightLabelDecorator
  */
 public class ESBrowserLabelDecorator implements ILightweightLabelDecorator {
-	
+
 	/**
-	 * {@inheritDoc} Decorates the label of a {@link ServerInfo} object
-	 * according to its login state.
+	 * {@inheritDoc} Decorates the label of a {@link ServerInfo} object according to its login state.
 	 */
 	public void decorate(Object element, IDecoration decoration) {
 
@@ -29,11 +27,8 @@ public class ESBrowserLabelDecorator implements ILightweightLabelDecorator {
 			return;
 		}
 		String suffix = "[" + server.getUrl() + "]";
-		if (server.getLastUsersession() != null
-				&& server.getLastUsersession().isLoggedIn()) {
-		 suffix = "["
-			+ server.getLastUsersession().getUsername() + "@"
-			+ server.getUrl() + "] logged in ";
+		if (server.getLastUsersession() != null && server.getLastUsersession().isLoggedIn()) {
+			suffix = "[" + server.getLastUsersession().getUsername() + "@" + server.getUrl() + "] logged in ";
 		}
 		decoration.addSuffix(suffix);
 

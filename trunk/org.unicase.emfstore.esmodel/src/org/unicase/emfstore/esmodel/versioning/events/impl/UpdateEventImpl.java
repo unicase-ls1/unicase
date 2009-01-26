@@ -1,7 +1,7 @@
 /**
- * <copyright>Copyright (c) 2008 Jonas Helming, Maximilian Koegel. All rights reserved. This program and the accompanying materials are made available under the terms of the Eclipse Public License v1.0 which accompanies this distribution, and is available at http://www.eclipse.org/legal/epl-v10.html</copyright>
- *
- * $Id$
+ * <copyright>Copyright (c) 2008 Jonas Helming, Maximilian Koegel. All rights reserved. This program and the
+ * accompanying materials are made available under the terms of the Eclipse Public License v1.0 which accompanies this
+ * distribution, and is available at http://www.eclipse.org/legal/epl-v10.html</copyright>
  */
 package org.unicase.emfstore.esmodel.versioning.events.impl;
 
@@ -15,24 +15,23 @@ import org.unicase.emfstore.esmodel.versioning.events.EventsPackage;
 import org.unicase.emfstore.esmodel.versioning.events.UpdateEvent;
 
 /**
- * <!-- begin-user-doc -->
- * An implementation of the model object '<em><b>Update Event</b></em>'.
- * <!-- end-user-doc -->
+ * <!-- begin-user-doc --> An implementation of the model object '<em><b>Update Event</b></em>'. <!-- end-user-doc -->
  * <p>
  * The following features are implemented:
  * <ul>
- *   <li>{@link org.unicase.emfstore.esmodel.versioning.events.impl.UpdateEventImpl#getBaseVersion <em>Base Version</em>}</li>
- *   <li>{@link org.unicase.emfstore.esmodel.versioning.events.impl.UpdateEventImpl#getTargetVersion <em>Target Version</em>}</li>
+ * <li>{@link org.unicase.emfstore.esmodel.versioning.events.impl.UpdateEventImpl#getBaseVersion <em>Base Version</em>}</li>
+ * <li>{@link org.unicase.emfstore.esmodel.versioning.events.impl.UpdateEventImpl#getTargetVersion <em>Target Version
+ * </em>}</li>
  * </ul>
  * </p>
- *
+ * 
  * @generated
  */
 public class UpdateEventImpl extends EventImpl implements UpdateEvent {
 	/**
-	 * The cached value of the '{@link #getBaseVersion() <em>Base Version</em>}' containment reference.
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
+	 * The cached value of the '{@link #getBaseVersion() <em>Base Version</em>}' containment reference. <!--
+	 * begin-user-doc --> <!-- end-user-doc -->
+	 * 
 	 * @see #getBaseVersion()
 	 * @generated
 	 * @ordered
@@ -40,9 +39,9 @@ public class UpdateEventImpl extends EventImpl implements UpdateEvent {
 	protected PrimaryVersionSpec baseVersion;
 
 	/**
-	 * The cached value of the '{@link #getTargetVersion() <em>Target Version</em>}' containment reference.
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
+	 * The cached value of the '{@link #getTargetVersion() <em>Target Version</em>}' containment reference. <!--
+	 * begin-user-doc --> <!-- end-user-doc -->
+	 * 
 	 * @see #getTargetVersion()
 	 * @generated
 	 * @ordered
@@ -50,8 +49,8 @@ public class UpdateEventImpl extends EventImpl implements UpdateEvent {
 	protected PrimaryVersionSpec targetVersion;
 
 	/**
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
+	 * <!-- begin-user-doc --> <!-- end-user-doc -->
+	 * 
 	 * @generated
 	 */
 	protected UpdateEventImpl() {
@@ -59,8 +58,8 @@ public class UpdateEventImpl extends EventImpl implements UpdateEvent {
 	}
 
 	/**
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
+	 * <!-- begin-user-doc --> <!-- end-user-doc -->
+	 * 
 	 * @generated
 	 */
 	@Override
@@ -69,8 +68,8 @@ public class UpdateEventImpl extends EventImpl implements UpdateEvent {
 	}
 
 	/**
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
+	 * <!-- begin-user-doc --> <!-- end-user-doc -->
+	 * 
 	 * @generated
 	 */
 	public PrimaryVersionSpec getBaseVersion() {
@@ -79,30 +78,25 @@ public class UpdateEventImpl extends EventImpl implements UpdateEvent {
 			baseVersion = (PrimaryVersionSpec) eResolveProxy(oldBaseVersion);
 			if (baseVersion != oldBaseVersion) {
 				InternalEObject newBaseVersion = (InternalEObject) baseVersion;
-				NotificationChain msgs = oldBaseVersion.eInverseRemove(this,
-						EOPPOSITE_FEATURE_BASE
-								- EventsPackage.UPDATE_EVENT__BASE_VERSION,
-						null, null);
+				NotificationChain msgs = oldBaseVersion.eInverseRemove(this, EOPPOSITE_FEATURE_BASE
+					- EventsPackage.UPDATE_EVENT__BASE_VERSION, null, null);
 				if (newBaseVersion.eInternalContainer() == null) {
-					msgs = newBaseVersion.eInverseAdd(this,
-							EOPPOSITE_FEATURE_BASE
-									- EventsPackage.UPDATE_EVENT__BASE_VERSION,
-							null, msgs);
+					msgs = newBaseVersion.eInverseAdd(this, EOPPOSITE_FEATURE_BASE
+						- EventsPackage.UPDATE_EVENT__BASE_VERSION, null, msgs);
 				}
 				if (msgs != null)
 					msgs.dispatch();
 				if (eNotificationRequired())
-					eNotify(new ENotificationImpl(this, Notification.RESOLVE,
-							EventsPackage.UPDATE_EVENT__BASE_VERSION,
-							oldBaseVersion, baseVersion));
+					eNotify(new ENotificationImpl(this, Notification.RESOLVE, EventsPackage.UPDATE_EVENT__BASE_VERSION,
+						oldBaseVersion, baseVersion));
 			}
 		}
 		return baseVersion;
 	}
 
 	/**
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
+	 * <!-- begin-user-doc --> <!-- end-user-doc -->
+	 * 
 	 * @generated
 	 */
 	public PrimaryVersionSpec basicGetBaseVersion() {
@@ -110,18 +104,16 @@ public class UpdateEventImpl extends EventImpl implements UpdateEvent {
 	}
 
 	/**
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
+	 * <!-- begin-user-doc --> <!-- end-user-doc -->
+	 * 
 	 * @generated
 	 */
-	public NotificationChain basicSetBaseVersion(
-			PrimaryVersionSpec newBaseVersion, NotificationChain msgs) {
+	public NotificationChain basicSetBaseVersion(PrimaryVersionSpec newBaseVersion, NotificationChain msgs) {
 		PrimaryVersionSpec oldBaseVersion = baseVersion;
 		baseVersion = newBaseVersion;
 		if (eNotificationRequired()) {
-			ENotificationImpl notification = new ENotificationImpl(this,
-					Notification.SET, EventsPackage.UPDATE_EVENT__BASE_VERSION,
-					oldBaseVersion, newBaseVersion);
+			ENotificationImpl notification = new ENotificationImpl(this, Notification.SET,
+				EventsPackage.UPDATE_EVENT__BASE_VERSION, oldBaseVersion, newBaseVersion);
 			if (msgs == null)
 				msgs = notification;
 			else
@@ -131,35 +123,30 @@ public class UpdateEventImpl extends EventImpl implements UpdateEvent {
 	}
 
 	/**
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
+	 * <!-- begin-user-doc --> <!-- end-user-doc -->
+	 * 
 	 * @generated
 	 */
 	public void setBaseVersion(PrimaryVersionSpec newBaseVersion) {
 		if (newBaseVersion != baseVersion) {
 			NotificationChain msgs = null;
 			if (baseVersion != null)
-				msgs = ((InternalEObject) baseVersion).eInverseRemove(this,
-						EOPPOSITE_FEATURE_BASE
-								- EventsPackage.UPDATE_EVENT__BASE_VERSION,
-						null, msgs);
+				msgs = ((InternalEObject) baseVersion).eInverseRemove(this, EOPPOSITE_FEATURE_BASE
+					- EventsPackage.UPDATE_EVENT__BASE_VERSION, null, msgs);
 			if (newBaseVersion != null)
-				msgs = ((InternalEObject) newBaseVersion).eInverseAdd(this,
-						EOPPOSITE_FEATURE_BASE
-								- EventsPackage.UPDATE_EVENT__BASE_VERSION,
-						null, msgs);
+				msgs = ((InternalEObject) newBaseVersion).eInverseAdd(this, EOPPOSITE_FEATURE_BASE
+					- EventsPackage.UPDATE_EVENT__BASE_VERSION, null, msgs);
 			msgs = basicSetBaseVersion(newBaseVersion, msgs);
 			if (msgs != null)
 				msgs.dispatch();
 		} else if (eNotificationRequired())
-			eNotify(new ENotificationImpl(this, Notification.SET,
-					EventsPackage.UPDATE_EVENT__BASE_VERSION, newBaseVersion,
-					newBaseVersion));
+			eNotify(new ENotificationImpl(this, Notification.SET, EventsPackage.UPDATE_EVENT__BASE_VERSION,
+				newBaseVersion, newBaseVersion));
 	}
 
 	/**
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
+	 * <!-- begin-user-doc --> <!-- end-user-doc -->
+	 * 
 	 * @generated
 	 */
 	public PrimaryVersionSpec getTargetVersion() {
@@ -168,32 +155,25 @@ public class UpdateEventImpl extends EventImpl implements UpdateEvent {
 			targetVersion = (PrimaryVersionSpec) eResolveProxy(oldTargetVersion);
 			if (targetVersion != oldTargetVersion) {
 				InternalEObject newTargetVersion = (InternalEObject) targetVersion;
-				NotificationChain msgs = oldTargetVersion.eInverseRemove(this,
-						EOPPOSITE_FEATURE_BASE
-								- EventsPackage.UPDATE_EVENT__TARGET_VERSION,
-						null, null);
+				NotificationChain msgs = oldTargetVersion.eInverseRemove(this, EOPPOSITE_FEATURE_BASE
+					- EventsPackage.UPDATE_EVENT__TARGET_VERSION, null, null);
 				if (newTargetVersion.eInternalContainer() == null) {
-					msgs = newTargetVersion
-							.eInverseAdd(
-									this,
-									EOPPOSITE_FEATURE_BASE
-											- EventsPackage.UPDATE_EVENT__TARGET_VERSION,
-									null, msgs);
+					msgs = newTargetVersion.eInverseAdd(this, EOPPOSITE_FEATURE_BASE
+						- EventsPackage.UPDATE_EVENT__TARGET_VERSION, null, msgs);
 				}
 				if (msgs != null)
 					msgs.dispatch();
 				if (eNotificationRequired())
 					eNotify(new ENotificationImpl(this, Notification.RESOLVE,
-							EventsPackage.UPDATE_EVENT__TARGET_VERSION,
-							oldTargetVersion, targetVersion));
+						EventsPackage.UPDATE_EVENT__TARGET_VERSION, oldTargetVersion, targetVersion));
 			}
 		}
 		return targetVersion;
 	}
 
 	/**
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
+	 * <!-- begin-user-doc --> <!-- end-user-doc -->
+	 * 
 	 * @generated
 	 */
 	public PrimaryVersionSpec basicGetTargetVersion() {
@@ -201,19 +181,16 @@ public class UpdateEventImpl extends EventImpl implements UpdateEvent {
 	}
 
 	/**
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
+	 * <!-- begin-user-doc --> <!-- end-user-doc -->
+	 * 
 	 * @generated
 	 */
-	public NotificationChain basicSetTargetVersion(
-			PrimaryVersionSpec newTargetVersion, NotificationChain msgs) {
+	public NotificationChain basicSetTargetVersion(PrimaryVersionSpec newTargetVersion, NotificationChain msgs) {
 		PrimaryVersionSpec oldTargetVersion = targetVersion;
 		targetVersion = newTargetVersion;
 		if (eNotificationRequired()) {
-			ENotificationImpl notification = new ENotificationImpl(this,
-					Notification.SET,
-					EventsPackage.UPDATE_EVENT__TARGET_VERSION,
-					oldTargetVersion, newTargetVersion);
+			ENotificationImpl notification = new ENotificationImpl(this, Notification.SET,
+				EventsPackage.UPDATE_EVENT__TARGET_VERSION, oldTargetVersion, newTargetVersion);
 			if (msgs == null)
 				msgs = notification;
 			else
@@ -223,40 +200,34 @@ public class UpdateEventImpl extends EventImpl implements UpdateEvent {
 	}
 
 	/**
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
+	 * <!-- begin-user-doc --> <!-- end-user-doc -->
+	 * 
 	 * @generated
 	 */
 	public void setTargetVersion(PrimaryVersionSpec newTargetVersion) {
 		if (newTargetVersion != targetVersion) {
 			NotificationChain msgs = null;
 			if (targetVersion != null)
-				msgs = ((InternalEObject) targetVersion).eInverseRemove(this,
-						EOPPOSITE_FEATURE_BASE
-								- EventsPackage.UPDATE_EVENT__TARGET_VERSION,
-						null, msgs);
+				msgs = ((InternalEObject) targetVersion).eInverseRemove(this, EOPPOSITE_FEATURE_BASE
+					- EventsPackage.UPDATE_EVENT__TARGET_VERSION, null, msgs);
 			if (newTargetVersion != null)
-				msgs = ((InternalEObject) newTargetVersion).eInverseAdd(this,
-						EOPPOSITE_FEATURE_BASE
-								- EventsPackage.UPDATE_EVENT__TARGET_VERSION,
-						null, msgs);
+				msgs = ((InternalEObject) newTargetVersion).eInverseAdd(this, EOPPOSITE_FEATURE_BASE
+					- EventsPackage.UPDATE_EVENT__TARGET_VERSION, null, msgs);
 			msgs = basicSetTargetVersion(newTargetVersion, msgs);
 			if (msgs != null)
 				msgs.dispatch();
 		} else if (eNotificationRequired())
-			eNotify(new ENotificationImpl(this, Notification.SET,
-					EventsPackage.UPDATE_EVENT__TARGET_VERSION,
-					newTargetVersion, newTargetVersion));
+			eNotify(new ENotificationImpl(this, Notification.SET, EventsPackage.UPDATE_EVENT__TARGET_VERSION,
+				newTargetVersion, newTargetVersion));
 	}
 
 	/**
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
+	 * <!-- begin-user-doc --> <!-- end-user-doc -->
+	 * 
 	 * @generated
 	 */
 	@Override
-	public NotificationChain eInverseRemove(InternalEObject otherEnd,
-			int featureID, NotificationChain msgs) {
+	public NotificationChain eInverseRemove(InternalEObject otherEnd, int featureID, NotificationChain msgs) {
 		switch (featureID) {
 		case EventsPackage.UPDATE_EVENT__BASE_VERSION:
 			return basicSetBaseVersion(null, msgs);
@@ -267,8 +238,8 @@ public class UpdateEventImpl extends EventImpl implements UpdateEvent {
 	}
 
 	/**
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
+	 * <!-- begin-user-doc --> <!-- end-user-doc -->
+	 * 
 	 * @generated
 	 */
 	@Override
@@ -287,8 +258,8 @@ public class UpdateEventImpl extends EventImpl implements UpdateEvent {
 	}
 
 	/**
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
+	 * <!-- begin-user-doc --> <!-- end-user-doc -->
+	 * 
 	 * @generated
 	 */
 	@Override
@@ -305,8 +276,8 @@ public class UpdateEventImpl extends EventImpl implements UpdateEvent {
 	}
 
 	/**
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
+	 * <!-- begin-user-doc --> <!-- end-user-doc -->
+	 * 
 	 * @generated
 	 */
 	@Override
@@ -323,8 +294,8 @@ public class UpdateEventImpl extends EventImpl implements UpdateEvent {
 	}
 
 	/**
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
+	 * <!-- begin-user-doc --> <!-- end-user-doc -->
+	 * 
 	 * @generated
 	 */
 	@Override
@@ -338,4 +309,4 @@ public class UpdateEventImpl extends EventImpl implements UpdateEvent {
 		return super.eIsSet(featureID);
 	}
 
-} //UpdateEventImpl
+} // UpdateEventImpl

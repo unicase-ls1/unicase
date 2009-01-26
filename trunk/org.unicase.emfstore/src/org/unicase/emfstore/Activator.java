@@ -1,8 +1,7 @@
 /**
- * <copyright> Copyright (c) 2008 Jonas Helming, Maximilian Koegel. All rights reserved. This program and the accompanying materials are made available under the terms of the Eclipse Public License v1.0 which accompanies this distribution, and is available at http://www.eclipse.org/legal/epl-v10.html
- * </copyright>
- *
- * $Id$
+ * <copyright> Copyright (c) 2008 Jonas Helming, Maximilian Koegel. All rights reserved. This program and the
+ * accompanying materials are made available under the terms of the Eclipse Public License v1.0 which accompanies this
+ * distribution, and is available at http://www.eclipse.org/legal/epl-v10.html </copyright>
  */
 package org.unicase.emfstore;
 
@@ -23,16 +22,16 @@ public class Activator extends Plugin {
 	// The shared instance
 	private static Activator plugin;
 
-	
-	/** 
+	/**
 	 * {@inheritDoc}
+	 * 
 	 * @see org.eclipse.core.runtime.Plugin#start(org.osgi.framework.BundleContext)
 	 */
 	@Override
 	public void start(BundleContext context) throws FatalEmfStoreException {
 		try {
 			super.start(context);
-		// BEGIN SUPRESS CATCH EXCEPTION
+			// BEGIN SUPRESS CATCH EXCEPTION
 		} catch (Exception e) {
 			throw new FatalEmfStoreException("Plugin Bundle start failed!", e);
 		}
@@ -40,9 +39,9 @@ public class Activator extends Plugin {
 		plugin = this;
 	}
 
-
-	/** 
+	/**
 	 * {@inheritDoc}
+	 * 
 	 * @see org.eclipse.core.runtime.Plugin#stop(org.osgi.framework.BundleContext)
 	 */
 	@Override
@@ -50,7 +49,7 @@ public class Activator extends Plugin {
 		plugin = null;
 		try {
 			super.stop(context);
-		// BEGIN SUPRESS CATCH EXCEPTION
+			// BEGIN SUPRESS CATCH EXCEPTION
 		} catch (Exception e) {
 			throw new FatalEmfStoreException("Plugin Bundle stop failed!", e);
 		}

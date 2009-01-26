@@ -1,8 +1,7 @@
 /**
- * <copyright> Copyright (c) 2008 Jonas Helming, Maximilian Koegel. All rights reserved. This program and the accompanying materials are made available under the terms of the Eclipse Public License v1.0 which accompanies this distribution, and is available at http://www.eclipse.org/legal/epl-v10.html
- * </copyright>
- *
- * $Id$
+ * <copyright> Copyright (c) 2008 Jonas Helming, Maximilian Koegel. All rights reserved. This program and the
+ * accompanying materials are made available under the terms of the Eclipse Public License v1.0 which accompanies this
+ * distribution, and is available at http://www.eclipse.org/legal/epl-v10.html </copyright>
  */
 package org.unicase.ui.common.wizards.wizardpages;
 
@@ -27,7 +26,6 @@ import org.unicase.ui.common.wizards.WorkPackageReviewWizard;
  * Wizardpage for selecting WorkItems.
  * 
  * @author naughton
- * 
  */
 public class WorkItemSelectionPage extends WizardPage {
 	private static final String PAGE_TITLE = "Items to be reviewed";
@@ -37,8 +35,7 @@ public class WorkItemSelectionPage extends WizardPage {
 	/**
 	 * Constructor.
 	 * 
-	 * @param pageName
-	 *            the page name
+	 * @param pageName the page name
 	 */
 	public WorkItemSelectionPage(String pageName) {
 		super(pageName);
@@ -55,8 +52,7 @@ public class WorkItemSelectionPage extends WizardPage {
 	}
 
 	/**
-	 * @param parent
-	 *            the parent.
+	 * @param parent the parent.
 	 */
 	public void createControl(Composite parent) {
 		Composite composite = new Composite(parent, SWT.NULL);
@@ -65,7 +61,7 @@ public class WorkItemSelectionPage extends WizardPage {
 		composite.setLayout(gridLayout);
 		Table checkTable = new Table(composite, SWT.CHECK | SWT.BORDER);
 		checkTable.setLayoutData(new GridData(GridData.FILL_BOTH));
-		
+
 		populateTable(checkTable);
 
 		checkTable.addListener(SWT.Selection, new Listener() {
@@ -92,10 +88,9 @@ public class WorkItemSelectionPage extends WizardPage {
 
 		WorkPackageReviewWizard wizard = (WorkPackageReviewWizard) getWizard();
 		EList<WorkItem> workItems = wizard.getWorkItems();
-		
-		AdapterFactoryLabelProvider labelProvider = new AdapterFactoryLabelProvider(
-				new ComposedAdapterFactory(
-						ComposedAdapterFactory.Descriptor.Registry.INSTANCE));
+
+		AdapterFactoryLabelProvider labelProvider = new AdapterFactoryLabelProvider(new ComposedAdapterFactory(
+			ComposedAdapterFactory.Descriptor.Registry.INSTANCE));
 
 		for (WorkItem workItem : workItems) {
 			TableItem item = new TableItem(table, SWT.NONE);
@@ -105,14 +100,14 @@ public class WorkItemSelectionPage extends WizardPage {
 			item.setChecked(!getStatus(workItem));
 			selectedWorkItems.add(workItem);
 		}
-		
+
 		// Turn drawing back on!
 		table.setRedraw(true);
 	}
 
 	private boolean getStatus(WorkItem workItem) {
 		if (workItem instanceof Checkable) {
-			return ((Checkable)workItem).isChecked();
+			return ((Checkable) workItem).isChecked();
 		}
 		return true;
 	}

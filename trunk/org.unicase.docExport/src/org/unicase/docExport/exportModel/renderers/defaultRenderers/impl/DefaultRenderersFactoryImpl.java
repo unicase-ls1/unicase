@@ -1,5 +1,5 @@
 /**
- * <copyright> </copyright> $Id$
+ * <copyright> </copyright>
  */
 package org.unicase.docExport.exportModel.renderers.defaultRenderers.impl;
 

@@ -1,8 +1,7 @@
 /**
- * <copyright> Copyright (c) 2008 Jonas Helming, Maximilian Koegel. All rights reserved. This program and the accompanying materials are made available under the terms of the Eclipse Public License v1.0 which accompanies this distribution, and is available at http://www.eclipse.org/legal/epl-v10.html
- * </copyright>
- *
- * $Id$
+ * <copyright> Copyright (c) 2008 Jonas Helming, Maximilian Koegel. All rights reserved. This program and the
+ * accompanying materials are made available under the terms of the Eclipse Public License v1.0 which accompanies this
+ * distribution, and is available at http://www.eclipse.org/legal/epl-v10.html </copyright>
  */
 package org.unicase.workspace.edit.dialogs;
 
@@ -24,7 +23,6 @@ import org.unicase.workspace.edit.views.changes.TabbedChangesComposite;
  * This is the update dialog. It shows just a ChangesTreeComposite.
  * 
  * @author Hodaie
- * 
  */
 
 public class UpdateDialog extends TitleAreaDialog {
@@ -34,10 +32,8 @@ public class UpdateDialog extends TitleAreaDialog {
 	/**
 	 * Constructor.
 	 * 
-	 * @param parentShell
-	 *            the parent shell
-	 * @param changes
-	 *            the list of changes
+	 * @param parentShell the parent shell
+	 * @param changes the list of changes
 	 */
 	public UpdateDialog(Shell parentShell, List<ChangePackage> changes) {
 		super(parentShell);
@@ -56,10 +52,8 @@ public class UpdateDialog extends TitleAreaDialog {
 
 		// changes tree
 		if (changes != null) {
-			TabbedChangesComposite changesComposite = new TabbedChangesComposite(
-					contents, SWT.BORDER, changes);
-			changesComposite.setLayoutData(new GridData(SWT.FILL, SWT.FILL,
-					true, true, 2, 1));
+			TabbedChangesComposite changesComposite = new TabbedChangesComposite(contents, SWT.BORDER, changes);
+			changesComposite.setLayoutData(new GridData(SWT.FILL, SWT.FILL, true, true, 2, 1));
 		}
 
 		// show number of changes on dialog title
@@ -78,8 +72,7 @@ public class UpdateDialog extends TitleAreaDialog {
 		Rectangle area = Display.getCurrent().getClientArea();
 		int width = area.width * 2 / 3;
 		int height = area.height * 2 / 3;
-		newShell.setBounds((area.width - width) / 2,
-				(area.height - height) / 2, width, height);
+		newShell.setBounds((area.width - width) / 2, (area.height - height) / 2, width, height);
 	}
 
 	/**

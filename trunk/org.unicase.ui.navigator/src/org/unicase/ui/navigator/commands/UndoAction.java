@@ -1,8 +1,7 @@
 /**
- * <copyright> Copyright (c) 2008 Jonas Helming, Maximilian Koegel. All rights reserved. This program and the accompanying materials are made available under the terms of the Eclipse Public License v1.0 which accompanies this distribution, and is available at http://www.eclipse.org/legal/epl-v10.html
- * </copyright>
- *
- * $Id$
+ * <copyright> Copyright (c) 2008 Jonas Helming, Maximilian Koegel. All rights reserved. This program and the
+ * accompanying materials are made available under the terms of the Eclipse Public License v1.0 which accompanies this
+ * distribution, and is available at http://www.eclipse.org/legal/epl-v10.html </copyright>
  */
 
 package org.unicase.ui.navigator.commands;
@@ -15,51 +14,41 @@ import org.eclipse.emf.transaction.TransactionalEditingDomain;
 import org.eclipse.jface.action.Action;
 
 /**
- * 
- * @author Hodaie
- * This is the temporary implementation for redo action in navigator. 
- * Currently we have a problem with undo/redo and EditingDomain; in that,
- * navigator can undo/redo changes not occurred through it. 
- * The unod/redo in navigator should actually consider only its own context.
- * To set enablement of global undo/redo menu items in Workbench edit menu, this
- * class implements CommandStackListener
+ * @author Hodaie This is the temporary implementation for redo action in navigator. Currently we have a problem with
+ *         undo/redo and EditingDomain; in that, navigator can undo/redo changes not occurred through it. The unod/redo
+ *         in navigator should actually consider only its own context. To set enablement of global undo/redo menu items
+ *         in Workbench edit menu, this class implements CommandStackListener
  */
 public class UndoAction extends Action implements CommandStackListener {
 
-	private CommandStack commandStack; 
-	
-	/**.
-	 * Constructor
+	private CommandStack commandStack;
+
+	/**
+	 * . Constructor
 	 */
 	public UndoAction() {
-		this.commandStack = TransactionalEditingDomain.Registry.INSTANCE.getEditingDomain(
-				"org.unicase.EditingDomain").getCommandStack();
+		this.commandStack = TransactionalEditingDomain.Registry.INSTANCE.getEditingDomain("org.unicase.EditingDomain")
+			.getCommandStack();
 		commandStack.addCommandStackListener(this);
-		
 
 	}
 
-	
-	/**.
-	 * {@inheritDoc}
+	/**
+	 * . {@inheritDoc}
 	 */
 	public void commandStackChanged(EventObject event) {
 		setEnabled(commandStack.canUndo());
 	}
-	
 
-	/**.
-	 * {@inheritDoc}
+	/**
+	 * . {@inheritDoc}
 	 */
 	@Override
 	public void run() {
-		if(commandStack.canUndo()){
+		if (commandStack.canUndo()) {
 			commandStack.undo();
 		}
-		
 
 	}
-
-
 
 }

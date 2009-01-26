@@ -75,8 +75,7 @@ public class ModelCreationWizard extends Wizard implements INewWizard {
 	/**
 	 * @generated
 	 */
-	public void setOpenNewlyCreatedDiagramEditor(
-			boolean openNewlyCreatedDiagramEditor) {
+	public void setOpenNewlyCreatedDiagramEditor(boolean openNewlyCreatedDiagramEditor) {
 		this.openNewlyCreatedDiagramEditor = openNewlyCreatedDiagramEditor;
 	}
 
@@ -88,7 +87,7 @@ public class ModelCreationWizard extends Wizard implements INewWizard {
 		this.selection = selection;
 		setWindowTitle(org.unicase.model.classDiagram.part.Messages.ModelCreationWizardTitle);
 		setDefaultPageImageDescriptor(org.unicase.model.classDiagram.part.ModelDiagramEditorPlugin
-				.getBundledImageDescriptor("icons/wizban/NewDiagramWizard.gif")); //$NON-NLS-1$
+			.getBundledImageDescriptor("icons/wizban/NewDiagramWizard.gif")); //$NON-NLS-1$
 		setNeedsProgressMonitor(true);
 	}
 
@@ -97,11 +96,11 @@ public class ModelCreationWizard extends Wizard implements INewWizard {
 	 */
 	public void addPages() {
 		diagramModelFilePage = new org.unicase.model.classDiagram.part.ModelCreationWizardPage(
-				"DiagramModelFile", getSelection(), "model_diagram"); //$NON-NLS-1$ //$NON-NLS-2$
+			"DiagramModelFile", getSelection(), "model_diagram"); //$NON-NLS-1$ //$NON-NLS-2$
 		diagramModelFilePage
-				.setTitle(org.unicase.model.classDiagram.part.Messages.ModelCreationWizard_DiagramModelFilePageTitle);
+			.setTitle(org.unicase.model.classDiagram.part.Messages.ModelCreationWizard_DiagramModelFilePageTitle);
 		diagramModelFilePage
-				.setDescription(org.unicase.model.classDiagram.part.Messages.ModelCreationWizard_DiagramModelFilePageDescription);
+			.setDescription(org.unicase.model.classDiagram.part.Messages.ModelCreationWizard_DiagramModelFilePageDescription);
 		addPage(diagramModelFilePage);
 	}
 
@@ -111,20 +110,16 @@ public class ModelCreationWizard extends Wizard implements INewWizard {
 	public boolean performFinish() {
 		IRunnableWithProgress op = new WorkspaceModifyOperation(null) {
 
-			protected void execute(IProgressMonitor monitor)
-					throws CoreException, InterruptedException {
-				diagram = org.unicase.model.classDiagram.part.ModelDiagramEditorUtil
-						.createDiagram(diagramModelFilePage.getURI(), monitor);
+			protected void execute(IProgressMonitor monitor) throws CoreException, InterruptedException {
+				diagram = org.unicase.model.classDiagram.part.ModelDiagramEditorUtil.createDiagram(diagramModelFilePage
+					.getURI(), monitor);
 				if (isOpenNewlyCreatedDiagramEditor() && diagram != null) {
 					try {
-						org.unicase.model.classDiagram.part.ModelDiagramEditorUtil
-								.openDiagram(diagram);
+						org.unicase.model.classDiagram.part.ModelDiagramEditorUtil.openDiagram(diagram);
 					} catch (PartInitException e) {
-						ErrorDialog
-								.openError(
-										getContainer().getShell(),
-										org.unicase.model.classDiagram.part.Messages.ModelCreationWizardOpenEditorError,
-										null, e.getStatus());
+						ErrorDialog.openError(getContainer().getShell(),
+							org.unicase.model.classDiagram.part.Messages.ModelCreationWizardOpenEditorError, null, e
+								.getStatus());
 					}
 				}
 			}
@@ -135,17 +130,12 @@ public class ModelCreationWizard extends Wizard implements INewWizard {
 			return false;
 		} catch (InvocationTargetException e) {
 			if (e.getTargetException() instanceof CoreException) {
-				ErrorDialog
-						.openError(
-								getContainer().getShell(),
-								org.unicase.model.classDiagram.part.Messages.ModelCreationWizardCreationError,
-								null, ((CoreException) e.getTargetException())
-										.getStatus());
+				ErrorDialog.openError(getContainer().getShell(),
+					org.unicase.model.classDiagram.part.Messages.ModelCreationWizardCreationError, null,
+					((CoreException) e.getTargetException()).getStatus());
 			} else {
-				org.unicase.model.classDiagram.part.ModelDiagramEditorPlugin
-						.getInstance()
-						.logError(
-								"Error creating diagram", e.getTargetException()); //$NON-NLS-1$
+				org.unicase.model.classDiagram.part.ModelDiagramEditorPlugin.getInstance().logError(
+					"Error creating diagram", e.getTargetException()); //$NON-NLS-1$
 			}
 			return false;
 		}

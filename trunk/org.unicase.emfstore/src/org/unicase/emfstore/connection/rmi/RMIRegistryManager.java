@@ -1,8 +1,7 @@
 /**
- * <copyright> Copyright (c) 2008 Jonas Helming, Maximilian Koegel. All rights reserved. This program and the accompanying materials are made available under the terms of the Eclipse Public License v1.0 which accompanies this distribution, and is available at http://www.eclipse.org/legal/epl-v10.html
- * </copyright>
- *
- * $Id$
+ * <copyright> Copyright (c) 2008 Jonas Helming, Maximilian Koegel. All rights reserved. This program and the
+ * accompanying materials are made available under the terms of the Eclipse Public License v1.0 which accompanies this
+ * distribution, and is available at http://www.eclipse.org/legal/epl-v10.html </copyright>
  */
 package org.unicase.emfstore.connection.rmi;
 
@@ -15,8 +14,8 @@ import java.rmi.server.RemoteServer;
 import org.unicase.emfstore.Activator;
 
 /**
- * The RMIRegistryManager holds the rmi registry, it is implemented as
- * singleton. All RMI facades should use this registry.
+ * The RMIRegistryManager holds the rmi registry, it is implemented as singleton. All RMI facades should use this
+ * registry.
  * 
  * @author wesendonk
  */

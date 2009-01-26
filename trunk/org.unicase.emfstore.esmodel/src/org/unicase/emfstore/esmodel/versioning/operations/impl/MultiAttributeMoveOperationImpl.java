@@ -1,8 +1,7 @@
 /**
- * <copyright> Copyright (c) 2008 Jonas Helming, Maximilian Koegel. All rights reserved. This program and the accompanying materials are made available under the terms of the Eclipse Public License v1.0 which accompanies this distribution, and is available at http://www.eclipse.org/legal/epl-v10.html
- * </copyright>
- *
- * $Id$
+ * <copyright> Copyright (c) 2008 Jonas Helming, Maximilian Koegel. All rights reserved. This program and the
+ * accompanying materials are made available under the terms of the Eclipse Public License v1.0 which accompanies this
+ * distribution, and is available at http://www.eclipse.org/legal/epl-v10.html </copyright>
  */
 package org.unicase.emfstore.esmodel.versioning.operations.impl;
 
@@ -14,25 +13,25 @@ import org.unicase.emfstore.esmodel.versioning.operations.MultiAttributeMoveOper
 import org.unicase.emfstore.esmodel.versioning.operations.OperationsPackage;
 
 /**
- * <!-- begin-user-doc -->
- * An implementation of the model object '<em><b>Multi Attribute Move Operation</b></em>'.
- * <!-- end-user-doc -->
+ * <!-- begin-user-doc --> An implementation of the model object '<em><b>Multi Attribute Move Operation</b></em>'. <!--
+ * end-user-doc -->
  * <p>
  * The following features are implemented:
  * <ul>
- *   <li>{@link org.unicase.emfstore.esmodel.versioning.operations.impl.MultiAttributeMoveOperationImpl#getOldIndex <em>Old Index</em>}</li>
- *   <li>{@link org.unicase.emfstore.esmodel.versioning.operations.impl.MultiAttributeMoveOperationImpl#getNewIndex <em>New Index</em>}</li>
+ * <li>{@link org.unicase.emfstore.esmodel.versioning.operations.impl.MultiAttributeMoveOperationImpl#getOldIndex <em>
+ * Old Index</em>}</li>
+ * <li>{@link org.unicase.emfstore.esmodel.versioning.operations.impl.MultiAttributeMoveOperationImpl#getNewIndex <em>
+ * New Index</em>}</li>
  * </ul>
  * </p>
- *
+ * 
  * @generated
  */
-public class MultiAttributeMoveOperationImpl extends FeatureOperationImpl
-		implements MultiAttributeMoveOperation {
+public class MultiAttributeMoveOperationImpl extends FeatureOperationImpl implements MultiAttributeMoveOperation {
 	/**
-	 * The default value of the '{@link #getOldIndex() <em>Old Index</em>}' attribute.
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
+	 * The default value of the '{@link #getOldIndex() <em>Old Index</em>}' attribute. <!-- begin-user-doc --> <!--
+	 * end-user-doc -->
+	 * 
 	 * @see #getOldIndex()
 	 * @generated
 	 * @ordered
@@ -40,9 +39,9 @@ public class MultiAttributeMoveOperationImpl extends FeatureOperationImpl
 	protected static final int OLD_INDEX_EDEFAULT = 0;
 
 	/**
-	 * The cached value of the '{@link #getOldIndex() <em>Old Index</em>}' attribute.
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
+	 * The cached value of the '{@link #getOldIndex() <em>Old Index</em>}' attribute. <!-- begin-user-doc --> <!--
+	 * end-user-doc -->
+	 * 
 	 * @see #getOldIndex()
 	 * @generated
 	 * @ordered
@@ -50,9 +49,9 @@ public class MultiAttributeMoveOperationImpl extends FeatureOperationImpl
 	protected int oldIndex = OLD_INDEX_EDEFAULT;
 
 	/**
-	 * The default value of the '{@link #getNewIndex() <em>New Index</em>}' attribute.
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
+	 * The default value of the '{@link #getNewIndex() <em>New Index</em>}' attribute. <!-- begin-user-doc --> <!--
+	 * end-user-doc -->
+	 * 
 	 * @see #getNewIndex()
 	 * @generated
 	 * @ordered
@@ -60,9 +59,9 @@ public class MultiAttributeMoveOperationImpl extends FeatureOperationImpl
 	protected static final int NEW_INDEX_EDEFAULT = 0;
 
 	/**
-	 * The cached value of the '{@link #getNewIndex() <em>New Index</em>}' attribute.
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
+	 * The cached value of the '{@link #getNewIndex() <em>New Index</em>}' attribute. <!-- begin-user-doc --> <!--
+	 * end-user-doc -->
+	 * 
 	 * @see #getNewIndex()
 	 * @generated
 	 * @ordered
@@ -70,8 +69,8 @@ public class MultiAttributeMoveOperationImpl extends FeatureOperationImpl
 	protected int newIndex = NEW_INDEX_EDEFAULT;
 
 	/**
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
+	 * <!-- begin-user-doc --> <!-- end-user-doc -->
+	 * 
 	 * @generated
 	 */
 	protected MultiAttributeMoveOperationImpl() {
@@ -79,8 +78,8 @@ public class MultiAttributeMoveOperationImpl extends FeatureOperationImpl
 	}
 
 	/**
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
+	 * <!-- begin-user-doc --> <!-- end-user-doc -->
+	 * 
 	 * @generated
 	 */
 	@Override
@@ -89,8 +88,8 @@ public class MultiAttributeMoveOperationImpl extends FeatureOperationImpl
 	}
 
 	/**
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
+	 * <!-- begin-user-doc --> <!-- end-user-doc -->
+	 * 
 	 * @generated
 	 */
 	public int getOldIndex() {
@@ -98,24 +97,21 @@ public class MultiAttributeMoveOperationImpl extends FeatureOperationImpl
 	}
 
 	/**
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
+	 * <!-- begin-user-doc --> <!-- end-user-doc -->
+	 * 
 	 * @generated
 	 */
 	public void setOldIndex(int newOldIndex) {
 		int oldOldIndex = oldIndex;
 		oldIndex = newOldIndex;
 		if (eNotificationRequired())
-			eNotify(new ENotificationImpl(
-					this,
-					Notification.SET,
-					OperationsPackage.MULTI_ATTRIBUTE_MOVE_OPERATION__OLD_INDEX,
-					oldOldIndex, oldIndex));
+			eNotify(new ENotificationImpl(this, Notification.SET,
+				OperationsPackage.MULTI_ATTRIBUTE_MOVE_OPERATION__OLD_INDEX, oldOldIndex, oldIndex));
 	}
 
 	/**
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
+	 * <!-- begin-user-doc --> <!-- end-user-doc -->
+	 * 
 	 * @generated
 	 */
 	public int getNewIndex() {
@@ -123,24 +119,21 @@ public class MultiAttributeMoveOperationImpl extends FeatureOperationImpl
 	}
 
 	/**
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
+	 * <!-- begin-user-doc --> <!-- end-user-doc -->
+	 * 
 	 * @generated
 	 */
 	public void setNewIndex(int newNewIndex) {
 		int oldNewIndex = newIndex;
 		newIndex = newNewIndex;
 		if (eNotificationRequired())
-			eNotify(new ENotificationImpl(
-					this,
-					Notification.SET,
-					OperationsPackage.MULTI_ATTRIBUTE_MOVE_OPERATION__NEW_INDEX,
-					oldNewIndex, newIndex));
+			eNotify(new ENotificationImpl(this, Notification.SET,
+				OperationsPackage.MULTI_ATTRIBUTE_MOVE_OPERATION__NEW_INDEX, oldNewIndex, newIndex));
 	}
 
 	/**
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
+	 * <!-- begin-user-doc --> <!-- end-user-doc -->
+	 * 
 	 * @generated
 	 */
 	@Override
@@ -155,8 +148,8 @@ public class MultiAttributeMoveOperationImpl extends FeatureOperationImpl
 	}
 
 	/**
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
+	 * <!-- begin-user-doc --> <!-- end-user-doc -->
+	 * 
 	 * @generated
 	 */
 	@Override
@@ -173,8 +166,8 @@ public class MultiAttributeMoveOperationImpl extends FeatureOperationImpl
 	}
 
 	/**
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
+	 * <!-- begin-user-doc --> <!-- end-user-doc -->
+	 * 
 	 * @generated
 	 */
 	@Override
@@ -191,8 +184,8 @@ public class MultiAttributeMoveOperationImpl extends FeatureOperationImpl
 	}
 
 	/**
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
+	 * <!-- begin-user-doc --> <!-- end-user-doc -->
+	 * 
 	 * @generated
 	 */
 	@Override
@@ -207,8 +200,8 @@ public class MultiAttributeMoveOperationImpl extends FeatureOperationImpl
 	}
 
 	/**
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
+	 * <!-- begin-user-doc --> <!-- end-user-doc -->
+	 * 
 	 * @generated
 	 */
 	@Override
@@ -243,4 +236,4 @@ public class MultiAttributeMoveOperationImpl extends FeatureOperationImpl
 		return null;
 	}
 
-} //MultiAttributeMoveOperationImpl
+} // MultiAttributeMoveOperationImpl

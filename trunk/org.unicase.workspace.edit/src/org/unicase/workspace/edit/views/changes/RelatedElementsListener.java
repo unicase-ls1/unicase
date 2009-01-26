@@ -1,8 +1,7 @@
 /**
- * <copyright> Copyright (c) 2008 Jonas Helming, Maximilian Koegel. All rights reserved. This program and the accompanying materials are made available under the terms of the Eclipse Public License v1.0 which accompanies this distribution, and is available at http://www.eclipse.org/legal/epl-v10.html
- * </copyright>
- *
- * $Id$
+ * <copyright> Copyright (c) 2008 Jonas Helming, Maximilian Koegel. All rights reserved. This program and the
+ * accompanying materials are made available under the terms of the Eclipse Public License v1.0 which accompanies this
+ * distribution, and is available at http://www.eclipse.org/legal/epl-v10.html </copyright>
  */
 package org.unicase.workspace.edit.views.changes;
 
@@ -28,9 +27,8 @@ import org.unicase.emfstore.esmodel.versioning.operations.AbstractOperation;
 import org.unicase.model.ModelElement;
 
 /**
- * A listener to display the model elements related to the current selection in
- * the changes tree. Supports ChangePackages, ModelElements, AbstractOperations
- * as input.
+ * A listener to display the model elements related to the current selection in the changes tree. Supports
+ * ChangePackages, ModelElements, AbstractOperations as input.
  * 
  * @author Shterev
  */
@@ -45,17 +43,12 @@ public class RelatedElementsListener implements ISelectionChangedListener {
 	/**
 	 * Default constructor.
 	 * 
-	 * @param parent
-	 *            the composite where the table should be painted in
-	 * @param emfProvider
-	 *            the emfprovider for the visualization of the affected elements
-	 *            table.
-	 * @param visualizationHelper
-	 *            the visualizationHelper for collecting the affected elements.
+	 * @param parent the composite where the table should be painted in
+	 * @param emfProvider the emfprovider for the visualization of the affected elements table.
+	 * @param visualizationHelper the visualizationHelper for collecting the affected elements.
 	 */
-	public RelatedElementsListener(Composite parent,
-			ILabelProvider emfProvider,
-			ChangePackageVisualizationHelper visualizationHelper) {
+	public RelatedElementsListener(Composite parent, ILabelProvider emfProvider,
+		ChangePackageVisualizationHelper visualizationHelper) {
 		this.emfProvider = emfProvider;
 		this.visualizationHelper = visualizationHelper;
 		this.parent = parent;
@@ -65,8 +58,7 @@ public class RelatedElementsListener implements ISelectionChangedListener {
 	 * {@inheritDoc}
 	 */
 	public void selectionChanged(SelectionChangedEvent event) {
-		Object selected = ((TreeSelection) event.getSelection())
-				.getFirstElement();
+		Object selected = ((TreeSelection) event.getSelection()).getFirstElement();
 		if (affectedTable != null && !affectedTable.getTable().isDisposed()) {
 			affectedTable.getTable().dispose();
 			affectedTableComposite.dispose();
@@ -85,29 +77,23 @@ public class RelatedElementsListener implements ISelectionChangedListener {
 		};
 		if (selected instanceof AbstractOperation) {
 			AbstractOperation operation = (AbstractOperation) selected;
-			Set<EObject> affectedList = visualizationHelper
-					.getAffectedElements(operation);
+			Set<EObject> affectedList = visualizationHelper.getAffectedElements(operation);
 			if (affectedList.size() > 0) {
-				createTable(parent, columnLabelProvider, affectedList,
-						"Affected Model Elements");
+				createTable(parent, columnLabelProvider, affectedList, "Affected Model Elements");
 			}
 		} else if (selected instanceof ChangePackage) {
 			ChangePackage cPackage = (ChangePackage) selected;
-			Set<EObject> affectedList = visualizationHelper
-					.getAllModelElements(cPackage);
+			Set<EObject> affectedList = visualizationHelper.getAllModelElements(cPackage);
 			if (affectedList.size() > 0) {
-				createTable(parent, columnLabelProvider, affectedList,
-						"Included Model Elements");
+				createTable(parent, columnLabelProvider, affectedList, "Included Model Elements");
 			}
 		} else if (selected instanceof ModelElement) {
 			ModelElement me = (ModelElement) selected;
 			Set<EObject> affectedList = visualizationHelper.getOperations(me);
 			if (affectedList.size() > 0) {
-				createTable(parent, new OperationsDescLabelProvider(
-						emfProvider, visualizationHelper), affectedList,
-						"Related Operations");
-				GridDataFactory.fillDefaults().hint(400, 100).grab(false, true)
-						.applyTo(affectedTableComposite);
+				createTable(parent, new OperationsDescLabelProvider(emfProvider, visualizationHelper), affectedList,
+					"Related Operations");
+				GridDataFactory.fillDefaults().hint(400, 100).grab(false, true).applyTo(affectedTableComposite);
 				affectedTableColumn.getColumn().setWidth(370);
 
 			}
@@ -115,17 +101,14 @@ public class RelatedElementsListener implements ISelectionChangedListener {
 		parent.layout(true);
 	}
 
-	private void createTable(Composite parent, CellLabelProvider labelProvider,
-			Set<EObject> affected, String title) {
+	private void createTable(Composite parent, CellLabelProvider labelProvider, Set<EObject> affected, String title) {
 		affectedTableComposite = new Composite(parent, SWT.NONE);
-		GridDataFactory.fillDefaults().hint(200, 100).grab(false, true)
-				.applyTo(affectedTableComposite);
+		GridDataFactory.fillDefaults().hint(200, 100).grab(false, true).applyTo(affectedTableComposite);
 		affectedTableComposite.setLayout(new GridLayout());
 		affectedTable = new TableViewer(affectedTableComposite, SWT.SINGLE);
 		ColumnViewerToolTipSupport.enableFor(affectedTable);
 		affectedTable.getTable().setHeaderVisible(true);
-		GridDataFactory.fillDefaults().grab(true, true).applyTo(
-				affectedTable.getTable());
+		GridDataFactory.fillDefaults().grab(true, true).applyTo(affectedTable.getTable());
 		affectedTableColumn = new TableViewerColumn(affectedTable, SWT.LEFT);
 		affectedTableColumn.getColumn().setText(title);
 		affectedTableColumn.getColumn().setWidth(170);
@@ -133,8 +116,7 @@ public class RelatedElementsListener implements ISelectionChangedListener {
 		affectedTableComposite.layout(true);
 
 		affectedTableColumn.setLabelProvider(labelProvider);
-		affectedTable.setContentProvider(new RelatedElementsContentProvider(
-				affected));
+		affectedTable.setContentProvider(new RelatedElementsContentProvider(affected));
 		affectedTable.setInput(new Object());
 	}
 }

@@ -6,9 +6,8 @@ import org.eclipse.gmf.runtime.diagram.ui.requests.DropObjectsRequest;
 
 public class ComponentDiagramDragDropEditPolicy extends DiagramDragDropEditPolicy {
 
-	public Command getDropObjectsCommand(
-			DropObjectsRequest dropRequest) {
+	public Command getDropObjectsCommand(DropObjectsRequest dropRequest) {
 		return super.getDropObjectsCommand(dropRequest);
-		
-			}
+
+	}
 }

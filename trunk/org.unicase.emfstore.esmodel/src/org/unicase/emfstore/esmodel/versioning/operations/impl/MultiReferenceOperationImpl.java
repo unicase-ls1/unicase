@@ -1,8 +1,7 @@
 /**
- * <copyright> Copyright (c) 2008 Jonas Helming, Maximilian Koegel. All rights reserved. This program and the accompanying materials are made available under the terms of the Eclipse Public License v1.0 which accompanies this distribution, and is available at http://www.eclipse.org/legal/epl-v10.html
- * </copyright>
- *
- * $Id$
+ * <copyright> Copyright (c) 2008 Jonas Helming, Maximilian Koegel. All rights reserved. This program and the
+ * accompanying materials are made available under the terms of the Eclipse Public License v1.0 which accompanies this
+ * distribution, and is available at http://www.eclipse.org/legal/epl-v10.html </copyright>
  */
 package org.unicase.emfstore.esmodel.versioning.operations.impl;
 
@@ -31,26 +30,26 @@ import org.unicase.model.Project;
 import org.unicase.model.util.ModelUtil;
 
 /**
- * <!-- begin-user-doc -->
- * An implementation of the model object '<em><b>Multi Reference Operation</b></em>'.
- * <!-- end-user-doc -->
+ * <!-- begin-user-doc --> An implementation of the model object '<em><b>Multi Reference Operation</b></em>'. <!--
+ * end-user-doc -->
  * <p>
  * The following features are implemented:
  * <ul>
- *   <li>{@link org.unicase.emfstore.esmodel.versioning.operations.impl.MultiReferenceOperationImpl#isAdd <em>Add</em>}</li>
- *   <li>{@link org.unicase.emfstore.esmodel.versioning.operations.impl.MultiReferenceOperationImpl#getIndex <em>Index</em>}</li>
- *   <li>{@link org.unicase.emfstore.esmodel.versioning.operations.impl.MultiReferenceOperationImpl#getReferencedModelElements <em>Referenced Model Elements</em>}</li>
+ * <li>{@link org.unicase.emfstore.esmodel.versioning.operations.impl.MultiReferenceOperationImpl#isAdd <em>Add</em>}</li>
+ * <li>{@link org.unicase.emfstore.esmodel.versioning.operations.impl.MultiReferenceOperationImpl#getIndex <em>Index
+ * </em>}</li>
+ * <li>
+ * {@link org.unicase.emfstore.esmodel.versioning.operations.impl.MultiReferenceOperationImpl#getReferencedModelElements
+ * <em>Referenced Model Elements</em>}</li>
  * </ul>
  * </p>
- *
+ * 
  * @generated
  */
-public class MultiReferenceOperationImpl extends ReferenceOperationImpl
-		implements MultiReferenceOperation {
+public class MultiReferenceOperationImpl extends ReferenceOperationImpl implements MultiReferenceOperation {
 	/**
-	 * The default value of the '{@link #isAdd() <em>Add</em>}' attribute.
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
+	 * The default value of the '{@link #isAdd() <em>Add</em>}' attribute. <!-- begin-user-doc --> <!-- end-user-doc -->
+	 * 
 	 * @see #isAdd()
 	 * @generated
 	 * @ordered
@@ -58,9 +57,8 @@ public class MultiReferenceOperationImpl extends ReferenceOperationImpl
 	protected static final boolean ADD_EDEFAULT = false;
 
 	/**
-	 * The cached value of the '{@link #isAdd() <em>Add</em>}' attribute.
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
+	 * The cached value of the '{@link #isAdd() <em>Add</em>}' attribute. <!-- begin-user-doc --> <!-- end-user-doc -->
+	 * 
 	 * @see #isAdd()
 	 * @generated
 	 * @ordered
@@ -68,9 +66,9 @@ public class MultiReferenceOperationImpl extends ReferenceOperationImpl
 	protected boolean add = ADD_EDEFAULT;
 
 	/**
-	 * The default value of the '{@link #getIndex() <em>Index</em>}' attribute.
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
+	 * The default value of the '{@link #getIndex() <em>Index</em>}' attribute. <!-- begin-user-doc --> <!--
+	 * end-user-doc -->
+	 * 
 	 * @see #getIndex()
 	 * @generated
 	 * @ordered
@@ -78,9 +76,9 @@ public class MultiReferenceOperationImpl extends ReferenceOperationImpl
 	protected static final int INDEX_EDEFAULT = 0;
 
 	/**
-	 * The cached value of the '{@link #getIndex() <em>Index</em>}' attribute.
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
+	 * The cached value of the '{@link #getIndex() <em>Index</em>}' attribute. <!-- begin-user-doc --> <!-- end-user-doc
+	 * -->
+	 * 
 	 * @see #getIndex()
 	 * @generated
 	 * @ordered
@@ -88,9 +86,9 @@ public class MultiReferenceOperationImpl extends ReferenceOperationImpl
 	protected int index = INDEX_EDEFAULT;
 
 	/**
-	 * The cached value of the '{@link #getReferencedModelElements() <em>Referenced Model Elements</em>}' containment reference list.
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
+	 * The cached value of the '{@link #getReferencedModelElements() <em>Referenced Model Elements</em>}' containment
+	 * reference list. <!-- begin-user-doc --> <!-- end-user-doc -->
+	 * 
 	 * @see #getReferencedModelElements()
 	 * @generated
 	 * @ordered
@@ -98,8 +96,8 @@ public class MultiReferenceOperationImpl extends ReferenceOperationImpl
 	protected EList<ModelElementId> referencedModelElements;
 
 	/**
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
+	 * <!-- begin-user-doc --> <!-- end-user-doc -->
+	 * 
 	 * @generated
 	 */
 	protected MultiReferenceOperationImpl() {
@@ -107,8 +105,8 @@ public class MultiReferenceOperationImpl extends ReferenceOperationImpl
 	}
 
 	/**
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
+	 * <!-- begin-user-doc --> <!-- end-user-doc -->
+	 * 
 	 * @generated
 	 */
 	@Override
@@ -117,8 +115,8 @@ public class MultiReferenceOperationImpl extends ReferenceOperationImpl
 	}
 
 	/**
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
+	 * <!-- begin-user-doc --> <!-- end-user-doc -->
+	 * 
 	 * @generated
 	 */
 	public boolean isAdd() {
@@ -126,22 +124,21 @@ public class MultiReferenceOperationImpl extends ReferenceOperationImpl
 	}
 
 	/**
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
+	 * <!-- begin-user-doc --> <!-- end-user-doc -->
+	 * 
 	 * @generated
 	 */
 	public void setAdd(boolean newAdd) {
 		boolean oldAdd = add;
 		add = newAdd;
 		if (eNotificationRequired())
-			eNotify(new ENotificationImpl(this, Notification.SET,
-					OperationsPackage.MULTI_REFERENCE_OPERATION__ADD, oldAdd,
-					add));
+			eNotify(new ENotificationImpl(this, Notification.SET, OperationsPackage.MULTI_REFERENCE_OPERATION__ADD,
+				oldAdd, add));
 	}
 
 	/**
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
+	 * <!-- begin-user-doc --> <!-- end-user-doc -->
+	 * 
 	 * @generated
 	 */
 	public int getIndex() {
@@ -149,53 +146,48 @@ public class MultiReferenceOperationImpl extends ReferenceOperationImpl
 	}
 
 	/**
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
+	 * <!-- begin-user-doc --> <!-- end-user-doc -->
+	 * 
 	 * @generated
 	 */
 	public void setIndex(int newIndex) {
 		int oldIndex = index;
 		index = newIndex;
 		if (eNotificationRequired())
-			eNotify(new ENotificationImpl(this, Notification.SET,
-					OperationsPackage.MULTI_REFERENCE_OPERATION__INDEX,
-					oldIndex, index));
+			eNotify(new ENotificationImpl(this, Notification.SET, OperationsPackage.MULTI_REFERENCE_OPERATION__INDEX,
+				oldIndex, index));
 	}
 
 	/**
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
+	 * <!-- begin-user-doc --> <!-- end-user-doc -->
+	 * 
 	 * @generated
 	 */
 	public EList<ModelElementId> getReferencedModelElements() {
 		if (referencedModelElements == null) {
-			referencedModelElements = new EObjectContainmentEList.Resolving<ModelElementId>(
-					ModelElementId.class,
-					this,
-					OperationsPackage.MULTI_REFERENCE_OPERATION__REFERENCED_MODEL_ELEMENTS);
+			referencedModelElements = new EObjectContainmentEList.Resolving<ModelElementId>(ModelElementId.class, this,
+				OperationsPackage.MULTI_REFERENCE_OPERATION__REFERENCED_MODEL_ELEMENTS);
 		}
 		return referencedModelElements;
 	}
 
 	/**
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
+	 * <!-- begin-user-doc --> <!-- end-user-doc -->
+	 * 
 	 * @generated
 	 */
 	@Override
-	public NotificationChain eInverseRemove(InternalEObject otherEnd,
-			int featureID, NotificationChain msgs) {
+	public NotificationChain eInverseRemove(InternalEObject otherEnd, int featureID, NotificationChain msgs) {
 		switch (featureID) {
 		case OperationsPackage.MULTI_REFERENCE_OPERATION__REFERENCED_MODEL_ELEMENTS:
-			return ((InternalEList<?>) getReferencedModelElements())
-					.basicRemove(otherEnd, msgs);
+			return ((InternalEList<?>) getReferencedModelElements()).basicRemove(otherEnd, msgs);
 		}
 		return super.eInverseRemove(otherEnd, featureID, msgs);
 	}
 
 	/**
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
+	 * <!-- begin-user-doc --> <!-- end-user-doc -->
+	 * 
 	 * @generated
 	 */
 	@Override
@@ -212,8 +204,8 @@ public class MultiReferenceOperationImpl extends ReferenceOperationImpl
 	}
 
 	/**
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
+	 * <!-- begin-user-doc --> <!-- end-user-doc -->
+	 * 
 	 * @generated
 	 */
 	@SuppressWarnings("unchecked")
@@ -228,16 +220,15 @@ public class MultiReferenceOperationImpl extends ReferenceOperationImpl
 			return;
 		case OperationsPackage.MULTI_REFERENCE_OPERATION__REFERENCED_MODEL_ELEMENTS:
 			getReferencedModelElements().clear();
-			getReferencedModelElements().addAll(
-					(Collection<? extends ModelElementId>) newValue);
+			getReferencedModelElements().addAll((Collection<? extends ModelElementId>) newValue);
 			return;
 		}
 		super.eSet(featureID, newValue);
 	}
 
 	/**
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
+	 * <!-- begin-user-doc --> <!-- end-user-doc -->
+	 * 
 	 * @generated
 	 */
 	@Override
@@ -257,8 +248,8 @@ public class MultiReferenceOperationImpl extends ReferenceOperationImpl
 	}
 
 	/**
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
+	 * <!-- begin-user-doc --> <!-- end-user-doc -->
+	 * 
 	 * @generated
 	 */
 	@Override
@@ -269,15 +260,14 @@ public class MultiReferenceOperationImpl extends ReferenceOperationImpl
 		case OperationsPackage.MULTI_REFERENCE_OPERATION__INDEX:
 			return index != INDEX_EDEFAULT;
 		case OperationsPackage.MULTI_REFERENCE_OPERATION__REFERENCED_MODEL_ELEMENTS:
-			return referencedModelElements != null
-					&& !referencedModelElements.isEmpty();
+			return referencedModelElements != null && !referencedModelElements.isEmpty();
 		}
 		return super.eIsSet(featureID);
 	}
 
 	/**
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
+	 * <!-- begin-user-doc --> <!-- end-user-doc -->
+	 * 
 	 * @generated
 	 */
 	@Override
@@ -297,16 +287,13 @@ public class MultiReferenceOperationImpl extends ReferenceOperationImpl
 	@Override
 	public void apply(Project project) {
 		super.apply(project);
-		ModelElement modelElement = project
-				.getModelElement(getModelElementId());
+		ModelElement modelElement = project.getModelElement(getModelElementId());
 		EList<ModelElementId> referencedModelElementIds = getReferencedModelElements();
 		List<ModelElement> referencedModelElements = new ArrayList<ModelElement>();
 		for (ModelElementId modelElementId : referencedModelElementIds) {
-			referencedModelElements
-					.add(project.getModelElement(modelElementId));
+			referencedModelElements.add(project.getModelElement(modelElementId));
 		}
-		EList<EReference> references = modelElement.eClass()
-				.getEAllReferences();
+		EList<EReference> references = modelElement.eClass().getEAllReferences();
 		for (EReference reference : references) {
 			if (reference.getName().equals(this.getFeatureName())) {
 				Object object = modelElement.eGet(reference);
@@ -316,14 +303,13 @@ public class MultiReferenceOperationImpl extends ReferenceOperationImpl
 					if (index < list.size()) {
 						list.addAll(getIndex(), referencedModelElements);
 					} else {
-						//if index is out of range ignore index
+						// if index is out of range ignore index
 						list.addAll(referencedModelElements);
 					}
 				} else {
 					list.removeAll(referencedModelElements);
 					for (ModelElement currentElement : referencedModelElements) {
-						if (!project.contains(currentElement
-								.getModelElementId())) {
+						if (!project.contains(currentElement.getModelElementId())) {
 							project.addModelElement(currentElement);
 						}
 					}
@@ -336,7 +322,7 @@ public class MultiReferenceOperationImpl extends ReferenceOperationImpl
 				project.addModelElement(currentModelElement);
 			}
 		}
-		//FIXME MK: exception
+		// FIXME MK: exception
 		throw new IllegalStateException("cannot find reference feature");
 
 	}
@@ -368,8 +354,7 @@ public class MultiReferenceOperationImpl extends ReferenceOperationImpl
 			stringBuilder.append(" ");
 			stringBuilder.append(featureName);
 		} else {
-			String singular = featureName
-					.substring(0, featureName.length() - 1);
+			String singular = featureName.substring(0, featureName.length() - 1);
 			stringBuilder.append(singular);
 		}
 		return stringBuilder.toString();
@@ -385,12 +370,10 @@ public class MultiReferenceOperationImpl extends ReferenceOperationImpl
 
 	@Override
 	public AbstractOperation reverse() {
-		MultiReferenceOperation multiReferenceOperation = OperationsFactory.eINSTANCE
-				.createMultiReferenceOperation();
+		MultiReferenceOperation multiReferenceOperation = OperationsFactory.eINSTANCE.createMultiReferenceOperation();
 		super.reverse(multiReferenceOperation);
 		multiReferenceOperation.setAdd(!isAdd());
-		EList<ModelElementId> copiedReferencedModelElements = multiReferenceOperation
-				.getReferencedModelElements();
+		EList<ModelElementId> copiedReferencedModelElements = multiReferenceOperation.getReferencedModelElements();
 		EList<ModelElementId> modelElements = getReferencedModelElements();
 		for (ModelElementId modelElementId : modelElements) {
 			copiedReferencedModelElements.add(ModelUtil.clone(modelElementId));
@@ -399,8 +382,9 @@ public class MultiReferenceOperationImpl extends ReferenceOperationImpl
 		return multiReferenceOperation;
 	}
 
-	/** 
+	/**
 	 * {@inheritDoc}
+	 * 
 	 * @see org.unicase.emfstore.esmodel.versioning.operations.ReferenceOperation#getOtherInvolvedModelElements()
 	 */
 	public Set<ModelElementId> getOtherInvolvedModelElements() {
@@ -409,4 +393,4 @@ public class MultiReferenceOperationImpl extends ReferenceOperationImpl
 		return set;
 	}
 
-} //MultiReferenceOperationImpl
+} // MultiReferenceOperationImpl

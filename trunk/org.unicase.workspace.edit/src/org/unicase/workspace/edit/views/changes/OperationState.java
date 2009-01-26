@@ -2,16 +2,16 @@ package org.unicase.workspace.edit.views.changes;
 
 /**
  * Provides the MergeChangesComposite with the state information for each Operation.
+ * 
  * @author Shterev
- *
  */
 public class OperationState {
-	
+
 	/**
 	 * The operation should be (preview) marked as accepted.
 	 */
 	public static final int ACCEPTED = 1;
-	
+
 	/**
 	 * The operation should be (preview) marked as rejected.
 	 */
@@ -21,9 +21,9 @@ public class OperationState {
 	 * The operation should not be (preview) marked at all.
 	 */
 	public static final int NONE = 0;
-	
+
 	private boolean checkedState;
-	
+
 	private int previewState;
 
 	/**
@@ -53,5 +53,5 @@ public class OperationState {
 	public int getPreviewState() {
 		return previewState;
 	}
-	
+
 }

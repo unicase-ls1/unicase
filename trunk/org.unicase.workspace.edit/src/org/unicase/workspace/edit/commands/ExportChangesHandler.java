@@ -1,8 +1,7 @@
 /**
- * <copyright> Copyright (c) 2008 Jonas Helming, Maximilian Koegel. All rights reserved. This program and the accompanying materials are made available under the terms of the Eclipse Public License v1.0 which accompanies this distribution, and is available at http://www.eclipse.org/legal/epl-v10.html
- * </copyright>
- *
- * $Id$
+ * <copyright> Copyright (c) 2008 Jonas Helming, Maximilian Koegel. All rights reserved. This program and the
+ * accompanying materials are made available under the terms of the Eclipse Public License v1.0 which accompanies this
+ * distribution, and is available at http://www.eclipse.org/legal/epl-v10.html </copyright>
  */
 package org.unicase.workspace.edit.commands;
 
@@ -25,15 +24,13 @@ import org.unicase.workspace.ProjectSpace;
  * . ExportChangesHandler
  * 
  * @author Hodaie
- * 
  */
 public class ExportChangesHandler extends ProjectActionHandler {
 
 	/**
 	 * These filter names are used to filter which files are displayed.
 	 */
-	public static final String[] FILTER_NAMES = {
-			"Unicase change package (*.ucc)", "All Files (*.*)" };
+	public static final String[] FILTER_NAMES = { "Unicase change package (*.ucc)", "All Files (*.*)" };
 
 	/**
 	 * These filter extensions are used to filter which files are displayed.
@@ -42,12 +39,10 @@ public class ExportChangesHandler extends ProjectActionHandler {
 
 	/**
 	 * . {@inheritDoc}
-	 * 
 	 */
 	public Object execute(ExecutionEvent event) throws ExecutionException {
 
-		FileDialog dialog = new FileDialog(PlatformUI.getWorkbench()
-				.getActiveWorkbenchWindow().getShell(), SWT.SAVE);
+		FileDialog dialog = new FileDialog(PlatformUI.getWorkbench().getActiveWorkbenchWindow().getShell(), SWT.SAVE);
 		dialog.setFilterNames(ExportChangesHandler.FILTER_NAMES);
 		dialog.setFilterExtensions(ExportChangesHandler.FILTER_EXTS);
 		dialog.setOverwrite(true);
@@ -66,10 +61,10 @@ public class ExportChangesHandler extends ProjectActionHandler {
 		final String absoluteFileName = stringBuilder.toString();
 		final ProjectSpace projectSpace = this.getProjectSpace(event);
 		final ProgressMonitorDialog progressDialog = new ProgressMonitorDialog(PlatformUI.getWorkbench()
-			       .getActiveWorkbenchWindow().getShell());
+			.getActiveWorkbenchWindow().getShell());
 
 		TransactionalEditingDomain domain = TransactionalEditingDomain.Registry.INSTANCE
-				.getEditingDomain("org.unicase.EditingDomain");
+			.getEditingDomain("org.unicase.EditingDomain");
 		domain.getCommandStack().execute(new RecordingCommand(domain) {
 			@Override
 			protected void doExecute() {
@@ -77,18 +72,16 @@ public class ExportChangesHandler extends ProjectActionHandler {
 					progressDialog.open();
 					progressDialog.getProgressMonitor().beginTask("Export changs...", 100);
 					progressDialog.getProgressMonitor().worked(10);
-                    projectSpace.exportLocalChanges(absoluteFileName);
+					projectSpace.exportLocalChanges(absoluteFileName);
 				} catch (IOException e) {
-					DialogHandler.showExceptionDialog(e);	
-				} 
-				finally {
+					DialogHandler.showExceptionDialog(e);
+				} finally {
 					progressDialog.getProgressMonitor().done();
 					progressDialog.close();
 				}
 			}
 		});
-		MessageDialog.openInformation(null, "Export",
-				"Exported changes to file " + fileName);
+		MessageDialog.openInformation(null, "Export", "Exported changes to file " + fileName);
 		return null;
 	}
 

@@ -1,7 +1,7 @@
 /**
  * <copyright> Copyright (c) 2008 Jonas Helming, Maximilian Koegel. All rights reserved. This program and the
  * accompanying materials are made available under the terms of the Eclipse Public License v1.0 which accompanies this
- * distribution, and is available at http://www.eclipse.org/legal/epl-v10.html </copyright> $Id$
+ * distribution, and is available at http://www.eclipse.org/legal/epl-v10.html </copyright>
  */
 package org.unicase.model.document.impl;
 
@@ -43,8 +43,9 @@ public class LeafSectionImpl extends ModelElementImpl implements LeafSection {
 	 */
 	protected EList<ModelElement> modelElements;
 	/**
-	 * The cached value of the '{@link #getReferencedModelElements() <em>Referenced Model Elements</em>}' reference list.
-	 * <!-- begin-user-doc --> <!-- end-user-doc -->
+	 * The cached value of the '{@link #getReferencedModelElements() <em>Referenced Model Elements</em>}' reference
+	 * list. <!-- begin-user-doc --> <!-- end-user-doc -->
+	 * 
 	 * @see #getReferencedModelElements()
 	 * @generated
 	 * @ordered
@@ -53,6 +54,7 @@ public class LeafSectionImpl extends ModelElementImpl implements LeafSection {
 
 	/**
 	 * <!-- begin-user-doc --> <!-- end-user-doc -->
+	 * 
 	 * @generated
 	 */
 	protected LeafSectionImpl() {
@@ -61,6 +63,7 @@ public class LeafSectionImpl extends ModelElementImpl implements LeafSection {
 
 	/**
 	 * <!-- begin-user-doc --> <!-- end-user-doc -->
+	 * 
 	 * @generated
 	 */
 	@Override
@@ -70,6 +73,7 @@ public class LeafSectionImpl extends ModelElementImpl implements LeafSection {
 
 	/**
 	 * <!-- begin-user-doc --> <!-- end-user-doc -->
+	 * 
 	 * @generated
 	 */
 	public CompositeSection getParent() {
@@ -80,6 +84,7 @@ public class LeafSectionImpl extends ModelElementImpl implements LeafSection {
 
 	/**
 	 * <!-- begin-user-doc --> <!-- end-user-doc -->
+	 * 
 	 * @generated
 	 */
 	public CompositeSection basicGetParent() {
@@ -90,6 +95,7 @@ public class LeafSectionImpl extends ModelElementImpl implements LeafSection {
 
 	/**
 	 * <!-- begin-user-doc --> <!-- end-user-doc -->
+	 * 
 	 * @generated
 	 */
 	public NotificationChain basicSetParent(CompositeSection newParent, NotificationChain msgs) {
@@ -99,6 +105,7 @@ public class LeafSectionImpl extends ModelElementImpl implements LeafSection {
 
 	/**
 	 * <!-- begin-user-doc --> <!-- end-user-doc -->
+	 * 
 	 * @generated
 	 */
 	public void setParent(CompositeSection newParent) {
@@ -122,6 +129,7 @@ public class LeafSectionImpl extends ModelElementImpl implements LeafSection {
 
 	/**
 	 * <!-- begin-user-doc --> <!-- end-user-doc -->
+	 * 
 	 * @generated
 	 */
 	public EList<ModelElement> getModelElements() {
@@ -134,6 +142,7 @@ public class LeafSectionImpl extends ModelElementImpl implements LeafSection {
 
 	/**
 	 * <!-- begin-user-doc --> <!-- end-user-doc -->
+	 * 
 	 * @generated
 	 */
 	public EList<ModelElement> getReferencedModelElements() {
@@ -147,6 +156,7 @@ public class LeafSectionImpl extends ModelElementImpl implements LeafSection {
 
 	/**
 	 * <!-- begin-user-doc --> <!-- end-user-doc -->
+	 * 
 	 * @generated
 	 */
 	@SuppressWarnings("unchecked")
@@ -168,6 +178,7 @@ public class LeafSectionImpl extends ModelElementImpl implements LeafSection {
 
 	/**
 	 * <!-- begin-user-doc --> <!-- end-user-doc -->
+	 * 
 	 * @generated
 	 */
 	@Override
@@ -185,6 +196,7 @@ public class LeafSectionImpl extends ModelElementImpl implements LeafSection {
 
 	/**
 	 * <!-- begin-user-doc --> <!-- end-user-doc -->
+	 * 
 	 * @generated
 	 */
 	@Override
@@ -199,6 +211,7 @@ public class LeafSectionImpl extends ModelElementImpl implements LeafSection {
 
 	/**
 	 * <!-- begin-user-doc --> <!-- end-user-doc -->
+	 * 
 	 * @generated
 	 */
 	@Override
@@ -218,6 +231,7 @@ public class LeafSectionImpl extends ModelElementImpl implements LeafSection {
 
 	/**
 	 * <!-- begin-user-doc --> <!-- end-user-doc -->
+	 * 
 	 * @generated
 	 */
 	@SuppressWarnings("unchecked")
@@ -241,6 +255,7 @@ public class LeafSectionImpl extends ModelElementImpl implements LeafSection {
 
 	/**
 	 * <!-- begin-user-doc --> <!-- end-user-doc -->
+	 * 
 	 * @generated
 	 */
 	@Override
@@ -261,6 +276,7 @@ public class LeafSectionImpl extends ModelElementImpl implements LeafSection {
 
 	/**
 	 * <!-- begin-user-doc --> <!-- end-user-doc -->
+	 * 
 	 * @generated
 	 */
 	@Override

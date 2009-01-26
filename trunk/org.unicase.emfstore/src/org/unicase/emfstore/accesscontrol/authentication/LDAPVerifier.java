@@ -1,8 +1,7 @@
 /**
- * <copyright> Copyright (c) 2008 Jonas Helming, Maximilian Koegel. All rights reserved. This program and the accompanying materials are made available under the terms of the Eclipse Public License v1.0 which accompanies this distribution, and is available at http://www.eclipse.org/legal/epl-v10.html
- * </copyright>
- *
- * $Id$
+ * <copyright> Copyright (c) 2008 Jonas Helming, Maximilian Koegel. All rights reserved. This program and the
+ * accompanying materials are made available under the terms of the Eclipse Public License v1.0 which accompanies this
+ * distribution, and is available at http://www.eclipse.org/legal/epl-v10.html </copyright>
  */
 package org.unicase.emfstore.accesscontrol.authentication;
 
@@ -52,28 +51,21 @@ public class LDAPVerifier extends AbstractAuthenticationControl {
 	 * {@inheritDoc}
 	 */
 	@Override
-	public boolean verifyPassword(String username, String password)
-			throws AccessControlException {
+	public boolean verifyPassword(String username, String password) throws AccessControlException {
 		Properties properties = ServerConfiguration.getProperties();
 
 		int count = 1;
 		while (count != -1) {
 
-			ldapUrl = properties
-					.getProperty(ServerConfiguration.AUTHENTICATION_LDAP_PREFIX
-							+ "." + count + "."
-							+ ServerConfiguration.AUTHENTICATION_LDAP_URL);
-			ldapBase = properties
-					.getProperty(ServerConfiguration.AUTHENTICATION_LDAP_PREFIX
-							+ "." + count + "."
-							+ ServerConfiguration.AUTHENTICATION_LDAP_BASE);
-			searchDn = properties
-					.getProperty(ServerConfiguration.AUTHENTICATION_LDAP_PREFIX
-							+ "." + count + "."
-							+ ServerConfiguration.AUTHENTICATION_LDAP_SEARCHDN);
+			ldapUrl = properties.getProperty(ServerConfiguration.AUTHENTICATION_LDAP_PREFIX + "." + count + "."
+				+ ServerConfiguration.AUTHENTICATION_LDAP_URL);
+			ldapBase = properties.getProperty(ServerConfiguration.AUTHENTICATION_LDAP_PREFIX + "." + count + "."
+				+ ServerConfiguration.AUTHENTICATION_LDAP_BASE);
+			searchDn = properties.getProperty(ServerConfiguration.AUTHENTICATION_LDAP_PREFIX + "." + count + "."
+				+ ServerConfiguration.AUTHENTICATION_LDAP_SEARCHDN);
 
-			if(ldapUrl != null && ldapBase != null && searchDn != null) {
-				if(verifyPasswordWithLdap(username, password)) {
+			if (ldapUrl != null && ldapBase != null && searchDn != null) {
+				if (verifyPasswordWithLdap(username, password)) {
 					return true;
 				}
 				count++;
@@ -104,8 +96,8 @@ public class LDAPVerifier extends AbstractAuthenticationControl {
 		constraints.setSearchScope(SearchControls.SUBTREE_SCOPE);
 		NamingEnumeration<SearchResult> results = null;
 		try {
-			results = dirContext.search(ldapBase, "(& (" + searchDn + "="
-					+ username + ") (objectclass=*))", constraints);
+			results = dirContext.search(ldapBase, "(& (" + searchDn + "=" + username + ") (objectclass=*))",
+				constraints);
 		} catch (NamingException e) {
 			logger.error("Search failed, base = " + ldapBase, e);
 			return false;
@@ -125,13 +117,12 @@ public class LDAPVerifier extends AbstractAuthenticationControl {
 				break;
 			}
 		} catch (NamingException e) {
-			logger.error("Search returned invalid results, base = " + ldapBase,
-					e);
+			logger.error("Search returned invalid results, base = " + ldapBase, e);
 			return false;
 		}
 
 		if (resolvedName == null) {
-			logger.info("Distinguished name not found on "+ldapBase);
+			logger.info("Distinguished name not found on " + ldapBase);
 			return false;
 		}
 
@@ -148,7 +139,7 @@ public class LDAPVerifier extends AbstractAuthenticationControl {
 		try {
 			dirContext = new InitialDirContext(props);
 		} catch (NamingException e) {
-			logger.info("Login failed on "+ldapBase+" .");
+			logger.info("Login failed on " + ldapBase + " .");
 			return false;
 		}
 		return true;

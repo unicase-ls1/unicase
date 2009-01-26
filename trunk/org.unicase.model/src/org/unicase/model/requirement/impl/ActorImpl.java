@@ -1,7 +1,7 @@
 /**
  * <copyright> Copyright (c) 2008 Jonas Helming, Maximilian Koegel. All rights reserved. This program and the
  * accompanying materials are made available under the terms of the Eclipse Public License v1.0 which accompanies this
- * distribution, and is available at http://www.eclipse.org/legal/epl-v10.html </copyright> $Id$
+ * distribution, and is available at http://www.eclipse.org/legal/epl-v10.html </copyright>
  */
 package org.unicase.model.requirement.impl;
 
@@ -46,6 +46,7 @@ public class ActorImpl extends ModelElementImpl implements Actor {
 	/**
 	 * The cached value of the '{@link #getParticipatedUserTasks() <em>Participated User Tasks</em>}' reference list.
 	 * <!-- begin-user-doc --> <!-- end-user-doc -->
+	 * 
 	 * @see #getParticipatedUserTasks()
 	 * @generated
 	 * @ordered
@@ -73,9 +74,9 @@ public class ActorImpl extends ModelElementImpl implements Actor {
 	protected EList<UseCase> participatedUseCases;
 
 	/**
-	 * The cached value of the '{@link #getInstances() <em>Instances</em>}' reference list.
-	 * <!-- begin-user-doc --> <!--
+	 * The cached value of the '{@link #getInstances() <em>Instances</em>}' reference list. <!-- begin-user-doc --> <!--
 	 * end-user-doc -->
+	 * 
 	 * @see #getInstances()
 	 * @generated
 	 * @ordered
@@ -84,6 +85,7 @@ public class ActorImpl extends ModelElementImpl implements Actor {
 
 	/**
 	 * <!-- begin-user-doc --> <!-- end-user-doc -->
+	 * 
 	 * @generated
 	 */
 	protected ActorImpl() {
@@ -92,6 +94,7 @@ public class ActorImpl extends ModelElementImpl implements Actor {
 
 	/**
 	 * <!-- begin-user-doc --> <!-- end-user-doc -->
+	 * 
 	 * @generated
 	 */
 	@Override
@@ -101,6 +104,7 @@ public class ActorImpl extends ModelElementImpl implements Actor {
 
 	/**
 	 * <!-- begin-user-doc --> <!-- end-user-doc -->
+	 * 
 	 * @generated
 	 */
 	public UserTask getInitiatedUserTask() {
@@ -118,6 +122,7 @@ public class ActorImpl extends ModelElementImpl implements Actor {
 
 	/**
 	 * <!-- begin-user-doc --> <!-- end-user-doc -->
+	 * 
 	 * @generated
 	 */
 	public UserTask basicGetInitiatedUserTask() {
@@ -126,6 +131,7 @@ public class ActorImpl extends ModelElementImpl implements Actor {
 
 	/**
 	 * <!-- begin-user-doc --> <!-- end-user-doc -->
+	 * 
 	 * @generated
 	 */
 	public NotificationChain basicSetInitiatedUserTask(UserTask newInitiatedUserTask, NotificationChain msgs) {
@@ -144,6 +150,7 @@ public class ActorImpl extends ModelElementImpl implements Actor {
 
 	/**
 	 * <!-- begin-user-doc --> <!-- end-user-doc -->
+	 * 
 	 * @generated
 	 */
 	public void setInitiatedUserTask(UserTask newInitiatedUserTask) {
@@ -165,6 +172,7 @@ public class ActorImpl extends ModelElementImpl implements Actor {
 
 	/**
 	 * <!-- begin-user-doc --> <!-- end-user-doc -->
+	 * 
 	 * @generated
 	 */
 	public EList<UserTask> getParticipatedUserTasks() {
@@ -177,6 +185,7 @@ public class ActorImpl extends ModelElementImpl implements Actor {
 
 	/**
 	 * <!-- begin-user-doc --> <!-- end-user-doc -->
+	 * 
 	 * @generated
 	 */
 	public EList<UseCase> getInitiatedUseCases() {
@@ -189,6 +198,7 @@ public class ActorImpl extends ModelElementImpl implements Actor {
 
 	/**
 	 * <!-- begin-user-doc --> <!-- end-user-doc -->
+	 * 
 	 * @generated
 	 */
 	public EList<UseCase> getParticipatedUseCases() {
@@ -201,6 +211,7 @@ public class ActorImpl extends ModelElementImpl implements Actor {
 
 	/**
 	 * <!-- begin-user-doc --> <!-- end-user-doc -->
+	 * 
 	 * @generated
 	 */
 	public EList<ActorInstance> getInstances() {
@@ -213,6 +224,7 @@ public class ActorImpl extends ModelElementImpl implements Actor {
 
 	/**
 	 * <!-- begin-user-doc --> <!-- end-user-doc -->
+	 * 
 	 * @generated
 	 */
 	@SuppressWarnings("unchecked")
@@ -241,6 +253,7 @@ public class ActorImpl extends ModelElementImpl implements Actor {
 
 	/**
 	 * <!-- begin-user-doc --> <!-- end-user-doc -->
+	 * 
 	 * @generated
 	 */
 	@Override
@@ -262,6 +275,7 @@ public class ActorImpl extends ModelElementImpl implements Actor {
 
 	/**
 	 * <!-- begin-user-doc --> <!-- end-user-doc -->
+	 * 
 	 * @generated
 	 */
 	@Override
@@ -285,6 +299,7 @@ public class ActorImpl extends ModelElementImpl implements Actor {
 
 	/**
 	 * <!-- begin-user-doc --> <!-- end-user-doc -->
+	 * 
 	 * @generated
 	 */
 	@SuppressWarnings("unchecked")
@@ -316,6 +331,7 @@ public class ActorImpl extends ModelElementImpl implements Actor {
 
 	/**
 	 * <!-- begin-user-doc --> <!-- end-user-doc -->
+	 * 
 	 * @generated
 	 */
 	@Override
@@ -342,6 +358,7 @@ public class ActorImpl extends ModelElementImpl implements Actor {
 
 	/**
 	 * <!-- begin-user-doc --> <!-- end-user-doc -->
+	 * 
 	 * @generated
 	 */
 	@Override

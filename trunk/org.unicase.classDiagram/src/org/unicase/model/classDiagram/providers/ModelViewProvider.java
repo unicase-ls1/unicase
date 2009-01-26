@@ -15,13 +15,10 @@ public class ModelViewProvider extends AbstractViewProvider {
 	/**
 	 * @generated
 	 */
-	protected Class getDiagramViewClass(IAdaptable semanticAdapter,
-			String diagramKind) {
+	protected Class getDiagramViewClass(IAdaptable semanticAdapter, String diagramKind) {
 		EObject semanticElement = getSemanticElement(semanticAdapter);
-		if (org.unicase.model.classDiagram.edit.parts.MEDiagramEditPart.MODEL_ID
-				.equals(diagramKind)
-				&& org.unicase.model.classDiagram.part.ModelVisualIDRegistry
-						.getDiagramVisualID(semanticElement) != -1) {
+		if (org.unicase.model.classDiagram.edit.parts.MEDiagramEditPart.MODEL_ID.equals(diagramKind)
+			&& org.unicase.model.classDiagram.part.ModelVisualIDRegistry.getDiagramVisualID(semanticElement) != -1) {
 			return org.unicase.model.classDiagram.view.factories.MEDiagramViewFactory.class;
 		}
 		return null;
@@ -30,8 +27,7 @@ public class ModelViewProvider extends AbstractViewProvider {
 	/**
 	 * @generated
 	 */
-	protected Class getNodeViewClass(IAdaptable semanticAdapter,
-			View containerView, String semanticHint) {
+	protected Class getNodeViewClass(IAdaptable semanticAdapter, View containerView, String semanticHint) {
 		if (containerView == null) {
 			return null;
 		}
@@ -45,39 +41,36 @@ public class ModelViewProvider extends AbstractViewProvider {
 			if (elementType != null || domainElement == null) {
 				return null;
 			}
-			visualID = org.unicase.model.classDiagram.part.ModelVisualIDRegistry
-					.getNodeVisualID(containerView, domainElement);
+			visualID = org.unicase.model.classDiagram.part.ModelVisualIDRegistry.getNodeVisualID(containerView,
+				domainElement);
 		} else {
-			visualID = org.unicase.model.classDiagram.part.ModelVisualIDRegistry
-					.getVisualID(semanticHint);
+			visualID = org.unicase.model.classDiagram.part.ModelVisualIDRegistry.getVisualID(semanticHint);
 			if (elementType != null) {
 				// Semantic hint is specified together with element type.
 				// Both parameters should describe exactly the same diagram element.
 				// In addition we check that visualID returned by VisualIDRegistry.getNodeVisualID() for
 				// domainElement (if specified) is the same as in element type.
-				if (!org.unicase.model.classDiagram.providers.ModelElementTypes
-						.isKnownElementType(elementType)
-						|| (!(elementType instanceof IHintedType))) {
+				if (!org.unicase.model.classDiagram.providers.ModelElementTypes.isKnownElementType(elementType)
+					|| (!(elementType instanceof IHintedType))) {
 					return null; // foreign element type
 				}
-				String elementTypeHint = ((IHintedType) elementType)
-						.getSemanticHint();
+				String elementTypeHint = ((IHintedType) elementType).getSemanticHint();
 				if (!semanticHint.equals(elementTypeHint)) {
 					return null; // if semantic hint is specified it should be the same as in element type
 				}
 				if (domainElement != null
-						&& visualID != org.unicase.model.classDiagram.part.ModelVisualIDRegistry
-								.getNodeVisualID(containerView, domainElement)) {
+					&& visualID != org.unicase.model.classDiagram.part.ModelVisualIDRegistry.getNodeVisualID(
+						containerView, domainElement)) {
 					return null; // visual id for node EClass should match visual id from element type
 				}
 			} else {
 				// Element type is not specified. Domain element should be present (except pure design elements).
 				// This method is called with EObjectAdapter as parameter from:
-				//   - ViewService.createNode(View container, EObject eObject, String type, PreferencesHint preferencesHint) 
-				//   - generated ViewFactory.decorateView() for parent element
+				// - ViewService.createNode(View container, EObject eObject, String type, PreferencesHint
+				// preferencesHint)
+				// - generated ViewFactory.decorateView() for parent element
 				if (!org.unicase.model.classDiagram.edit.parts.MEDiagramEditPart.MODEL_ID
-						.equals(org.unicase.model.classDiagram.part.ModelVisualIDRegistry
-								.getModelID(containerView))) {
+					.equals(org.unicase.model.classDiagram.part.ModelVisualIDRegistry.getModelID(containerView))) {
 					return null; // foreign diagram
 				}
 				switch (visualID) {
@@ -86,9 +79,8 @@ public class ModelViewProvider extends AbstractViewProvider {
 				case org.unicase.model.classDiagram.edit.parts.AttributeEditPart.VISUAL_ID:
 				case org.unicase.model.classDiagram.edit.parts.MethodEditPart.VISUAL_ID:
 					if (domainElement == null
-							|| visualID != org.unicase.model.classDiagram.part.ModelVisualIDRegistry
-									.getNodeVisualID(containerView,
-											domainElement)) {
+						|| visualID != org.unicase.model.classDiagram.part.ModelVisualIDRegistry.getNodeVisualID(
+							containerView, domainElement)) {
 						return null; // visual id in semantic hint should match visual id for domain element
 					}
 					break;
@@ -96,15 +88,15 @@ public class ModelViewProvider extends AbstractViewProvider {
 				case org.unicase.model.classDiagram.edit.parts.ClassClassNode_attributesEditPart.VISUAL_ID:
 				case org.unicase.model.classDiagram.edit.parts.ClassClassNode_methodsEditPart.VISUAL_ID:
 					if (org.unicase.model.classDiagram.edit.parts.ClassEditPart.VISUAL_ID != org.unicase.model.classDiagram.part.ModelVisualIDRegistry
-							.getVisualID(containerView)
-							|| containerView.getElement() != domainElement) {
+						.getVisualID(containerView)
+						|| containerView.getElement() != domainElement) {
 						return null; // wrong container
 					}
 					break;
 				case org.unicase.model.classDiagram.edit.parts.PackageNameEditPart.VISUAL_ID:
 					if (org.unicase.model.classDiagram.edit.parts.PackageEditPart.VISUAL_ID != org.unicase.model.classDiagram.part.ModelVisualIDRegistry
-							.getVisualID(containerView)
-							|| containerView.getElement() != domainElement) {
+						.getVisualID(containerView)
+						|| containerView.getElement() != domainElement) {
 						return null; // wrong container
 					}
 					break;
@@ -112,8 +104,8 @@ public class ModelViewProvider extends AbstractViewProvider {
 				case org.unicase.model.classDiagram.edit.parts.AssociationSourceMultiplicityEditPart.VISUAL_ID:
 				case org.unicase.model.classDiagram.edit.parts.AssociationTargetMultiplicityEditPart.VISUAL_ID:
 					if (org.unicase.model.classDiagram.edit.parts.Association1EditPart.VISUAL_ID != org.unicase.model.classDiagram.part.ModelVisualIDRegistry
-							.getVisualID(containerView)
-							|| containerView.getElement() != domainElement) {
+						.getVisualID(containerView)
+						|| containerView.getElement() != domainElement) {
 						return null; // wrong container
 					}
 					break;
@@ -121,8 +113,8 @@ public class ModelViewProvider extends AbstractViewProvider {
 				case org.unicase.model.classDiagram.edit.parts.AssociationSourceMultiplicity2EditPart.VISUAL_ID:
 				case org.unicase.model.classDiagram.edit.parts.AssociationTargetMultiplicity2EditPart.VISUAL_ID:
 					if (org.unicase.model.classDiagram.edit.parts.Association2EditPart.VISUAL_ID != org.unicase.model.classDiagram.part.ModelVisualIDRegistry
-							.getVisualID(containerView)
-							|| containerView.getElement() != domainElement) {
+						.getVisualID(containerView)
+						|| containerView.getElement() != domainElement) {
 						return null; // wrong container
 					}
 					break;
@@ -130,8 +122,8 @@ public class ModelViewProvider extends AbstractViewProvider {
 				case org.unicase.model.classDiagram.edit.parts.AssociationSourceMultiplicity3EditPart.VISUAL_ID:
 				case org.unicase.model.classDiagram.edit.parts.AssociationTargetMultiplicity3EditPart.VISUAL_ID:
 					if (org.unicase.model.classDiagram.edit.parts.Association3EditPart.VISUAL_ID != org.unicase.model.classDiagram.part.ModelVisualIDRegistry
-							.getVisualID(containerView)
-							|| containerView.getElement() != domainElement) {
+						.getVisualID(containerView)
+						|| containerView.getElement() != domainElement) {
 						return null; // wrong container
 					}
 					break;
@@ -139,8 +131,8 @@ public class ModelViewProvider extends AbstractViewProvider {
 				case org.unicase.model.classDiagram.edit.parts.AssociationSourceMultiplicity4EditPart.VISUAL_ID:
 				case org.unicase.model.classDiagram.edit.parts.AssociationTargetMultiplicity4EditPart.VISUAL_ID:
 					if (org.unicase.model.classDiagram.edit.parts.Association4EditPart.VISUAL_ID != org.unicase.model.classDiagram.part.ModelVisualIDRegistry
-							.getVisualID(containerView)
-							|| containerView.getElement() != domainElement) {
+						.getVisualID(containerView)
+						|| containerView.getElement() != domainElement) {
 						return null; // wrong container
 					}
 					break;
@@ -157,8 +149,7 @@ public class ModelViewProvider extends AbstractViewProvider {
 	 */
 	protected Class getNodeViewClass(View containerView, int visualID) {
 		if (containerView == null
-				|| !org.unicase.model.classDiagram.part.ModelVisualIDRegistry
-						.canCreateNode(containerView, visualID)) {
+			|| !org.unicase.model.classDiagram.part.ModelVisualIDRegistry.canCreateNode(containerView, visualID)) {
 			return null;
 		}
 		switch (visualID) {
@@ -209,12 +200,10 @@ public class ModelViewProvider extends AbstractViewProvider {
 	/**
 	 * @generated
 	 */
-	protected Class getEdgeViewClass(IAdaptable semanticAdapter,
-			View containerView, String semanticHint) {
+	protected Class getEdgeViewClass(IAdaptable semanticAdapter, View containerView, String semanticHint) {
 		IElementType elementType = getSemanticElementType(semanticAdapter);
-		if (!org.unicase.model.classDiagram.providers.ModelElementTypes
-				.isKnownElementType(elementType)
-				|| (!(elementType instanceof IHintedType))) {
+		if (!org.unicase.model.classDiagram.providers.ModelElementTypes.isKnownElementType(elementType)
+			|| (!(elementType instanceof IHintedType))) {
 			return null; // foreign element type
 		}
 		String elementTypeHint = ((IHintedType) elementType).getSemanticHint();
@@ -224,12 +213,11 @@ public class ModelViewProvider extends AbstractViewProvider {
 		if (semanticHint != null && !semanticHint.equals(elementTypeHint)) {
 			return null; // if semantic hint is specified it should be the same as in element type
 		}
-		int visualID = org.unicase.model.classDiagram.part.ModelVisualIDRegistry
-				.getVisualID(elementTypeHint);
+		int visualID = org.unicase.model.classDiagram.part.ModelVisualIDRegistry.getVisualID(elementTypeHint);
 		EObject domainElement = getSemanticElement(semanticAdapter);
 		if (domainElement != null
-				&& visualID != org.unicase.model.classDiagram.part.ModelVisualIDRegistry
-						.getLinkWithClassVisualID(domainElement)) {
+			&& visualID != org.unicase.model.classDiagram.part.ModelVisualIDRegistry
+				.getLinkWithClassVisualID(domainElement)) {
 			return null; // visual id for link EClass should match visual id from element type
 		}
 		return getEdgeViewClass(visualID);

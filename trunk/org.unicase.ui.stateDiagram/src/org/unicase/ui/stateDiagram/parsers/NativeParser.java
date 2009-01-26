@@ -13,8 +13,7 @@ import org.eclipse.gmf.runtime.common.ui.services.parser.ParserEditStatus;
 /**
  * @generated
  */
-public class NativeParser extends
-		org.unicase.ui.stateDiagram.parsers.AbstractParser {
+public class NativeParser extends org.unicase.ui.stateDiagram.parsers.AbstractParser {
 
 	/**
 	 * @generated
@@ -39,8 +38,7 @@ public class NativeParser extends
 	public String getPrintString(IAdaptable adapter, int flags) {
 		EObject element = (EObject) adapter.getAdapter(EObject.class);
 		EAttribute feature = getAttribute();
-		String s = EcoreUtil.convertToString(feature.getEAttributeType(),
-				element.eGet(feature));
+		String s = EcoreUtil.convertToString(feature.getEAttributeType(), element.eGet(feature));
 		return s != null ? s : ""; //$NON-NLS-1$
 	}
 
@@ -54,19 +52,16 @@ public class NativeParser extends
 	/**
 	 * @generated
 	 */
-	public IParserEditStatus isValidEditString(IAdaptable adapter,
-			String editString) {
+	public IParserEditStatus isValidEditString(IAdaptable adapter, String editString) {
 		return ParserEditStatus.EDITABLE_STATUS;
 	}
 
 	/**
 	 * @generated
 	 */
-	public ICommand getParseCommand(IAdaptable adapter, String newString,
-			int flags) {
+	public ICommand getParseCommand(IAdaptable adapter, String newString, int flags) {
 		EAttribute feature = getAttribute();
-		Object value = EcoreUtil.createFromString(feature.getEAttributeType(),
-				newString);
+		Object value = EcoreUtil.createFromString(feature.getEAttributeType(), newString);
 		return getParseCommand(adapter, new Object[] { value }, flags);
 	}
 }

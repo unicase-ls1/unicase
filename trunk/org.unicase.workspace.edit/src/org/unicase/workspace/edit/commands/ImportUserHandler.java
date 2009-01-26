@@ -1,6 +1,7 @@
 /**
- * <copyright> Copyright (c) 2008 Jonas Helming, Maximilian Koegel. All rights reserved. This program and the accompanying materials are made available under the terms of the Eclipse Public License v1.0 which accompanies this distribution, and is available at http://www.eclipse.org/legal/epl-v10.html
- * </copyright>
+ * <copyright> Copyright (c) 2008 Jonas Helming, Maximilian Koegel. All rights reserved. This program and the
+ * accompanying materials are made available under the terms of the Eclipse Public License v1.0 which accompanies this
+ * distribution, and is available at http://www.eclipse.org/legal/epl-v10.html </copyright>
  */
 package org.unicase.workspace.edit.commands;
 
@@ -31,7 +32,6 @@ import org.unicase.workspace.ProjectSpace;
  * Import all user from LDDAP to the project.
  * 
  * @author helming
- * 
  */
 public class ImportUserHandler extends ProjectActionHandler {
 	/**
@@ -40,14 +40,13 @@ public class ImportUserHandler extends ProjectActionHandler {
 	public Object execute(ExecutionEvent event) throws ExecutionException {
 		final ProjectSpace projectSpace = getProjectSpace(event);
 		TransactionalEditingDomain domain = TransactionalEditingDomain.Registry.INSTANCE
-				.getEditingDomain("org.unicase.EditingDomain");
+			.getEditingDomain("org.unicase.EditingDomain");
 		domain.getCommandStack().execute(new RecordingCommand(domain) {
 			@Override
 			protected void doExecute() {
 				try {
-					List<ACOrgUnit> participants = projectSpace
-							.getUsersession().getAdminBroker().getParticipants(
-									projectSpace.getProjectId());
+					List<ACOrgUnit> participants = projectSpace.getUsersession().getAdminBroker().getParticipants(
+						projectSpace.getProjectId());
 					if (participants != null) {
 						addToProject(participants, projectSpace);
 					}
@@ -66,20 +65,16 @@ public class ImportUserHandler extends ProjectActionHandler {
 	/**
 	 * Adds a list of acUsers to a project.
 	 * 
-	 * @param participants
-	 *            The list of ACUser
-	 * @param projectSpace
-	 *            The projectSpace which contains the project
+	 * @param participants The list of ACUser
+	 * @param projectSpace The projectSpace which contains the project
 	 */
-	protected void addToProject(List<ACOrgUnit> participants,
-			ProjectSpace projectSpace) {
+	protected void addToProject(List<ACOrgUnit> participants, ProjectSpace projectSpace) {
 		HashMap<String, User> userIdMap = new HashMap<String, User>();
 		HashMap<String, User> userNameMap = new HashMap<String, User>();
 		List<ACUser> importUserList = new ArrayList<ACUser>();
 		Project project = projectSpace.getProject();
 		EList<User> existingUsers = new BasicEList<User>();
-		project.getAllModelElementsbyClass(OrganizationPackage.eINSTANCE
-				.getUser(), existingUsers);
+		project.getAllModelElementsbyClass(OrganizationPackage.eINSTANCE.getUser(), existingUsers);
 		// Put existing users in a map
 		for (User user : existingUsers) {
 			userIdMap.put(user.getAcOrgId(), user);
@@ -116,8 +111,7 @@ public class ImportUserHandler extends ProjectActionHandler {
 
 	}
 
-	private void convertList(List<ACOrgUnit> participants,
-			List<ACUser> importUserList, ProjectSpace projectSpace) {
+	private void convertList(List<ACOrgUnit> participants, List<ACUser> importUserList, ProjectSpace projectSpace) {
 		for (ACOrgUnit orgUnit : participants) {
 			if (orgUnit instanceof ACUser) {
 				importUserList.add((ACUser) orgUnit);
@@ -125,8 +119,7 @@ public class ImportUserHandler extends ProjectActionHandler {
 			if (orgUnit instanceof ACGroup) {
 				List<ACOrgUnit> recursiveList = null;
 				try {
-					recursiveList = projectSpace.getUsersession()
-							.getAdminBroker().getMembers(orgUnit.getId());
+					recursiveList = projectSpace.getUsersession().getAdminBroker().getMembers(orgUnit.getId());
 				} catch (ConnectionException e) {
 					DialogHandler.showExceptionDialog(e);
 				} catch (EmfStoreException e) {

@@ -1,8 +1,7 @@
 /**
- * <copyright> Copyright (c) 2008 Jonas Helming, Maximilian Koegel. All rights reserved. This program and the accompanying materials are made available under the terms of the Eclipse Public License v1.0 which accompanies this distribution, and is available at http://www.eclipse.org/legal/epl-v10.html
- * </copyright>
- *
- * $Id$
+ * <copyright> Copyright (c) 2008 Jonas Helming, Maximilian Koegel. All rights reserved. This program and the
+ * accompanying materials are made available under the terms of the Eclipse Public License v1.0 which accompanies this
+ * distribution, and is available at http://www.eclipse.org/legal/epl-v10.html </copyright>
  */
 package org.unicase.ui.common.diagram.commands;
 
@@ -100,48 +99,39 @@ public class CommandFactory {
 	}
 
 	/**
-	 * @param object
-	 * The object to be colorized
-	 * @param host
-	 * The {@link DiagramEditPart} containing the object's {@link EditPart} 
-	 * @return
-	 * A {@link CompoundCommand} containing {@link SetPropertyCommand}s 
+	 * @param object The object to be colorized
+	 * @param host The {@link DiagramEditPart} containing the object's {@link EditPart}
+	 * @return A {@link CompoundCommand} containing {@link SetPropertyCommand}s
 	 */
-	public static Command createColorizeCommand(EObject object, DiagramEditPart host){
-		
+	public static Command createColorizeCommand(EObject object, DiagramEditPart host) {
+
 		CompoundCommand cc = new CompoundCommand("Colorize");
-		
-		SetPropertyCommand setLineColorCommand = new SetPropertyCommand(host.getEditingDomain(),
-			"Set line color",
-            new EObjectViewAdapter(object, host),
-            Properties.ID_LINECOLOR, 
-            FigureUtilities.colorToInteger(DiagramColorConstants.blue));
-		 
+
+		SetPropertyCommand setLineColorCommand = new SetPropertyCommand(host.getEditingDomain(), "Set line color",
+			new EObjectViewAdapter(object, host), Properties.ID_LINECOLOR, FigureUtilities
+				.colorToInteger(DiagramColorConstants.blue));
+
 		Command setLineColorCommandProxy = new ICommandProxy(setLineColorCommand);
 		cc.add(setLineColorCommandProxy);
-		
-		Color veryLightBlue  = new Color(null, 240, 240, 255);
-		SetPropertyCommand setFillColorCommand = new SetPropertyCommand(host.getEditingDomain(),
-			"Set fill color",
-            new EObjectViewAdapter(object, host),
-            Properties.ID_FILLCOLOR, 
-            FigureUtilities.colorToInteger(veryLightBlue));
-		 
+
+		Color veryLightBlue = new Color(null, 240, 240, 255);
+		SetPropertyCommand setFillColorCommand = new SetPropertyCommand(host.getEditingDomain(), "Set fill color",
+			new EObjectViewAdapter(object, host), Properties.ID_FILLCOLOR, FigureUtilities
+				.colorToInteger(veryLightBlue));
+
 		Command setFillColorCommandProxy = new ICommandProxy(setFillColorCommand);
 		cc.add(setFillColorCommandProxy);
-		
-		SetPropertyCommand setFontColorCommand = new SetPropertyCommand(host.getEditingDomain(),
-			"Set font color",
-            new EObjectViewAdapter(object, host),
-            Properties.ID_FONTCOLOR, 
-            FigureUtilities.colorToInteger(DiagramColorConstants.blue));
-		
+
+		SetPropertyCommand setFontColorCommand = new SetPropertyCommand(host.getEditingDomain(), "Set font color",
+			new EObjectViewAdapter(object, host), Properties.ID_FONTCOLOR, FigureUtilities
+				.colorToInteger(DiagramColorConstants.blue));
+
 		Command setFontColorCommandProxy = new ICommandProxy(setFontColorCommand);
 		cc.add(setFontColorCommandProxy);
-		
+
 		return cc;
 	}
-	
+
 	/**
 	 * @param cc The {@link CompoundCommand} to which commands should be added
 	 * @param viewDescriptors The {@link ViewDescriptor}s for the creation of the arrange commands
@@ -193,7 +183,6 @@ public class CommandFactory {
 	 * @param object The {@link EObject} for which the command should be created
 	 * @param editPart The {@link EditPart} which will be asked for the command
 	 * @return The command
-	 * 
 	 */
 	public static Command createCreateNodeViewCommand(EObject object, EditPart editPart) {
 		CreateNodeViewCommandProvider provider = new CreateNodeViewCommandProvider(editPart, object);

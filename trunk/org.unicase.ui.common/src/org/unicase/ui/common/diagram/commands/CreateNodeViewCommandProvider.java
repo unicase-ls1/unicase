@@ -1,8 +1,7 @@
 /**
- * <copyright> Copyright (c) 2008 Jonas Helming, Maximilian Koegel. All rights reserved. This program and the accompanying materials are made available under the terms of the Eclipse Public License v1.0 which accompanies this distribution, and is available at http://www.eclipse.org/legal/epl-v10.html
- * </copyright>
- *
- * $Id$
+ * <copyright> Copyright (c) 2008 Jonas Helming, Maximilian Koegel. All rights reserved. This program and the
+ * accompanying materials are made available under the terms of the Eclipse Public License v1.0 which accompanies this
+ * distribution, and is available at http://www.eclipse.org/legal/epl-v10.html </copyright>
  */
 package org.unicase.ui.common.diagram.commands;
 
@@ -26,12 +25,10 @@ public class CreateNodeViewCommandProvider {
 	private Command command;
 
 	/**
-	 * Default constructor. 
+	 * Default constructor.
 	 * 
-	 * @param host
-	 * The {@link EditPart} which will be asked for the command
-	 * @param object
-	 * The node object
+	 * @param host The {@link EditPart} which will be asked for the command
+	 * @param object The node object
 	 */
 	public CreateNodeViewCommandProvider(EditPart host, EObject object) {
 		if (host == null) {
@@ -40,7 +37,7 @@ public class CreateNodeViewCommandProvider {
 		if (object == null) {
 			throw new IllegalArgumentException();
 		}
-		
+
 		this.host = host;
 		this.object = object;
 	}
@@ -60,9 +57,9 @@ public class CreateNodeViewCommandProvider {
 	}
 
 	private void createViewDescriptor() {
-		viewDescriptor = CommandFactory.createViewDescriptorForNode(object);	
+		viewDescriptor = CommandFactory.createViewDescriptorForNode(object);
 	}
-	
+
 	/**
 	 * @return The object for which commands are provided
 	 */
@@ -76,7 +73,7 @@ public class CreateNodeViewCommandProvider {
 	public EditPart getHost() {
 		return host;
 	}
-	
+
 	/**
 	 * @return The {@link ViewDescriptor} created during the command creation
 	 */

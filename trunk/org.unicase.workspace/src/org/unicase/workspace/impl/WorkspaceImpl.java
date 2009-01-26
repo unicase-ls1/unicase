@@ -1,8 +1,7 @@
 /**
- * <copyright> Copyright (c) 2008 Jonas Helming, Maximilian Koegel. All rights reserved. This program and the accompanying materials are made available under the terms of the Eclipse Public License v1.0 which accompanies this distribution, and is available at http://www.eclipse.org/legal/epl-v10.html
- * </copyright>
- *
- * $Id$
+ * <copyright> Copyright (c) 2008 Jonas Helming, Maximilian Koegel. All rights reserved. This program and the
+ * accompanying materials are made available under the terms of the Eclipse Public License v1.0 which accompanies this
+ * distribution, and is available at http://www.eclipse.org/legal/epl-v10.html </copyright>
  */
 package org.unicase.workspace.impl;
 
@@ -45,18 +44,17 @@ import org.unicase.workspace.WorkspacePackage;
 import org.unicase.workspace.connectionmanager.ConnectionManager;
 
 /**
- * <!-- begin-user-doc --> An implementation of the model object '
- * <em><b>Workspace</b></em>'. <!-- end-user-doc -->
+ * <!-- begin-user-doc --> An implementation of the model object ' <em><b>Workspace</b></em>'. <!-- end-user-doc -->
  * <p>
  * The following features are implemented:
  * <ul>
- *   <li>{@link org.unicase.workspace.impl.WorkspaceImpl#getProjectSpaces <em>Project Spaces</em>}</li>
- *   <li>{@link org.unicase.workspace.impl.WorkspaceImpl#getServerInfos <em>Server Infos</em>}</li>
- *   <li>{@link org.unicase.workspace.impl.WorkspaceImpl#getUsersessions <em>Usersessions</em>}</li>
- *   <li>{@link org.unicase.workspace.impl.WorkspaceImpl#getActiveProjectSpace <em>Active Project Space</em>}</li>
+ * <li>{@link org.unicase.workspace.impl.WorkspaceImpl#getProjectSpaces <em>Project Spaces</em>}</li>
+ * <li>{@link org.unicase.workspace.impl.WorkspaceImpl#getServerInfos <em>Server Infos</em>}</li>
+ * <li>{@link org.unicase.workspace.impl.WorkspaceImpl#getUsersessions <em>Usersessions</em>}</li>
+ * <li>{@link org.unicase.workspace.impl.WorkspaceImpl#getActiveProjectSpace <em>Active Project Space</em>}</li>
  * </ul>
  * </p>
- *
+ * 
  * @generated
  */
 public class WorkspaceImpl extends EObjectImpl implements Workspace {
@@ -67,9 +65,9 @@ public class WorkspaceImpl extends EObjectImpl implements Workspace {
 	private ResourceSet workspaceResourceSet;
 
 	/**
-	 * The cached value of the '{@link #getProjectSpaces() <em>Project Spaces</em>}' containment reference list.
-	 * <!-- begin-user-doc --> <!--
-	 * end-user-doc -->
+	 * The cached value of the '{@link #getProjectSpaces() <em>Project Spaces</em>}' containment reference list. <!--
+	 * begin-user-doc --> <!-- end-user-doc -->
+	 * 
 	 * @see #getProjectSpaces()
 	 * @generated
 	 * @ordered
@@ -77,8 +75,9 @@ public class WorkspaceImpl extends EObjectImpl implements Workspace {
 	protected EList<ProjectSpace> projectSpaces;
 
 	/**
-	 * The cached value of the '{@link #getServerInfos() <em>Server Infos</em>}' containment reference list.
-	 * <!-- begin-user-doc --> <!-- end-user-doc -->
+	 * The cached value of the '{@link #getServerInfos() <em>Server Infos</em>}' containment reference list. <!--
+	 * begin-user-doc --> <!-- end-user-doc -->
+	 * 
 	 * @see #getServerInfos()
 	 * @generated
 	 * @ordered
@@ -86,9 +85,8 @@ public class WorkspaceImpl extends EObjectImpl implements Workspace {
 	protected EList<ServerInfo> serverInfos;
 
 	/**
-	 * The cached value of the '{@link #getUsersessions() <em>Usersessions</em>}
-	 * ' containment reference list. <!-- begin-user-doc --> <!-- end-user-doc
-	 * -->
+	 * The cached value of the '{@link #getUsersessions() <em>Usersessions</em>} ' containment reference list. <!--
+	 * begin-user-doc --> <!-- end-user-doc -->
 	 * 
 	 * @see #getUsersessions()
 	 * @generated
@@ -97,9 +95,9 @@ public class WorkspaceImpl extends EObjectImpl implements Workspace {
 	protected EList<Usersession> usersessions;
 
 	/**
-	 * The cached value of the '{@link #getActiveProjectSpace() <em>Active Project Space</em>}' reference.
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
+	 * The cached value of the '{@link #getActiveProjectSpace() <em>Active Project Space</em>}' reference. <!--
+	 * begin-user-doc --> <!-- end-user-doc -->
+	 * 
 	 * @see #getActiveProjectSpace()
 	 * @generated
 	 * @ordered
@@ -119,6 +117,7 @@ public class WorkspaceImpl extends EObjectImpl implements Workspace {
 
 	/**
 	 * <!-- begin-user-doc --> <!-- end-user-doc -->
+	 * 
 	 * @generated
 	 */
 	protected WorkspaceImpl() {
@@ -127,6 +126,7 @@ public class WorkspaceImpl extends EObjectImpl implements Workspace {
 
 	/**
 	 * <!-- begin-user-doc --> <!-- end-user-doc -->
+	 * 
 	 * @generated
 	 */
 	@Override
@@ -136,46 +136,46 @@ public class WorkspaceImpl extends EObjectImpl implements Workspace {
 
 	/**
 	 * <!-- begin-user-doc --> <!-- end-user-doc -->
+	 * 
 	 * @generated
 	 */
 	public EList<ProjectSpace> getProjectSpaces() {
 		if (projectSpaces == null) {
-			projectSpaces = new EObjectContainmentEList.Resolving<ProjectSpace>(
-					ProjectSpace.class, this,
-					WorkspacePackage.WORKSPACE__PROJECT_SPACES);
+			projectSpaces = new EObjectContainmentEList.Resolving<ProjectSpace>(ProjectSpace.class, this,
+				WorkspacePackage.WORKSPACE__PROJECT_SPACES);
 		}
 		return projectSpaces;
 	}
 
 	/**
 	 * <!-- begin-user-doc --> <!-- end-user-doc -->
+	 * 
 	 * @generated
 	 */
 	public EList<ServerInfo> getServerInfos() {
 		if (serverInfos == null) {
-			serverInfos = new EObjectContainmentEList.Resolving<ServerInfo>(
-					ServerInfo.class, this,
-					WorkspacePackage.WORKSPACE__SERVER_INFOS);
+			serverInfos = new EObjectContainmentEList.Resolving<ServerInfo>(ServerInfo.class, this,
+				WorkspacePackage.WORKSPACE__SERVER_INFOS);
 		}
 		return serverInfos;
 	}
 
 	/**
 	 * <!-- begin-user-doc --> <!-- end-user-doc -->
+	 * 
 	 * @generated
 	 */
 	public EList<Usersession> getUsersessions() {
 		if (usersessions == null) {
-			usersessions = new EObjectContainmentEList.Resolving<Usersession>(
-					Usersession.class, this,
-					WorkspacePackage.WORKSPACE__USERSESSIONS);
+			usersessions = new EObjectContainmentEList.Resolving<Usersession>(Usersession.class, this,
+				WorkspacePackage.WORKSPACE__USERSESSIONS);
 		}
 		return usersessions;
 	}
 
 	/**
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
+	 * <!-- begin-user-doc --> <!-- end-user-doc -->
+	 * 
 	 * @generated
 	 */
 	public ProjectSpace getActiveProjectSpace() {
@@ -185,16 +185,15 @@ public class WorkspaceImpl extends EObjectImpl implements Workspace {
 			if (activeProjectSpace != oldActiveProjectSpace) {
 				if (eNotificationRequired())
 					eNotify(new ENotificationImpl(this, Notification.RESOLVE,
-							WorkspacePackage.WORKSPACE__ACTIVE_PROJECT_SPACE,
-							oldActiveProjectSpace, activeProjectSpace));
+						WorkspacePackage.WORKSPACE__ACTIVE_PROJECT_SPACE, oldActiveProjectSpace, activeProjectSpace));
 			}
 		}
 		return activeProjectSpace;
 	}
 
 	/**
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
+	 * <!-- begin-user-doc --> <!-- end-user-doc -->
+	 * 
 	 * @generated
 	 */
 	public ProjectSpace basicGetActiveProjectSpace() {
@@ -202,17 +201,16 @@ public class WorkspaceImpl extends EObjectImpl implements Workspace {
 	}
 
 	/**
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
+	 * <!-- begin-user-doc --> <!-- end-user-doc -->
+	 * 
 	 * @generated
 	 */
 	public void setActiveProjectSpace(ProjectSpace newActiveProjectSpace) {
 		ProjectSpace oldActiveProjectSpace = activeProjectSpace;
 		activeProjectSpace = newActiveProjectSpace;
 		if (eNotificationRequired())
-			eNotify(new ENotificationImpl(this, Notification.SET,
-					WorkspacePackage.WORKSPACE__ACTIVE_PROJECT_SPACE,
-					oldActiveProjectSpace, activeProjectSpace));
+			eNotify(new ENotificationImpl(this, Notification.SET, WorkspacePackage.WORKSPACE__ACTIVE_PROJECT_SPACE,
+				oldActiveProjectSpace, activeProjectSpace));
 	}
 
 	/**
@@ -220,29 +218,24 @@ public class WorkspaceImpl extends EObjectImpl implements Workspace {
 	 * 
 	 * @generated NOT
 	 */
-	public ProjectSpace checkout(final Usersession usersession,
-			final ProjectInfo projectInfo) throws EmfStoreException {
+	public ProjectSpace checkout(final Usersession usersession, final ProjectInfo projectInfo) throws EmfStoreException {
 
-		//MK: hack: set head version manually because esbrowser does not update revisions properly
+		// MK: hack: set head version manually because esbrowser does not update revisions properly
 		ProjectInfo projectInfoCopy = (ProjectInfo) EcoreUtil.copy(projectInfo);
-		projectInfoCopy.setVersion(this.connectionManager.resolveVersionSpec(
-				usersession.getSessionId(), projectInfo.getProjectId(),
-				VersionSpec.HEAD_VERSION));
+		projectInfoCopy.setVersion(this.connectionManager.resolveVersionSpec(usersession.getSessionId(), projectInfo
+			.getProjectId(), VersionSpec.HEAD_VERSION));
 
 		// get Project from server
-		final Project project = this.connectionManager.getProject(usersession
-				.getSessionId(), projectInfo.getProjectId(), projectInfoCopy
-				.getVersion());
+		final Project project = this.connectionManager.getProject(usersession.getSessionId(), projectInfo
+			.getProjectId(), projectInfoCopy.getVersion());
 		if (project == null) {
 			throw new EmfStoreException("Server returned a null project!");
 		}
 
-		final PrimaryVersionSpec primaryVersionSpec = projectInfoCopy
-				.getVersion();
+		final PrimaryVersionSpec primaryVersionSpec = projectInfoCopy.getVersion();
 
 		// init project space
-		ProjectSpace projectSpace = WorkspaceFactory.eINSTANCE
-				.createProjectSpace();
+		ProjectSpace projectSpace = WorkspaceFactory.eINSTANCE.createProjectSpace();
 		projectSpace.setProjectId(projectInfo.getProjectId());
 		projectSpace.setProjectName(projectInfo.getName());
 		projectSpace.setProjectDescription(projectInfo.getDescription());
@@ -286,27 +279,25 @@ public class WorkspaceImpl extends EObjectImpl implements Workspace {
 
 	/**
 	 * <!-- begin-user-doc --> <!-- end-user-doc -->
+	 * 
 	 * @generated
 	 */
 	@Override
-	public NotificationChain eInverseRemove(InternalEObject otherEnd,
-			int featureID, NotificationChain msgs) {
+	public NotificationChain eInverseRemove(InternalEObject otherEnd, int featureID, NotificationChain msgs) {
 		switch (featureID) {
 		case WorkspacePackage.WORKSPACE__PROJECT_SPACES:
-			return ((InternalEList<?>) getProjectSpaces()).basicRemove(
-					otherEnd, msgs);
+			return ((InternalEList<?>) getProjectSpaces()).basicRemove(otherEnd, msgs);
 		case WorkspacePackage.WORKSPACE__SERVER_INFOS:
-			return ((InternalEList<?>) getServerInfos()).basicRemove(otherEnd,
-					msgs);
+			return ((InternalEList<?>) getServerInfos()).basicRemove(otherEnd, msgs);
 		case WorkspacePackage.WORKSPACE__USERSESSIONS:
-			return ((InternalEList<?>) getUsersessions()).basicRemove(otherEnd,
-					msgs);
+			return ((InternalEList<?>) getUsersessions()).basicRemove(otherEnd, msgs);
 		}
 		return super.eInverseRemove(otherEnd, featureID, msgs);
 	}
 
 	/**
 	 * <!-- begin-user-doc --> <!-- end-user-doc -->
+	 * 
 	 * @generated
 	 */
 	@Override
@@ -328,6 +319,7 @@ public class WorkspaceImpl extends EObjectImpl implements Workspace {
 
 	/**
 	 * <!-- begin-user-doc --> <!-- end-user-doc -->
+	 * 
 	 * @generated
 	 */
 	@SuppressWarnings("unchecked")
@@ -336,18 +328,15 @@ public class WorkspaceImpl extends EObjectImpl implements Workspace {
 		switch (featureID) {
 		case WorkspacePackage.WORKSPACE__PROJECT_SPACES:
 			getProjectSpaces().clear();
-			getProjectSpaces().addAll(
-					(Collection<? extends ProjectSpace>) newValue);
+			getProjectSpaces().addAll((Collection<? extends ProjectSpace>) newValue);
 			return;
 		case WorkspacePackage.WORKSPACE__SERVER_INFOS:
 			getServerInfos().clear();
-			getServerInfos()
-					.addAll((Collection<? extends ServerInfo>) newValue);
+			getServerInfos().addAll((Collection<? extends ServerInfo>) newValue);
 			return;
 		case WorkspacePackage.WORKSPACE__USERSESSIONS:
 			getUsersessions().clear();
-			getUsersessions().addAll(
-					(Collection<? extends Usersession>) newValue);
+			getUsersessions().addAll((Collection<? extends Usersession>) newValue);
 			return;
 		case WorkspacePackage.WORKSPACE__ACTIVE_PROJECT_SPACE:
 			setActiveProjectSpace((ProjectSpace) newValue);
@@ -358,6 +347,7 @@ public class WorkspaceImpl extends EObjectImpl implements Workspace {
 
 	/**
 	 * <!-- begin-user-doc --> <!-- end-user-doc -->
+	 * 
 	 * @generated
 	 */
 	@Override
@@ -381,6 +371,7 @@ public class WorkspaceImpl extends EObjectImpl implements Workspace {
 
 	/**
 	 * <!-- begin-user-doc --> <!-- end-user-doc -->
+	 * 
 	 * @generated
 	 */
 	@Override
@@ -407,8 +398,8 @@ public class WorkspaceImpl extends EObjectImpl implements Workspace {
 	}
 
 	/**
-	 * {@inheritDoc}
-	 * This is to enable the workspace to be root of table views.
+	 * {@inheritDoc} This is to enable the workspace to be root of table views.
+	 * 
 	 * @see org.eclipse.core.runtime.IAdaptable#getAdapter(java.lang.Class)
 	 * @generated NOT
 	 */
@@ -428,9 +419,8 @@ public class WorkspaceImpl extends EObjectImpl implements Workspace {
 		// initialize all projectSpaces
 		for (ProjectSpace projectSpace : getProjectSpaces()) {
 			projectSpace.init();
-			//add plugin start event 
-			PluginStartEvent event = EventsFactory.eINSTANCE
-					.createPluginStartEvent();
+			// add plugin start event
+			PluginStartEvent event = EventsFactory.eINSTANCE.createPluginStartEvent();
 			event.setPluginId("org.unicase.workspace");
 			event.setTimestamp(new Date());
 			projectSpace.addEvent(event);
@@ -452,28 +442,22 @@ public class WorkspaceImpl extends EObjectImpl implements Workspace {
 	 * @param absoluteFileName
 	 * @return
 	 */
-	public ProjectSpace importProject(String absoluteFileName)
-			throws IOException {
+	public ProjectSpace importProject(String absoluteFileName) throws IOException {
 		ResourceSetImpl resourceSet = new ResourceSetImpl();
-		Resource resource = resourceSet.getResource(URI
-				.createFileURI(absoluteFileName), true);
+		Resource resource = resourceSet.getResource(URI.createFileURI(absoluteFileName), true);
 		EList<EObject> directContents = resource.getContents();
 		// sanity check
 
-		if (directContents.size() != 1
-				&& (!(directContents.get(0) instanceof Project))) {
-			throw new IOException(
-					"File is corrupt, does not contain a Project.");
+		if (directContents.size() != 1 && (!(directContents.get(0) instanceof Project))) {
+			throw new IOException("File is corrupt, does not contain a Project.");
 		}
 
 		Project project = (Project) directContents.get(0);
 		resource.getContents().remove(project);
 
-		ProjectSpace projectSpace = WorkspaceFactory.eINSTANCE
-				.createProjectSpace();
+		ProjectSpace projectSpace = WorkspaceFactory.eINSTANCE.createProjectSpace();
 		projectSpace.setProject(project);
-		projectSpace.setProjectName(absoluteFileName.substring(absoluteFileName
-				.lastIndexOf(File.separatorChar) + 1));
+		projectSpace.setProjectName(absoluteFileName.substring(absoluteFileName.lastIndexOf(File.separatorChar) + 1));
 		projectSpace.setProjectDescription("Imported from " + absoluteFileName);
 
 		projectSpace.initResources(this.workspaceResourceSet);
@@ -484,8 +468,9 @@ public class WorkspaceImpl extends EObjectImpl implements Workspace {
 		return projectSpace;
 	}
 
-	/** 
+	/**
 	 * {@inheritDoc}
+	 * 
 	 * @see org.unicase.workspace.Workspace#setWorkspaceResourceSet(org.eclipse.emf.ecore.resource.ResourceSet)
 	 */
 	public void setWorkspaceResourceSet(ResourceSet resourceSet) {
@@ -499,51 +484,46 @@ public class WorkspaceImpl extends EObjectImpl implements Workspace {
 		return this.workspaceResourceSet;
 	}
 
-	/** 
+	/**
 	 * {@inheritDoc}
+	 * 
 	 * @see org.unicase.workspace.Workspace#exportProjectSpace(org.unicase.workspace.ProjectSpace, java.lang.String)
 	 */
-	public void exportProjectSpace(ProjectSpace projectSpace,
-			String absoluteFileName) throws IOException {
+	public void exportProjectSpace(ProjectSpace projectSpace, String absoluteFileName) throws IOException {
 		ResourceSet resourceSet = new ResourceSetImpl();
-		Resource resource = resourceSet.createResource(URI
-				.createFileURI(absoluteFileName));
+		Resource resource = resourceSet.createResource(URI.createFileURI(absoluteFileName));
 		ProjectSpace copy = (ProjectSpace) EcoreUtil.copy(projectSpace);
 		copy.setUsersession(null);
 		resource.getContents().add(copy);
 		resource.save(null);
 	}
 
-	/** 
+	/**
 	 * {@inheritDoc}
+	 * 
 	 * @see org.unicase.workspace.Workspace#exportWorkSpace(java.lang.String)
 	 */
 	public void exportWorkSpace(String absoluteFileName) throws IOException {
 		ResourceSet resourceSet = new ResourceSetImpl();
-		Resource resource = resourceSet.createResource(URI
-				.createFileURI(absoluteFileName));
-		Workspace copy = (Workspace) EcoreUtil.copy(WorkspaceManager
-				.getInstance().getCurrentWorkspace());
+		Resource resource = resourceSet.createResource(URI.createFileURI(absoluteFileName));
+		Workspace copy = (Workspace) EcoreUtil.copy(WorkspaceManager.getInstance().getCurrentWorkspace());
 		resource.getContents().add(copy);
 		resource.save(null);
 	}
 
-	/** 
+	/**
 	 * {@inheritDoc}
+	 * 
 	 * @see org.unicase.workspace.Workspace#importProjectSpace(java.lang.String)
 	 */
-	public ProjectSpace importProjectSpace(String absoluteFileName)
-			throws IOException {
+	public ProjectSpace importProjectSpace(String absoluteFileName) throws IOException {
 		ResourceSetImpl resourceSet = new ResourceSetImpl();
-		Resource resource = resourceSet.getResource(URI
-				.createFileURI(absoluteFileName), true);
+		Resource resource = resourceSet.getResource(URI.createFileURI(absoluteFileName), true);
 		EList<EObject> directContents = resource.getContents();
 		// sanity check
 
-		if (directContents.size() != 1
-				&& (!(directContents.get(0) instanceof ProjectSpace))) {
-			throw new IOException(
-					"File is corrupt, does not contain a ProjectSpace.");
+		if (directContents.size() != 1 && (!(directContents.get(0) instanceof ProjectSpace))) {
+			throw new IOException("File is corrupt, does not contain a ProjectSpace.");
 		}
 
 		ProjectSpace projectSpace = (ProjectSpace) directContents.get(0);
@@ -556,15 +536,14 @@ public class WorkspaceImpl extends EObjectImpl implements Workspace {
 		return projectSpace;
 	}
 
-	/** 
+	/**
 	 * {@inheritDoc}
+	 * 
 	 * @see org.unicase.workspace.Workspace#exportProject(org.unicase.workspace.ProjectSpace, java.lang.String)
 	 */
-	public void exportProject(ProjectSpace projectSpace, String absoluteFileName)
-			throws IOException {
+	public void exportProject(ProjectSpace projectSpace, String absoluteFileName) throws IOException {
 		ResourceSet resourceSet = new ResourceSetImpl();
-		Resource resource = resourceSet.createResource(URI
-				.createFileURI(absoluteFileName));
+		Resource resource = resourceSet.createResource(URI.createFileURI(absoluteFileName));
 		Project project = (Project) EcoreUtil.copy(projectSpace.getProject());
 
 		resource.getContents().add(project);

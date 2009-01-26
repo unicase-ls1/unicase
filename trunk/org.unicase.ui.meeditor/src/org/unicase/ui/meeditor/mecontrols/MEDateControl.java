@@ -1,8 +1,7 @@
 /**
- * <copyright> Copyright (c) 2008 Jonas Helming, Maximilian Koegel. All rights reserved. This program and the accompanying materials are made available under the terms of the Eclipse Public License v1.0 which accompanies this distribution, and is available at http://www.eclipse.org/legal/epl-v10.html
- * </copyright>
- *
- * $Id$
+ * <copyright> Copyright (c) 2008 Jonas Helming, Maximilian Koegel. All rights reserved. This program and the
+ * accompanying materials are made available under the terms of the Eclipse Public License v1.0 which accompanies this
+ * distribution, and is available at http://www.eclipse.org/legal/epl-v10.html </copyright>
  */
 package org.unicase.ui.meeditor.mecontrols;
 
@@ -41,25 +40,18 @@ public class MEDateControl extends AbstractMEControl implements MEControl {
 	/**
 	 * default constructor.
 	 * 
-	 * @param attribute
-	 *            the date attribute
-	 * @param toolkit
-	 *            see {@link AbstractMEControl}
-	 * @param modelElement
-	 *            see {@link AbstractMEControl}
-	 * @param editingDomain
-	 *            see {@link AbstractMEControl}
+	 * @param attribute the date attribute
+	 * @param toolkit see {@link AbstractMEControl}
+	 * @param modelElement see {@link AbstractMEControl}
+	 * @param editingDomain see {@link AbstractMEControl}
 	 */
-	public MEDateControl(EAttribute attribute, FormToolkit toolkit,
-			EObject modelElement, EditingDomain editingDomain) {
+	public MEDateControl(EAttribute attribute, FormToolkit toolkit, EObject modelElement, EditingDomain editingDomain) {
 		super(editingDomain, modelElement, toolkit);
 		this.attribute = attribute;
 		adapterImpl = new AdapterImpl() {
 			@Override
 			public void notifyChanged(Notification msg) {
-				if (msg.getFeature() != null
-						&& msg.getFeature()
-								.equals(MEDateControl.this.attribute)) {
+				if (msg.getFeature() != null && msg.getFeature().equals(MEDateControl.this.attribute)) {
 					update();
 				}
 				super.notifyChanged(msg);
@@ -77,7 +69,7 @@ public class MEDateControl extends AbstractMEControl implements MEControl {
 		composite.setLayout(new GridLayout(2, false));
 		composite.setBackgroundMode(SWT.INHERIT_FORCE);
 
-//		 The picker (CDT.DROP_DOWN) is deactivated on purpose
+		// The picker (CDT.DROP_DOWN) is deactivated on purpose
 		widget = new CDateTime(composite, CDT.BORDER);
 		widget.setLayoutData(new GridData(SWT.FILL, SWT.FILL, true, true));
 		widget.setPattern("dd.MM.yyyy HH:mm");
@@ -85,17 +77,15 @@ public class MEDateControl extends AbstractMEControl implements MEControl {
 		widget.addFocusListener(new FocusListener() {
 
 			public void focusGained(FocusEvent e) {
-				//nothing to do here
+				// nothing to do here
 			}
 
 			public void focusLost(FocusEvent e) {
-				TransactionalEditingDomain domain = TransactionUtil
-						.getEditingDomain(getModelElement());
+				TransactionalEditingDomain domain = TransactionUtil.getEditingDomain(getModelElement());
 				domain.getCommandStack().execute(new RecordingCommand(domain) {
 					@Override
 					protected void doExecute() {
-						getModelElement()
-								.eSet(attribute, widget.getSelection());
+						getModelElement().eSet(attribute, widget.getSelection());
 					}
 				});
 			}
@@ -105,8 +95,7 @@ public class MEDateControl extends AbstractMEControl implements MEControl {
 	}
 
 	private void update() {
-		TransactionalEditingDomain domain = TransactionUtil
-				.getEditingDomain(getModelElement());
+		TransactionalEditingDomain domain = TransactionUtil.getEditingDomain(getModelElement());
 		domain.getCommandStack().execute(new RecordingCommand(domain) {
 			@Override
 			protected void doExecute() {

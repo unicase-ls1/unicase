@@ -17,7 +17,6 @@ import org.unicase.workspace.WorkspaceManager;
  * Helper class to log events.
  * 
  * @author helming
- * 
  */
 public abstract class EventUtil {
 	private EventUtil() {
@@ -27,20 +26,18 @@ public abstract class EventUtil {
 	/**
 	 * Create Focus event.
 	 * 
-	 * @param viewId
-	 *            The ID of the focused view.
+	 * @param viewId The ID of the focused view.
 	 */
 	public static void logFocusEvent(String viewId) {
-		final PluginFocusEvent pluginFocusEvent = EventsFactory.eINSTANCE
-				.createPluginFocusEvent();
+		final PluginFocusEvent pluginFocusEvent = EventsFactory.eINSTANCE.createPluginFocusEvent();
 		pluginFocusEvent.setPluginId(viewId);
 		pluginFocusEvent.setStartDate(Calendar.getInstance().getTime());
-		final ProjectSpace activeProjectSpace = WorkspaceManager.getInstance()
-				.getCurrentWorkspace().getActiveProjectSpace();
+		final ProjectSpace activeProjectSpace = WorkspaceManager.getInstance().getCurrentWorkspace()
+			.getActiveProjectSpace();
 		if (activeProjectSpace != null) {
 
 			TransactionalEditingDomain domain = TransactionalEditingDomain.Registry.INSTANCE
-					.getEditingDomain("org.unicase.EditingDomain");
+				.getEditingDomain("org.unicase.EditingDomain");
 			domain.getCommandStack().execute(new RecordingCommand(domain) {
 				@Override
 				protected void doExecute() {
@@ -52,25 +49,20 @@ public abstract class EventUtil {
 	}
 
 	/**
-	 * 
-	 * @param viewID
-	 *            The ID of the current view.
-	 * @param presentationID
-	 *            The ID of the new presentation.
+	 * @param viewID The ID of the current view.
+	 * @param presentationID The ID of the new presentation.
 	 */
-	public static void logPresentationChangeEvent(String viewID,
-			String presentationID) {
-		final PresentationSwitchEvent presentationSwitchEvent = EventsFactory.eINSTANCE
-				.createPresentationSwitchEvent();
+	public static void logPresentationChangeEvent(String viewID, String presentationID) {
+		final PresentationSwitchEvent presentationSwitchEvent = EventsFactory.eINSTANCE.createPresentationSwitchEvent();
 		presentationSwitchEvent.setNewPresentation(presentationID);
 		presentationSwitchEvent.setReadView(viewID);
 		presentationSwitchEvent.setTimestamp(Calendar.getInstance().getTime());
-		final ProjectSpace activeProjectSpace = WorkspaceManager.getInstance()
-				.getCurrentWorkspace().getActiveProjectSpace();
+		final ProjectSpace activeProjectSpace = WorkspaceManager.getInstance().getCurrentWorkspace()
+			.getActiveProjectSpace();
 		if (activeProjectSpace != null) {
 
 			TransactionalEditingDomain domain = TransactionalEditingDomain.Registry.INSTANCE
-					.getEditingDomain("org.unicase.EditingDomain");
+				.getEditingDomain("org.unicase.EditingDomain");
 			domain.getCommandStack().execute(new RecordingCommand(domain) {
 				@Override
 				protected void doExecute() {
@@ -83,24 +75,20 @@ public abstract class EventUtil {
 	}
 
 	/**
-	 * 
-	 * @param me
-	 *            The annotated model element
-	 * @param annotation
-	 *            the new annoation
+	 * @param me The annotated model element
+	 * @param annotation the new annoation
 	 */
 	public static void logAnnotationEvent(ModelElement me, Annotation annotation) {
-		final AnnotationEvent annotationEvent = EventsFactory.eINSTANCE
-				.createAnnotationEvent();
+		final AnnotationEvent annotationEvent = EventsFactory.eINSTANCE.createAnnotationEvent();
 		annotationEvent.setAnnotatedElement(me.getModelElementId());
 		annotationEvent.setAnnotation(annotation.getModelElementId());
 		annotationEvent.setTimestamp(Calendar.getInstance().getTime());
-		final ProjectSpace activeProjectSpace = WorkspaceManager.getInstance()
-				.getCurrentWorkspace().getActiveProjectSpace();
+		final ProjectSpace activeProjectSpace = WorkspaceManager.getInstance().getCurrentWorkspace()
+			.getActiveProjectSpace();
 		if (activeProjectSpace != null) {
 
 			TransactionalEditingDomain domain = TransactionalEditingDomain.Registry.INSTANCE
-					.getEditingDomain("org.unicase.EditingDomain");
+				.getEditingDomain("org.unicase.EditingDomain");
 			domain.getCommandStack().execute(new RecordingCommand(domain) {
 				@Override
 				protected void doExecute() {

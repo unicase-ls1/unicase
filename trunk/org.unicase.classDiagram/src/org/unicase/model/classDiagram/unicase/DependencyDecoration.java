@@ -7,9 +7,8 @@ import org.eclipse.draw2d.geometry.PointList;
 
 /**
  * @author schroech
- *
  */
-public class DependencyDecoration extends ComposablePolygonDecoration{
+public class DependencyDecoration extends ComposablePolygonDecoration {
 
 	/**
 	 * Default constructor.
@@ -20,17 +19,16 @@ public class DependencyDecoration extends ComposablePolygonDecoration{
 		setBoundPoint(new Point(-1, 0));
 		setFill(true);
 		setBackgroundColor(ColorConstants.white);
-		
+
 		setLayoutManager(new DelegatingLayout());
 	}
 
-
 	private static final PointList ARROW = new PointList(new int[] { //
-			//
-					-1, 1, //
-					0, 0, //
-					-1, -1, //
-					0, 0, //
-					-1, 1, //
-			});
+		//
+			-1, 1, //
+			0, 0, //
+			-1, -1, //
+			0, 0, //
+			-1, 1, //
+		});
 }

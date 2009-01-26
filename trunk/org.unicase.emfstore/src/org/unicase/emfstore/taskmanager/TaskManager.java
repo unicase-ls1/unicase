@@ -3,8 +3,8 @@ package org.unicase.emfstore.taskmanager;
 import java.util.PriorityQueue;
 
 /**
- * Manages tasks which are to be executed at a specific point in time. It's a
- * scheduler working with only one thread, no thread pool.
+ * Manages tasks which are to be executed at a specific point in time. It's a scheduler working with only one thread, no
+ * thread pool.
  * 
  * @author wesendonk
  */
@@ -73,8 +73,7 @@ public final class TaskManager extends Thread {
 	/**
 	 * Adds a task to the queue.
 	 * 
-	 * @param task
-	 *            the task
+	 * @param task the task
 	 */
 	public synchronized void addTask(Task task) {
 		tasks.add(task);
@@ -83,8 +82,7 @@ public final class TaskManager extends Thread {
 	/**
 	 * Removes a task from the queue.
 	 * 
-	 * @param task
-	 *            the task
+	 * @param task the task
 	 */
 	public synchronized void removeTask(Task task) {
 		tasks.remove(task);

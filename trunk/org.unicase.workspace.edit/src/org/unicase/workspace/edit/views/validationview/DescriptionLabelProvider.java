@@ -7,7 +7,6 @@ import org.eclipse.jface.viewers.ColumnLabelProvider;
  * LbaleProvider for the Description Column.
  * 
  * @author helming
- * 
  */
 public class DescriptionLabelProvider extends ColumnLabelProvider {
 

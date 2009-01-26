@@ -49,8 +49,7 @@ public class ModelNodeDescriptor {
 	 */
 	public String getType() {
 		if (myType == null) {
-			myType = org.unicase.model.classDiagram.part.ModelVisualIDRegistry
-					.getType(getVisualID());
+			myType = org.unicase.model.classDiagram.part.ModelVisualIDRegistry.getType(getVisualID());
 		}
 		return myType;
 	}

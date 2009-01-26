@@ -1,8 +1,7 @@
 /**
- * <copyright> Copyright (c) 2008 Jonas Helming, Maximilian Koegel. All rights reserved. This program and the accompanying materials are made available under the terms of the Eclipse Public License v1.0 which accompanies this distribution, and is available at http://www.eclipse.org/legal/epl-v10.html
- * </copyright>
- *
- * $Id$
+ * <copyright> Copyright (c) 2008 Jonas Helming, Maximilian Koegel. All rights reserved. This program and the
+ * accompanying materials are made available under the terms of the Eclipse Public License v1.0 which accompanies this
+ * distribution, and is available at http://www.eclipse.org/legal/epl-v10.html </copyright>
  */
 package org.unicase.emfstore.esmodel.impl;
 
@@ -22,21 +21,20 @@ import org.unicase.emfstore.esmodel.SessionId;
 import org.unicase.emfstore.esmodel.VersionInfo;
 
 /**
- * <!-- begin-user-doc --> An implementation of the model <b>Factory</b>. <!--
- * end-user-doc -->
+ * <!-- begin-user-doc --> An implementation of the model <b>Factory</b>. <!-- end-user-doc -->
+ * 
  * @generated
  */
 public class EsmodelFactoryImpl extends EFactoryImpl implements EsmodelFactory {
 	/**
-	 * Creates the default factory implementation.
-	 * <!-- begin-user-doc --> <!--
-	 * end-user-doc -->
+	 * Creates the default factory implementation. <!-- begin-user-doc --> <!-- end-user-doc -->
+	 * 
 	 * @generated
 	 */
 	public static EsmodelFactory init() {
 		try {
 			EsmodelFactory theEsmodelFactory = (EsmodelFactory) EPackage.Registry.INSTANCE
-					.getEFactory("http://unicase.org/emfstore/esmodel");
+				.getEFactory("http://unicase.org/emfstore/esmodel");
 			if (theEsmodelFactory != null) {
 				return theEsmodelFactory;
 			}
@@ -47,9 +45,8 @@ public class EsmodelFactoryImpl extends EFactoryImpl implements EsmodelFactory {
 	}
 
 	/**
-	 * Creates an instance of the factory.
-	 * <!-- begin-user-doc --> <!--
-	 * end-user-doc -->
+	 * Creates an instance of the factory. <!-- begin-user-doc --> <!-- end-user-doc -->
+	 * 
 	 * @generated
 	 */
 	public EsmodelFactoryImpl() {
@@ -58,6 +55,7 @@ public class EsmodelFactoryImpl extends EFactoryImpl implements EsmodelFactory {
 
 	/**
 	 * <!-- begin-user-doc --> <!-- end-user-doc -->
+	 * 
 	 * @generated
 	 */
 	@Override
@@ -78,13 +76,13 @@ public class EsmodelFactoryImpl extends EFactoryImpl implements EsmodelFactory {
 		case EsmodelPackage.CLIENT_VERSION_INFO:
 			return createClientVersionInfo();
 		default:
-			throw new IllegalArgumentException("The class '" + eClass.getName()
-					+ "' is not a valid classifier");
+			throw new IllegalArgumentException("The class '" + eClass.getName() + "' is not a valid classifier");
 		}
 	}
 
 	/**
 	 * <!-- begin-user-doc --> <!-- end-user-doc -->
+	 * 
 	 * @generated
 	 */
 	public ProjectHistory createProjectHistory() {
@@ -94,6 +92,7 @@ public class EsmodelFactoryImpl extends EFactoryImpl implements EsmodelFactory {
 
 	/**
 	 * <!-- begin-user-doc --> <!-- end-user-doc -->
+	 * 
 	 * @generated
 	 */
 	public ProjectInfo createProjectInfo() {
@@ -103,6 +102,7 @@ public class EsmodelFactoryImpl extends EFactoryImpl implements EsmodelFactory {
 
 	/**
 	 * <!-- begin-user-doc --> <!-- end-user-doc -->
+	 * 
 	 * @generated
 	 */
 	public SessionId createSessionId() {
@@ -112,6 +112,7 @@ public class EsmodelFactoryImpl extends EFactoryImpl implements EsmodelFactory {
 
 	/**
 	 * <!-- begin-user-doc --> <!-- end-user-doc -->
+	 * 
 	 * @generated
 	 */
 	public ServerSpace createServerSpace() {
@@ -121,6 +122,7 @@ public class EsmodelFactoryImpl extends EFactoryImpl implements EsmodelFactory {
 
 	/**
 	 * <!-- begin-user-doc --> <!-- end-user-doc -->
+	 * 
 	 * @generated
 	 */
 	public ProjectId createProjectId() {
@@ -129,8 +131,8 @@ public class EsmodelFactoryImpl extends EFactoryImpl implements EsmodelFactory {
 	}
 
 	/**
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
+	 * <!-- begin-user-doc --> <!-- end-user-doc -->
+	 * 
 	 * @generated
 	 */
 	public VersionInfo createVersionInfo() {
@@ -139,8 +141,8 @@ public class EsmodelFactoryImpl extends EFactoryImpl implements EsmodelFactory {
 	}
 
 	/**
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
+	 * <!-- begin-user-doc --> <!-- end-user-doc -->
+	 * 
 	 * @generated
 	 */
 	public ClientVersionInfo createClientVersionInfo() {
@@ -150,6 +152,7 @@ public class EsmodelFactoryImpl extends EFactoryImpl implements EsmodelFactory {
 
 	/**
 	 * <!-- begin-user-doc --> <!-- end-user-doc -->
+	 * 
 	 * @generated
 	 */
 	public EsmodelPackage getEsmodelPackage() {
@@ -158,6 +161,7 @@ public class EsmodelFactoryImpl extends EFactoryImpl implements EsmodelFactory {
 
 	/**
 	 * <!-- begin-user-doc --> <!-- end-user-doc -->
+	 * 
 	 * @deprecated
 	 * @generated
 	 */

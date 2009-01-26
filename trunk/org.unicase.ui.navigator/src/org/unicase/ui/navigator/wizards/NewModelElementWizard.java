@@ -1,8 +1,7 @@
 /**
- * <copyright> Copyright (c) 2008 Jonas Helming, Maximilian Koegel. All rights reserved. This program and the accompanying materials are made available under the terms of the Eclipse Public License v1.0 which accompanies this distribution, and is available at http://www.eclipse.org/legal/epl-v10.html
- * </copyright>
- *
- * $Id$
+ * <copyright> Copyright (c) 2008 Jonas Helming, Maximilian Koegel. All rights reserved. This program and the
+ * accompanying materials are made available under the terms of the Eclipse Public License v1.0 which accompanies this
+ * distribution, and is available at http://www.eclipse.org/legal/epl-v10.html </copyright>
  */
 package org.unicase.ui.navigator.wizards;
 
@@ -28,33 +27,28 @@ import org.unicase.ui.common.util.ActionHelper;
 import org.unicase.workspace.WorkspaceManager;
 
 /**
- * 
- * @author Hodaie This is implementation of New Model Element wizard. This
- *         wizard is show through "Add new model element..." command in context
- *         menu of Navigator (only on right click on LeafSection). The wizard
- *         shows a tree of model packages and their classes. The user can select
- *         a Model Element type in this tree and on finish the model element is
- *         created, added to Leaf- or CompositeSection and opend for editing.
- * 
+ * @author Hodaie This is implementation of New Model Element wizard. This wizard is show through
+ *         "Add new model element..." command in context menu of Navigator (only on right click on LeafSection). The
+ *         wizard shows a tree of model packages and their classes. The user can select a Model Element type in this
+ *         tree and on finish the model element is created, added to Leaf- or CompositeSection and opend for editing.
  */
 public class NewModelElementWizard extends Wizard implements IWorkbenchWizard {
 
 	private ModelElement selectedME;
 	/**
-	 * . Through this field, the ModelTreePage tells the wizard which model
-	 * element type is selected
+	 * . Through this field, the ModelTreePage tells the wizard which model element type is selected
 	 */
 	private EClass newMEType;
 
 	/**
-	 * Through this field, the ModelTreePage tells the wizard if it's ready to
-	 * finish, i.e. if the selection a model element is and not a package.
+	 * Through this field, the ModelTreePage tells the wizard if it's ready to finish, i.e. if the selection a model
+	 * element is and not a package.
 	 */
 	private boolean treePageCompleted;
-	
+
 	/**
-	 * Through this field, the ModelTreePage tells the wizard, which diagram type should be created
-	 * e.g. a Class Diagram or Usecase Diagram
+	 * Through this field, the ModelTreePage tells the wizard, which diagram type should be created e.g. a Class Diagram
+	 * or Usecase Diagram
 	 */
 	private DiagramType newDiagramType;
 
@@ -70,8 +64,8 @@ public class NewModelElementWizard extends Wizard implements IWorkbenchWizard {
 	}
 
 	/**
-	 * . ({@inheritDoc}) This method creates a model element instance from
-	 * selected type, adds it to Leaf- or CompositeSection, and opens it.
+	 * . ({@inheritDoc}) This method creates a model element instance from selected type, adds it to Leaf- or
+	 * CompositeSection, and opens it.
 	 */
 	@Override
 	public boolean performFinish() {
@@ -79,10 +73,10 @@ public class NewModelElementWizard extends Wizard implements IWorkbenchWizard {
 		if (selectedME != null && newMEType != null) {
 			// 1.create ME
 			EPackage ePackage = newMEType.getEPackage();
-			newMEInstance = (ModelElement) ActionHelper.createModelElement(ePackage.getEFactoryInstance(),newMEType);
+			newMEInstance = (ModelElement) ActionHelper.createModelElement(ePackage.getEFactoryInstance(), newMEType);
 			newMEInstance.setName("new " + newMEType.getName());
 
-			if(newMEInstance instanceof MEDiagram) {
+			if (newMEInstance instanceof MEDiagram) {
 				((MEDiagram) newMEInstance).setType(this.newDiagramType);
 				newMEInstance.setName("new " + this.newDiagramType.getLiteral());
 			}
@@ -90,31 +84,30 @@ public class NewModelElementWizard extends Wizard implements IWorkbenchWizard {
 			// navigator
 			if (selectedME instanceof LeafSection) {
 
-				TransactionalEditingDomain domain = WorkspaceManager
-						.getInstance().getCurrentWorkspace().getEditingDomain();
+				TransactionalEditingDomain domain = WorkspaceManager.getInstance().getCurrentWorkspace()
+					.getEditingDomain();
 				domain.getCommandStack().execute(new RecordingCommand(domain) {
 					@Override
 					protected void doExecute() {
-						((LeafSection) selectedME).getModelElements().add(
-								newMEInstance);
+						((LeafSection) selectedME).getModelElements().add(newMEInstance);
 					}
 				});
 
 			}
 
 			if (newMEInstance instanceof Meeting) {
-				TransactionalEditingDomain domain = WorkspaceManager
-						.getInstance().getCurrentWorkspace().getEditingDomain();
+				TransactionalEditingDomain domain = WorkspaceManager.getInstance().getCurrentWorkspace()
+					.getEditingDomain();
 				domain.getCommandStack().execute(new RecordingCommand(domain) {
 					@Override
 					protected void doExecute() {
-						setupMeetingSections((Meeting)newMEInstance);
+						setupMeetingSections((Meeting) newMEInstance);
 					}
 				});
 				domain.getCommandStack().execute(new RecordingCommand(domain) {
 					@Override
 					protected void doExecute() {
-						setupMeetingSubSections((Meeting)newMEInstance);
+						setupMeetingSubSections((Meeting) newMEInstance);
 					}
 				});
 			}
@@ -124,16 +117,20 @@ public class NewModelElementWizard extends Wizard implements IWorkbenchWizard {
 
 		return true;
 	}
-	
-	//FIXME: added DOLLI meeting structure as default - needs flexible approach.
+
+	// FIXME: added DOLLI meeting structure as default - needs flexible approach.
 	private void setupMeetingSections(Meeting meeting) {
 		meeting.setName("Dolli meeting");
 
 		// create all DOLLI sections
-		CompositeMeetingSection objectiveSection = (CompositeMeetingSection) ActionHelper.createModelElement(MeetingFactory.eINSTANCE, MeetingPackage.eINSTANCE.getCompositeMeetingSection());
-		CompositeMeetingSection informationExchangeSection = (CompositeMeetingSection) ActionHelper.createModelElement(MeetingFactory.eINSTANCE, MeetingPackage.eINSTANCE.getCompositeMeetingSection());
-		CompositeMeetingSection wrapUpSection = (CompositeMeetingSection) ActionHelper.createModelElement(MeetingFactory.eINSTANCE, MeetingPackage.eINSTANCE.getCompositeMeetingSection());
-		IssueMeetingSection discussionSection = (IssueMeetingSection) ActionHelper.createModelElement(MeetingFactory.eINSTANCE, MeetingPackage.eINSTANCE.getIssueMeetingSection());
+		CompositeMeetingSection objectiveSection = (CompositeMeetingSection) ActionHelper.createModelElement(
+			MeetingFactory.eINSTANCE, MeetingPackage.eINSTANCE.getCompositeMeetingSection());
+		CompositeMeetingSection informationExchangeSection = (CompositeMeetingSection) ActionHelper.createModelElement(
+			MeetingFactory.eINSTANCE, MeetingPackage.eINSTANCE.getCompositeMeetingSection());
+		CompositeMeetingSection wrapUpSection = (CompositeMeetingSection) ActionHelper.createModelElement(
+			MeetingFactory.eINSTANCE, MeetingPackage.eINSTANCE.getCompositeMeetingSection());
+		IssueMeetingSection discussionSection = (IssueMeetingSection) ActionHelper.createModelElement(
+			MeetingFactory.eINSTANCE, MeetingPackage.eINSTANCE.getIssueMeetingSection());
 
 		// set attributes
 		objectiveSection.setName("Objective");
@@ -153,32 +150,35 @@ public class NewModelElementWizard extends Wizard implements IWorkbenchWizard {
 
 		meeting.setIdentifiedIssuesSection(discussionSection);
 	}
-	
+
 	private void setupMeetingSubSections(Meeting meeting) {
-		CompositeMeetingSection miscSection = (CompositeMeetingSection) ActionHelper.createModelElement(MeetingFactory.eINSTANCE, MeetingPackage.eINSTANCE.getCompositeMeetingSection());
-		CompositeMeetingSection meetingCritiqueSection = (CompositeMeetingSection) ActionHelper.createModelElement(MeetingFactory.eINSTANCE, MeetingPackage.eINSTANCE.getCompositeMeetingSection());
-		WorkItemMeetingSection workItemsSection = (WorkItemMeetingSection) ActionHelper.createModelElement(MeetingFactory.eINSTANCE, MeetingPackage.eINSTANCE.getWorkItemMeetingSection());
-		WorkItemMeetingSection newWorkItemsSection = (WorkItemMeetingSection) ActionHelper.createModelElement(MeetingFactory.eINSTANCE, MeetingPackage.eINSTANCE.getWorkItemMeetingSection());
-		
+		CompositeMeetingSection miscSection = (CompositeMeetingSection) ActionHelper.createModelElement(
+			MeetingFactory.eINSTANCE, MeetingPackage.eINSTANCE.getCompositeMeetingSection());
+		CompositeMeetingSection meetingCritiqueSection = (CompositeMeetingSection) ActionHelper.createModelElement(
+			MeetingFactory.eINSTANCE, MeetingPackage.eINSTANCE.getCompositeMeetingSection());
+		WorkItemMeetingSection workItemsSection = (WorkItemMeetingSection) ActionHelper.createModelElement(
+			MeetingFactory.eINSTANCE, MeetingPackage.eINSTANCE.getWorkItemMeetingSection());
+		WorkItemMeetingSection newWorkItemsSection = (WorkItemMeetingSection) ActionHelper.createModelElement(
+			MeetingFactory.eINSTANCE, MeetingPackage.eINSTANCE.getWorkItemMeetingSection());
+
 		miscSection.setName("Misc");
 		meetingCritiqueSection.setName("Meeting critique");
 		workItemsSection.setName("Action items");
 		newWorkItemsSection.setName("New action items");
-		
-		CompositeMeetingSection informationExchangeSection = (CompositeMeetingSection)meeting.getSections().get(1);
-		CompositeMeetingSection wrapUpSection = (CompositeMeetingSection)meeting.getSections().get(3);
-		
+
+		CompositeMeetingSection informationExchangeSection = (CompositeMeetingSection) meeting.getSections().get(1);
+		CompositeMeetingSection wrapUpSection = (CompositeMeetingSection) meeting.getSections().get(3);
+
 		informationExchangeSection.getSubsections().add(workItemsSection);
 		informationExchangeSection.getSubsections().add(miscSection);
 		wrapUpSection.getSubsections().add(newWorkItemsSection);
 		wrapUpSection.getSubsections().add(meetingCritiqueSection);
-		
+
 		meeting.setIdentifiedWorkItemsSection(newWorkItemsSection);
 	}
-		
+
 	/**
 	 * . ({@inheritDoc})
-	 * 
 	 */
 	public void init(IWorkbench workbench, IStructuredSelection selection) {
 		// get the in navigator selected ME
@@ -203,8 +203,7 @@ public class NewModelElementWizard extends Wizard implements IWorkbenchWizard {
 
 	/**
 	 * @see newMEType
-	 * @param newMEType
-	 *            The ME type that was in ModelTreePage selected.
+	 * @param newMEType The ME type that was in ModelTreePage selected.
 	 */
 	public void setNewMEType(EClass newMEType) {
 		this.newMEType = newMEType;
@@ -212,8 +211,7 @@ public class NewModelElementWizard extends Wizard implements IWorkbenchWizard {
 
 	/**
 	 * @see treePageCompeleted
-	 * @param treePageCompleted
-	 *            If ModelTreePage is complete (i.e. its selection is a ME)
+	 * @param treePageCompleted If ModelTreePage is complete (i.e. its selection is a ME)
 	 */
 	public void setTreePageCompleted(boolean treePageCompleted) {
 		this.treePageCompleted = treePageCompleted;
@@ -221,12 +219,11 @@ public class NewModelElementWizard extends Wizard implements IWorkbenchWizard {
 
 	/**
 	 * @see newDiagramType
-	 * @param type
-	 *            the type of the diagram, to be created.
+	 * @param type the type of the diagram, to be created.
 	 */
 	public void setNewDiagramType(DiagramType type) {
 		this.newDiagramType = type;
-		
+
 	}
 
 }

@@ -19,23 +19,17 @@ import org.unicase.model.classes.AssociationType;
 
 /**
  * @author schroech
- *
  */
-public class AssociationDecoration extends Figure implements
-		RotatableDecoration {
+public class AssociationDecoration extends Figure implements RotatableDecoration {
 	private static final Locator NULL_LOCATOR = new LocatorStub();
 
 	private Association association;
 
 	private boolean source;
-	
-	
 
 	/**
-	 * @param association
-	 * The association to which the decoration will be attached
-	 * @param source
-	 * Indicates if the decoration is attached to the associations source end
+	 * @param association The association to which the decoration will be attached
+	 * @param source Indicates if the decoration is attached to the associations source end
 	 */
 	public AssociationDecoration(Association association, boolean source) {
 		super();
@@ -77,34 +71,34 @@ public class AssociationDecoration extends Figure implements
 	}
 
 	private static final PointList RHOMB = new PointList(new int[] { //
-			//
-					-1, 1, //
-					0, 0, //
-					-1, -1, //
-					-2, 0, //
-					-1, 1, //
-			});
+		//
+			-1, 1, //
+			0, 0, //
+			-1, -1, //
+			-2, 0, //
+			-1, 1, //
+		});
 
 	private static final PointList ARROW = new PointList(new int[] { //
-			//
-					-1, 1, //
-					0, 0, //
-					-1, -1, //
-					0, 0, //
-					-1, 1, //
-			});
+		//
+			-1, 1, //
+			0, 0, //
+			-1, -1, //
+			0, 0, //
+			-1, 1, //
+		});
 	private static final PointList CROSS = new PointList(new int[] { //
-			//
-					-1, 0, //
-					-2, -1, //
-					-1, 0, //
-					-2, 1, //
-					-1, 0, //
-					0, 1, //
-					-1, 0, //
-					0, -1, //
-					-1, 0, //
-			});
+		//
+			-1, 0, //
+			-2, -1, //
+			-1, 0, //
+			-2, 1, //
+			-1, 0, //
+			0, 1, //
+			-1, 0, //
+			0, -1, //
+			-1, 0, //
+		});
 
 	private ComposablePolygonDecoration myCompositeAggrecationDecoration;
 
@@ -120,8 +114,7 @@ public class AssociationDecoration extends Figure implements
 		myCompositeAggrecationDecoration.setBoundPoint(new Point(-2, 0));
 		myCompositeAggrecationDecoration.setFill(true);
 		if (getParent() != null && getParent().getForegroundColor() != null) {
-			myCompositeAggrecationDecoration.setBackgroundColor(getParent()
-					.getForegroundColor());
+			myCompositeAggrecationDecoration.setBackgroundColor(getParent().getForegroundColor());
 		}
 		mySharedAggrecationDecoration = new ComposablePolygonDecoration();
 		mySharedAggrecationDecoration.setTemplate(RHOMB.getCopy());
@@ -142,8 +135,7 @@ public class AssociationDecoration extends Figure implements
 	}
 
 	/**
-	 * @param figure
-	 * Adds the figure subdecoration
+	 * @param figure Adds the figure subdecoration
 	 */
 	public void addDecoration(ComposableRotatableDecoration figure) {
 		if (!getChildren().contains(figure)) {
@@ -161,10 +153,10 @@ public class AssociationDecoration extends Figure implements
 		List decorations = new ArrayList(2);
 		for (Object object : children) {
 			if (object instanceof Figure) {
-				decorations.add(object);	
+				decorations.add(object);
 			}
 		}
-		
+
 		for (Object object : decorations) {
 			remove((IFigure) object);
 		}
@@ -173,7 +165,6 @@ public class AssociationDecoration extends Figure implements
 
 	/**
 	 * @author schroech
-	 *
 	 */
 	private static class LocatorStub implements Locator {
 		public void relocate(IFigure target) {
@@ -181,9 +172,10 @@ public class AssociationDecoration extends Figure implements
 	}
 
 	/**
-	* {@inheritDoc}
-	* @see org.eclipse.draw2d.Figure#getBounds()
-	*/
+	 * {@inheritDoc}
+	 * 
+	 * @see org.eclipse.draw2d.Figure#getBounds()
+	 */
 	@Override
 	public Rectangle getBounds() {
 		Rectangle result = super.getBounds();
@@ -199,9 +191,10 @@ public class AssociationDecoration extends Figure implements
 	}
 
 	/**
-	* {@inheritDoc}
-	* @see org.eclipse.draw2d.RotatableDecoration#setReferencePoint(org.eclipse.draw2d.geometry.Point)
-	*/
+	 * {@inheritDoc}
+	 * 
+	 * @see org.eclipse.draw2d.RotatableDecoration#setReferencePoint(org.eclipse.draw2d.geometry.Point)
+	 */
 	public void setReferencePoint(Point p) {
 		for (Object child : getChildren()) {
 			if (child instanceof RotatableDecoration) {
@@ -211,9 +204,10 @@ public class AssociationDecoration extends Figure implements
 	}
 
 	/**
-	* {@inheritDoc}
-	* @see org.eclipse.draw2d.Figure#setLocation(org.eclipse.draw2d.geometry.Point)
-	*/
+	 * {@inheritDoc}
+	 * 
+	 * @see org.eclipse.draw2d.Figure#setLocation(org.eclipse.draw2d.geometry.Point)
+	 */
 	@Override
 	public void setLocation(Point p) {
 		super.setLocation(p);
