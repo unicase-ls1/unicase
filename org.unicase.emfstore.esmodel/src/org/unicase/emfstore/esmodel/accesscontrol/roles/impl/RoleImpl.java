@@ -88,6 +88,7 @@ public abstract class RoleImpl extends EObjectImpl implements Role {
 	/**
 	 * <!-- begin-user-doc --> Determines if the role can administrate the project.
 	 * 
+	 * @param projectId the project id
 	 * @return true if the role can <!-- end-user-doc --> {@inheritDoc}
 	 * @see org.unicase.emfstore.esmodel.accesscontrol.roles.Role#canAdministrate(org.unicase.emfstore.esmodel.ProjectId)
 	 * @generated NOT
