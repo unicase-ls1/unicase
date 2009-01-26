@@ -1,9 +1,8 @@
-/*******************************************************************************
- * Copyright (c) 2005 AIRBUS FRANCE. All rights reserved. This program and the accompanying materials are made available
- * under the terms of the Eclipse Public License v1.0 which accompanies this distribution, and is available at
- * http://www.eclipse.org/legal/epl-v10.html Contributors: David Sciamma (Anyware Technologies), - initial API and
- * implementation
- *******************************************************************************/
+/**
+ * <copyright> Copyright (c) 2008 Jonas Helming, Maximilian Koegel. All rights reserved. This program and the
+ * accompanying materials are made available under the terms of the Eclipse Public License v1.0 which accompanies this
+ * distribution, and is available at http://www.eclipse.org/legal/epl-v10.html </copyright>
+ */
 package org.unicase.ui.usecaseDiagram.unicase;
 
 import org.eclipse.draw2d.IFigure;
@@ -59,6 +58,7 @@ public class Label extends WrappingLabel implements ILabel {
 	 * @see org.eclipse.draw2d.Figure#getToolTip()
 	 * @return the IFigure {@link IFigure}
 	 */
+	@Override
 	public IFigure getToolTip() {
 		if (isTextTruncated()) {
 			return new org.eclipse.draw2d.Label(this.getText());
