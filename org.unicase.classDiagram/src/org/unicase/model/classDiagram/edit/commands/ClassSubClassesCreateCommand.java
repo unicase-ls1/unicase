@@ -1,8 +1,7 @@
 /**
- * <copyright> Copyright (c) 2008 Jonas Helming, Maximilian Koegel. All rights reserved. This program and the accompanying materials are made available under the terms of the Eclipse Public License v1.0 which accompanies this distribution, and is available at http://www.eclipse.org/legal/epl-v10.html
- * </copyright>
- *
- * $Id$
+ * <copyright> Copyright (c) 2008 Jonas Helming, Maximilian Koegel. All rights reserved. This program and the
+ * accompanying materials are made available under the terms of the Eclipse Public License v1.0 which accompanies this
+ * distribution, and is available at http://www.eclipse.org/legal/epl-v10.html </copyright>
  */
 package org.unicase.model.classDiagram.edit.commands;
 
@@ -33,8 +32,7 @@ public class ClassSubClassesCreateCommand extends EditElementCommand {
 	/**
 	 * @generated
 	 */
-	public ClassSubClassesCreateCommand(CreateRelationshipRequest request,
-			EObject source, EObject target) {
+	public ClassSubClassesCreateCommand(CreateRelationshipRequest request, EObject source, EObject target) {
 		super(request.getLabel(), null, request);
 		this.source = source;
 		this.target = target;
@@ -58,17 +56,15 @@ public class ClassSubClassesCreateCommand extends EditElementCommand {
 		}
 		// target may be null here but it's possible to check constraint
 		return org.unicase.model.classDiagram.edit.policies.ModelBaseItemSemanticEditPolicy.LinkConstraints
-				.canCreateClassSubClasses_4005(getSource(), getTarget());
+			.canCreateClassSubClasses_4005(getSource(), getTarget());
 	}
 
 	/**
 	 * @generated
 	 */
-	protected CommandResult doExecuteWithResult(IProgressMonitor monitor,
-			IAdaptable info) throws ExecutionException {
+	protected CommandResult doExecuteWithResult(IProgressMonitor monitor, IAdaptable info) throws ExecutionException {
 		if (!canExecute()) {
-			throw new ExecutionException(
-					"Invalid arguments in create link command"); //$NON-NLS-1$
+			throw new ExecutionException("Invalid arguments in create link command"); //$NON-NLS-1$
 		}
 		if (getSource() != null && getTarget() != null) {
 			getSource().getSubClasses().add(getTarget());

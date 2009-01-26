@@ -11,14 +11,11 @@ import org.unicase.ui.test.TestProjectParmeters;
 import org.unicase.workspace.ProjectSpace;
 
 /**
- * This is a ChangePackageTest. This test takes a random ME A. Change
- * A.someSimpleAttribute = a Change A.someSimpleAttribute = b Change
- * A.someSimpleAttribute = c The expected change package should contain only one
+ * This is a ChangePackageTest. This test takes a random ME A. Change A.someSimpleAttribute = a Change
+ * A.someSimpleAttribute = b Change A.someSimpleAttribute = c The expected change package should contain only one
  * operation: value of A.someSimpleAttribute changed from a to c
  * 
- * 
  * @author Hodaie
- * 
  */
 public class AttributeTransitiveChangeTest extends ChangePackageTest {
 
@@ -29,7 +26,7 @@ public class AttributeTransitiveChangeTest extends ChangePackageTest {
 	private Object thirdValue;
 
 	public AttributeTransitiveChangeTest(ProjectSpace testProjectSpace, String testName,
-			TestProjectParmeters testProjParams) {
+		TestProjectParmeters testProjParams) {
 		super(testProjectSpace, testName, testProjParams);
 
 	}
@@ -39,10 +36,9 @@ public class AttributeTransitiveChangeTest extends ChangePackageTest {
 
 		me = ChangeTestHelper.getRandomME(getTestProject());
 		attributeToChange = ChangeTestHelper.getRandomAttribute(me);
-		
-		
+
 		TransactionalEditingDomain domain = TransactionalEditingDomain.Registry.INSTANCE
-				.getEditingDomain("org.unicase.EditingDomain");
+			.getEditingDomain("org.unicase.EditingDomain");
 
 		domain.getCommandStack().execute(new RecordingCommand(domain) {
 
@@ -60,7 +56,7 @@ public class AttributeTransitiveChangeTest extends ChangePackageTest {
 		// from unset or a to b
 		firstValue = me.eGet(attributeToChange);
 		ChangeTestHelper.changeSimpleAttribute(me, attributeToChange);
-		
+
 		secondValue = me.eGet(attributeToChange);
 
 		// from b to c
@@ -70,10 +66,10 @@ public class AttributeTransitiveChangeTest extends ChangePackageTest {
 
 	public int getExpectedNumOfChanges() {
 
-		if(firstValue == null){
+		if (firstValue == null) {
 			return 1;
 		}
-		if(firstValue.equals(secondValue) && secondValue.equals(thirdValue)){
+		if (firstValue.equals(secondValue) && secondValue.equals(thirdValue)) {
 			return 0;
 		}
 		return 1;
@@ -86,7 +82,5 @@ public class AttributeTransitiveChangeTest extends ChangePackageTest {
 		// = a or unset and new value = c
 		return changePackage.getOperations().size() == getExpectedNumOfChanges();
 	}
-
-	
 
 }

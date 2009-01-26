@@ -1,8 +1,9 @@
 package org.unicase.ui.stem.views.statusview;
+
 /**
  * Dummy class for Activity view.
+ * 
  * @author helming
- *
  */
 public class Activity {
 	private String name;
@@ -20,5 +21,5 @@ public class Activity {
 	public void setName(String name) {
 		this.name = name;
 	}
-	
+
 }

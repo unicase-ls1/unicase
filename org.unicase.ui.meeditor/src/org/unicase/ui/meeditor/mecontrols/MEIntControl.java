@@ -1,8 +1,7 @@
 /**
- * <copyright> Copyright (c) 2008 Jonas Helming, Maximilian Koegel. All rights reserved. This program and the accompanying materials are made available under the terms of the Eclipse Public License v1.0 which accompanies this distribution, and is available at http://www.eclipse.org/legal/epl-v10.html
- * </copyright>
- *
- * $Id$
+ * <copyright> Copyright (c) 2008 Jonas Helming, Maximilian Koegel. All rights reserved. This program and the
+ * accompanying materials are made available under the terms of the Eclipse Public License v1.0 which accompanies this
+ * distribution, and is available at http://www.eclipse.org/legal/epl-v10.html </copyright>
  */
 package org.unicase.ui.meeditor.mecontrols;
 
@@ -22,7 +21,6 @@ import org.eclipse.ui.forms.widgets.FormToolkit;
  * Standard widgets to edit a integer attribute.
  * 
  * @author helming
- * 
  */
 public class MEIntControl extends AbstractMEControl implements MEControl {
 
@@ -33,14 +31,10 @@ public class MEIntControl extends AbstractMEControl implements MEControl {
 	/**
 	 * default constructor.
 	 * 
-	 * @param attribute
-	 *            the integer attribute
-	 * @param toolkit
-	 *            see {@link AbstractMEControl}
-	 * @param modelElement
-	 *            see {@link AbstractMEControl}
-	 * @param editingDomain
-	 *            see {@link AbstractMEControl}
+	 * @param attribute the integer attribute
+	 * @param toolkit see {@link AbstractMEControl}
+	 * @param modelElement see {@link AbstractMEControl}
+	 * @param editingDomain see {@link AbstractMEControl}
 	 */
 	public MEIntControl(EAttribute attribute, FormToolkit toolkit, EObject modelElement, EditingDomain editingDomain) {
 		super(editingDomain, modelElement, toolkit);
@@ -49,6 +43,7 @@ public class MEIntControl extends AbstractMEControl implements MEControl {
 
 	/**
 	 * {@inheritDoc}
+	 * 
 	 * @return A spinner for the int value.
 	 */
 	public Control createControl(Composite parent, int style) {

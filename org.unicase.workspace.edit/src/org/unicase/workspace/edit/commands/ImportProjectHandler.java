@@ -1,8 +1,7 @@
 /**
- * <copyright> Copyright (c) 2008 Jonas Helming, Maximilian Koegel. All rights reserved. This program and the accompanying materials are made available under the terms of the Eclipse Public License v1.0 which accompanies this distribution, and is available at http://www.eclipse.org/legal/epl-v10.html
- * </copyright>
- *
- * $Id$
+ * <copyright> Copyright (c) 2008 Jonas Helming, Maximilian Koegel. All rights reserved. This program and the
+ * accompanying materials are made available under the terms of the Eclipse Public License v1.0 which accompanies this
+ * distribution, and is available at http://www.eclipse.org/legal/epl-v10.html </copyright>
  */
 package org.unicase.workspace.edit.commands;
 
@@ -26,15 +25,13 @@ import org.unicase.workspace.WorkspaceManager;
  * Handler for import project menu item.
  * 
  * @author helming
- * 
  */
 public class ImportProjectHandler extends ProjectActionHandler {
 
 	/**
 	 * These filter names are used to filter which files are displayed.
 	 */
-	public static final String[] FILTER_NAMES = {
-			"Unicase Project Files (*.ucp)", "All Files (*.*)" };
+	public static final String[] FILTER_NAMES = { "Unicase Project Files (*.ucp)", "All Files (*.*)" };
 
 	/**
 	 * These filter extensions are used to filter which files are displayed.
@@ -47,8 +44,7 @@ public class ImportProjectHandler extends ProjectActionHandler {
 	 * @see org.eclipse.core.commands.AbstractHandler#execute(org.eclipse.core.commands.ExecutionEvent)
 	 */
 	public Object execute(ExecutionEvent event) throws ExecutionException {
-		FileDialog dialog = new FileDialog(PlatformUI.getWorkbench()
-				.getActiveWorkbenchWindow().getShell(), SWT.OPEN);
+		FileDialog dialog = new FileDialog(PlatformUI.getWorkbench().getActiveWorkbenchWindow().getShell(), SWT.OPEN);
 		dialog.setFilterNames(ImportProjectHandler.FILTER_NAMES);
 		dialog.setFilterExtensions(ImportProjectHandler.FILTER_EXTS);
 		String fn = dialog.open();
@@ -64,21 +60,19 @@ public class ImportProjectHandler extends ProjectActionHandler {
 		}
 		stringBuilder.append(fileName);
 		final String absoluteFileName = stringBuilder.toString();
-		final ProgressMonitorDialog progressDialog = new ProgressMonitorDialog(
-				PlatformUI.getWorkbench().getActiveWorkbenchWindow().getShell());
+		final ProgressMonitorDialog progressDialog = new ProgressMonitorDialog(PlatformUI.getWorkbench()
+			.getActiveWorkbenchWindow().getShell());
 
 		TransactionalEditingDomain domain = TransactionalEditingDomain.Registry.INSTANCE
-				.getEditingDomain("org.unicase.EditingDomain");
+			.getEditingDomain("org.unicase.EditingDomain");
 		domain.getCommandStack().execute(new RecordingCommand(domain) {
 			@Override
 			protected void doExecute() {
 				try {
 					progressDialog.open();
-					progressDialog.getProgressMonitor().beginTask(
-							"Import project...", 100);
+					progressDialog.getProgressMonitor().beginTask("Import project...", 100);
 					progressDialog.getProgressMonitor().worked(10);
-					Workspace currentWorkspace = WorkspaceManager.getInstance()
-							.getCurrentWorkspace();
+					Workspace currentWorkspace = WorkspaceManager.getInstance().getCurrentWorkspace();
 					currentWorkspace.importProject(absoluteFileName);
 
 				} catch (IOException e) {
@@ -90,8 +84,7 @@ public class ImportProjectHandler extends ProjectActionHandler {
 			}
 		});
 
-		MessageDialog.openInformation(null, "Import",
-				"Imported project from file: " + absoluteFileName);
+		MessageDialog.openInformation(null, "Import", "Imported project from file: " + absoluteFileName);
 		return null;
 	}
 

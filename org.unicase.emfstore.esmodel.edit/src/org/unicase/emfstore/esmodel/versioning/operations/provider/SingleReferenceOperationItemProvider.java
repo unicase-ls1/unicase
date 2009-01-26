@@ -1,8 +1,7 @@
 /**
- * <copyright> Copyright (c) 2008 Jonas Helming, Maximilian Koegel. All rights reserved. This program and the accompanying materials are made available under the terms of the Eclipse Public License v1.0 which accompanies this distribution, and is available at http://www.eclipse.org/legal/epl-v10.html
- * </copyright>
- *
- * $Id$
+ * <copyright> Copyright (c) 2008 Jonas Helming, Maximilian Koegel. All rights reserved. This program and the
+ * accompanying materials are made available under the terms of the Eclipse Public License v1.0 which accompanies this
+ * distribution, and is available at http://www.eclipse.org/legal/epl-v10.html </copyright>
  */
 package org.unicase.emfstore.esmodel.versioning.operations.provider;
 
@@ -22,19 +21,18 @@ import org.unicase.emfstore.esmodel.versioning.operations.OperationsPackage;
 import org.unicase.emfstore.esmodel.versioning.operations.SingleReferenceOperation;
 
 /**
- * This is the item provider adapter for a {@link org.unicase.emfstore.esmodel.versioning.operations.SingleReferenceOperation} object.
- * <!-- begin-user-doc -->
+ * This is the item provider adapter for a
+ * {@link org.unicase.emfstore.esmodel.versioning.operations.SingleReferenceOperation} object. <!-- begin-user-doc -->
  * <!-- end-user-doc -->
+ * 
  * @generated
  */
-public class SingleReferenceOperationItemProvider extends
-		ReferenceOperationItemProvider implements IEditingDomainItemProvider,
-		IStructuredItemContentProvider, ITreeItemContentProvider,
-		IItemLabelProvider, IItemPropertySource {
+public class SingleReferenceOperationItemProvider extends ReferenceOperationItemProvider implements
+	IEditingDomainItemProvider, IStructuredItemContentProvider, ITreeItemContentProvider, IItemLabelProvider,
+	IItemPropertySource {
 	/**
-	 * This constructs an instance from a factory and a notifier.
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
+	 * This constructs an instance from a factory and a notifier. <!-- begin-user-doc --> <!-- end-user-doc -->
+	 * 
 	 * @generated
 	 */
 	public SingleReferenceOperationItemProvider(AdapterFactory adapterFactory) {
@@ -42,9 +40,8 @@ public class SingleReferenceOperationItemProvider extends
 	}
 
 	/**
-	 * This returns the property descriptors for the adapted class.
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
+	 * This returns the property descriptors for the adapted class. <!-- begin-user-doc --> <!-- end-user-doc -->
+	 * 
 	 * @generated
 	 */
 	@Override
@@ -59,77 +56,58 @@ public class SingleReferenceOperationItemProvider extends
 	}
 
 	/**
-	 * This adds a property descriptor for the Old Value feature.
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
+	 * This adds a property descriptor for the Old Value feature. <!-- begin-user-doc --> <!-- end-user-doc -->
+	 * 
 	 * @generated
 	 */
 	protected void addOldValuePropertyDescriptor(Object object) {
-		itemPropertyDescriptors
-				.add(createItemPropertyDescriptor(
-						((ComposeableAdapterFactory) adapterFactory)
-								.getRootAdapterFactory(),
-						getResourceLocator(),
-						getString("_UI_SingleReferenceOperation_oldValue_feature"),
-						getString(
-								"_UI_PropertyDescriptor_description",
-								"_UI_SingleReferenceOperation_oldValue_feature",
-								"_UI_SingleReferenceOperation_type"),
-						OperationsPackage.Literals.SINGLE_REFERENCE_OPERATION__OLD_VALUE,
-						true, false, true, null, null, null));
+		itemPropertyDescriptors.add(createItemPropertyDescriptor(((ComposeableAdapterFactory) adapterFactory)
+			.getRootAdapterFactory(), getResourceLocator(), getString("_UI_SingleReferenceOperation_oldValue_feature"),
+			getString("_UI_PropertyDescriptor_description", "_UI_SingleReferenceOperation_oldValue_feature",
+				"_UI_SingleReferenceOperation_type"), OperationsPackage.Literals.SINGLE_REFERENCE_OPERATION__OLD_VALUE,
+			true, false, true, null, null, null));
 	}
 
 	/**
-	 * This adds a property descriptor for the New Value feature.
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
+	 * This adds a property descriptor for the New Value feature. <!-- begin-user-doc --> <!-- end-user-doc -->
+	 * 
 	 * @generated
 	 */
 	protected void addNewValuePropertyDescriptor(Object object) {
-		itemPropertyDescriptors
-				.add(createItemPropertyDescriptor(
-						((ComposeableAdapterFactory) adapterFactory)
-								.getRootAdapterFactory(),
-						getResourceLocator(),
-						getString("_UI_SingleReferenceOperation_newValue_feature"),
-						getString(
-								"_UI_PropertyDescriptor_description",
-								"_UI_SingleReferenceOperation_newValue_feature",
-								"_UI_SingleReferenceOperation_type"),
-						OperationsPackage.Literals.SINGLE_REFERENCE_OPERATION__NEW_VALUE,
-						true, false, true, null, null, null));
+		itemPropertyDescriptors.add(createItemPropertyDescriptor(((ComposeableAdapterFactory) adapterFactory)
+			.getRootAdapterFactory(), getResourceLocator(), getString("_UI_SingleReferenceOperation_newValue_feature"),
+			getString("_UI_PropertyDescriptor_description", "_UI_SingleReferenceOperation_newValue_feature",
+				"_UI_SingleReferenceOperation_type"), OperationsPackage.Literals.SINGLE_REFERENCE_OPERATION__NEW_VALUE,
+			true, false, true, null, null, null));
 	}
 
 	/**
-	 * This returns SingleReferenceOperation.gif.
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
+	 * This returns SingleReferenceOperation.gif. <!-- begin-user-doc --> <!-- end-user-doc -->
+	 * 
 	 * @generated
 	 */
 	@Override
 	public Object getImage(Object object) {
-		return overlayImage(object, getResourceLocator().getImage(
-				"full/obj16/SingleReferenceOperation"));
+		return overlayImage(object, getResourceLocator().getImage("full/obj16/SingleReferenceOperation"));
 	}
 
 	/**
-	 * This returns the label text for the adapted class.
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
+	 * This returns the label text for the adapted class. <!-- begin-user-doc --> <!-- end-user-doc -->
+	 * 
 	 * @generated
 	 */
 	@Override
 	public String getText(Object object) {
 		String label = ((SingleReferenceOperation) object).getName();
 		return label == null || label.length() == 0 ? getString("_UI_SingleReferenceOperation_type")
-				: getString("_UI_SingleReferenceOperation_type") + " " + label;
+			: getString("_UI_SingleReferenceOperation_type") + " " + label;
 	}
 
 	/**
-	 * This handles model notifications by calling {@link #updateChildren} to update any cached
-	 * children and by creating a viewer notification, which it passes to {@link #fireNotifyChanged}.
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
+	 * This handles model notifications by calling {@link #updateChildren} to update any cached children and by creating
+	 * a viewer notification, which it passes to {@link #fireNotifyChanged}. <!-- begin-user-doc --> <!-- end-user-doc
+	 * -->
+	 * 
 	 * @generated
 	 */
 	@Override
@@ -139,15 +117,13 @@ public class SingleReferenceOperationItemProvider extends
 	}
 
 	/**
-	 * This adds {@link org.eclipse.emf.edit.command.CommandParameter}s describing the children
-	 * that can be created under this object.
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
+	 * This adds {@link org.eclipse.emf.edit.command.CommandParameter}s describing the children that can be created
+	 * under this object. <!-- begin-user-doc --> <!-- end-user-doc -->
+	 * 
 	 * @generated
 	 */
 	@Override
-	protected void collectNewChildDescriptors(
-			Collection<Object> newChildDescriptors, Object object) {
+	protected void collectNewChildDescriptors(Collection<Object> newChildDescriptors, Object object) {
 		super.collectNewChildDescriptors(newChildDescriptors, object);
 	}
 

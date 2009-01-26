@@ -1,8 +1,7 @@
 /**
- * <copyright> Copyright (c) 2008 Jonas Helming, Maximilian Koegel. All rights reserved. This program and the accompanying materials are made available under the terms of the Eclipse Public License v1.0 which accompanies this distribution, and is available at http://www.eclipse.org/legal/epl-v10.html
- * </copyright>
- *
- * $Id$
+ * <copyright> Copyright (c) 2008 Jonas Helming, Maximilian Koegel. All rights reserved. This program and the
+ * accompanying materials are made available under the terms of the Eclipse Public License v1.0 which accompanies this
+ * distribution, and is available at http://www.eclipse.org/legal/epl-v10.html </copyright>
  */
 package org.unicase.model.classDiagram.edit.commands;
 
@@ -76,7 +75,7 @@ public class Association2ReorientCommand extends EditElementCommand {
 		}
 		MEDiagram container = (MEDiagram) getLink().eContainer();
 		return org.unicase.model.classDiagram.edit.policies.ModelBaseItemSemanticEditPolicy.LinkConstraints
-				.canExistAssociation_4002(container, getNewSource(), target);
+			.canExistAssociation_4002(container, getNewSource(), target);
 	}
 
 	/**
@@ -92,17 +91,15 @@ public class Association2ReorientCommand extends EditElementCommand {
 		}
 		MEDiagram container = (MEDiagram) getLink().eContainer();
 		return org.unicase.model.classDiagram.edit.policies.ModelBaseItemSemanticEditPolicy.LinkConstraints
-				.canExistAssociation_4002(container, source, getNewTarget());
+			.canExistAssociation_4002(container, source, getNewTarget());
 	}
 
 	/**
 	 * @generated
 	 */
-	protected CommandResult doExecuteWithResult(IProgressMonitor monitor,
-			IAdaptable info) throws ExecutionException {
+	protected CommandResult doExecuteWithResult(IProgressMonitor monitor, IAdaptable info) throws ExecutionException {
 		if (!canExecute()) {
-			throw new ExecutionException(
-					"Invalid arguments in reorient link command"); //$NON-NLS-1$
+			throw new ExecutionException("Invalid arguments in reorient link command"); //$NON-NLS-1$
 		}
 		if (reorientDirection == ReorientRelationshipRequest.REORIENT_SOURCE) {
 			return reorientSource();

@@ -52,35 +52,32 @@ import org.unicase.ui.common.diagram.util.ViewAdapter;
 import org.unicase.ui.common.util.CollectionFilter;
 
 /**
- * An Edit Policy providing a {@link CompoundCommand} in response to a {@link ShowRelatedElementsRequest}.
- * The command shows representations or previews of classes and associations 
- * on the canvas which are semantically connected to the request's class.     
- * In the future, this should be extended to generic diagram nodes and connections.    
- *  
+ * An Edit Policy providing a {@link CompoundCommand} in response to a {@link ShowRelatedElementsRequest}. The command
+ * shows representations or previews of classes and associations on the canvas which are semantically connected to the
+ * request's class. In the future, this should be extended to generic diagram nodes and connections.
+ * 
  * @author schroech
- *
  */
 public class MEDiagramShowElementsEditPolicy extends AbstractEditPolicy {
 
-	private Map<EObject,ViewDescriptor> objectViewDescriptorMap;
+	private Map<EObject, ViewDescriptor> objectViewDescriptorMap;
 
 	private SelectionChangeListener selectionChangeListener = new SelectionChangeListener();
 
 	private ClassEditPart primaryClassEditPart;
 
 	/**
-	 * Default constructor. 
+	 * Default constructor.
 	 */
 	public MEDiagramShowElementsEditPolicy() {
-		objectViewDescriptorMap = new HashMap<EObject,ViewDescriptor>();
+		objectViewDescriptorMap = new HashMap<EObject, ViewDescriptor>();
 	}
 
 	/**
-	 * Private class listening for selection change events on the edit policies host.
-	 * Tracks the current selection and hides or shows classes in response.
+	 * Private class listening for selection change events on the edit policies host. Tracks the current selection and
+	 * hides or shows classes in response.
 	 * 
 	 * @author schroech
-	 *
 	 */
 	private class SelectionChangeListener implements ISelectionChangedListener {
 
@@ -112,12 +109,12 @@ public class MEDiagramShowElementsEditPolicy extends AbstractEditPolicy {
 			CommandFactory.addDeleteFromViewCommands(cc, editParts);
 			addAddCommands(cc, selectedEditPart, editParts);
 
-			Command wrappedCommand = CommandUtility.wrapInToggleCanonicalModeCommands(cc, Collections.singleton(getHost()));
+			Command wrappedCommand = CommandUtility.wrapInToggleCanonicalModeCommands(cc, Collections
+				.singleton(getHost()));
 
 			reset();
 
-			((DiagramEditPart) getHost()).getDiagramEditDomain()
-			.getDiagramCommandStack().execute(wrappedCommand);
+			((DiagramEditPart) getHost()).getDiagramEditDomain().getDiagramCommandStack().execute(wrappedCommand);
 		}
 
 		private void addAddCommands(CompoundCommand cc, EditPart selectedEditPart, Set<EditPart> editParts) {
@@ -125,14 +122,13 @@ public class MEDiagramShowElementsEditPolicy extends AbstractEditPolicy {
 				return;
 			}
 
-			if (editParts == null
-				|| editParts.size() == 0) {
+			if (editParts == null || editParts.size() == 0) {
 				return;
 			}
 
 			CompoundCommand addCompound = new CompoundCommand("Add views");
 
-			if(editParts.contains(selectedEditPart)) {
+			if (editParts.contains(selectedEditPart)) {
 
 				Class classToAdd = getClassToAdd(selectedEditPart);
 				Set<Association> associationsToAdd = getAssociationsToAdd(classToAdd, selectedEditPart);
@@ -142,9 +138,7 @@ public class MEDiagramShowElementsEditPolicy extends AbstractEditPolicy {
 
 					CompoundCommand addElementCompound = new CompoundCommand("Add element");
 
-					CreateNodeViewCommandProvider provider = new CreateNodeViewCommandProvider(
-						getHost(),
-						classToAdd);
+					CreateNodeViewCommandProvider provider = new CreateNodeViewCommandProvider(getHost(), classToAdd);
 
 					CreateViewRequest request = provider.getRequest();
 					request.setLocation(editPartBounds.getLocation());
@@ -155,15 +149,18 @@ public class MEDiagramShowElementsEditPolicy extends AbstractEditPolicy {
 					Command strippedCommand = CommandUtility.stripToggleCanonicalModeCommands(createNodeViewCommand);
 					addElementCompound.add(strippedCommand);
 
-					Command createDiagramElementAddCommand = CommandFactory.createDiagramElementAddCommand(classToAdd, getHost());
+					Command createDiagramElementAddCommand = CommandFactory.createDiagramElementAddCommand(classToAdd,
+						getHost());
 					addElementCompound.add(createDiagramElementAddCommand);
 
-					Command wrappedCommand = CommandUtility.wrapInToggleCanonicalModeCommands(addElementCompound, Collections.singleton(getHost()));
+					Command wrappedCommand = CommandUtility.wrapInToggleCanonicalModeCommands(addElementCompound,
+						Collections.singleton(getHost()));
 					addCompound.add(wrappedCommand);
 				}
 
 				for (Association association : associationsToAdd) {
-					Command createDiagramElementAddCommand = CommandFactory.createDiagramElementAddCommand(association, getHost());
+					Command createDiagramElementAddCommand = CommandFactory.createDiagramElementAddCommand(association,
+						getHost());
 					addCompound.add(createDiagramElementAddCommand);
 				}
 
@@ -171,29 +168,28 @@ public class MEDiagramShowElementsEditPolicy extends AbstractEditPolicy {
 
 			Command unwrap = addCompound.unwrap();
 			if (unwrap != UnexecutableCommand.INSTANCE) {
-				cc.add(unwrap);	
+				cc.add(unwrap);
 			}
 		}
 
 		private Rectangle getEditPartBounds(EditPart selectedEditPart) {
 			Rectangle editPartBounds = null;
 			if (selectedEditPart instanceof ClassEditPart) {
-				editPartBounds = ((GraphicalEditPart)selectedEditPart).getFigure().getBounds();	
+				editPartBounds = ((GraphicalEditPart) selectedEditPart).getFigure().getBounds();
 
-			}else if (selectedEditPart instanceof Association1EditPart
-				|| selectedEditPart instanceof Association2EditPart
-				|| selectedEditPart instanceof Association3EditPart
+			} else if (selectedEditPart instanceof Association1EditPart
+				|| selectedEditPart instanceof Association2EditPart || selectedEditPart instanceof Association3EditPart
 				|| selectedEditPart instanceof Association4EditPart) {
 
 				Association associationToAdd = (Association) EditPartUtility.getElement(selectedEditPart);
 				Class source = associationToAdd.getSource();
 				Class target = associationToAdd.getTarget();
-				if (!((MEDiagram) (EditPartUtility.getElement(getHost()))).getElements().contains(source)){
-					EditPart sourceEditPart = ((ConnectionEditPart)selectedEditPart).getSource();
-					editPartBounds = ((GraphicalEditPart)sourceEditPart).getFigure().getBounds();
-				}else if (!((MEDiagram) (EditPartUtility.getElement(getHost()))).getElements().contains(target)){
-					EditPart targetEditPart = ((ConnectionEditPart)selectedEditPart).getTarget();
-					editPartBounds = ((GraphicalEditPart)targetEditPart).getFigure().getBounds();
+				if (!((MEDiagram) (EditPartUtility.getElement(getHost()))).getElements().contains(source)) {
+					EditPart sourceEditPart = ((ConnectionEditPart) selectedEditPart).getSource();
+					editPartBounds = ((GraphicalEditPart) sourceEditPart).getFigure().getBounds();
+				} else if (!((MEDiagram) (EditPartUtility.getElement(getHost()))).getElements().contains(target)) {
+					EditPart targetEditPart = ((ConnectionEditPart) selectedEditPart).getTarget();
+					editPartBounds = ((GraphicalEditPart) targetEditPart).getFigure().getBounds();
 				}
 			}
 
@@ -210,9 +206,8 @@ public class MEDiagramShowElementsEditPolicy extends AbstractEditPolicy {
 			if (selectedEditPart instanceof ClassEditPart) {
 				associationsToAdd.addAll(classToAdd.getOutgoingAssociations());
 				associationsToAdd.addAll(classToAdd.getIncomingAssociations());
-			}else if (selectedEditPart instanceof Association1EditPart
-				|| selectedEditPart instanceof Association2EditPart
-				|| selectedEditPart instanceof Association3EditPart
+			} else if (selectedEditPart instanceof Association1EditPart
+				|| selectedEditPart instanceof Association2EditPart || selectedEditPart instanceof Association3EditPart
 				|| selectedEditPart instanceof Association4EditPart) {
 
 				Association associationToAdd = (Association) EditPartUtility.getElement(selectedEditPart);
@@ -227,18 +222,17 @@ public class MEDiagramShowElementsEditPolicy extends AbstractEditPolicy {
 			if (selectedEditPart instanceof ClassEditPart) {
 				classToAdd = (Class) EditPartUtility.getElement(selectedEditPart);
 
-			}else if (selectedEditPart instanceof Association1EditPart
-				|| selectedEditPart instanceof Association2EditPart
-				|| selectedEditPart instanceof Association3EditPart
+			} else if (selectedEditPart instanceof Association1EditPart
+				|| selectedEditPart instanceof Association2EditPart || selectedEditPart instanceof Association3EditPart
 				|| selectedEditPart instanceof Association4EditPart) {
 
 				Association associationToAdd = (Association) EditPartUtility.getElement(selectedEditPart);
 				Class source = associationToAdd.getSource();
 				Class target = associationToAdd.getTarget();
-				if (!((MEDiagram) (EditPartUtility.getElement(getHost()))).getElements().contains(source)){
+				if (!((MEDiagram) (EditPartUtility.getElement(getHost()))).getElements().contains(source)) {
 					classToAdd = source;
-				}else if (!((MEDiagram) (EditPartUtility.getElement(getHost()))).getElements().contains(target)){
-					classToAdd = target;	
+				} else if (!((MEDiagram) (EditPartUtility.getElement(getHost()))).getElements().contains(target)) {
+					classToAdd = target;
 				}
 
 			}
@@ -283,14 +277,8 @@ public class MEDiagramShowElementsEditPolicy extends AbstractEditPolicy {
 
 	/**
 	 * @see org.eclipse.gef.editpolicies.AbstractEditPolicy#getCommand(org.eclipse.gef.Request)
-	 * 
-	 * @param request 
-	 * the request
-	 * This edit policy solely responds to {@link ShowRelatedElementsRequest} 
-	 * 
-	 * @return the command
-	 * This edit policy solely returns a compound command
-	 * 
+	 * @param request the request This edit policy solely responds to {@link ShowRelatedElementsRequest}
+	 * @return the command This edit policy solely returns a compound command
 	 */
 	@Override
 	public Command getCommand(Request request) {
@@ -300,13 +288,11 @@ public class MEDiagramShowElementsEditPolicy extends AbstractEditPolicy {
 		return null;
 	}
 
-
 	private Command getShowRelatedElementsCommand(Request request) {
-		//Start Sanity check
+		// Start Sanity check
 		if (!(request instanceof ShowRelatedElementsRequest)) {
 			return null;
 		}
-
 
 		ShowRelatedElementsRequest relatedElementsRequest = (ShowRelatedElementsRequest) request;
 
@@ -327,17 +313,15 @@ public class MEDiagramShowElementsEditPolicy extends AbstractEditPolicy {
 			return null;
 		}
 
-		//End Sanity check
-		
+		// End Sanity check
+
 		CompoundCommand cc = new CompoundCommand("Show RelatedElements");
 
 		Collection<Association> invisibleRelatedAssociations = getInvisibleRelatedAssociations(primaryClassEditPart);
 		Collection<Class> invisibleRelatedClasses = getInvisibleRelatedClasses(primaryClassEditPart);
 
 		for (Class currentClass : invisibleRelatedClasses) {
-			CreateNodeViewCommandProvider provider = new CreateNodeViewCommandProvider(
-				getHost(),
-				currentClass);
+			CreateNodeViewCommandProvider provider = new CreateNodeViewCommandProvider(getHost(), currentClass);
 
 			ViewDescriptor viewDescriptor = provider.getViewDescriptor();
 			getObjectViewDescriptorMap().put(currentClass, viewDescriptor);
@@ -346,15 +330,14 @@ public class MEDiagramShowElementsEditPolicy extends AbstractEditPolicy {
 
 			cc.add(command);
 
-			Command createColorCommand = CommandFactory.createColorizeCommand(currentClass, (DiagramEditPart) getHost());
+			Command createColorCommand = CommandFactory
+				.createColorizeCommand(currentClass, (DiagramEditPart) getHost());
 			cc.add(createColorCommand);
 		}
 
-		for (Association currentAssociation: invisibleRelatedAssociations) {
+		for (Association currentAssociation : invisibleRelatedAssociations) {
 			CreateConnectionViewCommandProvider provider = new CreateConnectionViewCommandProvider(
-				(DiagramEditPart) getHost(),
-				currentAssociation,
-				getViewAdapter(currentAssociation.getSource()),
+				(DiagramEditPart) getHost(), currentAssociation, getViewAdapter(currentAssociation.getSource()),
 				getViewAdapter(currentAssociation.getTarget()));
 
 			ViewDescriptor viewDescriptor = provider.getViewDescriptor();
@@ -363,7 +346,8 @@ public class MEDiagramShowElementsEditPolicy extends AbstractEditPolicy {
 			Command command = provider.getCommand();
 			cc.add(command);
 
-			Command createColorCommand = CommandFactory.createColorizeCommand(currentAssociation, (DiagramEditPart) getHost());
+			Command createColorCommand = CommandFactory.createColorizeCommand(currentAssociation,
+				(DiagramEditPart) getHost());
 			cc.add(createColorCommand);
 		}
 
@@ -377,8 +361,8 @@ public class MEDiagramShowElementsEditPolicy extends AbstractEditPolicy {
 
 		for (ViewDescriptor currentViewDescriptor : viewDescriptors) {
 			if (currentViewDescriptor.getViewKind().equals(Edge.class)) {
-				connectionViewDescriptorsToArrange.add(currentViewDescriptor);	
-			}else{
+				connectionViewDescriptorsToArrange.add(currentViewDescriptor);
+			} else {
 				nodeViewDescriptorsToArrange.add(currentViewDescriptor);
 			}
 		}
@@ -392,8 +376,7 @@ public class MEDiagramShowElementsEditPolicy extends AbstractEditPolicy {
 	}
 
 	private Collection<Association> getAllRelatedAssociations(org.unicase.model.classes.Class theClass) {
-		Set<Association> allRelatedAssociations
-		= new HashSet<Association>();
+		Set<Association> allRelatedAssociations = new HashSet<Association>();
 
 		EList<Association> incomingAssociations = theClass.getIncomingAssociations();
 		EList<Association> outgoingAssociations = theClass.getOutgoingAssociations();
@@ -405,23 +388,20 @@ public class MEDiagramShowElementsEditPolicy extends AbstractEditPolicy {
 	}
 
 	private Collection<org.unicase.model.classes.Class> getAllRelatedClasses(org.unicase.model.classes.Class theClass) {
-		Set<org.unicase.model.classes.Class> allRelatedClasses
-		= new HashSet<org.unicase.model.classes.Class>();
+		Set<org.unicase.model.classes.Class> allRelatedClasses = new HashSet<org.unicase.model.classes.Class>();
 
 		EList<Association> incomingAssociations = theClass.getIncomingAssociations();
 		EList<Association> outgoingAssociations = theClass.getOutgoingAssociations();
 
 		for (Association association : outgoingAssociations) {
 			org.unicase.model.classes.Class target = association.getTarget();
-			if (target != null
-				&& target != theClass) {
+			if (target != null && target != theClass) {
 				allRelatedClasses.add(target);
 			}
 		}
 		for (Association association : incomingAssociations) {
 			org.unicase.model.classes.Class source = association.getSource();
-			if (source != null
-				&& source != theClass) {
+			if (source != null && source != theClass) {
 				allRelatedClasses.add(source);
 			}
 		}
@@ -430,8 +410,7 @@ public class MEDiagramShowElementsEditPolicy extends AbstractEditPolicy {
 	}
 
 	private Collection<Association> getInvisibleRelatedAssociations(ClassEditPart classEditPart) {
-		Set<Association> invisibleRelatedAssociations
-		= new HashSet<Association>();
+		Set<Association> invisibleRelatedAssociations = new HashSet<Association>();
 
 		Collection<ConnectionEditPart> connectedConnectionEditParts = getConnectedConnectionEditParts(classEditPart);
 		Collection<Association> visibleRelatedAssociations = EditPartUtility.getElements(connectedConnectionEditParts,
@@ -452,8 +431,7 @@ public class MEDiagramShowElementsEditPolicy extends AbstractEditPolicy {
 	}
 
 	private Collection<org.unicase.model.classes.Class> getInvisibleRelatedClasses(ClassEditPart classEditPart) {
-		Set<org.unicase.model.classes.Class> invisibleRelatedClasses
-		= new HashSet<org.unicase.model.classes.Class>();
+		Set<org.unicase.model.classes.Class> invisibleRelatedClasses = new HashSet<org.unicase.model.classes.Class>();
 
 		Collection<ShapeEditPart> connectedShapeEditParts = getConnectedShapeEditParts(classEditPart);
 		Collection<Class> visibleConnectedClasses = EditPartUtility.getElements(connectedShapeEditParts,
@@ -472,7 +450,7 @@ public class MEDiagramShowElementsEditPolicy extends AbstractEditPolicy {
 
 		List<org.unicase.model.classes.Class> visibleRelatedClasses = new ArrayList<Class>();
 		for (Class invisibleRelatedClass : invisibleRelatedClasses) {
-			EditPart findEditPart = ((GraphicalEditPart) getHost()).findEditPart(null,invisibleRelatedClass);
+			EditPart findEditPart = ((GraphicalEditPart) getHost()).findEditPart(null, invisibleRelatedClass);
 			if (findEditPart != null) {
 				visibleRelatedClasses.add(invisibleRelatedClass);
 			}
@@ -480,16 +458,14 @@ public class MEDiagramShowElementsEditPolicy extends AbstractEditPolicy {
 
 		invisibleRelatedClasses.removeAll(visibleRelatedClasses);
 
-		return invisibleRelatedClasses;  
+		return invisibleRelatedClasses;
 	}
-
 
 	private Collection<ConnectionEditPart> getConnectedConnectionEditParts(ClassEditPart classEditPart) {
 		Set<ConnectionEditPart> connectedConnectionEditParts = new HashSet<ConnectionEditPart>();
 
 		List sourceConnections = classEditPart.getSourceConnections();
 		List targetConnections = classEditPart.getTargetConnections();
-
 
 		for (Object object : targetConnections) {
 			if (object instanceof ConnectionEditPart) {
@@ -506,7 +482,7 @@ public class MEDiagramShowElementsEditPolicy extends AbstractEditPolicy {
 		return connectedConnectionEditParts;
 	}
 
-	private Collection<ShapeEditPart> getConnectedShapeEditParts(ShapeEditPart editPart){
+	private Collection<ShapeEditPart> getConnectedShapeEditParts(ShapeEditPart editPart) {
 		Set<ShapeEditPart> connectedShapeEditParts = new HashSet<ShapeEditPart>();
 
 		List sourceConnections = editPart.getSourceConnections();
@@ -534,7 +510,7 @@ public class MEDiagramShowElementsEditPolicy extends AbstractEditPolicy {
 	}
 
 	private IAdaptable getViewAdapter(EObject object) {
-		IAdaptable viewAdapter;	
+		IAdaptable viewAdapter;
 		viewAdapter = getObjectViewDescriptorMap().get(object);
 
 		if (viewAdapter == null) {
@@ -550,15 +526,14 @@ public class MEDiagramShowElementsEditPolicy extends AbstractEditPolicy {
 	}
 
 	/**
-	 * @return
-	 * The {@link EditPart}s related to the currently selected {@link EditPart}
+	 * @return The {@link EditPart}s related to the currently selected {@link EditPart}
 	 */
 	public Set<EditPart> getRelatedEditParts() {
 		Set<EObject> keySet = getObjectViewDescriptorMap().keySet();
 
-		Set<EditPart> editParts = new HashSet<EditPart>();  
+		Set<EditPart> editParts = new HashSet<EditPart>();
 		if (primaryClassEditPart != null) {
-			editParts.addAll(EditPartUtility.findConnectionEditParts(primaryClassEditPart, keySet));	
+			editParts.addAll(EditPartUtility.findConnectionEditParts(primaryClassEditPart, keySet));
 		}
 
 		Set<EditPart> foundEditParts = EditPartUtility.findEditParts((GraphicalEditPart) getHost(), keySet);
@@ -567,13 +542,13 @@ public class MEDiagramShowElementsEditPolicy extends AbstractEditPolicy {
 	}
 
 	/**
-	 * @return
-	 * The {@link Edge}s related to the currently selected {@link EditPart}
+	 * @return The {@link Edge}s related to the currently selected {@link EditPart}
 	 */
-	public Collection<? extends Edge> getRelatedEdges(){
+	public Collection<? extends Edge> getRelatedEdges() {
 		Set<Edge> edges = new HashSet<Edge>();
 		Collection<ViewDescriptor> values = getObjectViewDescriptorMap().values();
-		Collection<ConnectionViewDescriptor> edgeDescriptors = CollectionFilter.filter(values, ConnectionViewDescriptor.class);
+		Collection<ConnectionViewDescriptor> edgeDescriptors = CollectionFilter.filter(values,
+			ConnectionViewDescriptor.class);
 		for (ConnectionViewDescriptor connectionViewDescriptor : edgeDescriptors) {
 			Object view = connectionViewDescriptor.getAdapter(View.class);
 			if (view instanceof Edge) {
@@ -584,21 +559,19 @@ public class MEDiagramShowElementsEditPolicy extends AbstractEditPolicy {
 	}
 
 	/**
-	 * @return
-	 * The {@link EObject}s of the nodes related to the currently selected {@link EditPart}
+	 * @return The {@link EObject}s of the nodes related to the currently selected {@link EditPart}
 	 */
-	public Collection<? extends EObject> getRelatedNodeElements(){
+	public Collection<? extends EObject> getRelatedNodeElements() {
 		Set<EObject> keySet = getObjectViewDescriptorMap().keySet();
 		Collection<Class> classes = CollectionFilter.filter(keySet, Class.class);
 		return classes;
 	}
 
-
-	private void setObjectViewDescriptorMap(Map<EObject,ViewDescriptor> viewDescriptors) {
+	private void setObjectViewDescriptorMap(Map<EObject, ViewDescriptor> viewDescriptors) {
 		this.objectViewDescriptorMap = viewDescriptors;
 	}
 
-	private Map<EObject,ViewDescriptor> getObjectViewDescriptorMap() {
+	private Map<EObject, ViewDescriptor> getObjectViewDescriptorMap() {
 		return objectViewDescriptorMap;
 	}
 }

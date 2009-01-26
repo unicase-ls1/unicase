@@ -1,8 +1,7 @@
 /**
- * <copyright> Copyright (c) 2008 Jonas Helming, Maximilian Koegel. All rights reserved. This program and the accompanying materials are made available under the terms of the Eclipse Public License v1.0 which accompanies this distribution, and is available at http://www.eclipse.org/legal/epl-v10.html
- * </copyright>
- *
- * $Id$
+ * <copyright> Copyright (c) 2008 Jonas Helming, Maximilian Koegel. All rights reserved. This program and the
+ * accompanying materials are made available under the terms of the Eclipse Public License v1.0 which accompanies this
+ * distribution, and is available at http://www.eclipse.org/legal/epl-v10.html </copyright>
  */
 package org.unicase.emfstore.connection.rmi;
 
@@ -19,8 +18,7 @@ import javax.net.ssl.SSLSocketFactory;
  * 
  * @author Wesendonk
  */
-public class RMISSLClientSocketFactory implements RMIClientSocketFactory,
-		Serializable {
+public class RMISSLClientSocketFactory implements RMIClientSocketFactory, Serializable {
 
 	private static final long serialVersionUID = -6166311189399323826L;
 
@@ -29,8 +27,7 @@ public class RMISSLClientSocketFactory implements RMIClientSocketFactory,
 	 */
 	@SuppressWarnings("cast")
 	public Socket createSocket(String host, int port) throws IOException {
-		SSLSocketFactory factory = (SSLSocketFactory) SSLSocketFactory
-				.getDefault();
+		SSLSocketFactory factory = (SSLSocketFactory) SSLSocketFactory.getDefault();
 		return (SSLSocket) factory.createSocket(host, port);
 	}
 }

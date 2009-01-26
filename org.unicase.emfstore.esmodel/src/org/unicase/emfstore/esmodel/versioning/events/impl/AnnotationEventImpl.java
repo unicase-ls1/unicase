@@ -1,7 +1,7 @@
 /**
- * <copyright>Copyright (c) 2008 Jonas Helming, Maximilian Koegel. All rights reserved. This program and the accompanying materials are made available under the terms of the Eclipse Public License v1.0 which accompanies this distribution, and is available at http://www.eclipse.org/legal/epl-v10.html</copyright>
- *
- * $Id$
+ * <copyright>Copyright (c) 2008 Jonas Helming, Maximilian Koegel. All rights reserved. This program and the
+ * accompanying materials are made available under the terms of the Eclipse Public License v1.0 which accompanies this
+ * distribution, and is available at http://www.eclipse.org/legal/epl-v10.html</copyright>
  */
 package org.unicase.emfstore.esmodel.versioning.events.impl;
 
@@ -14,24 +14,25 @@ import org.unicase.emfstore.esmodel.versioning.events.EventsPackage;
 import org.unicase.model.ModelElementId;
 
 /**
- * <!-- begin-user-doc -->
- * An implementation of the model object '<em><b>Annotation Event</b></em>'.
- * <!-- end-user-doc -->
+ * <!-- begin-user-doc --> An implementation of the model object '<em><b>Annotation Event</b></em>'. <!-- end-user-doc
+ * -->
  * <p>
  * The following features are implemented:
  * <ul>
- *   <li>{@link org.unicase.emfstore.esmodel.versioning.events.impl.AnnotationEventImpl#getAnnotatedElement <em>Annotated Element</em>}</li>
- *   <li>{@link org.unicase.emfstore.esmodel.versioning.events.impl.AnnotationEventImpl#getAnnotation <em>Annotation</em>}</li>
+ * <li>{@link org.unicase.emfstore.esmodel.versioning.events.impl.AnnotationEventImpl#getAnnotatedElement <em>Annotated
+ * Element</em>}</li>
+ * <li>{@link org.unicase.emfstore.esmodel.versioning.events.impl.AnnotationEventImpl#getAnnotation <em>Annotation</em>}
+ * </li>
  * </ul>
  * </p>
- *
+ * 
  * @generated
  */
 public class AnnotationEventImpl extends EventImpl implements AnnotationEvent {
 	/**
-	 * The cached value of the '{@link #getAnnotatedElement() <em>Annotated Element</em>}' reference.
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
+	 * The cached value of the '{@link #getAnnotatedElement() <em>Annotated Element</em>}' reference. <!--
+	 * begin-user-doc --> <!-- end-user-doc -->
+	 * 
 	 * @see #getAnnotatedElement()
 	 * @generated
 	 * @ordered
@@ -39,9 +40,9 @@ public class AnnotationEventImpl extends EventImpl implements AnnotationEvent {
 	protected ModelElementId annotatedElement;
 
 	/**
-	 * The cached value of the '{@link #getAnnotation() <em>Annotation</em>}' reference.
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
+	 * The cached value of the '{@link #getAnnotation() <em>Annotation</em>}' reference. <!-- begin-user-doc --> <!--
+	 * end-user-doc -->
+	 * 
 	 * @see #getAnnotation()
 	 * @generated
 	 * @ordered
@@ -49,8 +50,8 @@ public class AnnotationEventImpl extends EventImpl implements AnnotationEvent {
 	protected ModelElementId annotation;
 
 	/**
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
+	 * <!-- begin-user-doc --> <!-- end-user-doc -->
+	 * 
 	 * @generated
 	 */
 	protected AnnotationEventImpl() {
@@ -58,8 +59,8 @@ public class AnnotationEventImpl extends EventImpl implements AnnotationEvent {
 	}
 
 	/**
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
+	 * <!-- begin-user-doc --> <!-- end-user-doc -->
+	 * 
 	 * @generated
 	 */
 	@Override
@@ -68,8 +69,8 @@ public class AnnotationEventImpl extends EventImpl implements AnnotationEvent {
 	}
 
 	/**
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
+	 * <!-- begin-user-doc --> <!-- end-user-doc -->
+	 * 
 	 * @generated
 	 */
 	public ModelElementId getAnnotatedElement() {
@@ -79,16 +80,15 @@ public class AnnotationEventImpl extends EventImpl implements AnnotationEvent {
 			if (annotatedElement != oldAnnotatedElement) {
 				if (eNotificationRequired())
 					eNotify(new ENotificationImpl(this, Notification.RESOLVE,
-							EventsPackage.ANNOTATION_EVENT__ANNOTATED_ELEMENT,
-							oldAnnotatedElement, annotatedElement));
+						EventsPackage.ANNOTATION_EVENT__ANNOTATED_ELEMENT, oldAnnotatedElement, annotatedElement));
 			}
 		}
 		return annotatedElement;
 	}
 
 	/**
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
+	 * <!-- begin-user-doc --> <!-- end-user-doc -->
+	 * 
 	 * @generated
 	 */
 	public ModelElementId basicGetAnnotatedElement() {
@@ -96,22 +96,21 @@ public class AnnotationEventImpl extends EventImpl implements AnnotationEvent {
 	}
 
 	/**
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
+	 * <!-- begin-user-doc --> <!-- end-user-doc -->
+	 * 
 	 * @generated
 	 */
 	public void setAnnotatedElement(ModelElementId newAnnotatedElement) {
 		ModelElementId oldAnnotatedElement = annotatedElement;
 		annotatedElement = newAnnotatedElement;
 		if (eNotificationRequired())
-			eNotify(new ENotificationImpl(this, Notification.SET,
-					EventsPackage.ANNOTATION_EVENT__ANNOTATED_ELEMENT,
-					oldAnnotatedElement, annotatedElement));
+			eNotify(new ENotificationImpl(this, Notification.SET, EventsPackage.ANNOTATION_EVENT__ANNOTATED_ELEMENT,
+				oldAnnotatedElement, annotatedElement));
 	}
 
 	/**
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
+	 * <!-- begin-user-doc --> <!-- end-user-doc -->
+	 * 
 	 * @generated
 	 */
 	public ModelElementId getAnnotation() {
@@ -121,16 +120,15 @@ public class AnnotationEventImpl extends EventImpl implements AnnotationEvent {
 			if (annotation != oldAnnotation) {
 				if (eNotificationRequired())
 					eNotify(new ENotificationImpl(this, Notification.RESOLVE,
-							EventsPackage.ANNOTATION_EVENT__ANNOTATION,
-							oldAnnotation, annotation));
+						EventsPackage.ANNOTATION_EVENT__ANNOTATION, oldAnnotation, annotation));
 			}
 		}
 		return annotation;
 	}
 
 	/**
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
+	 * <!-- begin-user-doc --> <!-- end-user-doc -->
+	 * 
 	 * @generated
 	 */
 	public ModelElementId basicGetAnnotation() {
@@ -138,22 +136,21 @@ public class AnnotationEventImpl extends EventImpl implements AnnotationEvent {
 	}
 
 	/**
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
+	 * <!-- begin-user-doc --> <!-- end-user-doc -->
+	 * 
 	 * @generated
 	 */
 	public void setAnnotation(ModelElementId newAnnotation) {
 		ModelElementId oldAnnotation = annotation;
 		annotation = newAnnotation;
 		if (eNotificationRequired())
-			eNotify(new ENotificationImpl(this, Notification.SET,
-					EventsPackage.ANNOTATION_EVENT__ANNOTATION, oldAnnotation,
-					annotation));
+			eNotify(new ENotificationImpl(this, Notification.SET, EventsPackage.ANNOTATION_EVENT__ANNOTATION,
+				oldAnnotation, annotation));
 	}
 
 	/**
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
+	 * <!-- begin-user-doc --> <!-- end-user-doc -->
+	 * 
 	 * @generated
 	 */
 	@Override
@@ -172,8 +169,8 @@ public class AnnotationEventImpl extends EventImpl implements AnnotationEvent {
 	}
 
 	/**
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
+	 * <!-- begin-user-doc --> <!-- end-user-doc -->
+	 * 
 	 * @generated
 	 */
 	@Override
@@ -190,8 +187,8 @@ public class AnnotationEventImpl extends EventImpl implements AnnotationEvent {
 	}
 
 	/**
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
+	 * <!-- begin-user-doc --> <!-- end-user-doc -->
+	 * 
 	 * @generated
 	 */
 	@Override
@@ -208,8 +205,8 @@ public class AnnotationEventImpl extends EventImpl implements AnnotationEvent {
 	}
 
 	/**
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
+	 * <!-- begin-user-doc --> <!-- end-user-doc -->
+	 * 
 	 * @generated
 	 */
 	@Override
@@ -223,4 +220,4 @@ public class AnnotationEventImpl extends EventImpl implements AnnotationEvent {
 		return super.eIsSet(featureID);
 	}
 
-} //AnnotationEventImpl
+} // AnnotationEventImpl

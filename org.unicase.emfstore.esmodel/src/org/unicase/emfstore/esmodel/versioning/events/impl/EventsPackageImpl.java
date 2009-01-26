@@ -1,7 +1,7 @@
 /**
- * <copyright>Copyright (c) 2008 Jonas Helming, Maximilian Koegel. All rights reserved. This program and the accompanying materials are made available under the terms of the Eclipse Public License v1.0 which accompanies this distribution, and is available at http://www.eclipse.org/legal/epl-v10.html</copyright>
- *
- * $Id$
+ * <copyright>Copyright (c) 2008 Jonas Helming, Maximilian Koegel. All rights reserved. This program and the
+ * accompanying materials are made available under the terms of the Eclipse Public License v1.0 which accompanies this
+ * distribution, and is available at http://www.eclipse.org/legal/epl-v10.html</copyright>
  */
 package org.unicase.emfstore.esmodel.versioning.events.impl;
 
@@ -46,162 +46,159 @@ import org.unicase.emfstore.esmodel.versioning.operations.impl.OperationsPackage
 import org.unicase.model.ModelPackage;
 
 /**
- * <!-- begin-user-doc -->
- * An implementation of the model <b>Package</b>.
- * <!-- end-user-doc -->
+ * <!-- begin-user-doc --> An implementation of the model <b>Package</b>. <!-- end-user-doc -->
+ * 
  * @generated
  */
 public class EventsPackageImpl extends EPackageImpl implements EventsPackage {
 	/**
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
+	 * <!-- begin-user-doc --> <!-- end-user-doc -->
+	 * 
 	 * @generated
 	 */
 	private EClass eventEClass = null;
 
 	/**
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
+	 * <!-- begin-user-doc --> <!-- end-user-doc -->
+	 * 
 	 * @generated
 	 */
 	private EClass readEventEClass = null;
 
 	/**
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
+	 * <!-- begin-user-doc --> <!-- end-user-doc -->
+	 * 
 	 * @generated
 	 */
 	private EClass mergeEventEClass = null;
 
 	/**
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
+	 * <!-- begin-user-doc --> <!-- end-user-doc -->
+	 * 
 	 * @generated
 	 */
 	private EClass checkoutEventEClass = null;
 
 	/**
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
+	 * <!-- begin-user-doc --> <!-- end-user-doc -->
+	 * 
 	 * @generated
 	 */
 	private EClass exceptionEventEClass = null;
 
 	/**
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
+	 * <!-- begin-user-doc --> <!-- end-user-doc -->
+	 * 
 	 * @generated
 	 */
 	private EClass pluginStartEventEClass = null;
 
 	/**
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
+	 * <!-- begin-user-doc --> <!-- end-user-doc -->
+	 * 
 	 * @generated
 	 */
 	private EClass updateEventEClass = null;
 
 	/**
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
+	 * <!-- begin-user-doc --> <!-- end-user-doc -->
+	 * 
 	 * @generated
 	 */
 	private EClass annotationEventEClass = null;
 
 	/**
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
+	 * <!-- begin-user-doc --> <!-- end-user-doc -->
+	 * 
 	 * @generated
 	 */
 	private EClass revertEventEClass = null;
 
 	/**
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
+	 * <!-- begin-user-doc --> <!-- end-user-doc -->
+	 * 
 	 * @generated
 	 */
 	private EClass showHistoryEventEClass = null;
 
 	/**
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
+	 * <!-- begin-user-doc --> <!-- end-user-doc -->
+	 * 
 	 * @generated
 	 */
 	private EClass perspectiveEventEClass = null;
 
 	/**
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
+	 * <!-- begin-user-doc --> <!-- end-user-doc -->
+	 * 
 	 * @generated
 	 */
 	private EClass dndEventEClass = null;
 
 	/**
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
+	 * <!-- begin-user-doc --> <!-- end-user-doc -->
+	 * 
 	 * @generated
 	 */
 	private EClass linkEventEClass = null;
 
 	/**
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
+	 * <!-- begin-user-doc --> <!-- end-user-doc -->
+	 * 
 	 * @generated
 	 */
 	private EClass traceEventEClass = null;
 
 	/**
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
+	 * <!-- begin-user-doc --> <!-- end-user-doc -->
+	 * 
 	 * @generated
 	 */
 	private EClass navigatorCreateEventEClass = null;
 
 	/**
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
+	 * <!-- begin-user-doc --> <!-- end-user-doc -->
+	 * 
 	 * @generated
 	 */
 	private EClass pluginFocusEventEClass = null;
 
 	/**
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
+	 * <!-- begin-user-doc --> <!-- end-user-doc -->
+	 * 
 	 * @generated
 	 */
 	private EClass presentationSwitchEventEClass = null;
 
 	/**
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
+	 * <!-- begin-user-doc --> <!-- end-user-doc -->
+	 * 
 	 * @generated
 	 */
 	private EClass undoEventEClass = null;
 
 	/**
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
+	 * <!-- begin-user-doc --> <!-- end-user-doc -->
+	 * 
 	 * @generated
 	 */
 	private EClass validateEClass = null;
 
 	/**
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
+	 * <!-- begin-user-doc --> <!-- end-user-doc -->
+	 * 
 	 * @generated
 	 */
 	private EClass showChangesEventEClass = null;
 
 	/**
-	 * Creates an instance of the model <b>Package</b>, registered with
-	 * {@link org.eclipse.emf.ecore.EPackage.Registry EPackage.Registry} by the package
-	 * package URI value.
-	 * <p>Note: the correct way to create the package is via the static
-	 * factory method {@link #init init()}, which also performs
-	 * initialization of the package, or returns the registered package,
-	 * if one already exists.
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
+	 * Creates an instance of the model <b>Package</b>, registered with {@link org.eclipse.emf.ecore.EPackage.Registry
+	 * EPackage.Registry} by the package package URI value.
+	 * <p>
+	 * Note: the correct way to create the package is via the static factory method {@link #init init()}, which also
+	 * performs initialization of the package, or returns the registered package, if one already exists. <!--
+	 * begin-user-doc --> <!-- end-user-doc -->
+	 * 
 	 * @see org.eclipse.emf.ecore.EPackage.Registry
 	 * @see org.unicase.emfstore.esmodel.versioning.events.EventsPackage#eNS_URI
 	 * @see #init()
@@ -212,29 +209,25 @@ public class EventsPackageImpl extends EPackageImpl implements EventsPackage {
 	}
 
 	/**
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
+	 * <!-- begin-user-doc --> <!-- end-user-doc -->
+	 * 
 	 * @generated
 	 */
 	private static boolean isInited = false;
 
 	/**
-	 * Creates, registers, and initializes the <b>Package</b> for this
-	 * model, and for any others upon which it depends.  Simple
-	 * dependencies are satisfied by calling this method on all
-	 * dependent packages before doing anything else.  This method drives
-	 * initialization for interdependent packages directly, in parallel
-	 * with this package, itself.
-	 * <p>Of this package and its interdependencies, all packages which
-	 * have not yet been registered by their URI values are first created
-	 * and registered.  The packages are then initialized in two steps:
-	 * meta-model objects for all of the packages are created before any
-	 * are initialized, since one package's meta-model objects may refer to
-	 * those of another.
-	 * <p>Invocation of this method will not affect any packages that have
-	 * already been initialized.
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
+	 * Creates, registers, and initializes the <b>Package</b> for this model, and for any others upon which it depends.
+	 * Simple dependencies are satisfied by calling this method on all dependent packages before doing anything else.
+	 * This method drives initialization for interdependent packages directly, in parallel with this package, itself.
+	 * <p>
+	 * Of this package and its interdependencies, all packages which have not yet been registered by their URI values
+	 * are first created and registered. The packages are then initialized in two steps: meta-model objects for all of
+	 * the packages are created before any are initialized, since one package's meta-model objects may refer to those of
+	 * another.
+	 * <p>
+	 * Invocation of this method will not affect any packages that have already been initialized. <!-- begin-user-doc
+	 * --> <!-- end-user-doc -->
+	 * 
 	 * @see #eNS_URI
 	 * @see #createPackageContents()
 	 * @see #initializePackageContents()
@@ -242,14 +235,12 @@ public class EventsPackageImpl extends EPackageImpl implements EventsPackage {
 	 */
 	public static EventsPackage init() {
 		if (isInited)
-			return (EventsPackage) EPackage.Registry.INSTANCE
-					.getEPackage(EventsPackage.eNS_URI);
+			return (EventsPackage) EPackage.Registry.INSTANCE.getEPackage(EventsPackage.eNS_URI);
 
 		// Obtain or create and register package
-		EventsPackageImpl theEventsPackage = (EventsPackageImpl) (EPackage.Registry.INSTANCE
-				.getEPackage(eNS_URI) instanceof EventsPackageImpl ? EPackage.Registry.INSTANCE
-				.getEPackage(eNS_URI)
-				: new EventsPackageImpl());
+		EventsPackageImpl theEventsPackage = (EventsPackageImpl) (EPackage.Registry.INSTANCE.getEPackage(eNS_URI) instanceof EventsPackageImpl ? EPackage.Registry.INSTANCE
+			.getEPackage(eNS_URI)
+			: new EventsPackageImpl());
 
 		isInited = true;
 
@@ -258,25 +249,20 @@ public class EventsPackageImpl extends EPackageImpl implements EventsPackage {
 
 		// Obtain or create and register interdependencies
 		EsmodelPackageImpl theEsmodelPackage = (EsmodelPackageImpl) (EPackage.Registry.INSTANCE
-				.getEPackage(EsmodelPackage.eNS_URI) instanceof EsmodelPackageImpl ? EPackage.Registry.INSTANCE
-				.getEPackage(EsmodelPackage.eNS_URI)
-				: EsmodelPackage.eINSTANCE);
+			.getEPackage(EsmodelPackage.eNS_URI) instanceof EsmodelPackageImpl ? EPackage.Registry.INSTANCE
+			.getEPackage(EsmodelPackage.eNS_URI) : EsmodelPackage.eINSTANCE);
 		VersioningPackageImpl theVersioningPackage = (VersioningPackageImpl) (EPackage.Registry.INSTANCE
-				.getEPackage(VersioningPackage.eNS_URI) instanceof VersioningPackageImpl ? EPackage.Registry.INSTANCE
-				.getEPackage(VersioningPackage.eNS_URI)
-				: VersioningPackage.eINSTANCE);
+			.getEPackage(VersioningPackage.eNS_URI) instanceof VersioningPackageImpl ? EPackage.Registry.INSTANCE
+			.getEPackage(VersioningPackage.eNS_URI) : VersioningPackage.eINSTANCE);
 		OperationsPackageImpl theOperationsPackage = (OperationsPackageImpl) (EPackage.Registry.INSTANCE
-				.getEPackage(OperationsPackage.eNS_URI) instanceof OperationsPackageImpl ? EPackage.Registry.INSTANCE
-				.getEPackage(OperationsPackage.eNS_URI)
-				: OperationsPackage.eINSTANCE);
+			.getEPackage(OperationsPackage.eNS_URI) instanceof OperationsPackageImpl ? EPackage.Registry.INSTANCE
+			.getEPackage(OperationsPackage.eNS_URI) : OperationsPackage.eINSTANCE);
 		AccesscontrolPackageImpl theAccesscontrolPackage = (AccesscontrolPackageImpl) (EPackage.Registry.INSTANCE
-				.getEPackage(AccesscontrolPackage.eNS_URI) instanceof AccesscontrolPackageImpl ? EPackage.Registry.INSTANCE
-				.getEPackage(AccesscontrolPackage.eNS_URI)
-				: AccesscontrolPackage.eINSTANCE);
+			.getEPackage(AccesscontrolPackage.eNS_URI) instanceof AccesscontrolPackageImpl ? EPackage.Registry.INSTANCE
+			.getEPackage(AccesscontrolPackage.eNS_URI) : AccesscontrolPackage.eINSTANCE);
 		RolesPackageImpl theRolesPackage = (RolesPackageImpl) (EPackage.Registry.INSTANCE
-				.getEPackage(RolesPackage.eNS_URI) instanceof RolesPackageImpl ? EPackage.Registry.INSTANCE
-				.getEPackage(RolesPackage.eNS_URI)
-				: RolesPackage.eINSTANCE);
+			.getEPackage(RolesPackage.eNS_URI) instanceof RolesPackageImpl ? EPackage.Registry.INSTANCE
+			.getEPackage(RolesPackage.eNS_URI) : RolesPackage.eINSTANCE);
 
 		// Create package meta-data objects
 		theEventsPackage.createPackageContents();
@@ -301,8 +287,8 @@ public class EventsPackageImpl extends EPackageImpl implements EventsPackage {
 	}
 
 	/**
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
+	 * <!-- begin-user-doc --> <!-- end-user-doc -->
+	 * 
 	 * @generated
 	 */
 	public EClass getEvent() {
@@ -310,8 +296,8 @@ public class EventsPackageImpl extends EPackageImpl implements EventsPackage {
 	}
 
 	/**
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
+	 * <!-- begin-user-doc --> <!-- end-user-doc -->
+	 * 
 	 * @generated
 	 */
 	public EAttribute getEvent_Timestamp() {
@@ -319,8 +305,8 @@ public class EventsPackageImpl extends EPackageImpl implements EventsPackage {
 	}
 
 	/**
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
+	 * <!-- begin-user-doc --> <!-- end-user-doc -->
+	 * 
 	 * @generated
 	 */
 	public EClass getReadEvent() {
@@ -328,8 +314,8 @@ public class EventsPackageImpl extends EPackageImpl implements EventsPackage {
 	}
 
 	/**
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
+	 * <!-- begin-user-doc --> <!-- end-user-doc -->
+	 * 
 	 * @generated
 	 */
 	public EReference getReadEvent_ModelElement() {
@@ -337,8 +323,8 @@ public class EventsPackageImpl extends EPackageImpl implements EventsPackage {
 	}
 
 	/**
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
+	 * <!-- begin-user-doc --> <!-- end-user-doc -->
+	 * 
 	 * @generated
 	 */
 	public EAttribute getReadEvent_SourceView() {
@@ -346,8 +332,8 @@ public class EventsPackageImpl extends EPackageImpl implements EventsPackage {
 	}
 
 	/**
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
+	 * <!-- begin-user-doc --> <!-- end-user-doc -->
+	 * 
 	 * @generated
 	 */
 	public EAttribute getReadEvent_ReadView() {
@@ -355,8 +341,8 @@ public class EventsPackageImpl extends EPackageImpl implements EventsPackage {
 	}
 
 	/**
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
+	 * <!-- begin-user-doc --> <!-- end-user-doc -->
+	 * 
 	 * @generated
 	 */
 	public EClass getMergeEvent() {
@@ -364,8 +350,8 @@ public class EventsPackageImpl extends EPackageImpl implements EventsPackage {
 	}
 
 	/**
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
+	 * <!-- begin-user-doc --> <!-- end-user-doc -->
+	 * 
 	 * @generated
 	 */
 	public EAttribute getMergeEvent_NumberOfConflicts() {
@@ -373,8 +359,8 @@ public class EventsPackageImpl extends EPackageImpl implements EventsPackage {
 	}
 
 	/**
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
+	 * <!-- begin-user-doc --> <!-- end-user-doc -->
+	 * 
 	 * @generated
 	 */
 	public EAttribute getMergeEvent_TotalTime() {
@@ -382,8 +368,8 @@ public class EventsPackageImpl extends EPackageImpl implements EventsPackage {
 	}
 
 	/**
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
+	 * <!-- begin-user-doc --> <!-- end-user-doc -->
+	 * 
 	 * @generated
 	 */
 	public EReference getMergeEvent_BaseVersion() {
@@ -391,8 +377,8 @@ public class EventsPackageImpl extends EPackageImpl implements EventsPackage {
 	}
 
 	/**
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
+	 * <!-- begin-user-doc --> <!-- end-user-doc -->
+	 * 
 	 * @generated
 	 */
 	public EReference getMergeEvent_TargetVersion() {
@@ -400,8 +386,8 @@ public class EventsPackageImpl extends EPackageImpl implements EventsPackage {
 	}
 
 	/**
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
+	 * <!-- begin-user-doc --> <!-- end-user-doc -->
+	 * 
 	 * @generated
 	 */
 	public EReference getMergeEvent_LocalChanges() {
@@ -409,8 +395,8 @@ public class EventsPackageImpl extends EPackageImpl implements EventsPackage {
 	}
 
 	/**
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
+	 * <!-- begin-user-doc --> <!-- end-user-doc -->
+	 * 
 	 * @generated
 	 */
 	public EClass getCheckoutEvent() {
@@ -418,8 +404,8 @@ public class EventsPackageImpl extends EPackageImpl implements EventsPackage {
 	}
 
 	/**
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
+	 * <!-- begin-user-doc --> <!-- end-user-doc -->
+	 * 
 	 * @generated
 	 */
 	public EReference getCheckoutEvent_BaseVersion() {
@@ -427,8 +413,8 @@ public class EventsPackageImpl extends EPackageImpl implements EventsPackage {
 	}
 
 	/**
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
+	 * <!-- begin-user-doc --> <!-- end-user-doc -->
+	 * 
 	 * @generated
 	 */
 	public EClass getExceptionEvent() {
@@ -436,48 +422,44 @@ public class EventsPackageImpl extends EPackageImpl implements EventsPackage {
 	}
 
 	/**
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
+	 * <!-- begin-user-doc --> <!-- end-user-doc -->
+	 * 
 	 * @generated
 	 */
 	public EAttribute getExceptionEvent_ExceptionTitle() {
-		return (EAttribute) exceptionEventEClass.getEStructuralFeatures()
-				.get(0);
+		return (EAttribute) exceptionEventEClass.getEStructuralFeatures().get(0);
 	}
 
 	/**
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
+	 * <!-- begin-user-doc --> <!-- end-user-doc -->
+	 * 
 	 * @generated
 	 */
 	public EAttribute getExceptionEvent_ExceptionStackTrace() {
-		return (EAttribute) exceptionEventEClass.getEStructuralFeatures()
-				.get(1);
+		return (EAttribute) exceptionEventEClass.getEStructuralFeatures().get(1);
 	}
 
 	/**
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
+	 * <!-- begin-user-doc --> <!-- end-user-doc -->
+	 * 
 	 * @generated
 	 */
 	public EAttribute getExceptionEvent_ExceptionCauseTitle() {
-		return (EAttribute) exceptionEventEClass.getEStructuralFeatures()
-				.get(2);
+		return (EAttribute) exceptionEventEClass.getEStructuralFeatures().get(2);
 	}
 
 	/**
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
+	 * <!-- begin-user-doc --> <!-- end-user-doc -->
+	 * 
 	 * @generated
 	 */
 	public EAttribute getExceptionEvent_ExceptionCauseStackTrace() {
-		return (EAttribute) exceptionEventEClass.getEStructuralFeatures()
-				.get(3);
+		return (EAttribute) exceptionEventEClass.getEStructuralFeatures().get(3);
 	}
 
 	/**
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
+	 * <!-- begin-user-doc --> <!-- end-user-doc -->
+	 * 
 	 * @generated
 	 */
 	public EClass getPluginStartEvent() {
@@ -485,18 +467,17 @@ public class EventsPackageImpl extends EPackageImpl implements EventsPackage {
 	}
 
 	/**
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
+	 * <!-- begin-user-doc --> <!-- end-user-doc -->
+	 * 
 	 * @generated
 	 */
 	public EAttribute getPluginStartEvent_PluginId() {
-		return (EAttribute) pluginStartEventEClass.getEStructuralFeatures()
-				.get(0);
+		return (EAttribute) pluginStartEventEClass.getEStructuralFeatures().get(0);
 	}
 
 	/**
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
+	 * <!-- begin-user-doc --> <!-- end-user-doc -->
+	 * 
 	 * @generated
 	 */
 	public EClass getUpdateEvent() {
@@ -504,8 +485,8 @@ public class EventsPackageImpl extends EPackageImpl implements EventsPackage {
 	}
 
 	/**
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
+	 * <!-- begin-user-doc --> <!-- end-user-doc -->
+	 * 
 	 * @generated
 	 */
 	public EReference getUpdateEvent_BaseVersion() {
@@ -513,8 +494,8 @@ public class EventsPackageImpl extends EPackageImpl implements EventsPackage {
 	}
 
 	/**
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
+	 * <!-- begin-user-doc --> <!-- end-user-doc -->
+	 * 
 	 * @generated
 	 */
 	public EReference getUpdateEvent_TargetVersion() {
@@ -522,8 +503,8 @@ public class EventsPackageImpl extends EPackageImpl implements EventsPackage {
 	}
 
 	/**
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
+	 * <!-- begin-user-doc --> <!-- end-user-doc -->
+	 * 
 	 * @generated
 	 */
 	public EClass getAnnotationEvent() {
@@ -531,28 +512,26 @@ public class EventsPackageImpl extends EPackageImpl implements EventsPackage {
 	}
 
 	/**
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
+	 * <!-- begin-user-doc --> <!-- end-user-doc -->
+	 * 
 	 * @generated
 	 */
 	public EReference getAnnotationEvent_AnnotatedElement() {
-		return (EReference) annotationEventEClass.getEStructuralFeatures().get(
-				0);
+		return (EReference) annotationEventEClass.getEStructuralFeatures().get(0);
 	}
 
 	/**
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
+	 * <!-- begin-user-doc --> <!-- end-user-doc -->
+	 * 
 	 * @generated
 	 */
 	public EReference getAnnotationEvent_Annotation() {
-		return (EReference) annotationEventEClass.getEStructuralFeatures().get(
-				1);
+		return (EReference) annotationEventEClass.getEStructuralFeatures().get(1);
 	}
 
 	/**
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
+	 * <!-- begin-user-doc --> <!-- end-user-doc -->
+	 * 
 	 * @generated
 	 */
 	public EClass getRevertEvent() {
@@ -560,8 +539,8 @@ public class EventsPackageImpl extends EPackageImpl implements EventsPackage {
 	}
 
 	/**
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
+	 * <!-- begin-user-doc --> <!-- end-user-doc -->
+	 * 
 	 * @generated
 	 */
 	public EAttribute getRevertEvent_RevertedChangesCount() {
@@ -569,8 +548,8 @@ public class EventsPackageImpl extends EPackageImpl implements EventsPackage {
 	}
 
 	/**
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
+	 * <!-- begin-user-doc --> <!-- end-user-doc -->
+	 * 
 	 * @generated
 	 */
 	public EClass getShowHistoryEvent() {
@@ -578,28 +557,26 @@ public class EventsPackageImpl extends EPackageImpl implements EventsPackage {
 	}
 
 	/**
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
+	 * <!-- begin-user-doc --> <!-- end-user-doc -->
+	 * 
 	 * @generated
 	 */
 	public EReference getShowHistoryEvent_SourceVersion() {
-		return (EReference) showHistoryEventEClass.getEStructuralFeatures()
-				.get(0);
+		return (EReference) showHistoryEventEClass.getEStructuralFeatures().get(0);
 	}
 
 	/**
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
+	 * <!-- begin-user-doc --> <!-- end-user-doc -->
+	 * 
 	 * @generated
 	 */
 	public EReference getShowHistoryEvent_TargetVersion() {
-		return (EReference) showHistoryEventEClass.getEStructuralFeatures()
-				.get(1);
+		return (EReference) showHistoryEventEClass.getEStructuralFeatures().get(1);
 	}
 
 	/**
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
+	 * <!-- begin-user-doc --> <!-- end-user-doc -->
+	 * 
 	 * @generated
 	 */
 	public EClass getPerspectiveEvent() {
@@ -607,8 +584,8 @@ public class EventsPackageImpl extends EPackageImpl implements EventsPackage {
 	}
 
 	/**
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
+	 * <!-- begin-user-doc --> <!-- end-user-doc -->
+	 * 
 	 * @generated
 	 */
 	public EClass getDNDEvent() {
@@ -616,8 +593,8 @@ public class EventsPackageImpl extends EPackageImpl implements EventsPackage {
 	}
 
 	/**
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
+	 * <!-- begin-user-doc --> <!-- end-user-doc -->
+	 * 
 	 * @generated
 	 */
 	public EAttribute getDNDEvent_SourceView() {
@@ -625,8 +602,8 @@ public class EventsPackageImpl extends EPackageImpl implements EventsPackage {
 	}
 
 	/**
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
+	 * <!-- begin-user-doc --> <!-- end-user-doc -->
+	 * 
 	 * @generated
 	 */
 	public EAttribute getDNDEvent_TargetView() {
@@ -634,8 +611,8 @@ public class EventsPackageImpl extends EPackageImpl implements EventsPackage {
 	}
 
 	/**
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
+	 * <!-- begin-user-doc --> <!-- end-user-doc -->
+	 * 
 	 * @generated
 	 */
 	public EReference getDNDEvent_DragSourceElement() {
@@ -643,8 +620,8 @@ public class EventsPackageImpl extends EPackageImpl implements EventsPackage {
 	}
 
 	/**
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
+	 * <!-- begin-user-doc --> <!-- end-user-doc -->
+	 * 
 	 * @generated
 	 */
 	public EReference getDNDEvent_DropTargetElement() {
@@ -652,8 +629,8 @@ public class EventsPackageImpl extends EPackageImpl implements EventsPackage {
 	}
 
 	/**
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
+	 * <!-- begin-user-doc --> <!-- end-user-doc -->
+	 * 
 	 * @generated
 	 */
 	public EClass getLinkEvent() {
@@ -661,8 +638,8 @@ public class EventsPackageImpl extends EPackageImpl implements EventsPackage {
 	}
 
 	/**
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
+	 * <!-- begin-user-doc --> <!-- end-user-doc -->
+	 * 
 	 * @generated
 	 */
 	public EAttribute getLinkEvent_SourceView() {
@@ -670,8 +647,8 @@ public class EventsPackageImpl extends EPackageImpl implements EventsPackage {
 	}
 
 	/**
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
+	 * <!-- begin-user-doc --> <!-- end-user-doc -->
+	 * 
 	 * @generated
 	 */
 	public EReference getLinkEvent_SourceElement() {
@@ -679,8 +656,8 @@ public class EventsPackageImpl extends EPackageImpl implements EventsPackage {
 	}
 
 	/**
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
+	 * <!-- begin-user-doc --> <!-- end-user-doc -->
+	 * 
 	 * @generated
 	 */
 	public EReference getLinkEvent_TargetElement() {
@@ -688,8 +665,8 @@ public class EventsPackageImpl extends EPackageImpl implements EventsPackage {
 	}
 
 	/**
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
+	 * <!-- begin-user-doc --> <!-- end-user-doc -->
+	 * 
 	 * @generated
 	 */
 	public EAttribute getLinkEvent_CreatedNew() {
@@ -697,8 +674,8 @@ public class EventsPackageImpl extends EPackageImpl implements EventsPackage {
 	}
 
 	/**
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
+	 * <!-- begin-user-doc --> <!-- end-user-doc -->
+	 * 
 	 * @generated
 	 */
 	public EClass getTraceEvent() {
@@ -706,8 +683,8 @@ public class EventsPackageImpl extends EPackageImpl implements EventsPackage {
 	}
 
 	/**
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
+	 * <!-- begin-user-doc --> <!-- end-user-doc -->
+	 * 
 	 * @generated
 	 */
 	public EReference getTraceEvent_SourceElement() {
@@ -715,8 +692,8 @@ public class EventsPackageImpl extends EPackageImpl implements EventsPackage {
 	}
 
 	/**
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
+	 * <!-- begin-user-doc --> <!-- end-user-doc -->
+	 * 
 	 * @generated
 	 */
 	public EReference getTraceEvent_TargetElement() {
@@ -724,8 +701,8 @@ public class EventsPackageImpl extends EPackageImpl implements EventsPackage {
 	}
 
 	/**
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
+	 * <!-- begin-user-doc --> <!-- end-user-doc -->
+	 * 
 	 * @generated
 	 */
 	public EAttribute getTraceEvent_FeatureName() {
@@ -733,8 +710,8 @@ public class EventsPackageImpl extends EPackageImpl implements EventsPackage {
 	}
 
 	/**
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
+	 * <!-- begin-user-doc --> <!-- end-user-doc -->
+	 * 
 	 * @generated
 	 */
 	public EClass getNavigatorCreateEvent() {
@@ -742,38 +719,35 @@ public class EventsPackageImpl extends EPackageImpl implements EventsPackage {
 	}
 
 	/**
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
+	 * <!-- begin-user-doc --> <!-- end-user-doc -->
+	 * 
 	 * @generated
 	 */
 	public EReference getNavigatorCreateEvent_CreatedElement() {
-		return (EReference) navigatorCreateEventEClass.getEStructuralFeatures()
-				.get(0);
+		return (EReference) navigatorCreateEventEClass.getEStructuralFeatures().get(0);
 	}
 
 	/**
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
+	 * <!-- begin-user-doc --> <!-- end-user-doc -->
+	 * 
 	 * @generated
 	 */
 	public EReference getNavigatorCreateEvent_SourceSection() {
-		return (EReference) navigatorCreateEventEClass.getEStructuralFeatures()
-				.get(1);
+		return (EReference) navigatorCreateEventEClass.getEStructuralFeatures().get(1);
 	}
 
 	/**
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
+	 * <!-- begin-user-doc --> <!-- end-user-doc -->
+	 * 
 	 * @generated
 	 */
 	public EAttribute getNavigatorCreateEvent_Dynamic() {
-		return (EAttribute) navigatorCreateEventEClass.getEStructuralFeatures()
-				.get(2);
+		return (EAttribute) navigatorCreateEventEClass.getEStructuralFeatures().get(2);
 	}
 
 	/**
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
+	 * <!-- begin-user-doc --> <!-- end-user-doc -->
+	 * 
 	 * @generated
 	 */
 	public EClass getPluginFocusEvent() {
@@ -781,28 +755,26 @@ public class EventsPackageImpl extends EPackageImpl implements EventsPackage {
 	}
 
 	/**
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
+	 * <!-- begin-user-doc --> <!-- end-user-doc -->
+	 * 
 	 * @generated
 	 */
 	public EAttribute getPluginFocusEvent_PluginId() {
-		return (EAttribute) pluginFocusEventEClass.getEStructuralFeatures()
-				.get(0);
+		return (EAttribute) pluginFocusEventEClass.getEStructuralFeatures().get(0);
 	}
 
 	/**
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
+	 * <!-- begin-user-doc --> <!-- end-user-doc -->
+	 * 
 	 * @generated
 	 */
 	public EAttribute getPluginFocusEvent_StartDate() {
-		return (EAttribute) pluginFocusEventEClass.getEStructuralFeatures()
-				.get(1);
+		return (EAttribute) pluginFocusEventEClass.getEStructuralFeatures().get(1);
 	}
 
 	/**
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
+	 * <!-- begin-user-doc --> <!-- end-user-doc -->
+	 * 
 	 * @generated
 	 */
 	public EClass getPresentationSwitchEvent() {
@@ -810,28 +782,26 @@ public class EventsPackageImpl extends EPackageImpl implements EventsPackage {
 	}
 
 	/**
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
+	 * <!-- begin-user-doc --> <!-- end-user-doc -->
+	 * 
 	 * @generated
 	 */
 	public EAttribute getPresentationSwitchEvent_ReadView() {
-		return (EAttribute) presentationSwitchEventEClass
-				.getEStructuralFeatures().get(0);
+		return (EAttribute) presentationSwitchEventEClass.getEStructuralFeatures().get(0);
 	}
 
 	/**
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
+	 * <!-- begin-user-doc --> <!-- end-user-doc -->
+	 * 
 	 * @generated
 	 */
 	public EAttribute getPresentationSwitchEvent_NewPresentation() {
-		return (EAttribute) presentationSwitchEventEClass
-				.getEStructuralFeatures().get(1);
+		return (EAttribute) presentationSwitchEventEClass.getEStructuralFeatures().get(1);
 	}
 
 	/**
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
+	 * <!-- begin-user-doc --> <!-- end-user-doc -->
+	 * 
 	 * @generated
 	 */
 	public EClass getUndoEvent() {
@@ -839,8 +809,8 @@ public class EventsPackageImpl extends EPackageImpl implements EventsPackage {
 	}
 
 	/**
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
+	 * <!-- begin-user-doc --> <!-- end-user-doc -->
+	 * 
 	 * @generated
 	 */
 	public EReference getUndoEvent_Operation() {
@@ -848,8 +818,8 @@ public class EventsPackageImpl extends EPackageImpl implements EventsPackage {
 	}
 
 	/**
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
+	 * <!-- begin-user-doc --> <!-- end-user-doc -->
+	 * 
 	 * @generated
 	 */
 	public EClass getValidate() {
@@ -857,8 +827,8 @@ public class EventsPackageImpl extends EPackageImpl implements EventsPackage {
 	}
 
 	/**
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
+	 * <!-- begin-user-doc --> <!-- end-user-doc -->
+	 * 
 	 * @generated
 	 */
 	public EClass getShowChangesEvent() {
@@ -866,28 +836,26 @@ public class EventsPackageImpl extends EPackageImpl implements EventsPackage {
 	}
 
 	/**
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
+	 * <!-- begin-user-doc --> <!-- end-user-doc -->
+	 * 
 	 * @generated
 	 */
 	public EReference getShowChangesEvent_SourceVersion() {
-		return (EReference) showChangesEventEClass.getEStructuralFeatures()
-				.get(0);
+		return (EReference) showChangesEventEClass.getEStructuralFeatures().get(0);
 	}
 
 	/**
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
+	 * <!-- begin-user-doc --> <!-- end-user-doc -->
+	 * 
 	 * @generated
 	 */
 	public EReference getShowChangesEvent_TargetVersion() {
-		return (EReference) showChangesEventEClass.getEStructuralFeatures()
-				.get(1);
+		return (EReference) showChangesEventEClass.getEStructuralFeatures().get(1);
 	}
 
 	/**
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
+	 * <!-- begin-user-doc --> <!-- end-user-doc -->
+	 * 
 	 * @generated
 	 */
 	public EventsFactory getEventsFactory() {
@@ -895,17 +863,16 @@ public class EventsPackageImpl extends EPackageImpl implements EventsPackage {
 	}
 
 	/**
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
+	 * <!-- begin-user-doc --> <!-- end-user-doc -->
+	 * 
 	 * @generated
 	 */
 	private boolean isCreated = false;
 
 	/**
-	 * Creates the meta-model objects for the package.  This method is
-	 * guarded to have no affect on any invocation but its first.
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
+	 * Creates the meta-model objects for the package. This method is guarded to have no affect on any invocation but
+	 * its first. <!-- begin-user-doc --> <!-- end-user-doc -->
+	 * 
 	 * @generated
 	 */
 	public void createPackageContents() {
@@ -934,12 +901,9 @@ public class EventsPackageImpl extends EPackageImpl implements EventsPackage {
 
 		exceptionEventEClass = createEClass(EXCEPTION_EVENT);
 		createEAttribute(exceptionEventEClass, EXCEPTION_EVENT__EXCEPTION_TITLE);
-		createEAttribute(exceptionEventEClass,
-				EXCEPTION_EVENT__EXCEPTION_STACK_TRACE);
-		createEAttribute(exceptionEventEClass,
-				EXCEPTION_EVENT__EXCEPTION_CAUSE_TITLE);
-		createEAttribute(exceptionEventEClass,
-				EXCEPTION_EVENT__EXCEPTION_CAUSE_STACK_TRACE);
+		createEAttribute(exceptionEventEClass, EXCEPTION_EVENT__EXCEPTION_STACK_TRACE);
+		createEAttribute(exceptionEventEClass, EXCEPTION_EVENT__EXCEPTION_CAUSE_TITLE);
+		createEAttribute(exceptionEventEClass, EXCEPTION_EVENT__EXCEPTION_CAUSE_STACK_TRACE);
 
 		pluginStartEventEClass = createEClass(PLUGIN_START_EVENT);
 		createEAttribute(pluginStartEventEClass, PLUGIN_START_EVENT__PLUGIN_ID);
@@ -949,19 +913,15 @@ public class EventsPackageImpl extends EPackageImpl implements EventsPackage {
 		createEReference(updateEventEClass, UPDATE_EVENT__TARGET_VERSION);
 
 		annotationEventEClass = createEClass(ANNOTATION_EVENT);
-		createEReference(annotationEventEClass,
-				ANNOTATION_EVENT__ANNOTATED_ELEMENT);
+		createEReference(annotationEventEClass, ANNOTATION_EVENT__ANNOTATED_ELEMENT);
 		createEReference(annotationEventEClass, ANNOTATION_EVENT__ANNOTATION);
 
 		revertEventEClass = createEClass(REVERT_EVENT);
-		createEAttribute(revertEventEClass,
-				REVERT_EVENT__REVERTED_CHANGES_COUNT);
+		createEAttribute(revertEventEClass, REVERT_EVENT__REVERTED_CHANGES_COUNT);
 
 		showHistoryEventEClass = createEClass(SHOW_HISTORY_EVENT);
-		createEReference(showHistoryEventEClass,
-				SHOW_HISTORY_EVENT__SOURCE_VERSION);
-		createEReference(showHistoryEventEClass,
-				SHOW_HISTORY_EVENT__TARGET_VERSION);
+		createEReference(showHistoryEventEClass, SHOW_HISTORY_EVENT__SOURCE_VERSION);
+		createEReference(showHistoryEventEClass, SHOW_HISTORY_EVENT__TARGET_VERSION);
 
 		perspectiveEventEClass = createEClass(PERSPECTIVE_EVENT);
 
@@ -983,22 +943,17 @@ public class EventsPackageImpl extends EPackageImpl implements EventsPackage {
 		createEAttribute(traceEventEClass, TRACE_EVENT__FEATURE_NAME);
 
 		navigatorCreateEventEClass = createEClass(NAVIGATOR_CREATE_EVENT);
-		createEReference(navigatorCreateEventEClass,
-				NAVIGATOR_CREATE_EVENT__CREATED_ELEMENT);
-		createEReference(navigatorCreateEventEClass,
-				NAVIGATOR_CREATE_EVENT__SOURCE_SECTION);
-		createEAttribute(navigatorCreateEventEClass,
-				NAVIGATOR_CREATE_EVENT__DYNAMIC);
+		createEReference(navigatorCreateEventEClass, NAVIGATOR_CREATE_EVENT__CREATED_ELEMENT);
+		createEReference(navigatorCreateEventEClass, NAVIGATOR_CREATE_EVENT__SOURCE_SECTION);
+		createEAttribute(navigatorCreateEventEClass, NAVIGATOR_CREATE_EVENT__DYNAMIC);
 
 		pluginFocusEventEClass = createEClass(PLUGIN_FOCUS_EVENT);
 		createEAttribute(pluginFocusEventEClass, PLUGIN_FOCUS_EVENT__PLUGIN_ID);
 		createEAttribute(pluginFocusEventEClass, PLUGIN_FOCUS_EVENT__START_DATE);
 
 		presentationSwitchEventEClass = createEClass(PRESENTATION_SWITCH_EVENT);
-		createEAttribute(presentationSwitchEventEClass,
-				PRESENTATION_SWITCH_EVENT__READ_VIEW);
-		createEAttribute(presentationSwitchEventEClass,
-				PRESENTATION_SWITCH_EVENT__NEW_PRESENTATION);
+		createEAttribute(presentationSwitchEventEClass, PRESENTATION_SWITCH_EVENT__READ_VIEW);
+		createEAttribute(presentationSwitchEventEClass, PRESENTATION_SWITCH_EVENT__NEW_PRESENTATION);
 
 		undoEventEClass = createEClass(UNDO_EVENT);
 		createEReference(undoEventEClass, UNDO_EVENT__OPERATION);
@@ -1006,24 +961,21 @@ public class EventsPackageImpl extends EPackageImpl implements EventsPackage {
 		validateEClass = createEClass(VALIDATE);
 
 		showChangesEventEClass = createEClass(SHOW_CHANGES_EVENT);
-		createEReference(showChangesEventEClass,
-				SHOW_CHANGES_EVENT__SOURCE_VERSION);
-		createEReference(showChangesEventEClass,
-				SHOW_CHANGES_EVENT__TARGET_VERSION);
+		createEReference(showChangesEventEClass, SHOW_CHANGES_EVENT__SOURCE_VERSION);
+		createEReference(showChangesEventEClass, SHOW_CHANGES_EVENT__TARGET_VERSION);
 	}
 
 	/**
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
+	 * <!-- begin-user-doc --> <!-- end-user-doc -->
+	 * 
 	 * @generated
 	 */
 	private boolean isInitialized = false;
 
 	/**
-	 * Complete the initialization of the package and its meta-model.  This
-	 * method is guarded to have no affect on any invocation but its first.
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
+	 * Complete the initialization of the package and its meta-model. This method is guarded to have no affect on any
+	 * invocation but its first. <!-- begin-user-doc --> <!-- end-user-doc -->
+	 * 
 	 * @generated
 	 */
 	public void initializePackageContents() {
@@ -1037,14 +989,12 @@ public class EventsPackageImpl extends EPackageImpl implements EventsPackage {
 		setNsURI(eNS_URI);
 
 		// Obtain other dependent packages
-		ModelPackage theModelPackage = (ModelPackage) EPackage.Registry.INSTANCE
-				.getEPackage(ModelPackage.eNS_URI);
-		EcorePackage theEcorePackage = (EcorePackage) EPackage.Registry.INSTANCE
-				.getEPackage(EcorePackage.eNS_URI);
+		ModelPackage theModelPackage = (ModelPackage) EPackage.Registry.INSTANCE.getEPackage(ModelPackage.eNS_URI);
+		EcorePackage theEcorePackage = (EcorePackage) EPackage.Registry.INSTANCE.getEPackage(EcorePackage.eNS_URI);
 		VersioningPackage theVersioningPackage = (VersioningPackage) EPackage.Registry.INSTANCE
-				.getEPackage(VersioningPackage.eNS_URI);
+			.getEPackage(VersioningPackage.eNS_URI);
 		OperationsPackage theOperationsPackage = (OperationsPackage) EPackage.Registry.INSTANCE
-				.getEPackage(OperationsPackage.eNS_URI);
+			.getEPackage(OperationsPackage.eNS_URI);
 
 		// Create type parameters
 
@@ -1072,280 +1022,184 @@ public class EventsPackageImpl extends EPackageImpl implements EventsPackage {
 		showChangesEventEClass.getESuperTypes().add(this.getEvent());
 
 		// Initialize classes and features; add operations and parameters
-		initEClass(eventEClass, Event.class, "Event", !IS_ABSTRACT,
-				!IS_INTERFACE, IS_GENERATED_INSTANCE_CLASS);
-		initEAttribute(getEvent_Timestamp(), ecorePackage.getEDate(),
-				"timestamp", null, 0, 1, Event.class, !IS_TRANSIENT,
-				!IS_VOLATILE, IS_CHANGEABLE, !IS_UNSETTABLE, !IS_ID, IS_UNIQUE,
-				!IS_DERIVED, IS_ORDERED);
+		initEClass(eventEClass, Event.class, "Event", !IS_ABSTRACT, !IS_INTERFACE, IS_GENERATED_INSTANCE_CLASS);
+		initEAttribute(getEvent_Timestamp(), ecorePackage.getEDate(), "timestamp", null, 0, 1, Event.class,
+			!IS_TRANSIENT, !IS_VOLATILE, IS_CHANGEABLE, !IS_UNSETTABLE, !IS_ID, IS_UNIQUE, !IS_DERIVED, IS_ORDERED);
 
-		initEClass(readEventEClass, ReadEvent.class, "ReadEvent", !IS_ABSTRACT,
-				!IS_INTERFACE, IS_GENERATED_INSTANCE_CLASS);
-		initEReference(getReadEvent_ModelElement(), theModelPackage
-				.getModelElementId(), null, "modelElement", null, 0, 1,
-				ReadEvent.class, !IS_TRANSIENT, !IS_VOLATILE, IS_CHANGEABLE,
-				IS_COMPOSITE, IS_RESOLVE_PROXIES, !IS_UNSETTABLE, IS_UNIQUE,
-				!IS_DERIVED, IS_ORDERED);
-		initEAttribute(getReadEvent_SourceView(), ecorePackage.getEString(),
-				"sourceView", null, 0, 1, ReadEvent.class, !IS_TRANSIENT,
-				!IS_VOLATILE, IS_CHANGEABLE, !IS_UNSETTABLE, !IS_ID, IS_UNIQUE,
-				!IS_DERIVED, IS_ORDERED);
-		initEAttribute(getReadEvent_ReadView(), ecorePackage.getEString(),
-				"readView", null, 0, 1, ReadEvent.class, !IS_TRANSIENT,
-				!IS_VOLATILE, IS_CHANGEABLE, !IS_UNSETTABLE, !IS_ID, IS_UNIQUE,
-				!IS_DERIVED, IS_ORDERED);
+		initEClass(readEventEClass, ReadEvent.class, "ReadEvent", !IS_ABSTRACT, !IS_INTERFACE,
+			IS_GENERATED_INSTANCE_CLASS);
+		initEReference(getReadEvent_ModelElement(), theModelPackage.getModelElementId(), null, "modelElement", null, 0,
+			1, ReadEvent.class, !IS_TRANSIENT, !IS_VOLATILE, IS_CHANGEABLE, IS_COMPOSITE, IS_RESOLVE_PROXIES,
+			!IS_UNSETTABLE, IS_UNIQUE, !IS_DERIVED, IS_ORDERED);
+		initEAttribute(getReadEvent_SourceView(), ecorePackage.getEString(), "sourceView", null, 0, 1, ReadEvent.class,
+			!IS_TRANSIENT, !IS_VOLATILE, IS_CHANGEABLE, !IS_UNSETTABLE, !IS_ID, IS_UNIQUE, !IS_DERIVED, IS_ORDERED);
+		initEAttribute(getReadEvent_ReadView(), ecorePackage.getEString(), "readView", null, 0, 1, ReadEvent.class,
+			!IS_TRANSIENT, !IS_VOLATILE, IS_CHANGEABLE, !IS_UNSETTABLE, !IS_ID, IS_UNIQUE, !IS_DERIVED, IS_ORDERED);
 
-		initEClass(mergeEventEClass, MergeEvent.class, "MergeEvent",
-				!IS_ABSTRACT, !IS_INTERFACE, IS_GENERATED_INSTANCE_CLASS);
-		initEAttribute(getMergeEvent_NumberOfConflicts(), ecorePackage
-				.getEInt(), "numberOfConflicts", null, 0, 1, MergeEvent.class,
-				!IS_TRANSIENT, !IS_VOLATILE, IS_CHANGEABLE, !IS_UNSETTABLE,
-				!IS_ID, IS_UNIQUE, !IS_DERIVED, IS_ORDERED);
-		initEAttribute(getMergeEvent_TotalTime(), theEcorePackage.getEInt(),
-				"totalTime", null, 0, 1, MergeEvent.class, !IS_TRANSIENT,
-				!IS_VOLATILE, IS_CHANGEABLE, !IS_UNSETTABLE, !IS_ID, IS_UNIQUE,
-				!IS_DERIVED, IS_ORDERED);
-		initEReference(getMergeEvent_BaseVersion(), theVersioningPackage
-				.getPrimaryVersionSpec(), null, "baseVersion", null, 0, 1,
-				MergeEvent.class, !IS_TRANSIENT, !IS_VOLATILE, IS_CHANGEABLE,
-				IS_COMPOSITE, IS_RESOLVE_PROXIES, !IS_UNSETTABLE, IS_UNIQUE,
-				!IS_DERIVED, IS_ORDERED);
-		initEReference(getMergeEvent_TargetVersion(), theVersioningPackage
-				.getPrimaryVersionSpec(), null, "targetVersion", null, 0, 1,
-				MergeEvent.class, !IS_TRANSIENT, !IS_VOLATILE, IS_CHANGEABLE,
-				IS_COMPOSITE, IS_RESOLVE_PROXIES, !IS_UNSETTABLE, IS_UNIQUE,
-				!IS_DERIVED, IS_ORDERED);
-		initEReference(getMergeEvent_LocalChanges(), theOperationsPackage
-				.getAbstractOperation(), null, "localChanges", null, 0, -1,
-				MergeEvent.class, !IS_TRANSIENT, !IS_VOLATILE, IS_CHANGEABLE,
-				IS_COMPOSITE, IS_RESOLVE_PROXIES, !IS_UNSETTABLE, IS_UNIQUE,
-				!IS_DERIVED, IS_ORDERED);
+		initEClass(mergeEventEClass, MergeEvent.class, "MergeEvent", !IS_ABSTRACT, !IS_INTERFACE,
+			IS_GENERATED_INSTANCE_CLASS);
+		initEAttribute(getMergeEvent_NumberOfConflicts(), ecorePackage.getEInt(), "numberOfConflicts", null, 0, 1,
+			MergeEvent.class, !IS_TRANSIENT, !IS_VOLATILE, IS_CHANGEABLE, !IS_UNSETTABLE, !IS_ID, IS_UNIQUE,
+			!IS_DERIVED, IS_ORDERED);
+		initEAttribute(getMergeEvent_TotalTime(), theEcorePackage.getEInt(), "totalTime", null, 0, 1, MergeEvent.class,
+			!IS_TRANSIENT, !IS_VOLATILE, IS_CHANGEABLE, !IS_UNSETTABLE, !IS_ID, IS_UNIQUE, !IS_DERIVED, IS_ORDERED);
+		initEReference(getMergeEvent_BaseVersion(), theVersioningPackage.getPrimaryVersionSpec(), null, "baseVersion",
+			null, 0, 1, MergeEvent.class, !IS_TRANSIENT, !IS_VOLATILE, IS_CHANGEABLE, IS_COMPOSITE, IS_RESOLVE_PROXIES,
+			!IS_UNSETTABLE, IS_UNIQUE, !IS_DERIVED, IS_ORDERED);
+		initEReference(getMergeEvent_TargetVersion(), theVersioningPackage.getPrimaryVersionSpec(), null,
+			"targetVersion", null, 0, 1, MergeEvent.class, !IS_TRANSIENT, !IS_VOLATILE, IS_CHANGEABLE, IS_COMPOSITE,
+			IS_RESOLVE_PROXIES, !IS_UNSETTABLE, IS_UNIQUE, !IS_DERIVED, IS_ORDERED);
+		initEReference(getMergeEvent_LocalChanges(), theOperationsPackage.getAbstractOperation(), null, "localChanges",
+			null, 0, -1, MergeEvent.class, !IS_TRANSIENT, !IS_VOLATILE, IS_CHANGEABLE, IS_COMPOSITE,
+			IS_RESOLVE_PROXIES, !IS_UNSETTABLE, IS_UNIQUE, !IS_DERIVED, IS_ORDERED);
 
-		initEClass(checkoutEventEClass, CheckoutEvent.class, "CheckoutEvent",
-				!IS_ABSTRACT, !IS_INTERFACE, IS_GENERATED_INSTANCE_CLASS);
-		initEReference(getCheckoutEvent_BaseVersion(), theVersioningPackage
-				.getPrimaryVersionSpec(), null, "baseVersion", null, 0, 1,
-				CheckoutEvent.class, !IS_TRANSIENT, !IS_VOLATILE,
-				IS_CHANGEABLE, IS_COMPOSITE, IS_RESOLVE_PROXIES,
-				!IS_UNSETTABLE, IS_UNIQUE, !IS_DERIVED, IS_ORDERED);
+		initEClass(checkoutEventEClass, CheckoutEvent.class, "CheckoutEvent", !IS_ABSTRACT, !IS_INTERFACE,
+			IS_GENERATED_INSTANCE_CLASS);
+		initEReference(getCheckoutEvent_BaseVersion(), theVersioningPackage.getPrimaryVersionSpec(), null,
+			"baseVersion", null, 0, 1, CheckoutEvent.class, !IS_TRANSIENT, !IS_VOLATILE, IS_CHANGEABLE, IS_COMPOSITE,
+			IS_RESOLVE_PROXIES, !IS_UNSETTABLE, IS_UNIQUE, !IS_DERIVED, IS_ORDERED);
 
-		initEClass(exceptionEventEClass, ExceptionEvent.class,
-				"ExceptionEvent", !IS_ABSTRACT, !IS_INTERFACE,
-				IS_GENERATED_INSTANCE_CLASS);
-		initEAttribute(getExceptionEvent_ExceptionTitle(), ecorePackage
-				.getEString(), "ExceptionTitle", null, 0, 1,
-				ExceptionEvent.class, !IS_TRANSIENT, !IS_VOLATILE,
-				IS_CHANGEABLE, !IS_UNSETTABLE, !IS_ID, IS_UNIQUE, !IS_DERIVED,
-				IS_ORDERED);
-		initEAttribute(getExceptionEvent_ExceptionStackTrace(), ecorePackage
-				.getEString(), "ExceptionStackTrace", null, 0, 1,
-				ExceptionEvent.class, !IS_TRANSIENT, !IS_VOLATILE,
-				IS_CHANGEABLE, !IS_UNSETTABLE, !IS_ID, IS_UNIQUE, !IS_DERIVED,
-				IS_ORDERED);
-		initEAttribute(getExceptionEvent_ExceptionCauseTitle(), ecorePackage
-				.getEString(), "ExceptionCauseTitle", null, 0, 1,
-				ExceptionEvent.class, !IS_TRANSIENT, !IS_VOLATILE,
-				IS_CHANGEABLE, !IS_UNSETTABLE, !IS_ID, IS_UNIQUE, !IS_DERIVED,
-				IS_ORDERED);
-		initEAttribute(getExceptionEvent_ExceptionCauseStackTrace(),
-				ecorePackage.getEString(), "ExceptionCauseStackTrace", null, 0,
-				1, ExceptionEvent.class, !IS_TRANSIENT, !IS_VOLATILE,
-				IS_CHANGEABLE, !IS_UNSETTABLE, !IS_ID, IS_UNIQUE, !IS_DERIVED,
-				IS_ORDERED);
+		initEClass(exceptionEventEClass, ExceptionEvent.class, "ExceptionEvent", !IS_ABSTRACT, !IS_INTERFACE,
+			IS_GENERATED_INSTANCE_CLASS);
+		initEAttribute(getExceptionEvent_ExceptionTitle(), ecorePackage.getEString(), "ExceptionTitle", null, 0, 1,
+			ExceptionEvent.class, !IS_TRANSIENT, !IS_VOLATILE, IS_CHANGEABLE, !IS_UNSETTABLE, !IS_ID, IS_UNIQUE,
+			!IS_DERIVED, IS_ORDERED);
+		initEAttribute(getExceptionEvent_ExceptionStackTrace(), ecorePackage.getEString(), "ExceptionStackTrace", null,
+			0, 1, ExceptionEvent.class, !IS_TRANSIENT, !IS_VOLATILE, IS_CHANGEABLE, !IS_UNSETTABLE, !IS_ID, IS_UNIQUE,
+			!IS_DERIVED, IS_ORDERED);
+		initEAttribute(getExceptionEvent_ExceptionCauseTitle(), ecorePackage.getEString(), "ExceptionCauseTitle", null,
+			0, 1, ExceptionEvent.class, !IS_TRANSIENT, !IS_VOLATILE, IS_CHANGEABLE, !IS_UNSETTABLE, !IS_ID, IS_UNIQUE,
+			!IS_DERIVED, IS_ORDERED);
+		initEAttribute(getExceptionEvent_ExceptionCauseStackTrace(), ecorePackage.getEString(),
+			"ExceptionCauseStackTrace", null, 0, 1, ExceptionEvent.class, !IS_TRANSIENT, !IS_VOLATILE, IS_CHANGEABLE,
+			!IS_UNSETTABLE, !IS_ID, IS_UNIQUE, !IS_DERIVED, IS_ORDERED);
 
-		initEClass(pluginStartEventEClass, PluginStartEvent.class,
-				"PluginStartEvent", !IS_ABSTRACT, !IS_INTERFACE,
-				IS_GENERATED_INSTANCE_CLASS);
-		initEAttribute(getPluginStartEvent_PluginId(), ecorePackage
-				.getEString(), "pluginId", null, 0, 1, PluginStartEvent.class,
-				!IS_TRANSIENT, !IS_VOLATILE, IS_CHANGEABLE, !IS_UNSETTABLE,
-				!IS_ID, IS_UNIQUE, !IS_DERIVED, IS_ORDERED);
+		initEClass(pluginStartEventEClass, PluginStartEvent.class, "PluginStartEvent", !IS_ABSTRACT, !IS_INTERFACE,
+			IS_GENERATED_INSTANCE_CLASS);
+		initEAttribute(getPluginStartEvent_PluginId(), ecorePackage.getEString(), "pluginId", null, 0, 1,
+			PluginStartEvent.class, !IS_TRANSIENT, !IS_VOLATILE, IS_CHANGEABLE, !IS_UNSETTABLE, !IS_ID, IS_UNIQUE,
+			!IS_DERIVED, IS_ORDERED);
 
-		initEClass(updateEventEClass, UpdateEvent.class, "UpdateEvent",
-				!IS_ABSTRACT, !IS_INTERFACE, IS_GENERATED_INSTANCE_CLASS);
-		initEReference(getUpdateEvent_BaseVersion(), theVersioningPackage
-				.getPrimaryVersionSpec(), null, "baseVersion", null, 0, 1,
-				UpdateEvent.class, !IS_TRANSIENT, !IS_VOLATILE, IS_CHANGEABLE,
-				IS_COMPOSITE, IS_RESOLVE_PROXIES, !IS_UNSETTABLE, IS_UNIQUE,
-				!IS_DERIVED, IS_ORDERED);
-		initEReference(getUpdateEvent_TargetVersion(), theVersioningPackage
-				.getPrimaryVersionSpec(), null, "targetVersion", null, 0, 1,
-				UpdateEvent.class, !IS_TRANSIENT, !IS_VOLATILE, IS_CHANGEABLE,
-				IS_COMPOSITE, IS_RESOLVE_PROXIES, !IS_UNSETTABLE, IS_UNIQUE,
-				!IS_DERIVED, IS_ORDERED);
+		initEClass(updateEventEClass, UpdateEvent.class, "UpdateEvent", !IS_ABSTRACT, !IS_INTERFACE,
+			IS_GENERATED_INSTANCE_CLASS);
+		initEReference(getUpdateEvent_BaseVersion(), theVersioningPackage.getPrimaryVersionSpec(), null, "baseVersion",
+			null, 0, 1, UpdateEvent.class, !IS_TRANSIENT, !IS_VOLATILE, IS_CHANGEABLE, IS_COMPOSITE,
+			IS_RESOLVE_PROXIES, !IS_UNSETTABLE, IS_UNIQUE, !IS_DERIVED, IS_ORDERED);
+		initEReference(getUpdateEvent_TargetVersion(), theVersioningPackage.getPrimaryVersionSpec(), null,
+			"targetVersion", null, 0, 1, UpdateEvent.class, !IS_TRANSIENT, !IS_VOLATILE, IS_CHANGEABLE, IS_COMPOSITE,
+			IS_RESOLVE_PROXIES, !IS_UNSETTABLE, IS_UNIQUE, !IS_DERIVED, IS_ORDERED);
 
-		initEClass(annotationEventEClass, AnnotationEvent.class,
-				"AnnotationEvent", !IS_ABSTRACT, !IS_INTERFACE,
-				IS_GENERATED_INSTANCE_CLASS);
-		initEReference(getAnnotationEvent_AnnotatedElement(), theModelPackage
-				.getModelElementId(), null, "annotatedElement", null, 0, 1,
-				AnnotationEvent.class, !IS_TRANSIENT, !IS_VOLATILE,
-				IS_CHANGEABLE, !IS_COMPOSITE, IS_RESOLVE_PROXIES,
-				!IS_UNSETTABLE, IS_UNIQUE, !IS_DERIVED, IS_ORDERED);
-		initEReference(getAnnotationEvent_Annotation(), theModelPackage
-				.getModelElementId(), null, "annotation", null, 0, 1,
-				AnnotationEvent.class, !IS_TRANSIENT, !IS_VOLATILE,
-				IS_CHANGEABLE, !IS_COMPOSITE, IS_RESOLVE_PROXIES,
-				!IS_UNSETTABLE, IS_UNIQUE, !IS_DERIVED, IS_ORDERED);
+		initEClass(annotationEventEClass, AnnotationEvent.class, "AnnotationEvent", !IS_ABSTRACT, !IS_INTERFACE,
+			IS_GENERATED_INSTANCE_CLASS);
+		initEReference(getAnnotationEvent_AnnotatedElement(), theModelPackage.getModelElementId(), null,
+			"annotatedElement", null, 0, 1, AnnotationEvent.class, !IS_TRANSIENT, !IS_VOLATILE, IS_CHANGEABLE,
+			!IS_COMPOSITE, IS_RESOLVE_PROXIES, !IS_UNSETTABLE, IS_UNIQUE, !IS_DERIVED, IS_ORDERED);
+		initEReference(getAnnotationEvent_Annotation(), theModelPackage.getModelElementId(), null, "annotation", null,
+			0, 1, AnnotationEvent.class, !IS_TRANSIENT, !IS_VOLATILE, IS_CHANGEABLE, !IS_COMPOSITE, IS_RESOLVE_PROXIES,
+			!IS_UNSETTABLE, IS_UNIQUE, !IS_DERIVED, IS_ORDERED);
 
-		initEClass(revertEventEClass, RevertEvent.class, "RevertEvent",
-				!IS_ABSTRACT, !IS_INTERFACE, IS_GENERATED_INSTANCE_CLASS);
-		initEAttribute(getRevertEvent_RevertedChangesCount(), ecorePackage
-				.getEInt(), "revertedChangesCount", null, 0, 1,
-				RevertEvent.class, !IS_TRANSIENT, !IS_VOLATILE, IS_CHANGEABLE,
-				!IS_UNSETTABLE, !IS_ID, IS_UNIQUE, !IS_DERIVED, IS_ORDERED);
+		initEClass(revertEventEClass, RevertEvent.class, "RevertEvent", !IS_ABSTRACT, !IS_INTERFACE,
+			IS_GENERATED_INSTANCE_CLASS);
+		initEAttribute(getRevertEvent_RevertedChangesCount(), ecorePackage.getEInt(), "revertedChangesCount", null, 0,
+			1, RevertEvent.class, !IS_TRANSIENT, !IS_VOLATILE, IS_CHANGEABLE, !IS_UNSETTABLE, !IS_ID, IS_UNIQUE,
+			!IS_DERIVED, IS_ORDERED);
 
-		initEClass(showHistoryEventEClass, ShowHistoryEvent.class,
-				"ShowHistoryEvent", !IS_ABSTRACT, !IS_INTERFACE,
-				IS_GENERATED_INSTANCE_CLASS);
-		initEReference(getShowHistoryEvent_SourceVersion(),
-				theVersioningPackage.getPrimaryVersionSpec(), null,
-				"sourceVersion", null, 0, 1, ShowHistoryEvent.class,
-				!IS_TRANSIENT, !IS_VOLATILE, IS_CHANGEABLE, IS_COMPOSITE,
-				IS_RESOLVE_PROXIES, !IS_UNSETTABLE, IS_UNIQUE, !IS_DERIVED,
-				IS_ORDERED);
-		initEReference(getShowHistoryEvent_TargetVersion(),
-				theVersioningPackage.getPrimaryVersionSpec(), null,
-				"targetVersion", null, 0, 1, ShowHistoryEvent.class,
-				!IS_TRANSIENT, !IS_VOLATILE, IS_CHANGEABLE, IS_COMPOSITE,
-				IS_RESOLVE_PROXIES, !IS_UNSETTABLE, IS_UNIQUE, !IS_DERIVED,
-				IS_ORDERED);
+		initEClass(showHistoryEventEClass, ShowHistoryEvent.class, "ShowHistoryEvent", !IS_ABSTRACT, !IS_INTERFACE,
+			IS_GENERATED_INSTANCE_CLASS);
+		initEReference(getShowHistoryEvent_SourceVersion(), theVersioningPackage.getPrimaryVersionSpec(), null,
+			"sourceVersion", null, 0, 1, ShowHistoryEvent.class, !IS_TRANSIENT, !IS_VOLATILE, IS_CHANGEABLE,
+			IS_COMPOSITE, IS_RESOLVE_PROXIES, !IS_UNSETTABLE, IS_UNIQUE, !IS_DERIVED, IS_ORDERED);
+		initEReference(getShowHistoryEvent_TargetVersion(), theVersioningPackage.getPrimaryVersionSpec(), null,
+			"targetVersion", null, 0, 1, ShowHistoryEvent.class, !IS_TRANSIENT, !IS_VOLATILE, IS_CHANGEABLE,
+			IS_COMPOSITE, IS_RESOLVE_PROXIES, !IS_UNSETTABLE, IS_UNIQUE, !IS_DERIVED, IS_ORDERED);
 
-		initEClass(perspectiveEventEClass, PerspectiveEvent.class,
-				"PerspectiveEvent", !IS_ABSTRACT, !IS_INTERFACE,
-				IS_GENERATED_INSTANCE_CLASS);
+		initEClass(perspectiveEventEClass, PerspectiveEvent.class, "PerspectiveEvent", !IS_ABSTRACT, !IS_INTERFACE,
+			IS_GENERATED_INSTANCE_CLASS);
 
-		initEClass(dndEventEClass, DNDEvent.class, "DNDEvent", !IS_ABSTRACT,
-				!IS_INTERFACE, IS_GENERATED_INSTANCE_CLASS);
-		initEAttribute(getDNDEvent_SourceView(), ecorePackage.getEString(),
-				"sourceView", null, 0, 1, DNDEvent.class, !IS_TRANSIENT,
-				!IS_VOLATILE, IS_CHANGEABLE, !IS_UNSETTABLE, !IS_ID, IS_UNIQUE,
-				!IS_DERIVED, IS_ORDERED);
-		initEAttribute(getDNDEvent_TargetView(), ecorePackage.getEString(),
-				"targetView", null, 0, 1, DNDEvent.class, !IS_TRANSIENT,
-				!IS_VOLATILE, IS_CHANGEABLE, !IS_UNSETTABLE, !IS_ID, IS_UNIQUE,
-				!IS_DERIVED, IS_ORDERED);
-		initEReference(getDNDEvent_DragSourceElement(), theModelPackage
-				.getModelElementId(), null, "dragSourceElement", null, 0, 1,
-				DNDEvent.class, !IS_TRANSIENT, !IS_VOLATILE, IS_CHANGEABLE,
-				!IS_COMPOSITE, IS_RESOLVE_PROXIES, !IS_UNSETTABLE, IS_UNIQUE,
-				!IS_DERIVED, IS_ORDERED);
-		initEReference(getDNDEvent_DropTargetElement(), theModelPackage
-				.getModelElementId(), null, "dropTargetElement", null, 0, 1,
-				DNDEvent.class, !IS_TRANSIENT, !IS_VOLATILE, IS_CHANGEABLE,
-				!IS_COMPOSITE, IS_RESOLVE_PROXIES, !IS_UNSETTABLE, IS_UNIQUE,
-				!IS_DERIVED, IS_ORDERED);
+		initEClass(dndEventEClass, DNDEvent.class, "DNDEvent", !IS_ABSTRACT, !IS_INTERFACE, IS_GENERATED_INSTANCE_CLASS);
+		initEAttribute(getDNDEvent_SourceView(), ecorePackage.getEString(), "sourceView", null, 0, 1, DNDEvent.class,
+			!IS_TRANSIENT, !IS_VOLATILE, IS_CHANGEABLE, !IS_UNSETTABLE, !IS_ID, IS_UNIQUE, !IS_DERIVED, IS_ORDERED);
+		initEAttribute(getDNDEvent_TargetView(), ecorePackage.getEString(), "targetView", null, 0, 1, DNDEvent.class,
+			!IS_TRANSIENT, !IS_VOLATILE, IS_CHANGEABLE, !IS_UNSETTABLE, !IS_ID, IS_UNIQUE, !IS_DERIVED, IS_ORDERED);
+		initEReference(getDNDEvent_DragSourceElement(), theModelPackage.getModelElementId(), null, "dragSourceElement",
+			null, 0, 1, DNDEvent.class, !IS_TRANSIENT, !IS_VOLATILE, IS_CHANGEABLE, !IS_COMPOSITE, IS_RESOLVE_PROXIES,
+			!IS_UNSETTABLE, IS_UNIQUE, !IS_DERIVED, IS_ORDERED);
+		initEReference(getDNDEvent_DropTargetElement(), theModelPackage.getModelElementId(), null, "dropTargetElement",
+			null, 0, 1, DNDEvent.class, !IS_TRANSIENT, !IS_VOLATILE, IS_CHANGEABLE, !IS_COMPOSITE, IS_RESOLVE_PROXIES,
+			!IS_UNSETTABLE, IS_UNIQUE, !IS_DERIVED, IS_ORDERED);
 
-		initEClass(linkEventEClass, LinkEvent.class, "LinkEvent", !IS_ABSTRACT,
-				!IS_INTERFACE, IS_GENERATED_INSTANCE_CLASS);
-		initEAttribute(getLinkEvent_SourceView(), ecorePackage.getEString(),
-				"sourceView", null, 0, 1, LinkEvent.class, !IS_TRANSIENT,
-				!IS_VOLATILE, IS_CHANGEABLE, !IS_UNSETTABLE, !IS_ID, IS_UNIQUE,
-				!IS_DERIVED, IS_ORDERED);
-		initEReference(getLinkEvent_SourceElement(), theModelPackage
-				.getModelElementId(), null, "sourceElement", null, 0, 1,
-				LinkEvent.class, !IS_TRANSIENT, !IS_VOLATILE, IS_CHANGEABLE,
-				!IS_COMPOSITE, IS_RESOLVE_PROXIES, !IS_UNSETTABLE, IS_UNIQUE,
-				!IS_DERIVED, IS_ORDERED);
-		initEReference(getLinkEvent_TargetElement(), theModelPackage
-				.getModelElementId(), null, "targetElement", null, 0, 1,
-				LinkEvent.class, !IS_TRANSIENT, !IS_VOLATILE, IS_CHANGEABLE,
-				!IS_COMPOSITE, IS_RESOLVE_PROXIES, !IS_UNSETTABLE, IS_UNIQUE,
-				!IS_DERIVED, IS_ORDERED);
-		initEAttribute(getLinkEvent_CreatedNew(), ecorePackage.getEBoolean(),
-				"createdNew", null, 0, 1, LinkEvent.class, !IS_TRANSIENT,
-				!IS_VOLATILE, IS_CHANGEABLE, !IS_UNSETTABLE, !IS_ID, IS_UNIQUE,
-				!IS_DERIVED, IS_ORDERED);
+		initEClass(linkEventEClass, LinkEvent.class, "LinkEvent", !IS_ABSTRACT, !IS_INTERFACE,
+			IS_GENERATED_INSTANCE_CLASS);
+		initEAttribute(getLinkEvent_SourceView(), ecorePackage.getEString(), "sourceView", null, 0, 1, LinkEvent.class,
+			!IS_TRANSIENT, !IS_VOLATILE, IS_CHANGEABLE, !IS_UNSETTABLE, !IS_ID, IS_UNIQUE, !IS_DERIVED, IS_ORDERED);
+		initEReference(getLinkEvent_SourceElement(), theModelPackage.getModelElementId(), null, "sourceElement", null,
+			0, 1, LinkEvent.class, !IS_TRANSIENT, !IS_VOLATILE, IS_CHANGEABLE, !IS_COMPOSITE, IS_RESOLVE_PROXIES,
+			!IS_UNSETTABLE, IS_UNIQUE, !IS_DERIVED, IS_ORDERED);
+		initEReference(getLinkEvent_TargetElement(), theModelPackage.getModelElementId(), null, "targetElement", null,
+			0, 1, LinkEvent.class, !IS_TRANSIENT, !IS_VOLATILE, IS_CHANGEABLE, !IS_COMPOSITE, IS_RESOLVE_PROXIES,
+			!IS_UNSETTABLE, IS_UNIQUE, !IS_DERIVED, IS_ORDERED);
+		initEAttribute(getLinkEvent_CreatedNew(), ecorePackage.getEBoolean(), "createdNew", null, 0, 1,
+			LinkEvent.class, !IS_TRANSIENT, !IS_VOLATILE, IS_CHANGEABLE, !IS_UNSETTABLE, !IS_ID, IS_UNIQUE,
+			!IS_DERIVED, IS_ORDERED);
 
-		initEClass(traceEventEClass, TraceEvent.class, "TraceEvent",
-				!IS_ABSTRACT, !IS_INTERFACE, IS_GENERATED_INSTANCE_CLASS);
-		initEReference(getTraceEvent_SourceElement(), theModelPackage
-				.getModelElementId(), null, "sourceElement", null, 0, 1,
-				TraceEvent.class, !IS_TRANSIENT, !IS_VOLATILE, IS_CHANGEABLE,
-				!IS_COMPOSITE, IS_RESOLVE_PROXIES, !IS_UNSETTABLE, IS_UNIQUE,
-				!IS_DERIVED, IS_ORDERED);
-		initEReference(getTraceEvent_TargetElement(), theModelPackage
-				.getModelElementId(), null, "targetElement", null, 0, 1,
-				TraceEvent.class, !IS_TRANSIENT, !IS_VOLATILE, IS_CHANGEABLE,
-				!IS_COMPOSITE, IS_RESOLVE_PROXIES, !IS_UNSETTABLE, IS_UNIQUE,
-				!IS_DERIVED, IS_ORDERED);
-		initEAttribute(getTraceEvent_FeatureName(), ecorePackage.getEString(),
-				"featureName", null, 0, 1, TraceEvent.class, !IS_TRANSIENT,
-				!IS_VOLATILE, IS_CHANGEABLE, !IS_UNSETTABLE, !IS_ID, IS_UNIQUE,
-				!IS_DERIVED, IS_ORDERED);
+		initEClass(traceEventEClass, TraceEvent.class, "TraceEvent", !IS_ABSTRACT, !IS_INTERFACE,
+			IS_GENERATED_INSTANCE_CLASS);
+		initEReference(getTraceEvent_SourceElement(), theModelPackage.getModelElementId(), null, "sourceElement", null,
+			0, 1, TraceEvent.class, !IS_TRANSIENT, !IS_VOLATILE, IS_CHANGEABLE, !IS_COMPOSITE, IS_RESOLVE_PROXIES,
+			!IS_UNSETTABLE, IS_UNIQUE, !IS_DERIVED, IS_ORDERED);
+		initEReference(getTraceEvent_TargetElement(), theModelPackage.getModelElementId(), null, "targetElement", null,
+			0, 1, TraceEvent.class, !IS_TRANSIENT, !IS_VOLATILE, IS_CHANGEABLE, !IS_COMPOSITE, IS_RESOLVE_PROXIES,
+			!IS_UNSETTABLE, IS_UNIQUE, !IS_DERIVED, IS_ORDERED);
+		initEAttribute(getTraceEvent_FeatureName(), ecorePackage.getEString(), "featureName", null, 0, 1,
+			TraceEvent.class, !IS_TRANSIENT, !IS_VOLATILE, IS_CHANGEABLE, !IS_UNSETTABLE, !IS_ID, IS_UNIQUE,
+			!IS_DERIVED, IS_ORDERED);
 
-		initEClass(navigatorCreateEventEClass, NavigatorCreateEvent.class,
-				"NavigatorCreateEvent", !IS_ABSTRACT, !IS_INTERFACE,
-				IS_GENERATED_INSTANCE_CLASS);
-		initEReference(getNavigatorCreateEvent_CreatedElement(),
-				theModelPackage.getModelElementId(), null, "createdElement",
-				null, 0, 1, NavigatorCreateEvent.class, !IS_TRANSIENT,
-				!IS_VOLATILE, IS_CHANGEABLE, !IS_COMPOSITE, IS_RESOLVE_PROXIES,
-				!IS_UNSETTABLE, IS_UNIQUE, !IS_DERIVED, IS_ORDERED);
-		initEReference(getNavigatorCreateEvent_SourceSection(), theModelPackage
-				.getModelElementId(), null, "sourceSection", null, 0, 1,
-				NavigatorCreateEvent.class, !IS_TRANSIENT, !IS_VOLATILE,
-				IS_CHANGEABLE, !IS_COMPOSITE, IS_RESOLVE_PROXIES,
-				!IS_UNSETTABLE, IS_UNIQUE, !IS_DERIVED, IS_ORDERED);
-		initEAttribute(getNavigatorCreateEvent_Dynamic(), ecorePackage
-				.getEBoolean(), "dynamic", null, 0, 1,
-				NavigatorCreateEvent.class, !IS_TRANSIENT, !IS_VOLATILE,
-				IS_CHANGEABLE, !IS_UNSETTABLE, !IS_ID, IS_UNIQUE, !IS_DERIVED,
-				IS_ORDERED);
+		initEClass(navigatorCreateEventEClass, NavigatorCreateEvent.class, "NavigatorCreateEvent", !IS_ABSTRACT,
+			!IS_INTERFACE, IS_GENERATED_INSTANCE_CLASS);
+		initEReference(getNavigatorCreateEvent_CreatedElement(), theModelPackage.getModelElementId(), null,
+			"createdElement", null, 0, 1, NavigatorCreateEvent.class, !IS_TRANSIENT, !IS_VOLATILE, IS_CHANGEABLE,
+			!IS_COMPOSITE, IS_RESOLVE_PROXIES, !IS_UNSETTABLE, IS_UNIQUE, !IS_DERIVED, IS_ORDERED);
+		initEReference(getNavigatorCreateEvent_SourceSection(), theModelPackage.getModelElementId(), null,
+			"sourceSection", null, 0, 1, NavigatorCreateEvent.class, !IS_TRANSIENT, !IS_VOLATILE, IS_CHANGEABLE,
+			!IS_COMPOSITE, IS_RESOLVE_PROXIES, !IS_UNSETTABLE, IS_UNIQUE, !IS_DERIVED, IS_ORDERED);
+		initEAttribute(getNavigatorCreateEvent_Dynamic(), ecorePackage.getEBoolean(), "dynamic", null, 0, 1,
+			NavigatorCreateEvent.class, !IS_TRANSIENT, !IS_VOLATILE, IS_CHANGEABLE, !IS_UNSETTABLE, !IS_ID, IS_UNIQUE,
+			!IS_DERIVED, IS_ORDERED);
 
-		initEClass(pluginFocusEventEClass, PluginFocusEvent.class,
-				"PluginFocusEvent", !IS_ABSTRACT, !IS_INTERFACE,
-				IS_GENERATED_INSTANCE_CLASS);
-		initEAttribute(getPluginFocusEvent_PluginId(), ecorePackage
-				.getEString(), "pluginId", null, 0, 1, PluginFocusEvent.class,
-				!IS_TRANSIENT, !IS_VOLATILE, IS_CHANGEABLE, !IS_UNSETTABLE,
-				!IS_ID, IS_UNIQUE, !IS_DERIVED, IS_ORDERED);
-		initEAttribute(getPluginFocusEvent_StartDate(),
-				ecorePackage.getEDate(), "startDate", null, 0, 1,
-				PluginFocusEvent.class, !IS_TRANSIENT, !IS_VOLATILE,
-				IS_CHANGEABLE, !IS_UNSETTABLE, !IS_ID, IS_UNIQUE, !IS_DERIVED,
-				IS_ORDERED);
+		initEClass(pluginFocusEventEClass, PluginFocusEvent.class, "PluginFocusEvent", !IS_ABSTRACT, !IS_INTERFACE,
+			IS_GENERATED_INSTANCE_CLASS);
+		initEAttribute(getPluginFocusEvent_PluginId(), ecorePackage.getEString(), "pluginId", null, 0, 1,
+			PluginFocusEvent.class, !IS_TRANSIENT, !IS_VOLATILE, IS_CHANGEABLE, !IS_UNSETTABLE, !IS_ID, IS_UNIQUE,
+			!IS_DERIVED, IS_ORDERED);
+		initEAttribute(getPluginFocusEvent_StartDate(), ecorePackage.getEDate(), "startDate", null, 0, 1,
+			PluginFocusEvent.class, !IS_TRANSIENT, !IS_VOLATILE, IS_CHANGEABLE, !IS_UNSETTABLE, !IS_ID, IS_UNIQUE,
+			!IS_DERIVED, IS_ORDERED);
 
-		initEClass(presentationSwitchEventEClass,
-				PresentationSwitchEvent.class, "PresentationSwitchEvent",
-				!IS_ABSTRACT, !IS_INTERFACE, IS_GENERATED_INSTANCE_CLASS);
-		initEAttribute(getPresentationSwitchEvent_ReadView(), ecorePackage
-				.getEString(), "readView", null, 0, 1,
-				PresentationSwitchEvent.class, !IS_TRANSIENT, !IS_VOLATILE,
-				IS_CHANGEABLE, !IS_UNSETTABLE, !IS_ID, IS_UNIQUE, !IS_DERIVED,
-				IS_ORDERED);
-		initEAttribute(getPresentationSwitchEvent_NewPresentation(),
-				ecorePackage.getEString(), "newPresentation", null, 0, 1,
-				PresentationSwitchEvent.class, !IS_TRANSIENT, !IS_VOLATILE,
-				IS_CHANGEABLE, !IS_UNSETTABLE, !IS_ID, IS_UNIQUE, !IS_DERIVED,
-				IS_ORDERED);
+		initEClass(presentationSwitchEventEClass, PresentationSwitchEvent.class, "PresentationSwitchEvent",
+			!IS_ABSTRACT, !IS_INTERFACE, IS_GENERATED_INSTANCE_CLASS);
+		initEAttribute(getPresentationSwitchEvent_ReadView(), ecorePackage.getEString(), "readView", null, 0, 1,
+			PresentationSwitchEvent.class, !IS_TRANSIENT, !IS_VOLATILE, IS_CHANGEABLE, !IS_UNSETTABLE, !IS_ID,
+			IS_UNIQUE, !IS_DERIVED, IS_ORDERED);
+		initEAttribute(getPresentationSwitchEvent_NewPresentation(), ecorePackage.getEString(), "newPresentation",
+			null, 0, 1, PresentationSwitchEvent.class, !IS_TRANSIENT, !IS_VOLATILE, IS_CHANGEABLE, !IS_UNSETTABLE,
+			!IS_ID, IS_UNIQUE, !IS_DERIVED, IS_ORDERED);
 
-		initEClass(undoEventEClass, UndoEvent.class, "UndoEvent", !IS_ABSTRACT,
-				!IS_INTERFACE, IS_GENERATED_INSTANCE_CLASS);
-		initEReference(getUndoEvent_Operation(), theOperationsPackage
-				.getAbstractOperation(), null, "operation", null, 0, 1,
-				UndoEvent.class, !IS_TRANSIENT, !IS_VOLATILE, IS_CHANGEABLE,
-				IS_COMPOSITE, IS_RESOLVE_PROXIES, !IS_UNSETTABLE, IS_UNIQUE,
-				!IS_DERIVED, IS_ORDERED);
+		initEClass(undoEventEClass, UndoEvent.class, "UndoEvent", !IS_ABSTRACT, !IS_INTERFACE,
+			IS_GENERATED_INSTANCE_CLASS);
+		initEReference(getUndoEvent_Operation(), theOperationsPackage.getAbstractOperation(), null, "operation", null,
+			0, 1, UndoEvent.class, !IS_TRANSIENT, !IS_VOLATILE, IS_CHANGEABLE, IS_COMPOSITE, IS_RESOLVE_PROXIES,
+			!IS_UNSETTABLE, IS_UNIQUE, !IS_DERIVED, IS_ORDERED);
 
-		initEClass(validateEClass, Validate.class, "Validate", !IS_ABSTRACT,
-				!IS_INTERFACE, IS_GENERATED_INSTANCE_CLASS);
+		initEClass(validateEClass, Validate.class, "Validate", !IS_ABSTRACT, !IS_INTERFACE, IS_GENERATED_INSTANCE_CLASS);
 
-		initEClass(showChangesEventEClass, ShowChangesEvent.class,
-				"ShowChangesEvent", !IS_ABSTRACT, !IS_INTERFACE,
-				IS_GENERATED_INSTANCE_CLASS);
-		initEReference(getShowChangesEvent_SourceVersion(),
-				theVersioningPackage.getPrimaryVersionSpec(), null,
-				"sourceVersion", null, 0, 1, ShowChangesEvent.class,
-				!IS_TRANSIENT, !IS_VOLATILE, IS_CHANGEABLE, IS_COMPOSITE,
-				IS_RESOLVE_PROXIES, !IS_UNSETTABLE, IS_UNIQUE, !IS_DERIVED,
-				IS_ORDERED);
-		initEReference(getShowChangesEvent_TargetVersion(),
-				theVersioningPackage.getPrimaryVersionSpec(), null,
-				"targetVersion", null, 0, 1, ShowChangesEvent.class,
-				!IS_TRANSIENT, !IS_VOLATILE, IS_CHANGEABLE, IS_COMPOSITE,
-				IS_RESOLVE_PROXIES, !IS_UNSETTABLE, IS_UNIQUE, !IS_DERIVED,
-				IS_ORDERED);
+		initEClass(showChangesEventEClass, ShowChangesEvent.class, "ShowChangesEvent", !IS_ABSTRACT, !IS_INTERFACE,
+			IS_GENERATED_INSTANCE_CLASS);
+		initEReference(getShowChangesEvent_SourceVersion(), theVersioningPackage.getPrimaryVersionSpec(), null,
+			"sourceVersion", null, 0, 1, ShowChangesEvent.class, !IS_TRANSIENT, !IS_VOLATILE, IS_CHANGEABLE,
+			IS_COMPOSITE, IS_RESOLVE_PROXIES, !IS_UNSETTABLE, IS_UNIQUE, !IS_DERIVED, IS_ORDERED);
+		initEReference(getShowChangesEvent_TargetVersion(), theVersioningPackage.getPrimaryVersionSpec(), null,
+			"targetVersion", null, 0, 1, ShowChangesEvent.class, !IS_TRANSIENT, !IS_VOLATILE, IS_CHANGEABLE,
+			IS_COMPOSITE, IS_RESOLVE_PROXIES, !IS_UNSETTABLE, IS_UNIQUE, !IS_DERIVED, IS_ORDERED);
 	}
 
-} //EventsPackageImpl
+} // EventsPackageImpl

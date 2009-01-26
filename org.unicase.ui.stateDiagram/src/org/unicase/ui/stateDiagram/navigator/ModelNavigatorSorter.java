@@ -18,8 +18,7 @@ public class ModelNavigatorSorter extends ViewerSorter {
 	public int category(Object element) {
 		if (element instanceof org.unicase.ui.stateDiagram.navigator.ModelNavigatorItem) {
 			org.unicase.ui.stateDiagram.navigator.ModelNavigatorItem item = (org.unicase.ui.stateDiagram.navigator.ModelNavigatorItem) element;
-			return org.unicase.ui.stateDiagram.part.ModelVisualIDRegistry
-					.getVisualID(item.getView());
+			return org.unicase.ui.stateDiagram.part.ModelVisualIDRegistry.getVisualID(item.getView());
 		}
 		return GROUP_CATEGORY;
 	}

@@ -1,8 +1,7 @@
 /**
- * <copyright> Copyright (c) 2008 Jonas Helming, Maximilian Koegel. All rights reserved. This program and the accompanying materials are made available under the terms of the Eclipse Public License v1.0 which accompanies this distribution, and is available at http://www.eclipse.org/legal/epl-v10.html
- * </copyright>
- *
- * $Id$
+ * <copyright> Copyright (c) 2008 Jonas Helming, Maximilian Koegel. All rights reserved. This program and the
+ * accompanying materials are made available under the terms of the Eclipse Public License v1.0 which accompanies this
+ * distribution, and is available at http://www.eclipse.org/legal/epl-v10.html </copyright>
  */
 package org.unicase.ui.navigator.commands;
 
@@ -22,25 +21,19 @@ import org.unicase.ui.common.util.ActionHelper;
 import org.unicase.workspace.WorkspaceManager;
 
 /**
- * .
- * 
- * This is the generic handler for commands to create containments of a model
- * element
+ * . This is the generic handler for commands to create containments of a model element
  * 
  * @author Hodaie
- * 
  */
 public class CreateContainmentHandler extends AbstractHandler {
 
 	/**
-	 * The Id for EClass parameter to command. A model element of this EClass
-	 * type is created in this handler.
+	 * The Id for EClass parameter to command. A model element of this EClass type is created in this handler.
 	 */
 	public static final String COMMAND_ECLASS_PARAM = "org.unicase.ui.navigator.eClassParameter";
 
 	/**
 	 * . {@inheritDoc}
-	 * 
 	 */
 	public Object execute(ExecutionEvent event) throws ExecutionException {
 
@@ -50,20 +43,19 @@ public class CreateContainmentHandler extends AbstractHandler {
 			final EClass newMEType = (EClass) o;
 			final ModelElement newMEInstance;
 			// create a new model element from this EClass
-			newMEInstance = (ModelElement) ActionHelper.createModelElement(
-					newMEType.getEPackage().getEFactoryInstance(), newMEType);
+			newMEInstance = (ModelElement) ActionHelper.createModelElement(newMEType.getEPackage()
+				.getEFactoryInstance(), newMEType);
 			newMEInstance.setName("new " + newMEType.getName());
 
 			// add this newly created model element to corresponding containment
 			// feature of
 			// selected ME
-			final ModelElement selectedME = ActionHelper
-					.getSelectedModelElement();
-			
+			final ModelElement selectedME = ActionHelper.getSelectedModelElement();
+
 			final String sourceID = this.getClass().getName();
 			if (selectedME != null) {
-				TransactionalEditingDomain domain = WorkspaceManager
-						.getInstance().getCurrentWorkspace().getEditingDomain();
+				TransactionalEditingDomain domain = WorkspaceManager.getInstance().getCurrentWorkspace()
+					.getEditingDomain();
 				domain.getCommandStack().execute(new RecordingCommand(domain) {
 					@SuppressWarnings("unchecked")
 					@Override
@@ -90,8 +82,7 @@ public class CreateContainmentHandler extends AbstractHandler {
 	}
 
 	private EReference getStructuralFeature(ModelElement selectedME, EClass newMEType) {
-		List<EReference> containments = selectedME.eClass()
-				.getEAllContainments();
+		List<EReference> containments = selectedME.eClass().getEAllContainments();
 		EReference ref = null;
 		for (EReference containment : containments) {
 			if (containment.getEReferenceType().equals(newMEType)) {
@@ -102,7 +93,7 @@ public class CreateContainmentHandler extends AbstractHandler {
 				break;
 			}
 		}
-		
+
 		return ref;
 
 	}

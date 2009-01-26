@@ -30,26 +30,20 @@ public class ComponentViewFactory extends AbstractShapeViewFactory {
 	/**
 	 * @generated
 	 */
-	protected void decorateView(View containerView, View view,
-			IAdaptable semanticAdapter, String semanticHint, int index,
-			boolean persisted) {
+	protected void decorateView(View containerView, View view, IAdaptable semanticAdapter, String semanticHint,
+		int index, boolean persisted) {
 		if (semanticHint == null) {
 			semanticHint = org.unicase.ui.componentDiagram.part.ModelVisualIDRegistry
-					.getType(org.unicase.ui.componentDiagram.edit.parts.ComponentEditPart.VISUAL_ID);
+				.getType(org.unicase.ui.componentDiagram.edit.parts.ComponentEditPart.VISUAL_ID);
 			view.setType(semanticHint);
 		}
-		super.decorateView(containerView, view, semanticAdapter, semanticHint,
-				index, persisted);
+		super.decorateView(containerView, view, semanticAdapter, semanticHint, index, persisted);
 		if (!org.unicase.ui.componentDiagram.edit.parts.MEDiagramEditPart.MODEL_ID
-				.equals(org.unicase.ui.componentDiagram.part.ModelVisualIDRegistry
-						.getModelID(containerView))) {
-			EAnnotation shortcutAnnotation = EcoreFactory.eINSTANCE
-					.createEAnnotation();
+			.equals(org.unicase.ui.componentDiagram.part.ModelVisualIDRegistry.getModelID(containerView))) {
+			EAnnotation shortcutAnnotation = EcoreFactory.eINSTANCE.createEAnnotation();
 			shortcutAnnotation.setSource("Shortcut"); //$NON-NLS-1$
-			shortcutAnnotation
-					.getDetails()
-					.put(
-							"modelID", org.unicase.ui.componentDiagram.edit.parts.MEDiagramEditPart.MODEL_ID); //$NON-NLS-1$
+			shortcutAnnotation.getDetails().put(
+				"modelID", org.unicase.ui.componentDiagram.edit.parts.MEDiagramEditPart.MODEL_ID); //$NON-NLS-1$
 			view.getEAnnotations().add(shortcutAnnotation);
 		}
 		IAdaptable eObjectAdapter = null;
@@ -57,12 +51,11 @@ public class ComponentViewFactory extends AbstractShapeViewFactory {
 		if (eObject != null) {
 			eObjectAdapter = new EObjectAdapter(eObject);
 		}
-		getViewService()
-				.createNode(
-						eObjectAdapter,
-						view,
-						org.unicase.ui.componentDiagram.part.ModelVisualIDRegistry
-								.getType(org.unicase.ui.componentDiagram.edit.parts.ComponentNameEditPart.VISUAL_ID),
-						ViewUtil.APPEND, true, getPreferencesHint());
+		getViewService().createNode(
+			eObjectAdapter,
+			view,
+			org.unicase.ui.componentDiagram.part.ModelVisualIDRegistry
+				.getType(org.unicase.ui.componentDiagram.edit.parts.ComponentNameEditPart.VISUAL_ID), ViewUtil.APPEND,
+			true, getPreferencesHint());
 	}
 }

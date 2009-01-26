@@ -1,7 +1,7 @@
 /**
- * <copyright>Copyright (c) 2008 Jonas Helming, Maximilian Koegel. All rights reserved. This program and the accompanying materials are made available under the terms of the Eclipse Public License v1.0 which accompanies this distribution, and is available at http://www.eclipse.org/legal/epl-v10.html</copyright>
- *
- * $Id$
+ * <copyright>Copyright (c) 2008 Jonas Helming, Maximilian Koegel. All rights reserved. This program and the
+ * accompanying materials are made available under the terms of the Eclipse Public License v1.0 which accompanies this
+ * distribution, and is available at http://www.eclipse.org/legal/epl-v10.html</copyright>
  */
 package org.unicase.emfstore.esmodel.versioning.events.impl;
 
@@ -14,26 +14,26 @@ import org.unicase.emfstore.esmodel.versioning.events.EventsPackage;
 import org.unicase.model.ModelElementId;
 
 /**
- * <!-- begin-user-doc -->
- * An implementation of the model object '<em><b>DND Event</b></em>'.
- * <!-- end-user-doc -->
+ * <!-- begin-user-doc --> An implementation of the model object '<em><b>DND Event</b></em>'. <!-- end-user-doc -->
  * <p>
  * The following features are implemented:
  * <ul>
- *   <li>{@link org.unicase.emfstore.esmodel.versioning.events.impl.DNDEventImpl#getSourceView <em>Source View</em>}</li>
- *   <li>{@link org.unicase.emfstore.esmodel.versioning.events.impl.DNDEventImpl#getTargetView <em>Target View</em>}</li>
- *   <li>{@link org.unicase.emfstore.esmodel.versioning.events.impl.DNDEventImpl#getDragSourceElement <em>Drag Source Element</em>}</li>
- *   <li>{@link org.unicase.emfstore.esmodel.versioning.events.impl.DNDEventImpl#getDropTargetElement <em>Drop Target Element</em>}</li>
+ * <li>{@link org.unicase.emfstore.esmodel.versioning.events.impl.DNDEventImpl#getSourceView <em>Source View</em>}</li>
+ * <li>{@link org.unicase.emfstore.esmodel.versioning.events.impl.DNDEventImpl#getTargetView <em>Target View</em>}</li>
+ * <li>{@link org.unicase.emfstore.esmodel.versioning.events.impl.DNDEventImpl#getDragSourceElement <em>Drag Source
+ * Element</em>}</li>
+ * <li>{@link org.unicase.emfstore.esmodel.versioning.events.impl.DNDEventImpl#getDropTargetElement <em>Drop Target
+ * Element</em>}</li>
  * </ul>
  * </p>
- *
+ * 
  * @generated
  */
 public class DNDEventImpl extends EventImpl implements DNDEvent {
 	/**
-	 * The default value of the '{@link #getSourceView() <em>Source View</em>}' attribute.
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
+	 * The default value of the '{@link #getSourceView() <em>Source View</em>}' attribute. <!-- begin-user-doc --> <!--
+	 * end-user-doc -->
+	 * 
 	 * @see #getSourceView()
 	 * @generated
 	 * @ordered
@@ -41,9 +41,9 @@ public class DNDEventImpl extends EventImpl implements DNDEvent {
 	protected static final String SOURCE_VIEW_EDEFAULT = null;
 
 	/**
-	 * The cached value of the '{@link #getSourceView() <em>Source View</em>}' attribute.
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
+	 * The cached value of the '{@link #getSourceView() <em>Source View</em>}' attribute. <!-- begin-user-doc --> <!--
+	 * end-user-doc -->
+	 * 
 	 * @see #getSourceView()
 	 * @generated
 	 * @ordered
@@ -51,9 +51,9 @@ public class DNDEventImpl extends EventImpl implements DNDEvent {
 	protected String sourceView = SOURCE_VIEW_EDEFAULT;
 
 	/**
-	 * The default value of the '{@link #getTargetView() <em>Target View</em>}' attribute.
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
+	 * The default value of the '{@link #getTargetView() <em>Target View</em>}' attribute. <!-- begin-user-doc --> <!--
+	 * end-user-doc -->
+	 * 
 	 * @see #getTargetView()
 	 * @generated
 	 * @ordered
@@ -61,9 +61,9 @@ public class DNDEventImpl extends EventImpl implements DNDEvent {
 	protected static final String TARGET_VIEW_EDEFAULT = null;
 
 	/**
-	 * The cached value of the '{@link #getTargetView() <em>Target View</em>}' attribute.
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
+	 * The cached value of the '{@link #getTargetView() <em>Target View</em>}' attribute. <!-- begin-user-doc --> <!--
+	 * end-user-doc -->
+	 * 
 	 * @see #getTargetView()
 	 * @generated
 	 * @ordered
@@ -71,9 +71,9 @@ public class DNDEventImpl extends EventImpl implements DNDEvent {
 	protected String targetView = TARGET_VIEW_EDEFAULT;
 
 	/**
-	 * The cached value of the '{@link #getDragSourceElement() <em>Drag Source Element</em>}' reference.
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
+	 * The cached value of the '{@link #getDragSourceElement() <em>Drag Source Element</em>}' reference. <!--
+	 * begin-user-doc --> <!-- end-user-doc -->
+	 * 
 	 * @see #getDragSourceElement()
 	 * @generated
 	 * @ordered
@@ -81,9 +81,9 @@ public class DNDEventImpl extends EventImpl implements DNDEvent {
 	protected ModelElementId dragSourceElement;
 
 	/**
-	 * The cached value of the '{@link #getDropTargetElement() <em>Drop Target Element</em>}' reference.
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
+	 * The cached value of the '{@link #getDropTargetElement() <em>Drop Target Element</em>}' reference. <!--
+	 * begin-user-doc --> <!-- end-user-doc -->
+	 * 
 	 * @see #getDropTargetElement()
 	 * @generated
 	 * @ordered
@@ -91,8 +91,8 @@ public class DNDEventImpl extends EventImpl implements DNDEvent {
 	protected ModelElementId dropTargetElement;
 
 	/**
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
+	 * <!-- begin-user-doc --> <!-- end-user-doc -->
+	 * 
 	 * @generated
 	 */
 	protected DNDEventImpl() {
@@ -100,8 +100,8 @@ public class DNDEventImpl extends EventImpl implements DNDEvent {
 	}
 
 	/**
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
+	 * <!-- begin-user-doc --> <!-- end-user-doc -->
+	 * 
 	 * @generated
 	 */
 	@Override
@@ -110,8 +110,8 @@ public class DNDEventImpl extends EventImpl implements DNDEvent {
 	}
 
 	/**
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
+	 * <!-- begin-user-doc --> <!-- end-user-doc -->
+	 * 
 	 * @generated
 	 */
 	public String getSourceView() {
@@ -119,22 +119,21 @@ public class DNDEventImpl extends EventImpl implements DNDEvent {
 	}
 
 	/**
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
+	 * <!-- begin-user-doc --> <!-- end-user-doc -->
+	 * 
 	 * @generated
 	 */
 	public void setSourceView(String newSourceView) {
 		String oldSourceView = sourceView;
 		sourceView = newSourceView;
 		if (eNotificationRequired())
-			eNotify(new ENotificationImpl(this, Notification.SET,
-					EventsPackage.DND_EVENT__SOURCE_VIEW, oldSourceView,
-					sourceView));
+			eNotify(new ENotificationImpl(this, Notification.SET, EventsPackage.DND_EVENT__SOURCE_VIEW, oldSourceView,
+				sourceView));
 	}
 
 	/**
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
+	 * <!-- begin-user-doc --> <!-- end-user-doc -->
+	 * 
 	 * @generated
 	 */
 	public String getTargetView() {
@@ -142,22 +141,21 @@ public class DNDEventImpl extends EventImpl implements DNDEvent {
 	}
 
 	/**
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
+	 * <!-- begin-user-doc --> <!-- end-user-doc -->
+	 * 
 	 * @generated
 	 */
 	public void setTargetView(String newTargetView) {
 		String oldTargetView = targetView;
 		targetView = newTargetView;
 		if (eNotificationRequired())
-			eNotify(new ENotificationImpl(this, Notification.SET,
-					EventsPackage.DND_EVENT__TARGET_VIEW, oldTargetView,
-					targetView));
+			eNotify(new ENotificationImpl(this, Notification.SET, EventsPackage.DND_EVENT__TARGET_VIEW, oldTargetView,
+				targetView));
 	}
 
 	/**
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
+	 * <!-- begin-user-doc --> <!-- end-user-doc -->
+	 * 
 	 * @generated
 	 */
 	public ModelElementId getDragSourceElement() {
@@ -167,16 +165,15 @@ public class DNDEventImpl extends EventImpl implements DNDEvent {
 			if (dragSourceElement != oldDragSourceElement) {
 				if (eNotificationRequired())
 					eNotify(new ENotificationImpl(this, Notification.RESOLVE,
-							EventsPackage.DND_EVENT__DRAG_SOURCE_ELEMENT,
-							oldDragSourceElement, dragSourceElement));
+						EventsPackage.DND_EVENT__DRAG_SOURCE_ELEMENT, oldDragSourceElement, dragSourceElement));
 			}
 		}
 		return dragSourceElement;
 	}
 
 	/**
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
+	 * <!-- begin-user-doc --> <!-- end-user-doc -->
+	 * 
 	 * @generated
 	 */
 	public ModelElementId basicGetDragSourceElement() {
@@ -184,22 +181,21 @@ public class DNDEventImpl extends EventImpl implements DNDEvent {
 	}
 
 	/**
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
+	 * <!-- begin-user-doc --> <!-- end-user-doc -->
+	 * 
 	 * @generated
 	 */
 	public void setDragSourceElement(ModelElementId newDragSourceElement) {
 		ModelElementId oldDragSourceElement = dragSourceElement;
 		dragSourceElement = newDragSourceElement;
 		if (eNotificationRequired())
-			eNotify(new ENotificationImpl(this, Notification.SET,
-					EventsPackage.DND_EVENT__DRAG_SOURCE_ELEMENT,
-					oldDragSourceElement, dragSourceElement));
+			eNotify(new ENotificationImpl(this, Notification.SET, EventsPackage.DND_EVENT__DRAG_SOURCE_ELEMENT,
+				oldDragSourceElement, dragSourceElement));
 	}
 
 	/**
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
+	 * <!-- begin-user-doc --> <!-- end-user-doc -->
+	 * 
 	 * @generated
 	 */
 	public ModelElementId getDropTargetElement() {
@@ -209,16 +205,15 @@ public class DNDEventImpl extends EventImpl implements DNDEvent {
 			if (dropTargetElement != oldDropTargetElement) {
 				if (eNotificationRequired())
 					eNotify(new ENotificationImpl(this, Notification.RESOLVE,
-							EventsPackage.DND_EVENT__DROP_TARGET_ELEMENT,
-							oldDropTargetElement, dropTargetElement));
+						EventsPackage.DND_EVENT__DROP_TARGET_ELEMENT, oldDropTargetElement, dropTargetElement));
 			}
 		}
 		return dropTargetElement;
 	}
 
 	/**
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
+	 * <!-- begin-user-doc --> <!-- end-user-doc -->
+	 * 
 	 * @generated
 	 */
 	public ModelElementId basicGetDropTargetElement() {
@@ -226,22 +221,21 @@ public class DNDEventImpl extends EventImpl implements DNDEvent {
 	}
 
 	/**
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
+	 * <!-- begin-user-doc --> <!-- end-user-doc -->
+	 * 
 	 * @generated
 	 */
 	public void setDropTargetElement(ModelElementId newDropTargetElement) {
 		ModelElementId oldDropTargetElement = dropTargetElement;
 		dropTargetElement = newDropTargetElement;
 		if (eNotificationRequired())
-			eNotify(new ENotificationImpl(this, Notification.SET,
-					EventsPackage.DND_EVENT__DROP_TARGET_ELEMENT,
-					oldDropTargetElement, dropTargetElement));
+			eNotify(new ENotificationImpl(this, Notification.SET, EventsPackage.DND_EVENT__DROP_TARGET_ELEMENT,
+				oldDropTargetElement, dropTargetElement));
 	}
 
 	/**
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
+	 * <!-- begin-user-doc --> <!-- end-user-doc -->
+	 * 
 	 * @generated
 	 */
 	@Override
@@ -264,8 +258,8 @@ public class DNDEventImpl extends EventImpl implements DNDEvent {
 	}
 
 	/**
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
+	 * <!-- begin-user-doc --> <!-- end-user-doc -->
+	 * 
 	 * @generated
 	 */
 	@Override
@@ -288,8 +282,8 @@ public class DNDEventImpl extends EventImpl implements DNDEvent {
 	}
 
 	/**
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
+	 * <!-- begin-user-doc --> <!-- end-user-doc -->
+	 * 
 	 * @generated
 	 */
 	@Override
@@ -312,19 +306,17 @@ public class DNDEventImpl extends EventImpl implements DNDEvent {
 	}
 
 	/**
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
+	 * <!-- begin-user-doc --> <!-- end-user-doc -->
+	 * 
 	 * @generated
 	 */
 	@Override
 	public boolean eIsSet(int featureID) {
 		switch (featureID) {
 		case EventsPackage.DND_EVENT__SOURCE_VIEW:
-			return SOURCE_VIEW_EDEFAULT == null ? sourceView != null
-					: !SOURCE_VIEW_EDEFAULT.equals(sourceView);
+			return SOURCE_VIEW_EDEFAULT == null ? sourceView != null : !SOURCE_VIEW_EDEFAULT.equals(sourceView);
 		case EventsPackage.DND_EVENT__TARGET_VIEW:
-			return TARGET_VIEW_EDEFAULT == null ? targetView != null
-					: !TARGET_VIEW_EDEFAULT.equals(targetView);
+			return TARGET_VIEW_EDEFAULT == null ? targetView != null : !TARGET_VIEW_EDEFAULT.equals(targetView);
 		case EventsPackage.DND_EVENT__DRAG_SOURCE_ELEMENT:
 			return dragSourceElement != null;
 		case EventsPackage.DND_EVENT__DROP_TARGET_ELEMENT:
@@ -334,8 +326,8 @@ public class DNDEventImpl extends EventImpl implements DNDEvent {
 	}
 
 	/**
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
+	 * <!-- begin-user-doc --> <!-- end-user-doc -->
+	 * 
 	 * @generated
 	 */
 	@Override
@@ -352,4 +344,4 @@ public class DNDEventImpl extends EventImpl implements DNDEvent {
 		return result.toString();
 	}
 
-} //DNDEventImpl
+} // DNDEventImpl

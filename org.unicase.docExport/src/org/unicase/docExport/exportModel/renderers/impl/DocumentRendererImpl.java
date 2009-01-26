@@ -1,8 +1,5 @@
 /**
- * <copyright>
- * </copyright>
- *
- * $Id$
+ * <copyright> </copyright>
  */
 package org.unicase.docExport.exportModel.renderers.impl;
 
@@ -12,18 +9,17 @@ import org.unicase.docExport.exportModel.renderers.DocumentRenderer;
 import org.unicase.docExport.exportModel.renderers.RenderersPackage;
 
 /**
- * <!-- begin-user-doc -->
- * An implementation of the model object '<em><b>Document Renderer</b></em>'.
- * <!-- end-user-doc -->
+ * <!-- begin-user-doc --> An implementation of the model object '<em><b>Document Renderer</b></em>'. <!-- end-user-doc
+ * -->
  * <p>
  * </p>
- *
+ * 
  * @generated
  */
 public abstract class DocumentRendererImpl extends EObjectImpl implements DocumentRenderer {
 	/**
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
+	 * <!-- begin-user-doc --> <!-- end-user-doc -->
+	 * 
 	 * @generated
 	 */
 	protected DocumentRendererImpl() {
@@ -31,8 +27,8 @@ public abstract class DocumentRendererImpl extends EObjectImpl implements Docume
 	}
 
 	/**
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
+	 * <!-- begin-user-doc --> <!-- end-user-doc -->
+	 * 
 	 * @generated
 	 */
 	@Override
@@ -40,4 +36,4 @@ public abstract class DocumentRendererImpl extends EObjectImpl implements Docume
 		return RenderersPackage.Literals.DOCUMENT_RENDERER;
 	}
 
-} //DocumentRendererImpl
+} // DocumentRendererImpl

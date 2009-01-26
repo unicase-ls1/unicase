@@ -9,8 +9,7 @@ import org.eclipse.gmf.runtime.notation.View;
 /**
  * @generated
  */
-public class ModelNavigatorItem extends
-		org.unicase.ui.usecaseDiagram.navigator.ModelAbstractNavigatorItem {
+public class ModelNavigatorItem extends org.unicase.ui.usecaseDiagram.navigator.ModelAbstractNavigatorItem {
 
 	/**
 	 * @generated
@@ -21,9 +20,8 @@ public class ModelNavigatorItem extends
 
 			public Object getAdapter(Object adaptableObject, Class adapterType) {
 				if (adaptableObject instanceof org.unicase.ui.usecaseDiagram.navigator.ModelNavigatorItem
-						&& (adapterType == View.class || adapterType == EObject.class)) {
-					return ((org.unicase.ui.usecaseDiagram.navigator.ModelNavigatorItem) adaptableObject)
-							.getView();
+					&& (adapterType == View.class || adapterType == EObject.class)) {
+					return ((org.unicase.ui.usecaseDiagram.navigator.ModelNavigatorItem) adaptableObject).getView();
 				}
 				return null;
 			}
@@ -72,12 +70,8 @@ public class ModelNavigatorItem extends
 	 */
 	public boolean equals(Object obj) {
 		if (obj instanceof org.unicase.ui.usecaseDiagram.navigator.ModelNavigatorItem) {
-			return EcoreUtil
-					.getURI(getView())
-					.equals(
-							EcoreUtil
-									.getURI(((org.unicase.ui.usecaseDiagram.navigator.ModelNavigatorItem) obj)
-											.getView()));
+			return EcoreUtil.getURI(getView()).equals(
+				EcoreUtil.getURI(((org.unicase.ui.usecaseDiagram.navigator.ModelNavigatorItem) obj).getView()));
 		}
 		return super.equals(obj);
 	}

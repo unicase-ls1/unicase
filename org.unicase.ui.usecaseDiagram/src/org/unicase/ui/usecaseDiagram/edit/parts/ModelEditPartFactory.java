@@ -25,60 +25,46 @@ public class ModelEditPartFactory implements EditPartFactory {
 	public EditPart createEditPart(EditPart context, Object model) {
 		if (model instanceof View) {
 			View view = (View) model;
-			switch (org.unicase.ui.usecaseDiagram.part.ModelVisualIDRegistry
-					.getVisualID(view)) {
+			switch (org.unicase.ui.usecaseDiagram.part.ModelVisualIDRegistry.getVisualID(view)) {
 
 			case org.unicase.ui.usecaseDiagram.edit.parts.MEDiagramEditPart.VISUAL_ID:
-				return new org.unicase.ui.usecaseDiagram.edit.parts.MEDiagramEditPart(
-						view);
+				return new org.unicase.ui.usecaseDiagram.edit.parts.MEDiagramEditPart(view);
 
 			case org.unicase.ui.usecaseDiagram.edit.parts.ActorEditPart.VISUAL_ID:
-				return new org.unicase.ui.usecaseDiagram.edit.parts.ActorEditPart(
-						view);
+				return new org.unicase.ui.usecaseDiagram.edit.parts.ActorEditPart(view);
 
 			case org.unicase.ui.usecaseDiagram.edit.parts.ActorNameEditPart.VISUAL_ID:
-				return new org.unicase.ui.usecaseDiagram.edit.parts.ActorNameEditPart(
-						view);
+				return new org.unicase.ui.usecaseDiagram.edit.parts.ActorNameEditPart(view);
 
 			case org.unicase.ui.usecaseDiagram.edit.parts.UseCaseEditPart.VISUAL_ID:
-				return new org.unicase.ui.usecaseDiagram.edit.parts.UseCaseEditPart(
-						view);
+				return new org.unicase.ui.usecaseDiagram.edit.parts.UseCaseEditPart(view);
 
 			case org.unicase.ui.usecaseDiagram.edit.parts.UseCaseNameEditPart.VISUAL_ID:
-				return new org.unicase.ui.usecaseDiagram.edit.parts.UseCaseNameEditPart(
-						view);
+				return new org.unicase.ui.usecaseDiagram.edit.parts.UseCaseNameEditPart(view);
 
 			case org.unicase.ui.usecaseDiagram.edit.parts.ActorParticipatedUseCasesEditPart.VISUAL_ID:
-				return new org.unicase.ui.usecaseDiagram.edit.parts.ActorParticipatedUseCasesEditPart(
-						view);
+				return new org.unicase.ui.usecaseDiagram.edit.parts.ActorParticipatedUseCasesEditPart(view);
 
 			case org.unicase.ui.usecaseDiagram.edit.parts.LabelEditPart.VISUAL_ID:
-				return new org.unicase.ui.usecaseDiagram.edit.parts.LabelEditPart(
-						view);
+				return new org.unicase.ui.usecaseDiagram.edit.parts.LabelEditPart(view);
 
 			case org.unicase.ui.usecaseDiagram.edit.parts.ActorInitiatedUseCasesEditPart.VISUAL_ID:
-				return new org.unicase.ui.usecaseDiagram.edit.parts.ActorInitiatedUseCasesEditPart(
-						view);
+				return new org.unicase.ui.usecaseDiagram.edit.parts.ActorInitiatedUseCasesEditPart(view);
 
 			case org.unicase.ui.usecaseDiagram.edit.parts.Label2EditPart.VISUAL_ID:
-				return new org.unicase.ui.usecaseDiagram.edit.parts.Label2EditPart(
-						view);
+				return new org.unicase.ui.usecaseDiagram.edit.parts.Label2EditPart(view);
 
 			case org.unicase.ui.usecaseDiagram.edit.parts.UseCaseIncludedUseCasesEditPart.VISUAL_ID:
-				return new org.unicase.ui.usecaseDiagram.edit.parts.UseCaseIncludedUseCasesEditPart(
-						view);
+				return new org.unicase.ui.usecaseDiagram.edit.parts.UseCaseIncludedUseCasesEditPart(view);
 
 			case org.unicase.ui.usecaseDiagram.edit.parts.IncludeLabelEditPart.VISUAL_ID:
-				return new org.unicase.ui.usecaseDiagram.edit.parts.IncludeLabelEditPart(
-						view);
+				return new org.unicase.ui.usecaseDiagram.edit.parts.IncludeLabelEditPart(view);
 
 			case org.unicase.ui.usecaseDiagram.edit.parts.UseCaseExtendedUseCasesEditPart.VISUAL_ID:
-				return new org.unicase.ui.usecaseDiagram.edit.parts.UseCaseExtendedUseCasesEditPart(
-						view);
+				return new org.unicase.ui.usecaseDiagram.edit.parts.UseCaseExtendedUseCasesEditPart(view);
 
 			case org.unicase.ui.usecaseDiagram.edit.parts.ExtendLabelEditPart.VISUAL_ID:
-				return new org.unicase.ui.usecaseDiagram.edit.parts.ExtendLabelEditPart(
-						view);
+				return new org.unicase.ui.usecaseDiagram.edit.parts.ExtendLabelEditPart(view);
 			}
 		}
 		return createUnrecognizedEditPart(context, model);
@@ -95,8 +81,7 @@ public class ModelEditPartFactory implements EditPartFactory {
 	/**
 	 * @generated
 	 */
-	public static CellEditorLocator getTextCellEditorLocator(
-			ITextAwareEditPart source) {
+	public static CellEditorLocator getTextCellEditorLocator(ITextAwareEditPart source) {
 		if (source.getFigure() instanceof WrappingLabel)
 			return new TextCellEditorLocator((WrappingLabel) source.getFigure());
 		else {
@@ -135,15 +120,11 @@ public class ModelEditPartFactory implements EditPartFactory {
 			Text text = (Text) celleditor.getControl();
 			Rectangle rect = getWrapLabel().getTextBounds().getCopy();
 			getWrapLabel().translateToAbsolute(rect);
-			if (getWrapLabel().isTextWrapOn()
-					&& getWrapLabel().getText().length() > 0) {
-				rect.setSize(new Dimension(text.computeSize(rect.width,
-						SWT.DEFAULT)));
+			if (getWrapLabel().isTextWrapOn() && getWrapLabel().getText().length() > 0) {
+				rect.setSize(new Dimension(text.computeSize(rect.width, SWT.DEFAULT)));
 			} else {
-				int avr = FigureUtilities.getFontMetrics(text.getFont())
-						.getAverageCharWidth();
-				rect.setSize(new Dimension(text.computeSize(SWT.DEFAULT,
-						SWT.DEFAULT)).expand(avr * 2, 0));
+				int avr = FigureUtilities.getFontMetrics(text.getFont()).getAverageCharWidth();
+				rect.setSize(new Dimension(text.computeSize(SWT.DEFAULT, SWT.DEFAULT)).expand(avr * 2, 0));
 			}
 			if (!rect.equals(new Rectangle(text.getBounds()))) {
 				text.setBounds(rect.x, rect.y, rect.width, rect.height);
@@ -182,10 +163,8 @@ public class ModelEditPartFactory implements EditPartFactory {
 			Text text = (Text) celleditor.getControl();
 			Rectangle rect = getLabel().getTextBounds().getCopy();
 			getLabel().translateToAbsolute(rect);
-			int avr = FigureUtilities.getFontMetrics(text.getFont())
-					.getAverageCharWidth();
-			rect.setSize(new Dimension(text.computeSize(SWT.DEFAULT,
-					SWT.DEFAULT)).expand(avr * 2, 0));
+			int avr = FigureUtilities.getFontMetrics(text.getFont()).getAverageCharWidth();
+			rect.setSize(new Dimension(text.computeSize(SWT.DEFAULT, SWT.DEFAULT)).expand(avr * 2, 0));
 			if (!rect.equals(new Rectangle(text.getBounds()))) {
 				text.setBounds(rect.x, rect.y, rect.width, rect.height);
 			}

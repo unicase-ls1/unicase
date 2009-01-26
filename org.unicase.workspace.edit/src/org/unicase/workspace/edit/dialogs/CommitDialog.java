@@ -1,8 +1,7 @@
 /**
- * <copyright> Copyright (c) 2008 Jonas Helming, Maximilian Koegel. All rights reserved. This program and the accompanying materials are made available under the terms of the Eclipse Public License v1.0 which accompanies this distribution, and is available at http://www.eclipse.org/legal/epl-v10.html
- * </copyright>
- *
- * $Id$
+ * <copyright> Copyright (c) 2008 Jonas Helming, Maximilian Koegel. All rights reserved. This program and the
+ * accompanying materials are made available under the terms of the Eclipse Public License v1.0 which accompanies this
+ * distribution, and is available at http://www.eclipse.org/legal/epl-v10.html </copyright>
  */
 package org.unicase.workspace.edit.dialogs;
 
@@ -30,12 +29,10 @@ import org.unicase.workspace.edit.Activator;
 import org.unicase.workspace.edit.views.changes.TabbedChangesComposite;
 
 /**
- * This class shows a ChangesTreeComposite and a Text control to enter commit
- * message.
+ * This class shows a ChangesTreeComposite and a Text control to enter commit message.
  * 
  * @author Hodaie
  * @author Shterev
- * 
  */
 public class CommitDialog extends TitleAreaDialog {
 
@@ -47,10 +44,8 @@ public class CommitDialog extends TitleAreaDialog {
 	/**
 	 * Constructor.
 	 * 
-	 * @param parentShell
-	 *            shell
-	 * @param changes
-	 *            the {@link ChangePackage} to be displayed
+	 * @param parentShell shell
+	 * @param changes the {@link ChangePackage} to be displayed
 	 */
 	public CommitDialog(Shell parentShell, ChangePackage changes) {
 		super(parentShell);
@@ -69,28 +64,25 @@ public class CommitDialog extends TitleAreaDialog {
 
 		setTitle("Commit your changes");
 		setMessage("Don't forget the commit message!");
-		setTitleImage(Activator.getImageDescriptor("icons/dontForget.png")
-				.createImage());
+		setTitleImage(Activator.getImageDescriptor("icons/dontForget.png").createImage());
 
 		// Log message
 		Label lblLogMsg = new Label(contents, SWT.NONE);
-		lblLogMsg.setLayoutData(new GridData(SWT.BEGINNING, SWT.CENTER, false,
-				false, 2, 1));
+		lblLogMsg.setLayoutData(new GridData(SWT.BEGINNING, SWT.CENTER, false, false, 2, 1));
 		lblLogMsg.setText("Log message:");
 
 		txtLogMsg = new Text(contents, SWT.MULTI | SWT.LEAD | SWT.BORDER);
-		GridDataFactory.fillDefaults().grab(true, false).span(2, 1).align(
-				SWT.FILL, SWT.TOP).hint(1, 150).applyTo(txtLogMsg);
+		GridDataFactory.fillDefaults().grab(true, false).span(2, 1).align(SWT.FILL, SWT.TOP).hint(1, 150).applyTo(
+			txtLogMsg);
 		txtLogMsg.setText("");
 
 		// previous log messages
 		Label oldLabel = new Label(contents, SWT.NONE);
 		oldLabel.setText("Previous messages:");
 		final Combo oldMsg = new Combo(contents, SWT.READ_ONLY);
-		GridDataFactory.fillDefaults().align(SWT.FILL, SWT.TOP).grab(true,
-				false).applyTo(oldMsg);
-		oldLogMessages = WorkspaceManager.getInstance().getCurrentWorkspace()
-				.getActiveProjectSpace().getOldLogMessages();
+		GridDataFactory.fillDefaults().align(SWT.FILL, SWT.TOP).grab(true, false).applyTo(oldMsg);
+		oldLogMessages = WorkspaceManager.getInstance().getCurrentWorkspace().getActiveProjectSpace()
+			.getOldLogMessages();
 		oldMsg.setItems((String[]) oldLogMessages.toArray());
 		oldMsg.addSelectionListener(new SelectionListener() {
 
@@ -108,8 +100,7 @@ public class CommitDialog extends TitleAreaDialog {
 		ArrayList<ChangePackage> changePackages = new ArrayList<ChangePackage>();
 		changePackages.add(changes);
 		TabbedChangesComposite changesComposite = new TabbedChangesComposite(contents, SWT.BORDER, changePackages);
-		GridDataFactory.fillDefaults().align(SWT.FILL, SWT.FILL).grab(true,
-				true).span(2, 1).applyTo(changesComposite);
+		GridDataFactory.fillDefaults().align(SWT.FILL, SWT.FILL).grab(true, true).span(2, 1).applyTo(changesComposite);
 
 		return contents;
 
@@ -126,8 +117,7 @@ public class CommitDialog extends TitleAreaDialog {
 		Rectangle area = Display.getCurrent().getClientArea();
 		int width = area.width * 2 / 3;
 		int height = area.height * 2 / 3;
-		newShell.setBounds((area.width - width) / 2,
-				(area.height - height) / 2, width, height);
+		newShell.setBounds((area.width - width) / 2, (area.height - height) / 2, width, height);
 	}
 
 	/**

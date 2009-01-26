@@ -1,6 +1,5 @@
 package org.unicase.ui.stem.views.iterationplanningview;
 
-
 import java.util.ArrayList;
 import java.util.Collections;
 import java.util.Comparator;
@@ -16,22 +15,22 @@ import org.unicase.model.Project;
 import org.unicase.model.task.TaskPackage;
 import org.unicase.model.task.WorkPackage;
 import org.unicase.workspace.WorkspaceManager;
+
 /**
  * Example for a ganttchart item provider.
+ * 
  * @author helming
- *
  */
-public class GantItemProvider extends
-		TransactionalAdapterFactoryContentProvider implements IContentProvider {
-/**
- * Comapartor to order workpackages by their name.
- * @author helming
- *
- */
+public class GantItemProvider extends TransactionalAdapterFactoryContentProvider implements IContentProvider {
+	/**
+	 * Comapartor to order workpackages by their name.
+	 * 
+	 * @author helming
+	 */
 	public class WPComparator implements Comparator<EObject> {
-/**
- * {@inheritDoc}
- */
+		/**
+		 * {@inheritDoc}
+		 */
 		public int compare(EObject o1, EObject o2) {
 			WorkPackage wp1 = (WorkPackage) o1;
 			WorkPackage wp2 = (WorkPackage) o2;
@@ -39,13 +38,13 @@ public class GantItemProvider extends
 		}
 
 	}
-/**
- * default constructor.
- */
+
+	/**
+	 * default constructor.
+	 */
 	public GantItemProvider() {
-		super(WorkspaceManager.getInstance().getCurrentWorkspace()
-				.getEditingDomain(), new ComposedAdapterFactory(
-				ComposedAdapterFactory.Descriptor.Registry.INSTANCE));
+		super(WorkspaceManager.getInstance().getCurrentWorkspace().getEditingDomain(), new ComposedAdapterFactory(
+			ComposedAdapterFactory.Descriptor.Registry.INSTANCE));
 	}
 
 	/**
@@ -56,21 +55,19 @@ public class GantItemProvider extends
 		List<EObject> ret = new ArrayList<EObject>();
 		if (object instanceof Project) {
 			Project project = (Project) object;
-			EList<WorkPackage> allModelElementsbyClass = project
-					.getAllModelElementsbyClass(TaskPackage.eINSTANCE
-							.getWorkPackage(), new BasicEList<WorkPackage>());
+			EList<WorkPackage> allModelElementsbyClass = project.getAllModelElementsbyClass(TaskPackage.eINSTANCE
+				.getWorkPackage(), new BasicEList<WorkPackage>());
 			for (WorkPackage workPackage : allModelElementsbyClass) {
 				if (workPackage.getContainingWorkpackage() == null) {
 					ret.add(workPackage);
 				}
 			}
 
-
 		}
 		Collections.sort(ret, new WPComparator());
 		return ret.toArray();
 	}
-	
+
 	/**
 	 * . {@inheritDoc}
 	 */
@@ -78,8 +75,8 @@ public class GantItemProvider extends
 	public Object[] getChildren(Object object) {
 		Object[] children = super.getChildren(object);
 		List<Object> ret = new ArrayList<Object>();
-		for(Object child:children){
-			if(child instanceof WorkPackage){
+		for (Object child : children) {
+			if (child instanceof WorkPackage) {
 				ret.add(child);
 			}
 		}
@@ -93,12 +90,12 @@ public class GantItemProvider extends
 	public boolean hasChildren(Object object) {
 		Object[] children = super.getChildren(object);
 		List<Object> ret = new ArrayList<Object>();
-		for(Object child:children){
-			if(child instanceof WorkPackage){
+		for (Object child : children) {
+			if (child instanceof WorkPackage) {
 				ret.add(child);
 			}
 		}
-		return (ret.size()>0);
+		return (ret.size() > 0);
 	}
 
 }

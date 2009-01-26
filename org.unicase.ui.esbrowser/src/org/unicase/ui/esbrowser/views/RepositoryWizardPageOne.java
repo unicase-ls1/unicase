@@ -1,8 +1,7 @@
 /**
- * <copyright> Copyright (c) 2008 Jonas Helming, Maximilian Koegel. All rights reserved. This program and the accompanying materials are made available under the terms of the Eclipse Public License v1.0 which accompanies this distribution, and is available at http://www.eclipse.org/legal/epl-v10.html
- * </copyright>
- *
- * $Id$
+ * <copyright> Copyright (c) 2008 Jonas Helming, Maximilian Koegel. All rights reserved. This program and the
+ * accompanying materials are made available under the terms of the Eclipse Public License v1.0 which accompanies this
+ * distribution, and is available at http://www.eclipse.org/legal/epl-v10.html </copyright>
  */
 package org.unicase.ui.esbrowser.views;
 
@@ -24,7 +23,6 @@ import org.unicase.workspace.ServerInfo;
  * The main page of the wizard.
  * 
  * @author shterev
- * 
  */
 public class RepositoryWizardPageOne extends WizardPage {
 
@@ -36,13 +34,10 @@ public class RepositoryWizardPageOne extends WizardPage {
 	/**
 	 * Default constructor.
 	 * 
-	 * @param workbench
-	 *            the current workbench
-	 * @param selection
-	 *            the current selection
+	 * @param workbench the current workbench
+	 * @param selection the current selection
 	 */
-	public RepositoryWizardPageOne(IWorkbench workbench,
-			IStructuredSelection selection) {
+	public RepositoryWizardPageOne(IWorkbench workbench, IStructuredSelection selection) {
 		super("Main");
 		setTitle("Server Details");
 		setDescription("Select the details for the new repository");
@@ -104,8 +99,7 @@ public class RepositoryWizardPageOne extends WizardPage {
 		if (getErrorMessage() != null) {
 			return false;
 		}
-		if (isTextNonEmpty(name) && isTextNonEmpty(displayName)
-				&& isTextNonEmpty(url)) {
+		if (isTextNonEmpty(name) && isTextNonEmpty(displayName) && isTextNonEmpty(url)) {
 			saveDataToModel();
 			return true;
 		}
@@ -113,11 +107,11 @@ public class RepositoryWizardPageOne extends WizardPage {
 	}
 
 	/**
-	 * Saves the uses choices from this page to the model. Called on exit of the
-	 * page
+	 * Saves the uses choices from this page to the model. Called on exit of the page
 	 */
 	private void saveDataToModel() {
-		TransactionalEditingDomain domain = TransactionalEditingDomain.Registry.INSTANCE.getEditingDomain("org.unicase.EditingDomain");
+		TransactionalEditingDomain domain = TransactionalEditingDomain.Registry.INSTANCE
+			.getEditingDomain("org.unicase.EditingDomain");
 		domain.getCommandStack().execute(new RecordingCommand(domain) {
 			@Override
 			protected void doExecute() {
@@ -140,4 +134,3 @@ public class RepositoryWizardPageOne extends WizardPage {
 	}
 
 }
-

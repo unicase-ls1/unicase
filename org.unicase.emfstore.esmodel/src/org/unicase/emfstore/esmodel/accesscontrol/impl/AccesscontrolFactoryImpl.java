@@ -1,8 +1,7 @@
 /**
- * <copyright> Copyright (c) 2008 Jonas Helming, Maximilian Koegel. All rights reserved. This program and the accompanying materials are made available under the terms of the Eclipse Public License v1.0 which accompanies this distribution, and is available at http://www.eclipse.org/legal/epl-v10.html
- * </copyright>
- *
- * $Id$
+ * <copyright> Copyright (c) 2008 Jonas Helming, Maximilian Koegel. All rights reserved. This program and the
+ * accompanying materials are made available under the terms of the Eclipse Public License v1.0 which accompanies this
+ * distribution, and is available at http://www.eclipse.org/legal/epl-v10.html </copyright>
  */
 package org.unicase.emfstore.esmodel.accesscontrol.impl;
 
@@ -19,22 +18,20 @@ import org.unicase.emfstore.esmodel.accesscontrol.AccesscontrolFactory;
 import org.unicase.emfstore.esmodel.accesscontrol.AccesscontrolPackage;
 
 /**
- * <!-- begin-user-doc --> An implementation of the model <b>Factory</b>. <!--
- * end-user-doc -->
+ * <!-- begin-user-doc --> An implementation of the model <b>Factory</b>. <!-- end-user-doc -->
+ * 
  * @generated
  */
-public class AccesscontrolFactoryImpl extends EFactoryImpl implements
-		AccesscontrolFactory {
+public class AccesscontrolFactoryImpl extends EFactoryImpl implements AccesscontrolFactory {
 	/**
-	 * Creates the default factory implementation.
-	 * <!-- begin-user-doc --> <!--
-	 * end-user-doc -->
+	 * Creates the default factory implementation. <!-- begin-user-doc --> <!-- end-user-doc -->
+	 * 
 	 * @generated
 	 */
 	public static AccesscontrolFactory init() {
 		try {
 			AccesscontrolFactory theAccesscontrolFactory = (AccesscontrolFactory) EPackage.Registry.INSTANCE
-					.getEFactory("http://unicase.org/esmodel/accesscontrol");
+				.getEFactory("http://unicase.org/esmodel/accesscontrol");
 			if (theAccesscontrolFactory != null) {
 				return theAccesscontrolFactory;
 			}
@@ -45,9 +42,8 @@ public class AccesscontrolFactoryImpl extends EFactoryImpl implements
 	}
 
 	/**
-	 * Creates an instance of the factory.
-	 * <!-- begin-user-doc --> <!--
-	 * end-user-doc -->
+	 * Creates an instance of the factory. <!-- begin-user-doc --> <!-- end-user-doc -->
+	 * 
 	 * @generated
 	 */
 	public AccesscontrolFactoryImpl() {
@@ -56,6 +52,7 @@ public class AccesscontrolFactoryImpl extends EFactoryImpl implements
 
 	/**
 	 * <!-- begin-user-doc --> <!-- end-user-doc -->
+	 * 
 	 * @generated
 	 */
 	@Override
@@ -70,13 +67,13 @@ public class AccesscontrolFactoryImpl extends EFactoryImpl implements
 		case AccesscontrolPackage.AC_ORG_UNIT_ID:
 			return createACOrgUnitId();
 		default:
-			throw new IllegalArgumentException("The class '" + eClass.getName()
-					+ "' is not a valid classifier");
+			throw new IllegalArgumentException("The class '" + eClass.getName() + "' is not a valid classifier");
 		}
 	}
 
 	/**
 	 * <!-- begin-user-doc --> <!-- end-user-doc -->
+	 * 
 	 * @generated
 	 */
 	public ACUser createACUser() {
@@ -86,6 +83,7 @@ public class AccesscontrolFactoryImpl extends EFactoryImpl implements
 
 	/**
 	 * <!-- begin-user-doc --> <!-- end-user-doc -->
+	 * 
 	 * @generated
 	 */
 	public ACOrgUnit createACOrgUnit() {
@@ -95,6 +93,7 @@ public class AccesscontrolFactoryImpl extends EFactoryImpl implements
 
 	/**
 	 * <!-- begin-user-doc --> <!-- end-user-doc -->
+	 * 
 	 * @generated
 	 */
 	public ACGroup createACGroup() {
@@ -104,6 +103,7 @@ public class AccesscontrolFactoryImpl extends EFactoryImpl implements
 
 	/**
 	 * <!-- begin-user-doc --> <!-- end-user-doc -->
+	 * 
 	 * @generated
 	 */
 	public ACOrgUnitId createACOrgUnitId() {
@@ -113,6 +113,7 @@ public class AccesscontrolFactoryImpl extends EFactoryImpl implements
 
 	/**
 	 * <!-- begin-user-doc --> <!-- end-user-doc -->
+	 * 
 	 * @generated
 	 */
 	public AccesscontrolPackage getAccesscontrolPackage() {
@@ -121,6 +122,7 @@ public class AccesscontrolFactoryImpl extends EFactoryImpl implements
 
 	/**
 	 * <!-- begin-user-doc --> <!-- end-user-doc -->
+	 * 
 	 * @deprecated
 	 * @generated
 	 */

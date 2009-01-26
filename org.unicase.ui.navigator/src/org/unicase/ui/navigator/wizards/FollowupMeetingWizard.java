@@ -20,10 +20,7 @@ import org.unicase.ui.common.util.ActionHelper;
 import org.unicase.workspace.WorkspaceManager;
 
 /**
- * @author naughton
- * 
- *         Wizard for creating a follow-up meeting.
- * 
+ * @author naughton Wizard for creating a follow-up meeting.
  */
 public class FollowupMeetingWizard extends Wizard implements IWorkbenchWizard {
 
@@ -65,11 +62,9 @@ public class FollowupMeetingWizard extends Wizard implements IWorkbenchWizard {
 	 */
 	@Override
 	public void addPages() {
-		namePage = new MeetingNameDescriptionPage(
-				"NamePage");
+		namePage = new MeetingNameDescriptionPage("NamePage");
 		addPage(namePage);
-		itemCarryPage = new MeetingWorkItemCarryPage(
-				"ItemCarryPage");
+		itemCarryPage = new MeetingWorkItemCarryPage("ItemCarryPage");
 		addPage(itemCarryPage);
 	}
 
@@ -84,7 +79,6 @@ public class FollowupMeetingWizard extends Wizard implements IWorkbenchWizard {
 
 	/**
 	 * . ({@inheritDoc})
-	 * 
 	 */
 	public void init(IWorkbench workbench, IStructuredSelection selection) {
 		followupMeeting = MeetingFactory.eINSTANCE.createMeeting();
@@ -102,7 +96,7 @@ public class FollowupMeetingWizard extends Wizard implements IWorkbenchWizard {
 			throw new IllegalArgumentException("Nothing selected!");
 		}
 	}
-	
+
 	/**
 	 * . ({@inheritDoc})
 	 */
@@ -118,12 +112,11 @@ public class FollowupMeetingWizard extends Wizard implements IWorkbenchWizard {
 
 	private void createFollowupMeeting() {
 		final LeafSection leafSection = (LeafSection) selectedMeeting.eContainer();
-		TransactionalEditingDomain domain = WorkspaceManager.getInstance()
-				.getCurrentWorkspace().getEditingDomain();
-		
+		TransactionalEditingDomain domain = WorkspaceManager.getInstance().getCurrentWorkspace().getEditingDomain();
+
 		followupMeeting.setName(namePage.getMeetingName());
 		followupMeeting.setDescription(namePage.getMeetingDescription());
-		
+
 		domain.getCommandStack().execute(new RecordingCommand(domain) {
 			@Override
 			protected void doExecute() {
@@ -152,68 +145,72 @@ public class FollowupMeetingWizard extends Wizard implements IWorkbenchWizard {
 				addMeetingStatusItems(followupMeeting, statusItems);
 			}
 		});
-		
-		ActionHelper.openModelElement(followupMeeting, this.getClass()
-				.getName());
+
+		ActionHelper.openModelElement(followupMeeting, this.getClass().getName());
 	}
-	
-	private void addMeetingStatusItems(Meeting meeting,
-			List<WorkItem> statusItems) {
-		CompositeMeetingSection informationExchangeSection = (CompositeMeetingSection)meeting.getSections().get(1);
-		WorkItemMeetingSection workItemMeetingSection = (WorkItemMeetingSection) informationExchangeSection.getSubsections().get(0);
-		for(WorkItem workItem : statusItems) {
+
+	private void addMeetingStatusItems(Meeting meeting, List<WorkItem> statusItems) {
+		CompositeMeetingSection informationExchangeSection = (CompositeMeetingSection) meeting.getSections().get(1);
+		WorkItemMeetingSection workItemMeetingSection = (WorkItemMeetingSection) informationExchangeSection
+			.getSubsections().get(0);
+		for (WorkItem workItem : statusItems) {
 			workItemMeetingSection.getIncludedWorkItems().add(workItem);
 		}
 	}
-	
-	private void addMeetingSections(Meeting meeting) {		
-		CompositeMeetingSection objectiveSection = (CompositeMeetingSection) ActionHelper.createModelElement(MeetingFactory.eINSTANCE, MeetingPackage.eINSTANCE.getCompositeMeetingSection());
-		CompositeMeetingSection informationExchangeSection = (CompositeMeetingSection) ActionHelper.createModelElement(MeetingFactory.eINSTANCE, MeetingPackage.eINSTANCE.getCompositeMeetingSection());
-		CompositeMeetingSection wrapUpSection = (CompositeMeetingSection) ActionHelper.createModelElement(MeetingFactory.eINSTANCE, MeetingPackage.eINSTANCE.getCompositeMeetingSection());
-		IssueMeetingSection discussionSection = (IssueMeetingSection) ActionHelper.createModelElement(MeetingFactory.eINSTANCE, MeetingPackage.eINSTANCE.getIssueMeetingSection());
 
+	private void addMeetingSections(Meeting meeting) {
+		CompositeMeetingSection objectiveSection = (CompositeMeetingSection) ActionHelper.createModelElement(
+			MeetingFactory.eINSTANCE, MeetingPackage.eINSTANCE.getCompositeMeetingSection());
+		CompositeMeetingSection informationExchangeSection = (CompositeMeetingSection) ActionHelper.createModelElement(
+			MeetingFactory.eINSTANCE, MeetingPackage.eINSTANCE.getCompositeMeetingSection());
+		CompositeMeetingSection wrapUpSection = (CompositeMeetingSection) ActionHelper.createModelElement(
+			MeetingFactory.eINSTANCE, MeetingPackage.eINSTANCE.getCompositeMeetingSection());
+		IssueMeetingSection discussionSection = (IssueMeetingSection) ActionHelper.createModelElement(
+			MeetingFactory.eINSTANCE, MeetingPackage.eINSTANCE.getIssueMeetingSection());
 
-		//set attributes
+		// set attributes
 		objectiveSection.setName("Objective");
 		informationExchangeSection.setName("Information sharing");
 		wrapUpSection.setName("Wrap up");
 		discussionSection.setName("Discussion");
 
-		
 		informationExchangeSection.setAllocatedTime(30);
 		discussionSection.setAllocatedTime(50);
 		wrapUpSection.setAllocatedTime(10);
-		
-		//set links
+
+		// set links
 		meeting.getSections().add(objectiveSection);
 		meeting.getSections().add(informationExchangeSection);
 		meeting.getSections().add(discussionSection);
 		meeting.getSections().add(wrapUpSection);
-		
-	
+
 		meeting.setIdentifiedIssuesSection(discussionSection);
 	}
-	
+
 	private void addMeetingSubSections(Meeting meeting) {
-		CompositeMeetingSection miscSection = (CompositeMeetingSection) ActionHelper.createModelElement(MeetingFactory.eINSTANCE, MeetingPackage.eINSTANCE.getCompositeMeetingSection());
-		CompositeMeetingSection meetingCritiqueSection = (CompositeMeetingSection) ActionHelper.createModelElement(MeetingFactory.eINSTANCE, MeetingPackage.eINSTANCE.getCompositeMeetingSection());
-		WorkItemMeetingSection workItemsSection = (WorkItemMeetingSection) ActionHelper.createModelElement(MeetingFactory.eINSTANCE, MeetingPackage.eINSTANCE.getWorkItemMeetingSection());
-		WorkItemMeetingSection newWorkItemsSection = (WorkItemMeetingSection) ActionHelper.createModelElement(MeetingFactory.eINSTANCE, MeetingPackage.eINSTANCE.getWorkItemMeetingSection());
-		
+		CompositeMeetingSection miscSection = (CompositeMeetingSection) ActionHelper.createModelElement(
+			MeetingFactory.eINSTANCE, MeetingPackage.eINSTANCE.getCompositeMeetingSection());
+		CompositeMeetingSection meetingCritiqueSection = (CompositeMeetingSection) ActionHelper.createModelElement(
+			MeetingFactory.eINSTANCE, MeetingPackage.eINSTANCE.getCompositeMeetingSection());
+		WorkItemMeetingSection workItemsSection = (WorkItemMeetingSection) ActionHelper.createModelElement(
+			MeetingFactory.eINSTANCE, MeetingPackage.eINSTANCE.getWorkItemMeetingSection());
+		WorkItemMeetingSection newWorkItemsSection = (WorkItemMeetingSection) ActionHelper.createModelElement(
+			MeetingFactory.eINSTANCE, MeetingPackage.eINSTANCE.getWorkItemMeetingSection());
+
 		workItemsSection.setName("Action items");
 		newWorkItemsSection.setName("New action items");
 		miscSection.setName("Misc");
 		meetingCritiqueSection.setName("Meeting critique");
-		
-		CompositeMeetingSection informationExchangeSection = (CompositeMeetingSection)meeting.getSections().get(1);
-		CompositeMeetingSection wrapUpSection = (CompositeMeetingSection)meeting.getSections().get(3);
-		
-		//set links
+
+		CompositeMeetingSection informationExchangeSection = (CompositeMeetingSection) meeting.getSections().get(1);
+		CompositeMeetingSection wrapUpSection = (CompositeMeetingSection) meeting.getSections().get(3);
+
+		// set links
 		informationExchangeSection.getSubsections().add(workItemsSection);
 		informationExchangeSection.getSubsections().add(miscSection);
 		wrapUpSection.getSubsections().add(newWorkItemsSection);
 		wrapUpSection.getSubsections().add(meetingCritiqueSection);
-		
+
 		meeting.setIdentifiedWorkItemsSection(newWorkItemsSection);
 	}
 }

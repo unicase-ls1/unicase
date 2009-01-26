@@ -1,8 +1,7 @@
 /**
- * <copyright> Copyright (c) 2008 Jonas Helming, Maximilian Koegel. All rights reserved. This program and the accompanying materials are made available under the terms of the Eclipse Public License v1.0 which accompanies this distribution, and is available at http://www.eclipse.org/legal/epl-v10.html
- * </copyright>
- *
- * $Id$
+ * <copyright> Copyright (c) 2008 Jonas Helming, Maximilian Koegel. All rights reserved. This program and the
+ * accompanying materials are made available under the terms of the Eclipse Public License v1.0 which accompanies this
+ * distribution, and is available at http://www.eclipse.org/legal/epl-v10.html </copyright>
  */
 package org.unicase.model.classDiagram.edit.commands;
 
@@ -42,54 +41,38 @@ public class DependencyCreateCommand extends CreateElementCommand {
 	private MEDiagram container;
 
 	/**
-	 * This constructor should not be used!
-	 * Because of our use of a single resource we need to know the 
-	 * connections container at creation time. 
-	 * Please use the constructor below to create this command.
+	 * This constructor should not be used! Because of our use of a single resource we need to know the connections
+	 * container at creation time. Please use the constructor below to create this command.
 	 * 
-	 * @param request
-	 * The request that caused the creation of this command
-	 * @param source
-	 * The source element of the connection to be created
-	 * @param target
-	 * The target element of the connection to be created
-	 * 
+	 * @param request The request that caused the creation of this command
+	 * @param source The source element of the connection to be created
+	 * @param target The target element of the connection to be created
 	 * @generated NOT
 	 */
-	public DependencyCreateCommand(CreateRelationshipRequest request,
-			EObject source, EObject target) {
+	public DependencyCreateCommand(CreateRelationshipRequest request, EObject source, EObject target) {
 		super(request);
 		throw new UnsupportedOperationException();
 	}
 
 	/**
-	 * 
-	 * @param request
-	 * The request that caused the creation of this command
-	 * @param source
-	 * The source element of the connection to be created
-	 * @param target
-	 * The target element of the connection to be created
-	 * @param eContainer
-	 * The container element which will contain the connection
-	 * 
+	 * @param request The request that caused the creation of this command
+	 * @param source The source element of the connection to be created
+	 * @param target The target element of the connection to be created
+	 * @param eContainer The container element which will contain the connection
 	 * @generated NOT
 	 */
-	public DependencyCreateCommand(CreateRelationshipRequest request,
-			EObject source, EObject target, EObject eContainer) {
+	public DependencyCreateCommand(CreateRelationshipRequest request, EObject source, EObject target, EObject eContainer) {
 		super(request);
 		this.source = source;
 		this.target = target;
 		if (request.getContainmentFeature() == null) {
-			setContainmentFeature(DiagramPackage.eINSTANCE
-					.getMEDiagram_NewElements());
+			setContainmentFeature(DiagramPackage.eINSTANCE.getMEDiagram_NewElements());
 		}
 
 		// Find container element for the new link.
 		// Climb up by containment hierarchy starting from the source
 		// and return the first element that is instance of the container class.
-		for (EObject element = eContainer; element != null; element = element
-				.eContainer()) {
+		for (EObject element = eContainer; element != null; element = element.eContainer()) {
 			if (element instanceof MEDiagram) {
 				container = (MEDiagram) element;
 				super.setElementToEdit(container);
@@ -119,8 +102,7 @@ public class DependencyCreateCommand extends CreateElementCommand {
 			return false;
 		}
 		return org.unicase.model.classDiagram.edit.policies.ModelBaseItemSemanticEditPolicy.LinkConstraints
-				.canCreateDependency_4006(getContainer(), getSource(),
-						getTarget());
+			.canCreateDependency_4006(getContainer(), getSource(), getTarget());
 	}
 
 	/**
@@ -128,6 +110,7 @@ public class DependencyCreateCommand extends CreateElementCommand {
 	 */
 	/**
 	 * {@inheritDoc}
+	 * 
 	 * @see org.eclipse.gmf.runtime.emf.type.core.commands.CreateElementCommand#doDefaultElementCreation()
 	 */
 	protected EObject doDefaultElementCreation() {
@@ -149,11 +132,9 @@ public class DependencyCreateCommand extends CreateElementCommand {
 	/**
 	 * @generated
 	 */
-	protected CommandResult doExecuteWithResult(IProgressMonitor monitor,
-			IAdaptable info) throws ExecutionException {
+	protected CommandResult doExecuteWithResult(IProgressMonitor monitor, IAdaptable info) throws ExecutionException {
 		if (!canExecute()) {
-			throw new ExecutionException(
-					"Invalid arguments in create link command"); //$NON-NLS-1$
+			throw new ExecutionException("Invalid arguments in create link command"); //$NON-NLS-1$
 		}
 		return super.doExecuteWithResult(monitor, info);
 	}

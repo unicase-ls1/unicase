@@ -34,8 +34,8 @@ public class ModelLoadResourceAction implements IObjectActionDelegate {
 	 * @generated
 	 */
 	public void run(IAction action) {
-		LoadResourceAction.LoadResourceDialog loadResourceDialog = new LoadResourceAction.LoadResourceDialog(
-				myShell, mySelectedElement.getEditingDomain());
+		LoadResourceAction.LoadResourceDialog loadResourceDialog = new LoadResourceAction.LoadResourceDialog(myShell,
+			mySelectedElement.getEditingDomain());
 		loadResourceDialog.open();
 	}
 
@@ -47,9 +47,9 @@ public class ModelLoadResourceAction implements IObjectActionDelegate {
 		if (selection instanceof IStructuredSelection) {
 			IStructuredSelection structuredSelection = (IStructuredSelection) selection;
 			if (structuredSelection.size() == 1
-					&& structuredSelection.getFirstElement() instanceof org.unicase.ui.usecaseDiagram.edit.parts.MEDiagramEditPart) {
+				&& structuredSelection.getFirstElement() instanceof org.unicase.ui.usecaseDiagram.edit.parts.MEDiagramEditPart) {
 				mySelectedElement = (org.unicase.ui.usecaseDiagram.edit.parts.MEDiagramEditPart) structuredSelection
-						.getFirstElement();
+					.getFirstElement();
 			}
 		}
 		action.setEnabled(isEnabled());

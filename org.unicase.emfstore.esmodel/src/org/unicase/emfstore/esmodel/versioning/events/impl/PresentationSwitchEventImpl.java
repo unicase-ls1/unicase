@@ -1,7 +1,7 @@
 /**
- * <copyright>Copyright (c) 2008 Jonas Helming, Maximilian Koegel. All rights reserved. This program and the accompanying materials are made available under the terms of the Eclipse Public License v1.0 which accompanies this distribution, and is available at http://www.eclipse.org/legal/epl-v10.html</copyright>
- *
- * $Id$
+ * <copyright>Copyright (c) 2008 Jonas Helming, Maximilian Koegel. All rights reserved. This program and the
+ * accompanying materials are made available under the terms of the Eclipse Public License v1.0 which accompanies this
+ * distribution, and is available at http://www.eclipse.org/legal/epl-v10.html</copyright>
  */
 package org.unicase.emfstore.esmodel.versioning.events.impl;
 
@@ -12,25 +12,25 @@ import org.unicase.emfstore.esmodel.versioning.events.EventsPackage;
 import org.unicase.emfstore.esmodel.versioning.events.PresentationSwitchEvent;
 
 /**
- * <!-- begin-user-doc -->
- * An implementation of the model object '<em><b>Presentation Switch Event</b></em>'.
- * <!-- end-user-doc -->
+ * <!-- begin-user-doc --> An implementation of the model object '<em><b>Presentation Switch Event</b></em>'. <!--
+ * end-user-doc -->
  * <p>
  * The following features are implemented:
  * <ul>
- *   <li>{@link org.unicase.emfstore.esmodel.versioning.events.impl.PresentationSwitchEventImpl#getReadView <em>Read View</em>}</li>
- *   <li>{@link org.unicase.emfstore.esmodel.versioning.events.impl.PresentationSwitchEventImpl#getNewPresentation <em>New Presentation</em>}</li>
+ * <li>{@link org.unicase.emfstore.esmodel.versioning.events.impl.PresentationSwitchEventImpl#getReadView <em>Read View
+ * </em>}</li>
+ * <li>{@link org.unicase.emfstore.esmodel.versioning.events.impl.PresentationSwitchEventImpl#getNewPresentation <em>New
+ * Presentation</em>}</li>
  * </ul>
  * </p>
- *
+ * 
  * @generated
  */
-public class PresentationSwitchEventImpl extends EventImpl implements
-		PresentationSwitchEvent {
+public class PresentationSwitchEventImpl extends EventImpl implements PresentationSwitchEvent {
 	/**
-	 * The default value of the '{@link #getReadView() <em>Read View</em>}' attribute.
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
+	 * The default value of the '{@link #getReadView() <em>Read View</em>}' attribute. <!-- begin-user-doc --> <!--
+	 * end-user-doc -->
+	 * 
 	 * @see #getReadView()
 	 * @generated
 	 * @ordered
@@ -38,9 +38,9 @@ public class PresentationSwitchEventImpl extends EventImpl implements
 	protected static final String READ_VIEW_EDEFAULT = null;
 
 	/**
-	 * The cached value of the '{@link #getReadView() <em>Read View</em>}' attribute.
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
+	 * The cached value of the '{@link #getReadView() <em>Read View</em>}' attribute. <!-- begin-user-doc --> <!--
+	 * end-user-doc -->
+	 * 
 	 * @see #getReadView()
 	 * @generated
 	 * @ordered
@@ -48,9 +48,9 @@ public class PresentationSwitchEventImpl extends EventImpl implements
 	protected String readView = READ_VIEW_EDEFAULT;
 
 	/**
-	 * The default value of the '{@link #getNewPresentation() <em>New Presentation</em>}' attribute.
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
+	 * The default value of the '{@link #getNewPresentation() <em>New Presentation</em>}' attribute. <!-- begin-user-doc
+	 * --> <!-- end-user-doc -->
+	 * 
 	 * @see #getNewPresentation()
 	 * @generated
 	 * @ordered
@@ -58,9 +58,9 @@ public class PresentationSwitchEventImpl extends EventImpl implements
 	protected static final String NEW_PRESENTATION_EDEFAULT = null;
 
 	/**
-	 * The cached value of the '{@link #getNewPresentation() <em>New Presentation</em>}' attribute.
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
+	 * The cached value of the '{@link #getNewPresentation() <em>New Presentation</em>}' attribute. <!-- begin-user-doc
+	 * --> <!-- end-user-doc -->
+	 * 
 	 * @see #getNewPresentation()
 	 * @generated
 	 * @ordered
@@ -68,8 +68,8 @@ public class PresentationSwitchEventImpl extends EventImpl implements
 	protected String newPresentation = NEW_PRESENTATION_EDEFAULT;
 
 	/**
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
+	 * <!-- begin-user-doc --> <!-- end-user-doc -->
+	 * 
 	 * @generated
 	 */
 	protected PresentationSwitchEventImpl() {
@@ -77,8 +77,8 @@ public class PresentationSwitchEventImpl extends EventImpl implements
 	}
 
 	/**
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
+	 * <!-- begin-user-doc --> <!-- end-user-doc -->
+	 * 
 	 * @generated
 	 */
 	@Override
@@ -87,8 +87,8 @@ public class PresentationSwitchEventImpl extends EventImpl implements
 	}
 
 	/**
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
+	 * <!-- begin-user-doc --> <!-- end-user-doc -->
+	 * 
 	 * @generated
 	 */
 	public String getReadView() {
@@ -96,22 +96,21 @@ public class PresentationSwitchEventImpl extends EventImpl implements
 	}
 
 	/**
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
+	 * <!-- begin-user-doc --> <!-- end-user-doc -->
+	 * 
 	 * @generated
 	 */
 	public void setReadView(String newReadView) {
 		String oldReadView = readView;
 		readView = newReadView;
 		if (eNotificationRequired())
-			eNotify(new ENotificationImpl(this, Notification.SET,
-					EventsPackage.PRESENTATION_SWITCH_EVENT__READ_VIEW,
-					oldReadView, readView));
+			eNotify(new ENotificationImpl(this, Notification.SET, EventsPackage.PRESENTATION_SWITCH_EVENT__READ_VIEW,
+				oldReadView, readView));
 	}
 
 	/**
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
+	 * <!-- begin-user-doc --> <!-- end-user-doc -->
+	 * 
 	 * @generated
 	 */
 	public String getNewPresentation() {
@@ -119,8 +118,8 @@ public class PresentationSwitchEventImpl extends EventImpl implements
 	}
 
 	/**
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
+	 * <!-- begin-user-doc --> <!-- end-user-doc -->
+	 * 
 	 * @generated
 	 */
 	public void setNewPresentation(String newNewPresentation) {
@@ -128,13 +127,12 @@ public class PresentationSwitchEventImpl extends EventImpl implements
 		newPresentation = newNewPresentation;
 		if (eNotificationRequired())
 			eNotify(new ENotificationImpl(this, Notification.SET,
-					EventsPackage.PRESENTATION_SWITCH_EVENT__NEW_PRESENTATION,
-					oldNewPresentation, newPresentation));
+				EventsPackage.PRESENTATION_SWITCH_EVENT__NEW_PRESENTATION, oldNewPresentation, newPresentation));
 	}
 
 	/**
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
+	 * <!-- begin-user-doc --> <!-- end-user-doc -->
+	 * 
 	 * @generated
 	 */
 	@Override
@@ -149,8 +147,8 @@ public class PresentationSwitchEventImpl extends EventImpl implements
 	}
 
 	/**
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
+	 * <!-- begin-user-doc --> <!-- end-user-doc -->
+	 * 
 	 * @generated
 	 */
 	@Override
@@ -167,8 +165,8 @@ public class PresentationSwitchEventImpl extends EventImpl implements
 	}
 
 	/**
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
+	 * <!-- begin-user-doc --> <!-- end-user-doc -->
+	 * 
 	 * @generated
 	 */
 	@Override
@@ -185,26 +183,25 @@ public class PresentationSwitchEventImpl extends EventImpl implements
 	}
 
 	/**
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
+	 * <!-- begin-user-doc --> <!-- end-user-doc -->
+	 * 
 	 * @generated
 	 */
 	@Override
 	public boolean eIsSet(int featureID) {
 		switch (featureID) {
 		case EventsPackage.PRESENTATION_SWITCH_EVENT__READ_VIEW:
-			return READ_VIEW_EDEFAULT == null ? readView != null
-					: !READ_VIEW_EDEFAULT.equals(readView);
+			return READ_VIEW_EDEFAULT == null ? readView != null : !READ_VIEW_EDEFAULT.equals(readView);
 		case EventsPackage.PRESENTATION_SWITCH_EVENT__NEW_PRESENTATION:
-			return NEW_PRESENTATION_EDEFAULT == null ? newPresentation != null
-					: !NEW_PRESENTATION_EDEFAULT.equals(newPresentation);
+			return NEW_PRESENTATION_EDEFAULT == null ? newPresentation != null : !NEW_PRESENTATION_EDEFAULT
+				.equals(newPresentation);
 		}
 		return super.eIsSet(featureID);
 	}
 
 	/**
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
+	 * <!-- begin-user-doc --> <!-- end-user-doc -->
+	 * 
 	 * @generated
 	 */
 	@Override
@@ -221,4 +218,4 @@ public class PresentationSwitchEventImpl extends EventImpl implements
 		return result.toString();
 	}
 
-} //PresentationSwitchEventImpl
+} // PresentationSwitchEventImpl

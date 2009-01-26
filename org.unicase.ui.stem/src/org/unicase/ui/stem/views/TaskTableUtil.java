@@ -15,7 +15,6 @@ import org.unicase.ui.tableview.labelprovider.StatusLabelProvider;
  * Utility for task tables.
  * 
  * @author helming
- * 
  */
 public abstract class TaskTableUtil {
 
@@ -26,8 +25,7 @@ public abstract class TaskTableUtil {
 	/**
 	 * Adds standard Columsn to any task tree table.
 	 * 
-	 * @param treeViewer
-	 *            The task tree viewer.
+	 * @param treeViewer The task tree viewer.
 	 */
 	public static void addColumns(TreeViewer treeViewer) {
 
@@ -35,14 +33,12 @@ public abstract class TaskTableUtil {
 		tree.setHeaderVisible(true);
 
 		// root nodes (WorkPackage) and their contained WorkItems
-		TreeViewerColumn tclmWorkItem = new TreeViewerColumn(treeViewer,
-				SWT.NONE);
+		TreeViewerColumn tclmWorkItem = new TreeViewerColumn(treeViewer, SWT.NONE);
 		tclmWorkItem.getColumn().setText("WorkItem");
 		tclmWorkItem.getColumn().setWidth(400);
 		EMFColumnLabelProvider emfColumnLabelProvider = new EMFColumnLabelProvider();
 		tclmWorkItem.setLabelProvider(emfColumnLabelProvider);
-		new TreeViewerColumnSorter(treeViewer, tclmWorkItem,
-				emfColumnLabelProvider);
+		new TreeViewerColumnSorter(treeViewer, tclmWorkItem, emfColumnLabelProvider);
 
 		TreeViewerColumn status = new TreeViewerColumn(treeViewer, SWT.NONE);
 		status.getColumn().setWidth(20);
@@ -50,28 +46,22 @@ public abstract class TaskTableUtil {
 		status.getColumn().setText("State");
 
 		// annotated model element
-		TreeViewerColumn tclmAnnotatedME = new TreeViewerColumn(treeViewer,
-				SWT.NONE);
+		TreeViewerColumn tclmAnnotatedME = new TreeViewerColumn(treeViewer, SWT.NONE);
 		tclmAnnotatedME.getColumn().setText("Annotated");
 		tclmAnnotatedME.getColumn().setWidth(100);
 		TaskObjectLabelProvider taskObjectLabelProvider = new TaskObjectLabelProvider();
 		tclmAnnotatedME.setLabelProvider(taskObjectLabelProvider);
-		tclmAnnotatedME.setEditingSupport(new TaskObjectEditingSupport(
-				treeViewer));
-		new TreeViewerColumnSorter(treeViewer, tclmAnnotatedME,
-				taskObjectLabelProvider);
+		tclmAnnotatedME.setEditingSupport(new TaskObjectEditingSupport(treeViewer));
+		new TreeViewerColumnSorter(treeViewer, tclmAnnotatedME, taskObjectLabelProvider);
 
 		// Assignee
-		TreeViewerColumn tclmAssignedTo = new TreeViewerColumn(treeViewer,
-				SWT.NONE);
+		TreeViewerColumn tclmAssignedTo = new TreeViewerColumn(treeViewer, SWT.NONE);
 		tclmAssignedTo.getColumn().setText("Assigned to");
 		tclmAssignedTo.getColumn().setWidth(100);
 		AssignedToLabelProvider assignedToLabelProvider = new AssignedToLabelProvider();
 		tclmAssignedTo.setLabelProvider(assignedToLabelProvider);
-		tclmAssignedTo.setEditingSupport(new AssignedToEditingSupport(
-				treeViewer));
-		new TreeViewerColumnSorter(treeViewer, tclmAssignedTo,
-				assignedToLabelProvider);
+		tclmAssignedTo.setEditingSupport(new AssignedToEditingSupport(treeViewer));
+		new TreeViewerColumnSorter(treeViewer, tclmAssignedTo, assignedToLabelProvider);
 
 	}
 

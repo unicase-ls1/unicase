@@ -23,11 +23,8 @@ import org.unicase.model.rationale.Issue;
 import org.unicase.model.task.WorkItem;
 
 /**
- * @author naughton
- * 
- *         Wizard page containing all items from last meeting to be selected for
- *         inclusion in the information exchange of this meeting.
- * 
+ * @author naughton Wizard page containing all items from last meeting to be selected for inclusion in the information
+ *         exchange of this meeting.
  */
 public class MeetingWorkItemCarryPage extends WizardPage {
 
@@ -38,8 +35,7 @@ public class MeetingWorkItemCarryPage extends WizardPage {
 	/**
 	 * . Constructor
 	 * 
-	 * @param pageName
-	 *            page name
+	 * @param pageName page name
 	 */
 	protected MeetingWorkItemCarryPage(String pageName) {
 		super(pageName);
@@ -92,20 +88,17 @@ public class MeetingWorkItemCarryPage extends WizardPage {
 		// Turn off drawing to avoid flicker
 		table.setRedraw(false);
 
-		Meeting selectedMeeting = ((FollowupMeetingWizard) getWizard())
-				.getSelectedMeeting();
+		Meeting selectedMeeting = ((FollowupMeetingWizard) getWizard()).getSelectedMeeting();
 
 		List<WorkItem> identifiedWorkItems = new ArrayList<WorkItem>();
 		if (selectedMeeting.getIdentifiedWorkItemsSection() != null) {
-			identifiedWorkItems.addAll(selectedMeeting
-					.getIdentifiedWorkItemsSection().getIncludedWorkItems());
+			identifiedWorkItems.addAll(selectedMeeting.getIdentifiedWorkItemsSection().getIncludedWorkItems());
 		}
 
 		List<WorkItem> otherWorkItems = new ArrayList<WorkItem>();
-		for (WorkItemMeetingSection workItemMeetingSection : findOtherWorkItemMeetingSections(
-				selectedMeeting.getSections(), selectedMeeting)) {
-			List<WorkItem> includedWorkItems = workItemMeetingSection
-					.getIncludedWorkItems();
+		for (WorkItemMeetingSection workItemMeetingSection : findOtherWorkItemMeetingSections(selectedMeeting
+			.getSections(), selectedMeeting)) {
+			List<WorkItem> includedWorkItems = workItemMeetingSection.getIncludedWorkItems();
 			for (WorkItem workItem : includedWorkItems) {
 				if (!identifiedWorkItems.contains(workItem)) {
 					otherWorkItems.add(workItem);
@@ -115,15 +108,13 @@ public class MeetingWorkItemCarryPage extends WizardPage {
 
 		List<Issue> identifiedIssues = new ArrayList<Issue>();
 		if (selectedMeeting.getIdentifiedIssuesSection() != null) {
-			identifiedIssues.addAll(selectedMeeting
-					.getIdentifiedIssuesSection().getIncludedIssues());
+			identifiedIssues.addAll(selectedMeeting.getIdentifiedIssuesSection().getIncludedIssues());
 		}
 
 		List<Issue> otherIssues = new ArrayList<Issue>();
-		for (IssueMeetingSection issueMeetingSection : findOtherIssueMeetingSections(
-				selectedMeeting.getSections(), selectedMeeting)) {
-			List<Issue> includedIssues = issueMeetingSection
-					.getIncludedIssues();
+		for (IssueMeetingSection issueMeetingSection : findOtherIssueMeetingSections(selectedMeeting.getSections(),
+			selectedMeeting)) {
+			List<Issue> includedIssues = issueMeetingSection.getIncludedIssues();
 			for (Issue issue : includedIssues) {
 				if (!identifiedIssues.contains(issue)) {
 					otherIssues.add(issue);
@@ -131,20 +122,17 @@ public class MeetingWorkItemCarryPage extends WizardPage {
 			}
 		}
 
-		createTableItems(table, identifiedWorkItems, otherWorkItems,
-				identifiedIssues, otherIssues);
+		createTableItems(table, identifiedWorkItems, otherWorkItems, identifiedIssues, otherIssues);
 
 		// Turn drawing back on!
 		table.setRedraw(true);
 	}
 
 	// create and precheck table items
-	private void createTableItems(Table table,
-			List<WorkItem> identifiedWorkItems, List<WorkItem> otherWorkItems,
-			List<Issue> identifiedIssues, List<Issue> otherIssues) {
-		AdapterFactoryLabelProvider labelProvider = new AdapterFactoryLabelProvider(
-				new ComposedAdapterFactory(
-						ComposedAdapterFactory.Descriptor.Registry.INSTANCE));
+	private void createTableItems(Table table, List<WorkItem> identifiedWorkItems, List<WorkItem> otherWorkItems,
+		List<Issue> identifiedIssues, List<Issue> otherIssues) {
+		AdapterFactoryLabelProvider labelProvider = new AdapterFactoryLabelProvider(new ComposedAdapterFactory(
+			ComposedAdapterFactory.Descriptor.Registry.INSTANCE));
 
 		// first add all work items identified in the last meeting and check
 		// them per default
@@ -189,21 +177,17 @@ public class MeetingWorkItemCarryPage extends WizardPage {
 
 	// find IssueMeetingSections other than the one linked as
 	// identifiedIssuesMeetingSection
-	private List<IssueMeetingSection> findOtherIssueMeetingSections(
-			List<MeetingSection> sections, Meeting meeting) {
+	private List<IssueMeetingSection> findOtherIssueMeetingSections(List<MeetingSection> sections, Meeting meeting) {
 		List<IssueMeetingSection> res = new ArrayList<IssueMeetingSection>();
 		for (MeetingSection meetingSection : sections) {
 			if (meetingSection instanceof IssueMeetingSection
-					&& (!meetingSection.equals(meeting
-							.getIdentifiedIssuesSection()))) {
+				&& (!meetingSection.equals(meeting.getIdentifiedIssuesSection()))) {
 				res.add((IssueMeetingSection) meetingSection);
 			}
 			if (meetingSection instanceof CompositeMeetingSection
-					&& ((CompositeMeetingSection) meetingSection)
-							.getSubsections() != null) {
+				&& ((CompositeMeetingSection) meetingSection).getSubsections() != null) {
 				CompositeMeetingSection compositeSection = (CompositeMeetingSection) meetingSection;
-				res.addAll(findOtherIssueMeetingSections(compositeSection
-						.getSubsections(), meeting));
+				res.addAll(findOtherIssueMeetingSections(compositeSection.getSubsections(), meeting));
 			}
 		}
 		return res;
@@ -211,21 +195,17 @@ public class MeetingWorkItemCarryPage extends WizardPage {
 
 	// find WorkItemMeetingSections other than the one linked as
 	// identifiedWorkItemsMeetingSection
-	private List<WorkItemMeetingSection> findOtherWorkItemMeetingSections(
-			List<MeetingSection> sections, Meeting meeting) {
+	private List<WorkItemMeetingSection> findOtherWorkItemMeetingSections(List<MeetingSection> sections, Meeting meeting) {
 		List<WorkItemMeetingSection> res = new ArrayList<WorkItemMeetingSection>();
 		for (MeetingSection meetingSection : sections) {
 			if (meetingSection instanceof WorkItemMeetingSection
-					&& (!meetingSection.equals(meeting
-							.getIdentifiedWorkItemsSection()))) {
+				&& (!meetingSection.equals(meeting.getIdentifiedWorkItemsSection()))) {
 				res.add((WorkItemMeetingSection) meetingSection);
 			}
 			if (meetingSection instanceof CompositeMeetingSection
-					&& ((CompositeMeetingSection) meetingSection)
-							.getSubsections() != null) {
+				&& ((CompositeMeetingSection) meetingSection).getSubsections() != null) {
 				CompositeMeetingSection compositeSection = (CompositeMeetingSection) meetingSection;
-				res.addAll(findOtherWorkItemMeetingSections(compositeSection
-						.getSubsections(), meeting));
+				res.addAll(findOtherWorkItemMeetingSections(compositeSection.getSubsections(), meeting));
 			}
 		}
 		return res;

@@ -14,7 +14,6 @@ import org.unicase.workspace.util.OrgUnitHelper;
  * Filter Validations to Team.
  * 
  * @author helming
- * 
  */
 public class ValidationTeamFilter extends ViewerFilter {
 
@@ -23,8 +22,7 @@ public class ValidationTeamFilter extends ViewerFilter {
 	/**
 	 * default constructor.
 	 * 
-	 * @param user
-	 *            The user to whos team it should be filtered.
+	 * @param user The user to whos team it should be filtered.
 	 */
 	public ValidationTeamFilter(User user) {
 		team = OrgUnitHelper.getTeam(user);

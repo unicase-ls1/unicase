@@ -1,8 +1,7 @@
 /**
- * <copyright> Copyright (c) 2008 Jonas Helming, Maximilian Koegel. All rights reserved. This program and the accompanying materials are made available under the terms of the Eclipse Public License v1.0 which accompanies this distribution, and is available at http://www.eclipse.org/legal/epl-v10.html
- * </copyright>
- *
- * $Id$
+ * <copyright> Copyright (c) 2008 Jonas Helming, Maximilian Koegel. All rights reserved. This program and the
+ * accompanying materials are made available under the terms of the Eclipse Public License v1.0 which accompanies this
+ * distribution, and is available at http://www.eclipse.org/legal/epl-v10.html </copyright>
  */
 package org.unicase.emfstore.esmodel.versioning.impl;
 
@@ -14,22 +13,22 @@ import org.unicase.emfstore.esmodel.versioning.PrimaryVersionSpec;
 import org.unicase.emfstore.esmodel.versioning.VersioningPackage;
 
 /**
- * <!-- begin-user-doc --> An implementation of the model object '
- * <em><b>Primary Version Spec</b></em>'. <!-- end-user-doc -->
+ * <!-- begin-user-doc --> An implementation of the model object ' <em><b>Primary Version Spec</b></em>'. <!--
+ * end-user-doc -->
  * <p>
  * The following features are implemented:
  * <ul>
- *   <li>{@link org.unicase.emfstore.esmodel.versioning.impl.PrimaryVersionSpecImpl#getIdentifier <em>Identifier</em>}</li>
+ * <li>{@link org.unicase.emfstore.esmodel.versioning.impl.PrimaryVersionSpecImpl#getIdentifier <em>Identifier</em>}</li>
  * </ul>
  * </p>
- *
+ * 
  * @generated
  */
-public class PrimaryVersionSpecImpl extends EObjectImpl implements
-		PrimaryVersionSpec {
+public class PrimaryVersionSpecImpl extends EObjectImpl implements PrimaryVersionSpec {
 	/**
-	 * The default value of the '{@link #getIdentifier() <em>Identifier</em>}' attribute.
-	 * <!-- begin-user-doc --> <!-- end-user-doc -->
+	 * The default value of the '{@link #getIdentifier() <em>Identifier</em>}' attribute. <!-- begin-user-doc --> <!--
+	 * end-user-doc -->
+	 * 
 	 * @see #getIdentifier()
 	 * @generated
 	 * @ordered
@@ -37,8 +36,9 @@ public class PrimaryVersionSpecImpl extends EObjectImpl implements
 	protected static final int IDENTIFIER_EDEFAULT = 0;
 
 	/**
-	 * The cached value of the '{@link #getIdentifier() <em>Identifier</em>}' attribute.
-	 * <!-- begin-user-doc --> <!-- end-user-doc -->
+	 * The cached value of the '{@link #getIdentifier() <em>Identifier</em>}' attribute. <!-- begin-user-doc --> <!--
+	 * end-user-doc -->
+	 * 
 	 * @see #getIdentifier()
 	 * @generated
 	 * @ordered
@@ -47,6 +47,7 @@ public class PrimaryVersionSpecImpl extends EObjectImpl implements
 
 	/**
 	 * <!-- begin-user-doc --> <!-- end-user-doc -->
+	 * 
 	 * @generated
 	 */
 	protected PrimaryVersionSpecImpl() {
@@ -55,6 +56,7 @@ public class PrimaryVersionSpecImpl extends EObjectImpl implements
 
 	/**
 	 * <!-- begin-user-doc --> <!-- end-user-doc -->
+	 * 
 	 * @generated
 	 */
 	@Override
@@ -64,6 +66,7 @@ public class PrimaryVersionSpecImpl extends EObjectImpl implements
 
 	/**
 	 * <!-- begin-user-doc --> <!-- end-user-doc -->
+	 * 
 	 * @generated
 	 */
 	public int getIdentifier() {
@@ -72,19 +75,20 @@ public class PrimaryVersionSpecImpl extends EObjectImpl implements
 
 	/**
 	 * <!-- begin-user-doc --> <!-- end-user-doc -->
+	 * 
 	 * @generated
 	 */
 	public void setIdentifier(int newIdentifier) {
 		int oldIdentifier = identifier;
 		identifier = newIdentifier;
 		if (eNotificationRequired())
-			eNotify(new ENotificationImpl(this, Notification.SET,
-					VersioningPackage.PRIMARY_VERSION_SPEC__IDENTIFIER,
-					oldIdentifier, identifier));
+			eNotify(new ENotificationImpl(this, Notification.SET, VersioningPackage.PRIMARY_VERSION_SPEC__IDENTIFIER,
+				oldIdentifier, identifier));
 	}
 
 	/**
 	 * <!-- begin-user-doc --> <!-- end-user-doc -->
+	 * 
 	 * @generated
 	 */
 	@Override
@@ -98,6 +102,7 @@ public class PrimaryVersionSpecImpl extends EObjectImpl implements
 
 	/**
 	 * <!-- begin-user-doc --> <!-- end-user-doc -->
+	 * 
 	 * @generated
 	 */
 	@Override
@@ -112,6 +117,7 @@ public class PrimaryVersionSpecImpl extends EObjectImpl implements
 
 	/**
 	 * <!-- begin-user-doc --> <!-- end-user-doc -->
+	 * 
 	 * @generated
 	 */
 	@Override
@@ -126,6 +132,7 @@ public class PrimaryVersionSpecImpl extends EObjectImpl implements
 
 	/**
 	 * <!-- begin-user-doc --> <!-- end-user-doc -->
+	 * 
 	 * @generated
 	 */
 	@Override
@@ -139,6 +146,7 @@ public class PrimaryVersionSpecImpl extends EObjectImpl implements
 
 	/**
 	 * <!-- begin-user-doc --> <!-- end-user-doc -->
+	 * 
 	 * @generated
 	 */
 	@Override
@@ -157,8 +165,7 @@ public class PrimaryVersionSpecImpl extends EObjectImpl implements
 	public boolean equals(Object object) {
 		if (object instanceof PrimaryVersionSpec) {
 			PrimaryVersionSpec otherPrimaryVersionSpec = (PrimaryVersionSpec) object;
-			return this.getIdentifier() == otherPrimaryVersionSpec
-					.getIdentifier();
+			return this.getIdentifier() == otherPrimaryVersionSpec.getIdentifier();
 		} else {
 			return false;
 		}

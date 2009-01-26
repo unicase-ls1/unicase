@@ -1,7 +1,7 @@
 /**
  * <copyright> Copyright (c) 2008 Jonas Helming, Maximilian Koegel. All rights reserved. This program and the
  * accompanying materials are made available under the terms of the Eclipse Public License v1.0 which accompanies this
- * distribution, and is available at http://www.eclipse.org/legal/epl-v10.html </copyright> $Id$
+ * distribution, and is available at http://www.eclipse.org/legal/epl-v10.html </copyright>
  */
 package org.unicase.model.change;
 
@@ -18,13 +18,13 @@ import org.unicase.model.ModelElement;
  */
 public interface ModelChangePackage extends ModelElement {
 	/**
-	 * Returns the value of the '<em><b>Source Version</b></em>' attribute.
-	 * <!-- begin-user-doc -->
+	 * Returns the value of the '<em><b>Source Version</b></em>' attribute. <!-- begin-user-doc -->
 	 * <p>
 	 * If the meaning of the '<em>Source Version</em>' attribute isn't clear, there really should be more of a
 	 * description here...
 	 * </p>
 	 * <!-- end-user-doc -->
+	 * 
 	 * @return the value of the '<em>Source Version</em>' attribute.
 	 * @see #setSourceVersion(int)
 	 * @see org.unicase.model.change.ChangePackage#getModelChangePackage_SourceVersion()
@@ -34,8 +34,9 @@ public interface ModelChangePackage extends ModelElement {
 	int getSourceVersion();
 
 	/**
-	 * Sets the value of the '{@link org.unicase.model.change.ModelChangePackage#getSourceVersion <em>Source Version</em>}' attribute.
-	 * <!-- begin-user-doc --> <!-- end-user-doc -->
+	 * Sets the value of the '{@link org.unicase.model.change.ModelChangePackage#getSourceVersion
+	 * <em>Source Version</em>}' attribute. <!-- begin-user-doc --> <!-- end-user-doc -->
+	 * 
 	 * @param value the new value of the '<em>Source Version</em>' attribute.
 	 * @see #getSourceVersion()
 	 * @generated
@@ -43,13 +44,13 @@ public interface ModelChangePackage extends ModelElement {
 	void setSourceVersion(int value);
 
 	/**
-	 * Returns the value of the '<em><b>Target Version</b></em>' attribute.
-	 * <!-- begin-user-doc -->
+	 * Returns the value of the '<em><b>Target Version</b></em>' attribute. <!-- begin-user-doc -->
 	 * <p>
 	 * If the meaning of the '<em>Target Version</em>' attribute isn't clear, there really should be more of a
 	 * description here...
 	 * </p>
 	 * <!-- end-user-doc -->
+	 * 
 	 * @return the value of the '<em>Target Version</em>' attribute.
 	 * @see #setTargetVersion(int)
 	 * @see org.unicase.model.change.ChangePackage#getModelChangePackage_TargetVersion()
@@ -59,8 +60,9 @@ public interface ModelChangePackage extends ModelElement {
 	int getTargetVersion();
 
 	/**
-	 * Sets the value of the '{@link org.unicase.model.change.ModelChangePackage#getTargetVersion <em>Target Version</em>}' attribute.
-	 * <!-- begin-user-doc --> <!-- end-user-doc -->
+	 * Sets the value of the '{@link org.unicase.model.change.ModelChangePackage#getTargetVersion
+	 * <em>Target Version</em>}' attribute. <!-- begin-user-doc --> <!-- end-user-doc -->
+	 * 
 	 * @param value the new value of the '<em>Target Version</em>' attribute.
 	 * @see #getTargetVersion()
 	 * @generated

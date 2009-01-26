@@ -1,7 +1,7 @@
 /**
  * <copyright>Copyright (c) 2008 Jonas Helming, Maximilian Koegel. All rights reserved. This program and the
  * accompanying materials are made available under the terms of the Eclipse Public License v1.0 which accompanies this
- * distribution, and is available at http://www.eclipse.org/legal/epl-v10.html</copyright> $Id$
+ * distribution, and is available at http://www.eclipse.org/legal/epl-v10.html</copyright>
  */
 package org.unicase.model.profile.impl;
 
@@ -24,8 +24,8 @@ import org.unicase.model.profile.StereotypeInstance;
  */
 public class ProfileFactoryImpl extends EFactoryImpl implements ProfileFactory {
 	/**
-	 * Creates the default factory implementation.
-	 * <!-- begin-user-doc --> <!-- end-user-doc -->
+	 * Creates the default factory implementation. <!-- begin-user-doc --> <!-- end-user-doc -->
+	 * 
 	 * @generated
 	 */
 	public static ProfileFactory init() {
@@ -42,8 +42,8 @@ public class ProfileFactoryImpl extends EFactoryImpl implements ProfileFactory {
 	}
 
 	/**
-	 * Creates an instance of the factory.
-	 * <!-- begin-user-doc --> <!-- end-user-doc -->
+	 * Creates an instance of the factory. <!-- begin-user-doc --> <!-- end-user-doc -->
+	 * 
 	 * @generated
 	 */
 	public ProfileFactoryImpl() {
@@ -52,6 +52,7 @@ public class ProfileFactoryImpl extends EFactoryImpl implements ProfileFactory {
 
 	/**
 	 * <!-- begin-user-doc --> <!-- end-user-doc -->
+	 * 
 	 * @generated
 	 */
 	@Override
@@ -74,6 +75,7 @@ public class ProfileFactoryImpl extends EFactoryImpl implements ProfileFactory {
 
 	/**
 	 * <!-- begin-user-doc --> <!-- end-user-doc -->
+	 * 
 	 * @generated
 	 */
 	public Profile createProfile() {
@@ -83,6 +85,7 @@ public class ProfileFactoryImpl extends EFactoryImpl implements ProfileFactory {
 
 	/**
 	 * <!-- begin-user-doc --> <!-- end-user-doc -->
+	 * 
 	 * @generated
 	 */
 	public Stereotype createStereotype() {
@@ -92,6 +95,7 @@ public class ProfileFactoryImpl extends EFactoryImpl implements ProfileFactory {
 
 	/**
 	 * <!-- begin-user-doc --> <!-- end-user-doc -->
+	 * 
 	 * @generated
 	 */
 	public StereotypeInstance createStereotypeInstance() {
@@ -101,6 +105,7 @@ public class ProfileFactoryImpl extends EFactoryImpl implements ProfileFactory {
 
 	/**
 	 * <!-- begin-user-doc --> <!-- end-user-doc -->
+	 * 
 	 * @generated
 	 */
 	public StereotypeAttributeSimple createStereotypeAttributeSimple() {
@@ -110,6 +115,7 @@ public class ProfileFactoryImpl extends EFactoryImpl implements ProfileFactory {
 
 	/**
 	 * <!-- begin-user-doc --> <!-- end-user-doc -->
+	 * 
 	 * @generated
 	 */
 	public StereotypeAttributeInstanceString createStereotypeAttributeInstanceString() {
@@ -119,6 +125,7 @@ public class ProfileFactoryImpl extends EFactoryImpl implements ProfileFactory {
 
 	/**
 	 * <!-- begin-user-doc --> <!-- end-user-doc -->
+	 * 
 	 * @generated
 	 */
 	public ProfilePackage getProfilePackage() {
@@ -127,6 +134,7 @@ public class ProfileFactoryImpl extends EFactoryImpl implements ProfileFactory {
 
 	/**
 	 * <!-- begin-user-doc --> <!-- end-user-doc -->
+	 * 
 	 * @deprecated
 	 * @generated
 	 */

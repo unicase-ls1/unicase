@@ -8,18 +8,15 @@ import org.eclipse.gmf.runtime.diagram.ui.figures.BorderItemLocator;
 
 public class ComponentBorderItemLocator extends BorderItemLocator {
 
-	
-	public ComponentBorderItemLocator(IFigure borderItem, IFigure parentFigure,
-			Rectangle constraint) {
+	public ComponentBorderItemLocator(IFigure borderItem, IFigure parentFigure, Rectangle constraint) {
 		super(borderItem, parentFigure, constraint);
 		// TODO Auto-generated constructor stub
 	}
-	
+
 	public ComponentBorderItemLocator(IFigure parentFigure) {
 		super(parentFigure);
 		// TODO Auto-generated constructor stub
 	}
-	
 
 	public ComponentBorderItemLocator(IFigure parentFigure, int preferredSide) {
 		super(parentFigure, preferredSide);
@@ -27,8 +24,8 @@ public class ComponentBorderItemLocator extends BorderItemLocator {
 	}
 
 	public void relocate(IFigure borderItem) {
-		
-		Rectangle bounds = getParentBorder();	
+
+		Rectangle bounds = getParentBorder();
 		int parentFigureWidth = bounds.width;
 		int parentFigureHeight = bounds.height;
 		int parentFigureX = bounds.x;
@@ -38,7 +35,7 @@ public class ComponentBorderItemLocator extends BorderItemLocator {
 		x += parentFigureWidth / 2;
 		y = parentFigureY + parentFigureHeight;
 		Dimension borderItemSize = getSize(borderItem);
-		Point location = new Point(x - borderItemSize.width/2, y + getBorderItemOffset().height);
+		Point location = new Point(x - borderItemSize.width / 2, y + getBorderItemOffset().height);
 		borderItem.setBounds(new Rectangle(location, borderItemSize));
 	}
 }

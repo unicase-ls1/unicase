@@ -6,14 +6,13 @@ import org.eclipse.draw2d.geometry.Transform;
 
 /**
  * @author schroech
- *
  */
 public class ComposablePolygonDecoration extends PolygonDecoration implements ComposableRotatableDecoration {
 
 	// duplicates PolylineDecoration#transform field
 	// created to calculate EndPoint
 	private Transform endPointTransform = new Transform();
-	
+
 	private Point myBoundPoint;
 
 	/**
@@ -24,17 +23,19 @@ public class ComposablePolygonDecoration extends PolygonDecoration implements Co
 	}
 
 	/**
-	* {@inheritDoc}
-	* @see org.unicase.model.classDiagram.unicase.ComposableRotatableDecoration#getBoundPoint()
-	*/
+	 * {@inheritDoc}
+	 * 
+	 * @see org.unicase.model.classDiagram.unicase.ComposableRotatableDecoration#getBoundPoint()
+	 */
 	public Point getBoundPoint() {
 		return endPointTransform.getTransformed(myBoundPoint);
 	}
 
 	/**
-	* {@inheritDoc}
-	* @see org.eclipse.draw2d.PolygonDecoration#setLocation(org.eclipse.draw2d.geometry.Point)
-	*/
+	 * {@inheritDoc}
+	 * 
+	 * @see org.eclipse.draw2d.PolygonDecoration#setLocation(org.eclipse.draw2d.geometry.Point)
+	 */
 	@Override
 	public void setLocation(Point p) {
 		super.setLocation(p);
@@ -42,17 +43,17 @@ public class ComposablePolygonDecoration extends PolygonDecoration implements Co
 	}
 
 	/**
-	 * @param point
-	 * The center point
+	 * @param point The center point
 	 */
 	public void setBoundPoint(Point point) {
 		myBoundPoint = point;
 	}
 
 	/**
-	* {@inheritDoc}
-	* @see org.eclipse.draw2d.PolygonDecoration#setScale(double, double)
-	*/
+	 * {@inheritDoc}
+	 * 
+	 * @see org.eclipse.draw2d.PolygonDecoration#setScale(double, double)
+	 */
 	@Override
 	public void setScale(double x, double y) {
 		super.setScale(x, y);
@@ -60,9 +61,10 @@ public class ComposablePolygonDecoration extends PolygonDecoration implements Co
 	}
 
 	/**
-	* {@inheritDoc}
-	* @see org.eclipse.draw2d.PolygonDecoration#setRotation(double)
-	*/
+	 * {@inheritDoc}
+	 * 
+	 * @see org.eclipse.draw2d.PolygonDecoration#setRotation(double)
+	 */
 	@Override
 	public void setRotation(double angle) {
 		super.setRotation(angle);
@@ -70,19 +72,15 @@ public class ComposablePolygonDecoration extends PolygonDecoration implements Co
 	}
 
 	/**
-	 * @param angle
-	 * The angle by which the decoration should be rotated
+	 * @param angle The angle by which the decoration should be rotated
 	 */
 	public void setRotationEx(double angle) {
 		endPointTransform.setRotation(angle);
 	}
-	
-	
+
 	/**
-	 * @param x
-	 * The value by which the decoration in x dimension 
-	 * @param y
-	 * The value by which the decoration in y dimension
+	 * @param x The value by which the decoration in x dimension
+	 * @param y The value by which the decoration in y dimension
 	 */
 	public void setScaleEx(double x, double y) {
 		if (endPointTransform == null) {

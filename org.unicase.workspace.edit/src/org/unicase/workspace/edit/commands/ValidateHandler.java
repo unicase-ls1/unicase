@@ -20,7 +20,6 @@ import org.unicase.workspace.ProjectSpace;
  * Handler to validate the project.
  * 
  * @author unicase
- * 
  */
 public class ValidateHandler extends ProjectActionHandler {
 
@@ -34,7 +33,7 @@ public class ValidateHandler extends ProjectActionHandler {
 		final ProjectSpace projectSpace = getProjectSpace(event);
 
 		TransactionalEditingDomain domain = TransactionalEditingDomain.Registry.INSTANCE
-				.getEditingDomain("org.unicase.EditingDomain");
+			.getEditingDomain("org.unicase.EditingDomain");
 		domain.getCommandStack().execute(new RecordingCommand(domain) {
 
 			@Override
@@ -50,8 +49,8 @@ public class ValidateHandler extends ProjectActionHandler {
 
 		ValidationClientSelector.setRunning(true);
 
-		IBatchValidator validator = (IBatchValidator) ModelValidationService
-				.getInstance().newValidator(EvaluationMode.BATCH);
+		IBatchValidator validator = (IBatchValidator) ModelValidationService.getInstance().newValidator(
+			EvaluationMode.BATCH);
 		validator.setIncludeLiveConstraints(true);
 
 		IStatus status = validator.validate(projectSpace);
@@ -62,16 +61,16 @@ public class ValidateHandler extends ProjectActionHandler {
 		// "org.unicase.model", 1, status.getChildren(),
 		// "Problems were found by validation", null);
 		// //
-//		try {
-//			MarkerUtil.createMarkers(status);
-//		} catch (CoreException e) {
-//			// log this ...
-//			e.printStackTrace();
-//		}
+		// try {
+		// MarkerUtil.createMarkers(status);
+		// } catch (CoreException e) {
+		// // log this ...
+		// e.printStackTrace();
+		// }
 
 		IWorkspace workspace = ResourcesPlugin.getWorkspace();
 		IResource resource = workspace.getRoot();
-		
+
 		try {
 			resource.deleteMarkers(markerType, true, 5);
 		} catch (CoreException e1) {
@@ -81,12 +80,9 @@ public class ValidateHandler extends ProjectActionHandler {
 		if (status.isMultiStatus()) {
 			for (IStatus stat : status.getChildren()) {
 				try {
-					IMarker marker = resource
-							.createMarker(markerType);
-					marker.setAttribute(IMarker.MESSAGE, "unicase: "
-							+ stat.getMessage());
-					marker.setAttribute(IMarker.SEVERITY,
-							IMarker.SEVERITY_WARNING);
+					IMarker marker = resource.createMarker(markerType);
+					marker.setAttribute(IMarker.MESSAGE, "unicase: " + stat.getMessage());
+					marker.setAttribute(IMarker.SEVERITY, IMarker.SEVERITY_WARNING);
 				} catch (CoreException e) {
 					e.printStackTrace();
 				}

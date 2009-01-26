@@ -11,7 +11,7 @@ public class DiagramRulersAndGridPreferencePage extends RulerGridPreferencePage 
 	 * @generated
 	 */
 	public DiagramRulersAndGridPreferencePage() {
-		setPreferenceStore(org.unicase.ui.componentDiagram.part.ModelDiagramEditorPlugin
-				.getInstance().getPreferenceStore());
+		setPreferenceStore(org.unicase.ui.componentDiagram.part.ModelDiagramEditorPlugin.getInstance()
+			.getPreferenceStore());
 	}
 }

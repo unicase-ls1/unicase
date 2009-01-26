@@ -1,8 +1,7 @@
 /**
- * <copyright> Copyright (c) 2008 Jonas Helming, Maximilian Koegel. All rights reserved. This program and the accompanying materials are made available under the terms of the Eclipse Public License v1.0 which accompanies this distribution, and is available at http://www.eclipse.org/legal/epl-v10.html
- * </copyright>
- *
- * $Id$
+ * <copyright> Copyright (c) 2008 Jonas Helming, Maximilian Koegel. All rights reserved. This program and the
+ * accompanying materials are made available under the terms of the Eclipse Public License v1.0 which accompanies this
+ * distribution, and is available at http://www.eclipse.org/legal/epl-v10.html </copyright>
  */
 package org.unicase.workspace.util;
 
@@ -24,7 +23,6 @@ import org.unicase.workspace.Workspace;
  * Helper for OrgUnit operations.
  * 
  * @author helming
- * 
  */
 public final class OrgUnitHelper {
 
@@ -35,16 +33,12 @@ public final class OrgUnitHelper {
 	/**
 	 * Returns the current User in the project, whos logged in.
 	 * 
-	 * @param currentWorkspace
-	 *            the current workspace
+	 * @param currentWorkspace the current workspace
 	 * @return The current user
-	 * @throws NoCurrentUserException
-	 *             if there is no current user.
+	 * @throws NoCurrentUserException if there is no current user.
 	 */
-	public static User getCurrentUser(Workspace currentWorkspace)
-			throws NoCurrentUserException {
-		ProjectSpace activeProjectSpace = currentWorkspace
-				.getActiveProjectSpace();
+	public static User getCurrentUser(Workspace currentWorkspace) throws NoCurrentUserException {
+		ProjectSpace activeProjectSpace = currentWorkspace.getActiveProjectSpace();
 		if (activeProjectSpace == null) {
 			throw new NoCurrentUserException();
 		}
@@ -53,10 +47,8 @@ public final class OrgUnitHelper {
 		if (currentUserSession == null) {
 			throw new NoCurrentUserException();
 		}
-		EList<User> projectUsers = currentWorkspace.getActiveProjectSpace()
-				.getProject().getAllModelElementsbyClass(
-						OrganizationPackage.eINSTANCE.getUser(),
-						new BasicEList<User>());
+		EList<User> projectUsers = currentWorkspace.getActiveProjectSpace().getProject().getAllModelElementsbyClass(
+			OrganizationPackage.eINSTANCE.getUser(), new BasicEList<User>());
 		String id = currentUserSession.getACUser().getId().getId();
 		for (User currentUser : projectUsers) {
 			// FS how can I get the appropriate user from the current user
@@ -72,11 +64,9 @@ public final class OrgUnitHelper {
 	}
 
 	/**
-	 * Gets the team of the user. Includes all groups he is member of, all
-	 * members of this groups and himself.
+	 * Gets the team of the user. Includes all groups he is member of, all members of this groups and himself.
 	 * 
-	 * @param user
-	 *            the user
+	 * @param user the user
 	 * @return his team
 	 */
 	public static Set<OrgUnit> getTeam(User user) {

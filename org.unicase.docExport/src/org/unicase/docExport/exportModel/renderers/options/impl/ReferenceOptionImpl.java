@@ -1,5 +1,5 @@
 /**
- * <copyright> </copyright> $Id$
+ * <copyright> </copyright>
  */
 package org.unicase.docExport.exportModel.renderers.options.impl;
 
@@ -27,6 +27,7 @@ public class ReferenceOptionImpl extends RendererOptionImpl implements Reference
 
 	/**
 	 * <!-- begin-user-doc --> . <!-- end-user-doc -->
+	 * 
 	 * @generated
 	 */
 	@Override

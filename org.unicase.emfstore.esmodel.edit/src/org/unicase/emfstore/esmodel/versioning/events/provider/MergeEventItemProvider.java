@@ -1,7 +1,7 @@
 /**
- * <copyright>Copyright (c) 2008 Jonas Helming, Maximilian Koegel. All rights reserved. This program and the accompanying materials are made available under the terms of the Eclipse Public License v1.0 which accompanies this distribution, and is available at http://www.eclipse.org/legal/epl-v10.html</copyright>
- *
- * $Id$
+ * <copyright>Copyright (c) 2008 Jonas Helming, Maximilian Koegel. All rights reserved. This program and the
+ * accompanying materials are made available under the terms of the Eclipse Public License v1.0 which accompanies this
+ * distribution, and is available at http://www.eclipse.org/legal/epl-v10.html</copyright>
  */
 package org.unicase.emfstore.esmodel.versioning.events.provider;
 
@@ -28,17 +28,15 @@ import org.unicase.emfstore.esmodel.versioning.operations.OperationsFactory;
 
 /**
  * This is the item provider adapter for a {@link org.unicase.emfstore.esmodel.versioning.events.MergeEvent} object.
- * <!-- begin-user-doc -->
- * <!-- end-user-doc -->
+ * <!-- begin-user-doc --> <!-- end-user-doc -->
+ * 
  * @generated
  */
-public class MergeEventItemProvider extends EventItemProvider implements
-		IEditingDomainItemProvider, IStructuredItemContentProvider,
-		ITreeItemContentProvider, IItemLabelProvider, IItemPropertySource {
+public class MergeEventItemProvider extends EventItemProvider implements IEditingDomainItemProvider,
+	IStructuredItemContentProvider, ITreeItemContentProvider, IItemLabelProvider, IItemPropertySource {
 	/**
-	 * This constructs an instance from a factory and a notifier.
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
+	 * This constructs an instance from a factory and a notifier. <!-- begin-user-doc --> <!-- end-user-doc -->
+	 * 
 	 * @generated
 	 */
 	public MergeEventItemProvider(AdapterFactory adapterFactory) {
@@ -46,9 +44,8 @@ public class MergeEventItemProvider extends EventItemProvider implements
 	}
 
 	/**
-	 * This returns the property descriptors for the adapted class.
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
+	 * This returns the property descriptors for the adapted class. <!-- begin-user-doc --> <!-- end-user-doc -->
+	 * 
 	 * @generated
 	 */
 	@Override
@@ -63,70 +60,54 @@ public class MergeEventItemProvider extends EventItemProvider implements
 	}
 
 	/**
-	 * This adds a property descriptor for the Number Of Conflicts feature.
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
+	 * This adds a property descriptor for the Number Of Conflicts feature. <!-- begin-user-doc --> <!-- end-user-doc
+	 * -->
+	 * 
 	 * @generated
 	 */
 	protected void addNumberOfConflictsPropertyDescriptor(Object object) {
-		itemPropertyDescriptors.add(createItemPropertyDescriptor(
-				((ComposeableAdapterFactory) adapterFactory)
-						.getRootAdapterFactory(), getResourceLocator(),
-				getString("_UI_MergeEvent_numberOfConflicts_feature"),
-				getString("_UI_PropertyDescriptor_description",
-						"_UI_MergeEvent_numberOfConflicts_feature",
-						"_UI_MergeEvent_type"),
-				EventsPackage.Literals.MERGE_EVENT__NUMBER_OF_CONFLICTS, true,
-				false, false, ItemPropertyDescriptor.INTEGRAL_VALUE_IMAGE,
-				null, null));
+		itemPropertyDescriptors.add(createItemPropertyDescriptor(((ComposeableAdapterFactory) adapterFactory)
+			.getRootAdapterFactory(), getResourceLocator(), getString("_UI_MergeEvent_numberOfConflicts_feature"),
+			getString("_UI_PropertyDescriptor_description", "_UI_MergeEvent_numberOfConflicts_feature",
+				"_UI_MergeEvent_type"), EventsPackage.Literals.MERGE_EVENT__NUMBER_OF_CONFLICTS, true, false, false,
+			ItemPropertyDescriptor.INTEGRAL_VALUE_IMAGE, null, null));
 	}
 
 	/**
-	 * This adds a property descriptor for the Total Time feature.
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
+	 * This adds a property descriptor for the Total Time feature. <!-- begin-user-doc --> <!-- end-user-doc -->
+	 * 
 	 * @generated
 	 */
 	protected void addTotalTimePropertyDescriptor(Object object) {
-		itemPropertyDescriptors
-				.add(createItemPropertyDescriptor(
-						((ComposeableAdapterFactory) adapterFactory)
-								.getRootAdapterFactory(), getResourceLocator(),
-						getString("_UI_MergeEvent_totalTime_feature"),
-						getString("_UI_PropertyDescriptor_description",
-								"_UI_MergeEvent_totalTime_feature",
-								"_UI_MergeEvent_type"),
-						EventsPackage.Literals.MERGE_EVENT__TOTAL_TIME, true,
-						false, false,
-						ItemPropertyDescriptor.INTEGRAL_VALUE_IMAGE, null, null));
+		itemPropertyDescriptors.add(createItemPropertyDescriptor(((ComposeableAdapterFactory) adapterFactory)
+			.getRootAdapterFactory(), getResourceLocator(), getString("_UI_MergeEvent_totalTime_feature"), getString(
+			"_UI_PropertyDescriptor_description", "_UI_MergeEvent_totalTime_feature", "_UI_MergeEvent_type"),
+			EventsPackage.Literals.MERGE_EVENT__TOTAL_TIME, true, false, false,
+			ItemPropertyDescriptor.INTEGRAL_VALUE_IMAGE, null, null));
 	}
 
 	/**
 	 * This specifies how to implement {@link #getChildren} and is used to deduce an appropriate feature for an
 	 * {@link org.eclipse.emf.edit.command.AddCommand}, {@link org.eclipse.emf.edit.command.RemoveCommand} or
-	 * {@link org.eclipse.emf.edit.command.MoveCommand} in {@link #createCommand}.
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
+	 * {@link org.eclipse.emf.edit.command.MoveCommand} in {@link #createCommand}. <!-- begin-user-doc --> <!--
+	 * end-user-doc -->
+	 * 
 	 * @generated
 	 */
 	@Override
-	public Collection<? extends EStructuralFeature> getChildrenFeatures(
-			Object object) {
+	public Collection<? extends EStructuralFeature> getChildrenFeatures(Object object) {
 		if (childrenFeatures == null) {
 			super.getChildrenFeatures(object);
-			childrenFeatures
-					.add(EventsPackage.Literals.MERGE_EVENT__BASE_VERSION);
-			childrenFeatures
-					.add(EventsPackage.Literals.MERGE_EVENT__TARGET_VERSION);
-			childrenFeatures
-					.add(EventsPackage.Literals.MERGE_EVENT__LOCAL_CHANGES);
+			childrenFeatures.add(EventsPackage.Literals.MERGE_EVENT__BASE_VERSION);
+			childrenFeatures.add(EventsPackage.Literals.MERGE_EVENT__TARGET_VERSION);
+			childrenFeatures.add(EventsPackage.Literals.MERGE_EVENT__LOCAL_CHANGES);
 		}
 		return childrenFeatures;
 	}
 
 	/**
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
+	 * <!-- begin-user-doc --> <!-- end-user-doc -->
+	 * 
 	 * @generated
 	 */
 	@Override
@@ -138,21 +119,18 @@ public class MergeEventItemProvider extends EventItemProvider implements
 	}
 
 	/**
-	 * This returns MergeEvent.gif.
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
+	 * This returns MergeEvent.gif. <!-- begin-user-doc --> <!-- end-user-doc -->
+	 * 
 	 * @generated
 	 */
 	@Override
 	public Object getImage(Object object) {
-		return overlayImage(object, getResourceLocator().getImage(
-				"full/obj16/MergeEvent"));
+		return overlayImage(object, getResourceLocator().getImage("full/obj16/MergeEvent"));
 	}
 
 	/**
-	 * This returns the label text for the adapted class.
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
+	 * This returns the label text for the adapted class. <!-- begin-user-doc --> <!-- end-user-doc -->
+	 * 
 	 * @generated
 	 */
 	@Override
@@ -160,14 +138,14 @@ public class MergeEventItemProvider extends EventItemProvider implements
 		Date labelValue = ((MergeEvent) object).getTimestamp();
 		String label = labelValue == null ? null : labelValue.toString();
 		return label == null || label.length() == 0 ? getString("_UI_MergeEvent_type")
-				: getString("_UI_MergeEvent_type") + " " + label;
+			: getString("_UI_MergeEvent_type") + " " + label;
 	}
 
 	/**
-	 * This handles model notifications by calling {@link #updateChildren} to update any cached
-	 * children and by creating a viewer notification, which it passes to {@link #fireNotifyChanged}.
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
+	 * This handles model notifications by calling {@link #updateChildren} to update any cached children and by creating
+	 * a viewer notification, which it passes to {@link #fireNotifyChanged}. <!-- begin-user-doc --> <!-- end-user-doc
+	 * -->
+	 * 
 	 * @generated
 	 */
 	@Override
@@ -177,99 +155,78 @@ public class MergeEventItemProvider extends EventItemProvider implements
 		switch (notification.getFeatureID(MergeEvent.class)) {
 		case EventsPackage.MERGE_EVENT__NUMBER_OF_CONFLICTS:
 		case EventsPackage.MERGE_EVENT__TOTAL_TIME:
-			fireNotifyChanged(new ViewerNotification(notification, notification
-					.getNotifier(), false, true));
+			fireNotifyChanged(new ViewerNotification(notification, notification.getNotifier(), false, true));
 			return;
 		case EventsPackage.MERGE_EVENT__BASE_VERSION:
 		case EventsPackage.MERGE_EVENT__TARGET_VERSION:
 		case EventsPackage.MERGE_EVENT__LOCAL_CHANGES:
-			fireNotifyChanged(new ViewerNotification(notification, notification
-					.getNotifier(), true, false));
+			fireNotifyChanged(new ViewerNotification(notification, notification.getNotifier(), true, false));
 			return;
 		}
 		super.notifyChanged(notification);
 	}
 
 	/**
-	 * This adds {@link org.eclipse.emf.edit.command.CommandParameter}s describing the children
-	 * that can be created under this object.
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
+	 * This adds {@link org.eclipse.emf.edit.command.CommandParameter}s describing the children that can be created
+	 * under this object. <!-- begin-user-doc --> <!-- end-user-doc -->
+	 * 
 	 * @generated
 	 */
 	@Override
-	protected void collectNewChildDescriptors(
-			Collection<Object> newChildDescriptors, Object object) {
+	protected void collectNewChildDescriptors(Collection<Object> newChildDescriptors, Object object) {
 		super.collectNewChildDescriptors(newChildDescriptors, object);
 
-		newChildDescriptors.add(createChildParameter(
-				EventsPackage.Literals.MERGE_EVENT__BASE_VERSION,
-				VersioningFactory.eINSTANCE.createPrimaryVersionSpec()));
+		newChildDescriptors.add(createChildParameter(EventsPackage.Literals.MERGE_EVENT__BASE_VERSION,
+			VersioningFactory.eINSTANCE.createPrimaryVersionSpec()));
 
-		newChildDescriptors.add(createChildParameter(
-				EventsPackage.Literals.MERGE_EVENT__TARGET_VERSION,
-				VersioningFactory.eINSTANCE.createPrimaryVersionSpec()));
+		newChildDescriptors.add(createChildParameter(EventsPackage.Literals.MERGE_EVENT__TARGET_VERSION,
+			VersioningFactory.eINSTANCE.createPrimaryVersionSpec()));
 
-		newChildDescriptors.add(createChildParameter(
-				EventsPackage.Literals.MERGE_EVENT__LOCAL_CHANGES,
-				OperationsFactory.eINSTANCE.createCompositeOperation()));
+		newChildDescriptors.add(createChildParameter(EventsPackage.Literals.MERGE_EVENT__LOCAL_CHANGES,
+			OperationsFactory.eINSTANCE.createCompositeOperation()));
 
-		newChildDescriptors.add(createChildParameter(
-				EventsPackage.Literals.MERGE_EVENT__LOCAL_CHANGES,
-				OperationsFactory.eINSTANCE.createCreateDeleteOperation()));
+		newChildDescriptors.add(createChildParameter(EventsPackage.Literals.MERGE_EVENT__LOCAL_CHANGES,
+			OperationsFactory.eINSTANCE.createCreateDeleteOperation()));
 
-		newChildDescriptors.add(createChildParameter(
-				EventsPackage.Literals.MERGE_EVENT__LOCAL_CHANGES,
-				OperationsFactory.eINSTANCE.createAttributeOperation()));
+		newChildDescriptors.add(createChildParameter(EventsPackage.Literals.MERGE_EVENT__LOCAL_CHANGES,
+			OperationsFactory.eINSTANCE.createAttributeOperation()));
 
-		newChildDescriptors.add(createChildParameter(
-				EventsPackage.Literals.MERGE_EVENT__LOCAL_CHANGES,
-				OperationsFactory.eINSTANCE.createSingleReferenceOperation()));
+		newChildDescriptors.add(createChildParameter(EventsPackage.Literals.MERGE_EVENT__LOCAL_CHANGES,
+			OperationsFactory.eINSTANCE.createSingleReferenceOperation()));
 
-		newChildDescriptors.add(createChildParameter(
-				EventsPackage.Literals.MERGE_EVENT__LOCAL_CHANGES,
-				OperationsFactory.eINSTANCE.createMultiReferenceOperation()));
+		newChildDescriptors.add(createChildParameter(EventsPackage.Literals.MERGE_EVENT__LOCAL_CHANGES,
+			OperationsFactory.eINSTANCE.createMultiReferenceOperation()));
 
-		newChildDescriptors
-				.add(createChildParameter(
-						EventsPackage.Literals.MERGE_EVENT__LOCAL_CHANGES,
-						OperationsFactory.eINSTANCE
-								.createMultiReferenceMoveOperation()));
+		newChildDescriptors.add(createChildParameter(EventsPackage.Literals.MERGE_EVENT__LOCAL_CHANGES,
+			OperationsFactory.eINSTANCE.createMultiReferenceMoveOperation()));
 
-		newChildDescriptors.add(createChildParameter(
-				EventsPackage.Literals.MERGE_EVENT__LOCAL_CHANGES,
-				OperationsFactory.eINSTANCE.createMultiAttributeOperation()));
+		newChildDescriptors.add(createChildParameter(EventsPackage.Literals.MERGE_EVENT__LOCAL_CHANGES,
+			OperationsFactory.eINSTANCE.createMultiAttributeOperation()));
 
-		newChildDescriptors.add(createChildParameter(
-				EventsPackage.Literals.MERGE_EVENT__LOCAL_CHANGES,
-				OperationsFactory.eINSTANCE.createDiagramLayoutOperation()));
+		newChildDescriptors.add(createChildParameter(EventsPackage.Literals.MERGE_EVENT__LOCAL_CHANGES,
+			OperationsFactory.eINSTANCE.createDiagramLayoutOperation()));
 
-		newChildDescriptors
-				.add(createChildParameter(
-						EventsPackage.Literals.MERGE_EVENT__LOCAL_CHANGES,
-						OperationsFactory.eINSTANCE
-								.createMultiAttributeMoveOperation()));
+		newChildDescriptors.add(createChildParameter(EventsPackage.Literals.MERGE_EVENT__LOCAL_CHANGES,
+			OperationsFactory.eINSTANCE.createMultiAttributeMoveOperation()));
 	}
 
 	/**
-	 * This returns the label text for {@link org.eclipse.emf.edit.command.CreateChildCommand}.
-	 * <!-- begin-user-doc -->
+	 * This returns the label text for {@link org.eclipse.emf.edit.command.CreateChildCommand}. <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
+	 * 
 	 * @generated
 	 */
 	@Override
-	public String getCreateChildText(Object owner, Object feature,
-			Object child, Collection<?> selection) {
+	public String getCreateChildText(Object owner, Object feature, Object child, Collection<?> selection) {
 		Object childFeature = feature;
 		Object childObject = child;
 
 		boolean qualify = childFeature == EventsPackage.Literals.MERGE_EVENT__BASE_VERSION
-				|| childFeature == EventsPackage.Literals.MERGE_EVENT__TARGET_VERSION;
+			|| childFeature == EventsPackage.Literals.MERGE_EVENT__TARGET_VERSION;
 
 		if (qualify) {
-			return getString("_UI_CreateChild_text2", new Object[] {
-					getTypeText(childObject), getFeatureText(childFeature),
-					getTypeText(owner) });
+			return getString("_UI_CreateChild_text2", new Object[] { getTypeText(childObject),
+				getFeatureText(childFeature), getTypeText(owner) });
 		}
 		return super.getCreateChildText(owner, feature, child, selection);
 	}

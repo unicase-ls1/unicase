@@ -23,7 +23,6 @@ import org.unicase.workspace.WorkspaceManager;
  * Implementation of a show case ganttchart.
  * 
  * @author helming
- * 
  */
 public class GantChart {
 	/**
@@ -51,8 +50,7 @@ public class GantChart {
 	/**
 	 * Default constructor.
 	 * 
-	 * @param parent
-	 *            The parent shell
+	 * @param parent The parent shell
 	 */
 	public GantChart(Composite parent) {
 
@@ -99,8 +97,7 @@ public class GantChart {
 		// is a must or you won't see a thing!)
 		left.setGanttChart(chart);
 
-		TreeViewer viewer = new TreeViewer(left, SWT.BORDER | SWT.V_SCROLL
-				| SWT.H_SCROLL | SWT.FULL_SELECTION);
+		TreeViewer viewer = new TreeViewer(left, SWT.BORDER | SWT.V_SCROLL | SWT.H_SCROLL | SWT.FULL_SELECTION);
 		Tree tree = viewer.getTree();
 		tree.setHeaderVisible(true);
 		tree.setLinesVisible(true);
@@ -112,8 +109,7 @@ public class GantChart {
 		tclmWorkItem.setLabelProvider(emfColumnLabelProvider);
 
 		viewer.setContentProvider(new GantItemProvider());
-		viewer.setInput(WorkspaceManager.getInstance().getCurrentWorkspace()
-				.getActiveProjectSpace().getProject());
+		viewer.setInput(WorkspaceManager.getInstance().getCurrentWorkspace().getActiveProjectSpace().getProject());
 		// viewer.expandAll();
 
 		TreeItem[] items = tree.getItems();
@@ -156,8 +152,7 @@ public class GantChart {
 			end.setTime(endDate);
 		}
 
-		GanttEvent ganttEvent = new GanttEvent(chart, workPackage.getName(),
-				start, end, 0);
+		GanttEvent ganttEvent = new GanttEvent(chart, workPackage.getName(), start, end, 0);
 		if (ge != null) {
 			ganttComposite.addDependency(ge, ganttEvent);
 		}
@@ -179,8 +174,7 @@ public class GantChart {
 			end.setTime(endDate);
 		}
 
-		GanttEvent ganttEvent = new GanttEvent(chart, workPackage.getName(),
-				start, end, 0);
+		GanttEvent ganttEvent = new GanttEvent(chart, workPackage.getName(), start, end, 0);
 		parent.addScopeEvent(ganttEvent);
 		return ganttEvent;
 	}

@@ -1,8 +1,7 @@
 /**
- * <copyright> Copyright (c) 2008 Jonas Helming, Maximilian Koegel. All rights reserved. This program and the accompanying materials are made available under the terms of the Eclipse Public License v1.0 which accompanies this distribution, and is available at http://www.eclipse.org/legal/epl-v10.html
- * </copyright>
- *
- * $Id$
+ * <copyright> Copyright (c) 2008 Jonas Helming, Maximilian Koegel. All rights reserved. This program and the
+ * accompanying materials are made available under the terms of the Eclipse Public License v1.0 which accompanies this
+ * distribution, and is available at http://www.eclipse.org/legal/epl-v10.html </copyright>
  */
 package org.unicase.ui.common.filter;
 
@@ -21,7 +20,6 @@ import org.unicase.workspace.util.OrgUnitHelper;
  * This filter filters to the elements of a users team.
  * 
  * @author helming
- * 
  */
 public class TeamFilter extends ViewerFilter {
 
@@ -30,8 +28,7 @@ public class TeamFilter extends ViewerFilter {
 	/**
 	 * default constructor.
 	 * 
-	 * @param user
-	 *            The user to whos team it should be filtered.
+	 * @param user The user to whos team it should be filtered.
 	 */
 	public TeamFilter(User user) {
 		team = OrgUnitHelper.getTeam(user);
@@ -44,8 +41,7 @@ public class TeamFilter extends ViewerFilter {
 	@Override
 	public boolean select(Viewer viewer, Object parentElement, Object element) {
 		if (element instanceof WorkItem) {
-			EList<OrgUnit> participants = ((WorkItem) element)
-					.getParticipants();
+			EList<OrgUnit> participants = ((WorkItem) element).getParticipants();
 			for (OrgUnit orgUnit : participants) {
 				if (team.contains(orgUnit)) {
 					return true;

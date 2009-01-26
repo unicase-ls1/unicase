@@ -1,8 +1,7 @@
 /**
- * <copyright> Copyright (c) 2008 Jonas Helming, Maximilian Koegel. All rights reserved. This program and the accompanying materials are made available under the terms of the Eclipse Public License v1.0 which accompanies this distribution, and is available at http://www.eclipse.org/legal/epl-v10.html
- * </copyright>
- *
- * $Id$
+ * <copyright> Copyright (c) 2008 Jonas Helming, Maximilian Koegel. All rights reserved. This program and the
+ * accompanying materials are made available under the terms of the Eclipse Public License v1.0 which accompanies this
+ * distribution, and is available at http://www.eclipse.org/legal/epl-v10.html </copyright>
  */
 package org.unicase.workspace.impl;
 
@@ -26,44 +25,45 @@ import org.unicase.workspace.WorkspaceFactory;
 import org.unicase.workspace.WorkspacePackage;
 
 /**
- * <!-- begin-user-doc --> An implementation of the model <b>Package</b>. <!--
- * end-user-doc -->
+ * <!-- begin-user-doc --> An implementation of the model <b>Package</b>. <!-- end-user-doc -->
+ * 
  * @generated
  */
-public class WorkspacePackageImpl extends EPackageImpl implements
-		WorkspacePackage {
+public class WorkspacePackageImpl extends EPackageImpl implements WorkspacePackage {
 	/**
 	 * <!-- begin-user-doc --> <!-- end-user-doc -->
+	 * 
 	 * @generated
 	 */
 	private EClass workspaceEClass = null;
 
 	/**
 	 * <!-- begin-user-doc --> <!-- end-user-doc -->
+	 * 
 	 * @generated
 	 */
 	private EClass serverInfoEClass = null;
 
 	/**
 	 * <!-- begin-user-doc --> <!-- end-user-doc -->
+	 * 
 	 * @generated
 	 */
 	private EClass usersessionEClass = null;
 
 	/**
 	 * <!-- begin-user-doc --> <!-- end-user-doc -->
+	 * 
 	 * @generated
 	 */
 	private EClass projectSpaceEClass = null;
 
 	/**
-	 * Creates an instance of the model <b>Package</b>, registered with
-	 * {@link org.eclipse.emf.ecore.EPackage.Registry EPackage.Registry} by the
-	 * package package URI value.
+	 * Creates an instance of the model <b>Package</b>, registered with {@link org.eclipse.emf.ecore.EPackage.Registry
+	 * EPackage.Registry} by the package package URI value.
 	 * <p>
-	 * Note: the correct way to create the package is via the static factory
-	 * method {@link #init init()}, which also performs initialization of the
-	 * package, or returns the registered package, if one already exists. <!--
+	 * Note: the correct way to create the package is via the static factory method {@link #init init()}, which also
+	 * performs initialization of the package, or returns the registered package, if one already exists. <!--
 	 * begin-user-doc --> <!-- end-user-doc -->
 	 * 
 	 * @see org.eclipse.emf.ecore.EPackage.Registry
@@ -77,26 +77,24 @@ public class WorkspacePackageImpl extends EPackageImpl implements
 
 	/**
 	 * <!-- begin-user-doc --> <!-- end-user-doc -->
+	 * 
 	 * @generated
 	 */
 	private static boolean isInited = false;
 
 	/**
-	 * Creates, registers, and initializes the <b>Package</b> for this
-	 * model, and for any others upon which it depends.  Simple
-	 * dependencies are satisfied by calling this method on all
-	 * dependent packages before doing anything else.  This method drives
-	 * initialization for interdependent packages directly, in parallel
-	 * with this package, itself.
-	 * <p>Of this package and its interdependencies, all packages which
-	 * have not yet been registered by their URI values are first created
-	 * and registered.  The packages are then initialized in two steps:
-	 * meta-model objects for all of the packages are created before any
-	 * are initialized, since one package's meta-model objects may refer to
-	 * those of another.
-	 * <p>Invocation of this method will not affect any packages that have
-	 * already been initialized.
-	 * <!-- begin-user-doc --> <!-- end-user-doc -->
+	 * Creates, registers, and initializes the <b>Package</b> for this model, and for any others upon which it depends.
+	 * Simple dependencies are satisfied by calling this method on all dependent packages before doing anything else.
+	 * This method drives initialization for interdependent packages directly, in parallel with this package, itself.
+	 * <p>
+	 * Of this package and its interdependencies, all packages which have not yet been registered by their URI values
+	 * are first created and registered. The packages are then initialized in two steps: meta-model objects for all of
+	 * the packages are created before any are initialized, since one package's meta-model objects may refer to those of
+	 * another.
+	 * <p>
+	 * Invocation of this method will not affect any packages that have already been initialized. <!-- begin-user-doc
+	 * --> <!-- end-user-doc -->
+	 * 
 	 * @see #eNS_URI
 	 * @see #createPackageContents()
 	 * @see #initializePackageContents()
@@ -104,14 +102,12 @@ public class WorkspacePackageImpl extends EPackageImpl implements
 	 */
 	public static WorkspacePackage init() {
 		if (isInited)
-			return (WorkspacePackage) EPackage.Registry.INSTANCE
-					.getEPackage(WorkspacePackage.eNS_URI);
+			return (WorkspacePackage) EPackage.Registry.INSTANCE.getEPackage(WorkspacePackage.eNS_URI);
 
 		// Obtain or create and register package
 		WorkspacePackageImpl theWorkspacePackage = (WorkspacePackageImpl) (EPackage.Registry.INSTANCE
-				.getEPackage(eNS_URI) instanceof WorkspacePackageImpl ? EPackage.Registry.INSTANCE
-				.getEPackage(eNS_URI)
-				: new WorkspacePackageImpl());
+			.getEPackage(eNS_URI) instanceof WorkspacePackageImpl ? EPackage.Registry.INSTANCE.getEPackage(eNS_URI)
+			: new WorkspacePackageImpl());
 
 		isInited = true;
 
@@ -132,6 +128,7 @@ public class WorkspacePackageImpl extends EPackageImpl implements
 
 	/**
 	 * <!-- begin-user-doc --> <!-- end-user-doc -->
+	 * 
 	 * @generated
 	 */
 	public EClass getWorkspace() {
@@ -140,6 +137,7 @@ public class WorkspacePackageImpl extends EPackageImpl implements
 
 	/**
 	 * <!-- begin-user-doc --> <!-- end-user-doc -->
+	 * 
 	 * @generated
 	 */
 	public EReference getWorkspace_ProjectSpaces() {
@@ -148,6 +146,7 @@ public class WorkspacePackageImpl extends EPackageImpl implements
 
 	/**
 	 * <!-- begin-user-doc --> <!-- end-user-doc -->
+	 * 
 	 * @generated
 	 */
 	public EReference getWorkspace_ServerInfos() {
@@ -156,6 +155,7 @@ public class WorkspacePackageImpl extends EPackageImpl implements
 
 	/**
 	 * <!-- begin-user-doc --> <!-- end-user-doc -->
+	 * 
 	 * @generated
 	 */
 	public EReference getWorkspace_Usersessions() {
@@ -163,8 +163,8 @@ public class WorkspacePackageImpl extends EPackageImpl implements
 	}
 
 	/**
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
+	 * <!-- begin-user-doc --> <!-- end-user-doc -->
+	 * 
 	 * @generated
 	 */
 	public EReference getWorkspace_ActiveProjectSpace() {
@@ -173,6 +173,7 @@ public class WorkspacePackageImpl extends EPackageImpl implements
 
 	/**
 	 * <!-- begin-user-doc --> <!-- end-user-doc -->
+	 * 
 	 * @generated
 	 */
 	public EClass getServerInfo() {
@@ -181,6 +182,7 @@ public class WorkspacePackageImpl extends EPackageImpl implements
 
 	/**
 	 * <!-- begin-user-doc --> <!-- end-user-doc -->
+	 * 
 	 * @generated
 	 */
 	public EAttribute getServerInfo_Name() {
@@ -189,6 +191,7 @@ public class WorkspacePackageImpl extends EPackageImpl implements
 
 	/**
 	 * <!-- begin-user-doc --> <!-- end-user-doc -->
+	 * 
 	 * @generated
 	 */
 	public EAttribute getServerInfo_Url() {
@@ -197,6 +200,7 @@ public class WorkspacePackageImpl extends EPackageImpl implements
 
 	/**
 	 * <!-- begin-user-doc --> <!-- end-user-doc -->
+	 * 
 	 * @generated
 	 */
 	public EAttribute getServerInfo_Port() {
@@ -205,6 +209,7 @@ public class WorkspacePackageImpl extends EPackageImpl implements
 
 	/**
 	 * <!-- begin-user-doc --> <!-- end-user-doc -->
+	 * 
 	 * @generated
 	 */
 	public EAttribute getServerInfo_DisplayName() {
@@ -213,6 +218,7 @@ public class WorkspacePackageImpl extends EPackageImpl implements
 
 	/**
 	 * <!-- begin-user-doc --> <!-- end-user-doc -->
+	 * 
 	 * @generated
 	 */
 	public EReference getServerInfo_ProjectInfos() {
@@ -221,6 +227,7 @@ public class WorkspacePackageImpl extends EPackageImpl implements
 
 	/**
 	 * <!-- begin-user-doc --> <!-- end-user-doc -->
+	 * 
 	 * @generated
 	 */
 	public EReference getServerInfo_LastUsersession() {
@@ -229,6 +236,7 @@ public class WorkspacePackageImpl extends EPackageImpl implements
 
 	/**
 	 * <!-- begin-user-doc --> <!-- end-user-doc -->
+	 * 
 	 * @generated
 	 */
 	public EClass getUsersession() {
@@ -237,6 +245,7 @@ public class WorkspacePackageImpl extends EPackageImpl implements
 
 	/**
 	 * <!-- begin-user-doc --> <!-- end-user-doc -->
+	 * 
 	 * @generated
 	 */
 	public EAttribute getUsersession_Username() {
@@ -245,6 +254,7 @@ public class WorkspacePackageImpl extends EPackageImpl implements
 
 	/**
 	 * <!-- begin-user-doc --> <!-- end-user-doc -->
+	 * 
 	 * @generated
 	 */
 	public EAttribute getUsersession_Password() {
@@ -253,6 +263,7 @@ public class WorkspacePackageImpl extends EPackageImpl implements
 
 	/**
 	 * <!-- begin-user-doc --> <!-- end-user-doc -->
+	 * 
 	 * @generated
 	 */
 	public EReference getUsersession_SessionId() {
@@ -261,6 +272,7 @@ public class WorkspacePackageImpl extends EPackageImpl implements
 
 	/**
 	 * <!-- begin-user-doc --> <!-- end-user-doc -->
+	 * 
 	 * @generated
 	 */
 	public EAttribute getUsersession_PersistentPassword() {
@@ -269,6 +281,7 @@ public class WorkspacePackageImpl extends EPackageImpl implements
 
 	/**
 	 * <!-- begin-user-doc --> <!-- end-user-doc -->
+	 * 
 	 * @generated
 	 */
 	public EReference getUsersession_ServerInfo() {
@@ -277,6 +290,7 @@ public class WorkspacePackageImpl extends EPackageImpl implements
 
 	/**
 	 * <!-- begin-user-doc --> <!-- end-user-doc -->
+	 * 
 	 * @generated
 	 */
 	public EAttribute getUsersession_SavePassword() {
@@ -284,8 +298,8 @@ public class WorkspacePackageImpl extends EPackageImpl implements
 	}
 
 	/**
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
+	 * <!-- begin-user-doc --> <!-- end-user-doc -->
+	 * 
 	 * @generated
 	 */
 	public EReference getUsersession_ACUser() {
@@ -294,6 +308,7 @@ public class WorkspacePackageImpl extends EPackageImpl implements
 
 	/**
 	 * <!-- begin-user-doc --> <!-- end-user-doc -->
+	 * 
 	 * @generated
 	 */
 	public EClass getProjectSpace() {
@@ -302,6 +317,7 @@ public class WorkspacePackageImpl extends EPackageImpl implements
 
 	/**
 	 * <!-- begin-user-doc --> <!-- end-user-doc -->
+	 * 
 	 * @generated
 	 */
 	public EReference getProjectSpace_Project() {
@@ -310,6 +326,7 @@ public class WorkspacePackageImpl extends EPackageImpl implements
 
 	/**
 	 * <!-- begin-user-doc --> <!-- end-user-doc -->
+	 * 
 	 * @generated
 	 */
 	public EReference getProjectSpace_ProjectId() {
@@ -318,6 +335,7 @@ public class WorkspacePackageImpl extends EPackageImpl implements
 
 	/**
 	 * <!-- begin-user-doc --> <!-- end-user-doc -->
+	 * 
 	 * @generated
 	 */
 	public EAttribute getProjectSpace_ProjectName() {
@@ -326,6 +344,7 @@ public class WorkspacePackageImpl extends EPackageImpl implements
 
 	/**
 	 * <!-- begin-user-doc --> <!-- end-user-doc -->
+	 * 
 	 * @generated
 	 */
 	public EAttribute getProjectSpace_ProjectDescription() {
@@ -333,8 +352,8 @@ public class WorkspacePackageImpl extends EPackageImpl implements
 	}
 
 	/**
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
+	 * <!-- begin-user-doc --> <!-- end-user-doc -->
+	 * 
 	 * @generated
 	 */
 	public EReference getProjectSpace_Operations() {
@@ -342,8 +361,8 @@ public class WorkspacePackageImpl extends EPackageImpl implements
 	}
 
 	/**
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
+	 * <!-- begin-user-doc --> <!-- end-user-doc -->
+	 * 
 	 * @generated
 	 */
 	public EReference getProjectSpace_Events() {
@@ -352,6 +371,7 @@ public class WorkspacePackageImpl extends EPackageImpl implements
 
 	/**
 	 * <!-- begin-user-doc --> <!-- end-user-doc -->
+	 * 
 	 * @generated
 	 */
 	public EReference getProjectSpace_Usersession() {
@@ -360,6 +380,7 @@ public class WorkspacePackageImpl extends EPackageImpl implements
 
 	/**
 	 * <!-- begin-user-doc --> <!-- end-user-doc -->
+	 * 
 	 * @generated
 	 */
 	public EAttribute getProjectSpace_LastUpdated() {
@@ -368,6 +389,7 @@ public class WorkspacePackageImpl extends EPackageImpl implements
 
 	/**
 	 * <!-- begin-user-doc --> <!-- end-user-doc -->
+	 * 
 	 * @generated
 	 */
 	public EReference getProjectSpace_BaseVersion() {
@@ -375,8 +397,8 @@ public class WorkspacePackageImpl extends EPackageImpl implements
 	}
 
 	/**
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
+	 * <!-- begin-user-doc --> <!-- end-user-doc -->
+	 * 
 	 * @generated
 	 */
 	public EAttribute getProjectSpace_ResourceCount() {
@@ -384,8 +406,8 @@ public class WorkspacePackageImpl extends EPackageImpl implements
 	}
 
 	/**
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
+	 * <!-- begin-user-doc --> <!-- end-user-doc -->
+	 * 
 	 * @generated
 	 */
 	public EAttribute getProjectSpace_Dirty() {
@@ -393,8 +415,8 @@ public class WorkspacePackageImpl extends EPackageImpl implements
 	}
 
 	/**
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
+	 * <!-- begin-user-doc --> <!-- end-user-doc -->
+	 * 
 	 * @generated
 	 */
 	public EAttribute getProjectSpace_OldLogMessages() {
@@ -403,6 +425,7 @@ public class WorkspacePackageImpl extends EPackageImpl implements
 
 	/**
 	 * <!-- begin-user-doc --> <!-- end-user-doc -->
+	 * 
 	 * @generated
 	 */
 	public WorkspaceFactory getWorkspaceFactory() {
@@ -411,15 +434,15 @@ public class WorkspacePackageImpl extends EPackageImpl implements
 
 	/**
 	 * <!-- begin-user-doc --> <!-- end-user-doc -->
+	 * 
 	 * @generated
 	 */
 	private boolean isCreated = false;
 
 	/**
-	 * Creates the meta-model objects for the package.  This method is
-	 * guarded to have no affect on any invocation but its first.
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
+	 * Creates the meta-model objects for the package. This method is guarded to have no affect on any invocation but
+	 * its first. <!-- begin-user-doc --> <!-- end-user-doc -->
+	 * 
 	 * @generated
 	 */
 	public void createPackageContents() {
@@ -468,14 +491,14 @@ public class WorkspacePackageImpl extends EPackageImpl implements
 
 	/**
 	 * <!-- begin-user-doc --> <!-- end-user-doc -->
+	 * 
 	 * @generated
 	 */
 	private boolean isInitialized = false;
 
 	/**
-	 * Complete the initialization of the package and its meta-model. This
-	 * method is guarded to have no affect on any invocation but its first. <!--
-	 * begin-user-doc --> <!-- end-user-doc -->
+	 * Complete the initialization of the package and its meta-model. This method is guarded to have no affect on any
+	 * invocation but its first. <!-- begin-user-doc --> <!-- end-user-doc -->
 	 * 
 	 * @generated
 	 */
@@ -490,219 +513,153 @@ public class WorkspacePackageImpl extends EPackageImpl implements
 		setNsURI(eNS_URI);
 
 		// Obtain other dependent packages
-		ModelPackage theModelPackage = (ModelPackage) EPackage.Registry.INSTANCE
-				.getEPackage(ModelPackage.eNS_URI);
+		ModelPackage theModelPackage = (ModelPackage) EPackage.Registry.INSTANCE.getEPackage(ModelPackage.eNS_URI);
 		EsmodelPackage theEsmodelPackage = (EsmodelPackage) EPackage.Registry.INSTANCE
-				.getEPackage(EsmodelPackage.eNS_URI);
+			.getEPackage(EsmodelPackage.eNS_URI);
 		AccesscontrolPackage theAccesscontrolPackage = (AccesscontrolPackage) EPackage.Registry.INSTANCE
-				.getEPackage(AccesscontrolPackage.eNS_URI);
+			.getEPackage(AccesscontrolPackage.eNS_URI);
 		OperationsPackage theOperationsPackage = (OperationsPackage) EPackage.Registry.INSTANCE
-				.getEPackage(OperationsPackage.eNS_URI);
-		EventsPackage theEventsPackage = (EventsPackage) EPackage.Registry.INSTANCE
-				.getEPackage(EventsPackage.eNS_URI);
+			.getEPackage(OperationsPackage.eNS_URI);
+		EventsPackage theEventsPackage = (EventsPackage) EPackage.Registry.INSTANCE.getEPackage(EventsPackage.eNS_URI);
 		VersioningPackage theVersioningPackage = (VersioningPackage) EPackage.Registry.INSTANCE
-				.getEPackage(VersioningPackage.eNS_URI);
+			.getEPackage(VersioningPackage.eNS_URI);
 
 		// Create type parameters
 
 		// Set bounds for type parameters
 
 		// Add supertypes to classes
-		projectSpaceEClass.getESuperTypes().add(
-				theModelPackage.getIdentifiableElement());
+		projectSpaceEClass.getESuperTypes().add(theModelPackage.getIdentifiableElement());
 
 		// Initialize classes and features; add operations and parameters
-		initEClass(workspaceEClass, Workspace.class, "Workspace", !IS_ABSTRACT,
-				!IS_INTERFACE, IS_GENERATED_INSTANCE_CLASS);
-		initEReference(getWorkspace_ProjectSpaces(), this.getProjectSpace(),
-				null, "projectSpaces", null, 0, -1, Workspace.class,
-				!IS_TRANSIENT, !IS_VOLATILE, IS_CHANGEABLE, IS_COMPOSITE,
-				IS_RESOLVE_PROXIES, !IS_UNSETTABLE, IS_UNIQUE, !IS_DERIVED,
-				IS_ORDERED);
-		getWorkspace_ProjectSpaces().getEKeys().add(
-				theModelPackage.getIdentifiableElement_Identifier());
-		initEReference(getWorkspace_ServerInfos(), this.getServerInfo(), null,
-				"serverInfos", null, 0, -1, Workspace.class, !IS_TRANSIENT,
-				!IS_VOLATILE, IS_CHANGEABLE, IS_COMPOSITE, IS_RESOLVE_PROXIES,
-				!IS_UNSETTABLE, IS_UNIQUE, !IS_DERIVED, IS_ORDERED);
-		initEReference(getWorkspace_Usersessions(), this.getUsersession(),
-				null, "usersessions", null, 0, -1, Workspace.class,
-				!IS_TRANSIENT, !IS_VOLATILE, IS_CHANGEABLE, IS_COMPOSITE,
-				IS_RESOLVE_PROXIES, !IS_UNSETTABLE, IS_UNIQUE, !IS_DERIVED,
-				IS_ORDERED);
-		initEReference(getWorkspace_ActiveProjectSpace(), this
-				.getProjectSpace(), null, "activeProjectSpace", null, 0, 1,
-				Workspace.class, IS_TRANSIENT, !IS_VOLATILE, IS_CHANGEABLE,
-				!IS_COMPOSITE, IS_RESOLVE_PROXIES, !IS_UNSETTABLE, IS_UNIQUE,
-				!IS_DERIVED, IS_ORDERED);
-		getWorkspace_ActiveProjectSpace().getEKeys().add(
-				theModelPackage.getIdentifiableElement_Identifier());
+		initEClass(workspaceEClass, Workspace.class, "Workspace", !IS_ABSTRACT, !IS_INTERFACE,
+			IS_GENERATED_INSTANCE_CLASS);
+		initEReference(getWorkspace_ProjectSpaces(), this.getProjectSpace(), null, "projectSpaces", null, 0, -1,
+			Workspace.class, !IS_TRANSIENT, !IS_VOLATILE, IS_CHANGEABLE, IS_COMPOSITE, IS_RESOLVE_PROXIES,
+			!IS_UNSETTABLE, IS_UNIQUE, !IS_DERIVED, IS_ORDERED);
+		getWorkspace_ProjectSpaces().getEKeys().add(theModelPackage.getIdentifiableElement_Identifier());
+		initEReference(getWorkspace_ServerInfos(), this.getServerInfo(), null, "serverInfos", null, 0, -1,
+			Workspace.class, !IS_TRANSIENT, !IS_VOLATILE, IS_CHANGEABLE, IS_COMPOSITE, IS_RESOLVE_PROXIES,
+			!IS_UNSETTABLE, IS_UNIQUE, !IS_DERIVED, IS_ORDERED);
+		initEReference(getWorkspace_Usersessions(), this.getUsersession(), null, "usersessions", null, 0, -1,
+			Workspace.class, !IS_TRANSIENT, !IS_VOLATILE, IS_CHANGEABLE, IS_COMPOSITE, IS_RESOLVE_PROXIES,
+			!IS_UNSETTABLE, IS_UNIQUE, !IS_DERIVED, IS_ORDERED);
+		initEReference(getWorkspace_ActiveProjectSpace(), this.getProjectSpace(), null, "activeProjectSpace", null, 0,
+			1, Workspace.class, IS_TRANSIENT, !IS_VOLATILE, IS_CHANGEABLE, !IS_COMPOSITE, IS_RESOLVE_PROXIES,
+			!IS_UNSETTABLE, IS_UNIQUE, !IS_DERIVED, IS_ORDERED);
+		getWorkspace_ActiveProjectSpace().getEKeys().add(theModelPackage.getIdentifiableElement_Identifier());
 
-		EOperation op = addEOperation(workspaceEClass, this.getProjectSpace(),
-				"checkout", 0, 1, IS_UNIQUE, IS_ORDERED);
-		addEParameter(op, this.getUsersession(), "usersession", 0, 1,
-				IS_UNIQUE, IS_ORDERED);
-		addEParameter(op, theEsmodelPackage.getProjectInfo(), "projectInfo", 0,
-				1, IS_UNIQUE, IS_ORDERED);
+		EOperation op = addEOperation(workspaceEClass, this.getProjectSpace(), "checkout", 0, 1, IS_UNIQUE, IS_ORDERED);
+		addEParameter(op, this.getUsersession(), "usersession", 0, 1, IS_UNIQUE, IS_ORDERED);
+		addEParameter(op, theEsmodelPackage.getProjectInfo(), "projectInfo", 0, 1, IS_UNIQUE, IS_ORDERED);
 
-		addEOperation(workspaceEClass, null, "save", 0, 1, IS_UNIQUE,
-				IS_ORDERED);
+		addEOperation(workspaceEClass, null, "save", 0, 1, IS_UNIQUE, IS_ORDERED);
 
-		initEClass(serverInfoEClass, ServerInfo.class, "ServerInfo",
-				!IS_ABSTRACT, !IS_INTERFACE, IS_GENERATED_INSTANCE_CLASS);
-		initEAttribute(getServerInfo_Name(), ecorePackage.getEString(), "name",
-				null, 1, 1, ServerInfo.class, !IS_TRANSIENT, !IS_VOLATILE,
-				IS_CHANGEABLE, !IS_UNSETTABLE, !IS_ID, IS_UNIQUE, !IS_DERIVED,
-				IS_ORDERED);
-		initEAttribute(getServerInfo_Url(), ecorePackage.getEString(), "url",
-				null, 1, 1, ServerInfo.class, !IS_TRANSIENT, !IS_VOLATILE,
-				IS_CHANGEABLE, !IS_UNSETTABLE, !IS_ID, IS_UNIQUE, !IS_DERIVED,
-				IS_ORDERED);
-		initEAttribute(getServerInfo_Port(), ecorePackage.getEInt(), "port",
-				null, 1, 1, ServerInfo.class, !IS_TRANSIENT, !IS_VOLATILE,
-				IS_CHANGEABLE, !IS_UNSETTABLE, !IS_ID, IS_UNIQUE, !IS_DERIVED,
-				IS_ORDERED);
-		initEAttribute(getServerInfo_DisplayName(), ecorePackage.getEString(),
-				"displayName", null, 0, 1, ServerInfo.class, !IS_TRANSIENT,
-				!IS_VOLATILE, IS_CHANGEABLE, !IS_UNSETTABLE, !IS_ID, IS_UNIQUE,
-				!IS_DERIVED, IS_ORDERED);
-		initEReference(getServerInfo_ProjectInfos(), theEsmodelPackage
-				.getProjectInfo(), null, "projectInfos", null, 0, -1,
-				ServerInfo.class, IS_TRANSIENT, !IS_VOLATILE, IS_CHANGEABLE,
-				!IS_COMPOSITE, IS_RESOLVE_PROXIES, !IS_UNSETTABLE, IS_UNIQUE,
-				!IS_DERIVED, IS_ORDERED);
-		initEReference(getServerInfo_LastUsersession(), this.getUsersession(),
-				null, "lastUsersession", null, 0, 1, ServerInfo.class,
-				!IS_TRANSIENT, !IS_VOLATILE, IS_CHANGEABLE, !IS_COMPOSITE,
-				IS_RESOLVE_PROXIES, !IS_UNSETTABLE, IS_UNIQUE, !IS_DERIVED,
-				IS_ORDERED);
+		initEClass(serverInfoEClass, ServerInfo.class, "ServerInfo", !IS_ABSTRACT, !IS_INTERFACE,
+			IS_GENERATED_INSTANCE_CLASS);
+		initEAttribute(getServerInfo_Name(), ecorePackage.getEString(), "name", null, 1, 1, ServerInfo.class,
+			!IS_TRANSIENT, !IS_VOLATILE, IS_CHANGEABLE, !IS_UNSETTABLE, !IS_ID, IS_UNIQUE, !IS_DERIVED, IS_ORDERED);
+		initEAttribute(getServerInfo_Url(), ecorePackage.getEString(), "url", null, 1, 1, ServerInfo.class,
+			!IS_TRANSIENT, !IS_VOLATILE, IS_CHANGEABLE, !IS_UNSETTABLE, !IS_ID, IS_UNIQUE, !IS_DERIVED, IS_ORDERED);
+		initEAttribute(getServerInfo_Port(), ecorePackage.getEInt(), "port", null, 1, 1, ServerInfo.class,
+			!IS_TRANSIENT, !IS_VOLATILE, IS_CHANGEABLE, !IS_UNSETTABLE, !IS_ID, IS_UNIQUE, !IS_DERIVED, IS_ORDERED);
+		initEAttribute(getServerInfo_DisplayName(), ecorePackage.getEString(), "displayName", null, 0, 1,
+			ServerInfo.class, !IS_TRANSIENT, !IS_VOLATILE, IS_CHANGEABLE, !IS_UNSETTABLE, !IS_ID, IS_UNIQUE,
+			!IS_DERIVED, IS_ORDERED);
+		initEReference(getServerInfo_ProjectInfos(), theEsmodelPackage.getProjectInfo(), null, "projectInfos", null, 0,
+			-1, ServerInfo.class, IS_TRANSIENT, !IS_VOLATILE, IS_CHANGEABLE, !IS_COMPOSITE, IS_RESOLVE_PROXIES,
+			!IS_UNSETTABLE, IS_UNIQUE, !IS_DERIVED, IS_ORDERED);
+		initEReference(getServerInfo_LastUsersession(), this.getUsersession(), null, "lastUsersession", null, 0, 1,
+			ServerInfo.class, !IS_TRANSIENT, !IS_VOLATILE, IS_CHANGEABLE, !IS_COMPOSITE, IS_RESOLVE_PROXIES,
+			!IS_UNSETTABLE, IS_UNIQUE, !IS_DERIVED, IS_ORDERED);
 
-		initEClass(usersessionEClass, Usersession.class, "Usersession",
-				!IS_ABSTRACT, !IS_INTERFACE, IS_GENERATED_INSTANCE_CLASS);
-		initEAttribute(getUsersession_Username(), ecorePackage.getEString(),
-				"username", null, 0, 1, Usersession.class, !IS_TRANSIENT,
-				!IS_VOLATILE, IS_CHANGEABLE, !IS_UNSETTABLE, !IS_ID, IS_UNIQUE,
-				!IS_DERIVED, IS_ORDERED);
-		initEAttribute(getUsersession_Password(), ecorePackage.getEString(),
-				"password", null, 0, 1, Usersession.class, IS_TRANSIENT,
-				!IS_VOLATILE, IS_CHANGEABLE, !IS_UNSETTABLE, !IS_ID, IS_UNIQUE,
-				!IS_DERIVED, IS_ORDERED);
-		initEReference(getUsersession_SessionId(), theEsmodelPackage
-				.getSessionId(), null, "sessionId", null, 0, 1,
-				Usersession.class, IS_TRANSIENT, !IS_VOLATILE, IS_CHANGEABLE,
-				!IS_COMPOSITE, IS_RESOLVE_PROXIES, !IS_UNSETTABLE, IS_UNIQUE,
-				!IS_DERIVED, IS_ORDERED);
-		initEAttribute(getUsersession_PersistentPassword(), ecorePackage
-				.getEString(), "persistentPassword", null, 0, 1,
-				Usersession.class, !IS_TRANSIENT, !IS_VOLATILE, IS_CHANGEABLE,
-				!IS_UNSETTABLE, !IS_ID, IS_UNIQUE, !IS_DERIVED, IS_ORDERED);
-		initEReference(getUsersession_ServerInfo(), this.getServerInfo(), null,
-				"serverInfo", null, 0, 1, Usersession.class, !IS_TRANSIENT,
-				!IS_VOLATILE, IS_CHANGEABLE, !IS_COMPOSITE, IS_RESOLVE_PROXIES,
-				!IS_UNSETTABLE, IS_UNIQUE, !IS_DERIVED, IS_ORDERED);
-		initEAttribute(getUsersession_SavePassword(), ecorePackage
-				.getEBoolean(), "savePassword", null, 0, 1, Usersession.class,
-				!IS_TRANSIENT, !IS_VOLATILE, IS_CHANGEABLE, !IS_UNSETTABLE,
-				!IS_ID, IS_UNIQUE, !IS_DERIVED, IS_ORDERED);
-		initEReference(getUsersession_ACUser(), theAccesscontrolPackage
-				.getACUser(), null, "ACUser", null, 0, 1, Usersession.class,
-				!IS_TRANSIENT, !IS_VOLATILE, IS_CHANGEABLE, IS_COMPOSITE,
-				IS_RESOLVE_PROXIES, !IS_UNSETTABLE, IS_UNIQUE, !IS_DERIVED,
-				IS_ORDERED);
+		initEClass(usersessionEClass, Usersession.class, "Usersession", !IS_ABSTRACT, !IS_INTERFACE,
+			IS_GENERATED_INSTANCE_CLASS);
+		initEAttribute(getUsersession_Username(), ecorePackage.getEString(), "username", null, 0, 1, Usersession.class,
+			!IS_TRANSIENT, !IS_VOLATILE, IS_CHANGEABLE, !IS_UNSETTABLE, !IS_ID, IS_UNIQUE, !IS_DERIVED, IS_ORDERED);
+		initEAttribute(getUsersession_Password(), ecorePackage.getEString(), "password", null, 0, 1, Usersession.class,
+			IS_TRANSIENT, !IS_VOLATILE, IS_CHANGEABLE, !IS_UNSETTABLE, !IS_ID, IS_UNIQUE, !IS_DERIVED, IS_ORDERED);
+		initEReference(getUsersession_SessionId(), theEsmodelPackage.getSessionId(), null, "sessionId", null, 0, 1,
+			Usersession.class, IS_TRANSIENT, !IS_VOLATILE, IS_CHANGEABLE, !IS_COMPOSITE, IS_RESOLVE_PROXIES,
+			!IS_UNSETTABLE, IS_UNIQUE, !IS_DERIVED, IS_ORDERED);
+		initEAttribute(getUsersession_PersistentPassword(), ecorePackage.getEString(), "persistentPassword", null, 0,
+			1, Usersession.class, !IS_TRANSIENT, !IS_VOLATILE, IS_CHANGEABLE, !IS_UNSETTABLE, !IS_ID, IS_UNIQUE,
+			!IS_DERIVED, IS_ORDERED);
+		initEReference(getUsersession_ServerInfo(), this.getServerInfo(), null, "serverInfo", null, 0, 1,
+			Usersession.class, !IS_TRANSIENT, !IS_VOLATILE, IS_CHANGEABLE, !IS_COMPOSITE, IS_RESOLVE_PROXIES,
+			!IS_UNSETTABLE, IS_UNIQUE, !IS_DERIVED, IS_ORDERED);
+		initEAttribute(getUsersession_SavePassword(), ecorePackage.getEBoolean(), "savePassword", null, 0, 1,
+			Usersession.class, !IS_TRANSIENT, !IS_VOLATILE, IS_CHANGEABLE, !IS_UNSETTABLE, !IS_ID, IS_UNIQUE,
+			!IS_DERIVED, IS_ORDERED);
+		initEReference(getUsersession_ACUser(), theAccesscontrolPackage.getACUser(), null, "ACUser", null, 0, 1,
+			Usersession.class, !IS_TRANSIENT, !IS_VOLATILE, IS_CHANGEABLE, IS_COMPOSITE, IS_RESOLVE_PROXIES,
+			!IS_UNSETTABLE, IS_UNIQUE, !IS_DERIVED, IS_ORDERED);
 
-		addEOperation(usersessionEClass, ecorePackage.getEBoolean(),
-				"isLoggedIn", 0, 1, IS_UNIQUE, IS_ORDERED);
+		addEOperation(usersessionEClass, ecorePackage.getEBoolean(), "isLoggedIn", 0, 1, IS_UNIQUE, IS_ORDERED);
 
-		addEOperation(usersessionEClass, null, "logIn", 0, 1, IS_UNIQUE,
-				IS_ORDERED);
+		addEOperation(usersessionEClass, null, "logIn", 0, 1, IS_UNIQUE, IS_ORDERED);
 
-		op = addEOperation(usersessionEClass, this.getProjectSpace(),
-				"checkout", 0, 1, IS_UNIQUE, IS_ORDERED);
-		addEParameter(op, theEsmodelPackage.getProjectInfo(), "projectInfo", 0,
-				1, IS_UNIQUE, IS_ORDERED);
+		op = addEOperation(usersessionEClass, this.getProjectSpace(), "checkout", 0, 1, IS_UNIQUE, IS_ORDERED);
+		addEParameter(op, theEsmodelPackage.getProjectInfo(), "projectInfo", 0, 1, IS_UNIQUE, IS_ORDERED);
 
-		initEClass(projectSpaceEClass, ProjectSpace.class, "ProjectSpace",
-				!IS_ABSTRACT, !IS_INTERFACE, IS_GENERATED_INSTANCE_CLASS);
-		initEReference(getProjectSpace_Project(), theModelPackage.getProject(),
-				null, "project", null, 0, 1, ProjectSpace.class, !IS_TRANSIENT,
-				!IS_VOLATILE, IS_CHANGEABLE, IS_COMPOSITE, IS_RESOLVE_PROXIES,
-				!IS_UNSETTABLE, IS_UNIQUE, !IS_DERIVED, IS_ORDERED);
-		initEReference(getProjectSpace_ProjectId(), theEsmodelPackage
-				.getProjectId(), null, "projectId", null, 1, 1,
-				ProjectSpace.class, !IS_TRANSIENT, !IS_VOLATILE, IS_CHANGEABLE,
-				IS_COMPOSITE, IS_RESOLVE_PROXIES, !IS_UNSETTABLE, IS_UNIQUE,
-				!IS_DERIVED, IS_ORDERED);
-		initEAttribute(getProjectSpace_ProjectName(),
-				ecorePackage.getEString(), "projectName", null, 1, 1,
-				ProjectSpace.class, !IS_TRANSIENT, !IS_VOLATILE, IS_CHANGEABLE,
-				!IS_UNSETTABLE, !IS_ID, IS_UNIQUE, !IS_DERIVED, IS_ORDERED);
-		initEAttribute(getProjectSpace_ProjectDescription(), ecorePackage
-				.getEString(), "projectDescription", null, 1, 1,
-				ProjectSpace.class, !IS_TRANSIENT, !IS_VOLATILE, IS_CHANGEABLE,
-				!IS_UNSETTABLE, !IS_ID, IS_UNIQUE, !IS_DERIVED, IS_ORDERED);
-		initEReference(getProjectSpace_Operations(), theOperationsPackage
-				.getAbstractOperation(), null, "operations", null, 0, -1,
-				ProjectSpace.class, !IS_TRANSIENT, !IS_VOLATILE, IS_CHANGEABLE,
-				IS_COMPOSITE, IS_RESOLVE_PROXIES, !IS_UNSETTABLE, IS_UNIQUE,
-				!IS_DERIVED, IS_ORDERED);
-		initEReference(getProjectSpace_Events(), theEventsPackage.getEvent(),
-				null, "events", null, 0, -1, ProjectSpace.class, !IS_TRANSIENT,
-				!IS_VOLATILE, IS_CHANGEABLE, IS_COMPOSITE, IS_RESOLVE_PROXIES,
-				!IS_UNSETTABLE, IS_UNIQUE, !IS_DERIVED, IS_ORDERED);
-		initEReference(getProjectSpace_Usersession(), this.getUsersession(),
-				null, "usersession", null, 0, 1, ProjectSpace.class,
-				!IS_TRANSIENT, !IS_VOLATILE, IS_CHANGEABLE, !IS_COMPOSITE,
-				IS_RESOLVE_PROXIES, !IS_UNSETTABLE, IS_UNIQUE, !IS_DERIVED,
-				IS_ORDERED);
-		initEAttribute(getProjectSpace_LastUpdated(), ecorePackage.getEDate(),
-				"lastUpdated", null, 0, 1, ProjectSpace.class, !IS_TRANSIENT,
-				!IS_VOLATILE, IS_CHANGEABLE, !IS_UNSETTABLE, !IS_ID, IS_UNIQUE,
-				!IS_DERIVED, IS_ORDERED);
-		initEReference(getProjectSpace_BaseVersion(), theVersioningPackage
-				.getPrimaryVersionSpec(), null, "baseVersion", null, 1, 1,
-				ProjectSpace.class, !IS_TRANSIENT, !IS_VOLATILE, IS_CHANGEABLE,
-				IS_COMPOSITE, IS_RESOLVE_PROXIES, !IS_UNSETTABLE, IS_UNIQUE,
-				!IS_DERIVED, IS_ORDERED);
-		initEAttribute(getProjectSpace_ResourceCount(), ecorePackage.getEInt(),
-				"resourceCount", null, 0, 1, ProjectSpace.class, !IS_TRANSIENT,
-				!IS_VOLATILE, IS_CHANGEABLE, !IS_UNSETTABLE, !IS_ID, IS_UNIQUE,
-				!IS_DERIVED, IS_ORDERED);
-		initEAttribute(getProjectSpace_Dirty(), ecorePackage.getEBoolean(),
-				"dirty", null, 0, 1, ProjectSpace.class, !IS_TRANSIENT,
-				!IS_VOLATILE, IS_CHANGEABLE, !IS_UNSETTABLE, !IS_ID, IS_UNIQUE,
-				!IS_DERIVED, IS_ORDERED);
-		initEAttribute(getProjectSpace_OldLogMessages(), ecorePackage
-				.getEString(), "oldLogMessages", null, 0, -1,
-				ProjectSpace.class, !IS_TRANSIENT, !IS_VOLATILE, IS_CHANGEABLE,
-				!IS_UNSETTABLE, !IS_ID, IS_UNIQUE, !IS_DERIVED, IS_ORDERED);
+		initEClass(projectSpaceEClass, ProjectSpace.class, "ProjectSpace", !IS_ABSTRACT, !IS_INTERFACE,
+			IS_GENERATED_INSTANCE_CLASS);
+		initEReference(getProjectSpace_Project(), theModelPackage.getProject(), null, "project", null, 0, 1,
+			ProjectSpace.class, !IS_TRANSIENT, !IS_VOLATILE, IS_CHANGEABLE, IS_COMPOSITE, IS_RESOLVE_PROXIES,
+			!IS_UNSETTABLE, IS_UNIQUE, !IS_DERIVED, IS_ORDERED);
+		initEReference(getProjectSpace_ProjectId(), theEsmodelPackage.getProjectId(), null, "projectId", null, 1, 1,
+			ProjectSpace.class, !IS_TRANSIENT, !IS_VOLATILE, IS_CHANGEABLE, IS_COMPOSITE, IS_RESOLVE_PROXIES,
+			!IS_UNSETTABLE, IS_UNIQUE, !IS_DERIVED, IS_ORDERED);
+		initEAttribute(getProjectSpace_ProjectName(), ecorePackage.getEString(), "projectName", null, 1, 1,
+			ProjectSpace.class, !IS_TRANSIENT, !IS_VOLATILE, IS_CHANGEABLE, !IS_UNSETTABLE, !IS_ID, IS_UNIQUE,
+			!IS_DERIVED, IS_ORDERED);
+		initEAttribute(getProjectSpace_ProjectDescription(), ecorePackage.getEString(), "projectDescription", null, 1,
+			1, ProjectSpace.class, !IS_TRANSIENT, !IS_VOLATILE, IS_CHANGEABLE, !IS_UNSETTABLE, !IS_ID, IS_UNIQUE,
+			!IS_DERIVED, IS_ORDERED);
+		initEReference(getProjectSpace_Operations(), theOperationsPackage.getAbstractOperation(), null, "operations",
+			null, 0, -1, ProjectSpace.class, !IS_TRANSIENT, !IS_VOLATILE, IS_CHANGEABLE, IS_COMPOSITE,
+			IS_RESOLVE_PROXIES, !IS_UNSETTABLE, IS_UNIQUE, !IS_DERIVED, IS_ORDERED);
+		initEReference(getProjectSpace_Events(), theEventsPackage.getEvent(), null, "events", null, 0, -1,
+			ProjectSpace.class, !IS_TRANSIENT, !IS_VOLATILE, IS_CHANGEABLE, IS_COMPOSITE, IS_RESOLVE_PROXIES,
+			!IS_UNSETTABLE, IS_UNIQUE, !IS_DERIVED, IS_ORDERED);
+		initEReference(getProjectSpace_Usersession(), this.getUsersession(), null, "usersession", null, 0, 1,
+			ProjectSpace.class, !IS_TRANSIENT, !IS_VOLATILE, IS_CHANGEABLE, !IS_COMPOSITE, IS_RESOLVE_PROXIES,
+			!IS_UNSETTABLE, IS_UNIQUE, !IS_DERIVED, IS_ORDERED);
+		initEAttribute(getProjectSpace_LastUpdated(), ecorePackage.getEDate(), "lastUpdated", null, 0, 1,
+			ProjectSpace.class, !IS_TRANSIENT, !IS_VOLATILE, IS_CHANGEABLE, !IS_UNSETTABLE, !IS_ID, IS_UNIQUE,
+			!IS_DERIVED, IS_ORDERED);
+		initEReference(getProjectSpace_BaseVersion(), theVersioningPackage.getPrimaryVersionSpec(), null,
+			"baseVersion", null, 1, 1, ProjectSpace.class, !IS_TRANSIENT, !IS_VOLATILE, IS_CHANGEABLE, IS_COMPOSITE,
+			IS_RESOLVE_PROXIES, !IS_UNSETTABLE, IS_UNIQUE, !IS_DERIVED, IS_ORDERED);
+		initEAttribute(getProjectSpace_ResourceCount(), ecorePackage.getEInt(), "resourceCount", null, 0, 1,
+			ProjectSpace.class, !IS_TRANSIENT, !IS_VOLATILE, IS_CHANGEABLE, !IS_UNSETTABLE, !IS_ID, IS_UNIQUE,
+			!IS_DERIVED, IS_ORDERED);
+		initEAttribute(getProjectSpace_Dirty(), ecorePackage.getEBoolean(), "dirty", null, 0, 1, ProjectSpace.class,
+			!IS_TRANSIENT, !IS_VOLATILE, IS_CHANGEABLE, !IS_UNSETTABLE, !IS_ID, IS_UNIQUE, !IS_DERIVED, IS_ORDERED);
+		initEAttribute(getProjectSpace_OldLogMessages(), ecorePackage.getEString(), "oldLogMessages", null, 0, -1,
+			ProjectSpace.class, !IS_TRANSIENT, !IS_VOLATILE, IS_CHANGEABLE, !IS_UNSETTABLE, !IS_ID, IS_UNIQUE,
+			!IS_DERIVED, IS_ORDERED);
 
-		op = addEOperation(projectSpaceEClass, theVersioningPackage
-				.getChangePackage(), "commit", 0, 1, IS_UNIQUE, IS_ORDERED);
-		addEParameter(op, theVersioningPackage.getLogMessage(), "logMessage",
-				0, 1, IS_UNIQUE, IS_ORDERED);
+		op = addEOperation(projectSpaceEClass, theVersioningPackage.getChangePackage(), "commit", 0, 1, IS_UNIQUE,
+			IS_ORDERED);
+		addEParameter(op, theVersioningPackage.getLogMessage(), "logMessage", 0, 1, IS_UNIQUE, IS_ORDERED);
 
-		addEOperation(projectSpaceEClass, null, "update", 0, 1, IS_UNIQUE,
-				IS_ORDERED);
+		addEOperation(projectSpaceEClass, null, "update", 0, 1, IS_UNIQUE, IS_ORDERED);
 
-		op = addEOperation(projectSpaceEClass, theVersioningPackage
-				.getChangePackage(), "update", 0, 1, IS_UNIQUE, IS_ORDERED);
-		addEParameter(op, theVersioningPackage.getVersionSpec(), "version", 0,
-				1, IS_UNIQUE, IS_ORDERED);
+		op = addEOperation(projectSpaceEClass, theVersioningPackage.getChangePackage(), "update", 0, 1, IS_UNIQUE,
+			IS_ORDERED);
+		addEParameter(op, theVersioningPackage.getVersionSpec(), "version", 0, 1, IS_UNIQUE, IS_ORDERED);
 
-		addEOperation(projectSpaceEClass, null, "revert", 0, 1, IS_UNIQUE,
-				IS_ORDERED);
+		addEOperation(projectSpaceEClass, null, "revert", 0, 1, IS_UNIQUE, IS_ORDERED);
 
-		addEOperation(projectSpaceEClass, null, "init", 0, 1, IS_UNIQUE,
-				IS_ORDERED);
+		addEOperation(projectSpaceEClass, null, "init", 0, 1, IS_UNIQUE, IS_ORDERED);
 
-		addEOperation(projectSpaceEClass, theEsmodelPackage.getProjectInfo(),
-				"getProjectInfo", 0, 1, IS_UNIQUE, IS_ORDERED);
+		addEOperation(projectSpaceEClass, theEsmodelPackage.getProjectInfo(), "getProjectInfo", 0, 1, IS_UNIQUE,
+			IS_ORDERED);
 
-		op = addEOperation(projectSpaceEClass, theVersioningPackage
-				.getPrimaryVersionSpec(), "resolveVersionSpec", 0, 1,
-				IS_UNIQUE, IS_ORDERED);
-		addEParameter(op, theVersioningPackage.getVersionSpec(), "versionSpec",
-				0, 1, IS_UNIQUE, IS_ORDERED);
+		op = addEOperation(projectSpaceEClass, theVersioningPackage.getPrimaryVersionSpec(), "resolveVersionSpec", 0,
+			1, IS_UNIQUE, IS_ORDERED);
+		addEParameter(op, theVersioningPackage.getVersionSpec(), "versionSpec", 0, 1, IS_UNIQUE, IS_ORDERED);
 
 		// Create resource
 		createResource(eNS_URI);

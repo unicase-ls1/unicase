@@ -1,8 +1,7 @@
 /**
- * <copyright> Copyright (c) 2008 Jonas Helming, Maximilian Koegel. All rights reserved. This program and the accompanying materials are made available under the terms of the Eclipse Public License v1.0 which accompanies this distribution, and is available at http://www.eclipse.org/legal/epl-v10.html
- * </copyright>
- *
- * $Id$
+ * <copyright> Copyright (c) 2008 Jonas Helming, Maximilian Koegel. All rights reserved. This program and the
+ * accompanying materials are made available under the terms of the Eclipse Public License v1.0 which accompanies this
+ * distribution, and is available at http://www.eclipse.org/legal/epl-v10.html </copyright>
  */
 package org.unicase.emfstore.exceptions;
 
@@ -21,7 +20,6 @@ public class ClientVersionOutOfDateException extends AccessControlException {
 
 	/**
 	 * Default constructor.
-	 * 
 	 */
 	public ClientVersionOutOfDateException() {
 		super(MESSAGE);
@@ -30,8 +28,7 @@ public class ClientVersionOutOfDateException extends AccessControlException {
 	/**
 	 * Default constructor.
 	 * 
-	 * @param msg
-	 *            message
+	 * @param msg message
 	 */
 	public ClientVersionOutOfDateException(String msg) {
 		super(msg);

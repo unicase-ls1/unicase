@@ -1,8 +1,7 @@
 /**
- * <copyright> Copyright (c) 2008 Jonas Helming, Maximilian Koegel. All rights reserved. This program and the accompanying materials are made available under the terms of the Eclipse Public License v1.0 which accompanies this distribution, and is available at http://www.eclipse.org/legal/epl-v10.html
- * </copyright>
- *
- * $Id$
+ * <copyright> Copyright (c) 2008 Jonas Helming, Maximilian Koegel. All rights reserved. This program and the
+ * accompanying materials are made available under the terms of the Eclipse Public License v1.0 which accompanies this
+ * distribution, and is available at http://www.eclipse.org/legal/epl-v10.html </copyright>
  */
 package org.unicase.ui.common.wizards.wizardpages;
 
@@ -31,7 +30,6 @@ import org.unicase.ui.common.wizards.WorkPackageReviewWizard;
  * Wizardpage for selecting the WorkItemSection.
  * 
  * @author naughton
- * 
  */
 public class WorkItemSectionSelectionPage extends WizardPage {
 	private static final String PAGE_TITLE = "Section selection";
@@ -41,8 +39,7 @@ public class WorkItemSectionSelectionPage extends WizardPage {
 	/**
 	 * Constructor.
 	 * 
-	 * @param pageName
-	 *            the page name
+	 * @param pageName the page name
 	 */
 	public WorkItemSectionSelectionPage(String pageName) {
 		super(pageName);
@@ -58,8 +55,7 @@ public class WorkItemSectionSelectionPage extends WizardPage {
 	}
 
 	/**
-	 * @param parent
-	 *            the parent.
+	 * @param parent the parent.
 	 */
 	public void createControl(Composite parent) {
 		Composite composite = new Composite(parent, SWT.NULL);
@@ -87,11 +83,10 @@ public class WorkItemSectionSelectionPage extends WizardPage {
 		WorkPackageReviewWizard wizard = (WorkPackageReviewWizard) getWizard();
 		Meeting meeting = wizard.getMeeting();
 
-		AdapterFactoryLabelProvider labelProvider = new AdapterFactoryLabelProvider(
-				new ComposedAdapterFactory(
-						ComposedAdapterFactory.Descriptor.Registry.INSTANCE));
-		
-		List<WorkItemMeetingSection> workItemMeetingSections= getAllWorkItemMeetingSections(meeting);
+		AdapterFactoryLabelProvider labelProvider = new AdapterFactoryLabelProvider(new ComposedAdapterFactory(
+			ComposedAdapterFactory.Descriptor.Registry.INSTANCE));
+
+		List<WorkItemMeetingSection> workItemMeetingSections = getAllWorkItemMeetingSections(meeting);
 
 		for (WorkItemMeetingSection workItemMeetingSection : workItemMeetingSections) {
 			TableItem item = new TableItem(table, SWT.NONE);
@@ -99,7 +94,7 @@ public class WorkItemSectionSelectionPage extends WizardPage {
 			item.setImage(labelProvider.getImage(workItemMeetingSection));
 			item.setText(workItemMeetingSection.getName());
 		}
-		if(!workItemMeetingSections.isEmpty()) {
+		if (!workItemMeetingSections.isEmpty()) {
 			table.select(0);
 			selectedSection = (WorkItemMeetingSection) table.getSelection()[0].getData();
 		}
@@ -108,20 +103,18 @@ public class WorkItemSectionSelectionPage extends WizardPage {
 		table.setRedraw(true);
 	}
 
-	private List<WorkItemMeetingSection> getAllWorkItemMeetingSections(
-			Meeting meeting) {
+	private List<WorkItemMeetingSection> getAllWorkItemMeetingSections(Meeting meeting) {
 		EList<MeetingSection> sections = meeting.getSections();
 		return getAllWorkItemMeetingSections(sections);
 	}
 
-	private List<WorkItemMeetingSection> getAllWorkItemMeetingSections(
-			EList<MeetingSection> sections) {
+	private List<WorkItemMeetingSection> getAllWorkItemMeetingSections(EList<MeetingSection> sections) {
 		List<WorkItemMeetingSection> list = new ArrayList<WorkItemMeetingSection>();
-		for(MeetingSection section : sections) {
-			if(section instanceof WorkItemMeetingSection) {
-				list.add((WorkItemMeetingSection)section);
-			} else if(section instanceof CompositeMeetingSection) {
-				list.addAll(getAllWorkItemMeetingSections(((CompositeMeetingSection)section).getSubsections()));
+		for (MeetingSection section : sections) {
+			if (section instanceof WorkItemMeetingSection) {
+				list.add((WorkItemMeetingSection) section);
+			} else if (section instanceof CompositeMeetingSection) {
+				list.addAll(getAllWorkItemMeetingSections(((CompositeMeetingSection) section).getSubsections()));
 			}
 		}
 		return list;

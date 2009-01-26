@@ -27,32 +27,33 @@ import org.unicase.model.Project;
 
 /**
  * A helper class for the visualization of change packages.
+ * 
  * @author koegel
  * @author shterev
- *
  */
 public class ChangePackageVisualizationHelper {
-	
+
 	private Project project;
 	private Map<ModelElementId, ModelElement> modelElementMap;
-	private Map<ChangePackage,Set<ModelElementId>> touchedModelElements;
+	private Map<ChangePackage, Set<ModelElementId>> touchedModelElements;
 	private List<ChangePackage> changePackages;
-	
+
 	/**
 	 * Constructor.
+	 * 
 	 * @param changePackages a list of change packages
 	 * @param project a project
 	 */
 	public ChangePackageVisualizationHelper(List<ChangePackage> changePackages, Project project) {
-		this.modelElementMap=new HashMap<ModelElementId, ModelElement>();
-		this.touchedModelElements=new HashMap<ChangePackage, Set<ModelElementId>>();
+		this.modelElementMap = new HashMap<ModelElementId, ModelElement>();
+		this.touchedModelElements = new HashMap<ChangePackage, Set<ModelElementId>>();
 		for (ChangePackage changePackage : changePackages) {
 			initModelELementMap(changePackage);
 		}
 		this.changePackages = changePackages;
-		this.project=project;
+		this.project = project;
 	}
-	
+
 	private void initModelELementMap(ChangePackage changePackage) {
 		EList<AbstractOperation> operations = changePackage.getOperations();
 		Set<ModelElementId> modelElements = new HashSet<ModelElementId>();
@@ -63,74 +64,71 @@ public class ChangePackageVisualizationHelper {
 		}
 	}
 
-	private void extractModelElements(Set<ModelElementId> modelElements,
-			AbstractOperation abstractOperation) {
+	private void extractModelElements(Set<ModelElementId> modelElements, AbstractOperation abstractOperation) {
 		if (abstractOperation instanceof CreateDeleteOperation) {
 			ModelElement modelElement = ((CreateDeleteOperation) abstractOperation).getModelElement();
 			modelElementMap.put(modelElement.getModelElementId(), modelElement);
-		}
-		else if (abstractOperation instanceof SingleReferenceOperation) {
+		} else if (abstractOperation instanceof SingleReferenceOperation) {
 			SingleReferenceOperation singleReferenceOperation = (SingleReferenceOperation) abstractOperation;
 			ModelElementId newValue = singleReferenceOperation.getNewValue();
 			ModelElementId oldValue = singleReferenceOperation.getOldValue();
-			if (newValue!=null) {
+			if (newValue != null) {
 				modelElements.add(newValue);
 			}
-			if (oldValue!=null) {
+			if (oldValue != null) {
 				modelElements.add(oldValue);
 			}
-		}
-		else if (abstractOperation instanceof MultiReferenceOperation) {
+		} else if (abstractOperation instanceof MultiReferenceOperation) {
 			MultiReferenceOperation multiReferenceOperation = (MultiReferenceOperation) abstractOperation;
 			modelElements.addAll(multiReferenceOperation.getReferencedModelElements());
-		}
-		else if (abstractOperation instanceof MultiReferenceMoveOperation) {
+		} else if (abstractOperation instanceof MultiReferenceMoveOperation) {
 			modelElements.add(((MultiReferenceMoveOperation) abstractOperation).getReferencedModelElementId());
-		}
-		else if (abstractOperation instanceof CompositeOperation) {
+		} else if (abstractOperation instanceof CompositeOperation) {
 			for (AbstractOperation subOperation : ((CompositeOperation) abstractOperation).getSubOperations()) {
 				extractModelElements(modelElements, subOperation);
 			}
 		}
 	}
-	
+
 	/**
 	 * Get a model element instance from the project for the given id.
+	 * 
 	 * @param modelElementId the id
 	 * @return the model element instance
 	 */
 	public ModelElement getModelElement(ModelElementId modelElementId) {
 		if (project.contains(modelElementId)) {
 			return project.getModelElement(modelElementId);
-		}
-		else {
+		} else {
 			return modelElementMap.get(modelElementId);
 		}
 	}
-	
+
 	/**
 	 * Get all elements affected by the operation.
+	 * 
 	 * @param operation the operation
 	 * @return a set of model elements
 	 */
-	public Set<EObject> getAffectedElements(AbstractOperation operation){
+	public Set<EObject> getAffectedElements(AbstractOperation operation) {
 		Set<EObject> set = new HashSet<EObject>();
 		if (operation instanceof ReferenceOperation) {
 			ReferenceOperation op = (ReferenceOperation) operation;
 			Set<ModelElementId> others = op.getOtherInvolvedModelElements();
-			for(ModelElementId id : others){
+			for (ModelElementId id : others) {
 				set.add(getModelElement(id));
 			}
 		}
 		return set;
 	}
-	
+
 	/**
 	 * Get the overlay image for an operation.
+	 * 
 	 * @param operation the operation
 	 * @return the ImageDescriptor
 	 */
-	public ImageDescriptor getOverlayImage(AbstractOperation operation){
+	public ImageDescriptor getOverlayImage(AbstractOperation operation) {
 		String overlay = null;
 		if (operation instanceof CreateDeleteOperation) {
 			CreateDeleteOperation op = (CreateDeleteOperation) operation;
@@ -166,20 +164,20 @@ public class ChangePackageVisualizationHelper {
 			overlay = "icons/link_overlay.png";
 		} else {
 			overlay = "icons/modify_overlay.png";
-		} 
-		
-		ImageDescriptor overlayDescriptor = org.unicase.ui.common.Activator
-		.getImageDescriptor(overlay);
+		}
+
+		ImageDescriptor overlayDescriptor = org.unicase.ui.common.Activator.getImageDescriptor(overlay);
 		return overlayDescriptor;
 	}
-	
+
 	/**
 	 * Get an image for the operation.
+	 * 
 	 * @param emfProvider the label provider
 	 * @param operation the operation
 	 * @return an image
 	 */
-	public Image getImage(ILabelProvider emfProvider, AbstractOperation operation){
+	public Image getImage(ILabelProvider emfProvider, AbstractOperation operation) {
 		Image image = null;
 		if (operation instanceof CreateDeleteOperation) {
 			CreateDeleteOperation op = (CreateDeleteOperation) operation;
@@ -200,22 +198,22 @@ public class ChangePackageVisualizationHelper {
 		} else if (operation instanceof MultiReferenceOperation) {
 			MultiReferenceOperation op = (MultiReferenceOperation) operation;
 			if (op.getReferencedModelElements().size() > 0) {
-				image = emfProvider.getImage(op
-						.getReferencedModelElements().get(0));
+				image = emfProvider.getImage(op.getReferencedModelElements().get(0));
 			}
 		}
 		return image;
 	}
-	
+
 	/**
 	 * Get all model elements that are changed by a change package.
+	 * 
 	 * @param changePackage the change package
 	 * @return a set of touched model elements
 	 */
 	public Set<EObject> getAllModelElements(ChangePackage changePackage) {
 		Set<EObject> set = new HashSet<EObject>();
 		Set<ModelElementId> tempSet = this.touchedModelElements.get(changePackage);
-		for(ModelElementId id: tempSet){
+		for (ModelElementId id : tempSet) {
 			set.add(getModelElement(id));
 		}
 		return set;
@@ -223,19 +221,20 @@ public class ChangePackageVisualizationHelper {
 
 	/**
 	 * Get all operations for this ModelElement in the current list of ChangePackages.
+	 * 
 	 * @param me the ModelElement
 	 * @return the operations
 	 */
-	public Set<EObject> getOperations(ModelElement me){
+	public Set<EObject> getOperations(ModelElement me) {
 		Set<EObject> set = new HashSet<EObject>();
-		for(ChangePackage cp : changePackages){
-			for(AbstractOperation op : cp.getOperations()){
-				if(op.getModelElementId().equals(me.getModelElementId())){
+		for (ChangePackage cp : changePackages) {
+			for (AbstractOperation op : cp.getOperations()) {
+				if (op.getModelElementId().equals(me.getModelElementId())) {
 					set.add(op);
-				}else if (op instanceof ReferenceOperation) {
+				} else if (op instanceof ReferenceOperation) {
 					ReferenceOperation rop = (ReferenceOperation) op;
 					Set<ModelElementId> others = rop.getOtherInvolvedModelElements();
-					if(others.contains(me.getModelElementId())){
+					if (others.contains(me.getModelElementId())) {
 						set.add(rop);
 					}
 				}

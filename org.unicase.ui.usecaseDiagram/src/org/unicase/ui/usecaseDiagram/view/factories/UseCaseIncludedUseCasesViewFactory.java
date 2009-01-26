@@ -27,23 +27,20 @@ public class UseCaseIncludedUseCasesViewFactory extends ConnectionViewFactory {
 	/**
 	 * @generated
 	 */
-	protected void decorateView(View containerView, View view,
-			IAdaptable semanticAdapter, String semanticHint, int index,
-			boolean persisted) {
+	protected void decorateView(View containerView, View view, IAdaptable semanticAdapter, String semanticHint,
+		int index, boolean persisted) {
 		if (semanticHint == null) {
 			semanticHint = org.unicase.ui.usecaseDiagram.part.ModelVisualIDRegistry
-					.getType(org.unicase.ui.usecaseDiagram.edit.parts.UseCaseIncludedUseCasesEditPart.VISUAL_ID);
+				.getType(org.unicase.ui.usecaseDiagram.edit.parts.UseCaseIncludedUseCasesEditPart.VISUAL_ID);
 			view.setType(semanticHint);
 		}
-		super.decorateView(containerView, view, semanticAdapter, semanticHint,
-				index, persisted);
+		super.decorateView(containerView, view, semanticAdapter, semanticHint, index, persisted);
 		IAdaptable eObjectAdapter = null;
-		getViewService()
-				.createNode(
-						eObjectAdapter,
-						view,
-						org.unicase.ui.usecaseDiagram.part.ModelVisualIDRegistry
-								.getType(org.unicase.ui.usecaseDiagram.edit.parts.IncludeLabelEditPart.VISUAL_ID),
-						ViewUtil.APPEND, true, getPreferencesHint());
+		getViewService().createNode(
+			eObjectAdapter,
+			view,
+			org.unicase.ui.usecaseDiagram.part.ModelVisualIDRegistry
+				.getType(org.unicase.ui.usecaseDiagram.edit.parts.IncludeLabelEditPart.VISUAL_ID), ViewUtil.APPEND,
+			true, getPreferencesHint());
 	}
 }

@@ -78,26 +78,22 @@ public class ModelElementTypes extends ElementInitializers {
 	/**
 	 * @generated
 	 */
-	private static ImageDescriptor getProvidedImageDescriptor(
-			ENamedElement element) {
+	private static ImageDescriptor getProvidedImageDescriptor(ENamedElement element) {
 		if (element instanceof EStructuralFeature) {
 			EStructuralFeature feature = ((EStructuralFeature) element);
 			EClass eContainingClass = feature.getEContainingClass();
 			EClassifier eType = feature.getEType();
 			if (eContainingClass != null && !eContainingClass.isAbstract()) {
 				element = eContainingClass;
-			} else if (eType instanceof EClass
-					&& !((EClass) eType).isAbstract()) {
+			} else if (eType instanceof EClass && !((EClass) eType).isAbstract()) {
 				element = eType;
 			}
 		}
 		if (element instanceof EClass) {
 			EClass eClass = (EClass) element;
 			if (!eClass.isAbstract()) {
-				return org.unicase.ui.stateDiagram.part.ModelDiagramEditorPlugin
-						.getInstance().getItemImageDescriptor(
-								eClass.getEPackage().getEFactoryInstance()
-										.create(eClass));
+				return org.unicase.ui.stateDiagram.part.ModelDiagramEditorPlugin.getInstance().getItemImageDescriptor(
+					eClass.getEPackage().getEFactoryInstance().create(eClass));
 			}
 		}
 		// TODO : support structural features
@@ -173,8 +169,7 @@ public class ModelElementTypes extends ElementInitializers {
 
 			elements.put(State_2001, StatePackage.eINSTANCE.getState());
 
-			elements.put(Transition_4001, StatePackage.eINSTANCE
-					.getTransition());
+			elements.put(Transition_4001, StatePackage.eINSTANCE.getTransition());
 		}
 		return (ENamedElement) elements.get(type);
 	}

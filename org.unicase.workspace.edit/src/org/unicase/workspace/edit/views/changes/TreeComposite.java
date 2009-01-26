@@ -1,8 +1,7 @@
 /**
- * <copyright> Copyright (c) 2008 Jonas Helming, Maximilian Koegel. All rights reserved. This program and the accompanying materials are made available under the terms of the Eclipse Public License v1.0 which accompanies this distribution, and is available at http://www.eclipse.org/legal/epl-v10.html
- * </copyright>
- *
- * $Id$
+ * <copyright> Copyright (c) 2008 Jonas Helming, Maximilian Koegel. All rights reserved. This program and the
+ * accompanying materials are made available under the terms of the Eclipse Public License v1.0 which accompanies this
+ * distribution, and is available at http://www.eclipse.org/legal/epl-v10.html </copyright>
  */
 package org.unicase.workspace.edit.views.changes;
 
@@ -14,26 +13,19 @@ import org.eclipse.swt.widgets.Composite;
 import org.eclipse.swt.widgets.Tree;
 
 /**
- * This class is a composite containing a TreeViewer which shows the operations of
- * an input list of ChangePackages. 
+ * This class is a composite containing a TreeViewer which shows the operations of an input list of ChangePackages.
  * 
  * @author Shterev
- * 
  */
 public class TreeComposite extends Composite {
 
-
 	private TreeViewer treeViewer;
-
-	
 
 	/**
 	 * Constructor.
 	 * 
-	 * @param parent
-	 *            parent
-	 * @param style
-	 *            style
+	 * @param parent parent
+	 * @param style style
 	 */
 	public TreeComposite(Composite parent, int style) {
 
@@ -46,21 +38,16 @@ public class TreeComposite extends Composite {
 		tree.setLinesVisible(true);
 	}
 
-
-
 	/**
 	 * Method for creating a {@link TreeViewer}.
 	 * 
-	 * @param parent
-	 *            where the viewer should be created
+	 * @param parent where the viewer should be created
 	 * @return the {@link TreeViewer}
 	 */
 	protected TreeViewer createTreeViewer(Composite parent) {
 		TreeViewer treeViewer = new TreeViewer(parent, SWT.FULL_SELECTION);
 		return treeViewer;
 	}
-
-
 
 	/**
 	 * Getter for this composite's active TreeViewer.
@@ -70,6 +57,5 @@ public class TreeComposite extends Composite {
 	public TreeViewer getTreeViewer() {
 		return treeViewer;
 	}
-	
 
 }

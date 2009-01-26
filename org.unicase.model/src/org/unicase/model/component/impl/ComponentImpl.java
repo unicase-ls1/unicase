@@ -1,7 +1,7 @@
 /**
  * <copyright> Copyright (c) 2008 Jonas Helming, Maximilian Koegel. All rights reserved. This program and the
  * accompanying materials are made available under the terms of the Eclipse Public License v1.0 which accompanies this
- * distribution, and is available at http://www.eclipse.org/legal/epl-v10.html </copyright> $Id$
+ * distribution, and is available at http://www.eclipse.org/legal/epl-v10.html </copyright>
  */
 package org.unicase.model.component.impl;
 
@@ -31,9 +31,9 @@ import org.unicase.model.impl.ModelElementImpl;
  */
 public class ComponentImpl extends ModelElementImpl implements Component {
 	/**
-	 * The cached value of the '{@link #getPackages() <em>Packages</em>}' reference list.
-	 * <!-- begin-user-doc --> <!--
+	 * The cached value of the '{@link #getPackages() <em>Packages</em>}' reference list. <!-- begin-user-doc --> <!--
 	 * end-user-doc -->
+	 * 
 	 * @see #getPackages()
 	 * @generated
 	 * @ordered
@@ -43,6 +43,7 @@ public class ComponentImpl extends ModelElementImpl implements Component {
 	/**
 	 * The cached value of the '{@link #getOfferedServices() <em>Offered Services</em>}' containment reference list.
 	 * <!-- begin-user-doc --> <!-- end-user-doc -->
+	 * 
 	 * @see #getOfferedServices()
 	 * @generated
 	 * @ordered
@@ -60,9 +61,9 @@ public class ComponentImpl extends ModelElementImpl implements Component {
 	protected EList<ComponentService> consumedServices;
 
 	/**
-	 * The cached value of the '{@link #getSubsystems() <em>Subsystems</em>}' reference list.
-	 * <!-- begin-user-doc -->
+	 * The cached value of the '{@link #getSubsystems() <em>Subsystems</em>}' reference list. <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
+	 * 
 	 * @see #getSubsystems()
 	 * @generated
 	 * @ordered
@@ -71,6 +72,7 @@ public class ComponentImpl extends ModelElementImpl implements Component {
 
 	/**
 	 * <!-- begin-user-doc --> <!-- end-user-doc -->
+	 * 
 	 * @generated
 	 */
 	protected ComponentImpl() {
@@ -79,6 +81,7 @@ public class ComponentImpl extends ModelElementImpl implements Component {
 
 	/**
 	 * <!-- begin-user-doc --> <!-- end-user-doc -->
+	 * 
 	 * @generated
 	 */
 	@Override
@@ -88,6 +91,7 @@ public class ComponentImpl extends ModelElementImpl implements Component {
 
 	/**
 	 * <!-- begin-user-doc --> <!-- end-user-doc -->
+	 * 
 	 * @generated
 	 */
 	public EList<org.unicase.model.classes.Package> getPackages() {
@@ -100,6 +104,7 @@ public class ComponentImpl extends ModelElementImpl implements Component {
 
 	/**
 	 * <!-- begin-user-doc --> <!-- end-user-doc -->
+	 * 
 	 * @generated
 	 */
 	public EList<ComponentService> getOfferedServices() {
@@ -113,6 +118,7 @@ public class ComponentImpl extends ModelElementImpl implements Component {
 
 	/**
 	 * <!-- begin-user-doc --> <!-- end-user-doc -->
+	 * 
 	 * @generated
 	 */
 	public EList<ComponentService> getConsumedServices() {
@@ -126,6 +132,7 @@ public class ComponentImpl extends ModelElementImpl implements Component {
 
 	/**
 	 * <!-- begin-user-doc --> <!-- end-user-doc -->
+	 * 
 	 * @generated
 	 */
 	public EList<org.unicase.model.classes.Package> getSubsystems() {
@@ -138,6 +145,7 @@ public class ComponentImpl extends ModelElementImpl implements Component {
 
 	/**
 	 * <!-- begin-user-doc --> <!-- end-user-doc -->
+	 * 
 	 * @generated
 	 */
 	@SuppressWarnings("unchecked")
@@ -154,6 +162,7 @@ public class ComponentImpl extends ModelElementImpl implements Component {
 
 	/**
 	 * <!-- begin-user-doc --> <!-- end-user-doc -->
+	 * 
 	 * @generated
 	 */
 	@Override
@@ -169,6 +178,7 @@ public class ComponentImpl extends ModelElementImpl implements Component {
 
 	/**
 	 * <!-- begin-user-doc --> <!-- end-user-doc -->
+	 * 
 	 * @generated
 	 */
 	@Override
@@ -188,6 +198,7 @@ public class ComponentImpl extends ModelElementImpl implements Component {
 
 	/**
 	 * <!-- begin-user-doc --> <!-- end-user-doc -->
+	 * 
 	 * @generated
 	 */
 	@SuppressWarnings("unchecked")
@@ -216,6 +227,7 @@ public class ComponentImpl extends ModelElementImpl implements Component {
 
 	/**
 	 * <!-- begin-user-doc --> <!-- end-user-doc -->
+	 * 
 	 * @generated
 	 */
 	@Override
@@ -239,6 +251,7 @@ public class ComponentImpl extends ModelElementImpl implements Component {
 
 	/**
 	 * <!-- begin-user-doc --> <!-- end-user-doc -->
+	 * 
 	 * @generated
 	 */
 	@Override

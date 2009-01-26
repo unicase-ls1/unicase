@@ -1,5 +1,5 @@
 /**
- * <copyright> </copyright> $Id$
+ * <copyright> </copyright>
  */
 package org.unicase.docExport.exportModel.renderers.defaultRenderers.impl;
 
@@ -53,7 +53,7 @@ import org.unicase.workspace.util.WorkspaceUtil;
  * end-user-doc -->
  * <p>
  * </p>
- *
+ * 
  * @generated
  */
 public class DefaultAttributeRendererImpl extends AttributeRendererImpl implements DefaultAttributeRenderer {
@@ -63,6 +63,7 @@ public class DefaultAttributeRendererImpl extends AttributeRendererImpl implemen
 
 	/**
 	 * <!-- begin-user-doc --> <!-- end-user-doc -->
+	 * 
 	 * @generated
 	 */
 	protected DefaultAttributeRendererImpl() {
@@ -71,6 +72,7 @@ public class DefaultAttributeRendererImpl extends AttributeRendererImpl implemen
 
 	/**
 	 * <!-- begin-user-doc --> <!-- end-user-doc -->
+	 * 
 	 * @generated
 	 */
 	@Override

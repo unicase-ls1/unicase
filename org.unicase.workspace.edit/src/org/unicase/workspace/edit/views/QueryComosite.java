@@ -1,8 +1,7 @@
 /**
- * <copyright> Copyright (c) 2008 Jonas Helming, Maximilian Koegel. All rights reserved. This program and the accompanying materials are made available under the terms of the Eclipse Public License v1.0 which accompanies this distribution, and is available at http://www.eclipse.org/legal/epl-v10.html
- * </copyright>
- *
- * $Id$
+ * <copyright> Copyright (c) 2008 Jonas Helming, Maximilian Koegel. All rights reserved. This program and the
+ * accompanying materials are made available under the terms of the Eclipse Public License v1.0 which accompanies this
+ * distribution, and is available at http://www.eclipse.org/legal/epl-v10.html </copyright>
  */
 package org.unicase.workspace.edit.views;
 
@@ -42,12 +41,10 @@ import org.unicase.workspace.WorkspaceManager;
 import org.unicase.workspace.edit.views.Query.QueryRangeType;
 
 /**
- * This is the contents of QueryTab in SCMViews (history and change browser
- * views). Using this tab properties of a Query class are set which later will
- * be used by view to update what they show.
+ * This is the contents of QueryTab in SCMViews (history and change browser views). Using this tab properties of a Query
+ * class are set which later will be used by view to update what they show.
  * 
  * @author Hodaie
- * 
  */
 public class QueryComosite extends Composite {
 
@@ -79,7 +76,6 @@ public class QueryComosite extends Composite {
 	// created using a generic method. This enumeration is input to that method.
 	/**
 	 * Enum for the type of list composite.
-	 * 
 	 */
 	private enum ListCompositeType {
 		ELEMENTS_LIST, USERS_LIST, ELEMENTTYPES_LIST
@@ -88,10 +84,8 @@ public class QueryComosite extends Composite {
 	/**
 	 * Constructor.
 	 * 
-	 * @param parent
-	 *            the parent
-	 * @param style
-	 *            the style
+	 * @param parent the parent
+	 * @param style the style
 	 */
 	public QueryComosite(Composite parent, int style) {
 		super(parent, style);
@@ -112,18 +106,15 @@ public class QueryComosite extends Composite {
 		rbtnVer.setSelection(true);
 
 		// list expand items
-		createExpandItem(expandBar, "Elements", createListComposite(expandBar,
-				"Elements", ListCompositeType.ELEMENTS_LIST));
-		createExpandItem(expandBar, "Users", createListComposite(expandBar,
-				"Users", ListCompositeType.USERS_LIST));
-		createExpandItem(expandBar, "Element Types",
-				createListComposite(expandBar, "Element Types",
-						ListCompositeType.ELEMENTTYPES_LIST));
+		createExpandItem(expandBar, "Elements", createListComposite(expandBar, "Elements",
+			ListCompositeType.ELEMENTS_LIST));
+		createExpandItem(expandBar, "Users", createListComposite(expandBar, "Users", ListCompositeType.USERS_LIST));
+		createExpandItem(expandBar, "Element Types", createListComposite(expandBar, "Element Types",
+			ListCompositeType.ELEMENTTYPES_LIST));
 	}
 
 	// create an expand with given contents composite
-	private void createExpandItem(ExpandBar expandBar, String title,
-			Composite composite) {
+	private void createExpandItem(ExpandBar expandBar, String title, Composite composite) {
 
 		ExpandItem expandItem = new ExpandItem(expandBar, SWT.NONE);
 		expandItem.setText(title);
@@ -133,26 +124,20 @@ public class QueryComosite extends Composite {
 			expandItem.setText(expandItem.getText() + " - disabled");
 			expandItem.setHeight(0);
 		} else {
-			expandItem.setHeight(composite
-					.computeSize(SWT.DEFAULT, SWT.DEFAULT).y);
+			expandItem.setHeight(composite.computeSize(SWT.DEFAULT, SWT.DEFAULT).y);
 			expandItem.setExpanded(true);
 		}
 	}
 
 	/**
-	 * Generic method to create three list expand items (elements, users, and
-	 * element types).
+	 * Generic method to create three list expand items (elements, users, and element types).
 	 * 
-	 * @param parent
-	 *            the parent
-	 * @param name
-	 *            the name
-	 * @param type
-	 *            the type
+	 * @param parent the parent
+	 * @param name the name
+	 * @param type the type
 	 * @return a composite
 	 */
-	private Composite createListComposite(Composite parent, String name,
-			final ListCompositeType type) {
+	private Composite createListComposite(Composite parent, String name, final ListCompositeType type) {
 		Composite composite = new Composite(parent, SWT.NONE);
 		composite.setLayoutData(new GridData(SWT.FILL, SWT.FILL, true, true));
 		composite.setLayout(new GridLayout(5, false));
@@ -184,10 +169,8 @@ public class QueryComosite extends Composite {
 		}
 
 		// the list (a TableViewer)
-		final TableViewer tableViewer = new TableViewer(composite, SWT.V_SCROLL
-				| SWT.BORDER | SWT.MULTI);
-		tableViewer.getTable().setLayoutData(
-				new GridData(SWT.FILL, SWT.FILL, true, true, 5, 1));
+		final TableViewer tableViewer = new TableViewer(composite, SWT.V_SCROLL | SWT.BORDER | SWT.MULTI);
+		tableViewer.getTable().setLayoutData(new GridData(SWT.FILL, SWT.FILL, true, true, 5, 1));
 
 		// org.unicase.ui.common.MEClassLabelProvider
 		// This label provider shows appropriate label based on
@@ -240,8 +223,7 @@ public class QueryComosite extends Composite {
 				}
 
 				public void widgetSelected(SelectionEvent e) {
-					IStructuredSelection sel = (IStructuredSelection) tableViewer
-							.getSelection();
+					IStructuredSelection sel = (IStructuredSelection) tableViewer.getSelection();
 					modelElementsList.removeAll(sel.toList());
 					tableViewer.refresh(true, true);
 				}
@@ -271,8 +253,7 @@ public class QueryComosite extends Composite {
 				}
 
 				public void widgetSelected(SelectionEvent e) {
-					IStructuredSelection sel = (IStructuredSelection) tableViewer
-							.getSelection();
+					IStructuredSelection sel = (IStructuredSelection) tableViewer.getSelection();
 					modelElementTypesList.removeAll(sel.toList());
 					tableViewer.refresh(true, true);
 
@@ -285,8 +266,8 @@ public class QueryComosite extends Composite {
 		return composite;
 	}
 
-	private void handleUsersList(Button btnAdd, Button btnRemove,
-			final TableViewer tableViewer, final ListCompositeType type) {
+	private void handleUsersList(Button btnAdd, Button btnRemove, final TableViewer tableViewer,
+		final ListCompositeType type) {
 		btnAdd.addSelectionListener(new SelectionListener() {
 			public void widgetDefaultSelected(SelectionEvent e) {
 			}
@@ -312,8 +293,7 @@ public class QueryComosite extends Composite {
 			}
 
 			public void widgetSelected(SelectionEvent e) {
-				IStructuredSelection sel = (IStructuredSelection) tableViewer
-						.getSelection();
+				IStructuredSelection sel = (IStructuredSelection) tableViewer.getSelection();
 				usersList.removeAll(sel.toList());
 				tableViewer.refresh(true, true);
 			}
@@ -330,8 +310,7 @@ public class QueryComosite extends Composite {
 	protected EClass[] showMETypeSelectionDialog() {
 		EClass[] result = null;
 
-		METypeSelectionDialog dialog = new METypeSelectionDialog(getShell(),
-				true);
+		METypeSelectionDialog dialog = new METypeSelectionDialog(getShell(), true);
 		if (dialog.open() == Window.OK) {
 			result = dialog.getResult();
 		}
@@ -342,8 +321,7 @@ public class QueryComosite extends Composite {
 	// the initial input of MESelectionDialog is set using current content
 	// of corresponding list (TableViewer)
 	private Object[] showMESelectionDialog(ListCompositeType type) {
-		this.project = WorkspaceManager.getInstance().getCurrentWorkspace()
-				.getActiveProjectSpace().getProject();
+		this.project = WorkspaceManager.getInstance().getCurrentWorkspace().getActiveProjectSpace().getProject();
 		Object[] result = new Object[0];
 		if (type == ListCompositeType.USERS_LIST) {
 			// 1. get all ACUsers
@@ -355,13 +333,11 @@ public class QueryComosite extends Composite {
 			// and accordingly the usersList is also of type User !!
 			// and Query.users list is also of type User!!
 			List<User> users = new ArrayList<User>();
-			users.addAll(project.getAllModelElementsbyClass(
-					OrganizationPackage.eINSTANCE.getUser(),
-					new BasicEList<User>()));
+			users.addAll(project.getAllModelElementsbyClass(OrganizationPackage.eINSTANCE.getUser(),
+				new BasicEList<User>()));
 			users.removeAll(usersList);
 
-			result = UnicaseUiUtil.showMESelectionDialog(getShell(), users,
-					"select user", true);
+			result = UnicaseUiUtil.showMESelectionDialog(getShell(), users, "select user", true);
 
 		} else if (type == ListCompositeType.ELEMENTS_LIST) {
 
@@ -369,8 +345,7 @@ public class QueryComosite extends Composite {
 			modelElements.addAll(project.getAllModelElements());
 			modelElements.removeAll(modelElementsList);
 
-			result = UnicaseUiUtil.showMESelectionDialog(getShell(),
-					modelElements, "select model element", true);
+			result = UnicaseUiUtil.showMESelectionDialog(getShell(), modelElements, "select model element", true);
 		}
 
 		return result;
@@ -414,8 +389,7 @@ public class QueryComosite extends Composite {
 		Label filler = new Label(composite, SWT.NONE);
 		txtNumOfDays = new Text(composite, SWT.BORDER);
 		txtNumOfDays.setEnabled(false);
-		GridData gridData1 = new GridData(SWT.LEFT, SWT.CENTER, true, true, 4,
-				1);
+		GridData gridData1 = new GridData(SWT.LEFT, SWT.CENTER, true, true, 4, 1);
 		txtNumOfDays.setLayoutData(gridData1);
 		rbtnNumOfDays.addSelectionListener(new SelectionListener() {
 
@@ -434,13 +408,11 @@ public class QueryComosite extends Composite {
 		rbtnDate.setText("Date");
 		Label lblDateFrom = new Label(composite, SWT.NONE);
 		lblDateFrom.setText("From:");
-		dtFrom = new CDateTime(composite, CDT.BORDER | CDT.DROP_DOWN
-				| CDT.COMPACT);
+		dtFrom = new CDateTime(composite, CDT.BORDER | CDT.DROP_DOWN | CDT.COMPACT);
 		dtFrom.setEnabled(false);
 		Label lblDateTo = new Label(composite, SWT.NONE);
 		lblDateTo.setText("To:");
-		dtTo = new CDateTime(composite, CDT.BORDER | CDT.DROP_DOWN
-				| CDT.COMPACT);
+		dtTo = new CDateTime(composite, CDT.BORDER | CDT.DROP_DOWN | CDT.COMPACT);
 		dtTo.setEnabled(false);
 		rbtnDate.addSelectionListener(new SelectionListener() {
 
@@ -459,10 +431,9 @@ public class QueryComosite extends Composite {
 	}
 
 	/**
-	 * This will be called by SCMViews to invoke the Query from query tab the
-	 * properties of Query are set using values of different controls on query
-	 * tab. Currently there are no validations of values (for example for nulls
-	 * or invalid numeric values)
+	 * This will be called by SCMViews to invoke the Query from query tab the properties of Query are set using values
+	 * of different controls on query tab. Currently there are no validations of values (for example for nulls or
+	 * invalid numeric values)
 	 * 
 	 * @return the query
 	 */
@@ -475,9 +446,7 @@ public class QueryComosite extends Composite {
 
 		setStartAndEndVersion();
 
-
-		query.setNumOfDays((txtNumOfDays.getText().length() == 0) ? -1
-				: Integer.parseInt(txtNumOfDays.getText()));
+		query.setNumOfDays((txtNumOfDays.getText().length() == 0) ? -1 : Integer.parseInt(txtNumOfDays.getText()));
 		query.setStartDate(dtFrom.getSelection());
 		query.setEndDate(dtTo.getSelection());
 		List<ModelElement> modelElements = new ArrayList<ModelElement>();
@@ -507,17 +476,15 @@ public class QueryComosite extends Composite {
 
 	private void setStartAndEndVersion() {
 		try {
-			query.setStartVersion((txtVerFrom.getText().length() == 0) ? -1
-					: Integer.parseInt(txtVerFrom.getText()));
+			query.setStartVersion((txtVerFrom.getText().length() == 0) ? -1 : Integer.parseInt(txtVerFrom.getText()));
 		} catch (NumberFormatException e) {
 			query.setStartVersion(-1);
 		}
 		try {
-			query.setEndVersion((txtVerTo.getText().length() == 0) ? -1
-					: Integer.parseInt(txtVerTo.getText()));
+			query.setEndVersion((txtVerTo.getText().length() == 0) ? -1 : Integer.parseInt(txtVerTo.getText()));
 		} catch (NumberFormatException e) {
 			query.setEndVersion(-1);
-		}		
+		}
 	}
 
 	private void setQueryRange() {

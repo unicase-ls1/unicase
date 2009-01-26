@@ -1,5 +1,5 @@
 /**
- * <copyright> </copyright> $Id$
+ * <copyright> </copyright>
  */
 package org.unicase.docExport.exportModel.renderers.specialRenderers.impl;
 
@@ -59,6 +59,7 @@ public class MeetingRendererImpl extends ModelElementRendererImpl implements Mee
 
 	/**
 	 * <!-- begin-user-doc --> . <!-- end-user-doc -->
+	 * 
 	 * @generated
 	 */
 	@Override

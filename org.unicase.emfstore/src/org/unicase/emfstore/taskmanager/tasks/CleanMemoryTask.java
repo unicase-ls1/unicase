@@ -15,22 +15,22 @@ import org.unicase.emfstore.taskmanager.Task;
  */
 public class CleanMemoryTask extends Task {
 
-	private static final long PERIOD = 1000*60*5;
-	
-	//for debugging
-	//private static final long PERIOD = 10000;
-	
+	private static final long PERIOD = 1000 * 60 * 5;
+
+	// for debugging
+	// private static final long PERIOD = 10000;
+
 	private EmfStoreImpl emfStoreImpl;
-	
+
 	private static final Log LOGGER = LogFactory.getLog(CleanMemoryTask.class);
-	
+
 	/**
 	 * Default constructor.
 	 * 
 	 * @param emfStore emfstore interface
 	 */
 	public CleanMemoryTask(EmfStore emfStore) {
-		super(new Date(System.currentTimeMillis()+PERIOD), PERIOD);
+		super(new Date(System.currentTimeMillis() + PERIOD), PERIOD);
 		this.emfStoreImpl = (EmfStoreImpl) emfStore;
 	}
 

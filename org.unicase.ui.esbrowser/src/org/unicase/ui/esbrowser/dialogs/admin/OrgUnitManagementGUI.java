@@ -13,13 +13,11 @@ import org.eclipse.ui.forms.widgets.FormToolkit;
 import org.unicase.workspace.AdminBroker;
 
 /**
- * This class provides the contents of ManageOrgUnitsDialog. It contains a
- * TabFolder with three tabs for Projects, Groups, and Users. On the right side
- * there is a properties view (PropertisForm). When user double clicks an item
- * in a tab, its details are shown in details view
+ * This class provides the contents of ManageOrgUnitsDialog. It contains a TabFolder with three tabs for Projects,
+ * Groups, and Users. On the right side there is a properties view (PropertisForm). When user double clicks an item in a
+ * tab, its details are shown in details view
  * 
  * @author Hodaie
- * 
  */
 public class OrgUnitManagementGUI {
 
@@ -37,11 +35,8 @@ public class OrgUnitManagementGUI {
 	/**
 	 * Constructor.
 	 * 
-	 * @param parent
-	 *            Parent
-	 * @param adminBroker
-	 *            AdminBorker is responsible for retrieving information from
-	 *            server.
+	 * @param parent Parent
+	 * @param adminBroker AdminBorker is responsible for retrieving information from server.
 	 */
 	public OrgUnitManagementGUI(Composite parent, AdminBroker adminBroker) {
 
@@ -49,8 +44,8 @@ public class OrgUnitManagementGUI {
 	}
 
 	/**
-	 * Create the SashForm. On the left hand is a TabFolder with tree tabs, and
-	 * on the right hand the properties are shown.
+	 * Create the SashForm. On the left hand is a TabFolder with tree tabs, and on the right hand the properties are
+	 * shown.
 	 * 
 	 * @param parent
 	 */
@@ -110,13 +105,11 @@ public class OrgUnitManagementGUI {
 
 	}
 
-	private PropertiesForm createPropertiesForm(SashForm sash,
-			AdminBroker adminBroker) {
+	private PropertiesForm createPropertiesForm(SashForm sash, AdminBroker adminBroker) {
 
 		FormToolkit toolkit = new FormToolkit(sash.getDisplay());
 
-		PropertiesForm frm = new PropertiesForm(sash, SWT.NONE, adminBroker,
-				this);
+		PropertiesForm frm = new PropertiesForm(sash, SWT.NONE, adminBroker, this);
 		frm.setText("Properties");
 		frm.setFont(JFaceResources.getHeaderFont());
 
@@ -127,9 +120,8 @@ public class OrgUnitManagementGUI {
 	}
 
 	/**
-	 * This creates the tabs within tab folder and sets sets AdminBorker and
-	 * PropertiesForm for them. Tab items need to be aware of properties form in
-	 * order to set its input on double click or do a drag and drop operation.
+	 * This creates the tabs within tab folder and sets sets AdminBorker and PropertiesForm for them. Tab items need to
+	 * be aware of properties form in order to set its input on double click or do a drag and drop operation.
 	 * 
 	 * @param adminBroker
 	 * @param frm
@@ -169,9 +161,8 @@ public class OrgUnitManagementGUI {
 	}
 
 	/**
-	 * This will be used by GroupComposite and UserComposite. When name of a
-	 * group or user is changed, this must be reflected in corresponding tab.
-	 * This done by refreshing the ListViewer on a tab.
+	 * This will be used by GroupComposite and UserComposite. When name of a group or user is changed, this must be
+	 * reflected in corresponding tab. This done by refreshing the ListViewer on a tab.
 	 * 
 	 * @return Active tab of TabFolder
 	 */

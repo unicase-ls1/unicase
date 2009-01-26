@@ -1,8 +1,7 @@
 /**
- * <copyright> Copyright (c) 2008 Jonas Helming, Maximilian Koegel. All rights reserved. This program and the accompanying materials are made available under the terms of the Eclipse Public License v1.0 which accompanies this distribution, and is available at http://www.eclipse.org/legal/epl-v10.html
- * </copyright>
- *
- * $Id$
+ * <copyright> Copyright (c) 2008 Jonas Helming, Maximilian Koegel. All rights reserved. This program and the
+ * accompanying materials are made available under the terms of the Eclipse Public License v1.0 which accompanies this
+ * distribution, and is available at http://www.eclipse.org/legal/epl-v10.html </copyright>
  */
 package org.unicase.emfstore.accesscontrol;
 
@@ -36,10 +35,8 @@ import org.unicase.model.ModelElement;
  * 
  * @author koegel
  * @author wesendonk
- * 
  */
-public class AccessControlImpl implements AuthenticationControl,
-		AuthorizationControl {
+public class AccessControlImpl implements AuthenticationControl, AuthorizationControl {
 
 	private Map<SessionId, ACUserContainer> sessionUserMap;
 	private ServerSpace serverSpace;
@@ -48,30 +45,22 @@ public class AccessControlImpl implements AuthenticationControl,
 	/**
 	 * Default constructor.
 	 * 
-	 * @param serverSpace
-	 *            the server space to work on
-	 * @throws FatalEmfStoreException
-	 *             an exception
-	 * @throws EmfStoreException
-	 *             an exception
+	 * @param serverSpace the server space to work on
+	 * @throws FatalEmfStoreException an exception
+	 * @throws EmfStoreException an exception
 	 */
-	public AccessControlImpl(ServerSpace serverSpace)
-			throws FatalEmfStoreException, EmfStoreException {
+	public AccessControlImpl(ServerSpace serverSpace) throws FatalEmfStoreException, EmfStoreException {
 		this.sessionUserMap = new HashMap<SessionId, ACUserContainer>();
 		this.serverSpace = serverSpace;
 
-		String property = ServerConfiguration.getProperties().getProperty(
-				ServerConfiguration.AUTHENTICATION_POLICY,
-				ServerConfiguration.AUTHENTICATION_POLICY_DEFAULT);
+		String property = ServerConfiguration.getProperties().getProperty(ServerConfiguration.AUTHENTICATION_POLICY,
+			ServerConfiguration.AUTHENTICATION_POLICY_DEFAULT);
 		if (property.equals(ServerConfiguration.AUTHENTICATION_LDAP)) {
 			authenticationControl = new LDAPVerifier();
 		} else if (property.equals(ServerConfiguration.AUTHENTICATION_SPFV)) {
-			authenticationControl = new SimplePropertyFileVerifyer(
-					ServerConfiguration
-							.getProperties()
-							.getProperty(
-									ServerConfiguration.AUTHENTICATION_SPFV_FILEPATH,
-									ServerConfiguration.AUTHENTICATION_SPFV_FILEPATH_DEFAULT));
+			authenticationControl = new SimplePropertyFileVerifyer(ServerConfiguration.getProperties().getProperty(
+				ServerConfiguration.AUTHENTICATION_SPFV_FILEPATH,
+				ServerConfiguration.AUTHENTICATION_SPFV_FILEPATH_DEFAULT));
 		} else {
 			throw new InvalidPropertyException();
 		}
@@ -80,14 +69,12 @@ public class AccessControlImpl implements AuthenticationControl,
 	/**
 	 * {@inheritDoc}
 	 * 
-	 * @see org.unicase.emfstore.accesscontrol.AuthenticationControl#logIn(java.lang.String,
-	 *      java.lang.String)
+	 * @see org.unicase.emfstore.accesscontrol.AuthenticationControl#logIn(java.lang.String, java.lang.String)
 	 */
-	public SessionId logIn(String username, String password,
-			ClientVersionInfo clientVersionInfo) throws AccessControlException {
+	public SessionId logIn(String username, String password, ClientVersionInfo clientVersionInfo)
+		throws AccessControlException {
 		ACUser user = resolveUser(username);
-		SessionId sessionId = authenticationControl.logIn(user.getName(),
-				password, clientVersionInfo);
+		SessionId sessionId = authenticationControl.logIn(user.getName(), password, clientVersionInfo);
 		sessionUserMap.put(sessionId, new ACUserContainer(user));
 		return sessionId;
 	}
@@ -97,8 +84,7 @@ public class AccessControlImpl implements AuthenticationControl,
 	 * 
 	 * @param username
 	 * @return the ACuser instance with the given name
-	 * @throws AccessControlException
-	 *             if there is no such user
+	 * @throws AccessControlException if there is no such user
 	 */
 	private ACUser resolveUser(String username) throws AccessControlException {
 		for (ACUser user : serverSpace.getUsers()) {
@@ -126,8 +112,8 @@ public class AccessControlImpl implements AuthenticationControl,
 	 * @see org.unicase.emfstore.accesscontrol.AuthorizationControl#checkWriteAccess(org.unicase.emfstore.esmodel.SessionId,
 	 *      org.unicase.emfstore.esmodel.ProjectId, java.util.Set)
 	 */
-	public void checkWriteAccess(SessionId sessionId, ProjectId projectId,
-			Set<ModelElement> modelElements) throws AccessControlException {
+	public void checkWriteAccess(SessionId sessionId, ProjectId projectId, Set<ModelElement> modelElements)
+		throws AccessControlException {
 		checkSession(sessionId);
 		ACUser user = sessionUserMap.get(sessionId).getUser();
 		List<Role> roles = new ArrayList<Role>();
@@ -144,24 +130,19 @@ public class AccessControlImpl implements AuthenticationControl,
 	}
 
 	/**
-	 * Check if the given list of roles can write to the model element in the
-	 * project.
+	 * Check if the given list of roles can write to the model element in the project.
 	 * 
-	 * @param roles
-	 *            a list of roles
-	 * @param projectId
-	 *            a project id
-	 * @param modelElement
-	 *            a model element
+	 * @param roles a list of roles
+	 * @param projectId a project id
+	 * @param modelElement a model element
 	 * @return true if one of the roles can write
 	 * @throws AccessControlException
 	 */
-	private boolean canWrite(List<Role> roles, ProjectId projectId,
-			ModelElement modelElement) throws AccessControlException {
+	private boolean canWrite(List<Role> roles, ProjectId projectId, ModelElement modelElement)
+		throws AccessControlException {
 		for (Role role : roles) {
-			if (role.canModify(projectId, modelElement)
-					|| role.canCreate(projectId, modelElement)
-					|| role.canDelete(projectId, modelElement)) {
+			if (role.canModify(projectId, modelElement) || role.canCreate(projectId, modelElement)
+				|| role.canDelete(projectId, modelElement)) {
 				return true;
 			}
 		}
@@ -169,20 +150,16 @@ public class AccessControlImpl implements AuthenticationControl,
 	}
 
 	/**
-	 * Check if the given list of roles can read the model element in the
-	 * project.
+	 * Check if the given list of roles can read the model element in the project.
 	 * 
-	 * @param roles
-	 *            a list of roles
-	 * @param projectId
-	 *            a project id
-	 * @param modelElement
-	 *            a model element
+	 * @param roles a list of roles
+	 * @param projectId a project id
+	 * @param modelElement a model element
 	 * @return true if one of the roles can read
 	 * @throws AccessControlException
 	 */
-	private boolean canRead(List<Role> roles, ProjectId projectId,
-			ModelElement modelElement) throws AccessControlException {
+	private boolean canRead(List<Role> roles, ProjectId projectId, ModelElement modelElement)
+		throws AccessControlException {
 		for (Role role : roles) {
 			if (role.canRead(projectId, modelElement)) {
 				return true;
@@ -225,8 +202,8 @@ public class AccessControlImpl implements AuthenticationControl,
 	 * @see org.unicase.emfstore.accesscontrol.AuthorizationControl#checkReadAccess(org.unicase.emfstore.esmodel.SessionId,
 	 *      org.unicase.emfstore.esmodel.ProjectId, java.util.Set)
 	 */
-	public void checkReadAccess(SessionId sessionId, ProjectId projectId,
-			Set<ModelElement> modelElements) throws AccessControlException {
+	public void checkReadAccess(SessionId sessionId, ProjectId projectId, Set<ModelElement> modelElements)
+		throws AccessControlException {
 		checkSession(sessionId);
 		ACUser user = sessionUserMap.get(sessionId).getUser();
 		List<Role> roles = new ArrayList<Role>();
@@ -248,8 +225,7 @@ public class AccessControlImpl implements AuthenticationControl,
 	 * @see org.unicase.emfstore.accesscontrol.AuthorizationControl#checkProjectAdminAccess(org.unicase.emfstore.esmodel.SessionId,
 	 *      org.unicase.emfstore.esmodel.ProjectId)
 	 */
-	public void checkProjectAdminAccess(SessionId sessionId, ProjectId projectId)
-			throws AccessControlException {
+	public void checkProjectAdminAccess(SessionId sessionId, ProjectId projectId) throws AccessControlException {
 		checkSession(sessionId);
 		ACUser user = sessionUserMap.get(sessionId).getUser();
 		List<Role> roles = new ArrayList<Role>();
@@ -268,8 +244,7 @@ public class AccessControlImpl implements AuthenticationControl,
 	 * 
 	 * @see org.unicase.emfstore.accesscontrol.AuthorizationControl#checkServerAdminAccess(org.unicase.emfstore.esmodel.SessionId)
 	 */
-	public void checkServerAdminAccess(SessionId sessionId)
-			throws AccessControlException {
+	public void checkServerAdminAccess(SessionId sessionId) throws AccessControlException {
 		checkSession(sessionId);
 		ACUser user = sessionUserMap.get(sessionId).getUser();
 		List<Role> roles = new ArrayList<Role>();
@@ -287,8 +262,7 @@ public class AccessControlImpl implements AuthenticationControl,
 	/**
 	 * {@inheritDoc}
 	 */
-	public ACUser resolveUser(SessionId sessionId)
-			throws AccessControlException {
+	public ACUser resolveUser(SessionId sessionId) throws AccessControlException {
 		checkSession(sessionId);
 		ACUser tmpUser = sessionUserMap.get(sessionId).getRawUser();
 		ACUser user = (ACUser) EcoreUtil.copy(tmpUser);
@@ -312,7 +286,6 @@ public class AccessControlImpl implements AuthenticationControl,
 
 	// extract to normal class
 	/**
-	 * 
 	 * @author wesendonk
 	 */
 	private class ACUserContainer {
@@ -345,13 +318,10 @@ public class AccessControlImpl implements AuthenticationControl,
 
 		public void checkLastActive() throws AccessControlException {
 			// OW finish implementing this method
-			String property = ServerConfiguration.getProperties().getProperty(
-					ServerConfiguration.SESSION_TIMEOUT,
-					ServerConfiguration.SESSION_TIMEOUT_DEFAULT);
-			if (System.currentTimeMillis() - lastActive > Integer
-					.parseInt(property)
-					|| System.currentTimeMillis() - firstActive > Integer
-							.parseInt(property)) {
+			String property = ServerConfiguration.getProperties().getProperty(ServerConfiguration.SESSION_TIMEOUT,
+				ServerConfiguration.SESSION_TIMEOUT_DEFAULT);
+			if (System.currentTimeMillis() - lastActive > Integer.parseInt(property)
+				|| System.currentTimeMillis() - firstActive > Integer.parseInt(property)) {
 				// OW: delete from map
 				throw new AccessControlException("Usersession timed out.");
 			}

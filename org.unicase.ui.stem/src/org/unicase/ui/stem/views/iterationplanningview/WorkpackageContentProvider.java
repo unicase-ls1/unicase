@@ -1,8 +1,7 @@
 /**
- * <copyright> Copyright (c) 2008 Jonas Helming, Maximilian Koegel. All rights reserved. This program and the accompanying materials are made available under the terms of the Eclipse Public License v1.0 which accompanies this distribution, and is available at http://www.eclipse.org/legal/epl-v10.html
- * </copyright>
- *
- * $Id$
+ * <copyright> Copyright (c) 2008 Jonas Helming, Maximilian Koegel. All rights reserved. This program and the
+ * accompanying materials are made available under the terms of the Eclipse Public License v1.0 which accompanies this
+ * distribution, and is available at http://www.eclipse.org/legal/epl-v10.html </copyright>
  */
 package org.unicase.ui.stem.views.iterationplanningview;
 
@@ -32,20 +31,17 @@ import org.unicase.workspace.WorkspacePackage;
  * . ContentProvider for IterationPlaningView
  * 
  * @author Helming
- * 
  */
-public class WorkpackageContentProvider extends
-		TransactionalAdapterFactoryContentProvider implements
-		ProjectChangeObserver {
+public class WorkpackageContentProvider extends TransactionalAdapterFactoryContentProvider implements
+	ProjectChangeObserver {
 
 	/**
 	 * remove listener.
 	 */
 	@Override
 	public void dispose() {
-		WorkspaceManager.getInstance().getCurrentWorkspace()
-				.getActiveProjectSpace().getProject()
-				.removeProjectChangeObserver(this);
+		WorkspaceManager.getInstance().getCurrentWorkspace().getActiveProjectSpace().getProject()
+			.removeProjectChangeObserver(this);
 		super.dispose();
 	}
 
@@ -55,15 +51,12 @@ public class WorkpackageContentProvider extends
 	 * . Constructor
 	 */
 	public WorkpackageContentProvider() {
-		super(WorkspaceManager.getInstance().getCurrentWorkspace()
-				.getEditingDomain(), new ComposedAdapterFactory(
-				ComposedAdapterFactory.Descriptor.Registry.INSTANCE));
+		super(WorkspaceManager.getInstance().getCurrentWorkspace().getEditingDomain(), new ComposedAdapterFactory(
+			ComposedAdapterFactory.Descriptor.Registry.INSTANCE));
 		// Listen to active project space change and register as listener
 		final WorkpackageContentProvider instance = this;
-		final Workspace currentWorkspace = WorkspaceManager.getInstance()
-				.getCurrentWorkspace();
-		ProjectSpace activeProjectSapce = currentWorkspace
-				.getActiveProjectSpace();
+		final Workspace currentWorkspace = WorkspaceManager.getInstance().getCurrentWorkspace();
+		ProjectSpace activeProjectSapce = currentWorkspace.getActiveProjectSpace();
 		if (activeProjectSapce != null) {
 			activeProjectSapce.getProject().addProjectChangeObserver(this);
 		}
@@ -75,13 +68,11 @@ public class WorkpackageContentProvider extends
 					if (currentWorkspace.getActiveProjectSpace() != null) {
 						Object oldValue = msg.getOldValue();
 						if (oldValue instanceof ProjectSpace) {
-							((ProjectSpace) oldValue).getProject()
-									.removeProjectChangeObserver(instance);
+							((ProjectSpace) oldValue).getProject().removeProjectChangeObserver(instance);
 						}
 						Object newValue = msg.getNewValue();
 						if (newValue instanceof ProjectSpace) {
-							((ProjectSpace) newValue).getProject()
-									.addProjectChangeObserver(instance);
+							((ProjectSpace) newValue).getProject().addProjectChangeObserver(instance);
 						}
 					}
 				}
@@ -100,9 +91,8 @@ public class WorkpackageContentProvider extends
 			Project project = (Project) object;
 			backlog = new Backlog(project);
 			ret.add(backlog);
-			EList<WorkPackage> allModelElementsbyClass = project
-					.getAllModelElementsbyClass(TaskPackage.eINSTANCE
-							.getWorkPackage(), new BasicEList<WorkPackage>());
+			EList<WorkPackage> allModelElementsbyClass = project.getAllModelElementsbyClass(TaskPackage.eINSTANCE
+				.getWorkPackage(), new BasicEList<WorkPackage>());
 			for (WorkPackage workPackage : allModelElementsbyClass) {
 				if (workPackage.getContainingWorkpackage() == null) {
 					ret.add(workPackage);
@@ -119,8 +109,7 @@ public class WorkpackageContentProvider extends
 	@Override
 	public Object[] getChildren(Object object) {
 		if (object instanceof Backlog) {
-			return getProjectWorkItems(((Backlog) object).getProject())
-					.toArray();
+			return getProjectWorkItems(((Backlog) object).getProject()).toArray();
 		}
 		return super.getChildren(object);
 	}
@@ -137,10 +126,8 @@ public class WorkpackageContentProvider extends
 	}
 
 	private List<WorkItem> getProjectWorkItems(Project project) {
-		EList<WorkItem> allModelElementsbyClass = project
-				.getAllModelElementsbyClass(
-						TaskPackage.eINSTANCE.getWorkItem(),
-						new BasicEList<WorkItem>(), true);
+		EList<WorkItem> allModelElementsbyClass = project.getAllModelElementsbyClass(TaskPackage.eINSTANCE
+			.getWorkItem(), new BasicEList<WorkItem>(), true);
 		List<WorkItem> ret = new ArrayList<WorkItem>();
 		for (WorkItem workItem : allModelElementsbyClass) {
 			if (!(workItem instanceof WorkPackage)) {
@@ -157,8 +144,7 @@ public class WorkpackageContentProvider extends
 	 */
 	public void modelElementAdded(Project project, ModelElement modelElement) {
 		if (modelElement instanceof WorkItem) {
-			WorkPackage containingWorkpackage = ((WorkItem) modelElement)
-					.getContainingWorkpackage();
+			WorkPackage containingWorkpackage = ((WorkItem) modelElement).getContainingWorkpackage();
 			if (containingWorkpackage == null) {
 				TreeViewer treeViewer = (TreeViewer) viewer;
 				treeViewer.refresh(backlog, true);
@@ -172,8 +158,7 @@ public class WorkpackageContentProvider extends
 	 */
 	public void modelElementRemoved(Project project, ModelElement modelElement) {
 		if (modelElement instanceof WorkItem) {
-			WorkPackage containingWorkpackage = ((WorkItem) modelElement)
-					.getContainingWorkpackage();
+			WorkPackage containingWorkpackage = ((WorkItem) modelElement).getContainingWorkpackage();
 			if (containingWorkpackage == null) {
 				TreeViewer treeViewer = (TreeViewer) viewer;
 				treeViewer.refresh(backlog, true);
@@ -185,14 +170,12 @@ public class WorkpackageContentProvider extends
 	/**
 	 * {@inheritDoc}
 	 */
-	public void notify(Notification notification, Project project,
-			ModelElement modelElement) {
+	public void notify(Notification notification, Project project, ModelElement modelElement) {
 		if (notification.isTouch()) {
 			return;
 		}
 		if (notification.getFeatureID(WorkItem.class) == TaskPackage.WORK_ITEM__CONTAINING_WORKPACKAGE) {
-			if (notification.getNewValue() == null
-					| notification.getOldValue() == null) {
+			if (notification.getNewValue() == null | notification.getOldValue() == null) {
 				TreeViewer treeViewer = (TreeViewer) viewer;
 				treeViewer.refresh(backlog, true);
 			}

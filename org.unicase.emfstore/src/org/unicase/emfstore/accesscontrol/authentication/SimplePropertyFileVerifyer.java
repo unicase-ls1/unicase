@@ -1,8 +1,7 @@
 /**
- * <copyright> Copyright (c) 2008 Jonas Helming, Maximilian Koegel. All rights reserved. This program and the accompanying materials are made available under the terms of the Eclipse Public License v1.0 which accompanies this distribution, and is available at http://www.eclipse.org/legal/epl-v10.html
- * </copyright>
- *
- * $Id$
+ * <copyright> Copyright (c) 2008 Jonas Helming, Maximilian Koegel. All rights reserved. This program and the
+ * accompanying materials are made available under the terms of the Eclipse Public License v1.0 which accompanies this
+ * distribution, and is available at http://www.eclipse.org/legal/epl-v10.html </copyright>
  */
 package org.unicase.emfstore.accesscontrol.authentication;
 
@@ -16,9 +15,8 @@ import org.apache.commons.logging.LogFactory;
 import org.unicase.emfstore.accesscontrol.AccessControlException;
 
 /**
- * This verifyer can be used to store user and passwords in a property file.
- * Entries in the property file look should look like this: <b>user =
- * password</b> WARNING: passwords are not hashed yet.
+ * This verifyer can be used to store user and passwords in a property file. Entries in the property file look should
+ * look like this: <b>user = password</b> WARNING: passwords are not hashed yet.
  * 
  * @author wesendonk
  */
@@ -31,13 +29,10 @@ public class SimplePropertyFileVerifyer extends AbstractAuthenticationControl {
 	/**
 	 * Default constructor.
 	 * 
-	 * @param filePath
-	 *            path to password file
-	 * @throws AccessControlException
-	 *             an exception
+	 * @param filePath path to password file
+	 * @throws AccessControlException an exception
 	 */
-	public SimplePropertyFileVerifyer(String filePath)
-			throws AccessControlException {
+	public SimplePropertyFileVerifyer(String filePath) throws AccessControlException {
 		super();
 		logger = LogFactory.getLog(SimplePropertyFileVerifyer.class);
 		passwordFile = new Properties();
@@ -47,9 +42,9 @@ public class SimplePropertyFileVerifyer extends AbstractAuthenticationControl {
 			passwordFile.load(fis);
 			fis.close();
 		} catch (IOException e) {
-			logger.warn("Couldn't load password file from path: "+filePath);
+			logger.warn("Couldn't load password file from path: " + filePath);
 			// Run with empty password file
-//			throw new AccessControlException("Couldn't load password file from path: "+filePath);
+			// throw new AccessControlException("Couldn't load password file from path: "+filePath);
 		}
 	}
 
@@ -57,8 +52,7 @@ public class SimplePropertyFileVerifyer extends AbstractAuthenticationControl {
 	 * {@inheritDoc}
 	 */
 	@Override
-	protected boolean verifyPassword(String username, String password)
-			throws AccessControlException {
+	protected boolean verifyPassword(String username, String password) throws AccessControlException {
 		String expectedPassword = passwordFile.getProperty(username);
 		if (expectedPassword == null || !expectedPassword.equals(password)) {
 			throw new AccessControlException();

@@ -1,8 +1,7 @@
 /**
- * <copyright> Copyright (c) 2008 Jonas Helming, Maximilian Koegel. All rights reserved. This program and the accompanying materials are made available under the terms of the Eclipse Public License v1.0 which accompanies this distribution, and is available at http://www.eclipse.org/legal/epl-v10.html
- * </copyright>
- *
- * $Id$
+ * <copyright> Copyright (c) 2008 Jonas Helming, Maximilian Koegel. All rights reserved. This program and the
+ * accompanying materials are made available under the terms of the Eclipse Public License v1.0 which accompanies this
+ * distribution, and is available at http://www.eclipse.org/legal/epl-v10.html </copyright>
  */
 
 package org.unicase.ui.common.handlers;
@@ -20,13 +19,12 @@ import org.unicase.model.task.TaskFactory;
 import org.unicase.ui.common.util.ActionHelper;
 import org.unicase.workspace.util.EventUtil;
 
-/**.
- * This is a generic handler to add different types of Annotations to a ModelElement
+/**
+ * . This is a generic handler to add different types of Annotations to a ModelElement
+ * 
  * @author Hodaie
- *
  */
 public class AddAnnotationHandler extends AbstractHandler {
-
 
 	private static final String ADD_ACTIONITEM_COMMAND_ID = "org.unicase.ui.common.commands.annotateActionItem";
 	private static final String ADD_ISSUE_COMMAND_ID = "org.unicase.ui.common.commands.annotateIssue";
@@ -35,7 +33,7 @@ public class AddAnnotationHandler extends AbstractHandler {
 	private ExecutionEvent event;
 
 	/**
-	 * . {@inheritDoc} 
+	 * . {@inheritDoc}
 	 */
 	public Object execute(ExecutionEvent event) throws ExecutionException {
 
@@ -49,18 +47,18 @@ public class AddAnnotationHandler extends AbstractHandler {
 		Annotation annotation = createAnnotation(me.getProject());
 
 		attachAnnotation(me, annotation);
-		//log event
+		// log event
 		EventUtil.logAnnotationEvent(me, annotation);
-		
+
 		// 3. open annotation object for further editing
 		openAnnotation(annotation);
 
 		return null;
 	}
 
-	/**.
-	 * This creates the appropriate Annotation based on selected menu command
-	 * and adds it to Project
+	/**
+	 * . This creates the appropriate Annotation based on selected menu command and adds it to Project
+	 * 
 	 * @param project
 	 * @return
 	 */
@@ -84,7 +82,7 @@ public class AddAnnotationHandler extends AbstractHandler {
 		}
 
 		TransactionalEditingDomain domain = TransactionalEditingDomain.Registry.INSTANCE
-				.getEditingDomain("org.unicase.EditingDomain");
+			.getEditingDomain("org.unicase.EditingDomain");
 		domain.getCommandStack().execute(new RecordingCommand(domain) {
 			@Override
 			protected void doExecute() {
@@ -95,16 +93,15 @@ public class AddAnnotationHandler extends AbstractHandler {
 		return result;
 	}
 
-	
-	/**.
-	 * This attaches the Annotation to ModelElement
+	/**
+	 * . This attaches the Annotation to ModelElement
+	 * 
 	 * @param me
 	 * @param annotation
 	 */
-	private void attachAnnotation(final ModelElement me,
-			final Annotation annotation) {
+	private void attachAnnotation(final ModelElement me, final Annotation annotation) {
 		TransactionalEditingDomain domain = TransactionalEditingDomain.Registry.INSTANCE
-				.getEditingDomain("org.unicase.EditingDomain");
+			.getEditingDomain("org.unicase.EditingDomain");
 		domain.getCommandStack().execute(new RecordingCommand(domain) {
 			@Override
 			protected void doExecute() {
@@ -114,16 +111,15 @@ public class AddAnnotationHandler extends AbstractHandler {
 
 	}
 
-	/**.
-	 * This opens Annotation for further editing
+	/**
+	 * . This opens Annotation for further editing
+	 * 
 	 * @param annotation
 	 */
 	private void openAnnotation(Annotation annotation) {
-		
-		ActionHelper.openModelElement(annotation, this.getClass().getName());
-		
-	}
 
-	
+		ActionHelper.openModelElement(annotation, this.getClass().getName());
+
+	}
 
 }

@@ -1,8 +1,7 @@
 /**
- * <copyright> Copyright (c) 2008 Jonas Helming, Maximilian Koegel. All rights reserved. This program and the accompanying materials are made available under the terms of the Eclipse Public License v1.0 which accompanies this distribution, and is available at http://www.eclipse.org/legal/epl-v10.html
- * </copyright>
- *
- * $Id$
+ * <copyright> Copyright (c) 2008 Jonas Helming, Maximilian Koegel. All rights reserved. This program and the
+ * accompanying materials are made available under the terms of the Eclipse Public License v1.0 which accompanies this
+ * distribution, and is available at http://www.eclipse.org/legal/epl-v10.html </copyright>
  */
 package org.unicase.emfstore.connection.rmi;
 
@@ -22,10 +21,8 @@ import org.unicase.emfstore.exceptions.FatalEmfStoreException;
  * ConnectionHandler for the AdminEmfStore interface using rmi.
  * 
  * @author Wesendonk
- * 
  */
-public class RMIAdminConnectionHandler implements
-		ConnectionHandler<AdminEmfStore> {
+public class RMIAdminConnectionHandler implements ConnectionHandler<AdminEmfStore> {
 
 	/**
 	 * String constant for the handlers name.
@@ -39,8 +36,7 @@ public class RMIAdminConnectionHandler implements
 
 	private RMIAdminEmfStoreFacade stub;
 
-	private static Log logger = LogFactory
-			.getLog(RMIAdminConnectionHandler.class);
+	private static Log logger = LogFactory.getLog(RMIAdminConnectionHandler.class);
 
 	/**
 	 * Default constructor.
@@ -51,18 +47,13 @@ public class RMIAdminConnectionHandler implements
 	/**
 	 * This method initializes the ConnectionHandler.
 	 * 
-	 * @param adminEmfStore
-	 *            an implementation of the {@link AdminEmfStore}
-	 * @param accessControl
-	 *            an implementation of the {@link AuthenticationControl}
-	 * @throws FatalEmfStoreException
-	 *             is thrown if the server can't initialize
-	 * @throws EmfStoreException
-	 *             exception within the server
+	 * @param adminEmfStore an implementation of the {@link AdminEmfStore}
+	 * @param accessControl an implementation of the {@link AuthenticationControl}
+	 * @throws FatalEmfStoreException is thrown if the server can't initialize
+	 * @throws EmfStoreException exception within the server
 	 */
-	public void init(AdminEmfStore adminEmfStore,
-			AuthenticationControl accessControl) throws FatalEmfStoreException,
-			EmfStoreException {
+	public void init(AdminEmfStore adminEmfStore, AuthenticationControl accessControl) throws FatalEmfStoreException,
+		EmfStoreException {
 		try {
 			stub = new RMIAdminEmfStoreFacadeImpl(adminEmfStore, accessControl);
 			Registry registry = RMIRegistryManager.getInstance().getRegistry();
@@ -78,8 +69,7 @@ public class RMIAdminConnectionHandler implements
 	/**
 	 * Stops the connection handler.
 	 * 
-	 * @param force
-	 *            true if handler should be stopped forcefully
+	 * @param force true if handler should be stopped forcefully
 	 */
 	public void stop(boolean force) {
 		if (force) {

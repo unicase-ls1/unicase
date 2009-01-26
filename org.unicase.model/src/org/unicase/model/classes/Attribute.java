@@ -1,7 +1,7 @@
 /**
  * <copyright> Copyright (c) 2008 Jonas Helming, Maximilian Koegel. All rights reserved. This program and the
  * accompanying materials are made available under the terms of the Eclipse Public License v1.0 which accompanies this
- * distribution, and is available at http://www.eclipse.org/legal/epl-v10.html </copyright> $Id$
+ * distribution, and is available at http://www.eclipse.org/legal/epl-v10.html </copyright>
  */
 package org.unicase.model.classes;
 
@@ -23,14 +23,14 @@ import org.unicase.model.ModelElement;
  */
 public interface Attribute extends ModelElement {
 	/**
-	 * Returns the value of the '<em><b>Defining Class</b></em>' container reference.
-	 * It is bidirectional and its opposite is '{@link org.unicase.model.classes.Class#getAttributes <em>Attributes</em>}'.
-	 * <!-- begin-user-doc -->
+	 * Returns the value of the '<em><b>Defining Class</b></em>' container reference. It is bidirectional and its
+	 * opposite is '{@link org.unicase.model.classes.Class#getAttributes <em>Attributes</em>}'. <!-- begin-user-doc -->
 	 * <p>
 	 * If the meaning of the '<em>Defining Class</em>' container reference isn't clear, there really should be more of a
 	 * description here...
 	 * </p>
 	 * <!-- end-user-doc -->
+	 * 
 	 * @return the value of the '<em>Defining Class</em>' container reference.
 	 * @see #setDefiningClass(org.unicase.model.classes.Class)
 	 * @see org.unicase.model.classes.ClassesPackage#getAttribute_DefiningClass()
@@ -42,8 +42,9 @@ public interface Attribute extends ModelElement {
 	org.unicase.model.classes.Class getDefiningClass();
 
 	/**
-	 * Sets the value of the '{@link org.unicase.model.classes.Attribute#getDefiningClass <em>Defining Class</em>}' container reference.
-	 * <!-- begin-user-doc --> <!-- end-user-doc -->
+	 * Sets the value of the '{@link org.unicase.model.classes.Attribute#getDefiningClass <em>Defining Class</em>}'
+	 * container reference. <!-- begin-user-doc --> <!-- end-user-doc -->
+	 * 
 	 * @param value the new value of the '<em>Defining Class</em>' container reference.
 	 * @see #getDefiningClass()
 	 * @generated
@@ -51,14 +52,14 @@ public interface Attribute extends ModelElement {
 	void setDefiningClass(org.unicase.model.classes.Class value);
 
 	/**
-	 * Returns the value of the '<em><b>Visibility</b></em>' attribute.
-	 * The literals are from the enumeration {@link org.unicase.model.classes.VisibilityType}.
-	 * <!-- begin-user-doc -->
+	 * Returns the value of the '<em><b>Visibility</b></em>' attribute. The literals are from the enumeration
+	 * {@link org.unicase.model.classes.VisibilityType}. <!-- begin-user-doc -->
 	 * <p>
 	 * If the meaning of the '<em>Visibility</em>' attribute isn't clear, there really should be more of a description
 	 * here...
 	 * </p>
 	 * <!-- end-user-doc -->
+	 * 
 	 * @return the value of the '<em>Visibility</em>' attribute.
 	 * @see org.unicase.model.classes.VisibilityType
 	 * @see #setVisibility(VisibilityType)
@@ -71,6 +72,7 @@ public interface Attribute extends ModelElement {
 	/**
 	 * Sets the value of the '{@link org.unicase.model.classes.Attribute#getVisibility <em>Visibility</em>}' attribute.
 	 * <!-- begin-user-doc --> <!-- end-user-doc -->
+	 * 
 	 * @param value the new value of the '<em>Visibility</em>' attribute.
 	 * @see org.unicase.model.classes.VisibilityType
 	 * @see #getVisibility()
@@ -79,14 +81,14 @@ public interface Attribute extends ModelElement {
 	void setVisibility(VisibilityType value);
 
 	/**
-	 * Returns the value of the '<em><b>Scope</b></em>' attribute.
-	 * The literals are from the enumeration {@link org.unicase.model.classes.ScopeType}.
-	 * <!-- begin-user-doc -->
+	 * Returns the value of the '<em><b>Scope</b></em>' attribute. The literals are from the enumeration
+	 * {@link org.unicase.model.classes.ScopeType}. <!-- begin-user-doc -->
 	 * <p>
 	 * If the meaning of the '<em>Scope</em>' attribute isn't clear, there really should be more of a description
 	 * here...
 	 * </p>
 	 * <!-- end-user-doc -->
+	 * 
 	 * @return the value of the '<em>Scope</em>' attribute.
 	 * @see org.unicase.model.classes.ScopeType
 	 * @see #setScope(ScopeType)
@@ -108,13 +110,13 @@ public interface Attribute extends ModelElement {
 	void setScope(ScopeType value);
 
 	/**
-	 * Returns the value of the '<em><b>Signature</b></em>' attribute.
-	 * <!-- begin-user-doc -->
+	 * Returns the value of the '<em><b>Signature</b></em>' attribute. <!-- begin-user-doc -->
 	 * <p>
 	 * If the meaning of the '<em>Signature</em>' attribute isn't clear, there really should be more of a description
 	 * here...
 	 * </p>
 	 * <!-- end-user-doc -->
+	 * 
 	 * @return the value of the '<em>Signature</em>' attribute.
 	 * @see org.unicase.model.classes.ClassesPackage#getAttribute_Signature()
 	 * @model transient="true" changeable="false" volatile="true" derived="true"
@@ -149,13 +151,13 @@ public interface Attribute extends ModelElement {
 	void setType(String value);
 
 	/**
-	 * Returns the value of the '<em><b>Default Value</b></em>' attribute.
-	 * <!-- begin-user-doc -->
+	 * Returns the value of the '<em><b>Default Value</b></em>' attribute. <!-- begin-user-doc -->
 	 * <p>
 	 * If the meaning of the '<em>Default Value</em>' attribute isn't clear, there really should be more of a
 	 * description here...
 	 * </p>
 	 * <!-- end-user-doc -->
+	 * 
 	 * @return the value of the '<em>Default Value</em>' attribute.
 	 * @see #setDefaultValue(String)
 	 * @see org.unicase.model.classes.ClassesPackage#getAttribute_DefaultValue()
@@ -165,8 +167,9 @@ public interface Attribute extends ModelElement {
 	String getDefaultValue();
 
 	/**
-	 * Sets the value of the '{@link org.unicase.model.classes.Attribute#getDefaultValue <em>Default Value</em>}' attribute.
-	 * <!-- begin-user-doc --> <!-- end-user-doc -->
+	 * Sets the value of the '{@link org.unicase.model.classes.Attribute#getDefaultValue <em>Default Value</em>}'
+	 * attribute. <!-- begin-user-doc --> <!-- end-user-doc -->
+	 * 
 	 * @param value the new value of the '<em>Default Value</em>' attribute.
 	 * @see #getDefaultValue()
 	 * @generated
@@ -174,13 +177,13 @@ public interface Attribute extends ModelElement {
 	void setDefaultValue(String value);
 
 	/**
-	 * Returns the value of the '<em><b>Properties</b></em>' attribute.
-	 * <!-- begin-user-doc -->
+	 * Returns the value of the '<em><b>Properties</b></em>' attribute. <!-- begin-user-doc -->
 	 * <p>
 	 * If the meaning of the '<em>Properties</em>' attribute isn't clear, there really should be more of a description
 	 * here...
 	 * </p>
 	 * <!-- end-user-doc -->
+	 * 
 	 * @return the value of the '<em>Properties</em>' attribute.
 	 * @see #setProperties(String)
 	 * @see org.unicase.model.classes.ClassesPackage#getAttribute_Properties()
@@ -192,6 +195,7 @@ public interface Attribute extends ModelElement {
 	/**
 	 * Sets the value of the '{@link org.unicase.model.classes.Attribute#getProperties <em>Properties</em>}' attribute.
 	 * <!-- begin-user-doc --> <!-- end-user-doc -->
+	 * 
 	 * @param value the new value of the '<em>Properties</em>' attribute.
 	 * @see #getProperties()
 	 * @generated
@@ -199,13 +203,13 @@ public interface Attribute extends ModelElement {
 	void setProperties(String value);
 
 	/**
-	 * Returns the value of the '<em><b>Label</b></em>' attribute.
-	 * <!-- begin-user-doc -->
+	 * Returns the value of the '<em><b>Label</b></em>' attribute. <!-- begin-user-doc -->
 	 * <p>
 	 * If the meaning of the '<em>Label</em>' attribute isn't clear, there really should be more of a description
 	 * here...
 	 * </p>
 	 * <!-- end-user-doc -->
+	 * 
 	 * @return the value of the '<em>Label</em>' attribute.
 	 * @see #setLabel(String)
 	 * @see org.unicase.model.classes.ClassesPackage#getAttribute_Label()

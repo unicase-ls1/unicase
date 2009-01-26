@@ -14,7 +14,6 @@ import org.unicase.workspace.ProjectSpace;
 
 public class DeleteTest extends ChangePackageTest {
 
-	
 	private ModelElement me;
 	private int expectedNumOfOperations;
 
@@ -27,7 +26,7 @@ public class DeleteTest extends ChangePackageTest {
 	public void runTest() {
 
 		TransactionalEditingDomain domain = TransactionalEditingDomain.Registry.INSTANCE
-				.getEditingDomain("org.unicase.EditingDomain");
+			.getEditingDomain("org.unicase.EditingDomain");
 
 		me = ChangeTestHelper.getRandomME(getTestProject());
 		expectedNumOfOperations = calculateExpectedNumOfChanges();
@@ -42,27 +41,24 @@ public class DeleteTest extends ChangePackageTest {
 
 		});
 
-		
 	}
 
 	private void doDelete() {
 		EcoreUtil.delete(me, true);
 	}
 
-
-
 	private int calculateExpectedNumOfChanges() {
-		//a multiRefOp for container, 
-		//a deleteOp for meToRemove
-		//+ multiRefOp for meToRemove.crossrefs.size()
-		//+ deleteOp for meToRemove.contents().size()
-		//+ multiRefOp for each(content in contents) content.crossref.size()
-		
-		int numOfOps =  1 + 1 + me.eCrossReferences().size();
-		for(TreeIterator<EObject> iter = me.eAllContents(); iter.hasNext(); ){
-			numOfOps ++;
+		// a multiRefOp for container,
+		// a deleteOp for meToRemove
+		// + multiRefOp for meToRemove.crossrefs.size()
+		// + deleteOp for meToRemove.contents().size()
+		// + multiRefOp for each(content in contents) content.crossref.size()
+
+		int numOfOps = 1 + 1 + me.eCrossReferences().size();
+		for (TreeIterator<EObject> iter = me.eAllContents(); iter.hasNext();) {
+			numOfOps++;
 			numOfOps += iter.next().eCrossReferences().size();
-			
+
 		}
 		return numOfOps;
 	}

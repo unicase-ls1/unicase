@@ -1,8 +1,7 @@
 /**
- * <copyright> Copyright (c) 2008 Jonas Helming, Maximilian Koegel. All rights reserved. This program and the accompanying materials are made available under the terms of the Eclipse Public License v1.0 which accompanies this distribution, and is available at http://www.eclipse.org/legal/epl-v10.html
- * </copyright>
- *
- * $Id$
+ * <copyright> Copyright (c) 2008 Jonas Helming, Maximilian Koegel. All rights reserved. This program and the
+ * accompanying materials are made available under the terms of the Eclipse Public License v1.0 which accompanies this
+ * distribution, and is available at http://www.eclipse.org/legal/epl-v10.html </copyright>
  */
 
 package org.unicase.ui.common.decorators;
@@ -17,18 +16,18 @@ import org.eclipse.jface.viewers.ILightweightLabelDecorator;
 import org.eclipse.jface.viewers.LabelProviderChangedEvent;
 import org.unicase.workspace.ProjectSpace;
 
-/**.
- * The decorator to show version of a ProjectSpace
+/**
+ * . The decorator to show version of a ProjectSpace
+ * 
  * @author Helming
- *
  */
 public class VersionDecorator extends AdapterImpl implements ILightweightLabelDecorator {
 
 	private ArrayList<ILabelProviderListener> listeners = new ArrayList<ILabelProviderListener>();
 	private ProjectSpace element;
 
-	/**.
-	 * {@inheritDoc}
+	/**
+	 * . {@inheritDoc}
 	 */
 	public void decorate(Object element, IDecoration decoration) {
 		if (element instanceof ProjectSpace) {
@@ -36,68 +35,65 @@ public class VersionDecorator extends AdapterImpl implements ILightweightLabelDe
 			StringBuilder stringBuilder = new StringBuilder();
 			if (projectSpace.getBaseVersion() != null) {
 				stringBuilder.append("@");
-				stringBuilder.append(projectSpace.getBaseVersion()
-						.getIdentifier());
+				stringBuilder.append(projectSpace.getBaseVersion().getIdentifier());
 			} else {
 				stringBuilder.append("(Not shared)");
 			}
 			String string = stringBuilder.toString();
 			decoration.addSuffix(string);
 		}
-//		//ZH Check this
-//		if(this.element==null){
-//			this.element=(ProjectSpace) element;
-//			this.element.eAdapters().add(this);
-//		}
+		// //ZH Check this
+		// if(this.element==null){
+		// this.element=(ProjectSpace) element;
+		// this.element.eAdapters().add(this);
+		// }
 	}
 
-	/**.
-	 * {@inheritDoc}
+	/**
+	 * . {@inheritDoc}
 	 */
 	public void addListener(ILabelProviderListener listener) {
 		listeners.add(listener);
 	}
 
-	/**.
-	 * {@inheritDoc}
+	/**
+	 * . {@inheritDoc}
 	 */
 	public void dispose() {
 		listeners.removeAll(listeners);
-		
+
 	}
 
-	/**.
-	 * {@inheritDoc}
+	/**
+	 * . {@inheritDoc}
 	 */
 	public boolean isLabelProperty(Object element, String property) {
-			return false;
+		return false;
 	}
 
-	/**.
-	 * {@inheritDoc}
+	/**
+	 * . {@inheritDoc}
 	 */
 	public void removeListener(ILabelProviderListener listener) {
 		listeners.remove(listener);
 	}
 
-	/**.
-	 * {@inheritDoc}
+	/**
+	 * . {@inheritDoc}
 	 */
-	public void decorationChanged(){
-		LabelProviderChangedEvent event = new LabelProviderChangedEvent(this,element);
-		for(ILabelProviderListener listener: listeners){
+	public void decorationChanged() {
+		LabelProviderChangedEvent event = new LabelProviderChangedEvent(this, element);
+		for (ILabelProviderListener listener : listeners) {
 			listener.labelProviderChanged(event);
 		}
 	}
 
-	/**.
-	 * {@inheritDoc}
+	/**
+	 * . {@inheritDoc}
 	 */
 	@Override
 	public void notifyChanged(Notification msg) {
 		decorationChanged();
 	}
-	
-
 
 }

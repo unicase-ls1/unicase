@@ -16,8 +16,7 @@ import org.eclipse.gmf.runtime.notation.View;
 /**
  * @generated
  */
-public class ComponentOfferedServicesEditPart extends ConnectionNodeEditPart
-		implements ITreeBranchEditPart {
+public class ComponentOfferedServicesEditPart extends ConnectionNodeEditPart implements ITreeBranchEditPart {
 
 	/**
 	 * @generated
@@ -36,16 +35,13 @@ public class ComponentOfferedServicesEditPart extends ConnectionNodeEditPart
 	 */
 	protected void createDefaultEditPolicies() {
 		super.createDefaultEditPolicies();
-		installEditPolicy(
-				EditPolicyRoles.SEMANTIC_ROLE,
-				new org.unicase.ui.componentDiagram.edit.policies.ComponentOfferedServicesItemSemanticEditPolicy());
+		installEditPolicy(EditPolicyRoles.SEMANTIC_ROLE,
+			new org.unicase.ui.componentDiagram.edit.policies.ComponentOfferedServicesItemSemanticEditPolicy());
 	}
 
 	/**
-	 * Creates figure for this edit part.
-	 * 
-	 * Body of this method does not depend on settings in generation model
-	 * so you may safely remove <i>generated</i> tag and modify it.
+	 * Creates figure for this edit part. Body of this method does not depend on settings in generation model so you may
+	 * safely remove <i>generated</i> tag and modify it.
 	 * 
 	 * @generated
 	 */
@@ -77,11 +73,9 @@ public class ComponentOfferedServicesEditPart extends ConnectionNodeEditPart
 
 	protected void handleNotificationEvent(Notification event) {
 
-		List editPolicies = CanonicalEditPolicy
-				.getRegisteredEditPolicies(((View) getModel()).getElement());
+		List editPolicies = CanonicalEditPolicy.getRegisteredEditPolicies(((View) getModel()).getElement());
 		for (Iterator it = editPolicies.iterator(); it.hasNext();) {
-			CanonicalEditPolicy nextEditPolicy = (CanonicalEditPolicy) it
-					.next();
+			CanonicalEditPolicy nextEditPolicy = (CanonicalEditPolicy) it.next();
 			nextEditPolicy.refresh();
 		}
 

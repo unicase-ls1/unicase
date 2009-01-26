@@ -14,8 +14,7 @@ import org.unicase.model.classes.ClassesPackage;
 /**
  * @generated
  */
-public class ClassClassNode_attributesCanonicalEditPolicy extends
-		CanonicalEditPolicy {
+public class ClassClassNode_attributesCanonicalEditPolicy extends CanonicalEditPolicy {
 
 	/**
 	 * @generated
@@ -29,11 +28,8 @@ public class ClassClassNode_attributesCanonicalEditPolicy extends
 		View viewObject = (View) getHost().getModel();
 		List result = new LinkedList();
 		for (Iterator it = org.unicase.model.classDiagram.part.ModelDiagramUpdater
-				.getClassClassNode_attributes_7001SemanticChildren(viewObject)
-				.iterator(); it.hasNext();) {
-			result
-					.add(((org.unicase.model.classDiagram.part.ModelNodeDescriptor) it
-							.next()).getModelElement());
+			.getClassClassNode_attributes_7001SemanticChildren(viewObject).iterator(); it.hasNext();) {
+			result.add(((org.unicase.model.classDiagram.part.ModelNodeDescriptor) it.next()).getModelElement());
 		}
 		return result;
 	}
@@ -42,8 +38,7 @@ public class ClassClassNode_attributesCanonicalEditPolicy extends
 	 * @generated
 	 */
 	protected boolean isOrphaned(Collection semanticChildren, final View view) {
-		int visualID = org.unicase.model.classDiagram.part.ModelVisualIDRegistry
-				.getVisualID(view);
+		int visualID = org.unicase.model.classDiagram.part.ModelVisualIDRegistry.getVisualID(view);
 		switch (visualID) {
 		case org.unicase.model.classDiagram.edit.parts.AttributeEditPart.VISUAL_ID:
 			if (!semanticChildren.contains(view.getElement())) {
@@ -66,8 +61,7 @@ public class ClassClassNode_attributesCanonicalEditPolicy extends
 	protected Set getFeaturesToSynchronize() {
 		if (myFeaturesToSynchronize == null) {
 			myFeaturesToSynchronize = new HashSet();
-			myFeaturesToSynchronize.add(ClassesPackage.eINSTANCE
-					.getClass_Attributes());
+			myFeaturesToSynchronize.add(ClassesPackage.eINSTANCE.getClass_Attributes());
 		}
 		return myFeaturesToSynchronize;
 	}

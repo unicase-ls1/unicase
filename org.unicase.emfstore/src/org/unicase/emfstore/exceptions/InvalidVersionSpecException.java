@@ -1,15 +1,14 @@
 /**
- * <copyright> Copyright (c) 2008 Jonas Helming, Maximilian Koegel. All rights reserved. This program and the accompanying materials are made available under the terms of the Eclipse Public License v1.0 which accompanies this distribution, and is available at http://www.eclipse.org/legal/epl-v10.html
- * </copyright>
- *
- * $Id$
+ * <copyright> Copyright (c) 2008 Jonas Helming, Maximilian Koegel. All rights reserved. This program and the
+ * accompanying materials are made available under the terms of the Eclipse Public License v1.0 which accompanies this
+ * distribution, and is available at http://www.eclipse.org/legal/epl-v10.html </copyright>
  */
 package org.unicase.emfstore.exceptions;
 
 /**
  * Represents a condition where a version specifier is invalid.
+ * 
  * @author koegel
- *
  */
 @SuppressWarnings("serial")
 public class InvalidVersionSpecException extends EmfStoreException {
@@ -20,9 +19,10 @@ public class InvalidVersionSpecException extends EmfStoreException {
 	public InvalidVersionSpecException() {
 		super("");
 	}
-	
+
 	/**
 	 * Default constructor.
+	 * 
 	 * @param message the message
 	 */
 	public InvalidVersionSpecException(String message) {
@@ -31,7 +31,8 @@ public class InvalidVersionSpecException extends EmfStoreException {
 
 	/**
 	 * Default constructor.
-	 * @param message the message 
+	 * 
+	 * @param message the message
 	 * @param cause underlying exception
 	 */
 	public InvalidVersionSpecException(String message, Throwable cause) {

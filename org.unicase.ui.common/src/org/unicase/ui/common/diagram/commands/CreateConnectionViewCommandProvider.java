@@ -1,8 +1,7 @@
 /**
- * <copyright> Copyright (c) 2008 Jonas Helming, Maximilian Koegel. All rights reserved. This program and the accompanying materials are made available under the terms of the Eclipse Public License v1.0 which accompanies this distribution, and is available at http://www.eclipse.org/legal/epl-v10.html
- * </copyright>
- *
- * $Id$
+ * <copyright> Copyright (c) 2008 Jonas Helming, Maximilian Koegel. All rights reserved. This program and the
+ * accompanying materials are made available under the terms of the Eclipse Public License v1.0 which accompanies this
+ * distribution, and is available at http://www.eclipse.org/legal/epl-v10.html </copyright>
  */
 package org.unicase.ui.common.diagram.commands;
 
@@ -35,10 +34,7 @@ public class CreateConnectionViewCommandProvider {
 	 * @param sourceAdapter The {@link IAdaptable} adapting to the source object of the connection
 	 * @param targetAdapter The {@link IAdaptable} adapting to the target object of the connection
 	 */
-	public CreateConnectionViewCommandProvider(
-		DiagramEditPart host, 
-		EObject object, 
-		IAdaptable sourceAdapter,
+	public CreateConnectionViewCommandProvider(DiagramEditPart host, EObject object, IAdaptable sourceAdapter,
 		IAdaptable targetAdapter) {
 
 		if (host == null) {
@@ -65,11 +61,7 @@ public class CreateConnectionViewCommandProvider {
 
 	private void createCommand() {
 		if (viewDescriptor != null) {
-			command = CreateConnectionViewRequest.getCreateCommand(
-				viewDescriptor,
-				sourceAdapter,
-				targetAdapter, 
-				host);			
+			command = CreateConnectionViewRequest.getCreateCommand(viewDescriptor, sourceAdapter, targetAdapter, host);
 		}
 	}
 
@@ -94,14 +86,14 @@ public class CreateConnectionViewCommandProvider {
 	/**
 	 * @return An {@link IAdaptable} adapting to the target object of the connection
 	 */
-	public IAdaptable  getSourceAdapter() {
+	public IAdaptable getSourceAdapter() {
 		return sourceAdapter;
 	}
 
 	/**
 	 * @return An {@link IAdaptable} adapting to the source object of the connection
 	 */
-	public IAdaptable  getTargetAdapter() {
+	public IAdaptable getTargetAdapter() {
 		return targetAdapter;
 	}
 

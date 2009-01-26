@@ -31,8 +31,7 @@ public class ModelDiagramUpdater {
 	 * @generated
 	 */
 	public static List getSemanticChildren(View view) {
-		switch (org.unicase.model.classDiagram.part.ModelVisualIDRegistry
-				.getVisualID(view)) {
+		switch (org.unicase.model.classDiagram.part.ModelVisualIDRegistry.getVisualID(view)) {
 		case org.unicase.model.classDiagram.edit.parts.ClassClassNode_attributesEditPart.VISUAL_ID:
 			return getClassClassNode_attributes_7001SemanticChildren(view);
 		case org.unicase.model.classDiagram.edit.parts.ClassClassNode_methodsEditPart.VISUAL_ID:
@@ -46,8 +45,7 @@ public class ModelDiagramUpdater {
 	/**
 	 * @generated
 	 */
-	public static List getClassClassNode_attributes_7001SemanticChildren(
-			View view) {
+	public static List getClassClassNode_attributes_7001SemanticChildren(View view) {
 		if (false == view.eContainer() instanceof View) {
 			return Collections.EMPTY_LIST;
 		}
@@ -57,15 +55,12 @@ public class ModelDiagramUpdater {
 		}
 		Class modelElement = (Class) containerView.getElement();
 		List result = new LinkedList();
-		for (Iterator it = modelElement.getAttributes().iterator(); it
-				.hasNext();) {
+		for (Iterator it = modelElement.getAttributes().iterator(); it.hasNext();) {
 			Attribute childElement = (Attribute) it.next();
 			int visualID = org.unicase.model.classDiagram.part.ModelVisualIDRegistry
-					.getNodeVisualID(view, childElement);
+				.getNodeVisualID(view, childElement);
 			if (visualID == org.unicase.model.classDiagram.edit.parts.AttributeEditPart.VISUAL_ID) {
-				result
-						.add(new org.unicase.model.classDiagram.part.ModelNodeDescriptor(
-								childElement, visualID));
+				result.add(new org.unicase.model.classDiagram.part.ModelNodeDescriptor(childElement, visualID));
 				continue;
 			}
 		}
@@ -88,11 +83,9 @@ public class ModelDiagramUpdater {
 		for (Iterator it = modelElement.getMethods().iterator(); it.hasNext();) {
 			Method childElement = (Method) it.next();
 			int visualID = org.unicase.model.classDiagram.part.ModelVisualIDRegistry
-					.getNodeVisualID(view, childElement);
+				.getNodeVisualID(view, childElement);
 			if (visualID == org.unicase.model.classDiagram.edit.parts.MethodEditPart.VISUAL_ID) {
-				result
-						.add(new org.unicase.model.classDiagram.part.ModelNodeDescriptor(
-								childElement, visualID));
+				result.add(new org.unicase.model.classDiagram.part.ModelNodeDescriptor(childElement, visualID));
 				continue;
 			}
 		}
@@ -111,17 +104,13 @@ public class ModelDiagramUpdater {
 		for (Iterator it = modelElement.getElements().iterator(); it.hasNext();) {
 			ModelElement childElement = (ModelElement) it.next();
 			int visualID = org.unicase.model.classDiagram.part.ModelVisualIDRegistry
-					.getNodeVisualID(view, childElement);
+				.getNodeVisualID(view, childElement);
 			if (visualID == org.unicase.model.classDiagram.edit.parts.ClassEditPart.VISUAL_ID) {
-				result
-						.add(new org.unicase.model.classDiagram.part.ModelNodeDescriptor(
-								childElement, visualID));
+				result.add(new org.unicase.model.classDiagram.part.ModelNodeDescriptor(childElement, visualID));
 				continue;
 			}
 			if (visualID == org.unicase.model.classDiagram.edit.parts.PackageEditPart.VISUAL_ID) {
-				result
-						.add(new org.unicase.model.classDiagram.part.ModelNodeDescriptor(
-								childElement, visualID));
+				result.add(new org.unicase.model.classDiagram.part.ModelNodeDescriptor(childElement, visualID));
 				continue;
 			}
 		}
@@ -132,8 +121,7 @@ public class ModelDiagramUpdater {
 	 * @generated
 	 */
 	public static List getContainedLinks(View view) {
-		switch (org.unicase.model.classDiagram.part.ModelVisualIDRegistry
-				.getVisualID(view)) {
+		switch (org.unicase.model.classDiagram.part.ModelVisualIDRegistry.getVisualID(view)) {
 		case org.unicase.model.classDiagram.edit.parts.MEDiagramEditPart.VISUAL_ID:
 			return getMEDiagram_88ContainedLinks(view);
 		case org.unicase.model.classDiagram.edit.parts.ClassEditPart.VISUAL_ID:
@@ -162,8 +150,7 @@ public class ModelDiagramUpdater {
 	 * @generated
 	 */
 	public static List getIncomingLinks(View view) {
-		switch (org.unicase.model.classDiagram.part.ModelVisualIDRegistry
-				.getVisualID(view)) {
+		switch (org.unicase.model.classDiagram.part.ModelVisualIDRegistry.getVisualID(view)) {
 		case org.unicase.model.classDiagram.edit.parts.ClassEditPart.VISUAL_ID:
 			return getClass_2001IncomingLinks(view);
 		case org.unicase.model.classDiagram.edit.parts.PackageEditPart.VISUAL_ID:
@@ -190,8 +177,7 @@ public class ModelDiagramUpdater {
 	 * @generated
 	 */
 	public static List getOutgoingLinks(View view) {
-		switch (org.unicase.model.classDiagram.part.ModelVisualIDRegistry
-				.getVisualID(view)) {
+		switch (org.unicase.model.classDiagram.part.ModelVisualIDRegistry.getVisualID(view)) {
 		case org.unicase.model.classDiagram.edit.parts.ClassEditPart.VISUAL_ID:
 			return getClass_2001OutgoingLinks(view);
 		case org.unicase.model.classDiagram.edit.parts.PackageEditPart.VISUAL_ID:
@@ -220,16 +206,11 @@ public class ModelDiagramUpdater {
 	public static List getMEDiagram_88ContainedLinks(View view) {
 		MEDiagram modelElement = (MEDiagram) view.getElement();
 		List result = new LinkedList();
-		result
-				.addAll(getContainedTypeModelFacetLinks_Association_4001(modelElement));
-		result
-				.addAll(getContainedTypeModelFacetLinks_Association_4002(modelElement));
-		result
-				.addAll(getContainedTypeModelFacetLinks_Association_4003(modelElement));
-		result
-				.addAll(getContainedTypeModelFacetLinks_Association_4004(modelElement));
-		result
-				.addAll(getContainedTypeModelFacetLinks_Dependency_4006(modelElement));
+		result.addAll(getContainedTypeModelFacetLinks_Association_4001(modelElement));
+		result.addAll(getContainedTypeModelFacetLinks_Association_4002(modelElement));
+		result.addAll(getContainedTypeModelFacetLinks_Association_4003(modelElement));
+		result.addAll(getContainedTypeModelFacetLinks_Association_4004(modelElement));
+		result.addAll(getContainedTypeModelFacetLinks_Dependency_4006(modelElement));
 		return result;
 	}
 
@@ -239,8 +220,7 @@ public class ModelDiagramUpdater {
 	public static List getClass_2001ContainedLinks(View view) {
 		Class modelElement = (Class) view.getElement();
 		List result = new LinkedList();
-		result
-				.addAll(getOutgoingFeatureModelFacetLinks_Class_SubClasses_4005(modelElement));
+		result.addAll(getOutgoingFeatureModelFacetLinks_Class_SubClasses_4005(modelElement));
 		return result;
 	}
 
@@ -305,21 +285,14 @@ public class ModelDiagramUpdater {
 	 */
 	public static List getClass_2001IncomingLinks(View view) {
 		Class modelElement = (Class) view.getElement();
-		Map crossReferences = EcoreUtil.CrossReferencer.find(view.eResource()
-				.getResourceSet().getResources());
+		Map crossReferences = EcoreUtil.CrossReferencer.find(view.eResource().getResourceSet().getResources());
 		List result = new LinkedList();
-		result.addAll(getIncomingTypeModelFacetLinks_Association_4001(
-				modelElement, crossReferences));
-		result.addAll(getIncomingTypeModelFacetLinks_Association_4002(
-				modelElement, crossReferences));
-		result.addAll(getIncomingTypeModelFacetLinks_Association_4003(
-				modelElement, crossReferences));
-		result.addAll(getIncomingTypeModelFacetLinks_Association_4004(
-				modelElement, crossReferences));
-		result.addAll(getIncomingFeatureModelFacetLinks_Class_SubClasses_4005(
-				modelElement, crossReferences));
-		result.addAll(getIncomingTypeModelFacetLinks_Dependency_4006(
-				modelElement, crossReferences));
+		result.addAll(getIncomingTypeModelFacetLinks_Association_4001(modelElement, crossReferences));
+		result.addAll(getIncomingTypeModelFacetLinks_Association_4002(modelElement, crossReferences));
+		result.addAll(getIncomingTypeModelFacetLinks_Association_4003(modelElement, crossReferences));
+		result.addAll(getIncomingTypeModelFacetLinks_Association_4004(modelElement, crossReferences));
+		result.addAll(getIncomingFeatureModelFacetLinks_Class_SubClasses_4005(modelElement, crossReferences));
+		result.addAll(getIncomingTypeModelFacetLinks_Dependency_4006(modelElement, crossReferences));
 		return result;
 	}
 
@@ -328,11 +301,9 @@ public class ModelDiagramUpdater {
 	 */
 	public static List getPackage_2002IncomingLinks(View view) {
 		Package modelElement = (Package) view.getElement();
-		Map crossReferences = EcoreUtil.CrossReferencer.find(view.eResource()
-				.getResourceSet().getResources());
+		Map crossReferences = EcoreUtil.CrossReferencer.find(view.eResource().getResourceSet().getResources());
 		List result = new LinkedList();
-		result.addAll(getIncomingTypeModelFacetLinks_Dependency_4006(
-				modelElement, crossReferences));
+		result.addAll(getIncomingTypeModelFacetLinks_Dependency_4006(modelElement, crossReferences));
 		return result;
 	}
 
@@ -391,18 +362,12 @@ public class ModelDiagramUpdater {
 	public static List getClass_2001OutgoingLinks(View view) {
 		Class modelElement = (Class) view.getElement();
 		List result = new LinkedList();
-		result
-				.addAll(getOutgoingTypeModelFacetLinks_Association_4001(modelElement));
-		result
-				.addAll(getOutgoingTypeModelFacetLinks_Association_4002(modelElement));
-		result
-				.addAll(getOutgoingTypeModelFacetLinks_Association_4003(modelElement));
-		result
-				.addAll(getOutgoingTypeModelFacetLinks_Association_4004(modelElement));
-		result
-				.addAll(getOutgoingFeatureModelFacetLinks_Class_SubClasses_4005(modelElement));
-		result
-				.addAll(getOutgoingTypeModelFacetLinks_Dependency_4006(modelElement));
+		result.addAll(getOutgoingTypeModelFacetLinks_Association_4001(modelElement));
+		result.addAll(getOutgoingTypeModelFacetLinks_Association_4002(modelElement));
+		result.addAll(getOutgoingTypeModelFacetLinks_Association_4003(modelElement));
+		result.addAll(getOutgoingTypeModelFacetLinks_Association_4004(modelElement));
+		result.addAll(getOutgoingFeatureModelFacetLinks_Class_SubClasses_4005(modelElement));
+		result.addAll(getOutgoingTypeModelFacetLinks_Dependency_4006(modelElement));
 		return result;
 	}
 
@@ -412,8 +377,7 @@ public class ModelDiagramUpdater {
 	public static List getPackage_2002OutgoingLinks(View view) {
 		Package modelElement = (Package) view.getElement();
 		List result = new LinkedList();
-		result
-				.addAll(getOutgoingTypeModelFacetLinks_Dependency_4006(modelElement));
+		result.addAll(getOutgoingTypeModelFacetLinks_Dependency_4006(modelElement));
 		return result;
 	}
 
@@ -469,29 +433,23 @@ public class ModelDiagramUpdater {
 	/**
 	 * @generated
 	 */
-	private static Collection getContainedTypeModelFacetLinks_Association_4001(
-			MEDiagram container) {
+	private static Collection getContainedTypeModelFacetLinks_Association_4001(MEDiagram container) {
 		Collection result = new LinkedList();
-		for (Iterator links = container.getNewElements().iterator(); links
-				.hasNext();) {
+		for (Iterator links = container.getNewElements().iterator(); links.hasNext();) {
 			EObject linkObject = (EObject) links.next();
 			if (false == linkObject instanceof Association) {
 				continue;
 			}
 			Association link = (Association) linkObject;
 			if (org.unicase.model.classDiagram.edit.parts.Association1EditPart.VISUAL_ID != org.unicase.model.classDiagram.part.ModelVisualIDRegistry
-					.getLinkWithClassVisualID(link)) {
+				.getLinkWithClassVisualID(link)) {
 				continue;
 			}
 			Class dst = link.getTarget();
 			Class src = link.getSource();
-			result
-					.add(new org.unicase.model.classDiagram.part.ModelLinkDescriptor(
-							src,
-							dst,
-							link,
-							org.unicase.model.classDiagram.providers.ModelElementTypes.Association_4001,
-							org.unicase.model.classDiagram.edit.parts.Association1EditPart.VISUAL_ID));
+			result.add(new org.unicase.model.classDiagram.part.ModelLinkDescriptor(src, dst, link,
+				org.unicase.model.classDiagram.providers.ModelElementTypes.Association_4001,
+				org.unicase.model.classDiagram.edit.parts.Association1EditPart.VISUAL_ID));
 		}
 		return result;
 	}
@@ -499,29 +457,23 @@ public class ModelDiagramUpdater {
 	/**
 	 * @generated
 	 */
-	private static Collection getContainedTypeModelFacetLinks_Association_4002(
-			MEDiagram container) {
+	private static Collection getContainedTypeModelFacetLinks_Association_4002(MEDiagram container) {
 		Collection result = new LinkedList();
-		for (Iterator links = container.getNewElements().iterator(); links
-				.hasNext();) {
+		for (Iterator links = container.getNewElements().iterator(); links.hasNext();) {
 			EObject linkObject = (EObject) links.next();
 			if (false == linkObject instanceof Association) {
 				continue;
 			}
 			Association link = (Association) linkObject;
 			if (org.unicase.model.classDiagram.edit.parts.Association2EditPart.VISUAL_ID != org.unicase.model.classDiagram.part.ModelVisualIDRegistry
-					.getLinkWithClassVisualID(link)) {
+				.getLinkWithClassVisualID(link)) {
 				continue;
 			}
 			Class dst = link.getTarget();
 			Class src = link.getSource();
-			result
-					.add(new org.unicase.model.classDiagram.part.ModelLinkDescriptor(
-							src,
-							dst,
-							link,
-							org.unicase.model.classDiagram.providers.ModelElementTypes.Association_4002,
-							org.unicase.model.classDiagram.edit.parts.Association2EditPart.VISUAL_ID));
+			result.add(new org.unicase.model.classDiagram.part.ModelLinkDescriptor(src, dst, link,
+				org.unicase.model.classDiagram.providers.ModelElementTypes.Association_4002,
+				org.unicase.model.classDiagram.edit.parts.Association2EditPart.VISUAL_ID));
 		}
 		return result;
 	}
@@ -529,29 +481,23 @@ public class ModelDiagramUpdater {
 	/**
 	 * @generated
 	 */
-	private static Collection getContainedTypeModelFacetLinks_Association_4003(
-			MEDiagram container) {
+	private static Collection getContainedTypeModelFacetLinks_Association_4003(MEDiagram container) {
 		Collection result = new LinkedList();
-		for (Iterator links = container.getNewElements().iterator(); links
-				.hasNext();) {
+		for (Iterator links = container.getNewElements().iterator(); links.hasNext();) {
 			EObject linkObject = (EObject) links.next();
 			if (false == linkObject instanceof Association) {
 				continue;
 			}
 			Association link = (Association) linkObject;
 			if (org.unicase.model.classDiagram.edit.parts.Association3EditPart.VISUAL_ID != org.unicase.model.classDiagram.part.ModelVisualIDRegistry
-					.getLinkWithClassVisualID(link)) {
+				.getLinkWithClassVisualID(link)) {
 				continue;
 			}
 			Class dst = link.getTarget();
 			Class src = link.getSource();
-			result
-					.add(new org.unicase.model.classDiagram.part.ModelLinkDescriptor(
-							src,
-							dst,
-							link,
-							org.unicase.model.classDiagram.providers.ModelElementTypes.Association_4003,
-							org.unicase.model.classDiagram.edit.parts.Association3EditPart.VISUAL_ID));
+			result.add(new org.unicase.model.classDiagram.part.ModelLinkDescriptor(src, dst, link,
+				org.unicase.model.classDiagram.providers.ModelElementTypes.Association_4003,
+				org.unicase.model.classDiagram.edit.parts.Association3EditPart.VISUAL_ID));
 		}
 		return result;
 	}
@@ -559,29 +505,23 @@ public class ModelDiagramUpdater {
 	/**
 	 * @generated
 	 */
-	private static Collection getContainedTypeModelFacetLinks_Association_4004(
-			MEDiagram container) {
+	private static Collection getContainedTypeModelFacetLinks_Association_4004(MEDiagram container) {
 		Collection result = new LinkedList();
-		for (Iterator links = container.getNewElements().iterator(); links
-				.hasNext();) {
+		for (Iterator links = container.getNewElements().iterator(); links.hasNext();) {
 			EObject linkObject = (EObject) links.next();
 			if (false == linkObject instanceof Association) {
 				continue;
 			}
 			Association link = (Association) linkObject;
 			if (org.unicase.model.classDiagram.edit.parts.Association4EditPart.VISUAL_ID != org.unicase.model.classDiagram.part.ModelVisualIDRegistry
-					.getLinkWithClassVisualID(link)) {
+				.getLinkWithClassVisualID(link)) {
 				continue;
 			}
 			Class dst = link.getTarget();
 			Class src = link.getSource();
-			result
-					.add(new org.unicase.model.classDiagram.part.ModelLinkDescriptor(
-							src,
-							dst,
-							link,
-							org.unicase.model.classDiagram.providers.ModelElementTypes.Association_4004,
-							org.unicase.model.classDiagram.edit.parts.Association4EditPart.VISUAL_ID));
+			result.add(new org.unicase.model.classDiagram.part.ModelLinkDescriptor(src, dst, link,
+				org.unicase.model.classDiagram.providers.ModelElementTypes.Association_4004,
+				org.unicase.model.classDiagram.edit.parts.Association4EditPart.VISUAL_ID));
 		}
 		return result;
 	}
@@ -589,29 +529,23 @@ public class ModelDiagramUpdater {
 	/**
 	 * @generated
 	 */
-	private static Collection getContainedTypeModelFacetLinks_Dependency_4006(
-			MEDiagram container) {
+	private static Collection getContainedTypeModelFacetLinks_Dependency_4006(MEDiagram container) {
 		Collection result = new LinkedList();
-		for (Iterator links = container.getNewElements().iterator(); links
-				.hasNext();) {
+		for (Iterator links = container.getNewElements().iterator(); links.hasNext();) {
 			EObject linkObject = (EObject) links.next();
 			if (false == linkObject instanceof Dependency) {
 				continue;
 			}
 			Dependency link = (Dependency) linkObject;
 			if (org.unicase.model.classDiagram.edit.parts.DependencyEditPart.VISUAL_ID != org.unicase.model.classDiagram.part.ModelVisualIDRegistry
-					.getLinkWithClassVisualID(link)) {
+				.getLinkWithClassVisualID(link)) {
 				continue;
 			}
 			PackageElement dst = link.getTarget();
 			PackageElement src = link.getSource();
-			result
-					.add(new org.unicase.model.classDiagram.part.ModelLinkDescriptor(
-							src,
-							dst,
-							link,
-							org.unicase.model.classDiagram.providers.ModelElementTypes.Dependency_4006,
-							org.unicase.model.classDiagram.edit.parts.DependencyEditPart.VISUAL_ID));
+			result.add(new org.unicase.model.classDiagram.part.ModelLinkDescriptor(src, dst, link,
+				org.unicase.model.classDiagram.providers.ModelElementTypes.Dependency_4006,
+				org.unicase.model.classDiagram.edit.parts.DependencyEditPart.VISUAL_ID));
 		}
 		return result;
 	}
@@ -619,31 +553,24 @@ public class ModelDiagramUpdater {
 	/**
 	 * @generated
 	 */
-	private static Collection getIncomingTypeModelFacetLinks_Association_4001(
-			Class target, Map crossReferences) {
+	private static Collection getIncomingTypeModelFacetLinks_Association_4001(Class target, Map crossReferences) {
 		Collection result = new LinkedList();
 		Collection settings = (Collection) crossReferences.get(target);
 		for (Iterator it = settings.iterator(); it.hasNext();) {
-			EStructuralFeature.Setting setting = (EStructuralFeature.Setting) it
-					.next();
-			if (setting.getEStructuralFeature() != ClassesPackage.eINSTANCE
-					.getAssociation_Target()
-					|| false == setting.getEObject() instanceof Association) {
+			EStructuralFeature.Setting setting = (EStructuralFeature.Setting) it.next();
+			if (setting.getEStructuralFeature() != ClassesPackage.eINSTANCE.getAssociation_Target()
+				|| false == setting.getEObject() instanceof Association) {
 				continue;
 			}
 			Association link = (Association) setting.getEObject();
 			if (org.unicase.model.classDiagram.edit.parts.Association1EditPart.VISUAL_ID != org.unicase.model.classDiagram.part.ModelVisualIDRegistry
-					.getLinkWithClassVisualID(link)) {
+				.getLinkWithClassVisualID(link)) {
 				continue;
 			}
 			Class src = link.getSource();
-			result
-					.add(new org.unicase.model.classDiagram.part.ModelLinkDescriptor(
-							src,
-							target,
-							link,
-							org.unicase.model.classDiagram.providers.ModelElementTypes.Association_4001,
-							org.unicase.model.classDiagram.edit.parts.Association1EditPart.VISUAL_ID));
+			result.add(new org.unicase.model.classDiagram.part.ModelLinkDescriptor(src, target, link,
+				org.unicase.model.classDiagram.providers.ModelElementTypes.Association_4001,
+				org.unicase.model.classDiagram.edit.parts.Association1EditPart.VISUAL_ID));
 		}
 		return result;
 	}
@@ -651,31 +578,24 @@ public class ModelDiagramUpdater {
 	/**
 	 * @generated
 	 */
-	private static Collection getIncomingTypeModelFacetLinks_Association_4002(
-			Class target, Map crossReferences) {
+	private static Collection getIncomingTypeModelFacetLinks_Association_4002(Class target, Map crossReferences) {
 		Collection result = new LinkedList();
 		Collection settings = (Collection) crossReferences.get(target);
 		for (Iterator it = settings.iterator(); it.hasNext();) {
-			EStructuralFeature.Setting setting = (EStructuralFeature.Setting) it
-					.next();
-			if (setting.getEStructuralFeature() != ClassesPackage.eINSTANCE
-					.getAssociation_Target()
-					|| false == setting.getEObject() instanceof Association) {
+			EStructuralFeature.Setting setting = (EStructuralFeature.Setting) it.next();
+			if (setting.getEStructuralFeature() != ClassesPackage.eINSTANCE.getAssociation_Target()
+				|| false == setting.getEObject() instanceof Association) {
 				continue;
 			}
 			Association link = (Association) setting.getEObject();
 			if (org.unicase.model.classDiagram.edit.parts.Association2EditPart.VISUAL_ID != org.unicase.model.classDiagram.part.ModelVisualIDRegistry
-					.getLinkWithClassVisualID(link)) {
+				.getLinkWithClassVisualID(link)) {
 				continue;
 			}
 			Class src = link.getSource();
-			result
-					.add(new org.unicase.model.classDiagram.part.ModelLinkDescriptor(
-							src,
-							target,
-							link,
-							org.unicase.model.classDiagram.providers.ModelElementTypes.Association_4002,
-							org.unicase.model.classDiagram.edit.parts.Association2EditPart.VISUAL_ID));
+			result.add(new org.unicase.model.classDiagram.part.ModelLinkDescriptor(src, target, link,
+				org.unicase.model.classDiagram.providers.ModelElementTypes.Association_4002,
+				org.unicase.model.classDiagram.edit.parts.Association2EditPart.VISUAL_ID));
 		}
 		return result;
 	}
@@ -683,31 +603,24 @@ public class ModelDiagramUpdater {
 	/**
 	 * @generated
 	 */
-	private static Collection getIncomingTypeModelFacetLinks_Association_4003(
-			Class target, Map crossReferences) {
+	private static Collection getIncomingTypeModelFacetLinks_Association_4003(Class target, Map crossReferences) {
 		Collection result = new LinkedList();
 		Collection settings = (Collection) crossReferences.get(target);
 		for (Iterator it = settings.iterator(); it.hasNext();) {
-			EStructuralFeature.Setting setting = (EStructuralFeature.Setting) it
-					.next();
-			if (setting.getEStructuralFeature() != ClassesPackage.eINSTANCE
-					.getAssociation_Target()
-					|| false == setting.getEObject() instanceof Association) {
+			EStructuralFeature.Setting setting = (EStructuralFeature.Setting) it.next();
+			if (setting.getEStructuralFeature() != ClassesPackage.eINSTANCE.getAssociation_Target()
+				|| false == setting.getEObject() instanceof Association) {
 				continue;
 			}
 			Association link = (Association) setting.getEObject();
 			if (org.unicase.model.classDiagram.edit.parts.Association3EditPart.VISUAL_ID != org.unicase.model.classDiagram.part.ModelVisualIDRegistry
-					.getLinkWithClassVisualID(link)) {
+				.getLinkWithClassVisualID(link)) {
 				continue;
 			}
 			Class src = link.getSource();
-			result
-					.add(new org.unicase.model.classDiagram.part.ModelLinkDescriptor(
-							src,
-							target,
-							link,
-							org.unicase.model.classDiagram.providers.ModelElementTypes.Association_4003,
-							org.unicase.model.classDiagram.edit.parts.Association3EditPart.VISUAL_ID));
+			result.add(new org.unicase.model.classDiagram.part.ModelLinkDescriptor(src, target, link,
+				org.unicase.model.classDiagram.providers.ModelElementTypes.Association_4003,
+				org.unicase.model.classDiagram.edit.parts.Association3EditPart.VISUAL_ID));
 		}
 		return result;
 	}
@@ -715,31 +628,24 @@ public class ModelDiagramUpdater {
 	/**
 	 * @generated
 	 */
-	private static Collection getIncomingTypeModelFacetLinks_Association_4004(
-			Class target, Map crossReferences) {
+	private static Collection getIncomingTypeModelFacetLinks_Association_4004(Class target, Map crossReferences) {
 		Collection result = new LinkedList();
 		Collection settings = (Collection) crossReferences.get(target);
 		for (Iterator it = settings.iterator(); it.hasNext();) {
-			EStructuralFeature.Setting setting = (EStructuralFeature.Setting) it
-					.next();
-			if (setting.getEStructuralFeature() != ClassesPackage.eINSTANCE
-					.getAssociation_Target()
-					|| false == setting.getEObject() instanceof Association) {
+			EStructuralFeature.Setting setting = (EStructuralFeature.Setting) it.next();
+			if (setting.getEStructuralFeature() != ClassesPackage.eINSTANCE.getAssociation_Target()
+				|| false == setting.getEObject() instanceof Association) {
 				continue;
 			}
 			Association link = (Association) setting.getEObject();
 			if (org.unicase.model.classDiagram.edit.parts.Association4EditPart.VISUAL_ID != org.unicase.model.classDiagram.part.ModelVisualIDRegistry
-					.getLinkWithClassVisualID(link)) {
+				.getLinkWithClassVisualID(link)) {
 				continue;
 			}
 			Class src = link.getSource();
-			result
-					.add(new org.unicase.model.classDiagram.part.ModelLinkDescriptor(
-							src,
-							target,
-							link,
-							org.unicase.model.classDiagram.providers.ModelElementTypes.Association_4004,
-							org.unicase.model.classDiagram.edit.parts.Association4EditPart.VISUAL_ID));
+			result.add(new org.unicase.model.classDiagram.part.ModelLinkDescriptor(src, target, link,
+				org.unicase.model.classDiagram.providers.ModelElementTypes.Association_4004,
+				org.unicase.model.classDiagram.edit.parts.Association4EditPart.VISUAL_ID));
 		}
 		return result;
 	}
@@ -747,21 +653,15 @@ public class ModelDiagramUpdater {
 	/**
 	 * @generated
 	 */
-	private static Collection getIncomingFeatureModelFacetLinks_Class_SubClasses_4005(
-			Class target, Map crossReferences) {
+	private static Collection getIncomingFeatureModelFacetLinks_Class_SubClasses_4005(Class target, Map crossReferences) {
 		Collection result = new LinkedList();
 		Collection settings = (Collection) crossReferences.get(target);
 		for (Iterator it = settings.iterator(); it.hasNext();) {
-			EStructuralFeature.Setting setting = (EStructuralFeature.Setting) it
-					.next();
-			if (setting.getEStructuralFeature() == ClassesPackage.eINSTANCE
-					.getClass_SubClasses()) {
-				result
-						.add(new org.unicase.model.classDiagram.part.ModelLinkDescriptor(
-								setting.getEObject(),
-								target,
-								org.unicase.model.classDiagram.providers.ModelElementTypes.ClassSubClasses_4005,
-								org.unicase.model.classDiagram.edit.parts.ClassSubClassesEditPart.VISUAL_ID));
+			EStructuralFeature.Setting setting = (EStructuralFeature.Setting) it.next();
+			if (setting.getEStructuralFeature() == ClassesPackage.eINSTANCE.getClass_SubClasses()) {
+				result.add(new org.unicase.model.classDiagram.part.ModelLinkDescriptor(setting.getEObject(), target,
+					org.unicase.model.classDiagram.providers.ModelElementTypes.ClassSubClasses_4005,
+					org.unicase.model.classDiagram.edit.parts.ClassSubClassesEditPart.VISUAL_ID));
 			}
 		}
 		return result;
@@ -770,31 +670,24 @@ public class ModelDiagramUpdater {
 	/**
 	 * @generated
 	 */
-	private static Collection getIncomingTypeModelFacetLinks_Dependency_4006(
-			PackageElement target, Map crossReferences) {
+	private static Collection getIncomingTypeModelFacetLinks_Dependency_4006(PackageElement target, Map crossReferences) {
 		Collection result = new LinkedList();
 		Collection settings = (Collection) crossReferences.get(target);
 		for (Iterator it = settings.iterator(); it.hasNext();) {
-			EStructuralFeature.Setting setting = (EStructuralFeature.Setting) it
-					.next();
-			if (setting.getEStructuralFeature() != ClassesPackage.eINSTANCE
-					.getDependency_Target()
-					|| false == setting.getEObject() instanceof Dependency) {
+			EStructuralFeature.Setting setting = (EStructuralFeature.Setting) it.next();
+			if (setting.getEStructuralFeature() != ClassesPackage.eINSTANCE.getDependency_Target()
+				|| false == setting.getEObject() instanceof Dependency) {
 				continue;
 			}
 			Dependency link = (Dependency) setting.getEObject();
 			if (org.unicase.model.classDiagram.edit.parts.DependencyEditPart.VISUAL_ID != org.unicase.model.classDiagram.part.ModelVisualIDRegistry
-					.getLinkWithClassVisualID(link)) {
+				.getLinkWithClassVisualID(link)) {
 				continue;
 			}
 			PackageElement src = link.getSource();
-			result
-					.add(new org.unicase.model.classDiagram.part.ModelLinkDescriptor(
-							src,
-							target,
-							link,
-							org.unicase.model.classDiagram.providers.ModelElementTypes.Dependency_4006,
-							org.unicase.model.classDiagram.edit.parts.DependencyEditPart.VISUAL_ID));
+			result.add(new org.unicase.model.classDiagram.part.ModelLinkDescriptor(src, target, link,
+				org.unicase.model.classDiagram.providers.ModelElementTypes.Dependency_4006,
+				org.unicase.model.classDiagram.edit.parts.DependencyEditPart.VISUAL_ID));
 		}
 		return result;
 	}
@@ -802,14 +695,12 @@ public class ModelDiagramUpdater {
 	/**
 	 * @generated
 	 */
-	private static Collection getOutgoingTypeModelFacetLinks_Association_4001(
-			Class source) {
+	private static Collection getOutgoingTypeModelFacetLinks_Association_4001(Class source) {
 		MEDiagram container = null;
 		// Find container element for the link.
 		// Climb up by containment hierarchy starting from the source
 		// and return the first element that is instance of the container class.
-		for (EObject element = source; element != null && container == null; element = element
-				.eContainer()) {
+		for (EObject element = source; element != null && container == null; element = element.eContainer()) {
 			if (element instanceof MEDiagram) {
 				container = (MEDiagram) element;
 			}
@@ -818,15 +709,14 @@ public class ModelDiagramUpdater {
 			return Collections.EMPTY_LIST;
 		}
 		Collection result = new LinkedList();
-		for (Iterator links = container.getNewElements().iterator(); links
-				.hasNext();) {
+		for (Iterator links = container.getNewElements().iterator(); links.hasNext();) {
 			EObject linkObject = (EObject) links.next();
 			if (false == linkObject instanceof Association) {
 				continue;
 			}
 			Association link = (Association) linkObject;
 			if (org.unicase.model.classDiagram.edit.parts.Association1EditPart.VISUAL_ID != org.unicase.model.classDiagram.part.ModelVisualIDRegistry
-					.getLinkWithClassVisualID(link)) {
+				.getLinkWithClassVisualID(link)) {
 				continue;
 			}
 			Class dst = link.getTarget();
@@ -834,13 +724,9 @@ public class ModelDiagramUpdater {
 			if (src != source) {
 				continue;
 			}
-			result
-					.add(new org.unicase.model.classDiagram.part.ModelLinkDescriptor(
-							src,
-							dst,
-							link,
-							org.unicase.model.classDiagram.providers.ModelElementTypes.Association_4001,
-							org.unicase.model.classDiagram.edit.parts.Association1EditPart.VISUAL_ID));
+			result.add(new org.unicase.model.classDiagram.part.ModelLinkDescriptor(src, dst, link,
+				org.unicase.model.classDiagram.providers.ModelElementTypes.Association_4001,
+				org.unicase.model.classDiagram.edit.parts.Association1EditPart.VISUAL_ID));
 		}
 		return result;
 	}
@@ -848,14 +734,12 @@ public class ModelDiagramUpdater {
 	/**
 	 * @generated
 	 */
-	private static Collection getOutgoingTypeModelFacetLinks_Association_4002(
-			Class source) {
+	private static Collection getOutgoingTypeModelFacetLinks_Association_4002(Class source) {
 		MEDiagram container = null;
 		// Find container element for the link.
 		// Climb up by containment hierarchy starting from the source
 		// and return the first element that is instance of the container class.
-		for (EObject element = source; element != null && container == null; element = element
-				.eContainer()) {
+		for (EObject element = source; element != null && container == null; element = element.eContainer()) {
 			if (element instanceof MEDiagram) {
 				container = (MEDiagram) element;
 			}
@@ -864,15 +748,14 @@ public class ModelDiagramUpdater {
 			return Collections.EMPTY_LIST;
 		}
 		Collection result = new LinkedList();
-		for (Iterator links = container.getNewElements().iterator(); links
-				.hasNext();) {
+		for (Iterator links = container.getNewElements().iterator(); links.hasNext();) {
 			EObject linkObject = (EObject) links.next();
 			if (false == linkObject instanceof Association) {
 				continue;
 			}
 			Association link = (Association) linkObject;
 			if (org.unicase.model.classDiagram.edit.parts.Association2EditPart.VISUAL_ID != org.unicase.model.classDiagram.part.ModelVisualIDRegistry
-					.getLinkWithClassVisualID(link)) {
+				.getLinkWithClassVisualID(link)) {
 				continue;
 			}
 			Class dst = link.getTarget();
@@ -880,13 +763,9 @@ public class ModelDiagramUpdater {
 			if (src != source) {
 				continue;
 			}
-			result
-					.add(new org.unicase.model.classDiagram.part.ModelLinkDescriptor(
-							src,
-							dst,
-							link,
-							org.unicase.model.classDiagram.providers.ModelElementTypes.Association_4002,
-							org.unicase.model.classDiagram.edit.parts.Association2EditPart.VISUAL_ID));
+			result.add(new org.unicase.model.classDiagram.part.ModelLinkDescriptor(src, dst, link,
+				org.unicase.model.classDiagram.providers.ModelElementTypes.Association_4002,
+				org.unicase.model.classDiagram.edit.parts.Association2EditPart.VISUAL_ID));
 		}
 		return result;
 	}
@@ -894,14 +773,12 @@ public class ModelDiagramUpdater {
 	/**
 	 * @generated
 	 */
-	private static Collection getOutgoingTypeModelFacetLinks_Association_4003(
-			Class source) {
+	private static Collection getOutgoingTypeModelFacetLinks_Association_4003(Class source) {
 		MEDiagram container = null;
 		// Find container element for the link.
 		// Climb up by containment hierarchy starting from the source
 		// and return the first element that is instance of the container class.
-		for (EObject element = source; element != null && container == null; element = element
-				.eContainer()) {
+		for (EObject element = source; element != null && container == null; element = element.eContainer()) {
 			if (element instanceof MEDiagram) {
 				container = (MEDiagram) element;
 			}
@@ -910,15 +787,14 @@ public class ModelDiagramUpdater {
 			return Collections.EMPTY_LIST;
 		}
 		Collection result = new LinkedList();
-		for (Iterator links = container.getNewElements().iterator(); links
-				.hasNext();) {
+		for (Iterator links = container.getNewElements().iterator(); links.hasNext();) {
 			EObject linkObject = (EObject) links.next();
 			if (false == linkObject instanceof Association) {
 				continue;
 			}
 			Association link = (Association) linkObject;
 			if (org.unicase.model.classDiagram.edit.parts.Association3EditPart.VISUAL_ID != org.unicase.model.classDiagram.part.ModelVisualIDRegistry
-					.getLinkWithClassVisualID(link)) {
+				.getLinkWithClassVisualID(link)) {
 				continue;
 			}
 			Class dst = link.getTarget();
@@ -926,13 +802,9 @@ public class ModelDiagramUpdater {
 			if (src != source) {
 				continue;
 			}
-			result
-					.add(new org.unicase.model.classDiagram.part.ModelLinkDescriptor(
-							src,
-							dst,
-							link,
-							org.unicase.model.classDiagram.providers.ModelElementTypes.Association_4003,
-							org.unicase.model.classDiagram.edit.parts.Association3EditPart.VISUAL_ID));
+			result.add(new org.unicase.model.classDiagram.part.ModelLinkDescriptor(src, dst, link,
+				org.unicase.model.classDiagram.providers.ModelElementTypes.Association_4003,
+				org.unicase.model.classDiagram.edit.parts.Association3EditPart.VISUAL_ID));
 		}
 		return result;
 	}
@@ -940,14 +812,12 @@ public class ModelDiagramUpdater {
 	/**
 	 * @generated
 	 */
-	private static Collection getOutgoingTypeModelFacetLinks_Association_4004(
-			Class source) {
+	private static Collection getOutgoingTypeModelFacetLinks_Association_4004(Class source) {
 		MEDiagram container = null;
 		// Find container element for the link.
 		// Climb up by containment hierarchy starting from the source
 		// and return the first element that is instance of the container class.
-		for (EObject element = source; element != null && container == null; element = element
-				.eContainer()) {
+		for (EObject element = source; element != null && container == null; element = element.eContainer()) {
 			if (element instanceof MEDiagram) {
 				container = (MEDiagram) element;
 			}
@@ -956,15 +826,14 @@ public class ModelDiagramUpdater {
 			return Collections.EMPTY_LIST;
 		}
 		Collection result = new LinkedList();
-		for (Iterator links = container.getNewElements().iterator(); links
-				.hasNext();) {
+		for (Iterator links = container.getNewElements().iterator(); links.hasNext();) {
 			EObject linkObject = (EObject) links.next();
 			if (false == linkObject instanceof Association) {
 				continue;
 			}
 			Association link = (Association) linkObject;
 			if (org.unicase.model.classDiagram.edit.parts.Association4EditPart.VISUAL_ID != org.unicase.model.classDiagram.part.ModelVisualIDRegistry
-					.getLinkWithClassVisualID(link)) {
+				.getLinkWithClassVisualID(link)) {
 				continue;
 			}
 			Class dst = link.getTarget();
@@ -972,13 +841,9 @@ public class ModelDiagramUpdater {
 			if (src != source) {
 				continue;
 			}
-			result
-					.add(new org.unicase.model.classDiagram.part.ModelLinkDescriptor(
-							src,
-							dst,
-							link,
-							org.unicase.model.classDiagram.providers.ModelElementTypes.Association_4004,
-							org.unicase.model.classDiagram.edit.parts.Association4EditPart.VISUAL_ID));
+			result.add(new org.unicase.model.classDiagram.part.ModelLinkDescriptor(src, dst, link,
+				org.unicase.model.classDiagram.providers.ModelElementTypes.Association_4004,
+				org.unicase.model.classDiagram.edit.parts.Association4EditPart.VISUAL_ID));
 		}
 		return result;
 	}
@@ -986,18 +851,13 @@ public class ModelDiagramUpdater {
 	/**
 	 * @generated
 	 */
-	private static Collection getOutgoingFeatureModelFacetLinks_Class_SubClasses_4005(
-			Class source) {
+	private static Collection getOutgoingFeatureModelFacetLinks_Class_SubClasses_4005(Class source) {
 		Collection result = new LinkedList();
-		for (Iterator destinations = source.getSubClasses().iterator(); destinations
-				.hasNext();) {
+		for (Iterator destinations = source.getSubClasses().iterator(); destinations.hasNext();) {
 			Class destination = (Class) destinations.next();
-			result
-					.add(new org.unicase.model.classDiagram.part.ModelLinkDescriptor(
-							source,
-							destination,
-							org.unicase.model.classDiagram.providers.ModelElementTypes.ClassSubClasses_4005,
-							org.unicase.model.classDiagram.edit.parts.ClassSubClassesEditPart.VISUAL_ID));
+			result.add(new org.unicase.model.classDiagram.part.ModelLinkDescriptor(source, destination,
+				org.unicase.model.classDiagram.providers.ModelElementTypes.ClassSubClasses_4005,
+				org.unicase.model.classDiagram.edit.parts.ClassSubClassesEditPart.VISUAL_ID));
 		}
 		return result;
 	}
@@ -1005,14 +865,12 @@ public class ModelDiagramUpdater {
 	/**
 	 * @generated
 	 */
-	private static Collection getOutgoingTypeModelFacetLinks_Dependency_4006(
-			PackageElement source) {
+	private static Collection getOutgoingTypeModelFacetLinks_Dependency_4006(PackageElement source) {
 		MEDiagram container = null;
 		// Find container element for the link.
 		// Climb up by containment hierarchy starting from the source
 		// and return the first element that is instance of the container class.
-		for (EObject element = source; element != null && container == null; element = element
-				.eContainer()) {
+		for (EObject element = source; element != null && container == null; element = element.eContainer()) {
 			if (element instanceof MEDiagram) {
 				container = (MEDiagram) element;
 			}
@@ -1021,15 +879,14 @@ public class ModelDiagramUpdater {
 			return Collections.EMPTY_LIST;
 		}
 		Collection result = new LinkedList();
-		for (Iterator links = container.getNewElements().iterator(); links
-				.hasNext();) {
+		for (Iterator links = container.getNewElements().iterator(); links.hasNext();) {
 			EObject linkObject = (EObject) links.next();
 			if (false == linkObject instanceof Dependency) {
 				continue;
 			}
 			Dependency link = (Dependency) linkObject;
 			if (org.unicase.model.classDiagram.edit.parts.DependencyEditPart.VISUAL_ID != org.unicase.model.classDiagram.part.ModelVisualIDRegistry
-					.getLinkWithClassVisualID(link)) {
+				.getLinkWithClassVisualID(link)) {
 				continue;
 			}
 			PackageElement dst = link.getTarget();
@@ -1037,13 +894,9 @@ public class ModelDiagramUpdater {
 			if (src != source) {
 				continue;
 			}
-			result
-					.add(new org.unicase.model.classDiagram.part.ModelLinkDescriptor(
-							src,
-							dst,
-							link,
-							org.unicase.model.classDiagram.providers.ModelElementTypes.Dependency_4006,
-							org.unicase.model.classDiagram.edit.parts.DependencyEditPart.VISUAL_ID));
+			result.add(new org.unicase.model.classDiagram.part.ModelLinkDescriptor(src, dst, link,
+				org.unicase.model.classDiagram.providers.ModelElementTypes.Dependency_4006,
+				org.unicase.model.classDiagram.edit.parts.DependencyEditPart.VISUAL_ID));
 		}
 		return result;
 	}

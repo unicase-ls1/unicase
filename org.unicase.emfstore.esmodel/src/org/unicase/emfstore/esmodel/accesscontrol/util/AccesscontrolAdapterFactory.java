@@ -1,8 +1,7 @@
 /**
- * <copyright> Copyright (c) 2008 Jonas Helming, Maximilian Koegel. All rights reserved. This program and the accompanying materials are made available under the terms of the Eclipse Public License v1.0 which accompanies this distribution, and is available at http://www.eclipse.org/legal/epl-v10.html
- * </copyright>
- *
- * $Id$
+ * <copyright> Copyright (c) 2008 Jonas Helming, Maximilian Koegel. All rights reserved. This program and the
+ * accompanying materials are made available under the terms of the Eclipse Public License v1.0 which accompanies this
+ * distribution, and is available at http://www.eclipse.org/legal/epl-v10.html </copyright>
  */
 package org.unicase.emfstore.esmodel.accesscontrol.util;
 
@@ -19,24 +18,23 @@ import org.unicase.model.IdentifiableElement;
 import org.unicase.model.UniqueIdentifier;
 
 /**
- * <!-- begin-user-doc --> The <b>Adapter Factory</b> for the model. It provides
- * an adapter <code>createXXX</code> method for each class of the model. <!--
- * end-user-doc -->
+ * <!-- begin-user-doc --> The <b>Adapter Factory</b> for the model. It provides an adapter <code>createXXX</code>
+ * method for each class of the model. <!-- end-user-doc -->
+ * 
  * @see org.unicase.emfstore.esmodel.accesscontrol.AccesscontrolPackage
  * @generated
  */
 public class AccesscontrolAdapterFactory extends AdapterFactoryImpl {
 	/**
-	 * The cached model package.
-	 * <!-- begin-user-doc --> <!-- end-user-doc -->
+	 * The cached model package. <!-- begin-user-doc --> <!-- end-user-doc -->
+	 * 
 	 * @generated
 	 */
 	protected static AccesscontrolPackage modelPackage;
 
 	/**
-	 * Creates an instance of the adapter factory.
-	 * <!-- begin-user-doc --> <!--
-	 * end-user-doc -->
+	 * Creates an instance of the adapter factory. <!-- begin-user-doc --> <!-- end-user-doc -->
+	 * 
 	 * @generated
 	 */
 	public AccesscontrolAdapterFactory() {
@@ -46,10 +44,10 @@ public class AccesscontrolAdapterFactory extends AdapterFactoryImpl {
 	}
 
 	/**
-	 * Returns whether this factory is applicable for the type of the object.
-	 * <!-- begin-user-doc --> This implementation returns <code>true</code> if
-	 * the object is either the model's package or is an instance object of the
-	 * model. <!-- end-user-doc -->
+	 * Returns whether this factory is applicable for the type of the object. <!-- begin-user-doc --> This
+	 * implementation returns <code>true</code> if the object is either the model's package or is an instance object of
+	 * the model. <!-- end-user-doc -->
+	 * 
 	 * @return whether this factory is applicable for the type of the object.
 	 * @generated
 	 */
@@ -65,8 +63,7 @@ public class AccesscontrolAdapterFactory extends AdapterFactoryImpl {
 	}
 
 	/**
-	 * The switch that delegates to the <code>createXXX</code> methods. <!--
-	 * begin-user-doc --> <!-- end-user-doc -->
+	 * The switch that delegates to the <code>createXXX</code> methods. <!-- begin-user-doc --> <!-- end-user-doc -->
 	 * 
 	 * @generated
 	 */
@@ -108,9 +105,8 @@ public class AccesscontrolAdapterFactory extends AdapterFactoryImpl {
 	};
 
 	/**
-	 * Creates an adapter for the <code>target</code>.
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
+	 * Creates an adapter for the <code>target</code>. <!-- begin-user-doc --> <!-- end-user-doc -->
+	 * 
 	 * @param target the object to adapt.
 	 * @return the adapter for the <code>target</code>.
 	 * @generated
@@ -121,12 +117,9 @@ public class AccesscontrolAdapterFactory extends AdapterFactoryImpl {
 	}
 
 	/**
-	 * Creates a new adapter for an object of class '
-	 * {@link org.unicase.emfstore.esmodel.accesscontrol.ACUser
-	 * <em>AC User</em>}'. <!-- begin-user-doc --> This default implementation
-	 * returns null so that we can easily ignore cases; it's useful to ignore a
-	 * case when inheritance will catch all the cases anyway. <!-- end-user-doc
-	 * -->
+	 * Creates a new adapter for an object of class ' {@link org.unicase.emfstore.esmodel.accesscontrol.ACUser
+	 * <em>AC User</em>}'. <!-- begin-user-doc --> This default implementation returns null so that we can easily ignore
+	 * cases; it's useful to ignore a case when inheritance will catch all the cases anyway. <!-- end-user-doc -->
 	 * 
 	 * @return the new adapter.
 	 * @see org.unicase.emfstore.esmodel.accesscontrol.ACUser
@@ -137,11 +130,11 @@ public class AccesscontrolAdapterFactory extends AdapterFactoryImpl {
 	}
 
 	/**
-	 * Creates a new adapter for an object of class '{@link org.unicase.emfstore.esmodel.accesscontrol.ACOrgUnit <em>AC Org Unit</em>}'.
-	 * <!-- begin-user-doc --> This default
-	 * implementation returns null so that we can easily ignore cases; it's
-	 * useful to ignore a case when inheritance will catch all the cases anyway.
-	 * <!-- end-user-doc -->
+	 * Creates a new adapter for an object of class '{@link org.unicase.emfstore.esmodel.accesscontrol.ACOrgUnit
+	 * <em>AC Org Unit</em>}'. <!-- begin-user-doc --> This default implementation returns null so that we can easily
+	 * ignore cases; it's useful to ignore a case when inheritance will catch all the cases anyway. <!-- end-user-doc
+	 * -->
+	 * 
 	 * @return the new adapter.
 	 * @see org.unicase.emfstore.esmodel.accesscontrol.ACOrgUnit
 	 * @generated
@@ -151,11 +144,9 @@ public class AccesscontrolAdapterFactory extends AdapterFactoryImpl {
 	}
 
 	/**
-	 * Creates a new adapter for an object of class '
-	 * {@link org.unicase.emfstore.esmodel.accesscontrol.ACGroup
-	 * <em>AC Group</em>}'. <!-- begin-user-doc --> This default implementation
-	 * returns null so that we can easily ignore cases; it's useful to ignore a
-	 * case when inheritance will catch all the cases anyway. <!-- end-user-doc
+	 * Creates a new adapter for an object of class ' {@link org.unicase.emfstore.esmodel.accesscontrol.ACGroup
+	 * <em>AC Group</em>}'. <!-- begin-user-doc --> This default implementation returns null so that we can easily
+	 * ignore cases; it's useful to ignore a case when inheritance will catch all the cases anyway. <!-- end-user-doc
 	 * -->
 	 * 
 	 * @return the new adapter.
@@ -167,11 +158,11 @@ public class AccesscontrolAdapterFactory extends AdapterFactoryImpl {
 	}
 
 	/**
-	 * Creates a new adapter for an object of class '{@link org.unicase.emfstore.esmodel.accesscontrol.ACOrgUnitId <em>AC Org Unit Id</em>}'.
-	 * <!-- begin-user-doc --> This default
-	 * implementation returns null so that we can easily ignore cases; it's
-	 * useful to ignore a case when inheritance will catch all the cases anyway.
-	 * <!-- end-user-doc -->
+	 * Creates a new adapter for an object of class '{@link org.unicase.emfstore.esmodel.accesscontrol.ACOrgUnitId
+	 * <em>AC Org Unit Id</em>}'. <!-- begin-user-doc --> This default implementation returns null so that we can easily
+	 * ignore cases; it's useful to ignore a case when inheritance will catch all the cases anyway. <!-- end-user-doc
+	 * -->
+	 * 
 	 * @return the new adapter.
 	 * @see org.unicase.emfstore.esmodel.accesscontrol.ACOrgUnitId
 	 * @generated
@@ -181,11 +172,11 @@ public class AccesscontrolAdapterFactory extends AdapterFactoryImpl {
 	}
 
 	/**
-	 * Creates a new adapter for an object of class '{@link org.unicase.model.IdentifiableElement <em>Identifiable Element</em>}'.
-	 * <!-- begin-user-doc -->
-	 * This default implementation returns null so that we can easily ignore cases;
-	 * it's useful to ignore a case when inheritance will catch all the cases anyway.
-	 * <!-- end-user-doc -->
+	 * Creates a new adapter for an object of class '{@link org.unicase.model.IdentifiableElement
+	 * <em>Identifiable Element</em>}'. <!-- begin-user-doc --> This default implementation returns null so that we can
+	 * easily ignore cases; it's useful to ignore a case when inheritance will catch all the cases anyway. <!--
+	 * end-user-doc -->
+	 * 
 	 * @return the new adapter.
 	 * @see org.unicase.model.IdentifiableElement
 	 * @generated
@@ -195,10 +186,11 @@ public class AccesscontrolAdapterFactory extends AdapterFactoryImpl {
 	}
 
 	/**
-	 * Creates a new adapter for an object of class '{@link org.unicase.model.UniqueIdentifier <em>Unique Identifier</em>}'.
-	 * <!-- begin-user-doc --> This default implementation returns null so that
-	 * we can easily ignore cases; it's useful to ignore a case when inheritance
-	 * will catch all the cases anyway. <!-- end-user-doc -->
+	 * Creates a new adapter for an object of class '{@link org.unicase.model.UniqueIdentifier
+	 * <em>Unique Identifier</em>}'. <!-- begin-user-doc --> This default implementation returns null so that we can
+	 * easily ignore cases; it's useful to ignore a case when inheritance will catch all the cases anyway. <!--
+	 * end-user-doc -->
+	 * 
 	 * @return the new adapter.
 	 * @see org.unicase.model.UniqueIdentifier
 	 * @generated
@@ -208,9 +200,9 @@ public class AccesscontrolAdapterFactory extends AdapterFactoryImpl {
 	}
 
 	/**
-	 * Creates a new adapter for the default case.
-	 * <!-- begin-user-doc --> This
-	 * default implementation returns null. <!-- end-user-doc -->
+	 * Creates a new adapter for the default case. <!-- begin-user-doc --> This default implementation returns null.
+	 * <!-- end-user-doc -->
+	 * 
 	 * @return the new adapter.
 	 * @generated
 	 */

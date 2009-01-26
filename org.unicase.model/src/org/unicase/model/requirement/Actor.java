@@ -1,7 +1,7 @@
 /**
  * <copyright> Copyright (c) 2008 Jonas Helming, Maximilian Koegel. All rights reserved. This program and the
  * accompanying materials are made available under the terms of the Eclipse Public License v1.0 which accompanies this
- * distribution, and is available at http://www.eclipse.org/legal/epl-v10.html </copyright> $Id$
+ * distribution, and is available at http://www.eclipse.org/legal/epl-v10.html </copyright>
  */
 package org.unicase.model.requirement;
 
@@ -41,8 +41,9 @@ public interface Actor extends ModelElement {
 	UserTask getInitiatedUserTask();
 
 	/**
-	 * Sets the value of the '{@link org.unicase.model.requirement.Actor#getInitiatedUserTask <em>Initiated User Task</em>}' reference.
-	 * <!-- begin-user-doc --> <!-- end-user-doc -->
+	 * Sets the value of the '{@link org.unicase.model.requirement.Actor#getInitiatedUserTask
+	 * <em>Initiated User Task</em>}' reference. <!-- begin-user-doc --> <!-- end-user-doc -->
+	 * 
 	 * @param value the new value of the '<em>Initiated User Task</em>' reference.
 	 * @see #getInitiatedUserTask()
 	 * @generated
@@ -69,16 +70,16 @@ public interface Actor extends ModelElement {
 	EList<UserTask> getParticipatedUserTasks();
 
 	/**
-	 * Returns the value of the '<em><b>Initiated Use Cases</b></em>' reference list.
-	 * The list contents are of type {@link org.unicase.model.requirement.UseCase}.
-	 * It is bidirectional and its opposite is '{@link org.unicase.model.requirement.UseCase#getInitiatingActor <em>Initiating Actor</em>}'.
-	 * <!-- begin-user-doc
+	 * Returns the value of the '<em><b>Initiated Use Cases</b></em>' reference list. The list contents are of type
+	 * {@link org.unicase.model.requirement.UseCase}. It is bidirectional and its opposite is '
+	 * {@link org.unicase.model.requirement.UseCase#getInitiatingActor <em>Initiating Actor</em>}'. <!-- begin-user-doc
 	 * -->
 	 * <p>
 	 * If the meaning of the '<em>Initiated Use Cases</em>' reference list isn't clear, there really should be more of a
 	 * description here...
 	 * </p>
 	 * <!-- end-user-doc -->
+	 * 
 	 * @return the value of the '<em>Initiated Use Cases</em>' reference list.
 	 * @see org.unicase.model.requirement.RequirementPackage#getActor_InitiatedUseCases()
 	 * @see org.unicase.model.requirement.UseCase#getInitiatingActor

@@ -1,8 +1,7 @@
 /**
- * <copyright> Copyright (c) 2008 Jonas Helming, Maximilian Koegel. All rights reserved. This program and the accompanying materials are made available under the terms of the Eclipse Public License v1.0 which accompanies this distribution, and is available at http://www.eclipse.org/legal/epl-v10.html
- * </copyright>
- *
- * $Id$
+ * <copyright> Copyright (c) 2008 Jonas Helming, Maximilian Koegel. All rights reserved. This program and the
+ * accompanying materials are made available under the terms of the Eclipse Public License v1.0 which accompanies this
+ * distribution, and is available at http://www.eclipse.org/legal/epl-v10.html </copyright>
  */
 package org.unicase.ui.meeditor.mecontrols.melinkcontrol;
 
@@ -30,19 +29,15 @@ import org.unicase.model.ModelElement;
 import org.unicase.ui.common.decorators.OverlayImageDescriptor;
 
 /**
- * 
- * An Action for adding reference links to a model element. It is mainly used in
- * the {@link MEMultiLinkControl}
+ * An Action for adding reference links to a model element. It is mainly used in the {@link MEMultiLinkControl}
  * 
  * @author shterev
- * 
  */
 public class AddReferenceAction extends Action {
 	/**
 	 * Command to add a new reference.
 	 * 
 	 * @author helming
-	 * 
 	 */
 	private final class AddReferenceCommand extends RecordingCommand {
 		private AddReferenceCommand(TransactionalEditingDomain domain) {
@@ -53,15 +48,11 @@ public class AddReferenceAction extends Action {
 		@Override
 		protected void doExecute() {
 			EClass clazz = eReference.getEReferenceType();
-			ElementListSelectionDialog dlg = new ElementListSelectionDialog(
-					PlatformUI.getWorkbench().getActiveWorkbenchWindow()
-							.getShell(),
-					new AdapterFactoryLabelProvider(
-							new ComposedAdapterFactory(
-									ComposedAdapterFactory.Descriptor.Registry.INSTANCE)));
-			Collection<ModelElement> allElements = modelElement
-					.getProject().getAllModelElementsbyClass(clazz,
-							new BasicEList<ModelElement>());
+			ElementListSelectionDialog dlg = new ElementListSelectionDialog(PlatformUI.getWorkbench()
+				.getActiveWorkbenchWindow().getShell(), new AdapterFactoryLabelProvider(new ComposedAdapterFactory(
+				ComposedAdapterFactory.Descriptor.Registry.INSTANCE)));
+			Collection<ModelElement> allElements = modelElement.getProject().getAllModelElementsbyClass(clazz,
+				new BasicEList<ModelElement>());
 			allElements.remove(modelElement);
 			Object object = modelElement.eGet(eReference);
 
@@ -92,11 +83,10 @@ public class AddReferenceAction extends Action {
 
 				if (isMultiReference()) {
 					Object[] results = dlg.getResult();
-					ProgressMonitorDialog progressDialog = new ProgressMonitorDialog(
-							PlatformUI.getWorkbench().getActiveWorkbenchWindow().getShell());
+					ProgressMonitorDialog progressDialog = new ProgressMonitorDialog(PlatformUI.getWorkbench()
+						.getActiveWorkbenchWindow().getShell());
 					progressDialog.open();
-					progressDialog.getProgressMonitor().beginTask("Adding references...",
-							results.length*10);
+					progressDialog.getProgressMonitor().beginTask("Adding references...", results.length * 10);
 					for (Object result : results) {
 						if (result instanceof EObject) {
 							eList.add((ModelElement) result);
@@ -122,36 +112,28 @@ public class AddReferenceAction extends Action {
 	/**
 	 * Default constructor.
 	 * 
-	 * @param modelElement
-	 *            the source model element
-	 * @param eReference
-	 *            the target reference
-	 * @param descriptor
-	 *            the descriptor used to generate display content
+	 * @param modelElement the source model element
+	 * @param eReference the target reference
+	 * @param descriptor the descriptor used to generate display content
 	 */
-	public AddReferenceAction(ModelElement modelElement, EReference eReference,
-			IItemPropertyDescriptor descriptor) {
+	public AddReferenceAction(ModelElement modelElement, EReference eReference, IItemPropertyDescriptor descriptor) {
 		this.modelElement = modelElement;
 		this.eReference = eReference;
 
 		Object obj = null;
 		if (!eReference.getEReferenceType().isAbstract()) {
-			obj = eReference.getEReferenceType().getEPackage()
-					.getEFactoryInstance().create(
-							eReference.getEReferenceType());
+			obj = eReference.getEReferenceType().getEPackage().getEFactoryInstance().create(
+				eReference.getEReferenceType());
 		}
-		Image image = new AdapterFactoryLabelProvider(
-				new ComposedAdapterFactory(
-						ComposedAdapterFactory.Descriptor.Registry.INSTANCE))
-				.getImage(obj);
+		Image image = new AdapterFactoryLabelProvider(new ComposedAdapterFactory(
+			ComposedAdapterFactory.Descriptor.Registry.INSTANCE)).getImage(obj);
 		String overlayString = "icons/link_overlay.png";
-		if(eReference.isContainment()){
+		if (eReference.isContainment()) {
 			overlayString = "icons/containment_overlay.png";
 		}
-		ImageDescriptor addOverlay = org.unicase.ui.common.Activator
-				.getImageDescriptor(overlayString);
-		OverlayImageDescriptor imageDescriptor = new OverlayImageDescriptor(
-				image, addOverlay, OverlayImageDescriptor.LOWER_RIGHT);
+		ImageDescriptor addOverlay = org.unicase.ui.common.Activator.getImageDescriptor(overlayString);
+		OverlayImageDescriptor imageDescriptor = new OverlayImageDescriptor(image, addOverlay,
+			OverlayImageDescriptor.LOWER_RIGHT);
 		setImageDescriptor(imageDescriptor);
 
 		String attribute = descriptor.getDisplayName(eReference);
@@ -162,7 +144,6 @@ public class AddReferenceAction extends Action {
 			attribute = attribute.substring(0, attribute.length() - 1);
 		}
 
-		
 		setToolTipText("Link " + attribute);
 
 	}
@@ -172,8 +153,7 @@ public class AddReferenceAction extends Action {
 	 */
 	@Override
 	public void run() {
-		TransactionalEditingDomain domain = TransactionUtil
-				.getEditingDomain(modelElement);
+		TransactionalEditingDomain domain = TransactionUtil.getEditingDomain(modelElement);
 		domain.getCommandStack().execute(new AddReferenceCommand(domain));
 
 	}

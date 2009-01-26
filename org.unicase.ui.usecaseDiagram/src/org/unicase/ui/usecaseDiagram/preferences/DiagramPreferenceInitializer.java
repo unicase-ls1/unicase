@@ -13,23 +13,17 @@ public class DiagramPreferenceInitializer extends AbstractPreferenceInitializer 
 	 */
 	public void initializeDefaultPreferences() {
 		IPreferenceStore store = getPreferenceStore();
-		org.unicase.ui.usecaseDiagram.preferences.DiagramPrintingPreferencePage
-				.initDefaults(store);
-		org.unicase.ui.usecaseDiagram.preferences.DiagramGeneralPreferencePage
-				.initDefaults(store);
-		org.unicase.ui.usecaseDiagram.preferences.DiagramAppearancePreferencePage
-				.initDefaults(store);
-		org.unicase.ui.usecaseDiagram.preferences.DiagramConnectionsPreferencePage
-				.initDefaults(store);
-		org.unicase.ui.usecaseDiagram.preferences.DiagramRulersAndGridPreferencePage
-				.initDefaults(store);
+		org.unicase.ui.usecaseDiagram.preferences.DiagramPrintingPreferencePage.initDefaults(store);
+		org.unicase.ui.usecaseDiagram.preferences.DiagramGeneralPreferencePage.initDefaults(store);
+		org.unicase.ui.usecaseDiagram.preferences.DiagramAppearancePreferencePage.initDefaults(store);
+		org.unicase.ui.usecaseDiagram.preferences.DiagramConnectionsPreferencePage.initDefaults(store);
+		org.unicase.ui.usecaseDiagram.preferences.DiagramRulersAndGridPreferencePage.initDefaults(store);
 	}
 
 	/**
 	 * @generated
 	 */
 	protected IPreferenceStore getPreferenceStore() {
-		return org.unicase.ui.usecaseDiagram.part.ModelDiagramEditorPlugin
-				.getInstance().getPreferenceStore();
+		return org.unicase.ui.usecaseDiagram.part.ModelDiagramEditorPlugin.getInstance().getPreferenceStore();
 	}
 }

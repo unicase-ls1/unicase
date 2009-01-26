@@ -93,26 +93,22 @@ public class ModelElementTypes extends ElementInitializers {
 	/**
 	 * @generated
 	 */
-	private static ImageDescriptor getProvidedImageDescriptor(
-			ENamedElement element) {
+	private static ImageDescriptor getProvidedImageDescriptor(ENamedElement element) {
 		if (element instanceof EStructuralFeature) {
 			EStructuralFeature feature = ((EStructuralFeature) element);
 			EClass eContainingClass = feature.getEContainingClass();
 			EClassifier eType = feature.getEType();
 			if (eContainingClass != null && !eContainingClass.isAbstract()) {
 				element = eContainingClass;
-			} else if (eType instanceof EClass
-					&& !((EClass) eType).isAbstract()) {
+			} else if (eType instanceof EClass && !((EClass) eType).isAbstract()) {
 				element = eType;
 			}
 		}
 		if (element instanceof EClass) {
 			EClass eClass = (EClass) element;
 			if (!eClass.isAbstract()) {
-				return org.unicase.ui.usecaseDiagram.part.ModelDiagramEditorPlugin
-						.getInstance().getItemImageDescriptor(
-								eClass.getEPackage().getEFactoryInstance()
-										.create(eClass));
+				return org.unicase.ui.usecaseDiagram.part.ModelDiagramEditorPlugin.getInstance()
+					.getItemImageDescriptor(eClass.getEPackage().getEFactoryInstance().create(eClass));
 			}
 		}
 		// TODO : support structural features
@@ -188,21 +184,15 @@ public class ModelElementTypes extends ElementInitializers {
 
 			elements.put(Actor_1001, RequirementPackage.eINSTANCE.getActor());
 
-			elements.put(UseCase_1002, RequirementPackage.eINSTANCE
-					.getUseCase());
+			elements.put(UseCase_1002, RequirementPackage.eINSTANCE.getUseCase());
 
-			elements.put(ActorParticipatedUseCases_3001,
-					RequirementPackage.eINSTANCE
-							.getActor_ParticipatedUseCases());
+			elements.put(ActorParticipatedUseCases_3001, RequirementPackage.eINSTANCE.getActor_ParticipatedUseCases());
 
-			elements.put(ActorInitiatedUseCases_3002,
-					RequirementPackage.eINSTANCE.getActor_InitiatedUseCases());
+			elements.put(ActorInitiatedUseCases_3002, RequirementPackage.eINSTANCE.getActor_InitiatedUseCases());
 
-			elements.put(UseCaseIncludedUseCases_3003,
-					RequirementPackage.eINSTANCE.getUseCase_IncludedUseCases());
+			elements.put(UseCaseIncludedUseCases_3003, RequirementPackage.eINSTANCE.getUseCase_IncludedUseCases());
 
-			elements.put(UseCaseExtendedUseCases_3004,
-					RequirementPackage.eINSTANCE.getUseCase_ExtendedUseCases());
+			elements.put(UseCaseExtendedUseCases_3004, RequirementPackage.eINSTANCE.getUseCase_ExtendedUseCases());
 		}
 		return (ENamedElement) elements.get(type);
 	}

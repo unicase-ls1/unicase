@@ -1,8 +1,7 @@
 /**
- * <copyright> Copyright (c) 2008 Jonas Helming, Maximilian Koegel. All rights reserved. This program and the accompanying materials are made available under the terms of the Eclipse Public License v1.0 which accompanies this distribution, and is available at http://www.eclipse.org/legal/epl-v10.html
- * </copyright>
- *
- * $Id$
+ * <copyright> Copyright (c) 2008 Jonas Helming, Maximilian Koegel. All rights reserved. This program and the
+ * accompanying materials are made available under the terms of the Eclipse Public License v1.0 which accompanies this
+ * distribution, and is available at http://www.eclipse.org/legal/epl-v10.html </copyright>
  */
 package org.unicase.ui.common.dialogs;
 
@@ -31,11 +30,9 @@ import org.unicase.ui.common.MEClassLabelProvider;
 import org.unicase.ui.common.ModelTreeContentProvider;
 
 /**
- * 
  * This dialog is similar to NewModelElementWizard.
  * 
  * @author Hodaie
- * 
  */
 public class METypeSelectionDialog extends TitleAreaDialog implements Listener {
 
@@ -46,10 +43,8 @@ public class METypeSelectionDialog extends TitleAreaDialog implements Listener {
 	/**
 	 * default constructor.
 	 * 
-	 * @param parent
-	 *            The parent composite
-	 * @param multiSelection
-	 *            if multiselection is allowed.
+	 * @param parent The parent composite
+	 * @param multiSelection if multiselection is allowed.
 	 */
 	public METypeSelectionDialog(Shell parent, boolean multiSelection) {
 		super(parent);
@@ -102,8 +97,7 @@ public class METypeSelectionDialog extends TitleAreaDialog implements Listener {
 	 */
 	@Override
 	protected void okPressed() {
-		IStructuredSelection ssel = (IStructuredSelection) treeViewer
-				.getSelection();
+		IStructuredSelection ssel = (IStructuredSelection) treeViewer.getSelection();
 
 		Object[] objs = ssel.toArray();
 		EClass[] eClazz = new EClass[objs.length];

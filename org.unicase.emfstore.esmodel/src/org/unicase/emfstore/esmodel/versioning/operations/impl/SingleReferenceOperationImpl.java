@@ -1,8 +1,7 @@
 /**
- * <copyright> Copyright (c) 2008 Jonas Helming, Maximilian Koegel. All rights reserved. This program and the accompanying materials are made available under the terms of the Eclipse Public License v1.0 which accompanies this distribution, and is available at http://www.eclipse.org/legal/epl-v10.html
- * </copyright>
- *
- * $Id$
+ * <copyright> Copyright (c) 2008 Jonas Helming, Maximilian Koegel. All rights reserved. This program and the
+ * accompanying materials are made available under the terms of the Eclipse Public License v1.0 which accompanies this
+ * distribution, and is available at http://www.eclipse.org/legal/epl-v10.html </copyright>
  */
 package org.unicase.emfstore.esmodel.versioning.operations.impl;
 
@@ -26,25 +25,25 @@ import org.unicase.model.Project;
 import org.unicase.model.util.ModelUtil;
 
 /**
- * <!-- begin-user-doc -->
- * An implementation of the model object '<em><b>Single Reference Operation</b></em>'.
- * <!-- end-user-doc -->
+ * <!-- begin-user-doc --> An implementation of the model object '<em><b>Single Reference Operation</b></em>'. <!--
+ * end-user-doc -->
  * <p>
  * The following features are implemented:
  * <ul>
- *   <li>{@link org.unicase.emfstore.esmodel.versioning.operations.impl.SingleReferenceOperationImpl#getOldValue <em>Old Value</em>}</li>
- *   <li>{@link org.unicase.emfstore.esmodel.versioning.operations.impl.SingleReferenceOperationImpl#getNewValue <em>New Value</em>}</li>
+ * <li>{@link org.unicase.emfstore.esmodel.versioning.operations.impl.SingleReferenceOperationImpl#getOldValue <em>Old
+ * Value</em>}</li>
+ * <li>{@link org.unicase.emfstore.esmodel.versioning.operations.impl.SingleReferenceOperationImpl#getNewValue <em>New
+ * Value</em>}</li>
  * </ul>
  * </p>
- *
+ * 
  * @generated
  */
-public class SingleReferenceOperationImpl extends ReferenceOperationImpl
-		implements SingleReferenceOperation {
+public class SingleReferenceOperationImpl extends ReferenceOperationImpl implements SingleReferenceOperation {
 	/**
-	 * The cached value of the '{@link #getOldValue() <em>Old Value</em>}' containment reference.
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
+	 * The cached value of the '{@link #getOldValue() <em>Old Value</em>}' containment reference. <!-- begin-user-doc
+	 * --> <!-- end-user-doc -->
+	 * 
 	 * @see #getOldValue()
 	 * @generated
 	 * @ordered
@@ -52,9 +51,9 @@ public class SingleReferenceOperationImpl extends ReferenceOperationImpl
 	protected ModelElementId oldValue;
 
 	/**
-	 * The cached value of the '{@link #getNewValue() <em>New Value</em>}' containment reference.
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
+	 * The cached value of the '{@link #getNewValue() <em>New Value</em>}' containment reference. <!-- begin-user-doc
+	 * --> <!-- end-user-doc -->
+	 * 
 	 * @see #getNewValue()
 	 * @generated
 	 * @ordered
@@ -62,8 +61,8 @@ public class SingleReferenceOperationImpl extends ReferenceOperationImpl
 	protected ModelElementId newValue;
 
 	/**
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
+	 * <!-- begin-user-doc --> <!-- end-user-doc -->
+	 * 
 	 * @generated
 	 */
 	protected SingleReferenceOperationImpl() {
@@ -71,8 +70,8 @@ public class SingleReferenceOperationImpl extends ReferenceOperationImpl
 	}
 
 	/**
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
+	 * <!-- begin-user-doc --> <!-- end-user-doc -->
+	 * 
 	 * @generated
 	 */
 	@Override
@@ -81,8 +80,8 @@ public class SingleReferenceOperationImpl extends ReferenceOperationImpl
 	}
 
 	/**
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
+	 * <!-- begin-user-doc --> <!-- end-user-doc -->
+	 * 
 	 * @generated
 	 */
 	public ModelElementId getOldValue() {
@@ -91,36 +90,25 @@ public class SingleReferenceOperationImpl extends ReferenceOperationImpl
 			oldValue = (ModelElementId) eResolveProxy(oldOldValue);
 			if (oldValue != oldOldValue) {
 				InternalEObject newOldValue = (InternalEObject) oldValue;
-				NotificationChain msgs = oldOldValue
-						.eInverseRemove(
-								this,
-								EOPPOSITE_FEATURE_BASE
-										- OperationsPackage.SINGLE_REFERENCE_OPERATION__OLD_VALUE,
-								null, null);
+				NotificationChain msgs = oldOldValue.eInverseRemove(this, EOPPOSITE_FEATURE_BASE
+					- OperationsPackage.SINGLE_REFERENCE_OPERATION__OLD_VALUE, null, null);
 				if (newOldValue.eInternalContainer() == null) {
-					msgs = newOldValue
-							.eInverseAdd(
-									this,
-									EOPPOSITE_FEATURE_BASE
-											- OperationsPackage.SINGLE_REFERENCE_OPERATION__OLD_VALUE,
-									null, msgs);
+					msgs = newOldValue.eInverseAdd(this, EOPPOSITE_FEATURE_BASE
+						- OperationsPackage.SINGLE_REFERENCE_OPERATION__OLD_VALUE, null, msgs);
 				}
 				if (msgs != null)
 					msgs.dispatch();
 				if (eNotificationRequired())
-					eNotify(new ENotificationImpl(
-							this,
-							Notification.RESOLVE,
-							OperationsPackage.SINGLE_REFERENCE_OPERATION__OLD_VALUE,
-							oldOldValue, oldValue));
+					eNotify(new ENotificationImpl(this, Notification.RESOLVE,
+						OperationsPackage.SINGLE_REFERENCE_OPERATION__OLD_VALUE, oldOldValue, oldValue));
 			}
 		}
 		return oldValue;
 	}
 
 	/**
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
+	 * <!-- begin-user-doc --> <!-- end-user-doc -->
+	 * 
 	 * @generated
 	 */
 	public ModelElementId basicGetOldValue() {
@@ -128,19 +116,16 @@ public class SingleReferenceOperationImpl extends ReferenceOperationImpl
 	}
 
 	/**
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
+	 * <!-- begin-user-doc --> <!-- end-user-doc -->
+	 * 
 	 * @generated
 	 */
-	public NotificationChain basicSetOldValue(ModelElementId newOldValue,
-			NotificationChain msgs) {
+	public NotificationChain basicSetOldValue(ModelElementId newOldValue, NotificationChain msgs) {
 		ModelElementId oldOldValue = oldValue;
 		oldValue = newOldValue;
 		if (eNotificationRequired()) {
-			ENotificationImpl notification = new ENotificationImpl(this,
-					Notification.SET,
-					OperationsPackage.SINGLE_REFERENCE_OPERATION__OLD_VALUE,
-					oldOldValue, newOldValue);
+			ENotificationImpl notification = new ENotificationImpl(this, Notification.SET,
+				OperationsPackage.SINGLE_REFERENCE_OPERATION__OLD_VALUE, oldOldValue, newOldValue);
 			if (msgs == null)
 				msgs = notification;
 			else
@@ -150,39 +135,30 @@ public class SingleReferenceOperationImpl extends ReferenceOperationImpl
 	}
 
 	/**
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
+	 * <!-- begin-user-doc --> <!-- end-user-doc -->
+	 * 
 	 * @generated
 	 */
 	public void setOldValue(ModelElementId newOldValue) {
 		if (newOldValue != oldValue) {
 			NotificationChain msgs = null;
 			if (oldValue != null)
-				msgs = ((InternalEObject) oldValue)
-						.eInverseRemove(
-								this,
-								EOPPOSITE_FEATURE_BASE
-										- OperationsPackage.SINGLE_REFERENCE_OPERATION__OLD_VALUE,
-								null, msgs);
+				msgs = ((InternalEObject) oldValue).eInverseRemove(this, EOPPOSITE_FEATURE_BASE
+					- OperationsPackage.SINGLE_REFERENCE_OPERATION__OLD_VALUE, null, msgs);
 			if (newOldValue != null)
-				msgs = ((InternalEObject) newOldValue)
-						.eInverseAdd(
-								this,
-								EOPPOSITE_FEATURE_BASE
-										- OperationsPackage.SINGLE_REFERENCE_OPERATION__OLD_VALUE,
-								null, msgs);
+				msgs = ((InternalEObject) newOldValue).eInverseAdd(this, EOPPOSITE_FEATURE_BASE
+					- OperationsPackage.SINGLE_REFERENCE_OPERATION__OLD_VALUE, null, msgs);
 			msgs = basicSetOldValue(newOldValue, msgs);
 			if (msgs != null)
 				msgs.dispatch();
 		} else if (eNotificationRequired())
 			eNotify(new ENotificationImpl(this, Notification.SET,
-					OperationsPackage.SINGLE_REFERENCE_OPERATION__OLD_VALUE,
-					newOldValue, newOldValue));
+				OperationsPackage.SINGLE_REFERENCE_OPERATION__OLD_VALUE, newOldValue, newOldValue));
 	}
 
 	/**
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
+	 * <!-- begin-user-doc --> <!-- end-user-doc -->
+	 * 
 	 * @generated
 	 */
 	public ModelElementId getNewValue() {
@@ -191,36 +167,25 @@ public class SingleReferenceOperationImpl extends ReferenceOperationImpl
 			newValue = (ModelElementId) eResolveProxy(oldNewValue);
 			if (newValue != oldNewValue) {
 				InternalEObject newNewValue = (InternalEObject) newValue;
-				NotificationChain msgs = oldNewValue
-						.eInverseRemove(
-								this,
-								EOPPOSITE_FEATURE_BASE
-										- OperationsPackage.SINGLE_REFERENCE_OPERATION__NEW_VALUE,
-								null, null);
+				NotificationChain msgs = oldNewValue.eInverseRemove(this, EOPPOSITE_FEATURE_BASE
+					- OperationsPackage.SINGLE_REFERENCE_OPERATION__NEW_VALUE, null, null);
 				if (newNewValue.eInternalContainer() == null) {
-					msgs = newNewValue
-							.eInverseAdd(
-									this,
-									EOPPOSITE_FEATURE_BASE
-											- OperationsPackage.SINGLE_REFERENCE_OPERATION__NEW_VALUE,
-									null, msgs);
+					msgs = newNewValue.eInverseAdd(this, EOPPOSITE_FEATURE_BASE
+						- OperationsPackage.SINGLE_REFERENCE_OPERATION__NEW_VALUE, null, msgs);
 				}
 				if (msgs != null)
 					msgs.dispatch();
 				if (eNotificationRequired())
-					eNotify(new ENotificationImpl(
-							this,
-							Notification.RESOLVE,
-							OperationsPackage.SINGLE_REFERENCE_OPERATION__NEW_VALUE,
-							oldNewValue, newValue));
+					eNotify(new ENotificationImpl(this, Notification.RESOLVE,
+						OperationsPackage.SINGLE_REFERENCE_OPERATION__NEW_VALUE, oldNewValue, newValue));
 			}
 		}
 		return newValue;
 	}
 
 	/**
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
+	 * <!-- begin-user-doc --> <!-- end-user-doc -->
+	 * 
 	 * @generated
 	 */
 	public ModelElementId basicGetNewValue() {
@@ -228,19 +193,16 @@ public class SingleReferenceOperationImpl extends ReferenceOperationImpl
 	}
 
 	/**
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
+	 * <!-- begin-user-doc --> <!-- end-user-doc -->
+	 * 
 	 * @generated
 	 */
-	public NotificationChain basicSetNewValue(ModelElementId newNewValue,
-			NotificationChain msgs) {
+	public NotificationChain basicSetNewValue(ModelElementId newNewValue, NotificationChain msgs) {
 		ModelElementId oldNewValue = newValue;
 		newValue = newNewValue;
 		if (eNotificationRequired()) {
-			ENotificationImpl notification = new ENotificationImpl(this,
-					Notification.SET,
-					OperationsPackage.SINGLE_REFERENCE_OPERATION__NEW_VALUE,
-					oldNewValue, newNewValue);
+			ENotificationImpl notification = new ENotificationImpl(this, Notification.SET,
+				OperationsPackage.SINGLE_REFERENCE_OPERATION__NEW_VALUE, oldNewValue, newNewValue);
 			if (msgs == null)
 				msgs = notification;
 			else
@@ -250,44 +212,34 @@ public class SingleReferenceOperationImpl extends ReferenceOperationImpl
 	}
 
 	/**
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
+	 * <!-- begin-user-doc --> <!-- end-user-doc -->
+	 * 
 	 * @generated
 	 */
 	public void setNewValue(ModelElementId newNewValue) {
 		if (newNewValue != newValue) {
 			NotificationChain msgs = null;
 			if (newValue != null)
-				msgs = ((InternalEObject) newValue)
-						.eInverseRemove(
-								this,
-								EOPPOSITE_FEATURE_BASE
-										- OperationsPackage.SINGLE_REFERENCE_OPERATION__NEW_VALUE,
-								null, msgs);
+				msgs = ((InternalEObject) newValue).eInverseRemove(this, EOPPOSITE_FEATURE_BASE
+					- OperationsPackage.SINGLE_REFERENCE_OPERATION__NEW_VALUE, null, msgs);
 			if (newNewValue != null)
-				msgs = ((InternalEObject) newNewValue)
-						.eInverseAdd(
-								this,
-								EOPPOSITE_FEATURE_BASE
-										- OperationsPackage.SINGLE_REFERENCE_OPERATION__NEW_VALUE,
-								null, msgs);
+				msgs = ((InternalEObject) newNewValue).eInverseAdd(this, EOPPOSITE_FEATURE_BASE
+					- OperationsPackage.SINGLE_REFERENCE_OPERATION__NEW_VALUE, null, msgs);
 			msgs = basicSetNewValue(newNewValue, msgs);
 			if (msgs != null)
 				msgs.dispatch();
 		} else if (eNotificationRequired())
 			eNotify(new ENotificationImpl(this, Notification.SET,
-					OperationsPackage.SINGLE_REFERENCE_OPERATION__NEW_VALUE,
-					newNewValue, newNewValue));
+				OperationsPackage.SINGLE_REFERENCE_OPERATION__NEW_VALUE, newNewValue, newNewValue));
 	}
 
 	/**
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
+	 * <!-- begin-user-doc --> <!-- end-user-doc -->
+	 * 
 	 * @generated
 	 */
 	@Override
-	public NotificationChain eInverseRemove(InternalEObject otherEnd,
-			int featureID, NotificationChain msgs) {
+	public NotificationChain eInverseRemove(InternalEObject otherEnd, int featureID, NotificationChain msgs) {
 		switch (featureID) {
 		case OperationsPackage.SINGLE_REFERENCE_OPERATION__OLD_VALUE:
 			return basicSetOldValue(null, msgs);
@@ -298,8 +250,8 @@ public class SingleReferenceOperationImpl extends ReferenceOperationImpl
 	}
 
 	/**
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
+	 * <!-- begin-user-doc --> <!-- end-user-doc -->
+	 * 
 	 * @generated
 	 */
 	@Override
@@ -318,8 +270,8 @@ public class SingleReferenceOperationImpl extends ReferenceOperationImpl
 	}
 
 	/**
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
+	 * <!-- begin-user-doc --> <!-- end-user-doc -->
+	 * 
 	 * @generated
 	 */
 	@Override
@@ -336,8 +288,8 @@ public class SingleReferenceOperationImpl extends ReferenceOperationImpl
 	}
 
 	/**
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
+	 * <!-- begin-user-doc --> <!-- end-user-doc -->
+	 * 
 	 * @generated
 	 */
 	@Override
@@ -354,8 +306,8 @@ public class SingleReferenceOperationImpl extends ReferenceOperationImpl
 	}
 
 	/**
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
+	 * <!-- begin-user-doc --> <!-- end-user-doc -->
+	 * 
 	 * @generated
 	 */
 	@Override
@@ -372,8 +324,7 @@ public class SingleReferenceOperationImpl extends ReferenceOperationImpl
 	@Override
 	public void apply(Project project) {
 		super.apply(project);
-		ModelElement modelElement = project
-				.getModelElement(getModelElementId());
+		ModelElement modelElement = project.getModelElement(getModelElementId());
 		ModelElement newModelElement = project.getModelElement(getNewValue());
 
 		List<EReference> references = modelElement.eClass().getEAllReferences();
@@ -386,7 +337,7 @@ public class SingleReferenceOperationImpl extends ReferenceOperationImpl
 				return;
 			}
 		}
-		//FIXME MK: exception
+		// FIXME MK: exception
 		throw new IllegalStateException("cannot find reference feature");
 
 	}
@@ -414,15 +365,16 @@ public class SingleReferenceOperationImpl extends ReferenceOperationImpl
 	@Override
 	public AbstractOperation reverse() {
 		SingleReferenceOperation singleReferenceOperation = OperationsFactory.eINSTANCE
-				.createSingleReferenceOperation();
+			.createSingleReferenceOperation();
 		reverse(singleReferenceOperation);
 		singleReferenceOperation.setNewValue(ModelUtil.clone(getOldValue()));
 		singleReferenceOperation.setOldValue(ModelUtil.clone(getOldValue()));
 		return singleReferenceOperation;
 	}
 
-	/** 
+	/**
 	 * {@inheritDoc}
+	 * 
 	 * @see org.unicase.emfstore.esmodel.versioning.operations.ReferenceOperation#getOtherInvolvedModelElements()
 	 */
 	public Set<ModelElementId> getOtherInvolvedModelElements() {
@@ -438,4 +390,4 @@ public class SingleReferenceOperationImpl extends ReferenceOperationImpl
 		return result;
 	}
 
-} //SingleReferenceOperationImpl
+} // SingleReferenceOperationImpl

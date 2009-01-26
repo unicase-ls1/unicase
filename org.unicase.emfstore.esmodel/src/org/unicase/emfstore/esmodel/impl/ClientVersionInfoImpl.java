@@ -1,7 +1,7 @@
 /**
- * <copyright>Copyright (c) 2008 Jonas Helming, Maximilian Koegel. All rights reserved. This program and the accompanying materials are made available under the terms of the Eclipse Public License v1.0 which accompanies this distribution, and is available at http://www.eclipse.org/legal/epl-v10.html</copyright>
- *
- * $Id$
+ * <copyright>Copyright (c) 2008 Jonas Helming, Maximilian Koegel. All rights reserved. This program and the
+ * accompanying materials are made available under the terms of the Eclipse Public License v1.0 which accompanies this
+ * distribution, and is available at http://www.eclipse.org/legal/epl-v10.html</copyright>
  */
 package org.unicase.emfstore.esmodel.impl;
 
@@ -13,25 +13,23 @@ import org.unicase.emfstore.esmodel.ClientVersionInfo;
 import org.unicase.emfstore.esmodel.EsmodelPackage;
 
 /**
- * <!-- begin-user-doc -->
- * An implementation of the model object '<em><b>Client Version Info</b></em>'.
- * <!-- end-user-doc -->
+ * <!-- begin-user-doc --> An implementation of the model object '<em><b>Client Version Info</b></em>'. <!--
+ * end-user-doc -->
  * <p>
  * The following features are implemented:
  * <ul>
- *   <li>{@link org.unicase.emfstore.esmodel.impl.ClientVersionInfoImpl#getVersion <em>Version</em>}</li>
- *   <li>{@link org.unicase.emfstore.esmodel.impl.ClientVersionInfoImpl#getName <em>Name</em>}</li>
+ * <li>{@link org.unicase.emfstore.esmodel.impl.ClientVersionInfoImpl#getVersion <em>Version</em>}</li>
+ * <li>{@link org.unicase.emfstore.esmodel.impl.ClientVersionInfoImpl#getName <em>Name</em>}</li>
  * </ul>
  * </p>
- *
+ * 
  * @generated
  */
-public class ClientVersionInfoImpl extends EObjectImpl implements
-		ClientVersionInfo {
+public class ClientVersionInfoImpl extends EObjectImpl implements ClientVersionInfo {
 	/**
-	 * The default value of the '{@link #getVersion() <em>Version</em>}' attribute.
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
+	 * The default value of the '{@link #getVersion() <em>Version</em>}' attribute. <!-- begin-user-doc --> <!--
+	 * end-user-doc -->
+	 * 
 	 * @see #getVersion()
 	 * @generated
 	 * @ordered
@@ -39,9 +37,9 @@ public class ClientVersionInfoImpl extends EObjectImpl implements
 	protected static final String VERSION_EDEFAULT = null;
 
 	/**
-	 * The cached value of the '{@link #getVersion() <em>Version</em>}' attribute.
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
+	 * The cached value of the '{@link #getVersion() <em>Version</em>}' attribute. <!-- begin-user-doc --> <!--
+	 * end-user-doc -->
+	 * 
 	 * @see #getVersion()
 	 * @generated
 	 * @ordered
@@ -49,9 +47,9 @@ public class ClientVersionInfoImpl extends EObjectImpl implements
 	protected String version = VERSION_EDEFAULT;
 
 	/**
-	 * The default value of the '{@link #getName() <em>Name</em>}' attribute.
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
+	 * The default value of the '{@link #getName() <em>Name</em>}' attribute. <!-- begin-user-doc --> <!-- end-user-doc
+	 * -->
+	 * 
 	 * @see #getName()
 	 * @generated
 	 * @ordered
@@ -59,9 +57,9 @@ public class ClientVersionInfoImpl extends EObjectImpl implements
 	protected static final String NAME_EDEFAULT = null;
 
 	/**
-	 * The cached value of the '{@link #getName() <em>Name</em>}' attribute.
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
+	 * The cached value of the '{@link #getName() <em>Name</em>}' attribute. <!-- begin-user-doc --> <!-- end-user-doc
+	 * -->
+	 * 
 	 * @see #getName()
 	 * @generated
 	 * @ordered
@@ -69,8 +67,8 @@ public class ClientVersionInfoImpl extends EObjectImpl implements
 	protected String name = NAME_EDEFAULT;
 
 	/**
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
+	 * <!-- begin-user-doc --> <!-- end-user-doc -->
+	 * 
 	 * @generated
 	 */
 	protected ClientVersionInfoImpl() {
@@ -78,8 +76,8 @@ public class ClientVersionInfoImpl extends EObjectImpl implements
 	}
 
 	/**
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
+	 * <!-- begin-user-doc --> <!-- end-user-doc -->
+	 * 
 	 * @generated
 	 */
 	@Override
@@ -88,8 +86,8 @@ public class ClientVersionInfoImpl extends EObjectImpl implements
 	}
 
 	/**
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
+	 * <!-- begin-user-doc --> <!-- end-user-doc -->
+	 * 
 	 * @generated
 	 */
 	public String getVersion() {
@@ -97,22 +95,21 @@ public class ClientVersionInfoImpl extends EObjectImpl implements
 	}
 
 	/**
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
+	 * <!-- begin-user-doc --> <!-- end-user-doc -->
+	 * 
 	 * @generated
 	 */
 	public void setVersion(String newVersion) {
 		String oldVersion = version;
 		version = newVersion;
 		if (eNotificationRequired())
-			eNotify(new ENotificationImpl(this, Notification.SET,
-					EsmodelPackage.CLIENT_VERSION_INFO__VERSION, oldVersion,
-					version));
+			eNotify(new ENotificationImpl(this, Notification.SET, EsmodelPackage.CLIENT_VERSION_INFO__VERSION,
+				oldVersion, version));
 	}
 
 	/**
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
+	 * <!-- begin-user-doc --> <!-- end-user-doc -->
+	 * 
 	 * @generated
 	 */
 	public String getName() {
@@ -120,21 +117,21 @@ public class ClientVersionInfoImpl extends EObjectImpl implements
 	}
 
 	/**
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
+	 * <!-- begin-user-doc --> <!-- end-user-doc -->
+	 * 
 	 * @generated
 	 */
 	public void setName(String newName) {
 		String oldName = name;
 		name = newName;
 		if (eNotificationRequired())
-			eNotify(new ENotificationImpl(this, Notification.SET,
-					EsmodelPackage.CLIENT_VERSION_INFO__NAME, oldName, name));
+			eNotify(new ENotificationImpl(this, Notification.SET, EsmodelPackage.CLIENT_VERSION_INFO__NAME, oldName,
+				name));
 	}
 
 	/**
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
+	 * <!-- begin-user-doc --> <!-- end-user-doc -->
+	 * 
 	 * @generated
 	 */
 	@Override
@@ -149,8 +146,8 @@ public class ClientVersionInfoImpl extends EObjectImpl implements
 	}
 
 	/**
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
+	 * <!-- begin-user-doc --> <!-- end-user-doc -->
+	 * 
 	 * @generated
 	 */
 	@Override
@@ -167,8 +164,8 @@ public class ClientVersionInfoImpl extends EObjectImpl implements
 	}
 
 	/**
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
+	 * <!-- begin-user-doc --> <!-- end-user-doc -->
+	 * 
 	 * @generated
 	 */
 	@Override
@@ -185,26 +182,24 @@ public class ClientVersionInfoImpl extends EObjectImpl implements
 	}
 
 	/**
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
+	 * <!-- begin-user-doc --> <!-- end-user-doc -->
+	 * 
 	 * @generated
 	 */
 	@Override
 	public boolean eIsSet(int featureID) {
 		switch (featureID) {
 		case EsmodelPackage.CLIENT_VERSION_INFO__VERSION:
-			return VERSION_EDEFAULT == null ? version != null
-					: !VERSION_EDEFAULT.equals(version);
+			return VERSION_EDEFAULT == null ? version != null : !VERSION_EDEFAULT.equals(version);
 		case EsmodelPackage.CLIENT_VERSION_INFO__NAME:
-			return NAME_EDEFAULT == null ? name != null : !NAME_EDEFAULT
-					.equals(name);
+			return NAME_EDEFAULT == null ? name != null : !NAME_EDEFAULT.equals(name);
 		}
 		return super.eIsSet(featureID);
 	}
 
 	/**
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
+	 * <!-- begin-user-doc --> <!-- end-user-doc -->
+	 * 
 	 * @generated
 	 */
 	@Override
@@ -221,4 +216,4 @@ public class ClientVersionInfoImpl extends EObjectImpl implements
 		return result.toString();
 	}
 
-} //ClientVersionInfoImpl
+} // ClientVersionInfoImpl

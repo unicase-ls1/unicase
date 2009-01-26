@@ -1,8 +1,7 @@
 /**
- * <copyright> Copyright (c) 2008 Jonas Helming, Maximilian Koegel. All rights reserved. This program and the accompanying materials are made available under the terms of the Eclipse Public License v1.0 which accompanies this distribution, and is available at http://www.eclipse.org/legal/epl-v10.html
- * </copyright>
- *
- * $Id$
+ * <copyright> Copyright (c) 2008 Jonas Helming, Maximilian Koegel. All rights reserved. This program and the
+ * accompanying materials are made available under the terms of the Eclipse Public License v1.0 which accompanies this
+ * distribution, and is available at http://www.eclipse.org/legal/epl-v10.html </copyright>
  */
 package org.unicase.emfstore.esmodel.versioning.operations.impl;
 
@@ -21,26 +20,25 @@ import org.unicase.model.ModelElement;
 import org.unicase.model.Project;
 
 /**
- * <!-- begin-user-doc -->
- * An implementation of the model object '<em><b>Multi Attribute Operation</b></em>'.
- * <!-- end-user-doc -->
+ * <!-- begin-user-doc --> An implementation of the model object '<em><b>Multi Attribute Operation</b></em>'. <!--
+ * end-user-doc -->
  * <p>
  * The following features are implemented:
  * <ul>
- *   <li>{@link org.unicase.emfstore.esmodel.versioning.operations.impl.MultiAttributeOperationImpl#isAdd <em>Add</em>}</li>
- *   <li>{@link org.unicase.emfstore.esmodel.versioning.operations.impl.MultiAttributeOperationImpl#getIndex <em>Index</em>}</li>
- *   <li>{@link org.unicase.emfstore.esmodel.versioning.operations.impl.MultiAttributeOperationImpl#getValues <em>Values</em>}</li>
+ * <li>{@link org.unicase.emfstore.esmodel.versioning.operations.impl.MultiAttributeOperationImpl#isAdd <em>Add</em>}</li>
+ * <li>{@link org.unicase.emfstore.esmodel.versioning.operations.impl.MultiAttributeOperationImpl#getIndex <em>Index
+ * </em>}</li>
+ * <li>{@link org.unicase.emfstore.esmodel.versioning.operations.impl.MultiAttributeOperationImpl#getValues <em>Values
+ * </em>}</li>
  * </ul>
  * </p>
- *
+ * 
  * @generated
  */
-public class MultiAttributeOperationImpl extends FeatureOperationImpl implements
-		MultiAttributeOperation {
+public class MultiAttributeOperationImpl extends FeatureOperationImpl implements MultiAttributeOperation {
 	/**
-	 * The default value of the '{@link #isAdd() <em>Add</em>}' attribute.
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
+	 * The default value of the '{@link #isAdd() <em>Add</em>}' attribute. <!-- begin-user-doc --> <!-- end-user-doc -->
+	 * 
 	 * @see #isAdd()
 	 * @generated
 	 * @ordered
@@ -48,9 +46,8 @@ public class MultiAttributeOperationImpl extends FeatureOperationImpl implements
 	protected static final boolean ADD_EDEFAULT = false;
 
 	/**
-	 * The cached value of the '{@link #isAdd() <em>Add</em>}' attribute.
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
+	 * The cached value of the '{@link #isAdd() <em>Add</em>}' attribute. <!-- begin-user-doc --> <!-- end-user-doc -->
+	 * 
 	 * @see #isAdd()
 	 * @generated
 	 * @ordered
@@ -58,9 +55,9 @@ public class MultiAttributeOperationImpl extends FeatureOperationImpl implements
 	protected boolean add = ADD_EDEFAULT;
 
 	/**
-	 * The default value of the '{@link #getIndex() <em>Index</em>}' attribute.
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
+	 * The default value of the '{@link #getIndex() <em>Index</em>}' attribute. <!-- begin-user-doc --> <!--
+	 * end-user-doc -->
+	 * 
 	 * @see #getIndex()
 	 * @generated
 	 * @ordered
@@ -68,9 +65,9 @@ public class MultiAttributeOperationImpl extends FeatureOperationImpl implements
 	protected static final int INDEX_EDEFAULT = 0;
 
 	/**
-	 * The cached value of the '{@link #getIndex() <em>Index</em>}' attribute.
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
+	 * The cached value of the '{@link #getIndex() <em>Index</em>}' attribute. <!-- begin-user-doc --> <!-- end-user-doc
+	 * -->
+	 * 
 	 * @see #getIndex()
 	 * @generated
 	 * @ordered
@@ -78,9 +75,9 @@ public class MultiAttributeOperationImpl extends FeatureOperationImpl implements
 	protected int index = INDEX_EDEFAULT;
 
 	/**
-	 * The cached value of the '{@link #getValues() <em>Values</em>}' attribute list.
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
+	 * The cached value of the '{@link #getValues() <em>Values</em>}' attribute list. <!-- begin-user-doc --> <!--
+	 * end-user-doc -->
+	 * 
 	 * @see #getValues()
 	 * @generated
 	 * @ordered
@@ -88,8 +85,8 @@ public class MultiAttributeOperationImpl extends FeatureOperationImpl implements
 	protected EList<Object> values;
 
 	/**
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
+	 * <!-- begin-user-doc --> <!-- end-user-doc -->
+	 * 
 	 * @generated
 	 */
 	protected MultiAttributeOperationImpl() {
@@ -97,8 +94,8 @@ public class MultiAttributeOperationImpl extends FeatureOperationImpl implements
 	}
 
 	/**
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
+	 * <!-- begin-user-doc --> <!-- end-user-doc -->
+	 * 
 	 * @generated
 	 */
 	@Override
@@ -107,8 +104,8 @@ public class MultiAttributeOperationImpl extends FeatureOperationImpl implements
 	}
 
 	/**
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
+	 * <!-- begin-user-doc --> <!-- end-user-doc -->
+	 * 
 	 * @generated
 	 */
 	public boolean isAdd() {
@@ -116,22 +113,21 @@ public class MultiAttributeOperationImpl extends FeatureOperationImpl implements
 	}
 
 	/**
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
+	 * <!-- begin-user-doc --> <!-- end-user-doc -->
+	 * 
 	 * @generated
 	 */
 	public void setAdd(boolean newAdd) {
 		boolean oldAdd = add;
 		add = newAdd;
 		if (eNotificationRequired())
-			eNotify(new ENotificationImpl(this, Notification.SET,
-					OperationsPackage.MULTI_ATTRIBUTE_OPERATION__ADD, oldAdd,
-					add));
+			eNotify(new ENotificationImpl(this, Notification.SET, OperationsPackage.MULTI_ATTRIBUTE_OPERATION__ADD,
+				oldAdd, add));
 	}
 
 	/**
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
+	 * <!-- begin-user-doc --> <!-- end-user-doc -->
+	 * 
 	 * @generated
 	 */
 	public int getIndex() {
@@ -139,35 +135,34 @@ public class MultiAttributeOperationImpl extends FeatureOperationImpl implements
 	}
 
 	/**
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
+	 * <!-- begin-user-doc --> <!-- end-user-doc -->
+	 * 
 	 * @generated
 	 */
 	public void setIndex(int newIndex) {
 		int oldIndex = index;
 		index = newIndex;
 		if (eNotificationRequired())
-			eNotify(new ENotificationImpl(this, Notification.SET,
-					OperationsPackage.MULTI_ATTRIBUTE_OPERATION__INDEX,
-					oldIndex, index));
+			eNotify(new ENotificationImpl(this, Notification.SET, OperationsPackage.MULTI_ATTRIBUTE_OPERATION__INDEX,
+				oldIndex, index));
 	}
 
 	/**
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
+	 * <!-- begin-user-doc --> <!-- end-user-doc -->
+	 * 
 	 * @generated
 	 */
 	public EList<Object> getValues() {
 		if (values == null) {
 			values = new EDataTypeUniqueEList<Object>(Object.class, this,
-					OperationsPackage.MULTI_ATTRIBUTE_OPERATION__VALUES);
+				OperationsPackage.MULTI_ATTRIBUTE_OPERATION__VALUES);
 		}
 		return values;
 	}
 
 	/**
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
+	 * <!-- begin-user-doc --> <!-- end-user-doc -->
+	 * 
 	 * @generated
 	 */
 	@Override
@@ -184,8 +179,8 @@ public class MultiAttributeOperationImpl extends FeatureOperationImpl implements
 	}
 
 	/**
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
+	 * <!-- begin-user-doc --> <!-- end-user-doc -->
+	 * 
 	 * @generated
 	 */
 	@SuppressWarnings("unchecked")
@@ -207,8 +202,8 @@ public class MultiAttributeOperationImpl extends FeatureOperationImpl implements
 	}
 
 	/**
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
+	 * <!-- begin-user-doc --> <!-- end-user-doc -->
+	 * 
 	 * @generated
 	 */
 	@Override
@@ -228,8 +223,8 @@ public class MultiAttributeOperationImpl extends FeatureOperationImpl implements
 	}
 
 	/**
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
+	 * <!-- begin-user-doc --> <!-- end-user-doc -->
+	 * 
 	 * @generated
 	 */
 	@Override
@@ -246,8 +241,8 @@ public class MultiAttributeOperationImpl extends FeatureOperationImpl implements
 	}
 
 	/**
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
+	 * <!-- begin-user-doc --> <!-- end-user-doc -->
+	 * 
 	 * @generated
 	 */
 	@Override
@@ -279,18 +274,16 @@ public class MultiAttributeOperationImpl extends FeatureOperationImpl implements
 
 	@Override
 	public AbstractOperation reverse() {
-		//FIXME MK implement
+		// FIXME MK implement
 		return null;
 	}
 
 	@Override
 	public void apply(Project project) {
 		super.apply(project);
-		ModelElement modelElement = project
-				.getModelElement(getModelElementId());
+		ModelElement modelElement = project.getModelElement(getModelElementId());
 		EList<Object> values = getValues();
-		EList<EAttribute> attributes = modelElement.eClass()
-				.getEAllAttributes();
+		EList<EAttribute> attributes = modelElement.eClass().getEAllAttributes();
 		for (EAttribute attribute : attributes) {
 			if (attribute.getName().equals(this.getFeatureName())) {
 				Object object = modelElement.eGet(attribute);
@@ -304,9 +297,9 @@ public class MultiAttributeOperationImpl extends FeatureOperationImpl implements
 				return;
 			}
 		}
-		//FIXME MK: exception
+		// FIXME MK: exception
 		throw new IllegalStateException("cannot find reference feature");
 
 	}
 
-} //MultiAttributeOperationImpl
+} // MultiAttributeOperationImpl

@@ -1,7 +1,7 @@
 /**
  * <copyright> Copyright (c) 2008 Jonas Helming, Maximilian Koegel. All rights reserved. This program and the
  * accompanying materials are made available under the terms of the Eclipse Public License v1.0 which accompanies this
- * distribution, and is available at http://www.eclipse.org/legal/epl-v10.html </copyright> $Id$
+ * distribution, and is available at http://www.eclipse.org/legal/epl-v10.html </copyright>
  */
 package org.unicase.model.impl;
 
@@ -63,6 +63,7 @@ public class ProjectImpl extends EObjectImpl implements Project, ProjectChangeOb
 
 	/**
 	 * <!-- begin-user-doc --> .<!-- end-user-doc -->
+	 * 
 	 * @generated
 	 */
 	@Override
@@ -72,6 +73,7 @@ public class ProjectImpl extends EObjectImpl implements Project, ProjectChangeOb
 
 	/**
 	 * <!-- begin-user-doc --> <!-- end-user-doc -->
+	 * 
 	 * @generated
 	 */
 	public EList<ModelElement> getModelElements() {
@@ -174,6 +176,7 @@ public class ProjectImpl extends EObjectImpl implements Project, ProjectChangeOb
 
 	/**
 	 * <!-- begin-user-doc --> <!-- end-user-doc -->
+	 * 
 	 * @generated
 	 */
 	@Override
@@ -187,6 +190,7 @@ public class ProjectImpl extends EObjectImpl implements Project, ProjectChangeOb
 
 	/**
 	 * <!-- begin-user-doc --> <!-- end-user-doc -->
+	 * 
 	 * @generated
 	 */
 	@Override
@@ -200,6 +204,7 @@ public class ProjectImpl extends EObjectImpl implements Project, ProjectChangeOb
 
 	/**
 	 * <!-- begin-user-doc --> <!-- end-user-doc -->
+	 * 
 	 * @generated
 	 */
 	@SuppressWarnings("unchecked")
@@ -216,6 +221,7 @@ public class ProjectImpl extends EObjectImpl implements Project, ProjectChangeOb
 
 	/**
 	 * <!-- begin-user-doc --> <!-- end-user-doc -->
+	 * 
 	 * @generated
 	 */
 	@Override
@@ -230,6 +236,7 @@ public class ProjectImpl extends EObjectImpl implements Project, ProjectChangeOb
 
 	/**
 	 * <!-- begin-user-doc --> <!-- end-user-doc -->
+	 * 
 	 * @generated
 	 */
 	@Override

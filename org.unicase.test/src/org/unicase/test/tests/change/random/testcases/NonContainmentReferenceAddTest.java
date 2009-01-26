@@ -19,13 +19,11 @@ import org.unicase.ui.test.TestProjectParmeters;
 import org.unicase.workspace.ProjectSpace;
 
 /**
- * This is a change package test. It takes a random model element from test
- * project and changes one of its non-containment references, applies this
- * change to compare project. Test succeeds when both projects are identical,
+ * This is a change package test. It takes a random model element from test project and changes one of its
+ * non-containment references, applies this change to compare project. Test succeeds when both projects are identical,
  * and fails otherwise.
  * 
  * @author Hodaie
- * 
  */
 public class NonContainmentReferenceAddTest extends ChangePackageTest {
 
@@ -39,8 +37,8 @@ public class NonContainmentReferenceAddTest extends ChangePackageTest {
 	private boolean uniqueContainingTarget;
 	private boolean touchNotification;
 
-	public NonContainmentReferenceAddTest(ProjectSpace testProjectSpace,
-			String testName, TestProjectParmeters testProjParams) {
+	public NonContainmentReferenceAddTest(ProjectSpace testProjectSpace, String testName,
+		TestProjectParmeters testProjParams) {
 		super(testProjectSpace, testName, testProjParams);
 
 	}
@@ -64,21 +62,18 @@ public class NonContainmentReferenceAddTest extends ChangePackageTest {
 
 		oldValueOfRef = me.eGet(refToChange);
 
-		meToReference = ChangeTestHelper.getRandomMEofType(getTestProject(),
-				refToChange.getEReferenceType());
+		meToReference = ChangeTestHelper.getRandomMEofType(getTestProject(), refToChange.getEReferenceType());
 		// make a copy of old value of opposite reference for later inspection
 		// (see getExpectedNumOfChanges())
 		if (refToChange.getEOpposite() != null) {
 
-			oldValueOfOppositeRef = meToReference.eGet(refToChange
-					.getEOpposite());
+			oldValueOfOppositeRef = meToReference.eGet(refToChange.getEOpposite());
 		}
 
 		// I really don't understand why this does not work:
 		// refToChange instanceof
 		// RequirementPackage.Literals.STEP__INCLUDED_USE_CASE;
-		if (me instanceof Step
-				&& refToChange.getName().equals("includedUseCase")) {
+		if (me instanceof Step && refToChange.getName().equals("includedUseCase")) {
 			UseCase parentUseCase = ((Step) me).getUseCase();
 			if (parentUseCase != null) {
 				for (UseCase useCase : parentUseCase.getIncludedUseCases()) {
@@ -89,7 +84,7 @@ public class NonContainmentReferenceAddTest extends ChangePackageTest {
 		}
 
 		TransactionalEditingDomain domain = TransactionalEditingDomain.Registry.INSTANCE
-				.getEditingDomain("org.unicase.EditingDomain");
+			.getEditingDomain("org.unicase.EditingDomain");
 
 		domain.getCommandStack().execute(new RecordingCommand(domain) {
 
@@ -108,8 +103,8 @@ public class NonContainmentReferenceAddTest extends ChangePackageTest {
 		if (refToChange.isMany()) {
 			EList<EObject> eList = (EList<EObject>) object;
 			if (eList == null) {
-				throw new IllegalStateException("Null list return for feature "
-						+ refToChange.getName() + " on " + me.getName());
+				throw new IllegalStateException("Null list return for feature " + refToChange.getName() + " on "
+					+ me.getName());
 			} else {
 				if (refToChange.isUnique() && eList.contains(meToReference)) {
 					uniqueContainingTarget = true;
@@ -124,7 +119,6 @@ public class NonContainmentReferenceAddTest extends ChangePackageTest {
 
 		ChangeTestHelper.changeSimpleRef(me, refToChange, meToReference);
 
-		
 	}
 
 	public int getExpectedNumOfChanges() {
@@ -139,16 +133,14 @@ public class NonContainmentReferenceAddTest extends ChangePackageTest {
 		}
 
 		if (refToChange.getUpperBound() == 1
-				|| (refToChange.getEOpposite() != null && refToChange
-						.getEOpposite().getUpperBound() == 1)) {
+			|| (refToChange.getEOpposite() != null && refToChange.getEOpposite().getUpperBound() == 1)) {
 			// why don't we test refToChange.getUpperBound() == 1 ?
 			// because even if refToChange for newly created model element has
 			// upper bound 1,
 			// its initial value is null! and therefore we do not expect a
 			// SingleRefOp for it to be created.
 			if ((refToChange.isMany() && oldValueOfOppositeRef != null)
-					|| (refToChange.getEOpposite() != null
-							&& refToChange.getEOpposite().isMany() && oldValueOfRef != null)) {
+				|| (refToChange.getEOpposite() != null && refToChange.getEOpposite().isMany() && oldValueOfRef != null)) {
 				// why do we check this?
 				// because if both refToChange and its opposite have upper bound
 				// 1, then there is just one SingleRefOp to create. Hence number
@@ -162,8 +154,7 @@ public class NonContainmentReferenceAddTest extends ChangePackageTest {
 		// I really don't understand why this does not work:
 		// refToChange instanceof
 		// RequirementPackage.Literals.STEP__INCLUDED_USE_CASE;
-		if (me instanceof StepImpl
-				&& refToChange.getName().equalsIgnoreCase("includedUseCase")) {
+		if (me instanceof StepImpl && refToChange.getName().equalsIgnoreCase("includedUseCase")) {
 			if (((Step) me).getUseCase() != null) {
 				if (oldValueOfIncludedUsecasesOfParent.contains(meToReference)) {
 					return 1;

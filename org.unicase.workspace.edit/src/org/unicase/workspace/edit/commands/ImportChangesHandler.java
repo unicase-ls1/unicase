@@ -1,8 +1,7 @@
 /**
- * <copyright> Copyright (c) 2008 Jonas Helming, Maximilian Koegel. All rights reserved. This program and the accompanying materials are made available under the terms of the Eclipse Public License v1.0 which accompanies this distribution, and is available at http://www.eclipse.org/legal/epl-v10.html
- * </copyright>
- *
- * $Id$
+ * <copyright> Copyright (c) 2008 Jonas Helming, Maximilian Koegel. All rights reserved. This program and the
+ * accompanying materials are made available under the terms of the Eclipse Public License v1.0 which accompanies this
+ * distribution, and is available at http://www.eclipse.org/legal/epl-v10.html </copyright>
  */
 package org.unicase.workspace.edit.commands;
 
@@ -25,17 +24,14 @@ import org.unicase.workspace.ProjectSpace;
  * . ImportChangesHandler
  * 
  * @author Hodaie
- * 
  */
 public class ImportChangesHandler extends ProjectActionHandler {
 
 	/**
 	 * . {@inheritDoc}
-	 * 
 	 */
 	public Object execute(ExecutionEvent event) throws ExecutionException {
-		FileDialog dialog = new FileDialog(PlatformUI.getWorkbench()
-				.getActiveWorkbenchWindow().getShell(), SWT.OPEN);
+		FileDialog dialog = new FileDialog(PlatformUI.getWorkbench().getActiveWorkbenchWindow().getShell(), SWT.OPEN);
 		dialog.setFilterNames(ExportChangesHandler.FILTER_NAMES);
 		dialog.setFilterExtensions(ExportChangesHandler.FILTER_EXTS);
 		String fn = dialog.open();
@@ -53,11 +49,10 @@ public class ImportChangesHandler extends ProjectActionHandler {
 		final String absoluteFileName = stringBuilder.toString();
 		final ProjectSpace projectSpace = getProjectSpace(event);
 		final ProgressMonitorDialog progressDialog = new ProgressMonitorDialog(PlatformUI.getWorkbench()
-			       .getActiveWorkbenchWindow().getShell());
-
+			.getActiveWorkbenchWindow().getShell());
 
 		TransactionalEditingDomain domain = TransactionalEditingDomain.Registry.INSTANCE
-				.getEditingDomain("org.unicase.EditingDomain");
+			.getEditingDomain("org.unicase.EditingDomain");
 		domain.getCommandStack().execute(new RecordingCommand(domain) {
 			@Override
 			protected void doExecute() {
@@ -68,16 +63,14 @@ public class ImportChangesHandler extends ProjectActionHandler {
 					projectSpace.importLocalChanges(absoluteFileName);
 				} catch (IOException e) {
 					DialogHandler.showExceptionDialog(e);
-				}
-				finally {
+				} finally {
 					progressDialog.getProgressMonitor().done();
 					progressDialog.close();
 				}
 
 			}
 		});
-		MessageDialog.openInformation(null, "Import",
-				"Imported changes from file " + absoluteFileName);
+		MessageDialog.openInformation(null, "Import", "Imported changes from file " + absoluteFileName);
 		return null;
 	}
 

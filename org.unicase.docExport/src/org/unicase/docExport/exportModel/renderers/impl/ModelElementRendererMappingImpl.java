@@ -1,8 +1,5 @@
 /**
- * <copyright>
- * </copyright>
- *
- * $Id$
+ * <copyright> </copyright>
  */
 package org.unicase.docExport.exportModel.renderers.impl;
 
@@ -17,24 +14,25 @@ import org.unicase.docExport.exportModel.renderers.ModelElementRendererMapping;
 import org.unicase.docExport.exportModel.renderers.RenderersPackage;
 
 /**
- * <!-- begin-user-doc -->
- * An implementation of the model object '<em><b>Model Element Renderer Mapping</b></em>'.
- * <!-- end-user-doc -->
+ * <!-- begin-user-doc --> An implementation of the model object '<em><b>Model Element Renderer Mapping</b></em>'. <!--
+ * end-user-doc -->
  * <p>
  * The following features are implemented:
  * <ul>
- *   <li>{@link org.unicase.docExport.exportModel.renderers.impl.ModelElementRendererMappingImpl#getRenderer <em>Renderer</em>}</li>
- *   <li>{@link org.unicase.docExport.exportModel.renderers.impl.ModelElementRendererMappingImpl#getEClassName <em>EClass Name</em>}</li>
+ * <li>{@link org.unicase.docExport.exportModel.renderers.impl.ModelElementRendererMappingImpl#getRenderer <em>Renderer
+ * </em>}</li>
+ * <li>{@link org.unicase.docExport.exportModel.renderers.impl.ModelElementRendererMappingImpl#getEClassName <em>EClass
+ * Name</em>}</li>
  * </ul>
  * </p>
- *
+ * 
  * @generated
  */
 public class ModelElementRendererMappingImpl extends EObjectImpl implements ModelElementRendererMapping {
 	/**
-	 * The cached value of the '{@link #getRenderer() <em>Renderer</em>}' containment reference.
-	 * <!-- begin-user-doc -->
+	 * The cached value of the '{@link #getRenderer() <em>Renderer</em>}' containment reference. <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
+	 * 
 	 * @see #getRenderer()
 	 * @generated
 	 * @ordered
@@ -42,9 +40,9 @@ public class ModelElementRendererMappingImpl extends EObjectImpl implements Mode
 	protected ModelElementRenderer renderer;
 
 	/**
-	 * The default value of the '{@link #getEClassName() <em>EClass Name</em>}' attribute.
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
+	 * The default value of the '{@link #getEClassName() <em>EClass Name</em>}' attribute. <!-- begin-user-doc --> <!--
+	 * end-user-doc -->
+	 * 
 	 * @see #getEClassName()
 	 * @generated
 	 * @ordered
@@ -52,9 +50,9 @@ public class ModelElementRendererMappingImpl extends EObjectImpl implements Mode
 	protected static final String ECLASS_NAME_EDEFAULT = null;
 
 	/**
-	 * The cached value of the '{@link #getEClassName() <em>EClass Name</em>}' attribute.
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
+	 * The cached value of the '{@link #getEClassName() <em>EClass Name</em>}' attribute. <!-- begin-user-doc --> <!--
+	 * end-user-doc -->
+	 * 
 	 * @see #getEClassName()
 	 * @generated
 	 * @ordered
@@ -62,8 +60,8 @@ public class ModelElementRendererMappingImpl extends EObjectImpl implements Mode
 	protected String eClassName = ECLASS_NAME_EDEFAULT;
 
 	/**
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
+	 * <!-- begin-user-doc --> <!-- end-user-doc -->
+	 * 
 	 * @generated
 	 */
 	protected ModelElementRendererMappingImpl() {
@@ -71,8 +69,8 @@ public class ModelElementRendererMappingImpl extends EObjectImpl implements Mode
 	}
 
 	/**
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
+	 * <!-- begin-user-doc --> <!-- end-user-doc -->
+	 * 
 	 * @generated
 	 */
 	@Override
@@ -81,8 +79,8 @@ public class ModelElementRendererMappingImpl extends EObjectImpl implements Mode
 	}
 
 	/**
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
+	 * <!-- begin-user-doc --> <!-- end-user-doc -->
+	 * 
 	 * @generated
 	 */
 	public ModelElementRenderer getRenderer() {
@@ -90,42 +88,49 @@ public class ModelElementRendererMappingImpl extends EObjectImpl implements Mode
 	}
 
 	/**
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
+	 * <!-- begin-user-doc --> <!-- end-user-doc -->
+	 * 
 	 * @generated
 	 */
 	public NotificationChain basicSetRenderer(ModelElementRenderer newRenderer, NotificationChain msgs) {
 		ModelElementRenderer oldRenderer = renderer;
 		renderer = newRenderer;
 		if (eNotificationRequired()) {
-			ENotificationImpl notification = new ENotificationImpl(this, Notification.SET, RenderersPackage.MODEL_ELEMENT_RENDERER_MAPPING__RENDERER, oldRenderer, newRenderer);
-			if (msgs == null) msgs = notification; else msgs.add(notification);
+			ENotificationImpl notification = new ENotificationImpl(this, Notification.SET,
+				RenderersPackage.MODEL_ELEMENT_RENDERER_MAPPING__RENDERER, oldRenderer, newRenderer);
+			if (msgs == null)
+				msgs = notification;
+			else
+				msgs.add(notification);
 		}
 		return msgs;
 	}
 
 	/**
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
+	 * <!-- begin-user-doc --> <!-- end-user-doc -->
+	 * 
 	 * @generated
 	 */
 	public void setRenderer(ModelElementRenderer newRenderer) {
 		if (newRenderer != renderer) {
 			NotificationChain msgs = null;
 			if (renderer != null)
-				msgs = ((InternalEObject)renderer).eInverseRemove(this, EOPPOSITE_FEATURE_BASE - RenderersPackage.MODEL_ELEMENT_RENDERER_MAPPING__RENDERER, null, msgs);
+				msgs = ((InternalEObject) renderer).eInverseRemove(this, EOPPOSITE_FEATURE_BASE
+					- RenderersPackage.MODEL_ELEMENT_RENDERER_MAPPING__RENDERER, null, msgs);
 			if (newRenderer != null)
-				msgs = ((InternalEObject)newRenderer).eInverseAdd(this, EOPPOSITE_FEATURE_BASE - RenderersPackage.MODEL_ELEMENT_RENDERER_MAPPING__RENDERER, null, msgs);
+				msgs = ((InternalEObject) newRenderer).eInverseAdd(this, EOPPOSITE_FEATURE_BASE
+					- RenderersPackage.MODEL_ELEMENT_RENDERER_MAPPING__RENDERER, null, msgs);
 			msgs = basicSetRenderer(newRenderer, msgs);
-			if (msgs != null) msgs.dispatch();
-		}
-		else if (eNotificationRequired())
-			eNotify(new ENotificationImpl(this, Notification.SET, RenderersPackage.MODEL_ELEMENT_RENDERER_MAPPING__RENDERER, newRenderer, newRenderer));
+			if (msgs != null)
+				msgs.dispatch();
+		} else if (eNotificationRequired())
+			eNotify(new ENotificationImpl(this, Notification.SET,
+				RenderersPackage.MODEL_ELEMENT_RENDERER_MAPPING__RENDERER, newRenderer, newRenderer));
 	}
 
 	/**
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
+	 * <!-- begin-user-doc --> <!-- end-user-doc -->
+	 * 
 	 * @generated
 	 */
 	public String getEClassName() {
@@ -133,107 +138,109 @@ public class ModelElementRendererMappingImpl extends EObjectImpl implements Mode
 	}
 
 	/**
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
+	 * <!-- begin-user-doc --> <!-- end-user-doc -->
+	 * 
 	 * @generated
 	 */
 	public void setEClassName(String newEClassName) {
 		String oldEClassName = eClassName;
 		eClassName = newEClassName;
 		if (eNotificationRequired())
-			eNotify(new ENotificationImpl(this, Notification.SET, RenderersPackage.MODEL_ELEMENT_RENDERER_MAPPING__ECLASS_NAME, oldEClassName, eClassName));
+			eNotify(new ENotificationImpl(this, Notification.SET,
+				RenderersPackage.MODEL_ELEMENT_RENDERER_MAPPING__ECLASS_NAME, oldEClassName, eClassName));
 	}
 
 	/**
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
+	 * <!-- begin-user-doc --> <!-- end-user-doc -->
+	 * 
 	 * @generated
 	 */
 	@Override
 	public NotificationChain eInverseRemove(InternalEObject otherEnd, int featureID, NotificationChain msgs) {
 		switch (featureID) {
-			case RenderersPackage.MODEL_ELEMENT_RENDERER_MAPPING__RENDERER:
-				return basicSetRenderer(null, msgs);
+		case RenderersPackage.MODEL_ELEMENT_RENDERER_MAPPING__RENDERER:
+			return basicSetRenderer(null, msgs);
 		}
 		return super.eInverseRemove(otherEnd, featureID, msgs);
 	}
 
 	/**
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
+	 * <!-- begin-user-doc --> <!-- end-user-doc -->
+	 * 
 	 * @generated
 	 */
 	@Override
 	public Object eGet(int featureID, boolean resolve, boolean coreType) {
 		switch (featureID) {
-			case RenderersPackage.MODEL_ELEMENT_RENDERER_MAPPING__RENDERER:
-				return getRenderer();
-			case RenderersPackage.MODEL_ELEMENT_RENDERER_MAPPING__ECLASS_NAME:
-				return getEClassName();
+		case RenderersPackage.MODEL_ELEMENT_RENDERER_MAPPING__RENDERER:
+			return getRenderer();
+		case RenderersPackage.MODEL_ELEMENT_RENDERER_MAPPING__ECLASS_NAME:
+			return getEClassName();
 		}
 		return super.eGet(featureID, resolve, coreType);
 	}
 
 	/**
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
+	 * <!-- begin-user-doc --> <!-- end-user-doc -->
+	 * 
 	 * @generated
 	 */
 	@Override
 	public void eSet(int featureID, Object newValue) {
 		switch (featureID) {
-			case RenderersPackage.MODEL_ELEMENT_RENDERER_MAPPING__RENDERER:
-				setRenderer((ModelElementRenderer)newValue);
-				return;
-			case RenderersPackage.MODEL_ELEMENT_RENDERER_MAPPING__ECLASS_NAME:
-				setEClassName((String)newValue);
-				return;
+		case RenderersPackage.MODEL_ELEMENT_RENDERER_MAPPING__RENDERER:
+			setRenderer((ModelElementRenderer) newValue);
+			return;
+		case RenderersPackage.MODEL_ELEMENT_RENDERER_MAPPING__ECLASS_NAME:
+			setEClassName((String) newValue);
+			return;
 		}
 		super.eSet(featureID, newValue);
 	}
 
 	/**
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
+	 * <!-- begin-user-doc --> <!-- end-user-doc -->
+	 * 
 	 * @generated
 	 */
 	@Override
 	public void eUnset(int featureID) {
 		switch (featureID) {
-			case RenderersPackage.MODEL_ELEMENT_RENDERER_MAPPING__RENDERER:
-				setRenderer((ModelElementRenderer)null);
-				return;
-			case RenderersPackage.MODEL_ELEMENT_RENDERER_MAPPING__ECLASS_NAME:
-				setEClassName(ECLASS_NAME_EDEFAULT);
-				return;
+		case RenderersPackage.MODEL_ELEMENT_RENDERER_MAPPING__RENDERER:
+			setRenderer((ModelElementRenderer) null);
+			return;
+		case RenderersPackage.MODEL_ELEMENT_RENDERER_MAPPING__ECLASS_NAME:
+			setEClassName(ECLASS_NAME_EDEFAULT);
+			return;
 		}
 		super.eUnset(featureID);
 	}
 
 	/**
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
+	 * <!-- begin-user-doc --> <!-- end-user-doc -->
+	 * 
 	 * @generated
 	 */
 	@Override
 	public boolean eIsSet(int featureID) {
 		switch (featureID) {
-			case RenderersPackage.MODEL_ELEMENT_RENDERER_MAPPING__RENDERER:
-				return renderer != null;
-			case RenderersPackage.MODEL_ELEMENT_RENDERER_MAPPING__ECLASS_NAME:
-				return ECLASS_NAME_EDEFAULT == null ? eClassName != null : !ECLASS_NAME_EDEFAULT.equals(eClassName);
+		case RenderersPackage.MODEL_ELEMENT_RENDERER_MAPPING__RENDERER:
+			return renderer != null;
+		case RenderersPackage.MODEL_ELEMENT_RENDERER_MAPPING__ECLASS_NAME:
+			return ECLASS_NAME_EDEFAULT == null ? eClassName != null : !ECLASS_NAME_EDEFAULT.equals(eClassName);
 		}
 		return super.eIsSet(featureID);
 	}
 
 	/**
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
+	 * <!-- begin-user-doc --> <!-- end-user-doc -->
+	 * 
 	 * @generated
 	 */
 	@Override
 	public String toString() {
-		if (eIsProxy()) return super.toString();
+		if (eIsProxy())
+			return super.toString();
 
 		StringBuffer result = new StringBuffer(super.toString());
 		result.append(" (eClassName: ");
@@ -242,4 +249,4 @@ public class ModelElementRendererMappingImpl extends EObjectImpl implements Mode
 		return result.toString();
 	}
 
-} //ModelElementRendererMappingImpl
+} // ModelElementRendererMappingImpl

@@ -1,8 +1,7 @@
 /**
- * <copyright> Copyright (c) 2008 Jonas Helming, Maximilian Koegel. All rights reserved. This program and the accompanying materials are made available under the terms of the Eclipse Public License v1.0 which accompanies this distribution, and is available at http://www.eclipse.org/legal/epl-v10.html
- * </copyright>
- *
- * $Id$
+ * <copyright> Copyright (c) 2008 Jonas Helming, Maximilian Koegel. All rights reserved. This program and the
+ * accompanying materials are made available under the terms of the Eclipse Public License v1.0 which accompanies this
+ * distribution, and is available at http://www.eclipse.org/legal/epl-v10.html </copyright>
  */
 package org.unicase.workspace.accesscontrol;
 
@@ -17,7 +16,6 @@ import org.unicase.workspace.Usersession;
  * Helper class for access control checks.
  * 
  * @author koegel
- *
  */
 public class AccessControlHelper {
 
@@ -25,6 +23,7 @@ public class AccessControlHelper {
 
 	/**
 	 * Default constructor.
+	 * 
 	 * @param usersession the user session that needs to be checked
 	 */
 	public AccessControlHelper(Usersession usersession) {
@@ -33,14 +32,13 @@ public class AccessControlHelper {
 
 	/**
 	 * Check write access for the given project.
+	 * 
 	 * @param projectId the project id
 	 * @throws AccessControlException if access is denied.
 	 */
 	public void checkWriteAccess(ProjectId projectId) throws AccessControlException {
 		for (Role role : user.getRoles()) {
-			if (role.canDelete(projectId, null)
-					|| role.canCreate(projectId, null)
-					|| role.canModify(projectId, null)) {
+			if (role.canDelete(projectId, null) || role.canCreate(projectId, null) || role.canModify(projectId, null)) {
 				return;
 			}
 		}
@@ -49,11 +47,11 @@ public class AccessControlHelper {
 
 	/**
 	 * Check project admin access for the given project.
+	 * 
 	 * @param projectId the project id
 	 * @throws AccessControlException if access is denied.
 	 */
-	public void checkProjectAdminAccess(ProjectId projectId)
-			throws AccessControlException {
+	public void checkProjectAdminAccess(ProjectId projectId) throws AccessControlException {
 		for (Role role : user.getRoles()) {
 			if (role.canAdministrate(projectId)) {
 				return;
@@ -64,10 +62,10 @@ public class AccessControlHelper {
 
 	/**
 	 * Check the server admin access.
+	 * 
 	 * @throws AccessControlException if access is denied.
 	 */
-	public void checkServerAdminAccess()
-			throws AccessControlException {
+	public void checkServerAdminAccess() throws AccessControlException {
 		for (Role role : user.getRoles()) {
 			if (role instanceof ServerAdmin) {
 				return;

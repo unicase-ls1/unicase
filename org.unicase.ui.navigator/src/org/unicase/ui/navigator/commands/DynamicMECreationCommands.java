@@ -1,8 +1,7 @@
 /**
- * <copyright> Copyright (c) 2008 Jonas Helming, Maximilian Koegel. All rights reserved. This program and the accompanying materials are made available under the terms of the Eclipse Public License v1.0 which accompanies this distribution, and is available at http://www.eclipse.org/legal/epl-v10.html
- * </copyright>
- *
- * $Id$
+ * <copyright> Copyright (c) 2008 Jonas Helming, Maximilian Koegel. All rights reserved. This program and the
+ * accompanying materials are made available under the terms of the Eclipse Public License v1.0 which accompanies this
+ * distribution, and is available at http://www.eclipse.org/legal/epl-v10.html </copyright>
  */
 package org.unicase.ui.navigator.commands;
 
@@ -27,15 +26,11 @@ import org.unicase.model.document.LeafSection;
 import org.unicase.ui.common.util.ActionHelper;
 
 /**
- * 
- * @author Hodaie This class creates a group of commands to create different
- *         model element types, which are shown in the context menu of a leaf
- *         section. The commands appear in the order of how frequent are the
- *         model element types in a leaf section. For example, if a leaf section
- *         contains 3 FRs and 2 AIs the command to create a FR appears before
- *         command to create an AI. The created commands have all the same ID
- *         and are handled with the same handler class {@link CreateMEHandler}.
- * 
+ * @author Hodaie This class creates a group of commands to create different model element types, which are shown in the
+ *         context menu of a leaf section. The commands appear in the order of how frequent are the model element types
+ *         in a leaf section. For example, if a leaf section contains 3 FRs and 2 AIs the command to create a FR appears
+ *         before command to create an AI. The created commands have all the same ID and are handled with the same
+ *         handler class {@link CreateMEHandler}.
  */
 public class DynamicMECreationCommands extends CompoundContributionItem {
 
@@ -49,7 +44,7 @@ public class DynamicMECreationCommands extends CompoundContributionItem {
 		// get the leaf section right clicked on in navigator.
 		// For each ME type contained in this leaf section is a
 		// creation command added to context menu.
-		LeafSection leafSection = (LeafSection)ActionHelper.getSelectedModelElement();
+		LeafSection leafSection = (LeafSection) ActionHelper.getSelectedModelElement();
 		if (leafSection == null) {
 			return new IContributionItem[0];
 		}
@@ -68,24 +63,22 @@ public class DynamicMECreationCommands extends CompoundContributionItem {
 
 		IContributionItem[] commands = new IContributionItem[contentTypes.length];
 		// every command takes its corresponding EClass type as parameter
-		//create command for contents of this leaf section
+		// create command for contents of this leaf section
 		for (int i = 0; i < contentTypes.length; i++) {
-			CommandContributionItemParameter p = new CommandContributionItemParameter(
-					PlatformUI.getWorkbench(), null, COMMAND_ID,
-					CommandContributionItem.STYLE_PUSH);
-			
+			CommandContributionItemParameter p = new CommandContributionItemParameter(PlatformUI.getWorkbench(), null,
+				COMMAND_ID, CommandContributionItem.STYLE_PUSH);
+
 			Map<Object, Object> map = new HashMap<Object, Object>();
-			
+
 			// set the EClass parameter
 			if (contentTypes[i] instanceof EClass) {
 				map.put(CreateMEHandler.COMMAND_ECLASS_PARAM, contentTypes[i]);
-				p.label = "New " + ((EClass)contentTypes[i]).getName();
+				p.label = "New " + ((EClass) contentTypes[i]).getName();
 			}
-			//set the DiagramType Parameter if the object is a MEiagram
-			if(contentTypes[i] instanceof DiagramType) {
-				MEDiagram createMEDiagram = DiagramFactory.eINSTANCE
-				.createMEDiagram();
-				DiagramType type =(DiagramType) contentTypes[i];
+			// set the DiagramType Parameter if the object is a MEiagram
+			if (contentTypes[i] instanceof DiagramType) {
+				MEDiagram createMEDiagram = DiagramFactory.eINSTANCE.createMEDiagram();
+				DiagramType type = (DiagramType) contentTypes[i];
 				map.put(CreateMEHandler.COMMAND_ECLASS_PARAM, createMEDiagram.eClass());
 				map.put(CreateMEHandler.COMMAND_DIAGRAMTYPE_PARAM, type);
 				p.label = "New " + type.getLiteral();
@@ -100,8 +93,7 @@ public class DynamicMECreationCommands extends CompoundContributionItem {
 	}
 
 	/**
-	 * This method return a list of ModelElement types (EClasses) contained in a
-	 * LeafSection.
+	 * This method return a list of ModelElement types (EClasses) contained in a LeafSection.
 	 * 
 	 * @param leafSection
 	 * @return
@@ -109,15 +101,14 @@ public class DynamicMECreationCommands extends CompoundContributionItem {
 	private Object[] getContentTypes(LeafSection leafSection) {
 		// create a map of (EClass, EClassCount)
 		Map<Object, Countable> meCounts = new HashMap<Object, Countable>();
-		
+
 		for (ModelElement me : leafSection.getModelElements()) {
 			Object key = null;
 			// separated count for the different diagram types
-			if(me instanceof MEDiagram) {
+			if (me instanceof MEDiagram) {
 				DiagramType type = ((MEDiagram) me).getType();
-				key = type;			
-			}
-			else {
+				key = type;
+			} else {
 				key = me.eClass();
 			}
 			if (meCounts.containsKey(key)) {
@@ -131,8 +122,7 @@ public class DynamicMECreationCommands extends CompoundContributionItem {
 		}
 
 		// get list of modelelement keys from map and sort it based on count field.
-		List<Countable> meSortedByCount = new ArrayList<Countable>(
-				meCounts.values());
+		List<Countable> meSortedByCount = new ArrayList<Countable>(meCounts.values());
 		Collections.sort(meSortedByCount, new MeFrequencyComparator());
 
 		// create an array of EClass by extracting the eClass field
@@ -147,77 +137,75 @@ public class DynamicMECreationCommands extends CompoundContributionItem {
 	}
 
 	/**
-	 * 
 	 * @author denglerm This interface is used to count ModelElements in the LeafSection.
-	 * 
 	 */
 
 	/**
-	 * This Interface is used to count the  occurrence of model elements in the navigator.
+	 * This Interface is used to count the occurrence of model elements in the navigator.
 	 */
 	public interface ICountable {
-		
+
 		/**
 		 * This method should set the occurrence count.
-		 * @param count
-		 *             the new occurrence count value
+		 * 
+		 * @param count the new occurrence count value
 		 */
 		void setCount(int count);
+
 		/**
 		 * This method should return the occurrence count.
-		 * @return
-		 *        the occurrence count
+		 * 
+		 * @return the occurrence count
 		 */
 		int getCount();
+
 		/**
 		 * This method should return the object, for which the occurrence is counted.
-		 * @return Object
-		 *             the object, which is counted
+		 * 
+		 * @return Object the object, which is counted
 		 */
 		Object getObject();
-		
+
 	}
-	
+
 	/**
-	 * 
 	 * @author denglerm This class is used to count ModelElements in the LeafSection.
-	 * 
 	 */
-	
+
 	public class Countable implements ICountable {
-		
+
 		private int count;
 		private Object object;
-		
+
 		/**
 		 * The constructor.
-		 * @param object
-		 *             the object, for which the occurrence is counted
+		 * 
+		 * @param object the object, for which the occurrence is counted
 		 */
 		public Countable(Object object) {
 			this.setCount(1);
 			this.object = object;
 		}
+
 		/**
 		 * @see ICountable.
-		 * @param newCount
-		 *             the new occurrence count value
+		 * @param newCount the new occurrence count value
 		 */
 		public void setCount(int newCount) {
 			this.count = newCount;
 		}
+
 		/**
 		 * @see ICountable.
-		 * @return
-		 *        the occurrence count
+		 * @return the occurrence count
 		 */
 		public int getCount() {
 			return count;
 		}
+
 		/**
 		 * @see ICountable.
-		 * @return
-		 *        the occurrence count
+		 * @return the occurrence count
 		 */
 		public Object getObject() {
 			return object;
@@ -225,9 +213,7 @@ public class DynamicMECreationCommands extends CompoundContributionItem {
 	}
 
 	/**
-	 * 
 	 * @author denglermThis is a Comparator for Countable type.
-	 * 
 	 */
 	private class MeFrequencyComparator implements Comparator<Countable> {
 

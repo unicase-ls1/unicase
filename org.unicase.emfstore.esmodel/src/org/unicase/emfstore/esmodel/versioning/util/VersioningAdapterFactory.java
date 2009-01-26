@@ -1,8 +1,7 @@
 /**
- * <copyright> Copyright (c) 2008 Jonas Helming, Maximilian Koegel. All rights reserved. This program and the accompanying materials are made available under the terms of the Eclipse Public License v1.0 which accompanies this distribution, and is available at http://www.eclipse.org/legal/epl-v10.html
- * </copyright>
- *
- * $Id$
+ * <copyright> Copyright (c) 2008 Jonas Helming, Maximilian Koegel. All rights reserved. This program and the
+ * accompanying materials are made available under the terms of the Eclipse Public License v1.0 which accompanies this
+ * distribution, and is available at http://www.eclipse.org/legal/epl-v10.html </copyright>
  */
 package org.unicase.emfstore.esmodel.versioning.util;
 
@@ -23,26 +22,23 @@ import org.unicase.emfstore.esmodel.versioning.VersionSpec;
 import org.unicase.emfstore.esmodel.versioning.VersioningPackage;
 
 /**
- * <!-- begin-user-doc -->
- * The <b>Adapter Factory</b> for the model.
- * It provides an adapter <code>createXXX</code> method for each class of the model.
- * <!-- end-user-doc -->
+ * <!-- begin-user-doc --> The <b>Adapter Factory</b> for the model. It provides an adapter <code>createXXX</code>
+ * method for each class of the model. <!-- end-user-doc -->
+ * 
  * @see org.unicase.emfstore.esmodel.versioning.VersioningPackage
  * @generated
  */
 public class VersioningAdapterFactory extends AdapterFactoryImpl {
 	/**
-	 * The cached model package.
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
+	 * The cached model package. <!-- begin-user-doc --> <!-- end-user-doc -->
+	 * 
 	 * @generated
 	 */
 	protected static VersioningPackage modelPackage;
 
 	/**
-	 * Creates an instance of the adapter factory.
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
+	 * Creates an instance of the adapter factory. <!-- begin-user-doc --> <!-- end-user-doc -->
+	 * 
 	 * @generated
 	 */
 	public VersioningAdapterFactory() {
@@ -52,10 +48,10 @@ public class VersioningAdapterFactory extends AdapterFactoryImpl {
 	}
 
 	/**
-	 * Returns whether this factory is applicable for the type of the object.
-	 * <!-- begin-user-doc -->
-	 * This implementation returns <code>true</code> if the object is either the model's package or is an instance object of the model.
-	 * <!-- end-user-doc -->
+	 * Returns whether this factory is applicable for the type of the object. <!-- begin-user-doc --> This
+	 * implementation returns <code>true</code> if the object is either the model's package or is an instance object of
+	 * the model. <!-- end-user-doc -->
+	 * 
 	 * @return whether this factory is applicable for the type of the object.
 	 * @generated
 	 */
@@ -71,9 +67,8 @@ public class VersioningAdapterFactory extends AdapterFactoryImpl {
 	}
 
 	/**
-	 * The switch that delegates to the <code>createXXX</code> methods.
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
+	 * The switch that delegates to the <code>createXXX</code> methods. <!-- begin-user-doc --> <!-- end-user-doc -->
+	 * 
 	 * @generated
 	 */
 	protected VersioningSwitch<Adapter> modelSwitch = new VersioningSwitch<Adapter>() {
@@ -134,9 +129,8 @@ public class VersioningAdapterFactory extends AdapterFactoryImpl {
 	};
 
 	/**
-	 * Creates an adapter for the <code>target</code>.
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
+	 * Creates an adapter for the <code>target</code>. <!-- begin-user-doc --> <!-- end-user-doc -->
+	 * 
 	 * @param target the object to adapt.
 	 * @return the adapter for the <code>target</code>.
 	 * @generated
@@ -147,11 +141,11 @@ public class VersioningAdapterFactory extends AdapterFactoryImpl {
 	}
 
 	/**
-	 * Creates a new adapter for an object of class '{@link org.unicase.emfstore.esmodel.versioning.TagVersionSpec <em>Tag Version Spec</em>}'.
-	 * <!-- begin-user-doc -->
-	 * This default implementation returns null so that we can easily ignore cases;
-	 * it's useful to ignore a case when inheritance will catch all the cases anyway.
-	 * <!-- end-user-doc -->
+	 * Creates a new adapter for an object of class '{@link org.unicase.emfstore.esmodel.versioning.TagVersionSpec
+	 * <em>Tag Version Spec</em>}'. <!-- begin-user-doc --> This default implementation returns null so that we can
+	 * easily ignore cases; it's useful to ignore a case when inheritance will catch all the cases anyway. <!--
+	 * end-user-doc -->
+	 * 
 	 * @return the new adapter.
 	 * @see org.unicase.emfstore.esmodel.versioning.TagVersionSpec
 	 * @generated
@@ -161,11 +155,11 @@ public class VersioningAdapterFactory extends AdapterFactoryImpl {
 	}
 
 	/**
-	 * Creates a new adapter for an object of class '{@link org.unicase.emfstore.esmodel.versioning.DateVersionSpec <em>Date Version Spec</em>}'.
-	 * <!-- begin-user-doc -->
-	 * This default implementation returns null so that we can easily ignore cases;
-	 * it's useful to ignore a case when inheritance will catch all the cases anyway.
-	 * <!-- end-user-doc -->
+	 * Creates a new adapter for an object of class '{@link org.unicase.emfstore.esmodel.versioning.DateVersionSpec
+	 * <em>Date Version Spec</em>}'. <!-- begin-user-doc --> This default implementation returns null so that we can
+	 * easily ignore cases; it's useful to ignore a case when inheritance will catch all the cases anyway. <!--
+	 * end-user-doc -->
+	 * 
 	 * @return the new adapter.
 	 * @see org.unicase.emfstore.esmodel.versioning.DateVersionSpec
 	 * @generated
@@ -175,11 +169,11 @@ public class VersioningAdapterFactory extends AdapterFactoryImpl {
 	}
 
 	/**
-	 * Creates a new adapter for an object of class '{@link org.unicase.emfstore.esmodel.versioning.PrimaryVersionSpec <em>Primary Version Spec</em>}'.
-	 * <!-- begin-user-doc -->
-	 * This default implementation returns null so that we can easily ignore cases;
-	 * it's useful to ignore a case when inheritance will catch all the cases anyway.
-	 * <!-- end-user-doc -->
+	 * Creates a new adapter for an object of class '{@link org.unicase.emfstore.esmodel.versioning.PrimaryVersionSpec
+	 * <em>Primary Version Spec</em>}'. <!-- begin-user-doc --> This default implementation returns null so that we can
+	 * easily ignore cases; it's useful to ignore a case when inheritance will catch all the cases anyway. <!--
+	 * end-user-doc -->
+	 * 
 	 * @return the new adapter.
 	 * @see org.unicase.emfstore.esmodel.versioning.PrimaryVersionSpec
 	 * @generated
@@ -189,11 +183,11 @@ public class VersioningAdapterFactory extends AdapterFactoryImpl {
 	}
 
 	/**
-	 * Creates a new adapter for an object of class '{@link org.unicase.emfstore.esmodel.versioning.VersionSpec <em>Version Spec</em>}'.
-	 * <!-- begin-user-doc -->
-	 * This default implementation returns null so that we can easily ignore cases;
-	 * it's useful to ignore a case when inheritance will catch all the cases anyway.
-	 * <!-- end-user-doc -->
+	 * Creates a new adapter for an object of class '{@link org.unicase.emfstore.esmodel.versioning.VersionSpec
+	 * <em>Version Spec</em>}'. <!-- begin-user-doc --> This default implementation returns null so that we can easily
+	 * ignore cases; it's useful to ignore a case when inheritance will catch all the cases anyway. <!-- end-user-doc
+	 * -->
+	 * 
 	 * @return the new adapter.
 	 * @see org.unicase.emfstore.esmodel.versioning.VersionSpec
 	 * @generated
@@ -203,11 +197,11 @@ public class VersioningAdapterFactory extends AdapterFactoryImpl {
 	}
 
 	/**
-	 * Creates a new adapter for an object of class '{@link org.unicase.emfstore.esmodel.versioning.LogMessage <em>Log Message</em>}'.
-	 * <!-- begin-user-doc -->
-	 * This default implementation returns null so that we can easily ignore cases;
-	 * it's useful to ignore a case when inheritance will catch all the cases anyway.
-	 * <!-- end-user-doc -->
+	 * Creates a new adapter for an object of class '{@link org.unicase.emfstore.esmodel.versioning.LogMessage
+	 * <em>Log Message</em>}'. <!-- begin-user-doc --> This default implementation returns null so that we can easily
+	 * ignore cases; it's useful to ignore a case when inheritance will catch all the cases anyway. <!-- end-user-doc
+	 * -->
+	 * 
 	 * @return the new adapter.
 	 * @see org.unicase.emfstore.esmodel.versioning.LogMessage
 	 * @generated
@@ -217,11 +211,11 @@ public class VersioningAdapterFactory extends AdapterFactoryImpl {
 	}
 
 	/**
-	 * Creates a new adapter for an object of class '{@link org.unicase.emfstore.esmodel.versioning.ChangePackage <em>Change Package</em>}'.
-	 * <!-- begin-user-doc -->
-	 * This default implementation returns null so that we can easily ignore cases;
-	 * it's useful to ignore a case when inheritance will catch all the cases anyway.
-	 * <!-- end-user-doc -->
+	 * Creates a new adapter for an object of class '{@link org.unicase.emfstore.esmodel.versioning.ChangePackage
+	 * <em>Change Package</em>}'. <!-- begin-user-doc --> This default implementation returns null so that we can easily
+	 * ignore cases; it's useful to ignore a case when inheritance will catch all the cases anyway. <!-- end-user-doc
+	 * -->
+	 * 
 	 * @return the new adapter.
 	 * @see org.unicase.emfstore.esmodel.versioning.ChangePackage
 	 * @generated
@@ -231,11 +225,11 @@ public class VersioningAdapterFactory extends AdapterFactoryImpl {
 	}
 
 	/**
-	 * Creates a new adapter for an object of class '{@link org.unicase.emfstore.esmodel.versioning.HistoryInfo <em>History Info</em>}'.
-	 * <!-- begin-user-doc -->
-	 * This default implementation returns null so that we can easily ignore cases;
-	 * it's useful to ignore a case when inheritance will catch all the cases anyway.
-	 * <!-- end-user-doc -->
+	 * Creates a new adapter for an object of class '{@link org.unicase.emfstore.esmodel.versioning.HistoryInfo
+	 * <em>History Info</em>}'. <!-- begin-user-doc --> This default implementation returns null so that we can easily
+	 * ignore cases; it's useful to ignore a case when inheritance will catch all the cases anyway. <!-- end-user-doc
+	 * -->
+	 * 
 	 * @return the new adapter.
 	 * @see org.unicase.emfstore.esmodel.versioning.HistoryInfo
 	 * @generated
@@ -245,11 +239,11 @@ public class VersioningAdapterFactory extends AdapterFactoryImpl {
 	}
 
 	/**
-	 * Creates a new adapter for an object of class '{@link org.unicase.emfstore.esmodel.versioning.HistoryQuery <em>History Query</em>}'.
-	 * <!-- begin-user-doc -->
-	 * This default implementation returns null so that we can easily ignore cases;
-	 * it's useful to ignore a case when inheritance will catch all the cases anyway.
-	 * <!-- end-user-doc -->
+	 * Creates a new adapter for an object of class '{@link org.unicase.emfstore.esmodel.versioning.HistoryQuery
+	 * <em>History Query</em>}'. <!-- begin-user-doc --> This default implementation returns null so that we can easily
+	 * ignore cases; it's useful to ignore a case when inheritance will catch all the cases anyway. <!-- end-user-doc
+	 * -->
+	 * 
 	 * @return the new adapter.
 	 * @see org.unicase.emfstore.esmodel.versioning.HistoryQuery
 	 * @generated
@@ -259,11 +253,10 @@ public class VersioningAdapterFactory extends AdapterFactoryImpl {
 	}
 
 	/**
-	 * Creates a new adapter for an object of class '{@link org.unicase.emfstore.esmodel.versioning.Version <em>Version</em>}'.
-	 * <!-- begin-user-doc -->
-	 * This default implementation returns null so that we can easily ignore cases;
-	 * it's useful to ignore a case when inheritance will catch all the cases anyway.
-	 * <!-- end-user-doc -->
+	 * Creates a new adapter for an object of class '{@link org.unicase.emfstore.esmodel.versioning.Version
+	 * <em>Version</em>}'. <!-- begin-user-doc --> This default implementation returns null so that we can easily ignore
+	 * cases; it's useful to ignore a case when inheritance will catch all the cases anyway. <!-- end-user-doc -->
+	 * 
 	 * @return the new adapter.
 	 * @see org.unicase.emfstore.esmodel.versioning.Version
 	 * @generated
@@ -273,11 +266,11 @@ public class VersioningAdapterFactory extends AdapterFactoryImpl {
 	}
 
 	/**
-	 * Creates a new adapter for an object of class '{@link org.unicase.emfstore.esmodel.versioning.HeadVersionSpec <em>Head Version Spec</em>}'.
-	 * <!-- begin-user-doc -->
-	 * This default implementation returns null so that we can easily ignore cases;
-	 * it's useful to ignore a case when inheritance will catch all the cases anyway.
-	 * <!-- end-user-doc -->
+	 * Creates a new adapter for an object of class '{@link org.unicase.emfstore.esmodel.versioning.HeadVersionSpec
+	 * <em>Head Version Spec</em>}'. <!-- begin-user-doc --> This default implementation returns null so that we can
+	 * easily ignore cases; it's useful to ignore a case when inheritance will catch all the cases anyway. <!--
+	 * end-user-doc -->
+	 * 
 	 * @return the new adapter.
 	 * @see org.unicase.emfstore.esmodel.versioning.HeadVersionSpec
 	 * @generated
@@ -287,10 +280,9 @@ public class VersioningAdapterFactory extends AdapterFactoryImpl {
 	}
 
 	/**
-	 * Creates a new adapter for the default case.
-	 * <!-- begin-user-doc -->
-	 * This default implementation returns null.
+	 * Creates a new adapter for the default case. <!-- begin-user-doc --> This default implementation returns null.
 	 * <!-- end-user-doc -->
+	 * 
 	 * @return the new adapter.
 	 * @generated
 	 */
@@ -298,4 +290,4 @@ public class VersioningAdapterFactory extends AdapterFactoryImpl {
 		return null;
 	}
 
-} //VersioningAdapterFactory
+} // VersioningAdapterFactory

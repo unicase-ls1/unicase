@@ -1,8 +1,5 @@
 /**
- * <copyright>
- * </copyright>
- *
- * $Id$
+ * <copyright> </copyright>
  */
 package org.unicase.docExport.exportModel.renderers.options.impl;
 
@@ -23,45 +20,63 @@ import org.unicase.docExport.exportModel.renderers.options.UBorderStyle;
 import org.unicase.docExport.exportModel.renderers.options.UColor;
 
 /**
- * <!-- begin-user-doc -->
- * An implementation of the model object '<em><b>Box Model Option</b></em>'.
- * <!-- end-user-doc -->
+ * <!-- begin-user-doc --> An implementation of the model object '<em><b>Box Model Option</b></em>'. <!-- end-user-doc
+ * -->
  * <p>
  * The following features are implemented:
  * <ul>
- *   <li>{@link org.unicase.docExport.exportModel.renderers.options.impl.BoxModelOptionImpl#getMargin <em>Margin</em>}</li>
- *   <li>{@link org.unicase.docExport.exportModel.renderers.options.impl.BoxModelOptionImpl#getMarginTop <em>Margin Top</em>}</li>
- *   <li>{@link org.unicase.docExport.exportModel.renderers.options.impl.BoxModelOptionImpl#getMarginLeft <em>Margin Left</em>}</li>
- *   <li>{@link org.unicase.docExport.exportModel.renderers.options.impl.BoxModelOptionImpl#getMarginBottom <em>Margin Bottom</em>}</li>
- *   <li>{@link org.unicase.docExport.exportModel.renderers.options.impl.BoxModelOptionImpl#getMarginRight <em>Margin Right</em>}</li>
- *   <li>{@link org.unicase.docExport.exportModel.renderers.options.impl.BoxModelOptionImpl#getBorder <em>Border</em>}</li>
- *   <li>{@link org.unicase.docExport.exportModel.renderers.options.impl.BoxModelOptionImpl#getBorderTop <em>Border Top</em>}</li>
- *   <li>{@link org.unicase.docExport.exportModel.renderers.options.impl.BoxModelOptionImpl#getBorderLeft <em>Border Left</em>}</li>
- *   <li>{@link org.unicase.docExport.exportModel.renderers.options.impl.BoxModelOptionImpl#getBorderBottom <em>Border Bottom</em>}</li>
- *   <li>{@link org.unicase.docExport.exportModel.renderers.options.impl.BoxModelOptionImpl#getBorderRight <em>Border Right</em>}</li>
- *   <li>{@link org.unicase.docExport.exportModel.renderers.options.impl.BoxModelOptionImpl#getBorderStyle <em>Border Style</em>}</li>
- *   <li>{@link org.unicase.docExport.exportModel.renderers.options.impl.BoxModelOptionImpl#getBorderColor <em>Border Color</em>}</li>
- *   <li>{@link org.unicase.docExport.exportModel.renderers.options.impl.BoxModelOptionImpl#getPadding <em>Padding</em>}</li>
- *   <li>{@link org.unicase.docExport.exportModel.renderers.options.impl.BoxModelOptionImpl#getPaddingTop <em>Padding Top</em>}</li>
- *   <li>{@link org.unicase.docExport.exportModel.renderers.options.impl.BoxModelOptionImpl#getPaddingLeft <em>Padding Left</em>}</li>
- *   <li>{@link org.unicase.docExport.exportModel.renderers.options.impl.BoxModelOptionImpl#getPaddingBottom <em>Padding Bottom</em>}</li>
- *   <li>{@link org.unicase.docExport.exportModel.renderers.options.impl.BoxModelOptionImpl#getPaddingRight <em>Padding Right</em>}</li>
- *   <li>{@link org.unicase.docExport.exportModel.renderers.options.impl.BoxModelOptionImpl#getBackgroundColor <em>Background Color</em>}</li>
- *   <li>{@link org.unicase.docExport.exportModel.renderers.options.impl.BoxModelOptionImpl#isKeepTogether <em>Keep Together</em>}</li>
- *   <li>{@link org.unicase.docExport.exportModel.renderers.options.impl.BoxModelOptionImpl#isKeepWithPrevious <em>Keep With Previous</em>}</li>
- *   <li>{@link org.unicase.docExport.exportModel.renderers.options.impl.BoxModelOptionImpl#isKeepWithNext <em>Keep With Next</em>}</li>
- *   <li>{@link org.unicase.docExport.exportModel.renderers.options.impl.BoxModelOptionImpl#isBreakBefore <em>Break Before</em>}</li>
- *   <li>{@link org.unicase.docExport.exportModel.renderers.options.impl.BoxModelOptionImpl#getWidth <em>Width</em>}</li>
+ * <li>{@link org.unicase.docExport.exportModel.renderers.options.impl.BoxModelOptionImpl#getMargin <em>Margin</em>}</li>
+ * <li>{@link org.unicase.docExport.exportModel.renderers.options.impl.BoxModelOptionImpl#getMarginTop <em>Margin Top
+ * </em>}</li>
+ * <li>{@link org.unicase.docExport.exportModel.renderers.options.impl.BoxModelOptionImpl#getMarginLeft <em>Margin Left
+ * </em>}</li>
+ * <li>{@link org.unicase.docExport.exportModel.renderers.options.impl.BoxModelOptionImpl#getMarginBottom <em>Margin
+ * Bottom</em>}</li>
+ * <li>{@link org.unicase.docExport.exportModel.renderers.options.impl.BoxModelOptionImpl#getMarginRight <em>Margin
+ * Right</em>}</li>
+ * <li>{@link org.unicase.docExport.exportModel.renderers.options.impl.BoxModelOptionImpl#getBorder <em>Border</em>}</li>
+ * <li>{@link org.unicase.docExport.exportModel.renderers.options.impl.BoxModelOptionImpl#getBorderTop <em>Border Top
+ * </em>}</li>
+ * <li>{@link org.unicase.docExport.exportModel.renderers.options.impl.BoxModelOptionImpl#getBorderLeft <em>Border Left
+ * </em>}</li>
+ * <li>{@link org.unicase.docExport.exportModel.renderers.options.impl.BoxModelOptionImpl#getBorderBottom <em>Border
+ * Bottom</em>}</li>
+ * <li>{@link org.unicase.docExport.exportModel.renderers.options.impl.BoxModelOptionImpl#getBorderRight <em>Border
+ * Right</em>}</li>
+ * <li>{@link org.unicase.docExport.exportModel.renderers.options.impl.BoxModelOptionImpl#getBorderStyle <em>Border
+ * Style</em>}</li>
+ * <li>{@link org.unicase.docExport.exportModel.renderers.options.impl.BoxModelOptionImpl#getBorderColor <em>Border
+ * Color</em>}</li>
+ * <li>{@link org.unicase.docExport.exportModel.renderers.options.impl.BoxModelOptionImpl#getPadding <em>Padding</em>}</li>
+ * <li>{@link org.unicase.docExport.exportModel.renderers.options.impl.BoxModelOptionImpl#getPaddingTop <em>Padding Top
+ * </em>}</li>
+ * <li>{@link org.unicase.docExport.exportModel.renderers.options.impl.BoxModelOptionImpl#getPaddingLeft <em>Padding
+ * Left</em>}</li>
+ * <li>{@link org.unicase.docExport.exportModel.renderers.options.impl.BoxModelOptionImpl#getPaddingBottom <em>Padding
+ * Bottom</em>}</li>
+ * <li>{@link org.unicase.docExport.exportModel.renderers.options.impl.BoxModelOptionImpl#getPaddingRight <em>Padding
+ * Right</em>}</li>
+ * <li>{@link org.unicase.docExport.exportModel.renderers.options.impl.BoxModelOptionImpl#getBackgroundColor <em>
+ * Background Color</em>}</li>
+ * <li>{@link org.unicase.docExport.exportModel.renderers.options.impl.BoxModelOptionImpl#isKeepTogether <em>Keep
+ * Together</em>}</li>
+ * <li>{@link org.unicase.docExport.exportModel.renderers.options.impl.BoxModelOptionImpl#isKeepWithPrevious <em>Keep
+ * With Previous</em>}</li>
+ * <li>{@link org.unicase.docExport.exportModel.renderers.options.impl.BoxModelOptionImpl#isKeepWithNext <em>Keep With
+ * Next</em>}</li>
+ * <li>{@link org.unicase.docExport.exportModel.renderers.options.impl.BoxModelOptionImpl#isBreakBefore <em>Break Before
+ * </em>}</li>
+ * <li>{@link org.unicase.docExport.exportModel.renderers.options.impl.BoxModelOptionImpl#getWidth <em>Width</em>}</li>
  * </ul>
  * </p>
- *
+ * 
  * @generated
  */
 public class BoxModelOptionImpl extends RendererOptionImpl implements BoxModelOption {
 	/**
-	 * The default value of the '{@link #getMargin() <em>Margin</em>}' attribute.
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
+	 * The default value of the '{@link #getMargin() <em>Margin</em>}' attribute. <!-- begin-user-doc --> <!--
+	 * end-user-doc -->
+	 * 
 	 * @see #getMargin()
 	 * @generated
 	 * @ordered
@@ -69,9 +84,9 @@ public class BoxModelOptionImpl extends RendererOptionImpl implements BoxModelOp
 	protected static final double MARGIN_EDEFAULT = 0.0;
 
 	/**
-	 * The cached value of the '{@link #getMargin() <em>Margin</em>}' attribute.
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
+	 * The cached value of the '{@link #getMargin() <em>Margin</em>}' attribute. <!-- begin-user-doc --> <!--
+	 * end-user-doc -->
+	 * 
 	 * @see #getMargin()
 	 * @generated
 	 * @ordered
@@ -79,9 +94,9 @@ public class BoxModelOptionImpl extends RendererOptionImpl implements BoxModelOp
 	protected double margin = MARGIN_EDEFAULT;
 
 	/**
-	 * The default value of the '{@link #getMarginTop() <em>Margin Top</em>}' attribute.
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
+	 * The default value of the '{@link #getMarginTop() <em>Margin Top</em>}' attribute. <!-- begin-user-doc --> <!--
+	 * end-user-doc -->
+	 * 
 	 * @see #getMarginTop()
 	 * @generated
 	 * @ordered
@@ -89,9 +104,9 @@ public class BoxModelOptionImpl extends RendererOptionImpl implements BoxModelOp
 	protected static final double MARGIN_TOP_EDEFAULT = 0.0;
 
 	/**
-	 * The cached value of the '{@link #getMarginTop() <em>Margin Top</em>}' attribute.
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
+	 * The cached value of the '{@link #getMarginTop() <em>Margin Top</em>}' attribute. <!-- begin-user-doc --> <!--
+	 * end-user-doc -->
+	 * 
 	 * @see #getMarginTop()
 	 * @generated
 	 * @ordered
@@ -99,9 +114,9 @@ public class BoxModelOptionImpl extends RendererOptionImpl implements BoxModelOp
 	protected double marginTop = MARGIN_TOP_EDEFAULT;
 
 	/**
-	 * The default value of the '{@link #getMarginLeft() <em>Margin Left</em>}' attribute.
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
+	 * The default value of the '{@link #getMarginLeft() <em>Margin Left</em>}' attribute. <!-- begin-user-doc --> <!--
+	 * end-user-doc -->
+	 * 
 	 * @see #getMarginLeft()
 	 * @generated
 	 * @ordered
@@ -109,9 +124,9 @@ public class BoxModelOptionImpl extends RendererOptionImpl implements BoxModelOp
 	protected static final double MARGIN_LEFT_EDEFAULT = 0.0;
 
 	/**
-	 * The cached value of the '{@link #getMarginLeft() <em>Margin Left</em>}' attribute.
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
+	 * The cached value of the '{@link #getMarginLeft() <em>Margin Left</em>}' attribute. <!-- begin-user-doc --> <!--
+	 * end-user-doc -->
+	 * 
 	 * @see #getMarginLeft()
 	 * @generated
 	 * @ordered
@@ -119,9 +134,9 @@ public class BoxModelOptionImpl extends RendererOptionImpl implements BoxModelOp
 	protected double marginLeft = MARGIN_LEFT_EDEFAULT;
 
 	/**
-	 * The default value of the '{@link #getMarginBottom() <em>Margin Bottom</em>}' attribute.
-	 * <!-- begin-user-doc -->
+	 * The default value of the '{@link #getMarginBottom() <em>Margin Bottom</em>}' attribute. <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
+	 * 
 	 * @see #getMarginBottom()
 	 * @generated
 	 * @ordered
@@ -129,9 +144,9 @@ public class BoxModelOptionImpl extends RendererOptionImpl implements BoxModelOp
 	protected static final double MARGIN_BOTTOM_EDEFAULT = 0.0;
 
 	/**
-	 * The cached value of the '{@link #getMarginBottom() <em>Margin Bottom</em>}' attribute.
-	 * <!-- begin-user-doc -->
+	 * The cached value of the '{@link #getMarginBottom() <em>Margin Bottom</em>}' attribute. <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
+	 * 
 	 * @see #getMarginBottom()
 	 * @generated
 	 * @ordered
@@ -139,9 +154,9 @@ public class BoxModelOptionImpl extends RendererOptionImpl implements BoxModelOp
 	protected double marginBottom = MARGIN_BOTTOM_EDEFAULT;
 
 	/**
-	 * The default value of the '{@link #getMarginRight() <em>Margin Right</em>}' attribute.
-	 * <!-- begin-user-doc -->
+	 * The default value of the '{@link #getMarginRight() <em>Margin Right</em>}' attribute. <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
+	 * 
 	 * @see #getMarginRight()
 	 * @generated
 	 * @ordered
@@ -149,9 +164,9 @@ public class BoxModelOptionImpl extends RendererOptionImpl implements BoxModelOp
 	protected static final double MARGIN_RIGHT_EDEFAULT = 0.0;
 
 	/**
-	 * The cached value of the '{@link #getMarginRight() <em>Margin Right</em>}' attribute.
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
+	 * The cached value of the '{@link #getMarginRight() <em>Margin Right</em>}' attribute. <!-- begin-user-doc --> <!--
+	 * end-user-doc -->
+	 * 
 	 * @see #getMarginRight()
 	 * @generated
 	 * @ordered
@@ -159,9 +174,9 @@ public class BoxModelOptionImpl extends RendererOptionImpl implements BoxModelOp
 	protected double marginRight = MARGIN_RIGHT_EDEFAULT;
 
 	/**
-	 * The default value of the '{@link #getBorder() <em>Border</em>}' attribute.
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
+	 * The default value of the '{@link #getBorder() <em>Border</em>}' attribute. <!-- begin-user-doc --> <!--
+	 * end-user-doc -->
+	 * 
 	 * @see #getBorder()
 	 * @generated
 	 * @ordered
@@ -169,9 +184,9 @@ public class BoxModelOptionImpl extends RendererOptionImpl implements BoxModelOp
 	protected static final double BORDER_EDEFAULT = 0.0;
 
 	/**
-	 * The cached value of the '{@link #getBorder() <em>Border</em>}' attribute.
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
+	 * The cached value of the '{@link #getBorder() <em>Border</em>}' attribute. <!-- begin-user-doc --> <!--
+	 * end-user-doc -->
+	 * 
 	 * @see #getBorder()
 	 * @generated
 	 * @ordered
@@ -179,9 +194,9 @@ public class BoxModelOptionImpl extends RendererOptionImpl implements BoxModelOp
 	protected double border = BORDER_EDEFAULT;
 
 	/**
-	 * The default value of the '{@link #getBorderTop() <em>Border Top</em>}' attribute.
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
+	 * The default value of the '{@link #getBorderTop() <em>Border Top</em>}' attribute. <!-- begin-user-doc --> <!--
+	 * end-user-doc -->
+	 * 
 	 * @see #getBorderTop()
 	 * @generated
 	 * @ordered
@@ -189,9 +204,9 @@ public class BoxModelOptionImpl extends RendererOptionImpl implements BoxModelOp
 	protected static final double BORDER_TOP_EDEFAULT = 0.0;
 
 	/**
-	 * The cached value of the '{@link #getBorderTop() <em>Border Top</em>}' attribute.
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
+	 * The cached value of the '{@link #getBorderTop() <em>Border Top</em>}' attribute. <!-- begin-user-doc --> <!--
+	 * end-user-doc -->
+	 * 
 	 * @see #getBorderTop()
 	 * @generated
 	 * @ordered
@@ -199,9 +214,9 @@ public class BoxModelOptionImpl extends RendererOptionImpl implements BoxModelOp
 	protected double borderTop = BORDER_TOP_EDEFAULT;
 
 	/**
-	 * The default value of the '{@link #getBorderLeft() <em>Border Left</em>}' attribute.
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
+	 * The default value of the '{@link #getBorderLeft() <em>Border Left</em>}' attribute. <!-- begin-user-doc --> <!--
+	 * end-user-doc -->
+	 * 
 	 * @see #getBorderLeft()
 	 * @generated
 	 * @ordered
@@ -209,9 +224,9 @@ public class BoxModelOptionImpl extends RendererOptionImpl implements BoxModelOp
 	protected static final double BORDER_LEFT_EDEFAULT = 0.0;
 
 	/**
-	 * The cached value of the '{@link #getBorderLeft() <em>Border Left</em>}' attribute.
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
+	 * The cached value of the '{@link #getBorderLeft() <em>Border Left</em>}' attribute. <!-- begin-user-doc --> <!--
+	 * end-user-doc -->
+	 * 
 	 * @see #getBorderLeft()
 	 * @generated
 	 * @ordered
@@ -219,9 +234,9 @@ public class BoxModelOptionImpl extends RendererOptionImpl implements BoxModelOp
 	protected double borderLeft = BORDER_LEFT_EDEFAULT;
 
 	/**
-	 * The default value of the '{@link #getBorderBottom() <em>Border Bottom</em>}' attribute.
-	 * <!-- begin-user-doc -->
+	 * The default value of the '{@link #getBorderBottom() <em>Border Bottom</em>}' attribute. <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
+	 * 
 	 * @see #getBorderBottom()
 	 * @generated
 	 * @ordered
@@ -229,9 +244,9 @@ public class BoxModelOptionImpl extends RendererOptionImpl implements BoxModelOp
 	protected static final double BORDER_BOTTOM_EDEFAULT = 0.0;
 
 	/**
-	 * The cached value of the '{@link #getBorderBottom() <em>Border Bottom</em>}' attribute.
-	 * <!-- begin-user-doc -->
+	 * The cached value of the '{@link #getBorderBottom() <em>Border Bottom</em>}' attribute. <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
+	 * 
 	 * @see #getBorderBottom()
 	 * @generated
 	 * @ordered
@@ -239,9 +254,9 @@ public class BoxModelOptionImpl extends RendererOptionImpl implements BoxModelOp
 	protected double borderBottom = BORDER_BOTTOM_EDEFAULT;
 
 	/**
-	 * The default value of the '{@link #getBorderRight() <em>Border Right</em>}' attribute.
-	 * <!-- begin-user-doc -->
+	 * The default value of the '{@link #getBorderRight() <em>Border Right</em>}' attribute. <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
+	 * 
 	 * @see #getBorderRight()
 	 * @generated
 	 * @ordered
@@ -249,9 +264,9 @@ public class BoxModelOptionImpl extends RendererOptionImpl implements BoxModelOp
 	protected static final double BORDER_RIGHT_EDEFAULT = 0.0;
 
 	/**
-	 * The cached value of the '{@link #getBorderRight() <em>Border Right</em>}' attribute.
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
+	 * The cached value of the '{@link #getBorderRight() <em>Border Right</em>}' attribute. <!-- begin-user-doc --> <!--
+	 * end-user-doc -->
+	 * 
 	 * @see #getBorderRight()
 	 * @generated
 	 * @ordered
@@ -259,9 +274,9 @@ public class BoxModelOptionImpl extends RendererOptionImpl implements BoxModelOp
 	protected double borderRight = BORDER_RIGHT_EDEFAULT;
 
 	/**
-	 * The default value of the '{@link #getBorderStyle() <em>Border Style</em>}' attribute.
-	 * <!-- begin-user-doc -->
+	 * The default value of the '{@link #getBorderStyle() <em>Border Style</em>}' attribute. <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
+	 * 
 	 * @see #getBorderStyle()
 	 * @generated NOT
 	 * @ordered
@@ -269,9 +284,9 @@ public class BoxModelOptionImpl extends RendererOptionImpl implements BoxModelOp
 	protected static final UBorderStyle BORDER_STYLE_EDEFAULT = UBorderStyle.HIDDEN;
 
 	/**
-	 * The cached value of the '{@link #getBorderStyle() <em>Border Style</em>}' attribute.
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
+	 * The cached value of the '{@link #getBorderStyle() <em>Border Style</em>}' attribute. <!-- begin-user-doc --> <!--
+	 * end-user-doc -->
+	 * 
 	 * @see #getBorderStyle()
 	 * @generated
 	 * @ordered
@@ -279,9 +294,9 @@ public class BoxModelOptionImpl extends RendererOptionImpl implements BoxModelOp
 	protected UBorderStyle borderStyle = BORDER_STYLE_EDEFAULT;
 
 	/**
-	 * The cached value of the '{@link #getBorderColor() <em>Border Color</em>}' containment reference.
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
+	 * The cached value of the '{@link #getBorderColor() <em>Border Color</em>}' containment reference. <!--
+	 * begin-user-doc --> <!-- end-user-doc -->
+	 * 
 	 * @see #getBorderColor()
 	 * @generated
 	 * @ordered
@@ -289,9 +304,9 @@ public class BoxModelOptionImpl extends RendererOptionImpl implements BoxModelOp
 	protected UColor borderColor;
 
 	/**
-	 * The default value of the '{@link #getPadding() <em>Padding</em>}' attribute.
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
+	 * The default value of the '{@link #getPadding() <em>Padding</em>}' attribute. <!-- begin-user-doc --> <!--
+	 * end-user-doc -->
+	 * 
 	 * @see #getPadding()
 	 * @generated
 	 * @ordered
@@ -299,9 +314,9 @@ public class BoxModelOptionImpl extends RendererOptionImpl implements BoxModelOp
 	protected static final double PADDING_EDEFAULT = 0.0;
 
 	/**
-	 * The cached value of the '{@link #getPadding() <em>Padding</em>}' attribute.
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
+	 * The cached value of the '{@link #getPadding() <em>Padding</em>}' attribute. <!-- begin-user-doc --> <!--
+	 * end-user-doc -->
+	 * 
 	 * @see #getPadding()
 	 * @generated
 	 * @ordered
@@ -309,9 +324,9 @@ public class BoxModelOptionImpl extends RendererOptionImpl implements BoxModelOp
 	protected double padding = PADDING_EDEFAULT;
 
 	/**
-	 * The default value of the '{@link #getPaddingTop() <em>Padding Top</em>}' attribute.
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
+	 * The default value of the '{@link #getPaddingTop() <em>Padding Top</em>}' attribute. <!-- begin-user-doc --> <!--
+	 * end-user-doc -->
+	 * 
 	 * @see #getPaddingTop()
 	 * @generated
 	 * @ordered
@@ -319,9 +334,9 @@ public class BoxModelOptionImpl extends RendererOptionImpl implements BoxModelOp
 	protected static final double PADDING_TOP_EDEFAULT = 0.0;
 
 	/**
-	 * The cached value of the '{@link #getPaddingTop() <em>Padding Top</em>}' attribute.
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
+	 * The cached value of the '{@link #getPaddingTop() <em>Padding Top</em>}' attribute. <!-- begin-user-doc --> <!--
+	 * end-user-doc -->
+	 * 
 	 * @see #getPaddingTop()
 	 * @generated
 	 * @ordered
@@ -329,9 +344,9 @@ public class BoxModelOptionImpl extends RendererOptionImpl implements BoxModelOp
 	protected double paddingTop = PADDING_TOP_EDEFAULT;
 
 	/**
-	 * The default value of the '{@link #getPaddingLeft() <em>Padding Left</em>}' attribute.
-	 * <!-- begin-user-doc -->
+	 * The default value of the '{@link #getPaddingLeft() <em>Padding Left</em>}' attribute. <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
+	 * 
 	 * @see #getPaddingLeft()
 	 * @generated
 	 * @ordered
@@ -339,9 +354,9 @@ public class BoxModelOptionImpl extends RendererOptionImpl implements BoxModelOp
 	protected static final double PADDING_LEFT_EDEFAULT = 0.0;
 
 	/**
-	 * The cached value of the '{@link #getPaddingLeft() <em>Padding Left</em>}' attribute.
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
+	 * The cached value of the '{@link #getPaddingLeft() <em>Padding Left</em>}' attribute. <!-- begin-user-doc --> <!--
+	 * end-user-doc -->
+	 * 
 	 * @see #getPaddingLeft()
 	 * @generated
 	 * @ordered
@@ -349,9 +364,9 @@ public class BoxModelOptionImpl extends RendererOptionImpl implements BoxModelOp
 	protected double paddingLeft = PADDING_LEFT_EDEFAULT;
 
 	/**
-	 * The default value of the '{@link #getPaddingBottom() <em>Padding Bottom</em>}' attribute.
-	 * <!-- begin-user-doc -->
+	 * The default value of the '{@link #getPaddingBottom() <em>Padding Bottom</em>}' attribute. <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
+	 * 
 	 * @see #getPaddingBottom()
 	 * @generated
 	 * @ordered
@@ -359,9 +374,9 @@ public class BoxModelOptionImpl extends RendererOptionImpl implements BoxModelOp
 	protected static final double PADDING_BOTTOM_EDEFAULT = 0.0;
 
 	/**
-	 * The cached value of the '{@link #getPaddingBottom() <em>Padding Bottom</em>}' attribute.
-	 * <!-- begin-user-doc -->
+	 * The cached value of the '{@link #getPaddingBottom() <em>Padding Bottom</em>}' attribute. <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
+	 * 
 	 * @see #getPaddingBottom()
 	 * @generated
 	 * @ordered
@@ -369,9 +384,9 @@ public class BoxModelOptionImpl extends RendererOptionImpl implements BoxModelOp
 	protected double paddingBottom = PADDING_BOTTOM_EDEFAULT;
 
 	/**
-	 * The default value of the '{@link #getPaddingRight() <em>Padding Right</em>}' attribute.
-	 * <!-- begin-user-doc -->
+	 * The default value of the '{@link #getPaddingRight() <em>Padding Right</em>}' attribute. <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
+	 * 
 	 * @see #getPaddingRight()
 	 * @generated
 	 * @ordered
@@ -379,9 +394,9 @@ public class BoxModelOptionImpl extends RendererOptionImpl implements BoxModelOp
 	protected static final double PADDING_RIGHT_EDEFAULT = 0.0;
 
 	/**
-	 * The cached value of the '{@link #getPaddingRight() <em>Padding Right</em>}' attribute.
-	 * <!-- begin-user-doc -->
+	 * The cached value of the '{@link #getPaddingRight() <em>Padding Right</em>}' attribute. <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
+	 * 
 	 * @see #getPaddingRight()
 	 * @generated
 	 * @ordered
@@ -389,9 +404,9 @@ public class BoxModelOptionImpl extends RendererOptionImpl implements BoxModelOp
 	protected double paddingRight = PADDING_RIGHT_EDEFAULT;
 
 	/**
-	 * The cached value of the '{@link #getBackgroundColor() <em>Background Color</em>}' reference.
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
+	 * The cached value of the '{@link #getBackgroundColor() <em>Background Color</em>}' reference. <!-- begin-user-doc
+	 * --> <!-- end-user-doc -->
+	 * 
 	 * @see #getBackgroundColor()
 	 * @generated
 	 * @ordered
@@ -399,9 +414,9 @@ public class BoxModelOptionImpl extends RendererOptionImpl implements BoxModelOp
 	protected UColor backgroundColor;
 
 	/**
-	 * The default value of the '{@link #isKeepTogether() <em>Keep Together</em>}' attribute.
-	 * <!-- begin-user-doc -->
+	 * The default value of the '{@link #isKeepTogether() <em>Keep Together</em>}' attribute. <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
+	 * 
 	 * @see #isKeepTogether()
 	 * @generated
 	 * @ordered
@@ -409,9 +424,9 @@ public class BoxModelOptionImpl extends RendererOptionImpl implements BoxModelOp
 	protected static final boolean KEEP_TOGETHER_EDEFAULT = false;
 
 	/**
-	 * The cached value of the '{@link #isKeepTogether() <em>Keep Together</em>}' attribute.
-	 * <!-- begin-user-doc -->
+	 * The cached value of the '{@link #isKeepTogether() <em>Keep Together</em>}' attribute. <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
+	 * 
 	 * @see #isKeepTogether()
 	 * @generated
 	 * @ordered
@@ -419,9 +434,9 @@ public class BoxModelOptionImpl extends RendererOptionImpl implements BoxModelOp
 	protected boolean keepTogether = KEEP_TOGETHER_EDEFAULT;
 
 	/**
-	 * The default value of the '{@link #isKeepWithPrevious() <em>Keep With Previous</em>}' attribute.
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
+	 * The default value of the '{@link #isKeepWithPrevious() <em>Keep With Previous</em>}' attribute. <!--
+	 * begin-user-doc --> <!-- end-user-doc -->
+	 * 
 	 * @see #isKeepWithPrevious()
 	 * @generated
 	 * @ordered
@@ -429,9 +444,9 @@ public class BoxModelOptionImpl extends RendererOptionImpl implements BoxModelOp
 	protected static final boolean KEEP_WITH_PREVIOUS_EDEFAULT = false;
 
 	/**
-	 * The cached value of the '{@link #isKeepWithPrevious() <em>Keep With Previous</em>}' attribute.
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
+	 * The cached value of the '{@link #isKeepWithPrevious() <em>Keep With Previous</em>}' attribute. <!--
+	 * begin-user-doc --> <!-- end-user-doc -->
+	 * 
 	 * @see #isKeepWithPrevious()
 	 * @generated
 	 * @ordered
@@ -439,9 +454,9 @@ public class BoxModelOptionImpl extends RendererOptionImpl implements BoxModelOp
 	protected boolean keepWithPrevious = KEEP_WITH_PREVIOUS_EDEFAULT;
 
 	/**
-	 * The default value of the '{@link #isKeepWithNext() <em>Keep With Next</em>}' attribute.
-	 * <!-- begin-user-doc -->
+	 * The default value of the '{@link #isKeepWithNext() <em>Keep With Next</em>}' attribute. <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
+	 * 
 	 * @see #isKeepWithNext()
 	 * @generated
 	 * @ordered
@@ -449,9 +464,9 @@ public class BoxModelOptionImpl extends RendererOptionImpl implements BoxModelOp
 	protected static final boolean KEEP_WITH_NEXT_EDEFAULT = false;
 
 	/**
-	 * The cached value of the '{@link #isKeepWithNext() <em>Keep With Next</em>}' attribute.
-	 * <!-- begin-user-doc -->
+	 * The cached value of the '{@link #isKeepWithNext() <em>Keep With Next</em>}' attribute. <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
+	 * 
 	 * @see #isKeepWithNext()
 	 * @generated
 	 * @ordered
@@ -459,9 +474,9 @@ public class BoxModelOptionImpl extends RendererOptionImpl implements BoxModelOp
 	protected boolean keepWithNext = KEEP_WITH_NEXT_EDEFAULT;
 
 	/**
-	 * The default value of the '{@link #isBreakBefore() <em>Break Before</em>}' attribute.
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
+	 * The default value of the '{@link #isBreakBefore() <em>Break Before</em>}' attribute. <!-- begin-user-doc --> <!--
+	 * end-user-doc -->
+	 * 
 	 * @see #isBreakBefore()
 	 * @generated
 	 * @ordered
@@ -469,9 +484,9 @@ public class BoxModelOptionImpl extends RendererOptionImpl implements BoxModelOp
 	protected static final boolean BREAK_BEFORE_EDEFAULT = false;
 
 	/**
-	 * The cached value of the '{@link #isBreakBefore() <em>Break Before</em>}' attribute.
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
+	 * The cached value of the '{@link #isBreakBefore() <em>Break Before</em>}' attribute. <!-- begin-user-doc --> <!--
+	 * end-user-doc -->
+	 * 
 	 * @see #isBreakBefore()
 	 * @generated
 	 * @ordered
@@ -479,9 +494,9 @@ public class BoxModelOptionImpl extends RendererOptionImpl implements BoxModelOp
 	protected boolean breakBefore = BREAK_BEFORE_EDEFAULT;
 
 	/**
-	 * The default value of the '{@link #getWidth() <em>Width</em>}' attribute.
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
+	 * The default value of the '{@link #getWidth() <em>Width</em>}' attribute. <!-- begin-user-doc --> <!--
+	 * end-user-doc -->
+	 * 
 	 * @see #getWidth()
 	 * @generated
 	 * @ordered
@@ -489,9 +504,9 @@ public class BoxModelOptionImpl extends RendererOptionImpl implements BoxModelOp
 	protected static final int WIDTH_EDEFAULT = 0;
 
 	/**
-	 * The cached value of the '{@link #getWidth() <em>Width</em>}' attribute.
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
+	 * The cached value of the '{@link #getWidth() <em>Width</em>}' attribute. <!-- begin-user-doc --> <!-- end-user-doc
+	 * -->
+	 * 
 	 * @see #getWidth()
 	 * @generated
 	 * @ordered
@@ -499,8 +514,8 @@ public class BoxModelOptionImpl extends RendererOptionImpl implements BoxModelOp
 	protected int width = WIDTH_EDEFAULT;
 
 	/**
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
+	 * <!-- begin-user-doc --> <!-- end-user-doc -->
+	 * 
 	 * @generated NOT
 	 */
 	protected BoxModelOptionImpl() {
@@ -509,9 +524,8 @@ public class BoxModelOptionImpl extends RendererOptionImpl implements BoxModelOp
 	}
 
 	/**
-	 * <!-- begin-user-doc -->
-	 * .
-	 * <!-- end-user-doc -->
+	 * <!-- begin-user-doc --> . <!-- end-user-doc -->
+	 * 
 	 * @generated
 	 */
 	@Override
@@ -520,8 +534,8 @@ public class BoxModelOptionImpl extends RendererOptionImpl implements BoxModelOp
 	}
 
 	/**
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
+	 * <!-- begin-user-doc --> <!-- end-user-doc -->
+	 * 
 	 * @generated
 	 */
 	public double getMargin() {
@@ -529,20 +543,21 @@ public class BoxModelOptionImpl extends RendererOptionImpl implements BoxModelOp
 	}
 
 	/**
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
+	 * <!-- begin-user-doc --> <!-- end-user-doc -->
+	 * 
 	 * @generated
 	 */
 	public void setMargin(double newMargin) {
 		double oldMargin = margin;
 		margin = newMargin;
 		if (eNotificationRequired())
-			eNotify(new ENotificationImpl(this, Notification.SET, OptionsPackage.BOX_MODEL_OPTION__MARGIN, oldMargin, margin));
+			eNotify(new ENotificationImpl(this, Notification.SET, OptionsPackage.BOX_MODEL_OPTION__MARGIN, oldMargin,
+				margin));
 	}
 
 	/**
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
+	 * <!-- begin-user-doc --> <!-- end-user-doc -->
+	 * 
 	 * @generated
 	 */
 	public double getMarginTop() {
@@ -550,20 +565,21 @@ public class BoxModelOptionImpl extends RendererOptionImpl implements BoxModelOp
 	}
 
 	/**
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
+	 * <!-- begin-user-doc --> <!-- end-user-doc -->
+	 * 
 	 * @generated
 	 */
 	public void setMarginTop(double newMarginTop) {
 		double oldMarginTop = marginTop;
 		marginTop = newMarginTop;
 		if (eNotificationRequired())
-			eNotify(new ENotificationImpl(this, Notification.SET, OptionsPackage.BOX_MODEL_OPTION__MARGIN_TOP, oldMarginTop, marginTop));
+			eNotify(new ENotificationImpl(this, Notification.SET, OptionsPackage.BOX_MODEL_OPTION__MARGIN_TOP,
+				oldMarginTop, marginTop));
 	}
 
 	/**
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
+	 * <!-- begin-user-doc --> <!-- end-user-doc -->
+	 * 
 	 * @generated
 	 */
 	public double getMarginLeft() {
@@ -571,20 +587,21 @@ public class BoxModelOptionImpl extends RendererOptionImpl implements BoxModelOp
 	}
 
 	/**
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
+	 * <!-- begin-user-doc --> <!-- end-user-doc -->
+	 * 
 	 * @generated
 	 */
 	public void setMarginLeft(double newMarginLeft) {
 		double oldMarginLeft = marginLeft;
 		marginLeft = newMarginLeft;
 		if (eNotificationRequired())
-			eNotify(new ENotificationImpl(this, Notification.SET, OptionsPackage.BOX_MODEL_OPTION__MARGIN_LEFT, oldMarginLeft, marginLeft));
+			eNotify(new ENotificationImpl(this, Notification.SET, OptionsPackage.BOX_MODEL_OPTION__MARGIN_LEFT,
+				oldMarginLeft, marginLeft));
 	}
 
 	/**
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
+	 * <!-- begin-user-doc --> <!-- end-user-doc -->
+	 * 
 	 * @generated
 	 */
 	public double getMarginBottom() {
@@ -592,20 +609,21 @@ public class BoxModelOptionImpl extends RendererOptionImpl implements BoxModelOp
 	}
 
 	/**
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
+	 * <!-- begin-user-doc --> <!-- end-user-doc -->
+	 * 
 	 * @generated
 	 */
 	public void setMarginBottom(double newMarginBottom) {
 		double oldMarginBottom = marginBottom;
 		marginBottom = newMarginBottom;
 		if (eNotificationRequired())
-			eNotify(new ENotificationImpl(this, Notification.SET, OptionsPackage.BOX_MODEL_OPTION__MARGIN_BOTTOM, oldMarginBottom, marginBottom));
+			eNotify(new ENotificationImpl(this, Notification.SET, OptionsPackage.BOX_MODEL_OPTION__MARGIN_BOTTOM,
+				oldMarginBottom, marginBottom));
 	}
 
 	/**
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
+	 * <!-- begin-user-doc --> <!-- end-user-doc -->
+	 * 
 	 * @generated
 	 */
 	public double getMarginRight() {
@@ -613,20 +631,21 @@ public class BoxModelOptionImpl extends RendererOptionImpl implements BoxModelOp
 	}
 
 	/**
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
+	 * <!-- begin-user-doc --> <!-- end-user-doc -->
+	 * 
 	 * @generated
 	 */
 	public void setMarginRight(double newMarginRight) {
 		double oldMarginRight = marginRight;
 		marginRight = newMarginRight;
 		if (eNotificationRequired())
-			eNotify(new ENotificationImpl(this, Notification.SET, OptionsPackage.BOX_MODEL_OPTION__MARGIN_RIGHT, oldMarginRight, marginRight));
+			eNotify(new ENotificationImpl(this, Notification.SET, OptionsPackage.BOX_MODEL_OPTION__MARGIN_RIGHT,
+				oldMarginRight, marginRight));
 	}
 
 	/**
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
+	 * <!-- begin-user-doc --> <!-- end-user-doc -->
+	 * 
 	 * @generated
 	 */
 	public double getBorder() {
@@ -634,20 +653,21 @@ public class BoxModelOptionImpl extends RendererOptionImpl implements BoxModelOp
 	}
 
 	/**
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
+	 * <!-- begin-user-doc --> <!-- end-user-doc -->
+	 * 
 	 * @generated
 	 */
 	public void setBorder(double newBorder) {
 		double oldBorder = border;
 		border = newBorder;
 		if (eNotificationRequired())
-			eNotify(new ENotificationImpl(this, Notification.SET, OptionsPackage.BOX_MODEL_OPTION__BORDER, oldBorder, border));
+			eNotify(new ENotificationImpl(this, Notification.SET, OptionsPackage.BOX_MODEL_OPTION__BORDER, oldBorder,
+				border));
 	}
 
 	/**
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
+	 * <!-- begin-user-doc --> <!-- end-user-doc -->
+	 * 
 	 * @generated
 	 */
 	public double getBorderTop() {
@@ -655,20 +675,21 @@ public class BoxModelOptionImpl extends RendererOptionImpl implements BoxModelOp
 	}
 
 	/**
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
+	 * <!-- begin-user-doc --> <!-- end-user-doc -->
+	 * 
 	 * @generated
 	 */
 	public void setBorderTop(double newBorderTop) {
 		double oldBorderTop = borderTop;
 		borderTop = newBorderTop;
 		if (eNotificationRequired())
-			eNotify(new ENotificationImpl(this, Notification.SET, OptionsPackage.BOX_MODEL_OPTION__BORDER_TOP, oldBorderTop, borderTop));
+			eNotify(new ENotificationImpl(this, Notification.SET, OptionsPackage.BOX_MODEL_OPTION__BORDER_TOP,
+				oldBorderTop, borderTop));
 	}
 
 	/**
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
+	 * <!-- begin-user-doc --> <!-- end-user-doc -->
+	 * 
 	 * @generated
 	 */
 	public double getBorderLeft() {
@@ -676,20 +697,21 @@ public class BoxModelOptionImpl extends RendererOptionImpl implements BoxModelOp
 	}
 
 	/**
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
+	 * <!-- begin-user-doc --> <!-- end-user-doc -->
+	 * 
 	 * @generated
 	 */
 	public void setBorderLeft(double newBorderLeft) {
 		double oldBorderLeft = borderLeft;
 		borderLeft = newBorderLeft;
 		if (eNotificationRequired())
-			eNotify(new ENotificationImpl(this, Notification.SET, OptionsPackage.BOX_MODEL_OPTION__BORDER_LEFT, oldBorderLeft, borderLeft));
+			eNotify(new ENotificationImpl(this, Notification.SET, OptionsPackage.BOX_MODEL_OPTION__BORDER_LEFT,
+				oldBorderLeft, borderLeft));
 	}
 
 	/**
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
+	 * <!-- begin-user-doc --> <!-- end-user-doc -->
+	 * 
 	 * @generated
 	 */
 	public double getBorderBottom() {
@@ -697,20 +719,21 @@ public class BoxModelOptionImpl extends RendererOptionImpl implements BoxModelOp
 	}
 
 	/**
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
+	 * <!-- begin-user-doc --> <!-- end-user-doc -->
+	 * 
 	 * @generated
 	 */
 	public void setBorderBottom(double newBorderBottom) {
 		double oldBorderBottom = borderBottom;
 		borderBottom = newBorderBottom;
 		if (eNotificationRequired())
-			eNotify(new ENotificationImpl(this, Notification.SET, OptionsPackage.BOX_MODEL_OPTION__BORDER_BOTTOM, oldBorderBottom, borderBottom));
+			eNotify(new ENotificationImpl(this, Notification.SET, OptionsPackage.BOX_MODEL_OPTION__BORDER_BOTTOM,
+				oldBorderBottom, borderBottom));
 	}
 
 	/**
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
+	 * <!-- begin-user-doc --> <!-- end-user-doc -->
+	 * 
 	 * @generated
 	 */
 	public double getBorderRight() {
@@ -718,20 +741,21 @@ public class BoxModelOptionImpl extends RendererOptionImpl implements BoxModelOp
 	}
 
 	/**
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
+	 * <!-- begin-user-doc --> <!-- end-user-doc -->
+	 * 
 	 * @generated
 	 */
 	public void setBorderRight(double newBorderRight) {
 		double oldBorderRight = borderRight;
 		borderRight = newBorderRight;
 		if (eNotificationRequired())
-			eNotify(new ENotificationImpl(this, Notification.SET, OptionsPackage.BOX_MODEL_OPTION__BORDER_RIGHT, oldBorderRight, borderRight));
+			eNotify(new ENotificationImpl(this, Notification.SET, OptionsPackage.BOX_MODEL_OPTION__BORDER_RIGHT,
+				oldBorderRight, borderRight));
 	}
 
 	/**
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
+	 * <!-- begin-user-doc --> <!-- end-user-doc -->
+	 * 
 	 * @generated
 	 */
 	public UBorderStyle getBorderStyle() {
@@ -739,20 +763,21 @@ public class BoxModelOptionImpl extends RendererOptionImpl implements BoxModelOp
 	}
 
 	/**
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
+	 * <!-- begin-user-doc --> <!-- end-user-doc -->
+	 * 
 	 * @generated
 	 */
 	public void setBorderStyle(UBorderStyle newBorderStyle) {
 		UBorderStyle oldBorderStyle = borderStyle;
 		borderStyle = newBorderStyle == null ? BORDER_STYLE_EDEFAULT : newBorderStyle;
 		if (eNotificationRequired())
-			eNotify(new ENotificationImpl(this, Notification.SET, OptionsPackage.BOX_MODEL_OPTION__BORDER_STYLE, oldBorderStyle, borderStyle));
+			eNotify(new ENotificationImpl(this, Notification.SET, OptionsPackage.BOX_MODEL_OPTION__BORDER_STYLE,
+				oldBorderStyle, borderStyle));
 	}
 
 	/**
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
+	 * <!-- begin-user-doc --> <!-- end-user-doc -->
+	 * 
 	 * @generated
 	 */
 	public UColor getBorderColor() {
@@ -760,42 +785,49 @@ public class BoxModelOptionImpl extends RendererOptionImpl implements BoxModelOp
 	}
 
 	/**
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
+	 * <!-- begin-user-doc --> <!-- end-user-doc -->
+	 * 
 	 * @generated
 	 */
 	public NotificationChain basicSetBorderColor(UColor newBorderColor, NotificationChain msgs) {
 		UColor oldBorderColor = borderColor;
 		borderColor = newBorderColor;
 		if (eNotificationRequired()) {
-			ENotificationImpl notification = new ENotificationImpl(this, Notification.SET, OptionsPackage.BOX_MODEL_OPTION__BORDER_COLOR, oldBorderColor, newBorderColor);
-			if (msgs == null) msgs = notification; else msgs.add(notification);
+			ENotificationImpl notification = new ENotificationImpl(this, Notification.SET,
+				OptionsPackage.BOX_MODEL_OPTION__BORDER_COLOR, oldBorderColor, newBorderColor);
+			if (msgs == null)
+				msgs = notification;
+			else
+				msgs.add(notification);
 		}
 		return msgs;
 	}
 
 	/**
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
+	 * <!-- begin-user-doc --> <!-- end-user-doc -->
+	 * 
 	 * @generated
 	 */
 	public void setBorderColor(UColor newBorderColor) {
 		if (newBorderColor != borderColor) {
 			NotificationChain msgs = null;
 			if (borderColor != null)
-				msgs = ((InternalEObject)borderColor).eInverseRemove(this, EOPPOSITE_FEATURE_BASE - OptionsPackage.BOX_MODEL_OPTION__BORDER_COLOR, null, msgs);
+				msgs = ((InternalEObject) borderColor).eInverseRemove(this, EOPPOSITE_FEATURE_BASE
+					- OptionsPackage.BOX_MODEL_OPTION__BORDER_COLOR, null, msgs);
 			if (newBorderColor != null)
-				msgs = ((InternalEObject)newBorderColor).eInverseAdd(this, EOPPOSITE_FEATURE_BASE - OptionsPackage.BOX_MODEL_OPTION__BORDER_COLOR, null, msgs);
+				msgs = ((InternalEObject) newBorderColor).eInverseAdd(this, EOPPOSITE_FEATURE_BASE
+					- OptionsPackage.BOX_MODEL_OPTION__BORDER_COLOR, null, msgs);
 			msgs = basicSetBorderColor(newBorderColor, msgs);
-			if (msgs != null) msgs.dispatch();
-		}
-		else if (eNotificationRequired())
-			eNotify(new ENotificationImpl(this, Notification.SET, OptionsPackage.BOX_MODEL_OPTION__BORDER_COLOR, newBorderColor, newBorderColor));
+			if (msgs != null)
+				msgs.dispatch();
+		} else if (eNotificationRequired())
+			eNotify(new ENotificationImpl(this, Notification.SET, OptionsPackage.BOX_MODEL_OPTION__BORDER_COLOR,
+				newBorderColor, newBorderColor));
 	}
 
 	/**
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
+	 * <!-- begin-user-doc --> <!-- end-user-doc -->
+	 * 
 	 * @generated
 	 */
 	public double getPadding() {
@@ -803,20 +835,21 @@ public class BoxModelOptionImpl extends RendererOptionImpl implements BoxModelOp
 	}
 
 	/**
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
+	 * <!-- begin-user-doc --> <!-- end-user-doc -->
+	 * 
 	 * @generated
 	 */
 	public void setPadding(double newPadding) {
 		double oldPadding = padding;
 		padding = newPadding;
 		if (eNotificationRequired())
-			eNotify(new ENotificationImpl(this, Notification.SET, OptionsPackage.BOX_MODEL_OPTION__PADDING, oldPadding, padding));
+			eNotify(new ENotificationImpl(this, Notification.SET, OptionsPackage.BOX_MODEL_OPTION__PADDING, oldPadding,
+				padding));
 	}
 
 	/**
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
+	 * <!-- begin-user-doc --> <!-- end-user-doc -->
+	 * 
 	 * @generated
 	 */
 	public double getPaddingTop() {
@@ -824,20 +857,21 @@ public class BoxModelOptionImpl extends RendererOptionImpl implements BoxModelOp
 	}
 
 	/**
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
+	 * <!-- begin-user-doc --> <!-- end-user-doc -->
+	 * 
 	 * @generated
 	 */
 	public void setPaddingTop(double newPaddingTop) {
 		double oldPaddingTop = paddingTop;
 		paddingTop = newPaddingTop;
 		if (eNotificationRequired())
-			eNotify(new ENotificationImpl(this, Notification.SET, OptionsPackage.BOX_MODEL_OPTION__PADDING_TOP, oldPaddingTop, paddingTop));
+			eNotify(new ENotificationImpl(this, Notification.SET, OptionsPackage.BOX_MODEL_OPTION__PADDING_TOP,
+				oldPaddingTop, paddingTop));
 	}
 
 	/**
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
+	 * <!-- begin-user-doc --> <!-- end-user-doc -->
+	 * 
 	 * @generated
 	 */
 	public double getPaddingLeft() {
@@ -845,20 +879,21 @@ public class BoxModelOptionImpl extends RendererOptionImpl implements BoxModelOp
 	}
 
 	/**
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
+	 * <!-- begin-user-doc --> <!-- end-user-doc -->
+	 * 
 	 * @generated
 	 */
 	public void setPaddingLeft(double newPaddingLeft) {
 		double oldPaddingLeft = paddingLeft;
 		paddingLeft = newPaddingLeft;
 		if (eNotificationRequired())
-			eNotify(new ENotificationImpl(this, Notification.SET, OptionsPackage.BOX_MODEL_OPTION__PADDING_LEFT, oldPaddingLeft, paddingLeft));
+			eNotify(new ENotificationImpl(this, Notification.SET, OptionsPackage.BOX_MODEL_OPTION__PADDING_LEFT,
+				oldPaddingLeft, paddingLeft));
 	}
 
 	/**
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
+	 * <!-- begin-user-doc --> <!-- end-user-doc -->
+	 * 
 	 * @generated
 	 */
 	public double getPaddingBottom() {
@@ -866,20 +901,21 @@ public class BoxModelOptionImpl extends RendererOptionImpl implements BoxModelOp
 	}
 
 	/**
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
+	 * <!-- begin-user-doc --> <!-- end-user-doc -->
+	 * 
 	 * @generated
 	 */
 	public void setPaddingBottom(double newPaddingBottom) {
 		double oldPaddingBottom = paddingBottom;
 		paddingBottom = newPaddingBottom;
 		if (eNotificationRequired())
-			eNotify(new ENotificationImpl(this, Notification.SET, OptionsPackage.BOX_MODEL_OPTION__PADDING_BOTTOM, oldPaddingBottom, paddingBottom));
+			eNotify(new ENotificationImpl(this, Notification.SET, OptionsPackage.BOX_MODEL_OPTION__PADDING_BOTTOM,
+				oldPaddingBottom, paddingBottom));
 	}
 
 	/**
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
+	 * <!-- begin-user-doc --> <!-- end-user-doc -->
+	 * 
 	 * @generated
 	 */
 	public double getPaddingRight() {
@@ -887,37 +923,39 @@ public class BoxModelOptionImpl extends RendererOptionImpl implements BoxModelOp
 	}
 
 	/**
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
+	 * <!-- begin-user-doc --> <!-- end-user-doc -->
+	 * 
 	 * @generated
 	 */
 	public void setPaddingRight(double newPaddingRight) {
 		double oldPaddingRight = paddingRight;
 		paddingRight = newPaddingRight;
 		if (eNotificationRequired())
-			eNotify(new ENotificationImpl(this, Notification.SET, OptionsPackage.BOX_MODEL_OPTION__PADDING_RIGHT, oldPaddingRight, paddingRight));
+			eNotify(new ENotificationImpl(this, Notification.SET, OptionsPackage.BOX_MODEL_OPTION__PADDING_RIGHT,
+				oldPaddingRight, paddingRight));
 	}
 
 	/**
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
+	 * <!-- begin-user-doc --> <!-- end-user-doc -->
+	 * 
 	 * @generated
 	 */
 	public UColor getBackgroundColor() {
 		if (backgroundColor != null && backgroundColor.eIsProxy()) {
-			InternalEObject oldBackgroundColor = (InternalEObject)backgroundColor;
-			backgroundColor = (UColor)eResolveProxy(oldBackgroundColor);
+			InternalEObject oldBackgroundColor = (InternalEObject) backgroundColor;
+			backgroundColor = (UColor) eResolveProxy(oldBackgroundColor);
 			if (backgroundColor != oldBackgroundColor) {
 				if (eNotificationRequired())
-					eNotify(new ENotificationImpl(this, Notification.RESOLVE, OptionsPackage.BOX_MODEL_OPTION__BACKGROUND_COLOR, oldBackgroundColor, backgroundColor));
+					eNotify(new ENotificationImpl(this, Notification.RESOLVE,
+						OptionsPackage.BOX_MODEL_OPTION__BACKGROUND_COLOR, oldBackgroundColor, backgroundColor));
 			}
 		}
 		return backgroundColor;
 	}
 
 	/**
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
+	 * <!-- begin-user-doc --> <!-- end-user-doc -->
+	 * 
 	 * @generated
 	 */
 	public UColor basicGetBackgroundColor() {
@@ -925,20 +963,21 @@ public class BoxModelOptionImpl extends RendererOptionImpl implements BoxModelOp
 	}
 
 	/**
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
+	 * <!-- begin-user-doc --> <!-- end-user-doc -->
+	 * 
 	 * @generated
 	 */
 	public void setBackgroundColor(UColor newBackgroundColor) {
 		UColor oldBackgroundColor = backgroundColor;
 		backgroundColor = newBackgroundColor;
 		if (eNotificationRequired())
-			eNotify(new ENotificationImpl(this, Notification.SET, OptionsPackage.BOX_MODEL_OPTION__BACKGROUND_COLOR, oldBackgroundColor, backgroundColor));
+			eNotify(new ENotificationImpl(this, Notification.SET, OptionsPackage.BOX_MODEL_OPTION__BACKGROUND_COLOR,
+				oldBackgroundColor, backgroundColor));
 	}
-	
+
 	/**
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
+	 * <!-- begin-user-doc --> <!-- end-user-doc -->
+	 * 
 	 * @generated
 	 */
 	public boolean isKeepTogether() {
@@ -946,20 +985,21 @@ public class BoxModelOptionImpl extends RendererOptionImpl implements BoxModelOp
 	}
 
 	/**
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
+	 * <!-- begin-user-doc --> <!-- end-user-doc -->
+	 * 
 	 * @generated
 	 */
 	public void setKeepTogether(boolean newKeepTogether) {
 		boolean oldKeepTogether = keepTogether;
 		keepTogether = newKeepTogether;
 		if (eNotificationRequired())
-			eNotify(new ENotificationImpl(this, Notification.SET, OptionsPackage.BOX_MODEL_OPTION__KEEP_TOGETHER, oldKeepTogether, keepTogether));
+			eNotify(new ENotificationImpl(this, Notification.SET, OptionsPackage.BOX_MODEL_OPTION__KEEP_TOGETHER,
+				oldKeepTogether, keepTogether));
 	}
 
 	/**
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
+	 * <!-- begin-user-doc --> <!-- end-user-doc -->
+	 * 
 	 * @generated
 	 */
 	public boolean isKeepWithPrevious() {
@@ -967,20 +1007,21 @@ public class BoxModelOptionImpl extends RendererOptionImpl implements BoxModelOp
 	}
 
 	/**
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
+	 * <!-- begin-user-doc --> <!-- end-user-doc -->
+	 * 
 	 * @generated
 	 */
 	public void setKeepWithPrevious(boolean newKeepWithPrevious) {
 		boolean oldKeepWithPrevious = keepWithPrevious;
 		keepWithPrevious = newKeepWithPrevious;
 		if (eNotificationRequired())
-			eNotify(new ENotificationImpl(this, Notification.SET, OptionsPackage.BOX_MODEL_OPTION__KEEP_WITH_PREVIOUS, oldKeepWithPrevious, keepWithPrevious));
+			eNotify(new ENotificationImpl(this, Notification.SET, OptionsPackage.BOX_MODEL_OPTION__KEEP_WITH_PREVIOUS,
+				oldKeepWithPrevious, keepWithPrevious));
 	}
 
 	/**
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
+	 * <!-- begin-user-doc --> <!-- end-user-doc -->
+	 * 
 	 * @generated
 	 */
 	public boolean isKeepWithNext() {
@@ -988,20 +1029,21 @@ public class BoxModelOptionImpl extends RendererOptionImpl implements BoxModelOp
 	}
 
 	/**
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
+	 * <!-- begin-user-doc --> <!-- end-user-doc -->
+	 * 
 	 * @generated
 	 */
 	public void setKeepWithNext(boolean newKeepWithNext) {
 		boolean oldKeepWithNext = keepWithNext;
 		keepWithNext = newKeepWithNext;
 		if (eNotificationRequired())
-			eNotify(new ENotificationImpl(this, Notification.SET, OptionsPackage.BOX_MODEL_OPTION__KEEP_WITH_NEXT, oldKeepWithNext, keepWithNext));
+			eNotify(new ENotificationImpl(this, Notification.SET, OptionsPackage.BOX_MODEL_OPTION__KEEP_WITH_NEXT,
+				oldKeepWithNext, keepWithNext));
 	}
 
 	/**
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
+	 * <!-- begin-user-doc --> <!-- end-user-doc -->
+	 * 
 	 * @generated
 	 */
 	public boolean isBreakBefore() {
@@ -1009,20 +1051,21 @@ public class BoxModelOptionImpl extends RendererOptionImpl implements BoxModelOp
 	}
 
 	/**
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
+	 * <!-- begin-user-doc --> <!-- end-user-doc -->
+	 * 
 	 * @generated
 	 */
 	public void setBreakBefore(boolean newBreakBefore) {
 		boolean oldBreakBefore = breakBefore;
 		breakBefore = newBreakBefore;
 		if (eNotificationRequired())
-			eNotify(new ENotificationImpl(this, Notification.SET, OptionsPackage.BOX_MODEL_OPTION__BREAK_BEFORE, oldBreakBefore, breakBefore));
+			eNotify(new ENotificationImpl(this, Notification.SET, OptionsPackage.BOX_MODEL_OPTION__BREAK_BEFORE,
+				oldBreakBefore, breakBefore));
 	}
 
 	/**
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
+	 * <!-- begin-user-doc --> <!-- end-user-doc -->
+	 * 
 	 * @generated
 	 */
 	public int getWidth() {
@@ -1030,18 +1073,19 @@ public class BoxModelOptionImpl extends RendererOptionImpl implements BoxModelOp
 	}
 
 	/**
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
+	 * <!-- begin-user-doc --> <!-- end-user-doc -->
+	 * 
 	 * @generated
 	 */
 	public void setWidth(int newWidth) {
 		int oldWidth = width;
 		width = newWidth;
 		if (eNotificationRequired())
-			eNotify(new ENotificationImpl(this, Notification.SET, OptionsPackage.BOX_MODEL_OPTION__WIDTH, oldWidth, width));
+			eNotify(new ENotificationImpl(this, Notification.SET, OptionsPackage.BOX_MODEL_OPTION__WIDTH, oldWidth,
+				width));
 	}
 
-	//custom code begin
+	// custom code begin
 	/**
 	 * {@inheritDoc}
 	 */
@@ -1050,313 +1094,315 @@ public class BoxModelOptionImpl extends RendererOptionImpl implements BoxModelOp
 		uColor.setRed(color.getRed());
 		uColor.setGreen(color.getGreen());
 		uColor.setBlue(color.getBlue());
-		
+
 		setBackgroundColor(uColor);
 	}
-	//custom code end
+
+	// custom code end
 
 	/**
-	 * <!-- begin-user-doc -->
-	 * .
-	 * <!-- end-user-doc -->
+	 * <!-- begin-user-doc --> . <!-- end-user-doc -->
+	 * 
 	 * @generated
 	 */
 	@Override
 	public NotificationChain eInverseRemove(InternalEObject otherEnd, int featureID, NotificationChain msgs) {
 		switch (featureID) {
-			case OptionsPackage.BOX_MODEL_OPTION__BORDER_COLOR:
-				return basicSetBorderColor(null, msgs);
+		case OptionsPackage.BOX_MODEL_OPTION__BORDER_COLOR:
+			return basicSetBorderColor(null, msgs);
 		}
 		return super.eInverseRemove(otherEnd, featureID, msgs);
 	}
 
 	/**
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
+	 * <!-- begin-user-doc --> <!-- end-user-doc -->
+	 * 
 	 * @generated
 	 */
 	@Override
 	public Object eGet(int featureID, boolean resolve, boolean coreType) {
 		switch (featureID) {
-			case OptionsPackage.BOX_MODEL_OPTION__MARGIN:
-				return new Double(getMargin());
-			case OptionsPackage.BOX_MODEL_OPTION__MARGIN_TOP:
-				return new Double(getMarginTop());
-			case OptionsPackage.BOX_MODEL_OPTION__MARGIN_LEFT:
-				return new Double(getMarginLeft());
-			case OptionsPackage.BOX_MODEL_OPTION__MARGIN_BOTTOM:
-				return new Double(getMarginBottom());
-			case OptionsPackage.BOX_MODEL_OPTION__MARGIN_RIGHT:
-				return new Double(getMarginRight());
-			case OptionsPackage.BOX_MODEL_OPTION__BORDER:
-				return new Double(getBorder());
-			case OptionsPackage.BOX_MODEL_OPTION__BORDER_TOP:
-				return new Double(getBorderTop());
-			case OptionsPackage.BOX_MODEL_OPTION__BORDER_LEFT:
-				return new Double(getBorderLeft());
-			case OptionsPackage.BOX_MODEL_OPTION__BORDER_BOTTOM:
-				return new Double(getBorderBottom());
-			case OptionsPackage.BOX_MODEL_OPTION__BORDER_RIGHT:
-				return new Double(getBorderRight());
-			case OptionsPackage.BOX_MODEL_OPTION__BORDER_STYLE:
-				return getBorderStyle();
-			case OptionsPackage.BOX_MODEL_OPTION__BORDER_COLOR:
-				return getBorderColor();
-			case OptionsPackage.BOX_MODEL_OPTION__PADDING:
-				return new Double(getPadding());
-			case OptionsPackage.BOX_MODEL_OPTION__PADDING_TOP:
-				return new Double(getPaddingTop());
-			case OptionsPackage.BOX_MODEL_OPTION__PADDING_LEFT:
-				return new Double(getPaddingLeft());
-			case OptionsPackage.BOX_MODEL_OPTION__PADDING_BOTTOM:
-				return new Double(getPaddingBottom());
-			case OptionsPackage.BOX_MODEL_OPTION__PADDING_RIGHT:
-				return new Double(getPaddingRight());
-			case OptionsPackage.BOX_MODEL_OPTION__BACKGROUND_COLOR:
-				if (resolve) return getBackgroundColor();
-				return basicGetBackgroundColor();
-			case OptionsPackage.BOX_MODEL_OPTION__KEEP_TOGETHER:
-				return isKeepTogether() ? Boolean.TRUE : Boolean.FALSE;
-			case OptionsPackage.BOX_MODEL_OPTION__KEEP_WITH_PREVIOUS:
-				return isKeepWithPrevious() ? Boolean.TRUE : Boolean.FALSE;
-			case OptionsPackage.BOX_MODEL_OPTION__KEEP_WITH_NEXT:
-				return isKeepWithNext() ? Boolean.TRUE : Boolean.FALSE;
-			case OptionsPackage.BOX_MODEL_OPTION__BREAK_BEFORE:
-				return isBreakBefore() ? Boolean.TRUE : Boolean.FALSE;
-			case OptionsPackage.BOX_MODEL_OPTION__WIDTH:
-				return new Integer(getWidth());
+		case OptionsPackage.BOX_MODEL_OPTION__MARGIN:
+			return new Double(getMargin());
+		case OptionsPackage.BOX_MODEL_OPTION__MARGIN_TOP:
+			return new Double(getMarginTop());
+		case OptionsPackage.BOX_MODEL_OPTION__MARGIN_LEFT:
+			return new Double(getMarginLeft());
+		case OptionsPackage.BOX_MODEL_OPTION__MARGIN_BOTTOM:
+			return new Double(getMarginBottom());
+		case OptionsPackage.BOX_MODEL_OPTION__MARGIN_RIGHT:
+			return new Double(getMarginRight());
+		case OptionsPackage.BOX_MODEL_OPTION__BORDER:
+			return new Double(getBorder());
+		case OptionsPackage.BOX_MODEL_OPTION__BORDER_TOP:
+			return new Double(getBorderTop());
+		case OptionsPackage.BOX_MODEL_OPTION__BORDER_LEFT:
+			return new Double(getBorderLeft());
+		case OptionsPackage.BOX_MODEL_OPTION__BORDER_BOTTOM:
+			return new Double(getBorderBottom());
+		case OptionsPackage.BOX_MODEL_OPTION__BORDER_RIGHT:
+			return new Double(getBorderRight());
+		case OptionsPackage.BOX_MODEL_OPTION__BORDER_STYLE:
+			return getBorderStyle();
+		case OptionsPackage.BOX_MODEL_OPTION__BORDER_COLOR:
+			return getBorderColor();
+		case OptionsPackage.BOX_MODEL_OPTION__PADDING:
+			return new Double(getPadding());
+		case OptionsPackage.BOX_MODEL_OPTION__PADDING_TOP:
+			return new Double(getPaddingTop());
+		case OptionsPackage.BOX_MODEL_OPTION__PADDING_LEFT:
+			return new Double(getPaddingLeft());
+		case OptionsPackage.BOX_MODEL_OPTION__PADDING_BOTTOM:
+			return new Double(getPaddingBottom());
+		case OptionsPackage.BOX_MODEL_OPTION__PADDING_RIGHT:
+			return new Double(getPaddingRight());
+		case OptionsPackage.BOX_MODEL_OPTION__BACKGROUND_COLOR:
+			if (resolve)
+				return getBackgroundColor();
+			return basicGetBackgroundColor();
+		case OptionsPackage.BOX_MODEL_OPTION__KEEP_TOGETHER:
+			return isKeepTogether() ? Boolean.TRUE : Boolean.FALSE;
+		case OptionsPackage.BOX_MODEL_OPTION__KEEP_WITH_PREVIOUS:
+			return isKeepWithPrevious() ? Boolean.TRUE : Boolean.FALSE;
+		case OptionsPackage.BOX_MODEL_OPTION__KEEP_WITH_NEXT:
+			return isKeepWithNext() ? Boolean.TRUE : Boolean.FALSE;
+		case OptionsPackage.BOX_MODEL_OPTION__BREAK_BEFORE:
+			return isBreakBefore() ? Boolean.TRUE : Boolean.FALSE;
+		case OptionsPackage.BOX_MODEL_OPTION__WIDTH:
+			return new Integer(getWidth());
 		}
 		return super.eGet(featureID, resolve, coreType);
 	}
 
 	/**
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
+	 * <!-- begin-user-doc --> <!-- end-user-doc -->
+	 * 
 	 * @generated
 	 */
 	@Override
 	public void eSet(int featureID, Object newValue) {
 		switch (featureID) {
-			case OptionsPackage.BOX_MODEL_OPTION__MARGIN:
-				setMargin(((Double)newValue).doubleValue());
-				return;
-			case OptionsPackage.BOX_MODEL_OPTION__MARGIN_TOP:
-				setMarginTop(((Double)newValue).doubleValue());
-				return;
-			case OptionsPackage.BOX_MODEL_OPTION__MARGIN_LEFT:
-				setMarginLeft(((Double)newValue).doubleValue());
-				return;
-			case OptionsPackage.BOX_MODEL_OPTION__MARGIN_BOTTOM:
-				setMarginBottom(((Double)newValue).doubleValue());
-				return;
-			case OptionsPackage.BOX_MODEL_OPTION__MARGIN_RIGHT:
-				setMarginRight(((Double)newValue).doubleValue());
-				return;
-			case OptionsPackage.BOX_MODEL_OPTION__BORDER:
-				setBorder(((Double)newValue).doubleValue());
-				return;
-			case OptionsPackage.BOX_MODEL_OPTION__BORDER_TOP:
-				setBorderTop(((Double)newValue).doubleValue());
-				return;
-			case OptionsPackage.BOX_MODEL_OPTION__BORDER_LEFT:
-				setBorderLeft(((Double)newValue).doubleValue());
-				return;
-			case OptionsPackage.BOX_MODEL_OPTION__BORDER_BOTTOM:
-				setBorderBottom(((Double)newValue).doubleValue());
-				return;
-			case OptionsPackage.BOX_MODEL_OPTION__BORDER_RIGHT:
-				setBorderRight(((Double)newValue).doubleValue());
-				return;
-			case OptionsPackage.BOX_MODEL_OPTION__BORDER_STYLE:
-				setBorderStyle((UBorderStyle)newValue);
-				return;
-			case OptionsPackage.BOX_MODEL_OPTION__BORDER_COLOR:
-				setBorderColor((UColor)newValue);
-				return;
-			case OptionsPackage.BOX_MODEL_OPTION__PADDING:
-				setPadding(((Double)newValue).doubleValue());
-				return;
-			case OptionsPackage.BOX_MODEL_OPTION__PADDING_TOP:
-				setPaddingTop(((Double)newValue).doubleValue());
-				return;
-			case OptionsPackage.BOX_MODEL_OPTION__PADDING_LEFT:
-				setPaddingLeft(((Double)newValue).doubleValue());
-				return;
-			case OptionsPackage.BOX_MODEL_OPTION__PADDING_BOTTOM:
-				setPaddingBottom(((Double)newValue).doubleValue());
-				return;
-			case OptionsPackage.BOX_MODEL_OPTION__PADDING_RIGHT:
-				setPaddingRight(((Double)newValue).doubleValue());
-				return;
-			case OptionsPackage.BOX_MODEL_OPTION__BACKGROUND_COLOR:
-				setBackgroundColor((UColor)newValue);
-				return;
-			case OptionsPackage.BOX_MODEL_OPTION__KEEP_TOGETHER:
-				setKeepTogether(((Boolean)newValue).booleanValue());
-				return;
-			case OptionsPackage.BOX_MODEL_OPTION__KEEP_WITH_PREVIOUS:
-				setKeepWithPrevious(((Boolean)newValue).booleanValue());
-				return;
-			case OptionsPackage.BOX_MODEL_OPTION__KEEP_WITH_NEXT:
-				setKeepWithNext(((Boolean)newValue).booleanValue());
-				return;
-			case OptionsPackage.BOX_MODEL_OPTION__BREAK_BEFORE:
-				setBreakBefore(((Boolean)newValue).booleanValue());
-				return;
-			case OptionsPackage.BOX_MODEL_OPTION__WIDTH:
-				setWidth(((Integer)newValue).intValue());
-				return;
+		case OptionsPackage.BOX_MODEL_OPTION__MARGIN:
+			setMargin(((Double) newValue).doubleValue());
+			return;
+		case OptionsPackage.BOX_MODEL_OPTION__MARGIN_TOP:
+			setMarginTop(((Double) newValue).doubleValue());
+			return;
+		case OptionsPackage.BOX_MODEL_OPTION__MARGIN_LEFT:
+			setMarginLeft(((Double) newValue).doubleValue());
+			return;
+		case OptionsPackage.BOX_MODEL_OPTION__MARGIN_BOTTOM:
+			setMarginBottom(((Double) newValue).doubleValue());
+			return;
+		case OptionsPackage.BOX_MODEL_OPTION__MARGIN_RIGHT:
+			setMarginRight(((Double) newValue).doubleValue());
+			return;
+		case OptionsPackage.BOX_MODEL_OPTION__BORDER:
+			setBorder(((Double) newValue).doubleValue());
+			return;
+		case OptionsPackage.BOX_MODEL_OPTION__BORDER_TOP:
+			setBorderTop(((Double) newValue).doubleValue());
+			return;
+		case OptionsPackage.BOX_MODEL_OPTION__BORDER_LEFT:
+			setBorderLeft(((Double) newValue).doubleValue());
+			return;
+		case OptionsPackage.BOX_MODEL_OPTION__BORDER_BOTTOM:
+			setBorderBottom(((Double) newValue).doubleValue());
+			return;
+		case OptionsPackage.BOX_MODEL_OPTION__BORDER_RIGHT:
+			setBorderRight(((Double) newValue).doubleValue());
+			return;
+		case OptionsPackage.BOX_MODEL_OPTION__BORDER_STYLE:
+			setBorderStyle((UBorderStyle) newValue);
+			return;
+		case OptionsPackage.BOX_MODEL_OPTION__BORDER_COLOR:
+			setBorderColor((UColor) newValue);
+			return;
+		case OptionsPackage.BOX_MODEL_OPTION__PADDING:
+			setPadding(((Double) newValue).doubleValue());
+			return;
+		case OptionsPackage.BOX_MODEL_OPTION__PADDING_TOP:
+			setPaddingTop(((Double) newValue).doubleValue());
+			return;
+		case OptionsPackage.BOX_MODEL_OPTION__PADDING_LEFT:
+			setPaddingLeft(((Double) newValue).doubleValue());
+			return;
+		case OptionsPackage.BOX_MODEL_OPTION__PADDING_BOTTOM:
+			setPaddingBottom(((Double) newValue).doubleValue());
+			return;
+		case OptionsPackage.BOX_MODEL_OPTION__PADDING_RIGHT:
+			setPaddingRight(((Double) newValue).doubleValue());
+			return;
+		case OptionsPackage.BOX_MODEL_OPTION__BACKGROUND_COLOR:
+			setBackgroundColor((UColor) newValue);
+			return;
+		case OptionsPackage.BOX_MODEL_OPTION__KEEP_TOGETHER:
+			setKeepTogether(((Boolean) newValue).booleanValue());
+			return;
+		case OptionsPackage.BOX_MODEL_OPTION__KEEP_WITH_PREVIOUS:
+			setKeepWithPrevious(((Boolean) newValue).booleanValue());
+			return;
+		case OptionsPackage.BOX_MODEL_OPTION__KEEP_WITH_NEXT:
+			setKeepWithNext(((Boolean) newValue).booleanValue());
+			return;
+		case OptionsPackage.BOX_MODEL_OPTION__BREAK_BEFORE:
+			setBreakBefore(((Boolean) newValue).booleanValue());
+			return;
+		case OptionsPackage.BOX_MODEL_OPTION__WIDTH:
+			setWidth(((Integer) newValue).intValue());
+			return;
 		}
 		super.eSet(featureID, newValue);
 	}
 
 	/**
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
+	 * <!-- begin-user-doc --> <!-- end-user-doc -->
+	 * 
 	 * @generated
 	 */
 	@Override
 	public void eUnset(int featureID) {
 		switch (featureID) {
-			case OptionsPackage.BOX_MODEL_OPTION__MARGIN:
-				setMargin(MARGIN_EDEFAULT);
-				return;
-			case OptionsPackage.BOX_MODEL_OPTION__MARGIN_TOP:
-				setMarginTop(MARGIN_TOP_EDEFAULT);
-				return;
-			case OptionsPackage.BOX_MODEL_OPTION__MARGIN_LEFT:
-				setMarginLeft(MARGIN_LEFT_EDEFAULT);
-				return;
-			case OptionsPackage.BOX_MODEL_OPTION__MARGIN_BOTTOM:
-				setMarginBottom(MARGIN_BOTTOM_EDEFAULT);
-				return;
-			case OptionsPackage.BOX_MODEL_OPTION__MARGIN_RIGHT:
-				setMarginRight(MARGIN_RIGHT_EDEFAULT);
-				return;
-			case OptionsPackage.BOX_MODEL_OPTION__BORDER:
-				setBorder(BORDER_EDEFAULT);
-				return;
-			case OptionsPackage.BOX_MODEL_OPTION__BORDER_TOP:
-				setBorderTop(BORDER_TOP_EDEFAULT);
-				return;
-			case OptionsPackage.BOX_MODEL_OPTION__BORDER_LEFT:
-				setBorderLeft(BORDER_LEFT_EDEFAULT);
-				return;
-			case OptionsPackage.BOX_MODEL_OPTION__BORDER_BOTTOM:
-				setBorderBottom(BORDER_BOTTOM_EDEFAULT);
-				return;
-			case OptionsPackage.BOX_MODEL_OPTION__BORDER_RIGHT:
-				setBorderRight(BORDER_RIGHT_EDEFAULT);
-				return;
-			case OptionsPackage.BOX_MODEL_OPTION__BORDER_STYLE:
-				setBorderStyle(BORDER_STYLE_EDEFAULT);
-				return;
-			case OptionsPackage.BOX_MODEL_OPTION__BORDER_COLOR:
-				setBorderColor((UColor)null);
-				return;
-			case OptionsPackage.BOX_MODEL_OPTION__PADDING:
-				setPadding(PADDING_EDEFAULT);
-				return;
-			case OptionsPackage.BOX_MODEL_OPTION__PADDING_TOP:
-				setPaddingTop(PADDING_TOP_EDEFAULT);
-				return;
-			case OptionsPackage.BOX_MODEL_OPTION__PADDING_LEFT:
-				setPaddingLeft(PADDING_LEFT_EDEFAULT);
-				return;
-			case OptionsPackage.BOX_MODEL_OPTION__PADDING_BOTTOM:
-				setPaddingBottom(PADDING_BOTTOM_EDEFAULT);
-				return;
-			case OptionsPackage.BOX_MODEL_OPTION__PADDING_RIGHT:
-				setPaddingRight(PADDING_RIGHT_EDEFAULT);
-				return;
-			case OptionsPackage.BOX_MODEL_OPTION__BACKGROUND_COLOR:
-				setBackgroundColor((UColor)null);
-				return;
-			case OptionsPackage.BOX_MODEL_OPTION__KEEP_TOGETHER:
-				setKeepTogether(KEEP_TOGETHER_EDEFAULT);
-				return;
-			case OptionsPackage.BOX_MODEL_OPTION__KEEP_WITH_PREVIOUS:
-				setKeepWithPrevious(KEEP_WITH_PREVIOUS_EDEFAULT);
-				return;
-			case OptionsPackage.BOX_MODEL_OPTION__KEEP_WITH_NEXT:
-				setKeepWithNext(KEEP_WITH_NEXT_EDEFAULT);
-				return;
-			case OptionsPackage.BOX_MODEL_OPTION__BREAK_BEFORE:
-				setBreakBefore(BREAK_BEFORE_EDEFAULT);
-				return;
-			case OptionsPackage.BOX_MODEL_OPTION__WIDTH:
-				setWidth(WIDTH_EDEFAULT);
-				return;
+		case OptionsPackage.BOX_MODEL_OPTION__MARGIN:
+			setMargin(MARGIN_EDEFAULT);
+			return;
+		case OptionsPackage.BOX_MODEL_OPTION__MARGIN_TOP:
+			setMarginTop(MARGIN_TOP_EDEFAULT);
+			return;
+		case OptionsPackage.BOX_MODEL_OPTION__MARGIN_LEFT:
+			setMarginLeft(MARGIN_LEFT_EDEFAULT);
+			return;
+		case OptionsPackage.BOX_MODEL_OPTION__MARGIN_BOTTOM:
+			setMarginBottom(MARGIN_BOTTOM_EDEFAULT);
+			return;
+		case OptionsPackage.BOX_MODEL_OPTION__MARGIN_RIGHT:
+			setMarginRight(MARGIN_RIGHT_EDEFAULT);
+			return;
+		case OptionsPackage.BOX_MODEL_OPTION__BORDER:
+			setBorder(BORDER_EDEFAULT);
+			return;
+		case OptionsPackage.BOX_MODEL_OPTION__BORDER_TOP:
+			setBorderTop(BORDER_TOP_EDEFAULT);
+			return;
+		case OptionsPackage.BOX_MODEL_OPTION__BORDER_LEFT:
+			setBorderLeft(BORDER_LEFT_EDEFAULT);
+			return;
+		case OptionsPackage.BOX_MODEL_OPTION__BORDER_BOTTOM:
+			setBorderBottom(BORDER_BOTTOM_EDEFAULT);
+			return;
+		case OptionsPackage.BOX_MODEL_OPTION__BORDER_RIGHT:
+			setBorderRight(BORDER_RIGHT_EDEFAULT);
+			return;
+		case OptionsPackage.BOX_MODEL_OPTION__BORDER_STYLE:
+			setBorderStyle(BORDER_STYLE_EDEFAULT);
+			return;
+		case OptionsPackage.BOX_MODEL_OPTION__BORDER_COLOR:
+			setBorderColor((UColor) null);
+			return;
+		case OptionsPackage.BOX_MODEL_OPTION__PADDING:
+			setPadding(PADDING_EDEFAULT);
+			return;
+		case OptionsPackage.BOX_MODEL_OPTION__PADDING_TOP:
+			setPaddingTop(PADDING_TOP_EDEFAULT);
+			return;
+		case OptionsPackage.BOX_MODEL_OPTION__PADDING_LEFT:
+			setPaddingLeft(PADDING_LEFT_EDEFAULT);
+			return;
+		case OptionsPackage.BOX_MODEL_OPTION__PADDING_BOTTOM:
+			setPaddingBottom(PADDING_BOTTOM_EDEFAULT);
+			return;
+		case OptionsPackage.BOX_MODEL_OPTION__PADDING_RIGHT:
+			setPaddingRight(PADDING_RIGHT_EDEFAULT);
+			return;
+		case OptionsPackage.BOX_MODEL_OPTION__BACKGROUND_COLOR:
+			setBackgroundColor((UColor) null);
+			return;
+		case OptionsPackage.BOX_MODEL_OPTION__KEEP_TOGETHER:
+			setKeepTogether(KEEP_TOGETHER_EDEFAULT);
+			return;
+		case OptionsPackage.BOX_MODEL_OPTION__KEEP_WITH_PREVIOUS:
+			setKeepWithPrevious(KEEP_WITH_PREVIOUS_EDEFAULT);
+			return;
+		case OptionsPackage.BOX_MODEL_OPTION__KEEP_WITH_NEXT:
+			setKeepWithNext(KEEP_WITH_NEXT_EDEFAULT);
+			return;
+		case OptionsPackage.BOX_MODEL_OPTION__BREAK_BEFORE:
+			setBreakBefore(BREAK_BEFORE_EDEFAULT);
+			return;
+		case OptionsPackage.BOX_MODEL_OPTION__WIDTH:
+			setWidth(WIDTH_EDEFAULT);
+			return;
 		}
 		super.eUnset(featureID);
 	}
 
 	/**
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
+	 * <!-- begin-user-doc --> <!-- end-user-doc -->
+	 * 
 	 * @generated
 	 */
 	@Override
 	public boolean eIsSet(int featureID) {
 		switch (featureID) {
-			case OptionsPackage.BOX_MODEL_OPTION__MARGIN:
-				return margin != MARGIN_EDEFAULT;
-			case OptionsPackage.BOX_MODEL_OPTION__MARGIN_TOP:
-				return marginTop != MARGIN_TOP_EDEFAULT;
-			case OptionsPackage.BOX_MODEL_OPTION__MARGIN_LEFT:
-				return marginLeft != MARGIN_LEFT_EDEFAULT;
-			case OptionsPackage.BOX_MODEL_OPTION__MARGIN_BOTTOM:
-				return marginBottom != MARGIN_BOTTOM_EDEFAULT;
-			case OptionsPackage.BOX_MODEL_OPTION__MARGIN_RIGHT:
-				return marginRight != MARGIN_RIGHT_EDEFAULT;
-			case OptionsPackage.BOX_MODEL_OPTION__BORDER:
-				return border != BORDER_EDEFAULT;
-			case OptionsPackage.BOX_MODEL_OPTION__BORDER_TOP:
-				return borderTop != BORDER_TOP_EDEFAULT;
-			case OptionsPackage.BOX_MODEL_OPTION__BORDER_LEFT:
-				return borderLeft != BORDER_LEFT_EDEFAULT;
-			case OptionsPackage.BOX_MODEL_OPTION__BORDER_BOTTOM:
-				return borderBottom != BORDER_BOTTOM_EDEFAULT;
-			case OptionsPackage.BOX_MODEL_OPTION__BORDER_RIGHT:
-				return borderRight != BORDER_RIGHT_EDEFAULT;
-			case OptionsPackage.BOX_MODEL_OPTION__BORDER_STYLE:
-				return borderStyle != BORDER_STYLE_EDEFAULT;
-			case OptionsPackage.BOX_MODEL_OPTION__BORDER_COLOR:
-				return borderColor != null;
-			case OptionsPackage.BOX_MODEL_OPTION__PADDING:
-				return padding != PADDING_EDEFAULT;
-			case OptionsPackage.BOX_MODEL_OPTION__PADDING_TOP:
-				return paddingTop != PADDING_TOP_EDEFAULT;
-			case OptionsPackage.BOX_MODEL_OPTION__PADDING_LEFT:
-				return paddingLeft != PADDING_LEFT_EDEFAULT;
-			case OptionsPackage.BOX_MODEL_OPTION__PADDING_BOTTOM:
-				return paddingBottom != PADDING_BOTTOM_EDEFAULT;
-			case OptionsPackage.BOX_MODEL_OPTION__PADDING_RIGHT:
-				return paddingRight != PADDING_RIGHT_EDEFAULT;
-			case OptionsPackage.BOX_MODEL_OPTION__BACKGROUND_COLOR:
-				return backgroundColor != null;
-			case OptionsPackage.BOX_MODEL_OPTION__KEEP_TOGETHER:
-				return keepTogether != KEEP_TOGETHER_EDEFAULT;
-			case OptionsPackage.BOX_MODEL_OPTION__KEEP_WITH_PREVIOUS:
-				return keepWithPrevious != KEEP_WITH_PREVIOUS_EDEFAULT;
-			case OptionsPackage.BOX_MODEL_OPTION__KEEP_WITH_NEXT:
-				return keepWithNext != KEEP_WITH_NEXT_EDEFAULT;
-			case OptionsPackage.BOX_MODEL_OPTION__BREAK_BEFORE:
-				return breakBefore != BREAK_BEFORE_EDEFAULT;
-			case OptionsPackage.BOX_MODEL_OPTION__WIDTH:
-				return width != WIDTH_EDEFAULT;
+		case OptionsPackage.BOX_MODEL_OPTION__MARGIN:
+			return margin != MARGIN_EDEFAULT;
+		case OptionsPackage.BOX_MODEL_OPTION__MARGIN_TOP:
+			return marginTop != MARGIN_TOP_EDEFAULT;
+		case OptionsPackage.BOX_MODEL_OPTION__MARGIN_LEFT:
+			return marginLeft != MARGIN_LEFT_EDEFAULT;
+		case OptionsPackage.BOX_MODEL_OPTION__MARGIN_BOTTOM:
+			return marginBottom != MARGIN_BOTTOM_EDEFAULT;
+		case OptionsPackage.BOX_MODEL_OPTION__MARGIN_RIGHT:
+			return marginRight != MARGIN_RIGHT_EDEFAULT;
+		case OptionsPackage.BOX_MODEL_OPTION__BORDER:
+			return border != BORDER_EDEFAULT;
+		case OptionsPackage.BOX_MODEL_OPTION__BORDER_TOP:
+			return borderTop != BORDER_TOP_EDEFAULT;
+		case OptionsPackage.BOX_MODEL_OPTION__BORDER_LEFT:
+			return borderLeft != BORDER_LEFT_EDEFAULT;
+		case OptionsPackage.BOX_MODEL_OPTION__BORDER_BOTTOM:
+			return borderBottom != BORDER_BOTTOM_EDEFAULT;
+		case OptionsPackage.BOX_MODEL_OPTION__BORDER_RIGHT:
+			return borderRight != BORDER_RIGHT_EDEFAULT;
+		case OptionsPackage.BOX_MODEL_OPTION__BORDER_STYLE:
+			return borderStyle != BORDER_STYLE_EDEFAULT;
+		case OptionsPackage.BOX_MODEL_OPTION__BORDER_COLOR:
+			return borderColor != null;
+		case OptionsPackage.BOX_MODEL_OPTION__PADDING:
+			return padding != PADDING_EDEFAULT;
+		case OptionsPackage.BOX_MODEL_OPTION__PADDING_TOP:
+			return paddingTop != PADDING_TOP_EDEFAULT;
+		case OptionsPackage.BOX_MODEL_OPTION__PADDING_LEFT:
+			return paddingLeft != PADDING_LEFT_EDEFAULT;
+		case OptionsPackage.BOX_MODEL_OPTION__PADDING_BOTTOM:
+			return paddingBottom != PADDING_BOTTOM_EDEFAULT;
+		case OptionsPackage.BOX_MODEL_OPTION__PADDING_RIGHT:
+			return paddingRight != PADDING_RIGHT_EDEFAULT;
+		case OptionsPackage.BOX_MODEL_OPTION__BACKGROUND_COLOR:
+			return backgroundColor != null;
+		case OptionsPackage.BOX_MODEL_OPTION__KEEP_TOGETHER:
+			return keepTogether != KEEP_TOGETHER_EDEFAULT;
+		case OptionsPackage.BOX_MODEL_OPTION__KEEP_WITH_PREVIOUS:
+			return keepWithPrevious != KEEP_WITH_PREVIOUS_EDEFAULT;
+		case OptionsPackage.BOX_MODEL_OPTION__KEEP_WITH_NEXT:
+			return keepWithNext != KEEP_WITH_NEXT_EDEFAULT;
+		case OptionsPackage.BOX_MODEL_OPTION__BREAK_BEFORE:
+			return breakBefore != BREAK_BEFORE_EDEFAULT;
+		case OptionsPackage.BOX_MODEL_OPTION__WIDTH:
+			return width != WIDTH_EDEFAULT;
 		}
 		return super.eIsSet(featureID);
 	}
 
 	/**
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
+	 * <!-- begin-user-doc --> <!-- end-user-doc -->
+	 * 
 	 * @generated
 	 */
 	@Override
 	public String toString() {
-		if (eIsProxy()) return super.toString();
+		if (eIsProxy())
+			return super.toString();
 
 		StringBuffer result = new StringBuffer(super.toString());
 		result.append(" (margin: ");
@@ -1405,4 +1451,4 @@ public class BoxModelOptionImpl extends RendererOptionImpl implements BoxModelOp
 		return result.toString();
 	}
 
-} //BoxModelOptionImpl
+} // BoxModelOptionImpl

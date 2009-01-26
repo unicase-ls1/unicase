@@ -1,6 +1,7 @@
 /**
- * <copyright> Copyright (c) 2008 Jonas Helming, Maximilian Koegel. All rights reserved. This program and the accompanying materials are made available under the terms of the Eclipse Public License v1.0 which accompanies this distribution, and is available at http://www.eclipse.org/legal/epl-v10.html
- * </copyright>
+ * <copyright> Copyright (c) 2008 Jonas Helming, Maximilian Koegel. All rights reserved. This program and the
+ * accompanying materials are made available under the terms of the Eclipse Public License v1.0 which accompanies this
+ * distribution, and is available at http://www.eclipse.org/legal/epl-v10.html </copyright>
  */
 
 package org.unicase.workspace;
@@ -10,16 +11,15 @@ import org.osgi.framework.BundleContext;
 
 /**
  * Activator of workspace plugin.
+ * 
  * @author koegel
- *
  */
 public class Activator extends Plugin {
 
 	private static Activator plugin;
 
 	/**
-	 * @see org.eclipse.ui.plugin.AbstractUIPlugin#start(org.osgi.framework.BundleContext)
-	 * {@inheritDoc}
+	 * @see org.eclipse.ui.plugin.AbstractUIPlugin#start(org.osgi.framework.BundleContext) {@inheritDoc}
 	 */
 	@Override
 	// BEGIN SUPRESS CATCH EXCEPTION
@@ -36,11 +36,12 @@ public class Activator extends Plugin {
 		plugin = null;
 		super.stop(context);
 	}
+
 	// END SUPRESS CATCH EXCEPTION
-	
-	/**.
-	 * Returns the shared instance
-	 *
+
+	/**
+	 * . Returns the shared instance
+	 * 
 	 * @return the shared instance
 	 */
 	public static Activator getDefault() {

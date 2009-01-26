@@ -18,19 +18,19 @@ import org.unicase.workspace.WorkspaceManager;
 
 /**
  * Exports a project space to a file.
+ * 
  * @author helming
- *
  */
 public class ExportProjectSpaceHandler extends ProjectActionHandler {
 
-	/** 
+	/**
 	 * {@inheritDoc}
+	 * 
 	 * @see org.eclipse.core.commands.AbstractHandler#execute(org.eclipse.core.commands.ExecutionEvent)
 	 */
 	public Object execute(ExecutionEvent event) throws ExecutionException {
 		final ProjectSpace projectSpace = getProjectSpace(event);
-		FileDialog dialog = new FileDialog(PlatformUI.getWorkbench()
-				.getActiveWorkbenchWindow().getShell(), SWT.SAVE);
+		FileDialog dialog = new FileDialog(PlatformUI.getWorkbench().getActiveWorkbenchWindow().getShell(), SWT.SAVE);
 		dialog.setFilterNames(ExportChangesHandler.FILTER_NAMES);
 		dialog.setFilterExtensions(ExportChangesHandler.FILTER_EXTS);
 		dialog.setOverwrite(true);
@@ -48,10 +48,10 @@ public class ExportProjectSpaceHandler extends ProjectActionHandler {
 		stringBuilder.append(fileName);
 		final String absoluteFileName = stringBuilder.toString();
 		final ProgressMonitorDialog progressDialog = new ProgressMonitorDialog(PlatformUI.getWorkbench()
-			       .getActiveWorkbenchWindow().getShell());
+			.getActiveWorkbenchWindow().getShell());
 
 		TransactionalEditingDomain domain = TransactionalEditingDomain.Registry.INSTANCE
-				.getEditingDomain("org.unicase.EditingDomain");
+			.getEditingDomain("org.unicase.EditingDomain");
 		domain.getCommandStack().execute(new RecordingCommand(domain) {
 			@Override
 			protected void doExecute() {
@@ -60,18 +60,17 @@ public class ExportProjectSpaceHandler extends ProjectActionHandler {
 					progressDialog.getProgressMonitor().beginTask("Export projectspace...", 100);
 					progressDialog.getProgressMonitor().worked(10);
 					projectSpace.exportProject(absoluteFileName);
-                    WorkspaceManager.getInstance().getCurrentWorkspace().exportProjectSpace(projectSpace, absoluteFileName);
+					WorkspaceManager.getInstance().getCurrentWorkspace().exportProjectSpace(projectSpace,
+						absoluteFileName);
 				} catch (IOException e) {
 					DialogHandler.showExceptionDialog(e);
-				}
-				finally {
+				} finally {
 					progressDialog.getProgressMonitor().done();
 					progressDialog.close();
 				}
 			}
 		});
-		MessageDialog.openInformation(null, "Export",
-				"Exported projectspace to file " + fileName);
+		MessageDialog.openInformation(null, "Export", "Exported projectspace to file " + fileName);
 		return null;
 	}
 

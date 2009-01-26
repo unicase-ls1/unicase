@@ -1,7 +1,7 @@
 /**
  * <copyright> Copyright (c) 2008 Jonas Helming, Maximilian Koegel. All rights reserved. This program and the
  * accompanying materials are made available under the terms of the Eclipse Public License v1.0 which accompanies this
- * distribution, and is available at http://www.eclipse.org/legal/epl-v10.html </copyright> $Id$
+ * distribution, and is available at http://www.eclipse.org/legal/epl-v10.html </copyright>
  */
 package org.unicase.model.meeting.impl;
 
@@ -20,9 +20,9 @@ import org.unicase.model.meeting.MeetingSection;
  */
 public abstract class MeetingSectionImpl extends ModelElementImpl implements MeetingSection {
 	/**
-	 * The default value of the '{@link #getAllocatedTime() <em>Allocated Time</em>}' attribute.
-	 * <!-- begin-user-doc -->
+	 * The default value of the '{@link #getAllocatedTime() <em>Allocated Time</em>}' attribute. <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
+	 * 
 	 * @see #getAllocatedTime()
 	 * @generated
 	 * @ordered
@@ -30,9 +30,9 @@ public abstract class MeetingSectionImpl extends ModelElementImpl implements Mee
 	protected static final int ALLOCATED_TIME_EDEFAULT = 0;
 
 	/**
-	 * The cached value of the '{@link #getAllocatedTime() <em>Allocated Time</em>}' attribute.
-	 * <!-- begin-user-doc -->
+	 * The cached value of the '{@link #getAllocatedTime() <em>Allocated Time</em>}' attribute. <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
+	 * 
 	 * @see #getAllocatedTime()
 	 * @generated
 	 * @ordered
@@ -41,6 +41,7 @@ public abstract class MeetingSectionImpl extends ModelElementImpl implements Mee
 
 	/**
 	 * <!-- begin-user-doc --> <!-- end-user-doc -->
+	 * 
 	 * @generated
 	 */
 	protected MeetingSectionImpl() {
@@ -49,6 +50,7 @@ public abstract class MeetingSectionImpl extends ModelElementImpl implements Mee
 
 	/**
 	 * <!-- begin-user-doc --> <!-- end-user-doc -->
+	 * 
 	 * @generated
 	 */
 	@Override
@@ -58,6 +60,7 @@ public abstract class MeetingSectionImpl extends ModelElementImpl implements Mee
 
 	/**
 	 * <!-- begin-user-doc --> <!-- end-user-doc -->
+	 * 
 	 * @generated
 	 */
 	public int getAllocatedTime() {
@@ -66,6 +69,7 @@ public abstract class MeetingSectionImpl extends ModelElementImpl implements Mee
 
 	/**
 	 * <!-- begin-user-doc --> <!-- end-user-doc -->
+	 * 
 	 * @generated
 	 */
 	public void setAllocatedTime(int newAllocatedTime) {
@@ -78,6 +82,7 @@ public abstract class MeetingSectionImpl extends ModelElementImpl implements Mee
 
 	/**
 	 * <!-- begin-user-doc --> <!-- end-user-doc -->
+	 * 
 	 * @generated
 	 */
 	@Override
@@ -91,6 +96,7 @@ public abstract class MeetingSectionImpl extends ModelElementImpl implements Mee
 
 	/**
 	 * <!-- begin-user-doc --> <!-- end-user-doc -->
+	 * 
 	 * @generated
 	 */
 	@Override
@@ -105,6 +111,7 @@ public abstract class MeetingSectionImpl extends ModelElementImpl implements Mee
 
 	/**
 	 * <!-- begin-user-doc --> <!-- end-user-doc -->
+	 * 
 	 * @generated
 	 */
 	@Override
@@ -119,6 +126,7 @@ public abstract class MeetingSectionImpl extends ModelElementImpl implements Mee
 
 	/**
 	 * <!-- begin-user-doc --> <!-- end-user-doc -->
+	 * 
 	 * @generated
 	 */
 	@Override
@@ -132,6 +140,7 @@ public abstract class MeetingSectionImpl extends ModelElementImpl implements Mee
 
 	/**
 	 * <!-- begin-user-doc --> <!-- end-user-doc -->
+	 * 
 	 * @generated
 	 */
 	@Override

@@ -1,8 +1,7 @@
 /**
- * <copyright> Copyright (c) 2008 Jonas Helming, Maximilian Koegel. All rights reserved. This program and the accompanying materials are made available under the terms of the Eclipse Public License v1.0 which accompanies this distribution, and is available at http://www.eclipse.org/legal/epl-v10.html
- * </copyright>
- *
- * $Id$
+ * <copyright> Copyright (c) 2008 Jonas Helming, Maximilian Koegel. All rights reserved. This program and the
+ * accompanying materials are made available under the terms of the Eclipse Public License v1.0 which accompanies this
+ * distribution, and is available at http://www.eclipse.org/legal/epl-v10.html </copyright>
  */
 package org.unicase.workspace.edit.commands;
 
@@ -34,16 +33,11 @@ import org.unicase.workspace.exceptions.NoLocalChangesException;
 import org.unicase.workspace.util.CommitObserver;
 
 /**
- * 
  * @author Hodaie
- * @author Shterev
- * 
- *         This handler handles CommitWorkspace command. This command is shown
- *         in UC View context menu only for Projects
- * 
+ * @author Shterev This handler handles CommitWorkspace command. This command is shown in UC View context menu only for
+ *         Projects
  */
-public class CommitProjectHandler extends ProjectActionHandler implements
-		CommitObserver {
+public class CommitProjectHandler extends ProjectActionHandler implements CommitObserver {
 
 	private Shell shell;
 	private Usersession usersession;
@@ -51,24 +45,22 @@ public class CommitProjectHandler extends ProjectActionHandler implements
 
 	/**
 	 * . ({@inheritDoc})
-	 * 
 	 */
 	public Object execute(ExecutionEvent event) throws ExecutionException {
 
 		ProjectSpace projectSpace = getProjectSpace(event);
 		if (projectSpace == null) {
-			ProjectSpace activeProjectSpace = WorkspaceManager.getInstance()
-					.getCurrentWorkspace().getActiveProjectSpace();
+			ProjectSpace activeProjectSpace = WorkspaceManager.getInstance().getCurrentWorkspace()
+				.getActiveProjectSpace();
 			if (activeProjectSpace == null) {
-				MessageDialog.openInformation(shell, "Information",
-						"You must select the Project");
+				MessageDialog.openInformation(shell, "Information", "You must select the Project");
 				return null;
 			}
 			projectSpace = activeProjectSpace;
 		}
 		final ProjectSpace finalProjectSpace = projectSpace;
 		TransactionalEditingDomain domain = TransactionalEditingDomain.Registry.INSTANCE
-				.getEditingDomain("org.unicase.EditingDomain");
+			.getEditingDomain("org.unicase.EditingDomain");
 		domain.getCommandStack().execute(new RecordingCommand(domain) {
 
 			@Override
@@ -82,14 +74,14 @@ public class CommitProjectHandler extends ProjectActionHandler implements
 
 	private void commitWithoutCommand(final ProjectSpace projectSpace) {
 		usersession = projectSpace.getUsersession();
-		if (usersession==null) {
+		if (usersession == null) {
 			MessageDialog.openInformation(shell, null,
-			"This project is not yet shared with a server, you cannot commit.");
+				"This project is not yet shared with a server, you cannot commit.");
 			return;
 		}
 		shell = PlatformUI.getWorkbench().getActiveWorkbenchWindow().getShell();
-		ProgressMonitorDialog progressDialog = new ProgressMonitorDialog(
-				PlatformUI.getWorkbench().getActiveWorkbenchWindow().getShell());
+		ProgressMonitorDialog progressDialog = new ProgressMonitorDialog(PlatformUI.getWorkbench()
+			.getActiveWorkbenchWindow().getShell());
 		progressDialog.open();
 		progressDialog.getProgressMonitor().beginTask("Commit project...", 100);
 		progressDialog.getProgressMonitor().worked(10);
@@ -102,8 +94,7 @@ public class CommitProjectHandler extends ProjectActionHandler implements
 		} catch (BaseVersionOutdatedException e) {
 			handleBaseVersionException(projectSpace);
 		} catch (NoLocalChangesException e) {
-			MessageDialog.openInformation(shell, null,
-					"No local changes in your project. No need to commit.");
+			MessageDialog.openInformation(shell, null, "No local changes in your project. No need to commit.");
 		} catch (ConnectionException e) {
 			// after connection exception, try to relogin once.
 			try {
@@ -131,12 +122,9 @@ public class CommitProjectHandler extends ProjectActionHandler implements
 	}
 
 	private void handleBaseVersionException(final ProjectSpace projectSpace) {
-		MessageDialog dialog = new MessageDialog(
-				null,
-				"Confirmation",
-				null,
-				"Your project is outdated, you need to update before commit. Do you want to update now?",
-				MessageDialog.QUESTION, new String[] { "Yes", "No" }, 0);
+		MessageDialog dialog = new MessageDialog(null, "Confirmation", null,
+			"Your project is outdated, you need to update before commit. Do you want to update now?",
+			MessageDialog.QUESTION, new String[] { "Yes", "No" }, 0);
 		int result = dialog.open();
 		if (result == 0) {
 			new UpdateProjectHandler().update(projectSpace);
@@ -144,20 +132,17 @@ public class CommitProjectHandler extends ProjectActionHandler implements
 		}
 	}
 
-	private void commit(final ProjectSpace projectSpace,
-			ProgressMonitorDialog progressDialog, int loginStatus)
-			throws EmfStoreException, BaseVersionOutdatedException {
+	private void commit(final ProjectSpace projectSpace, ProgressMonitorDialog progressDialog, int loginStatus)
+		throws EmfStoreException, BaseVersionOutdatedException {
 		LoginDialog login;
 		if (!usersession.isLoggedIn()) {
-			login = new LoginDialog(shell, usersession, usersession
-					.getServerInfo());
+			login = new LoginDialog(shell, usersession, usersession.getServerInfo());
 			loginStatus = login.open();
 		}
 		if (loginStatus == LoginDialog.SUCCESSFUL) {
 			logMessage = VersioningFactory.eINSTANCE.createLogMessage();
 			PrimaryVersionSpec oldVersion = projectSpace.getBaseVersion();
-			PrimaryVersionSpec newVersion = projectSpace.commit(logMessage,
-					CommitProjectHandler.this);
+			PrimaryVersionSpec newVersion = projectSpace.commit(logMessage, CommitProjectHandler.this);
 			if (!oldVersion.equals(newVersion)) {
 				MessageDialog.openInformation(shell, null, "Commit completed.");
 			}

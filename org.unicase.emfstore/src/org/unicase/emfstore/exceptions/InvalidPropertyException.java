@@ -1,8 +1,7 @@
 /**
- * <copyright> Copyright (c) 2008 Jonas Helming, Maximilian Koegel. All rights reserved. This program and the accompanying materials are made available under the terms of the Eclipse Public License v1.0 which accompanies this distribution, and is available at http://www.eclipse.org/legal/epl-v10.html
- * </copyright>
- *
- * $Id$
+ * <copyright> Copyright (c) 2008 Jonas Helming, Maximilian Koegel. All rights reserved. This program and the
+ * accompanying materials are made available under the terms of the Eclipse Public License v1.0 which accompanies this
+ * distribution, and is available at http://www.eclipse.org/legal/epl-v10.html </copyright>
  */
 package org.unicase.emfstore.exceptions;
 
@@ -20,10 +19,11 @@ public class InvalidPropertyException extends FatalEmfStoreException {
 	public InvalidPropertyException() {
 		super("Invalid property.");
 	}
-	
+
 	/**
 	 * Default constructor.
-	 * @param message the message 
+	 * 
+	 * @param message the message
 	 * @param cause underlying exception
 	 */
 	public InvalidPropertyException(String message, Throwable cause) {
@@ -32,6 +32,7 @@ public class InvalidPropertyException extends FatalEmfStoreException {
 
 	/**
 	 * Default constructor.
+	 * 
 	 * @param message the message
 	 */
 	public InvalidPropertyException(String message) {

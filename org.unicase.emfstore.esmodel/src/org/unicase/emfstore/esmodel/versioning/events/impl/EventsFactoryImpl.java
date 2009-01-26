@@ -1,7 +1,7 @@
 /**
- * <copyright>Copyright (c) 2008 Jonas Helming, Maximilian Koegel. All rights reserved. This program and the accompanying materials are made available under the terms of the Eclipse Public License v1.0 which accompanies this distribution, and is available at http://www.eclipse.org/legal/epl-v10.html</copyright>
- *
- * $Id$
+ * <copyright>Copyright (c) 2008 Jonas Helming, Maximilian Koegel. All rights reserved. This program and the
+ * accompanying materials are made available under the terms of the Eclipse Public License v1.0 which accompanies this
+ * distribution, and is available at http://www.eclipse.org/legal/epl-v10.html</copyright>
  */
 package org.unicase.emfstore.esmodel.versioning.events.impl;
 
@@ -34,22 +34,20 @@ import org.unicase.emfstore.esmodel.versioning.events.UpdateEvent;
 import org.unicase.emfstore.esmodel.versioning.events.Validate;
 
 /**
- * <!-- begin-user-doc -->
- * An implementation of the model <b>Factory</b>.
- * <!-- end-user-doc -->
+ * <!-- begin-user-doc --> An implementation of the model <b>Factory</b>. <!-- end-user-doc -->
+ * 
  * @generated
  */
 public class EventsFactoryImpl extends EFactoryImpl implements EventsFactory {
 	/**
-	 * Creates the default factory implementation.
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
+	 * Creates the default factory implementation. <!-- begin-user-doc --> <!-- end-user-doc -->
+	 * 
 	 * @generated
 	 */
 	public static EventsFactory init() {
 		try {
 			EventsFactory theEventsFactory = (EventsFactory) EPackage.Registry.INSTANCE
-					.getEFactory("http://unicase.org/esmodel/versioning/events");
+				.getEFactory("http://unicase.org/esmodel/versioning/events");
 			if (theEventsFactory != null) {
 				return theEventsFactory;
 			}
@@ -60,9 +58,8 @@ public class EventsFactoryImpl extends EFactoryImpl implements EventsFactory {
 	}
 
 	/**
-	 * Creates an instance of the factory.
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
+	 * Creates an instance of the factory. <!-- begin-user-doc --> <!-- end-user-doc -->
+	 * 
 	 * @generated
 	 */
 	public EventsFactoryImpl() {
@@ -70,8 +67,8 @@ public class EventsFactoryImpl extends EFactoryImpl implements EventsFactory {
 	}
 
 	/**
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
+	 * <!-- begin-user-doc --> <!-- end-user-doc -->
+	 * 
 	 * @generated
 	 */
 	@Override
@@ -118,14 +115,13 @@ public class EventsFactoryImpl extends EFactoryImpl implements EventsFactory {
 		case EventsPackage.SHOW_CHANGES_EVENT:
 			return createShowChangesEvent();
 		default:
-			throw new IllegalArgumentException("The class '" + eClass.getName()
-					+ "' is not a valid classifier");
+			throw new IllegalArgumentException("The class '" + eClass.getName() + "' is not a valid classifier");
 		}
 	}
 
 	/**
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
+	 * <!-- begin-user-doc --> <!-- end-user-doc -->
+	 * 
 	 * @generated
 	 */
 	public Event createEvent() {
@@ -134,8 +130,8 @@ public class EventsFactoryImpl extends EFactoryImpl implements EventsFactory {
 	}
 
 	/**
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
+	 * <!-- begin-user-doc --> <!-- end-user-doc -->
+	 * 
 	 * @generated
 	 */
 	public ReadEvent createReadEvent() {
@@ -144,8 +140,8 @@ public class EventsFactoryImpl extends EFactoryImpl implements EventsFactory {
 	}
 
 	/**
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
+	 * <!-- begin-user-doc --> <!-- end-user-doc -->
+	 * 
 	 * @generated
 	 */
 	public MergeEvent createMergeEvent() {
@@ -154,8 +150,8 @@ public class EventsFactoryImpl extends EFactoryImpl implements EventsFactory {
 	}
 
 	/**
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
+	 * <!-- begin-user-doc --> <!-- end-user-doc -->
+	 * 
 	 * @generated
 	 */
 	public CheckoutEvent createCheckoutEvent() {
@@ -164,8 +160,8 @@ public class EventsFactoryImpl extends EFactoryImpl implements EventsFactory {
 	}
 
 	/**
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
+	 * <!-- begin-user-doc --> <!-- end-user-doc -->
+	 * 
 	 * @generated
 	 */
 	public ExceptionEvent createExceptionEvent() {
@@ -174,8 +170,8 @@ public class EventsFactoryImpl extends EFactoryImpl implements EventsFactory {
 	}
 
 	/**
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
+	 * <!-- begin-user-doc --> <!-- end-user-doc -->
+	 * 
 	 * @generated
 	 */
 	public PluginStartEvent createPluginStartEvent() {
@@ -184,8 +180,8 @@ public class EventsFactoryImpl extends EFactoryImpl implements EventsFactory {
 	}
 
 	/**
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
+	 * <!-- begin-user-doc --> <!-- end-user-doc -->
+	 * 
 	 * @generated
 	 */
 	public UpdateEvent createUpdateEvent() {
@@ -194,8 +190,8 @@ public class EventsFactoryImpl extends EFactoryImpl implements EventsFactory {
 	}
 
 	/**
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
+	 * <!-- begin-user-doc --> <!-- end-user-doc -->
+	 * 
 	 * @generated
 	 */
 	public AnnotationEvent createAnnotationEvent() {
@@ -204,8 +200,8 @@ public class EventsFactoryImpl extends EFactoryImpl implements EventsFactory {
 	}
 
 	/**
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
+	 * <!-- begin-user-doc --> <!-- end-user-doc -->
+	 * 
 	 * @generated
 	 */
 	public RevertEvent createRevertEvent() {
@@ -214,8 +210,8 @@ public class EventsFactoryImpl extends EFactoryImpl implements EventsFactory {
 	}
 
 	/**
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
+	 * <!-- begin-user-doc --> <!-- end-user-doc -->
+	 * 
 	 * @generated
 	 */
 	public ShowHistoryEvent createShowHistoryEvent() {
@@ -224,8 +220,8 @@ public class EventsFactoryImpl extends EFactoryImpl implements EventsFactory {
 	}
 
 	/**
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
+	 * <!-- begin-user-doc --> <!-- end-user-doc -->
+	 * 
 	 * @generated
 	 */
 	public PerspectiveEvent createPerspectiveEvent() {
@@ -234,8 +230,8 @@ public class EventsFactoryImpl extends EFactoryImpl implements EventsFactory {
 	}
 
 	/**
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
+	 * <!-- begin-user-doc --> <!-- end-user-doc -->
+	 * 
 	 * @generated
 	 */
 	public DNDEvent createDNDEvent() {
@@ -244,8 +240,8 @@ public class EventsFactoryImpl extends EFactoryImpl implements EventsFactory {
 	}
 
 	/**
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
+	 * <!-- begin-user-doc --> <!-- end-user-doc -->
+	 * 
 	 * @generated
 	 */
 	public LinkEvent createLinkEvent() {
@@ -254,8 +250,8 @@ public class EventsFactoryImpl extends EFactoryImpl implements EventsFactory {
 	}
 
 	/**
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
+	 * <!-- begin-user-doc --> <!-- end-user-doc -->
+	 * 
 	 * @generated
 	 */
 	public TraceEvent createTraceEvent() {
@@ -264,8 +260,8 @@ public class EventsFactoryImpl extends EFactoryImpl implements EventsFactory {
 	}
 
 	/**
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
+	 * <!-- begin-user-doc --> <!-- end-user-doc -->
+	 * 
 	 * @generated
 	 */
 	public NavigatorCreateEvent createNavigatorCreateEvent() {
@@ -274,8 +270,8 @@ public class EventsFactoryImpl extends EFactoryImpl implements EventsFactory {
 	}
 
 	/**
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
+	 * <!-- begin-user-doc --> <!-- end-user-doc -->
+	 * 
 	 * @generated
 	 */
 	public PluginFocusEvent createPluginFocusEvent() {
@@ -284,8 +280,8 @@ public class EventsFactoryImpl extends EFactoryImpl implements EventsFactory {
 	}
 
 	/**
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
+	 * <!-- begin-user-doc --> <!-- end-user-doc -->
+	 * 
 	 * @generated
 	 */
 	public PresentationSwitchEvent createPresentationSwitchEvent() {
@@ -294,8 +290,8 @@ public class EventsFactoryImpl extends EFactoryImpl implements EventsFactory {
 	}
 
 	/**
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
+	 * <!-- begin-user-doc --> <!-- end-user-doc -->
+	 * 
 	 * @generated
 	 */
 	public UndoEvent createUndoEvent() {
@@ -304,8 +300,8 @@ public class EventsFactoryImpl extends EFactoryImpl implements EventsFactory {
 	}
 
 	/**
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
+	 * <!-- begin-user-doc --> <!-- end-user-doc -->
+	 * 
 	 * @generated
 	 */
 	public Validate createValidate() {
@@ -314,8 +310,8 @@ public class EventsFactoryImpl extends EFactoryImpl implements EventsFactory {
 	}
 
 	/**
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
+	 * <!-- begin-user-doc --> <!-- end-user-doc -->
+	 * 
 	 * @generated
 	 */
 	public ShowChangesEvent createShowChangesEvent() {
@@ -324,8 +320,8 @@ public class EventsFactoryImpl extends EFactoryImpl implements EventsFactory {
 	}
 
 	/**
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
+	 * <!-- begin-user-doc --> <!-- end-user-doc -->
+	 * 
 	 * @generated
 	 */
 	public EventsPackage getEventsPackage() {
@@ -333,8 +329,8 @@ public class EventsFactoryImpl extends EFactoryImpl implements EventsFactory {
 	}
 
 	/**
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
+	 * <!-- begin-user-doc --> <!-- end-user-doc -->
+	 * 
 	 * @deprecated
 	 * @generated
 	 */
@@ -343,4 +339,4 @@ public class EventsFactoryImpl extends EFactoryImpl implements EventsFactory {
 		return EventsPackage.eINSTANCE;
 	}
 
-} //EventsFactoryImpl
+} // EventsFactoryImpl

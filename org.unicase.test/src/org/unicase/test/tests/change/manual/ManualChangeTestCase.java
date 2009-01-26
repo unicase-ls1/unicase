@@ -9,22 +9,21 @@ import org.unicase.workspace.ProjectSpace;
 
 public abstract class ManualChangeTestCase extends ChangeTestCase {
 
-	public ManualChangeTestCase(ProjectSpace testProjectSpace, String testName,TestProjectParmeters testProjParams) {
+	public ManualChangeTestCase(ProjectSpace testProjectSpace, String testName, TestProjectParmeters testProjParams) {
 		super(testProjectSpace, testName, testProjParams);
 	}
 
-
-
-		
 	@Override
 	public void outputResults(boolean outputToFile) {
-		ChangePackage changePackage = ChangeTestHelper.getChangePackage(getTestProjectSpace().getOperations(), true, true);
+		ChangePackage changePackage = ChangeTestHelper.getChangePackage(getTestProjectSpace().getOperations(), true,
+			true);
 		int i = 1;
-		for(AbstractOperation op : changePackage.getOperations()){
-			
-			System.out.println(i + ". " + op.getName() + " (" + op.getClass().getSimpleName() + ")(" +  getTestProject().getModelElement(op.getModelElementId()).getName() + ")");
+		for (AbstractOperation op : changePackage.getOperations()) {
+
+			System.out.println(i + ". " + op.getName() + " (" + op.getClass().getSimpleName() + ")("
+				+ getTestProject().getModelElement(op.getModelElementId()).getName() + ")");
 			i++;
 		}
 	}
-	
+
 }

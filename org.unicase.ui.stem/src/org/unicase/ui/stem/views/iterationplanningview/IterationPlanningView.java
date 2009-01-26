@@ -1,8 +1,7 @@
 /**
- * <copyright> Copyright (c) 2008 Jonas Helming, Maximilian Koegel. All rights reserved. This program and the accompanying materials are made available under the terms of the Eclipse Public License v1.0 which accompanies this distribution, and is available at http://www.eclipse.org/legal/epl-v10.html
- * </copyright>
- *
- * $Id$
+ * <copyright> Copyright (c) 2008 Jonas Helming, Maximilian Koegel. All rights reserved. This program and the
+ * accompanying materials are made available under the terms of the Eclipse Public License v1.0 which accompanies this
+ * distribution, and is available at http://www.eclipse.org/legal/epl-v10.html </copyright>
  */
 package org.unicase.ui.stem.views.iterationplanningview;
 
@@ -53,19 +52,16 @@ import org.unicase.workspace.util.NoCurrentUserException;
 import org.unicase.workspace.util.OrgUnitHelper;
 
 /**
- * This view helps managing WorkPackages (sprints) contained in a project. It
- * shows the WorkPackages of active project space (the project currently
- * selected in navigator)
+ * This view helps managing WorkPackages (sprints) contained in a project. It shows the WorkPackages of active project
+ * space (the project currently selected in navigator)
  * 
  * @author Hodaie
- * 
  */
 public class IterationPlanningView extends ViewPart {
 	/**
 	 * Action to create a window with a ganttchart.
 	 * 
 	 * @author helming
-	 * 
 	 */
 	public class GantAction extends Action {
 
@@ -73,8 +69,7 @@ public class IterationPlanningView extends ViewPart {
 		 * Default constructor.
 		 */
 		public GantAction() {
-			super("Show Gantt Chart", Activator
-					.getImageDescriptor("icons/ganttChart.png"));
+			super("Show Gantt Chart", Activator.getImageDescriptor("icons/ganttChart.png"));
 		}
 
 		/**
@@ -114,8 +109,7 @@ public class IterationPlanningView extends ViewPart {
 		} catch (IOException e) {
 			// Do nothing.
 		}
-		final Workspace workspace = WorkspaceManager.getInstance()
-				.getCurrentWorkspace();
+		final Workspace workspace = WorkspaceManager.getInstance().getCurrentWorkspace();
 		workspace.eAdapters().add(new AdapterImpl() {
 			@Override
 			public void notifyChanged(Notification msg) {
@@ -148,22 +142,19 @@ public class IterationPlanningView extends ViewPart {
 		menuManager.add(new GantAction());
 
 		// Create the help context id for the viewer's control
-		PlatformUI.getWorkbench().getHelpSystem().setHelp(viewer.getControl(),
-				"org.unicase.ui.treeview.viewer");
+		PlatformUI.getWorkbench().getHelpSystem().setHelp(viewer.getControl(), "org.unicase.ui.treeview.viewer");
 
 		hookDoubleClickAction();
 		addDNDSupport();
 
 		// respond to change of active ProjectSpace
-		final Workspace workspace = WorkspaceManager.getInstance()
-				.getCurrentWorkspace();
+		final Workspace workspace = WorkspaceManager.getInstance().getCurrentWorkspace();
 		workspace.eAdapters().add(new AdapterImpl() {
 			@Override
 			public void notifyChanged(Notification msg) {
 				if ((msg.getFeatureID(Workspace.class)) == WorkspacePackage.WORKSPACE__ACTIVE_PROJECT_SPACE) {
 					if (workspace.getActiveProjectSpace() != null) {
-						project = workspace.getActiveProjectSpace()
-								.getProject();
+						project = workspace.getActiveProjectSpace().getProject();
 					}
 					setInput();
 				}
@@ -184,8 +175,7 @@ public class IterationPlanningView extends ViewPart {
 	private void initFilters() {
 		User user;
 		try {
-			user = OrgUnitHelper.getCurrentUser(WorkspaceManager.getInstance()
-					.getCurrentWorkspace());
+			user = OrgUnitHelper.getCurrentUser(WorkspaceManager.getInstance().getCurrentWorkspace());
 			createTeamFilter(user);
 			createUserFilter(user);
 		} catch (NoCurrentUserException e) {
@@ -206,8 +196,7 @@ public class IterationPlanningView extends ViewPart {
 				}
 
 			};
-			filterToMe.setImageDescriptor(Activator
-					.getImageDescriptor("/icons/filtertouser.png"));
+			filterToMe.setImageDescriptor(Activator.getImageDescriptor("/icons/filtertouser.png"));
 		}
 		if (user == null) {
 			setUserFilter(false);
@@ -231,8 +220,7 @@ public class IterationPlanningView extends ViewPart {
 				}
 
 			};
-			filterToMyTeam.setImageDescriptor(Activator
-					.getImageDescriptor("/icons/filtertomyteam.png"));
+			filterToMyTeam.setImageDescriptor(Activator.getImageDescriptor("/icons/filtertomyteam.png"));
 		}
 		if (user == null) {
 			setTeamFilter(false);
@@ -249,8 +237,7 @@ public class IterationPlanningView extends ViewPart {
 	/**
 	 * Sets if the user filter is turned on.
 	 * 
-	 * @param checked
-	 *            if the filter is turned on.
+	 * @param checked if the filter is turned on.
 	 */
 	protected void setUserFilter(boolean checked) {
 		if (checked) {
@@ -266,8 +253,7 @@ public class IterationPlanningView extends ViewPart {
 	/**
 	 * Sets the team filter.
 	 * 
-	 * @param checked
-	 *            if the team filter is turned on.
+	 * @param checked if the team filter is turned on.
 	 */
 	protected void setTeamFilter(boolean checked) {
 		if (checked) {
@@ -281,14 +267,11 @@ public class IterationPlanningView extends ViewPart {
 	}
 
 	private void createTreeViewer(Composite parent) {
-		viewer = new TreeViewer(parent, SWT.MULTI | SWT.H_SCROLL | SWT.V_SCROLL
-				| SWT.FULL_SELECTION);
+		viewer = new TreeViewer(parent, SWT.MULTI | SWT.H_SCROLL | SWT.V_SCROLL | SWT.FULL_SELECTION);
 		workpackageContentProvider = new WorkpackageContentProvider();
 		viewer.setContentProvider(workpackageContentProvider);
-		IDecoratorManager decoratorManager = PlatformUI.getWorkbench()
-				.getDecoratorManager();
-		viewer.setLabelProvider(new DecoratingLabelProvider(
-				new LabelProvider(), decoratorManager.getLabelDecorator()));
+		IDecoratorManager decoratorManager = PlatformUI.getWorkbench().getDecoratorManager();
+		viewer.setLabelProvider(new DecoratingLabelProvider(new LabelProvider(), decoratorManager.getLabelDecorator()));
 
 		createColumns(viewer);
 
@@ -314,15 +297,13 @@ public class IterationPlanningView extends ViewPart {
 		// emfColumnLabelProvider);
 
 		// annotated model element
-		TreeViewerColumn tclmAnnotatedME = new TreeViewerColumn(viewer,
-				SWT.NONE);
+		TreeViewerColumn tclmAnnotatedME = new TreeViewerColumn(viewer, SWT.NONE);
 		tclmAnnotatedME.getColumn().setText("Annotated");
 		tclmAnnotatedME.getColumn().setWidth(100);
 		TaskObjectLabelProvider taskObjectLabelProvider = new TaskObjectLabelProvider();
 		tclmAnnotatedME.setLabelProvider(taskObjectLabelProvider);
 		tclmAnnotatedME.setEditingSupport(new TaskObjectEditingSupport(viewer));
-		new TreeViewerColumnSorter(viewer, tclmAnnotatedME,
-				taskObjectLabelProvider);
+		new TreeViewerColumnSorter(viewer, tclmAnnotatedME, taskObjectLabelProvider);
 
 		// Assignee
 		TreeViewerColumn tclmAssignedTo = new TreeViewerColumn(viewer, SWT.NONE);
@@ -331,16 +312,14 @@ public class IterationPlanningView extends ViewPart {
 		AssignedToLabelProvider assignedToLabelProvider = new AssignedToLabelProvider();
 		tclmAssignedTo.setLabelProvider(assignedToLabelProvider);
 		tclmAssignedTo.setEditingSupport(new AssignedToEditingSupport(viewer));
-		new TreeViewerColumnSorter(viewer, tclmAssignedTo,
-				assignedToLabelProvider);
+		new TreeViewerColumnSorter(viewer, tclmAssignedTo, assignedToLabelProvider);
 		// Status of model elements
 
 	}
 
 	/**
-	 * . This sets the input of viewer on change of active ProjectSpace. The
-	 * project is a field being set when activeProjectSpace is changed
-	 * 
+	 * . This sets the input of viewer on change of active ProjectSpace. The project is a field being set when
+	 * activeProjectSpace is changed
 	 */
 	protected void setInput() {
 		viewer.setInput(project);
@@ -370,7 +349,6 @@ public class IterationPlanningView extends ViewPart {
 
 	/**
 	 * Passing the focus request to the viewer's control.
-	 * 
 	 */
 	@Override
 	public void setFocus() {
@@ -382,13 +360,9 @@ public class IterationPlanningView extends ViewPart {
 		int dndOperations = DND.DROP_COPY | DND.DROP_MOVE | DND.DROP_LINK;
 		Transfer[] transfers = new Transfer[] { LocalTransfer.getInstance() };
 
-		viewer.addDragSupport(dndOperations, transfers, new UCDragAdapter(
-				viewer));
-		viewer
-				.addDropSupport(dndOperations, transfers, new UCDropAdapter(
-						TransactionalEditingDomain.Registry.INSTANCE
-								.getEditingDomain("org.unicase.EditingDomain"),
-						viewer));
+		viewer.addDragSupport(dndOperations, transfers, new UCDragAdapter(viewer));
+		viewer.addDropSupport(dndOperations, transfers, new UCDropAdapter(TransactionalEditingDomain.Registry.INSTANCE
+			.getEditingDomain("org.unicase.EditingDomain"), viewer));
 
 	}
 

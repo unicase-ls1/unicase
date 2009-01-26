@@ -1,8 +1,7 @@
 /**
- * <copyright> Copyright (c) 2008 Jonas Helming, Maximilian Koegel. All rights reserved. This program and the accompanying materials are made available under the terms of the Eclipse Public License v1.0 which accompanies this distribution, and is available at http://www.eclipse.org/legal/epl-v10.html
- * </copyright>
- *
- * $Id$
+ * <copyright> Copyright (c) 2008 Jonas Helming, Maximilian Koegel. All rights reserved. This program and the
+ * accompanying materials are made available under the terms of the Eclipse Public License v1.0 which accompanies this
+ * distribution, and is available at http://www.eclipse.org/legal/epl-v10.html </copyright>
  */
 package org.unicase.emfstore.conflictDetection;
 
@@ -21,32 +20,26 @@ import org.unicase.emfstore.esmodel.versioning.operations.SingleReferenceOperati
 import org.unicase.model.ModelElementId;
 
 /**
- * A conflict detection strategy that will operate on a per attribute and
- * feature level.
+ * A conflict detection strategy that will operate on a per attribute and feature level.
  * 
  * @author koegel
- * 
  */
-public class FineGrainedConflictDetectionStrategy implements
-		ConflictDetectionStrategy {
+public class FineGrainedConflictDetectionStrategy implements ConflictDetectionStrategy {
 
 	/**
 	 * {@inheritDoc}
 	 * 
 	 * @see org.unicase.emfstore.conflictDetection.ConflictDetectionStrategy#doConflict(org.unicase.emfstore.esmodel.versioning.operations.AbstractOperation,
-	 *     
 	 *      org.unicase.emfstore.esmodel.versioning.operations.AbstractOperation)
 	 */
-	public boolean doConflict(AbstractOperation operationA,
-			AbstractOperation operationB) {
+	public boolean doConflict(AbstractOperation operationA, AbstractOperation operationB) {
 		if (operationA instanceof DiagramLayoutOperation) {
 			return doConflict((DiagramLayoutOperation) operationA, operationB);
 
 		} else if (operationA instanceof AttributeOperation) {
 			return doConflict((AttributeOperation) operationA, operationB);
 		} else if (operationA instanceof MultiReferenceMoveOperation) {
-			return doConflict((MultiReferenceMoveOperation) operationA,
-					operationB);
+			return doConflict((MultiReferenceMoveOperation) operationA, operationB);
 		} else if (operationA instanceof SingleReferenceOperation) {
 			return doConflict((SingleReferenceOperation) operationA, operationB);
 		} else if (operationA instanceof MultiReferenceOperation) {
@@ -56,54 +49,45 @@ public class FineGrainedConflictDetectionStrategy implements
 		} else if (operationA instanceof CompositeOperation) {
 			return doConflict((CompositeOperation) operationA, operationB);
 		}
-		throw new IllegalArgumentException("Unkown operation type: "
-				+ operationA);
+		throw new IllegalArgumentException("Unkown operation type: " + operationA);
 
 	}
 
-	private boolean doConflict(MultiReferenceOperation operationA,
-			AbstractOperation operationB) {
+	private boolean doConflict(MultiReferenceOperation operationA, AbstractOperation operationB) {
 		if (operationB instanceof AttributeOperation) {
 			return false;
 		} else if (operationB instanceof MultiReferenceMoveOperation) {
-			boolean sameFeature = ((FeatureOperation) operationA)
-					.getFeatureName().equals(
-							((MultiReferenceMoveOperation) operationB)
-									.getFeatureName());
-			boolean sameElement = operationA.getModelElementId().equals(
-					operationB.getModelElementId());
+			boolean sameFeature = ((FeatureOperation) operationA).getFeatureName().equals(
+				((MultiReferenceMoveOperation) operationB).getFeatureName());
+			boolean sameElement = operationA.getModelElementId().equals(operationB.getModelElementId());
 			return sameElement && sameFeature;
 		} else if (operationB instanceof ReferenceOperation) {
-			//MK split by multireference and singlereference
+			// MK split by multireference and singlereference
 			MultiReferenceOperation multiOperationA = operationA;
 			ReferenceOperation referenceOperationB = (ReferenceOperation) operationB;
-			boolean sameFeature = multiOperationA.getFeatureName().equals(
-					referenceOperationB.getFeatureName());
-			//check if they really overlap
-			boolean sameElement = multiOperationA.getModelElementId().equals(
-					referenceOperationB.getModelElementId());
+			boolean sameFeature = multiOperationA.getFeatureName().equals(referenceOperationB.getFeatureName());
+			// check if they really overlap
+			boolean sameElement = multiOperationA.getModelElementId().equals(referenceOperationB.getModelElementId());
 			if (sameFeature && sameElement) {
 				Set<ModelElementId> otherInvolvedModelElements = operationA.getOtherInvolvedModelElements();
-				for (ModelElementId modelElementId: operationA.getReferencedModelElements()) {
+				for (ModelElementId modelElementId : operationA.getReferencedModelElements()) {
 					if (otherInvolvedModelElements.contains(modelElementId)) {
 						return true;
 					}
 				}
 			}
 			if (multiOperationA.getOppositeFeatureName() != null) {
-				sameFeature = multiOperationA.getOppositeFeatureName().equals(
-								referenceOperationB.getFeatureName());
-				
+				sameFeature = multiOperationA.getOppositeFeatureName().equals(referenceOperationB.getFeatureName());
+
 			}
-			
+
 			return false;
 		} else {
 			return doConflict(operationB, operationA);
 		}
 	}
 
-	private boolean doConflict(CompositeOperation operationA,
-			AbstractOperation operationB) {
+	private boolean doConflict(CompositeOperation operationA, AbstractOperation operationB) {
 		for (AbstractOperation subOperationA : operationA.getSubOperations()) {
 			if (doConflict(subOperationA, operationB)) {
 				return true;
@@ -112,11 +96,9 @@ public class FineGrainedConflictDetectionStrategy implements
 		return false;
 	}
 
-	private boolean doConflict(DiagramLayoutOperation operationA,
-			AbstractOperation operationB) {
+	private boolean doConflict(DiagramLayoutOperation operationA, AbstractOperation operationB) {
 		if (operationB instanceof DiagramLayoutOperation) {
-			return operationA.getModelElementId().equals(
-					operationA.getModelElementId());
+			return operationA.getModelElementId().equals(operationA.getModelElementId());
 		}
 		return false;
 	}
@@ -125,31 +107,25 @@ public class FineGrainedConflictDetectionStrategy implements
 	 * {@inheritDoc}
 	 * 
 	 * @see org.unicase.emfstore.conflictDetection.ConflictDetectionStrategy#isRequired(org.unicase.emfstore.esmodel.versioning.operations.AbstractOperation,
-	 *     
 	 *      org.unicase.emfstore.esmodel.versioning.operations.AbstractOperation)
 	 */
-	public boolean isRequired(AbstractOperation requiredOperation,
-			AbstractOperation operation) {
+	public boolean isRequired(AbstractOperation requiredOperation, AbstractOperation operation) {
 		if (requiredOperation instanceof CreateDeleteOperation) {
-			return isRequired((CreateDeleteOperation) requiredOperation,
-					operation);
+			return isRequired((CreateDeleteOperation) requiredOperation, operation);
 		} else if (requiredOperation instanceof MultiReferenceOperation
-				&& operation instanceof MultiReferenceMoveOperation) {
-			return isRequired((MultiReferenceOperation)requiredOperation, (MultiReferenceMoveOperation)operation);
-		} else if (requiredOperation instanceof MultiReferenceOperation
-				&& operation instanceof MultiReferenceOperation) {
-			return isRequired((MultiReferenceOperation)requiredOperation, (MultiReferenceOperation)operation);
+			&& operation instanceof MultiReferenceMoveOperation) {
+			return isRequired((MultiReferenceOperation) requiredOperation, (MultiReferenceMoveOperation) operation);
+		} else if (requiredOperation instanceof MultiReferenceOperation && operation instanceof MultiReferenceOperation) {
+			return isRequired((MultiReferenceOperation) requiredOperation, (MultiReferenceOperation) operation);
 		} else if (requiredOperation instanceof CompositeOperation) {
-			for (AbstractOperation abstractOperation : ((CompositeOperation) requiredOperation)
-					.getSubOperations()) {
+			for (AbstractOperation abstractOperation : ((CompositeOperation) requiredOperation).getSubOperations()) {
 				if (isRequired(abstractOperation, operation)) {
 					return true;
 				}
 			}
 			return false;
 		} else if (operation instanceof CompositeOperation) {
-			for (AbstractOperation abstractOperation : ((CompositeOperation) operation)
-					.getSubOperations()) {
+			for (AbstractOperation abstractOperation : ((CompositeOperation) operation).getSubOperations()) {
 				if (isRequired(requiredOperation, abstractOperation)) {
 					return true;
 				}
@@ -160,21 +136,14 @@ public class FineGrainedConflictDetectionStrategy implements
 	}
 
 	private boolean isRequired(MultiReferenceOperation requiredMultiReferenceOperation,
-			MultiReferenceOperation multiReferenceOperation) {
-		boolean sameElement = requiredMultiReferenceOperation
-				.getModelElementId().equals(
-						multiReferenceOperation.getModelElementId());
-		boolean sameFeature = requiredMultiReferenceOperation
-				.getFeatureName().equals(
-						multiReferenceOperation.getFeatureName());
-		if (sameElement && sameFeature
-				&& requiredMultiReferenceOperation.isAdd()
-				&& !multiReferenceOperation.isAdd()) {
-			for (ModelElementId modelElementId : multiReferenceOperation
-					.getReferencedModelElements()) {
-				if (requiredMultiReferenceOperation
-						.getReferencedModelElements().contains(
-								modelElementId)) {
+		MultiReferenceOperation multiReferenceOperation) {
+		boolean sameElement = requiredMultiReferenceOperation.getModelElementId().equals(
+			multiReferenceOperation.getModelElementId());
+		boolean sameFeature = requiredMultiReferenceOperation.getFeatureName().equals(
+			multiReferenceOperation.getFeatureName());
+		if (sameElement && sameFeature && requiredMultiReferenceOperation.isAdd() && !multiReferenceOperation.isAdd()) {
+			for (ModelElementId modelElementId : multiReferenceOperation.getReferencedModelElements()) {
+				if (requiredMultiReferenceOperation.getReferencedModelElements().contains(modelElementId)) {
 					return true;
 				}
 			}
@@ -183,17 +152,13 @@ public class FineGrainedConflictDetectionStrategy implements
 	}
 
 	private boolean isRequired(MultiReferenceOperation requiredMultiReferenceOperation,
-			MultiReferenceMoveOperation moveOperation) {
-		boolean sameElement = requiredMultiReferenceOperation
-				.getModelElementId().equals(
-						moveOperation.getModelElementId());
-		boolean sameFeature = requiredMultiReferenceOperation
-				.getFeatureName().equals(moveOperation.getFeatureName());
+		MultiReferenceMoveOperation moveOperation) {
+		boolean sameElement = requiredMultiReferenceOperation.getModelElementId().equals(
+			moveOperation.getModelElementId());
+		boolean sameFeature = requiredMultiReferenceOperation.getFeatureName().equals(moveOperation.getFeatureName());
 		if (sameElement && sameFeature) {
-			for (ModelElementId modelElementId : requiredMultiReferenceOperation
-					.getReferencedModelElements()) {
-				if (modelElementId.equals(moveOperation
-						.getReferencedModelElementId())) {
+			for (ModelElementId modelElementId : requiredMultiReferenceOperation.getReferencedModelElements()) {
+				if (modelElementId.equals(moveOperation.getReferencedModelElementId())) {
 					return true;
 				}
 			}
@@ -201,26 +166,23 @@ public class FineGrainedConflictDetectionStrategy implements
 		return false;
 	}
 
-	private boolean isRequired(CreateDeleteOperation requiredOperation,
-			AbstractOperation operation) {
+	private boolean isRequired(CreateDeleteOperation requiredOperation, AbstractOperation operation) {
 		if (!requiredOperation.isDelete()) {
 			if (operation instanceof FeatureOperation) {
-				if (operation.getModelElementId().equals(
-						requiredOperation.getModelElementId())) {
+				if (operation.getModelElementId().equals(requiredOperation.getModelElementId())) {
 					return true;
 				}
 				if (operation instanceof ReferenceOperation) {
-					return ((ReferenceOperation) operation).getOtherInvolvedModelElements().contains(requiredOperation.getModelElementId());
+					return ((ReferenceOperation) operation).getOtherInvolvedModelElements().contains(
+						requiredOperation.getModelElementId());
 				}
 				if (operation instanceof MultiReferenceMoveOperation) {
-					return ((MultiReferenceMoveOperation) operation)
-							.getReferencedModelElementId().equals(
-									requiredOperation);
+					return ((MultiReferenceMoveOperation) operation).getReferencedModelElementId().equals(
+						requiredOperation);
 				}
 				return false;
 			} else if (operation instanceof CompositeOperation) {
-				for (AbstractOperation abstractOperation : ((CompositeOperation) operation)
-						.getSubOperations()) {
+				for (AbstractOperation abstractOperation : ((CompositeOperation) operation).getSubOperations()) {
 					if (isRequired(requiredOperation, abstractOperation)) {
 						return true;
 					}
@@ -233,46 +195,36 @@ public class FineGrainedConflictDetectionStrategy implements
 		return false;
 	}
 
-	private boolean doConflict(CreateDeleteOperation operationA,
-			AbstractOperation operationB) {
+	private boolean doConflict(CreateDeleteOperation operationA, AbstractOperation operationB) {
 		if (operationB instanceof CompositeOperation) {
 			return doConflict(operationB, operationA);
 		}
 		if (operationB instanceof ReferenceOperation) {
-			for (ModelElementId modelElementId : ((ReferenceOperation) operationB)
-					.getOtherInvolvedModelElements()) {
+			for (ModelElementId modelElementId : ((ReferenceOperation) operationB).getOtherInvolvedModelElements()) {
 				if (operationA.getModelElementId().equals(modelElementId)) {
 					return true;
 				}
 			}
 		}
-		return operationA.getModelElementId().equals(
-				operationB.getModelElementId());
+		return operationA.getModelElementId().equals(operationB.getModelElementId());
 	}
 
-	private boolean doConflict(AttributeOperation operationA,
-			AbstractOperation operationB) {
-		if (!operationA.getModelElementId().equals(
-				operationB.getModelElementId())) {
+	private boolean doConflict(AttributeOperation operationA, AbstractOperation operationB) {
+		if (!operationA.getModelElementId().equals(operationB.getModelElementId())) {
 			return false;
 		}
 		if (operationB instanceof FeatureOperation) {
 			FeatureOperation featureOperationB = (FeatureOperation) operationB;
-			return featureOperationB.getFeatureName().equals(
-					operationA.getFeatureName());
+			return featureOperationB.getFeatureName().equals(operationA.getFeatureName());
 		}
 		return doConflict(operationB, operationA);
 	}
 
-	private boolean doConflict(MultiReferenceMoveOperation operationA,
-			AbstractOperation operationB) {
+	private boolean doConflict(MultiReferenceMoveOperation operationA, AbstractOperation operationB) {
 		if (operationB instanceof MultiReferenceMoveOperation) {
-			boolean sameElement = operationA.getModelElementId().equals(
-					operationB.getModelElementId());
-			boolean sameFeature = operationA.getFeatureName()
-					.equals(
-							((MultiReferenceMoveOperation) operationB)
-									.getFeatureName());
+			boolean sameElement = operationA.getModelElementId().equals(operationB.getModelElementId());
+			boolean sameFeature = operationA.getFeatureName().equals(
+				((MultiReferenceMoveOperation) operationB).getFeatureName());
 			return sameElement && sameFeature;
 		} else if (operationB instanceof AttributeOperation) {
 			return false;
@@ -280,19 +232,15 @@ public class FineGrainedConflictDetectionStrategy implements
 		return doConflict(operationB, operationA);
 	}
 
-	private boolean doConflict(SingleReferenceOperation operationA,
-			AbstractOperation operationB) {
+	private boolean doConflict(SingleReferenceOperation operationA, AbstractOperation operationB) {
 		if (operationB instanceof SingleReferenceOperation) {
 			ReferenceOperation singleOperationB = (SingleReferenceOperation) operationB;
-			boolean sameFeature = operationA.getFeatureName().equals(
-					singleOperationB.getFeatureName());
+			boolean sameFeature = operationA.getFeatureName().equals(singleOperationB.getFeatureName());
 			if (operationA.getOppositeFeatureName() != null) {
 				sameFeature = sameFeature
-						|| operationA.getOppositeFeatureName().equals(
-								singleOperationB.getFeatureName());
+					|| operationA.getOppositeFeatureName().equals(singleOperationB.getFeatureName());
 			}
-			boolean sameElement = operationA.getModelElementId().equals(
-					operationB.getModelElementId());
+			boolean sameElement = operationA.getModelElementId().equals(operationB.getModelElementId());
 			return sameFeature && sameElement;
 		} else if (operationB instanceof AttributeOperation) {
 			return false;

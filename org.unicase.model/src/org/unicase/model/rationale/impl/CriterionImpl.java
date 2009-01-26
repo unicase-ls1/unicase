@@ -1,7 +1,7 @@
 /**
  * <copyright> Copyright (c) 2008 Jonas Helming, Maximilian Koegel. All rights reserved. This program and the
  * accompanying materials are made available under the terms of the Eclipse Public License v1.0 which accompanies this
- * distribution, and is available at http://www.eclipse.org/legal/epl-v10.html </copyright> $Id$
+ * distribution, and is available at http://www.eclipse.org/legal/epl-v10.html </copyright>
  */
 package org.unicase.model.rationale.impl;
 
@@ -26,9 +26,9 @@ import org.unicase.model.rationale.RationalePackage;
  */
 public class CriterionImpl extends ModelElementImpl implements Criterion {
 	/**
-	 * The cached value of the '{@link #getAssessments() <em>Assessments</em>}' reference list.
-	 * <!-- begin-user-doc -->
+	 * The cached value of the '{@link #getAssessments() <em>Assessments</em>}' reference list. <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
+	 * 
 	 * @see #getAssessments()
 	 * @generated
 	 * @ordered
@@ -37,6 +37,7 @@ public class CriterionImpl extends ModelElementImpl implements Criterion {
 
 	/**
 	 * <!-- begin-user-doc --> <!-- end-user-doc -->
+	 * 
 	 * @generated
 	 */
 	protected CriterionImpl() {
@@ -45,6 +46,7 @@ public class CriterionImpl extends ModelElementImpl implements Criterion {
 
 	/**
 	 * <!-- begin-user-doc --> <!-- end-user-doc -->
+	 * 
 	 * @generated
 	 */
 	@Override
@@ -54,6 +56,7 @@ public class CriterionImpl extends ModelElementImpl implements Criterion {
 
 	/**
 	 * <!-- begin-user-doc --> <!-- end-user-doc -->
+	 * 
 	 * @generated
 	 */
 	public EList<Assessment> getAssessments() {
@@ -66,6 +69,7 @@ public class CriterionImpl extends ModelElementImpl implements Criterion {
 
 	/**
 	 * <!-- begin-user-doc --> <!-- end-user-doc -->
+	 * 
 	 * @generated
 	 */
 	@SuppressWarnings("unchecked")
@@ -80,6 +84,7 @@ public class CriterionImpl extends ModelElementImpl implements Criterion {
 
 	/**
 	 * <!-- begin-user-doc --> <!-- end-user-doc -->
+	 * 
 	 * @generated
 	 */
 	@Override
@@ -93,6 +98,7 @@ public class CriterionImpl extends ModelElementImpl implements Criterion {
 
 	/**
 	 * <!-- begin-user-doc --> <!-- end-user-doc -->
+	 * 
 	 * @generated
 	 */
 	@Override
@@ -106,6 +112,7 @@ public class CriterionImpl extends ModelElementImpl implements Criterion {
 
 	/**
 	 * <!-- begin-user-doc --> <!-- end-user-doc -->
+	 * 
 	 * @generated
 	 */
 	@SuppressWarnings("unchecked")
@@ -122,6 +129,7 @@ public class CriterionImpl extends ModelElementImpl implements Criterion {
 
 	/**
 	 * <!-- begin-user-doc --> <!-- end-user-doc -->
+	 * 
 	 * @generated
 	 */
 	@Override
@@ -136,6 +144,7 @@ public class CriterionImpl extends ModelElementImpl implements Criterion {
 
 	/**
 	 * <!-- begin-user-doc --> <!-- end-user-doc -->
+	 * 
 	 * @generated
 	 */
 	@Override

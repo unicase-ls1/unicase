@@ -23,15 +23,13 @@ public class AttributeViewFactory extends AbstractLabelViewFactory {
 	/**
 	 * @generated
 	 */
-	protected void decorateView(View containerView, View view,
-			IAdaptable semanticAdapter, String semanticHint, int index,
-			boolean persisted) {
+	protected void decorateView(View containerView, View view, IAdaptable semanticAdapter, String semanticHint,
+		int index, boolean persisted) {
 		if (semanticHint == null) {
 			semanticHint = org.unicase.model.classDiagram.part.ModelVisualIDRegistry
-					.getType(org.unicase.model.classDiagram.edit.parts.AttributeEditPart.VISUAL_ID);
+				.getType(org.unicase.model.classDiagram.edit.parts.AttributeEditPart.VISUAL_ID);
 			view.setType(semanticHint);
 		}
-		super.decorateView(containerView, view, semanticAdapter, semanticHint,
-				index, persisted);
+		super.decorateView(containerView, view, semanticAdapter, semanticHint, index, persisted);
 	}
 }

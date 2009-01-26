@@ -68,8 +68,7 @@ public class ModelElementChooserDialog extends Dialog {
 	/**
 	 * @generated
 	 */
-	private TransactionalEditingDomain myEditingDomain = GMFEditingDomainFactory.INSTANCE
-			.createEditingDomain();
+	private TransactionalEditingDomain myEditingDomain = GMFEditingDomainFactory.INSTANCE.createEditingDomain();
 
 	/**
 	 * @generated
@@ -85,9 +84,8 @@ public class ModelElementChooserDialog extends Dialog {
 	 */
 	protected Control createDialogArea(Composite parent) {
 		Composite composite = (Composite) super.createDialogArea(parent);
-		getShell()
-				.setText(
-						org.unicase.ui.componentDiagram.part.Messages.ModelElementChooserDialog_SelectModelElementTitle);
+		getShell().setText(
+			org.unicase.ui.componentDiagram.part.Messages.ModelElementChooserDialog_SelectModelElementTitle);
 		createModelBrowser(composite);
 		return composite;
 	}
@@ -105,8 +103,7 @@ public class ModelElementChooserDialog extends Dialog {
 	 * @generated
 	 */
 	private void createModelBrowser(Composite composite) {
-		myTreeViewer = new TreeViewer(composite, SWT.SINGLE | SWT.H_SCROLL
-				| SWT.V_SCROLL | SWT.BORDER);
+		myTreeViewer = new TreeViewer(composite, SWT.SINGLE | SWT.H_SCROLL | SWT.V_SCROLL | SWT.BORDER);
 		GridData layoutData = new GridData(GridData.FILL_BOTH);
 		layoutData.heightHint = 300;
 		layoutData.widthHint = 300;
@@ -145,8 +142,7 @@ public class ModelElementChooserDialog extends Dialog {
 	 */
 	public int open() {
 		int result = super.open();
-		for (Iterator it = myEditingDomain.getResourceSet().getResources()
-				.iterator(); it.hasNext();) {
+		for (Iterator it = myEditingDomain.getResourceSet().getResources().iterator(); it.hasNext();) {
 			Resource resource = (Resource) it.next();
 			resource.unload();
 		}
@@ -157,8 +153,7 @@ public class ModelElementChooserDialog extends Dialog {
 	/**
 	 * @generated
 	 */
-	private class ModelElementsTreeContentProvider implements
-			ITreeContentProvider {
+	private class ModelElementsTreeContentProvider implements ITreeContentProvider {
 
 		/**
 		 * @generated
@@ -169,15 +164,14 @@ public class ModelElementChooserDialog extends Dialog {
 		 * @generated
 		 */
 		private AdapterFactoryContentProvider myAdapterFctoryContentProvier = new AdapterFactoryContentProvider(
-				org.unicase.ui.componentDiagram.part.ModelDiagramEditorPlugin
-						.getInstance().getItemProvidersAdapterFactory());
+			org.unicase.ui.componentDiagram.part.ModelDiagramEditorPlugin.getInstance()
+				.getItemProvidersAdapterFactory());
 
 		/**
 		 * @generated
 		 */
 		public Object[] getChildren(Object parentElement) {
-			Object[] result = myWorkbenchContentProvider
-					.getChildren(parentElement);
+			Object[] result = myWorkbenchContentProvider.getChildren(parentElement);
 			if (result != null && result.length > 0) {
 				return result;
 			}
@@ -186,16 +180,12 @@ public class ModelElementChooserDialog extends Dialog {
 				IPath resourcePath = modelFile.getFullPath();
 				ResourceSet resourceSet = myEditingDomain.getResourceSet();
 				try {
-					Resource modelResource = resourceSet.getResource(URI
-							.createPlatformResourceURI(resourcePath.toString(),
-									true), true);
-					return myAdapterFctoryContentProvier
-							.getChildren(modelResource);
+					Resource modelResource = resourceSet.getResource(URI.createPlatformResourceURI(resourcePath
+						.toString(), true), true);
+					return myAdapterFctoryContentProvier.getChildren(modelResource);
 				} catch (WrappedException e) {
-					org.unicase.ui.componentDiagram.part.ModelDiagramEditorPlugin
-							.getInstance()
-							.logError(
-									"Unable to load resource: " + resourcePath.toString(), e); //$NON-NLS-1$
+					org.unicase.ui.componentDiagram.part.ModelDiagramEditorPlugin.getInstance().logError(
+						"Unable to load resource: " + resourcePath.toString(), e); //$NON-NLS-1$
 				}
 				return Collections.EMPTY_LIST.toArray();
 			}
@@ -212,11 +202,9 @@ public class ModelElementChooserDialog extends Dialog {
 			}
 			if (element instanceof EObject) {
 				EObject eObject = (EObject) element;
-				if (eObject.eContainer() == null
-						&& eObject.eResource().getURI().isFile()) {
+				if (eObject.eContainer() == null && eObject.eResource().getURI().isFile()) {
 					String path = eObject.eResource().getURI().path();
-					return ResourcesPlugin.getWorkspace().getRoot()
-							.getFileForLocation(new Path(path));
+					return ResourcesPlugin.getWorkspace().getRoot().getFileForLocation(new Path(path));
 				}
 				return myAdapterFctoryContentProvier.getParent(eObject);
 			}
@@ -231,15 +219,14 @@ public class ModelElementChooserDialog extends Dialog {
 				return isValidModelFile((IFile) element);
 			}
 			return myWorkbenchContentProvider.hasChildren(element)
-					|| myAdapterFctoryContentProvier.hasChildren(element);
+				|| myAdapterFctoryContentProvier.hasChildren(element);
 		}
 
 		/**
 		 * @generated
 		 */
 		public Object[] getElements(Object inputElement) {
-			Object[] elements = myWorkbenchContentProvider
-					.getElements(inputElement);
+			Object[] elements = myWorkbenchContentProvider.getElements(inputElement);
 			return elements;
 		}
 
@@ -256,8 +243,7 @@ public class ModelElementChooserDialog extends Dialog {
 		 */
 		public void inputChanged(Viewer viewer, Object oldInput, Object newInput) {
 			myWorkbenchContentProvider.inputChanged(viewer, oldInput, newInput);
-			myAdapterFctoryContentProvier.inputChanged(viewer, oldInput,
-					newInput);
+			myAdapterFctoryContentProvier.inputChanged(viewer, oldInput, newInput);
 		}
 
 	}
@@ -276,16 +262,15 @@ public class ModelElementChooserDialog extends Dialog {
 		 * @generated
 		 */
 		private AdapterFactoryLabelProvider myAdapterFactoryLabelProvider = new AdapterFactoryLabelProvider(
-				org.unicase.ui.componentDiagram.part.ModelDiagramEditorPlugin
-						.getInstance().getItemProvidersAdapterFactory());
+			org.unicase.ui.componentDiagram.part.ModelDiagramEditorPlugin.getInstance()
+				.getItemProvidersAdapterFactory());
 
 		/**
 		 * @generated
 		 */
 		public Image getImage(Object element) {
 			Image result = myWorkbenchLabelProvider.getImage(element);
-			return result != null ? result : myAdapterFactoryLabelProvider
-					.getImage(element);
+			return result != null ? result : myAdapterFactoryLabelProvider.getImage(element);
 		}
 
 		/**
@@ -293,8 +278,7 @@ public class ModelElementChooserDialog extends Dialog {
 		 */
 		public String getText(Object element) {
 			String result = myWorkbenchLabelProvider.getText(element);
-			return result != null && result.length() > 0 ? result
-					: myAdapterFactoryLabelProvider.getText(element);
+			return result != null && result.length() > 0 ? result : myAdapterFactoryLabelProvider.getText(element);
 		}
 
 		/**
@@ -318,8 +302,7 @@ public class ModelElementChooserDialog extends Dialog {
 		 */
 		public boolean isLabelProperty(Object element, String property) {
 			return myWorkbenchLabelProvider.isLabelProperty(element, property)
-					|| myAdapterFactoryLabelProvider.isLabelProperty(element,
-							property);
+				|| myAdapterFactoryLabelProvider.isLabelProperty(element, property);
 		}
 
 		/**
@@ -340,8 +323,7 @@ public class ModelElementChooserDialog extends Dialog {
 		/**
 		 * @generated
 		 */
-		public boolean select(Viewer viewer, Object parentElement,
-				Object element) {
+		public boolean select(Viewer viewer, Object parentElement, Object element) {
 			if (element instanceof IContainer) {
 				return true;
 			}
@@ -364,32 +346,21 @@ public class ModelElementChooserDialog extends Dialog {
 		 */
 		public void selectionChanged(SelectionChangedEvent event) {
 			if (event.getSelection() instanceof IStructuredSelection) {
-				IStructuredSelection selection = (IStructuredSelection) event
-						.getSelection();
+				IStructuredSelection selection = (IStructuredSelection) event.getSelection();
 				if (selection.size() == 1) {
 					Object selectedElement = selection.getFirstElement();
 					if (selectedElement instanceof IWrapperItemProvider) {
-						selectedElement = ((IWrapperItemProvider) selectedElement)
-								.getValue();
+						selectedElement = ((IWrapperItemProvider) selectedElement).getValue();
 					}
 					if (selectedElement instanceof FeatureMap.Entry) {
-						selectedElement = ((FeatureMap.Entry) selectedElement)
-								.getValue();
+						selectedElement = ((FeatureMap.Entry) selectedElement).getValue();
 					}
 					if (selectedElement instanceof EObject) {
 						EObject selectedModelElement = (EObject) selectedElement;
-						setOkButtonEnabled(ViewService
-								.getInstance()
-								.provides(
-										Node.class,
-										new EObjectAdapter(selectedModelElement),
-										myView,
-										null,
-										ViewUtil.APPEND,
-										true,
-										org.unicase.ui.componentDiagram.part.ModelDiagramEditorPlugin.DIAGRAM_PREFERENCES_HINT));
-						mySelectedModelElementURI = EcoreUtil
-								.getURI(selectedModelElement);
+						setOkButtonEnabled(ViewService.getInstance().provides(Node.class,
+							new EObjectAdapter(selectedModelElement), myView, null, ViewUtil.APPEND, true,
+							org.unicase.ui.componentDiagram.part.ModelDiagramEditorPlugin.DIAGRAM_PREFERENCES_HINT));
+						mySelectedModelElementURI = EcoreUtil.getURI(selectedModelElement);
 						return;
 					}
 				}

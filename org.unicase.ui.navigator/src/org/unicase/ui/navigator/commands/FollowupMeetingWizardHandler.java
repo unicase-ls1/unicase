@@ -11,17 +11,13 @@ import org.eclipse.ui.handlers.HandlerUtil;
 import org.unicase.ui.navigator.wizards.FollowupMeetingWizard;
 
 /**
- * @author naughton
- *
- *         This is the handler for "Follow-up Meeting" context menu command.
- *         The command is only shown on Meetings. The handler initializes
- *         and shows the FollowupMeetingWizard
+ * @author naughton This is the handler for "Follow-up Meeting" context menu command. The command is only shown on
+ *         Meetings. The handler initializes and shows the FollowupMeetingWizard
  */
-public class FollowupMeetingWizardHandler extends AbstractHandler implements
-		IHandler {
+public class FollowupMeetingWizardHandler extends AbstractHandler implements IHandler {
 
 	private static final String WIZARD_TITLE = "Create follow-up meeting";
-	
+
 	/**
 	 * . ({@inheritDoc})
 	 */
@@ -32,12 +28,10 @@ public class FollowupMeetingWizardHandler extends AbstractHandler implements
 		IStructuredSelection ssel;
 		if (selection != null && selection instanceof IStructuredSelection) {
 			ssel = (IStructuredSelection) selection;
-			wizard.init(HandlerUtil.getActiveWorkbenchWindow(event)
-					.getWorkbench(), ssel);
+			wizard.init(HandlerUtil.getActiveWorkbenchWindow(event).getWorkbench(), ssel);
 		}
 
-		WizardDialog dialog = new WizardDialog(HandlerUtil
-				.getActiveShell(event), wizard);
+		WizardDialog dialog = new WizardDialog(HandlerUtil.getActiveShell(event), wizard);
 		wizard.setWindowTitle(WIZARD_TITLE);
 		dialog.create();
 		dialog.open();

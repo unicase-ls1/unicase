@@ -14,8 +14,7 @@ import org.unicase.model.requirement.UseCase;
 /**
  * @generated
  */
-public class ActorParticipatedUseCasesReorientCommand extends
-		EditElementCommand {
+public class ActorParticipatedUseCasesReorientCommand extends EditElementCommand {
 
 	/**
 	 * @generated
@@ -40,8 +39,7 @@ public class ActorParticipatedUseCasesReorientCommand extends
 	/**
 	 * @generated
 	 */
-	public ActorParticipatedUseCasesReorientCommand(
-			ReorientReferenceRelationshipRequest request) {
+	public ActorParticipatedUseCasesReorientCommand(ReorientReferenceRelationshipRequest request) {
 		super(request.getLabel(), null, request);
 		reorientDirection = request.getDirection();
 		referenceOwner = request.getReferenceOwner();
@@ -73,8 +71,7 @@ public class ActorParticipatedUseCasesReorientCommand extends
 			return false;
 		}
 		return org.unicase.ui.usecaseDiagram.edit.policies.ModelBaseItemSemanticEditPolicy.LinkConstraints
-				.canExistActorParticipatedUseCases_3001(getNewSource(),
-						getOldTarget());
+			.canExistActorParticipatedUseCases_3001(getNewSource(), getOldTarget());
 	}
 
 	/**
@@ -85,18 +82,15 @@ public class ActorParticipatedUseCasesReorientCommand extends
 			return false;
 		}
 		return org.unicase.ui.usecaseDiagram.edit.policies.ModelBaseItemSemanticEditPolicy.LinkConstraints
-				.canExistActorParticipatedUseCases_3001(getOldSource(),
-						getNewTarget());
+			.canExistActorParticipatedUseCases_3001(getOldSource(), getNewTarget());
 	}
 
 	/**
 	 * @generated
 	 */
-	protected CommandResult doExecuteWithResult(IProgressMonitor monitor,
-			IAdaptable info) throws ExecutionException {
+	protected CommandResult doExecuteWithResult(IProgressMonitor monitor, IAdaptable info) throws ExecutionException {
 		if (!canExecute()) {
-			throw new ExecutionException(
-					"Invalid arguments in reorient link command"); //$NON-NLS-1$
+			throw new ExecutionException("Invalid arguments in reorient link command"); //$NON-NLS-1$
 		}
 		if (reorientDirection == ReorientRelationshipRequest.REORIENT_SOURCE) {
 			return reorientSource();

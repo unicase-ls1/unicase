@@ -1,7 +1,7 @@
 /**
  * <copyright> Copyright (c) 2008 Jonas Helming, Maximilian Koegel. All rights reserved. This program and the
  * accompanying materials are made available under the terms of the Eclipse Public License v1.0 which accompanies this
- * distribution, and is available at http://www.eclipse.org/legal/epl-v10.html </copyright> $Id$
+ * distribution, and is available at http://www.eclipse.org/legal/epl-v10.html </copyright>
  */
 package org.unicase.model.meeting;
 
@@ -18,18 +18,17 @@ import org.unicase.model.task.WorkItem;
  */
 public interface WorkItemMeetingSection extends MeetingSection {
 	/**
-	 * Returns the value of the '<em><b>Included Work Items</b></em>' reference list.
-	 * The list contents are of type {@link org.unicase.model.task.WorkItem}.
-	 * <!-- begin-user-doc -->
+	 * Returns the value of the '<em><b>Included Work Items</b></em>' reference list. The list contents are of type
+	 * {@link org.unicase.model.task.WorkItem}. <!-- begin-user-doc -->
 	 * <p>
 	 * If the meaning of the '<em>Included Work Items</em>' reference list isn't clear, there really should be more of a
 	 * description here...
 	 * </p>
 	 * <!-- end-user-doc -->
+	 * 
 	 * @return the value of the '<em>Included Work Items</em>' reference list.
 	 * @see org.unicase.model.meeting.MeetingPackage#getWorkItemMeetingSection_IncludedWorkItems()
-	 * @model keys="identifier"
-	 *        annotation="org.unicase.ui.meeditor priority='10.0' position='right'"
+	 * @model keys="identifier" annotation="org.unicase.ui.meeditor priority='10.0' position='right'"
 	 * @generated
 	 */
 	EList<WorkItem> getIncludedWorkItems();

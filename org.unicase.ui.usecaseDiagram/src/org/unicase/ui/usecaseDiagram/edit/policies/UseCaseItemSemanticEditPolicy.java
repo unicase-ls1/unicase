@@ -11,9 +11,8 @@ import org.eclipse.gmf.runtime.notation.View;
 /**
  * @generated
  */
-public class UseCaseItemSemanticEditPolicy
-		extends
-		org.unicase.ui.usecaseDiagram.edit.policies.ModelBaseItemSemanticEditPolicy {
+public class UseCaseItemSemanticEditPolicy extends
+	org.unicase.ui.usecaseDiagram.edit.policies.ModelBaseItemSemanticEditPolicy {
 
 	/**
 	 * @generated
@@ -34,33 +33,31 @@ public class UseCaseItemSemanticEditPolicy
 	 */
 	protected Command getCreateRelationshipCommand(CreateRelationshipRequest req) {
 		Command command = req.getTarget() == null ? getStartCreateRelationshipCommand(req)
-				: getCompleteCreateRelationshipCommand(req);
-		return command != null ? command : super
-				.getCreateRelationshipCommand(req);
+			: getCompleteCreateRelationshipCommand(req);
+		return command != null ? command : super.getCreateRelationshipCommand(req);
 	}
 
 	/**
 	 * @generated
 	 */
-	protected Command getStartCreateRelationshipCommand(
-			CreateRelationshipRequest req) {
+	protected Command getStartCreateRelationshipCommand(CreateRelationshipRequest req) {
 		if (org.unicase.ui.usecaseDiagram.providers.ModelElementTypes.ActorParticipatedUseCases_3001 == req
-				.getElementType()) {
+			.getElementType()) {
 			return null;
 		}
 		if (org.unicase.ui.usecaseDiagram.providers.ModelElementTypes.ActorInitiatedUseCases_3002 == req
-				.getElementType()) {
+			.getElementType()) {
 			return null;
 		}
 		if (org.unicase.ui.usecaseDiagram.providers.ModelElementTypes.UseCaseIncludedUseCases_3003 == req
-				.getElementType()) {
+			.getElementType()) {
 			return getGEFWrapper(new org.unicase.ui.usecaseDiagram.edit.commands.UseCaseIncludedUseCasesCreateCommand(
-					req, req.getSource(), req.getTarget()));
+				req, req.getSource(), req.getTarget()));
 		}
 		if (org.unicase.ui.usecaseDiagram.providers.ModelElementTypes.UseCaseExtendedUseCases_3004 == req
-				.getElementType()) {
+			.getElementType()) {
 			return getGEFWrapper(new org.unicase.ui.usecaseDiagram.edit.commands.UseCaseExtendedUseCasesCreateCommand(
-					req, req.getSource(), req.getTarget()));
+				req, req.getSource(), req.getTarget()));
 		}
 		return null;
 	}
@@ -68,52 +65,50 @@ public class UseCaseItemSemanticEditPolicy
 	/**
 	 * @generated
 	 */
-	protected Command getCompleteCreateRelationshipCommand(
-			CreateRelationshipRequest req) {
+	protected Command getCompleteCreateRelationshipCommand(CreateRelationshipRequest req) {
 		if (org.unicase.ui.usecaseDiagram.providers.ModelElementTypes.ActorParticipatedUseCases_3001 == req
-				.getElementType()) {
+			.getElementType()) {
 			return getGEFWrapper(new org.unicase.ui.usecaseDiagram.edit.commands.ActorParticipatedUseCasesCreateCommand(
-					req, req.getSource(), req.getTarget()));
+				req, req.getSource(), req.getTarget()));
 		}
 		if (org.unicase.ui.usecaseDiagram.providers.ModelElementTypes.ActorInitiatedUseCases_3002 == req
-				.getElementType()) {
+			.getElementType()) {
 			return getGEFWrapper(new org.unicase.ui.usecaseDiagram.edit.commands.ActorInitiatedUseCasesCreateCommand(
-					req, req.getSource(), req.getTarget()));
+				req, req.getSource(), req.getTarget()));
 		}
 		if (org.unicase.ui.usecaseDiagram.providers.ModelElementTypes.UseCaseIncludedUseCases_3003 == req
-				.getElementType()) {
+			.getElementType()) {
 			return getGEFWrapper(new org.unicase.ui.usecaseDiagram.edit.commands.UseCaseIncludedUseCasesCreateCommand(
-					req, req.getSource(), req.getTarget()));
+				req, req.getSource(), req.getTarget()));
 		}
 		if (org.unicase.ui.usecaseDiagram.providers.ModelElementTypes.UseCaseExtendedUseCases_3004 == req
-				.getElementType()) {
+			.getElementType()) {
 			return getGEFWrapper(new org.unicase.ui.usecaseDiagram.edit.commands.UseCaseExtendedUseCasesCreateCommand(
-					req, req.getSource(), req.getTarget()));
+				req, req.getSource(), req.getTarget()));
 		}
 		return null;
 	}
 
 	/**
-	 * Returns command to reorient EReference based link. New link target or source
-	 * should be the domain model element associated with this node.
+	 * Returns command to reorient EReference based link. New link target or source should be the domain model element
+	 * associated with this node.
 	 * 
 	 * @generated
 	 */
-	protected Command getReorientReferenceRelationshipCommand(
-			ReorientReferenceRelationshipRequest req) {
+	protected Command getReorientReferenceRelationshipCommand(ReorientReferenceRelationshipRequest req) {
 		switch (getVisualID(req)) {
 		case org.unicase.ui.usecaseDiagram.edit.parts.ActorParticipatedUseCasesEditPart.VISUAL_ID:
 			return getGEFWrapper(new org.unicase.ui.usecaseDiagram.edit.commands.ActorParticipatedUseCasesReorientCommand(
-					req));
+				req));
 		case org.unicase.ui.usecaseDiagram.edit.parts.ActorInitiatedUseCasesEditPart.VISUAL_ID:
 			return getGEFWrapper(new org.unicase.ui.usecaseDiagram.edit.commands.ActorInitiatedUseCasesReorientCommand(
-					req));
+				req));
 		case org.unicase.ui.usecaseDiagram.edit.parts.UseCaseIncludedUseCasesEditPart.VISUAL_ID:
 			return getGEFWrapper(new org.unicase.ui.usecaseDiagram.edit.commands.UseCaseIncludedUseCasesReorientCommand(
-					req));
+				req));
 		case org.unicase.ui.usecaseDiagram.edit.parts.UseCaseExtendedUseCasesEditPart.VISUAL_ID:
 			return getGEFWrapper(new org.unicase.ui.usecaseDiagram.edit.commands.UseCaseExtendedUseCasesReorientCommand(
-					req));
+				req));
 		}
 		return super.getReorientReferenceRelationshipCommand(req);
 	}

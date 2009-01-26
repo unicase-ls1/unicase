@@ -1,8 +1,7 @@
 /**
- * <copyright> Copyright (c) 2008 Jonas Helming, Maximilian Koegel. All rights reserved. This program and the accompanying materials are made available under the terms of the Eclipse Public License v1.0 which accompanies this distribution, and is available at http://www.eclipse.org/legal/epl-v10.html
- * </copyright>
- *
- * $Id$
+ * <copyright> Copyright (c) 2008 Jonas Helming, Maximilian Koegel. All rights reserved. This program and the
+ * accompanying materials are made available under the terms of the Eclipse Public License v1.0 which accompanies this
+ * distribution, and is available at http://www.eclipse.org/legal/epl-v10.html </copyright>
  */
 package org.unicase.emfstore.update;
 
@@ -27,10 +26,8 @@ import org.unicase.emfstore.update.steps.UpdateStepWorkPackageDueDate;
 
 /**
  * @author schroech
- *
  */
 public class UpdateController {
-
 
 	private List<UpdateStep> updateSteps;
 	private List<UpdateStep> necessaryUpdateSteps;
@@ -58,10 +55,8 @@ public class UpdateController {
 		return updateSteps;
 	}
 
-
 	/**
-	 * @param updateSteps 
-	 * A list of all available update steps
+	 * @param updateSteps A list of all available update steps
 	 */
 	public void setUpdateSteps(List<UpdateStep> updateSteps) {
 		this.updateSteps = updateSteps;
@@ -70,63 +65,64 @@ public class UpdateController {
 	/**
 	 * Constructor.
 	 */
-	public UpdateController(){
+	public UpdateController() {
 		updateSteps = new ArrayList<UpdateStep>();
 		necessaryUpdateSteps = new ArrayList<UpdateStep>();
 
-		//Model reset here: cannot run these updaters without old model
-		//Update from Version 0.0.4 to 0.0.5
-		//		updateSteps.add(new UpdateStepRenameFacilitator());
-		//		updateSteps.add(new UpdateStepRemoveAnnotationInstances());
-		//		updateSteps.add(new UpdateStepRemoveBugResolution());
-		//		updateSteps.add(new UpdateStepRemoveRefiningIssues());
-		//		updateSteps.add(new UpdateStepRemoveStepsToReproduce());
-		//		updateSteps.add(new UpdateStepRenameAssignedTo());
-		//		updateSteps.add(new UpdateStepRenameActionItemAssignedTo());
-		//		updateSteps.add(new UpdateStepRenamePackages());
-		//		updateSteps.add(new UpdateStepRemoveOrgUnit());
+		// Model reset here: cannot run these updaters without old model
+		// Update from Version 0.0.4 to 0.0.5
+		// updateSteps.add(new UpdateStepRenameFacilitator());
+		// updateSteps.add(new UpdateStepRemoveAnnotationInstances());
+		// updateSteps.add(new UpdateStepRemoveBugResolution());
+		// updateSteps.add(new UpdateStepRemoveRefiningIssues());
+		// updateSteps.add(new UpdateStepRemoveStepsToReproduce());
+		// updateSteps.add(new UpdateStepRenameAssignedTo());
+		// updateSteps.add(new UpdateStepRenameActionItemAssignedTo());
+		// updateSteps.add(new UpdateStepRenamePackages());
+		// updateSteps.add(new UpdateStepRemoveOrgUnit());
 
-		//Model reset here: cannot run these updaters without old model
-		//Update from Version 0.0.5 to 0.0.6
-		//		updateSteps.add(new UpdateStepRemoveAssociationTypeDependency());
-		//		updateSteps.add(new UpdateStepRenameAssociationTypeLiterals());
+		// Model reset here: cannot run these updaters without old model
+		// Update from Version 0.0.5 to 0.0.6
+		// updateSteps.add(new UpdateStepRemoveAssociationTypeDependency());
+		// updateSteps.add(new UpdateStepRenameAssociationTypeLiterals());
 		updateSteps.add(new UpdateStepWorkPackageDueDate());
 	}
 
-
 	/**
 	 * Update the server space.
+	 * 
 	 * @param serverSpace the server space to update
-	 * @param versionInformation the current version info 
-	 * @throws FatalEmfStoreException
-	 * Throws an {@link FatalEmfStoreException} if the {@link Resource} could not be saved
+	 * @param versionInformation the current version info
+	 * @throws FatalEmfStoreException Throws an {@link FatalEmfStoreException} if the {@link Resource} could not be
+	 *             saved
 	 */
-	public void updateServerSpace(ServerSpace serverSpace, VersionInfo versionInformation) throws FatalEmfStoreException{
+	public void updateServerSpace(ServerSpace serverSpace, VersionInfo versionInformation)
+		throws FatalEmfStoreException {
 
 		Version sourceEMFStoreVersion = versionInformation.getEmfStoreVersion();
 		Version targetEMFStoreVersion = EmfStoreImpl.getModelVersion();
 
-		Collections.sort(getUpdateSteps(), new Comparator<UpdateStep>(){
+		Collections.sort(getUpdateSteps(), new Comparator<UpdateStep>() {
 			public int compare(UpdateStep arg0, UpdateStep arg1) {
 				int compare = arg0.getSourceVersion().compareTo(arg1.getSourceVersion());
 				if (compare == 0) {
 					compare = arg0.getTargetVersion().compareTo(arg1.getTargetVersion());
 				}
-				return compare; 
+				return compare;
 			}
 		});
 
 		UpdateStep previousUpdateStep = null;
 
 		for (UpdateStep updateStep : getUpdateSteps()) {
-			// if target > emf store source 
+			// if target > emf store source
 			if (updateStep.getTargetVersion().compareTo(sourceEMFStoreVersion) > 0) {
-				//if target < emf store target 
+				// if target < emf store target
 				if (updateStep.getTargetVersion().compareTo(targetEMFStoreVersion) <= 0) {
 					if (updateStep instanceof ModelCleanupUpdateStep) {
 						StringBuilder stringBuilder = new StringBuilder();
-						stringBuilder.append("Your model version is outdated!\n" 
-								+ "Please start the emf store version");
+						stringBuilder
+							.append("Your model version is outdated!\n" + "Please start the emf store version");
 						stringBuilder.append(updateStep.getSourceVersion());
 						stringBuilder.append("and perform all available ");
 						stringBuilder.append("updates before loading the model with emf store version ");
@@ -135,10 +131,10 @@ public class UpdateController {
 						String updateMessage = stringBuilder.toString();
 						System.out.println(updateMessage);
 						throw new FatalEmfStoreException(updateMessage);
-					}else{
+					} else {
 						checkForMissingSteps(previousUpdateStep, updateStep);
 						getNecessaryUpdateSteps().add(updateStep);
-						previousUpdateStep=updateStep;
+						previousUpdateStep = updateStep;
 					}
 				}
 			}
@@ -146,16 +142,13 @@ public class UpdateController {
 
 		int numberOfUpdatedItems = 0;
 
-
-		if (getNecessaryUpdateSteps().size() > 0) {	
+		if (getNecessaryUpdateSteps().size() > 0) {
 			System.out.println("Starting update…");
 			for (ProjectHistory projectHistory : serverSpace.getProjects()) {
 				for (UpdateStep updateStep : getNecessaryUpdateSteps()) {
 					System.out.println("Performing update: " + updateStep.getTitle());
-					System.out.println("Updating from version " 
-							+ updateStep.getSourceVersion() 
-							+ " to version " 
-							+ updateStep.getTargetVersion());
+					System.out.println("Updating from version " + updateStep.getSourceVersion() + " to version "
+						+ updateStep.getTargetVersion());
 
 					numberOfUpdatedItems += updateStep.updateProjectHistory(projectHistory);
 				}
@@ -163,7 +156,7 @@ public class UpdateController {
 		}
 
 		versionInformation.setEmfStoreVersion(EmfStoreImpl.getModelVersion());
-		
+
 		try {
 			serverSpace.eResource().save(null);
 		} catch (IOException e) {
@@ -179,12 +172,12 @@ public class UpdateController {
 				System.out.println("Successfully updated " + numberOfUpdatedItems + " items");
 			} catch (IOException e) {
 				throw new FatalEmfStoreException(StorageException.NOSAVE, e);
-			}	
+			}
 		}
 	}
 
 	private void checkForMissingSteps(UpdateStep previousUpdateStep, UpdateStep updateStep) {
-		if (previousUpdateStep!=null && !previousUpdateStep.getSourceVersion().equals(updateStep.getSourceVersion())) {
+		if (previousUpdateStep != null && !previousUpdateStep.getSourceVersion().equals(updateStep.getSourceVersion())) {
 			if (previousUpdateStep.getTargetVersion().equals(updateStep.getSourceVersion())) {
 				StringBuilder stringBuilder = new StringBuilder();
 				stringBuilder.append("Explicit update step from ");

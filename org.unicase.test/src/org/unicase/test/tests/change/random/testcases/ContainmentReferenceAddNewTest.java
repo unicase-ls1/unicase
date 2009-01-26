@@ -14,26 +14,20 @@ import org.unicase.ui.test.TestProjectParmeters;
 import org.unicase.workspace.ProjectSpace;
 
 /**
- * 
- * This test takes a random ME A; Takes randomly one of its containment
- * references contRef; Creates a model element of corresponding type; adds newly
- * created ME to A.contRef; extracts changes on test project and applies them on
- * compare project; Test succeeds when test and compare projects are identical.
- * 
- * 
+ * This test takes a random ME A; Takes randomly one of its containment references contRef; Creates a model element of
+ * corresponding type; adds newly created ME to A.contRef; extracts changes on test project and applies them on compare
+ * project; Test succeeds when test and compare projects are identical.
  * 
  * @author Hodaie
- * 
  */
 public class ContainmentReferenceAddNewTest extends ChangePackageTest {
-
 
 	private ModelElement me;
 	private EReference refToChange;
 	private EObject newInstance;
-	
-	public ContainmentReferenceAddNewTest(ProjectSpace testProjectSpace,
-			String testName, TestProjectParmeters testProjParams) {
+
+	public ContainmentReferenceAddNewTest(ProjectSpace testProjectSpace, String testName,
+		TestProjectParmeters testProjParams) {
 		super(testProjectSpace, testName, testProjParams);
 
 	}
@@ -42,7 +36,7 @@ public class ContainmentReferenceAddNewTest extends ChangePackageTest {
 	public void runTest() {
 
 		TransactionalEditingDomain domain = TransactionalEditingDomain.Registry.INSTANCE
-				.getEditingDomain("org.unicase.EditingDomain");
+			.getEditingDomain("org.unicase.EditingDomain");
 		domain.getCommandStack().execute(new RecordingCommand(domain) {
 
 			@Override
@@ -55,7 +49,7 @@ public class ContainmentReferenceAddNewTest extends ChangePackageTest {
 	}
 
 	@SuppressWarnings("unchecked")
-	private void doAddTest()  {
+	private void doAddTest() {
 
 		me = ChangeTestHelper.getRandomME(getTestProject());
 		refToChange = ChangeTestHelper.getRandomContainmentRef(me);
@@ -64,7 +58,7 @@ public class ContainmentReferenceAddNewTest extends ChangePackageTest {
 			me = ChangeTestHelper.getRandomME(getTestProject());
 			refToChange = ChangeTestHelper.getRandomContainmentRef(me);
 		}
-		
+
 		EClass refType = refToChange.getEReferenceType();
 
 		newInstance = ChangeTestHelper.createInstance(refType);
@@ -76,27 +70,25 @@ public class ContainmentReferenceAddNewTest extends ChangePackageTest {
 		Object object = me.eGet(refToChange);
 		if (refToChange.isMany()) {
 			EList<EObject> eList = (EList<EObject>) object;
-			
+
 			if (eList == null) {
-				throw new IllegalStateException("Null list return for feature "
-						+ refToChange.getName() + " on " + me.getName());
-				
-				
+				throw new IllegalStateException("Null list return for feature " + refToChange.getName() + " on "
+					+ me.getName());
+
 			} else {
 				eList.add(newInstance);
 			}
-			
+
 		} else {
 			me.eSet(refToChange, newInstance);
 		}
-		
-	
+
 	}
 
 	public int getExpectedNumOfChanges() {
-		//1. a CreateDeleteOp for new ME
-		//2. a MultiRefOp for parent.
-		return 2; 
+		// 1. a CreateDeleteOp for new ME
+		// 2. a MultiRefOp for parent.
+		return 2;
 	}
 
 	@Override

@@ -1,8 +1,7 @@
 /**
- * <copyright> Copyright (c) 2008 Jonas Helming, Maximilian Koegel. All rights reserved. This program and the accompanying materials are made available under the terms of the Eclipse Public License v1.0 which accompanies this distribution, and is available at http://www.eclipse.org/legal/epl-v10.html
- * </copyright>
- *
- * $Id$
+ * <copyright> Copyright (c) 2008 Jonas Helming, Maximilian Koegel. All rights reserved. This program and the
+ * accompanying materials are made available under the terms of the Eclipse Public License v1.0 which accompanies this
+ * distribution, and is available at http://www.eclipse.org/legal/epl-v10.html </copyright>
  */
 package org.unicase.ui.common.filter;
 
@@ -18,7 +17,6 @@ import org.unicase.model.task.WorkItem;
  * A filter to filter workitems lists to a certain user.
  * 
  * @author helming
- * 
  */
 public class UserFilter extends ViewerFilter {
 
@@ -27,8 +25,7 @@ public class UserFilter extends ViewerFilter {
 	/**
 	 * default constructor.
 	 * 
-	 * @param user
-	 *            The user on which workitems should be filtered
+	 * @param user The user on which workitems should be filtered
 	 */
 	public UserFilter(User user) {
 		this.user = user;
@@ -43,8 +40,7 @@ public class UserFilter extends ViewerFilter {
 			return true;
 		}
 		if (element instanceof WorkItem) {
-			EList<OrgUnit> participants = ((WorkItem) element)
-					.getParticipants();
+			EList<OrgUnit> participants = ((WorkItem) element).getParticipants();
 			for (OrgUnit orgUnit : participants) {
 				if (orgUnit.equals(user)) {
 					return true;
@@ -52,7 +48,7 @@ public class UserFilter extends ViewerFilter {
 			}
 			OrgUnit assignee = ((WorkItem) element).getAssignee();
 			if (assignee != null) {
-				return ((assignee.equals(user)));					
+				return ((assignee.equals(user)));
 			}
 
 		}

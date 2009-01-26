@@ -23,7 +23,7 @@ public class CommitTest extends RandomChangeTestCase {
 	private TransactionalEditingDomain domain;
 
 	public CommitTest(ProjectSpace testProjectSpace, String testName, TestProjectParmeters testProjParams,
-			List<RandomChangeTestCase> testCases) {
+		List<RandomChangeTestCase> testCases) {
 		super(testProjectSpace, testName, testProjParams);
 		this.testCases = testCases;
 		userSession = WorkspaceFactory.eINSTANCE.createUsersession();
@@ -38,54 +38,53 @@ public class CommitTest extends RandomChangeTestCase {
 
 	}
 
-//	@Override
-//	public void setTestProjectSpace(ProjectSpace testProjectSpace) {
-//
-//		super.setTestProjectSpace(testProjectSpace);
-//		try {
-//			userSession.logIn();
-//			domain = TransactionalEditingDomain.Registry.INSTANCE
-//					.getEditingDomain("org.unicase.EditingDomain");
-//			domain.getCommandStack().execute(new RecordingCommand(domain) {
-//				@Override
-//				protected void doExecute() {
-//					try {
-//						getTestProjectSpace().shareProject(userSession);
-//					} catch (EmfStoreException e) {
-//						// TODO Auto-generated catch block
-//						e.printStackTrace();
-//					}
-//				}
-//			});
-//
-//		} catch (AccessControlException e) {
-//			// TODO Auto-generated catch block
-//			e.printStackTrace();
-//		} catch (EmfStoreException e) {
-//			// TODO Auto-generated catch block
-//			e.printStackTrace();
-//		}
-//
-//	}
+	// @Override
+	// public void setTestProjectSpace(ProjectSpace testProjectSpace) {
+	//
+	// super.setTestProjectSpace(testProjectSpace);
+	// try {
+	// userSession.logIn();
+	// domain = TransactionalEditingDomain.Registry.INSTANCE
+	// .getEditingDomain("org.unicase.EditingDomain");
+	// domain.getCommandStack().execute(new RecordingCommand(domain) {
+	// @Override
+	// protected void doExecute() {
+	// try {
+	// getTestProjectSpace().shareProject(userSession);
+	// } catch (EmfStoreException e) {
+	// // TODO Auto-generated catch block
+	// e.printStackTrace();
+	// }
+	// }
+	// });
+	//
+	// } catch (AccessControlException e) {
+	// // TODO Auto-generated catch block
+	// e.printStackTrace();
+	// } catch (EmfStoreException e) {
+	// // TODO Auto-generated catch block
+	// e.printStackTrace();
+	// }
+	//
+	// }
 
-//	@Override
-//	public void setTestProject(Project testProject) {
-//		// TODO Auto-generated method stub
-//		super.setTestProject(testProject);
-//	}
+	// @Override
+	// public void setTestProject(Project testProject) {
+	// // TODO Auto-generated method stub
+	// super.setTestProject(testProject);
+	// }
 
 	@Override
 	public void runTest() {
-//		CompositeTest compoundTest = new CompositeTest(getTestProject(), "CompositeTest",
-//				getTestProjParams(), testCases);
-//		compoundTest.runTest();
+		// CompositeTest compoundTest = new CompositeTest(getTestProject(), "CompositeTest",
+		// getTestProjParams(), testCases);
+		// compoundTest.runTest();
 	}
 
 	@Override
 	public void outputResults(boolean outputToFile) {
 
-		final LogMessage logMessage = VersioningFactory.eINSTANCE
-				.createLogMessage();
+		final LogMessage logMessage = VersioningFactory.eINSTANCE.createLogMessage();
 		logMessage.setAuthor(userSession.getUsername());
 		logMessage.setDate(Calendar.getInstance().getTime());
 		logMessage.setMessage("some message");

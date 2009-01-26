@@ -4,10 +4,9 @@ import org.eclipse.draw2d.DelegatingLayout;
 
 /**
  * @author schroech
- *
  */
-public class CompositeDecoration extends ComposablePolygonDecoration{
-	
+public class CompositeDecoration extends ComposablePolygonDecoration {
+
 	/**
 	 * Default constructor.
 	 */

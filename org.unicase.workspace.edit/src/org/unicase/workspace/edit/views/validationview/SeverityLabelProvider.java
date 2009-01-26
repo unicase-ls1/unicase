@@ -10,7 +10,6 @@ import org.eclipse.ui.PlatformUI;
  * Label Provider to show the severity.
  * 
  * @author helming
- * 
  */
 public class SeverityLabelProvider extends ColumnLabelProvider {
 
@@ -33,8 +32,7 @@ public class SeverityLabelProvider extends ColumnLabelProvider {
 			default:
 				imageName = ISharedImages.IMG_OBJS_INFO_TSK;
 			}
-			return PlatformUI.getWorkbench().getSharedImages().getImage(
-					imageName);
+			return PlatformUI.getWorkbench().getSharedImages().getImage(imageName);
 
 		}
 		return super.getImage(element);

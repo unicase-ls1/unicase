@@ -11,14 +11,11 @@ import org.unicase.ui.test.TestProjectParmeters;
 import org.unicase.workspace.ProjectSpace;
 
 /**
- * 
- * This is a change package test. It creates randomly a ME A, changes one of its
- * non-containment references. The expected change package should contain two
- * operations - a create operation: created A - a change operation: either A.ref
- * changed to B or B.oppositeRef changed to A
+ * This is a change package test. It creates randomly a ME A, changes one of its non-containment references. The
+ * expected change package should contain two operations - a create operation: created A - a change operation: either
+ * A.ref changed to B or B.oppositeRef changed to A
  * 
  * @author Hodaie
- * 
  */
 public class CreateAndChangeRefTest extends ChangePackageTest {
 
@@ -27,8 +24,7 @@ public class CreateAndChangeRefTest extends ChangePackageTest {
 	private ModelElement meToReference;
 	private Object oldValueOfOppositeRef;
 
-	public CreateAndChangeRefTest(ProjectSpace testProjectSpace,
-			String testName, TestProjectParmeters testProjParams) {
+	public CreateAndChangeRefTest(ProjectSpace testProjectSpace, String testName, TestProjectParmeters testProjParams) {
 		super(testProjectSpace, testName, testProjParams);
 
 	}
@@ -43,21 +39,17 @@ public class CreateAndChangeRefTest extends ChangePackageTest {
 			refToChange = ChangeTestHelper.getRandomNonContainmentRef(me);
 		}
 
-		meToReference = ChangeTestHelper.getRandomMEofType(getTestProject(),
-				refToChange.getEReferenceType());
+		meToReference = ChangeTestHelper.getRandomMEofType(getTestProject(), refToChange.getEReferenceType());
 		// make a copy of old value of opposite reference for later inspection
 		// (see getExpectedNumOfChanges())
-		if (refToChange.getEOpposite() != null
-				&& refToChange.getEOpposite().getUpperBound() == 1
-				&& refToChange.isMany()) {
+		if (refToChange.getEOpposite() != null && refToChange.getEOpposite().getUpperBound() == 1
+			&& refToChange.isMany()) {
 
-			oldValueOfOppositeRef = meToReference.eGet(refToChange
-					.getEOpposite());
+			oldValueOfOppositeRef = meToReference.eGet(refToChange.getEOpposite());
 		}
-		
-		
+
 		TransactionalEditingDomain domain = TransactionalEditingDomain.Registry.INSTANCE
-				.getEditingDomain("org.unicase.EditingDomain");
+			.getEditingDomain("org.unicase.EditingDomain");
 
 		domain.getCommandStack().execute(new RecordingCommand(domain) {
 
@@ -89,8 +81,7 @@ public class CreateAndChangeRefTest extends ChangePackageTest {
 		// SimpleRefOp
 		int numOfOps = 2;
 
-		if (refToChange.getEOpposite() != null
-				&& refToChange.getEOpposite().getUpperBound() == 1) {
+		if (refToChange.getEOpposite() != null && refToChange.getEOpposite().getUpperBound() == 1) {
 			// why don't we test refToChange.getUpperBound() == 1 ?
 			// because even if refToChange for newly created model element has
 			// upper bound 1,
@@ -101,7 +92,7 @@ public class CreateAndChangeRefTest extends ChangePackageTest {
 				// because if both refToChange and its opposite have upper bound
 				// 1, then there is just one SingleRefOp to create. Hence number
 				// of operations is just 2.
-				
+
 				numOfOps = 3;
 			}
 

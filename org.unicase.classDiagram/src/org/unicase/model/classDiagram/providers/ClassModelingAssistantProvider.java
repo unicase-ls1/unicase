@@ -15,7 +15,6 @@ public class ClassModelingAssistantProvider extends ModelingAssistantProvider {
 
 	/**
 	 * @see org.eclipse.gmf.runtime.emf.ui.services.modelingassistant.ModelingAssistantProvider#getRelTypesForSREOnSource(org.eclipse.core.runtime.IAdaptable)
-	 * 
 	 * @param source The source element for which related elements should be shown
 	 * @return Class element types
 	 */
@@ -33,7 +32,6 @@ public class ClassModelingAssistantProvider extends ModelingAssistantProvider {
 
 	/**
 	 * @see org.eclipse.gmf.runtime.emf.ui.services.modelingassistant.ModelingAssistantProvider#getRelTypesForSREOnTarget(org.eclipse.core.runtime.IAdaptable)
-	 * 
 	 * @param target The target element for which related elements should be shown
 	 * @return Class element types
 	 */

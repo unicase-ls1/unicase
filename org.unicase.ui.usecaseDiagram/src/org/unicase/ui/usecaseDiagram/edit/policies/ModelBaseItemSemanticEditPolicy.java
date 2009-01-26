@@ -56,22 +56,18 @@ public class ModelBaseItemSemanticEditPolicy extends SemanticEditPolicy {
 	public static final String VISUAL_ID_KEY = "visual_id"; //$NON-NLS-1$
 
 	/**
-	 * Extended request data key to hold editpart visual id.
-	 * Add visual id of edited editpart to extended data of the request
-	 * so command switch can decide what kind of diagram element is being edited.
-	 * It is done in those cases when it's not possible to deduce diagram
-	 * element kind from domain element.
+	 * Extended request data key to hold editpart visual id. Add visual id of edited editpart to extended data of the
+	 * request so command switch can decide what kind of diagram element is being edited. It is done in those cases when
+	 * it's not possible to deduce diagram element kind from domain element.
 	 * 
 	 * @generated
 	 */
 	public Command getCommand(Request request) {
 		if (request instanceof ReconnectRequest) {
-			Object view = ((ReconnectRequest) request).getConnectionEditPart()
-					.getModel();
+			Object view = ((ReconnectRequest) request).getConnectionEditPart().getModel();
 			if (view instanceof View) {
-				Integer id = new Integer(
-						org.unicase.ui.usecaseDiagram.part.ModelVisualIDRegistry
-								.getVisualID((View) view));
+				Integer id = new Integer(org.unicase.ui.usecaseDiagram.part.ModelVisualIDRegistry
+					.getVisualID((View) view));
 				request.getExtendedData().put(VISUAL_ID_KEY, id);
 			}
 		}
@@ -95,39 +91,31 @@ public class ModelBaseItemSemanticEditPolicy extends SemanticEditPolicy {
 		IEditCommandRequest completedRequest = completeRequest(request);
 		Object editHelperContext = completedRequest.getEditHelperContext();
 		if (editHelperContext instanceof View
-				|| (editHelperContext instanceof IEditHelperContext && ((IEditHelperContext) editHelperContext)
-						.getEObject() instanceof View)) {
+			|| (editHelperContext instanceof IEditHelperContext && ((IEditHelperContext) editHelperContext)
+				.getEObject() instanceof View)) {
 			// no semantic commands are provided for pure design elements
 			return null;
 		}
 		if (editHelperContext == null) {
-			editHelperContext = ViewUtil
-					.resolveSemanticElement((View) getHost().getModel());
+			editHelperContext = ViewUtil.resolveSemanticElement((View) getHost().getModel());
 		}
-		IElementType elementType = ElementTypeRegistry.getInstance()
-				.getElementType(editHelperContext);
-		if (elementType == ElementTypeRegistry.getInstance().getType(
-				"org.eclipse.gmf.runtime.emf.type.core.default")) { //$NON-NLS-1$ 
+		IElementType elementType = ElementTypeRegistry.getInstance().getElementType(editHelperContext);
+		if (elementType == ElementTypeRegistry.getInstance().getType("org.eclipse.gmf.runtime.emf.type.core.default")) { //$NON-NLS-1$ 
 			elementType = null;
 		}
 		Command semanticCommand = getSemanticCommandSwitch(completedRequest);
 		if (semanticCommand != null) {
 			ICommand command = semanticCommand instanceof ICommandProxy ? ((ICommandProxy) semanticCommand)
-					.getICommand()
-					: new CommandProxy(semanticCommand);
-			completedRequest
-					.setParameter(
-							org.unicase.ui.usecaseDiagram.edit.helpers.ModelBaseEditHelper.EDIT_POLICY_COMMAND,
-							command);
+				.getICommand() : new CommandProxy(semanticCommand);
+			completedRequest.setParameter(
+				org.unicase.ui.usecaseDiagram.edit.helpers.ModelBaseEditHelper.EDIT_POLICY_COMMAND, command);
 		}
 		if (elementType != null) {
 			ICommand command = elementType.getEditCommand(completedRequest);
 			if (command != null) {
 				if (!(command instanceof CompositeTransactionalCommand)) {
-					TransactionalEditingDomain editingDomain = ((IGraphicalEditPart) getHost())
-							.getEditingDomain();
-					command = new CompositeTransactionalCommand(editingDomain,
-							command.getLabel()).compose(command);
+					TransactionalEditingDomain editingDomain = ((IGraphicalEditPart) getHost()).getEditingDomain();
+					command = new CompositeTransactionalCommand(editingDomain, command.getLabel()).compose(command);
 				}
 				semanticCommand = new ICommandProxy(command);
 			}
@@ -138,13 +126,11 @@ public class ModelBaseItemSemanticEditPolicy extends SemanticEditPolicy {
 		}
 		if (shouldProceed) {
 			if (completedRequest instanceof DestroyRequest) {
-				TransactionalEditingDomain editingDomain = ((IGraphicalEditPart) getHost())
-						.getEditingDomain();
-				Command deleteViewCommand = new ICommandProxy(
-						new DeleteCommand(editingDomain, (View) getHost()
-								.getModel()));
-				semanticCommand = semanticCommand == null ? deleteViewCommand
-						: semanticCommand.chain(deleteViewCommand);
+				TransactionalEditingDomain editingDomain = ((IGraphicalEditPart) getHost()).getEditingDomain();
+				Command deleteViewCommand = new ICommandProxy(new DeleteCommand(editingDomain, (View) getHost()
+					.getModel()));
+				semanticCommand = semanticCommand == null ? deleteViewCommand : semanticCommand
+					.chain(deleteViewCommand);
 			}
 			return semanticCommand;
 		}
@@ -247,16 +233,14 @@ public class ModelBaseItemSemanticEditPolicy extends SemanticEditPolicy {
 	/**
 	 * @generated
 	 */
-	protected Command getReorientReferenceRelationshipCommand(
-			ReorientReferenceRelationshipRequest req) {
+	protected Command getReorientReferenceRelationshipCommand(ReorientReferenceRelationshipRequest req) {
 		return UnexecutableCommand.INSTANCE;
 	}
 
 	/**
 	 * @generated
 	 */
-	protected Command getReorientRelationshipCommand(
-			ReorientRelationshipRequest req) {
+	protected Command getReorientRelationshipCommand(ReorientRelationshipRequest req) {
 		return UnexecutableCommand.INSTANCE;
 	}
 
@@ -298,12 +282,9 @@ public class ModelBaseItemSemanticEditPolicy extends SemanticEditPolicy {
 	 * @generated
 	 */
 	protected Command getDestroyElementCommand(View view) {
-		EditPart editPart = (EditPart) getHost().getViewer()
-				.getEditPartRegistry().get(view);
-		DestroyElementRequest request = new DestroyElementRequest(
-				getEditingDomain(), false);
-		return editPart.getCommand(new EditCommandRequestWrapper(request,
-				Collections.EMPTY_MAP));
+		EditPart editPart = (EditPart) getHost().getViewer().getEditPartRegistry().get(view);
+		DestroyElementRequest request = new DestroyElementRequest(getEditingDomain(), false);
+		return editPart.getCommand(new EditCommandRequestWrapper(request, Collections.EMPTY_MAP));
 	}
 
 	/**
@@ -331,8 +312,7 @@ public class ModelBaseItemSemanticEditPolicy extends SemanticEditPolicy {
 		if (view.getEAnnotation("Shortcut") != null) { //$NON-NLS-1$
 			return;
 		}
-		for (Iterator it = view.getDiagram().getChildren().iterator(); it
-				.hasNext();) {
+		for (Iterator it = view.getDiagram().getChildren().iterator(); it.hasNext();) {
 			View nextView = (View) it.next();
 			if (nextView.getEAnnotation("Shortcut") == null || !nextView.isSetElement() || nextView.getElement() != view.getElement()) { //$NON-NLS-1$
 				continue;
@@ -367,8 +347,7 @@ public class ModelBaseItemSemanticEditPolicy extends SemanticEditPolicy {
 		/**
 		 * @generated
 		 */
-		public static boolean canCreateActorParticipatedUseCases_3001(
-				Actor source, UseCase target) {
+		public static boolean canCreateActorParticipatedUseCases_3001(Actor source, UseCase target) {
 			if (source != null) {
 				if (source.getParticipatedUseCases().contains(target)) {
 					return false;
@@ -380,8 +359,7 @@ public class ModelBaseItemSemanticEditPolicy extends SemanticEditPolicy {
 		/**
 		 * @generated
 		 */
-		public static boolean canCreateActorInitiatedUseCases_3002(
-				Actor source, UseCase target) {
+		public static boolean canCreateActorInitiatedUseCases_3002(Actor source, UseCase target) {
 			if (source != null) {
 				if (source.getInitiatedUseCases().contains(target)) {
 					return false;
@@ -393,8 +371,7 @@ public class ModelBaseItemSemanticEditPolicy extends SemanticEditPolicy {
 		/**
 		 * @generated
 		 */
-		public static boolean canCreateUseCaseIncludedUseCases_3003(
-				UseCase source, UseCase target) {
+		public static boolean canCreateUseCaseIncludedUseCases_3003(UseCase source, UseCase target) {
 			if (source != null) {
 				if (source.getIncludedUseCases().contains(target)) {
 					return false;
@@ -406,8 +383,7 @@ public class ModelBaseItemSemanticEditPolicy extends SemanticEditPolicy {
 		/**
 		 * @generated
 		 */
-		public static boolean canCreateUseCaseExtendedUseCases_3004(
-				UseCase source, UseCase target) {
+		public static boolean canCreateUseCaseExtendedUseCases_3004(UseCase source, UseCase target) {
 			if (source != null) {
 				if (source.getExtendedUseCases().contains(target)) {
 					return false;
@@ -419,8 +395,7 @@ public class ModelBaseItemSemanticEditPolicy extends SemanticEditPolicy {
 		/**
 		 * @generated
 		 */
-		public static boolean canExistActorParticipatedUseCases_3001(
-				Actor source, UseCase target) {
+		public static boolean canExistActorParticipatedUseCases_3001(Actor source, UseCase target) {
 
 			return true;
 		}
@@ -428,31 +403,25 @@ public class ModelBaseItemSemanticEditPolicy extends SemanticEditPolicy {
 		/**
 		 * @generated
 		 */
-		public static boolean canExistActorInitiatedUseCases_3002(Actor source,
-				UseCase target) {
+		public static boolean canExistActorInitiatedUseCases_3002(Actor source, UseCase target) {
 			try {
 				if (target == null) {
 					return true;
 				}
 				if (ActorInitiatedUseCases_3002_TargetExpression == null) {
-					Map env = Collections.singletonMap(OPPOSITE_END_VAR,
-							RequirementPackage.eINSTANCE.getActor());
+					Map env = Collections.singletonMap(OPPOSITE_END_VAR, RequirementPackage.eINSTANCE.getActor());
 					ActorInitiatedUseCases_3002_TargetExpression = org.unicase.ui.usecaseDiagram.expressions.ModelOCLFactory
-							.getExpression(
-									"self->initiatingActor=null", RequirementPackage.eINSTANCE.getUseCase(), env); //$NON-NLS-1$
+						.getExpression("self->initiatingActor=null", RequirementPackage.eINSTANCE.getUseCase(), env); //$NON-NLS-1$
 				}
-				Object targetVal = ActorInitiatedUseCases_3002_TargetExpression
-						.evaluate(target, Collections.singletonMap(
-								OPPOSITE_END_VAR, source));
-				if (false == targetVal instanceof Boolean
-						|| !((Boolean) targetVal).booleanValue()) {
+				Object targetVal = ActorInitiatedUseCases_3002_TargetExpression.evaluate(target, Collections
+					.singletonMap(OPPOSITE_END_VAR, source));
+				if (false == targetVal instanceof Boolean || !((Boolean) targetVal).booleanValue()) {
 					return false;
 				} // else fall-through
 				return true;
 			} catch (Exception e) {
-				org.unicase.ui.usecaseDiagram.part.ModelDiagramEditorPlugin
-						.getInstance().logError(
-								"Link constraint evaluation error", e); //$NON-NLS-1$
+				org.unicase.ui.usecaseDiagram.part.ModelDiagramEditorPlugin.getInstance().logError(
+					"Link constraint evaluation error", e); //$NON-NLS-1$
 				return false;
 			}
 		}
@@ -460,31 +429,25 @@ public class ModelBaseItemSemanticEditPolicy extends SemanticEditPolicy {
 		/**
 		 * @generated
 		 */
-		public static boolean canExistUseCaseIncludedUseCases_3003(
-				UseCase source, UseCase target) {
+		public static boolean canExistUseCaseIncludedUseCases_3003(UseCase source, UseCase target) {
 			try {
 				if (target == null) {
 					return true;
 				}
 				if (UseCaseIncludedUseCases_3003_TargetExpression == null) {
-					Map env = Collections.singletonMap(OPPOSITE_END_VAR,
-							RequirementPackage.eINSTANCE.getUseCase());
+					Map env = Collections.singletonMap(OPPOSITE_END_VAR, RequirementPackage.eINSTANCE.getUseCase());
 					UseCaseIncludedUseCases_3003_TargetExpression = org.unicase.ui.usecaseDiagram.expressions.ModelOCLFactory
-							.getExpression(
-									"self <> oppositeEnd", RequirementPackage.eINSTANCE.getUseCase(), env); //$NON-NLS-1$
+						.getExpression("self <> oppositeEnd", RequirementPackage.eINSTANCE.getUseCase(), env); //$NON-NLS-1$
 				}
-				Object targetVal = UseCaseIncludedUseCases_3003_TargetExpression
-						.evaluate(target, Collections.singletonMap(
-								OPPOSITE_END_VAR, source));
-				if (false == targetVal instanceof Boolean
-						|| !((Boolean) targetVal).booleanValue()) {
+				Object targetVal = UseCaseIncludedUseCases_3003_TargetExpression.evaluate(target, Collections
+					.singletonMap(OPPOSITE_END_VAR, source));
+				if (false == targetVal instanceof Boolean || !((Boolean) targetVal).booleanValue()) {
 					return false;
 				} // else fall-through
 				return true;
 			} catch (Exception e) {
-				org.unicase.ui.usecaseDiagram.part.ModelDiagramEditorPlugin
-						.getInstance().logError(
-								"Link constraint evaluation error", e); //$NON-NLS-1$
+				org.unicase.ui.usecaseDiagram.part.ModelDiagramEditorPlugin.getInstance().logError(
+					"Link constraint evaluation error", e); //$NON-NLS-1$
 				return false;
 			}
 		}
@@ -492,31 +455,25 @@ public class ModelBaseItemSemanticEditPolicy extends SemanticEditPolicy {
 		/**
 		 * @generated
 		 */
-		public static boolean canExistUseCaseExtendedUseCases_3004(
-				UseCase source, UseCase target) {
+		public static boolean canExistUseCaseExtendedUseCases_3004(UseCase source, UseCase target) {
 			try {
 				if (source == null) {
 					return true;
 				}
 				if (UseCaseExtendedUseCases_3004_SourceExpression == null) {
-					Map env = Collections.singletonMap(OPPOSITE_END_VAR,
-							RequirementPackage.eINSTANCE.getUseCase());
+					Map env = Collections.singletonMap(OPPOSITE_END_VAR, RequirementPackage.eINSTANCE.getUseCase());
 					UseCaseExtendedUseCases_3004_SourceExpression = org.unicase.ui.usecaseDiagram.expressions.ModelOCLFactory
-							.getExpression(
-									"self <> oppositeEnd", RequirementPackage.eINSTANCE.getUseCase(), env); //$NON-NLS-1$
+						.getExpression("self <> oppositeEnd", RequirementPackage.eINSTANCE.getUseCase(), env); //$NON-NLS-1$
 				}
-				Object sourceVal = UseCaseExtendedUseCases_3004_SourceExpression
-						.evaluate(source, Collections.singletonMap(
-								OPPOSITE_END_VAR, target));
-				if (false == sourceVal instanceof Boolean
-						|| !((Boolean) sourceVal).booleanValue()) {
+				Object sourceVal = UseCaseExtendedUseCases_3004_SourceExpression.evaluate(source, Collections
+					.singletonMap(OPPOSITE_END_VAR, target));
+				if (false == sourceVal instanceof Boolean || !((Boolean) sourceVal).booleanValue()) {
 					return false;
 				} // else fall-through
 				return true;
 			} catch (Exception e) {
-				org.unicase.ui.usecaseDiagram.part.ModelDiagramEditorPlugin
-						.getInstance().logError(
-								"Link constraint evaluation error", e); //$NON-NLS-1$
+				org.unicase.ui.usecaseDiagram.part.ModelDiagramEditorPlugin.getInstance().logError(
+					"Link constraint evaluation error", e); //$NON-NLS-1$
 				return false;
 			}
 		}

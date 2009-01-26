@@ -1,8 +1,7 @@
 /**
- * <copyright> Copyright (c) 2008 Jonas Helming, Maximilian Koegel. All rights reserved. This program and the accompanying materials are made available under the terms of the Eclipse Public License v1.0 which accompanies this distribution, and is available at http://www.eclipse.org/legal/epl-v10.html
- * </copyright>
- *
- * $Id$
+ * <copyright> Copyright (c) 2008 Jonas Helming, Maximilian Koegel. All rights reserved. This program and the
+ * accompanying materials are made available under the terms of the Eclipse Public License v1.0 which accompanies this
+ * distribution, and is available at http://www.eclipse.org/legal/epl-v10.html </copyright>
  */
 package org.unicase.ui.common.decorators;
 
@@ -18,37 +17,29 @@ import org.eclipse.jface.viewers.ILightweightLabelDecorator;
 import org.unicase.workspace.ProjectSpace;
 
 /**
- * .
- * 
- * The decorator to show state of an element (blocked or open) shown in viewers
+ * . The decorator to show state of an element (blocked or open) shown in viewers
  * 
  * @author Helming
- * 
  */
 public class DirtyDecorator implements ILightweightLabelDecorator {
 	/**
-	 * String constants for the various icon placement options from the template
-	 * wizard.
+	 * String constants for the various icon placement options from the template wizard.
 	 */
 	public static final String TOP_RIGHT = "TOP_RIGHT";
 	/**
-	 * String constants for the various icon placement options from the template
-	 * wizard.
+	 * String constants for the various icon placement options from the template wizard.
 	 */
 	public static final String TOP_LEFT = "TOP_LEFT";
 	/**
-	 * String constants for the various icon placement options from the template
-	 * wizard.
+	 * String constants for the various icon placement options from the template wizard.
 	 */
 	public static final String BOTTOM_RIGHT = "BOTTOM_RIGHT";
 	/**
-	 * String constants for the various icon placement options from the template
-	 * wizard.
+	 * String constants for the various icon placement options from the template wizard.
 	 */
 	public static final String BOTTOM_LEFT = "BOTTOM_LEFT";
 	/**
-	 * String constants for the various icon placement options from the template
-	 * wizard.
+	 * String constants for the various icon placement options from the template wizard.
 	 */
 	public static final String UNDERLAY = "UNDERLAY";
 
@@ -63,26 +54,22 @@ public class DirtyDecorator implements ILightweightLabelDecorator {
 	private String dirtyPath = "icons/dirty.jpg"; // NON-NLS-1
 
 	/**
-	 * . The image description used in
-	 * <code>addOverlay(ImageDescriptor, int)</code>
+	 * . The image description used in <code>addOverlay(ImageDescriptor, int)</code>
 	 */
 	private ImageDescriptor descriptor;
 
 	/**
 	 * . {@inheritDoc}
 	 * 
-	 * @see org.eclipse.jface.viewers.ILightweightLabelDecorator#decorate(java.lang
-	 *      .Object, org.eclipse.jface.viewers.IDecoration)
-	 * @param element
-	 *            element
-	 * @param decoration
-	 *            decoration
+	 * @see org.eclipse.jface.viewers.ILightweightLabelDecorator#decorate(java.lang .Object,
+	 *      org.eclipse.jface.viewers.IDecoration)
+	 * @param element element
+	 * @param decoration decoration
 	 */
 	public void decorate(Object element, IDecoration decoration) {
 		/**
-		 * Checks that the element is an IResource with the 'Read-only'
-		 * attribute and adds the decorator based on the specified image
-		 * description and the integer representation of the placement option.
+		 * Checks that the element is an IResource with the 'Read-only' attribute and adds the decorator based on the
+		 * specified image description and the integer representation of the placement option.
 		 */
 		URL url = null;
 
@@ -90,9 +77,7 @@ public class DirtyDecorator implements ILightweightLabelDecorator {
 		if (element instanceof ProjectSpace) {
 			me = (ProjectSpace) element;
 			if (me.isDirty()) {
-				url = FileLocator.find(Platform
-						.getBundle("org.unicase.ui.common"),
-						new Path(dirtyPath), null);
+				url = FileLocator.find(Platform.getBundle("org.unicase.ui.common"), new Path(dirtyPath), null);
 			}
 		} else {
 			return;
@@ -110,8 +95,7 @@ public class DirtyDecorator implements ILightweightLabelDecorator {
 	/**
 	 * . {@inheritDoc}
 	 * 
-	 * @see org.eclipse.jface.viewers.IBaseLabelProvider#addListener(org.eclipse.
-	 *      jface.viewers.ILabelProviderListener)
+	 * @see org.eclipse.jface.viewers.IBaseLabelProvider#addListener(org.eclipse. jface.viewers.ILabelProviderListener)
 	 */
 	public void addListener(ILabelProviderListener listener) {
 	}
@@ -127,8 +111,7 @@ public class DirtyDecorator implements ILightweightLabelDecorator {
 	/**
 	 * . {@inheritDoc}
 	 * 
-	 * @see org.eclipse.jface.viewers.IBaseLabelProvider#isLabelProperty(java.lang
-	 *      .Object, java.lang.String)
+	 * @see org.eclipse.jface.viewers.IBaseLabelProvider#isLabelProperty(java.lang .Object, java.lang.String)
 	 */
 	public boolean isLabelProperty(Object element, String property) {
 		return false;

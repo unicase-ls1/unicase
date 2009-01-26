@@ -1,7 +1,7 @@
 /**
- * <copyright>Copyright (c) 2008 Jonas Helming, Maximilian Koegel. All rights reserved. This program and the accompanying materials are made available under the terms of the Eclipse Public License v1.0 which accompanies this distribution, and is available at http://www.eclipse.org/legal/epl-v10.html</copyright>
- *
- * $Id$
+ * <copyright>Copyright (c) 2008 Jonas Helming, Maximilian Koegel. All rights reserved. This program and the
+ * accompanying materials are made available under the terms of the Eclipse Public License v1.0 which accompanies this
+ * distribution, and is available at http://www.eclipse.org/legal/epl-v10.html</copyright>
  */
 package org.unicase.emfstore.esmodel.versioning.events.impl;
 
@@ -12,23 +12,22 @@ import org.unicase.emfstore.esmodel.versioning.events.EventsPackage;
 import org.unicase.emfstore.esmodel.versioning.events.RevertEvent;
 
 /**
- * <!-- begin-user-doc -->
- * An implementation of the model object '<em><b>Revert Event</b></em>'.
- * <!-- end-user-doc -->
+ * <!-- begin-user-doc --> An implementation of the model object '<em><b>Revert Event</b></em>'. <!-- end-user-doc -->
  * <p>
  * The following features are implemented:
  * <ul>
- *   <li>{@link org.unicase.emfstore.esmodel.versioning.events.impl.RevertEventImpl#getRevertedChangesCount <em>Reverted Changes Count</em>}</li>
+ * <li>{@link org.unicase.emfstore.esmodel.versioning.events.impl.RevertEventImpl#getRevertedChangesCount <em>Reverted
+ * Changes Count</em>}</li>
  * </ul>
  * </p>
- *
+ * 
  * @generated
  */
 public class RevertEventImpl extends EventImpl implements RevertEvent {
 	/**
-	 * The default value of the '{@link #getRevertedChangesCount() <em>Reverted Changes Count</em>}' attribute.
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
+	 * The default value of the '{@link #getRevertedChangesCount() <em>Reverted Changes Count</em>}' attribute. <!--
+	 * begin-user-doc --> <!-- end-user-doc -->
+	 * 
 	 * @see #getRevertedChangesCount()
 	 * @generated
 	 * @ordered
@@ -36,9 +35,9 @@ public class RevertEventImpl extends EventImpl implements RevertEvent {
 	protected static final int REVERTED_CHANGES_COUNT_EDEFAULT = 0;
 
 	/**
-	 * The cached value of the '{@link #getRevertedChangesCount() <em>Reverted Changes Count</em>}' attribute.
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
+	 * The cached value of the '{@link #getRevertedChangesCount() <em>Reverted Changes Count</em>}' attribute. <!--
+	 * begin-user-doc --> <!-- end-user-doc -->
+	 * 
 	 * @see #getRevertedChangesCount()
 	 * @generated
 	 * @ordered
@@ -46,8 +45,8 @@ public class RevertEventImpl extends EventImpl implements RevertEvent {
 	protected int revertedChangesCount = REVERTED_CHANGES_COUNT_EDEFAULT;
 
 	/**
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
+	 * <!-- begin-user-doc --> <!-- end-user-doc -->
+	 * 
 	 * @generated
 	 */
 	protected RevertEventImpl() {
@@ -55,8 +54,8 @@ public class RevertEventImpl extends EventImpl implements RevertEvent {
 	}
 
 	/**
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
+	 * <!-- begin-user-doc --> <!-- end-user-doc -->
+	 * 
 	 * @generated
 	 */
 	@Override
@@ -65,8 +64,8 @@ public class RevertEventImpl extends EventImpl implements RevertEvent {
 	}
 
 	/**
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
+	 * <!-- begin-user-doc --> <!-- end-user-doc -->
+	 * 
 	 * @generated
 	 */
 	public int getRevertedChangesCount() {
@@ -74,22 +73,21 @@ public class RevertEventImpl extends EventImpl implements RevertEvent {
 	}
 
 	/**
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
+	 * <!-- begin-user-doc --> <!-- end-user-doc -->
+	 * 
 	 * @generated
 	 */
 	public void setRevertedChangesCount(int newRevertedChangesCount) {
 		int oldRevertedChangesCount = revertedChangesCount;
 		revertedChangesCount = newRevertedChangesCount;
 		if (eNotificationRequired())
-			eNotify(new ENotificationImpl(this, Notification.SET,
-					EventsPackage.REVERT_EVENT__REVERTED_CHANGES_COUNT,
-					oldRevertedChangesCount, revertedChangesCount));
+			eNotify(new ENotificationImpl(this, Notification.SET, EventsPackage.REVERT_EVENT__REVERTED_CHANGES_COUNT,
+				oldRevertedChangesCount, revertedChangesCount));
 	}
 
 	/**
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
+	 * <!-- begin-user-doc --> <!-- end-user-doc -->
+	 * 
 	 * @generated
 	 */
 	@Override
@@ -102,8 +100,8 @@ public class RevertEventImpl extends EventImpl implements RevertEvent {
 	}
 
 	/**
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
+	 * <!-- begin-user-doc --> <!-- end-user-doc -->
+	 * 
 	 * @generated
 	 */
 	@Override
@@ -117,8 +115,8 @@ public class RevertEventImpl extends EventImpl implements RevertEvent {
 	}
 
 	/**
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
+	 * <!-- begin-user-doc --> <!-- end-user-doc -->
+	 * 
 	 * @generated
 	 */
 	@Override
@@ -132,8 +130,8 @@ public class RevertEventImpl extends EventImpl implements RevertEvent {
 	}
 
 	/**
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
+	 * <!-- begin-user-doc --> <!-- end-user-doc -->
+	 * 
 	 * @generated
 	 */
 	@Override
@@ -146,8 +144,8 @@ public class RevertEventImpl extends EventImpl implements RevertEvent {
 	}
 
 	/**
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
+	 * <!-- begin-user-doc --> <!-- end-user-doc -->
+	 * 
 	 * @generated
 	 */
 	@Override
@@ -162,4 +160,4 @@ public class RevertEventImpl extends EventImpl implements RevertEvent {
 		return result.toString();
 	}
 
-} //RevertEventImpl
+} // RevertEventImpl

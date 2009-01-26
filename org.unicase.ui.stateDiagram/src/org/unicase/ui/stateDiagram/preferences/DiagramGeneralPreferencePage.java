@@ -11,7 +11,6 @@ public class DiagramGeneralPreferencePage extends DiagramsPreferencePage {
 	 * @generated
 	 */
 	public DiagramGeneralPreferencePage() {
-		setPreferenceStore(org.unicase.ui.stateDiagram.part.ModelDiagramEditorPlugin
-				.getInstance().getPreferenceStore());
+		setPreferenceStore(org.unicase.ui.stateDiagram.part.ModelDiagramEditorPlugin.getInstance().getPreferenceStore());
 	}
 }

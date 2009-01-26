@@ -1,8 +1,7 @@
 /**
- * <copyright> Copyright (c) 2008 Jonas Helming, Maximilian Koegel. All rights reserved. This program and the accompanying materials are made available under the terms of the Eclipse Public License v1.0 which accompanies this distribution, and is available at http://www.eclipse.org/legal/epl-v10.html
- * </copyright>
- *
- * $Id$
+ * <copyright> Copyright (c) 2008 Jonas Helming, Maximilian Koegel. All rights reserved. This program and the
+ * accompanying materials are made available under the terms of the Eclipse Public License v1.0 which accompanies this
+ * distribution, and is available at http://www.eclipse.org/legal/epl-v10.html </copyright>
  */
 package org.unicase.ui.navigator.commands;
 
@@ -27,35 +26,27 @@ import org.unicase.ui.common.util.ActionHelper;
 import org.unicase.workspace.WorkspaceManager;
 
 /**
- * 
- * @author Hodaie
- * 
- *         This is the handler for createME command
- *         (org.unicase.ui.navigator.createME). This command is just a command
- *         definition with a parameter. This command is not shown itself in the
- *         context menu. In DynamicMECreationCommands class the actually
- *         required command to create a Model element are created and assigned
- *         the ID of this generic createME command. When the user selects one of
- *         these commands this handler is executed. The generic createME command
- *         gets an EClass as parameter, and the handler creates a ModelElement
- *         of this EClass, adds it to the selected LeafSection and opens it for
- *         editing.
- * 
+ * @author Hodaie This is the handler for createME command (org.unicase.ui.navigator.createME). This command is just a
+ *         command definition with a parameter. This command is not shown itself in the context menu. In
+ *         DynamicMECreationCommands class the actually required command to create a Model element are created and
+ *         assigned the ID of this generic createME command. When the user selects one of these commands this handler is
+ *         executed. The generic createME command gets an EClass as parameter, and the handler creates a ModelElement of
+ *         this EClass, adds it to the selected LeafSection and opens it for editing.
  */
 public class CreateMEHandler extends AbstractHandler implements IHandler {
 
 	/**
-	 * The Id for EClass parameter to command. A model element of this EClass
-	 * type is created in this handler.
+	 * The Id for EClass parameter to command. A model element of this EClass type is created in this handler.
 	 */
 	public static final String COMMAND_ECLASS_PARAM = "org.unicase.ui.navigator.eClassParameter";
-	
+
 	/**
 	 * The Id for DiagramType parameter to command. A diagram of this type is created in the handler.
 	 */
 	public static final String COMMAND_DIAGRAMTYPE_PARAM = "org.unicase.ui.navigator.diagramTypeParameter";
-	/**.
-	 * ({@inheritDoc})
+
+	/**
+	 * . ({@inheritDoc})
 	 */
 	public Object execute(ExecutionEvent event) throws ExecutionException {
 
@@ -65,37 +56,39 @@ public class CreateMEHandler extends AbstractHandler implements IHandler {
 			EClass newMEType = (EClass) o;
 			final ModelElement newMEInstance;
 			// create a new model element from this EClass
-			newMEInstance = (ModelElement) ActionHelper.createModelElement(newMEType.getEPackage().getEFactoryInstance(),newMEType);
+			newMEInstance = (ModelElement) ActionHelper.createModelElement(newMEType.getEPackage()
+				.getEFactoryInstance(), newMEType);
 			newMEInstance.setName("new " + newMEType.getName());
-			
-			//if model element if MEDiagram, set the diagram type
-			if(newMEInstance instanceof MEDiagram) {
+
+			// if model element if MEDiagram, set the diagram type
+			if (newMEInstance instanceof MEDiagram) {
 				Object p = event.getObjectParameterForExecution(COMMAND_DIAGRAMTYPE_PARAM);
 				DiagramType newDiagramType = (DiagramType) p;
 				((MEDiagram) newMEInstance).setType(newDiagramType);
 				newMEInstance.setName("new " + newDiagramType.getLiteral());
 			}
-			
+
 			// add this newly created model element to LeafSection
-			final LeafSection leafSection = (LeafSection)ActionHelper.getSelectedModelElement();
+			final LeafSection leafSection = (LeafSection) ActionHelper.getSelectedModelElement();
 			if (leafSection != null) {
-				TransactionalEditingDomain domain = WorkspaceManager.getInstance().getCurrentWorkspace().getEditingDomain();
+				TransactionalEditingDomain domain = WorkspaceManager.getInstance().getCurrentWorkspace()
+					.getEditingDomain();
 				domain.getCommandStack().execute(new RecordingCommand(domain) {
 					@Override
 					protected void doExecute() {
 						leafSection.getModelElements().add(newMEInstance);
 					}
 				});
-				
+
 				if (newMEInstance instanceof Meeting) {
 					domain.getCommandStack().execute(new RecordingCommand(domain) {
-								@Override
-								protected void doExecute() {
-									// FIXME: added DOLLI meeting structure as default - needs flexible approach.
-									addMeetingSections((Meeting) newMEInstance);
-								}
-							});
-					
+						@Override
+						protected void doExecute() {
+							// FIXME: added DOLLI meeting structure as default - needs flexible approach.
+							addMeetingSections((Meeting) newMEInstance);
+						}
+					});
+
 					domain.getCommandStack().execute(new RecordingCommand(domain) {
 						@Override
 						protected void doExecute() {
@@ -109,62 +102,63 @@ public class CreateMEHandler extends AbstractHandler implements IHandler {
 		return null;
 
 	}
-	
-
 
 	private void addMeetingSections(Meeting meeting) {
 		meeting.setName("Dolli meeting");
-		
-		CompositeMeetingSection objectiveSection = (CompositeMeetingSection) ActionHelper.createModelElement(MeetingFactory.eINSTANCE, MeetingPackage.eINSTANCE.getCompositeMeetingSection());
-		CompositeMeetingSection informationExchangeSection = (CompositeMeetingSection) ActionHelper.createModelElement(MeetingFactory.eINSTANCE, MeetingPackage.eINSTANCE.getCompositeMeetingSection());
-		CompositeMeetingSection wrapUpSection = (CompositeMeetingSection) ActionHelper.createModelElement(MeetingFactory.eINSTANCE, MeetingPackage.eINSTANCE.getCompositeMeetingSection());
-		IssueMeetingSection discussionSection = (IssueMeetingSection) ActionHelper.createModelElement(MeetingFactory.eINSTANCE, MeetingPackage.eINSTANCE.getIssueMeetingSection());
 
+		CompositeMeetingSection objectiveSection = (CompositeMeetingSection) ActionHelper.createModelElement(
+			MeetingFactory.eINSTANCE, MeetingPackage.eINSTANCE.getCompositeMeetingSection());
+		CompositeMeetingSection informationExchangeSection = (CompositeMeetingSection) ActionHelper.createModelElement(
+			MeetingFactory.eINSTANCE, MeetingPackage.eINSTANCE.getCompositeMeetingSection());
+		CompositeMeetingSection wrapUpSection = (CompositeMeetingSection) ActionHelper.createModelElement(
+			MeetingFactory.eINSTANCE, MeetingPackage.eINSTANCE.getCompositeMeetingSection());
+		IssueMeetingSection discussionSection = (IssueMeetingSection) ActionHelper.createModelElement(
+			MeetingFactory.eINSTANCE, MeetingPackage.eINSTANCE.getIssueMeetingSection());
 
-		//set attributes
+		// set attributes
 		objectiveSection.setName("Objective");
 		informationExchangeSection.setName("Information sharing");
 		wrapUpSection.setName("Wrap up");
 		discussionSection.setName("Discussion");
 
-		
 		informationExchangeSection.setAllocatedTime(30);
 		discussionSection.setAllocatedTime(50);
 		wrapUpSection.setAllocatedTime(10);
-		
-		//set links
+
+		// set links
 		meeting.getSections().add(objectiveSection);
 		meeting.getSections().add(informationExchangeSection);
 		meeting.getSections().add(discussionSection);
 		meeting.getSections().add(wrapUpSection);
-		
-	
+
 		meeting.setIdentifiedIssuesSection(discussionSection);
 
-		
-		
 	}
-	
+
 	private void addMeetingSubSections(Meeting meeting) {
-		CompositeMeetingSection miscSection = (CompositeMeetingSection) ActionHelper.createModelElement(MeetingFactory.eINSTANCE, MeetingPackage.eINSTANCE.getCompositeMeetingSection());
-		CompositeMeetingSection meetingCritiqueSection = (CompositeMeetingSection) ActionHelper.createModelElement(MeetingFactory.eINSTANCE, MeetingPackage.eINSTANCE.getCompositeMeetingSection());
-		WorkItemMeetingSection workItemsSection = (WorkItemMeetingSection) ActionHelper.createModelElement(MeetingFactory.eINSTANCE, MeetingPackage.eINSTANCE.getWorkItemMeetingSection());
-		WorkItemMeetingSection newWorkItemsSection = (WorkItemMeetingSection) ActionHelper.createModelElement(MeetingFactory.eINSTANCE, MeetingPackage.eINSTANCE.getWorkItemMeetingSection());
-		
+		CompositeMeetingSection miscSection = (CompositeMeetingSection) ActionHelper.createModelElement(
+			MeetingFactory.eINSTANCE, MeetingPackage.eINSTANCE.getCompositeMeetingSection());
+		CompositeMeetingSection meetingCritiqueSection = (CompositeMeetingSection) ActionHelper.createModelElement(
+			MeetingFactory.eINSTANCE, MeetingPackage.eINSTANCE.getCompositeMeetingSection());
+		WorkItemMeetingSection workItemsSection = (WorkItemMeetingSection) ActionHelper.createModelElement(
+			MeetingFactory.eINSTANCE, MeetingPackage.eINSTANCE.getWorkItemMeetingSection());
+		WorkItemMeetingSection newWorkItemsSection = (WorkItemMeetingSection) ActionHelper.createModelElement(
+			MeetingFactory.eINSTANCE, MeetingPackage.eINSTANCE.getWorkItemMeetingSection());
+
 		workItemsSection.setName("Action items");
 		newWorkItemsSection.setName("New action items");
 		miscSection.setName("Misc");
 		meetingCritiqueSection.setName("Meeting critique");
-		
-		CompositeMeetingSection informationExchangeSection = (CompositeMeetingSection)meeting.getSections().get(1);
-		CompositeMeetingSection wrapUpSection = (CompositeMeetingSection)meeting.getSections().get(3);
-		
-		//set links
+
+		CompositeMeetingSection informationExchangeSection = (CompositeMeetingSection) meeting.getSections().get(1);
+		CompositeMeetingSection wrapUpSection = (CompositeMeetingSection) meeting.getSections().get(3);
+
+		// set links
 		informationExchangeSection.getSubsections().add(workItemsSection);
 		informationExchangeSection.getSubsections().add(miscSection);
 		wrapUpSection.getSubsections().add(newWorkItemsSection);
 		wrapUpSection.getSubsections().add(meetingCritiqueSection);
-		
+
 		meeting.setIdentifiedWorkItemsSection(newWorkItemsSection);
 	}
 }

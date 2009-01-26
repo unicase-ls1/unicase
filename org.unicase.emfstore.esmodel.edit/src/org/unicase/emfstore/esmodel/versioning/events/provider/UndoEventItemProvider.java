@@ -1,7 +1,7 @@
 /**
- * <copyright>Copyright (c) 2008 Jonas Helming, Maximilian Koegel. All rights reserved. This program and the accompanying materials are made available under the terms of the Eclipse Public License v1.0 which accompanies this distribution, and is available at http://www.eclipse.org/legal/epl-v10.html</copyright>
- *
- * $Id$
+ * <copyright>Copyright (c) 2008 Jonas Helming, Maximilian Koegel. All rights reserved. This program and the
+ * accompanying materials are made available under the terms of the Eclipse Public License v1.0 which accompanies this
+ * distribution, and is available at http://www.eclipse.org/legal/epl-v10.html</copyright>
  */
 package org.unicase.emfstore.esmodel.versioning.events.provider;
 
@@ -24,18 +24,16 @@ import org.unicase.emfstore.esmodel.versioning.events.UndoEvent;
 import org.unicase.emfstore.esmodel.versioning.operations.OperationsFactory;
 
 /**
- * This is the item provider adapter for a {@link org.unicase.emfstore.esmodel.versioning.events.UndoEvent} object.
- * <!-- begin-user-doc -->
- * <!-- end-user-doc -->
+ * This is the item provider adapter for a {@link org.unicase.emfstore.esmodel.versioning.events.UndoEvent} object. <!--
+ * begin-user-doc --> <!-- end-user-doc -->
+ * 
  * @generated
  */
-public class UndoEventItemProvider extends EventItemProvider implements
-		IEditingDomainItemProvider, IStructuredItemContentProvider,
-		ITreeItemContentProvider, IItemLabelProvider, IItemPropertySource {
+public class UndoEventItemProvider extends EventItemProvider implements IEditingDomainItemProvider,
+	IStructuredItemContentProvider, ITreeItemContentProvider, IItemLabelProvider, IItemPropertySource {
 	/**
-	 * This constructs an instance from a factory and a notifier.
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
+	 * This constructs an instance from a factory and a notifier. <!-- begin-user-doc --> <!-- end-user-doc -->
+	 * 
 	 * @generated
 	 */
 	public UndoEventItemProvider(AdapterFactory adapterFactory) {
@@ -43,9 +41,8 @@ public class UndoEventItemProvider extends EventItemProvider implements
 	}
 
 	/**
-	 * This returns the property descriptors for the adapted class.
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
+	 * This returns the property descriptors for the adapted class. <!-- begin-user-doc --> <!-- end-user-doc -->
+	 * 
 	 * @generated
 	 */
 	@Override
@@ -60,14 +57,13 @@ public class UndoEventItemProvider extends EventItemProvider implements
 	/**
 	 * This specifies how to implement {@link #getChildren} and is used to deduce an appropriate feature for an
 	 * {@link org.eclipse.emf.edit.command.AddCommand}, {@link org.eclipse.emf.edit.command.RemoveCommand} or
-	 * {@link org.eclipse.emf.edit.command.MoveCommand} in {@link #createCommand}.
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
+	 * {@link org.eclipse.emf.edit.command.MoveCommand} in {@link #createCommand}. <!-- begin-user-doc --> <!--
+	 * end-user-doc -->
+	 * 
 	 * @generated
 	 */
 	@Override
-	public Collection<? extends EStructuralFeature> getChildrenFeatures(
-			Object object) {
+	public Collection<? extends EStructuralFeature> getChildrenFeatures(Object object) {
 		if (childrenFeatures == null) {
 			super.getChildrenFeatures(object);
 			childrenFeatures.add(EventsPackage.Literals.UNDO_EVENT__OPERATION);
@@ -76,8 +72,8 @@ public class UndoEventItemProvider extends EventItemProvider implements
 	}
 
 	/**
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
+	 * <!-- begin-user-doc --> <!-- end-user-doc -->
+	 * 
 	 * @generated
 	 */
 	@Override
@@ -89,36 +85,33 @@ public class UndoEventItemProvider extends EventItemProvider implements
 	}
 
 	/**
-	 * This returns UndoEvent.gif.
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
+	 * This returns UndoEvent.gif. <!-- begin-user-doc --> <!-- end-user-doc -->
+	 * 
 	 * @generated
 	 */
 	@Override
 	public Object getImage(Object object) {
-		return overlayImage(object, getResourceLocator().getImage(
-				"full/obj16/UndoEvent"));
+		return overlayImage(object, getResourceLocator().getImage("full/obj16/UndoEvent"));
 	}
 
 	/**
-	 * This returns the label text for the adapted class.
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
+	 * This returns the label text for the adapted class. <!-- begin-user-doc --> <!-- end-user-doc -->
+	 * 
 	 * @generated
 	 */
 	@Override
 	public String getText(Object object) {
 		Date labelValue = ((UndoEvent) object).getTimestamp();
 		String label = labelValue == null ? null : labelValue.toString();
-		return label == null || label.length() == 0 ? getString("_UI_UndoEvent_type")
-				: getString("_UI_UndoEvent_type") + " " + label;
+		return label == null || label.length() == 0 ? getString("_UI_UndoEvent_type") : getString("_UI_UndoEvent_type")
+			+ " " + label;
 	}
 
 	/**
-	 * This handles model notifications by calling {@link #updateChildren} to update any cached
-	 * children and by creating a viewer notification, which it passes to {@link #fireNotifyChanged}.
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
+	 * This handles model notifications by calling {@link #updateChildren} to update any cached children and by creating
+	 * a viewer notification, which it passes to {@link #fireNotifyChanged}. <!-- begin-user-doc --> <!-- end-user-doc
+	 * -->
+	 * 
 	 * @generated
 	 */
 	@Override
@@ -127,64 +120,48 @@ public class UndoEventItemProvider extends EventItemProvider implements
 
 		switch (notification.getFeatureID(UndoEvent.class)) {
 		case EventsPackage.UNDO_EVENT__OPERATION:
-			fireNotifyChanged(new ViewerNotification(notification, notification
-					.getNotifier(), true, false));
+			fireNotifyChanged(new ViewerNotification(notification, notification.getNotifier(), true, false));
 			return;
 		}
 		super.notifyChanged(notification);
 	}
 
 	/**
-	 * This adds {@link org.eclipse.emf.edit.command.CommandParameter}s describing the children
-	 * that can be created under this object.
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
+	 * This adds {@link org.eclipse.emf.edit.command.CommandParameter}s describing the children that can be created
+	 * under this object. <!-- begin-user-doc --> <!-- end-user-doc -->
+	 * 
 	 * @generated
 	 */
 	@Override
-	protected void collectNewChildDescriptors(
-			Collection<Object> newChildDescriptors, Object object) {
+	protected void collectNewChildDescriptors(Collection<Object> newChildDescriptors, Object object) {
 		super.collectNewChildDescriptors(newChildDescriptors, object);
 
-		newChildDescriptors.add(createChildParameter(
-				EventsPackage.Literals.UNDO_EVENT__OPERATION,
-				OperationsFactory.eINSTANCE.createCompositeOperation()));
+		newChildDescriptors.add(createChildParameter(EventsPackage.Literals.UNDO_EVENT__OPERATION,
+			OperationsFactory.eINSTANCE.createCompositeOperation()));
 
-		newChildDescriptors.add(createChildParameter(
-				EventsPackage.Literals.UNDO_EVENT__OPERATION,
-				OperationsFactory.eINSTANCE.createCreateDeleteOperation()));
+		newChildDescriptors.add(createChildParameter(EventsPackage.Literals.UNDO_EVENT__OPERATION,
+			OperationsFactory.eINSTANCE.createCreateDeleteOperation()));
 
-		newChildDescriptors.add(createChildParameter(
-				EventsPackage.Literals.UNDO_EVENT__OPERATION,
-				OperationsFactory.eINSTANCE.createAttributeOperation()));
+		newChildDescriptors.add(createChildParameter(EventsPackage.Literals.UNDO_EVENT__OPERATION,
+			OperationsFactory.eINSTANCE.createAttributeOperation()));
 
-		newChildDescriptors.add(createChildParameter(
-				EventsPackage.Literals.UNDO_EVENT__OPERATION,
-				OperationsFactory.eINSTANCE.createSingleReferenceOperation()));
+		newChildDescriptors.add(createChildParameter(EventsPackage.Literals.UNDO_EVENT__OPERATION,
+			OperationsFactory.eINSTANCE.createSingleReferenceOperation()));
 
-		newChildDescriptors.add(createChildParameter(
-				EventsPackage.Literals.UNDO_EVENT__OPERATION,
-				OperationsFactory.eINSTANCE.createMultiReferenceOperation()));
+		newChildDescriptors.add(createChildParameter(EventsPackage.Literals.UNDO_EVENT__OPERATION,
+			OperationsFactory.eINSTANCE.createMultiReferenceOperation()));
 
-		newChildDescriptors
-				.add(createChildParameter(
-						EventsPackage.Literals.UNDO_EVENT__OPERATION,
-						OperationsFactory.eINSTANCE
-								.createMultiReferenceMoveOperation()));
+		newChildDescriptors.add(createChildParameter(EventsPackage.Literals.UNDO_EVENT__OPERATION,
+			OperationsFactory.eINSTANCE.createMultiReferenceMoveOperation()));
 
-		newChildDescriptors.add(createChildParameter(
-				EventsPackage.Literals.UNDO_EVENT__OPERATION,
-				OperationsFactory.eINSTANCE.createMultiAttributeOperation()));
+		newChildDescriptors.add(createChildParameter(EventsPackage.Literals.UNDO_EVENT__OPERATION,
+			OperationsFactory.eINSTANCE.createMultiAttributeOperation()));
 
-		newChildDescriptors.add(createChildParameter(
-				EventsPackage.Literals.UNDO_EVENT__OPERATION,
-				OperationsFactory.eINSTANCE.createDiagramLayoutOperation()));
+		newChildDescriptors.add(createChildParameter(EventsPackage.Literals.UNDO_EVENT__OPERATION,
+			OperationsFactory.eINSTANCE.createDiagramLayoutOperation()));
 
-		newChildDescriptors
-				.add(createChildParameter(
-						EventsPackage.Literals.UNDO_EVENT__OPERATION,
-						OperationsFactory.eINSTANCE
-								.createMultiAttributeMoveOperation()));
+		newChildDescriptors.add(createChildParameter(EventsPackage.Literals.UNDO_EVENT__OPERATION,
+			OperationsFactory.eINSTANCE.createMultiAttributeMoveOperation()));
 	}
 
 }

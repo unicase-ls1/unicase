@@ -9,7 +9,6 @@ import org.unicase.model.task.util.MEState;
  * Filter to filter blocked elements.
  * 
  * @author helming
- * 
  */
 public class BlockedElementsViewerFilter extends ViewerFilter {
 	/**

@@ -39,7 +39,6 @@ import org.unicase.workspace.AdminBroker;
  * This class sets the contents of tabs on the left side of OrgUnitManagmentGUI.
  * 
  * @author Hodaie
- * 
  */
 public class TabContent {
 
@@ -56,15 +55,11 @@ public class TabContent {
 	/**
 	 * Constructor.
 	 * 
-	 * @param tabName
-	 *            tab name
-	 * @param adminBroker
-	 *            AdminBroker
-	 * @param frm
-	 *            ProperitesForm
+	 * @param tabName tab name
+	 * @param adminBroker AdminBroker
+	 * @param frm ProperitesForm
 	 */
-	public TabContent(String tabName, AdminBroker adminBroker,
-			PropertiesForm frm) {
+	public TabContent(String tabName, AdminBroker adminBroker, PropertiesForm frm) {
 		this.tabName = tabName;
 		this.adminBroker = adminBroker;
 		this.frm = frm;
@@ -74,8 +69,7 @@ public class TabContent {
 	/**
 	 * Creates contents of each tab.
 	 * 
-	 * @param tabFolder
-	 *            parent
+	 * @param tabFolder parent
 	 * @return contents composite
 	 */
 	public Composite createContents(TabFolder tabFolder) {
@@ -165,8 +159,7 @@ public class TabContent {
 	 */
 	private void deleteOrgUnit() {
 
-		ACOrgUnit ou = (ACOrgUnit) ((IStructuredSelection) listViewer
-				.getSelection()).getFirstElement();
+		ACOrgUnit ou = (ACOrgUnit) ((IStructuredSelection) listViewer.getSelection()).getFirstElement();
 		if (ou == null) {
 			return;
 		}
@@ -185,8 +178,7 @@ public class TabContent {
 		}
 
 		listViewer.refresh();
-		if (frm.getCurrentInput() instanceof ACOrgUnit
-				&& ((ACOrgUnit) frm.getCurrentInput()).equals(ou)) {
+		if (frm.getCurrentInput() instanceof ACOrgUnit && ((ACOrgUnit) frm.getCurrentInput()).equals(ou)) {
 			frm.setInput(null);
 		}
 
@@ -209,8 +201,7 @@ public class TabContent {
 	}
 
 	/**
-	 * This is used during first creation of tab folder to set initial input to
-	 * properties form.
+	 * This is used during first creation of tab folder to set initial input to properties form.
 	 */
 	public void viewStarted() {
 		if (frm.getCurrentInput() == null) {
@@ -221,8 +212,7 @@ public class TabContent {
 
 	private void addDragNDropSupport() {
 		int ops = DND.DROP_COPY;
-		Transfer[] transfers = new Transfer[] { LocalSelectionTransfer
-				.getTransfer() };
+		Transfer[] transfers = new Transfer[] { LocalSelectionTransfer.getTransfer() };
 
 		DragSourceListener dragListener = new DragSourceListener() {
 			public void dragFinished(DragSourceEvent event) {
@@ -257,11 +247,20 @@ public class TabContent {
 				}
 			}
 
-			public void dragEnter(DropTargetEvent event) {	}
-			public void dragLeave(DropTargetEvent event) {	}
-			public void dragOperationChanged(DropTargetEvent event) {	}
-			public void dragOver(DropTargetEvent event) {  }
-			public void dropAccept(DropTargetEvent event) { 	}
+			public void dragEnter(DropTargetEvent event) {
+			}
+
+			public void dragLeave(DropTargetEvent event) {
+			}
+
+			public void dragOperationChanged(DropTargetEvent event) {
+			}
+
+			public void dragOver(DropTargetEvent event) {
+			}
+
+			public void dropAccept(DropTargetEvent event) {
+			}
 
 		};
 		listViewer.addDropSupport(ops, transfers, dropListener);
@@ -277,8 +276,7 @@ public class TabContent {
 			if (currentInput instanceof ProjectInfo) {
 				ProjectInfo projectInfo = (ProjectInfo) currentInput;
 
-				adminBroker.removeParticipant(projectInfo.getProjectId(),
-						orgUnit.getId());
+				adminBroker.removeParticipant(projectInfo.getProjectId(), orgUnit.getId());
 
 			} else if (currentInput instanceof ACGroup) {
 				ACGroup group = (ACGroup) currentInput;
@@ -286,8 +284,7 @@ public class TabContent {
 
 			} else if (currentInput instanceof ACUser) {
 				ACUser user = (ACUser) currentInput;
-				adminBroker.removeGroup(user.getId(), ((ACGroup) orgUnit)
-						.getId());
+				adminBroker.removeGroup(user.getId(), ((ACGroup) orgUnit).getId());
 			}
 		} catch (EmfStoreException e) {
 			DialogHandler.showExceptionDialog(e);
@@ -295,7 +292,6 @@ public class TabContent {
 	}
 
 	/**
-	 * 
 	 * @return name of this tab
 	 */
 	public String getName() {
@@ -303,18 +299,17 @@ public class TabContent {
 	}
 
 	/**
-	 * This is called from user and group properties composites in order to update 
-	 * ListViewer, For example when name of an OrgUnit is changed.
+	 * This is called from user and group properties composites in order to update ListViewer, For example when name of
+	 * an OrgUnit is changed.
+	 * 
 	 * @return listViewer
 	 */
 	public ListViewer getListViewer() {
 		return this.listViewer;
 	}
 
-	
 	/**
 	 * returns selected item in ListViewer.
-	 * 
 	 */
 	private EObject getSelectedItem(DoubleClickEvent event) {
 		EObject result = null;
@@ -347,29 +342,26 @@ public class TabContent {
 	 * This is the LabelProvider for ListViewer.
 	 * 
 	 * @author Hodaie
-	 *
 	 */
 	private class ListLabelProvider extends AdapterFactoryLabelProvider {
 
 		public ListLabelProvider() {
 
-			super(new ComposedAdapterFactory(
-					ComposedAdapterFactory.Descriptor.Registry.INSTANCE));
+			super(new ComposedAdapterFactory(ComposedAdapterFactory.Descriptor.Registry.INSTANCE));
 		}
 
 	}// ListLabelProvider
-	
+
 	/**
-	 * This is the ContentProvider for ListViewer. 
+	 * This is the ContentProvider for ListViewer.
+	 * 
 	 * @author Hodaie
-	 *
 	 */
 	private class ListContentProvider extends AdapterFactoryContentProvider {
 
 		public ListContentProvider() {
 
-			super(new ComposedAdapterFactory(
-					ComposedAdapterFactory.Descriptor.Registry.INSTANCE));
+			super(new ComposedAdapterFactory(ComposedAdapterFactory.Descriptor.Registry.INSTANCE));
 		}
 
 		@Override
@@ -381,8 +373,7 @@ public class TabContent {
 					// return a list of Projects in project space
 					List<ProjectInfo> projectInfos = new ArrayList<ProjectInfo>();
 					projectInfos.addAll(adminBroker.getProjectInfos());
-					result = projectInfos.toArray(new ProjectInfo[projectInfos
-							.size()]);
+					result = projectInfos.toArray(new ProjectInfo[projectInfos.size()]);
 
 				} else if (tabName.equals("Groups")) {
 					// return a list of Groups in project space

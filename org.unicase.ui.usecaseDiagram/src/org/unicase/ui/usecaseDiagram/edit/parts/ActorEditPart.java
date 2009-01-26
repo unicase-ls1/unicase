@@ -56,11 +56,11 @@ public class ActorEditPart extends ShapeNodeEditPart {
 	 */
 	protected void createDefaultEditPolicies() {
 		super.createDefaultEditPolicies();
-		installEditPolicy(
-				EditPolicyRoles.SEMANTIC_ROLE,
-				new org.unicase.ui.usecaseDiagram.edit.policies.ActorItemSemanticEditPolicy());
+		installEditPolicy(EditPolicyRoles.SEMANTIC_ROLE,
+			new org.unicase.ui.usecaseDiagram.edit.policies.ActorItemSemanticEditPolicy());
 		installEditPolicy(EditPolicy.LAYOUT_ROLE, createLayoutEditPolicy());
-		// XXX need an SCR to runtime to have another abstract superclass that would let children add reasonable editpolicies
+		// XXX need an SCR to runtime to have another abstract superclass that would let children add reasonable
+		// editpolicies
 		// removeEditPolicy(org.eclipse.gmf.runtime.diagram.ui.editpolicies.EditPolicyRoles.CONNECTION_HANDLES_ROLE);
 	}
 
@@ -71,8 +71,7 @@ public class ActorEditPart extends ShapeNodeEditPart {
 		LayoutEditPolicy lep = new LayoutEditPolicy() {
 
 			protected EditPolicy createChildEditPolicy(EditPart child) {
-				EditPolicy result = child
-						.getEditPolicy(EditPolicy.PRIMARY_DRAG_ROLE);
+				EditPolicy result = child.getEditPolicy(EditPolicy.PRIMARY_DRAG_ROLE);
 				if (result == null) {
 					result = new NonResizableEditPolicy();
 				}
@@ -110,8 +109,8 @@ public class ActorEditPart extends ShapeNodeEditPart {
 	 */
 	protected boolean addFixedChild(EditPart childEditPart) {
 		if (childEditPart instanceof org.unicase.ui.usecaseDiagram.edit.parts.ActorNameEditPart) {
-			((org.unicase.ui.usecaseDiagram.edit.parts.ActorNameEditPart) childEditPart)
-					.setLabel(getPrimaryShape().getFigureActorFigure_name());
+			((org.unicase.ui.usecaseDiagram.edit.parts.ActorNameEditPart) childEditPart).setLabel(getPrimaryShape()
+				.getFigureActorFigure_name());
 			return true;
 		}
 		return false;
@@ -157,16 +156,13 @@ public class ActorEditPart extends ShapeNodeEditPart {
 	 * @generated
 	 */
 	protected NodeFigure createNodePlate() {
-		DefaultSizeNodeFigure result = new DefaultSizeNodeFigure(getMapMode()
-				.DPtoLP(30), getMapMode().DPtoLP(50));
+		DefaultSizeNodeFigure result = new DefaultSizeNodeFigure(getMapMode().DPtoLP(30), getMapMode().DPtoLP(50));
 		return result;
 	}
 
 	/**
-	 * Creates figure for this edit part.
-	 * 
-	 * Body of this method does not depend on settings in generation model
-	 * so you may safely remove <i>generated</i> tag and modify it.
+	 * Creates figure for this edit part. Body of this method does not depend on settings in generation model so you may
+	 * safely remove <i>generated</i> tag and modify it.
 	 * 
 	 * @generated
 	 */
@@ -180,8 +176,9 @@ public class ActorEditPart extends ShapeNodeEditPart {
 	}
 
 	/**
-	 * Default implementation treats passed figure as content pane.
-	 * Respects layout one may have set for generated figure.
+	 * Default implementation treats passed figure as content pane. Respects layout one may have set for generated
+	 * figure.
+	 * 
 	 * @param nodeShape instance of generated figure class
 	 * @generated
 	 */
@@ -209,7 +206,7 @@ public class ActorEditPart extends ShapeNodeEditPart {
 	 */
 	public EditPart getPrimaryChildEditPart() {
 		return getChildBySemanticHint(org.unicase.ui.usecaseDiagram.part.ModelVisualIDRegistry
-				.getType(org.unicase.ui.usecaseDiagram.edit.parts.ActorNameEditPart.VISUAL_ID));
+			.getType(org.unicase.ui.usecaseDiagram.edit.parts.ActorNameEditPart.VISUAL_ID));
 	}
 
 	/**
@@ -237,8 +234,7 @@ public class ActorEditPart extends ShapeNodeEditPart {
 			this.setLayoutManager(layoutThis);
 
 			this.setOutline(false);
-			this.setMinimumSize(new Dimension(getMapMode().DPtoLP(10),
-					getMapMode().DPtoLP(10)));
+			this.setMinimumSize(new Dimension(getMapMode().DPtoLP(10), getMapMode().DPtoLP(10)));
 			createContents();
 		}
 
@@ -271,9 +267,7 @@ public class ActorEditPart extends ShapeNodeEditPart {
 			constraintFFigureActorFigure_name.verticalSpan = 1;
 			constraintFFigureActorFigure_name.grabExcessHorizontalSpace = false;
 			constraintFFigureActorFigure_name.grabExcessVerticalSpace = false;
-			this
-					.add(fFigureActorFigure_name,
-							constraintFFigureActorFigure_name);
+			this.add(fFigureActorFigure_name, constraintFFigureActorFigure_name);
 
 		}
 
@@ -308,7 +302,6 @@ public class ActorEditPart extends ShapeNodeEditPart {
 	/**
 	 * @generated
 	 */
-	static final Font FFIGUREACTORFIGURE_NAME_FONT = new Font(Display
-			.getCurrent(), "Arial", 12, SWT.BOLD);
+	static final Font FFIGUREACTORFIGURE_NAME_FONT = new Font(Display.getCurrent(), "Arial", 12, SWT.BOLD);
 
 }

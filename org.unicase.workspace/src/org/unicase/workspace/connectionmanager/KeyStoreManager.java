@@ -1,8 +1,7 @@
 /**
- * <copyright> Copyright (c) 2008 Jonas Helming, Maximilian Koegel. All rights reserved. This program and the accompanying materials are made available under the terms of the Eclipse Public License v1.0 which accompanies this distribution, and is available at http://www.eclipse.org/legal/epl-v10.html
- * </copyright>
- *
- * $Id$
+ * <copyright> Copyright (c) 2008 Jonas Helming, Maximilian Koegel. All rights reserved. This program and the
+ * accompanying materials are made available under the terms of the Eclipse Public License v1.0 which accompanies this
+ * distribution, and is available at http://www.eclipse.org/legal/epl-v10.html </copyright>
  */
 package org.unicase.workspace.connectionmanager;
 
@@ -24,11 +23,10 @@ import java.util.Enumeration;
 import org.unicase.workspace.Configuration;
 
 /**
- * The KeyStoreManager manages the client's keystore in which the ssl
- * certificates for multiple unicase server can be stored.
+ * The KeyStoreManager manages the client's keystore in which the ssl certificates for multiple unicase server can be
+ * stored.
  * 
  * @author Wesendonk
- * 
  */
 
 public final class KeyStoreManager {
@@ -70,16 +68,12 @@ public final class KeyStoreManager {
 
 			try {
 				// configure file
-				InputStream inputStream = getClass().getResourceAsStream(
-						KEYSTORENAME);
+				InputStream inputStream = getClass().getResourceAsStream(KEYSTORENAME);
 
-				File clientKeyTarget = new File(Configuration
-						.getWorkspaceDirectory()
-						+ KEYSTORENAME);
+				File clientKeyTarget = new File(Configuration.getWorkspaceDirectory() + KEYSTORENAME);
 
 				// copy to destination
-				org.unicase.model.util.FileUtil.copyFile(inputStream,
-						clientKeyTarget);
+				org.unicase.model.util.FileUtil.copyFile(inputStream, clientKeyTarget);
 			} catch (IOException e) {
 				// TODO OW: exception? - now the user will be alerted to the
 				// problem as soon as he tries to connect.
@@ -116,8 +110,7 @@ public final class KeyStoreManager {
 	/**
 	 * Deletes a certificate in the keystore.
 	 * 
-	 * @param alias
-	 *            alias of certificate
+	 * @param alias alias of certificate
 	 */
 	public void deleteCertificate(String alias) {
 		loadKeyStore();
@@ -133,18 +126,14 @@ public final class KeyStoreManager {
 	/**
 	 * Adds a certificate to the keystore.
 	 * 
-	 * @param alias
-	 *            alias for the certificate
-	 * @param path
-	 *            path to the certificate file
+	 * @param alias alias for the certificate
+	 * @param path path to the certificate file
 	 */
 	public void addCertificate(String alias, String path) {
 		loadKeyStore();
 		try {
-			CertificateFactory factory = CertificateFactory
-					.getInstance("X.509");
-			Certificate newCertificate = factory
-					.generateCertificate(new FileInputStream(path));
+			CertificateFactory factory = CertificateFactory.getInstance("X.509");
+			Certificate newCertificate = factory.generateCertificate(new FileInputStream(path));
 			keyStore.setCertificateEntry(alias, newCertificate);
 		} catch (CertificateException e) {
 			// OW Auto-generated catch block
@@ -161,8 +150,7 @@ public final class KeyStoreManager {
 	private void storeKeyStore() {
 		loadKeyStore();
 		try {
-			keyStore.store(new FileOutputStream(getPathToKeyStore()),
-					KEYSTOREPASSWORD.toCharArray());
+			keyStore.store(new FileOutputStream(getPathToKeyStore()), KEYSTOREPASSWORD.toCharArray());
 		} catch (KeyStoreException e) {
 			// OW Auto-generated catch block
 			e.printStackTrace();
@@ -185,8 +173,7 @@ public final class KeyStoreManager {
 		if (keyStore == null) {
 			try {
 				keyStore = KeyStore.getInstance("JKS");
-				keyStore.load(new FileInputStream(getPathToKeyStore()),
-						KEYSTOREPASSWORD.toCharArray());
+				keyStore.load(new FileInputStream(getPathToKeyStore()), KEYSTOREPASSWORD.toCharArray());
 			} catch (KeyStoreException e) {
 				// OW Auto-generated catch block
 				e.printStackTrace();
@@ -224,14 +211,46 @@ public final class KeyStoreManager {
 	public String getPathToKeyStore() {
 		return Configuration.getWorkspaceDirectory() + KEYSTORENAME;
 	}
-    /**
-     * Encrypts a password to save it locally.
-     * @param value String
-     * @param key int
-     * @return String
-     */
+
+	/**
+	 * Encrypts a password to save it locally.
+	 * 
+	 * @param value String
+	 * @param key int
+	 * @return String
+	 */
 	public static String enCrypt(String value, int key) {
-		
+
+		String edited = value;
+		StringBuffer ergebnis = new StringBuffer();
+
+		for (int i = 0; i < edited.length(); i++) {
+			int c = edited.charAt(i);
+
+			if ((c >= 'A') && (c <= 'z')) {
+				c += key;
+				if (c > 'z') {
+					c = 'a' + c % 'z' - 1;
+				}
+				if ((c > 'Z') && (c < 'a')) {
+					c = 'A' + c % 'Z' - 1;
+				}
+			}
+			ergebnis.append((char) c);
+		}
+		return ergebnis.toString();
+
+	}
+
+	/**
+	 * Decrypt a password which was saved locally.
+	 * 
+	 * @param value String
+	 * @param key int
+	 * @return String
+	 */
+	public static String deCrypt(String value, int key) {
+		if (value != null) {
 			String edited = value;
 			StringBuffer ergebnis = new StringBuffer();
 
@@ -239,47 +258,19 @@ public final class KeyStoreManager {
 				int c = edited.charAt(i);
 
 				if ((c >= 'A') && (c <= 'z')) {
-					c += key;
-					if (c > 'z') {
-						c = 'a' + c % 'z' - 1;
+					c -= key;
+					if ((c < 'a') && (c > 'Z')) {
+						c = 'a' + ('z' - c % 'a') - 1;
 					}
-					if ((c > 'Z') && (c < 'a')) {
-						c = 'A' + c % 'Z' - 1;
+					if (c < 'A') {
+						c = 'A' + ('Z' - c % 'A') - 1;
 					}
 				}
 				ergebnis.append((char) c);
 			}
-			return  ergebnis.toString();
-
-		
+			return ergebnis.toString();
+		}
+		return "";
 	}
-    /**
-     * Decrypt a password which was saved locally.
-     * @param value String
-     * @param key int
-     * @return String
-     */
-	public static String deCrypt(String value, int key) { 
-	    if (value!=null){
-	      String edited = value; 
-	      StringBuffer ergebnis = new StringBuffer(); 
-	       
-	       for( int i = 0; i < edited.length(); i++ ) 
-	       { 
-	         int c = edited.charAt( i ); 
 
-	         if ( (c >= 'A') && (c <= 'z') ) { 
-	           c -= key; 
-	           if( (c < 'a') && (c > 'Z') ) {
-	             c = 'a' + ('z' - c % 'a') - 1; }
-	           if( c < 'A' ){ 
-	             c = 'A' + ('Z' - c % 'A') - 1; }
-	         } 
-	         ergebnis.append( (char) c ); 
-	       } 
-	       return ergebnis.toString(); 
-	}
-	    return "";
-	    }
-  
 }

@@ -1,6 +1,7 @@
 /**
- * <copyright> Copyright (c) 2008 Jonas Helming, Maximilian Koegel. All rights reserved. This program and the accompanying materials are made available under the terms of the Eclipse Public License v1.0 which accompanies this distribution, and is available at http://www.eclipse.org/legal/epl-v10.html
- * </copyright>
+ * <copyright> Copyright (c) 2008 Jonas Helming, Maximilian Koegel. All rights reserved. This program and the
+ * accompanying materials are made available under the terms of the Eclipse Public License v1.0 which accompanies this
+ * distribution, and is available at http://www.eclipse.org/legal/epl-v10.html </copyright>
  */
 
 package org.unicase.workspace.edit.commands;
@@ -16,22 +17,21 @@ import org.unicase.workspace.util.RecordingCommandWithResult;
  * Property tester to test if a project space has local changes.
  * 
  * @author koegel
- *
  */
 public class ProjectHasLocalChangesTester extends PropertyTester {
 
-	/** 
+	/**
 	 * {@inheritDoc}
-	 * @see org.eclipse.core.expressions.IPropertyTester#test(java.lang.Object, java.lang.String, java.lang.Object[], java.lang.Object)
+	 * 
+	 * @see org.eclipse.core.expressions.IPropertyTester#test(java.lang.Object, java.lang.String, java.lang.Object[],
+	 *      java.lang.Object)
 	 */
-	public boolean test(Object receiver, String property, Object[] args,
-			final Object expectedValue) {
+	public boolean test(Object receiver, String property, Object[] args, final Object expectedValue) {
 		if (receiver instanceof ProjectSpace && expectedValue instanceof Boolean) {
-			final ProjectSpace projectSpace = (ProjectSpace)receiver;
+			final ProjectSpace projectSpace = (ProjectSpace) receiver;
 			TransactionalEditingDomain domain = TransactionalEditingDomain.Registry.INSTANCE
-					.getEditingDomain("org.unicase.EditingDomain");
-			RecordingCommandWithResult<Boolean> command = new RecordingCommandWithResult<Boolean>(
-					domain) {
+				.getEditingDomain("org.unicase.EditingDomain");
+			RecordingCommandWithResult<Boolean> command = new RecordingCommandWithResult<Boolean>(domain) {
 				@Override
 				protected void doExecute() {
 					EList<AbstractOperation> operations = projectSpace.getOperations();

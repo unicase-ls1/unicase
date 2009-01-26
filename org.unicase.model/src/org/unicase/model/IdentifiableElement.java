@@ -1,7 +1,7 @@
 /**
  * <copyright> Copyright (c) 2008 Jonas Helming, Maximilian Koegel. All rights reserved. This program and the
  * accompanying materials are made available under the terms of the Eclipse Public License v1.0 which accompanies this
- * distribution, and is available at http://www.eclipse.org/legal/epl-v10.html </copyright> $Id$
+ * distribution, and is available at http://www.eclipse.org/legal/epl-v10.html </copyright>
  */
 package org.unicase.model;
 
@@ -17,13 +17,13 @@ import org.eclipse.emf.ecore.EObject;
  */
 public interface IdentifiableElement extends EObject {
 	/**
-	 * Returns the value of the '<em><b>Identifier</b></em>' attribute.
-	 * <!-- begin-user-doc -->
+	 * Returns the value of the '<em><b>Identifier</b></em>' attribute. <!-- begin-user-doc -->
 	 * <p>
 	 * If the meaning of the '<em>Identifier</em>' attribute isn't clear, there really should be more of a description
 	 * here...
 	 * </p>
 	 * <!-- end-user-doc -->
+	 * 
 	 * @return the value of the '<em>Identifier</em>' attribute.
 	 * @see #setIdentifier(String)
 	 * @see org.unicase.model.ModelPackage#getIdentifiableElement_Identifier()
@@ -33,8 +33,9 @@ public interface IdentifiableElement extends EObject {
 	String getIdentifier();
 
 	/**
-	 * Sets the value of the '{@link org.unicase.model.IdentifiableElement#getIdentifier <em>Identifier</em>}' attribute.
-	 * <!-- begin-user-doc --> <!-- end-user-doc -->
+	 * Sets the value of the '{@link org.unicase.model.IdentifiableElement#getIdentifier <em>Identifier</em>}'
+	 * attribute. <!-- begin-user-doc --> <!-- end-user-doc -->
+	 * 
 	 * @param value the new value of the '<em>Identifier</em>' attribute.
 	 * @see #getIdentifier()
 	 * @generated

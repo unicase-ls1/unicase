@@ -1,8 +1,7 @@
 /**
- * <copyright> Copyright (c) 2008 Jonas Helming, Maximilian Koegel. All rights reserved. This program and the accompanying materials are made available under the terms of the Eclipse Public License v1.0 which accompanies this distribution, and is available at http://www.eclipse.org/legal/epl-v10.html
- * </copyright>
- *
- * $Id$
+ * <copyright> Copyright (c) 2008 Jonas Helming, Maximilian Koegel. All rights reserved. This program and the
+ * accompanying materials are made available under the terms of the Eclipse Public License v1.0 which accompanies this
+ * distribution, and is available at http://www.eclipse.org/legal/epl-v10.html </copyright>
  */
 package org.unicase.workspace;
 
@@ -29,8 +28,6 @@ import org.unicase.workspace.connectionmanager.RMIConnectionManagerImpl;
  * Controller for workspaces. Workspace Manager is a singleton.
  * 
  * @author Maximilian Koegel
- * 
- * 
  * @generated NOT
  */
 public final class WorkspaceManager {
@@ -44,11 +41,9 @@ public final class WorkspaceManager {
 	private AdminConnectionManager adminConnectionManager;
 
 	/**
-	 * Get an instance of the workspace manager. Will create an instance if no
-	 * workspace manager is present.
+	 * Get an instance of the workspace manager. Will create an instance if no workspace manager is present.
 	 * 
 	 * @return the workspace manager singleton
-	 * 
 	 * @generated NOT
 	 */
 	public static WorkspaceManager getInstance() {
@@ -67,17 +62,14 @@ public final class WorkspaceManager {
 		this.connectionManager = initConnectionManager();
 		this.adminConnectionManager = initAdminConnectionManager();
 		this.currentWorkspace = initWorkSpace();
-		
+
 	}
 
-	
-
 	/**
-	 * Initialize the connection manager of the workspace. The connection
-	 * manager connects the workspace with the emf store.
+	 * Initialize the connection manager of the workspace. The connection manager connects the workspace with the emf
+	 * store.
 	 * 
 	 * @return the connection manager
-	 * 
 	 * @generated NOT
 	 */
 	private ConnectionManager initConnectionManager() {
@@ -85,27 +77,24 @@ public final class WorkspaceManager {
 		// return new StubConnectionManagerImpl();
 		return new RMIConnectionManagerImpl();
 	}
-	
-	
+
 	/**
-	 * Initialize the connection manager of the workspace. The connection
-	 * manager connects the workspace with the emf store.
+	 * Initialize the connection manager of the workspace. The connection manager connects the workspace with the emf
+	 * store.
 	 * 
 	 * @return the admin connection manager
-	 * 
 	 * @generated NOT
 	 */
 	private AdminConnectionManager initAdminConnectionManager() {
-		
+
 		return new RMIAdminConnectionManagerImpl();
 	}
 
 	/**
-	 * Initialize the workspace. Loads workspace from persistent storage if
-	 * present. There is always one current Workspace.
+	 * Initialize the workspace. Loads workspace from persistent storage if present. There is always one current
+	 * Workspace.
 	 * 
 	 * @return the workspace
-	 * 
 	 * @generated NOT
 	 */
 	private Workspace initWorkSpace() {
@@ -113,9 +102,8 @@ public final class WorkspaceManager {
 
 		// register an editing domain on the ressource
 		final TransactionalEditingDomain domain = TransactionalEditingDomain.Factory.INSTANCE
-				.createEditingDomain(resourceSet);
-		TransactionalEditingDomain.Registry.INSTANCE.add(
-				TRANSACTIONAL_EDITINGDOMAIN_ID, domain);
+			.createEditingDomain(resourceSet);
+		TransactionalEditingDomain.Registry.INSTANCE.add(TRANSACTIONAL_EDITINGDOMAIN_ID, domain);
 		domain.setID(TRANSACTIONAL_EDITINGDOMAIN_ID);
 
 		URI fileURI = URI.createFileURI(Configuration.getWorkspacePath());
@@ -127,12 +115,11 @@ public final class WorkspaceManager {
 			// no workspace content found, create a workspace
 			resource = resourceSet.createResource(fileURI);
 			workspace = WorkspaceFactory.eINSTANCE.createWorkspace();
-			workspace.getServerInfos()
-					.addAll(Configuration.getDefaultServerInfos());
+			workspace.getServerInfos().addAll(Configuration.getDefaultServerInfos());
 			EList<Usersession> usersessions = workspace.getUsersessions();
-			for (ServerInfo serverInfo: workspace.getServerInfos()) {
+			for (ServerInfo serverInfo : workspace.getServerInfos()) {
 				Usersession lastUsersession = serverInfo.getLastUsersession();
-				if (lastUsersession!=null) {
+				if (lastUsersession != null) {
 					usersessions.add(lastUsersession);
 				}
 			}
@@ -158,7 +145,7 @@ public final class WorkspaceManager {
 			workspace = (Workspace) directContents.get(0);
 		}
 		workspace.setConnectionManager(this.connectionManager);
-		//MK: possible performance hit
+		// MK: possible performance hit
 		resource.setTrackingModification(true);
 		workspace.setWorkspaceResourceSet(resourceSet);
 		domain.getCommandStack().execute(new RecordingCommand(domain) {
@@ -167,7 +154,7 @@ public final class WorkspaceManager {
 				workspace.init(domain);
 			}
 		});
-		
+
 		return workspace;
 
 	}
@@ -182,34 +169,33 @@ public final class WorkspaceManager {
 	}
 
 	/**
-	 * Get the connection manager. Return the connection manager for this
-	 * workspace.
+	 * Get the connection manager. Return the connection manager for this workspace.
 	 * 
 	 * @return the connectionManager
 	 */
 	public ConnectionManager getConnectionManager() {
 		return connectionManager;
 	}
-	
+
 	/**
-	 * Get the admin connection manager. Return the admin connection manager for this
-	 * workspace.
+	 * Get the admin connection manager. Return the admin connection manager for this workspace.
 	 * 
 	 * @return the connectionManager
 	 */
 	public AdminConnectionManager getAdminConnectionManager() {
 		return adminConnectionManager;
 	}
-	
+
 	/**
 	 * Retrieve the project space for a model element.
+	 * 
 	 * @param modelElement the model element
 	 * @return the project space
 	 */
 	public static ProjectSpace getProjectSpace(ModelElement modelElement) {
 		return getProjectSpace(modelElement.getProject());
 	}
-	
+
 	/**
 	 * Retrieve the project space for a project.
 	 * 
@@ -221,8 +207,7 @@ public final class WorkspaceManager {
 		if (WorkspacePackage.eINSTANCE.getProjectSpace().isInstance(project.eContainer())) {
 			return (ProjectSpace) project.eContainer();
 		} else {
-			throw new IllegalStateException(
-					"Project is not contained by any project space");
+			throw new IllegalStateException("Project is not contained by any project space");
 		}
 	}
 }

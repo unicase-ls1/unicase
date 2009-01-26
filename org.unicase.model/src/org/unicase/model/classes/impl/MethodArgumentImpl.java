@@ -1,7 +1,7 @@
 /**
  * <copyright> Copyright (c) 2008 Jonas Helming, Maximilian Koegel. All rights reserved. This program and the
  * accompanying materials are made available under the terms of the Eclipse Public License v1.0 which accompanies this
- * distribution, and is available at http://www.eclipse.org/legal/epl-v10.html </copyright> $Id$
+ * distribution, and is available at http://www.eclipse.org/legal/epl-v10.html </copyright>
  */
 package org.unicase.model.classes.impl;
 
@@ -48,9 +48,9 @@ public class MethodArgumentImpl extends ModelElementImpl implements MethodArgume
 	protected String type = TYPE_EDEFAULT;
 
 	/**
-	 * The default value of the '{@link #getDirection() <em>Direction</em>}' attribute.
-	 * <!-- begin-user-doc --> <!--
+	 * The default value of the '{@link #getDirection() <em>Direction</em>}' attribute. <!-- begin-user-doc --> <!--
 	 * end-user-doc -->
+	 * 
 	 * @see #getDirection()
 	 * @generated
 	 * @ordered
@@ -58,9 +58,9 @@ public class MethodArgumentImpl extends ModelElementImpl implements MethodArgume
 	protected static final ArgumentDirectionType DIRECTION_EDEFAULT = ArgumentDirectionType.UNDEFINED;
 
 	/**
-	 * The cached value of the '{@link #getDirection() <em>Direction</em>}' attribute.
-	 * <!-- begin-user-doc --> <!--
+	 * The cached value of the '{@link #getDirection() <em>Direction</em>}' attribute. <!-- begin-user-doc --> <!--
 	 * end-user-doc -->
+	 * 
 	 * @see #getDirection()
 	 * @generated
 	 * @ordered
@@ -68,9 +68,9 @@ public class MethodArgumentImpl extends ModelElementImpl implements MethodArgume
 	protected ArgumentDirectionType direction = DIRECTION_EDEFAULT;
 
 	/**
-	 * The default value of the '{@link #getDefaultValue() <em>Default Value</em>}' attribute.
-	 * <!-- begin-user-doc -->
+	 * The default value of the '{@link #getDefaultValue() <em>Default Value</em>}' attribute. <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
+	 * 
 	 * @see #getDefaultValue()
 	 * @generated
 	 * @ordered
@@ -78,9 +78,9 @@ public class MethodArgumentImpl extends ModelElementImpl implements MethodArgume
 	protected static final String DEFAULT_VALUE_EDEFAULT = null;
 
 	/**
-	 * The cached value of the '{@link #getDefaultValue() <em>Default Value</em>}' attribute.
-	 * <!-- begin-user-doc -->
+	 * The cached value of the '{@link #getDefaultValue() <em>Default Value</em>}' attribute. <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
+	 * 
 	 * @see #getDefaultValue()
 	 * @generated
 	 * @ordered
@@ -88,9 +88,9 @@ public class MethodArgumentImpl extends ModelElementImpl implements MethodArgume
 	protected String defaultValue = DEFAULT_VALUE_EDEFAULT;
 
 	/**
-	 * The default value of the '{@link #getSignature() <em>Signature</em>}' attribute.
-	 * <!-- begin-user-doc --> <!--
+	 * The default value of the '{@link #getSignature() <em>Signature</em>}' attribute. <!-- begin-user-doc --> <!--
 	 * end-user-doc -->
+	 * 
 	 * @see #getSignature()
 	 * @generated
 	 * @ordered
@@ -98,9 +98,9 @@ public class MethodArgumentImpl extends ModelElementImpl implements MethodArgume
 	protected static final String SIGNATURE_EDEFAULT = null;
 
 	/**
-	 * The default value of the '{@link #getLabel() <em>Label</em>}' attribute.
-	 * <!-- begin-user-doc --> <!--
+	 * The default value of the '{@link #getLabel() <em>Label</em>}' attribute. <!-- begin-user-doc --> <!--
 	 * end-user-doc -->
+	 * 
 	 * @see #getLabel()
 	 * @generated
 	 * @ordered
@@ -119,6 +119,7 @@ public class MethodArgumentImpl extends ModelElementImpl implements MethodArgume
 
 	/**
 	 * <!-- begin-user-doc --> <!-- end-user-doc -->
+	 * 
 	 * @generated
 	 */
 	protected MethodArgumentImpl() {
@@ -127,6 +128,7 @@ public class MethodArgumentImpl extends ModelElementImpl implements MethodArgume
 
 	/**
 	 * <!-- begin-user-doc --> <!-- end-user-doc -->
+	 * 
 	 * @generated
 	 */
 	@Override
@@ -136,6 +138,7 @@ public class MethodArgumentImpl extends ModelElementImpl implements MethodArgume
 
 	/**
 	 * <!-- begin-user-doc --> <!-- end-user-doc -->
+	 * 
 	 * @generated
 	 */
 	public String getType() {
@@ -144,6 +147,7 @@ public class MethodArgumentImpl extends ModelElementImpl implements MethodArgume
 
 	/**
 	 * <!-- begin-user-doc --> <!-- end-user-doc -->
+	 * 
 	 * @generated
 	 */
 	public void setType(String newType) {
@@ -155,6 +159,7 @@ public class MethodArgumentImpl extends ModelElementImpl implements MethodArgume
 
 	/**
 	 * <!-- begin-user-doc --> <!-- end-user-doc -->
+	 * 
 	 * @generated
 	 */
 	public ArgumentDirectionType getDirection() {
@@ -163,6 +168,7 @@ public class MethodArgumentImpl extends ModelElementImpl implements MethodArgume
 
 	/**
 	 * <!-- begin-user-doc --> <!-- end-user-doc -->
+	 * 
 	 * @generated
 	 */
 	public void setDirection(ArgumentDirectionType newDirection) {
@@ -175,6 +181,7 @@ public class MethodArgumentImpl extends ModelElementImpl implements MethodArgume
 
 	/**
 	 * <!-- begin-user-doc --> <!-- end-user-doc -->
+	 * 
 	 * @generated
 	 */
 	public String getDefaultValue() {
@@ -183,6 +190,7 @@ public class MethodArgumentImpl extends ModelElementImpl implements MethodArgume
 
 	/**
 	 * <!-- begin-user-doc --> <!-- end-user-doc -->
+	 * 
 	 * @generated
 	 */
 	public void setDefaultValue(String newDefaultValue) {
@@ -304,6 +312,7 @@ public class MethodArgumentImpl extends ModelElementImpl implements MethodArgume
 
 	/**
 	 * <!-- begin-user-doc --> .<!-- end-user-doc -->
+	 * 
 	 * @generated
 	 */
 	@Override
@@ -325,6 +334,7 @@ public class MethodArgumentImpl extends ModelElementImpl implements MethodArgume
 
 	/**
 	 * <!-- begin-user-doc --> <!-- end-user-doc -->
+	 * 
 	 * @generated
 	 */
 	@Override
@@ -348,6 +358,7 @@ public class MethodArgumentImpl extends ModelElementImpl implements MethodArgume
 
 	/**
 	 * <!-- begin-user-doc --> <!-- end-user-doc -->
+	 * 
 	 * @generated
 	 */
 	@Override
@@ -371,6 +382,7 @@ public class MethodArgumentImpl extends ModelElementImpl implements MethodArgume
 
 	/**
 	 * <!-- begin-user-doc --> <!-- end-user-doc -->
+	 * 
 	 * @generated
 	 */
 	@Override
@@ -392,6 +404,7 @@ public class MethodArgumentImpl extends ModelElementImpl implements MethodArgume
 
 	/**
 	 * <!-- begin-user-doc --> <!-- end-user-doc -->
+	 * 
 	 * @generated
 	 */
 	@Override

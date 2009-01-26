@@ -9,39 +9,41 @@ import org.eclipse.swt.widgets.Composite;
 import org.unicase.emfstore.esmodel.versioning.ChangePackage;
 
 /**
- * Shows the operations in a change packages grouped by change package. 
+ * Shows the operations in a change packages grouped by change package.
+ * 
  * @author Shterev
- *
  */
-public class DetailedChangesComposite extends AbstractChangesComposite{
-	
+public class DetailedChangesComposite extends AbstractChangesComposite {
+
 	private TreeViewerColumn meColumn;
 	private TreeViewerColumn opColumn;
 
-
 	/**
 	 * Default constructor.
+	 * 
 	 * @param parent @see {@link AbstractChangesComposite}
 	 * @param style @see {@link AbstractChangesComposite}
 	 * @param relatedElementsStyle @see {@link AbstractChangesComposite}
 	 * @param changePackages @see {@link AbstractChangesComposite}
 	 * @param checkable @see {@link AbstractChangesComposite}
 	 */
-	public DetailedChangesComposite(Composite parent, int style, int relatedElementsStyle, List<ChangePackage> changePackages, boolean checkable) {
+	public DetailedChangesComposite(Composite parent, int style, int relatedElementsStyle,
+		List<ChangePackage> changePackages, boolean checkable) {
 		super(parent, style, relatedElementsStyle, changePackages, new DetailedChangesContentProvider(), checkable);
 	}
 
 	/**
 	 * Default constructor.
+	 * 
 	 * @param parent @see {@link AbstractChangesComposite}
 	 * @param style @see {@link AbstractChangesComposite}
 	 * @param relatedElementsStyle @see {@link AbstractChangesComposite}
 	 * @param changePackages @see {@link AbstractChangesComposite}
 	 */
-	public DetailedChangesComposite(Composite parent, int style, int relatedElementsStyle, List<ChangePackage> changePackages) {
+	public DetailedChangesComposite(Composite parent, int style, int relatedElementsStyle,
+		List<ChangePackage> changePackages) {
 		super(parent, style, relatedElementsStyle, changePackages, new DetailedChangesContentProvider(), false);
 	}
-	
 
 	/**
 	 * {@inheritDoc}
@@ -54,17 +56,14 @@ public class DetailedChangesComposite extends AbstractChangesComposite{
 		meColumn = new TreeViewerColumn(getTreeViewer(), SWT.NONE);
 		meColumn.getColumn().setWidth(300);
 		meColumn.getColumn().setText("ModelElement");
-		meColumn.setLabelProvider(new MENameLabelProvider(getEmfLabelProvider(),
-				getVisualizationHelper()));
+		meColumn.setLabelProvider(new MENameLabelProvider(getEmfLabelProvider(), getVisualizationHelper()));
 
 		opColumn = new TreeViewerColumn(getTreeViewer(), SWT.NONE);
 		opColumn.getColumn().setWidth(300);
 		opColumn.getColumn().setText("Operation");
 		opColumn.getColumn().setWidth(getShell().getSize().x / 2);
-		opColumn.setLabelProvider(new OperationsNameLabelProvider(getEmfLabelProvider(),
-				getVisualizationHelper()));
-		
-		
+		opColumn.setLabelProvider(new OperationsNameLabelProvider(getEmfLabelProvider(), getVisualizationHelper()));
+
 	}
 
 	/**

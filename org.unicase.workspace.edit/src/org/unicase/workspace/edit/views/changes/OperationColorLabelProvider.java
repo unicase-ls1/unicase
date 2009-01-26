@@ -9,33 +9,35 @@ import org.unicase.emfstore.esmodel.versioning.operations.AbstractOperation;
 
 /**
  * Provides proper coloring for given AbstractOperations according to their OperationState.
+ * 
  * @author Shterev
  */
 public class OperationColorLabelProvider {
-	
+
 	private HashMap<AbstractOperation, OperationState> map;
 
 	/**
 	 * Default constructor.
+	 * 
 	 * @param map mapping between {@link AbstractOperation}s and {@link OperationState}s
 	 */
-	public OperationColorLabelProvider(HashMap<AbstractOperation, OperationState> map){
+	public OperationColorLabelProvider(HashMap<AbstractOperation, OperationState> map) {
 		this.map = map;
 	}
-	
+
 	/**
 	 * @param op the abstract operation
 	 * @return the color for this op
 	 */
-	public Color getColor(AbstractOperation op){
+	public Color getColor(AbstractOperation op) {
 		OperationState state = map.get(op);
 		Display display = Display.getCurrent();
-		if(state.getPreviewState()==OperationState.ACCEPTED){
+		if (state.getPreviewState() == OperationState.ACCEPTED) {
 			return display.getSystemColor(SWT.COLOR_GREEN);
-		}else if(state.getPreviewState()==OperationState.REJECTED){
+		} else if (state.getPreviewState() == OperationState.REJECTED) {
 			return display.getSystemColor(SWT.COLOR_RED);
 		}
 		return display.getSystemColor(SWT.COLOR_BLACK);
 	}
-	
+
 }
