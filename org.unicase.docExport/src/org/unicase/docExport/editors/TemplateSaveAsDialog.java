@@ -20,18 +20,16 @@ import org.unicase.docExport.exportModel.Template;
 import org.unicase.workspace.util.WorkspaceUtil;
 
 /**
- * 
- * @author Sebastian Höcht
- * 
+ * @author Sebastian Hoecht
  */
 public class TemplateSaveAsDialog extends TitleAreaDialog {
 
-	
 	private Text templateName;
 	private Template template;
-	
+
 	/**
 	 * the constructor.
+	 * 
 	 * @param parentShell the parent shell object
 	 * @param template the template to save
 	 */
@@ -41,7 +39,6 @@ public class TemplateSaveAsDialog extends TitleAreaDialog {
 		setTitle("Enter the name of the new Template");
 		this.template = template;
 	}
-	
 
 	/**
 	 * {@inheritDoc}
@@ -70,8 +67,8 @@ public class TemplateSaveAsDialog extends TitleAreaDialog {
 	 */
 	public Text getTemplateName() {
 		return templateName;
-	}	
-	
+	}
+
 	/**
 	 * {@inheritDoc}
 	 */
@@ -84,8 +81,7 @@ public class TemplateSaveAsDialog extends TitleAreaDialog {
 		setMessage("This is a TitleAreaDialog", IMessageProvider.INFORMATION);
 		return contents;
 	}
-	
-	
+
 	/**
 	 * {@inheritDoc}
 	 */
@@ -96,7 +92,7 @@ public class TemplateSaveAsDialog extends TitleAreaDialog {
 		button.setText("OK");
 		button.setFont(JFaceResources.getDialogFont());
 		button.addSelectionListener(new SelectionAdapter() {
-			
+
 			@Override
 			public void widgetSelected(SelectionEvent e) {
 				if (templateName.getText().length() != 0) {
@@ -104,11 +100,7 @@ public class TemplateSaveAsDialog extends TitleAreaDialog {
 					try {
 						TemplateRegistry.saveTemplate(template);
 					} catch (TemplateSaveException e1) {
-						WorkspaceUtil.log(
-								"could not save the Template",
-								e1,
-								IStatus.ERROR
-							);
+						WorkspaceUtil.log("could not save the Template", e1, IStatus.ERROR);
 					}
 					close();
 				} else {
@@ -124,6 +116,5 @@ public class TemplateSaveAsDialog extends TitleAreaDialog {
 	public Template getTemplate() {
 		return template;
 	}
-
 
 }

@@ -7,28 +7,26 @@ import org.unicase.docExport.exportModel.renderers.options.OptionsFactory;
 import org.unicase.docExport.exportModel.renderers.options.TextOption;
 import org.unicase.workspace.util.WorkspaceUtil;
 
-
 /**
  * This class represents a Paragraph with some text.
  * 
- * @author Sebastian Höcht
+ * @author Sebastian Hoecht
  */
 public class UParagraph extends UCompositeSection {
-	
+
 	private TextOption option = OptionsFactory.eINSTANCE.createTextOption();
 
 	private String text = "";
 	private int indentionLeft;
-	
+
 	/**
 	 * @param text the content of the paragraph
 	 */
 	public UParagraph(String text) {
 		this.setText(text);
 	}
-	
+
 	/**
-	 * 
 	 * @param text the content of the paragraph
 	 * @param option the TextOption which decorates the content
 	 * @param boxModelOption defines padding border and margin of the box.
@@ -37,10 +35,9 @@ public class UParagraph extends UCompositeSection {
 		this.setBoxModel(boxModelOption);
 		this.setOption(option);
 		this.setText(text);
-	}	
-	
+	}
+
 	/**
-	 * 
 	 * @param text the content of the paragraph
 	 * @param option the TextOption which decorates the content
 	 */
@@ -48,7 +45,7 @@ public class UParagraph extends UCompositeSection {
 		this.setOption(option);
 		this.setText(text);
 	}
-	
+
 	/**
 	 * @param option the TextOption which decorates the content
 	 */
@@ -89,11 +86,7 @@ public class UParagraph extends UCompositeSection {
 	 */
 	public void setOption(TextOption option) {
 		if (option == null) {
-			WorkspaceUtil.log(
-					"Can't set null as TextOption", 
-					new Exception(), 
-					IStatus.WARNING
-				);
+			WorkspaceUtil.log("Can't set null as TextOption", new Exception(), IStatus.WARNING);
 		} else {
 			this.option = (TextOption) EcoreUtil.copy(option);
 		}

@@ -1,8 +1,5 @@
 /**
- * <copyright>
- * </copyright>
- *
- * $Id$
+ * <copyright> </copyright> $Id$
  */
 package org.unicase.docExport.exportModel.renderers.options.impl;
 
@@ -12,28 +9,25 @@ import org.eclipse.emf.ecore.EClass;
 import org.eclipse.emf.ecore.InternalEObject;
 import org.eclipse.emf.ecore.impl.ENotificationImpl;
 import org.unicase.docExport.exportModel.renderers.options.AppendixStyle;
+import org.unicase.docExport.exportModel.renderers.options.HeaderStyle;
 import org.unicase.docExport.exportModel.renderers.options.LayoutOptions;
 import org.unicase.docExport.exportModel.renderers.options.OptionsFactory;
 import org.unicase.docExport.exportModel.renderers.options.OptionsPackage;
-import org.unicase.docExport.exportModel.renderers.options.PageNumberingStyle;
+import org.unicase.docExport.exportModel.renderers.options.PageCitationStyle;
 import org.unicase.docExport.exportModel.renderers.options.SectionOption;
 import org.unicase.docExport.exportModel.renderers.options.TextOption;
 
 /**
- * <!-- begin-user-doc -->
- * An implementation of the model object '<em><b>Layout Options</b></em>'.
- * <!-- end-user-doc -->
+ * <!-- begin-user-doc --> An implementation of the model object '<em><b>Layout Options</b></em>'. <!-- end-user-doc -->
  * <p>
  * The following features are implemented:
  * <ul>
- *   <li>{@link org.unicase.docExport.exportModel.renderers.options.impl.LayoutOptionsImpl#getCoverText <em>Cover Text</em>}</li>
- *   <li>{@link org.unicase.docExport.exportModel.renderers.options.impl.LayoutOptionsImpl#getCoverTextTextOption <em>Cover Text Text Option</em>}</li>
+ *   <li>{@link org.unicase.docExport.exportModel.renderers.options.impl.LayoutOptionsImpl#getHeaderTextOption <em>Header Text Option</em>}</li>
  *   <li>{@link org.unicase.docExport.exportModel.renderers.options.impl.LayoutOptionsImpl#getDefaultTextOption <em>Default Text Option</em>}</li>
  *   <li>{@link org.unicase.docExport.exportModel.renderers.options.impl.LayoutOptionsImpl#getSectionTextOption <em>Section Text Option</em>}</li>
  *   <li>{@link org.unicase.docExport.exportModel.renderers.options.impl.LayoutOptionsImpl#isHideAnnotations <em>Hide Annotations</em>}</li>
  *   <li>{@link org.unicase.docExport.exportModel.renderers.options.impl.LayoutOptionsImpl#isHideAttachments <em>Hide Attachments</em>}</li>
  *   <li>{@link org.unicase.docExport.exportModel.renderers.options.impl.LayoutOptionsImpl#isHideIncomingDocumentReferences <em>Hide Incoming Document References</em>}</li>
- *   <li>{@link org.unicase.docExport.exportModel.renderers.options.impl.LayoutOptionsImpl#getPageNumberingStyle <em>Page Numbering Style</em>}</li>
  *   <li>{@link org.unicase.docExport.exportModel.renderers.options.impl.LayoutOptionsImpl#isHideModelElementImages <em>Hide Model Element Images</em>}</li>
  *   <li>{@link org.unicase.docExport.exportModel.renderers.options.impl.LayoutOptionsImpl#getModelElementTextOption <em>Model Element Text Option</em>}</li>
  *   <li>{@link org.unicase.docExport.exportModel.renderers.options.impl.LayoutOptionsImpl#getHeaderText <em>Header Text</em>}</li>
@@ -42,8 +36,18 @@ import org.unicase.docExport.exportModel.renderers.options.TextOption;
  *   <li>{@link org.unicase.docExport.exportModel.renderers.options.impl.LayoutOptionsImpl#getSectionFontSizeDecreaseStep <em>Section Font Size Decrease Step</em>}</li>
  *   <li>{@link org.unicase.docExport.exportModel.renderers.options.impl.LayoutOptionsImpl#getDocumentTitleTextOption <em>Document Title Text Option</em>}</li>
  *   <li>{@link org.unicase.docExport.exportModel.renderers.options.impl.LayoutOptionsImpl#isShowModelElementTypeInSectionTitle <em>Show Model Element Type In Section Title</em>}</li>
- *   <li>{@link org.unicase.docExport.exportModel.renderers.options.impl.LayoutOptionsImpl#getAttributeTextOption <em>Attribute Text Option</em>}</li>
  *   <li>{@link org.unicase.docExport.exportModel.renderers.options.impl.LayoutOptionsImpl#getAppendixStyle <em>Appendix Style</em>}</li>
+ *   <li>{@link org.unicase.docExport.exportModel.renderers.options.impl.LayoutOptionsImpl#getLogoImage <em>Logo Image</em>}</li>
+ *   <li>{@link org.unicase.docExport.exportModel.renderers.options.impl.LayoutOptionsImpl#getFooterTextOption <em>Footer Text Option</em>}</li>
+ *   <li>{@link org.unicase.docExport.exportModel.renderers.options.impl.LayoutOptionsImpl#isFooterShowDocumentTitle <em>Footer Show Document Title</em>}</li>
+ *   <li>{@link org.unicase.docExport.exportModel.renderers.options.impl.LayoutOptionsImpl#getPageCitationStyle <em>Page Citation Style</em>}</li>
+ *   <li>{@link org.unicase.docExport.exportModel.renderers.options.impl.LayoutOptionsImpl#getHeaderStyle <em>Header Style</em>}</li>
+ *   <li>{@link org.unicase.docExport.exportModel.renderers.options.impl.LayoutOptionsImpl#getLogoWidth <em>Logo Width</em>}</li>
+ *   <li>{@link org.unicase.docExport.exportModel.renderers.options.impl.LayoutOptionsImpl#getLogoHeight <em>Logo Height</em>}</li>
+ *   <li>{@link org.unicase.docExport.exportModel.renderers.options.impl.LayoutOptionsImpl#isLogoOnCoverPage <em>Logo On Cover Page</em>}</li>
+ *   <li>{@link org.unicase.docExport.exportModel.renderers.options.impl.LayoutOptionsImpl#getTableOfContentsTextOption <em>Table Of Contents Text Option</em>}</li>
+ *   <li>{@link org.unicase.docExport.exportModel.renderers.options.impl.LayoutOptionsImpl#isHideTableOfContents <em>Hide Table Of Contents</em>}</li>
+ *   <li>{@link org.unicase.docExport.exportModel.renderers.options.impl.LayoutOptionsImpl#isHideHeaderAndFooterOnCoverPage <em>Hide Header And Footer On Cover Page</em>}</li>
  * </ul>
  * </p>
  *
@@ -51,39 +55,18 @@ import org.unicase.docExport.exportModel.renderers.options.TextOption;
  */
 public class LayoutOptionsImpl extends RendererOptionImpl implements LayoutOptions {
 	/**
-	 * The default value of the '{@link #getCoverText() <em>Cover Text</em>}' attribute.
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
-	 * @see #getCoverText()
+	 * The cached value of the '{@link #getHeaderTextOption() <em>Header Text Option</em>}' containment reference. <!--
+	 * begin-user-doc --> <!-- end-user-doc -->
+	 * 
+	 * @see #getHeaderTextOption()
 	 * @generated
 	 * @ordered
 	 */
-	protected static final String COVER_TEXT_EDEFAULT = null;
-
-	/**
-	 * The cached value of the '{@link #getCoverText() <em>Cover Text</em>}' attribute.
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
-	 * @see #getCoverText()
-	 * @generated
-	 * @ordered
-	 */
-	protected String coverText = COVER_TEXT_EDEFAULT;
-
-	/**
-	 * The cached value of the '{@link #getCoverTextTextOption() <em>Cover Text Text Option</em>}' containment reference.
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
-	 * @see #getCoverTextTextOption()
-	 * @generated
-	 * @ordered
-	 */
-	protected TextOption coverTextTextOption;
+	protected TextOption headerTextOption;
 
 	/**
 	 * The cached value of the '{@link #getDefaultTextOption() <em>Default Text Option</em>}' containment reference.
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
+	 * <!-- begin-user-doc --> <!-- end-user-doc -->
 	 * @see #getDefaultTextOption()
 	 * @generated
 	 * @ordered
@@ -92,8 +75,7 @@ public class LayoutOptionsImpl extends RendererOptionImpl implements LayoutOptio
 
 	/**
 	 * The cached value of the '{@link #getSectionTextOption() <em>Section Text Option</em>}' containment reference.
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
+	 * <!-- begin-user-doc --> <!-- end-user-doc -->
 	 * @see #getSectionTextOption()
 	 * @generated
 	 * @ordered
@@ -102,8 +84,8 @@ public class LayoutOptionsImpl extends RendererOptionImpl implements LayoutOptio
 
 	/**
 	 * The default value of the '{@link #isHideAnnotations() <em>Hide Annotations</em>}' attribute.
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
+	 * <!-- begin-user-doc
+	 * --> <!-- end-user-doc -->
 	 * @see #isHideAnnotations()
 	 * @generated
 	 * @ordered
@@ -112,8 +94,8 @@ public class LayoutOptionsImpl extends RendererOptionImpl implements LayoutOptio
 
 	/**
 	 * The cached value of the '{@link #isHideAnnotations() <em>Hide Annotations</em>}' attribute.
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
+	 * <!-- begin-user-doc
+	 * --> <!-- end-user-doc -->
 	 * @see #isHideAnnotations()
 	 * @generated
 	 * @ordered
@@ -122,8 +104,8 @@ public class LayoutOptionsImpl extends RendererOptionImpl implements LayoutOptio
 
 	/**
 	 * The default value of the '{@link #isHideAttachments() <em>Hide Attachments</em>}' attribute.
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
+	 * <!-- begin-user-doc
+	 * --> <!-- end-user-doc -->
 	 * @see #isHideAttachments()
 	 * @generated
 	 * @ordered
@@ -132,8 +114,8 @@ public class LayoutOptionsImpl extends RendererOptionImpl implements LayoutOptio
 
 	/**
 	 * The cached value of the '{@link #isHideAttachments() <em>Hide Attachments</em>}' attribute.
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
+	 * <!-- begin-user-doc
+	 * --> <!-- end-user-doc -->
 	 * @see #isHideAttachments()
 	 * @generated
 	 * @ordered
@@ -142,8 +124,7 @@ public class LayoutOptionsImpl extends RendererOptionImpl implements LayoutOptio
 
 	/**
 	 * The default value of the '{@link #isHideIncomingDocumentReferences() <em>Hide Incoming Document References</em>}' attribute.
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
+	 * <!-- begin-user-doc --> <!-- end-user-doc -->
 	 * @see #isHideIncomingDocumentReferences()
 	 * @generated
 	 * @ordered
@@ -152,8 +133,7 @@ public class LayoutOptionsImpl extends RendererOptionImpl implements LayoutOptio
 
 	/**
 	 * The cached value of the '{@link #isHideIncomingDocumentReferences() <em>Hide Incoming Document References</em>}' attribute.
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
+	 * <!-- begin-user-doc --> <!-- end-user-doc -->
 	 * @see #isHideIncomingDocumentReferences()
 	 * @generated
 	 * @ordered
@@ -161,29 +141,9 @@ public class LayoutOptionsImpl extends RendererOptionImpl implements LayoutOptio
 	protected boolean hideIncomingDocumentReferences = HIDE_INCOMING_DOCUMENT_REFERENCES_EDEFAULT;
 
 	/**
-	 * The default value of the '{@link #getPageNumberingStyle() <em>Page Numbering Style</em>}' attribute.
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
-	 * @see #getPageNumberingStyle()
-	 * @generated
-	 * @ordered
-	 */
-	protected static final PageNumberingStyle PAGE_NUMBERING_STYLE_EDEFAULT = PageNumberingStyle.PAGE_ONLY;
-
-	/**
-	 * The cached value of the '{@link #getPageNumberingStyle() <em>Page Numbering Style</em>}' attribute.
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
-	 * @see #getPageNumberingStyle()
-	 * @generated
-	 * @ordered
-	 */
-	protected PageNumberingStyle pageNumberingStyle = PAGE_NUMBERING_STYLE_EDEFAULT;
-
-	/**
-	 * The default value of the '{@link #isHideModelElementImages() <em>Hide Model Element Images</em>}' attribute.
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
+	 * The default value of the '{@link #isHideModelElementImages() <em>Hide Model Element Images</em>}' attribute. <!--
+	 * begin-user-doc --> <!-- end-user-doc -->
+	 * 
 	 * @see #isHideModelElementImages()
 	 * @generated
 	 * @ordered
@@ -191,9 +151,9 @@ public class LayoutOptionsImpl extends RendererOptionImpl implements LayoutOptio
 	protected static final boolean HIDE_MODEL_ELEMENT_IMAGES_EDEFAULT = false;
 
 	/**
-	 * The cached value of the '{@link #isHideModelElementImages() <em>Hide Model Element Images</em>}' attribute.
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
+	 * The cached value of the '{@link #isHideModelElementImages() <em>Hide Model Element Images</em>}' attribute. <!--
+	 * begin-user-doc --> <!-- end-user-doc -->
+	 * 
 	 * @see #isHideModelElementImages()
 	 * @generated
 	 * @ordered
@@ -202,8 +162,7 @@ public class LayoutOptionsImpl extends RendererOptionImpl implements LayoutOptio
 
 	/**
 	 * The cached value of the '{@link #getModelElementTextOption() <em>Model Element Text Option</em>}' containment reference.
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
+	 * <!-- begin-user-doc --> <!-- end-user-doc -->
 	 * @see #getModelElementTextOption()
 	 * @generated
 	 * @ordered
@@ -212,8 +171,8 @@ public class LayoutOptionsImpl extends RendererOptionImpl implements LayoutOptio
 
 	/**
 	 * The default value of the '{@link #getHeaderText() <em>Header Text</em>}' attribute.
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
+	 * <!-- begin-user-doc --> <!--
+	 * end-user-doc -->
 	 * @see #getHeaderText()
 	 * @generated
 	 * @ordered
@@ -222,8 +181,8 @@ public class LayoutOptionsImpl extends RendererOptionImpl implements LayoutOptio
 
 	/**
 	 * The cached value of the '{@link #getHeaderText() <em>Header Text</em>}' attribute.
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
+	 * <!-- begin-user-doc --> <!--
+	 * end-user-doc -->
 	 * @see #getHeaderText()
 	 * @generated
 	 * @ordered
@@ -232,8 +191,8 @@ public class LayoutOptionsImpl extends RendererOptionImpl implements LayoutOptio
 
 	/**
 	 * The default value of the '{@link #getFooterText() <em>Footer Text</em>}' attribute.
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
+	 * <!-- begin-user-doc --> <!--
+	 * end-user-doc -->
 	 * @see #getFooterText()
 	 * @generated
 	 * @ordered
@@ -242,8 +201,8 @@ public class LayoutOptionsImpl extends RendererOptionImpl implements LayoutOptio
 
 	/**
 	 * The cached value of the '{@link #getFooterText() <em>Footer Text</em>}' attribute.
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
+	 * <!-- begin-user-doc --> <!--
+	 * end-user-doc -->
 	 * @see #getFooterText()
 	 * @generated
 	 * @ordered
@@ -251,9 +210,9 @@ public class LayoutOptionsImpl extends RendererOptionImpl implements LayoutOptio
 	protected String footerText = FOOTER_TEXT_EDEFAULT;
 
 	/**
-	 * The cached value of the '{@link #getSectionOption() <em>Section Option</em>}' containment reference.
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
+	 * The cached value of the '{@link #getSectionOption() <em>Section Option</em>}' containment reference. <!--
+	 * begin-user-doc --> <!-- end-user-doc -->
+	 * 
 	 * @see #getSectionOption()
 	 * @generated
 	 * @ordered
@@ -262,8 +221,7 @@ public class LayoutOptionsImpl extends RendererOptionImpl implements LayoutOptio
 
 	/**
 	 * The default value of the '{@link #getSectionFontSizeDecreaseStep() <em>Section Font Size Decrease Step</em>}' attribute.
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
+	 * <!-- begin-user-doc --> <!-- end-user-doc -->
 	 * @see #getSectionFontSizeDecreaseStep()
 	 * @generated
 	 * @ordered
@@ -272,8 +230,7 @@ public class LayoutOptionsImpl extends RendererOptionImpl implements LayoutOptio
 
 	/**
 	 * The cached value of the '{@link #getSectionFontSizeDecreaseStep() <em>Section Font Size Decrease Step</em>}' attribute.
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
+	 * <!-- begin-user-doc --> <!-- end-user-doc -->
 	 * @see #getSectionFontSizeDecreaseStep()
 	 * @generated
 	 * @ordered
@@ -282,8 +239,7 @@ public class LayoutOptionsImpl extends RendererOptionImpl implements LayoutOptio
 
 	/**
 	 * The cached value of the '{@link #getDocumentTitleTextOption() <em>Document Title Text Option</em>}' containment reference.
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
+	 * <!-- begin-user-doc --> <!-- end-user-doc -->
 	 * @see #getDocumentTitleTextOption()
 	 * @generated
 	 * @ordered
@@ -292,8 +248,7 @@ public class LayoutOptionsImpl extends RendererOptionImpl implements LayoutOptio
 
 	/**
 	 * The default value of the '{@link #isShowModelElementTypeInSectionTitle() <em>Show Model Element Type In Section Title</em>}' attribute.
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
+	 * <!-- begin-user-doc --> <!-- end-user-doc -->
 	 * @see #isShowModelElementTypeInSectionTitle()
 	 * @generated
 	 * @ordered
@@ -302,23 +257,12 @@ public class LayoutOptionsImpl extends RendererOptionImpl implements LayoutOptio
 
 	/**
 	 * The cached value of the '{@link #isShowModelElementTypeInSectionTitle() <em>Show Model Element Type In Section Title</em>}' attribute.
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
+	 * <!-- begin-user-doc --> <!-- end-user-doc -->
 	 * @see #isShowModelElementTypeInSectionTitle()
 	 * @generated
 	 * @ordered
 	 */
 	protected boolean showModelElementTypeInSectionTitle = SHOW_MODEL_ELEMENT_TYPE_IN_SECTION_TITLE_EDEFAULT;
-
-	/**
-	 * The cached value of the '{@link #getAttributeTextOption() <em>Attribute Text Option</em>}' containment reference.
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
-	 * @see #getAttributeTextOption()
-	 * @generated
-	 * @ordered
-	 */
-	protected TextOption attributeTextOption;
 
 	/**
 	 * The default value of the '{@link #getAppendixStyle() <em>Appendix Style</em>}' attribute.
@@ -341,25 +285,221 @@ public class LayoutOptionsImpl extends RendererOptionImpl implements LayoutOptio
 	protected AppendixStyle appendixStyle = APPENDIX_STYLE_EDEFAULT;
 
 	/**
+	 * The default value of the '{@link #getLogoImage() <em>Logo Image</em>}' attribute.
+	 * <!-- begin-user-doc --> <!--
+	 * end-user-doc -->
+	 * @see #getLogoImage()
+	 * @generated
+	 * @ordered
+	 */
+	protected static final String LOGO_IMAGE_EDEFAULT = null;
+
+	/**
+	 * The cached value of the '{@link #getLogoImage() <em>Logo Image</em>}' attribute.
+	 * <!-- begin-user-doc --> <!--
+	 * end-user-doc -->
+	 * @see #getLogoImage()
+	 * @generated
+	 * @ordered
+	 */
+	protected String logoImage = LOGO_IMAGE_EDEFAULT;
+
+	/**
+	 * The cached value of the '{@link #getFooterTextOption() <em>Footer Text Option</em>}' containment reference. <!--
+	 * begin-user-doc --> <!-- end-user-doc -->
+	 * 
+	 * @see #getFooterTextOption()
+	 * @generated
+	 * @ordered
+	 */
+	protected TextOption footerTextOption;
+
+	/**
+	 * The default value of the '{@link #isFooterShowDocumentTitle() <em>Footer Show Document Title</em>}' attribute.
+	 * <!-- begin-user-doc --> <!-- end-user-doc -->
+	 * @see #isFooterShowDocumentTitle()
+	 * @generated
+	 * @ordered
+	 */
+	protected static final boolean FOOTER_SHOW_DOCUMENT_TITLE_EDEFAULT = false;
+
+	/**
+	 * The cached value of the '{@link #isFooterShowDocumentTitle() <em>Footer Show Document Title</em>}' attribute.
+	 * <!-- begin-user-doc --> <!-- end-user-doc -->
+	 * @see #isFooterShowDocumentTitle()
+	 * @generated
+	 * @ordered
+	 */
+	protected boolean footerShowDocumentTitle = FOOTER_SHOW_DOCUMENT_TITLE_EDEFAULT;
+
+	/**
+	 * The default value of the '{@link #getPageCitationStyle() <em>Page Citation Style</em>}' attribute. <!--
+	 * begin-user-doc --> <!-- end-user-doc -->
+	 * 
+	 * @see #getPageCitationStyle()
+	 * @generated
+	 * @ordered
+	 */
+	protected static final PageCitationStyle PAGE_CITATION_STYLE_EDEFAULT = PageCitationStyle.PAGE;
+
+	/**
+	 * The cached value of the '{@link #getPageCitationStyle() <em>Page Citation Style</em>}' attribute. <!--
+	 * begin-user-doc --> <!-- end-user-doc -->
+	 * 
+	 * @see #getPageCitationStyle()
+	 * @generated
+	 * @ordered
+	 */
+	protected PageCitationStyle pageCitationStyle = PAGE_CITATION_STYLE_EDEFAULT;
+
+	/**
+	 * The default value of the '{@link #getHeaderStyle() <em>Header Style</em>}' attribute.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
+	 * @see #getHeaderStyle()
+	 * @generated
+	 * @ordered
+	 */
+	protected static final HeaderStyle HEADER_STYLE_EDEFAULT = HeaderStyle.ONLY_TEXT;
+
+	/**
+	 * The cached value of the '{@link #getHeaderStyle() <em>Header Style</em>}' attribute.
+	 * <!-- begin-user-doc --> <!--
+	 * end-user-doc -->
+	 * @see #getHeaderStyle()
+	 * @generated
+	 * @ordered
+	 */
+	protected HeaderStyle headerStyle = HEADER_STYLE_EDEFAULT;
+
+	/**
+	 * The default value of the '{@link #getLogoWidth() <em>Logo Width</em>}' attribute.
+	 * <!-- begin-user-doc --> <!--
+	 * end-user-doc -->
+	 * @see #getLogoWidth()
+	 * @generated
+	 * @ordered
+	 */
+	protected static final int LOGO_WIDTH_EDEFAULT = 0;
+
+	/**
+	 * The cached value of the '{@link #getLogoWidth() <em>Logo Width</em>}' attribute.
+	 * <!-- begin-user-doc --> <!--
+	 * end-user-doc -->
+	 * @see #getLogoWidth()
+	 * @generated
+	 * @ordered
+	 */
+	protected int logoWidth = LOGO_WIDTH_EDEFAULT;
+
+	/**
+	 * The default value of the '{@link #getLogoHeight() <em>Logo Height</em>}' attribute.
+	 * <!-- begin-user-doc --> <!--
+	 * end-user-doc -->
+	 * @see #getLogoHeight()
+	 * @generated
+	 * @ordered
+	 */
+	protected static final int LOGO_HEIGHT_EDEFAULT = 0;
+
+	/**
+	 * The cached value of the '{@link #getLogoHeight() <em>Logo Height</em>}' attribute.
+	 * <!-- begin-user-doc --> <!--
+	 * end-user-doc -->
+	 * @see #getLogoHeight()
+	 * @generated
+	 * @ordered
+	 */
+	protected int logoHeight = LOGO_HEIGHT_EDEFAULT;
+
+	/**
+	 * The default value of the '{@link #isLogoOnCoverPage() <em>Logo On Cover Page</em>}' attribute. <!--
+	 * begin-user-doc --> <!-- end-user-doc -->
+	 * 
+	 * @see #isLogoOnCoverPage()
+	 * @generated
+	 * @ordered
+	 */
+	protected static final boolean LOGO_ON_COVER_PAGE_EDEFAULT = false;
+
+	/**
+	 * The cached value of the '{@link #isLogoOnCoverPage() <em>Logo On Cover Page</em>}' attribute.
+	 * <!-- begin-user-doc
+	 * --> <!-- end-user-doc -->
+	 * @see #isLogoOnCoverPage()
+	 * @generated
+	 * @ordered
+	 */
+	protected boolean logoOnCoverPage = LOGO_ON_COVER_PAGE_EDEFAULT;
+
+	/**
+	 * The cached value of the '{@link #getTableOfContentsTextOption() <em>Table Of Contents Text Option</em>}' containment reference.
+	 * <!-- begin-user-doc --> <!-- end-user-doc -->
+	 * @see #getTableOfContentsTextOption()
+	 * @generated
+	 * @ordered
+	 */
+	protected TextOption tableOfContentsTextOption;
+
+	/**
+	 * The default value of the '{@link #isHideTableOfContents() <em>Hide Table Of Contents</em>}' attribute. <!--
+	 * begin-user-doc --> <!-- end-user-doc -->
+	 * 
+	 * @see #isHideTableOfContents()
+	 * @generated
+	 * @ordered
+	 */
+	protected static final boolean HIDE_TABLE_OF_CONTENTS_EDEFAULT = false;
+
+	/**
+	 * The cached value of the '{@link #isHideTableOfContents() <em>Hide Table Of Contents</em>}' attribute. <!--
+	 * begin-user-doc --> <!-- end-user-doc -->
+	 * 
+	 * @see #isHideTableOfContents()
+	 * @generated
+	 * @ordered
+	 */
+	protected boolean hideTableOfContents = HIDE_TABLE_OF_CONTENTS_EDEFAULT;
+
+	/**
+	 * The default value of the '{@link #isHideHeaderAndFooterOnCoverPage() <em>Hide Header And Footer On Cover Page</em>}' attribute.
+	 * <!-- begin-user-doc --> <!-- end-user-doc -->
+	 * @see #isHideHeaderAndFooterOnCoverPage()
+	 * @generated
+	 * @ordered
+	 */
+	protected static final boolean HIDE_HEADER_AND_FOOTER_ON_COVER_PAGE_EDEFAULT = false;
+
+	/**
+	 * The cached value of the '{@link #isHideHeaderAndFooterOnCoverPage() <em>Hide Header And Footer On Cover Page</em>}' attribute.
+	 * <!-- begin-user-doc --> <!-- end-user-doc -->
+	 * @see #isHideHeaderAndFooterOnCoverPage()
+	 * @generated
+	 * @ordered
+	 */
+	protected boolean hideHeaderAndFooterOnCoverPage = HIDE_HEADER_AND_FOOTER_ON_COVER_PAGE_EDEFAULT;
+
+	/**
+	 * <!-- begin-user-doc --> <!-- end-user-doc -->
+	 * 
 	 * @generated NOT
 	 */
 	protected LayoutOptionsImpl() {
 		super();
-		coverTextTextOption = OptionsFactory.eINSTANCE.createTextOption();
+		headerTextOption = OptionsFactory.eINSTANCE.createTextOption();
+		footerTextOption = OptionsFactory.eINSTANCE.createTextOption();
 		defaultTextOption = OptionsFactory.eINSTANCE.createTextOption();
 		sectionTextOption = OptionsFactory.eINSTANCE.createTextOption();
 		modelElementTextOption = OptionsFactory.eINSTANCE.createTextOption();
 		sectionOption = OptionsFactory.eINSTANCE.createSectionOption();
 		documentTitleTextOption = OptionsFactory.eINSTANCE.createTextOption();
-		attributeTextOption = OptionsFactory.eINSTANCE.createTextOption();
+		tableOfContentsTextOption = OptionsFactory.eINSTANCE.createTextOption();
+		footerText = "";
+		headerText = "";
 	}
 
 	/**
-	 * <!-- begin-user-doc -->
-	 * .
-	 * <!-- end-user-doc -->
+	 * <!-- begin-user-doc --> . <!-- end-user-doc -->
 	 * @generated
 	 */
 	@Override
@@ -368,72 +508,47 @@ public class LayoutOptionsImpl extends RendererOptionImpl implements LayoutOptio
 	}
 
 	/**
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
+	 * <!-- begin-user-doc --> <!-- end-user-doc -->
 	 * @generated
 	 */
-	public String getCoverText() {
-		return coverText;
+	public TextOption getHeaderTextOption() {
+		return headerTextOption;
 	}
 
 	/**
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
+	 * <!-- begin-user-doc --> <!-- end-user-doc -->
 	 * @generated
 	 */
-	public void setCoverText(String newCoverText) {
-		String oldCoverText = coverText;
-		coverText = newCoverText;
-		if (eNotificationRequired())
-			eNotify(new ENotificationImpl(this, Notification.SET, OptionsPackage.LAYOUT_OPTIONS__COVER_TEXT, oldCoverText, coverText));
-	}
-
-	/**
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
-	 * @generated
-	 */
-	public TextOption getCoverTextTextOption() {
-		return coverTextTextOption;
-	}
-
-	/**
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
-	 * @generated
-	 */
-	public NotificationChain basicSetCoverTextTextOption(TextOption newCoverTextTextOption, NotificationChain msgs) {
-		TextOption oldCoverTextTextOption = coverTextTextOption;
-		coverTextTextOption = newCoverTextTextOption;
+	public NotificationChain basicSetHeaderTextOption(TextOption newHeaderTextOption, NotificationChain msgs) {
+		TextOption oldHeaderTextOption = headerTextOption;
+		headerTextOption = newHeaderTextOption;
 		if (eNotificationRequired()) {
-			ENotificationImpl notification = new ENotificationImpl(this, Notification.SET, OptionsPackage.LAYOUT_OPTIONS__COVER_TEXT_TEXT_OPTION, oldCoverTextTextOption, newCoverTextTextOption);
+			ENotificationImpl notification = new ENotificationImpl(this, Notification.SET, OptionsPackage.LAYOUT_OPTIONS__HEADER_TEXT_OPTION, oldHeaderTextOption, newHeaderTextOption);
 			if (msgs == null) msgs = notification; else msgs.add(notification);
 		}
 		return msgs;
 	}
 
 	/**
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
+	 * <!-- begin-user-doc --> <!-- end-user-doc -->
 	 * @generated
 	 */
-	public void setCoverTextTextOption(TextOption newCoverTextTextOption) {
-		if (newCoverTextTextOption != coverTextTextOption) {
+	public void setHeaderTextOption(TextOption newHeaderTextOption) {
+		if (newHeaderTextOption != headerTextOption) {
 			NotificationChain msgs = null;
-			if (coverTextTextOption != null)
-				msgs = ((InternalEObject)coverTextTextOption).eInverseRemove(this, EOPPOSITE_FEATURE_BASE - OptionsPackage.LAYOUT_OPTIONS__COVER_TEXT_TEXT_OPTION, null, msgs);
-			if (newCoverTextTextOption != null)
-				msgs = ((InternalEObject)newCoverTextTextOption).eInverseAdd(this, EOPPOSITE_FEATURE_BASE - OptionsPackage.LAYOUT_OPTIONS__COVER_TEXT_TEXT_OPTION, null, msgs);
-			msgs = basicSetCoverTextTextOption(newCoverTextTextOption, msgs);
+			if (headerTextOption != null)
+				msgs = ((InternalEObject)headerTextOption).eInverseRemove(this, EOPPOSITE_FEATURE_BASE - OptionsPackage.LAYOUT_OPTIONS__HEADER_TEXT_OPTION, null, msgs);
+			if (newHeaderTextOption != null)
+				msgs = ((InternalEObject)newHeaderTextOption).eInverseAdd(this, EOPPOSITE_FEATURE_BASE - OptionsPackage.LAYOUT_OPTIONS__HEADER_TEXT_OPTION, null, msgs);
+			msgs = basicSetHeaderTextOption(newHeaderTextOption, msgs);
 			if (msgs != null) msgs.dispatch();
 		}
 		else if (eNotificationRequired())
-			eNotify(new ENotificationImpl(this, Notification.SET, OptionsPackage.LAYOUT_OPTIONS__COVER_TEXT_TEXT_OPTION, newCoverTextTextOption, newCoverTextTextOption));
+			eNotify(new ENotificationImpl(this, Notification.SET, OptionsPackage.LAYOUT_OPTIONS__HEADER_TEXT_OPTION, newHeaderTextOption, newHeaderTextOption));
 	}
 
 	/**
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
+	 * <!-- begin-user-doc --> <!-- end-user-doc -->
 	 * @generated
 	 */
 	public TextOption getDefaultTextOption() {
@@ -441,8 +556,7 @@ public class LayoutOptionsImpl extends RendererOptionImpl implements LayoutOptio
 	}
 
 	/**
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
+	 * <!-- begin-user-doc --> <!-- end-user-doc -->
 	 * @generated
 	 */
 	public NotificationChain basicSetDefaultTextOption(TextOption newDefaultTextOption, NotificationChain msgs) {
@@ -456,8 +570,7 @@ public class LayoutOptionsImpl extends RendererOptionImpl implements LayoutOptio
 	}
 
 	/**
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
+	 * <!-- begin-user-doc --> <!-- end-user-doc -->
 	 * @generated
 	 */
 	public void setDefaultTextOption(TextOption newDefaultTextOption) {
@@ -475,8 +588,7 @@ public class LayoutOptionsImpl extends RendererOptionImpl implements LayoutOptio
 	}
 
 	/**
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
+	 * <!-- begin-user-doc --> <!-- end-user-doc -->
 	 * @generated
 	 */
 	public TextOption getSectionTextOption() {
@@ -484,8 +596,7 @@ public class LayoutOptionsImpl extends RendererOptionImpl implements LayoutOptio
 	}
 
 	/**
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
+	 * <!-- begin-user-doc --> <!-- end-user-doc -->
 	 * @generated
 	 */
 	public NotificationChain basicSetSectionTextOption(TextOption newSectionTextOption, NotificationChain msgs) {
@@ -499,8 +610,7 @@ public class LayoutOptionsImpl extends RendererOptionImpl implements LayoutOptio
 	}
 
 	/**
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
+	 * <!-- begin-user-doc --> <!-- end-user-doc -->
 	 * @generated
 	 */
 	public void setSectionTextOption(TextOption newSectionTextOption) {
@@ -518,8 +628,7 @@ public class LayoutOptionsImpl extends RendererOptionImpl implements LayoutOptio
 	}
 
 	/**
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
+	 * <!-- begin-user-doc --> <!-- end-user-doc -->
 	 * @generated
 	 */
 	public boolean isHideAnnotations() {
@@ -527,8 +636,7 @@ public class LayoutOptionsImpl extends RendererOptionImpl implements LayoutOptio
 	}
 
 	/**
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
+	 * <!-- begin-user-doc --> <!-- end-user-doc -->
 	 * @generated
 	 */
 	public void setHideAnnotations(boolean newHideAnnotations) {
@@ -539,8 +647,7 @@ public class LayoutOptionsImpl extends RendererOptionImpl implements LayoutOptio
 	}
 
 	/**
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
+	 * <!-- begin-user-doc --> <!-- end-user-doc -->
 	 * @generated
 	 */
 	public boolean isHideAttachments() {
@@ -548,8 +655,7 @@ public class LayoutOptionsImpl extends RendererOptionImpl implements LayoutOptio
 	}
 
 	/**
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
+	 * <!-- begin-user-doc --> <!-- end-user-doc -->
 	 * @generated
 	 */
 	public void setHideAttachments(boolean newHideAttachments) {
@@ -560,8 +666,7 @@ public class LayoutOptionsImpl extends RendererOptionImpl implements LayoutOptio
 	}
 
 	/**
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
+	 * <!-- begin-user-doc --> <!-- end-user-doc -->
 	 * @generated
 	 */
 	public boolean isHideIncomingDocumentReferences() {
@@ -569,8 +674,7 @@ public class LayoutOptionsImpl extends RendererOptionImpl implements LayoutOptio
 	}
 
 	/**
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
+	 * <!-- begin-user-doc --> <!-- end-user-doc -->
 	 * @generated
 	 */
 	public void setHideIncomingDocumentReferences(boolean newHideIncomingDocumentReferences) {
@@ -581,29 +685,7 @@ public class LayoutOptionsImpl extends RendererOptionImpl implements LayoutOptio
 	}
 
 	/**
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
-	 * @generated
-	 */
-	public PageNumberingStyle getPageNumberingStyle() {
-		return pageNumberingStyle;
-	}
-
-	/**
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
-	 * @generated
-	 */
-	public void setPageNumberingStyle(PageNumberingStyle newPageNumberingStyle) {
-		PageNumberingStyle oldPageNumberingStyle = pageNumberingStyle;
-		pageNumberingStyle = newPageNumberingStyle == null ? PAGE_NUMBERING_STYLE_EDEFAULT : newPageNumberingStyle;
-		if (eNotificationRequired())
-			eNotify(new ENotificationImpl(this, Notification.SET, OptionsPackage.LAYOUT_OPTIONS__PAGE_NUMBERING_STYLE, oldPageNumberingStyle, pageNumberingStyle));
-	}
-
-	/**
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
+	 * <!-- begin-user-doc --> <!-- end-user-doc -->
 	 * @generated
 	 */
 	public boolean isHideModelElementImages() {
@@ -611,8 +693,7 @@ public class LayoutOptionsImpl extends RendererOptionImpl implements LayoutOptio
 	}
 
 	/**
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
+	 * <!-- begin-user-doc --> <!-- end-user-doc -->
 	 * @generated
 	 */
 	public void setHideModelElementImages(boolean newHideModelElementImages) {
@@ -623,8 +704,7 @@ public class LayoutOptionsImpl extends RendererOptionImpl implements LayoutOptio
 	}
 
 	/**
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
+	 * <!-- begin-user-doc --> <!-- end-user-doc -->
 	 * @generated
 	 */
 	public TextOption getModelElementTextOption() {
@@ -632,8 +712,7 @@ public class LayoutOptionsImpl extends RendererOptionImpl implements LayoutOptio
 	}
 
 	/**
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
+	 * <!-- begin-user-doc --> <!-- end-user-doc -->
 	 * @generated
 	 */
 	public NotificationChain basicSetModelElementTextOption(TextOption newModelElementTextOption, NotificationChain msgs) {
@@ -647,8 +726,7 @@ public class LayoutOptionsImpl extends RendererOptionImpl implements LayoutOptio
 	}
 
 	/**
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
+	 * <!-- begin-user-doc --> <!-- end-user-doc -->
 	 * @generated
 	 */
 	public void setModelElementTextOption(TextOption newModelElementTextOption) {
@@ -666,8 +744,7 @@ public class LayoutOptionsImpl extends RendererOptionImpl implements LayoutOptio
 	}
 
 	/**
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
+	 * <!-- begin-user-doc --> <!-- end-user-doc -->
 	 * @generated
 	 */
 	public String getHeaderText() {
@@ -675,8 +752,7 @@ public class LayoutOptionsImpl extends RendererOptionImpl implements LayoutOptio
 	}
 
 	/**
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
+	 * <!-- begin-user-doc --> <!-- end-user-doc -->
 	 * @generated
 	 */
 	public void setHeaderText(String newHeaderText) {
@@ -687,8 +763,7 @@ public class LayoutOptionsImpl extends RendererOptionImpl implements LayoutOptio
 	}
 
 	/**
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
+	 * <!-- begin-user-doc --> <!-- end-user-doc -->
 	 * @generated
 	 */
 	public String getFooterText() {
@@ -696,8 +771,7 @@ public class LayoutOptionsImpl extends RendererOptionImpl implements LayoutOptio
 	}
 
 	/**
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
+	 * <!-- begin-user-doc --> <!-- end-user-doc -->
 	 * @generated
 	 */
 	public void setFooterText(String newFooterText) {
@@ -708,8 +782,7 @@ public class LayoutOptionsImpl extends RendererOptionImpl implements LayoutOptio
 	}
 
 	/**
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
+	 * <!-- begin-user-doc --> <!-- end-user-doc -->
 	 * @generated
 	 */
 	public SectionOption getSectionOption() {
@@ -717,8 +790,7 @@ public class LayoutOptionsImpl extends RendererOptionImpl implements LayoutOptio
 	}
 
 	/**
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
+	 * <!-- begin-user-doc --> <!-- end-user-doc -->
 	 * @generated
 	 */
 	public NotificationChain basicSetSectionOption(SectionOption newSectionOption, NotificationChain msgs) {
@@ -732,8 +804,7 @@ public class LayoutOptionsImpl extends RendererOptionImpl implements LayoutOptio
 	}
 
 	/**
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
+	 * <!-- begin-user-doc --> <!-- end-user-doc -->
 	 * @generated
 	 */
 	public void setSectionOption(SectionOption newSectionOption) {
@@ -751,8 +822,7 @@ public class LayoutOptionsImpl extends RendererOptionImpl implements LayoutOptio
 	}
 
 	/**
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
+	 * <!-- begin-user-doc --> <!-- end-user-doc -->
 	 * @generated
 	 */
 	public int getSectionFontSizeDecreaseStep() {
@@ -760,8 +830,7 @@ public class LayoutOptionsImpl extends RendererOptionImpl implements LayoutOptio
 	}
 
 	/**
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
+	 * <!-- begin-user-doc --> <!-- end-user-doc -->
 	 * @generated
 	 */
 	public void setSectionFontSizeDecreaseStep(int newSectionFontSizeDecreaseStep) {
@@ -772,8 +841,7 @@ public class LayoutOptionsImpl extends RendererOptionImpl implements LayoutOptio
 	}
 
 	/**
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
+	 * <!-- begin-user-doc --> <!-- end-user-doc -->
 	 * @generated
 	 */
 	public TextOption getDocumentTitleTextOption() {
@@ -781,11 +849,11 @@ public class LayoutOptionsImpl extends RendererOptionImpl implements LayoutOptio
 	}
 
 	/**
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
+	 * <!-- begin-user-doc --> <!-- end-user-doc -->
 	 * @generated
 	 */
-	public NotificationChain basicSetDocumentTitleTextOption(TextOption newDocumentTitleTextOption, NotificationChain msgs) {
+	public NotificationChain basicSetDocumentTitleTextOption(TextOption newDocumentTitleTextOption,
+		NotificationChain msgs) {
 		TextOption oldDocumentTitleTextOption = documentTitleTextOption;
 		documentTitleTextOption = newDocumentTitleTextOption;
 		if (eNotificationRequired()) {
@@ -796,8 +864,7 @@ public class LayoutOptionsImpl extends RendererOptionImpl implements LayoutOptio
 	}
 
 	/**
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
+	 * <!-- begin-user-doc --> <!-- end-user-doc -->
 	 * @generated
 	 */
 	public void setDocumentTitleTextOption(TextOption newDocumentTitleTextOption) {
@@ -815,8 +882,7 @@ public class LayoutOptionsImpl extends RendererOptionImpl implements LayoutOptio
 	}
 
 	/**
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
+	 * <!-- begin-user-doc --> <!-- end-user-doc -->
 	 * @generated
 	 */
 	public boolean isShowModelElementTypeInSectionTitle() {
@@ -824,8 +890,7 @@ public class LayoutOptionsImpl extends RendererOptionImpl implements LayoutOptio
 	}
 
 	/**
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
+	 * <!-- begin-user-doc --> <!-- end-user-doc -->
 	 * @generated
 	 */
 	public void setShowModelElementTypeInSectionTitle(boolean newShowModelElementTypeInSectionTitle) {
@@ -836,51 +901,7 @@ public class LayoutOptionsImpl extends RendererOptionImpl implements LayoutOptio
 	}
 
 	/**
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
-	 * @generated
-	 */
-	public TextOption getAttributeTextOption() {
-		return attributeTextOption;
-	}
-
-	/**
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
-	 * @generated
-	 */
-	public NotificationChain basicSetAttributeTextOption(TextOption newAttributeTextOption, NotificationChain msgs) {
-		TextOption oldAttributeTextOption = attributeTextOption;
-		attributeTextOption = newAttributeTextOption;
-		if (eNotificationRequired()) {
-			ENotificationImpl notification = new ENotificationImpl(this, Notification.SET, OptionsPackage.LAYOUT_OPTIONS__ATTRIBUTE_TEXT_OPTION, oldAttributeTextOption, newAttributeTextOption);
-			if (msgs == null) msgs = notification; else msgs.add(notification);
-		}
-		return msgs;
-	}
-
-	/**
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
-	 * @generated
-	 */
-	public void setAttributeTextOption(TextOption newAttributeTextOption) {
-		if (newAttributeTextOption != attributeTextOption) {
-			NotificationChain msgs = null;
-			if (attributeTextOption != null)
-				msgs = ((InternalEObject)attributeTextOption).eInverseRemove(this, EOPPOSITE_FEATURE_BASE - OptionsPackage.LAYOUT_OPTIONS__ATTRIBUTE_TEXT_OPTION, null, msgs);
-			if (newAttributeTextOption != null)
-				msgs = ((InternalEObject)newAttributeTextOption).eInverseAdd(this, EOPPOSITE_FEATURE_BASE - OptionsPackage.LAYOUT_OPTIONS__ATTRIBUTE_TEXT_OPTION, null, msgs);
-			msgs = basicSetAttributeTextOption(newAttributeTextOption, msgs);
-			if (msgs != null) msgs.dispatch();
-		}
-		else if (eNotificationRequired())
-			eNotify(new ENotificationImpl(this, Notification.SET, OptionsPackage.LAYOUT_OPTIONS__ATTRIBUTE_TEXT_OPTION, newAttributeTextOption, newAttributeTextOption));
-	}
-
-	/**
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
+	 * <!-- begin-user-doc --> <!-- end-user-doc -->
 	 * @generated
 	 */
 	public AppendixStyle getAppendixStyle() {
@@ -888,8 +909,7 @@ public class LayoutOptionsImpl extends RendererOptionImpl implements LayoutOptio
 	}
 
 	/**
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
+	 * <!-- begin-user-doc --> <!-- end-user-doc -->
 	 * @generated
 	 */
 	public void setAppendixStyle(AppendixStyle newAppendixStyle) {
@@ -900,15 +920,266 @@ public class LayoutOptionsImpl extends RendererOptionImpl implements LayoutOptio
 	}
 
 	/**
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
+	 * <!-- begin-user-doc --> <!-- end-user-doc -->
+	 * @generated
+	 */
+	public String getLogoImage() {
+		return logoImage;
+	}
+
+	/**
+	 * <!-- begin-user-doc --> <!-- end-user-doc -->
+	 * @generated
+	 */
+	public void setLogoImage(String newLogoImage) {
+		String oldLogoImage = logoImage;
+		logoImage = newLogoImage;
+		if (eNotificationRequired())
+			eNotify(new ENotificationImpl(this, Notification.SET, OptionsPackage.LAYOUT_OPTIONS__LOGO_IMAGE, oldLogoImage, logoImage));
+	}
+
+	/**
+	 * <!-- begin-user-doc --> <!-- end-user-doc -->
+	 * @generated
+	 */
+	public TextOption getFooterTextOption() {
+		return footerTextOption;
+	}
+
+	/**
+	 * <!-- begin-user-doc --> <!-- end-user-doc -->
+	 * @generated
+	 */
+	public NotificationChain basicSetFooterTextOption(TextOption newFooterTextOption, NotificationChain msgs) {
+		TextOption oldFooterTextOption = footerTextOption;
+		footerTextOption = newFooterTextOption;
+		if (eNotificationRequired()) {
+			ENotificationImpl notification = new ENotificationImpl(this, Notification.SET, OptionsPackage.LAYOUT_OPTIONS__FOOTER_TEXT_OPTION, oldFooterTextOption, newFooterTextOption);
+			if (msgs == null) msgs = notification; else msgs.add(notification);
+		}
+		return msgs;
+	}
+
+	/**
+	 * <!-- begin-user-doc --> <!-- end-user-doc -->
+	 * @generated
+	 */
+	public void setFooterTextOption(TextOption newFooterTextOption) {
+		if (newFooterTextOption != footerTextOption) {
+			NotificationChain msgs = null;
+			if (footerTextOption != null)
+				msgs = ((InternalEObject)footerTextOption).eInverseRemove(this, EOPPOSITE_FEATURE_BASE - OptionsPackage.LAYOUT_OPTIONS__FOOTER_TEXT_OPTION, null, msgs);
+			if (newFooterTextOption != null)
+				msgs = ((InternalEObject)newFooterTextOption).eInverseAdd(this, EOPPOSITE_FEATURE_BASE - OptionsPackage.LAYOUT_OPTIONS__FOOTER_TEXT_OPTION, null, msgs);
+			msgs = basicSetFooterTextOption(newFooterTextOption, msgs);
+			if (msgs != null) msgs.dispatch();
+		}
+		else if (eNotificationRequired())
+			eNotify(new ENotificationImpl(this, Notification.SET, OptionsPackage.LAYOUT_OPTIONS__FOOTER_TEXT_OPTION, newFooterTextOption, newFooterTextOption));
+	}
+
+	/**
+	 * <!-- begin-user-doc --> <!-- end-user-doc -->
+	 * @generated
+	 */
+	public boolean isFooterShowDocumentTitle() {
+		return footerShowDocumentTitle;
+	}
+
+	/**
+	 * <!-- begin-user-doc --> <!-- end-user-doc -->
+	 * @generated
+	 */
+	public void setFooterShowDocumentTitle(boolean newFooterShowDocumentTitle) {
+		boolean oldFooterShowDocumentTitle = footerShowDocumentTitle;
+		footerShowDocumentTitle = newFooterShowDocumentTitle;
+		if (eNotificationRequired())
+			eNotify(new ENotificationImpl(this, Notification.SET, OptionsPackage.LAYOUT_OPTIONS__FOOTER_SHOW_DOCUMENT_TITLE, oldFooterShowDocumentTitle, footerShowDocumentTitle));
+	}
+
+	/**
+	 * <!-- begin-user-doc --> <!-- end-user-doc -->
+	 * @generated
+	 */
+	public PageCitationStyle getPageCitationStyle() {
+		return pageCitationStyle;
+	}
+
+	/**
+	 * <!-- begin-user-doc --> <!-- end-user-doc -->
+	 * @generated
+	 */
+	public void setPageCitationStyle(PageCitationStyle newPageCitationStyle) {
+		PageCitationStyle oldPageCitationStyle = pageCitationStyle;
+		pageCitationStyle = newPageCitationStyle == null ? PAGE_CITATION_STYLE_EDEFAULT : newPageCitationStyle;
+		if (eNotificationRequired())
+			eNotify(new ENotificationImpl(this, Notification.SET, OptionsPackage.LAYOUT_OPTIONS__PAGE_CITATION_STYLE, oldPageCitationStyle, pageCitationStyle));
+	}
+
+	/**
+	 * <!-- begin-user-doc --> <!-- end-user-doc -->
+	 * @generated
+	 */
+	public HeaderStyle getHeaderStyle() {
+		return headerStyle;
+	}
+
+	/**
+	 * <!-- begin-user-doc --> <!-- end-user-doc -->
+	 * @generated
+	 */
+	public void setHeaderStyle(HeaderStyle newHeaderStyle) {
+		HeaderStyle oldHeaderStyle = headerStyle;
+		headerStyle = newHeaderStyle == null ? HEADER_STYLE_EDEFAULT : newHeaderStyle;
+		if (eNotificationRequired())
+			eNotify(new ENotificationImpl(this, Notification.SET, OptionsPackage.LAYOUT_OPTIONS__HEADER_STYLE, oldHeaderStyle, headerStyle));
+	}
+
+	/**
+	 * <!-- begin-user-doc --> <!-- end-user-doc -->
+	 * @generated
+	 */
+	public int getLogoWidth() {
+		return logoWidth;
+	}
+
+	/**
+	 * <!-- begin-user-doc --> <!-- end-user-doc -->
+	 * @generated
+	 */
+	public void setLogoWidth(int newLogoWidth) {
+		int oldLogoWidth = logoWidth;
+		logoWidth = newLogoWidth;
+		if (eNotificationRequired())
+			eNotify(new ENotificationImpl(this, Notification.SET, OptionsPackage.LAYOUT_OPTIONS__LOGO_WIDTH, oldLogoWidth, logoWidth));
+	}
+
+	/**
+	 * <!-- begin-user-doc --> <!-- end-user-doc -->
+	 * @generated
+	 */
+	public int getLogoHeight() {
+		return logoHeight;
+	}
+
+	/**
+	 * <!-- begin-user-doc --> <!-- end-user-doc -->
+	 * @generated
+	 */
+	public void setLogoHeight(int newLogoHeight) {
+		int oldLogoHeight = logoHeight;
+		logoHeight = newLogoHeight;
+		if (eNotificationRequired())
+			eNotify(new ENotificationImpl(this, Notification.SET, OptionsPackage.LAYOUT_OPTIONS__LOGO_HEIGHT, oldLogoHeight, logoHeight));
+	}
+
+	/**
+	 * <!-- begin-user-doc --> <!-- end-user-doc -->
+	 * @generated
+	 */
+	public boolean isLogoOnCoverPage() {
+		return logoOnCoverPage;
+	}
+
+	/**
+	 * <!-- begin-user-doc --> <!-- end-user-doc -->
+	 * @generated
+	 */
+	public void setLogoOnCoverPage(boolean newLogoOnCoverPage) {
+		boolean oldLogoOnCoverPage = logoOnCoverPage;
+		logoOnCoverPage = newLogoOnCoverPage;
+		if (eNotificationRequired())
+			eNotify(new ENotificationImpl(this, Notification.SET, OptionsPackage.LAYOUT_OPTIONS__LOGO_ON_COVER_PAGE, oldLogoOnCoverPage, logoOnCoverPage));
+	}
+
+	/**
+	 * <!-- begin-user-doc --> <!-- end-user-doc -->
+	 * @generated
+	 */
+	public TextOption getTableOfContentsTextOption() {
+		return tableOfContentsTextOption;
+	}
+
+	/**
+	 * <!-- begin-user-doc --> <!-- end-user-doc -->
+	 * @generated
+	 */
+	public NotificationChain basicSetTableOfContentsTextOption(TextOption newTableOfContentsTextOption,
+		NotificationChain msgs) {
+		TextOption oldTableOfContentsTextOption = tableOfContentsTextOption;
+		tableOfContentsTextOption = newTableOfContentsTextOption;
+		if (eNotificationRequired()) {
+			ENotificationImpl notification = new ENotificationImpl(this, Notification.SET, OptionsPackage.LAYOUT_OPTIONS__TABLE_OF_CONTENTS_TEXT_OPTION, oldTableOfContentsTextOption, newTableOfContentsTextOption);
+			if (msgs == null) msgs = notification; else msgs.add(notification);
+		}
+		return msgs;
+	}
+
+	/**
+	 * <!-- begin-user-doc --> <!-- end-user-doc -->
+	 * @generated
+	 */
+	public void setTableOfContentsTextOption(TextOption newTableOfContentsTextOption) {
+		if (newTableOfContentsTextOption != tableOfContentsTextOption) {
+			NotificationChain msgs = null;
+			if (tableOfContentsTextOption != null)
+				msgs = ((InternalEObject)tableOfContentsTextOption).eInverseRemove(this, EOPPOSITE_FEATURE_BASE - OptionsPackage.LAYOUT_OPTIONS__TABLE_OF_CONTENTS_TEXT_OPTION, null, msgs);
+			if (newTableOfContentsTextOption != null)
+				msgs = ((InternalEObject)newTableOfContentsTextOption).eInverseAdd(this, EOPPOSITE_FEATURE_BASE - OptionsPackage.LAYOUT_OPTIONS__TABLE_OF_CONTENTS_TEXT_OPTION, null, msgs);
+			msgs = basicSetTableOfContentsTextOption(newTableOfContentsTextOption, msgs);
+			if (msgs != null) msgs.dispatch();
+		}
+		else if (eNotificationRequired())
+			eNotify(new ENotificationImpl(this, Notification.SET, OptionsPackage.LAYOUT_OPTIONS__TABLE_OF_CONTENTS_TEXT_OPTION, newTableOfContentsTextOption, newTableOfContentsTextOption));
+	}
+
+	/**
+	 * <!-- begin-user-doc --> <!-- end-user-doc -->
+	 * @generated
+	 */
+	public boolean isHideTableOfContents() {
+		return hideTableOfContents;
+	}
+
+	/**
+	 * <!-- begin-user-doc --> <!-- end-user-doc -->
+	 * @generated
+	 */
+	public void setHideTableOfContents(boolean newHideTableOfContents) {
+		boolean oldHideTableOfContents = hideTableOfContents;
+		hideTableOfContents = newHideTableOfContents;
+		if (eNotificationRequired())
+			eNotify(new ENotificationImpl(this, Notification.SET, OptionsPackage.LAYOUT_OPTIONS__HIDE_TABLE_OF_CONTENTS, oldHideTableOfContents, hideTableOfContents));
+	}
+
+	/**
+	 * <!-- begin-user-doc --> <!-- end-user-doc -->
+	 * @generated
+	 */
+	public boolean isHideHeaderAndFooterOnCoverPage() {
+		return hideHeaderAndFooterOnCoverPage;
+	}
+
+	/**
+	 * <!-- begin-user-doc --> <!-- end-user-doc -->
+	 * @generated
+	 */
+	public void setHideHeaderAndFooterOnCoverPage(boolean newHideHeaderAndFooterOnCoverPage) {
+		boolean oldHideHeaderAndFooterOnCoverPage = hideHeaderAndFooterOnCoverPage;
+		hideHeaderAndFooterOnCoverPage = newHideHeaderAndFooterOnCoverPage;
+		if (eNotificationRequired())
+			eNotify(new ENotificationImpl(this, Notification.SET, OptionsPackage.LAYOUT_OPTIONS__HIDE_HEADER_AND_FOOTER_ON_COVER_PAGE, oldHideHeaderAndFooterOnCoverPage, hideHeaderAndFooterOnCoverPage));
+	}
+
+	/**
+	 * <!-- begin-user-doc --> <!-- end-user-doc -->
 	 * @generated
 	 */
 	@Override
 	public NotificationChain eInverseRemove(InternalEObject otherEnd, int featureID, NotificationChain msgs) {
 		switch (featureID) {
-			case OptionsPackage.LAYOUT_OPTIONS__COVER_TEXT_TEXT_OPTION:
-				return basicSetCoverTextTextOption(null, msgs);
+			case OptionsPackage.LAYOUT_OPTIONS__HEADER_TEXT_OPTION:
+				return basicSetHeaderTextOption(null, msgs);
 			case OptionsPackage.LAYOUT_OPTIONS__DEFAULT_TEXT_OPTION:
 				return basicSetDefaultTextOption(null, msgs);
 			case OptionsPackage.LAYOUT_OPTIONS__SECTION_TEXT_OPTION:
@@ -919,24 +1190,23 @@ public class LayoutOptionsImpl extends RendererOptionImpl implements LayoutOptio
 				return basicSetSectionOption(null, msgs);
 			case OptionsPackage.LAYOUT_OPTIONS__DOCUMENT_TITLE_TEXT_OPTION:
 				return basicSetDocumentTitleTextOption(null, msgs);
-			case OptionsPackage.LAYOUT_OPTIONS__ATTRIBUTE_TEXT_OPTION:
-				return basicSetAttributeTextOption(null, msgs);
+			case OptionsPackage.LAYOUT_OPTIONS__FOOTER_TEXT_OPTION:
+				return basicSetFooterTextOption(null, msgs);
+			case OptionsPackage.LAYOUT_OPTIONS__TABLE_OF_CONTENTS_TEXT_OPTION:
+				return basicSetTableOfContentsTextOption(null, msgs);
 		}
 		return super.eInverseRemove(otherEnd, featureID, msgs);
 	}
 
 	/**
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
+	 * <!-- begin-user-doc --> <!-- end-user-doc -->
 	 * @generated
 	 */
 	@Override
 	public Object eGet(int featureID, boolean resolve, boolean coreType) {
 		switch (featureID) {
-			case OptionsPackage.LAYOUT_OPTIONS__COVER_TEXT:
-				return getCoverText();
-			case OptionsPackage.LAYOUT_OPTIONS__COVER_TEXT_TEXT_OPTION:
-				return getCoverTextTextOption();
+			case OptionsPackage.LAYOUT_OPTIONS__HEADER_TEXT_OPTION:
+				return getHeaderTextOption();
 			case OptionsPackage.LAYOUT_OPTIONS__DEFAULT_TEXT_OPTION:
 				return getDefaultTextOption();
 			case OptionsPackage.LAYOUT_OPTIONS__SECTION_TEXT_OPTION:
@@ -947,8 +1217,6 @@ public class LayoutOptionsImpl extends RendererOptionImpl implements LayoutOptio
 				return isHideAttachments() ? Boolean.TRUE : Boolean.FALSE;
 			case OptionsPackage.LAYOUT_OPTIONS__HIDE_INCOMING_DOCUMENT_REFERENCES:
 				return isHideIncomingDocumentReferences() ? Boolean.TRUE : Boolean.FALSE;
-			case OptionsPackage.LAYOUT_OPTIONS__PAGE_NUMBERING_STYLE:
-				return getPageNumberingStyle();
 			case OptionsPackage.LAYOUT_OPTIONS__HIDE_MODEL_ELEMENT_IMAGES:
 				return isHideModelElementImages() ? Boolean.TRUE : Boolean.FALSE;
 			case OptionsPackage.LAYOUT_OPTIONS__MODEL_ELEMENT_TEXT_OPTION:
@@ -965,27 +1233,43 @@ public class LayoutOptionsImpl extends RendererOptionImpl implements LayoutOptio
 				return getDocumentTitleTextOption();
 			case OptionsPackage.LAYOUT_OPTIONS__SHOW_MODEL_ELEMENT_TYPE_IN_SECTION_TITLE:
 				return isShowModelElementTypeInSectionTitle() ? Boolean.TRUE : Boolean.FALSE;
-			case OptionsPackage.LAYOUT_OPTIONS__ATTRIBUTE_TEXT_OPTION:
-				return getAttributeTextOption();
 			case OptionsPackage.LAYOUT_OPTIONS__APPENDIX_STYLE:
 				return getAppendixStyle();
+			case OptionsPackage.LAYOUT_OPTIONS__LOGO_IMAGE:
+				return getLogoImage();
+			case OptionsPackage.LAYOUT_OPTIONS__FOOTER_TEXT_OPTION:
+				return getFooterTextOption();
+			case OptionsPackage.LAYOUT_OPTIONS__FOOTER_SHOW_DOCUMENT_TITLE:
+				return isFooterShowDocumentTitle() ? Boolean.TRUE : Boolean.FALSE;
+			case OptionsPackage.LAYOUT_OPTIONS__PAGE_CITATION_STYLE:
+				return getPageCitationStyle();
+			case OptionsPackage.LAYOUT_OPTIONS__HEADER_STYLE:
+				return getHeaderStyle();
+			case OptionsPackage.LAYOUT_OPTIONS__LOGO_WIDTH:
+				return new Integer(getLogoWidth());
+			case OptionsPackage.LAYOUT_OPTIONS__LOGO_HEIGHT:
+				return new Integer(getLogoHeight());
+			case OptionsPackage.LAYOUT_OPTIONS__LOGO_ON_COVER_PAGE:
+				return isLogoOnCoverPage() ? Boolean.TRUE : Boolean.FALSE;
+			case OptionsPackage.LAYOUT_OPTIONS__TABLE_OF_CONTENTS_TEXT_OPTION:
+				return getTableOfContentsTextOption();
+			case OptionsPackage.LAYOUT_OPTIONS__HIDE_TABLE_OF_CONTENTS:
+				return isHideTableOfContents() ? Boolean.TRUE : Boolean.FALSE;
+			case OptionsPackage.LAYOUT_OPTIONS__HIDE_HEADER_AND_FOOTER_ON_COVER_PAGE:
+				return isHideHeaderAndFooterOnCoverPage() ? Boolean.TRUE : Boolean.FALSE;
 		}
 		return super.eGet(featureID, resolve, coreType);
 	}
 
 	/**
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
+	 * <!-- begin-user-doc --> <!-- end-user-doc -->
 	 * @generated
 	 */
 	@Override
 	public void eSet(int featureID, Object newValue) {
 		switch (featureID) {
-			case OptionsPackage.LAYOUT_OPTIONS__COVER_TEXT:
-				setCoverText((String)newValue);
-				return;
-			case OptionsPackage.LAYOUT_OPTIONS__COVER_TEXT_TEXT_OPTION:
-				setCoverTextTextOption((TextOption)newValue);
+			case OptionsPackage.LAYOUT_OPTIONS__HEADER_TEXT_OPTION:
+				setHeaderTextOption((TextOption)newValue);
 				return;
 			case OptionsPackage.LAYOUT_OPTIONS__DEFAULT_TEXT_OPTION:
 				setDefaultTextOption((TextOption)newValue);
@@ -1001,9 +1285,6 @@ public class LayoutOptionsImpl extends RendererOptionImpl implements LayoutOptio
 				return;
 			case OptionsPackage.LAYOUT_OPTIONS__HIDE_INCOMING_DOCUMENT_REFERENCES:
 				setHideIncomingDocumentReferences(((Boolean)newValue).booleanValue());
-				return;
-			case OptionsPackage.LAYOUT_OPTIONS__PAGE_NUMBERING_STYLE:
-				setPageNumberingStyle((PageNumberingStyle)newValue);
 				return;
 			case OptionsPackage.LAYOUT_OPTIONS__HIDE_MODEL_ELEMENT_IMAGES:
 				setHideModelElementImages(((Boolean)newValue).booleanValue());
@@ -1029,29 +1310,55 @@ public class LayoutOptionsImpl extends RendererOptionImpl implements LayoutOptio
 			case OptionsPackage.LAYOUT_OPTIONS__SHOW_MODEL_ELEMENT_TYPE_IN_SECTION_TITLE:
 				setShowModelElementTypeInSectionTitle(((Boolean)newValue).booleanValue());
 				return;
-			case OptionsPackage.LAYOUT_OPTIONS__ATTRIBUTE_TEXT_OPTION:
-				setAttributeTextOption((TextOption)newValue);
-				return;
 			case OptionsPackage.LAYOUT_OPTIONS__APPENDIX_STYLE:
 				setAppendixStyle((AppendixStyle)newValue);
+				return;
+			case OptionsPackage.LAYOUT_OPTIONS__LOGO_IMAGE:
+				setLogoImage((String)newValue);
+				return;
+			case OptionsPackage.LAYOUT_OPTIONS__FOOTER_TEXT_OPTION:
+				setFooterTextOption((TextOption)newValue);
+				return;
+			case OptionsPackage.LAYOUT_OPTIONS__FOOTER_SHOW_DOCUMENT_TITLE:
+				setFooterShowDocumentTitle(((Boolean)newValue).booleanValue());
+				return;
+			case OptionsPackage.LAYOUT_OPTIONS__PAGE_CITATION_STYLE:
+				setPageCitationStyle((PageCitationStyle)newValue);
+				return;
+			case OptionsPackage.LAYOUT_OPTIONS__HEADER_STYLE:
+				setHeaderStyle((HeaderStyle)newValue);
+				return;
+			case OptionsPackage.LAYOUT_OPTIONS__LOGO_WIDTH:
+				setLogoWidth(((Integer)newValue).intValue());
+				return;
+			case OptionsPackage.LAYOUT_OPTIONS__LOGO_HEIGHT:
+				setLogoHeight(((Integer)newValue).intValue());
+				return;
+			case OptionsPackage.LAYOUT_OPTIONS__LOGO_ON_COVER_PAGE:
+				setLogoOnCoverPage(((Boolean)newValue).booleanValue());
+				return;
+			case OptionsPackage.LAYOUT_OPTIONS__TABLE_OF_CONTENTS_TEXT_OPTION:
+				setTableOfContentsTextOption((TextOption)newValue);
+				return;
+			case OptionsPackage.LAYOUT_OPTIONS__HIDE_TABLE_OF_CONTENTS:
+				setHideTableOfContents(((Boolean)newValue).booleanValue());
+				return;
+			case OptionsPackage.LAYOUT_OPTIONS__HIDE_HEADER_AND_FOOTER_ON_COVER_PAGE:
+				setHideHeaderAndFooterOnCoverPage(((Boolean)newValue).booleanValue());
 				return;
 		}
 		super.eSet(featureID, newValue);
 	}
 
 	/**
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
+	 * <!-- begin-user-doc --> <!-- end-user-doc -->
 	 * @generated
 	 */
 	@Override
 	public void eUnset(int featureID) {
 		switch (featureID) {
-			case OptionsPackage.LAYOUT_OPTIONS__COVER_TEXT:
-				setCoverText(COVER_TEXT_EDEFAULT);
-				return;
-			case OptionsPackage.LAYOUT_OPTIONS__COVER_TEXT_TEXT_OPTION:
-				setCoverTextTextOption((TextOption)null);
+			case OptionsPackage.LAYOUT_OPTIONS__HEADER_TEXT_OPTION:
+				setHeaderTextOption((TextOption)null);
 				return;
 			case OptionsPackage.LAYOUT_OPTIONS__DEFAULT_TEXT_OPTION:
 				setDefaultTextOption((TextOption)null);
@@ -1067,9 +1374,6 @@ public class LayoutOptionsImpl extends RendererOptionImpl implements LayoutOptio
 				return;
 			case OptionsPackage.LAYOUT_OPTIONS__HIDE_INCOMING_DOCUMENT_REFERENCES:
 				setHideIncomingDocumentReferences(HIDE_INCOMING_DOCUMENT_REFERENCES_EDEFAULT);
-				return;
-			case OptionsPackage.LAYOUT_OPTIONS__PAGE_NUMBERING_STYLE:
-				setPageNumberingStyle(PAGE_NUMBERING_STYLE_EDEFAULT);
 				return;
 			case OptionsPackage.LAYOUT_OPTIONS__HIDE_MODEL_ELEMENT_IMAGES:
 				setHideModelElementImages(HIDE_MODEL_ELEMENT_IMAGES_EDEFAULT);
@@ -1095,28 +1399,55 @@ public class LayoutOptionsImpl extends RendererOptionImpl implements LayoutOptio
 			case OptionsPackage.LAYOUT_OPTIONS__SHOW_MODEL_ELEMENT_TYPE_IN_SECTION_TITLE:
 				setShowModelElementTypeInSectionTitle(SHOW_MODEL_ELEMENT_TYPE_IN_SECTION_TITLE_EDEFAULT);
 				return;
-			case OptionsPackage.LAYOUT_OPTIONS__ATTRIBUTE_TEXT_OPTION:
-				setAttributeTextOption((TextOption)null);
-				return;
 			case OptionsPackage.LAYOUT_OPTIONS__APPENDIX_STYLE:
 				setAppendixStyle(APPENDIX_STYLE_EDEFAULT);
+				return;
+			case OptionsPackage.LAYOUT_OPTIONS__LOGO_IMAGE:
+				setLogoImage(LOGO_IMAGE_EDEFAULT);
+				return;
+			case OptionsPackage.LAYOUT_OPTIONS__FOOTER_TEXT_OPTION:
+				setFooterTextOption((TextOption)null);
+				return;
+			case OptionsPackage.LAYOUT_OPTIONS__FOOTER_SHOW_DOCUMENT_TITLE:
+				setFooterShowDocumentTitle(FOOTER_SHOW_DOCUMENT_TITLE_EDEFAULT);
+				return;
+			case OptionsPackage.LAYOUT_OPTIONS__PAGE_CITATION_STYLE:
+				setPageCitationStyle(PAGE_CITATION_STYLE_EDEFAULT);
+				return;
+			case OptionsPackage.LAYOUT_OPTIONS__HEADER_STYLE:
+				setHeaderStyle(HEADER_STYLE_EDEFAULT);
+				return;
+			case OptionsPackage.LAYOUT_OPTIONS__LOGO_WIDTH:
+				setLogoWidth(LOGO_WIDTH_EDEFAULT);
+				return;
+			case OptionsPackage.LAYOUT_OPTIONS__LOGO_HEIGHT:
+				setLogoHeight(LOGO_HEIGHT_EDEFAULT);
+				return;
+			case OptionsPackage.LAYOUT_OPTIONS__LOGO_ON_COVER_PAGE:
+				setLogoOnCoverPage(LOGO_ON_COVER_PAGE_EDEFAULT);
+				return;
+			case OptionsPackage.LAYOUT_OPTIONS__TABLE_OF_CONTENTS_TEXT_OPTION:
+				setTableOfContentsTextOption((TextOption)null);
+				return;
+			case OptionsPackage.LAYOUT_OPTIONS__HIDE_TABLE_OF_CONTENTS:
+				setHideTableOfContents(HIDE_TABLE_OF_CONTENTS_EDEFAULT);
+				return;
+			case OptionsPackage.LAYOUT_OPTIONS__HIDE_HEADER_AND_FOOTER_ON_COVER_PAGE:
+				setHideHeaderAndFooterOnCoverPage(HIDE_HEADER_AND_FOOTER_ON_COVER_PAGE_EDEFAULT);
 				return;
 		}
 		super.eUnset(featureID);
 	}
 
 	/**
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
+	 * <!-- begin-user-doc --> <!-- end-user-doc -->
 	 * @generated
 	 */
 	@Override
 	public boolean eIsSet(int featureID) {
 		switch (featureID) {
-			case OptionsPackage.LAYOUT_OPTIONS__COVER_TEXT:
-				return COVER_TEXT_EDEFAULT == null ? coverText != null : !COVER_TEXT_EDEFAULT.equals(coverText);
-			case OptionsPackage.LAYOUT_OPTIONS__COVER_TEXT_TEXT_OPTION:
-				return coverTextTextOption != null;
+			case OptionsPackage.LAYOUT_OPTIONS__HEADER_TEXT_OPTION:
+				return headerTextOption != null;
 			case OptionsPackage.LAYOUT_OPTIONS__DEFAULT_TEXT_OPTION:
 				return defaultTextOption != null;
 			case OptionsPackage.LAYOUT_OPTIONS__SECTION_TEXT_OPTION:
@@ -1127,8 +1458,6 @@ public class LayoutOptionsImpl extends RendererOptionImpl implements LayoutOptio
 				return hideAttachments != HIDE_ATTACHMENTS_EDEFAULT;
 			case OptionsPackage.LAYOUT_OPTIONS__HIDE_INCOMING_DOCUMENT_REFERENCES:
 				return hideIncomingDocumentReferences != HIDE_INCOMING_DOCUMENT_REFERENCES_EDEFAULT;
-			case OptionsPackage.LAYOUT_OPTIONS__PAGE_NUMBERING_STYLE:
-				return pageNumberingStyle != PAGE_NUMBERING_STYLE_EDEFAULT;
 			case OptionsPackage.LAYOUT_OPTIONS__HIDE_MODEL_ELEMENT_IMAGES:
 				return hideModelElementImages != HIDE_MODEL_ELEMENT_IMAGES_EDEFAULT;
 			case OptionsPackage.LAYOUT_OPTIONS__MODEL_ELEMENT_TEXT_OPTION:
@@ -1145,17 +1474,36 @@ public class LayoutOptionsImpl extends RendererOptionImpl implements LayoutOptio
 				return documentTitleTextOption != null;
 			case OptionsPackage.LAYOUT_OPTIONS__SHOW_MODEL_ELEMENT_TYPE_IN_SECTION_TITLE:
 				return showModelElementTypeInSectionTitle != SHOW_MODEL_ELEMENT_TYPE_IN_SECTION_TITLE_EDEFAULT;
-			case OptionsPackage.LAYOUT_OPTIONS__ATTRIBUTE_TEXT_OPTION:
-				return attributeTextOption != null;
 			case OptionsPackage.LAYOUT_OPTIONS__APPENDIX_STYLE:
 				return appendixStyle != APPENDIX_STYLE_EDEFAULT;
+			case OptionsPackage.LAYOUT_OPTIONS__LOGO_IMAGE:
+				return LOGO_IMAGE_EDEFAULT == null ? logoImage != null : !LOGO_IMAGE_EDEFAULT.equals(logoImage);
+			case OptionsPackage.LAYOUT_OPTIONS__FOOTER_TEXT_OPTION:
+				return footerTextOption != null;
+			case OptionsPackage.LAYOUT_OPTIONS__FOOTER_SHOW_DOCUMENT_TITLE:
+				return footerShowDocumentTitle != FOOTER_SHOW_DOCUMENT_TITLE_EDEFAULT;
+			case OptionsPackage.LAYOUT_OPTIONS__PAGE_CITATION_STYLE:
+				return pageCitationStyle != PAGE_CITATION_STYLE_EDEFAULT;
+			case OptionsPackage.LAYOUT_OPTIONS__HEADER_STYLE:
+				return headerStyle != HEADER_STYLE_EDEFAULT;
+			case OptionsPackage.LAYOUT_OPTIONS__LOGO_WIDTH:
+				return logoWidth != LOGO_WIDTH_EDEFAULT;
+			case OptionsPackage.LAYOUT_OPTIONS__LOGO_HEIGHT:
+				return logoHeight != LOGO_HEIGHT_EDEFAULT;
+			case OptionsPackage.LAYOUT_OPTIONS__LOGO_ON_COVER_PAGE:
+				return logoOnCoverPage != LOGO_ON_COVER_PAGE_EDEFAULT;
+			case OptionsPackage.LAYOUT_OPTIONS__TABLE_OF_CONTENTS_TEXT_OPTION:
+				return tableOfContentsTextOption != null;
+			case OptionsPackage.LAYOUT_OPTIONS__HIDE_TABLE_OF_CONTENTS:
+				return hideTableOfContents != HIDE_TABLE_OF_CONTENTS_EDEFAULT;
+			case OptionsPackage.LAYOUT_OPTIONS__HIDE_HEADER_AND_FOOTER_ON_COVER_PAGE:
+				return hideHeaderAndFooterOnCoverPage != HIDE_HEADER_AND_FOOTER_ON_COVER_PAGE_EDEFAULT;
 		}
 		return super.eIsSet(featureID);
 	}
 
 	/**
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
+	 * <!-- begin-user-doc --> <!-- end-user-doc -->
 	 * @generated
 	 */
 	@Override
@@ -1163,16 +1511,12 @@ public class LayoutOptionsImpl extends RendererOptionImpl implements LayoutOptio
 		if (eIsProxy()) return super.toString();
 
 		StringBuffer result = new StringBuffer(super.toString());
-		result.append(" (coverText: ");
-		result.append(coverText);
-		result.append(", hideAnnotations: ");
+		result.append(" (hideAnnotations: ");
 		result.append(hideAnnotations);
 		result.append(", hideAttachments: ");
 		result.append(hideAttachments);
 		result.append(", hideIncomingDocumentReferences: ");
 		result.append(hideIncomingDocumentReferences);
-		result.append(", pageNumberingStyle: ");
-		result.append(pageNumberingStyle);
 		result.append(", hideModelElementImages: ");
 		result.append(hideModelElementImages);
 		result.append(", headerText: ");
@@ -1185,8 +1529,26 @@ public class LayoutOptionsImpl extends RendererOptionImpl implements LayoutOptio
 		result.append(showModelElementTypeInSectionTitle);
 		result.append(", appendixStyle: ");
 		result.append(appendixStyle);
+		result.append(", logoImage: ");
+		result.append(logoImage);
+		result.append(", footerShowDocumentTitle: ");
+		result.append(footerShowDocumentTitle);
+		result.append(", pageCitationStyle: ");
+		result.append(pageCitationStyle);
+		result.append(", headerStyle: ");
+		result.append(headerStyle);
+		result.append(", logoWidth: ");
+		result.append(logoWidth);
+		result.append(", logoHeight: ");
+		result.append(logoHeight);
+		result.append(", logoOnCoverPage: ");
+		result.append(logoOnCoverPage);
+		result.append(", hideTableOfContents: ");
+		result.append(hideTableOfContents);
+		result.append(", hideHeaderAndFooterOnCoverPage: ");
+		result.append(hideHeaderAndFooterOnCoverPage);
 		result.append(')');
 		return result.toString();
 	}
 
-} //LayoutOptionsImpl
+} // LayoutOptionsImpl

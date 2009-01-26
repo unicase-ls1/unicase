@@ -1,16 +1,16 @@
 package org.unicase.docExport.exportModel.renderers.elements;
 
 /**
- * 
  * @author Sebastian Hoecht
- *
  */
 public class ULink extends UParagraph {
 
 	private String internalLinkId;
-	
+	private boolean hideLinkedPage;
+
 	/**
 	 * constructor.
+	 * 
 	 * @param text the Text of the Paragraph of the link
 	 * @param internalLinkId the internalID which should be unique in the whole document
 	 */
@@ -32,6 +32,20 @@ public class ULink extends UParagraph {
 	 */
 	public String getInternalLinkId() {
 		return internalLinkId;
+	}
+
+	/**
+	 * @param hideLinkedPage the hideLinkedPage to set
+	 */
+	public void setHideLinkedPage(boolean hideLinkedPage) {
+		this.hideLinkedPage = hideLinkedPage;
+	}
+
+	/**
+	 * @return the hideLinkedPage
+	 */
+	public boolean isHideLinkedPage() {
+		return hideLinkedPage;
 	}
 
 }

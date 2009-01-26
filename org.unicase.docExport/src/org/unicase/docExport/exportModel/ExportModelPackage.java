@@ -106,13 +106,13 @@ public interface ExportModelPackage extends EPackage {
 	int TEMPLATE__NAME = 3;
 
 	/**
-	 * The feature id for the '<em><b>Logo Image</b></em>' attribute.
+	 * The feature id for the '<em><b>Default Template</b></em>' attribute.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
 	 * @generated
 	 * @ordered
 	 */
-	int TEMPLATE__LOGO_IMAGE = 4;
+	int TEMPLATE__DEFAULT_TEMPLATE = 4;
 
 	/**
 	 * The number of structural features of the '<em>Template</em>' class.
@@ -179,15 +179,15 @@ public interface ExportModelPackage extends EPackage {
 	EAttribute getTemplate_Name();
 
 	/**
-	 * Returns the meta object for the attribute '{@link org.unicase.docExport.exportModel.Template#getLogoImage <em>Logo Image</em>}'.
+	 * Returns the meta object for the attribute '{@link org.unicase.docExport.exportModel.Template#isDefaultTemplate <em>Default Template</em>}'.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
-	 * @return the meta object for the attribute '<em>Logo Image</em>'.
-	 * @see org.unicase.docExport.exportModel.Template#getLogoImage()
+	 * @return the meta object for the attribute '<em>Default Template</em>'.
+	 * @see org.unicase.docExport.exportModel.Template#isDefaultTemplate()
 	 * @see #getTemplate()
 	 * @generated
 	 */
-	EAttribute getTemplate_LogoImage();
+	EAttribute getTemplate_DefaultTemplate();
 
 	/**
 	 * Returns the factory that creates the instances of the model.
@@ -254,12 +254,12 @@ public interface ExportModelPackage extends EPackage {
 		EAttribute TEMPLATE__NAME = eINSTANCE.getTemplate_Name();
 
 		/**
-		 * The meta object literal for the '<em><b>Logo Image</b></em>' attribute feature.
+		 * The meta object literal for the '<em><b>Default Template</b></em>' attribute feature.
 		 * <!-- begin-user-doc -->
 		 * <!-- end-user-doc -->
 		 * @generated
 		 */
-		EAttribute TEMPLATE__LOGO_IMAGE = eINSTANCE.getTemplate_LogoImage();
+		EAttribute TEMPLATE__DEFAULT_TEMPLATE = eINSTANCE.getTemplate_DefaultTemplate();
 
 	}
 

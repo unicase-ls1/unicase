@@ -16,37 +16,32 @@ import org.unicase.model.ModelPackage;
 import org.unicase.workspace.util.WorkspaceUtil;
 
 /**
- * 
- * @author Sebastian Höcht
- * 
+ * @author Sebastian Hoecht
  */
 public final class ModelElementRendererRegistry {
 
 	private ModelElementRendererRegistry() {
-		
+
 	}
-	
+
 	/**
 	 * Returns all possible ModelElementRenderers for a given modelElement EClass.
 	 * 
 	 * @param modelElementEClass the EClass of the ModelElement type
-	 * @param template the template where the ModelElementRenderers are needed. This 
-	 * parameter is required, because the a new default model element renderer is created.
-	 * The build requires a template (because of the global renderer options)
+	 * @param template the template where the ModelElementRenderers are needed. This parameter is required, because the
+	 *            a new default model element renderer is created. The build requires a template (because of the global
+	 *            renderer options)
 	 * @return all possible ModelElementRenderers
 	 */
-	public static ArrayList<ModelElementRenderer> getSupportedModelElementRenderers(
-			String modelElementEClass, 
-			Template template) {
-		
+	public static ArrayList<ModelElementRenderer> getSupportedModelElementRenderers(String modelElementEClass,
+		Template template) {
+
 		ArrayList<ModelElementRenderer> renderers = new ArrayList<ModelElementRenderer>();
-		
+
 		ModelElementRenderer defaultRenderer = DefaultModelElementRendererBuilder.build(
-				getEClassOfString(modelElementEClass), 
-				template
-			);
+			getEClassOfString(modelElementEClass), template);
 		renderers.add(defaultRenderer);
-		
+
 		if (modelElementEClass.equals("Meeting")) {
 			MeetingRenderer renderer = SpecialRenderersFactory.eINSTANCE.createMeetingRenderer(template);
 			renderers.add(renderer);
@@ -59,10 +54,10 @@ public final class ModelElementRendererRegistry {
 			renderer.setTemplate(template);
 			renderers.add(renderer);
 		}
-		
+
 		return renderers;
 	}
-	
+
 	/**
 	 * Returns the deafult renderer which shall be used, if no renderer has been selected.
 	 * 
@@ -70,22 +65,18 @@ public final class ModelElementRendererRegistry {
 	 * @param template the template where this renderer is used
 	 * @return the fully configured default special renderer or a DefaultModelElementRenderer
 	 */
-	public static ModelElementRenderer getDefaultSpecialModelElementRenderer(
-			EClass modelElementEClass, 
-			Template template) {
-		
+	public static ModelElementRenderer getDefaultSpecialModelElementRenderer(EClass modelElementEClass,
+		Template template) {
+
 		if (modelElementEClass.getName().equals("Meeting")) {
 			return SpecialRenderersFactory.eINSTANCE.createMeetingRenderer(template);
 		} else if (modelElementEClass.getName().equals("Milestone")) {
 			return SpecialRenderersFactory.eINSTANCE.createMilestoneRenderer();
 		} else {
-			return DefaultModelElementRendererBuilder.build(
-					modelElementEClass, 
-					template
-				);		
+			return DefaultModelElementRendererBuilder.build(modelElementEClass, template);
 		}
 	}
-	
+
 	/**
 	 * Returns the EClass of a ModelElement type given the clazz name of the ModelELement.
 	 * 
@@ -93,20 +84,16 @@ public final class ModelElementRendererRegistry {
 	 * @return the EClass of the ModelElement
 	 */
 	public static EClass getEClassOfString(String clazz) {
-		ArrayList<EClass> modelElementTypes = 
-			DefaultDocumentTemplateBuilder.getModelElements(ModelPackage.eINSTANCE.eContents());
-		
+		ArrayList<EClass> modelElementTypes = DefaultDocumentTemplateBuilder.getModelElements(ModelPackage.eINSTANCE
+			.eContents());
+
 		for (EClass eClass : modelElementTypes) {
 			if (eClass.getName().equals(clazz)) {
 				return eClass;
 			}
 		}
-		
-		WorkspaceUtil.log(
-				"can't find an EClass for the ModelElement Type " + clazz,
-				new Exception(),
-				IStatus.WARNING
-			);
+
+		WorkspaceUtil.log("can't find an EClass for the ModelElement Type " + clazz, new Exception(), IStatus.WARNING);
 		return null;
 	}
 }

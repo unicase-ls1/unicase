@@ -3,23 +3,20 @@ package org.unicase.docExport.exportModel.renderers.elements;
 import java.awt.Color;
 
 /**
- * 
- * @author Sebastian Höcht
- *
+ * @author Sebastian Hoecht
  */
 public class USeperator extends UDocument {
 
 	private int widthPercentage = 80;
 	private int height = 1;
-	
 
 	/**
 	 * default constructor.
 	 */
 	public USeperator() {
-		
+
 	}
-	
+
 	/**
 	 * @return the widthPercentage
 	 */

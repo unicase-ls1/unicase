@@ -17,19 +17,17 @@ import org.unicase.docExport.exportModel.renderers.specialRenderers.SpecialRende
 import org.unicase.model.meeting.MeetingPackage;
 
 /**
- * 
- * @author Sebastian Höcht
- * 
+ * @author Sebastian Hoecht
  */
 public class SelectRendererDialog extends TitleAreaDialog {
 
-	
 	private String propertyEClass;
 	private Template template;
 	private Combo combo;
-	
+
 	/**
 	 * the constructor.
+	 * 
 	 * @param parentShell the parent shell object
 	 * @param template the template to save
 	 */
@@ -39,7 +37,6 @@ public class SelectRendererDialog extends TitleAreaDialog {
 		setTitle("Enter the name of the new Template");
 		this.template = template;
 	}
-	
 
 	/**
 	 * {@inheritDoc}
@@ -50,16 +47,14 @@ public class SelectRendererDialog extends TitleAreaDialog {
 		GridLayout layout = new GridLayout();
 		layout.numColumns = 1;
 		parent.setLayout(layout);
-		
+
 		combo = new Combo(parent, SWT.READ_ONLY);
 		combo.add("DefaultModelElementRenderer", 0);
 		combo.add("MeetingRenderer", 1);
-		
 
 		return parent;
 	}
 
-	
 	/**
 	 * {@inheritDoc}
 	 */
@@ -72,8 +67,7 @@ public class SelectRendererDialog extends TitleAreaDialog {
 		setMessage("This is a TitleAreaDialog", IMessageProvider.INFORMATION);
 		return contents;
 	}
-	
-	
+
 	/**
 	 * {@inheritDoc}
 	 */
@@ -83,22 +77,24 @@ public class SelectRendererDialog extends TitleAreaDialog {
 		Button button = new Button(parent, SWT.PUSH);
 		button.setText("OK");
 		button.addSelectionListener(new SelectionAdapter() {
-			
+
 			@Override
 			public void widgetSelected(SelectionEvent e) {
 				if (combo.getSelectionIndex() == 1) {
-					template.setModelElementRenderer(propertyEClass, SpecialRenderersFactory.eINSTANCE.createMeetingRenderer(template));
+					template.setModelElementRenderer(propertyEClass, SpecialRenderersFactory.eINSTANCE
+						.createMeetingRenderer(template));
 				} else {
-					template.setModelElementRenderer(propertyEClass, DefaultModelElementRendererBuilder.build(MeetingPackage.eINSTANCE.getMeeting(), template));
+					template.setModelElementRenderer(propertyEClass, DefaultModelElementRendererBuilder.build(
+						MeetingPackage.eINSTANCE.getMeeting(), template));
 				}
 				close();
 			}
 		});
-		
+
 		Button button2 = new Button(parent, SWT.PUSH);
 		button2.setText("Cancel");
 		button2.addSelectionListener(new SelectionAdapter() {
-			
+
 			@Override
 			public void widgetSelected(SelectionEvent e) {
 				close();
@@ -113,7 +109,6 @@ public class SelectRendererDialog extends TitleAreaDialog {
 		return template;
 	}
 
-
 	/**
 	 * @param propertyEClass the propertyEClass to set
 	 */
@@ -121,13 +116,11 @@ public class SelectRendererDialog extends TitleAreaDialog {
 		this.propertyEClass = propertyEClass;
 	}
 
-
 	/**
 	 * @return the propertyEClass
 	 */
 	public String getPropertyEClass() {
 		return propertyEClass;
 	}
-
 
 }

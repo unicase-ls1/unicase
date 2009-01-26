@@ -1,8 +1,5 @@
 /**
- * <copyright>
- * </copyright>
- *
- * $Id$
+ * <copyright> </copyright> $Id$
  */
 package org.unicase.docExport.exportModel.renderers.options.impl;
 
@@ -13,9 +10,7 @@ import org.unicase.docExport.exportModel.renderers.options.OptionsPackage;
 import org.unicase.docExport.exportModel.renderers.options.UColor;
 
 /**
- * <!-- begin-user-doc -->
- * An implementation of the model object '<em><b>UColor</b></em>'.
- * <!-- end-user-doc -->
+ * <!-- begin-user-doc --> An implementation of the model object '<em><b>UColor</b></em>'. <!-- end-user-doc -->
  * <p>
  * The following features are implemented:
  * <ul>
@@ -29,9 +24,9 @@ import org.unicase.docExport.exportModel.renderers.options.UColor;
  */
 public class UColorImpl extends RendererOptionImpl implements UColor {
 	/**
-	 * The default value of the '{@link #getRed() <em>Red</em>}' attribute.
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
+	 * The default value of the '{@link #getRed() <em>Red</em>}' attribute. <!-- begin-user-doc --> <!-- end-user-doc
+	 * -->
+	 * 
 	 * @see #getRed()
 	 * @generated
 	 * @ordered
@@ -40,8 +35,7 @@ public class UColorImpl extends RendererOptionImpl implements UColor {
 
 	/**
 	 * The cached value of the '{@link #getRed() <em>Red</em>}' attribute.
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
+	 * <!-- begin-user-doc --> <!-- end-user-doc -->
 	 * @see #getRed()
 	 * @generated
 	 * @ordered
@@ -50,8 +44,8 @@ public class UColorImpl extends RendererOptionImpl implements UColor {
 
 	/**
 	 * The default value of the '{@link #getGreen() <em>Green</em>}' attribute.
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
+	 * <!-- begin-user-doc --> <!--
+	 * end-user-doc -->
 	 * @see #getGreen()
 	 * @generated
 	 * @ordered
@@ -59,9 +53,9 @@ public class UColorImpl extends RendererOptionImpl implements UColor {
 	protected static final int GREEN_EDEFAULT = 0;
 
 	/**
-	 * The cached value of the '{@link #getGreen() <em>Green</em>}' attribute.
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
+	 * The cached value of the '{@link #getGreen() <em>Green</em>}' attribute. <!-- begin-user-doc --> <!-- end-user-doc
+	 * -->
+	 * 
 	 * @see #getGreen()
 	 * @generated
 	 * @ordered
@@ -69,9 +63,9 @@ public class UColorImpl extends RendererOptionImpl implements UColor {
 	protected int green = GREEN_EDEFAULT;
 
 	/**
-	 * The default value of the '{@link #getBlue() <em>Blue</em>}' attribute.
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
+	 * The default value of the '{@link #getBlue() <em>Blue</em>}' attribute. <!-- begin-user-doc --> <!-- end-user-doc
+	 * -->
+	 * 
 	 * @see #getBlue()
 	 * @generated
 	 * @ordered
@@ -79,9 +73,9 @@ public class UColorImpl extends RendererOptionImpl implements UColor {
 	protected static final int BLUE_EDEFAULT = 0;
 
 	/**
-	 * The cached value of the '{@link #getBlue() <em>Blue</em>}' attribute.
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
+	 * The cached value of the '{@link #getBlue() <em>Blue</em>}' attribute. <!-- begin-user-doc --> <!-- end-user-doc
+	 * -->
+	 * 
 	 * @see #getBlue()
 	 * @generated
 	 * @ordered
@@ -89,8 +83,7 @@ public class UColorImpl extends RendererOptionImpl implements UColor {
 	protected int blue = BLUE_EDEFAULT;
 
 	/**
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
+	 * <!-- begin-user-doc --> <!-- end-user-doc -->
 	 * @generated
 	 */
 	protected UColorImpl() {
@@ -98,8 +91,7 @@ public class UColorImpl extends RendererOptionImpl implements UColor {
 	}
 
 	/**
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
+	 * <!-- begin-user-doc --> <!-- end-user-doc -->
 	 * @generated
 	 */
 	@Override
@@ -108,8 +100,7 @@ public class UColorImpl extends RendererOptionImpl implements UColor {
 	}
 
 	/**
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
+	 * <!-- begin-user-doc --> <!-- end-user-doc -->
 	 * @generated
 	 */
 	public int getRed() {
@@ -117,8 +108,7 @@ public class UColorImpl extends RendererOptionImpl implements UColor {
 	}
 
 	/**
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
+	 * <!-- begin-user-doc --> <!-- end-user-doc -->
 	 * @generated
 	 */
 	public void setRed(int newRed) {
@@ -129,8 +119,7 @@ public class UColorImpl extends RendererOptionImpl implements UColor {
 	}
 
 	/**
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
+	 * <!-- begin-user-doc --> <!-- end-user-doc -->
 	 * @generated
 	 */
 	public int getGreen() {
@@ -138,8 +127,7 @@ public class UColorImpl extends RendererOptionImpl implements UColor {
 	}
 
 	/**
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
+	 * <!-- begin-user-doc --> <!-- end-user-doc -->
 	 * @generated
 	 */
 	public void setGreen(int newGreen) {
@@ -150,8 +138,7 @@ public class UColorImpl extends RendererOptionImpl implements UColor {
 	}
 
 	/**
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
+	 * <!-- begin-user-doc --> <!-- end-user-doc -->
 	 * @generated
 	 */
 	public int getBlue() {
@@ -159,8 +146,7 @@ public class UColorImpl extends RendererOptionImpl implements UColor {
 	}
 
 	/**
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
+	 * <!-- begin-user-doc --> <!-- end-user-doc -->
 	 * @generated
 	 */
 	public void setBlue(int newBlue) {
@@ -171,8 +157,7 @@ public class UColorImpl extends RendererOptionImpl implements UColor {
 	}
 
 	/**
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
+	 * <!-- begin-user-doc --> <!-- end-user-doc -->
 	 * @generated
 	 */
 	@Override
@@ -189,8 +174,7 @@ public class UColorImpl extends RendererOptionImpl implements UColor {
 	}
 
 	/**
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
+	 * <!-- begin-user-doc --> <!-- end-user-doc -->
 	 * @generated
 	 */
 	@Override
@@ -210,8 +194,7 @@ public class UColorImpl extends RendererOptionImpl implements UColor {
 	}
 
 	/**
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
+	 * <!-- begin-user-doc --> <!-- end-user-doc -->
 	 * @generated
 	 */
 	@Override
@@ -231,8 +214,7 @@ public class UColorImpl extends RendererOptionImpl implements UColor {
 	}
 
 	/**
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
+	 * <!-- begin-user-doc --> <!-- end-user-doc -->
 	 * @generated
 	 */
 	@Override
@@ -249,8 +231,7 @@ public class UColorImpl extends RendererOptionImpl implements UColor {
 	}
 
 	/**
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
+	 * <!-- begin-user-doc --> <!-- end-user-doc -->
 	 * @generated
 	 */
 	@Override
@@ -268,4 +249,4 @@ public class UColorImpl extends RendererOptionImpl implements UColor {
 		return result.toString();
 	}
 
-} //UColorImpl
+} // UColorImpl

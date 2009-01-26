@@ -2,6 +2,7 @@ package org.unicase.docExport.editors;
 
 import org.eclipse.core.runtime.IProgressMonitor;
 import org.eclipse.core.runtime.IStatus;
+import org.eclipse.emf.ecore.util.EcoreUtil;
 import org.eclipse.swt.SWT;
 import org.eclipse.swt.custom.CTabFolder;
 import org.eclipse.swt.custom.CTabItem;
@@ -10,9 +11,11 @@ import org.eclipse.swt.graphics.Color;
 import org.eclipse.swt.layout.GridData;
 import org.eclipse.swt.layout.GridLayout;
 import org.eclipse.swt.widgets.Composite;
+import org.eclipse.swt.widgets.MessageBox;
 import org.eclipse.ui.IEditorInput;
 import org.eclipse.ui.IEditorSite;
 import org.eclipse.ui.PartInitException;
+import org.eclipse.ui.PlatformUI;
 import org.eclipse.ui.part.EditorPart;
 import org.unicase.docExport.TemplateRegistry;
 import org.unicase.docExport.exceptions.TemplateSaveException;
@@ -20,36 +23,34 @@ import org.unicase.docExport.exportModel.Template;
 import org.unicase.workspace.util.WorkspaceUtil;
 
 /**
- * 
- * @author Sebastian Höcht
- *
+ * @author Sebastian Hoecht
  */
 public class TemplateEditor extends EditorPart {
 
 	private CTabFolder tabFolder;
-	
+
 	private ScrolledComposite modelElementRendererScrolledComposite;
 	private ScrolledComposite layoutOptionsScrolledComposite;
 	private ScrolledComposite globalOptionsScrolledComposite;
-	
-	
+
 	/**
 	 * .
 	 */
 	public static final String COMMAND_ID = "org.unicase.docExport.callTemplateEditor";
-	
+
 	/**
 	 * .
 	 */
 	public static final String ID = "org.unicase.docExport.editors.TemplateEditor";
-	
+
+	@SuppressWarnings("unused")
 	private Template oldTemplate;
 	private Template template;
-	
+
 	/**
 	 * The default constructor.
 	 */
-	public TemplateEditor () {
+	public TemplateEditor() {
 	}
 
 	/**
@@ -57,14 +58,16 @@ public class TemplateEditor extends EditorPart {
 	 */
 	@Override
 	public void doSave(IProgressMonitor monitor) {
-		try {
-			TemplateRegistry.saveTemplate(template);
-		} catch (TemplateSaveException e) {
-			WorkspaceUtil.log(
-					"could not save the Template",
-					e,
-					IStatus.ERROR
-				);
+		if (template.isDefaultTemplate()) {
+			MessageBox messageBox = new MessageBox(PlatformUI.getWorkbench().getDisplay().getActiveShell());
+			messageBox.setMessage("you can't save a default template. Use save as instead");
+			messageBox.open();
+		} else {
+			try {
+				TemplateRegistry.saveTemplate(template);
+			} catch (TemplateSaveException e) {
+				WorkspaceUtil.log("could not save the Template", e, IStatus.ERROR);
+			}
 		}
 	}
 
@@ -73,7 +76,9 @@ public class TemplateEditor extends EditorPart {
 	 */
 	@Override
 	public void doSaveAs() {
-		TemplateSaveAsDialog dialog = new TemplateSaveAsDialog(this.getSite().getShell(), template);
+		Template template2 = (Template) EcoreUtil.copy(template);
+		template2.setDefaultTemplate(false);
+		TemplateSaveAsDialog dialog = new TemplateSaveAsDialog(this.getSite().getShell(), template2);
 		dialog.open();
 	}
 
@@ -81,14 +86,13 @@ public class TemplateEditor extends EditorPart {
 	 * {@inheritDoc}
 	 */
 	@Override
-	public void init(IEditorSite site, IEditorInput input)
-			throws PartInitException {
-	
+	public void init(IEditorSite site, IEditorInput input) throws PartInitException {
+
 		setSite(site);
 		setInput(input);
-		
+
 		this.template = ((TemplateEditorInput) input).getTemplate();
-		this.oldTemplate = this.template;
+		this.oldTemplate = (Template) EcoreUtil.copy(this.template);
 		setPartName(template.getName());
 	}
 
@@ -97,8 +101,7 @@ public class TemplateEditor extends EditorPart {
 	 */
 	@Override
 	public boolean isDirty() {
-		oldTemplate.getName(); //rofl.. just to kill the warning of not read locally...
-//		return !template.equals(oldTemplate);
+		// return !EcoreUtil.equals(template, oldTemplate);
 		return true;
 	}
 
@@ -110,7 +113,6 @@ public class TemplateEditor extends EditorPart {
 		return true;
 	}
 
-	
 	/**
 	 * {@inheritDoc}
 	 */
@@ -124,29 +126,18 @@ public class TemplateEditor extends EditorPart {
 		tabLayoutData.grabExcessHorizontalSpace = true;
 		tabFolder.setLayout(tabLayout);
 		tabFolder.setLayoutData(tabLayoutData);
-		
+
 		modelElementRendererScrolledComposite = createTab("ModelElement Renderers");
 		layoutOptionsScrolledComposite = createTab("layoutOptions");
-		globalOptionsScrolledComposite = createTab("Global Options");	
-		
-		//remove later...
+		globalOptionsScrolledComposite = createTab("Global Options");
+
+		// remove later...
 		globalOptionsScrolledComposite.layout();
-		
-		new ModelElementRenderersTab(
-				modelElementRendererScrolledComposite,
-				SWT.NONE,
-				tabFolder,
-				template
-			);
-	
-		new LayoutOptionsTab(
-				layoutOptionsScrolledComposite,
-				SWT.NONE,
-				tabFolder,
-				template
-			);
+
+		new ModelElementRenderersTab(modelElementRendererScrolledComposite, SWT.NONE, tabFolder, template);
+
+		new LayoutOptionsTab(layoutOptionsScrolledComposite, SWT.NONE, tabFolder, template);
 	}
-	
 
 	/**
 	 * {@inheritDoc}
@@ -156,20 +147,20 @@ public class TemplateEditor extends EditorPart {
 		tabFolder.setFocus();
 	}
 
-	
 	private ScrolledComposite createTab(String text) {
 		CTabItem tabItem1 = new CTabItem(tabFolder, SWT.BOTTOM);
 		tabItem1.setText(text);
-		ScrolledComposite scrolledComposite = new ScrolledComposite(tabFolder, SWT.H_SCROLL | SWT.V_SCROLL | SWT.BORDER | SWT.BOTTOM);
+		ScrolledComposite scrolledComposite = new ScrolledComposite(tabFolder, SWT.H_SCROLL | SWT.V_SCROLL | SWT.BORDER
+			| SWT.BOTTOM);
 		scrolledComposite.setExpandHorizontal(true);
 		scrolledComposite.setExpandVertical(true);
 		GridLayout layout1 = new GridLayout();
 		GridData data1 = new GridData();
 		scrolledComposite.setLayout(layout1);
 		scrolledComposite.setLayoutData(data1);
-		tabItem1.setControl(scrolledComposite);	 
-		
+		tabItem1.setControl(scrolledComposite);
+
 		return scrolledComposite;
 	}
-	
+
 }

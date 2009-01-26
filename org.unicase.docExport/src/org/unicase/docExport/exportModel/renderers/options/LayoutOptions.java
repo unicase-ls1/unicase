@@ -15,14 +15,12 @@ package org.unicase.docExport.exportModel.renderers.options;
  * <p>
  * The following features are supported:
  * <ul>
- *   <li>{@link org.unicase.docExport.exportModel.renderers.options.LayoutOptions#getCoverText <em>Cover Text</em>}</li>
- *   <li>{@link org.unicase.docExport.exportModel.renderers.options.LayoutOptions#getCoverTextTextOption <em>Cover Text Text Option</em>}</li>
+ *   <li>{@link org.unicase.docExport.exportModel.renderers.options.LayoutOptions#getHeaderTextOption <em>Header Text Option</em>}</li>
  *   <li>{@link org.unicase.docExport.exportModel.renderers.options.LayoutOptions#getDefaultTextOption <em>Default Text Option</em>}</li>
  *   <li>{@link org.unicase.docExport.exportModel.renderers.options.LayoutOptions#getSectionTextOption <em>Section Text Option</em>}</li>
  *   <li>{@link org.unicase.docExport.exportModel.renderers.options.LayoutOptions#isHideAnnotations <em>Hide Annotations</em>}</li>
  *   <li>{@link org.unicase.docExport.exportModel.renderers.options.LayoutOptions#isHideAttachments <em>Hide Attachments</em>}</li>
  *   <li>{@link org.unicase.docExport.exportModel.renderers.options.LayoutOptions#isHideIncomingDocumentReferences <em>Hide Incoming Document References</em>}</li>
- *   <li>{@link org.unicase.docExport.exportModel.renderers.options.LayoutOptions#getPageNumberingStyle <em>Page Numbering Style</em>}</li>
  *   <li>{@link org.unicase.docExport.exportModel.renderers.options.LayoutOptions#isHideModelElementImages <em>Hide Model Element Images</em>}</li>
  *   <li>{@link org.unicase.docExport.exportModel.renderers.options.LayoutOptions#getModelElementTextOption <em>Model Element Text Option</em>}</li>
  *   <li>{@link org.unicase.docExport.exportModel.renderers.options.LayoutOptions#getHeaderText <em>Header Text</em>}</li>
@@ -31,8 +29,18 @@ package org.unicase.docExport.exportModel.renderers.options;
  *   <li>{@link org.unicase.docExport.exportModel.renderers.options.LayoutOptions#getSectionFontSizeDecreaseStep <em>Section Font Size Decrease Step</em>}</li>
  *   <li>{@link org.unicase.docExport.exportModel.renderers.options.LayoutOptions#getDocumentTitleTextOption <em>Document Title Text Option</em>}</li>
  *   <li>{@link org.unicase.docExport.exportModel.renderers.options.LayoutOptions#isShowModelElementTypeInSectionTitle <em>Show Model Element Type In Section Title</em>}</li>
- *   <li>{@link org.unicase.docExport.exportModel.renderers.options.LayoutOptions#getAttributeTextOption <em>Attribute Text Option</em>}</li>
  *   <li>{@link org.unicase.docExport.exportModel.renderers.options.LayoutOptions#getAppendixStyle <em>Appendix Style</em>}</li>
+ *   <li>{@link org.unicase.docExport.exportModel.renderers.options.LayoutOptions#getLogoImage <em>Logo Image</em>}</li>
+ *   <li>{@link org.unicase.docExport.exportModel.renderers.options.LayoutOptions#getFooterTextOption <em>Footer Text Option</em>}</li>
+ *   <li>{@link org.unicase.docExport.exportModel.renderers.options.LayoutOptions#isFooterShowDocumentTitle <em>Footer Show Document Title</em>}</li>
+ *   <li>{@link org.unicase.docExport.exportModel.renderers.options.LayoutOptions#getPageCitationStyle <em>Page Citation Style</em>}</li>
+ *   <li>{@link org.unicase.docExport.exportModel.renderers.options.LayoutOptions#getHeaderStyle <em>Header Style</em>}</li>
+ *   <li>{@link org.unicase.docExport.exportModel.renderers.options.LayoutOptions#getLogoWidth <em>Logo Width</em>}</li>
+ *   <li>{@link org.unicase.docExport.exportModel.renderers.options.LayoutOptions#getLogoHeight <em>Logo Height</em>}</li>
+ *   <li>{@link org.unicase.docExport.exportModel.renderers.options.LayoutOptions#isLogoOnCoverPage <em>Logo On Cover Page</em>}</li>
+ *   <li>{@link org.unicase.docExport.exportModel.renderers.options.LayoutOptions#getTableOfContentsTextOption <em>Table Of Contents Text Option</em>}</li>
+ *   <li>{@link org.unicase.docExport.exportModel.renderers.options.LayoutOptions#isHideTableOfContents <em>Hide Table Of Contents</em>}</li>
+ *   <li>{@link org.unicase.docExport.exportModel.renderers.options.LayoutOptions#isHideHeaderAndFooterOnCoverPage <em>Hide Header And Footer On Cover Page</em>}</li>
  * </ul>
  * </p>
  *
@@ -42,56 +50,30 @@ package org.unicase.docExport.exportModel.renderers.options;
  */
 public interface LayoutOptions extends RendererOption {
 	/**
-	 * Returns the value of the '<em><b>Cover Text</b></em>' attribute.
+	 * Returns the value of the '<em><b>Header Text Option</b></em>' containment reference.
 	 * <!-- begin-user-doc -->
 	 * <p>
-	 * If the meaning of the '<em>Cover Text</em>' attribute isn't clear,
+	 * If the meaning of the '<em>Header Text Option</em>' containment reference isn't clear,
 	 * there really should be more of a description here...
 	 * </p>
 	 * <!-- end-user-doc -->
-	 * @return the value of the '<em>Cover Text</em>' attribute.
-	 * @see #setCoverText(String)
-	 * @see org.unicase.docExport.exportModel.renderers.options.OptionsPackage#getLayoutOptions_CoverText()
-	 * @model
-	 * @generated
-	 */
-	String getCoverText();
-
-	/**
-	 * Sets the value of the '{@link org.unicase.docExport.exportModel.renderers.options.LayoutOptions#getCoverText <em>Cover Text</em>}' attribute.
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
-	 * @param value the new value of the '<em>Cover Text</em>' attribute.
-	 * @see #getCoverText()
-	 * @generated
-	 */
-	void setCoverText(String value);
-
-	/**
-	 * Returns the value of the '<em><b>Cover Text Text Option</b></em>' containment reference.
-	 * <!-- begin-user-doc -->
-	 * <p>
-	 * If the meaning of the '<em>Cover Text Text Option</em>' containment reference isn't clear,
-	 * there really should be more of a description here...
-	 * </p>
-	 * <!-- end-user-doc -->
-	 * @return the value of the '<em>Cover Text Text Option</em>' containment reference.
-	 * @see #setCoverTextTextOption(TextOption)
-	 * @see org.unicase.docExport.exportModel.renderers.options.OptionsPackage#getLayoutOptions_CoverTextTextOption()
+	 * @return the value of the '<em>Header Text Option</em>' containment reference.
+	 * @see #setHeaderTextOption(TextOption)
+	 * @see org.unicase.docExport.exportModel.renderers.options.OptionsPackage#getLayoutOptions_HeaderTextOption()
 	 * @model containment="true"
 	 * @generated
 	 */
-	TextOption getCoverTextTextOption();
+	TextOption getHeaderTextOption();
 
 	/**
-	 * Sets the value of the '{@link org.unicase.docExport.exportModel.renderers.options.LayoutOptions#getCoverTextTextOption <em>Cover Text Text Option</em>}' containment reference.
+	 * Sets the value of the '{@link org.unicase.docExport.exportModel.renderers.options.LayoutOptions#getHeaderTextOption <em>Header Text Option</em>}' containment reference.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
-	 * @param value the new value of the '<em>Cover Text Text Option</em>' containment reference.
-	 * @see #getCoverTextTextOption()
+	 * @param value the new value of the '<em>Header Text Option</em>' containment reference.
+	 * @see #getHeaderTextOption()
 	 * @generated
 	 */
-	void setCoverTextTextOption(TextOption value);
+	void setHeaderTextOption(TextOption value);
 
 	/**
 	 * Returns the value of the '<em><b>Default Text Option</b></em>' containment reference.
@@ -222,35 +204,6 @@ public interface LayoutOptions extends RendererOption {
 	 * @generated
 	 */
 	void setHideIncomingDocumentReferences(boolean value);
-
-	/**
-	 * Returns the value of the '<em><b>Page Numbering Style</b></em>' attribute.
-	 * The literals are from the enumeration {@link org.unicase.docExport.exportModel.renderers.options.PageNumberingStyle}.
-	 * <!-- begin-user-doc -->
-	 * <p>
-	 * If the meaning of the '<em>Page Numbering Style</em>' attribute isn't clear,
-	 * there really should be more of a description here...
-	 * </p>
-	 * <!-- end-user-doc -->
-	 * @return the value of the '<em>Page Numbering Style</em>' attribute.
-	 * @see org.unicase.docExport.exportModel.renderers.options.PageNumberingStyle
-	 * @see #setPageNumberingStyle(PageNumberingStyle)
-	 * @see org.unicase.docExport.exportModel.renderers.options.OptionsPackage#getLayoutOptions_PageNumberingStyle()
-	 * @model
-	 * @generated
-	 */
-	PageNumberingStyle getPageNumberingStyle();
-
-	/**
-	 * Sets the value of the '{@link org.unicase.docExport.exportModel.renderers.options.LayoutOptions#getPageNumberingStyle <em>Page Numbering Style</em>}' attribute.
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
-	 * @param value the new value of the '<em>Page Numbering Style</em>' attribute.
-	 * @see org.unicase.docExport.exportModel.renderers.options.PageNumberingStyle
-	 * @see #getPageNumberingStyle()
-	 * @generated
-	 */
-	void setPageNumberingStyle(PageNumberingStyle value);
 
 	/**
 	 * Returns the value of the '<em><b>Hide Model Element Images</b></em>' attribute.
@@ -461,32 +414,6 @@ public interface LayoutOptions extends RendererOption {
 	void setShowModelElementTypeInSectionTitle(boolean value);
 
 	/**
-	 * Returns the value of the '<em><b>Attribute Text Option</b></em>' containment reference.
-	 * <!-- begin-user-doc -->
-	 * <p>
-	 * If the meaning of the '<em>Attribute Text Option</em>' containment reference isn't clear,
-	 * there really should be more of a description here...
-	 * </p>
-	 * <!-- end-user-doc -->
-	 * @return the value of the '<em>Attribute Text Option</em>' containment reference.
-	 * @see #setAttributeTextOption(TextOption)
-	 * @see org.unicase.docExport.exportModel.renderers.options.OptionsPackage#getLayoutOptions_AttributeTextOption()
-	 * @model containment="true"
-	 * @generated
-	 */
-	TextOption getAttributeTextOption();
-
-	/**
-	 * Sets the value of the '{@link org.unicase.docExport.exportModel.renderers.options.LayoutOptions#getAttributeTextOption <em>Attribute Text Option</em>}' containment reference.
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
-	 * @param value the new value of the '<em>Attribute Text Option</em>' containment reference.
-	 * @see #getAttributeTextOption()
-	 * @generated
-	 */
-	void setAttributeTextOption(TextOption value);
-
-	/**
 	 * Returns the value of the '<em><b>Appendix Style</b></em>' attribute.
 	 * The literals are from the enumeration {@link org.unicase.docExport.exportModel.renderers.options.AppendixStyle}.
 	 * <!-- begin-user-doc -->
@@ -514,5 +441,297 @@ public interface LayoutOptions extends RendererOption {
 	 * @generated
 	 */
 	void setAppendixStyle(AppendixStyle value);
+
+	/**
+	 * Returns the value of the '<em><b>Logo Image</b></em>' attribute.
+	 * <!-- begin-user-doc -->
+	 * <p>
+	 * If the meaning of the '<em>Logo Image</em>' attribute isn't clear,
+	 * there really should be more of a description here...
+	 * </p>
+	 * <!-- end-user-doc -->
+	 * @return the value of the '<em>Logo Image</em>' attribute.
+	 * @see #setLogoImage(String)
+	 * @see org.unicase.docExport.exportModel.renderers.options.OptionsPackage#getLayoutOptions_LogoImage()
+	 * @model
+	 * @generated
+	 */
+	String getLogoImage();
+
+	/**
+	 * Sets the value of the '{@link org.unicase.docExport.exportModel.renderers.options.LayoutOptions#getLogoImage <em>Logo Image</em>}' attribute.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @param value the new value of the '<em>Logo Image</em>' attribute.
+	 * @see #getLogoImage()
+	 * @generated
+	 */
+	void setLogoImage(String value);
+
+	/**
+	 * Returns the value of the '<em><b>Footer Text Option</b></em>' containment reference.
+	 * <!-- begin-user-doc -->
+	 * <p>
+	 * If the meaning of the '<em>Footer Text Option</em>' containment reference isn't clear,
+	 * there really should be more of a description here...
+	 * </p>
+	 * <!-- end-user-doc -->
+	 * @return the value of the '<em>Footer Text Option</em>' containment reference.
+	 * @see #setFooterTextOption(TextOption)
+	 * @see org.unicase.docExport.exportModel.renderers.options.OptionsPackage#getLayoutOptions_FooterTextOption()
+	 * @model containment="true"
+	 * @generated
+	 */
+	TextOption getFooterTextOption();
+
+	/**
+	 * Sets the value of the '{@link org.unicase.docExport.exportModel.renderers.options.LayoutOptions#getFooterTextOption <em>Footer Text Option</em>}' containment reference.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @param value the new value of the '<em>Footer Text Option</em>' containment reference.
+	 * @see #getFooterTextOption()
+	 * @generated
+	 */
+	void setFooterTextOption(TextOption value);
+
+	/**
+	 * Returns the value of the '<em><b>Footer Show Document Title</b></em>' attribute.
+	 * <!-- begin-user-doc -->
+	 * <p>
+	 * If the meaning of the '<em>Footer Show Document Title</em>' attribute isn't clear,
+	 * there really should be more of a description here...
+	 * </p>
+	 * <!-- end-user-doc -->
+	 * @return the value of the '<em>Footer Show Document Title</em>' attribute.
+	 * @see #setFooterShowDocumentTitle(boolean)
+	 * @see org.unicase.docExport.exportModel.renderers.options.OptionsPackage#getLayoutOptions_FooterShowDocumentTitle()
+	 * @model
+	 * @generated
+	 */
+	boolean isFooterShowDocumentTitle();
+
+	/**
+	 * Sets the value of the '{@link org.unicase.docExport.exportModel.renderers.options.LayoutOptions#isFooterShowDocumentTitle <em>Footer Show Document Title</em>}' attribute.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @param value the new value of the '<em>Footer Show Document Title</em>' attribute.
+	 * @see #isFooterShowDocumentTitle()
+	 * @generated
+	 */
+	void setFooterShowDocumentTitle(boolean value);
+
+	/**
+	 * Returns the value of the '<em><b>Page Citation Style</b></em>' attribute.
+	 * The literals are from the enumeration {@link org.unicase.docExport.exportModel.renderers.options.PageCitationStyle}.
+	 * <!-- begin-user-doc -->
+	 * <p>
+	 * If the meaning of the '<em>Page Citation Style</em>' attribute isn't clear,
+	 * there really should be more of a description here...
+	 * </p>
+	 * <!-- end-user-doc -->
+	 * @return the value of the '<em>Page Citation Style</em>' attribute.
+	 * @see org.unicase.docExport.exportModel.renderers.options.PageCitationStyle
+	 * @see #setPageCitationStyle(PageCitationStyle)
+	 * @see org.unicase.docExport.exportModel.renderers.options.OptionsPackage#getLayoutOptions_PageCitationStyle()
+	 * @model
+	 * @generated
+	 */
+	PageCitationStyle getPageCitationStyle();
+
+	/**
+	 * Sets the value of the '{@link org.unicase.docExport.exportModel.renderers.options.LayoutOptions#getPageCitationStyle <em>Page Citation Style</em>}' attribute.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @param value the new value of the '<em>Page Citation Style</em>' attribute.
+	 * @see org.unicase.docExport.exportModel.renderers.options.PageCitationStyle
+	 * @see #getPageCitationStyle()
+	 * @generated
+	 */
+	void setPageCitationStyle(PageCitationStyle value);
+
+	/**
+	 * Returns the value of the '<em><b>Header Style</b></em>' attribute.
+	 * The literals are from the enumeration {@link org.unicase.docExport.exportModel.renderers.options.HeaderStyle}.
+	 * <!-- begin-user-doc -->
+	 * <p>
+	 * If the meaning of the '<em>Header Style</em>' attribute isn't clear,
+	 * there really should be more of a description here...
+	 * </p>
+	 * <!-- end-user-doc -->
+	 * @return the value of the '<em>Header Style</em>' attribute.
+	 * @see org.unicase.docExport.exportModel.renderers.options.HeaderStyle
+	 * @see #setHeaderStyle(HeaderStyle)
+	 * @see org.unicase.docExport.exportModel.renderers.options.OptionsPackage#getLayoutOptions_HeaderStyle()
+	 * @model
+	 * @generated
+	 */
+	HeaderStyle getHeaderStyle();
+
+	/**
+	 * Sets the value of the '{@link org.unicase.docExport.exportModel.renderers.options.LayoutOptions#getHeaderStyle <em>Header Style</em>}' attribute.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @param value the new value of the '<em>Header Style</em>' attribute.
+	 * @see org.unicase.docExport.exportModel.renderers.options.HeaderStyle
+	 * @see #getHeaderStyle()
+	 * @generated
+	 */
+	void setHeaderStyle(HeaderStyle value);
+
+	/**
+	 * Returns the value of the '<em><b>Logo Width</b></em>' attribute.
+	 * <!-- begin-user-doc -->
+	 * <p>
+	 * If the meaning of the '<em>Logo Width</em>' attribute isn't clear,
+	 * there really should be more of a description here...
+	 * </p>
+	 * <!-- end-user-doc -->
+	 * @return the value of the '<em>Logo Width</em>' attribute.
+	 * @see #setLogoWidth(int)
+	 * @see org.unicase.docExport.exportModel.renderers.options.OptionsPackage#getLayoutOptions_LogoWidth()
+	 * @model
+	 * @generated
+	 */
+	int getLogoWidth();
+
+	/**
+	 * Sets the value of the '{@link org.unicase.docExport.exportModel.renderers.options.LayoutOptions#getLogoWidth <em>Logo Width</em>}' attribute.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @param value the new value of the '<em>Logo Width</em>' attribute.
+	 * @see #getLogoWidth()
+	 * @generated
+	 */
+	void setLogoWidth(int value);
+
+	/**
+	 * Returns the value of the '<em><b>Logo Height</b></em>' attribute.
+	 * <!-- begin-user-doc -->
+	 * <p>
+	 * If the meaning of the '<em>Logo Height</em>' attribute isn't clear,
+	 * there really should be more of a description here...
+	 * </p>
+	 * <!-- end-user-doc -->
+	 * @return the value of the '<em>Logo Height</em>' attribute.
+	 * @see #setLogoHeight(int)
+	 * @see org.unicase.docExport.exportModel.renderers.options.OptionsPackage#getLayoutOptions_LogoHeight()
+	 * @model
+	 * @generated
+	 */
+	int getLogoHeight();
+
+	/**
+	 * Sets the value of the '{@link org.unicase.docExport.exportModel.renderers.options.LayoutOptions#getLogoHeight <em>Logo Height</em>}' attribute.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @param value the new value of the '<em>Logo Height</em>' attribute.
+	 * @see #getLogoHeight()
+	 * @generated
+	 */
+	void setLogoHeight(int value);
+
+	/**
+	 * Returns the value of the '<em><b>Logo On Cover Page</b></em>' attribute.
+	 * <!-- begin-user-doc -->
+	 * <p>
+	 * If the meaning of the '<em>Logo On Cover Page</em>' attribute isn't clear,
+	 * there really should be more of a description here...
+	 * </p>
+	 * <!-- end-user-doc -->
+	 * @return the value of the '<em>Logo On Cover Page</em>' attribute.
+	 * @see #setLogoOnCoverPage(boolean)
+	 * @see org.unicase.docExport.exportModel.renderers.options.OptionsPackage#getLayoutOptions_LogoOnCoverPage()
+	 * @model
+	 * @generated
+	 */
+	boolean isLogoOnCoverPage();
+
+	/**
+	 * Sets the value of the '{@link org.unicase.docExport.exportModel.renderers.options.LayoutOptions#isLogoOnCoverPage <em>Logo On Cover Page</em>}' attribute.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @param value the new value of the '<em>Logo On Cover Page</em>' attribute.
+	 * @see #isLogoOnCoverPage()
+	 * @generated
+	 */
+	void setLogoOnCoverPage(boolean value);
+
+	/**
+	 * Returns the value of the '<em><b>Table Of Contents Text Option</b></em>' containment reference.
+	 * <!-- begin-user-doc -->
+	 * <p>
+	 * If the meaning of the '<em>Table Of Contents Text Option</em>' containment reference isn't clear,
+	 * there really should be more of a description here...
+	 * </p>
+	 * <!-- end-user-doc -->
+	 * @return the value of the '<em>Table Of Contents Text Option</em>' containment reference.
+	 * @see #setTableOfContentsTextOption(TextOption)
+	 * @see org.unicase.docExport.exportModel.renderers.options.OptionsPackage#getLayoutOptions_TableOfContentsTextOption()
+	 * @model containment="true"
+	 * @generated
+	 */
+	TextOption getTableOfContentsTextOption();
+
+	/**
+	 * Sets the value of the '{@link org.unicase.docExport.exportModel.renderers.options.LayoutOptions#getTableOfContentsTextOption <em>Table Of Contents Text Option</em>}' containment reference.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @param value the new value of the '<em>Table Of Contents Text Option</em>' containment reference.
+	 * @see #getTableOfContentsTextOption()
+	 * @generated
+	 */
+	void setTableOfContentsTextOption(TextOption value);
+
+	/**
+	 * Returns the value of the '<em><b>Hide Table Of Contents</b></em>' attribute.
+	 * <!-- begin-user-doc -->
+	 * <p>
+	 * If the meaning of the '<em>Hide Table Of Contents</em>' attribute isn't clear,
+	 * there really should be more of a description here...
+	 * </p>
+	 * <!-- end-user-doc -->
+	 * @return the value of the '<em>Hide Table Of Contents</em>' attribute.
+	 * @see #setHideTableOfContents(boolean)
+	 * @see org.unicase.docExport.exportModel.renderers.options.OptionsPackage#getLayoutOptions_HideTableOfContents()
+	 * @model
+	 * @generated
+	 */
+	boolean isHideTableOfContents();
+
+	/**
+	 * Sets the value of the '{@link org.unicase.docExport.exportModel.renderers.options.LayoutOptions#isHideTableOfContents <em>Hide Table Of Contents</em>}' attribute.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @param value the new value of the '<em>Hide Table Of Contents</em>' attribute.
+	 * @see #isHideTableOfContents()
+	 * @generated
+	 */
+	void setHideTableOfContents(boolean value);
+
+	/**
+	 * Returns the value of the '<em><b>Hide Header And Footer On Cover Page</b></em>' attribute.
+	 * <!-- begin-user-doc -->
+	 * <p>
+	 * If the meaning of the '<em>Hide Header And Footer On Cover Page</em>' attribute isn't clear,
+	 * there really should be more of a description here...
+	 * </p>
+	 * <!-- end-user-doc -->
+	 * @return the value of the '<em>Hide Header And Footer On Cover Page</em>' attribute.
+	 * @see #setHideHeaderAndFooterOnCoverPage(boolean)
+	 * @see org.unicase.docExport.exportModel.renderers.options.OptionsPackage#getLayoutOptions_HideHeaderAndFooterOnCoverPage()
+	 * @model
+	 * @generated
+	 */
+	boolean isHideHeaderAndFooterOnCoverPage();
+
+	/**
+	 * Sets the value of the '{@link org.unicase.docExport.exportModel.renderers.options.LayoutOptions#isHideHeaderAndFooterOnCoverPage <em>Hide Header And Footer On Cover Page</em>}' attribute.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @param value the new value of the '<em>Hide Header And Footer On Cover Page</em>' attribute.
+	 * @see #isHideHeaderAndFooterOnCoverPage()
+	 * @generated
+	 */
+	void setHideHeaderAndFooterOnCoverPage(boolean value);
 
 } // LayoutOptions

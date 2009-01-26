@@ -1,11 +1,10 @@
 package org.unicase.docExport.exportModel.renderers.elements;
 
 import org.eclipse.core.runtime.Path;
+import org.unicase.docExport.exportModel.renderers.options.TextAlign;
 
 /**
- * 
- * @author Sebastian Höcht
- *
+ * @author Sebastian Hoecht
  */
 public class UImage extends UDocument {
 
@@ -17,10 +16,9 @@ public class UImage extends UDocument {
 	private int height = DEFAULT_HEIGHT;
 	private boolean fitToPage;
 	private boolean center;
-	
+	private TextAlign textAlign = TextAlign.START;
 
 	/**
-	 * 
 	 * @param location the path of the image
 	 */
 	public UImage(Path location) {
@@ -102,5 +100,19 @@ public class UImage extends UDocument {
 	 */
 	public boolean isCenter() {
 		return center;
+	}
+
+	/**
+	 * @param textAlign the textAlign to set
+	 */
+	public void setTextAlign(TextAlign textAlign) {
+		this.textAlign = textAlign;
+	}
+
+	/**
+	 * @return the textAlign
+	 */
+	public TextAlign getTextAlign() {
+		return textAlign;
 	}
 }

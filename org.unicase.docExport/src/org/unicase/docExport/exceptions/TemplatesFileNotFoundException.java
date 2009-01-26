@@ -1,9 +1,7 @@
 package org.unicase.docExport.exceptions;
 
 /**
- * 
- * @author Sebastian Höcht
- *
+ * @author Sebastian Hoecht
  */
 @SuppressWarnings("serial")
 public class TemplatesFileNotFoundException extends Exception {

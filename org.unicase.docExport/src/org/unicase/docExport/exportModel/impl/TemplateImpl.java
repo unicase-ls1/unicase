@@ -40,7 +40,7 @@ import org.unicase.workspace.util.WorkspaceUtil;
  *   <li>{@link org.unicase.docExport.exportModel.impl.TemplateImpl#getLayoutOptions <em>Layout Options</em>}</li>
  *   <li>{@link org.unicase.docExport.exportModel.impl.TemplateImpl#getGlobalRendererOptions <em>Global Renderer Options</em>}</li>
  *   <li>{@link org.unicase.docExport.exportModel.impl.TemplateImpl#getName <em>Name</em>}</li>
- *   <li>{@link org.unicase.docExport.exportModel.impl.TemplateImpl#getLogoImage <em>Logo Image</em>}</li>
+ *   <li>{@link org.unicase.docExport.exportModel.impl.TemplateImpl#isDefaultTemplate <em>Default Template</em>}</li>
  * </ul>
  * </p>
  *
@@ -99,24 +99,24 @@ public class TemplateImpl extends EObjectImpl implements Template {
 	protected String name = NAME_EDEFAULT;
 
 	/**
-	 * The default value of the '{@link #getLogoImage() <em>Logo Image</em>}' attribute.
+	 * The default value of the '{@link #isDefaultTemplate() <em>Default Template</em>}' attribute.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
-	 * @see #getLogoImage()
+	 * @see #isDefaultTemplate()
 	 * @generated
 	 * @ordered
 	 */
-	protected static final String LOGO_IMAGE_EDEFAULT = null;
+	protected static final boolean DEFAULT_TEMPLATE_EDEFAULT = false;
 
 	/**
-	 * The cached value of the '{@link #getLogoImage() <em>Logo Image</em>}' attribute.
+	 * The cached value of the '{@link #isDefaultTemplate() <em>Default Template</em>}' attribute.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
-	 * @see #getLogoImage()
+	 * @see #isDefaultTemplate()
 	 * @generated
 	 * @ordered
 	 */
-	protected String logoImage = LOGO_IMAGE_EDEFAULT;
+	protected boolean defaultTemplate = DEFAULT_TEMPLATE_EDEFAULT;
 
 	/**
 	 * <!-- begin-user-doc -->
@@ -232,8 +232,8 @@ public class TemplateImpl extends EObjectImpl implements Template {
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
-	public String getLogoImage() {
-		return logoImage;
+	public boolean isDefaultTemplate() {
+		return defaultTemplate;
 	}
 
 	/**
@@ -241,11 +241,11 @@ public class TemplateImpl extends EObjectImpl implements Template {
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
-	public void setLogoImage(String newLogoImage) {
-		String oldLogoImage = logoImage;
-		logoImage = newLogoImage;
+	public void setDefaultTemplate(boolean newDefaultTemplate) {
+		boolean oldDefaultTemplate = defaultTemplate;
+		defaultTemplate = newDefaultTemplate;
 		if (eNotificationRequired())
-			eNotify(new ENotificationImpl(this, Notification.SET, ExportModelPackage.TEMPLATE__LOGO_IMAGE, oldLogoImage, logoImage));
+			eNotify(new ENotificationImpl(this, Notification.SET, ExportModelPackage.TEMPLATE__DEFAULT_TEMPLATE, oldDefaultTemplate, defaultTemplate));
 	}
 
 	/**
@@ -282,8 +282,8 @@ public class TemplateImpl extends EObjectImpl implements Template {
 				return getGlobalRendererOptions();
 			case ExportModelPackage.TEMPLATE__NAME:
 				return getName();
-			case ExportModelPackage.TEMPLATE__LOGO_IMAGE:
-				return getLogoImage();
+			case ExportModelPackage.TEMPLATE__DEFAULT_TEMPLATE:
+				return isDefaultTemplate() ? Boolean.TRUE : Boolean.FALSE;
 		}
 		return super.eGet(featureID, resolve, coreType);
 	}
@@ -311,8 +311,8 @@ public class TemplateImpl extends EObjectImpl implements Template {
 			case ExportModelPackage.TEMPLATE__NAME:
 				setName((String)newValue);
 				return;
-			case ExportModelPackage.TEMPLATE__LOGO_IMAGE:
-				setLogoImage((String)newValue);
+			case ExportModelPackage.TEMPLATE__DEFAULT_TEMPLATE:
+				setDefaultTemplate(((Boolean)newValue).booleanValue());
 				return;
 		}
 		super.eSet(featureID, newValue);
@@ -338,8 +338,8 @@ public class TemplateImpl extends EObjectImpl implements Template {
 			case ExportModelPackage.TEMPLATE__NAME:
 				setName(NAME_EDEFAULT);
 				return;
-			case ExportModelPackage.TEMPLATE__LOGO_IMAGE:
-				setLogoImage(LOGO_IMAGE_EDEFAULT);
+			case ExportModelPackage.TEMPLATE__DEFAULT_TEMPLATE:
+				setDefaultTemplate(DEFAULT_TEMPLATE_EDEFAULT);
 				return;
 		}
 		super.eUnset(featureID);
@@ -361,8 +361,8 @@ public class TemplateImpl extends EObjectImpl implements Template {
 				return globalRendererOptions != null && !globalRendererOptions.isEmpty();
 			case ExportModelPackage.TEMPLATE__NAME:
 				return NAME_EDEFAULT == null ? name != null : !NAME_EDEFAULT.equals(name);
-			case ExportModelPackage.TEMPLATE__LOGO_IMAGE:
-				return LOGO_IMAGE_EDEFAULT == null ? logoImage != null : !LOGO_IMAGE_EDEFAULT.equals(logoImage);
+			case ExportModelPackage.TEMPLATE__DEFAULT_TEMPLATE:
+				return defaultTemplate != DEFAULT_TEMPLATE_EDEFAULT;
 		}
 		return super.eIsSet(featureID);
 	}
@@ -379,8 +379,8 @@ public class TemplateImpl extends EObjectImpl implements Template {
 		StringBuffer result = new StringBuffer(super.toString());
 		result.append(" (name: ");
 		result.append(name);
-		result.append(", logoImage: ");
-		result.append(logoImage);
+		result.append(", defaultTemplate: ");
+		result.append(defaultTemplate);
 		result.append(')');
 		return result.toString();
 	}

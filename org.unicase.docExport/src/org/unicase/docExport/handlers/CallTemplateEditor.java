@@ -16,9 +16,7 @@ import org.unicase.docExport.exportModel.Template;
 import org.unicase.docExport.views.TemplatesView;
 
 /**
- * 
- * @author Sebastian  Höcht
- *
+ * @author Sebastian Hoecht
  */
 public class CallTemplateEditor extends AbstractHandler implements IHandler {
 
@@ -26,13 +24,12 @@ public class CallTemplateEditor extends AbstractHandler implements IHandler {
 	 * {@inheritDoc}
 	 */
 	public Object execute(ExecutionEvent event) throws ExecutionException {
-		
 
 		IWorkbenchWindow window = HandlerUtil.getActiveWorkbenchWindow(event);
 		IWorkbenchPage page = window.getActivePage();
-		
+
 		TemplatesView view = (TemplatesView) page.findView(TemplatesView.ID);
-		
+
 		ISelection sel = view.getSite().getSelectionProvider().getSelection();
 		if (!(sel instanceof IStructuredSelection)) {
 			return null;
@@ -46,8 +43,8 @@ public class CallTemplateEditor extends AbstractHandler implements IHandler {
 		Object o = ssel.getFirstElement();
 		if (!(o instanceof Template)) {
 			return null;
-		}		
-		
+		}
+
 		Template template = (Template) o;
 		TemplateEditorInput input = new TemplateEditorInput(template);
 		try {
@@ -56,9 +53,8 @@ public class CallTemplateEditor extends AbstractHandler implements IHandler {
 			// TODO Auto-generated catch block
 			e.printStackTrace();
 		}
-		
+
 		return null;
 	}
-	
-	
+
 }

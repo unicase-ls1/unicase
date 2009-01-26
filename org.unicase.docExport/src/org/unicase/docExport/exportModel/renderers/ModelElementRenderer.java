@@ -1,8 +1,5 @@
 /**
- * <copyright>
- * </copyright>
- *
- * $Id$
+ * <copyright> </copyright> $Id$
  */
 package org.unicase.docExport.exportModel.renderers;
 
@@ -15,9 +12,8 @@ import org.unicase.docExport.exportModel.renderers.options.RendererOption;
 import org.unicase.model.ModelElement;
 
 /**
- * <!-- begin-user-doc -->
- * A representation of the model object '<em><b>Model Element Renderer</b></em>'.
- * <!-- end-user-doc -->
+ * <!-- begin-user-doc --> A representation of the model object '<em><b>Model Element Renderer</b></em>'. <!--
+ * end-user-doc -->
  *
  * <p>
  * The following features are supported:
@@ -38,8 +34,8 @@ public interface ModelElementRenderer extends EObject {
 	 * The list contents are of type {@link org.unicase.docExport.exportModel.renderers.options.RendererOption}.
 	 * <!-- begin-user-doc -->
 	 * <p>
-	 * If the meaning of the '<em>Renderer Options</em>' containment reference list isn't clear,
-	 * there really should be more of a description here...
+	 * If the meaning of the '<em>Renderer Options</em>' containment reference list isn't clear, there really should be
+	 * more of a description here...
 	 * </p>
 	 * <!-- end-user-doc -->
 	 * @return the value of the '<em>Renderer Options</em>' containment reference list.
@@ -53,8 +49,8 @@ public interface ModelElementRenderer extends EObject {
 	 * Returns the value of the '<em><b>Template</b></em>' reference.
 	 * <!-- begin-user-doc -->
 	 * <p>
-	 * If the meaning of the '<em>Template</em>' reference isn't clear,
-	 * there really should be more of a description here...
+	 * If the meaning of the '<em>Template</em>' reference isn't clear, there really should be more of a description
+	 * here...
 	 * </p>
 	 * <!-- end-user-doc -->
 	 * @return the value of the '<em>Template</em>' reference.
@@ -67,23 +63,23 @@ public interface ModelElementRenderer extends EObject {
 
 	/**
 	 * Sets the value of the '{@link org.unicase.docExport.exportModel.renderers.ModelElementRenderer#getTemplate <em>Template</em>}' reference.
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
+	 * <!-- begin-user-doc --> <!-- end-user-doc -->
 	 * @param value the new value of the '<em>Template</em>' reference.
 	 * @see #getTemplate()
 	 * @generated
 	 */
 	void setTemplate(Template value);
-	
+
 	/**
-	 * Returns the value of the '<em><b>Attribute Renderer Mapping</b></em>' containment reference list.
-	 * The list contents are of type {@link org.unicase.docExport.exportModel.renderers.AttributeRendererMapping}.
-	 * <!-- begin-user-doc -->
+	 * Returns the value of the '<em><b>Attribute Renderer Mapping</b></em>' containment reference list. The list
+	 * contents are of type {@link org.unicase.docExport.exportModel.renderers.AttributeRendererMapping}. <!--
+	 * begin-user-doc -->
 	 * <p>
-	 * If the meaning of the '<em>Attribute Renderer Mapping</em>' containment reference list isn't clear,
-	 * there really should be more of a description here...
+	 * If the meaning of the '<em>Attribute Renderer Mapping</em>' containment reference list isn't clear, there really
+	 * should be more of a description here...
 	 * </p>
 	 * <!-- end-user-doc -->
+	 * 
 	 * @return the value of the '<em>Attribute Renderer Mapping</em>' containment reference list.
 	 * @see org.unicase.docExport.exportModel.renderers.RenderersPackage#getModelElementRenderer_AttributeRendererMapping()
 	 * @model containment="true"
@@ -91,12 +87,16 @@ public interface ModelElementRenderer extends EObject {
 	 */
 	EList<AttributeRendererMapping> getAttributeRendererMapping();
 
-	//begin custom code
+	// begin custom code
 	void render(ModelElement modelElement, UCompositeSection parent);
-	
+
 	void setAttributeRenderer(EStructuralFeature feature, AttributeRenderer renderer);
+
 	AttributeRenderer getAttributeRenderer(EStructuralFeature feature);
+
+	AttributeRenderer getAttributeRendererNotNull(EStructuralFeature feature);
+
 	void removeAttributeRenderer(EStructuralFeature feature);
-	//end custom code
+	// end custom code
 
 } // ModelElementRenderer
