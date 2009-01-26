@@ -290,8 +290,11 @@ public class MultiReferenceOperationImpl extends ReferenceOperationImpl implemen
 		ModelElement modelElement = project.getModelElement(getModelElementId());
 		EList<ModelElementId> referencedModelElementIds = getReferencedModelElements();
 		List<ModelElement> referencedModelElements = new ArrayList<ModelElement>();
-		for (ModelElementId modelElementId : referencedModelElementIds) {
-			referencedModelElements.add(project.getModelElement(modelElementId));
+		for (ModelElementId refrencedModelElementId : referencedModelElementIds) {
+			ModelElement referencedME = project.getModelElement(refrencedModelElementId);
+			if (referencedME != null) {
+				referencedModelElements.add(referencedME);
+			}
 		}
 		EList<EReference> references = modelElement.eClass().getEAllReferences();
 		for (EReference reference : references) {
