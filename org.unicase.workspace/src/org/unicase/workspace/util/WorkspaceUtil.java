@@ -135,13 +135,12 @@ public final class WorkspaceUtil {
 		String cmd = "";
 
 		if (lcOSName.startsWith("mac os x")) {
-			cmd = "open " + fileUrl;
+			fileUrl = "'" + fileUrl + "'";
+			cmd = "open";
 		} else if (lcOSName.startsWith("linux")) {
+			// fileUrl = "'" + fileUrl + "'";
 			// works for ubuntu and the most common linux systems
-			cmd = "xdg-open " + fileUrl;
-		} else if (lcOSName.startsWith("windows")) {
-			// fileUrl = fileUrl.replace(" ", "%20");
-			cmd = "cmd.exe /c start \"\" \"" + fileUrl + "\"";
+			cmd = "xdg-open";
 		} else {
 			// bad luck .. java 1.5 ;(
 			// fall through
@@ -149,10 +148,15 @@ public final class WorkspaceUtil {
 
 		if (!cmd.equals("")) {
 			try {
-				Runtime.getRuntime().exec(cmd);
+				if (lcOSName.startsWith("windows")) {
+					cmd = "cmd.exe /c start \"\" \"" + fileUrl + "\"";
+					Runtime.getRuntime().exec(cmd);
+				} else {
+					Runtime.getRuntime().exec(new String[] { cmd, fileUrl });
+				}
 			} catch (IOException e) {
-				WorkspaceUtil.log("could not open the file with the system dependant command: " + cmd, new Exception(),
-					IStatus.ERROR);
+				WorkspaceUtil
+					.log("could not open the file with the system dependant command: " + cmd, e, IStatus.ERROR);
 			}
 		}
 	}
