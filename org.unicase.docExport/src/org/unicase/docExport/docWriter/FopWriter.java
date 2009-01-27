@@ -294,7 +294,11 @@ public abstract class FopWriter implements DocWriter {
 		text.setAttribute("id", uRef.getRefId());
 	}
 
-	private void writeULink(Element parent, ULink uLink) {
+	/**
+	 * @param parent the parent fo xml node where the link shall be added
+	 * @param uLink the uLink object
+	 */
+	protected void writeULink(Element parent, ULink uLink) {
 		Element blockContainer = getDoc().createElement("fo:block");
 		parent.appendChild(blockContainer);
 
