@@ -283,8 +283,10 @@ public class FopRtfWriter extends FopWriter {
 				} else {
 					i++;
 					Element text2 = getDoc().createElement("fo:block");
+					applyBoxModel(text2, child.getBoxModel());
 					text2.setAttribute("white-space-collapse", "false");
 					text2.setAttribute("margin-top", child.getOption().getFontSize() * emptyBlockCount + "pt");
+					text2.setAttribute("margin-bottom", "0pt");
 					emptyBlockCount = 0;
 					parent.appendChild(text2);
 					setParagraphOptions(text2, child);
@@ -334,7 +336,7 @@ public class FopRtfWriter extends FopWriter {
 			foElement.setAttribute("keep-with-previous", "always");
 		}
 
-		if (foElement.getNodeName().equals("fo:table")) {
+		if (foElement.getNodeName().equals("fo:table") || foElement.getNodeName().equals("fo:table-cell")) {
 			// the border always has to be set, because if only one side of the border is set, the rest
 			// have the default border width = 1..
 			foElement.setAttribute("border", String.valueOf(option.getBorder()) + "pt");

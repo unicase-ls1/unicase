@@ -259,23 +259,23 @@ public class DefaultDocumentRendererImpl extends DocumentRendererImpl implements
 		documentInfo.getBoxModel().setMarginLeft(130);
 		documentInfo.getBoxModel().setMarginTop(15);
 
-		UParagraph project = new UParagraph("Project", layoutOptions.getDefaultTextOption());
+		UParagraph project = new UParagraph("Project:", layoutOptions.getDefaultTextOption());
 		project.getOption().setTextAlign(TextAlign.END);
-		project.getBoxModel().setPaddingRight(8);
+		project.getBoxModel().setMarginRight(8);
 		documentInfo.addCell(project);
 		documentInfo.addCell(WorkspaceManager.getInstance().getCurrentWorkspace().getActiveProjectSpace()
 			.getProjectName());
 
-		UParagraph unicaseVersion = new UParagraph("Project version", layoutOptions.getDefaultTextOption());
+		UParagraph unicaseVersion = new UParagraph("Project version:", layoutOptions.getDefaultTextOption());
 		unicaseVersion.getOption().setTextAlign(TextAlign.END);
-		unicaseVersion.getBoxModel().setPaddingRight(8);
+		unicaseVersion.getBoxModel().setMarginRight(8);
 		documentInfo.addCell(unicaseVersion);
 		documentInfo.addCell(String.valueOf(WorkspaceManager.getInstance().getCurrentWorkspace()
 			.getActiveProjectSpace().getBaseVersion().getIdentifier()));
 
-		UParagraph exportDate = new UParagraph("Export date", layoutOptions.getDefaultTextOption());
+		UParagraph exportDate = new UParagraph("Export date:", layoutOptions.getDefaultTextOption());
 		exportDate.getOption().setTextAlign(TextAlign.END);
-		exportDate.getBoxModel().setPaddingRight(8);
+		exportDate.getBoxModel().setMarginRight(8);
 		documentInfo.addCell(exportDate);
 		documentInfo.addCell(date);
 
