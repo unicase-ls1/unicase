@@ -24,9 +24,14 @@ import org.apache.fop.apps.FOUserAgent;
 import org.apache.fop.apps.Fop;
 import org.apache.fop.apps.FopFactory;
 import org.apache.fop.apps.MimeConstants;
+import org.unicase.docExport.exportModel.renderers.elements.UDocument;
+import org.unicase.docExport.exportModel.renderers.elements.UParagraph;
 import org.unicase.docExport.exportModel.renderers.elements.URootCompositeSection;
+import org.unicase.docExport.exportModel.renderers.elements.USection;
 import org.unicase.docExport.exportModel.renderers.elements.UTable;
 import org.unicase.docExport.exportModel.renderers.elements.UTableCell;
+import org.unicase.docExport.exportModel.renderers.options.BoxModelOption;
+import org.unicase.docExport.exportModel.renderers.options.TextOption;
 import org.w3c.dom.Element;
 
 /**
@@ -35,6 +40,8 @@ import org.w3c.dom.Element;
 public class FopRtfWriter extends FopWriter {
 	// configure fopFactory as desired
 	private FopFactory fopFactory = FopFactory.newInstance();
+
+	private static final int RTF_CONTENT_WIDTH = 505;
 
 	/**
 	 * {@inheritDoc}
@@ -91,6 +98,118 @@ public class FopRtfWriter extends FopWriter {
 	}
 
 	/**
+	 * @param parent the parent element where the table of contents shall be written
+	 * @param uSection the section containing the document structure, which is the content of the table of contents
+	 * @param textOption the TextOption which decorates the text of the TOC
+	 * @see org.unicase.docExport.docWriter.FopWriter#writeUTableOfContents(org.w3c.dom.Element,
+	 *      org.unicase.docExport.exportModel.renderers.elements.USection,
+	 *      org.unicase.docExport.exportModel.renderers.options.TextOption)
+	 */
+	@Override
+	protected void writeUTableOfContents(Element parent, USection uSection, TextOption textOption) {
+		Element toc = getDoc().createElement("fo:block");
+		toc.setAttribute("id", "table_of_contents");
+		toc.setAttribute("font-size", "22pt");
+		toc.setTextContent("Table of Contents");
+		toc.setAttribute("text-align", "center");
+		toc.setAttribute("break-before", "page");
+		parent.appendChild(toc);
+
+		Element table = getDoc().createElement("fo:table");
+		parent.appendChild(table);
+		table.setAttribute("margin-top", "10pt");
+
+		Element tableBody = getDoc().createElement("fo:table-body");
+		table.appendChild(tableBody);
+
+		writeUTableOfContentsEntry(tableBody, uSection, textOption);
+	}
+
+	/**
+	 * @param tableBody the fo:table-body xml node element
+	 * @param uSection the section containing the document structure, which is the content of the table of contents
+	 * @param textOption the TextOption which decorates the text of the TOC
+	 * @see org.unicase.docExport.docWriter.FopWriter#writeUTableOfContentsEntry(org.w3c.dom.Element,
+	 *      org.unicase.docExport.exportModel.renderers.elements.USection,
+	 *      org.unicase.docExport.exportModel.renderers.options.TextOption)
+	 */
+	@Override
+	protected void writeUTableOfContentsEntry(Element tableBody, USection uSection, TextOption textOption) {
+		for (USection section : uSection.getSubSections()) {
+			if (!section.getSectionOption().isLeaveOutPreviousSectionNumbering()) {
+				Element tableRow = getDoc().createElement("fo:table-row");
+				tableBody.appendChild(tableRow);
+				setTextOption(tableRow, textOption);
+
+				Element sectionNumberCell = getDoc().createElement("fo:table-cell");
+				Element sectionTitleCell = getDoc().createElement("fo:table-cell");
+				Element sectionPageCell = getDoc().createElement("fo:table-cell");
+				tableRow.appendChild(sectionNumberCell);
+				tableRow.appendChild(sectionTitleCell);
+				tableRow.appendChild(sectionPageCell);
+
+				sectionNumberCell.setAttribute("width", Math.ceil(15. / 100. * RTF_CONTENT_WIDTH) + "pt");
+				sectionTitleCell.setAttribute("width", Math.ceil(75. / 100. * RTF_CONTENT_WIDTH) + "pt");
+				sectionPageCell.setAttribute("width", Math.ceil(10. / 100. * RTF_CONTENT_WIDTH) + "pt");
+
+				// sectionNumberCell.setAttribute("width", "200pt");
+				// sectionTitleCell.setAttribute("width", "200pt");
+				// sectionPageCell.setAttribute("width", "200pt");
+
+				Element sectionNumberBlock = getDoc().createElement("fo:block");
+				Element sectionTitleBlock = getDoc().createElement("fo:block");
+				Element sectionPageBlock = getDoc().createElement("fo:block");
+				sectionNumberCell.appendChild(sectionNumberBlock);
+				sectionTitleCell.appendChild(sectionTitleBlock);
+				sectionPageCell.appendChild(sectionPageBlock);
+				setTextOption(sectionNumberBlock, textOption);
+				setTextOption(sectionTitleBlock, textOption);
+				setTextOption(sectionPageBlock, textOption);
+
+				sectionNumberBlock.setAttribute("text-align", "right");
+				sectionNumberBlock.setAttribute("margin-right", "15pt");
+				sectionPageBlock.setAttribute("text-align", "right");
+				sectionPageBlock.setAttribute("margin-left", "5pt");
+
+				if (section.getDepth() == 1 && !section.getSectionNumberAsString().equals("")) {
+					sectionNumberBlock.setTextContent("Chapter  " + section.getFullSectionNumbering());
+				} else {
+					sectionNumberBlock.setTextContent(section.getFullSectionNumbering());
+				}
+
+				Element page = getDoc().createElement("fo:page-number-citation");
+				sectionPageBlock.appendChild(page);
+				page.setAttribute("ref-id", String.valueOf(section.hashCode()));
+
+				Element link = getDoc().createElement("fo:basic-link");
+				sectionTitleBlock.appendChild(link);
+				link.setAttribute("internal-destination", String.valueOf(section.hashCode()));
+				link.setTextContent(section.getTitlParagraph().getText());
+
+				if (section.getDepth() == 1) {
+					sectionNumberBlock.setAttribute("margin-top", "10pt");
+					sectionTitleBlock.setAttribute("margin-top", "10pt");
+					sectionPageBlock.setAttribute("margin-top", "10pt");
+				} else {
+					sectionNumberBlock.setAttribute("color", "rgb(0,0,0)");
+					sectionTitleBlock.setAttribute("color", "rgb(0,0,0)");
+					sectionPageBlock.setAttribute("color", "rgb(0,0,0)");
+				}
+
+				writeUTableOfContentsEntry(tableBody, section, textOption);
+			}
+		}
+	}
+
+	private double getMarginLeft(UDocument doc) {
+		if (doc != null) {
+			return getMarginLeft(doc.getParent()) + doc.getBoxModel().getMarginLeft() + 2;
+		} else {
+			return 0.;
+		}
+	}
+
+	/**
 	 * @see org.unicase.docExport.docWriter.FopWriter#writeUTable(org.w3c.dom.Element,
 	 *      org.unicase.docExport.exportModel.renderers.elements.UTable)
 	 * @param parent .
@@ -101,16 +220,14 @@ public class FopRtfWriter extends FopWriter {
 		// Element tableAndCaption = doc.createElement("fo:table-and-caption");
 		// parent.appendChild(tableAndCaption);
 
+		if (uTable.getParent() instanceof USection) {
+			uTable.getBoxModel().setMarginLeft(getMarginLeft(uTable.getParent()));
+		}
+
 		Element table = getDoc().createElement("fo:table");
 		applyBoxModel(table, uTable.getBoxModel());
 		parent.appendChild(table);
 		table.setAttribute("border-collapse", "collpase");
-
-		for (int i = 1; i <= uTable.getColumnsCount(); i++) {
-			Element col1 = getDoc().createElement("fo:table-column");
-			table.appendChild(col1);
-			// col1.setAttribute("column-width", width[i] / 100 * 500 + "pt");
-		}
 
 		Element tableBody = getDoc().createElement("fo:table-body");
 		table.appendChild(tableBody);
@@ -119,6 +236,8 @@ public class FopRtfWriter extends FopWriter {
 		Element row = getDoc().createElement("fo:table-row");
 		tableBody.appendChild(row);
 
+		float[] width = uTable.getColumnsWidths();
+
 		for (UTableCell entry : uTable.getEntries()) {
 			if (i % uTable.getColumnsCount() == 0 && i != 0) {
 				row = getDoc().createElement("fo:table-row");
@@ -126,7 +245,18 @@ public class FopRtfWriter extends FopWriter {
 			}
 
 			Element tableCell = getDoc().createElement("fo:table-cell");
-			// tableCell.setAttribute("width", "400pt");
+			int dynamicTableWidth = (int) (Math.ceil(RTF_CONTENT_WIDTH) - Math.ceil(uTable.getBoxModel()
+				.getMarginLeft()));
+			int tableWidth = dynamicTableWidth / uTable.getColumnsCount();
+
+			if (width.length > i % uTable.getColumnsCount()) {
+				tableCell.setAttribute("width", Math
+					.ceil(width[i % uTable.getColumnsCount()] / 100 * dynamicTableWidth)
+					+ "pt");
+			} else {
+				tableCell.setAttribute("width", tableWidth + "pt");
+			}
+
 			row.appendChild(tableCell);
 			applyBoxModel(tableCell, entry.getBoxModel());
 			if (entry.getColspan() > 1) {
@@ -135,16 +265,106 @@ public class FopRtfWriter extends FopWriter {
 			}
 
 			tableCell.setAttribute("keep-together", "auto");
-			System.out.println("entry: " + entry.getContent().getClass().getSimpleName());
-
 			writeUDocument(tableCell, entry.getContent());
 
-			Element block = getDoc().createElement("fo:block");
-			tableCell.appendChild(block);
-			block.setTextContent("test");
 			i++;
 		}
+	}
 
+	/**
+	 * @param parent the parent fo xml node
+	 * @param child the paragraph which shall be written
+	 * @see org.unicase.docExport.docWriter.FopWriter#writeUParagraph(org.w3c.dom.Element,
+	 *      org.unicase.docExport.exportModel.renderers.elements.UParagraph)
+	 */
+	@Override
+	protected void writeUParagraph(Element parent, UParagraph child) {
+		int emptyBlockCount = 0;
+		int i = 0;
+		if (child.getText() != null) {
+			for (String textPart : child.getText().split("\n")) {
+				if (textPart.equals("")) {
+					emptyBlockCount++;
+				} else {
+					i++;
+					Element text2 = getDoc().createElement("fo:block");
+					text2.setAttribute("white-space-collapse", "false");
+					text2.setAttribute("margin-top", child.getOption().getFontSize() * emptyBlockCount + "pt");
+					emptyBlockCount = 0;
+					parent.appendChild(text2);
+					setParagraphOptions(text2, child);
+					text2.setTextContent(textPart);
+				}
+			}
+		}
+
+		if (i == 0) {
+			Element text2 = getDoc().createElement("fo:block");
+			// text2.setTextContent(child.getText());
+			parent.appendChild(text2);
+		}
+
+		for (UDocument subChild : child.getChildren()) {
+			writeUDocument(parent, subChild);
+		}
+	}
+
+	/**
+	 * @param option the option which containts padding, border and margin
+	 * @param foElement the formating objects DOM element
+	 */
+	@Override
+	protected void applyBoxModel(Element foElement, BoxModelOption option) {
+		setAttribute(foElement, "padding", option.getPadding());
+		setAttribute(foElement, "padding-top", option.getPaddingTop());
+		setAttribute(foElement, "padding-left", option.getPaddingLeft());
+		setAttribute(foElement, "padding-bottom", option.getPaddingBottom());
+		setAttribute(foElement, "padding-right", option.getPaddingRight());
+		//
+		// // the border always has to be set, because if only one side of the border is set, the rest
+		// // have the default border width = 1..
+		// foElement.setAttribute("border", String.valueOf(option.getBorder()) + "pt");
+		// setAttribute(foElement, "border-top", option.getBorderTop());
+		// setAttribute(foElement, "border-left", option.getBorderLeft());
+		// setAttribute(foElement, "border-bottom", option.getBorderBottom());
+		// setAttribute(foElement, "border-right", option.getBorderRight());
+		foElement.setAttribute("margin", String.valueOf(option.getMargin()));
+		setAttribute(foElement, "margin-top", option.getMarginTop());
+		setAttribute(foElement, "margin-left", option.getMarginLeft());
+		setAttribute(foElement, "margin-bottom", option.getMarginBottom());
+		setAttribute(foElement, "margin-right", option.getMarginRight());
+
+		if (option.isKeepTogether()) {
+			foElement.setAttribute("keep-together", "always");
+		}
+
+		if (option.isKeepWithNext()) {
+			foElement.setAttribute("keep-with-next", "always");
+		}
+
+		if (option.isKeepWithPrevious()) {
+			foElement.setAttribute("keep-with-previous", "always");
+		}
+
+		// if (option.getBorderStyle() != UBorderStyle.HIDDEN) {
+		// foElement.setAttribute("border-style", option.getBorderStyle().getLiteral());
+		// }
+
+		// foElement.setAttribute("border-color", "rgb(" + option.getBorderColor().getRed() + ", "
+		// + option.getBorderColor().getGreen() + ", " + option.getBorderColor().getBlue() + ")");
+
+		if (option.getBackgroundColor() != null) {
+			foElement.setAttribute("background-color", "rgb(" + option.getBackgroundColor().getRed() + ", "
+				+ option.getBackgroundColor().getGreen() + ", " + option.getBackgroundColor().getBlue() + ")");
+		}
+
+		if (option.isBreakBefore()) {
+			foElement.setAttribute("break-before", "page");
+		}
+
+		if (option.getWidth() > 0) {
+			foElement.setAttribute("width", option.getWidth() + "pt");
+		}
 	}
 
 	/**

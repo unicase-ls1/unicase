@@ -158,7 +158,12 @@ public abstract class FopWriter implements DocWriter {
 		text.setTextContent(child.getText());
 	}
 
-	private void writeUTableOfContents(Element parent, USection uSection, TextOption textOption) {
+	/**
+	 * @param parent the parent element where the table of contents shall be written
+	 * @param uSection the section containing the document structure, which is the content of the table of contents
+	 * @param textOption the TextOption which decorates the text of the TOC
+	 */
+	protected void writeUTableOfContents(Element parent, USection uSection, TextOption textOption) {
 		Element toc = getDoc().createElement("fo:block");
 		toc.setAttribute("id", "table_of_contents");
 		toc.setAttribute("font-size", "22pt");
@@ -188,7 +193,12 @@ public abstract class FopWriter implements DocWriter {
 		writeUTableOfContentsEntry(tableBody, uSection, textOption);
 	}
 
-	private void writeUTableOfContentsEntry(Element tableBody, USection uSection, TextOption textOption) {
+	/**
+	 * @param tableBody the fo:table-body xml node element
+	 * @param uSection the section containing the document structure, which is the content of the table of contents
+	 * @param textOption the TextOption which decorates the text of the TOC
+	 */
+	protected void writeUTableOfContentsEntry(Element tableBody, USection uSection, TextOption textOption) {
 		for (USection section : uSection.getSubSections()) {
 			if (!section.getSectionOption().isLeaveOutPreviousSectionNumbering()) {
 				Element tableRow = getDoc().createElement("fo:table-row");
@@ -407,7 +417,11 @@ public abstract class FopWriter implements DocWriter {
 		}
 	}
 
-	private void writeUParagraph(Element parent, UParagraph child) {
+	/**
+	 * @param parent the parent fo xml node
+	 * @param child the paragraph which shall be written
+	 */
+	protected void writeUParagraph(Element parent, UParagraph child) {
 		Element text = getDoc().createElement("fo:block");
 		applyBoxModel(text, child.getBoxModel());
 		parent.appendChild(text);
@@ -571,7 +585,11 @@ public abstract class FopWriter implements DocWriter {
 
 	}
 
-	private void setTextOption(Element element, TextOption option) {
+	/**
+	 * @param element the element containing some text
+	 * @param option the TextOption decorating the text
+	 */
+	protected void setTextOption(Element element, TextOption option) {
 		if (option.isBold()) {
 			element.setAttribute("font-weight", "bold");
 		} else {
@@ -598,7 +616,11 @@ public abstract class FopWriter implements DocWriter {
 
 	}
 
-	private void setParagraphOptions(Element block, UParagraph par) {
+	/**
+	 * @param block the parent fo xml node
+	 * @param par the paragraph
+	 */
+	protected void setParagraphOptions(Element block, UParagraph par) {
 		String indentionLeft = par.getIndentionLeft() * INDENTION_WIDTH + "pt";
 		block.setAttribute("margin-left", indentionLeft);
 		setTextOption(block, par.getOption());
@@ -675,7 +697,12 @@ public abstract class FopWriter implements DocWriter {
 		}
 	}
 
-	private void setAttribute(Element foElement, String foAttributeName, double foAttributeValue) {
+	/**
+	 * @param foElement the xml fo element
+	 * @param foAttributeName the name of the xml attribute
+	 * @param foAttributeValue the value of the xml attribute
+	 */
+	protected void setAttribute(Element foElement, String foAttributeName, double foAttributeValue) {
 		if (foAttributeValue != 0) {
 			foElement.setAttribute(foAttributeName, String.valueOf(foAttributeValue) + "pt");
 		}
