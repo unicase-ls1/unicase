@@ -1,5 +1,7 @@
 /**
- * <copyright> </copyright>
+ * <copyright> Copyright (c) 2008 Jonas Helming, Maximilian Koegel. All rights reserved. This program and the
+ * accompanying materials are made available under the terms of the Eclipse Public License v1.0 which accompanies this
+ * distribution, and is available at http://www.eclipse.org/legal/epl-v10.html </copyright>
  */
 package org.unicase.docExport.exportModel.renderers.defaultRenderers.impl;
 
@@ -38,6 +40,7 @@ import org.unicase.model.document.CompositeSection;
 import org.unicase.model.document.LeafSection;
 import org.unicase.model.document.Section;
 import org.unicase.model.document.impl.LeafSectionImpl;
+import org.unicase.workspace.WorkspaceManager;
 import org.unicase.workspace.util.WorkspaceUtil;
 
 /**
@@ -260,13 +263,15 @@ public class DefaultDocumentRendererImpl extends DocumentRendererImpl implements
 		project.getOption().setTextAlign(TextAlign.END);
 		project.getBoxModel().setPaddingRight(8);
 		documentInfo.addCell(project);
-		documentInfo.addCell(modelElement.getProject().getClass().getSimpleName());
+		documentInfo.addCell(WorkspaceManager.getInstance().getCurrentWorkspace().getActiveProjectSpace()
+			.getProjectName());
 
 		UParagraph unicaseVersion = new UParagraph("Project version", layoutOptions.getDefaultTextOption());
 		unicaseVersion.getOption().setTextAlign(TextAlign.END);
 		unicaseVersion.getBoxModel().setPaddingRight(8);
 		documentInfo.addCell(unicaseVersion);
-		documentInfo.addCell("3.0.3.internal");
+		documentInfo.addCell(String.valueOf(WorkspaceManager.getInstance().getCurrentWorkspace()
+			.getActiveProjectSpace().getBaseVersion().getIdentifier()));
 
 		UParagraph exportDate = new UParagraph("Export date", layoutOptions.getDefaultTextOption());
 		exportDate.getOption().setTextAlign(TextAlign.END);
