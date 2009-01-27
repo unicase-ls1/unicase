@@ -141,6 +141,8 @@ public final class WorkspaceUtil {
 			// fileUrl = "'" + fileUrl + "'";
 			// works for ubuntu and the most common linux systems
 			cmd = "xdg-open";
+		} else if (lcOSName.startsWith("windows")) {
+			cmd = "not empty";
 		} else {
 			// bad luck .. java 1.5 ;(
 			// fall through
