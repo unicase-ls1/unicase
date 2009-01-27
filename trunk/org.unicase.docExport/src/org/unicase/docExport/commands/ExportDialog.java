@@ -6,6 +6,9 @@
 package org.unicase.docExport.commands;
 
 import java.io.File;
+import java.io.FileNotFoundException;
+import java.io.FileOutputStream;
+import java.io.IOException;
 import java.lang.reflect.InvocationTargetException;
 import java.util.ArrayList;
 
@@ -234,14 +237,30 @@ public class ExportDialog extends TitleAreaDialog {
 		Boolean doIt = true;
 
 		if (f.exists()) {
-			MessageBox messageBox = new MessageBox(ExportDialog.platformShell, SWT.YES | SWT.NO | SWT.ICON_WARNING
-				| SWT.CENTER);
-			messageBox.setMessage("The file '" + fileUrl + "' already exists. Do you want to overwrite it?");
-			messageBox.setText("File already exists");
-			int result = messageBox.open();
-			if (result == SWT.NO) {
+
+			try {
+				FileOutputStream out = new FileOutputStream(fileUrl);
+
+				MessageBox messageBox = new MessageBox(ExportDialog.platformShell, SWT.YES | SWT.NO | SWT.ICON_WARNING
+					| SWT.CENTER);
+				messageBox.setMessage("The file '" + fileUrl + "' already exists. Do you want to overwrite it?");
+				messageBox.setText("File already exists");
+				int result = messageBox.open();
+				if (result == SWT.NO) {
+					doIt = false;
+				}
+				out.close();
+			} catch (FileNotFoundException e) {
+				MessageBox messageBox = new MessageBox(ExportDialog.platformShell, SWT.OK | SWT.ICON_ERROR | SWT.CENTER);
+				messageBox.setMessage(e.getMessage());
+				messageBox.setText("File in use");
+				messageBox.open();
 				doIt = false;
+			} catch (IOException e) {
+				// TODO Auto-generated catch block
+				e.printStackTrace();
 			}
+
 		}
 
 		return doIt;

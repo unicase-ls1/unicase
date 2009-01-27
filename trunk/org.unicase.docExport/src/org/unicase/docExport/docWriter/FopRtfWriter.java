@@ -25,6 +25,7 @@ import org.apache.fop.apps.Fop;
 import org.apache.fop.apps.FopFactory;
 import org.apache.fop.apps.MimeConstants;
 import org.unicase.docExport.exportModel.renderers.elements.UDocument;
+import org.unicase.docExport.exportModel.renderers.elements.ULink;
 import org.unicase.docExport.exportModel.renderers.elements.UParagraph;
 import org.unicase.docExport.exportModel.renderers.elements.URootCompositeSection;
 import org.unicase.docExport.exportModel.renderers.elements.USection;
@@ -32,6 +33,7 @@ import org.unicase.docExport.exportModel.renderers.elements.UTable;
 import org.unicase.docExport.exportModel.renderers.elements.UTableCell;
 import org.unicase.docExport.exportModel.renderers.options.BoxModelOption;
 import org.unicase.docExport.exportModel.renderers.options.TextOption;
+import org.unicase.docExport.exportModel.renderers.options.UBorderStyle;
 import org.w3c.dom.Element;
 
 /**
@@ -89,7 +91,9 @@ public class FopRtfWriter extends FopWriter {
 			e.printStackTrace();
 		} finally {
 			try {
-				out.close();
+				if (out != null) {
+					out.close();
+				}
 			} catch (IOException e) {
 				// TODO Auto-generated catch block
 				e.printStackTrace();
@@ -152,10 +156,6 @@ public class FopRtfWriter extends FopWriter {
 				sectionTitleCell.setAttribute("width", Math.ceil(75. / 100. * RTF_CONTENT_WIDTH) + "pt");
 				sectionPageCell.setAttribute("width", Math.ceil(10. / 100. * RTF_CONTENT_WIDTH) + "pt");
 
-				// sectionNumberCell.setAttribute("width", "200pt");
-				// sectionTitleCell.setAttribute("width", "200pt");
-				// sectionPageCell.setAttribute("width", "200pt");
-
 				Element sectionNumberBlock = getDoc().createElement("fo:block");
 				Element sectionTitleBlock = getDoc().createElement("fo:block");
 				Element sectionPageBlock = getDoc().createElement("fo:block");
@@ -176,10 +176,6 @@ public class FopRtfWriter extends FopWriter {
 				} else {
 					sectionNumberBlock.setTextContent(section.getFullSectionNumbering());
 				}
-
-				Element page = getDoc().createElement("fo:page-number-citation");
-				sectionPageBlock.appendChild(page);
-				page.setAttribute("ref-id", String.valueOf(section.hashCode()));
 
 				Element link = getDoc().createElement("fo:basic-link");
 				sectionTitleBlock.appendChild(link);
@@ -203,7 +199,8 @@ public class FopRtfWriter extends FopWriter {
 
 	private double getMarginLeft(UDocument doc) {
 		if (doc != null) {
-			return getMarginLeft(doc.getParent()) + doc.getBoxModel().getMarginLeft() + 2;
+			return getMarginLeft(doc.getParent()) + doc.getBoxModel().getMarginLeft()
+				+ doc.getBoxModel().getPaddingLeft() + doc.getBoxModel().getBorderLeft();
 		} else {
 			return 0.;
 		}
@@ -220,9 +217,7 @@ public class FopRtfWriter extends FopWriter {
 		// Element tableAndCaption = doc.createElement("fo:table-and-caption");
 		// parent.appendChild(tableAndCaption);
 
-		if (uTable.getParent() instanceof USection) {
-			uTable.getBoxModel().setMarginLeft(getMarginLeft(uTable.getParent()));
-		}
+		uTable.getBoxModel().setMarginLeft(getMarginLeft(uTable.getParent()));
 
 		Element table = getDoc().createElement("fo:table");
 		applyBoxModel(table, uTable.getBoxModel());
@@ -320,14 +315,7 @@ public class FopRtfWriter extends FopWriter {
 		setAttribute(foElement, "padding-left", option.getPaddingLeft());
 		setAttribute(foElement, "padding-bottom", option.getPaddingBottom());
 		setAttribute(foElement, "padding-right", option.getPaddingRight());
-		//
-		// // the border always has to be set, because if only one side of the border is set, the rest
-		// // have the default border width = 1..
-		// foElement.setAttribute("border", String.valueOf(option.getBorder()) + "pt");
-		// setAttribute(foElement, "border-top", option.getBorderTop());
-		// setAttribute(foElement, "border-left", option.getBorderLeft());
-		// setAttribute(foElement, "border-bottom", option.getBorderBottom());
-		// setAttribute(foElement, "border-right", option.getBorderRight());
+
 		foElement.setAttribute("margin", String.valueOf(option.getMargin()));
 		setAttribute(foElement, "margin-top", option.getMarginTop());
 		setAttribute(foElement, "margin-left", option.getMarginLeft());
@@ -346,12 +334,23 @@ public class FopRtfWriter extends FopWriter {
 			foElement.setAttribute("keep-with-previous", "always");
 		}
 
-		// if (option.getBorderStyle() != UBorderStyle.HIDDEN) {
-		// foElement.setAttribute("border-style", option.getBorderStyle().getLiteral());
-		// }
+		if (foElement.getNodeName().equals("fo:table")) {
+			// the border always has to be set, because if only one side of the border is set, the rest
+			// have the default border width = 1..
+			foElement.setAttribute("border", String.valueOf(option.getBorder()) + "pt");
+			setAttribute(foElement, "border-top", option.getBorderTop());
+			setAttribute(foElement, "border-left", option.getBorderLeft());
+			setAttribute(foElement, "border-bottom", option.getBorderBottom());
+			setAttribute(foElement, "border-right", option.getBorderRight());
 
-		// foElement.setAttribute("border-color", "rgb(" + option.getBorderColor().getRed() + ", "
-		// + option.getBorderColor().getGreen() + ", " + option.getBorderColor().getBlue() + ")");
+			if (option.getBorderStyle() != UBorderStyle.HIDDEN) {
+				foElement.setAttribute("border-style", option.getBorderStyle().getLiteral());
+			}
+
+			foElement.setAttribute("border-color", "rgb(" + option.getBorderColor().getRed() + ", "
+				+ option.getBorderColor().getGreen() + ", " + option.getBorderColor().getBlue() + ")");
+
+		}
 
 		if (option.getBackgroundColor() != null) {
 			foElement.setAttribute("background-color", "rgb(" + option.getBackgroundColor().getRed() + ", "
@@ -364,6 +363,31 @@ public class FopRtfWriter extends FopWriter {
 
 		if (option.getWidth() > 0) {
 			foElement.setAttribute("width", option.getWidth() + "pt");
+		}
+	}
+
+	/**
+	 * @param parent the parent fo xml node where the link shall be added
+	 * @param uLink the uLink object
+	 * @see org.unicase.docExport.docWriter.FopWriter#writeULink(org.w3c.dom.Element,
+	 *      org.unicase.docExport.exportModel.renderers.elements.ULink)
+	 */
+	@Override
+	protected void writeULink(Element parent, ULink uLink) {
+		Element blockContainer = getDoc().createElement("fo:block");
+		parent.appendChild(blockContainer);
+
+		setParagraphOptions(blockContainer, uLink);
+
+		Element text = getDoc().createElement("fo:basic-link");
+		applyBoxModel(text, uLink.getBoxModel());
+		blockContainer.appendChild(text);
+		setParagraphOptions(text, uLink);
+		text.setAttribute("internal-destination", uLink.getInternalLinkId());
+		text.setTextContent(uLink.getText());
+
+		for (UDocument subChild : uLink.getChildren()) {
+			writeUDocument(text, subChild);
 		}
 	}
 
