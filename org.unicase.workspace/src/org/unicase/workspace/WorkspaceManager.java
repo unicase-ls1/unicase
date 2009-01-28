@@ -147,7 +147,9 @@ public final class WorkspaceManager {
 		} else {
 			// if file exists load it
 			// OW: activate migrator here
-			// migrate(fileURI);
+			if (false) {
+				migrate(fileURI);
+			}
 			resource = resourceSet.getResource(fileURI, true);
 			EList<EObject> directContents = resource.getContents();
 			// MK cast
