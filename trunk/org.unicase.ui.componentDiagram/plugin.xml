@@ -465,12 +465,18 @@
          sequence="F5"/>
    </extension>
    <extension point="org.eclipse.gmf.runtime.emf.type.core.elementTypeBindings">
-      <?gmfgen generated="true"?>
+      <?gmfgen generated="false"?>
       <clientContext id="ComponentClientContext">
          <enablement>
-            <test
-               property="org.eclipse.gmf.runtime.emf.core.editingDomain"
-               value="org.unicase.EditingDomainComponent"/>
+            <and>
+               <instanceof
+                     value="org.unicase.model.ModelElement">
+               </instanceof>
+               <test
+                     property="org.unicase.ui.componentDiagram.isDiagramType"
+                     value="COMPONENT_DIAGRAM">
+               </test>
+            </and>
          </enablement>
       </clientContext> 
       <binding context="ComponentClientContext">
@@ -481,5 +487,15 @@
          <elementType ref="org.unicase.ui.componentDiagram.ComponentConsumedServices_3002"/>
          <advice ref="org.eclipse.gmf.runtime.diagram.core.advice.notationDepdendents"/>
       </binding>
+   </extension>
+   <extension
+         point="org.eclipse.core.expressions.propertyTesters">
+      <propertyTester
+            class="org.unicase.ui.componentDiagram.part.DiagramTypeTester"
+            id="org.unicase.ui.componentDiagram.part.DiagramTypeTester"
+            namespace="org.unicase.ui.componentDiagram"
+            properties="isDiagramType"
+            type="org.unicase.model.ModelElement">
+      </propertyTester>
    </extension>
 </plugin>

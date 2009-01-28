@@ -4,7 +4,8 @@
     xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
     xmlns:gmfgen="http://www.eclipse.org/gmf/2008/GenModel" packageNamePrefix="org.unicase.ui.usecaseDiagram"
     modelID="UseCase"
-    sameFileForDiagramAndModel="true">
+    sameFileForDiagramAndModel="true"
+    diagramFileExtension="useCase_diagram">
   <diagram
       visualID="77"
       editPartClassName="MEDiagramEditPart"

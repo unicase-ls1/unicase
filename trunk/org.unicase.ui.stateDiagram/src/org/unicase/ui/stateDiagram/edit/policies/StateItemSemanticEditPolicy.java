@@ -1,5 +1,5 @@
-/** 
-* <copyright> Copyright (c) 2008 Jonas Helming, Maximilian Koegel. All rights reserved. This program and the
+/**
+ * <copyright> Copyright (c) 2008 Jonas Helming, Maximilian Koegel. All rights reserved. This program and the
  * accompanying materials are made available under the terms of the Eclipse Public License v1.0 which accompanies this
  * distribution, and is available at http://www.eclipse.org/legal/epl-v10.html </copyright>
  */
@@ -23,6 +23,7 @@ public class StateItemSemanticEditPolicy extends
 	/**
 	 * @generated
 	 */
+	@Override
 	protected Command getDestroyElementCommand(DestroyElementRequest req) {
 		CompoundCommand cc = getDestroyEdgesCommand();
 		addDestroyShortcutsCommand(cc);
@@ -37,6 +38,7 @@ public class StateItemSemanticEditPolicy extends
 	/**
 	 * @generated
 	 */
+	@Override
 	protected Command getCreateRelationshipCommand(CreateRelationshipRequest req) {
 		Command command = req.getTarget() == null ? getStartCreateRelationshipCommand(req)
 			: getCompleteCreateRelationshipCommand(req);
@@ -45,6 +47,8 @@ public class StateItemSemanticEditPolicy extends
 
 	/**
 	 * @generated NOT
+	 * @param req The {@link CreateRelationshipRequest} for the command
+	 * @return A Command in response to the command
 	 */
 	protected Command getStartCreateRelationshipCommand(CreateRelationshipRequest req) {
 		if (org.unicase.ui.stateDiagram.providers.ModelElementTypes.Transition_4001 == req.getElementType()) {
@@ -71,6 +75,7 @@ public class StateItemSemanticEditPolicy extends
 	 * 
 	 * @generated
 	 */
+	@Override
 	protected Command getReorientRelationshipCommand(ReorientRelationshipRequest req) {
 		switch (getVisualID(req)) {
 		case org.unicase.ui.stateDiagram.edit.parts.TransitionEditPart.VISUAL_ID:

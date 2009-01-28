@@ -3,7 +3,9 @@
     xmlns:xmi="http://www.omg.org/XMI"
     xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
     xmlns:gmfgen="http://www.eclipse.org/gmf/2008/GenModel" packageNamePrefix="org.unicase.ui.stateDiagram"
+    modelID="State"
     sameFileForDiagramAndModel="true"
+    diagramFileExtension="state_diagram"
     templateDirectory="">
   <diagram
       visualID="55"

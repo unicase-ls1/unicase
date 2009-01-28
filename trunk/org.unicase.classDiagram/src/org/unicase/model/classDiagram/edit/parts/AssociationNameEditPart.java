@@ -479,7 +479,6 @@ public class AssociationNameEditPart extends LabelEditPart implements ITextAware
 		if (accessibleEP == null) {
 			accessibleEP = new AccessibleGraphicalEditPart() {
 
-				@Override
 				public void getName(AccessibleEvent e) {
 					e.result = getLabelTextHelper(getFigure());
 				}

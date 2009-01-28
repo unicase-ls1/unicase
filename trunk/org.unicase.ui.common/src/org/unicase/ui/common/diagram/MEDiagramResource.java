@@ -132,7 +132,7 @@ public class MEDiagramResource extends ResourceImpl implements Resource, Resourc
 		} else if (meDiagram.getType().equals(DiagramType.COMPONENT_DIAGRAM)) {
 			id = "Component";
 		} else if (meDiagram.getType().equals(DiagramType.STATE_DIAGRAM)) {
-			id = "Model";
+			id = "State";
 		}
 
 		if (id == null) {

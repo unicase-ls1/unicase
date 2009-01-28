@@ -6,7 +6,7 @@
       <?gmfgen generated="true"?>
       <fileTypes
          type="text"
-         extension="model_diagram">
+         extension="useCase_diagram">
       </fileTypes>
    </extension>
 
@@ -17,7 +17,7 @@
          id="org.unicase.ui.usecaseDiagram.part.ModelDiagramEditorID"
          name="%editorName"
          icon="icons/obj16/DiagramDiagramFile.gif"
-         extensions="model_diagram"
+         extensions="useCase_diagram"
          default="true"
          class="org.unicase.ui.usecaseDiagram.part.ModelDiagramEditor"
          matchingStrategy="org.unicase.ui.usecaseDiagram.part.ModelMatchingStrategy"
@@ -388,7 +388,7 @@
             <or>
 	           <and>
     	          <instanceof value="org.eclipse.core.resources.IFile"/>
-        	      <test property="org.eclipse.core.resources.extension" value="model_diagram"/>
+        	      <test property="org.eclipse.core.resources.extension" value="useCase_diagram"/>
                </and>
                <instanceof value="org.unicase.ui.usecaseDiagram.navigator.ModelAbstractNavigatorItem"/>
             </or>
@@ -405,7 +405,7 @@
                <or>
 	              <and>
     	             <instanceof value="org.eclipse.core.resources.IFile"/>
-        	         <test property="org.eclipse.core.resources.extension" value="model_diagram"/>
+        	         <test property="org.eclipse.core.resources.extension" value="useCase_diagram"/>
                   </and>
                   <instanceof value="org.unicase.ui.usecaseDiagram.navigator.ModelAbstractNavigatorItem"/>
                </or>
@@ -486,7 +486,7 @@
    </extension><extension point="org.eclipse.emf.ecore.extension_parser">
       <?gmfgen generated="true"?>
       <parser
-         type="model_diagram"
+         type="useCase_diagram"
          class="org.eclipse.gmf.runtime.emf.core.resources.GMFResourceFactory">
       </parser>
    </extension>
@@ -501,12 +501,18 @@
 </popupContribution>
 </contributionItemProvider>
 </extension><extension point="org.eclipse.gmf.runtime.emf.type.core.elementTypeBindings">
-      <?gmfgen generated="true"?>
+      <?gmfgen generated="false"?>
       <clientContext id="UseCaseClientContext">
          <enablement>
-            <test
-               property="org.eclipse.gmf.runtime.emf.core.editingDomain"
-               value="org.unicase.EditingDomainUseCase"/>
+            <and>
+               <instanceof
+                     value="org.unicase.model.ModelElement">
+               </instanceof>
+               <test
+                     property="org.unicase.ui.usecaseDiagram.isDiagramType"
+                     value="USECASE_DIAGRAM">
+               </test>
+            </and>
          </enablement>
       </clientContext> 
       <binding context="UseCaseClientContext">
@@ -520,6 +526,16 @@
          <advice ref="org.eclipse.gmf.runtime.diagram.core.advice.notationDepdendents"/>
       </binding>
    </extension>
+            <extension
+                  point="org.eclipse.core.expressions.propertyTesters">
+               <propertyTester
+                     class="org.unicase.ui.usecaseDiagram.part.DiagramTypeTester"
+                     id="org.unicase.ui.usecaseDiagram.part.DiagramTypeTester"
+                     namespace="org.unicase.ui.usecaseDiagram"
+                     properties="isDiagramType"
+                     type="org.unicase.model.ModelElement">
+               </propertyTester>
+            </extension>
 
 
 </plugin>

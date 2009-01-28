@@ -480,7 +480,6 @@ public class AssociationName2EditPart extends LabelEditPart implements ITextAwar
 		if (accessibleEP == null) {
 			accessibleEP = new AccessibleGraphicalEditPart() {
 
-				@Override
 				public void getName(AccessibleEvent e) {
 					e.result = getLabelTextHelper(getFigure());
 				}

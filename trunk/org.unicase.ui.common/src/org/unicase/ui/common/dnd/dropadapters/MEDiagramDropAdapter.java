@@ -81,7 +81,7 @@ public class MEDiagramDropAdapter extends MEDropAdapter {
 		} else if (type == DiagramType.COMPONENT_DIAGRAM) {
 			clientContextID = "ComponentClientContext";
 		} else if (type == DiagramType.CLASS_DIAGRAM) {
-			clientContextID = "ClassClientContext";
+			clientContextID = "ModelClientContext";
 		} else if (type == DiagramType.STATE_DIAGRAM) {
 			clientContextID = "StateClientContext";
 		}
