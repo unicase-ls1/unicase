@@ -1,5 +1,5 @@
-/** 
-* <copyright> Copyright (c) 2008 Jonas Helming, Maximilian Koegel. All rights reserved. This program and the
+/**
+ * <copyright> Copyright (c) 2008 Jonas Helming, Maximilian Koegel. All rights reserved. This program and the
  * accompanying materials are made available under the terms of the Eclipse Public License v1.0 which accompanies this
  * distribution, and is available at http://www.eclipse.org/legal/epl-v10.html </copyright>
  */
@@ -9,16 +9,13 @@ import java.io.IOException;
 import java.util.ArrayList;
 import java.util.Collection;
 import java.util.Collections;
-import java.util.HashMap;
 import java.util.Iterator;
 import java.util.List;
-import java.util.Map;
 
 import org.eclipse.core.commands.ExecutionException;
 import org.eclipse.core.resources.IFile;
 import org.eclipse.core.resources.IResource;
 import org.eclipse.core.resources.IResourceStatus;
-import org.eclipse.core.resources.IStorage;
 import org.eclipse.core.resources.ResourcesPlugin;
 import org.eclipse.core.runtime.CoreException;
 import org.eclipse.core.runtime.IAdaptable;
@@ -42,31 +39,32 @@ import org.eclipse.emf.transaction.TransactionalEditingDomain;
 import org.eclipse.emf.workspace.util.WorkspaceSynchronizer;
 import org.eclipse.gmf.runtime.common.core.command.CommandResult;
 import org.eclipse.gmf.runtime.diagram.core.DiagramEditingDomainFactory;
-import org.eclipse.gmf.runtime.diagram.ui.resources.editor.document.AbstractDocumentProvider;
-import org.eclipse.gmf.runtime.diagram.ui.resources.editor.document.DiagramDocument;
 import org.eclipse.gmf.runtime.diagram.ui.resources.editor.document.IDiagramDocument;
 import org.eclipse.gmf.runtime.diagram.ui.resources.editor.document.IDiagramDocumentProvider;
 import org.eclipse.gmf.runtime.diagram.ui.resources.editor.document.IDocument;
 import org.eclipse.gmf.runtime.diagram.ui.resources.editor.internal.EditorStatusCodes;
-import org.eclipse.gmf.runtime.diagram.ui.resources.editor.internal.util.DiagramIOUtil;
 import org.eclipse.gmf.runtime.emf.commands.core.command.AbstractTransactionalCommand;
-import org.eclipse.gmf.runtime.emf.core.resources.GMFResourceFactory;
 import org.eclipse.gmf.runtime.notation.Diagram;
 import org.eclipse.jface.operation.IRunnableContext;
 import org.eclipse.osgi.util.NLS;
 import org.eclipse.swt.widgets.Display;
 import org.eclipse.ui.IEditorInput;
 import org.eclipse.ui.part.FileEditorInput;
-import org.unicase.workspace.WorkspaceManager;
 
 /**
  * @generated
+ * @extends org.unicase.ui.common.diagram.ModelDocumentProvider
+ * @fcuk public class ModelDocumentProvider extends org.unicase.ui.common.diagram.ModelDocumentProvider implements
+ *       IDiagramDocumentProvider {
  */
-public class ModelDocumentProvider extends AbstractDocumentProvider implements IDiagramDocumentProvider {
+
+public class ModelDocumentProvider extends org.unicase.ui.common.diagram.ModelDocumentProvider implements
+	IDiagramDocumentProvider {
 
 	/**
 	 * @generated
 	 */
+	@Override
 	protected ElementInfo createElementInfo(Object element) throws CoreException {
 		if (false == element instanceof FileEditorInput && false == element instanceof URIEditorInput) {
 			throw new CoreException(new Status(IStatus.ERROR,
@@ -87,6 +85,7 @@ public class ModelDocumentProvider extends AbstractDocumentProvider implements I
 	/**
 	 * @generated
 	 */
+	@Override
 	protected IDocument createDocument(Object element) throws CoreException {
 		if (false == element instanceof FileEditorInput && false == element instanceof URIEditorInput) {
 			throw new CoreException(new Status(IStatus.ERROR,
@@ -138,10 +137,9 @@ public class ModelDocumentProvider extends AbstractDocumentProvider implements I
 	 * @generated NOT {@inheritDoc}
 	 * @see org.eclipse.gmf.runtime.diagram.ui.resources.editor.document.AbstractDocumentProvider#createEmptyDocument()
 	 */
+	@Override
 	protected IDocument createEmptyDocument() {
-		DiagramDocument document = new DiagramDocument();
-		document.setEditingDomain(WorkspaceManager.getInstance().getCurrentWorkspace().getEditingDomain());
-		return document;
+		return super.createEmptyDocument();
 	}
 
 	/**
@@ -189,78 +187,15 @@ public class ModelDocumentProvider extends AbstractDocumentProvider implements I
 	 * @param element The new content element
 	 * @throws CoreException if an exceptional error occurs
 	 */
-
+	@Override
 	protected void setDocumentContent(IDocument document, IEditorInput element) throws CoreException {
-		IDiagramDocument diagramDocument = (IDiagramDocument) document;
-		TransactionalEditingDomain domain = diagramDocument.getEditingDomain();
-		if (element instanceof FileEditorInput) {
-			IStorage storage = ((FileEditorInput) element).getStorage();
-			Diagram diagram = DiagramIOUtil.load(domain, storage, true, getProgressMonitor());
-			document.setContent(diagram);
-		} else if (element instanceof URIEditorInput) {
-			URI uri = ((URIEditorInput) element).getURI();
-			Resource resource = null;
-			try {
-				// resource = domain.getResourceSet().getResource(
-				// uri.trimFragment(), false);
-				if (resource == null) {
-					resource = domain.getResourceSet().createResource(uri, "MEDiagram");
-				}
-				if (!resource.isLoaded()) {
-					try {
-						Map options = new HashMap(GMFResourceFactory.getDefaultLoadOptions());
-						// @see 171060
-						// options.put(org.eclipse.emf.ecore.xmi.XMLResource.
-						// OPTION_RECORD_UNKNOWN_FEATURE, Boolean.TRUE);
-						resource.load(options);
-					} catch (IOException e) {
-						resource.unload();
-						throw e;
-					}
-				}
-				// if (uri.fragment() != null) {
-				// EObject rootElement = resource.getEObject(uri.fragment());
-				// if (rootElement instanceof Diagram) {
-				// document.setContent((Diagram) rootElement);
-				// return;
-				// }
-				// } else {
-				for (Iterator it = resource.getContents().iterator(); it.hasNext();) {
-					Object rootElement = it.next();
-					if (rootElement instanceof Diagram) {
-						document.setContent((Diagram) rootElement);
-						return;
-					}
-					// }
-				}
-				throw new RuntimeException(
-					org.unicase.ui.stateDiagram.part.Messages.ModelDocumentProvider_NoDiagramInResourceError);
-				// BEGIN SUPRESS CATCH EXCEPTION
-			} catch (Exception e) {
-				CoreException thrownExcp = null;
-				if (e instanceof CoreException) {
-					thrownExcp = (CoreException) e;
-				} else {
-					String msg = e.getLocalizedMessage();
-					thrownExcp = new CoreException(new Status(IStatus.ERROR,
-						org.unicase.ui.stateDiagram.part.ModelDiagramEditorPlugin.ID, 0, msg != null ? msg
-							: org.unicase.ui.stateDiagram.part.Messages.ModelDocumentProvider_DiagramLoadingError, e));
-				}
-				throw thrownExcp;
-			}
-			// END SUPRESS CATCH EXCEPTION
-		} else {
-			throw new CoreException(new Status(IStatus.ERROR,
-				org.unicase.ui.stateDiagram.part.ModelDiagramEditorPlugin.ID, 0, NLS.bind(
-					org.unicase.ui.stateDiagram.part.Messages.ModelDocumentProvider_IncorrectInputError, new Object[] {
-						element, "org.eclipse.ui.part.FileEditorInput", "org.eclipse.emf.common.ui.URIEditorInput" }), //$NON-NLS-1$ //$NON-NLS-2$ 
-				null));
-		}
+		super.setDocumentContent(document, element);
 	}
 
 	/**
 	 * @generated
 	 */
+	@Override
 	public long getModificationStamp(Object element) {
 		ResourceSetInfo info = getResourceSetInfo(element);
 		if (info != null) {
@@ -272,6 +207,7 @@ public class ModelDocumentProvider extends AbstractDocumentProvider implements I
 	/**
 	 * @generated
 	 */
+	@Override
 	public boolean isDeleted(Object element) {
 		IDiagramDocument document = getDiagramDocument(element);
 		if (document != null) {
@@ -294,6 +230,7 @@ public class ModelDocumentProvider extends AbstractDocumentProvider implements I
 	/**
 	 * @generated NOT
 	 */
+	@Override
 	protected void disposeElementInfo(Object element, ElementInfo info) {
 		// JH we should do sth.
 		// if (info instanceof ResourceSetInfo) {
@@ -306,6 +243,7 @@ public class ModelDocumentProvider extends AbstractDocumentProvider implements I
 	/**
 	 * @generated
 	 */
+	@Override
 	protected void doValidateState(Object element, Object computationContext) throws CoreException {
 		ResourceSetInfo info = getResourceSetInfo(element);
 		if (info != null) {
@@ -331,6 +269,7 @@ public class ModelDocumentProvider extends AbstractDocumentProvider implements I
 	/**
 	 * @generated
 	 */
+	@Override
 	public boolean isReadOnly(Object element) {
 		ResourceSetInfo info = getResourceSetInfo(element);
 		if (info != null) {
@@ -353,6 +292,7 @@ public class ModelDocumentProvider extends AbstractDocumentProvider implements I
 	/**
 	 * @generated
 	 */
+	@Override
 	public boolean isModifiable(Object element) {
 		if (!isStateValidated(element)) {
 			if (element instanceof FileEditorInput || element instanceof URIEditorInput) {
@@ -402,6 +342,7 @@ public class ModelDocumentProvider extends AbstractDocumentProvider implements I
 	/**
 	 * @generated
 	 */
+	@Override
 	protected void doUpdateStateCache(Object element) throws CoreException {
 		ResourceSetInfo info = getResourceSetInfo(element);
 		if (info != null) {
@@ -413,6 +354,7 @@ public class ModelDocumentProvider extends AbstractDocumentProvider implements I
 	/**
 	 * @generated
 	 */
+	@Override
 	public boolean isSynchronized(Object element) {
 		ResourceSetInfo info = getResourceSetInfo(element);
 		if (info != null) {
@@ -424,6 +366,7 @@ public class ModelDocumentProvider extends AbstractDocumentProvider implements I
 	/**
 	 * @generated
 	 */
+	@Override
 	protected ISchedulingRule getResetRule(Object element) {
 		ResourceSetInfo info = getResourceSetInfo(element);
 		if (info != null) {
@@ -447,6 +390,7 @@ public class ModelDocumentProvider extends AbstractDocumentProvider implements I
 	/**
 	 * @generated
 	 */
+	@Override
 	protected ISchedulingRule getSaveRule(Object element) {
 		ResourceSetInfo info = getResourceSetInfo(element);
 		if (info != null) {
@@ -470,6 +414,7 @@ public class ModelDocumentProvider extends AbstractDocumentProvider implements I
 	/**
 	 * @generated
 	 */
+	@Override
 	protected ISchedulingRule getSynchronizeRule(Object element) {
 		ResourceSetInfo info = getResourceSetInfo(element);
 		if (info != null) {
@@ -493,6 +438,7 @@ public class ModelDocumentProvider extends AbstractDocumentProvider implements I
 	/**
 	 * @generated
 	 */
+	@Override
 	protected ISchedulingRule getValidateStateRule(Object element) {
 		ResourceSetInfo info = getResourceSetInfo(element);
 		if (info != null) {
@@ -537,6 +483,7 @@ public class ModelDocumentProvider extends AbstractDocumentProvider implements I
 	/**
 	 * @generated
 	 */
+	@Override
 	protected void doSynchronize(Object element, IProgressMonitor monitor) throws CoreException {
 		ResourceSetInfo info = getResourceSetInfo(element);
 		if (info != null) {
@@ -553,6 +500,7 @@ public class ModelDocumentProvider extends AbstractDocumentProvider implements I
 	/**
 	 * @generated
 	 */
+	@Override
 	protected void doSaveDocument(IProgressMonitor monitor, Object element, IDocument document, boolean overwrite)
 		throws CoreException {
 		ResourceSetInfo info = getResourceSetInfo(element);
@@ -628,6 +576,7 @@ public class ModelDocumentProvider extends AbstractDocumentProvider implements I
 				new AbstractTransactionalCommand(diagramDocument.getEditingDomain(), NLS.bind(
 					org.unicase.ui.stateDiagram.part.Messages.ModelDocumentProvider_SaveAsOperation, diagramCopy
 						.getName()), affectedFiles) {
+					@Override
 					protected CommandResult doExecuteWithResult(IProgressMonitor monitor, IAdaptable info)
 						throws ExecutionException {
 						newResource.getContents().add(diagramCopy);
@@ -698,6 +647,7 @@ public class ModelDocumentProvider extends AbstractDocumentProvider implements I
 	/**
 	 * @generated
 	 */
+	@Override
 	public IEditorInput createInputWithEditingDomain(IEditorInput editorInput, TransactionalEditingDomain domain) {
 		return editorInput;
 	}
@@ -705,6 +655,7 @@ public class ModelDocumentProvider extends AbstractDocumentProvider implements I
 	/**
 	 * @generated
 	 */
+	@Override
 	public IDiagramDocument getDiagramDocument(Object element) {
 		IDocument doc = getDocument(element);
 		if (doc instanceof IDiagramDocument) {
@@ -716,6 +667,7 @@ public class ModelDocumentProvider extends AbstractDocumentProvider implements I
 	/**
 	 * @generated
 	 */
+	@Override
 	protected IRunnableContext getOperationRunner(IProgressMonitor monitor) {
 		return null;
 	}
@@ -1018,6 +970,7 @@ public class ModelDocumentProvider extends AbstractDocumentProvider implements I
 		/**
 		 * @generated
 		 */
+		@Override
 		public void notifyChanged(Notification notification) {
 			if (notification.getNotifier() instanceof ResourceSet) {
 				super.notifyChanged(notification);

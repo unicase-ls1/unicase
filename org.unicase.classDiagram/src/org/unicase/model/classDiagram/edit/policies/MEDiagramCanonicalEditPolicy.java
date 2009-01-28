@@ -59,6 +59,7 @@ public class MEDiagramCanonicalEditPolicy extends CanonicalConnectionEditPolicy 
 		}
 
 		EditPolicy showRelatedElementsEditPolicy = getHost().getEditPolicy(EditPolicyRoles.SHOW_ELEMENTS_ROLE);
+
 		if (showRelatedElementsEditPolicy instanceof MEDiagramShowElementsEditPolicy) {
 			Collection<? extends EObject> relatedModelElements = ((MEDiagramShowElementsEditPolicy) showRelatedElementsEditPolicy)
 				.getRelatedNodeElements();
@@ -206,7 +207,9 @@ public class MEDiagramCanonicalEditPolicy extends CanonicalConnectionEditPolicy 
 		}
 
 		EditPolicy editPolicy = getHost().getEditPolicy(EditPolicyRoles.SHOW_ELEMENTS_ROLE);
+
 		if (editPolicy instanceof MEDiagramShowElementsEditPolicy) {
+
 			Collection<? extends Edge> relatedConnectionElements = ((MEDiagramShowElementsEditPolicy) editPolicy)
 				.getRelatedEdges();
 			existingLinks.removeAll(relatedConnectionElements);

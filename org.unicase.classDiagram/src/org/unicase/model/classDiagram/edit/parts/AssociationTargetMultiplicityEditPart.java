@@ -480,7 +480,6 @@ public class AssociationTargetMultiplicityEditPart extends LabelEditPart impleme
 		if (accessibleEP == null) {
 			accessibleEP = new AccessibleGraphicalEditPart() {
 
-				@Override
 				public void getName(AccessibleEvent e) {
 					e.result = getLabelTextHelper(getFigure());
 				}

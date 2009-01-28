@@ -19,7 +19,7 @@ public class MEDiagramEditPart extends org.unicase.ui.common.diagram.MEDiagramEd
 	/**
 	 * @generated
 	 */
-	public final static String MODEL_ID = "Model"; //$NON-NLS-1$
+	public final static String MODEL_ID = "State"; //$NON-NLS-1$
 
 	/**
 	 * @generated
@@ -36,6 +36,7 @@ public class MEDiagramEditPart extends org.unicase.ui.common.diagram.MEDiagramEd
 	/**
 	 * @generated
 	 */
+	@Override
 	protected void createDefaultEditPolicies() {
 		super.createDefaultEditPolicies();
 		installEditPolicy(EditPolicyRoles.SEMANTIC_ROLE,

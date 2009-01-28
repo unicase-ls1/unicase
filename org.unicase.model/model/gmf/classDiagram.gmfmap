@@ -106,8 +106,7 @@
           href="model.gmfgraph#Package"/>
     </ownedChild>
   </nodes>
-  <links
-      relatedDiagrams="//@diagram">
+  <links>
     <domainMetaElement
         href="../model.ecore#//classes/Association"/>
     <domainSpecialization
@@ -160,8 +159,7 @@
         xsi:type="ecore:EReference"
         href="../model.ecore#//classes/Association/target"/>
   </links>
-  <links
-      relatedDiagrams="//@diagram">
+  <links>
     <domainMetaElement
         href="../model.ecore#//classes/Association"/>
     <domainSpecialization
@@ -214,8 +212,7 @@
         xsi:type="ecore:EReference"
         href="../model.ecore#//classes/Association/target"/>
   </links>
-  <links
-      relatedDiagrams="//@diagram">
+  <links>
     <domainMetaElement
         href="../model.ecore#//classes/Association"/>
     <domainSpecialization
@@ -268,8 +265,7 @@
         xsi:type="ecore:EReference"
         href="../model.ecore#//classes/Association/target"/>
   </links>
-  <links
-      relatedDiagrams="//@diagram">
+  <links>
     <domainMetaElement
         href="../model.ecore#//classes/Association"/>
     <domainSpecialization
@@ -332,8 +328,7 @@
         xsi:type="ecore:EReference"
         href="../model.ecore#//classes/Class/subClasses"/>
   </links>
-  <links
-      relatedDiagrams="//@diagram">
+  <links>
     <domainMetaElement
         href="../model.ecore#//classes/Dependency"/>
     <containmentFeature

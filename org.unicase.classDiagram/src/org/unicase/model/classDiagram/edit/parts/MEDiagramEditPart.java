@@ -11,6 +11,9 @@ import org.unicase.model.classDiagram.edit.policies.MEDiagramShowElementsEditPol
 
 /**
  * @generated
+ * @extends org.unicase.ui.common.diagram.MEDiagramEditPart
+ * @implements org.unicase.ui.common.diagram.MEDiagramEditPart public class MEDiagramEditPart extends
+ *             org.unicase.ui.common.diagram.MEDiagramEditPart {
  */
 public class MEDiagramEditPart extends org.unicase.ui.common.diagram.MEDiagramEditPart {
 

@@ -24,6 +24,7 @@ import org.eclipse.gmf.runtime.diagram.ui.actions.ActionIds;
 import org.eclipse.gmf.runtime.diagram.ui.resources.editor.document.IDiagramDocument;
 import org.eclipse.gmf.runtime.diagram.ui.resources.editor.document.IDocument;
 import org.eclipse.gmf.runtime.diagram.ui.resources.editor.document.IDocumentProvider;
+import org.eclipse.gmf.runtime.diagram.ui.resources.editor.parts.DiagramDocumentEditor;
 import org.eclipse.gmf.runtime.notation.Diagram;
 import org.eclipse.jface.dialogs.ErrorDialog;
 import org.eclipse.jface.dialogs.IMessageProvider;
@@ -72,6 +73,7 @@ public class ModelDiagramEditor extends org.unicase.ui.common.diagram.ModelDiagr
 	/**
 	 * @generated
 	 */
+	@Override
 	protected String getContextID() {
 		return CONTEXT_ID;
 	}
@@ -79,6 +81,7 @@ public class ModelDiagramEditor extends org.unicase.ui.common.diagram.ModelDiagr
 	/**
 	 * @generated
 	 */
+	@Override
 	protected PaletteRoot createPaletteRoot(PaletteRoot existingPaletteRoot) {
 		PaletteRoot root = super.createPaletteRoot(existingPaletteRoot);
 		new org.unicase.model.classDiagram.part.ModelPaletteFactory().fillPalette(root);
@@ -88,6 +91,7 @@ public class ModelDiagramEditor extends org.unicase.ui.common.diagram.ModelDiagr
 	/**
 	 * @generated
 	 */
+	@Override
 	protected PreferencesHint getPreferencesHint() {
 		return org.unicase.model.classDiagram.part.ModelDiagramEditorPlugin.DIAGRAM_PREFERENCES_HINT;
 	}
@@ -95,6 +99,7 @@ public class ModelDiagramEditor extends org.unicase.ui.common.diagram.ModelDiagr
 	/**
 	 * @generated
 	 */
+	@Override
 	public String getContributorId() {
 		return org.unicase.model.classDiagram.part.ModelDiagramEditorPlugin.ID;
 	}
@@ -102,6 +107,7 @@ public class ModelDiagramEditor extends org.unicase.ui.common.diagram.ModelDiagr
 	/**
 	 * @generated
 	 */
+	@Override
 	public Object getAdapter(Class type) {
 		if (type == IShowInTargetList.class) {
 			return new IShowInTargetList() {
@@ -116,6 +122,7 @@ public class ModelDiagramEditor extends org.unicase.ui.common.diagram.ModelDiagr
 	/**
 	 * @generated
 	 */
+	@Override
 	protected IDocumentProvider getDocumentProvider(IEditorInput input) {
 		if (input instanceof IFileEditorInput || input instanceof URIEditorInput) {
 			return org.unicase.model.classDiagram.part.ModelDiagramEditorPlugin.getInstance().getDocumentProvider();
@@ -126,6 +133,7 @@ public class ModelDiagramEditor extends org.unicase.ui.common.diagram.ModelDiagr
 	/**
 	 * @generated
 	 */
+	@Override
 	public TransactionalEditingDomain getEditingDomain() {
 		IDocument document = getEditorInput() != null ? getDocumentProvider().getDocument(getEditorInput()) : null;
 		if (document instanceof IDiagramDocument) {
@@ -137,6 +145,7 @@ public class ModelDiagramEditor extends org.unicase.ui.common.diagram.ModelDiagr
 	/**
 	 * @generated
 	 */
+	@Override
 	protected void setDocumentProvider(IEditorInput input) {
 		if (input instanceof IFileEditorInput || input instanceof URIEditorInput) {
 			setDocumentProvider(org.unicase.model.classDiagram.part.ModelDiagramEditorPlugin.getInstance()
@@ -157,6 +166,7 @@ public class ModelDiagramEditor extends org.unicase.ui.common.diagram.ModelDiagr
 	 * @generated NOT {@inheritDoc}
 	 * @see org.eclipse.gmf.runtime.diagram.ui.resources.editor.parts.DiagramDocumentEditor#isSaveAsAllowed()
 	 */
+	@Override
 	public boolean isSaveAsAllowed() {
 		return false;
 	}
@@ -164,6 +174,7 @@ public class ModelDiagramEditor extends org.unicase.ui.common.diagram.ModelDiagr
 	/**
 	 * @generated
 	 */
+	@Override
 	public void doSaveAs() {
 		performSaveAs(new NullProgressMonitor());
 	}
@@ -171,6 +182,7 @@ public class ModelDiagramEditor extends org.unicase.ui.common.diagram.ModelDiagr
 	/**
 	 * @generated
 	 */
+	@Override
 	protected void performSaveAs(IProgressMonitor progressMonitor) {
 		Shell shell = getSite().getShell();
 		IEditorInput input = getEditorInput();
@@ -246,6 +258,7 @@ public class ModelDiagramEditor extends org.unicase.ui.common.diagram.ModelDiagr
 	/**
 	 * @generated
 	 */
+	@Override
 	public ShowInContext getShowInContext() {
 		return new ShowInContext(getEditorInput(), getNavigatorSelection());
 	}
@@ -271,6 +284,7 @@ public class ModelDiagramEditor extends org.unicase.ui.common.diagram.ModelDiagr
 	/**
 	 * @generated
 	 */
+	@Override
 	protected void configureGraphicalViewer() {
 		super.configureGraphicalViewer();
 		org.unicase.model.classDiagram.part.DiagramEditorContextMenuProvider provider = new org.unicase.model.classDiagram.part.DiagramEditorContextMenuProvider(

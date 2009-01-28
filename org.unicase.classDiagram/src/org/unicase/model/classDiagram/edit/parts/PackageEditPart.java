@@ -27,6 +27,7 @@ import org.eclipse.gmf.runtime.draw2d.ui.figures.WrappingLabel;
 import org.eclipse.gmf.runtime.gef.ui.figures.DefaultSizeNodeFigure;
 import org.eclipse.gmf.runtime.gef.ui.figures.NodeFigure;
 import org.eclipse.gmf.runtime.notation.View;
+import org.unicase.ui.common.diagram.figures.CenterLayout;
 
 /**
  * @generated
@@ -61,11 +62,11 @@ public class PackageEditPart extends ShapeNodeEditPart {
 	@Override
 	protected void createDefaultEditPolicies() {
 		super.createDefaultEditPolicies();
-		installEditPolicy(EditPolicyRoles.SEMANTIC_ROLE,
-			new org.unicase.model.classDiagram.edit.policies.PackageItemSemanticEditPolicy());
+		installEditPolicy(
+				EditPolicyRoles.SEMANTIC_ROLE,
+				new org.unicase.model.classDiagram.edit.policies.PackageItemSemanticEditPolicy());
 		installEditPolicy(EditPolicy.LAYOUT_ROLE, createLayoutEditPolicy());
-		// XXX need an SCR to runtime to have another abstract superclass that would let children add reasonable
-		// editpolicies
+		// XXX need an SCR to runtime to have another abstract superclass that would let children add reasonable editpolicies
 		// removeEditPolicy(org.eclipse.gmf.runtime.diagram.ui.editpolicies.EditPolicyRoles.CONNECTION_HANDLES_ROLE);
 	}
 
@@ -77,7 +78,8 @@ public class PackageEditPart extends ShapeNodeEditPart {
 
 			@Override
 			protected EditPolicy createChildEditPolicy(EditPart child) {
-				EditPolicy result = child.getEditPolicy(EditPolicy.PRIMARY_DRAG_ROLE);
+				EditPolicy result = child
+						.getEditPolicy(EditPolicy.PRIMARY_DRAG_ROLE);
 				if (result == null) {
 					result = new NonResizableEditPolicy();
 				}
@@ -117,8 +119,8 @@ public class PackageEditPart extends ShapeNodeEditPart {
 	 */
 	protected boolean addFixedChild(EditPart childEditPart) {
 		if (childEditPart instanceof org.unicase.model.classDiagram.edit.parts.PackageNameEditPart) {
-			((org.unicase.model.classDiagram.edit.parts.PackageNameEditPart) childEditPart).setLabel(getPrimaryShape()
-				.getFigurePackageFigure_name());
+			((org.unicase.model.classDiagram.edit.parts.PackageNameEditPart) childEditPart)
+					.setLabel(getPrimaryShape().getFigurePackageFigure_name());
 			return true;
 		}
 		return false;
@@ -167,7 +169,8 @@ public class PackageEditPart extends ShapeNodeEditPart {
 	 * @generated
 	 */
 	protected NodeFigure createNodePlate() {
-		DefaultSizeNodeFigure result = new DefaultSizeNodeFigure(getMapMode().DPtoLP(150), getMapMode().DPtoLP(110));
+		DefaultSizeNodeFigure result = new DefaultSizeNodeFigure(getMapMode()
+				.DPtoLP(150), getMapMode().DPtoLP(110));
 		return result;
 	}
 
@@ -220,7 +223,7 @@ public class PackageEditPart extends ShapeNodeEditPart {
 	@Override
 	public EditPart getPrimaryChildEditPart() {
 		return getChildBySemanticHint(org.unicase.model.classDiagram.part.ModelVisualIDRegistry
-			.getType(org.unicase.model.classDiagram.edit.parts.PackageNameEditPart.VISUAL_ID));
+				.getType(org.unicase.model.classDiagram.edit.parts.PackageNameEditPart.VISUAL_ID));
 	}
 
 	/**
@@ -267,31 +270,32 @@ public class PackageEditPart extends ShapeNodeEditPart {
 			packageFigure_AuxTop0.setLayoutManager(layoutPackageFigure_AuxTop0);
 
 			RectangleFigure packageFigure_AuxLeftTab1 = new RectangleFigure();
-			packageFigure_AuxLeftTab1.setPreferredSize(new Dimension(getMapMode().DPtoLP(1), getMapMode().DPtoLP(23)));
+			packageFigure_AuxLeftTab1.setPreferredSize(new Dimension(
+					getMapMode().DPtoLP(1), getMapMode().DPtoLP(23)));
 
 			packageFigure_AuxTop0.add(packageFigure_AuxLeftTab1);
 
 			RectangleFigure packageFigure_AuxLeftRightPadding1 = new RectangleFigure();
 			packageFigure_AuxLeftRightPadding1.setFill(false);
 			packageFigure_AuxLeftRightPadding1.setOutline(false);
-			packageFigure_AuxLeftRightPadding1.setPreferredSize(new Dimension(getMapMode().DPtoLP(1), getMapMode()
-				.DPtoLP(23)));
+			packageFigure_AuxLeftRightPadding1.setPreferredSize(new Dimension(
+					getMapMode().DPtoLP(1), getMapMode().DPtoLP(23)));
 
 			packageFigure_AuxTop0.add(packageFigure_AuxLeftRightPadding1);
 
 			RectangleFigure packageFigure_AuxRightLeftPadding1 = new RectangleFigure();
 			packageFigure_AuxRightLeftPadding1.setFill(false);
 			packageFigure_AuxRightLeftPadding1.setOutline(false);
-			packageFigure_AuxRightLeftPadding1.setPreferredSize(new Dimension(getMapMode().DPtoLP(1), getMapMode()
-				.DPtoLP(23)));
+			packageFigure_AuxRightLeftPadding1.setPreferredSize(new Dimension(
+					getMapMode().DPtoLP(1), getMapMode().DPtoLP(23)));
 
 			packageFigure_AuxTop0.add(packageFigure_AuxRightLeftPadding1);
 
 			RectangleFigure packageFigure_AuxRightRightPadding1 = new RectangleFigure();
 			packageFigure_AuxRightRightPadding1.setFill(false);
 			packageFigure_AuxRightRightPadding1.setOutline(false);
-			packageFigure_AuxRightRightPadding1.setPreferredSize(new Dimension(getMapMode().DPtoLP(1), getMapMode()
-				.DPtoLP(23)));
+			packageFigure_AuxRightRightPadding1.setPreferredSize(new Dimension(
+					getMapMode().DPtoLP(1), getMapMode().DPtoLP(23)));
 
 			packageFigure_AuxTop0.add(packageFigure_AuxRightRightPadding1);
 
@@ -303,26 +307,31 @@ public class PackageEditPart extends ShapeNodeEditPart {
 
 			ToolbarLayout layoutPackageFigure_AuxCenter0 = new ToolbarLayout();
 			layoutPackageFigure_AuxCenter0.setStretchMinorAxis(true);
-			layoutPackageFigure_AuxCenter0.setMinorAlignment(ToolbarLayout.ALIGN_CENTER);
+			layoutPackageFigure_AuxCenter0
+					.setMinorAlignment(ToolbarLayout.ALIGN_CENTER);
 
 			layoutPackageFigure_AuxCenter0.setSpacing(0);
 			layoutPackageFigure_AuxCenter0.setVertical(true);
 
-			packageFigure_AuxCenter0.setLayoutManager(layoutPackageFigure_AuxCenter0);
+			packageFigure_AuxCenter0
+					.setLayoutManager(layoutPackageFigure_AuxCenter0);
 
 			RectangleFigure packageFigure_NameContainer1 = new RectangleFigure();
 			packageFigure_NameContainer1.setFill(false);
 			packageFigure_NameContainer1.setOutline(false);
-			packageFigure_NameContainer1.setMinimumSize(new Dimension(getMapMode().DPtoLP(0), getMapMode().DPtoLP(20)));
+			packageFigure_NameContainer1.setMinimumSize(new Dimension(
+					getMapMode().DPtoLP(0), getMapMode().DPtoLP(20)));
 
-			packageFigure_NameContainer1.setBorder(new MarginBorder(getMapMode().DPtoLP(5), getMapMode().DPtoLP(10),
-				getMapMode().DPtoLP(5), getMapMode().DPtoLP(5)));
+			packageFigure_NameContainer1.setBorder(new MarginBorder(
+					getMapMode().DPtoLP(5), getMapMode().DPtoLP(10),
+					getMapMode().DPtoLP(5), getMapMode().DPtoLP(5)));
 
 			packageFigure_AuxCenter0.add(packageFigure_NameContainer1);
 
-			org.unicase.ui.common.diagram.figures.CenterLayout layoutPackageFigure_NameContainer1 = new org.unicase.ui.common.diagram.figures.CenterLayout();
+			CenterLayout layoutPackageFigure_NameContainer1 = new CenterLayout();
 
-			packageFigure_NameContainer1.setLayoutManager(layoutPackageFigure_NameContainer1);
+			packageFigure_NameContainer1
+					.setLayoutManager(layoutPackageFigure_NameContainer1);
 
 			fFigurePackageFigure_name = new WrappingLabel();
 			fFigurePackageFigure_name.setText("unnamed");
