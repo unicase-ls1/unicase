@@ -7,7 +7,11 @@ package org.unicase.workspace;
 
 import java.io.File;
 import java.io.IOException;
+import java.net.URISyntaxException;
+import java.util.ArrayList;
+import java.util.List;
 
+import org.codehaus.groovy.control.CompilationFailedException;
 import org.eclipse.emf.common.util.EList;
 import org.eclipse.emf.common.util.URI;
 import org.eclipse.emf.ecore.EObject;
@@ -23,6 +27,10 @@ import org.unicase.workspace.connectionmanager.ConnectionManager;
 import org.unicase.workspace.connectionmanager.KeyStoreManager;
 import org.unicase.workspace.connectionmanager.RMIAdminConnectionManagerImpl;
 import org.unicase.workspace.connectionmanager.RMIConnectionManagerImpl;
+
+import edu.tum.cs.cope.migration.execution.Migrator;
+import edu.tum.cs.cope.migration.execution.MigratorRegistry;
+import edu.tum.cs.cope.migration.execution.ReleaseUtil;
 
 /**
  * Controller for workspaces. Workspace Manager is a singleton.
@@ -138,7 +146,8 @@ public final class WorkspaceManager {
 			}
 		} else {
 			// if file exists load it
-
+			// OW: activate migrator here
+			// migrate(fileURI);
 			resource = resourceSet.getResource(fileURI, true);
 			EList<EObject> directContents = resource.getContents();
 			// MK cast
@@ -156,6 +165,31 @@ public final class WorkspaceManager {
 		});
 
 		return workspace;
+
+	}
+
+	private void migrate(URI fileURI) {
+		// OW: get URI of project fragment only
+		// OW: get cp uri here
+		URI changePackageUri = null;
+		URI projectURI = null;
+		String namespaceURI = ReleaseUtil.getNamespaceURI(projectURI);
+		Migrator migrator = MigratorRegistry.getInstance().getMigrator(namespaceURI);
+		List<URI> modelURIs = new ArrayList<URI>();
+		modelURIs.add(projectURI);
+		modelURIs.add(changePackageUri);
+		try {
+			migrator.migrate(modelURIs);
+		} catch (CompilationFailedException e) {
+			// TODO Auto-generated catch block
+			e.printStackTrace();
+		} catch (URISyntaxException e) {
+			// TODO Auto-generated catch block
+			e.printStackTrace();
+		} catch (IOException e) {
+			// TODO Auto-generated catch block
+			e.printStackTrace();
+		}
 
 	}
 
