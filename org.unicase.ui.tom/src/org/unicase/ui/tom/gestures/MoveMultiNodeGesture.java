@@ -5,29 +5,29 @@ import java.util.HashMap;
 import java.util.List;
 import java.util.Map;
 
-import org.eclipse.draw2d.geometry.Point;
-import org.eclipse.draw2d.geometry.PointList;
 import org.eclipse.gef.EditPart;
+import org.eclipse.gef.NodeEditPart;
 import org.eclipse.gmf.runtime.diagram.ui.editparts.DiagramEditPart;
-import org.unicase.model.classDiagram.edit.parts.ClassEditPart;
+import org.eclipse.gmf.runtime.diagram.ui.editparts.GraphicalEditPart;
 import org.unicase.ui.tom.TouchDispatch;
-import org.unicase.ui.tom.commands.Command;
 import org.unicase.ui.tom.commands.MoveNodeCommand;
 import org.unicase.ui.tom.touches.Touch;
 
 public class MoveMultiNodeGesture extends AbstractGesture{
 
-	private final int GESTURE_MOVE_THRESHOLD = 20;
+	private Map<Touch, MoveNodeCommand> touchCommandMap;
+	@SuppressWarnings("unchecked")
+	private List diagramExclusions;
 
-	private List<Touch> staticTouches;
-	private Map<Touch, Command> touchCommandMap;
-
+	@SuppressWarnings("unchecked")
 	public MoveMultiNodeGesture(TouchDispatch dispatch, DiagramEditPart editor) {
 		super(dispatch, editor);
 
-		touchCommandMap = new HashMap<Touch, Command>();
-		staticTouches = new ArrayList<Touch>();
-
+		setTouchCommandMap(new HashMap<Touch, MoveNodeCommand>());
+		
+		diagramExclusions = new ArrayList();
+		diagramExclusions.add(getDiagramEditPart());
+		diagramExclusions.add(getDiagramEditPart().getParent());
 	}
 
 	@Override
@@ -38,10 +38,15 @@ public class MoveMultiNodeGesture extends AbstractGesture{
 
 	@Override
 	public void handleTouchAdded(Touch touch) {
-		EditPart touchedEditPart = findTouchedEditPart(touch);
-		if (touchedEditPart != null) {
-			if (touchedEditPart instanceof ClassEditPart) {
-				staticTouches.add(touch);
+		EditPart touchedEditPart = findTouchedEditPartExcluding(touch, diagramExclusions);
+		GraphicalEditPart primaryEditPart = getPrimaryEditPart(touchedEditPart);
+		if (primaryEditPart != null) {
+			if (primaryEditPart instanceof NodeEditPart) {
+				
+				MoveNodeCommand moveNodeCommand 
+					= new MoveNodeCommand(getDiagramEditPart());
+				
+				getTouchCommandMap().put(touch, moveNodeCommand);				
 			}
 		}
 	}
@@ -49,31 +54,44 @@ public class MoveMultiNodeGesture extends AbstractGesture{
 	@Override
 	public void handleTouchChanged(Touch touch) {
 		if (getAcceptsTouches()) {
-			if (staticTouches.contains(touch)) {
-
-				PointList path = touch.getPath();
-				Point midPoint = path.getMidpoint();
-				Point currentPoint = touch.getPosition();
-
-				if (currentPoint.getDistance(midPoint) > GESTURE_MOVE_THRESHOLD) {
-					staticTouches.remove(touch);
-					touchCommandMap.put(touch, 
-							new MoveNodeCommand(getDiagramEditPart()));
+			MoveNodeCommand moveNodeCommand = getTouchCommandMap().get(touch);
+			if (moveNodeCommand != null) {
+				if (touchMoved(touch, TOUCH_MOVEMENT_THRESHOLD)){
+					
+					moveNodeCommand.update(touch.getPosition());
+					
+					getTouchCommandMap().put(touch, 
+							moveNodeCommand);
+					
 				}
+				
+				return;
 			}
+			
+			MoveNodeCommand command = getTouchCommandMap().get(touch);
+			command.update(touch.getPosition());
 		}
 	}
 
+
+
 	@Override
 	public void handleTouchRemoved(Touch touch) {
-		staticTouches.remove(touch);
-
+//		boolean remove = getStaticTouches().remove(touch);
+//		if (remove) {
+//			return;
+//		}
+	
+		MoveNodeCommand moveNodeCommand = getTouchCommandMap().get(touch);
+		if (moveNodeCommand != null) {
+			moveNodeCommand.execute();
+		}
+		getTouchCommandMap().remove(touch);
 	}
 
 
 	public void reset() {
-		// TODO Auto-generated method stub
-
+		touchCommandMap.clear();
 	}
 
 	public void setDiagramEditPart(DiagramEditPart editor) {
@@ -83,12 +101,12 @@ public class MoveMultiNodeGesture extends AbstractGesture{
 		return null;
 	}
 
-	public void setMoveTouches(List<Touch> moveTouches) {
-		this.staticTouches = moveTouches;
+	public void setTouchCommandMap(Map<Touch, MoveNodeCommand> touchCommandMap) {
+		this.touchCommandMap = touchCommandMap;
 	}
 
-	public List<Touch> getMoveTouches() {
-		return staticTouches;
+	public Map<Touch, MoveNodeCommand> getTouchCommandMap() {
+		return touchCommandMap;
 	}
 
 }

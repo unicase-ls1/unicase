@@ -3,7 +3,7 @@ package org.unicase.ui.tom.gestures;
 import org.eclipse.gmf.runtime.diagram.ui.editparts.DiagramEditPart;
 import org.unicase.ui.tom.TouchDispatch;
 import org.unicase.ui.tom.commands.AbstractCommand;
-import org.unicase.ui.tom.commands.CreateClassCommand;
+import org.unicase.ui.tom.commands.CreateNodeCommand;
 import org.unicase.ui.tom.touches.Touch;
 
 public class CreateNodeGesture extends CreateGesture implements Gesture {
@@ -20,7 +20,7 @@ public class CreateNodeGesture extends CreateGesture implements Gesture {
 
 			super.execute();	
 
-			AbstractCommand createClassCommand = new CreateClassCommand(
+			AbstractCommand createClassCommand = new CreateNodeCommand(
 					getDiagramEditPart(),
 					getStationaryTouch().getPosition());
 

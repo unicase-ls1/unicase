@@ -1,4 +1,4 @@
-package org.unicase.ui.tom.commands;
+package org.unicase.ui.tom.actions;
 
 import org.eclipse.draw2d.IFigure;
 import org.eclipse.draw2d.RangeModel;
@@ -9,14 +9,13 @@ import org.eclipse.gef.Request;
 import org.eclipse.gef.editparts.AbstractGraphicalEditPart;
 import org.eclipse.gmf.runtime.diagram.ui.editparts.DiagramEditPart;
 import org.eclipse.swt.widgets.Display;
-import org.unicase.ui.tom.Utility;
 
-public class MoveCanvasCommand extends AbstractCommand {
+public class MoveCanvasAction extends AbstractAction {
 
 	private Viewport scrollableViewport;
 	private Point lastPosition;
 
-	public MoveCanvasCommand(DiagramEditPart diagramEditPart) {
+	public MoveCanvasAction(DiagramEditPart diagramEditPart) {
 		super(diagramEditPart);
 
 		EditPart parent = diagramEditPart.getParent();

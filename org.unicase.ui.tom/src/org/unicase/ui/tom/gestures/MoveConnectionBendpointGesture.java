@@ -176,8 +176,10 @@ Gesture {
 
 	@Override
 	public void handleTouchRemoved(Touch touch) {
-		// TODO Auto-generated method stub
-
+		if (touch == getMoveTouch()) {
+			getMoveConnectionBendpointCommand().execute();
+			setCanExecute(false);
+		}
 	}
 
 	public void setInitialEditPart(ConnectionEditPart initialEditPart) {

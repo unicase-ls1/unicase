@@ -1,21 +1,21 @@
-package org.unicase.ui.tom.commands;
+package org.unicase.ui.tom.actions;
 
 import org.eclipse.gef.Request;
 import org.eclipse.gef.requests.SelectionRequest;
 import org.eclipse.gmf.runtime.diagram.ui.editparts.DiagramEditPart;
 import org.eclipse.gmf.runtime.diagram.ui.editparts.GraphicalEditPart;
 
-public class SelectCommand extends AbstractCommand {
+public class SelectAction extends AbstractAction{
 
-	private final GraphicalEditPart targetEditPart;
+	private GraphicalEditPart targetEditPart;
 
-	SelectCommand(DiagramEditPart diagramEditPart, GraphicalEditPart targetEditPart) {
+	SelectAction(DiagramEditPart diagramEditPart, GraphicalEditPart targetEditPart) {
 		super(diagramEditPart);
-		this.targetEditPart = targetEditPart;
+		this.setTargetEditPart(targetEditPart);
 	}
 
 	public void execute() {
-		getTargetEditPart().showTargetFeedback(getRequest());	
+		getTargetEditPart().showTargetFeedback(createRequest());	
 	}
 
 	public Request createRequest() {
@@ -27,5 +27,9 @@ public class SelectCommand extends AbstractCommand {
 
 	public GraphicalEditPart getTargetEditPart() {
 		return targetEditPart;
+	}
+
+	public void setTargetEditPart(GraphicalEditPart targetEditPart) {
+		this.targetEditPart = targetEditPart;
 	}
 }

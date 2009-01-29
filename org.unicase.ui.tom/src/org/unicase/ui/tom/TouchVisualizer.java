@@ -1,5 +1,6 @@
 package org.unicase.ui.tom;
 
+import java.lang.reflect.Method;
 import java.util.HashMap;
 import java.util.Map;
 
@@ -12,7 +13,9 @@ import org.eclipse.draw2d.Viewport;
 import org.eclipse.draw2d.geometry.Dimension;
 import org.eclipse.draw2d.geometry.Point;
 import org.eclipse.draw2d.geometry.Rectangle;
+import org.eclipse.emf.ecore.EObject;
 import org.eclipse.gef.GraphicalViewer;
+import org.eclipse.gmf.runtime.notation.View;
 import org.eclipse.ui.IEditorPart;
 import org.eclipse.ui.IPageListener;
 import org.eclipse.ui.IWorkbenchPage;
@@ -84,14 +87,40 @@ public class TouchVisualizer extends TouchAdapterImpl implements IPageListener{
 
 			if (rootFigure != null) {
 				freeformViewport = (FreeformViewport) rootFigure.getChildren().get(0);
-//				borderItemsAwareFreeformLayer = (BorderItemsAwareFreeFormLayer) getBorderItemsAwareFreeformLayer(freeformViewport);
-//				borderItemsAwareFreeformLayer = (BorderItemsAwareFreeFormLayer) borderItemsAwareFreeformLayer.getChildren().get(0);
 			}
-
 			
 			if (canvas != null) {
 				canvasViewport = canvas.getViewport();
 			}
+			
+			Package package1 = activeEditor.getClass().getPackage();
+			ClassLoader classLoader = activeEditor.getClass().getClassLoader();
+			
+			String name = package1.getName();
+			name = name.concat(".ModelVisualIDRegistry");
+			
+			Class<?> loadClass = null;
+			try {
+				loadClass = classLoader.loadClass(name);
+			} catch (ClassNotFoundException e) {
+				e.printStackTrace();
+			}
+			
+//			(View containerView, EObject domainElement) {
+			try {
+				Method declaredMethod = loadClass.getDeclaredMethod("getNodeVisualID", View.class, EObject.class);
+//				declaredMethod.invoke(obj, args);
+				
+			} catch (SecurityException e) {
+				e.printStackTrace();
+			} catch (NoSuchMethodException e) {
+				e.printStackTrace();
+			}
+			
+			System.out.println(loadClass);
+			
+			
+//			org.unicase.model.classDiagram.part.ModelVisualIDRegistry
 		}
 	}
 

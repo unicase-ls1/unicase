@@ -11,18 +11,21 @@ import org.eclipse.gmf.runtime.diagram.ui.requests.CreateViewAndElementRequest.V
 import org.eclipse.gmf.runtime.emf.type.core.IElementType;
 import org.eclipse.gmf.runtime.emf.type.core.IHintedType;
 import org.eclipse.gmf.runtime.emf.type.core.requests.CreateElementRequest;
-import org.unicase.model.classDiagram.providers.ModelElementTypes;
 
-public class CreateClassCommand extends AbstractCommand{
+public class CreateNodeCommand extends AbstractCommand{
 	
 	private IElementType elementType;
 	private Point point;
 	
-	public CreateClassCommand(DiagramEditPart diagramEditPart, Point point) {
+	public CreateNodeCommand(DiagramEditPart diagramEditPart, Point point) {
+		this(diagramEditPart, point, null);
+	}
+	
+	public CreateNodeCommand(DiagramEditPart diagramEditPart, Point point, IElementType elementType) {
 		super(diagramEditPart);
 		
+		this.elementType = elementType;
 		setPoint(point);
-		setElementType(ModelElementTypes.Class_2001);
 	}
 	
 	public Request createRequest() {

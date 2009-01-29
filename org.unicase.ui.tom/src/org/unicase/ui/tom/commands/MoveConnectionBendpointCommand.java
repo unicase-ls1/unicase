@@ -15,7 +15,14 @@ public class MoveConnectionBendpointCommand extends MoveCommand implements
 	}
 
 	public void execute() {
+		final MouseEvent mouseEvent = createMouseEventAtPosition(getPosition());
 		
+		Runnable runnable = new Runnable(){
+			public void run(){
+				getDragTracker().mouseUp(mouseEvent, getDiagramEditPart().getViewer());
+			}
+		};
+		Display.getDefault().syncExec(runnable);
 
 	}
 

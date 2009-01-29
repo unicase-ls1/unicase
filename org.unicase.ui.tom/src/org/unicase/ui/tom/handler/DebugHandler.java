@@ -7,8 +7,8 @@ import org.eclipse.core.commands.IHandler;
 import org.eclipse.gmf.runtime.diagram.ui.editparts.DiagramEditPart;
 import org.eclipse.ui.IEditorPart;
 import org.unicase.ui.common.diagram.ModelDiagramEditor;
+import org.unicase.ui.tom.GestureInterpreter;
 import org.unicase.ui.tom.Utility;
-import org.unicase.ui.tom.gestures.GestureInterpreter;
 
 public class DebugHandler extends AbstractHandler implements IHandler {
 

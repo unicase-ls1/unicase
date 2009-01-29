@@ -7,20 +7,20 @@ import org.eclipse.draw2d.geometry.Point;
 import org.eclipse.gef.EditPart;
 import org.eclipse.gmf.runtime.diagram.ui.editparts.DiagramEditPart;
 import org.unicase.ui.tom.TouchDispatch;
-import org.unicase.ui.tom.commands.MoveCanvasCommand;
+import org.unicase.ui.tom.actions.MoveCanvasAction;
 import org.unicase.ui.tom.touches.Touch;
 
 public class MoveCanvasGesture extends AbstractGesture {
 
 	private List<Touch> candidateTouches;
 	private Touch moveTouch;
-	private MoveCanvasCommand moveCanvasCommand;
+	private MoveCanvasAction moveCanvasCommand;
 
 	public MoveCanvasGesture(TouchDispatch dispatch, DiagramEditPart diagramEditPart) {
 		super(dispatch, diagramEditPart);
 
 		setCandidateTouches(new ArrayList<Touch>()); 
-		setMoveCanvasCommand(new MoveCanvasCommand(diagramEditPart));
+		setMoveCanvasCommand(new MoveCanvasAction(diagramEditPart));
 	}
 
 	@Override
@@ -103,11 +103,11 @@ public class MoveCanvasGesture extends AbstractGesture {
 		return candidateTouches;
 	}
 
-	public void setMoveCanvasCommand(MoveCanvasCommand moveCanvasCommand) {
+	public void setMoveCanvasCommand(MoveCanvasAction moveCanvasCommand) {
 		this.moveCanvasCommand = moveCanvasCommand;
 	}
 
-	public MoveCanvasCommand getMoveCanvasCommand() {
+	public MoveCanvasAction getMoveCanvasCommand() {
 		return moveCanvasCommand;
 	}
 
