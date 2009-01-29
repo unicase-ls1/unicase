@@ -22,7 +22,7 @@ import org.eclipse.gmf.runtime.draw2d.ui.figures.WrappingLabel;
 import org.eclipse.gmf.runtime.gef.ui.figures.DefaultSizeNodeFigure;
 import org.eclipse.gmf.runtime.gef.ui.figures.NodeFigure;
 import org.eclipse.gmf.runtime.notation.View;
-import org.unicase.ui.common.diagram.CenterLayout;
+import org.unicase.ui.common.diagram.figures.CenterLayout;
 
 /**
  * @generated
