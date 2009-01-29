@@ -76,6 +76,45 @@
         </package>
         <constraints
               categories="org.unicase.model">
+          <constraint
+				lang="OCL"
+				severity="WARNING"
+				mode="Batch"
+				name="FunctionalRequirement Usecase Constraint"
+				id="org.unicase.model.requirement.FunctionalRequirementUsecase"
+				statusCode="1">
+			<message>{0} has no usecases</message>
+			<target class="FunctionalRequirement"/>
+				<![CDATA[
+					self.useCases->size() > 0
+				]]>
+		   </constraint>
+		   <constraint
+				lang="OCL"
+				severity="WARNING"
+				mode="Batch"
+				name="Actor Usecase Constraint"
+				id="org.unicase.model.requirement.ActorUsecase"
+				statusCode="1">
+			<message>{0} has no usecases</message>
+			<target class="Actor"/>
+				<![CDATA[
+					self.initiatedUseCases->size() + self.participatedUseCases->size() > 0
+				]]>
+		   </constraint>
+		   <constraint
+				lang="OCL"
+				severity="WARNING"
+				mode="Batch"
+				name="ActorInstance Scenario Constraint"
+				id="org.unicase.model.requirement.ActorInstanceScenario"
+				statusCode="1">
+			<message>{0} has no scenarios</message>
+			<target class="ActorInstance"/>
+				<![CDATA[
+					self.initiatedScenarios->size() + self.participatedScenarios->size() > 0
+				]]>
+		   </constraint>
            <constraint
                  class="org.unicase.model.requirement.validation.UsecaseRequirementConstraint"
                  id="org.unicase.model.requirement.UsecaseNFRequirement"
@@ -236,20 +275,6 @@
                  {0} has annotations, this should be avoided.
               </message>
            </constraint>
-           <constraint
-				lang="OCL"
-				severity="ERROR"
-				mode="Batch"
-				name="Meeting Location Constraint"
-				id="org.unicase.model.document.MeetingLocation"
-				statusCode="1">
-			<message>{0} has no location set</message>
-			<target class="Meeting"/>
-			
-				<![CDATA[
-					not self.location.oclIsUndefined()
-				]]>
-		   </constraint>
         </constraints>
      </constraintProvider>
   </extension>
