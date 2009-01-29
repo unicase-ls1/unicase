@@ -29,6 +29,7 @@ import org.eclipse.swt.graphics.Font;
 import org.eclipse.swt.widgets.Display;
 import org.unicase.ui.common.diagram.CenterLayout;
 import org.unicase.ui.common.diagram.ConfigurableRectangleFigure;
+import org.unicase.ui.tom.classDiagram.edit.policies.TouchResizableShapeEditPolicy;
 
 /**
  * @generated
@@ -117,6 +118,14 @@ public class ClassEditPart extends ShapeNodeEditPart {
 			}
 		};
 		return lep;
+	}
+	
+	/**
+	 * @generated NOT
+	 */
+	@Override
+	public EditPolicy getPrimaryDragEditPolicy() {
+		return new TouchResizableShapeEditPolicy();
 	}
 
 	/**
