@@ -531,9 +531,15 @@
       <?gmfgen generated="true"?>
       <clientContext id="ModelClientContext">
          <enablement>
-            <test
-               property="org.eclipse.gmf.runtime.emf.core.editingDomain"
-               value="org.unicase.EditingDomain"/>
+            <and>
+               <instanceof
+                     value="org.unicase.model.ModelElement">
+               </instanceof>
+               <test
+                     property="org.unicase.ui.tom.classDiagram.isDiagramType"
+                     value="CLASS_DIAGRAM">
+               </test>
+            </and>
          </enablement>
       </clientContext> 
       <binding context="ModelClientContext">
@@ -551,5 +557,15 @@
          <advice ref="org.eclipse.gmf.runtime.diagram.core.advice.notationDepdendents"/>
       </binding>
    </extension>
+     <extension
+           point="org.eclipse.core.expressions.propertyTesters">
+        <propertyTester
+              class="org.unicase.ui.tom.classDiagram.part.DiagramTypeTester"
+              id="org.unicase.ui.tom.classDiagram.part.DiagramTypeTester"
+              namespace="org.unicase.ui.tom.classDiagram"
+              properties="isDiagramType"
+              type="org.unicase.model.ModelElement">
+        </propertyTester>
+     </extension>
 
 </plugin>

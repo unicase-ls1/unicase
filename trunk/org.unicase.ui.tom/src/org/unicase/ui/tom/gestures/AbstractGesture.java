@@ -7,10 +7,15 @@ import org.eclipse.draw2d.ConnectionLayer;
 import org.eclipse.draw2d.FreeformLayer;
 import org.eclipse.draw2d.IFigure;
 import org.eclipse.draw2d.geometry.Point;
+import org.eclipse.draw2d.geometry.PointList;
+import org.eclipse.draw2d.geometry.Rectangle;
 import org.eclipse.gef.EditPart;
 import org.eclipse.gef.LayerConstants;
 import org.eclipse.gmf.runtime.diagram.ui.editparts.DiagramEditPart;
+import org.eclipse.gmf.runtime.diagram.ui.editparts.GraphicalEditPart;
 import org.eclipse.gmf.runtime.diagram.ui.editparts.ShapeNodeEditPart;
+import org.eclipse.gmf.runtime.draw2d.ui.figures.IOvalAnchorableFigure;
+import org.eclipse.gmf.runtime.draw2d.ui.figures.IPolygonAnchorableFigure;
 import org.unicase.ui.tom.TouchDispatch;
 import org.unicase.ui.tom.notifications.GestureNotification;
 import org.unicase.ui.tom.notifications.GestureNotificationImpl;
@@ -24,6 +29,7 @@ implements TouchAdapter, Gesture{
 
 	protected static final int TOUCH_DIAMETER = 30;
 	protected static final int TOUCH_MOVEMENT_THRESHOLD = 10;
+	protected static final int TOUCH_DISTANCE_THRESHOLD = 30;
 	
 	private TouchDispatch dispatch;
 	private boolean acceptsTouches;
@@ -41,6 +47,38 @@ implements TouchAdapter, Gesture{
 		//do nothing
 	}
 
+	protected static boolean touchMoved(Touch touch, int touchMovementThreshold) {
+		PointList path = touch.getPath();
+		Point midPoint = path.getMidpoint();
+		Point point = touch.getPosition();
+		double distance = point.getDistance(midPoint);
+		
+		boolean touchMoved = distance > TOUCH_MOVEMENT_THRESHOLD;
+		
+		return touchMoved;
+	}
+	
+	protected boolean shapeContainsPoint(IFigure figure, Point position) {
+		
+		boolean containsPoint = false;
+		
+		if (figure instanceof IOvalAnchorableFigure) {
+			//If the figure is an oval we assume the 
+			//oval's hit testing is good enough   
+			containsPoint =  figure.containsPoint(position);	
+		}else if (figure instanceof IPolygonAnchorableFigure) {
+			Rectangle bounds = ((IPolygonAnchorableFigure) figure).getPolygonPoints().getBounds().getCopy();
+			bounds.expand(TOUCH_DIAMETER/2, TOUCH_DIAMETER/2);
+			containsPoint = bounds.contains(position);
+		}else{
+			Rectangle bounds = figure.getBounds().getCopy();
+			bounds.expand(TOUCH_DIAMETER/2, TOUCH_DIAMETER/2);
+			containsPoint = bounds.contains(position);
+		}
+		
+		return containsPoint;
+	}
+	
 	public FreeformLayer getNodeLayer() {
 		IFigure layer = getDiagramEditPart().getLayer(LayerConstants.PRIMARY_LAYER);
 		if (layer instanceof FreeformLayer) {
@@ -167,13 +205,13 @@ implements TouchAdapter, Gesture{
 		this.diagramEditPart = editor;
 	}
 
-	protected EditPart getPrimaryEditPart(EditPart touchedEditPart) {
+	protected GraphicalEditPart getPrimaryEditPart(EditPart touchedEditPart) {
 		EditPart primaryEditPart = touchedEditPart;
 		while (primaryEditPart  != null 
 				&& !(primaryEditPart  instanceof ShapeNodeEditPart)
 				&& !(primaryEditPart  instanceof DiagramEditPart)) {
 			primaryEditPart = primaryEditPart.getParent();
 		}
-		return primaryEditPart;
+		return (GraphicalEditPart) primaryEditPart;
 	}
 }

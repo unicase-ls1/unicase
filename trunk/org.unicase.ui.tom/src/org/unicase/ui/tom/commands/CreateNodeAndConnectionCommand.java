@@ -5,6 +5,7 @@ import java.util.List;
 import org.eclipse.core.runtime.IAdaptable;
 import org.eclipse.draw2d.geometry.Point;
 import org.eclipse.emf.ecore.EObject;
+import org.eclipse.gef.EditPart;
 import org.eclipse.gef.Request;
 import org.eclipse.gef.commands.CompoundCommand;
 import org.eclipse.gmf.runtime.diagram.ui.commands.DeferredCreateConnectionViewAndElementCommand;
@@ -16,55 +17,53 @@ import org.eclipse.gmf.runtime.diagram.ui.requests.CreateViewAndElementRequest;
 import org.eclipse.gmf.runtime.emf.core.util.EObjectAdapter;
 import org.eclipse.gmf.runtime.emf.type.core.IElementType;
 import org.eclipse.gmf.runtime.emf.type.core.IHintedType;
-import org.unicase.model.classDiagram.providers.ModelElementTypes;
 
-public class CreateClassAndAssociationCommand extends AbstractCommand {
+public class CreateNodeAndConnectionCommand extends AbstractCommand {
 
-	private final EObject sourceObject;
-	private final EObject targetObject;
+	private final EditPart sourceEditPart;
+	private final EditPart targetEditPart;
 	private final Point sourcePoint;
 	private final Point targetPoint;
-	private CreateClassCommand sourceCreationCommand;
-	private CreateClassCommand targetCreationCommand;
-	private IElementType elementType;
+	private CreateNodeCommand sourceCreationCommand;
+	private CreateNodeCommand targetCreationCommand;
+	private IElementType connectionElementType = null;
+	private IElementType nodeElementType = null;
 
-	private CreateClassAndAssociationCommand(
+	protected CreateNodeAndConnectionCommand(
 			DiagramEditPart editor,
 			Point sourcePoint,
 			Point targetPoint,
-			EObject sourceObject,
-			EObject targetObject) {
+			EditPart sourceEditPart,
+			EditPart targetEditPart) {
 		super(editor);
 		this.sourcePoint = sourcePoint;
 		this.targetPoint = targetPoint;
-		this.sourceObject = sourceObject;
-		this.targetObject = targetObject;
-		
-		elementType = ModelElementTypes.Association_4002;
+		this.sourceEditPart = sourceEditPart;
+		this.targetEditPart = targetEditPart;
 	}
 
-	public CreateClassAndAssociationCommand(
+	public CreateNodeAndConnectionCommand(
 			DiagramEditPart editor,
 			Point sourcePoint, 
-			EObject targetObject) {
+			EditPart targetObject) {
 		this(editor, sourcePoint, null, null, targetObject);
 	}
 
-	public CreateClassAndAssociationCommand(
+	public CreateNodeAndConnectionCommand(
 			DiagramEditPart editor,
-			EObject sourceObject,
+			EditPart sourceObject,
 			Point targetPoint) {
 		this(editor, null, targetPoint, sourceObject, null);
 	}
 
-	public CreateClassAndAssociationCommand(
+	public CreateNodeAndConnectionCommand(
 			DiagramEditPart editor,
-			EObject sourceObject,
-			EObject targetObject ){
+			EditPart sourceObject,
+			EditPart targetObject ){
 		this(editor, null, null, sourceObject, targetObject);
 	}
 
-	public CreateClassAndAssociationCommand(
+	public CreateNodeAndConnectionCommand(
 			DiagramEditPart editor,
 			Point sourcePoint,
 			Point targetPoint) {
@@ -75,8 +74,8 @@ public class CreateClassAndAssociationCommand extends AbstractCommand {
 	public Request createRequest() {
 		CreateConnectionViewAndElementRequest newRequest 
 		= new CreateConnectionViewAndElementRequest(
-				elementType,
-				((IHintedType) elementType).getSemanticHint(),
+				getConnectionElementType(),
+				((IHintedType) getConnectionElementType()).getSemanticHint(),
 				((IGraphicalEditPart)getDiagramEditPart()).getDiagramPreferencesHint());
 
 		return newRequest;
@@ -120,8 +119,8 @@ public class CreateClassAndAssociationCommand extends AbstractCommand {
 	}
 
 	private IAdaptable getTargetAdapter() {
-		if (getTargetObject() != null) {
-			EObjectAdapter existingObjectAdapter = new EObjectAdapter(getTargetObject());
+		if (getTargetEditPart() != null) {
+			EObjectAdapter existingObjectAdapter = new EObjectAdapter((EObject) getTargetEditPart().getModel());
 			return existingObjectAdapter;
 		}else{
 			if (getTargetCreationCommand() != null) {
@@ -131,27 +130,36 @@ public class CreateClassAndAssociationCommand extends AbstractCommand {
 		return null;
 	}
 
-	private CreateClassCommand getSourceCreationCommand(){
-		if (getSourceObject() == null) {
+	private CreateNodeCommand getSourceCreationCommand(){
+		if (getSourceEditPart() == null) {
 			if (sourceCreationCommand == null) {
-				sourceCreationCommand = new CreateClassCommand(getDiagramEditPart(), sourcePoint);	
+				if (getNodeElementType() == null) {
+					sourceCreationCommand = new CreateDefaultNodeCommand(getDiagramEditPart(), sourcePoint);	
+				}else{
+					sourceCreationCommand = new CreateNodeCommand(getDiagramEditPart(), sourcePoint, getNodeElementType());
+				}	
 			}
 		}
 		return sourceCreationCommand;
 	}
 
-	private CreateClassCommand getTargetCreationCommand(){
-		if (getTargetObject() == null) {
+	private CreateNodeCommand getTargetCreationCommand(){
+		if (getTargetEditPart() == null) {
 			if (targetCreationCommand == null) {
-				targetCreationCommand = new CreateClassCommand(getDiagramEditPart(), targetPoint);	
+				if (getNodeElementType() == null) {
+					targetCreationCommand = new CreateDefaultNodeCommand(getDiagramEditPart(), targetPoint);	
+				}else{
+					targetCreationCommand = new CreateNodeCommand(getDiagramEditPart(), targetPoint, getNodeElementType());
+				}
+					
 			}
 		}
 		return targetCreationCommand;
 	}
 
 	private IAdaptable getSourceAdapter() {
-		if (getSourceObject() != null) {
-			EObjectAdapter existingObjectAdapter = new EObjectAdapter(getSourceObject());
+		if (getSourceEditPart() != null) {
+			EObjectAdapter existingObjectAdapter = new EObjectAdapter((EObject) getSourceEditPart().getModel());
 			return existingObjectAdapter;
 		}else{
 			if (getSourceCreationCommand() != null) {
@@ -167,12 +175,12 @@ public class CreateClassAndAssociationCommand extends AbstractCommand {
 		getDiagramEditPart().getDiagramEditDomain().getDiagramCommandStack().execute(command);
 	}
 
-	public EObject getTargetObject() {
-		return targetObject;
+	public EditPart getTargetEditPart() {
+		return targetEditPart;
 	}
 
-	public EObject getSourceObject() {
-		return sourceObject;
+	public EditPart getSourceEditPart() {
+		return sourceEditPart;
 	}
 
 	public Point getSourcePoint() {
@@ -181,5 +189,21 @@ public class CreateClassAndAssociationCommand extends AbstractCommand {
 
 	public Point getTargetPoint() {
 		return targetPoint;
+	}
+
+	public void setConnectionElementType(IElementType connectionElementType) {
+		this.connectionElementType = connectionElementType;
+	}
+
+	public IElementType getConnectionElementType() {
+		return connectionElementType;
+	}
+
+	public void setNodeElementType(IElementType nodeElementType) {
+		this.nodeElementType = nodeElementType;
+	}
+
+	public IElementType getNodeElementType() {
+		return nodeElementType;
 	}
 }

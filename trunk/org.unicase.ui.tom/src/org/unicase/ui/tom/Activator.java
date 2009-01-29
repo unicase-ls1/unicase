@@ -19,6 +19,31 @@ public class Activator extends AbstractUIPlugin {
 	 */
 	public Activator() {
 		
+//		IElementType dropeeType = ElementTypeRegistry.getInstance().getElementType(dropee, cc);
+		
+//		String extensionPointID = "org.eclipse.gmf.runtime.emf.type.core.elementTypeBindings";
+//		IExtensionPoint extensionPoint = Platform.getExtensionRegistry().getExtensionPoint(extensionPointID);
+//		
+//		IConfigurationElement[] config = extensionPoint.getConfigurationElements();
+//		for (IConfigurationElement e : config) {
+//			String value = e.getValue();
+//			String attribute = e.getAttribute("ref");
+//			String name = e.getName();
+//			IConfigurationElement[] children = e.getChildren();
+//			try {
+//				Object o = e.createExecutableExtension("class");
+//				if (o instanceof ModelDiagramEditorPlugin) {
+//					o.get
+//				}
+//			} catch (CoreException e1) {
+//				e1.printStackTrace();
+//			}
+//			
+//			if (o instanceof IGreeter) {
+//				((IGreeter) o).greet();
+//			}
+//		}
+//		System.out.println(config);
 	}
 
 	/*

@@ -2,14 +2,14 @@ package org.unicase.ui.tom.commands;
 
 import org.eclipse.gef.Request;
 import org.eclipse.gmf.runtime.diagram.ui.editparts.DiagramEditPart;
+import org.unicase.ui.tom.operations.AbstractOperation;
 
 /**
  * @author schroech
  *
  */
-public abstract class AbstractCommand implements Command{
+public abstract class AbstractCommand extends AbstractOperation implements Command{
 
-	private DiagramEditPart diagramEditPart;
 	private Request request;
 
 	/**
@@ -18,22 +18,7 @@ public abstract class AbstractCommand implements Command{
 	 * The model diagram edit part, usually the child of the RenderedRootDiagramEditPart  
 	 */
 	AbstractCommand(DiagramEditPart diagramEditPart){
-		this.diagramEditPart = diagramEditPart;	
-	}
-
-	/**
-	 * @param diagramEditPart
-	 * The model diagram edit part
-	 */
-	public void setDiagramEditPart(DiagramEditPart diagramEditPart) {
-		this.diagramEditPart = diagramEditPart;
-	}
-
-	/**
-	 * @return The model diagram edit part
-	 */
-	public DiagramEditPart getDiagramEditPart() {
-		return diagramEditPart;
+		super(diagramEditPart);
 	}
 
 	public void setRequest(Request request) {
@@ -46,4 +31,7 @@ public abstract class AbstractCommand implements Command{
 		}
 		return request;
 	}
+	
+
+	public abstract Request createRequest();
 }

@@ -1,12 +1,11 @@
 package org.unicase.ui.tom.gestures;
 
 import org.eclipse.draw2d.geometry.Point;
-import org.eclipse.emf.ecore.EObject;
 import org.eclipse.gef.EditPart;
 import org.eclipse.gmf.runtime.diagram.ui.editparts.DiagramEditPart;
 import org.unicase.ui.tom.TouchDispatch;
 import org.unicase.ui.tom.commands.Command;
-import org.unicase.ui.tom.commands.CreateClassAndAssociationCommand;
+import org.unicase.ui.tom.commands.CreateNodeAndConnectionCommand;
 import org.unicase.ui.tom.touches.Touch;
 
 public class CreateNodeAndConnectionGesture extends CreateGesture implements
@@ -26,8 +25,8 @@ Gesture {
 			Command command = null;
 			Point sourcePoint;
 			Point targetPoint;
-			EObject sourceModel = null;
-			EObject targetModel = null;
+			EditPart sourceEditPart = null;
+			EditPart targetEditPart = null;
 
 			EditPart firstTouchedEditPart = findTouchedEditPart(getStationaryTouch());
 			firstTouchedEditPart = getPrimaryEditPart(firstTouchedEditPart);
@@ -51,43 +50,43 @@ Gesture {
 				sourcePoint = getSecondStationaryTouch().getPosition();
 				targetPoint = getStationaryTouch().getPosition();
 
-				sourceModel = (EObject) secondTouchedEditPart.getModel();
-				targetModel = (EObject) firstTouchedEditPart.getModel();
+				sourceEditPart = secondTouchedEditPart;
+				targetEditPart = firstTouchedEditPart;
 			}else{
 				sourcePoint = getStationaryTouch().getPosition();
 				targetPoint = getSecondStationaryTouch().getPosition();	
 
-				sourceModel = (EObject) firstTouchedEditPart.getModel();
-				targetModel = (EObject) secondTouchedEditPart.getModel();
+				sourceEditPart = firstTouchedEditPart;
+				targetEditPart = secondTouchedEditPart;
 			}
 
 			if (firstTouchedEditPart instanceof DiagramEditPart
 					&& secondTouchedEditPart instanceof DiagramEditPart) {
 
-				command = new CreateClassAndAssociationCommand(
+				command = new CreateNodeAndConnectionCommand(
 						getDiagramEditPart(),
 						sourcePoint,
 						targetPoint);
 
 			}else if (firstTouchedEditPart instanceof DiagramEditPart) {
 
-				command = new CreateClassAndAssociationCommand(
+				command = new CreateNodeAndConnectionCommand(
 						getDiagramEditPart(), 
 						sourcePoint,
-						targetModel);
+						targetEditPart);
 
 			}else if (secondTouchedEditPart instanceof DiagramEditPart) {
 
-				command = new CreateClassAndAssociationCommand(
+				command = new CreateNodeAndConnectionCommand(
 						getDiagramEditPart(), 
-						sourceModel,
+						sourceEditPart,
 						targetPoint);
 			}else{
 
-				command = new CreateClassAndAssociationCommand(
+				command = new CreateNodeAndConnectionCommand(
 						getDiagramEditPart(),
-						sourceModel,
-						targetModel);
+						sourceEditPart,
+						targetEditPart);
 			}
 
 			command.execute();

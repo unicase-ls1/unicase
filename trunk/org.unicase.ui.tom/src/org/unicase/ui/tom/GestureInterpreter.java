@@ -1,10 +1,17 @@
-package org.unicase.ui.tom.gestures;
+package org.unicase.ui.tom;
 
 import java.util.ArrayList;
 import java.util.List;
 
-import org.unicase.ui.tom.TouchDispatch;
-import org.unicase.ui.tom.Utility;
+import org.eclipse.gmf.runtime.diagram.ui.editparts.DiagramEditPart;
+import org.eclipse.ui.IEditorPart;
+import org.unicase.ui.common.diagram.ModelDiagramEditor;
+import org.unicase.ui.tom.gestures.CreateNodeAndConnectionGesture;
+import org.unicase.ui.tom.gestures.CreateNodeGesture;
+import org.unicase.ui.tom.gestures.Gesture;
+import org.unicase.ui.tom.gestures.MoveCanvasGesture;
+import org.unicase.ui.tom.gestures.MoveConnectionBendpointGesture;
+import org.unicase.ui.tom.gestures.MoveNodeGesture;
 import org.unicase.ui.tom.notifications.GestureAdapter;
 import org.unicase.ui.tom.notifications.GestureNotification;
 import org.unicase.ui.tom.notifications.TouchAdapter;
@@ -22,6 +29,31 @@ implements TouchAdapter, GestureAdapter{
 	public GestureInterpreter(TouchDispatch dispatch) {
 		setDispatch(dispatch);
 		setGestures(new ArrayList<Gesture>());
+		
+		IEditorPart editor = Utility.getActiveEditor();	
+		if (editor == null){
+			return;
+		}
+
+		
+		DiagramEditPart diagramEditPart = ((ModelDiagramEditor) editor).getDiagramEditPart();
+		
+		Gesture gesture = new CreateNodeGesture(dispatch, diagramEditPart);
+		addGesture(gesture);
+		
+		Gesture createNodeAndConnectionGesture 
+			= new CreateNodeAndConnectionGesture(dispatch, diagramEditPart);
+		addGesture(createNodeAndConnectionGesture);
+		
+		Gesture moveGesture = new MoveNodeGesture(dispatch, diagramEditPart);
+		addGesture(moveGesture);
+		
+		Gesture moveConnectionBendpointGesture 
+			= new MoveConnectionBendpointGesture(dispatch, diagramEditPart);
+		addGesture(moveConnectionBendpointGesture);
+		
+		Gesture moveCanvasGesture = new MoveCanvasGesture(dispatch, diagramEditPart);
+		addGesture(moveCanvasGesture);
 	}
 
 	public GestureInterpreter() {

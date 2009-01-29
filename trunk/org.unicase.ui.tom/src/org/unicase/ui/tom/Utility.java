@@ -1,9 +1,6 @@
 package org.unicase.ui.tom;
 
-import org.eclipse.draw2d.IFigure;
-import org.eclipse.draw2d.Viewport;
 import org.eclipse.emf.transaction.RunnableWithResult;
-import org.eclipse.gef.GraphicalEditPart;
 import org.eclipse.swt.widgets.Display;
 import org.eclipse.ui.IEditorPart;
 import org.eclipse.ui.IWorkbench;
