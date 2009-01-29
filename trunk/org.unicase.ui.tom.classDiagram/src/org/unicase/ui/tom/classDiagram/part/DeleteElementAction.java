@@ -51,8 +51,8 @@ public class DeleteElementAction extends AbstractDeleteFromAction {
 		setText(DiagramUIMessages.DiagramEditor_Delete_from_Model);
 		setToolTipText(DiagramUIMessages.DiagramEditor_Delete_from_ModelToolTip);
 		String path = "icons/delete.gif";
-		URL url = FileLocator.find(Platform
-				.getBundle("org.unicase.ui.common"), new Path(path), null);
+		URL url = FileLocator.find(Platform.getBundle("org.unicase.ui.common"),
+				new Path(path), null);
 		ImageDescriptor id = ImageDescriptor.createFromURL(url);
 		setHoverImageDescriptor(id);
 		setImageDescriptor(id);
