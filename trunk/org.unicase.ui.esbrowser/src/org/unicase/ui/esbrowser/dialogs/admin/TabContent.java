@@ -245,8 +245,7 @@ public class TabContent {
 		DropTargetListener dropListener = new DropTargetListener() {
 			public void drop(DropTargetEvent event) {
 				if (PropertiesForm.getDragNDropObject() instanceof ACOrgUnit) {
-					ACOrgUnit orgUnit = (ACOrgUnit) PropertiesForm.getDragNDropObject();
-					doDrop(orgUnit);
+					doDrop((ACOrgUnit) PropertiesForm.getDragNDropObject());
 					PropertiesForm.setDragNDropObject(null);
 				}
 			}
