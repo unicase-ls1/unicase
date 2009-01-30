@@ -77,7 +77,6 @@ public class IterationPlanningView extends ViewPart {
 		 */
 		@Override
 		public void run() {
-			// TODO Auto-generated method stub
 			Shell shell = new Shell(PlatformUI.getWorkbench().getDisplay());
 			shell.setSize(900, 500);
 			shell.setLayout(new FillLayout());
