@@ -40,6 +40,44 @@ import org.unicase.ui.meeditor.mecontrols.AbstractMEControl;
  */
 public class UseCaseStepsControl extends AbstractMEControl {
 	/**
+	 * HyperLink listener class for add step hyperlink.
+	 */
+	private final class IHyperlinkListenerImplementation implements IHyperlinkListener {
+		private final int position;
+
+		private IHyperlinkListenerImplementation(int position) {
+			this.position = position;
+		}
+
+		public void linkActivated(HyperlinkEvent e) {
+			TransactionalEditingDomain domain = TransactionUtil.getEditingDomain(getModelElement());
+			domain.getCommandStack().execute(new RecordingCommand(domain) {
+				@Override
+				protected void doExecute() {
+					RequirementFactory rFactory = RequirementFactoryImpl.init();
+					Step p = rFactory.createStep();
+					UseCase uc = (UseCase) getModelElement();
+					uc.getProject().addModelElement(p);
+					p.setName("New System Step");
+					p.setUserStep(false);
+					EList<Step> allSteps = uc.getUseCaseSteps();
+					if (position == -1) {
+						allSteps.add(p);
+					} else {
+						allSteps.add(position, p);
+					}
+				}
+			});
+		}
+
+		public void linkEntered(HyperlinkEvent e) {
+		}
+
+		public void linkExited(HyperlinkEvent e) {
+		}
+	}
+
+	/**
 	 * Listener for the new step command.
 	 * 
 	 * @author helming
@@ -265,34 +303,7 @@ public class UseCaseStepsControl extends AbstractMEControl {
 
 		Hyperlink addSystemStepLink = getToolkit().createHyperlink(buttonControl, "Insert System Step",
 			GridData.HORIZONTAL_ALIGN_END);
-		addSystemStepLink.addHyperlinkListener(new IHyperlinkListener() {
-			public void linkActivated(HyperlinkEvent e) {
-				TransactionalEditingDomain domain = TransactionUtil.getEditingDomain(getModelElement());
-				domain.getCommandStack().execute(new RecordingCommand(domain) {
-					@Override
-					protected void doExecute() {
-						RequirementFactory rFactory = RequirementFactoryImpl.init();
-						Step p = rFactory.createStep();
-						UseCase uc = (UseCase) getModelElement();
-						uc.getProject().addModelElement(p);
-						p.setName("New System Step");
-						p.setUserStep(false);
-						EList<Step> allSteps = uc.getUseCaseSteps();
-						if (position == -1) {
-							allSteps.add(p);
-						} else {
-							allSteps.add(position, p);
-						}
-					}
-				});
-			}
-
-			public void linkEntered(HyperlinkEvent e) {
-			}
-
-			public void linkExited(HyperlinkEvent e) {
-			}
-		});
+		addSystemStepLink.addHyperlinkListener(new IHyperlinkListenerImplementation(position));
 		addSystemStepLink.setLayoutData(gdSystemLink);
 
 		return buttonControl;
