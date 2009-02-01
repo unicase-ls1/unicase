@@ -68,8 +68,9 @@ public class OSCBundle extends OSCPacket {
 			for (int i = 0; i < newPackets.length; i++) {
 				packets.add(newPackets[i]);
 			}
-		} else
+		} else {
 			packets = new Vector<OSCPacket>();
+		}
 		timestamp = newTimestamp;
 		init();
 	}
@@ -83,7 +84,7 @@ public class OSCBundle extends OSCPacket {
 	}
 	
 	/**
-	 * Set the timestamp for this bundle
+	 * Set the timestamp for this bundle.
 	 * @param timestamp
 	 */
 	public void setTimestamp(Date timestamp) {

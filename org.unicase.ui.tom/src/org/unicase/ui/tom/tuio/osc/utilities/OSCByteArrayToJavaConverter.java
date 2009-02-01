@@ -41,10 +41,11 @@ public class OSCByteArrayToJavaConverter {
 		bytes = byteArray;
 		this.bytesLength = bytesLength;
 		streamPosition = 0;
-		if (isBundle())
+		if (isBundle()) {
 			return convertBundle();
-		else
+		} else {
 			return convertMessage();
+		}
 	}
 
 	private boolean isBundle() {
