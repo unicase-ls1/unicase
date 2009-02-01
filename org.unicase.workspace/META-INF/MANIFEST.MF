@@ -19,6 +19,6 @@ Require-Bundle: org.eclipse.core.runtime,
  org.eclipse.emf.transaction,
  org.eclipse.emf.ecore.xmi,
  org.unicase.emfstore;bundle-version="0.3.3.qualifier";visibility:=reexport,
- edu.tum.cs.cope.migration.execution;bundle-version="0.1.32"
+ edu.tum.cs.cope.migration.execution;bundle-version="0.1.33"
 Bundle-ActivationPolicy: lazy
 Bundle-Activator: org.unicase.workspace.Activator
