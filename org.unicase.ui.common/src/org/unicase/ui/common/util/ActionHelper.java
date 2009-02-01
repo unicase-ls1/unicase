@@ -24,6 +24,7 @@ import org.eclipse.emf.ecore.util.EcoreUtil;
 import org.eclipse.emf.transaction.RecordingCommand;
 import org.eclipse.emf.transaction.TransactionalEditingDomain;
 import org.eclipse.jface.dialogs.ErrorDialog;
+import org.eclipse.jface.viewers.ColumnViewer;
 import org.eclipse.jface.viewers.ISelection;
 import org.eclipse.jface.viewers.IStructuredSelection;
 import org.eclipse.ui.IEditorInput;
@@ -35,6 +36,7 @@ import org.eclipse.ui.handlers.IHandlerService;
 import org.unicase.model.ModelElement;
 import org.unicase.model.diagram.DiagramType;
 import org.unicase.model.diagram.MEDiagram;
+import org.unicase.ui.common.commands.AltKeyDoubleClickAction;
 import org.unicase.ui.common.exceptions.DialogHandler;
 import org.unicase.workspace.ProjectSpace;
 import org.unicase.workspace.Usersession;
@@ -260,7 +262,8 @@ public final class ActionHelper {
 
 		String id = null;
 		if (diagram.getType().equals(DiagramType.CLASS_DIAGRAM)) {
-			id = "org.unicase.model.classDiagram.part.ModelDiagramEditorID";
+//			id = "org.unicase.model.classDiagram.part.ModelDiagramEditorID";
+			id = "org.unicase.ui.tom.classDiagram.part.ModelDiagramEditorID";
 		} else if (diagram.getType().equals(DiagramType.USECASE_DIAGRAM)) {
 			id = "org.unicase.ui.usecaseDiagram.part.ModelDiagramEditorID";
 		} else if (diagram.getType().equals(DiagramType.COMPONENT_DIAGRAM)) {
@@ -365,4 +368,14 @@ public final class ActionHelper {
 			return null;
 		}
 	}
+	
+	/**
+	 * @param viewer ColumnViewer .
+	 * @param classname String sorceView .
+	 * @return AltKeyDoubleClickAction .
+	 */
+	public static AltKeyDoubleClickAction createKeyHookDCAction(ColumnViewer viewer, String classname) {
+		return new AltKeyDoubleClickAction(viewer, classname);
+	}
+
 }
