@@ -7,11 +7,9 @@ package org.unicase.workspace;
 
 import java.io.File;
 import java.io.IOException;
-import java.net.URISyntaxException;
 import java.util.ArrayList;
 import java.util.List;
 
-import org.codehaus.groovy.control.CompilationFailedException;
 import org.eclipse.emf.common.util.EList;
 import org.eclipse.emf.common.util.URI;
 import org.eclipse.emf.ecore.EObject;
@@ -27,7 +25,9 @@ import org.unicase.workspace.connectionmanager.ConnectionManager;
 import org.unicase.workspace.connectionmanager.KeyStoreManager;
 import org.unicase.workspace.connectionmanager.RMIAdminConnectionManagerImpl;
 import org.unicase.workspace.connectionmanager.RMIConnectionManagerImpl;
+import org.unicase.workspace.util.WorkspaceUtil;
 
+import edu.tum.cs.cope.migration.execution.MigrationException;
 import edu.tum.cs.cope.migration.execution.Migrator;
 import edu.tum.cs.cope.migration.execution.MigratorRegistry;
 import edu.tum.cs.cope.migration.execution.ReleaseUtil;
@@ -145,11 +145,9 @@ public final class WorkspaceManager {
 				e.printStackTrace();
 			}
 		} else {
-			// if file exists load it
-			// OW: activate migrator here
-			if (false) {
-				migrate(fileURI);
-			}
+			// file exists load it
+			migrateModel();
+
 			resource = resourceSet.getResource(fileURI, true);
 			EList<EObject> directContents = resource.getContents();
 			// MK cast
@@ -170,29 +168,45 @@ public final class WorkspaceManager {
 
 	}
 
-	private void migrate(URI fileURI) {
-		// OW: get URI of project fragment only
-		// OW: get cp uri here
-		URI changePackageUri = null;
-		URI projectURI = null;
+	private void migrateModel() {
+		List<URI> urisToMigrate = new ArrayList<URI>();
+		File workspaceFile = new File(Configuration.getWorkspaceDirectory());
+		for (File file : workspaceFile.listFiles()) {
+			if (file.getName().startsWith("ps-")) {
+				// OW get real project URI here
+				String absolutePath = file.getAbsolutePath() + File.separatorChar + "2.ucf";
+				URI fileURI = URI.createFileURI(absolutePath);
+				urisToMigrate.add(fileURI);
+			}
+		}
+		for (URI uri : urisToMigrate) {
+			try {
+				// OW get change package resource uri in here
+				migrate(uri, null);
+			} catch (MigrationException e) {
+				WorkspaceUtil.logException(
+					"The migration of the project in projectspace at " + uri.path() + " failed!", e);
+			}
+		}
+
+	}
+
+	/**
+	 * Migrate the model instance if neccessary.
+	 * 
+	 * @param projectURI the uri of the project state
+	 * @param changesURI the uri of the local changes of the project state
+	 * @throws ModelMigrationException
+	 */
+	private void migrate(URI projectURI, URI changesURI) throws MigrationException {
 		String namespaceURI = ReleaseUtil.getNamespaceURI(projectURI);
 		Migrator migrator = MigratorRegistry.getInstance().getMigrator(namespaceURI);
 		List<URI> modelURIs = new ArrayList<URI>();
 		modelURIs.add(projectURI);
-		modelURIs.add(changePackageUri);
-		try {
-			migrator.migrate(modelURIs);
-		} catch (CompilationFailedException e) {
-			// TODO Auto-generated catch block
-			e.printStackTrace();
-		} catch (URISyntaxException e) {
-			// TODO Auto-generated catch block
-			e.printStackTrace();
-		} catch (IOException e) {
-			// TODO Auto-generated catch block
-			e.printStackTrace();
+		if (changesURI != null) {
+			modelURIs.add(changesURI);
 		}
-
+		migrator.migrate(modelURIs);
 	}
 
 	/**
