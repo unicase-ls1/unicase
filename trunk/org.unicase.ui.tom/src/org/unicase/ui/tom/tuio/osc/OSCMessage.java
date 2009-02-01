@@ -58,8 +58,9 @@ public class OSCMessage extends OSCPacket {
 			for (int i = 0; i < newArguments.length; i++) {
 				arguments.add(newArguments[i]);
 			}
-		} else
+		} else {
 			arguments = new Vector<Object>();
+		}
 		init();
 	}
 	

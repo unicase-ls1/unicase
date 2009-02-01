@@ -227,14 +227,18 @@ public class TuioClient implements OSCListener {
 						}
 						f_id = closestCursor.getFingerID();
 						freeCursorList.removeElement(closestCursor);
-					} else maxFingerID = f_id;		
+					} else {
+						maxFingerID = f_id;		
+					}
 					
 					TuioCursor addCursor = new TuioCursor(s_id,f_id,xpos,ypos);
 					cursorList.put(s_id,addCursor);
 
 					for (int i=0;i<listenerList.size();i++) {
 						TuioListener listener = (TuioListener)listenerList.elementAt(i);
-						if (listener!=null) listener.addTuioCursor(addCursor);
+						if (listener!=null) {
+							listener.addTuioCursor(addCursor);
+						}
 					}
 				} else {
 				

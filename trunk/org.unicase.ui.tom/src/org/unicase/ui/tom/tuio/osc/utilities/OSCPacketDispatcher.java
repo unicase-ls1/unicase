@@ -24,6 +24,10 @@ import org.unicase.ui.tom.tuio.osc.OSCPacket;
  * 
  */
 
+/**
+ * @author schroech
+ *
+ */
 public class OSCPacketDispatcher {
 	private Hashtable<String,OSCListener> addressToClassTable = new Hashtable<String,OSCListener>();
 	
@@ -34,22 +38,35 @@ public class OSCPacketDispatcher {
 		super();
 	}
 
+	/**
+	 * @param address The address
+	 * @param listener The listener
+	 */
 	public void addListener(String address, OSCListener listener) {
 		addressToClassTable.put(address, listener);
 	}
 	
+	/**
+	 * @param packet The packet
+	 */
 	public void dispatchPacket(OSCPacket packet) {
-		if (packet instanceof OSCBundle)
+		if (packet instanceof OSCBundle) {
 			dispatchBundle((OSCBundle) packet);
-		else
+		} else {
 			dispatchMessage((OSCMessage) packet);
+		}
 	}
 	
+	/**
+	 * @param packet The packet
+	 * @param timestamp The timestamp
+	 */
 	public void dispatchPacket(OSCPacket packet, Date timestamp) {
-		if (packet instanceof OSCBundle)
+		if (packet instanceof OSCBundle) {
 			dispatchBundle((OSCBundle) packet);
-		else
+		} else {
 			dispatchMessage((OSCMessage) packet, timestamp);
+		}
 	}
 	
 	private void dispatchBundle(OSCBundle bundle) {
