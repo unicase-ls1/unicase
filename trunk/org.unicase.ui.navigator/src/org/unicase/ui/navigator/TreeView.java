@@ -24,9 +24,9 @@ import org.eclipse.ui.IDecoratorManager;
 import org.eclipse.ui.PlatformUI;
 import org.eclipse.ui.part.ViewPart;
 import org.unicase.model.ModelElement;
-import org.unicase.ui.common.commands.ActionHelper;
 import org.unicase.ui.common.dnd.UCDragAdapter;
 import org.unicase.ui.common.dnd.UCDropAdapter;
+import org.unicase.ui.common.util.ActionHelper;
 import org.unicase.workspace.ProjectSpace;
 import org.unicase.workspace.WorkspaceManager;
 

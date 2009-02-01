@@ -17,6 +17,7 @@ import org.eclipse.ui.IWorkbenchPage;
 import org.eclipse.ui.IWorkbenchWindow;
 import org.eclipse.ui.PlatformUI;
 import org.unicase.model.ModelElement;
+import org.unicase.ui.common.util.ActionHelper;
 
 /**
  * listener ActionClass for the DoublclickAction and the ALT Key.
