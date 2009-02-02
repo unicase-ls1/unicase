@@ -12,6 +12,7 @@ import org.unicase.ui.tom.gestures.Gesture;
 import org.unicase.ui.tom.gestures.MoveCanvasGesture;
 import org.unicase.ui.tom.gestures.MoveConnectionBendpointGesture;
 import org.unicase.ui.tom.gestures.MoveNodeGesture;
+import org.unicase.ui.tom.gestures.SelectGesture;
 import org.unicase.ui.tom.notifications.GestureAdapter;
 import org.unicase.ui.tom.notifications.GestureNotification;
 import org.unicase.ui.tom.notifications.TouchAdapter;
@@ -54,6 +55,9 @@ implements TouchAdapter, GestureAdapter{
 		
 		Gesture moveCanvasGesture = new MoveCanvasGesture(dispatch, diagramEditPart);
 		addGesture(moveCanvasGesture);
+		
+		Gesture selectGesture = new SelectGesture(dispatch, diagramEditPart);
+		addGesture(selectGesture);
 	}
 
 	public GestureInterpreter() {
