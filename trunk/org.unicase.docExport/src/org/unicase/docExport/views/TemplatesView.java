@@ -30,7 +30,7 @@ public class TemplatesView extends ViewPart {
 	 */
 	public static final String ID = "org.unicase.templatesView";
 
-	private TreeViewer viewer;
+	private static TreeViewer viewer;
 
 	/**
 	 * The constructor.
@@ -91,6 +91,13 @@ public class TemplatesView extends ViewPart {
 	 */
 	@Override
 	public void setFocus() {
+	}
+
+	/**
+	 * refreshes and rebuilds the tree.
+	 */
+	public static void refresh() {
+		viewer.refresh();
 	}
 
 }
