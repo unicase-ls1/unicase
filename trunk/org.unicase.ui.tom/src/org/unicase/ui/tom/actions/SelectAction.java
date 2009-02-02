@@ -1,28 +1,27 @@
 package org.unicase.ui.tom.actions;
 
-import org.eclipse.gef.Request;
-import org.eclipse.gef.requests.SelectionRequest;
+import org.eclipse.draw2d.RangeModel;
 import org.eclipse.gmf.runtime.diagram.ui.editparts.DiagramEditPart;
 import org.eclipse.gmf.runtime.diagram.ui.editparts.GraphicalEditPart;
+import org.eclipse.swt.widgets.Display;
 
 public class SelectAction extends AbstractAction{
 
 	private GraphicalEditPart targetEditPart;
 
-	SelectAction(DiagramEditPart diagramEditPart, GraphicalEditPart targetEditPart) {
+	public SelectAction(DiagramEditPart diagramEditPart, GraphicalEditPart targetEditPart) {
 		super(diagramEditPart);
 		this.setTargetEditPart(targetEditPart);
 	}
 
 	public void execute() {
-		getTargetEditPart().showTargetFeedback(createRequest());	
-	}
-
-	public Request createRequest() {
-		SelectionRequest selectionRequest = new SelectionRequest();
-		selectionRequest.setType(org.eclipse.gef.RequestConstants.REQ_SELECTION);
+		Runnable runnable = new Runnable(){
+			public void run(){
+				diagramEditPart.getViewer().select(targetEditPart);
+			}
+		};
 		
-		return selectionRequest;
+		Display.getDefault().syncExec(runnable);
 	}
 
 	public GraphicalEditPart getTargetEditPart() {

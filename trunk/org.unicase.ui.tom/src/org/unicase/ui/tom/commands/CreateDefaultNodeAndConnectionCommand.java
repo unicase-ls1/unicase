@@ -11,23 +11,40 @@ import org.eclipse.gmf.runtime.emf.ui.services.modelingassistant.ModelingAssista
 public class CreateDefaultNodeAndConnectionCommand extends
 		CreateNodeAndConnectionCommand {
 
-	@SuppressWarnings("unchecked")
-	protected CreateDefaultNodeAndConnectionCommand(DiagramEditPart editor,
-			Point sourcePoint, Point targetPoint, EditPart sourceEditPart,
-			EditPart targetEditPart) {
-		super(editor, sourcePoint, targetPoint, sourceEditPart, targetEditPart);
+	public CreateDefaultNodeAndConnectionCommand(DiagramEditPart editor,
+			Point sourcePoint, Point targetPoint) {
+		super(editor, sourcePoint, targetPoint);
+	}
+	
+	public CreateDefaultNodeAndConnectionCommand(DiagramEditPart editor,
+			EditPart sourceObject, EditPart targetObject) {
+		super(editor, sourceObject, targetObject);
+	}
 
+	public CreateDefaultNodeAndConnectionCommand(DiagramEditPart editor,
+			EditPart sourceObject, Point targetPoint) {
+		super(editor, sourceObject, targetPoint);
+	}
+
+	public CreateDefaultNodeAndConnectionCommand(DiagramEditPart editor,
+			Point sourcePoint, EditPart targetObject) {
+		super(editor, sourcePoint, targetObject);
+	}
+
+	@SuppressWarnings("unchecked")
+	@Override
+	public IElementType getConnectionElementType() {
 		ModelingAssistantService service = ModelingAssistantService.getInstance();
 		List relatedConnectionTypes = null;
 		IElementType defaultConnectionElementType = null;
 		
-		if (sourceEditPart != null
-				&& targetEditPart != null) {
-			relatedConnectionTypes = service.getRelTypesOnSourceAndTarget(sourceEditPart, targetEditPart);
-		}else if(sourceEditPart != null) {
-			relatedConnectionTypes = service.getRelTypesOnSource(sourceEditPart);
-		}else if (targetEditPart != null) {
-			relatedConnectionTypes = service.getRelTypesOnTarget(targetEditPart);
+		if (getSourceEditPart() != null
+				&& getTargetEditPart() != null) {
+			relatedConnectionTypes = service.getRelTypesOnSourceAndTarget(getSourceEditPart(), getTargetEditPart());
+		}else if(getSourceEditPart() != null) {
+			relatedConnectionTypes = service.getRelTypesOnSource(getSourceEditPart());
+		}else if (getTargetEditPart() != null) {
+			relatedConnectionTypes = service.getRelTypesOnTarget(getTargetEditPart());
 		}
 
 		for (Object object : relatedConnectionTypes) {
@@ -42,6 +59,8 @@ public class CreateDefaultNodeAndConnectionCommand extends
 		}
 		
 		setConnectionElementType(defaultConnectionElementType);
+		
+		// TODO Auto-generated method stub
+		return super.getConnectionElementType();
 	}
-
 }

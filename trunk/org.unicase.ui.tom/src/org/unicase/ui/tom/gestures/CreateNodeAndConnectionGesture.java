@@ -5,7 +5,7 @@ import org.eclipse.gef.EditPart;
 import org.eclipse.gmf.runtime.diagram.ui.editparts.DiagramEditPart;
 import org.unicase.ui.tom.TouchDispatch;
 import org.unicase.ui.tom.commands.Command;
-import org.unicase.ui.tom.commands.CreateNodeAndConnectionCommand;
+import org.unicase.ui.tom.commands.CreateDefaultNodeAndConnectionCommand;
 import org.unicase.ui.tom.touches.Touch;
 
 public class CreateNodeAndConnectionGesture extends CreateGesture implements
@@ -63,27 +63,27 @@ Gesture {
 			if (firstTouchedEditPart instanceof DiagramEditPart
 					&& secondTouchedEditPart instanceof DiagramEditPart) {
 
-				command = new CreateNodeAndConnectionCommand(
+				command = new CreateDefaultNodeAndConnectionCommand(
 						getDiagramEditPart(),
 						sourcePoint,
 						targetPoint);
 
 			}else if (firstTouchedEditPart instanceof DiagramEditPart) {
 
-				command = new CreateNodeAndConnectionCommand(
+				command = new CreateDefaultNodeAndConnectionCommand(
 						getDiagramEditPart(), 
 						sourcePoint,
 						targetEditPart);
 
 			}else if (secondTouchedEditPart instanceof DiagramEditPart) {
 
-				command = new CreateNodeAndConnectionCommand(
+				command = new CreateDefaultNodeAndConnectionCommand(
 						getDiagramEditPart(), 
 						sourceEditPart,
 						targetPoint);
 			}else{
 
-				command = new CreateNodeAndConnectionCommand(
+				command = new CreateDefaultNodeAndConnectionCommand(
 						getDiagramEditPart(),
 						sourceEditPart,
 						targetEditPart);

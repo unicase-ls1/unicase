@@ -15,6 +15,7 @@ import java.util.Map;
 import java.util.Set;
 
 import org.eclipse.core.runtime.IAdaptable;
+import org.eclipse.draw2d.IFigure;
 import org.eclipse.draw2d.geometry.Rectangle;
 import org.eclipse.emf.common.util.EList;
 import org.eclipse.emf.ecore.EObject;
@@ -51,6 +52,7 @@ import org.unicase.model.diagram.MEDiagram;
 import org.unicase.ui.common.diagram.commands.CommandFactory;
 import org.unicase.ui.common.diagram.commands.CreateConnectionViewCommandProvider;
 import org.unicase.ui.common.diagram.commands.CreateNodeViewCommandProvider;
+import org.unicase.ui.common.diagram.requests.ShowRelatedElementsModeRequest;
 import org.unicase.ui.common.diagram.util.CommandUtility;
 import org.unicase.ui.common.diagram.util.EditPartUtility;
 import org.unicase.ui.common.diagram.util.ViewAdapter;
@@ -70,6 +72,8 @@ public class MEDiagramShowElementsEditPolicy extends AbstractEditPolicy {
 	private SelectionChangeListener selectionChangeListener = new SelectionChangeListener();
 
 	private ClassEditPart primaryClassEditPart;
+
+	private boolean modeEnabled;
 
 	/**
 	 * Default constructor.
@@ -110,14 +114,23 @@ public class MEDiagramShowElementsEditPolicy extends AbstractEditPolicy {
 			}
 
 			CompoundCommand cc = new CompoundCommand("Delete existing views, create new ones for selected EditParts");
-
-			CommandFactory.addDeleteFromViewCommands(cc, editParts);
+			
+			if (modeEnabled) {
+				CommandFactory.addDeleteFromViewCommands(cc, Collections.singleton(selectedEditPart));
+			}else{
+				CommandFactory.addDeleteFromViewCommands(cc, editParts);				
+			}
+			
 			addAddCommands(cc, selectedEditPart, editParts);
 
 			Command wrappedCommand = CommandUtility.wrapInToggleCanonicalModeCommands(cc, Collections
 				.singleton(getHost()));
 
-			reset();
+			if (modeEnabled) {
+				getObjectViewDescriptorMap().remove(EditPartUtility.getElement(selectedEditPart));		
+			}else{
+				getObjectViewDescriptorMap().clear();
+			}
 
 			((DiagramEditPart) getHost()).getDiagramEditDomain().getDiagramCommandStack().execute(wrappedCommand);
 		}
@@ -288,9 +301,38 @@ public class MEDiagramShowElementsEditPolicy extends AbstractEditPolicy {
 	@Override
 	public Command getCommand(Request request) {
 		if (RequestConstants.REQ_SHOW_RELATED_ELEMENTS.equals(request.getType())) {
+			if (request instanceof ShowRelatedElementsModeRequest) {
+				boolean enable = ((ShowRelatedElementsModeRequest) request).isEnable();
+
+				if (enable
+					&& modeEnabled) {
+					return null;
+				}else if (!enable
+					&& !modeEnabled) {
+					return null;
+				}
+
+				modeEnabled = enable;
+
+				if (!modeEnabled) {
+					return getHideRelatedElementsCommand(request);
+				}
+			}
 			return getShowRelatedElementsCommand(request);
 		}
+
 		return null;
+	}
+
+	private Command getHideRelatedElementsCommand(Request request) {
+		Set<EditPart> editParts = getRelatedEditParts();
+		if (editParts.size() == 0) {
+			return null;
+		}
+
+		CompoundCommand cc = new CompoundCommand("Delete existing views");
+		CommandFactory.addDeleteFromViewCommands(cc, editParts);
+		return cc;
 	}
 
 	private Command getShowRelatedElementsCommand(Request request) {
@@ -336,7 +378,7 @@ public class MEDiagramShowElementsEditPolicy extends AbstractEditPolicy {
 			cc.add(command);
 
 			Command createColorCommand = CommandFactory
-				.createColorizeCommand(currentClass, (DiagramEditPart) getHost());
+			.createColorizeCommand(currentClass, (DiagramEditPart) getHost());
 			cc.add(createColorCommand);
 		}
 

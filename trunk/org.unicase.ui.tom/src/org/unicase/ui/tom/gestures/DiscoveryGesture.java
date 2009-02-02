@@ -1,10 +1,15 @@
 package org.unicase.ui.tom.gestures;
 
 import java.util.ArrayList;
+import java.util.Collections;
 import java.util.List;
 
 import org.eclipse.gef.EditPart;
+import org.eclipse.gmf.runtime.common.ui.dialogs.ExpansionType;
 import org.eclipse.gmf.runtime.diagram.ui.editparts.DiagramEditPart;
+import org.eclipse.gmf.runtime.diagram.ui.requests.ShowRelatedElementsRequest;
+import org.eclipse.gmf.runtime.emf.type.core.ElementTypeRegistry;
+import org.unicase.model.classes.ClassesPackage;
 import org.unicase.ui.tom.TouchDispatch;
 import org.unicase.ui.tom.touches.Touch;
 
@@ -12,76 +17,43 @@ public class DiscoveryGesture extends AbstractGesture {
 
 	private List<Touch> activationTouches;
 	private EditPart touchedEditPart;
-	private int state;
-	
-	private static final int INITIAL = 0;
-	private static final int IDENTIFIED_EDITPART = 1;
-	private static final int DISCOVERY_MODE = 2;
-	private static final int INVALID = 3;
-	
+
 	public DiscoveryGesture(TouchDispatch dispatch,
 			DiagramEditPart diagramEditPart) {
 		super(dispatch, diagramEditPart);
 		activationTouches = new ArrayList<Touch>();
 	}
 
-	public boolean stateTransition(int newState) {
-		switch (getState()) {
-		case INITIAL:
-			if (newState == INITIAL) {
-				return true;
-			}else if (newState == IDENTIFIED_EDITPART) {
-				return true;
-			}else{
-				return false;
-			}
-		default:
-			return false;
-		}
-	}
-	
 	@SuppressWarnings("unchecked")
 	@Override
 	public void handleTouchAdded(Touch touch) {
 		if (!(getAcceptsTouches())) {
 			return;
 		}
-		
+
 		List exclusions = new ArrayList();
 		exclusions.add(getDiagramEditPart());
 		exclusions.add(getDiagramEditPart().getParent());
-		
+
 		EditPart currentlyTouchedEditPart = findTouchedEditPartExcluding(touch, exclusions);
 		currentlyTouchedEditPart = getPrimaryEditPart(touchedEditPart);
-		
-		switch (getState()) {
-		case INITIAL:
+
+		if (currentlyTouchedEditPart == null) {
+			setAcceptsTouches(false);
+			return;
+		}
+
+		if (touchedEditPart == null) {
 			touchedEditPart = currentlyTouchedEditPart;
-			break;
-		case IDENTIFIED_EDITPART:
-			boolean pointInDistance = false;
-			for (Touch activationTouch : activationTouches) {
-				if(pointsInDistance(activationTouch, touch, TOUCH_DIAMETER)) {
-					pointInDistance = true;
-					break;
+			activationTouches.add(touch);
+		}else{
+			if (currentlyTouchedEditPart == touchedEditPart) {
+				activationTouches.add(touch);
+				if (activationTouches.size() == 3) {
+
 				}
 			}
-			
-			if (pointInDistance) {
-				activationTouches.add(touch);
-			}else{
-				setState(INVALID);
-			}
-		default:
-			break;
 		}
-	
-		
-
-		
-
-
-
 	}
 
 	@Override
@@ -95,13 +67,4 @@ public class DiscoveryGesture extends AbstractGesture {
 		// TODO Auto-generated method stub
 
 	}
-
-	public void setState(int state) {
-		this.state = state;
-	}
-
-	public int getState() {
-		return state;
-	}
-
 }

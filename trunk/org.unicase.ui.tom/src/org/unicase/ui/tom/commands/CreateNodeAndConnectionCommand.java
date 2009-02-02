@@ -29,7 +29,7 @@ public class CreateNodeAndConnectionCommand extends AbstractCommand {
 	private IElementType connectionElementType = null;
 	private IElementType nodeElementType = null;
 
-	protected CreateNodeAndConnectionCommand(
+	private CreateNodeAndConnectionCommand(
 			DiagramEditPart editor,
 			Point sourcePoint,
 			Point targetPoint,
