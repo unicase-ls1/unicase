@@ -25,6 +25,7 @@ import org.eclipse.ui.part.EditorPart;
 import org.unicase.docExport.TemplateRegistry;
 import org.unicase.docExport.exceptions.TemplateSaveException;
 import org.unicase.docExport.exportModel.Template;
+import org.unicase.docExport.views.TemplatesView;
 import org.unicase.workspace.util.WorkspaceUtil;
 
 /**
@@ -74,6 +75,7 @@ public class TemplateEditor extends EditorPart {
 				WorkspaceUtil.log("could not save the Template", e, IStatus.ERROR);
 			}
 		}
+		TemplatesView.refresh();
 	}
 
 	/**
@@ -85,6 +87,7 @@ public class TemplateEditor extends EditorPart {
 		template2.setDefaultTemplate(false);
 		TemplateSaveAsDialog dialog = new TemplateSaveAsDialog(this.getSite().getShell(), template2);
 		dialog.open();
+		TemplatesView.refresh();
 	}
 
 	/**
