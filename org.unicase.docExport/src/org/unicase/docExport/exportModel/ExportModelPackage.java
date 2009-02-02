@@ -19,36 +19,35 @@ import org.eclipse.emf.ecore.EReference;
  * <li>and each data type</li>
  * </ul>
  * <!-- end-user-doc -->
- * 
  * @see org.unicase.docExport.exportModel.ExportModelFactory
  * @model kind="package"
  * @generated
  */
 public interface ExportModelPackage extends EPackage {
 	/**
-	 * The package name. <!-- begin-user-doc --> <!-- end-user-doc -->
-	 * 
+	 * The package name.
+	 * <!-- begin-user-doc --> <!-- end-user-doc -->
 	 * @generated
 	 */
 	String eNAME = "exportModel";
 
 	/**
-	 * The package namespace URI. <!-- begin-user-doc --> <!-- end-user-doc -->
-	 * 
+	 * The package namespace URI.
+	 * <!-- begin-user-doc --> <!-- end-user-doc -->
 	 * @generated
 	 */
 	String eNS_URI = "http://unicase.org/docExport/exportModel";
 
 	/**
-	 * The package namespace name. <!-- begin-user-doc --> <!-- end-user-doc -->
-	 * 
+	 * The package namespace name.
+	 * <!-- begin-user-doc --> <!-- end-user-doc -->
 	 * @generated
 	 */
 	String eNS_PREFIX = "org.unicase.docExport.exportModel";
 
 	/**
-	 * The singleton instance of the package. <!-- begin-user-doc --> <!-- end-user-doc -->
-	 * 
+	 * The singleton instance of the package.
+	 * <!-- begin-user-doc --> <!-- end-user-doc -->
 	 * @generated
 	 */
 	ExportModelPackage eINSTANCE = org.unicase.docExport.exportModel.impl.ExportModelPackageImpl.init();
@@ -56,7 +55,6 @@ public interface ExportModelPackage extends EPackage {
 	/**
 	 * The meta object id for the '{@link org.unicase.docExport.exportModel.impl.TemplateImpl <em>Template</em>}' class.
 	 * <!-- begin-user-doc --> <!-- end-user-doc -->
-	 * 
 	 * @see org.unicase.docExport.exportModel.impl.TemplateImpl
 	 * @see org.unicase.docExport.exportModel.impl.ExportModelPackageImpl#getTemplate()
 	 * @generated
@@ -73,26 +71,26 @@ public interface ExportModelPackage extends EPackage {
 	int TEMPLATE__MODEL_ELEMENT_RENDERER_MAPPING = 0;
 
 	/**
-	 * The feature id for the '<em><b>Layout Options</b></em>' containment reference. <!-- begin-user-doc --> <!--
+	 * The feature id for the '<em><b>Layout Options</b></em>' containment reference.
+	 * <!-- begin-user-doc --> <!--
 	 * end-user-doc -->
-	 * 
 	 * @generated
 	 * @ordered
 	 */
 	int TEMPLATE__LAYOUT_OPTIONS = 1;
 
 	/**
-	 * The feature id for the '<em><b>Global Renderer Options</b></em>' containment reference list. <!-- begin-user-doc
+	 * The feature id for the '<em><b>Global Renderer Options</b></em>' containment reference list.
+	 * <!-- begin-user-doc
 	 * --> <!-- end-user-doc -->
-	 * 
 	 * @generated
 	 * @ordered
 	 */
 	int TEMPLATE__GLOBAL_RENDERER_OPTIONS = 2;
 
 	/**
-	 * The feature id for the '<em><b>Name</b></em>' attribute. <!-- begin-user-doc --> <!-- end-user-doc -->
-	 * 
+	 * The feature id for the '<em><b>Name</b></em>' attribute.
+	 * <!-- begin-user-doc --> <!-- end-user-doc -->
 	 * @generated
 	 * @ordered
 	 */
@@ -108,8 +106,8 @@ public interface ExportModelPackage extends EPackage {
 	int TEMPLATE__DEFAULT_TEMPLATE = 4;
 
 	/**
-	 * The number of structural features of the '<em>Template</em>' class. <!-- begin-user-doc --> <!-- end-user-doc -->
-	 * 
+	 * The number of structural features of the '<em>Template</em>' class.
+	 * <!-- begin-user-doc --> <!-- end-user-doc -->
 	 * @generated
 	 * @ordered
 	 */
@@ -126,10 +124,8 @@ public interface ExportModelPackage extends EPackage {
 	EClass getTemplate();
 
 	/**
-	 * Returns the meta object for the containment reference list '
-	 * {@link org.unicase.docExport.exportModel.Template#getModelElementRendererMapping
-	 * <em>Model Element Renderer Mapping</em>}'. <!-- begin-user-doc --> <!-- end-user-doc -->
-	 * 
+	 * Returns the meta object for the containment reference list '{@link org.unicase.docExport.exportModel.Template#getModelElementRendererMapping <em>Model Element Renderer Mapping</em>}'.
+	 * <!-- begin-user-doc --> <!-- end-user-doc -->
 	 * @return the meta object for the containment reference list '<em>Model Element Renderer Mapping</em>'.
 	 * @see org.unicase.docExport.exportModel.Template#getModelElementRendererMapping()
 	 * @see #getTemplate()
@@ -138,10 +134,9 @@ public interface ExportModelPackage extends EPackage {
 	EReference getTemplate_ModelElementRendererMapping();
 
 	/**
-	 * Returns the meta object for the containment reference '
-	 * {@link org.unicase.docExport.exportModel.Template#getLayoutOptions <em>Layout Options</em>}'. <!-- begin-user-doc
+	 * Returns the meta object for the containment reference '{@link org.unicase.docExport.exportModel.Template#getLayoutOptions <em>Layout Options</em>}'.
+	 * <!-- begin-user-doc
 	 * --> <!-- end-user-doc -->
-	 * 
 	 * @return the meta object for the containment reference '<em>Layout Options</em>'.
 	 * @see org.unicase.docExport.exportModel.Template#getLayoutOptions()
 	 * @see #getTemplate()
@@ -150,10 +145,8 @@ public interface ExportModelPackage extends EPackage {
 	EReference getTemplate_LayoutOptions();
 
 	/**
-	 * Returns the meta object for the containment reference list '
-	 * {@link org.unicase.docExport.exportModel.Template#getGlobalRendererOptions <em>Global Renderer Options</em>}'.
+	 * Returns the meta object for the containment reference list '{@link org.unicase.docExport.exportModel.Template#getGlobalRendererOptions <em>Global Renderer Options</em>}'.
 	 * <!-- begin-user-doc --> <!-- end-user-doc -->
-	 * 
 	 * @return the meta object for the containment reference list '<em>Global Renderer Options</em>'.
 	 * @see org.unicase.docExport.exportModel.Template#getGlobalRendererOptions()
 	 * @see #getTemplate()
@@ -162,9 +155,8 @@ public interface ExportModelPackage extends EPackage {
 	EReference getTemplate_GlobalRendererOptions();
 
 	/**
-	 * Returns the meta object for the attribute '{@link org.unicase.docExport.exportModel.Template#getName
-	 * <em>Name</em>}'. <!-- begin-user-doc --> <!-- end-user-doc -->
-	 * 
+	 * Returns the meta object for the attribute '{@link org.unicase.docExport.exportModel.Template#getName <em>Name</em>}'.
+	 * <!-- begin-user-doc --> <!-- end-user-doc -->
 	 * @return the meta object for the attribute '<em>Name</em>'.
 	 * @see org.unicase.docExport.exportModel.Template#getName()
 	 * @see #getTemplate()
@@ -173,9 +165,8 @@ public interface ExportModelPackage extends EPackage {
 	EAttribute getTemplate_Name();
 
 	/**
-	 * Returns the meta object for the attribute '{@link org.unicase.docExport.exportModel.Template#isDefaultTemplate
-	 * <em>Default Template</em>}'. <!-- begin-user-doc --> <!-- end-user-doc -->
-	 * 
+	 * Returns the meta object for the attribute '{@link org.unicase.docExport.exportModel.Template#isDefaultTemplate <em>Default Template</em>}'.
+	 * <!-- begin-user-doc --> <!-- end-user-doc -->
 	 * @return the meta object for the attribute '<em>Default Template</em>'.
 	 * @see org.unicase.docExport.exportModel.Template#isDefaultTemplate()
 	 * @see #getTemplate()
@@ -184,8 +175,8 @@ public interface ExportModelPackage extends EPackage {
 	EAttribute getTemplate_DefaultTemplate();
 
 	/**
-	 * Returns the factory that creates the instances of the model. <!-- begin-user-doc --> <!-- end-user-doc -->
-	 * 
+	 * Returns the factory that creates the instances of the model.
+	 * <!-- begin-user-doc --> <!-- end-user-doc -->
 	 * @return the factory that creates the instances of the model.
 	 * @generated
 	 */
@@ -200,14 +191,12 @@ public interface ExportModelPackage extends EPackage {
 	 * <li>and each data type</li>
 	 * </ul>
 	 * <!-- end-user-doc -->
-	 * 
 	 * @generated
 	 */
 	interface Literals {
 		/**
-		 * The meta object literal for the '{@link org.unicase.docExport.exportModel.impl.TemplateImpl
-		 * <em>Template</em>}' class. <!-- begin-user-doc --> <!-- end-user-doc -->
-		 * 
+		 * The meta object literal for the '{@link org.unicase.docExport.exportModel.impl.TemplateImpl <em>Template</em>}' class.
+		 * <!-- begin-user-doc --> <!-- end-user-doc -->
 		 * @see org.unicase.docExport.exportModel.impl.TemplateImpl
 		 * @see org.unicase.docExport.exportModel.impl.ExportModelPackageImpl#getTemplate()
 		 * @generated
@@ -215,9 +204,8 @@ public interface ExportModelPackage extends EPackage {
 		EClass TEMPLATE = eINSTANCE.getTemplate();
 
 		/**
-		 * The meta object literal for the '<em><b>Model Element Renderer Mapping</b></em>' containment reference list
-		 * feature. <!-- begin-user-doc --> <!-- end-user-doc -->
-		 * 
+		 * The meta object literal for the '<em><b>Model Element Renderer Mapping</b></em>' containment reference list feature.
+		 * <!-- begin-user-doc --> <!-- end-user-doc -->
 		 * @generated
 		 */
 		EReference TEMPLATE__MODEL_ELEMENT_RENDERER_MAPPING = eINSTANCE.getTemplate_ModelElementRendererMapping();
@@ -233,23 +221,22 @@ public interface ExportModelPackage extends EPackage {
 		/**
 		 * The meta object literal for the '<em><b>Global Renderer Options</b></em>' containment reference list feature.
 		 * <!-- begin-user-doc --> <!-- end-user-doc -->
-		 * 
 		 * @generated
 		 */
 		EReference TEMPLATE__GLOBAL_RENDERER_OPTIONS = eINSTANCE.getTemplate_GlobalRendererOptions();
 
 		/**
-		 * The meta object literal for the '<em><b>Name</b></em>' attribute feature. <!-- begin-user-doc --> <!--
+		 * The meta object literal for the '<em><b>Name</b></em>' attribute feature.
+		 * <!-- begin-user-doc --> <!--
 		 * end-user-doc -->
-		 * 
 		 * @generated
 		 */
 		EAttribute TEMPLATE__NAME = eINSTANCE.getTemplate_Name();
 
 		/**
-		 * The meta object literal for the '<em><b>Default Template</b></em>' attribute feature. <!-- begin-user-doc -->
+		 * The meta object literal for the '<em><b>Default Template</b></em>' attribute feature.
+		 * <!-- begin-user-doc -->
 		 * <!-- end-user-doc -->
-		 * 
 		 * @generated
 		 */
 		EAttribute TEMPLATE__DEFAULT_TEMPLATE = eINSTANCE.getTemplate_DefaultTemplate();

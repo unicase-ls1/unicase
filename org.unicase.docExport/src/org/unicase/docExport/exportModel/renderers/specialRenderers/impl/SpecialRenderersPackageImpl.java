@@ -27,41 +27,35 @@ import org.unicase.docExport.exportModel.renderers.specialRenderers.StepsAttribu
 
 /**
  * <!-- begin-user-doc --> An implementation of the model <b>Package</b>. <!-- end-user-doc -->
- * 
  * @generated
  */
 public class SpecialRenderersPackageImpl extends EPackageImpl implements SpecialRenderersPackage {
 	/**
 	 * <!-- begin-user-doc --> <!-- end-user-doc -->
-	 * 
 	 * @generated
 	 */
 	private EClass meetingRendererEClass = null;
 
 	/**
 	 * <!-- begin-user-doc --> <!-- end-user-doc -->
-	 * 
 	 * @generated
 	 */
 	private EClass milestoneRendererEClass = null;
 
 	/**
 	 * <!-- begin-user-doc --> <!-- end-user-doc -->
-	 * 
 	 * @generated
 	 */
 	private EClass stepsAttributeRendererEClass = null;
 
 	/**
 	 * <!-- begin-user-doc --> <!-- end-user-doc -->
-	 * 
 	 * @generated
 	 */
 	private EClass methodRendererEClass = null;
 
 	/**
 	 * <!-- begin-user-doc --> <!-- end-user-doc -->
-	 * 
 	 * @generated
 	 */
 	private EClass packageFlatRendererEClass = null;
@@ -85,37 +79,37 @@ public class SpecialRenderersPackageImpl extends EPackageImpl implements Special
 
 	/**
 	 * <!-- begin-user-doc --> <!-- end-user-doc -->
-	 * 
 	 * @generated
 	 */
 	private static boolean isInited = false;
 
 	/**
-	 * Creates, registers, and initializes the <b>Package</b> for this model, and for any others upon which it depends.
-	 * Simple dependencies are satisfied by calling this method on all dependent packages before doing anything else.
-	 * This method drives initialization for interdependent packages directly, in parallel with this package, itself.
-	 * <p>
-	 * Of this package and its interdependencies, all packages which have not yet been registered by their URI values
-	 * are first created and registered. The packages are then initialized in two steps: meta-model objects for all of
-	 * the packages are created before any are initialized, since one package's meta-model objects may refer to those of
-	 * another.
-	 * <p>
-	 * Invocation of this method will not affect any packages that have already been initialized. <!-- begin-user-doc
+	 * Creates, registers, and initializes the <b>Package</b> for this
+	 * model, and for any others upon which it depends.  Simple
+	 * dependencies are satisfied by calling this method on all
+	 * dependent packages before doing anything else.  This method drives
+	 * initialization for interdependent packages directly, in parallel
+	 * with this package, itself.
+	 * <p>Of this package and its interdependencies, all packages which
+	 * have not yet been registered by their URI values are first created
+	 * and registered.  The packages are then initialized in two steps:
+	 * meta-model objects for all of the packages are created before any
+	 * are initialized, since one package's meta-model objects may refer to
+	 * those of another.
+	 * <p>Invocation of this method will not affect any packages that have
+	 * already been initialized.
+	 * <!-- begin-user-doc
 	 * --> <!-- end-user-doc -->
-	 * 
 	 * @see #eNS_URI
 	 * @see #createPackageContents()
 	 * @see #initializePackageContents()
 	 * @generated
 	 */
 	public static SpecialRenderersPackage init() {
-		if (isInited)
-			return (SpecialRenderersPackage) EPackage.Registry.INSTANCE.getEPackage(SpecialRenderersPackage.eNS_URI);
+		if (isInited) return (SpecialRenderersPackage)EPackage.Registry.INSTANCE.getEPackage(SpecialRenderersPackage.eNS_URI);
 
 		// Obtain or create and register package
-		SpecialRenderersPackageImpl theSpecialRenderersPackage = (SpecialRenderersPackageImpl) (EPackage.Registry.INSTANCE
-			.getEPackage(eNS_URI) instanceof SpecialRenderersPackageImpl ? EPackage.Registry.INSTANCE
-			.getEPackage(eNS_URI) : new SpecialRenderersPackageImpl());
+		SpecialRenderersPackageImpl theSpecialRenderersPackage = (SpecialRenderersPackageImpl)(EPackage.Registry.INSTANCE.getEPackage(eNS_URI) instanceof SpecialRenderersPackageImpl ? EPackage.Registry.INSTANCE.getEPackage(eNS_URI) : new SpecialRenderersPackageImpl());
 
 		isInited = true;
 
@@ -123,19 +117,10 @@ public class SpecialRenderersPackageImpl extends EPackageImpl implements Special
 		EcorePackage.eINSTANCE.eClass();
 
 		// Obtain or create and register interdependencies
-		ExportModelPackageImpl theExportModelPackage = (ExportModelPackageImpl) (EPackage.Registry.INSTANCE
-			.getEPackage(ExportModelPackage.eNS_URI) instanceof ExportModelPackageImpl ? EPackage.Registry.INSTANCE
-			.getEPackage(ExportModelPackage.eNS_URI) : ExportModelPackage.eINSTANCE);
-		RenderersPackageImpl theRenderersPackage = (RenderersPackageImpl) (EPackage.Registry.INSTANCE
-			.getEPackage(RenderersPackage.eNS_URI) instanceof RenderersPackageImpl ? EPackage.Registry.INSTANCE
-			.getEPackage(RenderersPackage.eNS_URI) : RenderersPackage.eINSTANCE);
-		DefaultRenderersPackageImpl theDefaultRenderersPackage = (DefaultRenderersPackageImpl) (EPackage.Registry.INSTANCE
-			.getEPackage(DefaultRenderersPackage.eNS_URI) instanceof DefaultRenderersPackageImpl ? EPackage.Registry.INSTANCE
-			.getEPackage(DefaultRenderersPackage.eNS_URI)
-			: DefaultRenderersPackage.eINSTANCE);
-		OptionsPackageImpl theOptionsPackage = (OptionsPackageImpl) (EPackage.Registry.INSTANCE
-			.getEPackage(OptionsPackage.eNS_URI) instanceof OptionsPackageImpl ? EPackage.Registry.INSTANCE
-			.getEPackage(OptionsPackage.eNS_URI) : OptionsPackage.eINSTANCE);
+		ExportModelPackageImpl theExportModelPackage = (ExportModelPackageImpl)(EPackage.Registry.INSTANCE.getEPackage(ExportModelPackage.eNS_URI) instanceof ExportModelPackageImpl ? EPackage.Registry.INSTANCE.getEPackage(ExportModelPackage.eNS_URI) : ExportModelPackage.eINSTANCE);
+		RenderersPackageImpl theRenderersPackage = (RenderersPackageImpl)(EPackage.Registry.INSTANCE.getEPackage(RenderersPackage.eNS_URI) instanceof RenderersPackageImpl ? EPackage.Registry.INSTANCE.getEPackage(RenderersPackage.eNS_URI) : RenderersPackage.eINSTANCE);
+		DefaultRenderersPackageImpl theDefaultRenderersPackage = (DefaultRenderersPackageImpl)(EPackage.Registry.INSTANCE.getEPackage(DefaultRenderersPackage.eNS_URI) instanceof DefaultRenderersPackageImpl ? EPackage.Registry.INSTANCE.getEPackage(DefaultRenderersPackage.eNS_URI) : DefaultRenderersPackage.eINSTANCE);
+		OptionsPackageImpl theOptionsPackage = (OptionsPackageImpl)(EPackage.Registry.INSTANCE.getEPackage(OptionsPackage.eNS_URI) instanceof OptionsPackageImpl ? EPackage.Registry.INSTANCE.getEPackage(OptionsPackage.eNS_URI) : OptionsPackage.eINSTANCE);
 
 		// Create package meta-data objects
 		theSpecialRenderersPackage.createPackageContents();
@@ -159,7 +144,6 @@ public class SpecialRenderersPackageImpl extends EPackageImpl implements Special
 
 	/**
 	 * <!-- begin-user-doc --> <!-- end-user-doc -->
-	 * 
 	 * @generated
 	 */
 	public EClass getMeetingRenderer() {
@@ -168,7 +152,6 @@ public class SpecialRenderersPackageImpl extends EPackageImpl implements Special
 
 	/**
 	 * <!-- begin-user-doc --> <!-- end-user-doc -->
-	 * 
 	 * @generated
 	 */
 	public EClass getMilestoneRenderer() {
@@ -177,7 +160,6 @@ public class SpecialRenderersPackageImpl extends EPackageImpl implements Special
 
 	/**
 	 * <!-- begin-user-doc --> <!-- end-user-doc -->
-	 * 
 	 * @generated
 	 */
 	public EClass getStepsAttributeRenderer() {
@@ -186,7 +168,6 @@ public class SpecialRenderersPackageImpl extends EPackageImpl implements Special
 
 	/**
 	 * <!-- begin-user-doc --> <!-- end-user-doc -->
-	 * 
 	 * @generated
 	 */
 	public EClass getMethodRenderer() {
@@ -195,7 +176,6 @@ public class SpecialRenderersPackageImpl extends EPackageImpl implements Special
 
 	/**
 	 * <!-- begin-user-doc --> <!-- end-user-doc -->
-	 * 
 	 * @generated
 	 */
 	public EClass getPackageFlatRenderer() {
@@ -204,29 +184,26 @@ public class SpecialRenderersPackageImpl extends EPackageImpl implements Special
 
 	/**
 	 * <!-- begin-user-doc --> <!-- end-user-doc -->
-	 * 
 	 * @generated
 	 */
 	public SpecialRenderersFactory getSpecialRenderersFactory() {
-		return (SpecialRenderersFactory) getEFactoryInstance();
+		return (SpecialRenderersFactory)getEFactoryInstance();
 	}
 
 	/**
 	 * <!-- begin-user-doc --> <!-- end-user-doc -->
-	 * 
 	 * @generated
 	 */
 	private boolean isCreated = false;
 
 	/**
-	 * Creates the meta-model objects for the package. This method is guarded to have no affect on any invocation but
-	 * its first. <!-- begin-user-doc --> <!-- end-user-doc -->
-	 * 
+	 * Creates the meta-model objects for the package.  This method is
+	 * guarded to have no affect on any invocation but its first.
+	 * <!-- begin-user-doc --> <!-- end-user-doc -->
 	 * @generated
 	 */
 	public void createPackageContents() {
-		if (isCreated)
-			return;
+		if (isCreated) return;
 		isCreated = true;
 
 		// Create classes and their features
@@ -243,20 +220,18 @@ public class SpecialRenderersPackageImpl extends EPackageImpl implements Special
 
 	/**
 	 * <!-- begin-user-doc --> <!-- end-user-doc -->
-	 * 
 	 * @generated
 	 */
 	private boolean isInitialized = false;
 
 	/**
-	 * Complete the initialization of the package and its meta-model. This method is guarded to have no affect on any
-	 * invocation but its first. <!-- begin-user-doc --> <!-- end-user-doc -->
-	 * 
+	 * Complete the initialization of the package and its meta-model.  This
+	 * method is guarded to have no affect on any invocation but its first.
+	 * <!-- begin-user-doc --> <!-- end-user-doc -->
 	 * @generated
 	 */
 	public void initializePackageContents() {
-		if (isInitialized)
-			return;
+		if (isInitialized) return;
 		isInitialized = true;
 
 		// Initialize package
@@ -265,8 +240,7 @@ public class SpecialRenderersPackageImpl extends EPackageImpl implements Special
 		setNsURI(eNS_URI);
 
 		// Obtain other dependent packages
-		RenderersPackage theRenderersPackage = (RenderersPackage) EPackage.Registry.INSTANCE
-			.getEPackage(RenderersPackage.eNS_URI);
+		RenderersPackage theRenderersPackage = (RenderersPackage)EPackage.Registry.INSTANCE.getEPackage(RenderersPackage.eNS_URI);
 
 		// Create type parameters
 
@@ -280,20 +254,15 @@ public class SpecialRenderersPackageImpl extends EPackageImpl implements Special
 		packageFlatRendererEClass.getESuperTypes().add(theRenderersPackage.getModelElementRenderer());
 
 		// Initialize classes and features; add operations and parameters
-		initEClass(meetingRendererEClass, MeetingRenderer.class, "MeetingRenderer", !IS_ABSTRACT, !IS_INTERFACE,
-			IS_GENERATED_INSTANCE_CLASS);
+		initEClass(meetingRendererEClass, MeetingRenderer.class, "MeetingRenderer", !IS_ABSTRACT, !IS_INTERFACE, IS_GENERATED_INSTANCE_CLASS);
 
-		initEClass(milestoneRendererEClass, MilestoneRenderer.class, "MilestoneRenderer", !IS_ABSTRACT, !IS_INTERFACE,
-			IS_GENERATED_INSTANCE_CLASS);
+		initEClass(milestoneRendererEClass, MilestoneRenderer.class, "MilestoneRenderer", !IS_ABSTRACT, !IS_INTERFACE, IS_GENERATED_INSTANCE_CLASS);
 
-		initEClass(stepsAttributeRendererEClass, StepsAttributeRenderer.class, "StepsAttributeRenderer", !IS_ABSTRACT,
-			!IS_INTERFACE, IS_GENERATED_INSTANCE_CLASS);
+		initEClass(stepsAttributeRendererEClass, StepsAttributeRenderer.class, "StepsAttributeRenderer", !IS_ABSTRACT, !IS_INTERFACE, IS_GENERATED_INSTANCE_CLASS);
 
-		initEClass(methodRendererEClass, MethodRenderer.class, "MethodRenderer", !IS_ABSTRACT, !IS_INTERFACE,
-			IS_GENERATED_INSTANCE_CLASS);
+		initEClass(methodRendererEClass, MethodRenderer.class, "MethodRenderer", !IS_ABSTRACT, !IS_INTERFACE, IS_GENERATED_INSTANCE_CLASS);
 
-		initEClass(packageFlatRendererEClass, PackageFlatRenderer.class, "PackageFlatRenderer", !IS_ABSTRACT,
-			!IS_INTERFACE, IS_GENERATED_INSTANCE_CLASS);
+		initEClass(packageFlatRendererEClass, PackageFlatRenderer.class, "PackageFlatRenderer", !IS_ABSTRACT, !IS_INTERFACE, IS_GENERATED_INSTANCE_CLASS);
 	}
 
 } // SpecialRenderersPackageImpl

@@ -113,6 +113,11 @@ public class MeetingRendererImpl extends ModelElementRendererImpl implements Mee
 
 		USection title = new USection(topic2);
 		section.add(title);
+		// todo this break is also done, if there are no following elements after the Meeting
+		// so there is an empty page at the end if you export a single meeting
+		// if you export multiple meetings, there should be page breaks between the meetings..
+		// looks nicer!
+		// title.getBoxModel().setBreakAfter(true);
 		title.getSectionOption().setLeaveOutPreviousSectionNumbering(true);
 		title.getSectionOption().setSectionNumberingStyle(SectionNumberingStyle.NONE);
 		title.getBoxModel().setMarginTop(20);

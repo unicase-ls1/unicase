@@ -29,7 +29,6 @@ public class ReferenceOptionImpl extends RendererOptionImpl implements Reference
 
 	/**
 	 * <!-- begin-user-doc --> . <!-- end-user-doc -->
-	 * 
 	 * @generated
 	 */
 	@Override

@@ -36,41 +36,35 @@ import org.unicase.model.task.TaskPackage;
 
 /**
  * <!-- begin-user-doc --> An implementation of the model <b>Package</b>. <!-- end-user-doc -->
- * 
  * @generated
  */
 public class RenderersPackageImpl extends EPackageImpl implements RenderersPackage {
 	/**
 	 * <!-- begin-user-doc --> <!-- end-user-doc -->
-	 * 
 	 * @generated
 	 */
 	private EClass modelElementRendererEClass = null;
 
 	/**
 	 * <!-- begin-user-doc --> <!-- end-user-doc -->
-	 * 
 	 * @generated
 	 */
 	private EClass attributeRendererEClass = null;
 
 	/**
 	 * <!-- begin-user-doc --> <!-- end-user-doc -->
-	 * 
 	 * @generated
 	 */
 	private EClass documentRendererEClass = null;
 
 	/**
 	 * <!-- begin-user-doc --> <!-- end-user-doc -->
-	 * 
 	 * @generated
 	 */
 	private EClass modelElementRendererMappingEClass = null;
 
 	/**
 	 * <!-- begin-user-doc --> <!-- end-user-doc -->
-	 * 
 	 * @generated
 	 */
 	private EClass attributeRendererMappingEClass = null;
@@ -94,37 +88,37 @@ public class RenderersPackageImpl extends EPackageImpl implements RenderersPacka
 
 	/**
 	 * <!-- begin-user-doc --> <!-- end-user-doc -->
-	 * 
 	 * @generated
 	 */
 	private static boolean isInited = false;
 
 	/**
-	 * Creates, registers, and initializes the <b>Package</b> for this model, and for any others upon which it depends.
-	 * Simple dependencies are satisfied by calling this method on all dependent packages before doing anything else.
-	 * This method drives initialization for interdependent packages directly, in parallel with this package, itself.
-	 * <p>
-	 * Of this package and its interdependencies, all packages which have not yet been registered by their URI values
-	 * are first created and registered. The packages are then initialized in two steps: meta-model objects for all of
-	 * the packages are created before any are initialized, since one package's meta-model objects may refer to those of
-	 * another.
-	 * <p>
-	 * Invocation of this method will not affect any packages that have already been initialized. <!-- begin-user-doc
+	 * Creates, registers, and initializes the <b>Package</b> for this
+	 * model, and for any others upon which it depends.  Simple
+	 * dependencies are satisfied by calling this method on all
+	 * dependent packages before doing anything else.  This method drives
+	 * initialization for interdependent packages directly, in parallel
+	 * with this package, itself.
+	 * <p>Of this package and its interdependencies, all packages which
+	 * have not yet been registered by their URI values are first created
+	 * and registered.  The packages are then initialized in two steps:
+	 * meta-model objects for all of the packages are created before any
+	 * are initialized, since one package's meta-model objects may refer to
+	 * those of another.
+	 * <p>Invocation of this method will not affect any packages that have
+	 * already been initialized.
+	 * <!-- begin-user-doc
 	 * --> <!-- end-user-doc -->
-	 * 
 	 * @see #eNS_URI
 	 * @see #createPackageContents()
 	 * @see #initializePackageContents()
 	 * @generated
 	 */
 	public static RenderersPackage init() {
-		if (isInited)
-			return (RenderersPackage) EPackage.Registry.INSTANCE.getEPackage(RenderersPackage.eNS_URI);
+		if (isInited) return (RenderersPackage)EPackage.Registry.INSTANCE.getEPackage(RenderersPackage.eNS_URI);
 
 		// Obtain or create and register package
-		RenderersPackageImpl theRenderersPackage = (RenderersPackageImpl) (EPackage.Registry.INSTANCE
-			.getEPackage(eNS_URI) instanceof RenderersPackageImpl ? EPackage.Registry.INSTANCE.getEPackage(eNS_URI)
-			: new RenderersPackageImpl());
+		RenderersPackageImpl theRenderersPackage = (RenderersPackageImpl)(EPackage.Registry.INSTANCE.getEPackage(eNS_URI) instanceof RenderersPackageImpl ? EPackage.Registry.INSTANCE.getEPackage(eNS_URI) : new RenderersPackageImpl());
 
 		isInited = true;
 
@@ -132,20 +126,10 @@ public class RenderersPackageImpl extends EPackageImpl implements RenderersPacka
 		EcorePackage.eINSTANCE.eClass();
 
 		// Obtain or create and register interdependencies
-		ExportModelPackageImpl theExportModelPackage = (ExportModelPackageImpl) (EPackage.Registry.INSTANCE
-			.getEPackage(ExportModelPackage.eNS_URI) instanceof ExportModelPackageImpl ? EPackage.Registry.INSTANCE
-			.getEPackage(ExportModelPackage.eNS_URI) : ExportModelPackage.eINSTANCE);
-		DefaultRenderersPackageImpl theDefaultRenderersPackage = (DefaultRenderersPackageImpl) (EPackage.Registry.INSTANCE
-			.getEPackage(DefaultRenderersPackage.eNS_URI) instanceof DefaultRenderersPackageImpl ? EPackage.Registry.INSTANCE
-			.getEPackage(DefaultRenderersPackage.eNS_URI)
-			: DefaultRenderersPackage.eINSTANCE);
-		SpecialRenderersPackageImpl theSpecialRenderersPackage = (SpecialRenderersPackageImpl) (EPackage.Registry.INSTANCE
-			.getEPackage(SpecialRenderersPackage.eNS_URI) instanceof SpecialRenderersPackageImpl ? EPackage.Registry.INSTANCE
-			.getEPackage(SpecialRenderersPackage.eNS_URI)
-			: SpecialRenderersPackage.eINSTANCE);
-		OptionsPackageImpl theOptionsPackage = (OptionsPackageImpl) (EPackage.Registry.INSTANCE
-			.getEPackage(OptionsPackage.eNS_URI) instanceof OptionsPackageImpl ? EPackage.Registry.INSTANCE
-			.getEPackage(OptionsPackage.eNS_URI) : OptionsPackage.eINSTANCE);
+		ExportModelPackageImpl theExportModelPackage = (ExportModelPackageImpl)(EPackage.Registry.INSTANCE.getEPackage(ExportModelPackage.eNS_URI) instanceof ExportModelPackageImpl ? EPackage.Registry.INSTANCE.getEPackage(ExportModelPackage.eNS_URI) : ExportModelPackage.eINSTANCE);
+		DefaultRenderersPackageImpl theDefaultRenderersPackage = (DefaultRenderersPackageImpl)(EPackage.Registry.INSTANCE.getEPackage(DefaultRenderersPackage.eNS_URI) instanceof DefaultRenderersPackageImpl ? EPackage.Registry.INSTANCE.getEPackage(DefaultRenderersPackage.eNS_URI) : DefaultRenderersPackage.eINSTANCE);
+		SpecialRenderersPackageImpl theSpecialRenderersPackage = (SpecialRenderersPackageImpl)(EPackage.Registry.INSTANCE.getEPackage(SpecialRenderersPackage.eNS_URI) instanceof SpecialRenderersPackageImpl ? EPackage.Registry.INSTANCE.getEPackage(SpecialRenderersPackage.eNS_URI) : SpecialRenderersPackage.eINSTANCE);
+		OptionsPackageImpl theOptionsPackage = (OptionsPackageImpl)(EPackage.Registry.INSTANCE.getEPackage(OptionsPackage.eNS_URI) instanceof OptionsPackageImpl ? EPackage.Registry.INSTANCE.getEPackage(OptionsPackage.eNS_URI) : OptionsPackage.eINSTANCE);
 
 		// Create package meta-data objects
 		theRenderersPackage.createPackageContents();
@@ -169,7 +153,6 @@ public class RenderersPackageImpl extends EPackageImpl implements RenderersPacka
 
 	/**
 	 * <!-- begin-user-doc --> <!-- end-user-doc -->
-	 * 
 	 * @generated
 	 */
 	public EClass getModelElementRenderer() {
@@ -178,34 +161,30 @@ public class RenderersPackageImpl extends EPackageImpl implements RenderersPacka
 
 	/**
 	 * <!-- begin-user-doc --> <!-- end-user-doc -->
-	 * 
 	 * @generated
 	 */
 	public EReference getModelElementRenderer_RendererOptions() {
-		return (EReference) modelElementRendererEClass.getEStructuralFeatures().get(0);
+		return (EReference)modelElementRendererEClass.getEStructuralFeatures().get(0);
 	}
 
 	/**
 	 * <!-- begin-user-doc --> <!-- end-user-doc -->
-	 * 
 	 * @generated
 	 */
 	public EReference getModelElementRenderer_Template() {
-		return (EReference) modelElementRendererEClass.getEStructuralFeatures().get(1);
+		return (EReference)modelElementRendererEClass.getEStructuralFeatures().get(1);
 	}
 
 	/**
 	 * <!-- begin-user-doc --> <!-- end-user-doc -->
-	 * 
 	 * @generated
 	 */
 	public EReference getModelElementRenderer_AttributeRendererMapping() {
-		return (EReference) modelElementRendererEClass.getEStructuralFeatures().get(2);
+		return (EReference)modelElementRendererEClass.getEStructuralFeatures().get(2);
 	}
 
 	/**
 	 * <!-- begin-user-doc --> <!-- end-user-doc -->
-	 * 
 	 * @generated
 	 */
 	public EClass getAttributeRenderer() {
@@ -214,16 +193,14 @@ public class RenderersPackageImpl extends EPackageImpl implements RenderersPacka
 
 	/**
 	 * <!-- begin-user-doc --> <!-- end-user-doc -->
-	 * 
 	 * @generated
 	 */
 	public EReference getAttributeRenderer_AttributeOption() {
-		return (EReference) attributeRendererEClass.getEStructuralFeatures().get(0);
+		return (EReference)attributeRendererEClass.getEStructuralFeatures().get(0);
 	}
 
 	/**
 	 * <!-- begin-user-doc --> <!-- end-user-doc -->
-	 * 
 	 * @generated
 	 */
 	public EClass getDocumentRenderer() {
@@ -232,7 +209,6 @@ public class RenderersPackageImpl extends EPackageImpl implements RenderersPacka
 
 	/**
 	 * <!-- begin-user-doc --> <!-- end-user-doc -->
-	 * 
 	 * @generated
 	 */
 	public EClass getModelElementRendererMapping() {
@@ -241,25 +217,22 @@ public class RenderersPackageImpl extends EPackageImpl implements RenderersPacka
 
 	/**
 	 * <!-- begin-user-doc --> <!-- end-user-doc -->
-	 * 
 	 * @generated
 	 */
 	public EReference getModelElementRendererMapping_Renderer() {
-		return (EReference) modelElementRendererMappingEClass.getEStructuralFeatures().get(0);
+		return (EReference)modelElementRendererMappingEClass.getEStructuralFeatures().get(0);
 	}
 
 	/**
 	 * <!-- begin-user-doc --> <!-- end-user-doc -->
-	 * 
 	 * @generated
 	 */
 	public EAttribute getModelElementRendererMapping_EClassName() {
-		return (EAttribute) modelElementRendererMappingEClass.getEStructuralFeatures().get(1);
+		return (EAttribute)modelElementRendererMappingEClass.getEStructuralFeatures().get(1);
 	}
 
 	/**
 	 * <!-- begin-user-doc --> <!-- end-user-doc -->
-	 * 
 	 * @generated
 	 */
 	public EClass getAttributeRendererMapping() {
@@ -268,47 +241,42 @@ public class RenderersPackageImpl extends EPackageImpl implements RenderersPacka
 
 	/**
 	 * <!-- begin-user-doc --> <!-- end-user-doc -->
-	 * 
 	 * @generated
 	 */
 	public EReference getAttributeRendererMapping_AttributeRenderer() {
-		return (EReference) attributeRendererMappingEClass.getEStructuralFeatures().get(0);
+		return (EReference)attributeRendererMappingEClass.getEStructuralFeatures().get(0);
 	}
 
 	/**
 	 * <!-- begin-user-doc --> <!-- end-user-doc -->
-	 * 
 	 * @generated
 	 */
 	public EAttribute getAttributeRendererMapping_FeatureName() {
-		return (EAttribute) attributeRendererMappingEClass.getEStructuralFeatures().get(1);
+		return (EAttribute)attributeRendererMappingEClass.getEStructuralFeatures().get(1);
 	}
 
 	/**
 	 * <!-- begin-user-doc --> <!-- end-user-doc -->
-	 * 
 	 * @generated
 	 */
 	public RenderersFactory getRenderersFactory() {
-		return (RenderersFactory) getEFactoryInstance();
+		return (RenderersFactory)getEFactoryInstance();
 	}
 
 	/**
 	 * <!-- begin-user-doc --> <!-- end-user-doc -->
-	 * 
 	 * @generated
 	 */
 	private boolean isCreated = false;
 
 	/**
-	 * Creates the meta-model objects for the package. This method is guarded to have no affect on any invocation but
-	 * its first. <!-- begin-user-doc --> <!-- end-user-doc -->
-	 * 
+	 * Creates the meta-model objects for the package.  This method is
+	 * guarded to have no affect on any invocation but its first.
+	 * <!-- begin-user-doc --> <!-- end-user-doc -->
 	 * @generated
 	 */
 	public void createPackageContents() {
-		if (isCreated)
-			return;
+		if (isCreated) return;
 		isCreated = true;
 
 		// Create classes and their features
@@ -333,20 +301,18 @@ public class RenderersPackageImpl extends EPackageImpl implements RenderersPacka
 
 	/**
 	 * <!-- begin-user-doc --> <!-- end-user-doc -->
-	 * 
 	 * @generated
 	 */
 	private boolean isInitialized = false;
 
 	/**
-	 * Complete the initialization of the package and its meta-model. This method is guarded to have no affect on any
-	 * invocation but its first. <!-- begin-user-doc --> <!-- end-user-doc -->
-	 * 
+	 * Complete the initialization of the package and its meta-model.  This
+	 * method is guarded to have no affect on any invocation but its first.
+	 * <!-- begin-user-doc --> <!-- end-user-doc -->
 	 * @generated
 	 */
 	public void initializePackageContents() {
-		if (isInitialized)
-			return;
+		if (isInitialized) return;
 		isInitialized = true;
 
 		// Initialize package
@@ -355,15 +321,11 @@ public class RenderersPackageImpl extends EPackageImpl implements RenderersPacka
 		setNsURI(eNS_URI);
 
 		// Obtain other dependent packages
-		DefaultRenderersPackage theDefaultRenderersPackage = (DefaultRenderersPackage) EPackage.Registry.INSTANCE
-			.getEPackage(DefaultRenderersPackage.eNS_URI);
-		SpecialRenderersPackage theSpecialRenderersPackage = (SpecialRenderersPackage) EPackage.Registry.INSTANCE
-			.getEPackage(SpecialRenderersPackage.eNS_URI);
-		OptionsPackage theOptionsPackage = (OptionsPackage) EPackage.Registry.INSTANCE
-			.getEPackage(OptionsPackage.eNS_URI);
-		ExportModelPackage theExportModelPackage = (ExportModelPackage) EPackage.Registry.INSTANCE
-			.getEPackage(ExportModelPackage.eNS_URI);
-		EcorePackage theEcorePackage = (EcorePackage) EPackage.Registry.INSTANCE.getEPackage(EcorePackage.eNS_URI);
+		DefaultRenderersPackage theDefaultRenderersPackage = (DefaultRenderersPackage)EPackage.Registry.INSTANCE.getEPackage(DefaultRenderersPackage.eNS_URI);
+		SpecialRenderersPackage theSpecialRenderersPackage = (SpecialRenderersPackage)EPackage.Registry.INSTANCE.getEPackage(SpecialRenderersPackage.eNS_URI);
+		OptionsPackage theOptionsPackage = (OptionsPackage)EPackage.Registry.INSTANCE.getEPackage(OptionsPackage.eNS_URI);
+		ExportModelPackage theExportModelPackage = (ExportModelPackage)EPackage.Registry.INSTANCE.getEPackage(ExportModelPackage.eNS_URI);
+		EcorePackage theEcorePackage = (EcorePackage)EPackage.Registry.INSTANCE.getEPackage(EcorePackage.eNS_URI);
 
 		// Add subpackages
 		getESubpackages().add(theDefaultRenderersPackage);
@@ -377,44 +339,23 @@ public class RenderersPackageImpl extends EPackageImpl implements RenderersPacka
 		// Add supertypes to classes
 
 		// Initialize classes and features; add operations and parameters
-		initEClass(modelElementRendererEClass, ModelElementRenderer.class, "ModelElementRenderer", IS_ABSTRACT,
-			!IS_INTERFACE, IS_GENERATED_INSTANCE_CLASS);
-		initEReference(getModelElementRenderer_RendererOptions(), theOptionsPackage.getRendererOption(), null,
-			"rendererOptions", null, 0, -1, ModelElementRenderer.class, !IS_TRANSIENT, !IS_VOLATILE, IS_CHANGEABLE,
-			IS_COMPOSITE, !IS_RESOLVE_PROXIES, !IS_UNSETTABLE, IS_UNIQUE, !IS_DERIVED, IS_ORDERED);
-		initEReference(getModelElementRenderer_Template(), theExportModelPackage.getTemplate(), null, "template", null,
-			0, 1, ModelElementRenderer.class, !IS_TRANSIENT, !IS_VOLATILE, IS_CHANGEABLE, !IS_COMPOSITE,
-			IS_RESOLVE_PROXIES, !IS_UNSETTABLE, IS_UNIQUE, !IS_DERIVED, IS_ORDERED);
-		initEReference(getModelElementRenderer_AttributeRendererMapping(), this.getAttributeRendererMapping(), null,
-			"attributeRendererMapping", null, 0, -1, ModelElementRenderer.class, !IS_TRANSIENT, !IS_VOLATILE,
-			IS_CHANGEABLE, IS_COMPOSITE, !IS_RESOLVE_PROXIES, !IS_UNSETTABLE, IS_UNIQUE, !IS_DERIVED, IS_ORDERED);
+		initEClass(modelElementRendererEClass, ModelElementRenderer.class, "ModelElementRenderer", IS_ABSTRACT, !IS_INTERFACE, IS_GENERATED_INSTANCE_CLASS);
+		initEReference(getModelElementRenderer_RendererOptions(), theOptionsPackage.getRendererOption(), null, "rendererOptions", null, 0, -1, ModelElementRenderer.class, !IS_TRANSIENT, !IS_VOLATILE, IS_CHANGEABLE, IS_COMPOSITE, !IS_RESOLVE_PROXIES, !IS_UNSETTABLE, IS_UNIQUE, !IS_DERIVED, IS_ORDERED);
+		initEReference(getModelElementRenderer_Template(), theExportModelPackage.getTemplate(), null, "template", null, 0, 1, ModelElementRenderer.class, !IS_TRANSIENT, !IS_VOLATILE, IS_CHANGEABLE, !IS_COMPOSITE, IS_RESOLVE_PROXIES, !IS_UNSETTABLE, IS_UNIQUE, !IS_DERIVED, IS_ORDERED);
+		initEReference(getModelElementRenderer_AttributeRendererMapping(), this.getAttributeRendererMapping(), null, "attributeRendererMapping", null, 0, -1, ModelElementRenderer.class, !IS_TRANSIENT, !IS_VOLATILE, IS_CHANGEABLE, IS_COMPOSITE, !IS_RESOLVE_PROXIES, !IS_UNSETTABLE, IS_UNIQUE, !IS_DERIVED, IS_ORDERED);
 
-		initEClass(attributeRendererEClass, AttributeRenderer.class, "AttributeRenderer", IS_ABSTRACT, !IS_INTERFACE,
-			IS_GENERATED_INSTANCE_CLASS);
-		initEReference(getAttributeRenderer_AttributeOption(), theOptionsPackage.getAttributeOption(), null,
-			"attributeOption", null, 0, 1, AttributeRenderer.class, !IS_TRANSIENT, !IS_VOLATILE, IS_CHANGEABLE,
-			IS_COMPOSITE, !IS_RESOLVE_PROXIES, !IS_UNSETTABLE, IS_UNIQUE, !IS_DERIVED, IS_ORDERED);
+		initEClass(attributeRendererEClass, AttributeRenderer.class, "AttributeRenderer", IS_ABSTRACT, !IS_INTERFACE, IS_GENERATED_INSTANCE_CLASS);
+		initEReference(getAttributeRenderer_AttributeOption(), theOptionsPackage.getAttributeOption(), null, "attributeOption", null, 0, 1, AttributeRenderer.class, !IS_TRANSIENT, !IS_VOLATILE, IS_CHANGEABLE, IS_COMPOSITE, !IS_RESOLVE_PROXIES, !IS_UNSETTABLE, IS_UNIQUE, !IS_DERIVED, IS_ORDERED);
 
-		initEClass(documentRendererEClass, DocumentRenderer.class, "DocumentRenderer", IS_ABSTRACT, !IS_INTERFACE,
-			IS_GENERATED_INSTANCE_CLASS);
+		initEClass(documentRendererEClass, DocumentRenderer.class, "DocumentRenderer", IS_ABSTRACT, !IS_INTERFACE, IS_GENERATED_INSTANCE_CLASS);
 
-		initEClass(modelElementRendererMappingEClass, ModelElementRendererMapping.class, "ModelElementRendererMapping",
-			!IS_ABSTRACT, !IS_INTERFACE, IS_GENERATED_INSTANCE_CLASS);
-		initEReference(getModelElementRendererMapping_Renderer(), this.getModelElementRenderer(), null, "renderer",
-			null, 0, 1, ModelElementRendererMapping.class, !IS_TRANSIENT, !IS_VOLATILE, IS_CHANGEABLE, IS_COMPOSITE,
-			!IS_RESOLVE_PROXIES, !IS_UNSETTABLE, IS_UNIQUE, !IS_DERIVED, IS_ORDERED);
-		initEAttribute(getModelElementRendererMapping_EClassName(), theEcorePackage.getEString(), "eClassName", null,
-			0, 1, ModelElementRendererMapping.class, !IS_TRANSIENT, !IS_VOLATILE, IS_CHANGEABLE, !IS_UNSETTABLE,
-			!IS_ID, IS_UNIQUE, !IS_DERIVED, IS_ORDERED);
+		initEClass(modelElementRendererMappingEClass, ModelElementRendererMapping.class, "ModelElementRendererMapping", !IS_ABSTRACT, !IS_INTERFACE, IS_GENERATED_INSTANCE_CLASS);
+		initEReference(getModelElementRendererMapping_Renderer(), this.getModelElementRenderer(), null, "renderer", null, 0, 1, ModelElementRendererMapping.class, !IS_TRANSIENT, !IS_VOLATILE, IS_CHANGEABLE, IS_COMPOSITE, !IS_RESOLVE_PROXIES, !IS_UNSETTABLE, IS_UNIQUE, !IS_DERIVED, IS_ORDERED);
+		initEAttribute(getModelElementRendererMapping_EClassName(), theEcorePackage.getEString(), "eClassName", null, 0, 1, ModelElementRendererMapping.class, !IS_TRANSIENT, !IS_VOLATILE, IS_CHANGEABLE, !IS_UNSETTABLE, !IS_ID, IS_UNIQUE, !IS_DERIVED, IS_ORDERED);
 
-		initEClass(attributeRendererMappingEClass, AttributeRendererMapping.class, "AttributeRendererMapping",
-			!IS_ABSTRACT, !IS_INTERFACE, IS_GENERATED_INSTANCE_CLASS);
-		initEReference(getAttributeRendererMapping_AttributeRenderer(), this.getAttributeRenderer(), null,
-			"attributeRenderer", null, 0, 1, AttributeRendererMapping.class, !IS_TRANSIENT, !IS_VOLATILE,
-			IS_CHANGEABLE, IS_COMPOSITE, !IS_RESOLVE_PROXIES, !IS_UNSETTABLE, IS_UNIQUE, !IS_DERIVED, IS_ORDERED);
-		initEAttribute(getAttributeRendererMapping_FeatureName(), theEcorePackage.getEString(), "featureName", null, 0,
-			1, AttributeRendererMapping.class, !IS_TRANSIENT, !IS_VOLATILE, IS_CHANGEABLE, !IS_UNSETTABLE, !IS_ID,
-			IS_UNIQUE, !IS_DERIVED, IS_ORDERED);
+		initEClass(attributeRendererMappingEClass, AttributeRendererMapping.class, "AttributeRendererMapping", !IS_ABSTRACT, !IS_INTERFACE, IS_GENERATED_INSTANCE_CLASS);
+		initEReference(getAttributeRendererMapping_AttributeRenderer(), this.getAttributeRenderer(), null, "attributeRenderer", null, 0, 1, AttributeRendererMapping.class, !IS_TRANSIENT, !IS_VOLATILE, IS_CHANGEABLE, IS_COMPOSITE, !IS_RESOLVE_PROXIES, !IS_UNSETTABLE, IS_UNIQUE, !IS_DERIVED, IS_ORDERED);
+		initEAttribute(getAttributeRendererMapping_FeatureName(), theEcorePackage.getEString(), "featureName", null, 0, 1, AttributeRendererMapping.class, !IS_TRANSIENT, !IS_VOLATILE, IS_CHANGEABLE, !IS_UNSETTABLE, !IS_ID, IS_UNIQUE, !IS_DERIVED, IS_ORDERED);
 	}
 
 	// begin custom code

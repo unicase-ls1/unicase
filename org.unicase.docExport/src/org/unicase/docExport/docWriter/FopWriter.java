@@ -692,12 +692,24 @@ public abstract class FopWriter implements DocWriter {
 				+ option.getBackgroundColor().getGreen() + ", " + option.getBackgroundColor().getBlue() + ")");
 		}
 
+		if (option.getWidth() > 0) {
+			foElement.setAttribute("width", option.getWidth() + "pt");
+		}
+
+		applyPageBreaks(foElement, option);
+	}
+
+	/**
+	 * Checkstyle is stupid (NPath complexity).
+	 */
+	private void applyPageBreaks(Element foElement, BoxModelOption option) {
+
 		if (option.isBreakBefore()) {
 			foElement.setAttribute("break-before", "page");
 		}
 
-		if (option.getWidth() > 0) {
-			foElement.setAttribute("width", option.getWidth() + "pt");
+		if (option.isBreakAfter()) {
+			foElement.setAttribute("break-after", "page");
 		}
 	}
 

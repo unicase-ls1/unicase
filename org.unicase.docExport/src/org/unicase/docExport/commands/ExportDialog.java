@@ -20,6 +20,7 @@ import org.eclipse.swt.events.ModifyEvent;
 import org.eclipse.swt.events.ModifyListener;
 import org.eclipse.swt.events.SelectionAdapter;
 import org.eclipse.swt.events.SelectionEvent;
+import org.eclipse.swt.events.SelectionListener;
 import org.eclipse.swt.layout.GridData;
 import org.eclipse.swt.layout.GridLayout;
 import org.eclipse.swt.widgets.Button;
@@ -159,6 +160,20 @@ public class ExportDialog extends TitleAreaDialog {
 			}
 		});
 
+		Label label6 = new Label(container, SWT.NONE);
+		label6.setText("treat Model Element as Leaf Section");
+
+		Button modelElementAsLeafSection = new Button(container, SWT.CHECK);
+		modelElementAsLeafSection.addSelectionListener(new SelectionListener() {
+			public void widgetDefaultSelected(SelectionEvent e) {
+			}
+
+			public void widgetSelected(SelectionEvent e) {
+				DocumentExport.setTreatModelElementAsLeafSection(((Button) e.widget).getSelection());
+			}
+		});
+		modelElementAsLeafSection.setSelection(false);
+
 		Composite container2 = new Composite(parent, SWT.NONE);
 		GridLayout layout2 = new GridLayout();
 		layout2.numColumns = 3;
@@ -211,13 +226,14 @@ public class ExportDialog extends TitleAreaDialog {
 			dialog.run(true, true, docExport);
 			// System.out.println(TemplateRegistry.getMeCount());
 		} catch (InvocationTargetException e) {
-			MessageBox finished = new MessageBox(ExportDialog.platformShell, SWT.OK | SWT.ICON_WORKING);
-			finished.setText("Export status");
-			finished.setMessage(e.getClass().getSimpleName() + ": " + e.getMessage());
+			MessageBox finished = new MessageBox(ExportDialog.platformShell, SWT.OK | SWT.ICON_ERROR);
+			finished.setText(e.getTargetException().getClass().getSimpleName());
+			finished.setMessage("Fatal Error: " + e.getTargetException().getMessage() + "\n"
+				+ "Please contact a unicase developer");
 			finished.open();
 			e.printStackTrace();
 		} catch (InterruptedException e) {
-			MessageBox finished = new MessageBox(ExportDialog.platformShell, SWT.OK | SWT.ICON_WORKING);
+			MessageBox finished = new MessageBox(ExportDialog.platformShell, SWT.OK | SWT.ICON_INFORMATION);
 			finished.setText("Export status");
 			finished.setMessage("Export interrupted");
 			finished.open();
@@ -266,6 +282,22 @@ public class ExportDialog extends TitleAreaDialog {
 		return doIt;
 	}
 
+	private DocumentExport createDocumentExport() {
+		DocWriter docWriter = docWriters.get(exportType.getSelectionIndex());
+		DocumentExport docExport = new DocumentExport(modelElement, docWriter, templates.get(template
+			.getSelectionIndex()), docRenderer);
+
+		docExport.setFileLocation(getFileUrl());
+
+		return docExport;
+	}
+
+	private String getFileUrl() {
+		String fileUrl = fileLocation.getText() + File.separatorChar + fileName.getText() + "."
+			+ docWriters.get(exportType.getSelectionIndex()).getFileType();
+		return fileUrl;
+	}
+
 	/**
 	 * @author Sebastian Höcht
 	 */
@@ -279,13 +311,8 @@ public class ExportDialog extends TitleAreaDialog {
 			if (fileName.getText().length() < 1) {
 				setErrorMessage("Please enter a file name");
 			} else {
-				DocWriter docWriter = docWriters.get(exportType.getSelectionIndex());
-				DocumentExport docExport = new DocumentExport(modelElement, docWriter, templates.get(template
-					.getSelectionIndex()), docRenderer);
-				String fileUrl = fileLocation.getText() + File.separatorChar + fileName.getText() + "."
-					+ docWriter.getFileType();
-				docExport.setFileLocation(fileUrl);
-
+				DocumentExport docExport = createDocumentExport();
+				String fileUrl = getFileUrl();
 				if (checkFileName(fileUrl)) {
 					exportDocument(docExport, fileUrl);
 					close();
@@ -306,13 +333,8 @@ public class ExportDialog extends TitleAreaDialog {
 			if (fileName.getText().length() < 1) {
 				setErrorMessage("Please enter a file name");
 			} else {
-				DocWriter docWriter = docWriters.get(exportType.getSelectionIndex());
-				DocumentExport docExport = new DocumentExport(modelElement, docWriter, templates.get(template
-					.getSelectionIndex()), docRenderer);
-				String fileUrl = fileLocation.getText() + File.separatorChar + fileName.getText() + "."
-					+ docWriter.getFileType();
-				docExport.setFileLocation(fileUrl);
-
+				DocumentExport docExport = createDocumentExport();
+				String fileUrl = getFileUrl();
 				if (checkFileName(fileUrl)) {
 					exportDocument(docExport, fileUrl);
 					WorkspaceUtil.openFile(fileUrl);

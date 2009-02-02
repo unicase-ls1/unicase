@@ -29,6 +29,7 @@ public class DocumentExport implements IRunnableWithProgress {
 	private String fileLocation;
 
 	private static int recursionDepth = 10;
+	private static boolean treatModelElementAsLeafSection;
 	private static HashSet<String> renderedModelElements;
 	private static HashSet<ModelElement> linkedModelElements;
 
@@ -148,6 +149,20 @@ public class DocumentExport implements IRunnableWithProgress {
 	 */
 	public static int getRecursionDepth() {
 		return recursionDepth;
+	}
+
+	/**
+	 * @param treatModelElementAsLeafSection the treatModelElementAsLeafSection to set
+	 */
+	public static void setTreatModelElementAsLeafSection(boolean treatModelElementAsLeafSection) {
+		DocumentExport.treatModelElementAsLeafSection = treatModelElementAsLeafSection;
+	}
+
+	/**
+	 * @return the treatModelElementAsLeafSection
+	 */
+	public static boolean isTreatModelElementAsLeafSection() {
+		return treatModelElementAsLeafSection;
 	}
 
 }
