@@ -216,6 +216,7 @@
           <genFeatures createChild="false" ecoreFeature="ecore:EAttribute exportModel.ecore#//renderers/options/BoxModelOption/keepWithNext"/>
           <genFeatures createChild="false" ecoreFeature="ecore:EAttribute exportModel.ecore#//renderers/options/BoxModelOption/breakBefore"/>
           <genFeatures createChild="false" ecoreFeature="ecore:EAttribute exportModel.ecore#//renderers/options/BoxModelOption/width"/>
+          <genFeatures createChild="false" ecoreFeature="ecore:EAttribute exportModel.ecore#//renderers/options/BoxModelOption/breakAfter"/>
         </genClasses>
         <genClasses ecoreClass="exportModel.ecore#//renderers/options/SectionOption">
           <genFeatures createChild="false" ecoreFeature="ecore:EAttribute exportModel.ecore#//renderers/options/SectionOption/sectionNumberingStyle"/>

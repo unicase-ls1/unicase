@@ -31,7 +31,6 @@ import org.unicase.workspace.util.WorkspaceUtil;
 public class MilestoneRendererImpl extends ModelElementRendererImpl implements MilestoneRenderer {
 	/**
 	 * <!-- begin-user-doc --> <!-- end-user-doc -->
-	 * 
 	 * @generated
 	 */
 	protected MilestoneRendererImpl() {
@@ -40,7 +39,6 @@ public class MilestoneRendererImpl extends ModelElementRendererImpl implements M
 
 	/**
 	 * <!-- begin-user-doc --> <!-- end-user-doc -->
-	 * 
 	 * @generated
 	 */
 	@Override

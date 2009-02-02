@@ -21,7 +21,6 @@ import org.unicase.docExport.exportModel.renderers.RenderersPackage;
 public abstract class DocumentRendererImpl extends EObjectImpl implements DocumentRenderer {
 	/**
 	 * <!-- begin-user-doc --> <!-- end-user-doc -->
-	 * 
 	 * @generated
 	 */
 	protected DocumentRendererImpl() {
@@ -30,7 +29,6 @@ public abstract class DocumentRendererImpl extends EObjectImpl implements Docume
 
 	/**
 	 * <!-- begin-user-doc --> <!-- end-user-doc -->
-	 * 
 	 * @generated
 	 */
 	@Override

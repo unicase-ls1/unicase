@@ -77,7 +77,7 @@ public class DefaultModelElementRendererImpl extends ModelElementRendererImpl im
 	private static final int SECTION_LEFT_BORDER_PADDING = 5;
 	private static final int INDENTION_WIDTH = 15;
 	private static final int SECTION_MARGIN_BOTTOM = 15;
-	private static final int SECTION_MARGIN_TOP = 10;
+	private static final int SECTION_MARGIN_TOP = 15;
 	private static final double PROPERTIES_TABLE_BORDER_SIZE = 0.8;
 
 	/**
@@ -667,7 +667,20 @@ public class DefaultModelElementRendererImpl extends ModelElementRendererImpl im
 			if (content instanceof ModelElement && !(content instanceof LeafSection)
 				&& !(content instanceof CompositeSection)) {
 				FeatureOrdering ordering = orderFeatures((ModelElement) content);
-				if (ordering.containedProperties.size() + ordering.specialRendererProperties.size() > 0) {
+
+				// check if the special attribute renderer has the hideStructuralLines() option activated
+				// if it is activated, the attribute wont be counted as a contained property
+				// because it is only used to decide whether the structural lines should be drawn or not
+				int containedProperties = 0;
+				for (IItemPropertyDescriptor property : ordering.containedProperties) {
+					EStructuralFeature feature = (EStructuralFeature) property.getFeature(content);
+					AttributeRenderer attributeRenderer = getAttributeRendererNotNull(feature);
+					if (!attributeRenderer.hideStructuralLines()) {
+						containedProperties++;
+					}
+				}
+
+				if (ordering.containedProperties.size() + containedProperties > 0) {
 					return true;
 				}
 			}

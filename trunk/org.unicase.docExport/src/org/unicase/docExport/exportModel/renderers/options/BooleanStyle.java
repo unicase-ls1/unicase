@@ -14,15 +14,14 @@ import org.eclipse.emf.common.util.Enumerator;
 /**
  * <!-- begin-user-doc --> A representation of the literals of the enumeration '<em><b>Boolean Style</b></em>', and
  * utility methods for working with them. <!-- end-user-doc -->
- * 
  * @see org.unicase.docExport.exportModel.renderers.options.OptionsPackage#getBooleanStyle()
  * @model
  * @generated
  */
 public enum BooleanStyle implements Enumerator {
 	/**
-	 * The '<em><b>IMAGE</b></em>' literal object. <!-- begin-user-doc --> <!-- end-user-doc -->
-	 * 
+	 * The '<em><b>IMAGE</b></em>' literal object.
+	 * <!-- begin-user-doc --> <!-- end-user-doc -->
 	 * @see #IMAGE_VALUE
 	 * @generated
 	 * @ordered
@@ -30,8 +29,8 @@ public enum BooleanStyle implements Enumerator {
 	IMAGE(0, "IMAGE", "image"),
 
 	/**
-	 * The '<em><b>YES NO</b></em>' literal object. <!-- begin-user-doc --> <!-- end-user-doc -->
-	 * 
+	 * The '<em><b>YES NO</b></em>' literal object.
+	 * <!-- begin-user-doc --> <!-- end-user-doc -->
 	 * @see #YES_NO_VALUE
 	 * @generated
 	 * @ordered
@@ -39,8 +38,8 @@ public enum BooleanStyle implements Enumerator {
 	YES_NO(0, "YES_NO", "yes_no"),
 
 	/**
-	 * The '<em><b>TRUE FALSE</b></em>' literal object. <!-- begin-user-doc --> <!-- end-user-doc -->
-	 * 
+	 * The '<em><b>TRUE FALSE</b></em>' literal object.
+	 * <!-- begin-user-doc --> <!-- end-user-doc -->
 	 * @see #TRUE_FALSE_VALUE
 	 * @generated
 	 * @ordered
@@ -48,8 +47,8 @@ public enum BooleanStyle implements Enumerator {
 	TRUE_FALSE(0, "TRUE_FALSE", "true_false"),
 
 	/**
-	 * The '<em><b>NUMBERS</b></em>' literal object. <!-- begin-user-doc --> <!-- end-user-doc -->
-	 * 
+	 * The '<em><b>NUMBERS</b></em>' literal object.
+	 * <!-- begin-user-doc --> <!-- end-user-doc -->
 	 * @see #NUMBERS_VALUE
 	 * @generated
 	 * @ordered
@@ -57,13 +56,13 @@ public enum BooleanStyle implements Enumerator {
 	NUMBERS(0, "NUMBERS", "numbers");
 
 	/**
-	 * The '<em><b>IMAGE</b></em>' literal value. <!-- begin-user-doc -->
+	 * The '<em><b>IMAGE</b></em>' literal value.
+	 * <!-- begin-user-doc -->
 	 * <p>
 	 * If the meaning of '<em><b>IMAGE</b></em>' literal object isn't clear, there really should be more of a
 	 * description here...
 	 * </p>
 	 * <!-- end-user-doc -->
-	 * 
 	 * @see #IMAGE
 	 * @model literal="image"
 	 * @generated
@@ -72,13 +71,13 @@ public enum BooleanStyle implements Enumerator {
 	public static final int IMAGE_VALUE = 0;
 
 	/**
-	 * The '<em><b>YES NO</b></em>' literal value. <!-- begin-user-doc -->
+	 * The '<em><b>YES NO</b></em>' literal value.
+	 * <!-- begin-user-doc -->
 	 * <p>
 	 * If the meaning of '<em><b>YES NO</b></em>' literal object isn't clear, there really should be more of a
 	 * description here...
 	 * </p>
 	 * <!-- end-user-doc -->
-	 * 
 	 * @see #YES_NO
 	 * @model literal="yes_no"
 	 * @generated
@@ -87,13 +86,13 @@ public enum BooleanStyle implements Enumerator {
 	public static final int YES_NO_VALUE = 0;
 
 	/**
-	 * The '<em><b>TRUE FALSE</b></em>' literal value. <!-- begin-user-doc -->
+	 * The '<em><b>TRUE FALSE</b></em>' literal value.
+	 * <!-- begin-user-doc -->
 	 * <p>
 	 * If the meaning of '<em><b>TRUE FALSE</b></em>' literal object isn't clear, there really should be more of a
 	 * description here...
 	 * </p>
 	 * <!-- end-user-doc -->
-	 * 
 	 * @see #TRUE_FALSE
 	 * @model literal="true_false"
 	 * @generated
@@ -102,13 +101,13 @@ public enum BooleanStyle implements Enumerator {
 	public static final int TRUE_FALSE_VALUE = 0;
 
 	/**
-	 * The '<em><b>NUMBERS</b></em>' literal value. <!-- begin-user-doc -->
+	 * The '<em><b>NUMBERS</b></em>' literal value.
+	 * <!-- begin-user-doc -->
 	 * <p>
 	 * If the meaning of '<em><b>NUMBERS</b></em>' literal object isn't clear, there really should be more of a
 	 * description here...
 	 * </p>
 	 * <!-- end-user-doc -->
-	 * 
 	 * @see #NUMBERS
 	 * @model literal="numbers"
 	 * @generated
@@ -117,24 +116,29 @@ public enum BooleanStyle implements Enumerator {
 	public static final int NUMBERS_VALUE = 0;
 
 	/**
-	 * An array of all the '<em><b>Boolean Style</b></em>' enumerators. <!-- begin-user-doc --> <!-- end-user-doc -->
-	 * 
+	 * An array of all the '<em><b>Boolean Style</b></em>' enumerators.
+	 * <!-- begin-user-doc --> <!-- end-user-doc -->
 	 * @generated
 	 */
-	private static final BooleanStyle[] VALUES_ARRAY = new BooleanStyle[] { IMAGE, YES_NO, TRUE_FALSE, NUMBERS, };
+	private static final BooleanStyle[] VALUES_ARRAY = new BooleanStyle[] {
+			IMAGE,
+			YES_NO,
+			TRUE_FALSE,
+			NUMBERS,
+		};
 
 	/**
-	 * A public read-only list of all the '<em><b>Boolean Style</b></em>' enumerators. <!-- begin-user-doc --> <!--
+	 * A public read-only list of all the '<em><b>Boolean Style</b></em>' enumerators.
+	 * <!-- begin-user-doc --> <!--
 	 * end-user-doc -->
-	 * 
 	 * @generated
 	 */
 	public static final List<BooleanStyle> VALUES = Collections.unmodifiableList(Arrays.asList(VALUES_ARRAY));
 
 	/**
-	 * Returns the '<em><b>Boolean Style</b></em>' literal with the specified literal value. <!-- begin-user-doc -->
+	 * Returns the '<em><b>Boolean Style</b></em>' literal with the specified literal value.
+	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
-	 * 
 	 * @generated
 	 */
 	public static BooleanStyle get(String literal) {
@@ -148,9 +152,9 @@ public enum BooleanStyle implements Enumerator {
 	}
 
 	/**
-	 * Returns the '<em><b>Boolean Style</b></em>' literal with the specified name. <!-- begin-user-doc --> <!--
+	 * Returns the '<em><b>Boolean Style</b></em>' literal with the specified name.
+	 * <!-- begin-user-doc --> <!--
 	 * end-user-doc -->
-	 * 
 	 * @generated
 	 */
 	public static BooleanStyle getByName(String name) {
@@ -164,43 +168,39 @@ public enum BooleanStyle implements Enumerator {
 	}
 
 	/**
-	 * Returns the '<em><b>Boolean Style</b></em>' literal with the specified integer value. <!-- begin-user-doc -->
+	 * Returns the '<em><b>Boolean Style</b></em>' literal with the specified integer value.
+	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
-	 * 
 	 * @generated
 	 */
 	public static BooleanStyle get(int value) {
 		switch (value) {
-		case IMAGE_VALUE:
-			return IMAGE;
+			case IMAGE_VALUE: return IMAGE;
 		}
 		return null;
 	}
 
 	/**
 	 * <!-- begin-user-doc --> <!-- end-user-doc -->
-	 * 
 	 * @generated
 	 */
 	private final int value;
 
 	/**
 	 * <!-- begin-user-doc --> <!-- end-user-doc -->
-	 * 
 	 * @generated
 	 */
 	private final String name;
 
 	/**
 	 * <!-- begin-user-doc --> <!-- end-user-doc -->
-	 * 
 	 * @generated
 	 */
 	private final String literal;
 
 	/**
-	 * Only this class can construct instances. <!-- begin-user-doc --> <!-- end-user-doc -->
-	 * 
+	 * Only this class can construct instances.
+	 * <!-- begin-user-doc --> <!-- end-user-doc -->
 	 * @generated
 	 */
 	private BooleanStyle(int value, String name, String literal) {
@@ -211,35 +211,32 @@ public enum BooleanStyle implements Enumerator {
 
 	/**
 	 * <!-- begin-user-doc --> <!-- end-user-doc -->
-	 * 
 	 * @generated
 	 */
 	public int getValue() {
-		return value;
+	  return value;
 	}
 
 	/**
 	 * <!-- begin-user-doc --> <!-- end-user-doc -->
-	 * 
 	 * @generated
 	 */
 	public String getName() {
-		return name;
+	  return name;
 	}
 
 	/**
 	 * <!-- begin-user-doc --> <!-- end-user-doc -->
-	 * 
 	 * @generated
 	 */
 	public String getLiteral() {
-		return literal;
+	  return literal;
 	}
 
 	/**
-	 * Returns the literal value of the enumerator, which is its string representation. <!-- begin-user-doc --> <!--
+	 * Returns the literal value of the enumerator, which is its string representation.
+	 * <!-- begin-user-doc --> <!--
 	 * end-user-doc -->
-	 * 
 	 * @generated
 	 */
 	@Override

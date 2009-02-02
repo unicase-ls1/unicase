@@ -219,6 +219,7 @@
         <eStructuralFeatures xsi:type="ecore:EAttribute" name="keepWithNext" eType="ecore:EDataType platform:/plugin/org.eclipse.emf.ecore/model/Ecore.ecore#//EBoolean"/>
         <eStructuralFeatures xsi:type="ecore:EAttribute" name="breakBefore" eType="ecore:EDataType platform:/plugin/org.eclipse.emf.ecore/model/Ecore.ecore#//EBoolean"/>
         <eStructuralFeatures xsi:type="ecore:EAttribute" name="width" eType="ecore:EDataType platform:/plugin/org.eclipse.emf.ecore/model/Ecore.ecore#//EInt"/>
+        <eStructuralFeatures xsi:type="ecore:EAttribute" name="breakAfter" eType="ecore:EDataType platform:/plugin/org.eclipse.emf.ecore/model/Ecore.ecore#//EBoolean"/>
       </eClassifiers>
       <eClassifiers xsi:type="ecore:EEnum" name="UBorderStyle">
         <eLiterals name="HIDDEN" literal="hidden"/>

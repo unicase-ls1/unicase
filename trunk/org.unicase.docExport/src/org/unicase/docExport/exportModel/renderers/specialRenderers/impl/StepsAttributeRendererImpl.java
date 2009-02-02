@@ -32,13 +32,12 @@ import org.unicase.workspace.util.WorkspaceUtil;
  * end-user-doc -->
  * <p>
  * </p>
- * 
+ *
  * @generated
  */
 public class StepsAttributeRendererImpl extends AttributeRendererImpl implements StepsAttributeRenderer {
 	/**
 	 * <!-- begin-user-doc --> <!-- end-user-doc -->
-	 * 
 	 * @generated
 	 */
 	protected StepsAttributeRendererImpl() {
@@ -47,7 +46,6 @@ public class StepsAttributeRendererImpl extends AttributeRendererImpl implements
 
 	/**
 	 * <!-- begin-user-doc --> <!-- end-user-doc -->
-	 * 
 	 * @generated
 	 */
 	@Override
@@ -141,6 +139,11 @@ public class StepsAttributeRendererImpl extends AttributeRendererImpl implements
 		entries.get(entries.size() - 2).getBoxModel().setBorderBottom(0);
 
 		section.add(table);
+	}
+
+	@Override
+	public boolean hideStructuralLines() {
+		return true;
 	}
 	// end custom code
 

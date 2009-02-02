@@ -12,6 +12,7 @@ import org.eclipse.core.runtime.IStatus;
 import org.eclipse.core.runtime.Path;
 import org.eclipse.emf.common.util.EList;
 import org.eclipse.emf.ecore.EClass;
+import org.eclipse.emf.ecore.EObject;
 import org.unicase.docExport.DocumentExport;
 import org.unicase.docExport.TemplateRegistry;
 import org.unicase.docExport.exportModel.Template;
@@ -108,7 +109,15 @@ public class DefaultDocumentRendererImpl extends DocumentRendererImpl implements
 		} else if (modelElement instanceof LeafSection) {
 			renderDocLeafSection((LeafSectionImpl) modelElement, template.getLayoutOptions());
 		} else {
-			renderModelElement(getDoc(), modelElement);
+			if (DocumentExport.isTreatModelElementAsLeafSection()) {
+				for (EObject content : modelElement.eContents()) {
+					if (content instanceof ModelElement) {
+						renderModelElement(getDoc(), (ModelElement) content);
+					}
+				}
+			} else {
+				renderModelElement(getDoc(), modelElement);
+			}
 		}
 
 		if (template.getLayoutOptions().getAppendixStyle().equals(AppendixStyle.SHOW_FLAT)) {
@@ -270,8 +279,12 @@ public class DefaultDocumentRendererImpl extends DocumentRendererImpl implements
 		unicaseVersion.getOption().setTextAlign(TextAlign.END);
 		unicaseVersion.getBoxModel().setMarginRight(8);
 		documentInfo.addCell(unicaseVersion);
-		documentInfo.addCell(String.valueOf(WorkspaceManager.getInstance().getCurrentWorkspace()
-			.getActiveProjectSpace().getBaseVersion().getIdentifier()));
+		if (WorkspaceManager.getInstance().getCurrentWorkspace().getActiveProjectSpace().getBaseVersion() != null) {
+			documentInfo.addCell(String.valueOf(WorkspaceManager.getInstance().getCurrentWorkspace()
+				.getActiveProjectSpace().getBaseVersion().getIdentifier()));
+		} else {
+			documentInfo.addCell("(local Project)");
+		}
 
 		UParagraph exportDate = new UParagraph("Export date:", layoutOptions.getDefaultTextOption());
 		exportDate.getOption().setTextAlign(TextAlign.END);
