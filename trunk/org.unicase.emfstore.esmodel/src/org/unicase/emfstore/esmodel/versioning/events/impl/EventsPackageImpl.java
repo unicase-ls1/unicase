@@ -45,148 +45,127 @@ import org.unicase.emfstore.esmodel.versioning.operations.OperationsPackage;
 import org.unicase.emfstore.esmodel.versioning.operations.impl.OperationsPackageImpl;
 import org.unicase.model.ModelPackage;
 
-/**
+/*
  * <!-- begin-user-doc --> An implementation of the model <b>Package</b>. <!-- end-user-doc -->
- * 
  * @generated
  */
 public class EventsPackageImpl extends EPackageImpl implements EventsPackage {
 	/**
 	 * <!-- begin-user-doc --> <!-- end-user-doc -->
-	 * 
 	 * @generated
 	 */
 	private EClass eventEClass = null;
 
 	/**
 	 * <!-- begin-user-doc --> <!-- end-user-doc -->
-	 * 
 	 * @generated
 	 */
 	private EClass readEventEClass = null;
 
 	/**
 	 * <!-- begin-user-doc --> <!-- end-user-doc -->
-	 * 
 	 * @generated
 	 */
 	private EClass mergeEventEClass = null;
 
 	/**
 	 * <!-- begin-user-doc --> <!-- end-user-doc -->
-	 * 
 	 * @generated
 	 */
 	private EClass checkoutEventEClass = null;
 
 	/**
 	 * <!-- begin-user-doc --> <!-- end-user-doc -->
-	 * 
 	 * @generated
 	 */
 	private EClass exceptionEventEClass = null;
 
 	/**
 	 * <!-- begin-user-doc --> <!-- end-user-doc -->
-	 * 
 	 * @generated
 	 */
 	private EClass pluginStartEventEClass = null;
 
 	/**
 	 * <!-- begin-user-doc --> <!-- end-user-doc -->
-	 * 
 	 * @generated
 	 */
 	private EClass updateEventEClass = null;
 
 	/**
 	 * <!-- begin-user-doc --> <!-- end-user-doc -->
-	 * 
 	 * @generated
 	 */
 	private EClass annotationEventEClass = null;
 
 	/**
 	 * <!-- begin-user-doc --> <!-- end-user-doc -->
-	 * 
 	 * @generated
 	 */
 	private EClass revertEventEClass = null;
 
 	/**
 	 * <!-- begin-user-doc --> <!-- end-user-doc -->
-	 * 
 	 * @generated
 	 */
 	private EClass showHistoryEventEClass = null;
 
 	/**
 	 * <!-- begin-user-doc --> <!-- end-user-doc -->
-	 * 
 	 * @generated
 	 */
 	private EClass perspectiveEventEClass = null;
 
 	/**
 	 * <!-- begin-user-doc --> <!-- end-user-doc -->
-	 * 
 	 * @generated
 	 */
 	private EClass dndEventEClass = null;
 
 	/**
 	 * <!-- begin-user-doc --> <!-- end-user-doc -->
-	 * 
 	 * @generated
 	 */
 	private EClass linkEventEClass = null;
 
 	/**
 	 * <!-- begin-user-doc --> <!-- end-user-doc -->
-	 * 
 	 * @generated
 	 */
 	private EClass traceEventEClass = null;
 
 	/**
 	 * <!-- begin-user-doc --> <!-- end-user-doc -->
-	 * 
 	 * @generated
 	 */
 	private EClass navigatorCreateEventEClass = null;
 
 	/**
 	 * <!-- begin-user-doc --> <!-- end-user-doc -->
-	 * 
 	 * @generated
 	 */
 	private EClass pluginFocusEventEClass = null;
 
 	/**
 	 * <!-- begin-user-doc --> <!-- end-user-doc -->
-	 * 
 	 * @generated
 	 */
 	private EClass presentationSwitchEventEClass = null;
 
 	/**
 	 * <!-- begin-user-doc --> <!-- end-user-doc -->
-	 * 
 	 * @generated
 	 */
 	private EClass undoEventEClass = null;
 
 	/**
 	 * <!-- begin-user-doc --> <!-- end-user-doc -->
-	 * 
 	 * @generated
 	 */
 	private EClass validateEClass = null;
 
 	/**
 	 * <!-- begin-user-doc --> <!-- end-user-doc -->
-	 * 
 	 * @generated
 	 */
 	private EClass showChangesEventEClass = null;
@@ -210,24 +189,27 @@ public class EventsPackageImpl extends EPackageImpl implements EventsPackage {
 
 	/**
 	 * <!-- begin-user-doc --> <!-- end-user-doc -->
-	 * 
 	 * @generated
 	 */
 	private static boolean isInited = false;
 
 	/**
-	 * Creates, registers, and initializes the <b>Package</b> for this model, and for any others upon which it depends.
-	 * Simple dependencies are satisfied by calling this method on all dependent packages before doing anything else.
-	 * This method drives initialization for interdependent packages directly, in parallel with this package, itself.
-	 * <p>
-	 * Of this package and its interdependencies, all packages which have not yet been registered by their URI values
-	 * are first created and registered. The packages are then initialized in two steps: meta-model objects for all of
-	 * the packages are created before any are initialized, since one package's meta-model objects may refer to those of
-	 * another.
-	 * <p>
-	 * Invocation of this method will not affect any packages that have already been initialized. <!-- begin-user-doc
+	 * Creates, registers, and initializes the <b>Package</b> for this
+	 * model, and for any others upon which it depends.  Simple
+	 * dependencies are satisfied by calling this method on all
+	 * dependent packages before doing anything else.  This method drives
+	 * initialization for interdependent packages directly, in parallel
+	 * with this package, itself.
+	 * <p>Of this package and its interdependencies, all packages which
+	 * have not yet been registered by their URI values are first created
+	 * and registered.  The packages are then initialized in two steps:
+	 * meta-model objects for all of the packages are created before any
+	 * are initialized, since one package's meta-model objects may refer to
+	 * those of another.
+	 * <p>Invocation of this method will not affect any packages that have
+	 * already been initialized.
+	 * <!-- begin-user-doc
 	 * --> <!-- end-user-doc -->
-	 * 
 	 * @see #eNS_URI
 	 * @see #createPackageContents()
 	 * @see #initializePackageContents()
@@ -288,7 +270,6 @@ public class EventsPackageImpl extends EPackageImpl implements EventsPackage {
 
 	/**
 	 * <!-- begin-user-doc --> <!-- end-user-doc -->
-	 * 
 	 * @generated
 	 */
 	public EClass getEvent() {
@@ -297,7 +278,6 @@ public class EventsPackageImpl extends EPackageImpl implements EventsPackage {
 
 	/**
 	 * <!-- begin-user-doc --> <!-- end-user-doc -->
-	 * 
 	 * @generated
 	 */
 	public EAttribute getEvent_Timestamp() {
@@ -306,7 +286,6 @@ public class EventsPackageImpl extends EPackageImpl implements EventsPackage {
 
 	/**
 	 * <!-- begin-user-doc --> <!-- end-user-doc -->
-	 * 
 	 * @generated
 	 */
 	public EClass getReadEvent() {
@@ -315,7 +294,6 @@ public class EventsPackageImpl extends EPackageImpl implements EventsPackage {
 
 	/**
 	 * <!-- begin-user-doc --> <!-- end-user-doc -->
-	 * 
 	 * @generated
 	 */
 	public EReference getReadEvent_ModelElement() {
@@ -324,7 +302,6 @@ public class EventsPackageImpl extends EPackageImpl implements EventsPackage {
 
 	/**
 	 * <!-- begin-user-doc --> <!-- end-user-doc -->
-	 * 
 	 * @generated
 	 */
 	public EAttribute getReadEvent_SourceView() {
@@ -333,7 +310,6 @@ public class EventsPackageImpl extends EPackageImpl implements EventsPackage {
 
 	/**
 	 * <!-- begin-user-doc --> <!-- end-user-doc -->
-	 * 
 	 * @generated
 	 */
 	public EAttribute getReadEvent_ReadView() {
@@ -342,7 +318,6 @@ public class EventsPackageImpl extends EPackageImpl implements EventsPackage {
 
 	/**
 	 * <!-- begin-user-doc --> <!-- end-user-doc -->
-	 * 
 	 * @generated
 	 */
 	public EClass getMergeEvent() {
@@ -351,7 +326,6 @@ public class EventsPackageImpl extends EPackageImpl implements EventsPackage {
 
 	/**
 	 * <!-- begin-user-doc --> <!-- end-user-doc -->
-	 * 
 	 * @generated
 	 */
 	public EAttribute getMergeEvent_NumberOfConflicts() {
@@ -360,7 +334,6 @@ public class EventsPackageImpl extends EPackageImpl implements EventsPackage {
 
 	/**
 	 * <!-- begin-user-doc --> <!-- end-user-doc -->
-	 * 
 	 * @generated
 	 */
 	public EAttribute getMergeEvent_TotalTime() {
@@ -369,7 +342,6 @@ public class EventsPackageImpl extends EPackageImpl implements EventsPackage {
 
 	/**
 	 * <!-- begin-user-doc --> <!-- end-user-doc -->
-	 * 
 	 * @generated
 	 */
 	public EReference getMergeEvent_BaseVersion() {
@@ -378,7 +350,6 @@ public class EventsPackageImpl extends EPackageImpl implements EventsPackage {
 
 	/**
 	 * <!-- begin-user-doc --> <!-- end-user-doc -->
-	 * 
 	 * @generated
 	 */
 	public EReference getMergeEvent_TargetVersion() {
@@ -387,7 +358,6 @@ public class EventsPackageImpl extends EPackageImpl implements EventsPackage {
 
 	/**
 	 * <!-- begin-user-doc --> <!-- end-user-doc -->
-	 * 
 	 * @generated
 	 */
 	public EReference getMergeEvent_LocalChanges() {
@@ -396,7 +366,6 @@ public class EventsPackageImpl extends EPackageImpl implements EventsPackage {
 
 	/**
 	 * <!-- begin-user-doc --> <!-- end-user-doc -->
-	 * 
 	 * @generated
 	 */
 	public EClass getCheckoutEvent() {
@@ -405,7 +374,6 @@ public class EventsPackageImpl extends EPackageImpl implements EventsPackage {
 
 	/**
 	 * <!-- begin-user-doc --> <!-- end-user-doc -->
-	 * 
 	 * @generated
 	 */
 	public EReference getCheckoutEvent_BaseVersion() {
@@ -414,7 +382,6 @@ public class EventsPackageImpl extends EPackageImpl implements EventsPackage {
 
 	/**
 	 * <!-- begin-user-doc --> <!-- end-user-doc -->
-	 * 
 	 * @generated
 	 */
 	public EClass getExceptionEvent() {
@@ -423,7 +390,6 @@ public class EventsPackageImpl extends EPackageImpl implements EventsPackage {
 
 	/**
 	 * <!-- begin-user-doc --> <!-- end-user-doc -->
-	 * 
 	 * @generated
 	 */
 	public EAttribute getExceptionEvent_ExceptionTitle() {
@@ -432,7 +398,6 @@ public class EventsPackageImpl extends EPackageImpl implements EventsPackage {
 
 	/**
 	 * <!-- begin-user-doc --> <!-- end-user-doc -->
-	 * 
 	 * @generated
 	 */
 	public EAttribute getExceptionEvent_ExceptionStackTrace() {
@@ -441,7 +406,6 @@ public class EventsPackageImpl extends EPackageImpl implements EventsPackage {
 
 	/**
 	 * <!-- begin-user-doc --> <!-- end-user-doc -->
-	 * 
 	 * @generated
 	 */
 	public EAttribute getExceptionEvent_ExceptionCauseTitle() {
@@ -450,7 +414,6 @@ public class EventsPackageImpl extends EPackageImpl implements EventsPackage {
 
 	/**
 	 * <!-- begin-user-doc --> <!-- end-user-doc -->
-	 * 
 	 * @generated
 	 */
 	public EAttribute getExceptionEvent_ExceptionCauseStackTrace() {
@@ -459,7 +422,6 @@ public class EventsPackageImpl extends EPackageImpl implements EventsPackage {
 
 	/**
 	 * <!-- begin-user-doc --> <!-- end-user-doc -->
-	 * 
 	 * @generated
 	 */
 	public EClass getPluginStartEvent() {
@@ -468,7 +430,6 @@ public class EventsPackageImpl extends EPackageImpl implements EventsPackage {
 
 	/**
 	 * <!-- begin-user-doc --> <!-- end-user-doc -->
-	 * 
 	 * @generated
 	 */
 	public EAttribute getPluginStartEvent_PluginId() {
@@ -477,7 +438,6 @@ public class EventsPackageImpl extends EPackageImpl implements EventsPackage {
 
 	/**
 	 * <!-- begin-user-doc --> <!-- end-user-doc -->
-	 * 
 	 * @generated
 	 */
 	public EClass getUpdateEvent() {
@@ -486,7 +446,6 @@ public class EventsPackageImpl extends EPackageImpl implements EventsPackage {
 
 	/**
 	 * <!-- begin-user-doc --> <!-- end-user-doc -->
-	 * 
 	 * @generated
 	 */
 	public EReference getUpdateEvent_BaseVersion() {
@@ -495,7 +454,6 @@ public class EventsPackageImpl extends EPackageImpl implements EventsPackage {
 
 	/**
 	 * <!-- begin-user-doc --> <!-- end-user-doc -->
-	 * 
 	 * @generated
 	 */
 	public EReference getUpdateEvent_TargetVersion() {
@@ -504,7 +462,6 @@ public class EventsPackageImpl extends EPackageImpl implements EventsPackage {
 
 	/**
 	 * <!-- begin-user-doc --> <!-- end-user-doc -->
-	 * 
 	 * @generated
 	 */
 	public EClass getAnnotationEvent() {
@@ -513,7 +470,6 @@ public class EventsPackageImpl extends EPackageImpl implements EventsPackage {
 
 	/**
 	 * <!-- begin-user-doc --> <!-- end-user-doc -->
-	 * 
 	 * @generated
 	 */
 	public EReference getAnnotationEvent_AnnotatedElement() {
@@ -522,7 +478,6 @@ public class EventsPackageImpl extends EPackageImpl implements EventsPackage {
 
 	/**
 	 * <!-- begin-user-doc --> <!-- end-user-doc -->
-	 * 
 	 * @generated
 	 */
 	public EReference getAnnotationEvent_Annotation() {
@@ -531,7 +486,6 @@ public class EventsPackageImpl extends EPackageImpl implements EventsPackage {
 
 	/**
 	 * <!-- begin-user-doc --> <!-- end-user-doc -->
-	 * 
 	 * @generated
 	 */
 	public EClass getRevertEvent() {
@@ -540,7 +494,6 @@ public class EventsPackageImpl extends EPackageImpl implements EventsPackage {
 
 	/**
 	 * <!-- begin-user-doc --> <!-- end-user-doc -->
-	 * 
 	 * @generated
 	 */
 	public EAttribute getRevertEvent_RevertedChangesCount() {
@@ -549,7 +502,6 @@ public class EventsPackageImpl extends EPackageImpl implements EventsPackage {
 
 	/**
 	 * <!-- begin-user-doc --> <!-- end-user-doc -->
-	 * 
 	 * @generated
 	 */
 	public EClass getShowHistoryEvent() {
@@ -558,7 +510,6 @@ public class EventsPackageImpl extends EPackageImpl implements EventsPackage {
 
 	/**
 	 * <!-- begin-user-doc --> <!-- end-user-doc -->
-	 * 
 	 * @generated
 	 */
 	public EReference getShowHistoryEvent_SourceVersion() {
@@ -567,7 +518,6 @@ public class EventsPackageImpl extends EPackageImpl implements EventsPackage {
 
 	/**
 	 * <!-- begin-user-doc --> <!-- end-user-doc -->
-	 * 
 	 * @generated
 	 */
 	public EReference getShowHistoryEvent_TargetVersion() {
@@ -576,7 +526,6 @@ public class EventsPackageImpl extends EPackageImpl implements EventsPackage {
 
 	/**
 	 * <!-- begin-user-doc --> <!-- end-user-doc -->
-	 * 
 	 * @generated
 	 */
 	public EClass getPerspectiveEvent() {
@@ -585,7 +534,6 @@ public class EventsPackageImpl extends EPackageImpl implements EventsPackage {
 
 	/**
 	 * <!-- begin-user-doc --> <!-- end-user-doc -->
-	 * 
 	 * @generated
 	 */
 	public EClass getDNDEvent() {
@@ -594,7 +542,6 @@ public class EventsPackageImpl extends EPackageImpl implements EventsPackage {
 
 	/**
 	 * <!-- begin-user-doc --> <!-- end-user-doc -->
-	 * 
 	 * @generated
 	 */
 	public EAttribute getDNDEvent_SourceView() {
@@ -603,7 +550,6 @@ public class EventsPackageImpl extends EPackageImpl implements EventsPackage {
 
 	/**
 	 * <!-- begin-user-doc --> <!-- end-user-doc -->
-	 * 
 	 * @generated
 	 */
 	public EAttribute getDNDEvent_TargetView() {
@@ -612,7 +558,6 @@ public class EventsPackageImpl extends EPackageImpl implements EventsPackage {
 
 	/**
 	 * <!-- begin-user-doc --> <!-- end-user-doc -->
-	 * 
 	 * @generated
 	 */
 	public EReference getDNDEvent_DragSourceElement() {
@@ -621,7 +566,6 @@ public class EventsPackageImpl extends EPackageImpl implements EventsPackage {
 
 	/**
 	 * <!-- begin-user-doc --> <!-- end-user-doc -->
-	 * 
 	 * @generated
 	 */
 	public EReference getDNDEvent_DropTargetElement() {
@@ -630,7 +574,6 @@ public class EventsPackageImpl extends EPackageImpl implements EventsPackage {
 
 	/**
 	 * <!-- begin-user-doc --> <!-- end-user-doc -->
-	 * 
 	 * @generated
 	 */
 	public EClass getLinkEvent() {
@@ -639,7 +582,6 @@ public class EventsPackageImpl extends EPackageImpl implements EventsPackage {
 
 	/**
 	 * <!-- begin-user-doc --> <!-- end-user-doc -->
-	 * 
 	 * @generated
 	 */
 	public EAttribute getLinkEvent_SourceView() {
@@ -648,7 +590,6 @@ public class EventsPackageImpl extends EPackageImpl implements EventsPackage {
 
 	/**
 	 * <!-- begin-user-doc --> <!-- end-user-doc -->
-	 * 
 	 * @generated
 	 */
 	public EReference getLinkEvent_SourceElement() {
@@ -657,7 +598,6 @@ public class EventsPackageImpl extends EPackageImpl implements EventsPackage {
 
 	/**
 	 * <!-- begin-user-doc --> <!-- end-user-doc -->
-	 * 
 	 * @generated
 	 */
 	public EReference getLinkEvent_TargetElement() {
@@ -666,7 +606,6 @@ public class EventsPackageImpl extends EPackageImpl implements EventsPackage {
 
 	/**
 	 * <!-- begin-user-doc --> <!-- end-user-doc -->
-	 * 
 	 * @generated
 	 */
 	public EAttribute getLinkEvent_CreatedNew() {
@@ -675,7 +614,6 @@ public class EventsPackageImpl extends EPackageImpl implements EventsPackage {
 
 	/**
 	 * <!-- begin-user-doc --> <!-- end-user-doc -->
-	 * 
 	 * @generated
 	 */
 	public EClass getTraceEvent() {
@@ -684,7 +622,6 @@ public class EventsPackageImpl extends EPackageImpl implements EventsPackage {
 
 	/**
 	 * <!-- begin-user-doc --> <!-- end-user-doc -->
-	 * 
 	 * @generated
 	 */
 	public EReference getTraceEvent_SourceElement() {
@@ -693,7 +630,6 @@ public class EventsPackageImpl extends EPackageImpl implements EventsPackage {
 
 	/**
 	 * <!-- begin-user-doc --> <!-- end-user-doc -->
-	 * 
 	 * @generated
 	 */
 	public EReference getTraceEvent_TargetElement() {
@@ -702,7 +638,6 @@ public class EventsPackageImpl extends EPackageImpl implements EventsPackage {
 
 	/**
 	 * <!-- begin-user-doc --> <!-- end-user-doc -->
-	 * 
 	 * @generated
 	 */
 	public EAttribute getTraceEvent_FeatureName() {
@@ -711,7 +646,6 @@ public class EventsPackageImpl extends EPackageImpl implements EventsPackage {
 
 	/**
 	 * <!-- begin-user-doc --> <!-- end-user-doc -->
-	 * 
 	 * @generated
 	 */
 	public EClass getNavigatorCreateEvent() {
@@ -720,7 +654,6 @@ public class EventsPackageImpl extends EPackageImpl implements EventsPackage {
 
 	/**
 	 * <!-- begin-user-doc --> <!-- end-user-doc -->
-	 * 
 	 * @generated
 	 */
 	public EReference getNavigatorCreateEvent_CreatedElement() {
@@ -729,7 +662,6 @@ public class EventsPackageImpl extends EPackageImpl implements EventsPackage {
 
 	/**
 	 * <!-- begin-user-doc --> <!-- end-user-doc -->
-	 * 
 	 * @generated
 	 */
 	public EReference getNavigatorCreateEvent_SourceSection() {
@@ -738,7 +670,6 @@ public class EventsPackageImpl extends EPackageImpl implements EventsPackage {
 
 	/**
 	 * <!-- begin-user-doc --> <!-- end-user-doc -->
-	 * 
 	 * @generated
 	 */
 	public EAttribute getNavigatorCreateEvent_Dynamic() {
@@ -747,7 +678,6 @@ public class EventsPackageImpl extends EPackageImpl implements EventsPackage {
 
 	/**
 	 * <!-- begin-user-doc --> <!-- end-user-doc -->
-	 * 
 	 * @generated
 	 */
 	public EClass getPluginFocusEvent() {
@@ -756,7 +686,6 @@ public class EventsPackageImpl extends EPackageImpl implements EventsPackage {
 
 	/**
 	 * <!-- begin-user-doc --> <!-- end-user-doc -->
-	 * 
 	 * @generated
 	 */
 	public EAttribute getPluginFocusEvent_PluginId() {
@@ -765,7 +694,6 @@ public class EventsPackageImpl extends EPackageImpl implements EventsPackage {
 
 	/**
 	 * <!-- begin-user-doc --> <!-- end-user-doc -->
-	 * 
 	 * @generated
 	 */
 	public EAttribute getPluginFocusEvent_StartDate() {
@@ -774,7 +702,6 @@ public class EventsPackageImpl extends EPackageImpl implements EventsPackage {
 
 	/**
 	 * <!-- begin-user-doc --> <!-- end-user-doc -->
-	 * 
 	 * @generated
 	 */
 	public EClass getPresentationSwitchEvent() {
@@ -783,7 +710,6 @@ public class EventsPackageImpl extends EPackageImpl implements EventsPackage {
 
 	/**
 	 * <!-- begin-user-doc --> <!-- end-user-doc -->
-	 * 
 	 * @generated
 	 */
 	public EAttribute getPresentationSwitchEvent_ReadView() {
@@ -792,7 +718,6 @@ public class EventsPackageImpl extends EPackageImpl implements EventsPackage {
 
 	/**
 	 * <!-- begin-user-doc --> <!-- end-user-doc -->
-	 * 
 	 * @generated
 	 */
 	public EAttribute getPresentationSwitchEvent_NewPresentation() {
@@ -801,7 +726,6 @@ public class EventsPackageImpl extends EPackageImpl implements EventsPackage {
 
 	/**
 	 * <!-- begin-user-doc --> <!-- end-user-doc -->
-	 * 
 	 * @generated
 	 */
 	public EClass getUndoEvent() {
@@ -810,7 +734,6 @@ public class EventsPackageImpl extends EPackageImpl implements EventsPackage {
 
 	/**
 	 * <!-- begin-user-doc --> <!-- end-user-doc -->
-	 * 
 	 * @generated
 	 */
 	public EReference getUndoEvent_Operation() {
@@ -819,7 +742,6 @@ public class EventsPackageImpl extends EPackageImpl implements EventsPackage {
 
 	/**
 	 * <!-- begin-user-doc --> <!-- end-user-doc -->
-	 * 
 	 * @generated
 	 */
 	public EClass getValidate() {
@@ -828,7 +750,6 @@ public class EventsPackageImpl extends EPackageImpl implements EventsPackage {
 
 	/**
 	 * <!-- begin-user-doc --> <!-- end-user-doc -->
-	 * 
 	 * @generated
 	 */
 	public EClass getShowChangesEvent() {
@@ -837,7 +758,6 @@ public class EventsPackageImpl extends EPackageImpl implements EventsPackage {
 
 	/**
 	 * <!-- begin-user-doc --> <!-- end-user-doc -->
-	 * 
 	 * @generated
 	 */
 	public EReference getShowChangesEvent_SourceVersion() {
@@ -846,7 +766,6 @@ public class EventsPackageImpl extends EPackageImpl implements EventsPackage {
 
 	/**
 	 * <!-- begin-user-doc --> <!-- end-user-doc -->
-	 * 
 	 * @generated
 	 */
 	public EReference getShowChangesEvent_TargetVersion() {
@@ -855,7 +774,6 @@ public class EventsPackageImpl extends EPackageImpl implements EventsPackage {
 
 	/**
 	 * <!-- begin-user-doc --> <!-- end-user-doc -->
-	 * 
 	 * @generated
 	 */
 	public EventsFactory getEventsFactory() {
@@ -864,15 +782,14 @@ public class EventsPackageImpl extends EPackageImpl implements EventsPackage {
 
 	/**
 	 * <!-- begin-user-doc --> <!-- end-user-doc -->
-	 * 
 	 * @generated
 	 */
 	private boolean isCreated = false;
 
 	/**
-	 * Creates the meta-model objects for the package. This method is guarded to have no affect on any invocation but
-	 * its first. <!-- begin-user-doc --> <!-- end-user-doc -->
-	 * 
+	 * Creates the meta-model objects for the package.  This method is
+	 * guarded to have no affect on any invocation but its first.
+	 * <!-- begin-user-doc --> <!-- end-user-doc -->
 	 * @generated
 	 */
 	public void createPackageContents() {
@@ -967,15 +884,14 @@ public class EventsPackageImpl extends EPackageImpl implements EventsPackage {
 
 	/**
 	 * <!-- begin-user-doc --> <!-- end-user-doc -->
-	 * 
 	 * @generated
 	 */
 	private boolean isInitialized = false;
 
 	/**
-	 * Complete the initialization of the package and its meta-model. This method is guarded to have no affect on any
-	 * invocation but its first. <!-- begin-user-doc --> <!-- end-user-doc -->
-	 * 
+	 * Complete the initialization of the package and its meta-model.  This
+	 * method is guarded to have no affect on any invocation but its first.
+	 * <!-- begin-user-doc --> <!-- end-user-doc -->
 	 * @generated
 	 */
 	public void initializePackageContents() {

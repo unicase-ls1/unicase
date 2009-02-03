@@ -22,19 +22,18 @@ import org.eclipse.emf.edit.provider.ViewerNotification;
 import org.unicase.emfstore.esmodel.versioning.operations.MultiAttributeOperation;
 import org.unicase.emfstore.esmodel.versioning.operations.OperationsPackage;
 
-/**
- * This is the item provider adapter for a
- * {@link org.unicase.emfstore.esmodel.versioning.operations.MultiAttributeOperation} object. <!-- begin-user-doc -->
- * <!-- end-user-doc -->
- * 
+/*
+ * This is the item provider adapter for a {@link
+ * org.unicase.emfstore.esmodel.versioning.operations.MultiAttributeOperation} object. <!-- begin-user-doc --> <!--
+ * end-user-doc -->
  * @generated
  */
 public class MultiAttributeOperationItemProvider extends FeatureOperationItemProvider implements
 	IEditingDomainItemProvider, IStructuredItemContentProvider, ITreeItemContentProvider, IItemLabelProvider,
 	IItemPropertySource {
 	/**
-	 * This constructs an instance from a factory and a notifier. <!-- begin-user-doc --> <!-- end-user-doc -->
-	 * 
+	 * This constructs an instance from a factory and a notifier.
+	 * <!-- begin-user-doc --> <!-- end-user-doc -->
 	 * @generated
 	 */
 	public MultiAttributeOperationItemProvider(AdapterFactory adapterFactory) {
@@ -42,8 +41,8 @@ public class MultiAttributeOperationItemProvider extends FeatureOperationItemPro
 	}
 
 	/**
-	 * This returns the property descriptors for the adapted class. <!-- begin-user-doc --> <!-- end-user-doc -->
-	 * 
+	 * This returns the property descriptors for the adapted class.
+	 * <!-- begin-user-doc --> <!-- end-user-doc -->
 	 * @generated
 	 */
 	@Override
@@ -59,8 +58,8 @@ public class MultiAttributeOperationItemProvider extends FeatureOperationItemPro
 	}
 
 	/**
-	 * This adds a property descriptor for the Add feature. <!-- begin-user-doc --> <!-- end-user-doc -->
-	 * 
+	 * This adds a property descriptor for the Add feature.
+	 * <!-- begin-user-doc --> <!-- end-user-doc -->
 	 * @generated
 	 */
 	protected void addAddPropertyDescriptor(Object object) {
@@ -72,8 +71,8 @@ public class MultiAttributeOperationItemProvider extends FeatureOperationItemPro
 	}
 
 	/**
-	 * This adds a property descriptor for the Index feature. <!-- begin-user-doc --> <!-- end-user-doc -->
-	 * 
+	 * This adds a property descriptor for the Index feature.
+	 * <!-- begin-user-doc --> <!-- end-user-doc -->
 	 * @generated
 	 */
 	protected void addIndexPropertyDescriptor(Object object) {
@@ -85,8 +84,8 @@ public class MultiAttributeOperationItemProvider extends FeatureOperationItemPro
 	}
 
 	/**
-	 * This adds a property descriptor for the Values feature. <!-- begin-user-doc --> <!-- end-user-doc -->
-	 * 
+	 * This adds a property descriptor for the Values feature.
+	 * <!-- begin-user-doc --> <!-- end-user-doc -->
 	 * @generated
 	 */
 	protected void addValuesPropertyDescriptor(Object object) {
@@ -98,8 +97,8 @@ public class MultiAttributeOperationItemProvider extends FeatureOperationItemPro
 	}
 
 	/**
-	 * This returns MultiAttributeOperation.gif. <!-- begin-user-doc --> <!-- end-user-doc -->
-	 * 
+	 * This returns MultiAttributeOperation.gif.
+	 * <!-- begin-user-doc --> <!-- end-user-doc -->
 	 * @generated
 	 */
 	@Override
@@ -108,8 +107,8 @@ public class MultiAttributeOperationItemProvider extends FeatureOperationItemPro
 	}
 
 	/**
-	 * This returns the label text for the adapted class. <!-- begin-user-doc --> <!-- end-user-doc -->
-	 * 
+	 * This returns the label text for the adapted class.
+	 * <!-- begin-user-doc --> <!-- end-user-doc -->
 	 * @generated
 	 */
 	@Override
@@ -141,9 +140,9 @@ public class MultiAttributeOperationItemProvider extends FeatureOperationItemPro
 	}
 
 	/**
-	 * This adds {@link org.eclipse.emf.edit.command.CommandParameter}s describing the children that can be created
-	 * under this object. <!-- begin-user-doc --> <!-- end-user-doc -->
-	 * 
+	 * This adds {@link org.eclipse.emf.edit.command.CommandParameter}s describing the children
+	 * that can be created under this object.
+	 * <!-- begin-user-doc --> <!-- end-user-doc -->
 	 * @generated
 	 */
 	@Override

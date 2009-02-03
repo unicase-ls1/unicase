@@ -12,16 +12,10 @@ import org.eclipse.emf.ecore.impl.EObjectImpl;
 import org.unicase.emfstore.esmodel.versioning.TagVersionSpec;
 import org.unicase.emfstore.esmodel.versioning.VersioningPackage;
 
-/**
+/*
  * <!-- begin-user-doc --> An implementation of the model object ' <em><b>Tag Version Spec</b></em>'. <!-- end-user-doc
- * -->
- * <p>
- * The following features are implemented:
- * <ul>
- * <li>{@link org.unicase.emfstore.esmodel.versioning.impl.TagVersionSpecImpl#getName <em>Name</em>}</li>
- * </ul>
- * </p>
- * 
+ * --> <p> The following features are implemented: <ul> <li>{@link
+ * org.unicase.emfstore.esmodel.versioning.impl.TagVersionSpecImpl#getName <em>Name</em>}</li> </ul> </p>
  * @generated
  */
 public class TagVersionSpecImpl extends EObjectImpl implements TagVersionSpec {
@@ -47,7 +41,6 @@ public class TagVersionSpecImpl extends EObjectImpl implements TagVersionSpec {
 
 	/**
 	 * <!-- begin-user-doc --> <!-- end-user-doc -->
-	 * 
 	 * @generated
 	 */
 	protected TagVersionSpecImpl() {
@@ -56,7 +49,6 @@ public class TagVersionSpecImpl extends EObjectImpl implements TagVersionSpec {
 
 	/**
 	 * <!-- begin-user-doc --> <!-- end-user-doc -->
-	 * 
 	 * @generated
 	 */
 	@Override
@@ -66,7 +58,6 @@ public class TagVersionSpecImpl extends EObjectImpl implements TagVersionSpec {
 
 	/**
 	 * <!-- begin-user-doc --> <!-- end-user-doc -->
-	 * 
 	 * @generated
 	 */
 	public String getName() {
@@ -75,7 +66,6 @@ public class TagVersionSpecImpl extends EObjectImpl implements TagVersionSpec {
 
 	/**
 	 * <!-- begin-user-doc --> <!-- end-user-doc -->
-	 * 
 	 * @generated
 	 */
 	public void setName(String newName) {
@@ -88,7 +78,6 @@ public class TagVersionSpecImpl extends EObjectImpl implements TagVersionSpec {
 
 	/**
 	 * <!-- begin-user-doc --> <!-- end-user-doc -->
-	 * 
 	 * @generated
 	 */
 	@Override
@@ -102,7 +91,6 @@ public class TagVersionSpecImpl extends EObjectImpl implements TagVersionSpec {
 
 	/**
 	 * <!-- begin-user-doc --> <!-- end-user-doc -->
-	 * 
 	 * @generated
 	 */
 	@Override
@@ -117,7 +105,6 @@ public class TagVersionSpecImpl extends EObjectImpl implements TagVersionSpec {
 
 	/**
 	 * <!-- begin-user-doc --> <!-- end-user-doc -->
-	 * 
 	 * @generated
 	 */
 	@Override
@@ -132,7 +119,6 @@ public class TagVersionSpecImpl extends EObjectImpl implements TagVersionSpec {
 
 	/**
 	 * <!-- begin-user-doc --> <!-- end-user-doc -->
-	 * 
 	 * @generated
 	 */
 	@Override
@@ -146,7 +132,6 @@ public class TagVersionSpecImpl extends EObjectImpl implements TagVersionSpec {
 
 	/**
 	 * <!-- begin-user-doc --> <!-- end-user-doc -->
-	 * 
 	 * @generated
 	 */
 	@Override

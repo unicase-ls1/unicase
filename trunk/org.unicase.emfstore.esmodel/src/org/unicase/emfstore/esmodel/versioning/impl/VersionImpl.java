@@ -24,21 +24,16 @@ import org.unicase.emfstore.esmodel.versioning.Version;
 import org.unicase.emfstore.esmodel.versioning.VersioningPackage;
 import org.unicase.model.Project;
 
-/**
- * <!-- begin-user-doc --> An implementation of the model object ' <em><b>Version</b></em>'. <!-- end-user-doc -->
- * <p>
- * The following features are implemented:
- * <ul>
- * <li>{@link org.unicase.emfstore.esmodel.versioning.impl.VersionImpl#getProjectState <em>Project State</em>}</li>
- * <li>{@link org.unicase.emfstore.esmodel.versioning.impl.VersionImpl#getPrimarySpec <em>Primary Spec</em>}</li>
- * <li>{@link org.unicase.emfstore.esmodel.versioning.impl.VersionImpl#getTagSpecs <em>Tag Specs</em>}</li>
- * <li>{@link org.unicase.emfstore.esmodel.versioning.impl.VersionImpl#getNextVersion <em>Next Version</em>}</li>
- * <li>{@link org.unicase.emfstore.esmodel.versioning.impl.VersionImpl#getPreviousVersion <em>Previous Version</em>}</li>
- * <li>{@link org.unicase.emfstore.esmodel.versioning.impl.VersionImpl#getChanges <em>Changes</em>}</li>
- * <li>{@link org.unicase.emfstore.esmodel.versioning.impl.VersionImpl#getLogMessage <em>Log Message</em>}</li>
- * </ul>
- * </p>
- * 
+/*
+ * <!-- begin-user-doc --> An implementation of the model object ' <em><b>Version</b></em>'. <!-- end-user-doc --> <p>
+ * The following features are implemented: <ul> <li>{@link
+ * org.unicase.emfstore.esmodel.versioning.impl.VersionImpl#getProjectState <em>Project State</em>}</li> <li>{@link
+ * org.unicase.emfstore.esmodel.versioning.impl.VersionImpl#getPrimarySpec <em>Primary Spec</em>}</li> <li>{@link
+ * org.unicase.emfstore.esmodel.versioning.impl.VersionImpl#getTagSpecs <em>Tag Specs</em>}</li> <li>{@link
+ * org.unicase.emfstore.esmodel.versioning.impl.VersionImpl#getNextVersion <em>Next Version</em>}</li> <li>{@link
+ * org.unicase.emfstore.esmodel.versioning.impl.VersionImpl#getPreviousVersion <em>Previous Version</em>}</li>
+ * <li>{@link org.unicase.emfstore.esmodel.versioning.impl.VersionImpl#getChanges <em>Changes</em>}</li> <li>{@link
+ * org.unicase.emfstore.esmodel.versioning.impl.VersionImpl#getLogMessage <em>Log Message</em>}</li> </ul> </p>
  * @generated
  */
 public class VersionImpl extends EObjectImpl implements Version {
@@ -73,9 +68,9 @@ public class VersionImpl extends EObjectImpl implements Version {
 	protected EList<TagVersionSpec> tagSpecs;
 
 	/**
-	 * The cached value of the '{@link #getNextVersion() <em>Next Version</em>}' reference. <!-- begin-user-doc --> <!--
+	 * The cached value of the '{@link #getNextVersion() <em>Next Version</em>}' reference.
+	 * <!-- begin-user-doc --> <!--
 	 * end-user-doc -->
-	 * 
 	 * @see #getNextVersion()
 	 * @generated
 	 * @ordered
@@ -83,9 +78,9 @@ public class VersionImpl extends EObjectImpl implements Version {
 	protected Version nextVersion;
 
 	/**
-	 * The cached value of the '{@link #getPreviousVersion() <em>Previous Version</em>}' reference. <!-- begin-user-doc
+	 * The cached value of the '{@link #getPreviousVersion() <em>Previous Version</em>}' reference.
+	 * <!-- begin-user-doc
 	 * --> <!-- end-user-doc -->
-	 * 
 	 * @see #getPreviousVersion()
 	 * @generated
 	 * @ordered
@@ -93,9 +88,9 @@ public class VersionImpl extends EObjectImpl implements Version {
 	protected Version previousVersion;
 
 	/**
-	 * The cached value of the '{@link #getChanges() <em>Changes</em>}' containment reference. <!-- begin-user-doc -->
+	 * The cached value of the '{@link #getChanges() <em>Changes</em>}' containment reference.
+	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
-	 * 
 	 * @see #getChanges()
 	 * @generated
 	 * @ordered
@@ -114,7 +109,6 @@ public class VersionImpl extends EObjectImpl implements Version {
 
 	/**
 	 * <!-- begin-user-doc --> <!-- end-user-doc -->
-	 * 
 	 * @generated
 	 */
 	protected VersionImpl() {
@@ -123,7 +117,6 @@ public class VersionImpl extends EObjectImpl implements Version {
 
 	/**
 	 * <!-- begin-user-doc --> <!-- end-user-doc -->
-	 * 
 	 * @generated
 	 */
 	@Override
@@ -133,7 +126,6 @@ public class VersionImpl extends EObjectImpl implements Version {
 
 	/**
 	 * <!-- begin-user-doc --> <!-- end-user-doc -->
-	 * 
 	 * @generated
 	 */
 	public Project getProjectState() {
@@ -160,7 +152,6 @@ public class VersionImpl extends EObjectImpl implements Version {
 
 	/**
 	 * <!-- begin-user-doc --> <!-- end-user-doc -->
-	 * 
 	 * @generated
 	 */
 	public Project basicGetProjectState() {
@@ -169,7 +160,6 @@ public class VersionImpl extends EObjectImpl implements Version {
 
 	/**
 	 * <!-- begin-user-doc --> <!-- end-user-doc -->
-	 * 
 	 * @generated
 	 */
 	public NotificationChain basicSetProjectState(Project newProjectState, NotificationChain msgs) {
@@ -188,7 +178,6 @@ public class VersionImpl extends EObjectImpl implements Version {
 
 	/**
 	 * <!-- begin-user-doc --> <!-- end-user-doc -->
-	 * 
 	 * @generated
 	 */
 	public void setProjectState(Project newProjectState) {
@@ -210,7 +199,6 @@ public class VersionImpl extends EObjectImpl implements Version {
 
 	/**
 	 * <!-- begin-user-doc --> <!-- end-user-doc -->
-	 * 
 	 * @generated
 	 */
 	public PrimaryVersionSpec getPrimarySpec() {
@@ -237,7 +225,6 @@ public class VersionImpl extends EObjectImpl implements Version {
 
 	/**
 	 * <!-- begin-user-doc --> <!-- end-user-doc -->
-	 * 
 	 * @generated
 	 */
 	public PrimaryVersionSpec basicGetPrimarySpec() {
@@ -246,7 +233,6 @@ public class VersionImpl extends EObjectImpl implements Version {
 
 	/**
 	 * <!-- begin-user-doc --> <!-- end-user-doc -->
-	 * 
 	 * @generated
 	 */
 	public NotificationChain basicSetPrimarySpec(PrimaryVersionSpec newPrimarySpec, NotificationChain msgs) {
@@ -265,7 +251,6 @@ public class VersionImpl extends EObjectImpl implements Version {
 
 	/**
 	 * <!-- begin-user-doc --> <!-- end-user-doc -->
-	 * 
 	 * @generated
 	 */
 	public void setPrimarySpec(PrimaryVersionSpec newPrimarySpec) {
@@ -287,7 +272,6 @@ public class VersionImpl extends EObjectImpl implements Version {
 
 	/**
 	 * <!-- begin-user-doc --> <!-- end-user-doc -->
-	 * 
 	 * @generated
 	 */
 	public EList<TagVersionSpec> getTagSpecs() {
@@ -300,7 +284,6 @@ public class VersionImpl extends EObjectImpl implements Version {
 
 	/**
 	 * <!-- begin-user-doc --> <!-- end-user-doc -->
-	 * 
 	 * @generated
 	 */
 	public Version getNextVersion() {
@@ -318,7 +301,6 @@ public class VersionImpl extends EObjectImpl implements Version {
 
 	/**
 	 * <!-- begin-user-doc --> <!-- end-user-doc -->
-	 * 
 	 * @generated
 	 */
 	public Version basicGetNextVersion() {
@@ -327,7 +309,6 @@ public class VersionImpl extends EObjectImpl implements Version {
 
 	/**
 	 * <!-- begin-user-doc --> <!-- end-user-doc -->
-	 * 
 	 * @generated
 	 */
 	public NotificationChain basicSetNextVersion(Version newNextVersion, NotificationChain msgs) {
@@ -346,7 +327,6 @@ public class VersionImpl extends EObjectImpl implements Version {
 
 	/**
 	 * <!-- begin-user-doc --> <!-- end-user-doc -->
-	 * 
 	 * @generated
 	 */
 	public void setNextVersion(Version newNextVersion) {
@@ -368,7 +348,6 @@ public class VersionImpl extends EObjectImpl implements Version {
 
 	/**
 	 * <!-- begin-user-doc --> <!-- end-user-doc -->
-	 * 
 	 * @generated
 	 */
 	public Version getPreviousVersion() {
@@ -386,7 +365,6 @@ public class VersionImpl extends EObjectImpl implements Version {
 
 	/**
 	 * <!-- begin-user-doc --> <!-- end-user-doc -->
-	 * 
 	 * @generated
 	 */
 	public Version basicGetPreviousVersion() {
@@ -395,7 +373,6 @@ public class VersionImpl extends EObjectImpl implements Version {
 
 	/**
 	 * <!-- begin-user-doc --> <!-- end-user-doc -->
-	 * 
 	 * @generated
 	 */
 	public NotificationChain basicSetPreviousVersion(Version newPreviousVersion, NotificationChain msgs) {
@@ -414,7 +391,6 @@ public class VersionImpl extends EObjectImpl implements Version {
 
 	/**
 	 * <!-- begin-user-doc --> <!-- end-user-doc -->
-	 * 
 	 * @generated
 	 */
 	public void setPreviousVersion(Version newPreviousVersion) {
@@ -436,7 +412,6 @@ public class VersionImpl extends EObjectImpl implements Version {
 
 	/**
 	 * <!-- begin-user-doc --> <!-- end-user-doc -->
-	 * 
 	 * @generated
 	 */
 	public ChangePackage getChanges() {
@@ -463,7 +438,6 @@ public class VersionImpl extends EObjectImpl implements Version {
 
 	/**
 	 * <!-- begin-user-doc --> <!-- end-user-doc -->
-	 * 
 	 * @generated
 	 */
 	public ChangePackage basicGetChanges() {
@@ -472,7 +446,6 @@ public class VersionImpl extends EObjectImpl implements Version {
 
 	/**
 	 * <!-- begin-user-doc --> <!-- end-user-doc -->
-	 * 
 	 * @generated
 	 */
 	public NotificationChain basicSetChanges(ChangePackage newChanges, NotificationChain msgs) {
@@ -491,7 +464,6 @@ public class VersionImpl extends EObjectImpl implements Version {
 
 	/**
 	 * <!-- begin-user-doc --> <!-- end-user-doc -->
-	 * 
 	 * @generated
 	 */
 	public void setChanges(ChangePackage newChanges) {
@@ -513,7 +485,6 @@ public class VersionImpl extends EObjectImpl implements Version {
 
 	/**
 	 * <!-- begin-user-doc --> <!-- end-user-doc -->
-	 * 
 	 * @generated
 	 */
 	public LogMessage getLogMessage() {
@@ -540,7 +511,6 @@ public class VersionImpl extends EObjectImpl implements Version {
 
 	/**
 	 * <!-- begin-user-doc --> <!-- end-user-doc -->
-	 * 
 	 * @generated
 	 */
 	public LogMessage basicGetLogMessage() {
@@ -549,7 +519,6 @@ public class VersionImpl extends EObjectImpl implements Version {
 
 	/**
 	 * <!-- begin-user-doc --> <!-- end-user-doc -->
-	 * 
 	 * @generated
 	 */
 	public NotificationChain basicSetLogMessage(LogMessage newLogMessage, NotificationChain msgs) {
@@ -568,7 +537,6 @@ public class VersionImpl extends EObjectImpl implements Version {
 
 	/**
 	 * <!-- begin-user-doc --> <!-- end-user-doc -->
-	 * 
 	 * @generated
 	 */
 	public void setLogMessage(LogMessage newLogMessage) {
@@ -590,7 +558,6 @@ public class VersionImpl extends EObjectImpl implements Version {
 
 	/**
 	 * <!-- begin-user-doc --> <!-- end-user-doc -->
-	 * 
 	 * @generated
 	 */
 	@Override
@@ -612,7 +579,6 @@ public class VersionImpl extends EObjectImpl implements Version {
 
 	/**
 	 * <!-- begin-user-doc --> <!-- end-user-doc -->
-	 * 
 	 * @generated
 	 */
 	@Override
@@ -638,7 +604,6 @@ public class VersionImpl extends EObjectImpl implements Version {
 
 	/**
 	 * <!-- begin-user-doc --> <!-- end-user-doc -->
-	 * 
 	 * @generated
 	 */
 	@Override
@@ -676,7 +641,6 @@ public class VersionImpl extends EObjectImpl implements Version {
 
 	/**
 	 * <!-- begin-user-doc --> <!-- end-user-doc -->
-	 * 
 	 * @generated
 	 */
 	@SuppressWarnings("unchecked")
@@ -711,7 +675,6 @@ public class VersionImpl extends EObjectImpl implements Version {
 
 	/**
 	 * <!-- begin-user-doc --> <!-- end-user-doc -->
-	 * 
 	 * @generated
 	 */
 	@Override
@@ -744,7 +707,6 @@ public class VersionImpl extends EObjectImpl implements Version {
 
 	/**
 	 * <!-- begin-user-doc --> <!-- end-user-doc -->
-	 * 
 	 * @generated
 	 */
 	@Override

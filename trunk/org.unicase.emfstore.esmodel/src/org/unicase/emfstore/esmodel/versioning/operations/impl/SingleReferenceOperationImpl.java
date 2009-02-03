@@ -24,26 +24,20 @@ import org.unicase.model.ModelElementId;
 import org.unicase.model.Project;
 import org.unicase.model.util.ModelUtil;
 
-/**
+/*
  * <!-- begin-user-doc --> An implementation of the model object '<em><b>Single Reference Operation</b></em>'. <!--
- * end-user-doc -->
- * <p>
- * The following features are implemented:
- * <ul>
- * <li>{@link org.unicase.emfstore.esmodel.versioning.operations.impl.SingleReferenceOperationImpl#getOldValue <em>Old
- * Value</em>}</li>
- * <li>{@link org.unicase.emfstore.esmodel.versioning.operations.impl.SingleReferenceOperationImpl#getNewValue <em>New
- * Value</em>}</li>
- * </ul>
- * </p>
- * 
+ * end-user-doc --> <p> The following features are implemented: <ul> <li>{@link
+ * org.unicase.emfstore.esmodel.versioning.operations.impl.SingleReferenceOperationImpl#getOldValue <em>Old
+ * Value</em>}</li> <li>{@link
+ * org.unicase.emfstore.esmodel.versioning.operations.impl.SingleReferenceOperationImpl#getNewValue <em>New
+ * Value</em>}</li> </ul> </p>
  * @generated
  */
 public class SingleReferenceOperationImpl extends ReferenceOperationImpl implements SingleReferenceOperation {
 	/**
-	 * The cached value of the '{@link #getOldValue() <em>Old Value</em>}' containment reference. <!-- begin-user-doc
+	 * The cached value of the '{@link #getOldValue() <em>Old Value</em>}' containment reference.
+	 * <!-- begin-user-doc
 	 * --> <!-- end-user-doc -->
-	 * 
 	 * @see #getOldValue()
 	 * @generated
 	 * @ordered
@@ -51,9 +45,9 @@ public class SingleReferenceOperationImpl extends ReferenceOperationImpl impleme
 	protected ModelElementId oldValue;
 
 	/**
-	 * The cached value of the '{@link #getNewValue() <em>New Value</em>}' containment reference. <!-- begin-user-doc
+	 * The cached value of the '{@link #getNewValue() <em>New Value</em>}' containment reference.
+	 * <!-- begin-user-doc
 	 * --> <!-- end-user-doc -->
-	 * 
 	 * @see #getNewValue()
 	 * @generated
 	 * @ordered
@@ -62,7 +56,6 @@ public class SingleReferenceOperationImpl extends ReferenceOperationImpl impleme
 
 	/**
 	 * <!-- begin-user-doc --> <!-- end-user-doc -->
-	 * 
 	 * @generated
 	 */
 	protected SingleReferenceOperationImpl() {
@@ -71,7 +64,6 @@ public class SingleReferenceOperationImpl extends ReferenceOperationImpl impleme
 
 	/**
 	 * <!-- begin-user-doc --> <!-- end-user-doc -->
-	 * 
 	 * @generated
 	 */
 	@Override
@@ -81,7 +73,6 @@ public class SingleReferenceOperationImpl extends ReferenceOperationImpl impleme
 
 	/**
 	 * <!-- begin-user-doc --> <!-- end-user-doc -->
-	 * 
 	 * @generated
 	 */
 	public ModelElementId getOldValue() {
@@ -108,7 +99,6 @@ public class SingleReferenceOperationImpl extends ReferenceOperationImpl impleme
 
 	/**
 	 * <!-- begin-user-doc --> <!-- end-user-doc -->
-	 * 
 	 * @generated
 	 */
 	public ModelElementId basicGetOldValue() {
@@ -117,7 +107,6 @@ public class SingleReferenceOperationImpl extends ReferenceOperationImpl impleme
 
 	/**
 	 * <!-- begin-user-doc --> <!-- end-user-doc -->
-	 * 
 	 * @generated
 	 */
 	public NotificationChain basicSetOldValue(ModelElementId newOldValue, NotificationChain msgs) {
@@ -136,7 +125,6 @@ public class SingleReferenceOperationImpl extends ReferenceOperationImpl impleme
 
 	/**
 	 * <!-- begin-user-doc --> <!-- end-user-doc -->
-	 * 
 	 * @generated
 	 */
 	public void setOldValue(ModelElementId newOldValue) {
@@ -158,7 +146,6 @@ public class SingleReferenceOperationImpl extends ReferenceOperationImpl impleme
 
 	/**
 	 * <!-- begin-user-doc --> <!-- end-user-doc -->
-	 * 
 	 * @generated
 	 */
 	public ModelElementId getNewValue() {
@@ -185,7 +172,6 @@ public class SingleReferenceOperationImpl extends ReferenceOperationImpl impleme
 
 	/**
 	 * <!-- begin-user-doc --> <!-- end-user-doc -->
-	 * 
 	 * @generated
 	 */
 	public ModelElementId basicGetNewValue() {
@@ -194,7 +180,6 @@ public class SingleReferenceOperationImpl extends ReferenceOperationImpl impleme
 
 	/**
 	 * <!-- begin-user-doc --> <!-- end-user-doc -->
-	 * 
 	 * @generated
 	 */
 	public NotificationChain basicSetNewValue(ModelElementId newNewValue, NotificationChain msgs) {
@@ -213,7 +198,6 @@ public class SingleReferenceOperationImpl extends ReferenceOperationImpl impleme
 
 	/**
 	 * <!-- begin-user-doc --> <!-- end-user-doc -->
-	 * 
 	 * @generated
 	 */
 	public void setNewValue(ModelElementId newNewValue) {
@@ -235,7 +219,6 @@ public class SingleReferenceOperationImpl extends ReferenceOperationImpl impleme
 
 	/**
 	 * <!-- begin-user-doc --> <!-- end-user-doc -->
-	 * 
 	 * @generated
 	 */
 	@Override
@@ -251,7 +234,6 @@ public class SingleReferenceOperationImpl extends ReferenceOperationImpl impleme
 
 	/**
 	 * <!-- begin-user-doc --> <!-- end-user-doc -->
-	 * 
 	 * @generated
 	 */
 	@Override
@@ -271,7 +253,6 @@ public class SingleReferenceOperationImpl extends ReferenceOperationImpl impleme
 
 	/**
 	 * <!-- begin-user-doc --> <!-- end-user-doc -->
-	 * 
 	 * @generated
 	 */
 	@Override
@@ -289,7 +270,6 @@ public class SingleReferenceOperationImpl extends ReferenceOperationImpl impleme
 
 	/**
 	 * <!-- begin-user-doc --> <!-- end-user-doc -->
-	 * 
 	 * @generated
 	 */
 	@Override
@@ -307,7 +287,6 @@ public class SingleReferenceOperationImpl extends ReferenceOperationImpl impleme
 
 	/**
 	 * <!-- begin-user-doc --> <!-- end-user-doc -->
-	 * 
 	 * @generated
 	 */
 	@Override

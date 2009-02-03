@@ -20,22 +20,16 @@ import org.unicase.emfstore.esmodel.versioning.events.EventsPackage;
 import org.unicase.emfstore.esmodel.versioning.events.MergeEvent;
 import org.unicase.emfstore.esmodel.versioning.operations.AbstractOperation;
 
-/**
+/*
  * <!-- begin-user-doc --> An implementation of the model object '<em><b>Merge Event</b></em>'. <!-- end-user-doc -->
- * <p>
- * The following features are implemented:
- * <ul>
- * <li>{@link org.unicase.emfstore.esmodel.versioning.events.impl.MergeEventImpl#getNumberOfConflicts <em>Number Of
- * Conflicts</em>}</li>
- * <li>{@link org.unicase.emfstore.esmodel.versioning.events.impl.MergeEventImpl#getTotalTime <em>Total Time</em>}</li>
- * <li>{@link org.unicase.emfstore.esmodel.versioning.events.impl.MergeEventImpl#getBaseVersion <em>Base Version</em>}</li>
- * <li>{@link org.unicase.emfstore.esmodel.versioning.events.impl.MergeEventImpl#getTargetVersion <em>Target Version
- * </em>}</li>
- * <li>{@link org.unicase.emfstore.esmodel.versioning.events.impl.MergeEventImpl#getLocalChanges <em>Local Changes</em>}
- * </li>
- * </ul>
- * </p>
- * 
+ * <p> The following features are implemented: <ul> <li>{@link
+ * org.unicase.emfstore.esmodel.versioning.events.impl.MergeEventImpl#getNumberOfConflicts <em>Number Of
+ * Conflicts</em>}</li> <li>{@link org.unicase.emfstore.esmodel.versioning.events.impl.MergeEventImpl#getTotalTime
+ * <em>Total Time</em>}</li> <li>{@link
+ * org.unicase.emfstore.esmodel.versioning.events.impl.MergeEventImpl#getBaseVersion <em>Base Version</em>}</li>
+ * <li>{@link org.unicase.emfstore.esmodel.versioning.events.impl.MergeEventImpl#getTargetVersion <em>Target
+ * Version</em>}</li> <li>{@link org.unicase.emfstore.esmodel.versioning.events.impl.MergeEventImpl#getLocalChanges
+ * <em>Local Changes</em>}</li> </ul> </p>
  * @generated
  */
 public class MergeEventImpl extends EventImpl implements MergeEvent {
@@ -60,9 +54,9 @@ public class MergeEventImpl extends EventImpl implements MergeEvent {
 	protected int numberOfConflicts = NUMBER_OF_CONFLICTS_EDEFAULT;
 
 	/**
-	 * The default value of the '{@link #getTotalTime() <em>Total Time</em>}' attribute. <!-- begin-user-doc --> <!--
+	 * The default value of the '{@link #getTotalTime() <em>Total Time</em>}' attribute.
+	 * <!-- begin-user-doc --> <!--
 	 * end-user-doc -->
-	 * 
 	 * @see #getTotalTime()
 	 * @generated
 	 * @ordered
@@ -70,9 +64,9 @@ public class MergeEventImpl extends EventImpl implements MergeEvent {
 	protected static final int TOTAL_TIME_EDEFAULT = 0;
 
 	/**
-	 * The cached value of the '{@link #getTotalTime() <em>Total Time</em>}' attribute. <!-- begin-user-doc --> <!--
+	 * The cached value of the '{@link #getTotalTime() <em>Total Time</em>}' attribute.
+	 * <!-- begin-user-doc --> <!--
 	 * end-user-doc -->
-	 * 
 	 * @see #getTotalTime()
 	 * @generated
 	 * @ordered
@@ -111,7 +105,6 @@ public class MergeEventImpl extends EventImpl implements MergeEvent {
 
 	/**
 	 * <!-- begin-user-doc --> <!-- end-user-doc -->
-	 * 
 	 * @generated
 	 */
 	protected MergeEventImpl() {
@@ -120,7 +113,6 @@ public class MergeEventImpl extends EventImpl implements MergeEvent {
 
 	/**
 	 * <!-- begin-user-doc --> <!-- end-user-doc -->
-	 * 
 	 * @generated
 	 */
 	@Override
@@ -130,7 +122,6 @@ public class MergeEventImpl extends EventImpl implements MergeEvent {
 
 	/**
 	 * <!-- begin-user-doc --> <!-- end-user-doc -->
-	 * 
 	 * @generated
 	 */
 	public int getNumberOfConflicts() {
@@ -139,7 +130,6 @@ public class MergeEventImpl extends EventImpl implements MergeEvent {
 
 	/**
 	 * <!-- begin-user-doc --> <!-- end-user-doc -->
-	 * 
 	 * @generated
 	 */
 	public void setNumberOfConflicts(int newNumberOfConflicts) {
@@ -152,7 +142,6 @@ public class MergeEventImpl extends EventImpl implements MergeEvent {
 
 	/**
 	 * <!-- begin-user-doc --> <!-- end-user-doc -->
-	 * 
 	 * @generated
 	 */
 	public int getTotalTime() {
@@ -161,7 +150,6 @@ public class MergeEventImpl extends EventImpl implements MergeEvent {
 
 	/**
 	 * <!-- begin-user-doc --> <!-- end-user-doc -->
-	 * 
 	 * @generated
 	 */
 	public void setTotalTime(int newTotalTime) {
@@ -174,7 +162,6 @@ public class MergeEventImpl extends EventImpl implements MergeEvent {
 
 	/**
 	 * <!-- begin-user-doc --> <!-- end-user-doc -->
-	 * 
 	 * @generated
 	 */
 	public PrimaryVersionSpec getBaseVersion() {
@@ -201,7 +188,6 @@ public class MergeEventImpl extends EventImpl implements MergeEvent {
 
 	/**
 	 * <!-- begin-user-doc --> <!-- end-user-doc -->
-	 * 
 	 * @generated
 	 */
 	public PrimaryVersionSpec basicGetBaseVersion() {
@@ -210,7 +196,6 @@ public class MergeEventImpl extends EventImpl implements MergeEvent {
 
 	/**
 	 * <!-- begin-user-doc --> <!-- end-user-doc -->
-	 * 
 	 * @generated
 	 */
 	public NotificationChain basicSetBaseVersion(PrimaryVersionSpec newBaseVersion, NotificationChain msgs) {
@@ -229,7 +214,6 @@ public class MergeEventImpl extends EventImpl implements MergeEvent {
 
 	/**
 	 * <!-- begin-user-doc --> <!-- end-user-doc -->
-	 * 
 	 * @generated
 	 */
 	public void setBaseVersion(PrimaryVersionSpec newBaseVersion) {
@@ -251,7 +235,6 @@ public class MergeEventImpl extends EventImpl implements MergeEvent {
 
 	/**
 	 * <!-- begin-user-doc --> <!-- end-user-doc -->
-	 * 
 	 * @generated
 	 */
 	public PrimaryVersionSpec getTargetVersion() {
@@ -278,7 +261,6 @@ public class MergeEventImpl extends EventImpl implements MergeEvent {
 
 	/**
 	 * <!-- begin-user-doc --> <!-- end-user-doc -->
-	 * 
 	 * @generated
 	 */
 	public PrimaryVersionSpec basicGetTargetVersion() {
@@ -287,7 +269,6 @@ public class MergeEventImpl extends EventImpl implements MergeEvent {
 
 	/**
 	 * <!-- begin-user-doc --> <!-- end-user-doc -->
-	 * 
 	 * @generated
 	 */
 	public NotificationChain basicSetTargetVersion(PrimaryVersionSpec newTargetVersion, NotificationChain msgs) {
@@ -306,7 +287,6 @@ public class MergeEventImpl extends EventImpl implements MergeEvent {
 
 	/**
 	 * <!-- begin-user-doc --> <!-- end-user-doc -->
-	 * 
 	 * @generated
 	 */
 	public void setTargetVersion(PrimaryVersionSpec newTargetVersion) {
@@ -328,7 +308,6 @@ public class MergeEventImpl extends EventImpl implements MergeEvent {
 
 	/**
 	 * <!-- begin-user-doc --> <!-- end-user-doc -->
-	 * 
 	 * @generated
 	 */
 	public EList<AbstractOperation> getLocalChanges() {
@@ -341,7 +320,6 @@ public class MergeEventImpl extends EventImpl implements MergeEvent {
 
 	/**
 	 * <!-- begin-user-doc --> <!-- end-user-doc -->
-	 * 
 	 * @generated
 	 */
 	@Override
@@ -359,7 +337,6 @@ public class MergeEventImpl extends EventImpl implements MergeEvent {
 
 	/**
 	 * <!-- begin-user-doc --> <!-- end-user-doc -->
-	 * 
 	 * @generated
 	 */
 	@Override
@@ -385,7 +362,6 @@ public class MergeEventImpl extends EventImpl implements MergeEvent {
 
 	/**
 	 * <!-- begin-user-doc --> <!-- end-user-doc -->
-	 * 
 	 * @generated
 	 */
 	@SuppressWarnings("unchecked")
@@ -414,7 +390,6 @@ public class MergeEventImpl extends EventImpl implements MergeEvent {
 
 	/**
 	 * <!-- begin-user-doc --> <!-- end-user-doc -->
-	 * 
 	 * @generated
 	 */
 	@Override
@@ -441,7 +416,6 @@ public class MergeEventImpl extends EventImpl implements MergeEvent {
 
 	/**
 	 * <!-- begin-user-doc --> <!-- end-user-doc -->
-	 * 
 	 * @generated
 	 */
 	@Override
@@ -463,7 +437,6 @@ public class MergeEventImpl extends EventImpl implements MergeEvent {
 
 	/**
 	 * <!-- begin-user-doc --> <!-- end-user-doc -->
-	 * 
 	 * @generated
 	 */
 	@Override

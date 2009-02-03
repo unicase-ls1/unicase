@@ -9,32 +9,25 @@ import java.util.Set;
 
 import org.unicase.model.ModelElementId;
 
-/**
+/*
  * <!-- begin-user-doc --> A representation of the model object '<em><b>Reference Operation</b></em>'. <!-- end-user-doc
- * -->
- * <p>
- * The following features are supported:
- * <ul>
- * <li>{@link org.unicase.emfstore.esmodel.versioning.operations.ReferenceOperation#isBidirectional <em>Bidirectional
- * </em>}</li>
+ * --> <p> The following features are supported: <ul> <li>{@link
+ * org.unicase.emfstore.esmodel.versioning.operations.ReferenceOperation#isBidirectional <em>Bidirectional </em>}</li>
  * <li>{@link org.unicase.emfstore.esmodel.versioning.operations.ReferenceOperation#getOppositeFeatureName <em>Opposite
- * Feature Name</em>}</li>
- * </ul>
- * </p>
- * 
+ * Feature Name</em>}</li> </ul> </p>
  * @see org.unicase.emfstore.esmodel.versioning.operations.OperationsPackage#getReferenceOperation()
  * @model abstract="true"
  * @generated
  */
 public interface ReferenceOperation extends FeatureOperation {
 	/**
-	 * Returns the value of the '<em><b>Bidirectional</b></em>' attribute. <!-- begin-user-doc -->
+	 * Returns the value of the '<em><b>Bidirectional</b></em>' attribute.
+	 * <!-- begin-user-doc -->
 	 * <p>
 	 * If the meaning of the '<em>Bidirectional</em>' attribute isn't clear, there really should be more of a
 	 * description here...
 	 * </p>
 	 * <!-- end-user-doc -->
-	 * 
 	 * @return the value of the '<em>Bidirectional</em>' attribute.
 	 * @see #setBidirectional(boolean)
 	 * @see org.unicase.emfstore.esmodel.versioning.operations.OperationsPackage#getReferenceOperation_Bidirectional()
@@ -44,10 +37,8 @@ public interface ReferenceOperation extends FeatureOperation {
 	boolean isBidirectional();
 
 	/**
-	 * Sets the value of the '
-	 * {@link org.unicase.emfstore.esmodel.versioning.operations.ReferenceOperation#isBidirectional
-	 * <em>Bidirectional</em>}' attribute. <!-- begin-user-doc --> <!-- end-user-doc -->
-	 * 
+	 * Sets the value of the '{@link org.unicase.emfstore.esmodel.versioning.operations.ReferenceOperation#isBidirectional <em>Bidirectional</em>}' attribute.
+	 * <!-- begin-user-doc --> <!-- end-user-doc -->
 	 * @param value the new value of the '<em>Bidirectional</em>' attribute.
 	 * @see #isBidirectional()
 	 * @generated
@@ -55,13 +46,13 @@ public interface ReferenceOperation extends FeatureOperation {
 	void setBidirectional(boolean value);
 
 	/**
-	 * Returns the value of the '<em><b>Opposite Feature Name</b></em>' attribute. <!-- begin-user-doc -->
+	 * Returns the value of the '<em><b>Opposite Feature Name</b></em>' attribute.
+	 * <!-- begin-user-doc -->
 	 * <p>
 	 * If the meaning of the '<em>Opposite Feature Name</em>' attribute isn't clear, there really should be more of a
 	 * description here...
 	 * </p>
 	 * <!-- end-user-doc -->
-	 * 
 	 * @return the value of the '<em>Opposite Feature Name</em>' attribute.
 	 * @see #setOppositeFeatureName(String)
 	 * @see org.unicase.emfstore.esmodel.versioning.operations.OperationsPackage#getReferenceOperation_OppositeFeatureName()
@@ -71,10 +62,8 @@ public interface ReferenceOperation extends FeatureOperation {
 	String getOppositeFeatureName();
 
 	/**
-	 * Sets the value of the '
-	 * {@link org.unicase.emfstore.esmodel.versioning.operations.ReferenceOperation#getOppositeFeatureName
-	 * <em>Opposite Feature Name</em>}' attribute. <!-- begin-user-doc --> <!-- end-user-doc -->
-	 * 
+	 * Sets the value of the '{@link org.unicase.emfstore.esmodel.versioning.operations.ReferenceOperation#getOppositeFeatureName <em>Opposite Feature Name</em>}' attribute.
+	 * <!-- begin-user-doc --> <!-- end-user-doc -->
 	 * @param value the new value of the '<em>Opposite Feature Name</em>' attribute.
 	 * @see #getOppositeFeatureName()
 	 * @generated

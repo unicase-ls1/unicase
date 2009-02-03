@@ -11,32 +11,27 @@ import org.eclipse.emf.ecore.impl.ENotificationImpl;
 import org.unicase.emfstore.esmodel.versioning.events.EventsPackage;
 import org.unicase.emfstore.esmodel.versioning.events.PluginStartEvent;
 
-/**
+/*
  * <!-- begin-user-doc --> An implementation of the model object '<em><b>Plugin Start Event</b></em>'. <!-- end-user-doc
- * -->
- * <p>
- * The following features are implemented:
- * <ul>
- * <li>{@link org.unicase.emfstore.esmodel.versioning.events.impl.PluginStartEventImpl#getPluginId <em>Plugin Id</em>}</li>
- * </ul>
+ * --> <p> The following features are implemented: <ul> <li>{@link
+ * org.unicase.emfstore.esmodel.versioning.events.impl.PluginStartEventImpl#getPluginId <em>Plugin Id</em>}</li> </ul>
  * </p>
- * 
  * @generated
  */
 public class PluginStartEventImpl extends EventImpl implements PluginStartEvent {
 	/**
-	 * The default value of the '{@link #getPluginId() <em>Plugin Id</em>}' attribute. <!-- begin-user-doc --> <!--
+	 * The default value of the '{@link #getPluginId() <em>Plugin Id</em>}' attribute.
+	 * <!-- begin-user-doc --> <!--
 	 * end-user-doc -->
-	 * 
 	 * @see #getPluginId()
 	 * @generated
 	 * @ordered
 	 */
 	protected static final String PLUGIN_ID_EDEFAULT = null;
 	/**
-	 * The cached value of the '{@link #getPluginId() <em>Plugin Id</em>}' attribute. <!-- begin-user-doc --> <!--
+	 * The cached value of the '{@link #getPluginId() <em>Plugin Id</em>}' attribute.
+	 * <!-- begin-user-doc --> <!--
 	 * end-user-doc -->
-	 * 
 	 * @see #getPluginId()
 	 * @generated
 	 * @ordered
@@ -45,7 +40,6 @@ public class PluginStartEventImpl extends EventImpl implements PluginStartEvent 
 
 	/**
 	 * <!-- begin-user-doc --> <!-- end-user-doc -->
-	 * 
 	 * @generated
 	 */
 	protected PluginStartEventImpl() {
@@ -54,7 +48,6 @@ public class PluginStartEventImpl extends EventImpl implements PluginStartEvent 
 
 	/**
 	 * <!-- begin-user-doc --> <!-- end-user-doc -->
-	 * 
 	 * @generated
 	 */
 	@Override
@@ -64,7 +57,6 @@ public class PluginStartEventImpl extends EventImpl implements PluginStartEvent 
 
 	/**
 	 * <!-- begin-user-doc --> <!-- end-user-doc -->
-	 * 
 	 * @generated
 	 */
 	public String getPluginId() {
@@ -73,7 +65,6 @@ public class PluginStartEventImpl extends EventImpl implements PluginStartEvent 
 
 	/**
 	 * <!-- begin-user-doc --> <!-- end-user-doc -->
-	 * 
 	 * @generated
 	 */
 	public void setPluginId(String newPluginId) {
@@ -86,7 +77,6 @@ public class PluginStartEventImpl extends EventImpl implements PluginStartEvent 
 
 	/**
 	 * <!-- begin-user-doc --> <!-- end-user-doc -->
-	 * 
 	 * @generated
 	 */
 	@Override
@@ -100,7 +90,6 @@ public class PluginStartEventImpl extends EventImpl implements PluginStartEvent 
 
 	/**
 	 * <!-- begin-user-doc --> <!-- end-user-doc -->
-	 * 
 	 * @generated
 	 */
 	@Override
@@ -115,7 +104,6 @@ public class PluginStartEventImpl extends EventImpl implements PluginStartEvent 
 
 	/**
 	 * <!-- begin-user-doc --> <!-- end-user-doc -->
-	 * 
 	 * @generated
 	 */
 	@Override
@@ -130,7 +118,6 @@ public class PluginStartEventImpl extends EventImpl implements PluginStartEvent 
 
 	/**
 	 * <!-- begin-user-doc --> <!-- end-user-doc -->
-	 * 
 	 * @generated
 	 */
 	@Override
@@ -144,7 +131,6 @@ public class PluginStartEventImpl extends EventImpl implements PluginStartEvent 
 
 	/**
 	 * <!-- begin-user-doc --> <!-- end-user-doc -->
-	 * 
 	 * @generated
 	 */
 	@Override

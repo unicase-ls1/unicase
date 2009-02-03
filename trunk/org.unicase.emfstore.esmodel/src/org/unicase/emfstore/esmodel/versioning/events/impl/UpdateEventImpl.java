@@ -14,17 +14,12 @@ import org.unicase.emfstore.esmodel.versioning.PrimaryVersionSpec;
 import org.unicase.emfstore.esmodel.versioning.events.EventsPackage;
 import org.unicase.emfstore.esmodel.versioning.events.UpdateEvent;
 
-/**
+/*
  * <!-- begin-user-doc --> An implementation of the model object '<em><b>Update Event</b></em>'. <!-- end-user-doc -->
- * <p>
- * The following features are implemented:
- * <ul>
- * <li>{@link org.unicase.emfstore.esmodel.versioning.events.impl.UpdateEventImpl#getBaseVersion <em>Base Version</em>}</li>
- * <li>{@link org.unicase.emfstore.esmodel.versioning.events.impl.UpdateEventImpl#getTargetVersion <em>Target Version
- * </em>}</li>
- * </ul>
- * </p>
- * 
+ * <p> The following features are implemented: <ul> <li>{@link
+ * org.unicase.emfstore.esmodel.versioning.events.impl.UpdateEventImpl#getBaseVersion <em>Base Version</em>}</li>
+ * <li>{@link org.unicase.emfstore.esmodel.versioning.events.impl.UpdateEventImpl#getTargetVersion <em>Target
+ * Version</em>}</li> </ul> </p>
  * @generated
  */
 public class UpdateEventImpl extends EventImpl implements UpdateEvent {
@@ -50,7 +45,6 @@ public class UpdateEventImpl extends EventImpl implements UpdateEvent {
 
 	/**
 	 * <!-- begin-user-doc --> <!-- end-user-doc -->
-	 * 
 	 * @generated
 	 */
 	protected UpdateEventImpl() {
@@ -59,7 +53,6 @@ public class UpdateEventImpl extends EventImpl implements UpdateEvent {
 
 	/**
 	 * <!-- begin-user-doc --> <!-- end-user-doc -->
-	 * 
 	 * @generated
 	 */
 	@Override
@@ -69,7 +62,6 @@ public class UpdateEventImpl extends EventImpl implements UpdateEvent {
 
 	/**
 	 * <!-- begin-user-doc --> <!-- end-user-doc -->
-	 * 
 	 * @generated
 	 */
 	public PrimaryVersionSpec getBaseVersion() {
@@ -96,7 +88,6 @@ public class UpdateEventImpl extends EventImpl implements UpdateEvent {
 
 	/**
 	 * <!-- begin-user-doc --> <!-- end-user-doc -->
-	 * 
 	 * @generated
 	 */
 	public PrimaryVersionSpec basicGetBaseVersion() {
@@ -105,7 +96,6 @@ public class UpdateEventImpl extends EventImpl implements UpdateEvent {
 
 	/**
 	 * <!-- begin-user-doc --> <!-- end-user-doc -->
-	 * 
 	 * @generated
 	 */
 	public NotificationChain basicSetBaseVersion(PrimaryVersionSpec newBaseVersion, NotificationChain msgs) {
@@ -124,7 +114,6 @@ public class UpdateEventImpl extends EventImpl implements UpdateEvent {
 
 	/**
 	 * <!-- begin-user-doc --> <!-- end-user-doc -->
-	 * 
 	 * @generated
 	 */
 	public void setBaseVersion(PrimaryVersionSpec newBaseVersion) {
@@ -146,7 +135,6 @@ public class UpdateEventImpl extends EventImpl implements UpdateEvent {
 
 	/**
 	 * <!-- begin-user-doc --> <!-- end-user-doc -->
-	 * 
 	 * @generated
 	 */
 	public PrimaryVersionSpec getTargetVersion() {
@@ -173,7 +161,6 @@ public class UpdateEventImpl extends EventImpl implements UpdateEvent {
 
 	/**
 	 * <!-- begin-user-doc --> <!-- end-user-doc -->
-	 * 
 	 * @generated
 	 */
 	public PrimaryVersionSpec basicGetTargetVersion() {
@@ -182,7 +169,6 @@ public class UpdateEventImpl extends EventImpl implements UpdateEvent {
 
 	/**
 	 * <!-- begin-user-doc --> <!-- end-user-doc -->
-	 * 
 	 * @generated
 	 */
 	public NotificationChain basicSetTargetVersion(PrimaryVersionSpec newTargetVersion, NotificationChain msgs) {
@@ -201,7 +187,6 @@ public class UpdateEventImpl extends EventImpl implements UpdateEvent {
 
 	/**
 	 * <!-- begin-user-doc --> <!-- end-user-doc -->
-	 * 
 	 * @generated
 	 */
 	public void setTargetVersion(PrimaryVersionSpec newTargetVersion) {
@@ -223,7 +208,6 @@ public class UpdateEventImpl extends EventImpl implements UpdateEvent {
 
 	/**
 	 * <!-- begin-user-doc --> <!-- end-user-doc -->
-	 * 
 	 * @generated
 	 */
 	@Override
@@ -239,7 +223,6 @@ public class UpdateEventImpl extends EventImpl implements UpdateEvent {
 
 	/**
 	 * <!-- begin-user-doc --> <!-- end-user-doc -->
-	 * 
 	 * @generated
 	 */
 	@Override
@@ -259,7 +242,6 @@ public class UpdateEventImpl extends EventImpl implements UpdateEvent {
 
 	/**
 	 * <!-- begin-user-doc --> <!-- end-user-doc -->
-	 * 
 	 * @generated
 	 */
 	@Override
@@ -277,7 +259,6 @@ public class UpdateEventImpl extends EventImpl implements UpdateEvent {
 
 	/**
 	 * <!-- begin-user-doc --> <!-- end-user-doc -->
-	 * 
 	 * @generated
 	 */
 	@Override
@@ -295,7 +276,6 @@ public class UpdateEventImpl extends EventImpl implements UpdateEvent {
 
 	/**
 	 * <!-- begin-user-doc --> <!-- end-user-doc -->
-	 * 
 	 * @generated
 	 */
 	@Override

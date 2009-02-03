@@ -12,23 +12,18 @@ import org.eclipse.emf.ecore.impl.EObjectImpl;
 import org.unicase.emfstore.esmodel.versioning.PrimaryVersionSpec;
 import org.unicase.emfstore.esmodel.versioning.VersioningPackage;
 
-/**
+/*
  * <!-- begin-user-doc --> An implementation of the model object ' <em><b>Primary Version Spec</b></em>'. <!--
- * end-user-doc -->
- * <p>
- * The following features are implemented:
- * <ul>
- * <li>{@link org.unicase.emfstore.esmodel.versioning.impl.PrimaryVersionSpecImpl#getIdentifier <em>Identifier</em>}</li>
- * </ul>
+ * end-user-doc --> <p> The following features are implemented: <ul> <li>{@link
+ * org.unicase.emfstore.esmodel.versioning.impl.PrimaryVersionSpecImpl#getIdentifier <em>Identifier</em>}</li> </ul>
  * </p>
- * 
  * @generated
  */
 public class PrimaryVersionSpecImpl extends EObjectImpl implements PrimaryVersionSpec {
 	/**
-	 * The default value of the '{@link #getIdentifier() <em>Identifier</em>}' attribute. <!-- begin-user-doc --> <!--
+	 * The default value of the '{@link #getIdentifier() <em>Identifier</em>}' attribute.
+	 * <!-- begin-user-doc --> <!--
 	 * end-user-doc -->
-	 * 
 	 * @see #getIdentifier()
 	 * @generated
 	 * @ordered
@@ -36,9 +31,9 @@ public class PrimaryVersionSpecImpl extends EObjectImpl implements PrimaryVersio
 	protected static final int IDENTIFIER_EDEFAULT = 0;
 
 	/**
-	 * The cached value of the '{@link #getIdentifier() <em>Identifier</em>}' attribute. <!-- begin-user-doc --> <!--
+	 * The cached value of the '{@link #getIdentifier() <em>Identifier</em>}' attribute.
+	 * <!-- begin-user-doc --> <!--
 	 * end-user-doc -->
-	 * 
 	 * @see #getIdentifier()
 	 * @generated
 	 * @ordered
@@ -47,7 +42,6 @@ public class PrimaryVersionSpecImpl extends EObjectImpl implements PrimaryVersio
 
 	/**
 	 * <!-- begin-user-doc --> <!-- end-user-doc -->
-	 * 
 	 * @generated
 	 */
 	protected PrimaryVersionSpecImpl() {
@@ -56,7 +50,6 @@ public class PrimaryVersionSpecImpl extends EObjectImpl implements PrimaryVersio
 
 	/**
 	 * <!-- begin-user-doc --> <!-- end-user-doc -->
-	 * 
 	 * @generated
 	 */
 	@Override
@@ -66,7 +59,6 @@ public class PrimaryVersionSpecImpl extends EObjectImpl implements PrimaryVersio
 
 	/**
 	 * <!-- begin-user-doc --> <!-- end-user-doc -->
-	 * 
 	 * @generated
 	 */
 	public int getIdentifier() {
@@ -75,7 +67,6 @@ public class PrimaryVersionSpecImpl extends EObjectImpl implements PrimaryVersio
 
 	/**
 	 * <!-- begin-user-doc --> <!-- end-user-doc -->
-	 * 
 	 * @generated
 	 */
 	public void setIdentifier(int newIdentifier) {
@@ -88,7 +79,6 @@ public class PrimaryVersionSpecImpl extends EObjectImpl implements PrimaryVersio
 
 	/**
 	 * <!-- begin-user-doc --> <!-- end-user-doc -->
-	 * 
 	 * @generated
 	 */
 	@Override
@@ -102,7 +92,6 @@ public class PrimaryVersionSpecImpl extends EObjectImpl implements PrimaryVersio
 
 	/**
 	 * <!-- begin-user-doc --> <!-- end-user-doc -->
-	 * 
 	 * @generated
 	 */
 	@Override
@@ -117,7 +106,6 @@ public class PrimaryVersionSpecImpl extends EObjectImpl implements PrimaryVersio
 
 	/**
 	 * <!-- begin-user-doc --> <!-- end-user-doc -->
-	 * 
 	 * @generated
 	 */
 	@Override
@@ -132,7 +120,6 @@ public class PrimaryVersionSpecImpl extends EObjectImpl implements PrimaryVersio
 
 	/**
 	 * <!-- begin-user-doc --> <!-- end-user-doc -->
-	 * 
 	 * @generated
 	 */
 	@Override
@@ -146,7 +133,6 @@ public class PrimaryVersionSpecImpl extends EObjectImpl implements PrimaryVersio
 
 	/**
 	 * <!-- begin-user-doc --> <!-- end-user-doc -->
-	 * 
 	 * @generated
 	 */
 	@Override

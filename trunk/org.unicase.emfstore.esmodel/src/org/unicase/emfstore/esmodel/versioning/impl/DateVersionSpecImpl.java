@@ -14,16 +14,10 @@ import org.eclipse.emf.ecore.impl.EObjectImpl;
 import org.unicase.emfstore.esmodel.versioning.DateVersionSpec;
 import org.unicase.emfstore.esmodel.versioning.VersioningPackage;
 
-/**
+/*
  * <!-- begin-user-doc --> An implementation of the model object ' <em><b>Date Version Spec</b></em>'. <!-- end-user-doc
- * -->
- * <p>
- * The following features are implemented:
- * <ul>
- * <li>{@link org.unicase.emfstore.esmodel.versioning.impl.DateVersionSpecImpl#getDate <em>Date</em>}</li>
- * </ul>
- * </p>
- * 
+ * --> <p> The following features are implemented: <ul> <li>{@link
+ * org.unicase.emfstore.esmodel.versioning.impl.DateVersionSpecImpl#getDate <em>Date</em>}</li> </ul> </p>
  * @generated
  */
 public class DateVersionSpecImpl extends EObjectImpl implements DateVersionSpec {
@@ -49,7 +43,6 @@ public class DateVersionSpecImpl extends EObjectImpl implements DateVersionSpec 
 
 	/**
 	 * <!-- begin-user-doc --> <!-- end-user-doc -->
-	 * 
 	 * @generated
 	 */
 	protected DateVersionSpecImpl() {
@@ -58,7 +51,6 @@ public class DateVersionSpecImpl extends EObjectImpl implements DateVersionSpec 
 
 	/**
 	 * <!-- begin-user-doc --> <!-- end-user-doc -->
-	 * 
 	 * @generated
 	 */
 	@Override
@@ -68,7 +60,6 @@ public class DateVersionSpecImpl extends EObjectImpl implements DateVersionSpec 
 
 	/**
 	 * <!-- begin-user-doc --> <!-- end-user-doc -->
-	 * 
 	 * @generated
 	 */
 	public Date getDate() {
@@ -77,7 +68,6 @@ public class DateVersionSpecImpl extends EObjectImpl implements DateVersionSpec 
 
 	/**
 	 * <!-- begin-user-doc --> <!-- end-user-doc -->
-	 * 
 	 * @generated
 	 */
 	public void setDate(Date newDate) {
@@ -90,7 +80,6 @@ public class DateVersionSpecImpl extends EObjectImpl implements DateVersionSpec 
 
 	/**
 	 * <!-- begin-user-doc --> <!-- end-user-doc -->
-	 * 
 	 * @generated
 	 */
 	@Override
@@ -104,7 +93,6 @@ public class DateVersionSpecImpl extends EObjectImpl implements DateVersionSpec 
 
 	/**
 	 * <!-- begin-user-doc --> <!-- end-user-doc -->
-	 * 
 	 * @generated
 	 */
 	@Override
@@ -119,7 +107,6 @@ public class DateVersionSpecImpl extends EObjectImpl implements DateVersionSpec 
 
 	/**
 	 * <!-- begin-user-doc --> <!-- end-user-doc -->
-	 * 
 	 * @generated
 	 */
 	@Override
@@ -134,7 +121,6 @@ public class DateVersionSpecImpl extends EObjectImpl implements DateVersionSpec 
 
 	/**
 	 * <!-- begin-user-doc --> <!-- end-user-doc -->
-	 * 
 	 * @generated
 	 */
 	@Override
@@ -148,7 +134,6 @@ public class DateVersionSpecImpl extends EObjectImpl implements DateVersionSpec 
 
 	/**
 	 * <!-- begin-user-doc --> <!-- end-user-doc -->
-	 * 
 	 * @generated
 	 */
 	@Override

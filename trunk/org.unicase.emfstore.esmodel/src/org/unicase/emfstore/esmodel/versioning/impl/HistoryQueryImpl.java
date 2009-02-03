@@ -21,24 +21,20 @@ import org.unicase.emfstore.esmodel.versioning.PrimaryVersionSpec;
 import org.unicase.emfstore.esmodel.versioning.VersioningPackage;
 import org.unicase.model.ModelElementId;
 
-/**
+/*
  * <!-- begin-user-doc --> An implementation of the model object '<em><b>History Query</b></em>'. <!-- end-user-doc -->
- * <p>
- * The following features are implemented:
- * <ul>
- * <li>{@link org.unicase.emfstore.esmodel.versioning.impl.HistoryQueryImpl#getSource <em>Source</em>}</li>
- * <li>{@link org.unicase.emfstore.esmodel.versioning.impl.HistoryQueryImpl#getTarget <em>Target</em>}</li>
- * <li>{@link org.unicase.emfstore.esmodel.versioning.impl.HistoryQueryImpl#getModelElements <em>Model Elements</em>}</li>
- * </ul>
+ * <p> The following features are implemented: <ul> <li>{@link
+ * org.unicase.emfstore.esmodel.versioning.impl.HistoryQueryImpl#getSource <em>Source</em>}</li> <li>{@link
+ * org.unicase.emfstore.esmodel.versioning.impl.HistoryQueryImpl#getTarget <em>Target</em>}</li> <li>{@link
+ * org.unicase.emfstore.esmodel.versioning.impl.HistoryQueryImpl#getModelElements <em>Model Elements</em>}</li> </ul>
  * </p>
- * 
  * @generated
  */
 public class HistoryQueryImpl extends EObjectImpl implements HistoryQuery {
 	/**
-	 * The cached value of the '{@link #getSource() <em>Source</em>}' containment reference. <!-- begin-user-doc -->
+	 * The cached value of the '{@link #getSource() <em>Source</em>}' containment reference.
+	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
-	 * 
 	 * @see #getSource()
 	 * @generated
 	 * @ordered
@@ -46,9 +42,9 @@ public class HistoryQueryImpl extends EObjectImpl implements HistoryQuery {
 	protected PrimaryVersionSpec source;
 
 	/**
-	 * The cached value of the '{@link #getTarget() <em>Target</em>}' containment reference. <!-- begin-user-doc -->
+	 * The cached value of the '{@link #getTarget() <em>Target</em>}' containment reference.
+	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
-	 * 
 	 * @see #getTarget()
 	 * @generated
 	 * @ordered
@@ -67,7 +63,6 @@ public class HistoryQueryImpl extends EObjectImpl implements HistoryQuery {
 
 	/**
 	 * <!-- begin-user-doc --> <!-- end-user-doc -->
-	 * 
 	 * @generated
 	 */
 	protected HistoryQueryImpl() {
@@ -76,7 +71,6 @@ public class HistoryQueryImpl extends EObjectImpl implements HistoryQuery {
 
 	/**
 	 * <!-- begin-user-doc --> <!-- end-user-doc -->
-	 * 
 	 * @generated
 	 */
 	@Override
@@ -86,7 +80,6 @@ public class HistoryQueryImpl extends EObjectImpl implements HistoryQuery {
 
 	/**
 	 * <!-- begin-user-doc --> <!-- end-user-doc -->
-	 * 
 	 * @generated
 	 */
 	public PrimaryVersionSpec getSource() {
@@ -113,7 +106,6 @@ public class HistoryQueryImpl extends EObjectImpl implements HistoryQuery {
 
 	/**
 	 * <!-- begin-user-doc --> <!-- end-user-doc -->
-	 * 
 	 * @generated
 	 */
 	public PrimaryVersionSpec basicGetSource() {
@@ -122,7 +114,6 @@ public class HistoryQueryImpl extends EObjectImpl implements HistoryQuery {
 
 	/**
 	 * <!-- begin-user-doc --> <!-- end-user-doc -->
-	 * 
 	 * @generated
 	 */
 	public NotificationChain basicSetSource(PrimaryVersionSpec newSource, NotificationChain msgs) {
@@ -141,7 +132,6 @@ public class HistoryQueryImpl extends EObjectImpl implements HistoryQuery {
 
 	/**
 	 * <!-- begin-user-doc --> <!-- end-user-doc -->
-	 * 
 	 * @generated
 	 */
 	public void setSource(PrimaryVersionSpec newSource) {
@@ -163,7 +153,6 @@ public class HistoryQueryImpl extends EObjectImpl implements HistoryQuery {
 
 	/**
 	 * <!-- begin-user-doc --> <!-- end-user-doc -->
-	 * 
 	 * @generated
 	 */
 	public PrimaryVersionSpec getTarget() {
@@ -190,7 +179,6 @@ public class HistoryQueryImpl extends EObjectImpl implements HistoryQuery {
 
 	/**
 	 * <!-- begin-user-doc --> <!-- end-user-doc -->
-	 * 
 	 * @generated
 	 */
 	public PrimaryVersionSpec basicGetTarget() {
@@ -199,7 +187,6 @@ public class HistoryQueryImpl extends EObjectImpl implements HistoryQuery {
 
 	/**
 	 * <!-- begin-user-doc --> <!-- end-user-doc -->
-	 * 
 	 * @generated
 	 */
 	public NotificationChain basicSetTarget(PrimaryVersionSpec newTarget, NotificationChain msgs) {
@@ -218,7 +205,6 @@ public class HistoryQueryImpl extends EObjectImpl implements HistoryQuery {
 
 	/**
 	 * <!-- begin-user-doc --> <!-- end-user-doc -->
-	 * 
 	 * @generated
 	 */
 	public void setTarget(PrimaryVersionSpec newTarget) {
@@ -240,7 +226,6 @@ public class HistoryQueryImpl extends EObjectImpl implements HistoryQuery {
 
 	/**
 	 * <!-- begin-user-doc --> <!-- end-user-doc -->
-	 * 
 	 * @generated
 	 */
 	public EList<ModelElementId> getModelElements() {
@@ -253,7 +238,6 @@ public class HistoryQueryImpl extends EObjectImpl implements HistoryQuery {
 
 	/**
 	 * <!-- begin-user-doc --> <!-- end-user-doc -->
-	 * 
 	 * @generated
 	 */
 	@Override
@@ -271,7 +255,6 @@ public class HistoryQueryImpl extends EObjectImpl implements HistoryQuery {
 
 	/**
 	 * <!-- begin-user-doc --> <!-- end-user-doc -->
-	 * 
 	 * @generated
 	 */
 	@Override
@@ -293,7 +276,6 @@ public class HistoryQueryImpl extends EObjectImpl implements HistoryQuery {
 
 	/**
 	 * <!-- begin-user-doc --> <!-- end-user-doc -->
-	 * 
 	 * @generated
 	 */
 	@SuppressWarnings("unchecked")
@@ -316,7 +298,6 @@ public class HistoryQueryImpl extends EObjectImpl implements HistoryQuery {
 
 	/**
 	 * <!-- begin-user-doc --> <!-- end-user-doc -->
-	 * 
 	 * @generated
 	 */
 	@Override
@@ -337,7 +318,6 @@ public class HistoryQueryImpl extends EObjectImpl implements HistoryQuery {
 
 	/**
 	 * <!-- begin-user-doc --> <!-- end-user-doc -->
-	 * 
 	 * @generated
 	 */
 	@Override

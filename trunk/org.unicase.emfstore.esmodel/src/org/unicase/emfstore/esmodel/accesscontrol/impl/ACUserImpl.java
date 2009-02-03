@@ -11,23 +11,18 @@ import org.eclipse.emf.ecore.impl.ENotificationImpl;
 import org.unicase.emfstore.esmodel.accesscontrol.ACUser;
 import org.unicase.emfstore.esmodel.accesscontrol.AccesscontrolPackage;
 
-/**
- * <!-- begin-user-doc --> An implementation of the model object ' <em><b>AC User</b></em>'. <!-- end-user-doc -->
- * <p>
- * The following features are implemented:
- * <ul>
- * <li>{@link org.unicase.emfstore.esmodel.accesscontrol.impl.ACUserImpl#getFirstName <em>First Name</em>}</li>
- * <li>{@link org.unicase.emfstore.esmodel.accesscontrol.impl.ACUserImpl#getLastName <em>Last Name</em>}</li>
- * </ul>
- * </p>
- * 
+/*
+ * <!-- begin-user-doc --> An implementation of the model object ' <em><b>AC User</b></em>'. <!-- end-user-doc --> <p>
+ * The following features are implemented: <ul> <li>{@link
+ * org.unicase.emfstore.esmodel.accesscontrol.impl.ACUserImpl#getFirstName <em>First Name</em>}</li> <li>{@link
+ * org.unicase.emfstore.esmodel.accesscontrol.impl.ACUserImpl#getLastName <em>Last Name</em>}</li> </ul> </p>
  * @generated
  */
 public class ACUserImpl extends ACOrgUnitImpl implements ACUser {
 	/**
-	 * The default value of the '{@link #getFirstName() <em>First Name</em>}' attribute. <!-- begin-user-doc --> <!--
+	 * The default value of the '{@link #getFirstName() <em>First Name</em>}' attribute.
+	 * <!-- begin-user-doc --> <!--
 	 * end-user-doc -->
-	 * 
 	 * @see #getFirstName()
 	 * @generated
 	 * @ordered
@@ -35,9 +30,9 @@ public class ACUserImpl extends ACOrgUnitImpl implements ACUser {
 	protected static final String FIRST_NAME_EDEFAULT = null;
 
 	/**
-	 * The cached value of the '{@link #getFirstName() <em>First Name</em>}' attribute. <!-- begin-user-doc --> <!--
+	 * The cached value of the '{@link #getFirstName() <em>First Name</em>}' attribute.
+	 * <!-- begin-user-doc --> <!--
 	 * end-user-doc -->
-	 * 
 	 * @see #getFirstName()
 	 * @generated
 	 * @ordered
@@ -45,9 +40,9 @@ public class ACUserImpl extends ACOrgUnitImpl implements ACUser {
 	protected String firstName = FIRST_NAME_EDEFAULT;
 
 	/**
-	 * The default value of the '{@link #getLastName() <em>Last Name</em>}' attribute. <!-- begin-user-doc --> <!--
+	 * The default value of the '{@link #getLastName() <em>Last Name</em>}' attribute.
+	 * <!-- begin-user-doc --> <!--
 	 * end-user-doc -->
-	 * 
 	 * @see #getLastName()
 	 * @generated
 	 * @ordered
@@ -55,9 +50,9 @@ public class ACUserImpl extends ACOrgUnitImpl implements ACUser {
 	protected static final String LAST_NAME_EDEFAULT = null;
 
 	/**
-	 * The cached value of the '{@link #getLastName() <em>Last Name</em>}' attribute. <!-- begin-user-doc --> <!--
+	 * The cached value of the '{@link #getLastName() <em>Last Name</em>}' attribute.
+	 * <!-- begin-user-doc --> <!--
 	 * end-user-doc -->
-	 * 
 	 * @see #getLastName()
 	 * @generated
 	 * @ordered
@@ -66,7 +61,6 @@ public class ACUserImpl extends ACOrgUnitImpl implements ACUser {
 
 	/**
 	 * <!-- begin-user-doc --> <!-- end-user-doc -->
-	 * 
 	 * @generated
 	 */
 	protected ACUserImpl() {
@@ -75,7 +69,6 @@ public class ACUserImpl extends ACOrgUnitImpl implements ACUser {
 
 	/**
 	 * <!-- begin-user-doc --> <!-- end-user-doc -->
-	 * 
 	 * @generated
 	 */
 	@Override
@@ -85,7 +78,6 @@ public class ACUserImpl extends ACOrgUnitImpl implements ACUser {
 
 	/**
 	 * <!-- begin-user-doc --> <!-- end-user-doc -->
-	 * 
 	 * @generated
 	 */
 	public String getFirstName() {
@@ -94,7 +86,6 @@ public class ACUserImpl extends ACOrgUnitImpl implements ACUser {
 
 	/**
 	 * <!-- begin-user-doc --> <!-- end-user-doc -->
-	 * 
 	 * @generated
 	 */
 	public void setFirstName(String newFirstName) {
@@ -107,7 +98,6 @@ public class ACUserImpl extends ACOrgUnitImpl implements ACUser {
 
 	/**
 	 * <!-- begin-user-doc --> <!-- end-user-doc -->
-	 * 
 	 * @generated
 	 */
 	public String getLastName() {
@@ -116,7 +106,6 @@ public class ACUserImpl extends ACOrgUnitImpl implements ACUser {
 
 	/**
 	 * <!-- begin-user-doc --> <!-- end-user-doc -->
-	 * 
 	 * @generated
 	 */
 	public void setLastName(String newLastName) {
@@ -129,7 +118,6 @@ public class ACUserImpl extends ACOrgUnitImpl implements ACUser {
 
 	/**
 	 * <!-- begin-user-doc --> <!-- end-user-doc -->
-	 * 
 	 * @generated
 	 */
 	@Override
@@ -145,7 +133,6 @@ public class ACUserImpl extends ACOrgUnitImpl implements ACUser {
 
 	/**
 	 * <!-- begin-user-doc --> <!-- end-user-doc -->
-	 * 
 	 * @generated
 	 */
 	@Override
@@ -163,7 +150,6 @@ public class ACUserImpl extends ACOrgUnitImpl implements ACUser {
 
 	/**
 	 * <!-- begin-user-doc --> <!-- end-user-doc -->
-	 * 
 	 * @generated
 	 */
 	@Override
@@ -181,7 +167,6 @@ public class ACUserImpl extends ACOrgUnitImpl implements ACUser {
 
 	/**
 	 * <!-- begin-user-doc --> <!-- end-user-doc -->
-	 * 
 	 * @generated
 	 */
 	@Override
@@ -197,7 +182,6 @@ public class ACUserImpl extends ACOrgUnitImpl implements ACUser {
 
 	/**
 	 * <!-- begin-user-doc --> <!-- end-user-doc -->
-	 * 
 	 * @generated
 	 */
 	@Override

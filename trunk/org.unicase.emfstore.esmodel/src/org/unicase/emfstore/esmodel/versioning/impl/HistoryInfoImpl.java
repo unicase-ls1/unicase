@@ -22,17 +22,12 @@ import org.unicase.emfstore.esmodel.versioning.PrimaryVersionSpec;
 import org.unicase.emfstore.esmodel.versioning.TagVersionSpec;
 import org.unicase.emfstore.esmodel.versioning.VersioningPackage;
 
-/**
+/*
  * <!-- begin-user-doc --> An implementation of the model object ' <em><b>History Info</b></em>'. <!-- end-user-doc -->
- * <p>
- * The following features are implemented:
- * <ul>
- * <li>{@link org.unicase.emfstore.esmodel.versioning.impl.HistoryInfoImpl#getPrimerySpec <em>Primery Spec</em>}</li>
- * <li>{@link org.unicase.emfstore.esmodel.versioning.impl.HistoryInfoImpl#getLogMessage <em>Log Message</em>}</li>
- * <li>{@link org.unicase.emfstore.esmodel.versioning.impl.HistoryInfoImpl#getTagSpecs <em>Tag Specs</em>}</li>
- * </ul>
- * </p>
- * 
+ * <p> The following features are implemented: <ul> <li>{@link
+ * org.unicase.emfstore.esmodel.versioning.impl.HistoryInfoImpl#getPrimerySpec <em>Primery Spec</em>}</li> <li>{@link
+ * org.unicase.emfstore.esmodel.versioning.impl.HistoryInfoImpl#getLogMessage <em>Log Message</em>}</li> <li>{@link
+ * org.unicase.emfstore.esmodel.versioning.impl.HistoryInfoImpl#getTagSpecs <em>Tag Specs</em>}</li> </ul> </p>
  * @generated
  */
 public class HistoryInfoImpl extends EObjectImpl implements HistoryInfo {
@@ -68,7 +63,6 @@ public class HistoryInfoImpl extends EObjectImpl implements HistoryInfo {
 
 	/**
 	 * <!-- begin-user-doc --> <!-- end-user-doc -->
-	 * 
 	 * @generated
 	 */
 	protected HistoryInfoImpl() {
@@ -77,7 +71,6 @@ public class HistoryInfoImpl extends EObjectImpl implements HistoryInfo {
 
 	/**
 	 * <!-- begin-user-doc --> <!-- end-user-doc -->
-	 * 
 	 * @generated
 	 */
 	@Override
@@ -87,7 +80,6 @@ public class HistoryInfoImpl extends EObjectImpl implements HistoryInfo {
 
 	/**
 	 * <!-- begin-user-doc --> <!-- end-user-doc -->
-	 * 
 	 * @generated
 	 */
 	public PrimaryVersionSpec getPrimerySpec() {
@@ -114,7 +106,6 @@ public class HistoryInfoImpl extends EObjectImpl implements HistoryInfo {
 
 	/**
 	 * <!-- begin-user-doc --> <!-- end-user-doc -->
-	 * 
 	 * @generated
 	 */
 	public PrimaryVersionSpec basicGetPrimerySpec() {
@@ -123,7 +114,6 @@ public class HistoryInfoImpl extends EObjectImpl implements HistoryInfo {
 
 	/**
 	 * <!-- begin-user-doc --> <!-- end-user-doc -->
-	 * 
 	 * @generated
 	 */
 	public NotificationChain basicSetPrimerySpec(PrimaryVersionSpec newPrimerySpec, NotificationChain msgs) {
@@ -142,7 +132,6 @@ public class HistoryInfoImpl extends EObjectImpl implements HistoryInfo {
 
 	/**
 	 * <!-- begin-user-doc --> <!-- end-user-doc -->
-	 * 
 	 * @generated
 	 */
 	public void setPrimerySpec(PrimaryVersionSpec newPrimerySpec) {
@@ -164,7 +153,6 @@ public class HistoryInfoImpl extends EObjectImpl implements HistoryInfo {
 
 	/**
 	 * <!-- begin-user-doc --> <!-- end-user-doc -->
-	 * 
 	 * @generated
 	 */
 	public LogMessage getLogMessage() {
@@ -191,7 +179,6 @@ public class HistoryInfoImpl extends EObjectImpl implements HistoryInfo {
 
 	/**
 	 * <!-- begin-user-doc --> <!-- end-user-doc -->
-	 * 
 	 * @generated
 	 */
 	public LogMessage basicGetLogMessage() {
@@ -200,7 +187,6 @@ public class HistoryInfoImpl extends EObjectImpl implements HistoryInfo {
 
 	/**
 	 * <!-- begin-user-doc --> <!-- end-user-doc -->
-	 * 
 	 * @generated
 	 */
 	public NotificationChain basicSetLogMessage(LogMessage newLogMessage, NotificationChain msgs) {
@@ -219,7 +205,6 @@ public class HistoryInfoImpl extends EObjectImpl implements HistoryInfo {
 
 	/**
 	 * <!-- begin-user-doc --> <!-- end-user-doc -->
-	 * 
 	 * @generated
 	 */
 	public void setLogMessage(LogMessage newLogMessage) {
@@ -241,7 +226,6 @@ public class HistoryInfoImpl extends EObjectImpl implements HistoryInfo {
 
 	/**
 	 * <!-- begin-user-doc --> <!-- end-user-doc -->
-	 * 
 	 * @generated
 	 */
 	public EList<TagVersionSpec> getTagSpecs() {
@@ -254,7 +238,6 @@ public class HistoryInfoImpl extends EObjectImpl implements HistoryInfo {
 
 	/**
 	 * <!-- begin-user-doc --> <!-- end-user-doc -->
-	 * 
 	 * @generated
 	 */
 	@Override
@@ -272,7 +255,6 @@ public class HistoryInfoImpl extends EObjectImpl implements HistoryInfo {
 
 	/**
 	 * <!-- begin-user-doc --> <!-- end-user-doc -->
-	 * 
 	 * @generated
 	 */
 	@Override
@@ -294,7 +276,6 @@ public class HistoryInfoImpl extends EObjectImpl implements HistoryInfo {
 
 	/**
 	 * <!-- begin-user-doc --> <!-- end-user-doc -->
-	 * 
 	 * @generated
 	 */
 	@SuppressWarnings("unchecked")
@@ -317,7 +298,6 @@ public class HistoryInfoImpl extends EObjectImpl implements HistoryInfo {
 
 	/**
 	 * <!-- begin-user-doc --> <!-- end-user-doc -->
-	 * 
 	 * @generated
 	 */
 	@Override
@@ -338,7 +318,6 @@ public class HistoryInfoImpl extends EObjectImpl implements HistoryInfo {
 
 	/**
 	 * <!-- begin-user-doc --> <!-- end-user-doc -->
-	 * 
 	 * @generated
 	 */
 	@Override

@@ -22,17 +22,16 @@ import org.eclipse.emf.edit.provider.ViewerNotification;
 import org.unicase.emfstore.esmodel.accesscontrol.ACUser;
 import org.unicase.emfstore.esmodel.accesscontrol.AccesscontrolPackage;
 
-/**
+/*
  * This is the item provider adapter for a {@link org.unicase.emfstore.esmodel.accesscontrol.ACUser} object. <!--
  * begin-user-doc --> <!-- end-user-doc -->
- * 
  * @generated
  */
 public class ACUserItemProvider extends ACOrgUnitItemProvider implements IEditingDomainItemProvider,
 	IStructuredItemContentProvider, ITreeItemContentProvider, IItemLabelProvider, IItemPropertySource {
 	/**
-	 * This constructs an instance from a factory and a notifier. <!-- begin-user-doc --> <!-- end-user-doc -->
-	 * 
+	 * This constructs an instance from a factory and a notifier.
+	 * <!-- begin-user-doc --> <!-- end-user-doc -->
 	 * @generated
 	 */
 	public ACUserItemProvider(AdapterFactory adapterFactory) {
@@ -40,8 +39,8 @@ public class ACUserItemProvider extends ACOrgUnitItemProvider implements IEditin
 	}
 
 	/**
-	 * This returns the property descriptors for the adapted class. <!-- begin-user-doc --> <!-- end-user-doc -->
-	 * 
+	 * This returns the property descriptors for the adapted class.
+	 * <!-- begin-user-doc --> <!-- end-user-doc -->
 	 * @generated
 	 */
 	@Override
@@ -56,8 +55,8 @@ public class ACUserItemProvider extends ACOrgUnitItemProvider implements IEditin
 	}
 
 	/**
-	 * This adds a property descriptor for the First Name feature. <!-- begin-user-doc --> <!-- end-user-doc -->
-	 * 
+	 * This adds a property descriptor for the First Name feature.
+	 * <!-- begin-user-doc --> <!-- end-user-doc -->
 	 * @generated
 	 */
 	protected void addFirstNamePropertyDescriptor(Object object) {
@@ -69,8 +68,8 @@ public class ACUserItemProvider extends ACOrgUnitItemProvider implements IEditin
 	}
 
 	/**
-	 * This adds a property descriptor for the Last Name feature. <!-- begin-user-doc --> <!-- end-user-doc -->
-	 * 
+	 * This adds a property descriptor for the Last Name feature.
+	 * <!-- begin-user-doc --> <!-- end-user-doc -->
 	 * @generated
 	 */
 	protected void addLastNamePropertyDescriptor(Object object) {
@@ -82,8 +81,8 @@ public class ACUserItemProvider extends ACOrgUnitItemProvider implements IEditin
 	}
 
 	/**
-	 * This returns ACUser.gif. <!-- begin-user-doc --> <!-- end-user-doc -->
-	 * 
+	 * This returns ACUser.gif.
+	 * <!-- begin-user-doc --> <!-- end-user-doc -->
 	 * @generated
 	 */
 	@Override
@@ -92,8 +91,8 @@ public class ACUserItemProvider extends ACOrgUnitItemProvider implements IEditin
 	}
 
 	/**
-	 * This returns the label text for the adapted class. <!-- begin-user-doc --> <!-- end-user-doc -->
-	 * 
+	 * This returns the label text for the adapted class.
+	 * <!-- begin-user-doc --> <!-- end-user-doc -->
 	 * @generated
 	 */
 	@Override
@@ -124,9 +123,9 @@ public class ACUserItemProvider extends ACOrgUnitItemProvider implements IEditin
 	}
 
 	/**
-	 * This adds {@link org.eclipse.emf.edit.command.CommandParameter}s describing the children that can be created
-	 * under this object. <!-- begin-user-doc --> <!-- end-user-doc -->
-	 * 
+	 * This adds {@link org.eclipse.emf.edit.command.CommandParameter}s describing the children
+	 * that can be created under this object.
+	 * <!-- begin-user-doc --> <!-- end-user-doc -->
 	 * @generated
 	 */
 	@Override

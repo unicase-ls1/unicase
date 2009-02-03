@@ -14,22 +14,17 @@ import org.unicase.emfstore.esmodel.versioning.events.EventsPackage;
 import org.unicase.emfstore.esmodel.versioning.events.UndoEvent;
 import org.unicase.emfstore.esmodel.versioning.operations.AbstractOperation;
 
-/**
- * <!-- begin-user-doc --> An implementation of the model object '<em><b>Undo Event</b></em>'. <!-- end-user-doc -->
- * <p>
- * The following features are implemented:
- * <ul>
- * <li>{@link org.unicase.emfstore.esmodel.versioning.events.impl.UndoEventImpl#getOperation <em>Operation</em>}</li>
- * </ul>
- * </p>
- * 
+/*
+ * <!-- begin-user-doc --> An implementation of the model object '<em><b>Undo Event</b></em>'. <!-- end-user-doc --> <p>
+ * The following features are implemented: <ul> <li>{@link
+ * org.unicase.emfstore.esmodel.versioning.events.impl.UndoEventImpl#getOperation <em>Operation</em>}</li> </ul> </p>
  * @generated
  */
 public class UndoEventImpl extends EventImpl implements UndoEvent {
 	/**
-	 * The cached value of the '{@link #getOperation() <em>Operation</em>}' containment reference. <!-- begin-user-doc
+	 * The cached value of the '{@link #getOperation() <em>Operation</em>}' containment reference.
+	 * <!-- begin-user-doc
 	 * --> <!-- end-user-doc -->
-	 * 
 	 * @see #getOperation()
 	 * @generated
 	 * @ordered
@@ -38,7 +33,6 @@ public class UndoEventImpl extends EventImpl implements UndoEvent {
 
 	/**
 	 * <!-- begin-user-doc --> <!-- end-user-doc -->
-	 * 
 	 * @generated
 	 */
 	protected UndoEventImpl() {
@@ -47,7 +41,6 @@ public class UndoEventImpl extends EventImpl implements UndoEvent {
 
 	/**
 	 * <!-- begin-user-doc --> <!-- end-user-doc -->
-	 * 
 	 * @generated
 	 */
 	@Override
@@ -57,7 +50,6 @@ public class UndoEventImpl extends EventImpl implements UndoEvent {
 
 	/**
 	 * <!-- begin-user-doc --> <!-- end-user-doc -->
-	 * 
 	 * @generated
 	 */
 	public AbstractOperation getOperation() {
@@ -84,7 +76,6 @@ public class UndoEventImpl extends EventImpl implements UndoEvent {
 
 	/**
 	 * <!-- begin-user-doc --> <!-- end-user-doc -->
-	 * 
 	 * @generated
 	 */
 	public AbstractOperation basicGetOperation() {
@@ -93,7 +84,6 @@ public class UndoEventImpl extends EventImpl implements UndoEvent {
 
 	/**
 	 * <!-- begin-user-doc --> <!-- end-user-doc -->
-	 * 
 	 * @generated
 	 */
 	public NotificationChain basicSetOperation(AbstractOperation newOperation, NotificationChain msgs) {
@@ -112,7 +102,6 @@ public class UndoEventImpl extends EventImpl implements UndoEvent {
 
 	/**
 	 * <!-- begin-user-doc --> <!-- end-user-doc -->
-	 * 
 	 * @generated
 	 */
 	public void setOperation(AbstractOperation newOperation) {
@@ -134,7 +123,6 @@ public class UndoEventImpl extends EventImpl implements UndoEvent {
 
 	/**
 	 * <!-- begin-user-doc --> <!-- end-user-doc -->
-	 * 
 	 * @generated
 	 */
 	@Override
@@ -148,7 +136,6 @@ public class UndoEventImpl extends EventImpl implements UndoEvent {
 
 	/**
 	 * <!-- begin-user-doc --> <!-- end-user-doc -->
-	 * 
 	 * @generated
 	 */
 	@Override
@@ -164,7 +151,6 @@ public class UndoEventImpl extends EventImpl implements UndoEvent {
 
 	/**
 	 * <!-- begin-user-doc --> <!-- end-user-doc -->
-	 * 
 	 * @generated
 	 */
 	@Override
@@ -179,7 +165,6 @@ public class UndoEventImpl extends EventImpl implements UndoEvent {
 
 	/**
 	 * <!-- begin-user-doc --> <!-- end-user-doc -->
-	 * 
 	 * @generated
 	 */
 	@Override
@@ -194,7 +179,6 @@ public class UndoEventImpl extends EventImpl implements UndoEvent {
 
 	/**
 	 * <!-- begin-user-doc --> <!-- end-user-doc -->
-	 * 
 	 * @generated
 	 */
 	@Override

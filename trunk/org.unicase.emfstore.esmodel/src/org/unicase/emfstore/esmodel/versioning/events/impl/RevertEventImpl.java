@@ -11,16 +11,11 @@ import org.eclipse.emf.ecore.impl.ENotificationImpl;
 import org.unicase.emfstore.esmodel.versioning.events.EventsPackage;
 import org.unicase.emfstore.esmodel.versioning.events.RevertEvent;
 
-/**
+/*
  * <!-- begin-user-doc --> An implementation of the model object '<em><b>Revert Event</b></em>'. <!-- end-user-doc -->
- * <p>
- * The following features are implemented:
- * <ul>
- * <li>{@link org.unicase.emfstore.esmodel.versioning.events.impl.RevertEventImpl#getRevertedChangesCount <em>Reverted
- * Changes Count</em>}</li>
- * </ul>
- * </p>
- * 
+ * <p> The following features are implemented: <ul> <li>{@link
+ * org.unicase.emfstore.esmodel.versioning.events.impl.RevertEventImpl#getRevertedChangesCount <em>Reverted Changes
+ * Count</em>}</li> </ul> </p>
  * @generated
  */
 public class RevertEventImpl extends EventImpl implements RevertEvent {
@@ -46,7 +41,6 @@ public class RevertEventImpl extends EventImpl implements RevertEvent {
 
 	/**
 	 * <!-- begin-user-doc --> <!-- end-user-doc -->
-	 * 
 	 * @generated
 	 */
 	protected RevertEventImpl() {
@@ -55,7 +49,6 @@ public class RevertEventImpl extends EventImpl implements RevertEvent {
 
 	/**
 	 * <!-- begin-user-doc --> <!-- end-user-doc -->
-	 * 
 	 * @generated
 	 */
 	@Override
@@ -65,7 +58,6 @@ public class RevertEventImpl extends EventImpl implements RevertEvent {
 
 	/**
 	 * <!-- begin-user-doc --> <!-- end-user-doc -->
-	 * 
 	 * @generated
 	 */
 	public int getRevertedChangesCount() {
@@ -74,7 +66,6 @@ public class RevertEventImpl extends EventImpl implements RevertEvent {
 
 	/**
 	 * <!-- begin-user-doc --> <!-- end-user-doc -->
-	 * 
 	 * @generated
 	 */
 	public void setRevertedChangesCount(int newRevertedChangesCount) {
@@ -87,7 +78,6 @@ public class RevertEventImpl extends EventImpl implements RevertEvent {
 
 	/**
 	 * <!-- begin-user-doc --> <!-- end-user-doc -->
-	 * 
 	 * @generated
 	 */
 	@Override
@@ -101,7 +91,6 @@ public class RevertEventImpl extends EventImpl implements RevertEvent {
 
 	/**
 	 * <!-- begin-user-doc --> <!-- end-user-doc -->
-	 * 
 	 * @generated
 	 */
 	@Override
@@ -116,7 +105,6 @@ public class RevertEventImpl extends EventImpl implements RevertEvent {
 
 	/**
 	 * <!-- begin-user-doc --> <!-- end-user-doc -->
-	 * 
 	 * @generated
 	 */
 	@Override
@@ -131,7 +119,6 @@ public class RevertEventImpl extends EventImpl implements RevertEvent {
 
 	/**
 	 * <!-- begin-user-doc --> <!-- end-user-doc -->
-	 * 
 	 * @generated
 	 */
 	@Override
@@ -145,7 +132,6 @@ public class RevertEventImpl extends EventImpl implements RevertEvent {
 
 	/**
 	 * <!-- begin-user-doc --> <!-- end-user-doc -->
-	 * 
 	 * @generated
 	 */
 	@Override

@@ -14,16 +14,11 @@ import org.unicase.emfstore.esmodel.versioning.PrimaryVersionSpec;
 import org.unicase.emfstore.esmodel.versioning.events.CheckoutEvent;
 import org.unicase.emfstore.esmodel.versioning.events.EventsPackage;
 
-/**
+/*
  * <!-- begin-user-doc --> An implementation of the model object '<em><b>Checkout Event</b></em>'. <!-- end-user-doc -->
- * <p>
- * The following features are implemented:
- * <ul>
- * <li>{@link org.unicase.emfstore.esmodel.versioning.events.impl.CheckoutEventImpl#getBaseVersion <em>Base Version
- * </em>}</li>
- * </ul>
- * </p>
- * 
+ * <p> The following features are implemented: <ul> <li>{@link
+ * org.unicase.emfstore.esmodel.versioning.events.impl.CheckoutEventImpl#getBaseVersion <em>Base Version</em>}</li>
+ * </ul> </p>
  * @generated
  */
 public class CheckoutEventImpl extends EventImpl implements CheckoutEvent {
@@ -39,7 +34,6 @@ public class CheckoutEventImpl extends EventImpl implements CheckoutEvent {
 
 	/**
 	 * <!-- begin-user-doc --> <!-- end-user-doc -->
-	 * 
 	 * @generated
 	 */
 	protected CheckoutEventImpl() {
@@ -48,7 +42,6 @@ public class CheckoutEventImpl extends EventImpl implements CheckoutEvent {
 
 	/**
 	 * <!-- begin-user-doc --> <!-- end-user-doc -->
-	 * 
 	 * @generated
 	 */
 	@Override
@@ -58,7 +51,6 @@ public class CheckoutEventImpl extends EventImpl implements CheckoutEvent {
 
 	/**
 	 * <!-- begin-user-doc --> <!-- end-user-doc -->
-	 * 
 	 * @generated
 	 */
 	public PrimaryVersionSpec getBaseVersion() {
@@ -85,7 +77,6 @@ public class CheckoutEventImpl extends EventImpl implements CheckoutEvent {
 
 	/**
 	 * <!-- begin-user-doc --> <!-- end-user-doc -->
-	 * 
 	 * @generated
 	 */
 	public PrimaryVersionSpec basicGetBaseVersion() {
@@ -94,7 +85,6 @@ public class CheckoutEventImpl extends EventImpl implements CheckoutEvent {
 
 	/**
 	 * <!-- begin-user-doc --> <!-- end-user-doc -->
-	 * 
 	 * @generated
 	 */
 	public NotificationChain basicSetBaseVersion(PrimaryVersionSpec newBaseVersion, NotificationChain msgs) {
@@ -113,7 +103,6 @@ public class CheckoutEventImpl extends EventImpl implements CheckoutEvent {
 
 	/**
 	 * <!-- begin-user-doc --> <!-- end-user-doc -->
-	 * 
 	 * @generated
 	 */
 	public void setBaseVersion(PrimaryVersionSpec newBaseVersion) {
@@ -135,7 +124,6 @@ public class CheckoutEventImpl extends EventImpl implements CheckoutEvent {
 
 	/**
 	 * <!-- begin-user-doc --> <!-- end-user-doc -->
-	 * 
 	 * @generated
 	 */
 	@Override
@@ -149,7 +137,6 @@ public class CheckoutEventImpl extends EventImpl implements CheckoutEvent {
 
 	/**
 	 * <!-- begin-user-doc --> <!-- end-user-doc -->
-	 * 
 	 * @generated
 	 */
 	@Override
@@ -165,7 +152,6 @@ public class CheckoutEventImpl extends EventImpl implements CheckoutEvent {
 
 	/**
 	 * <!-- begin-user-doc --> <!-- end-user-doc -->
-	 * 
 	 * @generated
 	 */
 	@Override
@@ -180,7 +166,6 @@ public class CheckoutEventImpl extends EventImpl implements CheckoutEvent {
 
 	/**
 	 * <!-- begin-user-doc --> <!-- end-user-doc -->
-	 * 
 	 * @generated
 	 */
 	@Override
@@ -195,7 +180,6 @@ public class CheckoutEventImpl extends EventImpl implements CheckoutEvent {
 
 	/**
 	 * <!-- begin-user-doc --> <!-- end-user-doc -->
-	 * 
 	 * @generated
 	 */
 	@Override

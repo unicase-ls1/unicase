@@ -23,18 +23,17 @@ import org.eclipse.emf.edit.provider.ViewerNotification;
 import org.unicase.emfstore.esmodel.versioning.events.EventsPackage;
 import org.unicase.emfstore.esmodel.versioning.events.PresentationSwitchEvent;
 
-/**
- * This is the item provider adapter for a
- * {@link org.unicase.emfstore.esmodel.versioning.events.PresentationSwitchEvent} object. <!-- begin-user-doc --> <!--
+/*
+ * This is the item provider adapter for a {@link
+ * org.unicase.emfstore.esmodel.versioning.events.PresentationSwitchEvent} object. <!-- begin-user-doc --> <!--
  * end-user-doc -->
- * 
  * @generated
  */
 public class PresentationSwitchEventItemProvider extends EventItemProvider implements IEditingDomainItemProvider,
 	IStructuredItemContentProvider, ITreeItemContentProvider, IItemLabelProvider, IItemPropertySource {
 	/**
-	 * This constructs an instance from a factory and a notifier. <!-- begin-user-doc --> <!-- end-user-doc -->
-	 * 
+	 * This constructs an instance from a factory and a notifier.
+	 * <!-- begin-user-doc --> <!-- end-user-doc -->
 	 * @generated
 	 */
 	public PresentationSwitchEventItemProvider(AdapterFactory adapterFactory) {
@@ -42,8 +41,8 @@ public class PresentationSwitchEventItemProvider extends EventItemProvider imple
 	}
 
 	/**
-	 * This returns the property descriptors for the adapted class. <!-- begin-user-doc --> <!-- end-user-doc -->
-	 * 
+	 * This returns the property descriptors for the adapted class.
+	 * <!-- begin-user-doc --> <!-- end-user-doc -->
 	 * @generated
 	 */
 	@Override
@@ -58,8 +57,8 @@ public class PresentationSwitchEventItemProvider extends EventItemProvider imple
 	}
 
 	/**
-	 * This adds a property descriptor for the Read View feature. <!-- begin-user-doc --> <!-- end-user-doc -->
-	 * 
+	 * This adds a property descriptor for the Read View feature.
+	 * <!-- begin-user-doc --> <!-- end-user-doc -->
 	 * @generated
 	 */
 	protected void addReadViewPropertyDescriptor(Object object) {
@@ -71,8 +70,8 @@ public class PresentationSwitchEventItemProvider extends EventItemProvider imple
 	}
 
 	/**
-	 * This adds a property descriptor for the New Presentation feature. <!-- begin-user-doc --> <!-- end-user-doc -->
-	 * 
+	 * This adds a property descriptor for the New Presentation feature.
+	 * <!-- begin-user-doc --> <!-- end-user-doc -->
 	 * @generated
 	 */
 	protected void addNewPresentationPropertyDescriptor(Object object) {
@@ -86,8 +85,8 @@ public class PresentationSwitchEventItemProvider extends EventItemProvider imple
 	}
 
 	/**
-	 * This returns PresentationSwitchEvent.gif. <!-- begin-user-doc --> <!-- end-user-doc -->
-	 * 
+	 * This returns PresentationSwitchEvent.gif.
+	 * <!-- begin-user-doc --> <!-- end-user-doc -->
 	 * @generated
 	 */
 	@Override
@@ -96,8 +95,8 @@ public class PresentationSwitchEventItemProvider extends EventItemProvider imple
 	}
 
 	/**
-	 * This returns the label text for the adapted class. <!-- begin-user-doc --> <!-- end-user-doc -->
-	 * 
+	 * This returns the label text for the adapted class.
+	 * <!-- begin-user-doc --> <!-- end-user-doc -->
 	 * @generated
 	 */
 	@Override
@@ -129,9 +128,9 @@ public class PresentationSwitchEventItemProvider extends EventItemProvider imple
 	}
 
 	/**
-	 * This adds {@link org.eclipse.emf.edit.command.CommandParameter}s describing the children that can be created
-	 * under this object. <!-- begin-user-doc --> <!-- end-user-doc -->
-	 * 
+	 * This adds {@link org.eclipse.emf.edit.command.CommandParameter}s describing the children
+	 * that can be created under this object.
+	 * <!-- begin-user-doc --> <!-- end-user-doc -->
 	 * @generated
 	 */
 	@Override

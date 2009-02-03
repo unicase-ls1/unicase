@@ -11,26 +11,19 @@ import org.eclipse.emf.ecore.impl.ENotificationImpl;
 import org.unicase.emfstore.esmodel.versioning.events.EventsPackage;
 import org.unicase.emfstore.esmodel.versioning.events.PresentationSwitchEvent;
 
-/**
+/*
  * <!-- begin-user-doc --> An implementation of the model object '<em><b>Presentation Switch Event</b></em>'. <!--
- * end-user-doc -->
- * <p>
- * The following features are implemented:
- * <ul>
- * <li>{@link org.unicase.emfstore.esmodel.versioning.events.impl.PresentationSwitchEventImpl#getReadView <em>Read View
- * </em>}</li>
+ * end-user-doc --> <p> The following features are implemented: <ul> <li>{@link
+ * org.unicase.emfstore.esmodel.versioning.events.impl.PresentationSwitchEventImpl#getReadView <em>Read View</em>}</li>
  * <li>{@link org.unicase.emfstore.esmodel.versioning.events.impl.PresentationSwitchEventImpl#getNewPresentation <em>New
- * Presentation</em>}</li>
- * </ul>
- * </p>
- * 
+ * Presentation</em>}</li> </ul> </p>
  * @generated
  */
 public class PresentationSwitchEventImpl extends EventImpl implements PresentationSwitchEvent {
 	/**
-	 * The default value of the '{@link #getReadView() <em>Read View</em>}' attribute. <!-- begin-user-doc --> <!--
+	 * The default value of the '{@link #getReadView() <em>Read View</em>}' attribute.
+	 * <!-- begin-user-doc --> <!--
 	 * end-user-doc -->
-	 * 
 	 * @see #getReadView()
 	 * @generated
 	 * @ordered
@@ -38,9 +31,9 @@ public class PresentationSwitchEventImpl extends EventImpl implements Presentati
 	protected static final String READ_VIEW_EDEFAULT = null;
 
 	/**
-	 * The cached value of the '{@link #getReadView() <em>Read View</em>}' attribute. <!-- begin-user-doc --> <!--
+	 * The cached value of the '{@link #getReadView() <em>Read View</em>}' attribute.
+	 * <!-- begin-user-doc --> <!--
 	 * end-user-doc -->
-	 * 
 	 * @see #getReadView()
 	 * @generated
 	 * @ordered
@@ -48,9 +41,9 @@ public class PresentationSwitchEventImpl extends EventImpl implements Presentati
 	protected String readView = READ_VIEW_EDEFAULT;
 
 	/**
-	 * The default value of the '{@link #getNewPresentation() <em>New Presentation</em>}' attribute. <!-- begin-user-doc
+	 * The default value of the '{@link #getNewPresentation() <em>New Presentation</em>}' attribute.
+	 * <!-- begin-user-doc
 	 * --> <!-- end-user-doc -->
-	 * 
 	 * @see #getNewPresentation()
 	 * @generated
 	 * @ordered
@@ -58,9 +51,9 @@ public class PresentationSwitchEventImpl extends EventImpl implements Presentati
 	protected static final String NEW_PRESENTATION_EDEFAULT = null;
 
 	/**
-	 * The cached value of the '{@link #getNewPresentation() <em>New Presentation</em>}' attribute. <!-- begin-user-doc
+	 * The cached value of the '{@link #getNewPresentation() <em>New Presentation</em>}' attribute.
+	 * <!-- begin-user-doc
 	 * --> <!-- end-user-doc -->
-	 * 
 	 * @see #getNewPresentation()
 	 * @generated
 	 * @ordered
@@ -69,7 +62,6 @@ public class PresentationSwitchEventImpl extends EventImpl implements Presentati
 
 	/**
 	 * <!-- begin-user-doc --> <!-- end-user-doc -->
-	 * 
 	 * @generated
 	 */
 	protected PresentationSwitchEventImpl() {
@@ -78,7 +70,6 @@ public class PresentationSwitchEventImpl extends EventImpl implements Presentati
 
 	/**
 	 * <!-- begin-user-doc --> <!-- end-user-doc -->
-	 * 
 	 * @generated
 	 */
 	@Override
@@ -88,7 +79,6 @@ public class PresentationSwitchEventImpl extends EventImpl implements Presentati
 
 	/**
 	 * <!-- begin-user-doc --> <!-- end-user-doc -->
-	 * 
 	 * @generated
 	 */
 	public String getReadView() {
@@ -97,7 +87,6 @@ public class PresentationSwitchEventImpl extends EventImpl implements Presentati
 
 	/**
 	 * <!-- begin-user-doc --> <!-- end-user-doc -->
-	 * 
 	 * @generated
 	 */
 	public void setReadView(String newReadView) {
@@ -110,7 +99,6 @@ public class PresentationSwitchEventImpl extends EventImpl implements Presentati
 
 	/**
 	 * <!-- begin-user-doc --> <!-- end-user-doc -->
-	 * 
 	 * @generated
 	 */
 	public String getNewPresentation() {
@@ -119,7 +107,6 @@ public class PresentationSwitchEventImpl extends EventImpl implements Presentati
 
 	/**
 	 * <!-- begin-user-doc --> <!-- end-user-doc -->
-	 * 
 	 * @generated
 	 */
 	public void setNewPresentation(String newNewPresentation) {
@@ -132,7 +119,6 @@ public class PresentationSwitchEventImpl extends EventImpl implements Presentati
 
 	/**
 	 * <!-- begin-user-doc --> <!-- end-user-doc -->
-	 * 
 	 * @generated
 	 */
 	@Override
@@ -148,7 +134,6 @@ public class PresentationSwitchEventImpl extends EventImpl implements Presentati
 
 	/**
 	 * <!-- begin-user-doc --> <!-- end-user-doc -->
-	 * 
 	 * @generated
 	 */
 	@Override
@@ -166,7 +151,6 @@ public class PresentationSwitchEventImpl extends EventImpl implements Presentati
 
 	/**
 	 * <!-- begin-user-doc --> <!-- end-user-doc -->
-	 * 
 	 * @generated
 	 */
 	@Override
@@ -184,7 +168,6 @@ public class PresentationSwitchEventImpl extends EventImpl implements Presentati
 
 	/**
 	 * <!-- begin-user-doc --> <!-- end-user-doc -->
-	 * 
 	 * @generated
 	 */
 	@Override
@@ -201,7 +184,6 @@ public class PresentationSwitchEventImpl extends EventImpl implements Presentati
 
 	/**
 	 * <!-- begin-user-doc --> <!-- end-user-doc -->
-	 * 
 	 * @generated
 	 */
 	@Override

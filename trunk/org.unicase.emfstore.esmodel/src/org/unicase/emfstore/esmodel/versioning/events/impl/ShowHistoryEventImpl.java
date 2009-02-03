@@ -14,19 +14,13 @@ import org.unicase.emfstore.esmodel.versioning.PrimaryVersionSpec;
 import org.unicase.emfstore.esmodel.versioning.events.EventsPackage;
 import org.unicase.emfstore.esmodel.versioning.events.ShowHistoryEvent;
 
-/**
+/*
  * <!-- begin-user-doc --> An implementation of the model object '<em><b>Show History Event</b></em>'. <!-- end-user-doc
- * -->
- * <p>
- * The following features are implemented:
- * <ul>
- * <li>{@link org.unicase.emfstore.esmodel.versioning.events.impl.ShowHistoryEventImpl#getSourceVersion <em>Source
- * Version</em>}</li>
- * <li>{@link org.unicase.emfstore.esmodel.versioning.events.impl.ShowHistoryEventImpl#getTargetVersion <em>Target
- * Version</em>}</li>
- * </ul>
- * </p>
- * 
+ * --> <p> The following features are implemented: <ul> <li>{@link
+ * org.unicase.emfstore.esmodel.versioning.events.impl.ShowHistoryEventImpl#getSourceVersion <em>Source
+ * Version</em>}</li> <li>{@link
+ * org.unicase.emfstore.esmodel.versioning.events.impl.ShowHistoryEventImpl#getTargetVersion <em>Target
+ * Version</em>}</li> </ul> </p>
  * @generated
  */
 public class ShowHistoryEventImpl extends EventImpl implements ShowHistoryEvent {
@@ -52,7 +46,6 @@ public class ShowHistoryEventImpl extends EventImpl implements ShowHistoryEvent 
 
 	/**
 	 * <!-- begin-user-doc --> <!-- end-user-doc -->
-	 * 
 	 * @generated
 	 */
 	protected ShowHistoryEventImpl() {
@@ -61,7 +54,6 @@ public class ShowHistoryEventImpl extends EventImpl implements ShowHistoryEvent 
 
 	/**
 	 * <!-- begin-user-doc --> <!-- end-user-doc -->
-	 * 
 	 * @generated
 	 */
 	@Override
@@ -71,7 +63,6 @@ public class ShowHistoryEventImpl extends EventImpl implements ShowHistoryEvent 
 
 	/**
 	 * <!-- begin-user-doc --> <!-- end-user-doc -->
-	 * 
 	 * @generated
 	 */
 	public PrimaryVersionSpec getSourceVersion() {
@@ -98,7 +89,6 @@ public class ShowHistoryEventImpl extends EventImpl implements ShowHistoryEvent 
 
 	/**
 	 * <!-- begin-user-doc --> <!-- end-user-doc -->
-	 * 
 	 * @generated
 	 */
 	public PrimaryVersionSpec basicGetSourceVersion() {
@@ -107,7 +97,6 @@ public class ShowHistoryEventImpl extends EventImpl implements ShowHistoryEvent 
 
 	/**
 	 * <!-- begin-user-doc --> <!-- end-user-doc -->
-	 * 
 	 * @generated
 	 */
 	public NotificationChain basicSetSourceVersion(PrimaryVersionSpec newSourceVersion, NotificationChain msgs) {
@@ -126,7 +115,6 @@ public class ShowHistoryEventImpl extends EventImpl implements ShowHistoryEvent 
 
 	/**
 	 * <!-- begin-user-doc --> <!-- end-user-doc -->
-	 * 
 	 * @generated
 	 */
 	public void setSourceVersion(PrimaryVersionSpec newSourceVersion) {
@@ -148,7 +136,6 @@ public class ShowHistoryEventImpl extends EventImpl implements ShowHistoryEvent 
 
 	/**
 	 * <!-- begin-user-doc --> <!-- end-user-doc -->
-	 * 
 	 * @generated
 	 */
 	public PrimaryVersionSpec getTargetVersion() {
@@ -175,7 +162,6 @@ public class ShowHistoryEventImpl extends EventImpl implements ShowHistoryEvent 
 
 	/**
 	 * <!-- begin-user-doc --> <!-- end-user-doc -->
-	 * 
 	 * @generated
 	 */
 	public PrimaryVersionSpec basicGetTargetVersion() {
@@ -184,7 +170,6 @@ public class ShowHistoryEventImpl extends EventImpl implements ShowHistoryEvent 
 
 	/**
 	 * <!-- begin-user-doc --> <!-- end-user-doc -->
-	 * 
 	 * @generated
 	 */
 	public NotificationChain basicSetTargetVersion(PrimaryVersionSpec newTargetVersion, NotificationChain msgs) {
@@ -203,7 +188,6 @@ public class ShowHistoryEventImpl extends EventImpl implements ShowHistoryEvent 
 
 	/**
 	 * <!-- begin-user-doc --> <!-- end-user-doc -->
-	 * 
 	 * @generated
 	 */
 	public void setTargetVersion(PrimaryVersionSpec newTargetVersion) {
@@ -225,7 +209,6 @@ public class ShowHistoryEventImpl extends EventImpl implements ShowHistoryEvent 
 
 	/**
 	 * <!-- begin-user-doc --> <!-- end-user-doc -->
-	 * 
 	 * @generated
 	 */
 	@Override
@@ -241,7 +224,6 @@ public class ShowHistoryEventImpl extends EventImpl implements ShowHistoryEvent 
 
 	/**
 	 * <!-- begin-user-doc --> <!-- end-user-doc -->
-	 * 
 	 * @generated
 	 */
 	@Override
@@ -261,7 +243,6 @@ public class ShowHistoryEventImpl extends EventImpl implements ShowHistoryEvent 
 
 	/**
 	 * <!-- begin-user-doc --> <!-- end-user-doc -->
-	 * 
 	 * @generated
 	 */
 	@Override
@@ -279,7 +260,6 @@ public class ShowHistoryEventImpl extends EventImpl implements ShowHistoryEvent 
 
 	/**
 	 * <!-- begin-user-doc --> <!-- end-user-doc -->
-	 * 
 	 * @generated
 	 */
 	@Override
@@ -297,7 +277,6 @@ public class ShowHistoryEventImpl extends EventImpl implements ShowHistoryEvent 
 
 	/**
 	 * <!-- begin-user-doc --> <!-- end-user-doc -->
-	 * 
 	 * @generated
 	 */
 	@Override

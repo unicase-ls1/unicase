@@ -151,6 +151,8 @@
         <eStructuralFeatures xsi:type="ecore:EAttribute" name="delete" eType="ecore:EDataType http://www.eclipse.org/emf/2002/Ecore#//EBoolean"/>
         <eStructuralFeatures xsi:type="ecore:EReference" name="modelElement" eType="ecore:EClass ../../org.unicase.model/model/model.ecore#//ModelElement"
             containment="true"/>
+        <eStructuralFeatures xsi:type="ecore:EReference" name="subOperations" upperBound="-1"
+            eType="#//versioning/operations/ReferenceOperation" containment="true"/>
       </eClassifiers>
       <eClassifiers xsi:type="ecore:EClass" name="AttributeOperation" eSuperTypes="#//versioning/operations/FeatureOperation">
         <eStructuralFeatures xsi:type="ecore:EAttribute" name="oldValue" eType="ecore:EDataType platform:/plugin/org.eclipse.emf.ecore/model/Ecore.ecore#//EJavaObject"/>

@@ -17,15 +17,14 @@ import org.unicase.emfstore.esmodel.accesscontrol.roles.RolesPackage;
 import org.unicase.emfstore.esmodel.accesscontrol.roles.ServerAdmin;
 import org.unicase.emfstore.esmodel.accesscontrol.roles.WriterRole;
 
-/**
+/*
  * <!-- begin-user-doc --> An implementation of the model <b>Factory</b>. <!-- end-user-doc -->
- * 
  * @generated
  */
 public class RolesFactoryImpl extends EFactoryImpl implements RolesFactory {
 	/**
-	 * Creates the default factory implementation. <!-- begin-user-doc --> <!-- end-user-doc -->
-	 * 
+	 * Creates the default factory implementation.
+	 * <!-- begin-user-doc --> <!-- end-user-doc -->
 	 * @generated
 	 */
 	public static RolesFactory init() {
@@ -42,8 +41,8 @@ public class RolesFactoryImpl extends EFactoryImpl implements RolesFactory {
 	}
 
 	/**
-	 * Creates an instance of the factory. <!-- begin-user-doc --> <!-- end-user-doc -->
-	 * 
+	 * Creates an instance of the factory.
+	 * <!-- begin-user-doc --> <!-- end-user-doc -->
 	 * @generated
 	 */
 	public RolesFactoryImpl() {
@@ -52,7 +51,6 @@ public class RolesFactoryImpl extends EFactoryImpl implements RolesFactory {
 
 	/**
 	 * <!-- begin-user-doc --> <!-- end-user-doc -->
-	 * 
 	 * @generated
 	 */
 	@Override
@@ -73,7 +71,6 @@ public class RolesFactoryImpl extends EFactoryImpl implements RolesFactory {
 
 	/**
 	 * <!-- begin-user-doc --> <!-- end-user-doc -->
-	 * 
 	 * @generated
 	 */
 	public ReaderRole createReaderRole() {
@@ -83,7 +80,6 @@ public class RolesFactoryImpl extends EFactoryImpl implements RolesFactory {
 
 	/**
 	 * <!-- begin-user-doc --> <!-- end-user-doc -->
-	 * 
 	 * @generated
 	 */
 	public WriterRole createWriterRole() {
@@ -93,7 +89,6 @@ public class RolesFactoryImpl extends EFactoryImpl implements RolesFactory {
 
 	/**
 	 * <!-- begin-user-doc --> <!-- end-user-doc -->
-	 * 
 	 * @generated
 	 */
 	public ProjectAdminRole createProjectAdminRole() {
@@ -103,7 +98,6 @@ public class RolesFactoryImpl extends EFactoryImpl implements RolesFactory {
 
 	/**
 	 * <!-- begin-user-doc --> <!-- end-user-doc -->
-	 * 
 	 * @generated
 	 */
 	public ServerAdmin createServerAdmin() {
@@ -113,7 +107,6 @@ public class RolesFactoryImpl extends EFactoryImpl implements RolesFactory {
 
 	/**
 	 * <!-- begin-user-doc --> <!-- end-user-doc -->
-	 * 
 	 * @generated
 	 */
 	public RolesPackage getRolesPackage() {
@@ -122,7 +115,6 @@ public class RolesFactoryImpl extends EFactoryImpl implements RolesFactory {
 
 	/**
 	 * <!-- begin-user-doc --> <!-- end-user-doc -->
-	 * 
 	 * @deprecated
 	 * @generated
 	 */

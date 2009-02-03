@@ -11,11 +11,9 @@ import org.unicase.emfstore.esmodel.accesscontrol.roles.RolesPackage;
 import org.unicase.emfstore.esmodel.accesscontrol.roles.ServerAdmin;
 import org.unicase.model.ModelElement;
 
-/**
+/*
  * <!-- begin-user-doc --> An implementation of the model object ' <em><b>Server Admin</b></em>'. <!-- end-user-doc -->
- * <p>
- * </p>
- * 
+ * <p> </p>
  * @generated
  */
 public class ServerAdminImpl extends RoleImpl implements ServerAdmin {
@@ -46,7 +44,6 @@ public class ServerAdminImpl extends RoleImpl implements ServerAdmin {
 
 	/**
 	 * <!-- begin-user-doc --> <!-- end-user-doc -->
-	 * 
 	 * @generated
 	 */
 	protected ServerAdminImpl() {
@@ -55,7 +52,6 @@ public class ServerAdminImpl extends RoleImpl implements ServerAdmin {
 
 	/**
 	 * <!-- begin-user-doc --> <!-- end-user-doc -->
-	 * 
 	 * @generated
 	 */
 	@Override

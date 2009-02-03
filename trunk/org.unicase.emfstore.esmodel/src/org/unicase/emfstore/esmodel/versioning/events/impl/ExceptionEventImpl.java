@@ -11,30 +11,24 @@ import org.eclipse.emf.ecore.impl.ENotificationImpl;
 import org.unicase.emfstore.esmodel.versioning.events.EventsPackage;
 import org.unicase.emfstore.esmodel.versioning.events.ExceptionEvent;
 
-/**
+/*
  * <!-- begin-user-doc --> An implementation of the model object '<em><b>Exception Event</b></em>'. <!-- end-user-doc
- * -->
- * <p>
- * The following features are implemented:
- * <ul>
- * <li>{@link org.unicase.emfstore.esmodel.versioning.events.impl.ExceptionEventImpl#getExceptionTitle <em>Exception
- * Title</em>}</li>
- * <li>{@link org.unicase.emfstore.esmodel.versioning.events.impl.ExceptionEventImpl#getExceptionStackTrace <em>
- * Exception Stack Trace</em>}</li>
- * <li>{@link org.unicase.emfstore.esmodel.versioning.events.impl.ExceptionEventImpl#getExceptionCauseTitle <em>
- * Exception Cause Title</em>}</li>
- * <li>{@link org.unicase.emfstore.esmodel.versioning.events.impl.ExceptionEventImpl#getExceptionCauseStackTrace <em>
- * Exception Cause Stack Trace</em>}</li>
- * </ul>
- * </p>
- * 
+ * --> <p> The following features are implemented: <ul> <li>{@link
+ * org.unicase.emfstore.esmodel.versioning.events.impl.ExceptionEventImpl#getExceptionTitle <em>Exception
+ * Title</em>}</li> <li>{@link
+ * org.unicase.emfstore.esmodel.versioning.events.impl.ExceptionEventImpl#getExceptionStackTrace <em> Exception Stack
+ * Trace</em>}</li> <li>{@link
+ * org.unicase.emfstore.esmodel.versioning.events.impl.ExceptionEventImpl#getExceptionCauseTitle <em> Exception Cause
+ * Title</em>}</li> <li>{@link
+ * org.unicase.emfstore.esmodel.versioning.events.impl.ExceptionEventImpl#getExceptionCauseStackTrace <em> Exception
+ * Cause Stack Trace</em>}</li> </ul> </p>
  * @generated
  */
 public class ExceptionEventImpl extends EventImpl implements ExceptionEvent {
 	/**
-	 * The default value of the '{@link #getExceptionTitle() <em>Exception Title</em>}' attribute. <!-- begin-user-doc
+	 * The default value of the '{@link #getExceptionTitle() <em>Exception Title</em>}' attribute.
+	 * <!-- begin-user-doc
 	 * --> <!-- end-user-doc -->
-	 * 
 	 * @see #getExceptionTitle()
 	 * @generated
 	 * @ordered
@@ -42,9 +36,9 @@ public class ExceptionEventImpl extends EventImpl implements ExceptionEvent {
 	protected static final String EXCEPTION_TITLE_EDEFAULT = null;
 
 	/**
-	 * The cached value of the '{@link #getExceptionTitle() <em>Exception Title</em>}' attribute. <!-- begin-user-doc
+	 * The cached value of the '{@link #getExceptionTitle() <em>Exception Title</em>}' attribute.
+	 * <!-- begin-user-doc
 	 * --> <!-- end-user-doc -->
-	 * 
 	 * @see #getExceptionTitle()
 	 * @generated
 	 * @ordered
@@ -94,7 +88,6 @@ public class ExceptionEventImpl extends EventImpl implements ExceptionEvent {
 	/**
 	 * The default value of the '{@link #getExceptionCauseStackTrace() <em>Exception Cause Stack Trace</em>}' attribute.
 	 * <!-- begin-user-doc --> <!-- end-user-doc -->
-	 * 
 	 * @see #getExceptionCauseStackTrace()
 	 * @generated
 	 * @ordered
@@ -104,7 +97,6 @@ public class ExceptionEventImpl extends EventImpl implements ExceptionEvent {
 	/**
 	 * The cached value of the '{@link #getExceptionCauseStackTrace() <em>Exception Cause Stack Trace</em>}' attribute.
 	 * <!-- begin-user-doc --> <!-- end-user-doc -->
-	 * 
 	 * @see #getExceptionCauseStackTrace()
 	 * @generated
 	 * @ordered
@@ -113,7 +105,6 @@ public class ExceptionEventImpl extends EventImpl implements ExceptionEvent {
 
 	/**
 	 * <!-- begin-user-doc --> <!-- end-user-doc -->
-	 * 
 	 * @generated
 	 */
 	protected ExceptionEventImpl() {
@@ -122,7 +113,6 @@ public class ExceptionEventImpl extends EventImpl implements ExceptionEvent {
 
 	/**
 	 * <!-- begin-user-doc --> <!-- end-user-doc -->
-	 * 
 	 * @generated
 	 */
 	@Override
@@ -132,7 +122,6 @@ public class ExceptionEventImpl extends EventImpl implements ExceptionEvent {
 
 	/**
 	 * <!-- begin-user-doc --> <!-- end-user-doc -->
-	 * 
 	 * @generated
 	 */
 	public String getExceptionTitle() {
@@ -141,7 +130,6 @@ public class ExceptionEventImpl extends EventImpl implements ExceptionEvent {
 
 	/**
 	 * <!-- begin-user-doc --> <!-- end-user-doc -->
-	 * 
 	 * @generated
 	 */
 	public void setExceptionTitle(String newExceptionTitle) {
@@ -154,7 +142,6 @@ public class ExceptionEventImpl extends EventImpl implements ExceptionEvent {
 
 	/**
 	 * <!-- begin-user-doc --> <!-- end-user-doc -->
-	 * 
 	 * @generated
 	 */
 	public String getExceptionStackTrace() {
@@ -163,7 +150,6 @@ public class ExceptionEventImpl extends EventImpl implements ExceptionEvent {
 
 	/**
 	 * <!-- begin-user-doc --> <!-- end-user-doc -->
-	 * 
 	 * @generated
 	 */
 	public void setExceptionStackTrace(String newExceptionStackTrace) {
@@ -176,7 +162,6 @@ public class ExceptionEventImpl extends EventImpl implements ExceptionEvent {
 
 	/**
 	 * <!-- begin-user-doc --> <!-- end-user-doc -->
-	 * 
 	 * @generated
 	 */
 	public String getExceptionCauseTitle() {
@@ -185,7 +170,6 @@ public class ExceptionEventImpl extends EventImpl implements ExceptionEvent {
 
 	/**
 	 * <!-- begin-user-doc --> <!-- end-user-doc -->
-	 * 
 	 * @generated
 	 */
 	public void setExceptionCauseTitle(String newExceptionCauseTitle) {
@@ -198,7 +182,6 @@ public class ExceptionEventImpl extends EventImpl implements ExceptionEvent {
 
 	/**
 	 * <!-- begin-user-doc --> <!-- end-user-doc -->
-	 * 
 	 * @generated
 	 */
 	public String getExceptionCauseStackTrace() {
@@ -207,7 +190,6 @@ public class ExceptionEventImpl extends EventImpl implements ExceptionEvent {
 
 	/**
 	 * <!-- begin-user-doc --> <!-- end-user-doc -->
-	 * 
 	 * @generated
 	 */
 	public void setExceptionCauseStackTrace(String newExceptionCauseStackTrace) {
@@ -221,7 +203,6 @@ public class ExceptionEventImpl extends EventImpl implements ExceptionEvent {
 
 	/**
 	 * <!-- begin-user-doc --> <!-- end-user-doc -->
-	 * 
 	 * @generated
 	 */
 	@Override
@@ -241,7 +222,6 @@ public class ExceptionEventImpl extends EventImpl implements ExceptionEvent {
 
 	/**
 	 * <!-- begin-user-doc --> <!-- end-user-doc -->
-	 * 
 	 * @generated
 	 */
 	@Override
@@ -265,7 +245,6 @@ public class ExceptionEventImpl extends EventImpl implements ExceptionEvent {
 
 	/**
 	 * <!-- begin-user-doc --> <!-- end-user-doc -->
-	 * 
 	 * @generated
 	 */
 	@Override
@@ -289,7 +268,6 @@ public class ExceptionEventImpl extends EventImpl implements ExceptionEvent {
 
 	/**
 	 * <!-- begin-user-doc --> <!-- end-user-doc -->
-	 * 
 	 * @generated
 	 */
 	@Override
@@ -313,7 +291,6 @@ public class ExceptionEventImpl extends EventImpl implements ExceptionEvent {
 
 	/**
 	 * <!-- begin-user-doc --> <!-- end-user-doc -->
-	 * 
 	 * @generated
 	 */
 	@Override
