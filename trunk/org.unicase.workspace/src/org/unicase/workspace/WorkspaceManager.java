@@ -188,7 +188,9 @@ public final class WorkspaceManager {
 				}
 				URI operationsURI = URI.createFileURI(operationsFilePath);
 				try {
-					migrate(projectURI, operationsURI);
+					if (false) {
+						migrate(projectURI, operationsURI);
+					}
 				} catch (MigrationException e) {
 					WorkspaceUtil.logException("The migration of the project in projectspace at " + projectFilePath
 						+ " failed!", e);
