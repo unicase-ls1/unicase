@@ -23,17 +23,16 @@ import org.eclipse.emf.edit.provider.ViewerNotification;
 import org.unicase.emfstore.esmodel.versioning.events.EventsPackage;
 import org.unicase.emfstore.esmodel.versioning.events.NavigatorCreateEvent;
 
-/**
+/*
  * This is the item provider adapter for a {@link org.unicase.emfstore.esmodel.versioning.events.NavigatorCreateEvent}
  * object. <!-- begin-user-doc --> <!-- end-user-doc -->
- * 
  * @generated
  */
 public class NavigatorCreateEventItemProvider extends EventItemProvider implements IEditingDomainItemProvider,
 	IStructuredItemContentProvider, ITreeItemContentProvider, IItemLabelProvider, IItemPropertySource {
 	/**
-	 * This constructs an instance from a factory and a notifier. <!-- begin-user-doc --> <!-- end-user-doc -->
-	 * 
+	 * This constructs an instance from a factory and a notifier.
+	 * <!-- begin-user-doc --> <!-- end-user-doc -->
 	 * @generated
 	 */
 	public NavigatorCreateEventItemProvider(AdapterFactory adapterFactory) {
@@ -41,8 +40,8 @@ public class NavigatorCreateEventItemProvider extends EventItemProvider implemen
 	}
 
 	/**
-	 * This returns the property descriptors for the adapted class. <!-- begin-user-doc --> <!-- end-user-doc -->
-	 * 
+	 * This returns the property descriptors for the adapted class.
+	 * <!-- begin-user-doc --> <!-- end-user-doc -->
 	 * @generated
 	 */
 	@Override
@@ -58,8 +57,8 @@ public class NavigatorCreateEventItemProvider extends EventItemProvider implemen
 	}
 
 	/**
-	 * This adds a property descriptor for the Created Element feature. <!-- begin-user-doc --> <!-- end-user-doc -->
-	 * 
+	 * This adds a property descriptor for the Created Element feature.
+	 * <!-- begin-user-doc --> <!-- end-user-doc -->
 	 * @generated
 	 */
 	protected void addCreatedElementPropertyDescriptor(Object object) {
@@ -72,8 +71,8 @@ public class NavigatorCreateEventItemProvider extends EventItemProvider implemen
 	}
 
 	/**
-	 * This adds a property descriptor for the Source Section feature. <!-- begin-user-doc --> <!-- end-user-doc -->
-	 * 
+	 * This adds a property descriptor for the Source Section feature.
+	 * <!-- begin-user-doc --> <!-- end-user-doc -->
 	 * @generated
 	 */
 	protected void addSourceSectionPropertyDescriptor(Object object) {
@@ -86,8 +85,8 @@ public class NavigatorCreateEventItemProvider extends EventItemProvider implemen
 	}
 
 	/**
-	 * This adds a property descriptor for the Dynamic feature. <!-- begin-user-doc --> <!-- end-user-doc -->
-	 * 
+	 * This adds a property descriptor for the Dynamic feature.
+	 * <!-- begin-user-doc --> <!-- end-user-doc -->
 	 * @generated
 	 */
 	protected void addDynamicPropertyDescriptor(Object object) {
@@ -99,8 +98,8 @@ public class NavigatorCreateEventItemProvider extends EventItemProvider implemen
 	}
 
 	/**
-	 * This returns NavigatorCreateEvent.gif. <!-- begin-user-doc --> <!-- end-user-doc -->
-	 * 
+	 * This returns NavigatorCreateEvent.gif.
+	 * <!-- begin-user-doc --> <!-- end-user-doc -->
 	 * @generated
 	 */
 	@Override
@@ -109,8 +108,8 @@ public class NavigatorCreateEventItemProvider extends EventItemProvider implemen
 	}
 
 	/**
-	 * This returns the label text for the adapted class. <!-- begin-user-doc --> <!-- end-user-doc -->
-	 * 
+	 * This returns the label text for the adapted class.
+	 * <!-- begin-user-doc --> <!-- end-user-doc -->
 	 * @generated
 	 */
 	@Override
@@ -141,9 +140,9 @@ public class NavigatorCreateEventItemProvider extends EventItemProvider implemen
 	}
 
 	/**
-	 * This adds {@link org.eclipse.emf.edit.command.CommandParameter}s describing the children that can be created
-	 * under this object. <!-- begin-user-doc --> <!-- end-user-doc -->
-	 * 
+	 * This adds {@link org.eclipse.emf.edit.command.CommandParameter}s describing the children
+	 * that can be created under this object.
+	 * <!-- begin-user-doc --> <!-- end-user-doc -->
 	 * @generated
 	 */
 	@Override

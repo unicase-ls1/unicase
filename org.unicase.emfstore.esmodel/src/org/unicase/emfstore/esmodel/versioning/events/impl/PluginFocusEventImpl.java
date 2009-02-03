@@ -13,25 +13,19 @@ import org.eclipse.emf.ecore.impl.ENotificationImpl;
 import org.unicase.emfstore.esmodel.versioning.events.EventsPackage;
 import org.unicase.emfstore.esmodel.versioning.events.PluginFocusEvent;
 
-/**
+/*
  * <!-- begin-user-doc --> An implementation of the model object '<em><b>Plugin Focus Event</b></em>'. <!-- end-user-doc
- * -->
- * <p>
- * The following features are implemented:
- * <ul>
- * <li>{@link org.unicase.emfstore.esmodel.versioning.events.impl.PluginFocusEventImpl#getPluginId <em>Plugin Id</em>}</li>
+ * --> <p> The following features are implemented: <ul> <li>{@link
+ * org.unicase.emfstore.esmodel.versioning.events.impl.PluginFocusEventImpl#getPluginId <em>Plugin Id</em>}</li>
  * <li>{@link org.unicase.emfstore.esmodel.versioning.events.impl.PluginFocusEventImpl#getStartDate <em>Start Date</em>}
- * </li>
- * </ul>
- * </p>
- * 
+ * </li> </ul> </p>
  * @generated
  */
 public class PluginFocusEventImpl extends EventImpl implements PluginFocusEvent {
 	/**
-	 * The default value of the '{@link #getPluginId() <em>Plugin Id</em>}' attribute. <!-- begin-user-doc --> <!--
+	 * The default value of the '{@link #getPluginId() <em>Plugin Id</em>}' attribute.
+	 * <!-- begin-user-doc --> <!--
 	 * end-user-doc -->
-	 * 
 	 * @see #getPluginId()
 	 * @generated
 	 * @ordered
@@ -39,9 +33,9 @@ public class PluginFocusEventImpl extends EventImpl implements PluginFocusEvent 
 	protected static final String PLUGIN_ID_EDEFAULT = null;
 
 	/**
-	 * The cached value of the '{@link #getPluginId() <em>Plugin Id</em>}' attribute. <!-- begin-user-doc --> <!--
+	 * The cached value of the '{@link #getPluginId() <em>Plugin Id</em>}' attribute.
+	 * <!-- begin-user-doc --> <!--
 	 * end-user-doc -->
-	 * 
 	 * @see #getPluginId()
 	 * @generated
 	 * @ordered
@@ -49,9 +43,9 @@ public class PluginFocusEventImpl extends EventImpl implements PluginFocusEvent 
 	protected String pluginId = PLUGIN_ID_EDEFAULT;
 
 	/**
-	 * The default value of the '{@link #getStartDate() <em>Start Date</em>}' attribute. <!-- begin-user-doc --> <!--
+	 * The default value of the '{@link #getStartDate() <em>Start Date</em>}' attribute.
+	 * <!-- begin-user-doc --> <!--
 	 * end-user-doc -->
-	 * 
 	 * @see #getStartDate()
 	 * @generated
 	 * @ordered
@@ -59,9 +53,9 @@ public class PluginFocusEventImpl extends EventImpl implements PluginFocusEvent 
 	protected static final Date START_DATE_EDEFAULT = null;
 
 	/**
-	 * The cached value of the '{@link #getStartDate() <em>Start Date</em>}' attribute. <!-- begin-user-doc --> <!--
+	 * The cached value of the '{@link #getStartDate() <em>Start Date</em>}' attribute.
+	 * <!-- begin-user-doc --> <!--
 	 * end-user-doc -->
-	 * 
 	 * @see #getStartDate()
 	 * @generated
 	 * @ordered
@@ -70,7 +64,6 @@ public class PluginFocusEventImpl extends EventImpl implements PluginFocusEvent 
 
 	/**
 	 * <!-- begin-user-doc --> <!-- end-user-doc -->
-	 * 
 	 * @generated
 	 */
 	protected PluginFocusEventImpl() {
@@ -79,7 +72,6 @@ public class PluginFocusEventImpl extends EventImpl implements PluginFocusEvent 
 
 	/**
 	 * <!-- begin-user-doc --> <!-- end-user-doc -->
-	 * 
 	 * @generated
 	 */
 	@Override
@@ -89,7 +81,6 @@ public class PluginFocusEventImpl extends EventImpl implements PluginFocusEvent 
 
 	/**
 	 * <!-- begin-user-doc --> <!-- end-user-doc -->
-	 * 
 	 * @generated
 	 */
 	public String getPluginId() {
@@ -98,7 +89,6 @@ public class PluginFocusEventImpl extends EventImpl implements PluginFocusEvent 
 
 	/**
 	 * <!-- begin-user-doc --> <!-- end-user-doc -->
-	 * 
 	 * @generated
 	 */
 	public void setPluginId(String newPluginId) {
@@ -111,7 +101,6 @@ public class PluginFocusEventImpl extends EventImpl implements PluginFocusEvent 
 
 	/**
 	 * <!-- begin-user-doc --> <!-- end-user-doc -->
-	 * 
 	 * @generated
 	 */
 	public Date getStartDate() {
@@ -120,7 +109,6 @@ public class PluginFocusEventImpl extends EventImpl implements PluginFocusEvent 
 
 	/**
 	 * <!-- begin-user-doc --> <!-- end-user-doc -->
-	 * 
 	 * @generated
 	 */
 	public void setStartDate(Date newStartDate) {
@@ -133,7 +121,6 @@ public class PluginFocusEventImpl extends EventImpl implements PluginFocusEvent 
 
 	/**
 	 * <!-- begin-user-doc --> <!-- end-user-doc -->
-	 * 
 	 * @generated
 	 */
 	@Override
@@ -149,7 +136,6 @@ public class PluginFocusEventImpl extends EventImpl implements PluginFocusEvent 
 
 	/**
 	 * <!-- begin-user-doc --> <!-- end-user-doc -->
-	 * 
 	 * @generated
 	 */
 	@Override
@@ -167,7 +153,6 @@ public class PluginFocusEventImpl extends EventImpl implements PluginFocusEvent 
 
 	/**
 	 * <!-- begin-user-doc --> <!-- end-user-doc -->
-	 * 
 	 * @generated
 	 */
 	@Override
@@ -185,7 +170,6 @@ public class PluginFocusEventImpl extends EventImpl implements PluginFocusEvent 
 
 	/**
 	 * <!-- begin-user-doc --> <!-- end-user-doc -->
-	 * 
 	 * @generated
 	 */
 	@Override
@@ -201,7 +185,6 @@ public class PluginFocusEventImpl extends EventImpl implements PluginFocusEvent 
 
 	/**
 	 * <!-- begin-user-doc --> <!-- end-user-doc -->
-	 * 
 	 * @generated
 	 */
 	@Override

@@ -13,17 +13,11 @@ import org.unicase.emfstore.esmodel.versioning.operations.FeatureOperation;
 import org.unicase.emfstore.esmodel.versioning.operations.OperationsPackage;
 import org.unicase.model.Project;
 
-/**
+/*
  * <!-- begin-user-doc --> An implementation of the model object '<em><b>Feature Operation</b></em>'. <!-- end-user-doc
- * -->
- * <p>
- * The following features are implemented:
- * <ul>
- * <li>{@link org.unicase.emfstore.esmodel.versioning.operations.impl.FeatureOperationImpl#getFeatureName <em>Feature
- * Name</em>}</li>
- * </ul>
- * </p>
- * 
+ * --> <p> The following features are implemented: <ul> <li>{@link
+ * org.unicase.emfstore.esmodel.versioning.operations.impl.FeatureOperationImpl#getFeatureName <em>Feature
+ * Name</em>}</li> </ul> </p>
  * @generated
  */
 public abstract class FeatureOperationImpl extends AbstractOperationImpl implements FeatureOperation {
@@ -44,18 +38,18 @@ public abstract class FeatureOperationImpl extends AbstractOperationImpl impleme
 	}
 
 	/**
-	 * The default value of the '{@link #getFeatureName() <em>Feature Name</em>}' attribute. <!-- begin-user-doc -->
+	 * The default value of the '{@link #getFeatureName() <em>Feature Name</em>}' attribute.
+	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
-	 * 
 	 * @see #getFeatureName()
 	 * @generated
 	 * @ordered
 	 */
 	protected static final String FEATURE_NAME_EDEFAULT = "";
 	/**
-	 * The cached value of the '{@link #getFeatureName() <em>Feature Name</em>}' attribute. <!-- begin-user-doc --> <!--
+	 * The cached value of the '{@link #getFeatureName() <em>Feature Name</em>}' attribute.
+	 * <!-- begin-user-doc --> <!--
 	 * end-user-doc -->
-	 * 
 	 * @see #getFeatureName()
 	 * @generated
 	 * @ordered
@@ -64,7 +58,6 @@ public abstract class FeatureOperationImpl extends AbstractOperationImpl impleme
 
 	/**
 	 * <!-- begin-user-doc --> <!-- end-user-doc -->
-	 * 
 	 * @generated
 	 */
 	protected FeatureOperationImpl() {
@@ -73,7 +66,6 @@ public abstract class FeatureOperationImpl extends AbstractOperationImpl impleme
 
 	/**
 	 * <!-- begin-user-doc --> <!-- end-user-doc -->
-	 * 
 	 * @generated
 	 */
 	@Override
@@ -83,7 +75,6 @@ public abstract class FeatureOperationImpl extends AbstractOperationImpl impleme
 
 	/**
 	 * <!-- begin-user-doc --> <!-- end-user-doc -->
-	 * 
 	 * @generated
 	 */
 	public String getFeatureName() {
@@ -92,7 +83,6 @@ public abstract class FeatureOperationImpl extends AbstractOperationImpl impleme
 
 	/**
 	 * <!-- begin-user-doc --> <!-- end-user-doc -->
-	 * 
 	 * @generated
 	 */
 	public void setFeatureName(String newFeatureName) {
@@ -105,7 +95,6 @@ public abstract class FeatureOperationImpl extends AbstractOperationImpl impleme
 
 	/**
 	 * <!-- begin-user-doc --> <!-- end-user-doc -->
-	 * 
 	 * @generated
 	 */
 	@Override
@@ -119,7 +108,6 @@ public abstract class FeatureOperationImpl extends AbstractOperationImpl impleme
 
 	/**
 	 * <!-- begin-user-doc --> <!-- end-user-doc -->
-	 * 
 	 * @generated
 	 */
 	@Override
@@ -134,7 +122,6 @@ public abstract class FeatureOperationImpl extends AbstractOperationImpl impleme
 
 	/**
 	 * <!-- begin-user-doc --> <!-- end-user-doc -->
-	 * 
 	 * @generated
 	 */
 	@Override
@@ -149,7 +136,6 @@ public abstract class FeatureOperationImpl extends AbstractOperationImpl impleme
 
 	/**
 	 * <!-- begin-user-doc --> <!-- end-user-doc -->
-	 * 
 	 * @generated
 	 */
 	@Override
@@ -163,7 +149,6 @@ public abstract class FeatureOperationImpl extends AbstractOperationImpl impleme
 
 	/**
 	 * <!-- begin-user-doc --> <!-- end-user-doc -->
-	 * 
 	 * @generated
 	 */
 	@Override

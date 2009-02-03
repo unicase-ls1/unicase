@@ -13,27 +13,21 @@ import org.unicase.emfstore.esmodel.versioning.events.DNDEvent;
 import org.unicase.emfstore.esmodel.versioning.events.EventsPackage;
 import org.unicase.model.ModelElementId;
 
-/**
- * <!-- begin-user-doc --> An implementation of the model object '<em><b>DND Event</b></em>'. <!-- end-user-doc -->
- * <p>
- * The following features are implemented:
- * <ul>
- * <li>{@link org.unicase.emfstore.esmodel.versioning.events.impl.DNDEventImpl#getSourceView <em>Source View</em>}</li>
- * <li>{@link org.unicase.emfstore.esmodel.versioning.events.impl.DNDEventImpl#getTargetView <em>Target View</em>}</li>
- * <li>{@link org.unicase.emfstore.esmodel.versioning.events.impl.DNDEventImpl#getDragSourceElement <em>Drag Source
- * Element</em>}</li>
- * <li>{@link org.unicase.emfstore.esmodel.versioning.events.impl.DNDEventImpl#getDropTargetElement <em>Drop Target
- * Element</em>}</li>
- * </ul>
- * </p>
- * 
+/*
+ * <!-- begin-user-doc --> An implementation of the model object '<em><b>DND Event</b></em>'. <!-- end-user-doc --> <p>
+ * The following features are implemented: <ul> <li>{@link
+ * org.unicase.emfstore.esmodel.versioning.events.impl.DNDEventImpl#getSourceView <em>Source View</em>}</li> <li>{@link
+ * org.unicase.emfstore.esmodel.versioning.events.impl.DNDEventImpl#getTargetView <em>Target View</em>}</li> <li>{@link
+ * org.unicase.emfstore.esmodel.versioning.events.impl.DNDEventImpl#getDragSourceElement <em>Drag Source
+ * Element</em>}</li> <li>{@link org.unicase.emfstore.esmodel.versioning.events.impl.DNDEventImpl#getDropTargetElement
+ * <em>Drop Target Element</em>}</li> </ul> </p>
  * @generated
  */
 public class DNDEventImpl extends EventImpl implements DNDEvent {
 	/**
-	 * The default value of the '{@link #getSourceView() <em>Source View</em>}' attribute. <!-- begin-user-doc --> <!--
+	 * The default value of the '{@link #getSourceView() <em>Source View</em>}' attribute.
+	 * <!-- begin-user-doc --> <!--
 	 * end-user-doc -->
-	 * 
 	 * @see #getSourceView()
 	 * @generated
 	 * @ordered
@@ -41,9 +35,9 @@ public class DNDEventImpl extends EventImpl implements DNDEvent {
 	protected static final String SOURCE_VIEW_EDEFAULT = null;
 
 	/**
-	 * The cached value of the '{@link #getSourceView() <em>Source View</em>}' attribute. <!-- begin-user-doc --> <!--
+	 * The cached value of the '{@link #getSourceView() <em>Source View</em>}' attribute.
+	 * <!-- begin-user-doc --> <!--
 	 * end-user-doc -->
-	 * 
 	 * @see #getSourceView()
 	 * @generated
 	 * @ordered
@@ -51,9 +45,9 @@ public class DNDEventImpl extends EventImpl implements DNDEvent {
 	protected String sourceView = SOURCE_VIEW_EDEFAULT;
 
 	/**
-	 * The default value of the '{@link #getTargetView() <em>Target View</em>}' attribute. <!-- begin-user-doc --> <!--
+	 * The default value of the '{@link #getTargetView() <em>Target View</em>}' attribute.
+	 * <!-- begin-user-doc --> <!--
 	 * end-user-doc -->
-	 * 
 	 * @see #getTargetView()
 	 * @generated
 	 * @ordered
@@ -61,9 +55,9 @@ public class DNDEventImpl extends EventImpl implements DNDEvent {
 	protected static final String TARGET_VIEW_EDEFAULT = null;
 
 	/**
-	 * The cached value of the '{@link #getTargetView() <em>Target View</em>}' attribute. <!-- begin-user-doc --> <!--
+	 * The cached value of the '{@link #getTargetView() <em>Target View</em>}' attribute.
+	 * <!-- begin-user-doc --> <!--
 	 * end-user-doc -->
-	 * 
 	 * @see #getTargetView()
 	 * @generated
 	 * @ordered
@@ -92,7 +86,6 @@ public class DNDEventImpl extends EventImpl implements DNDEvent {
 
 	/**
 	 * <!-- begin-user-doc --> <!-- end-user-doc -->
-	 * 
 	 * @generated
 	 */
 	protected DNDEventImpl() {
@@ -101,7 +94,6 @@ public class DNDEventImpl extends EventImpl implements DNDEvent {
 
 	/**
 	 * <!-- begin-user-doc --> <!-- end-user-doc -->
-	 * 
 	 * @generated
 	 */
 	@Override
@@ -111,7 +103,6 @@ public class DNDEventImpl extends EventImpl implements DNDEvent {
 
 	/**
 	 * <!-- begin-user-doc --> <!-- end-user-doc -->
-	 * 
 	 * @generated
 	 */
 	public String getSourceView() {
@@ -120,7 +111,6 @@ public class DNDEventImpl extends EventImpl implements DNDEvent {
 
 	/**
 	 * <!-- begin-user-doc --> <!-- end-user-doc -->
-	 * 
 	 * @generated
 	 */
 	public void setSourceView(String newSourceView) {
@@ -133,7 +123,6 @@ public class DNDEventImpl extends EventImpl implements DNDEvent {
 
 	/**
 	 * <!-- begin-user-doc --> <!-- end-user-doc -->
-	 * 
 	 * @generated
 	 */
 	public String getTargetView() {
@@ -142,7 +131,6 @@ public class DNDEventImpl extends EventImpl implements DNDEvent {
 
 	/**
 	 * <!-- begin-user-doc --> <!-- end-user-doc -->
-	 * 
 	 * @generated
 	 */
 	public void setTargetView(String newTargetView) {
@@ -155,7 +143,6 @@ public class DNDEventImpl extends EventImpl implements DNDEvent {
 
 	/**
 	 * <!-- begin-user-doc --> <!-- end-user-doc -->
-	 * 
 	 * @generated
 	 */
 	public ModelElementId getDragSourceElement() {
@@ -173,7 +160,6 @@ public class DNDEventImpl extends EventImpl implements DNDEvent {
 
 	/**
 	 * <!-- begin-user-doc --> <!-- end-user-doc -->
-	 * 
 	 * @generated
 	 */
 	public ModelElementId basicGetDragSourceElement() {
@@ -182,7 +168,6 @@ public class DNDEventImpl extends EventImpl implements DNDEvent {
 
 	/**
 	 * <!-- begin-user-doc --> <!-- end-user-doc -->
-	 * 
 	 * @generated
 	 */
 	public void setDragSourceElement(ModelElementId newDragSourceElement) {
@@ -195,7 +180,6 @@ public class DNDEventImpl extends EventImpl implements DNDEvent {
 
 	/**
 	 * <!-- begin-user-doc --> <!-- end-user-doc -->
-	 * 
 	 * @generated
 	 */
 	public ModelElementId getDropTargetElement() {
@@ -213,7 +197,6 @@ public class DNDEventImpl extends EventImpl implements DNDEvent {
 
 	/**
 	 * <!-- begin-user-doc --> <!-- end-user-doc -->
-	 * 
 	 * @generated
 	 */
 	public ModelElementId basicGetDropTargetElement() {
@@ -222,7 +205,6 @@ public class DNDEventImpl extends EventImpl implements DNDEvent {
 
 	/**
 	 * <!-- begin-user-doc --> <!-- end-user-doc -->
-	 * 
 	 * @generated
 	 */
 	public void setDropTargetElement(ModelElementId newDropTargetElement) {
@@ -235,7 +217,6 @@ public class DNDEventImpl extends EventImpl implements DNDEvent {
 
 	/**
 	 * <!-- begin-user-doc --> <!-- end-user-doc -->
-	 * 
 	 * @generated
 	 */
 	@Override
@@ -259,7 +240,6 @@ public class DNDEventImpl extends EventImpl implements DNDEvent {
 
 	/**
 	 * <!-- begin-user-doc --> <!-- end-user-doc -->
-	 * 
 	 * @generated
 	 */
 	@Override
@@ -283,7 +263,6 @@ public class DNDEventImpl extends EventImpl implements DNDEvent {
 
 	/**
 	 * <!-- begin-user-doc --> <!-- end-user-doc -->
-	 * 
 	 * @generated
 	 */
 	@Override
@@ -307,7 +286,6 @@ public class DNDEventImpl extends EventImpl implements DNDEvent {
 
 	/**
 	 * <!-- begin-user-doc --> <!-- end-user-doc -->
-	 * 
 	 * @generated
 	 */
 	@Override
@@ -327,7 +305,6 @@ public class DNDEventImpl extends EventImpl implements DNDEvent {
 
 	/**
 	 * <!-- begin-user-doc --> <!-- end-user-doc -->
-	 * 
 	 * @generated
 	 */
 	@Override

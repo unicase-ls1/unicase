@@ -17,26 +17,19 @@ import org.unicase.emfstore.esmodel.versioning.operations.OperationsPackage;
 import org.unicase.model.ModelElement;
 import org.unicase.model.Project;
 
-/**
+/*
  * <!-- begin-user-doc --> An implementation of the model object ' <em><b>Attribute Operation</b></em>'. <!--
- * end-user-doc -->
- * <p>
- * The following features are implemented:
- * <ul>
- * <li>{@link org.unicase.emfstore.esmodel.versioning.operations.impl.AttributeOperationImpl#getOldValue <em>Old Value
- * </em>}</li>
- * <li>{@link org.unicase.emfstore.esmodel.versioning.operations.impl.AttributeOperationImpl#getNewValue <em>New Value
- * </em>}</li>
- * </ul>
- * </p>
- * 
+ * end-user-doc --> <p> The following features are implemented: <ul> <li>{@link
+ * org.unicase.emfstore.esmodel.versioning.operations.impl.AttributeOperationImpl#getOldValue <em>Old Value</em>}</li>
+ * <li>{@link org.unicase.emfstore.esmodel.versioning.operations.impl.AttributeOperationImpl#getNewValue <em>New
+ * Value</em>}</li> </ul> </p>
  * @generated
  */
 public class AttributeOperationImpl extends FeatureOperationImpl implements AttributeOperation {
 	/**
-	 * The default value of the '{@link #getOldValue() <em>Old Value</em>}' attribute. <!-- begin-user-doc --> <!--
+	 * The default value of the '{@link #getOldValue() <em>Old Value</em>}' attribute.
+	 * <!-- begin-user-doc --> <!--
 	 * end-user-doc -->
-	 * 
 	 * @see #getOldValue()
 	 * @generated
 	 * @ordered
@@ -44,9 +37,9 @@ public class AttributeOperationImpl extends FeatureOperationImpl implements Attr
 	protected static final Object OLD_VALUE_EDEFAULT = null;
 
 	/**
-	 * The cached value of the '{@link #getOldValue() <em>Old Value</em>}' attribute. <!-- begin-user-doc --> <!--
+	 * The cached value of the '{@link #getOldValue() <em>Old Value</em>}' attribute.
+	 * <!-- begin-user-doc --> <!--
 	 * end-user-doc -->
-	 * 
 	 * @see #getOldValue()
 	 * @generated
 	 * @ordered
@@ -54,9 +47,9 @@ public class AttributeOperationImpl extends FeatureOperationImpl implements Attr
 	protected Object oldValue = OLD_VALUE_EDEFAULT;
 
 	/**
-	 * The default value of the '{@link #getNewValue() <em>New Value</em>}' attribute. <!-- begin-user-doc --> <!--
+	 * The default value of the '{@link #getNewValue() <em>New Value</em>}' attribute.
+	 * <!-- begin-user-doc --> <!--
 	 * end-user-doc -->
-	 * 
 	 * @see #getNewValue()
 	 * @generated
 	 * @ordered
@@ -64,9 +57,9 @@ public class AttributeOperationImpl extends FeatureOperationImpl implements Attr
 	protected static final Object NEW_VALUE_EDEFAULT = null;
 
 	/**
-	 * The cached value of the '{@link #getNewValue() <em>New Value</em>}' attribute. <!-- begin-user-doc --> <!--
+	 * The cached value of the '{@link #getNewValue() <em>New Value</em>}' attribute.
+	 * <!-- begin-user-doc --> <!--
 	 * end-user-doc -->
-	 * 
 	 * @see #getNewValue()
 	 * @generated
 	 * @ordered
@@ -75,7 +68,6 @@ public class AttributeOperationImpl extends FeatureOperationImpl implements Attr
 
 	/**
 	 * <!-- begin-user-doc --> <!-- end-user-doc -->
-	 * 
 	 * @generated
 	 */
 	protected AttributeOperationImpl() {
@@ -84,7 +76,6 @@ public class AttributeOperationImpl extends FeatureOperationImpl implements Attr
 
 	/**
 	 * <!-- begin-user-doc --> <!-- end-user-doc -->
-	 * 
 	 * @generated
 	 */
 	@Override
@@ -94,7 +85,6 @@ public class AttributeOperationImpl extends FeatureOperationImpl implements Attr
 
 	/**
 	 * <!-- begin-user-doc --> <!-- end-user-doc -->
-	 * 
 	 * @generated
 	 */
 	public Object getOldValue() {
@@ -103,7 +93,6 @@ public class AttributeOperationImpl extends FeatureOperationImpl implements Attr
 
 	/**
 	 * <!-- begin-user-doc --> <!-- end-user-doc -->
-	 * 
 	 * @generated
 	 */
 	public void setOldValue(Object newOldValue) {
@@ -116,7 +105,6 @@ public class AttributeOperationImpl extends FeatureOperationImpl implements Attr
 
 	/**
 	 * <!-- begin-user-doc --> <!-- end-user-doc -->
-	 * 
 	 * @generated
 	 */
 	public Object getNewValue() {
@@ -125,7 +113,6 @@ public class AttributeOperationImpl extends FeatureOperationImpl implements Attr
 
 	/**
 	 * <!-- begin-user-doc --> <!-- end-user-doc -->
-	 * 
 	 * @generated
 	 */
 	public void setNewValue(Object newNewValue) {
@@ -138,7 +125,6 @@ public class AttributeOperationImpl extends FeatureOperationImpl implements Attr
 
 	/**
 	 * <!-- begin-user-doc --> <!-- end-user-doc -->
-	 * 
 	 * @generated
 	 */
 	@Override
@@ -154,7 +140,6 @@ public class AttributeOperationImpl extends FeatureOperationImpl implements Attr
 
 	/**
 	 * <!-- begin-user-doc --> <!-- end-user-doc -->
-	 * 
 	 * @generated
 	 */
 	@Override
@@ -172,7 +157,6 @@ public class AttributeOperationImpl extends FeatureOperationImpl implements Attr
 
 	/**
 	 * <!-- begin-user-doc --> <!-- end-user-doc -->
-	 * 
 	 * @generated
 	 */
 	@Override
@@ -190,7 +174,6 @@ public class AttributeOperationImpl extends FeatureOperationImpl implements Attr
 
 	/**
 	 * <!-- begin-user-doc --> <!-- end-user-doc -->
-	 * 
 	 * @generated
 	 */
 	@Override
@@ -206,7 +189,6 @@ public class AttributeOperationImpl extends FeatureOperationImpl implements Attr
 
 	/**
 	 * <!-- begin-user-doc --> <!-- end-user-doc -->
-	 * 
 	 * @generated
 	 */
 	@Override

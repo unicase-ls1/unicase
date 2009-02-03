@@ -22,19 +22,18 @@ import org.eclipse.emf.edit.provider.ViewerNotification;
 import org.unicase.emfstore.esmodel.versioning.operations.MultiReferenceMoveOperation;
 import org.unicase.emfstore.esmodel.versioning.operations.OperationsPackage;
 
-/**
- * This is the item provider adapter for a
- * {@link org.unicase.emfstore.esmodel.versioning.operations.MultiReferenceMoveOperation} object. <!-- begin-user-doc
- * --> <!-- end-user-doc -->
- * 
+/*
+ * This is the item provider adapter for a {@link
+ * org.unicase.emfstore.esmodel.versioning.operations.MultiReferenceMoveOperation} object. <!-- begin-user-doc --> <!--
+ * end-user-doc -->
  * @generated
  */
 public class MultiReferenceMoveOperationItemProvider extends FeatureOperationItemProvider implements
 	IEditingDomainItemProvider, IStructuredItemContentProvider, ITreeItemContentProvider, IItemLabelProvider,
 	IItemPropertySource {
 	/**
-	 * This constructs an instance from a factory and a notifier. <!-- begin-user-doc --> <!-- end-user-doc -->
-	 * 
+	 * This constructs an instance from a factory and a notifier.
+	 * <!-- begin-user-doc --> <!-- end-user-doc -->
 	 * @generated
 	 */
 	public MultiReferenceMoveOperationItemProvider(AdapterFactory adapterFactory) {
@@ -42,8 +41,8 @@ public class MultiReferenceMoveOperationItemProvider extends FeatureOperationIte
 	}
 
 	/**
-	 * This returns the property descriptors for the adapted class. <!-- begin-user-doc --> <!-- end-user-doc -->
-	 * 
+	 * This returns the property descriptors for the adapted class.
+	 * <!-- begin-user-doc --> <!-- end-user-doc -->
 	 * @generated
 	 */
 	@Override
@@ -59,8 +58,8 @@ public class MultiReferenceMoveOperationItemProvider extends FeatureOperationIte
 	}
 
 	/**
-	 * This adds a property descriptor for the Old Index feature. <!-- begin-user-doc --> <!-- end-user-doc -->
-	 * 
+	 * This adds a property descriptor for the Old Index feature.
+	 * <!-- begin-user-doc --> <!-- end-user-doc -->
 	 * @generated
 	 */
 	protected void addOldIndexPropertyDescriptor(Object object) {
@@ -74,8 +73,8 @@ public class MultiReferenceMoveOperationItemProvider extends FeatureOperationIte
 	}
 
 	/**
-	 * This adds a property descriptor for the New Index feature. <!-- begin-user-doc --> <!-- end-user-doc -->
-	 * 
+	 * This adds a property descriptor for the New Index feature.
+	 * <!-- begin-user-doc --> <!-- end-user-doc -->
 	 * @generated
 	 */
 	protected void addNewIndexPropertyDescriptor(Object object) {
@@ -89,9 +88,9 @@ public class MultiReferenceMoveOperationItemProvider extends FeatureOperationIte
 	}
 
 	/**
-	 * This adds a property descriptor for the Referenced Model Element Id feature. <!-- begin-user-doc --> <!--
+	 * This adds a property descriptor for the Referenced Model Element Id feature.
+	 * <!-- begin-user-doc --> <!--
 	 * end-user-doc -->
-	 * 
 	 * @generated
 	 */
 	protected void addReferencedModelElementIdPropertyDescriptor(Object object) {
@@ -106,8 +105,8 @@ public class MultiReferenceMoveOperationItemProvider extends FeatureOperationIte
 	}
 
 	/**
-	 * This returns MultiReferenceMoveOperation.gif. <!-- begin-user-doc --> <!-- end-user-doc -->
-	 * 
+	 * This returns MultiReferenceMoveOperation.gif.
+	 * <!-- begin-user-doc --> <!-- end-user-doc -->
 	 * @generated
 	 */
 	@Override
@@ -116,8 +115,8 @@ public class MultiReferenceMoveOperationItemProvider extends FeatureOperationIte
 	}
 
 	/**
-	 * This returns the label text for the adapted class. <!-- begin-user-doc --> <!-- end-user-doc -->
-	 * 
+	 * This returns the label text for the adapted class.
+	 * <!-- begin-user-doc --> <!-- end-user-doc -->
 	 * @generated
 	 */
 	@Override
@@ -148,9 +147,9 @@ public class MultiReferenceMoveOperationItemProvider extends FeatureOperationIte
 	}
 
 	/**
-	 * This adds {@link org.eclipse.emf.edit.command.CommandParameter}s describing the children that can be created
-	 * under this object. <!-- begin-user-doc --> <!-- end-user-doc -->
-	 * 
+	 * This adds {@link org.eclipse.emf.edit.command.CommandParameter}s describing the children
+	 * that can be created under this object.
+	 * <!-- begin-user-doc --> <!-- end-user-doc -->
 	 * @generated
 	 */
 	@Override

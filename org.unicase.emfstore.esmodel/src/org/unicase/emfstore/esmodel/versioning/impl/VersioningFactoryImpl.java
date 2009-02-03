@@ -22,15 +22,14 @@ import org.unicase.emfstore.esmodel.versioning.Version;
 import org.unicase.emfstore.esmodel.versioning.VersioningFactory;
 import org.unicase.emfstore.esmodel.versioning.VersioningPackage;
 
-/**
+/*
  * <!-- begin-user-doc --> An implementation of the model <b>Factory</b>. <!-- end-user-doc -->
- * 
  * @generated
  */
 public class VersioningFactoryImpl extends EFactoryImpl implements VersioningFactory {
 	/**
-	 * Creates the default factory implementation. <!-- begin-user-doc --> <!-- end-user-doc -->
-	 * 
+	 * Creates the default factory implementation.
+	 * <!-- begin-user-doc --> <!-- end-user-doc -->
 	 * @generated
 	 */
 	public static VersioningFactory init() {
@@ -47,8 +46,8 @@ public class VersioningFactoryImpl extends EFactoryImpl implements VersioningFac
 	}
 
 	/**
-	 * Creates an instance of the factory. <!-- begin-user-doc --> <!-- end-user-doc -->
-	 * 
+	 * Creates an instance of the factory.
+	 * <!-- begin-user-doc --> <!-- end-user-doc -->
 	 * @generated
 	 */
 	public VersioningFactoryImpl() {
@@ -57,7 +56,6 @@ public class VersioningFactoryImpl extends EFactoryImpl implements VersioningFac
 
 	/**
 	 * <!-- begin-user-doc --> <!-- end-user-doc -->
-	 * 
 	 * @generated
 	 */
 	@Override
@@ -88,7 +86,6 @@ public class VersioningFactoryImpl extends EFactoryImpl implements VersioningFac
 
 	/**
 	 * <!-- begin-user-doc --> <!-- end-user-doc -->
-	 * 
 	 * @generated
 	 */
 	public TagVersionSpec createTagVersionSpec() {
@@ -98,7 +95,6 @@ public class VersioningFactoryImpl extends EFactoryImpl implements VersioningFac
 
 	/**
 	 * <!-- begin-user-doc --> <!-- end-user-doc -->
-	 * 
 	 * @generated
 	 */
 	public DateVersionSpec createDateVersionSpec() {
@@ -108,7 +104,6 @@ public class VersioningFactoryImpl extends EFactoryImpl implements VersioningFac
 
 	/**
 	 * <!-- begin-user-doc --> <!-- end-user-doc -->
-	 * 
 	 * @generated
 	 */
 	public PrimaryVersionSpec createPrimaryVersionSpec() {
@@ -118,7 +113,6 @@ public class VersioningFactoryImpl extends EFactoryImpl implements VersioningFac
 
 	/**
 	 * <!-- begin-user-doc --> <!-- end-user-doc -->
-	 * 
 	 * @generated
 	 */
 	public LogMessage createLogMessage() {
@@ -128,7 +122,6 @@ public class VersioningFactoryImpl extends EFactoryImpl implements VersioningFac
 
 	/**
 	 * <!-- begin-user-doc --> <!-- end-user-doc -->
-	 * 
 	 * @generated
 	 */
 	public ChangePackage createChangePackage() {
@@ -138,7 +131,6 @@ public class VersioningFactoryImpl extends EFactoryImpl implements VersioningFac
 
 	/**
 	 * <!-- begin-user-doc --> <!-- end-user-doc -->
-	 * 
 	 * @generated
 	 */
 	public HistoryInfo createHistoryInfo() {
@@ -148,7 +140,6 @@ public class VersioningFactoryImpl extends EFactoryImpl implements VersioningFac
 
 	/**
 	 * <!-- begin-user-doc --> <!-- end-user-doc -->
-	 * 
 	 * @generated
 	 */
 	public HistoryQuery createHistoryQuery() {
@@ -158,7 +149,6 @@ public class VersioningFactoryImpl extends EFactoryImpl implements VersioningFac
 
 	/**
 	 * <!-- begin-user-doc --> <!-- end-user-doc -->
-	 * 
 	 * @generated
 	 */
 	public Version createVersion() {
@@ -168,7 +158,6 @@ public class VersioningFactoryImpl extends EFactoryImpl implements VersioningFac
 
 	/**
 	 * <!-- begin-user-doc --> <!-- end-user-doc -->
-	 * 
 	 * @generated
 	 */
 	public HeadVersionSpec createHeadVersionSpec() {
@@ -178,7 +167,6 @@ public class VersioningFactoryImpl extends EFactoryImpl implements VersioningFac
 
 	/**
 	 * <!-- begin-user-doc --> <!-- end-user-doc -->
-	 * 
 	 * @generated
 	 */
 	public VersioningPackage getVersioningPackage() {
@@ -187,7 +175,6 @@ public class VersioningFactoryImpl extends EFactoryImpl implements VersioningFac
 
 	/**
 	 * <!-- begin-user-doc --> <!-- end-user-doc -->
-	 * 
 	 * @deprecated
 	 * @generated
 	 */

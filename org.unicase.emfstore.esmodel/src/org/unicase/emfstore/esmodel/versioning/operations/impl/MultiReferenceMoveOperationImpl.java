@@ -21,29 +21,22 @@ import org.unicase.model.ModelElementId;
 import org.unicase.model.Project;
 import org.unicase.model.util.ModelUtil;
 
-/**
+/*
  * <!-- begin-user-doc --> An implementation of the model object '<em><b>Multi Reference Move Operation</b></em>'. <!--
- * end-user-doc -->
- * <p>
- * The following features are implemented:
- * <ul>
- * <li>{@link org.unicase.emfstore.esmodel.versioning.operations.impl.MultiReferenceMoveOperationImpl#getOldIndex <em>
- * Old Index</em>}</li>
- * <li>{@link org.unicase.emfstore.esmodel.versioning.operations.impl.MultiReferenceMoveOperationImpl#getNewIndex <em>
- * New Index</em>}</li>
- * <li>
- * {@link org.unicase.emfstore.esmodel.versioning.operations.impl.MultiReferenceMoveOperationImpl#getReferencedModelElementId
- * <em>Referenced Model Element Id</em>}</li>
- * </ul>
- * </p>
- * 
+ * end-user-doc --> <p> The following features are implemented: <ul> <li>{@link
+ * org.unicase.emfstore.esmodel.versioning.operations.impl.MultiReferenceMoveOperationImpl#getOldIndex <em>Old
+ * Index</em>}</li> <li>{@link
+ * org.unicase.emfstore.esmodel.versioning.operations.impl.MultiReferenceMoveOperationImpl#getNewIndex <em>New
+ * Index</em>}</li> <li>{@link
+ * org.unicase.emfstore.esmodel.versioning.operations.impl.MultiReferenceMoveOperationImpl#getReferencedModelElementId
+ * <em>Referenced Model Element Id</em>}</li> </ul> </p>
  * @generated
  */
 public class MultiReferenceMoveOperationImpl extends FeatureOperationImpl implements MultiReferenceMoveOperation {
 	/**
-	 * The default value of the '{@link #getOldIndex() <em>Old Index</em>}' attribute. <!-- begin-user-doc --> <!--
+	 * The default value of the '{@link #getOldIndex() <em>Old Index</em>}' attribute.
+	 * <!-- begin-user-doc --> <!--
 	 * end-user-doc -->
-	 * 
 	 * @see #getOldIndex()
 	 * @generated
 	 * @ordered
@@ -51,9 +44,9 @@ public class MultiReferenceMoveOperationImpl extends FeatureOperationImpl implem
 	protected static final int OLD_INDEX_EDEFAULT = 0;
 
 	/**
-	 * The cached value of the '{@link #getOldIndex() <em>Old Index</em>}' attribute. <!-- begin-user-doc --> <!--
+	 * The cached value of the '{@link #getOldIndex() <em>Old Index</em>}' attribute.
+	 * <!-- begin-user-doc --> <!--
 	 * end-user-doc -->
-	 * 
 	 * @see #getOldIndex()
 	 * @generated
 	 * @ordered
@@ -61,9 +54,9 @@ public class MultiReferenceMoveOperationImpl extends FeatureOperationImpl implem
 	protected int oldIndex = OLD_INDEX_EDEFAULT;
 
 	/**
-	 * The default value of the '{@link #getNewIndex() <em>New Index</em>}' attribute. <!-- begin-user-doc --> <!--
+	 * The default value of the '{@link #getNewIndex() <em>New Index</em>}' attribute.
+	 * <!-- begin-user-doc --> <!--
 	 * end-user-doc -->
-	 * 
 	 * @see #getNewIndex()
 	 * @generated
 	 * @ordered
@@ -71,9 +64,9 @@ public class MultiReferenceMoveOperationImpl extends FeatureOperationImpl implem
 	protected static final int NEW_INDEX_EDEFAULT = 0;
 
 	/**
-	 * The cached value of the '{@link #getNewIndex() <em>New Index</em>}' attribute. <!-- begin-user-doc --> <!--
+	 * The cached value of the '{@link #getNewIndex() <em>New Index</em>}' attribute.
+	 * <!-- begin-user-doc --> <!--
 	 * end-user-doc -->
-	 * 
 	 * @see #getNewIndex()
 	 * @generated
 	 * @ordered
@@ -81,9 +74,8 @@ public class MultiReferenceMoveOperationImpl extends FeatureOperationImpl implem
 	protected int newIndex = NEW_INDEX_EDEFAULT;
 
 	/**
-	 * The cached value of the '{@link #getReferencedModelElementId() <em>Referenced Model Element Id</em>}' containment
-	 * reference. <!-- begin-user-doc --> <!-- end-user-doc -->
-	 * 
+	 * The cached value of the '{@link #getReferencedModelElementId() <em>Referenced Model Element Id</em>}' containment reference.
+	 * <!-- begin-user-doc --> <!-- end-user-doc -->
 	 * @see #getReferencedModelElementId()
 	 * @generated
 	 * @ordered
@@ -92,7 +84,6 @@ public class MultiReferenceMoveOperationImpl extends FeatureOperationImpl implem
 
 	/**
 	 * <!-- begin-user-doc --> <!-- end-user-doc -->
-	 * 
 	 * @generated
 	 */
 	protected MultiReferenceMoveOperationImpl() {
@@ -101,7 +92,6 @@ public class MultiReferenceMoveOperationImpl extends FeatureOperationImpl implem
 
 	/**
 	 * <!-- begin-user-doc --> <!-- end-user-doc -->
-	 * 
 	 * @generated
 	 */
 	@Override
@@ -111,7 +101,6 @@ public class MultiReferenceMoveOperationImpl extends FeatureOperationImpl implem
 
 	/**
 	 * <!-- begin-user-doc --> <!-- end-user-doc -->
-	 * 
 	 * @generated
 	 */
 	public int getOldIndex() {
@@ -120,7 +109,6 @@ public class MultiReferenceMoveOperationImpl extends FeatureOperationImpl implem
 
 	/**
 	 * <!-- begin-user-doc --> <!-- end-user-doc -->
-	 * 
 	 * @generated
 	 */
 	public void setOldIndex(int newOldIndex) {
@@ -133,7 +121,6 @@ public class MultiReferenceMoveOperationImpl extends FeatureOperationImpl implem
 
 	/**
 	 * <!-- begin-user-doc --> <!-- end-user-doc -->
-	 * 
 	 * @generated
 	 */
 	public int getNewIndex() {
@@ -142,7 +129,6 @@ public class MultiReferenceMoveOperationImpl extends FeatureOperationImpl implem
 
 	/**
 	 * <!-- begin-user-doc --> <!-- end-user-doc -->
-	 * 
 	 * @generated
 	 */
 	public void setNewIndex(int newNewIndex) {
@@ -155,7 +141,6 @@ public class MultiReferenceMoveOperationImpl extends FeatureOperationImpl implem
 
 	/**
 	 * <!-- begin-user-doc --> <!-- end-user-doc -->
-	 * 
 	 * @generated
 	 */
 	public ModelElementId getReferencedModelElementId() {
@@ -183,7 +168,6 @@ public class MultiReferenceMoveOperationImpl extends FeatureOperationImpl implem
 
 	/**
 	 * <!-- begin-user-doc --> <!-- end-user-doc -->
-	 * 
 	 * @generated
 	 */
 	public ModelElementId basicGetReferencedModelElementId() {
@@ -192,7 +176,6 @@ public class MultiReferenceMoveOperationImpl extends FeatureOperationImpl implem
 
 	/**
 	 * <!-- begin-user-doc --> <!-- end-user-doc -->
-	 * 
 	 * @generated
 	 */
 	public NotificationChain basicSetReferencedModelElementId(ModelElementId newReferencedModelElementId,
@@ -213,7 +196,6 @@ public class MultiReferenceMoveOperationImpl extends FeatureOperationImpl implem
 
 	/**
 	 * <!-- begin-user-doc --> <!-- end-user-doc -->
-	 * 
 	 * @generated
 	 */
 	public void setReferencedModelElementId(ModelElementId newReferencedModelElementId) {
@@ -236,7 +218,6 @@ public class MultiReferenceMoveOperationImpl extends FeatureOperationImpl implem
 
 	/**
 	 * <!-- begin-user-doc --> <!-- end-user-doc -->
-	 * 
 	 * @generated
 	 */
 	@Override
@@ -250,7 +231,6 @@ public class MultiReferenceMoveOperationImpl extends FeatureOperationImpl implem
 
 	/**
 	 * <!-- begin-user-doc --> <!-- end-user-doc -->
-	 * 
 	 * @generated
 	 */
 	@Override
@@ -270,7 +250,6 @@ public class MultiReferenceMoveOperationImpl extends FeatureOperationImpl implem
 
 	/**
 	 * <!-- begin-user-doc --> <!-- end-user-doc -->
-	 * 
 	 * @generated
 	 */
 	@Override
@@ -291,7 +270,6 @@ public class MultiReferenceMoveOperationImpl extends FeatureOperationImpl implem
 
 	/**
 	 * <!-- begin-user-doc --> <!-- end-user-doc -->
-	 * 
 	 * @generated
 	 */
 	@Override
@@ -312,7 +290,6 @@ public class MultiReferenceMoveOperationImpl extends FeatureOperationImpl implem
 
 	/**
 	 * <!-- begin-user-doc --> <!-- end-user-doc -->
-	 * 
 	 * @generated
 	 */
 	@Override
@@ -330,7 +307,6 @@ public class MultiReferenceMoveOperationImpl extends FeatureOperationImpl implem
 
 	/**
 	 * <!-- begin-user-doc --> <!-- end-user-doc -->
-	 * 
 	 * @generated
 	 */
 	@Override

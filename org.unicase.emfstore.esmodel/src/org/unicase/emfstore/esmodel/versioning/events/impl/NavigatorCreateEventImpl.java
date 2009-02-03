@@ -13,27 +13,21 @@ import org.unicase.emfstore.esmodel.versioning.events.EventsPackage;
 import org.unicase.emfstore.esmodel.versioning.events.NavigatorCreateEvent;
 import org.unicase.model.ModelElementId;
 
-/**
+/*
  * <!-- begin-user-doc --> An implementation of the model object '<em><b>Navigator Create Event</b></em>'. <!--
- * end-user-doc -->
- * <p>
- * The following features are implemented:
- * <ul>
- * <li>{@link org.unicase.emfstore.esmodel.versioning.events.impl.NavigatorCreateEventImpl#getCreatedElement <em>Created
- * Element</em>}</li>
- * <li>{@link org.unicase.emfstore.esmodel.versioning.events.impl.NavigatorCreateEventImpl#getSourceSection <em>Source
- * Section</em>}</li>
- * <li>{@link org.unicase.emfstore.esmodel.versioning.events.impl.NavigatorCreateEventImpl#isDynamic <em>Dynamic</em>}</li>
- * </ul>
- * </p>
- * 
+ * end-user-doc --> <p> The following features are implemented: <ul> <li>{@link
+ * org.unicase.emfstore.esmodel.versioning.events.impl.NavigatorCreateEventImpl#getCreatedElement <em>Created
+ * Element</em>}</li> <li>{@link
+ * org.unicase.emfstore.esmodel.versioning.events.impl.NavigatorCreateEventImpl#getSourceSection <em>Source
+ * Section</em>}</li> <li>{@link org.unicase.emfstore.esmodel.versioning.events.impl.NavigatorCreateEventImpl#isDynamic
+ * <em>Dynamic</em>}</li> </ul> </p>
  * @generated
  */
 public class NavigatorCreateEventImpl extends EventImpl implements NavigatorCreateEvent {
 	/**
-	 * The cached value of the '{@link #getCreatedElement() <em>Created Element</em>}' reference. <!-- begin-user-doc
+	 * The cached value of the '{@link #getCreatedElement() <em>Created Element</em>}' reference.
+	 * <!-- begin-user-doc
 	 * --> <!-- end-user-doc -->
-	 * 
 	 * @see #getCreatedElement()
 	 * @generated
 	 * @ordered
@@ -41,9 +35,9 @@ public class NavigatorCreateEventImpl extends EventImpl implements NavigatorCrea
 	protected ModelElementId createdElement;
 
 	/**
-	 * The cached value of the '{@link #getSourceSection() <em>Source Section</em>}' reference. <!-- begin-user-doc -->
+	 * The cached value of the '{@link #getSourceSection() <em>Source Section</em>}' reference.
+	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
-	 * 
 	 * @see #getSourceSection()
 	 * @generated
 	 * @ordered
@@ -51,9 +45,9 @@ public class NavigatorCreateEventImpl extends EventImpl implements NavigatorCrea
 	protected ModelElementId sourceSection;
 
 	/**
-	 * The default value of the '{@link #isDynamic() <em>Dynamic</em>}' attribute. <!-- begin-user-doc --> <!--
+	 * The default value of the '{@link #isDynamic() <em>Dynamic</em>}' attribute.
+	 * <!-- begin-user-doc --> <!--
 	 * end-user-doc -->
-	 * 
 	 * @see #isDynamic()
 	 * @generated
 	 * @ordered
@@ -61,9 +55,9 @@ public class NavigatorCreateEventImpl extends EventImpl implements NavigatorCrea
 	protected static final boolean DYNAMIC_EDEFAULT = false;
 
 	/**
-	 * The cached value of the '{@link #isDynamic() <em>Dynamic</em>}' attribute. <!-- begin-user-doc --> <!--
+	 * The cached value of the '{@link #isDynamic() <em>Dynamic</em>}' attribute.
+	 * <!-- begin-user-doc --> <!--
 	 * end-user-doc -->
-	 * 
 	 * @see #isDynamic()
 	 * @generated
 	 * @ordered
@@ -72,7 +66,6 @@ public class NavigatorCreateEventImpl extends EventImpl implements NavigatorCrea
 
 	/**
 	 * <!-- begin-user-doc --> <!-- end-user-doc -->
-	 * 
 	 * @generated
 	 */
 	protected NavigatorCreateEventImpl() {
@@ -81,7 +74,6 @@ public class NavigatorCreateEventImpl extends EventImpl implements NavigatorCrea
 
 	/**
 	 * <!-- begin-user-doc --> <!-- end-user-doc -->
-	 * 
 	 * @generated
 	 */
 	@Override
@@ -91,7 +83,6 @@ public class NavigatorCreateEventImpl extends EventImpl implements NavigatorCrea
 
 	/**
 	 * <!-- begin-user-doc --> <!-- end-user-doc -->
-	 * 
 	 * @generated
 	 */
 	public ModelElementId getCreatedElement() {
@@ -109,7 +100,6 @@ public class NavigatorCreateEventImpl extends EventImpl implements NavigatorCrea
 
 	/**
 	 * <!-- begin-user-doc --> <!-- end-user-doc -->
-	 * 
 	 * @generated
 	 */
 	public ModelElementId basicGetCreatedElement() {
@@ -118,7 +108,6 @@ public class NavigatorCreateEventImpl extends EventImpl implements NavigatorCrea
 
 	/**
 	 * <!-- begin-user-doc --> <!-- end-user-doc -->
-	 * 
 	 * @generated
 	 */
 	public void setCreatedElement(ModelElementId newCreatedElement) {
@@ -131,7 +120,6 @@ public class NavigatorCreateEventImpl extends EventImpl implements NavigatorCrea
 
 	/**
 	 * <!-- begin-user-doc --> <!-- end-user-doc -->
-	 * 
 	 * @generated
 	 */
 	public ModelElementId getSourceSection() {
@@ -149,7 +137,6 @@ public class NavigatorCreateEventImpl extends EventImpl implements NavigatorCrea
 
 	/**
 	 * <!-- begin-user-doc --> <!-- end-user-doc -->
-	 * 
 	 * @generated
 	 */
 	public ModelElementId basicGetSourceSection() {
@@ -158,7 +145,6 @@ public class NavigatorCreateEventImpl extends EventImpl implements NavigatorCrea
 
 	/**
 	 * <!-- begin-user-doc --> <!-- end-user-doc -->
-	 * 
 	 * @generated
 	 */
 	public void setSourceSection(ModelElementId newSourceSection) {
@@ -171,7 +157,6 @@ public class NavigatorCreateEventImpl extends EventImpl implements NavigatorCrea
 
 	/**
 	 * <!-- begin-user-doc --> <!-- end-user-doc -->
-	 * 
 	 * @generated
 	 */
 	public boolean isDynamic() {
@@ -180,7 +165,6 @@ public class NavigatorCreateEventImpl extends EventImpl implements NavigatorCrea
 
 	/**
 	 * <!-- begin-user-doc --> <!-- end-user-doc -->
-	 * 
 	 * @generated
 	 */
 	public void setDynamic(boolean newDynamic) {
@@ -193,7 +177,6 @@ public class NavigatorCreateEventImpl extends EventImpl implements NavigatorCrea
 
 	/**
 	 * <!-- begin-user-doc --> <!-- end-user-doc -->
-	 * 
 	 * @generated
 	 */
 	@Override
@@ -215,7 +198,6 @@ public class NavigatorCreateEventImpl extends EventImpl implements NavigatorCrea
 
 	/**
 	 * <!-- begin-user-doc --> <!-- end-user-doc -->
-	 * 
 	 * @generated
 	 */
 	@Override
@@ -236,7 +218,6 @@ public class NavigatorCreateEventImpl extends EventImpl implements NavigatorCrea
 
 	/**
 	 * <!-- begin-user-doc --> <!-- end-user-doc -->
-	 * 
 	 * @generated
 	 */
 	@Override
@@ -257,7 +238,6 @@ public class NavigatorCreateEventImpl extends EventImpl implements NavigatorCrea
 
 	/**
 	 * <!-- begin-user-doc --> <!-- end-user-doc -->
-	 * 
 	 * @generated
 	 */
 	@Override
@@ -275,7 +255,6 @@ public class NavigatorCreateEventImpl extends EventImpl implements NavigatorCrea
 
 	/**
 	 * <!-- begin-user-doc --> <!-- end-user-doc -->
-	 * 
 	 * @generated
 	 */
 	@Override

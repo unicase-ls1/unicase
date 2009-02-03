@@ -14,17 +14,13 @@ import org.unicase.emfstore.esmodel.versioning.events.EventsPackage;
 import org.unicase.emfstore.esmodel.versioning.events.ReadEvent;
 import org.unicase.model.ModelElementId;
 
-/**
- * <!-- begin-user-doc --> An implementation of the model object '<em><b>Read Event</b></em>'. <!-- end-user-doc -->
- * <p>
- * The following features are implemented:
- * <ul>
- * <li>{@link org.unicase.emfstore.esmodel.versioning.events.impl.ReadEventImpl#getModelElement <em>Model Element</em>}</li>
+/*
+ * <!-- begin-user-doc --> An implementation of the model object '<em><b>Read Event</b></em>'. <!-- end-user-doc --> <p>
+ * The following features are implemented: <ul> <li>{@link
+ * org.unicase.emfstore.esmodel.versioning.events.impl.ReadEventImpl#getModelElement <em>Model Element</em>}</li>
  * <li>{@link org.unicase.emfstore.esmodel.versioning.events.impl.ReadEventImpl#getSourceView <em>Source View</em>}</li>
  * <li>{@link org.unicase.emfstore.esmodel.versioning.events.impl.ReadEventImpl#getReadView <em>Read View</em>}</li>
- * </ul>
- * </p>
- * 
+ * </ul> </p>
  * @generated
  */
 public class ReadEventImpl extends EventImpl implements ReadEvent {
@@ -39,18 +35,18 @@ public class ReadEventImpl extends EventImpl implements ReadEvent {
 	protected ModelElementId modelElement;
 
 	/**
-	 * The default value of the '{@link #getSourceView() <em>Source View</em>}' attribute. <!-- begin-user-doc --> <!--
+	 * The default value of the '{@link #getSourceView() <em>Source View</em>}' attribute.
+	 * <!-- begin-user-doc --> <!--
 	 * end-user-doc -->
-	 * 
 	 * @see #getSourceView()
 	 * @generated
 	 * @ordered
 	 */
 	protected static final String SOURCE_VIEW_EDEFAULT = null;
 	/**
-	 * The cached value of the '{@link #getSourceView() <em>Source View</em>}' attribute. <!-- begin-user-doc --> <!--
+	 * The cached value of the '{@link #getSourceView() <em>Source View</em>}' attribute.
+	 * <!-- begin-user-doc --> <!--
 	 * end-user-doc -->
-	 * 
 	 * @see #getSourceView()
 	 * @generated
 	 * @ordered
@@ -58,9 +54,9 @@ public class ReadEventImpl extends EventImpl implements ReadEvent {
 	protected String sourceView = SOURCE_VIEW_EDEFAULT;
 
 	/**
-	 * The default value of the '{@link #getReadView() <em>Read View</em>}' attribute. <!-- begin-user-doc --> <!--
+	 * The default value of the '{@link #getReadView() <em>Read View</em>}' attribute.
+	 * <!-- begin-user-doc --> <!--
 	 * end-user-doc -->
-	 * 
 	 * @see #getReadView()
 	 * @generated
 	 * @ordered
@@ -68,9 +64,9 @@ public class ReadEventImpl extends EventImpl implements ReadEvent {
 	protected static final String READ_VIEW_EDEFAULT = null;
 
 	/**
-	 * The cached value of the '{@link #getReadView() <em>Read View</em>}' attribute. <!-- begin-user-doc --> <!--
+	 * The cached value of the '{@link #getReadView() <em>Read View</em>}' attribute.
+	 * <!-- begin-user-doc --> <!--
 	 * end-user-doc -->
-	 * 
 	 * @see #getReadView()
 	 * @generated
 	 * @ordered
@@ -79,7 +75,6 @@ public class ReadEventImpl extends EventImpl implements ReadEvent {
 
 	/**
 	 * <!-- begin-user-doc --> <!-- end-user-doc -->
-	 * 
 	 * @generated
 	 */
 	protected ReadEventImpl() {
@@ -88,7 +83,6 @@ public class ReadEventImpl extends EventImpl implements ReadEvent {
 
 	/**
 	 * <!-- begin-user-doc --> <!-- end-user-doc -->
-	 * 
 	 * @generated
 	 */
 	@Override
@@ -98,7 +92,6 @@ public class ReadEventImpl extends EventImpl implements ReadEvent {
 
 	/**
 	 * <!-- begin-user-doc --> <!-- end-user-doc -->
-	 * 
 	 * @generated
 	 */
 	public ModelElementId getModelElement() {
@@ -125,7 +118,6 @@ public class ReadEventImpl extends EventImpl implements ReadEvent {
 
 	/**
 	 * <!-- begin-user-doc --> <!-- end-user-doc -->
-	 * 
 	 * @generated
 	 */
 	public ModelElementId basicGetModelElement() {
@@ -134,7 +126,6 @@ public class ReadEventImpl extends EventImpl implements ReadEvent {
 
 	/**
 	 * <!-- begin-user-doc --> <!-- end-user-doc -->
-	 * 
 	 * @generated
 	 */
 	public NotificationChain basicSetModelElement(ModelElementId newModelElement, NotificationChain msgs) {
@@ -153,7 +144,6 @@ public class ReadEventImpl extends EventImpl implements ReadEvent {
 
 	/**
 	 * <!-- begin-user-doc --> <!-- end-user-doc -->
-	 * 
 	 * @generated
 	 */
 	public void setModelElement(ModelElementId newModelElement) {
@@ -175,7 +165,6 @@ public class ReadEventImpl extends EventImpl implements ReadEvent {
 
 	/**
 	 * <!-- begin-user-doc --> <!-- end-user-doc -->
-	 * 
 	 * @generated
 	 */
 	public String getSourceView() {
@@ -184,7 +173,6 @@ public class ReadEventImpl extends EventImpl implements ReadEvent {
 
 	/**
 	 * <!-- begin-user-doc --> <!-- end-user-doc -->
-	 * 
 	 * @generated
 	 */
 	public void setSourceView(String newSourceView) {
@@ -197,7 +185,6 @@ public class ReadEventImpl extends EventImpl implements ReadEvent {
 
 	/**
 	 * <!-- begin-user-doc --> <!-- end-user-doc -->
-	 * 
 	 * @generated
 	 */
 	public String getReadView() {
@@ -206,7 +193,6 @@ public class ReadEventImpl extends EventImpl implements ReadEvent {
 
 	/**
 	 * <!-- begin-user-doc --> <!-- end-user-doc -->
-	 * 
 	 * @generated
 	 */
 	public void setReadView(String newReadView) {
@@ -219,7 +205,6 @@ public class ReadEventImpl extends EventImpl implements ReadEvent {
 
 	/**
 	 * <!-- begin-user-doc --> <!-- end-user-doc -->
-	 * 
 	 * @generated
 	 */
 	@Override
@@ -233,7 +218,6 @@ public class ReadEventImpl extends EventImpl implements ReadEvent {
 
 	/**
 	 * <!-- begin-user-doc --> <!-- end-user-doc -->
-	 * 
 	 * @generated
 	 */
 	@Override
@@ -253,7 +237,6 @@ public class ReadEventImpl extends EventImpl implements ReadEvent {
 
 	/**
 	 * <!-- begin-user-doc --> <!-- end-user-doc -->
-	 * 
 	 * @generated
 	 */
 	@Override
@@ -274,7 +257,6 @@ public class ReadEventImpl extends EventImpl implements ReadEvent {
 
 	/**
 	 * <!-- begin-user-doc --> <!-- end-user-doc -->
-	 * 
 	 * @generated
 	 */
 	@Override
@@ -295,7 +277,6 @@ public class ReadEventImpl extends EventImpl implements ReadEvent {
 
 	/**
 	 * <!-- begin-user-doc --> <!-- end-user-doc -->
-	 * 
 	 * @generated
 	 */
 	@Override
@@ -313,7 +294,6 @@ public class ReadEventImpl extends EventImpl implements ReadEvent {
 
 	/**
 	 * <!-- begin-user-doc --> <!-- end-user-doc -->
-	 * 
 	 * @generated
 	 */
 	@Override

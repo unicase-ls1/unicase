@@ -22,15 +22,14 @@ import org.unicase.emfstore.esmodel.versioning.operations.OperationsFactory;
 import org.unicase.emfstore.esmodel.versioning.operations.OperationsPackage;
 import org.unicase.emfstore.esmodel.versioning.operations.SingleReferenceOperation;
 
-/**
+/*
  * <!-- begin-user-doc --> An implementation of the model <b>Factory</b>. <!-- end-user-doc -->
- * 
  * @generated
  */
 public class OperationsFactoryImpl extends EFactoryImpl implements OperationsFactory {
 	/**
-	 * Creates the default factory implementation. <!-- begin-user-doc --> <!-- end-user-doc -->
-	 * 
+	 * Creates the default factory implementation.
+	 * <!-- begin-user-doc --> <!-- end-user-doc -->
 	 * @generated
 	 */
 	public static OperationsFactory init() {
@@ -47,8 +46,8 @@ public class OperationsFactoryImpl extends EFactoryImpl implements OperationsFac
 	}
 
 	/**
-	 * Creates an instance of the factory. <!-- begin-user-doc --> <!-- end-user-doc -->
-	 * 
+	 * Creates an instance of the factory.
+	 * <!-- begin-user-doc --> <!-- end-user-doc -->
 	 * @generated
 	 */
 	public OperationsFactoryImpl() {
@@ -57,7 +56,6 @@ public class OperationsFactoryImpl extends EFactoryImpl implements OperationsFac
 
 	/**
 	 * <!-- begin-user-doc --> <!-- end-user-doc -->
-	 * 
 	 * @generated
 	 */
 	@Override
@@ -88,7 +86,6 @@ public class OperationsFactoryImpl extends EFactoryImpl implements OperationsFac
 
 	/**
 	 * <!-- begin-user-doc --> <!-- end-user-doc -->
-	 * 
 	 * @generated
 	 */
 	public CompositeOperation createCompositeOperation() {
@@ -98,7 +95,6 @@ public class OperationsFactoryImpl extends EFactoryImpl implements OperationsFac
 
 	/**
 	 * <!-- begin-user-doc --> <!-- end-user-doc -->
-	 * 
 	 * @generated
 	 */
 	public CreateDeleteOperation createCreateDeleteOperation() {
@@ -108,7 +104,6 @@ public class OperationsFactoryImpl extends EFactoryImpl implements OperationsFac
 
 	/**
 	 * <!-- begin-user-doc --> <!-- end-user-doc -->
-	 * 
 	 * @generated
 	 */
 	public AttributeOperation createAttributeOperation() {
@@ -118,7 +113,6 @@ public class OperationsFactoryImpl extends EFactoryImpl implements OperationsFac
 
 	/**
 	 * <!-- begin-user-doc --> <!-- end-user-doc -->
-	 * 
 	 * @generated
 	 */
 	public SingleReferenceOperation createSingleReferenceOperation() {
@@ -128,7 +122,6 @@ public class OperationsFactoryImpl extends EFactoryImpl implements OperationsFac
 
 	/**
 	 * <!-- begin-user-doc --> <!-- end-user-doc -->
-	 * 
 	 * @generated
 	 */
 	public MultiReferenceOperation createMultiReferenceOperation() {
@@ -138,7 +131,6 @@ public class OperationsFactoryImpl extends EFactoryImpl implements OperationsFac
 
 	/**
 	 * <!-- begin-user-doc --> <!-- end-user-doc -->
-	 * 
 	 * @generated
 	 */
 	public MultiReferenceMoveOperation createMultiReferenceMoveOperation() {
@@ -148,7 +140,6 @@ public class OperationsFactoryImpl extends EFactoryImpl implements OperationsFac
 
 	/**
 	 * <!-- begin-user-doc --> <!-- end-user-doc -->
-	 * 
 	 * @generated
 	 */
 	public MultiAttributeOperation createMultiAttributeOperation() {
@@ -158,7 +149,6 @@ public class OperationsFactoryImpl extends EFactoryImpl implements OperationsFac
 
 	/**
 	 * <!-- begin-user-doc --> <!-- end-user-doc -->
-	 * 
 	 * @generated
 	 */
 	public DiagramLayoutOperation createDiagramLayoutOperation() {
@@ -168,7 +158,6 @@ public class OperationsFactoryImpl extends EFactoryImpl implements OperationsFac
 
 	/**
 	 * <!-- begin-user-doc --> <!-- end-user-doc -->
-	 * 
 	 * @generated
 	 */
 	public MultiAttributeMoveOperation createMultiAttributeMoveOperation() {
@@ -178,7 +167,6 @@ public class OperationsFactoryImpl extends EFactoryImpl implements OperationsFac
 
 	/**
 	 * <!-- begin-user-doc --> <!-- end-user-doc -->
-	 * 
 	 * @generated
 	 */
 	public OperationsPackage getOperationsPackage() {
@@ -187,7 +175,6 @@ public class OperationsFactoryImpl extends EFactoryImpl implements OperationsFac
 
 	/**
 	 * <!-- begin-user-doc --> <!-- end-user-doc -->
-	 * 
 	 * @deprecated
 	 * @generated
 	 */

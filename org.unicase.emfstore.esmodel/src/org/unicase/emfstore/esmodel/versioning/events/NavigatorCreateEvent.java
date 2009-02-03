@@ -7,33 +7,26 @@ package org.unicase.emfstore.esmodel.versioning.events;
 
 import org.unicase.model.ModelElementId;
 
-/**
+/*
  * <!-- begin-user-doc --> A representation of the model object '<em><b>Navigator Create Event</b></em>'. <!--
- * end-user-doc -->
- * <p>
- * The following features are supported:
- * <ul>
- * <li>{@link org.unicase.emfstore.esmodel.versioning.events.NavigatorCreateEvent#getCreatedElement <em>Created Element
- * </em>}</li>
- * <li>{@link org.unicase.emfstore.esmodel.versioning.events.NavigatorCreateEvent#getSourceSection <em>Source Section
- * </em>}</li>
- * <li>{@link org.unicase.emfstore.esmodel.versioning.events.NavigatorCreateEvent#isDynamic <em>Dynamic</em>}</li>
- * </ul>
- * </p>
- * 
+ * end-user-doc --> <p> The following features are supported: <ul> <li>{@link
+ * org.unicase.emfstore.esmodel.versioning.events.NavigatorCreateEvent#getCreatedElement <em>Created Element</em>}</li>
+ * <li>{@link org.unicase.emfstore.esmodel.versioning.events.NavigatorCreateEvent#getSourceSection <em>Source
+ * Section</em>}</li> <li>{@link org.unicase.emfstore.esmodel.versioning.events.NavigatorCreateEvent#isDynamic
+ * <em>Dynamic</em>}</li> </ul> </p>
  * @see org.unicase.emfstore.esmodel.versioning.events.EventsPackage#getNavigatorCreateEvent()
  * @model
  * @generated
  */
 public interface NavigatorCreateEvent extends Event {
 	/**
-	 * Returns the value of the '<em><b>Created Element</b></em>' reference. <!-- begin-user-doc -->
+	 * Returns the value of the '<em><b>Created Element</b></em>' reference.
+	 * <!-- begin-user-doc -->
 	 * <p>
 	 * If the meaning of the '<em>Created Element</em>' reference isn't clear, there really should be more of a
 	 * description here...
 	 * </p>
 	 * <!-- end-user-doc -->
-	 * 
 	 * @return the value of the '<em>Created Element</em>' reference.
 	 * @see #setCreatedElement(ModelElementId)
 	 * @see org.unicase.emfstore.esmodel.versioning.events.EventsPackage#getNavigatorCreateEvent_CreatedElement()
@@ -43,10 +36,8 @@ public interface NavigatorCreateEvent extends Event {
 	ModelElementId getCreatedElement();
 
 	/**
-	 * Sets the value of the '
-	 * {@link org.unicase.emfstore.esmodel.versioning.events.NavigatorCreateEvent#getCreatedElement
-	 * <em>Created Element</em>}' reference. <!-- begin-user-doc --> <!-- end-user-doc -->
-	 * 
+	 * Sets the value of the '{@link org.unicase.emfstore.esmodel.versioning.events.NavigatorCreateEvent#getCreatedElement <em>Created Element</em>}' reference.
+	 * <!-- begin-user-doc --> <!-- end-user-doc -->
 	 * @param value the new value of the '<em>Created Element</em>' reference.
 	 * @see #getCreatedElement()
 	 * @generated
@@ -54,13 +45,13 @@ public interface NavigatorCreateEvent extends Event {
 	void setCreatedElement(ModelElementId value);
 
 	/**
-	 * Returns the value of the '<em><b>Source Section</b></em>' reference. <!-- begin-user-doc -->
+	 * Returns the value of the '<em><b>Source Section</b></em>' reference.
+	 * <!-- begin-user-doc -->
 	 * <p>
 	 * If the meaning of the '<em>Source Section</em>' reference isn't clear, there really should be more of a
 	 * description here...
 	 * </p>
 	 * <!-- end-user-doc -->
-	 * 
 	 * @return the value of the '<em>Source Section</em>' reference.
 	 * @see #setSourceSection(ModelElementId)
 	 * @see org.unicase.emfstore.esmodel.versioning.events.EventsPackage#getNavigatorCreateEvent_SourceSection()
@@ -70,10 +61,8 @@ public interface NavigatorCreateEvent extends Event {
 	ModelElementId getSourceSection();
 
 	/**
-	 * Sets the value of the '
-	 * {@link org.unicase.emfstore.esmodel.versioning.events.NavigatorCreateEvent#getSourceSection
-	 * <em>Source Section</em>}' reference. <!-- begin-user-doc --> <!-- end-user-doc -->
-	 * 
+	 * Sets the value of the '{@link org.unicase.emfstore.esmodel.versioning.events.NavigatorCreateEvent#getSourceSection <em>Source Section</em>}' reference.
+	 * <!-- begin-user-doc --> <!-- end-user-doc -->
 	 * @param value the new value of the '<em>Source Section</em>' reference.
 	 * @see #getSourceSection()
 	 * @generated
@@ -81,13 +70,13 @@ public interface NavigatorCreateEvent extends Event {
 	void setSourceSection(ModelElementId value);
 
 	/**
-	 * Returns the value of the '<em><b>Dynamic</b></em>' attribute. <!-- begin-user-doc -->
+	 * Returns the value of the '<em><b>Dynamic</b></em>' attribute.
+	 * <!-- begin-user-doc -->
 	 * <p>
 	 * If the meaning of the '<em>Dynamic</em>' attribute isn't clear, there really should be more of a description
 	 * here...
 	 * </p>
 	 * <!-- end-user-doc -->
-	 * 
 	 * @return the value of the '<em>Dynamic</em>' attribute.
 	 * @see #setDynamic(boolean)
 	 * @see org.unicase.emfstore.esmodel.versioning.events.EventsPackage#getNavigatorCreateEvent_Dynamic()
@@ -97,9 +86,8 @@ public interface NavigatorCreateEvent extends Event {
 	boolean isDynamic();
 
 	/**
-	 * Sets the value of the '{@link org.unicase.emfstore.esmodel.versioning.events.NavigatorCreateEvent#isDynamic
-	 * <em>Dynamic</em>}' attribute. <!-- begin-user-doc --> <!-- end-user-doc -->
-	 * 
+	 * Sets the value of the '{@link org.unicase.emfstore.esmodel.versioning.events.NavigatorCreateEvent#isDynamic <em>Dynamic</em>}' attribute.
+	 * <!-- begin-user-doc --> <!-- end-user-doc -->
 	 * @param value the new value of the '<em>Dynamic</em>' attribute.
 	 * @see #isDynamic()
 	 * @generated

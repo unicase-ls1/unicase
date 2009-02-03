@@ -5,10 +5,9 @@
  */
 package org.unicase.emfstore.esmodel.versioning;
 
-/**
+/*
  * <!-- begin-user-doc --> A representation of the model object ' <em><b>Head Version Spec</b></em>'. <!-- end-user-doc
  * -->
- * 
  * @see org.unicase.emfstore.esmodel.versioning.VersioningPackage#getHeadVersionSpec()
  * @model
  * @generated

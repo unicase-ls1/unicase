@@ -12,24 +12,18 @@ import org.eclipse.emf.ecore.impl.EObjectImpl;
 import org.unicase.emfstore.esmodel.ClientVersionInfo;
 import org.unicase.emfstore.esmodel.EsmodelPackage;
 
-/**
+/*
  * <!-- begin-user-doc --> An implementation of the model object '<em><b>Client Version Info</b></em>'. <!--
- * end-user-doc -->
- * <p>
- * The following features are implemented:
- * <ul>
- * <li>{@link org.unicase.emfstore.esmodel.impl.ClientVersionInfoImpl#getVersion <em>Version</em>}</li>
- * <li>{@link org.unicase.emfstore.esmodel.impl.ClientVersionInfoImpl#getName <em>Name</em>}</li>
- * </ul>
- * </p>
- * 
+ * end-user-doc --> <p> The following features are implemented: <ul> <li>{@link
+ * org.unicase.emfstore.esmodel.impl.ClientVersionInfoImpl#getVersion <em>Version</em>}</li> <li>{@link
+ * org.unicase.emfstore.esmodel.impl.ClientVersionInfoImpl#getName <em>Name</em>}</li> </ul> </p>
  * @generated
  */
 public class ClientVersionInfoImpl extends EObjectImpl implements ClientVersionInfo {
 	/**
-	 * The default value of the '{@link #getVersion() <em>Version</em>}' attribute. <!-- begin-user-doc --> <!--
+	 * The default value of the '{@link #getVersion() <em>Version</em>}' attribute.
+	 * <!-- begin-user-doc --> <!--
 	 * end-user-doc -->
-	 * 
 	 * @see #getVersion()
 	 * @generated
 	 * @ordered
@@ -37,9 +31,9 @@ public class ClientVersionInfoImpl extends EObjectImpl implements ClientVersionI
 	protected static final String VERSION_EDEFAULT = null;
 
 	/**
-	 * The cached value of the '{@link #getVersion() <em>Version</em>}' attribute. <!-- begin-user-doc --> <!--
+	 * The cached value of the '{@link #getVersion() <em>Version</em>}' attribute.
+	 * <!-- begin-user-doc --> <!--
 	 * end-user-doc -->
-	 * 
 	 * @see #getVersion()
 	 * @generated
 	 * @ordered
@@ -68,7 +62,6 @@ public class ClientVersionInfoImpl extends EObjectImpl implements ClientVersionI
 
 	/**
 	 * <!-- begin-user-doc --> <!-- end-user-doc -->
-	 * 
 	 * @generated
 	 */
 	protected ClientVersionInfoImpl() {
@@ -77,7 +70,6 @@ public class ClientVersionInfoImpl extends EObjectImpl implements ClientVersionI
 
 	/**
 	 * <!-- begin-user-doc --> <!-- end-user-doc -->
-	 * 
 	 * @generated
 	 */
 	@Override
@@ -87,7 +79,6 @@ public class ClientVersionInfoImpl extends EObjectImpl implements ClientVersionI
 
 	/**
 	 * <!-- begin-user-doc --> <!-- end-user-doc -->
-	 * 
 	 * @generated
 	 */
 	public String getVersion() {
@@ -96,7 +87,6 @@ public class ClientVersionInfoImpl extends EObjectImpl implements ClientVersionI
 
 	/**
 	 * <!-- begin-user-doc --> <!-- end-user-doc -->
-	 * 
 	 * @generated
 	 */
 	public void setVersion(String newVersion) {
@@ -109,7 +99,6 @@ public class ClientVersionInfoImpl extends EObjectImpl implements ClientVersionI
 
 	/**
 	 * <!-- begin-user-doc --> <!-- end-user-doc -->
-	 * 
 	 * @generated
 	 */
 	public String getName() {
@@ -118,7 +107,6 @@ public class ClientVersionInfoImpl extends EObjectImpl implements ClientVersionI
 
 	/**
 	 * <!-- begin-user-doc --> <!-- end-user-doc -->
-	 * 
 	 * @generated
 	 */
 	public void setName(String newName) {
@@ -131,7 +119,6 @@ public class ClientVersionInfoImpl extends EObjectImpl implements ClientVersionI
 
 	/**
 	 * <!-- begin-user-doc --> <!-- end-user-doc -->
-	 * 
 	 * @generated
 	 */
 	@Override
@@ -147,7 +134,6 @@ public class ClientVersionInfoImpl extends EObjectImpl implements ClientVersionI
 
 	/**
 	 * <!-- begin-user-doc --> <!-- end-user-doc -->
-	 * 
 	 * @generated
 	 */
 	@Override
@@ -165,7 +151,6 @@ public class ClientVersionInfoImpl extends EObjectImpl implements ClientVersionI
 
 	/**
 	 * <!-- begin-user-doc --> <!-- end-user-doc -->
-	 * 
 	 * @generated
 	 */
 	@Override
@@ -183,7 +168,6 @@ public class ClientVersionInfoImpl extends EObjectImpl implements ClientVersionI
 
 	/**
 	 * <!-- begin-user-doc --> <!-- end-user-doc -->
-	 * 
 	 * @generated
 	 */
 	@Override
@@ -199,7 +183,6 @@ public class ClientVersionInfoImpl extends EObjectImpl implements ClientVersionI
 
 	/**
 	 * <!-- begin-user-doc --> <!-- end-user-doc -->
-	 * 
 	 * @generated
 	 */
 	@Override

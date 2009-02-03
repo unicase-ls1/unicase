@@ -5,33 +5,34 @@
  */
 package org.unicase.emfstore.esmodel.versioning.operations.impl;
 
+import java.util.Collection;
+
 import org.eclipse.emf.common.notify.Notification;
 import org.eclipse.emf.common.notify.NotificationChain;
+import org.eclipse.emf.common.util.EList;
 import org.eclipse.emf.ecore.EClass;
 import org.eclipse.emf.ecore.InternalEObject;
 import org.eclipse.emf.ecore.impl.ENotificationImpl;
+import org.eclipse.emf.ecore.util.EObjectContainmentEList;
 import org.eclipse.emf.ecore.util.EcoreUtil;
+import org.eclipse.emf.ecore.util.InternalEList;
 import org.unicase.emfstore.esmodel.versioning.operations.AbstractOperation;
 import org.unicase.emfstore.esmodel.versioning.operations.CreateDeleteOperation;
 import org.unicase.emfstore.esmodel.versioning.operations.OperationsFactory;
 import org.unicase.emfstore.esmodel.versioning.operations.OperationsPackage;
+import org.unicase.emfstore.esmodel.versioning.operations.ReferenceOperation;
 import org.unicase.model.ModelElement;
 import org.unicase.model.Project;
 import org.unicase.model.util.ModelUtil;
 
-/**
+/*
  * <!-- begin-user-doc --> An implementation of the model object ' <em><b>Create Delete Operation</b></em>'. <!--
- * end-user-doc -->
- * <p>
- * The following features are implemented:
- * <ul>
- * <li>{@link org.unicase.emfstore.esmodel.versioning.operations.impl.CreateDeleteOperationImpl#isDelete <em>Delete
- * </em>}</li>
- * <li>{@link org.unicase.emfstore.esmodel.versioning.operations.impl.CreateDeleteOperationImpl#getModelElement <em>
- * Model Element</em>}</li>
- * </ul>
- * </p>
- * 
+ * end-user-doc --> <p> The following features are implemented: <ul> <li>{@link
+ * org.unicase.emfstore.esmodel.versioning.operations.impl.CreateDeleteOperationImpl#isDelete <em>Delete</em>}</li>
+ * <li>{@link org.unicase.emfstore.esmodel.versioning.operations.impl.CreateDeleteOperationImpl#getModelElement
+ * <em>Model Element</em>}</li> <li>{@link
+ * org.unicase.emfstore.esmodel.versioning.operations.impl.CreateDeleteOperationImpl#getSubOperations <em>Sub
+ * Operations</em>}</li> </ul> </p>
  * @generated
  */
 public class CreateDeleteOperationImpl extends AbstractOperationImpl implements CreateDeleteOperation {
@@ -65,9 +66,9 @@ public class CreateDeleteOperationImpl extends AbstractOperationImpl implements 
 	}
 
 	/**
-	 * The default value of the '{@link #isDelete() <em>Delete</em>}' attribute. <!-- begin-user-doc --> <!--
+	 * The default value of the '{@link #isDelete() <em>Delete</em>}' attribute.
+	 * <!-- begin-user-doc --> <!--
 	 * end-user-doc -->
-	 * 
 	 * @see #isDelete()
 	 * @generated
 	 * @ordered
@@ -75,9 +76,9 @@ public class CreateDeleteOperationImpl extends AbstractOperationImpl implements 
 	protected static final boolean DELETE_EDEFAULT = false;
 
 	/**
-	 * The cached value of the '{@link #isDelete() <em>Delete</em>}' attribute. <!-- begin-user-doc --> <!--
+	 * The cached value of the '{@link #isDelete() <em>Delete</em>}' attribute.
+	 * <!-- begin-user-doc --> <!--
 	 * end-user-doc -->
-	 * 
 	 * @see #isDelete()
 	 * @generated
 	 * @ordered
@@ -95,8 +96,17 @@ public class CreateDeleteOperationImpl extends AbstractOperationImpl implements 
 	protected ModelElement modelElement;
 
 	/**
+	 * The cached value of the '{@link #getSubOperations() <em>Sub Operations</em>}' containment reference list.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @see #getSubOperations()
+	 * @generated
+	 * @ordered
+	 */
+	protected EList<ReferenceOperation> subOperations;
+
+	/**
 	 * <!-- begin-user-doc --> <!-- end-user-doc -->
-	 * 
 	 * @generated
 	 */
 	protected CreateDeleteOperationImpl() {
@@ -105,7 +115,6 @@ public class CreateDeleteOperationImpl extends AbstractOperationImpl implements 
 
 	/**
 	 * <!-- begin-user-doc --> <!-- end-user-doc -->
-	 * 
 	 * @generated
 	 */
 	@Override
@@ -115,7 +124,6 @@ public class CreateDeleteOperationImpl extends AbstractOperationImpl implements 
 
 	/**
 	 * <!-- begin-user-doc --> <!-- end-user-doc -->
-	 * 
 	 * @generated
 	 */
 	public boolean isDelete() {
@@ -124,7 +132,6 @@ public class CreateDeleteOperationImpl extends AbstractOperationImpl implements 
 
 	/**
 	 * <!-- begin-user-doc --> <!-- end-user-doc -->
-	 * 
 	 * @generated
 	 */
 	public void setDelete(boolean newDelete) {
@@ -137,7 +144,6 @@ public class CreateDeleteOperationImpl extends AbstractOperationImpl implements 
 
 	/**
 	 * <!-- begin-user-doc --> <!-- end-user-doc -->
-	 * 
 	 * @generated
 	 */
 	public ModelElement getModelElement() {
@@ -164,7 +170,6 @@ public class CreateDeleteOperationImpl extends AbstractOperationImpl implements 
 
 	/**
 	 * <!-- begin-user-doc --> <!-- end-user-doc -->
-	 * 
 	 * @generated
 	 */
 	public ModelElement basicGetModelElement() {
@@ -173,7 +178,6 @@ public class CreateDeleteOperationImpl extends AbstractOperationImpl implements 
 
 	/**
 	 * <!-- begin-user-doc --> <!-- end-user-doc -->
-	 * 
 	 * @generated
 	 */
 	public NotificationChain basicSetModelElement(ModelElement newModelElement, NotificationChain msgs) {
@@ -192,7 +196,6 @@ public class CreateDeleteOperationImpl extends AbstractOperationImpl implements 
 
 	/**
 	 * <!-- begin-user-doc --> <!-- end-user-doc -->
-	 * 
 	 * @generated
 	 */
 	public void setModelElement(ModelElement newModelElement) {
@@ -213,8 +216,20 @@ public class CreateDeleteOperationImpl extends AbstractOperationImpl implements 
 	}
 
 	/**
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 */
+	public EList<ReferenceOperation> getSubOperations() {
+		if (subOperations == null) {
+			subOperations = new EObjectContainmentEList.Resolving<ReferenceOperation>(ReferenceOperation.class, this,
+				OperationsPackage.CREATE_DELETE_OPERATION__SUB_OPERATIONS);
+		}
+		return subOperations;
+	}
+
+	/**
 	 * <!-- begin-user-doc --> <!-- end-user-doc -->
-	 * 
 	 * @generated
 	 */
 	@Override
@@ -222,13 +237,14 @@ public class CreateDeleteOperationImpl extends AbstractOperationImpl implements 
 		switch (featureID) {
 		case OperationsPackage.CREATE_DELETE_OPERATION__MODEL_ELEMENT:
 			return basicSetModelElement(null, msgs);
+		case OperationsPackage.CREATE_DELETE_OPERATION__SUB_OPERATIONS:
+			return ((InternalEList<?>) getSubOperations()).basicRemove(otherEnd, msgs);
 		}
 		return super.eInverseRemove(otherEnd, featureID, msgs);
 	}
 
 	/**
 	 * <!-- begin-user-doc --> <!-- end-user-doc -->
-	 * 
 	 * @generated
 	 */
 	@Override
@@ -240,15 +256,17 @@ public class CreateDeleteOperationImpl extends AbstractOperationImpl implements 
 			if (resolve)
 				return getModelElement();
 			return basicGetModelElement();
+		case OperationsPackage.CREATE_DELETE_OPERATION__SUB_OPERATIONS:
+			return getSubOperations();
 		}
 		return super.eGet(featureID, resolve, coreType);
 	}
 
 	/**
 	 * <!-- begin-user-doc --> <!-- end-user-doc -->
-	 * 
 	 * @generated
 	 */
+	@SuppressWarnings("unchecked")
 	@Override
 	public void eSet(int featureID, Object newValue) {
 		switch (featureID) {
@@ -258,13 +276,16 @@ public class CreateDeleteOperationImpl extends AbstractOperationImpl implements 
 		case OperationsPackage.CREATE_DELETE_OPERATION__MODEL_ELEMENT:
 			setModelElement((ModelElement) newValue);
 			return;
+		case OperationsPackage.CREATE_DELETE_OPERATION__SUB_OPERATIONS:
+			getSubOperations().clear();
+			getSubOperations().addAll((Collection<? extends ReferenceOperation>) newValue);
+			return;
 		}
 		super.eSet(featureID, newValue);
 	}
 
 	/**
 	 * <!-- begin-user-doc --> <!-- end-user-doc -->
-	 * 
 	 * @generated
 	 */
 	@Override
@@ -276,13 +297,15 @@ public class CreateDeleteOperationImpl extends AbstractOperationImpl implements 
 		case OperationsPackage.CREATE_DELETE_OPERATION__MODEL_ELEMENT:
 			setModelElement((ModelElement) null);
 			return;
+		case OperationsPackage.CREATE_DELETE_OPERATION__SUB_OPERATIONS:
+			getSubOperations().clear();
+			return;
 		}
 		super.eUnset(featureID);
 	}
 
 	/**
 	 * <!-- begin-user-doc --> <!-- end-user-doc -->
-	 * 
 	 * @generated
 	 */
 	@Override
@@ -292,13 +315,14 @@ public class CreateDeleteOperationImpl extends AbstractOperationImpl implements 
 			return delete != DELETE_EDEFAULT;
 		case OperationsPackage.CREATE_DELETE_OPERATION__MODEL_ELEMENT:
 			return modelElement != null;
+		case OperationsPackage.CREATE_DELETE_OPERATION__SUB_OPERATIONS:
+			return subOperations != null && !subOperations.isEmpty();
 		}
 		return super.eIsSet(featureID);
 	}
 
 	/**
 	 * <!-- begin-user-doc --> <!-- end-user-doc -->
-	 * 
 	 * @generated
 	 */
 	@Override

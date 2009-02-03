@@ -10,53 +10,46 @@ import org.eclipse.emf.ecore.EClass;
 import org.eclipse.emf.ecore.EPackage;
 import org.eclipse.emf.ecore.EReference;
 
-/**
+/*
  * <!-- begin-user-doc --> The <b>Package</b> for the model. It contains accessors for the meta objects to represent
- * <ul>
- * <li>each class,</li>
- * <li>each feature of each class,</li>
- * <li>each enum,</li>
- * <li>and each data type</li>
- * </ul>
+ * <ul> <li>each class,</li> <li>each feature of each class,</li> <li>each enum,</li> <li>and each data type</li> </ul>
  * <!-- end-user-doc -->
- * 
  * @see org.unicase.emfstore.esmodel.versioning.VersioningFactory
  * @model kind="package"
  * @generated
  */
 public interface VersioningPackage extends EPackage {
 	/**
-	 * The package name. <!-- begin-user-doc --> <!-- end-user-doc -->
-	 * 
+	 * The package name.
+	 * <!-- begin-user-doc --> <!-- end-user-doc -->
 	 * @generated
 	 */
 	String eNAME = "versioning";
 
 	/**
-	 * The package namespace URI. <!-- begin-user-doc --> <!-- end-user-doc -->
-	 * 
+	 * The package namespace URI.
+	 * <!-- begin-user-doc --> <!-- end-user-doc -->
 	 * @generated
 	 */
 	String eNS_URI = "http://unicase.org/esmodel/versioning";
 
 	/**
-	 * The package namespace name. <!-- begin-user-doc --> <!-- end-user-doc -->
-	 * 
+	 * The package namespace name.
+	 * <!-- begin-user-doc --> <!-- end-user-doc -->
 	 * @generated
 	 */
 	String eNS_PREFIX = "org.unicase.emfstore.esmodel.versioning";
 
 	/**
-	 * The singleton instance of the package. <!-- begin-user-doc --> <!-- end-user-doc -->
-	 * 
+	 * The singleton instance of the package.
+	 * <!-- begin-user-doc --> <!-- end-user-doc -->
 	 * @generated
 	 */
 	VersioningPackage eINSTANCE = org.unicase.emfstore.esmodel.versioning.impl.VersioningPackageImpl.init();
 
 	/**
-	 * The meta object id for the '{@link org.unicase.emfstore.esmodel.versioning.VersionSpec <em>Version Spec</em>}'
-	 * class. <!-- begin-user-doc --> <!-- end-user-doc -->
-	 * 
+	 * The meta object id for the '{@link org.unicase.emfstore.esmodel.versioning.VersionSpec <em>Version Spec</em>}' class.
+	 * <!-- begin-user-doc --> <!-- end-user-doc -->
 	 * @see org.unicase.emfstore.esmodel.versioning.VersionSpec
 	 * @see org.unicase.emfstore.esmodel.versioning.impl.VersioningPackageImpl#getVersionSpec()
 	 * @generated
@@ -73,9 +66,8 @@ public interface VersioningPackage extends EPackage {
 	int VERSION_SPEC_FEATURE_COUNT = 0;
 
 	/**
-	 * The meta object id for the '{@link org.unicase.emfstore.esmodel.versioning.impl.TagVersionSpecImpl
-	 * <em>Tag Version Spec</em>}' class. <!-- begin-user-doc --> <!-- end-user-doc -->
-	 * 
+	 * The meta object id for the '{@link org.unicase.emfstore.esmodel.versioning.impl.TagVersionSpecImpl <em>Tag Version Spec</em>}' class.
+	 * <!-- begin-user-doc --> <!-- end-user-doc -->
 	 * @see org.unicase.emfstore.esmodel.versioning.impl.TagVersionSpecImpl
 	 * @see org.unicase.emfstore.esmodel.versioning.impl.VersioningPackageImpl#getTagVersionSpec()
 	 * @generated
@@ -83,26 +75,25 @@ public interface VersioningPackage extends EPackage {
 	int TAG_VERSION_SPEC = 0;
 
 	/**
-	 * The feature id for the '<em><b>Name</b></em>' attribute. <!-- begin-user-doc --> <!-- end-user-doc -->
-	 * 
+	 * The feature id for the '<em><b>Name</b></em>' attribute.
+	 * <!-- begin-user-doc --> <!-- end-user-doc -->
 	 * @generated
 	 * @ordered
 	 */
 	int TAG_VERSION_SPEC__NAME = VERSION_SPEC_FEATURE_COUNT + 0;
 
 	/**
-	 * The number of structural features of the '<em>Tag Version Spec</em>' class. <!-- begin-user-doc --> <!--
+	 * The number of structural features of the '<em>Tag Version Spec</em>' class.
+	 * <!-- begin-user-doc --> <!--
 	 * end-user-doc -->
-	 * 
 	 * @generated
 	 * @ordered
 	 */
 	int TAG_VERSION_SPEC_FEATURE_COUNT = VERSION_SPEC_FEATURE_COUNT + 1;
 
 	/**
-	 * The meta object id for the '{@link org.unicase.emfstore.esmodel.versioning.impl.DateVersionSpecImpl
-	 * <em>Date Version Spec</em>}' class. <!-- begin-user-doc --> <!-- end-user-doc -->
-	 * 
+	 * The meta object id for the '{@link org.unicase.emfstore.esmodel.versioning.impl.DateVersionSpecImpl <em>Date Version Spec</em>}' class.
+	 * <!-- begin-user-doc --> <!-- end-user-doc -->
 	 * @see org.unicase.emfstore.esmodel.versioning.impl.DateVersionSpecImpl
 	 * @see org.unicase.emfstore.esmodel.versioning.impl.VersioningPackageImpl#getDateVersionSpec()
 	 * @generated
@@ -110,26 +101,25 @@ public interface VersioningPackage extends EPackage {
 	int DATE_VERSION_SPEC = 1;
 
 	/**
-	 * The feature id for the '<em><b>Date</b></em>' attribute. <!-- begin-user-doc --> <!-- end-user-doc -->
-	 * 
+	 * The feature id for the '<em><b>Date</b></em>' attribute.
+	 * <!-- begin-user-doc --> <!-- end-user-doc -->
 	 * @generated
 	 * @ordered
 	 */
 	int DATE_VERSION_SPEC__DATE = VERSION_SPEC_FEATURE_COUNT + 0;
 
 	/**
-	 * The number of structural features of the '<em>Date Version Spec</em>' class. <!-- begin-user-doc --> <!--
+	 * The number of structural features of the '<em>Date Version Spec</em>' class.
+	 * <!-- begin-user-doc --> <!--
 	 * end-user-doc -->
-	 * 
 	 * @generated
 	 * @ordered
 	 */
 	int DATE_VERSION_SPEC_FEATURE_COUNT = VERSION_SPEC_FEATURE_COUNT + 1;
 
 	/**
-	 * The meta object id for the '{@link org.unicase.emfstore.esmodel.versioning.impl.PrimaryVersionSpecImpl
-	 * <em>Primary Version Spec</em>}' class. <!-- begin-user-doc --> <!-- end-user-doc -->
-	 * 
+	 * The meta object id for the '{@link org.unicase.emfstore.esmodel.versioning.impl.PrimaryVersionSpecImpl <em>Primary Version Spec</em>}' class.
+	 * <!-- begin-user-doc --> <!-- end-user-doc -->
 	 * @see org.unicase.emfstore.esmodel.versioning.impl.PrimaryVersionSpecImpl
 	 * @see org.unicase.emfstore.esmodel.versioning.impl.VersioningPackageImpl#getPrimaryVersionSpec()
 	 * @generated
@@ -137,26 +127,25 @@ public interface VersioningPackage extends EPackage {
 	int PRIMARY_VERSION_SPEC = 2;
 
 	/**
-	 * The feature id for the '<em><b>Identifier</b></em>' attribute. <!-- begin-user-doc --> <!-- end-user-doc -->
-	 * 
+	 * The feature id for the '<em><b>Identifier</b></em>' attribute.
+	 * <!-- begin-user-doc --> <!-- end-user-doc -->
 	 * @generated
 	 * @ordered
 	 */
 	int PRIMARY_VERSION_SPEC__IDENTIFIER = VERSION_SPEC_FEATURE_COUNT + 0;
 
 	/**
-	 * The number of structural features of the '<em>Primary Version Spec</em>' class. <!-- begin-user-doc --> <!--
+	 * The number of structural features of the '<em>Primary Version Spec</em>' class.
+	 * <!-- begin-user-doc --> <!--
 	 * end-user-doc -->
-	 * 
 	 * @generated
 	 * @ordered
 	 */
 	int PRIMARY_VERSION_SPEC_FEATURE_COUNT = VERSION_SPEC_FEATURE_COUNT + 1;
 
 	/**
-	 * The meta object id for the '{@link org.unicase.emfstore.esmodel.versioning.impl.LogMessageImpl
-	 * <em>Log Message</em>}' class. <!-- begin-user-doc --> <!-- end-user-doc -->
-	 * 
+	 * The meta object id for the '{@link org.unicase.emfstore.esmodel.versioning.impl.LogMessageImpl <em>Log Message</em>}' class.
+	 * <!-- begin-user-doc --> <!-- end-user-doc -->
 	 * @see org.unicase.emfstore.esmodel.versioning.impl.LogMessageImpl
 	 * @see org.unicase.emfstore.esmodel.versioning.impl.VersioningPackageImpl#getLogMessage()
 	 * @generated
@@ -164,32 +153,32 @@ public interface VersioningPackage extends EPackage {
 	int LOG_MESSAGE = 4;
 
 	/**
-	 * The feature id for the '<em><b>Author</b></em>' attribute. <!-- begin-user-doc --> <!-- end-user-doc -->
-	 * 
+	 * The feature id for the '<em><b>Author</b></em>' attribute.
+	 * <!-- begin-user-doc --> <!-- end-user-doc -->
 	 * @generated
 	 * @ordered
 	 */
 	int LOG_MESSAGE__AUTHOR = 0;
 
 	/**
-	 * The feature id for the '<em><b>Message</b></em>' attribute. <!-- begin-user-doc --> <!-- end-user-doc -->
-	 * 
+	 * The feature id for the '<em><b>Message</b></em>' attribute.
+	 * <!-- begin-user-doc --> <!-- end-user-doc -->
 	 * @generated
 	 * @ordered
 	 */
 	int LOG_MESSAGE__MESSAGE = 1;
 
 	/**
-	 * The feature id for the '<em><b>Date</b></em>' attribute. <!-- begin-user-doc --> <!-- end-user-doc -->
-	 * 
+	 * The feature id for the '<em><b>Date</b></em>' attribute.
+	 * <!-- begin-user-doc --> <!-- end-user-doc -->
 	 * @generated
 	 * @ordered
 	 */
 	int LOG_MESSAGE__DATE = 2;
 
 	/**
-	 * The feature id for the '<em><b>Client Date</b></em>' attribute. <!-- begin-user-doc --> <!-- end-user-doc -->
-	 * 
+	 * The feature id for the '<em><b>Client Date</b></em>' attribute.
+	 * <!-- begin-user-doc --> <!-- end-user-doc -->
 	 * @generated
 	 * @ordered
 	 */
@@ -205,9 +194,8 @@ public interface VersioningPackage extends EPackage {
 	int LOG_MESSAGE_FEATURE_COUNT = 4;
 
 	/**
-	 * The meta object id for the '{@link org.unicase.emfstore.esmodel.versioning.impl.ChangePackageImpl
-	 * <em>Change Package</em>}' class. <!-- begin-user-doc --> <!-- end-user-doc -->
-	 * 
+	 * The meta object id for the '{@link org.unicase.emfstore.esmodel.versioning.impl.ChangePackageImpl <em>Change Package</em>}' class.
+	 * <!-- begin-user-doc --> <!-- end-user-doc -->
 	 * @see org.unicase.emfstore.esmodel.versioning.impl.ChangePackageImpl
 	 * @see org.unicase.emfstore.esmodel.versioning.impl.VersioningPackageImpl#getChangePackage()
 	 * @generated
@@ -215,45 +203,44 @@ public interface VersioningPackage extends EPackage {
 	int CHANGE_PACKAGE = 5;
 
 	/**
-	 * The feature id for the '<em><b>Operations</b></em>' containment reference list. <!-- begin-user-doc --> <!--
+	 * The feature id for the '<em><b>Operations</b></em>' containment reference list.
+	 * <!-- begin-user-doc --> <!--
 	 * end-user-doc -->
-	 * 
 	 * @generated
 	 * @ordered
 	 */
 	int CHANGE_PACKAGE__OPERATIONS = 0;
 
 	/**
-	 * The feature id for the '<em><b>Events</b></em>' containment reference list. <!-- begin-user-doc --> <!--
+	 * The feature id for the '<em><b>Events</b></em>' containment reference list.
+	 * <!-- begin-user-doc --> <!--
 	 * end-user-doc -->
-	 * 
 	 * @generated
 	 * @ordered
 	 */
 	int CHANGE_PACKAGE__EVENTS = 1;
 
 	/**
-	 * The feature id for the '<em><b>Log Message</b></em>' containment reference. <!-- begin-user-doc --> <!--
+	 * The feature id for the '<em><b>Log Message</b></em>' containment reference.
+	 * <!-- begin-user-doc --> <!--
 	 * end-user-doc -->
-	 * 
 	 * @generated
 	 * @ordered
 	 */
 	int CHANGE_PACKAGE__LOG_MESSAGE = 2;
 
 	/**
-	 * The number of structural features of the '<em>Change Package</em>' class. <!-- begin-user-doc --> <!--
+	 * The number of structural features of the '<em>Change Package</em>' class.
+	 * <!-- begin-user-doc --> <!--
 	 * end-user-doc -->
-	 * 
 	 * @generated
 	 * @ordered
 	 */
 	int CHANGE_PACKAGE_FEATURE_COUNT = 3;
 
 	/**
-	 * The meta object id for the '{@link org.unicase.emfstore.esmodel.versioning.impl.HistoryInfoImpl
-	 * <em>History Info</em>}' class. <!-- begin-user-doc --> <!-- end-user-doc -->
-	 * 
+	 * The meta object id for the '{@link org.unicase.emfstore.esmodel.versioning.impl.HistoryInfoImpl <em>History Info</em>}' class.
+	 * <!-- begin-user-doc --> <!-- end-user-doc -->
 	 * @see org.unicase.emfstore.esmodel.versioning.impl.HistoryInfoImpl
 	 * @see org.unicase.emfstore.esmodel.versioning.impl.VersioningPackageImpl#getHistoryInfo()
 	 * @generated
@@ -261,27 +248,27 @@ public interface VersioningPackage extends EPackage {
 	int HISTORY_INFO = 6;
 
 	/**
-	 * The feature id for the '<em><b>Primery Spec</b></em>' containment reference. <!-- begin-user-doc --> <!--
+	 * The feature id for the '<em><b>Primery Spec</b></em>' containment reference.
+	 * <!-- begin-user-doc --> <!--
 	 * end-user-doc -->
-	 * 
 	 * @generated
 	 * @ordered
 	 */
 	int HISTORY_INFO__PRIMERY_SPEC = 0;
 
 	/**
-	 * The feature id for the '<em><b>Log Message</b></em>' containment reference. <!-- begin-user-doc --> <!--
+	 * The feature id for the '<em><b>Log Message</b></em>' containment reference.
+	 * <!-- begin-user-doc --> <!--
 	 * end-user-doc -->
-	 * 
 	 * @generated
 	 * @ordered
 	 */
 	int HISTORY_INFO__LOG_MESSAGE = 1;
 
 	/**
-	 * The feature id for the '<em><b>Tag Specs</b></em>' containment reference list. <!-- begin-user-doc --> <!--
+	 * The feature id for the '<em><b>Tag Specs</b></em>' containment reference list.
+	 * <!-- begin-user-doc --> <!--
 	 * end-user-doc -->
-	 * 
 	 * @generated
 	 * @ordered
 	 */
@@ -297,9 +284,8 @@ public interface VersioningPackage extends EPackage {
 	int HISTORY_INFO_FEATURE_COUNT = 3;
 
 	/**
-	 * The meta object id for the '{@link org.unicase.emfstore.esmodel.versioning.impl.HistoryQueryImpl
-	 * <em>History Query</em>}' class. <!-- begin-user-doc --> <!-- end-user-doc -->
-	 * 
+	 * The meta object id for the '{@link org.unicase.emfstore.esmodel.versioning.impl.HistoryQueryImpl <em>History Query</em>}' class.
+	 * <!-- begin-user-doc --> <!-- end-user-doc -->
 	 * @see org.unicase.emfstore.esmodel.versioning.impl.HistoryQueryImpl
 	 * @see org.unicase.emfstore.esmodel.versioning.impl.VersioningPackageImpl#getHistoryQuery()
 	 * @generated
@@ -325,27 +311,26 @@ public interface VersioningPackage extends EPackage {
 	int HISTORY_QUERY__TARGET = 1;
 
 	/**
-	 * The feature id for the '<em><b>Model Elements</b></em>' containment reference list. <!-- begin-user-doc --> <!--
+	 * The feature id for the '<em><b>Model Elements</b></em>' containment reference list.
+	 * <!-- begin-user-doc --> <!--
 	 * end-user-doc -->
-	 * 
 	 * @generated
 	 * @ordered
 	 */
 	int HISTORY_QUERY__MODEL_ELEMENTS = 2;
 
 	/**
-	 * The number of structural features of the '<em>History Query</em>' class. <!-- begin-user-doc --> <!--
+	 * The number of structural features of the '<em>History Query</em>' class.
+	 * <!-- begin-user-doc --> <!--
 	 * end-user-doc -->
-	 * 
 	 * @generated
 	 * @ordered
 	 */
 	int HISTORY_QUERY_FEATURE_COUNT = 3;
 
 	/**
-	 * The meta object id for the '{@link org.unicase.emfstore.esmodel.versioning.impl.VersionImpl <em>Version</em>}'
-	 * class. <!-- begin-user-doc --> <!-- end-user-doc -->
-	 * 
+	 * The meta object id for the '{@link org.unicase.emfstore.esmodel.versioning.impl.VersionImpl <em>Version</em>}' class.
+	 * <!-- begin-user-doc --> <!-- end-user-doc -->
 	 * @see org.unicase.emfstore.esmodel.versioning.impl.VersionImpl
 	 * @see org.unicase.emfstore.esmodel.versioning.impl.VersioningPackageImpl#getVersion()
 	 * @generated
@@ -353,35 +338,35 @@ public interface VersioningPackage extends EPackage {
 	int VERSION = 8;
 
 	/**
-	 * The feature id for the '<em><b>Project State</b></em>' containment reference. <!-- begin-user-doc --> <!--
+	 * The feature id for the '<em><b>Project State</b></em>' containment reference.
+	 * <!-- begin-user-doc --> <!--
 	 * end-user-doc -->
-	 * 
 	 * @generated
 	 * @ordered
 	 */
 	int VERSION__PROJECT_STATE = 0;
 
 	/**
-	 * The feature id for the '<em><b>Primary Spec</b></em>' containment reference. <!-- begin-user-doc --> <!--
+	 * The feature id for the '<em><b>Primary Spec</b></em>' containment reference.
+	 * <!-- begin-user-doc --> <!--
 	 * end-user-doc -->
-	 * 
 	 * @generated
 	 * @ordered
 	 */
 	int VERSION__PRIMARY_SPEC = 1;
 
 	/**
-	 * The feature id for the '<em><b>Tag Specs</b></em>' containment reference list. <!-- begin-user-doc --> <!--
+	 * The feature id for the '<em><b>Tag Specs</b></em>' containment reference list.
+	 * <!-- begin-user-doc --> <!--
 	 * end-user-doc -->
-	 * 
 	 * @generated
 	 * @ordered
 	 */
 	int VERSION__TAG_SPECS = 2;
 
 	/**
-	 * The feature id for the '<em><b>Next Version</b></em>' reference. <!-- begin-user-doc --> <!-- end-user-doc -->
-	 * 
+	 * The feature id for the '<em><b>Next Version</b></em>' reference.
+	 * <!-- begin-user-doc --> <!-- end-user-doc -->
 	 * @generated
 	 * @ordered
 	 */
@@ -406,26 +391,25 @@ public interface VersioningPackage extends EPackage {
 	int VERSION__CHANGES = 5;
 
 	/**
-	 * The feature id for the '<em><b>Log Message</b></em>' containment reference. <!-- begin-user-doc --> <!--
+	 * The feature id for the '<em><b>Log Message</b></em>' containment reference.
+	 * <!-- begin-user-doc --> <!--
 	 * end-user-doc -->
-	 * 
 	 * @generated
 	 * @ordered
 	 */
 	int VERSION__LOG_MESSAGE = 6;
 
 	/**
-	 * The number of structural features of the '<em>Version</em>' class. <!-- begin-user-doc --> <!-- end-user-doc -->
-	 * 
+	 * The number of structural features of the '<em>Version</em>' class.
+	 * <!-- begin-user-doc --> <!-- end-user-doc -->
 	 * @generated
 	 * @ordered
 	 */
 	int VERSION_FEATURE_COUNT = 7;
 
 	/**
-	 * The meta object id for the '{@link org.unicase.emfstore.esmodel.versioning.impl.HeadVersionSpecImpl
-	 * <em>Head Version Spec</em>}' class. <!-- begin-user-doc --> <!-- end-user-doc -->
-	 * 
+	 * The meta object id for the '{@link org.unicase.emfstore.esmodel.versioning.impl.HeadVersionSpecImpl <em>Head Version Spec</em>}' class.
+	 * <!-- begin-user-doc --> <!-- end-user-doc -->
 	 * @see org.unicase.emfstore.esmodel.versioning.impl.HeadVersionSpecImpl
 	 * @see org.unicase.emfstore.esmodel.versioning.impl.VersioningPackageImpl#getHeadVersionSpec()
 	 * @generated
@@ -433,18 +417,17 @@ public interface VersioningPackage extends EPackage {
 	int HEAD_VERSION_SPEC = 9;
 
 	/**
-	 * The number of structural features of the '<em>Head Version Spec</em>' class. <!-- begin-user-doc --> <!--
+	 * The number of structural features of the '<em>Head Version Spec</em>' class.
+	 * <!-- begin-user-doc --> <!--
 	 * end-user-doc -->
-	 * 
 	 * @generated
 	 * @ordered
 	 */
 	int HEAD_VERSION_SPEC_FEATURE_COUNT = VERSION_SPEC_FEATURE_COUNT + 0;
 
 	/**
-	 * Returns the meta object for class '{@link org.unicase.emfstore.esmodel.versioning.TagVersionSpec
-	 * <em>Tag Version Spec</em>}'. <!-- begin-user-doc --> <!-- end-user-doc -->
-	 * 
+	 * Returns the meta object for class '{@link org.unicase.emfstore.esmodel.versioning.TagVersionSpec <em>Tag Version Spec</em>}'.
+	 * <!-- begin-user-doc --> <!-- end-user-doc -->
 	 * @return the meta object for class '<em>Tag Version Spec</em>'.
 	 * @see org.unicase.emfstore.esmodel.versioning.TagVersionSpec
 	 * @generated
@@ -452,9 +435,8 @@ public interface VersioningPackage extends EPackage {
 	EClass getTagVersionSpec();
 
 	/**
-	 * Returns the meta object for the attribute '{@link org.unicase.emfstore.esmodel.versioning.TagVersionSpec#getName
-	 * <em>Name</em>}'. <!-- begin-user-doc --> <!-- end-user-doc -->
-	 * 
+	 * Returns the meta object for the attribute '{@link org.unicase.emfstore.esmodel.versioning.TagVersionSpec#getName <em>Name</em>}'.
+	 * <!-- begin-user-doc --> <!-- end-user-doc -->
 	 * @return the meta object for the attribute '<em>Name</em>'.
 	 * @see org.unicase.emfstore.esmodel.versioning.TagVersionSpec#getName()
 	 * @see #getTagVersionSpec()
@@ -463,9 +445,8 @@ public interface VersioningPackage extends EPackage {
 	EAttribute getTagVersionSpec_Name();
 
 	/**
-	 * Returns the meta object for class '{@link org.unicase.emfstore.esmodel.versioning.DateVersionSpec
-	 * <em>Date Version Spec</em>}'. <!-- begin-user-doc --> <!-- end-user-doc -->
-	 * 
+	 * Returns the meta object for class '{@link org.unicase.emfstore.esmodel.versioning.DateVersionSpec <em>Date Version Spec</em>}'.
+	 * <!-- begin-user-doc --> <!-- end-user-doc -->
 	 * @return the meta object for class '<em>Date Version Spec</em>'.
 	 * @see org.unicase.emfstore.esmodel.versioning.DateVersionSpec
 	 * @generated
@@ -473,10 +454,9 @@ public interface VersioningPackage extends EPackage {
 	EClass getDateVersionSpec();
 
 	/**
-	 * Returns the meta object for the attribute '
-	 * {@link org.unicase.emfstore.esmodel.versioning.DateVersionSpec#getDate <em>Date</em>}'. <!-- begin-user-doc -->
+	 * Returns the meta object for the attribute '{@link org.unicase.emfstore.esmodel.versioning.DateVersionSpec#getDate <em>Date</em>}'.
+	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
-	 * 
 	 * @return the meta object for the attribute '<em>Date</em>'.
 	 * @see org.unicase.emfstore.esmodel.versioning.DateVersionSpec#getDate()
 	 * @see #getDateVersionSpec()
@@ -485,9 +465,8 @@ public interface VersioningPackage extends EPackage {
 	EAttribute getDateVersionSpec_Date();
 
 	/**
-	 * Returns the meta object for class '{@link org.unicase.emfstore.esmodel.versioning.PrimaryVersionSpec
-	 * <em>Primary Version Spec</em>}'. <!-- begin-user-doc --> <!-- end-user-doc -->
-	 * 
+	 * Returns the meta object for class '{@link org.unicase.emfstore.esmodel.versioning.PrimaryVersionSpec <em>Primary Version Spec</em>}'.
+	 * <!-- begin-user-doc --> <!-- end-user-doc -->
 	 * @return the meta object for class '<em>Primary Version Spec</em>'.
 	 * @see org.unicase.emfstore.esmodel.versioning.PrimaryVersionSpec
 	 * @generated
@@ -507,9 +486,8 @@ public interface VersioningPackage extends EPackage {
 	EAttribute getPrimaryVersionSpec_Identifier();
 
 	/**
-	 * Returns the meta object for class '{@link org.unicase.emfstore.esmodel.versioning.VersionSpec
-	 * <em>Version Spec</em>}'. <!-- begin-user-doc --> <!-- end-user-doc -->
-	 * 
+	 * Returns the meta object for class '{@link org.unicase.emfstore.esmodel.versioning.VersionSpec <em>Version Spec</em>}'.
+	 * <!-- begin-user-doc --> <!-- end-user-doc -->
 	 * @return the meta object for class '<em>Version Spec</em>'.
 	 * @see org.unicase.emfstore.esmodel.versioning.VersionSpec
 	 * @generated
@@ -517,9 +495,8 @@ public interface VersioningPackage extends EPackage {
 	EClass getVersionSpec();
 
 	/**
-	 * Returns the meta object for class '{@link org.unicase.emfstore.esmodel.versioning.LogMessage
-	 * <em>Log Message</em>}'. <!-- begin-user-doc --> <!-- end-user-doc -->
-	 * 
+	 * Returns the meta object for class '{@link org.unicase.emfstore.esmodel.versioning.LogMessage <em>Log Message</em>}'.
+	 * <!-- begin-user-doc --> <!-- end-user-doc -->
 	 * @return the meta object for class '<em>Log Message</em>'.
 	 * @see org.unicase.emfstore.esmodel.versioning.LogMessage
 	 * @generated
@@ -527,9 +504,8 @@ public interface VersioningPackage extends EPackage {
 	EClass getLogMessage();
 
 	/**
-	 * Returns the meta object for the attribute '{@link org.unicase.emfstore.esmodel.versioning.LogMessage#getMessage
-	 * <em>Message</em>}'. <!-- begin-user-doc --> <!-- end-user-doc -->
-	 * 
+	 * Returns the meta object for the attribute '{@link org.unicase.emfstore.esmodel.versioning.LogMessage#getMessage <em>Message</em>}'.
+	 * <!-- begin-user-doc --> <!-- end-user-doc -->
 	 * @return the meta object for the attribute '<em>Message</em>'.
 	 * @see org.unicase.emfstore.esmodel.versioning.LogMessage#getMessage()
 	 * @see #getLogMessage()
@@ -538,9 +514,8 @@ public interface VersioningPackage extends EPackage {
 	EAttribute getLogMessage_Message();
 
 	/**
-	 * Returns the meta object for the attribute '{@link org.unicase.emfstore.esmodel.versioning.LogMessage#getDate
-	 * <em>Date</em>}'. <!-- begin-user-doc --> <!-- end-user-doc -->
-	 * 
+	 * Returns the meta object for the attribute '{@link org.unicase.emfstore.esmodel.versioning.LogMessage#getDate <em>Date</em>}'.
+	 * <!-- begin-user-doc --> <!-- end-user-doc -->
 	 * @return the meta object for the attribute '<em>Date</em>'.
 	 * @see org.unicase.emfstore.esmodel.versioning.LogMessage#getDate()
 	 * @see #getLogMessage()
@@ -561,9 +536,8 @@ public interface VersioningPackage extends EPackage {
 	EAttribute getLogMessage_ClientDate();
 
 	/**
-	 * Returns the meta object for the attribute '{@link org.unicase.emfstore.esmodel.versioning.LogMessage#getAuthor
-	 * <em>Author</em>}'. <!-- begin-user-doc --> <!-- end-user-doc -->
-	 * 
+	 * Returns the meta object for the attribute '{@link org.unicase.emfstore.esmodel.versioning.LogMessage#getAuthor <em>Author</em>}'.
+	 * <!-- begin-user-doc --> <!-- end-user-doc -->
 	 * @return the meta object for the attribute '<em>Author</em>'.
 	 * @see org.unicase.emfstore.esmodel.versioning.LogMessage#getAuthor()
 	 * @see #getLogMessage()
@@ -572,9 +546,8 @@ public interface VersioningPackage extends EPackage {
 	EAttribute getLogMessage_Author();
 
 	/**
-	 * Returns the meta object for class '{@link org.unicase.emfstore.esmodel.versioning.ChangePackage
-	 * <em>Change Package</em>}'. <!-- begin-user-doc --> <!-- end-user-doc -->
-	 * 
+	 * Returns the meta object for class '{@link org.unicase.emfstore.esmodel.versioning.ChangePackage <em>Change Package</em>}'.
+	 * <!-- begin-user-doc --> <!-- end-user-doc -->
 	 * @return the meta object for class '<em>Change Package</em>'.
 	 * @see org.unicase.emfstore.esmodel.versioning.ChangePackage
 	 * @generated
@@ -594,10 +567,9 @@ public interface VersioningPackage extends EPackage {
 	EReference getChangePackage_Operations();
 
 	/**
-	 * Returns the meta object for the containment reference list '
-	 * {@link org.unicase.emfstore.esmodel.versioning.ChangePackage#getEvents <em>Events</em>}'. <!-- begin-user-doc -->
+	 * Returns the meta object for the containment reference list '{@link org.unicase.emfstore.esmodel.versioning.ChangePackage#getEvents <em>Events</em>}'.
+	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
-	 * 
 	 * @return the meta object for the containment reference list '<em>Events</em>'.
 	 * @see org.unicase.emfstore.esmodel.versioning.ChangePackage#getEvents()
 	 * @see #getChangePackage()
@@ -618,9 +590,8 @@ public interface VersioningPackage extends EPackage {
 	EReference getChangePackage_LogMessage();
 
 	/**
-	 * Returns the meta object for class '{@link org.unicase.emfstore.esmodel.versioning.HistoryInfo
-	 * <em>History Info</em>}'. <!-- begin-user-doc --> <!-- end-user-doc -->
-	 * 
+	 * Returns the meta object for class '{@link org.unicase.emfstore.esmodel.versioning.HistoryInfo <em>History Info</em>}'.
+	 * <!-- begin-user-doc --> <!-- end-user-doc -->
 	 * @return the meta object for class '<em>History Info</em>'.
 	 * @see org.unicase.emfstore.esmodel.versioning.HistoryInfo
 	 * @generated
@@ -652,10 +623,9 @@ public interface VersioningPackage extends EPackage {
 	EReference getHistoryInfo_LogMessage();
 
 	/**
-	 * Returns the meta object for the containment reference list '
-	 * {@link org.unicase.emfstore.esmodel.versioning.HistoryInfo#getTagSpecs <em>Tag Specs</em>}'. <!-- begin-user-doc
+	 * Returns the meta object for the containment reference list '{@link org.unicase.emfstore.esmodel.versioning.HistoryInfo#getTagSpecs <em>Tag Specs</em>}'.
+	 * <!-- begin-user-doc
 	 * --> <!-- end-user-doc -->
-	 * 
 	 * @return the meta object for the containment reference list '<em>Tag Specs</em>'.
 	 * @see org.unicase.emfstore.esmodel.versioning.HistoryInfo#getTagSpecs()
 	 * @see #getHistoryInfo()
@@ -664,9 +634,8 @@ public interface VersioningPackage extends EPackage {
 	EReference getHistoryInfo_TagSpecs();
 
 	/**
-	 * Returns the meta object for class '{@link org.unicase.emfstore.esmodel.versioning.HistoryQuery
-	 * <em>History Query</em>}'. <!-- begin-user-doc --> <!-- end-user-doc -->
-	 * 
+	 * Returns the meta object for class '{@link org.unicase.emfstore.esmodel.versioning.HistoryQuery <em>History Query</em>}'.
+	 * <!-- begin-user-doc --> <!-- end-user-doc -->
 	 * @return the meta object for class '<em>History Query</em>'.
 	 * @see org.unicase.emfstore.esmodel.versioning.HistoryQuery
 	 * @generated
@@ -674,10 +643,9 @@ public interface VersioningPackage extends EPackage {
 	EClass getHistoryQuery();
 
 	/**
-	 * Returns the meta object for the containment reference '
-	 * {@link org.unicase.emfstore.esmodel.versioning.HistoryQuery#getSource <em>Source</em>}'. <!-- begin-user-doc -->
+	 * Returns the meta object for the containment reference '{@link org.unicase.emfstore.esmodel.versioning.HistoryQuery#getSource <em>Source</em>}'.
+	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
-	 * 
 	 * @return the meta object for the containment reference '<em>Source</em>'.
 	 * @see org.unicase.emfstore.esmodel.versioning.HistoryQuery#getSource()
 	 * @see #getHistoryQuery()
@@ -686,10 +654,9 @@ public interface VersioningPackage extends EPackage {
 	EReference getHistoryQuery_Source();
 
 	/**
-	 * Returns the meta object for the containment reference '
-	 * {@link org.unicase.emfstore.esmodel.versioning.HistoryQuery#getTarget <em>Target</em>}'. <!-- begin-user-doc -->
+	 * Returns the meta object for the containment reference '{@link org.unicase.emfstore.esmodel.versioning.HistoryQuery#getTarget <em>Target</em>}'.
+	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
-	 * 
 	 * @return the meta object for the containment reference '<em>Target</em>'.
 	 * @see org.unicase.emfstore.esmodel.versioning.HistoryQuery#getTarget()
 	 * @see #getHistoryQuery()
@@ -712,7 +679,6 @@ public interface VersioningPackage extends EPackage {
 	/**
 	 * Returns the meta object for class '{@link org.unicase.emfstore.esmodel.versioning.Version <em>Version</em>}'.
 	 * <!-- begin-user-doc --> <!-- end-user-doc -->
-	 * 
 	 * @return the meta object for class '<em>Version</em>'.
 	 * @see org.unicase.emfstore.esmodel.versioning.Version
 	 * @generated
@@ -744,10 +710,9 @@ public interface VersioningPackage extends EPackage {
 	EReference getVersion_PrimarySpec();
 
 	/**
-	 * Returns the meta object for the containment reference list '
-	 * {@link org.unicase.emfstore.esmodel.versioning.Version#getTagSpecs <em>Tag Specs</em>}'. <!-- begin-user-doc -->
+	 * Returns the meta object for the containment reference list '{@link org.unicase.emfstore.esmodel.versioning.Version#getTagSpecs <em>Tag Specs</em>}'.
+	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
-	 * 
 	 * @return the meta object for the containment reference list '<em>Tag Specs</em>'.
 	 * @see org.unicase.emfstore.esmodel.versioning.Version#getTagSpecs()
 	 * @see #getVersion()
@@ -756,9 +721,8 @@ public interface VersioningPackage extends EPackage {
 	EReference getVersion_TagSpecs();
 
 	/**
-	 * Returns the meta object for the reference '{@link org.unicase.emfstore.esmodel.versioning.Version#getNextVersion
-	 * <em>Next Version</em>}'. <!-- begin-user-doc --> <!-- end-user-doc -->
-	 * 
+	 * Returns the meta object for the reference '{@link org.unicase.emfstore.esmodel.versioning.Version#getNextVersion <em>Next Version</em>}'.
+	 * <!-- begin-user-doc --> <!-- end-user-doc -->
 	 * @return the meta object for the reference '<em>Next Version</em>'.
 	 * @see org.unicase.emfstore.esmodel.versioning.Version#getNextVersion()
 	 * @see #getVersion()
@@ -779,10 +743,9 @@ public interface VersioningPackage extends EPackage {
 	EReference getVersion_PreviousVersion();
 
 	/**
-	 * Returns the meta object for the containment reference '
-	 * {@link org.unicase.emfstore.esmodel.versioning.Version#getChanges <em>Changes</em>}'. <!-- begin-user-doc -->
+	 * Returns the meta object for the containment reference '{@link org.unicase.emfstore.esmodel.versioning.Version#getChanges <em>Changes</em>}'.
+	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
-	 * 
 	 * @return the meta object for the containment reference '<em>Changes</em>'.
 	 * @see org.unicase.emfstore.esmodel.versioning.Version#getChanges()
 	 * @see #getVersion()
@@ -791,10 +754,9 @@ public interface VersioningPackage extends EPackage {
 	EReference getVersion_Changes();
 
 	/**
-	 * Returns the meta object for the containment reference '
-	 * {@link org.unicase.emfstore.esmodel.versioning.Version#getLogMessage <em>Log Message</em>}'. <!-- begin-user-doc
+	 * Returns the meta object for the containment reference '{@link org.unicase.emfstore.esmodel.versioning.Version#getLogMessage <em>Log Message</em>}'.
+	 * <!-- begin-user-doc
 	 * --> <!-- end-user-doc -->
-	 * 
 	 * @return the meta object for the containment reference '<em>Log Message</em>'.
 	 * @see org.unicase.emfstore.esmodel.versioning.Version#getLogMessage()
 	 * @see #getVersion()
@@ -803,9 +765,8 @@ public interface VersioningPackage extends EPackage {
 	EReference getVersion_LogMessage();
 
 	/**
-	 * Returns the meta object for class '{@link org.unicase.emfstore.esmodel.versioning.HeadVersionSpec
-	 * <em>Head Version Spec</em>}'. <!-- begin-user-doc --> <!-- end-user-doc -->
-	 * 
+	 * Returns the meta object for class '{@link org.unicase.emfstore.esmodel.versioning.HeadVersionSpec <em>Head Version Spec</em>}'.
+	 * <!-- begin-user-doc --> <!-- end-user-doc -->
 	 * @return the meta object for class '<em>Head Version Spec</em>'.
 	 * @see org.unicase.emfstore.esmodel.versioning.HeadVersionSpec
 	 * @generated
@@ -813,8 +774,8 @@ public interface VersioningPackage extends EPackage {
 	EClass getHeadVersionSpec();
 
 	/**
-	 * Returns the factory that creates the instances of the model. <!-- begin-user-doc --> <!-- end-user-doc -->
-	 * 
+	 * Returns the factory that creates the instances of the model.
+	 * <!-- begin-user-doc --> <!-- end-user-doc -->
 	 * @return the factory that creates the instances of the model.
 	 * @generated
 	 */
@@ -829,14 +790,12 @@ public interface VersioningPackage extends EPackage {
 	 * <li>and each data type</li>
 	 * </ul>
 	 * <!-- end-user-doc -->
-	 * 
 	 * @generated
 	 */
 	interface Literals {
 		/**
-		 * The meta object literal for the '{@link org.unicase.emfstore.esmodel.versioning.impl.TagVersionSpecImpl
-		 * <em>Tag Version Spec</em>}' class. <!-- begin-user-doc --> <!-- end-user-doc -->
-		 * 
+		 * The meta object literal for the '{@link org.unicase.emfstore.esmodel.versioning.impl.TagVersionSpecImpl <em>Tag Version Spec</em>}' class.
+		 * <!-- begin-user-doc --> <!-- end-user-doc -->
 		 * @see org.unicase.emfstore.esmodel.versioning.impl.TagVersionSpecImpl
 		 * @see org.unicase.emfstore.esmodel.versioning.impl.VersioningPackageImpl#getTagVersionSpec()
 		 * @generated
@@ -844,17 +803,16 @@ public interface VersioningPackage extends EPackage {
 		EClass TAG_VERSION_SPEC = eINSTANCE.getTagVersionSpec();
 
 		/**
-		 * The meta object literal for the '<em><b>Name</b></em>' attribute feature. <!-- begin-user-doc --> <!--
+		 * The meta object literal for the '<em><b>Name</b></em>' attribute feature.
+		 * <!-- begin-user-doc --> <!--
 		 * end-user-doc -->
-		 * 
 		 * @generated
 		 */
 		EAttribute TAG_VERSION_SPEC__NAME = eINSTANCE.getTagVersionSpec_Name();
 
 		/**
-		 * The meta object literal for the '{@link org.unicase.emfstore.esmodel.versioning.impl.DateVersionSpecImpl
-		 * <em>Date Version Spec</em>}' class. <!-- begin-user-doc --> <!-- end-user-doc -->
-		 * 
+		 * The meta object literal for the '{@link org.unicase.emfstore.esmodel.versioning.impl.DateVersionSpecImpl <em>Date Version Spec</em>}' class.
+		 * <!-- begin-user-doc --> <!-- end-user-doc -->
 		 * @see org.unicase.emfstore.esmodel.versioning.impl.DateVersionSpecImpl
 		 * @see org.unicase.emfstore.esmodel.versioning.impl.VersioningPackageImpl#getDateVersionSpec()
 		 * @generated
@@ -862,17 +820,16 @@ public interface VersioningPackage extends EPackage {
 		EClass DATE_VERSION_SPEC = eINSTANCE.getDateVersionSpec();
 
 		/**
-		 * The meta object literal for the '<em><b>Date</b></em>' attribute feature. <!-- begin-user-doc --> <!--
+		 * The meta object literal for the '<em><b>Date</b></em>' attribute feature.
+		 * <!-- begin-user-doc --> <!--
 		 * end-user-doc -->
-		 * 
 		 * @generated
 		 */
 		EAttribute DATE_VERSION_SPEC__DATE = eINSTANCE.getDateVersionSpec_Date();
 
 		/**
-		 * The meta object literal for the '{@link org.unicase.emfstore.esmodel.versioning.impl.PrimaryVersionSpecImpl
-		 * <em>Primary Version Spec</em>}' class. <!-- begin-user-doc --> <!-- end-user-doc -->
-		 * 
+		 * The meta object literal for the '{@link org.unicase.emfstore.esmodel.versioning.impl.PrimaryVersionSpecImpl <em>Primary Version Spec</em>}' class.
+		 * <!-- begin-user-doc --> <!-- end-user-doc -->
 		 * @see org.unicase.emfstore.esmodel.versioning.impl.PrimaryVersionSpecImpl
 		 * @see org.unicase.emfstore.esmodel.versioning.impl.VersioningPackageImpl#getPrimaryVersionSpec()
 		 * @generated
@@ -880,17 +837,16 @@ public interface VersioningPackage extends EPackage {
 		EClass PRIMARY_VERSION_SPEC = eINSTANCE.getPrimaryVersionSpec();
 
 		/**
-		 * The meta object literal for the '<em><b>Identifier</b></em>' attribute feature. <!-- begin-user-doc --> <!--
+		 * The meta object literal for the '<em><b>Identifier</b></em>' attribute feature.
+		 * <!-- begin-user-doc --> <!--
 		 * end-user-doc -->
-		 * 
 		 * @generated
 		 */
 		EAttribute PRIMARY_VERSION_SPEC__IDENTIFIER = eINSTANCE.getPrimaryVersionSpec_Identifier();
 
 		/**
-		 * The meta object literal for the '{@link org.unicase.emfstore.esmodel.versioning.VersionSpec
-		 * <em>Version Spec</em>}' class. <!-- begin-user-doc --> <!-- end-user-doc -->
-		 * 
+		 * The meta object literal for the '{@link org.unicase.emfstore.esmodel.versioning.VersionSpec <em>Version Spec</em>}' class.
+		 * <!-- begin-user-doc --> <!-- end-user-doc -->
 		 * @see org.unicase.emfstore.esmodel.versioning.VersionSpec
 		 * @see org.unicase.emfstore.esmodel.versioning.impl.VersioningPackageImpl#getVersionSpec()
 		 * @generated
@@ -898,9 +854,8 @@ public interface VersioningPackage extends EPackage {
 		EClass VERSION_SPEC = eINSTANCE.getVersionSpec();
 
 		/**
-		 * The meta object literal for the '{@link org.unicase.emfstore.esmodel.versioning.impl.LogMessageImpl
-		 * <em>Log Message</em>}' class. <!-- begin-user-doc --> <!-- end-user-doc -->
-		 * 
+		 * The meta object literal for the '{@link org.unicase.emfstore.esmodel.versioning.impl.LogMessageImpl <em>Log Message</em>}' class.
+		 * <!-- begin-user-doc --> <!-- end-user-doc -->
 		 * @see org.unicase.emfstore.esmodel.versioning.impl.LogMessageImpl
 		 * @see org.unicase.emfstore.esmodel.versioning.impl.VersioningPackageImpl#getLogMessage()
 		 * @generated
@@ -908,41 +863,40 @@ public interface VersioningPackage extends EPackage {
 		EClass LOG_MESSAGE = eINSTANCE.getLogMessage();
 
 		/**
-		 * The meta object literal for the '<em><b>Message</b></em>' attribute feature. <!-- begin-user-doc --> <!--
+		 * The meta object literal for the '<em><b>Message</b></em>' attribute feature.
+		 * <!-- begin-user-doc --> <!--
 		 * end-user-doc -->
-		 * 
 		 * @generated
 		 */
 		EAttribute LOG_MESSAGE__MESSAGE = eINSTANCE.getLogMessage_Message();
 
 		/**
-		 * The meta object literal for the '<em><b>Date</b></em>' attribute feature. <!-- begin-user-doc --> <!--
+		 * The meta object literal for the '<em><b>Date</b></em>' attribute feature.
+		 * <!-- begin-user-doc --> <!--
 		 * end-user-doc -->
-		 * 
 		 * @generated
 		 */
 		EAttribute LOG_MESSAGE__DATE = eINSTANCE.getLogMessage_Date();
 
 		/**
-		 * The meta object literal for the '<em><b>Client Date</b></em>' attribute feature. <!-- begin-user-doc --> <!--
+		 * The meta object literal for the '<em><b>Client Date</b></em>' attribute feature.
+		 * <!-- begin-user-doc --> <!--
 		 * end-user-doc -->
-		 * 
 		 * @generated
 		 */
 		EAttribute LOG_MESSAGE__CLIENT_DATE = eINSTANCE.getLogMessage_ClientDate();
 
 		/**
-		 * The meta object literal for the '<em><b>Author</b></em>' attribute feature. <!-- begin-user-doc --> <!--
+		 * The meta object literal for the '<em><b>Author</b></em>' attribute feature.
+		 * <!-- begin-user-doc --> <!--
 		 * end-user-doc -->
-		 * 
 		 * @generated
 		 */
 		EAttribute LOG_MESSAGE__AUTHOR = eINSTANCE.getLogMessage_Author();
 
 		/**
-		 * The meta object literal for the '{@link org.unicase.emfstore.esmodel.versioning.impl.ChangePackageImpl
-		 * <em>Change Package</em>}' class. <!-- begin-user-doc --> <!-- end-user-doc -->
-		 * 
+		 * The meta object literal for the '{@link org.unicase.emfstore.esmodel.versioning.impl.ChangePackageImpl <em>Change Package</em>}' class.
+		 * <!-- begin-user-doc --> <!-- end-user-doc -->
 		 * @see org.unicase.emfstore.esmodel.versioning.impl.ChangePackageImpl
 		 * @see org.unicase.emfstore.esmodel.versioning.impl.VersioningPackageImpl#getChangePackage()
 		 * @generated
@@ -974,9 +928,8 @@ public interface VersioningPackage extends EPackage {
 		EReference CHANGE_PACKAGE__LOG_MESSAGE = eINSTANCE.getChangePackage_LogMessage();
 
 		/**
-		 * The meta object literal for the '{@link org.unicase.emfstore.esmodel.versioning.impl.HistoryInfoImpl
-		 * <em>History Info</em>}' class. <!-- begin-user-doc --> <!-- end-user-doc -->
-		 * 
+		 * The meta object literal for the '{@link org.unicase.emfstore.esmodel.versioning.impl.HistoryInfoImpl <em>History Info</em>}' class.
+		 * <!-- begin-user-doc --> <!-- end-user-doc -->
 		 * @see org.unicase.emfstore.esmodel.versioning.impl.HistoryInfoImpl
 		 * @see org.unicase.emfstore.esmodel.versioning.impl.VersioningPackageImpl#getHistoryInfo()
 		 * @generated
@@ -1008,9 +961,8 @@ public interface VersioningPackage extends EPackage {
 		EReference HISTORY_INFO__TAG_SPECS = eINSTANCE.getHistoryInfo_TagSpecs();
 
 		/**
-		 * The meta object literal for the '{@link org.unicase.emfstore.esmodel.versioning.impl.HistoryQueryImpl
-		 * <em>History Query</em>}' class. <!-- begin-user-doc --> <!-- end-user-doc -->
-		 * 
+		 * The meta object literal for the '{@link org.unicase.emfstore.esmodel.versioning.impl.HistoryQueryImpl <em>History Query</em>}' class.
+		 * <!-- begin-user-doc --> <!-- end-user-doc -->
 		 * @see org.unicase.emfstore.esmodel.versioning.impl.HistoryQueryImpl
 		 * @see org.unicase.emfstore.esmodel.versioning.impl.VersioningPackageImpl#getHistoryQuery()
 		 * @generated
@@ -1018,17 +970,17 @@ public interface VersioningPackage extends EPackage {
 		EClass HISTORY_QUERY = eINSTANCE.getHistoryQuery();
 
 		/**
-		 * The meta object literal for the '<em><b>Source</b></em>' containment reference feature. <!-- begin-user-doc
+		 * The meta object literal for the '<em><b>Source</b></em>' containment reference feature.
+		 * <!-- begin-user-doc
 		 * --> <!-- end-user-doc -->
-		 * 
 		 * @generated
 		 */
 		EReference HISTORY_QUERY__SOURCE = eINSTANCE.getHistoryQuery_Source();
 
 		/**
-		 * The meta object literal for the '<em><b>Target</b></em>' containment reference feature. <!-- begin-user-doc
+		 * The meta object literal for the '<em><b>Target</b></em>' containment reference feature.
+		 * <!-- begin-user-doc
 		 * --> <!-- end-user-doc -->
-		 * 
 		 * @generated
 		 */
 		EReference HISTORY_QUERY__TARGET = eINSTANCE.getHistoryQuery_Target();
@@ -1042,9 +994,8 @@ public interface VersioningPackage extends EPackage {
 		EReference HISTORY_QUERY__MODEL_ELEMENTS = eINSTANCE.getHistoryQuery_ModelElements();
 
 		/**
-		 * The meta object literal for the '{@link org.unicase.emfstore.esmodel.versioning.impl.VersionImpl
-		 * <em>Version</em>}' class. <!-- begin-user-doc --> <!-- end-user-doc -->
-		 * 
+		 * The meta object literal for the '{@link org.unicase.emfstore.esmodel.versioning.impl.VersionImpl <em>Version</em>}' class.
+		 * <!-- begin-user-doc --> <!-- end-user-doc -->
 		 * @see org.unicase.emfstore.esmodel.versioning.impl.VersionImpl
 		 * @see org.unicase.emfstore.esmodel.versioning.impl.VersioningPackageImpl#getVersion()
 		 * @generated
@@ -1076,25 +1027,25 @@ public interface VersioningPackage extends EPackage {
 		EReference VERSION__TAG_SPECS = eINSTANCE.getVersion_TagSpecs();
 
 		/**
-		 * The meta object literal for the '<em><b>Next Version</b></em>' reference feature. <!-- begin-user-doc -->
+		 * The meta object literal for the '<em><b>Next Version</b></em>' reference feature.
+		 * <!-- begin-user-doc -->
 		 * <!-- end-user-doc -->
-		 * 
 		 * @generated
 		 */
 		EReference VERSION__NEXT_VERSION = eINSTANCE.getVersion_NextVersion();
 
 		/**
-		 * The meta object literal for the '<em><b>Previous Version</b></em>' reference feature. <!-- begin-user-doc -->
+		 * The meta object literal for the '<em><b>Previous Version</b></em>' reference feature.
+		 * <!-- begin-user-doc -->
 		 * <!-- end-user-doc -->
-		 * 
 		 * @generated
 		 */
 		EReference VERSION__PREVIOUS_VERSION = eINSTANCE.getVersion_PreviousVersion();
 
 		/**
-		 * The meta object literal for the '<em><b>Changes</b></em>' containment reference feature. <!-- begin-user-doc
+		 * The meta object literal for the '<em><b>Changes</b></em>' containment reference feature.
+		 * <!-- begin-user-doc
 		 * --> <!-- end-user-doc -->
-		 * 
 		 * @generated
 		 */
 		EReference VERSION__CHANGES = eINSTANCE.getVersion_Changes();
@@ -1108,9 +1059,8 @@ public interface VersioningPackage extends EPackage {
 		EReference VERSION__LOG_MESSAGE = eINSTANCE.getVersion_LogMessage();
 
 		/**
-		 * The meta object literal for the '{@link org.unicase.emfstore.esmodel.versioning.impl.HeadVersionSpecImpl
-		 * <em>Head Version Spec</em>}' class. <!-- begin-user-doc --> <!-- end-user-doc -->
-		 * 
+		 * The meta object literal for the '{@link org.unicase.emfstore.esmodel.versioning.impl.HeadVersionSpecImpl <em>Head Version Spec</em>}' class.
+		 * <!-- begin-user-doc --> <!-- end-user-doc -->
 		 * @see org.unicase.emfstore.esmodel.versioning.impl.HeadVersionSpecImpl
 		 * @see org.unicase.emfstore.esmodel.versioning.impl.VersioningPackageImpl#getHeadVersionSpec()
 		 * @generated

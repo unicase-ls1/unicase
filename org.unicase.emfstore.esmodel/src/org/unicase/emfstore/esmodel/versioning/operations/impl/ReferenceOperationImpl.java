@@ -12,26 +12,20 @@ import org.unicase.emfstore.esmodel.versioning.operations.AbstractOperation;
 import org.unicase.emfstore.esmodel.versioning.operations.OperationsPackage;
 import org.unicase.emfstore.esmodel.versioning.operations.ReferenceOperation;
 
-/**
+/*
  * <!-- begin-user-doc --> An implementation of the model object '<em><b>Reference Operation</b></em>'. <!--
- * end-user-doc -->
- * <p>
- * The following features are implemented:
- * <ul>
- * <li>{@link org.unicase.emfstore.esmodel.versioning.operations.impl.ReferenceOperationImpl#isBidirectional <em>
- * Bidirectional</em>}</li>
- * <li>{@link org.unicase.emfstore.esmodel.versioning.operations.impl.ReferenceOperationImpl#getOppositeFeatureName <em>
- * Opposite Feature Name</em>}</li>
- * </ul>
- * </p>
- * 
+ * end-user-doc --> <p> The following features are implemented: <ul> <li>{@link
+ * org.unicase.emfstore.esmodel.versioning.operations.impl.ReferenceOperationImpl#isBidirectional
+ * <em>Bidirectional</em>}</li> <li>{@link
+ * org.unicase.emfstore.esmodel.versioning.operations.impl.ReferenceOperationImpl#getOppositeFeatureName <em>Opposite
+ * Feature Name</em>}</li> </ul> </p>
  * @generated
  */
 public abstract class ReferenceOperationImpl extends FeatureOperationImpl implements ReferenceOperation {
 	/**
-	 * The default value of the '{@link #isBidirectional() <em>Bidirectional</em>}' attribute. <!-- begin-user-doc -->
+	 * The default value of the '{@link #isBidirectional() <em>Bidirectional</em>}' attribute.
+	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
-	 * 
 	 * @see #isBidirectional()
 	 * @generated
 	 * @ordered
@@ -39,9 +33,9 @@ public abstract class ReferenceOperationImpl extends FeatureOperationImpl implem
 	protected static final boolean BIDIRECTIONAL_EDEFAULT = false;
 
 	/**
-	 * The cached value of the '{@link #isBidirectional() <em>Bidirectional</em>}' attribute. <!-- begin-user-doc -->
+	 * The cached value of the '{@link #isBidirectional() <em>Bidirectional</em>}' attribute.
+	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
-	 * 
 	 * @see #isBidirectional()
 	 * @generated
 	 * @ordered
@@ -81,7 +75,6 @@ public abstract class ReferenceOperationImpl extends FeatureOperationImpl implem
 
 	/**
 	 * <!-- begin-user-doc --> <!-- end-user-doc -->
-	 * 
 	 * @generated
 	 */
 	protected ReferenceOperationImpl() {
@@ -90,7 +83,6 @@ public abstract class ReferenceOperationImpl extends FeatureOperationImpl implem
 
 	/**
 	 * <!-- begin-user-doc --> <!-- end-user-doc -->
-	 * 
 	 * @generated
 	 */
 	@Override
@@ -100,7 +92,6 @@ public abstract class ReferenceOperationImpl extends FeatureOperationImpl implem
 
 	/**
 	 * <!-- begin-user-doc --> <!-- end-user-doc -->
-	 * 
 	 * @generated
 	 */
 	public boolean isBidirectional() {
@@ -109,7 +100,6 @@ public abstract class ReferenceOperationImpl extends FeatureOperationImpl implem
 
 	/**
 	 * <!-- begin-user-doc --> <!-- end-user-doc -->
-	 * 
 	 * @generated
 	 */
 	public void setBidirectional(boolean newBidirectional) {
@@ -122,7 +112,6 @@ public abstract class ReferenceOperationImpl extends FeatureOperationImpl implem
 
 	/**
 	 * <!-- begin-user-doc --> <!-- end-user-doc -->
-	 * 
 	 * @generated
 	 */
 	public String getOppositeFeatureName() {
@@ -131,7 +120,6 @@ public abstract class ReferenceOperationImpl extends FeatureOperationImpl implem
 
 	/**
 	 * <!-- begin-user-doc --> <!-- end-user-doc -->
-	 * 
 	 * @generated
 	 */
 	public void setOppositeFeatureName(String newOppositeFeatureName) {
@@ -145,7 +133,6 @@ public abstract class ReferenceOperationImpl extends FeatureOperationImpl implem
 
 	/**
 	 * <!-- begin-user-doc --> <!-- end-user-doc -->
-	 * 
 	 * @generated
 	 */
 	@Override
@@ -161,7 +148,6 @@ public abstract class ReferenceOperationImpl extends FeatureOperationImpl implem
 
 	/**
 	 * <!-- begin-user-doc --> <!-- end-user-doc -->
-	 * 
 	 * @generated
 	 */
 	@Override
@@ -179,7 +165,6 @@ public abstract class ReferenceOperationImpl extends FeatureOperationImpl implem
 
 	/**
 	 * <!-- begin-user-doc --> <!-- end-user-doc -->
-	 * 
 	 * @generated
 	 */
 	@Override
@@ -197,7 +182,6 @@ public abstract class ReferenceOperationImpl extends FeatureOperationImpl implem
 
 	/**
 	 * <!-- begin-user-doc --> <!-- end-user-doc -->
-	 * 
 	 * @generated
 	 */
 	@Override
@@ -214,7 +198,6 @@ public abstract class ReferenceOperationImpl extends FeatureOperationImpl implem
 
 	/**
 	 * <!-- begin-user-doc --> <!-- end-user-doc -->
-	 * 
 	 * @generated
 	 */
 	@Override

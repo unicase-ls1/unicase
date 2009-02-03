@@ -13,27 +13,21 @@ import org.unicase.emfstore.esmodel.versioning.events.EventsPackage;
 import org.unicase.emfstore.esmodel.versioning.events.LinkEvent;
 import org.unicase.model.ModelElementId;
 
-/**
- * <!-- begin-user-doc --> An implementation of the model object '<em><b>Link Event</b></em>'. <!-- end-user-doc -->
- * <p>
- * The following features are implemented:
- * <ul>
- * <li>{@link org.unicase.emfstore.esmodel.versioning.events.impl.LinkEventImpl#getSourceView <em>Source View</em>}</li>
- * <li>{@link org.unicase.emfstore.esmodel.versioning.events.impl.LinkEventImpl#getSourceElement <em>Source Element
- * </em>}</li>
- * <li>{@link org.unicase.emfstore.esmodel.versioning.events.impl.LinkEventImpl#getTargetElement <em>Target Element
- * </em>}</li>
- * <li>{@link org.unicase.emfstore.esmodel.versioning.events.impl.LinkEventImpl#isCreatedNew <em>Created New</em>}</li>
- * </ul>
- * </p>
- * 
+/*
+ * <!-- begin-user-doc --> An implementation of the model object '<em><b>Link Event</b></em>'. <!-- end-user-doc --> <p>
+ * The following features are implemented: <ul> <li>{@link
+ * org.unicase.emfstore.esmodel.versioning.events.impl.LinkEventImpl#getSourceView <em>Source View</em>}</li> <li>{@link
+ * org.unicase.emfstore.esmodel.versioning.events.impl.LinkEventImpl#getSourceElement <em>Source Element</em>}</li>
+ * <li>{@link org.unicase.emfstore.esmodel.versioning.events.impl.LinkEventImpl#getTargetElement <em>Target
+ * Element</em>}</li> <li>{@link org.unicase.emfstore.esmodel.versioning.events.impl.LinkEventImpl#isCreatedNew
+ * <em>Created New</em>}</li> </ul> </p>
  * @generated
  */
 public class LinkEventImpl extends EventImpl implements LinkEvent {
 	/**
-	 * The default value of the '{@link #getSourceView() <em>Source View</em>}' attribute. <!-- begin-user-doc --> <!--
+	 * The default value of the '{@link #getSourceView() <em>Source View</em>}' attribute.
+	 * <!-- begin-user-doc --> <!--
 	 * end-user-doc -->
-	 * 
 	 * @see #getSourceView()
 	 * @generated
 	 * @ordered
@@ -41,9 +35,9 @@ public class LinkEventImpl extends EventImpl implements LinkEvent {
 	protected static final String SOURCE_VIEW_EDEFAULT = null;
 
 	/**
-	 * The cached value of the '{@link #getSourceView() <em>Source View</em>}' attribute. <!-- begin-user-doc --> <!--
+	 * The cached value of the '{@link #getSourceView() <em>Source View</em>}' attribute.
+	 * <!-- begin-user-doc --> <!--
 	 * end-user-doc -->
-	 * 
 	 * @see #getSourceView()
 	 * @generated
 	 * @ordered
@@ -51,9 +45,9 @@ public class LinkEventImpl extends EventImpl implements LinkEvent {
 	protected String sourceView = SOURCE_VIEW_EDEFAULT;
 
 	/**
-	 * The cached value of the '{@link #getSourceElement() <em>Source Element</em>}' reference. <!-- begin-user-doc -->
+	 * The cached value of the '{@link #getSourceElement() <em>Source Element</em>}' reference.
+	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
-	 * 
 	 * @see #getSourceElement()
 	 * @generated
 	 * @ordered
@@ -61,9 +55,9 @@ public class LinkEventImpl extends EventImpl implements LinkEvent {
 	protected ModelElementId sourceElement;
 
 	/**
-	 * The cached value of the '{@link #getTargetElement() <em>Target Element</em>}' reference. <!-- begin-user-doc -->
+	 * The cached value of the '{@link #getTargetElement() <em>Target Element</em>}' reference.
+	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
-	 * 
 	 * @see #getTargetElement()
 	 * @generated
 	 * @ordered
@@ -71,9 +65,9 @@ public class LinkEventImpl extends EventImpl implements LinkEvent {
 	protected ModelElementId targetElement;
 
 	/**
-	 * The default value of the '{@link #isCreatedNew() <em>Created New</em>}' attribute. <!-- begin-user-doc --> <!--
+	 * The default value of the '{@link #isCreatedNew() <em>Created New</em>}' attribute.
+	 * <!-- begin-user-doc --> <!--
 	 * end-user-doc -->
-	 * 
 	 * @see #isCreatedNew()
 	 * @generated
 	 * @ordered
@@ -81,9 +75,9 @@ public class LinkEventImpl extends EventImpl implements LinkEvent {
 	protected static final boolean CREATED_NEW_EDEFAULT = false;
 
 	/**
-	 * The cached value of the '{@link #isCreatedNew() <em>Created New</em>}' attribute. <!-- begin-user-doc --> <!--
+	 * The cached value of the '{@link #isCreatedNew() <em>Created New</em>}' attribute.
+	 * <!-- begin-user-doc --> <!--
 	 * end-user-doc -->
-	 * 
 	 * @see #isCreatedNew()
 	 * @generated
 	 * @ordered
@@ -92,7 +86,6 @@ public class LinkEventImpl extends EventImpl implements LinkEvent {
 
 	/**
 	 * <!-- begin-user-doc --> <!-- end-user-doc -->
-	 * 
 	 * @generated
 	 */
 	protected LinkEventImpl() {
@@ -101,7 +94,6 @@ public class LinkEventImpl extends EventImpl implements LinkEvent {
 
 	/**
 	 * <!-- begin-user-doc --> <!-- end-user-doc -->
-	 * 
 	 * @generated
 	 */
 	@Override
@@ -111,7 +103,6 @@ public class LinkEventImpl extends EventImpl implements LinkEvent {
 
 	/**
 	 * <!-- begin-user-doc --> <!-- end-user-doc -->
-	 * 
 	 * @generated
 	 */
 	public String getSourceView() {
@@ -120,7 +111,6 @@ public class LinkEventImpl extends EventImpl implements LinkEvent {
 
 	/**
 	 * <!-- begin-user-doc --> <!-- end-user-doc -->
-	 * 
 	 * @generated
 	 */
 	public void setSourceView(String newSourceView) {
@@ -133,7 +123,6 @@ public class LinkEventImpl extends EventImpl implements LinkEvent {
 
 	/**
 	 * <!-- begin-user-doc --> <!-- end-user-doc -->
-	 * 
 	 * @generated
 	 */
 	public ModelElementId getSourceElement() {
@@ -151,7 +140,6 @@ public class LinkEventImpl extends EventImpl implements LinkEvent {
 
 	/**
 	 * <!-- begin-user-doc --> <!-- end-user-doc -->
-	 * 
 	 * @generated
 	 */
 	public ModelElementId basicGetSourceElement() {
@@ -160,7 +148,6 @@ public class LinkEventImpl extends EventImpl implements LinkEvent {
 
 	/**
 	 * <!-- begin-user-doc --> <!-- end-user-doc -->
-	 * 
 	 * @generated
 	 */
 	public void setSourceElement(ModelElementId newSourceElement) {
@@ -173,7 +160,6 @@ public class LinkEventImpl extends EventImpl implements LinkEvent {
 
 	/**
 	 * <!-- begin-user-doc --> <!-- end-user-doc -->
-	 * 
 	 * @generated
 	 */
 	public ModelElementId getTargetElement() {
@@ -191,7 +177,6 @@ public class LinkEventImpl extends EventImpl implements LinkEvent {
 
 	/**
 	 * <!-- begin-user-doc --> <!-- end-user-doc -->
-	 * 
 	 * @generated
 	 */
 	public ModelElementId basicGetTargetElement() {
@@ -200,7 +185,6 @@ public class LinkEventImpl extends EventImpl implements LinkEvent {
 
 	/**
 	 * <!-- begin-user-doc --> <!-- end-user-doc -->
-	 * 
 	 * @generated
 	 */
 	public void setTargetElement(ModelElementId newTargetElement) {
@@ -213,7 +197,6 @@ public class LinkEventImpl extends EventImpl implements LinkEvent {
 
 	/**
 	 * <!-- begin-user-doc --> <!-- end-user-doc -->
-	 * 
 	 * @generated
 	 */
 	public boolean isCreatedNew() {
@@ -222,7 +205,6 @@ public class LinkEventImpl extends EventImpl implements LinkEvent {
 
 	/**
 	 * <!-- begin-user-doc --> <!-- end-user-doc -->
-	 * 
 	 * @generated
 	 */
 	public void setCreatedNew(boolean newCreatedNew) {
@@ -235,7 +217,6 @@ public class LinkEventImpl extends EventImpl implements LinkEvent {
 
 	/**
 	 * <!-- begin-user-doc --> <!-- end-user-doc -->
-	 * 
 	 * @generated
 	 */
 	@Override
@@ -259,7 +240,6 @@ public class LinkEventImpl extends EventImpl implements LinkEvent {
 
 	/**
 	 * <!-- begin-user-doc --> <!-- end-user-doc -->
-	 * 
 	 * @generated
 	 */
 	@Override
@@ -283,7 +263,6 @@ public class LinkEventImpl extends EventImpl implements LinkEvent {
 
 	/**
 	 * <!-- begin-user-doc --> <!-- end-user-doc -->
-	 * 
 	 * @generated
 	 */
 	@Override
@@ -307,7 +286,6 @@ public class LinkEventImpl extends EventImpl implements LinkEvent {
 
 	/**
 	 * <!-- begin-user-doc --> <!-- end-user-doc -->
-	 * 
 	 * @generated
 	 */
 	@Override
@@ -327,7 +305,6 @@ public class LinkEventImpl extends EventImpl implements LinkEvent {
 
 	/**
 	 * <!-- begin-user-doc --> <!-- end-user-doc -->
-	 * 
 	 * @generated
 	 */
 	@Override

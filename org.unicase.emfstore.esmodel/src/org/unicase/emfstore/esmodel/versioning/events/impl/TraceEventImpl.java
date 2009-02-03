@@ -13,26 +13,20 @@ import org.unicase.emfstore.esmodel.versioning.events.EventsPackage;
 import org.unicase.emfstore.esmodel.versioning.events.TraceEvent;
 import org.unicase.model.ModelElementId;
 
-/**
+/*
  * <!-- begin-user-doc --> An implementation of the model object '<em><b>Trace Event</b></em>'. <!-- end-user-doc -->
- * <p>
- * The following features are implemented:
- * <ul>
- * <li>{@link org.unicase.emfstore.esmodel.versioning.events.impl.TraceEventImpl#getSourceElement <em>Source Element
- * </em>}</li>
- * <li>{@link org.unicase.emfstore.esmodel.versioning.events.impl.TraceEventImpl#getTargetElement <em>Target Element
- * </em>}</li>
- * <li>{@link org.unicase.emfstore.esmodel.versioning.events.impl.TraceEventImpl#getFeatureName <em>Feature Name</em>}</li>
- * </ul>
- * </p>
- * 
+ * <p> The following features are implemented: <ul> <li>{@link
+ * org.unicase.emfstore.esmodel.versioning.events.impl.TraceEventImpl#getSourceElement <em>Source Element</em>}</li>
+ * <li>{@link org.unicase.emfstore.esmodel.versioning.events.impl.TraceEventImpl#getTargetElement <em>Target
+ * Element</em>}</li> <li>{@link org.unicase.emfstore.esmodel.versioning.events.impl.TraceEventImpl#getFeatureName
+ * <em>Feature Name</em>}</li> </ul> </p>
  * @generated
  */
 public class TraceEventImpl extends EventImpl implements TraceEvent {
 	/**
-	 * The cached value of the '{@link #getSourceElement() <em>Source Element</em>}' reference. <!-- begin-user-doc -->
+	 * The cached value of the '{@link #getSourceElement() <em>Source Element</em>}' reference.
+	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
-	 * 
 	 * @see #getSourceElement()
 	 * @generated
 	 * @ordered
@@ -40,9 +34,9 @@ public class TraceEventImpl extends EventImpl implements TraceEvent {
 	protected ModelElementId sourceElement;
 
 	/**
-	 * The cached value of the '{@link #getTargetElement() <em>Target Element</em>}' reference. <!-- begin-user-doc -->
+	 * The cached value of the '{@link #getTargetElement() <em>Target Element</em>}' reference.
+	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
-	 * 
 	 * @see #getTargetElement()
 	 * @generated
 	 * @ordered
@@ -50,9 +44,9 @@ public class TraceEventImpl extends EventImpl implements TraceEvent {
 	protected ModelElementId targetElement;
 
 	/**
-	 * The default value of the '{@link #getFeatureName() <em>Feature Name</em>}' attribute. <!-- begin-user-doc -->
+	 * The default value of the '{@link #getFeatureName() <em>Feature Name</em>}' attribute.
+	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
-	 * 
 	 * @see #getFeatureName()
 	 * @generated
 	 * @ordered
@@ -60,9 +54,9 @@ public class TraceEventImpl extends EventImpl implements TraceEvent {
 	protected static final String FEATURE_NAME_EDEFAULT = null;
 
 	/**
-	 * The cached value of the '{@link #getFeatureName() <em>Feature Name</em>}' attribute. <!-- begin-user-doc --> <!--
+	 * The cached value of the '{@link #getFeatureName() <em>Feature Name</em>}' attribute.
+	 * <!-- begin-user-doc --> <!--
 	 * end-user-doc -->
-	 * 
 	 * @see #getFeatureName()
 	 * @generated
 	 * @ordered
@@ -71,7 +65,6 @@ public class TraceEventImpl extends EventImpl implements TraceEvent {
 
 	/**
 	 * <!-- begin-user-doc --> <!-- end-user-doc -->
-	 * 
 	 * @generated
 	 */
 	protected TraceEventImpl() {
@@ -80,7 +73,6 @@ public class TraceEventImpl extends EventImpl implements TraceEvent {
 
 	/**
 	 * <!-- begin-user-doc --> <!-- end-user-doc -->
-	 * 
 	 * @generated
 	 */
 	@Override
@@ -90,7 +82,6 @@ public class TraceEventImpl extends EventImpl implements TraceEvent {
 
 	/**
 	 * <!-- begin-user-doc --> <!-- end-user-doc -->
-	 * 
 	 * @generated
 	 */
 	public ModelElementId getSourceElement() {
@@ -108,7 +99,6 @@ public class TraceEventImpl extends EventImpl implements TraceEvent {
 
 	/**
 	 * <!-- begin-user-doc --> <!-- end-user-doc -->
-	 * 
 	 * @generated
 	 */
 	public ModelElementId basicGetSourceElement() {
@@ -117,7 +107,6 @@ public class TraceEventImpl extends EventImpl implements TraceEvent {
 
 	/**
 	 * <!-- begin-user-doc --> <!-- end-user-doc -->
-	 * 
 	 * @generated
 	 */
 	public void setSourceElement(ModelElementId newSourceElement) {
@@ -130,7 +119,6 @@ public class TraceEventImpl extends EventImpl implements TraceEvent {
 
 	/**
 	 * <!-- begin-user-doc --> <!-- end-user-doc -->
-	 * 
 	 * @generated
 	 */
 	public ModelElementId getTargetElement() {
@@ -148,7 +136,6 @@ public class TraceEventImpl extends EventImpl implements TraceEvent {
 
 	/**
 	 * <!-- begin-user-doc --> <!-- end-user-doc -->
-	 * 
 	 * @generated
 	 */
 	public ModelElementId basicGetTargetElement() {
@@ -157,7 +144,6 @@ public class TraceEventImpl extends EventImpl implements TraceEvent {
 
 	/**
 	 * <!-- begin-user-doc --> <!-- end-user-doc -->
-	 * 
 	 * @generated
 	 */
 	public void setTargetElement(ModelElementId newTargetElement) {
@@ -170,7 +156,6 @@ public class TraceEventImpl extends EventImpl implements TraceEvent {
 
 	/**
 	 * <!-- begin-user-doc --> <!-- end-user-doc -->
-	 * 
 	 * @generated
 	 */
 	public String getFeatureName() {
@@ -179,7 +164,6 @@ public class TraceEventImpl extends EventImpl implements TraceEvent {
 
 	/**
 	 * <!-- begin-user-doc --> <!-- end-user-doc -->
-	 * 
 	 * @generated
 	 */
 	public void setFeatureName(String newFeatureName) {
@@ -192,7 +176,6 @@ public class TraceEventImpl extends EventImpl implements TraceEvent {
 
 	/**
 	 * <!-- begin-user-doc --> <!-- end-user-doc -->
-	 * 
 	 * @generated
 	 */
 	@Override
@@ -214,7 +197,6 @@ public class TraceEventImpl extends EventImpl implements TraceEvent {
 
 	/**
 	 * <!-- begin-user-doc --> <!-- end-user-doc -->
-	 * 
 	 * @generated
 	 */
 	@Override
@@ -235,7 +217,6 @@ public class TraceEventImpl extends EventImpl implements TraceEvent {
 
 	/**
 	 * <!-- begin-user-doc --> <!-- end-user-doc -->
-	 * 
 	 * @generated
 	 */
 	@Override
@@ -256,7 +237,6 @@ public class TraceEventImpl extends EventImpl implements TraceEvent {
 
 	/**
 	 * <!-- begin-user-doc --> <!-- end-user-doc -->
-	 * 
 	 * @generated
 	 */
 	@Override
@@ -274,7 +254,6 @@ public class TraceEventImpl extends EventImpl implements TraceEvent {
 
 	/**
 	 * <!-- begin-user-doc --> <!-- end-user-doc -->
-	 * 
 	 * @generated
 	 */
 	@Override

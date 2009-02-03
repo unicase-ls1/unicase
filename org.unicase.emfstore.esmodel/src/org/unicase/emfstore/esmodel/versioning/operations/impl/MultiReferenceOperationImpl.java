@@ -29,27 +29,20 @@ import org.unicase.model.ModelElementId;
 import org.unicase.model.Project;
 import org.unicase.model.util.ModelUtil;
 
-/**
+/*
  * <!-- begin-user-doc --> An implementation of the model object '<em><b>Multi Reference Operation</b></em>'. <!--
- * end-user-doc -->
- * <p>
- * The following features are implemented:
- * <ul>
- * <li>{@link org.unicase.emfstore.esmodel.versioning.operations.impl.MultiReferenceOperationImpl#isAdd <em>Add</em>}</li>
- * <li>{@link org.unicase.emfstore.esmodel.versioning.operations.impl.MultiReferenceOperationImpl#getIndex <em>Index
- * </em>}</li>
- * <li>
- * {@link org.unicase.emfstore.esmodel.versioning.operations.impl.MultiReferenceOperationImpl#getReferencedModelElements
- * <em>Referenced Model Elements</em>}</li>
- * </ul>
- * </p>
- * 
+ * end-user-doc --> <p> The following features are implemented: <ul> <li>{@link
+ * org.unicase.emfstore.esmodel.versioning.operations.impl.MultiReferenceOperationImpl#isAdd <em>Add</em>}</li>
+ * <li>{@link org.unicase.emfstore.esmodel.versioning.operations.impl.MultiReferenceOperationImpl#getIndex
+ * <em>Index</em>}</li> <li>{@link
+ * org.unicase.emfstore.esmodel.versioning.operations.impl.MultiReferenceOperationImpl#getReferencedModelElements
+ * <em>Referenced Model Elements</em>}</li> </ul> </p>
  * @generated
  */
 public class MultiReferenceOperationImpl extends ReferenceOperationImpl implements MultiReferenceOperation {
 	/**
-	 * The default value of the '{@link #isAdd() <em>Add</em>}' attribute. <!-- begin-user-doc --> <!-- end-user-doc -->
-	 * 
+	 * The default value of the '{@link #isAdd() <em>Add</em>}' attribute.
+	 * <!-- begin-user-doc --> <!-- end-user-doc -->
 	 * @see #isAdd()
 	 * @generated
 	 * @ordered
@@ -57,8 +50,8 @@ public class MultiReferenceOperationImpl extends ReferenceOperationImpl implemen
 	protected static final boolean ADD_EDEFAULT = false;
 
 	/**
-	 * The cached value of the '{@link #isAdd() <em>Add</em>}' attribute. <!-- begin-user-doc --> <!-- end-user-doc -->
-	 * 
+	 * The cached value of the '{@link #isAdd() <em>Add</em>}' attribute.
+	 * <!-- begin-user-doc --> <!-- end-user-doc -->
 	 * @see #isAdd()
 	 * @generated
 	 * @ordered
@@ -66,9 +59,9 @@ public class MultiReferenceOperationImpl extends ReferenceOperationImpl implemen
 	protected boolean add = ADD_EDEFAULT;
 
 	/**
-	 * The default value of the '{@link #getIndex() <em>Index</em>}' attribute. <!-- begin-user-doc --> <!--
+	 * The default value of the '{@link #getIndex() <em>Index</em>}' attribute.
+	 * <!-- begin-user-doc --> <!--
 	 * end-user-doc -->
-	 * 
 	 * @see #getIndex()
 	 * @generated
 	 * @ordered
@@ -86,9 +79,8 @@ public class MultiReferenceOperationImpl extends ReferenceOperationImpl implemen
 	protected int index = INDEX_EDEFAULT;
 
 	/**
-	 * The cached value of the '{@link #getReferencedModelElements() <em>Referenced Model Elements</em>}' containment
-	 * reference list. <!-- begin-user-doc --> <!-- end-user-doc -->
-	 * 
+	 * The cached value of the '{@link #getReferencedModelElements() <em>Referenced Model Elements</em>}' containment reference list.
+	 * <!-- begin-user-doc --> <!-- end-user-doc -->
 	 * @see #getReferencedModelElements()
 	 * @generated
 	 * @ordered
@@ -97,7 +89,6 @@ public class MultiReferenceOperationImpl extends ReferenceOperationImpl implemen
 
 	/**
 	 * <!-- begin-user-doc --> <!-- end-user-doc -->
-	 * 
 	 * @generated
 	 */
 	protected MultiReferenceOperationImpl() {
@@ -106,7 +97,6 @@ public class MultiReferenceOperationImpl extends ReferenceOperationImpl implemen
 
 	/**
 	 * <!-- begin-user-doc --> <!-- end-user-doc -->
-	 * 
 	 * @generated
 	 */
 	@Override
@@ -116,7 +106,6 @@ public class MultiReferenceOperationImpl extends ReferenceOperationImpl implemen
 
 	/**
 	 * <!-- begin-user-doc --> <!-- end-user-doc -->
-	 * 
 	 * @generated
 	 */
 	public boolean isAdd() {
@@ -125,7 +114,6 @@ public class MultiReferenceOperationImpl extends ReferenceOperationImpl implemen
 
 	/**
 	 * <!-- begin-user-doc --> <!-- end-user-doc -->
-	 * 
 	 * @generated
 	 */
 	public void setAdd(boolean newAdd) {
@@ -138,7 +126,6 @@ public class MultiReferenceOperationImpl extends ReferenceOperationImpl implemen
 
 	/**
 	 * <!-- begin-user-doc --> <!-- end-user-doc -->
-	 * 
 	 * @generated
 	 */
 	public int getIndex() {
@@ -147,7 +134,6 @@ public class MultiReferenceOperationImpl extends ReferenceOperationImpl implemen
 
 	/**
 	 * <!-- begin-user-doc --> <!-- end-user-doc -->
-	 * 
 	 * @generated
 	 */
 	public void setIndex(int newIndex) {
@@ -160,7 +146,6 @@ public class MultiReferenceOperationImpl extends ReferenceOperationImpl implemen
 
 	/**
 	 * <!-- begin-user-doc --> <!-- end-user-doc -->
-	 * 
 	 * @generated
 	 */
 	public EList<ModelElementId> getReferencedModelElements() {
@@ -173,7 +158,6 @@ public class MultiReferenceOperationImpl extends ReferenceOperationImpl implemen
 
 	/**
 	 * <!-- begin-user-doc --> <!-- end-user-doc -->
-	 * 
 	 * @generated
 	 */
 	@Override
@@ -187,7 +171,6 @@ public class MultiReferenceOperationImpl extends ReferenceOperationImpl implemen
 
 	/**
 	 * <!-- begin-user-doc --> <!-- end-user-doc -->
-	 * 
 	 * @generated
 	 */
 	@Override
@@ -205,7 +188,6 @@ public class MultiReferenceOperationImpl extends ReferenceOperationImpl implemen
 
 	/**
 	 * <!-- begin-user-doc --> <!-- end-user-doc -->
-	 * 
 	 * @generated
 	 */
 	@SuppressWarnings("unchecked")
@@ -228,7 +210,6 @@ public class MultiReferenceOperationImpl extends ReferenceOperationImpl implemen
 
 	/**
 	 * <!-- begin-user-doc --> <!-- end-user-doc -->
-	 * 
 	 * @generated
 	 */
 	@Override
@@ -249,7 +230,6 @@ public class MultiReferenceOperationImpl extends ReferenceOperationImpl implemen
 
 	/**
 	 * <!-- begin-user-doc --> <!-- end-user-doc -->
-	 * 
 	 * @generated
 	 */
 	@Override
@@ -267,7 +247,6 @@ public class MultiReferenceOperationImpl extends ReferenceOperationImpl implemen
 
 	/**
 	 * <!-- begin-user-doc --> <!-- end-user-doc -->
-	 * 
 	 * @generated
 	 */
 	@Override

@@ -13,16 +13,11 @@ import org.osgi.framework.Version;
 import org.unicase.emfstore.esmodel.EsmodelPackage;
 import org.unicase.emfstore.esmodel.VersionInfo;
 
-/**
+/*
  * <!-- begin-user-doc --> An implementation of the model object '<em><b>Version Info</b></em>'. <!-- end-user-doc -->
- * <p>
- * The following features are implemented:
- * <ul>
- * <li>{@link org.unicase.emfstore.esmodel.impl.VersionInfoImpl#getEmfStoreVersionString <em>Emf Store Version String
- * </em>}</li>
- * </ul>
- * </p>
- * 
+ * <p> The following features are implemented: <ul> <li>{@link
+ * org.unicase.emfstore.esmodel.impl.VersionInfoImpl#getEmfStoreVersionString <em>Emf Store Version String</em>}</li>
+ * </ul> </p>
  * @generated
  */
 public class VersionInfoImpl extends EObjectImpl implements VersionInfo {
@@ -48,7 +43,6 @@ public class VersionInfoImpl extends EObjectImpl implements VersionInfo {
 
 	/**
 	 * <!-- begin-user-doc --> <!-- end-user-doc -->
-	 * 
 	 * @generated
 	 */
 	protected VersionInfoImpl() {
@@ -57,7 +51,6 @@ public class VersionInfoImpl extends EObjectImpl implements VersionInfo {
 
 	/**
 	 * <!-- begin-user-doc --> <!-- end-user-doc -->
-	 * 
 	 * @generated
 	 */
 	@Override
@@ -67,7 +60,6 @@ public class VersionInfoImpl extends EObjectImpl implements VersionInfo {
 
 	/**
 	 * <!-- begin-user-doc --> <!-- end-user-doc -->
-	 * 
 	 * @generated
 	 */
 	public String getEmfStoreVersionString() {
@@ -76,7 +68,6 @@ public class VersionInfoImpl extends EObjectImpl implements VersionInfo {
 
 	/**
 	 * <!-- begin-user-doc --> <!-- end-user-doc -->
-	 * 
 	 * @generated
 	 */
 	public void setEmfStoreVersionString(String newEmfStoreVersionString) {
@@ -112,7 +103,6 @@ public class VersionInfoImpl extends EObjectImpl implements VersionInfo {
 
 	/**
 	 * <!-- begin-user-doc --> <!-- end-user-doc -->
-	 * 
 	 * @generated
 	 */
 	@Override
@@ -126,7 +116,6 @@ public class VersionInfoImpl extends EObjectImpl implements VersionInfo {
 
 	/**
 	 * <!-- begin-user-doc --> <!-- end-user-doc -->
-	 * 
 	 * @generated
 	 */
 	@Override
@@ -141,7 +130,6 @@ public class VersionInfoImpl extends EObjectImpl implements VersionInfo {
 
 	/**
 	 * <!-- begin-user-doc --> <!-- end-user-doc -->
-	 * 
 	 * @generated
 	 */
 	@Override
@@ -156,7 +144,6 @@ public class VersionInfoImpl extends EObjectImpl implements VersionInfo {
 
 	/**
 	 * <!-- begin-user-doc --> <!-- end-user-doc -->
-	 * 
 	 * @generated
 	 */
 	@Override
@@ -171,7 +158,6 @@ public class VersionInfoImpl extends EObjectImpl implements VersionInfo {
 
 	/**
 	 * <!-- begin-user-doc --> <!-- end-user-doc -->
-	 * 
 	 * @generated
 	 */
 	@Override

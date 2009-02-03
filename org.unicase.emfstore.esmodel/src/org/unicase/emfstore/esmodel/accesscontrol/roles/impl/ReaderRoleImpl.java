@@ -11,11 +11,9 @@ import org.unicase.emfstore.esmodel.accesscontrol.roles.ReaderRole;
 import org.unicase.emfstore.esmodel.accesscontrol.roles.RolesPackage;
 import org.unicase.model.ModelElement;
 
-/**
+/*
  * <!-- begin-user-doc --> An implementation of the model object ' <em><b>Reader Role</b></em>'. <!-- end-user-doc -->
- * <p>
- * </p>
- * 
+ * <p> </p>
  * @generated
  */
 public class ReaderRoleImpl extends RoleImpl implements ReaderRole {
@@ -46,7 +44,6 @@ public class ReaderRoleImpl extends RoleImpl implements ReaderRole {
 
 	/**
 	 * <!-- begin-user-doc --> <!-- end-user-doc -->
-	 * 
 	 * @generated
 	 */
 	protected ReaderRoleImpl() {
@@ -55,7 +52,6 @@ public class ReaderRoleImpl extends RoleImpl implements ReaderRole {
 
 	/**
 	 * <!-- begin-user-doc --> <!-- end-user-doc -->
-	 * 
 	 * @generated
 	 */
 	@Override

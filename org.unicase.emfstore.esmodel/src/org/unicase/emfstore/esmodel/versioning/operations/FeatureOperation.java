@@ -5,16 +5,11 @@
  */
 package org.unicase.emfstore.esmodel.versioning.operations;
 
-/**
+/*
  * <!-- begin-user-doc --> A representation of the model object '<em><b>Feature Operation</b></em>'. <!-- end-user-doc
- * -->
- * <p>
- * The following features are supported:
- * <ul>
- * <li>{@link org.unicase.emfstore.esmodel.versioning.operations.FeatureOperation#getFeatureName <em>Feature Name</em>}</li>
- * </ul>
+ * --> <p> The following features are supported: <ul> <li>{@link
+ * org.unicase.emfstore.esmodel.versioning.operations.FeatureOperation#getFeatureName <em>Feature Name</em>}</li> </ul>
  * </p>
- * 
  * @see org.unicase.emfstore.esmodel.versioning.operations.OperationsPackage#getFeatureOperation()
  * @model abstract="true"
  * @generated
@@ -38,9 +33,8 @@ public interface FeatureOperation extends AbstractOperation {
 	String getFeatureName();
 
 	/**
-	 * Sets the value of the '{@link org.unicase.emfstore.esmodel.versioning.operations.FeatureOperation#getFeatureName
-	 * <em>Feature Name</em>}' attribute. <!-- begin-user-doc --> <!-- end-user-doc -->
-	 * 
+	 * Sets the value of the '{@link org.unicase.emfstore.esmodel.versioning.operations.FeatureOperation#getFeatureName <em>Feature Name</em>}' attribute.
+	 * <!-- begin-user-doc --> <!-- end-user-doc -->
 	 * @param value the new value of the '<em>Feature Name</em>' attribute.
 	 * @see #getFeatureName()
 	 * @generated

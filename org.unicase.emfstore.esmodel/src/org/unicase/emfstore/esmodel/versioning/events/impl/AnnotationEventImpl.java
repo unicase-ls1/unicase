@@ -13,19 +13,12 @@ import org.unicase.emfstore.esmodel.versioning.events.AnnotationEvent;
 import org.unicase.emfstore.esmodel.versioning.events.EventsPackage;
 import org.unicase.model.ModelElementId;
 
-/**
+/*
  * <!-- begin-user-doc --> An implementation of the model object '<em><b>Annotation Event</b></em>'. <!-- end-user-doc
- * -->
- * <p>
- * The following features are implemented:
- * <ul>
- * <li>{@link org.unicase.emfstore.esmodel.versioning.events.impl.AnnotationEventImpl#getAnnotatedElement <em>Annotated
- * Element</em>}</li>
- * <li>{@link org.unicase.emfstore.esmodel.versioning.events.impl.AnnotationEventImpl#getAnnotation <em>Annotation</em>}
- * </li>
- * </ul>
- * </p>
- * 
+ * --> <p> The following features are implemented: <ul> <li>{@link
+ * org.unicase.emfstore.esmodel.versioning.events.impl.AnnotationEventImpl#getAnnotatedElement <em>Annotated
+ * Element</em>}</li> <li>{@link org.unicase.emfstore.esmodel.versioning.events.impl.AnnotationEventImpl#getAnnotation
+ * <em>Annotation</em>} </li> </ul> </p>
  * @generated
  */
 public class AnnotationEventImpl extends EventImpl implements AnnotationEvent {
@@ -40,9 +33,9 @@ public class AnnotationEventImpl extends EventImpl implements AnnotationEvent {
 	protected ModelElementId annotatedElement;
 
 	/**
-	 * The cached value of the '{@link #getAnnotation() <em>Annotation</em>}' reference. <!-- begin-user-doc --> <!--
+	 * The cached value of the '{@link #getAnnotation() <em>Annotation</em>}' reference.
+	 * <!-- begin-user-doc --> <!--
 	 * end-user-doc -->
-	 * 
 	 * @see #getAnnotation()
 	 * @generated
 	 * @ordered
@@ -51,7 +44,6 @@ public class AnnotationEventImpl extends EventImpl implements AnnotationEvent {
 
 	/**
 	 * <!-- begin-user-doc --> <!-- end-user-doc -->
-	 * 
 	 * @generated
 	 */
 	protected AnnotationEventImpl() {
@@ -60,7 +52,6 @@ public class AnnotationEventImpl extends EventImpl implements AnnotationEvent {
 
 	/**
 	 * <!-- begin-user-doc --> <!-- end-user-doc -->
-	 * 
 	 * @generated
 	 */
 	@Override
@@ -70,7 +61,6 @@ public class AnnotationEventImpl extends EventImpl implements AnnotationEvent {
 
 	/**
 	 * <!-- begin-user-doc --> <!-- end-user-doc -->
-	 * 
 	 * @generated
 	 */
 	public ModelElementId getAnnotatedElement() {
@@ -88,7 +78,6 @@ public class AnnotationEventImpl extends EventImpl implements AnnotationEvent {
 
 	/**
 	 * <!-- begin-user-doc --> <!-- end-user-doc -->
-	 * 
 	 * @generated
 	 */
 	public ModelElementId basicGetAnnotatedElement() {
@@ -97,7 +86,6 @@ public class AnnotationEventImpl extends EventImpl implements AnnotationEvent {
 
 	/**
 	 * <!-- begin-user-doc --> <!-- end-user-doc -->
-	 * 
 	 * @generated
 	 */
 	public void setAnnotatedElement(ModelElementId newAnnotatedElement) {
@@ -110,7 +98,6 @@ public class AnnotationEventImpl extends EventImpl implements AnnotationEvent {
 
 	/**
 	 * <!-- begin-user-doc --> <!-- end-user-doc -->
-	 * 
 	 * @generated
 	 */
 	public ModelElementId getAnnotation() {
@@ -128,7 +115,6 @@ public class AnnotationEventImpl extends EventImpl implements AnnotationEvent {
 
 	/**
 	 * <!-- begin-user-doc --> <!-- end-user-doc -->
-	 * 
 	 * @generated
 	 */
 	public ModelElementId basicGetAnnotation() {
@@ -137,7 +123,6 @@ public class AnnotationEventImpl extends EventImpl implements AnnotationEvent {
 
 	/**
 	 * <!-- begin-user-doc --> <!-- end-user-doc -->
-	 * 
 	 * @generated
 	 */
 	public void setAnnotation(ModelElementId newAnnotation) {
@@ -150,7 +135,6 @@ public class AnnotationEventImpl extends EventImpl implements AnnotationEvent {
 
 	/**
 	 * <!-- begin-user-doc --> <!-- end-user-doc -->
-	 * 
 	 * @generated
 	 */
 	@Override
@@ -170,7 +154,6 @@ public class AnnotationEventImpl extends EventImpl implements AnnotationEvent {
 
 	/**
 	 * <!-- begin-user-doc --> <!-- end-user-doc -->
-	 * 
 	 * @generated
 	 */
 	@Override
@@ -188,7 +171,6 @@ public class AnnotationEventImpl extends EventImpl implements AnnotationEvent {
 
 	/**
 	 * <!-- begin-user-doc --> <!-- end-user-doc -->
-	 * 
 	 * @generated
 	 */
 	@Override
@@ -206,7 +188,6 @@ public class AnnotationEventImpl extends EventImpl implements AnnotationEvent {
 
 	/**
 	 * <!-- begin-user-doc --> <!-- end-user-doc -->
-	 * 
 	 * @generated
 	 */
 	@Override

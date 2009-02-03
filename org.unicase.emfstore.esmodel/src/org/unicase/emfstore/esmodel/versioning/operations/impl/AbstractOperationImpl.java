@@ -19,24 +19,17 @@ import org.unicase.model.ModelElementId;
 import org.unicase.model.Project;
 import org.unicase.model.util.ModelUtil;
 
-/**
+/*
  * <!-- begin-user-doc --> An implementation of the model object '<em><b>Abstract Operation</b></em>'. <!-- end-user-doc
- * -->
- * <p>
- * The following features are implemented:
- * <ul>
- * <li>{@link org.unicase.emfstore.esmodel.versioning.operations.impl.AbstractOperationImpl#getName <em>Name</em>}</li>
- * <li>{@link org.unicase.emfstore.esmodel.versioning.operations.impl.AbstractOperationImpl#getDescription <em>
- * Description</em>}</li>
- * <li>{@link org.unicase.emfstore.esmodel.versioning.operations.impl.AbstractOperationImpl#getModelElementId <em>Model
- * Element Id</em>}</li>
- * <li>{@link org.unicase.emfstore.esmodel.versioning.operations.impl.AbstractOperationImpl#isAccepted <em>Accepted
- * </em>}</li>
- * <li>{@link org.unicase.emfstore.esmodel.versioning.operations.impl.AbstractOperationImpl#getClientDate <em>Client
- * Date</em>}</li>
- * </ul>
- * </p>
- * 
+ * --> <p> The following features are implemented: <ul> <li>{@link
+ * org.unicase.emfstore.esmodel.versioning.operations.impl.AbstractOperationImpl#getName <em>Name</em>}</li> <li>{@link
+ * org.unicase.emfstore.esmodel.versioning.operations.impl.AbstractOperationImpl#getDescription <em>
+ * Description</em>}</li> <li>{@link
+ * org.unicase.emfstore.esmodel.versioning.operations.impl.AbstractOperationImpl#getModelElementId <em>Model Element
+ * Id</em>}</li> <li>{@link org.unicase.emfstore.esmodel.versioning.operations.impl.AbstractOperationImpl#isAccepted
+ * <em>Accepted </em>}</li> <li>{@link
+ * org.unicase.emfstore.esmodel.versioning.operations.impl.AbstractOperationImpl#getClientDate <em>Client
+ * Date</em>}</li> </ul> </p>
  * @generated
  */
 public abstract class AbstractOperationImpl extends EObjectImpl implements AbstractOperation {
@@ -50,9 +43,9 @@ public abstract class AbstractOperationImpl extends EObjectImpl implements Abstr
 	 */
 	protected static final String NAME_EDEFAULT = null;
 	/**
-	 * The default value of the '{@link #getDescription() <em>Description</em>}' attribute. <!-- begin-user-doc --> <!--
+	 * The default value of the '{@link #getDescription() <em>Description</em>}' attribute.
+	 * <!-- begin-user-doc --> <!--
 	 * end-user-doc -->
-	 * 
 	 * @see #getDescription()
 	 * @generated
 	 * @ordered
@@ -69,18 +62,18 @@ public abstract class AbstractOperationImpl extends EObjectImpl implements Abstr
 	protected ModelElementId modelElementId;
 
 	/**
-	 * The default value of the '{@link #isAccepted() <em>Accepted</em>}' attribute. <!-- begin-user-doc --> <!--
+	 * The default value of the '{@link #isAccepted() <em>Accepted</em>}' attribute.
+	 * <!-- begin-user-doc --> <!--
 	 * end-user-doc -->
-	 * 
 	 * @see #isAccepted()
 	 * @generated
 	 * @ordered
 	 */
 	protected static final boolean ACCEPTED_EDEFAULT = false;
 	/**
-	 * The cached value of the '{@link #isAccepted() <em>Accepted</em>}' attribute. <!-- begin-user-doc --> <!--
+	 * The cached value of the '{@link #isAccepted() <em>Accepted</em>}' attribute.
+	 * <!-- begin-user-doc --> <!--
 	 * end-user-doc -->
-	 * 
 	 * @see #isAccepted()
 	 * @generated
 	 * @ordered
@@ -88,18 +81,18 @@ public abstract class AbstractOperationImpl extends EObjectImpl implements Abstr
 	protected boolean accepted = ACCEPTED_EDEFAULT;
 
 	/**
-	 * The default value of the '{@link #getClientDate() <em>Client Date</em>}' attribute. <!-- begin-user-doc --> <!--
+	 * The default value of the '{@link #getClientDate() <em>Client Date</em>}' attribute.
+	 * <!-- begin-user-doc --> <!--
 	 * end-user-doc -->
-	 * 
 	 * @see #getClientDate()
 	 * @generated
 	 * @ordered
 	 */
 	protected static final Date CLIENT_DATE_EDEFAULT = null;
 	/**
-	 * The cached value of the '{@link #getClientDate() <em>Client Date</em>}' attribute. <!-- begin-user-doc --> <!--
+	 * The cached value of the '{@link #getClientDate() <em>Client Date</em>}' attribute.
+	 * <!-- begin-user-doc --> <!--
 	 * end-user-doc -->
-	 * 
 	 * @see #getClientDate()
 	 * @generated
 	 * @ordered
@@ -108,7 +101,6 @@ public abstract class AbstractOperationImpl extends EObjectImpl implements Abstr
 
 	/**
 	 * <!-- begin-user-doc --> <!-- end-user-doc -->
-	 * 
 	 * @generated
 	 */
 	protected AbstractOperationImpl() {
@@ -117,7 +109,6 @@ public abstract class AbstractOperationImpl extends EObjectImpl implements Abstr
 
 	/**
 	 * <!-- begin-user-doc --> <!-- end-user-doc -->
-	 * 
 	 * @generated
 	 */
 	@Override
@@ -146,7 +137,6 @@ public abstract class AbstractOperationImpl extends EObjectImpl implements Abstr
 
 	/**
 	 * <!-- begin-user-doc --> <!-- end-user-doc -->
-	 * 
 	 * @generated
 	 */
 	public ModelElementId getModelElementId() {
@@ -173,7 +163,6 @@ public abstract class AbstractOperationImpl extends EObjectImpl implements Abstr
 
 	/**
 	 * <!-- begin-user-doc --> <!-- end-user-doc -->
-	 * 
 	 * @generated
 	 */
 	public ModelElementId basicGetModelElementId() {
@@ -182,7 +171,6 @@ public abstract class AbstractOperationImpl extends EObjectImpl implements Abstr
 
 	/**
 	 * <!-- begin-user-doc --> <!-- end-user-doc -->
-	 * 
 	 * @generated
 	 */
 	public NotificationChain basicSetModelElementId(ModelElementId newModelElementId, NotificationChain msgs) {
@@ -201,7 +189,6 @@ public abstract class AbstractOperationImpl extends EObjectImpl implements Abstr
 
 	/**
 	 * <!-- begin-user-doc --> <!-- end-user-doc -->
-	 * 
 	 * @generated
 	 */
 	public void setModelElementId(ModelElementId newModelElementId) {
@@ -223,7 +210,6 @@ public abstract class AbstractOperationImpl extends EObjectImpl implements Abstr
 
 	/**
 	 * <!-- begin-user-doc --> <!-- end-user-doc -->
-	 * 
 	 * @generated
 	 */
 	public boolean isAccepted() {
@@ -232,7 +218,6 @@ public abstract class AbstractOperationImpl extends EObjectImpl implements Abstr
 
 	/**
 	 * <!-- begin-user-doc --> <!-- end-user-doc -->
-	 * 
 	 * @generated
 	 */
 	public void setAccepted(boolean newAccepted) {
@@ -245,7 +230,6 @@ public abstract class AbstractOperationImpl extends EObjectImpl implements Abstr
 
 	/**
 	 * <!-- begin-user-doc --> <!-- end-user-doc -->
-	 * 
 	 * @generated
 	 */
 	public Date getClientDate() {
@@ -254,7 +238,6 @@ public abstract class AbstractOperationImpl extends EObjectImpl implements Abstr
 
 	/**
 	 * <!-- begin-user-doc --> <!-- end-user-doc -->
-	 * 
 	 * @generated
 	 */
 	public void setClientDate(Date newClientDate) {
@@ -302,7 +285,6 @@ public abstract class AbstractOperationImpl extends EObjectImpl implements Abstr
 
 	/**
 	 * <!-- begin-user-doc --> <!-- end-user-doc -->
-	 * 
 	 * @generated
 	 */
 	public boolean isChange() {
@@ -313,7 +295,6 @@ public abstract class AbstractOperationImpl extends EObjectImpl implements Abstr
 
 	/**
 	 * <!-- begin-user-doc --> <!-- end-user-doc -->
-	 * 
 	 * @generated
 	 */
 	@Override
@@ -327,7 +308,6 @@ public abstract class AbstractOperationImpl extends EObjectImpl implements Abstr
 
 	/**
 	 * <!-- begin-user-doc --> <!-- end-user-doc -->
-	 * 
 	 * @generated
 	 */
 	@Override
@@ -351,7 +331,6 @@ public abstract class AbstractOperationImpl extends EObjectImpl implements Abstr
 
 	/**
 	 * <!-- begin-user-doc --> <!-- end-user-doc -->
-	 * 
 	 * @generated
 	 */
 	@Override
@@ -372,7 +351,6 @@ public abstract class AbstractOperationImpl extends EObjectImpl implements Abstr
 
 	/**
 	 * <!-- begin-user-doc --> <!-- end-user-doc -->
-	 * 
 	 * @generated
 	 */
 	@Override
@@ -393,7 +371,6 @@ public abstract class AbstractOperationImpl extends EObjectImpl implements Abstr
 
 	/**
 	 * <!-- begin-user-doc --> <!-- end-user-doc -->
-	 * 
 	 * @generated
 	 */
 	@Override
@@ -416,7 +393,6 @@ public abstract class AbstractOperationImpl extends EObjectImpl implements Abstr
 
 	/**
 	 * <!-- begin-user-doc --> <!-- end-user-doc -->
-	 * 
 	 * @generated
 	 */
 	@Override

@@ -22,17 +22,12 @@ import org.unicase.emfstore.esmodel.accesscontrol.AccesscontrolPackage;
 import org.unicase.emfstore.esmodel.accesscontrol.roles.Role;
 import org.unicase.model.impl.IdentifiableElementImpl;
 
-/**
+/*
  * <!-- begin-user-doc --> An implementation of the model object ' <em><b>AC Org Unit</b></em>'. <!-- end-user-doc -->
- * <p>
- * The following features are implemented:
- * <ul>
- * <li>{@link org.unicase.emfstore.esmodel.accesscontrol.impl.ACOrgUnitImpl#getName <em>Name</em>}</li>
- * <li>{@link org.unicase.emfstore.esmodel.accesscontrol.impl.ACOrgUnitImpl#getRoles <em>Roles</em>}</li>
- * <li>{@link org.unicase.emfstore.esmodel.accesscontrol.impl.ACOrgUnitImpl#getDescription <em>Description</em>}</li>
- * </ul>
- * </p>
- * 
+ * <p> The following features are implemented: <ul> <li>{@link
+ * org.unicase.emfstore.esmodel.accesscontrol.impl.ACOrgUnitImpl#getName <em>Name</em>}</li> <li>{@link
+ * org.unicase.emfstore.esmodel.accesscontrol.impl.ACOrgUnitImpl#getRoles <em>Roles</em>}</li> <li>{@link
+ * org.unicase.emfstore.esmodel.accesscontrol.impl.ACOrgUnitImpl#getDescription <em>Description</em>}</li> </ul> </p>
  * @generated
  */
 public class ACOrgUnitImpl extends IdentifiableElementImpl implements ACOrgUnit {
@@ -58,9 +53,9 @@ public class ACOrgUnitImpl extends IdentifiableElementImpl implements ACOrgUnit 
 	protected String name = NAME_EDEFAULT;
 
 	/**
-	 * The cached value of the '{@link #getRoles() <em>Roles</em>}' containment reference list. <!-- begin-user-doc -->
+	 * The cached value of the '{@link #getRoles() <em>Roles</em>}' containment reference list.
+	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
-	 * 
 	 * @see #getRoles()
 	 * @generated
 	 * @ordered
@@ -68,9 +63,9 @@ public class ACOrgUnitImpl extends IdentifiableElementImpl implements ACOrgUnit 
 	protected EList<Role> roles;
 
 	/**
-	 * The default value of the '{@link #getDescription() <em>Description</em>}' attribute. <!-- begin-user-doc --> <!--
+	 * The default value of the '{@link #getDescription() <em>Description</em>}' attribute.
+	 * <!-- begin-user-doc --> <!--
 	 * end-user-doc -->
-	 * 
 	 * @see #getDescription()
 	 * @generated
 	 * @ordered
@@ -78,9 +73,9 @@ public class ACOrgUnitImpl extends IdentifiableElementImpl implements ACOrgUnit 
 	protected static final String DESCRIPTION_EDEFAULT = null;
 
 	/**
-	 * The cached value of the '{@link #getDescription() <em>Description</em>}' attribute. <!-- begin-user-doc --> <!--
+	 * The cached value of the '{@link #getDescription() <em>Description</em>}' attribute.
+	 * <!-- begin-user-doc --> <!--
 	 * end-user-doc -->
-	 * 
 	 * @see #getDescription()
 	 * @generated
 	 * @ordered
@@ -89,7 +84,6 @@ public class ACOrgUnitImpl extends IdentifiableElementImpl implements ACOrgUnit 
 
 	/**
 	 * <!-- begin-user-doc --> <!-- end-user-doc -->
-	 * 
 	 * @generated
 	 */
 	protected ACOrgUnitImpl() {
@@ -98,7 +92,6 @@ public class ACOrgUnitImpl extends IdentifiableElementImpl implements ACOrgUnit 
 
 	/**
 	 * <!-- begin-user-doc --> <!-- end-user-doc -->
-	 * 
 	 * @generated
 	 */
 	@Override
@@ -108,7 +101,6 @@ public class ACOrgUnitImpl extends IdentifiableElementImpl implements ACOrgUnit 
 
 	/**
 	 * <!-- begin-user-doc --> <!-- end-user-doc -->
-	 * 
 	 * @generated
 	 */
 	public String getName() {
@@ -117,7 +109,6 @@ public class ACOrgUnitImpl extends IdentifiableElementImpl implements ACOrgUnit 
 
 	/**
 	 * <!-- begin-user-doc --> <!-- end-user-doc -->
-	 * 
 	 * @generated
 	 */
 	public void setName(String newName) {
@@ -129,7 +120,6 @@ public class ACOrgUnitImpl extends IdentifiableElementImpl implements ACOrgUnit 
 
 	/**
 	 * <!-- begin-user-doc --> <!-- end-user-doc -->
-	 * 
 	 * @generated
 	 */
 	public EList<Role> getRoles() {
@@ -186,7 +176,6 @@ public class ACOrgUnitImpl extends IdentifiableElementImpl implements ACOrgUnit 
 
 	/**
 	 * <!-- begin-user-doc --> <!-- end-user-doc -->
-	 * 
 	 * @generated
 	 */
 	@Override
@@ -200,7 +189,6 @@ public class ACOrgUnitImpl extends IdentifiableElementImpl implements ACOrgUnit 
 
 	/**
 	 * <!-- begin-user-doc --> <!-- end-user-doc -->
-	 * 
 	 * @generated
 	 */
 	public String getDescription() {
@@ -209,7 +197,6 @@ public class ACOrgUnitImpl extends IdentifiableElementImpl implements ACOrgUnit 
 
 	/**
 	 * <!-- begin-user-doc --> <!-- end-user-doc -->
-	 * 
 	 * @generated
 	 */
 	public void setDescription(String newDescription) {
@@ -222,7 +209,6 @@ public class ACOrgUnitImpl extends IdentifiableElementImpl implements ACOrgUnit 
 
 	/**
 	 * <!-- begin-user-doc --> <!-- end-user-doc -->
-	 * 
 	 * @generated
 	 */
 	@Override
@@ -240,7 +226,6 @@ public class ACOrgUnitImpl extends IdentifiableElementImpl implements ACOrgUnit 
 
 	/**
 	 * <!-- begin-user-doc --> <!-- end-user-doc -->
-	 * 
 	 * @generated
 	 */
 	@SuppressWarnings("unchecked")
@@ -263,7 +248,6 @@ public class ACOrgUnitImpl extends IdentifiableElementImpl implements ACOrgUnit 
 
 	/**
 	 * <!-- begin-user-doc --> <!-- end-user-doc -->
-	 * 
 	 * @generated
 	 */
 	@Override
@@ -284,7 +268,6 @@ public class ACOrgUnitImpl extends IdentifiableElementImpl implements ACOrgUnit 
 
 	/**
 	 * <!-- begin-user-doc --> <!-- end-user-doc -->
-	 * 
 	 * @generated
 	 */
 	@Override
@@ -302,7 +285,6 @@ public class ACOrgUnitImpl extends IdentifiableElementImpl implements ACOrgUnit 
 
 	/**
 	 * <!-- begin-user-doc --> <!-- end-user-doc -->
-	 * 
 	 * @generated
 	 */
 	@Override

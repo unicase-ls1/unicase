@@ -121,6 +121,7 @@
         <genClasses ecoreClass="esmodel.ecore#//versioning/operations/CreateDeleteOperation">
           <genFeatures createChild="false" ecoreFeature="ecore:EAttribute esmodel.ecore#//versioning/operations/CreateDeleteOperation/delete"/>
           <genFeatures property="None" children="true" createChild="true" ecoreFeature="ecore:EReference esmodel.ecore#//versioning/operations/CreateDeleteOperation/modelElement"/>
+          <genFeatures property="None" children="true" createChild="true" ecoreFeature="ecore:EReference esmodel.ecore#//versioning/operations/CreateDeleteOperation/subOperations"/>
         </genClasses>
         <genClasses ecoreClass="esmodel.ecore#//versioning/operations/AttributeOperation">
           <genFeatures createChild="false" ecoreFeature="ecore:EAttribute esmodel.ecore#//versioning/operations/AttributeOperation/oldValue"/>

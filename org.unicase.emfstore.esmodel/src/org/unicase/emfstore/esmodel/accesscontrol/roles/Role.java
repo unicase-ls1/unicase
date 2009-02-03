@@ -10,29 +10,24 @@ import org.eclipse.emf.ecore.EObject;
 import org.unicase.emfstore.esmodel.ProjectId;
 import org.unicase.model.ModelElement;
 
-/**
- * <!-- begin-user-doc --> A representation of the model object ' <em><b>Role</b></em>'. <!-- end-user-doc -->
- * <p>
- * The following features are supported:
- * <ul>
- * <li>{@link org.unicase.emfstore.esmodel.accesscontrol.roles.Role#getProjects <em>Projects</em>}</li>
- * </ul>
- * </p>
- * 
+/*
+ * <!-- begin-user-doc --> A representation of the model object ' <em><b>Role</b></em>'. <!-- end-user-doc --> <p> The
+ * following features are supported: <ul> <li>{@link org.unicase.emfstore.esmodel.accesscontrol.roles.Role#getProjects
+ * <em>Projects</em>}</li> </ul> </p>
  * @see org.unicase.emfstore.esmodel.accesscontrol.roles.RolesPackage#getRole()
  * @model abstract="true"
  * @generated
  */
 public interface Role extends EObject {
 	/**
-	 * Returns the value of the '<em><b>Projects</b></em>' containment reference list. The list contents are of type
-	 * {@link org.unicase.emfstore.esmodel.ProjectId}. <!-- begin-user-doc -->
+	 * Returns the value of the '<em><b>Projects</b></em>' containment reference list.
+	 * The list contents are of type {@link org.unicase.emfstore.esmodel.ProjectId}.
+	 * <!-- begin-user-doc -->
 	 * <p>
 	 * If the meaning of the '<em>Projects</em>' reference list isn't clear, there really should be more of a
 	 * description here...
 	 * </p>
 	 * <!-- end-user-doc -->
-	 * 
 	 * @return the value of the '<em>Projects</em>' containment reference list.
 	 * @see org.unicase.emfstore.esmodel.accesscontrol.roles.RolesPackage#getRole_Projects()
 	 * @model containment="true" resolveProxies="true" keys="id"
@@ -42,7 +37,6 @@ public interface Role extends EObject {
 
 	/**
 	 * <!-- begin-user-doc --> <!-- end-user-doc -->
-	 * 
 	 * @model
 	 * @generated
 	 */
@@ -50,7 +44,6 @@ public interface Role extends EObject {
 
 	/**
 	 * <!-- begin-user-doc --> <!-- end-user-doc -->
-	 * 
 	 * @model
 	 * @generated
 	 */
@@ -58,7 +51,6 @@ public interface Role extends EObject {
 
 	/**
 	 * <!-- begin-user-doc --> <!-- end-user-doc -->
-	 * 
 	 * @model
 	 * @generated
 	 */
@@ -66,7 +58,6 @@ public interface Role extends EObject {
 
 	/**
 	 * <!-- begin-user-doc --> <!-- end-user-doc -->
-	 * 
 	 * @model
 	 * @generated
 	 */
@@ -74,7 +65,6 @@ public interface Role extends EObject {
 
 	/**
 	 * <!-- begin-user-doc --> <!-- end-user-doc -->
-	 * 
 	 * @model
 	 * @generated
 	 */

@@ -20,19 +20,18 @@ import org.eclipse.emf.edit.provider.ITreeItemContentProvider;
 import org.unicase.emfstore.esmodel.versioning.operations.OperationsPackage;
 import org.unicase.emfstore.esmodel.versioning.operations.SingleReferenceOperation;
 
-/**
- * This is the item provider adapter for a
- * {@link org.unicase.emfstore.esmodel.versioning.operations.SingleReferenceOperation} object. <!-- begin-user-doc -->
- * <!-- end-user-doc -->
- * 
+/*
+ * This is the item provider adapter for a {@link
+ * org.unicase.emfstore.esmodel.versioning.operations.SingleReferenceOperation} object. <!-- begin-user-doc --> <!--
+ * end-user-doc -->
  * @generated
  */
 public class SingleReferenceOperationItemProvider extends ReferenceOperationItemProvider implements
 	IEditingDomainItemProvider, IStructuredItemContentProvider, ITreeItemContentProvider, IItemLabelProvider,
 	IItemPropertySource {
 	/**
-	 * This constructs an instance from a factory and a notifier. <!-- begin-user-doc --> <!-- end-user-doc -->
-	 * 
+	 * This constructs an instance from a factory and a notifier.
+	 * <!-- begin-user-doc --> <!-- end-user-doc -->
 	 * @generated
 	 */
 	public SingleReferenceOperationItemProvider(AdapterFactory adapterFactory) {
@@ -40,8 +39,8 @@ public class SingleReferenceOperationItemProvider extends ReferenceOperationItem
 	}
 
 	/**
-	 * This returns the property descriptors for the adapted class. <!-- begin-user-doc --> <!-- end-user-doc -->
-	 * 
+	 * This returns the property descriptors for the adapted class.
+	 * <!-- begin-user-doc --> <!-- end-user-doc -->
 	 * @generated
 	 */
 	@Override
@@ -56,8 +55,8 @@ public class SingleReferenceOperationItemProvider extends ReferenceOperationItem
 	}
 
 	/**
-	 * This adds a property descriptor for the Old Value feature. <!-- begin-user-doc --> <!-- end-user-doc -->
-	 * 
+	 * This adds a property descriptor for the Old Value feature.
+	 * <!-- begin-user-doc --> <!-- end-user-doc -->
 	 * @generated
 	 */
 	protected void addOldValuePropertyDescriptor(Object object) {
@@ -69,8 +68,8 @@ public class SingleReferenceOperationItemProvider extends ReferenceOperationItem
 	}
 
 	/**
-	 * This adds a property descriptor for the New Value feature. <!-- begin-user-doc --> <!-- end-user-doc -->
-	 * 
+	 * This adds a property descriptor for the New Value feature.
+	 * <!-- begin-user-doc --> <!-- end-user-doc -->
 	 * @generated
 	 */
 	protected void addNewValuePropertyDescriptor(Object object) {
@@ -82,8 +81,8 @@ public class SingleReferenceOperationItemProvider extends ReferenceOperationItem
 	}
 
 	/**
-	 * This returns SingleReferenceOperation.gif. <!-- begin-user-doc --> <!-- end-user-doc -->
-	 * 
+	 * This returns SingleReferenceOperation.gif.
+	 * <!-- begin-user-doc --> <!-- end-user-doc -->
 	 * @generated
 	 */
 	@Override
@@ -92,8 +91,8 @@ public class SingleReferenceOperationItemProvider extends ReferenceOperationItem
 	}
 
 	/**
-	 * This returns the label text for the adapted class. <!-- begin-user-doc --> <!-- end-user-doc -->
-	 * 
+	 * This returns the label text for the adapted class.
+	 * <!-- begin-user-doc --> <!-- end-user-doc -->
 	 * @generated
 	 */
 	@Override
@@ -117,9 +116,9 @@ public class SingleReferenceOperationItemProvider extends ReferenceOperationItem
 	}
 
 	/**
-	 * This adds {@link org.eclipse.emf.edit.command.CommandParameter}s describing the children that can be created
-	 * under this object. <!-- begin-user-doc --> <!-- end-user-doc -->
-	 * 
+	 * This adds {@link org.eclipse.emf.edit.command.CommandParameter}s describing the children
+	 * that can be created under this object.
+	 * <!-- begin-user-doc --> <!-- end-user-doc -->
 	 * @generated
 	 */
 	@Override
