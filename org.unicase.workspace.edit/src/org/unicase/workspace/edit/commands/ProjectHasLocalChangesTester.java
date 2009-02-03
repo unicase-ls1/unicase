@@ -34,7 +34,7 @@ public class ProjectHasLocalChangesTester extends PropertyTester {
 			RecordingCommandWithResult<Boolean> command = new RecordingCommandWithResult<Boolean>(domain) {
 				@Override
 				protected void doExecute() {
-					EList<AbstractOperation> operations = projectSpace.getOperations();
+					EList<AbstractOperation> operations = projectSpace.getLocalOperations().getOperations();
 					Boolean hasLocalChanges = new Boolean(!operations.isEmpty());
 					this.setTypedResult(hasLocalChanges.equals(expectedValue));
 				}

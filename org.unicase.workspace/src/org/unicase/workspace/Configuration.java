@@ -196,4 +196,49 @@ public final class Configuration {
 	public static boolean isDeveloperVersion() {
 		return !isReleaseVersion() && !isInternalReleaseVersion();
 	}
+
+	/**
+	 * Return the file extension for project space files.
+	 * 
+	 * @return the file extension
+	 */
+	public static String getProjectSpaceFileExtension() {
+		return ".ups";
+	}
+
+	/**
+	 * Return the file extension for operation composite files.
+	 * 
+	 * @return the file extension
+	 */
+	public static String getOperationCompositeFileExtension() {
+		return ".uoc";
+	}
+
+	/**
+	 * Return the name of the project folder.
+	 * 
+	 * @return the folder name
+	 */
+	public static String getProjectFolderName() {
+		return "project";
+	}
+
+	/**
+	 * Return the prefix of the project space directory
+	 * 
+	 * @return the prefix
+	 */
+	public static String getProjectSpaceDirectoryPrefix() {
+		return "ps-";
+	}
+
+	/**
+	 * Return project fragement file extension.
+	 * 
+	 * @return the file extension
+	 */
+	public static String getProjectFragmentFileExtension() {
+		return ".upf";
+	}
 }

@@ -16,33 +16,27 @@ import org.unicase.emfstore.esmodel.ProjectInfo;
 import org.unicase.emfstore.exceptions.EmfStoreException;
 import org.unicase.workspace.connectionmanager.ConnectionManager;
 
-/**
+/*
  * <!-- begin-user-doc --> A representation of the model object ' <em><b>Workspace</b></em>'.
- * 
- * @implements IAdaptable <!-- end-user-doc -->
- *             <p>
- *             The following features are supported:
- *             <ul>
- *             <li>{@link org.unicase.workspace.Workspace#getProjectSpaces <em>Project Spaces</em>}</li>
- *             <li>{@link org.unicase.workspace.Workspace#getServerInfos <em>Server Infos</em>}</li>
- *             <li>{@link org.unicase.workspace.Workspace#getUsersessions <em>Usersessions</em>}</li>
- *             <li>{@link org.unicase.workspace.Workspace#getActiveProjectSpace <em>Active Project Space</em>}</li>
- *             </ul>
- *             </p>
+ * @implements IAdaptable <!-- end-user-doc --> <p> The following features are supported: <ul> <li>{@link
+ * org.unicase.workspace.Workspace#getProjectSpaces <em>Project Spaces</em>}</li> <li>{@link
+ * org.unicase.workspace.Workspace#getServerInfos <em>Server Infos</em>}</li> <li>{@link
+ * org.unicase.workspace.Workspace#getUsersessions <em>Usersessions</em>}</li> <li>{@link
+ * org.unicase.workspace.Workspace#getActiveProjectSpace <em>Active Project Space</em>}</li> </ul> </p>
  * @see org.unicase.workspace.WorkspacePackage#getWorkspace()
  * @model
  * @generated
  */
 public interface Workspace extends EObject, IAdaptable {
 	/**
-	 * Returns the value of the '<em><b>Project Spaces</b></em>' containment reference list. The list contents are of
-	 * type {@link org.unicase.workspace.ProjectSpace}. <!-- begin-user-doc -->
+	 * Returns the value of the '<em><b>Project Spaces</b></em>' containment reference list.
+	 * The list contents are of type {@link org.unicase.workspace.ProjectSpace}.
+	 * <!-- begin-user-doc -->
 	 * <p>
 	 * If the meaning of the '<em>Project Spaces</em>' reference list isn't clear, there really should be more of a
 	 * description here...
 	 * </p>
 	 * <!-- end-user-doc -->
-	 * 
 	 * @return the value of the '<em>Project Spaces</em>' containment reference list.
 	 * @see org.unicase.workspace.WorkspacePackage#getWorkspace_ProjectSpaces()
 	 * @model containment="true" resolveProxies="true" keys="identifier"
@@ -51,14 +45,14 @@ public interface Workspace extends EObject, IAdaptable {
 	EList<ProjectSpace> getProjectSpaces();
 
 	/**
-	 * Returns the value of the '<em><b>Server Infos</b></em>' containment reference list. The list contents are of type
-	 * {@link org.unicase.workspace.ServerInfo}. <!-- begin-user-doc -->
+	 * Returns the value of the '<em><b>Server Infos</b></em>' containment reference list.
+	 * The list contents are of type {@link org.unicase.workspace.ServerInfo}.
+	 * <!-- begin-user-doc -->
 	 * <p>
 	 * If the meaning of the '<em>Server Infos</em>' containment reference list isn't clear, there really should be more
 	 * of a description here...
 	 * </p>
 	 * <!-- end-user-doc -->
-	 * 
 	 * @return the value of the '<em>Server Infos</em>' containment reference list.
 	 * @see org.unicase.workspace.WorkspacePackage#getWorkspace_ServerInfos()
 	 * @model containment="true" resolveProxies="true"
@@ -67,14 +61,14 @@ public interface Workspace extends EObject, IAdaptable {
 	EList<ServerInfo> getServerInfos();
 
 	/**
-	 * Returns the value of the '<em><b>Usersessions</b></em>' containment reference list. The list contents are of type
-	 * {@link org.unicase.workspace.Usersession}. <!-- begin-user-doc -->
+	 * Returns the value of the '<em><b>Usersessions</b></em>' containment reference list.
+	 * The list contents are of type {@link org.unicase.workspace.Usersession}.
+	 * <!-- begin-user-doc -->
 	 * <p>
 	 * If the meaning of the '<em>Usersessions</em>' containment reference list isn't clear, there really should be more
 	 * of a description here...
 	 * </p>
 	 * <!-- end-user-doc -->
-	 * 
 	 * @return the value of the '<em>Usersessions</em>' containment reference list.
 	 * @see org.unicase.workspace.WorkspacePackage#getWorkspace_Usersessions()
 	 * @model containment="true" resolveProxies="true"
@@ -83,13 +77,13 @@ public interface Workspace extends EObject, IAdaptable {
 	EList<Usersession> getUsersessions();
 
 	/**
-	 * Returns the value of the '<em><b>Active Project Space</b></em>' reference. <!-- begin-user-doc -->
+	 * Returns the value of the '<em><b>Active Project Space</b></em>' reference.
+	 * <!-- begin-user-doc -->
 	 * <p>
 	 * If the meaning of the '<em>Active Project Space</em>' reference isn't clear, there really should be more of a
 	 * description here...
 	 * </p>
 	 * <!-- end-user-doc -->
-	 * 
 	 * @return the value of the '<em>Active Project Space</em>' reference.
 	 * @see #setActiveProjectSpace(ProjectSpace)
 	 * @see org.unicase.workspace.WorkspacePackage#getWorkspace_ActiveProjectSpace()
@@ -99,9 +93,8 @@ public interface Workspace extends EObject, IAdaptable {
 	ProjectSpace getActiveProjectSpace();
 
 	/**
-	 * Sets the value of the '{@link org.unicase.workspace.Workspace#getActiveProjectSpace
-	 * <em>Active Project Space</em>}' reference. <!-- begin-user-doc --> <!-- end-user-doc -->
-	 * 
+	 * Sets the value of the '{@link org.unicase.workspace.Workspace#getActiveProjectSpace <em>Active Project Space</em>}' reference.
+	 * <!-- begin-user-doc --> <!-- end-user-doc -->
 	 * @param value the new value of the '<em>Active Project Space</em>' reference.
 	 * @see #getActiveProjectSpace()
 	 * @generated
@@ -122,7 +115,6 @@ public interface Workspace extends EObject, IAdaptable {
 
 	/**
 	 * <!-- begin-user-doc --> Save the workspace to the resource. <!-- end-user-doc -->
-	 * 
 	 * @model
 	 * @generated
 	 */

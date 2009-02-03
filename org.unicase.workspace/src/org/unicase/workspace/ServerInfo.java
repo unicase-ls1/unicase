@@ -9,32 +9,26 @@ import org.eclipse.emf.common.util.EList;
 import org.eclipse.emf.ecore.EObject;
 import org.unicase.emfstore.esmodel.ProjectInfo;
 
-/**
+/*
  * <!-- begin-user-doc --> A representation of the model object ' <em><b>Server Info</b></em>'. <!-- end-user-doc -->
- * <p>
- * The following features are supported:
- * <ul>
- * <li>{@link org.unicase.workspace.ServerInfo#getName <em>Name</em>}</li>
- * <li>{@link org.unicase.workspace.ServerInfo#getUrl <em>Url</em>}</li>
- * <li>{@link org.unicase.workspace.ServerInfo#getPort <em>Port</em>}</li>
- * <li>{@link org.unicase.workspace.ServerInfo#getDisplayName <em>Display Name</em>}</li>
- * <li>{@link org.unicase.workspace.ServerInfo#getProjectInfos <em>Project Infos</em>}</li>
- * <li>{@link org.unicase.workspace.ServerInfo#getLastUsersession <em>Last Usersession</em>}</li>
- * </ul>
- * </p>
- * 
+ * <p> The following features are supported: <ul> <li>{@link org.unicase.workspace.ServerInfo#getName
+ * <em>Name</em>}</li> <li>{@link org.unicase.workspace.ServerInfo#getUrl <em>Url</em>}</li> <li>{@link
+ * org.unicase.workspace.ServerInfo#getPort <em>Port</em>}</li> <li>{@link
+ * org.unicase.workspace.ServerInfo#getDisplayName <em>Display Name</em>}</li> <li>{@link
+ * org.unicase.workspace.ServerInfo#getProjectInfos <em>Project Infos</em>}</li> <li>{@link
+ * org.unicase.workspace.ServerInfo#getLastUsersession <em>Last Usersession</em>}</li> </ul> </p>
  * @see org.unicase.workspace.WorkspacePackage#getServerInfo()
  * @model
  * @generated
  */
 public interface ServerInfo extends EObject {
 	/**
-	 * Returns the value of the '<em><b>Name</b></em>' attribute. <!-- begin-user-doc -->
+	 * Returns the value of the '<em><b>Name</b></em>' attribute.
+	 * <!-- begin-user-doc -->
 	 * <p>
 	 * If the meaning of the '<em>Name</em>' attribute isn't clear, there really should be more of a description here...
 	 * </p>
 	 * <!-- end-user-doc -->
-	 * 
 	 * @return the value of the '<em>Name</em>' attribute.
 	 * @see #setName(String)
 	 * @see org.unicase.workspace.WorkspacePackage#getServerInfo_Name()
@@ -54,12 +48,12 @@ public interface ServerInfo extends EObject {
 	void setName(String value);
 
 	/**
-	 * Returns the value of the '<em><b>Url</b></em>' attribute. <!-- begin-user-doc -->
+	 * Returns the value of the '<em><b>Url</b></em>' attribute.
+	 * <!-- begin-user-doc -->
 	 * <p>
 	 * If the meaning of the '<em>Url</em>' attribute isn't clear, there really should be more of a description here...
 	 * </p>
 	 * <!-- end-user-doc -->
-	 * 
 	 * @return the value of the '<em>Url</em>' attribute.
 	 * @see #setUrl(String)
 	 * @see org.unicase.workspace.WorkspacePackage#getServerInfo_Url()
@@ -79,12 +73,12 @@ public interface ServerInfo extends EObject {
 	void setUrl(String value);
 
 	/**
-	 * Returns the value of the '<em><b>Port</b></em>' attribute. <!-- begin-user-doc -->
+	 * Returns the value of the '<em><b>Port</b></em>' attribute.
+	 * <!-- begin-user-doc -->
 	 * <p>
 	 * If the meaning of the '<em>Port</em>' attribute isn't clear, there really should be more of a description here...
 	 * </p>
 	 * <!-- end-user-doc -->
-	 * 
 	 * @return the value of the '<em>Port</em>' attribute.
 	 * @see #setPort(int)
 	 * @see org.unicase.workspace.WorkspacePackage#getServerInfo_Port()
@@ -104,13 +98,13 @@ public interface ServerInfo extends EObject {
 	void setPort(int value);
 
 	/**
-	 * Returns the value of the '<em><b>Display Name</b></em>' attribute. <!-- begin-user-doc -->
+	 * Returns the value of the '<em><b>Display Name</b></em>' attribute.
+	 * <!-- begin-user-doc -->
 	 * <p>
 	 * If the meaning of the '<em>Display Name</em>' attribute isn't clear, there really should be more of a description
 	 * here...
 	 * </p>
 	 * <!-- end-user-doc -->
-	 * 
 	 * @return the value of the '<em>Display Name</em>' attribute.
 	 * @see #setDisplayName(String)
 	 * @see org.unicase.workspace.WorkspacePackage#getServerInfo_DisplayName()
@@ -122,7 +116,6 @@ public interface ServerInfo extends EObject {
 	/**
 	 * Sets the value of the '{@link org.unicase.workspace.ServerInfo#getDisplayName <em>Display Name</em>}' attribute.
 	 * <!-- begin-user-doc --> <!-- end-user-doc -->
-	 * 
 	 * @param value the new value of the '<em>Display Name</em>' attribute.
 	 * @see #getDisplayName()
 	 * @generated
@@ -130,14 +123,14 @@ public interface ServerInfo extends EObject {
 	void setDisplayName(String value);
 
 	/**
-	 * Returns the value of the '<em><b>Project Infos</b></em>' reference list. The list contents are of type
-	 * {@link org.unicase.emfstore.esmodel.ProjectInfo}. <!-- begin-user-doc -->
+	 * Returns the value of the '<em><b>Project Infos</b></em>' reference list.
+	 * The list contents are of type {@link org.unicase.emfstore.esmodel.ProjectInfo}.
+	 * <!-- begin-user-doc -->
 	 * <p>
 	 * If the meaning of the '<em>Project Infos</em>' reference list isn't clear, there really should be more of a
 	 * description here...
 	 * </p>
 	 * <!-- end-user-doc -->
-	 * 
 	 * @return the value of the '<em>Project Infos</em>' reference list.
 	 * @see org.unicase.workspace.WorkspacePackage#getServerInfo_ProjectInfos()
 	 * @model transient="true"
@@ -146,13 +139,13 @@ public interface ServerInfo extends EObject {
 	EList<ProjectInfo> getProjectInfos();
 
 	/**
-	 * Returns the value of the '<em><b>Last Usersession</b></em>' reference. <!-- begin-user-doc -->
+	 * Returns the value of the '<em><b>Last Usersession</b></em>' reference.
+	 * <!-- begin-user-doc -->
 	 * <p>
 	 * If the meaning of the '<em>Last Usersession</em>' reference isn't clear, there really should be more of a
 	 * description here...
 	 * </p>
 	 * <!-- end-user-doc -->
-	 * 
 	 * @return the value of the '<em>Last Usersession</em>' reference.
 	 * @see #setLastUsersession(Usersession)
 	 * @see org.unicase.workspace.WorkspacePackage#getServerInfo_LastUsersession()
@@ -162,9 +155,8 @@ public interface ServerInfo extends EObject {
 	Usersession getLastUsersession();
 
 	/**
-	 * Sets the value of the '{@link org.unicase.workspace.ServerInfo#getLastUsersession <em>Last Usersession</em>}'
-	 * reference. <!-- begin-user-doc --> <!-- end-user-doc -->
-	 * 
+	 * Sets the value of the '{@link org.unicase.workspace.ServerInfo#getLastUsersession <em>Last Usersession</em>}' reference.
+	 * <!-- begin-user-doc --> <!-- end-user-doc -->
 	 * @param value the new value of the '<em>Last Usersession</em>' reference.
 	 * @see #getLastUsersession()
 	 * @generated

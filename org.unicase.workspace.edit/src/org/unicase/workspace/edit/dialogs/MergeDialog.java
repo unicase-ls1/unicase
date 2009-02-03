@@ -89,7 +89,7 @@ public class MergeDialog extends TitleAreaDialog {
 		ChangePackage changePackage = VersioningFactory.eINSTANCE.createChangePackage();
 		// FIXME AS MK: add the correct operations
 		for (AbstractOperation operation : ((ProjectSpaceImpl) WorkspaceManager.getInstance().getCurrentWorkspace()
-			.getActiveProjectSpace()).getOperations()) {
+			.getActiveProjectSpace()).getLocalOperations().getOperations()) {
 			changePackage.getOperations().add((AbstractOperation) EcoreUtil.copy(operation));
 		}
 		ArrayList<ChangePackage> myChangePackages = new ArrayList<ChangePackage>();

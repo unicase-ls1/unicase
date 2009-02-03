@@ -30,26 +30,25 @@ import org.eclipse.ui.PlatformUI;
 import org.unicase.emfstore.esmodel.EsmodelFactory;
 import org.unicase.emfstore.esmodel.versioning.VersioningFactory;
 import org.unicase.emfstore.esmodel.versioning.events.EventsFactory;
-import org.unicase.emfstore.esmodel.versioning.operations.OperationsFactory;
 import org.unicase.model.ModelElement;
 import org.unicase.model.ModelFactory;
 import org.unicase.model.Project;
 import org.unicase.model.document.DocumentPackage;
 import org.unicase.model.provider.IdentifiableElementItemProvider;
 import org.unicase.workspace.ProjectSpace;
+import org.unicase.workspace.WorkspaceFactory;
 import org.unicase.workspace.WorkspacePackage;
 
-/**
+/*
  * This is the item provider adapter for a {@link org.unicase.workspace.ProjectSpace} object. <!-- begin-user-doc -->
  * <!-- end-user-doc -->
- * 
  * @generated
  */
 public class ProjectSpaceItemProvider extends IdentifiableElementItemProvider implements IEditingDomainItemProvider,
 	IStructuredItemContentProvider, ITreeItemContentProvider, IItemLabelProvider, IItemPropertySource {
 	/**
-	 * This constructs an instance from a factory and a notifier. <!-- begin-user-doc --> <!-- end-user-doc -->
-	 * 
+	 * This constructs an instance from a factory and a notifier.
+	 * <!-- begin-user-doc --> <!-- end-user-doc -->
 	 * @generated
 	 */
 	public ProjectSpaceItemProvider(AdapterFactory adapterFactory) {
@@ -57,8 +56,8 @@ public class ProjectSpaceItemProvider extends IdentifiableElementItemProvider im
 	}
 
 	/**
-	 * This returns the property descriptors for the adapted class. <!-- begin-user-doc --> <!-- end-user-doc -->
-	 * 
+	 * This returns the property descriptors for the adapted class.
+	 * <!-- begin-user-doc --> <!-- end-user-doc -->
 	 * @generated
 	 */
 	@Override
@@ -79,8 +78,8 @@ public class ProjectSpaceItemProvider extends IdentifiableElementItemProvider im
 	}
 
 	/**
-	 * This adds a property descriptor for the Project feature. <!-- begin-user-doc --> <!-- end-user-doc -->
-	 * 
+	 * This adds a property descriptor for the Project feature.
+	 * <!-- begin-user-doc --> <!-- end-user-doc -->
 	 * @generated
 	 */
 	protected void addProjectPropertyDescriptor(Object object) {
@@ -91,8 +90,8 @@ public class ProjectSpaceItemProvider extends IdentifiableElementItemProvider im
 	}
 
 	/**
-	 * This adds a property descriptor for the Project Name feature. <!-- begin-user-doc --> <!-- end-user-doc -->
-	 * 
+	 * This adds a property descriptor for the Project Name feature.
+	 * <!-- begin-user-doc --> <!-- end-user-doc -->
 	 * @generated
 	 */
 	protected void addProjectNamePropertyDescriptor(Object object) {
@@ -118,8 +117,8 @@ public class ProjectSpaceItemProvider extends IdentifiableElementItemProvider im
 	}
 
 	/**
-	 * This adds a property descriptor for the Usersession feature. <!-- begin-user-doc --> <!-- end-user-doc -->
-	 * 
+	 * This adds a property descriptor for the Usersession feature.
+	 * <!-- begin-user-doc --> <!-- end-user-doc -->
 	 * @generated
 	 */
 	protected void addUsersessionPropertyDescriptor(Object object) {
@@ -131,8 +130,8 @@ public class ProjectSpaceItemProvider extends IdentifiableElementItemProvider im
 	}
 
 	/**
-	 * This adds a property descriptor for the Last Updated feature. <!-- begin-user-doc --> <!-- end-user-doc -->
-	 * 
+	 * This adds a property descriptor for the Last Updated feature.
+	 * <!-- begin-user-doc --> <!-- end-user-doc -->
 	 * @generated
 	 */
 	protected void addLastUpdatedPropertyDescriptor(Object object) {
@@ -144,8 +143,8 @@ public class ProjectSpaceItemProvider extends IdentifiableElementItemProvider im
 	}
 
 	/**
-	 * This adds a property descriptor for the Resource Count feature. <!-- begin-user-doc --> <!-- end-user-doc -->
-	 * 
+	 * This adds a property descriptor for the Resource Count feature.
+	 * <!-- begin-user-doc --> <!-- end-user-doc -->
 	 * @generated
 	 */
 	protected void addResourceCountPropertyDescriptor(Object object) {
@@ -157,8 +156,8 @@ public class ProjectSpaceItemProvider extends IdentifiableElementItemProvider im
 	}
 
 	/**
-	 * This adds a property descriptor for the Dirty feature. <!-- begin-user-doc --> <!-- end-user-doc -->
-	 * 
+	 * This adds a property descriptor for the Dirty feature.
+	 * <!-- begin-user-doc --> <!-- end-user-doc -->
 	 * @generated
 	 */
 	protected void addDirtyPropertyDescriptor(Object object) {
@@ -170,8 +169,8 @@ public class ProjectSpaceItemProvider extends IdentifiableElementItemProvider im
 	}
 
 	/**
-	 * This adds a property descriptor for the Old Log Messages feature. <!-- begin-user-doc --> <!-- end-user-doc -->
-	 * 
+	 * This adds a property descriptor for the Old Log Messages feature.
+	 * <!-- begin-user-doc --> <!-- end-user-doc -->
 	 * @generated
 	 */
 	protected void addOldLogMessagesPropertyDescriptor(Object object) {
@@ -185,9 +184,9 @@ public class ProjectSpaceItemProvider extends IdentifiableElementItemProvider im
 	/**
 	 * This specifies how to implement {@link #getChildren} and is used to deduce an appropriate feature for an
 	 * {@link org.eclipse.emf.edit.command.AddCommand}, {@link org.eclipse.emf.edit.command.RemoveCommand} or
-	 * {@link org.eclipse.emf.edit.command.MoveCommand} in {@link #createCommand}. <!-- begin-user-doc --> <!--
+	 * {@link org.eclipse.emf.edit.command.MoveCommand} in {@link #createCommand}.
+	 * <!-- begin-user-doc --> <!--
 	 * end-user-doc -->
-	 * 
 	 * @generated
 	 */
 	@Override
@@ -196,16 +195,15 @@ public class ProjectSpaceItemProvider extends IdentifiableElementItemProvider im
 			super.getChildrenFeatures(object);
 			childrenFeatures.add(WorkspacePackage.Literals.PROJECT_SPACE__PROJECT);
 			childrenFeatures.add(WorkspacePackage.Literals.PROJECT_SPACE__PROJECT_ID);
-			childrenFeatures.add(WorkspacePackage.Literals.PROJECT_SPACE__OPERATIONS);
 			childrenFeatures.add(WorkspacePackage.Literals.PROJECT_SPACE__EVENTS);
 			childrenFeatures.add(WorkspacePackage.Literals.PROJECT_SPACE__BASE_VERSION);
+			childrenFeatures.add(WorkspacePackage.Literals.PROJECT_SPACE__LOCAL_OPERATIONS);
 		}
 		return childrenFeatures;
 	}
 
 	/**
 	 * <!-- begin-user-doc --> <!-- end-user-doc -->
-	 * 
 	 * @generated
 	 */
 	@Override
@@ -278,9 +276,9 @@ public class ProjectSpaceItemProvider extends IdentifiableElementItemProvider im
 			return;
 		case WorkspacePackage.PROJECT_SPACE__PROJECT:
 		case WorkspacePackage.PROJECT_SPACE__PROJECT_ID:
-		case WorkspacePackage.PROJECT_SPACE__OPERATIONS:
 		case WorkspacePackage.PROJECT_SPACE__EVENTS:
 		case WorkspacePackage.PROJECT_SPACE__BASE_VERSION:
+		case WorkspacePackage.PROJECT_SPACE__LOCAL_OPERATIONS:
 			fireNotifyChanged(new ViewerNotification(notification, notification.getNotifier(), true, false));
 			return;
 		}
@@ -288,9 +286,9 @@ public class ProjectSpaceItemProvider extends IdentifiableElementItemProvider im
 	}
 
 	/**
-	 * This adds {@link org.eclipse.emf.edit.command.CommandParameter}s describing the children that can be created
-	 * under this object. <!-- begin-user-doc --> <!-- end-user-doc -->
-	 * 
+	 * This adds {@link org.eclipse.emf.edit.command.CommandParameter}s describing the children
+	 * that can be created under this object.
+	 * <!-- begin-user-doc --> <!-- end-user-doc -->
 	 * @generated
 	 */
 	@Override
@@ -302,33 +300,6 @@ public class ProjectSpaceItemProvider extends IdentifiableElementItemProvider im
 
 		newChildDescriptors.add(createChildParameter(WorkspacePackage.Literals.PROJECT_SPACE__PROJECT_ID,
 			EsmodelFactory.eINSTANCE.createProjectId()));
-
-		newChildDescriptors.add(createChildParameter(WorkspacePackage.Literals.PROJECT_SPACE__OPERATIONS,
-			OperationsFactory.eINSTANCE.createCompositeOperation()));
-
-		newChildDescriptors.add(createChildParameter(WorkspacePackage.Literals.PROJECT_SPACE__OPERATIONS,
-			OperationsFactory.eINSTANCE.createCreateDeleteOperation()));
-
-		newChildDescriptors.add(createChildParameter(WorkspacePackage.Literals.PROJECT_SPACE__OPERATIONS,
-			OperationsFactory.eINSTANCE.createAttributeOperation()));
-
-		newChildDescriptors.add(createChildParameter(WorkspacePackage.Literals.PROJECT_SPACE__OPERATIONS,
-			OperationsFactory.eINSTANCE.createSingleReferenceOperation()));
-
-		newChildDescriptors.add(createChildParameter(WorkspacePackage.Literals.PROJECT_SPACE__OPERATIONS,
-			OperationsFactory.eINSTANCE.createMultiReferenceOperation()));
-
-		newChildDescriptors.add(createChildParameter(WorkspacePackage.Literals.PROJECT_SPACE__OPERATIONS,
-			OperationsFactory.eINSTANCE.createMultiReferenceMoveOperation()));
-
-		newChildDescriptors.add(createChildParameter(WorkspacePackage.Literals.PROJECT_SPACE__OPERATIONS,
-			OperationsFactory.eINSTANCE.createMultiAttributeOperation()));
-
-		newChildDescriptors.add(createChildParameter(WorkspacePackage.Literals.PROJECT_SPACE__OPERATIONS,
-			OperationsFactory.eINSTANCE.createDiagramLayoutOperation()));
-
-		newChildDescriptors.add(createChildParameter(WorkspacePackage.Literals.PROJECT_SPACE__OPERATIONS,
-			OperationsFactory.eINSTANCE.createMultiAttributeMoveOperation()));
 
 		newChildDescriptors.add(createChildParameter(WorkspacePackage.Literals.PROJECT_SPACE__EVENTS,
 			EventsFactory.eINSTANCE.createEvent()));
@@ -392,11 +363,14 @@ public class ProjectSpaceItemProvider extends IdentifiableElementItemProvider im
 
 		newChildDescriptors.add(createChildParameter(WorkspacePackage.Literals.PROJECT_SPACE__BASE_VERSION,
 			VersioningFactory.eINSTANCE.createPrimaryVersionSpec()));
+
+		newChildDescriptors.add(createChildParameter(WorkspacePackage.Literals.PROJECT_SPACE__LOCAL_OPERATIONS,
+			WorkspaceFactory.eINSTANCE.createOperationComposite()));
 	}
 
 	/**
-	 * Return the resource locator for this item provider's resources. <!-- begin-user-doc --> <!-- end-user-doc -->
-	 * 
+	 * Return the resource locator for this item provider's resources.
+	 * <!-- begin-user-doc --> <!-- end-user-doc -->
 	 * @generated
 	 */
 	@Override
