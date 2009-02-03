@@ -225,7 +225,7 @@ public final class Configuration {
 	}
 
 	/**
-	 * Return the prefix of the project space directory
+	 * Return the prefix of the project space directory.
 	 * 
 	 * @return the prefix
 	 */
