@@ -167,6 +167,7 @@ public class TestProjectGenerator {
 
 		projectSpace.setProjectDescription("Test project description");
 		projectSpace.setProjectName("ModelTestProject");
+		projectSpace.setLocalOperations(WorkspaceFactory.eINSTANCE.createOperationComposite());
 
 		TransactionalEditingDomain domain = workspace.getEditingDomain();
 		domain.getCommandStack().execute(new RecordingCommand(domain) {

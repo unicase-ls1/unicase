@@ -67,6 +67,7 @@ import org.unicase.model.impl.IdentifiableElementImpl;
 import org.unicase.model.util.ModelValidationHelper;
 import org.unicase.model.util.ProjectChangeObserver;
 import org.unicase.workspace.Configuration;
+import org.unicase.workspace.OperationComposite;
 import org.unicase.workspace.ProjectSpace;
 import org.unicase.workspace.Usersession;
 import org.unicase.workspace.WorkspaceManager;
@@ -80,28 +81,21 @@ import org.unicase.workspace.util.CommitObserver;
 import org.unicase.workspace.util.UpdateObserver;
 import org.unicase.workspace.util.WorkspaceUtil;
 
-/**
+/*
  * <!-- begin-user-doc --> An implementation of the model object ' <em><b>Project Container</b></em>'.
- * 
- * @implements ProjectChangeObserver <!-- end-user-doc -->
- *             <p>
- *             The following features are implemented:
- *             <ul>
- *             <li>{@link org.unicase.workspace.impl.ProjectSpaceImpl#getProject <em>Project</em>}</li>
- *             <li>{@link org.unicase.workspace.impl.ProjectSpaceImpl#getProjectId <em>Project Id</em>}</li>
- *             <li>{@link org.unicase.workspace.impl.ProjectSpaceImpl#getProjectName <em>Project Name</em>}</li>
- *             <li>{@link org.unicase.workspace.impl.ProjectSpaceImpl#getProjectDescription <em>Project Description
- *             </em>}</li>
- *             <li>{@link org.unicase.workspace.impl.ProjectSpaceImpl#getOperations <em>Operations</em>}</li>
- *             <li>{@link org.unicase.workspace.impl.ProjectSpaceImpl#getEvents <em>Events</em>}</li>
- *             <li>{@link org.unicase.workspace.impl.ProjectSpaceImpl#getUsersession <em>Usersession</em>}</li>
- *             <li>{@link org.unicase.workspace.impl.ProjectSpaceImpl#getLastUpdated <em>Last Updated</em>}</li>
- *             <li>{@link org.unicase.workspace.impl.ProjectSpaceImpl#getBaseVersion <em>Base Version</em>}</li>
- *             <li>{@link org.unicase.workspace.impl.ProjectSpaceImpl#getResourceCount <em>Resource Count</em>}</li>
- *             <li>{@link org.unicase.workspace.impl.ProjectSpaceImpl#isDirty <em>Dirty</em>}</li>
- *             <li>{@link org.unicase.workspace.impl.ProjectSpaceImpl#getOldLogMessages <em>Old Log Messages</em>}</li>
- *             </ul>
- *             </p>
+ * @implements ProjectChangeObserver <!-- end-user-doc --> <p> The following features are implemented: <ul> <li>{@link
+ * org.unicase.workspace.impl.ProjectSpaceImpl#getProject <em>Project</em>}</li> <li>{@link
+ * org.unicase.workspace.impl.ProjectSpaceImpl#getProjectId <em>Project Id</em>}</li> <li>{@link
+ * org.unicase.workspace.impl.ProjectSpaceImpl#getProjectName <em>Project Name</em>}</li> <li>{@link
+ * org.unicase.workspace.impl.ProjectSpaceImpl#getProjectDescription <em>Project Description</em>}</li> <li>{@link
+ * org.unicase.workspace.impl.ProjectSpaceImpl#getEvents <em>Events</em>}</li> <li>{@link
+ * org.unicase.workspace.impl.ProjectSpaceImpl#getUsersession <em>Usersession</em>}</li> <li>{@link
+ * org.unicase.workspace.impl.ProjectSpaceImpl#getLastUpdated <em>Last Updated</em>}</li> <li>{@link
+ * org.unicase.workspace.impl.ProjectSpaceImpl#getBaseVersion <em>Base Version</em>}</li> <li>{@link
+ * org.unicase.workspace.impl.ProjectSpaceImpl#getResourceCount <em>Resource Count</em>}</li> <li>{@link
+ * org.unicase.workspace.impl.ProjectSpaceImpl#isDirty <em>Dirty</em>}</li> <li>{@link
+ * org.unicase.workspace.impl.ProjectSpaceImpl#getOldLogMessages <em>Old Log Messages</em>}</li> <li>{@link
+ * org.unicase.workspace.impl.ProjectSpaceImpl#getLocalOperations <em>Local Operations</em>}</li> </ul> </p>
  * @generated
  */
 public class ProjectSpaceImpl extends IdentifiableElementImpl implements ProjectSpace, ProjectChangeObserver {
@@ -165,16 +159,6 @@ public class ProjectSpaceImpl extends IdentifiableElementImpl implements Project
 	 * @ordered
 	 */
 	protected String projectDescription = PROJECT_DESCRIPTION_EDEFAULT;
-
-	/**
-	 * The cached value of the '{@link #getOperations() <em>Operations</em>}' containment reference list. <!--
-	 * begin-user-doc --> <!-- end-user-doc -->
-	 * 
-	 * @see #getOperations()
-	 * @generated
-	 * @ordered
-	 */
-	protected EList<AbstractOperation> operations;
 
 	/**
 	 * The cached value of the '{@link #getEvents() <em>Events</em>}' containment reference list. <!-- begin-user-doc
@@ -275,6 +259,16 @@ public class ProjectSpaceImpl extends IdentifiableElementImpl implements Project
 	 * @ordered
 	 */
 	protected EList<String> oldLogMessages;
+
+	/**
+	 * The cached value of the '{@link #getLocalOperations() <em>Local Operations</em>}' containment reference. <!--
+	 * begin-user-doc --> <!-- end-user-doc -->
+	 * 
+	 * @see #getLocalOperations()
+	 * @generated
+	 * @ordered
+	 */
+	protected OperationComposite localOperations;
 
 	private boolean isRecording;
 
@@ -503,19 +497,6 @@ public class ProjectSpaceImpl extends IdentifiableElementImpl implements Project
 	 * 
 	 * @generated
 	 */
-	public EList<AbstractOperation> getOperations() {
-		if (operations == null) {
-			operations = new EObjectContainmentEList.Resolving<AbstractOperation>(AbstractOperation.class, this,
-				WorkspacePackage.PROJECT_SPACE__OPERATIONS);
-		}
-		return operations;
-	}
-
-	/**
-	 * <!-- begin-user-doc --> <!-- end-user-doc -->
-	 * 
-	 * @generated
-	 */
 	public EList<Event> getEvents() {
 		if (events == null) {
 			events = new EObjectContainmentEList.Resolving<Event>(Event.class, this,
@@ -723,6 +704,83 @@ public class ProjectSpaceImpl extends IdentifiableElementImpl implements Project
 	/**
 	 * <!-- begin-user-doc --> <!-- end-user-doc -->
 	 * 
+	 * @generated
+	 */
+	public OperationComposite getLocalOperations() {
+		if (localOperations != null && localOperations.eIsProxy()) {
+			InternalEObject oldLocalOperations = (InternalEObject) localOperations;
+			localOperations = (OperationComposite) eResolveProxy(oldLocalOperations);
+			if (localOperations != oldLocalOperations) {
+				InternalEObject newLocalOperations = (InternalEObject) localOperations;
+				NotificationChain msgs = oldLocalOperations.eInverseRemove(this, EOPPOSITE_FEATURE_BASE
+					- WorkspacePackage.PROJECT_SPACE__LOCAL_OPERATIONS, null, null);
+				if (newLocalOperations.eInternalContainer() == null) {
+					msgs = newLocalOperations.eInverseAdd(this, EOPPOSITE_FEATURE_BASE
+						- WorkspacePackage.PROJECT_SPACE__LOCAL_OPERATIONS, null, msgs);
+				}
+				if (msgs != null)
+					msgs.dispatch();
+				if (eNotificationRequired())
+					eNotify(new ENotificationImpl(this, Notification.RESOLVE,
+						WorkspacePackage.PROJECT_SPACE__LOCAL_OPERATIONS, oldLocalOperations, localOperations));
+			}
+		}
+		return localOperations;
+	}
+
+	/**
+	 * <!-- begin-user-doc --> <!-- end-user-doc -->
+	 * 
+	 * @generated
+	 */
+	public OperationComposite basicGetLocalOperations() {
+		return localOperations;
+	}
+
+	/**
+	 * <!-- begin-user-doc --> <!-- end-user-doc -->
+	 * 
+	 * @generated
+	 */
+	public NotificationChain basicSetLocalOperations(OperationComposite newLocalOperations, NotificationChain msgs) {
+		OperationComposite oldLocalOperations = localOperations;
+		localOperations = newLocalOperations;
+		if (eNotificationRequired()) {
+			ENotificationImpl notification = new ENotificationImpl(this, Notification.SET,
+				WorkspacePackage.PROJECT_SPACE__LOCAL_OPERATIONS, oldLocalOperations, newLocalOperations);
+			if (msgs == null)
+				msgs = notification;
+			else
+				msgs.add(notification);
+		}
+		return msgs;
+	}
+
+	/**
+	 * <!-- begin-user-doc --> <!-- end-user-doc -->
+	 * 
+	 * @generated
+	 */
+	public void setLocalOperations(OperationComposite newLocalOperations) {
+		if (newLocalOperations != localOperations) {
+			NotificationChain msgs = null;
+			if (localOperations != null)
+				msgs = ((InternalEObject) localOperations).eInverseRemove(this, EOPPOSITE_FEATURE_BASE
+					- WorkspacePackage.PROJECT_SPACE__LOCAL_OPERATIONS, null, msgs);
+			if (newLocalOperations != null)
+				msgs = ((InternalEObject) newLocalOperations).eInverseAdd(this, EOPPOSITE_FEATURE_BASE
+					- WorkspacePackage.PROJECT_SPACE__LOCAL_OPERATIONS, null, msgs);
+			msgs = basicSetLocalOperations(newLocalOperations, msgs);
+			if (msgs != null)
+				msgs.dispatch();
+		} else if (eNotificationRequired())
+			eNotify(new ENotificationImpl(this, Notification.SET, WorkspacePackage.PROJECT_SPACE__LOCAL_OPERATIONS,
+				newLocalOperations, newLocalOperations));
+	}
+
+	/**
+	 * <!-- begin-user-doc --> <!-- end-user-doc -->
+	 * 
 	 * @throws EmfStoreException
 	 * @throws EmfStoreException
 	 * @generated NOT
@@ -800,6 +858,13 @@ public class ProjectSpaceImpl extends IdentifiableElementImpl implements Project
 		startChangeRecording();
 
 		return newBaseVersion;
+	}
+
+	/**
+	 * @see org.unicase.workspace.ProjectSpace#getOperations()
+	 */
+	public List<AbstractOperation> getOperations() {
+		return this.getLocalOperations().getOperations();
 	}
 
 	/**
@@ -985,21 +1050,33 @@ public class ProjectSpaceImpl extends IdentifiableElementImpl implements Project
 	 * @generated NOT
 	 */
 	public void initResources(ResourceSet resourceSet) {
+		String projectSpaceFileNamePrefix = Configuration.getWorkspaceDirectory()
+			+ Configuration.getProjectSpaceDirectoryPrefix() + getIdentifier() + File.separatorChar;
+		String projectSpaceFileName = projectSpaceFileNamePrefix + this.getProjectName()
+			+ Configuration.getProjectSpaceFileExtension();
+		String operationsCompositeFileName = projectSpaceFileNamePrefix + this.getProjectName()
+			+ Configuration.getOperationCompositeFileExtension();
+		String projectFragementsFileNamePrefix = projectSpaceFileNamePrefix + Configuration.getProjectFolderName()
+			+ File.separatorChar;
+		URI projectSpaceURI = URI.createFileURI(projectSpaceFileName);
+		URI operationCompositeURI = URI.createFileURI(operationsCompositeFileName);
+
 		setResourceCount(0);
-		String fileName = Configuration.getWorkspaceDirectory() + "ps-" + getIdentifier() + File.separatorChar
-			+ getResourceCount() + ".ucf";
+		String fileName = projectFragementsFileNamePrefix + getResourceCount()
+			+ Configuration.getProjectFragmentFileExtension();
 		URI fileURI = URI.createFileURI(fileName);
+
 		List<Resource> resources = new ArrayList<Resource>();
 		Resource resource = resourceSet.createResource(fileURI);
-		resource.getContents().add(this);
+		resource.getContents().add(this.getProject());
 		resources.add(resource);
 		setResourceCount(getResourceCount() + 1);
 		List<ModelElement> modelElements = getProject().getAllModelElements();
 		int counter = Configuration.getMaxMECountPerResource() + 1;
 		for (ModelElement modelElement : modelElements) {
 			if (counter > Configuration.getMaxMECountPerResource()) {
-				fileName = Configuration.getWorkspaceDirectory() + "ps-" + getIdentifier() + File.separatorChar
-					+ getResourceCount() + ".ucf";
+				fileName = projectFragementsFileNamePrefix + getResourceCount()
+					+ Configuration.getProjectFragmentFileExtension();
 				fileURI = URI.createFileURI(fileName);
 				resource = resourceSet.createResource(fileURI);
 				setResourceCount(getResourceCount() + 1);
@@ -1009,6 +1086,15 @@ public class ProjectSpaceImpl extends IdentifiableElementImpl implements Project
 			counter++;
 			resource.getContents().add(modelElement);
 		}
+		Resource operationCompositeResource = resourceSet.createResource(operationCompositeURI);
+		operationCompositeResource.getContents().add(this.getLocalOperations());
+		resources.add(operationCompositeResource);
+
+		Resource projectSpaceResource = resourceSet.createResource(projectSpaceURI);
+		projectSpaceResource.getContents().add(this);
+		resources.add(projectSpaceResource);
+
+		// save all resources that have been created
 		for (Resource currentResource : resources) {
 			try {
 				currentResource.save(Configuration.getResourceSaveOptions());
@@ -1032,12 +1118,12 @@ public class ProjectSpaceImpl extends IdentifiableElementImpl implements Project
 			return basicSetProject(null, msgs);
 		case WorkspacePackage.PROJECT_SPACE__PROJECT_ID:
 			return basicSetProjectId(null, msgs);
-		case WorkspacePackage.PROJECT_SPACE__OPERATIONS:
-			return ((InternalEList<?>) getOperations()).basicRemove(otherEnd, msgs);
 		case WorkspacePackage.PROJECT_SPACE__EVENTS:
 			return ((InternalEList<?>) getEvents()).basicRemove(otherEnd, msgs);
 		case WorkspacePackage.PROJECT_SPACE__BASE_VERSION:
 			return basicSetBaseVersion(null, msgs);
+		case WorkspacePackage.PROJECT_SPACE__LOCAL_OPERATIONS:
+			return basicSetLocalOperations(null, msgs);
 		}
 		return super.eInverseRemove(otherEnd, featureID, msgs);
 	}
@@ -1062,8 +1148,6 @@ public class ProjectSpaceImpl extends IdentifiableElementImpl implements Project
 			return getProjectName();
 		case WorkspacePackage.PROJECT_SPACE__PROJECT_DESCRIPTION:
 			return getProjectDescription();
-		case WorkspacePackage.PROJECT_SPACE__OPERATIONS:
-			return getOperations();
 		case WorkspacePackage.PROJECT_SPACE__EVENTS:
 			return getEvents();
 		case WorkspacePackage.PROJECT_SPACE__USERSESSION:
@@ -1082,6 +1166,10 @@ public class ProjectSpaceImpl extends IdentifiableElementImpl implements Project
 			return isDirty() ? Boolean.TRUE : Boolean.FALSE;
 		case WorkspacePackage.PROJECT_SPACE__OLD_LOG_MESSAGES:
 			return getOldLogMessages();
+		case WorkspacePackage.PROJECT_SPACE__LOCAL_OPERATIONS:
+			if (resolve)
+				return getLocalOperations();
+			return basicGetLocalOperations();
 		}
 		return super.eGet(featureID, resolve, coreType);
 	}
@@ -1107,10 +1195,6 @@ public class ProjectSpaceImpl extends IdentifiableElementImpl implements Project
 		case WorkspacePackage.PROJECT_SPACE__PROJECT_DESCRIPTION:
 			setProjectDescription((String) newValue);
 			return;
-		case WorkspacePackage.PROJECT_SPACE__OPERATIONS:
-			getOperations().clear();
-			getOperations().addAll((Collection<? extends AbstractOperation>) newValue);
-			return;
 		case WorkspacePackage.PROJECT_SPACE__EVENTS:
 			getEvents().clear();
 			getEvents().addAll((Collection<? extends Event>) newValue);
@@ -1133,6 +1217,9 @@ public class ProjectSpaceImpl extends IdentifiableElementImpl implements Project
 		case WorkspacePackage.PROJECT_SPACE__OLD_LOG_MESSAGES:
 			getOldLogMessages().clear();
 			getOldLogMessages().addAll((Collection<? extends String>) newValue);
+			return;
+		case WorkspacePackage.PROJECT_SPACE__LOCAL_OPERATIONS:
+			setLocalOperations((OperationComposite) newValue);
 			return;
 		}
 		super.eSet(featureID, newValue);
@@ -1158,9 +1245,6 @@ public class ProjectSpaceImpl extends IdentifiableElementImpl implements Project
 		case WorkspacePackage.PROJECT_SPACE__PROJECT_DESCRIPTION:
 			setProjectDescription(PROJECT_DESCRIPTION_EDEFAULT);
 			return;
-		case WorkspacePackage.PROJECT_SPACE__OPERATIONS:
-			getOperations().clear();
-			return;
 		case WorkspacePackage.PROJECT_SPACE__EVENTS:
 			getEvents().clear();
 			return;
@@ -1181,6 +1265,9 @@ public class ProjectSpaceImpl extends IdentifiableElementImpl implements Project
 			return;
 		case WorkspacePackage.PROJECT_SPACE__OLD_LOG_MESSAGES:
 			getOldLogMessages().clear();
+			return;
+		case WorkspacePackage.PROJECT_SPACE__LOCAL_OPERATIONS:
+			setLocalOperations((OperationComposite) null);
 			return;
 		}
 		super.eUnset(featureID);
@@ -1203,8 +1290,6 @@ public class ProjectSpaceImpl extends IdentifiableElementImpl implements Project
 		case WorkspacePackage.PROJECT_SPACE__PROJECT_DESCRIPTION:
 			return PROJECT_DESCRIPTION_EDEFAULT == null ? projectDescription != null : !PROJECT_DESCRIPTION_EDEFAULT
 				.equals(projectDescription);
-		case WorkspacePackage.PROJECT_SPACE__OPERATIONS:
-			return operations != null && !operations.isEmpty();
 		case WorkspacePackage.PROJECT_SPACE__EVENTS:
 			return events != null && !events.isEmpty();
 		case WorkspacePackage.PROJECT_SPACE__USERSESSION:
@@ -1219,6 +1304,8 @@ public class ProjectSpaceImpl extends IdentifiableElementImpl implements Project
 			return dirty != DIRTY_EDEFAULT;
 		case WorkspacePackage.PROJECT_SPACE__OLD_LOG_MESSAGES:
 			return oldLogMessages != null && !oldLogMessages.isEmpty();
+		case WorkspacePackage.PROJECT_SPACE__LOCAL_OPERATIONS:
+			return localOperations != null;
 		}
 		return super.eIsSet(featureID);
 	}
@@ -1276,6 +1363,7 @@ public class ProjectSpaceImpl extends IdentifiableElementImpl implements Project
 
 	private void saveProjectSpaceOnly() {
 		saveResource(this.eResource());
+		saveResource(this.getLocalOperations().eResource());
 	}
 
 	/**
@@ -1573,9 +1661,9 @@ public class ProjectSpaceImpl extends IdentifiableElementImpl implements Project
 
 			MultiReferenceOperation multiReferenceOperation = createMultiReferenceOperation(notification, reference,
 				modelElement, parent, isAdd);
-			int index = operations.size();
+			int index = getOperations().size();
 			// check if this operation refers to a previous delete
-			EList<AbstractOperation> operations = this.getOperations();
+			List<AbstractOperation> operations = this.getOperations();
 			for (int i = operations.size() - 1; i >= 0; i--) {
 				AbstractOperation lastOperation = operations.get(i);
 				if (!isRelated(modelElement, isAdd, parent, lastOperation)) {
@@ -1669,7 +1757,7 @@ public class ProjectSpaceImpl extends IdentifiableElementImpl implements Project
 		if (isRecording) {
 			// filter create operation if a predeccessing delete is already
 			// present
-			EList<AbstractOperation> operations = this.getOperations();
+			List<AbstractOperation> operations = this.getOperations();
 			for (int i = 0; i < operations.size(); i++) {
 				AbstractOperation abstractOperation = operations.get(i);
 				if (abstractOperation instanceof CreateDeleteOperation) {
@@ -1778,7 +1866,7 @@ public class ProjectSpaceImpl extends IdentifiableElementImpl implements Project
 	 */
 	public void undoLastOperation() {
 		stopChangeRecording();
-		EList<AbstractOperation> operations = this.getOperations();
+		List<AbstractOperation> operations = this.getOperations();
 		AbstractOperation lastOperation = operations.get(operations.size() - 1);
 		lastOperation.reverse().apply(getProject());
 		operations.remove(lastOperation);

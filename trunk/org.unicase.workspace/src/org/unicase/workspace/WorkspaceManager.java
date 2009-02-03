@@ -169,26 +169,32 @@ public final class WorkspaceManager {
 	}
 
 	private void migrateModel() {
-		List<URI> urisToMigrate = new ArrayList<URI>();
 		File workspaceFile = new File(Configuration.getWorkspaceDirectory());
 		for (File file : workspaceFile.listFiles()) {
-			if (file.getName().startsWith("ps-")) {
-				// OW get real project URI here
-				String absolutePath = file.getAbsolutePath() + File.separatorChar + "2.ucf";
-				URI fileURI = URI.createFileURI(absolutePath);
-				urisToMigrate.add(fileURI);
+			if (file.getName().startsWith(Configuration.getProjectSpaceDirectoryPrefix())) {
+				String projectFilePath = file.getAbsolutePath() + File.separatorChar
+					+ Configuration.getProjectFolderName() + File.separatorChar + 0
+					+ Configuration.getProjectFragmentFileExtension();
+				URI projectURI = URI.createFileURI(projectFilePath);
+				String operationsFilePath = null;
+				for (File subDirFile : file.listFiles()) {
+					if (subDirFile.getName().endsWith(Configuration.getOperationCompositeFileExtension())) {
+						operationsFilePath = subDirFile.getAbsolutePath();
+					}
+				}
+				if (operationsFilePath == null) {
+					// MK: proper exception handling
+					throw new IllegalStateException("Broken workspace!");
+				}
+				URI operationsURI = URI.createFileURI(operationsFilePath);
+				try {
+					migrate(projectURI, operationsURI);
+				} catch (MigrationException e) {
+					WorkspaceUtil.logException("The migration of the project in projectspace at " + projectFilePath
+						+ " failed!", e);
+				}
 			}
 		}
-		for (URI uri : urisToMigrate) {
-			try {
-				// OW get change package resource uri in here
-				migrate(uri, null);
-			} catch (MigrationException e) {
-				WorkspaceUtil.logException(
-					"The migration of the project in projectspace at " + uri.path() + " failed!", e);
-			}
-		}
-
 	}
 
 	/**
@@ -201,11 +207,12 @@ public final class WorkspaceManager {
 	private void migrate(URI projectURI, URI changesURI) throws MigrationException {
 		String namespaceURI = ReleaseUtil.getNamespaceURI(projectURI);
 		Migrator migrator = MigratorRegistry.getInstance().getMigrator(namespaceURI);
+		if (migrator == null) {
+			return;
+		}
 		List<URI> modelURIs = new ArrayList<URI>();
 		modelURIs.add(projectURI);
-		if (changesURI != null) {
-			modelURIs.add(changesURI);
-		}
+		modelURIs.add(changesURI);
 		migrator.migrate(modelURIs);
 	}
 

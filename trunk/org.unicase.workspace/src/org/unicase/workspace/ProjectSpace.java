@@ -28,27 +28,20 @@ import org.unicase.workspace.exceptions.ChangeConflictException;
 import org.unicase.workspace.util.CommitObserver;
 import org.unicase.workspace.util.UpdateObserver;
 
-/**
+/*
  * <!-- begin-user-doc --> A representation of the model object ' <em><b>Project Container</b></em>'. <!-- end-user-doc
- * -->
- * <p>
- * The following features are supported:
- * <ul>
- * <li>{@link org.unicase.workspace.ProjectSpace#getProject <em>Project</em>}</li>
- * <li>{@link org.unicase.workspace.ProjectSpace#getProjectId <em>Project Id</em>}</li>
- * <li>{@link org.unicase.workspace.ProjectSpace#getProjectName <em>Project Name</em>}</li>
- * <li>{@link org.unicase.workspace.ProjectSpace#getProjectDescription <em>Project Description</em>}</li>
- * <li>{@link org.unicase.workspace.ProjectSpace#getOperations <em>Operations</em>}</li>
- * <li>{@link org.unicase.workspace.ProjectSpace#getEvents <em>Events</em>}</li>
- * <li>{@link org.unicase.workspace.ProjectSpace#getUsersession <em>Usersession</em>}</li>
- * <li>{@link org.unicase.workspace.ProjectSpace#getLastUpdated <em>Last Updated</em>}</li>
- * <li>{@link org.unicase.workspace.ProjectSpace#getBaseVersion <em>Base Version</em>}</li>
- * <li>{@link org.unicase.workspace.ProjectSpace#getResourceCount <em>Resource Count</em>}</li>
- * <li>{@link org.unicase.workspace.ProjectSpace#isDirty <em>Dirty</em>}</li>
- * <li>{@link org.unicase.workspace.ProjectSpace#getOldLogMessages <em>Old Log Messages</em>}</li>
- * </ul>
- * </p>
- * 
+ * --> <p> The following features are supported: <ul> <li>{@link org.unicase.workspace.ProjectSpace#getProject
+ * <em>Project</em>}</li> <li>{@link org.unicase.workspace.ProjectSpace#getProjectId <em>Project Id</em>}</li>
+ * <li>{@link org.unicase.workspace.ProjectSpace#getProjectName <em>Project Name</em>}</li> <li>{@link
+ * org.unicase.workspace.ProjectSpace#getProjectDescription <em>Project Description</em>}</li> <li>{@link
+ * org.unicase.workspace.ProjectSpace#getOperations <em>Operations</em>}</li> <li>{@link
+ * org.unicase.workspace.ProjectSpace#getEvents <em>Events</em>}</li> <li>{@link
+ * org.unicase.workspace.ProjectSpace#getUsersession <em>Usersession</em>}</li> <li>{@link
+ * org.unicase.workspace.ProjectSpace#getLastUpdated <em>Last Updated</em>}</li> <li>{@link
+ * org.unicase.workspace.ProjectSpace#getBaseVersion <em>Base Version</em>}</li> <li>{@link
+ * org.unicase.workspace.ProjectSpace#getResourceCount <em>Resource Count</em>}</li> <li>{@link
+ * org.unicase.workspace.ProjectSpace#isDirty <em>Dirty</em>}</li> <li>{@link
+ * org.unicase.workspace.ProjectSpace#getOldLogMessages <em>Old Log Messages</em>}</li> </ul> </p>
  * @see org.unicase.workspace.WorkspacePackage#getProjectSpace()
  * @model
  * @generated
@@ -157,22 +150,6 @@ public interface ProjectSpace extends IdentifiableElement {
 	 * @generated
 	 */
 	void setProjectDescription(String value);
-
-	/**
-	 * Returns the value of the '<em><b>Operations</b></em>' containment reference list. The list contents are of type
-	 * {@link org.unicase.emfstore.esmodel.versioning.operations.AbstractOperation}. <!-- begin-user-doc -->
-	 * <p>
-	 * If the meaning of the '<em>Operations</em>' containment reference list isn't clear, there really should be more
-	 * of a description here...
-	 * </p>
-	 * <!-- end-user-doc -->
-	 * 
-	 * @return the value of the '<em>Operations</em>' containment reference list.
-	 * @see org.unicase.workspace.WorkspacePackage#getProjectSpace_Operations()
-	 * @model containment="true" resolveProxies="true"
-	 * @generated
-	 */
-	EList<AbstractOperation> getOperations();
 
 	/**
 	 * Returns the value of the '<em><b>Events</b></em>' containment reference list. The list contents are of type
@@ -335,6 +312,32 @@ public interface ProjectSpace extends IdentifiableElement {
 	 * @generated
 	 */
 	EList<String> getOldLogMessages();
+
+	/**
+	 * Returns the value of the '<em><b>Local Operations</b></em>' containment reference. <!-- begin-user-doc -->
+	 * <p>
+	 * If the meaning of the '<em>Local Operations</em>' containment reference isn't clear, there really should be more
+	 * of a description here...
+	 * </p>
+	 * <!-- end-user-doc -->
+	 * 
+	 * @return the value of the '<em>Local Operations</em>' containment reference.
+	 * @see #setLocalOperations(OperationComposite)
+	 * @see org.unicase.workspace.WorkspacePackage#getProjectSpace_LocalOperations()
+	 * @model containment="true" resolveProxies="true"
+	 * @generated
+	 */
+	OperationComposite getLocalOperations();
+
+	/**
+	 * Sets the value of the '{@link org.unicase.workspace.ProjectSpace#getLocalOperations <em>Local Operations</em>}'
+	 * containment reference. <!-- begin-user-doc --> <!-- end-user-doc -->
+	 * 
+	 * @param value the new value of the '<em>Local Operations</em>' containment reference.
+	 * @see #getLocalOperations()
+	 * @generated
+	 */
+	void setLocalOperations(OperationComposite value);
 
 	/**
 	 * <!-- begin-user-doc --> Commit the all pending changes of the project.
@@ -505,4 +508,12 @@ public interface ProjectSpace extends IdentifiableElement {
 	 * @throws EmfStoreException if exception occurs on the server
 	 */
 	void removeTag(PrimaryVersionSpec versionSpec, TagVersionSpec tag) throws EmfStoreException;
+
+	/**
+	 * Return the list of operations that have already been performed on the project space.
+	 * 
+	 * @return a list of operations
+	 * @generated NOT
+	 */
+	List<AbstractOperation> getOperations();
 } // ProjectContainer
