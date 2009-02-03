@@ -27,9 +27,9 @@ import org.unicase.model.rationale.RationalePackage;
  */
 public class AssessmentImpl extends ModelElementImpl implements Assessment {
 	/**
-	 * The cached value of the '{@link #getCriterion() <em>Criterion</em>}' reference. <!-- begin-user-doc --> <!--
+	 * The cached value of the '{@link #getCriterion() <em>Criterion</em>}' reference.
+	 * <!-- begin-user-doc --> <!--
 	 * end-user-doc -->
-	 * 
 	 * @see #getCriterion()
 	 * @generated
 	 * @ordered
@@ -37,9 +37,9 @@ public class AssessmentImpl extends ModelElementImpl implements Assessment {
 	protected Criterion criterion;
 
 	/**
-	 * The default value of the '{@link #getValue() <em>Value</em>}' attribute. <!-- begin-user-doc --> <!--
+	 * The default value of the '{@link #getValue() <em>Value</em>}' attribute.
+	 * <!-- begin-user-doc --> <!--
 	 * end-user-doc -->
-	 * 
 	 * @see #getValue()
 	 * @generated
 	 * @ordered
@@ -58,7 +58,6 @@ public class AssessmentImpl extends ModelElementImpl implements Assessment {
 
 	/**
 	 * <!-- begin-user-doc --> <!-- end-user-doc -->
-	 * 
 	 * @generated
 	 */
 	protected AssessmentImpl() {
@@ -67,7 +66,6 @@ public class AssessmentImpl extends ModelElementImpl implements Assessment {
 
 	/**
 	 * <!-- begin-user-doc --> <!-- end-user-doc -->
-	 * 
 	 * @generated
 	 */
 	@Override
@@ -77,7 +75,6 @@ public class AssessmentImpl extends ModelElementImpl implements Assessment {
 
 	/**
 	 * <!-- begin-user-doc --> <!-- end-user-doc -->
-	 * 
 	 * @generated
 	 */
 	public Proposal getProposal() {
@@ -88,7 +85,6 @@ public class AssessmentImpl extends ModelElementImpl implements Assessment {
 
 	/**
 	 * <!-- begin-user-doc --> <!-- end-user-doc -->
-	 * 
 	 * @generated
 	 */
 	public Proposal basicGetProposal() {
@@ -99,7 +95,6 @@ public class AssessmentImpl extends ModelElementImpl implements Assessment {
 
 	/**
 	 * <!-- begin-user-doc --> <!-- end-user-doc -->
-	 * 
 	 * @generated
 	 */
 	public NotificationChain basicSetProposal(Proposal newProposal, NotificationChain msgs) {
@@ -109,7 +104,6 @@ public class AssessmentImpl extends ModelElementImpl implements Assessment {
 
 	/**
 	 * <!-- begin-user-doc --> <!-- end-user-doc -->
-	 * 
 	 * @generated
 	 */
 	public void setProposal(Proposal newProposal) {
@@ -133,7 +127,6 @@ public class AssessmentImpl extends ModelElementImpl implements Assessment {
 
 	/**
 	 * <!-- begin-user-doc --> <!-- end-user-doc -->
-	 * 
 	 * @generated
 	 */
 	public Criterion getCriterion() {
@@ -151,7 +144,6 @@ public class AssessmentImpl extends ModelElementImpl implements Assessment {
 
 	/**
 	 * <!-- begin-user-doc --> <!-- end-user-doc -->
-	 * 
 	 * @generated
 	 */
 	public Criterion basicGetCriterion() {
@@ -160,7 +152,6 @@ public class AssessmentImpl extends ModelElementImpl implements Assessment {
 
 	/**
 	 * <!-- begin-user-doc --> <!-- end-user-doc -->
-	 * 
 	 * @generated
 	 */
 	public NotificationChain basicSetCriterion(Criterion newCriterion, NotificationChain msgs) {
@@ -179,7 +170,6 @@ public class AssessmentImpl extends ModelElementImpl implements Assessment {
 
 	/**
 	 * <!-- begin-user-doc --> <!-- end-user-doc -->
-	 * 
 	 * @generated
 	 */
 	public void setCriterion(Criterion newCriterion) {
@@ -201,7 +191,6 @@ public class AssessmentImpl extends ModelElementImpl implements Assessment {
 
 	/**
 	 * <!-- begin-user-doc --> <!-- end-user-doc -->
-	 * 
 	 * @generated
 	 */
 	public int getValue() {
@@ -210,7 +199,6 @@ public class AssessmentImpl extends ModelElementImpl implements Assessment {
 
 	/**
 	 * <!-- begin-user-doc --> <!-- end-user-doc -->
-	 * 
 	 * @generated
 	 */
 	public void setValue(int newValue) {
@@ -222,7 +210,6 @@ public class AssessmentImpl extends ModelElementImpl implements Assessment {
 
 	/**
 	 * <!-- begin-user-doc --> <!-- end-user-doc -->
-	 * 
 	 * @generated
 	 */
 	@Override
@@ -243,7 +230,6 @@ public class AssessmentImpl extends ModelElementImpl implements Assessment {
 
 	/**
 	 * <!-- begin-user-doc --> <!-- end-user-doc -->
-	 * 
 	 * @generated
 	 */
 	@Override
@@ -259,7 +245,6 @@ public class AssessmentImpl extends ModelElementImpl implements Assessment {
 
 	/**
 	 * <!-- begin-user-doc --> <!-- end-user-doc -->
-	 * 
 	 * @generated
 	 */
 	@Override
@@ -274,7 +259,6 @@ public class AssessmentImpl extends ModelElementImpl implements Assessment {
 
 	/**
 	 * <!-- begin-user-doc --> <!-- end-user-doc -->
-	 * 
 	 * @generated
 	 */
 	@Override
@@ -296,7 +280,6 @@ public class AssessmentImpl extends ModelElementImpl implements Assessment {
 
 	/**
 	 * <!-- begin-user-doc --> <!-- end-user-doc -->
-	 * 
 	 * @generated
 	 */
 	@Override
@@ -317,7 +300,6 @@ public class AssessmentImpl extends ModelElementImpl implements Assessment {
 
 	/**
 	 * <!-- begin-user-doc --> <!-- end-user-doc -->
-	 * 
 	 * @generated
 	 */
 	@Override
@@ -338,7 +320,6 @@ public class AssessmentImpl extends ModelElementImpl implements Assessment {
 
 	/**
 	 * <!-- begin-user-doc --> <!-- end-user-doc -->
-	 * 
 	 * @generated
 	 */
 	@Override
@@ -356,7 +337,6 @@ public class AssessmentImpl extends ModelElementImpl implements Assessment {
 
 	/**
 	 * <!-- begin-user-doc --> <!-- end-user-doc -->
-	 * 
 	 * @generated
 	 */
 	@Override

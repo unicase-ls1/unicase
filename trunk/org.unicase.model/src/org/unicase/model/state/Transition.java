@@ -37,7 +37,6 @@ public interface Transition extends ModelElement {
 	/**
 	 * Sets the value of the '{@link org.unicase.model.state.Transition#getCondition <em>Condition</em>}' attribute.
 	 * <!-- begin-user-doc --> <!-- end-user-doc -->
-	 * 
 	 * @param value the new value of the '<em>Condition</em>' attribute.
 	 * @see #getCondition()
 	 * @generated
@@ -45,15 +44,15 @@ public interface Transition extends ModelElement {
 	void setCondition(String value);
 
 	/**
-	 * Returns the value of the '<em><b>Source</b></em>' reference. It is bidirectional and its opposite is '
-	 * {@link org.unicase.model.state.State#getOutgoingTransitions <em>Outgoing Transitions</em>}'. <!-- begin-user-doc
+	 * Returns the value of the '<em><b>Source</b></em>' reference.
+	 * It is bidirectional and its opposite is '{@link org.unicase.model.state.State#getOutgoingTransitions <em>Outgoing Transitions</em>}'.
+	 * <!-- begin-user-doc
 	 * -->
 	 * <p>
 	 * If the meaning of the '<em>Source</em>' reference isn't clear, there really should be more of a description
 	 * here...
 	 * </p>
 	 * <!-- end-user-doc -->
-	 * 
 	 * @return the value of the '<em>Source</em>' reference.
 	 * @see #setSource(State)
 	 * @see org.unicase.model.state.StatePackage#getTransition_Source()
@@ -74,15 +73,15 @@ public interface Transition extends ModelElement {
 	void setSource(State value);
 
 	/**
-	 * Returns the value of the '<em><b>Target</b></em>' reference. It is bidirectional and its opposite is '
-	 * {@link org.unicase.model.state.State#getIncomingTransitions <em>Incoming Transitions</em>}'. <!-- begin-user-doc
+	 * Returns the value of the '<em><b>Target</b></em>' reference.
+	 * It is bidirectional and its opposite is '{@link org.unicase.model.state.State#getIncomingTransitions <em>Incoming Transitions</em>}'.
+	 * <!-- begin-user-doc
 	 * -->
 	 * <p>
 	 * If the meaning of the '<em>Target</em>' reference isn't clear, there really should be more of a description
 	 * here...
 	 * </p>
 	 * <!-- end-user-doc -->
-	 * 
 	 * @return the value of the '<em>Target</em>' reference.
 	 * @see #setTarget(State)
 	 * @see org.unicase.model.state.StatePackage#getTransition_Target()

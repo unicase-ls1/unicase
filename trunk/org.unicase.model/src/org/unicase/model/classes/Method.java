@@ -25,14 +25,14 @@ import org.unicase.model.requirement.Scenario;
  */
 public interface Method extends ModelElement {
 	/**
-	 * Returns the value of the '<em><b>Visibility</b></em>' attribute. The literals are from the enumeration
-	 * {@link org.unicase.model.classes.VisibilityType}. <!-- begin-user-doc -->
+	 * Returns the value of the '<em><b>Visibility</b></em>' attribute.
+	 * The literals are from the enumeration {@link org.unicase.model.classes.VisibilityType}.
+	 * <!-- begin-user-doc -->
 	 * <p>
 	 * If the meaning of the '<em>Visibility</em>' attribute isn't clear, there really should be more of a description
 	 * here...
 	 * </p>
 	 * <!-- end-user-doc -->
-	 * 
 	 * @return the value of the '<em>Visibility</em>' attribute.
 	 * @see org.unicase.model.classes.VisibilityType
 	 * @see #setVisibility(VisibilityType)
@@ -45,7 +45,6 @@ public interface Method extends ModelElement {
 	/**
 	 * Sets the value of the '{@link org.unicase.model.classes.Method#getVisibility <em>Visibility</em>}' attribute.
 	 * <!-- begin-user-doc --> <!-- end-user-doc -->
-	 * 
 	 * @param value the new value of the '<em>Visibility</em>' attribute.
 	 * @see org.unicase.model.classes.VisibilityType
 	 * @see #getVisibility()
@@ -54,14 +53,14 @@ public interface Method extends ModelElement {
 	void setVisibility(VisibilityType value);
 
 	/**
-	 * Returns the value of the '<em><b>Scope</b></em>' attribute. The literals are from the enumeration
-	 * {@link org.unicase.model.classes.ScopeType}. <!-- begin-user-doc -->
+	 * Returns the value of the '<em><b>Scope</b></em>' attribute.
+	 * The literals are from the enumeration {@link org.unicase.model.classes.ScopeType}.
+	 * <!-- begin-user-doc -->
 	 * <p>
 	 * If the meaning of the '<em>Scope</em>' attribute isn't clear, there really should be more of a description
 	 * here...
 	 * </p>
 	 * <!-- end-user-doc -->
-	 * 
 	 * @return the value of the '<em>Scope</em>' attribute.
 	 * @see org.unicase.model.classes.ScopeType
 	 * @see #setScope(ScopeType)
@@ -83,27 +82,27 @@ public interface Method extends ModelElement {
 	void setScope(ScopeType value);
 
 	/**
-	 * Returns the value of the '<em><b>Defining Class</b></em>' container reference. It is bidirectional and its
-	 * opposite is '{@link org.unicase.model.classes.Class#getMethods <em>Methods</em>}'. <!-- begin-user-doc -->
+	 * Returns the value of the '<em><b>Defining Class</b></em>' container reference.
+	 * It is bidirectional and its opposite is '{@link org.unicase.model.classes.Class#getMethods <em>Methods</em>}'.
+	 * <!-- begin-user-doc -->
 	 * <p>
 	 * If the meaning of the '<em>Defining Class</em>' container reference isn't clear, there really should be more of a
 	 * description here...
 	 * </p>
 	 * <!-- end-user-doc -->
-	 * 
 	 * @return the value of the '<em>Defining Class</em>' container reference.
 	 * @see #setDefiningClass(org.unicase.model.classes.Class)
 	 * @see org.unicase.model.classes.ClassesPackage#getMethod_DefiningClass()
 	 * @see org.unicase.model.classes.Class#getMethods
-	 * @model opposite="methods" transient="false" annotation="org.unicase.ui.meeditor priority='10.0' position='left'"
+	 * @model opposite="methods" transient="false"
+	 *        annotation="org.unicase.ui.meeditor priority='10.0' position='left'"
 	 * @generated
 	 */
 	org.unicase.model.classes.Class getDefiningClass();
 
 	/**
-	 * Sets the value of the '{@link org.unicase.model.classes.Method#getDefiningClass <em>Defining Class</em>}'
-	 * container reference. <!-- begin-user-doc --> <!-- end-user-doc -->
-	 * 
+	 * Sets the value of the '{@link org.unicase.model.classes.Method#getDefiningClass <em>Defining Class</em>}' container reference.
+	 * <!-- begin-user-doc --> <!-- end-user-doc -->
 	 * @param value the new value of the '<em>Defining Class</em>' container reference.
 	 * @see #getDefiningClass()
 	 * @generated
@@ -111,13 +110,13 @@ public interface Method extends ModelElement {
 	void setDefiningClass(org.unicase.model.classes.Class value);
 
 	/**
-	 * Returns the value of the '<em><b>Return Type</b></em>' attribute. <!-- begin-user-doc -->
+	 * Returns the value of the '<em><b>Return Type</b></em>' attribute.
+	 * <!-- begin-user-doc -->
 	 * <p>
 	 * If the meaning of the '<em>Return Type</em>' attribute isn't clear, there really should be more of a description
 	 * here...
 	 * </p>
 	 * <!-- end-user-doc -->
-	 * 
 	 * @return the value of the '<em>Return Type</em>' attribute.
 	 * @see #setReturnType(String)
 	 * @see org.unicase.model.classes.ClassesPackage#getMethod_ReturnType()
@@ -129,7 +128,6 @@ public interface Method extends ModelElement {
 	/**
 	 * Sets the value of the '{@link org.unicase.model.classes.Method#getReturnType <em>Return Type</em>}' attribute.
 	 * <!-- begin-user-doc --> <!-- end-user-doc -->
-	 * 
 	 * @param value the new value of the '<em>Return Type</em>' attribute.
 	 * @see #getReturnType()
 	 * @generated
@@ -153,14 +151,14 @@ public interface Method extends ModelElement {
 	String getSignature();
 
 	/**
-	 * Returns the value of the '<em><b>Arguments</b></em>' containment reference list. The list contents are of type
-	 * {@link org.unicase.model.classes.MethodArgument}. <!-- begin-user-doc -->
+	 * Returns the value of the '<em><b>Arguments</b></em>' containment reference list.
+	 * The list contents are of type {@link org.unicase.model.classes.MethodArgument}.
+	 * <!-- begin-user-doc -->
 	 * <p>
 	 * If the meaning of the '<em>Arguments</em>' containment reference list isn't clear, there really should be more of
 	 * a description here...
 	 * </p>
 	 * <!-- end-user-doc -->
-	 * 
 	 * @return the value of the '<em>Arguments</em>' containment reference list.
 	 * @see org.unicase.model.classes.ClassesPackage#getMethod_Arguments()
 	 * @model containment="true" resolveProxies="true"
@@ -170,13 +168,13 @@ public interface Method extends ModelElement {
 	EList<MethodArgument> getArguments();
 
 	/**
-	 * Returns the value of the '<em><b>Properties</b></em>' attribute. <!-- begin-user-doc -->
+	 * Returns the value of the '<em><b>Properties</b></em>' attribute.
+	 * <!-- begin-user-doc -->
 	 * <p>
 	 * If the meaning of the '<em>Properties</em>' attribute isn't clear, there really should be more of a description
 	 * here...
 	 * </p>
 	 * <!-- end-user-doc -->
-	 * 
 	 * @return the value of the '<em>Properties</em>' attribute.
 	 * @see #setProperties(String)
 	 * @see org.unicase.model.classes.ClassesPackage#getMethod_Properties()
@@ -188,7 +186,6 @@ public interface Method extends ModelElement {
 	/**
 	 * Sets the value of the '{@link org.unicase.model.classes.Method#getProperties <em>Properties</em>}' attribute.
 	 * <!-- begin-user-doc --> <!-- end-user-doc -->
-	 * 
 	 * @param value the new value of the '<em>Properties</em>' attribute.
 	 * @see #getProperties()
 	 * @generated
@@ -196,13 +193,13 @@ public interface Method extends ModelElement {
 	void setProperties(String value);
 
 	/**
-	 * Returns the value of the '<em><b>Label</b></em>' attribute. <!-- begin-user-doc -->
+	 * Returns the value of the '<em><b>Label</b></em>' attribute.
+	 * <!-- begin-user-doc -->
 	 * <p>
 	 * If the meaning of the '<em>Label</em>' attribute isn't clear, there really should be more of a description
 	 * here...
 	 * </p>
 	 * <!-- end-user-doc -->
-	 * 
 	 * @return the value of the '<em>Label</em>' attribute.
 	 * @see #setLabel(String)
 	 * @see org.unicase.model.classes.ClassesPackage#getMethod_Label()
@@ -222,13 +219,13 @@ public interface Method extends ModelElement {
 	void setLabel(String value);
 
 	/**
-	 * Returns the value of the '<em><b>Stubbed</b></em>' attribute. <!-- begin-user-doc -->
+	 * Returns the value of the '<em><b>Stubbed</b></em>' attribute.
+	 * <!-- begin-user-doc -->
 	 * <p>
 	 * If the meaning of the '<em>Stubbed</em>' attribute isn't clear, there really should be more of a description
 	 * here...
 	 * </p>
 	 * <!-- end-user-doc -->
-	 * 
 	 * @return the value of the '<em>Stubbed</em>' attribute.
 	 * @see #setStubbed(boolean)
 	 * @see org.unicase.model.classes.ClassesPackage#getMethod_Stubbed()
@@ -248,15 +245,15 @@ public interface Method extends ModelElement {
 	void setStubbed(boolean value);
 
 	/**
-	 * Returns the value of the '<em><b>Called Methods</b></em>' reference list. The list contents are of type
-	 * {@link org.unicase.model.classes.Method}. It is bidirectional and its opposite is '
-	 * {@link org.unicase.model.classes.Method#getCallingMethods <em>Calling Methods</em>}'. <!-- begin-user-doc -->
+	 * Returns the value of the '<em><b>Called Methods</b></em>' reference list.
+	 * The list contents are of type {@link org.unicase.model.classes.Method}.
+	 * It is bidirectional and its opposite is '{@link org.unicase.model.classes.Method#getCallingMethods <em>Calling Methods</em>}'.
+	 * <!-- begin-user-doc -->
 	 * <p>
 	 * If the meaning of the '<em>Called Methods</em>' reference list isn't clear, there really should be more of a
 	 * description here...
 	 * </p>
 	 * <!-- end-user-doc -->
-	 * 
 	 * @return the value of the '<em>Called Methods</em>' reference list.
 	 * @see org.unicase.model.classes.ClassesPackage#getMethod_CalledMethods()
 	 * @see org.unicase.model.classes.Method#getCallingMethods
@@ -267,15 +264,15 @@ public interface Method extends ModelElement {
 	EList<Method> getCalledMethods();
 
 	/**
-	 * Returns the value of the '<em><b>Calling Methods</b></em>' reference list. The list contents are of type
-	 * {@link org.unicase.model.classes.Method}. It is bidirectional and its opposite is '
-	 * {@link org.unicase.model.classes.Method#getCalledMethods <em>Called Methods</em>}'. <!-- begin-user-doc -->
+	 * Returns the value of the '<em><b>Calling Methods</b></em>' reference list.
+	 * The list contents are of type {@link org.unicase.model.classes.Method}.
+	 * It is bidirectional and its opposite is '{@link org.unicase.model.classes.Method#getCalledMethods <em>Called Methods</em>}'.
+	 * <!-- begin-user-doc -->
 	 * <p>
 	 * If the meaning of the '<em>Calling Methods</em>' reference list isn't clear, there really should be more of a
 	 * description here...
 	 * </p>
 	 * <!-- end-user-doc -->
-	 * 
 	 * @return the value of the '<em>Calling Methods</em>' reference list.
 	 * @see org.unicase.model.classes.ClassesPackage#getMethod_CallingMethods()
 	 * @see org.unicase.model.classes.Method#getCalledMethods

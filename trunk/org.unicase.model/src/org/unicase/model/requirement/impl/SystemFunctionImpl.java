@@ -22,9 +22,9 @@ import org.unicase.model.requirement.SystemFunction;
  */
 public class SystemFunctionImpl extends ModelElementImpl implements SystemFunction {
 	/**
-	 * The default value of the '{@link #getInput() <em>Input</em>}' attribute. <!-- begin-user-doc --> <!--
+	 * The default value of the '{@link #getInput() <em>Input</em>}' attribute.
+	 * <!-- begin-user-doc --> <!--
 	 * end-user-doc -->
-	 * 
 	 * @see #getInput()
 	 * @generated
 	 * @ordered
@@ -42,9 +42,9 @@ public class SystemFunctionImpl extends ModelElementImpl implements SystemFuncti
 	protected String input = INPUT_EDEFAULT;
 
 	/**
-	 * The default value of the '{@link #getOutput() <em>Output</em>}' attribute. <!-- begin-user-doc --> <!--
+	 * The default value of the '{@link #getOutput() <em>Output</em>}' attribute.
+	 * <!-- begin-user-doc --> <!--
 	 * end-user-doc -->
-	 * 
 	 * @see #getOutput()
 	 * @generated
 	 * @ordered
@@ -52,9 +52,9 @@ public class SystemFunctionImpl extends ModelElementImpl implements SystemFuncti
 	protected static final String OUTPUT_EDEFAULT = null;
 
 	/**
-	 * The cached value of the '{@link #getOutput() <em>Output</em>}' attribute. <!-- begin-user-doc --> <!--
+	 * The cached value of the '{@link #getOutput() <em>Output</em>}' attribute.
+	 * <!-- begin-user-doc --> <!--
 	 * end-user-doc -->
-	 * 
 	 * @see #getOutput()
 	 * @generated
 	 * @ordered
@@ -62,9 +62,9 @@ public class SystemFunctionImpl extends ModelElementImpl implements SystemFuncti
 	protected String output = OUTPUT_EDEFAULT;
 
 	/**
-	 * The default value of the '{@link #getException() <em>Exception</em>}' attribute. <!-- begin-user-doc --> <!--
+	 * The default value of the '{@link #getException() <em>Exception</em>}' attribute.
+	 * <!-- begin-user-doc --> <!--
 	 * end-user-doc -->
-	 * 
 	 * @see #getException()
 	 * @generated
 	 * @ordered
@@ -72,9 +72,9 @@ public class SystemFunctionImpl extends ModelElementImpl implements SystemFuncti
 	protected static final String EXCEPTION_EDEFAULT = null;
 
 	/**
-	 * The cached value of the '{@link #getException() <em>Exception</em>}' attribute. <!-- begin-user-doc --> <!--
+	 * The cached value of the '{@link #getException() <em>Exception</em>}' attribute.
+	 * <!-- begin-user-doc --> <!--
 	 * end-user-doc -->
-	 * 
 	 * @see #getException()
 	 * @generated
 	 * @ordered
@@ -83,7 +83,6 @@ public class SystemFunctionImpl extends ModelElementImpl implements SystemFuncti
 
 	/**
 	 * <!-- begin-user-doc --> <!-- end-user-doc -->
-	 * 
 	 * @generated
 	 */
 	protected SystemFunctionImpl() {
@@ -92,7 +91,6 @@ public class SystemFunctionImpl extends ModelElementImpl implements SystemFuncti
 
 	/**
 	 * <!-- begin-user-doc --> <!-- end-user-doc -->
-	 * 
 	 * @generated
 	 */
 	@Override
@@ -102,7 +100,6 @@ public class SystemFunctionImpl extends ModelElementImpl implements SystemFuncti
 
 	/**
 	 * <!-- begin-user-doc --> <!-- end-user-doc -->
-	 * 
 	 * @generated
 	 */
 	public String getInput() {
@@ -111,7 +108,6 @@ public class SystemFunctionImpl extends ModelElementImpl implements SystemFuncti
 
 	/**
 	 * <!-- begin-user-doc --> <!-- end-user-doc -->
-	 * 
 	 * @generated
 	 */
 	public void setInput(String newInput) {
@@ -124,7 +120,6 @@ public class SystemFunctionImpl extends ModelElementImpl implements SystemFuncti
 
 	/**
 	 * <!-- begin-user-doc --> <!-- end-user-doc -->
-	 * 
 	 * @generated
 	 */
 	public String getOutput() {
@@ -133,7 +128,6 @@ public class SystemFunctionImpl extends ModelElementImpl implements SystemFuncti
 
 	/**
 	 * <!-- begin-user-doc --> <!-- end-user-doc -->
-	 * 
 	 * @generated
 	 */
 	public void setOutput(String newOutput) {
@@ -146,7 +140,6 @@ public class SystemFunctionImpl extends ModelElementImpl implements SystemFuncti
 
 	/**
 	 * <!-- begin-user-doc --> <!-- end-user-doc -->
-	 * 
 	 * @generated
 	 */
 	public String getException() {
@@ -155,7 +148,6 @@ public class SystemFunctionImpl extends ModelElementImpl implements SystemFuncti
 
 	/**
 	 * <!-- begin-user-doc --> <!-- end-user-doc -->
-	 * 
 	 * @generated
 	 */
 	public void setException(String newException) {
@@ -168,7 +160,6 @@ public class SystemFunctionImpl extends ModelElementImpl implements SystemFuncti
 
 	/**
 	 * <!-- begin-user-doc --> <!-- end-user-doc -->
-	 * 
 	 * @generated
 	 */
 	@Override
@@ -186,7 +177,6 @@ public class SystemFunctionImpl extends ModelElementImpl implements SystemFuncti
 
 	/**
 	 * <!-- begin-user-doc --> <!-- end-user-doc -->
-	 * 
 	 * @generated
 	 */
 	@Override
@@ -207,7 +197,6 @@ public class SystemFunctionImpl extends ModelElementImpl implements SystemFuncti
 
 	/**
 	 * <!-- begin-user-doc --> <!-- end-user-doc -->
-	 * 
 	 * @generated
 	 */
 	@Override
@@ -228,7 +217,6 @@ public class SystemFunctionImpl extends ModelElementImpl implements SystemFuncti
 
 	/**
 	 * <!-- begin-user-doc --> <!-- end-user-doc -->
-	 * 
 	 * @generated
 	 */
 	@Override
@@ -246,7 +234,6 @@ public class SystemFunctionImpl extends ModelElementImpl implements SystemFuncti
 
 	/**
 	 * <!-- begin-user-doc --> <!-- end-user-doc -->
-	 * 
 	 * @generated
 	 */
 	@Override

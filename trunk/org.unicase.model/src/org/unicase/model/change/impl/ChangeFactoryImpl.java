@@ -23,14 +23,14 @@ import org.unicase.model.change.ModelChangePackage;
  */
 public class ChangeFactoryImpl extends EFactoryImpl implements ChangeFactory {
 	/**
-	 * Creates the default factory implementation. <!-- begin-user-doc --> <!-- end-user-doc -->
-	 * 
+	 * Creates the default factory implementation.
+	 * <!-- begin-user-doc --> <!-- end-user-doc -->
 	 * @generated
 	 */
 	public static ChangeFactory init() {
 		try {
 			ChangeFactory theChangeFactory = (ChangeFactory) EPackage.Registry.INSTANCE
-				.getEFactory("http://unicase.org/model/change");
+				.getEFactory("http://unicase.org/model/0.3.5/change");
 			if (theChangeFactory != null) {
 				return theChangeFactory;
 			}
@@ -41,8 +41,8 @@ public class ChangeFactoryImpl extends EFactoryImpl implements ChangeFactory {
 	}
 
 	/**
-	 * Creates an instance of the factory. <!-- begin-user-doc --> <!-- end-user-doc -->
-	 * 
+	 * Creates an instance of the factory.
+	 * <!-- begin-user-doc --> <!-- end-user-doc -->
 	 * @generated
 	 */
 	public ChangeFactoryImpl() {
@@ -51,7 +51,6 @@ public class ChangeFactoryImpl extends EFactoryImpl implements ChangeFactory {
 
 	/**
 	 * <!-- begin-user-doc --> <!-- end-user-doc -->
-	 * 
 	 * @generated
 	 */
 	@Override
@@ -72,7 +71,6 @@ public class ChangeFactoryImpl extends EFactoryImpl implements ChangeFactory {
 
 	/**
 	 * <!-- begin-user-doc --> <!-- end-user-doc -->
-	 * 
 	 * @generated
 	 */
 	public ModelChangePackage createModelChangePackage() {
@@ -82,7 +80,6 @@ public class ChangeFactoryImpl extends EFactoryImpl implements ChangeFactory {
 
 	/**
 	 * <!-- begin-user-doc --> <!-- end-user-doc -->
-	 * 
 	 * @generated
 	 */
 	public MergingIssue createMergingIssue() {
@@ -92,7 +89,6 @@ public class ChangeFactoryImpl extends EFactoryImpl implements ChangeFactory {
 
 	/**
 	 * <!-- begin-user-doc --> <!-- end-user-doc -->
-	 * 
 	 * @generated
 	 */
 	public MergingProposal createMergingProposal() {
@@ -102,7 +98,6 @@ public class ChangeFactoryImpl extends EFactoryImpl implements ChangeFactory {
 
 	/**
 	 * <!-- begin-user-doc --> <!-- end-user-doc -->
-	 * 
 	 * @generated
 	 */
 	public MergingSolution createMergingSolution() {
@@ -112,7 +107,6 @@ public class ChangeFactoryImpl extends EFactoryImpl implements ChangeFactory {
 
 	/**
 	 * <!-- begin-user-doc --> <!-- end-user-doc -->
-	 * 
 	 * @generated
 	 */
 	public ChangePackage getChangePackage() {
@@ -121,7 +115,6 @@ public class ChangeFactoryImpl extends EFactoryImpl implements ChangeFactory {
 
 	/**
 	 * <!-- begin-user-doc --> <!-- end-user-doc -->
-	 * 
 	 * @deprecated
 	 * @generated
 	 */
