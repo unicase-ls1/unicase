@@ -22,14 +22,14 @@ import org.unicase.model.util.ProjectChangeObserver;
 public interface Project extends EObject, IAdaptable {
 
 	/**
-	 * Returns the value of the '<em><b>Model Elements</b></em>' containment reference list.
-	 * The list contents are of type {@link org.unicase.model.ModelElement}.
-	 * <!-- begin-user-doc -->
+	 * Returns the value of the '<em><b>Model Elements</b></em>' containment reference list. The list contents are of
+	 * type {@link org.unicase.model.ModelElement}. <!-- begin-user-doc -->
 	 * <p>
 	 * If the meaning of the '<em>Model Elements</em>' containment reference list isn't clear, there really should be
 	 * more of a description here...
 	 * </p>
 	 * <!-- end-user-doc -->
+	 * 
 	 * @return the value of the '<em>Model Elements</em>' containment reference list.
 	 * @see org.unicase.model.ModelPackage#getProject_ModelElements()
 	 * @model containment="true" resolveProxies="true" keys="identifier" ordered="false"
@@ -40,6 +40,7 @@ public interface Project extends EObject, IAdaptable {
 	/**
 	 * <!-- begin-user-doc --> Add a Model Element to the project as direct content. This is only necessary if the model
 	 * element is not contained in any other model element. <!-- end-user-doc -->
+	 * 
 	 * @model
 	 * @generated
 	 */
@@ -48,6 +49,7 @@ public interface Project extends EObject, IAdaptable {
 	/**
 	 * <!-- begin-user-doc --> Return all model elements in the project including model elements transitively contained
 	 * by project. <!--end-user-doc -->
+	 * 
 	 * @model kind="operation" ordered="false"
 	 * @generated
 	 */
@@ -55,6 +57,7 @@ public interface Project extends EObject, IAdaptable {
 
 	/**
 	 * <!-- begin-user-doc --> <!-- end-user-doc -->
+	 * 
 	 * @model ordered="false" listMany="true"
 	 * @generated
 	 */
@@ -62,6 +65,7 @@ public interface Project extends EObject, IAdaptable {
 
 	/**
 	 * <!-- begin-user-doc --> <!-- end-user-doc -->
+	 * 
 	 * @model ordered="false" listMany="true"
 	 * @generated
 	 */

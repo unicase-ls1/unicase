@@ -17,6 +17,7 @@ import org.unicase.model.ModelPackage;
 public class ModelElementIdImpl extends UniqueIdentifierImpl implements ModelElementId {
 	/**
 	 * <!-- begin-user-doc --> <!-- end-user-doc -->
+	 * 
 	 * @generated
 	 */
 	protected ModelElementIdImpl() {
@@ -25,6 +26,7 @@ public class ModelElementIdImpl extends UniqueIdentifierImpl implements ModelEle
 
 	/**
 	 * <!-- begin-user-doc --> <!-- end-user-doc -->
+	 * 
 	 * @generated
 	 */
 	@Override

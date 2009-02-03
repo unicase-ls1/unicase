@@ -40,8 +40,9 @@ public interface UserTask extends ModelElement, NonDomainElement {
 	Actor getInitiatingActor();
 
 	/**
-	 * Sets the value of the '{@link org.unicase.model.requirement.UserTask#getInitiatingActor <em>Initiating Actor</em>}' reference.
-	 * <!-- begin-user-doc --> <!-- end-user-doc -->
+	 * Sets the value of the '{@link org.unicase.model.requirement.UserTask#getInitiatingActor
+	 * <em>Initiating Actor</em>}' reference. <!-- begin-user-doc --> <!-- end-user-doc -->
+	 * 
 	 * @param value the new value of the '<em>Initiating Actor</em>' reference.
 	 * @see #getInitiatingActor()
 	 * @generated

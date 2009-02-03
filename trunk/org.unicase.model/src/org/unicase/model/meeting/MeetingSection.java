@@ -34,8 +34,9 @@ public interface MeetingSection extends ModelElement {
 	int getAllocatedTime();
 
 	/**
-	 * Sets the value of the '{@link org.unicase.model.meeting.MeetingSection#getAllocatedTime <em>Allocated Time</em>}' attribute.
-	 * <!-- begin-user-doc --> <!-- end-user-doc -->
+	 * Sets the value of the '{@link org.unicase.model.meeting.MeetingSection#getAllocatedTime <em>Allocated Time</em>}'
+	 * attribute. <!-- begin-user-doc --> <!-- end-user-doc -->
+	 * 
 	 * @param value the new value of the '<em>Allocated Time</em>' attribute.
 	 * @see #getAllocatedTime()
 	 * @generated

@@ -24,14 +24,14 @@ import org.unicase.model.task.WorkPackage;
  */
 public class TaskFactoryImpl extends EFactoryImpl implements TaskFactory {
 	/**
-	 * Creates the default factory implementation.
-	 * <!-- begin-user-doc --> <!-- end-user-doc -->
+	 * Creates the default factory implementation. <!-- begin-user-doc --> <!-- end-user-doc -->
+	 * 
 	 * @generated
 	 */
 	public static TaskFactory init() {
 		try {
 			TaskFactory theTaskFactory = (TaskFactory) EPackage.Registry.INSTANCE
-				.getEFactory("http://unicase.org/model/0.3.5/task");
+				.getEFactory("http://unicase.org/model/task");
 			if (theTaskFactory != null) {
 				return theTaskFactory;
 			}
@@ -42,8 +42,8 @@ public class TaskFactoryImpl extends EFactoryImpl implements TaskFactory {
 	}
 
 	/**
-	 * Creates an instance of the factory.
-	 * <!-- begin-user-doc --> <!-- end-user-doc -->
+	 * Creates an instance of the factory. <!-- begin-user-doc --> <!-- end-user-doc -->
+	 * 
 	 * @generated
 	 */
 	public TaskFactoryImpl() {
@@ -52,6 +52,7 @@ public class TaskFactoryImpl extends EFactoryImpl implements TaskFactory {
 
 	/**
 	 * <!-- begin-user-doc --> <!-- end-user-doc -->
+	 * 
 	 * @generated
 	 */
 	@Override
@@ -70,6 +71,7 @@ public class TaskFactoryImpl extends EFactoryImpl implements TaskFactory {
 
 	/**
 	 * <!-- begin-user-doc --> <!-- end-user-doc -->
+	 * 
 	 * @generated
 	 */
 	@Override
@@ -84,6 +86,7 @@ public class TaskFactoryImpl extends EFactoryImpl implements TaskFactory {
 
 	/**
 	 * <!-- begin-user-doc --> <!-- end-user-doc -->
+	 * 
 	 * @generated
 	 */
 	@Override
@@ -98,6 +101,7 @@ public class TaskFactoryImpl extends EFactoryImpl implements TaskFactory {
 
 	/**
 	 * <!-- begin-user-doc --> <!-- end-user-doc -->
+	 * 
 	 * @generated
 	 */
 	public ActionItem createActionItem() {
@@ -107,6 +111,7 @@ public class TaskFactoryImpl extends EFactoryImpl implements TaskFactory {
 
 	/**
 	 * <!-- begin-user-doc --> <!-- end-user-doc -->
+	 * 
 	 * @generated
 	 */
 	public WorkPackage createWorkPackage() {
@@ -116,6 +121,7 @@ public class TaskFactoryImpl extends EFactoryImpl implements TaskFactory {
 
 	/**
 	 * <!-- begin-user-doc --> <!-- end-user-doc -->
+	 * 
 	 * @generated
 	 */
 	public Milestone createMilestone() {
@@ -125,6 +131,7 @@ public class TaskFactoryImpl extends EFactoryImpl implements TaskFactory {
 
 	/**
 	 * <!-- begin-user-doc --> <!-- end-user-doc -->
+	 * 
 	 * @generated
 	 */
 	public ActivityType createActivityTypeFromString(EDataType eDataType, String initialValue) {
@@ -137,6 +144,7 @@ public class TaskFactoryImpl extends EFactoryImpl implements TaskFactory {
 
 	/**
 	 * <!-- begin-user-doc --> <!-- end-user-doc -->
+	 * 
 	 * @generated
 	 */
 	public String convertActivityTypeToString(EDataType eDataType, Object instanceValue) {
@@ -145,6 +153,7 @@ public class TaskFactoryImpl extends EFactoryImpl implements TaskFactory {
 
 	/**
 	 * <!-- begin-user-doc --> <!-- end-user-doc -->
+	 * 
 	 * @generated
 	 */
 	public TaskPackage getTaskPackage() {
@@ -153,6 +162,7 @@ public class TaskFactoryImpl extends EFactoryImpl implements TaskFactory {
 
 	/**
 	 * <!-- begin-user-doc --> <!-- end-user-doc -->
+	 * 
 	 * @deprecated
 	 * @generated
 	 */

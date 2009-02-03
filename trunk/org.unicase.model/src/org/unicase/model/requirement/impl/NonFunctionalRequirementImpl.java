@@ -49,6 +49,7 @@ public class NonFunctionalRequirementImpl extends CriterionImpl implements NonFu
 
 	/**
 	 * <!-- begin-user-doc --> <!-- end-user-doc -->
+	 * 
 	 * @generated
 	 */
 	protected NonFunctionalRequirementImpl() {
@@ -57,6 +58,7 @@ public class NonFunctionalRequirementImpl extends CriterionImpl implements NonFu
 
 	/**
 	 * <!-- begin-user-doc --> <!-- end-user-doc -->
+	 * 
 	 * @generated
 	 */
 	@Override
@@ -66,6 +68,7 @@ public class NonFunctionalRequirementImpl extends CriterionImpl implements NonFu
 
 	/**
 	 * <!-- begin-user-doc --> <!-- end-user-doc -->
+	 * 
 	 * @generated
 	 */
 	public EList<Scenario> getRestrictedScenarios() {
@@ -79,6 +82,7 @@ public class NonFunctionalRequirementImpl extends CriterionImpl implements NonFu
 
 	/**
 	 * <!-- begin-user-doc --> <!-- end-user-doc -->
+	 * 
 	 * @generated
 	 */
 	public EList<UseCase> getRestrictedUseCases() {
@@ -92,6 +96,7 @@ public class NonFunctionalRequirementImpl extends CriterionImpl implements NonFu
 
 	/**
 	 * <!-- begin-user-doc --> <!-- end-user-doc -->
+	 * 
 	 * @generated
 	 */
 	@SuppressWarnings("unchecked")
@@ -110,6 +115,7 @@ public class NonFunctionalRequirementImpl extends CriterionImpl implements NonFu
 
 	/**
 	 * <!-- begin-user-doc --> <!-- end-user-doc -->
+	 * 
 	 * @generated
 	 */
 	@Override
@@ -125,6 +131,7 @@ public class NonFunctionalRequirementImpl extends CriterionImpl implements NonFu
 
 	/**
 	 * <!-- begin-user-doc --> <!-- end-user-doc -->
+	 * 
 	 * @generated
 	 */
 	@Override
@@ -140,6 +147,7 @@ public class NonFunctionalRequirementImpl extends CriterionImpl implements NonFu
 
 	/**
 	 * <!-- begin-user-doc --> <!-- end-user-doc -->
+	 * 
 	 * @generated
 	 */
 	@SuppressWarnings("unchecked")
@@ -160,6 +168,7 @@ public class NonFunctionalRequirementImpl extends CriterionImpl implements NonFu
 
 	/**
 	 * <!-- begin-user-doc --> <!-- end-user-doc -->
+	 * 
 	 * @generated
 	 */
 	@Override
@@ -177,6 +186,7 @@ public class NonFunctionalRequirementImpl extends CriterionImpl implements NonFu
 
 	/**
 	 * <!-- begin-user-doc --> <!-- end-user-doc -->
+	 * 
 	 * @generated
 	 */
 	@Override

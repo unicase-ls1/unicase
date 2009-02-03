@@ -15,13 +15,13 @@ package org.unicase.model.profile;
  */
 public interface StereotypeAttributeInstanceString extends StereotypeAttributeInstance {
 	/**
-	 * Returns the value of the '<em><b>Value</b></em>' attribute.
-	 * <!-- begin-user-doc -->
+	 * Returns the value of the '<em><b>Value</b></em>' attribute. <!-- begin-user-doc -->
 	 * <p>
 	 * If the meaning of the '<em>Value</em>' attribute isn't clear, there really should be more of a description
 	 * here...
 	 * </p>
 	 * <!-- end-user-doc -->
+	 * 
 	 * @return the value of the '<em>Value</em>' attribute.
 	 * @see #setValue(String)
 	 * @see org.unicase.model.profile.ProfilePackage#getStereotypeAttributeInstanceString_Value()
@@ -31,8 +31,9 @@ public interface StereotypeAttributeInstanceString extends StereotypeAttributeIn
 	String getValue();
 
 	/**
-	 * Sets the value of the '{@link org.unicase.model.profile.StereotypeAttributeInstanceString#getValue <em>Value</em>}' attribute.
-	 * <!-- begin-user-doc --> <!-- end-user-doc -->
+	 * Sets the value of the '{@link org.unicase.model.profile.StereotypeAttributeInstanceString#getValue
+	 * <em>Value</em>}' attribute. <!-- begin-user-doc --> <!-- end-user-doc -->
+	 * 
 	 * @param value the new value of the '<em>Value</em>' attribute.
 	 * @see #getValue()
 	 * @generated

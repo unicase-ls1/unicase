@@ -29,14 +29,14 @@ import org.unicase.model.classes.VisibilityType;
  */
 public class ClassesFactoryImpl extends EFactoryImpl implements ClassesFactory {
 	/**
-	 * Creates the default factory implementation.
-	 * <!-- begin-user-doc --> <!-- end-user-doc -->
+	 * Creates the default factory implementation. <!-- begin-user-doc --> <!-- end-user-doc -->
+	 * 
 	 * @generated
 	 */
 	public static ClassesFactory init() {
 		try {
 			ClassesFactory theClassesFactory = (ClassesFactory) EPackage.Registry.INSTANCE
-				.getEFactory("http://unicase.org/model/0.3.5/classes");
+				.getEFactory("http://unicase.org/model/classes");
 			if (theClassesFactory != null) {
 				return theClassesFactory;
 			}
@@ -47,8 +47,8 @@ public class ClassesFactoryImpl extends EFactoryImpl implements ClassesFactory {
 	}
 
 	/**
-	 * Creates an instance of the factory.
-	 * <!-- begin-user-doc --> <!-- end-user-doc -->
+	 * Creates an instance of the factory. <!-- begin-user-doc --> <!-- end-user-doc -->
+	 * 
 	 * @generated
 	 */
 	public ClassesFactoryImpl() {
@@ -57,6 +57,7 @@ public class ClassesFactoryImpl extends EFactoryImpl implements ClassesFactory {
 
 	/**
 	 * <!-- begin-user-doc --> <!-- end-user-doc -->
+	 * 
 	 * @generated
 	 */
 	@Override
@@ -83,6 +84,7 @@ public class ClassesFactoryImpl extends EFactoryImpl implements ClassesFactory {
 
 	/**
 	 * <!-- begin-user-doc --> <!-- end-user-doc -->
+	 * 
 	 * @generated
 	 */
 	@Override
@@ -103,6 +105,7 @@ public class ClassesFactoryImpl extends EFactoryImpl implements ClassesFactory {
 
 	/**
 	 * <!-- begin-user-doc --> <!-- end-user-doc -->
+	 * 
 	 * @generated
 	 */
 	@Override
@@ -123,6 +126,7 @@ public class ClassesFactoryImpl extends EFactoryImpl implements ClassesFactory {
 
 	/**
 	 * <!-- begin-user-doc --> <!-- end-user-doc -->
+	 * 
 	 * @generated
 	 */
 	public org.unicase.model.classes.Class createClass() {
@@ -132,6 +136,7 @@ public class ClassesFactoryImpl extends EFactoryImpl implements ClassesFactory {
 
 	/**
 	 * <!-- begin-user-doc --> <!-- end-user-doc -->
+	 * 
 	 * @generated
 	 */
 	public org.unicase.model.classes.Package createPackage() {
@@ -141,6 +146,7 @@ public class ClassesFactoryImpl extends EFactoryImpl implements ClassesFactory {
 
 	/**
 	 * <!-- begin-user-doc --> <!-- end-user-doc -->
+	 * 
 	 * @generated
 	 */
 	public Association createAssociation() {
@@ -150,6 +156,7 @@ public class ClassesFactoryImpl extends EFactoryImpl implements ClassesFactory {
 
 	/**
 	 * <!-- begin-user-doc --> <!-- end-user-doc -->
+	 * 
 	 * @generated
 	 */
 	public Attribute createAttribute() {
@@ -159,6 +166,7 @@ public class ClassesFactoryImpl extends EFactoryImpl implements ClassesFactory {
 
 	/**
 	 * <!-- begin-user-doc --> <!-- end-user-doc -->
+	 * 
 	 * @generated
 	 */
 	public Method createMethod() {
@@ -168,6 +176,7 @@ public class ClassesFactoryImpl extends EFactoryImpl implements ClassesFactory {
 
 	/**
 	 * <!-- begin-user-doc --> <!-- end-user-doc -->
+	 * 
 	 * @generated
 	 */
 	public MethodArgument createMethodArgument() {
@@ -177,6 +186,7 @@ public class ClassesFactoryImpl extends EFactoryImpl implements ClassesFactory {
 
 	/**
 	 * <!-- begin-user-doc --> <!-- end-user-doc -->
+	 * 
 	 * @generated
 	 */
 	public Dependency createDependency() {
@@ -186,6 +196,7 @@ public class ClassesFactoryImpl extends EFactoryImpl implements ClassesFactory {
 
 	/**
 	 * <!-- begin-user-doc --> <!-- end-user-doc -->
+	 * 
 	 * @generated
 	 */
 	public AssociationType createAssociationTypeFromString(EDataType eDataType, String initialValue) {
@@ -198,6 +209,7 @@ public class ClassesFactoryImpl extends EFactoryImpl implements ClassesFactory {
 
 	/**
 	 * <!-- begin-user-doc --> <!-- end-user-doc -->
+	 * 
 	 * @generated
 	 */
 	public String convertAssociationTypeToString(EDataType eDataType, Object instanceValue) {
@@ -206,6 +218,7 @@ public class ClassesFactoryImpl extends EFactoryImpl implements ClassesFactory {
 
 	/**
 	 * <!-- begin-user-doc --> <!-- end-user-doc -->
+	 * 
 	 * @generated
 	 */
 	public VisibilityType createVisibilityTypeFromString(EDataType eDataType, String initialValue) {
@@ -218,6 +231,7 @@ public class ClassesFactoryImpl extends EFactoryImpl implements ClassesFactory {
 
 	/**
 	 * <!-- begin-user-doc --> <!-- end-user-doc -->
+	 * 
 	 * @generated
 	 */
 	public String convertVisibilityTypeToString(EDataType eDataType, Object instanceValue) {
@@ -226,6 +240,7 @@ public class ClassesFactoryImpl extends EFactoryImpl implements ClassesFactory {
 
 	/**
 	 * <!-- begin-user-doc --> <!-- end-user-doc -->
+	 * 
 	 * @generated
 	 */
 	public ScopeType createScopeTypeFromString(EDataType eDataType, String initialValue) {
@@ -238,6 +253,7 @@ public class ClassesFactoryImpl extends EFactoryImpl implements ClassesFactory {
 
 	/**
 	 * <!-- begin-user-doc --> <!-- end-user-doc -->
+	 * 
 	 * @generated
 	 */
 	public String convertScopeTypeToString(EDataType eDataType, Object instanceValue) {
@@ -246,6 +262,7 @@ public class ClassesFactoryImpl extends EFactoryImpl implements ClassesFactory {
 
 	/**
 	 * <!-- begin-user-doc --> <!-- end-user-doc -->
+	 * 
 	 * @generated
 	 */
 	public ArgumentDirectionType createArgumentDirectionTypeFromString(EDataType eDataType, String initialValue) {
@@ -258,6 +275,7 @@ public class ClassesFactoryImpl extends EFactoryImpl implements ClassesFactory {
 
 	/**
 	 * <!-- begin-user-doc --> <!-- end-user-doc -->
+	 * 
 	 * @generated
 	 */
 	public String convertArgumentDirectionTypeToString(EDataType eDataType, Object instanceValue) {
@@ -266,6 +284,7 @@ public class ClassesFactoryImpl extends EFactoryImpl implements ClassesFactory {
 
 	/**
 	 * <!-- begin-user-doc --> <!-- end-user-doc -->
+	 * 
 	 * @generated
 	 */
 	public ClassesPackage getClassesPackage() {
@@ -274,6 +293,7 @@ public class ClassesFactoryImpl extends EFactoryImpl implements ClassesFactory {
 
 	/**
 	 * <!-- begin-user-doc --> <!-- end-user-doc -->
+	 * 
 	 * @deprecated
 	 * @generated
 	 */

@@ -34,6 +34,7 @@ public class MergingSolutionImpl extends SolutionImpl implements MergingSolution
 
 	/**
 	 * <!-- begin-user-doc --> <!-- end-user-doc -->
+	 * 
 	 * @generated
 	 */
 	protected MergingSolutionImpl() {
@@ -42,6 +43,7 @@ public class MergingSolutionImpl extends SolutionImpl implements MergingSolution
 
 	/**
 	 * <!-- begin-user-doc --> <!-- end-user-doc -->
+	 * 
 	 * @generated
 	 */
 	@Override
@@ -51,6 +53,7 @@ public class MergingSolutionImpl extends SolutionImpl implements MergingSolution
 
 	/**
 	 * <!-- begin-user-doc --> <!-- end-user-doc -->
+	 * 
 	 * @generated
 	 */
 	public EList<ModelChangePackage> getAppliedChanges() {
@@ -63,6 +66,7 @@ public class MergingSolutionImpl extends SolutionImpl implements MergingSolution
 
 	/**
 	 * <!-- begin-user-doc --> <!-- end-user-doc -->
+	 * 
 	 * @generated
 	 */
 	@Override
@@ -76,6 +80,7 @@ public class MergingSolutionImpl extends SolutionImpl implements MergingSolution
 
 	/**
 	 * <!-- begin-user-doc --> <!-- end-user-doc -->
+	 * 
 	 * @generated
 	 */
 	@SuppressWarnings("unchecked")
@@ -92,6 +97,7 @@ public class MergingSolutionImpl extends SolutionImpl implements MergingSolution
 
 	/**
 	 * <!-- begin-user-doc --> <!-- end-user-doc -->
+	 * 
 	 * @generated
 	 */
 	@Override
@@ -106,6 +112,7 @@ public class MergingSolutionImpl extends SolutionImpl implements MergingSolution
 
 	/**
 	 * <!-- begin-user-doc --> <!-- end-user-doc -->
+	 * 
 	 * @generated
 	 */
 	@Override

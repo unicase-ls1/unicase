@@ -20,31 +20,30 @@ import org.unicase.model.NonDomainElement;
  */
 public interface Solution extends ModelElement, NonDomainElement {
 	/**
-	 * Returns the value of the '<em><b>Underlying Proposals</b></em>' reference list.
-	 * The list contents are of type {@link org.unicase.model.rationale.Proposal}.
-	 * <!-- begin-user-doc -->
+	 * Returns the value of the '<em><b>Underlying Proposals</b></em>' reference list. The list contents are of type
+	 * {@link org.unicase.model.rationale.Proposal}. <!-- begin-user-doc -->
 	 * <p>
 	 * If the meaning of the '<em>Underlying Proposals</em>' reference list isn't clear, there really should be more of
 	 * a description here...
 	 * </p>
 	 * <!-- end-user-doc -->
+	 * 
 	 * @return the value of the '<em>Underlying Proposals</em>' reference list.
 	 * @see org.unicase.model.rationale.RationalePackage#getSolution_UnderlyingProposals()
-	 * @model keys="identifier"
-	 *        annotation="org.unicase.ui.meeditor priority='10.0' position='right'"
+	 * @model keys="identifier" annotation="org.unicase.ui.meeditor priority='10.0' position='right'"
 	 * @generated
 	 */
 	EList<Proposal> getUnderlyingProposals();
 
 	/**
-	 * Returns the value of the '<em><b>Issue</b></em>' container reference.
-	 * It is bidirectional and its opposite is '{@link org.unicase.model.rationale.Issue#getSolution <em>Solution</em>}'.
-	 * <!-- begin-user-doc -->
+	 * Returns the value of the '<em><b>Issue</b></em>' container reference. It is bidirectional and its opposite is '
+	 * {@link org.unicase.model.rationale.Issue#getSolution <em>Solution</em>}'. <!-- begin-user-doc -->
 	 * <p>
 	 * If the meaning of the '<em>Issue</em>' container reference isn't clear, there really should be more of a
 	 * description here...
 	 * </p>
 	 * <!-- end-user-doc -->
+	 * 
 	 * @return the value of the '<em>Issue</em>' container reference.
 	 * @see #setIssue(Issue)
 	 * @see org.unicase.model.rationale.RationalePackage#getSolution_Issue()
@@ -58,6 +57,7 @@ public interface Solution extends ModelElement, NonDomainElement {
 	/**
 	 * Sets the value of the '{@link org.unicase.model.rationale.Solution#getIssue <em>Issue</em>}' container reference.
 	 * <!-- begin-user-doc --> <!-- end-user-doc -->
+	 * 
 	 * @param value the new value of the '<em>Issue</em>' container reference.
 	 * @see #getIssue()
 	 * @generated

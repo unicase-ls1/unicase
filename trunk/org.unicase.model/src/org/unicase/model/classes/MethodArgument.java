@@ -20,12 +20,12 @@ import org.unicase.model.ModelElement;
  */
 public interface MethodArgument extends ModelElement {
 	/**
-	 * Returns the value of the '<em><b>Type</b></em>' attribute.
-	 * <!-- begin-user-doc -->
+	 * Returns the value of the '<em><b>Type</b></em>' attribute. <!-- begin-user-doc -->
 	 * <p>
 	 * If the meaning of the '<em>Type</em>' attribute isn't clear, there really should be more of a description here...
 	 * </p>
 	 * <!-- end-user-doc -->
+	 * 
 	 * @return the value of the '<em>Type</em>' attribute.
 	 * @see #setType(String)
 	 * @see org.unicase.model.classes.ClassesPackage#getMethodArgument_Type()
@@ -45,14 +45,14 @@ public interface MethodArgument extends ModelElement {
 	void setType(String value);
 
 	/**
-	 * Returns the value of the '<em><b>Direction</b></em>' attribute.
-	 * The literals are from the enumeration {@link org.unicase.model.classes.ArgumentDirectionType}.
-	 * <!-- begin-user-doc -->
+	 * Returns the value of the '<em><b>Direction</b></em>' attribute. The literals are from the enumeration
+	 * {@link org.unicase.model.classes.ArgumentDirectionType}. <!-- begin-user-doc -->
 	 * <p>
 	 * If the meaning of the '<em>Direction</em>' attribute isn't clear, there really should be more of a description
 	 * here...
 	 * </p>
 	 * <!-- end-user-doc -->
+	 * 
 	 * @return the value of the '<em>Direction</em>' attribute.
 	 * @see org.unicase.model.classes.ArgumentDirectionType
 	 * @see #setDirection(ArgumentDirectionType)
@@ -63,8 +63,9 @@ public interface MethodArgument extends ModelElement {
 	ArgumentDirectionType getDirection();
 
 	/**
-	 * Sets the value of the '{@link org.unicase.model.classes.MethodArgument#getDirection <em>Direction</em>}' attribute.
-	 * <!-- begin-user-doc --> <!-- end-user-doc -->
+	 * Sets the value of the '{@link org.unicase.model.classes.MethodArgument#getDirection <em>Direction</em>}'
+	 * attribute. <!-- begin-user-doc --> <!-- end-user-doc -->
+	 * 
 	 * @param value the new value of the '<em>Direction</em>' attribute.
 	 * @see org.unicase.model.classes.ArgumentDirectionType
 	 * @see #getDirection()
@@ -73,13 +74,13 @@ public interface MethodArgument extends ModelElement {
 	void setDirection(ArgumentDirectionType value);
 
 	/**
-	 * Returns the value of the '<em><b>Default Value</b></em>' attribute.
-	 * <!-- begin-user-doc -->
+	 * Returns the value of the '<em><b>Default Value</b></em>' attribute. <!-- begin-user-doc -->
 	 * <p>
 	 * If the meaning of the '<em>Default Value</em>' attribute isn't clear, there really should be more of a
 	 * description here...
 	 * </p>
 	 * <!-- end-user-doc -->
+	 * 
 	 * @return the value of the '<em>Default Value</em>' attribute.
 	 * @see #setDefaultValue(String)
 	 * @see org.unicase.model.classes.ClassesPackage#getMethodArgument_DefaultValue()
@@ -89,8 +90,9 @@ public interface MethodArgument extends ModelElement {
 	String getDefaultValue();
 
 	/**
-	 * Sets the value of the '{@link org.unicase.model.classes.MethodArgument#getDefaultValue <em>Default Value</em>}' attribute.
-	 * <!-- begin-user-doc --> <!-- end-user-doc -->
+	 * Sets the value of the '{@link org.unicase.model.classes.MethodArgument#getDefaultValue <em>Default Value</em>}'
+	 * attribute. <!-- begin-user-doc --> <!-- end-user-doc -->
+	 * 
 	 * @param value the new value of the '<em>Default Value</em>' attribute.
 	 * @see #getDefaultValue()
 	 * @generated
@@ -98,13 +100,13 @@ public interface MethodArgument extends ModelElement {
 	void setDefaultValue(String value);
 
 	/**
-	 * Returns the value of the '<em><b>Signature</b></em>' attribute.
-	 * <!-- begin-user-doc -->
+	 * Returns the value of the '<em><b>Signature</b></em>' attribute. <!-- begin-user-doc -->
 	 * <p>
 	 * If the meaning of the '<em>Signature</em>' attribute isn't clear, there really should be more of a description
 	 * here...
 	 * </p>
 	 * <!-- end-user-doc -->
+	 * 
 	 * @return the value of the '<em>Signature</em>' attribute.
 	 * @see org.unicase.model.classes.ClassesPackage#getMethodArgument_Signature()
 	 * @model unique="false" transient="true" changeable="false" volatile="true" derived="true"
@@ -113,13 +115,13 @@ public interface MethodArgument extends ModelElement {
 	String getSignature();
 
 	/**
-	 * Returns the value of the '<em><b>Label</b></em>' attribute.
-	 * <!-- begin-user-doc -->
+	 * Returns the value of the '<em><b>Label</b></em>' attribute. <!-- begin-user-doc -->
 	 * <p>
 	 * If the meaning of the '<em>Label</em>' attribute isn't clear, there really should be more of a description
 	 * here...
 	 * </p>
 	 * <!-- end-user-doc -->
+	 * 
 	 * @return the value of the '<em>Label</em>' attribute.
 	 * @see #setLabel(String)
 	 * @see org.unicase.model.classes.ClassesPackage#getMethodArgument_Label()

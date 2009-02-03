@@ -40,6 +40,7 @@ public class StereotypeAttributeSimpleImpl extends StereotypeAttributeImpl imple
 
 	/**
 	 * <!-- begin-user-doc --> <!-- end-user-doc -->
+	 * 
 	 * @generated
 	 */
 	protected StereotypeAttributeSimpleImpl() {
@@ -48,6 +49,7 @@ public class StereotypeAttributeSimpleImpl extends StereotypeAttributeImpl imple
 
 	/**
 	 * <!-- begin-user-doc --> <!-- end-user-doc -->
+	 * 
 	 * @generated
 	 */
 	@Override
@@ -57,6 +59,7 @@ public class StereotypeAttributeSimpleImpl extends StereotypeAttributeImpl imple
 
 	/**
 	 * <!-- begin-user-doc --> <!-- end-user-doc -->
+	 * 
 	 * @generated
 	 */
 	public String getType() {
@@ -65,6 +68,7 @@ public class StereotypeAttributeSimpleImpl extends StereotypeAttributeImpl imple
 
 	/**
 	 * <!-- begin-user-doc --> <!-- end-user-doc -->
+	 * 
 	 * @generated
 	 */
 	public void setType(String newType) {
@@ -77,6 +81,7 @@ public class StereotypeAttributeSimpleImpl extends StereotypeAttributeImpl imple
 
 	/**
 	 * <!-- begin-user-doc --> <!-- end-user-doc -->
+	 * 
 	 * @generated
 	 */
 	@Override
@@ -90,6 +95,7 @@ public class StereotypeAttributeSimpleImpl extends StereotypeAttributeImpl imple
 
 	/**
 	 * <!-- begin-user-doc --> <!-- end-user-doc -->
+	 * 
 	 * @generated
 	 */
 	@Override
@@ -104,6 +110,7 @@ public class StereotypeAttributeSimpleImpl extends StereotypeAttributeImpl imple
 
 	/**
 	 * <!-- begin-user-doc --> <!-- end-user-doc -->
+	 * 
 	 * @generated
 	 */
 	@Override
@@ -118,6 +125,7 @@ public class StereotypeAttributeSimpleImpl extends StereotypeAttributeImpl imple
 
 	/**
 	 * <!-- begin-user-doc --> <!-- end-user-doc -->
+	 * 
 	 * @generated
 	 */
 	@Override
@@ -131,6 +139,7 @@ public class StereotypeAttributeSimpleImpl extends StereotypeAttributeImpl imple
 
 	/**
 	 * <!-- begin-user-doc --> <!-- end-user-doc -->
+	 * 
 	 * @generated
 	 */
 	@Override
