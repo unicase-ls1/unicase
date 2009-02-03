@@ -12,7 +12,7 @@ Require-Bundle: org.eclipse.core.runtime,
  org.eclipse.emf.ecore.xmi;bundle-version="2.4.0",
  org.unicase.emfstore.esmodel;bundle-version="0.3.4.qualifier";visibility:=reexport,
  org.unicase.model;bundle-version="0.3.4.qualifier";visibility:=reexport,
- edu.tum.cs.cope.migration.execution;bundle-version="0.1.32"
+ edu.tum.cs.cope.migration.execution;bundle-version="0.1.33"
 Bundle-RequiredExecutionEnvironment: J2SE-1.5
 Bundle-ClassPath: bin/,
  conf/
