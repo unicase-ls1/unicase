@@ -6216,5 +6216,125 @@
       </changes>
     </changes>
   </releases>
+  <releases date="2009-02-03T09:46:42.561+0100" label="model/0.3.5">
+    <changes xsi:type="history:CompositeChange">
+      <changes xsi:type="history:CreateChild" target="model.ecore#//requirement/UseCase"
+          element="model.ecore#//requirement/UseCase/includingUseCases" referenceName="eStructuralFeatures">
+        <changes xsi:type="history:Set" element="model.ecore#//requirement/UseCase/includingUseCases"
+            featureName="name" dataValue="includedUseCases"/>
+        <changes xsi:type="history:Set" element="model.ecore#//requirement/UseCase/includingUseCases"
+            featureName="upperBound" dataValue="-1"/>
+        <changes xsi:type="history:Set" element="model.ecore#//requirement/UseCase/includingUseCases"
+            featureName="eType" referenceValue="model.ecore#//requirement/UseCase"/>
+        <changes xsi:type="history:Add" element="model.ecore#//requirement/UseCase/includingUseCases"
+            featureName="eKeys" referenceValue="model.ecore#//IdentifiableElement/identifier"/>
+      </changes>
+      <changes xsi:type="history:CreateChild" target="model.ecore#//requirement/UseCase/includingUseCases"
+          element="model.ecore#//requirement/UseCase/includingUseCases/%org.unicase.ui.meeditor%"
+          referenceName="eAnnotations">
+        <changes xsi:type="history:Set" element="model.ecore#//requirement/UseCase/includingUseCases/%org.unicase.ui.meeditor%"
+            featureName="source" dataValue="org.unicase.ui.meeditor"/>
+      </changes>
+      <changes xsi:type="history:CreateChild" target="model.ecore#//requirement/UseCase/includingUseCases/%org.unicase.ui.meeditor%"
+          element="model.ecore#//requirement/UseCase/includingUseCases/%org.unicase.ui.meeditor%/@details.0"
+          referenceName="details">
+        <changes xsi:type="history:Set" element="model.ecore#//requirement/UseCase/includingUseCases/%org.unicase.ui.meeditor%/@details.0"
+            featureName="key" dataValue="priority"/>
+        <changes xsi:type="history:Set" element="model.ecore#//requirement/UseCase/includingUseCases/%org.unicase.ui.meeditor%/@details.0"
+            featureName="value" dataValue="12.0"/>
+      </changes>
+      <changes xsi:type="history:CreateChild" target="model.ecore#//requirement/UseCase/includingUseCases/%org.unicase.ui.meeditor%"
+          element="model.ecore#//requirement/UseCase/includingUseCases/%org.unicase.ui.meeditor%/@details.1"
+          referenceName="details">
+        <changes xsi:type="history:Set" element="model.ecore#//requirement/UseCase/includingUseCases/%org.unicase.ui.meeditor%/@details.1"
+            featureName="key" dataValue="position"/>
+        <changes xsi:type="history:Set" element="model.ecore#//requirement/UseCase/includingUseCases/%org.unicase.ui.meeditor%/@details.1"
+            featureName="value" dataValue="left"/>
+      </changes>
+    </changes>
+    <changes xsi:type="history:CompositeChange">
+      <changes xsi:type="history:Set" element="model.ecore#//requirement/UseCase/includingUseCases"
+          featureName="eOpposite" referenceValue="model.ecore#//requirement/UseCase/includedUseCases"/>
+      <changes xsi:type="history:Set" element="model.ecore#//requirement/UseCase/includedUseCases"
+          featureName="eOpposite" referenceValue="model.ecore#//requirement/UseCase/includingUseCases"/>
+    </changes>
+    <changes xsi:type="history:Set" element="model.ecore#//requirement/UseCase/includingUseCases"
+        featureName="name" dataValue="includingUseCases"/>
+    <changes xsi:type="history:CompositeChange">
+      <changes xsi:type="history:CreateChild" target="model.ecore#//requirement/UseCase"
+          element="model.ecore#//requirement/UseCase/extendingUseCases" referenceName="eStructuralFeatures">
+        <changes xsi:type="history:Set" element="model.ecore#//requirement/UseCase/extendingUseCases"
+            featureName="name" dataValue="extendedUseCases"/>
+        <changes xsi:type="history:Set" element="model.ecore#//requirement/UseCase/extendingUseCases"
+            featureName="upperBound" dataValue="-1"/>
+        <changes xsi:type="history:Set" element="model.ecore#//requirement/UseCase/extendingUseCases"
+            featureName="eType" referenceValue="model.ecore#//requirement/UseCase"/>
+        <changes xsi:type="history:Add" element="model.ecore#//requirement/UseCase/extendingUseCases"
+            featureName="eKeys" referenceValue="model.ecore#//IdentifiableElement/identifier"/>
+      </changes>
+      <changes xsi:type="history:CreateChild" target="model.ecore#//requirement/UseCase/extendingUseCases"
+          element="model.ecore#//requirement/UseCase/extendingUseCases/%org.unicase.ui.meeditor%"
+          referenceName="eAnnotations">
+        <changes xsi:type="history:Set" element="model.ecore#//requirement/UseCase/extendingUseCases/%org.unicase.ui.meeditor%"
+            featureName="source" dataValue="org.unicase.ui.meeditor"/>
+      </changes>
+      <changes xsi:type="history:CreateChild" target="model.ecore#//requirement/UseCase/extendingUseCases/%org.unicase.ui.meeditor%"
+          element="model.ecore#//requirement/UseCase/extendingUseCases/%org.unicase.ui.meeditor%/@details.0"
+          referenceName="details">
+        <changes xsi:type="history:Set" element="model.ecore#//requirement/UseCase/extendingUseCases/%org.unicase.ui.meeditor%/@details.0"
+            featureName="key" dataValue="priority"/>
+        <changes xsi:type="history:Set" element="model.ecore#//requirement/UseCase/extendingUseCases/%org.unicase.ui.meeditor%/@details.0"
+            featureName="value" dataValue="13.0"/>
+      </changes>
+      <changes xsi:type="history:CreateChild" target="model.ecore#//requirement/UseCase/extendingUseCases/%org.unicase.ui.meeditor%"
+          element="model.ecore#//requirement/UseCase/extendingUseCases/%org.unicase.ui.meeditor%/@details.1"
+          referenceName="details">
+        <changes xsi:type="history:Set" element="model.ecore#//requirement/UseCase/extendingUseCases/%org.unicase.ui.meeditor%/@details.1"
+            featureName="key" dataValue="position"/>
+        <changes xsi:type="history:Set" element="model.ecore#//requirement/UseCase/extendingUseCases/%org.unicase.ui.meeditor%/@details.1"
+            featureName="value" dataValue="left"/>
+      </changes>
+    </changes>
+    <changes xsi:type="history:CompositeChange">
+      <changes xsi:type="history:Set" element="model.ecore#//requirement/UseCase/extendedUseCases"
+          featureName="eOpposite" referenceValue="model.ecore#//requirement/UseCase/extendingUseCases"/>
+      <changes xsi:type="history:Set" element="model.ecore#//requirement/UseCase/extendingUseCases"
+          featureName="eOpposite" referenceValue="model.ecore#//requirement/UseCase/extendedUseCases"/>
+    </changes>
+    <changes xsi:type="history:Set" element="model.ecore#//requirement/UseCase/extendingUseCases"
+        featureName="name" dataValue="extendingUseCases"/>
+    <changes xsi:type="history:CompositeChange">
+      <changes xsi:type="history:Set" element="model.ecore#//requirement" featureName="nsURI"
+          dataValue="http://unicase.org/model/0.3.5/requirement"/>
+      <changes xsi:type="history:Set" element="model.ecore#//bug" featureName="nsURI"
+          dataValue="http://unicase.org/model/0.3.5/bug"/>
+      <changes xsi:type="history:Set" element="model.ecore#//meeting" featureName="nsURI"
+          dataValue="http://unicase.org/model/0.3.5/meeting"/>
+      <changes xsi:type="history:Set" element="model.ecore#//change" featureName="nsURI"
+          dataValue="http://unicase.org/model/0.3.5/change"/>
+      <changes xsi:type="history:Set" element="model.ecore#//state" featureName="nsURI"
+          dataValue="http://unicase.org/model/0.3.5/state"/>
+      <changes xsi:type="history:Set" element="model.ecore#//component" featureName="nsURI"
+          dataValue="http://unicase.org/model/0.3.5/component"/>
+      <changes xsi:type="history:Set" element="model.ecore#//task" featureName="nsURI"
+          dataValue="http://unicase.org/model/0.3.5/task"/>
+      <changes xsi:type="history:Set" element="model.ecore#//diagram" featureName="nsURI"
+          dataValue="http://unicase.org/model/0.3.5/diagram"/>
+      <changes xsi:type="history:Set" element="model.ecore#//rationale" featureName="nsURI"
+          dataValue="http://unicase.org/model/0.3.5/rationale"/>
+      <changes xsi:type="history:Set" element="model.ecore#//profile" featureName="nsURI"
+          dataValue="http://unicase.org/model/0.3.5/profile"/>
+      <changes xsi:type="history:Set" element="model.ecore#/" featureName="nsURI"
+          dataValue="http://unicase.org/model/0.3.5"/>
+      <changes xsi:type="history:Set" element="model.ecore#//organization" featureName="nsURI"
+          dataValue="http://unicase.org/model/0.3.5/organization"/>
+      <changes xsi:type="history:Set" element="model.ecore#//attachment" featureName="nsURI"
+          dataValue="http://unicase.org/model/0.3.5/attachment"/>
+      <changes xsi:type="history:Set" element="model.ecore#//classes" featureName="nsURI"
+          dataValue="http://unicase.org/model/0.3.5/classes"/>
+      <changes xsi:type="history:Set" element="model.ecore#//document" featureName="nsURI"
+          dataValue="http://unicase.org/model/0.3.5/document"/>
+    </changes>
+  </releases>
   <releases/>
 </history:History>

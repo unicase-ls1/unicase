@@ -2,7 +2,7 @@
 <ecore:EPackage xmi:version="2.0"
     xmlns:xmi="http://www.omg.org/XMI" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
     xmlns:ecore="http://www.eclipse.org/emf/2002/Ecore" name="model"
-    nsURI="http://unicase.org/model" nsPrefix="org.unicase.model">
+    nsURI="http://unicase.org/model/0.3.5" nsPrefix="org.unicase.model">
   <eClassifiers xsi:type="ecore:EClass" name="ModelElement" abstract="true" eSuperTypes="#//IdentifiableElement">
     <eOperations name="getProject" eType="#//Project"/>
     <eOperations name="getModelElementId" eType="#//ModelElementId"/>
@@ -110,7 +110,7 @@
   </eClassifiers>
   <eClassifiers xsi:type="ecore:EClass" name="ModelElementId" eSuperTypes="#//UniqueIdentifier"/>
   <eClassifiers xsi:type="ecore:EClass" name="NonDomainElement" abstract="true" interface="true"/>
-  <eSubpackages name="organization" nsURI="http://unicase.org/model/organization"
+  <eSubpackages name="organization" nsURI="http://unicase.org/model/0.3.5/organization"
       nsPrefix="org.unicase.model.organization">
     <eClassifiers xsi:type="ecore:EClass" name="User" eSuperTypes="#//organization/OrgUnit">
       <eStructuralFeatures xsi:type="ecore:EAttribute" name="email" eType="ecore:EDataType http://www.eclipse.org/emf/2002/Ecore#//EString">
@@ -163,7 +163,7 @@
       </eStructuralFeatures>
     </eClassifiers>
   </eSubpackages>
-  <eSubpackages name="task" nsURI="http://unicase.org/model/task" nsPrefix="org.unicase.model.task">
+  <eSubpackages name="task" nsURI="http://unicase.org/model/0.3.5/task" nsPrefix="org.unicase.model.task">
     <eClassifiers xsi:type="ecore:EClass" name="ActionItem" eSuperTypes="#//task/WorkItem #//task/Checkable">
       <eStructuralFeatures xsi:type="ecore:EAttribute" name="done" eType="ecore:EDataType http://www.eclipse.org/emf/2002/Ecore#//EBoolean">
         <eAnnotations source="org.unicase.ui.meeditor">
@@ -273,7 +273,7 @@
           volatile="true" transient="true" derived="true"/>
     </eClassifiers>
   </eSubpackages>
-  <eSubpackages name="diagram" nsURI="http://unicase.org/model/diagram" nsPrefix="org.unicase.model.diagram">
+  <eSubpackages name="diagram" nsURI="http://unicase.org/model/0.3.5/diagram" nsPrefix="org.unicase.model.diagram">
     <eClassifiers xsi:type="ecore:EClass" name="MEDiagram" eSuperTypes="#//Attachment">
       <eStructuralFeatures xsi:type="ecore:EReference" name="elements" upperBound="-1"
           eType="#//ModelElement" eKeys="#//IdentifiableElement/identifier"/>
@@ -291,7 +291,7 @@
       <eLiterals name="STATE_DIAGRAM" value="3" literal="STATE_DIAGRAM"/>
     </eClassifiers>
   </eSubpackages>
-  <eSubpackages name="classes" nsURI="http://unicase.org/model/classes" nsPrefix="org.unicase.model.classes">
+  <eSubpackages name="classes" nsURI="http://unicase.org/model/0.3.5/classes" nsPrefix="org.unicase.model.classes">
     <eClassifiers xsi:type="ecore:EClass" name="Class" eSuperTypes="#//classes/PackageElement">
       <eStructuralFeatures xsi:type="ecore:EReference" name="participatedUseCases"
           upperBound="-1" eType="#//requirement/UseCase" eOpposite="#//requirement/UseCase/identifiedClasses"
@@ -625,7 +625,7 @@
       </eStructuralFeatures>
     </eClassifiers>
   </eSubpackages>
-  <eSubpackages name="document" nsURI="http://unicase.org/model/document" nsPrefix="org.unicase.model.document">
+  <eSubpackages name="document" nsURI="http://unicase.org/model/0.3.5/document" nsPrefix="org.unicase.model.document">
     <eClassifiers xsi:type="ecore:EClass" name="LeafSection" eSuperTypes="#//document/Section">
       <eStructuralFeatures xsi:type="ecore:EReference" name="modelElements" upperBound="-1"
           eType="#//ModelElement" containment="true" eOpposite="#//ModelElement/leafSection"
@@ -660,7 +660,8 @@
           eOpposite="#//document/CompositeSection/subsections" eKeys="#//IdentifiableElement/identifier"/>
     </eClassifiers>
   </eSubpackages>
-  <eSubpackages name="requirement" nsURI="http://unicase.org/model/requirement" nsPrefix="org.unicase.model.requirement">
+  <eSubpackages name="requirement" nsURI="http://unicase.org/model/0.3.5/requirement"
+      nsPrefix="org.unicase.model.requirement">
     <eClassifiers xsi:type="ecore:EClass" name="NonFunctionalRequirement" eSuperTypes="#//rationale/Criterion">
       <eStructuralFeatures xsi:type="ecore:EReference" name="restrictedScenarios"
           upperBound="-1" eType="#//requirement/Scenario" eOpposite="#//requirement/Scenario/nonFunctionalRequirements"
@@ -783,6 +784,14 @@
           <details key="position" value="right"/>
         </eAnnotations>
       </eStructuralFeatures>
+      <eStructuralFeatures xsi:type="ecore:EReference" name="includingUseCases" upperBound="-1"
+          eType="#//requirement/UseCase" eOpposite="#//requirement/UseCase/includedUseCases"
+          eKeys="#//IdentifiableElement/identifier">
+        <eAnnotations source="org.unicase.ui.meeditor">
+          <details key="priority" value="12.0"/>
+          <details key="position" value="left"/>
+        </eAnnotations>
+      </eStructuralFeatures>
       <eStructuralFeatures xsi:type="ecore:EReference" name="identifiedClasses" upperBound="-1"
           eType="#//classes/Class" eOpposite="#//classes/Class/participatedUseCases"
           eKeys="#//IdentifiableElement/identifier">
@@ -791,15 +800,25 @@
           <details key="position" value="right"/>
         </eAnnotations>
       </eStructuralFeatures>
+      <eStructuralFeatures xsi:type="ecore:EReference" name="extendingUseCases" upperBound="-1"
+          eType="#//requirement/UseCase" eOpposite="#//requirement/UseCase/extendedUseCases"
+          eKeys="#//IdentifiableElement/identifier">
+        <eAnnotations source="org.unicase.ui.meeditor">
+          <details key="priority" value="13.0"/>
+          <details key="position" value="left"/>
+        </eAnnotations>
+      </eStructuralFeatures>
       <eStructuralFeatures xsi:type="ecore:EReference" name="includedUseCases" upperBound="-1"
-          eType="#//requirement/UseCase" eKeys="#//IdentifiableElement/identifier">
+          eType="#//requirement/UseCase" eOpposite="#//requirement/UseCase/includingUseCases"
+          eKeys="#//IdentifiableElement/identifier">
         <eAnnotations source="org.unicase.ui.meeditor">
           <details key="priority" value="12.0"/>
           <details key="position" value="left"/>
         </eAnnotations>
       </eStructuralFeatures>
       <eStructuralFeatures xsi:type="ecore:EReference" name="extendedUseCases" upperBound="-1"
-          eType="#//requirement/UseCase" eKeys="#//IdentifiableElement/identifier">
+          eType="#//requirement/UseCase" eOpposite="#//requirement/UseCase/extendingUseCases"
+          eKeys="#//IdentifiableElement/identifier">
         <eAnnotations source="org.unicase.ui.meeditor">
           <details key="priority" value="13.0"/>
           <details key="position" value="left"/>
@@ -938,7 +957,8 @@
           eKeys="#//IdentifiableElement/identifier"/>
     </eClassifiers>
   </eSubpackages>
-  <eSubpackages name="rationale" nsURI="http://unicase.org/model/rationale" nsPrefix="org.unicase.model.rationale">
+  <eSubpackages name="rationale" nsURI="http://unicase.org/model/0.3.5/rationale"
+      nsPrefix="org.unicase.model.rationale">
     <eClassifiers xsi:type="ecore:EClass" name="Issue" eSuperTypes="#//Annotation #//task/Checkable #//task/WorkItem">
       <eStructuralFeatures xsi:type="ecore:EReference" name="proposals" upperBound="-1"
           eType="#//rationale/Proposal" containment="true" eOpposite="#//rationale/Proposal/issue"
@@ -1029,7 +1049,7 @@
       </eStructuralFeatures>
     </eClassifiers>
   </eSubpackages>
-  <eSubpackages name="change" nsURI="http://unicase.org/model/change" nsPrefix="org.unicase.model.rationale">
+  <eSubpackages name="change" nsURI="http://unicase.org/model/0.3.5/change" nsPrefix="org.unicase.model.rationale">
     <eClassifiers xsi:type="ecore:EClass" name="ModelChangePackage" eSuperTypes="#//ModelElement">
       <eStructuralFeatures xsi:type="ecore:EAttribute" name="sourceVersion" eType="ecore:EDataType http://www.eclipse.org/emf/2002/Ecore#//EInt"/>
       <eStructuralFeatures xsi:type="ecore:EAttribute" name="targetVersion" eType="ecore:EDataType http://www.eclipse.org/emf/2002/Ecore#//EInt"/>
@@ -1048,7 +1068,7 @@
           eType="#//change/ModelChangePackage" eKeys="#//IdentifiableElement/identifier"/>
     </eClassifiers>
   </eSubpackages>
-  <eSubpackages name="bug" nsURI="http://unicase.org/model/bug" nsPrefix="org.unicase.model.bug">
+  <eSubpackages name="bug" nsURI="http://unicase.org/model/0.3.5/bug" nsPrefix="org.unicase.model.bug">
     <eClassifiers xsi:type="ecore:EClass" name="BugReport" eSuperTypes="#//task/WorkItem #//task/Checkable">
       <eStructuralFeatures xsi:type="ecore:EAttribute" name="Status" eType="#//bug/BugStatus">
         <eAnnotations source="org.unicase.ui.meeditor">
@@ -1095,7 +1115,8 @@
       <eLiterals name="WONT_FIX" value="2" literal="WONT_FIX"/>
     </eClassifiers>
   </eSubpackages>
-  <eSubpackages name="component" nsURI="http://unicase.org/model/component" nsPrefix="org.unicase.model.component">
+  <eSubpackages name="component" nsURI="http://unicase.org/model/0.3.5/component"
+      nsPrefix="org.unicase.model.component">
     <eClassifiers xsi:type="ecore:EClass" name="Component" eSuperTypes="#//ModelElement">
       <eStructuralFeatures xsi:type="ecore:EReference" name="packages" upperBound="-1"
           eType="#//classes/Package" eKeys="#//IdentifiableElement/identifier"/>
@@ -1135,7 +1156,7 @@
       </eStructuralFeatures>
     </eClassifiers>
   </eSubpackages>
-  <eSubpackages name="meeting" nsURI="http://unicase.org/model/meeting" nsPrefix="org.unicase.model.meeting">
+  <eSubpackages name="meeting" nsURI="http://unicase.org/model/0.3.5/meeting" nsPrefix="org.unicase.model.meeting">
     <eClassifiers xsi:type="ecore:EClass" name="Meeting" eSuperTypes="#//ModelElement">
       <eStructuralFeatures xsi:type="ecore:EAttribute" name="location" eType="ecore:EDataType http://www.eclipse.org/emf/2002/Ecore#//EString">
         <eAnnotations source="org.unicase.ui.meeditor">
@@ -1237,7 +1258,7 @@
       </eStructuralFeatures>
     </eClassifiers>
   </eSubpackages>
-  <eSubpackages name="state" nsURI="http://unicase.org/model/state" nsPrefix="org.unicase.model.state">
+  <eSubpackages name="state" nsURI="http://unicase.org/model/0.3.5/state" nsPrefix="org.unicase.model.state">
     <eClassifiers xsi:type="ecore:EClass" name="State" eSuperTypes="#//ModelElement">
       <eStructuralFeatures xsi:type="ecore:EAttribute" name="exitConditions" eType="ecore:EDataType http://www.eclipse.org/emf/2002/Ecore#//EString"/>
       <eStructuralFeatures xsi:type="ecore:EAttribute" name="activities" eType="ecore:EDataType http://www.eclipse.org/emf/2002/Ecore#//EString"/>
@@ -1258,12 +1279,13 @@
           eOpposite="#//state/State/incomingTransitions" eKeys="#//IdentifiableElement/identifier"/>
     </eClassifiers>
   </eSubpackages>
-  <eSubpackages name="attachment" nsURI="http://unicase.org/model/attachment" nsPrefix="org.unicase.model.attachment">
+  <eSubpackages name="attachment" nsURI="http://unicase.org/model/0.3.5/attachment"
+      nsPrefix="org.unicase.model.attachment">
     <eClassifiers xsi:type="ecore:EClass" name="UrlAttachment" eSuperTypes="#//Attachment">
       <eStructuralFeatures xsi:type="ecore:EAttribute" name="url" eType="ecore:EDataType http://www.eclipse.org/emf/2002/Ecore#//EString"/>
     </eClassifiers>
   </eSubpackages>
-  <eSubpackages name="profile" nsURI="http://unicase.org/model/profile" nsPrefix="org.unicase.model.profile">
+  <eSubpackages name="profile" nsURI="http://unicase.org/model/0.3.5/profile" nsPrefix="org.unicase.model.profile">
     <eClassifiers xsi:type="ecore:EClass" name="Profile" eSuperTypes="#//ModelElement">
       <eStructuralFeatures xsi:type="ecore:EReference" name="affectedContainers" upperBound="-1"
           eType="#//ModelElement" eKeys="#//IdentifiableElement/identifier"/>
