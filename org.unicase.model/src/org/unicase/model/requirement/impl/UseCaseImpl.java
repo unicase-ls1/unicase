@@ -14,6 +14,7 @@ import org.eclipse.emf.ecore.EClass;
 import org.eclipse.emf.ecore.InternalEObject;
 import org.eclipse.emf.ecore.impl.ENotificationImpl;
 import org.eclipse.emf.ecore.util.EObjectContainmentWithInverseEList;
+import org.eclipse.emf.ecore.util.EObjectResolvingEList;
 import org.eclipse.emf.ecore.util.EObjectWithInverseResolvingEList;
 import org.eclipse.emf.ecore.util.InternalEList;
 import org.unicase.model.classes.ClassesPackage;
@@ -49,9 +50,9 @@ import org.unicase.model.requirement.UserTask;
  */
 public class UseCaseImpl extends ModelElementImpl implements UseCase {
 	/**
-	 * The cached value of the '{@link #getInitiatingActor() <em>Initiating Actor</em>}' reference.
-	 * <!-- begin-user-doc
+	 * The cached value of the '{@link #getInitiatingActor() <em>Initiating Actor</em>}' reference. <!-- begin-user-doc
 	 * --> <!-- end-user-doc -->
+	 * 
 	 * @see #getInitiatingActor()
 	 * @generated
 	 * @ordered
@@ -79,9 +80,9 @@ public class UseCaseImpl extends ModelElementImpl implements UseCase {
 	protected UserTask realizedUserTask;
 
 	/**
-	 * The default value of the '{@link #getPrecondition() <em>Precondition</em>}' attribute.
-	 * <!-- begin-user-doc -->
+	 * The default value of the '{@link #getPrecondition() <em>Precondition</em>}' attribute. <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
+	 * 
 	 * @see #getPrecondition()
 	 * @generated
 	 * @ordered
@@ -89,9 +90,9 @@ public class UseCaseImpl extends ModelElementImpl implements UseCase {
 	protected static final String PRECONDITION_EDEFAULT = null;
 
 	/**
-	 * The cached value of the '{@link #getPrecondition() <em>Precondition</em>}' attribute.
-	 * <!-- begin-user-doc -->
+	 * The cached value of the '{@link #getPrecondition() <em>Precondition</em>}' attribute. <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
+	 * 
 	 * @see #getPrecondition()
 	 * @generated
 	 * @ordered
@@ -109,9 +110,9 @@ public class UseCaseImpl extends ModelElementImpl implements UseCase {
 	protected EList<Step> useCaseSteps;
 
 	/**
-	 * The default value of the '{@link #getPostcondition() <em>Postcondition</em>}' attribute.
-	 * <!-- begin-user-doc -->
+	 * The default value of the '{@link #getPostcondition() <em>Postcondition</em>}' attribute. <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
+	 * 
 	 * @see #getPostcondition()
 	 * @generated
 	 * @ordered
@@ -119,9 +120,9 @@ public class UseCaseImpl extends ModelElementImpl implements UseCase {
 	protected static final String POSTCONDITION_EDEFAULT = null;
 
 	/**
-	 * The cached value of the '{@link #getPostcondition() <em>Postcondition</em>}' attribute.
-	 * <!-- begin-user-doc -->
+	 * The cached value of the '{@link #getPostcondition() <em>Postcondition</em>}' attribute. <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
+	 * 
 	 * @see #getPostcondition()
 	 * @generated
 	 * @ordered
@@ -129,9 +130,9 @@ public class UseCaseImpl extends ModelElementImpl implements UseCase {
 	protected String postcondition = POSTCONDITION_EDEFAULT;
 
 	/**
-	 * The default value of the '{@link #getRules() <em>Rules</em>}' attribute.
-	 * <!-- begin-user-doc --> <!--
+	 * The default value of the '{@link #getRules() <em>Rules</em>}' attribute. <!-- begin-user-doc --> <!--
 	 * end-user-doc -->
+	 * 
 	 * @see #getRules()
 	 * @generated
 	 * @ordered
@@ -149,9 +150,9 @@ public class UseCaseImpl extends ModelElementImpl implements UseCase {
 	protected String rules = RULES_EDEFAULT;
 
 	/**
-	 * The default value of the '{@link #getException() <em>Exception</em>}' attribute.
-	 * <!-- begin-user-doc --> <!--
+	 * The default value of the '{@link #getException() <em>Exception</em>}' attribute. <!-- begin-user-doc --> <!--
 	 * end-user-doc -->
+	 * 
 	 * @see #getException()
 	 * @generated
 	 * @ordered
@@ -159,9 +160,9 @@ public class UseCaseImpl extends ModelElementImpl implements UseCase {
 	protected static final String EXCEPTION_EDEFAULT = null;
 
 	/**
-	 * The cached value of the '{@link #getException() <em>Exception</em>}' attribute.
-	 * <!-- begin-user-doc --> <!--
+	 * The cached value of the '{@link #getException() <em>Exception</em>}' attribute. <!-- begin-user-doc --> <!--
 	 * end-user-doc -->
+	 * 
 	 * @see #getException()
 	 * @generated
 	 * @ordered
@@ -169,9 +170,9 @@ public class UseCaseImpl extends ModelElementImpl implements UseCase {
 	protected String exception = EXCEPTION_EDEFAULT;
 
 	/**
-	 * The cached value of the '{@link #getScenarios() <em>Scenarios</em>}' reference list.
-	 * <!-- begin-user-doc --> <!--
+	 * The cached value of the '{@link #getScenarios() <em>Scenarios</em>}' reference list. <!-- begin-user-doc --> <!--
 	 * end-user-doc -->
+	 * 
 	 * @see #getScenarios()
 	 * @generated
 	 * @ordered
@@ -181,6 +182,7 @@ public class UseCaseImpl extends ModelElementImpl implements UseCase {
 	/**
 	 * The cached value of the '{@link #getFunctionalRequirements() <em>Functional Requirements</em>}' reference list.
 	 * <!-- begin-user-doc --> <!-- end-user-doc -->
+	 * 
 	 * @see #getFunctionalRequirements()
 	 * @generated
 	 * @ordered
@@ -188,23 +190,14 @@ public class UseCaseImpl extends ModelElementImpl implements UseCase {
 	protected EList<FunctionalRequirement> functionalRequirements;
 
 	/**
-	 * The cached value of the '{@link #getNonFunctionalRequirements() <em>Non Functional Requirements</em>}' reference list.
-	 * <!-- begin-user-doc --> <!-- end-user-doc -->
+	 * The cached value of the '{@link #getNonFunctionalRequirements() <em>Non Functional Requirements</em>}' reference
+	 * list. <!-- begin-user-doc --> <!-- end-user-doc -->
+	 * 
 	 * @see #getNonFunctionalRequirements()
 	 * @generated
 	 * @ordered
 	 */
 	protected EList<NonFunctionalRequirement> nonFunctionalRequirements;
-
-	/**
-	 * The cached value of the '{@link #getIncludingUseCases() <em>Including Use Cases</em>}' reference list.
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
-	 * @see #getIncludingUseCases()
-	 * @generated
-	 * @ordered
-	 */
-	protected EList<UseCase> includingUseCases;
 
 	/**
 	 * The cached value of the '{@link #getIdentifiedClasses() <em>Identified Classes</em>}' reference list. <!--
@@ -215,16 +208,6 @@ public class UseCaseImpl extends ModelElementImpl implements UseCase {
 	 * @ordered
 	 */
 	protected EList<org.unicase.model.classes.Class> identifiedClasses;
-
-	/**
-	 * The cached value of the '{@link #getExtendingUseCases() <em>Extending Use Cases</em>}' reference list.
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
-	 * @see #getExtendingUseCases()
-	 * @generated
-	 * @ordered
-	 */
-	protected EList<UseCase> extendingUseCases;
 
 	/**
 	 * The cached value of the '{@link #getIncludedUseCases() <em>Included Use Cases</em>}' reference list. <!--
@@ -248,6 +231,7 @@ public class UseCaseImpl extends ModelElementImpl implements UseCase {
 
 	/**
 	 * <!-- begin-user-doc --> <!-- end-user-doc -->
+	 * 
 	 * @generated
 	 */
 	protected UseCaseImpl() {
@@ -256,6 +240,7 @@ public class UseCaseImpl extends ModelElementImpl implements UseCase {
 
 	/**
 	 * <!-- begin-user-doc --> <!-- end-user-doc -->
+	 * 
 	 * @generated
 	 */
 	@Override
@@ -265,6 +250,7 @@ public class UseCaseImpl extends ModelElementImpl implements UseCase {
 
 	/**
 	 * <!-- begin-user-doc --> <!-- end-user-doc -->
+	 * 
 	 * @generated
 	 */
 	public Actor getInitiatingActor() {
@@ -282,6 +268,7 @@ public class UseCaseImpl extends ModelElementImpl implements UseCase {
 
 	/**
 	 * <!-- begin-user-doc --> <!-- end-user-doc -->
+	 * 
 	 * @generated
 	 */
 	public Actor basicGetInitiatingActor() {
@@ -290,6 +277,7 @@ public class UseCaseImpl extends ModelElementImpl implements UseCase {
 
 	/**
 	 * <!-- begin-user-doc --> <!-- end-user-doc -->
+	 * 
 	 * @generated
 	 */
 	public NotificationChain basicSetInitiatingActor(Actor newInitiatingActor, NotificationChain msgs) {
@@ -308,6 +296,7 @@ public class UseCaseImpl extends ModelElementImpl implements UseCase {
 
 	/**
 	 * <!-- begin-user-doc --> <!-- end-user-doc -->
+	 * 
 	 * @generated
 	 */
 	public void setInitiatingActor(Actor newInitiatingActor) {
@@ -329,6 +318,7 @@ public class UseCaseImpl extends ModelElementImpl implements UseCase {
 
 	/**
 	 * <!-- begin-user-doc --> <!-- end-user-doc -->
+	 * 
 	 * @generated
 	 */
 	public EList<Scenario> getScenarios() {
@@ -341,6 +331,7 @@ public class UseCaseImpl extends ModelElementImpl implements UseCase {
 
 	/**
 	 * <!-- begin-user-doc --> <!-- end-user-doc -->
+	 * 
 	 * @generated
 	 */
 	public EList<FunctionalRequirement> getFunctionalRequirements() {
@@ -354,6 +345,7 @@ public class UseCaseImpl extends ModelElementImpl implements UseCase {
 
 	/**
 	 * <!-- begin-user-doc --> <!-- end-user-doc -->
+	 * 
 	 * @generated
 	 */
 	public EList<NonFunctionalRequirement> getNonFunctionalRequirements() {
@@ -366,20 +358,8 @@ public class UseCaseImpl extends ModelElementImpl implements UseCase {
 	}
 
 	/**
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
-	 * @generated
-	 */
-	public EList<UseCase> getIncludingUseCases() {
-		if (includingUseCases == null) {
-			includingUseCases = new EObjectWithInverseResolvingEList.ManyInverse<UseCase>(UseCase.class, this,
-				RequirementPackage.USE_CASE__INCLUDING_USE_CASES, RequirementPackage.USE_CASE__INCLUDED_USE_CASES);
-		}
-		return includingUseCases;
-	}
-
-	/**
 	 * <!-- begin-user-doc --> <!-- end-user-doc -->
+	 * 
 	 * @generated
 	 */
 	public EList<org.unicase.model.classes.Class> getIdentifiedClasses() {
@@ -392,44 +372,34 @@ public class UseCaseImpl extends ModelElementImpl implements UseCase {
 	}
 
 	/**
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
-	 * @generated
-	 */
-	public EList<UseCase> getExtendingUseCases() {
-		if (extendingUseCases == null) {
-			extendingUseCases = new EObjectWithInverseResolvingEList.ManyInverse<UseCase>(UseCase.class, this,
-				RequirementPackage.USE_CASE__EXTENDING_USE_CASES, RequirementPackage.USE_CASE__EXTENDED_USE_CASES);
-		}
-		return extendingUseCases;
-	}
-
-	/**
 	 * <!-- begin-user-doc --> <!-- end-user-doc -->
+	 * 
 	 * @generated
 	 */
 	public EList<UseCase> getIncludedUseCases() {
 		if (includedUseCases == null) {
-			includedUseCases = new EObjectWithInverseResolvingEList.ManyInverse<UseCase>(UseCase.class, this,
-				RequirementPackage.USE_CASE__INCLUDED_USE_CASES, RequirementPackage.USE_CASE__INCLUDING_USE_CASES);
+			includedUseCases = new EObjectResolvingEList<UseCase>(UseCase.class, this,
+				RequirementPackage.USE_CASE__INCLUDED_USE_CASES);
 		}
 		return includedUseCases;
 	}
 
 	/**
 	 * <!-- begin-user-doc --> <!-- end-user-doc -->
+	 * 
 	 * @generated
 	 */
 	public EList<UseCase> getExtendedUseCases() {
 		if (extendedUseCases == null) {
-			extendedUseCases = new EObjectWithInverseResolvingEList.ManyInverse<UseCase>(UseCase.class, this,
-				RequirementPackage.USE_CASE__EXTENDED_USE_CASES, RequirementPackage.USE_CASE__EXTENDING_USE_CASES);
+			extendedUseCases = new EObjectResolvingEList<UseCase>(UseCase.class, this,
+				RequirementPackage.USE_CASE__EXTENDED_USE_CASES);
 		}
 		return extendedUseCases;
 	}
 
 	/**
 	 * <!-- begin-user-doc --> <!-- end-user-doc -->
+	 * 
 	 * @generated
 	 */
 	public EList<Actor> getParticipatingActors() {
@@ -442,6 +412,7 @@ public class UseCaseImpl extends ModelElementImpl implements UseCase {
 
 	/**
 	 * <!-- begin-user-doc --> <!-- end-user-doc -->
+	 * 
 	 * @generated
 	 */
 	public UserTask getRealizedUserTask() {
@@ -459,6 +430,7 @@ public class UseCaseImpl extends ModelElementImpl implements UseCase {
 
 	/**
 	 * <!-- begin-user-doc --> <!-- end-user-doc -->
+	 * 
 	 * @generated
 	 */
 	public UserTask basicGetRealizedUserTask() {
@@ -467,6 +439,7 @@ public class UseCaseImpl extends ModelElementImpl implements UseCase {
 
 	/**
 	 * <!-- begin-user-doc --> <!-- end-user-doc -->
+	 * 
 	 * @generated
 	 */
 	public NotificationChain basicSetRealizedUserTask(UserTask newRealizedUserTask, NotificationChain msgs) {
@@ -485,6 +458,7 @@ public class UseCaseImpl extends ModelElementImpl implements UseCase {
 
 	/**
 	 * <!-- begin-user-doc --> <!-- end-user-doc -->
+	 * 
 	 * @generated
 	 */
 	public void setRealizedUserTask(UserTask newRealizedUserTask) {
@@ -506,6 +480,7 @@ public class UseCaseImpl extends ModelElementImpl implements UseCase {
 
 	/**
 	 * <!-- begin-user-doc --> <!-- end-user-doc -->
+	 * 
 	 * @generated
 	 */
 	public String getPrecondition() {
@@ -514,6 +489,7 @@ public class UseCaseImpl extends ModelElementImpl implements UseCase {
 
 	/**
 	 * <!-- begin-user-doc --> <!-- end-user-doc -->
+	 * 
 	 * @generated
 	 */
 	public void setPrecondition(String newPrecondition) {
@@ -526,6 +502,7 @@ public class UseCaseImpl extends ModelElementImpl implements UseCase {
 
 	/**
 	 * <!-- begin-user-doc --> <!-- end-user-doc -->
+	 * 
 	 * @generated
 	 */
 	public EList<Step> getUseCaseSteps() {
@@ -538,6 +515,7 @@ public class UseCaseImpl extends ModelElementImpl implements UseCase {
 
 	/**
 	 * <!-- begin-user-doc --> <!-- end-user-doc -->
+	 * 
 	 * @generated
 	 */
 	public String getPostcondition() {
@@ -546,6 +524,7 @@ public class UseCaseImpl extends ModelElementImpl implements UseCase {
 
 	/**
 	 * <!-- begin-user-doc --> <!-- end-user-doc -->
+	 * 
 	 * @generated
 	 */
 	public void setPostcondition(String newPostcondition) {
@@ -558,6 +537,7 @@ public class UseCaseImpl extends ModelElementImpl implements UseCase {
 
 	/**
 	 * <!-- begin-user-doc --> <!-- end-user-doc -->
+	 * 
 	 * @generated
 	 */
 	public String getRules() {
@@ -566,6 +546,7 @@ public class UseCaseImpl extends ModelElementImpl implements UseCase {
 
 	/**
 	 * <!-- begin-user-doc --> <!-- end-user-doc -->
+	 * 
 	 * @generated
 	 */
 	public void setRules(String newRules) {
@@ -577,6 +558,7 @@ public class UseCaseImpl extends ModelElementImpl implements UseCase {
 
 	/**
 	 * <!-- begin-user-doc --> <!-- end-user-doc -->
+	 * 
 	 * @generated
 	 */
 	public String getException() {
@@ -585,6 +567,7 @@ public class UseCaseImpl extends ModelElementImpl implements UseCase {
 
 	/**
 	 * <!-- begin-user-doc --> <!-- end-user-doc -->
+	 * 
 	 * @generated
 	 */
 	public void setException(String newException) {
@@ -597,6 +580,7 @@ public class UseCaseImpl extends ModelElementImpl implements UseCase {
 
 	/**
 	 * <!-- begin-user-doc --> <!-- end-user-doc -->
+	 * 
 	 * @generated
 	 */
 	@SuppressWarnings("unchecked")
@@ -626,25 +610,16 @@ public class UseCaseImpl extends ModelElementImpl implements UseCase {
 		case RequirementPackage.USE_CASE__NON_FUNCTIONAL_REQUIREMENTS:
 			return ((InternalEList<InternalEObject>) (InternalEList<?>) getNonFunctionalRequirements()).basicAdd(
 				otherEnd, msgs);
-		case RequirementPackage.USE_CASE__INCLUDING_USE_CASES:
-			return ((InternalEList<InternalEObject>) (InternalEList<?>) getIncludingUseCases())
-				.basicAdd(otherEnd, msgs);
 		case RequirementPackage.USE_CASE__IDENTIFIED_CLASSES:
 			return ((InternalEList<InternalEObject>) (InternalEList<?>) getIdentifiedClasses())
 				.basicAdd(otherEnd, msgs);
-		case RequirementPackage.USE_CASE__EXTENDING_USE_CASES:
-			return ((InternalEList<InternalEObject>) (InternalEList<?>) getExtendingUseCases())
-				.basicAdd(otherEnd, msgs);
-		case RequirementPackage.USE_CASE__INCLUDED_USE_CASES:
-			return ((InternalEList<InternalEObject>) (InternalEList<?>) getIncludedUseCases()).basicAdd(otherEnd, msgs);
-		case RequirementPackage.USE_CASE__EXTENDED_USE_CASES:
-			return ((InternalEList<InternalEObject>) (InternalEList<?>) getExtendedUseCases()).basicAdd(otherEnd, msgs);
 		}
 		return super.eInverseAdd(otherEnd, featureID, msgs);
 	}
 
 	/**
 	 * <!-- begin-user-doc --> <!-- end-user-doc -->
+	 * 
 	 * @generated
 	 */
 	@Override
@@ -664,22 +639,15 @@ public class UseCaseImpl extends ModelElementImpl implements UseCase {
 			return ((InternalEList<?>) getFunctionalRequirements()).basicRemove(otherEnd, msgs);
 		case RequirementPackage.USE_CASE__NON_FUNCTIONAL_REQUIREMENTS:
 			return ((InternalEList<?>) getNonFunctionalRequirements()).basicRemove(otherEnd, msgs);
-		case RequirementPackage.USE_CASE__INCLUDING_USE_CASES:
-			return ((InternalEList<?>) getIncludingUseCases()).basicRemove(otherEnd, msgs);
 		case RequirementPackage.USE_CASE__IDENTIFIED_CLASSES:
 			return ((InternalEList<?>) getIdentifiedClasses()).basicRemove(otherEnd, msgs);
-		case RequirementPackage.USE_CASE__EXTENDING_USE_CASES:
-			return ((InternalEList<?>) getExtendingUseCases()).basicRemove(otherEnd, msgs);
-		case RequirementPackage.USE_CASE__INCLUDED_USE_CASES:
-			return ((InternalEList<?>) getIncludedUseCases()).basicRemove(otherEnd, msgs);
-		case RequirementPackage.USE_CASE__EXTENDED_USE_CASES:
-			return ((InternalEList<?>) getExtendedUseCases()).basicRemove(otherEnd, msgs);
 		}
 		return super.eInverseRemove(otherEnd, featureID, msgs);
 	}
 
 	/**
 	 * <!-- begin-user-doc --> <!-- end-user-doc -->
+	 * 
 	 * @generated
 	 */
 	@Override
@@ -711,12 +679,8 @@ public class UseCaseImpl extends ModelElementImpl implements UseCase {
 			return getFunctionalRequirements();
 		case RequirementPackage.USE_CASE__NON_FUNCTIONAL_REQUIREMENTS:
 			return getNonFunctionalRequirements();
-		case RequirementPackage.USE_CASE__INCLUDING_USE_CASES:
-			return getIncludingUseCases();
 		case RequirementPackage.USE_CASE__IDENTIFIED_CLASSES:
 			return getIdentifiedClasses();
-		case RequirementPackage.USE_CASE__EXTENDING_USE_CASES:
-			return getExtendingUseCases();
 		case RequirementPackage.USE_CASE__INCLUDED_USE_CASES:
 			return getIncludedUseCases();
 		case RequirementPackage.USE_CASE__EXTENDED_USE_CASES:
@@ -727,6 +691,7 @@ public class UseCaseImpl extends ModelElementImpl implements UseCase {
 
 	/**
 	 * <!-- begin-user-doc --> <!-- end-user-doc -->
+	 * 
 	 * @generated
 	 */
 	@SuppressWarnings("unchecked")
@@ -771,17 +736,9 @@ public class UseCaseImpl extends ModelElementImpl implements UseCase {
 			getNonFunctionalRequirements().clear();
 			getNonFunctionalRequirements().addAll((Collection<? extends NonFunctionalRequirement>) newValue);
 			return;
-		case RequirementPackage.USE_CASE__INCLUDING_USE_CASES:
-			getIncludingUseCases().clear();
-			getIncludingUseCases().addAll((Collection<? extends UseCase>) newValue);
-			return;
 		case RequirementPackage.USE_CASE__IDENTIFIED_CLASSES:
 			getIdentifiedClasses().clear();
 			getIdentifiedClasses().addAll((Collection<? extends org.unicase.model.classes.Class>) newValue);
-			return;
-		case RequirementPackage.USE_CASE__EXTENDING_USE_CASES:
-			getExtendingUseCases().clear();
-			getExtendingUseCases().addAll((Collection<? extends UseCase>) newValue);
 			return;
 		case RequirementPackage.USE_CASE__INCLUDED_USE_CASES:
 			getIncludedUseCases().clear();
@@ -797,6 +754,7 @@ public class UseCaseImpl extends ModelElementImpl implements UseCase {
 
 	/**
 	 * <!-- begin-user-doc --> <!-- end-user-doc -->
+	 * 
 	 * @generated
 	 */
 	@Override
@@ -835,14 +793,8 @@ public class UseCaseImpl extends ModelElementImpl implements UseCase {
 		case RequirementPackage.USE_CASE__NON_FUNCTIONAL_REQUIREMENTS:
 			getNonFunctionalRequirements().clear();
 			return;
-		case RequirementPackage.USE_CASE__INCLUDING_USE_CASES:
-			getIncludingUseCases().clear();
-			return;
 		case RequirementPackage.USE_CASE__IDENTIFIED_CLASSES:
 			getIdentifiedClasses().clear();
-			return;
-		case RequirementPackage.USE_CASE__EXTENDING_USE_CASES:
-			getExtendingUseCases().clear();
 			return;
 		case RequirementPackage.USE_CASE__INCLUDED_USE_CASES:
 			getIncludedUseCases().clear();
@@ -856,6 +808,7 @@ public class UseCaseImpl extends ModelElementImpl implements UseCase {
 
 	/**
 	 * <!-- begin-user-doc --> <!-- end-user-doc -->
+	 * 
 	 * @generated
 	 */
 	@Override
@@ -884,12 +837,8 @@ public class UseCaseImpl extends ModelElementImpl implements UseCase {
 			return functionalRequirements != null && !functionalRequirements.isEmpty();
 		case RequirementPackage.USE_CASE__NON_FUNCTIONAL_REQUIREMENTS:
 			return nonFunctionalRequirements != null && !nonFunctionalRequirements.isEmpty();
-		case RequirementPackage.USE_CASE__INCLUDING_USE_CASES:
-			return includingUseCases != null && !includingUseCases.isEmpty();
 		case RequirementPackage.USE_CASE__IDENTIFIED_CLASSES:
 			return identifiedClasses != null && !identifiedClasses.isEmpty();
-		case RequirementPackage.USE_CASE__EXTENDING_USE_CASES:
-			return extendingUseCases != null && !extendingUseCases.isEmpty();
 		case RequirementPackage.USE_CASE__INCLUDED_USE_CASES:
 			return includedUseCases != null && !includedUseCases.isEmpty();
 		case RequirementPackage.USE_CASE__EXTENDED_USE_CASES:
@@ -900,6 +849,7 @@ public class UseCaseImpl extends ModelElementImpl implements UseCase {
 
 	/**
 	 * <!-- begin-user-doc --> <!-- end-user-doc -->
+	 * 
 	 * @generated
 	 */
 	@Override
