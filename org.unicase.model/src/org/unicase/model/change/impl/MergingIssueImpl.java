@@ -41,7 +41,6 @@ public class MergingIssueImpl extends IssueImpl implements MergingIssue {
 
 	/**
 	 * <!-- begin-user-doc --> <!-- end-user-doc -->
-	 * 
 	 * @generated
 	 */
 	protected MergingIssueImpl() {
@@ -50,7 +49,6 @@ public class MergingIssueImpl extends IssueImpl implements MergingIssue {
 
 	/**
 	 * <!-- begin-user-doc --> <!-- end-user-doc -->
-	 * 
 	 * @generated
 	 */
 	@Override
@@ -60,7 +58,6 @@ public class MergingIssueImpl extends IssueImpl implements MergingIssue {
 
 	/**
 	 * <!-- begin-user-doc --> <!-- end-user-doc -->
-	 * 
 	 * @generated
 	 */
 	public int getResolvingRevision() {
@@ -69,7 +66,6 @@ public class MergingIssueImpl extends IssueImpl implements MergingIssue {
 
 	/**
 	 * <!-- begin-user-doc --> <!-- end-user-doc -->
-	 * 
 	 * @generated
 	 */
 	public void setResolvingRevision(int newResolvingRevision) {
@@ -82,7 +78,6 @@ public class MergingIssueImpl extends IssueImpl implements MergingIssue {
 
 	/**
 	 * <!-- begin-user-doc --> <!-- end-user-doc -->
-	 * 
 	 * @generated
 	 */
 	@Override
@@ -96,7 +91,6 @@ public class MergingIssueImpl extends IssueImpl implements MergingIssue {
 
 	/**
 	 * <!-- begin-user-doc --> <!-- end-user-doc -->
-	 * 
 	 * @generated
 	 */
 	@Override
@@ -111,7 +105,6 @@ public class MergingIssueImpl extends IssueImpl implements MergingIssue {
 
 	/**
 	 * <!-- begin-user-doc --> <!-- end-user-doc -->
-	 * 
 	 * @generated
 	 */
 	@Override
@@ -126,7 +119,6 @@ public class MergingIssueImpl extends IssueImpl implements MergingIssue {
 
 	/**
 	 * <!-- begin-user-doc --> <!-- end-user-doc -->
-	 * 
 	 * @generated
 	 */
 	@Override
@@ -140,7 +132,6 @@ public class MergingIssueImpl extends IssueImpl implements MergingIssue {
 
 	/**
 	 * <!-- begin-user-doc --> <!-- end-user-doc -->
-	 * 
 	 * @generated
 	 */
 	@Override

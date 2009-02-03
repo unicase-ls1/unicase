@@ -18,17 +18,18 @@ import org.unicase.model.ModelElement;
  */
 public interface DeploymentNode extends ModelElement {
 	/**
-	 * Returns the value of the '<em><b>Components</b></em>' reference list. The list contents are of type
-	 * {@link org.unicase.model.component.Component}. <!-- begin-user-doc -->
+	 * Returns the value of the '<em><b>Components</b></em>' reference list.
+	 * The list contents are of type {@link org.unicase.model.component.Component}.
+	 * <!-- begin-user-doc -->
 	 * <p>
 	 * If the meaning of the '<em>Components</em>' reference list isn't clear, there really should be more of a
 	 * description here...
 	 * </p>
 	 * <!-- end-user-doc -->
-	 * 
 	 * @return the value of the '<em>Components</em>' reference list.
 	 * @see org.unicase.model.component.ComponentPackage#getDeploymentNode_Components()
-	 * @model keys="identifier" annotation="org.unicase.ui.meeditor priority='10.0' position='right'"
+	 * @model keys="identifier"
+	 *        annotation="org.unicase.ui.meeditor priority='10.0' position='right'"
 	 * @generated
 	 */
 	EList<Component> getComponents();

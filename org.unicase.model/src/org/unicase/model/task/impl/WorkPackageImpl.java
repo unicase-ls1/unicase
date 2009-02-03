@@ -46,144 +46,142 @@ import org.unicase.model.task.WorkPackage;
  */
 public class WorkPackageImpl extends AnnotationImpl implements WorkPackage {
 	/**
-	 * The cached value of the '{@link #getAssociatedChangePackages() <em>Associated Change Packages</em>}' reference
-	 * list. <!-- begin-user-doc --> <!-- end-user-doc -->
-	 * 
+	 * The cached value of the '{@link #getAssociatedChangePackages() <em>Associated Change Packages</em>}' reference list.
+	 * <!-- begin-user-doc --> <!-- end-user-doc -->
 	 * @see #getAssociatedChangePackages()
 	 * @generated
 	 * @ordered
 	 */
 	protected EList<ModelChangePackage> associatedChangePackages;
 	/**
-	 * The cached value of the '{@link #getPredecessors() <em>Predecessors</em>}' reference list. <!-- begin-user-doc
+	 * The cached value of the '{@link #getPredecessors() <em>Predecessors</em>}' reference list.
+	 * <!-- begin-user-doc
 	 * --> <!-- end-user-doc -->
-	 * 
 	 * @see #getPredecessors()
 	 * @generated
 	 * @ordered
 	 */
 	protected EList<WorkItem> predecessors;
 	/**
-	 * The cached value of the '{@link #getSuccessors() <em>Successors</em>}' reference list. <!-- begin-user-doc -->
+	 * The cached value of the '{@link #getSuccessors() <em>Successors</em>}' reference list.
+	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
-	 * 
 	 * @see #getSuccessors()
 	 * @generated
 	 * @ordered
 	 */
 	protected EList<WorkItem> successors;
 	/**
-	 * The cached value of the '{@link #getAssignee() <em>Assignee</em>}' reference. <!-- begin-user-doc --> <!--
+	 * The cached value of the '{@link #getAssignee() <em>Assignee</em>}' reference.
+	 * <!-- begin-user-doc --> <!--
 	 * end-user-doc -->
-	 * 
 	 * @see #getAssignee()
 	 * @generated
 	 * @ordered
 	 */
 	protected OrgUnit assignee;
 	/**
-	 * The cached value of the '{@link #getParticipants() <em>Participants</em>}' reference list. <!-- begin-user-doc
+	 * The cached value of the '{@link #getParticipants() <em>Participants</em>}' reference list.
+	 * <!-- begin-user-doc
 	 * --> <!-- end-user-doc -->
-	 * 
 	 * @see #getParticipants()
 	 * @generated
 	 * @ordered
 	 */
 	protected EList<OrgUnit> participants;
 	/**
-	 * The default value of the '{@link #getDueDate() <em>Due Date</em>}' attribute. <!-- begin-user-doc --> <!--
+	 * The default value of the '{@link #getDueDate() <em>Due Date</em>}' attribute.
+	 * <!-- begin-user-doc --> <!--
 	 * end-user-doc -->
-	 * 
 	 * @see #getDueDate()
 	 * @generated
 	 * @ordered
 	 */
 	protected static final Date DUE_DATE_EDEFAULT = null;
 	/**
-	 * The cached value of the '{@link #getDueDate() <em>Due Date</em>}' attribute. <!-- begin-user-doc --> <!--
+	 * The cached value of the '{@link #getDueDate() <em>Due Date</em>}' attribute.
+	 * <!-- begin-user-doc --> <!--
 	 * end-user-doc -->
-	 * 
 	 * @see #getDueDate()
 	 * @generated
 	 * @ordered
 	 */
 	protected Date dueDate = DUE_DATE_EDEFAULT;
 	/**
-	 * The default value of the '{@link #getEstimate() <em>Estimate</em>}' attribute. <!-- begin-user-doc --> <!--
+	 * The default value of the '{@link #getEstimate() <em>Estimate</em>}' attribute.
+	 * <!-- begin-user-doc --> <!--
 	 * end-user-doc -->
-	 * 
 	 * @see #getEstimate()
 	 * @generated
 	 * @ordered
 	 */
 	protected static final int ESTIMATE_EDEFAULT = 0;
 	/**
-	 * The cached value of the '{@link #getEstimate() <em>Estimate</em>}' attribute. <!-- begin-user-doc --> <!--
+	 * The cached value of the '{@link #getEstimate() <em>Estimate</em>}' attribute.
+	 * <!-- begin-user-doc --> <!--
 	 * end-user-doc -->
-	 * 
 	 * @see #getEstimate()
 	 * @generated
 	 * @ordered
 	 */
 	protected int estimate = ESTIMATE_EDEFAULT;
 	/**
-	 * The default value of the '{@link #getEffort() <em>Effort</em>}' attribute. <!-- begin-user-doc --> <!--
+	 * The default value of the '{@link #getEffort() <em>Effort</em>}' attribute.
+	 * <!-- begin-user-doc --> <!--
 	 * end-user-doc -->
-	 * 
 	 * @see #getEffort()
 	 * @generated
 	 * @ordered
 	 */
 	protected static final int EFFORT_EDEFAULT = 0;
 	/**
-	 * The cached value of the '{@link #getEffort() <em>Effort</em>}' attribute. <!-- begin-user-doc --> <!--
+	 * The cached value of the '{@link #getEffort() <em>Effort</em>}' attribute.
+	 * <!-- begin-user-doc --> <!--
 	 * end-user-doc -->
-	 * 
 	 * @see #getEffort()
 	 * @generated
 	 * @ordered
 	 */
 	protected int effort = EFFORT_EDEFAULT;
 	/**
-	 * The cached value of the '{@link #getContainedWorkItems() <em>Contained Work Items</em>}' containment reference
-	 * list. <!-- begin-user-doc --> <!-- end-user-doc -->
-	 * 
+	 * The cached value of the '{@link #getContainedWorkItems() <em>Contained Work Items</em>}' containment reference list.
+	 * <!-- begin-user-doc --> <!-- end-user-doc -->
 	 * @see #getContainedWorkItems()
 	 * @generated
 	 * @ordered
 	 */
 	protected EList<WorkItem> containedWorkItems;
 	/**
-	 * The default value of the '{@link #getStartDate() <em>Start Date</em>}' attribute. <!-- begin-user-doc --> <!--
+	 * The default value of the '{@link #getStartDate() <em>Start Date</em>}' attribute.
+	 * <!-- begin-user-doc --> <!--
 	 * end-user-doc -->
-	 * 
 	 * @see #getStartDate()
 	 * @generated
 	 * @ordered
 	 */
 	protected static final Date START_DATE_EDEFAULT = null;
 	/**
-	 * The cached value of the '{@link #getStartDate() <em>Start Date</em>}' attribute. <!-- begin-user-doc --> <!--
+	 * The cached value of the '{@link #getStartDate() <em>Start Date</em>}' attribute.
+	 * <!-- begin-user-doc --> <!--
 	 * end-user-doc -->
-	 * 
 	 * @see #getStartDate()
 	 * @generated
 	 * @ordered
 	 */
 	protected Date startDate = START_DATE_EDEFAULT;
 	/**
-	 * The default value of the '{@link #getEndDate() <em>End Date</em>}' attribute. <!-- begin-user-doc --> <!--
+	 * The default value of the '{@link #getEndDate() <em>End Date</em>}' attribute.
+	 * <!-- begin-user-doc --> <!--
 	 * end-user-doc -->
-	 * 
 	 * @see #getEndDate()
 	 * @generated
 	 * @ordered
 	 */
 	protected static final Date END_DATE_EDEFAULT = null;
 	/**
-	 * The cached value of the '{@link #getEndDate() <em>End Date</em>}' attribute. <!-- begin-user-doc --> <!--
+	 * The cached value of the '{@link #getEndDate() <em>End Date</em>}' attribute.
+	 * <!-- begin-user-doc --> <!--
 	 * end-user-doc -->
-	 * 
 	 * @see #getEndDate()
 	 * @generated
 	 * @ordered
@@ -192,7 +190,6 @@ public class WorkPackageImpl extends AnnotationImpl implements WorkPackage {
 
 	/**
 	 * <!-- begin-user-doc --> <!-- end-user-doc -->
-	 * 
 	 * @generated
 	 */
 	protected WorkPackageImpl() {
@@ -201,7 +198,6 @@ public class WorkPackageImpl extends AnnotationImpl implements WorkPackage {
 
 	/**
 	 * <!-- begin-user-doc --> <!-- end-user-doc -->
-	 * 
 	 * @generated
 	 */
 	@Override
@@ -211,7 +207,6 @@ public class WorkPackageImpl extends AnnotationImpl implements WorkPackage {
 
 	/**
 	 * <!-- begin-user-doc --> <!-- end-user-doc -->
-	 * 
 	 * @generated
 	 */
 	public WorkPackage getContainingWorkpackage() {
@@ -222,7 +217,6 @@ public class WorkPackageImpl extends AnnotationImpl implements WorkPackage {
 
 	/**
 	 * <!-- begin-user-doc --> <!-- end-user-doc -->
-	 * 
 	 * @generated
 	 */
 	public WorkPackage basicGetContainingWorkpackage() {
@@ -233,7 +227,6 @@ public class WorkPackageImpl extends AnnotationImpl implements WorkPackage {
 
 	/**
 	 * <!-- begin-user-doc --> <!-- end-user-doc -->
-	 * 
 	 * @generated
 	 */
 	public NotificationChain basicSetContainingWorkpackage(WorkPackage newContainingWorkpackage, NotificationChain msgs) {
@@ -244,7 +237,6 @@ public class WorkPackageImpl extends AnnotationImpl implements WorkPackage {
 
 	/**
 	 * <!-- begin-user-doc --> <!-- end-user-doc -->
-	 * 
 	 * @generated
 	 */
 	public void setContainingWorkpackage(WorkPackage newContainingWorkpackage) {
@@ -268,7 +260,6 @@ public class WorkPackageImpl extends AnnotationImpl implements WorkPackage {
 
 	/**
 	 * <!-- begin-user-doc --> <!-- end-user-doc -->
-	 * 
 	 * @generated
 	 */
 	public EList<ModelChangePackage> getAssociatedChangePackages() {
@@ -281,7 +272,6 @@ public class WorkPackageImpl extends AnnotationImpl implements WorkPackage {
 
 	/**
 	 * <!-- begin-user-doc --> <!-- end-user-doc -->
-	 * 
 	 * @generated
 	 */
 	public EList<WorkItem> getPredecessors() {
@@ -294,7 +284,6 @@ public class WorkPackageImpl extends AnnotationImpl implements WorkPackage {
 
 	/**
 	 * <!-- begin-user-doc --> <!-- end-user-doc -->
-	 * 
 	 * @generated
 	 */
 	public EList<WorkItem> getSuccessors() {
@@ -307,7 +296,6 @@ public class WorkPackageImpl extends AnnotationImpl implements WorkPackage {
 
 	/**
 	 * <!-- begin-user-doc --> <!-- end-user-doc -->
-	 * 
 	 * @generated
 	 */
 	public EList<WorkItem> getContainedWorkItems() {
@@ -320,7 +308,6 @@ public class WorkPackageImpl extends AnnotationImpl implements WorkPackage {
 
 	/**
 	 * <!-- begin-user-doc --> <!-- end-user-doc -->
-	 * 
 	 * @generated
 	 */
 	public Date getStartDate() {
@@ -329,7 +316,6 @@ public class WorkPackageImpl extends AnnotationImpl implements WorkPackage {
 
 	/**
 	 * <!-- begin-user-doc --> <!-- end-user-doc -->
-	 * 
 	 * @generated
 	 */
 	public void setStartDate(Date newStartDate) {
@@ -342,7 +328,6 @@ public class WorkPackageImpl extends AnnotationImpl implements WorkPackage {
 
 	/**
 	 * <!-- begin-user-doc --> <!-- end-user-doc -->
-	 * 
 	 * @generated
 	 */
 	public Date getEndDate() {
@@ -351,7 +336,6 @@ public class WorkPackageImpl extends AnnotationImpl implements WorkPackage {
 
 	/**
 	 * <!-- begin-user-doc --> <!-- end-user-doc -->
-	 * 
 	 * @generated
 	 */
 	public void setEndDate(Date newEndDate) {
@@ -364,7 +348,6 @@ public class WorkPackageImpl extends AnnotationImpl implements WorkPackage {
 
 	/**
 	 * <!-- begin-user-doc --> <!-- end-user-doc -->
-	 * 
 	 * @generated
 	 */
 	public OrgUnit getAssignee() {
@@ -382,7 +365,6 @@ public class WorkPackageImpl extends AnnotationImpl implements WorkPackage {
 
 	/**
 	 * <!-- begin-user-doc --> <!-- end-user-doc -->
-	 * 
 	 * @generated
 	 */
 	public OrgUnit basicGetAssignee() {
@@ -391,7 +373,6 @@ public class WorkPackageImpl extends AnnotationImpl implements WorkPackage {
 
 	/**
 	 * <!-- begin-user-doc --> <!-- end-user-doc -->
-	 * 
 	 * @generated
 	 */
 	public NotificationChain basicSetAssignee(OrgUnit newAssignee, NotificationChain msgs) {
@@ -410,7 +391,6 @@ public class WorkPackageImpl extends AnnotationImpl implements WorkPackage {
 
 	/**
 	 * <!-- begin-user-doc --> <!-- end-user-doc -->
-	 * 
 	 * @generated
 	 */
 	public void setAssignee(OrgUnit newAssignee) {
@@ -432,7 +412,6 @@ public class WorkPackageImpl extends AnnotationImpl implements WorkPackage {
 
 	/**
 	 * <!-- begin-user-doc --> <!-- end-user-doc -->
-	 * 
 	 * @generated
 	 */
 	public EList<OrgUnit> getParticipants() {
@@ -445,7 +424,6 @@ public class WorkPackageImpl extends AnnotationImpl implements WorkPackage {
 
 	/**
 	 * <!-- begin-user-doc --> <!-- end-user-doc -->
-	 * 
 	 * @generated
 	 */
 	public Date getDueDate() {
@@ -454,7 +432,6 @@ public class WorkPackageImpl extends AnnotationImpl implements WorkPackage {
 
 	/**
 	 * <!-- begin-user-doc --> <!-- end-user-doc -->
-	 * 
 	 * @generated
 	 */
 	public void setDueDate(Date newDueDate) {
@@ -467,7 +444,6 @@ public class WorkPackageImpl extends AnnotationImpl implements WorkPackage {
 
 	/**
 	 * <!-- begin-user-doc --> <!-- end-user-doc -->
-	 * 
 	 * @generated
 	 */
 	public int getEstimate() {
@@ -476,7 +452,6 @@ public class WorkPackageImpl extends AnnotationImpl implements WorkPackage {
 
 	/**
 	 * <!-- begin-user-doc --> <!-- end-user-doc -->
-	 * 
 	 * @generated
 	 */
 	public void setEstimate(int newEstimate) {
@@ -489,7 +464,6 @@ public class WorkPackageImpl extends AnnotationImpl implements WorkPackage {
 
 	/**
 	 * <!-- begin-user-doc --> <!-- end-user-doc -->
-	 * 
 	 * @generated
 	 */
 	public int getEffort() {
@@ -498,7 +472,6 @@ public class WorkPackageImpl extends AnnotationImpl implements WorkPackage {
 
 	/**
 	 * <!-- begin-user-doc --> <!-- end-user-doc -->
-	 * 
 	 * @generated
 	 */
 	public void setEffort(int newEffort) {
@@ -510,7 +483,6 @@ public class WorkPackageImpl extends AnnotationImpl implements WorkPackage {
 
 	/**
 	 * <!-- begin-user-doc --> <!-- end-user-doc -->
-	 * 
 	 * @generated
 	 */
 	@SuppressWarnings("unchecked")
@@ -541,7 +513,6 @@ public class WorkPackageImpl extends AnnotationImpl implements WorkPackage {
 
 	/**
 	 * <!-- begin-user-doc --> <!-- end-user-doc -->
-	 * 
 	 * @generated
 	 */
 	@Override
@@ -565,7 +536,6 @@ public class WorkPackageImpl extends AnnotationImpl implements WorkPackage {
 
 	/**
 	 * <!-- begin-user-doc --> <!-- end-user-doc -->
-	 * 
 	 * @generated
 	 */
 	@Override
@@ -580,7 +550,6 @@ public class WorkPackageImpl extends AnnotationImpl implements WorkPackage {
 
 	/**
 	 * <!-- begin-user-doc --> <!-- end-user-doc -->
-	 * 
 	 * @generated
 	 */
 	@Override
@@ -620,7 +589,6 @@ public class WorkPackageImpl extends AnnotationImpl implements WorkPackage {
 
 	/**
 	 * <!-- begin-user-doc --> <!-- end-user-doc -->
-	 * 
 	 * @generated
 	 */
 	@SuppressWarnings("unchecked")
@@ -674,7 +642,6 @@ public class WorkPackageImpl extends AnnotationImpl implements WorkPackage {
 
 	/**
 	 * <!-- begin-user-doc --> <!-- end-user-doc -->
-	 * 
 	 * @generated
 	 */
 	@Override
@@ -722,7 +689,6 @@ public class WorkPackageImpl extends AnnotationImpl implements WorkPackage {
 
 	/**
 	 * <!-- begin-user-doc --> <!-- end-user-doc -->
-	 * 
 	 * @generated
 	 */
 	@Override
@@ -758,7 +724,6 @@ public class WorkPackageImpl extends AnnotationImpl implements WorkPackage {
 
 	/**
 	 * <!-- begin-user-doc --> <!-- end-user-doc -->
-	 * 
 	 * @generated
 	 */
 	@Override
