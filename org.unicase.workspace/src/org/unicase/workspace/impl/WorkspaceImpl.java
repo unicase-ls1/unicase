@@ -455,6 +455,7 @@ public class WorkspaceImpl extends EObjectImpl implements Workspace {
 		projectSpace.setProject(project);
 		projectSpace.setProjectName(absoluteFileName.substring(absoluteFileName.lastIndexOf(File.separatorChar) + 1));
 		projectSpace.setProjectDescription("Imported from " + absoluteFileName);
+		projectSpace.setLocalOperations(WorkspaceFactory.eINSTANCE.createOperationComposite());
 
 		projectSpace.initResources(this.workspaceResourceSet);
 
