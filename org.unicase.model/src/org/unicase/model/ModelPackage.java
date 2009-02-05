@@ -34,6 +34,13 @@ public interface ModelPackage extends EPackage {
 	String eNS_URI = "http://unicase.org/model";
 
 	/**
+	 * The models release number from the ecore history. Used to identify the neccessary migrotor.
+	 * 
+	 * @generated NOT
+	 */
+	int RELEASE_NUMBER = 0;
+
+	/**
 	 * The package namespace name. <!-- begin-user-doc --> <!-- end-user-doc -->
 	 * 
 	 * @generated
