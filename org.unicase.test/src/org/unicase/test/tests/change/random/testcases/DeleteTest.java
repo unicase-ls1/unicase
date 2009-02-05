@@ -2,7 +2,6 @@ package org.unicase.test.tests.change.random.testcases;
 
 import org.eclipse.emf.common.util.TreeIterator;
 import org.eclipse.emf.ecore.EObject;
-import org.eclipse.emf.ecore.util.EcoreUtil;
 import org.eclipse.emf.transaction.RecordingCommand;
 import org.eclipse.emf.transaction.TransactionalEditingDomain;
 import org.unicase.emfstore.esmodel.versioning.ChangePackage;
@@ -44,7 +43,7 @@ public class DeleteTest extends ChangePackageTest {
 	}
 
 	private void doDelete() {
-		EcoreUtil.delete(me, true);
+		me.delete();
 	}
 
 	private int calculateExpectedNumOfChanges() {
