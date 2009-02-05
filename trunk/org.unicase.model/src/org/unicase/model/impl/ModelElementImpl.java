@@ -52,6 +52,74 @@ import org.unicase.model.task.util.MEStateImpl;
  * @generated
  */
 public abstract class ModelElementImpl extends IdentifiableElementImpl implements ModelElement {
+
+	/**
+	 * @see org.unicase.model.ModelElement#delete()
+	 */
+	public void delete() {
+		Project project = this.getProject();
+		if (project == null) {
+			throw new IllegalStateException("Model element is not contained in a project, it cannot be deleted.");
+		}
+		project.deleteModelElement(this);
+
+	}
+
+	/**
+	 * @see org.unicase.model.ModelElement#getAllContainedModelElements()
+	 */
+	public Set<ModelElement> getAllContainedModelElements() {
+		Set<ModelElement> result = new HashSet<ModelElement>();
+		for (EObject containee : this.eContents()) {
+			if (ModelPackage.eINSTANCE.getModelElement().isInstance(containee)) {
+				Set<ModelElement> elements = ((ModelElement) containee).getAllContainedModelElements();
+				result.addAll(elements);
+			}
+		}
+		result.addAll(getContainedElements());
+		return result;
+	}
+
+	/**
+	 * @see org.unicase.model.ModelElement#getContainedModelElements()
+	 */
+	public Set<ModelElement> getContainedElements() {
+		Set<ModelElement> result = new HashSet<ModelElement>();
+		for (EObject containee : this.eContents()) {
+			if (ModelPackage.eINSTANCE.getModelElement().isInstance(containee)) {
+				result.add((ModelElement) containee);
+			}
+		}
+		return result;
+	}
+
+	/**
+	 * @see org.unicase.model.ModelElement#getContainerModelElement()
+	 */
+	public ModelElement getContainerModelElement() {
+		EObject container = this.eContainer();
+		if (container == null) {
+			return null;
+		}
+		if (ModelPackage.eINSTANCE.getModelElement().isInstance(container)) {
+			return (ModelElement) container;
+		}
+		return null;
+	}
+
+	/**
+	 * @see org.unicase.model.ModelElement#getLinkedModelElements()
+	 */
+	public Set<ModelElement> getLinkedModelElements() {
+		Set<ModelElement> result = new HashSet<ModelElement>();
+		for (EObject referencedEObject : this.eCrossReferences()) {
+			if (ModelPackage.eINSTANCE.getModelElement().isInstance(referencedEObject)) {
+				result.add((ModelElement) referencedEObject);
+			}
+		}
+		return result;
+	}
+
 	private static final String BEGINNTEXT = "%BEGINNTEXT%";
 
 	/**

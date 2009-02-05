@@ -70,6 +70,7 @@ import org.unicase.workspace.Configuration;
 import org.unicase.workspace.OperationComposite;
 import org.unicase.workspace.ProjectSpace;
 import org.unicase.workspace.Usersession;
+import org.unicase.workspace.WorkspaceFactory;
 import org.unicase.workspace.WorkspaceManager;
 import org.unicase.workspace.WorkspacePackage;
 import org.unicase.workspace.connectionmanager.ConnectionManager;
@@ -271,6 +272,8 @@ public class ProjectSpaceImpl extends IdentifiableElementImpl implements Project
 	protected OperationComposite localOperations;
 
 	private boolean isRecording;
+
+	private CreateDeleteOperation deleteOperation;
 
 	// begin of custom code
 	/**
@@ -1087,6 +1090,9 @@ public class ProjectSpaceImpl extends IdentifiableElementImpl implements Project
 			resource.getContents().add(modelElement);
 		}
 		Resource operationCompositeResource = resourceSet.createResource(operationCompositeURI);
+		if (this.getLocalOperations() == null) {
+			this.setLocalOperations(WorkspaceFactory.eINSTANCE.createOperationComposite());
+		}
 		operationCompositeResource.getContents().add(this.getLocalOperations());
 		resources.add(operationCompositeResource);
 
@@ -1781,11 +1787,11 @@ public class ProjectSpaceImpl extends IdentifiableElementImpl implements Project
 	 */
 	public void modelElementRemoved(Project project, ModelElement modelElement) {
 		// MK clean resources from deleted model elements
-		if (isRecording) {
-			CreateDeleteOperation createDeleteOperation = createCreateDeleteOperation(modelElement, true);
-			this.getOperations().add(createDeleteOperation);
-			saveProjectSpaceOnly();
-		}
+		// if (isRecording) {
+		// CreateDeleteOperation createDeleteOperation = createCreateDeleteOperation(modelElement, true);
+		// this.getOperations().add(createDeleteOperation);
+		// saveProjectSpaceOnly();
+		// }
 	}
 
 	/**
@@ -1901,6 +1907,30 @@ public class ProjectSpaceImpl extends IdentifiableElementImpl implements Project
 	public void removeTag(PrimaryVersionSpec versionSpec, TagVersionSpec tag) throws EmfStoreException {
 		final ConnectionManager cm = WorkspaceManager.getInstance().getConnectionManager();
 		cm.removeTag(getUsersession().getSessionId(), getProjectId(), versionSpec, tag);
+	}
+
+	public void modelElementDeleteCompleted(ModelElement modelElement) {
+		if (isRecording) {
+			deleteOperation.setDelete(true);
+			deleteOperation.setModelElement(modelElement);
+			deleteOperation.setModelElementId(modelElement.getModelElementId());
+			this.getOperations().add(deleteOperation);
+
+			deleteOperation = null;
+			saveProjectSpaceOnly();
+			Resource resource = modelElement.eResource();
+			if (resource != null) {
+				resource.getContents().remove(modelElement);
+				saveResource(resource);
+			}
+		}
+	}
+
+	public void modelElementDeleteStarted(ModelElement modelElement) {
+		if (isRecording) {
+			this.deleteOperation = OperationsFactory.eINSTANCE.createCreateDeleteOperation();
+		}
+		// MK: implement recording to subOperations of deleteoperation
 	}
 
 } // ProjectContainerImpl

@@ -8,7 +8,6 @@ package org.unicase.ui.common.commands;
 import java.util.ArrayList;
 import java.util.List;
 
-import org.eclipse.emf.ecore.util.EcoreUtil;
 import org.eclipse.emf.transaction.RecordingCommand;
 import org.eclipse.emf.transaction.TransactionalEditingDomain;
 import org.eclipse.jface.dialogs.MessageDialog;
@@ -56,7 +55,10 @@ public final class DeleteModelElementCommand extends RecordingCommand {
 				progressDialog.open();
 				progressDialog.getProgressMonitor().beginTask("Deleting " + me.getName() + "...", 100);
 				progressDialog.getProgressMonitor().worked(20);
-				EcoreUtil.delete(me, true);
+				
+				me.delete();
+				//EcoreUtil.delete(me, true);
+				
 				progressDialog.getProgressMonitor().done();
 				progressDialog.close();
 			}

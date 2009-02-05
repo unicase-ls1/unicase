@@ -18,6 +18,7 @@ import org.eclipse.emf.common.util.EList;
 import org.eclipse.emf.common.util.TreeIterator;
 import org.eclipse.emf.ecore.EClass;
 import org.eclipse.emf.ecore.EObject;
+import org.eclipse.emf.ecore.EReference;
 import org.eclipse.emf.ecore.InternalEObject;
 import org.eclipse.emf.ecore.impl.EObjectImpl;
 import org.eclipse.emf.ecore.util.EObjectContainmentEList;
@@ -29,12 +30,11 @@ import org.unicase.model.Project;
 import org.unicase.model.util.ProjectChangeNotifier;
 import org.unicase.model.util.ProjectChangeObserver;
 
-/*
+/**
  * @author schroech
  * @implements ProjectChangeObserver
  * @generated
  */
-
 public class ProjectImpl extends EObjectImpl implements Project, ProjectChangeObserver {
 	/**
 	 * The cached value of the '{@link #getModelElements() <em>Model Elements</em>}' containment reference list. <!--
@@ -383,5 +383,53 @@ public class ProjectImpl extends EObjectImpl implements Project, ProjectChangeOb
 		}
 		ModelElement element = this.getModelElementsFromCache().get(modelElementId);
 		return element == modelElement;
+	}
+
+	public void deleteModelElement(ModelElement modelElement) {
+		if (!this.contains(modelElement)) {
+			throw new IllegalArgumentException("Cannot delete a model element that is not contained in this project.");
+		}
+		for (ProjectChangeObserver projectChangeObserver : this.observers) {
+			projectChangeObserver.modelElementDeleteStarted(modelElement);
+		}
+		// delete all non containment cross references from other elements in the project
+		for (ModelElement otherModelElement : this.getAllModelElements()) {
+			for (ModelElement otherElementOpposite : otherModelElement.getLinkedModelElements()) {
+				if (otherElementOpposite == modelElement) {
+					EList<EReference> references = otherModelElement.eClass().getEReferences();
+					for (EReference reference : references) {
+						if (!reference.isContainment() && !reference.isContainer()) {
+							((EList<?>) otherModelElement.eGet(reference)).remove(modelElement);
+						}
+					}
+				}
+			}
+		}
+		// delete all non containment cross references to other elments
+		for (EReference reference : modelElement.eClass().getEReferences()) {
+			if (!reference.isContainer() && !reference.isContainment()) {
+				((EList<?>) modelElement.eGet(reference)).clear();
+			}
+		}
+
+		// remove containment
+		ModelElement containerModelElement = modelElement.getContainerModelElement();
+		if (containerModelElement == null) {
+			this.getModelElements().remove(modelElement);
+		} else {
+			EList<?> containmentList = (EList<?>) containerModelElement.eGet(modelElement.eContainmentFeature());
+			containmentList.remove(modelElement);
+		}
+		for (ProjectChangeObserver projectChangeObserver : this.observers) {
+			projectChangeObserver.modelElementDeleteCompleted(modelElement);
+		}
+	}
+
+	public void modelElementDeleteCompleted(ModelElement modelElement) {
+		// nothing to do
+	}
+
+	public void modelElementDeleteStarted(ModelElement modelElement) {
+		// nothing to do
 	}
 }

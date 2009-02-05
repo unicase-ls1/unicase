@@ -14,7 +14,6 @@ import org.eclipse.emf.ecore.EClass;
 import org.eclipse.emf.ecore.InternalEObject;
 import org.eclipse.emf.ecore.impl.ENotificationImpl;
 import org.eclipse.emf.ecore.util.EObjectContainmentEList;
-import org.eclipse.emf.ecore.util.EcoreUtil;
 import org.eclipse.emf.ecore.util.InternalEList;
 import org.unicase.emfstore.esmodel.versioning.operations.AbstractOperation;
 import org.unicase.emfstore.esmodel.versioning.operations.CreateDeleteOperation;
@@ -41,7 +40,9 @@ public class CreateDeleteOperationImpl extends AbstractOperationImpl implements 
 	public void apply(Project project) {
 		super.apply(project);
 		if (isDelete()) {
-			EcoreUtil.delete(project.getModelElement(getModelElementId()), true);
+			ModelElement localModelElement = project.getModelElement(getModelElementId());
+			project.deleteModelElement(localModelElement);
+			// EcoreUtil.delete(project.getModelElement(getModelElementId()), true);
 		} else {
 			project.getModelElements().add(ModelUtil.clone(getModelElement()));
 		}
@@ -66,9 +67,9 @@ public class CreateDeleteOperationImpl extends AbstractOperationImpl implements 
 	}
 
 	/**
-	 * The default value of the '{@link #isDelete() <em>Delete</em>}' attribute.
-	 * <!-- begin-user-doc --> <!--
+	 * The default value of the '{@link #isDelete() <em>Delete</em>}' attribute. <!-- begin-user-doc --> <!--
 	 * end-user-doc -->
+	 * 
 	 * @see #isDelete()
 	 * @generated
 	 * @ordered
@@ -76,9 +77,9 @@ public class CreateDeleteOperationImpl extends AbstractOperationImpl implements 
 	protected static final boolean DELETE_EDEFAULT = false;
 
 	/**
-	 * The cached value of the '{@link #isDelete() <em>Delete</em>}' attribute.
-	 * <!-- begin-user-doc --> <!--
+	 * The cached value of the '{@link #isDelete() <em>Delete</em>}' attribute. <!-- begin-user-doc --> <!--
 	 * end-user-doc -->
+	 * 
 	 * @see #isDelete()
 	 * @generated
 	 * @ordered
@@ -96,9 +97,9 @@ public class CreateDeleteOperationImpl extends AbstractOperationImpl implements 
 	protected ModelElement modelElement;
 
 	/**
-	 * The cached value of the '{@link #getSubOperations() <em>Sub Operations</em>}' containment reference list.
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
+	 * The cached value of the '{@link #getSubOperations() <em>Sub Operations</em>}' containment reference list. <!--
+	 * begin-user-doc --> <!-- end-user-doc -->
+	 * 
 	 * @see #getSubOperations()
 	 * @generated
 	 * @ordered
@@ -107,6 +108,7 @@ public class CreateDeleteOperationImpl extends AbstractOperationImpl implements 
 
 	/**
 	 * <!-- begin-user-doc --> <!-- end-user-doc -->
+	 * 
 	 * @generated
 	 */
 	protected CreateDeleteOperationImpl() {
@@ -115,6 +117,7 @@ public class CreateDeleteOperationImpl extends AbstractOperationImpl implements 
 
 	/**
 	 * <!-- begin-user-doc --> <!-- end-user-doc -->
+	 * 
 	 * @generated
 	 */
 	@Override
@@ -124,6 +127,7 @@ public class CreateDeleteOperationImpl extends AbstractOperationImpl implements 
 
 	/**
 	 * <!-- begin-user-doc --> <!-- end-user-doc -->
+	 * 
 	 * @generated
 	 */
 	public boolean isDelete() {
@@ -132,6 +136,7 @@ public class CreateDeleteOperationImpl extends AbstractOperationImpl implements 
 
 	/**
 	 * <!-- begin-user-doc --> <!-- end-user-doc -->
+	 * 
 	 * @generated
 	 */
 	public void setDelete(boolean newDelete) {
@@ -144,6 +149,7 @@ public class CreateDeleteOperationImpl extends AbstractOperationImpl implements 
 
 	/**
 	 * <!-- begin-user-doc --> <!-- end-user-doc -->
+	 * 
 	 * @generated
 	 */
 	public ModelElement getModelElement() {
@@ -170,6 +176,7 @@ public class CreateDeleteOperationImpl extends AbstractOperationImpl implements 
 
 	/**
 	 * <!-- begin-user-doc --> <!-- end-user-doc -->
+	 * 
 	 * @generated
 	 */
 	public ModelElement basicGetModelElement() {
@@ -178,6 +185,7 @@ public class CreateDeleteOperationImpl extends AbstractOperationImpl implements 
 
 	/**
 	 * <!-- begin-user-doc --> <!-- end-user-doc -->
+	 * 
 	 * @generated
 	 */
 	public NotificationChain basicSetModelElement(ModelElement newModelElement, NotificationChain msgs) {
@@ -196,6 +204,7 @@ public class CreateDeleteOperationImpl extends AbstractOperationImpl implements 
 
 	/**
 	 * <!-- begin-user-doc --> <!-- end-user-doc -->
+	 * 
 	 * @generated
 	 */
 	public void setModelElement(ModelElement newModelElement) {
@@ -216,8 +225,8 @@ public class CreateDeleteOperationImpl extends AbstractOperationImpl implements 
 	}
 
 	/**
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
+	 * <!-- begin-user-doc --> <!-- end-user-doc -->
+	 * 
 	 * @generated
 	 */
 	public EList<ReferenceOperation> getSubOperations() {
@@ -230,6 +239,7 @@ public class CreateDeleteOperationImpl extends AbstractOperationImpl implements 
 
 	/**
 	 * <!-- begin-user-doc --> <!-- end-user-doc -->
+	 * 
 	 * @generated
 	 */
 	@Override
@@ -245,6 +255,7 @@ public class CreateDeleteOperationImpl extends AbstractOperationImpl implements 
 
 	/**
 	 * <!-- begin-user-doc --> <!-- end-user-doc -->
+	 * 
 	 * @generated
 	 */
 	@Override
@@ -264,6 +275,7 @@ public class CreateDeleteOperationImpl extends AbstractOperationImpl implements 
 
 	/**
 	 * <!-- begin-user-doc --> <!-- end-user-doc -->
+	 * 
 	 * @generated
 	 */
 	@SuppressWarnings("unchecked")
@@ -286,6 +298,7 @@ public class CreateDeleteOperationImpl extends AbstractOperationImpl implements 
 
 	/**
 	 * <!-- begin-user-doc --> <!-- end-user-doc -->
+	 * 
 	 * @generated
 	 */
 	@Override
@@ -306,6 +319,7 @@ public class CreateDeleteOperationImpl extends AbstractOperationImpl implements 
 
 	/**
 	 * <!-- begin-user-doc --> <!-- end-user-doc -->
+	 * 
 	 * @generated
 	 */
 	@Override
@@ -323,6 +337,7 @@ public class CreateDeleteOperationImpl extends AbstractOperationImpl implements 
 
 	/**
 	 * <!-- begin-user-doc --> <!-- end-user-doc -->
+	 * 
 	 * @generated
 	 */
 	@Override
