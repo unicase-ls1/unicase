@@ -132,4 +132,11 @@ public interface Project extends EObject, IAdaptable {
 	 * @param projectChangeObserver
 	 */
 	void removeProjectChangeObserver(ProjectChangeObserver projectChangeObserver);
+
+	/**
+	 * Delete an element from the Project including all its containments and cross references.
+	 * 
+	 * @param modelElement the model element to delete
+	 */
+	void deleteModelElement(ModelElement modelElement);
 } // Project

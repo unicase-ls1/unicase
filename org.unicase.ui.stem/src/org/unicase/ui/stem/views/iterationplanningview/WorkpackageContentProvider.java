@@ -183,4 +183,20 @@ public class WorkpackageContentProvider extends TransactionalAdapterFactoryConte
 		}
 	}
 
+	/**
+	 * @see org.unicase.model.util.ProjectChangeObserver#modelElementDeleteCompleted(org.unicase.model.ModelElement)
+	 *      {@inheritDoc}
+	 */
+	public void modelElementDeleteCompleted(ModelElement modelElement) {
+		// nothing to do
+	}
+
+	/**
+	 * @see org.unicase.model.util.ProjectChangeObserver#modelElementDeleteStarted(org.unicase.model.ModelElement)
+	 *      {@inheritDoc}
+	 */
+	public void modelElementDeleteStarted(ModelElement modelElement) {
+		// nothing to do
+	}
+
 }

@@ -44,4 +44,19 @@ public interface ProjectChangeObserver {
 	 * @param modelElement the modelElement
 	 */
 	void modelElementRemoved(Project project, ModelElement modelElement);
+
+	/**
+	 * The given model element is starting to be deleted now.
+	 * 
+	 * @param modelElement the model element
+	 */
+	void modelElementDeleteStarted(ModelElement modelElement);
+
+	/**
+	 * The given model element has been completely deleted.
+	 * 
+	 * @param modelElement the model element
+	 */
+	void modelElementDeleteCompleted(ModelElement modelElement);
+
 }

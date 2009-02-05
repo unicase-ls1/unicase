@@ -6,6 +6,7 @@
 package org.unicase.model;
 
 import java.util.Date;
+import java.util.Set;
 
 import org.eclipse.emf.common.util.EList;
 import org.unicase.model.document.LeafSection;
@@ -299,5 +300,38 @@ public interface ModelElement extends IdentifiableElement {
 	 * @generated NOT
 	 */
 	String getDescriptionPlainText();
+
+	/**
+	 * Retrieve all elements this element links to. Only outgoing and bidrectional links are considered.
+	 * 
+	 * @return a set of model elements
+	 */
+	Set<ModelElement> getLinkedModelElements();
+
+	/**
+	 * Retrieve the contained model elements of this element. Only includes direct children.
+	 * 
+	 * @return a set of child model elements
+	 */
+	Set<ModelElement> getContainedElements();
+
+	/**
+	 * Get the container model element of this element. Returns null if there is no parent.
+	 * 
+	 * @return the parent element
+	 */
+	ModelElement getContainerModelElement();
+
+	/**
+	 * Get all contained element of this element recursivly.
+	 * 
+	 * @return a set of model elements
+	 */
+	Set<ModelElement> getAllContainedModelElements();
+
+	/**
+	 * Delete the model element from its project.
+	 */
+	void delete();
 	// end custom code
 } // ModelElement
