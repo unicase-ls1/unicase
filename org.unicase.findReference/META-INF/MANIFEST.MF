@@ -5,4 +5,4 @@ Bundle-SymbolicName: org.unicase.findReference
 Bundle-Version: 0.0.1
 Bundle-Vendor: Tu-Muenchen
 Bundle-RequiredExecutionEnvironment: J2SE-1.5
-Require-Bundle: org.unicase.emfstore;bundle-version="0.2.14"
+Require-Bundle: org.unicase.workspace;bundle-version="0.3.4"
