@@ -94,7 +94,9 @@ public class TaskView extends ViewPart implements ProjectChangeObserver {
 		// the task view shall only display objects that are instance of
 		// Checkable
 		viewer.addFilter(new CheckableViewerFilter());
-
+		if (workspace.getActiveProjectSpace() != null) {
+			workspace.getActiveProjectSpace().getProject().addProjectChangeObserver(TaskView.this);
+		}
 		adapterImpl = new AdapterImpl() {
 			@Override
 			public void notifyChanged(Notification msg) {
