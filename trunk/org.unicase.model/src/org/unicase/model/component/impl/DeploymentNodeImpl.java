@@ -23,9 +23,9 @@ import org.unicase.model.impl.ModelElementImpl;
  */
 public class DeploymentNodeImpl extends ModelElementImpl implements DeploymentNode {
 	/**
-	 * The cached value of the '{@link #getComponents() <em>Components</em>}' reference list. <!-- begin-user-doc -->
+	 * The cached value of the '{@link #getComponents() <em>Components</em>}' reference list.
+	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
-	 * 
 	 * @see #getComponents()
 	 * @generated
 	 * @ordered
@@ -34,7 +34,6 @@ public class DeploymentNodeImpl extends ModelElementImpl implements DeploymentNo
 
 	/**
 	 * <!-- begin-user-doc --> <!-- end-user-doc -->
-	 * 
 	 * @generated
 	 */
 	protected DeploymentNodeImpl() {
@@ -43,7 +42,6 @@ public class DeploymentNodeImpl extends ModelElementImpl implements DeploymentNo
 
 	/**
 	 * <!-- begin-user-doc --> <!-- end-user-doc -->
-	 * 
 	 * @generated
 	 */
 	@Override
@@ -53,7 +51,6 @@ public class DeploymentNodeImpl extends ModelElementImpl implements DeploymentNo
 
 	/**
 	 * <!-- begin-user-doc --> <!-- end-user-doc -->
-	 * 
 	 * @generated
 	 */
 	public EList<Component> getComponents() {
@@ -66,7 +63,6 @@ public class DeploymentNodeImpl extends ModelElementImpl implements DeploymentNo
 
 	/**
 	 * <!-- begin-user-doc --> <!-- end-user-doc -->
-	 * 
 	 * @generated
 	 */
 	@Override
@@ -80,7 +76,6 @@ public class DeploymentNodeImpl extends ModelElementImpl implements DeploymentNo
 
 	/**
 	 * <!-- begin-user-doc --> <!-- end-user-doc -->
-	 * 
 	 * @generated
 	 */
 	@SuppressWarnings("unchecked")
@@ -97,7 +92,6 @@ public class DeploymentNodeImpl extends ModelElementImpl implements DeploymentNo
 
 	/**
 	 * <!-- begin-user-doc --> <!-- end-user-doc -->
-	 * 
 	 * @generated
 	 */
 	@Override
@@ -112,7 +106,6 @@ public class DeploymentNodeImpl extends ModelElementImpl implements DeploymentNo
 
 	/**
 	 * <!-- begin-user-doc --> <!-- end-user-doc -->
-	 * 
 	 * @generated
 	 */
 	@Override

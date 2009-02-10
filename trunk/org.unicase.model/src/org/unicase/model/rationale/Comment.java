@@ -18,14 +18,14 @@ import org.unicase.model.Annotation;
  */
 public interface Comment extends Annotation {
 	/**
-	 * Returns the value of the '<em><b>Replies</b></em>' containment reference list. The list contents are of type
-	 * {@link org.unicase.model.rationale.Comment}. <!-- begin-user-doc -->
+	 * Returns the value of the '<em><b>Replies</b></em>' containment reference list.
+	 * The list contents are of type {@link org.unicase.model.rationale.Comment}.
+	 * <!-- begin-user-doc -->
 	 * <p>
 	 * If the meaning of the '<em>Replies</em>' reference list isn't clear, there really should be more of a description
 	 * here...
 	 * </p>
 	 * <!-- end-user-doc -->
-	 * 
 	 * @return the value of the '<em>Replies</em>' containment reference list.
 	 * @see org.unicase.model.rationale.RationalePackage#getComment_Replies()
 	 * @model containment="true" resolveProxies="true" keys="identifier"

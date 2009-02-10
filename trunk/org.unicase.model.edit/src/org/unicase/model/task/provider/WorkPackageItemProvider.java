@@ -64,6 +64,7 @@ public class WorkPackageItemProvider extends AnnotationItemProvider implements I
 			addDueDatePropertyDescriptor(object);
 			addEstimatePropertyDescriptor(object);
 			addEffortPropertyDescriptor(object);
+			addPriorityPropertyDescriptor(object);
 			addContainedWorkItemsPropertyDescriptor(object);
 			addStartDatePropertyDescriptor(object);
 		}
@@ -199,6 +200,20 @@ public class WorkPackageItemProvider extends AnnotationItemProvider implements I
 	}
 
 	/**
+	 * This adds a property descriptor for the Priority feature.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 */
+	protected void addPriorityPropertyDescriptor(Object object) {
+		itemPropertyDescriptors.add(createItemPropertyDescriptor(((ComposeableAdapterFactory) adapterFactory)
+			.getRootAdapterFactory(), getResourceLocator(), getString("_UI_WorkItem_priority_feature"), getString(
+			"_UI_PropertyDescriptor_description", "_UI_WorkItem_priority_feature", "_UI_WorkItem_type"),
+			TaskPackage.Literals.WORK_ITEM__PRIORITY, true, false, false, ItemPropertyDescriptor.INTEGRAL_VALUE_IMAGE,
+			null, null));
+	}
+
+	/**
 	 * This specifies how to implement {@link #getChildren} and is used to deduce an appropriate feature for an
 	 * {@link org.eclipse.emf.edit.command.AddCommand}, {@link org.eclipse.emf.edit.command.RemoveCommand} or
 	 * {@link org.eclipse.emf.edit.command.MoveCommand} in {@link #createCommand}.
@@ -262,6 +277,7 @@ public class WorkPackageItemProvider extends AnnotationItemProvider implements I
 		case TaskPackage.WORK_PACKAGE__DUE_DATE:
 		case TaskPackage.WORK_PACKAGE__ESTIMATE:
 		case TaskPackage.WORK_PACKAGE__EFFORT:
+		case TaskPackage.WORK_PACKAGE__PRIORITY:
 		case TaskPackage.WORK_PACKAGE__START_DATE:
 		case TaskPackage.WORK_PACKAGE__END_DATE:
 			fireNotifyChanged(new ViewerNotification(notification, notification.getNotifier(), false, true));

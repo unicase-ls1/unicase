@@ -39,9 +39,8 @@ public interface ComponentService extends ModelElement {
 	Component getOfferingComponent();
 
 	/**
-	 * Sets the value of the '{@link org.unicase.model.component.ComponentService#getOfferingComponent
-	 * <em>Offering Component</em>}' container reference. <!-- begin-user-doc --> <!-- end-user-doc -->
-	 * 
+	 * Sets the value of the '{@link org.unicase.model.component.ComponentService#getOfferingComponent <em>Offering Component</em>}' container reference.
+	 * <!-- begin-user-doc --> <!-- end-user-doc -->
 	 * @param value the new value of the '<em>Offering Component</em>' container reference.
 	 * @see #getOfferingComponent()
 	 * @generated

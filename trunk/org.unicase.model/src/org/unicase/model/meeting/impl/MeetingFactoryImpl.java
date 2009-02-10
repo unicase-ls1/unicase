@@ -23,8 +23,8 @@ import org.unicase.model.meeting.WorkItemMeetingSection;
  */
 public class MeetingFactoryImpl extends EFactoryImpl implements MeetingFactory {
 	/**
-	 * Creates the default factory implementation. <!-- begin-user-doc --> <!-- end-user-doc -->
-	 * 
+	 * Creates the default factory implementation.
+	 * <!-- begin-user-doc --> <!-- end-user-doc -->
 	 * @generated
 	 */
 	public static MeetingFactory init() {
@@ -41,8 +41,8 @@ public class MeetingFactoryImpl extends EFactoryImpl implements MeetingFactory {
 	}
 
 	/**
-	 * Creates an instance of the factory. <!-- begin-user-doc --> <!-- end-user-doc -->
-	 * 
+	 * Creates an instance of the factory.
+	 * <!-- begin-user-doc --> <!-- end-user-doc -->
 	 * @generated
 	 */
 	public MeetingFactoryImpl() {
@@ -51,7 +51,6 @@ public class MeetingFactoryImpl extends EFactoryImpl implements MeetingFactory {
 
 	/**
 	 * <!-- begin-user-doc --> <!-- end-user-doc -->
-	 * 
 	 * @generated
 	 */
 	@Override
@@ -72,7 +71,6 @@ public class MeetingFactoryImpl extends EFactoryImpl implements MeetingFactory {
 
 	/**
 	 * <!-- begin-user-doc --> <!-- end-user-doc -->
-	 * 
 	 * @generated
 	 */
 	public Meeting createMeeting() {
@@ -82,7 +80,6 @@ public class MeetingFactoryImpl extends EFactoryImpl implements MeetingFactory {
 
 	/**
 	 * <!-- begin-user-doc --> <!-- end-user-doc -->
-	 * 
 	 * @generated
 	 */
 	public CompositeMeetingSection createCompositeMeetingSection() {
@@ -92,7 +89,6 @@ public class MeetingFactoryImpl extends EFactoryImpl implements MeetingFactory {
 
 	/**
 	 * <!-- begin-user-doc --> <!-- end-user-doc -->
-	 * 
 	 * @generated
 	 */
 	public IssueMeetingSection createIssueMeetingSection() {
@@ -102,7 +98,6 @@ public class MeetingFactoryImpl extends EFactoryImpl implements MeetingFactory {
 
 	/**
 	 * <!-- begin-user-doc --> <!-- end-user-doc -->
-	 * 
 	 * @generated
 	 */
 	public WorkItemMeetingSection createWorkItemMeetingSection() {
@@ -112,7 +107,6 @@ public class MeetingFactoryImpl extends EFactoryImpl implements MeetingFactory {
 
 	/**
 	 * <!-- begin-user-doc --> <!-- end-user-doc -->
-	 * 
 	 * @generated
 	 */
 	public MeetingPackage getMeetingPackage() {
@@ -121,7 +115,6 @@ public class MeetingFactoryImpl extends EFactoryImpl implements MeetingFactory {
 
 	/**
 	 * <!-- begin-user-doc --> <!-- end-user-doc -->
-	 * 
 	 * @deprecated
 	 * @generated
 	 */

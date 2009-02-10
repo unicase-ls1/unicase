@@ -52,7 +52,6 @@ public abstract class PackageElementImpl extends ModelElementImpl implements Pac
 
 	/**
 	 * <!-- begin-user-doc --> <!-- end-user-doc -->
-	 * 
 	 * @generated
 	 */
 	protected PackageElementImpl() {
@@ -61,7 +60,6 @@ public abstract class PackageElementImpl extends ModelElementImpl implements Pac
 
 	/**
 	 * <!-- begin-user-doc --> <!-- end-user-doc -->
-	 * 
 	 * @generated
 	 */
 	@Override
@@ -71,7 +69,6 @@ public abstract class PackageElementImpl extends ModelElementImpl implements Pac
 
 	/**
 	 * <!-- begin-user-doc --> <!-- end-user-doc -->
-	 * 
 	 * @generated
 	 */
 	public org.unicase.model.classes.Package getParentPackage() {
@@ -82,7 +79,6 @@ public abstract class PackageElementImpl extends ModelElementImpl implements Pac
 
 	/**
 	 * <!-- begin-user-doc --> <!-- end-user-doc -->
-	 * 
 	 * @generated
 	 */
 	public org.unicase.model.classes.Package basicGetParentPackage() {
@@ -93,7 +89,6 @@ public abstract class PackageElementImpl extends ModelElementImpl implements Pac
 
 	/**
 	 * <!-- begin-user-doc --> <!-- end-user-doc -->
-	 * 
 	 * @generated
 	 */
 	public NotificationChain basicSetParentPackage(org.unicase.model.classes.Package newParentPackage,
@@ -105,7 +100,6 @@ public abstract class PackageElementImpl extends ModelElementImpl implements Pac
 
 	/**
 	 * <!-- begin-user-doc --> <!-- end-user-doc -->
-	 * 
 	 * @generated
 	 */
 	public void setParentPackage(org.unicase.model.classes.Package newParentPackage) {
@@ -129,7 +123,6 @@ public abstract class PackageElementImpl extends ModelElementImpl implements Pac
 
 	/**
 	 * <!-- begin-user-doc --> <!-- end-user-doc -->
-	 * 
 	 * @generated
 	 */
 	public EList<Dependency> getOutgoingDependencies() {
@@ -142,7 +135,6 @@ public abstract class PackageElementImpl extends ModelElementImpl implements Pac
 
 	/**
 	 * <!-- begin-user-doc --> <!-- end-user-doc -->
-	 * 
 	 * @generated
 	 */
 	public EList<Dependency> getIncomingDependencies() {
@@ -155,7 +147,6 @@ public abstract class PackageElementImpl extends ModelElementImpl implements Pac
 
 	/**
 	 * <!-- begin-user-doc --> <!-- end-user-doc -->
-	 * 
 	 * @generated
 	 */
 	@SuppressWarnings("unchecked")
@@ -178,7 +169,6 @@ public abstract class PackageElementImpl extends ModelElementImpl implements Pac
 
 	/**
 	 * <!-- begin-user-doc --> <!-- end-user-doc -->
-	 * 
 	 * @generated
 	 */
 	@Override
@@ -196,7 +186,6 @@ public abstract class PackageElementImpl extends ModelElementImpl implements Pac
 
 	/**
 	 * <!-- begin-user-doc --> <!-- end-user-doc -->
-	 * 
 	 * @generated
 	 */
 	@Override
@@ -211,7 +200,6 @@ public abstract class PackageElementImpl extends ModelElementImpl implements Pac
 
 	/**
 	 * <!-- begin-user-doc --> <!-- end-user-doc -->
-	 * 
 	 * @generated
 	 */
 	@Override
@@ -231,7 +219,6 @@ public abstract class PackageElementImpl extends ModelElementImpl implements Pac
 
 	/**
 	 * <!-- begin-user-doc --> <!-- end-user-doc -->
-	 * 
 	 * @generated
 	 */
 	@SuppressWarnings("unchecked")
@@ -255,7 +242,6 @@ public abstract class PackageElementImpl extends ModelElementImpl implements Pac
 
 	/**
 	 * <!-- begin-user-doc --> <!-- end-user-doc -->
-	 * 
 	 * @generated
 	 */
 	@Override
@@ -276,7 +262,6 @@ public abstract class PackageElementImpl extends ModelElementImpl implements Pac
 
 	/**
 	 * <!-- begin-user-doc --> <!-- end-user-doc -->
-	 * 
 	 * @generated
 	 */
 	@Override
