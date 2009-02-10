@@ -5,6 +5,8 @@
  */
 package org.unicase.ui.stem.views.statusview;
 
+import org.eclipse.emf.common.notify.Notification;
+import org.eclipse.emf.common.notify.impl.AdapterImpl;
 import org.eclipse.emf.edit.ui.dnd.LocalTransfer;
 import org.eclipse.jface.viewers.DoubleClickEvent;
 import org.eclipse.jface.viewers.IDoubleClickListener;
@@ -20,6 +22,8 @@ import org.eclipse.swt.layout.GridLayout;
 import org.eclipse.swt.widgets.Composite;
 import org.eclipse.swt.widgets.Tree;
 import org.unicase.model.ModelElement;
+import org.unicase.model.Project;
+import org.unicase.model.util.ProjectChangeObserver;
 import org.unicase.ui.common.TreeViewerColumnSorter;
 import org.unicase.ui.common.util.ActionHelper;
 import org.unicase.ui.stem.views.AssignedToLabelProvider;
@@ -29,6 +33,10 @@ import org.unicase.ui.stem.views.iterationplanningview.TaskObjectEditingSupport;
 import org.unicase.ui.stem.views.iterationplanningview.TaskObjectLabelProvider;
 import org.unicase.ui.stem.views.statusview.dnd.FlatTabDragAdapter;
 import org.unicase.ui.stem.views.statusview.dnd.UserTabDropAdapter;
+import org.unicase.workspace.ProjectSpace;
+import org.unicase.workspace.Workspace;
+import org.unicase.workspace.WorkspaceManager;
+import org.unicase.workspace.WorkspacePackage;
 
 /**
  * This class provides contents of users tab in Status view. It contains a TreeViewer showing all OrgUnits participating
@@ -37,12 +45,14 @@ import org.unicase.ui.stem.views.statusview.dnd.UserTabDropAdapter;
  * 
  * @author Hodaie
  */
-public class UserTabComposite extends Composite {
+public class UserTabComposite extends Composite implements ProjectChangeObserver {
 
 	private TreeViewer treeViewer;
 	private UserTabStatusColumnLabelProvider statusColumnLabelProvider;
 	private UserTabDropAdapter userTabDropAdapter;
 	private FlatTabDragAdapter userTabDragAdapter;
+	private Workspace workspace;
+	private AdapterImpl adapterImpl;
 
 	// private ModelElement input;
 
@@ -56,6 +66,29 @@ public class UserTabComposite extends Composite {
 		super(parent, style);
 		this.setLayout(new GridLayout());
 		createTree();
+
+		workspace = WorkspaceManager.getInstance().getCurrentWorkspace();
+		if (workspace.getActiveProjectSpace() != null) {
+			workspace.getActiveProjectSpace().getProject().addProjectChangeObserver(UserTabComposite.this);
+		}
+		adapterImpl = new AdapterImpl() {
+			@Override
+			public void notifyChanged(Notification msg) {
+				if ((msg.getFeatureID(Workspace.class)) == WorkspacePackage.WORKSPACE__ACTIVE_PROJECT_SPACE) {
+
+					// remove old listeners
+					Object oldValue = msg.getOldValue();
+					if (oldValue instanceof ProjectSpace) {
+						((ProjectSpace) oldValue).getProject().removeProjectChangeObserver(UserTabComposite.this);
+					}
+					// add listener to get notified when work items get deleted/added/changed
+					if (workspace.getActiveProjectSpace() != null) {
+						workspace.getActiveProjectSpace().getProject().addProjectChangeObserver(UserTabComposite.this);
+					}
+				}
+			}
+		};
+		workspace.eAdapters().add(adapterImpl);
 	}
 
 	private void createTree() {
@@ -66,7 +99,7 @@ public class UserTabComposite extends Composite {
 		treeViewer.setContentProvider(contentProvider);
 		treeViewer.setLabelProvider(new UserTabLabelProvider());
 		treeViewer.setComparator(new ViewerComparator());
-		addColumns();
+		addColumns(contentProvider);
 
 		treeViewer.addDoubleClickListener(new IDoubleClickListener() {
 
@@ -95,7 +128,7 @@ public class UserTabComposite extends Composite {
 
 	}
 
-	private void addColumns() {
+	private void addColumns(UserTabContentProvider contentProvider) {
 
 		Tree tree = treeViewer.getTree();
 		tree.setHeaderVisible(true);
@@ -133,6 +166,14 @@ public class UserTabComposite extends Composite {
 		tclmAssignedTo.setEditingSupport(new AssignedToEditingSupport(treeViewer));
 		new TreeViewerColumnSorter(treeViewer, tclmAssignedTo, assignedToLabelProvider);
 
+		// Estimate
+		TreeViewerColumn estimate = new TreeViewerColumn(treeViewer, SWT.NONE);
+		estimate.getColumn().setText("Estimate");
+		estimate.getColumn().setWidth(100);
+		UserEstimateLabelProvider userEstimateLabelProvider = new UserEstimateLabelProvider(contentProvider);
+		estimate.setLabelProvider(userEstimateLabelProvider);
+		new TreeViewerColumnSorter(treeViewer, estimate, userEstimateLabelProvider);
+
 	}
 
 	/**
@@ -144,14 +185,74 @@ public class UserTabComposite extends Composite {
 	public void setInput(ModelElement me, StatusView statusView) {
 		// this.input = me;
 		userTabDropAdapter.setCurrentOpenMe(me, statusView);
-		userTabDragAdapter.setCurrentOpenMe(me, statusView);
 		statusColumnLabelProvider.setCurrentOpenME(me);
-		if (!treeViewer.getInput().equals(me)) {
+		if ((treeViewer.getInput() == null) || (!treeViewer.getInput().equals(me))) {
 			treeViewer.setInput(me);
 		} else {
 			treeViewer.refresh();
 		}
 
+	}
+
+	/**
+	 * {@inheritDoc}
+	 * 
+	 * @see org.unicase.model.util.ProjectChangeObserver#modelElementAdded(org.unicase.model.Project,
+	 *      org.unicase.model.ModelElement)
+	 */
+	public void modelElementAdded(Project project, ModelElement modelElement) {
+		treeViewer.refresh();
+	}
+
+	/**
+	 * {@inheritDoc}
+	 * 
+	 * @see org.unicase.model.util.ProjectChangeObserver#modelElementDeleteCompleted(org.unicase.model.ModelElement)
+	 */
+	public void modelElementDeleteCompleted(ModelElement modelElement) {
+		// nothing to do;
+
+	}
+
+	/**
+	 * {@inheritDoc}
+	 * 
+	 * @see org.unicase.model.util.ProjectChangeObserver#modelElementDeleteStarted(org.unicase.model.ModelElement)
+	 */
+	public void modelElementDeleteStarted(ModelElement modelElement) {
+		// nothing to do
+
+	}
+
+	/**
+	 * {@inheritDoc}
+	 * 
+	 * @see org.unicase.model.util.ProjectChangeObserver#modelElementRemoved(org.unicase.model.Project,
+	 *      org.unicase.model.ModelElement)
+	 */
+	public void modelElementRemoved(Project project, ModelElement modelElement) {
+		treeViewer.refresh();
+
+	}
+
+	/**
+	 * {@inheritDoc}
+	 * 
+	 * @see org.unicase.model.util.ProjectChangeObserver#notify(org.eclipse.emf.common.notify.Notification,
+	 *      org.unicase.model.Project, org.unicase.model.ModelElement)
+	 */
+	public void notify(Notification notification, Project project, ModelElement modelElement) {
+		treeViewer.refresh();
+	}
+
+	/**
+	 * @see org.eclipse.swt.widgets.Widget#dispose()
+	 */
+	@Override
+	public void dispose() {
+		workspace.eAdapters().remove(adapterImpl);
+		workspace.getActiveProjectSpace().getProject().removeProjectChangeObserver(UserTabComposite.this);
+		super.dispose();
 	}
 
 }
