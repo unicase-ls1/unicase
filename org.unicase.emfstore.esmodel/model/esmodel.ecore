@@ -65,11 +65,6 @@
       <eStructuralFeatures xsi:type="ecore:EAttribute" name="clientDate" eType="ecore:EDataType platform:/plugin/org.eclipse.emf.ecore/model/Ecore.ecore#//EDate"/>
     </eClassifiers>
     <eClassifiers xsi:type="ecore:EClass" name="ChangePackage">
-      <eOperations name="reverse" eType="#//versioning/ChangePackage"/>
-      <eOperations name="apply">
-        <eParameters name="project" eType="ecore:EClass ../../org.unicase.model/model/model.ecore#//Project"/>
-      </eOperations>
-      <eOperations name="cannonize"/>
       <eStructuralFeatures xsi:type="ecore:EReference" name="operations" upperBound="-1"
           eType="#//versioning/operations/AbstractOperation" containment="true"/>
       <eStructuralFeatures xsi:type="ecore:EReference" name="events" upperBound="-1"
@@ -114,14 +109,6 @@
     <eSubpackages name="operations" nsURI="http://unicase.org/esmodel/versioning/operations"
         nsPrefix="org.unicase.emfstore.esmodel.versioning.operations">
       <eClassifiers xsi:type="ecore:EClass" name="AbstractOperation" abstract="true">
-        <eOperations name="apply">
-          <eParameters name="project" eType="ecore:EClass ../../org.unicase.model/model/model.ecore#//Project"/>
-        </eOperations>
-        <eOperations name="reverse" eType="#//versioning/operations/AbstractOperation"/>
-        <eOperations name="canApply" eType="ecore:EDataType http://www.eclipse.org/emf/2002/Ecore#//EBoolean">
-          <eParameters name="project" eType="ecore:EClass ../../org.unicase.model/model/model.ecore#//Project"/>
-        </eOperations>
-        <eOperations name="isChange" eType="ecore:EDataType http://www.eclipse.org/emf/2002/Ecore#//EBoolean"/>
         <eStructuralFeatures xsi:type="ecore:EAttribute" name="name" eType="ecore:EDataType http://www.eclipse.org/emf/2002/Ecore#//EString"
             changeable="false" volatile="true" transient="true" derived="true"/>
         <eStructuralFeatures xsi:type="ecore:EAttribute" name="description" eType="ecore:EDataType http://www.eclipse.org/emf/2002/Ecore#//EString"
@@ -134,7 +121,6 @@
         <eStructuralFeatures xsi:type="ecore:EAttribute" name="clientDate" eType="ecore:EDataType http://www.eclipse.org/emf/2002/Ecore#//EDate"/>
       </eClassifiers>
       <eClassifiers xsi:type="ecore:EClass" name="CompositeOperation" eSuperTypes="#//versioning/operations/AbstractOperation">
-        <eOperations name="cannonize"/>
         <eStructuralFeatures xsi:type="ecore:EReference" name="subOperations" upperBound="-1"
             eType="#//versioning/operations/AbstractOperation" containment="true"/>
         <eStructuralFeatures xsi:type="ecore:EAttribute" name="compositeName" eType="ecore:EDataType http://www.eclipse.org/emf/2002/Ecore#//EString"/>

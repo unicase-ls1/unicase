@@ -12,7 +12,10 @@ import java.io.IOException;
 import java.io.InputStream;
 import java.io.InputStreamReader;
 import java.lang.reflect.InvocationTargetException;
+import java.util.ArrayList;
+import java.util.Arrays;
 import java.util.HashSet;
+import java.util.List;
 import java.util.Properties;
 import java.util.Set;
 
@@ -36,7 +39,6 @@ import org.unicase.emfstore.connection.rmi.RMIConnectionHandler;
 import org.unicase.emfstore.esmodel.EsmodelFactory;
 import org.unicase.emfstore.esmodel.ProjectHistory;
 import org.unicase.emfstore.esmodel.ServerSpace;
-import org.unicase.emfstore.esmodel.VersionInfo;
 import org.unicase.emfstore.esmodel.accesscontrol.ACUser;
 import org.unicase.emfstore.esmodel.accesscontrol.AccesscontrolFactory;
 import org.unicase.emfstore.esmodel.accesscontrol.roles.RolesFactory;
@@ -47,7 +49,14 @@ import org.unicase.emfstore.exceptions.StorageException;
 import org.unicase.emfstore.storage.ResourceStorage;
 import org.unicase.emfstore.taskmanager.TaskManager;
 import org.unicase.emfstore.taskmanager.tasks.CleanMemoryTask;
-import org.unicase.emfstore.update.UpdateController;
+import org.unicase.model.ModelFactory;
+import org.unicase.model.ModelPackage;
+import org.unicase.model.ModelVersion;
+
+import edu.tum.cs.cope.migration.execution.MigrationException;
+import edu.tum.cs.cope.migration.execution.Migrator;
+import edu.tum.cs.cope.migration.execution.MigratorRegistry;
+import edu.tum.cs.cope.migration.execution.ReleaseUtil;
 
 /**
  * The {@link EmfStoreController} is controlling startup and shutdown of the EmfStore.
@@ -67,7 +76,6 @@ public class EmfStoreController implements IApplication {
 	private Resource resource;
 
 	private static EmfStoreController instance;
-	private VersionInfo versionInfo;
 
 	private HistoryCache historyCache;
 
@@ -79,7 +87,7 @@ public class EmfStoreController implements IApplication {
 	public Object start(IApplicationContext context) throws EmfStoreException, FatalEmfStoreException {
 
 		if (instance != null) {
-			throw new FatalEmfStoreException("Another EmfStore Controller seems to be ruinning already!");
+			throw new FatalEmfStoreException("Another EmfStore Controller seems to be running already!");
 		}
 		instance = this;
 
@@ -88,10 +96,10 @@ public class EmfStoreController implements IApplication {
 		initLogging();
 
 		properties = initProperties();
-		this.serverSpace = initServerSpace();
-		versionInfo = initVersionInfo();
 
-		performNecessaryUpdates();
+		migrateModel();
+
+		this.serverSpace = initServerSpace();
 
 		historyCache = initHistoryCache();
 
@@ -138,57 +146,170 @@ public class EmfStoreController implements IApplication {
 		return connectionHandlers;
 	}
 
-	private void performNecessaryUpdates() throws FatalEmfStoreException {
-		int compareTo = versionInfo.getEmfStoreVersion().compareTo(EmfStoreImpl.getModelVersion());
-		if (compareTo < 0) {
-			System.out
-				.println("Your model is not up to date. Do you want to update now and did you backup your emfstore folder? (y/n)");
+	private void migrateModel() throws FatalEmfStoreException {
+		// check for legacy server space
+		File versionFile = new File(ServerConfiguration.getModelReleaseNumberFileName());
+		if (!versionFile.exists()) {
+			stampCurrentVersionNumber(ModelPackage.RELEASE_NUMBER);
+		}
 
-			byte[] buffer = new byte[1];
-			String input = "";
-			int read = 0;
+		// check if we need to migrate
+		URI versionFileUri = URI.createFileURI(ServerConfiguration.getModelReleaseNumberFileName());
+		ResourceSet resourceSet = new ResourceSetImpl();
+		Resource resource = resourceSet.getResource(versionFileUri, true);
+		EList<EObject> directContents = resource.getContents();
+		ModelVersion modelVersion = (ModelVersion) directContents.get(0);
+		if (modelVersion.getReleaseNumber() == ModelPackage.RELEASE_NUMBER) {
+			return;
+		}
 
-			try {
-				read = System.in.read(buffer, 0, 1);
-			} catch (IOException e) {
-				throw new FatalEmfStoreException("Cannot read from input", e);
+		// ask for confirmation
+		boolean doProcceed = askForConfirmationForMigration();
+		if (!doProcceed) {
+			String message = "Server shutting down, model update is mandatory.";
+			System.out.println(message);
+			throw new FatalEmfStoreException(message);
+		}
+
+		// migrate all versions of all projects
+		// we need to migrate
+		File serverSpaceDirectory = new File(ServerConfiguration.getServerHome());
+		// for all projects
+		for (File projectDirectory : serverSpaceDirectory.listFiles()) {
+			if (projectDirectory.getName().startsWith(ServerConfiguration.getProjectDirectoryPrefix())) {
+
+				convertInitialProjectState(modelVersion, projectDirectory);
+
+				File[] listFiles = projectDirectory.listFiles();
+
+				convertAllVersions(modelVersion, projectDirectory, listFiles);
+
+				convertAllBackupStates(modelVersion, projectDirectory, listFiles);
 			}
+		}
+		stampCurrentVersionNumber(ModelPackage.RELEASE_NUMBER);
+	}
 
-			input = new String(buffer, 0, read);
-			if (input.equalsIgnoreCase("y")) {
-				UpdateController updateController = new UpdateController();
-				updateController.updateServerSpace(serverSpace, versionInfo);
-			} else {
-				String message = "Server shutting down, model update is mandatory.";
-				System.out.println(message);
-				throw new FatalEmfStoreException(message);
+	private void convertInitialProjectState(ModelVersion modelVersion, File projectDirectory)
+		throws FatalEmfStoreException {
+		URI version0StateURI = URI.createFileURI(projectDirectory.getAbsolutePath() + File.separatorChar
+			+ ServerConfiguration.getProjectStatePrefix() + "0" + ServerConfiguration.FILE_EXTENSION_PROJECTSTATE);
+		try {
+			migrate(version0StateURI, new ArrayList<URI>(), modelVersion.getReleaseNumber());
+		} catch (MigrationException e1) {
+			throw new FatalEmfStoreException("Migration of project at " + projectDirectory + " failed!", e1);
+		}
+	}
+
+	private void convertAllBackupStates(ModelVersion modelVersion, File projectDirectory, File[] listFiles)
+		throws FatalEmfStoreException {
+		for (File backUpState : listFiles) {
+			if (backUpState.getName().startsWith(ServerConfiguration.getBackupStatePrefix())) {
+				URI projectURI = URI.createFileURI(backUpState.getAbsolutePath());
+				try {
+					migrate(projectURI, new ArrayList<URI>(), modelVersion.getReleaseNumber());
+				} catch (MigrationException e) {
+					throw new FatalEmfStoreException("Migration of project at " + projectDirectory + " failed!", e);
+				}
 			}
 		}
 	}
 
-	private VersionInfo initVersionInfo() throws FatalEmfStoreException {
-		VersionInfo versionInformation = null;
-		for (EObject content : resource.getContents()) {
-			if (content instanceof VersionInfo) {
-				versionInformation = (VersionInfo) content;
-				break;
+	private void convertAllVersions(ModelVersion modelVersion, File projectDirectory, File[] listFiles)
+		throws FatalEmfStoreException {
+		Arrays.sort(listFiles);
+		List<URI> changePackageURIs = new ArrayList<URI>();
+		for (File changePackageFile : listFiles) {
+			String changePackageName = changePackageFile.getName();
+			if (changePackageName.startsWith(ServerConfiguration.getChangePackageFilePrefix())) {
+				int versionSpec = parseVersionSpecFromFileName(changePackageName);
+				URI changePackageURI = URI.createFileURI(changePackageFile.getAbsolutePath());
+				changePackageURIs.add(changePackageURI);
+				String projectStateFilename = projectDirectory.getAbsolutePath() + File.separatorChar
+					+ ServerConfiguration.getProjectStatePrefix() + versionSpec
+					+ ServerConfiguration.FILE_EXTENSION_PROJECTSTATE;
+				File projectStateFile = new File(projectStateFilename);
+				if (projectStateFile.exists()) {
+					URI projectURI = URI.createFileURI(projectStateFilename);
+					try {
+						migrate(projectURI, changePackageURIs, modelVersion.getReleaseNumber());
+					} catch (MigrationException e) {
+						throw new FatalEmfStoreException("Migration of project at " + projectDirectory + " failed!", e);
+					}
+				}
+
 			}
+
+		}
+	}
+
+	private int parseVersionSpecFromFileName(String versionName) {
+		int startOfFileExtension = versionName.lastIndexOf(".");
+		int prefixLength = ServerConfiguration.getProjectStatePrefix().length();
+		String versionSpecString = versionName.substring(prefixLength, startOfFileExtension);
+		int versionSpec = Integer.parseInt(versionSpecString);
+		return versionSpec;
+	}
+
+	/**
+	 * Migrate the model instance if neccessary.
+	 * 
+	 * @param projectURI the uri of the project state
+	 * @param changesURI the uri of the local changes of the project state
+	 * @param sourceModelReleaseNumber
+	 * @throws ModelMigrationException
+	 */
+	private void migrate(URI projectURI, List<URI> changesURIs, int sourceModelReleaseNumber) throws MigrationException {
+		String namespaceURI = ReleaseUtil.getNamespaceURI(projectURI);
+		Migrator migrator = MigratorRegistry.getInstance().getMigrator(namespaceURI);
+		if (migrator == null) {
+			return;
+		}
+		List<URI> modelURIs = new ArrayList<URI>();
+		modelURIs.add(projectURI);
+		// MK: activate change migration here
+		// for (URI changeURI : changesURIs) {
+		// modelURIs.add(changeURI);
+		// }
+		migrator.migrate(modelURIs, sourceModelReleaseNumber, Integer.MAX_VALUE, new ConsoleProgressMonitor());
+	}
+
+	private void stampCurrentVersionNumber(int modelReleaseNumber) {
+		URI versionFileUri = URI.createFileURI(ServerConfiguration.getModelReleaseNumberFileName());
+		Resource versionResource = new ResourceSetImpl().createResource(versionFileUri);
+		ModelVersion modelVersion = ModelFactory.eINSTANCE.createModelVersion();
+		modelVersion.setReleaseNumber(modelReleaseNumber);
+		versionResource.getContents().add(modelVersion);
+		try {
+			versionResource.save(null);
+		} catch (IOException e) {
+			// MK Auto-generated catch block
+			e.printStackTrace();
+		}
+	}
+
+	/**
+	 * Ask for Confirmation for model migration.
+	 * 
+	 * @return true if user wants to proceed
+	 * @throws FatalEmfStoreException
+	 */
+	private boolean askForConfirmationForMigration() throws FatalEmfStoreException {
+		System.out
+			.println("Your model is not up to date. Do you want to update now and did you backup your emfstore folder? (y/n)");
+
+		byte[] buffer = new byte[1];
+		String input = "";
+		int read = 0;
+
+		try {
+			read = System.in.read(buffer, 0, 1);
+		} catch (IOException e) {
+			throw new FatalEmfStoreException("Cannot read from input", e);
 		}
 
-		// only happens after initial creation of serverspace
-		if (versionInformation == null) {
-			versionInformation = EsmodelFactory.eINSTANCE.createVersionInfo();
-			versionInformation.setEmfStoreVersionString(EmfStoreImpl.getModelVersion().toString());
-			resource.getContents().add(versionInformation);
-
-			try {
-				serverSpace.save();
-			} catch (IOException e) {
-				throw new FatalEmfStoreException(StorageException.NOSAVE, e);
-			}
-		}
-
-		return versionInformation;
+		input = new String(buffer, 0, read);
+		return input.equalsIgnoreCase("y");
 	}
 
 	/**

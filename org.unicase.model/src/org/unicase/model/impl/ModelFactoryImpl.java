@@ -14,6 +14,7 @@ import org.unicase.model.IdentifiableElement;
 import org.unicase.model.ModelElementId;
 import org.unicase.model.ModelFactory;
 import org.unicase.model.ModelPackage;
+import org.unicase.model.ModelVersion;
 import org.unicase.model.Project;
 
 /*
@@ -61,6 +62,8 @@ public class ModelFactoryImpl extends EFactoryImpl implements ModelFactory {
 			return createIdentifiableElement();
 		case ModelPackage.MODEL_ELEMENT_ID:
 			return createModelElementId();
+		case ModelPackage.MODEL_VERSION:
+			return createModelVersion();
 		default:
 			throw new IllegalArgumentException("The class '" + eClass.getName() + "' is not a valid classifier");
 		}
@@ -91,6 +94,16 @@ public class ModelFactoryImpl extends EFactoryImpl implements ModelFactory {
 	public ModelElementId createModelElementId() {
 		ModelElementIdImpl modelElementId = new ModelElementIdImpl();
 		return modelElementId;
+	}
+
+	/**
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 */
+	public ModelVersion createModelVersion() {
+		ModelVersionImpl modelVersion = new ModelVersionImpl();
+		return modelVersion;
 	}
 
 	/**

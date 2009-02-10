@@ -15,6 +15,7 @@ import org.unicase.workspace.ProjectSpace;
 import org.unicase.workspace.ServerInfo;
 import org.unicase.workspace.Usersession;
 import org.unicase.workspace.Workspace;
+import org.unicase.workspace.WorkspaceModelVersion;
 import org.unicase.workspace.WorkspacePackage;
 
 /*
@@ -90,6 +91,11 @@ public class WorkspaceAdapterFactory extends AdapterFactoryImpl {
 		@Override
 		public Adapter caseOperationComposite(OperationComposite object) {
 			return createOperationCompositeAdapter();
+		}
+
+		@Override
+		public Adapter caseWorkspaceModelVersion(WorkspaceModelVersion object) {
+			return createWorkspaceModelVersionAdapter();
 		}
 
 		@Override
@@ -175,6 +181,20 @@ public class WorkspaceAdapterFactory extends AdapterFactoryImpl {
 	 * @generated
 	 */
 	public Adapter createOperationCompositeAdapter() {
+		return null;
+	}
+
+	/**
+	 * Creates a new adapter for an object of class '{@link org.unicase.workspace.WorkspaceModelVersion <em>Model Version</em>}'.
+	 * <!-- begin-user-doc -->
+	 * This default implementation returns null so that we can easily ignore cases;
+	 * it's useful to ignore a case when inheritance will catch all the cases anyway.
+	 * <!-- end-user-doc -->
+	 * @return the new adapter.
+	 * @see org.unicase.workspace.WorkspaceModelVersion
+	 * @generated
+	 */
+	public Adapter createWorkspaceModelVersionAdapter() {
 		return null;
 	}
 

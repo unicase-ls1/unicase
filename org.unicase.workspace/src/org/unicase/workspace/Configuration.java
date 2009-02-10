@@ -22,6 +22,13 @@ import org.unicase.emfstore.esmodel.EsmodelFactory;
  */
 public final class Configuration {
 
+	private static final String MODEL_VERSION_FILENAME = "modelReleaseNumber";
+	private static final String UPS = ".ups";
+	private static final String UOC = ".uoc";
+	private static final String PROJECT_FOLDER = "project";
+	private static final String PS = "ps-";
+	private static final String UPF = ".upf";
+
 	private Configuration() {
 		// nothing to do
 	}
@@ -203,7 +210,7 @@ public final class Configuration {
 	 * @return the file extension
 	 */
 	public static String getProjectSpaceFileExtension() {
-		return ".ups";
+		return UPS;
 	}
 
 	/**
@@ -212,7 +219,7 @@ public final class Configuration {
 	 * @return the file extension
 	 */
 	public static String getOperationCompositeFileExtension() {
-		return ".uoc";
+		return UOC;
 	}
 
 	/**
@@ -221,7 +228,7 @@ public final class Configuration {
 	 * @return the folder name
 	 */
 	public static String getProjectFolderName() {
-		return "project";
+		return PROJECT_FOLDER;
 	}
 
 	/**
@@ -230,7 +237,7 @@ public final class Configuration {
 	 * @return the prefix
 	 */
 	public static String getProjectSpaceDirectoryPrefix() {
-		return "ps-";
+		return PS;
 	}
 
 	/**
@@ -239,6 +246,16 @@ public final class Configuration {
 	 * @return the file extension
 	 */
 	public static String getProjectFragmentFileExtension() {
-		return ".upf";
+		return UPF;
+	}
+
+	/**
+	 * Return the name of the model release number file. This file identifies the release number of the model in the
+	 * workspace.
+	 * 
+	 * @return the file name
+	 */
+	public static String getModelReleaseNumberFileName() {
+		return getWorkspaceDirectory() + MODEL_VERSION_FILENAME;
 	}
 }

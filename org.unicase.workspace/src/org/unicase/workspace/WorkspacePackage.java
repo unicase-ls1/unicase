@@ -407,6 +407,34 @@ public interface WorkspacePackage extends EPackage {
 	int OPERATION_COMPOSITE_FEATURE_COUNT = 1;
 
 	/**
+	 * The meta object id for the '{@link org.unicase.workspace.impl.WorkspaceModelVersionImpl <em>Model Version</em>}' class.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @see org.unicase.workspace.impl.WorkspaceModelVersionImpl
+	 * @see org.unicase.workspace.impl.WorkspacePackageImpl#getWorkspaceModelVersion()
+	 * @generated
+	 */
+	int WORKSPACE_MODEL_VERSION = 5;
+
+	/**
+	 * The feature id for the '<em><b>Model Release Number</b></em>' attribute.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 * @ordered
+	 */
+	int WORKSPACE_MODEL_VERSION__MODEL_RELEASE_NUMBER = 0;
+
+	/**
+	 * The number of structural features of the '<em>Model Version</em>' class.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 * @ordered
+	 */
+	int WORKSPACE_MODEL_VERSION_FEATURE_COUNT = 1;
+
+	/**
 	 * Returns the meta object for class ' {@link org.unicase.workspace.Workspace <em>Workspace</em>}'. <!--
 	 * begin-user-doc --> <!-- end-user-doc -->
 	 * 
@@ -765,6 +793,27 @@ public interface WorkspacePackage extends EPackage {
 	EReference getOperationComposite_Operations();
 
 	/**
+	 * Returns the meta object for class '{@link org.unicase.workspace.WorkspaceModelVersion <em>Model Version</em>}'.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @return the meta object for class '<em>Model Version</em>'.
+	 * @see org.unicase.workspace.WorkspaceModelVersion
+	 * @generated
+	 */
+	EClass getWorkspaceModelVersion();
+
+	/**
+	 * Returns the meta object for the attribute '{@link org.unicase.workspace.WorkspaceModelVersion#getModelReleaseNumber <em>Model Release Number</em>}'.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @return the meta object for the attribute '<em>Model Release Number</em>'.
+	 * @see org.unicase.workspace.WorkspaceModelVersion#getModelReleaseNumber()
+	 * @see #getWorkspaceModelVersion()
+	 * @generated
+	 */
+	EAttribute getWorkspaceModelVersion_ModelReleaseNumber();
+
+	/**
 	 * Returns the factory that creates the instances of the model.
 	 * <!-- begin-user-doc --> <!-- end-user-doc -->
 	 * @return the factory that creates the instances of the model.
@@ -1069,6 +1118,25 @@ public interface WorkspacePackage extends EPackage {
 		 * @generated
 		 */
 		EReference OPERATION_COMPOSITE__OPERATIONS = eINSTANCE.getOperationComposite_Operations();
+
+		/**
+		 * The meta object literal for the '{@link org.unicase.workspace.impl.WorkspaceModelVersionImpl <em>Model Version</em>}' class.
+		 * <!-- begin-user-doc -->
+		 * <!-- end-user-doc -->
+		 * @see org.unicase.workspace.impl.WorkspaceModelVersionImpl
+		 * @see org.unicase.workspace.impl.WorkspacePackageImpl#getWorkspaceModelVersion()
+		 * @generated
+		 */
+		EClass WORKSPACE_MODEL_VERSION = eINSTANCE.getWorkspaceModelVersion();
+
+		/**
+		 * The meta object literal for the '<em><b>Model Release Number</b></em>' attribute feature.
+		 * <!-- begin-user-doc -->
+		 * <!-- end-user-doc -->
+		 * @generated
+		 */
+		EAttribute WORKSPACE_MODEL_VERSION__MODEL_RELEASE_NUMBER = eINSTANCE
+			.getWorkspaceModelVersion_ModelReleaseNumber();
 
 	}
 

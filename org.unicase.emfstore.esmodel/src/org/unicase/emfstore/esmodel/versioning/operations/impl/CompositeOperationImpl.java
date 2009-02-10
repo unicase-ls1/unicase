@@ -36,16 +36,6 @@ import org.unicase.model.Project;
  */
 public class CompositeOperationImpl extends AbstractOperationImpl implements CompositeOperation {
 
-	@Override
-	public boolean isChange() {
-		for (AbstractOperation abstractOperation : getSubOperations()) {
-			if (abstractOperation.isChange()) {
-				return true;
-			}
-		}
-		return false;
-	}
-
 	/**
 	 * The cached value of the '{@link #getSubOperations() <em>Sub Operations</em>}' containment reference list. <!--
 	 * begin-user-doc --> <!-- end-user-doc -->
@@ -57,18 +47,18 @@ public class CompositeOperationImpl extends AbstractOperationImpl implements Com
 	protected EList<AbstractOperation> subOperations;
 
 	/**
-	 * The default value of the '{@link #getCompositeName() <em>Composite Name</em>}' attribute.
-	 * <!-- begin-user-doc -->
+	 * The default value of the '{@link #getCompositeName() <em>Composite Name</em>}' attribute. <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
+	 * 
 	 * @see #getCompositeName()
 	 * @generated
 	 * @ordered
 	 */
 	protected static final String COMPOSITE_NAME_EDEFAULT = null;
 	/**
-	 * The cached value of the '{@link #getCompositeName() <em>Composite Name</em>}' attribute.
-	 * <!-- begin-user-doc -->
+	 * The cached value of the '{@link #getCompositeName() <em>Composite Name</em>}' attribute. <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
+	 * 
 	 * @see #getCompositeName()
 	 * @generated
 	 * @ordered
@@ -94,9 +84,9 @@ public class CompositeOperationImpl extends AbstractOperationImpl implements Com
 	protected String compositeDescription = COMPOSITE_DESCRIPTION_EDEFAULT;
 
 	/**
-	 * The default value of the '{@link #isReversed() <em>Reversed</em>}' attribute.
-	 * <!-- begin-user-doc --> <!--
+	 * The default value of the '{@link #isReversed() <em>Reversed</em>}' attribute. <!-- begin-user-doc --> <!--
 	 * end-user-doc -->
+	 * 
 	 * @see #isReversed()
 	 * @generated
 	 * @ordered
@@ -104,9 +94,9 @@ public class CompositeOperationImpl extends AbstractOperationImpl implements Com
 	protected static final boolean REVERSED_EDEFAULT = false;
 
 	/**
-	 * The cached value of the '{@link #isReversed() <em>Reversed</em>}' attribute.
-	 * <!-- begin-user-doc --> <!--
+	 * The cached value of the '{@link #isReversed() <em>Reversed</em>}' attribute. <!-- begin-user-doc --> <!--
 	 * end-user-doc -->
+	 * 
 	 * @see #isReversed()
 	 * @generated
 	 * @ordered
@@ -115,6 +105,7 @@ public class CompositeOperationImpl extends AbstractOperationImpl implements Com
 
 	/**
 	 * <!-- begin-user-doc --> <!-- end-user-doc -->
+	 * 
 	 * @generated
 	 */
 	protected CompositeOperationImpl() {
@@ -123,6 +114,7 @@ public class CompositeOperationImpl extends AbstractOperationImpl implements Com
 
 	/**
 	 * <!-- begin-user-doc --> <!-- end-user-doc -->
+	 * 
 	 * @generated
 	 */
 	@Override
@@ -132,6 +124,7 @@ public class CompositeOperationImpl extends AbstractOperationImpl implements Com
 
 	/**
 	 * <!-- begin-user-doc --> <!-- end-user-doc -->
+	 * 
 	 * @generated
 	 */
 	public EList<AbstractOperation> getSubOperations() {
@@ -144,6 +137,7 @@ public class CompositeOperationImpl extends AbstractOperationImpl implements Com
 
 	/**
 	 * <!-- begin-user-doc --> <!-- end-user-doc -->
+	 * 
 	 * @generated
 	 */
 	public String getCompositeName() {
@@ -152,6 +146,7 @@ public class CompositeOperationImpl extends AbstractOperationImpl implements Com
 
 	/**
 	 * <!-- begin-user-doc --> <!-- end-user-doc -->
+	 * 
 	 * @generated
 	 */
 	public void setCompositeName(String newCompositeName) {
@@ -164,6 +159,7 @@ public class CompositeOperationImpl extends AbstractOperationImpl implements Com
 
 	/**
 	 * <!-- begin-user-doc --> <!-- end-user-doc -->
+	 * 
 	 * @generated
 	 */
 	public String getCompositeDescription() {
@@ -172,6 +168,7 @@ public class CompositeOperationImpl extends AbstractOperationImpl implements Com
 
 	/**
 	 * <!-- begin-user-doc --> <!-- end-user-doc -->
+	 * 
 	 * @generated
 	 */
 	public void setCompositeDescription(String newCompositeDescription) {
@@ -185,6 +182,7 @@ public class CompositeOperationImpl extends AbstractOperationImpl implements Com
 
 	/**
 	 * <!-- begin-user-doc --> <!-- end-user-doc -->
+	 * 
 	 * @generated
 	 */
 	public boolean isReversed() {
@@ -193,6 +191,7 @@ public class CompositeOperationImpl extends AbstractOperationImpl implements Com
 
 	/**
 	 * <!-- begin-user-doc --> <!-- end-user-doc -->
+	 * 
 	 * @generated
 	 */
 	public void setReversed(boolean newReversed) {
@@ -218,6 +217,7 @@ public class CompositeOperationImpl extends AbstractOperationImpl implements Com
 
 	/**
 	 * <!-- begin-user-doc --> <!-- end-user-doc -->
+	 * 
 	 * @generated
 	 */
 	@Override
@@ -231,6 +231,7 @@ public class CompositeOperationImpl extends AbstractOperationImpl implements Com
 
 	/**
 	 * <!-- begin-user-doc --> <!-- end-user-doc -->
+	 * 
 	 * @generated
 	 */
 	@Override
@@ -250,6 +251,7 @@ public class CompositeOperationImpl extends AbstractOperationImpl implements Com
 
 	/**
 	 * <!-- begin-user-doc --> <!-- end-user-doc -->
+	 * 
 	 * @generated
 	 */
 	@SuppressWarnings("unchecked")
@@ -275,6 +277,7 @@ public class CompositeOperationImpl extends AbstractOperationImpl implements Com
 
 	/**
 	 * <!-- begin-user-doc --> <!-- end-user-doc -->
+	 * 
 	 * @generated
 	 */
 	@Override
@@ -298,6 +301,7 @@ public class CompositeOperationImpl extends AbstractOperationImpl implements Com
 
 	/**
 	 * <!-- begin-user-doc --> <!-- end-user-doc -->
+	 * 
 	 * @generated
 	 */
 	@Override
@@ -319,6 +323,7 @@ public class CompositeOperationImpl extends AbstractOperationImpl implements Com
 
 	/**
 	 * <!-- begin-user-doc --> <!-- end-user-doc -->
+	 * 
 	 * @generated
 	 */
 	@Override

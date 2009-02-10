@@ -17,17 +17,12 @@
         <changes xsi:type="history:Set" element="model.ecore#//Project" featureName="name"
             dataValue="Project"/>
       </changes>
-      <changes xsi:type="history:CreateChild" target="model.ecore#//Project" element="model.ecore#//Project/addModelElement"
-          referenceName="eOperations">
-        <changes xsi:type="history:Set" element="model.ecore#//Project/addModelElement"
-            featureName="name" dataValue="addModelElement"/>
+      <changes xsi:type="history:CreateChild" target="model.ecore#//Project" referenceName="eOperations">
+        <changes xsi:type="history:Set" featureName="name" dataValue="addModelElement"/>
       </changes>
-      <changes xsi:type="history:CreateChild" target="model.ecore#//Project" element="model.ecore#//Project/contains"
-          referenceName="eOperations">
-        <changes xsi:type="history:Set" element="model.ecore#//Project/contains" featureName="name"
-            dataValue="contains"/>
-        <changes xsi:type="history:Set" element="model.ecore#//Project/contains" featureName="eType"
-            referenceValue="http://www.eclipse.org/emf/2002/Ecore#//EBoolean"/>
+      <changes xsi:type="history:CreateChild" target="model.ecore#//Project" referenceName="eOperations">
+        <changes xsi:type="history:Set" featureName="name" dataValue="contains"/>
+        <changes xsi:type="history:Set" featureName="eType" referenceValue="http://www.eclipse.org/emf/2002/Ecore#//EBoolean"/>
       </changes>
       <changes xsi:type="history:CreateChild" target="model.ecore#/" element="model.ecore#//UniqueIdentifier"
           referenceName="eClassifiers">
@@ -62,11 +57,9 @@
             referenceValue="model.ecore#//IdentifiableElement"/>
       </changes>
       <changes xsi:type="history:CreateChild" target="model.ecore#//ModelElement"
-          element="model.ecore#//ModelElement/getProject" referenceName="eOperations">
-        <changes xsi:type="history:Set" element="model.ecore#//ModelElement/getProject"
-            featureName="name" dataValue="getProject"/>
-        <changes xsi:type="history:Set" element="model.ecore#//ModelElement/getProject"
-            featureName="eType" referenceValue="model.ecore#//Project"/>
+          referenceName="eOperations">
+        <changes xsi:type="history:Set" featureName="name" dataValue="getProject"/>
+        <changes xsi:type="history:Set" featureName="eType" referenceValue="model.ecore#//Project"/>
       </changes>
       <changes xsi:type="history:CreateChild" target="model.ecore#//ModelElement"
           element="model.ecore#//ModelElement/name" referenceName="eStructuralFeatures">
@@ -169,107 +162,61 @@
         <changes xsi:type="history:Set" element="model.ecore#//ModelElement/state"
             featureName="eType" referenceValue="http://www.eclipse.org/emf/2002/Ecore#//EString"/>
       </changes>
-      <changes xsi:type="history:CreateChild" target="model.ecore#//Project/addModelElement"
-          element="model.ecore#//Project/addModelElement/modelElement" referenceName="eParameters">
-        <changes xsi:type="history:Set" element="model.ecore#//Project/addModelElement/modelElement"
-            featureName="name" dataValue="modelElement"/>
-        <changes xsi:type="history:Set" element="model.ecore#//Project/addModelElement/modelElement"
-            featureName="eType" referenceValue="model.ecore#//ModelElement"/>
+      <changes xsi:type="history:CreateChild" referenceName="eParameters">
+        <changes xsi:type="history:Set" featureName="name" dataValue="modelElement"/>
+        <changes xsi:type="history:Set" featureName="eType" referenceValue="model.ecore#//ModelElement"/>
       </changes>
-      <changes xsi:type="history:CreateChild" target="model.ecore#//Project" element="model.ecore#//Project/getAllModelElements"
-          referenceName="eOperations">
-        <changes xsi:type="history:Set" element="model.ecore#//Project/getAllModelElements"
-            featureName="name" dataValue="getAllModelElements"/>
-        <changes xsi:type="history:Set" element="model.ecore#//Project/getAllModelElements"
-            featureName="ordered" dataValue="false"/>
-        <changes xsi:type="history:Set" element="model.ecore#//Project/getAllModelElements"
-            featureName="upperBound" dataValue="-1"/>
-        <changes xsi:type="history:Set" element="model.ecore#//Project/getAllModelElements"
-            featureName="eType" referenceValue="model.ecore#//ModelElement"/>
+      <changes xsi:type="history:CreateChild" target="model.ecore#//Project" referenceName="eOperations">
+        <changes xsi:type="history:Set" featureName="name" dataValue="getAllModelElements"/>
+        <changes xsi:type="history:Set" featureName="ordered" dataValue="false"/>
+        <changes xsi:type="history:Set" featureName="upperBound" dataValue="-1"/>
+        <changes xsi:type="history:Set" featureName="eType" referenceValue="model.ecore#//ModelElement"/>
       </changes>
-      <changes xsi:type="history:CreateChild" target="model.ecore#//Project" element="model.ecore#//Project/getAllModelElementsbyClass"
-          referenceName="eOperations">
-        <changes xsi:type="history:Set" element="model.ecore#//Project/getAllModelElementsbyClass"
-            featureName="name" dataValue="getAllModelElementsbyClass"/>
-        <changes xsi:type="history:Set" element="model.ecore#//Project/getAllModelElementsbyClass"
-            featureName="ordered" dataValue="false"/>
-        <changes xsi:type="history:Set" element="model.ecore#//Project/getAllModelElementsbyClass"
-            featureName="upperBound" dataValue="-1"/>
-        <changes xsi:type="history:Set" element="model.ecore#//Project/getAllModelElementsbyClass"
-            featureName="eType" referenceValue="model.ecore#//ModelElement"/>
+      <changes xsi:type="history:CreateChild" target="model.ecore#//Project" referenceName="eOperations">
+        <changes xsi:type="history:Set" featureName="name" dataValue="getAllModelElementsbyClass"/>
+        <changes xsi:type="history:Set" featureName="ordered" dataValue="false"/>
+        <changes xsi:type="history:Set" featureName="upperBound" dataValue="-1"/>
+        <changes xsi:type="history:Set" featureName="eType" referenceValue="model.ecore#//ModelElement"/>
       </changes>
-      <changes xsi:type="history:CreateChild" target="model.ecore#//Project/getAllModelElementsbyClass"
-          element="model.ecore#//Project/getAllModelElementsbyClass/T" referenceName="eTypeParameters">
-        <changes xsi:type="history:Set" element="model.ecore#//Project/getAllModelElementsbyClass/T"
-            featureName="name" dataValue="T"/>
+      <changes xsi:type="history:CreateChild" referenceName="eTypeParameters">
+        <changes xsi:type="history:Set" featureName="name" dataValue="T"/>
       </changes>
-      <changes xsi:type="history:CreateChild" target="model.ecore#//Project/getAllModelElementsbyClass/T"
-          element="model.ecore#//Project/getAllModelElementsbyClass/T/@eBounds.0"
-          referenceName="eBounds">
-        <changes xsi:type="history:Set" element="model.ecore#//Project/getAllModelElementsbyClass/T/@eBounds.0"
-            featureName="eClassifier" referenceValue="model.ecore#//ModelElement"/>
+      <changes xsi:type="history:CreateChild" referenceName="eBounds">
+        <changes xsi:type="history:Set" featureName="eClassifier" referenceValue="model.ecore#//ModelElement"/>
       </changes>
-      <changes xsi:type="history:CreateChild" target="model.ecore#//Project/getAllModelElementsbyClass"
-          element="model.ecore#//Project/getAllModelElementsbyClass/modelElementClass"
-          referenceName="eParameters">
-        <changes xsi:type="history:Set" element="model.ecore#//Project/getAllModelElementsbyClass/modelElementClass"
-            featureName="name" dataValue="modelElementClass"/>
-        <changes xsi:type="history:Set" element="model.ecore#//Project/getAllModelElementsbyClass/modelElementClass"
-            featureName="eType" referenceValue="http://www.eclipse.org/emf/2002/Ecore#//EClass"/>
+      <changes xsi:type="history:CreateChild" referenceName="eParameters">
+        <changes xsi:type="history:Set" featureName="name" dataValue="modelElementClass"/>
+        <changes xsi:type="history:Set" featureName="eType" referenceValue="http://www.eclipse.org/emf/2002/Ecore#//EClass"/>
       </changes>
-      <changes xsi:type="history:CreateChild" target="model.ecore#//Project/getAllModelElementsbyClass"
-          element="model.ecore#//Project/getAllModelElementsbyClass/list" referenceName="eParameters">
-        <changes xsi:type="history:Set" element="model.ecore#//Project/getAllModelElementsbyClass/list"
-            featureName="name" dataValue="list"/>
-        <changes xsi:type="history:Set" element="model.ecore#//Project/getAllModelElementsbyClass/list"
-            featureName="upperBound" dataValue="-1"/>
-        <changes xsi:type="history:Set" element="model.ecore#//Project/getAllModelElementsbyClass/list"
-            featureName="eType" referenceValue="model.ecore#//ModelElement"/>
+      <changes xsi:type="history:CreateChild" referenceName="eParameters">
+        <changes xsi:type="history:Set" featureName="name" dataValue="list"/>
+        <changes xsi:type="history:Set" featureName="upperBound" dataValue="-1"/>
+        <changes xsi:type="history:Set" featureName="eType" referenceValue="model.ecore#//ModelElement"/>
       </changes>
-      <changes xsi:type="history:CreateChild" target="model.ecore#//Project" element="model.ecore#//Project/getModelElementsByClass"
-          referenceName="eOperations">
-        <changes xsi:type="history:Set" element="model.ecore#//Project/getModelElementsByClass"
-            featureName="name" dataValue="getModelElementsByClass"/>
-        <changes xsi:type="history:Set" element="model.ecore#//Project/getModelElementsByClass"
-            featureName="ordered" dataValue="false"/>
-        <changes xsi:type="history:Set" element="model.ecore#//Project/getModelElementsByClass"
-            featureName="upperBound" dataValue="-1"/>
-        <changes xsi:type="history:Set" element="model.ecore#//Project/getModelElementsByClass"
-            featureName="eType" referenceValue="model.ecore#//ModelElement"/>
+      <changes xsi:type="history:CreateChild" target="model.ecore#//Project" referenceName="eOperations">
+        <changes xsi:type="history:Set" featureName="name" dataValue="getModelElementsByClass"/>
+        <changes xsi:type="history:Set" featureName="ordered" dataValue="false"/>
+        <changes xsi:type="history:Set" featureName="upperBound" dataValue="-1"/>
+        <changes xsi:type="history:Set" featureName="eType" referenceValue="model.ecore#//ModelElement"/>
       </changes>
-      <changes xsi:type="history:CreateChild" target="model.ecore#//Project/getModelElementsByClass"
-          element="model.ecore#//Project/getModelElementsByClass/T" referenceName="eTypeParameters">
-        <changes xsi:type="history:Set" element="model.ecore#//Project/getModelElementsByClass/T"
-            featureName="name" dataValue="T"/>
+      <changes xsi:type="history:CreateChild" referenceName="eTypeParameters">
+        <changes xsi:type="history:Set" featureName="name" dataValue="T"/>
       </changes>
-      <changes xsi:type="history:CreateChild" target="model.ecore#//Project/getModelElementsByClass/T"
-          element="model.ecore#//Project/getModelElementsByClass/T/@eBounds.0" referenceName="eBounds">
-        <changes xsi:type="history:Set" element="model.ecore#//Project/getModelElementsByClass/T/@eBounds.0"
-            featureName="eClassifier" referenceValue="model.ecore#//ModelElement"/>
+      <changes xsi:type="history:CreateChild" referenceName="eBounds">
+        <changes xsi:type="history:Set" featureName="eClassifier" referenceValue="model.ecore#//ModelElement"/>
       </changes>
-      <changes xsi:type="history:CreateChild" target="model.ecore#//Project/getModelElementsByClass"
-          element="model.ecore#//Project/getModelElementsByClass/modelElementClass"
-          referenceName="eParameters">
-        <changes xsi:type="history:Set" element="model.ecore#//Project/getModelElementsByClass/modelElementClass"
-            featureName="name" dataValue="modelElementClass"/>
-        <changes xsi:type="history:Set" element="model.ecore#//Project/getModelElementsByClass/modelElementClass"
-            featureName="eType" referenceValue="http://www.eclipse.org/emf/2002/Ecore#//EClass"/>
+      <changes xsi:type="history:CreateChild" referenceName="eParameters">
+        <changes xsi:type="history:Set" featureName="name" dataValue="modelElementClass"/>
+        <changes xsi:type="history:Set" featureName="eType" referenceValue="http://www.eclipse.org/emf/2002/Ecore#//EClass"/>
       </changes>
-      <changes xsi:type="history:CreateChild" target="model.ecore#//Project/getModelElementsByClass"
-          element="model.ecore#//Project/getModelElementsByClass/list" referenceName="eParameters">
-        <changes xsi:type="history:Set" element="model.ecore#//Project/getModelElementsByClass/list"
-            featureName="name" dataValue="list"/>
-        <changes xsi:type="history:Set" element="model.ecore#//Project/getModelElementsByClass/list"
-            featureName="upperBound" dataValue="-1"/>
-        <changes xsi:type="history:Set" element="model.ecore#//Project/getModelElementsByClass/list"
-            featureName="eType" referenceValue="model.ecore#//ModelElement"/>
+      <changes xsi:type="history:CreateChild" referenceName="eParameters">
+        <changes xsi:type="history:Set" featureName="name" dataValue="list"/>
+        <changes xsi:type="history:Set" featureName="upperBound" dataValue="-1"/>
+        <changes xsi:type="history:Set" featureName="eType" referenceValue="model.ecore#//ModelElement"/>
       </changes>
-      <changes xsi:type="history:CreateChild" target="model.ecore#//Project/contains"
-          element="model.ecore#//Project/contains/modelElement" referenceName="eParameters">
-        <changes xsi:type="history:Set" element="model.ecore#//Project/contains/modelElement"
-            featureName="name" dataValue="modelElement"/>
-        <changes xsi:type="history:Set" element="model.ecore#//Project/contains/modelElement"
-            featureName="eType" referenceValue="model.ecore#//ModelElement"/>
+      <changes xsi:type="history:CreateChild" referenceName="eParameters">
+        <changes xsi:type="history:Set" featureName="name" dataValue="modelElement"/>
+        <changes xsi:type="history:Set" featureName="eType" referenceValue="model.ecore#//ModelElement"/>
       </changes>
       <changes xsi:type="history:CreateChild" target="model.ecore#/" element="model.ecore#//Annotation"
           referenceName="eClassifiers">
@@ -441,11 +388,9 @@
             referenceValue="model.ecore#//UniqueIdentifier"/>
       </changes>
       <changes xsi:type="history:CreateChild" target="model.ecore#//ModelElement"
-          element="model.ecore#//ModelElement/getModelElementId" referenceName="eOperations">
-        <changes xsi:type="history:Set" element="model.ecore#//ModelElement/getModelElementId"
-            featureName="name" dataValue="getModelElementId"/>
-        <changes xsi:type="history:Set" element="model.ecore#//ModelElement/getModelElementId"
-            featureName="eType" referenceValue="model.ecore#//ModelElementId"/>
+          referenceName="eOperations">
+        <changes xsi:type="history:Set" featureName="name" dataValue="getModelElementId"/>
+        <changes xsi:type="history:Set" featureName="eType" referenceValue="model.ecore#//ModelElementId"/>
       </changes>
       <changes xsi:type="history:CreateChild" target="model.ecore#/" element="model.ecore#//NonDomainElement"
           referenceName="eClassifiers">

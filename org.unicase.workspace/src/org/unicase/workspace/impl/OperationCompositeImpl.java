@@ -37,7 +37,6 @@ public class OperationCompositeImpl extends EObjectImpl implements OperationComp
 
 	/**
 	 * <!-- begin-user-doc --> <!-- end-user-doc -->
-	 * 
 	 * @generated
 	 */
 	protected OperationCompositeImpl() {
@@ -46,7 +45,6 @@ public class OperationCompositeImpl extends EObjectImpl implements OperationComp
 
 	/**
 	 * <!-- begin-user-doc --> <!-- end-user-doc -->
-	 * 
 	 * @generated
 	 */
 	@Override
@@ -56,7 +54,6 @@ public class OperationCompositeImpl extends EObjectImpl implements OperationComp
 
 	/**
 	 * <!-- begin-user-doc --> <!-- end-user-doc -->
-	 * 
 	 * @generated
 	 */
 	public EList<AbstractOperation> getOperations() {
@@ -69,7 +66,6 @@ public class OperationCompositeImpl extends EObjectImpl implements OperationComp
 
 	/**
 	 * <!-- begin-user-doc --> <!-- end-user-doc -->
-	 * 
 	 * @generated
 	 */
 	@Override
@@ -83,7 +79,6 @@ public class OperationCompositeImpl extends EObjectImpl implements OperationComp
 
 	/**
 	 * <!-- begin-user-doc --> <!-- end-user-doc -->
-	 * 
 	 * @generated
 	 */
 	@Override
@@ -97,7 +92,6 @@ public class OperationCompositeImpl extends EObjectImpl implements OperationComp
 
 	/**
 	 * <!-- begin-user-doc --> <!-- end-user-doc -->
-	 * 
 	 * @generated
 	 */
 	@SuppressWarnings("unchecked")
@@ -114,7 +108,6 @@ public class OperationCompositeImpl extends EObjectImpl implements OperationComp
 
 	/**
 	 * <!-- begin-user-doc --> <!-- end-user-doc -->
-	 * 
 	 * @generated
 	 */
 	@Override
@@ -129,7 +122,6 @@ public class OperationCompositeImpl extends EObjectImpl implements OperationComp
 
 	/**
 	 * <!-- begin-user-doc --> <!-- end-user-doc -->
-	 * 
 	 * @generated
 	 */
 	@Override

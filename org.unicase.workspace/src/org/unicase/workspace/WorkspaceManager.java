@@ -10,6 +10,7 @@ import java.io.IOException;
 import java.util.ArrayList;
 import java.util.List;
 
+import org.eclipse.core.runtime.NullProgressMonitor;
 import org.eclipse.emf.common.util.EList;
 import org.eclipse.emf.common.util.URI;
 import org.eclipse.emf.ecore.EObject;
@@ -19,6 +20,9 @@ import org.eclipse.emf.ecore.resource.impl.ResourceSetImpl;
 import org.eclipse.emf.transaction.RecordingCommand;
 import org.eclipse.emf.transaction.TransactionalEditingDomain;
 import org.unicase.model.ModelElement;
+import org.unicase.model.ModelFactory;
+import org.unicase.model.ModelPackage;
+import org.unicase.model.ModelVersion;
 import org.unicase.model.Project;
 import org.unicase.workspace.connectionmanager.AdminConnectionManager;
 import org.unicase.workspace.connectionmanager.ConnectionManager;
@@ -144,8 +148,11 @@ public final class WorkspaceManager {
 				// MK Auto-generated catch block
 				e.printStackTrace();
 			}
+			stampCurrentVersionNumber(ModelPackage.RELEASE_NUMBER);
+
 		} else {
 			// file exists load it
+			// check if a migration is needed
 			migrateModel();
 
 			resource = resourceSet.getResource(fileURI, true);
@@ -168,7 +175,38 @@ public final class WorkspaceManager {
 
 	}
 
+	private void stampCurrentVersionNumber(int modelReleaseNumber) {
+		URI versionFileUri = URI.createFileURI(Configuration.getModelReleaseNumberFileName());
+		Resource versionResource = new ResourceSetImpl().createResource(versionFileUri);
+		ModelVersion modelVersion = ModelFactory.eINSTANCE.createModelVersion();
+		modelVersion.setReleaseNumber(modelReleaseNumber);
+		versionResource.getContents().add(modelVersion);
+		try {
+			versionResource.save(Configuration.getResourceSaveOptions());
+		} catch (IOException e) {
+			// MK Auto-generated catch block
+			e.printStackTrace();
+		}
+	}
+
 	private void migrateModel() {
+		// check for legacy workspace
+		File versionFile = new File(Configuration.getModelReleaseNumberFileName());
+		if (!versionFile.exists()) {
+			stampCurrentVersionNumber(ModelPackage.RELEASE_NUMBER);
+		}
+
+		// check if we need to migrate
+		URI versionFileUri = URI.createFileURI(Configuration.getModelReleaseNumberFileName());
+		ResourceSet resourceSet = new ResourceSetImpl();
+		Resource resource = resourceSet.getResource(versionFileUri, true);
+		EList<EObject> directContents = resource.getContents();
+		ModelVersion modelVersion = (ModelVersion) directContents.get(0);
+		if (modelVersion.getReleaseNumber() == ModelPackage.RELEASE_NUMBER) {
+			return;
+		}
+
+		// we need to migrate
 		File workspaceFile = new File(Configuration.getWorkspaceDirectory());
 		for (File file : workspaceFile.listFiles()) {
 			if (file.getName().startsWith(Configuration.getProjectSpaceDirectoryPrefix())) {
@@ -188,15 +226,14 @@ public final class WorkspaceManager {
 				}
 				URI operationsURI = URI.createFileURI(operationsFilePath);
 				try {
-					if (false) {
-						migrate(projectURI, operationsURI);
-					}
+					migrate(projectURI, operationsURI, modelVersion.getReleaseNumber());
 				} catch (MigrationException e) {
 					WorkspaceUtil.logException("The migration of the project in projectspace at " + projectFilePath
 						+ " failed!", e);
 				}
 			}
 		}
+		stampCurrentVersionNumber(ModelPackage.RELEASE_NUMBER);
 	}
 
 	/**
@@ -204,9 +241,10 @@ public final class WorkspaceManager {
 	 * 
 	 * @param projectURI the uri of the project state
 	 * @param changesURI the uri of the local changes of the project state
+	 * @param sourceModelReleaseNumber
 	 * @throws ModelMigrationException
 	 */
-	private void migrate(URI projectURI, URI changesURI) throws MigrationException {
+	private void migrate(URI projectURI, URI changesURI, int sourceModelReleaseNumber) throws MigrationException {
 		String namespaceURI = ReleaseUtil.getNamespaceURI(projectURI);
 		Migrator migrator = MigratorRegistry.getInstance().getMigrator(namespaceURI);
 		if (migrator == null) {
@@ -214,8 +252,10 @@ public final class WorkspaceManager {
 		}
 		List<URI> modelURIs = new ArrayList<URI>();
 		modelURIs.add(projectURI);
-		modelURIs.add(changesURI);
-		migrator.migrate(modelURIs);
+		// MK: activate change migration here
+		// modelURIs.add(changesURI);
+		// MK: build in prgress monitor here
+		migrator.migrate(modelURIs, sourceModelReleaseNumber, Integer.MAX_VALUE, new NullProgressMonitor());
 	}
 
 	/**

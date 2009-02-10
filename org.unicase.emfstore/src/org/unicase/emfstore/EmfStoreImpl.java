@@ -191,7 +191,8 @@ public class EmfStoreImpl implements EmfStore {
 		if (lastVersion != 0 && lastVersion % x != 0) {
 			file.delete();
 		} else {
-			file.renameTo(new File(getProjectFolder(projectId) + "backup_" + getProjectFile(lastVersion)));
+			file.renameTo(new File(getProjectFolder(projectId) + ServerConfiguration.getBackupStatePrefix()
+				+ getProjectFile(lastVersion)));
 		}
 	}
 
@@ -534,8 +535,8 @@ public class EmfStoreImpl implements EmfStore {
 	}
 
 	private void createResourceForVersion(Version version, ProjectId projectId) throws FatalEmfStoreException {
-		String fileName = getProjectFolder(projectId) + "version-" + version.getPrimarySpec().getIdentifier()
-			+ ServerConfiguration.FILE_EXTENSION_VERSION;
+		String fileName = getProjectFolder(projectId) + ServerConfiguration.getVersionFilePrefix()
+			+ version.getPrimarySpec().getIdentifier() + ServerConfiguration.FILE_EXTENSION_VERSION;
 		saveInResource(version, fileName);
 	}
 
@@ -552,15 +553,18 @@ public class EmfStoreImpl implements EmfStore {
 	}
 
 	private String getProjectFile(int versionNumber) {
-		return "projectstate-" + versionNumber + ServerConfiguration.FILE_EXTENSION_PROJECTSTATE;
+		return ServerConfiguration.getProjectStatePrefix() + versionNumber
+			+ ServerConfiguration.FILE_EXTENSION_PROJECTSTATE;
 	}
 
 	private String getChangePackageFile(int versionNumber) {
-		return "changepackage-" + versionNumber + ServerConfiguration.FILE_EXTENSION_CHANGEPACKAGE;
+		return ServerConfiguration.getChangePackageFilePrefix() + versionNumber
+			+ ServerConfiguration.FILE_EXTENSION_CHANGEPACKAGE;
 	}
 
 	private String getProjectFolder(ProjectId projectId) {
-		return ServerConfiguration.getServerHome() + "project-" + projectId.getId() + File.separatorChar;
+		return ServerConfiguration.getServerHome() + ServerConfiguration.getProjectDirectoryPrefix()
+			+ projectId.getId() + File.separatorChar;
 	}
 
 	private void saveInResource(EObject obj, String fileName) throws FatalEmfStoreException {

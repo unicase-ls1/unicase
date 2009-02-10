@@ -19,6 +19,18 @@ import org.osgi.framework.Bundle;
  */
 public final class ServerConfiguration {
 
+	private static final String BACKUPPROJECTSTATE_FILE_PREFIX = "backup_";
+
+	private static final String CHANGEPACKAGE_FILE_PREFIX = "changepackage-";
+
+	private static final String PROJECTSTATE_FILE_PREFIX = "projectstate-";
+
+	private static final String VERSION_FILE_PREFIX = "version-";
+
+	private static final String MODEL_VERSION_FILENAME = "modelReleaseNumber";
+
+	private static final String PROJECT_PREFIX = "project-";
+
 	/**
 	 * Constant for boolean true string.
 	 */
@@ -364,4 +376,60 @@ public final class ServerConfiguration {
 	public static String getServerMainFile() {
 		return getServerHome() + "storage" + FILE_EXTENSION_MAINSTORAGE;
 	}
+
+	/**
+	 * Return the name of the model release number file. This file identifies the release number of the model in the
+	 * workspace.
+	 * 
+	 * @return the file name
+	 */
+	public static String getModelReleaseNumberFileName() {
+		return getServerHome() + MODEL_VERSION_FILENAME;
+	}
+
+	/**
+	 * Return prefix for project directory name.
+	 * 
+	 * @return the prefix string
+	 */
+	public static String getProjectDirectoryPrefix() {
+		return PROJECT_PREFIX;
+	}
+
+	/**
+	 * Return prefix for version file name.
+	 * 
+	 * @return the prefix string
+	 */
+	public static String getVersionFilePrefix() {
+		return VERSION_FILE_PREFIX;
+	}
+
+	/**
+	 * Return prefix for projectstate file name.
+	 * 
+	 * @return the prefix string
+	 */
+	public static String getProjectStatePrefix() {
+		return PROJECTSTATE_FILE_PREFIX;
+	}
+
+	/**
+	 * Return prefix for change package file name.
+	 * 
+	 * @return the prefix string
+	 */
+	public static String getChangePackageFilePrefix() {
+		return CHANGEPACKAGE_FILE_PREFIX;
+	}
+
+	/**
+	 * Return prefix for the backup project state file name.
+	 * 
+	 * @return the prefix string
+	 */
+	public static String getBackupStatePrefix() {
+		return BACKUPPROJECTSTATE_FILE_PREFIX;
+	}
+
 }

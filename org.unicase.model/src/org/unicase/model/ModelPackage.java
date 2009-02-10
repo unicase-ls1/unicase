@@ -533,6 +533,34 @@ public interface ModelPackage extends EPackage {
 	int NON_DOMAIN_ELEMENT_FEATURE_COUNT = 0;
 
 	/**
+	 * The meta object id for the '{@link org.unicase.model.impl.ModelVersionImpl <em>Version</em>}' class.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @see org.unicase.model.impl.ModelVersionImpl
+	 * @see org.unicase.model.impl.ModelPackageImpl#getModelVersion()
+	 * @generated
+	 */
+	int MODEL_VERSION = 8;
+
+	/**
+	 * The feature id for the '<em><b>Release Number</b></em>' attribute.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 * @ordered
+	 */
+	int MODEL_VERSION__RELEASE_NUMBER = 0;
+
+	/**
+	 * The number of structural features of the '<em>Version</em>' class.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 * @ordered
+	 */
+	int MODEL_VERSION_FEATURE_COUNT = 1;
+
+	/**
 	 * Returns the meta object for class '{@link org.unicase.model.ModelElement <em>Element</em>}'.
 	 * <!-- begin-user-doc
 	 * --> <!-- end-user-doc -->
@@ -769,6 +797,27 @@ public interface ModelPackage extends EPackage {
 	EClass getNonDomainElement();
 
 	/**
+	 * Returns the meta object for class '{@link org.unicase.model.ModelVersion <em>Version</em>}'.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @return the meta object for class '<em>Version</em>'.
+	 * @see org.unicase.model.ModelVersion
+	 * @generated
+	 */
+	EClass getModelVersion();
+
+	/**
+	 * Returns the meta object for the attribute '{@link org.unicase.model.ModelVersion#getReleaseNumber <em>Release Number</em>}'.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @return the meta object for the attribute '<em>Release Number</em>'.
+	 * @see org.unicase.model.ModelVersion#getReleaseNumber()
+	 * @see #getModelVersion()
+	 * @generated
+	 */
+	EAttribute getModelVersion_ReleaseNumber();
+
+	/**
 	 * Returns the factory that creates the instances of the model.
 	 * <!-- begin-user-doc --> <!-- end-user-doc -->
 	 * @return the factory that creates the instances of the model.
@@ -979,6 +1028,24 @@ public interface ModelPackage extends EPackage {
 		 * @generated
 		 */
 		EClass NON_DOMAIN_ELEMENT = eINSTANCE.getNonDomainElement();
+
+		/**
+		 * The meta object literal for the '{@link org.unicase.model.impl.ModelVersionImpl <em>Version</em>}' class.
+		 * <!-- begin-user-doc -->
+		 * <!-- end-user-doc -->
+		 * @see org.unicase.model.impl.ModelVersionImpl
+		 * @see org.unicase.model.impl.ModelPackageImpl#getModelVersion()
+		 * @generated
+		 */
+		EClass MODEL_VERSION = eINSTANCE.getModelVersion();
+
+		/**
+		 * The meta object literal for the '<em><b>Release Number</b></em>' attribute feature.
+		 * <!-- begin-user-doc -->
+		 * <!-- end-user-doc -->
+		 * @generated
+		 */
+		EAttribute MODEL_VERSION__RELEASE_NUMBER = eINSTANCE.getModelVersion_ReleaseNumber();
 
 	}
 

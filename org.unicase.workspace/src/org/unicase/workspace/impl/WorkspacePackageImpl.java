@@ -7,7 +7,6 @@ package org.unicase.workspace.impl;
 
 import org.eclipse.emf.ecore.EAttribute;
 import org.eclipse.emf.ecore.EClass;
-import org.eclipse.emf.ecore.EOperation;
 import org.eclipse.emf.ecore.EPackage;
 import org.eclipse.emf.ecore.EReference;
 import org.eclipse.emf.ecore.impl.EPackageImpl;
@@ -23,6 +22,7 @@ import org.unicase.workspace.ServerInfo;
 import org.unicase.workspace.Usersession;
 import org.unicase.workspace.Workspace;
 import org.unicase.workspace.WorkspaceFactory;
+import org.unicase.workspace.WorkspaceModelVersion;
 import org.unicase.workspace.WorkspacePackage;
 
 /*
@@ -60,6 +60,13 @@ public class WorkspacePackageImpl extends EPackageImpl implements WorkspacePacka
 	 * @generated
 	 */
 	private EClass operationCompositeEClass = null;
+
+	/**
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 */
+	private EClass workspaceModelVersionEClass = null;
 
 	/**
 	 * Creates an instance of the model <b>Package</b>, registered with {@link org.eclipse.emf.ecore.EPackage.Registry
@@ -416,6 +423,24 @@ public class WorkspacePackageImpl extends EPackageImpl implements WorkspacePacka
 	}
 
 	/**
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 */
+	public EClass getWorkspaceModelVersion() {
+		return workspaceModelVersionEClass;
+	}
+
+	/**
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 */
+	public EAttribute getWorkspaceModelVersion_ModelReleaseNumber() {
+		return (EAttribute) workspaceModelVersionEClass.getEStructuralFeatures().get(0);
+	}
+
+	/**
 	 * <!-- begin-user-doc --> <!-- end-user-doc -->
 	 * @generated
 	 */
@@ -480,6 +505,9 @@ public class WorkspacePackageImpl extends EPackageImpl implements WorkspacePacka
 
 		operationCompositeEClass = createEClass(OPERATION_COMPOSITE);
 		createEReference(operationCompositeEClass, OPERATION_COMPOSITE__OPERATIONS);
+
+		workspaceModelVersionEClass = createEClass(WORKSPACE_MODEL_VERSION);
+		createEAttribute(workspaceModelVersionEClass, WORKSPACE_MODEL_VERSION__MODEL_RELEASE_NUMBER);
 	}
 
 	/**
@@ -541,12 +569,6 @@ public class WorkspacePackageImpl extends EPackageImpl implements WorkspacePacka
 			!IS_UNSETTABLE, IS_UNIQUE, !IS_DERIVED, IS_ORDERED);
 		getWorkspace_ActiveProjectSpace().getEKeys().add(theModelPackage.getIdentifiableElement_Identifier());
 
-		EOperation op = addEOperation(workspaceEClass, this.getProjectSpace(), "checkout", 0, 1, IS_UNIQUE, IS_ORDERED);
-		addEParameter(op, this.getUsersession(), "usersession", 0, 1, IS_UNIQUE, IS_ORDERED);
-		addEParameter(op, theEsmodelPackage.getProjectInfo(), "projectInfo", 0, 1, IS_UNIQUE, IS_ORDERED);
-
-		addEOperation(workspaceEClass, null, "save", 0, 1, IS_UNIQUE, IS_ORDERED);
-
 		initEClass(serverInfoEClass, ServerInfo.class, "ServerInfo", !IS_ABSTRACT, !IS_INTERFACE,
 			IS_GENERATED_INSTANCE_CLASS);
 		initEAttribute(getServerInfo_Name(), ecorePackage.getEString(), "name", null, 1, 1, ServerInfo.class,
@@ -587,13 +609,6 @@ public class WorkspacePackageImpl extends EPackageImpl implements WorkspacePacka
 			Usersession.class, !IS_TRANSIENT, !IS_VOLATILE, IS_CHANGEABLE, IS_COMPOSITE, IS_RESOLVE_PROXIES,
 			!IS_UNSETTABLE, IS_UNIQUE, !IS_DERIVED, IS_ORDERED);
 
-		addEOperation(usersessionEClass, ecorePackage.getEBoolean(), "isLoggedIn", 0, 1, IS_UNIQUE, IS_ORDERED);
-
-		addEOperation(usersessionEClass, null, "logIn", 0, 1, IS_UNIQUE, IS_ORDERED);
-
-		op = addEOperation(usersessionEClass, this.getProjectSpace(), "checkout", 0, 1, IS_UNIQUE, IS_ORDERED);
-		addEParameter(op, theEsmodelPackage.getProjectInfo(), "projectInfo", 0, 1, IS_UNIQUE, IS_ORDERED);
-
 		initEClass(projectSpaceEClass, ProjectSpace.class, "ProjectSpace", !IS_ABSTRACT, !IS_INTERFACE,
 			IS_GENERATED_INSTANCE_CLASS);
 		initEReference(getProjectSpace_Project(), theModelPackage.getProject(), null, "project", null, 0, 1,
@@ -632,32 +647,17 @@ public class WorkspacePackageImpl extends EPackageImpl implements WorkspacePacka
 			0, 1, ProjectSpace.class, !IS_TRANSIENT, !IS_VOLATILE, IS_CHANGEABLE, IS_COMPOSITE, IS_RESOLVE_PROXIES,
 			!IS_UNSETTABLE, IS_UNIQUE, !IS_DERIVED, IS_ORDERED);
 
-		op = addEOperation(projectSpaceEClass, theVersioningPackage.getChangePackage(), "commit", 0, 1, IS_UNIQUE,
-			IS_ORDERED);
-		addEParameter(op, theVersioningPackage.getLogMessage(), "logMessage", 0, 1, IS_UNIQUE, IS_ORDERED);
-
-		addEOperation(projectSpaceEClass, null, "update", 0, 1, IS_UNIQUE, IS_ORDERED);
-
-		op = addEOperation(projectSpaceEClass, theVersioningPackage.getChangePackage(), "update", 0, 1, IS_UNIQUE,
-			IS_ORDERED);
-		addEParameter(op, theVersioningPackage.getVersionSpec(), "version", 0, 1, IS_UNIQUE, IS_ORDERED);
-
-		addEOperation(projectSpaceEClass, null, "revert", 0, 1, IS_UNIQUE, IS_ORDERED);
-
-		addEOperation(projectSpaceEClass, null, "init", 0, 1, IS_UNIQUE, IS_ORDERED);
-
-		addEOperation(projectSpaceEClass, theEsmodelPackage.getProjectInfo(), "getProjectInfo", 0, 1, IS_UNIQUE,
-			IS_ORDERED);
-
-		op = addEOperation(projectSpaceEClass, theVersioningPackage.getPrimaryVersionSpec(), "resolveVersionSpec", 0,
-			1, IS_UNIQUE, IS_ORDERED);
-		addEParameter(op, theVersioningPackage.getVersionSpec(), "versionSpec", 0, 1, IS_UNIQUE, IS_ORDERED);
-
 		initEClass(operationCompositeEClass, OperationComposite.class, "OperationComposite", !IS_ABSTRACT,
 			!IS_INTERFACE, IS_GENERATED_INSTANCE_CLASS);
 		initEReference(getOperationComposite_Operations(), theOperationsPackage.getAbstractOperation(), null,
 			"operations", null, 0, -1, OperationComposite.class, !IS_TRANSIENT, !IS_VOLATILE, IS_CHANGEABLE,
 			IS_COMPOSITE, IS_RESOLVE_PROXIES, !IS_UNSETTABLE, IS_UNIQUE, !IS_DERIVED, IS_ORDERED);
+
+		initEClass(workspaceModelVersionEClass, WorkspaceModelVersion.class, "WorkspaceModelVersion", !IS_ABSTRACT,
+			!IS_INTERFACE, IS_GENERATED_INSTANCE_CLASS);
+		initEAttribute(getWorkspaceModelVersion_ModelReleaseNumber(), ecorePackage.getEInt(), "modelReleaseNumber",
+			null, 0, 1, WorkspaceModelVersion.class, !IS_TRANSIENT, !IS_VOLATILE, IS_CHANGEABLE, !IS_UNSETTABLE,
+			!IS_ID, IS_UNIQUE, !IS_DERIVED, IS_ORDERED);
 
 		// Create resource
 		createResource(eNS_URI);

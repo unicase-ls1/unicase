@@ -7,7 +7,6 @@ package org.unicase.emfstore.esmodel.versioning.operations.impl;
 
 import org.eclipse.emf.ecore.EAttribute;
 import org.eclipse.emf.ecore.EClass;
-import org.eclipse.emf.ecore.EOperation;
 import org.eclipse.emf.ecore.EPackage;
 import org.eclipse.emf.ecore.EReference;
 import org.eclipse.emf.ecore.EcorePackage;
@@ -693,16 +692,6 @@ public class OperationsPackageImpl extends EPackageImpl implements OperationsPac
 			AbstractOperation.class, !IS_TRANSIENT, !IS_VOLATILE, IS_CHANGEABLE, !IS_UNSETTABLE, !IS_ID, IS_UNIQUE,
 			!IS_DERIVED, IS_ORDERED);
 
-		EOperation op = addEOperation(abstractOperationEClass, null, "apply", 0, 1, IS_UNIQUE, IS_ORDERED);
-		addEParameter(op, theModelPackage.getProject(), "project", 0, 1, IS_UNIQUE, IS_ORDERED);
-
-		addEOperation(abstractOperationEClass, this.getAbstractOperation(), "reverse", 0, 1, IS_UNIQUE, IS_ORDERED);
-
-		op = addEOperation(abstractOperationEClass, ecorePackage.getEBoolean(), "canApply", 0, 1, IS_UNIQUE, IS_ORDERED);
-		addEParameter(op, theModelPackage.getProject(), "project", 0, 1, IS_UNIQUE, IS_ORDERED);
-
-		addEOperation(abstractOperationEClass, ecorePackage.getEBoolean(), "isChange", 0, 1, IS_UNIQUE, IS_ORDERED);
-
 		initEClass(compositeOperationEClass, CompositeOperation.class, "CompositeOperation", !IS_ABSTRACT,
 			!IS_INTERFACE, IS_GENERATED_INSTANCE_CLASS);
 		initEReference(getCompositeOperation_SubOperations(), this.getAbstractOperation(), null, "subOperations", null,
@@ -717,8 +706,6 @@ public class OperationsPackageImpl extends EPackageImpl implements OperationsPac
 		initEAttribute(getCompositeOperation_Reversed(), ecorePackage.getEBoolean(), "reversed", null, 0, 1,
 			CompositeOperation.class, !IS_TRANSIENT, !IS_VOLATILE, IS_CHANGEABLE, !IS_UNSETTABLE, !IS_ID, IS_UNIQUE,
 			!IS_DERIVED, IS_ORDERED);
-
-		addEOperation(compositeOperationEClass, null, "cannonize", 0, 1, IS_UNIQUE, IS_ORDERED);
 
 		initEClass(featureOperationEClass, FeatureOperation.class, "FeatureOperation", IS_ABSTRACT, !IS_INTERFACE,
 			IS_GENERATED_INSTANCE_CLASS);
