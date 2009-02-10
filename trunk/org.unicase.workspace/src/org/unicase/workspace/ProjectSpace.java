@@ -12,7 +12,6 @@ import java.util.List;
 import org.eclipse.emf.common.util.EList;
 import org.eclipse.emf.ecore.resource.ResourceSet;
 import org.unicase.emfstore.esmodel.ProjectId;
-import org.unicase.emfstore.esmodel.ProjectInfo;
 import org.unicase.emfstore.esmodel.versioning.ChangePackage;
 import org.unicase.emfstore.esmodel.versioning.LogMessage;
 import org.unicase.emfstore.esmodel.versioning.PrimaryVersionSpec;
@@ -372,30 +371,6 @@ public interface ProjectSpace extends IdentifiableElement {
 	PrimaryVersionSpec update(VersionSpec version) throws EmfStoreException;
 
 	/**
-	 * <!-- begin-user-doc --> Drop all changes to the local project. <!-- end-user-doc -->
-	 * 
-	 * @model
-	 * @generated
-	 */
-	void revert();
-
-	/**
-	 * <!-- begin-user-doc --> Initialize project space. Start change tracking. <!-- end-user-doc -->
-	 * 
-	 * @model
-	 * @generated
-	 */
-	void init();
-
-	/**
-	 * <!-- begin-user-doc --> Retrieve the project info. <!-- end-user-doc -->
-	 * 
-	 * @model kind="operation"
-	 * @generated
-	 */
-	ProjectInfo getProjectInfo();
-
-	/**
 	 * <!-- begin-user-doc --> Resolve a version spec to a primary version spec.
 	 * 
 	 * @param versionSpec the spec to resolve
@@ -516,4 +491,15 @@ public interface ProjectSpace extends IdentifiableElement {
 	 * @generated NOT
 	 */
 	List<AbstractOperation> getOperations();
+
+	/**
+	 * Initialize the project space and its resources.
+	 */
+	void init();
+
+	/**
+	 * Revert all local changes in the project space. Returns the state of the project to that of the project space base
+	 * version.
+	 */
+	void revert();
 } // ProjectContainer

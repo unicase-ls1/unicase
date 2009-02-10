@@ -22,14 +22,14 @@ import org.unicase.model.util.ProjectChangeObserver;
 public interface Project extends EObject, IAdaptable {
 
 	/**
-	 * Returns the value of the '<em><b>Model Elements</b></em>' containment reference list.
-	 * The list contents are of type {@link org.unicase.model.ModelElement}.
-	 * <!-- begin-user-doc -->
+	 * Returns the value of the '<em><b>Model Elements</b></em>' containment reference list. The list contents are of
+	 * type {@link org.unicase.model.ModelElement}. <!-- begin-user-doc -->
 	 * <p>
 	 * If the meaning of the '<em>Model Elements</em>' containment reference list isn't clear, there really should be
 	 * more of a description here...
 	 * </p>
 	 * <!-- end-user-doc -->
+	 * 
 	 * @return the value of the '<em>Model Elements</em>' containment reference list.
 	 * @see org.unicase.model.ModelPackage#getProject_ModelElements()
 	 * @model containment="true" resolveProxies="true" keys="identifier" ordered="false"
@@ -38,66 +38,50 @@ public interface Project extends EObject, IAdaptable {
 	EList<ModelElement> getModelElements();
 
 	/**
-	 * <!-- begin-user-doc --> Add a Model Element to the project as direct content. This is only necessary if the model
-	 * element is not contained in any other model element. <!-- end-user-doc -->
-	 * @model
-	 * @generated
-	 */
-	void addModelElement(ModelElement modelElement);
-
-	/**
-	 * <!-- begin-user-doc --> Return all model elements in the project including model elements transitively contained
-	 * by project. <!--end-user-doc -->
-	 * @model kind="operation" ordered="false"
-	 * @generated
-	 */
-	EList<ModelElement> getAllModelElements();
-
-	/**
-	 * <!-- begin-user-doc --> <!-- end-user-doc -->
-	 * @model ordered="false" listMany="true"
-	 * @generated
-	 */
-	<T extends ModelElement> EList<T> getAllModelElementsbyClass(EClass modelElementClass, EList<T> list);
-
-	/**
-	 * <!-- begin-user-doc --> <!-- end-user-doc -->
-	 * @model ordered="false" listMany="true"
-	 * @generated
-	 */
-	<T extends ModelElement> EList<T> getModelElementsByClass(EClass modelElementClass, EList<T> list);
-
-	/**
-	 * <!-- begin-user-doc --> Retrieve a list of model elements of a certain type in project.
+	 * Retrieve a list of ALL model elements of a certain type in project.
 	 * 
 	 * @param <T> a subtype of model element
 	 * @param modelElementClass the eclass (must be a subtype of model element)
 	 * @param list a list of model elements, can be emtpy, but must be of the same type as the modelElementClass
 	 *            indicates.
 	 * @param subclasses whether to also include all subclasses of the given EClass in the list
-	 * @return a list of model elements of the given type <!-- end-user-doc -->
-	 * @model ordered="false" listMany="true" subclasses ="false"
+	 * @return a list of model elements of the given type
 	 * @generated NOT
 	 */
 	<T extends ModelElement> EList<T> getAllModelElementsbyClass(EClass modelElementClass, EList<T> list,
 		Boolean subclasses);
 
 	/**
-	 * <!-- begin-user-doc --> Returns whether the project contains a model element with the same id. <!-- end-user-doc
-	 * -->
+	 * Retrieve a list of ALL model elements of a certain type in project.
 	 * 
-	 * @model
-	 * @generated
+	 * @param <T> a subtype of model element
+	 * @param modelElementClass the eclass (must be a subtype of model element)
+	 * @param list a list of model elements, can be emtpy, but must be of the same type as the modelElementClass
+	 *            indicates.
+	 * @return a list of model elements of the given type
+	 * @generated NOT
 	 */
-	boolean contains(ModelElement modelElement);
+	<T extends ModelElement> EList<T> getAllModelElementsbyClass(EClass modelElementClass, EList<T> list);
+
+	/**
+	 * Retrieve a list of model elements of a certain type in project that are directly contained in the project.
+	 * 
+	 * @param <T> a subtype of model element
+	 * @param modelElementClass the eclass (must be a subtype of model element)
+	 * @param list a list of model elements, can be emtpy, but must be of the same type as the modelElementClass
+	 *            indicates.
+	 * @return a list of model elements of the given type
+	 * @generated NOT
+	 */
+	<T extends ModelElement> EList<T> getModelElementsByClass(EClass modelElementClass, EList<T> list);
 
 	/**
 	 * Returns whether the project contains a model element with the same id.
 	 * 
-	 * @param modelElementId the id
+	 * @param modelElement the id
 	 * @return true if the project contains such a model element
 	 */
-	boolean contains(ModelElementId modelElementId);
+	boolean contains(ModelElement modelElement);
 
 	/**
 	 * Returns whether the project contains the exact same instance of the model element.
@@ -118,14 +102,14 @@ public interface Project extends EObject, IAdaptable {
 	/**
 	 * Add an observer to the project. Will be notified on project changes. See {@link ProjectChangeObserver}.
 	 * 
-	 * @param projectChangeObserver
+	 * @param projectChangeObserver the change observer
 	 */
 	void addProjectChangeObserver(ProjectChangeObserver projectChangeObserver);
 
 	/**
 	 * Remove an observer to the project. See {@link ProjectChangeObserver}.
 	 * 
-	 * @param projectChangeObserver
+	 * @param projectChangeObserver the change observer
 	 */
 	void removeProjectChangeObserver(ProjectChangeObserver projectChangeObserver);
 
@@ -135,4 +119,27 @@ public interface Project extends EObject, IAdaptable {
 	 * @param modelElement the model element to delete
 	 */
 	void deleteModelElement(ModelElement modelElement);
+
+	/**
+	 * Add a model element to the project.
+	 * 
+	 * @param newModelElement the new model element
+	 */
+	void addModelElement(ModelElement newModelElement);
+
+	/**
+	 * Returns whether the project contains a model element with the same id.
+	 * 
+	 * @param modelElementId the id
+	 * @return true if the project contains such a model element
+	 */
+	boolean contains(ModelElementId modelElementId);
+
+	/**
+	 * Get all model elements of a project.
+	 * 
+	 * @return a list of model elements
+	 */
+	EList<ModelElement> getAllModelElements();
+
 } // Project

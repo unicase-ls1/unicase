@@ -58,11 +58,6 @@
         <genFeatures property="None" children="true" createChild="true" ecoreFeature="ecore:EReference esmodel.ecore#//versioning/ChangePackage/operations"/>
         <genFeatures property="None" children="true" createChild="true" ecoreFeature="ecore:EReference esmodel.ecore#//versioning/ChangePackage/events"/>
         <genFeatures property="None" children="true" createChild="true" ecoreFeature="ecore:EReference esmodel.ecore#//versioning/ChangePackage/logMessage"/>
-        <genOperations ecoreOperation="esmodel.ecore#//versioning/ChangePackage/reverse"/>
-        <genOperations ecoreOperation="esmodel.ecore#//versioning/ChangePackage/apply">
-          <genParameters ecoreParameter="esmodel.ecore#//versioning/ChangePackage/apply/project"/>
-        </genOperations>
-        <genOperations ecoreOperation="esmodel.ecore#//versioning/ChangePackage/cannonize"/>
       </genClasses>
       <genClasses ecoreClass="esmodel.ecore#//versioning/HistoryInfo">
         <genFeatures notify="false" createChild="false" propertySortChoices="true"
@@ -99,21 +94,12 @@
               ecoreFeature="ecore:EReference esmodel.ecore#//versioning/operations/AbstractOperation/modelElementId"/>
           <genFeatures createChild="false" ecoreFeature="ecore:EAttribute esmodel.ecore#//versioning/operations/AbstractOperation/accepted"/>
           <genFeatures createChild="false" ecoreFeature="ecore:EAttribute esmodel.ecore#//versioning/operations/AbstractOperation/clientDate"/>
-          <genOperations ecoreOperation="esmodel.ecore#//versioning/operations/AbstractOperation/apply">
-            <genParameters ecoreParameter="esmodel.ecore#//versioning/operations/AbstractOperation/apply/project"/>
-          </genOperations>
-          <genOperations ecoreOperation="esmodel.ecore#//versioning/operations/AbstractOperation/reverse"/>
-          <genOperations ecoreOperation="esmodel.ecore#//versioning/operations/AbstractOperation/canApply">
-            <genParameters ecoreParameter="esmodel.ecore#//versioning/operations/AbstractOperation/canApply/project"/>
-          </genOperations>
-          <genOperations ecoreOperation="esmodel.ecore#//versioning/operations/AbstractOperation/isChange"/>
         </genClasses>
         <genClasses ecoreClass="esmodel.ecore#//versioning/operations/CompositeOperation">
           <genFeatures property="None" children="true" createChild="true" ecoreFeature="ecore:EReference esmodel.ecore#//versioning/operations/CompositeOperation/subOperations"/>
           <genFeatures createChild="false" ecoreFeature="ecore:EAttribute esmodel.ecore#//versioning/operations/CompositeOperation/compositeName"/>
           <genFeatures createChild="false" ecoreFeature="ecore:EAttribute esmodel.ecore#//versioning/operations/CompositeOperation/compositeDescription"/>
           <genFeatures createChild="false" ecoreFeature="ecore:EAttribute esmodel.ecore#//versioning/operations/CompositeOperation/reversed"/>
-          <genOperations ecoreOperation="esmodel.ecore#//versioning/operations/CompositeOperation/cannonize"/>
         </genClasses>
         <genClasses ecoreClass="esmodel.ecore#//versioning/operations/FeatureOperation">
           <genFeatures createChild="false" ecoreFeature="ecore:EAttribute esmodel.ecore#//versioning/operations/FeatureOperation/featureName"/>

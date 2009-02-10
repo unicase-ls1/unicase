@@ -186,6 +186,29 @@ public class WorkspaceItemProviderAdapterFactory extends WorkspaceAdapterFactory
 	}
 
 	/**
+	 * This keeps track of the one adapter used for all {@link org.unicase.workspace.WorkspaceModelVersion} instances.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 */
+	protected WorkspaceModelVersionItemProvider workspaceModelVersionItemProvider;
+
+	/**
+	 * This creates an adapter for a {@link org.unicase.workspace.WorkspaceModelVersion}.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 */
+	@Override
+	public Adapter createWorkspaceModelVersionAdapter() {
+		if (workspaceModelVersionItemProvider == null) {
+			workspaceModelVersionItemProvider = new WorkspaceModelVersionItemProvider(this);
+		}
+
+		return workspaceModelVersionItemProvider;
+	}
+
+	/**
 	 * This returns the root adapter factory that contains this factory.
 	 * <!-- begin-user-doc --> <!-- end-user-doc -->
 	 * @generated
@@ -287,6 +310,8 @@ public class WorkspaceItemProviderAdapterFactory extends WorkspaceAdapterFactory
 			projectSpaceItemProvider.dispose();
 		if (operationCompositeItemProvider != null)
 			operationCompositeItemProvider.dispose();
+		if (workspaceModelVersionItemProvider != null)
+			workspaceModelVersionItemProvider.dispose();
 	}
 
 }

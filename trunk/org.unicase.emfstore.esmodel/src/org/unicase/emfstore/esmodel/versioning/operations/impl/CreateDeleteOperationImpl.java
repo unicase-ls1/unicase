@@ -67,9 +67,9 @@ public class CreateDeleteOperationImpl extends AbstractOperationImpl implements 
 	}
 
 	/**
-	 * The default value of the '{@link #isDelete() <em>Delete</em>}' attribute. <!-- begin-user-doc --> <!--
+	 * The default value of the '{@link #isDelete() <em>Delete</em>}' attribute.
+	 * <!-- begin-user-doc --> <!--
 	 * end-user-doc -->
-	 * 
 	 * @see #isDelete()
 	 * @generated
 	 * @ordered
@@ -77,9 +77,9 @@ public class CreateDeleteOperationImpl extends AbstractOperationImpl implements 
 	protected static final boolean DELETE_EDEFAULT = false;
 
 	/**
-	 * The cached value of the '{@link #isDelete() <em>Delete</em>}' attribute. <!-- begin-user-doc --> <!--
+	 * The cached value of the '{@link #isDelete() <em>Delete</em>}' attribute.
+	 * <!-- begin-user-doc --> <!--
 	 * end-user-doc -->
-	 * 
 	 * @see #isDelete()
 	 * @generated
 	 * @ordered
@@ -108,7 +108,6 @@ public class CreateDeleteOperationImpl extends AbstractOperationImpl implements 
 
 	/**
 	 * <!-- begin-user-doc --> <!-- end-user-doc -->
-	 * 
 	 * @generated
 	 */
 	protected CreateDeleteOperationImpl() {
@@ -117,7 +116,6 @@ public class CreateDeleteOperationImpl extends AbstractOperationImpl implements 
 
 	/**
 	 * <!-- begin-user-doc --> <!-- end-user-doc -->
-	 * 
 	 * @generated
 	 */
 	@Override
@@ -127,7 +125,6 @@ public class CreateDeleteOperationImpl extends AbstractOperationImpl implements 
 
 	/**
 	 * <!-- begin-user-doc --> <!-- end-user-doc -->
-	 * 
 	 * @generated
 	 */
 	public boolean isDelete() {
@@ -136,7 +133,6 @@ public class CreateDeleteOperationImpl extends AbstractOperationImpl implements 
 
 	/**
 	 * <!-- begin-user-doc --> <!-- end-user-doc -->
-	 * 
 	 * @generated
 	 */
 	public void setDelete(boolean newDelete) {
@@ -149,7 +145,6 @@ public class CreateDeleteOperationImpl extends AbstractOperationImpl implements 
 
 	/**
 	 * <!-- begin-user-doc --> <!-- end-user-doc -->
-	 * 
 	 * @generated
 	 */
 	public ModelElement getModelElement() {
@@ -176,7 +171,6 @@ public class CreateDeleteOperationImpl extends AbstractOperationImpl implements 
 
 	/**
 	 * <!-- begin-user-doc --> <!-- end-user-doc -->
-	 * 
 	 * @generated
 	 */
 	public ModelElement basicGetModelElement() {
@@ -185,7 +179,6 @@ public class CreateDeleteOperationImpl extends AbstractOperationImpl implements 
 
 	/**
 	 * <!-- begin-user-doc --> <!-- end-user-doc -->
-	 * 
 	 * @generated
 	 */
 	public NotificationChain basicSetModelElement(ModelElement newModelElement, NotificationChain msgs) {
@@ -204,7 +197,6 @@ public class CreateDeleteOperationImpl extends AbstractOperationImpl implements 
 
 	/**
 	 * <!-- begin-user-doc --> <!-- end-user-doc -->
-	 * 
 	 * @generated
 	 */
 	public void setModelElement(ModelElement newModelElement) {
@@ -226,7 +218,6 @@ public class CreateDeleteOperationImpl extends AbstractOperationImpl implements 
 
 	/**
 	 * <!-- begin-user-doc --> <!-- end-user-doc -->
-	 * 
 	 * @generated
 	 */
 	public EList<ReferenceOperation> getSubOperations() {
@@ -239,7 +230,6 @@ public class CreateDeleteOperationImpl extends AbstractOperationImpl implements 
 
 	/**
 	 * <!-- begin-user-doc --> <!-- end-user-doc -->
-	 * 
 	 * @generated
 	 */
 	@Override
@@ -255,7 +245,6 @@ public class CreateDeleteOperationImpl extends AbstractOperationImpl implements 
 
 	/**
 	 * <!-- begin-user-doc --> <!-- end-user-doc -->
-	 * 
 	 * @generated
 	 */
 	@Override
@@ -275,7 +264,6 @@ public class CreateDeleteOperationImpl extends AbstractOperationImpl implements 
 
 	/**
 	 * <!-- begin-user-doc --> <!-- end-user-doc -->
-	 * 
 	 * @generated
 	 */
 	@SuppressWarnings("unchecked")
@@ -298,7 +286,6 @@ public class CreateDeleteOperationImpl extends AbstractOperationImpl implements 
 
 	/**
 	 * <!-- begin-user-doc --> <!-- end-user-doc -->
-	 * 
 	 * @generated
 	 */
 	@Override
@@ -319,7 +306,6 @@ public class CreateDeleteOperationImpl extends AbstractOperationImpl implements 
 
 	/**
 	 * <!-- begin-user-doc --> <!-- end-user-doc -->
-	 * 
 	 * @generated
 	 */
 	@Override
@@ -337,7 +323,6 @@ public class CreateDeleteOperationImpl extends AbstractOperationImpl implements 
 
 	/**
 	 * <!-- begin-user-doc --> <!-- end-user-doc -->
-	 * 
 	 * @generated
 	 */
 	@Override

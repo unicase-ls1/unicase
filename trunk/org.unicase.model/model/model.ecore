@@ -4,8 +4,6 @@
     xmlns:ecore="http://www.eclipse.org/emf/2002/Ecore" name="model"
     nsURI="http://unicase.org/model" nsPrefix="org.unicase.model">
   <eClassifiers xsi:type="ecore:EClass" name="ModelElement" abstract="true" eSuperTypes="#//IdentifiableElement">
-    <eOperations name="getProject" eType="#//Project"/>
-    <eOperations name="getModelElementId" eType="#//ModelElementId"/>
     <eStructuralFeatures xsi:type="ecore:EAttribute" name="name" eType="ecore:EDataType http://www.eclipse.org/emf/2002/Ecore#//EString">
       <eAnnotations source="org.unicase.ui.meeditor">
         <details key="priority" value="1.0"/>
@@ -55,33 +53,6 @@
         eKeys="#//IdentifiableElement/identifier"/>
   </eClassifiers>
   <eClassifiers xsi:type="ecore:EClass" name="Project">
-    <eOperations name="addModelElement">
-      <eParameters name="modelElement" eType="#//ModelElement"/>
-    </eOperations>
-    <eOperations name="getAllModelElements" ordered="false" upperBound="-1" eType="#//ModelElement"/>
-    <eOperations name="getAllModelElementsbyClass" ordered="false" upperBound="-1">
-      <eGenericType eTypeParameter="#//Project/getAllModelElementsbyClass/T"/>
-      <eTypeParameters name="T">
-        <eBounds eClassifier="#//ModelElement"/>
-      </eTypeParameters>
-      <eParameters name="modelElementClass" eType="ecore:EClass http://www.eclipse.org/emf/2002/Ecore#//EClass"/>
-      <eParameters name="list" upperBound="-1">
-        <eGenericType eTypeParameter="#//Project/getAllModelElementsbyClass/T"/>
-      </eParameters>
-    </eOperations>
-    <eOperations name="getModelElementsByClass" ordered="false" upperBound="-1">
-      <eGenericType eTypeParameter="#//Project/getModelElementsByClass/T"/>
-      <eTypeParameters name="T">
-        <eBounds eClassifier="#//ModelElement"/>
-      </eTypeParameters>
-      <eParameters name="modelElementClass" eType="ecore:EClass http://www.eclipse.org/emf/2002/Ecore#//EClass"/>
-      <eParameters name="list" upperBound="-1">
-        <eGenericType eTypeParameter="#//Project/getModelElementsByClass/T"/>
-      </eParameters>
-    </eOperations>
-    <eOperations name="contains" eType="ecore:EDataType http://www.eclipse.org/emf/2002/Ecore#//EBoolean">
-      <eParameters name="modelElement" eType="#//ModelElement"/>
-    </eOperations>
     <eStructuralFeatures xsi:type="ecore:EReference" name="modelElements" ordered="false"
         upperBound="-1" eType="#//ModelElement" containment="true" eKeys="#//IdentifiableElement/identifier"/>
   </eClassifiers>
@@ -110,6 +81,9 @@
   </eClassifiers>
   <eClassifiers xsi:type="ecore:EClass" name="ModelElementId" eSuperTypes="#//UniqueIdentifier"/>
   <eClassifiers xsi:type="ecore:EClass" name="NonDomainElement" abstract="true" interface="true"/>
+  <eClassifiers xsi:type="ecore:EClass" name="ModelVersion">
+    <eStructuralFeatures xsi:type="ecore:EAttribute" name="releaseNumber" eType="ecore:EDataType http://www.eclipse.org/emf/2002/Ecore#//EInt"/>
+  </eClassifiers>
   <eSubpackages name="organization" nsURI="http://unicase.org/model/organization"
       nsPrefix="org.unicase.model.organization">
     <eClassifiers xsi:type="ecore:EClass" name="User" eSuperTypes="#//organization/OrgUnit">

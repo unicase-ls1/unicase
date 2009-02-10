@@ -21,28 +21,9 @@
       <genFeatures property="None" notify="false" createChild="false" ecoreFeature="ecore:EReference model.ecore#//ModelElement/leafSection"/>
       <genFeatures property="None" createChild="false" ecoreFeature="ecore:EAttribute model.ecore#//ModelElement/state"/>
       <genFeatures property="None" children="true" createChild="true" ecoreFeature="ecore:EReference model.ecore#//ModelElement/appliedStereotypeInstances"/>
-      <genOperations ecoreOperation="model.ecore#//ModelElement/getProject"/>
-      <genOperations ecoreOperation="model.ecore#//ModelElement/getModelElementId"/>
     </genClasses>
     <genClasses ecoreClass="model.ecore#//Project">
       <genFeatures property="None" children="true" createChild="true" ecoreFeature="ecore:EReference model.ecore#//Project/modelElements"/>
-      <genOperations ecoreOperation="model.ecore#//Project/addModelElement">
-        <genParameters ecoreParameter="model.ecore#//Project/addModelElement/modelElement"/>
-      </genOperations>
-      <genOperations ecoreOperation="model.ecore#//Project/getAllModelElements"/>
-      <genOperations ecoreOperation="model.ecore#//Project/getAllModelElementsbyClass">
-        <genParameters ecoreParameter="model.ecore#//Project/getAllModelElementsbyClass/modelElementClass"/>
-        <genParameters ecoreParameter="model.ecore#//Project/getAllModelElementsbyClass/list"/>
-        <genTypeParameters ecoreTypeParameter="model.ecore#//Project/getAllModelElementsbyClass/T"/>
-      </genOperations>
-      <genOperations ecoreOperation="model.ecore#//Project/getModelElementsByClass">
-        <genParameters ecoreParameter="model.ecore#//Project/getModelElementsByClass/modelElementClass"/>
-        <genParameters ecoreParameter="model.ecore#//Project/getModelElementsByClass/list"/>
-        <genTypeParameters ecoreTypeParameter="model.ecore#//Project/getModelElementsByClass/T"/>
-      </genOperations>
-      <genOperations ecoreOperation="model.ecore#//Project/contains">
-        <genParameters ecoreParameter="model.ecore#//Project/contains/modelElement"/>
-      </genOperations>
     </genClasses>
     <genClasses image="false" ecoreClass="model.ecore#//UniqueIdentifier">
       <genFeatures property="Readonly" createChild="false" ecoreFeature="ecore:EAttribute model.ecore#//UniqueIdentifier/id"/>
@@ -58,6 +39,9 @@
     </genClasses>
     <genClasses ecoreClass="model.ecore#//ModelElementId"/>
     <genClasses image="false" ecoreClass="model.ecore#//NonDomainElement"/>
+    <genClasses ecoreClass="model.ecore#//ModelVersion">
+      <genFeatures createChild="false" ecoreFeature="ecore:EAttribute model.ecore#//ModelVersion/releaseNumber"/>
+    </genClasses>
     <nestedGenPackages prefix="Organization" basePackage="org.unicase.model" disposableProviderFactory="true"
         ecorePackage="model.ecore#//organization">
       <genClasses ecoreClass="model.ecore#//organization/User">

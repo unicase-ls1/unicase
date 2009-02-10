@@ -15,6 +15,7 @@ import org.unicase.model.IdentifiableElement;
 import org.unicase.model.ModelElement;
 import org.unicase.model.ModelElementId;
 import org.unicase.model.ModelPackage;
+import org.unicase.model.ModelVersion;
 import org.unicase.model.NonDomainElement;
 import org.unicase.model.Project;
 import org.unicase.model.UniqueIdentifier;
@@ -147,6 +148,13 @@ public class ModelSwitch<T> {
 				result = defaultCase(theEObject);
 			return result;
 		}
+		case ModelPackage.MODEL_VERSION: {
+			ModelVersion modelVersion = (ModelVersion) theEObject;
+			T result = caseModelVersion(modelVersion);
+			if (result == null)
+				result = defaultCase(theEObject);
+			return result;
+		}
 		default:
 			return defaultCase(theEObject);
 		}
@@ -256,6 +264,21 @@ public class ModelSwitch<T> {
 	 * @generated
 	 */
 	public T caseNonDomainElement(NonDomainElement object) {
+		return null;
+	}
+
+	/**
+	 * Returns the result of interpreting the object as an instance of '<em>Version</em>'.
+	 * <!-- begin-user-doc -->
+	 * This implementation returns null;
+	 * returning a non-null result will terminate the switch.
+	 * <!-- end-user-doc -->
+	 * @param object the target of the switch.
+	 * @return the result of interpreting the object as an instance of '<em>Version</em>'.
+	 * @see #doSwitch(org.eclipse.emf.ecore.EObject) doSwitch(EObject)
+	 * @generated
+	 */
+	public T caseModelVersion(ModelVersion object) {
 		return null;
 	}
 

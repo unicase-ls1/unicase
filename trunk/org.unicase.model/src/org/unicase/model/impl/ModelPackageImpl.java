@@ -7,11 +7,8 @@ package org.unicase.model.impl;
 
 import org.eclipse.emf.ecore.EAttribute;
 import org.eclipse.emf.ecore.EClass;
-import org.eclipse.emf.ecore.EGenericType;
-import org.eclipse.emf.ecore.EOperation;
 import org.eclipse.emf.ecore.EPackage;
 import org.eclipse.emf.ecore.EReference;
-import org.eclipse.emf.ecore.ETypeParameter;
 import org.eclipse.emf.ecore.impl.EPackageImpl;
 import org.eclipse.gmf.runtime.notation.NotationPackage;
 import org.unicase.model.Annotation;
@@ -21,6 +18,7 @@ import org.unicase.model.ModelElement;
 import org.unicase.model.ModelElementId;
 import org.unicase.model.ModelFactory;
 import org.unicase.model.ModelPackage;
+import org.unicase.model.ModelVersion;
 import org.unicase.model.NonDomainElement;
 import org.unicase.model.Project;
 import org.unicase.model.UniqueIdentifier;
@@ -105,6 +103,13 @@ public class ModelPackageImpl extends EPackageImpl implements ModelPackage {
 	 * @generated
 	 */
 	private EClass nonDomainElementEClass = null;
+
+	/**
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 */
+	private EClass modelVersionEClass = null;
 
 	/**
 	 * Creates an instance of the model <b>Package</b>, registered with {@link org.eclipse.emf.ecore.EPackage.Registry
@@ -434,6 +439,24 @@ public class ModelPackageImpl extends EPackageImpl implements ModelPackage {
 	}
 
 	/**
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 */
+	public EClass getModelVersion() {
+		return modelVersionEClass;
+	}
+
+	/**
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 */
+	public EAttribute getModelVersion_ReleaseNumber() {
+		return (EAttribute) modelVersionEClass.getEStructuralFeatures().get(0);
+	}
+
+	/**
 	 * <!-- begin-user-doc --> <!-- end-user-doc -->
 	 * @generated
 	 */
@@ -489,6 +512,9 @@ public class ModelPackageImpl extends EPackageImpl implements ModelPackage {
 		modelElementIdEClass = createEClass(MODEL_ELEMENT_ID);
 
 		nonDomainElementEClass = createEClass(NON_DOMAIN_ELEMENT);
+
+		modelVersionEClass = createEClass(MODEL_VERSION);
+		createEAttribute(modelVersionEClass, MODEL_VERSION__RELEASE_NUMBER);
 	}
 
 	/**
@@ -606,43 +632,11 @@ public class ModelPackageImpl extends EPackageImpl implements ModelPackage {
 			!IS_UNSETTABLE, IS_UNIQUE, !IS_DERIVED, IS_ORDERED);
 		getModelElement_AppliedStereotypeInstances().getEKeys().add(this.getIdentifiableElement_Identifier());
 
-		addEOperation(modelElementEClass, this.getProject(), "getProject", 0, 1, IS_UNIQUE, IS_ORDERED);
-
-		addEOperation(modelElementEClass, this.getModelElementId(), "getModelElementId", 0, 1, IS_UNIQUE, IS_ORDERED);
-
 		initEClass(projectEClass, Project.class, "Project", !IS_ABSTRACT, !IS_INTERFACE, IS_GENERATED_INSTANCE_CLASS);
 		initEReference(getProject_ModelElements(), this.getModelElement(), null, "modelElements", null, 0, -1,
 			Project.class, !IS_TRANSIENT, !IS_VOLATILE, IS_CHANGEABLE, IS_COMPOSITE, IS_RESOLVE_PROXIES,
 			!IS_UNSETTABLE, IS_UNIQUE, !IS_DERIVED, !IS_ORDERED);
 		getProject_ModelElements().getEKeys().add(this.getIdentifiableElement_Identifier());
-
-		EOperation op = addEOperation(projectEClass, null, "addModelElement", 0, 1, IS_UNIQUE, IS_ORDERED);
-		addEParameter(op, this.getModelElement(), "modelElement", 0, 1, IS_UNIQUE, IS_ORDERED);
-
-		addEOperation(projectEClass, this.getModelElement(), "getAllModelElements", 0, -1, IS_UNIQUE, !IS_ORDERED);
-
-		op = addEOperation(projectEClass, null, "getAllModelElementsbyClass", 0, -1, IS_UNIQUE, !IS_ORDERED);
-		ETypeParameter t1 = addETypeParameter(op, "T");
-		EGenericType g1 = createEGenericType(this.getModelElement());
-		t1.getEBounds().add(g1);
-		addEParameter(op, ecorePackage.getEClass(), "modelElementClass", 0, 1, IS_UNIQUE, IS_ORDERED);
-		g1 = createEGenericType(t1);
-		addEParameter(op, g1, "list", 0, -1, IS_UNIQUE, IS_ORDERED);
-		g1 = createEGenericType(t1);
-		initEOperation(op, g1);
-
-		op = addEOperation(projectEClass, null, "getModelElementsByClass", 0, -1, IS_UNIQUE, !IS_ORDERED);
-		t1 = addETypeParameter(op, "T");
-		g1 = createEGenericType(this.getModelElement());
-		t1.getEBounds().add(g1);
-		addEParameter(op, ecorePackage.getEClass(), "modelElementClass", 0, 1, IS_UNIQUE, IS_ORDERED);
-		g1 = createEGenericType(t1);
-		addEParameter(op, g1, "list", 0, -1, IS_UNIQUE, IS_ORDERED);
-		g1 = createEGenericType(t1);
-		initEOperation(op, g1);
-
-		op = addEOperation(projectEClass, ecorePackage.getEBoolean(), "contains", 0, 1, IS_UNIQUE, IS_ORDERED);
-		addEParameter(op, this.getModelElement(), "modelElement", 0, 1, IS_UNIQUE, IS_ORDERED);
 
 		initEClass(uniqueIdentifierEClass, UniqueIdentifier.class, "UniqueIdentifier", IS_ABSTRACT, !IS_INTERFACE,
 			IS_GENERATED_INSTANCE_CLASS);
@@ -677,6 +671,12 @@ public class ModelPackageImpl extends EPackageImpl implements ModelPackage {
 
 		initEClass(nonDomainElementEClass, NonDomainElement.class, "NonDomainElement", IS_ABSTRACT, IS_INTERFACE,
 			IS_GENERATED_INSTANCE_CLASS);
+
+		initEClass(modelVersionEClass, ModelVersion.class, "ModelVersion", !IS_ABSTRACT, !IS_INTERFACE,
+			IS_GENERATED_INSTANCE_CLASS);
+		initEAttribute(getModelVersion_ReleaseNumber(), ecorePackage.getEInt(), "releaseNumber", null, 0, 1,
+			ModelVersion.class, !IS_TRANSIENT, !IS_VOLATILE, IS_CHANGEABLE, !IS_UNSETTABLE, !IS_ID, IS_UNIQUE,
+			!IS_DERIVED, IS_ORDERED);
 
 		// Create resource
 		createResource(eNS_URI);
