@@ -62,6 +62,7 @@ public class BugReportItemProvider extends AnnotationItemProvider implements IEd
 			addDueDatePropertyDescriptor(object);
 			addEstimatePropertyDescriptor(object);
 			addEffortPropertyDescriptor(object);
+			addPriorityPropertyDescriptor(object);
 			addStatusPropertyDescriptor(object);
 			addSeverityPropertyDescriptor(object);
 			addResolutionPropertyDescriptor(object);
@@ -168,6 +169,20 @@ public class BugReportItemProvider extends AnnotationItemProvider implements IEd
 			.getRootAdapterFactory(), getResourceLocator(), getString("_UI_WorkItem_effort_feature"), getString(
 			"_UI_PropertyDescriptor_description", "_UI_WorkItem_effort_feature", "_UI_WorkItem_type"),
 			TaskPackage.Literals.WORK_ITEM__EFFORT, true, false, false, ItemPropertyDescriptor.INTEGRAL_VALUE_IMAGE,
+			null, null));
+	}
+
+	/**
+	 * This adds a property descriptor for the Priority feature.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 */
+	protected void addPriorityPropertyDescriptor(Object object) {
+		itemPropertyDescriptors.add(createItemPropertyDescriptor(((ComposeableAdapterFactory) adapterFactory)
+			.getRootAdapterFactory(), getResourceLocator(), getString("_UI_WorkItem_priority_feature"), getString(
+			"_UI_PropertyDescriptor_description", "_UI_WorkItem_priority_feature", "_UI_WorkItem_type"),
+			TaskPackage.Literals.WORK_ITEM__PRIORITY, true, false, false, ItemPropertyDescriptor.INTEGRAL_VALUE_IMAGE,
 			null, null));
 	}
 
@@ -282,6 +297,7 @@ public class BugReportItemProvider extends AnnotationItemProvider implements IEd
 		case BugPackage.BUG_REPORT__DUE_DATE:
 		case BugPackage.BUG_REPORT__ESTIMATE:
 		case BugPackage.BUG_REPORT__EFFORT:
+		case BugPackage.BUG_REPORT__PRIORITY:
 		case BugPackage.BUG_REPORT__CHECKED:
 		case BugPackage.BUG_REPORT__STATUS:
 		case BugPackage.BUG_REPORT__SEVERITY:

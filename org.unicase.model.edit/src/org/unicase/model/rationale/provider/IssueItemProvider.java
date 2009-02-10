@@ -63,6 +63,7 @@ public class IssueItemProvider extends AnnotationItemProvider implements IEditin
 			addDueDatePropertyDescriptor(object);
 			addEstimatePropertyDescriptor(object);
 			addEffortPropertyDescriptor(object);
+			addPriorityPropertyDescriptor(object);
 			addProposalsPropertyDescriptor(object);
 			addSolutionPropertyDescriptor(object);
 			addCriteriaPropertyDescriptor(object);
@@ -198,6 +199,20 @@ public class IssueItemProvider extends AnnotationItemProvider implements IEditin
 	}
 
 	/**
+	 * This adds a property descriptor for the Priority feature.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 */
+	protected void addPriorityPropertyDescriptor(Object object) {
+		itemPropertyDescriptors.add(createItemPropertyDescriptor(((ComposeableAdapterFactory) adapterFactory)
+			.getRootAdapterFactory(), getResourceLocator(), getString("_UI_WorkItem_priority_feature"), getString(
+			"_UI_PropertyDescriptor_description", "_UI_WorkItem_priority_feature", "_UI_WorkItem_type"),
+			TaskPackage.Literals.WORK_ITEM__PRIORITY, true, false, false, ItemPropertyDescriptor.INTEGRAL_VALUE_IMAGE,
+			null, null));
+	}
+
+	/**
 	 * This adds a property descriptor for the Proposals feature.
 	 * <!-- begin-user-doc --> <!-- end-user-doc -->
 	 * @generated
@@ -293,6 +308,7 @@ public class IssueItemProvider extends AnnotationItemProvider implements IEditin
 		case RationalePackage.ISSUE__DUE_DATE:
 		case RationalePackage.ISSUE__ESTIMATE:
 		case RationalePackage.ISSUE__EFFORT:
+		case RationalePackage.ISSUE__PRIORITY:
 		case RationalePackage.ISSUE__ACTIVITY:
 			fireNotifyChanged(new ViewerNotification(notification, notification.getNotifier(), false, true));
 			return;

@@ -17,13 +17,13 @@ import org.eclipse.emf.ecore.EObject;
  */
 public interface Checkable extends EObject {
 	/**
-	 * Returns the value of the '<em><b>Checked</b></em>' attribute. <!-- begin-user-doc -->
+	 * Returns the value of the '<em><b>Checked</b></em>' attribute.
+	 * <!-- begin-user-doc -->
 	 * <p>
 	 * If the meaning of the '<em>Checked</em>' attribute isn't clear, there really should be more of a description
 	 * here...
 	 * </p>
 	 * <!-- end-user-doc -->
-	 * 
 	 * @return the value of the '<em>Checked</em>' attribute.
 	 * @see #setChecked(boolean)
 	 * @see org.unicase.model.task.TaskPackage#getCheckable_Checked()

@@ -59,6 +59,7 @@ public class MilestoneItemProvider extends AnnotationItemProvider implements IEd
 			addDueDatePropertyDescriptor(object);
 			addEstimatePropertyDescriptor(object);
 			addEffortPropertyDescriptor(object);
+			addPriorityPropertyDescriptor(object);
 			addContainedModelElementsPropertyDescriptor(object);
 		}
 		return itemPropertyDescriptors;
@@ -166,6 +167,20 @@ public class MilestoneItemProvider extends AnnotationItemProvider implements IEd
 	}
 
 	/**
+	 * This adds a property descriptor for the Priority feature.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 */
+	protected void addPriorityPropertyDescriptor(Object object) {
+		itemPropertyDescriptors.add(createItemPropertyDescriptor(((ComposeableAdapterFactory) adapterFactory)
+			.getRootAdapterFactory(), getResourceLocator(), getString("_UI_WorkItem_priority_feature"), getString(
+			"_UI_PropertyDescriptor_description", "_UI_WorkItem_priority_feature", "_UI_WorkItem_type"),
+			TaskPackage.Literals.WORK_ITEM__PRIORITY, true, false, false, ItemPropertyDescriptor.INTEGRAL_VALUE_IMAGE,
+			null, null));
+	}
+
+	/**
 	 * This adds a property descriptor for the Contained Model Elements feature.
 	 * <!-- begin-user-doc --> <!--
 	 * end-user-doc -->
@@ -214,6 +229,7 @@ public class MilestoneItemProvider extends AnnotationItemProvider implements IEd
 		case TaskPackage.MILESTONE__DUE_DATE:
 		case TaskPackage.MILESTONE__ESTIMATE:
 		case TaskPackage.MILESTONE__EFFORT:
+		case TaskPackage.MILESTONE__PRIORITY:
 			fireNotifyChanged(new ViewerNotification(notification, notification.getNotifier(), false, true));
 			return;
 		}

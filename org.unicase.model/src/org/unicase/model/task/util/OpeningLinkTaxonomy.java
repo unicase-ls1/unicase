@@ -7,6 +7,7 @@ package org.unicase.model.task.util;
 
 import java.util.ArrayList;
 import java.util.HashSet;
+import java.util.Iterator;
 import java.util.Set;
 
 import org.eclipse.emf.common.util.EList;
@@ -17,6 +18,7 @@ import org.unicase.model.requirement.FunctionalRequirement;
 import org.unicase.model.requirement.Scenario;
 import org.unicase.model.requirement.UseCase;
 import org.unicase.model.task.Checkable;
+import org.unicase.model.task.WorkItem;
 import org.unicase.model.task.WorkPackage;
 
 /**
@@ -120,6 +122,23 @@ public class OpeningLinkTaxonomy {
 		}
 		leafOpeners.remove(modelElement);
 		return leafOpeners;
+	}
+
+	private int getEstimate(Set<ModelElement> leafOpeners) {
+		int estimate = 0;
+		Iterator<ModelElement> iterator = leafOpeners.iterator();
+		while (iterator.hasNext()) {
+			ModelElement next = iterator.next();
+			if (next instanceof WorkItem) {
+				estimate = estimate + ((WorkItem) next).getEstimate();
+			}
+		}
+		return estimate;
+	}
+
+	public int getEstimate(ModelElement input) {
+		Set<ModelElement> leafOpeners = getLeafOpeners(input);
+		return getEstimate(leafOpeners);
 	}
 
 }
