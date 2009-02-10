@@ -18,6 +18,7 @@ import org.unicase.model.requirement.FunctionalRequirement;
 import org.unicase.model.requirement.Scenario;
 import org.unicase.model.requirement.UseCase;
 import org.unicase.model.task.Checkable;
+import org.unicase.model.task.Milestone;
 import org.unicase.model.task.WorkItem;
 import org.unicase.model.task.WorkPackage;
 
@@ -58,7 +59,10 @@ public class OpeningLinkTaxonomy {
 		if (me instanceof Scenario) {
 			EList<UseCase> instantiatedUseCases = ((Scenario) me).getInstantiatedUseCases();
 			openers.addAll(instantiatedUseCases);
-
+		}
+		if (me instanceof Milestone) {
+			EList<ModelElement> containedModelElements = ((Milestone) me).getContainedModelElements();
+			openers.addAll(containedModelElements);
 		}
 		openers.remove(me);
 		return openers;
