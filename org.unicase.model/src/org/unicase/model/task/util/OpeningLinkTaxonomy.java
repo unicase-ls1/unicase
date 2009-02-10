@@ -14,6 +14,7 @@ import org.eclipse.emf.common.util.EList;
 import org.eclipse.emf.ecore.EObject;
 import org.unicase.model.Annotation;
 import org.unicase.model.ModelElement;
+import org.unicase.model.organization.OrgUnit;
 import org.unicase.model.requirement.FunctionalRequirement;
 import org.unicase.model.requirement.Scenario;
 import org.unicase.model.requirement.UseCase;
@@ -149,6 +150,53 @@ public class OpeningLinkTaxonomy {
 	public int getEstimate(ModelElement input) {
 		Set<ModelElement> leafOpeners = getLeafOpeners(input);
 		return getEstimate(leafOpeners);
+	}
+
+	/**
+	 * Gets all checkable of an modelelement which are not assignes.
+	 * 
+	 * @param me the modelelement
+	 * @return the opener
+	 */
+	public Set<Checkable> getUnassignedWorkItems(ModelElement me) {
+
+		Set<Checkable> checkable = new HashSet<Checkable>();
+
+		// then check its openers (hierarchical)
+		Set<ModelElement> openers = getLeafOpeners(me);
+		for (ModelElement opener : openers) {
+			if (opener instanceof Checkable && opener instanceof WorkItem) {
+				OrgUnit assignee2 = ((WorkItem) opener).getAssignee();
+				if (assignee2 == null) {
+					checkable.add((Checkable) opener);
+				}
+			}
+		}
+		return checkable;
+	}
+
+	/**
+	 * This goes through openers hierarchy of an modelelement and gathers all Assignables assigned to this Assignee.
+	 * 
+	 * @param me the model element
+	 * @param assignee OrgUnit assignee
+	 * @return The checkables
+	 */
+	public Set<Checkable> getWorkItems(ModelElement me, OrgUnit assignee) {
+
+		Set<Checkable> checkable = new HashSet<Checkable>();
+
+		// then check its openers (hierarchical)
+		Set<ModelElement> openers = getLeafOpeners(me);
+		for (ModelElement opener : openers) {
+			if (opener instanceof Checkable && opener instanceof WorkItem) {
+				OrgUnit assignee2 = ((WorkItem) opener).getAssignee();
+				if (assignee2 != null && assignee.equals(assignee2)) {
+					checkable.add((Checkable) opener);
+				}
+			}
+		}
+		return checkable;
 	}
 
 }
