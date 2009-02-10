@@ -14,6 +14,8 @@ import org.eclipse.emf.common.util.EList;
 import org.eclipse.emf.ecore.EObject;
 import org.unicase.model.Annotation;
 import org.unicase.model.ModelElement;
+import org.unicase.model.classes.Class;
+import org.unicase.model.classes.Method;
 import org.unicase.model.organization.OrgUnit;
 import org.unicase.model.requirement.FunctionalRequirement;
 import org.unicase.model.requirement.Scenario;
@@ -58,8 +60,10 @@ public class OpeningLinkTaxonomy {
 			openers.addAll(functionalRequirements);
 		}
 		if (me instanceof Scenario) {
-			EList<UseCase> instantiatedUseCases = ((Scenario) me).getInstantiatedUseCases();
-			openers.addAll(instantiatedUseCases);
+			EList<Class> participatingClasses = ((Scenario) me).getParticipatingClasses();
+			EList<Method> participatingMethods = ((Scenario) me).getParticipatingMethods();
+			openers.addAll(participatingClasses);
+			openers.addAll(participatingMethods);
 		}
 		if (me instanceof Milestone) {
 			EList<ModelElement> containedModelElements = ((Milestone) me).getContainedModelElements();
@@ -97,6 +101,14 @@ public class OpeningLinkTaxonomy {
 		if (modelElement instanceof UseCase) {
 			EList<Scenario> scenarios = ((UseCase) modelElement).getScenarios();
 			opened.addAll(scenarios);
+		}
+		if (modelElement instanceof Method) {
+			EList<Scenario> demoParticipations = ((Method) modelElement).getDemoParticipations();
+			opened.addAll(demoParticipations);
+		}
+		if (modelElement instanceof Class) {
+			EList<Scenario> demoParticipations = ((Class) modelElement).getDemoParticipations();
+			opened.addAll(demoParticipations);
 		}
 		opened.remove(modelElement);
 		return opened;
