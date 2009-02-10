@@ -41,7 +41,8 @@ public class HierarchyTabContentProvider extends AdapterFactoryContentProvider {
 	@Override
 	public Object[] getElements(Object object) {
 		if (object instanceof WorkPackage) {
-			return getElementsForWorkPackage(object);
+			Set<ModelElement> elementsForWorkPackage = getElementsForWorkPackage(object);
+			return elementsForWorkPackage.toArray(new Object[elementsForWorkPackage.size()]);
 
 		} else if (object instanceof ModelElement) {
 			return getElementsForModelElement(object);
@@ -58,15 +59,18 @@ public class HierarchyTabContentProvider extends AdapterFactoryContentProvider {
 	 * @param object WorkPackage
 	 * @return
 	 */
-	private Object[] getElementsForWorkPackage(Object object) {
+	private Set<ModelElement> getElementsForWorkPackage(Object object) {
 
 		Set<ModelElement> ret = new HashSet<ModelElement>();
 		WorkPackage workPackage = (WorkPackage) object;
 		List<WorkItem> containedWorkItems = workPackage.getContainedWorkItems();
 		for (WorkItem workItem : containedWorkItems) {
 			ret.addAll(workItem.getAnnotatedModelElements());
+			if (workItem instanceof WorkPackage) {
+				ret.addAll(getElementsForWorkPackage(workItem));
+			}
 		}
-		return ret.toArray(new Object[ret.size()]);
+		return ret;
 	}
 
 	/**

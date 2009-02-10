@@ -5,6 +5,8 @@
  */
 package org.unicase.ui.stem.views.statusview;
 
+import org.eclipse.emf.common.notify.Notification;
+import org.eclipse.emf.common.notify.impl.AdapterImpl;
 import org.eclipse.emf.edit.ui.dnd.LocalTransfer;
 import org.eclipse.jface.viewers.ColumnLabelProvider;
 import org.eclipse.jface.viewers.DoubleClickEvent;
@@ -23,8 +25,10 @@ import org.eclipse.swt.widgets.Composite;
 import org.eclipse.swt.widgets.Table;
 import org.eclipse.swt.widgets.TableColumn;
 import org.unicase.model.ModelElement;
+import org.unicase.model.Project;
 import org.unicase.model.task.util.CircularDependencyException;
 import org.unicase.model.task.util.MEState;
+import org.unicase.model.util.ProjectChangeObserver;
 import org.unicase.ui.common.TableViewerColumnSorter;
 import org.unicase.ui.common.util.ActionHelper;
 import org.unicase.ui.stem.views.AssignedToLabelProvider;
@@ -32,16 +36,20 @@ import org.unicase.ui.stem.views.iterationplanningview.TaskObjectLabelProvider;
 import org.unicase.ui.stem.views.statusview.dnd.FlatTabDragAdapter;
 import org.unicase.ui.stem.views.statusview.dnd.FlatTabDropAdapter;
 import org.unicase.ui.tableview.labelprovider.StatusLabelProvider;
+import org.unicase.workspace.ProjectSpace;
+import org.unicase.workspace.Workspace;
+import org.unicase.workspace.WorkspaceManager;
+import org.unicase.workspace.WorkspacePackage;
 
 /**
- * . This class provides contents of flat tab in Status view. It contains a TableViewer that shows all Checkables and
+ * This class provides contents of flat tab in Status view. It contains a TableViewer that shows all Checkables and
  * Assignalbes for a model element. These are collected recursively. For example, if a FR has some child FRs as its
  * refiningRequirements(), their Checkables and Assignables are also considered the parents Checkables and Assignables
  * and shown in flat tab of parent.
  * 
  * @author Hodaie
  */
-public class FlatTabComposite extends Composite {
+public class FlatTabComposite extends Composite implements ProjectChangeObserver {
 	/**
 	 * Sorter to sort a status view.
 	 * 
@@ -82,6 +90,8 @@ public class FlatTabComposite extends Composite {
 	private TableViewer tableViewer;
 	private FlatTabDropAdapter flatTabDropAdapter;
 	private FlatTabDragAdapter flatTabDragAdapter;
+	private AdapterImpl adapterImpl;
+	private Workspace workspace;
 
 	// //for future use maybe
 	// private ModelElement input;
@@ -96,6 +106,28 @@ public class FlatTabComposite extends Composite {
 		super(parent, style);
 		this.setLayout(new GridLayout());
 		createTable();
+		workspace = WorkspaceManager.getInstance().getCurrentWorkspace();
+		if (workspace.getActiveProjectSpace() != null) {
+			workspace.getActiveProjectSpace().getProject().addProjectChangeObserver(FlatTabComposite.this);
+		}
+		adapterImpl = new AdapterImpl() {
+			@Override
+			public void notifyChanged(Notification msg) {
+				if ((msg.getFeatureID(Workspace.class)) == WorkspacePackage.WORKSPACE__ACTIVE_PROJECT_SPACE) {
+
+					// remove old listeners
+					Object oldValue = msg.getOldValue();
+					if (oldValue instanceof ProjectSpace) {
+						((ProjectSpace) oldValue).getProject().removeProjectChangeObserver(FlatTabComposite.this);
+					}
+					// add listener to get notified when work items get deleted/added/changed
+					if (workspace.getActiveProjectSpace() != null) {
+						workspace.getActiveProjectSpace().getProject().addProjectChangeObserver(FlatTabComposite.this);
+					}
+				}
+			}
+		};
+		workspace.eAdapters().add(adapterImpl);
 	}
 
 	private void createTable() {
@@ -230,11 +262,71 @@ public class FlatTabComposite extends Composite {
 	public void setInput(ModelElement me, StatusView statusView) {
 		// this.input = me;
 		flatTabDropAdapter.setCurrentOpenMe(me, statusView);
-		flatTabDragAdapter.setCurrentOpenMe(me, statusView);
 		tableViewer.setInput(me);
 		for (TableColumn column : tableViewer.getTable().getColumns()) {
 			column.pack();
 		}
+	}
+
+	/**
+	 * {@inheritDoc}
+	 * 
+	 * @see org.unicase.model.util.ProjectChangeObserver#modelElementAdded(org.unicase.model.Project,
+	 *      org.unicase.model.ModelElement)
+	 */
+	public void modelElementAdded(Project project, ModelElement modelElement) {
+		tableViewer.refresh();
+	}
+
+	/**
+	 * {@inheritDoc}
+	 * 
+	 * @see org.unicase.model.util.ProjectChangeObserver#modelElementDeleteCompleted(org.unicase.model.ModelElement)
+	 */
+	public void modelElementDeleteCompleted(ModelElement modelElement) {
+		// nothing to do;
+
+	}
+
+	/**
+	 * {@inheritDoc}
+	 * 
+	 * @see org.unicase.model.util.ProjectChangeObserver#modelElementDeleteStarted(org.unicase.model.ModelElement)
+	 */
+	public void modelElementDeleteStarted(ModelElement modelElement) {
+		// nothing to do
+
+	}
+
+	/**
+	 * {@inheritDoc}
+	 * 
+	 * @see org.unicase.model.util.ProjectChangeObserver#modelElementRemoved(org.unicase.model.Project,
+	 *      org.unicase.model.ModelElement)
+	 */
+	public void modelElementRemoved(Project project, ModelElement modelElement) {
+		tableViewer.refresh();
+
+	}
+
+	/**
+	 * {@inheritDoc}
+	 * 
+	 * @see org.unicase.model.util.ProjectChangeObserver#notify(org.eclipse.emf.common.notify.Notification,
+	 *      org.unicase.model.Project, org.unicase.model.ModelElement)
+	 */
+	public void notify(Notification notification, Project project, ModelElement modelElement) {
+		tableViewer.refresh();
+	}
+
+	/**
+	 * @see org.eclipse.swt.widgets.Widget#dispose()
+	 */
+	@Override
+	public void dispose() {
+		workspace.eAdapters().remove(adapterImpl);
+		workspace.getActiveProjectSpace().getProject().removeProjectChangeObserver(FlatTabComposite.this);
+		super.dispose();
 	}
 
 }

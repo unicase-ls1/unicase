@@ -30,6 +30,13 @@ public class UserTabContentProvider extends AdapterFactoryContentProvider {
 	private ModelElement root;
 
 	/**
+	 * @return the root
+	 */
+	public ModelElement getRoot() {
+		return root;
+	}
+
+	/**
 	 * Constructor.
 	 */
 	public UserTabContentProvider() {
@@ -82,10 +89,10 @@ public class UserTabContentProvider extends AdapterFactoryContentProvider {
 	@Override
 	public boolean hasChildren(Object object) {
 		if (object instanceof NotAssigned) {
-			return getUnassignedWorkItems().length > 0;
+			return TaxonomyAccess.getInstance().getOpeningLinkTaxonomy().getUnassignedWorkItems(root).size() > 0;
 		}
 		if (object instanceof OrgUnit) {
-			return getWorkItems((OrgUnit) object).length > 0;
+			return TaxonomyAccess.getInstance().getOpeningLinkTaxonomy().getWorkItems(root, (OrgUnit) object).size() > 0;
 		} else {
 			return super.hasChildren(object);
 		}
@@ -98,56 +105,19 @@ public class UserTabContentProvider extends AdapterFactoryContentProvider {
 	@Override
 	public Object[] getChildren(Object object) {
 		if (object instanceof NotAssigned) {
-			return getUnassignedWorkItems();
+			Set<Checkable> unassignedWorkItems = TaxonomyAccess.getInstance().getOpeningLinkTaxonomy()
+				.getUnassignedWorkItems(root);
+			return unassignedWorkItems.toArray(new Object[unassignedWorkItems.size()]);
 		}
 		if (object instanceof OrgUnit) {
-			return getWorkItems((OrgUnit) object);
+			Set<Checkable> workItems = TaxonomyAccess.getInstance().getOpeningLinkTaxonomy().getWorkItems(root,
+				(OrgUnit) object);
+			return workItems.toArray(new Object[workItems.size()]);
 
 		} else {
 			return super.getChildren(object);
 		}
 
-	}
-
-	private Object[] getUnassignedWorkItems() {
-
-		Set<Checkable> checkable = new HashSet<Checkable>();
-
-		// then check its openers (hierarchical)
-		Set<ModelElement> openers = TaxonomyAccess.getInstance().getOpeningLinkTaxonomy().getLeafOpeners(root);
-		for (ModelElement opener : openers) {
-			if (opener instanceof Checkable && opener instanceof WorkItem) {
-				OrgUnit assignee2 = ((WorkItem) opener).getAssignee();
-				if (assignee2 == null) {
-					checkable.add((Checkable) opener);
-				}
-			}
-		}
-		return checkable.toArray(new Object[checkable.size()]);
-	}
-
-	/**
-	 * This goes through openers hierarchy and gathers all Assignables assigned to this Assignee. I think it would be
-	 * more convenient to change the model, so that any OrgUnit maintains a list of all its assigned tasks.
-	 * 
-	 * @param assignee OrgUnit assignee
-	 * @return
-	 */
-	private Object[] getWorkItems(OrgUnit assignee) {
-
-		Set<Checkable> checkable = new HashSet<Checkable>();
-
-		// then check its openers (hierarchical)
-		Set<ModelElement> openers = TaxonomyAccess.getInstance().getOpeningLinkTaxonomy().getLeafOpeners(root);
-		for (ModelElement opener : openers) {
-			if (opener instanceof Checkable && opener instanceof WorkItem) {
-				OrgUnit assignee2 = ((WorkItem) opener).getAssignee();
-				if (assignee2 != null && assignee.equals(assignee2)) {
-					checkable.add((Checkable) opener);
-				}
-			}
-		}
-		return checkable.toArray(new Object[checkable.size()]);
 	}
 
 	/**

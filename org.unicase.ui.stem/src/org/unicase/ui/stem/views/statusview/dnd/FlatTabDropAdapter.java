@@ -33,7 +33,6 @@ public class FlatTabDropAdapter extends DropTargetAdapter {
 
 	private ModelElement currentOpenME;
 	private ModelElement source;
-	private StatusView statusView;
 
 	/**
 	 * Constructor.
@@ -49,7 +48,6 @@ public class FlatTabDropAdapter extends DropTargetAdapter {
 	 */
 	public void setCurrentOpenMe(ModelElement currentME, StatusView statusView) {
 		this.currentOpenME = currentME;
-		this.statusView = statusView;
 	}
 
 	/**
@@ -107,7 +105,7 @@ public class FlatTabDropAdapter extends DropTargetAdapter {
 
 		});
 
-		statusView.setInput(currentOpenME);
+		// statusView.setInput(currentOpenME);
 
 	}
 

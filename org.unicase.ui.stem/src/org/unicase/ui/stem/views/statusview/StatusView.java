@@ -15,6 +15,8 @@ import java.util.Set;
 import org.eclipse.core.runtime.FileLocator;
 import org.eclipse.core.runtime.Path;
 import org.eclipse.core.runtime.Platform;
+import org.eclipse.emf.common.notify.Notification;
+import org.eclipse.emf.common.notify.impl.AdapterImpl;
 import org.eclipse.emf.edit.ui.dnd.LocalTransfer;
 import org.eclipse.jface.action.Action;
 import org.eclipse.jface.action.IToolBarManager;
@@ -44,13 +46,18 @@ import org.eclipse.swt.widgets.Widget;
 import org.eclipse.ui.IActionBars;
 import org.eclipse.ui.part.ViewPart;
 import org.unicase.model.ModelElement;
+import org.unicase.model.Project;
 import org.unicase.model.task.WorkItem;
 import org.unicase.model.task.util.MEState;
 import org.unicase.model.task.util.TaxonomyAccess;
+import org.unicase.model.util.ProjectChangeObserver;
 import org.unicase.ui.common.MEClassLabelProvider;
 import org.unicase.ui.common.util.ActionHelper;
 import org.unicase.ui.stem.Activator;
+import org.unicase.workspace.ProjectSpace;
+import org.unicase.workspace.Workspace;
 import org.unicase.workspace.WorkspaceManager;
+import org.unicase.workspace.WorkspacePackage;
 import org.unicase.workspace.util.EventUtil;
 
 /**
@@ -64,7 +71,7 @@ import org.unicase.workspace.util.EventUtil;
  * @author Hodaie
  * @author Shterev
  */
-public class StatusView extends ViewPart {
+public class StatusView extends ViewPart implements ProjectChangeObserver {
 
 	private ModelElement input;
 	// this must be disposed!
@@ -94,6 +101,8 @@ public class StatusView extends ViewPart {
 	private Composite sectionComposite;
 
 	private Map<String, Image> images;
+	private Workspace workspace;
+	private AdapterImpl adapterImpl;
 	private static final String DROP_COMPOSITE_BACKGROUND = "drop_composite_background";
 	private static final String FLAT_TAB_IMAGE = "flat_tab_image";
 	private static final String HIERARCHY_TAB_IMAGE = "hierarchy_tab_image";
@@ -108,6 +117,30 @@ public class StatusView extends ViewPart {
 		this.labelProvider = new MEClassLabelProvider();
 
 		createImages();
+
+		workspace = WorkspaceManager.getInstance().getCurrentWorkspace();
+		if (workspace.getActiveProjectSpace() != null) {
+			workspace.getActiveProjectSpace().getProject().addProjectChangeObserver(StatusView.this);
+		}
+		adapterImpl = new AdapterImpl() {
+			@Override
+			public void notifyChanged(Notification msg) {
+				if ((msg.getFeatureID(Workspace.class)) == WorkspacePackage.WORKSPACE__ACTIVE_PROJECT_SPACE) {
+
+					// remove old listeners
+					Object oldValue = msg.getOldValue();
+					if (oldValue instanceof ProjectSpace) {
+						((ProjectSpace) oldValue).getProject().removeProjectChangeObserver(StatusView.this);
+					}
+					// add listener to get notified when work items get deleted/added/changed
+					if (workspace.getActiveProjectSpace() != null) {
+						workspace.getActiveProjectSpace().getProject().addProjectChangeObserver(StatusView.this);
+					}
+				}
+			}
+		};
+		workspace.eAdapters().add(adapterImpl);
+
 	}
 
 	private void createImages() {
@@ -267,7 +300,7 @@ public class StatusView extends ViewPart {
 		// in a hierarchical manner
 		Set<ModelElement> leafOpeners = TaxonomyAccess.getInstance().getOpeningLinkTaxonomy().getLeafOpeners(input);
 		int tasks = leafOpeners.size();
-		int estimate = getEstimate(leafOpeners);
+		int estimate = TaxonomyAccess.getInstance().getOpeningLinkTaxonomy().getEstimate(input);
 		int closedTasks = getClosedTasks(leafOpeners);
 		int closedEstimate = getClosedEstimate(leafOpeners);
 
@@ -344,18 +377,6 @@ public class StatusView extends ViewPart {
 			}
 		}
 		return openTasks;
-	}
-
-	private int getEstimate(Set<ModelElement> leafOpeners) {
-		int estimate = 0;
-		Iterator<ModelElement> iterator = leafOpeners.iterator();
-		while (iterator.hasNext()) {
-			ModelElement next = iterator.next();
-			if (next instanceof WorkItem) {
-				estimate = estimate + ((WorkItem) next).getEstimate();
-			}
-		}
-		return estimate;
 	}
 
 	private Date getLatestDueDate(Set<ModelElement> leafOpeners) {
@@ -497,6 +518,10 @@ public class StatusView extends ViewPart {
 	@Override
 	public void dispose() {
 		dropTarget.dispose();
+		userTabComposite.dispose();
+		activityTabComposite.dispose();
+		flatTabComposite.dispose();
+		hierarchyTabComposite.dispose();
 
 		images.get(DROP_COMPOSITE_BACKGROUND).dispose();
 		images.get(FLAT_TAB_IMAGE).dispose();
@@ -506,7 +531,63 @@ public class StatusView extends ViewPart {
 
 		images.clear();
 
+		workspace.eAdapters().remove(adapterImpl);
+		workspace.getActiveProjectSpace().getProject().removeProjectChangeObserver(StatusView.this);
+
 		super.dispose();
+	}
+
+	/**
+	 * {@inheritDoc}
+	 * 
+	 * @see org.unicase.model.util.ProjectChangeObserver#modelElementAdded(org.unicase.model.Project,
+	 *      org.unicase.model.ModelElement)
+	 */
+	public void modelElementAdded(Project project, ModelElement modelElement) {
+		refreshView();
+
+	}
+
+	/**
+	 * {@inheritDoc}
+	 * 
+	 * @see org.unicase.model.util.ProjectChangeObserver#modelElementDeleteCompleted(org.unicase.model.ModelElement)
+	 */
+	public void modelElementDeleteCompleted(ModelElement modelElement) {
+		// nothing to do
+
+	}
+
+	/**
+	 * {@inheritDoc}
+	 * 
+	 * @see org.unicase.model.util.ProjectChangeObserver#modelElementDeleteStarted(org.unicase.model.ModelElement)
+	 */
+	public void modelElementDeleteStarted(ModelElement modelElement) {
+		// nothing to do
+
+	}
+
+	/**
+	 * {@inheritDoc}
+	 * 
+	 * @see org.unicase.model.util.ProjectChangeObserver#modelElementRemoved(org.unicase.model.Project,
+	 *      org.unicase.model.ModelElement)
+	 */
+	public void modelElementRemoved(Project project, ModelElement modelElement) {
+		refreshView();
+
+	}
+
+	/**
+	 * {@inheritDoc}
+	 * 
+	 * @see org.unicase.model.util.ProjectChangeObserver#notify(org.eclipse.emf.common.notify.Notification,
+	 *      org.unicase.model.Project, org.unicase.model.ModelElement)
+	 */
+	public void notify(Notification notification, Project project, ModelElement modelElement) {
+		refreshView();
+
 	}
 
 }
