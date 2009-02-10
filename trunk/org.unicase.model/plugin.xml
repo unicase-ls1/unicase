@@ -66,6 +66,42 @@
                  {0} does not have an activity assigned.
               </message>
            </constraint>
+           <constraint
+                 class="org.unicase.model.task.validation.ImplementationActionItemAnnotated"
+                 id="org.unicase.model.task.ImplementationActionItemAnnotated"
+                 lang="Java"
+                 mode="Batch"
+                 name="Implementation Action Item Annotated Constraint"
+                 severity="WARNING"
+                 statusCode="1">
+              <message>
+                 {0} is an implementation task, but not annotated to a method or class.
+              </message>
+           </constraint>
+           <constraint
+                 class="org.unicase.model.task.validation.ActionItemAnnotated"
+                 id="org.unicase.model.task.ActionItemAnnotated"
+                 lang="Java"
+                 mode="Batch"
+                 name="Action Item Annotated Constraint"
+                 severity="WARNING"
+                 statusCode="1">
+              <message>
+                 {0} is not annotated to functional requirement.
+              </message>
+           </constraint>
+           <constraint
+                 class="org.unicase.model.task.validation.ImplementationAfterDesign"
+                 id="org.unicase.model.task.ImplementationAfterDesign"
+                 lang="Java"
+                 mode="Batch"
+                 name="Implementation after Design Constraint"
+                 severity="INFO"
+                 statusCode="1">
+              <message>
+                 {0} is a implementation work item, but has an earlier due date then an related design or analysis work item.
+              </message>
+           </constraint>
         </constraints>
      </constraintProvider>
      <constraintProvider
