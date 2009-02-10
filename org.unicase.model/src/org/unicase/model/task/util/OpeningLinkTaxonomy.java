@@ -136,6 +136,12 @@ public class OpeningLinkTaxonomy {
 		return estimate;
 	}
 
+	/**
+	 * Returns the aggregated estimate for a model element.
+	 * 
+	 * @param input The model element
+	 * @return the estimate
+	 */
 	public int getEstimate(ModelElement input) {
 		Set<ModelElement> leafOpeners = getLeafOpeners(input);
 		return getEstimate(leafOpeners);
