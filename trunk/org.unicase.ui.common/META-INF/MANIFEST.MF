@@ -35,6 +35,7 @@ Import-Package: org.eclipse.draw2d,
  org.eclipse.gmf.runtime.diagram.ui.editparts,
  org.eclipse.gmf.runtime.diagram.ui.editpolicies,
  org.eclipse.gmf.runtime.diagram.ui.parts,
+ org.eclipse.gmf.runtime.diagram.ui.render.util,
  org.eclipse.gmf.runtime.diagram.ui.requests,
  org.eclipse.gmf.runtime.diagram.ui.resources.editor.document,
  org.eclipse.ui.views.properties.tabbed
