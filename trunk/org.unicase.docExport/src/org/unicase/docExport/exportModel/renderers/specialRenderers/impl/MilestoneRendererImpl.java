@@ -31,6 +31,7 @@ import org.unicase.workspace.util.WorkspaceUtil;
 public class MilestoneRendererImpl extends ModelElementRendererImpl implements MilestoneRenderer {
 	/**
 	 * <!-- begin-user-doc --> <!-- end-user-doc -->
+	 * 
 	 * @generated
 	 */
 	protected MilestoneRendererImpl() {
@@ -39,6 +40,7 @@ public class MilestoneRendererImpl extends ModelElementRendererImpl implements M
 
 	/**
 	 * <!-- begin-user-doc --> <!-- end-user-doc -->
+	 * 
 	 * @generated
 	 */
 	@Override
@@ -53,6 +55,7 @@ public class MilestoneRendererImpl extends ModelElementRendererImpl implements M
 		Set<ModelElement> test = oLTaxonomy.getLeafOpeners(modelElement);
 
 		USection section = new USection(modelElement.getName(), getTemplate().getLayoutOptions().getSectionTextOption());
+		section.getBoxModel().setMarginTop(15);
 		UParagraph description = new UParagraph(WorkspaceUtil.cleanFormatedText(modelElement.getDescription()),
 			getTemplate().getLayoutOptions().getDefaultTextOption());
 		description.setIndentionLeft(1);
@@ -60,15 +63,16 @@ public class MilestoneRendererImpl extends ModelElementRendererImpl implements M
 		parent.add(section);
 		section.add(description);
 
-		UList uList = new UList(OptionsFactory.eINSTANCE.createListOption());
-		uList.setIndentionLeft(1);
+		if (!test.isEmpty()) {
+			UList uList = new UList(OptionsFactory.eINSTANCE.createListOption());
+			uList.setIndentionLeft(1);
 
-		for (ModelElement me : test) {
-			uList.add(me.getName());
+			for (ModelElement me : test) {
+				uList.add(me.getName());
+			}
+
+			section.add(uList);
 		}
-
-		section.add(uList);
-
 	}
 	// end custom code
 
