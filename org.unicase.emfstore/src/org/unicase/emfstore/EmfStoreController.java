@@ -178,6 +178,8 @@ public class EmfStoreController implements IApplication {
 		for (File projectDirectory : serverSpaceDirectory.listFiles()) {
 			if (projectDirectory.getName().startsWith(ServerConfiguration.getProjectDirectoryPrefix())) {
 
+				System.out.println("Migrating project at " + projectDirectory + "...");
+
 				convertInitialProjectState(modelVersion, projectDirectory);
 
 				File[] listFiles = projectDirectory.listFiles();
@@ -195,14 +197,16 @@ public class EmfStoreController implements IApplication {
 		URI version0StateURI = URI.createFileURI(projectDirectory.getAbsolutePath() + File.separatorChar
 			+ ServerConfiguration.getProjectStatePrefix() + "0" + ServerConfiguration.FILE_EXTENSION_PROJECTSTATE);
 		try {
+			System.out.println("Migrating version 0...");
 			migrate(version0StateURI, new ArrayList<URI>(), modelVersion.getReleaseNumber());
-		} catch (MigrationException e1) {
-			throw new FatalEmfStoreException("Migration of project at " + projectDirectory + " failed!", e1);
+		} catch (MigrationException e) {
+			throw new FatalEmfStoreException("Migration of project at " + projectDirectory + " failed!", e);
 		}
 	}
 
 	private void convertAllBackupStates(ModelVersion modelVersion, File projectDirectory, File[] listFiles)
 		throws FatalEmfStoreException {
+		System.out.println("Migrating backup states...");
 		for (File backUpState : listFiles) {
 			if (backUpState.getName().startsWith(ServerConfiguration.getBackupStatePrefix())) {
 				URI projectURI = URI.createFileURI(backUpState.getAbsolutePath());
@@ -232,10 +236,13 @@ public class EmfStoreController implements IApplication {
 				if (projectStateFile.exists()) {
 					URI projectURI = URI.createFileURI(projectStateFilename);
 					try {
+						System.out.println("Migrating version " + versionSpec + " with its "
+							+ (changePackageURIs.size() - 1) + " previous versions...");
 						migrate(projectURI, changePackageURIs, modelVersion.getReleaseNumber());
 					} catch (MigrationException e) {
 						throw new FatalEmfStoreException("Migration of project at " + projectDirectory + " failed!", e);
 					}
+					changePackageURIs.clear();
 				}
 
 			}
@@ -245,7 +252,7 @@ public class EmfStoreController implements IApplication {
 
 	private int parseVersionSpecFromFileName(String versionName) {
 		int startOfFileExtension = versionName.lastIndexOf(".");
-		int prefixLength = ServerConfiguration.getProjectStatePrefix().length();
+		int prefixLength = ServerConfiguration.getChangePackageFilePrefix().length();
 		String versionSpecString = versionName.substring(prefixLength, startOfFileExtension);
 		int versionSpec = Integer.parseInt(versionSpecString);
 		return versionSpec;
