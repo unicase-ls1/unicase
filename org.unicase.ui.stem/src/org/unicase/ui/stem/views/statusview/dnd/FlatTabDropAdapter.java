@@ -20,9 +20,12 @@ import org.unicase.model.task.ActionItem;
 import org.unicase.model.task.TaskFactory;
 import org.unicase.model.task.WorkItem;
 import org.unicase.model.task.WorkPackage;
+import org.unicase.model.task.util.CircularDependencyException;
+import org.unicase.model.task.util.MEState;
 import org.unicase.model.task.util.TaxonomyAccess;
 import org.unicase.ui.common.dnd.DragSourcePlaceHolder;
 import org.unicase.ui.stem.views.statusview.StatusView;
+import org.unicase.workspace.util.EventUtil;
 
 /**
  * This is drop adapter for flat tab in StatusView.
@@ -85,12 +88,13 @@ public class FlatTabDropAdapter extends DropTargetAdapter {
 	 */
 	@Override
 	public void drop(DropTargetEvent event) {
-
 		TransactionalEditingDomain domain = TransactionalEditingDomain.Registry.INSTANCE
 			.getEditingDomain("org.unicase.EditingDomain");
 		domain.getCommandStack().execute(new RecordingCommand(domain) {
 			@Override
 			protected void doExecute() {
+				// TODO: Log source view.
+				EventUtil.logStatusViewDropEvent(currentOpenME, source, "Unknown");
 				if (currentOpenME instanceof WorkPackage) {
 					if (source instanceof WorkItem) {
 						dropWorkItemOnWorkPackage();
@@ -125,11 +129,22 @@ public class FlatTabDropAdapter extends DropTargetAdapter {
 		// otherwise create an AI annotating source and add it to work items of currentOpenME
 		Set<ModelElement> openersForSource = TaxonomyAccess.getInstance().getOpeningLinkTaxonomy().getLeafOpeners(
 			source);
-		Set<ModelElement> openersForCurrenOpenME = TaxonomyAccess.getInstance().getOpeningLinkTaxonomy()
-			.getLeafOpeners(currentOpenME);
+		int i = 0;
+		for (ModelElement me : openersForSource) {
+			if (me instanceof WorkItem) {
+				try {
+					if (me.getMEState().equals(MEState.CLOSED)) {
+						((WorkPackage) currentOpenME).getContainedWorkItems().add((WorkItem) me);
+						i++;
+					}
 
-		openersForCurrenOpenME.retainAll(openersForSource);
-		if (openersForCurrenOpenME.size() == 0) {
+				} catch (CircularDependencyException e) {
+					// Do nothing
+				}
+
+			}
+		}
+		if (i == 0) {
 			ActionItem ai = TaskFactory.eINSTANCE.createActionItem();
 			ai.setName("New Action Item relating " + source.getName());
 			ai.getAnnotatedModelElements().add(source);
