@@ -1,0 +1,187 @@
+/*
+ * Copyright (c) 2007 Borland Software Corporation
+ * 
+ * All rights reserved. This program and the accompanying materials
+ * are made available under the terms of the Eclipse Public License v1.0
+ * which accompanies this distribution, and is available at
+ * http://www.eclipse.org/legal/epl-v10.html
+ *
+ * Contributors:
+ *    Dmitry Stadnik (Borland) - initial API and implementation
+ */
+
+«IMPORT "http://www.eclipse.org/gmf/2008/GenModel"»
+«IMPORT "http://www.eclipse.org/emf/2002/GenModel"»
+«IMPORT "http://www.eclipse.org/emf/2002/Ecore"»
+
+«EXTENSION xpt::parsers::i18n»
+
+«DEFINE className FOR gmfgen::GenDiagram»MessageFormatParser«ENDDEFINE»
+
+«DEFINE qualifiedClassName FOR gmfgen::GenDiagram»«parsersPackageName».«EXPAND className»«ENDDEFINE»
+
+«DEFINE MessageFormatParser FOR gmfgen::GenDiagram-»
+«EXPAND xpt::Common::copyright FOR editorGen-»
+package «parsersPackageName»;
+
+«EXPAND xpt::Common::generatedClassComment»
+public class «EXPAND className» extends «EXPAND xpt::parsers::AbstractParser::qualifiedClassName» {
+
+	«EXPAND xpt::Common::generatedMemberComment»
+	private String defaultPattern;
+
+	«EXPAND xpt::Common::generatedMemberComment»
+	private java.text.MessageFormat viewProcessor;
+
+	«EXPAND xpt::Common::generatedMemberComment»
+	private java.text.MessageFormat editorProcessor;
+
+	«EXPAND xpt::Common::generatedMemberComment»
+	private java.text.MessageFormat editProcessor;
+
+	«EXPAND xpt::Common::generatedMemberComment»
+	public «EXPAND className»(org.eclipse.emf.ecore.EAttribute[] features) {
+		super(features);
+	}
+
+	«EXPAND xpt::Common::generatedMemberComment»
+	protected String getDefaultPattern() {
+		if (defaultPattern == null) {
+			StringBuffer sb = new StringBuffer();
+			for (int i = 0; i < features.length; i++) {
+				if (i > 0) {
+					sb.append(' ');
+				}
+				sb.append('{');
+				sb.append(i);
+				sb.append('}');
+			}
+			defaultPattern = sb.toString();
+		}
+		return defaultPattern;
+	}
+
+	«EXPAND xpt::Common::generatedMemberComment»
+	public String getViewPattern() {
+		String pattern = super.getViewPattern();
+		return pattern != null ? pattern : getDefaultPattern();
+	}
+
+	«EXPAND xpt::Common::generatedMemberComment»
+	public void setViewPattern(String viewPattern) {
+		super.setViewPattern(viewPattern);
+		viewProcessor = null;
+	}
+
+	«EXPAND xpt::Common::generatedMemberComment»
+	protected java.text.MessageFormat createViewProcessor(String viewPattern) {
+		return new java.text.MessageFormat(viewPattern);
+	}
+
+	«EXPAND xpt::Common::generatedMemberComment»
+	protected java.text.MessageFormat getViewProcessor() {
+		if (viewProcessor == null) {
+			viewProcessor = createViewProcessor(getViewPattern());
+		}
+		return viewProcessor;
+	}
+
+	«EXPAND xpt::Common::generatedMemberComment»
+	public String getEditorPattern() {
+		String pattern = super.getEditorPattern();
+		return pattern != null ? pattern : getDefaultPattern();
+	}
+
+	«EXPAND xpt::Common::generatedMemberComment»
+	public void setEditorPattern(String editorPattern) {
+		super.setEditorPattern(editorPattern);
+		editorProcessor = null;
+	}
+
+	«EXPAND xpt::Common::generatedMemberComment»
+	protected java.text.MessageFormat createEditorProcessor(String editorPattern) {
+		return new java.text.MessageFormat(editorPattern);
+	}
+
+	«EXPAND xpt::Common::generatedMemberComment»
+	protected java.text.MessageFormat getEditorProcessor() {
+		if (editorProcessor == null) {
+			editorProcessor = createEditorProcessor(getEditorPattern());
+		}
+		return editorProcessor;
+	}
+
+	«EXPAND xpt::Common::generatedMemberComment»
+	public String getEditPattern() {
+		String pattern = super.getEditPattern();
+		return pattern != null ? pattern : getDefaultPattern();
+	}
+
+	«EXPAND xpt::Common::generatedMemberComment»
+	public void setEditPattern(String editPattern) {
+		super.setEditPattern(editPattern);
+		editProcessor = null;
+	}
+
+	«EXPAND xpt::Common::generatedMemberComment»
+	protected java.text.MessageFormat createEditProcessor(String editPattern) {
+		return new java.text.MessageFormat(editPattern);
+	}
+
+	«EXPAND xpt::Common::generatedMemberComment»
+	protected java.text.MessageFormat getEditProcessor() {
+		if (editProcessor == null) {
+			editProcessor = createEditProcessor(getEditPattern());
+		}
+		return editProcessor;
+	}
+
+	«EXPAND xpt::Common::generatedMemberComment»
+	public String getPrintString(org.eclipse.core.runtime.IAdaptable adapter, int flags) {
+		org.eclipse.emf.ecore.EObject element =
+				(org.eclipse.emf.ecore.EObject) adapter.getAdapter(org.eclipse.emf.ecore.EObject.class);
+		return getViewProcessor().format(getValues(element), new StringBuffer(),
+				new java.text.FieldPosition(0)).toString();
+	}
+
+	«EXPAND xpt::Common::generatedMemberComment»
+	public String getEditString(org.eclipse.core.runtime.IAdaptable adapter, int flags) {
+		org.eclipse.emf.ecore.EObject element =
+				(org.eclipse.emf.ecore.EObject) adapter.getAdapter(org.eclipse.emf.ecore.EObject.class);
+		return getEditorProcessor().format(getValues(element), new StringBuffer(),
+				new java.text.FieldPosition(0)).toString();
+	}
+
+	«EXPAND xpt::Common::generatedMemberComment»
+	public org.eclipse.gmf.runtime.common.ui.services.parser.IParserEditStatus isValidEditString(
+			org.eclipse.core.runtime.IAdaptable adapter, String editString) {
+		java.text.ParsePosition pos = new java.text.ParsePosition(0);
+		Object[] values = getEditProcessor().parse(editString, pos);
+		if (values == null) {
+			return new org.eclipse.gmf.runtime.common.ui.services.parser.ParserEditStatus(
+					«editorGen.plugin.getActivatorQualifiedClassName()».ID,
+					org.eclipse.gmf.runtime.common.ui.services.parser.IParserEditStatus.UNEDITABLE,
+					org.eclipse.osgi.util.NLS.bind(«EXPAND xpt::Externalizer::accessorCall(i18nKeyForMessageFormatParserInvalidInputError()) FOR editorGen», new Integer(pos.getErrorIndex())));
+		}
+		return validateNewValues(values);
+	}
+
+	«EXPAND xpt::Common::generatedMemberComment»
+	public org.eclipse.gmf.runtime.common.core.command.ICommand getParseCommand(
+			org.eclipse.core.runtime.IAdaptable adapter, String newString, int flags) {
+		Object[] values = getEditProcessor().parse(newString, new java.text.ParsePosition(0));
+		return getParseCommand(adapter, values, flags);
+	}
+	«EXPAND additions-»
+}
+«ENDDEFINE»
+
+«DEFINE additions FOR gmfgen::GenDiagram»«ENDDEFINE»
+
+«DEFINE i18nValues FOR gmfgen::GenDiagram-»
+«EXPAND xpt::Externalizer::messageEntry(i18nKeyForMessageFormatParserInvalidInputError(), "Invalid input at {0}")-»
+«ENDDEFINE»
+
+«DEFINE i18nAccessors FOR gmfgen::GenDiagram-»
+	«EXPAND xpt::Externalizer::accessorField(i18nKeyForMessageFormatParserInvalidInputError())-»
+«ENDDEFINE»
