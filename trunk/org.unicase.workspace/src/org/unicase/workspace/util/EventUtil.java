@@ -10,6 +10,7 @@ import java.util.Calendar;
 import org.eclipse.emf.transaction.RecordingCommand;
 import org.eclipse.emf.transaction.TransactionalEditingDomain;
 import org.unicase.emfstore.esmodel.versioning.events.AnnotationEvent;
+import org.unicase.emfstore.esmodel.versioning.events.DNDEvent;
 import org.unicase.emfstore.esmodel.versioning.events.EventsFactory;
 import org.unicase.emfstore.esmodel.versioning.events.PluginFocusEvent;
 import org.unicase.emfstore.esmodel.versioning.events.PresentationSwitchEvent;
@@ -103,5 +104,35 @@ public abstract class EventUtil {
 
 		}
 
+	}
+
+	/**
+	 * Logs an drop event on the status view.
+	 * 
+	 * @param open the openen modelelement, the target
+	 * @param dragged the dragged modelelemtn, the source
+	 * @param source the source view.
+	 */
+	public static void logStatusViewDropEvent(ModelElement open, ModelElement dragged, String source) {
+		final DNDEvent dndEvent = EventsFactory.eINSTANCE.createDNDEvent();
+		dndEvent.setDropTargetElement(open.getModelElementId());
+		dndEvent.setDragSourceElement(dragged.getModelElementId());
+		dndEvent.setTimestamp(Calendar.getInstance().getTime());
+		dndEvent.setTargetView("org.unicase.StatusView");
+		dndEvent.setSourceView(source);
+		final ProjectSpace activeProjectSpace = WorkspaceManager.getInstance().getCurrentWorkspace()
+			.getActiveProjectSpace();
+		if (activeProjectSpace != null) {
+
+			TransactionalEditingDomain domain = TransactionalEditingDomain.Registry.INSTANCE
+				.getEditingDomain("org.unicase.EditingDomain");
+			domain.getCommandStack().execute(new RecordingCommand(domain) {
+				@Override
+				protected void doExecute() {
+					activeProjectSpace.addEvent(dndEvent);
+				}
+			});
+
+		}
 	}
 }
