@@ -94,7 +94,7 @@ public class FlatTabDropAdapter extends DropTargetAdapter {
 			@Override
 			protected void doExecute() {
 				// TODO: Log source view.
-				EventUtil.logStatusViewDropEvent(currentOpenME, source, "Unknown");
+				EventUtil.logStatusViewDropEvent(currentOpenME, source, "Unknown", "FlatTab");
 				if (currentOpenME instanceof WorkPackage) {
 					if (source instanceof WorkItem) {
 						dropWorkItemOnWorkPackage();

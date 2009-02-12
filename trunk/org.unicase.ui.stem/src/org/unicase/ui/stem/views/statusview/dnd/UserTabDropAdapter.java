@@ -23,6 +23,7 @@ import org.unicase.model.task.WorkPackage;
 import org.unicase.model.task.util.TaxonomyAccess;
 import org.unicase.ui.common.dnd.DragSourcePlaceHolder;
 import org.unicase.ui.stem.views.statusview.StatusView;
+import org.unicase.workspace.util.EventUtil;
 
 /**
  * This is the drop adapter for User tab in Status view.
@@ -91,7 +92,7 @@ public class UserTabDropAdapter extends DropTargetAdapter {
 		domain.getCommandStack().execute(new RecordingCommand(domain) {
 			@Override
 			protected void doExecute() {
-
+				EventUtil.logStatusViewDropEvent(currentOpenME, source, "Unknown", "UserTab");
 				if (!(target instanceof OrgUnit)) {
 					// target is NotAssigned
 					unassignWorkItem(source);
