@@ -112,13 +112,14 @@ public abstract class EventUtil {
 	 * @param open the openen modelelement, the target
 	 * @param dragged the dragged modelelemtn, the source
 	 * @param source the source view.
+	 * @param tab the tab
 	 */
-	public static void logStatusViewDropEvent(ModelElement open, ModelElement dragged, String source) {
+	public static void logStatusViewDropEvent(ModelElement open, ModelElement dragged, String source, String tab) {
 		final DNDEvent dndEvent = EventsFactory.eINSTANCE.createDNDEvent();
 		dndEvent.setDropTargetElement(open.getModelElementId());
 		dndEvent.setDragSourceElement(dragged.getModelElementId());
 		dndEvent.setTimestamp(Calendar.getInstance().getTime());
-		dndEvent.setTargetView("org.unicase.StatusView");
+		dndEvent.setTargetView("org.unicase.StatusView." + tab);
 		dndEvent.setSourceView(source);
 		final ProjectSpace activeProjectSpace = WorkspaceManager.getInstance().getCurrentWorkspace()
 			.getActiveProjectSpace();
@@ -135,4 +136,5 @@ public abstract class EventUtil {
 
 		}
 	}
+
 }
