@@ -370,13 +370,22 @@ public interface WorkspacePackage extends EPackage {
 	int PROJECT_SPACE__LOCAL_OPERATIONS = ModelPackage.IDENTIFIABLE_ELEMENT_FEATURE_COUNT + 11;
 
 	/**
+	 * The feature id for the '<em><b>Notifications</b></em>' reference list.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 * @ordered
+	 */
+	int PROJECT_SPACE__NOTIFICATIONS = ModelPackage.IDENTIFIABLE_ELEMENT_FEATURE_COUNT + 12;
+
+	/**
 	 * The number of structural features of the '<em>Project Space</em>' class.
 	 * <!-- begin-user-doc --> <!--
 	 * end-user-doc -->
 	 * @generated
 	 * @ordered
 	 */
-	int PROJECT_SPACE_FEATURE_COUNT = ModelPackage.IDENTIFIABLE_ELEMENT_FEATURE_COUNT + 12;
+	int PROJECT_SPACE_FEATURE_COUNT = ModelPackage.IDENTIFIABLE_ELEMENT_FEATURE_COUNT + 13;
 
 	/**
 	 * The meta object id for the '{@link org.unicase.workspace.impl.OperationCompositeImpl <em>Operation Composite</em>}' class.
@@ -772,6 +781,17 @@ public interface WorkspacePackage extends EPackage {
 	EReference getProjectSpace_LocalOperations();
 
 	/**
+	 * Returns the meta object for the reference list '{@link org.unicase.workspace.ProjectSpace#getNotifications <em>Notifications</em>}'.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @return the meta object for the reference list '<em>Notifications</em>'.
+	 * @see org.unicase.workspace.ProjectSpace#getNotifications()
+	 * @see #getProjectSpace()
+	 * @generated
+	 */
+	EReference getProjectSpace_Notifications();
+
+	/**
 	 * Returns the meta object for class '{@link org.unicase.workspace.OperationComposite <em>Operation Composite</em>}'.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
@@ -1100,6 +1120,14 @@ public interface WorkspacePackage extends EPackage {
 		 * @generated
 		 */
 		EReference PROJECT_SPACE__LOCAL_OPERATIONS = eINSTANCE.getProjectSpace_LocalOperations();
+
+		/**
+		 * The meta object literal for the '<em><b>Notifications</b></em>' reference list feature.
+		 * <!-- begin-user-doc -->
+		 * <!-- end-user-doc -->
+		 * @generated
+		 */
+		EReference PROJECT_SPACE__NOTIFICATIONS = eINSTANCE.getProjectSpace_Notifications();
 
 		/**
 		 * The meta object literal for the '{@link org.unicase.workspace.impl.OperationCompositeImpl <em>Operation Composite</em>}' class.
