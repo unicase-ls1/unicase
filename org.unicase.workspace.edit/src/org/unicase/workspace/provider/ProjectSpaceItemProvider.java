@@ -73,6 +73,7 @@ public class ProjectSpaceItemProvider extends IdentifiableElementItemProvider im
 			addResourceCountPropertyDescriptor(object);
 			addDirtyPropertyDescriptor(object);
 			addOldLogMessagesPropertyDescriptor(object);
+			addNotificationsPropertyDescriptor(object);
 		}
 		return itemPropertyDescriptors;
 	}
@@ -179,6 +180,20 @@ public class ProjectSpaceItemProvider extends IdentifiableElementItemProvider im
 			getString("_UI_PropertyDescriptor_description", "_UI_ProjectSpace_oldLogMessages_feature",
 				"_UI_ProjectSpace_type"), WorkspacePackage.Literals.PROJECT_SPACE__OLD_LOG_MESSAGES, true, false,
 			false, ItemPropertyDescriptor.GENERIC_VALUE_IMAGE, null, null));
+	}
+
+	/**
+	 * This adds a property descriptor for the Notifications feature.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 */
+	protected void addNotificationsPropertyDescriptor(Object object) {
+		itemPropertyDescriptors.add(createItemPropertyDescriptor(((ComposeableAdapterFactory) adapterFactory)
+			.getRootAdapterFactory(), getResourceLocator(), getString("_UI_ProjectSpace_notifications_feature"),
+			getString("_UI_PropertyDescriptor_description", "_UI_ProjectSpace_notifications_feature",
+				"_UI_ProjectSpace_type"), WorkspacePackage.Literals.PROJECT_SPACE__NOTIFICATIONS, true, false, true,
+			null, null, null));
 	}
 
 	/**
