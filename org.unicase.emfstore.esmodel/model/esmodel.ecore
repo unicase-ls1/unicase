@@ -71,6 +71,8 @@
           eType="#//versioning/events/Event" containment="true"/>
       <eStructuralFeatures xsi:type="ecore:EReference" name="logMessage" eType="#//versioning/LogMessage"
           containment="true"/>
+      <eStructuralFeatures xsi:type="ecore:EReference" name="notifications" upperBound="-1"
+          eType="#//notification/ESNotification" containment="true"/>
     </eClassifiers>
     <eClassifiers xsi:type="ecore:EClass" name="HistoryInfo">
       <eStructuralFeatures xsi:type="ecore:EReference" name="primerySpec" lowerBound="1"
@@ -335,5 +337,18 @@
       <eClassifiers xsi:type="ecore:EClass" name="ProjectAdminRole" eSuperTypes="#//accesscontrol/roles/Role"/>
       <eClassifiers xsi:type="ecore:EClass" name="ServerAdmin" eSuperTypes="#//accesscontrol/roles/Role"/>
     </eSubpackages>
+  </eSubpackages>
+  <eSubpackages name="notification" nsURI="http://unicase.org/esmodel/notification"
+      nsPrefix="org.unicase.notification">
+    <eClassifiers xsi:type="ecore:EClass" name="ESNotification" eSuperTypes="../../org.unicase.model/model/model.ecore#//IdentifiableElement">
+      <eStructuralFeatures xsi:type="ecore:EAttribute" name="sender" eType="ecore:EDataType http://www.eclipse.org/emf/2002/Ecore#//EString"/>
+      <eStructuralFeatures xsi:type="ecore:EAttribute" name="recipient" eType="ecore:EDataType http://www.eclipse.org/emf/2002/Ecore#//EString"/>
+      <eStructuralFeatures xsi:type="ecore:EReference" name="project" eType="#//ProjectId"
+          containment="true"/>
+      <eStructuralFeatures xsi:type="ecore:EReference" name="relatedModelElements"
+          upperBound="-1" eType="ecore:EClass ../../org.unicase.model/model/model.ecore#//ModelElementId"
+          containment="true"/>
+      <eStructuralFeatures xsi:type="ecore:EAttribute" name="message" eType="ecore:EDataType http://www.eclipse.org/emf/2002/Ecore#//EString"/>
+    </eClassifiers>
   </eSubpackages>
 </ecore:EPackage>

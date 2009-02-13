@@ -24,6 +24,8 @@ import org.unicase.emfstore.esmodel.accesscontrol.AccesscontrolPackage;
 import org.unicase.emfstore.esmodel.accesscontrol.impl.AccesscontrolPackageImpl;
 import org.unicase.emfstore.esmodel.accesscontrol.roles.RolesPackage;
 import org.unicase.emfstore.esmodel.accesscontrol.roles.impl.RolesPackageImpl;
+import org.unicase.emfstore.esmodel.notification.NotificationPackage;
+import org.unicase.emfstore.esmodel.notification.impl.NotificationPackageImpl;
 import org.unicase.emfstore.esmodel.versioning.VersioningPackage;
 import org.unicase.emfstore.esmodel.versioning.events.EventsPackage;
 import org.unicase.emfstore.esmodel.versioning.events.impl.EventsPackageImpl;
@@ -154,6 +156,9 @@ public class EsmodelPackageImpl extends EPackageImpl implements EsmodelPackage {
 		RolesPackageImpl theRolesPackage = (RolesPackageImpl) (EPackage.Registry.INSTANCE
 			.getEPackage(RolesPackage.eNS_URI) instanceof RolesPackageImpl ? EPackage.Registry.INSTANCE
 			.getEPackage(RolesPackage.eNS_URI) : RolesPackage.eINSTANCE);
+		NotificationPackageImpl theNotificationPackage = (NotificationPackageImpl) (EPackage.Registry.INSTANCE
+			.getEPackage(NotificationPackage.eNS_URI) instanceof NotificationPackageImpl ? EPackage.Registry.INSTANCE
+			.getEPackage(NotificationPackage.eNS_URI) : NotificationPackage.eINSTANCE);
 
 		// Create package meta-data objects
 		theEsmodelPackage.createPackageContents();
@@ -162,6 +167,7 @@ public class EsmodelPackageImpl extends EPackageImpl implements EsmodelPackage {
 		theEventsPackage.createPackageContents();
 		theAccesscontrolPackage.createPackageContents();
 		theRolesPackage.createPackageContents();
+		theNotificationPackage.createPackageContents();
 
 		// Initialize created meta-data
 		theEsmodelPackage.initializePackageContents();
@@ -170,6 +176,7 @@ public class EsmodelPackageImpl extends EPackageImpl implements EsmodelPackage {
 		theEventsPackage.initializePackageContents();
 		theAccesscontrolPackage.initializePackageContents();
 		theRolesPackage.initializePackageContents();
+		theNotificationPackage.initializePackageContents();
 
 		// Mark meta-data to indicate it can't be changed
 		theEsmodelPackage.freeze();
@@ -436,12 +443,15 @@ public class EsmodelPackageImpl extends EPackageImpl implements EsmodelPackage {
 			.getEPackage(VersioningPackage.eNS_URI);
 		AccesscontrolPackage theAccesscontrolPackage = (AccesscontrolPackage) EPackage.Registry.INSTANCE
 			.getEPackage(AccesscontrolPackage.eNS_URI);
+		NotificationPackage theNotificationPackage = (NotificationPackage) EPackage.Registry.INSTANCE
+			.getEPackage(NotificationPackage.eNS_URI);
 		ModelPackage theModelPackage = (ModelPackage) EPackage.Registry.INSTANCE.getEPackage(ModelPackage.eNS_URI);
 		EcorePackage theEcorePackage = (EcorePackage) EPackage.Registry.INSTANCE.getEPackage(EcorePackage.eNS_URI);
 
 		// Add subpackages
 		getESubpackages().add(theVersioningPackage);
 		getESubpackages().add(theAccesscontrolPackage);
+		getESubpackages().add(theNotificationPackage);
 
 		// Create type parameters
 
