@@ -46,9 +46,9 @@ public class ChangePackageImpl extends EObjectImpl implements ChangePackage {
 	protected EList<AbstractOperation> operations;
 
 	/**
-	 * The cached value of the '{@link #getEvents() <em>Events</em>}' containment reference list. <!-- begin-user-doc
+	 * The cached value of the '{@link #getEvents() <em>Events</em>}' containment reference list.
+	 * <!-- begin-user-doc
 	 * --> <!-- end-user-doc -->
-	 * 
 	 * @see #getEvents()
 	 * @generated
 	 * @ordered
@@ -77,7 +77,6 @@ public class ChangePackageImpl extends EObjectImpl implements ChangePackage {
 
 	/**
 	 * <!-- begin-user-doc --> <!-- end-user-doc -->
-	 * 
 	 * @generated
 	 */
 	protected ChangePackageImpl() {
@@ -86,7 +85,6 @@ public class ChangePackageImpl extends EObjectImpl implements ChangePackage {
 
 	/**
 	 * <!-- begin-user-doc --> <!-- end-user-doc -->
-	 * 
 	 * @generated
 	 */
 	@Override
@@ -96,7 +94,6 @@ public class ChangePackageImpl extends EObjectImpl implements ChangePackage {
 
 	/**
 	 * <!-- begin-user-doc --> <!-- end-user-doc -->
-	 * 
 	 * @generated
 	 */
 	public EList<AbstractOperation> getOperations() {
@@ -109,7 +106,6 @@ public class ChangePackageImpl extends EObjectImpl implements ChangePackage {
 
 	/**
 	 * <!-- begin-user-doc --> <!-- end-user-doc -->
-	 * 
 	 * @generated
 	 */
 	public EList<Event> getEvents() {
@@ -122,7 +118,6 @@ public class ChangePackageImpl extends EObjectImpl implements ChangePackage {
 
 	/**
 	 * <!-- begin-user-doc --> <!-- end-user-doc -->
-	 * 
 	 * @generated
 	 */
 	public LogMessage getLogMessage() {
@@ -149,7 +144,6 @@ public class ChangePackageImpl extends EObjectImpl implements ChangePackage {
 
 	/**
 	 * <!-- begin-user-doc --> <!-- end-user-doc -->
-	 * 
 	 * @generated
 	 */
 	public LogMessage basicGetLogMessage() {
@@ -158,7 +152,6 @@ public class ChangePackageImpl extends EObjectImpl implements ChangePackage {
 
 	/**
 	 * <!-- begin-user-doc --> <!-- end-user-doc -->
-	 * 
 	 * @generated
 	 */
 	public NotificationChain basicSetLogMessage(LogMessage newLogMessage, NotificationChain msgs) {
@@ -177,7 +170,6 @@ public class ChangePackageImpl extends EObjectImpl implements ChangePackage {
 
 	/**
 	 * <!-- begin-user-doc --> <!-- end-user-doc -->
-	 * 
 	 * @generated
 	 */
 	public void setLogMessage(LogMessage newLogMessage) {
@@ -199,7 +191,6 @@ public class ChangePackageImpl extends EObjectImpl implements ChangePackage {
 
 	/**
 	 * <!-- begin-user-doc --> <!-- end-user-doc -->
-	 * 
 	 * @generated
 	 */
 	public EList<ESNotification> getNotifications() {
@@ -261,7 +252,6 @@ public class ChangePackageImpl extends EObjectImpl implements ChangePackage {
 	// end of custom code
 	/**
 	 * <!-- begin-user-doc --> <!-- end-user-doc -->
-	 * 
 	 * @generated
 	 */
 	@Override
@@ -283,7 +273,6 @@ public class ChangePackageImpl extends EObjectImpl implements ChangePackage {
 
 	/**
 	 * <!-- begin-user-doc --> <!-- end-user-doc -->
-	 * 
 	 * @generated
 	 */
 	@Override
@@ -305,7 +294,6 @@ public class ChangePackageImpl extends EObjectImpl implements ChangePackage {
 
 	/**
 	 * <!-- begin-user-doc --> <!-- end-user-doc -->
-	 * 
 	 * @generated
 	 */
 	@SuppressWarnings("unchecked")
@@ -333,7 +321,6 @@ public class ChangePackageImpl extends EObjectImpl implements ChangePackage {
 
 	/**
 	 * <!-- begin-user-doc --> <!-- end-user-doc -->
-	 * 
 	 * @generated
 	 */
 	@Override
@@ -357,7 +344,6 @@ public class ChangePackageImpl extends EObjectImpl implements ChangePackage {
 
 	/**
 	 * <!-- begin-user-doc --> <!-- end-user-doc -->
-	 * 
 	 * @generated
 	 */
 	@Override

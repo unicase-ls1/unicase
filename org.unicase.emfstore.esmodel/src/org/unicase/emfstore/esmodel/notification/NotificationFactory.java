@@ -15,23 +15,23 @@ import org.eclipse.emf.ecore.EFactory;
  */
 public interface NotificationFactory extends EFactory {
 	/**
-	 * The singleton instance of the factory. <!-- begin-user-doc --> <!-- end-user-doc -->
-	 * 
+	 * The singleton instance of the factory.
+	 * <!-- begin-user-doc --> <!-- end-user-doc -->
 	 * @generated
 	 */
 	NotificationFactory eINSTANCE = org.unicase.emfstore.esmodel.notification.impl.NotificationFactoryImpl.init();
 
 	/**
-	 * Returns a new object of class '<em>ES Notification</em>'. <!-- begin-user-doc --> <!-- end-user-doc -->
-	 * 
+	 * Returns a new object of class '<em>ES Notification</em>'.
+	 * <!-- begin-user-doc --> <!-- end-user-doc -->
 	 * @return a new object of class '<em>ES Notification</em>'.
 	 * @generated
 	 */
 	ESNotification createESNotification();
 
 	/**
-	 * Returns the package supported by this factory. <!-- begin-user-doc --> <!-- end-user-doc -->
-	 * 
+	 * Returns the package supported by this factory.
+	 * <!-- begin-user-doc --> <!-- end-user-doc -->
 	 * @return the package supported by this factory.
 	 * @generated
 	 */
