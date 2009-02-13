@@ -54,11 +54,28 @@ public class ESNotificationItemProvider extends IdentifiableElementItemProvider 
 		if (itemPropertyDescriptors == null) {
 			super.getPropertyDescriptors(object);
 
+			addNamePropertyDescriptor(object);
+			addMessagePropertyDescriptor(object);
+			addSeenPropertyDescriptor(object);
+			addCreationDatePropertyDescriptor(object);
 			addSenderPropertyDescriptor(object);
 			addRecipientPropertyDescriptor(object);
-			addMessagePropertyDescriptor(object);
 		}
 		return itemPropertyDescriptors;
+	}
+
+	/**
+	 * This adds a property descriptor for the Name feature.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 */
+	protected void addNamePropertyDescriptor(Object object) {
+		itemPropertyDescriptors.add(createItemPropertyDescriptor(((ComposeableAdapterFactory) adapterFactory)
+			.getRootAdapterFactory(), getResourceLocator(), getString("_UI_ESNotification_name_feature"), getString(
+			"_UI_PropertyDescriptor_description", "_UI_ESNotification_name_feature", "_UI_ESNotification_type"),
+			NotificationPackage.Literals.ES_NOTIFICATION__NAME, true, false, false,
+			ItemPropertyDescriptor.GENERIC_VALUE_IMAGE, null, null));
 	}
 
 	/**
@@ -98,6 +115,34 @@ public class ESNotificationItemProvider extends IdentifiableElementItemProvider 
 			"_UI_PropertyDescriptor_description", "_UI_ESNotification_message_feature", "_UI_ESNotification_type"),
 			NotificationPackage.Literals.ES_NOTIFICATION__MESSAGE, true, false, false,
 			ItemPropertyDescriptor.GENERIC_VALUE_IMAGE, null, null));
+	}
+
+	/**
+	 * This adds a property descriptor for the Seen feature.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 */
+	protected void addSeenPropertyDescriptor(Object object) {
+		itemPropertyDescriptors.add(createItemPropertyDescriptor(((ComposeableAdapterFactory) adapterFactory)
+			.getRootAdapterFactory(), getResourceLocator(), getString("_UI_ESNotification_seen_feature"), getString(
+			"_UI_PropertyDescriptor_description", "_UI_ESNotification_seen_feature", "_UI_ESNotification_type"),
+			NotificationPackage.Literals.ES_NOTIFICATION__SEEN, true, false, false,
+			ItemPropertyDescriptor.BOOLEAN_VALUE_IMAGE, null, null));
+	}
+
+	/**
+	 * This adds a property descriptor for the Creation Date feature.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 */
+	protected void addCreationDatePropertyDescriptor(Object object) {
+		itemPropertyDescriptors.add(createItemPropertyDescriptor(((ComposeableAdapterFactory) adapterFactory)
+			.getRootAdapterFactory(), getResourceLocator(), getString("_UI_ESNotification_creationDate_feature"),
+			getString("_UI_PropertyDescriptor_description", "_UI_ESNotification_creationDate_feature",
+				"_UI_ESNotification_type"), NotificationPackage.Literals.ES_NOTIFICATION__CREATION_DATE, true, false,
+			false, ItemPropertyDescriptor.GENERIC_VALUE_IMAGE, null, null));
 	}
 
 	/**
@@ -147,7 +192,7 @@ public class ESNotificationItemProvider extends IdentifiableElementItemProvider 
 	 */
 	@Override
 	public String getText(Object object) {
-		String label = ((ESNotification) object).getIdentifier();
+		String label = ((ESNotification) object).getName();
 		return label == null || label.length() == 0 ? getString("_UI_ESNotification_type")
 			: getString("_UI_ESNotification_type") + " " + label;
 	}
@@ -164,9 +209,12 @@ public class ESNotificationItemProvider extends IdentifiableElementItemProvider 
 		updateChildren(notification);
 
 		switch (notification.getFeatureID(ESNotification.class)) {
+		case NotificationPackage.ES_NOTIFICATION__NAME:
+		case NotificationPackage.ES_NOTIFICATION__MESSAGE:
+		case NotificationPackage.ES_NOTIFICATION__SEEN:
+		case NotificationPackage.ES_NOTIFICATION__CREATION_DATE:
 		case NotificationPackage.ES_NOTIFICATION__SENDER:
 		case NotificationPackage.ES_NOTIFICATION__RECIPIENT:
-		case NotificationPackage.ES_NOTIFICATION__MESSAGE:
 			fireNotifyChanged(new ViewerNotification(notification, notification.getNotifier(), false, true));
 			return;
 		case NotificationPackage.ES_NOTIFICATION__PROJECT:

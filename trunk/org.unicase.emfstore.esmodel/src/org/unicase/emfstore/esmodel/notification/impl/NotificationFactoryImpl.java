@@ -20,8 +20,8 @@ import org.unicase.emfstore.esmodel.notification.NotificationPackage;
  */
 public class NotificationFactoryImpl extends EFactoryImpl implements NotificationFactory {
 	/**
-	 * Creates the default factory implementation. <!-- begin-user-doc --> <!-- end-user-doc -->
-	 * 
+	 * Creates the default factory implementation.
+	 * <!-- begin-user-doc --> <!-- end-user-doc -->
 	 * @generated
 	 */
 	public static NotificationFactory init() {
@@ -38,8 +38,8 @@ public class NotificationFactoryImpl extends EFactoryImpl implements Notificatio
 	}
 
 	/**
-	 * Creates an instance of the factory. <!-- begin-user-doc --> <!-- end-user-doc -->
-	 * 
+	 * Creates an instance of the factory.
+	 * <!-- begin-user-doc --> <!-- end-user-doc -->
 	 * @generated
 	 */
 	public NotificationFactoryImpl() {
@@ -48,7 +48,6 @@ public class NotificationFactoryImpl extends EFactoryImpl implements Notificatio
 
 	/**
 	 * <!-- begin-user-doc --> <!-- end-user-doc -->
-	 * 
 	 * @generated
 	 */
 	@Override
@@ -63,7 +62,6 @@ public class NotificationFactoryImpl extends EFactoryImpl implements Notificatio
 
 	/**
 	 * <!-- begin-user-doc --> <!-- end-user-doc -->
-	 * 
 	 * @generated
 	 */
 	public ESNotification createESNotification() {
@@ -73,7 +71,6 @@ public class NotificationFactoryImpl extends EFactoryImpl implements Notificatio
 
 	/**
 	 * <!-- begin-user-doc --> <!-- end-user-doc -->
-	 * 
 	 * @generated
 	 */
 	public NotificationPackage getNotificationPackage() {
@@ -82,7 +79,6 @@ public class NotificationFactoryImpl extends EFactoryImpl implements Notificatio
 
 	/**
 	 * <!-- begin-user-doc --> <!-- end-user-doc -->
-	 * 
 	 * @deprecated
 	 * @generated
 	 */

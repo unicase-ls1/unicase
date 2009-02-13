@@ -293,11 +293,14 @@
     <nestedGenPackages prefix="Notification" basePackage="org.unicase.emfstore.esmodel"
         disposableProviderFactory="true" ecorePackage="esmodel.ecore#//notification">
       <genClasses ecoreClass="esmodel.ecore#//notification/ESNotification">
+        <genFeatures createChild="false" ecoreFeature="ecore:EAttribute esmodel.ecore#//notification/ESNotification/name"/>
+        <genFeatures createChild="false" ecoreFeature="ecore:EAttribute esmodel.ecore#//notification/ESNotification/message"/>
+        <genFeatures createChild="false" ecoreFeature="ecore:EAttribute esmodel.ecore#//notification/ESNotification/seen"/>
+        <genFeatures createChild="false" ecoreFeature="ecore:EAttribute esmodel.ecore#//notification/ESNotification/creationDate"/>
         <genFeatures createChild="false" ecoreFeature="ecore:EAttribute esmodel.ecore#//notification/ESNotification/sender"/>
         <genFeatures createChild="false" ecoreFeature="ecore:EAttribute esmodel.ecore#//notification/ESNotification/recipient"/>
         <genFeatures property="None" children="true" createChild="true" ecoreFeature="ecore:EReference esmodel.ecore#//notification/ESNotification/project"/>
         <genFeatures property="None" children="true" createChild="true" ecoreFeature="ecore:EReference esmodel.ecore#//notification/ESNotification/relatedModelElements"/>
-        <genFeatures createChild="false" ecoreFeature="ecore:EAttribute esmodel.ecore#//notification/ESNotification/message"/>
       </genClasses>
     </nestedGenPackages>
   </genPackages>
