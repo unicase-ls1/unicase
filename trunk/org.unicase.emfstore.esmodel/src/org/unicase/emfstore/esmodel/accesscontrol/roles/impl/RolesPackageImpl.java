@@ -21,6 +21,8 @@ import org.unicase.emfstore.esmodel.accesscontrol.roles.RolesPackage;
 import org.unicase.emfstore.esmodel.accesscontrol.roles.ServerAdmin;
 import org.unicase.emfstore.esmodel.accesscontrol.roles.WriterRole;
 import org.unicase.emfstore.esmodel.impl.EsmodelPackageImpl;
+import org.unicase.emfstore.esmodel.notification.NotificationPackage;
+import org.unicase.emfstore.esmodel.notification.impl.NotificationPackageImpl;
 import org.unicase.emfstore.esmodel.versioning.VersioningPackage;
 import org.unicase.emfstore.esmodel.versioning.events.EventsPackage;
 import org.unicase.emfstore.esmodel.versioning.events.impl.EventsPackageImpl;
@@ -139,6 +141,9 @@ public class RolesPackageImpl extends EPackageImpl implements RolesPackage {
 		AccesscontrolPackageImpl theAccesscontrolPackage = (AccesscontrolPackageImpl) (EPackage.Registry.INSTANCE
 			.getEPackage(AccesscontrolPackage.eNS_URI) instanceof AccesscontrolPackageImpl ? EPackage.Registry.INSTANCE
 			.getEPackage(AccesscontrolPackage.eNS_URI) : AccesscontrolPackage.eINSTANCE);
+		NotificationPackageImpl theNotificationPackage = (NotificationPackageImpl) (EPackage.Registry.INSTANCE
+			.getEPackage(NotificationPackage.eNS_URI) instanceof NotificationPackageImpl ? EPackage.Registry.INSTANCE
+			.getEPackage(NotificationPackage.eNS_URI) : NotificationPackage.eINSTANCE);
 
 		// Create package meta-data objects
 		theRolesPackage.createPackageContents();
@@ -147,6 +152,7 @@ public class RolesPackageImpl extends EPackageImpl implements RolesPackage {
 		theOperationsPackage.createPackageContents();
 		theEventsPackage.createPackageContents();
 		theAccesscontrolPackage.createPackageContents();
+		theNotificationPackage.createPackageContents();
 
 		// Initialize created meta-data
 		theRolesPackage.initializePackageContents();
@@ -155,6 +161,7 @@ public class RolesPackageImpl extends EPackageImpl implements RolesPackage {
 		theOperationsPackage.initializePackageContents();
 		theEventsPackage.initializePackageContents();
 		theAccesscontrolPackage.initializePackageContents();
+		theNotificationPackage.initializePackageContents();
 
 		// Mark meta-data to indicate it can't be changed
 		theRolesPackage.freeze();

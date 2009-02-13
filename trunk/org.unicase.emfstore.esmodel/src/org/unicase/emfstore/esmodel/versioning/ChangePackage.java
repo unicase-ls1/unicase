@@ -7,6 +7,7 @@ package org.unicase.emfstore.esmodel.versioning;
 
 import org.eclipse.emf.common.util.EList;
 import org.eclipse.emf.ecore.EObject;
+import org.unicase.emfstore.esmodel.notification.ESNotification;
 import org.unicase.emfstore.esmodel.versioning.events.Event;
 import org.unicase.emfstore.esmodel.versioning.operations.AbstractOperation;
 import org.unicase.model.Project;
@@ -24,10 +25,10 @@ import org.unicase.model.Project;
 public interface ChangePackage extends EObject {
 
 	/**
-	 * Returns the value of the '<em><b>Operations</b></em>' containment reference list. The list contents are of type
-	 * {@link org.unicase.emfstore.esmodel.versioning.operations.AbstractOperation}. <!-- begin-user-doc --> <!--
+	 * Returns the value of the '<em><b>Operations</b></em>' containment reference list.
+	 * The list contents are of type {@link org.unicase.emfstore.esmodel.versioning.operations.AbstractOperation}.
+	 * <!-- begin-user-doc --> <!--
 	 * end-user-doc -->
-	 * 
 	 * @return the value of the '<em>Operations</em>' containment reference list.
 	 * @see org.unicase.emfstore.esmodel.versioning.VersioningPackage#getChangePackage_Operations()
 	 * @model containment="true" resolveProxies="true"
@@ -36,14 +37,14 @@ public interface ChangePackage extends EObject {
 	EList<AbstractOperation> getOperations();
 
 	/**
-	 * Returns the value of the '<em><b>Events</b></em>' containment reference list. The list contents are of type
-	 * {@link org.unicase.emfstore.esmodel.versioning.events.Event}. <!-- begin-user-doc -->
+	 * Returns the value of the '<em><b>Events</b></em>' containment reference list.
+	 * The list contents are of type {@link org.unicase.emfstore.esmodel.versioning.events.Event}.
+	 * <!-- begin-user-doc -->
 	 * <p>
 	 * If the meaning of the '<em>Events</em>' containment reference list isn't clear, there really should be more of a
 	 * description here...
 	 * </p>
 	 * <!-- end-user-doc -->
-	 * 
 	 * @return the value of the '<em>Events</em>' containment reference list.
 	 * @see org.unicase.emfstore.esmodel.versioning.VersioningPackage#getChangePackage_Events()
 	 * @model containment="true" resolveProxies="true"
@@ -52,13 +53,13 @@ public interface ChangePackage extends EObject {
 	EList<Event> getEvents();
 
 	/**
-	 * Returns the value of the '<em><b>Log Message</b></em>' containment reference. <!-- begin-user-doc -->
+	 * Returns the value of the '<em><b>Log Message</b></em>' containment reference.
+	 * <!-- begin-user-doc -->
 	 * <p>
 	 * If the meaning of the '<em>Log Message</em>' containment reference isn't clear, there really should be more of a
 	 * description here...
 	 * </p>
 	 * <!-- end-user-doc -->
-	 * 
 	 * @return the value of the '<em>Log Message</em>' containment reference.
 	 * @see #setLogMessage(LogMessage)
 	 * @see org.unicase.emfstore.esmodel.versioning.VersioningPackage#getChangePackage_LogMessage()
@@ -68,14 +69,29 @@ public interface ChangePackage extends EObject {
 	LogMessage getLogMessage();
 
 	/**
-	 * Sets the value of the '{@link org.unicase.emfstore.esmodel.versioning.ChangePackage#getLogMessage
-	 * <em>Log Message</em>}' containment reference. <!-- begin-user-doc --> <!-- end-user-doc -->
-	 * 
+	 * Sets the value of the '{@link org.unicase.emfstore.esmodel.versioning.ChangePackage#getLogMessage <em>Log Message</em>}' containment reference.
+	 * <!-- begin-user-doc --> <!-- end-user-doc -->
 	 * @param value the new value of the '<em>Log Message</em>' containment reference.
 	 * @see #getLogMessage()
 	 * @generated
 	 */
 	void setLogMessage(LogMessage value);
+
+	/**
+	 * Returns the value of the '<em><b>Notifications</b></em>' containment reference list.
+	 * The list contents are of type {@link org.unicase.emfstore.esmodel.notification.ESNotification}.
+	 * <!-- begin-user-doc -->
+	 * <p>
+	 * If the meaning of the '<em>Notifications</em>' containment reference list isn't clear,
+	 * there really should be more of a description here...
+	 * </p>
+	 * <!-- end-user-doc -->
+	 * @return the value of the '<em>Notifications</em>' containment reference list.
+	 * @see org.unicase.emfstore.esmodel.versioning.VersioningPackage#getChangePackage_Notifications()
+	 * @model containment="true" resolveProxies="true"
+	 * @generated
+	 */
+	EList<ESNotification> getNotifications();
 
 	/**
 	 * Apply all operations in the change package to the given project.

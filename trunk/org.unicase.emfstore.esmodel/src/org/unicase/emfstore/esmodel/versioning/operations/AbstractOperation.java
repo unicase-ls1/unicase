@@ -26,12 +26,12 @@ import org.unicase.model.Project;
  */
 public interface AbstractOperation extends EObject {
 	/**
-	 * Returns the value of the '<em><b>Name</b></em>' attribute. <!-- begin-user-doc -->
+	 * Returns the value of the '<em><b>Name</b></em>' attribute.
+	 * <!-- begin-user-doc -->
 	 * <p>
 	 * If the meaning of the '<em>Name</em>' attribute isn't clear, there really should be more of a description here...
 	 * </p>
 	 * <!-- end-user-doc -->
-	 * 
 	 * @return the value of the '<em>Name</em>' attribute.
 	 * @see org.unicase.emfstore.esmodel.versioning.operations.OperationsPackage#getAbstractOperation_Name()
 	 * @model transient="true" changeable="false" volatile="true" derived="true"
@@ -56,13 +56,13 @@ public interface AbstractOperation extends EObject {
 	String getDescription();
 
 	/**
-	 * Returns the value of the '<em><b>Model Element Id</b></em>' containment reference. <!-- begin-user-doc -->
+	 * Returns the value of the '<em><b>Model Element Id</b></em>' containment reference.
+	 * <!-- begin-user-doc -->
 	 * <p>
 	 * If the meaning of the '<em>Model Element Id</em>' reference isn't clear, there really should be more of a
 	 * description here...
 	 * </p>
 	 * <!-- end-user-doc -->
-	 * 
 	 * @return the value of the '<em>Model Element Id</em>' containment reference.
 	 * @see #setModelElementId(ModelElementId)
 	 * @see org.unicase.emfstore.esmodel.versioning.operations.OperationsPackage#getAbstractOperation_ModelElementId()
@@ -72,10 +72,8 @@ public interface AbstractOperation extends EObject {
 	ModelElementId getModelElementId();
 
 	/**
-	 * Sets the value of the '
-	 * {@link org.unicase.emfstore.esmodel.versioning.operations.AbstractOperation#getModelElementId
-	 * <em>Model Element Id</em>}' containment reference. <!-- begin-user-doc --> <!-- end-user-doc -->
-	 * 
+	 * Sets the value of the '{@link org.unicase.emfstore.esmodel.versioning.operations.AbstractOperation#getModelElementId <em>Model Element Id</em>}' containment reference.
+	 * <!-- begin-user-doc --> <!-- end-user-doc -->
 	 * @param value the new value of the '<em>Model Element Id</em>' containment reference.
 	 * @see #getModelElementId()
 	 * @generated
@@ -83,13 +81,13 @@ public interface AbstractOperation extends EObject {
 	void setModelElementId(ModelElementId value);
 
 	/**
-	 * Returns the value of the '<em><b>Accepted</b></em>' attribute. <!-- begin-user-doc -->
+	 * Returns the value of the '<em><b>Accepted</b></em>' attribute.
+	 * <!-- begin-user-doc -->
 	 * <p>
 	 * If the meaning of the '<em>Accepted</em>' attribute isn't clear, there really should be more of a description
 	 * here...
 	 * </p>
 	 * <!-- end-user-doc -->
-	 * 
 	 * @return the value of the '<em>Accepted</em>' attribute.
 	 * @see #setAccepted(boolean)
 	 * @see org.unicase.emfstore.esmodel.versioning.operations.OperationsPackage#getAbstractOperation_Accepted()
@@ -99,9 +97,8 @@ public interface AbstractOperation extends EObject {
 	boolean isAccepted();
 
 	/**
-	 * Sets the value of the '{@link org.unicase.emfstore.esmodel.versioning.operations.AbstractOperation#isAccepted
-	 * <em>Accepted</em>}' attribute. <!-- begin-user-doc --> <!-- end-user-doc -->
-	 * 
+	 * Sets the value of the '{@link org.unicase.emfstore.esmodel.versioning.operations.AbstractOperation#isAccepted <em>Accepted</em>}' attribute.
+	 * <!-- begin-user-doc --> <!-- end-user-doc -->
 	 * @param value the new value of the '<em>Accepted</em>' attribute.
 	 * @see #isAccepted()
 	 * @generated
@@ -109,13 +106,13 @@ public interface AbstractOperation extends EObject {
 	void setAccepted(boolean value);
 
 	/**
-	 * Returns the value of the '<em><b>Client Date</b></em>' attribute. <!-- begin-user-doc -->
+	 * Returns the value of the '<em><b>Client Date</b></em>' attribute.
+	 * <!-- begin-user-doc -->
 	 * <p>
 	 * If the meaning of the '<em>Client Date</em>' attribute isn't clear, there really should be more of a description
 	 * here...
 	 * </p>
 	 * <!-- end-user-doc -->
-	 * 
 	 * @return the value of the '<em>Client Date</em>' attribute.
 	 * @see #setClientDate(Date)
 	 * @see org.unicase.emfstore.esmodel.versioning.operations.OperationsPackage#getAbstractOperation_ClientDate()
@@ -125,9 +122,8 @@ public interface AbstractOperation extends EObject {
 	Date getClientDate();
 
 	/**
-	 * Sets the value of the '{@link org.unicase.emfstore.esmodel.versioning.operations.AbstractOperation#getClientDate
-	 * <em>Client Date</em>}' attribute. <!-- begin-user-doc --> <!-- end-user-doc -->
-	 * 
+	 * Sets the value of the '{@link org.unicase.emfstore.esmodel.versioning.operations.AbstractOperation#getClientDate <em>Client Date</em>}' attribute.
+	 * <!-- begin-user-doc --> <!-- end-user-doc -->
 	 * @param value the new value of the '<em>Client Date</em>' attribute.
 	 * @see #getClientDate()
 	 * @generated

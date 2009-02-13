@@ -17,6 +17,8 @@ import org.unicase.emfstore.esmodel.accesscontrol.impl.AccesscontrolPackageImpl;
 import org.unicase.emfstore.esmodel.accesscontrol.roles.RolesPackage;
 import org.unicase.emfstore.esmodel.accesscontrol.roles.impl.RolesPackageImpl;
 import org.unicase.emfstore.esmodel.impl.EsmodelPackageImpl;
+import org.unicase.emfstore.esmodel.notification.NotificationPackage;
+import org.unicase.emfstore.esmodel.notification.impl.NotificationPackageImpl;
 import org.unicase.emfstore.esmodel.versioning.VersioningPackage;
 import org.unicase.emfstore.esmodel.versioning.events.AnnotationEvent;
 import org.unicase.emfstore.esmodel.versioning.events.CheckoutEvent;
@@ -245,6 +247,9 @@ public class EventsPackageImpl extends EPackageImpl implements EventsPackage {
 		RolesPackageImpl theRolesPackage = (RolesPackageImpl) (EPackage.Registry.INSTANCE
 			.getEPackage(RolesPackage.eNS_URI) instanceof RolesPackageImpl ? EPackage.Registry.INSTANCE
 			.getEPackage(RolesPackage.eNS_URI) : RolesPackage.eINSTANCE);
+		NotificationPackageImpl theNotificationPackage = (NotificationPackageImpl) (EPackage.Registry.INSTANCE
+			.getEPackage(NotificationPackage.eNS_URI) instanceof NotificationPackageImpl ? EPackage.Registry.INSTANCE
+			.getEPackage(NotificationPackage.eNS_URI) : NotificationPackage.eINSTANCE);
 
 		// Create package meta-data objects
 		theEventsPackage.createPackageContents();
@@ -253,6 +258,7 @@ public class EventsPackageImpl extends EPackageImpl implements EventsPackage {
 		theOperationsPackage.createPackageContents();
 		theAccesscontrolPackage.createPackageContents();
 		theRolesPackage.createPackageContents();
+		theNotificationPackage.createPackageContents();
 
 		// Initialize created meta-data
 		theEventsPackage.initializePackageContents();
@@ -261,6 +267,7 @@ public class EventsPackageImpl extends EPackageImpl implements EventsPackage {
 		theOperationsPackage.initializePackageContents();
 		theAccesscontrolPackage.initializePackageContents();
 		theRolesPackage.initializePackageContents();
+		theNotificationPackage.initializePackageContents();
 
 		// Mark meta-data to indicate it can't be changed
 		theEventsPackage.freeze();

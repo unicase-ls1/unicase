@@ -20,6 +20,7 @@ import org.eclipse.emf.edit.provider.IStructuredItemContentProvider;
 import org.eclipse.emf.edit.provider.ITreeItemContentProvider;
 import org.eclipse.emf.edit.provider.ItemProviderAdapter;
 import org.eclipse.emf.edit.provider.ViewerNotification;
+import org.unicase.emfstore.esmodel.notification.NotificationFactory;
 import org.unicase.emfstore.esmodel.provider.EsmodelEditPlugin;
 import org.unicase.emfstore.esmodel.versioning.ChangePackage;
 import org.unicase.emfstore.esmodel.versioning.VersioningFactory;
@@ -72,6 +73,7 @@ public class ChangePackageItemProvider extends ItemProviderAdapter implements IE
 			childrenFeatures.add(VersioningPackage.Literals.CHANGE_PACKAGE__OPERATIONS);
 			childrenFeatures.add(VersioningPackage.Literals.CHANGE_PACKAGE__EVENTS);
 			childrenFeatures.add(VersioningPackage.Literals.CHANGE_PACKAGE__LOG_MESSAGE);
+			childrenFeatures.add(VersioningPackage.Literals.CHANGE_PACKAGE__NOTIFICATIONS);
 		}
 		return childrenFeatures;
 	}
@@ -123,6 +125,7 @@ public class ChangePackageItemProvider extends ItemProviderAdapter implements IE
 		case VersioningPackage.CHANGE_PACKAGE__OPERATIONS:
 		case VersioningPackage.CHANGE_PACKAGE__EVENTS:
 		case VersioningPackage.CHANGE_PACKAGE__LOG_MESSAGE:
+		case VersioningPackage.CHANGE_PACKAGE__NOTIFICATIONS:
 			fireNotifyChanged(new ViewerNotification(notification, notification.getNotifier(), true, false));
 			return;
 		}
@@ -228,6 +231,9 @@ public class ChangePackageItemProvider extends ItemProviderAdapter implements IE
 
 		newChildDescriptors.add(createChildParameter(VersioningPackage.Literals.CHANGE_PACKAGE__LOG_MESSAGE,
 			VersioningFactory.eINSTANCE.createLogMessage()));
+
+		newChildDescriptors.add(createChildParameter(VersioningPackage.Literals.CHANGE_PACKAGE__NOTIFICATIONS,
+			NotificationFactory.eINSTANCE.createESNotification()));
 	}
 
 	/**
