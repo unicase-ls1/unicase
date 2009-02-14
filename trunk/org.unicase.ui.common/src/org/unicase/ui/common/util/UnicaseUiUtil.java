@@ -22,6 +22,7 @@ import org.eclipse.ui.dialogs.ElementListSelectionDialog;
 import org.unicase.emfstore.esmodel.accesscontrol.ACUser;
 import org.unicase.emfstore.esmodel.accesscontrol.roles.Role;
 import org.unicase.model.ModelElement;
+import org.unicase.model.classes.Association;
 import org.unicase.workspace.ProjectSpace;
 import org.unicase.workspace.Usersession;
 
@@ -82,7 +83,7 @@ public final class UnicaseUiUtil {
 
 				for (Setting setting : inverseReferences) {
 					EObject settingObj = setting.getEObject();
-					if (settingObj != null) {
+					if (settingObj != null && settingObj instanceof Association) {
 						references.add(settingObj);
 					}
 				}
