@@ -47,6 +47,7 @@ import org.unicase.ui.tableview.labelprovider.StatusLabelProvider;
 import org.unicase.workspace.Workspace;
 import org.unicase.workspace.WorkspaceManager;
 import org.unicase.workspace.WorkspacePackage;
+import org.unicase.workspace.exceptions.CannotMatchUserInProjectException;
 import org.unicase.workspace.util.EventUtil;
 import org.unicase.workspace.util.NoCurrentUserException;
 import org.unicase.workspace.util.OrgUnitHelper;
@@ -178,6 +179,9 @@ public class IterationPlanningView extends ViewPart {
 			createTeamFilter(user);
 			createUserFilter(user);
 		} catch (NoCurrentUserException e) {
+			createTeamFilter(null);
+			createUserFilter(null);
+		} catch (CannotMatchUserInProjectException e) {
 			createTeamFilter(null);
 			createUserFilter(null);
 		}

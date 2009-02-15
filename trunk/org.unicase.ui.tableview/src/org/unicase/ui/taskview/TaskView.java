@@ -34,6 +34,7 @@ import org.unicase.workspace.ProjectSpace;
 import org.unicase.workspace.Workspace;
 import org.unicase.workspace.WorkspaceManager;
 import org.unicase.workspace.WorkspacePackage;
+import org.unicase.workspace.exceptions.CannotMatchUserInProjectException;
 import org.unicase.workspace.util.EventUtil;
 import org.unicase.workspace.util.NoCurrentUserException;
 import org.unicase.workspace.util.OrgUnitHelper;
@@ -177,6 +178,10 @@ public class TaskView extends ViewPart implements ProjectChangeObserver {
 			createTeamFilter(user);
 
 		} catch (NoCurrentUserException e) {
+			// Disable filter
+			createUserFilter(null);
+			createTeamFilter(null);
+		} catch (CannotMatchUserInProjectException e) {
 			// Disable filter
 			createUserFilter(null);
 			createTeamFilter(null);
