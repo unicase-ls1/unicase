@@ -7,14 +7,17 @@ package org.unicase.workspace.notification.provider;
 
 import java.util.ArrayList;
 import java.util.Date;
+import java.util.HashMap;
 import java.util.HashSet;
 import java.util.List;
+import java.util.Map;
 import java.util.Set;
 
 import org.unicase.emfstore.esmodel.notification.ESNotification;
 import org.unicase.emfstore.esmodel.notification.NotificationFactory;
 import org.unicase.emfstore.esmodel.util.EsModelUtil;
 import org.unicase.emfstore.esmodel.versioning.operations.AbstractOperation;
+import org.unicase.emfstore.esmodel.versioning.operations.CreateDeleteOperation;
 import org.unicase.emfstore.esmodel.versioning.operations.MultiReferenceOperation;
 import org.unicase.emfstore.esmodel.versioning.operations.OperationsPackage;
 import org.unicase.emfstore.esmodel.versioning.operations.ReferenceOperation;
@@ -43,6 +46,7 @@ public class AssignmentNotificationProvider implements NotificationProvider {
 	private ProjectSpace projectSpace;
 	private User user;
 	private Set<ModelElementId> workItems;
+	private Map<ModelElementId, ModelElement> createdElementsMap;
 
 	/**
 	 * {@inheritDoc}
@@ -54,6 +58,8 @@ public class AssignmentNotificationProvider implements NotificationProvider {
 		this.user = null;
 		this.workItems.clear();
 		this.workItems = null;
+		this.createdElementsMap.clear();
+		this.createdElementsMap = null;
 	}
 
 	/**
@@ -99,6 +105,7 @@ public class AssignmentNotificationProvider implements NotificationProvider {
 			clear();
 		}
 		this.workItems = new HashSet<ModelElementId>();
+		this.createdElementsMap = new HashMap<ModelElementId, ModelElement>();
 	}
 
 	/**
@@ -111,29 +118,25 @@ public class AssignmentNotificationProvider implements NotificationProvider {
 			return;
 		}
 
+		updateCreatedModelElementsMap(operation);
+
 		ReferenceOperation referenceOperation = getReferenceOperation(operation);
+		if (referenceOperation == null) {
+			return;
+		}
 
 		String featureName = referenceOperation.getFeatureName();
 
 		Project project = projectSpace.getProject();
-		ModelElement modelElement = project.getModelElement(operation.getModelElementId());
+		ModelElement modelElement = getModelElement(operation, project);
 
 		// if we have a change of an orgunit feature in a work item
 		if (TaskPackage.eINSTANCE.getWorkItem().isInstance(modelElement)) {
 			if (!(featureName.equalsIgnoreCase("assignee") || featureName.equalsIgnoreCase("participants"))) {
 				return;
 			}
-			Set<OrgUnit> impactedOrgUnits = new HashSet<OrgUnit>();
-			for (ModelElementId modelElementId : referenceOperation.getOtherInvolvedModelElements()) {
-				ModelElement element = project.getModelElement(modelElementId);
-				impactedOrgUnits.add((OrgUnit) element);
-			}
-			Set<Group> allCurrentGroups = OrgUnitHelper.getAllGroupsOfOrgUnit(user);
-			for (OrgUnit impactedOrgUnit : impactedOrgUnits) {
-				if (allCurrentGroups.contains(impactedOrgUnit)) {
-					workItems.add(operation.getModelElementId());
-				}
-			}
+			processWorkItem(operation, referenceOperation, project);
+
 		}
 		// if we have a change in a workitem related feature in a org unit
 		else if (OrganizationPackage.eINSTANCE.getOrgUnit().isInstance(modelElement)) {
@@ -141,14 +144,62 @@ public class AssignmentNotificationProvider implements NotificationProvider {
 				return;
 			}
 
-			Set<Group> allCurrentGroups = OrgUnitHelper.getAllGroupsOfOrgUnit(user);
-			if (allCurrentGroups.contains(modelElement)) {
-				workItems.addAll(referenceOperation.getOtherInvolvedModelElements());
-			}
+			processOrgUnit(operation, referenceOperation, modelElement);
 		}
 
 		else {
 			return;
+		}
+	}
+
+	private void processOrgUnit(AbstractOperation operation, ReferenceOperation referenceOperation,
+		ModelElement modelElement) {
+		Set<Group> allCurrentGroups = OrgUnitHelper.getAllGroupsOfOrgUnit(user);
+		if (allCurrentGroups.contains(modelElement)) {
+			workItems.addAll(referenceOperation.getOtherInvolvedModelElements());
+		}
+		if (OrganizationPackage.eINSTANCE.getUser().isInstance(modelElement)) {
+			if (user.getName().equalsIgnoreCase(modelElement.getName())) {
+				workItems.add(operation.getModelElementId());
+			}
+		}
+	}
+
+	private void processWorkItem(AbstractOperation operation, ReferenceOperation referenceOperation, Project project) {
+		Set<OrgUnit> impactedOrgUnits = new HashSet<OrgUnit>();
+		for (ModelElementId modelElementId : referenceOperation.getOtherInvolvedModelElements()) {
+			ModelElement element = project.getModelElement(modelElementId);
+			impactedOrgUnits.add((OrgUnit) element);
+		}
+		Set<Group> allCurrentGroups = OrgUnitHelper.getAllGroupsOfOrgUnit(user);
+		for (OrgUnit impactedOrgUnit : impactedOrgUnits) {
+			if (allCurrentGroups.contains(impactedOrgUnit)) {
+				workItems.add(operation.getModelElementId());
+			}
+			if (OrganizationPackage.eINSTANCE.getUser().isInstance(impactedOrgUnit)) {
+				if (user.getName().equalsIgnoreCase(impactedOrgUnit.getName())) {
+					workItems.add(operation.getModelElementId());
+				}
+			}
+		}
+	}
+
+	private void updateCreatedModelElementsMap(AbstractOperation operation) {
+		if (OperationsPackage.eINSTANCE.getCreateDeleteOperation().isInstance(operation)) {
+			CreateDeleteOperation createDeleteOperation = (CreateDeleteOperation) operation;
+			if (!createDeleteOperation.isDelete()) {
+				createdElementsMap.put(createDeleteOperation.getModelElementId(), createDeleteOperation
+					.getModelElement());
+			}
+		}
+	}
+
+	private ModelElement getModelElement(AbstractOperation operation, Project project) {
+		ModelElementId modelElementId = operation.getModelElementId();
+		if (project.contains(modelElementId)) {
+			return project.getModelElement(modelElementId);
+		} else {
+			return createdElementsMap.get(modelElementId);
 		}
 	}
 
