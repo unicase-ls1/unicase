@@ -18,6 +18,7 @@ import org.unicase.model.organization.User;
 import org.unicase.workspace.ProjectSpace;
 import org.unicase.workspace.Usersession;
 import org.unicase.workspace.Workspace;
+import org.unicase.workspace.exceptions.CannotMatchUserInProjectException;
 
 /**
  * Helper for OrgUnit operations.
@@ -36,18 +37,33 @@ public final class OrgUnitHelper {
 	 * @param currentWorkspace the current workspace
 	 * @return The current user
 	 * @throws NoCurrentUserException if there is no current user.
+	 * @throws CannotMatchUserInProjectException if the current user cannot be found in the current project
 	 */
-	public static User getCurrentUser(Workspace currentWorkspace) throws NoCurrentUserException {
+	public static User getCurrentUser(Workspace currentWorkspace) throws NoCurrentUserException,
+		CannotMatchUserInProjectException {
 		ProjectSpace activeProjectSpace = currentWorkspace.getActiveProjectSpace();
 		if (activeProjectSpace == null) {
 			throw new NoCurrentUserException();
 		}
+		return getUser(activeProjectSpace);
+	}
+
+	/**
+	 * Returns the User in the project of the given projectSpace.
+	 * 
+	 * @param projectSpace the project space
+	 * @return the user model element
+	 * @throws NoCurrentUserException if there is no user logged into the project space
+	 * @throws CannotMatchUserInProjectException if the user cannot be found in the project
+	 */
+	public static User getUser(ProjectSpace projectSpace) throws NoCurrentUserException,
+		CannotMatchUserInProjectException {
 		// JH: handle non-existing usersession
-		Usersession currentUserSession = activeProjectSpace.getUsersession();
+		Usersession currentUserSession = projectSpace.getUsersession();
 		if (currentUserSession == null) {
 			throw new NoCurrentUserException();
 		}
-		EList<User> projectUsers = currentWorkspace.getActiveProjectSpace().getProject().getAllModelElementsbyClass(
+		EList<User> projectUsers = projectSpace.getProject().getAllModelElementsbyClass(
 			OrganizationPackage.eINSTANCE.getUser(), new BasicEList<User>());
 		String id = currentUserSession.getACUser().getId().getId();
 		for (User currentUser : projectUsers) {
@@ -60,7 +76,7 @@ public final class OrgUnitHelper {
 				}
 			}
 		}
-		return null;
+		throw new CannotMatchUserInProjectException();
 	}
 
 	/**
@@ -82,6 +98,26 @@ public final class OrgUnitHelper {
 		}
 		return team;
 
+	}
+
+	/**
+	 * Get all Groups an organizational unit is member of.
+	 * 
+	 * @param orgUnit the organizational unit
+	 * @return the set of groups
+	 */
+	public static Set<Group> getAllGroupsOfOrgUnit(OrgUnit orgUnit) {
+		return getAllGroupsOfOrgUnit(orgUnit, new HashSet<Group>());
+	}
+
+	private static Set<Group> getAllGroupsOfOrgUnit(OrgUnit orgUnit, Set<Group> alreadySeenGroups) {
+		for (Group group : orgUnit.getGroupMemberships()) {
+			if (!alreadySeenGroups.contains(group)) {
+				alreadySeenGroups.add(group);
+				getAllGroupsOfOrgUnit(orgUnit, alreadySeenGroups);
+			}
+		}
+		return alreadySeenGroups;
 	}
 
 }
