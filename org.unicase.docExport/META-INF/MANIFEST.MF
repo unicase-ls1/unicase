@@ -46,3 +46,4 @@ Bundle-ClassPath: lib/iText-2.1.3.jar,
  lib/birt/org.w3c.css.sac_1.3.0.v200805290154.jar,
  lib/birt/scriptapi.jar
 Bundle-Vendor: unicase.org
+Import-Package: org.eclipse.emf.ecore.provider

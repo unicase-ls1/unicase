@@ -142,5 +142,45 @@
             restorable="true">
       </view>
    </extension>
+   <extension
+         point="org.eclipse.emf.edit.itemProviderAdapterFactories">
+      <factory
+            class="org.unicase.docExport.exportModel.provider.ExportModelItemProviderAdapterFactory"
+            supportedTypes="org.eclipse.emf.edit.provider.IEditingDomainItemProvider  org.eclipse.emf.edit.provider.IStructuredItemContentProvider  org.eclipse.emf.edit.provider.ITreeItemContentProvider  org.eclipse.emf.edit.provider.IItemLabelProvider   org.eclipse.emf.edit.provider.IItemPropertySource"
+            uri="http://unicase.org/docExport/exportModel">
+      </factory>
+   </extension>
+   <extension
+         point="org.eclipse.emf.edit.itemProviderAdapterFactories">
+      <factory
+            class="org.unicase.docExport.exportModel.renderers.provider.RenderersItemProviderAdapterFactory"
+            supportedTypes="org.eclipse.emf.edit.provider.IEditingDomainItemProvider  org.eclipse.emf.edit.provider.IStructuredItemContentProvider  org.eclipse.emf.edit.provider.ITreeItemContentProvider  org.eclipse.emf.edit.provider.IItemLabelProvider   org.eclipse.emf.edit.provider.IItemPropertySource"
+            uri="http://unicase.org/docExport/exportModel/renderers">
+      </factory>
+   </extension>
+   <extension
+         point="org.eclipse.emf.edit.itemProviderAdapterFactories">
+      <factory
+            class="org.unicase.docExport.exportModel.renderers.defaultRenderers.provider.DefaultRenderersItemProviderAdapterFactory"
+            supportedTypes="org.eclipse.emf.edit.provider.IEditingDomainItemProvider  org.eclipse.emf.edit.provider.IStructuredItemContentProvider  org.eclipse.emf.edit.provider.ITreeItemContentProvider  org.eclipse.emf.edit.provider.IItemLabelProvider   org.eclipse.emf.edit.provider.IItemPropertySource"
+            uri="http://unicase.org/docExport/exportModel/renderers/defaultRenderers">
+      </factory>
+   </extension>
+   <extension
+         point="org.eclipse.emf.edit.itemProviderAdapterFactories">
+      <factory
+            class="org.unicase.docExport.exportModel.renderers.specialRenderers.provider.SpecialRenderersItemProviderAdapterFactory"
+            supportedTypes="org.eclipse.emf.edit.provider.IEditingDomainItemProvider  org.eclipse.emf.edit.provider.IStructuredItemContentProvider  org.eclipse.emf.edit.provider.ITreeItemContentProvider  org.eclipse.emf.edit.provider.IItemLabelProvider   org.eclipse.emf.edit.provider.IItemPropertySource"
+            uri="http://unicase.org/docExport/exportModel/renderers/specialRenderers">
+      </factory>
+   </extension>
+   <extension
+         point="org.eclipse.emf.edit.itemProviderAdapterFactories">
+      <factory
+            class="org.unicase.docExport.exportModel.renderers.options.provider.OptionsItemProviderAdapterFactory"
+            supportedTypes="org.eclipse.emf.edit.provider.IEditingDomainItemProvider  org.eclipse.emf.edit.provider.IStructuredItemContentProvider  org.eclipse.emf.edit.provider.ITreeItemContentProvider  org.eclipse.emf.edit.provider.IItemLabelProvider   org.eclipse.emf.edit.provider.IItemPropertySource"
+            uri="http://unicase.org/docExport/exportModel/renderers/options">
+      </factory>
+   </extension>
 
 </plugin>

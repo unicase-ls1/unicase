@@ -49,6 +49,7 @@ public final class TemplateRegistry {
 	 * this is the template which is used for exporting documents.
 	 */
 	private static Template template;
+	private static ResourceSet resourceSet;
 
 	private static final String DEFAULT_TEMPLATE_NAME = "default";
 	private static final String UNICASE_FOLDER = ".unicase";
@@ -309,8 +310,14 @@ public final class TemplateRegistry {
 		return pathName;
 	}
 
-	private static Resource getTemplatesResource() throws IOException {
-		ResourceSet resourceSet = new ResourceSetImpl();
+	/**
+	 * @return the static resource containing all templates
+	 * @throws IOException .
+	 */
+	public static Resource getTemplatesResource() throws IOException {
+		if (resourceSet == null) {
+			resourceSet = new ResourceSetImpl();
+		}
 		URI fileURI = URI.createFileURI(getTemplatesPath());
 
 		File templatesFile = new File(getTemplatesPath());

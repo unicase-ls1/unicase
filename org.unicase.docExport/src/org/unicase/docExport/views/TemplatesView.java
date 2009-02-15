@@ -5,10 +5,16 @@
  */
 package org.unicase.docExport.views;
 
+import java.io.IOException;
+
 import org.eclipse.core.commands.ExecutionException;
 import org.eclipse.core.commands.NotEnabledException;
 import org.eclipse.core.commands.NotHandledException;
 import org.eclipse.core.commands.common.NotDefinedException;
+import org.eclipse.emf.common.notify.AdapterFactory;
+import org.eclipse.emf.edit.provider.ComposedAdapterFactory;
+import org.eclipse.emf.edit.ui.provider.AdapterFactoryContentProvider;
+import org.eclipse.emf.edit.ui.provider.AdapterFactoryLabelProvider;
 import org.eclipse.jface.action.MenuManager;
 import org.eclipse.jface.viewers.DoubleClickEvent;
 import org.eclipse.jface.viewers.IDoubleClickListener;
@@ -18,6 +24,7 @@ import org.eclipse.swt.widgets.Composite;
 import org.eclipse.swt.widgets.Menu;
 import org.eclipse.ui.handlers.IHandlerService;
 import org.eclipse.ui.part.ViewPart;
+import org.unicase.docExport.TemplateRegistry;
 import org.unicase.docExport.editors.TemplateEditor;
 
 /**
@@ -45,11 +52,31 @@ public class TemplatesView extends ViewPart {
 	@Override
 	public void createPartControl(Composite parent) {
 
+		AdapterFactory myAdapterFactory = new ComposedAdapterFactory(
+			ComposedAdapterFactory.Descriptor.Registry.INSTANCE);
+
 		viewer = new TreeViewer(parent);
+		viewer.setLabelProvider(new AdapterFactoryLabelProvider(myAdapterFactory));
+		viewer.setContentProvider(new AdapterFactoryContentProvider(myAdapterFactory));
+
 		viewer.getTree().setLayoutData(new GridData(GridData.FILL_BOTH));
-		viewer.setContentProvider(new TreeContentProvider());
-		viewer.setLabelProvider(new TreeLabelProvider());
-		viewer.setInput("the TemplateRegistry will deal with this..");
+
+		// viewer.setLabelProvider(new TreeLabelProvider());
+		// viewer.setContentProvider(new ExportModelItemProviderAdapterFactory().);
+		try {
+			viewer.setInput(TemplateRegistry.getTemplatesResource());
+		} catch (IOException e1) {
+			// TODO Auto-generated catch block
+			e1.printStackTrace();
+		}
+
+		// viewer.setLabelProvider(labelProvider);
+		// try {
+		// viewer.setInput(TemplateRegistry.getAllTemplates());
+		// } catch (TemplateSaveException e1) {
+		// // TODO Auto-generated catch block
+		// e1.printStackTrace();
+		// }
 
 		MenuManager menuManager = new MenuManager();
 		Menu menu = menuManager.createContextMenu(viewer.getTree());
@@ -91,13 +118,6 @@ public class TemplatesView extends ViewPart {
 	 */
 	@Override
 	public void setFocus() {
-	}
-
-	/**
-	 * refreshes and rebuilds the tree.
-	 */
-	public static void refresh() {
-		viewer.refresh();
 	}
 
 }
