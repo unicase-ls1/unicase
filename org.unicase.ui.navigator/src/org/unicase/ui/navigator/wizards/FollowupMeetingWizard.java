@@ -18,7 +18,6 @@ import org.unicase.model.meeting.CompositeMeetingSection;
 import org.unicase.model.meeting.IssueMeetingSection;
 import org.unicase.model.meeting.Meeting;
 import org.unicase.model.meeting.MeetingFactory;
-import org.unicase.model.meeting.MeetingPackage;
 import org.unicase.model.meeting.WorkItemMeetingSection;
 import org.unicase.model.task.WorkItem;
 import org.unicase.ui.common.util.ActionHelper;
@@ -164,14 +163,10 @@ public class FollowupMeetingWizard extends Wizard implements IWorkbenchWizard {
 	}
 
 	private void addMeetingSections(Meeting meeting) {
-		CompositeMeetingSection objectiveSection = (CompositeMeetingSection) ActionHelper.createModelElement(
-			MeetingFactory.eINSTANCE, MeetingPackage.eINSTANCE.getCompositeMeetingSection());
-		CompositeMeetingSection informationExchangeSection = (CompositeMeetingSection) ActionHelper.createModelElement(
-			MeetingFactory.eINSTANCE, MeetingPackage.eINSTANCE.getCompositeMeetingSection());
-		CompositeMeetingSection wrapUpSection = (CompositeMeetingSection) ActionHelper.createModelElement(
-			MeetingFactory.eINSTANCE, MeetingPackage.eINSTANCE.getCompositeMeetingSection());
-		IssueMeetingSection discussionSection = (IssueMeetingSection) ActionHelper.createModelElement(
-			MeetingFactory.eINSTANCE, MeetingPackage.eINSTANCE.getIssueMeetingSection());
+		CompositeMeetingSection objectiveSection = MeetingFactory.eINSTANCE.createCompositeMeetingSection();
+		CompositeMeetingSection informationExchangeSection = MeetingFactory.eINSTANCE.createCompositeMeetingSection();
+		CompositeMeetingSection wrapUpSection = MeetingFactory.eINSTANCE.createCompositeMeetingSection();
+		IssueMeetingSection discussionSection = MeetingFactory.eINSTANCE.createIssueMeetingSection();
 
 		// set attributes
 		objectiveSection.setName("Objective");
@@ -193,14 +188,10 @@ public class FollowupMeetingWizard extends Wizard implements IWorkbenchWizard {
 	}
 
 	private void addMeetingSubSections(Meeting meeting) {
-		CompositeMeetingSection miscSection = (CompositeMeetingSection) ActionHelper.createModelElement(
-			MeetingFactory.eINSTANCE, MeetingPackage.eINSTANCE.getCompositeMeetingSection());
-		CompositeMeetingSection meetingCritiqueSection = (CompositeMeetingSection) ActionHelper.createModelElement(
-			MeetingFactory.eINSTANCE, MeetingPackage.eINSTANCE.getCompositeMeetingSection());
-		WorkItemMeetingSection workItemsSection = (WorkItemMeetingSection) ActionHelper.createModelElement(
-			MeetingFactory.eINSTANCE, MeetingPackage.eINSTANCE.getWorkItemMeetingSection());
-		WorkItemMeetingSection newWorkItemsSection = (WorkItemMeetingSection) ActionHelper.createModelElement(
-			MeetingFactory.eINSTANCE, MeetingPackage.eINSTANCE.getWorkItemMeetingSection());
+		CompositeMeetingSection miscSection = MeetingFactory.eINSTANCE.createCompositeMeetingSection();
+		CompositeMeetingSection meetingCritiqueSection = MeetingFactory.eINSTANCE.createCompositeMeetingSection();
+		WorkItemMeetingSection workItemsSection = MeetingFactory.eINSTANCE.createWorkItemMeetingSection();
+		WorkItemMeetingSection newWorkItemsSection = MeetingFactory.eINSTANCE.createWorkItemMeetingSection();
 
 		workItemsSection.setName("Action items");
 		newWorkItemsSection.setName("New action items");

@@ -43,8 +43,7 @@ public class CreateContainmentHandler extends AbstractHandler {
 			final EClass newMEType = (EClass) o;
 			final ModelElement newMEInstance;
 			// create a new model element from this EClass
-			newMEInstance = (ModelElement) ActionHelper.createModelElement(newMEType.getEPackage()
-				.getEFactoryInstance(), newMEType);
+			newMEInstance = (ModelElement) newMEType.getEPackage().getEFactoryInstance().create(newMEType);
 			newMEInstance.setName("new " + newMEType.getName());
 
 			// add this newly created model element to corresponding containment

@@ -16,7 +16,6 @@ import org.eclipse.emf.ecore.EAttribute;
 import org.eclipse.emf.edit.provider.ComposedAdapterFactory;
 import org.eclipse.emf.edit.provider.ReflectiveItemProviderAdapterFactory;
 import org.eclipse.emf.edit.provider.resource.ResourceItemProviderAdapterFactory;
-import org.eclipse.emf.transaction.RecordingCommand;
 import org.eclipse.emf.transaction.TransactionalEditingDomain;
 import org.eclipse.ui.IEditorInput;
 import org.eclipse.ui.IEditorSite;
@@ -141,25 +140,16 @@ public class MEEditor extends SharedHeaderFormEditor {
 			SimpleDateFormat timeFormat = new SimpleDateFormat("HH:mm:ss");
 			StringBuffer stringBuffer = new StringBuffer();
 			Date creationDate = modelElement.getCreationDate();
-			if (creationDate == null) {
-				TransactionalEditingDomain domain = TransactionalEditingDomain.Registry.INSTANCE
-					.getEditingDomain("org.unicase.EditingDomain");
-				domain.getCommandStack().execute(new RecordingCommand(domain) {
-					@Override
-					protected void doExecute() {
-						modelElement.setCreator("unicase");
-						modelElement.setCreationDate(new Date());
-					}
-				});
+			if (creationDate != null) {
+				creationDate = modelElement.getCreationDate();
+				stringBuffer.append("Created on ");
+				stringBuffer.append(dateFormat.format(creationDate));
+				stringBuffer.append(" at ");
+				stringBuffer.append(timeFormat.format(creationDate));
+				stringBuffer.append(" by ");
+				stringBuffer.append(modelElement.getCreator());
+				getEditorSite().getActionBars().getStatusLineManager().setMessage(stringBuffer.toString());
 			}
-			creationDate = modelElement.getCreationDate();
-			stringBuffer.append("Created on ");
-			stringBuffer.append(dateFormat.format(creationDate));
-			stringBuffer.append(" at ");
-			stringBuffer.append(timeFormat.format(creationDate));
-			stringBuffer.append(" by ");
-			stringBuffer.append(modelElement.getCreator());
-			getEditorSite().getActionBars().getStatusLineManager().setMessage(stringBuffer.toString());
 		} else {
 			throw new PartInitException("MEEditor is only appliable for MEEditorInputs");
 		}
