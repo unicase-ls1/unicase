@@ -74,7 +74,7 @@ public class NewReferenceAction extends Action {
 			final ModelElement newMEInstance;
 
 			EPackage ePackage = newClass.getEPackage();
-			newMEInstance = (ModelElement) ActionHelper.createModelElement(ePackage.getEFactoryInstance(), newClass);
+			newMEInstance = (ModelElement) ePackage.getEFactoryInstance().create(newClass);
 			newMEInstance.setName("new " + newClass.getName());
 
 			if (!eReference.isContainer()) {

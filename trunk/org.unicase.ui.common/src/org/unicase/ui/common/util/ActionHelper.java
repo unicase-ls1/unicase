@@ -103,6 +103,7 @@ public final class ActionHelper {
 	 * @param clazz the element class
 	 * @return the new element
 	 */
+	@Deprecated
 	public static EObject createModelElement(EFactory factory, EClass clazz) {
 		EObject obj = factory.create(clazz);
 		ModelElement me = (ModelElement) obj;
