@@ -6,15 +6,24 @@
 package org.unicase.workspace.edit.views.changes;
 
 import java.util.ArrayList;
+import java.util.Date;
 import java.util.List;
 
+import org.eclipse.emf.transaction.RecordingCommand;
+import org.eclipse.emf.transaction.TransactionalEditingDomain;
 import org.eclipse.jface.layout.GridDataFactory;
 import org.eclipse.swt.SWT;
+import org.eclipse.swt.events.SelectionEvent;
+import org.eclipse.swt.events.SelectionListener;
 import org.eclipse.swt.layout.GridLayout;
 import org.eclipse.swt.widgets.Composite;
+import org.eclipse.swt.widgets.Control;
 import org.eclipse.swt.widgets.TabFolder;
 import org.eclipse.swt.widgets.TabItem;
 import org.unicase.emfstore.esmodel.versioning.ChangePackage;
+import org.unicase.emfstore.esmodel.versioning.events.EventsFactory;
+import org.unicase.emfstore.esmodel.versioning.events.PresentationSwitchEvent;
+import org.unicase.workspace.WorkspaceManager;
 
 /**
  * A composite that contains multiple tabs displaying the operation from a different view - e.g. grouped by model
@@ -23,6 +32,39 @@ import org.unicase.emfstore.esmodel.versioning.ChangePackage;
  * @author Shterev
  */
 public class TabbedChangesComposite extends Composite implements ChangesComposite {
+
+	/**
+	 * Tab listener.
+	 * 
+	 * @author Shterev
+	 */
+	private final class TabSelectionListener implements SelectionListener {
+		public void widgetDefaultSelected(SelectionEvent e) {
+			//
+		}
+
+		public void widgetSelected(SelectionEvent e) {
+			final PresentationSwitchEvent event = EventsFactory.eINSTANCE.createPresentationSwitchEvent();
+			event.setReadView(getClass().getName().toString());
+			String tab = "Unknown view";
+			Control control = folder.getSelection()[0].getControl();
+			if (control instanceof CompactChangesComposite) {
+				tab = "Compact view";
+			} else if (control instanceof DetailedChangesComposite) {
+				tab = "Detailed view";
+			}
+			event.setNewPresentation(tab);
+			event.setTimestamp(new Date());
+			TransactionalEditingDomain domain = TransactionalEditingDomain.Registry.INSTANCE
+				.getEditingDomain("org.unicase.EditingDomain");
+			domain.getCommandStack().execute(new RecordingCommand(domain) {
+				@Override
+				protected void doExecute() {
+					WorkspaceManager.getInstance().getCurrentWorkspace().getActiveProjectSpace().addEvent(event);
+				}
+			});
+		}
+	}
 
 	private TabFolder folder;
 	private List<ChangePackage> changePackages;
@@ -59,7 +101,7 @@ public class TabbedChangesComposite extends Composite implements ChangesComposit
 		TabItem opTab = new TabItem(folder, style);
 		opTab.setText("Detailed");
 		opTab.setControl(detailedTab);
-
+		folder.addSelectionListener(new TabSelectionListener());
 	}
 
 	/**
