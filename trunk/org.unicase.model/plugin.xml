@@ -102,6 +102,18 @@
                  {0} is a implementation work item, but has an earlier due date then an related design or analysis work item.
               </message>
            </constraint>
+           <constraint
+                 class="org.unicase.model.task.validation.RefiningAfterRefinedConstraint"
+                 id="org.unicase.model.task.RefiningAfterRefinedConstraint"
+                 lang="Java"
+                 mode="Batch"
+                 name="Refined after Refining Constraint"
+                 severity="INFO"
+                 statusCode="1">
+              <message>
+                 {0} is an implementaton work item annotated to a functional requirement. I has a later due date then a work item related to a refining requirement.
+              </message>
+           </constraint>
         </constraints>
      </constraintProvider>
      <constraintProvider

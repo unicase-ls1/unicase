@@ -46,8 +46,8 @@ public class ImplementationAfterDesign extends AbstractModelConstraint {
 		Annotation annotation = (Annotation) eObj;
 		ActivityType activity;
 		Date dueDate;
-		activity = getActivity(annotation);
-		dueDate = getDueDate(annotation);
+		activity = TaskValidationHelper.getActivity(annotation);
+		dueDate = TaskValidationHelper.getDueDate(annotation);
 
 		if (!activity.equals(ActivityType.IMPLEMENTATION)) {
 			return ctx.createSuccessStatus();
@@ -58,10 +58,10 @@ public class ImplementationAfterDesign extends AbstractModelConstraint {
 			otherAnnotations.addAll(me.getAnnotations());
 		}
 		for (Annotation otherAnnotation : otherAnnotations) {
-			ActivityType otherActivity = getActivity(otherAnnotation);
+			ActivityType otherActivity = TaskValidationHelper.getActivity(otherAnnotation);
 			if (otherActivity.equals(ActivityType.ANALYSIS) || otherActivity.equals(ActivityType.SYSTEM_DESIGN)
 				|| otherActivity.equals(ActivityType.OBJECT_DESIGN)) {
-				if (getDueDate(otherAnnotation).after(dueDate)) {
+				if (TaskValidationHelper.getDueDate(otherAnnotation).after(dueDate)) {
 					EStructuralFeature errorFeature = ValidationConstraintHelper.getErrorFeatureForModelElement(
 						(ModelElement) eObj, "dueDate");
 					ctx.addResult(errorFeature);
@@ -75,23 +75,4 @@ public class ImplementationAfterDesign extends AbstractModelConstraint {
 
 	}
 
-	private Date getDueDate(ModelElement obj) {
-		if (obj instanceof Issue) {
-			return ((Issue) obj).getDueDate();
-		}
-		if (obj instanceof ActionItem) {
-			return ((ActionItem) obj).getDueDate();
-		}
-		return null;
-	}
-
-	private ActivityType getActivity(ModelElement obj) {
-		if (obj instanceof Issue) {
-			return ((Issue) obj).getActivity();
-		}
-		if (obj instanceof ActionItem) {
-			return ((ActionItem) obj).getActivity();
-		}
-		return null;
-	}
 }
