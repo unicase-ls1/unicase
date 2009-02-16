@@ -1,0 +1,85 @@
+/*
+ * Copyright (c) 2006,2007 Borland Software Corporation
+ * 
+ * All rights reserved. This program and the accompanying materials
+ * are made available under the terms of the Eclipse Public License v1.0
+ * which accompanies this distribution, and is available at
+ * http://www.eclipse.org/legal/epl-v10.html
+ *
+ * Contributors:
+ *    Alexander Shatalin (Borland) - initial API and implementation
+ */
+ 
+import "http://www.eclipse.org/gmf/2008/GenModel";
+import "http://www.eclipse.org/emf/2002/Ecore";
+import "http://www.eclipse.org/emf/2002/GenModel";
+
+int getMaxVisualID(gmfgen::GenNavigator navigator) :
+	getMaxVisualIDNavigatorNode(navigator).size() == 1 ? ((gmfgen::GenCommonBase) getMaxVisualIDNavigatorNode(navigator).first()).visualID : 0
+;
+
+private cached List[gmfgen::GenCommonBase] getMaxVisualIDNavigatorNode(gmfgen::GenNavigator navigator) :
+	getNavigatorNodes(navigator).select(navigatorNode | isMaximumVisualID(navigatorNode, getNavigatorNodes(navigator)))
+;
+
+private boolean isMaximumVisualID(gmfgen::GenCommonBase commonBase, List[gmfgen::GenCommonBase] allNavigatorNodes) :
+	allNavigatorNodes.select(navigatorNode | navigatorNode.visualID >  commonBase.visualID).isEmpty()
+;
+
+boolean isStringFeature(genmodel::GenFeature feature) :
+	feature.ecoreFeature.eType.name == "EString"
+;
+
+cached List[gmfgen::GenCommonBase] getNavigatorContainerNodes(gmfgen::GenNavigator navigator) :
+	getNavigatorNodes(navigator).select( n | getChildReferencesFrom(navigator, n).size() > 0)
+;
+
+cached List[gmfgen::GenCommonBase] getNavigatorContainedNodes(gmfgen::GenNavigator navigator) :
+	getNavigatorNodes(navigator).select( n | getChildReferencesTo(navigator, n).size() > 0)
+;
+
+private List[gmfgen::GenCommonBase] getNavigatorNodes(gmfgen::GenNavigator navigator) :
+	let diagram = navigator.editorGen.diagram :
+	{ diagram }
+		.addAll(diagram.topLevelNodes)
+		.addAll(diagram.childNodes)
+		.addAll(diagram.links)
+		.addAll(diagram.compartments)
+		.typeSelect(gmfgen::GenCommonBase)
+;
+
+Set[String] getGroupNames(List[gmfgen::GenNavigatorChildReference] references) :
+	references.select(ref | ref.isInsideGroup()).collect(ref | ref.groupName).toSet()
+;
+
+gmfgen::GenNavigatorChildReference getNavigatorReference(String groupName, List[gmfgen::GenNavigatorChildReference] childReferences) :
+	childReferences.select(r | r.groupName == groupName).toList().first()
+;
+
+List[gmfgen::GenNavigatorChildReference] getChildReferencesFrom(gmfgen::GenNavigator navigator, gmfgen::GenCommonBase parent) :
+	navigator.childReferences.select(r | parent.visualID == r.parent.visualID)
+;
+
+List[gmfgen::GenNavigatorChildReference] getChildReferencesTo(gmfgen::GenNavigator navigator, gmfgen::GenCommonBase child) :
+	navigator.childReferences.select(r | child.visualID == r.child.visualID)
+;
+
+GenNavigatorChildReference getDiagramTopReference(gmfgen::GenNavigator navigator) :
+	let diagramTopReferences = navigator.childReferences.select(cr | null == cr.parent).select(cr | cr.child == navigator.editorGen.diagram) :
+		diagramTopReferences.size() == 0 ? null : diagramTopReferences.get(0)
+;
+
+//
+// CodeGenUtil#validJavaIdentifier()
+//
+String asValidJavaIdentifier(String identifier) :
+JAVA org.eclipse.emf.codegen.util.CodeGenUtil.validJavaIdentifier(java.lang.String)
+;
+
+String i18nKeyForGroup(String groupName, gmfgen::GenCommonBase contextElement) :
+"NavigatorGroupName."+ (null != contextElement ? contextElement.getUniqueIdentifier() : "File") + "." + asValidJavaIdentifier(groupName)
+;
+
+String i18nKeyForOpenDiagramActionName() :
+"NavigatorActionProvider.OpenDiagramActionName"
+;
