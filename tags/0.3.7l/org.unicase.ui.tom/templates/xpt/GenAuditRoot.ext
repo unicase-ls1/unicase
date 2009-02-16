@@ -1,0 +1,55 @@
+/*
+ * Copyright (c) 2007, 2008 Borland Software Corporation
+ * 
+ * All rights reserved. This program and the accompanying materials
+ * are made available under the terms of the Eclipse Public License v1.0
+ * which accompanies this distribution, and is available at
+ * http://www.eclipse.org/legal/epl-v10.html
+ *
+ * Contributors:
+ *    Artem Tikhomirov (Borland) - initial API and implementation
+ */
+import "http://www.eclipse.org/gmf/2008/GenModel";
+import "http://www.eclipse.org/emf/2002/Ecore";
+import "http://www.eclipse.org/emf/2002/GenModel";
+
+extension xpt::GenEditorGenerator reexport;
+
+List[genmodel::GenPackage] getAllTargetedModelPackages(gmfgen::GenAuditRoot root) :
+	root.rules.select(r | r.target != null && r.target.getTargetClass() != null).collect(r | r.target.getTargetClass().genPackage).toList().purgeDups()
+;
+
+String getQualifiedIdentity(GenAuditContext ctx) :
+	ctx.root.editorGen.plugin.iD + ctx.id
+;
+
+boolean hasDiagramElementTargetRule(gmfgen::GenAuditRoot audits) :
+	audits != null && audits.rules.target.typeSelect(gmfgen::GenDiagramElementTarget).size() > 0
+;
+
+private boolean hasAnyNotationElementTargetRule(gmfgen::GenAuditRoot audits) :
+	audits != null && audits.rules.target.typeSelect(gmfgen::GenNotationElementTarget).size() > 0
+;
+
+// not sure why NotationElementTarget is here - for GenDiagramElementTarget there's special selector, 
+// and nothing special for NotationElementTarget (basically, it's just notation.View)
+// Perhaps, the reason is in ValidateAction use of this method - if there are NotationElementTarget, need
+// to run validation on diagram elements.
+// Present method name reflects my understanding at the moment
+boolean shouldRunValidateOnDiagram(gmfgen::GenAuditRoot audits) :
+	hasDiagramElementTargetRule(audits) || hasAnyNotationElementTargetRule(audits)
+; 
+
+
+List[GenCommonBase] getTargetDiagramElements(GenAuditContext ctx) :
+	ctx.ruleTargets.typeSelect(GenDiagramElementTarget).element.purgeDups()
+;
+
+List[GenCommonBase] getAllTargetDiagramElements(GenAuditRoot root) :
+	root.clientContexts.getTargetDiagramElements().purgeDups()
+;
+
+
+String escapeXML(String s) :
+JAVA org.eclipse.gmf.internal.common.codegen.Conversions.escapeXML(java.lang.String)
+;
