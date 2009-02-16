@@ -1853,8 +1853,10 @@ public class ProjectSpaceImpl extends IdentifiableElementImpl implements Project
 	 */
 	public void notify(Notification notification, Project project, ModelElement modelElement) {
 		if (isRecording) {
-			createOperations(notification, modelElement);
-			OperationsCannonizer.cannonize(getOperations());
+			if (this.deleteOperation == null) {
+				createOperations(notification, modelElement);
+				OperationsCannonizer.cannonize(getOperations());
+			}
 			saveProjectSpaceOnly();
 			save(modelElement);
 			setDirty(getOperations().size() > 0);
