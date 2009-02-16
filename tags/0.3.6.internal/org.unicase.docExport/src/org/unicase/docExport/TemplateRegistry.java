@@ -10,6 +10,9 @@ import java.io.IOException;
 import java.net.URL;
 import java.util.ArrayList;
 import java.util.Collections;
+import java.util.Enumeration;
+import java.util.jar.JarEntry;
+import java.util.jar.JarFile;
 
 import org.eclipse.core.runtime.FileLocator;
 import org.eclipse.core.runtime.IStatus;
@@ -28,6 +31,7 @@ import org.unicase.docExport.exceptions.TemplatesFileNotFoundException;
 import org.unicase.docExport.exportModel.ExportModelPackage;
 import org.unicase.docExport.exportModel.Template;
 import org.unicase.docExport.exportModel.builders.DefaultDocumentTemplateBuilder;
+import org.unicase.workspace.Configuration;
 import org.unicase.workspace.util.WorkspaceUtil;
 
 /**
@@ -52,15 +56,15 @@ public final class TemplateRegistry {
 	private static ResourceSet resourceSet;
 
 	private static final String DEFAULT_TEMPLATE_NAME = "default";
-	private static final String UNICASE_FOLDER = ".unicase";
+	private static final String UNICASE_FOLDER = Configuration.getWorkspaceDirectory();
+
 	private static final String DOCUMENT_EXPORT_FOLDER = "docExport";
 	private static final String TEMPLATES_FILE_NAME = "templates5";
 
 	/**
 	 * The folder where all templates should be saved.
 	 */
-	public static final String TEMPLATE_FOLDER = System.getProperty("user.home") + File.separatorChar + UNICASE_FOLDER
-		+ File.separatorChar + DOCUMENT_EXPORT_FOLDER + File.separatorChar;
+	public static final String TEMPLATE_FOLDER = UNICASE_FOLDER + DOCUMENT_EXPORT_FOLDER + File.separatorChar;
 
 	/**
 	 * The folder where all logo images of the templates should be saved.
@@ -106,14 +110,28 @@ public final class TemplateRegistry {
 
 		try {
 			URL templateFolderUrl = FileLocator.find(Activator.getDefault().getBundle(), new Path(
-				DEFAULT_TEMPLATES_FOLDER + "/"), Collections.EMPTY_MAP);
+				DEFAULT_TEMPLATES_FOLDER + File.separatorChar), Collections.EMPTY_MAP);
 
-			File templateFolder = new File(FileLocator.resolve(templateFolderUrl).getPath());
-			File[] files = templateFolder.listFiles();
-			for (int i = 0; i < files.length; i++) {
-				Path path = new Path(files[i].getAbsolutePath());
-				if (path.getFileExtension().equals("zip")) {
-					ImportTemplate.importTemplate(files[i].getAbsolutePath(), true);
+			if (Configuration.isDeveloperVersion()) {
+				File templateFolder = new File(FileLocator.resolve(templateFolderUrl).getPath());
+				File[] files = templateFolder.listFiles();
+				for (int i = 0; i < files.length; i++) {
+					Path path = new Path(files[i].getAbsolutePath());
+					if (path.getFileExtension().equals("zip")) {
+						ImportTemplate.importTemplate(files[i].getAbsolutePath(), true);
+					}
+				}
+			} else {
+				JarFile jarFile = new JarFile(FileLocator.resolve(templateFolderUrl).getPath());
+				Enumeration<JarEntry> jarEnum = jarFile.entries();
+				while (jarEnum.hasMoreElements()) {
+					JarEntry jarEntry = jarEnum.nextElement();
+
+					Path path = new Path(FileLocator.resolve(templateFolderUrl).getPath() + jarEntry.getName());
+					if (path.getFileExtension().equals("zip")) {
+						ImportTemplate.importTemplate(FileLocator.resolve(templateFolderUrl).getPath()
+							+ jarEntry.getName(), true);
+					}
 				}
 			}
 		} catch (IOException e) {
