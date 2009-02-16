@@ -238,6 +238,80 @@ public interface SpecialRenderersPackage extends EPackage {
 	int PACKAGE_FLAT_RENDERER_FEATURE_COUNT = RenderersPackage.MODEL_ELEMENT_RENDERER_FEATURE_COUNT + 0;
 
 	/**
+	 * The meta object id for the '{@link org.unicase.docExport.exportModel.renderers.specialRenderers.impl.ClassRendererImpl <em>Class Renderer</em>}' class.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @see org.unicase.docExport.exportModel.renderers.specialRenderers.impl.ClassRendererImpl
+	 * @see org.unicase.docExport.exportModel.renderers.specialRenderers.impl.SpecialRenderersPackageImpl#getClassRenderer()
+	 * @generated
+	 */
+	int CLASS_RENDERER = 5;
+
+	/**
+	 * The feature id for the '<em><b>Renderer Options</b></em>' containment reference list.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 * @ordered
+	 */
+	int CLASS_RENDERER__RENDERER_OPTIONS = RenderersPackage.MODEL_ELEMENT_RENDERER__RENDERER_OPTIONS;
+
+	/**
+	 * The feature id for the '<em><b>Template</b></em>' reference.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 * @ordered
+	 */
+	int CLASS_RENDERER__TEMPLATE = RenderersPackage.MODEL_ELEMENT_RENDERER__TEMPLATE;
+
+	/**
+	 * The feature id for the '<em><b>Attribute Renderer Mapping</b></em>' containment reference list.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 * @ordered
+	 */
+	int CLASS_RENDERER__ATTRIBUTE_RENDERER_MAPPING = RenderersPackage.MODEL_ELEMENT_RENDERER__ATTRIBUTE_RENDERER_MAPPING;
+
+	/**
+	 * The number of structural features of the '<em>Class Renderer</em>' class.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 * @ordered
+	 */
+	int CLASS_RENDERER_FEATURE_COUNT = RenderersPackage.MODEL_ELEMENT_RENDERER_FEATURE_COUNT + 0;
+
+	/**
+	 * The meta object id for the '{@link org.unicase.docExport.exportModel.renderers.specialRenderers.impl.ClassAttributesRendererImpl <em>Class Attributes Renderer</em>}' class.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @see org.unicase.docExport.exportModel.renderers.specialRenderers.impl.ClassAttributesRendererImpl
+	 * @see org.unicase.docExport.exportModel.renderers.specialRenderers.impl.SpecialRenderersPackageImpl#getClassAttributesRenderer()
+	 * @generated
+	 */
+	int CLASS_ATTRIBUTES_RENDERER = 6;
+
+	/**
+	 * The feature id for the '<em><b>Attribute Option</b></em>' containment reference.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 * @ordered
+	 */
+	int CLASS_ATTRIBUTES_RENDERER__ATTRIBUTE_OPTION = RenderersPackage.ATTRIBUTE_RENDERER__ATTRIBUTE_OPTION;
+
+	/**
+	 * The number of structural features of the '<em>Class Attributes Renderer</em>' class.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 * @ordered
+	 */
+	int CLASS_ATTRIBUTES_RENDERER_FEATURE_COUNT = RenderersPackage.ATTRIBUTE_RENDERER_FEATURE_COUNT + 0;
+
+	/**
 	 * Returns the meta object for class '{@link org.unicase.docExport.exportModel.renderers.specialRenderers.MeetingRenderer <em>Meeting Renderer</em>}'.
 	 * <!-- begin-user-doc --> <!-- end-user-doc -->
 	 * @return the meta object for class '<em>Meeting Renderer</em>'.
@@ -281,6 +355,26 @@ public interface SpecialRenderersPackage extends EPackage {
 	 * @generated
 	 */
 	EClass getPackageFlatRenderer();
+
+	/**
+	 * Returns the meta object for class '{@link org.unicase.docExport.exportModel.renderers.specialRenderers.ClassRenderer <em>Class Renderer</em>}'.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @return the meta object for class '<em>Class Renderer</em>'.
+	 * @see org.unicase.docExport.exportModel.renderers.specialRenderers.ClassRenderer
+	 * @generated
+	 */
+	EClass getClassRenderer();
+
+	/**
+	 * Returns the meta object for class '{@link org.unicase.docExport.exportModel.renderers.specialRenderers.ClassAttributesRenderer <em>Class Attributes Renderer</em>}'.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @return the meta object for class '<em>Class Attributes Renderer</em>'.
+	 * @see org.unicase.docExport.exportModel.renderers.specialRenderers.ClassAttributesRenderer
+	 * @generated
+	 */
+	EClass getClassAttributesRenderer();
 
 	/**
 	 * Returns the factory that creates the instances of the model.
@@ -346,6 +440,26 @@ public interface SpecialRenderersPackage extends EPackage {
 		 * @generated
 		 */
 		EClass PACKAGE_FLAT_RENDERER = eINSTANCE.getPackageFlatRenderer();
+
+		/**
+		 * The meta object literal for the '{@link org.unicase.docExport.exportModel.renderers.specialRenderers.impl.ClassRendererImpl <em>Class Renderer</em>}' class.
+		 * <!-- begin-user-doc -->
+		 * <!-- end-user-doc -->
+		 * @see org.unicase.docExport.exportModel.renderers.specialRenderers.impl.ClassRendererImpl
+		 * @see org.unicase.docExport.exportModel.renderers.specialRenderers.impl.SpecialRenderersPackageImpl#getClassRenderer()
+		 * @generated
+		 */
+		EClass CLASS_RENDERER = eINSTANCE.getClassRenderer();
+
+		/**
+		 * The meta object literal for the '{@link org.unicase.docExport.exportModel.renderers.specialRenderers.impl.ClassAttributesRendererImpl <em>Class Attributes Renderer</em>}' class.
+		 * <!-- begin-user-doc -->
+		 * <!-- end-user-doc -->
+		 * @see org.unicase.docExport.exportModel.renderers.specialRenderers.impl.ClassAttributesRendererImpl
+		 * @see org.unicase.docExport.exportModel.renderers.specialRenderers.impl.SpecialRenderersPackageImpl#getClassAttributesRenderer()
+		 * @generated
+		 */
+		EClass CLASS_ATTRIBUTES_RENDERER = eINSTANCE.getClassAttributesRenderer();
 
 	}
 

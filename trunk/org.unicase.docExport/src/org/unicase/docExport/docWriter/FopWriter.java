@@ -339,6 +339,10 @@ public abstract class FopWriter implements DocWriter {
 		// Element tableAndCaption = doc.createElement("fo:table-and-caption");
 		// parent.appendChild(tableAndCaption);
 
+		if (uTable.getEntries().size() < 1) {
+			return;
+		}
+
 		Element table = getDoc().createElement("fo:table");
 		applyBoxModel(table, uTable.getBoxModel());
 		parent.appendChild(table);

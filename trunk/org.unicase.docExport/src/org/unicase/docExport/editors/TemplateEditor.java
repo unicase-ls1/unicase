@@ -36,7 +36,6 @@ public class TemplateEditor extends EditorPart {
 
 	private ScrolledComposite modelElementRendererScrolledComposite;
 	private ScrolledComposite layoutOptionsScrolledComposite;
-	private ScrolledComposite globalOptionsScrolledComposite;
 
 	/**
 	 * .
@@ -134,10 +133,6 @@ public class TemplateEditor extends EditorPart {
 
 		modelElementRendererScrolledComposite = createTab("ModelElement Renderers");
 		layoutOptionsScrolledComposite = createTab("layoutOptions");
-		globalOptionsScrolledComposite = createTab("Global Options");
-
-		// remove later...
-		globalOptionsScrolledComposite.layout();
 
 		new ModelElementRenderersTab(modelElementRendererScrolledComposite, SWT.NONE, tabFolder, template);
 

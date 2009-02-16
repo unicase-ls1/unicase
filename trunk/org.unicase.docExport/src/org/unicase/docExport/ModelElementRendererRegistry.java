@@ -13,6 +13,7 @@ import org.unicase.docExport.exportModel.Template;
 import org.unicase.docExport.exportModel.builders.DefaultDocumentTemplateBuilder;
 import org.unicase.docExport.exportModel.builders.DefaultModelElementRendererBuilder;
 import org.unicase.docExport.exportModel.renderers.ModelElementRenderer;
+import org.unicase.docExport.exportModel.renderers.specialRenderers.ClassRenderer;
 import org.unicase.docExport.exportModel.renderers.specialRenderers.MeetingRenderer;
 import org.unicase.docExport.exportModel.renderers.specialRenderers.MilestoneRenderer;
 import org.unicase.docExport.exportModel.renderers.specialRenderers.PackageFlatRenderer;
@@ -56,6 +57,10 @@ public final class ModelElementRendererRegistry {
 			renderers.add(renderer);
 		} else if (modelElementEClass.equals("Package")) {
 			PackageFlatRenderer renderer = SpecialRenderersFactory.eINSTANCE.createPackageFlatRenderer();
+			renderer.setTemplate(template);
+			renderers.add(renderer);
+		} else if (modelElementEClass.equals("Class")) {
+			ClassRenderer renderer = SpecialRenderersFactory.eINSTANCE.createClassRenderer();
 			renderer.setTemplate(template);
 			renderers.add(renderer);
 		}

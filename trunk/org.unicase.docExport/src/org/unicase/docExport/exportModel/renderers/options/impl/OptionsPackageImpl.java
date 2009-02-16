@@ -353,14 +353,6 @@ public class OptionsPackageImpl extends EPackageImpl implements OptionsPackage {
 	 * <!-- begin-user-doc --> <!-- end-user-doc -->
 	 * @generated
 	 */
-	public EReference getSingleReferenceAttributeOption_GlobalOption() {
-		return (EReference)singleReferenceAttributeOptionEClass.getEStructuralFeatures().get(0);
-	}
-
-	/**
-	 * <!-- begin-user-doc --> <!-- end-user-doc -->
-	 * @generated
-	 */
 	public EClass getMultiReferenceAttributeOption() {
 		return multiReferenceAttributeOptionEClass;
 	}
@@ -369,16 +361,8 @@ public class OptionsPackageImpl extends EPackageImpl implements OptionsPackage {
 	 * <!-- begin-user-doc --> <!-- end-user-doc -->
 	 * @generated
 	 */
-	public EReference getMultiReferenceAttributeOption_GlobalOption() {
-		return (EReference)multiReferenceAttributeOptionEClass.getEStructuralFeatures().get(0);
-	}
-
-	/**
-	 * <!-- begin-user-doc --> <!-- end-user-doc -->
-	 * @generated
-	 */
 	public EReference getMultiReferenceAttributeOption_ListOption() {
-		return (EReference)multiReferenceAttributeOptionEClass.getEStructuralFeatures().get(1);
+		return (EReference)multiReferenceAttributeOptionEClass.getEStructuralFeatures().get(0);
 	}
 
 	/**
@@ -395,14 +379,6 @@ public class OptionsPackageImpl extends EPackageImpl implements OptionsPackage {
 	 */
 	public EClass getStringAttributeOption() {
 		return stringAttributeOptionEClass;
-	}
-
-	/**
-	 * <!-- begin-user-doc --> <!-- end-user-doc -->
-	 * @generated
-	 */
-	public EReference getStringAttributeOption_GlobalOption() {
-		return (EReference)stringAttributeOptionEClass.getEStructuralFeatures().get(0);
 	}
 
 	/**
@@ -994,16 +970,8 @@ public class OptionsPackageImpl extends EPackageImpl implements OptionsPackage {
 	 * <!-- begin-user-doc --> <!-- end-user-doc -->
 	 * @generated
 	 */
-	public EReference getBooleanAttributeOption_GlobalOption() {
-		return (EReference)booleanAttributeOptionEClass.getEStructuralFeatures().get(0);
-	}
-
-	/**
-	 * <!-- begin-user-doc --> <!-- end-user-doc -->
-	 * @generated
-	 */
 	public EAttribute getBooleanAttributeOption_BooleanStyle() {
-		return (EAttribute)booleanAttributeOptionEClass.getEStructuralFeatures().get(1);
+		return (EAttribute)booleanAttributeOptionEClass.getEStructuralFeatures().get(0);
 	}
 
 	/**
@@ -1018,16 +986,8 @@ public class OptionsPackageImpl extends EPackageImpl implements OptionsPackage {
 	 * <!-- begin-user-doc --> <!-- end-user-doc -->
 	 * @generated
 	 */
-	public EReference getDateAttributeOption_GlobalOption() {
-		return (EReference)dateAttributeOptionEClass.getEStructuralFeatures().get(0);
-	}
-
-	/**
-	 * <!-- begin-user-doc --> <!-- end-user-doc -->
-	 * @generated
-	 */
 	public EAttribute getDateAttributeOption_DateStyle() {
-		return (EAttribute)dateAttributeOptionEClass.getEStructuralFeatures().get(1);
+		return (EAttribute)dateAttributeOptionEClass.getEStructuralFeatures().get(0);
 	}
 
 	/**
@@ -1145,16 +1105,13 @@ public class OptionsPackageImpl extends EPackageImpl implements OptionsPackage {
 		createEAttribute(attributeOptionEClass, ATTRIBUTE_OPTION__ORDER_NUMBER);
 
 		singleReferenceAttributeOptionEClass = createEClass(SINGLE_REFERENCE_ATTRIBUTE_OPTION);
-		createEReference(singleReferenceAttributeOptionEClass, SINGLE_REFERENCE_ATTRIBUTE_OPTION__GLOBAL_OPTION);
 
 		multiReferenceAttributeOptionEClass = createEClass(MULTI_REFERENCE_ATTRIBUTE_OPTION);
-		createEReference(multiReferenceAttributeOptionEClass, MULTI_REFERENCE_ATTRIBUTE_OPTION__GLOBAL_OPTION);
 		createEReference(multiReferenceAttributeOptionEClass, MULTI_REFERENCE_ATTRIBUTE_OPTION__LIST_OPTION);
 
 		referenceOptionEClass = createEClass(REFERENCE_OPTION);
 
 		stringAttributeOptionEClass = createEClass(STRING_ATTRIBUTE_OPTION);
-		createEReference(stringAttributeOptionEClass, STRING_ATTRIBUTE_OPTION__GLOBAL_OPTION);
 
 		layoutOptionsEClass = createEClass(LAYOUT_OPTIONS);
 		createEReference(layoutOptionsEClass, LAYOUT_OPTIONS__HEADER_TEXT_OPTION);
@@ -1236,11 +1193,9 @@ public class OptionsPackageImpl extends EPackageImpl implements OptionsPackage {
 		createEAttribute(sectionOptionEClass, SECTION_OPTION__LEAVE_OUT_PREVIOUS_SECTION_NUMBERING);
 
 		booleanAttributeOptionEClass = createEClass(BOOLEAN_ATTRIBUTE_OPTION);
-		createEReference(booleanAttributeOptionEClass, BOOLEAN_ATTRIBUTE_OPTION__GLOBAL_OPTION);
 		createEAttribute(booleanAttributeOptionEClass, BOOLEAN_ATTRIBUTE_OPTION__BOOLEAN_STYLE);
 
 		dateAttributeOptionEClass = createEClass(DATE_ATTRIBUTE_OPTION);
-		createEReference(dateAttributeOptionEClass, DATE_ATTRIBUTE_OPTION__GLOBAL_OPTION);
 		createEAttribute(dateAttributeOptionEClass, DATE_ATTRIBUTE_OPTION__DATE_STYLE);
 
 		// Create enums
@@ -1311,16 +1266,13 @@ public class OptionsPackageImpl extends EPackageImpl implements OptionsPackage {
 		initEAttribute(getAttributeOption_OrderNumber(), theEcorePackage.getEInt(), "orderNumber", null, 0, 1, AttributeOption.class, !IS_TRANSIENT, !IS_VOLATILE, IS_CHANGEABLE, !IS_UNSETTABLE, !IS_ID, IS_UNIQUE, !IS_DERIVED, IS_ORDERED);
 
 		initEClass(singleReferenceAttributeOptionEClass, SingleReferenceAttributeOption.class, "SingleReferenceAttributeOption", !IS_ABSTRACT, !IS_INTERFACE, IS_GENERATED_INSTANCE_CLASS);
-		initEReference(getSingleReferenceAttributeOption_GlobalOption(), this.getSingleReferenceAttributeOption(), null, "globalOption", null, 0, 1, SingleReferenceAttributeOption.class, !IS_TRANSIENT, !IS_VOLATILE, IS_CHANGEABLE, !IS_COMPOSITE, IS_RESOLVE_PROXIES, !IS_UNSETTABLE, IS_UNIQUE, !IS_DERIVED, IS_ORDERED);
 
 		initEClass(multiReferenceAttributeOptionEClass, MultiReferenceAttributeOption.class, "MultiReferenceAttributeOption", !IS_ABSTRACT, !IS_INTERFACE, IS_GENERATED_INSTANCE_CLASS);
-		initEReference(getMultiReferenceAttributeOption_GlobalOption(), this.getMultiReferenceAttributeOption(), null, "globalOption", null, 0, 1, MultiReferenceAttributeOption.class, !IS_TRANSIENT, !IS_VOLATILE, IS_CHANGEABLE, !IS_COMPOSITE, IS_RESOLVE_PROXIES, !IS_UNSETTABLE, IS_UNIQUE, !IS_DERIVED, IS_ORDERED);
 		initEReference(getMultiReferenceAttributeOption_ListOption(), this.getListOption(), null, "listOption", null, 0, 1, MultiReferenceAttributeOption.class, !IS_TRANSIENT, !IS_VOLATILE, IS_CHANGEABLE, IS_COMPOSITE, !IS_RESOLVE_PROXIES, !IS_UNSETTABLE, IS_UNIQUE, !IS_DERIVED, IS_ORDERED);
 
 		initEClass(referenceOptionEClass, ReferenceOption.class, "ReferenceOption", !IS_ABSTRACT, !IS_INTERFACE, IS_GENERATED_INSTANCE_CLASS);
 
 		initEClass(stringAttributeOptionEClass, StringAttributeOption.class, "StringAttributeOption", !IS_ABSTRACT, !IS_INTERFACE, IS_GENERATED_INSTANCE_CLASS);
-		initEReference(getStringAttributeOption_GlobalOption(), this.getStringAttributeOption(), null, "globalOption", null, 0, 1, StringAttributeOption.class, !IS_TRANSIENT, !IS_VOLATILE, IS_CHANGEABLE, !IS_COMPOSITE, IS_RESOLVE_PROXIES, !IS_UNSETTABLE, IS_UNIQUE, !IS_DERIVED, IS_ORDERED);
 
 		initEClass(layoutOptionsEClass, LayoutOptions.class, "LayoutOptions", !IS_ABSTRACT, !IS_INTERFACE, IS_GENERATED_INSTANCE_CLASS);
 		initEReference(getLayoutOptions_HeaderTextOption(), this.getTextOption(), null, "headerTextOption", null, 0, 1, LayoutOptions.class, !IS_TRANSIENT, !IS_VOLATILE, IS_CHANGEABLE, IS_COMPOSITE, !IS_RESOLVE_PROXIES, !IS_UNSETTABLE, IS_UNIQUE, !IS_DERIVED, IS_ORDERED);
@@ -1402,11 +1354,9 @@ public class OptionsPackageImpl extends EPackageImpl implements OptionsPackage {
 		initEAttribute(getSectionOption_LeaveOutPreviousSectionNumbering(), theEcorePackage.getEBoolean(), "leaveOutPreviousSectionNumbering", null, 0, 1, SectionOption.class, !IS_TRANSIENT, !IS_VOLATILE, IS_CHANGEABLE, !IS_UNSETTABLE, !IS_ID, IS_UNIQUE, !IS_DERIVED, IS_ORDERED);
 
 		initEClass(booleanAttributeOptionEClass, BooleanAttributeOption.class, "BooleanAttributeOption", !IS_ABSTRACT, !IS_INTERFACE, IS_GENERATED_INSTANCE_CLASS);
-		initEReference(getBooleanAttributeOption_GlobalOption(), this.getBooleanAttributeOption(), null, "globalOption", null, 0, 1, BooleanAttributeOption.class, !IS_TRANSIENT, !IS_VOLATILE, IS_CHANGEABLE, !IS_COMPOSITE, IS_RESOLVE_PROXIES, !IS_UNSETTABLE, IS_UNIQUE, !IS_DERIVED, IS_ORDERED);
 		initEAttribute(getBooleanAttributeOption_BooleanStyle(), this.getBooleanStyle(), "booleanStyle", null, 0, 1, BooleanAttributeOption.class, !IS_TRANSIENT, !IS_VOLATILE, IS_CHANGEABLE, !IS_UNSETTABLE, !IS_ID, IS_UNIQUE, !IS_DERIVED, IS_ORDERED);
 
 		initEClass(dateAttributeOptionEClass, DateAttributeOption.class, "DateAttributeOption", !IS_ABSTRACT, !IS_INTERFACE, IS_GENERATED_INSTANCE_CLASS);
-		initEReference(getDateAttributeOption_GlobalOption(), this.getDateAttributeOption(), null, "globalOption", null, 0, 1, DateAttributeOption.class, !IS_TRANSIENT, !IS_VOLATILE, IS_CHANGEABLE, !IS_COMPOSITE, IS_RESOLVE_PROXIES, !IS_UNSETTABLE, IS_UNIQUE, !IS_DERIVED, IS_ORDERED);
 		initEAttribute(getDateAttributeOption_DateStyle(), this.getDateStyle(), "dateStyle", null, 0, 1, DateAttributeOption.class, !IS_TRANSIENT, !IS_VOLATILE, IS_CHANGEABLE, !IS_UNSETTABLE, !IS_ID, IS_UNIQUE, !IS_DERIVED, IS_ORDERED);
 
 		// Initialize enums and add enum literals

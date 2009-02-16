@@ -35,17 +35,17 @@ import org.unicase.docExport.exportModel.renderers.options.util.OptionsAdapterFa
 public class OptionsItemProviderAdapterFactory extends OptionsAdapterFactory implements ComposeableAdapterFactory,
 	IChangeNotifier, IDisposable {
 	/**
-	 * This keeps track of the root adapter factory that delegates to this adapter factory. <!-- begin-user-doc --> <!--
+	 * This keeps track of the root adapter factory that delegates to this adapter factory.
+	 * <!-- begin-user-doc --> <!--
 	 * end-user-doc -->
-	 * 
 	 * @generated
 	 */
 	protected ComposedAdapterFactory parentAdapterFactory;
 
 	/**
-	 * This is used to implement {@link org.eclipse.emf.edit.provider.IChangeNotifier}. <!-- begin-user-doc --> <!--
+	 * This is used to implement {@link org.eclipse.emf.edit.provider.IChangeNotifier}.
+	 * <!-- begin-user-doc --> <!--
 	 * end-user-doc -->
-	 * 
 	 * @generated
 	 */
 	protected IChangeNotifier changeNotifier = new ChangeNotifier();
@@ -59,8 +59,8 @@ public class OptionsItemProviderAdapterFactory extends OptionsAdapterFactory imp
 	protected Collection<Object> supportedTypes = new ArrayList<Object>();
 
 	/**
-	 * This constructs an instance. <!-- begin-user-doc --> <!-- end-user-doc -->
-	 * 
+	 * This constructs an instance.
+	 * <!-- begin-user-doc --> <!-- end-user-doc -->
 	 * @generated
 	 */
 	public OptionsItemProviderAdapterFactory() {
@@ -81,10 +81,9 @@ public class OptionsItemProviderAdapterFactory extends OptionsAdapterFactory imp
 	protected SingleReferenceAttributeOptionItemProvider singleReferenceAttributeOptionItemProvider;
 
 	/**
-	 * This creates an adapter for a
-	 * {@link org.unicase.docExport.exportModel.renderers.options.SingleReferenceAttributeOption}. <!-- begin-user-doc
+	 * This creates an adapter for a {@link org.unicase.docExport.exportModel.renderers.options.SingleReferenceAttributeOption}.
+	 * <!-- begin-user-doc
 	 * --> <!-- end-user-doc -->
-	 * 
 	 * @generated
 	 */
 	@Override
@@ -106,10 +105,9 @@ public class OptionsItemProviderAdapterFactory extends OptionsAdapterFactory imp
 	protected MultiReferenceAttributeOptionItemProvider multiReferenceAttributeOptionItemProvider;
 
 	/**
-	 * This creates an adapter for a
-	 * {@link org.unicase.docExport.exportModel.renderers.options.MultiReferenceAttributeOption}. <!-- begin-user-doc
+	 * This creates an adapter for a {@link org.unicase.docExport.exportModel.renderers.options.MultiReferenceAttributeOption}.
+	 * <!-- begin-user-doc
 	 * --> <!-- end-user-doc -->
-	 * 
 	 * @generated
 	 */
 	@Override
@@ -122,10 +120,9 @@ public class OptionsItemProviderAdapterFactory extends OptionsAdapterFactory imp
 	}
 
 	/**
-	 * This keeps track of the one adapter used for all
-	 * {@link org.unicase.docExport.exportModel.renderers.options.ReferenceOption} instances. <!-- begin-user-doc -->
+	 * This keeps track of the one adapter used for all {@link org.unicase.docExport.exportModel.renderers.options.ReferenceOption} instances.
+	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
-	 * 
 	 * @generated
 	 */
 	protected ReferenceOptionItemProvider referenceOptionItemProvider;
@@ -146,10 +143,9 @@ public class OptionsItemProviderAdapterFactory extends OptionsAdapterFactory imp
 	}
 
 	/**
-	 * This keeps track of the one adapter used for all
-	 * {@link org.unicase.docExport.exportModel.renderers.options.StringAttributeOption} instances. <!-- begin-user-doc
+	 * This keeps track of the one adapter used for all {@link org.unicase.docExport.exportModel.renderers.options.StringAttributeOption} instances.
+	 * <!-- begin-user-doc
 	 * --> <!-- end-user-doc -->
-	 * 
 	 * @generated
 	 */
 	protected StringAttributeOptionItemProvider stringAttributeOptionItemProvider;
@@ -157,7 +153,6 @@ public class OptionsItemProviderAdapterFactory extends OptionsAdapterFactory imp
 	/**
 	 * This creates an adapter for a {@link org.unicase.docExport.exportModel.renderers.options.StringAttributeOption}.
 	 * <!-- begin-user-doc --> <!-- end-user-doc -->
-	 * 
 	 * @generated
 	 */
 	@Override
@@ -170,10 +165,9 @@ public class OptionsItemProviderAdapterFactory extends OptionsAdapterFactory imp
 	}
 
 	/**
-	 * This keeps track of the one adapter used for all
-	 * {@link org.unicase.docExport.exportModel.renderers.options.LayoutOptions} instances. <!-- begin-user-doc --> <!--
+	 * This keeps track of the one adapter used for all {@link org.unicase.docExport.exportModel.renderers.options.LayoutOptions} instances.
+	 * <!-- begin-user-doc --> <!--
 	 * end-user-doc -->
-	 * 
 	 * @generated
 	 */
 	protected LayoutOptionsItemProvider layoutOptionsItemProvider;
@@ -194,10 +188,9 @@ public class OptionsItemProviderAdapterFactory extends OptionsAdapterFactory imp
 	}
 
 	/**
-	 * This keeps track of the one adapter used for all
-	 * {@link org.unicase.docExport.exportModel.renderers.options.ListOption} instances. <!-- begin-user-doc --> <!--
+	 * This keeps track of the one adapter used for all {@link org.unicase.docExport.exportModel.renderers.options.ListOption} instances.
+	 * <!-- begin-user-doc --> <!--
 	 * end-user-doc -->
-	 * 
 	 * @generated
 	 */
 	protected ListOptionItemProvider listOptionItemProvider;
@@ -218,10 +211,9 @@ public class OptionsItemProviderAdapterFactory extends OptionsAdapterFactory imp
 	}
 
 	/**
-	 * This keeps track of the one adapter used for all
-	 * {@link org.unicase.docExport.exportModel.renderers.options.TextOption} instances. <!-- begin-user-doc --> <!--
+	 * This keeps track of the one adapter used for all {@link org.unicase.docExport.exportModel.renderers.options.TextOption} instances.
+	 * <!-- begin-user-doc --> <!--
 	 * end-user-doc -->
-	 * 
 	 * @generated
 	 */
 	protected TextOptionItemProvider textOptionItemProvider;
@@ -242,10 +234,9 @@ public class OptionsItemProviderAdapterFactory extends OptionsAdapterFactory imp
 	}
 
 	/**
-	 * This keeps track of the one adapter used for all
-	 * {@link org.unicase.docExport.exportModel.renderers.options.UColor} instances. <!-- begin-user-doc --> <!--
+	 * This keeps track of the one adapter used for all {@link org.unicase.docExport.exportModel.renderers.options.UColor} instances.
+	 * <!-- begin-user-doc --> <!--
 	 * end-user-doc -->
-	 * 
 	 * @generated
 	 */
 	protected UColorItemProvider uColorItemProvider;
@@ -266,10 +257,9 @@ public class OptionsItemProviderAdapterFactory extends OptionsAdapterFactory imp
 	}
 
 	/**
-	 * This keeps track of the one adapter used for all
-	 * {@link org.unicase.docExport.exportModel.renderers.options.BoxModelOption} instances. <!-- begin-user-doc -->
+	 * This keeps track of the one adapter used for all {@link org.unicase.docExport.exportModel.renderers.options.BoxModelOption} instances.
+	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
-	 * 
 	 * @generated
 	 */
 	protected BoxModelOptionItemProvider boxModelOptionItemProvider;
@@ -290,10 +280,9 @@ public class OptionsItemProviderAdapterFactory extends OptionsAdapterFactory imp
 	}
 
 	/**
-	 * This keeps track of the one adapter used for all
-	 * {@link org.unicase.docExport.exportModel.renderers.options.SectionOption} instances. <!-- begin-user-doc --> <!--
+	 * This keeps track of the one adapter used for all {@link org.unicase.docExport.exportModel.renderers.options.SectionOption} instances.
+	 * <!-- begin-user-doc --> <!--
 	 * end-user-doc -->
-	 * 
 	 * @generated
 	 */
 	protected SectionOptionItemProvider sectionOptionItemProvider;
@@ -314,10 +303,9 @@ public class OptionsItemProviderAdapterFactory extends OptionsAdapterFactory imp
 	}
 
 	/**
-	 * This keeps track of the one adapter used for all
-	 * {@link org.unicase.docExport.exportModel.renderers.options.BooleanAttributeOption} instances. <!-- begin-user-doc
+	 * This keeps track of the one adapter used for all {@link org.unicase.docExport.exportModel.renderers.options.BooleanAttributeOption} instances.
+	 * <!-- begin-user-doc
 	 * --> <!-- end-user-doc -->
-	 * 
 	 * @generated
 	 */
 	protected BooleanAttributeOptionItemProvider booleanAttributeOptionItemProvider;
@@ -325,7 +313,6 @@ public class OptionsItemProviderAdapterFactory extends OptionsAdapterFactory imp
 	/**
 	 * This creates an adapter for a {@link org.unicase.docExport.exportModel.renderers.options.BooleanAttributeOption}.
 	 * <!-- begin-user-doc --> <!-- end-user-doc -->
-	 * 
 	 * @generated
 	 */
 	@Override
@@ -338,10 +325,9 @@ public class OptionsItemProviderAdapterFactory extends OptionsAdapterFactory imp
 	}
 
 	/**
-	 * This keeps track of the one adapter used for all
-	 * {@link org.unicase.docExport.exportModel.renderers.options.DateAttributeOption} instances. <!-- begin-user-doc
+	 * This keeps track of the one adapter used for all {@link org.unicase.docExport.exportModel.renderers.options.DateAttributeOption} instances.
+	 * <!-- begin-user-doc
 	 * --> <!-- end-user-doc -->
-	 * 
 	 * @generated
 	 */
 	protected DateAttributeOptionItemProvider dateAttributeOptionItemProvider;
@@ -349,7 +335,6 @@ public class OptionsItemProviderAdapterFactory extends OptionsAdapterFactory imp
 	/**
 	 * This creates an adapter for a {@link org.unicase.docExport.exportModel.renderers.options.DateAttributeOption}.
 	 * <!-- begin-user-doc --> <!-- end-user-doc -->
-	 * 
 	 * @generated
 	 */
 	@Override
@@ -362,8 +347,8 @@ public class OptionsItemProviderAdapterFactory extends OptionsAdapterFactory imp
 	}
 
 	/**
-	 * This returns the root adapter factory that contains this factory. <!-- begin-user-doc --> <!-- end-user-doc -->
-	 * 
+	 * This returns the root adapter factory that contains this factory.
+	 * <!-- begin-user-doc --> <!-- end-user-doc -->
 	 * @generated
 	 */
 	public ComposeableAdapterFactory getRootAdapterFactory() {
@@ -371,8 +356,8 @@ public class OptionsItemProviderAdapterFactory extends OptionsAdapterFactory imp
 	}
 
 	/**
-	 * This sets the composed adapter factory that contains this factory. <!-- begin-user-doc --> <!-- end-user-doc -->
-	 * 
+	 * This sets the composed adapter factory that contains this factory.
+	 * <!-- begin-user-doc --> <!-- end-user-doc -->
 	 * @generated
 	 */
 	public void setParentAdapterFactory(ComposedAdapterFactory parentAdapterFactory) {
@@ -381,7 +366,6 @@ public class OptionsItemProviderAdapterFactory extends OptionsAdapterFactory imp
 
 	/**
 	 * <!-- begin-user-doc --> <!-- end-user-doc -->
-	 * 
 	 * @generated
 	 */
 	@Override
@@ -390,9 +374,9 @@ public class OptionsItemProviderAdapterFactory extends OptionsAdapterFactory imp
 	}
 
 	/**
-	 * This implementation substitutes the factory itself as the key for the adapter. <!-- begin-user-doc --> <!--
+	 * This implementation substitutes the factory itself as the key for the adapter.
+	 * <!-- begin-user-doc --> <!--
 	 * end-user-doc -->
-	 * 
 	 * @generated
 	 */
 	@Override
@@ -402,14 +386,13 @@ public class OptionsItemProviderAdapterFactory extends OptionsAdapterFactory imp
 
 	/**
 	 * <!-- begin-user-doc --> <!-- end-user-doc -->
-	 * 
 	 * @generated
 	 */
 	@Override
 	public Object adapt(Object object, Object type) {
 		if (isFactoryForType(type)) {
 			Object adapter = super.adapt(object, type);
-			if (!(type instanceof Class) || (((Class<?>) type).isInstance(adapter))) {
+			if (!(type instanceof Class) || (((Class<?>)type).isInstance(adapter))) {
 				return adapter;
 			}
 		}
@@ -418,8 +401,8 @@ public class OptionsItemProviderAdapterFactory extends OptionsAdapterFactory imp
 	}
 
 	/**
-	 * This adds a listener. <!-- begin-user-doc --> <!-- end-user-doc -->
-	 * 
+	 * This adds a listener.
+	 * <!-- begin-user-doc --> <!-- end-user-doc -->
 	 * @generated
 	 */
 	public void addListener(INotifyChangedListener notifyChangedListener) {
@@ -427,8 +410,8 @@ public class OptionsItemProviderAdapterFactory extends OptionsAdapterFactory imp
 	}
 
 	/**
-	 * This removes a listener. <!-- begin-user-doc --> <!-- end-user-doc -->
-	 * 
+	 * This removes a listener.
+	 * <!-- begin-user-doc --> <!-- end-user-doc -->
 	 * @generated
 	 */
 	public void removeListener(INotifyChangedListener notifyChangedListener) {
@@ -436,9 +419,9 @@ public class OptionsItemProviderAdapterFactory extends OptionsAdapterFactory imp
 	}
 
 	/**
-	 * This delegates to {@link #changeNotifier} and to {@link #parentAdapterFactory}. <!-- begin-user-doc --> <!--
+	 * This delegates to {@link #changeNotifier} and to {@link #parentAdapterFactory}.
+	 * <!-- begin-user-doc --> <!--
 	 * end-user-doc -->
-	 * 
 	 * @generated
 	 */
 	public void fireNotifyChanged(Notification notification) {
@@ -450,35 +433,23 @@ public class OptionsItemProviderAdapterFactory extends OptionsAdapterFactory imp
 	}
 
 	/**
-	 * This disposes all of the item providers created by this factory. <!-- begin-user-doc --> <!-- end-user-doc -->
-	 * 
+	 * This disposes all of the item providers created by this factory. 
+	 * <!-- begin-user-doc --> <!-- end-user-doc -->
 	 * @generated
 	 */
 	public void dispose() {
-		if (singleReferenceAttributeOptionItemProvider != null)
-			singleReferenceAttributeOptionItemProvider.dispose();
-		if (multiReferenceAttributeOptionItemProvider != null)
-			multiReferenceAttributeOptionItemProvider.dispose();
-		if (referenceOptionItemProvider != null)
-			referenceOptionItemProvider.dispose();
-		if (stringAttributeOptionItemProvider != null)
-			stringAttributeOptionItemProvider.dispose();
-		if (layoutOptionsItemProvider != null)
-			layoutOptionsItemProvider.dispose();
-		if (listOptionItemProvider != null)
-			listOptionItemProvider.dispose();
-		if (textOptionItemProvider != null)
-			textOptionItemProvider.dispose();
-		if (uColorItemProvider != null)
-			uColorItemProvider.dispose();
-		if (boxModelOptionItemProvider != null)
-			boxModelOptionItemProvider.dispose();
-		if (sectionOptionItemProvider != null)
-			sectionOptionItemProvider.dispose();
-		if (booleanAttributeOptionItemProvider != null)
-			booleanAttributeOptionItemProvider.dispose();
-		if (dateAttributeOptionItemProvider != null)
-			dateAttributeOptionItemProvider.dispose();
+		if (singleReferenceAttributeOptionItemProvider != null) singleReferenceAttributeOptionItemProvider.dispose();
+		if (multiReferenceAttributeOptionItemProvider != null) multiReferenceAttributeOptionItemProvider.dispose();
+		if (referenceOptionItemProvider != null) referenceOptionItemProvider.dispose();
+		if (stringAttributeOptionItemProvider != null) stringAttributeOptionItemProvider.dispose();
+		if (layoutOptionsItemProvider != null) layoutOptionsItemProvider.dispose();
+		if (listOptionItemProvider != null) listOptionItemProvider.dispose();
+		if (textOptionItemProvider != null) textOptionItemProvider.dispose();
+		if (uColorItemProvider != null) uColorItemProvider.dispose();
+		if (boxModelOptionItemProvider != null) boxModelOptionItemProvider.dispose();
+		if (sectionOptionItemProvider != null) sectionOptionItemProvider.dispose();
+		if (booleanAttributeOptionItemProvider != null) booleanAttributeOptionItemProvider.dispose();
+		if (dateAttributeOptionItemProvider != null) dateAttributeOptionItemProvider.dispose();
 	}
 
 }

@@ -63,6 +63,24 @@ public interface SpecialRenderersFactory extends EFactory {
 	PackageFlatRenderer createPackageFlatRenderer();
 
 	/**
+	 * Returns a new object of class '<em>Class Renderer</em>'.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @return a new object of class '<em>Class Renderer</em>'.
+	 * @generated
+	 */
+	ClassRenderer createClassRenderer();
+
+	/**
+	 * Returns a new object of class '<em>Class Attributes Renderer</em>'.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @return a new object of class '<em>Class Attributes Renderer</em>'.
+	 * @generated
+	 */
+	ClassAttributesRenderer createClassAttributesRenderer();
+
+	/**
 	 * Returns the package supported by this factory.
 	 * <!-- begin-user-doc --> <!-- end-user-doc -->
 	 * @return the package supported by this factory.

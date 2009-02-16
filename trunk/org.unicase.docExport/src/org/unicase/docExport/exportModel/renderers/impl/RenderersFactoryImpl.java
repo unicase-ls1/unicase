@@ -10,6 +10,7 @@ import org.eclipse.emf.ecore.EObject;
 import org.eclipse.emf.ecore.EPackage;
 import org.eclipse.emf.ecore.impl.EFactoryImpl;
 import org.eclipse.emf.ecore.plugin.EcorePlugin;
+import org.unicase.docExport.exportModel.renderers.*;
 import org.unicase.docExport.exportModel.renderers.AttributeRendererMapping;
 import org.unicase.docExport.exportModel.renderers.ModelElementRendererMapping;
 import org.unicase.docExport.exportModel.renderers.RenderersFactory;
@@ -17,31 +18,30 @@ import org.unicase.docExport.exportModel.renderers.RenderersPackage;
 
 /**
  * <!-- begin-user-doc --> An implementation of the model <b>Factory</b>. <!-- end-user-doc -->
- * 
  * @generated
  */
 public class RenderersFactoryImpl extends EFactoryImpl implements RenderersFactory {
 	/**
-	 * Creates the default factory implementation. <!-- begin-user-doc --> <!-- end-user-doc -->
-	 * 
+	 * Creates the default factory implementation.
+	 * <!-- begin-user-doc --> <!-- end-user-doc -->
 	 * @generated
 	 */
 	public static RenderersFactory init() {
 		try {
-			RenderersFactory theRenderersFactory = (RenderersFactory) EPackage.Registry.INSTANCE
-				.getEFactory("http://unicase.org/docExport/exportModel/renderers");
+			RenderersFactory theRenderersFactory = (RenderersFactory)EPackage.Registry.INSTANCE.getEFactory("http://unicase.org/docExport/exportModel/renderers"); 
 			if (theRenderersFactory != null) {
 				return theRenderersFactory;
 			}
-		} catch (Exception exception) {
+		}
+		catch (Exception exception) {
 			EcorePlugin.INSTANCE.log(exception);
 		}
 		return new RenderersFactoryImpl();
 	}
 
 	/**
-	 * Creates an instance of the factory. <!-- begin-user-doc --> <!-- end-user-doc -->
-	 * 
+	 * Creates an instance of the factory.
+	 * <!-- begin-user-doc --> <!-- end-user-doc -->
 	 * @generated
 	 */
 	public RenderersFactoryImpl() {
@@ -50,24 +50,20 @@ public class RenderersFactoryImpl extends EFactoryImpl implements RenderersFacto
 
 	/**
 	 * <!-- begin-user-doc --> <!-- end-user-doc -->
-	 * 
 	 * @generated
 	 */
 	@Override
 	public EObject create(EClass eClass) {
 		switch (eClass.getClassifierID()) {
-		case RenderersPackage.MODEL_ELEMENT_RENDERER_MAPPING:
-			return createModelElementRendererMapping();
-		case RenderersPackage.ATTRIBUTE_RENDERER_MAPPING:
-			return createAttributeRendererMapping();
-		default:
-			throw new IllegalArgumentException("The class '" + eClass.getName() + "' is not a valid classifier");
+			case RenderersPackage.MODEL_ELEMENT_RENDERER_MAPPING: return createModelElementRendererMapping();
+			case RenderersPackage.ATTRIBUTE_RENDERER_MAPPING: return createAttributeRendererMapping();
+			default:
+				throw new IllegalArgumentException("The class '" + eClass.getName() + "' is not a valid classifier");
 		}
 	}
 
 	/**
 	 * <!-- begin-user-doc --> <!-- end-user-doc -->
-	 * 
 	 * @generated
 	 */
 	public ModelElementRendererMapping createModelElementRendererMapping() {
@@ -77,7 +73,6 @@ public class RenderersFactoryImpl extends EFactoryImpl implements RenderersFacto
 
 	/**
 	 * <!-- begin-user-doc --> <!-- end-user-doc -->
-	 * 
 	 * @generated
 	 */
 	public AttributeRendererMapping createAttributeRendererMapping() {
@@ -87,16 +82,14 @@ public class RenderersFactoryImpl extends EFactoryImpl implements RenderersFacto
 
 	/**
 	 * <!-- begin-user-doc --> <!-- end-user-doc -->
-	 * 
 	 * @generated
 	 */
 	public RenderersPackage getRenderersPackage() {
-		return (RenderersPackage) getEPackage();
+		return (RenderersPackage)getEPackage();
 	}
 
 	/**
 	 * <!-- begin-user-doc --> <!-- end-user-doc -->
-	 * 
 	 * @deprecated
 	 * @generated
 	 */

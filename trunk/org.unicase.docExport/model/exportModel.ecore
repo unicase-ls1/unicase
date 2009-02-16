@@ -50,6 +50,8 @@
       <eClassifiers xsi:type="ecore:EClass" name="StepsAttributeRenderer" eSuperTypes="#//renderers/AttributeRenderer"/>
       <eClassifiers xsi:type="ecore:EClass" name="MethodRenderer" eSuperTypes="#//renderers/AttributeRenderer"/>
       <eClassifiers xsi:type="ecore:EClass" name="PackageFlatRenderer" eSuperTypes="#//renderers/ModelElementRenderer"/>
+      <eClassifiers xsi:type="ecore:EClass" name="ClassRenderer" eSuperTypes="#//renderers/ModelElementRenderer"/>
+      <eClassifiers xsi:type="ecore:EClass" name="ClassAttributesRenderer" eSuperTypes="#//renderers/AttributeRenderer"/>
     </eSubpackages>
     <eSubpackages name="options" nsURI="http://unicase.org/docExport/exportModel/renderers/options"
         nsPrefix="org.unicase.docExport.exportModel.renderers.options">
@@ -67,18 +69,13 @@
         <eStructuralFeatures xsi:type="ecore:EAttribute" name="orderNumber" eType="ecore:EDataType platform:/plugin/org.eclipse.emf.ecore/model/Ecore.ecore#//EInt"/>
       </eClassifiers>
       <eClassifiers xsi:type="ecore:EClass" name="SingleReferenceAttributeOption"
-          eSuperTypes="#//renderers/options/ReferenceAttributeOption">
-        <eStructuralFeatures xsi:type="ecore:EReference" name="globalOption" eType="#//renderers/options/SingleReferenceAttributeOption"/>
-      </eClassifiers>
+          eSuperTypes="#//renderers/options/ReferenceAttributeOption"/>
       <eClassifiers xsi:type="ecore:EClass" name="MultiReferenceAttributeOption" eSuperTypes="#//renderers/options/ReferenceAttributeOption">
-        <eStructuralFeatures xsi:type="ecore:EReference" name="globalOption" eType="#//renderers/options/MultiReferenceAttributeOption"/>
         <eStructuralFeatures xsi:type="ecore:EReference" name="listOption" eType="#//renderers/options/ListOption"
             containment="true"/>
       </eClassifiers>
       <eClassifiers xsi:type="ecore:EClass" name="ReferenceOption" eSuperTypes="#//renderers/options/RendererOption"/>
-      <eClassifiers xsi:type="ecore:EClass" name="StringAttributeOption" eSuperTypes="#//renderers/options/AttributeOption">
-        <eStructuralFeatures xsi:type="ecore:EReference" name="globalOption" eType="#//renderers/options/StringAttributeOption"/>
-      </eClassifiers>
+      <eClassifiers xsi:type="ecore:EClass" name="StringAttributeOption" eSuperTypes="#//renderers/options/AttributeOption"/>
       <eClassifiers xsi:type="ecore:EClass" name="LayoutOptions" eSuperTypes="#//renderers/options/RendererOption">
         <eStructuralFeatures xsi:type="ecore:EReference" name="headerTextOption" eType="#//renderers/options/TextOption"
             containment="true"/>
@@ -251,7 +248,6 @@
         <eLiterals name="JUSTIFY" value="3" literal="justify"/>
       </eClassifiers>
       <eClassifiers xsi:type="ecore:EClass" name="BooleanAttributeOption" eSuperTypes="#//renderers/options/AttributeOption">
-        <eStructuralFeatures xsi:type="ecore:EReference" name="globalOption" eType="#//renderers/options/BooleanAttributeOption"/>
         <eStructuralFeatures xsi:type="ecore:EAttribute" name="booleanStyle" eType="#//renderers/options/BooleanStyle"/>
       </eClassifiers>
       <eClassifiers xsi:type="ecore:EEnum" name="BooleanStyle">
@@ -261,7 +257,6 @@
         <eLiterals name="NUMBERS" literal="numbers"/>
       </eClassifiers>
       <eClassifiers xsi:type="ecore:EClass" name="DateAttributeOption" eSuperTypes="#//renderers/options/AttributeOption">
-        <eStructuralFeatures xsi:type="ecore:EReference" name="globalOption" eType="#//renderers/options/DateAttributeOption"/>
         <eStructuralFeatures xsi:type="ecore:EAttribute" name="dateStyle" eType="#//renderers/options/DateStyle"/>
       </eClassifiers>
       <eClassifiers xsi:type="ecore:EEnum" name="DateStyle">

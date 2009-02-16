@@ -282,21 +282,13 @@ public interface OptionsPackage extends EPackage {
 	int SINGLE_REFERENCE_ATTRIBUTE_OPTION__REFERENCE_OPTION = REFERENCE_ATTRIBUTE_OPTION__REFERENCE_OPTION;
 
 	/**
-	 * The feature id for the '<em><b>Global Option</b></em>' reference.
-	 * <!-- begin-user-doc --> <!-- end-user-doc -->
-	 * @generated
-	 * @ordered
-	 */
-	int SINGLE_REFERENCE_ATTRIBUTE_OPTION__GLOBAL_OPTION = REFERENCE_ATTRIBUTE_OPTION_FEATURE_COUNT + 0;
-
-	/**
 	 * The number of structural features of the '<em>Single Reference Attribute Option</em>' class.
 	 * <!-- begin-user-doc
 	 * --> <!-- end-user-doc -->
 	 * @generated
 	 * @ordered
 	 */
-	int SINGLE_REFERENCE_ATTRIBUTE_OPTION_FEATURE_COUNT = REFERENCE_ATTRIBUTE_OPTION_FEATURE_COUNT + 1;
+	int SINGLE_REFERENCE_ATTRIBUTE_OPTION_FEATURE_COUNT = REFERENCE_ATTRIBUTE_OPTION_FEATURE_COUNT + 0;
 
 	/**
 	 * The meta object id for the '{@link org.unicase.docExport.exportModel.renderers.options.impl.MultiReferenceAttributeOptionImpl <em>Multi Reference Attribute Option</em>}' class.
@@ -366,21 +358,13 @@ public interface OptionsPackage extends EPackage {
 	int MULTI_REFERENCE_ATTRIBUTE_OPTION__REFERENCE_OPTION = REFERENCE_ATTRIBUTE_OPTION__REFERENCE_OPTION;
 
 	/**
-	 * The feature id for the '<em><b>Global Option</b></em>' reference.
-	 * <!-- begin-user-doc --> <!-- end-user-doc -->
-	 * @generated
-	 * @ordered
-	 */
-	int MULTI_REFERENCE_ATTRIBUTE_OPTION__GLOBAL_OPTION = REFERENCE_ATTRIBUTE_OPTION_FEATURE_COUNT + 0;
-
-	/**
 	 * The feature id for the '<em><b>List Option</b></em>' containment reference.
 	 * <!-- begin-user-doc --> <!--
 	 * end-user-doc -->
 	 * @generated
 	 * @ordered
 	 */
-	int MULTI_REFERENCE_ATTRIBUTE_OPTION__LIST_OPTION = REFERENCE_ATTRIBUTE_OPTION_FEATURE_COUNT + 1;
+	int MULTI_REFERENCE_ATTRIBUTE_OPTION__LIST_OPTION = REFERENCE_ATTRIBUTE_OPTION_FEATURE_COUNT + 0;
 
 	/**
 	 * The number of structural features of the '<em>Multi Reference Attribute Option</em>' class.
@@ -389,7 +373,7 @@ public interface OptionsPackage extends EPackage {
 	 * @generated
 	 * @ordered
 	 */
-	int MULTI_REFERENCE_ATTRIBUTE_OPTION_FEATURE_COUNT = REFERENCE_ATTRIBUTE_OPTION_FEATURE_COUNT + 2;
+	int MULTI_REFERENCE_ATTRIBUTE_OPTION_FEATURE_COUNT = REFERENCE_ATTRIBUTE_OPTION_FEATURE_COUNT + 1;
 
 	/**
 	 * The meta object id for the '{@link org.unicase.docExport.exportModel.renderers.options.impl.ReferenceOptionImpl <em>Reference Option</em>}' class.
@@ -468,21 +452,13 @@ public interface OptionsPackage extends EPackage {
 	int STRING_ATTRIBUTE_OPTION__ORDER_NUMBER = ATTRIBUTE_OPTION__ORDER_NUMBER;
 
 	/**
-	 * The feature id for the '<em><b>Global Option</b></em>' reference.
-	 * <!-- begin-user-doc --> <!-- end-user-doc -->
-	 * @generated
-	 * @ordered
-	 */
-	int STRING_ATTRIBUTE_OPTION__GLOBAL_OPTION = ATTRIBUTE_OPTION_FEATURE_COUNT + 0;
-
-	/**
 	 * The number of structural features of the '<em>String Attribute Option</em>' class.
 	 * <!-- begin-user-doc --> <!--
 	 * end-user-doc -->
 	 * @generated
 	 * @ordered
 	 */
-	int STRING_ATTRIBUTE_OPTION_FEATURE_COUNT = ATTRIBUTE_OPTION_FEATURE_COUNT + 1;
+	int STRING_ATTRIBUTE_OPTION_FEATURE_COUNT = ATTRIBUTE_OPTION_FEATURE_COUNT + 0;
 
 	/**
 	 * The meta object id for the '{@link org.unicase.docExport.exportModel.renderers.options.impl.LayoutOptionsImpl <em>Layout Options</em>}' class.
@@ -1220,20 +1196,12 @@ public interface OptionsPackage extends EPackage {
 	int BOOLEAN_ATTRIBUTE_OPTION__ORDER_NUMBER = ATTRIBUTE_OPTION__ORDER_NUMBER;
 
 	/**
-	 * The feature id for the '<em><b>Global Option</b></em>' reference.
-	 * <!-- begin-user-doc --> <!-- end-user-doc -->
-	 * @generated
-	 * @ordered
-	 */
-	int BOOLEAN_ATTRIBUTE_OPTION__GLOBAL_OPTION = ATTRIBUTE_OPTION_FEATURE_COUNT + 0;
-
-	/**
 	 * The feature id for the '<em><b>Boolean Style</b></em>' attribute.
 	 * <!-- begin-user-doc --> <!-- end-user-doc -->
 	 * @generated
 	 * @ordered
 	 */
-	int BOOLEAN_ATTRIBUTE_OPTION__BOOLEAN_STYLE = ATTRIBUTE_OPTION_FEATURE_COUNT + 1;
+	int BOOLEAN_ATTRIBUTE_OPTION__BOOLEAN_STYLE = ATTRIBUTE_OPTION_FEATURE_COUNT + 0;
 
 	/**
 	 * The number of structural features of the '<em>Boolean Attribute Option</em>' class.
@@ -1242,7 +1210,7 @@ public interface OptionsPackage extends EPackage {
 	 * @generated
 	 * @ordered
 	 */
-	int BOOLEAN_ATTRIBUTE_OPTION_FEATURE_COUNT = ATTRIBUTE_OPTION_FEATURE_COUNT + 2;
+	int BOOLEAN_ATTRIBUTE_OPTION_FEATURE_COUNT = ATTRIBUTE_OPTION_FEATURE_COUNT + 1;
 
 	/**
 	 * The meta object id for the '{@link org.unicase.docExport.exportModel.renderers.options.impl.DateAttributeOptionImpl <em>Date Attribute Option</em>}' class.
@@ -1295,20 +1263,12 @@ public interface OptionsPackage extends EPackage {
 	int DATE_ATTRIBUTE_OPTION__ORDER_NUMBER = ATTRIBUTE_OPTION__ORDER_NUMBER;
 
 	/**
-	 * The feature id for the '<em><b>Global Option</b></em>' reference.
-	 * <!-- begin-user-doc --> <!-- end-user-doc -->
-	 * @generated
-	 * @ordered
-	 */
-	int DATE_ATTRIBUTE_OPTION__GLOBAL_OPTION = ATTRIBUTE_OPTION_FEATURE_COUNT + 0;
-
-	/**
 	 * The feature id for the '<em><b>Date Style</b></em>' attribute.
 	 * <!-- begin-user-doc --> <!-- end-user-doc -->
 	 * @generated
 	 * @ordered
 	 */
-	int DATE_ATTRIBUTE_OPTION__DATE_STYLE = ATTRIBUTE_OPTION_FEATURE_COUNT + 1;
+	int DATE_ATTRIBUTE_OPTION__DATE_STYLE = ATTRIBUTE_OPTION_FEATURE_COUNT + 0;
 
 	/**
 	 * The number of structural features of the '<em>Date Attribute Option</em>' class.
@@ -1317,7 +1277,7 @@ public interface OptionsPackage extends EPackage {
 	 * @generated
 	 * @ordered
 	 */
-	int DATE_ATTRIBUTE_OPTION_FEATURE_COUNT = ATTRIBUTE_OPTION_FEATURE_COUNT + 2;
+	int DATE_ATTRIBUTE_OPTION_FEATURE_COUNT = ATTRIBUTE_OPTION_FEATURE_COUNT + 1;
 
 	/**
 	 * The meta object id for the '{@link org.unicase.docExport.exportModel.renderers.options.PageCitationStyle <em>Page Citation Style</em>}' enum.
@@ -1491,16 +1451,6 @@ public interface OptionsPackage extends EPackage {
 	EClass getSingleReferenceAttributeOption();
 
 	/**
-	 * Returns the meta object for the reference '{@link org.unicase.docExport.exportModel.renderers.options.SingleReferenceAttributeOption#getGlobalOption <em>Global Option</em>}'.
-	 * <!-- begin-user-doc --> <!-- end-user-doc -->
-	 * @return the meta object for the reference '<em>Global Option</em>'.
-	 * @see org.unicase.docExport.exportModel.renderers.options.SingleReferenceAttributeOption#getGlobalOption()
-	 * @see #getSingleReferenceAttributeOption()
-	 * @generated
-	 */
-	EReference getSingleReferenceAttributeOption_GlobalOption();
-
-	/**
 	 * Returns the meta object for class '{@link org.unicase.docExport.exportModel.renderers.options.MultiReferenceAttributeOption <em>Multi Reference Attribute Option</em>}'.
 	 * <!-- begin-user-doc --> <!-- end-user-doc -->
 	 * @return the meta object for class '<em>Multi Reference Attribute Option</em>'.
@@ -1508,16 +1458,6 @@ public interface OptionsPackage extends EPackage {
 	 * @generated
 	 */
 	EClass getMultiReferenceAttributeOption();
-
-	/**
-	 * Returns the meta object for the reference '{@link org.unicase.docExport.exportModel.renderers.options.MultiReferenceAttributeOption#getGlobalOption <em>Global Option</em>}'.
-	 * <!-- begin-user-doc --> <!-- end-user-doc -->
-	 * @return the meta object for the reference '<em>Global Option</em>'.
-	 * @see org.unicase.docExport.exportModel.renderers.options.MultiReferenceAttributeOption#getGlobalOption()
-	 * @see #getMultiReferenceAttributeOption()
-	 * @generated
-	 */
-	EReference getMultiReferenceAttributeOption_GlobalOption();
 
 	/**
 	 * Returns the meta object for the containment reference '{@link org.unicase.docExport.exportModel.renderers.options.MultiReferenceAttributeOption#getListOption <em>List Option</em>}'.
@@ -1546,16 +1486,6 @@ public interface OptionsPackage extends EPackage {
 	 * @generated
 	 */
 	EClass getStringAttributeOption();
-
-	/**
-	 * Returns the meta object for the reference '{@link org.unicase.docExport.exportModel.renderers.options.StringAttributeOption#getGlobalOption <em>Global Option</em>}'.
-	 * <!-- begin-user-doc --> <!-- end-user-doc -->
-	 * @return the meta object for the reference '<em>Global Option</em>'.
-	 * @see org.unicase.docExport.exportModel.renderers.options.StringAttributeOption#getGlobalOption()
-	 * @see #getStringAttributeOption()
-	 * @generated
-	 */
-	EReference getStringAttributeOption_GlobalOption();
 
 	/**
 	 * Returns the meta object for class '{@link org.unicase.docExport.exportModel.renderers.options.LayoutOptions <em>Layout Options</em>}'.
@@ -2311,16 +2241,6 @@ public interface OptionsPackage extends EPackage {
 	EClass getBooleanAttributeOption();
 
 	/**
-	 * Returns the meta object for the reference '{@link org.unicase.docExport.exportModel.renderers.options.BooleanAttributeOption#getGlobalOption <em>Global Option</em>}'.
-	 * <!-- begin-user-doc --> <!-- end-user-doc -->
-	 * @return the meta object for the reference '<em>Global Option</em>'.
-	 * @see org.unicase.docExport.exportModel.renderers.options.BooleanAttributeOption#getGlobalOption()
-	 * @see #getBooleanAttributeOption()
-	 * @generated
-	 */
-	EReference getBooleanAttributeOption_GlobalOption();
-
-	/**
 	 * Returns the meta object for the attribute '{@link org.unicase.docExport.exportModel.renderers.options.BooleanAttributeOption#getBooleanStyle <em>Boolean Style</em>}'.
 	 * <!-- begin-user-doc --> <!-- end-user-doc -->
 	 * @return the meta object for the attribute '<em>Boolean Style</em>'.
@@ -2338,16 +2258,6 @@ public interface OptionsPackage extends EPackage {
 	 * @generated
 	 */
 	EClass getDateAttributeOption();
-
-	/**
-	 * Returns the meta object for the reference '{@link org.unicase.docExport.exportModel.renderers.options.DateAttributeOption#getGlobalOption <em>Global Option</em>}'.
-	 * <!-- begin-user-doc --> <!-- end-user-doc -->
-	 * @return the meta object for the reference '<em>Global Option</em>'.
-	 * @see org.unicase.docExport.exportModel.renderers.options.DateAttributeOption#getGlobalOption()
-	 * @see #getDateAttributeOption()
-	 * @generated
-	 */
-	EReference getDateAttributeOption_GlobalOption();
 
 	/**
 	 * Returns the meta object for the attribute '{@link org.unicase.docExport.exportModel.renderers.options.DateAttributeOption#getDateStyle <em>Date Style</em>}'.
@@ -2537,14 +2447,6 @@ public interface OptionsPackage extends EPackage {
 		EClass SINGLE_REFERENCE_ATTRIBUTE_OPTION = eINSTANCE.getSingleReferenceAttributeOption();
 
 		/**
-		 * The meta object literal for the '<em><b>Global Option</b></em>' reference feature.
-		 * <!-- begin-user-doc -->
-		 * <!-- end-user-doc -->
-		 * @generated
-		 */
-		EReference SINGLE_REFERENCE_ATTRIBUTE_OPTION__GLOBAL_OPTION = eINSTANCE.getSingleReferenceAttributeOption_GlobalOption();
-
-		/**
 		 * The meta object literal for the '{@link org.unicase.docExport.exportModel.renderers.options.impl.MultiReferenceAttributeOptionImpl <em>Multi Reference Attribute Option</em>}' class.
 		 * <!-- begin-user-doc --> <!-- end-user-doc -->
 		 * @see org.unicase.docExport.exportModel.renderers.options.impl.MultiReferenceAttributeOptionImpl
@@ -2552,14 +2454,6 @@ public interface OptionsPackage extends EPackage {
 		 * @generated
 		 */
 		EClass MULTI_REFERENCE_ATTRIBUTE_OPTION = eINSTANCE.getMultiReferenceAttributeOption();
-
-		/**
-		 * The meta object literal for the '<em><b>Global Option</b></em>' reference feature.
-		 * <!-- begin-user-doc -->
-		 * <!-- end-user-doc -->
-		 * @generated
-		 */
-		EReference MULTI_REFERENCE_ATTRIBUTE_OPTION__GLOBAL_OPTION = eINSTANCE.getMultiReferenceAttributeOption_GlobalOption();
 
 		/**
 		 * The meta object literal for the '<em><b>List Option</b></em>' containment reference feature. <!--
@@ -2586,14 +2480,6 @@ public interface OptionsPackage extends EPackage {
 		 * @generated
 		 */
 		EClass STRING_ATTRIBUTE_OPTION = eINSTANCE.getStringAttributeOption();
-
-		/**
-		 * The meta object literal for the '<em><b>Global Option</b></em>' reference feature.
-		 * <!-- begin-user-doc -->
-		 * <!-- end-user-doc -->
-		 * @generated
-		 */
-		EReference STRING_ATTRIBUTE_OPTION__GLOBAL_OPTION = eINSTANCE.getStringAttributeOption_GlobalOption();
 
 		/**
 		 * The meta object literal for the '{@link org.unicase.docExport.exportModel.renderers.options.impl.LayoutOptionsImpl <em>Layout Options</em>}' class.
@@ -3182,14 +3068,6 @@ public interface OptionsPackage extends EPackage {
 		EClass BOOLEAN_ATTRIBUTE_OPTION = eINSTANCE.getBooleanAttributeOption();
 
 		/**
-		 * The meta object literal for the '<em><b>Global Option</b></em>' reference feature.
-		 * <!-- begin-user-doc -->
-		 * <!-- end-user-doc -->
-		 * @generated
-		 */
-		EReference BOOLEAN_ATTRIBUTE_OPTION__GLOBAL_OPTION = eINSTANCE.getBooleanAttributeOption_GlobalOption();
-
-		/**
 		 * The meta object literal for the '<em><b>Boolean Style</b></em>' attribute feature.
 		 * <!-- begin-user-doc -->
 		 * <!-- end-user-doc -->
@@ -3205,14 +3083,6 @@ public interface OptionsPackage extends EPackage {
 		 * @generated
 		 */
 		EClass DATE_ATTRIBUTE_OPTION = eINSTANCE.getDateAttributeOption();
-
-		/**
-		 * The meta object literal for the '<em><b>Global Option</b></em>' reference feature.
-		 * <!-- begin-user-doc -->
-		 * <!-- end-user-doc -->
-		 * @generated
-		 */
-		EReference DATE_ATTRIBUTE_OPTION__GLOBAL_OPTION = eINSTANCE.getDateAttributeOption_GlobalOption();
 
 		/**
 		 * The meta object literal for the '<em><b>Date Style</b></em>' attribute feature.

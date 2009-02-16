@@ -12,7 +12,6 @@ package org.unicase.docExport.exportModel.renderers.options;
  * <p>
  * The following features are supported:
  * <ul>
- *   <li>{@link org.unicase.docExport.exportModel.renderers.options.MultiReferenceAttributeOption#getGlobalOption <em>Global Option</em>}</li>
  *   <li>{@link org.unicase.docExport.exportModel.renderers.options.MultiReferenceAttributeOption#getListOption <em>List Option</em>}</li>
  * </ul>
  * </p>
@@ -22,31 +21,6 @@ package org.unicase.docExport.exportModel.renderers.options;
  * @generated
  */
 public interface MultiReferenceAttributeOption extends ReferenceAttributeOption {
-	/**
-	 * Returns the value of the '<em><b>Global Option</b></em>' reference.
-	 * <!-- begin-user-doc -->
-	 * <p>
-	 * If the meaning of the '<em>Global Option</em>' containment reference isn't clear, there really should be more of
-	 * a description here...
-	 * </p>
-	 * <!-- end-user-doc -->
-	 * @return the value of the '<em>Global Option</em>' reference.
-	 * @see #setGlobalOption(MultiReferenceAttributeOption)
-	 * @see org.unicase.docExport.exportModel.renderers.options.OptionsPackage#getMultiReferenceAttributeOption_GlobalOption()
-	 * @model
-	 * @generated
-	 */
-	MultiReferenceAttributeOption getGlobalOption();
-
-	/**
-	 * Sets the value of the '{@link org.unicase.docExport.exportModel.renderers.options.MultiReferenceAttributeOption#getGlobalOption <em>Global Option</em>}' reference.
-	 * <!-- begin-user-doc --> <!-- end-user-doc -->
-	 * @param value the new value of the '<em>Global Option</em>' reference.
-	 * @see #getGlobalOption()
-	 * @generated
-	 */
-	void setGlobalOption(MultiReferenceAttributeOption value);
-
 	/**
 	 * Returns the value of the '<em><b>List Option</b></em>' containment reference.
 	 * <!-- begin-user-doc -->
@@ -71,11 +45,5 @@ public interface MultiReferenceAttributeOption extends ReferenceAttributeOption 
 	 * @generated
 	 */
 	void setListOption(ListOption value);
-
-	// begin custom code
-	ReferenceOption getReferenceOption(Boolean ignoreGlobalOption);
-
-	ListOption getListOption(Boolean ignoreGlobalOption);
-	// end custom code
 
 } // MultiReferenceAttributeOption

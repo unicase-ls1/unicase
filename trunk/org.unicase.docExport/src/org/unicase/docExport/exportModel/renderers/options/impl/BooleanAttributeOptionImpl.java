@@ -6,12 +6,8 @@
 package org.unicase.docExport.exportModel.renderers.options.impl;
 
 import org.eclipse.emf.common.notify.Notification;
-
 import org.eclipse.emf.ecore.EClass;
-import org.eclipse.emf.ecore.InternalEObject;
-
 import org.eclipse.emf.ecore.impl.ENotificationImpl;
-
 import org.unicase.docExport.exportModel.renderers.options.BooleanAttributeOption;
 import org.unicase.docExport.exportModel.renderers.options.BooleanStyle;
 import org.unicase.docExport.exportModel.renderers.options.OptionsPackage;
@@ -22,7 +18,6 @@ import org.unicase.docExport.exportModel.renderers.options.OptionsPackage;
  * <p>
  * The following features are implemented:
  * <ul>
- *   <li>{@link org.unicase.docExport.exportModel.renderers.options.impl.BooleanAttributeOptionImpl#getGlobalOption <em>Global Option</em>}</li>
  *   <li>{@link org.unicase.docExport.exportModel.renderers.options.impl.BooleanAttributeOptionImpl#getBooleanStyle <em>Boolean Style</em>}</li>
  * </ul>
  * </p>
@@ -30,16 +25,6 @@ import org.unicase.docExport.exportModel.renderers.options.OptionsPackage;
  * @generated
  */
 public class BooleanAttributeOptionImpl extends AttributeOptionImpl implements BooleanAttributeOption {
-	/**
-	 * The cached value of the '{@link #getGlobalOption() <em>Global Option</em>}' reference.
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
-	 * @see #getGlobalOption()
-	 * @generated
-	 * @ordered
-	 */
-	protected BooleanAttributeOption globalOption;
-
 	/**
 	 * The default value of the '{@link #getBooleanStyle() <em>Boolean Style</em>}' attribute.
 	 * <!-- begin-user-doc -->
@@ -81,41 +66,6 @@ public class BooleanAttributeOptionImpl extends AttributeOptionImpl implements B
 	 * <!-- begin-user-doc --> <!-- end-user-doc -->
 	 * @generated
 	 */
-	public BooleanAttributeOption getGlobalOption() {
-		if (globalOption != null && globalOption.eIsProxy()) {
-			InternalEObject oldGlobalOption = (InternalEObject)globalOption;
-			globalOption = (BooleanAttributeOption)eResolveProxy(oldGlobalOption);
-			if (globalOption != oldGlobalOption) {
-				if (eNotificationRequired())
-					eNotify(new ENotificationImpl(this, Notification.RESOLVE, OptionsPackage.BOOLEAN_ATTRIBUTE_OPTION__GLOBAL_OPTION, oldGlobalOption, globalOption));
-			}
-		}
-		return globalOption;
-	}
-
-	/**
-	 * <!-- begin-user-doc --> <!-- end-user-doc -->
-	 * @generated
-	 */
-	public BooleanAttributeOption basicGetGlobalOption() {
-		return globalOption;
-	}
-
-	/**
-	 * <!-- begin-user-doc --> <!-- end-user-doc -->
-	 * @generated
-	 */
-	public void setGlobalOption(BooleanAttributeOption newGlobalOption) {
-		BooleanAttributeOption oldGlobalOption = globalOption;
-		globalOption = newGlobalOption;
-		if (eNotificationRequired())
-			eNotify(new ENotificationImpl(this, Notification.SET, OptionsPackage.BOOLEAN_ATTRIBUTE_OPTION__GLOBAL_OPTION, oldGlobalOption, globalOption));
-	}
-
-	/**
-	 * <!-- begin-user-doc --> <!-- end-user-doc -->
-	 * @generated
-	 */
 	public BooleanStyle getBooleanStyle() {
 		return booleanStyle;
 	}
@@ -138,9 +88,6 @@ public class BooleanAttributeOptionImpl extends AttributeOptionImpl implements B
 	@Override
 	public Object eGet(int featureID, boolean resolve, boolean coreType) {
 		switch (featureID) {
-			case OptionsPackage.BOOLEAN_ATTRIBUTE_OPTION__GLOBAL_OPTION:
-				if (resolve) return getGlobalOption();
-				return basicGetGlobalOption();
 			case OptionsPackage.BOOLEAN_ATTRIBUTE_OPTION__BOOLEAN_STYLE:
 				return getBooleanStyle();
 		}
@@ -154,9 +101,6 @@ public class BooleanAttributeOptionImpl extends AttributeOptionImpl implements B
 	@Override
 	public void eSet(int featureID, Object newValue) {
 		switch (featureID) {
-			case OptionsPackage.BOOLEAN_ATTRIBUTE_OPTION__GLOBAL_OPTION:
-				setGlobalOption((BooleanAttributeOption)newValue);
-				return;
 			case OptionsPackage.BOOLEAN_ATTRIBUTE_OPTION__BOOLEAN_STYLE:
 				setBooleanStyle((BooleanStyle)newValue);
 				return;
@@ -171,9 +115,6 @@ public class BooleanAttributeOptionImpl extends AttributeOptionImpl implements B
 	@Override
 	public void eUnset(int featureID) {
 		switch (featureID) {
-			case OptionsPackage.BOOLEAN_ATTRIBUTE_OPTION__GLOBAL_OPTION:
-				setGlobalOption((BooleanAttributeOption)null);
-				return;
 			case OptionsPackage.BOOLEAN_ATTRIBUTE_OPTION__BOOLEAN_STYLE:
 				setBooleanStyle(BOOLEAN_STYLE_EDEFAULT);
 				return;
@@ -188,8 +129,6 @@ public class BooleanAttributeOptionImpl extends AttributeOptionImpl implements B
 	@Override
 	public boolean eIsSet(int featureID) {
 		switch (featureID) {
-			case OptionsPackage.BOOLEAN_ATTRIBUTE_OPTION__GLOBAL_OPTION:
-				return globalOption != null;
 			case OptionsPackage.BOOLEAN_ATTRIBUTE_OPTION__BOOLEAN_STYLE:
 				return booleanStyle != BOOLEAN_STYLE_EDEFAULT;
 		}
