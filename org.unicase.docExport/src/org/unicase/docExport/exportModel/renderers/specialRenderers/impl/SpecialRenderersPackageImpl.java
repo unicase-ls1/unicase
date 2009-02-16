@@ -17,6 +17,8 @@ import org.unicase.docExport.exportModel.renderers.defaultRenderers.impl.Default
 import org.unicase.docExport.exportModel.renderers.impl.RenderersPackageImpl;
 import org.unicase.docExport.exportModel.renderers.options.OptionsPackage;
 import org.unicase.docExport.exportModel.renderers.options.impl.OptionsPackageImpl;
+import org.unicase.docExport.exportModel.renderers.specialRenderers.ClassAttributesRenderer;
+import org.unicase.docExport.exportModel.renderers.specialRenderers.ClassRenderer;
 import org.unicase.docExport.exportModel.renderers.specialRenderers.MeetingRenderer;
 import org.unicase.docExport.exportModel.renderers.specialRenderers.MethodRenderer;
 import org.unicase.docExport.exportModel.renderers.specialRenderers.MilestoneRenderer;
@@ -59,6 +61,20 @@ public class SpecialRenderersPackageImpl extends EPackageImpl implements Special
 	 * @generated
 	 */
 	private EClass packageFlatRendererEClass = null;
+
+	/**
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 */
+	private EClass classRendererEClass = null;
+
+	/**
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 */
+	private EClass classAttributesRendererEClass = null;
 
 	/**
 	 * Creates an instance of the model <b>Package</b>, registered with {@link org.eclipse.emf.ecore.EPackage.Registry
@@ -183,6 +199,24 @@ public class SpecialRenderersPackageImpl extends EPackageImpl implements Special
 	}
 
 	/**
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 */
+	public EClass getClassRenderer() {
+		return classRendererEClass;
+	}
+
+	/**
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 */
+	public EClass getClassAttributesRenderer() {
+		return classAttributesRendererEClass;
+	}
+
+	/**
 	 * <!-- begin-user-doc --> <!-- end-user-doc -->
 	 * @generated
 	 */
@@ -216,6 +250,10 @@ public class SpecialRenderersPackageImpl extends EPackageImpl implements Special
 		methodRendererEClass = createEClass(METHOD_RENDERER);
 
 		packageFlatRendererEClass = createEClass(PACKAGE_FLAT_RENDERER);
+
+		classRendererEClass = createEClass(CLASS_RENDERER);
+
+		classAttributesRendererEClass = createEClass(CLASS_ATTRIBUTES_RENDERER);
 	}
 
 	/**
@@ -252,6 +290,8 @@ public class SpecialRenderersPackageImpl extends EPackageImpl implements Special
 		stepsAttributeRendererEClass.getESuperTypes().add(theRenderersPackage.getAttributeRenderer());
 		methodRendererEClass.getESuperTypes().add(theRenderersPackage.getAttributeRenderer());
 		packageFlatRendererEClass.getESuperTypes().add(theRenderersPackage.getModelElementRenderer());
+		classRendererEClass.getESuperTypes().add(theRenderersPackage.getModelElementRenderer());
+		classAttributesRendererEClass.getESuperTypes().add(theRenderersPackage.getAttributeRenderer());
 
 		// Initialize classes and features; add operations and parameters
 		initEClass(meetingRendererEClass, MeetingRenderer.class, "MeetingRenderer", !IS_ABSTRACT, !IS_INTERFACE, IS_GENERATED_INSTANCE_CLASS);
@@ -263,6 +303,10 @@ public class SpecialRenderersPackageImpl extends EPackageImpl implements Special
 		initEClass(methodRendererEClass, MethodRenderer.class, "MethodRenderer", !IS_ABSTRACT, !IS_INTERFACE, IS_GENERATED_INSTANCE_CLASS);
 
 		initEClass(packageFlatRendererEClass, PackageFlatRenderer.class, "PackageFlatRenderer", !IS_ABSTRACT, !IS_INTERFACE, IS_GENERATED_INSTANCE_CLASS);
+
+		initEClass(classRendererEClass, ClassRenderer.class, "ClassRenderer", !IS_ABSTRACT, !IS_INTERFACE, IS_GENERATED_INSTANCE_CLASS);
+
+		initEClass(classAttributesRendererEClass, ClassAttributesRenderer.class, "ClassAttributesRenderer", !IS_ABSTRACT, !IS_INTERFACE, IS_GENERATED_INSTANCE_CLASS);
 	}
 
 } // SpecialRenderersPackageImpl

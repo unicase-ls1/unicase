@@ -25,18 +25,17 @@ import org.unicase.docExport.exportModel.renderers.options.OptionsPackage;
 import org.unicase.docExport.exportModel.renderers.options.ReferenceAttributeOption;
 
 /**
- * This is the item provider adapter for a
- * {@link org.unicase.docExport.exportModel.renderers.options.ReferenceAttributeOption} object. <!-- begin-user-doc -->
+ * This is the item provider adapter for a {@link org.unicase.docExport.exportModel.renderers.options.ReferenceAttributeOption} object.
+ * <!-- begin-user-doc -->
  * <!-- end-user-doc -->
- * 
  * @generated
  */
 public class ReferenceAttributeOptionItemProvider extends AttributeOptionItemProvider implements
 	IEditingDomainItemProvider, IStructuredItemContentProvider, ITreeItemContentProvider, IItemLabelProvider,
 	IItemPropertySource {
 	/**
-	 * This constructs an instance from a factory and a notifier. <!-- begin-user-doc --> <!-- end-user-doc -->
-	 * 
+	 * This constructs an instance from a factory and a notifier.
+	 * <!-- begin-user-doc --> <!-- end-user-doc -->
 	 * @generated
 	 */
 	public ReferenceAttributeOptionItemProvider(AdapterFactory adapterFactory) {
@@ -44,8 +43,8 @@ public class ReferenceAttributeOptionItemProvider extends AttributeOptionItemPro
 	}
 
 	/**
-	 * This returns the property descriptors for the adapted class. <!-- begin-user-doc --> <!-- end-user-doc -->
-	 * 
+	 * This returns the property descriptors for the adapted class.
+	 * <!-- begin-user-doc --> <!-- end-user-doc -->
 	 * @generated
 	 */
 	@Override
@@ -59,25 +58,32 @@ public class ReferenceAttributeOptionItemProvider extends AttributeOptionItemPro
 	}
 
 	/**
-	 * This adds a property descriptor for the Contained feature. <!-- begin-user-doc --> <!-- end-user-doc -->
-	 * 
+	 * This adds a property descriptor for the Contained feature.
+	 * <!-- begin-user-doc --> <!-- end-user-doc -->
 	 * @generated
 	 */
 	protected void addContainedPropertyDescriptor(Object object) {
-		itemPropertyDescriptors.add(createItemPropertyDescriptor(((ComposeableAdapterFactory) adapterFactory)
-			.getRootAdapterFactory(), getResourceLocator(),
-			getString("_UI_ReferenceAttributeOption_contained_feature"), getString(
-				"_UI_PropertyDescriptor_description", "_UI_ReferenceAttributeOption_contained_feature",
-				"_UI_ReferenceAttributeOption_type"), OptionsPackage.Literals.REFERENCE_ATTRIBUTE_OPTION__CONTAINED,
-			true, false, false, ItemPropertyDescriptor.BOOLEAN_VALUE_IMAGE, null, null));
+		itemPropertyDescriptors.add
+			(createItemPropertyDescriptor
+				(((ComposeableAdapterFactory)adapterFactory).getRootAdapterFactory(),
+				 getResourceLocator(),
+				 getString("_UI_ReferenceAttributeOption_contained_feature"),
+				 getString("_UI_PropertyDescriptor_description", "_UI_ReferenceAttributeOption_contained_feature", "_UI_ReferenceAttributeOption_type"),
+				 OptionsPackage.Literals.REFERENCE_ATTRIBUTE_OPTION__CONTAINED,
+				 true,
+				 false,
+				 false,
+				 ItemPropertyDescriptor.BOOLEAN_VALUE_IMAGE,
+				 null,
+				 null));
 	}
 
 	/**
 	 * This specifies how to implement {@link #getChildren} and is used to deduce an appropriate feature for an
 	 * {@link org.eclipse.emf.edit.command.AddCommand}, {@link org.eclipse.emf.edit.command.RemoveCommand} or
-	 * {@link org.eclipse.emf.edit.command.MoveCommand} in {@link #createCommand}. <!-- begin-user-doc --> <!--
+	 * {@link org.eclipse.emf.edit.command.MoveCommand} in {@link #createCommand}.
+	 * <!-- begin-user-doc --> <!--
 	 * end-user-doc -->
-	 * 
 	 * @generated
 	 */
 	@Override
@@ -91,7 +97,6 @@ public class ReferenceAttributeOptionItemProvider extends AttributeOptionItemPro
 
 	/**
 	 * <!-- begin-user-doc --> <!-- end-user-doc -->
-	 * 
 	 * @generated
 	 */
 	@Override
@@ -103,15 +108,16 @@ public class ReferenceAttributeOptionItemProvider extends AttributeOptionItemPro
 	}
 
 	/**
-	 * This returns the label text for the adapted class. <!-- begin-user-doc --> <!-- end-user-doc -->
-	 * 
+	 * This returns the label text for the adapted class.
+	 * <!-- begin-user-doc --> <!-- end-user-doc -->
 	 * @generated
 	 */
 	@Override
 	public String getText(Object object) {
-		String label = ((ReferenceAttributeOption) object).getName();
-		return label == null || label.length() == 0 ? getString("_UI_ReferenceAttributeOption_type")
-			: getString("_UI_ReferenceAttributeOption_type") + " " + label;
+		String label = ((ReferenceAttributeOption)object).getName();
+		return label == null || label.length() == 0 ?
+			getString("_UI_ReferenceAttributeOption_type") :
+			getString("_UI_ReferenceAttributeOption_type") + " " + label;
 	}
 
 	/**
@@ -126,29 +132,30 @@ public class ReferenceAttributeOptionItemProvider extends AttributeOptionItemPro
 		updateChildren(notification);
 
 		switch (notification.getFeatureID(ReferenceAttributeOption.class)) {
-		case OptionsPackage.REFERENCE_ATTRIBUTE_OPTION__CONTAINED:
-			fireNotifyChanged(new ViewerNotification(notification, notification.getNotifier(), false, true));
-			return;
-		case OptionsPackage.REFERENCE_ATTRIBUTE_OPTION__REFERENCE_OPTION:
-			fireNotifyChanged(new ViewerNotification(notification, notification.getNotifier(), true, false));
-			return;
+			case OptionsPackage.REFERENCE_ATTRIBUTE_OPTION__CONTAINED:
+				fireNotifyChanged(new ViewerNotification(notification, notification.getNotifier(), false, true));
+				return;
+			case OptionsPackage.REFERENCE_ATTRIBUTE_OPTION__REFERENCE_OPTION:
+				fireNotifyChanged(new ViewerNotification(notification, notification.getNotifier(), true, false));
+				return;
 		}
 		super.notifyChanged(notification);
 	}
 
 	/**
-	 * This adds {@link org.eclipse.emf.edit.command.CommandParameter}s describing the children that can be created
-	 * under this object. <!-- begin-user-doc --> <!-- end-user-doc -->
-	 * 
+	 * This adds {@link org.eclipse.emf.edit.command.CommandParameter}s describing the children
+	 * that can be created under this object.
+	 * <!-- begin-user-doc --> <!-- end-user-doc -->
 	 * @generated
 	 */
 	@Override
 	protected void collectNewChildDescriptors(Collection<Object> newChildDescriptors, Object object) {
 		super.collectNewChildDescriptors(newChildDescriptors, object);
 
-		newChildDescriptors.add(createChildParameter(
-			OptionsPackage.Literals.REFERENCE_ATTRIBUTE_OPTION__REFERENCE_OPTION, OptionsFactory.eINSTANCE
-				.createReferenceOption()));
+		newChildDescriptors.add
+			(createChildParameter
+				(OptionsPackage.Literals.REFERENCE_ATTRIBUTE_OPTION__REFERENCE_OPTION,
+				 OptionsFactory.eINSTANCE.createReferenceOption()));
 	}
 
 }

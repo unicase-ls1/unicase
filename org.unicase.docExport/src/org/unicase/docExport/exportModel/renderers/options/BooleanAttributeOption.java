@@ -12,7 +12,6 @@ package org.unicase.docExport.exportModel.renderers.options;
  * <p>
  * The following features are supported:
  * <ul>
- *   <li>{@link org.unicase.docExport.exportModel.renderers.options.BooleanAttributeOption#getGlobalOption <em>Global Option</em>}</li>
  *   <li>{@link org.unicase.docExport.exportModel.renderers.options.BooleanAttributeOption#getBooleanStyle <em>Boolean Style</em>}</li>
  * </ul>
  * </p>
@@ -22,31 +21,6 @@ package org.unicase.docExport.exportModel.renderers.options;
  * @generated
  */
 public interface BooleanAttributeOption extends AttributeOption {
-	/**
-	 * Returns the value of the '<em><b>Global Option</b></em>' reference.
-	 * <!-- begin-user-doc -->
-	 * <p>
-	 * If the meaning of the '<em>Global Option</em>' reference isn't clear, there really should be more of a
-	 * description here...
-	 * </p>
-	 * <!-- end-user-doc -->
-	 * @return the value of the '<em>Global Option</em>' reference.
-	 * @see #setGlobalOption(BooleanAttributeOption)
-	 * @see org.unicase.docExport.exportModel.renderers.options.OptionsPackage#getBooleanAttributeOption_GlobalOption()
-	 * @model
-	 * @generated
-	 */
-	BooleanAttributeOption getGlobalOption();
-
-	/**
-	 * Sets the value of the '{@link org.unicase.docExport.exportModel.renderers.options.BooleanAttributeOption#getGlobalOption <em>Global Option</em>}' reference.
-	 * <!-- begin-user-doc --> <!-- end-user-doc -->
-	 * @param value the new value of the '<em>Global Option</em>' reference.
-	 * @see #getGlobalOption()
-	 * @generated
-	 */
-	void setGlobalOption(BooleanAttributeOption value);
-
 	/**
 	 * Returns the value of the '<em><b>Boolean Style</b></em>' attribute.
 	 * The literals are from the enumeration {@link org.unicase.docExport.exportModel.renderers.options.BooleanStyle}.

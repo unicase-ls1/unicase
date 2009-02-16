@@ -9,6 +9,7 @@ import java.util.List;
 
 import org.eclipse.emf.ecore.EClass;
 import org.eclipse.emf.ecore.EObject;
+import org.unicase.docExport.exportModel.renderers.options.*;
 import org.unicase.docExport.exportModel.renderers.options.AttributeOption;
 import org.unicase.docExport.exportModel.renderers.options.BooleanAttributeOption;
 import org.unicase.docExport.exportModel.renderers.options.BoxModelOption;
@@ -31,21 +32,20 @@ import org.unicase.docExport.exportModel.renderers.options.UColor;
  * {@link #doSwitch(EObject) doSwitch(object)} to invoke the <code>caseXXX</code> method for each class of the model,
  * starting with the actual class of the object and proceeding up the inheritance hierarchy until a non-null result is
  * returned, which is the result of the switch. <!-- end-user-doc -->
- * 
  * @see org.unicase.docExport.exportModel.renderers.options.OptionsPackage
  * @generated
  */
 public class OptionsSwitch<T> {
 	/**
-	 * The cached model package <!-- begin-user-doc --> <!-- end-user-doc -->
-	 * 
+	 * The cached model package
+	 * <!-- begin-user-doc --> <!-- end-user-doc -->
 	 * @generated
 	 */
 	protected static OptionsPackage modelPackage;
 
 	/**
-	 * Creates an instance of the switch. <!-- begin-user-doc --> <!-- end-user-doc -->
-	 * 
+	 * Creates an instance of the switch.
+	 * <!-- begin-user-doc --> <!-- end-user-doc -->
 	 * @generated
 	 */
 	public OptionsSwitch() {
@@ -55,9 +55,8 @@ public class OptionsSwitch<T> {
 	}
 
 	/**
-	 * Calls <code>caseXXX</code> for each class of the model until one returns a non null result; it yields that
-	 * result. <!-- begin-user-doc --> <!-- end-user-doc -->
-	 * 
+	 * Calls <code>caseXXX</code> for each class of the model until one returns a non null result; it yields that result.
+	 * <!-- begin-user-doc --> <!-- end-user-doc -->
 	 * @return the first non-null result returned by a <code>caseXXX</code> call.
 	 * @generated
 	 */
@@ -66,181 +65,145 @@ public class OptionsSwitch<T> {
 	}
 
 	/**
-	 * Calls <code>caseXXX</code> for each class of the model until one returns a non null result; it yields that
-	 * result. <!-- begin-user-doc --> <!-- end-user-doc -->
-	 * 
+	 * Calls <code>caseXXX</code> for each class of the model until one returns a non null result; it yields that result.
+	 * <!-- begin-user-doc --> <!-- end-user-doc -->
 	 * @return the first non-null result returned by a <code>caseXXX</code> call.
 	 * @generated
 	 */
 	protected T doSwitch(EClass theEClass, EObject theEObject) {
 		if (theEClass.eContainer() == modelPackage) {
 			return doSwitch(theEClass.getClassifierID(), theEObject);
-		} else {
+		}
+		else {
 			List<EClass> eSuperTypes = theEClass.getESuperTypes();
-			return eSuperTypes.isEmpty() ? defaultCase(theEObject) : doSwitch(eSuperTypes.get(0), theEObject);
+			return
+				eSuperTypes.isEmpty() ?
+					defaultCase(theEObject) :
+					doSwitch(eSuperTypes.get(0), theEObject);
 		}
 	}
 
 	/**
-	 * Calls <code>caseXXX</code> for each class of the model until one returns a non null result; it yields that
-	 * result. <!-- begin-user-doc --> <!-- end-user-doc -->
-	 * 
+	 * Calls <code>caseXXX</code> for each class of the model until one returns a non null result; it yields that result.
+	 * <!-- begin-user-doc --> <!-- end-user-doc -->
 	 * @return the first non-null result returned by a <code>caseXXX</code> call.
 	 * @generated
 	 */
 	protected T doSwitch(int classifierID, EObject theEObject) {
 		switch (classifierID) {
-		case OptionsPackage.RENDERER_OPTION: {
-			RendererOption rendererOption = (RendererOption) theEObject;
-			T result = caseRendererOption(rendererOption);
-			if (result == null)
-				result = defaultCase(theEObject);
-			return result;
-		}
-		case OptionsPackage.ATTRIBUTE_OPTION: {
-			AttributeOption attributeOption = (AttributeOption) theEObject;
-			T result = caseAttributeOption(attributeOption);
-			if (result == null)
-				result = caseRendererOption(attributeOption);
-			if (result == null)
-				result = defaultCase(theEObject);
-			return result;
-		}
-		case OptionsPackage.SINGLE_REFERENCE_ATTRIBUTE_OPTION: {
-			SingleReferenceAttributeOption singleReferenceAttributeOption = (SingleReferenceAttributeOption) theEObject;
-			T result = caseSingleReferenceAttributeOption(singleReferenceAttributeOption);
-			if (result == null)
-				result = caseReferenceAttributeOption(singleReferenceAttributeOption);
-			if (result == null)
-				result = caseAttributeOption(singleReferenceAttributeOption);
-			if (result == null)
-				result = caseRendererOption(singleReferenceAttributeOption);
-			if (result == null)
-				result = defaultCase(theEObject);
-			return result;
-		}
-		case OptionsPackage.MULTI_REFERENCE_ATTRIBUTE_OPTION: {
-			MultiReferenceAttributeOption multiReferenceAttributeOption = (MultiReferenceAttributeOption) theEObject;
-			T result = caseMultiReferenceAttributeOption(multiReferenceAttributeOption);
-			if (result == null)
-				result = caseReferenceAttributeOption(multiReferenceAttributeOption);
-			if (result == null)
-				result = caseAttributeOption(multiReferenceAttributeOption);
-			if (result == null)
-				result = caseRendererOption(multiReferenceAttributeOption);
-			if (result == null)
-				result = defaultCase(theEObject);
-			return result;
-		}
-		case OptionsPackage.REFERENCE_OPTION: {
-			ReferenceOption referenceOption = (ReferenceOption) theEObject;
-			T result = caseReferenceOption(referenceOption);
-			if (result == null)
-				result = caseRendererOption(referenceOption);
-			if (result == null)
-				result = defaultCase(theEObject);
-			return result;
-		}
-		case OptionsPackage.STRING_ATTRIBUTE_OPTION: {
-			StringAttributeOption stringAttributeOption = (StringAttributeOption) theEObject;
-			T result = caseStringAttributeOption(stringAttributeOption);
-			if (result == null)
-				result = caseAttributeOption(stringAttributeOption);
-			if (result == null)
-				result = caseRendererOption(stringAttributeOption);
-			if (result == null)
-				result = defaultCase(theEObject);
-			return result;
-		}
-		case OptionsPackage.LAYOUT_OPTIONS: {
-			LayoutOptions layoutOptions = (LayoutOptions) theEObject;
-			T result = caseLayoutOptions(layoutOptions);
-			if (result == null)
-				result = caseRendererOption(layoutOptions);
-			if (result == null)
-				result = defaultCase(theEObject);
-			return result;
-		}
-		case OptionsPackage.LIST_OPTION: {
-			ListOption listOption = (ListOption) theEObject;
-			T result = caseListOption(listOption);
-			if (result == null)
-				result = caseRendererOption(listOption);
-			if (result == null)
-				result = defaultCase(theEObject);
-			return result;
-		}
-		case OptionsPackage.TEXT_OPTION: {
-			TextOption textOption = (TextOption) theEObject;
-			T result = caseTextOption(textOption);
-			if (result == null)
-				result = caseRendererOption(textOption);
-			if (result == null)
-				result = defaultCase(theEObject);
-			return result;
-		}
-		case OptionsPackage.REFERENCE_ATTRIBUTE_OPTION: {
-			ReferenceAttributeOption referenceAttributeOption = (ReferenceAttributeOption) theEObject;
-			T result = caseReferenceAttributeOption(referenceAttributeOption);
-			if (result == null)
-				result = caseAttributeOption(referenceAttributeOption);
-			if (result == null)
-				result = caseRendererOption(referenceAttributeOption);
-			if (result == null)
-				result = defaultCase(theEObject);
-			return result;
-		}
-		case OptionsPackage.UCOLOR: {
-			UColor uColor = (UColor) theEObject;
-			T result = caseUColor(uColor);
-			if (result == null)
-				result = caseRendererOption(uColor);
-			if (result == null)
-				result = defaultCase(theEObject);
-			return result;
-		}
-		case OptionsPackage.BOX_MODEL_OPTION: {
-			BoxModelOption boxModelOption = (BoxModelOption) theEObject;
-			T result = caseBoxModelOption(boxModelOption);
-			if (result == null)
-				result = caseRendererOption(boxModelOption);
-			if (result == null)
-				result = defaultCase(theEObject);
-			return result;
-		}
-		case OptionsPackage.SECTION_OPTION: {
-			SectionOption sectionOption = (SectionOption) theEObject;
-			T result = caseSectionOption(sectionOption);
-			if (result == null)
-				result = caseRendererOption(sectionOption);
-			if (result == null)
-				result = defaultCase(theEObject);
-			return result;
-		}
-		case OptionsPackage.BOOLEAN_ATTRIBUTE_OPTION: {
-			BooleanAttributeOption booleanAttributeOption = (BooleanAttributeOption) theEObject;
-			T result = caseBooleanAttributeOption(booleanAttributeOption);
-			if (result == null)
-				result = caseAttributeOption(booleanAttributeOption);
-			if (result == null)
-				result = caseRendererOption(booleanAttributeOption);
-			if (result == null)
-				result = defaultCase(theEObject);
-			return result;
-		}
-		case OptionsPackage.DATE_ATTRIBUTE_OPTION: {
-			DateAttributeOption dateAttributeOption = (DateAttributeOption) theEObject;
-			T result = caseDateAttributeOption(dateAttributeOption);
-			if (result == null)
-				result = caseAttributeOption(dateAttributeOption);
-			if (result == null)
-				result = caseRendererOption(dateAttributeOption);
-			if (result == null)
-				result = defaultCase(theEObject);
-			return result;
-		}
-		default:
-			return defaultCase(theEObject);
+			case OptionsPackage.RENDERER_OPTION: {
+				RendererOption rendererOption = (RendererOption)theEObject;
+				T result = caseRendererOption(rendererOption);
+				if (result == null) result = defaultCase(theEObject);
+				return result;
+			}
+			case OptionsPackage.ATTRIBUTE_OPTION: {
+				AttributeOption attributeOption = (AttributeOption)theEObject;
+				T result = caseAttributeOption(attributeOption);
+				if (result == null) result = caseRendererOption(attributeOption);
+				if (result == null) result = defaultCase(theEObject);
+				return result;
+			}
+			case OptionsPackage.SINGLE_REFERENCE_ATTRIBUTE_OPTION: {
+				SingleReferenceAttributeOption singleReferenceAttributeOption = (SingleReferenceAttributeOption)theEObject;
+				T result = caseSingleReferenceAttributeOption(singleReferenceAttributeOption);
+				if (result == null) result = caseReferenceAttributeOption(singleReferenceAttributeOption);
+				if (result == null) result = caseAttributeOption(singleReferenceAttributeOption);
+				if (result == null) result = caseRendererOption(singleReferenceAttributeOption);
+				if (result == null) result = defaultCase(theEObject);
+				return result;
+			}
+			case OptionsPackage.MULTI_REFERENCE_ATTRIBUTE_OPTION: {
+				MultiReferenceAttributeOption multiReferenceAttributeOption = (MultiReferenceAttributeOption)theEObject;
+				T result = caseMultiReferenceAttributeOption(multiReferenceAttributeOption);
+				if (result == null) result = caseReferenceAttributeOption(multiReferenceAttributeOption);
+				if (result == null) result = caseAttributeOption(multiReferenceAttributeOption);
+				if (result == null) result = caseRendererOption(multiReferenceAttributeOption);
+				if (result == null) result = defaultCase(theEObject);
+				return result;
+			}
+			case OptionsPackage.REFERENCE_OPTION: {
+				ReferenceOption referenceOption = (ReferenceOption)theEObject;
+				T result = caseReferenceOption(referenceOption);
+				if (result == null) result = caseRendererOption(referenceOption);
+				if (result == null) result = defaultCase(theEObject);
+				return result;
+			}
+			case OptionsPackage.STRING_ATTRIBUTE_OPTION: {
+				StringAttributeOption stringAttributeOption = (StringAttributeOption)theEObject;
+				T result = caseStringAttributeOption(stringAttributeOption);
+				if (result == null) result = caseAttributeOption(stringAttributeOption);
+				if (result == null) result = caseRendererOption(stringAttributeOption);
+				if (result == null) result = defaultCase(theEObject);
+				return result;
+			}
+			case OptionsPackage.LAYOUT_OPTIONS: {
+				LayoutOptions layoutOptions = (LayoutOptions)theEObject;
+				T result = caseLayoutOptions(layoutOptions);
+				if (result == null) result = caseRendererOption(layoutOptions);
+				if (result == null) result = defaultCase(theEObject);
+				return result;
+			}
+			case OptionsPackage.LIST_OPTION: {
+				ListOption listOption = (ListOption)theEObject;
+				T result = caseListOption(listOption);
+				if (result == null) result = caseRendererOption(listOption);
+				if (result == null) result = defaultCase(theEObject);
+				return result;
+			}
+			case OptionsPackage.TEXT_OPTION: {
+				TextOption textOption = (TextOption)theEObject;
+				T result = caseTextOption(textOption);
+				if (result == null) result = caseRendererOption(textOption);
+				if (result == null) result = defaultCase(theEObject);
+				return result;
+			}
+			case OptionsPackage.REFERENCE_ATTRIBUTE_OPTION: {
+				ReferenceAttributeOption referenceAttributeOption = (ReferenceAttributeOption)theEObject;
+				T result = caseReferenceAttributeOption(referenceAttributeOption);
+				if (result == null) result = caseAttributeOption(referenceAttributeOption);
+				if (result == null) result = caseRendererOption(referenceAttributeOption);
+				if (result == null) result = defaultCase(theEObject);
+				return result;
+			}
+			case OptionsPackage.UCOLOR: {
+				UColor uColor = (UColor)theEObject;
+				T result = caseUColor(uColor);
+				if (result == null) result = caseRendererOption(uColor);
+				if (result == null) result = defaultCase(theEObject);
+				return result;
+			}
+			case OptionsPackage.BOX_MODEL_OPTION: {
+				BoxModelOption boxModelOption = (BoxModelOption)theEObject;
+				T result = caseBoxModelOption(boxModelOption);
+				if (result == null) result = caseRendererOption(boxModelOption);
+				if (result == null) result = defaultCase(theEObject);
+				return result;
+			}
+			case OptionsPackage.SECTION_OPTION: {
+				SectionOption sectionOption = (SectionOption)theEObject;
+				T result = caseSectionOption(sectionOption);
+				if (result == null) result = caseRendererOption(sectionOption);
+				if (result == null) result = defaultCase(theEObject);
+				return result;
+			}
+			case OptionsPackage.BOOLEAN_ATTRIBUTE_OPTION: {
+				BooleanAttributeOption booleanAttributeOption = (BooleanAttributeOption)theEObject;
+				T result = caseBooleanAttributeOption(booleanAttributeOption);
+				if (result == null) result = caseAttributeOption(booleanAttributeOption);
+				if (result == null) result = caseRendererOption(booleanAttributeOption);
+				if (result == null) result = defaultCase(theEObject);
+				return result;
+			}
+			case OptionsPackage.DATE_ATTRIBUTE_OPTION: {
+				DateAttributeOption dateAttributeOption = (DateAttributeOption)theEObject;
+				T result = caseDateAttributeOption(dateAttributeOption);
+				if (result == null) result = caseAttributeOption(dateAttributeOption);
+				if (result == null) result = caseRendererOption(dateAttributeOption);
+				if (result == null) result = defaultCase(theEObject);
+				return result;
+			}
+			default: return defaultCase(theEObject);
 		}
 	}
 
@@ -276,7 +239,6 @@ public class OptionsSwitch<T> {
 	 * Returns the result of interpreting the object as an instance of '<em>Single Reference Attribute Option</em>'.
 	 * <!-- begin-user-doc --> This implementation returns null; returning a non-null result will terminate the switch.
 	 * <!-- end-user-doc -->
-	 * 
 	 * @param object the target of the switch.
 	 * @return the result of interpreting the object as an instance of '<em>Single Reference Attribute Option</em>'.
 	 * @see #doSwitch(org.eclipse.emf.ecore.EObject) doSwitch(EObject)
@@ -343,9 +305,9 @@ public class OptionsSwitch<T> {
 	}
 
 	/**
-	 * Returns the result of interpreting the object as an instance of '<em>List Option</em>'. <!-- begin-user-doc -->
+	 * Returns the result of interpreting the object as an instance of '<em>List Option</em>'.
+	 * <!-- begin-user-doc -->
 	 * This implementation returns null; returning a non-null result will terminate the switch. <!-- end-user-doc -->
-	 * 
 	 * @param object the target of the switch.
 	 * @return the result of interpreting the object as an instance of '<em>List Option</em>'.
 	 * @see #doSwitch(org.eclipse.emf.ecore.EObject) doSwitch(EObject)
@@ -356,9 +318,9 @@ public class OptionsSwitch<T> {
 	}
 
 	/**
-	 * Returns the result of interpreting the object as an instance of '<em>Text Option</em>'. <!-- begin-user-doc -->
+	 * Returns the result of interpreting the object as an instance of '<em>Text Option</em>'.
+	 * <!-- begin-user-doc -->
 	 * This implementation returns null; returning a non-null result will terminate the switch. <!-- end-user-doc -->
-	 * 
 	 * @param object the target of the switch.
 	 * @return the result of interpreting the object as an instance of '<em>Text Option</em>'.
 	 * @see #doSwitch(org.eclipse.emf.ecore.EObject) doSwitch(EObject)
@@ -383,9 +345,9 @@ public class OptionsSwitch<T> {
 	}
 
 	/**
-	 * Returns the result of interpreting the object as an instance of '<em>UColor</em>'. <!-- begin-user-doc --> This
+	 * Returns the result of interpreting the object as an instance of '<em>UColor</em>'.
+	 * <!-- begin-user-doc --> This
 	 * implementation returns null; returning a non-null result will terminate the switch. <!-- end-user-doc -->
-	 * 
 	 * @param object the target of the switch.
 	 * @return the result of interpreting the object as an instance of '<em>UColor</em>'.
 	 * @see #doSwitch(org.eclipse.emf.ecore.EObject) doSwitch(EObject)
@@ -452,10 +414,10 @@ public class OptionsSwitch<T> {
 	}
 
 	/**
-	 * Returns the result of interpreting the object as an instance of '<em>EObject</em>'. <!-- begin-user-doc --> This
+	 * Returns the result of interpreting the object as an instance of '<em>EObject</em>'.
+	 * <!-- begin-user-doc --> This
 	 * implementation returns null; returning a non-null result will terminate the switch, but this is the last case
 	 * anyway. <!-- end-user-doc -->
-	 * 
 	 * @param object the target of the switch.
 	 * @return the result of interpreting the object as an instance of '<em>EObject</em>'.
 	 * @see #doSwitch(org.eclipse.emf.ecore.EObject)

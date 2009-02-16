@@ -14,7 +14,6 @@ import org.unicase.docExport.exportModel.renderers.options.ListOption;
 import org.unicase.docExport.exportModel.renderers.options.MultiReferenceAttributeOption;
 import org.unicase.docExport.exportModel.renderers.options.OptionsFactory;
 import org.unicase.docExport.exportModel.renderers.options.OptionsPackage;
-import org.unicase.docExport.exportModel.renderers.options.ReferenceOption;
 
 /**
  * <!-- begin-user-doc --> An implementation of the model object '<em><b>Multi Reference Attribute Option</b></em>'.
@@ -22,7 +21,6 @@ import org.unicase.docExport.exportModel.renderers.options.ReferenceOption;
  * <p>
  * The following features are implemented:
  * <ul>
- *   <li>{@link org.unicase.docExport.exportModel.renderers.options.impl.MultiReferenceAttributeOptionImpl#getGlobalOption <em>Global Option</em>}</li>
  *   <li>{@link org.unicase.docExport.exportModel.renderers.options.impl.MultiReferenceAttributeOptionImpl#getListOption <em>List Option</em>}</li>
  * </ul>
  * </p>
@@ -31,16 +29,6 @@ import org.unicase.docExport.exportModel.renderers.options.ReferenceOption;
  */
 public class MultiReferenceAttributeOptionImpl extends ReferenceAttributeOptionImpl implements
 	MultiReferenceAttributeOption {
-	/**
-	 * The cached value of the '{@link #getGlobalOption() <em>Global Option</em>}' reference.
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
-	 * @see #getGlobalOption()
-	 * @generated
-	 * @ordered
-	 */
-	protected MultiReferenceAttributeOption globalOption;
-
 	/**
 	 * The cached value of the '{@link #getListOption() <em>List Option</em>}' containment reference. <!--
 	 * begin-user-doc --> <!-- end-user-doc -->
@@ -72,88 +60,12 @@ public class MultiReferenceAttributeOptionImpl extends ReferenceAttributeOptionI
 	}
 
 	/**
-	 * <!-- begin-user-doc --> <!-- end-user-doc -->
-	 * @generated
-	 */
-	public MultiReferenceAttributeOption getGlobalOption() {
-		if (globalOption != null && globalOption.eIsProxy()) {
-			InternalEObject oldGlobalOption = (InternalEObject)globalOption;
-			globalOption = (MultiReferenceAttributeOption)eResolveProxy(oldGlobalOption);
-			if (globalOption != oldGlobalOption) {
-				if (eNotificationRequired())
-					eNotify(new ENotificationImpl(this, Notification.RESOLVE, OptionsPackage.MULTI_REFERENCE_ATTRIBUTE_OPTION__GLOBAL_OPTION, oldGlobalOption, globalOption));
-			}
-		}
-		return globalOption;
-	}
-
-	/**
-	 * <!-- begin-user-doc --> <!-- end-user-doc -->
-	 * @generated
-	 */
-	public MultiReferenceAttributeOption basicGetGlobalOption() {
-		return globalOption;
-	}
-
-	/**
-	 * <!-- begin-user-doc --> <!-- end-user-doc -->
-	 * @generated
-	 */
-	public void setGlobalOption(MultiReferenceAttributeOption newGlobalOption) {
-		MultiReferenceAttributeOption oldGlobalOption = globalOption;
-		globalOption = newGlobalOption;
-		if (eNotificationRequired())
-			eNotify(new ENotificationImpl(this, Notification.SET, OptionsPackage.MULTI_REFERENCE_ATTRIBUTE_OPTION__GLOBAL_OPTION, oldGlobalOption, globalOption));
-	}
-
-	/**
 	 * <!-- begin-user-doc -->
-	 * 
-	 * @param ignoreGlobalOption if true, always returns the ReferenceOption of this object
-	 * @return the ReferenceOption which decorates the text of this attribute <!-- end-user-doc -->
-	 * @generated NOT
-	 */
-	public ReferenceOption getReferenceOption(Boolean ignoreGlobalOption) {
-		if (!isOverwriteGlobalOption() && globalOption != null && !ignoreGlobalOption) {
-			return globalOption.getReferenceOption();
-		} else {
-			return referenceOption;
-		}
-	}
-
-	/**
-	 * <!-- begin-user-doc --> .
-	 * 
-	 * @return the ReferenceOption the object. This could be the globalOption if the overwrite flag hasn't been set <!--
-	 *         end-user-doc -->
-	 * @generated NOT
-	 */
-	@Override
-	public ReferenceOption getReferenceOption() {
-		return getReferenceOption(false);
-	}
-
-	/**
-	 * <!-- begin-user-doc --> .
-	 * 
-	 * @param ignoreGlobalOption if true, always returns the ListOption of this object
-	 * @return the ListOption which decorates the text of this attribute <!-- end-user-doc -->
-	 * @generated NOT
-	 */
-	public ListOption getListOption(Boolean ignoreGlobalOption) {
-		if (!isOverwriteGlobalOption() && globalOption != null && !ignoreGlobalOption) {
-			return getGlobalOption().getListOption();
-		} else {
-			return listOption;
-		}
-	}
-
-	/**
-	 * @return the ListOption the object. This could be the globalOption if the overwrite flag hasn't been set
-	 * @generated NOT
+	 * <!-- end-user-doc -->
+	 * @generated
 	 */
 	public ListOption getListOption() {
-		return getListOption(false);
+		return listOption;
 	}
 
 	/**
@@ -208,9 +120,6 @@ public class MultiReferenceAttributeOptionImpl extends ReferenceAttributeOptionI
 	@Override
 	public Object eGet(int featureID, boolean resolve, boolean coreType) {
 		switch (featureID) {
-			case OptionsPackage.MULTI_REFERENCE_ATTRIBUTE_OPTION__GLOBAL_OPTION:
-				if (resolve) return getGlobalOption();
-				return basicGetGlobalOption();
 			case OptionsPackage.MULTI_REFERENCE_ATTRIBUTE_OPTION__LIST_OPTION:
 				return getListOption();
 		}
@@ -224,9 +133,6 @@ public class MultiReferenceAttributeOptionImpl extends ReferenceAttributeOptionI
 	@Override
 	public void eSet(int featureID, Object newValue) {
 		switch (featureID) {
-			case OptionsPackage.MULTI_REFERENCE_ATTRIBUTE_OPTION__GLOBAL_OPTION:
-				setGlobalOption((MultiReferenceAttributeOption)newValue);
-				return;
 			case OptionsPackage.MULTI_REFERENCE_ATTRIBUTE_OPTION__LIST_OPTION:
 				setListOption((ListOption)newValue);
 				return;
@@ -241,9 +147,6 @@ public class MultiReferenceAttributeOptionImpl extends ReferenceAttributeOptionI
 	@Override
 	public void eUnset(int featureID) {
 		switch (featureID) {
-			case OptionsPackage.MULTI_REFERENCE_ATTRIBUTE_OPTION__GLOBAL_OPTION:
-				setGlobalOption((MultiReferenceAttributeOption)null);
-				return;
 			case OptionsPackage.MULTI_REFERENCE_ATTRIBUTE_OPTION__LIST_OPTION:
 				setListOption((ListOption)null);
 				return;
@@ -258,8 +161,6 @@ public class MultiReferenceAttributeOptionImpl extends ReferenceAttributeOptionI
 	@Override
 	public boolean eIsSet(int featureID) {
 		switch (featureID) {
-			case OptionsPackage.MULTI_REFERENCE_ATTRIBUTE_OPTION__GLOBAL_OPTION:
-				return globalOption != null;
 			case OptionsPackage.MULTI_REFERENCE_ATTRIBUTE_OPTION__LIST_OPTION:
 				return listOption != null;
 		}

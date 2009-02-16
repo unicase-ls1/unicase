@@ -61,7 +61,6 @@ public class MeetingRendererImpl extends ModelElementRendererImpl implements Mee
 
 	/**
 	 * <!-- begin-user-doc --> . <!-- end-user-doc -->
-	 * 
 	 * @generated
 	 */
 	@Override
@@ -423,7 +422,6 @@ public class MeetingRendererImpl extends ModelElementRendererImpl implements Mee
 
 		return ret;
 	}
-
 	// end custom code
 
 } // MeetingRendererImpl

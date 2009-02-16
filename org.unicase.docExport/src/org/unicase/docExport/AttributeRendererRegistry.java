@@ -48,6 +48,10 @@ public final class AttributeRendererRegistry {
 			if (referenceType.getInstanceTypeName().equals(ClassesPackage.eINSTANCE.getMethod().getInstanceTypeName())) {
 				ret.add(SpecialRenderersFactory.eINSTANCE.createMethodRenderer());
 			}
+			if (referenceType.getInstanceTypeName().equals(
+				ClassesPackage.eINSTANCE.getAttribute().getInstanceTypeName())) {
+				ret.add(SpecialRenderersFactory.eINSTANCE.createClassAttributesRenderer());
+			}
 		}
 
 		if (feature instanceof EReference

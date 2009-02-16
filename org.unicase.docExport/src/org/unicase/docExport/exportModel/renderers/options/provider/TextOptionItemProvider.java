@@ -25,16 +25,15 @@ import org.unicase.docExport.exportModel.renderers.options.OptionsPackage;
 import org.unicase.docExport.exportModel.renderers.options.TextOption;
 
 /**
- * This is the item provider adapter for a {@link org.unicase.docExport.exportModel.renderers.options.TextOption}
- * object. <!-- begin-user-doc --> <!-- end-user-doc -->
- * 
+ * This is the item provider adapter for a {@link org.unicase.docExport.exportModel.renderers.options.TextOption} object.
+ * <!-- begin-user-doc --> <!-- end-user-doc -->
  * @generated
  */
 public class TextOptionItemProvider extends RendererOptionItemProvider implements IEditingDomainItemProvider,
 	IStructuredItemContentProvider, ITreeItemContentProvider, IItemLabelProvider, IItemPropertySource {
 	/**
-	 * This constructs an instance from a factory and a notifier. <!-- begin-user-doc --> <!-- end-user-doc -->
-	 * 
+	 * This constructs an instance from a factory and a notifier.
+	 * <!-- begin-user-doc --> <!-- end-user-doc -->
 	 * @generated
 	 */
 	public TextOptionItemProvider(AdapterFactory adapterFactory) {
@@ -42,8 +41,8 @@ public class TextOptionItemProvider extends RendererOptionItemProvider implement
 	}
 
 	/**
-	 * This returns the property descriptors for the adapted class. <!-- begin-user-doc --> <!-- end-user-doc -->
-	 * 
+	 * This returns the property descriptors for the adapted class.
+	 * <!-- begin-user-doc --> <!-- end-user-doc -->
 	 * @generated
 	 */
 	@Override
@@ -62,89 +61,137 @@ public class TextOptionItemProvider extends RendererOptionItemProvider implement
 	}
 
 	/**
-	 * This adds a property descriptor for the Font Family feature. <!-- begin-user-doc --> <!-- end-user-doc -->
-	 * 
+	 * This adds a property descriptor for the Font Family feature.
+	 * <!-- begin-user-doc --> <!-- end-user-doc -->
 	 * @generated
 	 */
 	protected void addFontFamilyPropertyDescriptor(Object object) {
-		itemPropertyDescriptors.add(createItemPropertyDescriptor(((ComposeableAdapterFactory) adapterFactory)
-			.getRootAdapterFactory(), getResourceLocator(), getString("_UI_TextOption_fontFamily_feature"), getString(
-			"_UI_PropertyDescriptor_description", "_UI_TextOption_fontFamily_feature", "_UI_TextOption_type"),
-			OptionsPackage.Literals.TEXT_OPTION__FONT_FAMILY, true, false, false,
-			ItemPropertyDescriptor.GENERIC_VALUE_IMAGE, null, null));
+		itemPropertyDescriptors.add
+			(createItemPropertyDescriptor
+				(((ComposeableAdapterFactory)adapterFactory).getRootAdapterFactory(),
+				 getResourceLocator(),
+				 getString("_UI_TextOption_fontFamily_feature"),
+				 getString("_UI_PropertyDescriptor_description", "_UI_TextOption_fontFamily_feature", "_UI_TextOption_type"),
+				 OptionsPackage.Literals.TEXT_OPTION__FONT_FAMILY,
+				 true,
+				 false,
+				 false,
+				 ItemPropertyDescriptor.GENERIC_VALUE_IMAGE,
+				 null,
+				 null));
 	}
 
 	/**
-	 * This adds a property descriptor for the Font Size feature. <!-- begin-user-doc --> <!-- end-user-doc -->
-	 * 
+	 * This adds a property descriptor for the Font Size feature.
+	 * <!-- begin-user-doc --> <!-- end-user-doc -->
 	 * @generated
 	 */
 	protected void addFontSizePropertyDescriptor(Object object) {
-		itemPropertyDescriptors.add(createItemPropertyDescriptor(((ComposeableAdapterFactory) adapterFactory)
-			.getRootAdapterFactory(), getResourceLocator(), getString("_UI_TextOption_fontSize_feature"), getString(
-			"_UI_PropertyDescriptor_description", "_UI_TextOption_fontSize_feature", "_UI_TextOption_type"),
-			OptionsPackage.Literals.TEXT_OPTION__FONT_SIZE, true, false, false,
-			ItemPropertyDescriptor.INTEGRAL_VALUE_IMAGE, null, null));
+		itemPropertyDescriptors.add
+			(createItemPropertyDescriptor
+				(((ComposeableAdapterFactory)adapterFactory).getRootAdapterFactory(),
+				 getResourceLocator(),
+				 getString("_UI_TextOption_fontSize_feature"),
+				 getString("_UI_PropertyDescriptor_description", "_UI_TextOption_fontSize_feature", "_UI_TextOption_type"),
+				 OptionsPackage.Literals.TEXT_OPTION__FONT_SIZE,
+				 true,
+				 false,
+				 false,
+				 ItemPropertyDescriptor.INTEGRAL_VALUE_IMAGE,
+				 null,
+				 null));
 	}
 
 	/**
-	 * This adds a property descriptor for the Bold feature. <!-- begin-user-doc --> <!-- end-user-doc -->
-	 * 
+	 * This adds a property descriptor for the Bold feature.
+	 * <!-- begin-user-doc --> <!-- end-user-doc -->
 	 * @generated
 	 */
 	protected void addBoldPropertyDescriptor(Object object) {
-		itemPropertyDescriptors.add(createItemPropertyDescriptor(((ComposeableAdapterFactory) adapterFactory)
-			.getRootAdapterFactory(), getResourceLocator(), getString("_UI_TextOption_bold_feature"), getString(
-			"_UI_PropertyDescriptor_description", "_UI_TextOption_bold_feature", "_UI_TextOption_type"),
-			OptionsPackage.Literals.TEXT_OPTION__BOLD, true, false, false, ItemPropertyDescriptor.BOOLEAN_VALUE_IMAGE,
-			null, null));
+		itemPropertyDescriptors.add
+			(createItemPropertyDescriptor
+				(((ComposeableAdapterFactory)adapterFactory).getRootAdapterFactory(),
+				 getResourceLocator(),
+				 getString("_UI_TextOption_bold_feature"),
+				 getString("_UI_PropertyDescriptor_description", "_UI_TextOption_bold_feature", "_UI_TextOption_type"),
+				 OptionsPackage.Literals.TEXT_OPTION__BOLD,
+				 true,
+				 false,
+				 false,
+				 ItemPropertyDescriptor.BOOLEAN_VALUE_IMAGE,
+				 null,
+				 null));
 	}
 
 	/**
-	 * This adds a property descriptor for the Underline feature. <!-- begin-user-doc --> <!-- end-user-doc -->
-	 * 
+	 * This adds a property descriptor for the Underline feature.
+	 * <!-- begin-user-doc --> <!-- end-user-doc -->
 	 * @generated
 	 */
 	protected void addUnderlinePropertyDescriptor(Object object) {
-		itemPropertyDescriptors.add(createItemPropertyDescriptor(((ComposeableAdapterFactory) adapterFactory)
-			.getRootAdapterFactory(), getResourceLocator(), getString("_UI_TextOption_underline_feature"), getString(
-			"_UI_PropertyDescriptor_description", "_UI_TextOption_underline_feature", "_UI_TextOption_type"),
-			OptionsPackage.Literals.TEXT_OPTION__UNDERLINE, true, false, false,
-			ItemPropertyDescriptor.BOOLEAN_VALUE_IMAGE, null, null));
+		itemPropertyDescriptors.add
+			(createItemPropertyDescriptor
+				(((ComposeableAdapterFactory)adapterFactory).getRootAdapterFactory(),
+				 getResourceLocator(),
+				 getString("_UI_TextOption_underline_feature"),
+				 getString("_UI_PropertyDescriptor_description", "_UI_TextOption_underline_feature", "_UI_TextOption_type"),
+				 OptionsPackage.Literals.TEXT_OPTION__UNDERLINE,
+				 true,
+				 false,
+				 false,
+				 ItemPropertyDescriptor.BOOLEAN_VALUE_IMAGE,
+				 null,
+				 null));
 	}
 
 	/**
-	 * This adds a property descriptor for the Text Align feature. <!-- begin-user-doc --> <!-- end-user-doc -->
-	 * 
+	 * This adds a property descriptor for the Text Align feature.
+	 * <!-- begin-user-doc --> <!-- end-user-doc -->
 	 * @generated
 	 */
 	protected void addTextAlignPropertyDescriptor(Object object) {
-		itemPropertyDescriptors.add(createItemPropertyDescriptor(((ComposeableAdapterFactory) adapterFactory)
-			.getRootAdapterFactory(), getResourceLocator(), getString("_UI_TextOption_textAlign_feature"), getString(
-			"_UI_PropertyDescriptor_description", "_UI_TextOption_textAlign_feature", "_UI_TextOption_type"),
-			OptionsPackage.Literals.TEXT_OPTION__TEXT_ALIGN, true, false, false,
-			ItemPropertyDescriptor.GENERIC_VALUE_IMAGE, null, null));
+		itemPropertyDescriptors.add
+			(createItemPropertyDescriptor
+				(((ComposeableAdapterFactory)adapterFactory).getRootAdapterFactory(),
+				 getResourceLocator(),
+				 getString("_UI_TextOption_textAlign_feature"),
+				 getString("_UI_PropertyDescriptor_description", "_UI_TextOption_textAlign_feature", "_UI_TextOption_type"),
+				 OptionsPackage.Literals.TEXT_OPTION__TEXT_ALIGN,
+				 true,
+				 false,
+				 false,
+				 ItemPropertyDescriptor.GENERIC_VALUE_IMAGE,
+				 null,
+				 null));
 	}
 
 	/**
-	 * This adds a property descriptor for the Italics feature. <!-- begin-user-doc --> <!-- end-user-doc -->
-	 * 
+	 * This adds a property descriptor for the Italics feature.
+	 * <!-- begin-user-doc --> <!-- end-user-doc -->
 	 * @generated
 	 */
 	protected void addItalicsPropertyDescriptor(Object object) {
-		itemPropertyDescriptors.add(createItemPropertyDescriptor(((ComposeableAdapterFactory) adapterFactory)
-			.getRootAdapterFactory(), getResourceLocator(), getString("_UI_TextOption_italics_feature"), getString(
-			"_UI_PropertyDescriptor_description", "_UI_TextOption_italics_feature", "_UI_TextOption_type"),
-			OptionsPackage.Literals.TEXT_OPTION__ITALICS, true, false, false,
-			ItemPropertyDescriptor.BOOLEAN_VALUE_IMAGE, null, null));
+		itemPropertyDescriptors.add
+			(createItemPropertyDescriptor
+				(((ComposeableAdapterFactory)adapterFactory).getRootAdapterFactory(),
+				 getResourceLocator(),
+				 getString("_UI_TextOption_italics_feature"),
+				 getString("_UI_PropertyDescriptor_description", "_UI_TextOption_italics_feature", "_UI_TextOption_type"),
+				 OptionsPackage.Literals.TEXT_OPTION__ITALICS,
+				 true,
+				 false,
+				 false,
+				 ItemPropertyDescriptor.BOOLEAN_VALUE_IMAGE,
+				 null,
+				 null));
 	}
 
 	/**
 	 * This specifies how to implement {@link #getChildren} and is used to deduce an appropriate feature for an
 	 * {@link org.eclipse.emf.edit.command.AddCommand}, {@link org.eclipse.emf.edit.command.RemoveCommand} or
-	 * {@link org.eclipse.emf.edit.command.MoveCommand} in {@link #createCommand}. <!-- begin-user-doc --> <!--
+	 * {@link org.eclipse.emf.edit.command.MoveCommand} in {@link #createCommand}.
+	 * <!-- begin-user-doc --> <!--
 	 * end-user-doc -->
-	 * 
 	 * @generated
 	 */
 	@Override
@@ -158,7 +205,6 @@ public class TextOptionItemProvider extends RendererOptionItemProvider implement
 
 	/**
 	 * <!-- begin-user-doc --> <!-- end-user-doc -->
-	 * 
 	 * @generated
 	 */
 	@Override
@@ -170,8 +216,8 @@ public class TextOptionItemProvider extends RendererOptionItemProvider implement
 	}
 
 	/**
-	 * This returns TextOption.gif. <!-- begin-user-doc --> <!-- end-user-doc -->
-	 * 
+	 * This returns TextOption.gif.
+	 * <!-- begin-user-doc --> <!-- end-user-doc -->
 	 * @generated
 	 */
 	@Override
@@ -180,15 +226,16 @@ public class TextOptionItemProvider extends RendererOptionItemProvider implement
 	}
 
 	/**
-	 * This returns the label text for the adapted class. <!-- begin-user-doc --> <!-- end-user-doc -->
-	 * 
+	 * This returns the label text for the adapted class.
+	 * <!-- begin-user-doc --> <!-- end-user-doc -->
 	 * @generated
 	 */
 	@Override
 	public String getText(Object object) {
-		String label = ((TextOption) object).getName();
-		return label == null || label.length() == 0 ? getString("_UI_TextOption_type")
-			: getString("_UI_TextOption_type") + " " + label;
+		String label = ((TextOption)object).getName();
+		return label == null || label.length() == 0 ?
+			getString("_UI_TextOption_type") :
+			getString("_UI_TextOption_type") + " " + label;
 	}
 
 	/**
@@ -203,33 +250,35 @@ public class TextOptionItemProvider extends RendererOptionItemProvider implement
 		updateChildren(notification);
 
 		switch (notification.getFeatureID(TextOption.class)) {
-		case OptionsPackage.TEXT_OPTION__FONT_FAMILY:
-		case OptionsPackage.TEXT_OPTION__FONT_SIZE:
-		case OptionsPackage.TEXT_OPTION__BOLD:
-		case OptionsPackage.TEXT_OPTION__UNDERLINE:
-		case OptionsPackage.TEXT_OPTION__TEXT_ALIGN:
-		case OptionsPackage.TEXT_OPTION__ITALICS:
-			fireNotifyChanged(new ViewerNotification(notification, notification.getNotifier(), false, true));
-			return;
-		case OptionsPackage.TEXT_OPTION__FONT_COLOR:
-			fireNotifyChanged(new ViewerNotification(notification, notification.getNotifier(), true, false));
-			return;
+			case OptionsPackage.TEXT_OPTION__FONT_FAMILY:
+			case OptionsPackage.TEXT_OPTION__FONT_SIZE:
+			case OptionsPackage.TEXT_OPTION__BOLD:
+			case OptionsPackage.TEXT_OPTION__UNDERLINE:
+			case OptionsPackage.TEXT_OPTION__TEXT_ALIGN:
+			case OptionsPackage.TEXT_OPTION__ITALICS:
+				fireNotifyChanged(new ViewerNotification(notification, notification.getNotifier(), false, true));
+				return;
+			case OptionsPackage.TEXT_OPTION__FONT_COLOR:
+				fireNotifyChanged(new ViewerNotification(notification, notification.getNotifier(), true, false));
+				return;
 		}
 		super.notifyChanged(notification);
 	}
 
 	/**
-	 * This adds {@link org.eclipse.emf.edit.command.CommandParameter}s describing the children that can be created
-	 * under this object. <!-- begin-user-doc --> <!-- end-user-doc -->
-	 * 
+	 * This adds {@link org.eclipse.emf.edit.command.CommandParameter}s describing the children
+	 * that can be created under this object.
+	 * <!-- begin-user-doc --> <!-- end-user-doc -->
 	 * @generated
 	 */
 	@Override
 	protected void collectNewChildDescriptors(Collection<Object> newChildDescriptors, Object object) {
 		super.collectNewChildDescriptors(newChildDescriptors, object);
 
-		newChildDescriptors.add(createChildParameter(OptionsPackage.Literals.TEXT_OPTION__FONT_COLOR,
-			OptionsFactory.eINSTANCE.createUColor()));
+		newChildDescriptors.add
+			(createChildParameter
+				(OptionsPackage.Literals.TEXT_OPTION__FONT_COLOR,
+				 OptionsFactory.eINSTANCE.createUColor()));
 	}
 
 }

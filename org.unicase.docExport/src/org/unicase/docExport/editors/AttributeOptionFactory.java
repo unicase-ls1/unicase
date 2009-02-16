@@ -162,7 +162,7 @@ public final class AttributeOptionFactory {
 	}
 
 	private static void buildMultiReferenceAttributeOption(Composite parent, final MultiReferenceAttributeOption option) {
-		buildReferenceOption(parent, option.getReferenceOption(true));
+		buildReferenceOption(parent, option.getReferenceOption());
 
 		Composite container = createContainer(parent);
 
@@ -178,12 +178,12 @@ public final class AttributeOptionFactory {
 		contained.setSelection(option.isContained());
 		newLabel(container, "contained");
 
-		buildListOption(parent, option.getListOption(true));
+		buildListOption(parent, option.getListOption());
 	}
 
 	private static void buildSingleReferenceAttributeOption(Composite parent,
 		final SingleReferenceAttributeOption option) {
-		buildReferenceOption(parent, option.getReferenceOption(true));
+		buildReferenceOption(parent, option.getReferenceOption());
 
 		Composite container = createContainer(parent);
 
