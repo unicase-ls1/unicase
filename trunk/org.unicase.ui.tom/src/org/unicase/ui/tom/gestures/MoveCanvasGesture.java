@@ -1,6 +1,11 @@
+/**
+ * <copyright> Copyright (c) 2008 Jonas Helming, Maximilian Koegel. All rights reserved. This program and the
+ * accompanying materials are made available under the terms of the Eclipse Public License v1.0 which accompanies this
+ * distribution, and is available at http://www.eclipse.org/legal/epl-v10.html </copyright>
+ */
 package org.unicase.ui.tom.gestures;
 
-import java.util.ArrayList;
+import java.util.Collections;
 import java.util.List;
 
 import org.eclipse.draw2d.geometry.Point;
@@ -8,107 +13,145 @@ import org.eclipse.gef.EditPart;
 import org.eclipse.gmf.runtime.diagram.ui.editparts.DiagramEditPart;
 import org.unicase.ui.tom.TouchDispatch;
 import org.unicase.ui.tom.actions.MoveCanvasAction;
-import org.unicase.ui.tom.touches.Touch;
+import org.unicase.ui.tom.tools.TouchConstants;
+import org.unicase.ui.tom.touches.MultiTouch;
+import org.unicase.ui.tom.touches.SingleTouch;
 
-public class MoveCanvasGesture extends AbstractGesture {
+/**
+ * @author schroech
+ *
+ */
+public class MoveCanvasGesture extends AbstractMoveGesture {
 
-	private List<Touch> candidateTouches;
-	private Touch moveTouch;
-	private MoveCanvasAction moveCanvasCommand;
+	private MoveCanvasAction moveCanvasAction;
 
+	/**
+	 * Default constructor.
+	 * 
+	 * @param dispatch The {@link TouchDispatch} at which the gesture will register for touch events
+	 * @param diagramEditPart The {@link DiagramEditPart}
+	 */
 	public MoveCanvasGesture(TouchDispatch dispatch, DiagramEditPart diagramEditPart) {
-		super(dispatch, diagramEditPart);
-
-		setCandidateTouches(new ArrayList<Touch>()); 
-		setMoveCanvasCommand(new MoveCanvasAction(diagramEditPart));
+		super(dispatch, diagramEditPart); 
+		setMoveCanvasAction(new MoveCanvasAction(diagramEditPart));
 	}
 
+	/** 
+	 * {@inheritDoc}
+	 * @see org.unicase.ui.tom.gestures.AbstractGesture#handleSingleTouchAdded(org.unicase.ui.tom.touches.SingleTouch)
+	 */
 	@Override
-	public void handleTouchAdded(Touch touch) {
-		if (getAcceptsTouches()) {
-			EditPart touchedEditPart = findTouchedEditPart(touch);
-			EditPart primaryEditPart = getPrimaryEditPart(touchedEditPart);
-
-			if (primaryEditPart != null
-					&& primaryEditPart instanceof DiagramEditPart){
-				getCandidateTouches().add(touch);
-			}			
-		}
-	}
-
-	@Override
-	public void reset() {
-		super.reset();
-
-		candidateTouches.clear();
-		moveTouch = null;
-	}
-
-	@Override
-	public void handleTouchChanged(Touch touch) {
-		if (!getAcceptsTouches()) {
+	public void handleSingleTouchAdded(SingleTouch touch) {
+		if (!(acceptsAdditionalTouches())) {
 			return;
 		}
 
-		if (getMoveTouch() == null) {
-			if (getCandidateTouches().contains(touch)) {
-				if (touch.getPath().getMidpoint().getDistance(touch.getPosition()) 
-						> TOUCH_MOVEMENT_THRESHOLD) {
-					if (getCandidateTouches().size() == 1) {
-						setMoveTouch(getCandidateTouches().get(0));
-						getCandidateTouches().clear();
+		EditPart touchedEditPart = findTouchedEditPart(touch);
+		EditPart primaryEditPart = getPrimaryEditPart(touchedEditPart);
 
-						Point firstPoint = getMoveTouch().getPath().getFirstPoint();
-
-						getMoveCanvasCommand().prepareMove(firstPoint);
-					}else{
-						setAcceptsTouches(false);
-					}
-
-				}
-			}
-		}else if (getMoveTouch() == touch) {
-			getMoveCanvasCommand().updateMove(touch.getPosition());
-		}
+		if (primaryEditPart != null
+				&& primaryEditPart instanceof DiagramEditPart){
+			getCandidateTouches().add(touch);	
+		}			
 	}
 
+	/** 
+	 * {@inheritDoc}
+	 * @see org.unicase.ui.tom.gestures.AbstractGesture#handleSingleTouchChanged(org.unicase.ui.tom.touches.SingleTouch)
+	 */
 	@Override
-	public void handleTouchRemoved(Touch touch) {
-		if (getAcceptsTouches()) {
-			if (touch == getMoveTouch()) {
-				setMoveTouch(null);
-			}else{
-				getCandidateTouches().remove(touch);
-			}		
+	public void handleSingleTouchChanged(SingleTouch touch) {
+
+		//BEGIN SANITY CHECKS
+		if (!(touch instanceof SingleTouch)) {
+			return;
+		}
+		//END SANITY CHECKS
+
+		if (!(getCandidateTouches().contains(touch))) {
+			return;
+		}
+
+		if (getMoveTouch() == null) { 
+			MultiTouch multiTouch = touch.getMultiTouch();
+			if (multiTouch.getActiveTouches().size() > 1) {
+				return;
+			}
+
+			if (touchMoved((SingleTouch) touch, TouchConstants.TOUCH_MOVEMENT_THRESHOLD)) {
+				setMoveTouch(touch);
+				setCanExecute(true);
+				return;
+			}
+		}
+
+		if (isExecuting()) {	
+			getMoveCanvasAction().updateMove(touch.getPosition());
 		}
 	}
 
-
-
-	public void setMoveTouch(Touch moveTouch) {
-		this.moveTouch = moveTouch;
+	/** 
+	 * {@inheritDoc}
+	 * @see org.unicase.ui.tom.gestures.AbstractGesture#handleSingleTouchRemoved(org.unicase.ui.tom.touches.SingleTouch)
+	 */
+	@Override
+	public void handleSingleTouchRemoved(SingleTouch touch) {
+		if (touch == getMoveTouch()) {
+			setMoveTouch(null);
+		}
+		getCandidateTouches().remove(touch);		
+		
+		setExecuting(false);
+		setCanExecute(false);
 	}
 
-
-
-	public Touch getMoveTouch() {
-		return moveTouch;
+	/**
+	 * @param moveCanvasAction The {@link MoveCanvasAction} used by this gesture
+	 */
+	public void setMoveCanvasAction(MoveCanvasAction moveCanvasAction) {
+		this.moveCanvasAction = moveCanvasAction;
 	}
 
-	public void setCandidateTouches(List<Touch> candidateTouches) {
-		this.candidateTouches = candidateTouches;
+	/**
+	 * @return The {@link MoveCanvasAction} used by this gesture
+	 */
+	public MoveCanvasAction getMoveCanvasAction() {
+		return moveCanvasAction;
 	}
 
-	public List<Touch> getCandidateTouches() {
-		return candidateTouches;
+	/** 
+	 * {@inheritDoc}
+	 * @see org.unicase.ui.tom.gestures.AbstractGesture#reset()
+	 */
+	@Override
+	public void reset() {
+		super.reset();
 	}
 
-	public void setMoveCanvasCommand(MoveCanvasAction moveCanvasCommand) {
-		this.moveCanvasCommand = moveCanvasCommand;
+	/** 
+	 * {@inheritDoc}
+	 * @see org.unicase.ui.tom.gestures.MomentaryGesture#finish()
+	 */
+	public void execute() {
+		if (!(canExecute())) {
+			return;
+		}
+
+		setExecuting(true);
+
+		Point firstPoint = ((SingleTouch) getMoveTouch()).getPath().getFirstPoint();
+		getMoveCanvasAction().prepareMove(firstPoint);
 	}
 
-	public MoveCanvasAction getMoveCanvasCommand() {
-		return moveCanvasCommand;
+	/** 
+	* {@inheritDoc}
+	* @see org.unicase.ui.tom.gestures.Gesture#getMandatoryTouches()
+	*/
+	public List<MultiTouch> getMandatoryTouches() {
+		if (getMoveTouch() == null) {
+			return Collections.emptyList();
+		}else{
+			return Collections.singletonList(getMoveTouch().getMultiTouch());
+		}
 	}
-
 }

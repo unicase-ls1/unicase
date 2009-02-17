@@ -1,3 +1,8 @@
+/**
+ * <copyright> Copyright (c) 2008 Jonas Helming, Maximilian Koegel. All rights reserved. This program and the
+ * accompanying materials are made available under the terms of the Eclipse Public License v1.0 which accompanies this
+ * distribution, and is available at http://www.eclipse.org/legal/epl-v10.html </copyright>
+ */
 package org.unicase.ui.tom.commands;
 
 import org.eclipse.draw2d.geometry.Point;
@@ -12,15 +17,20 @@ import org.eclipse.gmf.runtime.emf.type.core.IElementType;
 import org.eclipse.gmf.runtime.emf.type.core.IHintedType;
 import org.eclipse.gmf.runtime.emf.type.core.requests.CreateElementRequest;
 
+/**
+ * @author schroech
+ *
+ */
 public class CreateNodeCommand extends AbstractCommand{
 	
 	private IElementType elementType;
 	private Point point;
 	
-	public CreateNodeCommand(DiagramEditPart diagramEditPart, Point point) {
-		this(diagramEditPart, point, null);
-	}
-	
+	/**
+	 * @param diagramEditPart The {@link DiagramEditPart} on which this operation operates
+	 * @param point The position where the new editPart is created
+	 * @param elementType The {@link IElementType} of the new editPart
+	 */
 	public CreateNodeCommand(DiagramEditPart diagramEditPart, Point point, IElementType elementType) {
 		super(diagramEditPart);
 		
@@ -28,8 +38,11 @@ public class CreateNodeCommand extends AbstractCommand{
 		setPoint(point);
 	}
 	
+	/** 
+	* {@inheritDoc}
+	* @see org.unicase.ui.tom.commands.AbstractCommand#createRequest()
+	*/
 	public Request createRequest() {
-		
 		CreateElementRequest createElementRequest = new CreateElementRequest(getElementType());
 		CreateElementRequestAdapter createElementRequestAdapter = new CreateElementRequestAdapter(createElementRequest);
 
@@ -46,30 +59,40 @@ public class CreateNodeCommand extends AbstractCommand{
 		return request;
 	}
 	
+	/** 
+	* {@inheritDoc}
+	* @see org.unicase.ui.tom.commands.AbstractCommand#getCommand()
+	*/
 	public Command getCommand() {		
 		Command command = getDiagramEditPart().getCommand(getRequest());
 		return command;
 	}
-	
-	public void execute() {
-		Command command = getCommand();
-		getDiagramEditPart().getDiagramEditDomain().getDiagramCommandStack().execute(command);
-	}
 
-
+	/**
+	 * @param elementType The {@link IElementType} of the new editPart 
+	 */
 	public void setElementType(IElementType elementType) {
 		this.elementType = elementType;
 	}
 
 
+	/**
+	 * @return  The {@link IElementType} of the new editPart
+	 */
 	public IElementType getElementType() {
 		return elementType;
 	}
 
+	/**
+	 * @return The position where the new editPart is created
+	 */
 	public Point getPoint() {
 		return point;
 	}
 
+	/**
+	 * @param point The position where the new editPart is created
+	 */
 	public void setPoint(Point point) {
 		this.point = point;
 	}

@@ -1,178 +1,262 @@
+/**
+ * <copyright> Copyright (c) 2008 Jonas Helming, Maximilian Koegel. All rights reserved. This program and the
+ * accompanying materials are made available under the terms of the Eclipse Public License v1.0 which accompanies this
+ * distribution, and is available at http://www.eclipse.org/legal/epl-v10.html </copyright>
+ */
 package org.unicase.ui.tom.gestures;
+
+import java.util.ArrayList;
+import java.util.Collection;
+import java.util.Collections;
+import java.util.List;
 
 import org.eclipse.draw2d.geometry.Point;
 import org.eclipse.gef.EditPart;
 import org.eclipse.gmf.runtime.diagram.ui.editparts.DiagramEditPart;
+import org.eclipse.gmf.runtime.emf.type.core.ElementTypeRegistry;
+import org.eclipse.gmf.runtime.emf.type.core.IElementType;
 import org.unicase.ui.tom.TouchDispatch;
-import org.unicase.ui.tom.commands.Command;
+import org.unicase.ui.tom.commands.CreateDefaultConnectionCommand;
 import org.unicase.ui.tom.commands.CreateDefaultNodeAndConnectionCommand;
-import org.unicase.ui.tom.touches.Touch;
+import org.unicase.ui.tom.commands.CreateNodeAndConnectionCommand;
+import org.unicase.ui.tom.commands.Executable;
+import org.unicase.ui.tom.touches.MultiTouch;
+import org.unicase.ui.tom.touches.SingleTouch;
 
-public class CreateNodeAndConnectionGesture extends CreateGesture implements
-Gesture {
+/**
+ * @author schroech
+ *
+ */
+public class CreateNodeAndConnectionGesture extends CreateGesture {
 
-	private Touch secondStationaryTouch = null;
+	private List<MultiTouch> sourceMultiTouches;
 
-	public CreateNodeAndConnectionGesture(TouchDispatch dispatch, DiagramEditPart editor) {
-		super(dispatch, editor);
+	/**
+	 * @param dispatch The {@link TouchDispatch} at which the gesture will register for touch events
+	 * @param diagramEditPart The {@link DiagramEditPart}
+	 */
+	public CreateNodeAndConnectionGesture(TouchDispatch dispatch, DiagramEditPart diagramEditPart) {
+		super(dispatch, diagramEditPart);
 	}
 
-	@Override
+	/** 
+	 * {@inheritDoc}
+	 * @see org.unicase.ui.tom.gestures.Gesture#execute()
+	 */
 	public void execute() {
-		if (getCanExecute()) {
-			super.execute();
+		if (!canExecute()) {
+			return;
+		}
 
-			Command command = null;
-			Point sourcePoint;
-			Point targetPoint;
-			EditPart sourceEditPart = null;
+		try {
+			Executable command = null;
+
+			MultiTouch targetMultiTouch = getCreationTouch().getMultiTouch();
+			if (targetMultiTouch == null) {
+				throw new NullPointerException();
+			}
+
+			MultiTouch sourceMultiTouch = findSourceMultiTouch();
+			if (sourceMultiTouch == null) {
+				throw new NullPointerException();
+			}
+
+			if(targetMultiTouch == sourceMultiTouch) {
+				throw new IllegalStateException();
+			}
+
 			EditPart targetEditPart = null;
+			EditPart sourceEditPart = null;
+			Point targetPoint = null;
+			Point sourcePoint = null;
 
-			EditPart firstTouchedEditPart = findTouchedEditPart(getStationaryTouch());
-			firstTouchedEditPart = getPrimaryEditPart(firstTouchedEditPart);
+			targetEditPart = findCardinalTouchedEditPartExcludingDiagram(targetMultiTouch.getActiveTouches());
+			sourceEditPart = findCardinalTouchedEditPartExcludingDiagram(sourceMultiTouch.getActiveTouches());
 
-			if (firstTouchedEditPart == null) {
-				firstTouchedEditPart = getDiagramEditPart();
+			if (targetEditPart == null
+				&& sourceEditPart == null) {
+				throw new IllegalStateException();
+			}
+			
+			if (targetEditPart == null) {
+				targetEditPart = getDiagramEditPart();
+				targetPoint = targetMultiTouch.getPosition();
 			}
 
-			EditPart secondTouchedEditPart = findTouchedEditPart(getSecondStationaryTouch());
-			secondTouchedEditPart = getPrimaryEditPart(secondTouchedEditPart);
-
-			if (secondTouchedEditPart == null) {
-				secondTouchedEditPart = getDiagramEditPart();
+			if (sourceEditPart == null) {
+				sourceEditPart = getDiagramEditPart();
+				sourcePoint = sourceMultiTouch.getPosition();
 			}
-
-			Touch closestNeighbor = getCreationTouch().findClosestNeighbor(
-					getStationaryTouch(),
-					getSecondStationaryTouch());
-
-			if (closestNeighbor == getStationaryTouch()) {
-				sourcePoint = getSecondStationaryTouch().getPosition();
-				targetPoint = getStationaryTouch().getPosition();
-
-				sourceEditPart = secondTouchedEditPart;
-				targetEditPart = firstTouchedEditPart;
-			}else{
-				sourcePoint = getStationaryTouch().getPosition();
-				targetPoint = getSecondStationaryTouch().getPosition();	
-
-				sourceEditPart = firstTouchedEditPart;
-				targetEditPart = secondTouchedEditPart;
-			}
-
-			if (firstTouchedEditPart instanceof DiagramEditPart
-					&& secondTouchedEditPart instanceof DiagramEditPart) {
-
+			
+			if (targetPoint != null) {
+				command = new CreateDefaultNodeAndConnectionCommand(
+						getDiagramEditPart(),
+						sourceEditPart, 
+						targetPoint);
+			}else if (sourcePoint != null) {
 				command = new CreateDefaultNodeAndConnectionCommand(
 						getDiagramEditPart(),
 						sourcePoint,
-						targetPoint);
-
-			}else if (firstTouchedEditPart instanceof DiagramEditPart) {
-
-				command = new CreateDefaultNodeAndConnectionCommand(
-						getDiagramEditPart(), 
-						sourcePoint,
 						targetEditPart);
+			}
 
-			}else if (secondTouchedEditPart instanceof DiagramEditPart) {
-
-				command = new CreateDefaultNodeAndConnectionCommand(
-						getDiagramEditPart(), 
-						sourceEditPart,
-						targetPoint);
-			}else{
-
-				command = new CreateDefaultNodeAndConnectionCommand(
-						getDiagramEditPart(),
-						sourceEditPart,
-						targetEditPart);
+			if(sourceMultiTouch.getActiveTouches().size() == 2) {
+				IElementType type = ElementTypeRegistry.getInstance().getType("org.unicase.classDiagram.ClassSubClasses_4005");
+				if (type != null) {
+					((CreateNodeAndConnectionCommand)command).setConnectionElementType(type);
+				}
 			}
 
 			command.execute();
-
-			setCanExecute(false);
-
+		
+		} finally {
+			setCanExecute(false);			
 		}
 	}
 
-	private boolean couldBeCreationTouch(Touch touch){
-		if (getCreationTouch() == null) {
-			if ((getSecondStationaryTouch() != null
-					&& getSecondStationaryTouch().getPosition().getDistance(touch.getPosition()) 
-					< CREATION_TO_STATIONARY_TOUCH_THRESHOLD)){
-				return true;
-			}
+	private List<MultiTouch> findPossibleSourceMultiTouches(MultiTouch targetMultiTouch, Collection<MultiTouch> multiTouches) {
+		List<MultiTouch> possibleSourceMultiTouches = new ArrayList<MultiTouch>();
 
-			if((getStationaryTouch() != null
-					&& getStationaryTouch().getPosition().getDistance(touch.getPosition()) 
-					< CREATION_TO_STATIONARY_TOUCH_THRESHOLD)){
-				return true;
-			}
-		}
-		return false;
-	}
+		if (multiTouches.size() > 1) {
 
-	@Override
-	public void handleTouchAdded(Touch touch) {
-		if (getAcceptsTouches()) {
-			if (getDispatch().getActiveTouches().size() > 3) {
-				setAcceptsTouches(false);
-				return;
-			}
+			EditPart targetEditPart = findCardinalTouchedEditPart(targetMultiTouch.getActiveTouches());
+			targetEditPart = getPrimaryEditPart(targetEditPart);
 
-			if (getStationaryTouch() == null) {
-				setStationaryTouch(touch);
-			}else if (getSecondStationaryTouch() == null) {
-				setSecondStationaryTouch(touch);
-			}else if(couldBeCreationTouch(touch)){
-				setCreationTouch(touch);
+			if (targetEditPart.equals(getDiagramEditPart())) {
+				for (MultiTouch multiTouch : multiTouches) {
+
+					if (multiTouch.equals(targetMultiTouch)) {
+						continue;
+					}
+
+					EditPart editPart = findCardinalTouchedEditPart(multiTouch.getActiveTouches());
+					editPart = getPrimaryEditPart(editPart);
+
+					if (editPart != null
+							&& !editPart.equals(getDiagramEditPart())) {
+						possibleSourceMultiTouches.add(multiTouch);
+					}
+				}	
 			}else{
-				setAcceptsTouches(false);
+				for (MultiTouch multiTouch : multiTouches) {
+
+					if (multiTouch.equals(targetMultiTouch)) {
+						continue;
+					}
+
+					EditPart editPart = findCardinalTouchedEditPart(multiTouch.getActiveTouches());
+					editPart = getPrimaryEditPart(editPart);
+
+					if (editPart != null
+						&& editPart.equals(getDiagramEditPart())) {
+						possibleSourceMultiTouches.add(multiTouch);
+					}
+				}
 			}
 		}
+
+		return possibleSourceMultiTouches;
 	}
 
-	@Override
-	public void handleTouchRemoved(Touch touch) {
-		if (getAcceptsTouches()) {
-			if (touch == getCreationTouch()) {
-				if (getCreationTouch().getLifeSpan() < CREATION_TOUCH_LIFESPAN) {
-					setCanExecute(true);
+	private MultiTouch findSourceMultiTouch() {
+		MultiTouch sourceMultiTouch = null;
+
+		if (getSourceMultiTouches().size() == 0) {
+			return null;	
+		}else {
+			sourceMultiTouch = getSourceMultiTouches().get(0);	
+
+			for (MultiTouch possibleSourceMultiTouch : getSourceMultiTouches()) {
+				if (possibleSourceMultiTouch.getTouchDownDate()
+						.compareTo(sourceMultiTouch.getTouchDownDate()) < 1) {
+					sourceMultiTouch = possibleSourceMultiTouch;	
 				}
-			}else if (getCreationTouch() != null) { 
-				if (touch == getStationaryTouch()
-						|| touch == getSecondStationaryTouch()) {
-					setAcceptsTouches(false);
-				}
-			}else if (touch == getSecondStationaryTouch()) {
-				setSecondStationaryTouch(null);
-			}else if (touch == getStationaryTouch()) {
-				setStationaryTouch(null);
 			}
 		}
-	}
 
-	public void reset() {
-		super.reset();
-		setSecondStationaryTouch(null);
-	}
+		return sourceMultiTouch;
+	} 
 
+	/** 
+	 * {@inheritDoc}
+	 * @see org.unicase.ui.tom.gestures.AbstractGesture#handleTouchRemoved(org.unicase.ui.tom.touches.Touch)
+	 */
+	@SuppressWarnings("unchecked")
 	@Override
-	public void setAcceptsTouches(boolean acceptsTouches) {
-		super.setAcceptsTouches(acceptsTouches);
+	public void handleSingleTouchRemoved(SingleTouch touch) {
+		boolean contains = getStationaryTouches().contains(touch);
 
-		if (!acceptsTouches) {
-			setSecondStationaryTouch(null);	
+		super.handleSingleTouchRemoved(touch);
+
+		if (!contains) {
+			return;
 		}
+
+		if (!(touch.getLifeSpan() < CREATION_TOUCH_LIFESPAN)) {
+			return;
+		}
+
+		MultiTouch multiTouch = touch.getMultiTouch();
+
+		int numberOfTouches = multiTouch.getActiveTouches().size();
+		if (numberOfTouches == 0) {
+			return;
+		}
+
+		List<MultiTouch> activeMultiTouches = TouchDispatch.getInstance().getActiveMultiTouches();
+		if (activeMultiTouches.size() < 2) {
+			return;
+		}
+
+		List<MultiTouch> possibleSourceMultiTouches = findPossibleSourceMultiTouches(touch.getMultiTouch(), activeMultiTouches);
+		if (possibleSourceMultiTouches.size() == 0) {
+			return;
+		}
+		
+		setSourceMultiTouches(possibleSourceMultiTouches);
+
+		if (possibleSourceMultiTouches.size() < 2) {
+			setOptionalTouches(Collections.EMPTY_LIST);
+		}else{
+			setOptionalTouches(possibleSourceMultiTouches);
+		}
+
+
+		setCreationTouch(touch);
+		setCanExecute(true);
 	}
 
-	public void setSecondStationaryTouch(Touch secondStationaryTouch) {
-		this.secondStationaryTouch = secondStationaryTouch;
+	/** 
+	* {@inheritDoc}
+	* @see org.unicase.ui.tom.gestures.AbstractGesture#getOptionalTouches()
+	*/
+	@Override
+	public List<MultiTouch> getOptionalTouches() {
+		return getSourceMultiTouches();
+	}
+	
+	/** 
+	 * {@inheritDoc}
+	 * @see org.unicase.ui.tom.gestures.Gesture#getMandatoryTouches()
+	 */
+	public List<MultiTouch> getMandatoryTouches() {
+		List<MultiTouch> mandatoryTouches = new ArrayList<MultiTouch>();
+
+		mandatoryTouches.add(getCreationTouch().getMultiTouch());
+		if (getSourceMultiTouches().size() < 2) {
+			mandatoryTouches.addAll(getSourceMultiTouches());
+		}
+
+		return mandatoryTouches; 
 	}
 
-	public Touch getSecondStationaryTouch() {
-		return secondStationaryTouch;
+	public void setSourceMultiTouches(List<MultiTouch> sourceMultiTouches) {
+		this.sourceMultiTouches = sourceMultiTouches;
 	}
 
+
+
+	public List<MultiTouch> getSourceMultiTouches() {
+		return sourceMultiTouches;
+	}
 }

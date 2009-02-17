@@ -1,3 +1,8 @@
+/**
+ * <copyright> Copyright (c) 2008 Jonas Helming, Maximilian Koegel. All rights reserved. This program and the
+ * accompanying materials are made available under the terms of the Eclipse Public License v1.0 which accompanies this
+ * distribution, and is available at http://www.eclipse.org/legal/epl-v10.html </copyright>
+ */
 package org.unicase.ui.tom.gestures;
 
 import java.util.ArrayList;
@@ -7,66 +12,83 @@ import org.eclipse.gef.EditPart;
 import org.eclipse.gmf.runtime.diagram.ui.editparts.DiagramEditPart;
 import org.eclipse.gmf.runtime.diagram.ui.editparts.GraphicalEditPart;
 import org.unicase.ui.tom.TouchDispatch;
+import org.unicase.ui.tom.actions.Action;
 import org.unicase.ui.tom.actions.AppendSelectionAction;
+import org.unicase.ui.tom.actions.CompoundAction;
 import org.unicase.ui.tom.actions.DeselectAction;
 import org.unicase.ui.tom.actions.DeselectAllAction;
 import org.unicase.ui.tom.actions.SelectAction;
+import org.unicase.ui.tom.touches.MultiTouch;
+import org.unicase.ui.tom.touches.SingleTouch;
 import org.unicase.ui.tom.touches.Touch;
 
+/**
+ * @author schroech
+ *
+ */
 public class SelectGesture extends AbstractGesture implements Gesture {
 
-	//	private EditPart touchedEditPart;
+	private Action selectionAction;
 
+	/**
+	 * Default constructor.
+	 * 
+	 * @param dispatch The {@link TouchDispatch} at which the gesture will register for touch events
+	 * @param diagramEditPart The {@link DiagramEditPart}
+	 */
 	public SelectGesture(TouchDispatch dispatch, DiagramEditPart diagramEditPart) {
 		super(dispatch, diagramEditPart);
 	}
 
-	@Override
+	/** 
+	 * {@inheritDoc}
+	 * @see org.unicase.ui.tom.gestures.MomentaryGesture#finish()
+	 */
 	public void execute() {
-		//		super.execute();
-		//
-		//		SelectAction selectAction = new SelectAction(getDiagramEditPart(), (GraphicalEditPart) getTouchedEditPart());
-		//		selectAction.execute();
+		selectionAction.execute();
+		setCanExecute(false);
 	}
 
 
+	/** 
+	 * {@inheritDoc}
+	 * @see org.unicase.ui.tom.gestures.AbstractGesture#handleSingleTouchAdded(org.unicase.ui.tom.touches.SingleTouch)
+	 */
 	@SuppressWarnings("unchecked")
 	@Override
-	public void handleTouchAdded(Touch touch) {
-		if (!(getAcceptsTouches())) {
+	public void handleSingleTouchAdded(SingleTouch touch) {
+		if (!(acceptsAdditionalTouches())) {
 			return;
 		}
 
-		List exclusions = new ArrayList();
-		exclusions.add(getDiagramEditPart());
-		exclusions.add(getDiagramEditPart().getParent());
-
-		EditPart foundEditPart = findTouchedEditPartExcluding(touch, exclusions);
+		EditPart foundEditPart = findTouchedEditPartExcludingDiagram(touch);
 		GraphicalEditPart primaryEditPart = getPrimaryEditPart(foundEditPart);
 
 		List selectedEditParts = getDiagramEditPart().getViewer().getSelectedEditParts();
 
-		List<Touch> activeTouches = getDispatch().getActiveTouches();
+		List<SingleTouch> activeTouches = getDispatch().getActiveSingleTouches();
 		int numberOfActiveTouches = activeTouches.size();
 
 		if (numberOfActiveTouches == 1) {
 			if (primaryEditPart != null
-				&& selectedEditParts.contains(primaryEditPart)) {
+					&& selectedEditParts.contains(primaryEditPart)) {
 				return;
 			}
-			
-			DeselectAllAction deselectAllAction = new DeselectAllAction(getDiagramEditPart());
-			deselectAllAction.execute();
-			
+
+			CompoundAction compoundAction = new CompoundAction();
+			compoundAction.add(new DeselectAllAction(getDiagramEditPart()));
+
 			if (primaryEditPart != null) {
-				
-				SelectAction selectAction = new SelectAction(getDiagramEditPart(), primaryEditPart);
-				selectAction.execute();
+				compoundAction.add(new SelectAction(getDiagramEditPart(), primaryEditPart));
 			}
+
+			selectionAction = compoundAction;
+			setCanExecute(true);
+			return;
 		}else{
 			int numberOfSelectedEditPartTouches = 0;
 			for (Touch activeTouch : activeTouches) {
-				EditPart activeTouchEditPart = findTouchedEditPartExcluding(activeTouch, exclusions);
+				EditPart activeTouchEditPart = findTouchedEditPartExcludingDiagram(activeTouch);
 				activeTouchEditPart = getPrimaryEditPart(activeTouchEditPart);
 
 				if (selectedEditParts.contains(activeTouchEditPart)) {
@@ -79,65 +101,72 @@ public class SelectGesture extends AbstractGesture implements Gesture {
 					return;
 				}
 				if (selectedEditParts.contains(primaryEditPart)) {
-					DeselectAction deselectAction = new DeselectAction(getDiagramEditPart(), primaryEditPart);
-					deselectAction.execute();
+					selectionAction = new DeselectAction(getDiagramEditPart(), primaryEditPart);
 				}else{
-					AppendSelectionAction appendSelectionAction = new AppendSelectionAction(getDiagramEditPart(), primaryEditPart);
-					appendSelectionAction.execute();
+					selectionAction = new AppendSelectionAction(getDiagramEditPart(), primaryEditPart);
 				}
+
+				setCanExecute(true);
 			}else{
 				DeselectAllAction deselectAllAction = new DeselectAllAction(getDiagramEditPart());
 				deselectAllAction.execute();
 
 				if (primaryEditPart != null) {
-					SelectAction selectAction = new SelectAction(getDiagramEditPart(), primaryEditPart);
-					selectAction.execute();					
+					selectionAction = new SelectAction(getDiagramEditPart(), primaryEditPart);
+					setCanExecute(true);					
 				}
 			}
 		}
-
-
-		//		if (primaryEditPart != null) {
-		//			setTouchedEditPart(primaryEditPart);
-		//
-		//			setAcceptsTouches(false);
-		//			setCanExecute(true);
-		//		}
 	}
 
+	/** 
+	 * {@inheritDoc}
+	 * @see org.unicase.ui.tom.gestures.AbstractGesture#handleSingleTouchChanged(org.unicase.ui.tom.touches.SingleTouch)
+	 */
 	@Override
-	public void handleTouchChanged(Touch touch) {
+	public void handleSingleTouchChanged(SingleTouch touch) {
 		//We don't care
 	}
 
+	/** 
+	 * {@inheritDoc}
+	 * @see org.unicase.ui.tom.gestures.AbstractGesture#handleSingleTouchRemoved(org.unicase.ui.tom.touches.SingleTouch)
+	 */
 	@Override
-	public void handleTouchRemoved(Touch touch) {
-		//We return IF!! we accept touches because in this case there is nothing to do
-		if (getAcceptsTouches()) {
-			return;
-		}
-
-		//		if (getDispatch().getActiveTouches().size() == 0) {
-		//			//			setTouchedEditPart(null);
-		//
-		//			setAcceptsTouches(true);
-		//			setCanExecute(false);
-		//		}
+	public void handleSingleTouchRemoved(SingleTouch touch) {
+		//We don't care
 	}
 
+	/** 
+	 * {@inheritDoc}
+	 * @see org.unicase.ui.tom.gestures.AbstractMomentaryGesture#reset()
+	 */
+	@Override
 	public void reset() {
-		//Don't call super.reset() here
-		//We do not want acceptsTouches to be reset
-
-		setCanExecute(false);
+		setSelectionAction(null);
 	}
-	//
-	//	public void setTouchedEditPart(EditPart touchedEditPart) {
-	//		this.touchedEditPart = touchedEditPart;
-	//	}
-	//
-	//	public EditPart getTouchedEditPart() {
-	//		return touchedEditPart;
-	//	}
+
+	/**
+	 * @param selectionAction The selection action
+	 */
+	public void setSelectionAction(Action selectionAction) {
+		this.selectionAction = selectionAction;
+	}
+
+	/**
+	 * @return The selection action
+	 */
+	public Action getSelectionAction() {
+		return selectionAction;
+	}
+
+	/** 
+	* {@inheritDoc}
+	* @see org.unicase.ui.tom.gestures.Gesture#getMandatoryTouches()
+	*/
+	public List<MultiTouch> getMandatoryTouches() {
+		List<MultiTouch> mandatoryTouches = new ArrayList<MultiTouch>();
+		return mandatoryTouches;
+	}
 
 }

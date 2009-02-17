@@ -10,6 +10,8 @@ public interface TouchNotification {
 	
 	int touchChanged = 2;
 	
+	int touchPropagated = 3;
+	
 	int getEventType();
 	
 	Touch getTouch();

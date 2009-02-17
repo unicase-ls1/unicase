@@ -1,26 +1,29 @@
+/**
+ * <copyright> Copyright (c) 2008 Jonas Helming, Maximilian Koegel. All rights reserved. This program and the
+ * accompanying materials are made available under the terms of the Eclipse Public License v1.0 which accompanies this
+ * distribution, and is available at http://www.eclipse.org/legal/epl-v10.html </copyright>
+ */
 package org.unicase.ui.tom.commands;
 
-import java.util.List;
-
-import org.eclipse.draw2d.geometry.Point;
-import org.eclipse.emf.ecore.EObject;
-import org.eclipse.gmf.runtime.emf.type.core.IElementType;
-
-public interface CommandFactory {
-
-	Command getCreateConnectionsCommand(
-			IElementType connectionType, 
-			List<EObject> existingSourceElements, 
-			EObject existingTargetElement);
-	
-	Command getCreateNodeCommand(
-			IElementType nodeType,
-			Point point);
-	
-	Command getCreateNodesAndConnectionsCommand(
-			IElementType nodeType,
-			IElementType connectionType,
-			List<Point> creationpoints,
-			boolean source,
-			List<EObject> existingTargetElements);
-}
+/**
+ * @author schroech
+ *
+ */
+//public interface CommandFactory {
+//
+//	Executable getCreateConnectionsCommand(
+//			IElementType connectionType, 
+//			List<EObject> existingSourceElements, 
+//			EObject existingTargetElement);
+//	
+//	Executable getCreateNodeCommand(
+//			IElementType nodeType,
+//			Point point);
+//	
+//	Executable getCreateNodesAndConnectionsCommand(
+//			IElementType nodeType,
+//			IElementType connectionType,
+//			List<Point> creationpoints,
+//			boolean source,
+//			List<EObject> existingTargetElements);
+//}
