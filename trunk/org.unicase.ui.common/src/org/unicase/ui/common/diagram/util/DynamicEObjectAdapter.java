@@ -24,8 +24,9 @@ import org.unicase.ui.common.util.CollectionFilter;
 /**
  * @author schroech
  */
-public class EObjectViewAdapter implements IAdaptable {
+public class DynamicEObjectAdapter implements IAdaptable {
 
+	private EditPart editPart;
 	private View view;
 	private final EObject object;
 	private final DiagramEditPart host;
@@ -34,7 +35,15 @@ public class EObjectViewAdapter implements IAdaptable {
 	 * @param object The object which should be adapted
 	 * @param host The {@link DiagramEditPart} which will be asked for the {@link View} of the object
 	 */
-	public EObjectViewAdapter(EObject object, DiagramEditPart host) {
+	public DynamicEObjectAdapter(EObject object, DiagramEditPart host) {
+		if (object == null) {
+			throw new IllegalArgumentException();
+		}
+		
+		if (host == null) {
+			throw new IllegalArgumentException();
+		}
+		
 		this.object = object;
 		this.host = host;
 	}
@@ -47,26 +56,12 @@ public class EObjectViewAdapter implements IAdaptable {
 	 */
 	@SuppressWarnings("unchecked")
 	public Object getAdapter(Class adapter) {
-		if (adapter == View.class) {
-			if (view == null) {
-				Set<EditPart> editParts = EditPartUtility.findEditParts(getHost(), Collections.singleton(object));
-				List<ShapeNodeEditPart> shapeNodeEditParts = CollectionFilter
-					.filter(editParts, ShapeNodeEditPart.class);
-				List<ConnectionEditPart> connectionEditParts = CollectionFilter.filter(editParts,
-					ConnectionEditPart.class);
+		if (adapter.isInstance(getView())) {
+			return getView();
+		}
 
-				EditPart editPart = null;
-				if (shapeNodeEditParts.size() > 0) {
-					editPart = shapeNodeEditParts.get(0);
-				} else if (connectionEditParts.size() > 0) {
-					editPart = connectionEditParts.get(0);
-				}
-
-				if (editPart != null) {
-					view = EditPartUtility.getView(editPart);
-				}
-			}
-			return view;
+		if (adapter.isInstance(getEditPart())) {
+			return getEditPart();
 		}
 
 		if (adapter.isInstance(object)) {
@@ -98,7 +93,36 @@ public class EObjectViewAdapter implements IAdaptable {
 	 * @return The view
 	 */
 	public View getView() {
+		if (view == null) {
+		
+			if (getEditPart() != null) {
+				view = EditPartUtility.getView(getEditPart());
+			}
+		}
 		return view;
+	}
+
+	/**
+	 * @return The editpart
+	 */
+	public EditPart getEditPart() {
+		if (editPart == null) {
+			if (getObject() != null) {
+				Set<EditPart> editParts = EditPartUtility.findEditParts(getHost(), Collections.singleton(getObject()));
+				List<ShapeNodeEditPart> shapeNodeEditParts = CollectionFilter
+				.filter(editParts, ShapeNodeEditPart.class);
+
+				List<ConnectionEditPart> connectionEditParts = CollectionFilter.filter(editParts,
+					ConnectionEditPart.class);
+
+				if (shapeNodeEditParts.size() > 0) {
+					editPart = shapeNodeEditParts.get(0);
+				} else if (connectionEditParts.size() > 0) {
+					editPart = connectionEditParts.get(0);
+				}	
+			}	
+		}
+		return editPart;
 	}
 
 }

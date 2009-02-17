@@ -35,7 +35,7 @@ import org.eclipse.gmf.runtime.notation.Edge;
 import org.eclipse.gmf.runtime.notation.Node;
 import org.eclipse.gmf.runtime.notation.View;
 import org.eclipse.swt.graphics.Color;
-import org.unicase.ui.common.diagram.util.EObjectViewAdapter;
+import org.unicase.ui.common.diagram.util.DynamicEObjectAdapter;
 import org.unicase.ui.common.diagram.util.EditPartUtility;
 
 /**
@@ -108,7 +108,7 @@ public class CommandFactory {
 		CompoundCommand cc = new CompoundCommand("Colorize");
 
 		SetPropertyCommand setLineColorCommand = new SetPropertyCommand(host.getEditingDomain(), "Set line color",
-			new EObjectViewAdapter(object, host), Properties.ID_LINECOLOR, FigureUtilities
+			new DynamicEObjectAdapter(object, host), Properties.ID_LINECOLOR, FigureUtilities
 				.colorToInteger(DiagramColorConstants.blue));
 
 		Command setLineColorCommandProxy = new ICommandProxy(setLineColorCommand);
@@ -116,14 +116,14 @@ public class CommandFactory {
 
 		Color veryLightBlue = new Color(null, 240, 240, 255);
 		SetPropertyCommand setFillColorCommand = new SetPropertyCommand(host.getEditingDomain(), "Set fill color",
-			new EObjectViewAdapter(object, host), Properties.ID_FILLCOLOR, FigureUtilities
+			new DynamicEObjectAdapter(object, host), Properties.ID_FILLCOLOR, FigureUtilities
 				.colorToInteger(veryLightBlue));
 
 		Command setFillColorCommandProxy = new ICommandProxy(setFillColorCommand);
 		cc.add(setFillColorCommandProxy);
 
 		SetPropertyCommand setFontColorCommand = new SetPropertyCommand(host.getEditingDomain(), "Set font color",
-			new EObjectViewAdapter(object, host), Properties.ID_FONTCOLOR, FigureUtilities
+			new DynamicEObjectAdapter(object, host), Properties.ID_FONTCOLOR, FigureUtilities
 				.colorToInteger(DiagramColorConstants.blue));
 
 		Command setFontColorCommandProxy = new ICommandProxy(setFontColorCommand);
