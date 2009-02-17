@@ -1,66 +1,61 @@
+/**
+ * <copyright> Copyright (c) 2008 Jonas Helming, Maximilian Koegel. All rights reserved. This program and the
+ * accompanying materials are made available under the terms of the Eclipse Public License v1.0 which accompanies this
+ * distribution, and is available at http://www.eclipse.org/legal/epl-v10.html </copyright>
+ */
 package org.unicase.ui.tom.commands;
-
-import java.util.List;
 
 import org.eclipse.draw2d.geometry.Point;
 import org.eclipse.gef.EditPart;
 import org.eclipse.gmf.runtime.diagram.ui.editparts.DiagramEditPart;
-import org.eclipse.gmf.runtime.emf.type.core.IElementType;
-import org.eclipse.gmf.runtime.emf.ui.services.modelingassistant.ModelingAssistantService;
 
+/**
+ * @author schroech
+ *
+ */
 public class CreateDefaultNodeAndConnectionCommand extends
-		CreateNodeAndConnectionCommand {
+CreateNodeAndConnectionCommand {
 
-	public CreateDefaultNodeAndConnectionCommand(DiagramEditPart editor,
-			Point sourcePoint, Point targetPoint) {
-		super(editor, sourcePoint, targetPoint);
-	}
-	
-	public CreateDefaultNodeAndConnectionCommand(DiagramEditPart editor,
-			EditPart sourceObject, EditPart targetObject) {
-		super(editor, sourceObject, targetObject);
-	}
-
-	public CreateDefaultNodeAndConnectionCommand(DiagramEditPart editor,
+	/**
+	 * @param diagramEditPart
+	 * The {@link DiagramEditPart} for which the node an connection should be created
+	 * @param sourceObject
+	 * The source {@link EditPart}
+	 * @param targetPoint
+	 * The {@link Point} where the target node should be created
+	 */
+	public CreateDefaultNodeAndConnectionCommand(DiagramEditPart diagramEditPart,
 			EditPart sourceObject, Point targetPoint) {
-		super(editor, sourceObject, targetPoint);
+		super(diagramEditPart, sourceObject, targetPoint);
 	}
 
-	public CreateDefaultNodeAndConnectionCommand(DiagramEditPart editor,
+	/**
+	 * @param diagramEditPart
+	 * The {@link DiagramEditPart} for which the node an connection should be created 
+	 * @param sourcePoint
+	 * The {@link Point} where the source node should be created
+	 * @param targetObject
+	 * The target {@link EditPart}
+	 */
+	public CreateDefaultNodeAndConnectionCommand(DiagramEditPart diagramEditPart,
 			Point sourcePoint, EditPart targetObject) {
-		super(editor, sourcePoint, targetObject);
+		super(diagramEditPart, sourcePoint, targetObject);
 	}
 
-	@SuppressWarnings("unchecked")
+	/** 
+	* {@inheritDoc}
+	* @see org.unicase.ui.tom.commands.CreateNodeAndConnectionCommand#getConnectionCreationCommand()
+	*/
 	@Override
-	public IElementType getConnectionElementType() {
-		ModelingAssistantService service = ModelingAssistantService.getInstance();
-		List relatedConnectionTypes = null;
-		IElementType defaultConnectionElementType = null;
-		
-		if (getSourceEditPart() != null
-				&& getTargetEditPart() != null) {
-			relatedConnectionTypes = service.getRelTypesOnSourceAndTarget(getSourceEditPart(), getTargetEditPart());
-		}else if(getSourceEditPart() != null) {
-			relatedConnectionTypes = service.getRelTypesOnSource(getSourceEditPart());
-		}else if (getTargetEditPart() != null) {
-			relatedConnectionTypes = service.getRelTypesOnTarget(getTargetEditPart());
-		}
-
-		for (Object object : relatedConnectionTypes) {
-			if (object instanceof IElementType) {
-				defaultConnectionElementType = (IElementType) object;
-				break;
-			}
+	protected CreateConnectionCommand getConnectionCreationCommand() {
+		if (super.getConnectionCreationCommand() == null) {
+			setConnectionCreationCommand(new CreateDefaultConnectionCommand(
+					getDiagramEditPart(),
+					getSourceAdapter(), 
+					getTargetAdapter()));
 		}
 		
-		if (defaultConnectionElementType == null) {
-			throw new IllegalArgumentException("No ElementType registered for connection between input arguments sourceEditPart and targetEditPart");
-		}
-		
-		setConnectionElementType(defaultConnectionElementType);
-		
-		// TODO Auto-generated method stub
-		return super.getConnectionElementType();
+		return super.getConnectionCreationCommand();
 	}
+
 }

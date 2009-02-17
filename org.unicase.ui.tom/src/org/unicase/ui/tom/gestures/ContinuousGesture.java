@@ -3,15 +3,16 @@
  * accompanying materials are made available under the terms of the Eclipse Public License v1.0 which accompanies this
  * distribution, and is available at http://www.eclipse.org/legal/epl-v10.html </copyright>
  */
-package org.unicase.ui.tom.actions;
-
-import org.unicase.ui.tom.commands.Executable;
+package org.unicase.ui.tom.gestures;
 
 /**
  * @author schroech
  *
  */
-public interface Action extends Executable{
+public interface ContinuousGesture extends Gesture {
 
+	/**
+	 * @return true if the {@link Gesture} is executing, false otherwise
+	 */
+	boolean isExecuting();
 }
-

@@ -4,6 +4,7 @@ import java.util.Date;
 import java.util.Hashtable;
 import java.util.Map;
 
+import org.unicase.ui.tom.touches.SingleTouch;
 import org.unicase.ui.tom.touches.TUIOTouch;
 import org.unicase.ui.tom.touches.Touch;
 import org.unicase.ui.tum.tuio.TuioClient;
@@ -13,7 +14,7 @@ import org.unicase.ui.tum.tuio.TuioObject;
 
 public class TUIOTouchDispatch extends TouchDispatch implements TuioListener{
 
-	Map<TuioCursor, Touch> touchMap;
+	Map<TuioCursor, SingleTouch> touchMap;
 	
 	private TUIOTouchDispatch() {
 		super();
@@ -22,7 +23,7 @@ public class TUIOTouchDispatch extends TouchDispatch implements TuioListener{
 		client.addTuioListener(this);
 		client.connect();
 		
-		touchMap = new Hashtable<TuioCursor, Touch>();
+		touchMap = new Hashtable<TuioCursor, SingleTouch>();
 	}
 
 	public void addTuioCursor(TuioCursor tuioCursor) {
@@ -48,7 +49,7 @@ public class TUIOTouchDispatch extends TouchDispatch implements TuioListener{
 	}
 
 	public void removeTuioCursor(TuioCursor tuioCursor) {		
-		Touch touch = touchMap.get(tuioCursor);
+		SingleTouch touch = touchMap.get(tuioCursor);
 		if (touch != null) {
 			touch.setTouchUpDate(new Date(tuioCursor.getUpdateTime()));
 			try {

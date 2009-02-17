@@ -12,7 +12,7 @@ import org.eclipse.draw2d.geometry.PointList;
 import org.unicase.ui.tum.tuio.TuioCursor;
 import org.unicase.ui.tum.tuio.TuioPoint;
 
-public class TUIOTouch extends AbstractTouch implements Touch{
+public class TUIOTouch extends SingleTouch implements Touch{
 
 	private TuioCursor cursor;
 	private Dimension screenSize; 

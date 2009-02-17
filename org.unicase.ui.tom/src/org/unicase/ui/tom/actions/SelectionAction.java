@@ -7,13 +7,14 @@ package org.unicase.ui.tom.actions;
 
 import org.eclipse.gmf.runtime.diagram.ui.editparts.DiagramEditPart;
 import org.eclipse.gmf.runtime.diagram.ui.editparts.GraphicalEditPart;
-import org.eclipse.swt.widgets.Display;
 
 /**
  * @author schroech
  *
  */
-public class SelectAction extends SelectionAction{
+public abstract class SelectionAction extends AbstractAction {
+
+	private GraphicalEditPart targetEditPart;
 
 	/**
 	 * Default constructor.
@@ -21,21 +22,23 @@ public class SelectAction extends SelectionAction{
 	 * @param diagramEditPart The {@link DiagramEditPart} on which this operation operates
 	 * @param targetEditPart The {@link GraphicalEditPart} being selected / deselected
 	 */
-	public SelectAction(DiagramEditPart diagramEditPart, GraphicalEditPart targetEditPart) {
-		super(diagramEditPart, targetEditPart);
+	public SelectionAction(DiagramEditPart diagramEditPart, GraphicalEditPart targetEditPart) {
+		super(diagramEditPart);
+		setTargetEditPart(targetEditPart);
 	}
 
-	/** 
-	* {@inheritDoc}
-	* @see org.unicase.ui.tom.operations.Operation#finish()
-	*/
-	public void execute() {
-		Runnable runnable = new Runnable(){
-			public void run(){
-				getDiagramEditPart().getViewer().select(getTargetEditPart());
-			}
-		};
-		
-		Display.getDefault().syncExec(runnable);
+	/**
+	 * @return The {@link GraphicalEditPart} being selected / deselected
+	 */
+	public GraphicalEditPart getTargetEditPart() {
+		return targetEditPart;
 	}
+
+	/**
+	 * @param targetEditPart The {@link GraphicalEditPart} being selected / deselected
+	 */
+	public void setTargetEditPart(GraphicalEditPart targetEditPart) {
+		this.targetEditPart = targetEditPart;
+	}
+
 }

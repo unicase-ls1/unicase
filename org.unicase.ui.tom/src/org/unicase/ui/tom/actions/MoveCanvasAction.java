@@ -1,3 +1,8 @@
+/**
+ * <copyright> Copyright (c) 2008 Jonas Helming, Maximilian Koegel. All rights reserved. This program and the
+ * accompanying materials are made available under the terms of the Eclipse Public License v1.0 which accompanies this
+ * distribution, and is available at http://www.eclipse.org/legal/epl-v10.html </copyright>
+ */
 package org.unicase.ui.tom.actions;
 
 import org.eclipse.draw2d.IFigure;
@@ -10,11 +15,20 @@ import org.eclipse.gef.editparts.AbstractGraphicalEditPart;
 import org.eclipse.gmf.runtime.diagram.ui.editparts.DiagramEditPart;
 import org.eclipse.swt.widgets.Display;
 
+/**
+ * @author schroech
+ *
+ */
 public class MoveCanvasAction extends AbstractAction {
 
 	private Viewport scrollableViewport;
 	private Point lastPosition;
 
+	/**
+	 * Default constructor.
+	 * 
+	 * @param diagramEditPart The {@link DiagramEditPart} on which this operation operates
+	 */
 	public MoveCanvasAction(DiagramEditPart diagramEditPart) {
 		super(diagramEditPart);
 
@@ -31,16 +45,9 @@ public class MoveCanvasAction extends AbstractAction {
 		lastPosition = point;
 	}
 
-	public void execute() {
-		// TODO Auto-generated method stub
-
-	}
-
-	public Request createRequest() {
-		// TODO Auto-generated method stub
-		return null;
-	}
-
+	/**
+	 * @param position
+	 */
 	public void updateMove(final Point position) {
 
 		Runnable runnable = new Runnable(){
@@ -67,6 +74,12 @@ public class MoveCanvasAction extends AbstractAction {
 		Display.getDefault().syncExec(runnable);
 
 		lastPosition = position;	
+	}
+
+
+	public void execute() {
+		// TODO Auto-generated method stub
+		
 	}
 
 }
