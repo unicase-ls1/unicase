@@ -67,8 +67,12 @@ public class ModelTreePage extends WizardPage implements Listener {
 		final ModelClassFilter filter = new ModelClassFilter();
 		filterInput.addModifyListener(new ModifyListener() {
 			public void modifyText(ModifyEvent e) {
-				filter.setSearchTerm(filterInput.getText());
+				String text = filterInput.getText();
+				filter.setSearchTerm(text);
 				treeViewer.expandAll();
+				if (text != null && text.length() == 0) {
+					treeViewer.collapseAll();
+				}
 				treeViewer.refresh();
 			}
 		});

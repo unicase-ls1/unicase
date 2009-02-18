@@ -7,6 +7,7 @@ package org.unicase.ui.navigator.wizards;
 
 import org.eclipse.emf.ecore.EClass;
 import org.eclipse.emf.ecore.EPackage;
+import org.eclipse.jface.viewers.TreeViewer;
 import org.eclipse.jface.viewers.Viewer;
 import org.eclipse.jface.viewers.ViewerFilter;
 import org.unicase.model.diagram.MEDiagram;
@@ -32,9 +33,17 @@ public class ModelClassFilter extends ViewerFilter {
 			return true;
 		}
 		if (element instanceof EClass) {
-			return ((EClass) element).getName().toLowerCase().contains(searchTerm.toLowerCase());
+			return ((EClass) element).getName().toLowerCase().contains(searchTerm.toLowerCase())
+				|| ((EPackage) parentElement).getName().toLowerCase().contains(searchTerm.toLowerCase());
 		} else if (element instanceof EPackage) {
-			// figure out how to hide empty packages
+			EPackage ePackage = (EPackage) element;
+			Object[] children = ((ModelTreeContentProvider) ((TreeViewer) viewer).getContentProvider())
+				.getChildren(element);
+			boolean show = ePackage.getName().toLowerCase().contains(searchTerm.toLowerCase());
+			for (Object child : children) {
+				show = show || select(viewer, element, child);
+			}
+			return show;
 		} else if (element instanceof MEDiagram) {
 			return ((MEDiagram) element).getName().toLowerCase().contains(searchTerm.toLowerCase());
 		}
