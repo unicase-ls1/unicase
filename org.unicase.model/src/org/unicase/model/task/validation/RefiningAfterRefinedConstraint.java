@@ -71,6 +71,9 @@ public class RefiningAfterRefinedConstraint extends AbstractModelConstraint {
 			}
 		}
 		for (Annotation otherAnnotation : otherAnnotations) {
+			if ((!(otherAnnotation instanceof ActionItem) && !(otherAnnotation instanceof Issue))) {
+				continue;
+			}
 			ActivityType otherActivity = TaskValidationHelper.getActivity(otherAnnotation);
 			if (otherActivity.equals(ActivityType.ANALYSIS) || otherActivity.equals(ActivityType.SYSTEM_DESIGN)
 				|| otherActivity.equals(ActivityType.OBJECT_DESIGN)
