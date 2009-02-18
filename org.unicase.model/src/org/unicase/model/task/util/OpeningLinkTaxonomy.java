@@ -23,7 +23,6 @@ import org.unicase.model.requirement.UseCase;
 import org.unicase.model.task.Checkable;
 import org.unicase.model.task.Milestone;
 import org.unicase.model.task.WorkItem;
-import org.unicase.model.task.WorkPackage;
 
 /**
  * Taxonomy to define opening links.
@@ -51,10 +50,6 @@ public class OpeningLinkTaxonomy {
 		for (ModelElement annotation : me.getAnnotations()) {
 			openers.add(annotation);
 		}
-
-		if (me instanceof WorkPackage) {
-			getWorkPackageOpeners((WorkPackage) me, openers);
-		}
 		if (me instanceof UseCase) {
 			EList<FunctionalRequirement> functionalRequirements = ((UseCase) me).getFunctionalRequirements();
 			openers.addAll(functionalRequirements);
@@ -71,10 +66,6 @@ public class OpeningLinkTaxonomy {
 		}
 		openers.remove(me);
 		return openers;
-	}
-
-	private void getWorkPackageOpeners(WorkPackage wp, Set<ModelElement> openers) {
-		openers.addAll(wp.getContainedWorkItems());
 	}
 
 	/**
