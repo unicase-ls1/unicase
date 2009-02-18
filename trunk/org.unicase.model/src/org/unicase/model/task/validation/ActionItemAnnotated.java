@@ -39,7 +39,7 @@ public class ActionItemAnnotated extends AbstractModelConstraint {
 			return ctx.createSuccessStatus();
 		}
 		ActionItem actionItem = (ActionItem) eObj;
-		if (((ActionItem) eObj).getActivity().equals(ActivityType.MANAGEMENT)) {
+		if (((ActionItem) eObj).isDone() || ((ActionItem) eObj).getActivity().equals(ActivityType.MANAGEMENT)) {
 			return ctx.createSuccessStatus();
 		}
 		EList<ModelElement> annotatedModelElements = actionItem.getAnnotatedModelElements();
