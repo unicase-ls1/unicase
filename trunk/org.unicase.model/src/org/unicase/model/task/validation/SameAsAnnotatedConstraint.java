@@ -41,7 +41,7 @@ public class SameAsAnnotatedConstraint extends AbstractModelConstraint {
 		WorkItem workItem = (WorkItem) eObj;
 
 		try {
-			if (workItem.getMEState().equals(MEState.CLOSED)) {
+			if (workItem.getMEState().equals(MEState.CLOSED) || workItem.getContainingWorkpackage() == null) {
 				return ctx.createSuccessStatus();
 			}
 		} catch (CircularDependencyException e) {
@@ -51,7 +51,7 @@ public class SameAsAnnotatedConstraint extends AbstractModelConstraint {
 		EList<ModelElement> annotatedModelElements = workItem.getAnnotatedModelElements();
 		for (ModelElement modelElement : annotatedModelElements) {
 			if (modelElement instanceof WorkItem) {
-				if (!((WorkItem) modelElement).getContainingWorkpackage().equals(workItem.getContainingWorkpackage())) {
+				if (!workItem.getContainingWorkpackage().equals(((WorkItem) modelElement).getContainingWorkpackage())) {
 					EStructuralFeature errorFeature = ValidationConstraintHelper.getErrorFeatureForModelElement(
 						(ModelElement) eObj, "annotatedModelElements");
 					ctx.addResult(errorFeature);
