@@ -6,11 +6,11 @@
 package org.unicase.ui.stem.views.statusview;
 
 import java.util.ArrayList;
-import java.util.Arrays;
 import java.util.HashSet;
 import java.util.List;
 import java.util.Set;
 
+import org.eclipse.emf.common.util.EList;
 import org.eclipse.emf.edit.provider.ComposedAdapterFactory;
 import org.eclipse.emf.edit.ui.provider.AdapterFactoryContentProvider;
 import org.unicase.model.Annotation;
@@ -54,7 +54,7 @@ public class HierarchyTabContentProvider extends AdapterFactoryContentProvider {
 	}
 
 	/**
-	 * . Returns all model elements being annotated by WorkItems contained in this WorckPackage.
+	 * . Returns all model elements being annotated by WorkItems contained in this WorkPackage.
 	 * 
 	 * @param object WorkPackage
 	 * @return
@@ -63,7 +63,7 @@ public class HierarchyTabContentProvider extends AdapterFactoryContentProvider {
 
 		Set<ModelElement> ret = new HashSet<ModelElement>();
 		WorkPackage workPackage = (WorkPackage) object;
-		List<WorkItem> containedWorkItems = workPackage.getContainedWorkItems();
+		List<WorkItem> containedWorkItems = workPackage.getAllContainedWorkItems();
 		for (WorkItem workItem : containedWorkItems) {
 			ret.addAll(workItem.getAnnotatedModelElements());
 			if (workItem instanceof WorkPackage) {
@@ -90,16 +90,6 @@ public class HierarchyTabContentProvider extends AdapterFactoryContentProvider {
 		Set<ModelElement> ret = new HashSet<ModelElement>();
 		ret.addAll(openers);
 
-		// for(ModelElement opener : openers){
-		// if(opener instanceof Annotation){
-		// Annotation annotation = (Annotation) opener;
-		// if(annotation.getAnnotatedModelElements().size() > 0){
-		// ret.remove(annotation);
-		// ret.addAll(annotation.getAnnotatedModelElements());
-		// }
-		// }
-		// }
-
 		ret.addAll(me.getAnnotations());
 		return ret.toArray(new Object[ret.size()]);
 	}
@@ -109,16 +99,24 @@ public class HierarchyTabContentProvider extends AdapterFactoryContentProvider {
 	 */
 	@Override
 	public boolean hasChildren(Object object) {
-
-		if (object instanceof ModelElement) {
-			ModelElement me = (ModelElement) object;
-			List<Annotation> annotations = ((ModelElement) object).getAnnotations();
-			Set<ModelElement> openers = TaxonomyAccess.getInstance().getOpeningLinkTaxonomy().getOpeners(me);
-			return (annotations.size() > 0 || openers.size() > 0);
-
-		} else {
+		if (!(object instanceof ModelElement)) {
 			return super.hasChildren(object);
 		}
+		ModelElement modelElement = (ModelElement) object;
+		if (viewer.getInput() instanceof WorkPackage) {
+			WorkPackage workPackage = (WorkPackage) viewer.getInput();
+			Set<ModelElement> allContainedModelElements = workPackage.getAllContainedModelElements();
+			EList<Annotation> annotations = modelElement.getAnnotations();
+			for (Annotation annotation : annotations) {
+				if (allContainedModelElements.contains(annotation)) {
+					return true;
+				}
+			}
+
+		}
+		List<Annotation> annotations = ((ModelElement) object).getAnnotations();
+		Set<ModelElement> openers = TaxonomyAccess.getInstance().getOpeningLinkTaxonomy().getOpeners(modelElement);
+		return (annotations.size() > 0 || openers.size() > 0);
 
 	}
 
@@ -127,13 +125,28 @@ public class HierarchyTabContentProvider extends AdapterFactoryContentProvider {
 	 */
 	@Override
 	public Object[] getChildren(Object object) {
-		List<Object> children = new ArrayList<Object>();
-		children.addAll(Arrays.asList(super.getChildren(object)));
+		if (!(object instanceof ModelElement)) {
+			return super.getChildren(object);
+		}
+		ModelElement modelElement = (ModelElement) object;
+		List<ModelElement> ret = new ArrayList<ModelElement>();
+		if (viewer.getInput() instanceof WorkPackage) {
+			WorkPackage workPackage = (WorkPackage) viewer.getInput();
+			Set<ModelElement> allContainedModelElements = workPackage.getAllContainedModelElements();
+			EList<Annotation> annotations = modelElement.getAnnotations();
+			for (Annotation annotation : annotations) {
+				if (allContainedModelElements.contains(annotation)) {
+					ret.add(annotation);
+				}
+			}
+			return ret.toArray(new Object[ret.size()]);
+
+		}
 		List<Annotation> annotations = ((ModelElement) object).getAnnotations();
-
-		children.addAll(annotations);
-
-		return children.toArray(new Object[children.size()]);
+		Set<ModelElement> openers = TaxonomyAccess.getInstance().getOpeningLinkTaxonomy().getOpeners(modelElement);
+		ret.addAll(annotations);
+		ret.removeAll(openers);
+		ret.addAll(openers);
+		return ret.toArray(new Object[ret.size()]);
 	}
-
 }
