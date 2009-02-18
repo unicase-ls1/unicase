@@ -114,6 +114,18 @@
                  {0} is an implementaton work item annotated to a functional requirement. I has a later due date then a work item related to a refining requirement.
               </message>
            </constraint>
+           <constraint
+                 class="org.unicase.model.task.validation.SameAsAnnotatedConstraint"
+                 id="org.unicase.model.task.SameAsAnnotatedConstraint"
+                 lang="java"
+                 mode="Batch"
+                 name="Same WorkPackage As Annotated Constraint"
+                 severity="ERROR"
+                 statusCode="1">
+              <message>
+                 {0} is annotated to another WorkItem, but not contained in the same work package.
+              </message>
+           </constraint>
         </constraints>
      </constraintProvider>
      <constraintProvider
