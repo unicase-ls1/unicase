@@ -22,4 +22,9 @@ public interface UpdateObserver {
 	 */
 	boolean inspectChanges(List<ChangePackage> changePackages);
 
+	/**
+	 * Called after the changes have been applied to the project and the update is completed.
+	 */
+	void updateCompleted();
+
 }

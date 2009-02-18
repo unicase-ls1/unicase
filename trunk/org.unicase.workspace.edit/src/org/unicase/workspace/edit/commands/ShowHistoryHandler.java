@@ -75,6 +75,18 @@ public class ShowHistoryHandler extends ProjectActionHandler {
 			}
 		});
 
+		// AS: test
+		// ProjectSpace activeProjectSpace =
+		// WorkspaceManager.getInstance().getCurrentWorkspace().getActiveProjectSpace();
+		// DashboardEditorInput input = new DashboardEditorInput(activeProjectSpace);
+		// try {
+		// PlatformUI.getWorkbench().getActiveWorkbenchWindow().getActivePage().openEditor(input,
+		// "org.unicase.workspace.edit.dashboard", true);
+		// } catch (PartInitException e) {
+		// // AS: Auto-generated catch block
+		// e.printStackTrace();
+		// }
+
 		return null;
 	}
 
