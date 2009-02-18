@@ -35,9 +35,10 @@ import org.unicase.workspace.util.UpdateObserver;
 import org.unicase.workspace.util.WorkspaceUtil;
 
 /**
+ * This handlers handles UpdateWorkspace command. This command is shown in UC View context menu only for Projects
+ * 
  * @author Hodaie
- * @author Shterev This handlers handles UpdateWorkspace command. This command is shown in UC View context menu only for
- *         Projects
+ * @author Shterev
  */
 public class UpdateProjectHandler extends ProjectActionHandler implements UpdateObserver {
 
@@ -172,6 +173,25 @@ public class UpdateProjectHandler extends ProjectActionHandler implements Update
 			return true;
 		}
 		return false;
+	}
+
+	/**
+	 * {@inheritDoc}
+	 * 
+	 * @see org.unicase.workspace.util.UpdateObserver#updateCompleted()
+	 */
+	public void updateCompleted() {
+		// AS: enable when done.
+		// ProjectSpace activeProjectSpace =
+		// WorkspaceManager.getInstance().getCurrentWorkspace().getActiveProjectSpace();
+		// DashboardEditorInput input = new DashboardEditorInput(activeProjectSpace);
+		// try {
+		// PlatformUI.getWorkbench().getActiveWorkbenchWindow().getActivePage().openEditor(input,
+		// "org.unicase.workspace.edit.dashboard", true);
+		// } catch (PartInitException e) {
+		// e.printStackTrace();
+		// }
+
 	}
 
 }

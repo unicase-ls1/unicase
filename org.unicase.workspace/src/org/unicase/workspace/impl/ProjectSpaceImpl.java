@@ -980,15 +980,6 @@ public class ProjectSpaceImpl extends IdentifiableElementImpl implements Project
 			}
 		}
 
-		// generate notifications from change packages, ignore all excpetion if any
-		try {
-			List<ESNotification> newNotifications = NotificationGenerator.getInstance().generateNotifications(changes,
-				this.getUsersession().getUsername(), this);
-			this.getNotifications().addAll(newNotifications);
-		} catch (RuntimeException e) {
-			WorkspaceUtil.logException("Creating notifications failed!", e);
-		}
-
 		// notify updateObserver if there is one
 		if (observer != null && !observer.inspectChanges(changes)) {
 			return getBaseVersion();
@@ -1000,9 +991,22 @@ public class ProjectSpaceImpl extends IdentifiableElementImpl implements Project
 
 		setBaseVersion(resolvedVersion);
 		saveResourceSet();
+
+		// generate notifications from change packages, ignore all exception if any
+		try {
+			List<ESNotification> newNotifications = NotificationGenerator.getInstance().generateNotifications(changes,
+				this.getUsersession().getUsername(), this);
+			this.getNotifications().addAll(newNotifications);
+		} catch (RuntimeException e) {
+			WorkspaceUtil.logException("Creating notifications failed!", e);
+		}
+
 		if (!isRecording) {
 			startChangeRecording();
 		}
+
+		observer.updateCompleted();
+
 		return resolvedVersion;
 	}
 
@@ -1825,8 +1829,29 @@ public class ProjectSpaceImpl extends IdentifiableElementImpl implements Project
 					}
 				}
 			}
+			appendCreator(modelElement);
 			operations.add(createCreateDeleteOperation(modelElement, false));
 			saveProjectSpaceOnly();
+		}
+	}
+
+	/**
+	 * Appends the creator's name and the creation date.
+	 * 
+	 * @param modelElement the model element.
+	 */
+	private void appendCreator(ModelElement modelElement) {
+		if (modelElement.getCreator() == null) {
+			Usersession usersession = getUsersession();
+			// used when the project has not been shared yet
+			// and there is practically no possible way of
+			// knowing who the creator was...
+			String creator = "unicase";
+			if (usersession != null) {
+				creator = usersession.getACUser().getName();
+			}
+			modelElement.setCreator(creator);
+			modelElement.setCreationDate(new Date());
 		}
 	}
 

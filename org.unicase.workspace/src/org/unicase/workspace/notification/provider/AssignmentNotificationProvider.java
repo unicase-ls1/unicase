@@ -40,6 +40,7 @@ import org.unicase.workspace.util.OrgUnitHelper;
  * Provides assignment notifications.
  * 
  * @author koegel
+ * @author shterev
  */
 public class AssignmentNotificationProvider implements NotificationProvider {
 
@@ -56,9 +57,13 @@ public class AssignmentNotificationProvider implements NotificationProvider {
 	public void clear() {
 		this.projectSpace = null;
 		this.user = null;
-		this.workItems.clear();
 		this.workItems = null;
-		this.createdElementsMap.clear();
+		if (this.workItems != null) {
+			this.workItems.clear();
+		}
+		if (this.createdElementsMap != null) {
+			this.createdElementsMap.clear();
+		}
 		this.createdElementsMap = null;
 	}
 

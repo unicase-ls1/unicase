@@ -17,6 +17,15 @@
           uri="http://unicase.org/workspace"/>
   </extension>
   <extension
+         point="org.eclipse.ui.editors">
+      <editor
+            class="org.unicase.workspace.edit.dashboard.DashboardEditor"
+            default="false"
+            id="org.unicase.workspace.edit.dashboard"
+            name="Dashboard">
+      </editor>
+   </extension>
+  <extension
         point="org.eclipse.ui.handlers">
      <handler
            class="org.unicase.workspace.edit.commands.CommitProjectHandler"
