@@ -1,0 +1,251 @@
+/**
+ * <copyright> Copyright (c) 2008 Jonas Helming, Maximilian Koegel. All rights reserved. This program and the
+ * accompanying materials are made available under the terms of the Eclipse Public License v1.0 which accompanies this
+ * distribution, and is available at http://www.eclipse.org/legal/epl-v10.html </copyright>
+ */
+package org.unicase.workspace.edit.dashboard;
+
+import java.text.SimpleDateFormat;
+
+import org.eclipse.emf.edit.provider.ComposedAdapterFactory;
+import org.eclipse.emf.edit.ui.provider.AdapterFactoryLabelProvider;
+import org.eclipse.jface.layout.GridDataFactory;
+import org.eclipse.jface.layout.GridLayoutFactory;
+import org.eclipse.swt.SWT;
+import org.eclipse.swt.events.MouseAdapter;
+import org.eclipse.swt.events.MouseEvent;
+import org.eclipse.swt.events.MouseListener;
+import org.eclipse.swt.events.MouseTrackAdapter;
+import org.eclipse.swt.events.SelectionEvent;
+import org.eclipse.swt.events.SelectionListener;
+import org.eclipse.swt.events.TypedEvent;
+import org.eclipse.swt.graphics.Color;
+import org.eclipse.swt.graphics.Image;
+import org.eclipse.swt.widgets.Composite;
+import org.eclipse.swt.widgets.Display;
+import org.eclipse.swt.widgets.Label;
+import org.eclipse.swt.widgets.Link;
+import org.unicase.emfstore.esmodel.notification.ESNotification;
+import org.unicase.model.ModelElement;
+import org.unicase.model.ModelElementId;
+import org.unicase.model.ModelFactory;
+import org.unicase.model.Project;
+import org.unicase.ui.common.util.ActionHelper;
+import org.unicase.workspace.edit.Activator;
+
+/**
+ * A dashboard entry widget.
+ * 
+ * @author Shterev
+ */
+public class DashboardEntry extends Composite {
+
+	/**
+	 * Selection listener for the links.
+	 * 
+	 * @author Shterev
+	 */
+	private final class LinkSelectionListener implements SelectionListener {
+
+		public void widgetDefaultSelected(SelectionEvent e) {
+			System.out.println("");
+		}
+
+		public void widgetSelected(SelectionEvent e) {
+			String text = e.text;
+			if (text.equals("more")) {
+				toggleDrawer(e, open);
+				open = !open;
+				return;
+			}
+			URLResolver url = new URLResolver(text);
+			ModelElementId mid = ModelFactory.eINSTANCE.createModelElementId();
+			mid.setId(url.getMID());
+			ActionHelper.openModelElement(project.getModelElement(mid), DashboardEditor.ID);
+		}
+	}
+
+	private Image left;
+	private Image right;
+	private Image line;
+	private Color lightBlue;
+	private Color notificationColor;
+	private ESNotification n;
+	private SimpleDateFormat format;
+	private Display display;
+	private Project project;
+	private Composite drawer;
+
+	private boolean open = true;
+	private Color blue;
+
+	/**
+	 * Default constuctor.
+	 * 
+	 * @param parent the parent composite.
+	 * @param style the style.
+	 * @param notification the notification.
+	 * @param project the project.
+	 */
+	public DashboardEntry(Composite parent, int style, ESNotification notification, Project project) {
+		super(parent, style);
+
+		n = notification;
+		this.project = project;
+		display = Display.getCurrent();
+
+		left = Activator.getImageDescriptor("icons/left.png").createImage();
+		right = Activator.getImageDescriptor("icons/right.png").createImage();
+		line = Activator.getImageDescriptor("icons/line.png").createImage();
+		lightBlue = new Color(display, 233, 244, 255);
+		blue = new Color(Display.getCurrent(), 191, 222, 255);
+		notificationColor = display.getSystemColor(SWT.COLOR_WHITE);
+		format = new SimpleDateFormat("dd.MM.yyyy mm:HH");
+
+		this.setBackgroundMode(SWT.INHERIT_FORCE);
+		if (!createUpdateEntry()) {
+			createNotificationEntry();
+		}
+	}
+
+	private void createNotificationEntry() {
+		GridLayoutFactory.fillDefaults().numColumns(3).equalWidth(false).extendedMargins(3, 3, 6, 6).spacing(5, 0)
+			.applyTo(this);
+		this.setBackground(notificationColor);
+
+		Composite image = new Composite(this, SWT.NONE);
+		GridDataFactory.fillDefaults().hint(16, 16).applyTo(image);
+		AdapterFactoryLabelProvider labelProvider = new AdapterFactoryLabelProvider(new ComposedAdapterFactory(
+			ComposedAdapterFactory.Descriptor.Registry.INSTANCE));
+
+		image.setBackgroundImage(labelProvider.getImage(project.getModelElement(n.getRelatedModelElements().get(0))));
+
+		Link link = new Link(this, SWT.NONE);
+		link.setText(n.getMessage());
+		GridDataFactory.fillDefaults().align(SWT.BEGINNING, SWT.BEGINNING).applyTo(link);
+		// link.setBackground(notificationColor);
+		link.addSelectionListener(new LinkSelectionListener());
+		Label date = new Label(this, SWT.NONE);
+		date.setText(format.format(n.getCreationDate()));
+		// date.setBackground(notificationColor);
+		GridDataFactory.fillDefaults().align(SWT.BEGINNING, SWT.BEGINNING).applyTo(date);
+		date.setForeground(display.getSystemColor(SWT.COLOR_GRAY));
+
+		MouseTrackAdapter hoverListener = new MouseTrackAdapter() {
+			@Override
+			public void mouseEnter(MouseEvent e) {
+				setBackground(lightBlue);
+			}
+
+			@Override
+			public void mouseExit(MouseEvent e) {
+				setBackground(notificationColor);
+			}
+		};
+
+		MouseListener clickListener = new MouseAdapter() {
+
+			@Override
+			public void mouseDown(MouseEvent e) {
+				toggleDrawer(e, open);
+				open = !open;
+			}
+		};
+
+		this.addMouseListener(clickListener);
+		date.addMouseListener(clickListener);
+
+		this.addMouseTrackListener(hoverListener);
+		link.addMouseTrackListener(hoverListener);
+		date.addMouseTrackListener(hoverListener);
+
+		drawer = new Composite(this, SWT.NONE);
+		GridDataFactory.fillDefaults().hint(10, 0).span(3, 1).grab(true, false).applyTo(drawer);
+		GridLayoutFactory.fillDefaults().numColumns(1).spacing(0, 5).extendedMargins(3, 3, 3, 3).applyTo(drawer);
+		drawer.setBackground(lightBlue);
+		for (ModelElementId mid : n.getRelatedModelElements()) {
+			ModelElement me = project.getModelElement(mid);
+			Composite drawerEntry = new Composite(drawer, SWT.NONE);
+			GridDataFactory.fillDefaults().grab(true, false).applyTo(drawerEntry);
+			GridLayoutFactory.fillDefaults().numColumns(2).equalWidth(false).spacing(5, 0).applyTo(drawerEntry);
+			Composite icon = new Composite(drawerEntry, SWT.NONE);
+			icon.setBackgroundImage(labelProvider.getImage(me));
+			GridDataFactory.fillDefaults().hint(16, 16).applyTo(icon);
+			Link name = new Link(drawerEntry, SWT.WRAP);
+			name.setText("<a href=\"unicase://localhost/project/" + me.getModelElementId().getId() + "\">"
+				+ labelProvider.getText(me) + "</a>");
+			name.addSelectionListener(new LinkSelectionListener());
+			name.addMouseTrackListener(hoverListener);
+			drawerEntry.addMouseTrackListener(hoverListener);
+		}
+		drawer.addMouseTrackListener(hoverListener);
+	}
+
+	private boolean createUpdateEntry() {
+		if (!n.getMessage().startsWith("revision")) {
+			return false;
+		}
+		GridDataFactory.fillDefaults().align(SWT.FILL, SWT.BEGINNING).grab(true, false).applyTo(this);
+		GridLayoutFactory.fillDefaults().numColumns(5).equalWidth(false).extendedMargins(0, 0, 6, 6).spacing(0, 0)
+			.applyTo(this);
+
+		Composite updated = createRoundedLabel(this, "Updated " + n.getMessage());
+		GridDataFactory.fillDefaults().applyTo(updated);
+
+		Composite space = new Composite(this, SWT.NONE);
+		GridDataFactory.fillDefaults().grab(true, false).hint(10, 15).applyTo(space);
+		space.setBackgroundImage(line);
+
+		Composite date = createRoundedLabel(this, format.format(n.getCreationDate()));
+		GridDataFactory.fillDefaults().applyTo(date);
+
+		GridDataFactory.fillDefaults().align(SWT.END, SWT.BEGINNING).applyTo(date);
+
+		return true;
+	}
+
+	private Composite createRoundedLabel(Composite parent, String text) {
+
+		Composite c = new Composite(parent, SWT.NONE);
+		GridLayoutFactory.fillDefaults().numColumns(3).equalWidth(false).spacing(0, 0).applyTo(c);
+
+		Composite left = new Composite(c, SWT.NONE);
+		left.setBackgroundImage(this.left);
+		GridDataFactory.fillDefaults().hint(10, 15).applyTo(left);
+
+		Composite main = new Composite(c, SWT.NONE);
+		GridDataFactory.fillDefaults().applyTo(main);
+		GridLayoutFactory.fillDefaults().numColumns(1).applyTo(main);
+		main.setBackground(blue);
+		Label label = new Label(main, SWT.NONE);
+		label.setText(text);
+
+		Composite right = new Composite(c, SWT.NONE);
+		right.setBackgroundImage(this.right);
+		GridDataFactory.fillDefaults().hint(10, 15).applyTo(right);
+
+		return c;
+	}
+
+	private void toggleDrawer(TypedEvent e, boolean open) {
+		int size = n.getRelatedModelElements().size();
+		if (size <= 1) {
+			return;
+		}
+		int height;
+		int indent;
+		if (open) {
+			height = size * 20 + 6;
+			indent = 10;
+		} else {
+			indent = 0;
+			height = 0;
+		}
+		GridDataFactory.fillDefaults().hint(10, height).span(3, 1).indent(20, indent).grab(true, false).applyTo(drawer);
+		this.getParent().layout(true);
+		this.getParent().getParent().getParent().getParent().getParent().layout(true);
+		// gallery.setLocation(0, -128);
+		// sa.move(gallery, gallery.getLocation().x, -128, 1000, new ElasticOut(), null, null);
+	}
+
+}

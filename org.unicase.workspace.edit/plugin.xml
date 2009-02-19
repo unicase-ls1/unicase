@@ -179,6 +179,11 @@
            name="showHistory">
      </command>
      <command
+           defaultHandler="org.unicase.workspace.edit.commands.ShowDashboardHandler"
+           id="org.unicase.workspace.edit.showDashboard"
+           name="showDashboard">
+     </command>
+     <command
            defaultHandler="org.unicase.workspace.edit.commands.CompareProjectsHandler"
            id="org.unicase.workspace.edit.compareProjects"
            name="compareProjects">
@@ -269,7 +274,22 @@
         <command
               commandId="org.unicase.workspace.edit.showHistory"
               icon="icons/historyview.png"
-              label="Show history"
+              label="Show History"
+              style="push">
+           <visibleWhen
+                 checkEnabled="false">
+              <iterate
+                    ifEmpty="false">
+                 <instanceof
+                       value="org.unicase.workspace.ProjectSpace">
+                 </instanceof>
+              </iterate>
+           </visibleWhen>
+        </command>
+        <command
+              commandId="org.unicase.workspace.edit.showDashboard"
+              icon="icons/dashboard.png"
+              label="Open Dashboard"
               style="push">
            <visibleWhen
                  checkEnabled="false">
@@ -613,6 +633,12 @@
               contextId="org.eclipse.ui.contexts.window"
               schemeId="org.eclipse.ui.defaultAcceleratorConfiguration"
               sequence="Alt+P">
+        </key>
+        <key
+              commandId="org.unicase.workspace.edit.showDashboard"
+              contextId="org.eclipse.ui.contexts.window"
+              schemeId="org.eclipse.ui.defaultAcceleratorConfiguration"
+              sequence="Alt+D">
         </key>
         <key
               commandId="org.unicase.ui.common.validate"
