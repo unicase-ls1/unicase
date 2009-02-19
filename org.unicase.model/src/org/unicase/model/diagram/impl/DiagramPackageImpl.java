@@ -44,6 +44,8 @@ import org.unicase.model.state.StatePackage;
 import org.unicase.model.state.impl.StatePackageImpl;
 import org.unicase.model.task.TaskPackage;
 import org.unicase.model.task.impl.TaskPackageImpl;
+import org.unicase.model.util.UtilPackage;
+import org.unicase.model.util.impl.UtilPackageImpl;
 
 /*
  * <!-- begin-user-doc --> An implementation of the model <b>Package</b>. <!-- end-user-doc -->
@@ -164,6 +166,9 @@ public class DiagramPackageImpl extends EPackageImpl implements DiagramPackage {
 		ProfilePackageImpl theProfilePackage = (ProfilePackageImpl) (EPackage.Registry.INSTANCE
 			.getEPackage(ProfilePackage.eNS_URI) instanceof ProfilePackageImpl ? EPackage.Registry.INSTANCE
 			.getEPackage(ProfilePackage.eNS_URI) : ProfilePackage.eINSTANCE);
+		UtilPackageImpl theUtilPackage = (UtilPackageImpl) (EPackage.Registry.INSTANCE.getEPackage(UtilPackage.eNS_URI) instanceof UtilPackageImpl ? EPackage.Registry.INSTANCE
+			.getEPackage(UtilPackage.eNS_URI)
+			: UtilPackage.eINSTANCE);
 
 		// Create package meta-data objects
 		theDiagramPackage.createPackageContents();
@@ -181,6 +186,7 @@ public class DiagramPackageImpl extends EPackageImpl implements DiagramPackage {
 		theStatePackage.createPackageContents();
 		theAttachmentPackage.createPackageContents();
 		theProfilePackage.createPackageContents();
+		theUtilPackage.createPackageContents();
 
 		// Initialize created meta-data
 		theDiagramPackage.initializePackageContents();
@@ -198,6 +204,7 @@ public class DiagramPackageImpl extends EPackageImpl implements DiagramPackage {
 		theStatePackage.initializePackageContents();
 		theAttachmentPackage.initializePackageContents();
 		theProfilePackage.initializePackageContents();
+		theUtilPackage.initializePackageContents();
 
 		// Mark meta-data to indicate it can't be changed
 		theDiagramPackage.freeze();

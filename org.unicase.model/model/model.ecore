@@ -1295,4 +1295,14 @@
       <eStructuralFeatures xsi:type="ecore:EAttribute" name="value" eType="ecore:EDataType http://www.eclipse.org/emf/2002/Ecore#//EString"/>
     </eClassifiers>
   </eSubpackages>
+  <eSubpackages name="util" nsURI="http://unicase.org/model/util" nsPrefix="org.unicase.model.util">
+    <eClassifiers xsi:type="ecore:EClass" name="ModelElementPath">
+      <eStructuralFeatures xsi:type="ecore:EReference" name="source" eType="#//ModelElementId"
+          containment="true"/>
+      <eStructuralFeatures xsi:type="ecore:EReference" name="target" eType="#//ModelElementId"
+          containment="true"/>
+      <eStructuralFeatures xsi:type="ecore:EReference" name="path" upperBound="-1"
+          eType="#//ModelElementId" containment="true"/>
+    </eClassifiers>
+  </eSubpackages>
 </ecore:EPackage>

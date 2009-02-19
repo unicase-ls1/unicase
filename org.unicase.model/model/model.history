@@ -6129,5 +6129,50 @@
       </changes>
     </changes>
   </releases>
-  <releases/>
+  <releases>
+    <changes xsi:type="history:CreateChild" target="model.ecore#/" element="model.ecore#//util"
+        referenceName="eSubpackages"/>
+    <changes xsi:type="history:Set" element="model.ecore#//util" featureName="nsPrefix"
+        dataValue="org.unicase.model.util"/>
+    <changes xsi:type="history:Set" element="model.ecore#//util" featureName="nsURI"
+        dataValue="http://unicase.org/model/util"/>
+    <changes xsi:type="history:Set" element="model.ecore#//util" featureName="name"
+        dataValue="util"/>
+    <changes xsi:type="history:CreateChild" target="model.ecore#//util" element="model.ecore#//util/ModelElementPath"
+        referenceName="eClassifiers"/>
+    <changes xsi:type="history:Set" element="model.ecore#//util/ModelElementPath"
+        featureName="name" dataValue="ModelElementPath"/>
+    <changes xsi:type="history:CreateChild" target="model.ecore#//util/ModelElementPath"
+        element="model.ecore#//util/ModelElementPath/source" referenceName="eStructuralFeatures"/>
+    <changes xsi:type="history:Set" element="model.ecore#//util/ModelElementPath/source"
+        featureName="eType" referenceValue="model.ecore#//ModelElementId"/>
+    <changes xsi:type="history:Set" element="model.ecore#//util/ModelElementPath/source"
+        featureName="containment" dataValue="true"/>
+    <changes xsi:type="history:Set" element="model.ecore#//util/ModelElementPath/source"
+        featureName="name" dataValue="target"/>
+    <changes xsi:type="history:CreateChild" target="model.ecore#//util/ModelElementPath"
+        element="model.ecore#//util/ModelElementPath/target" referenceName="eStructuralFeatures">
+      <changes xsi:type="history:Set" element="model.ecore#//util/ModelElementPath/target"
+          featureName="name" dataValue="target"/>
+      <changes xsi:type="history:Set" element="model.ecore#//util/ModelElementPath/target"
+          featureName="containment" dataValue="true"/>
+      <changes xsi:type="history:Set" element="model.ecore#//util/ModelElementPath/target"
+          featureName="eType" referenceValue="model.ecore#//ModelElementId"/>
+    </changes>
+    <changes xsi:type="history:Set" element="model.ecore#//util/ModelElementPath/source"
+        featureName="name" dataValue="source"/>
+    <changes xsi:type="history:CreateChild" target="model.ecore#//util/ModelElementPath"
+        element="model.ecore#//util/ModelElementPath/path" referenceName="eStructuralFeatures">
+      <changes xsi:type="history:Set" element="model.ecore#//util/ModelElementPath/path"
+          featureName="name" dataValue="target"/>
+      <changes xsi:type="history:Set" element="model.ecore#//util/ModelElementPath/path"
+          featureName="containment" dataValue="true"/>
+      <changes xsi:type="history:Set" element="model.ecore#//util/ModelElementPath/path"
+          featureName="eType" referenceValue="model.ecore#//ModelElementId"/>
+    </changes>
+    <changes xsi:type="history:Set" element="model.ecore#//util/ModelElementPath/path"
+        featureName="upperBound" dataValue="-1"/>
+    <changes xsi:type="history:Set" element="model.ecore#//util/ModelElementPath/path"
+        featureName="name" dataValue="path"/>
+  </releases>
 </history:History>

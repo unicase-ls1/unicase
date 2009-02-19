@@ -48,6 +48,8 @@ import org.unicase.model.state.StatePackage;
 import org.unicase.model.state.impl.StatePackageImpl;
 import org.unicase.model.task.TaskPackage;
 import org.unicase.model.task.impl.TaskPackageImpl;
+import org.unicase.model.util.UtilPackage;
+import org.unicase.model.util.impl.UtilPackageImpl;
 
 /*
  * <!-- begin-user-doc --> An implementation of the model <b>Package</b>. <!-- end-user-doc -->
@@ -198,6 +200,9 @@ public class ProfilePackageImpl extends EPackageImpl implements ProfilePackage {
 		AttachmentPackageImpl theAttachmentPackage = (AttachmentPackageImpl) (EPackage.Registry.INSTANCE
 			.getEPackage(AttachmentPackage.eNS_URI) instanceof AttachmentPackageImpl ? EPackage.Registry.INSTANCE
 			.getEPackage(AttachmentPackage.eNS_URI) : AttachmentPackage.eINSTANCE);
+		UtilPackageImpl theUtilPackage = (UtilPackageImpl) (EPackage.Registry.INSTANCE.getEPackage(UtilPackage.eNS_URI) instanceof UtilPackageImpl ? EPackage.Registry.INSTANCE
+			.getEPackage(UtilPackage.eNS_URI)
+			: UtilPackage.eINSTANCE);
 
 		// Create package meta-data objects
 		theProfilePackage.createPackageContents();
@@ -215,6 +220,7 @@ public class ProfilePackageImpl extends EPackageImpl implements ProfilePackage {
 		theMeetingPackage.createPackageContents();
 		theStatePackage.createPackageContents();
 		theAttachmentPackage.createPackageContents();
+		theUtilPackage.createPackageContents();
 
 		// Initialize created meta-data
 		theProfilePackage.initializePackageContents();
@@ -232,6 +238,7 @@ public class ProfilePackageImpl extends EPackageImpl implements ProfilePackage {
 		theMeetingPackage.initializePackageContents();
 		theStatePackage.initializePackageContents();
 		theAttachmentPackage.initializePackageContents();
+		theUtilPackage.initializePackageContents();
 
 		// Mark meta-data to indicate it can't be changed
 		theProfilePackage.freeze();
