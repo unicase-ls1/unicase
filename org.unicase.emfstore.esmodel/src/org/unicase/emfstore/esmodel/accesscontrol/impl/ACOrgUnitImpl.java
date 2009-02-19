@@ -123,9 +123,9 @@ public class ACOrgUnitImpl extends IdentifiableElementImpl implements ACOrgUnit 
 	 * @generated
 	 */
 	public EList<Role> getRoles() {
-		if (roles == null) {
-			roles = new EObjectContainmentEList.Resolving<Role>(Role.class, this,
-				AccesscontrolPackage.AC_ORG_UNIT__ROLES);
+		if (roles == null)
+		{
+			roles = new EObjectContainmentEList.Resolving<Role>(Role.class, this, AccesscontrolPackage.AC_ORG_UNIT__ROLES);
 		}
 		return roles;
 	}
@@ -180,9 +180,10 @@ public class ACOrgUnitImpl extends IdentifiableElementImpl implements ACOrgUnit 
 	 */
 	@Override
 	public NotificationChain eInverseRemove(InternalEObject otherEnd, int featureID, NotificationChain msgs) {
-		switch (featureID) {
-		case AccesscontrolPackage.AC_ORG_UNIT__ROLES:
-			return ((InternalEList<?>) getRoles()).basicRemove(otherEnd, msgs);
+		switch (featureID)
+		{
+			case AccesscontrolPackage.AC_ORG_UNIT__ROLES:
+				return ((InternalEList<?>)getRoles()).basicRemove(otherEnd, msgs);
 		}
 		return super.eInverseRemove(otherEnd, featureID, msgs);
 	}
@@ -203,8 +204,7 @@ public class ACOrgUnitImpl extends IdentifiableElementImpl implements ACOrgUnit 
 		String oldDescription = description;
 		description = newDescription;
 		if (eNotificationRequired())
-			eNotify(new ENotificationImpl(this, Notification.SET, AccesscontrolPackage.AC_ORG_UNIT__DESCRIPTION,
-				oldDescription, description));
+			eNotify(new ENotificationImpl(this, Notification.SET, AccesscontrolPackage.AC_ORG_UNIT__DESCRIPTION, oldDescription, description));
 	}
 
 	/**
@@ -213,13 +213,14 @@ public class ACOrgUnitImpl extends IdentifiableElementImpl implements ACOrgUnit 
 	 */
 	@Override
 	public Object eGet(int featureID, boolean resolve, boolean coreType) {
-		switch (featureID) {
-		case AccesscontrolPackage.AC_ORG_UNIT__NAME:
-			return getName();
-		case AccesscontrolPackage.AC_ORG_UNIT__ROLES:
-			return getRoles();
-		case AccesscontrolPackage.AC_ORG_UNIT__DESCRIPTION:
-			return getDescription();
+		switch (featureID)
+		{
+			case AccesscontrolPackage.AC_ORG_UNIT__NAME:
+				return getName();
+			case AccesscontrolPackage.AC_ORG_UNIT__ROLES:
+				return getRoles();
+			case AccesscontrolPackage.AC_ORG_UNIT__DESCRIPTION:
+				return getDescription();
 		}
 		return super.eGet(featureID, resolve, coreType);
 	}
@@ -231,17 +232,18 @@ public class ACOrgUnitImpl extends IdentifiableElementImpl implements ACOrgUnit 
 	@SuppressWarnings("unchecked")
 	@Override
 	public void eSet(int featureID, Object newValue) {
-		switch (featureID) {
-		case AccesscontrolPackage.AC_ORG_UNIT__NAME:
-			setName((String) newValue);
-			return;
-		case AccesscontrolPackage.AC_ORG_UNIT__ROLES:
-			getRoles().clear();
-			getRoles().addAll((Collection<? extends Role>) newValue);
-			return;
-		case AccesscontrolPackage.AC_ORG_UNIT__DESCRIPTION:
-			setDescription((String) newValue);
-			return;
+		switch (featureID)
+		{
+			case AccesscontrolPackage.AC_ORG_UNIT__NAME:
+				setName((String)newValue);
+				return;
+			case AccesscontrolPackage.AC_ORG_UNIT__ROLES:
+				getRoles().clear();
+				getRoles().addAll((Collection<? extends Role>)newValue);
+				return;
+			case AccesscontrolPackage.AC_ORG_UNIT__DESCRIPTION:
+				setDescription((String)newValue);
+				return;
 		}
 		super.eSet(featureID, newValue);
 	}
@@ -252,16 +254,17 @@ public class ACOrgUnitImpl extends IdentifiableElementImpl implements ACOrgUnit 
 	 */
 	@Override
 	public void eUnset(int featureID) {
-		switch (featureID) {
-		case AccesscontrolPackage.AC_ORG_UNIT__NAME:
-			setName(NAME_EDEFAULT);
-			return;
-		case AccesscontrolPackage.AC_ORG_UNIT__ROLES:
-			getRoles().clear();
-			return;
-		case AccesscontrolPackage.AC_ORG_UNIT__DESCRIPTION:
-			setDescription(DESCRIPTION_EDEFAULT);
-			return;
+		switch (featureID)
+		{
+			case AccesscontrolPackage.AC_ORG_UNIT__NAME:
+				setName(NAME_EDEFAULT);
+				return;
+			case AccesscontrolPackage.AC_ORG_UNIT__ROLES:
+				getRoles().clear();
+				return;
+			case AccesscontrolPackage.AC_ORG_UNIT__DESCRIPTION:
+				setDescription(DESCRIPTION_EDEFAULT);
+				return;
 		}
 		super.eUnset(featureID);
 	}
@@ -272,13 +275,14 @@ public class ACOrgUnitImpl extends IdentifiableElementImpl implements ACOrgUnit 
 	 */
 	@Override
 	public boolean eIsSet(int featureID) {
-		switch (featureID) {
-		case AccesscontrolPackage.AC_ORG_UNIT__NAME:
-			return NAME_EDEFAULT == null ? name != null : !NAME_EDEFAULT.equals(name);
-		case AccesscontrolPackage.AC_ORG_UNIT__ROLES:
-			return roles != null && !roles.isEmpty();
-		case AccesscontrolPackage.AC_ORG_UNIT__DESCRIPTION:
-			return DESCRIPTION_EDEFAULT == null ? description != null : !DESCRIPTION_EDEFAULT.equals(description);
+		switch (featureID)
+		{
+			case AccesscontrolPackage.AC_ORG_UNIT__NAME:
+				return NAME_EDEFAULT == null ? name != null : !NAME_EDEFAULT.equals(name);
+			case AccesscontrolPackage.AC_ORG_UNIT__ROLES:
+				return roles != null && !roles.isEmpty();
+			case AccesscontrolPackage.AC_ORG_UNIT__DESCRIPTION:
+				return DESCRIPTION_EDEFAULT == null ? description != null : !DESCRIPTION_EDEFAULT.equals(description);
 		}
 		return super.eIsSet(featureID);
 	}
@@ -289,8 +293,7 @@ public class ACOrgUnitImpl extends IdentifiableElementImpl implements ACOrgUnit 
 	 */
 	@Override
 	public String toString() {
-		if (eIsProxy())
-			return super.toString();
+		if (eIsProxy()) return super.toString();
 
 		StringBuffer result = new StringBuffer(super.toString());
 		result.append(" (name: ");

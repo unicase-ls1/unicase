@@ -43,7 +43,8 @@ public class ACGroupItemProvider extends ACOrgUnitItemProvider implements IEditi
 	 */
 	@Override
 	public List<IItemPropertyDescriptor> getPropertyDescriptors(Object object) {
-		if (itemPropertyDescriptors == null) {
+		if (itemPropertyDescriptors == null)
+		{
 			super.getPropertyDescriptors(object);
 
 			addMembersPropertyDescriptor(object);
@@ -57,10 +58,19 @@ public class ACGroupItemProvider extends ACOrgUnitItemProvider implements IEditi
 	 * @generated
 	 */
 	protected void addMembersPropertyDescriptor(Object object) {
-		itemPropertyDescriptors.add(createItemPropertyDescriptor(((ComposeableAdapterFactory) adapterFactory)
-			.getRootAdapterFactory(), getResourceLocator(), getString("_UI_ACGroup_members_feature"), getString(
-			"_UI_PropertyDescriptor_description", "_UI_ACGroup_members_feature", "_UI_ACGroup_type"),
-			AccesscontrolPackage.Literals.AC_GROUP__MEMBERS, true, false, true, null, null, null));
+		itemPropertyDescriptors.add
+			(createItemPropertyDescriptor
+				(((ComposeableAdapterFactory)adapterFactory).getRootAdapterFactory(),
+				 getResourceLocator(),
+				 getString("_UI_ACGroup_members_feature"),
+				 getString("_UI_PropertyDescriptor_description", "_UI_ACGroup_members_feature", "_UI_ACGroup_type"),
+				 AccesscontrolPackage.Literals.AC_GROUP__MEMBERS,
+				 true,
+				 false,
+				 true,
+				 null,
+				 null,
+				 null));
 	}
 
 	/**
@@ -80,9 +90,10 @@ public class ACGroupItemProvider extends ACOrgUnitItemProvider implements IEditi
 	 */
 	@Override
 	public String getText(Object object) {
-		String label = ((ACGroup) object).getName();
-		return label == null || label.length() == 0 ? getString("_UI_ACGroup_type") : getString("_UI_ACGroup_type")
-			+ " " + label;
+		String label = ((ACGroup)object).getName();
+		return label == null || label.length() == 0 ?
+			getString("_UI_ACGroup_type") :
+			getString("_UI_ACGroup_type") + " " + label;
 	}
 
 	/**

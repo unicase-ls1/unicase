@@ -23,6 +23,8 @@ import org.unicase.emfstore.esmodel.accesscontrol.roles.WriterRole;
 import org.unicase.emfstore.esmodel.impl.EsmodelPackageImpl;
 import org.unicase.emfstore.esmodel.notification.NotificationPackage;
 import org.unicase.emfstore.esmodel.notification.impl.NotificationPackageImpl;
+import org.unicase.emfstore.esmodel.url.UrlPackage;
+import org.unicase.emfstore.esmodel.url.impl.UrlPackageImpl;
 import org.unicase.emfstore.esmodel.versioning.VersioningPackage;
 import org.unicase.emfstore.esmodel.versioning.events.EventsPackage;
 import org.unicase.emfstore.esmodel.versioning.events.impl.EventsPackageImpl;
@@ -112,13 +114,10 @@ public class RolesPackageImpl extends EPackageImpl implements RolesPackage {
 	 * @generated
 	 */
 	public static RolesPackage init() {
-		if (isInited)
-			return (RolesPackage) EPackage.Registry.INSTANCE.getEPackage(RolesPackage.eNS_URI);
+		if (isInited) return (RolesPackage)EPackage.Registry.INSTANCE.getEPackage(RolesPackage.eNS_URI);
 
 		// Obtain or create and register package
-		RolesPackageImpl theRolesPackage = (RolesPackageImpl) (EPackage.Registry.INSTANCE.getEPackage(eNS_URI) instanceof RolesPackageImpl ? EPackage.Registry.INSTANCE
-			.getEPackage(eNS_URI)
-			: new RolesPackageImpl());
+		RolesPackageImpl theRolesPackage = (RolesPackageImpl)(EPackage.Registry.INSTANCE.getEPackage(eNS_URI) instanceof RolesPackageImpl ? EPackage.Registry.INSTANCE.getEPackage(eNS_URI) : new RolesPackageImpl());
 
 		isInited = true;
 
@@ -126,24 +125,13 @@ public class RolesPackageImpl extends EPackageImpl implements RolesPackage {
 		ModelPackage.eINSTANCE.eClass();
 
 		// Obtain or create and register interdependencies
-		EsmodelPackageImpl theEsmodelPackage = (EsmodelPackageImpl) (EPackage.Registry.INSTANCE
-			.getEPackage(EsmodelPackage.eNS_URI) instanceof EsmodelPackageImpl ? EPackage.Registry.INSTANCE
-			.getEPackage(EsmodelPackage.eNS_URI) : EsmodelPackage.eINSTANCE);
-		VersioningPackageImpl theVersioningPackage = (VersioningPackageImpl) (EPackage.Registry.INSTANCE
-			.getEPackage(VersioningPackage.eNS_URI) instanceof VersioningPackageImpl ? EPackage.Registry.INSTANCE
-			.getEPackage(VersioningPackage.eNS_URI) : VersioningPackage.eINSTANCE);
-		OperationsPackageImpl theOperationsPackage = (OperationsPackageImpl) (EPackage.Registry.INSTANCE
-			.getEPackage(OperationsPackage.eNS_URI) instanceof OperationsPackageImpl ? EPackage.Registry.INSTANCE
-			.getEPackage(OperationsPackage.eNS_URI) : OperationsPackage.eINSTANCE);
-		EventsPackageImpl theEventsPackage = (EventsPackageImpl) (EPackage.Registry.INSTANCE
-			.getEPackage(EventsPackage.eNS_URI) instanceof EventsPackageImpl ? EPackage.Registry.INSTANCE
-			.getEPackage(EventsPackage.eNS_URI) : EventsPackage.eINSTANCE);
-		AccesscontrolPackageImpl theAccesscontrolPackage = (AccesscontrolPackageImpl) (EPackage.Registry.INSTANCE
-			.getEPackage(AccesscontrolPackage.eNS_URI) instanceof AccesscontrolPackageImpl ? EPackage.Registry.INSTANCE
-			.getEPackage(AccesscontrolPackage.eNS_URI) : AccesscontrolPackage.eINSTANCE);
-		NotificationPackageImpl theNotificationPackage = (NotificationPackageImpl) (EPackage.Registry.INSTANCE
-			.getEPackage(NotificationPackage.eNS_URI) instanceof NotificationPackageImpl ? EPackage.Registry.INSTANCE
-			.getEPackage(NotificationPackage.eNS_URI) : NotificationPackage.eINSTANCE);
+		EsmodelPackageImpl theEsmodelPackage = (EsmodelPackageImpl)(EPackage.Registry.INSTANCE.getEPackage(EsmodelPackage.eNS_URI) instanceof EsmodelPackageImpl ? EPackage.Registry.INSTANCE.getEPackage(EsmodelPackage.eNS_URI) : EsmodelPackage.eINSTANCE);
+		VersioningPackageImpl theVersioningPackage = (VersioningPackageImpl)(EPackage.Registry.INSTANCE.getEPackage(VersioningPackage.eNS_URI) instanceof VersioningPackageImpl ? EPackage.Registry.INSTANCE.getEPackage(VersioningPackage.eNS_URI) : VersioningPackage.eINSTANCE);
+		OperationsPackageImpl theOperationsPackage = (OperationsPackageImpl)(EPackage.Registry.INSTANCE.getEPackage(OperationsPackage.eNS_URI) instanceof OperationsPackageImpl ? EPackage.Registry.INSTANCE.getEPackage(OperationsPackage.eNS_URI) : OperationsPackage.eINSTANCE);
+		EventsPackageImpl theEventsPackage = (EventsPackageImpl)(EPackage.Registry.INSTANCE.getEPackage(EventsPackage.eNS_URI) instanceof EventsPackageImpl ? EPackage.Registry.INSTANCE.getEPackage(EventsPackage.eNS_URI) : EventsPackage.eINSTANCE);
+		AccesscontrolPackageImpl theAccesscontrolPackage = (AccesscontrolPackageImpl)(EPackage.Registry.INSTANCE.getEPackage(AccesscontrolPackage.eNS_URI) instanceof AccesscontrolPackageImpl ? EPackage.Registry.INSTANCE.getEPackage(AccesscontrolPackage.eNS_URI) : AccesscontrolPackage.eINSTANCE);
+		NotificationPackageImpl theNotificationPackage = (NotificationPackageImpl)(EPackage.Registry.INSTANCE.getEPackage(NotificationPackage.eNS_URI) instanceof NotificationPackageImpl ? EPackage.Registry.INSTANCE.getEPackage(NotificationPackage.eNS_URI) : NotificationPackage.eINSTANCE);
+		UrlPackageImpl theUrlPackage = (UrlPackageImpl)(EPackage.Registry.INSTANCE.getEPackage(UrlPackage.eNS_URI) instanceof UrlPackageImpl ? EPackage.Registry.INSTANCE.getEPackage(UrlPackage.eNS_URI) : UrlPackage.eINSTANCE);
 
 		// Create package meta-data objects
 		theRolesPackage.createPackageContents();
@@ -153,6 +141,7 @@ public class RolesPackageImpl extends EPackageImpl implements RolesPackage {
 		theEventsPackage.createPackageContents();
 		theAccesscontrolPackage.createPackageContents();
 		theNotificationPackage.createPackageContents();
+		theUrlPackage.createPackageContents();
 
 		// Initialize created meta-data
 		theRolesPackage.initializePackageContents();
@@ -162,6 +151,7 @@ public class RolesPackageImpl extends EPackageImpl implements RolesPackage {
 		theEventsPackage.initializePackageContents();
 		theAccesscontrolPackage.initializePackageContents();
 		theNotificationPackage.initializePackageContents();
+		theUrlPackage.initializePackageContents();
 
 		// Mark meta-data to indicate it can't be changed
 		theRolesPackage.freeze();
@@ -182,7 +172,7 @@ public class RolesPackageImpl extends EPackageImpl implements RolesPackage {
 	 * @generated
 	 */
 	public EReference getRole_Projects() {
-		return (EReference) roleEClass.getEStructuralFeatures().get(0);
+		return (EReference)roleEClass.getEStructuralFeatures().get(0);
 	}
 
 	/**
@@ -222,7 +212,7 @@ public class RolesPackageImpl extends EPackageImpl implements RolesPackage {
 	 * @generated
 	 */
 	public RolesFactory getRolesFactory() {
-		return (RolesFactory) getEFactoryInstance();
+		return (RolesFactory)getEFactoryInstance();
 	}
 
 	/**
@@ -238,8 +228,7 @@ public class RolesPackageImpl extends EPackageImpl implements RolesPackage {
 	 * @generated
 	 */
 	public void createPackageContents() {
-		if (isCreated)
-			return;
+		if (isCreated) return;
 		isCreated = true;
 
 		// Create classes and their features
@@ -268,8 +257,7 @@ public class RolesPackageImpl extends EPackageImpl implements RolesPackage {
 	 * @generated
 	 */
 	public void initializePackageContents() {
-		if (isInitialized)
-			return;
+		if (isInitialized) return;
 		isInitialized = true;
 
 		// Initialize package
@@ -278,9 +266,8 @@ public class RolesPackageImpl extends EPackageImpl implements RolesPackage {
 		setNsURI(eNS_URI);
 
 		// Obtain other dependent packages
-		EsmodelPackage theEsmodelPackage = (EsmodelPackage) EPackage.Registry.INSTANCE
-			.getEPackage(EsmodelPackage.eNS_URI);
-		ModelPackage theModelPackage = (ModelPackage) EPackage.Registry.INSTANCE.getEPackage(ModelPackage.eNS_URI);
+		EsmodelPackage theEsmodelPackage = (EsmodelPackage)EPackage.Registry.INSTANCE.getEPackage(EsmodelPackage.eNS_URI);
+		ModelPackage theModelPackage = (ModelPackage)EPackage.Registry.INSTANCE.getEPackage(ModelPackage.eNS_URI);
 
 		// Create type parameters
 
@@ -294,13 +281,10 @@ public class RolesPackageImpl extends EPackageImpl implements RolesPackage {
 
 		// Initialize classes and features; add operations and parameters
 		initEClass(roleEClass, Role.class, "Role", IS_ABSTRACT, !IS_INTERFACE, IS_GENERATED_INSTANCE_CLASS);
-		initEReference(getRole_Projects(), theEsmodelPackage.getProjectId(), null, "projects", null, 0, -1, Role.class,
-			!IS_TRANSIENT, !IS_VOLATILE, IS_CHANGEABLE, IS_COMPOSITE, IS_RESOLVE_PROXIES, !IS_UNSETTABLE, IS_UNIQUE,
-			!IS_DERIVED, IS_ORDERED);
+		initEReference(getRole_Projects(), theEsmodelPackage.getProjectId(), null, "projects", null, 0, -1, Role.class, !IS_TRANSIENT, !IS_VOLATILE, IS_CHANGEABLE, IS_COMPOSITE, IS_RESOLVE_PROXIES, !IS_UNSETTABLE, IS_UNIQUE, !IS_DERIVED, IS_ORDERED);
 		getRole_Projects().getEKeys().add(theModelPackage.getUniqueIdentifier_Id());
 
-		EOperation op = addEOperation(roleEClass, ecorePackage.getEBoolean(), "canAdministrate", 0, 1, IS_UNIQUE,
-			IS_ORDERED);
+		EOperation op = addEOperation(roleEClass, ecorePackage.getEBoolean(), "canAdministrate", 0, 1, IS_UNIQUE, IS_ORDERED);
 		addEParameter(op, theEsmodelPackage.getProjectId(), "projectId", 0, 1, IS_UNIQUE, IS_ORDERED);
 
 		op = addEOperation(roleEClass, ecorePackage.getEBoolean(), "canCreate", 0, 1, IS_UNIQUE, IS_ORDERED);
@@ -319,17 +303,13 @@ public class RolesPackageImpl extends EPackageImpl implements RolesPackage {
 		addEParameter(op, theEsmodelPackage.getProjectId(), "projectId", 0, 1, IS_UNIQUE, IS_ORDERED);
 		addEParameter(op, theModelPackage.getModelElement(), "modelElement", 0, 1, IS_UNIQUE, IS_ORDERED);
 
-		initEClass(readerRoleEClass, ReaderRole.class, "ReaderRole", !IS_ABSTRACT, !IS_INTERFACE,
-			IS_GENERATED_INSTANCE_CLASS);
+		initEClass(readerRoleEClass, ReaderRole.class, "ReaderRole", !IS_ABSTRACT, !IS_INTERFACE, IS_GENERATED_INSTANCE_CLASS);
 
-		initEClass(writerRoleEClass, WriterRole.class, "WriterRole", !IS_ABSTRACT, !IS_INTERFACE,
-			IS_GENERATED_INSTANCE_CLASS);
+		initEClass(writerRoleEClass, WriterRole.class, "WriterRole", !IS_ABSTRACT, !IS_INTERFACE, IS_GENERATED_INSTANCE_CLASS);
 
-		initEClass(projectAdminRoleEClass, ProjectAdminRole.class, "ProjectAdminRole", !IS_ABSTRACT, !IS_INTERFACE,
-			IS_GENERATED_INSTANCE_CLASS);
+		initEClass(projectAdminRoleEClass, ProjectAdminRole.class, "ProjectAdminRole", !IS_ABSTRACT, !IS_INTERFACE, IS_GENERATED_INSTANCE_CLASS);
 
-		initEClass(serverAdminEClass, ServerAdmin.class, "ServerAdmin", !IS_ABSTRACT, !IS_INTERFACE,
-			IS_GENERATED_INSTANCE_CLASS);
+		initEClass(serverAdminEClass, ServerAdmin.class, "ServerAdmin", !IS_ABSTRACT, !IS_INTERFACE, IS_GENERATED_INSTANCE_CLASS);
 	}
 
 } // RolesPackageImpl

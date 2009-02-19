@@ -85,13 +85,14 @@ public class TraceEventImpl extends EventImpl implements TraceEvent {
 	 * @generated
 	 */
 	public ModelElementId getSourceElement() {
-		if (sourceElement != null && sourceElement.eIsProxy()) {
-			InternalEObject oldSourceElement = (InternalEObject) sourceElement;
-			sourceElement = (ModelElementId) eResolveProxy(oldSourceElement);
-			if (sourceElement != oldSourceElement) {
+		if (sourceElement != null && sourceElement.eIsProxy())
+		{
+			InternalEObject oldSourceElement = (InternalEObject)sourceElement;
+			sourceElement = (ModelElementId)eResolveProxy(oldSourceElement);
+			if (sourceElement != oldSourceElement)
+			{
 				if (eNotificationRequired())
-					eNotify(new ENotificationImpl(this, Notification.RESOLVE,
-						EventsPackage.TRACE_EVENT__SOURCE_ELEMENT, oldSourceElement, sourceElement));
+					eNotify(new ENotificationImpl(this, Notification.RESOLVE, EventsPackage.TRACE_EVENT__SOURCE_ELEMENT, oldSourceElement, sourceElement));
 			}
 		}
 		return sourceElement;
@@ -113,8 +114,7 @@ public class TraceEventImpl extends EventImpl implements TraceEvent {
 		ModelElementId oldSourceElement = sourceElement;
 		sourceElement = newSourceElement;
 		if (eNotificationRequired())
-			eNotify(new ENotificationImpl(this, Notification.SET, EventsPackage.TRACE_EVENT__SOURCE_ELEMENT,
-				oldSourceElement, sourceElement));
+			eNotify(new ENotificationImpl(this, Notification.SET, EventsPackage.TRACE_EVENT__SOURCE_ELEMENT, oldSourceElement, sourceElement));
 	}
 
 	/**
@@ -122,13 +122,14 @@ public class TraceEventImpl extends EventImpl implements TraceEvent {
 	 * @generated
 	 */
 	public ModelElementId getTargetElement() {
-		if (targetElement != null && targetElement.eIsProxy()) {
-			InternalEObject oldTargetElement = (InternalEObject) targetElement;
-			targetElement = (ModelElementId) eResolveProxy(oldTargetElement);
-			if (targetElement != oldTargetElement) {
+		if (targetElement != null && targetElement.eIsProxy())
+		{
+			InternalEObject oldTargetElement = (InternalEObject)targetElement;
+			targetElement = (ModelElementId)eResolveProxy(oldTargetElement);
+			if (targetElement != oldTargetElement)
+			{
 				if (eNotificationRequired())
-					eNotify(new ENotificationImpl(this, Notification.RESOLVE,
-						EventsPackage.TRACE_EVENT__TARGET_ELEMENT, oldTargetElement, targetElement));
+					eNotify(new ENotificationImpl(this, Notification.RESOLVE, EventsPackage.TRACE_EVENT__TARGET_ELEMENT, oldTargetElement, targetElement));
 			}
 		}
 		return targetElement;
@@ -150,8 +151,7 @@ public class TraceEventImpl extends EventImpl implements TraceEvent {
 		ModelElementId oldTargetElement = targetElement;
 		targetElement = newTargetElement;
 		if (eNotificationRequired())
-			eNotify(new ENotificationImpl(this, Notification.SET, EventsPackage.TRACE_EVENT__TARGET_ELEMENT,
-				oldTargetElement, targetElement));
+			eNotify(new ENotificationImpl(this, Notification.SET, EventsPackage.TRACE_EVENT__TARGET_ELEMENT, oldTargetElement, targetElement));
 	}
 
 	/**
@@ -170,8 +170,7 @@ public class TraceEventImpl extends EventImpl implements TraceEvent {
 		String oldFeatureName = featureName;
 		featureName = newFeatureName;
 		if (eNotificationRequired())
-			eNotify(new ENotificationImpl(this, Notification.SET, EventsPackage.TRACE_EVENT__FEATURE_NAME,
-				oldFeatureName, featureName));
+			eNotify(new ENotificationImpl(this, Notification.SET, EventsPackage.TRACE_EVENT__FEATURE_NAME, oldFeatureName, featureName));
 	}
 
 	/**
@@ -180,17 +179,16 @@ public class TraceEventImpl extends EventImpl implements TraceEvent {
 	 */
 	@Override
 	public Object eGet(int featureID, boolean resolve, boolean coreType) {
-		switch (featureID) {
-		case EventsPackage.TRACE_EVENT__SOURCE_ELEMENT:
-			if (resolve)
-				return getSourceElement();
-			return basicGetSourceElement();
-		case EventsPackage.TRACE_EVENT__TARGET_ELEMENT:
-			if (resolve)
-				return getTargetElement();
-			return basicGetTargetElement();
-		case EventsPackage.TRACE_EVENT__FEATURE_NAME:
-			return getFeatureName();
+		switch (featureID)
+		{
+			case EventsPackage.TRACE_EVENT__SOURCE_ELEMENT:
+				if (resolve) return getSourceElement();
+				return basicGetSourceElement();
+			case EventsPackage.TRACE_EVENT__TARGET_ELEMENT:
+				if (resolve) return getTargetElement();
+				return basicGetTargetElement();
+			case EventsPackage.TRACE_EVENT__FEATURE_NAME:
+				return getFeatureName();
 		}
 		return super.eGet(featureID, resolve, coreType);
 	}
@@ -201,16 +199,17 @@ public class TraceEventImpl extends EventImpl implements TraceEvent {
 	 */
 	@Override
 	public void eSet(int featureID, Object newValue) {
-		switch (featureID) {
-		case EventsPackage.TRACE_EVENT__SOURCE_ELEMENT:
-			setSourceElement((ModelElementId) newValue);
-			return;
-		case EventsPackage.TRACE_EVENT__TARGET_ELEMENT:
-			setTargetElement((ModelElementId) newValue);
-			return;
-		case EventsPackage.TRACE_EVENT__FEATURE_NAME:
-			setFeatureName((String) newValue);
-			return;
+		switch (featureID)
+		{
+			case EventsPackage.TRACE_EVENT__SOURCE_ELEMENT:
+				setSourceElement((ModelElementId)newValue);
+				return;
+			case EventsPackage.TRACE_EVENT__TARGET_ELEMENT:
+				setTargetElement((ModelElementId)newValue);
+				return;
+			case EventsPackage.TRACE_EVENT__FEATURE_NAME:
+				setFeatureName((String)newValue);
+				return;
 		}
 		super.eSet(featureID, newValue);
 	}
@@ -221,16 +220,17 @@ public class TraceEventImpl extends EventImpl implements TraceEvent {
 	 */
 	@Override
 	public void eUnset(int featureID) {
-		switch (featureID) {
-		case EventsPackage.TRACE_EVENT__SOURCE_ELEMENT:
-			setSourceElement((ModelElementId) null);
-			return;
-		case EventsPackage.TRACE_EVENT__TARGET_ELEMENT:
-			setTargetElement((ModelElementId) null);
-			return;
-		case EventsPackage.TRACE_EVENT__FEATURE_NAME:
-			setFeatureName(FEATURE_NAME_EDEFAULT);
-			return;
+		switch (featureID)
+		{
+			case EventsPackage.TRACE_EVENT__SOURCE_ELEMENT:
+				setSourceElement((ModelElementId)null);
+				return;
+			case EventsPackage.TRACE_EVENT__TARGET_ELEMENT:
+				setTargetElement((ModelElementId)null);
+				return;
+			case EventsPackage.TRACE_EVENT__FEATURE_NAME:
+				setFeatureName(FEATURE_NAME_EDEFAULT);
+				return;
 		}
 		super.eUnset(featureID);
 	}
@@ -241,13 +241,14 @@ public class TraceEventImpl extends EventImpl implements TraceEvent {
 	 */
 	@Override
 	public boolean eIsSet(int featureID) {
-		switch (featureID) {
-		case EventsPackage.TRACE_EVENT__SOURCE_ELEMENT:
-			return sourceElement != null;
-		case EventsPackage.TRACE_EVENT__TARGET_ELEMENT:
-			return targetElement != null;
-		case EventsPackage.TRACE_EVENT__FEATURE_NAME:
-			return FEATURE_NAME_EDEFAULT == null ? featureName != null : !FEATURE_NAME_EDEFAULT.equals(featureName);
+		switch (featureID)
+		{
+			case EventsPackage.TRACE_EVENT__SOURCE_ELEMENT:
+				return sourceElement != null;
+			case EventsPackage.TRACE_EVENT__TARGET_ELEMENT:
+				return targetElement != null;
+			case EventsPackage.TRACE_EVENT__FEATURE_NAME:
+				return FEATURE_NAME_EDEFAULT == null ? featureName != null : !FEATURE_NAME_EDEFAULT.equals(featureName);
 		}
 		return super.eIsSet(featureID);
 	}
@@ -258,8 +259,7 @@ public class TraceEventImpl extends EventImpl implements TraceEvent {
 	 */
 	@Override
 	public String toString() {
-		if (eIsProxy())
-			return super.toString();
+		if (eIsProxy()) return super.toString();
 
 		StringBuffer result = new StringBuffer(super.toString());
 		result.append(" (featureName: ");

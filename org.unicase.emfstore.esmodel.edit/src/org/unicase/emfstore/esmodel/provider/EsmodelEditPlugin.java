@@ -36,8 +36,13 @@ public final class EsmodelEditPlugin extends EMFPlugin {
 	 * @generated
 	 */
 	public EsmodelEditPlugin() {
-		super(
-			new ResourceLocator[] { EcoreEditPlugin.INSTANCE, ModelEditPlugin.INSTANCE, NotationEditPlugin.INSTANCE, });
+		super
+		  (new ResourceLocator [] 
+		   {
+		     EcoreEditPlugin.INSTANCE,
+		     ModelEditPlugin.INSTANCE,
+		     NotationEditPlugin.INSTANCE,
+		   });
 	}
 
 	/**

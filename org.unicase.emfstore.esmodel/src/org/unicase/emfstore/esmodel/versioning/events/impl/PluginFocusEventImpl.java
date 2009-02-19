@@ -95,8 +95,7 @@ public class PluginFocusEventImpl extends EventImpl implements PluginFocusEvent 
 		String oldPluginId = pluginId;
 		pluginId = newPluginId;
 		if (eNotificationRequired())
-			eNotify(new ENotificationImpl(this, Notification.SET, EventsPackage.PLUGIN_FOCUS_EVENT__PLUGIN_ID,
-				oldPluginId, pluginId));
+			eNotify(new ENotificationImpl(this, Notification.SET, EventsPackage.PLUGIN_FOCUS_EVENT__PLUGIN_ID, oldPluginId, pluginId));
 	}
 
 	/**
@@ -115,8 +114,7 @@ public class PluginFocusEventImpl extends EventImpl implements PluginFocusEvent 
 		Date oldStartDate = startDate;
 		startDate = newStartDate;
 		if (eNotificationRequired())
-			eNotify(new ENotificationImpl(this, Notification.SET, EventsPackage.PLUGIN_FOCUS_EVENT__START_DATE,
-				oldStartDate, startDate));
+			eNotify(new ENotificationImpl(this, Notification.SET, EventsPackage.PLUGIN_FOCUS_EVENT__START_DATE, oldStartDate, startDate));
 	}
 
 	/**
@@ -125,11 +123,12 @@ public class PluginFocusEventImpl extends EventImpl implements PluginFocusEvent 
 	 */
 	@Override
 	public Object eGet(int featureID, boolean resolve, boolean coreType) {
-		switch (featureID) {
-		case EventsPackage.PLUGIN_FOCUS_EVENT__PLUGIN_ID:
-			return getPluginId();
-		case EventsPackage.PLUGIN_FOCUS_EVENT__START_DATE:
-			return getStartDate();
+		switch (featureID)
+		{
+			case EventsPackage.PLUGIN_FOCUS_EVENT__PLUGIN_ID:
+				return getPluginId();
+			case EventsPackage.PLUGIN_FOCUS_EVENT__START_DATE:
+				return getStartDate();
 		}
 		return super.eGet(featureID, resolve, coreType);
 	}
@@ -140,13 +139,14 @@ public class PluginFocusEventImpl extends EventImpl implements PluginFocusEvent 
 	 */
 	@Override
 	public void eSet(int featureID, Object newValue) {
-		switch (featureID) {
-		case EventsPackage.PLUGIN_FOCUS_EVENT__PLUGIN_ID:
-			setPluginId((String) newValue);
-			return;
-		case EventsPackage.PLUGIN_FOCUS_EVENT__START_DATE:
-			setStartDate((Date) newValue);
-			return;
+		switch (featureID)
+		{
+			case EventsPackage.PLUGIN_FOCUS_EVENT__PLUGIN_ID:
+				setPluginId((String)newValue);
+				return;
+			case EventsPackage.PLUGIN_FOCUS_EVENT__START_DATE:
+				setStartDate((Date)newValue);
+				return;
 		}
 		super.eSet(featureID, newValue);
 	}
@@ -157,13 +157,14 @@ public class PluginFocusEventImpl extends EventImpl implements PluginFocusEvent 
 	 */
 	@Override
 	public void eUnset(int featureID) {
-		switch (featureID) {
-		case EventsPackage.PLUGIN_FOCUS_EVENT__PLUGIN_ID:
-			setPluginId(PLUGIN_ID_EDEFAULT);
-			return;
-		case EventsPackage.PLUGIN_FOCUS_EVENT__START_DATE:
-			setStartDate(START_DATE_EDEFAULT);
-			return;
+		switch (featureID)
+		{
+			case EventsPackage.PLUGIN_FOCUS_EVENT__PLUGIN_ID:
+				setPluginId(PLUGIN_ID_EDEFAULT);
+				return;
+			case EventsPackage.PLUGIN_FOCUS_EVENT__START_DATE:
+				setStartDate(START_DATE_EDEFAULT);
+				return;
 		}
 		super.eUnset(featureID);
 	}
@@ -174,11 +175,12 @@ public class PluginFocusEventImpl extends EventImpl implements PluginFocusEvent 
 	 */
 	@Override
 	public boolean eIsSet(int featureID) {
-		switch (featureID) {
-		case EventsPackage.PLUGIN_FOCUS_EVENT__PLUGIN_ID:
-			return PLUGIN_ID_EDEFAULT == null ? pluginId != null : !PLUGIN_ID_EDEFAULT.equals(pluginId);
-		case EventsPackage.PLUGIN_FOCUS_EVENT__START_DATE:
-			return START_DATE_EDEFAULT == null ? startDate != null : !START_DATE_EDEFAULT.equals(startDate);
+		switch (featureID)
+		{
+			case EventsPackage.PLUGIN_FOCUS_EVENT__PLUGIN_ID:
+				return PLUGIN_ID_EDEFAULT == null ? pluginId != null : !PLUGIN_ID_EDEFAULT.equals(pluginId);
+			case EventsPackage.PLUGIN_FOCUS_EVENT__START_DATE:
+				return START_DATE_EDEFAULT == null ? startDate != null : !START_DATE_EDEFAULT.equals(startDate);
 		}
 		return super.eIsSet(featureID);
 	}
@@ -189,8 +191,7 @@ public class PluginFocusEventImpl extends EventImpl implements PluginFocusEvent 
 	 */
 	@Override
 	public String toString() {
-		if (eIsProxy())
-			return super.toString();
+		if (eIsProxy()) return super.toString();
 
 		StringBuffer result = new StringBuffer(super.toString());
 		result.append(" (pluginId: ");

@@ -51,7 +51,8 @@ public class ChangePackageItemProvider extends ItemProviderAdapter implements IE
 	 */
 	@Override
 	public List<IItemPropertyDescriptor> getPropertyDescriptors(Object object) {
-		if (itemPropertyDescriptors == null) {
+		if (itemPropertyDescriptors == null)
+		{
 			super.getPropertyDescriptors(object);
 
 		}
@@ -68,7 +69,8 @@ public class ChangePackageItemProvider extends ItemProviderAdapter implements IE
 	 */
 	@Override
 	public Collection<? extends EStructuralFeature> getChildrenFeatures(Object object) {
-		if (childrenFeatures == null) {
+		if (childrenFeatures == null)
+		{
 			super.getChildrenFeatures(object);
 			childrenFeatures.add(VersioningPackage.Literals.CHANGE_PACKAGE__OPERATIONS);
 			childrenFeatures.add(VersioningPackage.Literals.CHANGE_PACKAGE__EVENTS);
@@ -121,13 +123,14 @@ public class ChangePackageItemProvider extends ItemProviderAdapter implements IE
 	public void notifyChanged(Notification notification) {
 		updateChildren(notification);
 
-		switch (notification.getFeatureID(ChangePackage.class)) {
-		case VersioningPackage.CHANGE_PACKAGE__OPERATIONS:
-		case VersioningPackage.CHANGE_PACKAGE__EVENTS:
-		case VersioningPackage.CHANGE_PACKAGE__LOG_MESSAGE:
-		case VersioningPackage.CHANGE_PACKAGE__NOTIFICATIONS:
-			fireNotifyChanged(new ViewerNotification(notification, notification.getNotifier(), true, false));
-			return;
+		switch (notification.getFeatureID(ChangePackage.class))
+		{
+			case VersioningPackage.CHANGE_PACKAGE__OPERATIONS:
+			case VersioningPackage.CHANGE_PACKAGE__EVENTS:
+			case VersioningPackage.CHANGE_PACKAGE__LOG_MESSAGE:
+			case VersioningPackage.CHANGE_PACKAGE__NOTIFICATIONS:
+				fireNotifyChanged(new ViewerNotification(notification, notification.getNotifier(), true, false));
+				return;
 		}
 		super.notifyChanged(notification);
 	}
@@ -142,98 +145,160 @@ public class ChangePackageItemProvider extends ItemProviderAdapter implements IE
 	protected void collectNewChildDescriptors(Collection<Object> newChildDescriptors, Object object) {
 		super.collectNewChildDescriptors(newChildDescriptors, object);
 
-		newChildDescriptors.add(createChildParameter(VersioningPackage.Literals.CHANGE_PACKAGE__OPERATIONS,
-			OperationsFactory.eINSTANCE.createCompositeOperation()));
+		newChildDescriptors.add
+			(createChildParameter
+				(VersioningPackage.Literals.CHANGE_PACKAGE__OPERATIONS,
+				 OperationsFactory.eINSTANCE.createCompositeOperation()));
 
-		newChildDescriptors.add(createChildParameter(VersioningPackage.Literals.CHANGE_PACKAGE__OPERATIONS,
-			OperationsFactory.eINSTANCE.createCreateDeleteOperation()));
+		newChildDescriptors.add
+			(createChildParameter
+				(VersioningPackage.Literals.CHANGE_PACKAGE__OPERATIONS,
+				 OperationsFactory.eINSTANCE.createCreateDeleteOperation()));
 
-		newChildDescriptors.add(createChildParameter(VersioningPackage.Literals.CHANGE_PACKAGE__OPERATIONS,
-			OperationsFactory.eINSTANCE.createAttributeOperation()));
+		newChildDescriptors.add
+			(createChildParameter
+				(VersioningPackage.Literals.CHANGE_PACKAGE__OPERATIONS,
+				 OperationsFactory.eINSTANCE.createAttributeOperation()));
 
-		newChildDescriptors.add(createChildParameter(VersioningPackage.Literals.CHANGE_PACKAGE__OPERATIONS,
-			OperationsFactory.eINSTANCE.createSingleReferenceOperation()));
+		newChildDescriptors.add
+			(createChildParameter
+				(VersioningPackage.Literals.CHANGE_PACKAGE__OPERATIONS,
+				 OperationsFactory.eINSTANCE.createSingleReferenceOperation()));
 
-		newChildDescriptors.add(createChildParameter(VersioningPackage.Literals.CHANGE_PACKAGE__OPERATIONS,
-			OperationsFactory.eINSTANCE.createMultiReferenceOperation()));
+		newChildDescriptors.add
+			(createChildParameter
+				(VersioningPackage.Literals.CHANGE_PACKAGE__OPERATIONS,
+				 OperationsFactory.eINSTANCE.createMultiReferenceOperation()));
 
-		newChildDescriptors.add(createChildParameter(VersioningPackage.Literals.CHANGE_PACKAGE__OPERATIONS,
-			OperationsFactory.eINSTANCE.createMultiReferenceMoveOperation()));
+		newChildDescriptors.add
+			(createChildParameter
+				(VersioningPackage.Literals.CHANGE_PACKAGE__OPERATIONS,
+				 OperationsFactory.eINSTANCE.createMultiReferenceMoveOperation()));
 
-		newChildDescriptors.add(createChildParameter(VersioningPackage.Literals.CHANGE_PACKAGE__OPERATIONS,
-			OperationsFactory.eINSTANCE.createMultiAttributeOperation()));
+		newChildDescriptors.add
+			(createChildParameter
+				(VersioningPackage.Literals.CHANGE_PACKAGE__OPERATIONS,
+				 OperationsFactory.eINSTANCE.createMultiAttributeOperation()));
 
-		newChildDescriptors.add(createChildParameter(VersioningPackage.Literals.CHANGE_PACKAGE__OPERATIONS,
-			OperationsFactory.eINSTANCE.createDiagramLayoutOperation()));
+		newChildDescriptors.add
+			(createChildParameter
+				(VersioningPackage.Literals.CHANGE_PACKAGE__OPERATIONS,
+				 OperationsFactory.eINSTANCE.createDiagramLayoutOperation()));
 
-		newChildDescriptors.add(createChildParameter(VersioningPackage.Literals.CHANGE_PACKAGE__OPERATIONS,
-			OperationsFactory.eINSTANCE.createMultiAttributeMoveOperation()));
+		newChildDescriptors.add
+			(createChildParameter
+				(VersioningPackage.Literals.CHANGE_PACKAGE__OPERATIONS,
+				 OperationsFactory.eINSTANCE.createMultiAttributeMoveOperation()));
 
-		newChildDescriptors.add(createChildParameter(VersioningPackage.Literals.CHANGE_PACKAGE__EVENTS,
-			EventsFactory.eINSTANCE.createEvent()));
+		newChildDescriptors.add
+			(createChildParameter
+				(VersioningPackage.Literals.CHANGE_PACKAGE__EVENTS,
+				 EventsFactory.eINSTANCE.createEvent()));
 
-		newChildDescriptors.add(createChildParameter(VersioningPackage.Literals.CHANGE_PACKAGE__EVENTS,
-			EventsFactory.eINSTANCE.createReadEvent()));
+		newChildDescriptors.add
+			(createChildParameter
+				(VersioningPackage.Literals.CHANGE_PACKAGE__EVENTS,
+				 EventsFactory.eINSTANCE.createReadEvent()));
 
-		newChildDescriptors.add(createChildParameter(VersioningPackage.Literals.CHANGE_PACKAGE__EVENTS,
-			EventsFactory.eINSTANCE.createMergeEvent()));
+		newChildDescriptors.add
+			(createChildParameter
+				(VersioningPackage.Literals.CHANGE_PACKAGE__EVENTS,
+				 EventsFactory.eINSTANCE.createMergeEvent()));
 
-		newChildDescriptors.add(createChildParameter(VersioningPackage.Literals.CHANGE_PACKAGE__EVENTS,
-			EventsFactory.eINSTANCE.createCheckoutEvent()));
+		newChildDescriptors.add
+			(createChildParameter
+				(VersioningPackage.Literals.CHANGE_PACKAGE__EVENTS,
+				 EventsFactory.eINSTANCE.createCheckoutEvent()));
 
-		newChildDescriptors.add(createChildParameter(VersioningPackage.Literals.CHANGE_PACKAGE__EVENTS,
-			EventsFactory.eINSTANCE.createExceptionEvent()));
+		newChildDescriptors.add
+			(createChildParameter
+				(VersioningPackage.Literals.CHANGE_PACKAGE__EVENTS,
+				 EventsFactory.eINSTANCE.createExceptionEvent()));
 
-		newChildDescriptors.add(createChildParameter(VersioningPackage.Literals.CHANGE_PACKAGE__EVENTS,
-			EventsFactory.eINSTANCE.createPluginStartEvent()));
+		newChildDescriptors.add
+			(createChildParameter
+				(VersioningPackage.Literals.CHANGE_PACKAGE__EVENTS,
+				 EventsFactory.eINSTANCE.createPluginStartEvent()));
 
-		newChildDescriptors.add(createChildParameter(VersioningPackage.Literals.CHANGE_PACKAGE__EVENTS,
-			EventsFactory.eINSTANCE.createUpdateEvent()));
+		newChildDescriptors.add
+			(createChildParameter
+				(VersioningPackage.Literals.CHANGE_PACKAGE__EVENTS,
+				 EventsFactory.eINSTANCE.createUpdateEvent()));
 
-		newChildDescriptors.add(createChildParameter(VersioningPackage.Literals.CHANGE_PACKAGE__EVENTS,
-			EventsFactory.eINSTANCE.createAnnotationEvent()));
+		newChildDescriptors.add
+			(createChildParameter
+				(VersioningPackage.Literals.CHANGE_PACKAGE__EVENTS,
+				 EventsFactory.eINSTANCE.createAnnotationEvent()));
 
-		newChildDescriptors.add(createChildParameter(VersioningPackage.Literals.CHANGE_PACKAGE__EVENTS,
-			EventsFactory.eINSTANCE.createRevertEvent()));
+		newChildDescriptors.add
+			(createChildParameter
+				(VersioningPackage.Literals.CHANGE_PACKAGE__EVENTS,
+				 EventsFactory.eINSTANCE.createRevertEvent()));
 
-		newChildDescriptors.add(createChildParameter(VersioningPackage.Literals.CHANGE_PACKAGE__EVENTS,
-			EventsFactory.eINSTANCE.createShowHistoryEvent()));
+		newChildDescriptors.add
+			(createChildParameter
+				(VersioningPackage.Literals.CHANGE_PACKAGE__EVENTS,
+				 EventsFactory.eINSTANCE.createShowHistoryEvent()));
 
-		newChildDescriptors.add(createChildParameter(VersioningPackage.Literals.CHANGE_PACKAGE__EVENTS,
-			EventsFactory.eINSTANCE.createPerspectiveEvent()));
+		newChildDescriptors.add
+			(createChildParameter
+				(VersioningPackage.Literals.CHANGE_PACKAGE__EVENTS,
+				 EventsFactory.eINSTANCE.createPerspectiveEvent()));
 
-		newChildDescriptors.add(createChildParameter(VersioningPackage.Literals.CHANGE_PACKAGE__EVENTS,
-			EventsFactory.eINSTANCE.createDNDEvent()));
+		newChildDescriptors.add
+			(createChildParameter
+				(VersioningPackage.Literals.CHANGE_PACKAGE__EVENTS,
+				 EventsFactory.eINSTANCE.createDNDEvent()));
 
-		newChildDescriptors.add(createChildParameter(VersioningPackage.Literals.CHANGE_PACKAGE__EVENTS,
-			EventsFactory.eINSTANCE.createLinkEvent()));
+		newChildDescriptors.add
+			(createChildParameter
+				(VersioningPackage.Literals.CHANGE_PACKAGE__EVENTS,
+				 EventsFactory.eINSTANCE.createLinkEvent()));
 
-		newChildDescriptors.add(createChildParameter(VersioningPackage.Literals.CHANGE_PACKAGE__EVENTS,
-			EventsFactory.eINSTANCE.createTraceEvent()));
+		newChildDescriptors.add
+			(createChildParameter
+				(VersioningPackage.Literals.CHANGE_PACKAGE__EVENTS,
+				 EventsFactory.eINSTANCE.createTraceEvent()));
 
-		newChildDescriptors.add(createChildParameter(VersioningPackage.Literals.CHANGE_PACKAGE__EVENTS,
-			EventsFactory.eINSTANCE.createNavigatorCreateEvent()));
+		newChildDescriptors.add
+			(createChildParameter
+				(VersioningPackage.Literals.CHANGE_PACKAGE__EVENTS,
+				 EventsFactory.eINSTANCE.createNavigatorCreateEvent()));
 
-		newChildDescriptors.add(createChildParameter(VersioningPackage.Literals.CHANGE_PACKAGE__EVENTS,
-			EventsFactory.eINSTANCE.createPluginFocusEvent()));
+		newChildDescriptors.add
+			(createChildParameter
+				(VersioningPackage.Literals.CHANGE_PACKAGE__EVENTS,
+				 EventsFactory.eINSTANCE.createPluginFocusEvent()));
 
-		newChildDescriptors.add(createChildParameter(VersioningPackage.Literals.CHANGE_PACKAGE__EVENTS,
-			EventsFactory.eINSTANCE.createPresentationSwitchEvent()));
+		newChildDescriptors.add
+			(createChildParameter
+				(VersioningPackage.Literals.CHANGE_PACKAGE__EVENTS,
+				 EventsFactory.eINSTANCE.createPresentationSwitchEvent()));
 
-		newChildDescriptors.add(createChildParameter(VersioningPackage.Literals.CHANGE_PACKAGE__EVENTS,
-			EventsFactory.eINSTANCE.createUndoEvent()));
+		newChildDescriptors.add
+			(createChildParameter
+				(VersioningPackage.Literals.CHANGE_PACKAGE__EVENTS,
+				 EventsFactory.eINSTANCE.createUndoEvent()));
 
-		newChildDescriptors.add(createChildParameter(VersioningPackage.Literals.CHANGE_PACKAGE__EVENTS,
-			EventsFactory.eINSTANCE.createValidate()));
+		newChildDescriptors.add
+			(createChildParameter
+				(VersioningPackage.Literals.CHANGE_PACKAGE__EVENTS,
+				 EventsFactory.eINSTANCE.createValidate()));
 
-		newChildDescriptors.add(createChildParameter(VersioningPackage.Literals.CHANGE_PACKAGE__EVENTS,
-			EventsFactory.eINSTANCE.createShowChangesEvent()));
+		newChildDescriptors.add
+			(createChildParameter
+				(VersioningPackage.Literals.CHANGE_PACKAGE__EVENTS,
+				 EventsFactory.eINSTANCE.createShowChangesEvent()));
 
-		newChildDescriptors.add(createChildParameter(VersioningPackage.Literals.CHANGE_PACKAGE__LOG_MESSAGE,
-			VersioningFactory.eINSTANCE.createLogMessage()));
+		newChildDescriptors.add
+			(createChildParameter
+				(VersioningPackage.Literals.CHANGE_PACKAGE__LOG_MESSAGE,
+				 VersioningFactory.eINSTANCE.createLogMessage()));
 
-		newChildDescriptors.add(createChildParameter(VersioningPackage.Literals.CHANGE_PACKAGE__NOTIFICATIONS,
-			NotificationFactory.eINSTANCE.createESNotification()));
+		newChildDescriptors.add
+			(createChildParameter
+				(VersioningPackage.Literals.CHANGE_PACKAGE__NOTIFICATIONS,
+				 NotificationFactory.eINSTANCE.createESNotification()));
 	}
 
 	/**

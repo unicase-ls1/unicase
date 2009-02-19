@@ -66,22 +66,21 @@ public class ShowChangesEventImpl extends EventImpl implements ShowChangesEvent 
 	 * @generated
 	 */
 	public PrimaryVersionSpec getSourceVersion() {
-		if (sourceVersion != null && sourceVersion.eIsProxy()) {
-			InternalEObject oldSourceVersion = (InternalEObject) sourceVersion;
-			sourceVersion = (PrimaryVersionSpec) eResolveProxy(oldSourceVersion);
-			if (sourceVersion != oldSourceVersion) {
-				InternalEObject newSourceVersion = (InternalEObject) sourceVersion;
-				NotificationChain msgs = oldSourceVersion.eInverseRemove(this, EOPPOSITE_FEATURE_BASE
-					- EventsPackage.SHOW_CHANGES_EVENT__SOURCE_VERSION, null, null);
-				if (newSourceVersion.eInternalContainer() == null) {
-					msgs = newSourceVersion.eInverseAdd(this, EOPPOSITE_FEATURE_BASE
-						- EventsPackage.SHOW_CHANGES_EVENT__SOURCE_VERSION, null, msgs);
+		if (sourceVersion != null && sourceVersion.eIsProxy())
+		{
+			InternalEObject oldSourceVersion = (InternalEObject)sourceVersion;
+			sourceVersion = (PrimaryVersionSpec)eResolveProxy(oldSourceVersion);
+			if (sourceVersion != oldSourceVersion)
+			{
+				InternalEObject newSourceVersion = (InternalEObject)sourceVersion;
+				NotificationChain msgs = oldSourceVersion.eInverseRemove(this, EOPPOSITE_FEATURE_BASE - EventsPackage.SHOW_CHANGES_EVENT__SOURCE_VERSION, null, null);
+				if (newSourceVersion.eInternalContainer() == null)
+				{
+					msgs = newSourceVersion.eInverseAdd(this, EOPPOSITE_FEATURE_BASE - EventsPackage.SHOW_CHANGES_EVENT__SOURCE_VERSION, null, msgs);
 				}
-				if (msgs != null)
-					msgs.dispatch();
+				if (msgs != null) msgs.dispatch();
 				if (eNotificationRequired())
-					eNotify(new ENotificationImpl(this, Notification.RESOLVE,
-						EventsPackage.SHOW_CHANGES_EVENT__SOURCE_VERSION, oldSourceVersion, sourceVersion));
+					eNotify(new ENotificationImpl(this, Notification.RESOLVE, EventsPackage.SHOW_CHANGES_EVENT__SOURCE_VERSION, oldSourceVersion, sourceVersion));
 			}
 		}
 		return sourceVersion;
@@ -102,13 +101,10 @@ public class ShowChangesEventImpl extends EventImpl implements ShowChangesEvent 
 	public NotificationChain basicSetSourceVersion(PrimaryVersionSpec newSourceVersion, NotificationChain msgs) {
 		PrimaryVersionSpec oldSourceVersion = sourceVersion;
 		sourceVersion = newSourceVersion;
-		if (eNotificationRequired()) {
-			ENotificationImpl notification = new ENotificationImpl(this, Notification.SET,
-				EventsPackage.SHOW_CHANGES_EVENT__SOURCE_VERSION, oldSourceVersion, newSourceVersion);
-			if (msgs == null)
-				msgs = notification;
-			else
-				msgs.add(notification);
+		if (eNotificationRequired())
+		{
+			ENotificationImpl notification = new ENotificationImpl(this, Notification.SET, EventsPackage.SHOW_CHANGES_EVENT__SOURCE_VERSION, oldSourceVersion, newSourceVersion);
+			if (msgs == null) msgs = notification; else msgs.add(notification);
 		}
 		return msgs;
 	}
@@ -118,20 +114,18 @@ public class ShowChangesEventImpl extends EventImpl implements ShowChangesEvent 
 	 * @generated
 	 */
 	public void setSourceVersion(PrimaryVersionSpec newSourceVersion) {
-		if (newSourceVersion != sourceVersion) {
+		if (newSourceVersion != sourceVersion)
+		{
 			NotificationChain msgs = null;
 			if (sourceVersion != null)
-				msgs = ((InternalEObject) sourceVersion).eInverseRemove(this, EOPPOSITE_FEATURE_BASE
-					- EventsPackage.SHOW_CHANGES_EVENT__SOURCE_VERSION, null, msgs);
+				msgs = ((InternalEObject)sourceVersion).eInverseRemove(this, EOPPOSITE_FEATURE_BASE - EventsPackage.SHOW_CHANGES_EVENT__SOURCE_VERSION, null, msgs);
 			if (newSourceVersion != null)
-				msgs = ((InternalEObject) newSourceVersion).eInverseAdd(this, EOPPOSITE_FEATURE_BASE
-					- EventsPackage.SHOW_CHANGES_EVENT__SOURCE_VERSION, null, msgs);
+				msgs = ((InternalEObject)newSourceVersion).eInverseAdd(this, EOPPOSITE_FEATURE_BASE - EventsPackage.SHOW_CHANGES_EVENT__SOURCE_VERSION, null, msgs);
 			msgs = basicSetSourceVersion(newSourceVersion, msgs);
-			if (msgs != null)
-				msgs.dispatch();
-		} else if (eNotificationRequired())
-			eNotify(new ENotificationImpl(this, Notification.SET, EventsPackage.SHOW_CHANGES_EVENT__SOURCE_VERSION,
-				newSourceVersion, newSourceVersion));
+			if (msgs != null) msgs.dispatch();
+		}
+		else if (eNotificationRequired())
+			eNotify(new ENotificationImpl(this, Notification.SET, EventsPackage.SHOW_CHANGES_EVENT__SOURCE_VERSION, newSourceVersion, newSourceVersion));
 	}
 
 	/**
@@ -139,22 +133,21 @@ public class ShowChangesEventImpl extends EventImpl implements ShowChangesEvent 
 	 * @generated
 	 */
 	public PrimaryVersionSpec getTargetVersion() {
-		if (targetVersion != null && targetVersion.eIsProxy()) {
-			InternalEObject oldTargetVersion = (InternalEObject) targetVersion;
-			targetVersion = (PrimaryVersionSpec) eResolveProxy(oldTargetVersion);
-			if (targetVersion != oldTargetVersion) {
-				InternalEObject newTargetVersion = (InternalEObject) targetVersion;
-				NotificationChain msgs = oldTargetVersion.eInverseRemove(this, EOPPOSITE_FEATURE_BASE
-					- EventsPackage.SHOW_CHANGES_EVENT__TARGET_VERSION, null, null);
-				if (newTargetVersion.eInternalContainer() == null) {
-					msgs = newTargetVersion.eInverseAdd(this, EOPPOSITE_FEATURE_BASE
-						- EventsPackage.SHOW_CHANGES_EVENT__TARGET_VERSION, null, msgs);
+		if (targetVersion != null && targetVersion.eIsProxy())
+		{
+			InternalEObject oldTargetVersion = (InternalEObject)targetVersion;
+			targetVersion = (PrimaryVersionSpec)eResolveProxy(oldTargetVersion);
+			if (targetVersion != oldTargetVersion)
+			{
+				InternalEObject newTargetVersion = (InternalEObject)targetVersion;
+				NotificationChain msgs = oldTargetVersion.eInverseRemove(this, EOPPOSITE_FEATURE_BASE - EventsPackage.SHOW_CHANGES_EVENT__TARGET_VERSION, null, null);
+				if (newTargetVersion.eInternalContainer() == null)
+				{
+					msgs = newTargetVersion.eInverseAdd(this, EOPPOSITE_FEATURE_BASE - EventsPackage.SHOW_CHANGES_EVENT__TARGET_VERSION, null, msgs);
 				}
-				if (msgs != null)
-					msgs.dispatch();
+				if (msgs != null) msgs.dispatch();
 				if (eNotificationRequired())
-					eNotify(new ENotificationImpl(this, Notification.RESOLVE,
-						EventsPackage.SHOW_CHANGES_EVENT__TARGET_VERSION, oldTargetVersion, targetVersion));
+					eNotify(new ENotificationImpl(this, Notification.RESOLVE, EventsPackage.SHOW_CHANGES_EVENT__TARGET_VERSION, oldTargetVersion, targetVersion));
 			}
 		}
 		return targetVersion;
@@ -175,13 +168,10 @@ public class ShowChangesEventImpl extends EventImpl implements ShowChangesEvent 
 	public NotificationChain basicSetTargetVersion(PrimaryVersionSpec newTargetVersion, NotificationChain msgs) {
 		PrimaryVersionSpec oldTargetVersion = targetVersion;
 		targetVersion = newTargetVersion;
-		if (eNotificationRequired()) {
-			ENotificationImpl notification = new ENotificationImpl(this, Notification.SET,
-				EventsPackage.SHOW_CHANGES_EVENT__TARGET_VERSION, oldTargetVersion, newTargetVersion);
-			if (msgs == null)
-				msgs = notification;
-			else
-				msgs.add(notification);
+		if (eNotificationRequired())
+		{
+			ENotificationImpl notification = new ENotificationImpl(this, Notification.SET, EventsPackage.SHOW_CHANGES_EVENT__TARGET_VERSION, oldTargetVersion, newTargetVersion);
+			if (msgs == null) msgs = notification; else msgs.add(notification);
 		}
 		return msgs;
 	}
@@ -191,20 +181,18 @@ public class ShowChangesEventImpl extends EventImpl implements ShowChangesEvent 
 	 * @generated
 	 */
 	public void setTargetVersion(PrimaryVersionSpec newTargetVersion) {
-		if (newTargetVersion != targetVersion) {
+		if (newTargetVersion != targetVersion)
+		{
 			NotificationChain msgs = null;
 			if (targetVersion != null)
-				msgs = ((InternalEObject) targetVersion).eInverseRemove(this, EOPPOSITE_FEATURE_BASE
-					- EventsPackage.SHOW_CHANGES_EVENT__TARGET_VERSION, null, msgs);
+				msgs = ((InternalEObject)targetVersion).eInverseRemove(this, EOPPOSITE_FEATURE_BASE - EventsPackage.SHOW_CHANGES_EVENT__TARGET_VERSION, null, msgs);
 			if (newTargetVersion != null)
-				msgs = ((InternalEObject) newTargetVersion).eInverseAdd(this, EOPPOSITE_FEATURE_BASE
-					- EventsPackage.SHOW_CHANGES_EVENT__TARGET_VERSION, null, msgs);
+				msgs = ((InternalEObject)newTargetVersion).eInverseAdd(this, EOPPOSITE_FEATURE_BASE - EventsPackage.SHOW_CHANGES_EVENT__TARGET_VERSION, null, msgs);
 			msgs = basicSetTargetVersion(newTargetVersion, msgs);
-			if (msgs != null)
-				msgs.dispatch();
-		} else if (eNotificationRequired())
-			eNotify(new ENotificationImpl(this, Notification.SET, EventsPackage.SHOW_CHANGES_EVENT__TARGET_VERSION,
-				newTargetVersion, newTargetVersion));
+			if (msgs != null) msgs.dispatch();
+		}
+		else if (eNotificationRequired())
+			eNotify(new ENotificationImpl(this, Notification.SET, EventsPackage.SHOW_CHANGES_EVENT__TARGET_VERSION, newTargetVersion, newTargetVersion));
 	}
 
 	/**
@@ -213,11 +201,12 @@ public class ShowChangesEventImpl extends EventImpl implements ShowChangesEvent 
 	 */
 	@Override
 	public NotificationChain eInverseRemove(InternalEObject otherEnd, int featureID, NotificationChain msgs) {
-		switch (featureID) {
-		case EventsPackage.SHOW_CHANGES_EVENT__SOURCE_VERSION:
-			return basicSetSourceVersion(null, msgs);
-		case EventsPackage.SHOW_CHANGES_EVENT__TARGET_VERSION:
-			return basicSetTargetVersion(null, msgs);
+		switch (featureID)
+		{
+			case EventsPackage.SHOW_CHANGES_EVENT__SOURCE_VERSION:
+				return basicSetSourceVersion(null, msgs);
+			case EventsPackage.SHOW_CHANGES_EVENT__TARGET_VERSION:
+				return basicSetTargetVersion(null, msgs);
 		}
 		return super.eInverseRemove(otherEnd, featureID, msgs);
 	}
@@ -228,15 +217,14 @@ public class ShowChangesEventImpl extends EventImpl implements ShowChangesEvent 
 	 */
 	@Override
 	public Object eGet(int featureID, boolean resolve, boolean coreType) {
-		switch (featureID) {
-		case EventsPackage.SHOW_CHANGES_EVENT__SOURCE_VERSION:
-			if (resolve)
-				return getSourceVersion();
-			return basicGetSourceVersion();
-		case EventsPackage.SHOW_CHANGES_EVENT__TARGET_VERSION:
-			if (resolve)
-				return getTargetVersion();
-			return basicGetTargetVersion();
+		switch (featureID)
+		{
+			case EventsPackage.SHOW_CHANGES_EVENT__SOURCE_VERSION:
+				if (resolve) return getSourceVersion();
+				return basicGetSourceVersion();
+			case EventsPackage.SHOW_CHANGES_EVENT__TARGET_VERSION:
+				if (resolve) return getTargetVersion();
+				return basicGetTargetVersion();
 		}
 		return super.eGet(featureID, resolve, coreType);
 	}
@@ -247,13 +235,14 @@ public class ShowChangesEventImpl extends EventImpl implements ShowChangesEvent 
 	 */
 	@Override
 	public void eSet(int featureID, Object newValue) {
-		switch (featureID) {
-		case EventsPackage.SHOW_CHANGES_EVENT__SOURCE_VERSION:
-			setSourceVersion((PrimaryVersionSpec) newValue);
-			return;
-		case EventsPackage.SHOW_CHANGES_EVENT__TARGET_VERSION:
-			setTargetVersion((PrimaryVersionSpec) newValue);
-			return;
+		switch (featureID)
+		{
+			case EventsPackage.SHOW_CHANGES_EVENT__SOURCE_VERSION:
+				setSourceVersion((PrimaryVersionSpec)newValue);
+				return;
+			case EventsPackage.SHOW_CHANGES_EVENT__TARGET_VERSION:
+				setTargetVersion((PrimaryVersionSpec)newValue);
+				return;
 		}
 		super.eSet(featureID, newValue);
 	}
@@ -264,13 +253,14 @@ public class ShowChangesEventImpl extends EventImpl implements ShowChangesEvent 
 	 */
 	@Override
 	public void eUnset(int featureID) {
-		switch (featureID) {
-		case EventsPackage.SHOW_CHANGES_EVENT__SOURCE_VERSION:
-			setSourceVersion((PrimaryVersionSpec) null);
-			return;
-		case EventsPackage.SHOW_CHANGES_EVENT__TARGET_VERSION:
-			setTargetVersion((PrimaryVersionSpec) null);
-			return;
+		switch (featureID)
+		{
+			case EventsPackage.SHOW_CHANGES_EVENT__SOURCE_VERSION:
+				setSourceVersion((PrimaryVersionSpec)null);
+				return;
+			case EventsPackage.SHOW_CHANGES_EVENT__TARGET_VERSION:
+				setTargetVersion((PrimaryVersionSpec)null);
+				return;
 		}
 		super.eUnset(featureID);
 	}
@@ -281,11 +271,12 @@ public class ShowChangesEventImpl extends EventImpl implements ShowChangesEvent 
 	 */
 	@Override
 	public boolean eIsSet(int featureID) {
-		switch (featureID) {
-		case EventsPackage.SHOW_CHANGES_EVENT__SOURCE_VERSION:
-			return sourceVersion != null;
-		case EventsPackage.SHOW_CHANGES_EVENT__TARGET_VERSION:
-			return targetVersion != null;
+		switch (featureID)
+		{
+			case EventsPackage.SHOW_CHANGES_EVENT__SOURCE_VERSION:
+				return sourceVersion != null;
+			case EventsPackage.SHOW_CHANGES_EVENT__TARGET_VERSION:
+				return targetVersion != null;
 		}
 		return super.eIsSet(featureID);
 	}

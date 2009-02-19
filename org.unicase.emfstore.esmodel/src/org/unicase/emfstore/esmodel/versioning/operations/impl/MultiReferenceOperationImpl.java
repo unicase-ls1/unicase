@@ -120,8 +120,7 @@ public class MultiReferenceOperationImpl extends ReferenceOperationImpl implemen
 		boolean oldAdd = add;
 		add = newAdd;
 		if (eNotificationRequired())
-			eNotify(new ENotificationImpl(this, Notification.SET, OperationsPackage.MULTI_REFERENCE_OPERATION__ADD,
-				oldAdd, add));
+			eNotify(new ENotificationImpl(this, Notification.SET, OperationsPackage.MULTI_REFERENCE_OPERATION__ADD, oldAdd, add));
 	}
 
 	/**
@@ -140,8 +139,7 @@ public class MultiReferenceOperationImpl extends ReferenceOperationImpl implemen
 		int oldIndex = index;
 		index = newIndex;
 		if (eNotificationRequired())
-			eNotify(new ENotificationImpl(this, Notification.SET, OperationsPackage.MULTI_REFERENCE_OPERATION__INDEX,
-				oldIndex, index));
+			eNotify(new ENotificationImpl(this, Notification.SET, OperationsPackage.MULTI_REFERENCE_OPERATION__INDEX, oldIndex, index));
 	}
 
 	/**
@@ -149,9 +147,9 @@ public class MultiReferenceOperationImpl extends ReferenceOperationImpl implemen
 	 * @generated
 	 */
 	public EList<ModelElementId> getReferencedModelElements() {
-		if (referencedModelElements == null) {
-			referencedModelElements = new EObjectContainmentEList.Resolving<ModelElementId>(ModelElementId.class, this,
-				OperationsPackage.MULTI_REFERENCE_OPERATION__REFERENCED_MODEL_ELEMENTS);
+		if (referencedModelElements == null)
+		{
+			referencedModelElements = new EObjectContainmentEList.Resolving<ModelElementId>(ModelElementId.class, this, OperationsPackage.MULTI_REFERENCE_OPERATION__REFERENCED_MODEL_ELEMENTS);
 		}
 		return referencedModelElements;
 	}
@@ -162,9 +160,10 @@ public class MultiReferenceOperationImpl extends ReferenceOperationImpl implemen
 	 */
 	@Override
 	public NotificationChain eInverseRemove(InternalEObject otherEnd, int featureID, NotificationChain msgs) {
-		switch (featureID) {
-		case OperationsPackage.MULTI_REFERENCE_OPERATION__REFERENCED_MODEL_ELEMENTS:
-			return ((InternalEList<?>) getReferencedModelElements()).basicRemove(otherEnd, msgs);
+		switch (featureID)
+		{
+			case OperationsPackage.MULTI_REFERENCE_OPERATION__REFERENCED_MODEL_ELEMENTS:
+				return ((InternalEList<?>)getReferencedModelElements()).basicRemove(otherEnd, msgs);
 		}
 		return super.eInverseRemove(otherEnd, featureID, msgs);
 	}
@@ -175,13 +174,14 @@ public class MultiReferenceOperationImpl extends ReferenceOperationImpl implemen
 	 */
 	@Override
 	public Object eGet(int featureID, boolean resolve, boolean coreType) {
-		switch (featureID) {
-		case OperationsPackage.MULTI_REFERENCE_OPERATION__ADD:
-			return isAdd() ? Boolean.TRUE : Boolean.FALSE;
-		case OperationsPackage.MULTI_REFERENCE_OPERATION__INDEX:
-			return new Integer(getIndex());
-		case OperationsPackage.MULTI_REFERENCE_OPERATION__REFERENCED_MODEL_ELEMENTS:
-			return getReferencedModelElements();
+		switch (featureID)
+		{
+			case OperationsPackage.MULTI_REFERENCE_OPERATION__ADD:
+				return isAdd() ? Boolean.TRUE : Boolean.FALSE;
+			case OperationsPackage.MULTI_REFERENCE_OPERATION__INDEX:
+				return new Integer(getIndex());
+			case OperationsPackage.MULTI_REFERENCE_OPERATION__REFERENCED_MODEL_ELEMENTS:
+				return getReferencedModelElements();
 		}
 		return super.eGet(featureID, resolve, coreType);
 	}
@@ -193,17 +193,18 @@ public class MultiReferenceOperationImpl extends ReferenceOperationImpl implemen
 	@SuppressWarnings("unchecked")
 	@Override
 	public void eSet(int featureID, Object newValue) {
-		switch (featureID) {
-		case OperationsPackage.MULTI_REFERENCE_OPERATION__ADD:
-			setAdd(((Boolean) newValue).booleanValue());
-			return;
-		case OperationsPackage.MULTI_REFERENCE_OPERATION__INDEX:
-			setIndex(((Integer) newValue).intValue());
-			return;
-		case OperationsPackage.MULTI_REFERENCE_OPERATION__REFERENCED_MODEL_ELEMENTS:
-			getReferencedModelElements().clear();
-			getReferencedModelElements().addAll((Collection<? extends ModelElementId>) newValue);
-			return;
+		switch (featureID)
+		{
+			case OperationsPackage.MULTI_REFERENCE_OPERATION__ADD:
+				setAdd(((Boolean)newValue).booleanValue());
+				return;
+			case OperationsPackage.MULTI_REFERENCE_OPERATION__INDEX:
+				setIndex(((Integer)newValue).intValue());
+				return;
+			case OperationsPackage.MULTI_REFERENCE_OPERATION__REFERENCED_MODEL_ELEMENTS:
+				getReferencedModelElements().clear();
+				getReferencedModelElements().addAll((Collection<? extends ModelElementId>)newValue);
+				return;
 		}
 		super.eSet(featureID, newValue);
 	}
@@ -214,16 +215,17 @@ public class MultiReferenceOperationImpl extends ReferenceOperationImpl implemen
 	 */
 	@Override
 	public void eUnset(int featureID) {
-		switch (featureID) {
-		case OperationsPackage.MULTI_REFERENCE_OPERATION__ADD:
-			setAdd(ADD_EDEFAULT);
-			return;
-		case OperationsPackage.MULTI_REFERENCE_OPERATION__INDEX:
-			setIndex(INDEX_EDEFAULT);
-			return;
-		case OperationsPackage.MULTI_REFERENCE_OPERATION__REFERENCED_MODEL_ELEMENTS:
-			getReferencedModelElements().clear();
-			return;
+		switch (featureID)
+		{
+			case OperationsPackage.MULTI_REFERENCE_OPERATION__ADD:
+				setAdd(ADD_EDEFAULT);
+				return;
+			case OperationsPackage.MULTI_REFERENCE_OPERATION__INDEX:
+				setIndex(INDEX_EDEFAULT);
+				return;
+			case OperationsPackage.MULTI_REFERENCE_OPERATION__REFERENCED_MODEL_ELEMENTS:
+				getReferencedModelElements().clear();
+				return;
 		}
 		super.eUnset(featureID);
 	}
@@ -234,13 +236,14 @@ public class MultiReferenceOperationImpl extends ReferenceOperationImpl implemen
 	 */
 	@Override
 	public boolean eIsSet(int featureID) {
-		switch (featureID) {
-		case OperationsPackage.MULTI_REFERENCE_OPERATION__ADD:
-			return add != ADD_EDEFAULT;
-		case OperationsPackage.MULTI_REFERENCE_OPERATION__INDEX:
-			return index != INDEX_EDEFAULT;
-		case OperationsPackage.MULTI_REFERENCE_OPERATION__REFERENCED_MODEL_ELEMENTS:
-			return referencedModelElements != null && !referencedModelElements.isEmpty();
+		switch (featureID)
+		{
+			case OperationsPackage.MULTI_REFERENCE_OPERATION__ADD:
+				return add != ADD_EDEFAULT;
+			case OperationsPackage.MULTI_REFERENCE_OPERATION__INDEX:
+				return index != INDEX_EDEFAULT;
+			case OperationsPackage.MULTI_REFERENCE_OPERATION__REFERENCED_MODEL_ELEMENTS:
+				return referencedModelElements != null && !referencedModelElements.isEmpty();
 		}
 		return super.eIsSet(featureID);
 	}
@@ -251,8 +254,7 @@ public class MultiReferenceOperationImpl extends ReferenceOperationImpl implemen
 	 */
 	@Override
 	public String toString() {
-		if (eIsProxy())
-			return super.toString();
+		if (eIsProxy()) return super.toString();
 
 		StringBuffer result = new StringBuffer(super.toString());
 		result.append(" (add: ");

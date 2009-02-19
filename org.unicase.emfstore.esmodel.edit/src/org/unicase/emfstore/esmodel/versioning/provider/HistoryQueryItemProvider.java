@@ -49,7 +49,8 @@ public class HistoryQueryItemProvider extends ItemProviderAdapter implements IEd
 	 */
 	@Override
 	public List<IItemPropertyDescriptor> getPropertyDescriptors(Object object) {
-		if (itemPropertyDescriptors == null) {
+		if (itemPropertyDescriptors == null)
+		{
 			super.getPropertyDescriptors(object);
 
 			addSourcePropertyDescriptor(object);
@@ -64,10 +65,19 @@ public class HistoryQueryItemProvider extends ItemProviderAdapter implements IEd
 	 * @generated
 	 */
 	protected void addSourcePropertyDescriptor(Object object) {
-		itemPropertyDescriptors.add(createItemPropertyDescriptor(((ComposeableAdapterFactory) adapterFactory)
-			.getRootAdapterFactory(), getResourceLocator(), getString("_UI_HistoryQuery_source_feature"), getString(
-			"_UI_PropertyDescriptor_description", "_UI_HistoryQuery_source_feature", "_UI_HistoryQuery_type"),
-			VersioningPackage.Literals.HISTORY_QUERY__SOURCE, true, false, true, null, null, null));
+		itemPropertyDescriptors.add
+			(createItemPropertyDescriptor
+				(((ComposeableAdapterFactory)adapterFactory).getRootAdapterFactory(),
+				 getResourceLocator(),
+				 getString("_UI_HistoryQuery_source_feature"),
+				 getString("_UI_PropertyDescriptor_description", "_UI_HistoryQuery_source_feature", "_UI_HistoryQuery_type"),
+				 VersioningPackage.Literals.HISTORY_QUERY__SOURCE,
+				 true,
+				 false,
+				 true,
+				 null,
+				 null,
+				 null));
 	}
 
 	/**
@@ -76,10 +86,19 @@ public class HistoryQueryItemProvider extends ItemProviderAdapter implements IEd
 	 * @generated
 	 */
 	protected void addTargetPropertyDescriptor(Object object) {
-		itemPropertyDescriptors.add(createItemPropertyDescriptor(((ComposeableAdapterFactory) adapterFactory)
-			.getRootAdapterFactory(), getResourceLocator(), getString("_UI_HistoryQuery_target_feature"), getString(
-			"_UI_PropertyDescriptor_description", "_UI_HistoryQuery_target_feature", "_UI_HistoryQuery_type"),
-			VersioningPackage.Literals.HISTORY_QUERY__TARGET, true, false, true, null, null, null));
+		itemPropertyDescriptors.add
+			(createItemPropertyDescriptor
+				(((ComposeableAdapterFactory)adapterFactory).getRootAdapterFactory(),
+				 getResourceLocator(),
+				 getString("_UI_HistoryQuery_target_feature"),
+				 getString("_UI_PropertyDescriptor_description", "_UI_HistoryQuery_target_feature", "_UI_HistoryQuery_type"),
+				 VersioningPackage.Literals.HISTORY_QUERY__TARGET,
+				 true,
+				 false,
+				 true,
+				 null,
+				 null,
+				 null));
 	}
 
 	/**
@@ -92,7 +111,8 @@ public class HistoryQueryItemProvider extends ItemProviderAdapter implements IEd
 	 */
 	@Override
 	public Collection<? extends EStructuralFeature> getChildrenFeatures(Object object) {
-		if (childrenFeatures == null) {
+		if (childrenFeatures == null)
+		{
 			super.getChildrenFeatures(object);
 			childrenFeatures.add(VersioningPackage.Literals.HISTORY_QUERY__MODEL_ELEMENTS);
 		}
@@ -142,10 +162,11 @@ public class HistoryQueryItemProvider extends ItemProviderAdapter implements IEd
 	public void notifyChanged(Notification notification) {
 		updateChildren(notification);
 
-		switch (notification.getFeatureID(HistoryQuery.class)) {
-		case VersioningPackage.HISTORY_QUERY__MODEL_ELEMENTS:
-			fireNotifyChanged(new ViewerNotification(notification, notification.getNotifier(), true, false));
-			return;
+		switch (notification.getFeatureID(HistoryQuery.class))
+		{
+			case VersioningPackage.HISTORY_QUERY__MODEL_ELEMENTS:
+				fireNotifyChanged(new ViewerNotification(notification, notification.getNotifier(), true, false));
+				return;
 		}
 		super.notifyChanged(notification);
 	}
@@ -160,8 +181,10 @@ public class HistoryQueryItemProvider extends ItemProviderAdapter implements IEd
 	protected void collectNewChildDescriptors(Collection<Object> newChildDescriptors, Object object) {
 		super.collectNewChildDescriptors(newChildDescriptors, object);
 
-		newChildDescriptors.add(createChildParameter(VersioningPackage.Literals.HISTORY_QUERY__MODEL_ELEMENTS,
-			ModelFactory.eINSTANCE.createModelElementId()));
+		newChildDescriptors.add
+			(createChildParameter
+				(VersioningPackage.Literals.HISTORY_QUERY__MODEL_ELEMENTS,
+				 ModelFactory.eINSTANCE.createModelElementId()));
 	}
 
 	/**

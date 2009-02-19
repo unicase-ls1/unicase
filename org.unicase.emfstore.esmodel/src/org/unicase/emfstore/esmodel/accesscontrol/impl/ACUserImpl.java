@@ -92,8 +92,7 @@ public class ACUserImpl extends ACOrgUnitImpl implements ACUser {
 		String oldFirstName = firstName;
 		firstName = newFirstName;
 		if (eNotificationRequired())
-			eNotify(new ENotificationImpl(this, Notification.SET, AccesscontrolPackage.AC_USER__FIRST_NAME,
-				oldFirstName, firstName));
+			eNotify(new ENotificationImpl(this, Notification.SET, AccesscontrolPackage.AC_USER__FIRST_NAME, oldFirstName, firstName));
 	}
 
 	/**
@@ -112,8 +111,7 @@ public class ACUserImpl extends ACOrgUnitImpl implements ACUser {
 		String oldLastName = lastName;
 		lastName = newLastName;
 		if (eNotificationRequired())
-			eNotify(new ENotificationImpl(this, Notification.SET, AccesscontrolPackage.AC_USER__LAST_NAME, oldLastName,
-				lastName));
+			eNotify(new ENotificationImpl(this, Notification.SET, AccesscontrolPackage.AC_USER__LAST_NAME, oldLastName, lastName));
 	}
 
 	/**
@@ -122,11 +120,12 @@ public class ACUserImpl extends ACOrgUnitImpl implements ACUser {
 	 */
 	@Override
 	public Object eGet(int featureID, boolean resolve, boolean coreType) {
-		switch (featureID) {
-		case AccesscontrolPackage.AC_USER__FIRST_NAME:
-			return getFirstName();
-		case AccesscontrolPackage.AC_USER__LAST_NAME:
-			return getLastName();
+		switch (featureID)
+		{
+			case AccesscontrolPackage.AC_USER__FIRST_NAME:
+				return getFirstName();
+			case AccesscontrolPackage.AC_USER__LAST_NAME:
+				return getLastName();
 		}
 		return super.eGet(featureID, resolve, coreType);
 	}
@@ -137,13 +136,14 @@ public class ACUserImpl extends ACOrgUnitImpl implements ACUser {
 	 */
 	@Override
 	public void eSet(int featureID, Object newValue) {
-		switch (featureID) {
-		case AccesscontrolPackage.AC_USER__FIRST_NAME:
-			setFirstName((String) newValue);
-			return;
-		case AccesscontrolPackage.AC_USER__LAST_NAME:
-			setLastName((String) newValue);
-			return;
+		switch (featureID)
+		{
+			case AccesscontrolPackage.AC_USER__FIRST_NAME:
+				setFirstName((String)newValue);
+				return;
+			case AccesscontrolPackage.AC_USER__LAST_NAME:
+				setLastName((String)newValue);
+				return;
 		}
 		super.eSet(featureID, newValue);
 	}
@@ -154,13 +154,14 @@ public class ACUserImpl extends ACOrgUnitImpl implements ACUser {
 	 */
 	@Override
 	public void eUnset(int featureID) {
-		switch (featureID) {
-		case AccesscontrolPackage.AC_USER__FIRST_NAME:
-			setFirstName(FIRST_NAME_EDEFAULT);
-			return;
-		case AccesscontrolPackage.AC_USER__LAST_NAME:
-			setLastName(LAST_NAME_EDEFAULT);
-			return;
+		switch (featureID)
+		{
+			case AccesscontrolPackage.AC_USER__FIRST_NAME:
+				setFirstName(FIRST_NAME_EDEFAULT);
+				return;
+			case AccesscontrolPackage.AC_USER__LAST_NAME:
+				setLastName(LAST_NAME_EDEFAULT);
+				return;
 		}
 		super.eUnset(featureID);
 	}
@@ -171,11 +172,12 @@ public class ACUserImpl extends ACOrgUnitImpl implements ACUser {
 	 */
 	@Override
 	public boolean eIsSet(int featureID) {
-		switch (featureID) {
-		case AccesscontrolPackage.AC_USER__FIRST_NAME:
-			return FIRST_NAME_EDEFAULT == null ? firstName != null : !FIRST_NAME_EDEFAULT.equals(firstName);
-		case AccesscontrolPackage.AC_USER__LAST_NAME:
-			return LAST_NAME_EDEFAULT == null ? lastName != null : !LAST_NAME_EDEFAULT.equals(lastName);
+		switch (featureID)
+		{
+			case AccesscontrolPackage.AC_USER__FIRST_NAME:
+				return FIRST_NAME_EDEFAULT == null ? firstName != null : !FIRST_NAME_EDEFAULT.equals(firstName);
+			case AccesscontrolPackage.AC_USER__LAST_NAME:
+				return LAST_NAME_EDEFAULT == null ? lastName != null : !LAST_NAME_EDEFAULT.equals(lastName);
 		}
 		return super.eIsSet(featureID);
 	}
@@ -186,8 +188,7 @@ public class ACUserImpl extends ACOrgUnitImpl implements ACUser {
 	 */
 	@Override
 	public String toString() {
-		if (eIsProxy())
-			return super.toString();
+		if (eIsProxy()) return super.toString();
 
 		StringBuffer result = new StringBuffer(super.toString());
 		result.append(" (firstName: ");

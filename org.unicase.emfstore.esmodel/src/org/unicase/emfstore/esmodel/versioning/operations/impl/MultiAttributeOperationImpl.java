@@ -111,8 +111,7 @@ public class MultiAttributeOperationImpl extends FeatureOperationImpl implements
 		boolean oldAdd = add;
 		add = newAdd;
 		if (eNotificationRequired())
-			eNotify(new ENotificationImpl(this, Notification.SET, OperationsPackage.MULTI_ATTRIBUTE_OPERATION__ADD,
-				oldAdd, add));
+			eNotify(new ENotificationImpl(this, Notification.SET, OperationsPackage.MULTI_ATTRIBUTE_OPERATION__ADD, oldAdd, add));
 	}
 
 	/**
@@ -131,8 +130,7 @@ public class MultiAttributeOperationImpl extends FeatureOperationImpl implements
 		int oldIndex = index;
 		index = newIndex;
 		if (eNotificationRequired())
-			eNotify(new ENotificationImpl(this, Notification.SET, OperationsPackage.MULTI_ATTRIBUTE_OPERATION__INDEX,
-				oldIndex, index));
+			eNotify(new ENotificationImpl(this, Notification.SET, OperationsPackage.MULTI_ATTRIBUTE_OPERATION__INDEX, oldIndex, index));
 	}
 
 	/**
@@ -140,9 +138,9 @@ public class MultiAttributeOperationImpl extends FeatureOperationImpl implements
 	 * @generated
 	 */
 	public EList<Object> getValues() {
-		if (values == null) {
-			values = new EDataTypeUniqueEList<Object>(Object.class, this,
-				OperationsPackage.MULTI_ATTRIBUTE_OPERATION__VALUES);
+		if (values == null)
+		{
+			values = new EDataTypeUniqueEList<Object>(Object.class, this, OperationsPackage.MULTI_ATTRIBUTE_OPERATION__VALUES);
 		}
 		return values;
 	}
@@ -153,13 +151,14 @@ public class MultiAttributeOperationImpl extends FeatureOperationImpl implements
 	 */
 	@Override
 	public Object eGet(int featureID, boolean resolve, boolean coreType) {
-		switch (featureID) {
-		case OperationsPackage.MULTI_ATTRIBUTE_OPERATION__ADD:
-			return isAdd() ? Boolean.TRUE : Boolean.FALSE;
-		case OperationsPackage.MULTI_ATTRIBUTE_OPERATION__INDEX:
-			return new Integer(getIndex());
-		case OperationsPackage.MULTI_ATTRIBUTE_OPERATION__VALUES:
-			return getValues();
+		switch (featureID)
+		{
+			case OperationsPackage.MULTI_ATTRIBUTE_OPERATION__ADD:
+				return isAdd() ? Boolean.TRUE : Boolean.FALSE;
+			case OperationsPackage.MULTI_ATTRIBUTE_OPERATION__INDEX:
+				return new Integer(getIndex());
+			case OperationsPackage.MULTI_ATTRIBUTE_OPERATION__VALUES:
+				return getValues();
 		}
 		return super.eGet(featureID, resolve, coreType);
 	}
@@ -171,17 +170,18 @@ public class MultiAttributeOperationImpl extends FeatureOperationImpl implements
 	@SuppressWarnings("unchecked")
 	@Override
 	public void eSet(int featureID, Object newValue) {
-		switch (featureID) {
-		case OperationsPackage.MULTI_ATTRIBUTE_OPERATION__ADD:
-			setAdd(((Boolean) newValue).booleanValue());
-			return;
-		case OperationsPackage.MULTI_ATTRIBUTE_OPERATION__INDEX:
-			setIndex(((Integer) newValue).intValue());
-			return;
-		case OperationsPackage.MULTI_ATTRIBUTE_OPERATION__VALUES:
-			getValues().clear();
-			getValues().addAll((Collection<? extends Object>) newValue);
-			return;
+		switch (featureID)
+		{
+			case OperationsPackage.MULTI_ATTRIBUTE_OPERATION__ADD:
+				setAdd(((Boolean)newValue).booleanValue());
+				return;
+			case OperationsPackage.MULTI_ATTRIBUTE_OPERATION__INDEX:
+				setIndex(((Integer)newValue).intValue());
+				return;
+			case OperationsPackage.MULTI_ATTRIBUTE_OPERATION__VALUES:
+				getValues().clear();
+				getValues().addAll((Collection<? extends Object>)newValue);
+				return;
 		}
 		super.eSet(featureID, newValue);
 	}
@@ -192,16 +192,17 @@ public class MultiAttributeOperationImpl extends FeatureOperationImpl implements
 	 */
 	@Override
 	public void eUnset(int featureID) {
-		switch (featureID) {
-		case OperationsPackage.MULTI_ATTRIBUTE_OPERATION__ADD:
-			setAdd(ADD_EDEFAULT);
-			return;
-		case OperationsPackage.MULTI_ATTRIBUTE_OPERATION__INDEX:
-			setIndex(INDEX_EDEFAULT);
-			return;
-		case OperationsPackage.MULTI_ATTRIBUTE_OPERATION__VALUES:
-			getValues().clear();
-			return;
+		switch (featureID)
+		{
+			case OperationsPackage.MULTI_ATTRIBUTE_OPERATION__ADD:
+				setAdd(ADD_EDEFAULT);
+				return;
+			case OperationsPackage.MULTI_ATTRIBUTE_OPERATION__INDEX:
+				setIndex(INDEX_EDEFAULT);
+				return;
+			case OperationsPackage.MULTI_ATTRIBUTE_OPERATION__VALUES:
+				getValues().clear();
+				return;
 		}
 		super.eUnset(featureID);
 	}
@@ -212,13 +213,14 @@ public class MultiAttributeOperationImpl extends FeatureOperationImpl implements
 	 */
 	@Override
 	public boolean eIsSet(int featureID) {
-		switch (featureID) {
-		case OperationsPackage.MULTI_ATTRIBUTE_OPERATION__ADD:
-			return add != ADD_EDEFAULT;
-		case OperationsPackage.MULTI_ATTRIBUTE_OPERATION__INDEX:
-			return index != INDEX_EDEFAULT;
-		case OperationsPackage.MULTI_ATTRIBUTE_OPERATION__VALUES:
-			return values != null && !values.isEmpty();
+		switch (featureID)
+		{
+			case OperationsPackage.MULTI_ATTRIBUTE_OPERATION__ADD:
+				return add != ADD_EDEFAULT;
+			case OperationsPackage.MULTI_ATTRIBUTE_OPERATION__INDEX:
+				return index != INDEX_EDEFAULT;
+			case OperationsPackage.MULTI_ATTRIBUTE_OPERATION__VALUES:
+				return values != null && !values.isEmpty();
 		}
 		return super.eIsSet(featureID);
 	}
@@ -229,8 +231,7 @@ public class MultiAttributeOperationImpl extends FeatureOperationImpl implements
 	 */
 	@Override
 	public String toString() {
-		if (eIsProxy())
-			return super.toString();
+		if (eIsProxy()) return super.toString();
 
 		StringBuffer result = new StringBuffer(super.toString());
 		result.append(" (add: ");

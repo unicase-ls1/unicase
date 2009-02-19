@@ -43,7 +43,8 @@ public class VersioningSwitch<T> {
 	 * @generated
 	 */
 	public VersioningSwitch() {
-		if (modelPackage == null) {
+		if (modelPackage == null)
+		{
 			modelPackage = VersioningPackage.eINSTANCE;
 		}
 	}
@@ -65,11 +66,17 @@ public class VersioningSwitch<T> {
 	 * @generated
 	 */
 	protected T doSwitch(EClass theEClass, EObject theEObject) {
-		if (theEClass.eContainer() == modelPackage) {
+		if (theEClass.eContainer() == modelPackage)
+		{
 			return doSwitch(theEClass.getClassifierID(), theEObject);
-		} else {
+		}
+		else
+		{
 			List<EClass> eSuperTypes = theEClass.getESuperTypes();
-			return eSuperTypes.isEmpty() ? defaultCase(theEObject) : doSwitch(eSuperTypes.get(0), theEObject);
+			return
+				eSuperTypes.isEmpty() ?
+					defaultCase(theEObject) :
+					doSwitch(eSuperTypes.get(0), theEObject);
 		}
 	}
 
@@ -80,87 +87,83 @@ public class VersioningSwitch<T> {
 	 * @generated
 	 */
 	protected T doSwitch(int classifierID, EObject theEObject) {
-		switch (classifierID) {
-		case VersioningPackage.TAG_VERSION_SPEC: {
-			TagVersionSpec tagVersionSpec = (TagVersionSpec) theEObject;
-			T result = caseTagVersionSpec(tagVersionSpec);
-			if (result == null)
-				result = caseVersionSpec(tagVersionSpec);
-			if (result == null)
-				result = defaultCase(theEObject);
-			return result;
-		}
-		case VersioningPackage.DATE_VERSION_SPEC: {
-			DateVersionSpec dateVersionSpec = (DateVersionSpec) theEObject;
-			T result = caseDateVersionSpec(dateVersionSpec);
-			if (result == null)
-				result = caseVersionSpec(dateVersionSpec);
-			if (result == null)
-				result = defaultCase(theEObject);
-			return result;
-		}
-		case VersioningPackage.PRIMARY_VERSION_SPEC: {
-			PrimaryVersionSpec primaryVersionSpec = (PrimaryVersionSpec) theEObject;
-			T result = casePrimaryVersionSpec(primaryVersionSpec);
-			if (result == null)
-				result = caseVersionSpec(primaryVersionSpec);
-			if (result == null)
-				result = defaultCase(theEObject);
-			return result;
-		}
-		case VersioningPackage.VERSION_SPEC: {
-			VersionSpec versionSpec = (VersionSpec) theEObject;
-			T result = caseVersionSpec(versionSpec);
-			if (result == null)
-				result = defaultCase(theEObject);
-			return result;
-		}
-		case VersioningPackage.LOG_MESSAGE: {
-			LogMessage logMessage = (LogMessage) theEObject;
-			T result = caseLogMessage(logMessage);
-			if (result == null)
-				result = defaultCase(theEObject);
-			return result;
-		}
-		case VersioningPackage.CHANGE_PACKAGE: {
-			ChangePackage changePackage = (ChangePackage) theEObject;
-			T result = caseChangePackage(changePackage);
-			if (result == null)
-				result = defaultCase(theEObject);
-			return result;
-		}
-		case VersioningPackage.HISTORY_INFO: {
-			HistoryInfo historyInfo = (HistoryInfo) theEObject;
-			T result = caseHistoryInfo(historyInfo);
-			if (result == null)
-				result = defaultCase(theEObject);
-			return result;
-		}
-		case VersioningPackage.HISTORY_QUERY: {
-			HistoryQuery historyQuery = (HistoryQuery) theEObject;
-			T result = caseHistoryQuery(historyQuery);
-			if (result == null)
-				result = defaultCase(theEObject);
-			return result;
-		}
-		case VersioningPackage.VERSION: {
-			Version version = (Version) theEObject;
-			T result = caseVersion(version);
-			if (result == null)
-				result = defaultCase(theEObject);
-			return result;
-		}
-		case VersioningPackage.HEAD_VERSION_SPEC: {
-			HeadVersionSpec headVersionSpec = (HeadVersionSpec) theEObject;
-			T result = caseHeadVersionSpec(headVersionSpec);
-			if (result == null)
-				result = caseVersionSpec(headVersionSpec);
-			if (result == null)
-				result = defaultCase(theEObject);
-			return result;
-		}
-		default:
-			return defaultCase(theEObject);
+		switch (classifierID)
+		{
+			case VersioningPackage.TAG_VERSION_SPEC:
+			{
+				TagVersionSpec tagVersionSpec = (TagVersionSpec)theEObject;
+				T result = caseTagVersionSpec(tagVersionSpec);
+				if (result == null) result = caseVersionSpec(tagVersionSpec);
+				if (result == null) result = defaultCase(theEObject);
+				return result;
+			}
+			case VersioningPackage.DATE_VERSION_SPEC:
+			{
+				DateVersionSpec dateVersionSpec = (DateVersionSpec)theEObject;
+				T result = caseDateVersionSpec(dateVersionSpec);
+				if (result == null) result = caseVersionSpec(dateVersionSpec);
+				if (result == null) result = defaultCase(theEObject);
+				return result;
+			}
+			case VersioningPackage.PRIMARY_VERSION_SPEC:
+			{
+				PrimaryVersionSpec primaryVersionSpec = (PrimaryVersionSpec)theEObject;
+				T result = casePrimaryVersionSpec(primaryVersionSpec);
+				if (result == null) result = caseVersionSpec(primaryVersionSpec);
+				if (result == null) result = defaultCase(theEObject);
+				return result;
+			}
+			case VersioningPackage.VERSION_SPEC:
+			{
+				VersionSpec versionSpec = (VersionSpec)theEObject;
+				T result = caseVersionSpec(versionSpec);
+				if (result == null) result = defaultCase(theEObject);
+				return result;
+			}
+			case VersioningPackage.LOG_MESSAGE:
+			{
+				LogMessage logMessage = (LogMessage)theEObject;
+				T result = caseLogMessage(logMessage);
+				if (result == null) result = defaultCase(theEObject);
+				return result;
+			}
+			case VersioningPackage.CHANGE_PACKAGE:
+			{
+				ChangePackage changePackage = (ChangePackage)theEObject;
+				T result = caseChangePackage(changePackage);
+				if (result == null) result = defaultCase(theEObject);
+				return result;
+			}
+			case VersioningPackage.HISTORY_INFO:
+			{
+				HistoryInfo historyInfo = (HistoryInfo)theEObject;
+				T result = caseHistoryInfo(historyInfo);
+				if (result == null) result = defaultCase(theEObject);
+				return result;
+			}
+			case VersioningPackage.HISTORY_QUERY:
+			{
+				HistoryQuery historyQuery = (HistoryQuery)theEObject;
+				T result = caseHistoryQuery(historyQuery);
+				if (result == null) result = defaultCase(theEObject);
+				return result;
+			}
+			case VersioningPackage.VERSION:
+			{
+				Version version = (Version)theEObject;
+				T result = caseVersion(version);
+				if (result == null) result = defaultCase(theEObject);
+				return result;
+			}
+			case VersioningPackage.HEAD_VERSION_SPEC:
+			{
+				HeadVersionSpec headVersionSpec = (HeadVersionSpec)theEObject;
+				T result = caseHeadVersionSpec(headVersionSpec);
+				if (result == null) result = caseVersionSpec(headVersionSpec);
+				if (result == null) result = defaultCase(theEObject);
+				return result;
+			}
+			default: return defaultCase(theEObject);
 		}
 	}
 

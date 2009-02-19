@@ -48,7 +48,8 @@ public class CompositeOperationItemProvider extends AbstractOperationItemProvide
 	 */
 	@Override
 	public List<IItemPropertyDescriptor> getPropertyDescriptors(Object object) {
-		if (itemPropertyDescriptors == null) {
+		if (itemPropertyDescriptors == null)
+		{
 			super.getPropertyDescriptors(object);
 
 			addCompositeNamePropertyDescriptor(object);
@@ -64,11 +65,19 @@ public class CompositeOperationItemProvider extends AbstractOperationItemProvide
 	 * @generated
 	 */
 	protected void addCompositeNamePropertyDescriptor(Object object) {
-		itemPropertyDescriptors.add(createItemPropertyDescriptor(((ComposeableAdapterFactory) adapterFactory)
-			.getRootAdapterFactory(), getResourceLocator(), getString("_UI_CompositeOperation_compositeName_feature"),
-			getString("_UI_PropertyDescriptor_description", "_UI_CompositeOperation_compositeName_feature",
-				"_UI_CompositeOperation_type"), OperationsPackage.Literals.COMPOSITE_OPERATION__COMPOSITE_NAME, true,
-			false, false, ItemPropertyDescriptor.GENERIC_VALUE_IMAGE, null, null));
+		itemPropertyDescriptors.add
+			(createItemPropertyDescriptor
+				(((ComposeableAdapterFactory)adapterFactory).getRootAdapterFactory(),
+				 getResourceLocator(),
+				 getString("_UI_CompositeOperation_compositeName_feature"),
+				 getString("_UI_PropertyDescriptor_description", "_UI_CompositeOperation_compositeName_feature", "_UI_CompositeOperation_type"),
+				 OperationsPackage.Literals.COMPOSITE_OPERATION__COMPOSITE_NAME,
+				 true,
+				 false,
+				 false,
+				 ItemPropertyDescriptor.GENERIC_VALUE_IMAGE,
+				 null,
+				 null));
 	}
 
 	/**
@@ -78,12 +87,19 @@ public class CompositeOperationItemProvider extends AbstractOperationItemProvide
 	 * @generated
 	 */
 	protected void addCompositeDescriptionPropertyDescriptor(Object object) {
-		itemPropertyDescriptors.add(createItemPropertyDescriptor(((ComposeableAdapterFactory) adapterFactory)
-			.getRootAdapterFactory(), getResourceLocator(),
-			getString("_UI_CompositeOperation_compositeDescription_feature"), getString(
-				"_UI_PropertyDescriptor_description", "_UI_CompositeOperation_compositeDescription_feature",
-				"_UI_CompositeOperation_type"), OperationsPackage.Literals.COMPOSITE_OPERATION__COMPOSITE_DESCRIPTION,
-			true, false, false, ItemPropertyDescriptor.GENERIC_VALUE_IMAGE, null, null));
+		itemPropertyDescriptors.add
+			(createItemPropertyDescriptor
+				(((ComposeableAdapterFactory)adapterFactory).getRootAdapterFactory(),
+				 getResourceLocator(),
+				 getString("_UI_CompositeOperation_compositeDescription_feature"),
+				 getString("_UI_PropertyDescriptor_description", "_UI_CompositeOperation_compositeDescription_feature", "_UI_CompositeOperation_type"),
+				 OperationsPackage.Literals.COMPOSITE_OPERATION__COMPOSITE_DESCRIPTION,
+				 true,
+				 false,
+				 false,
+				 ItemPropertyDescriptor.GENERIC_VALUE_IMAGE,
+				 null,
+				 null));
 	}
 
 	/**
@@ -92,11 +108,19 @@ public class CompositeOperationItemProvider extends AbstractOperationItemProvide
 	 * @generated
 	 */
 	protected void addReversedPropertyDescriptor(Object object) {
-		itemPropertyDescriptors.add(createItemPropertyDescriptor(((ComposeableAdapterFactory) adapterFactory)
-			.getRootAdapterFactory(), getResourceLocator(), getString("_UI_CompositeOperation_reversed_feature"),
-			getString("_UI_PropertyDescriptor_description", "_UI_CompositeOperation_reversed_feature",
-				"_UI_CompositeOperation_type"), OperationsPackage.Literals.COMPOSITE_OPERATION__REVERSED, true, false,
-			false, ItemPropertyDescriptor.BOOLEAN_VALUE_IMAGE, null, null));
+		itemPropertyDescriptors.add
+			(createItemPropertyDescriptor
+				(((ComposeableAdapterFactory)adapterFactory).getRootAdapterFactory(),
+				 getResourceLocator(),
+				 getString("_UI_CompositeOperation_reversed_feature"),
+				 getString("_UI_PropertyDescriptor_description", "_UI_CompositeOperation_reversed_feature", "_UI_CompositeOperation_type"),
+				 OperationsPackage.Literals.COMPOSITE_OPERATION__REVERSED,
+				 true,
+				 false,
+				 false,
+				 ItemPropertyDescriptor.BOOLEAN_VALUE_IMAGE,
+				 null,
+				 null));
 	}
 
 	/**
@@ -109,7 +133,8 @@ public class CompositeOperationItemProvider extends AbstractOperationItemProvide
 	 */
 	@Override
 	public Collection<? extends EStructuralFeature> getChildrenFeatures(Object object) {
-		if (childrenFeatures == null) {
+		if (childrenFeatures == null)
+		{
 			super.getChildrenFeatures(object);
 			childrenFeatures.add(OperationsPackage.Literals.COMPOSITE_OPERATION__SUB_OPERATIONS);
 		}
@@ -145,9 +170,10 @@ public class CompositeOperationItemProvider extends AbstractOperationItemProvide
 	 */
 	@Override
 	public String getText(Object object) {
-		String label = ((CompositeOperation) object).getName();
-		return label == null || label.length() == 0 ? getString("_UI_CompositeOperation_type")
-			: getString("_UI_CompositeOperation_type") + " " + label;
+		String label = ((CompositeOperation)object).getName();
+		return label == null || label.length() == 0 ?
+			getString("_UI_CompositeOperation_type") :
+			getString("_UI_CompositeOperation_type") + " " + label;
 	}
 
 	/**
@@ -161,15 +187,16 @@ public class CompositeOperationItemProvider extends AbstractOperationItemProvide
 	public void notifyChanged(Notification notification) {
 		updateChildren(notification);
 
-		switch (notification.getFeatureID(CompositeOperation.class)) {
-		case OperationsPackage.COMPOSITE_OPERATION__COMPOSITE_NAME:
-		case OperationsPackage.COMPOSITE_OPERATION__COMPOSITE_DESCRIPTION:
-		case OperationsPackage.COMPOSITE_OPERATION__REVERSED:
-			fireNotifyChanged(new ViewerNotification(notification, notification.getNotifier(), false, true));
-			return;
-		case OperationsPackage.COMPOSITE_OPERATION__SUB_OPERATIONS:
-			fireNotifyChanged(new ViewerNotification(notification, notification.getNotifier(), true, false));
-			return;
+		switch (notification.getFeatureID(CompositeOperation.class))
+		{
+			case OperationsPackage.COMPOSITE_OPERATION__COMPOSITE_NAME:
+			case OperationsPackage.COMPOSITE_OPERATION__COMPOSITE_DESCRIPTION:
+			case OperationsPackage.COMPOSITE_OPERATION__REVERSED:
+				fireNotifyChanged(new ViewerNotification(notification, notification.getNotifier(), false, true));
+				return;
+			case OperationsPackage.COMPOSITE_OPERATION__SUB_OPERATIONS:
+				fireNotifyChanged(new ViewerNotification(notification, notification.getNotifier(), true, false));
+				return;
 		}
 		super.notifyChanged(notification);
 	}
@@ -184,32 +211,50 @@ public class CompositeOperationItemProvider extends AbstractOperationItemProvide
 	protected void collectNewChildDescriptors(Collection<Object> newChildDescriptors, Object object) {
 		super.collectNewChildDescriptors(newChildDescriptors, object);
 
-		newChildDescriptors.add(createChildParameter(OperationsPackage.Literals.COMPOSITE_OPERATION__SUB_OPERATIONS,
-			OperationsFactory.eINSTANCE.createCompositeOperation()));
+		newChildDescriptors.add
+			(createChildParameter
+				(OperationsPackage.Literals.COMPOSITE_OPERATION__SUB_OPERATIONS,
+				 OperationsFactory.eINSTANCE.createCompositeOperation()));
 
-		newChildDescriptors.add(createChildParameter(OperationsPackage.Literals.COMPOSITE_OPERATION__SUB_OPERATIONS,
-			OperationsFactory.eINSTANCE.createCreateDeleteOperation()));
+		newChildDescriptors.add
+			(createChildParameter
+				(OperationsPackage.Literals.COMPOSITE_OPERATION__SUB_OPERATIONS,
+				 OperationsFactory.eINSTANCE.createCreateDeleteOperation()));
 
-		newChildDescriptors.add(createChildParameter(OperationsPackage.Literals.COMPOSITE_OPERATION__SUB_OPERATIONS,
-			OperationsFactory.eINSTANCE.createAttributeOperation()));
+		newChildDescriptors.add
+			(createChildParameter
+				(OperationsPackage.Literals.COMPOSITE_OPERATION__SUB_OPERATIONS,
+				 OperationsFactory.eINSTANCE.createAttributeOperation()));
 
-		newChildDescriptors.add(createChildParameter(OperationsPackage.Literals.COMPOSITE_OPERATION__SUB_OPERATIONS,
-			OperationsFactory.eINSTANCE.createSingleReferenceOperation()));
+		newChildDescriptors.add
+			(createChildParameter
+				(OperationsPackage.Literals.COMPOSITE_OPERATION__SUB_OPERATIONS,
+				 OperationsFactory.eINSTANCE.createSingleReferenceOperation()));
 
-		newChildDescriptors.add(createChildParameter(OperationsPackage.Literals.COMPOSITE_OPERATION__SUB_OPERATIONS,
-			OperationsFactory.eINSTANCE.createMultiReferenceOperation()));
+		newChildDescriptors.add
+			(createChildParameter
+				(OperationsPackage.Literals.COMPOSITE_OPERATION__SUB_OPERATIONS,
+				 OperationsFactory.eINSTANCE.createMultiReferenceOperation()));
 
-		newChildDescriptors.add(createChildParameter(OperationsPackage.Literals.COMPOSITE_OPERATION__SUB_OPERATIONS,
-			OperationsFactory.eINSTANCE.createMultiReferenceMoveOperation()));
+		newChildDescriptors.add
+			(createChildParameter
+				(OperationsPackage.Literals.COMPOSITE_OPERATION__SUB_OPERATIONS,
+				 OperationsFactory.eINSTANCE.createMultiReferenceMoveOperation()));
 
-		newChildDescriptors.add(createChildParameter(OperationsPackage.Literals.COMPOSITE_OPERATION__SUB_OPERATIONS,
-			OperationsFactory.eINSTANCE.createMultiAttributeOperation()));
+		newChildDescriptors.add
+			(createChildParameter
+				(OperationsPackage.Literals.COMPOSITE_OPERATION__SUB_OPERATIONS,
+				 OperationsFactory.eINSTANCE.createMultiAttributeOperation()));
 
-		newChildDescriptors.add(createChildParameter(OperationsPackage.Literals.COMPOSITE_OPERATION__SUB_OPERATIONS,
-			OperationsFactory.eINSTANCE.createDiagramLayoutOperation()));
+		newChildDescriptors.add
+			(createChildParameter
+				(OperationsPackage.Literals.COMPOSITE_OPERATION__SUB_OPERATIONS,
+				 OperationsFactory.eINSTANCE.createDiagramLayoutOperation()));
 
-		newChildDescriptors.add(createChildParameter(OperationsPackage.Literals.COMPOSITE_OPERATION__SUB_OPERATIONS,
-			OperationsFactory.eINSTANCE.createMultiAttributeMoveOperation()));
+		newChildDescriptors.add
+			(createChildParameter
+				(OperationsPackage.Literals.COMPOSITE_OPERATION__SUB_OPERATIONS,
+				 OperationsFactory.eINSTANCE.createMultiAttributeMoveOperation()));
 	}
 
 }

@@ -63,7 +63,8 @@ public class CreateDeleteOperationItemProvider extends AbstractOperationItemProv
 	 */
 	@Override
 	public List<IItemPropertyDescriptor> getPropertyDescriptors(Object object) {
-		if (itemPropertyDescriptors == null) {
+		if (itemPropertyDescriptors == null)
+		{
 			super.getPropertyDescriptors(object);
 
 			addDeletePropertyDescriptor(object);
@@ -77,11 +78,19 @@ public class CreateDeleteOperationItemProvider extends AbstractOperationItemProv
 	 * @generated
 	 */
 	protected void addDeletePropertyDescriptor(Object object) {
-		itemPropertyDescriptors.add(createItemPropertyDescriptor(((ComposeableAdapterFactory) adapterFactory)
-			.getRootAdapterFactory(), getResourceLocator(), getString("_UI_CreateDeleteOperation_delete_feature"),
-			getString("_UI_PropertyDescriptor_description", "_UI_CreateDeleteOperation_delete_feature",
-				"_UI_CreateDeleteOperation_type"), OperationsPackage.Literals.CREATE_DELETE_OPERATION__DELETE, true,
-			false, false, ItemPropertyDescriptor.BOOLEAN_VALUE_IMAGE, null, null));
+		itemPropertyDescriptors.add
+			(createItemPropertyDescriptor
+				(((ComposeableAdapterFactory)adapterFactory).getRootAdapterFactory(),
+				 getResourceLocator(),
+				 getString("_UI_CreateDeleteOperation_delete_feature"),
+				 getString("_UI_PropertyDescriptor_description", "_UI_CreateDeleteOperation_delete_feature", "_UI_CreateDeleteOperation_type"),
+				 OperationsPackage.Literals.CREATE_DELETE_OPERATION__DELETE,
+				 true,
+				 false,
+				 false,
+				 ItemPropertyDescriptor.BOOLEAN_VALUE_IMAGE,
+				 null,
+				 null));
 	}
 
 	/**
@@ -94,7 +103,8 @@ public class CreateDeleteOperationItemProvider extends AbstractOperationItemProv
 	 */
 	@Override
 	public Collection<? extends EStructuralFeature> getChildrenFeatures(Object object) {
-		if (childrenFeatures == null) {
+		if (childrenFeatures == null)
+		{
 			super.getChildrenFeatures(object);
 			childrenFeatures.add(OperationsPackage.Literals.CREATE_DELETE_OPERATION__MODEL_ELEMENT);
 			childrenFeatures.add(OperationsPackage.Literals.CREATE_DELETE_OPERATION__SUB_OPERATIONS);
@@ -131,9 +141,10 @@ public class CreateDeleteOperationItemProvider extends AbstractOperationItemProv
 	 */
 	@Override
 	public String getText(Object object) {
-		String label = ((CreateDeleteOperation) object).getName();
-		return label == null || label.length() == 0 ? getString("_UI_CreateDeleteOperation_type")
-			: getString("_UI_CreateDeleteOperation_type") + " " + label;
+		String label = ((CreateDeleteOperation)object).getName();
+		return label == null || label.length() == 0 ?
+			getString("_UI_CreateDeleteOperation_type") :
+			getString("_UI_CreateDeleteOperation_type") + " " + label;
 	}
 
 	/**
@@ -147,14 +158,15 @@ public class CreateDeleteOperationItemProvider extends AbstractOperationItemProv
 	public void notifyChanged(Notification notification) {
 		updateChildren(notification);
 
-		switch (notification.getFeatureID(CreateDeleteOperation.class)) {
-		case OperationsPackage.CREATE_DELETE_OPERATION__DELETE:
-			fireNotifyChanged(new ViewerNotification(notification, notification.getNotifier(), false, true));
-			return;
-		case OperationsPackage.CREATE_DELETE_OPERATION__MODEL_ELEMENT:
-		case OperationsPackage.CREATE_DELETE_OPERATION__SUB_OPERATIONS:
-			fireNotifyChanged(new ViewerNotification(notification, notification.getNotifier(), true, false));
-			return;
+		switch (notification.getFeatureID(CreateDeleteOperation.class))
+		{
+			case OperationsPackage.CREATE_DELETE_OPERATION__DELETE:
+				fireNotifyChanged(new ViewerNotification(notification, notification.getNotifier(), false, true));
+				return;
+			case OperationsPackage.CREATE_DELETE_OPERATION__MODEL_ELEMENT:
+			case OperationsPackage.CREATE_DELETE_OPERATION__SUB_OPERATIONS:
+				fireNotifyChanged(new ViewerNotification(notification, notification.getNotifier(), true, false));
+				return;
 		}
 		super.notifyChanged(notification);
 	}
@@ -169,163 +181,265 @@ public class CreateDeleteOperationItemProvider extends AbstractOperationItemProv
 	protected void collectNewChildDescriptors(Collection<Object> newChildDescriptors, Object object) {
 		super.collectNewChildDescriptors(newChildDescriptors, object);
 
-		newChildDescriptors.add(createChildParameter(OperationsPackage.Literals.CREATE_DELETE_OPERATION__MODEL_ELEMENT,
-			OrganizationFactory.eINSTANCE.createUser()));
+		newChildDescriptors.add
+			(createChildParameter
+				(OperationsPackage.Literals.CREATE_DELETE_OPERATION__MODEL_ELEMENT,
+				 OrganizationFactory.eINSTANCE.createUser()));
 
-		newChildDescriptors.add(createChildParameter(OperationsPackage.Literals.CREATE_DELETE_OPERATION__MODEL_ELEMENT,
-			OrganizationFactory.eINSTANCE.createGroup()));
+		newChildDescriptors.add
+			(createChildParameter
+				(OperationsPackage.Literals.CREATE_DELETE_OPERATION__MODEL_ELEMENT,
+				 OrganizationFactory.eINSTANCE.createGroup()));
 
-		newChildDescriptors.add(createChildParameter(OperationsPackage.Literals.CREATE_DELETE_OPERATION__MODEL_ELEMENT,
-			TaskFactory.eINSTANCE.createActionItem()));
+		newChildDescriptors.add
+			(createChildParameter
+				(OperationsPackage.Literals.CREATE_DELETE_OPERATION__MODEL_ELEMENT,
+				 TaskFactory.eINSTANCE.createActionItem()));
 
-		newChildDescriptors.add(createChildParameter(OperationsPackage.Literals.CREATE_DELETE_OPERATION__MODEL_ELEMENT,
-			TaskFactory.eINSTANCE.createWorkPackage()));
+		newChildDescriptors.add
+			(createChildParameter
+				(OperationsPackage.Literals.CREATE_DELETE_OPERATION__MODEL_ELEMENT,
+				 TaskFactory.eINSTANCE.createWorkPackage()));
 
-		newChildDescriptors.add(createChildParameter(OperationsPackage.Literals.CREATE_DELETE_OPERATION__MODEL_ELEMENT,
-			TaskFactory.eINSTANCE.createMilestone()));
+		newChildDescriptors.add
+			(createChildParameter
+				(OperationsPackage.Literals.CREATE_DELETE_OPERATION__MODEL_ELEMENT,
+				 TaskFactory.eINSTANCE.createMilestone()));
 
-		newChildDescriptors.add(createChildParameter(OperationsPackage.Literals.CREATE_DELETE_OPERATION__MODEL_ELEMENT,
-			DiagramFactory.eINSTANCE.createMEDiagram()));
+		newChildDescriptors.add
+			(createChildParameter
+				(OperationsPackage.Literals.CREATE_DELETE_OPERATION__MODEL_ELEMENT,
+				 DiagramFactory.eINSTANCE.createMEDiagram()));
 
-		newChildDescriptors.add(createChildParameter(OperationsPackage.Literals.CREATE_DELETE_OPERATION__MODEL_ELEMENT,
-			ClassesFactory.eINSTANCE.createClass()));
+		newChildDescriptors.add
+			(createChildParameter
+				(OperationsPackage.Literals.CREATE_DELETE_OPERATION__MODEL_ELEMENT,
+				 ClassesFactory.eINSTANCE.createClass()));
 
-		newChildDescriptors.add(createChildParameter(OperationsPackage.Literals.CREATE_DELETE_OPERATION__MODEL_ELEMENT,
-			ClassesFactory.eINSTANCE.createPackage()));
+		newChildDescriptors.add
+			(createChildParameter
+				(OperationsPackage.Literals.CREATE_DELETE_OPERATION__MODEL_ELEMENT,
+				 ClassesFactory.eINSTANCE.createPackage()));
 
-		newChildDescriptors.add(createChildParameter(OperationsPackage.Literals.CREATE_DELETE_OPERATION__MODEL_ELEMENT,
-			ClassesFactory.eINSTANCE.createAssociation()));
+		newChildDescriptors.add
+			(createChildParameter
+				(OperationsPackage.Literals.CREATE_DELETE_OPERATION__MODEL_ELEMENT,
+				 ClassesFactory.eINSTANCE.createAssociation()));
 
-		newChildDescriptors.add(createChildParameter(OperationsPackage.Literals.CREATE_DELETE_OPERATION__MODEL_ELEMENT,
-			ClassesFactory.eINSTANCE.createAttribute()));
+		newChildDescriptors.add
+			(createChildParameter
+				(OperationsPackage.Literals.CREATE_DELETE_OPERATION__MODEL_ELEMENT,
+				 ClassesFactory.eINSTANCE.createAttribute()));
 
-		newChildDescriptors.add(createChildParameter(OperationsPackage.Literals.CREATE_DELETE_OPERATION__MODEL_ELEMENT,
-			ClassesFactory.eINSTANCE.createMethod()));
+		newChildDescriptors.add
+			(createChildParameter
+				(OperationsPackage.Literals.CREATE_DELETE_OPERATION__MODEL_ELEMENT,
+				 ClassesFactory.eINSTANCE.createMethod()));
 
-		newChildDescriptors.add(createChildParameter(OperationsPackage.Literals.CREATE_DELETE_OPERATION__MODEL_ELEMENT,
-			ClassesFactory.eINSTANCE.createMethodArgument()));
+		newChildDescriptors.add
+			(createChildParameter
+				(OperationsPackage.Literals.CREATE_DELETE_OPERATION__MODEL_ELEMENT,
+				 ClassesFactory.eINSTANCE.createMethodArgument()));
 
-		newChildDescriptors.add(createChildParameter(OperationsPackage.Literals.CREATE_DELETE_OPERATION__MODEL_ELEMENT,
-			ClassesFactory.eINSTANCE.createDependency()));
+		newChildDescriptors.add
+			(createChildParameter
+				(OperationsPackage.Literals.CREATE_DELETE_OPERATION__MODEL_ELEMENT,
+				 ClassesFactory.eINSTANCE.createDependency()));
 
-		newChildDescriptors.add(createChildParameter(OperationsPackage.Literals.CREATE_DELETE_OPERATION__MODEL_ELEMENT,
-			DocumentFactory.eINSTANCE.createLeafSection()));
+		newChildDescriptors.add
+			(createChildParameter
+				(OperationsPackage.Literals.CREATE_DELETE_OPERATION__MODEL_ELEMENT,
+				 DocumentFactory.eINSTANCE.createLeafSection()));
 
-		newChildDescriptors.add(createChildParameter(OperationsPackage.Literals.CREATE_DELETE_OPERATION__MODEL_ELEMENT,
-			DocumentFactory.eINSTANCE.createCompositeSection()));
+		newChildDescriptors.add
+			(createChildParameter
+				(OperationsPackage.Literals.CREATE_DELETE_OPERATION__MODEL_ELEMENT,
+				 DocumentFactory.eINSTANCE.createCompositeSection()));
 
-		newChildDescriptors.add(createChildParameter(OperationsPackage.Literals.CREATE_DELETE_OPERATION__MODEL_ELEMENT,
-			RequirementFactory.eINSTANCE.createNonFunctionalRequirement()));
+		newChildDescriptors.add
+			(createChildParameter
+				(OperationsPackage.Literals.CREATE_DELETE_OPERATION__MODEL_ELEMENT,
+				 RequirementFactory.eINSTANCE.createNonFunctionalRequirement()));
 
-		newChildDescriptors.add(createChildParameter(OperationsPackage.Literals.CREATE_DELETE_OPERATION__MODEL_ELEMENT,
-			RequirementFactory.eINSTANCE.createFunctionalRequirement()));
+		newChildDescriptors.add
+			(createChildParameter
+				(OperationsPackage.Literals.CREATE_DELETE_OPERATION__MODEL_ELEMENT,
+				 RequirementFactory.eINSTANCE.createFunctionalRequirement()));
 
-		newChildDescriptors.add(createChildParameter(OperationsPackage.Literals.CREATE_DELETE_OPERATION__MODEL_ELEMENT,
-			RequirementFactory.eINSTANCE.createUseCase()));
+		newChildDescriptors.add
+			(createChildParameter
+				(OperationsPackage.Literals.CREATE_DELETE_OPERATION__MODEL_ELEMENT,
+				 RequirementFactory.eINSTANCE.createUseCase()));
 
-		newChildDescriptors.add(createChildParameter(OperationsPackage.Literals.CREATE_DELETE_OPERATION__MODEL_ELEMENT,
-			RequirementFactory.eINSTANCE.createScenario()));
+		newChildDescriptors.add
+			(createChildParameter
+				(OperationsPackage.Literals.CREATE_DELETE_OPERATION__MODEL_ELEMENT,
+				 RequirementFactory.eINSTANCE.createScenario()));
 
-		newChildDescriptors.add(createChildParameter(OperationsPackage.Literals.CREATE_DELETE_OPERATION__MODEL_ELEMENT,
-			RequirementFactory.eINSTANCE.createActor()));
+		newChildDescriptors.add
+			(createChildParameter
+				(OperationsPackage.Literals.CREATE_DELETE_OPERATION__MODEL_ELEMENT,
+				 RequirementFactory.eINSTANCE.createActor()));
 
-		newChildDescriptors.add(createChildParameter(OperationsPackage.Literals.CREATE_DELETE_OPERATION__MODEL_ELEMENT,
-			RequirementFactory.eINSTANCE.createActorInstance()));
+		newChildDescriptors.add
+			(createChildParameter
+				(OperationsPackage.Literals.CREATE_DELETE_OPERATION__MODEL_ELEMENT,
+				 RequirementFactory.eINSTANCE.createActorInstance()));
 
-		newChildDescriptors.add(createChildParameter(OperationsPackage.Literals.CREATE_DELETE_OPERATION__MODEL_ELEMENT,
-			RequirementFactory.eINSTANCE.createStep()));
+		newChildDescriptors.add
+			(createChildParameter
+				(OperationsPackage.Literals.CREATE_DELETE_OPERATION__MODEL_ELEMENT,
+				 RequirementFactory.eINSTANCE.createStep()));
 
-		newChildDescriptors.add(createChildParameter(OperationsPackage.Literals.CREATE_DELETE_OPERATION__MODEL_ELEMENT,
-			RequirementFactory.eINSTANCE.createSystemFunction()));
+		newChildDescriptors.add
+			(createChildParameter
+				(OperationsPackage.Literals.CREATE_DELETE_OPERATION__MODEL_ELEMENT,
+				 RequirementFactory.eINSTANCE.createSystemFunction()));
 
-		newChildDescriptors.add(createChildParameter(OperationsPackage.Literals.CREATE_DELETE_OPERATION__MODEL_ELEMENT,
-			RequirementFactory.eINSTANCE.createUserTask()));
+		newChildDescriptors.add
+			(createChildParameter
+				(OperationsPackage.Literals.CREATE_DELETE_OPERATION__MODEL_ELEMENT,
+				 RequirementFactory.eINSTANCE.createUserTask()));
 
-		newChildDescriptors.add(createChildParameter(OperationsPackage.Literals.CREATE_DELETE_OPERATION__MODEL_ELEMENT,
-			RationaleFactory.eINSTANCE.createIssue()));
+		newChildDescriptors.add
+			(createChildParameter
+				(OperationsPackage.Literals.CREATE_DELETE_OPERATION__MODEL_ELEMENT,
+				 RationaleFactory.eINSTANCE.createIssue()));
 
-		newChildDescriptors.add(createChildParameter(OperationsPackage.Literals.CREATE_DELETE_OPERATION__MODEL_ELEMENT,
-			RationaleFactory.eINSTANCE.createProposal()));
+		newChildDescriptors.add
+			(createChildParameter
+				(OperationsPackage.Literals.CREATE_DELETE_OPERATION__MODEL_ELEMENT,
+				 RationaleFactory.eINSTANCE.createProposal()));
 
-		newChildDescriptors.add(createChildParameter(OperationsPackage.Literals.CREATE_DELETE_OPERATION__MODEL_ELEMENT,
-			RationaleFactory.eINSTANCE.createSolution()));
+		newChildDescriptors.add
+			(createChildParameter
+				(OperationsPackage.Literals.CREATE_DELETE_OPERATION__MODEL_ELEMENT,
+				 RationaleFactory.eINSTANCE.createSolution()));
 
-		newChildDescriptors.add(createChildParameter(OperationsPackage.Literals.CREATE_DELETE_OPERATION__MODEL_ELEMENT,
-			RationaleFactory.eINSTANCE.createCriterion()));
+		newChildDescriptors.add
+			(createChildParameter
+				(OperationsPackage.Literals.CREATE_DELETE_OPERATION__MODEL_ELEMENT,
+				 RationaleFactory.eINSTANCE.createCriterion()));
 
-		newChildDescriptors.add(createChildParameter(OperationsPackage.Literals.CREATE_DELETE_OPERATION__MODEL_ELEMENT,
-			RationaleFactory.eINSTANCE.createAssessment()));
+		newChildDescriptors.add
+			(createChildParameter
+				(OperationsPackage.Literals.CREATE_DELETE_OPERATION__MODEL_ELEMENT,
+				 RationaleFactory.eINSTANCE.createAssessment()));
 
-		newChildDescriptors.add(createChildParameter(OperationsPackage.Literals.CREATE_DELETE_OPERATION__MODEL_ELEMENT,
-			RationaleFactory.eINSTANCE.createComment()));
+		newChildDescriptors.add
+			(createChildParameter
+				(OperationsPackage.Literals.CREATE_DELETE_OPERATION__MODEL_ELEMENT,
+				 RationaleFactory.eINSTANCE.createComment()));
 
-		newChildDescriptors.add(createChildParameter(OperationsPackage.Literals.CREATE_DELETE_OPERATION__MODEL_ELEMENT,
-			ChangeFactory.eINSTANCE.createModelChangePackage()));
+		newChildDescriptors.add
+			(createChildParameter
+				(OperationsPackage.Literals.CREATE_DELETE_OPERATION__MODEL_ELEMENT,
+				 ChangeFactory.eINSTANCE.createModelChangePackage()));
 
-		newChildDescriptors.add(createChildParameter(OperationsPackage.Literals.CREATE_DELETE_OPERATION__MODEL_ELEMENT,
-			ChangeFactory.eINSTANCE.createMergingIssue()));
+		newChildDescriptors.add
+			(createChildParameter
+				(OperationsPackage.Literals.CREATE_DELETE_OPERATION__MODEL_ELEMENT,
+				 ChangeFactory.eINSTANCE.createMergingIssue()));
 
-		newChildDescriptors.add(createChildParameter(OperationsPackage.Literals.CREATE_DELETE_OPERATION__MODEL_ELEMENT,
-			ChangeFactory.eINSTANCE.createMergingProposal()));
+		newChildDescriptors.add
+			(createChildParameter
+				(OperationsPackage.Literals.CREATE_DELETE_OPERATION__MODEL_ELEMENT,
+				 ChangeFactory.eINSTANCE.createMergingProposal()));
 
-		newChildDescriptors.add(createChildParameter(OperationsPackage.Literals.CREATE_DELETE_OPERATION__MODEL_ELEMENT,
-			ChangeFactory.eINSTANCE.createMergingSolution()));
+		newChildDescriptors.add
+			(createChildParameter
+				(OperationsPackage.Literals.CREATE_DELETE_OPERATION__MODEL_ELEMENT,
+				 ChangeFactory.eINSTANCE.createMergingSolution()));
 
-		newChildDescriptors.add(createChildParameter(OperationsPackage.Literals.CREATE_DELETE_OPERATION__MODEL_ELEMENT,
-			BugFactory.eINSTANCE.createBugReport()));
+		newChildDescriptors.add
+			(createChildParameter
+				(OperationsPackage.Literals.CREATE_DELETE_OPERATION__MODEL_ELEMENT,
+				 BugFactory.eINSTANCE.createBugReport()));
 
-		newChildDescriptors.add(createChildParameter(OperationsPackage.Literals.CREATE_DELETE_OPERATION__MODEL_ELEMENT,
-			ComponentFactory.eINSTANCE.createComponent()));
+		newChildDescriptors.add
+			(createChildParameter
+				(OperationsPackage.Literals.CREATE_DELETE_OPERATION__MODEL_ELEMENT,
+				 ComponentFactory.eINSTANCE.createComponent()));
 
-		newChildDescriptors.add(createChildParameter(OperationsPackage.Literals.CREATE_DELETE_OPERATION__MODEL_ELEMENT,
-			ComponentFactory.eINSTANCE.createComponentService()));
+		newChildDescriptors.add
+			(createChildParameter
+				(OperationsPackage.Literals.CREATE_DELETE_OPERATION__MODEL_ELEMENT,
+				 ComponentFactory.eINSTANCE.createComponentService()));
 
-		newChildDescriptors.add(createChildParameter(OperationsPackage.Literals.CREATE_DELETE_OPERATION__MODEL_ELEMENT,
-			ComponentFactory.eINSTANCE.createDeploymentNode()));
+		newChildDescriptors.add
+			(createChildParameter
+				(OperationsPackage.Literals.CREATE_DELETE_OPERATION__MODEL_ELEMENT,
+				 ComponentFactory.eINSTANCE.createDeploymentNode()));
 
-		newChildDescriptors.add(createChildParameter(OperationsPackage.Literals.CREATE_DELETE_OPERATION__MODEL_ELEMENT,
-			MeetingFactory.eINSTANCE.createMeeting()));
+		newChildDescriptors.add
+			(createChildParameter
+				(OperationsPackage.Literals.CREATE_DELETE_OPERATION__MODEL_ELEMENT,
+				 MeetingFactory.eINSTANCE.createMeeting()));
 
-		newChildDescriptors.add(createChildParameter(OperationsPackage.Literals.CREATE_DELETE_OPERATION__MODEL_ELEMENT,
-			MeetingFactory.eINSTANCE.createCompositeMeetingSection()));
+		newChildDescriptors.add
+			(createChildParameter
+				(OperationsPackage.Literals.CREATE_DELETE_OPERATION__MODEL_ELEMENT,
+				 MeetingFactory.eINSTANCE.createCompositeMeetingSection()));
 
-		newChildDescriptors.add(createChildParameter(OperationsPackage.Literals.CREATE_DELETE_OPERATION__MODEL_ELEMENT,
-			MeetingFactory.eINSTANCE.createIssueMeetingSection()));
+		newChildDescriptors.add
+			(createChildParameter
+				(OperationsPackage.Literals.CREATE_DELETE_OPERATION__MODEL_ELEMENT,
+				 MeetingFactory.eINSTANCE.createIssueMeetingSection()));
 
-		newChildDescriptors.add(createChildParameter(OperationsPackage.Literals.CREATE_DELETE_OPERATION__MODEL_ELEMENT,
-			MeetingFactory.eINSTANCE.createWorkItemMeetingSection()));
+		newChildDescriptors.add
+			(createChildParameter
+				(OperationsPackage.Literals.CREATE_DELETE_OPERATION__MODEL_ELEMENT,
+				 MeetingFactory.eINSTANCE.createWorkItemMeetingSection()));
 
-		newChildDescriptors.add(createChildParameter(OperationsPackage.Literals.CREATE_DELETE_OPERATION__MODEL_ELEMENT,
-			StateFactory.eINSTANCE.createState()));
+		newChildDescriptors.add
+			(createChildParameter
+				(OperationsPackage.Literals.CREATE_DELETE_OPERATION__MODEL_ELEMENT,
+				 StateFactory.eINSTANCE.createState()));
 
-		newChildDescriptors.add(createChildParameter(OperationsPackage.Literals.CREATE_DELETE_OPERATION__MODEL_ELEMENT,
-			StateFactory.eINSTANCE.createTransition()));
+		newChildDescriptors.add
+			(createChildParameter
+				(OperationsPackage.Literals.CREATE_DELETE_OPERATION__MODEL_ELEMENT,
+				 StateFactory.eINSTANCE.createTransition()));
 
-		newChildDescriptors.add(createChildParameter(OperationsPackage.Literals.CREATE_DELETE_OPERATION__MODEL_ELEMENT,
-			AttachmentFactory.eINSTANCE.createUrlAttachment()));
+		newChildDescriptors.add
+			(createChildParameter
+				(OperationsPackage.Literals.CREATE_DELETE_OPERATION__MODEL_ELEMENT,
+				 AttachmentFactory.eINSTANCE.createUrlAttachment()));
 
-		newChildDescriptors.add(createChildParameter(OperationsPackage.Literals.CREATE_DELETE_OPERATION__MODEL_ELEMENT,
-			ProfileFactory.eINSTANCE.createProfile()));
+		newChildDescriptors.add
+			(createChildParameter
+				(OperationsPackage.Literals.CREATE_DELETE_OPERATION__MODEL_ELEMENT,
+				 ProfileFactory.eINSTANCE.createProfile()));
 
-		newChildDescriptors.add(createChildParameter(OperationsPackage.Literals.CREATE_DELETE_OPERATION__MODEL_ELEMENT,
-			ProfileFactory.eINSTANCE.createStereotype()));
+		newChildDescriptors.add
+			(createChildParameter
+				(OperationsPackage.Literals.CREATE_DELETE_OPERATION__MODEL_ELEMENT,
+				 ProfileFactory.eINSTANCE.createStereotype()));
 
-		newChildDescriptors.add(createChildParameter(OperationsPackage.Literals.CREATE_DELETE_OPERATION__MODEL_ELEMENT,
-			ProfileFactory.eINSTANCE.createStereotypeInstance()));
+		newChildDescriptors.add
+			(createChildParameter
+				(OperationsPackage.Literals.CREATE_DELETE_OPERATION__MODEL_ELEMENT,
+				 ProfileFactory.eINSTANCE.createStereotypeInstance()));
 
-		newChildDescriptors.add(createChildParameter(OperationsPackage.Literals.CREATE_DELETE_OPERATION__MODEL_ELEMENT,
-			ProfileFactory.eINSTANCE.createStereotypeAttributeSimple()));
+		newChildDescriptors.add
+			(createChildParameter
+				(OperationsPackage.Literals.CREATE_DELETE_OPERATION__MODEL_ELEMENT,
+				 ProfileFactory.eINSTANCE.createStereotypeAttributeSimple()));
 
-		newChildDescriptors.add(createChildParameter(OperationsPackage.Literals.CREATE_DELETE_OPERATION__MODEL_ELEMENT,
-			ProfileFactory.eINSTANCE.createStereotypeAttributeInstanceString()));
+		newChildDescriptors.add
+			(createChildParameter
+				(OperationsPackage.Literals.CREATE_DELETE_OPERATION__MODEL_ELEMENT,
+				 ProfileFactory.eINSTANCE.createStereotypeAttributeInstanceString()));
 
-		newChildDescriptors.add(createChildParameter(
-			OperationsPackage.Literals.CREATE_DELETE_OPERATION__SUB_OPERATIONS, OperationsFactory.eINSTANCE
-				.createSingleReferenceOperation()));
+		newChildDescriptors.add
+			(createChildParameter
+				(OperationsPackage.Literals.CREATE_DELETE_OPERATION__SUB_OPERATIONS,
+				 OperationsFactory.eINSTANCE.createSingleReferenceOperation()));
 
-		newChildDescriptors.add(createChildParameter(
-			OperationsPackage.Literals.CREATE_DELETE_OPERATION__SUB_OPERATIONS, OperationsFactory.eINSTANCE
-				.createMultiReferenceOperation()));
+		newChildDescriptors.add
+			(createChildParameter
+				(OperationsPackage.Literals.CREATE_DELETE_OPERATION__SUB_OPERATIONS,
+				 OperationsFactory.eINSTANCE.createMultiReferenceOperation()));
 	}
 
 }

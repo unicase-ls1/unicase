@@ -117,8 +117,7 @@ public class LinkEventImpl extends EventImpl implements LinkEvent {
 		String oldSourceView = sourceView;
 		sourceView = newSourceView;
 		if (eNotificationRequired())
-			eNotify(new ENotificationImpl(this, Notification.SET, EventsPackage.LINK_EVENT__SOURCE_VIEW, oldSourceView,
-				sourceView));
+			eNotify(new ENotificationImpl(this, Notification.SET, EventsPackage.LINK_EVENT__SOURCE_VIEW, oldSourceView, sourceView));
 	}
 
 	/**
@@ -126,13 +125,14 @@ public class LinkEventImpl extends EventImpl implements LinkEvent {
 	 * @generated
 	 */
 	public ModelElementId getSourceElement() {
-		if (sourceElement != null && sourceElement.eIsProxy()) {
-			InternalEObject oldSourceElement = (InternalEObject) sourceElement;
-			sourceElement = (ModelElementId) eResolveProxy(oldSourceElement);
-			if (sourceElement != oldSourceElement) {
+		if (sourceElement != null && sourceElement.eIsProxy())
+		{
+			InternalEObject oldSourceElement = (InternalEObject)sourceElement;
+			sourceElement = (ModelElementId)eResolveProxy(oldSourceElement);
+			if (sourceElement != oldSourceElement)
+			{
 				if (eNotificationRequired())
-					eNotify(new ENotificationImpl(this, Notification.RESOLVE, EventsPackage.LINK_EVENT__SOURCE_ELEMENT,
-						oldSourceElement, sourceElement));
+					eNotify(new ENotificationImpl(this, Notification.RESOLVE, EventsPackage.LINK_EVENT__SOURCE_ELEMENT, oldSourceElement, sourceElement));
 			}
 		}
 		return sourceElement;
@@ -154,8 +154,7 @@ public class LinkEventImpl extends EventImpl implements LinkEvent {
 		ModelElementId oldSourceElement = sourceElement;
 		sourceElement = newSourceElement;
 		if (eNotificationRequired())
-			eNotify(new ENotificationImpl(this, Notification.SET, EventsPackage.LINK_EVENT__SOURCE_ELEMENT,
-				oldSourceElement, sourceElement));
+			eNotify(new ENotificationImpl(this, Notification.SET, EventsPackage.LINK_EVENT__SOURCE_ELEMENT, oldSourceElement, sourceElement));
 	}
 
 	/**
@@ -163,13 +162,14 @@ public class LinkEventImpl extends EventImpl implements LinkEvent {
 	 * @generated
 	 */
 	public ModelElementId getTargetElement() {
-		if (targetElement != null && targetElement.eIsProxy()) {
-			InternalEObject oldTargetElement = (InternalEObject) targetElement;
-			targetElement = (ModelElementId) eResolveProxy(oldTargetElement);
-			if (targetElement != oldTargetElement) {
+		if (targetElement != null && targetElement.eIsProxy())
+		{
+			InternalEObject oldTargetElement = (InternalEObject)targetElement;
+			targetElement = (ModelElementId)eResolveProxy(oldTargetElement);
+			if (targetElement != oldTargetElement)
+			{
 				if (eNotificationRequired())
-					eNotify(new ENotificationImpl(this, Notification.RESOLVE, EventsPackage.LINK_EVENT__TARGET_ELEMENT,
-						oldTargetElement, targetElement));
+					eNotify(new ENotificationImpl(this, Notification.RESOLVE, EventsPackage.LINK_EVENT__TARGET_ELEMENT, oldTargetElement, targetElement));
 			}
 		}
 		return targetElement;
@@ -191,8 +191,7 @@ public class LinkEventImpl extends EventImpl implements LinkEvent {
 		ModelElementId oldTargetElement = targetElement;
 		targetElement = newTargetElement;
 		if (eNotificationRequired())
-			eNotify(new ENotificationImpl(this, Notification.SET, EventsPackage.LINK_EVENT__TARGET_ELEMENT,
-				oldTargetElement, targetElement));
+			eNotify(new ENotificationImpl(this, Notification.SET, EventsPackage.LINK_EVENT__TARGET_ELEMENT, oldTargetElement, targetElement));
 	}
 
 	/**
@@ -211,8 +210,7 @@ public class LinkEventImpl extends EventImpl implements LinkEvent {
 		boolean oldCreatedNew = createdNew;
 		createdNew = newCreatedNew;
 		if (eNotificationRequired())
-			eNotify(new ENotificationImpl(this, Notification.SET, EventsPackage.LINK_EVENT__CREATED_NEW, oldCreatedNew,
-				createdNew));
+			eNotify(new ENotificationImpl(this, Notification.SET, EventsPackage.LINK_EVENT__CREATED_NEW, oldCreatedNew, createdNew));
 	}
 
 	/**
@@ -221,19 +219,18 @@ public class LinkEventImpl extends EventImpl implements LinkEvent {
 	 */
 	@Override
 	public Object eGet(int featureID, boolean resolve, boolean coreType) {
-		switch (featureID) {
-		case EventsPackage.LINK_EVENT__SOURCE_VIEW:
-			return getSourceView();
-		case EventsPackage.LINK_EVENT__SOURCE_ELEMENT:
-			if (resolve)
-				return getSourceElement();
-			return basicGetSourceElement();
-		case EventsPackage.LINK_EVENT__TARGET_ELEMENT:
-			if (resolve)
-				return getTargetElement();
-			return basicGetTargetElement();
-		case EventsPackage.LINK_EVENT__CREATED_NEW:
-			return isCreatedNew() ? Boolean.TRUE : Boolean.FALSE;
+		switch (featureID)
+		{
+			case EventsPackage.LINK_EVENT__SOURCE_VIEW:
+				return getSourceView();
+			case EventsPackage.LINK_EVENT__SOURCE_ELEMENT:
+				if (resolve) return getSourceElement();
+				return basicGetSourceElement();
+			case EventsPackage.LINK_EVENT__TARGET_ELEMENT:
+				if (resolve) return getTargetElement();
+				return basicGetTargetElement();
+			case EventsPackage.LINK_EVENT__CREATED_NEW:
+				return isCreatedNew() ? Boolean.TRUE : Boolean.FALSE;
 		}
 		return super.eGet(featureID, resolve, coreType);
 	}
@@ -244,19 +241,20 @@ public class LinkEventImpl extends EventImpl implements LinkEvent {
 	 */
 	@Override
 	public void eSet(int featureID, Object newValue) {
-		switch (featureID) {
-		case EventsPackage.LINK_EVENT__SOURCE_VIEW:
-			setSourceView((String) newValue);
-			return;
-		case EventsPackage.LINK_EVENT__SOURCE_ELEMENT:
-			setSourceElement((ModelElementId) newValue);
-			return;
-		case EventsPackage.LINK_EVENT__TARGET_ELEMENT:
-			setTargetElement((ModelElementId) newValue);
-			return;
-		case EventsPackage.LINK_EVENT__CREATED_NEW:
-			setCreatedNew(((Boolean) newValue).booleanValue());
-			return;
+		switch (featureID)
+		{
+			case EventsPackage.LINK_EVENT__SOURCE_VIEW:
+				setSourceView((String)newValue);
+				return;
+			case EventsPackage.LINK_EVENT__SOURCE_ELEMENT:
+				setSourceElement((ModelElementId)newValue);
+				return;
+			case EventsPackage.LINK_EVENT__TARGET_ELEMENT:
+				setTargetElement((ModelElementId)newValue);
+				return;
+			case EventsPackage.LINK_EVENT__CREATED_NEW:
+				setCreatedNew(((Boolean)newValue).booleanValue());
+				return;
 		}
 		super.eSet(featureID, newValue);
 	}
@@ -267,19 +265,20 @@ public class LinkEventImpl extends EventImpl implements LinkEvent {
 	 */
 	@Override
 	public void eUnset(int featureID) {
-		switch (featureID) {
-		case EventsPackage.LINK_EVENT__SOURCE_VIEW:
-			setSourceView(SOURCE_VIEW_EDEFAULT);
-			return;
-		case EventsPackage.LINK_EVENT__SOURCE_ELEMENT:
-			setSourceElement((ModelElementId) null);
-			return;
-		case EventsPackage.LINK_EVENT__TARGET_ELEMENT:
-			setTargetElement((ModelElementId) null);
-			return;
-		case EventsPackage.LINK_EVENT__CREATED_NEW:
-			setCreatedNew(CREATED_NEW_EDEFAULT);
-			return;
+		switch (featureID)
+		{
+			case EventsPackage.LINK_EVENT__SOURCE_VIEW:
+				setSourceView(SOURCE_VIEW_EDEFAULT);
+				return;
+			case EventsPackage.LINK_EVENT__SOURCE_ELEMENT:
+				setSourceElement((ModelElementId)null);
+				return;
+			case EventsPackage.LINK_EVENT__TARGET_ELEMENT:
+				setTargetElement((ModelElementId)null);
+				return;
+			case EventsPackage.LINK_EVENT__CREATED_NEW:
+				setCreatedNew(CREATED_NEW_EDEFAULT);
+				return;
 		}
 		super.eUnset(featureID);
 	}
@@ -290,15 +289,16 @@ public class LinkEventImpl extends EventImpl implements LinkEvent {
 	 */
 	@Override
 	public boolean eIsSet(int featureID) {
-		switch (featureID) {
-		case EventsPackage.LINK_EVENT__SOURCE_VIEW:
-			return SOURCE_VIEW_EDEFAULT == null ? sourceView != null : !SOURCE_VIEW_EDEFAULT.equals(sourceView);
-		case EventsPackage.LINK_EVENT__SOURCE_ELEMENT:
-			return sourceElement != null;
-		case EventsPackage.LINK_EVENT__TARGET_ELEMENT:
-			return targetElement != null;
-		case EventsPackage.LINK_EVENT__CREATED_NEW:
-			return createdNew != CREATED_NEW_EDEFAULT;
+		switch (featureID)
+		{
+			case EventsPackage.LINK_EVENT__SOURCE_VIEW:
+				return SOURCE_VIEW_EDEFAULT == null ? sourceView != null : !SOURCE_VIEW_EDEFAULT.equals(sourceView);
+			case EventsPackage.LINK_EVENT__SOURCE_ELEMENT:
+				return sourceElement != null;
+			case EventsPackage.LINK_EVENT__TARGET_ELEMENT:
+				return targetElement != null;
+			case EventsPackage.LINK_EVENT__CREATED_NEW:
+				return createdNew != CREATED_NEW_EDEFAULT;
 		}
 		return super.eIsSet(featureID);
 	}
@@ -309,8 +309,7 @@ public class LinkEventImpl extends EventImpl implements LinkEvent {
 	 */
 	@Override
 	public String toString() {
-		if (eIsProxy())
-			return super.toString();
+		if (eIsProxy()) return super.toString();
 
 		StringBuffer result = new StringBuffer(super.toString());
 		result.append(" (sourceView: ");

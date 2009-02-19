@@ -42,7 +42,8 @@ public class ValidateItemProvider extends EventItemProvider implements IEditingD
 	 */
 	@Override
 	public List<IItemPropertyDescriptor> getPropertyDescriptors(Object object) {
-		if (itemPropertyDescriptors == null) {
+		if (itemPropertyDescriptors == null)
+		{
 			super.getPropertyDescriptors(object);
 
 		}
@@ -66,10 +67,11 @@ public class ValidateItemProvider extends EventItemProvider implements IEditingD
 	 */
 	@Override
 	public String getText(Object object) {
-		Date labelValue = ((Validate) object).getTimestamp();
+		Date labelValue = ((Validate)object).getTimestamp();
 		String label = labelValue == null ? null : labelValue.toString();
-		return label == null || label.length() == 0 ? getString("_UI_Validate_type") : getString("_UI_Validate_type")
-			+ " " + label;
+		return label == null || label.length() == 0 ?
+			getString("_UI_Validate_type") :
+			getString("_UI_Validate_type") + " " + label;
 	}
 
 	/**

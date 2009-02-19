@@ -86,7 +86,8 @@ public class OperationsItemProviderAdapterFactory extends OperationsAdapterFacto
 	 */
 	@Override
 	public Adapter createCompositeOperationAdapter() {
-		if (compositeOperationItemProvider == null) {
+		if (compositeOperationItemProvider == null)
+		{
 			compositeOperationItemProvider = new CompositeOperationItemProvider(this);
 		}
 
@@ -108,7 +109,8 @@ public class OperationsItemProviderAdapterFactory extends OperationsAdapterFacto
 	 */
 	@Override
 	public Adapter createCreateDeleteOperationAdapter() {
-		if (createDeleteOperationItemProvider == null) {
+		if (createDeleteOperationItemProvider == null)
+		{
 			createDeleteOperationItemProvider = new CreateDeleteOperationItemProvider(this);
 		}
 
@@ -131,7 +133,8 @@ public class OperationsItemProviderAdapterFactory extends OperationsAdapterFacto
 	 */
 	@Override
 	public Adapter createAttributeOperationAdapter() {
-		if (attributeOperationItemProvider == null) {
+		if (attributeOperationItemProvider == null)
+		{
 			attributeOperationItemProvider = new AttributeOperationItemProvider(this);
 		}
 
@@ -154,7 +157,8 @@ public class OperationsItemProviderAdapterFactory extends OperationsAdapterFacto
 	 */
 	@Override
 	public Adapter createSingleReferenceOperationAdapter() {
-		if (singleReferenceOperationItemProvider == null) {
+		if (singleReferenceOperationItemProvider == null)
+		{
 			singleReferenceOperationItemProvider = new SingleReferenceOperationItemProvider(this);
 		}
 
@@ -176,7 +180,8 @@ public class OperationsItemProviderAdapterFactory extends OperationsAdapterFacto
 	 */
 	@Override
 	public Adapter createMultiReferenceOperationAdapter() {
-		if (multiReferenceOperationItemProvider == null) {
+		if (multiReferenceOperationItemProvider == null)
+		{
 			multiReferenceOperationItemProvider = new MultiReferenceOperationItemProvider(this);
 		}
 
@@ -200,7 +205,8 @@ public class OperationsItemProviderAdapterFactory extends OperationsAdapterFacto
 	 */
 	@Override
 	public Adapter createMultiReferenceMoveOperationAdapter() {
-		if (multiReferenceMoveOperationItemProvider == null) {
+		if (multiReferenceMoveOperationItemProvider == null)
+		{
 			multiReferenceMoveOperationItemProvider = new MultiReferenceMoveOperationItemProvider(this);
 		}
 
@@ -222,7 +228,8 @@ public class OperationsItemProviderAdapterFactory extends OperationsAdapterFacto
 	 */
 	@Override
 	public Adapter createMultiAttributeOperationAdapter() {
-		if (multiAttributeOperationItemProvider == null) {
+		if (multiAttributeOperationItemProvider == null)
+		{
 			multiAttributeOperationItemProvider = new MultiAttributeOperationItemProvider(this);
 		}
 
@@ -244,7 +251,8 @@ public class OperationsItemProviderAdapterFactory extends OperationsAdapterFacto
 	 */
 	@Override
 	public Adapter createDiagramLayoutOperationAdapter() {
-		if (diagramLayoutOperationItemProvider == null) {
+		if (diagramLayoutOperationItemProvider == null)
+		{
 			diagramLayoutOperationItemProvider = new DiagramLayoutOperationItemProvider(this);
 		}
 
@@ -268,7 +276,8 @@ public class OperationsItemProviderAdapterFactory extends OperationsAdapterFacto
 	 */
 	@Override
 	public Adapter createMultiAttributeMoveOperationAdapter() {
-		if (multiAttributeMoveOperationItemProvider == null) {
+		if (multiAttributeMoveOperationItemProvider == null)
+		{
 			multiAttributeMoveOperationItemProvider = new MultiAttributeMoveOperationItemProvider(this);
 		}
 
@@ -319,9 +328,11 @@ public class OperationsItemProviderAdapterFactory extends OperationsAdapterFacto
 	 */
 	@Override
 	public Object adapt(Object object, Object type) {
-		if (isFactoryForType(type)) {
+		if (isFactoryForType(type))
+		{
 			Object adapter = super.adapt(object, type);
-			if (!(type instanceof Class) || (((Class<?>) type).isInstance(adapter))) {
+			if (!(type instanceof Class) || (((Class<?>)type).isInstance(adapter)))
+			{
 				return adapter;
 			}
 		}
@@ -356,7 +367,8 @@ public class OperationsItemProviderAdapterFactory extends OperationsAdapterFacto
 	public void fireNotifyChanged(Notification notification) {
 		changeNotifier.fireNotifyChanged(notification);
 
-		if (parentAdapterFactory != null) {
+		if (parentAdapterFactory != null)
+		{
 			parentAdapterFactory.fireNotifyChanged(notification);
 		}
 	}
@@ -367,24 +379,15 @@ public class OperationsItemProviderAdapterFactory extends OperationsAdapterFacto
 	 * @generated
 	 */
 	public void dispose() {
-		if (compositeOperationItemProvider != null)
-			compositeOperationItemProvider.dispose();
-		if (createDeleteOperationItemProvider != null)
-			createDeleteOperationItemProvider.dispose();
-		if (attributeOperationItemProvider != null)
-			attributeOperationItemProvider.dispose();
-		if (singleReferenceOperationItemProvider != null)
-			singleReferenceOperationItemProvider.dispose();
-		if (multiReferenceOperationItemProvider != null)
-			multiReferenceOperationItemProvider.dispose();
-		if (multiReferenceMoveOperationItemProvider != null)
-			multiReferenceMoveOperationItemProvider.dispose();
-		if (multiAttributeOperationItemProvider != null)
-			multiAttributeOperationItemProvider.dispose();
-		if (diagramLayoutOperationItemProvider != null)
-			diagramLayoutOperationItemProvider.dispose();
-		if (multiAttributeMoveOperationItemProvider != null)
-			multiAttributeMoveOperationItemProvider.dispose();
+		if (compositeOperationItemProvider != null) compositeOperationItemProvider.dispose();
+		if (createDeleteOperationItemProvider != null) createDeleteOperationItemProvider.dispose();
+		if (attributeOperationItemProvider != null) attributeOperationItemProvider.dispose();
+		if (singleReferenceOperationItemProvider != null) singleReferenceOperationItemProvider.dispose();
+		if (multiReferenceOperationItemProvider != null) multiReferenceOperationItemProvider.dispose();
+		if (multiReferenceMoveOperationItemProvider != null) multiReferenceMoveOperationItemProvider.dispose();
+		if (multiAttributeOperationItemProvider != null) multiAttributeOperationItemProvider.dispose();
+		if (diagramLayoutOperationItemProvider != null) diagramLayoutOperationItemProvider.dispose();
+		if (multiAttributeMoveOperationItemProvider != null) multiAttributeMoveOperationItemProvider.dispose();
 	}
 
 }

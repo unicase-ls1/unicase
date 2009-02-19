@@ -89,8 +89,7 @@ public abstract class FeatureOperationImpl extends AbstractOperationImpl impleme
 		String oldFeatureName = featureName;
 		featureName = newFeatureName;
 		if (eNotificationRequired())
-			eNotify(new ENotificationImpl(this, Notification.SET, OperationsPackage.FEATURE_OPERATION__FEATURE_NAME,
-				oldFeatureName, featureName));
+			eNotify(new ENotificationImpl(this, Notification.SET, OperationsPackage.FEATURE_OPERATION__FEATURE_NAME, oldFeatureName, featureName));
 	}
 
 	/**
@@ -99,9 +98,10 @@ public abstract class FeatureOperationImpl extends AbstractOperationImpl impleme
 	 */
 	@Override
 	public Object eGet(int featureID, boolean resolve, boolean coreType) {
-		switch (featureID) {
-		case OperationsPackage.FEATURE_OPERATION__FEATURE_NAME:
-			return getFeatureName();
+		switch (featureID)
+		{
+			case OperationsPackage.FEATURE_OPERATION__FEATURE_NAME:
+				return getFeatureName();
 		}
 		return super.eGet(featureID, resolve, coreType);
 	}
@@ -112,10 +112,11 @@ public abstract class FeatureOperationImpl extends AbstractOperationImpl impleme
 	 */
 	@Override
 	public void eSet(int featureID, Object newValue) {
-		switch (featureID) {
-		case OperationsPackage.FEATURE_OPERATION__FEATURE_NAME:
-			setFeatureName((String) newValue);
-			return;
+		switch (featureID)
+		{
+			case OperationsPackage.FEATURE_OPERATION__FEATURE_NAME:
+				setFeatureName((String)newValue);
+				return;
 		}
 		super.eSet(featureID, newValue);
 	}
@@ -126,10 +127,11 @@ public abstract class FeatureOperationImpl extends AbstractOperationImpl impleme
 	 */
 	@Override
 	public void eUnset(int featureID) {
-		switch (featureID) {
-		case OperationsPackage.FEATURE_OPERATION__FEATURE_NAME:
-			setFeatureName(FEATURE_NAME_EDEFAULT);
-			return;
+		switch (featureID)
+		{
+			case OperationsPackage.FEATURE_OPERATION__FEATURE_NAME:
+				setFeatureName(FEATURE_NAME_EDEFAULT);
+				return;
 		}
 		super.eUnset(featureID);
 	}
@@ -140,9 +142,10 @@ public abstract class FeatureOperationImpl extends AbstractOperationImpl impleme
 	 */
 	@Override
 	public boolean eIsSet(int featureID) {
-		switch (featureID) {
-		case OperationsPackage.FEATURE_OPERATION__FEATURE_NAME:
-			return FEATURE_NAME_EDEFAULT == null ? featureName != null : !FEATURE_NAME_EDEFAULT.equals(featureName);
+		switch (featureID)
+		{
+			case OperationsPackage.FEATURE_OPERATION__FEATURE_NAME:
+				return FEATURE_NAME_EDEFAULT == null ? featureName != null : !FEATURE_NAME_EDEFAULT.equals(featureName);
 		}
 		return super.eIsSet(featureID);
 	}
@@ -153,8 +156,7 @@ public abstract class FeatureOperationImpl extends AbstractOperationImpl impleme
 	 */
 	@Override
 	public String toString() {
-		if (eIsProxy())
-			return super.toString();
+		if (eIsProxy()) return super.toString();
 
 		StringBuffer result = new StringBuffer(super.toString());
 		result.append(" (featureName: ");

@@ -45,7 +45,8 @@ public class SingleReferenceOperationItemProvider extends ReferenceOperationItem
 	 */
 	@Override
 	public List<IItemPropertyDescriptor> getPropertyDescriptors(Object object) {
-		if (itemPropertyDescriptors == null) {
+		if (itemPropertyDescriptors == null)
+		{
 			super.getPropertyDescriptors(object);
 
 			addOldValuePropertyDescriptor(object);
@@ -60,11 +61,19 @@ public class SingleReferenceOperationItemProvider extends ReferenceOperationItem
 	 * @generated
 	 */
 	protected void addOldValuePropertyDescriptor(Object object) {
-		itemPropertyDescriptors.add(createItemPropertyDescriptor(((ComposeableAdapterFactory) adapterFactory)
-			.getRootAdapterFactory(), getResourceLocator(), getString("_UI_SingleReferenceOperation_oldValue_feature"),
-			getString("_UI_PropertyDescriptor_description", "_UI_SingleReferenceOperation_oldValue_feature",
-				"_UI_SingleReferenceOperation_type"), OperationsPackage.Literals.SINGLE_REFERENCE_OPERATION__OLD_VALUE,
-			true, false, true, null, null, null));
+		itemPropertyDescriptors.add
+			(createItemPropertyDescriptor
+				(((ComposeableAdapterFactory)adapterFactory).getRootAdapterFactory(),
+				 getResourceLocator(),
+				 getString("_UI_SingleReferenceOperation_oldValue_feature"),
+				 getString("_UI_PropertyDescriptor_description", "_UI_SingleReferenceOperation_oldValue_feature", "_UI_SingleReferenceOperation_type"),
+				 OperationsPackage.Literals.SINGLE_REFERENCE_OPERATION__OLD_VALUE,
+				 true,
+				 false,
+				 true,
+				 null,
+				 null,
+				 null));
 	}
 
 	/**
@@ -73,11 +82,19 @@ public class SingleReferenceOperationItemProvider extends ReferenceOperationItem
 	 * @generated
 	 */
 	protected void addNewValuePropertyDescriptor(Object object) {
-		itemPropertyDescriptors.add(createItemPropertyDescriptor(((ComposeableAdapterFactory) adapterFactory)
-			.getRootAdapterFactory(), getResourceLocator(), getString("_UI_SingleReferenceOperation_newValue_feature"),
-			getString("_UI_PropertyDescriptor_description", "_UI_SingleReferenceOperation_newValue_feature",
-				"_UI_SingleReferenceOperation_type"), OperationsPackage.Literals.SINGLE_REFERENCE_OPERATION__NEW_VALUE,
-			true, false, true, null, null, null));
+		itemPropertyDescriptors.add
+			(createItemPropertyDescriptor
+				(((ComposeableAdapterFactory)adapterFactory).getRootAdapterFactory(),
+				 getResourceLocator(),
+				 getString("_UI_SingleReferenceOperation_newValue_feature"),
+				 getString("_UI_PropertyDescriptor_description", "_UI_SingleReferenceOperation_newValue_feature", "_UI_SingleReferenceOperation_type"),
+				 OperationsPackage.Literals.SINGLE_REFERENCE_OPERATION__NEW_VALUE,
+				 true,
+				 false,
+				 true,
+				 null,
+				 null,
+				 null));
 	}
 
 	/**
@@ -97,9 +114,10 @@ public class SingleReferenceOperationItemProvider extends ReferenceOperationItem
 	 */
 	@Override
 	public String getText(Object object) {
-		String label = ((SingleReferenceOperation) object).getName();
-		return label == null || label.length() == 0 ? getString("_UI_SingleReferenceOperation_type")
-			: getString("_UI_SingleReferenceOperation_type") + " " + label;
+		String label = ((SingleReferenceOperation)object).getName();
+		return label == null || label.length() == 0 ?
+			getString("_UI_SingleReferenceOperation_type") :
+			getString("_UI_SingleReferenceOperation_type") + " " + label;
 	}
 
 	/**

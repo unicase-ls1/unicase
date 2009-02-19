@@ -72,8 +72,7 @@ public class RevertEventImpl extends EventImpl implements RevertEvent {
 		int oldRevertedChangesCount = revertedChangesCount;
 		revertedChangesCount = newRevertedChangesCount;
 		if (eNotificationRequired())
-			eNotify(new ENotificationImpl(this, Notification.SET, EventsPackage.REVERT_EVENT__REVERTED_CHANGES_COUNT,
-				oldRevertedChangesCount, revertedChangesCount));
+			eNotify(new ENotificationImpl(this, Notification.SET, EventsPackage.REVERT_EVENT__REVERTED_CHANGES_COUNT, oldRevertedChangesCount, revertedChangesCount));
 	}
 
 	/**
@@ -82,9 +81,10 @@ public class RevertEventImpl extends EventImpl implements RevertEvent {
 	 */
 	@Override
 	public Object eGet(int featureID, boolean resolve, boolean coreType) {
-		switch (featureID) {
-		case EventsPackage.REVERT_EVENT__REVERTED_CHANGES_COUNT:
-			return new Integer(getRevertedChangesCount());
+		switch (featureID)
+		{
+			case EventsPackage.REVERT_EVENT__REVERTED_CHANGES_COUNT:
+				return new Integer(getRevertedChangesCount());
 		}
 		return super.eGet(featureID, resolve, coreType);
 	}
@@ -95,10 +95,11 @@ public class RevertEventImpl extends EventImpl implements RevertEvent {
 	 */
 	@Override
 	public void eSet(int featureID, Object newValue) {
-		switch (featureID) {
-		case EventsPackage.REVERT_EVENT__REVERTED_CHANGES_COUNT:
-			setRevertedChangesCount(((Integer) newValue).intValue());
-			return;
+		switch (featureID)
+		{
+			case EventsPackage.REVERT_EVENT__REVERTED_CHANGES_COUNT:
+				setRevertedChangesCount(((Integer)newValue).intValue());
+				return;
 		}
 		super.eSet(featureID, newValue);
 	}
@@ -109,10 +110,11 @@ public class RevertEventImpl extends EventImpl implements RevertEvent {
 	 */
 	@Override
 	public void eUnset(int featureID) {
-		switch (featureID) {
-		case EventsPackage.REVERT_EVENT__REVERTED_CHANGES_COUNT:
-			setRevertedChangesCount(REVERTED_CHANGES_COUNT_EDEFAULT);
-			return;
+		switch (featureID)
+		{
+			case EventsPackage.REVERT_EVENT__REVERTED_CHANGES_COUNT:
+				setRevertedChangesCount(REVERTED_CHANGES_COUNT_EDEFAULT);
+				return;
 		}
 		super.eUnset(featureID);
 	}
@@ -123,9 +125,10 @@ public class RevertEventImpl extends EventImpl implements RevertEvent {
 	 */
 	@Override
 	public boolean eIsSet(int featureID) {
-		switch (featureID) {
-		case EventsPackage.REVERT_EVENT__REVERTED_CHANGES_COUNT:
-			return revertedChangesCount != REVERTED_CHANGES_COUNT_EDEFAULT;
+		switch (featureID)
+		{
+			case EventsPackage.REVERT_EVENT__REVERTED_CHANGES_COUNT:
+				return revertedChangesCount != REVERTED_CHANGES_COUNT_EDEFAULT;
 		}
 		return super.eIsSet(featureID);
 	}
@@ -136,8 +139,7 @@ public class RevertEventImpl extends EventImpl implements RevertEvent {
 	 */
 	@Override
 	public String toString() {
-		if (eIsProxy())
-			return super.toString();
+		if (eIsProxy()) return super.toString();
 
 		StringBuffer result = new StringBuffer(super.toString());
 		result.append(" (revertedChangesCount: ");

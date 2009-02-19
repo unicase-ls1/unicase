@@ -354,4 +354,28 @@
           containment="true"/>
     </eClassifiers>
   </eSubpackages>
+  <eSubpackages name="url" nsURI="http://unicase.org/emfstore/esmodel/url" nsPrefix="org.unicase.emfstore.esmodel.url">
+    <eClassifiers xsi:type="ecore:EClass" name="ServerUrl">
+      <eStructuralFeatures xsi:type="ecore:EAttribute" name="hostName" eType="ecore:EDataType http://www.eclipse.org/emf/2002/Ecore#//EString"/>
+      <eStructuralFeatures xsi:type="ecore:EAttribute" name="port" eType="ecore:EDataType http://www.eclipse.org/emf/2002/Ecore#//EInt"/>
+    </eClassifiers>
+    <eClassifiers xsi:type="ecore:EClass" name="ProjectUrlFragment">
+      <eStructuralFeatures xsi:type="ecore:EAttribute" name="name" eType="ecore:EDataType http://www.eclipse.org/emf/2002/Ecore#//EString"/>
+      <eStructuralFeatures xsi:type="ecore:EReference" name="projectId" eType="#//ProjectId"
+          containment="true" eKeys="../../org.unicase.model/model/model.ecore#//UniqueIdentifier/id"/>
+    </eClassifiers>
+    <eClassifiers xsi:type="ecore:EClass" name="ModelElementUrlFragment">
+      <eStructuralFeatures xsi:type="ecore:EAttribute" name="name" eType="ecore:EDataType http://www.eclipse.org/emf/2002/Ecore#//EString"/>
+      <eStructuralFeatures xsi:type="ecore:EReference" name="modelElementId" eType="ecore:EClass ../../org.unicase.model/model/model.ecore#//ModelElementId"
+          containment="true"/>
+    </eClassifiers>
+    <eClassifiers xsi:type="ecore:EClass" name="ModelElementUrl">
+      <eStructuralFeatures xsi:type="ecore:EReference" name="serverUrl" eType="#//url/ServerUrl"
+          containment="true"/>
+      <eStructuralFeatures xsi:type="ecore:EReference" name="projectUrlFragment" eType="#//url/ProjectUrlFragment"
+          containment="true"/>
+      <eStructuralFeatures xsi:type="ecore:EReference" name="modelElementUrlFragment"
+          eType="#//url/ModelElementUrlFragment" containment="true"/>
+    </eClassifiers>
+  </eSubpackages>
 </ecore:EPackage>

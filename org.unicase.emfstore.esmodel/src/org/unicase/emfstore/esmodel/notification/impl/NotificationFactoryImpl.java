@@ -25,13 +25,16 @@ public class NotificationFactoryImpl extends EFactoryImpl implements Notificatio
 	 * @generated
 	 */
 	public static NotificationFactory init() {
-		try {
-			NotificationFactory theNotificationFactory = (NotificationFactory) EPackage.Registry.INSTANCE
-				.getEFactory("http://unicase.org/esmodel/notification");
-			if (theNotificationFactory != null) {
+		try
+		{
+			NotificationFactory theNotificationFactory = (NotificationFactory)EPackage.Registry.INSTANCE.getEFactory("http://unicase.org/esmodel/notification"); 
+			if (theNotificationFactory != null)
+			{
 				return theNotificationFactory;
 			}
-		} catch (Exception exception) {
+		}
+		catch (Exception exception)
+		{
 			EcorePlugin.INSTANCE.log(exception);
 		}
 		return new NotificationFactoryImpl();
@@ -52,11 +55,11 @@ public class NotificationFactoryImpl extends EFactoryImpl implements Notificatio
 	 */
 	@Override
 	public EObject create(EClass eClass) {
-		switch (eClass.getClassifierID()) {
-		case NotificationPackage.ES_NOTIFICATION:
-			return createESNotification();
-		default:
-			throw new IllegalArgumentException("The class '" + eClass.getName() + "' is not a valid classifier");
+		switch (eClass.getClassifierID())
+		{
+			case NotificationPackage.ES_NOTIFICATION: return createESNotification();
+			default:
+				throw new IllegalArgumentException("The class '" + eClass.getName() + "' is not a valid classifier");
 		}
 	}
 
@@ -74,7 +77,7 @@ public class NotificationFactoryImpl extends EFactoryImpl implements Notificatio
 	 * @generated
 	 */
 	public NotificationPackage getNotificationPackage() {
-		return (NotificationPackage) getEPackage();
+		return (NotificationPackage)getEPackage();
 	}
 
 	/**

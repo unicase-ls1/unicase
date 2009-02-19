@@ -71,8 +71,7 @@ public class PluginStartEventImpl extends EventImpl implements PluginStartEvent 
 		String oldPluginId = pluginId;
 		pluginId = newPluginId;
 		if (eNotificationRequired())
-			eNotify(new ENotificationImpl(this, Notification.SET, EventsPackage.PLUGIN_START_EVENT__PLUGIN_ID,
-				oldPluginId, pluginId));
+			eNotify(new ENotificationImpl(this, Notification.SET, EventsPackage.PLUGIN_START_EVENT__PLUGIN_ID, oldPluginId, pluginId));
 	}
 
 	/**
@@ -81,9 +80,10 @@ public class PluginStartEventImpl extends EventImpl implements PluginStartEvent 
 	 */
 	@Override
 	public Object eGet(int featureID, boolean resolve, boolean coreType) {
-		switch (featureID) {
-		case EventsPackage.PLUGIN_START_EVENT__PLUGIN_ID:
-			return getPluginId();
+		switch (featureID)
+		{
+			case EventsPackage.PLUGIN_START_EVENT__PLUGIN_ID:
+				return getPluginId();
 		}
 		return super.eGet(featureID, resolve, coreType);
 	}
@@ -94,10 +94,11 @@ public class PluginStartEventImpl extends EventImpl implements PluginStartEvent 
 	 */
 	@Override
 	public void eSet(int featureID, Object newValue) {
-		switch (featureID) {
-		case EventsPackage.PLUGIN_START_EVENT__PLUGIN_ID:
-			setPluginId((String) newValue);
-			return;
+		switch (featureID)
+		{
+			case EventsPackage.PLUGIN_START_EVENT__PLUGIN_ID:
+				setPluginId((String)newValue);
+				return;
 		}
 		super.eSet(featureID, newValue);
 	}
@@ -108,10 +109,11 @@ public class PluginStartEventImpl extends EventImpl implements PluginStartEvent 
 	 */
 	@Override
 	public void eUnset(int featureID) {
-		switch (featureID) {
-		case EventsPackage.PLUGIN_START_EVENT__PLUGIN_ID:
-			setPluginId(PLUGIN_ID_EDEFAULT);
-			return;
+		switch (featureID)
+		{
+			case EventsPackage.PLUGIN_START_EVENT__PLUGIN_ID:
+				setPluginId(PLUGIN_ID_EDEFAULT);
+				return;
 		}
 		super.eUnset(featureID);
 	}
@@ -122,9 +124,10 @@ public class PluginStartEventImpl extends EventImpl implements PluginStartEvent 
 	 */
 	@Override
 	public boolean eIsSet(int featureID) {
-		switch (featureID) {
-		case EventsPackage.PLUGIN_START_EVENT__PLUGIN_ID:
-			return PLUGIN_ID_EDEFAULT == null ? pluginId != null : !PLUGIN_ID_EDEFAULT.equals(pluginId);
+		switch (featureID)
+		{
+			case EventsPackage.PLUGIN_START_EVENT__PLUGIN_ID:
+				return PLUGIN_ID_EDEFAULT == null ? pluginId != null : !PLUGIN_ID_EDEFAULT.equals(pluginId);
 		}
 		return super.eIsSet(featureID);
 	}
@@ -135,8 +138,7 @@ public class PluginStartEventImpl extends EventImpl implements PluginStartEvent 
 	 */
 	@Override
 	public String toString() {
-		if (eIsProxy())
-			return super.toString();
+		if (eIsProxy()) return super.toString();
 
 		StringBuffer result = new StringBuffer(super.toString());
 		result.append(" (pluginId: ");

@@ -95,8 +95,7 @@ public class MultiAttributeMoveOperationImpl extends FeatureOperationImpl implem
 		int oldOldIndex = oldIndex;
 		oldIndex = newOldIndex;
 		if (eNotificationRequired())
-			eNotify(new ENotificationImpl(this, Notification.SET,
-				OperationsPackage.MULTI_ATTRIBUTE_MOVE_OPERATION__OLD_INDEX, oldOldIndex, oldIndex));
+			eNotify(new ENotificationImpl(this, Notification.SET, OperationsPackage.MULTI_ATTRIBUTE_MOVE_OPERATION__OLD_INDEX, oldOldIndex, oldIndex));
 	}
 
 	/**
@@ -115,8 +114,7 @@ public class MultiAttributeMoveOperationImpl extends FeatureOperationImpl implem
 		int oldNewIndex = newIndex;
 		newIndex = newNewIndex;
 		if (eNotificationRequired())
-			eNotify(new ENotificationImpl(this, Notification.SET,
-				OperationsPackage.MULTI_ATTRIBUTE_MOVE_OPERATION__NEW_INDEX, oldNewIndex, newIndex));
+			eNotify(new ENotificationImpl(this, Notification.SET, OperationsPackage.MULTI_ATTRIBUTE_MOVE_OPERATION__NEW_INDEX, oldNewIndex, newIndex));
 	}
 
 	/**
@@ -125,11 +123,12 @@ public class MultiAttributeMoveOperationImpl extends FeatureOperationImpl implem
 	 */
 	@Override
 	public Object eGet(int featureID, boolean resolve, boolean coreType) {
-		switch (featureID) {
-		case OperationsPackage.MULTI_ATTRIBUTE_MOVE_OPERATION__OLD_INDEX:
-			return new Integer(getOldIndex());
-		case OperationsPackage.MULTI_ATTRIBUTE_MOVE_OPERATION__NEW_INDEX:
-			return new Integer(getNewIndex());
+		switch (featureID)
+		{
+			case OperationsPackage.MULTI_ATTRIBUTE_MOVE_OPERATION__OLD_INDEX:
+				return new Integer(getOldIndex());
+			case OperationsPackage.MULTI_ATTRIBUTE_MOVE_OPERATION__NEW_INDEX:
+				return new Integer(getNewIndex());
 		}
 		return super.eGet(featureID, resolve, coreType);
 	}
@@ -140,13 +139,14 @@ public class MultiAttributeMoveOperationImpl extends FeatureOperationImpl implem
 	 */
 	@Override
 	public void eSet(int featureID, Object newValue) {
-		switch (featureID) {
-		case OperationsPackage.MULTI_ATTRIBUTE_MOVE_OPERATION__OLD_INDEX:
-			setOldIndex(((Integer) newValue).intValue());
-			return;
-		case OperationsPackage.MULTI_ATTRIBUTE_MOVE_OPERATION__NEW_INDEX:
-			setNewIndex(((Integer) newValue).intValue());
-			return;
+		switch (featureID)
+		{
+			case OperationsPackage.MULTI_ATTRIBUTE_MOVE_OPERATION__OLD_INDEX:
+				setOldIndex(((Integer)newValue).intValue());
+				return;
+			case OperationsPackage.MULTI_ATTRIBUTE_MOVE_OPERATION__NEW_INDEX:
+				setNewIndex(((Integer)newValue).intValue());
+				return;
 		}
 		super.eSet(featureID, newValue);
 	}
@@ -157,13 +157,14 @@ public class MultiAttributeMoveOperationImpl extends FeatureOperationImpl implem
 	 */
 	@Override
 	public void eUnset(int featureID) {
-		switch (featureID) {
-		case OperationsPackage.MULTI_ATTRIBUTE_MOVE_OPERATION__OLD_INDEX:
-			setOldIndex(OLD_INDEX_EDEFAULT);
-			return;
-		case OperationsPackage.MULTI_ATTRIBUTE_MOVE_OPERATION__NEW_INDEX:
-			setNewIndex(NEW_INDEX_EDEFAULT);
-			return;
+		switch (featureID)
+		{
+			case OperationsPackage.MULTI_ATTRIBUTE_MOVE_OPERATION__OLD_INDEX:
+				setOldIndex(OLD_INDEX_EDEFAULT);
+				return;
+			case OperationsPackage.MULTI_ATTRIBUTE_MOVE_OPERATION__NEW_INDEX:
+				setNewIndex(NEW_INDEX_EDEFAULT);
+				return;
 		}
 		super.eUnset(featureID);
 	}
@@ -174,11 +175,12 @@ public class MultiAttributeMoveOperationImpl extends FeatureOperationImpl implem
 	 */
 	@Override
 	public boolean eIsSet(int featureID) {
-		switch (featureID) {
-		case OperationsPackage.MULTI_ATTRIBUTE_MOVE_OPERATION__OLD_INDEX:
-			return oldIndex != OLD_INDEX_EDEFAULT;
-		case OperationsPackage.MULTI_ATTRIBUTE_MOVE_OPERATION__NEW_INDEX:
-			return newIndex != NEW_INDEX_EDEFAULT;
+		switch (featureID)
+		{
+			case OperationsPackage.MULTI_ATTRIBUTE_MOVE_OPERATION__OLD_INDEX:
+				return oldIndex != OLD_INDEX_EDEFAULT;
+			case OperationsPackage.MULTI_ATTRIBUTE_MOVE_OPERATION__NEW_INDEX:
+				return newIndex != NEW_INDEX_EDEFAULT;
 		}
 		return super.eIsSet(featureID);
 	}
@@ -189,8 +191,7 @@ public class MultiAttributeMoveOperationImpl extends FeatureOperationImpl implem
 	 */
 	@Override
 	public String toString() {
-		if (eIsProxy())
-			return super.toString();
+		if (eIsProxy()) return super.toString();
 
 		StringBuffer result = new StringBuffer(super.toString());
 		result.append(" (oldIndex: ");

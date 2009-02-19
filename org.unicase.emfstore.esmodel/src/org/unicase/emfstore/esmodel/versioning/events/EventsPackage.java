@@ -1757,8 +1757,7 @@ public interface EventsPackage extends EPackage {
 		 * 
 		 * @generated
 		 */
-		EAttribute EXCEPTION_EVENT__EXCEPTION_CAUSE_STACK_TRACE = eINSTANCE
-			.getExceptionEvent_ExceptionCauseStackTrace();
+		EAttribute EXCEPTION_EVENT__EXCEPTION_CAUSE_STACK_TRACE = eINSTANCE.getExceptionEvent_ExceptionCauseStackTrace();
 
 		/**
 		 * The meta object literal for the '{@link org.unicase.emfstore.esmodel.versioning.events.impl.PluginStartEventImpl <em>Plugin Start Event</em>}' class.

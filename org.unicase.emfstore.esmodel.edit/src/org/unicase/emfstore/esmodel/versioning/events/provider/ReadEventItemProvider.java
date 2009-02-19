@@ -48,7 +48,8 @@ public class ReadEventItemProvider extends EventItemProvider implements IEditing
 	 */
 	@Override
 	public List<IItemPropertyDescriptor> getPropertyDescriptors(Object object) {
-		if (itemPropertyDescriptors == null) {
+		if (itemPropertyDescriptors == null)
+		{
 			super.getPropertyDescriptors(object);
 
 			addSourceViewPropertyDescriptor(object);
@@ -63,11 +64,19 @@ public class ReadEventItemProvider extends EventItemProvider implements IEditing
 	 * @generated
 	 */
 	protected void addSourceViewPropertyDescriptor(Object object) {
-		itemPropertyDescriptors.add(createItemPropertyDescriptor(((ComposeableAdapterFactory) adapterFactory)
-			.getRootAdapterFactory(), getResourceLocator(), getString("_UI_ReadEvent_sourceView_feature"), getString(
-			"_UI_PropertyDescriptor_description", "_UI_ReadEvent_sourceView_feature", "_UI_ReadEvent_type"),
-			EventsPackage.Literals.READ_EVENT__SOURCE_VIEW, true, false, false,
-			ItemPropertyDescriptor.GENERIC_VALUE_IMAGE, null, null));
+		itemPropertyDescriptors.add
+			(createItemPropertyDescriptor
+				(((ComposeableAdapterFactory)adapterFactory).getRootAdapterFactory(),
+				 getResourceLocator(),
+				 getString("_UI_ReadEvent_sourceView_feature"),
+				 getString("_UI_PropertyDescriptor_description", "_UI_ReadEvent_sourceView_feature", "_UI_ReadEvent_type"),
+				 EventsPackage.Literals.READ_EVENT__SOURCE_VIEW,
+				 true,
+				 false,
+				 false,
+				 ItemPropertyDescriptor.GENERIC_VALUE_IMAGE,
+				 null,
+				 null));
 	}
 
 	/**
@@ -76,11 +85,19 @@ public class ReadEventItemProvider extends EventItemProvider implements IEditing
 	 * @generated
 	 */
 	protected void addReadViewPropertyDescriptor(Object object) {
-		itemPropertyDescriptors.add(createItemPropertyDescriptor(((ComposeableAdapterFactory) adapterFactory)
-			.getRootAdapterFactory(), getResourceLocator(), getString("_UI_ReadEvent_readView_feature"), getString(
-			"_UI_PropertyDescriptor_description", "_UI_ReadEvent_readView_feature", "_UI_ReadEvent_type"),
-			EventsPackage.Literals.READ_EVENT__READ_VIEW, true, false, false,
-			ItemPropertyDescriptor.GENERIC_VALUE_IMAGE, null, null));
+		itemPropertyDescriptors.add
+			(createItemPropertyDescriptor
+				(((ComposeableAdapterFactory)adapterFactory).getRootAdapterFactory(),
+				 getResourceLocator(),
+				 getString("_UI_ReadEvent_readView_feature"),
+				 getString("_UI_PropertyDescriptor_description", "_UI_ReadEvent_readView_feature", "_UI_ReadEvent_type"),
+				 EventsPackage.Literals.READ_EVENT__READ_VIEW,
+				 true,
+				 false,
+				 false,
+				 ItemPropertyDescriptor.GENERIC_VALUE_IMAGE,
+				 null,
+				 null));
 	}
 
 	/**
@@ -93,7 +110,8 @@ public class ReadEventItemProvider extends EventItemProvider implements IEditing
 	 */
 	@Override
 	public Collection<? extends EStructuralFeature> getChildrenFeatures(Object object) {
-		if (childrenFeatures == null) {
+		if (childrenFeatures == null)
+		{
 			super.getChildrenFeatures(object);
 			childrenFeatures.add(EventsPackage.Literals.READ_EVENT__MODEL_ELEMENT);
 		}
@@ -129,10 +147,11 @@ public class ReadEventItemProvider extends EventItemProvider implements IEditing
 	 */
 	@Override
 	public String getText(Object object) {
-		Date labelValue = ((ReadEvent) object).getTimestamp();
+		Date labelValue = ((ReadEvent)object).getTimestamp();
 		String label = labelValue == null ? null : labelValue.toString();
-		return label == null || label.length() == 0 ? getString("_UI_ReadEvent_type") : getString("_UI_ReadEvent_type")
-			+ " " + label;
+		return label == null || label.length() == 0 ?
+			getString("_UI_ReadEvent_type") :
+			getString("_UI_ReadEvent_type") + " " + label;
 	}
 
 	/**
@@ -146,14 +165,15 @@ public class ReadEventItemProvider extends EventItemProvider implements IEditing
 	public void notifyChanged(Notification notification) {
 		updateChildren(notification);
 
-		switch (notification.getFeatureID(ReadEvent.class)) {
-		case EventsPackage.READ_EVENT__SOURCE_VIEW:
-		case EventsPackage.READ_EVENT__READ_VIEW:
-			fireNotifyChanged(new ViewerNotification(notification, notification.getNotifier(), false, true));
-			return;
-		case EventsPackage.READ_EVENT__MODEL_ELEMENT:
-			fireNotifyChanged(new ViewerNotification(notification, notification.getNotifier(), true, false));
-			return;
+		switch (notification.getFeatureID(ReadEvent.class))
+		{
+			case EventsPackage.READ_EVENT__SOURCE_VIEW:
+			case EventsPackage.READ_EVENT__READ_VIEW:
+				fireNotifyChanged(new ViewerNotification(notification, notification.getNotifier(), false, true));
+				return;
+			case EventsPackage.READ_EVENT__MODEL_ELEMENT:
+				fireNotifyChanged(new ViewerNotification(notification, notification.getNotifier(), true, false));
+				return;
 		}
 		super.notifyChanged(notification);
 	}
@@ -168,8 +188,10 @@ public class ReadEventItemProvider extends EventItemProvider implements IEditing
 	protected void collectNewChildDescriptors(Collection<Object> newChildDescriptors, Object object) {
 		super.collectNewChildDescriptors(newChildDescriptors, object);
 
-		newChildDescriptors.add(createChildParameter(EventsPackage.Literals.READ_EVENT__MODEL_ELEMENT,
-			ModelFactory.eINSTANCE.createModelElementId()));
+		newChildDescriptors.add
+			(createChildParameter
+				(EventsPackage.Literals.READ_EVENT__MODEL_ELEMENT,
+				 ModelFactory.eINSTANCE.createModelElementId()));
 	}
 
 }

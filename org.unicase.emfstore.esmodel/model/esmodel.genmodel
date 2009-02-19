@@ -1,11 +1,10 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <genmodel:GenModel xmi:version="2.0"
     xmlns:xmi="http://www.omg.org/XMI" xmlns:ecore="http://www.eclipse.org/emf/2002/Ecore"
-    xmlns:genmodel="http://www.eclipse.org/emf/2002/GenModel" copyrightText="&lt;copyright>Copyright (c) 2008 Jonas Helming, Maximilian Koegel. All rights reserved. This program and the accompanying materials are made available under the terms of the Eclipse Public License v1.0 which accompanies this distribution, and is available at http://www.eclipse.org/legal/epl-v10.html&lt;/copyright>"
+    xmlns:genmodel="http://www.eclipse.org/emf/2002/GenModel" copyrightText="&lt;copyright> Copyright (c) 2008 Jonas Helming, Maximilian Koegel. All rights reserved. This program and the accompanying materials are made available under the terms of the Eclipse Public License v1.0 which accompanies this distribution, and is available at http://www.eclipse.org/legal/epl-v10.html &lt;/copyright>&#xD;&#xD;&#xD;"
     modelDirectory="/org.unicase.emfstore.esmodel/src" modelPluginID="org.unicase.emfstore.esmodel"
-    modelName="Esmodel" codeFormatting="true" importerID="org.eclipse.emf.importer.ecore"
-    containmentProxies="true" complianceLevel="5.0" copyrightFields="false" language=""
-    usedGenPackages="platform:/plugin/org.eclipse.emf.ecore/model/Ecore.genmodel#//ecore ../../org.unicase.model/model/model.genmodel#//model platform:/plugin/org.eclipse.gmf.runtime.notation/model/notation.genmodel#//notation">
+    modelName="Esmodel" importerID="org.eclipse.emf.importer.ecore" containmentProxies="true"
+    complianceLevel="5.0" copyrightFields="false" language="" usedGenPackages="platform:/plugin/org.eclipse.emf.ecore/model/Ecore.genmodel#//ecore ../../org.unicase.model/model/model.genmodel#//model platform:/plugin/org.eclipse.gmf.runtime.notation/model/notation.genmodel#//notation">
   <foreignModel>esmodel.ecore</foreignModel>
   <genPackages prefix="Esmodel" basePackage="org.unicase.emfstore" disposableProviderFactory="true"
       ecorePackage="esmodel.ecore#/">
@@ -301,6 +300,26 @@
         <genFeatures createChild="false" ecoreFeature="ecore:EAttribute esmodel.ecore#//notification/ESNotification/recipient"/>
         <genFeatures property="None" children="true" createChild="true" ecoreFeature="ecore:EReference esmodel.ecore#//notification/ESNotification/project"/>
         <genFeatures property="None" children="true" createChild="true" ecoreFeature="ecore:EReference esmodel.ecore#//notification/ESNotification/relatedModelElements"/>
+      </genClasses>
+    </nestedGenPackages>
+    <nestedGenPackages prefix="Url" basePackage="org.unicase.emfstore.esmodel" disposableProviderFactory="true"
+        ecorePackage="esmodel.ecore#//url">
+      <genClasses ecoreClass="esmodel.ecore#//url/ServerUrl">
+        <genFeatures createChild="false" ecoreFeature="ecore:EAttribute esmodel.ecore#//url/ServerUrl/hostName"/>
+        <genFeatures createChild="false" ecoreFeature="ecore:EAttribute esmodel.ecore#//url/ServerUrl/port"/>
+      </genClasses>
+      <genClasses ecoreClass="esmodel.ecore#//url/ProjectUrlFragment">
+        <genFeatures createChild="false" ecoreFeature="ecore:EAttribute esmodel.ecore#//url/ProjectUrlFragment/name"/>
+        <genFeatures property="None" children="true" createChild="true" ecoreFeature="ecore:EReference esmodel.ecore#//url/ProjectUrlFragment/projectId"/>
+      </genClasses>
+      <genClasses ecoreClass="esmodel.ecore#//url/ModelElementUrlFragment">
+        <genFeatures createChild="false" ecoreFeature="ecore:EAttribute esmodel.ecore#//url/ModelElementUrlFragment/name"/>
+        <genFeatures property="None" children="true" createChild="true" ecoreFeature="ecore:EReference esmodel.ecore#//url/ModelElementUrlFragment/modelElementId"/>
+      </genClasses>
+      <genClasses ecoreClass="esmodel.ecore#//url/ModelElementUrl">
+        <genFeatures property="None" children="true" createChild="true" ecoreFeature="ecore:EReference esmodel.ecore#//url/ModelElementUrl/serverUrl"/>
+        <genFeatures property="None" children="true" createChild="true" ecoreFeature="ecore:EReference esmodel.ecore#//url/ModelElementUrl/projectUrlFragment"/>
+        <genFeatures property="None" children="true" createChild="true" ecoreFeature="ecore:EReference esmodel.ecore#//url/ModelElementUrl/modelElementUrlFragment"/>
       </genClasses>
     </nestedGenPackages>
   </genPackages>

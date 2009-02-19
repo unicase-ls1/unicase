@@ -33,13 +33,16 @@ public class VersioningFactoryImpl extends EFactoryImpl implements VersioningFac
 	 * @generated
 	 */
 	public static VersioningFactory init() {
-		try {
-			VersioningFactory theVersioningFactory = (VersioningFactory) EPackage.Registry.INSTANCE
-				.getEFactory("http://unicase.org/esmodel/versioning");
-			if (theVersioningFactory != null) {
+		try
+		{
+			VersioningFactory theVersioningFactory = (VersioningFactory)EPackage.Registry.INSTANCE.getEFactory("http://unicase.org/esmodel/versioning"); 
+			if (theVersioningFactory != null)
+			{
 				return theVersioningFactory;
 			}
-		} catch (Exception exception) {
+		}
+		catch (Exception exception)
+		{
 			EcorePlugin.INSTANCE.log(exception);
 		}
 		return new VersioningFactoryImpl();
@@ -60,27 +63,19 @@ public class VersioningFactoryImpl extends EFactoryImpl implements VersioningFac
 	 */
 	@Override
 	public EObject create(EClass eClass) {
-		switch (eClass.getClassifierID()) {
-		case VersioningPackage.TAG_VERSION_SPEC:
-			return createTagVersionSpec();
-		case VersioningPackage.DATE_VERSION_SPEC:
-			return createDateVersionSpec();
-		case VersioningPackage.PRIMARY_VERSION_SPEC:
-			return createPrimaryVersionSpec();
-		case VersioningPackage.LOG_MESSAGE:
-			return createLogMessage();
-		case VersioningPackage.CHANGE_PACKAGE:
-			return createChangePackage();
-		case VersioningPackage.HISTORY_INFO:
-			return createHistoryInfo();
-		case VersioningPackage.HISTORY_QUERY:
-			return createHistoryQuery();
-		case VersioningPackage.VERSION:
-			return createVersion();
-		case VersioningPackage.HEAD_VERSION_SPEC:
-			return createHeadVersionSpec();
-		default:
-			throw new IllegalArgumentException("The class '" + eClass.getName() + "' is not a valid classifier");
+		switch (eClass.getClassifierID())
+		{
+			case VersioningPackage.TAG_VERSION_SPEC: return createTagVersionSpec();
+			case VersioningPackage.DATE_VERSION_SPEC: return createDateVersionSpec();
+			case VersioningPackage.PRIMARY_VERSION_SPEC: return createPrimaryVersionSpec();
+			case VersioningPackage.LOG_MESSAGE: return createLogMessage();
+			case VersioningPackage.CHANGE_PACKAGE: return createChangePackage();
+			case VersioningPackage.HISTORY_INFO: return createHistoryInfo();
+			case VersioningPackage.HISTORY_QUERY: return createHistoryQuery();
+			case VersioningPackage.VERSION: return createVersion();
+			case VersioningPackage.HEAD_VERSION_SPEC: return createHeadVersionSpec();
+			default:
+				throw new IllegalArgumentException("The class '" + eClass.getName() + "' is not a valid classifier");
 		}
 	}
 
@@ -170,7 +165,7 @@ public class VersioningFactoryImpl extends EFactoryImpl implements VersioningFac
 	 * @generated
 	 */
 	public VersioningPackage getVersioningPackage() {
-		return (VersioningPackage) getEPackage();
+		return (VersioningPackage)getEPackage();
 	}
 
 	/**

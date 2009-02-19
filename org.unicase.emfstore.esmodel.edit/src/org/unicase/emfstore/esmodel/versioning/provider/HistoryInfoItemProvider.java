@@ -49,7 +49,8 @@ public class HistoryInfoItemProvider extends ItemProviderAdapter implements IEdi
 	 */
 	@Override
 	public List<IItemPropertyDescriptor> getPropertyDescriptors(Object object) {
-		if (itemPropertyDescriptors == null) {
+		if (itemPropertyDescriptors == null)
+		{
 			super.getPropertyDescriptors(object);
 
 			addPrimerySpecPropertyDescriptor(object);
@@ -64,11 +65,19 @@ public class HistoryInfoItemProvider extends ItemProviderAdapter implements IEdi
 	 * @generated
 	 */
 	protected void addPrimerySpecPropertyDescriptor(Object object) {
-		itemPropertyDescriptors.add(createItemPropertyDescriptor(((ComposeableAdapterFactory) adapterFactory)
-			.getRootAdapterFactory(), getResourceLocator(), getString("_UI_HistoryInfo_primerySpec_feature"),
-			getString("_UI_PropertyDescriptor_description", "_UI_HistoryInfo_primerySpec_feature",
-				"_UI_HistoryInfo_type"), VersioningPackage.Literals.HISTORY_INFO__PRIMERY_SPEC, true, false, true,
-			null, null, null));
+		itemPropertyDescriptors.add
+			(createItemPropertyDescriptor
+				(((ComposeableAdapterFactory)adapterFactory).getRootAdapterFactory(),
+				 getResourceLocator(),
+				 getString("_UI_HistoryInfo_primerySpec_feature"),
+				 getString("_UI_PropertyDescriptor_description", "_UI_HistoryInfo_primerySpec_feature", "_UI_HistoryInfo_type"),
+				 VersioningPackage.Literals.HISTORY_INFO__PRIMERY_SPEC,
+				 true,
+				 false,
+				 true,
+				 null,
+				 null,
+				 null));
 	}
 
 	/**
@@ -77,10 +86,19 @@ public class HistoryInfoItemProvider extends ItemProviderAdapter implements IEdi
 	 * @generated
 	 */
 	protected void addLogMessagePropertyDescriptor(Object object) {
-		itemPropertyDescriptors.add(createItemPropertyDescriptor(((ComposeableAdapterFactory) adapterFactory)
-			.getRootAdapterFactory(), getResourceLocator(), getString("_UI_HistoryInfo_logMessage_feature"), getString(
-			"_UI_PropertyDescriptor_description", "_UI_HistoryInfo_logMessage_feature", "_UI_HistoryInfo_type"),
-			VersioningPackage.Literals.HISTORY_INFO__LOG_MESSAGE, true, false, true, null, null, null));
+		itemPropertyDescriptors.add
+			(createItemPropertyDescriptor
+				(((ComposeableAdapterFactory)adapterFactory).getRootAdapterFactory(),
+				 getResourceLocator(),
+				 getString("_UI_HistoryInfo_logMessage_feature"),
+				 getString("_UI_PropertyDescriptor_description", "_UI_HistoryInfo_logMessage_feature", "_UI_HistoryInfo_type"),
+				 VersioningPackage.Literals.HISTORY_INFO__LOG_MESSAGE,
+				 true,
+				 false,
+				 true,
+				 null,
+				 null,
+				 null));
 	}
 
 	/**
@@ -93,7 +111,8 @@ public class HistoryInfoItemProvider extends ItemProviderAdapter implements IEdi
 	 */
 	@Override
 	public Collection<? extends EStructuralFeature> getChildrenFeatures(Object object) {
-		if (childrenFeatures == null) {
+		if (childrenFeatures == null)
+		{
 			super.getChildrenFeatures(object);
 			childrenFeatures.add(VersioningPackage.Literals.HISTORY_INFO__TAG_SPECS);
 		}
@@ -143,10 +162,11 @@ public class HistoryInfoItemProvider extends ItemProviderAdapter implements IEdi
 	public void notifyChanged(Notification notification) {
 		updateChildren(notification);
 
-		switch (notification.getFeatureID(HistoryInfo.class)) {
-		case VersioningPackage.HISTORY_INFO__TAG_SPECS:
-			fireNotifyChanged(new ViewerNotification(notification, notification.getNotifier(), true, false));
-			return;
+		switch (notification.getFeatureID(HistoryInfo.class))
+		{
+			case VersioningPackage.HISTORY_INFO__TAG_SPECS:
+				fireNotifyChanged(new ViewerNotification(notification, notification.getNotifier(), true, false));
+				return;
 		}
 		super.notifyChanged(notification);
 	}
@@ -161,8 +181,10 @@ public class HistoryInfoItemProvider extends ItemProviderAdapter implements IEdi
 	protected void collectNewChildDescriptors(Collection<Object> newChildDescriptors, Object object) {
 		super.collectNewChildDescriptors(newChildDescriptors, object);
 
-		newChildDescriptors.add(createChildParameter(VersioningPackage.Literals.HISTORY_INFO__TAG_SPECS,
-			VersioningFactory.eINSTANCE.createTagVersionSpec()));
+		newChildDescriptors.add
+			(createChildParameter
+				(VersioningPackage.Literals.HISTORY_INFO__TAG_SPECS,
+				 VersioningFactory.eINSTANCE.createTagVersionSpec()));
 	}
 
 	/**

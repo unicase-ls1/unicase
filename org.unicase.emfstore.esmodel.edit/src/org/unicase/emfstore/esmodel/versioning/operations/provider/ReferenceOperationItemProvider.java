@@ -45,7 +45,8 @@ public class ReferenceOperationItemProvider extends FeatureOperationItemProvider
 	 */
 	@Override
 	public List<IItemPropertyDescriptor> getPropertyDescriptors(Object object) {
-		if (itemPropertyDescriptors == null) {
+		if (itemPropertyDescriptors == null)
+		{
 			super.getPropertyDescriptors(object);
 
 			addBidirectionalPropertyDescriptor(object);
@@ -60,11 +61,19 @@ public class ReferenceOperationItemProvider extends FeatureOperationItemProvider
 	 * @generated
 	 */
 	protected void addBidirectionalPropertyDescriptor(Object object) {
-		itemPropertyDescriptors.add(createItemPropertyDescriptor(((ComposeableAdapterFactory) adapterFactory)
-			.getRootAdapterFactory(), getResourceLocator(), getString("_UI_ReferenceOperation_bidirectional_feature"),
-			getString("_UI_PropertyDescriptor_description", "_UI_ReferenceOperation_bidirectional_feature",
-				"_UI_ReferenceOperation_type"), OperationsPackage.Literals.REFERENCE_OPERATION__BIDIRECTIONAL, true,
-			false, false, ItemPropertyDescriptor.BOOLEAN_VALUE_IMAGE, null, null));
+		itemPropertyDescriptors.add
+			(createItemPropertyDescriptor
+				(((ComposeableAdapterFactory)adapterFactory).getRootAdapterFactory(),
+				 getResourceLocator(),
+				 getString("_UI_ReferenceOperation_bidirectional_feature"),
+				 getString("_UI_PropertyDescriptor_description", "_UI_ReferenceOperation_bidirectional_feature", "_UI_ReferenceOperation_type"),
+				 OperationsPackage.Literals.REFERENCE_OPERATION__BIDIRECTIONAL,
+				 true,
+				 false,
+				 false,
+				 ItemPropertyDescriptor.BOOLEAN_VALUE_IMAGE,
+				 null,
+				 null));
 	}
 
 	/**
@@ -74,12 +83,19 @@ public class ReferenceOperationItemProvider extends FeatureOperationItemProvider
 	 * @generated
 	 */
 	protected void addOppositeFeatureNamePropertyDescriptor(Object object) {
-		itemPropertyDescriptors.add(createItemPropertyDescriptor(((ComposeableAdapterFactory) adapterFactory)
-			.getRootAdapterFactory(), getResourceLocator(),
-			getString("_UI_ReferenceOperation_oppositeFeatureName_feature"), getString(
-				"_UI_PropertyDescriptor_description", "_UI_ReferenceOperation_oppositeFeatureName_feature",
-				"_UI_ReferenceOperation_type"), OperationsPackage.Literals.REFERENCE_OPERATION__OPPOSITE_FEATURE_NAME,
-			true, false, false, ItemPropertyDescriptor.GENERIC_VALUE_IMAGE, null, null));
+		itemPropertyDescriptors.add
+			(createItemPropertyDescriptor
+				(((ComposeableAdapterFactory)adapterFactory).getRootAdapterFactory(),
+				 getResourceLocator(),
+				 getString("_UI_ReferenceOperation_oppositeFeatureName_feature"),
+				 getString("_UI_PropertyDescriptor_description", "_UI_ReferenceOperation_oppositeFeatureName_feature", "_UI_ReferenceOperation_type"),
+				 OperationsPackage.Literals.REFERENCE_OPERATION__OPPOSITE_FEATURE_NAME,
+				 true,
+				 false,
+				 false,
+				 ItemPropertyDescriptor.GENERIC_VALUE_IMAGE,
+				 null,
+				 null));
 	}
 
 	/**
@@ -99,9 +115,10 @@ public class ReferenceOperationItemProvider extends FeatureOperationItemProvider
 	 */
 	@Override
 	public String getText(Object object) {
-		String label = ((ReferenceOperation) object).getName();
-		return label == null || label.length() == 0 ? getString("_UI_ReferenceOperation_type")
-			: getString("_UI_ReferenceOperation_type") + " " + label;
+		String label = ((ReferenceOperation)object).getName();
+		return label == null || label.length() == 0 ?
+			getString("_UI_ReferenceOperation_type") :
+			getString("_UI_ReferenceOperation_type") + " " + label;
 	}
 
 	/**
@@ -115,11 +132,12 @@ public class ReferenceOperationItemProvider extends FeatureOperationItemProvider
 	public void notifyChanged(Notification notification) {
 		updateChildren(notification);
 
-		switch (notification.getFeatureID(ReferenceOperation.class)) {
-		case OperationsPackage.REFERENCE_OPERATION__BIDIRECTIONAL:
-		case OperationsPackage.REFERENCE_OPERATION__OPPOSITE_FEATURE_NAME:
-			fireNotifyChanged(new ViewerNotification(notification, notification.getNotifier(), false, true));
-			return;
+		switch (notification.getFeatureID(ReferenceOperation.class))
+		{
+			case OperationsPackage.REFERENCE_OPERATION__BIDIRECTIONAL:
+			case OperationsPackage.REFERENCE_OPERATION__OPPOSITE_FEATURE_NAME:
+				fireNotifyChanged(new ViewerNotification(notification, notification.getNotifier(), false, true));
+				return;
 		}
 		super.notifyChanged(notification);
 	}

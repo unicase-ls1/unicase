@@ -46,7 +46,8 @@ public class PluginFocusEventItemProvider extends EventItemProvider implements I
 	 */
 	@Override
 	public List<IItemPropertyDescriptor> getPropertyDescriptors(Object object) {
-		if (itemPropertyDescriptors == null) {
+		if (itemPropertyDescriptors == null)
+		{
 			super.getPropertyDescriptors(object);
 
 			addPluginIdPropertyDescriptor(object);
@@ -61,11 +62,19 @@ public class PluginFocusEventItemProvider extends EventItemProvider implements I
 	 * @generated
 	 */
 	protected void addPluginIdPropertyDescriptor(Object object) {
-		itemPropertyDescriptors.add(createItemPropertyDescriptor(((ComposeableAdapterFactory) adapterFactory)
-			.getRootAdapterFactory(), getResourceLocator(), getString("_UI_PluginFocusEvent_pluginId_feature"),
-			getString("_UI_PropertyDescriptor_description", "_UI_PluginFocusEvent_pluginId_feature",
-				"_UI_PluginFocusEvent_type"), EventsPackage.Literals.PLUGIN_FOCUS_EVENT__PLUGIN_ID, true, false, false,
-			ItemPropertyDescriptor.GENERIC_VALUE_IMAGE, null, null));
+		itemPropertyDescriptors.add
+			(createItemPropertyDescriptor
+				(((ComposeableAdapterFactory)adapterFactory).getRootAdapterFactory(),
+				 getResourceLocator(),
+				 getString("_UI_PluginFocusEvent_pluginId_feature"),
+				 getString("_UI_PropertyDescriptor_description", "_UI_PluginFocusEvent_pluginId_feature", "_UI_PluginFocusEvent_type"),
+				 EventsPackage.Literals.PLUGIN_FOCUS_EVENT__PLUGIN_ID,
+				 true,
+				 false,
+				 false,
+				 ItemPropertyDescriptor.GENERIC_VALUE_IMAGE,
+				 null,
+				 null));
 	}
 
 	/**
@@ -74,11 +83,19 @@ public class PluginFocusEventItemProvider extends EventItemProvider implements I
 	 * @generated
 	 */
 	protected void addStartDatePropertyDescriptor(Object object) {
-		itemPropertyDescriptors.add(createItemPropertyDescriptor(((ComposeableAdapterFactory) adapterFactory)
-			.getRootAdapterFactory(), getResourceLocator(), getString("_UI_PluginFocusEvent_startDate_feature"),
-			getString("_UI_PropertyDescriptor_description", "_UI_PluginFocusEvent_startDate_feature",
-				"_UI_PluginFocusEvent_type"), EventsPackage.Literals.PLUGIN_FOCUS_EVENT__START_DATE, true, false,
-			false, ItemPropertyDescriptor.GENERIC_VALUE_IMAGE, null, null));
+		itemPropertyDescriptors.add
+			(createItemPropertyDescriptor
+				(((ComposeableAdapterFactory)adapterFactory).getRootAdapterFactory(),
+				 getResourceLocator(),
+				 getString("_UI_PluginFocusEvent_startDate_feature"),
+				 getString("_UI_PropertyDescriptor_description", "_UI_PluginFocusEvent_startDate_feature", "_UI_PluginFocusEvent_type"),
+				 EventsPackage.Literals.PLUGIN_FOCUS_EVENT__START_DATE,
+				 true,
+				 false,
+				 false,
+				 ItemPropertyDescriptor.GENERIC_VALUE_IMAGE,
+				 null,
+				 null));
 	}
 
 	/**
@@ -98,10 +115,11 @@ public class PluginFocusEventItemProvider extends EventItemProvider implements I
 	 */
 	@Override
 	public String getText(Object object) {
-		Date labelValue = ((PluginFocusEvent) object).getTimestamp();
+		Date labelValue = ((PluginFocusEvent)object).getTimestamp();
 		String label = labelValue == null ? null : labelValue.toString();
-		return label == null || label.length() == 0 ? getString("_UI_PluginFocusEvent_type")
-			: getString("_UI_PluginFocusEvent_type") + " " + label;
+		return label == null || label.length() == 0 ?
+			getString("_UI_PluginFocusEvent_type") :
+			getString("_UI_PluginFocusEvent_type") + " " + label;
 	}
 
 	/**
@@ -115,11 +133,12 @@ public class PluginFocusEventItemProvider extends EventItemProvider implements I
 	public void notifyChanged(Notification notification) {
 		updateChildren(notification);
 
-		switch (notification.getFeatureID(PluginFocusEvent.class)) {
-		case EventsPackage.PLUGIN_FOCUS_EVENT__PLUGIN_ID:
-		case EventsPackage.PLUGIN_FOCUS_EVENT__START_DATE:
-			fireNotifyChanged(new ViewerNotification(notification, notification.getNotifier(), false, true));
-			return;
+		switch (notification.getFeatureID(PluginFocusEvent.class))
+		{
+			case EventsPackage.PLUGIN_FOCUS_EVENT__PLUGIN_ID:
+			case EventsPackage.PLUGIN_FOCUS_EVENT__START_DATE:
+				fireNotifyChanged(new ViewerNotification(notification, notification.getNotifier(), false, true));
+				return;
 		}
 		super.notifyChanged(notification);
 	}

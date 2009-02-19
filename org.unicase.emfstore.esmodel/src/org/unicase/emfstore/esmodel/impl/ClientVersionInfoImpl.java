@@ -93,8 +93,7 @@ public class ClientVersionInfoImpl extends EObjectImpl implements ClientVersionI
 		String oldVersion = version;
 		version = newVersion;
 		if (eNotificationRequired())
-			eNotify(new ENotificationImpl(this, Notification.SET, EsmodelPackage.CLIENT_VERSION_INFO__VERSION,
-				oldVersion, version));
+			eNotify(new ENotificationImpl(this, Notification.SET, EsmodelPackage.CLIENT_VERSION_INFO__VERSION, oldVersion, version));
 	}
 
 	/**
@@ -113,8 +112,7 @@ public class ClientVersionInfoImpl extends EObjectImpl implements ClientVersionI
 		String oldName = name;
 		name = newName;
 		if (eNotificationRequired())
-			eNotify(new ENotificationImpl(this, Notification.SET, EsmodelPackage.CLIENT_VERSION_INFO__NAME, oldName,
-				name));
+			eNotify(new ENotificationImpl(this, Notification.SET, EsmodelPackage.CLIENT_VERSION_INFO__NAME, oldName, name));
 	}
 
 	/**
@@ -123,11 +121,12 @@ public class ClientVersionInfoImpl extends EObjectImpl implements ClientVersionI
 	 */
 	@Override
 	public Object eGet(int featureID, boolean resolve, boolean coreType) {
-		switch (featureID) {
-		case EsmodelPackage.CLIENT_VERSION_INFO__VERSION:
-			return getVersion();
-		case EsmodelPackage.CLIENT_VERSION_INFO__NAME:
-			return getName();
+		switch (featureID)
+		{
+			case EsmodelPackage.CLIENT_VERSION_INFO__VERSION:
+				return getVersion();
+			case EsmodelPackage.CLIENT_VERSION_INFO__NAME:
+				return getName();
 		}
 		return super.eGet(featureID, resolve, coreType);
 	}
@@ -138,13 +137,14 @@ public class ClientVersionInfoImpl extends EObjectImpl implements ClientVersionI
 	 */
 	@Override
 	public void eSet(int featureID, Object newValue) {
-		switch (featureID) {
-		case EsmodelPackage.CLIENT_VERSION_INFO__VERSION:
-			setVersion((String) newValue);
-			return;
-		case EsmodelPackage.CLIENT_VERSION_INFO__NAME:
-			setName((String) newValue);
-			return;
+		switch (featureID)
+		{
+			case EsmodelPackage.CLIENT_VERSION_INFO__VERSION:
+				setVersion((String)newValue);
+				return;
+			case EsmodelPackage.CLIENT_VERSION_INFO__NAME:
+				setName((String)newValue);
+				return;
 		}
 		super.eSet(featureID, newValue);
 	}
@@ -155,13 +155,14 @@ public class ClientVersionInfoImpl extends EObjectImpl implements ClientVersionI
 	 */
 	@Override
 	public void eUnset(int featureID) {
-		switch (featureID) {
-		case EsmodelPackage.CLIENT_VERSION_INFO__VERSION:
-			setVersion(VERSION_EDEFAULT);
-			return;
-		case EsmodelPackage.CLIENT_VERSION_INFO__NAME:
-			setName(NAME_EDEFAULT);
-			return;
+		switch (featureID)
+		{
+			case EsmodelPackage.CLIENT_VERSION_INFO__VERSION:
+				setVersion(VERSION_EDEFAULT);
+				return;
+			case EsmodelPackage.CLIENT_VERSION_INFO__NAME:
+				setName(NAME_EDEFAULT);
+				return;
 		}
 		super.eUnset(featureID);
 	}
@@ -172,11 +173,12 @@ public class ClientVersionInfoImpl extends EObjectImpl implements ClientVersionI
 	 */
 	@Override
 	public boolean eIsSet(int featureID) {
-		switch (featureID) {
-		case EsmodelPackage.CLIENT_VERSION_INFO__VERSION:
-			return VERSION_EDEFAULT == null ? version != null : !VERSION_EDEFAULT.equals(version);
-		case EsmodelPackage.CLIENT_VERSION_INFO__NAME:
-			return NAME_EDEFAULT == null ? name != null : !NAME_EDEFAULT.equals(name);
+		switch (featureID)
+		{
+			case EsmodelPackage.CLIENT_VERSION_INFO__VERSION:
+				return VERSION_EDEFAULT == null ? version != null : !VERSION_EDEFAULT.equals(version);
+			case EsmodelPackage.CLIENT_VERSION_INFO__NAME:
+				return NAME_EDEFAULT == null ? name != null : !NAME_EDEFAULT.equals(name);
 		}
 		return super.eIsSet(featureID);
 	}
@@ -187,8 +189,7 @@ public class ClientVersionInfoImpl extends EObjectImpl implements ClientVersionI
 	 */
 	@Override
 	public String toString() {
-		if (eIsProxy())
-			return super.toString();
+		if (eIsProxy()) return super.toString();
 
 		StringBuffer result = new StringBuffer(super.toString());
 		result.append(" (version: ");

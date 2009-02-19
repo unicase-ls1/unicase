@@ -46,7 +46,8 @@ public class PluginStartEventItemProvider extends EventItemProvider implements I
 	 */
 	@Override
 	public List<IItemPropertyDescriptor> getPropertyDescriptors(Object object) {
-		if (itemPropertyDescriptors == null) {
+		if (itemPropertyDescriptors == null)
+		{
 			super.getPropertyDescriptors(object);
 
 			addPluginIdPropertyDescriptor(object);
@@ -60,11 +61,19 @@ public class PluginStartEventItemProvider extends EventItemProvider implements I
 	 * @generated
 	 */
 	protected void addPluginIdPropertyDescriptor(Object object) {
-		itemPropertyDescriptors.add(createItemPropertyDescriptor(((ComposeableAdapterFactory) adapterFactory)
-			.getRootAdapterFactory(), getResourceLocator(), getString("_UI_PluginStartEvent_pluginId_feature"),
-			getString("_UI_PropertyDescriptor_description", "_UI_PluginStartEvent_pluginId_feature",
-				"_UI_PluginStartEvent_type"), EventsPackage.Literals.PLUGIN_START_EVENT__PLUGIN_ID, true, false, false,
-			ItemPropertyDescriptor.GENERIC_VALUE_IMAGE, null, null));
+		itemPropertyDescriptors.add
+			(createItemPropertyDescriptor
+				(((ComposeableAdapterFactory)adapterFactory).getRootAdapterFactory(),
+				 getResourceLocator(),
+				 getString("_UI_PluginStartEvent_pluginId_feature"),
+				 getString("_UI_PropertyDescriptor_description", "_UI_PluginStartEvent_pluginId_feature", "_UI_PluginStartEvent_type"),
+				 EventsPackage.Literals.PLUGIN_START_EVENT__PLUGIN_ID,
+				 true,
+				 false,
+				 false,
+				 ItemPropertyDescriptor.GENERIC_VALUE_IMAGE,
+				 null,
+				 null));
 	}
 
 	/**
@@ -84,10 +93,11 @@ public class PluginStartEventItemProvider extends EventItemProvider implements I
 	 */
 	@Override
 	public String getText(Object object) {
-		Date labelValue = ((PluginStartEvent) object).getTimestamp();
+		Date labelValue = ((PluginStartEvent)object).getTimestamp();
 		String label = labelValue == null ? null : labelValue.toString();
-		return label == null || label.length() == 0 ? getString("_UI_PluginStartEvent_type")
-			: getString("_UI_PluginStartEvent_type") + " " + label;
+		return label == null || label.length() == 0 ?
+			getString("_UI_PluginStartEvent_type") :
+			getString("_UI_PluginStartEvent_type") + " " + label;
 	}
 
 	/**
@@ -101,10 +111,11 @@ public class PluginStartEventItemProvider extends EventItemProvider implements I
 	public void notifyChanged(Notification notification) {
 		updateChildren(notification);
 
-		switch (notification.getFeatureID(PluginStartEvent.class)) {
-		case EventsPackage.PLUGIN_START_EVENT__PLUGIN_ID:
-			fireNotifyChanged(new ViewerNotification(notification, notification.getNotifier(), false, true));
-			return;
+		switch (notification.getFeatureID(PluginStartEvent.class))
+		{
+			case EventsPackage.PLUGIN_START_EVENT__PLUGIN_ID:
+				fireNotifyChanged(new ViewerNotification(notification, notification.getNotifier(), false, true));
+				return;
 		}
 		super.notifyChanged(notification);
 	}

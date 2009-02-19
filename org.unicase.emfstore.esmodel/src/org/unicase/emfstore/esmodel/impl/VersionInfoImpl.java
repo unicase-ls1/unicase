@@ -74,8 +74,7 @@ public class VersionInfoImpl extends EObjectImpl implements VersionInfo {
 		String oldEmfStoreVersionString = emfStoreVersionString;
 		emfStoreVersionString = newEmfStoreVersionString;
 		if (eNotificationRequired())
-			eNotify(new ENotificationImpl(this, Notification.SET,
-				EsmodelPackage.VERSION_INFO__EMF_STORE_VERSION_STRING, oldEmfStoreVersionString, emfStoreVersionString));
+			eNotify(new ENotificationImpl(this, Notification.SET, EsmodelPackage.VERSION_INFO__EMF_STORE_VERSION_STRING, oldEmfStoreVersionString, emfStoreVersionString));
 	}
 
 	// begin of custom code
@@ -107,9 +106,10 @@ public class VersionInfoImpl extends EObjectImpl implements VersionInfo {
 	 */
 	@Override
 	public Object eGet(int featureID, boolean resolve, boolean coreType) {
-		switch (featureID) {
-		case EsmodelPackage.VERSION_INFO__EMF_STORE_VERSION_STRING:
-			return getEmfStoreVersionString();
+		switch (featureID)
+		{
+			case EsmodelPackage.VERSION_INFO__EMF_STORE_VERSION_STRING:
+				return getEmfStoreVersionString();
 		}
 		return super.eGet(featureID, resolve, coreType);
 	}
@@ -120,10 +120,11 @@ public class VersionInfoImpl extends EObjectImpl implements VersionInfo {
 	 */
 	@Override
 	public void eSet(int featureID, Object newValue) {
-		switch (featureID) {
-		case EsmodelPackage.VERSION_INFO__EMF_STORE_VERSION_STRING:
-			setEmfStoreVersionString((String) newValue);
-			return;
+		switch (featureID)
+		{
+			case EsmodelPackage.VERSION_INFO__EMF_STORE_VERSION_STRING:
+				setEmfStoreVersionString((String)newValue);
+				return;
 		}
 		super.eSet(featureID, newValue);
 	}
@@ -134,10 +135,11 @@ public class VersionInfoImpl extends EObjectImpl implements VersionInfo {
 	 */
 	@Override
 	public void eUnset(int featureID) {
-		switch (featureID) {
-		case EsmodelPackage.VERSION_INFO__EMF_STORE_VERSION_STRING:
-			setEmfStoreVersionString(EMF_STORE_VERSION_STRING_EDEFAULT);
-			return;
+		switch (featureID)
+		{
+			case EsmodelPackage.VERSION_INFO__EMF_STORE_VERSION_STRING:
+				setEmfStoreVersionString(EMF_STORE_VERSION_STRING_EDEFAULT);
+				return;
 		}
 		super.eUnset(featureID);
 	}
@@ -148,10 +150,10 @@ public class VersionInfoImpl extends EObjectImpl implements VersionInfo {
 	 */
 	@Override
 	public boolean eIsSet(int featureID) {
-		switch (featureID) {
-		case EsmodelPackage.VERSION_INFO__EMF_STORE_VERSION_STRING:
-			return EMF_STORE_VERSION_STRING_EDEFAULT == null ? emfStoreVersionString != null
-				: !EMF_STORE_VERSION_STRING_EDEFAULT.equals(emfStoreVersionString);
+		switch (featureID)
+		{
+			case EsmodelPackage.VERSION_INFO__EMF_STORE_VERSION_STRING:
+				return EMF_STORE_VERSION_STRING_EDEFAULT == null ? emfStoreVersionString != null : !EMF_STORE_VERSION_STRING_EDEFAULT.equals(emfStoreVersionString);
 		}
 		return super.eIsSet(featureID);
 	}
@@ -162,8 +164,7 @@ public class VersionInfoImpl extends EObjectImpl implements VersionInfo {
 	 */
 	@Override
 	public String toString() {
-		if (eIsProxy())
-			return super.toString();
+		if (eIsProxy()) return super.toString();
 
 		StringBuffer result = new StringBuffer(super.toString());
 		result.append(" (emfStoreVersionString: ");

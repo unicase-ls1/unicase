@@ -125,9 +125,9 @@ public class CompositeOperationImpl extends AbstractOperationImpl implements Com
 	 * @generated
 	 */
 	public EList<AbstractOperation> getSubOperations() {
-		if (subOperations == null) {
-			subOperations = new EObjectContainmentEList.Resolving<AbstractOperation>(AbstractOperation.class, this,
-				OperationsPackage.COMPOSITE_OPERATION__SUB_OPERATIONS);
+		if (subOperations == null)
+		{
+			subOperations = new EObjectContainmentEList.Resolving<AbstractOperation>(AbstractOperation.class, this, OperationsPackage.COMPOSITE_OPERATION__SUB_OPERATIONS);
 		}
 		return subOperations;
 	}
@@ -148,8 +148,7 @@ public class CompositeOperationImpl extends AbstractOperationImpl implements Com
 		String oldCompositeName = compositeName;
 		compositeName = newCompositeName;
 		if (eNotificationRequired())
-			eNotify(new ENotificationImpl(this, Notification.SET,
-				OperationsPackage.COMPOSITE_OPERATION__COMPOSITE_NAME, oldCompositeName, compositeName));
+			eNotify(new ENotificationImpl(this, Notification.SET, OperationsPackage.COMPOSITE_OPERATION__COMPOSITE_NAME, oldCompositeName, compositeName));
 	}
 
 	/**
@@ -168,9 +167,7 @@ public class CompositeOperationImpl extends AbstractOperationImpl implements Com
 		String oldCompositeDescription = compositeDescription;
 		compositeDescription = newCompositeDescription;
 		if (eNotificationRequired())
-			eNotify(new ENotificationImpl(this, Notification.SET,
-				OperationsPackage.COMPOSITE_OPERATION__COMPOSITE_DESCRIPTION, oldCompositeDescription,
-				compositeDescription));
+			eNotify(new ENotificationImpl(this, Notification.SET, OperationsPackage.COMPOSITE_OPERATION__COMPOSITE_DESCRIPTION, oldCompositeDescription, compositeDescription));
 	}
 
 	/**
@@ -189,8 +186,7 @@ public class CompositeOperationImpl extends AbstractOperationImpl implements Com
 		boolean oldReversed = reversed;
 		reversed = newReversed;
 		if (eNotificationRequired())
-			eNotify(new ENotificationImpl(this, Notification.SET, OperationsPackage.COMPOSITE_OPERATION__REVERSED,
-				oldReversed, reversed));
+			eNotify(new ENotificationImpl(this, Notification.SET, OperationsPackage.COMPOSITE_OPERATION__REVERSED, oldReversed, reversed));
 	}
 
 	// begin of custom code
@@ -212,9 +208,10 @@ public class CompositeOperationImpl extends AbstractOperationImpl implements Com
 	 */
 	@Override
 	public NotificationChain eInverseRemove(InternalEObject otherEnd, int featureID, NotificationChain msgs) {
-		switch (featureID) {
-		case OperationsPackage.COMPOSITE_OPERATION__SUB_OPERATIONS:
-			return ((InternalEList<?>) getSubOperations()).basicRemove(otherEnd, msgs);
+		switch (featureID)
+		{
+			case OperationsPackage.COMPOSITE_OPERATION__SUB_OPERATIONS:
+				return ((InternalEList<?>)getSubOperations()).basicRemove(otherEnd, msgs);
 		}
 		return super.eInverseRemove(otherEnd, featureID, msgs);
 	}
@@ -225,15 +222,16 @@ public class CompositeOperationImpl extends AbstractOperationImpl implements Com
 	 */
 	@Override
 	public Object eGet(int featureID, boolean resolve, boolean coreType) {
-		switch (featureID) {
-		case OperationsPackage.COMPOSITE_OPERATION__SUB_OPERATIONS:
-			return getSubOperations();
-		case OperationsPackage.COMPOSITE_OPERATION__COMPOSITE_NAME:
-			return getCompositeName();
-		case OperationsPackage.COMPOSITE_OPERATION__COMPOSITE_DESCRIPTION:
-			return getCompositeDescription();
-		case OperationsPackage.COMPOSITE_OPERATION__REVERSED:
-			return isReversed() ? Boolean.TRUE : Boolean.FALSE;
+		switch (featureID)
+		{
+			case OperationsPackage.COMPOSITE_OPERATION__SUB_OPERATIONS:
+				return getSubOperations();
+			case OperationsPackage.COMPOSITE_OPERATION__COMPOSITE_NAME:
+				return getCompositeName();
+			case OperationsPackage.COMPOSITE_OPERATION__COMPOSITE_DESCRIPTION:
+				return getCompositeDescription();
+			case OperationsPackage.COMPOSITE_OPERATION__REVERSED:
+				return isReversed() ? Boolean.TRUE : Boolean.FALSE;
 		}
 		return super.eGet(featureID, resolve, coreType);
 	}
@@ -245,20 +243,21 @@ public class CompositeOperationImpl extends AbstractOperationImpl implements Com
 	@SuppressWarnings("unchecked")
 	@Override
 	public void eSet(int featureID, Object newValue) {
-		switch (featureID) {
-		case OperationsPackage.COMPOSITE_OPERATION__SUB_OPERATIONS:
-			getSubOperations().clear();
-			getSubOperations().addAll((Collection<? extends AbstractOperation>) newValue);
-			return;
-		case OperationsPackage.COMPOSITE_OPERATION__COMPOSITE_NAME:
-			setCompositeName((String) newValue);
-			return;
-		case OperationsPackage.COMPOSITE_OPERATION__COMPOSITE_DESCRIPTION:
-			setCompositeDescription((String) newValue);
-			return;
-		case OperationsPackage.COMPOSITE_OPERATION__REVERSED:
-			setReversed(((Boolean) newValue).booleanValue());
-			return;
+		switch (featureID)
+		{
+			case OperationsPackage.COMPOSITE_OPERATION__SUB_OPERATIONS:
+				getSubOperations().clear();
+				getSubOperations().addAll((Collection<? extends AbstractOperation>)newValue);
+				return;
+			case OperationsPackage.COMPOSITE_OPERATION__COMPOSITE_NAME:
+				setCompositeName((String)newValue);
+				return;
+			case OperationsPackage.COMPOSITE_OPERATION__COMPOSITE_DESCRIPTION:
+				setCompositeDescription((String)newValue);
+				return;
+			case OperationsPackage.COMPOSITE_OPERATION__REVERSED:
+				setReversed(((Boolean)newValue).booleanValue());
+				return;
 		}
 		super.eSet(featureID, newValue);
 	}
@@ -269,19 +268,20 @@ public class CompositeOperationImpl extends AbstractOperationImpl implements Com
 	 */
 	@Override
 	public void eUnset(int featureID) {
-		switch (featureID) {
-		case OperationsPackage.COMPOSITE_OPERATION__SUB_OPERATIONS:
-			getSubOperations().clear();
-			return;
-		case OperationsPackage.COMPOSITE_OPERATION__COMPOSITE_NAME:
-			setCompositeName(COMPOSITE_NAME_EDEFAULT);
-			return;
-		case OperationsPackage.COMPOSITE_OPERATION__COMPOSITE_DESCRIPTION:
-			setCompositeDescription(COMPOSITE_DESCRIPTION_EDEFAULT);
-			return;
-		case OperationsPackage.COMPOSITE_OPERATION__REVERSED:
-			setReversed(REVERSED_EDEFAULT);
-			return;
+		switch (featureID)
+		{
+			case OperationsPackage.COMPOSITE_OPERATION__SUB_OPERATIONS:
+				getSubOperations().clear();
+				return;
+			case OperationsPackage.COMPOSITE_OPERATION__COMPOSITE_NAME:
+				setCompositeName(COMPOSITE_NAME_EDEFAULT);
+				return;
+			case OperationsPackage.COMPOSITE_OPERATION__COMPOSITE_DESCRIPTION:
+				setCompositeDescription(COMPOSITE_DESCRIPTION_EDEFAULT);
+				return;
+			case OperationsPackage.COMPOSITE_OPERATION__REVERSED:
+				setReversed(REVERSED_EDEFAULT);
+				return;
 		}
 		super.eUnset(featureID);
 	}
@@ -292,17 +292,16 @@ public class CompositeOperationImpl extends AbstractOperationImpl implements Com
 	 */
 	@Override
 	public boolean eIsSet(int featureID) {
-		switch (featureID) {
-		case OperationsPackage.COMPOSITE_OPERATION__SUB_OPERATIONS:
-			return subOperations != null && !subOperations.isEmpty();
-		case OperationsPackage.COMPOSITE_OPERATION__COMPOSITE_NAME:
-			return COMPOSITE_NAME_EDEFAULT == null ? compositeName != null : !COMPOSITE_NAME_EDEFAULT
-				.equals(compositeName);
-		case OperationsPackage.COMPOSITE_OPERATION__COMPOSITE_DESCRIPTION:
-			return COMPOSITE_DESCRIPTION_EDEFAULT == null ? compositeDescription != null
-				: !COMPOSITE_DESCRIPTION_EDEFAULT.equals(compositeDescription);
-		case OperationsPackage.COMPOSITE_OPERATION__REVERSED:
-			return reversed != REVERSED_EDEFAULT;
+		switch (featureID)
+		{
+			case OperationsPackage.COMPOSITE_OPERATION__SUB_OPERATIONS:
+				return subOperations != null && !subOperations.isEmpty();
+			case OperationsPackage.COMPOSITE_OPERATION__COMPOSITE_NAME:
+				return COMPOSITE_NAME_EDEFAULT == null ? compositeName != null : !COMPOSITE_NAME_EDEFAULT.equals(compositeName);
+			case OperationsPackage.COMPOSITE_OPERATION__COMPOSITE_DESCRIPTION:
+				return COMPOSITE_DESCRIPTION_EDEFAULT == null ? compositeDescription != null : !COMPOSITE_DESCRIPTION_EDEFAULT.equals(compositeDescription);
+			case OperationsPackage.COMPOSITE_OPERATION__REVERSED:
+				return reversed != REVERSED_EDEFAULT;
 		}
 		return super.eIsSet(featureID);
 	}
@@ -313,8 +312,7 @@ public class CompositeOperationImpl extends AbstractOperationImpl implements Com
 	 */
 	@Override
 	public String toString() {
-		if (eIsProxy())
-			return super.toString();
+		if (eIsProxy()) return super.toString();
 
 		StringBuffer result = new StringBuffer(super.toString());
 		result.append(" (compositeName: ");

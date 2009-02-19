@@ -44,13 +44,16 @@ public class EventsFactoryImpl extends EFactoryImpl implements EventsFactory {
 	 * @generated
 	 */
 	public static EventsFactory init() {
-		try {
-			EventsFactory theEventsFactory = (EventsFactory) EPackage.Registry.INSTANCE
-				.getEFactory("http://unicase.org/esmodel/versioning/events");
-			if (theEventsFactory != null) {
+		try
+		{
+			EventsFactory theEventsFactory = (EventsFactory)EPackage.Registry.INSTANCE.getEFactory("http://unicase.org/esmodel/versioning/events"); 
+			if (theEventsFactory != null)
+			{
 				return theEventsFactory;
 			}
-		} catch (Exception exception) {
+		}
+		catch (Exception exception)
+		{
 			EcorePlugin.INSTANCE.log(exception);
 		}
 		return new EventsFactoryImpl();
@@ -71,49 +74,30 @@ public class EventsFactoryImpl extends EFactoryImpl implements EventsFactory {
 	 */
 	@Override
 	public EObject create(EClass eClass) {
-		switch (eClass.getClassifierID()) {
-		case EventsPackage.EVENT:
-			return createEvent();
-		case EventsPackage.READ_EVENT:
-			return createReadEvent();
-		case EventsPackage.MERGE_EVENT:
-			return createMergeEvent();
-		case EventsPackage.CHECKOUT_EVENT:
-			return createCheckoutEvent();
-		case EventsPackage.EXCEPTION_EVENT:
-			return createExceptionEvent();
-		case EventsPackage.PLUGIN_START_EVENT:
-			return createPluginStartEvent();
-		case EventsPackage.UPDATE_EVENT:
-			return createUpdateEvent();
-		case EventsPackage.ANNOTATION_EVENT:
-			return createAnnotationEvent();
-		case EventsPackage.REVERT_EVENT:
-			return createRevertEvent();
-		case EventsPackage.SHOW_HISTORY_EVENT:
-			return createShowHistoryEvent();
-		case EventsPackage.PERSPECTIVE_EVENT:
-			return createPerspectiveEvent();
-		case EventsPackage.DND_EVENT:
-			return createDNDEvent();
-		case EventsPackage.LINK_EVENT:
-			return createLinkEvent();
-		case EventsPackage.TRACE_EVENT:
-			return createTraceEvent();
-		case EventsPackage.NAVIGATOR_CREATE_EVENT:
-			return createNavigatorCreateEvent();
-		case EventsPackage.PLUGIN_FOCUS_EVENT:
-			return createPluginFocusEvent();
-		case EventsPackage.PRESENTATION_SWITCH_EVENT:
-			return createPresentationSwitchEvent();
-		case EventsPackage.UNDO_EVENT:
-			return createUndoEvent();
-		case EventsPackage.VALIDATE:
-			return createValidate();
-		case EventsPackage.SHOW_CHANGES_EVENT:
-			return createShowChangesEvent();
-		default:
-			throw new IllegalArgumentException("The class '" + eClass.getName() + "' is not a valid classifier");
+		switch (eClass.getClassifierID())
+		{
+			case EventsPackage.EVENT: return createEvent();
+			case EventsPackage.READ_EVENT: return createReadEvent();
+			case EventsPackage.MERGE_EVENT: return createMergeEvent();
+			case EventsPackage.CHECKOUT_EVENT: return createCheckoutEvent();
+			case EventsPackage.EXCEPTION_EVENT: return createExceptionEvent();
+			case EventsPackage.PLUGIN_START_EVENT: return createPluginStartEvent();
+			case EventsPackage.UPDATE_EVENT: return createUpdateEvent();
+			case EventsPackage.ANNOTATION_EVENT: return createAnnotationEvent();
+			case EventsPackage.REVERT_EVENT: return createRevertEvent();
+			case EventsPackage.SHOW_HISTORY_EVENT: return createShowHistoryEvent();
+			case EventsPackage.PERSPECTIVE_EVENT: return createPerspectiveEvent();
+			case EventsPackage.DND_EVENT: return createDNDEvent();
+			case EventsPackage.LINK_EVENT: return createLinkEvent();
+			case EventsPackage.TRACE_EVENT: return createTraceEvent();
+			case EventsPackage.NAVIGATOR_CREATE_EVENT: return createNavigatorCreateEvent();
+			case EventsPackage.PLUGIN_FOCUS_EVENT: return createPluginFocusEvent();
+			case EventsPackage.PRESENTATION_SWITCH_EVENT: return createPresentationSwitchEvent();
+			case EventsPackage.UNDO_EVENT: return createUndoEvent();
+			case EventsPackage.VALIDATE: return createValidate();
+			case EventsPackage.SHOW_CHANGES_EVENT: return createShowChangesEvent();
+			default:
+				throw new IllegalArgumentException("The class '" + eClass.getName() + "' is not a valid classifier");
 		}
 	}
 
@@ -302,7 +286,7 @@ public class EventsFactoryImpl extends EFactoryImpl implements EventsFactory {
 	 * @generated
 	 */
 	public EventsPackage getEventsPackage() {
-		return (EventsPackage) getEPackage();
+		return (EventsPackage)getEPackage();
 	}
 
 	/**

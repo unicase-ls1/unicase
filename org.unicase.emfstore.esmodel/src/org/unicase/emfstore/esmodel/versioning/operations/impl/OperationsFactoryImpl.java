@@ -33,13 +33,16 @@ public class OperationsFactoryImpl extends EFactoryImpl implements OperationsFac
 	 * @generated
 	 */
 	public static OperationsFactory init() {
-		try {
-			OperationsFactory theOperationsFactory = (OperationsFactory) EPackage.Registry.INSTANCE
-				.getEFactory("http://unicase.org/esmodel/versioning/operations");
-			if (theOperationsFactory != null) {
+		try
+		{
+			OperationsFactory theOperationsFactory = (OperationsFactory)EPackage.Registry.INSTANCE.getEFactory("http://unicase.org/esmodel/versioning/operations"); 
+			if (theOperationsFactory != null)
+			{
 				return theOperationsFactory;
 			}
-		} catch (Exception exception) {
+		}
+		catch (Exception exception)
+		{
 			EcorePlugin.INSTANCE.log(exception);
 		}
 		return new OperationsFactoryImpl();
@@ -60,27 +63,19 @@ public class OperationsFactoryImpl extends EFactoryImpl implements OperationsFac
 	 */
 	@Override
 	public EObject create(EClass eClass) {
-		switch (eClass.getClassifierID()) {
-		case OperationsPackage.COMPOSITE_OPERATION:
-			return createCompositeOperation();
-		case OperationsPackage.CREATE_DELETE_OPERATION:
-			return createCreateDeleteOperation();
-		case OperationsPackage.ATTRIBUTE_OPERATION:
-			return createAttributeOperation();
-		case OperationsPackage.SINGLE_REFERENCE_OPERATION:
-			return createSingleReferenceOperation();
-		case OperationsPackage.MULTI_REFERENCE_OPERATION:
-			return createMultiReferenceOperation();
-		case OperationsPackage.MULTI_REFERENCE_MOVE_OPERATION:
-			return createMultiReferenceMoveOperation();
-		case OperationsPackage.MULTI_ATTRIBUTE_OPERATION:
-			return createMultiAttributeOperation();
-		case OperationsPackage.DIAGRAM_LAYOUT_OPERATION:
-			return createDiagramLayoutOperation();
-		case OperationsPackage.MULTI_ATTRIBUTE_MOVE_OPERATION:
-			return createMultiAttributeMoveOperation();
-		default:
-			throw new IllegalArgumentException("The class '" + eClass.getName() + "' is not a valid classifier");
+		switch (eClass.getClassifierID())
+		{
+			case OperationsPackage.COMPOSITE_OPERATION: return createCompositeOperation();
+			case OperationsPackage.CREATE_DELETE_OPERATION: return createCreateDeleteOperation();
+			case OperationsPackage.ATTRIBUTE_OPERATION: return createAttributeOperation();
+			case OperationsPackage.SINGLE_REFERENCE_OPERATION: return createSingleReferenceOperation();
+			case OperationsPackage.MULTI_REFERENCE_OPERATION: return createMultiReferenceOperation();
+			case OperationsPackage.MULTI_REFERENCE_MOVE_OPERATION: return createMultiReferenceMoveOperation();
+			case OperationsPackage.MULTI_ATTRIBUTE_OPERATION: return createMultiAttributeOperation();
+			case OperationsPackage.DIAGRAM_LAYOUT_OPERATION: return createDiagramLayoutOperation();
+			case OperationsPackage.MULTI_ATTRIBUTE_MOVE_OPERATION: return createMultiAttributeMoveOperation();
+			default:
+				throw new IllegalArgumentException("The class '" + eClass.getName() + "' is not a valid classifier");
 		}
 	}
 
@@ -170,7 +165,7 @@ public class OperationsFactoryImpl extends EFactoryImpl implements OperationsFac
 	 * @generated
 	 */
 	public OperationsPackage getOperationsPackage() {
-		return (OperationsPackage) getEPackage();
+		return (OperationsPackage)getEPackage();
 	}
 
 	/**

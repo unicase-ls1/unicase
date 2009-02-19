@@ -46,7 +46,8 @@ public class NavigatorCreateEventItemProvider extends EventItemProvider implemen
 	 */
 	@Override
 	public List<IItemPropertyDescriptor> getPropertyDescriptors(Object object) {
-		if (itemPropertyDescriptors == null) {
+		if (itemPropertyDescriptors == null)
+		{
 			super.getPropertyDescriptors(object);
 
 			addCreatedElementPropertyDescriptor(object);
@@ -62,12 +63,19 @@ public class NavigatorCreateEventItemProvider extends EventItemProvider implemen
 	 * @generated
 	 */
 	protected void addCreatedElementPropertyDescriptor(Object object) {
-		itemPropertyDescriptors.add(createItemPropertyDescriptor(((ComposeableAdapterFactory) adapterFactory)
-			.getRootAdapterFactory(), getResourceLocator(),
-			getString("_UI_NavigatorCreateEvent_createdElement_feature"), getString(
-				"_UI_PropertyDescriptor_description", "_UI_NavigatorCreateEvent_createdElement_feature",
-				"_UI_NavigatorCreateEvent_type"), EventsPackage.Literals.NAVIGATOR_CREATE_EVENT__CREATED_ELEMENT, true,
-			false, true, null, null, null));
+		itemPropertyDescriptors.add
+			(createItemPropertyDescriptor
+				(((ComposeableAdapterFactory)adapterFactory).getRootAdapterFactory(),
+				 getResourceLocator(),
+				 getString("_UI_NavigatorCreateEvent_createdElement_feature"),
+				 getString("_UI_PropertyDescriptor_description", "_UI_NavigatorCreateEvent_createdElement_feature", "_UI_NavigatorCreateEvent_type"),
+				 EventsPackage.Literals.NAVIGATOR_CREATE_EVENT__CREATED_ELEMENT,
+				 true,
+				 false,
+				 true,
+				 null,
+				 null,
+				 null));
 	}
 
 	/**
@@ -76,12 +84,19 @@ public class NavigatorCreateEventItemProvider extends EventItemProvider implemen
 	 * @generated
 	 */
 	protected void addSourceSectionPropertyDescriptor(Object object) {
-		itemPropertyDescriptors.add(createItemPropertyDescriptor(((ComposeableAdapterFactory) adapterFactory)
-			.getRootAdapterFactory(), getResourceLocator(),
-			getString("_UI_NavigatorCreateEvent_sourceSection_feature"), getString(
-				"_UI_PropertyDescriptor_description", "_UI_NavigatorCreateEvent_sourceSection_feature",
-				"_UI_NavigatorCreateEvent_type"), EventsPackage.Literals.NAVIGATOR_CREATE_EVENT__SOURCE_SECTION, true,
-			false, true, null, null, null));
+		itemPropertyDescriptors.add
+			(createItemPropertyDescriptor
+				(((ComposeableAdapterFactory)adapterFactory).getRootAdapterFactory(),
+				 getResourceLocator(),
+				 getString("_UI_NavigatorCreateEvent_sourceSection_feature"),
+				 getString("_UI_PropertyDescriptor_description", "_UI_NavigatorCreateEvent_sourceSection_feature", "_UI_NavigatorCreateEvent_type"),
+				 EventsPackage.Literals.NAVIGATOR_CREATE_EVENT__SOURCE_SECTION,
+				 true,
+				 false,
+				 true,
+				 null,
+				 null,
+				 null));
 	}
 
 	/**
@@ -90,11 +105,19 @@ public class NavigatorCreateEventItemProvider extends EventItemProvider implemen
 	 * @generated
 	 */
 	protected void addDynamicPropertyDescriptor(Object object) {
-		itemPropertyDescriptors.add(createItemPropertyDescriptor(((ComposeableAdapterFactory) adapterFactory)
-			.getRootAdapterFactory(), getResourceLocator(), getString("_UI_NavigatorCreateEvent_dynamic_feature"),
-			getString("_UI_PropertyDescriptor_description", "_UI_NavigatorCreateEvent_dynamic_feature",
-				"_UI_NavigatorCreateEvent_type"), EventsPackage.Literals.NAVIGATOR_CREATE_EVENT__DYNAMIC, true, false,
-			false, ItemPropertyDescriptor.BOOLEAN_VALUE_IMAGE, null, null));
+		itemPropertyDescriptors.add
+			(createItemPropertyDescriptor
+				(((ComposeableAdapterFactory)adapterFactory).getRootAdapterFactory(),
+				 getResourceLocator(),
+				 getString("_UI_NavigatorCreateEvent_dynamic_feature"),
+				 getString("_UI_PropertyDescriptor_description", "_UI_NavigatorCreateEvent_dynamic_feature", "_UI_NavigatorCreateEvent_type"),
+				 EventsPackage.Literals.NAVIGATOR_CREATE_EVENT__DYNAMIC,
+				 true,
+				 false,
+				 false,
+				 ItemPropertyDescriptor.BOOLEAN_VALUE_IMAGE,
+				 null,
+				 null));
 	}
 
 	/**
@@ -114,10 +137,11 @@ public class NavigatorCreateEventItemProvider extends EventItemProvider implemen
 	 */
 	@Override
 	public String getText(Object object) {
-		Date labelValue = ((NavigatorCreateEvent) object).getTimestamp();
+		Date labelValue = ((NavigatorCreateEvent)object).getTimestamp();
 		String label = labelValue == null ? null : labelValue.toString();
-		return label == null || label.length() == 0 ? getString("_UI_NavigatorCreateEvent_type")
-			: getString("_UI_NavigatorCreateEvent_type") + " " + label;
+		return label == null || label.length() == 0 ?
+			getString("_UI_NavigatorCreateEvent_type") :
+			getString("_UI_NavigatorCreateEvent_type") + " " + label;
 	}
 
 	/**
@@ -131,10 +155,11 @@ public class NavigatorCreateEventItemProvider extends EventItemProvider implemen
 	public void notifyChanged(Notification notification) {
 		updateChildren(notification);
 
-		switch (notification.getFeatureID(NavigatorCreateEvent.class)) {
-		case EventsPackage.NAVIGATOR_CREATE_EVENT__DYNAMIC:
-			fireNotifyChanged(new ViewerNotification(notification, notification.getNotifier(), false, true));
-			return;
+		switch (notification.getFeatureID(NavigatorCreateEvent.class))
+		{
+			case EventsPackage.NAVIGATOR_CREATE_EVENT__DYNAMIC:
+				fireNotifyChanged(new ViewerNotification(notification, notification.getNotifier(), false, true));
+				return;
 		}
 		super.notifyChanged(notification);
 	}

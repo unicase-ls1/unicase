@@ -1743,8 +1743,7 @@ public interface OperationsPackage extends EPackage {
 		 * <!-- begin-user-doc --> <!-- end-user-doc -->
 		 * @generated
 		 */
-		EReference MULTI_REFERENCE_OPERATION__REFERENCED_MODEL_ELEMENTS = eINSTANCE
-			.getMultiReferenceOperation_ReferencedModelElements();
+		EReference MULTI_REFERENCE_OPERATION__REFERENCED_MODEL_ELEMENTS = eINSTANCE.getMultiReferenceOperation_ReferencedModelElements();
 
 		/**
 		 * The meta object literal for the '{@link org.unicase.emfstore.esmodel.versioning.operations.impl.MultiReferenceMoveOperationImpl <em>Multi Reference Move Operation</em>}' class.
@@ -1776,8 +1775,7 @@ public interface OperationsPackage extends EPackage {
 		 * <!-- begin-user-doc --> <!-- end-user-doc -->
 		 * @generated
 		 */
-		EReference MULTI_REFERENCE_MOVE_OPERATION__REFERENCED_MODEL_ELEMENT_ID = eINSTANCE
-			.getMultiReferenceMoveOperation_ReferencedModelElementId();
+		EReference MULTI_REFERENCE_MOVE_OPERATION__REFERENCED_MODEL_ELEMENT_ID = eINSTANCE.getMultiReferenceMoveOperation_ReferencedModelElementId();
 
 		/**
 		 * The meta object literal for the '{@link org.unicase.emfstore.esmodel.versioning.operations.impl.MultiAttributeOperationImpl <em>Multi Attribute Operation</em>}' class.

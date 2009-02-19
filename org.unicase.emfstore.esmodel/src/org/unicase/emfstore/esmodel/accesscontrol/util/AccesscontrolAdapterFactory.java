@@ -37,7 +37,8 @@ public class AccesscontrolAdapterFactory extends AdapterFactoryImpl {
 	 * @generated
 	 */
 	public AccesscontrolAdapterFactory() {
-		if (modelPackage == null) {
+		if (modelPackage == null)
+		{
 			modelPackage = AccesscontrolPackage.eINSTANCE;
 		}
 	}
@@ -52,11 +53,13 @@ public class AccesscontrolAdapterFactory extends AdapterFactoryImpl {
 	 */
 	@Override
 	public boolean isFactoryForType(Object object) {
-		if (object == modelPackage) {
+		if (object == modelPackage)
+		{
 			return true;
 		}
-		if (object instanceof EObject) {
-			return ((EObject) object).eClass().getEPackage() == modelPackage;
+		if (object instanceof EObject)
+		{
+			return ((EObject)object).eClass().getEPackage() == modelPackage;
 		}
 		return false;
 	}
@@ -66,42 +69,44 @@ public class AccesscontrolAdapterFactory extends AdapterFactoryImpl {
 	 * <!-- begin-user-doc --> <!-- end-user-doc -->
 	 * @generated
 	 */
-	protected AccesscontrolSwitch<Adapter> modelSwitch = new AccesscontrolSwitch<Adapter>() {
-		@Override
-		public Adapter caseACUser(ACUser object) {
-			return createACUserAdapter();
-		}
-
-		@Override
-		public Adapter caseACOrgUnit(ACOrgUnit object) {
-			return createACOrgUnitAdapter();
-		}
-
-		@Override
-		public Adapter caseACGroup(ACGroup object) {
-			return createACGroupAdapter();
-		}
-
-		@Override
-		public Adapter caseACOrgUnitId(ACOrgUnitId object) {
-			return createACOrgUnitIdAdapter();
-		}
-
-		@Override
-		public Adapter caseIdentifiableElement(IdentifiableElement object) {
-			return createIdentifiableElementAdapter();
-		}
-
-		@Override
-		public Adapter caseUniqueIdentifier(UniqueIdentifier object) {
-			return createUniqueIdentifierAdapter();
-		}
-
-		@Override
-		public Adapter defaultCase(EObject object) {
-			return createEObjectAdapter();
-		}
-	};
+	protected AccesscontrolSwitch<Adapter> modelSwitch = new AccesscontrolSwitch<Adapter>()
+		{
+			@Override
+			public Adapter caseACUser(ACUser object)
+			{
+				return createACUserAdapter();
+			}
+			@Override
+			public Adapter caseACOrgUnit(ACOrgUnit object)
+			{
+				return createACOrgUnitAdapter();
+			}
+			@Override
+			public Adapter caseACGroup(ACGroup object)
+			{
+				return createACGroupAdapter();
+			}
+			@Override
+			public Adapter caseACOrgUnitId(ACOrgUnitId object)
+			{
+				return createACOrgUnitIdAdapter();
+			}
+			@Override
+			public Adapter caseIdentifiableElement(IdentifiableElement object)
+			{
+				return createIdentifiableElementAdapter();
+			}
+			@Override
+			public Adapter caseUniqueIdentifier(UniqueIdentifier object)
+			{
+				return createUniqueIdentifierAdapter();
+			}
+			@Override
+			public Adapter defaultCase(EObject object)
+			{
+				return createEObjectAdapter();
+			}
+		};
 
 	/**
 	 * Creates an adapter for the <code>target</code>.
@@ -112,7 +117,7 @@ public class AccesscontrolAdapterFactory extends AdapterFactoryImpl {
 	 */
 	@Override
 	public Adapter createAdapter(Notifier target) {
-		return modelSwitch.doSwitch((EObject) target);
+		return modelSwitch.doSwitch((EObject)target);
 	}
 
 	/**

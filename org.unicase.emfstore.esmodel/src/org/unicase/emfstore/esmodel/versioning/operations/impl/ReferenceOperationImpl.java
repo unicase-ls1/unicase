@@ -106,8 +106,7 @@ public abstract class ReferenceOperationImpl extends FeatureOperationImpl implem
 		boolean oldBidirectional = bidirectional;
 		bidirectional = newBidirectional;
 		if (eNotificationRequired())
-			eNotify(new ENotificationImpl(this, Notification.SET, OperationsPackage.REFERENCE_OPERATION__BIDIRECTIONAL,
-				oldBidirectional, bidirectional));
+			eNotify(new ENotificationImpl(this, Notification.SET, OperationsPackage.REFERENCE_OPERATION__BIDIRECTIONAL, oldBidirectional, bidirectional));
 	}
 
 	/**
@@ -126,9 +125,7 @@ public abstract class ReferenceOperationImpl extends FeatureOperationImpl implem
 		String oldOppositeFeatureName = oppositeFeatureName;
 		oppositeFeatureName = newOppositeFeatureName;
 		if (eNotificationRequired())
-			eNotify(new ENotificationImpl(this, Notification.SET,
-				OperationsPackage.REFERENCE_OPERATION__OPPOSITE_FEATURE_NAME, oldOppositeFeatureName,
-				oppositeFeatureName));
+			eNotify(new ENotificationImpl(this, Notification.SET, OperationsPackage.REFERENCE_OPERATION__OPPOSITE_FEATURE_NAME, oldOppositeFeatureName, oppositeFeatureName));
 	}
 
 	/**
@@ -137,11 +134,12 @@ public abstract class ReferenceOperationImpl extends FeatureOperationImpl implem
 	 */
 	@Override
 	public Object eGet(int featureID, boolean resolve, boolean coreType) {
-		switch (featureID) {
-		case OperationsPackage.REFERENCE_OPERATION__BIDIRECTIONAL:
-			return isBidirectional() ? Boolean.TRUE : Boolean.FALSE;
-		case OperationsPackage.REFERENCE_OPERATION__OPPOSITE_FEATURE_NAME:
-			return getOppositeFeatureName();
+		switch (featureID)
+		{
+			case OperationsPackage.REFERENCE_OPERATION__BIDIRECTIONAL:
+				return isBidirectional() ? Boolean.TRUE : Boolean.FALSE;
+			case OperationsPackage.REFERENCE_OPERATION__OPPOSITE_FEATURE_NAME:
+				return getOppositeFeatureName();
 		}
 		return super.eGet(featureID, resolve, coreType);
 	}
@@ -152,13 +150,14 @@ public abstract class ReferenceOperationImpl extends FeatureOperationImpl implem
 	 */
 	@Override
 	public void eSet(int featureID, Object newValue) {
-		switch (featureID) {
-		case OperationsPackage.REFERENCE_OPERATION__BIDIRECTIONAL:
-			setBidirectional(((Boolean) newValue).booleanValue());
-			return;
-		case OperationsPackage.REFERENCE_OPERATION__OPPOSITE_FEATURE_NAME:
-			setOppositeFeatureName((String) newValue);
-			return;
+		switch (featureID)
+		{
+			case OperationsPackage.REFERENCE_OPERATION__BIDIRECTIONAL:
+				setBidirectional(((Boolean)newValue).booleanValue());
+				return;
+			case OperationsPackage.REFERENCE_OPERATION__OPPOSITE_FEATURE_NAME:
+				setOppositeFeatureName((String)newValue);
+				return;
 		}
 		super.eSet(featureID, newValue);
 	}
@@ -169,13 +168,14 @@ public abstract class ReferenceOperationImpl extends FeatureOperationImpl implem
 	 */
 	@Override
 	public void eUnset(int featureID) {
-		switch (featureID) {
-		case OperationsPackage.REFERENCE_OPERATION__BIDIRECTIONAL:
-			setBidirectional(BIDIRECTIONAL_EDEFAULT);
-			return;
-		case OperationsPackage.REFERENCE_OPERATION__OPPOSITE_FEATURE_NAME:
-			setOppositeFeatureName(OPPOSITE_FEATURE_NAME_EDEFAULT);
-			return;
+		switch (featureID)
+		{
+			case OperationsPackage.REFERENCE_OPERATION__BIDIRECTIONAL:
+				setBidirectional(BIDIRECTIONAL_EDEFAULT);
+				return;
+			case OperationsPackage.REFERENCE_OPERATION__OPPOSITE_FEATURE_NAME:
+				setOppositeFeatureName(OPPOSITE_FEATURE_NAME_EDEFAULT);
+				return;
 		}
 		super.eUnset(featureID);
 	}
@@ -186,12 +186,12 @@ public abstract class ReferenceOperationImpl extends FeatureOperationImpl implem
 	 */
 	@Override
 	public boolean eIsSet(int featureID) {
-		switch (featureID) {
-		case OperationsPackage.REFERENCE_OPERATION__BIDIRECTIONAL:
-			return bidirectional != BIDIRECTIONAL_EDEFAULT;
-		case OperationsPackage.REFERENCE_OPERATION__OPPOSITE_FEATURE_NAME:
-			return OPPOSITE_FEATURE_NAME_EDEFAULT == null ? oppositeFeatureName != null
-				: !OPPOSITE_FEATURE_NAME_EDEFAULT.equals(oppositeFeatureName);
+		switch (featureID)
+		{
+			case OperationsPackage.REFERENCE_OPERATION__BIDIRECTIONAL:
+				return bidirectional != BIDIRECTIONAL_EDEFAULT;
+			case OperationsPackage.REFERENCE_OPERATION__OPPOSITE_FEATURE_NAME:
+				return OPPOSITE_FEATURE_NAME_EDEFAULT == null ? oppositeFeatureName != null : !OPPOSITE_FEATURE_NAME_EDEFAULT.equals(oppositeFeatureName);
 		}
 		return super.eIsSet(featureID);
 	}
@@ -202,8 +202,7 @@ public abstract class ReferenceOperationImpl extends FeatureOperationImpl implem
 	 */
 	@Override
 	public String toString() {
-		if (eIsProxy())
-			return super.toString();
+		if (eIsProxy()) return super.toString();
 
 		StringBuffer result = new StringBuffer(super.toString());
 		result.append(" (bidirectional: ");

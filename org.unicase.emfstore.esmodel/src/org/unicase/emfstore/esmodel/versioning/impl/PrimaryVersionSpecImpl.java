@@ -73,8 +73,7 @@ public class PrimaryVersionSpecImpl extends EObjectImpl implements PrimaryVersio
 		int oldIdentifier = identifier;
 		identifier = newIdentifier;
 		if (eNotificationRequired())
-			eNotify(new ENotificationImpl(this, Notification.SET, VersioningPackage.PRIMARY_VERSION_SPEC__IDENTIFIER,
-				oldIdentifier, identifier));
+			eNotify(new ENotificationImpl(this, Notification.SET, VersioningPackage.PRIMARY_VERSION_SPEC__IDENTIFIER, oldIdentifier, identifier));
 	}
 
 	/**
@@ -83,9 +82,10 @@ public class PrimaryVersionSpecImpl extends EObjectImpl implements PrimaryVersio
 	 */
 	@Override
 	public Object eGet(int featureID, boolean resolve, boolean coreType) {
-		switch (featureID) {
-		case VersioningPackage.PRIMARY_VERSION_SPEC__IDENTIFIER:
-			return new Integer(getIdentifier());
+		switch (featureID)
+		{
+			case VersioningPackage.PRIMARY_VERSION_SPEC__IDENTIFIER:
+				return new Integer(getIdentifier());
 		}
 		return super.eGet(featureID, resolve, coreType);
 	}
@@ -96,10 +96,11 @@ public class PrimaryVersionSpecImpl extends EObjectImpl implements PrimaryVersio
 	 */
 	@Override
 	public void eSet(int featureID, Object newValue) {
-		switch (featureID) {
-		case VersioningPackage.PRIMARY_VERSION_SPEC__IDENTIFIER:
-			setIdentifier(((Integer) newValue).intValue());
-			return;
+		switch (featureID)
+		{
+			case VersioningPackage.PRIMARY_VERSION_SPEC__IDENTIFIER:
+				setIdentifier(((Integer)newValue).intValue());
+				return;
 		}
 		super.eSet(featureID, newValue);
 	}
@@ -110,10 +111,11 @@ public class PrimaryVersionSpecImpl extends EObjectImpl implements PrimaryVersio
 	 */
 	@Override
 	public void eUnset(int featureID) {
-		switch (featureID) {
-		case VersioningPackage.PRIMARY_VERSION_SPEC__IDENTIFIER:
-			setIdentifier(IDENTIFIER_EDEFAULT);
-			return;
+		switch (featureID)
+		{
+			case VersioningPackage.PRIMARY_VERSION_SPEC__IDENTIFIER:
+				setIdentifier(IDENTIFIER_EDEFAULT);
+				return;
 		}
 		super.eUnset(featureID);
 	}
@@ -124,9 +126,10 @@ public class PrimaryVersionSpecImpl extends EObjectImpl implements PrimaryVersio
 	 */
 	@Override
 	public boolean eIsSet(int featureID) {
-		switch (featureID) {
-		case VersioningPackage.PRIMARY_VERSION_SPEC__IDENTIFIER:
-			return identifier != IDENTIFIER_EDEFAULT;
+		switch (featureID)
+		{
+			case VersioningPackage.PRIMARY_VERSION_SPEC__IDENTIFIER:
+				return identifier != IDENTIFIER_EDEFAULT;
 		}
 		return super.eIsSet(featureID);
 	}
@@ -137,8 +140,7 @@ public class PrimaryVersionSpecImpl extends EObjectImpl implements PrimaryVersio
 	 */
 	@Override
 	public String toString() {
-		if (eIsProxy())
-			return super.toString();
+		if (eIsProxy()) return super.toString();
 
 		StringBuffer result = new StringBuffer(super.toString());
 		result.append(" (identifier: ");
