@@ -63,6 +63,7 @@ public class ProjectImpl extends EObjectImpl implements Project, ProjectChangeOb
 
 	/**
 	 * <!-- begin-user-doc --> .<!-- end-user-doc -->
+	 * 
 	 * @generated
 	 */
 	@Override
@@ -72,6 +73,7 @@ public class ProjectImpl extends EObjectImpl implements Project, ProjectChangeOb
 
 	/**
 	 * <!-- begin-user-doc --> <!-- end-user-doc -->
+	 * 
 	 * @generated
 	 */
 	public EList<ModelElement> getModelElements() {
@@ -174,6 +176,7 @@ public class ProjectImpl extends EObjectImpl implements Project, ProjectChangeOb
 
 	/**
 	 * <!-- begin-user-doc --> <!-- end-user-doc -->
+	 * 
 	 * @generated
 	 */
 	@Override
@@ -187,6 +190,7 @@ public class ProjectImpl extends EObjectImpl implements Project, ProjectChangeOb
 
 	/**
 	 * <!-- begin-user-doc --> <!-- end-user-doc -->
+	 * 
 	 * @generated
 	 */
 	@Override
@@ -200,6 +204,7 @@ public class ProjectImpl extends EObjectImpl implements Project, ProjectChangeOb
 
 	/**
 	 * <!-- begin-user-doc --> <!-- end-user-doc -->
+	 * 
 	 * @generated
 	 */
 	@SuppressWarnings("unchecked")
@@ -216,6 +221,7 @@ public class ProjectImpl extends EObjectImpl implements Project, ProjectChangeOb
 
 	/**
 	 * <!-- begin-user-doc --> <!-- end-user-doc -->
+	 * 
 	 * @generated
 	 */
 	@Override
@@ -230,6 +236,7 @@ public class ProjectImpl extends EObjectImpl implements Project, ProjectChangeOb
 
 	/**
 	 * <!-- begin-user-doc --> <!-- end-user-doc -->
+	 * 
 	 * @generated
 	 */
 	@Override
@@ -392,16 +399,27 @@ public class ProjectImpl extends EObjectImpl implements Project, ProjectChangeOb
 					EList<EReference> references = otherModelElement.eClass().getEReferences();
 					for (EReference reference : references) {
 						if (!reference.isContainment() && !reference.isContainer()) {
-							((EList<?>) otherModelElement.eGet(reference)).remove(modelElement);
+							if (!reference.isContainer() && !reference.isContainment()) {
+								if (reference.isMany()) {
+									((EList<?>) otherModelElement.eGet(reference)).remove(modelElement);
+								} else {
+									modelElement.eSet(reference, null);
+								}
+							}
+
 						}
 					}
 				}
 			}
 		}
 		// delete all non containment cross references to other elments
-		for (EReference reference : modelElement.eClass().getEReferences()) {
+		for (EReference reference : modelElement.eClass().getEAllReferences()) {
 			if (!reference.isContainer() && !reference.isContainment()) {
-				((EList<?>) modelElement.eGet(reference)).clear();
+				if (reference.isMany()) {
+					((EList<?>) modelElement.eGet(reference)).clear();
+				} else {
+					modelElement.eSet(reference, null);
+				}
 			}
 		}
 
