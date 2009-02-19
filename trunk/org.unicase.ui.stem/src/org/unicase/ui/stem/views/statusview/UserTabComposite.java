@@ -31,7 +31,7 @@ import org.unicase.ui.stem.views.iterationplanningview.AssignedToEditingSupport;
 import org.unicase.ui.stem.views.iterationplanningview.EMFColumnLabelProvider;
 import org.unicase.ui.stem.views.iterationplanningview.TaskObjectEditingSupport;
 import org.unicase.ui.stem.views.iterationplanningview.TaskObjectLabelProvider;
-import org.unicase.ui.stem.views.statusview.dnd.FlatTabDragAdapter;
+import org.unicase.ui.stem.views.statusview.dnd.StatusViewTabsDragAdapter;
 import org.unicase.ui.stem.views.statusview.dnd.UserTabDropAdapter;
 import org.unicase.workspace.ProjectSpace;
 import org.unicase.workspace.Workspace;
@@ -50,7 +50,7 @@ public class UserTabComposite extends Composite implements ProjectChangeObserver
 	private TreeViewer treeViewer;
 	private UserTabStatusColumnLabelProvider statusColumnLabelProvider;
 	private UserTabDropAdapter userTabDropAdapter;
-	private FlatTabDragAdapter userTabDragAdapter;
+	private StatusViewTabsDragAdapter userTabDragAdapter;
 	private Workspace workspace;
 	private AdapterImpl adapterImpl;
 
@@ -123,7 +123,7 @@ public class UserTabComposite extends Composite implements ProjectChangeObserver
 
 		userTabDropAdapter = new UserTabDropAdapter();
 		treeViewer.addDropSupport(dndOperations, transfers, userTabDropAdapter);
-		userTabDragAdapter = new FlatTabDragAdapter(treeViewer);
+		userTabDragAdapter = new StatusViewTabsDragAdapter(treeViewer);
 		treeViewer.addDragSupport(dndOperations, transfers, userTabDragAdapter);
 
 	}

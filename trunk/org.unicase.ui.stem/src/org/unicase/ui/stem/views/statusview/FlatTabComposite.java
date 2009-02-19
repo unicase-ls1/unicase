@@ -33,7 +33,7 @@ import org.unicase.ui.common.TableViewerColumnSorter;
 import org.unicase.ui.common.util.ActionHelper;
 import org.unicase.ui.stem.views.AssignedToLabelProvider;
 import org.unicase.ui.stem.views.iterationplanningview.TaskObjectLabelProvider;
-import org.unicase.ui.stem.views.statusview.dnd.FlatTabDragAdapter;
+import org.unicase.ui.stem.views.statusview.dnd.StatusViewTabsDragAdapter;
 import org.unicase.ui.stem.views.statusview.dnd.FlatTabDropAdapter;
 import org.unicase.ui.tableview.labelprovider.StatusLabelProvider;
 import org.unicase.workspace.ProjectSpace;
@@ -89,7 +89,7 @@ public class FlatTabComposite extends Composite implements ProjectChangeObserver
 
 	private TableViewer tableViewer;
 	private FlatTabDropAdapter flatTabDropAdapter;
-	private FlatTabDragAdapter flatTabDragAdapter;
+	private StatusViewTabsDragAdapter flatTabDragAdapter;
 	private AdapterImpl adapterImpl;
 	private Workspace workspace;
 
@@ -155,7 +155,7 @@ public class FlatTabComposite extends Composite implements ProjectChangeObserver
 		int dndOperations = DND.DROP_COPY | DND.DROP_MOVE | DND.DROP_LINK;
 		Transfer[] transfers = new Transfer[] { LocalTransfer.getInstance() };
 
-		flatTabDragAdapter = new FlatTabDragAdapter(tableViewer);
+		flatTabDragAdapter = new StatusViewTabsDragAdapter(tableViewer);
 		tableViewer.addDragSupport(dndOperations, transfers, flatTabDragAdapter);
 
 		flatTabDropAdapter = new FlatTabDropAdapter();
@@ -261,7 +261,7 @@ public class FlatTabComposite extends Composite implements ProjectChangeObserver
 	 */
 	public void setInput(ModelElement me, StatusView statusView) {
 		// this.input = me;
-		flatTabDropAdapter.setCurrentOpenMe(me, statusView);
+		flatTabDropAdapter.setCurrentOpenME(me);
 		tableViewer.setInput(me);
 		for (TableColumn column : tableViewer.getTable().getColumns()) {
 			column.pack();

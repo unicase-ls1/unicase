@@ -31,6 +31,8 @@ import org.unicase.ui.stem.views.iterationplanningview.AssignedToEditingSupport;
 import org.unicase.ui.stem.views.iterationplanningview.EMFColumnLabelProvider;
 import org.unicase.ui.stem.views.iterationplanningview.TaskObjectEditingSupport;
 import org.unicase.ui.stem.views.iterationplanningview.TaskObjectLabelProvider;
+import org.unicase.ui.stem.views.statusview.dnd.HierarchyTabDropAdapter;
+import org.unicase.ui.stem.views.statusview.dnd.StatusViewTabsDragAdapter;
 import org.unicase.ui.tableview.labelprovider.StatusLabelProvider;
 import org.unicase.workspace.ProjectSpace;
 import org.unicase.workspace.Workspace;
@@ -52,13 +54,13 @@ public class HierarchyTabComposite extends Composite implements ProjectChangeObs
 	private TreeViewer treeViewer;
 	private Workspace workspace;
 	private AdapterImpl adapterImpl;
-	private HierachieTabDragAdapter hierachieTabDragAdapter;
-	private HierachieTabDropAdapter hierachieTabDropAdapter;
+	private StatusViewTabsDragAdapter hierachieTabDragAdapter;
+	private HierarchyTabDropAdapter hierachieTabDropAdapter;
 
 	// private ModelElement input;
 
 	/**
-	 * . Constructor
+	 * Constructor.
 	 * 
 	 * @param parent parent
 	 * @param style style
@@ -114,10 +116,10 @@ public class HierarchyTabComposite extends Composite implements ProjectChangeObs
 		int dndOperations = DND.DROP_COPY | DND.DROP_MOVE | DND.DROP_LINK;
 		Transfer[] transfers = new Transfer[] { LocalTransfer.getInstance() };
 
-		hierachieTabDragAdapter = new HierachieTabDragAdapter(treeViewer);
+		hierachieTabDragAdapter = new StatusViewTabsDragAdapter(treeViewer);
 		treeViewer.addDragSupport(dndOperations, transfers, hierachieTabDragAdapter);
 
-		hierachieTabDropAdapter = new HierachieTabDropAdapter();
+		hierachieTabDropAdapter = new HierarchyTabDropAdapter();
 		treeViewer.addDropSupport(dndOperations, transfers, hierachieTabDropAdapter);
 
 	}
@@ -194,7 +196,7 @@ public class HierarchyTabComposite extends Composite implements ProjectChangeObs
 	 * @param me input model element
 	 */
 	public void setInput(ModelElement me) {
-		// this.input = me;
+		hierachieTabDropAdapter.setCurrentOpenME(me);
 		treeViewer.setInput(me);
 
 	}

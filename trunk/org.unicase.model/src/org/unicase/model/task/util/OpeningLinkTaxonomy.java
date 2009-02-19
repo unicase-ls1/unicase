@@ -47,9 +47,9 @@ public class OpeningLinkTaxonomy {
 				openers.add((ModelElement) eObject);
 			}
 		}
-		for (ModelElement annotation : me.getAnnotations()) {
-			openers.add(annotation);
-		}
+
+		openers.addAll(me.getAnnotations());
+
 		if (me instanceof UseCase) {
 			EList<FunctionalRequirement> functionalRequirements = ((UseCase) me).getFunctionalRequirements();
 			openers.addAll(functionalRequirements);
