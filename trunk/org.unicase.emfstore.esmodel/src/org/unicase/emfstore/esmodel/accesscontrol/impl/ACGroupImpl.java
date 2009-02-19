@@ -81,9 +81,10 @@ public class ACGroupImpl extends ACOrgUnitImpl implements ACGroup {
 	 */
 	@Override
 	public Object eGet(int featureID, boolean resolve, boolean coreType) {
-		switch (featureID) {
-		case AccesscontrolPackage.AC_GROUP__MEMBERS:
-			return getMembers();
+		switch (featureID)
+		{
+			case AccesscontrolPackage.AC_GROUP__MEMBERS:
+				return getMembers();
 		}
 		return super.eGet(featureID, resolve, coreType);
 	}
@@ -95,11 +96,12 @@ public class ACGroupImpl extends ACOrgUnitImpl implements ACGroup {
 	@SuppressWarnings("unchecked")
 	@Override
 	public void eSet(int featureID, Object newValue) {
-		switch (featureID) {
-		case AccesscontrolPackage.AC_GROUP__MEMBERS:
-			getMembers().clear();
-			getMembers().addAll((Collection<? extends ACOrgUnit>) newValue);
-			return;
+		switch (featureID)
+		{
+			case AccesscontrolPackage.AC_GROUP__MEMBERS:
+				getMembers().clear();
+				getMembers().addAll((Collection<? extends ACOrgUnit>)newValue);
+				return;
 		}
 		super.eSet(featureID, newValue);
 	}
@@ -110,10 +112,11 @@ public class ACGroupImpl extends ACOrgUnitImpl implements ACGroup {
 	 */
 	@Override
 	public void eUnset(int featureID) {
-		switch (featureID) {
-		case AccesscontrolPackage.AC_GROUP__MEMBERS:
-			getMembers().clear();
-			return;
+		switch (featureID)
+		{
+			case AccesscontrolPackage.AC_GROUP__MEMBERS:
+				getMembers().clear();
+				return;
 		}
 		super.eUnset(featureID);
 	}
@@ -124,9 +127,10 @@ public class ACGroupImpl extends ACOrgUnitImpl implements ACGroup {
 	 */
 	@Override
 	public boolean eIsSet(int featureID) {
-		switch (featureID) {
-		case AccesscontrolPackage.AC_GROUP__MEMBERS:
-			return members != null && !members.isEmpty();
+		switch (featureID)
+		{
+			case AccesscontrolPackage.AC_GROUP__MEMBERS:
+				return members != null && !members.isEmpty();
 		}
 		return super.eIsSet(featureID);
 	}

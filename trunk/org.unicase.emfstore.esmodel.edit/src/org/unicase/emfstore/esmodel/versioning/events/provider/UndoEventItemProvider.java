@@ -46,7 +46,8 @@ public class UndoEventItemProvider extends EventItemProvider implements IEditing
 	 */
 	@Override
 	public List<IItemPropertyDescriptor> getPropertyDescriptors(Object object) {
-		if (itemPropertyDescriptors == null) {
+		if (itemPropertyDescriptors == null)
+		{
 			super.getPropertyDescriptors(object);
 
 		}
@@ -63,7 +64,8 @@ public class UndoEventItemProvider extends EventItemProvider implements IEditing
 	 */
 	@Override
 	public Collection<? extends EStructuralFeature> getChildrenFeatures(Object object) {
-		if (childrenFeatures == null) {
+		if (childrenFeatures == null)
+		{
 			super.getChildrenFeatures(object);
 			childrenFeatures.add(EventsPackage.Literals.UNDO_EVENT__OPERATION);
 		}
@@ -99,10 +101,11 @@ public class UndoEventItemProvider extends EventItemProvider implements IEditing
 	 */
 	@Override
 	public String getText(Object object) {
-		Date labelValue = ((UndoEvent) object).getTimestamp();
+		Date labelValue = ((UndoEvent)object).getTimestamp();
 		String label = labelValue == null ? null : labelValue.toString();
-		return label == null || label.length() == 0 ? getString("_UI_UndoEvent_type") : getString("_UI_UndoEvent_type")
-			+ " " + label;
+		return label == null || label.length() == 0 ?
+			getString("_UI_UndoEvent_type") :
+			getString("_UI_UndoEvent_type") + " " + label;
 	}
 
 	/**
@@ -116,10 +119,11 @@ public class UndoEventItemProvider extends EventItemProvider implements IEditing
 	public void notifyChanged(Notification notification) {
 		updateChildren(notification);
 
-		switch (notification.getFeatureID(UndoEvent.class)) {
-		case EventsPackage.UNDO_EVENT__OPERATION:
-			fireNotifyChanged(new ViewerNotification(notification, notification.getNotifier(), true, false));
-			return;
+		switch (notification.getFeatureID(UndoEvent.class))
+		{
+			case EventsPackage.UNDO_EVENT__OPERATION:
+				fireNotifyChanged(new ViewerNotification(notification, notification.getNotifier(), true, false));
+				return;
 		}
 		super.notifyChanged(notification);
 	}
@@ -134,32 +138,50 @@ public class UndoEventItemProvider extends EventItemProvider implements IEditing
 	protected void collectNewChildDescriptors(Collection<Object> newChildDescriptors, Object object) {
 		super.collectNewChildDescriptors(newChildDescriptors, object);
 
-		newChildDescriptors.add(createChildParameter(EventsPackage.Literals.UNDO_EVENT__OPERATION,
-			OperationsFactory.eINSTANCE.createCompositeOperation()));
+		newChildDescriptors.add
+			(createChildParameter
+				(EventsPackage.Literals.UNDO_EVENT__OPERATION,
+				 OperationsFactory.eINSTANCE.createCompositeOperation()));
 
-		newChildDescriptors.add(createChildParameter(EventsPackage.Literals.UNDO_EVENT__OPERATION,
-			OperationsFactory.eINSTANCE.createCreateDeleteOperation()));
+		newChildDescriptors.add
+			(createChildParameter
+				(EventsPackage.Literals.UNDO_EVENT__OPERATION,
+				 OperationsFactory.eINSTANCE.createCreateDeleteOperation()));
 
-		newChildDescriptors.add(createChildParameter(EventsPackage.Literals.UNDO_EVENT__OPERATION,
-			OperationsFactory.eINSTANCE.createAttributeOperation()));
+		newChildDescriptors.add
+			(createChildParameter
+				(EventsPackage.Literals.UNDO_EVENT__OPERATION,
+				 OperationsFactory.eINSTANCE.createAttributeOperation()));
 
-		newChildDescriptors.add(createChildParameter(EventsPackage.Literals.UNDO_EVENT__OPERATION,
-			OperationsFactory.eINSTANCE.createSingleReferenceOperation()));
+		newChildDescriptors.add
+			(createChildParameter
+				(EventsPackage.Literals.UNDO_EVENT__OPERATION,
+				 OperationsFactory.eINSTANCE.createSingleReferenceOperation()));
 
-		newChildDescriptors.add(createChildParameter(EventsPackage.Literals.UNDO_EVENT__OPERATION,
-			OperationsFactory.eINSTANCE.createMultiReferenceOperation()));
+		newChildDescriptors.add
+			(createChildParameter
+				(EventsPackage.Literals.UNDO_EVENT__OPERATION,
+				 OperationsFactory.eINSTANCE.createMultiReferenceOperation()));
 
-		newChildDescriptors.add(createChildParameter(EventsPackage.Literals.UNDO_EVENT__OPERATION,
-			OperationsFactory.eINSTANCE.createMultiReferenceMoveOperation()));
+		newChildDescriptors.add
+			(createChildParameter
+				(EventsPackage.Literals.UNDO_EVENT__OPERATION,
+				 OperationsFactory.eINSTANCE.createMultiReferenceMoveOperation()));
 
-		newChildDescriptors.add(createChildParameter(EventsPackage.Literals.UNDO_EVENT__OPERATION,
-			OperationsFactory.eINSTANCE.createMultiAttributeOperation()));
+		newChildDescriptors.add
+			(createChildParameter
+				(EventsPackage.Literals.UNDO_EVENT__OPERATION,
+				 OperationsFactory.eINSTANCE.createMultiAttributeOperation()));
 
-		newChildDescriptors.add(createChildParameter(EventsPackage.Literals.UNDO_EVENT__OPERATION,
-			OperationsFactory.eINSTANCE.createDiagramLayoutOperation()));
+		newChildDescriptors.add
+			(createChildParameter
+				(EventsPackage.Literals.UNDO_EVENT__OPERATION,
+				 OperationsFactory.eINSTANCE.createDiagramLayoutOperation()));
 
-		newChildDescriptors.add(createChildParameter(EventsPackage.Literals.UNDO_EVENT__OPERATION,
-			OperationsFactory.eINSTANCE.createMultiAttributeMoveOperation()));
+		newChildDescriptors.add
+			(createChildParameter
+				(EventsPackage.Literals.UNDO_EVENT__OPERATION,
+				 OperationsFactory.eINSTANCE.createMultiAttributeMoveOperation()));
 	}
 
 }

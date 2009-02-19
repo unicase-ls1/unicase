@@ -33,7 +33,8 @@ public class NotificationAdapterFactory extends AdapterFactoryImpl {
 	 * @generated
 	 */
 	public NotificationAdapterFactory() {
-		if (modelPackage == null) {
+		if (modelPackage == null)
+		{
 			modelPackage = NotificationPackage.eINSTANCE;
 		}
 	}
@@ -48,11 +49,13 @@ public class NotificationAdapterFactory extends AdapterFactoryImpl {
 	 */
 	@Override
 	public boolean isFactoryForType(Object object) {
-		if (object == modelPackage) {
+		if (object == modelPackage)
+		{
 			return true;
 		}
-		if (object instanceof EObject) {
-			return ((EObject) object).eClass().getEPackage() == modelPackage;
+		if (object instanceof EObject)
+		{
+			return ((EObject)object).eClass().getEPackage() == modelPackage;
 		}
 		return false;
 	}
@@ -62,22 +65,24 @@ public class NotificationAdapterFactory extends AdapterFactoryImpl {
 	 * <!-- begin-user-doc --> <!-- end-user-doc -->
 	 * @generated
 	 */
-	protected NotificationSwitch<Adapter> modelSwitch = new NotificationSwitch<Adapter>() {
-		@Override
-		public Adapter caseESNotification(ESNotification object) {
-			return createESNotificationAdapter();
-		}
-
-		@Override
-		public Adapter caseIdentifiableElement(IdentifiableElement object) {
-			return createIdentifiableElementAdapter();
-		}
-
-		@Override
-		public Adapter defaultCase(EObject object) {
-			return createEObjectAdapter();
-		}
-	};
+	protected NotificationSwitch<Adapter> modelSwitch = new NotificationSwitch<Adapter>()
+		{
+			@Override
+			public Adapter caseESNotification(ESNotification object)
+			{
+				return createESNotificationAdapter();
+			}
+			@Override
+			public Adapter caseIdentifiableElement(IdentifiableElement object)
+			{
+				return createIdentifiableElementAdapter();
+			}
+			@Override
+			public Adapter defaultCase(EObject object)
+			{
+				return createEObjectAdapter();
+			}
+		};
 
 	/**
 	 * Creates an adapter for the <code>target</code>.
@@ -88,7 +93,7 @@ public class NotificationAdapterFactory extends AdapterFactoryImpl {
 	 */
 	@Override
 	public Adapter createAdapter(Notifier target) {
-		return modelSwitch.doSwitch((EObject) target);
+		return modelSwitch.doSwitch((EObject)target);
 	}
 
 	/**

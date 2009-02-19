@@ -45,7 +45,8 @@ public class TraceEventItemProvider extends EventItemProvider implements IEditin
 	 */
 	@Override
 	public List<IItemPropertyDescriptor> getPropertyDescriptors(Object object) {
-		if (itemPropertyDescriptors == null) {
+		if (itemPropertyDescriptors == null)
+		{
 			super.getPropertyDescriptors(object);
 
 			addSourceElementPropertyDescriptor(object);
@@ -61,11 +62,19 @@ public class TraceEventItemProvider extends EventItemProvider implements IEditin
 	 * @generated
 	 */
 	protected void addSourceElementPropertyDescriptor(Object object) {
-		itemPropertyDescriptors.add(createItemPropertyDescriptor(((ComposeableAdapterFactory) adapterFactory)
-			.getRootAdapterFactory(), getResourceLocator(), getString("_UI_TraceEvent_sourceElement_feature"),
-			getString("_UI_PropertyDescriptor_description", "_UI_TraceEvent_sourceElement_feature",
-				"_UI_TraceEvent_type"), EventsPackage.Literals.TRACE_EVENT__SOURCE_ELEMENT, true, false, true, null,
-			null, null));
+		itemPropertyDescriptors.add
+			(createItemPropertyDescriptor
+				(((ComposeableAdapterFactory)adapterFactory).getRootAdapterFactory(),
+				 getResourceLocator(),
+				 getString("_UI_TraceEvent_sourceElement_feature"),
+				 getString("_UI_PropertyDescriptor_description", "_UI_TraceEvent_sourceElement_feature", "_UI_TraceEvent_type"),
+				 EventsPackage.Literals.TRACE_EVENT__SOURCE_ELEMENT,
+				 true,
+				 false,
+				 true,
+				 null,
+				 null,
+				 null));
 	}
 
 	/**
@@ -74,11 +83,19 @@ public class TraceEventItemProvider extends EventItemProvider implements IEditin
 	 * @generated
 	 */
 	protected void addTargetElementPropertyDescriptor(Object object) {
-		itemPropertyDescriptors.add(createItemPropertyDescriptor(((ComposeableAdapterFactory) adapterFactory)
-			.getRootAdapterFactory(), getResourceLocator(), getString("_UI_TraceEvent_targetElement_feature"),
-			getString("_UI_PropertyDescriptor_description", "_UI_TraceEvent_targetElement_feature",
-				"_UI_TraceEvent_type"), EventsPackage.Literals.TRACE_EVENT__TARGET_ELEMENT, true, false, true, null,
-			null, null));
+		itemPropertyDescriptors.add
+			(createItemPropertyDescriptor
+				(((ComposeableAdapterFactory)adapterFactory).getRootAdapterFactory(),
+				 getResourceLocator(),
+				 getString("_UI_TraceEvent_targetElement_feature"),
+				 getString("_UI_PropertyDescriptor_description", "_UI_TraceEvent_targetElement_feature", "_UI_TraceEvent_type"),
+				 EventsPackage.Literals.TRACE_EVENT__TARGET_ELEMENT,
+				 true,
+				 false,
+				 true,
+				 null,
+				 null,
+				 null));
 	}
 
 	/**
@@ -87,11 +104,19 @@ public class TraceEventItemProvider extends EventItemProvider implements IEditin
 	 * @generated
 	 */
 	protected void addFeatureNamePropertyDescriptor(Object object) {
-		itemPropertyDescriptors.add(createItemPropertyDescriptor(((ComposeableAdapterFactory) adapterFactory)
-			.getRootAdapterFactory(), getResourceLocator(), getString("_UI_TraceEvent_featureName_feature"), getString(
-			"_UI_PropertyDescriptor_description", "_UI_TraceEvent_featureName_feature", "_UI_TraceEvent_type"),
-			EventsPackage.Literals.TRACE_EVENT__FEATURE_NAME, true, false, false,
-			ItemPropertyDescriptor.GENERIC_VALUE_IMAGE, null, null));
+		itemPropertyDescriptors.add
+			(createItemPropertyDescriptor
+				(((ComposeableAdapterFactory)adapterFactory).getRootAdapterFactory(),
+				 getResourceLocator(),
+				 getString("_UI_TraceEvent_featureName_feature"),
+				 getString("_UI_PropertyDescriptor_description", "_UI_TraceEvent_featureName_feature", "_UI_TraceEvent_type"),
+				 EventsPackage.Literals.TRACE_EVENT__FEATURE_NAME,
+				 true,
+				 false,
+				 false,
+				 ItemPropertyDescriptor.GENERIC_VALUE_IMAGE,
+				 null,
+				 null));
 	}
 
 	/**
@@ -111,9 +136,10 @@ public class TraceEventItemProvider extends EventItemProvider implements IEditin
 	 */
 	@Override
 	public String getText(Object object) {
-		String label = ((TraceEvent) object).getFeatureName();
-		return label == null || label.length() == 0 ? getString("_UI_TraceEvent_type")
-			: getString("_UI_TraceEvent_type") + " " + label;
+		String label = ((TraceEvent)object).getFeatureName();
+		return label == null || label.length() == 0 ?
+			getString("_UI_TraceEvent_type") :
+			getString("_UI_TraceEvent_type") + " " + label;
 	}
 
 	/**
@@ -127,10 +153,11 @@ public class TraceEventItemProvider extends EventItemProvider implements IEditin
 	public void notifyChanged(Notification notification) {
 		updateChildren(notification);
 
-		switch (notification.getFeatureID(TraceEvent.class)) {
-		case EventsPackage.TRACE_EVENT__FEATURE_NAME:
-			fireNotifyChanged(new ViewerNotification(notification, notification.getNotifier(), false, true));
-			return;
+		switch (notification.getFeatureID(TraceEvent.class))
+		{
+			case EventsPackage.TRACE_EVENT__FEATURE_NAME:
+				fireNotifyChanged(new ViewerNotification(notification, notification.getNotifier(), false, true));
+				return;
 		}
 		super.notifyChanged(notification);
 	}

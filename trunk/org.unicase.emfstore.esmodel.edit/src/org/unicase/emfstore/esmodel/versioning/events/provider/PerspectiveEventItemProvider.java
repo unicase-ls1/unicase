@@ -42,7 +42,8 @@ public class PerspectiveEventItemProvider extends EventItemProvider implements I
 	 */
 	@Override
 	public List<IItemPropertyDescriptor> getPropertyDescriptors(Object object) {
-		if (itemPropertyDescriptors == null) {
+		if (itemPropertyDescriptors == null)
+		{
 			super.getPropertyDescriptors(object);
 
 		}
@@ -66,10 +67,11 @@ public class PerspectiveEventItemProvider extends EventItemProvider implements I
 	 */
 	@Override
 	public String getText(Object object) {
-		Date labelValue = ((PerspectiveEvent) object).getTimestamp();
+		Date labelValue = ((PerspectiveEvent)object).getTimestamp();
 		String label = labelValue == null ? null : labelValue.toString();
-		return label == null || label.length() == 0 ? getString("_UI_PerspectiveEvent_type")
-			: getString("_UI_PerspectiveEvent_type") + " " + label;
+		return label == null || label.length() == 0 ?
+			getString("_UI_PerspectiveEvent_type") :
+			getString("_UI_PerspectiveEvent_type") + " " + label;
 	}
 
 	/**

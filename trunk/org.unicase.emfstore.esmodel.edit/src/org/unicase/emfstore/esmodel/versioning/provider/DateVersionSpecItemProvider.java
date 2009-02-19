@@ -49,7 +49,8 @@ public class DateVersionSpecItemProvider extends ItemProviderAdapter implements 
 	 */
 	@Override
 	public List<IItemPropertyDescriptor> getPropertyDescriptors(Object object) {
-		if (itemPropertyDescriptors == null) {
+		if (itemPropertyDescriptors == null)
+		{
 			super.getPropertyDescriptors(object);
 
 			addDatePropertyDescriptor(object);
@@ -63,11 +64,19 @@ public class DateVersionSpecItemProvider extends ItemProviderAdapter implements 
 	 * @generated
 	 */
 	protected void addDatePropertyDescriptor(Object object) {
-		itemPropertyDescriptors.add(createItemPropertyDescriptor(((ComposeableAdapterFactory) adapterFactory)
-			.getRootAdapterFactory(), getResourceLocator(), getString("_UI_DateVersionSpec_date_feature"), getString(
-			"_UI_PropertyDescriptor_description", "_UI_DateVersionSpec_date_feature", "_UI_DateVersionSpec_type"),
-			VersioningPackage.Literals.DATE_VERSION_SPEC__DATE, true, false, false,
-			ItemPropertyDescriptor.GENERIC_VALUE_IMAGE, null, null));
+		itemPropertyDescriptors.add
+			(createItemPropertyDescriptor
+				(((ComposeableAdapterFactory)adapterFactory).getRootAdapterFactory(),
+				 getResourceLocator(),
+				 getString("_UI_DateVersionSpec_date_feature"),
+				 getString("_UI_PropertyDescriptor_description", "_UI_DateVersionSpec_date_feature", "_UI_DateVersionSpec_type"),
+				 VersioningPackage.Literals.DATE_VERSION_SPEC__DATE,
+				 true,
+				 false,
+				 false,
+				 ItemPropertyDescriptor.GENERIC_VALUE_IMAGE,
+				 null,
+				 null));
 	}
 
 	/**
@@ -87,10 +96,11 @@ public class DateVersionSpecItemProvider extends ItemProviderAdapter implements 
 	 */
 	@Override
 	public String getText(Object object) {
-		Date labelValue = ((DateVersionSpec) object).getDate();
+		Date labelValue = ((DateVersionSpec)object).getDate();
 		String label = labelValue == null ? null : labelValue.toString();
-		return label == null || label.length() == 0 ? getString("_UI_DateVersionSpec_type")
-			: getString("_UI_DateVersionSpec_type") + " " + label;
+		return label == null || label.length() == 0 ?
+			getString("_UI_DateVersionSpec_type") :
+			getString("_UI_DateVersionSpec_type") + " " + label;
 	}
 
 	/**
@@ -104,10 +114,11 @@ public class DateVersionSpecItemProvider extends ItemProviderAdapter implements 
 	public void notifyChanged(Notification notification) {
 		updateChildren(notification);
 
-		switch (notification.getFeatureID(DateVersionSpec.class)) {
-		case VersioningPackage.DATE_VERSION_SPEC__DATE:
-			fireNotifyChanged(new ViewerNotification(notification, notification.getNotifier(), false, true));
-			return;
+		switch (notification.getFeatureID(DateVersionSpec.class))
+		{
+			case VersioningPackage.DATE_VERSION_SPEC__DATE:
+				fireNotifyChanged(new ViewerNotification(notification, notification.getNotifier(), false, true));
+				return;
 		}
 		super.notifyChanged(notification);
 	}

@@ -85,7 +85,8 @@ public class NotificationItemProviderAdapterFactory extends NotificationAdapterF
 	 */
 	@Override
 	public Adapter createESNotificationAdapter() {
-		if (esNotificationItemProvider == null) {
+		if (esNotificationItemProvider == null)
+		{
 			esNotificationItemProvider = new ESNotificationItemProvider(this);
 		}
 
@@ -136,9 +137,11 @@ public class NotificationItemProviderAdapterFactory extends NotificationAdapterF
 	 */
 	@Override
 	public Object adapt(Object object, Object type) {
-		if (isFactoryForType(type)) {
+		if (isFactoryForType(type))
+		{
 			Object adapter = super.adapt(object, type);
-			if (!(type instanceof Class) || (((Class<?>) type).isInstance(adapter))) {
+			if (!(type instanceof Class) || (((Class<?>)type).isInstance(adapter)))
+			{
 				return adapter;
 			}
 		}
@@ -173,7 +176,8 @@ public class NotificationItemProviderAdapterFactory extends NotificationAdapterF
 	public void fireNotifyChanged(Notification notification) {
 		changeNotifier.fireNotifyChanged(notification);
 
-		if (parentAdapterFactory != null) {
+		if (parentAdapterFactory != null)
+		{
 			parentAdapterFactory.fireNotifyChanged(notification);
 		}
 	}
@@ -184,8 +188,7 @@ public class NotificationItemProviderAdapterFactory extends NotificationAdapterF
 	 * @generated
 	 */
 	public void dispose() {
-		if (esNotificationItemProvider != null)
-			esNotificationItemProvider.dispose();
+		if (esNotificationItemProvider != null) esNotificationItemProvider.dispose();
 	}
 
 }

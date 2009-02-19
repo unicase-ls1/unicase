@@ -28,13 +28,16 @@ public class AccesscontrolFactoryImpl extends EFactoryImpl implements Accesscont
 	 * @generated
 	 */
 	public static AccesscontrolFactory init() {
-		try {
-			AccesscontrolFactory theAccesscontrolFactory = (AccesscontrolFactory) EPackage.Registry.INSTANCE
-				.getEFactory("http://unicase.org/esmodel/accesscontrol");
-			if (theAccesscontrolFactory != null) {
+		try
+		{
+			AccesscontrolFactory theAccesscontrolFactory = (AccesscontrolFactory)EPackage.Registry.INSTANCE.getEFactory("http://unicase.org/esmodel/accesscontrol"); 
+			if (theAccesscontrolFactory != null)
+			{
 				return theAccesscontrolFactory;
 			}
-		} catch (Exception exception) {
+		}
+		catch (Exception exception)
+		{
 			EcorePlugin.INSTANCE.log(exception);
 		}
 		return new AccesscontrolFactoryImpl();
@@ -55,17 +58,14 @@ public class AccesscontrolFactoryImpl extends EFactoryImpl implements Accesscont
 	 */
 	@Override
 	public EObject create(EClass eClass) {
-		switch (eClass.getClassifierID()) {
-		case AccesscontrolPackage.AC_USER:
-			return createACUser();
-		case AccesscontrolPackage.AC_ORG_UNIT:
-			return createACOrgUnit();
-		case AccesscontrolPackage.AC_GROUP:
-			return createACGroup();
-		case AccesscontrolPackage.AC_ORG_UNIT_ID:
-			return createACOrgUnitId();
-		default:
-			throw new IllegalArgumentException("The class '" + eClass.getName() + "' is not a valid classifier");
+		switch (eClass.getClassifierID())
+		{
+			case AccesscontrolPackage.AC_USER: return createACUser();
+			case AccesscontrolPackage.AC_ORG_UNIT: return createACOrgUnit();
+			case AccesscontrolPackage.AC_GROUP: return createACGroup();
+			case AccesscontrolPackage.AC_ORG_UNIT_ID: return createACOrgUnitId();
+			default:
+				throw new IllegalArgumentException("The class '" + eClass.getName() + "' is not a valid classifier");
 		}
 	}
 
@@ -110,7 +110,7 @@ public class AccesscontrolFactoryImpl extends EFactoryImpl implements Accesscont
 	 * @generated
 	 */
 	public AccesscontrolPackage getAccesscontrolPackage() {
-		return (AccesscontrolPackage) getEPackage();
+		return (AccesscontrolPackage)getEPackage();
 	}
 
 	/**

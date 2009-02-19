@@ -43,7 +43,8 @@ public class DiagramLayoutOperationItemProvider extends AttributeOperationItemPr
 	 */
 	@Override
 	public List<IItemPropertyDescriptor> getPropertyDescriptors(Object object) {
-		if (itemPropertyDescriptors == null) {
+		if (itemPropertyDescriptors == null)
+		{
 			super.getPropertyDescriptors(object);
 
 		}
@@ -67,9 +68,10 @@ public class DiagramLayoutOperationItemProvider extends AttributeOperationItemPr
 	 */
 	@Override
 	public String getText(Object object) {
-		String label = ((DiagramLayoutOperation) object).getName();
-		return label == null || label.length() == 0 ? getString("_UI_DiagramLayoutOperation_type")
-			: getString("_UI_DiagramLayoutOperation_type") + " " + label;
+		String label = ((DiagramLayoutOperation)object).getName();
+		return label == null || label.length() == 0 ?
+			getString("_UI_DiagramLayoutOperation_type") :
+			getString("_UI_DiagramLayoutOperation_type") + " " + label;
 	}
 
 	/**

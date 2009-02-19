@@ -142,9 +142,10 @@ public abstract class RoleImpl extends EObjectImpl implements Role {
 	 */
 	@Override
 	public NotificationChain eInverseRemove(InternalEObject otherEnd, int featureID, NotificationChain msgs) {
-		switch (featureID) {
-		case RolesPackage.ROLE__PROJECTS:
-			return ((InternalEList<?>) getProjects()).basicRemove(otherEnd, msgs);
+		switch (featureID)
+		{
+			case RolesPackage.ROLE__PROJECTS:
+				return ((InternalEList<?>)getProjects()).basicRemove(otherEnd, msgs);
 		}
 		return super.eInverseRemove(otherEnd, featureID, msgs);
 	}
@@ -157,9 +158,10 @@ public abstract class RoleImpl extends EObjectImpl implements Role {
 	 */
 	@Override
 	public Object eGet(int featureID, boolean resolve, boolean coreType) {
-		switch (featureID) {
-		case RolesPackage.ROLE__PROJECTS:
-			return getProjects();
+		switch (featureID)
+		{
+			case RolesPackage.ROLE__PROJECTS:
+				return getProjects();
 		}
 		return super.eGet(featureID, resolve, coreType);
 	}
@@ -171,11 +173,12 @@ public abstract class RoleImpl extends EObjectImpl implements Role {
 	@SuppressWarnings("unchecked")
 	@Override
 	public void eSet(int featureID, Object newValue) {
-		switch (featureID) {
-		case RolesPackage.ROLE__PROJECTS:
-			getProjects().clear();
-			getProjects().addAll((Collection<? extends ProjectId>) newValue);
-			return;
+		switch (featureID)
+		{
+			case RolesPackage.ROLE__PROJECTS:
+				getProjects().clear();
+				getProjects().addAll((Collection<? extends ProjectId>)newValue);
+				return;
 		}
 		super.eSet(featureID, newValue);
 	}
@@ -186,10 +189,11 @@ public abstract class RoleImpl extends EObjectImpl implements Role {
 	 */
 	@Override
 	public void eUnset(int featureID) {
-		switch (featureID) {
-		case RolesPackage.ROLE__PROJECTS:
-			getProjects().clear();
-			return;
+		switch (featureID)
+		{
+			case RolesPackage.ROLE__PROJECTS:
+				getProjects().clear();
+				return;
 		}
 		super.eUnset(featureID);
 	}
@@ -200,9 +204,10 @@ public abstract class RoleImpl extends EObjectImpl implements Role {
 	 */
 	@Override
 	public boolean eIsSet(int featureID) {
-		switch (featureID) {
-		case RolesPackage.ROLE__PROJECTS:
-			return projects != null && !projects.isEmpty();
+		switch (featureID)
+		{
+			case RolesPackage.ROLE__PROJECTS:
+				return projects != null && !projects.isEmpty();
 		}
 		return super.eIsSet(featureID);
 	}

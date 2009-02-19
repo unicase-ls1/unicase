@@ -28,13 +28,16 @@ public class RolesFactoryImpl extends EFactoryImpl implements RolesFactory {
 	 * @generated
 	 */
 	public static RolesFactory init() {
-		try {
-			RolesFactory theRolesFactory = (RolesFactory) EPackage.Registry.INSTANCE
-				.getEFactory("http://unicase.org/esmodel/accesscontrol/roles");
-			if (theRolesFactory != null) {
+		try
+		{
+			RolesFactory theRolesFactory = (RolesFactory)EPackage.Registry.INSTANCE.getEFactory("http://unicase.org/esmodel/accesscontrol/roles"); 
+			if (theRolesFactory != null)
+			{
 				return theRolesFactory;
 			}
-		} catch (Exception exception) {
+		}
+		catch (Exception exception)
+		{
 			EcorePlugin.INSTANCE.log(exception);
 		}
 		return new RolesFactoryImpl();
@@ -55,17 +58,14 @@ public class RolesFactoryImpl extends EFactoryImpl implements RolesFactory {
 	 */
 	@Override
 	public EObject create(EClass eClass) {
-		switch (eClass.getClassifierID()) {
-		case RolesPackage.READER_ROLE:
-			return createReaderRole();
-		case RolesPackage.WRITER_ROLE:
-			return createWriterRole();
-		case RolesPackage.PROJECT_ADMIN_ROLE:
-			return createProjectAdminRole();
-		case RolesPackage.SERVER_ADMIN:
-			return createServerAdmin();
-		default:
-			throw new IllegalArgumentException("The class '" + eClass.getName() + "' is not a valid classifier");
+		switch (eClass.getClassifierID())
+		{
+			case RolesPackage.READER_ROLE: return createReaderRole();
+			case RolesPackage.WRITER_ROLE: return createWriterRole();
+			case RolesPackage.PROJECT_ADMIN_ROLE: return createProjectAdminRole();
+			case RolesPackage.SERVER_ADMIN: return createServerAdmin();
+			default:
+				throw new IllegalArgumentException("The class '" + eClass.getName() + "' is not a valid classifier");
 		}
 	}
 
@@ -110,7 +110,7 @@ public class RolesFactoryImpl extends EFactoryImpl implements RolesFactory {
 	 * @generated
 	 */
 	public RolesPackage getRolesPackage() {
-		return (RolesPackage) getEPackage();
+		return (RolesPackage)getEPackage();
 	}
 
 	/**

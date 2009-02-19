@@ -26,6 +26,8 @@ import org.unicase.emfstore.esmodel.accesscontrol.roles.RolesPackage;
 import org.unicase.emfstore.esmodel.accesscontrol.roles.impl.RolesPackageImpl;
 import org.unicase.emfstore.esmodel.notification.NotificationPackage;
 import org.unicase.emfstore.esmodel.notification.impl.NotificationPackageImpl;
+import org.unicase.emfstore.esmodel.url.UrlPackage;
+import org.unicase.emfstore.esmodel.url.impl.UrlPackageImpl;
 import org.unicase.emfstore.esmodel.versioning.VersioningPackage;
 import org.unicase.emfstore.esmodel.versioning.events.EventsPackage;
 import org.unicase.emfstore.esmodel.versioning.events.impl.EventsPackageImpl;
@@ -127,13 +129,10 @@ public class EsmodelPackageImpl extends EPackageImpl implements EsmodelPackage {
 	 * @generated
 	 */
 	public static EsmodelPackage init() {
-		if (isInited)
-			return (EsmodelPackage) EPackage.Registry.INSTANCE.getEPackage(EsmodelPackage.eNS_URI);
+		if (isInited) return (EsmodelPackage)EPackage.Registry.INSTANCE.getEPackage(EsmodelPackage.eNS_URI);
 
 		// Obtain or create and register package
-		EsmodelPackageImpl theEsmodelPackage = (EsmodelPackageImpl) (EPackage.Registry.INSTANCE.getEPackage(eNS_URI) instanceof EsmodelPackageImpl ? EPackage.Registry.INSTANCE
-			.getEPackage(eNS_URI)
-			: new EsmodelPackageImpl());
+		EsmodelPackageImpl theEsmodelPackage = (EsmodelPackageImpl)(EPackage.Registry.INSTANCE.getEPackage(eNS_URI) instanceof EsmodelPackageImpl ? EPackage.Registry.INSTANCE.getEPackage(eNS_URI) : new EsmodelPackageImpl());
 
 		isInited = true;
 
@@ -141,24 +140,13 @@ public class EsmodelPackageImpl extends EPackageImpl implements EsmodelPackage {
 		ModelPackage.eINSTANCE.eClass();
 
 		// Obtain or create and register interdependencies
-		VersioningPackageImpl theVersioningPackage = (VersioningPackageImpl) (EPackage.Registry.INSTANCE
-			.getEPackage(VersioningPackage.eNS_URI) instanceof VersioningPackageImpl ? EPackage.Registry.INSTANCE
-			.getEPackage(VersioningPackage.eNS_URI) : VersioningPackage.eINSTANCE);
-		OperationsPackageImpl theOperationsPackage = (OperationsPackageImpl) (EPackage.Registry.INSTANCE
-			.getEPackage(OperationsPackage.eNS_URI) instanceof OperationsPackageImpl ? EPackage.Registry.INSTANCE
-			.getEPackage(OperationsPackage.eNS_URI) : OperationsPackage.eINSTANCE);
-		EventsPackageImpl theEventsPackage = (EventsPackageImpl) (EPackage.Registry.INSTANCE
-			.getEPackage(EventsPackage.eNS_URI) instanceof EventsPackageImpl ? EPackage.Registry.INSTANCE
-			.getEPackage(EventsPackage.eNS_URI) : EventsPackage.eINSTANCE);
-		AccesscontrolPackageImpl theAccesscontrolPackage = (AccesscontrolPackageImpl) (EPackage.Registry.INSTANCE
-			.getEPackage(AccesscontrolPackage.eNS_URI) instanceof AccesscontrolPackageImpl ? EPackage.Registry.INSTANCE
-			.getEPackage(AccesscontrolPackage.eNS_URI) : AccesscontrolPackage.eINSTANCE);
-		RolesPackageImpl theRolesPackage = (RolesPackageImpl) (EPackage.Registry.INSTANCE
-			.getEPackage(RolesPackage.eNS_URI) instanceof RolesPackageImpl ? EPackage.Registry.INSTANCE
-			.getEPackage(RolesPackage.eNS_URI) : RolesPackage.eINSTANCE);
-		NotificationPackageImpl theNotificationPackage = (NotificationPackageImpl) (EPackage.Registry.INSTANCE
-			.getEPackage(NotificationPackage.eNS_URI) instanceof NotificationPackageImpl ? EPackage.Registry.INSTANCE
-			.getEPackage(NotificationPackage.eNS_URI) : NotificationPackage.eINSTANCE);
+		VersioningPackageImpl theVersioningPackage = (VersioningPackageImpl)(EPackage.Registry.INSTANCE.getEPackage(VersioningPackage.eNS_URI) instanceof VersioningPackageImpl ? EPackage.Registry.INSTANCE.getEPackage(VersioningPackage.eNS_URI) : VersioningPackage.eINSTANCE);
+		OperationsPackageImpl theOperationsPackage = (OperationsPackageImpl)(EPackage.Registry.INSTANCE.getEPackage(OperationsPackage.eNS_URI) instanceof OperationsPackageImpl ? EPackage.Registry.INSTANCE.getEPackage(OperationsPackage.eNS_URI) : OperationsPackage.eINSTANCE);
+		EventsPackageImpl theEventsPackage = (EventsPackageImpl)(EPackage.Registry.INSTANCE.getEPackage(EventsPackage.eNS_URI) instanceof EventsPackageImpl ? EPackage.Registry.INSTANCE.getEPackage(EventsPackage.eNS_URI) : EventsPackage.eINSTANCE);
+		AccesscontrolPackageImpl theAccesscontrolPackage = (AccesscontrolPackageImpl)(EPackage.Registry.INSTANCE.getEPackage(AccesscontrolPackage.eNS_URI) instanceof AccesscontrolPackageImpl ? EPackage.Registry.INSTANCE.getEPackage(AccesscontrolPackage.eNS_URI) : AccesscontrolPackage.eINSTANCE);
+		RolesPackageImpl theRolesPackage = (RolesPackageImpl)(EPackage.Registry.INSTANCE.getEPackage(RolesPackage.eNS_URI) instanceof RolesPackageImpl ? EPackage.Registry.INSTANCE.getEPackage(RolesPackage.eNS_URI) : RolesPackage.eINSTANCE);
+		NotificationPackageImpl theNotificationPackage = (NotificationPackageImpl)(EPackage.Registry.INSTANCE.getEPackage(NotificationPackage.eNS_URI) instanceof NotificationPackageImpl ? EPackage.Registry.INSTANCE.getEPackage(NotificationPackage.eNS_URI) : NotificationPackage.eINSTANCE);
+		UrlPackageImpl theUrlPackage = (UrlPackageImpl)(EPackage.Registry.INSTANCE.getEPackage(UrlPackage.eNS_URI) instanceof UrlPackageImpl ? EPackage.Registry.INSTANCE.getEPackage(UrlPackage.eNS_URI) : UrlPackage.eINSTANCE);
 
 		// Create package meta-data objects
 		theEsmodelPackage.createPackageContents();
@@ -168,6 +156,7 @@ public class EsmodelPackageImpl extends EPackageImpl implements EsmodelPackage {
 		theAccesscontrolPackage.createPackageContents();
 		theRolesPackage.createPackageContents();
 		theNotificationPackage.createPackageContents();
+		theUrlPackage.createPackageContents();
 
 		// Initialize created meta-data
 		theEsmodelPackage.initializePackageContents();
@@ -177,6 +166,7 @@ public class EsmodelPackageImpl extends EPackageImpl implements EsmodelPackage {
 		theAccesscontrolPackage.initializePackageContents();
 		theRolesPackage.initializePackageContents();
 		theNotificationPackage.initializePackageContents();
+		theUrlPackage.initializePackageContents();
 
 		// Mark meta-data to indicate it can't be changed
 		theEsmodelPackage.freeze();
@@ -197,7 +187,7 @@ public class EsmodelPackageImpl extends EPackageImpl implements EsmodelPackage {
 	 * @generated
 	 */
 	public EReference getProjectHistory_ProjectId() {
-		return (EReference) projectHistoryEClass.getEStructuralFeatures().get(0);
+		return (EReference)projectHistoryEClass.getEStructuralFeatures().get(0);
 	}
 
 	/**
@@ -205,7 +195,7 @@ public class EsmodelPackageImpl extends EPackageImpl implements EsmodelPackage {
 	 * @generated
 	 */
 	public EReference getProjectHistory_Versions() {
-		return (EReference) projectHistoryEClass.getEStructuralFeatures().get(1);
+		return (EReference)projectHistoryEClass.getEStructuralFeatures().get(1);
 	}
 
 	/**
@@ -213,7 +203,7 @@ public class EsmodelPackageImpl extends EPackageImpl implements EsmodelPackage {
 	 * @generated
 	 */
 	public EAttribute getProjectHistory_ProjectName() {
-		return (EAttribute) projectHistoryEClass.getEStructuralFeatures().get(2);
+		return (EAttribute)projectHistoryEClass.getEStructuralFeatures().get(2);
 	}
 
 	/**
@@ -221,7 +211,7 @@ public class EsmodelPackageImpl extends EPackageImpl implements EsmodelPackage {
 	 * @generated
 	 */
 	public EAttribute getProjectHistory_ProjectDescription() {
-		return (EAttribute) projectHistoryEClass.getEStructuralFeatures().get(3);
+		return (EAttribute)projectHistoryEClass.getEStructuralFeatures().get(3);
 	}
 
 	/**
@@ -237,7 +227,7 @@ public class EsmodelPackageImpl extends EPackageImpl implements EsmodelPackage {
 	 * @generated
 	 */
 	public EAttribute getProjectInfo_Name() {
-		return (EAttribute) projectInfoEClass.getEStructuralFeatures().get(0);
+		return (EAttribute)projectInfoEClass.getEStructuralFeatures().get(0);
 	}
 
 	/**
@@ -245,7 +235,7 @@ public class EsmodelPackageImpl extends EPackageImpl implements EsmodelPackage {
 	 * @generated
 	 */
 	public EAttribute getProjectInfo_Description() {
-		return (EAttribute) projectInfoEClass.getEStructuralFeatures().get(1);
+		return (EAttribute)projectInfoEClass.getEStructuralFeatures().get(1);
 	}
 
 	/**
@@ -253,7 +243,7 @@ public class EsmodelPackageImpl extends EPackageImpl implements EsmodelPackage {
 	 * @generated
 	 */
 	public EReference getProjectInfo_ProjectId() {
-		return (EReference) projectInfoEClass.getEStructuralFeatures().get(2);
+		return (EReference)projectInfoEClass.getEStructuralFeatures().get(2);
 	}
 
 	/**
@@ -261,7 +251,7 @@ public class EsmodelPackageImpl extends EPackageImpl implements EsmodelPackage {
 	 * @generated
 	 */
 	public EReference getProjectInfo_Version() {
-		return (EReference) projectInfoEClass.getEStructuralFeatures().get(3);
+		return (EReference)projectInfoEClass.getEStructuralFeatures().get(3);
 	}
 
 	/**
@@ -285,7 +275,7 @@ public class EsmodelPackageImpl extends EPackageImpl implements EsmodelPackage {
 	 * @generated
 	 */
 	public EReference getServerSpace_Groups() {
-		return (EReference) serverSpaceEClass.getEStructuralFeatures().get(0);
+		return (EReference)serverSpaceEClass.getEStructuralFeatures().get(0);
 	}
 
 	/**
@@ -293,7 +283,7 @@ public class EsmodelPackageImpl extends EPackageImpl implements EsmodelPackage {
 	 * @generated
 	 */
 	public EReference getServerSpace_Projects() {
-		return (EReference) serverSpaceEClass.getEStructuralFeatures().get(1);
+		return (EReference)serverSpaceEClass.getEStructuralFeatures().get(1);
 	}
 
 	/**
@@ -301,7 +291,7 @@ public class EsmodelPackageImpl extends EPackageImpl implements EsmodelPackage {
 	 * @generated
 	 */
 	public EReference getServerSpace_OpenSessions() {
-		return (EReference) serverSpaceEClass.getEStructuralFeatures().get(2);
+		return (EReference)serverSpaceEClass.getEStructuralFeatures().get(2);
 	}
 
 	/**
@@ -309,7 +299,7 @@ public class EsmodelPackageImpl extends EPackageImpl implements EsmodelPackage {
 	 * @generated
 	 */
 	public EReference getServerSpace_Users() {
-		return (EReference) serverSpaceEClass.getEStructuralFeatures().get(3);
+		return (EReference)serverSpaceEClass.getEStructuralFeatures().get(3);
 	}
 
 	/**
@@ -333,7 +323,7 @@ public class EsmodelPackageImpl extends EPackageImpl implements EsmodelPackage {
 	 * @generated
 	 */
 	public EAttribute getVersionInfo_EmfStoreVersionString() {
-		return (EAttribute) versionInfoEClass.getEStructuralFeatures().get(0);
+		return (EAttribute)versionInfoEClass.getEStructuralFeatures().get(0);
 	}
 
 	/**
@@ -349,7 +339,7 @@ public class EsmodelPackageImpl extends EPackageImpl implements EsmodelPackage {
 	 * @generated
 	 */
 	public EAttribute getClientVersionInfo_Version() {
-		return (EAttribute) clientVersionInfoEClass.getEStructuralFeatures().get(0);
+		return (EAttribute)clientVersionInfoEClass.getEStructuralFeatures().get(0);
 	}
 
 	/**
@@ -357,7 +347,7 @@ public class EsmodelPackageImpl extends EPackageImpl implements EsmodelPackage {
 	 * @generated
 	 */
 	public EAttribute getClientVersionInfo_Name() {
-		return (EAttribute) clientVersionInfoEClass.getEStructuralFeatures().get(1);
+		return (EAttribute)clientVersionInfoEClass.getEStructuralFeatures().get(1);
 	}
 
 	/**
@@ -365,7 +355,7 @@ public class EsmodelPackageImpl extends EPackageImpl implements EsmodelPackage {
 	 * @generated
 	 */
 	public EsmodelFactory getEsmodelFactory() {
-		return (EsmodelFactory) getEFactoryInstance();
+		return (EsmodelFactory)getEFactoryInstance();
 	}
 
 	/**
@@ -381,8 +371,7 @@ public class EsmodelPackageImpl extends EPackageImpl implements EsmodelPackage {
 	 * @generated
 	 */
 	public void createPackageContents() {
-		if (isCreated)
-			return;
+		if (isCreated) return;
 		isCreated = true;
 
 		// Create classes and their features
@@ -429,8 +418,7 @@ public class EsmodelPackageImpl extends EPackageImpl implements EsmodelPackage {
 	 * @generated
 	 */
 	public void initializePackageContents() {
-		if (isInitialized)
-			return;
+		if (isInitialized) return;
 		isInitialized = true;
 
 		// Initialize package
@@ -439,19 +427,18 @@ public class EsmodelPackageImpl extends EPackageImpl implements EsmodelPackage {
 		setNsURI(eNS_URI);
 
 		// Obtain other dependent packages
-		VersioningPackage theVersioningPackage = (VersioningPackage) EPackage.Registry.INSTANCE
-			.getEPackage(VersioningPackage.eNS_URI);
-		AccesscontrolPackage theAccesscontrolPackage = (AccesscontrolPackage) EPackage.Registry.INSTANCE
-			.getEPackage(AccesscontrolPackage.eNS_URI);
-		NotificationPackage theNotificationPackage = (NotificationPackage) EPackage.Registry.INSTANCE
-			.getEPackage(NotificationPackage.eNS_URI);
-		ModelPackage theModelPackage = (ModelPackage) EPackage.Registry.INSTANCE.getEPackage(ModelPackage.eNS_URI);
-		EcorePackage theEcorePackage = (EcorePackage) EPackage.Registry.INSTANCE.getEPackage(EcorePackage.eNS_URI);
+		VersioningPackage theVersioningPackage = (VersioningPackage)EPackage.Registry.INSTANCE.getEPackage(VersioningPackage.eNS_URI);
+		AccesscontrolPackage theAccesscontrolPackage = (AccesscontrolPackage)EPackage.Registry.INSTANCE.getEPackage(AccesscontrolPackage.eNS_URI);
+		NotificationPackage theNotificationPackage = (NotificationPackage)EPackage.Registry.INSTANCE.getEPackage(NotificationPackage.eNS_URI);
+		UrlPackage theUrlPackage = (UrlPackage)EPackage.Registry.INSTANCE.getEPackage(UrlPackage.eNS_URI);
+		ModelPackage theModelPackage = (ModelPackage)EPackage.Registry.INSTANCE.getEPackage(ModelPackage.eNS_URI);
+		EcorePackage theEcorePackage = (EcorePackage)EPackage.Registry.INSTANCE.getEPackage(EcorePackage.eNS_URI);
 
 		// Add subpackages
 		getESubpackages().add(theVersioningPackage);
 		getESubpackages().add(theAccesscontrolPackage);
 		getESubpackages().add(theNotificationPackage);
+		getESubpackages().add(theUrlPackage);
 
 		// Create type parameters
 
@@ -462,70 +449,34 @@ public class EsmodelPackageImpl extends EPackageImpl implements EsmodelPackage {
 		projectIdEClass.getESuperTypes().add(theModelPackage.getUniqueIdentifier());
 
 		// Initialize classes and features; add operations and parameters
-		initEClass(projectHistoryEClass, ProjectHistory.class, "ProjectHistory", !IS_ABSTRACT, !IS_INTERFACE,
-			IS_GENERATED_INSTANCE_CLASS);
-		initEReference(getProjectHistory_ProjectId(), this.getProjectId(), null, "projectId", null, 0, 1,
-			ProjectHistory.class, !IS_TRANSIENT, !IS_VOLATILE, IS_CHANGEABLE, IS_COMPOSITE, IS_RESOLVE_PROXIES,
-			!IS_UNSETTABLE, IS_UNIQUE, !IS_DERIVED, IS_ORDERED);
-		initEReference(getProjectHistory_Versions(), theVersioningPackage.getVersion(), null, "versions", null, 1, -1,
-			ProjectHistory.class, !IS_TRANSIENT, !IS_VOLATILE, IS_CHANGEABLE, IS_COMPOSITE, IS_RESOLVE_PROXIES,
-			!IS_UNSETTABLE, IS_UNIQUE, !IS_DERIVED, IS_ORDERED);
-		initEAttribute(getProjectHistory_ProjectName(), ecorePackage.getEString(), "projectName", null, 1, 1,
-			ProjectHistory.class, !IS_TRANSIENT, !IS_VOLATILE, IS_CHANGEABLE, !IS_UNSETTABLE, !IS_ID, IS_UNIQUE,
-			!IS_DERIVED, IS_ORDERED);
-		initEAttribute(getProjectHistory_ProjectDescription(), ecorePackage.getEString(), "projectDescription", null,
-			1, 1, ProjectHistory.class, !IS_TRANSIENT, !IS_VOLATILE, IS_CHANGEABLE, !IS_UNSETTABLE, !IS_ID, IS_UNIQUE,
-			!IS_DERIVED, IS_ORDERED);
+		initEClass(projectHistoryEClass, ProjectHistory.class, "ProjectHistory", !IS_ABSTRACT, !IS_INTERFACE, IS_GENERATED_INSTANCE_CLASS);
+		initEReference(getProjectHistory_ProjectId(), this.getProjectId(), null, "projectId", null, 0, 1, ProjectHistory.class, !IS_TRANSIENT, !IS_VOLATILE, IS_CHANGEABLE, IS_COMPOSITE, IS_RESOLVE_PROXIES, !IS_UNSETTABLE, IS_UNIQUE, !IS_DERIVED, IS_ORDERED);
+		initEReference(getProjectHistory_Versions(), theVersioningPackage.getVersion(), null, "versions", null, 1, -1, ProjectHistory.class, !IS_TRANSIENT, !IS_VOLATILE, IS_CHANGEABLE, IS_COMPOSITE, IS_RESOLVE_PROXIES, !IS_UNSETTABLE, IS_UNIQUE, !IS_DERIVED, IS_ORDERED);
+		initEAttribute(getProjectHistory_ProjectName(), ecorePackage.getEString(), "projectName", null, 1, 1, ProjectHistory.class, !IS_TRANSIENT, !IS_VOLATILE, IS_CHANGEABLE, !IS_UNSETTABLE, !IS_ID, IS_UNIQUE, !IS_DERIVED, IS_ORDERED);
+		initEAttribute(getProjectHistory_ProjectDescription(), ecorePackage.getEString(), "projectDescription", null, 1, 1, ProjectHistory.class, !IS_TRANSIENT, !IS_VOLATILE, IS_CHANGEABLE, !IS_UNSETTABLE, !IS_ID, IS_UNIQUE, !IS_DERIVED, IS_ORDERED);
 
-		initEClass(projectInfoEClass, ProjectInfo.class, "ProjectInfo", !IS_ABSTRACT, !IS_INTERFACE,
-			IS_GENERATED_INSTANCE_CLASS);
-		initEAttribute(getProjectInfo_Name(), ecorePackage.getEString(), "name", null, 1, 1, ProjectInfo.class,
-			!IS_TRANSIENT, !IS_VOLATILE, IS_CHANGEABLE, !IS_UNSETTABLE, !IS_ID, IS_UNIQUE, !IS_DERIVED, IS_ORDERED);
-		initEAttribute(getProjectInfo_Description(), ecorePackage.getEString(), "description", null, 0, 1,
-			ProjectInfo.class, !IS_TRANSIENT, !IS_VOLATILE, IS_CHANGEABLE, !IS_UNSETTABLE, !IS_ID, IS_UNIQUE,
-			!IS_DERIVED, IS_ORDERED);
-		initEReference(getProjectInfo_ProjectId(), this.getProjectId(), null, "projectId", null, 1, 1,
-			ProjectInfo.class, !IS_TRANSIENT, !IS_VOLATILE, IS_CHANGEABLE, IS_COMPOSITE, IS_RESOLVE_PROXIES,
-			!IS_UNSETTABLE, IS_UNIQUE, !IS_DERIVED, IS_ORDERED);
-		initEReference(getProjectInfo_Version(), theVersioningPackage.getPrimaryVersionSpec(), null, "version", null,
-			1, 1, ProjectInfo.class, !IS_TRANSIENT, !IS_VOLATILE, IS_CHANGEABLE, IS_COMPOSITE, IS_RESOLVE_PROXIES,
-			!IS_UNSETTABLE, IS_UNIQUE, !IS_DERIVED, IS_ORDERED);
+		initEClass(projectInfoEClass, ProjectInfo.class, "ProjectInfo", !IS_ABSTRACT, !IS_INTERFACE, IS_GENERATED_INSTANCE_CLASS);
+		initEAttribute(getProjectInfo_Name(), ecorePackage.getEString(), "name", null, 1, 1, ProjectInfo.class, !IS_TRANSIENT, !IS_VOLATILE, IS_CHANGEABLE, !IS_UNSETTABLE, !IS_ID, IS_UNIQUE, !IS_DERIVED, IS_ORDERED);
+		initEAttribute(getProjectInfo_Description(), ecorePackage.getEString(), "description", null, 0, 1, ProjectInfo.class, !IS_TRANSIENT, !IS_VOLATILE, IS_CHANGEABLE, !IS_UNSETTABLE, !IS_ID, IS_UNIQUE, !IS_DERIVED, IS_ORDERED);
+		initEReference(getProjectInfo_ProjectId(), this.getProjectId(), null, "projectId", null, 1, 1, ProjectInfo.class, !IS_TRANSIENT, !IS_VOLATILE, IS_CHANGEABLE, IS_COMPOSITE, IS_RESOLVE_PROXIES, !IS_UNSETTABLE, IS_UNIQUE, !IS_DERIVED, IS_ORDERED);
+		initEReference(getProjectInfo_Version(), theVersioningPackage.getPrimaryVersionSpec(), null, "version", null, 1, 1, ProjectInfo.class, !IS_TRANSIENT, !IS_VOLATILE, IS_CHANGEABLE, IS_COMPOSITE, IS_RESOLVE_PROXIES, !IS_UNSETTABLE, IS_UNIQUE, !IS_DERIVED, IS_ORDERED);
 
-		initEClass(sessionIdEClass, SessionId.class, "SessionId", !IS_ABSTRACT, !IS_INTERFACE,
-			IS_GENERATED_INSTANCE_CLASS);
+		initEClass(sessionIdEClass, SessionId.class, "SessionId", !IS_ABSTRACT, !IS_INTERFACE, IS_GENERATED_INSTANCE_CLASS);
 
-		initEClass(serverSpaceEClass, ServerSpace.class, "ServerSpace", !IS_ABSTRACT, !IS_INTERFACE,
-			IS_GENERATED_INSTANCE_CLASS);
-		initEReference(getServerSpace_Groups(), theAccesscontrolPackage.getACGroup(), null, "groups", null, 0, -1,
-			ServerSpace.class, !IS_TRANSIENT, !IS_VOLATILE, IS_CHANGEABLE, IS_COMPOSITE, IS_RESOLVE_PROXIES,
-			!IS_UNSETTABLE, IS_UNIQUE, !IS_DERIVED, IS_ORDERED);
-		initEReference(getServerSpace_Projects(), this.getProjectHistory(), null, "projects", null, 0, -1,
-			ServerSpace.class, !IS_TRANSIENT, !IS_VOLATILE, IS_CHANGEABLE, !IS_COMPOSITE, IS_RESOLVE_PROXIES,
-			!IS_UNSETTABLE, IS_UNIQUE, !IS_DERIVED, IS_ORDERED);
-		initEReference(getServerSpace_OpenSessions(), this.getSessionId(), null, "openSessions", null, 0, -1,
-			ServerSpace.class, IS_TRANSIENT, !IS_VOLATILE, IS_CHANGEABLE, IS_COMPOSITE, IS_RESOLVE_PROXIES,
-			!IS_UNSETTABLE, IS_UNIQUE, !IS_DERIVED, IS_ORDERED);
-		initEReference(getServerSpace_Users(), theAccesscontrolPackage.getACUser(), null, "users", null, 0, -1,
-			ServerSpace.class, !IS_TRANSIENT, !IS_VOLATILE, IS_CHANGEABLE, IS_COMPOSITE, IS_RESOLVE_PROXIES,
-			!IS_UNSETTABLE, IS_UNIQUE, !IS_DERIVED, IS_ORDERED);
+		initEClass(serverSpaceEClass, ServerSpace.class, "ServerSpace", !IS_ABSTRACT, !IS_INTERFACE, IS_GENERATED_INSTANCE_CLASS);
+		initEReference(getServerSpace_Groups(), theAccesscontrolPackage.getACGroup(), null, "groups", null, 0, -1, ServerSpace.class, !IS_TRANSIENT, !IS_VOLATILE, IS_CHANGEABLE, IS_COMPOSITE, IS_RESOLVE_PROXIES, !IS_UNSETTABLE, IS_UNIQUE, !IS_DERIVED, IS_ORDERED);
+		initEReference(getServerSpace_Projects(), this.getProjectHistory(), null, "projects", null, 0, -1, ServerSpace.class, !IS_TRANSIENT, !IS_VOLATILE, IS_CHANGEABLE, !IS_COMPOSITE, IS_RESOLVE_PROXIES, !IS_UNSETTABLE, IS_UNIQUE, !IS_DERIVED, IS_ORDERED);
+		initEReference(getServerSpace_OpenSessions(), this.getSessionId(), null, "openSessions", null, 0, -1, ServerSpace.class, IS_TRANSIENT, !IS_VOLATILE, IS_CHANGEABLE, IS_COMPOSITE, IS_RESOLVE_PROXIES, !IS_UNSETTABLE, IS_UNIQUE, !IS_DERIVED, IS_ORDERED);
+		initEReference(getServerSpace_Users(), theAccesscontrolPackage.getACUser(), null, "users", null, 0, -1, ServerSpace.class, !IS_TRANSIENT, !IS_VOLATILE, IS_CHANGEABLE, IS_COMPOSITE, IS_RESOLVE_PROXIES, !IS_UNSETTABLE, IS_UNIQUE, !IS_DERIVED, IS_ORDERED);
 
-		initEClass(projectIdEClass, ProjectId.class, "ProjectId", !IS_ABSTRACT, !IS_INTERFACE,
-			IS_GENERATED_INSTANCE_CLASS);
+		initEClass(projectIdEClass, ProjectId.class, "ProjectId", !IS_ABSTRACT, !IS_INTERFACE, IS_GENERATED_INSTANCE_CLASS);
 
-		initEClass(versionInfoEClass, VersionInfo.class, "VersionInfo", !IS_ABSTRACT, !IS_INTERFACE,
-			IS_GENERATED_INSTANCE_CLASS);
-		initEAttribute(getVersionInfo_EmfStoreVersionString(), ecorePackage.getEString(), "emfStoreVersionString",
-			null, 0, 1, VersionInfo.class, !IS_TRANSIENT, !IS_VOLATILE, IS_CHANGEABLE, !IS_UNSETTABLE, !IS_ID,
-			IS_UNIQUE, !IS_DERIVED, IS_ORDERED);
+		initEClass(versionInfoEClass, VersionInfo.class, "VersionInfo", !IS_ABSTRACT, !IS_INTERFACE, IS_GENERATED_INSTANCE_CLASS);
+		initEAttribute(getVersionInfo_EmfStoreVersionString(), ecorePackage.getEString(), "emfStoreVersionString", null, 0, 1, VersionInfo.class, !IS_TRANSIENT, !IS_VOLATILE, IS_CHANGEABLE, !IS_UNSETTABLE, !IS_ID, IS_UNIQUE, !IS_DERIVED, IS_ORDERED);
 
-		initEClass(clientVersionInfoEClass, ClientVersionInfo.class, "ClientVersionInfo", !IS_ABSTRACT, !IS_INTERFACE,
-			IS_GENERATED_INSTANCE_CLASS);
-		initEAttribute(getClientVersionInfo_Version(), theEcorePackage.getEString(), "version", null, 0, 1,
-			ClientVersionInfo.class, !IS_TRANSIENT, !IS_VOLATILE, IS_CHANGEABLE, !IS_UNSETTABLE, !IS_ID, IS_UNIQUE,
-			!IS_DERIVED, IS_ORDERED);
-		initEAttribute(getClientVersionInfo_Name(), theEcorePackage.getEString(), "name", null, 0, 1,
-			ClientVersionInfo.class, !IS_TRANSIENT, !IS_VOLATILE, IS_CHANGEABLE, !IS_UNSETTABLE, !IS_ID, IS_UNIQUE,
-			!IS_DERIVED, IS_ORDERED);
+		initEClass(clientVersionInfoEClass, ClientVersionInfo.class, "ClientVersionInfo", !IS_ABSTRACT, !IS_INTERFACE, IS_GENERATED_INSTANCE_CLASS);
+		initEAttribute(getClientVersionInfo_Version(), theEcorePackage.getEString(), "version", null, 0, 1, ClientVersionInfo.class, !IS_TRANSIENT, !IS_VOLATILE, IS_CHANGEABLE, !IS_UNSETTABLE, !IS_ID, IS_UNIQUE, !IS_DERIVED, IS_ORDERED);
+		initEAttribute(getClientVersionInfo_Name(), theEcorePackage.getEString(), "name", null, 0, 1, ClientVersionInfo.class, !IS_TRANSIENT, !IS_VOLATILE, IS_CHANGEABLE, !IS_UNSETTABLE, !IS_ID, IS_UNIQUE, !IS_DERIVED, IS_ORDERED);
 
 		// Create resource
 		createResource(eNS_URI);

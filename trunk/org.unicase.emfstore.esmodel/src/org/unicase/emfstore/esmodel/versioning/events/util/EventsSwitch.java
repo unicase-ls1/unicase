@@ -53,7 +53,8 @@ public class EventsSwitch<T> {
 	 * @generated
 	 */
 	public EventsSwitch() {
-		if (modelPackage == null) {
+		if (modelPackage == null)
+		{
 			modelPackage = EventsPackage.eINSTANCE;
 		}
 	}
@@ -75,11 +76,17 @@ public class EventsSwitch<T> {
 	 * @generated
 	 */
 	protected T doSwitch(EClass theEClass, EObject theEObject) {
-		if (theEClass.eContainer() == modelPackage) {
+		if (theEClass.eContainer() == modelPackage)
+		{
 			return doSwitch(theEClass.getClassifierID(), theEObject);
-		} else {
+		}
+		else
+		{
 			List<EClass> eSuperTypes = theEClass.getESuperTypes();
-			return eSuperTypes.isEmpty() ? defaultCase(theEObject) : doSwitch(eSuperTypes.get(0), theEObject);
+			return
+				eSuperTypes.isEmpty() ?
+					defaultCase(theEObject) :
+					doSwitch(eSuperTypes.get(0), theEObject);
 		}
 	}
 
@@ -90,187 +97,168 @@ public class EventsSwitch<T> {
 	 * @generated
 	 */
 	protected T doSwitch(int classifierID, EObject theEObject) {
-		switch (classifierID) {
-		case EventsPackage.EVENT: {
-			Event event = (Event) theEObject;
-			T result = caseEvent(event);
-			if (result == null)
-				result = defaultCase(theEObject);
-			return result;
-		}
-		case EventsPackage.READ_EVENT: {
-			ReadEvent readEvent = (ReadEvent) theEObject;
-			T result = caseReadEvent(readEvent);
-			if (result == null)
-				result = caseEvent(readEvent);
-			if (result == null)
-				result = defaultCase(theEObject);
-			return result;
-		}
-		case EventsPackage.MERGE_EVENT: {
-			MergeEvent mergeEvent = (MergeEvent) theEObject;
-			T result = caseMergeEvent(mergeEvent);
-			if (result == null)
-				result = caseEvent(mergeEvent);
-			if (result == null)
-				result = defaultCase(theEObject);
-			return result;
-		}
-		case EventsPackage.CHECKOUT_EVENT: {
-			CheckoutEvent checkoutEvent = (CheckoutEvent) theEObject;
-			T result = caseCheckoutEvent(checkoutEvent);
-			if (result == null)
-				result = caseEvent(checkoutEvent);
-			if (result == null)
-				result = defaultCase(theEObject);
-			return result;
-		}
-		case EventsPackage.EXCEPTION_EVENT: {
-			ExceptionEvent exceptionEvent = (ExceptionEvent) theEObject;
-			T result = caseExceptionEvent(exceptionEvent);
-			if (result == null)
-				result = caseEvent(exceptionEvent);
-			if (result == null)
-				result = defaultCase(theEObject);
-			return result;
-		}
-		case EventsPackage.PLUGIN_START_EVENT: {
-			PluginStartEvent pluginStartEvent = (PluginStartEvent) theEObject;
-			T result = casePluginStartEvent(pluginStartEvent);
-			if (result == null)
-				result = caseEvent(pluginStartEvent);
-			if (result == null)
-				result = defaultCase(theEObject);
-			return result;
-		}
-		case EventsPackage.UPDATE_EVENT: {
-			UpdateEvent updateEvent = (UpdateEvent) theEObject;
-			T result = caseUpdateEvent(updateEvent);
-			if (result == null)
-				result = caseEvent(updateEvent);
-			if (result == null)
-				result = defaultCase(theEObject);
-			return result;
-		}
-		case EventsPackage.ANNOTATION_EVENT: {
-			AnnotationEvent annotationEvent = (AnnotationEvent) theEObject;
-			T result = caseAnnotationEvent(annotationEvent);
-			if (result == null)
-				result = caseEvent(annotationEvent);
-			if (result == null)
-				result = defaultCase(theEObject);
-			return result;
-		}
-		case EventsPackage.REVERT_EVENT: {
-			RevertEvent revertEvent = (RevertEvent) theEObject;
-			T result = caseRevertEvent(revertEvent);
-			if (result == null)
-				result = caseEvent(revertEvent);
-			if (result == null)
-				result = defaultCase(theEObject);
-			return result;
-		}
-		case EventsPackage.SHOW_HISTORY_EVENT: {
-			ShowHistoryEvent showHistoryEvent = (ShowHistoryEvent) theEObject;
-			T result = caseShowHistoryEvent(showHistoryEvent);
-			if (result == null)
-				result = caseEvent(showHistoryEvent);
-			if (result == null)
-				result = defaultCase(theEObject);
-			return result;
-		}
-		case EventsPackage.PERSPECTIVE_EVENT: {
-			PerspectiveEvent perspectiveEvent = (PerspectiveEvent) theEObject;
-			T result = casePerspectiveEvent(perspectiveEvent);
-			if (result == null)
-				result = caseEvent(perspectiveEvent);
-			if (result == null)
-				result = defaultCase(theEObject);
-			return result;
-		}
-		case EventsPackage.DND_EVENT: {
-			DNDEvent dndEvent = (DNDEvent) theEObject;
-			T result = caseDNDEvent(dndEvent);
-			if (result == null)
-				result = caseEvent(dndEvent);
-			if (result == null)
-				result = defaultCase(theEObject);
-			return result;
-		}
-		case EventsPackage.LINK_EVENT: {
-			LinkEvent linkEvent = (LinkEvent) theEObject;
-			T result = caseLinkEvent(linkEvent);
-			if (result == null)
-				result = caseEvent(linkEvent);
-			if (result == null)
-				result = defaultCase(theEObject);
-			return result;
-		}
-		case EventsPackage.TRACE_EVENT: {
-			TraceEvent traceEvent = (TraceEvent) theEObject;
-			T result = caseTraceEvent(traceEvent);
-			if (result == null)
-				result = caseEvent(traceEvent);
-			if (result == null)
-				result = defaultCase(theEObject);
-			return result;
-		}
-		case EventsPackage.NAVIGATOR_CREATE_EVENT: {
-			NavigatorCreateEvent navigatorCreateEvent = (NavigatorCreateEvent) theEObject;
-			T result = caseNavigatorCreateEvent(navigatorCreateEvent);
-			if (result == null)
-				result = caseEvent(navigatorCreateEvent);
-			if (result == null)
-				result = defaultCase(theEObject);
-			return result;
-		}
-		case EventsPackage.PLUGIN_FOCUS_EVENT: {
-			PluginFocusEvent pluginFocusEvent = (PluginFocusEvent) theEObject;
-			T result = casePluginFocusEvent(pluginFocusEvent);
-			if (result == null)
-				result = caseEvent(pluginFocusEvent);
-			if (result == null)
-				result = defaultCase(theEObject);
-			return result;
-		}
-		case EventsPackage.PRESENTATION_SWITCH_EVENT: {
-			PresentationSwitchEvent presentationSwitchEvent = (PresentationSwitchEvent) theEObject;
-			T result = casePresentationSwitchEvent(presentationSwitchEvent);
-			if (result == null)
-				result = caseEvent(presentationSwitchEvent);
-			if (result == null)
-				result = defaultCase(theEObject);
-			return result;
-		}
-		case EventsPackage.UNDO_EVENT: {
-			UndoEvent undoEvent = (UndoEvent) theEObject;
-			T result = caseUndoEvent(undoEvent);
-			if (result == null)
-				result = caseEvent(undoEvent);
-			if (result == null)
-				result = defaultCase(theEObject);
-			return result;
-		}
-		case EventsPackage.VALIDATE: {
-			Validate validate = (Validate) theEObject;
-			T result = caseValidate(validate);
-			if (result == null)
-				result = caseEvent(validate);
-			if (result == null)
-				result = defaultCase(theEObject);
-			return result;
-		}
-		case EventsPackage.SHOW_CHANGES_EVENT: {
-			ShowChangesEvent showChangesEvent = (ShowChangesEvent) theEObject;
-			T result = caseShowChangesEvent(showChangesEvent);
-			if (result == null)
-				result = caseEvent(showChangesEvent);
-			if (result == null)
-				result = defaultCase(theEObject);
-			return result;
-		}
-		default:
-			return defaultCase(theEObject);
+		switch (classifierID)
+		{
+			case EventsPackage.EVENT:
+			{
+				Event event = (Event)theEObject;
+				T result = caseEvent(event);
+				if (result == null) result = defaultCase(theEObject);
+				return result;
+			}
+			case EventsPackage.READ_EVENT:
+			{
+				ReadEvent readEvent = (ReadEvent)theEObject;
+				T result = caseReadEvent(readEvent);
+				if (result == null) result = caseEvent(readEvent);
+				if (result == null) result = defaultCase(theEObject);
+				return result;
+			}
+			case EventsPackage.MERGE_EVENT:
+			{
+				MergeEvent mergeEvent = (MergeEvent)theEObject;
+				T result = caseMergeEvent(mergeEvent);
+				if (result == null) result = caseEvent(mergeEvent);
+				if (result == null) result = defaultCase(theEObject);
+				return result;
+			}
+			case EventsPackage.CHECKOUT_EVENT:
+			{
+				CheckoutEvent checkoutEvent = (CheckoutEvent)theEObject;
+				T result = caseCheckoutEvent(checkoutEvent);
+				if (result == null) result = caseEvent(checkoutEvent);
+				if (result == null) result = defaultCase(theEObject);
+				return result;
+			}
+			case EventsPackage.EXCEPTION_EVENT:
+			{
+				ExceptionEvent exceptionEvent = (ExceptionEvent)theEObject;
+				T result = caseExceptionEvent(exceptionEvent);
+				if (result == null) result = caseEvent(exceptionEvent);
+				if (result == null) result = defaultCase(theEObject);
+				return result;
+			}
+			case EventsPackage.PLUGIN_START_EVENT:
+			{
+				PluginStartEvent pluginStartEvent = (PluginStartEvent)theEObject;
+				T result = casePluginStartEvent(pluginStartEvent);
+				if (result == null) result = caseEvent(pluginStartEvent);
+				if (result == null) result = defaultCase(theEObject);
+				return result;
+			}
+			case EventsPackage.UPDATE_EVENT:
+			{
+				UpdateEvent updateEvent = (UpdateEvent)theEObject;
+				T result = caseUpdateEvent(updateEvent);
+				if (result == null) result = caseEvent(updateEvent);
+				if (result == null) result = defaultCase(theEObject);
+				return result;
+			}
+			case EventsPackage.ANNOTATION_EVENT:
+			{
+				AnnotationEvent annotationEvent = (AnnotationEvent)theEObject;
+				T result = caseAnnotationEvent(annotationEvent);
+				if (result == null) result = caseEvent(annotationEvent);
+				if (result == null) result = defaultCase(theEObject);
+				return result;
+			}
+			case EventsPackage.REVERT_EVENT:
+			{
+				RevertEvent revertEvent = (RevertEvent)theEObject;
+				T result = caseRevertEvent(revertEvent);
+				if (result == null) result = caseEvent(revertEvent);
+				if (result == null) result = defaultCase(theEObject);
+				return result;
+			}
+			case EventsPackage.SHOW_HISTORY_EVENT:
+			{
+				ShowHistoryEvent showHistoryEvent = (ShowHistoryEvent)theEObject;
+				T result = caseShowHistoryEvent(showHistoryEvent);
+				if (result == null) result = caseEvent(showHistoryEvent);
+				if (result == null) result = defaultCase(theEObject);
+				return result;
+			}
+			case EventsPackage.PERSPECTIVE_EVENT:
+			{
+				PerspectiveEvent perspectiveEvent = (PerspectiveEvent)theEObject;
+				T result = casePerspectiveEvent(perspectiveEvent);
+				if (result == null) result = caseEvent(perspectiveEvent);
+				if (result == null) result = defaultCase(theEObject);
+				return result;
+			}
+			case EventsPackage.DND_EVENT:
+			{
+				DNDEvent dndEvent = (DNDEvent)theEObject;
+				T result = caseDNDEvent(dndEvent);
+				if (result == null) result = caseEvent(dndEvent);
+				if (result == null) result = defaultCase(theEObject);
+				return result;
+			}
+			case EventsPackage.LINK_EVENT:
+			{
+				LinkEvent linkEvent = (LinkEvent)theEObject;
+				T result = caseLinkEvent(linkEvent);
+				if (result == null) result = caseEvent(linkEvent);
+				if (result == null) result = defaultCase(theEObject);
+				return result;
+			}
+			case EventsPackage.TRACE_EVENT:
+			{
+				TraceEvent traceEvent = (TraceEvent)theEObject;
+				T result = caseTraceEvent(traceEvent);
+				if (result == null) result = caseEvent(traceEvent);
+				if (result == null) result = defaultCase(theEObject);
+				return result;
+			}
+			case EventsPackage.NAVIGATOR_CREATE_EVENT:
+			{
+				NavigatorCreateEvent navigatorCreateEvent = (NavigatorCreateEvent)theEObject;
+				T result = caseNavigatorCreateEvent(navigatorCreateEvent);
+				if (result == null) result = caseEvent(navigatorCreateEvent);
+				if (result == null) result = defaultCase(theEObject);
+				return result;
+			}
+			case EventsPackage.PLUGIN_FOCUS_EVENT:
+			{
+				PluginFocusEvent pluginFocusEvent = (PluginFocusEvent)theEObject;
+				T result = casePluginFocusEvent(pluginFocusEvent);
+				if (result == null) result = caseEvent(pluginFocusEvent);
+				if (result == null) result = defaultCase(theEObject);
+				return result;
+			}
+			case EventsPackage.PRESENTATION_SWITCH_EVENT:
+			{
+				PresentationSwitchEvent presentationSwitchEvent = (PresentationSwitchEvent)theEObject;
+				T result = casePresentationSwitchEvent(presentationSwitchEvent);
+				if (result == null) result = caseEvent(presentationSwitchEvent);
+				if (result == null) result = defaultCase(theEObject);
+				return result;
+			}
+			case EventsPackage.UNDO_EVENT:
+			{
+				UndoEvent undoEvent = (UndoEvent)theEObject;
+				T result = caseUndoEvent(undoEvent);
+				if (result == null) result = caseEvent(undoEvent);
+				if (result == null) result = defaultCase(theEObject);
+				return result;
+			}
+			case EventsPackage.VALIDATE:
+			{
+				Validate validate = (Validate)theEObject;
+				T result = caseValidate(validate);
+				if (result == null) result = caseEvent(validate);
+				if (result == null) result = defaultCase(theEObject);
+				return result;
+			}
+			case EventsPackage.SHOW_CHANGES_EVENT:
+			{
+				ShowChangesEvent showChangesEvent = (ShowChangesEvent)theEObject;
+				T result = caseShowChangesEvent(showChangesEvent);
+				if (result == null) result = caseEvent(showChangesEvent);
+				if (result == null) result = defaultCase(theEObject);
+				return result;
+			}
+			default: return defaultCase(theEObject);
 		}
 	}
 

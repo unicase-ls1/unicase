@@ -136,8 +136,7 @@ public class ExceptionEventImpl extends EventImpl implements ExceptionEvent {
 		String oldExceptionTitle = exceptionTitle;
 		exceptionTitle = newExceptionTitle;
 		if (eNotificationRequired())
-			eNotify(new ENotificationImpl(this, Notification.SET, EventsPackage.EXCEPTION_EVENT__EXCEPTION_TITLE,
-				oldExceptionTitle, exceptionTitle));
+			eNotify(new ENotificationImpl(this, Notification.SET, EventsPackage.EXCEPTION_EVENT__EXCEPTION_TITLE, oldExceptionTitle, exceptionTitle));
 	}
 
 	/**
@@ -156,8 +155,7 @@ public class ExceptionEventImpl extends EventImpl implements ExceptionEvent {
 		String oldExceptionStackTrace = exceptionStackTrace;
 		exceptionStackTrace = newExceptionStackTrace;
 		if (eNotificationRequired())
-			eNotify(new ENotificationImpl(this, Notification.SET, EventsPackage.EXCEPTION_EVENT__EXCEPTION_STACK_TRACE,
-				oldExceptionStackTrace, exceptionStackTrace));
+			eNotify(new ENotificationImpl(this, Notification.SET, EventsPackage.EXCEPTION_EVENT__EXCEPTION_STACK_TRACE, oldExceptionStackTrace, exceptionStackTrace));
 	}
 
 	/**
@@ -176,8 +174,7 @@ public class ExceptionEventImpl extends EventImpl implements ExceptionEvent {
 		String oldExceptionCauseTitle = exceptionCauseTitle;
 		exceptionCauseTitle = newExceptionCauseTitle;
 		if (eNotificationRequired())
-			eNotify(new ENotificationImpl(this, Notification.SET, EventsPackage.EXCEPTION_EVENT__EXCEPTION_CAUSE_TITLE,
-				oldExceptionCauseTitle, exceptionCauseTitle));
+			eNotify(new ENotificationImpl(this, Notification.SET, EventsPackage.EXCEPTION_EVENT__EXCEPTION_CAUSE_TITLE, oldExceptionCauseTitle, exceptionCauseTitle));
 	}
 
 	/**
@@ -196,9 +193,7 @@ public class ExceptionEventImpl extends EventImpl implements ExceptionEvent {
 		String oldExceptionCauseStackTrace = exceptionCauseStackTrace;
 		exceptionCauseStackTrace = newExceptionCauseStackTrace;
 		if (eNotificationRequired())
-			eNotify(new ENotificationImpl(this, Notification.SET,
-				EventsPackage.EXCEPTION_EVENT__EXCEPTION_CAUSE_STACK_TRACE, oldExceptionCauseStackTrace,
-				exceptionCauseStackTrace));
+			eNotify(new ENotificationImpl(this, Notification.SET, EventsPackage.EXCEPTION_EVENT__EXCEPTION_CAUSE_STACK_TRACE, oldExceptionCauseStackTrace, exceptionCauseStackTrace));
 	}
 
 	/**
@@ -207,15 +202,16 @@ public class ExceptionEventImpl extends EventImpl implements ExceptionEvent {
 	 */
 	@Override
 	public Object eGet(int featureID, boolean resolve, boolean coreType) {
-		switch (featureID) {
-		case EventsPackage.EXCEPTION_EVENT__EXCEPTION_TITLE:
-			return getExceptionTitle();
-		case EventsPackage.EXCEPTION_EVENT__EXCEPTION_STACK_TRACE:
-			return getExceptionStackTrace();
-		case EventsPackage.EXCEPTION_EVENT__EXCEPTION_CAUSE_TITLE:
-			return getExceptionCauseTitle();
-		case EventsPackage.EXCEPTION_EVENT__EXCEPTION_CAUSE_STACK_TRACE:
-			return getExceptionCauseStackTrace();
+		switch (featureID)
+		{
+			case EventsPackage.EXCEPTION_EVENT__EXCEPTION_TITLE:
+				return getExceptionTitle();
+			case EventsPackage.EXCEPTION_EVENT__EXCEPTION_STACK_TRACE:
+				return getExceptionStackTrace();
+			case EventsPackage.EXCEPTION_EVENT__EXCEPTION_CAUSE_TITLE:
+				return getExceptionCauseTitle();
+			case EventsPackage.EXCEPTION_EVENT__EXCEPTION_CAUSE_STACK_TRACE:
+				return getExceptionCauseStackTrace();
 		}
 		return super.eGet(featureID, resolve, coreType);
 	}
@@ -226,19 +222,20 @@ public class ExceptionEventImpl extends EventImpl implements ExceptionEvent {
 	 */
 	@Override
 	public void eSet(int featureID, Object newValue) {
-		switch (featureID) {
-		case EventsPackage.EXCEPTION_EVENT__EXCEPTION_TITLE:
-			setExceptionTitle((String) newValue);
-			return;
-		case EventsPackage.EXCEPTION_EVENT__EXCEPTION_STACK_TRACE:
-			setExceptionStackTrace((String) newValue);
-			return;
-		case EventsPackage.EXCEPTION_EVENT__EXCEPTION_CAUSE_TITLE:
-			setExceptionCauseTitle((String) newValue);
-			return;
-		case EventsPackage.EXCEPTION_EVENT__EXCEPTION_CAUSE_STACK_TRACE:
-			setExceptionCauseStackTrace((String) newValue);
-			return;
+		switch (featureID)
+		{
+			case EventsPackage.EXCEPTION_EVENT__EXCEPTION_TITLE:
+				setExceptionTitle((String)newValue);
+				return;
+			case EventsPackage.EXCEPTION_EVENT__EXCEPTION_STACK_TRACE:
+				setExceptionStackTrace((String)newValue);
+				return;
+			case EventsPackage.EXCEPTION_EVENT__EXCEPTION_CAUSE_TITLE:
+				setExceptionCauseTitle((String)newValue);
+				return;
+			case EventsPackage.EXCEPTION_EVENT__EXCEPTION_CAUSE_STACK_TRACE:
+				setExceptionCauseStackTrace((String)newValue);
+				return;
 		}
 		super.eSet(featureID, newValue);
 	}
@@ -249,19 +246,20 @@ public class ExceptionEventImpl extends EventImpl implements ExceptionEvent {
 	 */
 	@Override
 	public void eUnset(int featureID) {
-		switch (featureID) {
-		case EventsPackage.EXCEPTION_EVENT__EXCEPTION_TITLE:
-			setExceptionTitle(EXCEPTION_TITLE_EDEFAULT);
-			return;
-		case EventsPackage.EXCEPTION_EVENT__EXCEPTION_STACK_TRACE:
-			setExceptionStackTrace(EXCEPTION_STACK_TRACE_EDEFAULT);
-			return;
-		case EventsPackage.EXCEPTION_EVENT__EXCEPTION_CAUSE_TITLE:
-			setExceptionCauseTitle(EXCEPTION_CAUSE_TITLE_EDEFAULT);
-			return;
-		case EventsPackage.EXCEPTION_EVENT__EXCEPTION_CAUSE_STACK_TRACE:
-			setExceptionCauseStackTrace(EXCEPTION_CAUSE_STACK_TRACE_EDEFAULT);
-			return;
+		switch (featureID)
+		{
+			case EventsPackage.EXCEPTION_EVENT__EXCEPTION_TITLE:
+				setExceptionTitle(EXCEPTION_TITLE_EDEFAULT);
+				return;
+			case EventsPackage.EXCEPTION_EVENT__EXCEPTION_STACK_TRACE:
+				setExceptionStackTrace(EXCEPTION_STACK_TRACE_EDEFAULT);
+				return;
+			case EventsPackage.EXCEPTION_EVENT__EXCEPTION_CAUSE_TITLE:
+				setExceptionCauseTitle(EXCEPTION_CAUSE_TITLE_EDEFAULT);
+				return;
+			case EventsPackage.EXCEPTION_EVENT__EXCEPTION_CAUSE_STACK_TRACE:
+				setExceptionCauseStackTrace(EXCEPTION_CAUSE_STACK_TRACE_EDEFAULT);
+				return;
 		}
 		super.eUnset(featureID);
 	}
@@ -272,19 +270,16 @@ public class ExceptionEventImpl extends EventImpl implements ExceptionEvent {
 	 */
 	@Override
 	public boolean eIsSet(int featureID) {
-		switch (featureID) {
-		case EventsPackage.EXCEPTION_EVENT__EXCEPTION_TITLE:
-			return EXCEPTION_TITLE_EDEFAULT == null ? exceptionTitle != null : !EXCEPTION_TITLE_EDEFAULT
-				.equals(exceptionTitle);
-		case EventsPackage.EXCEPTION_EVENT__EXCEPTION_STACK_TRACE:
-			return EXCEPTION_STACK_TRACE_EDEFAULT == null ? exceptionStackTrace != null
-				: !EXCEPTION_STACK_TRACE_EDEFAULT.equals(exceptionStackTrace);
-		case EventsPackage.EXCEPTION_EVENT__EXCEPTION_CAUSE_TITLE:
-			return EXCEPTION_CAUSE_TITLE_EDEFAULT == null ? exceptionCauseTitle != null
-				: !EXCEPTION_CAUSE_TITLE_EDEFAULT.equals(exceptionCauseTitle);
-		case EventsPackage.EXCEPTION_EVENT__EXCEPTION_CAUSE_STACK_TRACE:
-			return EXCEPTION_CAUSE_STACK_TRACE_EDEFAULT == null ? exceptionCauseStackTrace != null
-				: !EXCEPTION_CAUSE_STACK_TRACE_EDEFAULT.equals(exceptionCauseStackTrace);
+		switch (featureID)
+		{
+			case EventsPackage.EXCEPTION_EVENT__EXCEPTION_TITLE:
+				return EXCEPTION_TITLE_EDEFAULT == null ? exceptionTitle != null : !EXCEPTION_TITLE_EDEFAULT.equals(exceptionTitle);
+			case EventsPackage.EXCEPTION_EVENT__EXCEPTION_STACK_TRACE:
+				return EXCEPTION_STACK_TRACE_EDEFAULT == null ? exceptionStackTrace != null : !EXCEPTION_STACK_TRACE_EDEFAULT.equals(exceptionStackTrace);
+			case EventsPackage.EXCEPTION_EVENT__EXCEPTION_CAUSE_TITLE:
+				return EXCEPTION_CAUSE_TITLE_EDEFAULT == null ? exceptionCauseTitle != null : !EXCEPTION_CAUSE_TITLE_EDEFAULT.equals(exceptionCauseTitle);
+			case EventsPackage.EXCEPTION_EVENT__EXCEPTION_CAUSE_STACK_TRACE:
+				return EXCEPTION_CAUSE_STACK_TRACE_EDEFAULT == null ? exceptionCauseStackTrace != null : !EXCEPTION_CAUSE_STACK_TRACE_EDEFAULT.equals(exceptionCauseStackTrace);
 		}
 		return super.eIsSet(featureID);
 	}
@@ -295,8 +290,7 @@ public class ExceptionEventImpl extends EventImpl implements ExceptionEvent {
 	 */
 	@Override
 	public String toString() {
-		if (eIsProxy())
-			return super.toString();
+		if (eIsProxy()) return super.toString();
 
 		StringBuffer result = new StringBuffer(super.toString());
 		result.append(" (ExceptionTitle: ");

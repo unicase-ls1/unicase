@@ -137,8 +137,7 @@ public class LogMessageImpl extends EObjectImpl implements LogMessage {
 		String oldMessage = message;
 		message = newMessage;
 		if (eNotificationRequired())
-			eNotify(new ENotificationImpl(this, Notification.SET, VersioningPackage.LOG_MESSAGE__MESSAGE, oldMessage,
-				message));
+			eNotify(new ENotificationImpl(this, Notification.SET, VersioningPackage.LOG_MESSAGE__MESSAGE, oldMessage, message));
 	}
 
 	/**
@@ -157,8 +156,7 @@ public class LogMessageImpl extends EObjectImpl implements LogMessage {
 		String oldAuthor = author;
 		author = newAuthor;
 		if (eNotificationRequired())
-			eNotify(new ENotificationImpl(this, Notification.SET, VersioningPackage.LOG_MESSAGE__AUTHOR, oldAuthor,
-				author));
+			eNotify(new ENotificationImpl(this, Notification.SET, VersioningPackage.LOG_MESSAGE__AUTHOR, oldAuthor, author));
 	}
 
 	/**
@@ -196,8 +194,7 @@ public class LogMessageImpl extends EObjectImpl implements LogMessage {
 		Date oldClientDate = clientDate;
 		clientDate = newClientDate;
 		if (eNotificationRequired())
-			eNotify(new ENotificationImpl(this, Notification.SET, VersioningPackage.LOG_MESSAGE__CLIENT_DATE,
-				oldClientDate, clientDate));
+			eNotify(new ENotificationImpl(this, Notification.SET, VersioningPackage.LOG_MESSAGE__CLIENT_DATE, oldClientDate, clientDate));
 	}
 
 	/**
@@ -206,15 +203,16 @@ public class LogMessageImpl extends EObjectImpl implements LogMessage {
 	 */
 	@Override
 	public Object eGet(int featureID, boolean resolve, boolean coreType) {
-		switch (featureID) {
-		case VersioningPackage.LOG_MESSAGE__AUTHOR:
-			return getAuthor();
-		case VersioningPackage.LOG_MESSAGE__MESSAGE:
-			return getMessage();
-		case VersioningPackage.LOG_MESSAGE__DATE:
-			return getDate();
-		case VersioningPackage.LOG_MESSAGE__CLIENT_DATE:
-			return getClientDate();
+		switch (featureID)
+		{
+			case VersioningPackage.LOG_MESSAGE__AUTHOR:
+				return getAuthor();
+			case VersioningPackage.LOG_MESSAGE__MESSAGE:
+				return getMessage();
+			case VersioningPackage.LOG_MESSAGE__DATE:
+				return getDate();
+			case VersioningPackage.LOG_MESSAGE__CLIENT_DATE:
+				return getClientDate();
 		}
 		return super.eGet(featureID, resolve, coreType);
 	}
@@ -225,19 +223,20 @@ public class LogMessageImpl extends EObjectImpl implements LogMessage {
 	 */
 	@Override
 	public void eSet(int featureID, Object newValue) {
-		switch (featureID) {
-		case VersioningPackage.LOG_MESSAGE__AUTHOR:
-			setAuthor((String) newValue);
-			return;
-		case VersioningPackage.LOG_MESSAGE__MESSAGE:
-			setMessage((String) newValue);
-			return;
-		case VersioningPackage.LOG_MESSAGE__DATE:
-			setDate((Date) newValue);
-			return;
-		case VersioningPackage.LOG_MESSAGE__CLIENT_DATE:
-			setClientDate((Date) newValue);
-			return;
+		switch (featureID)
+		{
+			case VersioningPackage.LOG_MESSAGE__AUTHOR:
+				setAuthor((String)newValue);
+				return;
+			case VersioningPackage.LOG_MESSAGE__MESSAGE:
+				setMessage((String)newValue);
+				return;
+			case VersioningPackage.LOG_MESSAGE__DATE:
+				setDate((Date)newValue);
+				return;
+			case VersioningPackage.LOG_MESSAGE__CLIENT_DATE:
+				setClientDate((Date)newValue);
+				return;
 		}
 		super.eSet(featureID, newValue);
 	}
@@ -248,19 +247,20 @@ public class LogMessageImpl extends EObjectImpl implements LogMessage {
 	 */
 	@Override
 	public void eUnset(int featureID) {
-		switch (featureID) {
-		case VersioningPackage.LOG_MESSAGE__AUTHOR:
-			setAuthor(AUTHOR_EDEFAULT);
-			return;
-		case VersioningPackage.LOG_MESSAGE__MESSAGE:
-			setMessage(MESSAGE_EDEFAULT);
-			return;
-		case VersioningPackage.LOG_MESSAGE__DATE:
-			setDate(DATE_EDEFAULT);
-			return;
-		case VersioningPackage.LOG_MESSAGE__CLIENT_DATE:
-			setClientDate(CLIENT_DATE_EDEFAULT);
-			return;
+		switch (featureID)
+		{
+			case VersioningPackage.LOG_MESSAGE__AUTHOR:
+				setAuthor(AUTHOR_EDEFAULT);
+				return;
+			case VersioningPackage.LOG_MESSAGE__MESSAGE:
+				setMessage(MESSAGE_EDEFAULT);
+				return;
+			case VersioningPackage.LOG_MESSAGE__DATE:
+				setDate(DATE_EDEFAULT);
+				return;
+			case VersioningPackage.LOG_MESSAGE__CLIENT_DATE:
+				setClientDate(CLIENT_DATE_EDEFAULT);
+				return;
 		}
 		super.eUnset(featureID);
 	}
@@ -271,15 +271,16 @@ public class LogMessageImpl extends EObjectImpl implements LogMessage {
 	 */
 	@Override
 	public boolean eIsSet(int featureID) {
-		switch (featureID) {
-		case VersioningPackage.LOG_MESSAGE__AUTHOR:
-			return AUTHOR_EDEFAULT == null ? author != null : !AUTHOR_EDEFAULT.equals(author);
-		case VersioningPackage.LOG_MESSAGE__MESSAGE:
-			return MESSAGE_EDEFAULT == null ? message != null : !MESSAGE_EDEFAULT.equals(message);
-		case VersioningPackage.LOG_MESSAGE__DATE:
-			return DATE_EDEFAULT == null ? date != null : !DATE_EDEFAULT.equals(date);
-		case VersioningPackage.LOG_MESSAGE__CLIENT_DATE:
-			return CLIENT_DATE_EDEFAULT == null ? clientDate != null : !CLIENT_DATE_EDEFAULT.equals(clientDate);
+		switch (featureID)
+		{
+			case VersioningPackage.LOG_MESSAGE__AUTHOR:
+				return AUTHOR_EDEFAULT == null ? author != null : !AUTHOR_EDEFAULT.equals(author);
+			case VersioningPackage.LOG_MESSAGE__MESSAGE:
+				return MESSAGE_EDEFAULT == null ? message != null : !MESSAGE_EDEFAULT.equals(message);
+			case VersioningPackage.LOG_MESSAGE__DATE:
+				return DATE_EDEFAULT == null ? date != null : !DATE_EDEFAULT.equals(date);
+			case VersioningPackage.LOG_MESSAGE__CLIENT_DATE:
+				return CLIENT_DATE_EDEFAULT == null ? clientDate != null : !CLIENT_DATE_EDEFAULT.equals(clientDate);
 		}
 		return super.eIsSet(featureID);
 	}
@@ -290,8 +291,7 @@ public class LogMessageImpl extends EObjectImpl implements LogMessage {
 	 */
 	@Override
 	public String toString() {
-		if (eIsProxy())
-			return super.toString();
+		if (eIsProxy()) return super.toString();
 
 		StringBuffer result = new StringBuffer(super.toString());
 		result.append(" (author: ");

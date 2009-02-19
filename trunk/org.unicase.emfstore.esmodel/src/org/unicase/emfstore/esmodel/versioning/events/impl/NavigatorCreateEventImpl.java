@@ -86,13 +86,14 @@ public class NavigatorCreateEventImpl extends EventImpl implements NavigatorCrea
 	 * @generated
 	 */
 	public ModelElementId getCreatedElement() {
-		if (createdElement != null && createdElement.eIsProxy()) {
-			InternalEObject oldCreatedElement = (InternalEObject) createdElement;
-			createdElement = (ModelElementId) eResolveProxy(oldCreatedElement);
-			if (createdElement != oldCreatedElement) {
+		if (createdElement != null && createdElement.eIsProxy())
+		{
+			InternalEObject oldCreatedElement = (InternalEObject)createdElement;
+			createdElement = (ModelElementId)eResolveProxy(oldCreatedElement);
+			if (createdElement != oldCreatedElement)
+			{
 				if (eNotificationRequired())
-					eNotify(new ENotificationImpl(this, Notification.RESOLVE,
-						EventsPackage.NAVIGATOR_CREATE_EVENT__CREATED_ELEMENT, oldCreatedElement, createdElement));
+					eNotify(new ENotificationImpl(this, Notification.RESOLVE, EventsPackage.NAVIGATOR_CREATE_EVENT__CREATED_ELEMENT, oldCreatedElement, createdElement));
 			}
 		}
 		return createdElement;
@@ -114,8 +115,7 @@ public class NavigatorCreateEventImpl extends EventImpl implements NavigatorCrea
 		ModelElementId oldCreatedElement = createdElement;
 		createdElement = newCreatedElement;
 		if (eNotificationRequired())
-			eNotify(new ENotificationImpl(this, Notification.SET,
-				EventsPackage.NAVIGATOR_CREATE_EVENT__CREATED_ELEMENT, oldCreatedElement, createdElement));
+			eNotify(new ENotificationImpl(this, Notification.SET, EventsPackage.NAVIGATOR_CREATE_EVENT__CREATED_ELEMENT, oldCreatedElement, createdElement));
 	}
 
 	/**
@@ -123,13 +123,14 @@ public class NavigatorCreateEventImpl extends EventImpl implements NavigatorCrea
 	 * @generated
 	 */
 	public ModelElementId getSourceSection() {
-		if (sourceSection != null && sourceSection.eIsProxy()) {
-			InternalEObject oldSourceSection = (InternalEObject) sourceSection;
-			sourceSection = (ModelElementId) eResolveProxy(oldSourceSection);
-			if (sourceSection != oldSourceSection) {
+		if (sourceSection != null && sourceSection.eIsProxy())
+		{
+			InternalEObject oldSourceSection = (InternalEObject)sourceSection;
+			sourceSection = (ModelElementId)eResolveProxy(oldSourceSection);
+			if (sourceSection != oldSourceSection)
+			{
 				if (eNotificationRequired())
-					eNotify(new ENotificationImpl(this, Notification.RESOLVE,
-						EventsPackage.NAVIGATOR_CREATE_EVENT__SOURCE_SECTION, oldSourceSection, sourceSection));
+					eNotify(new ENotificationImpl(this, Notification.RESOLVE, EventsPackage.NAVIGATOR_CREATE_EVENT__SOURCE_SECTION, oldSourceSection, sourceSection));
 			}
 		}
 		return sourceSection;
@@ -151,8 +152,7 @@ public class NavigatorCreateEventImpl extends EventImpl implements NavigatorCrea
 		ModelElementId oldSourceSection = sourceSection;
 		sourceSection = newSourceSection;
 		if (eNotificationRequired())
-			eNotify(new ENotificationImpl(this, Notification.SET, EventsPackage.NAVIGATOR_CREATE_EVENT__SOURCE_SECTION,
-				oldSourceSection, sourceSection));
+			eNotify(new ENotificationImpl(this, Notification.SET, EventsPackage.NAVIGATOR_CREATE_EVENT__SOURCE_SECTION, oldSourceSection, sourceSection));
 	}
 
 	/**
@@ -171,8 +171,7 @@ public class NavigatorCreateEventImpl extends EventImpl implements NavigatorCrea
 		boolean oldDynamic = dynamic;
 		dynamic = newDynamic;
 		if (eNotificationRequired())
-			eNotify(new ENotificationImpl(this, Notification.SET, EventsPackage.NAVIGATOR_CREATE_EVENT__DYNAMIC,
-				oldDynamic, dynamic));
+			eNotify(new ENotificationImpl(this, Notification.SET, EventsPackage.NAVIGATOR_CREATE_EVENT__DYNAMIC, oldDynamic, dynamic));
 	}
 
 	/**
@@ -181,17 +180,16 @@ public class NavigatorCreateEventImpl extends EventImpl implements NavigatorCrea
 	 */
 	@Override
 	public Object eGet(int featureID, boolean resolve, boolean coreType) {
-		switch (featureID) {
-		case EventsPackage.NAVIGATOR_CREATE_EVENT__CREATED_ELEMENT:
-			if (resolve)
-				return getCreatedElement();
-			return basicGetCreatedElement();
-		case EventsPackage.NAVIGATOR_CREATE_EVENT__SOURCE_SECTION:
-			if (resolve)
-				return getSourceSection();
-			return basicGetSourceSection();
-		case EventsPackage.NAVIGATOR_CREATE_EVENT__DYNAMIC:
-			return isDynamic() ? Boolean.TRUE : Boolean.FALSE;
+		switch (featureID)
+		{
+			case EventsPackage.NAVIGATOR_CREATE_EVENT__CREATED_ELEMENT:
+				if (resolve) return getCreatedElement();
+				return basicGetCreatedElement();
+			case EventsPackage.NAVIGATOR_CREATE_EVENT__SOURCE_SECTION:
+				if (resolve) return getSourceSection();
+				return basicGetSourceSection();
+			case EventsPackage.NAVIGATOR_CREATE_EVENT__DYNAMIC:
+				return isDynamic() ? Boolean.TRUE : Boolean.FALSE;
 		}
 		return super.eGet(featureID, resolve, coreType);
 	}
@@ -202,16 +200,17 @@ public class NavigatorCreateEventImpl extends EventImpl implements NavigatorCrea
 	 */
 	@Override
 	public void eSet(int featureID, Object newValue) {
-		switch (featureID) {
-		case EventsPackage.NAVIGATOR_CREATE_EVENT__CREATED_ELEMENT:
-			setCreatedElement((ModelElementId) newValue);
-			return;
-		case EventsPackage.NAVIGATOR_CREATE_EVENT__SOURCE_SECTION:
-			setSourceSection((ModelElementId) newValue);
-			return;
-		case EventsPackage.NAVIGATOR_CREATE_EVENT__DYNAMIC:
-			setDynamic(((Boolean) newValue).booleanValue());
-			return;
+		switch (featureID)
+		{
+			case EventsPackage.NAVIGATOR_CREATE_EVENT__CREATED_ELEMENT:
+				setCreatedElement((ModelElementId)newValue);
+				return;
+			case EventsPackage.NAVIGATOR_CREATE_EVENT__SOURCE_SECTION:
+				setSourceSection((ModelElementId)newValue);
+				return;
+			case EventsPackage.NAVIGATOR_CREATE_EVENT__DYNAMIC:
+				setDynamic(((Boolean)newValue).booleanValue());
+				return;
 		}
 		super.eSet(featureID, newValue);
 	}
@@ -222,16 +221,17 @@ public class NavigatorCreateEventImpl extends EventImpl implements NavigatorCrea
 	 */
 	@Override
 	public void eUnset(int featureID) {
-		switch (featureID) {
-		case EventsPackage.NAVIGATOR_CREATE_EVENT__CREATED_ELEMENT:
-			setCreatedElement((ModelElementId) null);
-			return;
-		case EventsPackage.NAVIGATOR_CREATE_EVENT__SOURCE_SECTION:
-			setSourceSection((ModelElementId) null);
-			return;
-		case EventsPackage.NAVIGATOR_CREATE_EVENT__DYNAMIC:
-			setDynamic(DYNAMIC_EDEFAULT);
-			return;
+		switch (featureID)
+		{
+			case EventsPackage.NAVIGATOR_CREATE_EVENT__CREATED_ELEMENT:
+				setCreatedElement((ModelElementId)null);
+				return;
+			case EventsPackage.NAVIGATOR_CREATE_EVENT__SOURCE_SECTION:
+				setSourceSection((ModelElementId)null);
+				return;
+			case EventsPackage.NAVIGATOR_CREATE_EVENT__DYNAMIC:
+				setDynamic(DYNAMIC_EDEFAULT);
+				return;
 		}
 		super.eUnset(featureID);
 	}
@@ -242,13 +242,14 @@ public class NavigatorCreateEventImpl extends EventImpl implements NavigatorCrea
 	 */
 	@Override
 	public boolean eIsSet(int featureID) {
-		switch (featureID) {
-		case EventsPackage.NAVIGATOR_CREATE_EVENT__CREATED_ELEMENT:
-			return createdElement != null;
-		case EventsPackage.NAVIGATOR_CREATE_EVENT__SOURCE_SECTION:
-			return sourceSection != null;
-		case EventsPackage.NAVIGATOR_CREATE_EVENT__DYNAMIC:
-			return dynamic != DYNAMIC_EDEFAULT;
+		switch (featureID)
+		{
+			case EventsPackage.NAVIGATOR_CREATE_EVENT__CREATED_ELEMENT:
+				return createdElement != null;
+			case EventsPackage.NAVIGATOR_CREATE_EVENT__SOURCE_SECTION:
+				return sourceSection != null;
+			case EventsPackage.NAVIGATOR_CREATE_EVENT__DYNAMIC:
+				return dynamic != DYNAMIC_EDEFAULT;
 		}
 		return super.eIsSet(featureID);
 	}
@@ -259,8 +260,7 @@ public class NavigatorCreateEventImpl extends EventImpl implements NavigatorCrea
 	 */
 	@Override
 	public String toString() {
-		if (eIsProxy())
-			return super.toString();
+		if (eIsProxy()) return super.toString();
 
 		StringBuffer result = new StringBuffer(super.toString());
 		result.append(" (dynamic: ");

@@ -136,8 +136,7 @@ public class MergeEventImpl extends EventImpl implements MergeEvent {
 		int oldNumberOfConflicts = numberOfConflicts;
 		numberOfConflicts = newNumberOfConflicts;
 		if (eNotificationRequired())
-			eNotify(new ENotificationImpl(this, Notification.SET, EventsPackage.MERGE_EVENT__NUMBER_OF_CONFLICTS,
-				oldNumberOfConflicts, numberOfConflicts));
+			eNotify(new ENotificationImpl(this, Notification.SET, EventsPackage.MERGE_EVENT__NUMBER_OF_CONFLICTS, oldNumberOfConflicts, numberOfConflicts));
 	}
 
 	/**
@@ -156,8 +155,7 @@ public class MergeEventImpl extends EventImpl implements MergeEvent {
 		int oldTotalTime = totalTime;
 		totalTime = newTotalTime;
 		if (eNotificationRequired())
-			eNotify(new ENotificationImpl(this, Notification.SET, EventsPackage.MERGE_EVENT__TOTAL_TIME, oldTotalTime,
-				totalTime));
+			eNotify(new ENotificationImpl(this, Notification.SET, EventsPackage.MERGE_EVENT__TOTAL_TIME, oldTotalTime, totalTime));
 	}
 
 	/**
@@ -165,22 +163,21 @@ public class MergeEventImpl extends EventImpl implements MergeEvent {
 	 * @generated
 	 */
 	public PrimaryVersionSpec getBaseVersion() {
-		if (baseVersion != null && baseVersion.eIsProxy()) {
-			InternalEObject oldBaseVersion = (InternalEObject) baseVersion;
-			baseVersion = (PrimaryVersionSpec) eResolveProxy(oldBaseVersion);
-			if (baseVersion != oldBaseVersion) {
-				InternalEObject newBaseVersion = (InternalEObject) baseVersion;
-				NotificationChain msgs = oldBaseVersion.eInverseRemove(this, EOPPOSITE_FEATURE_BASE
-					- EventsPackage.MERGE_EVENT__BASE_VERSION, null, null);
-				if (newBaseVersion.eInternalContainer() == null) {
-					msgs = newBaseVersion.eInverseAdd(this, EOPPOSITE_FEATURE_BASE
-						- EventsPackage.MERGE_EVENT__BASE_VERSION, null, msgs);
+		if (baseVersion != null && baseVersion.eIsProxy())
+		{
+			InternalEObject oldBaseVersion = (InternalEObject)baseVersion;
+			baseVersion = (PrimaryVersionSpec)eResolveProxy(oldBaseVersion);
+			if (baseVersion != oldBaseVersion)
+			{
+				InternalEObject newBaseVersion = (InternalEObject)baseVersion;
+				NotificationChain msgs = oldBaseVersion.eInverseRemove(this, EOPPOSITE_FEATURE_BASE - EventsPackage.MERGE_EVENT__BASE_VERSION, null, null);
+				if (newBaseVersion.eInternalContainer() == null)
+				{
+					msgs = newBaseVersion.eInverseAdd(this, EOPPOSITE_FEATURE_BASE - EventsPackage.MERGE_EVENT__BASE_VERSION, null, msgs);
 				}
-				if (msgs != null)
-					msgs.dispatch();
+				if (msgs != null) msgs.dispatch();
 				if (eNotificationRequired())
-					eNotify(new ENotificationImpl(this, Notification.RESOLVE, EventsPackage.MERGE_EVENT__BASE_VERSION,
-						oldBaseVersion, baseVersion));
+					eNotify(new ENotificationImpl(this, Notification.RESOLVE, EventsPackage.MERGE_EVENT__BASE_VERSION, oldBaseVersion, baseVersion));
 			}
 		}
 		return baseVersion;
@@ -201,13 +198,10 @@ public class MergeEventImpl extends EventImpl implements MergeEvent {
 	public NotificationChain basicSetBaseVersion(PrimaryVersionSpec newBaseVersion, NotificationChain msgs) {
 		PrimaryVersionSpec oldBaseVersion = baseVersion;
 		baseVersion = newBaseVersion;
-		if (eNotificationRequired()) {
-			ENotificationImpl notification = new ENotificationImpl(this, Notification.SET,
-				EventsPackage.MERGE_EVENT__BASE_VERSION, oldBaseVersion, newBaseVersion);
-			if (msgs == null)
-				msgs = notification;
-			else
-				msgs.add(notification);
+		if (eNotificationRequired())
+		{
+			ENotificationImpl notification = new ENotificationImpl(this, Notification.SET, EventsPackage.MERGE_EVENT__BASE_VERSION, oldBaseVersion, newBaseVersion);
+			if (msgs == null) msgs = notification; else msgs.add(notification);
 		}
 		return msgs;
 	}
@@ -217,20 +211,18 @@ public class MergeEventImpl extends EventImpl implements MergeEvent {
 	 * @generated
 	 */
 	public void setBaseVersion(PrimaryVersionSpec newBaseVersion) {
-		if (newBaseVersion != baseVersion) {
+		if (newBaseVersion != baseVersion)
+		{
 			NotificationChain msgs = null;
 			if (baseVersion != null)
-				msgs = ((InternalEObject) baseVersion).eInverseRemove(this, EOPPOSITE_FEATURE_BASE
-					- EventsPackage.MERGE_EVENT__BASE_VERSION, null, msgs);
+				msgs = ((InternalEObject)baseVersion).eInverseRemove(this, EOPPOSITE_FEATURE_BASE - EventsPackage.MERGE_EVENT__BASE_VERSION, null, msgs);
 			if (newBaseVersion != null)
-				msgs = ((InternalEObject) newBaseVersion).eInverseAdd(this, EOPPOSITE_FEATURE_BASE
-					- EventsPackage.MERGE_EVENT__BASE_VERSION, null, msgs);
+				msgs = ((InternalEObject)newBaseVersion).eInverseAdd(this, EOPPOSITE_FEATURE_BASE - EventsPackage.MERGE_EVENT__BASE_VERSION, null, msgs);
 			msgs = basicSetBaseVersion(newBaseVersion, msgs);
-			if (msgs != null)
-				msgs.dispatch();
-		} else if (eNotificationRequired())
-			eNotify(new ENotificationImpl(this, Notification.SET, EventsPackage.MERGE_EVENT__BASE_VERSION,
-				newBaseVersion, newBaseVersion));
+			if (msgs != null) msgs.dispatch();
+		}
+		else if (eNotificationRequired())
+			eNotify(new ENotificationImpl(this, Notification.SET, EventsPackage.MERGE_EVENT__BASE_VERSION, newBaseVersion, newBaseVersion));
 	}
 
 	/**
@@ -238,22 +230,21 @@ public class MergeEventImpl extends EventImpl implements MergeEvent {
 	 * @generated
 	 */
 	public PrimaryVersionSpec getTargetVersion() {
-		if (targetVersion != null && targetVersion.eIsProxy()) {
-			InternalEObject oldTargetVersion = (InternalEObject) targetVersion;
-			targetVersion = (PrimaryVersionSpec) eResolveProxy(oldTargetVersion);
-			if (targetVersion != oldTargetVersion) {
-				InternalEObject newTargetVersion = (InternalEObject) targetVersion;
-				NotificationChain msgs = oldTargetVersion.eInverseRemove(this, EOPPOSITE_FEATURE_BASE
-					- EventsPackage.MERGE_EVENT__TARGET_VERSION, null, null);
-				if (newTargetVersion.eInternalContainer() == null) {
-					msgs = newTargetVersion.eInverseAdd(this, EOPPOSITE_FEATURE_BASE
-						- EventsPackage.MERGE_EVENT__TARGET_VERSION, null, msgs);
+		if (targetVersion != null && targetVersion.eIsProxy())
+		{
+			InternalEObject oldTargetVersion = (InternalEObject)targetVersion;
+			targetVersion = (PrimaryVersionSpec)eResolveProxy(oldTargetVersion);
+			if (targetVersion != oldTargetVersion)
+			{
+				InternalEObject newTargetVersion = (InternalEObject)targetVersion;
+				NotificationChain msgs = oldTargetVersion.eInverseRemove(this, EOPPOSITE_FEATURE_BASE - EventsPackage.MERGE_EVENT__TARGET_VERSION, null, null);
+				if (newTargetVersion.eInternalContainer() == null)
+				{
+					msgs = newTargetVersion.eInverseAdd(this, EOPPOSITE_FEATURE_BASE - EventsPackage.MERGE_EVENT__TARGET_VERSION, null, msgs);
 				}
-				if (msgs != null)
-					msgs.dispatch();
+				if (msgs != null) msgs.dispatch();
 				if (eNotificationRequired())
-					eNotify(new ENotificationImpl(this, Notification.RESOLVE,
-						EventsPackage.MERGE_EVENT__TARGET_VERSION, oldTargetVersion, targetVersion));
+					eNotify(new ENotificationImpl(this, Notification.RESOLVE, EventsPackage.MERGE_EVENT__TARGET_VERSION, oldTargetVersion, targetVersion));
 			}
 		}
 		return targetVersion;
@@ -274,13 +265,10 @@ public class MergeEventImpl extends EventImpl implements MergeEvent {
 	public NotificationChain basicSetTargetVersion(PrimaryVersionSpec newTargetVersion, NotificationChain msgs) {
 		PrimaryVersionSpec oldTargetVersion = targetVersion;
 		targetVersion = newTargetVersion;
-		if (eNotificationRequired()) {
-			ENotificationImpl notification = new ENotificationImpl(this, Notification.SET,
-				EventsPackage.MERGE_EVENT__TARGET_VERSION, oldTargetVersion, newTargetVersion);
-			if (msgs == null)
-				msgs = notification;
-			else
-				msgs.add(notification);
+		if (eNotificationRequired())
+		{
+			ENotificationImpl notification = new ENotificationImpl(this, Notification.SET, EventsPackage.MERGE_EVENT__TARGET_VERSION, oldTargetVersion, newTargetVersion);
+			if (msgs == null) msgs = notification; else msgs.add(notification);
 		}
 		return msgs;
 	}
@@ -290,20 +278,18 @@ public class MergeEventImpl extends EventImpl implements MergeEvent {
 	 * @generated
 	 */
 	public void setTargetVersion(PrimaryVersionSpec newTargetVersion) {
-		if (newTargetVersion != targetVersion) {
+		if (newTargetVersion != targetVersion)
+		{
 			NotificationChain msgs = null;
 			if (targetVersion != null)
-				msgs = ((InternalEObject) targetVersion).eInverseRemove(this, EOPPOSITE_FEATURE_BASE
-					- EventsPackage.MERGE_EVENT__TARGET_VERSION, null, msgs);
+				msgs = ((InternalEObject)targetVersion).eInverseRemove(this, EOPPOSITE_FEATURE_BASE - EventsPackage.MERGE_EVENT__TARGET_VERSION, null, msgs);
 			if (newTargetVersion != null)
-				msgs = ((InternalEObject) newTargetVersion).eInverseAdd(this, EOPPOSITE_FEATURE_BASE
-					- EventsPackage.MERGE_EVENT__TARGET_VERSION, null, msgs);
+				msgs = ((InternalEObject)newTargetVersion).eInverseAdd(this, EOPPOSITE_FEATURE_BASE - EventsPackage.MERGE_EVENT__TARGET_VERSION, null, msgs);
 			msgs = basicSetTargetVersion(newTargetVersion, msgs);
-			if (msgs != null)
-				msgs.dispatch();
-		} else if (eNotificationRequired())
-			eNotify(new ENotificationImpl(this, Notification.SET, EventsPackage.MERGE_EVENT__TARGET_VERSION,
-				newTargetVersion, newTargetVersion));
+			if (msgs != null) msgs.dispatch();
+		}
+		else if (eNotificationRequired())
+			eNotify(new ENotificationImpl(this, Notification.SET, EventsPackage.MERGE_EVENT__TARGET_VERSION, newTargetVersion, newTargetVersion));
 	}
 
 	/**
@@ -311,9 +297,9 @@ public class MergeEventImpl extends EventImpl implements MergeEvent {
 	 * @generated
 	 */
 	public EList<AbstractOperation> getLocalChanges() {
-		if (localChanges == null) {
-			localChanges = new EObjectContainmentEList.Resolving<AbstractOperation>(AbstractOperation.class, this,
-				EventsPackage.MERGE_EVENT__LOCAL_CHANGES);
+		if (localChanges == null)
+		{
+			localChanges = new EObjectContainmentEList.Resolving<AbstractOperation>(AbstractOperation.class, this, EventsPackage.MERGE_EVENT__LOCAL_CHANGES);
 		}
 		return localChanges;
 	}
@@ -324,13 +310,14 @@ public class MergeEventImpl extends EventImpl implements MergeEvent {
 	 */
 	@Override
 	public NotificationChain eInverseRemove(InternalEObject otherEnd, int featureID, NotificationChain msgs) {
-		switch (featureID) {
-		case EventsPackage.MERGE_EVENT__BASE_VERSION:
-			return basicSetBaseVersion(null, msgs);
-		case EventsPackage.MERGE_EVENT__TARGET_VERSION:
-			return basicSetTargetVersion(null, msgs);
-		case EventsPackage.MERGE_EVENT__LOCAL_CHANGES:
-			return ((InternalEList<?>) getLocalChanges()).basicRemove(otherEnd, msgs);
+		switch (featureID)
+		{
+			case EventsPackage.MERGE_EVENT__BASE_VERSION:
+				return basicSetBaseVersion(null, msgs);
+			case EventsPackage.MERGE_EVENT__TARGET_VERSION:
+				return basicSetTargetVersion(null, msgs);
+			case EventsPackage.MERGE_EVENT__LOCAL_CHANGES:
+				return ((InternalEList<?>)getLocalChanges()).basicRemove(otherEnd, msgs);
 		}
 		return super.eInverseRemove(otherEnd, featureID, msgs);
 	}
@@ -341,21 +328,20 @@ public class MergeEventImpl extends EventImpl implements MergeEvent {
 	 */
 	@Override
 	public Object eGet(int featureID, boolean resolve, boolean coreType) {
-		switch (featureID) {
-		case EventsPackage.MERGE_EVENT__NUMBER_OF_CONFLICTS:
-			return new Integer(getNumberOfConflicts());
-		case EventsPackage.MERGE_EVENT__TOTAL_TIME:
-			return new Integer(getTotalTime());
-		case EventsPackage.MERGE_EVENT__BASE_VERSION:
-			if (resolve)
-				return getBaseVersion();
-			return basicGetBaseVersion();
-		case EventsPackage.MERGE_EVENT__TARGET_VERSION:
-			if (resolve)
-				return getTargetVersion();
-			return basicGetTargetVersion();
-		case EventsPackage.MERGE_EVENT__LOCAL_CHANGES:
-			return getLocalChanges();
+		switch (featureID)
+		{
+			case EventsPackage.MERGE_EVENT__NUMBER_OF_CONFLICTS:
+				return new Integer(getNumberOfConflicts());
+			case EventsPackage.MERGE_EVENT__TOTAL_TIME:
+				return new Integer(getTotalTime());
+			case EventsPackage.MERGE_EVENT__BASE_VERSION:
+				if (resolve) return getBaseVersion();
+				return basicGetBaseVersion();
+			case EventsPackage.MERGE_EVENT__TARGET_VERSION:
+				if (resolve) return getTargetVersion();
+				return basicGetTargetVersion();
+			case EventsPackage.MERGE_EVENT__LOCAL_CHANGES:
+				return getLocalChanges();
 		}
 		return super.eGet(featureID, resolve, coreType);
 	}
@@ -367,23 +353,24 @@ public class MergeEventImpl extends EventImpl implements MergeEvent {
 	@SuppressWarnings("unchecked")
 	@Override
 	public void eSet(int featureID, Object newValue) {
-		switch (featureID) {
-		case EventsPackage.MERGE_EVENT__NUMBER_OF_CONFLICTS:
-			setNumberOfConflicts(((Integer) newValue).intValue());
-			return;
-		case EventsPackage.MERGE_EVENT__TOTAL_TIME:
-			setTotalTime(((Integer) newValue).intValue());
-			return;
-		case EventsPackage.MERGE_EVENT__BASE_VERSION:
-			setBaseVersion((PrimaryVersionSpec) newValue);
-			return;
-		case EventsPackage.MERGE_EVENT__TARGET_VERSION:
-			setTargetVersion((PrimaryVersionSpec) newValue);
-			return;
-		case EventsPackage.MERGE_EVENT__LOCAL_CHANGES:
-			getLocalChanges().clear();
-			getLocalChanges().addAll((Collection<? extends AbstractOperation>) newValue);
-			return;
+		switch (featureID)
+		{
+			case EventsPackage.MERGE_EVENT__NUMBER_OF_CONFLICTS:
+				setNumberOfConflicts(((Integer)newValue).intValue());
+				return;
+			case EventsPackage.MERGE_EVENT__TOTAL_TIME:
+				setTotalTime(((Integer)newValue).intValue());
+				return;
+			case EventsPackage.MERGE_EVENT__BASE_VERSION:
+				setBaseVersion((PrimaryVersionSpec)newValue);
+				return;
+			case EventsPackage.MERGE_EVENT__TARGET_VERSION:
+				setTargetVersion((PrimaryVersionSpec)newValue);
+				return;
+			case EventsPackage.MERGE_EVENT__LOCAL_CHANGES:
+				getLocalChanges().clear();
+				getLocalChanges().addAll((Collection<? extends AbstractOperation>)newValue);
+				return;
 		}
 		super.eSet(featureID, newValue);
 	}
@@ -394,22 +381,23 @@ public class MergeEventImpl extends EventImpl implements MergeEvent {
 	 */
 	@Override
 	public void eUnset(int featureID) {
-		switch (featureID) {
-		case EventsPackage.MERGE_EVENT__NUMBER_OF_CONFLICTS:
-			setNumberOfConflicts(NUMBER_OF_CONFLICTS_EDEFAULT);
-			return;
-		case EventsPackage.MERGE_EVENT__TOTAL_TIME:
-			setTotalTime(TOTAL_TIME_EDEFAULT);
-			return;
-		case EventsPackage.MERGE_EVENT__BASE_VERSION:
-			setBaseVersion((PrimaryVersionSpec) null);
-			return;
-		case EventsPackage.MERGE_EVENT__TARGET_VERSION:
-			setTargetVersion((PrimaryVersionSpec) null);
-			return;
-		case EventsPackage.MERGE_EVENT__LOCAL_CHANGES:
-			getLocalChanges().clear();
-			return;
+		switch (featureID)
+		{
+			case EventsPackage.MERGE_EVENT__NUMBER_OF_CONFLICTS:
+				setNumberOfConflicts(NUMBER_OF_CONFLICTS_EDEFAULT);
+				return;
+			case EventsPackage.MERGE_EVENT__TOTAL_TIME:
+				setTotalTime(TOTAL_TIME_EDEFAULT);
+				return;
+			case EventsPackage.MERGE_EVENT__BASE_VERSION:
+				setBaseVersion((PrimaryVersionSpec)null);
+				return;
+			case EventsPackage.MERGE_EVENT__TARGET_VERSION:
+				setTargetVersion((PrimaryVersionSpec)null);
+				return;
+			case EventsPackage.MERGE_EVENT__LOCAL_CHANGES:
+				getLocalChanges().clear();
+				return;
 		}
 		super.eUnset(featureID);
 	}
@@ -420,17 +408,18 @@ public class MergeEventImpl extends EventImpl implements MergeEvent {
 	 */
 	@Override
 	public boolean eIsSet(int featureID) {
-		switch (featureID) {
-		case EventsPackage.MERGE_EVENT__NUMBER_OF_CONFLICTS:
-			return numberOfConflicts != NUMBER_OF_CONFLICTS_EDEFAULT;
-		case EventsPackage.MERGE_EVENT__TOTAL_TIME:
-			return totalTime != TOTAL_TIME_EDEFAULT;
-		case EventsPackage.MERGE_EVENT__BASE_VERSION:
-			return baseVersion != null;
-		case EventsPackage.MERGE_EVENT__TARGET_VERSION:
-			return targetVersion != null;
-		case EventsPackage.MERGE_EVENT__LOCAL_CHANGES:
-			return localChanges != null && !localChanges.isEmpty();
+		switch (featureID)
+		{
+			case EventsPackage.MERGE_EVENT__NUMBER_OF_CONFLICTS:
+				return numberOfConflicts != NUMBER_OF_CONFLICTS_EDEFAULT;
+			case EventsPackage.MERGE_EVENT__TOTAL_TIME:
+				return totalTime != TOTAL_TIME_EDEFAULT;
+			case EventsPackage.MERGE_EVENT__BASE_VERSION:
+				return baseVersion != null;
+			case EventsPackage.MERGE_EVENT__TARGET_VERSION:
+				return targetVersion != null;
+			case EventsPackage.MERGE_EVENT__LOCAL_CHANGES:
+				return localChanges != null && !localChanges.isEmpty();
 		}
 		return super.eIsSet(featureID);
 	}
@@ -441,8 +430,7 @@ public class MergeEventImpl extends EventImpl implements MergeEvent {
 	 */
 	@Override
 	public String toString() {
-		if (eIsProxy())
-			return super.toString();
+		if (eIsProxy()) return super.toString();
 
 		StringBuffer result = new StringBuffer(super.toString());
 		result.append(" (numberOfConflicts: ");

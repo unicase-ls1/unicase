@@ -45,7 +45,8 @@ public class FeatureOperationItemProvider extends AbstractOperationItemProvider 
 	 */
 	@Override
 	public List<IItemPropertyDescriptor> getPropertyDescriptors(Object object) {
-		if (itemPropertyDescriptors == null) {
+		if (itemPropertyDescriptors == null)
+		{
 			super.getPropertyDescriptors(object);
 
 			addFeatureNamePropertyDescriptor(object);
@@ -59,11 +60,19 @@ public class FeatureOperationItemProvider extends AbstractOperationItemProvider 
 	 * @generated
 	 */
 	protected void addFeatureNamePropertyDescriptor(Object object) {
-		itemPropertyDescriptors.add(createItemPropertyDescriptor(((ComposeableAdapterFactory) adapterFactory)
-			.getRootAdapterFactory(), getResourceLocator(), getString("_UI_FeatureOperation_featureName_feature"),
-			getString("_UI_PropertyDescriptor_description", "_UI_FeatureOperation_featureName_feature",
-				"_UI_FeatureOperation_type"), OperationsPackage.Literals.FEATURE_OPERATION__FEATURE_NAME, true, false,
-			false, ItemPropertyDescriptor.GENERIC_VALUE_IMAGE, null, null));
+		itemPropertyDescriptors.add
+			(createItemPropertyDescriptor
+				(((ComposeableAdapterFactory)adapterFactory).getRootAdapterFactory(),
+				 getResourceLocator(),
+				 getString("_UI_FeatureOperation_featureName_feature"),
+				 getString("_UI_PropertyDescriptor_description", "_UI_FeatureOperation_featureName_feature", "_UI_FeatureOperation_type"),
+				 OperationsPackage.Literals.FEATURE_OPERATION__FEATURE_NAME,
+				 true,
+				 false,
+				 false,
+				 ItemPropertyDescriptor.GENERIC_VALUE_IMAGE,
+				 null,
+				 null));
 	}
 
 	/**
@@ -83,9 +92,10 @@ public class FeatureOperationItemProvider extends AbstractOperationItemProvider 
 	 */
 	@Override
 	public String getText(Object object) {
-		String label = ((FeatureOperation) object).getName();
-		return label == null || label.length() == 0 ? getString("_UI_FeatureOperation_type")
-			: getString("_UI_FeatureOperation_type") + " " + label;
+		String label = ((FeatureOperation)object).getName();
+		return label == null || label.length() == 0 ?
+			getString("_UI_FeatureOperation_type") :
+			getString("_UI_FeatureOperation_type") + " " + label;
 	}
 
 	/**
@@ -99,10 +109,11 @@ public class FeatureOperationItemProvider extends AbstractOperationItemProvider 
 	public void notifyChanged(Notification notification) {
 		updateChildren(notification);
 
-		switch (notification.getFeatureID(FeatureOperation.class)) {
-		case OperationsPackage.FEATURE_OPERATION__FEATURE_NAME:
-			fireNotifyChanged(new ViewerNotification(notification, notification.getNotifier(), false, true));
-			return;
+		switch (notification.getFeatureID(FeatureOperation.class))
+		{
+			case OperationsPackage.FEATURE_OPERATION__FEATURE_NAME:
+				fireNotifyChanged(new ViewerNotification(notification, notification.getNotifier(), false, true));
+				return;
 		}
 		super.notifyChanged(notification);
 	}

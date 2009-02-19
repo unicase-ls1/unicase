@@ -47,7 +47,8 @@ public class PresentationSwitchEventItemProvider extends EventItemProvider imple
 	 */
 	@Override
 	public List<IItemPropertyDescriptor> getPropertyDescriptors(Object object) {
-		if (itemPropertyDescriptors == null) {
+		if (itemPropertyDescriptors == null)
+		{
 			super.getPropertyDescriptors(object);
 
 			addReadViewPropertyDescriptor(object);
@@ -62,11 +63,19 @@ public class PresentationSwitchEventItemProvider extends EventItemProvider imple
 	 * @generated
 	 */
 	protected void addReadViewPropertyDescriptor(Object object) {
-		itemPropertyDescriptors.add(createItemPropertyDescriptor(((ComposeableAdapterFactory) adapterFactory)
-			.getRootAdapterFactory(), getResourceLocator(), getString("_UI_PresentationSwitchEvent_readView_feature"),
-			getString("_UI_PropertyDescriptor_description", "_UI_PresentationSwitchEvent_readView_feature",
-				"_UI_PresentationSwitchEvent_type"), EventsPackage.Literals.PRESENTATION_SWITCH_EVENT__READ_VIEW, true,
-			false, false, ItemPropertyDescriptor.GENERIC_VALUE_IMAGE, null, null));
+		itemPropertyDescriptors.add
+			(createItemPropertyDescriptor
+				(((ComposeableAdapterFactory)adapterFactory).getRootAdapterFactory(),
+				 getResourceLocator(),
+				 getString("_UI_PresentationSwitchEvent_readView_feature"),
+				 getString("_UI_PropertyDescriptor_description", "_UI_PresentationSwitchEvent_readView_feature", "_UI_PresentationSwitchEvent_type"),
+				 EventsPackage.Literals.PRESENTATION_SWITCH_EVENT__READ_VIEW,
+				 true,
+				 false,
+				 false,
+				 ItemPropertyDescriptor.GENERIC_VALUE_IMAGE,
+				 null,
+				 null));
 	}
 
 	/**
@@ -75,13 +84,19 @@ public class PresentationSwitchEventItemProvider extends EventItemProvider imple
 	 * @generated
 	 */
 	protected void addNewPresentationPropertyDescriptor(Object object) {
-		itemPropertyDescriptors.add(createItemPropertyDescriptor(((ComposeableAdapterFactory) adapterFactory)
-			.getRootAdapterFactory(), getResourceLocator(),
-			getString("_UI_PresentationSwitchEvent_newPresentation_feature"), getString(
-				"_UI_PropertyDescriptor_description", "_UI_PresentationSwitchEvent_newPresentation_feature",
-				"_UI_PresentationSwitchEvent_type"),
-			EventsPackage.Literals.PRESENTATION_SWITCH_EVENT__NEW_PRESENTATION, true, false, false,
-			ItemPropertyDescriptor.GENERIC_VALUE_IMAGE, null, null));
+		itemPropertyDescriptors.add
+			(createItemPropertyDescriptor
+				(((ComposeableAdapterFactory)adapterFactory).getRootAdapterFactory(),
+				 getResourceLocator(),
+				 getString("_UI_PresentationSwitchEvent_newPresentation_feature"),
+				 getString("_UI_PropertyDescriptor_description", "_UI_PresentationSwitchEvent_newPresentation_feature", "_UI_PresentationSwitchEvent_type"),
+				 EventsPackage.Literals.PRESENTATION_SWITCH_EVENT__NEW_PRESENTATION,
+				 true,
+				 false,
+				 false,
+				 ItemPropertyDescriptor.GENERIC_VALUE_IMAGE,
+				 null,
+				 null));
 	}
 
 	/**
@@ -101,10 +116,11 @@ public class PresentationSwitchEventItemProvider extends EventItemProvider imple
 	 */
 	@Override
 	public String getText(Object object) {
-		Date labelValue = ((PresentationSwitchEvent) object).getTimestamp();
+		Date labelValue = ((PresentationSwitchEvent)object).getTimestamp();
 		String label = labelValue == null ? null : labelValue.toString();
-		return label == null || label.length() == 0 ? getString("_UI_PresentationSwitchEvent_type")
-			: getString("_UI_PresentationSwitchEvent_type") + " " + label;
+		return label == null || label.length() == 0 ?
+			getString("_UI_PresentationSwitchEvent_type") :
+			getString("_UI_PresentationSwitchEvent_type") + " " + label;
 	}
 
 	/**
@@ -118,11 +134,12 @@ public class PresentationSwitchEventItemProvider extends EventItemProvider imple
 	public void notifyChanged(Notification notification) {
 		updateChildren(notification);
 
-		switch (notification.getFeatureID(PresentationSwitchEvent.class)) {
-		case EventsPackage.PRESENTATION_SWITCH_EVENT__READ_VIEW:
-		case EventsPackage.PRESENTATION_SWITCH_EVENT__NEW_PRESENTATION:
-			fireNotifyChanged(new ViewerNotification(notification, notification.getNotifier(), false, true));
-			return;
+		switch (notification.getFeatureID(PresentationSwitchEvent.class))
+		{
+			case EventsPackage.PRESENTATION_SWITCH_EVENT__READ_VIEW:
+			case EventsPackage.PRESENTATION_SWITCH_EVENT__NEW_PRESENTATION:
+				fireNotifyChanged(new ViewerNotification(notification, notification.getNotifier(), false, true));
+				return;
 		}
 		super.notifyChanged(notification);
 	}

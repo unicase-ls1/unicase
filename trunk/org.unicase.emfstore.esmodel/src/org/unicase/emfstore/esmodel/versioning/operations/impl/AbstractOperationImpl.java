@@ -140,22 +140,21 @@ public abstract class AbstractOperationImpl extends EObjectImpl implements Abstr
 	 * @generated
 	 */
 	public ModelElementId getModelElementId() {
-		if (modelElementId != null && modelElementId.eIsProxy()) {
-			InternalEObject oldModelElementId = (InternalEObject) modelElementId;
-			modelElementId = (ModelElementId) eResolveProxy(oldModelElementId);
-			if (modelElementId != oldModelElementId) {
-				InternalEObject newModelElementId = (InternalEObject) modelElementId;
-				NotificationChain msgs = oldModelElementId.eInverseRemove(this, EOPPOSITE_FEATURE_BASE
-					- OperationsPackage.ABSTRACT_OPERATION__MODEL_ELEMENT_ID, null, null);
-				if (newModelElementId.eInternalContainer() == null) {
-					msgs = newModelElementId.eInverseAdd(this, EOPPOSITE_FEATURE_BASE
-						- OperationsPackage.ABSTRACT_OPERATION__MODEL_ELEMENT_ID, null, msgs);
+		if (modelElementId != null && modelElementId.eIsProxy())
+		{
+			InternalEObject oldModelElementId = (InternalEObject)modelElementId;
+			modelElementId = (ModelElementId)eResolveProxy(oldModelElementId);
+			if (modelElementId != oldModelElementId)
+			{
+				InternalEObject newModelElementId = (InternalEObject)modelElementId;
+				NotificationChain msgs = oldModelElementId.eInverseRemove(this, EOPPOSITE_FEATURE_BASE - OperationsPackage.ABSTRACT_OPERATION__MODEL_ELEMENT_ID, null, null);
+				if (newModelElementId.eInternalContainer() == null)
+				{
+					msgs = newModelElementId.eInverseAdd(this, EOPPOSITE_FEATURE_BASE - OperationsPackage.ABSTRACT_OPERATION__MODEL_ELEMENT_ID, null, msgs);
 				}
-				if (msgs != null)
-					msgs.dispatch();
+				if (msgs != null) msgs.dispatch();
 				if (eNotificationRequired())
-					eNotify(new ENotificationImpl(this, Notification.RESOLVE,
-						OperationsPackage.ABSTRACT_OPERATION__MODEL_ELEMENT_ID, oldModelElementId, modelElementId));
+					eNotify(new ENotificationImpl(this, Notification.RESOLVE, OperationsPackage.ABSTRACT_OPERATION__MODEL_ELEMENT_ID, oldModelElementId, modelElementId));
 			}
 		}
 		return modelElementId;
@@ -176,13 +175,10 @@ public abstract class AbstractOperationImpl extends EObjectImpl implements Abstr
 	public NotificationChain basicSetModelElementId(ModelElementId newModelElementId, NotificationChain msgs) {
 		ModelElementId oldModelElementId = modelElementId;
 		modelElementId = newModelElementId;
-		if (eNotificationRequired()) {
-			ENotificationImpl notification = new ENotificationImpl(this, Notification.SET,
-				OperationsPackage.ABSTRACT_OPERATION__MODEL_ELEMENT_ID, oldModelElementId, newModelElementId);
-			if (msgs == null)
-				msgs = notification;
-			else
-				msgs.add(notification);
+		if (eNotificationRequired())
+		{
+			ENotificationImpl notification = new ENotificationImpl(this, Notification.SET, OperationsPackage.ABSTRACT_OPERATION__MODEL_ELEMENT_ID, oldModelElementId, newModelElementId);
+			if (msgs == null) msgs = notification; else msgs.add(notification);
 		}
 		return msgs;
 	}
@@ -192,20 +188,18 @@ public abstract class AbstractOperationImpl extends EObjectImpl implements Abstr
 	 * @generated
 	 */
 	public void setModelElementId(ModelElementId newModelElementId) {
-		if (newModelElementId != modelElementId) {
+		if (newModelElementId != modelElementId)
+		{
 			NotificationChain msgs = null;
 			if (modelElementId != null)
-				msgs = ((InternalEObject) modelElementId).eInverseRemove(this, EOPPOSITE_FEATURE_BASE
-					- OperationsPackage.ABSTRACT_OPERATION__MODEL_ELEMENT_ID, null, msgs);
+				msgs = ((InternalEObject)modelElementId).eInverseRemove(this, EOPPOSITE_FEATURE_BASE - OperationsPackage.ABSTRACT_OPERATION__MODEL_ELEMENT_ID, null, msgs);
 			if (newModelElementId != null)
-				msgs = ((InternalEObject) newModelElementId).eInverseAdd(this, EOPPOSITE_FEATURE_BASE
-					- OperationsPackage.ABSTRACT_OPERATION__MODEL_ELEMENT_ID, null, msgs);
+				msgs = ((InternalEObject)newModelElementId).eInverseAdd(this, EOPPOSITE_FEATURE_BASE - OperationsPackage.ABSTRACT_OPERATION__MODEL_ELEMENT_ID, null, msgs);
 			msgs = basicSetModelElementId(newModelElementId, msgs);
-			if (msgs != null)
-				msgs.dispatch();
-		} else if (eNotificationRequired())
-			eNotify(new ENotificationImpl(this, Notification.SET,
-				OperationsPackage.ABSTRACT_OPERATION__MODEL_ELEMENT_ID, newModelElementId, newModelElementId));
+			if (msgs != null) msgs.dispatch();
+		}
+		else if (eNotificationRequired())
+			eNotify(new ENotificationImpl(this, Notification.SET, OperationsPackage.ABSTRACT_OPERATION__MODEL_ELEMENT_ID, newModelElementId, newModelElementId));
 	}
 
 	/**
@@ -224,8 +218,7 @@ public abstract class AbstractOperationImpl extends EObjectImpl implements Abstr
 		boolean oldAccepted = accepted;
 		accepted = newAccepted;
 		if (eNotificationRequired())
-			eNotify(new ENotificationImpl(this, Notification.SET, OperationsPackage.ABSTRACT_OPERATION__ACCEPTED,
-				oldAccepted, accepted));
+			eNotify(new ENotificationImpl(this, Notification.SET, OperationsPackage.ABSTRACT_OPERATION__ACCEPTED, oldAccepted, accepted));
 	}
 
 	/**
@@ -244,8 +237,7 @@ public abstract class AbstractOperationImpl extends EObjectImpl implements Abstr
 		Date oldClientDate = clientDate;
 		clientDate = newClientDate;
 		if (eNotificationRequired())
-			eNotify(new ENotificationImpl(this, Notification.SET, OperationsPackage.ABSTRACT_OPERATION__CLIENT_DATE,
-				oldClientDate, clientDate));
+			eNotify(new ENotificationImpl(this, Notification.SET, OperationsPackage.ABSTRACT_OPERATION__CLIENT_DATE, oldClientDate, clientDate));
 	}
 
 	/**
@@ -289,9 +281,10 @@ public abstract class AbstractOperationImpl extends EObjectImpl implements Abstr
 	 */
 	@Override
 	public NotificationChain eInverseRemove(InternalEObject otherEnd, int featureID, NotificationChain msgs) {
-		switch (featureID) {
-		case OperationsPackage.ABSTRACT_OPERATION__MODEL_ELEMENT_ID:
-			return basicSetModelElementId(null, msgs);
+		switch (featureID)
+		{
+			case OperationsPackage.ABSTRACT_OPERATION__MODEL_ELEMENT_ID:
+				return basicSetModelElementId(null, msgs);
 		}
 		return super.eInverseRemove(otherEnd, featureID, msgs);
 	}
@@ -302,19 +295,19 @@ public abstract class AbstractOperationImpl extends EObjectImpl implements Abstr
 	 */
 	@Override
 	public Object eGet(int featureID, boolean resolve, boolean coreType) {
-		switch (featureID) {
-		case OperationsPackage.ABSTRACT_OPERATION__NAME:
-			return getName();
-		case OperationsPackage.ABSTRACT_OPERATION__DESCRIPTION:
-			return getDescription();
-		case OperationsPackage.ABSTRACT_OPERATION__MODEL_ELEMENT_ID:
-			if (resolve)
-				return getModelElementId();
-			return basicGetModelElementId();
-		case OperationsPackage.ABSTRACT_OPERATION__ACCEPTED:
-			return isAccepted() ? Boolean.TRUE : Boolean.FALSE;
-		case OperationsPackage.ABSTRACT_OPERATION__CLIENT_DATE:
-			return getClientDate();
+		switch (featureID)
+		{
+			case OperationsPackage.ABSTRACT_OPERATION__NAME:
+				return getName();
+			case OperationsPackage.ABSTRACT_OPERATION__DESCRIPTION:
+				return getDescription();
+			case OperationsPackage.ABSTRACT_OPERATION__MODEL_ELEMENT_ID:
+				if (resolve) return getModelElementId();
+				return basicGetModelElementId();
+			case OperationsPackage.ABSTRACT_OPERATION__ACCEPTED:
+				return isAccepted() ? Boolean.TRUE : Boolean.FALSE;
+			case OperationsPackage.ABSTRACT_OPERATION__CLIENT_DATE:
+				return getClientDate();
 		}
 		return super.eGet(featureID, resolve, coreType);
 	}
@@ -325,16 +318,17 @@ public abstract class AbstractOperationImpl extends EObjectImpl implements Abstr
 	 */
 	@Override
 	public void eSet(int featureID, Object newValue) {
-		switch (featureID) {
-		case OperationsPackage.ABSTRACT_OPERATION__MODEL_ELEMENT_ID:
-			setModelElementId((ModelElementId) newValue);
-			return;
-		case OperationsPackage.ABSTRACT_OPERATION__ACCEPTED:
-			setAccepted(((Boolean) newValue).booleanValue());
-			return;
-		case OperationsPackage.ABSTRACT_OPERATION__CLIENT_DATE:
-			setClientDate((Date) newValue);
-			return;
+		switch (featureID)
+		{
+			case OperationsPackage.ABSTRACT_OPERATION__MODEL_ELEMENT_ID:
+				setModelElementId((ModelElementId)newValue);
+				return;
+			case OperationsPackage.ABSTRACT_OPERATION__ACCEPTED:
+				setAccepted(((Boolean)newValue).booleanValue());
+				return;
+			case OperationsPackage.ABSTRACT_OPERATION__CLIENT_DATE:
+				setClientDate((Date)newValue);
+				return;
 		}
 		super.eSet(featureID, newValue);
 	}
@@ -345,16 +339,17 @@ public abstract class AbstractOperationImpl extends EObjectImpl implements Abstr
 	 */
 	@Override
 	public void eUnset(int featureID) {
-		switch (featureID) {
-		case OperationsPackage.ABSTRACT_OPERATION__MODEL_ELEMENT_ID:
-			setModelElementId((ModelElementId) null);
-			return;
-		case OperationsPackage.ABSTRACT_OPERATION__ACCEPTED:
-			setAccepted(ACCEPTED_EDEFAULT);
-			return;
-		case OperationsPackage.ABSTRACT_OPERATION__CLIENT_DATE:
-			setClientDate(CLIENT_DATE_EDEFAULT);
-			return;
+		switch (featureID)
+		{
+			case OperationsPackage.ABSTRACT_OPERATION__MODEL_ELEMENT_ID:
+				setModelElementId((ModelElementId)null);
+				return;
+			case OperationsPackage.ABSTRACT_OPERATION__ACCEPTED:
+				setAccepted(ACCEPTED_EDEFAULT);
+				return;
+			case OperationsPackage.ABSTRACT_OPERATION__CLIENT_DATE:
+				setClientDate(CLIENT_DATE_EDEFAULT);
+				return;
 		}
 		super.eUnset(featureID);
 	}
@@ -365,18 +360,18 @@ public abstract class AbstractOperationImpl extends EObjectImpl implements Abstr
 	 */
 	@Override
 	public boolean eIsSet(int featureID) {
-		switch (featureID) {
-		case OperationsPackage.ABSTRACT_OPERATION__NAME:
-			return NAME_EDEFAULT == null ? getName() != null : !NAME_EDEFAULT.equals(getName());
-		case OperationsPackage.ABSTRACT_OPERATION__DESCRIPTION:
-			return DESCRIPTION_EDEFAULT == null ? getDescription() != null : !DESCRIPTION_EDEFAULT
-				.equals(getDescription());
-		case OperationsPackage.ABSTRACT_OPERATION__MODEL_ELEMENT_ID:
-			return modelElementId != null;
-		case OperationsPackage.ABSTRACT_OPERATION__ACCEPTED:
-			return accepted != ACCEPTED_EDEFAULT;
-		case OperationsPackage.ABSTRACT_OPERATION__CLIENT_DATE:
-			return CLIENT_DATE_EDEFAULT == null ? clientDate != null : !CLIENT_DATE_EDEFAULT.equals(clientDate);
+		switch (featureID)
+		{
+			case OperationsPackage.ABSTRACT_OPERATION__NAME:
+				return NAME_EDEFAULT == null ? getName() != null : !NAME_EDEFAULT.equals(getName());
+			case OperationsPackage.ABSTRACT_OPERATION__DESCRIPTION:
+				return DESCRIPTION_EDEFAULT == null ? getDescription() != null : !DESCRIPTION_EDEFAULT.equals(getDescription());
+			case OperationsPackage.ABSTRACT_OPERATION__MODEL_ELEMENT_ID:
+				return modelElementId != null;
+			case OperationsPackage.ABSTRACT_OPERATION__ACCEPTED:
+				return accepted != ACCEPTED_EDEFAULT;
+			case OperationsPackage.ABSTRACT_OPERATION__CLIENT_DATE:
+				return CLIENT_DATE_EDEFAULT == null ? clientDate != null : !CLIENT_DATE_EDEFAULT.equals(clientDate);
 		}
 		return super.eIsSet(featureID);
 	}
@@ -387,8 +382,7 @@ public abstract class AbstractOperationImpl extends EObjectImpl implements Abstr
 	 */
 	@Override
 	public String toString() {
-		if (eIsProxy())
-			return super.toString();
+		if (eIsProxy()) return super.toString();
 
 		StringBuffer result = new StringBuffer(super.toString());
 		result.append(" (accepted: ");

@@ -51,7 +51,8 @@ public class ESNotificationItemProvider extends IdentifiableElementItemProvider 
 	 */
 	@Override
 	public List<IItemPropertyDescriptor> getPropertyDescriptors(Object object) {
-		if (itemPropertyDescriptors == null) {
+		if (itemPropertyDescriptors == null)
+		{
 			super.getPropertyDescriptors(object);
 
 			addNamePropertyDescriptor(object);
@@ -71,11 +72,19 @@ public class ESNotificationItemProvider extends IdentifiableElementItemProvider 
 	 * @generated
 	 */
 	protected void addNamePropertyDescriptor(Object object) {
-		itemPropertyDescriptors.add(createItemPropertyDescriptor(((ComposeableAdapterFactory) adapterFactory)
-			.getRootAdapterFactory(), getResourceLocator(), getString("_UI_ESNotification_name_feature"), getString(
-			"_UI_PropertyDescriptor_description", "_UI_ESNotification_name_feature", "_UI_ESNotification_type"),
-			NotificationPackage.Literals.ES_NOTIFICATION__NAME, true, false, false,
-			ItemPropertyDescriptor.GENERIC_VALUE_IMAGE, null, null));
+		itemPropertyDescriptors.add
+			(createItemPropertyDescriptor
+				(((ComposeableAdapterFactory)adapterFactory).getRootAdapterFactory(),
+				 getResourceLocator(),
+				 getString("_UI_ESNotification_name_feature"),
+				 getString("_UI_PropertyDescriptor_description", "_UI_ESNotification_name_feature", "_UI_ESNotification_type"),
+				 NotificationPackage.Literals.ES_NOTIFICATION__NAME,
+				 true,
+				 false,
+				 false,
+				 ItemPropertyDescriptor.GENERIC_VALUE_IMAGE,
+				 null,
+				 null));
 	}
 
 	/**
@@ -84,11 +93,19 @@ public class ESNotificationItemProvider extends IdentifiableElementItemProvider 
 	 * @generated
 	 */
 	protected void addSenderPropertyDescriptor(Object object) {
-		itemPropertyDescriptors.add(createItemPropertyDescriptor(((ComposeableAdapterFactory) adapterFactory)
-			.getRootAdapterFactory(), getResourceLocator(), getString("_UI_ESNotification_sender_feature"), getString(
-			"_UI_PropertyDescriptor_description", "_UI_ESNotification_sender_feature", "_UI_ESNotification_type"),
-			NotificationPackage.Literals.ES_NOTIFICATION__SENDER, true, false, false,
-			ItemPropertyDescriptor.GENERIC_VALUE_IMAGE, null, null));
+		itemPropertyDescriptors.add
+			(createItemPropertyDescriptor
+				(((ComposeableAdapterFactory)adapterFactory).getRootAdapterFactory(),
+				 getResourceLocator(),
+				 getString("_UI_ESNotification_sender_feature"),
+				 getString("_UI_PropertyDescriptor_description", "_UI_ESNotification_sender_feature", "_UI_ESNotification_type"),
+				 NotificationPackage.Literals.ES_NOTIFICATION__SENDER,
+				 true,
+				 false,
+				 false,
+				 ItemPropertyDescriptor.GENERIC_VALUE_IMAGE,
+				 null,
+				 null));
 	}
 
 	/**
@@ -97,11 +114,19 @@ public class ESNotificationItemProvider extends IdentifiableElementItemProvider 
 	 * @generated
 	 */
 	protected void addRecipientPropertyDescriptor(Object object) {
-		itemPropertyDescriptors.add(createItemPropertyDescriptor(((ComposeableAdapterFactory) adapterFactory)
-			.getRootAdapterFactory(), getResourceLocator(), getString("_UI_ESNotification_recipient_feature"),
-			getString("_UI_PropertyDescriptor_description", "_UI_ESNotification_recipient_feature",
-				"_UI_ESNotification_type"), NotificationPackage.Literals.ES_NOTIFICATION__RECIPIENT, true, false,
-			false, ItemPropertyDescriptor.GENERIC_VALUE_IMAGE, null, null));
+		itemPropertyDescriptors.add
+			(createItemPropertyDescriptor
+				(((ComposeableAdapterFactory)adapterFactory).getRootAdapterFactory(),
+				 getResourceLocator(),
+				 getString("_UI_ESNotification_recipient_feature"),
+				 getString("_UI_PropertyDescriptor_description", "_UI_ESNotification_recipient_feature", "_UI_ESNotification_type"),
+				 NotificationPackage.Literals.ES_NOTIFICATION__RECIPIENT,
+				 true,
+				 false,
+				 false,
+				 ItemPropertyDescriptor.GENERIC_VALUE_IMAGE,
+				 null,
+				 null));
 	}
 
 	/**
@@ -110,11 +135,19 @@ public class ESNotificationItemProvider extends IdentifiableElementItemProvider 
 	 * @generated
 	 */
 	protected void addMessagePropertyDescriptor(Object object) {
-		itemPropertyDescriptors.add(createItemPropertyDescriptor(((ComposeableAdapterFactory) adapterFactory)
-			.getRootAdapterFactory(), getResourceLocator(), getString("_UI_ESNotification_message_feature"), getString(
-			"_UI_PropertyDescriptor_description", "_UI_ESNotification_message_feature", "_UI_ESNotification_type"),
-			NotificationPackage.Literals.ES_NOTIFICATION__MESSAGE, true, false, false,
-			ItemPropertyDescriptor.GENERIC_VALUE_IMAGE, null, null));
+		itemPropertyDescriptors.add
+			(createItemPropertyDescriptor
+				(((ComposeableAdapterFactory)adapterFactory).getRootAdapterFactory(),
+				 getResourceLocator(),
+				 getString("_UI_ESNotification_message_feature"),
+				 getString("_UI_PropertyDescriptor_description", "_UI_ESNotification_message_feature", "_UI_ESNotification_type"),
+				 NotificationPackage.Literals.ES_NOTIFICATION__MESSAGE,
+				 true,
+				 false,
+				 false,
+				 ItemPropertyDescriptor.GENERIC_VALUE_IMAGE,
+				 null,
+				 null));
 	}
 
 	/**
@@ -124,11 +157,19 @@ public class ESNotificationItemProvider extends IdentifiableElementItemProvider 
 	 * @generated
 	 */
 	protected void addSeenPropertyDescriptor(Object object) {
-		itemPropertyDescriptors.add(createItemPropertyDescriptor(((ComposeableAdapterFactory) adapterFactory)
-			.getRootAdapterFactory(), getResourceLocator(), getString("_UI_ESNotification_seen_feature"), getString(
-			"_UI_PropertyDescriptor_description", "_UI_ESNotification_seen_feature", "_UI_ESNotification_type"),
-			NotificationPackage.Literals.ES_NOTIFICATION__SEEN, true, false, false,
-			ItemPropertyDescriptor.BOOLEAN_VALUE_IMAGE, null, null));
+		itemPropertyDescriptors.add
+			(createItemPropertyDescriptor
+				(((ComposeableAdapterFactory)adapterFactory).getRootAdapterFactory(),
+				 getResourceLocator(),
+				 getString("_UI_ESNotification_seen_feature"),
+				 getString("_UI_PropertyDescriptor_description", "_UI_ESNotification_seen_feature", "_UI_ESNotification_type"),
+				 NotificationPackage.Literals.ES_NOTIFICATION__SEEN,
+				 true,
+				 false,
+				 false,
+				 ItemPropertyDescriptor.BOOLEAN_VALUE_IMAGE,
+				 null,
+				 null));
 	}
 
 	/**
@@ -138,11 +179,19 @@ public class ESNotificationItemProvider extends IdentifiableElementItemProvider 
 	 * @generated
 	 */
 	protected void addCreationDatePropertyDescriptor(Object object) {
-		itemPropertyDescriptors.add(createItemPropertyDescriptor(((ComposeableAdapterFactory) adapterFactory)
-			.getRootAdapterFactory(), getResourceLocator(), getString("_UI_ESNotification_creationDate_feature"),
-			getString("_UI_PropertyDescriptor_description", "_UI_ESNotification_creationDate_feature",
-				"_UI_ESNotification_type"), NotificationPackage.Literals.ES_NOTIFICATION__CREATION_DATE, true, false,
-			false, ItemPropertyDescriptor.GENERIC_VALUE_IMAGE, null, null));
+		itemPropertyDescriptors.add
+			(createItemPropertyDescriptor
+				(((ComposeableAdapterFactory)adapterFactory).getRootAdapterFactory(),
+				 getResourceLocator(),
+				 getString("_UI_ESNotification_creationDate_feature"),
+				 getString("_UI_PropertyDescriptor_description", "_UI_ESNotification_creationDate_feature", "_UI_ESNotification_type"),
+				 NotificationPackage.Literals.ES_NOTIFICATION__CREATION_DATE,
+				 true,
+				 false,
+				 false,
+				 ItemPropertyDescriptor.GENERIC_VALUE_IMAGE,
+				 null,
+				 null));
 	}
 
 	/**
@@ -155,7 +204,8 @@ public class ESNotificationItemProvider extends IdentifiableElementItemProvider 
 	 */
 	@Override
 	public Collection<? extends EStructuralFeature> getChildrenFeatures(Object object) {
-		if (childrenFeatures == null) {
+		if (childrenFeatures == null)
+		{
 			super.getChildrenFeatures(object);
 			childrenFeatures.add(NotificationPackage.Literals.ES_NOTIFICATION__PROJECT);
 			childrenFeatures.add(NotificationPackage.Literals.ES_NOTIFICATION__RELATED_MODEL_ELEMENTS);
@@ -192,9 +242,10 @@ public class ESNotificationItemProvider extends IdentifiableElementItemProvider 
 	 */
 	@Override
 	public String getText(Object object) {
-		String label = ((ESNotification) object).getName();
-		return label == null || label.length() == 0 ? getString("_UI_ESNotification_type")
-			: getString("_UI_ESNotification_type") + " " + label;
+		String label = ((ESNotification)object).getName();
+		return label == null || label.length() == 0 ?
+			getString("_UI_ESNotification_type") :
+			getString("_UI_ESNotification_type") + " " + label;
 	}
 
 	/**
@@ -208,19 +259,20 @@ public class ESNotificationItemProvider extends IdentifiableElementItemProvider 
 	public void notifyChanged(Notification notification) {
 		updateChildren(notification);
 
-		switch (notification.getFeatureID(ESNotification.class)) {
-		case NotificationPackage.ES_NOTIFICATION__NAME:
-		case NotificationPackage.ES_NOTIFICATION__MESSAGE:
-		case NotificationPackage.ES_NOTIFICATION__SEEN:
-		case NotificationPackage.ES_NOTIFICATION__CREATION_DATE:
-		case NotificationPackage.ES_NOTIFICATION__SENDER:
-		case NotificationPackage.ES_NOTIFICATION__RECIPIENT:
-			fireNotifyChanged(new ViewerNotification(notification, notification.getNotifier(), false, true));
-			return;
-		case NotificationPackage.ES_NOTIFICATION__PROJECT:
-		case NotificationPackage.ES_NOTIFICATION__RELATED_MODEL_ELEMENTS:
-			fireNotifyChanged(new ViewerNotification(notification, notification.getNotifier(), true, false));
-			return;
+		switch (notification.getFeatureID(ESNotification.class))
+		{
+			case NotificationPackage.ES_NOTIFICATION__NAME:
+			case NotificationPackage.ES_NOTIFICATION__MESSAGE:
+			case NotificationPackage.ES_NOTIFICATION__SEEN:
+			case NotificationPackage.ES_NOTIFICATION__CREATION_DATE:
+			case NotificationPackage.ES_NOTIFICATION__SENDER:
+			case NotificationPackage.ES_NOTIFICATION__RECIPIENT:
+				fireNotifyChanged(new ViewerNotification(notification, notification.getNotifier(), false, true));
+				return;
+			case NotificationPackage.ES_NOTIFICATION__PROJECT:
+			case NotificationPackage.ES_NOTIFICATION__RELATED_MODEL_ELEMENTS:
+				fireNotifyChanged(new ViewerNotification(notification, notification.getNotifier(), true, false));
+				return;
 		}
 		super.notifyChanged(notification);
 	}
@@ -235,12 +287,15 @@ public class ESNotificationItemProvider extends IdentifiableElementItemProvider 
 	protected void collectNewChildDescriptors(Collection<Object> newChildDescriptors, Object object) {
 		super.collectNewChildDescriptors(newChildDescriptors, object);
 
-		newChildDescriptors.add(createChildParameter(NotificationPackage.Literals.ES_NOTIFICATION__PROJECT,
-			EsmodelFactory.eINSTANCE.createProjectId()));
+		newChildDescriptors.add
+			(createChildParameter
+				(NotificationPackage.Literals.ES_NOTIFICATION__PROJECT,
+				 EsmodelFactory.eINSTANCE.createProjectId()));
 
-		newChildDescriptors.add(createChildParameter(
-			NotificationPackage.Literals.ES_NOTIFICATION__RELATED_MODEL_ELEMENTS, ModelFactory.eINSTANCE
-				.createModelElementId()));
+		newChildDescriptors.add
+			(createChildParameter
+				(NotificationPackage.Literals.ES_NOTIFICATION__RELATED_MODEL_ELEMENTS,
+				 ModelFactory.eINSTANCE.createModelElementId()));
 	}
 
 	/**

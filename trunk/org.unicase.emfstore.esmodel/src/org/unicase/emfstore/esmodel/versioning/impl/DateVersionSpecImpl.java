@@ -74,8 +74,7 @@ public class DateVersionSpecImpl extends EObjectImpl implements DateVersionSpec 
 		Date oldDate = date;
 		date = newDate;
 		if (eNotificationRequired())
-			eNotify(new ENotificationImpl(this, Notification.SET, VersioningPackage.DATE_VERSION_SPEC__DATE, oldDate,
-				date));
+			eNotify(new ENotificationImpl(this, Notification.SET, VersioningPackage.DATE_VERSION_SPEC__DATE, oldDate, date));
 	}
 
 	/**
@@ -84,9 +83,10 @@ public class DateVersionSpecImpl extends EObjectImpl implements DateVersionSpec 
 	 */
 	@Override
 	public Object eGet(int featureID, boolean resolve, boolean coreType) {
-		switch (featureID) {
-		case VersioningPackage.DATE_VERSION_SPEC__DATE:
-			return getDate();
+		switch (featureID)
+		{
+			case VersioningPackage.DATE_VERSION_SPEC__DATE:
+				return getDate();
 		}
 		return super.eGet(featureID, resolve, coreType);
 	}
@@ -97,10 +97,11 @@ public class DateVersionSpecImpl extends EObjectImpl implements DateVersionSpec 
 	 */
 	@Override
 	public void eSet(int featureID, Object newValue) {
-		switch (featureID) {
-		case VersioningPackage.DATE_VERSION_SPEC__DATE:
-			setDate((Date) newValue);
-			return;
+		switch (featureID)
+		{
+			case VersioningPackage.DATE_VERSION_SPEC__DATE:
+				setDate((Date)newValue);
+				return;
 		}
 		super.eSet(featureID, newValue);
 	}
@@ -111,10 +112,11 @@ public class DateVersionSpecImpl extends EObjectImpl implements DateVersionSpec 
 	 */
 	@Override
 	public void eUnset(int featureID) {
-		switch (featureID) {
-		case VersioningPackage.DATE_VERSION_SPEC__DATE:
-			setDate(DATE_EDEFAULT);
-			return;
+		switch (featureID)
+		{
+			case VersioningPackage.DATE_VERSION_SPEC__DATE:
+				setDate(DATE_EDEFAULT);
+				return;
 		}
 		super.eUnset(featureID);
 	}
@@ -125,9 +127,10 @@ public class DateVersionSpecImpl extends EObjectImpl implements DateVersionSpec 
 	 */
 	@Override
 	public boolean eIsSet(int featureID) {
-		switch (featureID) {
-		case VersioningPackage.DATE_VERSION_SPEC__DATE:
-			return DATE_EDEFAULT == null ? date != null : !DATE_EDEFAULT.equals(date);
+		switch (featureID)
+		{
+			case VersioningPackage.DATE_VERSION_SPEC__DATE:
+				return DATE_EDEFAULT == null ? date != null : !DATE_EDEFAULT.equals(date);
 		}
 		return super.eIsSet(featureID);
 	}
@@ -138,8 +141,7 @@ public class DateVersionSpecImpl extends EObjectImpl implements DateVersionSpec 
 	 */
 	@Override
 	public String toString() {
-		if (eIsProxy())
-			return super.toString();
+		if (eIsProxy()) return super.toString();
 
 		StringBuffer result = new StringBuffer(super.toString());
 		result.append(" (date: ");

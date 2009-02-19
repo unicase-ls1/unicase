@@ -99,8 +99,7 @@ public class AttributeOperationImpl extends FeatureOperationImpl implements Attr
 		Object oldOldValue = oldValue;
 		oldValue = newOldValue;
 		if (eNotificationRequired())
-			eNotify(new ENotificationImpl(this, Notification.SET, OperationsPackage.ATTRIBUTE_OPERATION__OLD_VALUE,
-				oldOldValue, oldValue));
+			eNotify(new ENotificationImpl(this, Notification.SET, OperationsPackage.ATTRIBUTE_OPERATION__OLD_VALUE, oldOldValue, oldValue));
 	}
 
 	/**
@@ -119,8 +118,7 @@ public class AttributeOperationImpl extends FeatureOperationImpl implements Attr
 		Object oldNewValue = newValue;
 		newValue = newNewValue;
 		if (eNotificationRequired())
-			eNotify(new ENotificationImpl(this, Notification.SET, OperationsPackage.ATTRIBUTE_OPERATION__NEW_VALUE,
-				oldNewValue, newValue));
+			eNotify(new ENotificationImpl(this, Notification.SET, OperationsPackage.ATTRIBUTE_OPERATION__NEW_VALUE, oldNewValue, newValue));
 	}
 
 	/**
@@ -129,11 +127,12 @@ public class AttributeOperationImpl extends FeatureOperationImpl implements Attr
 	 */
 	@Override
 	public Object eGet(int featureID, boolean resolve, boolean coreType) {
-		switch (featureID) {
-		case OperationsPackage.ATTRIBUTE_OPERATION__OLD_VALUE:
-			return getOldValue();
-		case OperationsPackage.ATTRIBUTE_OPERATION__NEW_VALUE:
-			return getNewValue();
+		switch (featureID)
+		{
+			case OperationsPackage.ATTRIBUTE_OPERATION__OLD_VALUE:
+				return getOldValue();
+			case OperationsPackage.ATTRIBUTE_OPERATION__NEW_VALUE:
+				return getNewValue();
 		}
 		return super.eGet(featureID, resolve, coreType);
 	}
@@ -144,13 +143,14 @@ public class AttributeOperationImpl extends FeatureOperationImpl implements Attr
 	 */
 	@Override
 	public void eSet(int featureID, Object newValue) {
-		switch (featureID) {
-		case OperationsPackage.ATTRIBUTE_OPERATION__OLD_VALUE:
-			setOldValue(newValue);
-			return;
-		case OperationsPackage.ATTRIBUTE_OPERATION__NEW_VALUE:
-			setNewValue(newValue);
-			return;
+		switch (featureID)
+		{
+			case OperationsPackage.ATTRIBUTE_OPERATION__OLD_VALUE:
+				setOldValue(newValue);
+				return;
+			case OperationsPackage.ATTRIBUTE_OPERATION__NEW_VALUE:
+				setNewValue(newValue);
+				return;
 		}
 		super.eSet(featureID, newValue);
 	}
@@ -161,13 +161,14 @@ public class AttributeOperationImpl extends FeatureOperationImpl implements Attr
 	 */
 	@Override
 	public void eUnset(int featureID) {
-		switch (featureID) {
-		case OperationsPackage.ATTRIBUTE_OPERATION__OLD_VALUE:
-			setOldValue(OLD_VALUE_EDEFAULT);
-			return;
-		case OperationsPackage.ATTRIBUTE_OPERATION__NEW_VALUE:
-			setNewValue(NEW_VALUE_EDEFAULT);
-			return;
+		switch (featureID)
+		{
+			case OperationsPackage.ATTRIBUTE_OPERATION__OLD_VALUE:
+				setOldValue(OLD_VALUE_EDEFAULT);
+				return;
+			case OperationsPackage.ATTRIBUTE_OPERATION__NEW_VALUE:
+				setNewValue(NEW_VALUE_EDEFAULT);
+				return;
 		}
 		super.eUnset(featureID);
 	}
@@ -178,11 +179,12 @@ public class AttributeOperationImpl extends FeatureOperationImpl implements Attr
 	 */
 	@Override
 	public boolean eIsSet(int featureID) {
-		switch (featureID) {
-		case OperationsPackage.ATTRIBUTE_OPERATION__OLD_VALUE:
-			return OLD_VALUE_EDEFAULT == null ? oldValue != null : !OLD_VALUE_EDEFAULT.equals(oldValue);
-		case OperationsPackage.ATTRIBUTE_OPERATION__NEW_VALUE:
-			return NEW_VALUE_EDEFAULT == null ? newValue != null : !NEW_VALUE_EDEFAULT.equals(newValue);
+		switch (featureID)
+		{
+			case OperationsPackage.ATTRIBUTE_OPERATION__OLD_VALUE:
+				return OLD_VALUE_EDEFAULT == null ? oldValue != null : !OLD_VALUE_EDEFAULT.equals(oldValue);
+			case OperationsPackage.ATTRIBUTE_OPERATION__NEW_VALUE:
+				return NEW_VALUE_EDEFAULT == null ? newValue != null : !NEW_VALUE_EDEFAULT.equals(newValue);
 		}
 		return super.eIsSet(featureID);
 	}
@@ -193,8 +195,7 @@ public class AttributeOperationImpl extends FeatureOperationImpl implements Attr
 	 */
 	@Override
 	public String toString() {
-		if (eIsProxy())
-			return super.toString();
+		if (eIsProxy()) return super.toString();
 
 		StringBuffer result = new StringBuffer(super.toString());
 		result.append(" (oldValue: ");

@@ -19,6 +19,8 @@ import org.unicase.emfstore.esmodel.impl.EsmodelPackageImpl;
 import org.unicase.emfstore.esmodel.notification.ESNotification;
 import org.unicase.emfstore.esmodel.notification.NotificationFactory;
 import org.unicase.emfstore.esmodel.notification.NotificationPackage;
+import org.unicase.emfstore.esmodel.url.UrlPackage;
+import org.unicase.emfstore.esmodel.url.impl.UrlPackageImpl;
 import org.unicase.emfstore.esmodel.versioning.VersioningPackage;
 import org.unicase.emfstore.esmodel.versioning.events.EventsPackage;
 import org.unicase.emfstore.esmodel.versioning.events.impl.EventsPackageImpl;
@@ -84,13 +86,10 @@ public class NotificationPackageImpl extends EPackageImpl implements Notificatio
 	 * @generated
 	 */
 	public static NotificationPackage init() {
-		if (isInited)
-			return (NotificationPackage) EPackage.Registry.INSTANCE.getEPackage(NotificationPackage.eNS_URI);
+		if (isInited) return (NotificationPackage)EPackage.Registry.INSTANCE.getEPackage(NotificationPackage.eNS_URI);
 
 		// Obtain or create and register package
-		NotificationPackageImpl theNotificationPackage = (NotificationPackageImpl) (EPackage.Registry.INSTANCE
-			.getEPackage(eNS_URI) instanceof NotificationPackageImpl ? EPackage.Registry.INSTANCE.getEPackage(eNS_URI)
-			: new NotificationPackageImpl());
+		NotificationPackageImpl theNotificationPackage = (NotificationPackageImpl)(EPackage.Registry.INSTANCE.getEPackage(eNS_URI) instanceof NotificationPackageImpl ? EPackage.Registry.INSTANCE.getEPackage(eNS_URI) : new NotificationPackageImpl());
 
 		isInited = true;
 
@@ -98,24 +97,13 @@ public class NotificationPackageImpl extends EPackageImpl implements Notificatio
 		ModelPackage.eINSTANCE.eClass();
 
 		// Obtain or create and register interdependencies
-		EsmodelPackageImpl theEsmodelPackage = (EsmodelPackageImpl) (EPackage.Registry.INSTANCE
-			.getEPackage(EsmodelPackage.eNS_URI) instanceof EsmodelPackageImpl ? EPackage.Registry.INSTANCE
-			.getEPackage(EsmodelPackage.eNS_URI) : EsmodelPackage.eINSTANCE);
-		VersioningPackageImpl theVersioningPackage = (VersioningPackageImpl) (EPackage.Registry.INSTANCE
-			.getEPackage(VersioningPackage.eNS_URI) instanceof VersioningPackageImpl ? EPackage.Registry.INSTANCE
-			.getEPackage(VersioningPackage.eNS_URI) : VersioningPackage.eINSTANCE);
-		OperationsPackageImpl theOperationsPackage = (OperationsPackageImpl) (EPackage.Registry.INSTANCE
-			.getEPackage(OperationsPackage.eNS_URI) instanceof OperationsPackageImpl ? EPackage.Registry.INSTANCE
-			.getEPackage(OperationsPackage.eNS_URI) : OperationsPackage.eINSTANCE);
-		EventsPackageImpl theEventsPackage = (EventsPackageImpl) (EPackage.Registry.INSTANCE
-			.getEPackage(EventsPackage.eNS_URI) instanceof EventsPackageImpl ? EPackage.Registry.INSTANCE
-			.getEPackage(EventsPackage.eNS_URI) : EventsPackage.eINSTANCE);
-		AccesscontrolPackageImpl theAccesscontrolPackage = (AccesscontrolPackageImpl) (EPackage.Registry.INSTANCE
-			.getEPackage(AccesscontrolPackage.eNS_URI) instanceof AccesscontrolPackageImpl ? EPackage.Registry.INSTANCE
-			.getEPackage(AccesscontrolPackage.eNS_URI) : AccesscontrolPackage.eINSTANCE);
-		RolesPackageImpl theRolesPackage = (RolesPackageImpl) (EPackage.Registry.INSTANCE
-			.getEPackage(RolesPackage.eNS_URI) instanceof RolesPackageImpl ? EPackage.Registry.INSTANCE
-			.getEPackage(RolesPackage.eNS_URI) : RolesPackage.eINSTANCE);
+		EsmodelPackageImpl theEsmodelPackage = (EsmodelPackageImpl)(EPackage.Registry.INSTANCE.getEPackage(EsmodelPackage.eNS_URI) instanceof EsmodelPackageImpl ? EPackage.Registry.INSTANCE.getEPackage(EsmodelPackage.eNS_URI) : EsmodelPackage.eINSTANCE);
+		VersioningPackageImpl theVersioningPackage = (VersioningPackageImpl)(EPackage.Registry.INSTANCE.getEPackage(VersioningPackage.eNS_URI) instanceof VersioningPackageImpl ? EPackage.Registry.INSTANCE.getEPackage(VersioningPackage.eNS_URI) : VersioningPackage.eINSTANCE);
+		OperationsPackageImpl theOperationsPackage = (OperationsPackageImpl)(EPackage.Registry.INSTANCE.getEPackage(OperationsPackage.eNS_URI) instanceof OperationsPackageImpl ? EPackage.Registry.INSTANCE.getEPackage(OperationsPackage.eNS_URI) : OperationsPackage.eINSTANCE);
+		EventsPackageImpl theEventsPackage = (EventsPackageImpl)(EPackage.Registry.INSTANCE.getEPackage(EventsPackage.eNS_URI) instanceof EventsPackageImpl ? EPackage.Registry.INSTANCE.getEPackage(EventsPackage.eNS_URI) : EventsPackage.eINSTANCE);
+		AccesscontrolPackageImpl theAccesscontrolPackage = (AccesscontrolPackageImpl)(EPackage.Registry.INSTANCE.getEPackage(AccesscontrolPackage.eNS_URI) instanceof AccesscontrolPackageImpl ? EPackage.Registry.INSTANCE.getEPackage(AccesscontrolPackage.eNS_URI) : AccesscontrolPackage.eINSTANCE);
+		RolesPackageImpl theRolesPackage = (RolesPackageImpl)(EPackage.Registry.INSTANCE.getEPackage(RolesPackage.eNS_URI) instanceof RolesPackageImpl ? EPackage.Registry.INSTANCE.getEPackage(RolesPackage.eNS_URI) : RolesPackage.eINSTANCE);
+		UrlPackageImpl theUrlPackage = (UrlPackageImpl)(EPackage.Registry.INSTANCE.getEPackage(UrlPackage.eNS_URI) instanceof UrlPackageImpl ? EPackage.Registry.INSTANCE.getEPackage(UrlPackage.eNS_URI) : UrlPackage.eINSTANCE);
 
 		// Create package meta-data objects
 		theNotificationPackage.createPackageContents();
@@ -125,6 +113,7 @@ public class NotificationPackageImpl extends EPackageImpl implements Notificatio
 		theEventsPackage.createPackageContents();
 		theAccesscontrolPackage.createPackageContents();
 		theRolesPackage.createPackageContents();
+		theUrlPackage.createPackageContents();
 
 		// Initialize created meta-data
 		theNotificationPackage.initializePackageContents();
@@ -134,6 +123,7 @@ public class NotificationPackageImpl extends EPackageImpl implements Notificatio
 		theEventsPackage.initializePackageContents();
 		theAccesscontrolPackage.initializePackageContents();
 		theRolesPackage.initializePackageContents();
+		theUrlPackage.initializePackageContents();
 
 		// Mark meta-data to indicate it can't be changed
 		theNotificationPackage.freeze();
@@ -155,7 +145,7 @@ public class NotificationPackageImpl extends EPackageImpl implements Notificatio
 	 * @generated
 	 */
 	public EAttribute getESNotification_Name() {
-		return (EAttribute) esNotificationEClass.getEStructuralFeatures().get(0);
+		return (EAttribute)esNotificationEClass.getEStructuralFeatures().get(0);
 	}
 
 	/**
@@ -163,7 +153,7 @@ public class NotificationPackageImpl extends EPackageImpl implements Notificatio
 	 * @generated
 	 */
 	public EAttribute getESNotification_Sender() {
-		return (EAttribute) esNotificationEClass.getEStructuralFeatures().get(4);
+		return (EAttribute)esNotificationEClass.getEStructuralFeatures().get(4);
 	}
 
 	/**
@@ -171,7 +161,7 @@ public class NotificationPackageImpl extends EPackageImpl implements Notificatio
 	 * @generated
 	 */
 	public EAttribute getESNotification_Recipient() {
-		return (EAttribute) esNotificationEClass.getEStructuralFeatures().get(5);
+		return (EAttribute)esNotificationEClass.getEStructuralFeatures().get(5);
 	}
 
 	/**
@@ -179,7 +169,7 @@ public class NotificationPackageImpl extends EPackageImpl implements Notificatio
 	 * @generated
 	 */
 	public EReference getESNotification_Project() {
-		return (EReference) esNotificationEClass.getEStructuralFeatures().get(6);
+		return (EReference)esNotificationEClass.getEStructuralFeatures().get(6);
 	}
 
 	/**
@@ -187,7 +177,7 @@ public class NotificationPackageImpl extends EPackageImpl implements Notificatio
 	 * @generated
 	 */
 	public EReference getESNotification_RelatedModelElements() {
-		return (EReference) esNotificationEClass.getEStructuralFeatures().get(7);
+		return (EReference)esNotificationEClass.getEStructuralFeatures().get(7);
 	}
 
 	/**
@@ -195,7 +185,7 @@ public class NotificationPackageImpl extends EPackageImpl implements Notificatio
 	 * @generated
 	 */
 	public EAttribute getESNotification_Message() {
-		return (EAttribute) esNotificationEClass.getEStructuralFeatures().get(1);
+		return (EAttribute)esNotificationEClass.getEStructuralFeatures().get(1);
 	}
 
 	/**
@@ -204,7 +194,7 @@ public class NotificationPackageImpl extends EPackageImpl implements Notificatio
 	 * @generated
 	 */
 	public EAttribute getESNotification_Seen() {
-		return (EAttribute) esNotificationEClass.getEStructuralFeatures().get(2);
+		return (EAttribute)esNotificationEClass.getEStructuralFeatures().get(2);
 	}
 
 	/**
@@ -213,7 +203,7 @@ public class NotificationPackageImpl extends EPackageImpl implements Notificatio
 	 * @generated
 	 */
 	public EAttribute getESNotification_CreationDate() {
-		return (EAttribute) esNotificationEClass.getEStructuralFeatures().get(3);
+		return (EAttribute)esNotificationEClass.getEStructuralFeatures().get(3);
 	}
 
 	/**
@@ -221,7 +211,7 @@ public class NotificationPackageImpl extends EPackageImpl implements Notificatio
 	 * @generated
 	 */
 	public NotificationFactory getNotificationFactory() {
-		return (NotificationFactory) getEFactoryInstance();
+		return (NotificationFactory)getEFactoryInstance();
 	}
 
 	/**
@@ -237,8 +227,7 @@ public class NotificationPackageImpl extends EPackageImpl implements Notificatio
 	 * @generated
 	 */
 	public void createPackageContents() {
-		if (isCreated)
-			return;
+		if (isCreated) return;
 		isCreated = true;
 
 		// Create classes and their features
@@ -266,8 +255,7 @@ public class NotificationPackageImpl extends EPackageImpl implements Notificatio
 	 * @generated
 	 */
 	public void initializePackageContents() {
-		if (isInitialized)
-			return;
+		if (isInitialized) return;
 		isInitialized = true;
 
 		// Initialize package
@@ -276,9 +264,8 @@ public class NotificationPackageImpl extends EPackageImpl implements Notificatio
 		setNsURI(eNS_URI);
 
 		// Obtain other dependent packages
-		ModelPackage theModelPackage = (ModelPackage) EPackage.Registry.INSTANCE.getEPackage(ModelPackage.eNS_URI);
-		EsmodelPackage theEsmodelPackage = (EsmodelPackage) EPackage.Registry.INSTANCE
-			.getEPackage(EsmodelPackage.eNS_URI);
+		ModelPackage theModelPackage = (ModelPackage)EPackage.Registry.INSTANCE.getEPackage(ModelPackage.eNS_URI);
+		EsmodelPackage theEsmodelPackage = (EsmodelPackage)EPackage.Registry.INSTANCE.getEPackage(EsmodelPackage.eNS_URI);
 
 		// Create type parameters
 
@@ -288,30 +275,15 @@ public class NotificationPackageImpl extends EPackageImpl implements Notificatio
 		esNotificationEClass.getESuperTypes().add(theModelPackage.getIdentifiableElement());
 
 		// Initialize classes and features; add operations and parameters
-		initEClass(esNotificationEClass, ESNotification.class, "ESNotification", !IS_ABSTRACT, !IS_INTERFACE,
-			IS_GENERATED_INSTANCE_CLASS);
-		initEAttribute(getESNotification_Name(), ecorePackage.getEString(), "name", null, 0, 1, ESNotification.class,
-			!IS_TRANSIENT, !IS_VOLATILE, IS_CHANGEABLE, !IS_UNSETTABLE, !IS_ID, IS_UNIQUE, !IS_DERIVED, IS_ORDERED);
-		initEAttribute(getESNotification_Message(), ecorePackage.getEString(), "message", null, 0, 1,
-			ESNotification.class, !IS_TRANSIENT, !IS_VOLATILE, IS_CHANGEABLE, !IS_UNSETTABLE, !IS_ID, IS_UNIQUE,
-			!IS_DERIVED, IS_ORDERED);
-		initEAttribute(getESNotification_Seen(), ecorePackage.getEBoolean(), "seen", null, 0, 1, ESNotification.class,
-			!IS_TRANSIENT, !IS_VOLATILE, IS_CHANGEABLE, !IS_UNSETTABLE, !IS_ID, IS_UNIQUE, !IS_DERIVED, IS_ORDERED);
-		initEAttribute(getESNotification_CreationDate(), ecorePackage.getEDate(), "creationDate", null, 0, 1,
-			ESNotification.class, !IS_TRANSIENT, !IS_VOLATILE, IS_CHANGEABLE, !IS_UNSETTABLE, !IS_ID, IS_UNIQUE,
-			!IS_DERIVED, IS_ORDERED);
-		initEAttribute(getESNotification_Sender(), ecorePackage.getEString(), "sender", null, 0, 1,
-			ESNotification.class, !IS_TRANSIENT, !IS_VOLATILE, IS_CHANGEABLE, !IS_UNSETTABLE, !IS_ID, IS_UNIQUE,
-			!IS_DERIVED, IS_ORDERED);
-		initEAttribute(getESNotification_Recipient(), ecorePackage.getEString(), "recipient", null, 0, 1,
-			ESNotification.class, !IS_TRANSIENT, !IS_VOLATILE, IS_CHANGEABLE, !IS_UNSETTABLE, !IS_ID, IS_UNIQUE,
-			!IS_DERIVED, IS_ORDERED);
-		initEReference(getESNotification_Project(), theEsmodelPackage.getProjectId(), null, "project", null, 0, 1,
-			ESNotification.class, !IS_TRANSIENT, !IS_VOLATILE, IS_CHANGEABLE, IS_COMPOSITE, IS_RESOLVE_PROXIES,
-			!IS_UNSETTABLE, IS_UNIQUE, !IS_DERIVED, IS_ORDERED);
-		initEReference(getESNotification_RelatedModelElements(), theModelPackage.getModelElementId(), null,
-			"relatedModelElements", null, 0, -1, ESNotification.class, !IS_TRANSIENT, !IS_VOLATILE, IS_CHANGEABLE,
-			IS_COMPOSITE, IS_RESOLVE_PROXIES, !IS_UNSETTABLE, IS_UNIQUE, !IS_DERIVED, IS_ORDERED);
+		initEClass(esNotificationEClass, ESNotification.class, "ESNotification", !IS_ABSTRACT, !IS_INTERFACE, IS_GENERATED_INSTANCE_CLASS);
+		initEAttribute(getESNotification_Name(), ecorePackage.getEString(), "name", null, 0, 1, ESNotification.class, !IS_TRANSIENT, !IS_VOLATILE, IS_CHANGEABLE, !IS_UNSETTABLE, !IS_ID, IS_UNIQUE, !IS_DERIVED, IS_ORDERED);
+		initEAttribute(getESNotification_Message(), ecorePackage.getEString(), "message", null, 0, 1, ESNotification.class, !IS_TRANSIENT, !IS_VOLATILE, IS_CHANGEABLE, !IS_UNSETTABLE, !IS_ID, IS_UNIQUE, !IS_DERIVED, IS_ORDERED);
+		initEAttribute(getESNotification_Seen(), ecorePackage.getEBoolean(), "seen", null, 0, 1, ESNotification.class, !IS_TRANSIENT, !IS_VOLATILE, IS_CHANGEABLE, !IS_UNSETTABLE, !IS_ID, IS_UNIQUE, !IS_DERIVED, IS_ORDERED);
+		initEAttribute(getESNotification_CreationDate(), ecorePackage.getEDate(), "creationDate", null, 0, 1, ESNotification.class, !IS_TRANSIENT, !IS_VOLATILE, IS_CHANGEABLE, !IS_UNSETTABLE, !IS_ID, IS_UNIQUE, !IS_DERIVED, IS_ORDERED);
+		initEAttribute(getESNotification_Sender(), ecorePackage.getEString(), "sender", null, 0, 1, ESNotification.class, !IS_TRANSIENT, !IS_VOLATILE, IS_CHANGEABLE, !IS_UNSETTABLE, !IS_ID, IS_UNIQUE, !IS_DERIVED, IS_ORDERED);
+		initEAttribute(getESNotification_Recipient(), ecorePackage.getEString(), "recipient", null, 0, 1, ESNotification.class, !IS_TRANSIENT, !IS_VOLATILE, IS_CHANGEABLE, !IS_UNSETTABLE, !IS_ID, IS_UNIQUE, !IS_DERIVED, IS_ORDERED);
+		initEReference(getESNotification_Project(), theEsmodelPackage.getProjectId(), null, "project", null, 0, 1, ESNotification.class, !IS_TRANSIENT, !IS_VOLATILE, IS_CHANGEABLE, IS_COMPOSITE, IS_RESOLVE_PROXIES, !IS_UNSETTABLE, IS_UNIQUE, !IS_DERIVED, IS_ORDERED);
+		initEReference(getESNotification_RelatedModelElements(), theModelPackage.getModelElementId(), null, "relatedModelElements", null, 0, -1, ESNotification.class, !IS_TRANSIENT, !IS_VOLATILE, IS_CHANGEABLE, IS_COMPOSITE, IS_RESOLVE_PROXIES, !IS_UNSETTABLE, IS_UNIQUE, !IS_DERIVED, IS_ORDERED);
 	}
 
 } // NotificationPackageImpl

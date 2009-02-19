@@ -115,8 +115,7 @@ public class MultiReferenceMoveOperationImpl extends FeatureOperationImpl implem
 		int oldOldIndex = oldIndex;
 		oldIndex = newOldIndex;
 		if (eNotificationRequired())
-			eNotify(new ENotificationImpl(this, Notification.SET,
-				OperationsPackage.MULTI_REFERENCE_MOVE_OPERATION__OLD_INDEX, oldOldIndex, oldIndex));
+			eNotify(new ENotificationImpl(this, Notification.SET, OperationsPackage.MULTI_REFERENCE_MOVE_OPERATION__OLD_INDEX, oldOldIndex, oldIndex));
 	}
 
 	/**
@@ -135,8 +134,7 @@ public class MultiReferenceMoveOperationImpl extends FeatureOperationImpl implem
 		int oldNewIndex = newIndex;
 		newIndex = newNewIndex;
 		if (eNotificationRequired())
-			eNotify(new ENotificationImpl(this, Notification.SET,
-				OperationsPackage.MULTI_REFERENCE_MOVE_OPERATION__NEW_INDEX, oldNewIndex, newIndex));
+			eNotify(new ENotificationImpl(this, Notification.SET, OperationsPackage.MULTI_REFERENCE_MOVE_OPERATION__NEW_INDEX, oldNewIndex, newIndex));
 	}
 
 	/**
@@ -144,23 +142,21 @@ public class MultiReferenceMoveOperationImpl extends FeatureOperationImpl implem
 	 * @generated
 	 */
 	public ModelElementId getReferencedModelElementId() {
-		if (referencedModelElementId != null && referencedModelElementId.eIsProxy()) {
-			InternalEObject oldReferencedModelElementId = (InternalEObject) referencedModelElementId;
-			referencedModelElementId = (ModelElementId) eResolveProxy(oldReferencedModelElementId);
-			if (referencedModelElementId != oldReferencedModelElementId) {
-				InternalEObject newReferencedModelElementId = (InternalEObject) referencedModelElementId;
-				NotificationChain msgs = oldReferencedModelElementId.eInverseRemove(this, EOPPOSITE_FEATURE_BASE
-					- OperationsPackage.MULTI_REFERENCE_MOVE_OPERATION__REFERENCED_MODEL_ELEMENT_ID, null, null);
-				if (newReferencedModelElementId.eInternalContainer() == null) {
-					msgs = newReferencedModelElementId.eInverseAdd(this, EOPPOSITE_FEATURE_BASE
-						- OperationsPackage.MULTI_REFERENCE_MOVE_OPERATION__REFERENCED_MODEL_ELEMENT_ID, null, msgs);
+		if (referencedModelElementId != null && referencedModelElementId.eIsProxy())
+		{
+			InternalEObject oldReferencedModelElementId = (InternalEObject)referencedModelElementId;
+			referencedModelElementId = (ModelElementId)eResolveProxy(oldReferencedModelElementId);
+			if (referencedModelElementId != oldReferencedModelElementId)
+			{
+				InternalEObject newReferencedModelElementId = (InternalEObject)referencedModelElementId;
+				NotificationChain msgs = oldReferencedModelElementId.eInverseRemove(this, EOPPOSITE_FEATURE_BASE - OperationsPackage.MULTI_REFERENCE_MOVE_OPERATION__REFERENCED_MODEL_ELEMENT_ID, null, null);
+				if (newReferencedModelElementId.eInternalContainer() == null)
+				{
+					msgs = newReferencedModelElementId.eInverseAdd(this, EOPPOSITE_FEATURE_BASE - OperationsPackage.MULTI_REFERENCE_MOVE_OPERATION__REFERENCED_MODEL_ELEMENT_ID, null, msgs);
 				}
-				if (msgs != null)
-					msgs.dispatch();
+				if (msgs != null) msgs.dispatch();
 				if (eNotificationRequired())
-					eNotify(new ENotificationImpl(this, Notification.RESOLVE,
-						OperationsPackage.MULTI_REFERENCE_MOVE_OPERATION__REFERENCED_MODEL_ELEMENT_ID,
-						oldReferencedModelElementId, referencedModelElementId));
+					eNotify(new ENotificationImpl(this, Notification.RESOLVE, OperationsPackage.MULTI_REFERENCE_MOVE_OPERATION__REFERENCED_MODEL_ELEMENT_ID, oldReferencedModelElementId, referencedModelElementId));
 			}
 		}
 		return referencedModelElementId;
@@ -182,14 +178,10 @@ public class MultiReferenceMoveOperationImpl extends FeatureOperationImpl implem
 		NotificationChain msgs) {
 		ModelElementId oldReferencedModelElementId = referencedModelElementId;
 		referencedModelElementId = newReferencedModelElementId;
-		if (eNotificationRequired()) {
-			ENotificationImpl notification = new ENotificationImpl(this, Notification.SET,
-				OperationsPackage.MULTI_REFERENCE_MOVE_OPERATION__REFERENCED_MODEL_ELEMENT_ID,
-				oldReferencedModelElementId, newReferencedModelElementId);
-			if (msgs == null)
-				msgs = notification;
-			else
-				msgs.add(notification);
+		if (eNotificationRequired())
+		{
+			ENotificationImpl notification = new ENotificationImpl(this, Notification.SET, OperationsPackage.MULTI_REFERENCE_MOVE_OPERATION__REFERENCED_MODEL_ELEMENT_ID, oldReferencedModelElementId, newReferencedModelElementId);
+			if (msgs == null) msgs = notification; else msgs.add(notification);
 		}
 		return msgs;
 	}
@@ -199,21 +191,18 @@ public class MultiReferenceMoveOperationImpl extends FeatureOperationImpl implem
 	 * @generated
 	 */
 	public void setReferencedModelElementId(ModelElementId newReferencedModelElementId) {
-		if (newReferencedModelElementId != referencedModelElementId) {
+		if (newReferencedModelElementId != referencedModelElementId)
+		{
 			NotificationChain msgs = null;
 			if (referencedModelElementId != null)
-				msgs = ((InternalEObject) referencedModelElementId).eInverseRemove(this, EOPPOSITE_FEATURE_BASE
-					- OperationsPackage.MULTI_REFERENCE_MOVE_OPERATION__REFERENCED_MODEL_ELEMENT_ID, null, msgs);
+				msgs = ((InternalEObject)referencedModelElementId).eInverseRemove(this, EOPPOSITE_FEATURE_BASE - OperationsPackage.MULTI_REFERENCE_MOVE_OPERATION__REFERENCED_MODEL_ELEMENT_ID, null, msgs);
 			if (newReferencedModelElementId != null)
-				msgs = ((InternalEObject) newReferencedModelElementId).eInverseAdd(this, EOPPOSITE_FEATURE_BASE
-					- OperationsPackage.MULTI_REFERENCE_MOVE_OPERATION__REFERENCED_MODEL_ELEMENT_ID, null, msgs);
+				msgs = ((InternalEObject)newReferencedModelElementId).eInverseAdd(this, EOPPOSITE_FEATURE_BASE - OperationsPackage.MULTI_REFERENCE_MOVE_OPERATION__REFERENCED_MODEL_ELEMENT_ID, null, msgs);
 			msgs = basicSetReferencedModelElementId(newReferencedModelElementId, msgs);
-			if (msgs != null)
-				msgs.dispatch();
-		} else if (eNotificationRequired())
-			eNotify(new ENotificationImpl(this, Notification.SET,
-				OperationsPackage.MULTI_REFERENCE_MOVE_OPERATION__REFERENCED_MODEL_ELEMENT_ID,
-				newReferencedModelElementId, newReferencedModelElementId));
+			if (msgs != null) msgs.dispatch();
+		}
+		else if (eNotificationRequired())
+			eNotify(new ENotificationImpl(this, Notification.SET, OperationsPackage.MULTI_REFERENCE_MOVE_OPERATION__REFERENCED_MODEL_ELEMENT_ID, newReferencedModelElementId, newReferencedModelElementId));
 	}
 
 	/**
@@ -222,9 +211,10 @@ public class MultiReferenceMoveOperationImpl extends FeatureOperationImpl implem
 	 */
 	@Override
 	public NotificationChain eInverseRemove(InternalEObject otherEnd, int featureID, NotificationChain msgs) {
-		switch (featureID) {
-		case OperationsPackage.MULTI_REFERENCE_MOVE_OPERATION__REFERENCED_MODEL_ELEMENT_ID:
-			return basicSetReferencedModelElementId(null, msgs);
+		switch (featureID)
+		{
+			case OperationsPackage.MULTI_REFERENCE_MOVE_OPERATION__REFERENCED_MODEL_ELEMENT_ID:
+				return basicSetReferencedModelElementId(null, msgs);
 		}
 		return super.eInverseRemove(otherEnd, featureID, msgs);
 	}
@@ -235,15 +225,15 @@ public class MultiReferenceMoveOperationImpl extends FeatureOperationImpl implem
 	 */
 	@Override
 	public Object eGet(int featureID, boolean resolve, boolean coreType) {
-		switch (featureID) {
-		case OperationsPackage.MULTI_REFERENCE_MOVE_OPERATION__OLD_INDEX:
-			return new Integer(getOldIndex());
-		case OperationsPackage.MULTI_REFERENCE_MOVE_OPERATION__NEW_INDEX:
-			return new Integer(getNewIndex());
-		case OperationsPackage.MULTI_REFERENCE_MOVE_OPERATION__REFERENCED_MODEL_ELEMENT_ID:
-			if (resolve)
-				return getReferencedModelElementId();
-			return basicGetReferencedModelElementId();
+		switch (featureID)
+		{
+			case OperationsPackage.MULTI_REFERENCE_MOVE_OPERATION__OLD_INDEX:
+				return new Integer(getOldIndex());
+			case OperationsPackage.MULTI_REFERENCE_MOVE_OPERATION__NEW_INDEX:
+				return new Integer(getNewIndex());
+			case OperationsPackage.MULTI_REFERENCE_MOVE_OPERATION__REFERENCED_MODEL_ELEMENT_ID:
+				if (resolve) return getReferencedModelElementId();
+				return basicGetReferencedModelElementId();
 		}
 		return super.eGet(featureID, resolve, coreType);
 	}
@@ -254,16 +244,17 @@ public class MultiReferenceMoveOperationImpl extends FeatureOperationImpl implem
 	 */
 	@Override
 	public void eSet(int featureID, Object newValue) {
-		switch (featureID) {
-		case OperationsPackage.MULTI_REFERENCE_MOVE_OPERATION__OLD_INDEX:
-			setOldIndex(((Integer) newValue).intValue());
-			return;
-		case OperationsPackage.MULTI_REFERENCE_MOVE_OPERATION__NEW_INDEX:
-			setNewIndex(((Integer) newValue).intValue());
-			return;
-		case OperationsPackage.MULTI_REFERENCE_MOVE_OPERATION__REFERENCED_MODEL_ELEMENT_ID:
-			setReferencedModelElementId((ModelElementId) newValue);
-			return;
+		switch (featureID)
+		{
+			case OperationsPackage.MULTI_REFERENCE_MOVE_OPERATION__OLD_INDEX:
+				setOldIndex(((Integer)newValue).intValue());
+				return;
+			case OperationsPackage.MULTI_REFERENCE_MOVE_OPERATION__NEW_INDEX:
+				setNewIndex(((Integer)newValue).intValue());
+				return;
+			case OperationsPackage.MULTI_REFERENCE_MOVE_OPERATION__REFERENCED_MODEL_ELEMENT_ID:
+				setReferencedModelElementId((ModelElementId)newValue);
+				return;
 		}
 		super.eSet(featureID, newValue);
 	}
@@ -274,16 +265,17 @@ public class MultiReferenceMoveOperationImpl extends FeatureOperationImpl implem
 	 */
 	@Override
 	public void eUnset(int featureID) {
-		switch (featureID) {
-		case OperationsPackage.MULTI_REFERENCE_MOVE_OPERATION__OLD_INDEX:
-			setOldIndex(OLD_INDEX_EDEFAULT);
-			return;
-		case OperationsPackage.MULTI_REFERENCE_MOVE_OPERATION__NEW_INDEX:
-			setNewIndex(NEW_INDEX_EDEFAULT);
-			return;
-		case OperationsPackage.MULTI_REFERENCE_MOVE_OPERATION__REFERENCED_MODEL_ELEMENT_ID:
-			setReferencedModelElementId((ModelElementId) null);
-			return;
+		switch (featureID)
+		{
+			case OperationsPackage.MULTI_REFERENCE_MOVE_OPERATION__OLD_INDEX:
+				setOldIndex(OLD_INDEX_EDEFAULT);
+				return;
+			case OperationsPackage.MULTI_REFERENCE_MOVE_OPERATION__NEW_INDEX:
+				setNewIndex(NEW_INDEX_EDEFAULT);
+				return;
+			case OperationsPackage.MULTI_REFERENCE_MOVE_OPERATION__REFERENCED_MODEL_ELEMENT_ID:
+				setReferencedModelElementId((ModelElementId)null);
+				return;
 		}
 		super.eUnset(featureID);
 	}
@@ -294,13 +286,14 @@ public class MultiReferenceMoveOperationImpl extends FeatureOperationImpl implem
 	 */
 	@Override
 	public boolean eIsSet(int featureID) {
-		switch (featureID) {
-		case OperationsPackage.MULTI_REFERENCE_MOVE_OPERATION__OLD_INDEX:
-			return oldIndex != OLD_INDEX_EDEFAULT;
-		case OperationsPackage.MULTI_REFERENCE_MOVE_OPERATION__NEW_INDEX:
-			return newIndex != NEW_INDEX_EDEFAULT;
-		case OperationsPackage.MULTI_REFERENCE_MOVE_OPERATION__REFERENCED_MODEL_ELEMENT_ID:
-			return referencedModelElementId != null;
+		switch (featureID)
+		{
+			case OperationsPackage.MULTI_REFERENCE_MOVE_OPERATION__OLD_INDEX:
+				return oldIndex != OLD_INDEX_EDEFAULT;
+			case OperationsPackage.MULTI_REFERENCE_MOVE_OPERATION__NEW_INDEX:
+				return newIndex != NEW_INDEX_EDEFAULT;
+			case OperationsPackage.MULTI_REFERENCE_MOVE_OPERATION__REFERENCED_MODEL_ELEMENT_ID:
+				return referencedModelElementId != null;
 		}
 		return super.eIsSet(featureID);
 	}
@@ -311,8 +304,7 @@ public class MultiReferenceMoveOperationImpl extends FeatureOperationImpl implem
 	 */
 	@Override
 	public String toString() {
-		if (eIsProxy())
-			return super.toString();
+		if (eIsProxy()) return super.toString();
 
 		StringBuffer result = new StringBuffer(super.toString());
 		result.append(" (oldIndex: ");

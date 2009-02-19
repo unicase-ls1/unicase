@@ -46,7 +46,8 @@ public class LinkEventItemProvider extends EventItemProvider implements IEditing
 	 */
 	@Override
 	public List<IItemPropertyDescriptor> getPropertyDescriptors(Object object) {
-		if (itemPropertyDescriptors == null) {
+		if (itemPropertyDescriptors == null)
+		{
 			super.getPropertyDescriptors(object);
 
 			addSourceViewPropertyDescriptor(object);
@@ -63,11 +64,19 @@ public class LinkEventItemProvider extends EventItemProvider implements IEditing
 	 * @generated
 	 */
 	protected void addSourceViewPropertyDescriptor(Object object) {
-		itemPropertyDescriptors.add(createItemPropertyDescriptor(((ComposeableAdapterFactory) adapterFactory)
-			.getRootAdapterFactory(), getResourceLocator(), getString("_UI_LinkEvent_sourceView_feature"), getString(
-			"_UI_PropertyDescriptor_description", "_UI_LinkEvent_sourceView_feature", "_UI_LinkEvent_type"),
-			EventsPackage.Literals.LINK_EVENT__SOURCE_VIEW, true, false, false,
-			ItemPropertyDescriptor.GENERIC_VALUE_IMAGE, null, null));
+		itemPropertyDescriptors.add
+			(createItemPropertyDescriptor
+				(((ComposeableAdapterFactory)adapterFactory).getRootAdapterFactory(),
+				 getResourceLocator(),
+				 getString("_UI_LinkEvent_sourceView_feature"),
+				 getString("_UI_PropertyDescriptor_description", "_UI_LinkEvent_sourceView_feature", "_UI_LinkEvent_type"),
+				 EventsPackage.Literals.LINK_EVENT__SOURCE_VIEW,
+				 true,
+				 false,
+				 false,
+				 ItemPropertyDescriptor.GENERIC_VALUE_IMAGE,
+				 null,
+				 null));
 	}
 
 	/**
@@ -76,11 +85,19 @@ public class LinkEventItemProvider extends EventItemProvider implements IEditing
 	 * @generated
 	 */
 	protected void addSourceElementPropertyDescriptor(Object object) {
-		itemPropertyDescriptors
-			.add(createItemPropertyDescriptor(((ComposeableAdapterFactory) adapterFactory).getRootAdapterFactory(),
-				getResourceLocator(), getString("_UI_LinkEvent_sourceElement_feature"), getString(
-					"_UI_PropertyDescriptor_description", "_UI_LinkEvent_sourceElement_feature", "_UI_LinkEvent_type"),
-				EventsPackage.Literals.LINK_EVENT__SOURCE_ELEMENT, true, false, true, null, null, null));
+		itemPropertyDescriptors.add
+			(createItemPropertyDescriptor
+				(((ComposeableAdapterFactory)adapterFactory).getRootAdapterFactory(),
+				 getResourceLocator(),
+				 getString("_UI_LinkEvent_sourceElement_feature"),
+				 getString("_UI_PropertyDescriptor_description", "_UI_LinkEvent_sourceElement_feature", "_UI_LinkEvent_type"),
+				 EventsPackage.Literals.LINK_EVENT__SOURCE_ELEMENT,
+				 true,
+				 false,
+				 true,
+				 null,
+				 null,
+				 null));
 	}
 
 	/**
@@ -89,11 +106,19 @@ public class LinkEventItemProvider extends EventItemProvider implements IEditing
 	 * @generated
 	 */
 	protected void addTargetElementPropertyDescriptor(Object object) {
-		itemPropertyDescriptors
-			.add(createItemPropertyDescriptor(((ComposeableAdapterFactory) adapterFactory).getRootAdapterFactory(),
-				getResourceLocator(), getString("_UI_LinkEvent_targetElement_feature"), getString(
-					"_UI_PropertyDescriptor_description", "_UI_LinkEvent_targetElement_feature", "_UI_LinkEvent_type"),
-				EventsPackage.Literals.LINK_EVENT__TARGET_ELEMENT, true, false, true, null, null, null));
+		itemPropertyDescriptors.add
+			(createItemPropertyDescriptor
+				(((ComposeableAdapterFactory)adapterFactory).getRootAdapterFactory(),
+				 getResourceLocator(),
+				 getString("_UI_LinkEvent_targetElement_feature"),
+				 getString("_UI_PropertyDescriptor_description", "_UI_LinkEvent_targetElement_feature", "_UI_LinkEvent_type"),
+				 EventsPackage.Literals.LINK_EVENT__TARGET_ELEMENT,
+				 true,
+				 false,
+				 true,
+				 null,
+				 null,
+				 null));
 	}
 
 	/**
@@ -102,11 +127,19 @@ public class LinkEventItemProvider extends EventItemProvider implements IEditing
 	 * @generated
 	 */
 	protected void addCreatedNewPropertyDescriptor(Object object) {
-		itemPropertyDescriptors.add(createItemPropertyDescriptor(((ComposeableAdapterFactory) adapterFactory)
-			.getRootAdapterFactory(), getResourceLocator(), getString("_UI_LinkEvent_createdNew_feature"), getString(
-			"_UI_PropertyDescriptor_description", "_UI_LinkEvent_createdNew_feature", "_UI_LinkEvent_type"),
-			EventsPackage.Literals.LINK_EVENT__CREATED_NEW, true, false, false,
-			ItemPropertyDescriptor.BOOLEAN_VALUE_IMAGE, null, null));
+		itemPropertyDescriptors.add
+			(createItemPropertyDescriptor
+				(((ComposeableAdapterFactory)adapterFactory).getRootAdapterFactory(),
+				 getResourceLocator(),
+				 getString("_UI_LinkEvent_createdNew_feature"),
+				 getString("_UI_PropertyDescriptor_description", "_UI_LinkEvent_createdNew_feature", "_UI_LinkEvent_type"),
+				 EventsPackage.Literals.LINK_EVENT__CREATED_NEW,
+				 true,
+				 false,
+				 false,
+				 ItemPropertyDescriptor.BOOLEAN_VALUE_IMAGE,
+				 null,
+				 null));
 	}
 
 	/**
@@ -126,10 +159,11 @@ public class LinkEventItemProvider extends EventItemProvider implements IEditing
 	 */
 	@Override
 	public String getText(Object object) {
-		Date labelValue = ((LinkEvent) object).getTimestamp();
+		Date labelValue = ((LinkEvent)object).getTimestamp();
 		String label = labelValue == null ? null : labelValue.toString();
-		return label == null || label.length() == 0 ? getString("_UI_LinkEvent_type") : getString("_UI_LinkEvent_type")
-			+ " " + label;
+		return label == null || label.length() == 0 ?
+			getString("_UI_LinkEvent_type") :
+			getString("_UI_LinkEvent_type") + " " + label;
 	}
 
 	/**
@@ -143,11 +177,12 @@ public class LinkEventItemProvider extends EventItemProvider implements IEditing
 	public void notifyChanged(Notification notification) {
 		updateChildren(notification);
 
-		switch (notification.getFeatureID(LinkEvent.class)) {
-		case EventsPackage.LINK_EVENT__SOURCE_VIEW:
-		case EventsPackage.LINK_EVENT__CREATED_NEW:
-			fireNotifyChanged(new ViewerNotification(notification, notification.getNotifier(), false, true));
-			return;
+		switch (notification.getFeatureID(LinkEvent.class))
+		{
+			case EventsPackage.LINK_EVENT__SOURCE_VIEW:
+			case EventsPackage.LINK_EVENT__CREATED_NEW:
+				fireNotifyChanged(new ViewerNotification(notification, notification.getNotifier(), false, true));
+				return;
 		}
 		super.notifyChanged(notification);
 	}

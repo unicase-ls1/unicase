@@ -46,7 +46,8 @@ public class DNDEventItemProvider extends EventItemProvider implements IEditingD
 	 */
 	@Override
 	public List<IItemPropertyDescriptor> getPropertyDescriptors(Object object) {
-		if (itemPropertyDescriptors == null) {
+		if (itemPropertyDescriptors == null)
+		{
 			super.getPropertyDescriptors(object);
 
 			addSourceViewPropertyDescriptor(object);
@@ -63,11 +64,19 @@ public class DNDEventItemProvider extends EventItemProvider implements IEditingD
 	 * @generated
 	 */
 	protected void addSourceViewPropertyDescriptor(Object object) {
-		itemPropertyDescriptors.add(createItemPropertyDescriptor(((ComposeableAdapterFactory) adapterFactory)
-			.getRootAdapterFactory(), getResourceLocator(), getString("_UI_DNDEvent_sourceView_feature"), getString(
-			"_UI_PropertyDescriptor_description", "_UI_DNDEvent_sourceView_feature", "_UI_DNDEvent_type"),
-			EventsPackage.Literals.DND_EVENT__SOURCE_VIEW, true, false, false,
-			ItemPropertyDescriptor.GENERIC_VALUE_IMAGE, null, null));
+		itemPropertyDescriptors.add
+			(createItemPropertyDescriptor
+				(((ComposeableAdapterFactory)adapterFactory).getRootAdapterFactory(),
+				 getResourceLocator(),
+				 getString("_UI_DNDEvent_sourceView_feature"),
+				 getString("_UI_PropertyDescriptor_description", "_UI_DNDEvent_sourceView_feature", "_UI_DNDEvent_type"),
+				 EventsPackage.Literals.DND_EVENT__SOURCE_VIEW,
+				 true,
+				 false,
+				 false,
+				 ItemPropertyDescriptor.GENERIC_VALUE_IMAGE,
+				 null,
+				 null));
 	}
 
 	/**
@@ -76,11 +85,19 @@ public class DNDEventItemProvider extends EventItemProvider implements IEditingD
 	 * @generated
 	 */
 	protected void addTargetViewPropertyDescriptor(Object object) {
-		itemPropertyDescriptors.add(createItemPropertyDescriptor(((ComposeableAdapterFactory) adapterFactory)
-			.getRootAdapterFactory(), getResourceLocator(), getString("_UI_DNDEvent_targetView_feature"), getString(
-			"_UI_PropertyDescriptor_description", "_UI_DNDEvent_targetView_feature", "_UI_DNDEvent_type"),
-			EventsPackage.Literals.DND_EVENT__TARGET_VIEW, true, false, false,
-			ItemPropertyDescriptor.GENERIC_VALUE_IMAGE, null, null));
+		itemPropertyDescriptors.add
+			(createItemPropertyDescriptor
+				(((ComposeableAdapterFactory)adapterFactory).getRootAdapterFactory(),
+				 getResourceLocator(),
+				 getString("_UI_DNDEvent_targetView_feature"),
+				 getString("_UI_PropertyDescriptor_description", "_UI_DNDEvent_targetView_feature", "_UI_DNDEvent_type"),
+				 EventsPackage.Literals.DND_EVENT__TARGET_VIEW,
+				 true,
+				 false,
+				 false,
+				 ItemPropertyDescriptor.GENERIC_VALUE_IMAGE,
+				 null,
+				 null));
 	}
 
 	/**
@@ -90,11 +107,19 @@ public class DNDEventItemProvider extends EventItemProvider implements IEditingD
 	 * @generated
 	 */
 	protected void addDragSourceElementPropertyDescriptor(Object object) {
-		itemPropertyDescriptors.add(createItemPropertyDescriptor(((ComposeableAdapterFactory) adapterFactory)
-			.getRootAdapterFactory(), getResourceLocator(), getString("_UI_DNDEvent_dragSourceElement_feature"),
-			getString("_UI_PropertyDescriptor_description", "_UI_DNDEvent_dragSourceElement_feature",
-				"_UI_DNDEvent_type"), EventsPackage.Literals.DND_EVENT__DRAG_SOURCE_ELEMENT, true, false, true, null,
-			null, null));
+		itemPropertyDescriptors.add
+			(createItemPropertyDescriptor
+				(((ComposeableAdapterFactory)adapterFactory).getRootAdapterFactory(),
+				 getResourceLocator(),
+				 getString("_UI_DNDEvent_dragSourceElement_feature"),
+				 getString("_UI_PropertyDescriptor_description", "_UI_DNDEvent_dragSourceElement_feature", "_UI_DNDEvent_type"),
+				 EventsPackage.Literals.DND_EVENT__DRAG_SOURCE_ELEMENT,
+				 true,
+				 false,
+				 true,
+				 null,
+				 null,
+				 null));
 	}
 
 	/**
@@ -104,11 +129,19 @@ public class DNDEventItemProvider extends EventItemProvider implements IEditingD
 	 * @generated
 	 */
 	protected void addDropTargetElementPropertyDescriptor(Object object) {
-		itemPropertyDescriptors.add(createItemPropertyDescriptor(((ComposeableAdapterFactory) adapterFactory)
-			.getRootAdapterFactory(), getResourceLocator(), getString("_UI_DNDEvent_dropTargetElement_feature"),
-			getString("_UI_PropertyDescriptor_description", "_UI_DNDEvent_dropTargetElement_feature",
-				"_UI_DNDEvent_type"), EventsPackage.Literals.DND_EVENT__DROP_TARGET_ELEMENT, true, false, true, null,
-			null, null));
+		itemPropertyDescriptors.add
+			(createItemPropertyDescriptor
+				(((ComposeableAdapterFactory)adapterFactory).getRootAdapterFactory(),
+				 getResourceLocator(),
+				 getString("_UI_DNDEvent_dropTargetElement_feature"),
+				 getString("_UI_PropertyDescriptor_description", "_UI_DNDEvent_dropTargetElement_feature", "_UI_DNDEvent_type"),
+				 EventsPackage.Literals.DND_EVENT__DROP_TARGET_ELEMENT,
+				 true,
+				 false,
+				 true,
+				 null,
+				 null,
+				 null));
 	}
 
 	/**
@@ -128,10 +161,11 @@ public class DNDEventItemProvider extends EventItemProvider implements IEditingD
 	 */
 	@Override
 	public String getText(Object object) {
-		Date labelValue = ((DNDEvent) object).getTimestamp();
+		Date labelValue = ((DNDEvent)object).getTimestamp();
 		String label = labelValue == null ? null : labelValue.toString();
-		return label == null || label.length() == 0 ? getString("_UI_DNDEvent_type") : getString("_UI_DNDEvent_type")
-			+ " " + label;
+		return label == null || label.length() == 0 ?
+			getString("_UI_DNDEvent_type") :
+			getString("_UI_DNDEvent_type") + " " + label;
 	}
 
 	/**
@@ -145,11 +179,12 @@ public class DNDEventItemProvider extends EventItemProvider implements IEditingD
 	public void notifyChanged(Notification notification) {
 		updateChildren(notification);
 
-		switch (notification.getFeatureID(DNDEvent.class)) {
-		case EventsPackage.DND_EVENT__SOURCE_VIEW:
-		case EventsPackage.DND_EVENT__TARGET_VIEW:
-			fireNotifyChanged(new ViewerNotification(notification, notification.getNotifier(), false, true));
-			return;
+		switch (notification.getFeatureID(DNDEvent.class))
+		{
+			case EventsPackage.DND_EVENT__SOURCE_VIEW:
+			case EventsPackage.DND_EVENT__TARGET_VIEW:
+				fireNotifyChanged(new ViewerNotification(notification, notification.getNotifier(), false, true));
+				return;
 		}
 		super.notifyChanged(notification);
 	}

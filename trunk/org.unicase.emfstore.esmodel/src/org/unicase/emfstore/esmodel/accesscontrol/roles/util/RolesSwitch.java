@@ -38,7 +38,8 @@ public class RolesSwitch<T> {
 	 * @generated
 	 */
 	public RolesSwitch() {
-		if (modelPackage == null) {
+		if (modelPackage == null)
+		{
 			modelPackage = RolesPackage.eINSTANCE;
 		}
 	}
@@ -60,11 +61,17 @@ public class RolesSwitch<T> {
 	 * @generated
 	 */
 	protected T doSwitch(EClass theEClass, EObject theEObject) {
-		if (theEClass.eContainer() == modelPackage) {
+		if (theEClass.eContainer() == modelPackage)
+		{
 			return doSwitch(theEClass.getClassifierID(), theEObject);
-		} else {
+		}
+		else
+		{
 			List<EClass> eSuperTypes = theEClass.getESuperTypes();
-			return eSuperTypes.isEmpty() ? defaultCase(theEObject) : doSwitch(eSuperTypes.get(0), theEObject);
+			return
+				eSuperTypes.isEmpty() ?
+					defaultCase(theEObject) :
+					doSwitch(eSuperTypes.get(0), theEObject);
 		}
 	}
 
@@ -75,52 +82,48 @@ public class RolesSwitch<T> {
 	 * @generated
 	 */
 	protected T doSwitch(int classifierID, EObject theEObject) {
-		switch (classifierID) {
-		case RolesPackage.ROLE: {
-			Role role = (Role) theEObject;
-			T result = caseRole(role);
-			if (result == null)
-				result = defaultCase(theEObject);
-			return result;
-		}
-		case RolesPackage.READER_ROLE: {
-			ReaderRole readerRole = (ReaderRole) theEObject;
-			T result = caseReaderRole(readerRole);
-			if (result == null)
-				result = caseRole(readerRole);
-			if (result == null)
-				result = defaultCase(theEObject);
-			return result;
-		}
-		case RolesPackage.WRITER_ROLE: {
-			WriterRole writerRole = (WriterRole) theEObject;
-			T result = caseWriterRole(writerRole);
-			if (result == null)
-				result = caseRole(writerRole);
-			if (result == null)
-				result = defaultCase(theEObject);
-			return result;
-		}
-		case RolesPackage.PROJECT_ADMIN_ROLE: {
-			ProjectAdminRole projectAdminRole = (ProjectAdminRole) theEObject;
-			T result = caseProjectAdminRole(projectAdminRole);
-			if (result == null)
-				result = caseRole(projectAdminRole);
-			if (result == null)
-				result = defaultCase(theEObject);
-			return result;
-		}
-		case RolesPackage.SERVER_ADMIN: {
-			ServerAdmin serverAdmin = (ServerAdmin) theEObject;
-			T result = caseServerAdmin(serverAdmin);
-			if (result == null)
-				result = caseRole(serverAdmin);
-			if (result == null)
-				result = defaultCase(theEObject);
-			return result;
-		}
-		default:
-			return defaultCase(theEObject);
+		switch (classifierID)
+		{
+			case RolesPackage.ROLE:
+			{
+				Role role = (Role)theEObject;
+				T result = caseRole(role);
+				if (result == null) result = defaultCase(theEObject);
+				return result;
+			}
+			case RolesPackage.READER_ROLE:
+			{
+				ReaderRole readerRole = (ReaderRole)theEObject;
+				T result = caseReaderRole(readerRole);
+				if (result == null) result = caseRole(readerRole);
+				if (result == null) result = defaultCase(theEObject);
+				return result;
+			}
+			case RolesPackage.WRITER_ROLE:
+			{
+				WriterRole writerRole = (WriterRole)theEObject;
+				T result = caseWriterRole(writerRole);
+				if (result == null) result = caseRole(writerRole);
+				if (result == null) result = defaultCase(theEObject);
+				return result;
+			}
+			case RolesPackage.PROJECT_ADMIN_ROLE:
+			{
+				ProjectAdminRole projectAdminRole = (ProjectAdminRole)theEObject;
+				T result = caseProjectAdminRole(projectAdminRole);
+				if (result == null) result = caseRole(projectAdminRole);
+				if (result == null) result = defaultCase(theEObject);
+				return result;
+			}
+			case RolesPackage.SERVER_ADMIN:
+			{
+				ServerAdmin serverAdmin = (ServerAdmin)theEObject;
+				T result = caseServerAdmin(serverAdmin);
+				if (result == null) result = caseRole(serverAdmin);
+				if (result == null) result = defaultCase(theEObject);
+				return result;
+			}
+			default: return defaultCase(theEObject);
 		}
 	}
 

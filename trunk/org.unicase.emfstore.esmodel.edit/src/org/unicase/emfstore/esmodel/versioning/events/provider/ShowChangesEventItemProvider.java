@@ -46,7 +46,8 @@ public class ShowChangesEventItemProvider extends EventItemProvider implements I
 	 */
 	@Override
 	public List<IItemPropertyDescriptor> getPropertyDescriptors(Object object) {
-		if (itemPropertyDescriptors == null) {
+		if (itemPropertyDescriptors == null)
+		{
 			super.getPropertyDescriptors(object);
 
 		}
@@ -63,7 +64,8 @@ public class ShowChangesEventItemProvider extends EventItemProvider implements I
 	 */
 	@Override
 	public Collection<? extends EStructuralFeature> getChildrenFeatures(Object object) {
-		if (childrenFeatures == null) {
+		if (childrenFeatures == null)
+		{
 			super.getChildrenFeatures(object);
 			childrenFeatures.add(EventsPackage.Literals.SHOW_CHANGES_EVENT__SOURCE_VERSION);
 			childrenFeatures.add(EventsPackage.Literals.SHOW_CHANGES_EVENT__TARGET_VERSION);
@@ -100,10 +102,11 @@ public class ShowChangesEventItemProvider extends EventItemProvider implements I
 	 */
 	@Override
 	public String getText(Object object) {
-		Date labelValue = ((ShowChangesEvent) object).getTimestamp();
+		Date labelValue = ((ShowChangesEvent)object).getTimestamp();
 		String label = labelValue == null ? null : labelValue.toString();
-		return label == null || label.length() == 0 ? getString("_UI_ShowChangesEvent_type")
-			: getString("_UI_ShowChangesEvent_type") + " " + label;
+		return label == null || label.length() == 0 ?
+			getString("_UI_ShowChangesEvent_type") :
+			getString("_UI_ShowChangesEvent_type") + " " + label;
 	}
 
 	/**
@@ -117,11 +120,12 @@ public class ShowChangesEventItemProvider extends EventItemProvider implements I
 	public void notifyChanged(Notification notification) {
 		updateChildren(notification);
 
-		switch (notification.getFeatureID(ShowChangesEvent.class)) {
-		case EventsPackage.SHOW_CHANGES_EVENT__SOURCE_VERSION:
-		case EventsPackage.SHOW_CHANGES_EVENT__TARGET_VERSION:
-			fireNotifyChanged(new ViewerNotification(notification, notification.getNotifier(), true, false));
-			return;
+		switch (notification.getFeatureID(ShowChangesEvent.class))
+		{
+			case EventsPackage.SHOW_CHANGES_EVENT__SOURCE_VERSION:
+			case EventsPackage.SHOW_CHANGES_EVENT__TARGET_VERSION:
+				fireNotifyChanged(new ViewerNotification(notification, notification.getNotifier(), true, false));
+				return;
 		}
 		super.notifyChanged(notification);
 	}
@@ -136,11 +140,15 @@ public class ShowChangesEventItemProvider extends EventItemProvider implements I
 	protected void collectNewChildDescriptors(Collection<Object> newChildDescriptors, Object object) {
 		super.collectNewChildDescriptors(newChildDescriptors, object);
 
-		newChildDescriptors.add(createChildParameter(EventsPackage.Literals.SHOW_CHANGES_EVENT__SOURCE_VERSION,
-			VersioningFactory.eINSTANCE.createPrimaryVersionSpec()));
+		newChildDescriptors.add
+			(createChildParameter
+				(EventsPackage.Literals.SHOW_CHANGES_EVENT__SOURCE_VERSION,
+				 VersioningFactory.eINSTANCE.createPrimaryVersionSpec()));
 
-		newChildDescriptors.add(createChildParameter(EventsPackage.Literals.SHOW_CHANGES_EVENT__TARGET_VERSION,
-			VersioningFactory.eINSTANCE.createPrimaryVersionSpec()));
+		newChildDescriptors.add
+			(createChildParameter
+				(EventsPackage.Literals.SHOW_CHANGES_EVENT__TARGET_VERSION,
+				 VersioningFactory.eINSTANCE.createPrimaryVersionSpec()));
 	}
 
 	/**
@@ -154,12 +162,15 @@ public class ShowChangesEventItemProvider extends EventItemProvider implements I
 		Object childFeature = feature;
 		Object childObject = child;
 
-		boolean qualify = childFeature == EventsPackage.Literals.SHOW_CHANGES_EVENT__SOURCE_VERSION
-			|| childFeature == EventsPackage.Literals.SHOW_CHANGES_EVENT__TARGET_VERSION;
+		boolean qualify =
+			childFeature == EventsPackage.Literals.SHOW_CHANGES_EVENT__SOURCE_VERSION ||
+			childFeature == EventsPackage.Literals.SHOW_CHANGES_EVENT__TARGET_VERSION;
 
-		if (qualify) {
-			return getString("_UI_CreateChild_text2", new Object[] { getTypeText(childObject),
-				getFeatureText(childFeature), getTypeText(owner) });
+		if (qualify)
+		{
+			return getString
+				("_UI_CreateChild_text2",
+				 new Object[] { getTypeText(childObject), getFeatureText(childFeature), getTypeText(owner) });
 		}
 		return super.getCreateChildText(owner, feature, child, selection);
 	}

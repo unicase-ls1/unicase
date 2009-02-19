@@ -85,7 +85,8 @@ public class EventsItemProviderAdapterFactory extends EventsAdapterFactory imple
 	 */
 	@Override
 	public Adapter createEventAdapter() {
-		if (eventItemProvider == null) {
+		if (eventItemProvider == null)
+		{
 			eventItemProvider = new EventItemProvider(this);
 		}
 
@@ -107,7 +108,8 @@ public class EventsItemProviderAdapterFactory extends EventsAdapterFactory imple
 	 */
 	@Override
 	public Adapter createReadEventAdapter() {
-		if (readEventItemProvider == null) {
+		if (readEventItemProvider == null)
+		{
 			readEventItemProvider = new ReadEventItemProvider(this);
 		}
 
@@ -130,7 +132,8 @@ public class EventsItemProviderAdapterFactory extends EventsAdapterFactory imple
 	 */
 	@Override
 	public Adapter createMergeEventAdapter() {
-		if (mergeEventItemProvider == null) {
+		if (mergeEventItemProvider == null)
+		{
 			mergeEventItemProvider = new MergeEventItemProvider(this);
 		}
 
@@ -153,7 +156,8 @@ public class EventsItemProviderAdapterFactory extends EventsAdapterFactory imple
 	 */
 	@Override
 	public Adapter createCheckoutEventAdapter() {
-		if (checkoutEventItemProvider == null) {
+		if (checkoutEventItemProvider == null)
+		{
 			checkoutEventItemProvider = new CheckoutEventItemProvider(this);
 		}
 
@@ -176,7 +180,8 @@ public class EventsItemProviderAdapterFactory extends EventsAdapterFactory imple
 	 */
 	@Override
 	public Adapter createExceptionEventAdapter() {
-		if (exceptionEventItemProvider == null) {
+		if (exceptionEventItemProvider == null)
+		{
 			exceptionEventItemProvider = new ExceptionEventItemProvider(this);
 		}
 
@@ -199,7 +204,8 @@ public class EventsItemProviderAdapterFactory extends EventsAdapterFactory imple
 	 */
 	@Override
 	public Adapter createPluginStartEventAdapter() {
-		if (pluginStartEventItemProvider == null) {
+		if (pluginStartEventItemProvider == null)
+		{
 			pluginStartEventItemProvider = new PluginStartEventItemProvider(this);
 		}
 
@@ -222,7 +228,8 @@ public class EventsItemProviderAdapterFactory extends EventsAdapterFactory imple
 	 */
 	@Override
 	public Adapter createUpdateEventAdapter() {
-		if (updateEventItemProvider == null) {
+		if (updateEventItemProvider == null)
+		{
 			updateEventItemProvider = new UpdateEventItemProvider(this);
 		}
 
@@ -245,7 +252,8 @@ public class EventsItemProviderAdapterFactory extends EventsAdapterFactory imple
 	 */
 	@Override
 	public Adapter createAnnotationEventAdapter() {
-		if (annotationEventItemProvider == null) {
+		if (annotationEventItemProvider == null)
+		{
 			annotationEventItemProvider = new AnnotationEventItemProvider(this);
 		}
 
@@ -268,7 +276,8 @@ public class EventsItemProviderAdapterFactory extends EventsAdapterFactory imple
 	 */
 	@Override
 	public Adapter createRevertEventAdapter() {
-		if (revertEventItemProvider == null) {
+		if (revertEventItemProvider == null)
+		{
 			revertEventItemProvider = new RevertEventItemProvider(this);
 		}
 
@@ -291,7 +300,8 @@ public class EventsItemProviderAdapterFactory extends EventsAdapterFactory imple
 	 */
 	@Override
 	public Adapter createShowHistoryEventAdapter() {
-		if (showHistoryEventItemProvider == null) {
+		if (showHistoryEventItemProvider == null)
+		{
 			showHistoryEventItemProvider = new ShowHistoryEventItemProvider(this);
 		}
 
@@ -314,7 +324,8 @@ public class EventsItemProviderAdapterFactory extends EventsAdapterFactory imple
 	 */
 	@Override
 	public Adapter createPerspectiveEventAdapter() {
-		if (perspectiveEventItemProvider == null) {
+		if (perspectiveEventItemProvider == null)
+		{
 			perspectiveEventItemProvider = new PerspectiveEventItemProvider(this);
 		}
 
@@ -336,7 +347,8 @@ public class EventsItemProviderAdapterFactory extends EventsAdapterFactory imple
 	 */
 	@Override
 	public Adapter createDNDEventAdapter() {
-		if (dndEventItemProvider == null) {
+		if (dndEventItemProvider == null)
+		{
 			dndEventItemProvider = new DNDEventItemProvider(this);
 		}
 
@@ -358,7 +370,8 @@ public class EventsItemProviderAdapterFactory extends EventsAdapterFactory imple
 	 */
 	@Override
 	public Adapter createLinkEventAdapter() {
-		if (linkEventItemProvider == null) {
+		if (linkEventItemProvider == null)
+		{
 			linkEventItemProvider = new LinkEventItemProvider(this);
 		}
 
@@ -381,7 +394,8 @@ public class EventsItemProviderAdapterFactory extends EventsAdapterFactory imple
 	 */
 	@Override
 	public Adapter createTraceEventAdapter() {
-		if (traceEventItemProvider == null) {
+		if (traceEventItemProvider == null)
+		{
 			traceEventItemProvider = new TraceEventItemProvider(this);
 		}
 
@@ -404,7 +418,8 @@ public class EventsItemProviderAdapterFactory extends EventsAdapterFactory imple
 	 */
 	@Override
 	public Adapter createNavigatorCreateEventAdapter() {
-		if (navigatorCreateEventItemProvider == null) {
+		if (navigatorCreateEventItemProvider == null)
+		{
 			navigatorCreateEventItemProvider = new NavigatorCreateEventItemProvider(this);
 		}
 
@@ -427,7 +442,8 @@ public class EventsItemProviderAdapterFactory extends EventsAdapterFactory imple
 	 */
 	@Override
 	public Adapter createPluginFocusEventAdapter() {
-		if (pluginFocusEventItemProvider == null) {
+		if (pluginFocusEventItemProvider == null)
+		{
 			pluginFocusEventItemProvider = new PluginFocusEventItemProvider(this);
 		}
 
@@ -449,7 +465,8 @@ public class EventsItemProviderAdapterFactory extends EventsAdapterFactory imple
 	 */
 	@Override
 	public Adapter createPresentationSwitchEventAdapter() {
-		if (presentationSwitchEventItemProvider == null) {
+		if (presentationSwitchEventItemProvider == null)
+		{
 			presentationSwitchEventItemProvider = new PresentationSwitchEventItemProvider(this);
 		}
 
@@ -471,7 +488,8 @@ public class EventsItemProviderAdapterFactory extends EventsAdapterFactory imple
 	 */
 	@Override
 	public Adapter createUndoEventAdapter() {
-		if (undoEventItemProvider == null) {
+		if (undoEventItemProvider == null)
+		{
 			undoEventItemProvider = new UndoEventItemProvider(this);
 		}
 
@@ -493,7 +511,8 @@ public class EventsItemProviderAdapterFactory extends EventsAdapterFactory imple
 	 */
 	@Override
 	public Adapter createValidateAdapter() {
-		if (validateItemProvider == null) {
+		if (validateItemProvider == null)
+		{
 			validateItemProvider = new ValidateItemProvider(this);
 		}
 
@@ -516,7 +535,8 @@ public class EventsItemProviderAdapterFactory extends EventsAdapterFactory imple
 	 */
 	@Override
 	public Adapter createShowChangesEventAdapter() {
-		if (showChangesEventItemProvider == null) {
+		if (showChangesEventItemProvider == null)
+		{
 			showChangesEventItemProvider = new ShowChangesEventItemProvider(this);
 		}
 
@@ -567,9 +587,11 @@ public class EventsItemProviderAdapterFactory extends EventsAdapterFactory imple
 	 */
 	@Override
 	public Object adapt(Object object, Object type) {
-		if (isFactoryForType(type)) {
+		if (isFactoryForType(type))
+		{
 			Object adapter = super.adapt(object, type);
-			if (!(type instanceof Class) || (((Class<?>) type).isInstance(adapter))) {
+			if (!(type instanceof Class) || (((Class<?>)type).isInstance(adapter)))
+			{
 				return adapter;
 			}
 		}
@@ -604,7 +626,8 @@ public class EventsItemProviderAdapterFactory extends EventsAdapterFactory imple
 	public void fireNotifyChanged(Notification notification) {
 		changeNotifier.fireNotifyChanged(notification);
 
-		if (parentAdapterFactory != null) {
+		if (parentAdapterFactory != null)
+		{
 			parentAdapterFactory.fireNotifyChanged(notification);
 		}
 	}
@@ -615,46 +638,26 @@ public class EventsItemProviderAdapterFactory extends EventsAdapterFactory imple
 	 * @generated
 	 */
 	public void dispose() {
-		if (eventItemProvider != null)
-			eventItemProvider.dispose();
-		if (readEventItemProvider != null)
-			readEventItemProvider.dispose();
-		if (mergeEventItemProvider != null)
-			mergeEventItemProvider.dispose();
-		if (checkoutEventItemProvider != null)
-			checkoutEventItemProvider.dispose();
-		if (exceptionEventItemProvider != null)
-			exceptionEventItemProvider.dispose();
-		if (pluginStartEventItemProvider != null)
-			pluginStartEventItemProvider.dispose();
-		if (updateEventItemProvider != null)
-			updateEventItemProvider.dispose();
-		if (annotationEventItemProvider != null)
-			annotationEventItemProvider.dispose();
-		if (revertEventItemProvider != null)
-			revertEventItemProvider.dispose();
-		if (showHistoryEventItemProvider != null)
-			showHistoryEventItemProvider.dispose();
-		if (perspectiveEventItemProvider != null)
-			perspectiveEventItemProvider.dispose();
-		if (dndEventItemProvider != null)
-			dndEventItemProvider.dispose();
-		if (linkEventItemProvider != null)
-			linkEventItemProvider.dispose();
-		if (traceEventItemProvider != null)
-			traceEventItemProvider.dispose();
-		if (navigatorCreateEventItemProvider != null)
-			navigatorCreateEventItemProvider.dispose();
-		if (pluginFocusEventItemProvider != null)
-			pluginFocusEventItemProvider.dispose();
-		if (presentationSwitchEventItemProvider != null)
-			presentationSwitchEventItemProvider.dispose();
-		if (undoEventItemProvider != null)
-			undoEventItemProvider.dispose();
-		if (validateItemProvider != null)
-			validateItemProvider.dispose();
-		if (showChangesEventItemProvider != null)
-			showChangesEventItemProvider.dispose();
+		if (eventItemProvider != null) eventItemProvider.dispose();
+		if (readEventItemProvider != null) readEventItemProvider.dispose();
+		if (mergeEventItemProvider != null) mergeEventItemProvider.dispose();
+		if (checkoutEventItemProvider != null) checkoutEventItemProvider.dispose();
+		if (exceptionEventItemProvider != null) exceptionEventItemProvider.dispose();
+		if (pluginStartEventItemProvider != null) pluginStartEventItemProvider.dispose();
+		if (updateEventItemProvider != null) updateEventItemProvider.dispose();
+		if (annotationEventItemProvider != null) annotationEventItemProvider.dispose();
+		if (revertEventItemProvider != null) revertEventItemProvider.dispose();
+		if (showHistoryEventItemProvider != null) showHistoryEventItemProvider.dispose();
+		if (perspectiveEventItemProvider != null) perspectiveEventItemProvider.dispose();
+		if (dndEventItemProvider != null) dndEventItemProvider.dispose();
+		if (linkEventItemProvider != null) linkEventItemProvider.dispose();
+		if (traceEventItemProvider != null) traceEventItemProvider.dispose();
+		if (navigatorCreateEventItemProvider != null) navigatorCreateEventItemProvider.dispose();
+		if (pluginFocusEventItemProvider != null) pluginFocusEventItemProvider.dispose();
+		if (presentationSwitchEventItemProvider != null) presentationSwitchEventItemProvider.dispose();
+		if (undoEventItemProvider != null) undoEventItemProvider.dispose();
+		if (validateItemProvider != null) validateItemProvider.dispose();
+		if (showChangesEventItemProvider != null) showChangesEventItemProvider.dispose();
 	}
 
 }

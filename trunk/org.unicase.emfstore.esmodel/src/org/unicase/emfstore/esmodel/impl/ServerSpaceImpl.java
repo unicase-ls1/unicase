@@ -98,9 +98,9 @@ public class ServerSpaceImpl extends EObjectImpl implements ServerSpace {
 	 * @generated
 	 */
 	public EList<ACGroup> getGroups() {
-		if (groups == null) {
-			groups = new EObjectContainmentEList.Resolving<ACGroup>(ACGroup.class, this,
-				EsmodelPackage.SERVER_SPACE__GROUPS);
+		if (groups == null)
+		{
+			groups = new EObjectContainmentEList.Resolving<ACGroup>(ACGroup.class, this, EsmodelPackage.SERVER_SPACE__GROUPS);
 		}
 		return groups;
 	}
@@ -110,9 +110,9 @@ public class ServerSpaceImpl extends EObjectImpl implements ServerSpace {
 	 * @generated
 	 */
 	public EList<ProjectHistory> getProjects() {
-		if (projects == null) {
-			projects = new EObjectResolvingEList<ProjectHistory>(ProjectHistory.class, this,
-				EsmodelPackage.SERVER_SPACE__PROJECTS);
+		if (projects == null)
+		{
+			projects = new EObjectResolvingEList<ProjectHistory>(ProjectHistory.class, this, EsmodelPackage.SERVER_SPACE__PROJECTS);
 		}
 		return projects;
 	}
@@ -122,9 +122,9 @@ public class ServerSpaceImpl extends EObjectImpl implements ServerSpace {
 	 * @generated
 	 */
 	public EList<SessionId> getOpenSessions() {
-		if (openSessions == null) {
-			openSessions = new EObjectContainmentEList.Resolving<SessionId>(SessionId.class, this,
-				EsmodelPackage.SERVER_SPACE__OPEN_SESSIONS);
+		if (openSessions == null)
+		{
+			openSessions = new EObjectContainmentEList.Resolving<SessionId>(SessionId.class, this, EsmodelPackage.SERVER_SPACE__OPEN_SESSIONS);
 		}
 		return openSessions;
 	}
@@ -134,9 +134,9 @@ public class ServerSpaceImpl extends EObjectImpl implements ServerSpace {
 	 * @generated
 	 */
 	public EList<ACUser> getUsers() {
-		if (users == null) {
-			users = new EObjectContainmentEList.Resolving<ACUser>(ACUser.class, this,
-				EsmodelPackage.SERVER_SPACE__USERS);
+		if (users == null)
+		{
+			users = new EObjectContainmentEList.Resolving<ACUser>(ACUser.class, this, EsmodelPackage.SERVER_SPACE__USERS);
 		}
 		return users;
 	}
@@ -147,13 +147,14 @@ public class ServerSpaceImpl extends EObjectImpl implements ServerSpace {
 	 */
 	@Override
 	public NotificationChain eInverseRemove(InternalEObject otherEnd, int featureID, NotificationChain msgs) {
-		switch (featureID) {
-		case EsmodelPackage.SERVER_SPACE__GROUPS:
-			return ((InternalEList<?>) getGroups()).basicRemove(otherEnd, msgs);
-		case EsmodelPackage.SERVER_SPACE__OPEN_SESSIONS:
-			return ((InternalEList<?>) getOpenSessions()).basicRemove(otherEnd, msgs);
-		case EsmodelPackage.SERVER_SPACE__USERS:
-			return ((InternalEList<?>) getUsers()).basicRemove(otherEnd, msgs);
+		switch (featureID)
+		{
+			case EsmodelPackage.SERVER_SPACE__GROUPS:
+				return ((InternalEList<?>)getGroups()).basicRemove(otherEnd, msgs);
+			case EsmodelPackage.SERVER_SPACE__OPEN_SESSIONS:
+				return ((InternalEList<?>)getOpenSessions()).basicRemove(otherEnd, msgs);
+			case EsmodelPackage.SERVER_SPACE__USERS:
+				return ((InternalEList<?>)getUsers()).basicRemove(otherEnd, msgs);
 		}
 		return super.eInverseRemove(otherEnd, featureID, msgs);
 	}
@@ -164,15 +165,16 @@ public class ServerSpaceImpl extends EObjectImpl implements ServerSpace {
 	 */
 	@Override
 	public Object eGet(int featureID, boolean resolve, boolean coreType) {
-		switch (featureID) {
-		case EsmodelPackage.SERVER_SPACE__GROUPS:
-			return getGroups();
-		case EsmodelPackage.SERVER_SPACE__PROJECTS:
-			return getProjects();
-		case EsmodelPackage.SERVER_SPACE__OPEN_SESSIONS:
-			return getOpenSessions();
-		case EsmodelPackage.SERVER_SPACE__USERS:
-			return getUsers();
+		switch (featureID)
+		{
+			case EsmodelPackage.SERVER_SPACE__GROUPS:
+				return getGroups();
+			case EsmodelPackage.SERVER_SPACE__PROJECTS:
+				return getProjects();
+			case EsmodelPackage.SERVER_SPACE__OPEN_SESSIONS:
+				return getOpenSessions();
+			case EsmodelPackage.SERVER_SPACE__USERS:
+				return getUsers();
 		}
 		return super.eGet(featureID, resolve, coreType);
 	}
@@ -184,23 +186,24 @@ public class ServerSpaceImpl extends EObjectImpl implements ServerSpace {
 	@SuppressWarnings("unchecked")
 	@Override
 	public void eSet(int featureID, Object newValue) {
-		switch (featureID) {
-		case EsmodelPackage.SERVER_SPACE__GROUPS:
-			getGroups().clear();
-			getGroups().addAll((Collection<? extends ACGroup>) newValue);
-			return;
-		case EsmodelPackage.SERVER_SPACE__PROJECTS:
-			getProjects().clear();
-			getProjects().addAll((Collection<? extends ProjectHistory>) newValue);
-			return;
-		case EsmodelPackage.SERVER_SPACE__OPEN_SESSIONS:
-			getOpenSessions().clear();
-			getOpenSessions().addAll((Collection<? extends SessionId>) newValue);
-			return;
-		case EsmodelPackage.SERVER_SPACE__USERS:
-			getUsers().clear();
-			getUsers().addAll((Collection<? extends ACUser>) newValue);
-			return;
+		switch (featureID)
+		{
+			case EsmodelPackage.SERVER_SPACE__GROUPS:
+				getGroups().clear();
+				getGroups().addAll((Collection<? extends ACGroup>)newValue);
+				return;
+			case EsmodelPackage.SERVER_SPACE__PROJECTS:
+				getProjects().clear();
+				getProjects().addAll((Collection<? extends ProjectHistory>)newValue);
+				return;
+			case EsmodelPackage.SERVER_SPACE__OPEN_SESSIONS:
+				getOpenSessions().clear();
+				getOpenSessions().addAll((Collection<? extends SessionId>)newValue);
+				return;
+			case EsmodelPackage.SERVER_SPACE__USERS:
+				getUsers().clear();
+				getUsers().addAll((Collection<? extends ACUser>)newValue);
+				return;
 		}
 		super.eSet(featureID, newValue);
 	}
@@ -211,19 +214,20 @@ public class ServerSpaceImpl extends EObjectImpl implements ServerSpace {
 	 */
 	@Override
 	public void eUnset(int featureID) {
-		switch (featureID) {
-		case EsmodelPackage.SERVER_SPACE__GROUPS:
-			getGroups().clear();
-			return;
-		case EsmodelPackage.SERVER_SPACE__PROJECTS:
-			getProjects().clear();
-			return;
-		case EsmodelPackage.SERVER_SPACE__OPEN_SESSIONS:
-			getOpenSessions().clear();
-			return;
-		case EsmodelPackage.SERVER_SPACE__USERS:
-			getUsers().clear();
-			return;
+		switch (featureID)
+		{
+			case EsmodelPackage.SERVER_SPACE__GROUPS:
+				getGroups().clear();
+				return;
+			case EsmodelPackage.SERVER_SPACE__PROJECTS:
+				getProjects().clear();
+				return;
+			case EsmodelPackage.SERVER_SPACE__OPEN_SESSIONS:
+				getOpenSessions().clear();
+				return;
+			case EsmodelPackage.SERVER_SPACE__USERS:
+				getUsers().clear();
+				return;
 		}
 		super.eUnset(featureID);
 	}
@@ -234,15 +238,16 @@ public class ServerSpaceImpl extends EObjectImpl implements ServerSpace {
 	 */
 	@Override
 	public boolean eIsSet(int featureID) {
-		switch (featureID) {
-		case EsmodelPackage.SERVER_SPACE__GROUPS:
-			return groups != null && !groups.isEmpty();
-		case EsmodelPackage.SERVER_SPACE__PROJECTS:
-			return projects != null && !projects.isEmpty();
-		case EsmodelPackage.SERVER_SPACE__OPEN_SESSIONS:
-			return openSessions != null && !openSessions.isEmpty();
-		case EsmodelPackage.SERVER_SPACE__USERS:
-			return users != null && !users.isEmpty();
+		switch (featureID)
+		{
+			case EsmodelPackage.SERVER_SPACE__GROUPS:
+				return groups != null && !groups.isEmpty();
+			case EsmodelPackage.SERVER_SPACE__PROJECTS:
+				return projects != null && !projects.isEmpty();
+			case EsmodelPackage.SERVER_SPACE__OPEN_SESSIONS:
+				return openSessions != null && !openSessions.isEmpty();
+			case EsmodelPackage.SERVER_SPACE__USERS:
+				return users != null && !users.isEmpty();
 		}
 		return super.eIsSet(featureID);
 	}

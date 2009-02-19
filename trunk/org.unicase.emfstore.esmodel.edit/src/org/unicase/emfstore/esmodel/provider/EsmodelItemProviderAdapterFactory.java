@@ -85,7 +85,8 @@ public class EsmodelItemProviderAdapterFactory extends EsmodelAdapterFactory imp
 	 */
 	@Override
 	public Adapter createProjectHistoryAdapter() {
-		if (projectHistoryItemProvider == null) {
+		if (projectHistoryItemProvider == null)
+		{
 			projectHistoryItemProvider = new ProjectHistoryItemProvider(this);
 		}
 
@@ -108,7 +109,8 @@ public class EsmodelItemProviderAdapterFactory extends EsmodelAdapterFactory imp
 	 */
 	@Override
 	public Adapter createProjectInfoAdapter() {
-		if (projectInfoItemProvider == null) {
+		if (projectInfoItemProvider == null)
+		{
 			projectInfoItemProvider = new ProjectInfoItemProvider(this);
 		}
 
@@ -131,7 +133,8 @@ public class EsmodelItemProviderAdapterFactory extends EsmodelAdapterFactory imp
 	 */
 	@Override
 	public Adapter createSessionIdAdapter() {
-		if (sessionIdItemProvider == null) {
+		if (sessionIdItemProvider == null)
+		{
 			sessionIdItemProvider = new SessionIdItemProvider(this);
 		}
 
@@ -154,7 +157,8 @@ public class EsmodelItemProviderAdapterFactory extends EsmodelAdapterFactory imp
 	 */
 	@Override
 	public Adapter createServerSpaceAdapter() {
-		if (serverSpaceItemProvider == null) {
+		if (serverSpaceItemProvider == null)
+		{
 			serverSpaceItemProvider = new ServerSpaceItemProvider(this);
 		}
 
@@ -177,7 +181,8 @@ public class EsmodelItemProviderAdapterFactory extends EsmodelAdapterFactory imp
 	 */
 	@Override
 	public Adapter createProjectIdAdapter() {
-		if (projectIdItemProvider == null) {
+		if (projectIdItemProvider == null)
+		{
 			projectIdItemProvider = new ProjectIdItemProvider(this);
 		}
 
@@ -200,7 +205,8 @@ public class EsmodelItemProviderAdapterFactory extends EsmodelAdapterFactory imp
 	 */
 	@Override
 	public Adapter createVersionInfoAdapter() {
-		if (versionInfoItemProvider == null) {
+		if (versionInfoItemProvider == null)
+		{
 			versionInfoItemProvider = new VersionInfoItemProvider(this);
 		}
 
@@ -222,7 +228,8 @@ public class EsmodelItemProviderAdapterFactory extends EsmodelAdapterFactory imp
 	 */
 	@Override
 	public Adapter createClientVersionInfoAdapter() {
-		if (clientVersionInfoItemProvider == null) {
+		if (clientVersionInfoItemProvider == null)
+		{
 			clientVersionInfoItemProvider = new ClientVersionInfoItemProvider(this);
 		}
 
@@ -273,9 +280,11 @@ public class EsmodelItemProviderAdapterFactory extends EsmodelAdapterFactory imp
 	 */
 	@Override
 	public Object adapt(Object object, Object type) {
-		if (isFactoryForType(type)) {
+		if (isFactoryForType(type))
+		{
 			Object adapter = super.adapt(object, type);
-			if (!(type instanceof Class) || (((Class<?>) type).isInstance(adapter))) {
+			if (!(type instanceof Class) || (((Class<?>)type).isInstance(adapter)))
+			{
 				return adapter;
 			}
 		}
@@ -310,7 +319,8 @@ public class EsmodelItemProviderAdapterFactory extends EsmodelAdapterFactory imp
 	public void fireNotifyChanged(Notification notification) {
 		changeNotifier.fireNotifyChanged(notification);
 
-		if (parentAdapterFactory != null) {
+		if (parentAdapterFactory != null)
+		{
 			parentAdapterFactory.fireNotifyChanged(notification);
 		}
 	}
@@ -321,20 +331,13 @@ public class EsmodelItemProviderAdapterFactory extends EsmodelAdapterFactory imp
 	 * @generated
 	 */
 	public void dispose() {
-		if (projectHistoryItemProvider != null)
-			projectHistoryItemProvider.dispose();
-		if (projectInfoItemProvider != null)
-			projectInfoItemProvider.dispose();
-		if (sessionIdItemProvider != null)
-			sessionIdItemProvider.dispose();
-		if (serverSpaceItemProvider != null)
-			serverSpaceItemProvider.dispose();
-		if (projectIdItemProvider != null)
-			projectIdItemProvider.dispose();
-		if (versionInfoItemProvider != null)
-			versionInfoItemProvider.dispose();
-		if (clientVersionInfoItemProvider != null)
-			clientVersionInfoItemProvider.dispose();
+		if (projectHistoryItemProvider != null) projectHistoryItemProvider.dispose();
+		if (projectInfoItemProvider != null) projectInfoItemProvider.dispose();
+		if (sessionIdItemProvider != null) sessionIdItemProvider.dispose();
+		if (serverSpaceItemProvider != null) serverSpaceItemProvider.dispose();
+		if (projectIdItemProvider != null) projectIdItemProvider.dispose();
+		if (versionInfoItemProvider != null) versionInfoItemProvider.dispose();
+		if (clientVersionInfoItemProvider != null) clientVersionInfoItemProvider.dispose();
 	}
 
 }

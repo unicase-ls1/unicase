@@ -46,7 +46,8 @@ public class RevertEventItemProvider extends EventItemProvider implements IEditi
 	 */
 	@Override
 	public List<IItemPropertyDescriptor> getPropertyDescriptors(Object object) {
-		if (itemPropertyDescriptors == null) {
+		if (itemPropertyDescriptors == null)
+		{
 			super.getPropertyDescriptors(object);
 
 			addRevertedChangesCountPropertyDescriptor(object);
@@ -61,11 +62,19 @@ public class RevertEventItemProvider extends EventItemProvider implements IEditi
 	 * @generated
 	 */
 	protected void addRevertedChangesCountPropertyDescriptor(Object object) {
-		itemPropertyDescriptors.add(createItemPropertyDescriptor(((ComposeableAdapterFactory) adapterFactory)
-			.getRootAdapterFactory(), getResourceLocator(), getString("_UI_RevertEvent_revertedChangesCount_feature"),
-			getString("_UI_PropertyDescriptor_description", "_UI_RevertEvent_revertedChangesCount_feature",
-				"_UI_RevertEvent_type"), EventsPackage.Literals.REVERT_EVENT__REVERTED_CHANGES_COUNT, true, false,
-			false, ItemPropertyDescriptor.INTEGRAL_VALUE_IMAGE, null, null));
+		itemPropertyDescriptors.add
+			(createItemPropertyDescriptor
+				(((ComposeableAdapterFactory)adapterFactory).getRootAdapterFactory(),
+				 getResourceLocator(),
+				 getString("_UI_RevertEvent_revertedChangesCount_feature"),
+				 getString("_UI_PropertyDescriptor_description", "_UI_RevertEvent_revertedChangesCount_feature", "_UI_RevertEvent_type"),
+				 EventsPackage.Literals.REVERT_EVENT__REVERTED_CHANGES_COUNT,
+				 true,
+				 false,
+				 false,
+				 ItemPropertyDescriptor.INTEGRAL_VALUE_IMAGE,
+				 null,
+				 null));
 	}
 
 	/**
@@ -85,10 +94,11 @@ public class RevertEventItemProvider extends EventItemProvider implements IEditi
 	 */
 	@Override
 	public String getText(Object object) {
-		Date labelValue = ((RevertEvent) object).getTimestamp();
+		Date labelValue = ((RevertEvent)object).getTimestamp();
 		String label = labelValue == null ? null : labelValue.toString();
-		return label == null || label.length() == 0 ? getString("_UI_RevertEvent_type")
-			: getString("_UI_RevertEvent_type") + " " + label;
+		return label == null || label.length() == 0 ?
+			getString("_UI_RevertEvent_type") :
+			getString("_UI_RevertEvent_type") + " " + label;
 	}
 
 	/**
@@ -102,10 +112,11 @@ public class RevertEventItemProvider extends EventItemProvider implements IEditi
 	public void notifyChanged(Notification notification) {
 		updateChildren(notification);
 
-		switch (notification.getFeatureID(RevertEvent.class)) {
-		case EventsPackage.REVERT_EVENT__REVERTED_CHANGES_COUNT:
-			fireNotifyChanged(new ViewerNotification(notification, notification.getNotifier(), false, true));
-			return;
+		switch (notification.getFeatureID(RevertEvent.class))
+		{
+			case EventsPackage.REVERT_EVENT__REVERTED_CHANGES_COUNT:
+				fireNotifyChanged(new ViewerNotification(notification, notification.getNotifier(), false, true));
+				return;
 		}
 		super.notifyChanged(notification);
 	}

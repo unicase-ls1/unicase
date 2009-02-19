@@ -114,22 +114,21 @@ public class ProjectHistoryImpl extends EObjectImpl implements ProjectHistory {
 	 * @generated
 	 */
 	public ProjectId getProjectId() {
-		if (projectId != null && projectId.eIsProxy()) {
-			InternalEObject oldProjectId = (InternalEObject) projectId;
-			projectId = (ProjectId) eResolveProxy(oldProjectId);
-			if (projectId != oldProjectId) {
-				InternalEObject newProjectId = (InternalEObject) projectId;
-				NotificationChain msgs = oldProjectId.eInverseRemove(this, EOPPOSITE_FEATURE_BASE
-					- EsmodelPackage.PROJECT_HISTORY__PROJECT_ID, null, null);
-				if (newProjectId.eInternalContainer() == null) {
-					msgs = newProjectId.eInverseAdd(this, EOPPOSITE_FEATURE_BASE
-						- EsmodelPackage.PROJECT_HISTORY__PROJECT_ID, null, msgs);
+		if (projectId != null && projectId.eIsProxy())
+		{
+			InternalEObject oldProjectId = (InternalEObject)projectId;
+			projectId = (ProjectId)eResolveProxy(oldProjectId);
+			if (projectId != oldProjectId)
+			{
+				InternalEObject newProjectId = (InternalEObject)projectId;
+				NotificationChain msgs = oldProjectId.eInverseRemove(this, EOPPOSITE_FEATURE_BASE - EsmodelPackage.PROJECT_HISTORY__PROJECT_ID, null, null);
+				if (newProjectId.eInternalContainer() == null)
+				{
+					msgs = newProjectId.eInverseAdd(this, EOPPOSITE_FEATURE_BASE - EsmodelPackage.PROJECT_HISTORY__PROJECT_ID, null, msgs);
 				}
-				if (msgs != null)
-					msgs.dispatch();
+				if (msgs != null) msgs.dispatch();
 				if (eNotificationRequired())
-					eNotify(new ENotificationImpl(this, Notification.RESOLVE,
-						EsmodelPackage.PROJECT_HISTORY__PROJECT_ID, oldProjectId, projectId));
+					eNotify(new ENotificationImpl(this, Notification.RESOLVE, EsmodelPackage.PROJECT_HISTORY__PROJECT_ID, oldProjectId, projectId));
 			}
 		}
 		return projectId;
@@ -150,13 +149,10 @@ public class ProjectHistoryImpl extends EObjectImpl implements ProjectHistory {
 	public NotificationChain basicSetProjectId(ProjectId newProjectId, NotificationChain msgs) {
 		ProjectId oldProjectId = projectId;
 		projectId = newProjectId;
-		if (eNotificationRequired()) {
-			ENotificationImpl notification = new ENotificationImpl(this, Notification.SET,
-				EsmodelPackage.PROJECT_HISTORY__PROJECT_ID, oldProjectId, newProjectId);
-			if (msgs == null)
-				msgs = notification;
-			else
-				msgs.add(notification);
+		if (eNotificationRequired())
+		{
+			ENotificationImpl notification = new ENotificationImpl(this, Notification.SET, EsmodelPackage.PROJECT_HISTORY__PROJECT_ID, oldProjectId, newProjectId);
+			if (msgs == null) msgs = notification; else msgs.add(notification);
 		}
 		return msgs;
 	}
@@ -166,20 +162,18 @@ public class ProjectHistoryImpl extends EObjectImpl implements ProjectHistory {
 	 * @generated
 	 */
 	public void setProjectId(ProjectId newProjectId) {
-		if (newProjectId != projectId) {
+		if (newProjectId != projectId)
+		{
 			NotificationChain msgs = null;
 			if (projectId != null)
-				msgs = ((InternalEObject) projectId).eInverseRemove(this, EOPPOSITE_FEATURE_BASE
-					- EsmodelPackage.PROJECT_HISTORY__PROJECT_ID, null, msgs);
+				msgs = ((InternalEObject)projectId).eInverseRemove(this, EOPPOSITE_FEATURE_BASE - EsmodelPackage.PROJECT_HISTORY__PROJECT_ID, null, msgs);
 			if (newProjectId != null)
-				msgs = ((InternalEObject) newProjectId).eInverseAdd(this, EOPPOSITE_FEATURE_BASE
-					- EsmodelPackage.PROJECT_HISTORY__PROJECT_ID, null, msgs);
+				msgs = ((InternalEObject)newProjectId).eInverseAdd(this, EOPPOSITE_FEATURE_BASE - EsmodelPackage.PROJECT_HISTORY__PROJECT_ID, null, msgs);
 			msgs = basicSetProjectId(newProjectId, msgs);
-			if (msgs != null)
-				msgs.dispatch();
-		} else if (eNotificationRequired())
-			eNotify(new ENotificationImpl(this, Notification.SET, EsmodelPackage.PROJECT_HISTORY__PROJECT_ID,
-				newProjectId, newProjectId));
+			if (msgs != null) msgs.dispatch();
+		}
+		else if (eNotificationRequired())
+			eNotify(new ENotificationImpl(this, Notification.SET, EsmodelPackage.PROJECT_HISTORY__PROJECT_ID, newProjectId, newProjectId));
 	}
 
 	/**
@@ -187,9 +181,9 @@ public class ProjectHistoryImpl extends EObjectImpl implements ProjectHistory {
 	 * @generated
 	 */
 	public EList<Version> getVersions() {
-		if (versions == null) {
-			versions = new EObjectContainmentEList.Resolving<Version>(Version.class, this,
-				EsmodelPackage.PROJECT_HISTORY__VERSIONS);
+		if (versions == null)
+		{
+			versions = new EObjectContainmentEList.Resolving<Version>(Version.class, this, EsmodelPackage.PROJECT_HISTORY__VERSIONS);
 		}
 		return versions;
 	}
@@ -223,8 +217,7 @@ public class ProjectHistoryImpl extends EObjectImpl implements ProjectHistory {
 		String oldProjectName = projectName;
 		projectName = newProjectName;
 		if (eNotificationRequired())
-			eNotify(new ENotificationImpl(this, Notification.SET, EsmodelPackage.PROJECT_HISTORY__PROJECT_NAME,
-				oldProjectName, projectName));
+			eNotify(new ENotificationImpl(this, Notification.SET, EsmodelPackage.PROJECT_HISTORY__PROJECT_NAME, oldProjectName, projectName));
 	}
 
 	/**
@@ -243,8 +236,7 @@ public class ProjectHistoryImpl extends EObjectImpl implements ProjectHistory {
 		String oldProjectDescription = projectDescription;
 		projectDescription = newProjectDescription;
 		if (eNotificationRequired())
-			eNotify(new ENotificationImpl(this, Notification.SET, EsmodelPackage.PROJECT_HISTORY__PROJECT_DESCRIPTION,
-				oldProjectDescription, projectDescription));
+			eNotify(new ENotificationImpl(this, Notification.SET, EsmodelPackage.PROJECT_HISTORY__PROJECT_DESCRIPTION, oldProjectDescription, projectDescription));
 	}
 
 	/**
@@ -253,11 +245,12 @@ public class ProjectHistoryImpl extends EObjectImpl implements ProjectHistory {
 	 */
 	@Override
 	public NotificationChain eInverseRemove(InternalEObject otherEnd, int featureID, NotificationChain msgs) {
-		switch (featureID) {
-		case EsmodelPackage.PROJECT_HISTORY__PROJECT_ID:
-			return basicSetProjectId(null, msgs);
-		case EsmodelPackage.PROJECT_HISTORY__VERSIONS:
-			return ((InternalEList<?>) getVersions()).basicRemove(otherEnd, msgs);
+		switch (featureID)
+		{
+			case EsmodelPackage.PROJECT_HISTORY__PROJECT_ID:
+				return basicSetProjectId(null, msgs);
+			case EsmodelPackage.PROJECT_HISTORY__VERSIONS:
+				return ((InternalEList<?>)getVersions()).basicRemove(otherEnd, msgs);
 		}
 		return super.eInverseRemove(otherEnd, featureID, msgs);
 	}
@@ -268,17 +261,17 @@ public class ProjectHistoryImpl extends EObjectImpl implements ProjectHistory {
 	 */
 	@Override
 	public Object eGet(int featureID, boolean resolve, boolean coreType) {
-		switch (featureID) {
-		case EsmodelPackage.PROJECT_HISTORY__PROJECT_ID:
-			if (resolve)
-				return getProjectId();
-			return basicGetProjectId();
-		case EsmodelPackage.PROJECT_HISTORY__VERSIONS:
-			return getVersions();
-		case EsmodelPackage.PROJECT_HISTORY__PROJECT_NAME:
-			return getProjectName();
-		case EsmodelPackage.PROJECT_HISTORY__PROJECT_DESCRIPTION:
-			return getProjectDescription();
+		switch (featureID)
+		{
+			case EsmodelPackage.PROJECT_HISTORY__PROJECT_ID:
+				if (resolve) return getProjectId();
+				return basicGetProjectId();
+			case EsmodelPackage.PROJECT_HISTORY__VERSIONS:
+				return getVersions();
+			case EsmodelPackage.PROJECT_HISTORY__PROJECT_NAME:
+				return getProjectName();
+			case EsmodelPackage.PROJECT_HISTORY__PROJECT_DESCRIPTION:
+				return getProjectDescription();
 		}
 		return super.eGet(featureID, resolve, coreType);
 	}
@@ -290,20 +283,21 @@ public class ProjectHistoryImpl extends EObjectImpl implements ProjectHistory {
 	@SuppressWarnings("unchecked")
 	@Override
 	public void eSet(int featureID, Object newValue) {
-		switch (featureID) {
-		case EsmodelPackage.PROJECT_HISTORY__PROJECT_ID:
-			setProjectId((ProjectId) newValue);
-			return;
-		case EsmodelPackage.PROJECT_HISTORY__VERSIONS:
-			getVersions().clear();
-			getVersions().addAll((Collection<? extends Version>) newValue);
-			return;
-		case EsmodelPackage.PROJECT_HISTORY__PROJECT_NAME:
-			setProjectName((String) newValue);
-			return;
-		case EsmodelPackage.PROJECT_HISTORY__PROJECT_DESCRIPTION:
-			setProjectDescription((String) newValue);
-			return;
+		switch (featureID)
+		{
+			case EsmodelPackage.PROJECT_HISTORY__PROJECT_ID:
+				setProjectId((ProjectId)newValue);
+				return;
+			case EsmodelPackage.PROJECT_HISTORY__VERSIONS:
+				getVersions().clear();
+				getVersions().addAll((Collection<? extends Version>)newValue);
+				return;
+			case EsmodelPackage.PROJECT_HISTORY__PROJECT_NAME:
+				setProjectName((String)newValue);
+				return;
+			case EsmodelPackage.PROJECT_HISTORY__PROJECT_DESCRIPTION:
+				setProjectDescription((String)newValue);
+				return;
 		}
 		super.eSet(featureID, newValue);
 	}
@@ -314,19 +308,20 @@ public class ProjectHistoryImpl extends EObjectImpl implements ProjectHistory {
 	 */
 	@Override
 	public void eUnset(int featureID) {
-		switch (featureID) {
-		case EsmodelPackage.PROJECT_HISTORY__PROJECT_ID:
-			setProjectId((ProjectId) null);
-			return;
-		case EsmodelPackage.PROJECT_HISTORY__VERSIONS:
-			getVersions().clear();
-			return;
-		case EsmodelPackage.PROJECT_HISTORY__PROJECT_NAME:
-			setProjectName(PROJECT_NAME_EDEFAULT);
-			return;
-		case EsmodelPackage.PROJECT_HISTORY__PROJECT_DESCRIPTION:
-			setProjectDescription(PROJECT_DESCRIPTION_EDEFAULT);
-			return;
+		switch (featureID)
+		{
+			case EsmodelPackage.PROJECT_HISTORY__PROJECT_ID:
+				setProjectId((ProjectId)null);
+				return;
+			case EsmodelPackage.PROJECT_HISTORY__VERSIONS:
+				getVersions().clear();
+				return;
+			case EsmodelPackage.PROJECT_HISTORY__PROJECT_NAME:
+				setProjectName(PROJECT_NAME_EDEFAULT);
+				return;
+			case EsmodelPackage.PROJECT_HISTORY__PROJECT_DESCRIPTION:
+				setProjectDescription(PROJECT_DESCRIPTION_EDEFAULT);
+				return;
 		}
 		super.eUnset(featureID);
 	}
@@ -337,16 +332,16 @@ public class ProjectHistoryImpl extends EObjectImpl implements ProjectHistory {
 	 */
 	@Override
 	public boolean eIsSet(int featureID) {
-		switch (featureID) {
-		case EsmodelPackage.PROJECT_HISTORY__PROJECT_ID:
-			return projectId != null;
-		case EsmodelPackage.PROJECT_HISTORY__VERSIONS:
-			return versions != null && !versions.isEmpty();
-		case EsmodelPackage.PROJECT_HISTORY__PROJECT_NAME:
-			return PROJECT_NAME_EDEFAULT == null ? projectName != null : !PROJECT_NAME_EDEFAULT.equals(projectName);
-		case EsmodelPackage.PROJECT_HISTORY__PROJECT_DESCRIPTION:
-			return PROJECT_DESCRIPTION_EDEFAULT == null ? projectDescription != null : !PROJECT_DESCRIPTION_EDEFAULT
-				.equals(projectDescription);
+		switch (featureID)
+		{
+			case EsmodelPackage.PROJECT_HISTORY__PROJECT_ID:
+				return projectId != null;
+			case EsmodelPackage.PROJECT_HISTORY__VERSIONS:
+				return versions != null && !versions.isEmpty();
+			case EsmodelPackage.PROJECT_HISTORY__PROJECT_NAME:
+				return PROJECT_NAME_EDEFAULT == null ? projectName != null : !PROJECT_NAME_EDEFAULT.equals(projectName);
+			case EsmodelPackage.PROJECT_HISTORY__PROJECT_DESCRIPTION:
+				return PROJECT_DESCRIPTION_EDEFAULT == null ? projectDescription != null : !PROJECT_DESCRIPTION_EDEFAULT.equals(projectDescription);
 		}
 		return super.eIsSet(featureID);
 	}
@@ -357,8 +352,7 @@ public class ProjectHistoryImpl extends EObjectImpl implements ProjectHistory {
 	 */
 	@Override
 	public String toString() {
-		if (eIsProxy())
-			return super.toString();
+		if (eIsProxy()) return super.toString();
 
 		StringBuffer result = new StringBuffer(super.toString());
 		result.append(" (projectName: ");

@@ -46,7 +46,8 @@ public class ExceptionEventItemProvider extends EventItemProvider implements IEd
 	 */
 	@Override
 	public List<IItemPropertyDescriptor> getPropertyDescriptors(Object object) {
-		if (itemPropertyDescriptors == null) {
+		if (itemPropertyDescriptors == null)
+		{
 			super.getPropertyDescriptors(object);
 
 			addExceptionTitlePropertyDescriptor(object);
@@ -63,11 +64,19 @@ public class ExceptionEventItemProvider extends EventItemProvider implements IEd
 	 * @generated
 	 */
 	protected void addExceptionTitlePropertyDescriptor(Object object) {
-		itemPropertyDescriptors.add(createItemPropertyDescriptor(((ComposeableAdapterFactory) adapterFactory)
-			.getRootAdapterFactory(), getResourceLocator(), getString("_UI_ExceptionEvent_ExceptionTitle_feature"),
-			getString("_UI_PropertyDescriptor_description", "_UI_ExceptionEvent_ExceptionTitle_feature",
-				"_UI_ExceptionEvent_type"), EventsPackage.Literals.EXCEPTION_EVENT__EXCEPTION_TITLE, true, false,
-			false, ItemPropertyDescriptor.GENERIC_VALUE_IMAGE, null, null));
+		itemPropertyDescriptors.add
+			(createItemPropertyDescriptor
+				(((ComposeableAdapterFactory)adapterFactory).getRootAdapterFactory(),
+				 getResourceLocator(),
+				 getString("_UI_ExceptionEvent_ExceptionTitle_feature"),
+				 getString("_UI_PropertyDescriptor_description", "_UI_ExceptionEvent_ExceptionTitle_feature", "_UI_ExceptionEvent_type"),
+				 EventsPackage.Literals.EXCEPTION_EVENT__EXCEPTION_TITLE,
+				 true,
+				 false,
+				 false,
+				 ItemPropertyDescriptor.GENERIC_VALUE_IMAGE,
+				 null,
+				 null));
 	}
 
 	/**
@@ -77,12 +86,19 @@ public class ExceptionEventItemProvider extends EventItemProvider implements IEd
 	 * @generated
 	 */
 	protected void addExceptionStackTracePropertyDescriptor(Object object) {
-		itemPropertyDescriptors.add(createItemPropertyDescriptor(((ComposeableAdapterFactory) adapterFactory)
-			.getRootAdapterFactory(), getResourceLocator(),
-			getString("_UI_ExceptionEvent_ExceptionStackTrace_feature"), getString(
-				"_UI_PropertyDescriptor_description", "_UI_ExceptionEvent_ExceptionStackTrace_feature",
-				"_UI_ExceptionEvent_type"), EventsPackage.Literals.EXCEPTION_EVENT__EXCEPTION_STACK_TRACE, true, false,
-			false, ItemPropertyDescriptor.GENERIC_VALUE_IMAGE, null, null));
+		itemPropertyDescriptors.add
+			(createItemPropertyDescriptor
+				(((ComposeableAdapterFactory)adapterFactory).getRootAdapterFactory(),
+				 getResourceLocator(),
+				 getString("_UI_ExceptionEvent_ExceptionStackTrace_feature"),
+				 getString("_UI_PropertyDescriptor_description", "_UI_ExceptionEvent_ExceptionStackTrace_feature", "_UI_ExceptionEvent_type"),
+				 EventsPackage.Literals.EXCEPTION_EVENT__EXCEPTION_STACK_TRACE,
+				 true,
+				 false,
+				 false,
+				 ItemPropertyDescriptor.GENERIC_VALUE_IMAGE,
+				 null,
+				 null));
 	}
 
 	/**
@@ -92,12 +108,19 @@ public class ExceptionEventItemProvider extends EventItemProvider implements IEd
 	 * @generated
 	 */
 	protected void addExceptionCauseTitlePropertyDescriptor(Object object) {
-		itemPropertyDescriptors.add(createItemPropertyDescriptor(((ComposeableAdapterFactory) adapterFactory)
-			.getRootAdapterFactory(), getResourceLocator(),
-			getString("_UI_ExceptionEvent_ExceptionCauseTitle_feature"), getString(
-				"_UI_PropertyDescriptor_description", "_UI_ExceptionEvent_ExceptionCauseTitle_feature",
-				"_UI_ExceptionEvent_type"), EventsPackage.Literals.EXCEPTION_EVENT__EXCEPTION_CAUSE_TITLE, true, false,
-			false, ItemPropertyDescriptor.GENERIC_VALUE_IMAGE, null, null));
+		itemPropertyDescriptors.add
+			(createItemPropertyDescriptor
+				(((ComposeableAdapterFactory)adapterFactory).getRootAdapterFactory(),
+				 getResourceLocator(),
+				 getString("_UI_ExceptionEvent_ExceptionCauseTitle_feature"),
+				 getString("_UI_PropertyDescriptor_description", "_UI_ExceptionEvent_ExceptionCauseTitle_feature", "_UI_ExceptionEvent_type"),
+				 EventsPackage.Literals.EXCEPTION_EVENT__EXCEPTION_CAUSE_TITLE,
+				 true,
+				 false,
+				 false,
+				 ItemPropertyDescriptor.GENERIC_VALUE_IMAGE,
+				 null,
+				 null));
 	}
 
 	/**
@@ -107,12 +130,19 @@ public class ExceptionEventItemProvider extends EventItemProvider implements IEd
 	 * @generated
 	 */
 	protected void addExceptionCauseStackTracePropertyDescriptor(Object object) {
-		itemPropertyDescriptors.add(createItemPropertyDescriptor(((ComposeableAdapterFactory) adapterFactory)
-			.getRootAdapterFactory(), getResourceLocator(),
-			getString("_UI_ExceptionEvent_ExceptionCauseStackTrace_feature"), getString(
-				"_UI_PropertyDescriptor_description", "_UI_ExceptionEvent_ExceptionCauseStackTrace_feature",
-				"_UI_ExceptionEvent_type"), EventsPackage.Literals.EXCEPTION_EVENT__EXCEPTION_CAUSE_STACK_TRACE, true,
-			false, false, ItemPropertyDescriptor.GENERIC_VALUE_IMAGE, null, null));
+		itemPropertyDescriptors.add
+			(createItemPropertyDescriptor
+				(((ComposeableAdapterFactory)adapterFactory).getRootAdapterFactory(),
+				 getResourceLocator(),
+				 getString("_UI_ExceptionEvent_ExceptionCauseStackTrace_feature"),
+				 getString("_UI_PropertyDescriptor_description", "_UI_ExceptionEvent_ExceptionCauseStackTrace_feature", "_UI_ExceptionEvent_type"),
+				 EventsPackage.Literals.EXCEPTION_EVENT__EXCEPTION_CAUSE_STACK_TRACE,
+				 true,
+				 false,
+				 false,
+				 ItemPropertyDescriptor.GENERIC_VALUE_IMAGE,
+				 null,
+				 null));
 	}
 
 	/**
@@ -132,10 +162,11 @@ public class ExceptionEventItemProvider extends EventItemProvider implements IEd
 	 */
 	@Override
 	public String getText(Object object) {
-		Date labelValue = ((ExceptionEvent) object).getTimestamp();
+		Date labelValue = ((ExceptionEvent)object).getTimestamp();
 		String label = labelValue == null ? null : labelValue.toString();
-		return label == null || label.length() == 0 ? getString("_UI_ExceptionEvent_type")
-			: getString("_UI_ExceptionEvent_type") + " " + label;
+		return label == null || label.length() == 0 ?
+			getString("_UI_ExceptionEvent_type") :
+			getString("_UI_ExceptionEvent_type") + " " + label;
 	}
 
 	/**
@@ -149,13 +180,14 @@ public class ExceptionEventItemProvider extends EventItemProvider implements IEd
 	public void notifyChanged(Notification notification) {
 		updateChildren(notification);
 
-		switch (notification.getFeatureID(ExceptionEvent.class)) {
-		case EventsPackage.EXCEPTION_EVENT__EXCEPTION_TITLE:
-		case EventsPackage.EXCEPTION_EVENT__EXCEPTION_STACK_TRACE:
-		case EventsPackage.EXCEPTION_EVENT__EXCEPTION_CAUSE_TITLE:
-		case EventsPackage.EXCEPTION_EVENT__EXCEPTION_CAUSE_STACK_TRACE:
-			fireNotifyChanged(new ViewerNotification(notification, notification.getNotifier(), false, true));
-			return;
+		switch (notification.getFeatureID(ExceptionEvent.class))
+		{
+			case EventsPackage.EXCEPTION_EVENT__EXCEPTION_TITLE:
+			case EventsPackage.EXCEPTION_EVENT__EXCEPTION_STACK_TRACE:
+			case EventsPackage.EXCEPTION_EVENT__EXCEPTION_CAUSE_TITLE:
+			case EventsPackage.EXCEPTION_EVENT__EXCEPTION_CAUSE_STACK_TRACE:
+				fireNotifyChanged(new ViewerNotification(notification, notification.getNotifier(), false, true));
+				return;
 		}
 		super.notifyChanged(notification);
 	}

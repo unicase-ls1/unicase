@@ -39,7 +39,8 @@ public class EsmodelAdapterFactory extends AdapterFactoryImpl {
 	 * @generated
 	 */
 	public EsmodelAdapterFactory() {
-		if (modelPackage == null) {
+		if (modelPackage == null)
+		{
 			modelPackage = EsmodelPackage.eINSTANCE;
 		}
 	}
@@ -54,11 +55,13 @@ public class EsmodelAdapterFactory extends AdapterFactoryImpl {
 	 */
 	@Override
 	public boolean isFactoryForType(Object object) {
-		if (object == modelPackage) {
+		if (object == modelPackage)
+		{
 			return true;
 		}
-		if (object instanceof EObject) {
-			return ((EObject) object).eClass().getEPackage() == modelPackage;
+		if (object instanceof EObject)
+		{
+			return ((EObject)object).eClass().getEPackage() == modelPackage;
 		}
 		return false;
 	}
@@ -68,52 +71,54 @@ public class EsmodelAdapterFactory extends AdapterFactoryImpl {
 	 * <!-- begin-user-doc --> <!-- end-user-doc -->
 	 * @generated
 	 */
-	protected EsmodelSwitch<Adapter> modelSwitch = new EsmodelSwitch<Adapter>() {
-		@Override
-		public Adapter caseProjectHistory(ProjectHistory object) {
-			return createProjectHistoryAdapter();
-		}
-
-		@Override
-		public Adapter caseProjectInfo(ProjectInfo object) {
-			return createProjectInfoAdapter();
-		}
-
-		@Override
-		public Adapter caseSessionId(SessionId object) {
-			return createSessionIdAdapter();
-		}
-
-		@Override
-		public Adapter caseServerSpace(ServerSpace object) {
-			return createServerSpaceAdapter();
-		}
-
-		@Override
-		public Adapter caseProjectId(ProjectId object) {
-			return createProjectIdAdapter();
-		}
-
-		@Override
-		public Adapter caseVersionInfo(VersionInfo object) {
-			return createVersionInfoAdapter();
-		}
-
-		@Override
-		public Adapter caseClientVersionInfo(ClientVersionInfo object) {
-			return createClientVersionInfoAdapter();
-		}
-
-		@Override
-		public Adapter caseUniqueIdentifier(UniqueIdentifier object) {
-			return createUniqueIdentifierAdapter();
-		}
-
-		@Override
-		public Adapter defaultCase(EObject object) {
-			return createEObjectAdapter();
-		}
-	};
+	protected EsmodelSwitch<Adapter> modelSwitch = new EsmodelSwitch<Adapter>()
+		{
+			@Override
+			public Adapter caseProjectHistory(ProjectHistory object)
+			{
+				return createProjectHistoryAdapter();
+			}
+			@Override
+			public Adapter caseProjectInfo(ProjectInfo object)
+			{
+				return createProjectInfoAdapter();
+			}
+			@Override
+			public Adapter caseSessionId(SessionId object)
+			{
+				return createSessionIdAdapter();
+			}
+			@Override
+			public Adapter caseServerSpace(ServerSpace object)
+			{
+				return createServerSpaceAdapter();
+			}
+			@Override
+			public Adapter caseProjectId(ProjectId object)
+			{
+				return createProjectIdAdapter();
+			}
+			@Override
+			public Adapter caseVersionInfo(VersionInfo object)
+			{
+				return createVersionInfoAdapter();
+			}
+			@Override
+			public Adapter caseClientVersionInfo(ClientVersionInfo object)
+			{
+				return createClientVersionInfoAdapter();
+			}
+			@Override
+			public Adapter caseUniqueIdentifier(UniqueIdentifier object)
+			{
+				return createUniqueIdentifierAdapter();
+			}
+			@Override
+			public Adapter defaultCase(EObject object)
+			{
+				return createEObjectAdapter();
+			}
+		};
 
 	/**
 	 * Creates an adapter for the <code>target</code>.
@@ -124,7 +129,7 @@ public class EsmodelAdapterFactory extends AdapterFactoryImpl {
 	 */
 	@Override
 	public Adapter createAdapter(Notifier target) {
-		return modelSwitch.doSwitch((EObject) target);
+		return modelSwitch.doSwitch((EObject)target);
 	}
 
 	/**

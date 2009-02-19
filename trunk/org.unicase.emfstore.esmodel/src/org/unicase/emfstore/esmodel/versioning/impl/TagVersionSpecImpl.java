@@ -72,8 +72,7 @@ public class TagVersionSpecImpl extends EObjectImpl implements TagVersionSpec {
 		String oldName = name;
 		name = newName;
 		if (eNotificationRequired())
-			eNotify(new ENotificationImpl(this, Notification.SET, VersioningPackage.TAG_VERSION_SPEC__NAME, oldName,
-				name));
+			eNotify(new ENotificationImpl(this, Notification.SET, VersioningPackage.TAG_VERSION_SPEC__NAME, oldName, name));
 	}
 
 	/**
@@ -82,9 +81,10 @@ public class TagVersionSpecImpl extends EObjectImpl implements TagVersionSpec {
 	 */
 	@Override
 	public Object eGet(int featureID, boolean resolve, boolean coreType) {
-		switch (featureID) {
-		case VersioningPackage.TAG_VERSION_SPEC__NAME:
-			return getName();
+		switch (featureID)
+		{
+			case VersioningPackage.TAG_VERSION_SPEC__NAME:
+				return getName();
 		}
 		return super.eGet(featureID, resolve, coreType);
 	}
@@ -95,10 +95,11 @@ public class TagVersionSpecImpl extends EObjectImpl implements TagVersionSpec {
 	 */
 	@Override
 	public void eSet(int featureID, Object newValue) {
-		switch (featureID) {
-		case VersioningPackage.TAG_VERSION_SPEC__NAME:
-			setName((String) newValue);
-			return;
+		switch (featureID)
+		{
+			case VersioningPackage.TAG_VERSION_SPEC__NAME:
+				setName((String)newValue);
+				return;
 		}
 		super.eSet(featureID, newValue);
 	}
@@ -109,10 +110,11 @@ public class TagVersionSpecImpl extends EObjectImpl implements TagVersionSpec {
 	 */
 	@Override
 	public void eUnset(int featureID) {
-		switch (featureID) {
-		case VersioningPackage.TAG_VERSION_SPEC__NAME:
-			setName(NAME_EDEFAULT);
-			return;
+		switch (featureID)
+		{
+			case VersioningPackage.TAG_VERSION_SPEC__NAME:
+				setName(NAME_EDEFAULT);
+				return;
 		}
 		super.eUnset(featureID);
 	}
@@ -123,9 +125,10 @@ public class TagVersionSpecImpl extends EObjectImpl implements TagVersionSpec {
 	 */
 	@Override
 	public boolean eIsSet(int featureID) {
-		switch (featureID) {
-		case VersioningPackage.TAG_VERSION_SPEC__NAME:
-			return NAME_EDEFAULT == null ? name != null : !NAME_EDEFAULT.equals(name);
+		switch (featureID)
+		{
+			case VersioningPackage.TAG_VERSION_SPEC__NAME:
+				return NAME_EDEFAULT == null ? name != null : !NAME_EDEFAULT.equals(name);
 		}
 		return super.eIsSet(featureID);
 	}
@@ -136,8 +139,7 @@ public class TagVersionSpecImpl extends EObjectImpl implements TagVersionSpec {
 	 */
 	@Override
 	public String toString() {
-		if (eIsProxy())
-			return super.toString();
+		if (eIsProxy()) return super.toString();
 
 		StringBuffer result = new StringBuffer(super.toString());
 		result.append(" (name: ");

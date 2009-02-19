@@ -117,8 +117,7 @@ public class DNDEventImpl extends EventImpl implements DNDEvent {
 		String oldSourceView = sourceView;
 		sourceView = newSourceView;
 		if (eNotificationRequired())
-			eNotify(new ENotificationImpl(this, Notification.SET, EventsPackage.DND_EVENT__SOURCE_VIEW, oldSourceView,
-				sourceView));
+			eNotify(new ENotificationImpl(this, Notification.SET, EventsPackage.DND_EVENT__SOURCE_VIEW, oldSourceView, sourceView));
 	}
 
 	/**
@@ -137,8 +136,7 @@ public class DNDEventImpl extends EventImpl implements DNDEvent {
 		String oldTargetView = targetView;
 		targetView = newTargetView;
 		if (eNotificationRequired())
-			eNotify(new ENotificationImpl(this, Notification.SET, EventsPackage.DND_EVENT__TARGET_VIEW, oldTargetView,
-				targetView));
+			eNotify(new ENotificationImpl(this, Notification.SET, EventsPackage.DND_EVENT__TARGET_VIEW, oldTargetView, targetView));
 	}
 
 	/**
@@ -146,13 +144,14 @@ public class DNDEventImpl extends EventImpl implements DNDEvent {
 	 * @generated
 	 */
 	public ModelElementId getDragSourceElement() {
-		if (dragSourceElement != null && dragSourceElement.eIsProxy()) {
-			InternalEObject oldDragSourceElement = (InternalEObject) dragSourceElement;
-			dragSourceElement = (ModelElementId) eResolveProxy(oldDragSourceElement);
-			if (dragSourceElement != oldDragSourceElement) {
+		if (dragSourceElement != null && dragSourceElement.eIsProxy())
+		{
+			InternalEObject oldDragSourceElement = (InternalEObject)dragSourceElement;
+			dragSourceElement = (ModelElementId)eResolveProxy(oldDragSourceElement);
+			if (dragSourceElement != oldDragSourceElement)
+			{
 				if (eNotificationRequired())
-					eNotify(new ENotificationImpl(this, Notification.RESOLVE,
-						EventsPackage.DND_EVENT__DRAG_SOURCE_ELEMENT, oldDragSourceElement, dragSourceElement));
+					eNotify(new ENotificationImpl(this, Notification.RESOLVE, EventsPackage.DND_EVENT__DRAG_SOURCE_ELEMENT, oldDragSourceElement, dragSourceElement));
 			}
 		}
 		return dragSourceElement;
@@ -174,8 +173,7 @@ public class DNDEventImpl extends EventImpl implements DNDEvent {
 		ModelElementId oldDragSourceElement = dragSourceElement;
 		dragSourceElement = newDragSourceElement;
 		if (eNotificationRequired())
-			eNotify(new ENotificationImpl(this, Notification.SET, EventsPackage.DND_EVENT__DRAG_SOURCE_ELEMENT,
-				oldDragSourceElement, dragSourceElement));
+			eNotify(new ENotificationImpl(this, Notification.SET, EventsPackage.DND_EVENT__DRAG_SOURCE_ELEMENT, oldDragSourceElement, dragSourceElement));
 	}
 
 	/**
@@ -183,13 +181,14 @@ public class DNDEventImpl extends EventImpl implements DNDEvent {
 	 * @generated
 	 */
 	public ModelElementId getDropTargetElement() {
-		if (dropTargetElement != null && dropTargetElement.eIsProxy()) {
-			InternalEObject oldDropTargetElement = (InternalEObject) dropTargetElement;
-			dropTargetElement = (ModelElementId) eResolveProxy(oldDropTargetElement);
-			if (dropTargetElement != oldDropTargetElement) {
+		if (dropTargetElement != null && dropTargetElement.eIsProxy())
+		{
+			InternalEObject oldDropTargetElement = (InternalEObject)dropTargetElement;
+			dropTargetElement = (ModelElementId)eResolveProxy(oldDropTargetElement);
+			if (dropTargetElement != oldDropTargetElement)
+			{
 				if (eNotificationRequired())
-					eNotify(new ENotificationImpl(this, Notification.RESOLVE,
-						EventsPackage.DND_EVENT__DROP_TARGET_ELEMENT, oldDropTargetElement, dropTargetElement));
+					eNotify(new ENotificationImpl(this, Notification.RESOLVE, EventsPackage.DND_EVENT__DROP_TARGET_ELEMENT, oldDropTargetElement, dropTargetElement));
 			}
 		}
 		return dropTargetElement;
@@ -211,8 +210,7 @@ public class DNDEventImpl extends EventImpl implements DNDEvent {
 		ModelElementId oldDropTargetElement = dropTargetElement;
 		dropTargetElement = newDropTargetElement;
 		if (eNotificationRequired())
-			eNotify(new ENotificationImpl(this, Notification.SET, EventsPackage.DND_EVENT__DROP_TARGET_ELEMENT,
-				oldDropTargetElement, dropTargetElement));
+			eNotify(new ENotificationImpl(this, Notification.SET, EventsPackage.DND_EVENT__DROP_TARGET_ELEMENT, oldDropTargetElement, dropTargetElement));
 	}
 
 	/**
@@ -221,19 +219,18 @@ public class DNDEventImpl extends EventImpl implements DNDEvent {
 	 */
 	@Override
 	public Object eGet(int featureID, boolean resolve, boolean coreType) {
-		switch (featureID) {
-		case EventsPackage.DND_EVENT__SOURCE_VIEW:
-			return getSourceView();
-		case EventsPackage.DND_EVENT__TARGET_VIEW:
-			return getTargetView();
-		case EventsPackage.DND_EVENT__DRAG_SOURCE_ELEMENT:
-			if (resolve)
-				return getDragSourceElement();
-			return basicGetDragSourceElement();
-		case EventsPackage.DND_EVENT__DROP_TARGET_ELEMENT:
-			if (resolve)
-				return getDropTargetElement();
-			return basicGetDropTargetElement();
+		switch (featureID)
+		{
+			case EventsPackage.DND_EVENT__SOURCE_VIEW:
+				return getSourceView();
+			case EventsPackage.DND_EVENT__TARGET_VIEW:
+				return getTargetView();
+			case EventsPackage.DND_EVENT__DRAG_SOURCE_ELEMENT:
+				if (resolve) return getDragSourceElement();
+				return basicGetDragSourceElement();
+			case EventsPackage.DND_EVENT__DROP_TARGET_ELEMENT:
+				if (resolve) return getDropTargetElement();
+				return basicGetDropTargetElement();
 		}
 		return super.eGet(featureID, resolve, coreType);
 	}
@@ -244,19 +241,20 @@ public class DNDEventImpl extends EventImpl implements DNDEvent {
 	 */
 	@Override
 	public void eSet(int featureID, Object newValue) {
-		switch (featureID) {
-		case EventsPackage.DND_EVENT__SOURCE_VIEW:
-			setSourceView((String) newValue);
-			return;
-		case EventsPackage.DND_EVENT__TARGET_VIEW:
-			setTargetView((String) newValue);
-			return;
-		case EventsPackage.DND_EVENT__DRAG_SOURCE_ELEMENT:
-			setDragSourceElement((ModelElementId) newValue);
-			return;
-		case EventsPackage.DND_EVENT__DROP_TARGET_ELEMENT:
-			setDropTargetElement((ModelElementId) newValue);
-			return;
+		switch (featureID)
+		{
+			case EventsPackage.DND_EVENT__SOURCE_VIEW:
+				setSourceView((String)newValue);
+				return;
+			case EventsPackage.DND_EVENT__TARGET_VIEW:
+				setTargetView((String)newValue);
+				return;
+			case EventsPackage.DND_EVENT__DRAG_SOURCE_ELEMENT:
+				setDragSourceElement((ModelElementId)newValue);
+				return;
+			case EventsPackage.DND_EVENT__DROP_TARGET_ELEMENT:
+				setDropTargetElement((ModelElementId)newValue);
+				return;
 		}
 		super.eSet(featureID, newValue);
 	}
@@ -267,19 +265,20 @@ public class DNDEventImpl extends EventImpl implements DNDEvent {
 	 */
 	@Override
 	public void eUnset(int featureID) {
-		switch (featureID) {
-		case EventsPackage.DND_EVENT__SOURCE_VIEW:
-			setSourceView(SOURCE_VIEW_EDEFAULT);
-			return;
-		case EventsPackage.DND_EVENT__TARGET_VIEW:
-			setTargetView(TARGET_VIEW_EDEFAULT);
-			return;
-		case EventsPackage.DND_EVENT__DRAG_SOURCE_ELEMENT:
-			setDragSourceElement((ModelElementId) null);
-			return;
-		case EventsPackage.DND_EVENT__DROP_TARGET_ELEMENT:
-			setDropTargetElement((ModelElementId) null);
-			return;
+		switch (featureID)
+		{
+			case EventsPackage.DND_EVENT__SOURCE_VIEW:
+				setSourceView(SOURCE_VIEW_EDEFAULT);
+				return;
+			case EventsPackage.DND_EVENT__TARGET_VIEW:
+				setTargetView(TARGET_VIEW_EDEFAULT);
+				return;
+			case EventsPackage.DND_EVENT__DRAG_SOURCE_ELEMENT:
+				setDragSourceElement((ModelElementId)null);
+				return;
+			case EventsPackage.DND_EVENT__DROP_TARGET_ELEMENT:
+				setDropTargetElement((ModelElementId)null);
+				return;
 		}
 		super.eUnset(featureID);
 	}
@@ -290,15 +289,16 @@ public class DNDEventImpl extends EventImpl implements DNDEvent {
 	 */
 	@Override
 	public boolean eIsSet(int featureID) {
-		switch (featureID) {
-		case EventsPackage.DND_EVENT__SOURCE_VIEW:
-			return SOURCE_VIEW_EDEFAULT == null ? sourceView != null : !SOURCE_VIEW_EDEFAULT.equals(sourceView);
-		case EventsPackage.DND_EVENT__TARGET_VIEW:
-			return TARGET_VIEW_EDEFAULT == null ? targetView != null : !TARGET_VIEW_EDEFAULT.equals(targetView);
-		case EventsPackage.DND_EVENT__DRAG_SOURCE_ELEMENT:
-			return dragSourceElement != null;
-		case EventsPackage.DND_EVENT__DROP_TARGET_ELEMENT:
-			return dropTargetElement != null;
+		switch (featureID)
+		{
+			case EventsPackage.DND_EVENT__SOURCE_VIEW:
+				return SOURCE_VIEW_EDEFAULT == null ? sourceView != null : !SOURCE_VIEW_EDEFAULT.equals(sourceView);
+			case EventsPackage.DND_EVENT__TARGET_VIEW:
+				return TARGET_VIEW_EDEFAULT == null ? targetView != null : !TARGET_VIEW_EDEFAULT.equals(targetView);
+			case EventsPackage.DND_EVENT__DRAG_SOURCE_ELEMENT:
+				return dragSourceElement != null;
+			case EventsPackage.DND_EVENT__DROP_TARGET_ELEMENT:
+				return dropTargetElement != null;
 		}
 		return super.eIsSet(featureID);
 	}
@@ -309,8 +309,7 @@ public class DNDEventImpl extends EventImpl implements DNDEvent {
 	 */
 	@Override
 	public String toString() {
-		if (eIsProxy())
-			return super.toString();
+		if (eIsProxy()) return super.toString();
 
 		StringBuffer result = new StringBuffer(super.toString());
 		result.append(" (sourceView: ");

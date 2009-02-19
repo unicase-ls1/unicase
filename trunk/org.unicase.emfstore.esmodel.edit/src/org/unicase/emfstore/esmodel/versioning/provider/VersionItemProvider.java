@@ -50,7 +50,8 @@ public class VersionItemProvider extends ItemProviderAdapter implements IEditing
 	 */
 	@Override
 	public List<IItemPropertyDescriptor> getPropertyDescriptors(Object object) {
-		if (itemPropertyDescriptors == null) {
+		if (itemPropertyDescriptors == null)
+		{
 			super.getPropertyDescriptors(object);
 
 			addNextVersionPropertyDescriptor(object);
@@ -65,10 +66,19 @@ public class VersionItemProvider extends ItemProviderAdapter implements IEditing
 	 * @generated
 	 */
 	protected void addNextVersionPropertyDescriptor(Object object) {
-		itemPropertyDescriptors.add(createItemPropertyDescriptor(((ComposeableAdapterFactory) adapterFactory)
-			.getRootAdapterFactory(), getResourceLocator(), getString("_UI_Version_nextVersion_feature"), getString(
-			"_UI_PropertyDescriptor_description", "_UI_Version_nextVersion_feature", "_UI_Version_type"),
-			VersioningPackage.Literals.VERSION__NEXT_VERSION, true, false, true, null, null, null));
+		itemPropertyDescriptors.add
+			(createItemPropertyDescriptor
+				(((ComposeableAdapterFactory)adapterFactory).getRootAdapterFactory(),
+				 getResourceLocator(),
+				 getString("_UI_Version_nextVersion_feature"),
+				 getString("_UI_PropertyDescriptor_description", "_UI_Version_nextVersion_feature", "_UI_Version_type"),
+				 VersioningPackage.Literals.VERSION__NEXT_VERSION,
+				 true,
+				 false,
+				 true,
+				 null,
+				 null,
+				 null));
 	}
 
 	/**
@@ -77,10 +87,19 @@ public class VersionItemProvider extends ItemProviderAdapter implements IEditing
 	 * @generated
 	 */
 	protected void addPreviousVersionPropertyDescriptor(Object object) {
-		itemPropertyDescriptors.add(createItemPropertyDescriptor(((ComposeableAdapterFactory) adapterFactory)
-			.getRootAdapterFactory(), getResourceLocator(), getString("_UI_Version_previousVersion_feature"),
-			getString("_UI_PropertyDescriptor_description", "_UI_Version_previousVersion_feature", "_UI_Version_type"),
-			VersioningPackage.Literals.VERSION__PREVIOUS_VERSION, true, false, true, null, null, null));
+		itemPropertyDescriptors.add
+			(createItemPropertyDescriptor
+				(((ComposeableAdapterFactory)adapterFactory).getRootAdapterFactory(),
+				 getResourceLocator(),
+				 getString("_UI_Version_previousVersion_feature"),
+				 getString("_UI_PropertyDescriptor_description", "_UI_Version_previousVersion_feature", "_UI_Version_type"),
+				 VersioningPackage.Literals.VERSION__PREVIOUS_VERSION,
+				 true,
+				 false,
+				 true,
+				 null,
+				 null,
+				 null));
 	}
 
 	/**
@@ -93,7 +112,8 @@ public class VersionItemProvider extends ItemProviderAdapter implements IEditing
 	 */
 	@Override
 	public Collection<? extends EStructuralFeature> getChildrenFeatures(Object object) {
-		if (childrenFeatures == null) {
+		if (childrenFeatures == null)
+		{
 			super.getChildrenFeatures(object);
 			childrenFeatures.add(VersioningPackage.Literals.VERSION__PROJECT_STATE);
 			childrenFeatures.add(VersioningPackage.Literals.VERSION__PRIMARY_SPEC);
@@ -147,14 +167,15 @@ public class VersionItemProvider extends ItemProviderAdapter implements IEditing
 	public void notifyChanged(Notification notification) {
 		updateChildren(notification);
 
-		switch (notification.getFeatureID(Version.class)) {
-		case VersioningPackage.VERSION__PROJECT_STATE:
-		case VersioningPackage.VERSION__PRIMARY_SPEC:
-		case VersioningPackage.VERSION__TAG_SPECS:
-		case VersioningPackage.VERSION__CHANGES:
-		case VersioningPackage.VERSION__LOG_MESSAGE:
-			fireNotifyChanged(new ViewerNotification(notification, notification.getNotifier(), true, false));
-			return;
+		switch (notification.getFeatureID(Version.class))
+		{
+			case VersioningPackage.VERSION__PROJECT_STATE:
+			case VersioningPackage.VERSION__PRIMARY_SPEC:
+			case VersioningPackage.VERSION__TAG_SPECS:
+			case VersioningPackage.VERSION__CHANGES:
+			case VersioningPackage.VERSION__LOG_MESSAGE:
+				fireNotifyChanged(new ViewerNotification(notification, notification.getNotifier(), true, false));
+				return;
 		}
 		super.notifyChanged(notification);
 	}
@@ -169,20 +190,30 @@ public class VersionItemProvider extends ItemProviderAdapter implements IEditing
 	protected void collectNewChildDescriptors(Collection<Object> newChildDescriptors, Object object) {
 		super.collectNewChildDescriptors(newChildDescriptors, object);
 
-		newChildDescriptors.add(createChildParameter(VersioningPackage.Literals.VERSION__PROJECT_STATE,
-			ModelFactory.eINSTANCE.createProject()));
+		newChildDescriptors.add
+			(createChildParameter
+				(VersioningPackage.Literals.VERSION__PROJECT_STATE,
+				 ModelFactory.eINSTANCE.createProject()));
 
-		newChildDescriptors.add(createChildParameter(VersioningPackage.Literals.VERSION__PRIMARY_SPEC,
-			VersioningFactory.eINSTANCE.createPrimaryVersionSpec()));
+		newChildDescriptors.add
+			(createChildParameter
+				(VersioningPackage.Literals.VERSION__PRIMARY_SPEC,
+				 VersioningFactory.eINSTANCE.createPrimaryVersionSpec()));
 
-		newChildDescriptors.add(createChildParameter(VersioningPackage.Literals.VERSION__TAG_SPECS,
-			VersioningFactory.eINSTANCE.createTagVersionSpec()));
+		newChildDescriptors.add
+			(createChildParameter
+				(VersioningPackage.Literals.VERSION__TAG_SPECS,
+				 VersioningFactory.eINSTANCE.createTagVersionSpec()));
 
-		newChildDescriptors.add(createChildParameter(VersioningPackage.Literals.VERSION__CHANGES,
-			VersioningFactory.eINSTANCE.createChangePackage()));
+		newChildDescriptors.add
+			(createChildParameter
+				(VersioningPackage.Literals.VERSION__CHANGES,
+				 VersioningFactory.eINSTANCE.createChangePackage()));
 
-		newChildDescriptors.add(createChildParameter(VersioningPackage.Literals.VERSION__LOG_MESSAGE,
-			VersioningFactory.eINSTANCE.createLogMessage()));
+		newChildDescriptors.add
+			(createChildParameter
+				(VersioningPackage.Literals.VERSION__LOG_MESSAGE,
+				 VersioningFactory.eINSTANCE.createLogMessage()));
 	}
 
 	/**
