@@ -20,14 +20,14 @@ import org.unicase.ui.common.dnd.DragSourcePlaceHolder;
  * 
  * @author Hodaie
  */
-public class FlatTabDragAdapter extends ViewerDragAdapter {
+public class StatusViewTabsDragAdapter extends ViewerDragAdapter {
 
 	/**
 	 * Constructor.
 	 * 
 	 * @param viewer viewer
 	 */
-	public FlatTabDragAdapter(Viewer viewer) {
+	public StatusViewTabsDragAdapter(Viewer viewer) {
 		super(viewer);
 	}
 

@@ -20,7 +20,7 @@ import org.unicase.model.task.WorkPackage;
 import org.unicase.model.task.util.TaxonomyAccess;
 
 /**
- * . This is the ContentProvider for TreeViewer on Hierarchy tab.
+ * This is the ContentProvider for TreeViewer on Hierarchy tab.
  * 
  * @author Hodaie
  */
@@ -142,11 +142,13 @@ public class HierarchyTabContentProvider extends AdapterFactoryContentProvider {
 			return ret.toArray(new Object[ret.size()]);
 
 		}
-		List<Annotation> annotations = ((ModelElement) object).getAnnotations();
+
+		// List<Annotation> annotations = ((ModelElement) object).getAnnotations();
 		Set<ModelElement> openers = TaxonomyAccess.getInstance().getOpeningLinkTaxonomy().getOpeners(modelElement);
-		ret.addAll(annotations);
-		ret.removeAll(openers);
+		// ret.addAll(annotations);
 		ret.addAll(openers);
+
+		// ret.addAll(TaxonomyAccess.getInstance().getOpeningLinkTaxonomy().getLeafOpeners(modelElement));
 		return ret.toArray(new Object[ret.size()]);
 	}
 }
