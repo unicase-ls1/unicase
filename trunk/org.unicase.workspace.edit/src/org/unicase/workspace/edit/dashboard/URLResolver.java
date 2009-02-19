@@ -36,7 +36,7 @@ public class URLResolver {
 
 	private void resolve() {
 		if (url.startsWith(PREFIX)) {
-			String text = url.substring(PREFIX.length(), url.length() - 1);
+			String text = url.substring(PREFIX.length(), url.length());
 			String[] elements = text.split("/");
 			if (elements.length == 4) {
 				server = elements[0];
