@@ -330,6 +330,7 @@ public class TaskView extends ViewPart implements ProjectChangeObserver {
 	 */
 	@Override
 	public void setFocus() {
+		viewer.getTable().setFocus();
 		EventUtil.logFocusEvent("org.unicase.ui.taskview");
 	}
 
