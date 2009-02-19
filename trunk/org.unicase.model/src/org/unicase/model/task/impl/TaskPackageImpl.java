@@ -48,6 +48,8 @@ import org.unicase.model.task.TaskFactory;
 import org.unicase.model.task.TaskPackage;
 import org.unicase.model.task.WorkItem;
 import org.unicase.model.task.WorkPackage;
+import org.unicase.model.util.UtilPackage;
+import org.unicase.model.util.impl.UtilPackageImpl;
 
 /*
  * <!-- begin-user-doc --> An implementation of the model <b>Package</b>. <!-- end-user-doc -->
@@ -191,6 +193,9 @@ public class TaskPackageImpl extends EPackageImpl implements TaskPackage {
 		ProfilePackageImpl theProfilePackage = (ProfilePackageImpl) (EPackage.Registry.INSTANCE
 			.getEPackage(ProfilePackage.eNS_URI) instanceof ProfilePackageImpl ? EPackage.Registry.INSTANCE
 			.getEPackage(ProfilePackage.eNS_URI) : ProfilePackage.eINSTANCE);
+		UtilPackageImpl theUtilPackage = (UtilPackageImpl) (EPackage.Registry.INSTANCE.getEPackage(UtilPackage.eNS_URI) instanceof UtilPackageImpl ? EPackage.Registry.INSTANCE
+			.getEPackage(UtilPackage.eNS_URI)
+			: UtilPackage.eINSTANCE);
 
 		// Create package meta-data objects
 		theTaskPackage.createPackageContents();
@@ -208,6 +213,7 @@ public class TaskPackageImpl extends EPackageImpl implements TaskPackage {
 		theStatePackage.createPackageContents();
 		theAttachmentPackage.createPackageContents();
 		theProfilePackage.createPackageContents();
+		theUtilPackage.createPackageContents();
 
 		// Initialize created meta-data
 		theTaskPackage.initializePackageContents();
@@ -225,6 +231,7 @@ public class TaskPackageImpl extends EPackageImpl implements TaskPackage {
 		theStatePackage.initializePackageContents();
 		theAttachmentPackage.initializePackageContents();
 		theProfilePackage.initializePackageContents();
+		theUtilPackage.initializePackageContents();
 
 		// Mark meta-data to indicate it can't be changed
 		theTaskPackage.freeze();
