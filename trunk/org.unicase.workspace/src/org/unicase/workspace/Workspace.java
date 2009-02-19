@@ -6,6 +6,7 @@
 package org.unicase.workspace;
 
 import java.io.IOException;
+import java.util.Set;
 
 import org.eclipse.core.runtime.IAdaptable;
 import org.eclipse.emf.common.util.EList;
@@ -13,8 +14,12 @@ import org.eclipse.emf.ecore.EObject;
 import org.eclipse.emf.ecore.resource.ResourceSet;
 import org.eclipse.emf.transaction.TransactionalEditingDomain;
 import org.unicase.emfstore.esmodel.ProjectInfo;
+import org.unicase.emfstore.esmodel.url.ProjectUrlFragment;
+import org.unicase.emfstore.esmodel.url.ServerUrl;
 import org.unicase.emfstore.exceptions.EmfStoreException;
 import org.unicase.workspace.connectionmanager.ConnectionManager;
+import org.unicase.workspace.exceptions.ProjectUrlResolutionException;
+import org.unicase.workspace.exceptions.ServerUrlResolutionException;
 
 /*
  * <!-- begin-user-doc --> A representation of the model object ' <em><b>Workspace</b></em>'.
@@ -29,14 +34,14 @@ import org.unicase.workspace.connectionmanager.ConnectionManager;
  */
 public interface Workspace extends EObject, IAdaptable {
 	/**
-	 * Returns the value of the '<em><b>Project Spaces</b></em>' containment reference list.
-	 * The list contents are of type {@link org.unicase.workspace.ProjectSpace}.
-	 * <!-- begin-user-doc -->
+	 * Returns the value of the '<em><b>Project Spaces</b></em>' containment reference list. The list contents are of
+	 * type {@link org.unicase.workspace.ProjectSpace}. <!-- begin-user-doc -->
 	 * <p>
 	 * If the meaning of the '<em>Project Spaces</em>' reference list isn't clear, there really should be more of a
 	 * description here...
 	 * </p>
 	 * <!-- end-user-doc -->
+	 * 
 	 * @return the value of the '<em>Project Spaces</em>' containment reference list.
 	 * @see org.unicase.workspace.WorkspacePackage#getWorkspace_ProjectSpaces()
 	 * @model containment="true" resolveProxies="true" keys="identifier"
@@ -45,14 +50,14 @@ public interface Workspace extends EObject, IAdaptable {
 	EList<ProjectSpace> getProjectSpaces();
 
 	/**
-	 * Returns the value of the '<em><b>Server Infos</b></em>' containment reference list.
-	 * The list contents are of type {@link org.unicase.workspace.ServerInfo}.
-	 * <!-- begin-user-doc -->
+	 * Returns the value of the '<em><b>Server Infos</b></em>' containment reference list. The list contents are of type
+	 * {@link org.unicase.workspace.ServerInfo}. <!-- begin-user-doc -->
 	 * <p>
 	 * If the meaning of the '<em>Server Infos</em>' containment reference list isn't clear, there really should be more
 	 * of a description here...
 	 * </p>
 	 * <!-- end-user-doc -->
+	 * 
 	 * @return the value of the '<em>Server Infos</em>' containment reference list.
 	 * @see org.unicase.workspace.WorkspacePackage#getWorkspace_ServerInfos()
 	 * @model containment="true" resolveProxies="true"
@@ -61,14 +66,14 @@ public interface Workspace extends EObject, IAdaptable {
 	EList<ServerInfo> getServerInfos();
 
 	/**
-	 * Returns the value of the '<em><b>Usersessions</b></em>' containment reference list.
-	 * The list contents are of type {@link org.unicase.workspace.Usersession}.
-	 * <!-- begin-user-doc -->
+	 * Returns the value of the '<em><b>Usersessions</b></em>' containment reference list. The list contents are of type
+	 * {@link org.unicase.workspace.Usersession}. <!-- begin-user-doc -->
 	 * <p>
 	 * If the meaning of the '<em>Usersessions</em>' containment reference list isn't clear, there really should be more
 	 * of a description here...
 	 * </p>
 	 * <!-- end-user-doc -->
+	 * 
 	 * @return the value of the '<em>Usersessions</em>' containment reference list.
 	 * @see org.unicase.workspace.WorkspacePackage#getWorkspace_Usersessions()
 	 * @model containment="true" resolveProxies="true"
@@ -77,13 +82,13 @@ public interface Workspace extends EObject, IAdaptable {
 	EList<Usersession> getUsersessions();
 
 	/**
-	 * Returns the value of the '<em><b>Active Project Space</b></em>' reference.
-	 * <!-- begin-user-doc -->
+	 * Returns the value of the '<em><b>Active Project Space</b></em>' reference. <!-- begin-user-doc -->
 	 * <p>
 	 * If the meaning of the '<em>Active Project Space</em>' reference isn't clear, there really should be more of a
 	 * description here...
 	 * </p>
 	 * <!-- end-user-doc -->
+	 * 
 	 * @return the value of the '<em>Active Project Space</em>' reference.
 	 * @see #setActiveProjectSpace(ProjectSpace)
 	 * @see org.unicase.workspace.WorkspacePackage#getWorkspace_ActiveProjectSpace()
@@ -93,8 +98,9 @@ public interface Workspace extends EObject, IAdaptable {
 	ProjectSpace getActiveProjectSpace();
 
 	/**
-	 * Sets the value of the '{@link org.unicase.workspace.Workspace#getActiveProjectSpace <em>Active Project Space</em>}' reference.
-	 * <!-- begin-user-doc --> <!-- end-user-doc -->
+	 * Sets the value of the '{@link org.unicase.workspace.Workspace#getActiveProjectSpace
+	 * <em>Active Project Space</em>}' reference. <!-- begin-user-doc --> <!-- end-user-doc -->
+	 * 
 	 * @param value the new value of the '<em>Active Project Space</em>' reference.
 	 * @see #getActiveProjectSpace()
 	 * @generated
@@ -193,5 +199,24 @@ public interface Workspace extends EObject, IAdaptable {
 	 * Make the current workspace state persistent.
 	 */
 	void save();
+
+	/**
+	 * Resolves a project url fragment to the project space the project is in. Since a project may have been checked out
+	 * multiple times, a set of project spaces is returned.
+	 * 
+	 * @param projectUrlFragment the project url fragment to resolve
+	 * @return a set of matching project spaces
+	 * @throws ProjectUrlResolutionException if project cannot be found in workspace
+	 */
+	Set<ProjectSpace> resolve(ProjectUrlFragment projectUrlFragment) throws ProjectUrlResolutionException;
+
+	/**
+	 * Resolves a server url to a set server infos if multiple serverInfos match the url.
+	 * 
+	 * @param serverUrl the server url
+	 * @return the server info
+	 * @throws ServerUrlResolutionException if no matching server info can be found
+	 */
+	Set<ServerInfo> resolve(ServerUrl serverUrl) throws ServerUrlResolutionException;
 
 } // Workspace

@@ -40,6 +40,7 @@ import org.unicase.emfstore.esmodel.EsmodelFactory;
 import org.unicase.emfstore.esmodel.ProjectId;
 import org.unicase.emfstore.esmodel.ProjectInfo;
 import org.unicase.emfstore.esmodel.notification.ESNotification;
+import org.unicase.emfstore.esmodel.url.ModelElementUrlFragment;
 import org.unicase.emfstore.esmodel.versioning.ChangePackage;
 import org.unicase.emfstore.esmodel.versioning.LogMessage;
 import org.unicase.emfstore.esmodel.versioning.PrimaryVersionSpec;
@@ -78,6 +79,7 @@ import org.unicase.workspace.WorkspacePackage;
 import org.unicase.workspace.connectionmanager.ConnectionManager;
 import org.unicase.workspace.exceptions.ChangeConflictException;
 import org.unicase.workspace.exceptions.IllegalProjectSpaceStateException;
+import org.unicase.workspace.exceptions.MEUrlResolutionException;
 import org.unicase.workspace.exceptions.NoChangesOnServerException;
 import org.unicase.workspace.exceptions.NoLocalChangesException;
 import org.unicase.workspace.notification.NotificationGenerator;
@@ -2009,6 +2011,11 @@ public class ProjectSpaceImpl extends IdentifiableElementImpl implements Project
 			this.deleteOperation = OperationsFactory.eINSTANCE.createCreateDeleteOperation();
 		}
 		// MK: implement recording to subOperations of deleteoperation
+	}
+
+	public ModelElement resolve(ModelElementUrlFragment modelElementUrlFragment) throws MEUrlResolutionException {
+		// AS: please implement
+		return null;
 	}
 
 } // ProjectContainerImpl

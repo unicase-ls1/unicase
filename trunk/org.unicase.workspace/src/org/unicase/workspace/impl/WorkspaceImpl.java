@@ -9,6 +9,8 @@ import java.io.File;
 import java.io.IOException;
 import java.util.Collection;
 import java.util.Date;
+import java.util.HashSet;
+import java.util.Set;
 
 import org.eclipse.emf.common.notify.Notification;
 import org.eclipse.emf.common.notify.NotificationChain;
@@ -27,6 +29,8 @@ import org.eclipse.emf.ecore.util.EcoreUtil;
 import org.eclipse.emf.ecore.util.InternalEList;
 import org.eclipse.emf.transaction.TransactionalEditingDomain;
 import org.unicase.emfstore.esmodel.ProjectInfo;
+import org.unicase.emfstore.esmodel.url.ProjectUrlFragment;
+import org.unicase.emfstore.esmodel.url.ServerUrl;
 import org.unicase.emfstore.esmodel.versioning.PrimaryVersionSpec;
 import org.unicase.emfstore.esmodel.versioning.VersionSpec;
 import org.unicase.emfstore.esmodel.versioning.events.EventsFactory;
@@ -42,6 +46,8 @@ import org.unicase.workspace.WorkspaceFactory;
 import org.unicase.workspace.WorkspaceManager;
 import org.unicase.workspace.WorkspacePackage;
 import org.unicase.workspace.connectionmanager.ConnectionManager;
+import org.unicase.workspace.exceptions.ProjectUrlResolutionException;
+import org.unicase.workspace.exceptions.ServerUrlResolutionException;
 
 /*
  * <!-- begin-user-doc --> An implementation of the model object ' <em><b>Workspace</b></em>'. <!-- end-user-doc --> <p>
@@ -112,6 +118,7 @@ public class WorkspaceImpl extends EObjectImpl implements Workspace {
 
 	/**
 	 * <!-- begin-user-doc --> <!-- end-user-doc -->
+	 * 
 	 * @generated
 	 */
 	protected WorkspaceImpl() {
@@ -120,6 +127,7 @@ public class WorkspaceImpl extends EObjectImpl implements Workspace {
 
 	/**
 	 * <!-- begin-user-doc --> <!-- end-user-doc -->
+	 * 
 	 * @generated
 	 */
 	@Override
@@ -129,6 +137,7 @@ public class WorkspaceImpl extends EObjectImpl implements Workspace {
 
 	/**
 	 * <!-- begin-user-doc --> <!-- end-user-doc -->
+	 * 
 	 * @generated
 	 */
 	public EList<ProjectSpace> getProjectSpaces() {
@@ -141,6 +150,7 @@ public class WorkspaceImpl extends EObjectImpl implements Workspace {
 
 	/**
 	 * <!-- begin-user-doc --> <!-- end-user-doc -->
+	 * 
 	 * @generated
 	 */
 	public EList<ServerInfo> getServerInfos() {
@@ -153,6 +163,7 @@ public class WorkspaceImpl extends EObjectImpl implements Workspace {
 
 	/**
 	 * <!-- begin-user-doc --> <!-- end-user-doc -->
+	 * 
 	 * @generated
 	 */
 	public EList<Usersession> getUsersessions() {
@@ -165,6 +176,7 @@ public class WorkspaceImpl extends EObjectImpl implements Workspace {
 
 	/**
 	 * <!-- begin-user-doc --> <!-- end-user-doc -->
+	 * 
 	 * @generated
 	 */
 	public ProjectSpace getActiveProjectSpace() {
@@ -182,6 +194,7 @@ public class WorkspaceImpl extends EObjectImpl implements Workspace {
 
 	/**
 	 * <!-- begin-user-doc --> <!-- end-user-doc -->
+	 * 
 	 * @generated
 	 */
 	public ProjectSpace basicGetActiveProjectSpace() {
@@ -190,6 +203,7 @@ public class WorkspaceImpl extends EObjectImpl implements Workspace {
 
 	/**
 	 * <!-- begin-user-doc --> <!-- end-user-doc -->
+	 * 
 	 * @generated
 	 */
 	public void setActiveProjectSpace(ProjectSpace newActiveProjectSpace) {
@@ -267,6 +281,7 @@ public class WorkspaceImpl extends EObjectImpl implements Workspace {
 
 	/**
 	 * <!-- begin-user-doc --> <!-- end-user-doc -->
+	 * 
 	 * @generated
 	 */
 	@Override
@@ -284,6 +299,7 @@ public class WorkspaceImpl extends EObjectImpl implements Workspace {
 
 	/**
 	 * <!-- begin-user-doc --> <!-- end-user-doc -->
+	 * 
 	 * @generated
 	 */
 	@Override
@@ -305,6 +321,7 @@ public class WorkspaceImpl extends EObjectImpl implements Workspace {
 
 	/**
 	 * <!-- begin-user-doc --> <!-- end-user-doc -->
+	 * 
 	 * @generated
 	 */
 	@SuppressWarnings("unchecked")
@@ -332,6 +349,7 @@ public class WorkspaceImpl extends EObjectImpl implements Workspace {
 
 	/**
 	 * <!-- begin-user-doc --> <!-- end-user-doc -->
+	 * 
 	 * @generated
 	 */
 	@Override
@@ -355,6 +373,7 @@ public class WorkspaceImpl extends EObjectImpl implements Workspace {
 
 	/**
 	 * <!-- begin-user-doc --> <!-- end-user-doc -->
+	 * 
 	 * @generated
 	 */
 	@Override
@@ -532,6 +551,44 @@ public class WorkspaceImpl extends EObjectImpl implements Workspace {
 
 		resource.getContents().add(project);
 		resource.save(null);
+	}
+
+	/**
+	 * {@inheritDoc}
+	 * 
+	 * @see org.unicase.workspace.Workspace#resolve(org.unicase.emfstore.esmodel.url.ProjectUrlFragment)
+	 */
+	public Set<ProjectSpace> resolve(ProjectUrlFragment projectUrlFragment) throws ProjectUrlResolutionException {
+		Set<ProjectSpace> result = new HashSet<ProjectSpace>();
+		for (ProjectSpace projectSpace : getProjectSpaces()) {
+			if (projectSpace.getProjectId().equals(projectUrlFragment.getProjectId())) {
+				result.add(projectSpace);
+			}
+		}
+		if (result.size() == 0) {
+			throw new ProjectUrlResolutionException();
+		}
+		return result;
+	}
+
+	/**
+	 * {@inheritDoc}
+	 * 
+	 * @see org.unicase.workspace.Workspace#resolve(org.unicase.emfstore.esmodel.url.ServerUrl)
+	 */
+	public Set<ServerInfo> resolve(ServerUrl serverUrl) throws ServerUrlResolutionException {
+		Set<ServerInfo> result = new HashSet<ServerInfo>();
+		for (ServerInfo serverInfo : getServerInfos()) {
+			boolean matchingHostname = serverInfo.getUrl().equals(serverUrl.getHostName());
+			boolean matchingPort = serverInfo.getPort() == serverUrl.getPort();
+			if (matchingHostname && matchingPort) {
+				result.add(serverInfo);
+			}
+		}
+		if (result.size() == 0) {
+			throw new ServerUrlResolutionException();
+		}
+		return result;
 	}
 
 } // WorkspaceImpl
