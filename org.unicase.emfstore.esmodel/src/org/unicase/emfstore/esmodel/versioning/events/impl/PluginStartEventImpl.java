@@ -80,8 +80,7 @@ public class PluginStartEventImpl extends EventImpl implements PluginStartEvent 
 	 */
 	@Override
 	public Object eGet(int featureID, boolean resolve, boolean coreType) {
-		switch (featureID)
-		{
+		switch (featureID) {
 			case EventsPackage.PLUGIN_START_EVENT__PLUGIN_ID:
 				return getPluginId();
 		}
@@ -94,8 +93,7 @@ public class PluginStartEventImpl extends EventImpl implements PluginStartEvent 
 	 */
 	@Override
 	public void eSet(int featureID, Object newValue) {
-		switch (featureID)
-		{
+		switch (featureID) {
 			case EventsPackage.PLUGIN_START_EVENT__PLUGIN_ID:
 				setPluginId((String)newValue);
 				return;
@@ -109,8 +107,7 @@ public class PluginStartEventImpl extends EventImpl implements PluginStartEvent 
 	 */
 	@Override
 	public void eUnset(int featureID) {
-		switch (featureID)
-		{
+		switch (featureID) {
 			case EventsPackage.PLUGIN_START_EVENT__PLUGIN_ID:
 				setPluginId(PLUGIN_ID_EDEFAULT);
 				return;
@@ -124,8 +121,7 @@ public class PluginStartEventImpl extends EventImpl implements PluginStartEvent 
 	 */
 	@Override
 	public boolean eIsSet(int featureID) {
-		switch (featureID)
-		{
+		switch (featureID) {
 			case EventsPackage.PLUGIN_START_EVENT__PLUGIN_ID:
 				return PLUGIN_ID_EDEFAULT == null ? pluginId != null : !PLUGIN_ID_EDEFAULT.equals(pluginId);
 		}

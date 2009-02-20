@@ -46,8 +46,7 @@ public class LinkEventItemProvider extends EventItemProvider implements IEditing
 	 */
 	@Override
 	public List<IItemPropertyDescriptor> getPropertyDescriptors(Object object) {
-		if (itemPropertyDescriptors == null)
-		{
+		if (itemPropertyDescriptors == null) {
 			super.getPropertyDescriptors(object);
 
 			addSourceViewPropertyDescriptor(object);
@@ -177,8 +176,7 @@ public class LinkEventItemProvider extends EventItemProvider implements IEditing
 	public void notifyChanged(Notification notification) {
 		updateChildren(notification);
 
-		switch (notification.getFeatureID(LinkEvent.class))
-		{
+		switch (notification.getFeatureID(LinkEvent.class)) {
 			case EventsPackage.LINK_EVENT__SOURCE_VIEW:
 			case EventsPackage.LINK_EVENT__CREATED_NEW:
 				fireNotifyChanged(new ViewerNotification(notification, notification.getNotifier(), false, true));

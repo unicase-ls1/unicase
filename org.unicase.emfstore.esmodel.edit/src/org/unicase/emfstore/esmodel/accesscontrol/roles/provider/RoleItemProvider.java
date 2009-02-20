@@ -45,8 +45,7 @@ public class RoleItemProvider extends ItemProviderAdapter implements IEditingDom
 	 */
 	@Override
 	public List<IItemPropertyDescriptor> getPropertyDescriptors(Object object) {
-		if (itemPropertyDescriptors == null)
-		{
+		if (itemPropertyDescriptors == null) {
 			super.getPropertyDescriptors(object);
 
 			addProjectsPropertyDescriptor(object);

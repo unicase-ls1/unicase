@@ -48,8 +48,7 @@ public class ACOrgUnitItemProvider extends IdentifiableElementItemProvider imple
 	 */
 	@Override
 	public List<IItemPropertyDescriptor> getPropertyDescriptors(Object object) {
-		if (itemPropertyDescriptors == null)
-		{
+		if (itemPropertyDescriptors == null) {
 			super.getPropertyDescriptors(object);
 
 			addNamePropertyDescriptor(object);
@@ -156,8 +155,7 @@ public class ACOrgUnitItemProvider extends IdentifiableElementItemProvider imple
 	public void notifyChanged(Notification notification) {
 		updateChildren(notification);
 
-		switch (notification.getFeatureID(ACOrgUnit.class))
-		{
+		switch (notification.getFeatureID(ACOrgUnit.class)) {
 			case AccesscontrolPackage.AC_ORG_UNIT__NAME:
 			case AccesscontrolPackage.AC_ORG_UNIT__DESCRIPTION:
 				fireNotifyChanged(new ViewerNotification(notification, notification.getNotifier(), false, true));

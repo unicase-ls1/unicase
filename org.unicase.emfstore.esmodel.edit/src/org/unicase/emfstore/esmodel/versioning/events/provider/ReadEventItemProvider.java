@@ -48,8 +48,7 @@ public class ReadEventItemProvider extends EventItemProvider implements IEditing
 	 */
 	@Override
 	public List<IItemPropertyDescriptor> getPropertyDescriptors(Object object) {
-		if (itemPropertyDescriptors == null)
-		{
+		if (itemPropertyDescriptors == null) {
 			super.getPropertyDescriptors(object);
 
 			addSourceViewPropertyDescriptor(object);
@@ -110,8 +109,7 @@ public class ReadEventItemProvider extends EventItemProvider implements IEditing
 	 */
 	@Override
 	public Collection<? extends EStructuralFeature> getChildrenFeatures(Object object) {
-		if (childrenFeatures == null)
-		{
+		if (childrenFeatures == null) {
 			super.getChildrenFeatures(object);
 			childrenFeatures.add(EventsPackage.Literals.READ_EVENT__MODEL_ELEMENT);
 		}
@@ -165,8 +163,7 @@ public class ReadEventItemProvider extends EventItemProvider implements IEditing
 	public void notifyChanged(Notification notification) {
 		updateChildren(notification);
 
-		switch (notification.getFeatureID(ReadEvent.class))
-		{
+		switch (notification.getFeatureID(ReadEvent.class)) {
 			case EventsPackage.READ_EVENT__SOURCE_VIEW:
 			case EventsPackage.READ_EVENT__READ_VIEW:
 				fireNotifyChanged(new ViewerNotification(notification, notification.getNotifier(), false, true));

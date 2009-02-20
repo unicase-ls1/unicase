@@ -47,8 +47,7 @@ public class VersionInfoItemProvider extends ItemProviderAdapter implements IEdi
 	 */
 	@Override
 	public List<IItemPropertyDescriptor> getPropertyDescriptors(Object object) {
-		if (itemPropertyDescriptors == null)
-		{
+		if (itemPropertyDescriptors == null) {
 			super.getPropertyDescriptors(object);
 
 			addEmfStoreVersionStringPropertyDescriptor(object);
@@ -112,8 +111,7 @@ public class VersionInfoItemProvider extends ItemProviderAdapter implements IEdi
 	public void notifyChanged(Notification notification) {
 		updateChildren(notification);
 
-		switch (notification.getFeatureID(VersionInfo.class))
-		{
+		switch (notification.getFeatureID(VersionInfo.class)) {
 			case EsmodelPackage.VERSION_INFO__EMF_STORE_VERSION_STRING:
 				fireNotifyChanged(new ViewerNotification(notification, notification.getNotifier(), false, true));
 				return;

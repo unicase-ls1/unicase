@@ -81,8 +81,7 @@ public class RevertEventImpl extends EventImpl implements RevertEvent {
 	 */
 	@Override
 	public Object eGet(int featureID, boolean resolve, boolean coreType) {
-		switch (featureID)
-		{
+		switch (featureID) {
 			case EventsPackage.REVERT_EVENT__REVERTED_CHANGES_COUNT:
 				return new Integer(getRevertedChangesCount());
 		}
@@ -95,8 +94,7 @@ public class RevertEventImpl extends EventImpl implements RevertEvent {
 	 */
 	@Override
 	public void eSet(int featureID, Object newValue) {
-		switch (featureID)
-		{
+		switch (featureID) {
 			case EventsPackage.REVERT_EVENT__REVERTED_CHANGES_COUNT:
 				setRevertedChangesCount(((Integer)newValue).intValue());
 				return;
@@ -110,8 +108,7 @@ public class RevertEventImpl extends EventImpl implements RevertEvent {
 	 */
 	@Override
 	public void eUnset(int featureID) {
-		switch (featureID)
-		{
+		switch (featureID) {
 			case EventsPackage.REVERT_EVENT__REVERTED_CHANGES_COUNT:
 				setRevertedChangesCount(REVERTED_CHANGES_COUNT_EDEFAULT);
 				return;
@@ -125,8 +122,7 @@ public class RevertEventImpl extends EventImpl implements RevertEvent {
 	 */
 	@Override
 	public boolean eIsSet(int featureID) {
-		switch (featureID)
-		{
+		switch (featureID) {
 			case EventsPackage.REVERT_EVENT__REVERTED_CHANGES_COUNT:
 				return revertedChangesCount != REVERTED_CHANGES_COUNT_EDEFAULT;
 		}

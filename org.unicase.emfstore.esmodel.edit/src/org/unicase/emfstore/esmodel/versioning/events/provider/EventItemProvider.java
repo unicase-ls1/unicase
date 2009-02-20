@@ -49,8 +49,7 @@ public class EventItemProvider extends ItemProviderAdapter implements IEditingDo
 	 */
 	@Override
 	public List<IItemPropertyDescriptor> getPropertyDescriptors(Object object) {
-		if (itemPropertyDescriptors == null)
-		{
+		if (itemPropertyDescriptors == null) {
 			super.getPropertyDescriptors(object);
 
 			addTimestampPropertyDescriptor(object);
@@ -114,8 +113,7 @@ public class EventItemProvider extends ItemProviderAdapter implements IEditingDo
 	public void notifyChanged(Notification notification) {
 		updateChildren(notification);
 
-		switch (notification.getFeatureID(Event.class))
-		{
+		switch (notification.getFeatureID(Event.class)) {
 			case EventsPackage.EVENT__TIMESTAMP:
 				fireNotifyChanged(new ViewerNotification(notification, notification.getNotifier(), false, true));
 				return;

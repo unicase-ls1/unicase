@@ -98,8 +98,7 @@ public abstract class FeatureOperationImpl extends AbstractOperationImpl impleme
 	 */
 	@Override
 	public Object eGet(int featureID, boolean resolve, boolean coreType) {
-		switch (featureID)
-		{
+		switch (featureID) {
 			case OperationsPackage.FEATURE_OPERATION__FEATURE_NAME:
 				return getFeatureName();
 		}
@@ -112,8 +111,7 @@ public abstract class FeatureOperationImpl extends AbstractOperationImpl impleme
 	 */
 	@Override
 	public void eSet(int featureID, Object newValue) {
-		switch (featureID)
-		{
+		switch (featureID) {
 			case OperationsPackage.FEATURE_OPERATION__FEATURE_NAME:
 				setFeatureName((String)newValue);
 				return;
@@ -127,8 +125,7 @@ public abstract class FeatureOperationImpl extends AbstractOperationImpl impleme
 	 */
 	@Override
 	public void eUnset(int featureID) {
-		switch (featureID)
-		{
+		switch (featureID) {
 			case OperationsPackage.FEATURE_OPERATION__FEATURE_NAME:
 				setFeatureName(FEATURE_NAME_EDEFAULT);
 				return;
@@ -142,8 +139,7 @@ public abstract class FeatureOperationImpl extends AbstractOperationImpl impleme
 	 */
 	@Override
 	public boolean eIsSet(int featureID) {
-		switch (featureID)
-		{
+		switch (featureID) {
 			case OperationsPackage.FEATURE_OPERATION__FEATURE_NAME:
 				return FEATURE_NAME_EDEFAULT == null ? featureName != null : !FEATURE_NAME_EDEFAULT.equals(featureName);
 		}

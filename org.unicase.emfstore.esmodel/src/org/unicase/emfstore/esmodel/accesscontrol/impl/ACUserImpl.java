@@ -120,8 +120,7 @@ public class ACUserImpl extends ACOrgUnitImpl implements ACUser {
 	 */
 	@Override
 	public Object eGet(int featureID, boolean resolve, boolean coreType) {
-		switch (featureID)
-		{
+		switch (featureID) {
 			case AccesscontrolPackage.AC_USER__FIRST_NAME:
 				return getFirstName();
 			case AccesscontrolPackage.AC_USER__LAST_NAME:
@@ -136,8 +135,7 @@ public class ACUserImpl extends ACOrgUnitImpl implements ACUser {
 	 */
 	@Override
 	public void eSet(int featureID, Object newValue) {
-		switch (featureID)
-		{
+		switch (featureID) {
 			case AccesscontrolPackage.AC_USER__FIRST_NAME:
 				setFirstName((String)newValue);
 				return;
@@ -154,8 +152,7 @@ public class ACUserImpl extends ACOrgUnitImpl implements ACUser {
 	 */
 	@Override
 	public void eUnset(int featureID) {
-		switch (featureID)
-		{
+		switch (featureID) {
 			case AccesscontrolPackage.AC_USER__FIRST_NAME:
 				setFirstName(FIRST_NAME_EDEFAULT);
 				return;
@@ -172,8 +169,7 @@ public class ACUserImpl extends ACOrgUnitImpl implements ACUser {
 	 */
 	@Override
 	public boolean eIsSet(int featureID) {
-		switch (featureID)
-		{
+		switch (featureID) {
 			case AccesscontrolPackage.AC_USER__FIRST_NAME:
 				return FIRST_NAME_EDEFAULT == null ? firstName != null : !FIRST_NAME_EDEFAULT.equals(firstName);
 			case AccesscontrolPackage.AC_USER__LAST_NAME:

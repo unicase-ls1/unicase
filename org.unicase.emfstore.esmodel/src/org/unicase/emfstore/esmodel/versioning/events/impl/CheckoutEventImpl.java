@@ -54,16 +54,13 @@ public class CheckoutEventImpl extends EventImpl implements CheckoutEvent {
 	 * @generated
 	 */
 	public PrimaryVersionSpec getBaseVersion() {
-		if (baseVersion != null && baseVersion.eIsProxy())
-		{
+		if (baseVersion != null && baseVersion.eIsProxy()) {
 			InternalEObject oldBaseVersion = (InternalEObject)baseVersion;
 			baseVersion = (PrimaryVersionSpec)eResolveProxy(oldBaseVersion);
-			if (baseVersion != oldBaseVersion)
-			{
+			if (baseVersion != oldBaseVersion) {
 				InternalEObject newBaseVersion = (InternalEObject)baseVersion;
 				NotificationChain msgs = oldBaseVersion.eInverseRemove(this, EOPPOSITE_FEATURE_BASE - EventsPackage.CHECKOUT_EVENT__BASE_VERSION, null, null);
-				if (newBaseVersion.eInternalContainer() == null)
-				{
+				if (newBaseVersion.eInternalContainer() == null) {
 					msgs = newBaseVersion.eInverseAdd(this, EOPPOSITE_FEATURE_BASE - EventsPackage.CHECKOUT_EVENT__BASE_VERSION, null, msgs);
 				}
 				if (msgs != null) msgs.dispatch();
@@ -89,8 +86,7 @@ public class CheckoutEventImpl extends EventImpl implements CheckoutEvent {
 	public NotificationChain basicSetBaseVersion(PrimaryVersionSpec newBaseVersion, NotificationChain msgs) {
 		PrimaryVersionSpec oldBaseVersion = baseVersion;
 		baseVersion = newBaseVersion;
-		if (eNotificationRequired())
-		{
+		if (eNotificationRequired()) {
 			ENotificationImpl notification = new ENotificationImpl(this, Notification.SET, EventsPackage.CHECKOUT_EVENT__BASE_VERSION, oldBaseVersion, newBaseVersion);
 			if (msgs == null) msgs = notification; else msgs.add(notification);
 		}
@@ -102,8 +98,7 @@ public class CheckoutEventImpl extends EventImpl implements CheckoutEvent {
 	 * @generated
 	 */
 	public void setBaseVersion(PrimaryVersionSpec newBaseVersion) {
-		if (newBaseVersion != baseVersion)
-		{
+		if (newBaseVersion != baseVersion) {
 			NotificationChain msgs = null;
 			if (baseVersion != null)
 				msgs = ((InternalEObject)baseVersion).eInverseRemove(this, EOPPOSITE_FEATURE_BASE - EventsPackage.CHECKOUT_EVENT__BASE_VERSION, null, msgs);
@@ -122,8 +117,7 @@ public class CheckoutEventImpl extends EventImpl implements CheckoutEvent {
 	 */
 	@Override
 	public NotificationChain eInverseRemove(InternalEObject otherEnd, int featureID, NotificationChain msgs) {
-		switch (featureID)
-		{
+		switch (featureID) {
 			case EventsPackage.CHECKOUT_EVENT__BASE_VERSION:
 				return basicSetBaseVersion(null, msgs);
 		}
@@ -136,8 +130,7 @@ public class CheckoutEventImpl extends EventImpl implements CheckoutEvent {
 	 */
 	@Override
 	public Object eGet(int featureID, boolean resolve, boolean coreType) {
-		switch (featureID)
-		{
+		switch (featureID) {
 			case EventsPackage.CHECKOUT_EVENT__BASE_VERSION:
 				if (resolve) return getBaseVersion();
 				return basicGetBaseVersion();
@@ -151,8 +144,7 @@ public class CheckoutEventImpl extends EventImpl implements CheckoutEvent {
 	 */
 	@Override
 	public void eSet(int featureID, Object newValue) {
-		switch (featureID)
-		{
+		switch (featureID) {
 			case EventsPackage.CHECKOUT_EVENT__BASE_VERSION:
 				setBaseVersion((PrimaryVersionSpec)newValue);
 				return;
@@ -166,8 +158,7 @@ public class CheckoutEventImpl extends EventImpl implements CheckoutEvent {
 	 */
 	@Override
 	public void eUnset(int featureID) {
-		switch (featureID)
-		{
+		switch (featureID) {
 			case EventsPackage.CHECKOUT_EVENT__BASE_VERSION:
 				setBaseVersion((PrimaryVersionSpec)null);
 				return;
@@ -181,8 +172,7 @@ public class CheckoutEventImpl extends EventImpl implements CheckoutEvent {
 	 */
 	@Override
 	public boolean eIsSet(int featureID) {
-		switch (featureID)
-		{
+		switch (featureID) {
 			case EventsPackage.CHECKOUT_EVENT__BASE_VERSION:
 				return baseVersion != null;
 		}

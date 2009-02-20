@@ -51,8 +51,7 @@ public class ChangePackageItemProvider extends ItemProviderAdapter implements IE
 	 */
 	@Override
 	public List<IItemPropertyDescriptor> getPropertyDescriptors(Object object) {
-		if (itemPropertyDescriptors == null)
-		{
+		if (itemPropertyDescriptors == null) {
 			super.getPropertyDescriptors(object);
 
 		}
@@ -69,8 +68,7 @@ public class ChangePackageItemProvider extends ItemProviderAdapter implements IE
 	 */
 	@Override
 	public Collection<? extends EStructuralFeature> getChildrenFeatures(Object object) {
-		if (childrenFeatures == null)
-		{
+		if (childrenFeatures == null) {
 			super.getChildrenFeatures(object);
 			childrenFeatures.add(VersioningPackage.Literals.CHANGE_PACKAGE__OPERATIONS);
 			childrenFeatures.add(VersioningPackage.Literals.CHANGE_PACKAGE__EVENTS);
@@ -123,8 +121,7 @@ public class ChangePackageItemProvider extends ItemProviderAdapter implements IE
 	public void notifyChanged(Notification notification) {
 		updateChildren(notification);
 
-		switch (notification.getFeatureID(ChangePackage.class))
-		{
+		switch (notification.getFeatureID(ChangePackage.class)) {
 			case VersioningPackage.CHANGE_PACKAGE__OPERATIONS:
 			case VersioningPackage.CHANGE_PACKAGE__EVENTS:
 			case VersioningPackage.CHANGE_PACKAGE__LOG_MESSAGE:

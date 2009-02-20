@@ -394,7 +394,7 @@ public interface EventsPackage extends EPackage {
 	int ANNOTATION_EVENT__ANNOTATED_ELEMENT = EVENT_FEATURE_COUNT + 0;
 
 	/**
-	 * The feature id for the '<em><b>Annotation</b></em>' reference.
+	 * The feature id for the '<em><b>Annotation</b></em>' containment reference.
 	 * <!-- begin-user-doc --> <!-- end-user-doc -->
 	 * @generated
 	 * @ordered
@@ -601,7 +601,7 @@ public interface EventsPackage extends EPackage {
 	int LINK_EVENT__SOURCE_VIEW = EVENT_FEATURE_COUNT + 0;
 
 	/**
-	 * The feature id for the '<em><b>Source Element</b></em>' reference.
+	 * The feature id for the '<em><b>Source Element</b></em>' containment reference.
 	 * <!-- begin-user-doc --> <!-- end-user-doc -->
 	 * @generated
 	 * @ordered
@@ -609,7 +609,7 @@ public interface EventsPackage extends EPackage {
 	int LINK_EVENT__SOURCE_ELEMENT = EVENT_FEATURE_COUNT + 1;
 
 	/**
-	 * The feature id for the '<em><b>Target Element</b></em>' reference.
+	 * The feature id for the '<em><b>Target Element</b></em>' containment reference.
 	 * <!-- begin-user-doc --> <!-- end-user-doc -->
 	 * @generated
 	 * @ordered
@@ -651,7 +651,7 @@ public interface EventsPackage extends EPackage {
 	int TRACE_EVENT__TIMESTAMP = EVENT__TIMESTAMP;
 
 	/**
-	 * The feature id for the '<em><b>Source Element</b></em>' reference.
+	 * The feature id for the '<em><b>Source Element</b></em>' containment reference.
 	 * <!-- begin-user-doc --> <!-- end-user-doc -->
 	 * @generated
 	 * @ordered
@@ -659,7 +659,7 @@ public interface EventsPackage extends EPackage {
 	int TRACE_EVENT__SOURCE_ELEMENT = EVENT_FEATURE_COUNT + 0;
 
 	/**
-	 * The feature id for the '<em><b>Target Element</b></em>' reference.
+	 * The feature id for the '<em><b>Target Element</b></em>' containment reference.
 	 * <!-- begin-user-doc --> <!-- end-user-doc -->
 	 * @generated
 	 * @ordered
@@ -701,7 +701,7 @@ public interface EventsPackage extends EPackage {
 	int NAVIGATOR_CREATE_EVENT__TIMESTAMP = EVENT__TIMESTAMP;
 
 	/**
-	 * The feature id for the '<em><b>Created Element</b></em>' reference.
+	 * The feature id for the '<em><b>Created Element</b></em>' containment reference.
 	 * <!-- begin-user-doc --> <!-- end-user-doc -->
 	 * @generated
 	 * @ordered
@@ -709,7 +709,7 @@ public interface EventsPackage extends EPackage {
 	int NAVIGATOR_CREATE_EVENT__CREATED_ELEMENT = EVENT_FEATURE_COUNT + 0;
 
 	/**
-	 * The feature id for the '<em><b>Source Section</b></em>' reference.
+	 * The feature id for the '<em><b>Source Section</b></em>' containment reference.
 	 * <!-- begin-user-doc --> <!-- end-user-doc -->
 	 * @generated
 	 * @ordered
@@ -1187,9 +1187,9 @@ public interface EventsPackage extends EPackage {
 	EClass getAnnotationEvent();
 
 	/**
-	 * Returns the meta object for the reference '{@link org.unicase.emfstore.esmodel.versioning.events.AnnotationEvent#getAnnotatedElement <em>Annotated Element</em>}'.
+	 * Returns the meta object for the containment reference '{@link org.unicase.emfstore.esmodel.versioning.events.AnnotationEvent#getAnnotatedElement <em>Annotated Element</em>}'.
 	 * <!-- begin-user-doc --> <!-- end-user-doc -->
-	 * @return the meta object for the reference '<em>Annotated Element</em>'.
+	 * @return the meta object for the containment reference '<em>Annotated Element</em>'.
 	 * @see org.unicase.emfstore.esmodel.versioning.events.AnnotationEvent#getAnnotatedElement()
 	 * @see #getAnnotationEvent()
 	 * @generated
@@ -1299,9 +1299,9 @@ public interface EventsPackage extends EPackage {
 	EAttribute getDNDEvent_TargetView();
 
 	/**
-	 * Returns the meta object for the reference '{@link org.unicase.emfstore.esmodel.versioning.events.DNDEvent#getDragSourceElement <em>Drag Source Element</em>}'.
+	 * Returns the meta object for the containment reference '{@link org.unicase.emfstore.esmodel.versioning.events.DNDEvent#getDragSourceElement <em>Drag Source Element</em>}'.
 	 * <!-- begin-user-doc --> <!-- end-user-doc -->
-	 * @return the meta object for the reference '<em>Drag Source Element</em>'.
+	 * @return the meta object for the containment reference '<em>Drag Source Element</em>'.
 	 * @see org.unicase.emfstore.esmodel.versioning.events.DNDEvent#getDragSourceElement()
 	 * @see #getDNDEvent()
 	 * @generated
@@ -1309,9 +1309,9 @@ public interface EventsPackage extends EPackage {
 	EReference getDNDEvent_DragSourceElement();
 
 	/**
-	 * Returns the meta object for the reference '{@link org.unicase.emfstore.esmodel.versioning.events.DNDEvent#getDropTargetElement <em>Drop Target Element</em>}'.
+	 * Returns the meta object for the containment reference '{@link org.unicase.emfstore.esmodel.versioning.events.DNDEvent#getDropTargetElement <em>Drop Target Element</em>}'.
 	 * <!-- begin-user-doc --> <!-- end-user-doc -->
-	 * @return the meta object for the reference '<em>Drop Target Element</em>'.
+	 * @return the meta object for the containment reference '<em>Drop Target Element</em>'.
 	 * @see org.unicase.emfstore.esmodel.versioning.events.DNDEvent#getDropTargetElement()
 	 * @see #getDNDEvent()
 	 * @generated
@@ -1430,9 +1430,9 @@ public interface EventsPackage extends EPackage {
 	EClass getNavigatorCreateEvent();
 
 	/**
-	 * Returns the meta object for the reference '{@link org.unicase.emfstore.esmodel.versioning.events.NavigatorCreateEvent#getCreatedElement <em>Created Element</em>}'.
+	 * Returns the meta object for the containment reference '{@link org.unicase.emfstore.esmodel.versioning.events.NavigatorCreateEvent#getCreatedElement <em>Created Element</em>}'.
 	 * <!-- begin-user-doc --> <!-- end-user-doc -->
-	 * @return the meta object for the reference '<em>Created Element</em>'.
+	 * @return the meta object for the containment reference '<em>Created Element</em>'.
 	 * @see org.unicase.emfstore.esmodel.versioning.events.NavigatorCreateEvent#getCreatedElement()
 	 * @see #getNavigatorCreateEvent()
 	 * @generated
@@ -1440,9 +1440,9 @@ public interface EventsPackage extends EPackage {
 	EReference getNavigatorCreateEvent_CreatedElement();
 
 	/**
-	 * Returns the meta object for the reference '{@link org.unicase.emfstore.esmodel.versioning.events.NavigatorCreateEvent#getSourceSection <em>Source Section</em>}'.
+	 * Returns the meta object for the containment reference '{@link org.unicase.emfstore.esmodel.versioning.events.NavigatorCreateEvent#getSourceSection <em>Source Section</em>}'.
 	 * <!-- begin-user-doc --> <!-- end-user-doc -->
-	 * @return the meta object for the reference '<em>Source Section</em>'.
+	 * @return the meta object for the containment reference '<em>Source Section</em>'.
 	 * @see org.unicase.emfstore.esmodel.versioning.events.NavigatorCreateEvent#getSourceSection()
 	 * @see #getNavigatorCreateEvent()
 	 * @generated
@@ -1811,7 +1811,7 @@ public interface EventsPackage extends EPackage {
 		EClass ANNOTATION_EVENT = eINSTANCE.getAnnotationEvent();
 
 		/**
-		 * The meta object literal for the '<em><b>Annotated Element</b></em>' reference feature.
+		 * The meta object literal for the '<em><b>Annotated Element</b></em>' containment reference feature.
 		 * <!-- begin-user-doc
 		 * --> <!-- end-user-doc -->
 		 * @generated
@@ -1819,7 +1819,7 @@ public interface EventsPackage extends EPackage {
 		EReference ANNOTATION_EVENT__ANNOTATED_ELEMENT = eINSTANCE.getAnnotationEvent_AnnotatedElement();
 
 		/**
-		 * The meta object literal for the '<em><b>Annotation</b></em>' reference feature.
+		 * The meta object literal for the '<em><b>Annotation</b></em>' containment reference feature.
 		 * <!-- begin-user-doc --> <!--
 		 * end-user-doc -->
 		 * @generated
@@ -1903,7 +1903,7 @@ public interface EventsPackage extends EPackage {
 		EAttribute DND_EVENT__TARGET_VIEW = eINSTANCE.getDNDEvent_TargetView();
 
 		/**
-		 * The meta object literal for the '<em><b>Drag Source Element</b></em>' reference feature.
+		 * The meta object literal for the '<em><b>Drag Source Element</b></em>' containment reference feature.
 		 * <!-- begin-user-doc
 		 * --> <!-- end-user-doc -->
 		 * @generated
@@ -1911,7 +1911,7 @@ public interface EventsPackage extends EPackage {
 		EReference DND_EVENT__DRAG_SOURCE_ELEMENT = eINSTANCE.getDNDEvent_DragSourceElement();
 
 		/**
-		 * The meta object literal for the '<em><b>Drop Target Element</b></em>' reference feature.
+		 * The meta object literal for the '<em><b>Drop Target Element</b></em>' containment reference feature.
 		 * <!-- begin-user-doc
 		 * --> <!-- end-user-doc -->
 		 * @generated
@@ -1936,7 +1936,7 @@ public interface EventsPackage extends EPackage {
 		EAttribute LINK_EVENT__SOURCE_VIEW = eINSTANCE.getLinkEvent_SourceView();
 
 		/**
-		 * The meta object literal for the '<em><b>Source Element</b></em>' reference feature.
+		 * The meta object literal for the '<em><b>Source Element</b></em>' containment reference feature.
 		 * <!-- begin-user-doc -->
 		 * <!-- end-user-doc -->
 		 * @generated
@@ -1944,7 +1944,7 @@ public interface EventsPackage extends EPackage {
 		EReference LINK_EVENT__SOURCE_ELEMENT = eINSTANCE.getLinkEvent_SourceElement();
 
 		/**
-		 * The meta object literal for the '<em><b>Target Element</b></em>' reference feature.
+		 * The meta object literal for the '<em><b>Target Element</b></em>' containment reference feature.
 		 * <!-- begin-user-doc -->
 		 * <!-- end-user-doc -->
 		 * @generated
@@ -1969,7 +1969,7 @@ public interface EventsPackage extends EPackage {
 		EClass TRACE_EVENT = eINSTANCE.getTraceEvent();
 
 		/**
-		 * The meta object literal for the '<em><b>Source Element</b></em>' reference feature.
+		 * The meta object literal for the '<em><b>Source Element</b></em>' containment reference feature.
 		 * <!-- begin-user-doc -->
 		 * <!-- end-user-doc -->
 		 * @generated
@@ -1977,7 +1977,7 @@ public interface EventsPackage extends EPackage {
 		EReference TRACE_EVENT__SOURCE_ELEMENT = eINSTANCE.getTraceEvent_SourceElement();
 
 		/**
-		 * The meta object literal for the '<em><b>Target Element</b></em>' reference feature.
+		 * The meta object literal for the '<em><b>Target Element</b></em>' containment reference feature.
 		 * <!-- begin-user-doc -->
 		 * <!-- end-user-doc -->
 		 * @generated
@@ -2002,7 +2002,7 @@ public interface EventsPackage extends EPackage {
 		EClass NAVIGATOR_CREATE_EVENT = eINSTANCE.getNavigatorCreateEvent();
 
 		/**
-		 * The meta object literal for the '<em><b>Created Element</b></em>' reference feature.
+		 * The meta object literal for the '<em><b>Created Element</b></em>' containment reference feature.
 		 * <!-- begin-user-doc -->
 		 * <!-- end-user-doc -->
 		 * @generated
@@ -2010,7 +2010,7 @@ public interface EventsPackage extends EPackage {
 		EReference NAVIGATOR_CREATE_EVENT__CREATED_ELEMENT = eINSTANCE.getNavigatorCreateEvent_CreatedElement();
 
 		/**
-		 * The meta object literal for the '<em><b>Source Section</b></em>' reference feature.
+		 * The meta object literal for the '<em><b>Source Section</b></em>' containment reference feature.
 		 * <!-- begin-user-doc -->
 		 * <!-- end-user-doc -->
 		 * @generated

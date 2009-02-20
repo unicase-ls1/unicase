@@ -46,8 +46,7 @@ public class DNDEventItemProvider extends EventItemProvider implements IEditingD
 	 */
 	@Override
 	public List<IItemPropertyDescriptor> getPropertyDescriptors(Object object) {
-		if (itemPropertyDescriptors == null)
-		{
+		if (itemPropertyDescriptors == null) {
 			super.getPropertyDescriptors(object);
 
 			addSourceViewPropertyDescriptor(object);
@@ -179,8 +178,7 @@ public class DNDEventItemProvider extends EventItemProvider implements IEditingD
 	public void notifyChanged(Notification notification) {
 		updateChildren(notification);
 
-		switch (notification.getFeatureID(DNDEvent.class))
-		{
+		switch (notification.getFeatureID(DNDEvent.class)) {
 			case EventsPackage.DND_EVENT__SOURCE_VIEW:
 			case EventsPackage.DND_EVENT__TARGET_VIEW:
 				fireNotifyChanged(new ViewerNotification(notification, notification.getNotifier(), false, true));

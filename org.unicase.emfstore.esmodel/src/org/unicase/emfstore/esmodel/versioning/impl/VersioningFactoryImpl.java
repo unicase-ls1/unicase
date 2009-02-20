@@ -33,16 +33,13 @@ public class VersioningFactoryImpl extends EFactoryImpl implements VersioningFac
 	 * @generated
 	 */
 	public static VersioningFactory init() {
-		try
-		{
+		try {
 			VersioningFactory theVersioningFactory = (VersioningFactory)EPackage.Registry.INSTANCE.getEFactory("http://unicase.org/esmodel/versioning"); 
-			if (theVersioningFactory != null)
-			{
+			if (theVersioningFactory != null) {
 				return theVersioningFactory;
 			}
 		}
-		catch (Exception exception)
-		{
+		catch (Exception exception) {
 			EcorePlugin.INSTANCE.log(exception);
 		}
 		return new VersioningFactoryImpl();
@@ -63,8 +60,7 @@ public class VersioningFactoryImpl extends EFactoryImpl implements VersioningFac
 	 */
 	@Override
 	public EObject create(EClass eClass) {
-		switch (eClass.getClassifierID())
-		{
+		switch (eClass.getClassifierID()) {
 			case VersioningPackage.TAG_VERSION_SPEC: return createTagVersionSpec();
 			case VersioningPackage.DATE_VERSION_SPEC: return createDateVersionSpec();
 			case VersioningPackage.PRIMARY_VERSION_SPEC: return createPrimaryVersionSpec();

@@ -45,8 +45,7 @@ public class ACUserItemProvider extends ACOrgUnitItemProvider implements IEditin
 	 */
 	@Override
 	public List<IItemPropertyDescriptor> getPropertyDescriptors(Object object) {
-		if (itemPropertyDescriptors == null)
-		{
+		if (itemPropertyDescriptors == null) {
 			super.getPropertyDescriptors(object);
 
 			addFirstNamePropertyDescriptor(object);
@@ -131,8 +130,7 @@ public class ACUserItemProvider extends ACOrgUnitItemProvider implements IEditin
 	public void notifyChanged(Notification notification) {
 		updateChildren(notification);
 
-		switch (notification.getFeatureID(ACUser.class))
-		{
+		switch (notification.getFeatureID(ACUser.class)) {
 			case AccesscontrolPackage.AC_USER__FIRST_NAME:
 			case AccesscontrolPackage.AC_USER__LAST_NAME:
 				fireNotifyChanged(new ViewerNotification(notification, notification.getNotifier(), false, true));

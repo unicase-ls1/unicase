@@ -98,8 +98,7 @@ public class ServerSpaceImpl extends EObjectImpl implements ServerSpace {
 	 * @generated
 	 */
 	public EList<ACGroup> getGroups() {
-		if (groups == null)
-		{
+		if (groups == null) {
 			groups = new EObjectContainmentEList.Resolving<ACGroup>(ACGroup.class, this, EsmodelPackage.SERVER_SPACE__GROUPS);
 		}
 		return groups;
@@ -110,8 +109,7 @@ public class ServerSpaceImpl extends EObjectImpl implements ServerSpace {
 	 * @generated
 	 */
 	public EList<ProjectHistory> getProjects() {
-		if (projects == null)
-		{
+		if (projects == null) {
 			projects = new EObjectResolvingEList<ProjectHistory>(ProjectHistory.class, this, EsmodelPackage.SERVER_SPACE__PROJECTS);
 		}
 		return projects;
@@ -122,8 +120,7 @@ public class ServerSpaceImpl extends EObjectImpl implements ServerSpace {
 	 * @generated
 	 */
 	public EList<SessionId> getOpenSessions() {
-		if (openSessions == null)
-		{
+		if (openSessions == null) {
 			openSessions = new EObjectContainmentEList.Resolving<SessionId>(SessionId.class, this, EsmodelPackage.SERVER_SPACE__OPEN_SESSIONS);
 		}
 		return openSessions;
@@ -134,8 +131,7 @@ public class ServerSpaceImpl extends EObjectImpl implements ServerSpace {
 	 * @generated
 	 */
 	public EList<ACUser> getUsers() {
-		if (users == null)
-		{
+		if (users == null) {
 			users = new EObjectContainmentEList.Resolving<ACUser>(ACUser.class, this, EsmodelPackage.SERVER_SPACE__USERS);
 		}
 		return users;
@@ -147,8 +143,7 @@ public class ServerSpaceImpl extends EObjectImpl implements ServerSpace {
 	 */
 	@Override
 	public NotificationChain eInverseRemove(InternalEObject otherEnd, int featureID, NotificationChain msgs) {
-		switch (featureID)
-		{
+		switch (featureID) {
 			case EsmodelPackage.SERVER_SPACE__GROUPS:
 				return ((InternalEList<?>)getGroups()).basicRemove(otherEnd, msgs);
 			case EsmodelPackage.SERVER_SPACE__OPEN_SESSIONS:
@@ -165,8 +160,7 @@ public class ServerSpaceImpl extends EObjectImpl implements ServerSpace {
 	 */
 	@Override
 	public Object eGet(int featureID, boolean resolve, boolean coreType) {
-		switch (featureID)
-		{
+		switch (featureID) {
 			case EsmodelPackage.SERVER_SPACE__GROUPS:
 				return getGroups();
 			case EsmodelPackage.SERVER_SPACE__PROJECTS:
@@ -186,8 +180,7 @@ public class ServerSpaceImpl extends EObjectImpl implements ServerSpace {
 	@SuppressWarnings("unchecked")
 	@Override
 	public void eSet(int featureID, Object newValue) {
-		switch (featureID)
-		{
+		switch (featureID) {
 			case EsmodelPackage.SERVER_SPACE__GROUPS:
 				getGroups().clear();
 				getGroups().addAll((Collection<? extends ACGroup>)newValue);
@@ -214,8 +207,7 @@ public class ServerSpaceImpl extends EObjectImpl implements ServerSpace {
 	 */
 	@Override
 	public void eUnset(int featureID) {
-		switch (featureID)
-		{
+		switch (featureID) {
 			case EsmodelPackage.SERVER_SPACE__GROUPS:
 				getGroups().clear();
 				return;
@@ -238,8 +230,7 @@ public class ServerSpaceImpl extends EObjectImpl implements ServerSpace {
 	 */
 	@Override
 	public boolean eIsSet(int featureID) {
-		switch (featureID)
-		{
+		switch (featureID) {
 			case EsmodelPackage.SERVER_SPACE__GROUPS:
 				return groups != null && !groups.isEmpty();
 			case EsmodelPackage.SERVER_SPACE__PROJECTS:

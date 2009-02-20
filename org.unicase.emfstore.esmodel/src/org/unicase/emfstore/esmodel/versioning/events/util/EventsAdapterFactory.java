@@ -51,8 +51,7 @@ public class EventsAdapterFactory extends AdapterFactoryImpl {
 	 * @generated
 	 */
 	public EventsAdapterFactory() {
-		if (modelPackage == null)
-		{
+		if (modelPackage == null) {
 			modelPackage = EventsPackage.eINSTANCE;
 		}
 	}
@@ -67,12 +66,10 @@ public class EventsAdapterFactory extends AdapterFactoryImpl {
 	 */
 	@Override
 	public boolean isFactoryForType(Object object) {
-		if (object == modelPackage)
-		{
+		if (object == modelPackage) {
 			return true;
 		}
-		if (object instanceof EObject)
-		{
+		if (object instanceof EObject) {
 			return ((EObject)object).eClass().getEPackage() == modelPackage;
 		}
 		return false;
@@ -83,111 +80,89 @@ public class EventsAdapterFactory extends AdapterFactoryImpl {
 	 * <!-- begin-user-doc --> <!-- end-user-doc -->
 	 * @generated
 	 */
-	protected EventsSwitch<Adapter> modelSwitch = new EventsSwitch<Adapter>()
-		{
+	protected EventsSwitch<Adapter> modelSwitch = new EventsSwitch<Adapter>() {
 			@Override
-			public Adapter caseEvent(Event object)
-			{
+			public Adapter caseEvent(Event object) {
 				return createEventAdapter();
 			}
 			@Override
-			public Adapter caseReadEvent(ReadEvent object)
-			{
+			public Adapter caseReadEvent(ReadEvent object) {
 				return createReadEventAdapter();
 			}
 			@Override
-			public Adapter caseMergeEvent(MergeEvent object)
-			{
+			public Adapter caseMergeEvent(MergeEvent object) {
 				return createMergeEventAdapter();
 			}
 			@Override
-			public Adapter caseCheckoutEvent(CheckoutEvent object)
-			{
+			public Adapter caseCheckoutEvent(CheckoutEvent object) {
 				return createCheckoutEventAdapter();
 			}
 			@Override
-			public Adapter caseExceptionEvent(ExceptionEvent object)
-			{
+			public Adapter caseExceptionEvent(ExceptionEvent object) {
 				return createExceptionEventAdapter();
 			}
 			@Override
-			public Adapter casePluginStartEvent(PluginStartEvent object)
-			{
+			public Adapter casePluginStartEvent(PluginStartEvent object) {
 				return createPluginStartEventAdapter();
 			}
 			@Override
-			public Adapter caseUpdateEvent(UpdateEvent object)
-			{
+			public Adapter caseUpdateEvent(UpdateEvent object) {
 				return createUpdateEventAdapter();
 			}
 			@Override
-			public Adapter caseAnnotationEvent(AnnotationEvent object)
-			{
+			public Adapter caseAnnotationEvent(AnnotationEvent object) {
 				return createAnnotationEventAdapter();
 			}
 			@Override
-			public Adapter caseRevertEvent(RevertEvent object)
-			{
+			public Adapter caseRevertEvent(RevertEvent object) {
 				return createRevertEventAdapter();
 			}
 			@Override
-			public Adapter caseShowHistoryEvent(ShowHistoryEvent object)
-			{
+			public Adapter caseShowHistoryEvent(ShowHistoryEvent object) {
 				return createShowHistoryEventAdapter();
 			}
 			@Override
-			public Adapter casePerspectiveEvent(PerspectiveEvent object)
-			{
+			public Adapter casePerspectiveEvent(PerspectiveEvent object) {
 				return createPerspectiveEventAdapter();
 			}
 			@Override
-			public Adapter caseDNDEvent(DNDEvent object)
-			{
+			public Adapter caseDNDEvent(DNDEvent object) {
 				return createDNDEventAdapter();
 			}
 			@Override
-			public Adapter caseLinkEvent(LinkEvent object)
-			{
+			public Adapter caseLinkEvent(LinkEvent object) {
 				return createLinkEventAdapter();
 			}
 			@Override
-			public Adapter caseTraceEvent(TraceEvent object)
-			{
+			public Adapter caseTraceEvent(TraceEvent object) {
 				return createTraceEventAdapter();
 			}
 			@Override
-			public Adapter caseNavigatorCreateEvent(NavigatorCreateEvent object)
-			{
+			public Adapter caseNavigatorCreateEvent(NavigatorCreateEvent object) {
 				return createNavigatorCreateEventAdapter();
 			}
 			@Override
-			public Adapter casePluginFocusEvent(PluginFocusEvent object)
-			{
+			public Adapter casePluginFocusEvent(PluginFocusEvent object) {
 				return createPluginFocusEventAdapter();
 			}
 			@Override
-			public Adapter casePresentationSwitchEvent(PresentationSwitchEvent object)
-			{
+			public Adapter casePresentationSwitchEvent(PresentationSwitchEvent object) {
 				return createPresentationSwitchEventAdapter();
 			}
 			@Override
-			public Adapter caseUndoEvent(UndoEvent object)
-			{
+			public Adapter caseUndoEvent(UndoEvent object) {
 				return createUndoEventAdapter();
 			}
 			@Override
-			public Adapter caseValidate(Validate object)
-			{
+			public Adapter caseValidate(Validate object) {
 				return createValidateAdapter();
 			}
 			@Override
-			public Adapter caseShowChangesEvent(ShowChangesEvent object)
-			{
+			public Adapter caseShowChangesEvent(ShowChangesEvent object) {
 				return createShowChangesEventAdapter();
 			}
 			@Override
-			public Adapter defaultCase(EObject object)
-			{
+			public Adapter defaultCase(EObject object) {
 				return createEObjectAdapter();
 			}
 		};

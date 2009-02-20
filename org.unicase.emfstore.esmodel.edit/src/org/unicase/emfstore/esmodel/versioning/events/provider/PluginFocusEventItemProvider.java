@@ -46,8 +46,7 @@ public class PluginFocusEventItemProvider extends EventItemProvider implements I
 	 */
 	@Override
 	public List<IItemPropertyDescriptor> getPropertyDescriptors(Object object) {
-		if (itemPropertyDescriptors == null)
-		{
+		if (itemPropertyDescriptors == null) {
 			super.getPropertyDescriptors(object);
 
 			addPluginIdPropertyDescriptor(object);
@@ -133,8 +132,7 @@ public class PluginFocusEventItemProvider extends EventItemProvider implements I
 	public void notifyChanged(Notification notification) {
 		updateChildren(notification);
 
-		switch (notification.getFeatureID(PluginFocusEvent.class))
-		{
+		switch (notification.getFeatureID(PluginFocusEvent.class)) {
 			case EventsPackage.PLUGIN_FOCUS_EVENT__PLUGIN_ID:
 			case EventsPackage.PLUGIN_FOCUS_EVENT__START_DATE:
 				fireNotifyChanged(new ViewerNotification(notification, notification.getNotifier(), false, true));

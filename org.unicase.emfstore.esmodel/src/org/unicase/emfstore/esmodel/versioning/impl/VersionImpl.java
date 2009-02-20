@@ -129,16 +129,13 @@ public class VersionImpl extends EObjectImpl implements Version {
 	 * @generated
 	 */
 	public Project getProjectState() {
-		if (projectState != null && projectState.eIsProxy())
-		{
+		if (projectState != null && projectState.eIsProxy()) {
 			InternalEObject oldProjectState = (InternalEObject)projectState;
 			projectState = (Project)eResolveProxy(oldProjectState);
-			if (projectState != oldProjectState)
-			{
+			if (projectState != oldProjectState) {
 				InternalEObject newProjectState = (InternalEObject)projectState;
 				NotificationChain msgs = oldProjectState.eInverseRemove(this, EOPPOSITE_FEATURE_BASE - VersioningPackage.VERSION__PROJECT_STATE, null, null);
-				if (newProjectState.eInternalContainer() == null)
-				{
+				if (newProjectState.eInternalContainer() == null) {
 					msgs = newProjectState.eInverseAdd(this, EOPPOSITE_FEATURE_BASE - VersioningPackage.VERSION__PROJECT_STATE, null, msgs);
 				}
 				if (msgs != null) msgs.dispatch();
@@ -164,8 +161,7 @@ public class VersionImpl extends EObjectImpl implements Version {
 	public NotificationChain basicSetProjectState(Project newProjectState, NotificationChain msgs) {
 		Project oldProjectState = projectState;
 		projectState = newProjectState;
-		if (eNotificationRequired())
-		{
+		if (eNotificationRequired()) {
 			ENotificationImpl notification = new ENotificationImpl(this, Notification.SET, VersioningPackage.VERSION__PROJECT_STATE, oldProjectState, newProjectState);
 			if (msgs == null) msgs = notification; else msgs.add(notification);
 		}
@@ -177,8 +173,7 @@ public class VersionImpl extends EObjectImpl implements Version {
 	 * @generated
 	 */
 	public void setProjectState(Project newProjectState) {
-		if (newProjectState != projectState)
-		{
+		if (newProjectState != projectState) {
 			NotificationChain msgs = null;
 			if (projectState != null)
 				msgs = ((InternalEObject)projectState).eInverseRemove(this, EOPPOSITE_FEATURE_BASE - VersioningPackage.VERSION__PROJECT_STATE, null, msgs);
@@ -196,16 +191,13 @@ public class VersionImpl extends EObjectImpl implements Version {
 	 * @generated
 	 */
 	public PrimaryVersionSpec getPrimarySpec() {
-		if (primarySpec != null && primarySpec.eIsProxy())
-		{
+		if (primarySpec != null && primarySpec.eIsProxy()) {
 			InternalEObject oldPrimarySpec = (InternalEObject)primarySpec;
 			primarySpec = (PrimaryVersionSpec)eResolveProxy(oldPrimarySpec);
-			if (primarySpec != oldPrimarySpec)
-			{
+			if (primarySpec != oldPrimarySpec) {
 				InternalEObject newPrimarySpec = (InternalEObject)primarySpec;
 				NotificationChain msgs = oldPrimarySpec.eInverseRemove(this, EOPPOSITE_FEATURE_BASE - VersioningPackage.VERSION__PRIMARY_SPEC, null, null);
-				if (newPrimarySpec.eInternalContainer() == null)
-				{
+				if (newPrimarySpec.eInternalContainer() == null) {
 					msgs = newPrimarySpec.eInverseAdd(this, EOPPOSITE_FEATURE_BASE - VersioningPackage.VERSION__PRIMARY_SPEC, null, msgs);
 				}
 				if (msgs != null) msgs.dispatch();
@@ -231,8 +223,7 @@ public class VersionImpl extends EObjectImpl implements Version {
 	public NotificationChain basicSetPrimarySpec(PrimaryVersionSpec newPrimarySpec, NotificationChain msgs) {
 		PrimaryVersionSpec oldPrimarySpec = primarySpec;
 		primarySpec = newPrimarySpec;
-		if (eNotificationRequired())
-		{
+		if (eNotificationRequired()) {
 			ENotificationImpl notification = new ENotificationImpl(this, Notification.SET, VersioningPackage.VERSION__PRIMARY_SPEC, oldPrimarySpec, newPrimarySpec);
 			if (msgs == null) msgs = notification; else msgs.add(notification);
 		}
@@ -244,8 +235,7 @@ public class VersionImpl extends EObjectImpl implements Version {
 	 * @generated
 	 */
 	public void setPrimarySpec(PrimaryVersionSpec newPrimarySpec) {
-		if (newPrimarySpec != primarySpec)
-		{
+		if (newPrimarySpec != primarySpec) {
 			NotificationChain msgs = null;
 			if (primarySpec != null)
 				msgs = ((InternalEObject)primarySpec).eInverseRemove(this, EOPPOSITE_FEATURE_BASE - VersioningPackage.VERSION__PRIMARY_SPEC, null, msgs);
@@ -263,8 +253,7 @@ public class VersionImpl extends EObjectImpl implements Version {
 	 * @generated
 	 */
 	public EList<TagVersionSpec> getTagSpecs() {
-		if (tagSpecs == null)
-		{
+		if (tagSpecs == null) {
 			tagSpecs = new EObjectContainmentEList.Resolving<TagVersionSpec>(TagVersionSpec.class, this, VersioningPackage.VERSION__TAG_SPECS);
 		}
 		return tagSpecs;
@@ -275,12 +264,10 @@ public class VersionImpl extends EObjectImpl implements Version {
 	 * @generated
 	 */
 	public Version getNextVersion() {
-		if (nextVersion != null && nextVersion.eIsProxy())
-		{
+		if (nextVersion != null && nextVersion.eIsProxy()) {
 			InternalEObject oldNextVersion = (InternalEObject)nextVersion;
 			nextVersion = (Version)eResolveProxy(oldNextVersion);
-			if (nextVersion != oldNextVersion)
-			{
+			if (nextVersion != oldNextVersion) {
 				if (eNotificationRequired())
 					eNotify(new ENotificationImpl(this, Notification.RESOLVE, VersioningPackage.VERSION__NEXT_VERSION, oldNextVersion, nextVersion));
 			}
@@ -303,8 +290,7 @@ public class VersionImpl extends EObjectImpl implements Version {
 	public NotificationChain basicSetNextVersion(Version newNextVersion, NotificationChain msgs) {
 		Version oldNextVersion = nextVersion;
 		nextVersion = newNextVersion;
-		if (eNotificationRequired())
-		{
+		if (eNotificationRequired()) {
 			ENotificationImpl notification = new ENotificationImpl(this, Notification.SET, VersioningPackage.VERSION__NEXT_VERSION, oldNextVersion, newNextVersion);
 			if (msgs == null) msgs = notification; else msgs.add(notification);
 		}
@@ -316,8 +302,7 @@ public class VersionImpl extends EObjectImpl implements Version {
 	 * @generated
 	 */
 	public void setNextVersion(Version newNextVersion) {
-		if (newNextVersion != nextVersion)
-		{
+		if (newNextVersion != nextVersion) {
 			NotificationChain msgs = null;
 			if (nextVersion != null)
 				msgs = ((InternalEObject)nextVersion).eInverseRemove(this, VersioningPackage.VERSION__PREVIOUS_VERSION, Version.class, msgs);
@@ -335,12 +320,10 @@ public class VersionImpl extends EObjectImpl implements Version {
 	 * @generated
 	 */
 	public Version getPreviousVersion() {
-		if (previousVersion != null && previousVersion.eIsProxy())
-		{
+		if (previousVersion != null && previousVersion.eIsProxy()) {
 			InternalEObject oldPreviousVersion = (InternalEObject)previousVersion;
 			previousVersion = (Version)eResolveProxy(oldPreviousVersion);
-			if (previousVersion != oldPreviousVersion)
-			{
+			if (previousVersion != oldPreviousVersion) {
 				if (eNotificationRequired())
 					eNotify(new ENotificationImpl(this, Notification.RESOLVE, VersioningPackage.VERSION__PREVIOUS_VERSION, oldPreviousVersion, previousVersion));
 			}
@@ -363,8 +346,7 @@ public class VersionImpl extends EObjectImpl implements Version {
 	public NotificationChain basicSetPreviousVersion(Version newPreviousVersion, NotificationChain msgs) {
 		Version oldPreviousVersion = previousVersion;
 		previousVersion = newPreviousVersion;
-		if (eNotificationRequired())
-		{
+		if (eNotificationRequired()) {
 			ENotificationImpl notification = new ENotificationImpl(this, Notification.SET, VersioningPackage.VERSION__PREVIOUS_VERSION, oldPreviousVersion, newPreviousVersion);
 			if (msgs == null) msgs = notification; else msgs.add(notification);
 		}
@@ -376,8 +358,7 @@ public class VersionImpl extends EObjectImpl implements Version {
 	 * @generated
 	 */
 	public void setPreviousVersion(Version newPreviousVersion) {
-		if (newPreviousVersion != previousVersion)
-		{
+		if (newPreviousVersion != previousVersion) {
 			NotificationChain msgs = null;
 			if (previousVersion != null)
 				msgs = ((InternalEObject)previousVersion).eInverseRemove(this, VersioningPackage.VERSION__NEXT_VERSION, Version.class, msgs);
@@ -395,16 +376,13 @@ public class VersionImpl extends EObjectImpl implements Version {
 	 * @generated
 	 */
 	public ChangePackage getChanges() {
-		if (changes != null && changes.eIsProxy())
-		{
+		if (changes != null && changes.eIsProxy()) {
 			InternalEObject oldChanges = (InternalEObject)changes;
 			changes = (ChangePackage)eResolveProxy(oldChanges);
-			if (changes != oldChanges)
-			{
+			if (changes != oldChanges) {
 				InternalEObject newChanges = (InternalEObject)changes;
 				NotificationChain msgs = oldChanges.eInverseRemove(this, EOPPOSITE_FEATURE_BASE - VersioningPackage.VERSION__CHANGES, null, null);
-				if (newChanges.eInternalContainer() == null)
-				{
+				if (newChanges.eInternalContainer() == null) {
 					msgs = newChanges.eInverseAdd(this, EOPPOSITE_FEATURE_BASE - VersioningPackage.VERSION__CHANGES, null, msgs);
 				}
 				if (msgs != null) msgs.dispatch();
@@ -430,8 +408,7 @@ public class VersionImpl extends EObjectImpl implements Version {
 	public NotificationChain basicSetChanges(ChangePackage newChanges, NotificationChain msgs) {
 		ChangePackage oldChanges = changes;
 		changes = newChanges;
-		if (eNotificationRequired())
-		{
+		if (eNotificationRequired()) {
 			ENotificationImpl notification = new ENotificationImpl(this, Notification.SET, VersioningPackage.VERSION__CHANGES, oldChanges, newChanges);
 			if (msgs == null) msgs = notification; else msgs.add(notification);
 		}
@@ -443,8 +420,7 @@ public class VersionImpl extends EObjectImpl implements Version {
 	 * @generated
 	 */
 	public void setChanges(ChangePackage newChanges) {
-		if (newChanges != changes)
-		{
+		if (newChanges != changes) {
 			NotificationChain msgs = null;
 			if (changes != null)
 				msgs = ((InternalEObject)changes).eInverseRemove(this, EOPPOSITE_FEATURE_BASE - VersioningPackage.VERSION__CHANGES, null, msgs);
@@ -462,16 +438,13 @@ public class VersionImpl extends EObjectImpl implements Version {
 	 * @generated
 	 */
 	public LogMessage getLogMessage() {
-		if (logMessage != null && logMessage.eIsProxy())
-		{
+		if (logMessage != null && logMessage.eIsProxy()) {
 			InternalEObject oldLogMessage = (InternalEObject)logMessage;
 			logMessage = (LogMessage)eResolveProxy(oldLogMessage);
-			if (logMessage != oldLogMessage)
-			{
+			if (logMessage != oldLogMessage) {
 				InternalEObject newLogMessage = (InternalEObject)logMessage;
 				NotificationChain msgs = oldLogMessage.eInverseRemove(this, EOPPOSITE_FEATURE_BASE - VersioningPackage.VERSION__LOG_MESSAGE, null, null);
-				if (newLogMessage.eInternalContainer() == null)
-				{
+				if (newLogMessage.eInternalContainer() == null) {
 					msgs = newLogMessage.eInverseAdd(this, EOPPOSITE_FEATURE_BASE - VersioningPackage.VERSION__LOG_MESSAGE, null, msgs);
 				}
 				if (msgs != null) msgs.dispatch();
@@ -497,8 +470,7 @@ public class VersionImpl extends EObjectImpl implements Version {
 	public NotificationChain basicSetLogMessage(LogMessage newLogMessage, NotificationChain msgs) {
 		LogMessage oldLogMessage = logMessage;
 		logMessage = newLogMessage;
-		if (eNotificationRequired())
-		{
+		if (eNotificationRequired()) {
 			ENotificationImpl notification = new ENotificationImpl(this, Notification.SET, VersioningPackage.VERSION__LOG_MESSAGE, oldLogMessage, newLogMessage);
 			if (msgs == null) msgs = notification; else msgs.add(notification);
 		}
@@ -510,8 +482,7 @@ public class VersionImpl extends EObjectImpl implements Version {
 	 * @generated
 	 */
 	public void setLogMessage(LogMessage newLogMessage) {
-		if (newLogMessage != logMessage)
-		{
+		if (newLogMessage != logMessage) {
 			NotificationChain msgs = null;
 			if (logMessage != null)
 				msgs = ((InternalEObject)logMessage).eInverseRemove(this, EOPPOSITE_FEATURE_BASE - VersioningPackage.VERSION__LOG_MESSAGE, null, msgs);
@@ -530,8 +501,7 @@ public class VersionImpl extends EObjectImpl implements Version {
 	 */
 	@Override
 	public NotificationChain eInverseAdd(InternalEObject otherEnd, int featureID, NotificationChain msgs) {
-		switch (featureID)
-		{
+		switch (featureID) {
 			case VersioningPackage.VERSION__NEXT_VERSION:
 				if (nextVersion != null)
 					msgs = ((InternalEObject)nextVersion).eInverseRemove(this, VersioningPackage.VERSION__PREVIOUS_VERSION, Version.class, msgs);
@@ -550,8 +520,7 @@ public class VersionImpl extends EObjectImpl implements Version {
 	 */
 	@Override
 	public NotificationChain eInverseRemove(InternalEObject otherEnd, int featureID, NotificationChain msgs) {
-		switch (featureID)
-		{
+		switch (featureID) {
 			case VersioningPackage.VERSION__PROJECT_STATE:
 				return basicSetProjectState(null, msgs);
 			case VersioningPackage.VERSION__PRIMARY_SPEC:
@@ -576,8 +545,7 @@ public class VersionImpl extends EObjectImpl implements Version {
 	 */
 	@Override
 	public Object eGet(int featureID, boolean resolve, boolean coreType) {
-		switch (featureID)
-		{
+		switch (featureID) {
 			case VersioningPackage.VERSION__PROJECT_STATE:
 				if (resolve) return getProjectState();
 				return basicGetProjectState();
@@ -609,8 +577,7 @@ public class VersionImpl extends EObjectImpl implements Version {
 	@SuppressWarnings("unchecked")
 	@Override
 	public void eSet(int featureID, Object newValue) {
-		switch (featureID)
-		{
+		switch (featureID) {
 			case VersioningPackage.VERSION__PROJECT_STATE:
 				setProjectState((Project)newValue);
 				return;
@@ -643,8 +610,7 @@ public class VersionImpl extends EObjectImpl implements Version {
 	 */
 	@Override
 	public void eUnset(int featureID) {
-		switch (featureID)
-		{
+		switch (featureID) {
 			case VersioningPackage.VERSION__PROJECT_STATE:
 				setProjectState((Project)null);
 				return;
@@ -676,8 +642,7 @@ public class VersionImpl extends EObjectImpl implements Version {
 	 */
 	@Override
 	public boolean eIsSet(int featureID) {
-		switch (featureID)
-		{
+		switch (featureID) {
 			case VersioningPackage.VERSION__PROJECT_STATE:
 				return projectState != null;
 			case VersioningPackage.VERSION__PRIMARY_SPEC:

@@ -121,8 +121,7 @@ public class PresentationSwitchEventImpl extends EventImpl implements Presentati
 	 */
 	@Override
 	public Object eGet(int featureID, boolean resolve, boolean coreType) {
-		switch (featureID)
-		{
+		switch (featureID) {
 			case EventsPackage.PRESENTATION_SWITCH_EVENT__READ_VIEW:
 				return getReadView();
 			case EventsPackage.PRESENTATION_SWITCH_EVENT__NEW_PRESENTATION:
@@ -137,8 +136,7 @@ public class PresentationSwitchEventImpl extends EventImpl implements Presentati
 	 */
 	@Override
 	public void eSet(int featureID, Object newValue) {
-		switch (featureID)
-		{
+		switch (featureID) {
 			case EventsPackage.PRESENTATION_SWITCH_EVENT__READ_VIEW:
 				setReadView((String)newValue);
 				return;
@@ -155,8 +153,7 @@ public class PresentationSwitchEventImpl extends EventImpl implements Presentati
 	 */
 	@Override
 	public void eUnset(int featureID) {
-		switch (featureID)
-		{
+		switch (featureID) {
 			case EventsPackage.PRESENTATION_SWITCH_EVENT__READ_VIEW:
 				setReadView(READ_VIEW_EDEFAULT);
 				return;
@@ -173,8 +170,7 @@ public class PresentationSwitchEventImpl extends EventImpl implements Presentati
 	 */
 	@Override
 	public boolean eIsSet(int featureID) {
-		switch (featureID)
-		{
+		switch (featureID) {
 			case EventsPackage.PRESENTATION_SWITCH_EVENT__READ_VIEW:
 				return READ_VIEW_EDEFAULT == null ? readView != null : !READ_VIEW_EDEFAULT.equals(readView);
 			case EventsPackage.PRESENTATION_SWITCH_EVENT__NEW_PRESENTATION:

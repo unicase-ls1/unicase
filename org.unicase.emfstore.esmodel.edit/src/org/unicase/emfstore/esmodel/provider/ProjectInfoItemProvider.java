@@ -47,8 +47,7 @@ public class ProjectInfoItemProvider extends ItemProviderAdapter implements IEdi
 	 */
 	@Override
 	public List<IItemPropertyDescriptor> getPropertyDescriptors(Object object) {
-		if (itemPropertyDescriptors == null)
-		{
+		if (itemPropertyDescriptors == null) {
 			super.getPropertyDescriptors(object);
 
 			addNamePropertyDescriptor(object);
@@ -186,8 +185,7 @@ public class ProjectInfoItemProvider extends ItemProviderAdapter implements IEdi
 	public void notifyChanged(Notification notification) {
 		updateChildren(notification);
 
-		switch (notification.getFeatureID(ProjectInfo.class))
-		{
+		switch (notification.getFeatureID(ProjectInfo.class)) {
 			case EsmodelPackage.PROJECT_INFO__NAME:
 			case EsmodelPackage.PROJECT_INFO__DESCRIPTION:
 				fireNotifyChanged(new ViewerNotification(notification, notification.getNotifier(), false, true));

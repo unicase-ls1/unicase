@@ -45,8 +45,7 @@ public class ReferenceOperationItemProvider extends FeatureOperationItemProvider
 	 */
 	@Override
 	public List<IItemPropertyDescriptor> getPropertyDescriptors(Object object) {
-		if (itemPropertyDescriptors == null)
-		{
+		if (itemPropertyDescriptors == null) {
 			super.getPropertyDescriptors(object);
 
 			addBidirectionalPropertyDescriptor(object);
@@ -132,8 +131,7 @@ public class ReferenceOperationItemProvider extends FeatureOperationItemProvider
 	public void notifyChanged(Notification notification) {
 		updateChildren(notification);
 
-		switch (notification.getFeatureID(ReferenceOperation.class))
-		{
+		switch (notification.getFeatureID(ReferenceOperation.class)) {
 			case OperationsPackage.REFERENCE_OPERATION__BIDIRECTIONAL:
 			case OperationsPackage.REFERENCE_OPERATION__OPPOSITE_FEATURE_NAME:
 				fireNotifyChanged(new ViewerNotification(notification, notification.getNotifier(), false, true));

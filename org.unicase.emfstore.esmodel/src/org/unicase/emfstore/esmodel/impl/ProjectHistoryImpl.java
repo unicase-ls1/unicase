@@ -114,16 +114,13 @@ public class ProjectHistoryImpl extends EObjectImpl implements ProjectHistory {
 	 * @generated
 	 */
 	public ProjectId getProjectId() {
-		if (projectId != null && projectId.eIsProxy())
-		{
+		if (projectId != null && projectId.eIsProxy()) {
 			InternalEObject oldProjectId = (InternalEObject)projectId;
 			projectId = (ProjectId)eResolveProxy(oldProjectId);
-			if (projectId != oldProjectId)
-			{
+			if (projectId != oldProjectId) {
 				InternalEObject newProjectId = (InternalEObject)projectId;
 				NotificationChain msgs = oldProjectId.eInverseRemove(this, EOPPOSITE_FEATURE_BASE - EsmodelPackage.PROJECT_HISTORY__PROJECT_ID, null, null);
-				if (newProjectId.eInternalContainer() == null)
-				{
+				if (newProjectId.eInternalContainer() == null) {
 					msgs = newProjectId.eInverseAdd(this, EOPPOSITE_FEATURE_BASE - EsmodelPackage.PROJECT_HISTORY__PROJECT_ID, null, msgs);
 				}
 				if (msgs != null) msgs.dispatch();
@@ -149,8 +146,7 @@ public class ProjectHistoryImpl extends EObjectImpl implements ProjectHistory {
 	public NotificationChain basicSetProjectId(ProjectId newProjectId, NotificationChain msgs) {
 		ProjectId oldProjectId = projectId;
 		projectId = newProjectId;
-		if (eNotificationRequired())
-		{
+		if (eNotificationRequired()) {
 			ENotificationImpl notification = new ENotificationImpl(this, Notification.SET, EsmodelPackage.PROJECT_HISTORY__PROJECT_ID, oldProjectId, newProjectId);
 			if (msgs == null) msgs = notification; else msgs.add(notification);
 		}
@@ -162,8 +158,7 @@ public class ProjectHistoryImpl extends EObjectImpl implements ProjectHistory {
 	 * @generated
 	 */
 	public void setProjectId(ProjectId newProjectId) {
-		if (newProjectId != projectId)
-		{
+		if (newProjectId != projectId) {
 			NotificationChain msgs = null;
 			if (projectId != null)
 				msgs = ((InternalEObject)projectId).eInverseRemove(this, EOPPOSITE_FEATURE_BASE - EsmodelPackage.PROJECT_HISTORY__PROJECT_ID, null, msgs);
@@ -181,8 +176,7 @@ public class ProjectHistoryImpl extends EObjectImpl implements ProjectHistory {
 	 * @generated
 	 */
 	public EList<Version> getVersions() {
-		if (versions == null)
-		{
+		if (versions == null) {
 			versions = new EObjectContainmentEList.Resolving<Version>(Version.class, this, EsmodelPackage.PROJECT_HISTORY__VERSIONS);
 		}
 		return versions;
@@ -245,8 +239,7 @@ public class ProjectHistoryImpl extends EObjectImpl implements ProjectHistory {
 	 */
 	@Override
 	public NotificationChain eInverseRemove(InternalEObject otherEnd, int featureID, NotificationChain msgs) {
-		switch (featureID)
-		{
+		switch (featureID) {
 			case EsmodelPackage.PROJECT_HISTORY__PROJECT_ID:
 				return basicSetProjectId(null, msgs);
 			case EsmodelPackage.PROJECT_HISTORY__VERSIONS:
@@ -261,8 +254,7 @@ public class ProjectHistoryImpl extends EObjectImpl implements ProjectHistory {
 	 */
 	@Override
 	public Object eGet(int featureID, boolean resolve, boolean coreType) {
-		switch (featureID)
-		{
+		switch (featureID) {
 			case EsmodelPackage.PROJECT_HISTORY__PROJECT_ID:
 				if (resolve) return getProjectId();
 				return basicGetProjectId();
@@ -283,8 +275,7 @@ public class ProjectHistoryImpl extends EObjectImpl implements ProjectHistory {
 	@SuppressWarnings("unchecked")
 	@Override
 	public void eSet(int featureID, Object newValue) {
-		switch (featureID)
-		{
+		switch (featureID) {
 			case EsmodelPackage.PROJECT_HISTORY__PROJECT_ID:
 				setProjectId((ProjectId)newValue);
 				return;
@@ -308,8 +299,7 @@ public class ProjectHistoryImpl extends EObjectImpl implements ProjectHistory {
 	 */
 	@Override
 	public void eUnset(int featureID) {
-		switch (featureID)
-		{
+		switch (featureID) {
 			case EsmodelPackage.PROJECT_HISTORY__PROJECT_ID:
 				setProjectId((ProjectId)null);
 				return;
@@ -332,8 +322,7 @@ public class ProjectHistoryImpl extends EObjectImpl implements ProjectHistory {
 	 */
 	@Override
 	public boolean eIsSet(int featureID) {
-		switch (featureID)
-		{
+		switch (featureID) {
 			case EsmodelPackage.PROJECT_HISTORY__PROJECT_ID:
 				return projectId != null;
 			case EsmodelPackage.PROJECT_HISTORY__VERSIONS:

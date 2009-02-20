@@ -46,8 +46,7 @@ public class UndoEventItemProvider extends EventItemProvider implements IEditing
 	 */
 	@Override
 	public List<IItemPropertyDescriptor> getPropertyDescriptors(Object object) {
-		if (itemPropertyDescriptors == null)
-		{
+		if (itemPropertyDescriptors == null) {
 			super.getPropertyDescriptors(object);
 
 		}
@@ -64,8 +63,7 @@ public class UndoEventItemProvider extends EventItemProvider implements IEditing
 	 */
 	@Override
 	public Collection<? extends EStructuralFeature> getChildrenFeatures(Object object) {
-		if (childrenFeatures == null)
-		{
+		if (childrenFeatures == null) {
 			super.getChildrenFeatures(object);
 			childrenFeatures.add(EventsPackage.Literals.UNDO_EVENT__OPERATION);
 		}
@@ -119,8 +117,7 @@ public class UndoEventItemProvider extends EventItemProvider implements IEditing
 	public void notifyChanged(Notification notification) {
 		updateChildren(notification);
 
-		switch (notification.getFeatureID(UndoEvent.class))
-		{
+		switch (notification.getFeatureID(UndoEvent.class)) {
 			case EventsPackage.UNDO_EVENT__OPERATION:
 				fireNotifyChanged(new ViewerNotification(notification, notification.getNotifier(), true, false));
 				return;

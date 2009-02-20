@@ -140,16 +140,13 @@ public abstract class AbstractOperationImpl extends EObjectImpl implements Abstr
 	 * @generated
 	 */
 	public ModelElementId getModelElementId() {
-		if (modelElementId != null && modelElementId.eIsProxy())
-		{
+		if (modelElementId != null && modelElementId.eIsProxy()) {
 			InternalEObject oldModelElementId = (InternalEObject)modelElementId;
 			modelElementId = (ModelElementId)eResolveProxy(oldModelElementId);
-			if (modelElementId != oldModelElementId)
-			{
+			if (modelElementId != oldModelElementId) {
 				InternalEObject newModelElementId = (InternalEObject)modelElementId;
 				NotificationChain msgs = oldModelElementId.eInverseRemove(this, EOPPOSITE_FEATURE_BASE - OperationsPackage.ABSTRACT_OPERATION__MODEL_ELEMENT_ID, null, null);
-				if (newModelElementId.eInternalContainer() == null)
-				{
+				if (newModelElementId.eInternalContainer() == null) {
 					msgs = newModelElementId.eInverseAdd(this, EOPPOSITE_FEATURE_BASE - OperationsPackage.ABSTRACT_OPERATION__MODEL_ELEMENT_ID, null, msgs);
 				}
 				if (msgs != null) msgs.dispatch();
@@ -175,8 +172,7 @@ public abstract class AbstractOperationImpl extends EObjectImpl implements Abstr
 	public NotificationChain basicSetModelElementId(ModelElementId newModelElementId, NotificationChain msgs) {
 		ModelElementId oldModelElementId = modelElementId;
 		modelElementId = newModelElementId;
-		if (eNotificationRequired())
-		{
+		if (eNotificationRequired()) {
 			ENotificationImpl notification = new ENotificationImpl(this, Notification.SET, OperationsPackage.ABSTRACT_OPERATION__MODEL_ELEMENT_ID, oldModelElementId, newModelElementId);
 			if (msgs == null) msgs = notification; else msgs.add(notification);
 		}
@@ -188,8 +184,7 @@ public abstract class AbstractOperationImpl extends EObjectImpl implements Abstr
 	 * @generated
 	 */
 	public void setModelElementId(ModelElementId newModelElementId) {
-		if (newModelElementId != modelElementId)
-		{
+		if (newModelElementId != modelElementId) {
 			NotificationChain msgs = null;
 			if (modelElementId != null)
 				msgs = ((InternalEObject)modelElementId).eInverseRemove(this, EOPPOSITE_FEATURE_BASE - OperationsPackage.ABSTRACT_OPERATION__MODEL_ELEMENT_ID, null, msgs);
@@ -281,8 +276,7 @@ public abstract class AbstractOperationImpl extends EObjectImpl implements Abstr
 	 */
 	@Override
 	public NotificationChain eInverseRemove(InternalEObject otherEnd, int featureID, NotificationChain msgs) {
-		switch (featureID)
-		{
+		switch (featureID) {
 			case OperationsPackage.ABSTRACT_OPERATION__MODEL_ELEMENT_ID:
 				return basicSetModelElementId(null, msgs);
 		}
@@ -295,8 +289,7 @@ public abstract class AbstractOperationImpl extends EObjectImpl implements Abstr
 	 */
 	@Override
 	public Object eGet(int featureID, boolean resolve, boolean coreType) {
-		switch (featureID)
-		{
+		switch (featureID) {
 			case OperationsPackage.ABSTRACT_OPERATION__NAME:
 				return getName();
 			case OperationsPackage.ABSTRACT_OPERATION__DESCRIPTION:
@@ -318,8 +311,7 @@ public abstract class AbstractOperationImpl extends EObjectImpl implements Abstr
 	 */
 	@Override
 	public void eSet(int featureID, Object newValue) {
-		switch (featureID)
-		{
+		switch (featureID) {
 			case OperationsPackage.ABSTRACT_OPERATION__MODEL_ELEMENT_ID:
 				setModelElementId((ModelElementId)newValue);
 				return;
@@ -339,8 +331,7 @@ public abstract class AbstractOperationImpl extends EObjectImpl implements Abstr
 	 */
 	@Override
 	public void eUnset(int featureID) {
-		switch (featureID)
-		{
+		switch (featureID) {
 			case OperationsPackage.ABSTRACT_OPERATION__MODEL_ELEMENT_ID:
 				setModelElementId((ModelElementId)null);
 				return;
@@ -360,8 +351,7 @@ public abstract class AbstractOperationImpl extends EObjectImpl implements Abstr
 	 */
 	@Override
 	public boolean eIsSet(int featureID) {
-		switch (featureID)
-		{
+		switch (featureID) {
 			case OperationsPackage.ABSTRACT_OPERATION__NAME:
 				return NAME_EDEFAULT == null ? getName() != null : !NAME_EDEFAULT.equals(getName());
 			case OperationsPackage.ABSTRACT_OPERATION__DESCRIPTION:

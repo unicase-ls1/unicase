@@ -47,8 +47,7 @@ public class MultiAttributeOperationItemProvider extends FeatureOperationItemPro
 	 */
 	@Override
 	public List<IItemPropertyDescriptor> getPropertyDescriptors(Object object) {
-		if (itemPropertyDescriptors == null)
-		{
+		if (itemPropertyDescriptors == null) {
 			super.getPropertyDescriptors(object);
 
 			addAddPropertyDescriptor(object);
@@ -155,8 +154,7 @@ public class MultiAttributeOperationItemProvider extends FeatureOperationItemPro
 	public void notifyChanged(Notification notification) {
 		updateChildren(notification);
 
-		switch (notification.getFeatureID(MultiAttributeOperation.class))
-		{
+		switch (notification.getFeatureID(MultiAttributeOperation.class)) {
 			case OperationsPackage.MULTI_ATTRIBUTE_OPERATION__ADD:
 			case OperationsPackage.MULTI_ATTRIBUTE_OPERATION__INDEX:
 			case OperationsPackage.MULTI_ATTRIBUTE_OPERATION__VALUES:

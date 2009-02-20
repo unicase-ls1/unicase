@@ -95,16 +95,13 @@ public class ReadEventImpl extends EventImpl implements ReadEvent {
 	 * @generated
 	 */
 	public ModelElementId getModelElement() {
-		if (modelElement != null && modelElement.eIsProxy())
-		{
+		if (modelElement != null && modelElement.eIsProxy()) {
 			InternalEObject oldModelElement = (InternalEObject)modelElement;
 			modelElement = (ModelElementId)eResolveProxy(oldModelElement);
-			if (modelElement != oldModelElement)
-			{
+			if (modelElement != oldModelElement) {
 				InternalEObject newModelElement = (InternalEObject)modelElement;
 				NotificationChain msgs = oldModelElement.eInverseRemove(this, EOPPOSITE_FEATURE_BASE - EventsPackage.READ_EVENT__MODEL_ELEMENT, null, null);
-				if (newModelElement.eInternalContainer() == null)
-				{
+				if (newModelElement.eInternalContainer() == null) {
 					msgs = newModelElement.eInverseAdd(this, EOPPOSITE_FEATURE_BASE - EventsPackage.READ_EVENT__MODEL_ELEMENT, null, msgs);
 				}
 				if (msgs != null) msgs.dispatch();
@@ -130,8 +127,7 @@ public class ReadEventImpl extends EventImpl implements ReadEvent {
 	public NotificationChain basicSetModelElement(ModelElementId newModelElement, NotificationChain msgs) {
 		ModelElementId oldModelElement = modelElement;
 		modelElement = newModelElement;
-		if (eNotificationRequired())
-		{
+		if (eNotificationRequired()) {
 			ENotificationImpl notification = new ENotificationImpl(this, Notification.SET, EventsPackage.READ_EVENT__MODEL_ELEMENT, oldModelElement, newModelElement);
 			if (msgs == null) msgs = notification; else msgs.add(notification);
 		}
@@ -143,8 +139,7 @@ public class ReadEventImpl extends EventImpl implements ReadEvent {
 	 * @generated
 	 */
 	public void setModelElement(ModelElementId newModelElement) {
-		if (newModelElement != modelElement)
-		{
+		if (newModelElement != modelElement) {
 			NotificationChain msgs = null;
 			if (modelElement != null)
 				msgs = ((InternalEObject)modelElement).eInverseRemove(this, EOPPOSITE_FEATURE_BASE - EventsPackage.READ_EVENT__MODEL_ELEMENT, null, msgs);
@@ -201,8 +196,7 @@ public class ReadEventImpl extends EventImpl implements ReadEvent {
 	 */
 	@Override
 	public NotificationChain eInverseRemove(InternalEObject otherEnd, int featureID, NotificationChain msgs) {
-		switch (featureID)
-		{
+		switch (featureID) {
 			case EventsPackage.READ_EVENT__MODEL_ELEMENT:
 				return basicSetModelElement(null, msgs);
 		}
@@ -215,8 +209,7 @@ public class ReadEventImpl extends EventImpl implements ReadEvent {
 	 */
 	@Override
 	public Object eGet(int featureID, boolean resolve, boolean coreType) {
-		switch (featureID)
-		{
+		switch (featureID) {
 			case EventsPackage.READ_EVENT__MODEL_ELEMENT:
 				if (resolve) return getModelElement();
 				return basicGetModelElement();
@@ -234,8 +227,7 @@ public class ReadEventImpl extends EventImpl implements ReadEvent {
 	 */
 	@Override
 	public void eSet(int featureID, Object newValue) {
-		switch (featureID)
-		{
+		switch (featureID) {
 			case EventsPackage.READ_EVENT__MODEL_ELEMENT:
 				setModelElement((ModelElementId)newValue);
 				return;
@@ -255,8 +247,7 @@ public class ReadEventImpl extends EventImpl implements ReadEvent {
 	 */
 	@Override
 	public void eUnset(int featureID) {
-		switch (featureID)
-		{
+		switch (featureID) {
 			case EventsPackage.READ_EVENT__MODEL_ELEMENT:
 				setModelElement((ModelElementId)null);
 				return;
@@ -276,8 +267,7 @@ public class ReadEventImpl extends EventImpl implements ReadEvent {
 	 */
 	@Override
 	public boolean eIsSet(int featureID) {
-		switch (featureID)
-		{
+		switch (featureID) {
 			case EventsPackage.READ_EVENT__MODEL_ELEMENT:
 				return modelElement != null;
 			case EventsPackage.READ_EVENT__SOURCE_VIEW:

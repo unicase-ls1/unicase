@@ -85,8 +85,7 @@ public class VersioningItemProviderAdapterFactory extends VersioningAdapterFacto
 	 */
 	@Override
 	public Adapter createTagVersionSpecAdapter() {
-		if (tagVersionSpecItemProvider == null)
-		{
+		if (tagVersionSpecItemProvider == null) {
 			tagVersionSpecItemProvider = new TagVersionSpecItemProvider(this);
 		}
 
@@ -108,8 +107,7 @@ public class VersioningItemProviderAdapterFactory extends VersioningAdapterFacto
 	 */
 	@Override
 	public Adapter createDateVersionSpecAdapter() {
-		if (dateVersionSpecItemProvider == null)
-		{
+		if (dateVersionSpecItemProvider == null) {
 			dateVersionSpecItemProvider = new DateVersionSpecItemProvider(this);
 		}
 
@@ -132,8 +130,7 @@ public class VersioningItemProviderAdapterFactory extends VersioningAdapterFacto
 	 */
 	@Override
 	public Adapter createPrimaryVersionSpecAdapter() {
-		if (primaryVersionSpecItemProvider == null)
-		{
+		if (primaryVersionSpecItemProvider == null) {
 			primaryVersionSpecItemProvider = new PrimaryVersionSpecItemProvider(this);
 		}
 
@@ -155,8 +152,7 @@ public class VersioningItemProviderAdapterFactory extends VersioningAdapterFacto
 	 */
 	@Override
 	public Adapter createLogMessageAdapter() {
-		if (logMessageItemProvider == null)
-		{
+		if (logMessageItemProvider == null) {
 			logMessageItemProvider = new LogMessageItemProvider(this);
 		}
 
@@ -178,8 +174,7 @@ public class VersioningItemProviderAdapterFactory extends VersioningAdapterFacto
 	 */
 	@Override
 	public Adapter createChangePackageAdapter() {
-		if (changePackageItemProvider == null)
-		{
+		if (changePackageItemProvider == null) {
 			changePackageItemProvider = new ChangePackageItemProvider(this);
 		}
 
@@ -201,8 +196,7 @@ public class VersioningItemProviderAdapterFactory extends VersioningAdapterFacto
 	 */
 	@Override
 	public Adapter createHistoryInfoAdapter() {
-		if (historyInfoItemProvider == null)
-		{
+		if (historyInfoItemProvider == null) {
 			historyInfoItemProvider = new HistoryInfoItemProvider(this);
 		}
 
@@ -224,8 +218,7 @@ public class VersioningItemProviderAdapterFactory extends VersioningAdapterFacto
 	 */
 	@Override
 	public Adapter createHistoryQueryAdapter() {
-		if (historyQueryItemProvider == null)
-		{
+		if (historyQueryItemProvider == null) {
 			historyQueryItemProvider = new HistoryQueryItemProvider(this);
 		}
 
@@ -247,8 +240,7 @@ public class VersioningItemProviderAdapterFactory extends VersioningAdapterFacto
 	 */
 	@Override
 	public Adapter createVersionAdapter() {
-		if (versionItemProvider == null)
-		{
+		if (versionItemProvider == null) {
 			versionItemProvider = new VersionItemProvider(this);
 		}
 
@@ -270,8 +262,7 @@ public class VersioningItemProviderAdapterFactory extends VersioningAdapterFacto
 	 */
 	@Override
 	public Adapter createHeadVersionSpecAdapter() {
-		if (headVersionSpecItemProvider == null)
-		{
+		if (headVersionSpecItemProvider == null) {
 			headVersionSpecItemProvider = new HeadVersionSpecItemProvider(this);
 		}
 
@@ -322,11 +313,9 @@ public class VersioningItemProviderAdapterFactory extends VersioningAdapterFacto
 	 */
 	@Override
 	public Object adapt(Object object, Object type) {
-		if (isFactoryForType(type))
-		{
+		if (isFactoryForType(type)) {
 			Object adapter = super.adapt(object, type);
-			if (!(type instanceof Class) || (((Class<?>)type).isInstance(adapter)))
-			{
+			if (!(type instanceof Class) || (((Class<?>)type).isInstance(adapter))) {
 				return adapter;
 			}
 		}
@@ -361,8 +350,7 @@ public class VersioningItemProviderAdapterFactory extends VersioningAdapterFacto
 	public void fireNotifyChanged(Notification notification) {
 		changeNotifier.fireNotifyChanged(notification);
 
-		if (parentAdapterFactory != null)
-		{
+		if (parentAdapterFactory != null) {
 			parentAdapterFactory.fireNotifyChanged(notification);
 		}
 	}

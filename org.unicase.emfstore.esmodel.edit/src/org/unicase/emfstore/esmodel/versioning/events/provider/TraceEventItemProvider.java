@@ -45,8 +45,7 @@ public class TraceEventItemProvider extends EventItemProvider implements IEditin
 	 */
 	@Override
 	public List<IItemPropertyDescriptor> getPropertyDescriptors(Object object) {
-		if (itemPropertyDescriptors == null)
-		{
+		if (itemPropertyDescriptors == null) {
 			super.getPropertyDescriptors(object);
 
 			addSourceElementPropertyDescriptor(object);
@@ -153,8 +152,7 @@ public class TraceEventItemProvider extends EventItemProvider implements IEditin
 	public void notifyChanged(Notification notification) {
 		updateChildren(notification);
 
-		switch (notification.getFeatureID(TraceEvent.class))
-		{
+		switch (notification.getFeatureID(TraceEvent.class)) {
 			case EventsPackage.TRACE_EVENT__FEATURE_NAME:
 				fireNotifyChanged(new ViewerNotification(notification, notification.getNotifier(), false, true));
 				return;

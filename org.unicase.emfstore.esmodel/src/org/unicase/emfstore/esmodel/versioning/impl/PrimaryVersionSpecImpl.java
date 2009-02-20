@@ -82,8 +82,7 @@ public class PrimaryVersionSpecImpl extends EObjectImpl implements PrimaryVersio
 	 */
 	@Override
 	public Object eGet(int featureID, boolean resolve, boolean coreType) {
-		switch (featureID)
-		{
+		switch (featureID) {
 			case VersioningPackage.PRIMARY_VERSION_SPEC__IDENTIFIER:
 				return new Integer(getIdentifier());
 		}
@@ -96,8 +95,7 @@ public class PrimaryVersionSpecImpl extends EObjectImpl implements PrimaryVersio
 	 */
 	@Override
 	public void eSet(int featureID, Object newValue) {
-		switch (featureID)
-		{
+		switch (featureID) {
 			case VersioningPackage.PRIMARY_VERSION_SPEC__IDENTIFIER:
 				setIdentifier(((Integer)newValue).intValue());
 				return;
@@ -111,8 +109,7 @@ public class PrimaryVersionSpecImpl extends EObjectImpl implements PrimaryVersio
 	 */
 	@Override
 	public void eUnset(int featureID) {
-		switch (featureID)
-		{
+		switch (featureID) {
 			case VersioningPackage.PRIMARY_VERSION_SPEC__IDENTIFIER:
 				setIdentifier(IDENTIFIER_EDEFAULT);
 				return;
@@ -126,8 +123,7 @@ public class PrimaryVersionSpecImpl extends EObjectImpl implements PrimaryVersio
 	 */
 	@Override
 	public boolean eIsSet(int featureID) {
-		switch (featureID)
-		{
+		switch (featureID) {
 			case VersioningPackage.PRIMARY_VERSION_SPEC__IDENTIFIER:
 				return identifier != IDENTIFIER_EDEFAULT;
 		}

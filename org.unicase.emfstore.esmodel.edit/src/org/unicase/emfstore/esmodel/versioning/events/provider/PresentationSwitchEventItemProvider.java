@@ -47,8 +47,7 @@ public class PresentationSwitchEventItemProvider extends EventItemProvider imple
 	 */
 	@Override
 	public List<IItemPropertyDescriptor> getPropertyDescriptors(Object object) {
-		if (itemPropertyDescriptors == null)
-		{
+		if (itemPropertyDescriptors == null) {
 			super.getPropertyDescriptors(object);
 
 			addReadViewPropertyDescriptor(object);
@@ -134,8 +133,7 @@ public class PresentationSwitchEventItemProvider extends EventItemProvider imple
 	public void notifyChanged(Notification notification) {
 		updateChildren(notification);
 
-		switch (notification.getFeatureID(PresentationSwitchEvent.class))
-		{
+		switch (notification.getFeatureID(PresentationSwitchEvent.class)) {
 			case EventsPackage.PRESENTATION_SWITCH_EVENT__READ_VIEW:
 			case EventsPackage.PRESENTATION_SWITCH_EVENT__NEW_PRESENTATION:
 				fireNotifyChanged(new ViewerNotification(notification, notification.getNotifier(), false, true));

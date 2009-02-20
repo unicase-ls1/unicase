@@ -48,8 +48,7 @@ public class CompositeOperationItemProvider extends AbstractOperationItemProvide
 	 */
 	@Override
 	public List<IItemPropertyDescriptor> getPropertyDescriptors(Object object) {
-		if (itemPropertyDescriptors == null)
-		{
+		if (itemPropertyDescriptors == null) {
 			super.getPropertyDescriptors(object);
 
 			addCompositeNamePropertyDescriptor(object);
@@ -133,8 +132,7 @@ public class CompositeOperationItemProvider extends AbstractOperationItemProvide
 	 */
 	@Override
 	public Collection<? extends EStructuralFeature> getChildrenFeatures(Object object) {
-		if (childrenFeatures == null)
-		{
+		if (childrenFeatures == null) {
 			super.getChildrenFeatures(object);
 			childrenFeatures.add(OperationsPackage.Literals.COMPOSITE_OPERATION__SUB_OPERATIONS);
 		}
@@ -187,8 +185,7 @@ public class CompositeOperationItemProvider extends AbstractOperationItemProvide
 	public void notifyChanged(Notification notification) {
 		updateChildren(notification);
 
-		switch (notification.getFeatureID(CompositeOperation.class))
-		{
+		switch (notification.getFeatureID(CompositeOperation.class)) {
 			case OperationsPackage.COMPOSITE_OPERATION__COMPOSITE_NAME:
 			case OperationsPackage.COMPOSITE_OPERATION__COMPOSITE_DESCRIPTION:
 			case OperationsPackage.COMPOSITE_OPERATION__REVERSED:

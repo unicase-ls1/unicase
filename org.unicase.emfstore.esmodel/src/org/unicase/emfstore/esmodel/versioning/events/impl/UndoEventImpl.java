@@ -53,16 +53,13 @@ public class UndoEventImpl extends EventImpl implements UndoEvent {
 	 * @generated
 	 */
 	public AbstractOperation getOperation() {
-		if (operation != null && operation.eIsProxy())
-		{
+		if (operation != null && operation.eIsProxy()) {
 			InternalEObject oldOperation = (InternalEObject)operation;
 			operation = (AbstractOperation)eResolveProxy(oldOperation);
-			if (operation != oldOperation)
-			{
+			if (operation != oldOperation) {
 				InternalEObject newOperation = (InternalEObject)operation;
 				NotificationChain msgs = oldOperation.eInverseRemove(this, EOPPOSITE_FEATURE_BASE - EventsPackage.UNDO_EVENT__OPERATION, null, null);
-				if (newOperation.eInternalContainer() == null)
-				{
+				if (newOperation.eInternalContainer() == null) {
 					msgs = newOperation.eInverseAdd(this, EOPPOSITE_FEATURE_BASE - EventsPackage.UNDO_EVENT__OPERATION, null, msgs);
 				}
 				if (msgs != null) msgs.dispatch();
@@ -88,8 +85,7 @@ public class UndoEventImpl extends EventImpl implements UndoEvent {
 	public NotificationChain basicSetOperation(AbstractOperation newOperation, NotificationChain msgs) {
 		AbstractOperation oldOperation = operation;
 		operation = newOperation;
-		if (eNotificationRequired())
-		{
+		if (eNotificationRequired()) {
 			ENotificationImpl notification = new ENotificationImpl(this, Notification.SET, EventsPackage.UNDO_EVENT__OPERATION, oldOperation, newOperation);
 			if (msgs == null) msgs = notification; else msgs.add(notification);
 		}
@@ -101,8 +97,7 @@ public class UndoEventImpl extends EventImpl implements UndoEvent {
 	 * @generated
 	 */
 	public void setOperation(AbstractOperation newOperation) {
-		if (newOperation != operation)
-		{
+		if (newOperation != operation) {
 			NotificationChain msgs = null;
 			if (operation != null)
 				msgs = ((InternalEObject)operation).eInverseRemove(this, EOPPOSITE_FEATURE_BASE - EventsPackage.UNDO_EVENT__OPERATION, null, msgs);
@@ -121,8 +116,7 @@ public class UndoEventImpl extends EventImpl implements UndoEvent {
 	 */
 	@Override
 	public NotificationChain eInverseRemove(InternalEObject otherEnd, int featureID, NotificationChain msgs) {
-		switch (featureID)
-		{
+		switch (featureID) {
 			case EventsPackage.UNDO_EVENT__OPERATION:
 				return basicSetOperation(null, msgs);
 		}
@@ -135,8 +129,7 @@ public class UndoEventImpl extends EventImpl implements UndoEvent {
 	 */
 	@Override
 	public Object eGet(int featureID, boolean resolve, boolean coreType) {
-		switch (featureID)
-		{
+		switch (featureID) {
 			case EventsPackage.UNDO_EVENT__OPERATION:
 				if (resolve) return getOperation();
 				return basicGetOperation();
@@ -150,8 +143,7 @@ public class UndoEventImpl extends EventImpl implements UndoEvent {
 	 */
 	@Override
 	public void eSet(int featureID, Object newValue) {
-		switch (featureID)
-		{
+		switch (featureID) {
 			case EventsPackage.UNDO_EVENT__OPERATION:
 				setOperation((AbstractOperation)newValue);
 				return;
@@ -165,8 +157,7 @@ public class UndoEventImpl extends EventImpl implements UndoEvent {
 	 */
 	@Override
 	public void eUnset(int featureID) {
-		switch (featureID)
-		{
+		switch (featureID) {
 			case EventsPackage.UNDO_EVENT__OPERATION:
 				setOperation((AbstractOperation)null);
 				return;
@@ -180,8 +171,7 @@ public class UndoEventImpl extends EventImpl implements UndoEvent {
 	 */
 	@Override
 	public boolean eIsSet(int featureID) {
-		switch (featureID)
-		{
+		switch (featureID) {
 			case EventsPackage.UNDO_EVENT__OPERATION:
 				return operation != null;
 		}

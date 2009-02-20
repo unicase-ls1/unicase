@@ -41,8 +41,7 @@ public class EsmodelSwitch<T> {
 	 * @generated
 	 */
 	public EsmodelSwitch() {
-		if (modelPackage == null)
-		{
+		if (modelPackage == null) {
 			modelPackage = EsmodelPackage.eINSTANCE;
 		}
 	}
@@ -64,12 +63,10 @@ public class EsmodelSwitch<T> {
 	 * @generated
 	 */
 	protected T doSwitch(EClass theEClass, EObject theEObject) {
-		if (theEClass.eContainer() == modelPackage)
-		{
+		if (theEClass.eContainer() == modelPackage) {
 			return doSwitch(theEClass.getClassifierID(), theEObject);
 		}
-		else
-		{
+		else {
 			List<EClass> eSuperTypes = theEClass.getESuperTypes();
 			return
 				eSuperTypes.isEmpty() ?
@@ -85,54 +82,46 @@ public class EsmodelSwitch<T> {
 	 * @generated
 	 */
 	protected T doSwitch(int classifierID, EObject theEObject) {
-		switch (classifierID)
-		{
-			case EsmodelPackage.PROJECT_HISTORY:
-			{
+		switch (classifierID) {
+			case EsmodelPackage.PROJECT_HISTORY: {
 				ProjectHistory projectHistory = (ProjectHistory)theEObject;
 				T result = caseProjectHistory(projectHistory);
 				if (result == null) result = defaultCase(theEObject);
 				return result;
 			}
-			case EsmodelPackage.PROJECT_INFO:
-			{
+			case EsmodelPackage.PROJECT_INFO: {
 				ProjectInfo projectInfo = (ProjectInfo)theEObject;
 				T result = caseProjectInfo(projectInfo);
 				if (result == null) result = defaultCase(theEObject);
 				return result;
 			}
-			case EsmodelPackage.SESSION_ID:
-			{
+			case EsmodelPackage.SESSION_ID: {
 				SessionId sessionId = (SessionId)theEObject;
 				T result = caseSessionId(sessionId);
 				if (result == null) result = caseUniqueIdentifier(sessionId);
 				if (result == null) result = defaultCase(theEObject);
 				return result;
 			}
-			case EsmodelPackage.SERVER_SPACE:
-			{
+			case EsmodelPackage.SERVER_SPACE: {
 				ServerSpace serverSpace = (ServerSpace)theEObject;
 				T result = caseServerSpace(serverSpace);
 				if (result == null) result = defaultCase(theEObject);
 				return result;
 			}
-			case EsmodelPackage.PROJECT_ID:
-			{
+			case EsmodelPackage.PROJECT_ID: {
 				ProjectId projectId = (ProjectId)theEObject;
 				T result = caseProjectId(projectId);
 				if (result == null) result = caseUniqueIdentifier(projectId);
 				if (result == null) result = defaultCase(theEObject);
 				return result;
 			}
-			case EsmodelPackage.VERSION_INFO:
-			{
+			case EsmodelPackage.VERSION_INFO: {
 				VersionInfo versionInfo = (VersionInfo)theEObject;
 				T result = caseVersionInfo(versionInfo);
 				if (result == null) result = defaultCase(theEObject);
 				return result;
 			}
-			case EsmodelPackage.CLIENT_VERSION_INFO:
-			{
+			case EsmodelPackage.CLIENT_VERSION_INFO: {
 				ClientVersionInfo clientVersionInfo = (ClientVersionInfo)theEObject;
 				T result = caseClientVersionInfo(clientVersionInfo);
 				if (result == null) result = defaultCase(theEObject);

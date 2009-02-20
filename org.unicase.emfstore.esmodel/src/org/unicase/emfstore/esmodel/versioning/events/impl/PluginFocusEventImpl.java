@@ -123,8 +123,7 @@ public class PluginFocusEventImpl extends EventImpl implements PluginFocusEvent 
 	 */
 	@Override
 	public Object eGet(int featureID, boolean resolve, boolean coreType) {
-		switch (featureID)
-		{
+		switch (featureID) {
 			case EventsPackage.PLUGIN_FOCUS_EVENT__PLUGIN_ID:
 				return getPluginId();
 			case EventsPackage.PLUGIN_FOCUS_EVENT__START_DATE:
@@ -139,8 +138,7 @@ public class PluginFocusEventImpl extends EventImpl implements PluginFocusEvent 
 	 */
 	@Override
 	public void eSet(int featureID, Object newValue) {
-		switch (featureID)
-		{
+		switch (featureID) {
 			case EventsPackage.PLUGIN_FOCUS_EVENT__PLUGIN_ID:
 				setPluginId((String)newValue);
 				return;
@@ -157,8 +155,7 @@ public class PluginFocusEventImpl extends EventImpl implements PluginFocusEvent 
 	 */
 	@Override
 	public void eUnset(int featureID) {
-		switch (featureID)
-		{
+		switch (featureID) {
 			case EventsPackage.PLUGIN_FOCUS_EVENT__PLUGIN_ID:
 				setPluginId(PLUGIN_ID_EDEFAULT);
 				return;
@@ -175,8 +172,7 @@ public class PluginFocusEventImpl extends EventImpl implements PluginFocusEvent 
 	 */
 	@Override
 	public boolean eIsSet(int featureID) {
-		switch (featureID)
-		{
+		switch (featureID) {
 			case EventsPackage.PLUGIN_FOCUS_EVENT__PLUGIN_ID:
 				return PLUGIN_ID_EDEFAULT == null ? pluginId != null : !PLUGIN_ID_EDEFAULT.equals(pluginId);
 			case EventsPackage.PLUGIN_FOCUS_EVENT__START_DATE:

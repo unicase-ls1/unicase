@@ -47,8 +47,7 @@ public class ClientVersionInfoItemProvider extends ItemProviderAdapter implement
 	 */
 	@Override
 	public List<IItemPropertyDescriptor> getPropertyDescriptors(Object object) {
-		if (itemPropertyDescriptors == null)
-		{
+		if (itemPropertyDescriptors == null) {
 			super.getPropertyDescriptors(object);
 
 			addVersionPropertyDescriptor(object);
@@ -133,8 +132,7 @@ public class ClientVersionInfoItemProvider extends ItemProviderAdapter implement
 	public void notifyChanged(Notification notification) {
 		updateChildren(notification);
 
-		switch (notification.getFeatureID(ClientVersionInfo.class))
-		{
+		switch (notification.getFeatureID(ClientVersionInfo.class)) {
 			case EsmodelPackage.CLIENT_VERSION_INFO__VERSION:
 			case EsmodelPackage.CLIENT_VERSION_INFO__NAME:
 				fireNotifyChanged(new ViewerNotification(notification, notification.getNotifier(), false, true));
