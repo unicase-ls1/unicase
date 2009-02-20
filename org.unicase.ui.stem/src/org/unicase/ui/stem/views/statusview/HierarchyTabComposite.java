@@ -257,8 +257,13 @@ public class HierarchyTabComposite extends Composite implements ProjectChangeObs
 	 */
 	@Override
 	public void dispose() {
+
 		workspace.eAdapters().remove(adapterImpl);
-		workspace.getActiveProjectSpace().getProject().removeProjectChangeObserver(HierarchyTabComposite.this);
+		if (workspace.getActiveProjectSpace() != null || workspace.getActiveProjectSpace().getProject() != null) {
+			workspace.getActiveProjectSpace().getProject().removeProjectChangeObserver(HierarchyTabComposite.this);
+
+		}
+
 		super.dispose();
 	}
 

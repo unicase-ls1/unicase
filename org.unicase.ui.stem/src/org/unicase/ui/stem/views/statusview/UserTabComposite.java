@@ -184,7 +184,7 @@ public class UserTabComposite extends Composite implements ProjectChangeObserver
 	 */
 	public void setInput(ModelElement me, StatusView statusView) {
 		// this.input = me;
-		userTabDropAdapter.setCurrentOpenMe(me, statusView);
+		userTabDropAdapter.setCurrentOpenMe(me);
 		statusColumnLabelProvider.setCurrentOpenME(me);
 		if ((treeViewer.getInput() == null) || (!treeViewer.getInput().equals(me))) {
 			treeViewer.setInput(me);
@@ -250,8 +250,13 @@ public class UserTabComposite extends Composite implements ProjectChangeObserver
 	 */
 	@Override
 	public void dispose() {
+
 		workspace.eAdapters().remove(adapterImpl);
-		workspace.getActiveProjectSpace().getProject().removeProjectChangeObserver(UserTabComposite.this);
+		if (workspace.getActiveProjectSpace() != null || workspace.getActiveProjectSpace().getProject() != null) {
+			workspace.getActiveProjectSpace().getProject().removeProjectChangeObserver(UserTabComposite.this);
+
+		}
+
 		super.dispose();
 	}
 

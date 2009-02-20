@@ -101,7 +101,7 @@ public abstract class AbstractDropAdapter extends DropTargetAdapter {
 		for (ModelElement me : openersForSource) {
 			if (me instanceof WorkItem) {
 				try {
-					if (!me.getMEState().equals(MEState.CLOSED) && isAssignedToTheSameTeam(me)) {
+					if (!me.getMEState().equals(MEState.CLOSED) && isAssignedToTheSameTeam((WorkItem) me)) {
 
 						((WorkPackage) currentOpenME).getContainedWorkItems().add((WorkItem) me);
 						i++;
@@ -120,36 +120,6 @@ public abstract class AbstractDropAdapter extends DropTargetAdapter {
 			((WorkPackage) currentOpenME).getContainedWorkItems().add(ai);
 		}
 
-		// //This is another implementation. It solve the problem of WorkItems being added one by one to WorkPackage
-		// //(and thus refreshing tree after each one).
-		// //But it leads to an UnsopurtedOperationException due to a
-		// //multiple remove operation.
-
-		// Set<ModelElement> openersForSource = TaxonomyAccess.getInstance().getOpeningLinkTaxonomy().getLeafOpeners(
-		// dragSource);
-		// List<WorkItem> workItemsToAdd = new ArrayList<WorkItem>();
-		// try {
-		// for (ModelElement me : openersForSource) {
-		// if (me instanceof WorkItem) {
-		// if (!me.getMEState().equals(MEState.CLOSED) && isAssignedToTheSameTeam(me)) {
-		// workItemsToAdd.add((WorkItem) me);
-		// }
-		// }
-		// }
-		// } catch (CircularDependencyException e) {
-		// // TODO Auto-generated catch block
-		// e.printStackTrace();
-		// }
-		//
-		// if (workItemsToAdd.size() == 0) {
-		// ActionItem ai = TaskFactory.eINSTANCE.createActionItem();
-		// ai.setName("New Action Item relating " + dragSource.getName());
-		// ai.getAnnotatedModelElements().add(dragSource);
-		// ((WorkPackage) currentOpenME).getContainedWorkItems().add(ai);
-		// } else {
-		// ((WorkPackage) currentOpenME).getContainedWorkItems().addAll(workItemsToAdd);
-		// }
-
 	}
 
 	/**
@@ -158,7 +128,7 @@ public abstract class AbstractDropAdapter extends DropTargetAdapter {
 	 * @param me dropped model element
 	 * @return true if currentOpenME and dropped ME are assigned to the same team.
 	 */
-	protected boolean isAssignedToTheSameTeam(ModelElement me) {
+	protected boolean isAssignedToTheSameTeam(WorkItem me) {
 
 		// TODO: implement
 		return true;

@@ -33,8 +33,8 @@ import org.unicase.ui.common.TableViewerColumnSorter;
 import org.unicase.ui.common.util.ActionHelper;
 import org.unicase.ui.stem.views.AssignedToLabelProvider;
 import org.unicase.ui.stem.views.iterationplanningview.TaskObjectLabelProvider;
-import org.unicase.ui.stem.views.statusview.dnd.StatusViewTabsDragAdapter;
 import org.unicase.ui.stem.views.statusview.dnd.FlatTabDropAdapter;
+import org.unicase.ui.stem.views.statusview.dnd.StatusViewTabsDragAdapter;
 import org.unicase.ui.tableview.labelprovider.StatusLabelProvider;
 import org.unicase.workspace.ProjectSpace;
 import org.unicase.workspace.Workspace;
@@ -324,8 +324,12 @@ public class FlatTabComposite extends Composite implements ProjectChangeObserver
 	 */
 	@Override
 	public void dispose() {
+
 		workspace.eAdapters().remove(adapterImpl);
-		workspace.getActiveProjectSpace().getProject().removeProjectChangeObserver(FlatTabComposite.this);
+		if (workspace.getActiveProjectSpace() != null || workspace.getActiveProjectSpace().getProject() != null) {
+			workspace.getActiveProjectSpace().getProject().removeProjectChangeObserver(FlatTabComposite.this);
+		}
+
 		super.dispose();
 	}
 

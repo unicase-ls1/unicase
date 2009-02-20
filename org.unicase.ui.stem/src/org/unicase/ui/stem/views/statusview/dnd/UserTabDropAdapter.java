@@ -22,7 +22,6 @@ import org.unicase.model.task.WorkItem;
 import org.unicase.model.task.WorkPackage;
 import org.unicase.model.task.util.TaxonomyAccess;
 import org.unicase.ui.common.dnd.DragSourcePlaceHolder;
-import org.unicase.ui.stem.views.statusview.StatusView;
 import org.unicase.workspace.util.EventUtil;
 
 /**
@@ -37,7 +36,6 @@ public class UserTabDropAdapter extends DropTargetAdapter {
 
 	// target can be either OrgUnit or NotAssigned
 	private EObject target;
-	private StatusView statusView;
 
 	/**
 	 * Constructor.
@@ -49,11 +47,9 @@ public class UserTabDropAdapter extends DropTargetAdapter {
 	 * This makes drop adapter aware of model element currently open in status view.
 	 * 
 	 * @param currentME model element that is currently opened in StatusView
-	 * @param statusView active status view
 	 */
-	public void setCurrentOpenMe(ModelElement currentME, StatusView statusView) {
+	public void setCurrentOpenMe(ModelElement currentME) {
 		this.currentOpenME = currentME;
-		this.statusView = statusView;
 	}
 
 	/**
@@ -66,10 +62,18 @@ public class UserTabDropAdapter extends DropTargetAdapter {
 
 		source = null;
 
+		event.feedback = event.feedback | DND.FEEDBACK_SCROLL;
 		event.detail = DND.DROP_COPY;
 		if (!extractDnDSourceAndTarget(event)) {
 			event.detail = DND.DROP_NONE;
 			return;
+		}
+
+		if (event.item != null && event.item.getData() != null && event.item.getData() instanceof ModelElement) {
+			if (event.item.getData() instanceof WorkItem) {
+				event.detail = DND.DROP_NONE;
+				return;
+			}
 		}
 
 		if (source.equals(currentOpenME) || EcoreUtil.isAncestor(source, currentOpenME)) {
@@ -105,9 +109,6 @@ public class UserTabDropAdapter extends DropTargetAdapter {
 			}
 
 		});
-
-		// refresh status view
-		statusView.setInput(currentOpenME);
 
 	}
 
