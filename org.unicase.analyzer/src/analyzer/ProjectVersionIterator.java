@@ -7,12 +7,29 @@ package analyzer;
 
 import java.util.Iterator;
 
+import org.unicase.emfstore.esmodel.ProjectId;
+import org.unicase.workspace.Usersession;
+import org.unicase.workspace.WorkspaceManager;
+import org.unicase.workspace.connectionmanager.ConnectionManager;
+
 /**
  * @author koegel
  *
  */
-public class ProjectIterator implements Iterator<ProjectAnalysisData> {
+public class ProjectVersionIterator implements Iterator<ProjectAnalysisData> {
 
+	
+	private final Usersession usersession;
+	private final ProjectId projectId;
+	private final int stepLength;
+	private ConnectionManager connectionManager;
+
+	public ProjectVersionIterator(Usersession usersession, ProjectId projectId, int stepLength) {
+		this.usersession = usersession;
+		this.projectId = projectId;
+		this.stepLength = stepLength;
+		this.connectionManager=WorkspaceManager.getInstance().getConnectionManager();
+	}
 	/** 
 	 * {@inheritDoc}
 	 * @see java.util.Iterator#hasNext()
@@ -28,6 +45,7 @@ public class ProjectIterator implements Iterator<ProjectAnalysisData> {
 	 */
 	public ProjectAnalysisData next() {
 		// TODO Auto-generated method stub
+		//connectionManager.getChanges(usersession.getSessionId(), projectId, source, target)
 		return null;
 	}
 
