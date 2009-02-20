@@ -533,7 +533,7 @@ public class StatusView extends ViewPart implements ProjectChangeObserver {
 
 		workspace.eAdapters().remove(adapterImpl);
 
-		if (workspace.getActiveProjectSpace() != null || workspace.getActiveProjectSpace().getProject() != null) {
+		if (workspace.getActiveProjectSpace() != null && workspace.getActiveProjectSpace().getProject() != null) {
 			workspace.getActiveProjectSpace().getProject().removeProjectChangeObserver(StatusView.this);
 
 		}
