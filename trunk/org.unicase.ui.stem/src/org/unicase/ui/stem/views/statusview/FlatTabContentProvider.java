@@ -28,12 +28,12 @@ public class FlatTabContentProvider extends AdapterFactoryContentProvider {
 	}
 
 	/**
-	 * . {@inheritDoc} I implemented the getEelemnts() based of my own imagination of what should be shown in flat tab
-	 * and after talks with Helmut. The implementation might be changed later. This implementation return a
-	 * (hierarchical) list of all Checkables/Assignables corresponding to input model element. For example, if a
-	 * FunctionalRequirement has some child FRs as its refiningRequirements(), their Checkables and Assignables are also
-	 * considered the parents Checkables and Assignables and shown in flat tab of parent. All direct Annotations of the
-	 * model element are also shown beside its recursively gathered Checkables/Assignables.
+	 * {@inheritDoc} I implemented the getEelemnts() based of my own imagination of what should be shown in flat tab and
+	 * after talks with Helmut. The implementation might be changed later. This implementation return a (hierarchical)
+	 * list of all Checkables/Assignables corresponding to input model element. For example, if a FunctionalRequirement
+	 * has some child FRs as its refiningRequirements(), their Checkables and Assignables are also considered the
+	 * parents Checkables and Assignables and shown in flat tab of parent. All direct Annotations of the model element
+	 * are also shown beside its recursively gathered Checkables/Assignables.
 	 */
 	@Override
 	public Object[] getElements(Object object) {
