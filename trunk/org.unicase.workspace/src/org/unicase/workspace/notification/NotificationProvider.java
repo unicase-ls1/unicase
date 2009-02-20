@@ -19,11 +19,12 @@ import org.unicase.workspace.ProjectSpace;
 public interface NotificationProvider {
 
 	/**
-	 * Init the provider. Providers may be stateful.
+	 * Initializes the notification provider.
 	 * 
-	 * @param projectSpace the project space
+	 * @param projectSpace the project space.
+	 * @param operations the list of operations.
 	 */
-	void init(ProjectSpace projectSpace);
+	void init(ProjectSpace projectSpace, List<AbstractOperation> operations);
 
 	/**
 	 * Process an operation. May result in a change in internal state.
@@ -37,7 +38,7 @@ public interface NotificationProvider {
 	 * 
 	 * @return a list of notifications
 	 */
-	List<ESNotification> getCurrentResult();
+	List<ESNotification> getResult();
 
 	/**
 	 * Clear the internal state of the provider including its current results.

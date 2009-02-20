@@ -11,6 +11,9 @@ import java.util.List;
 import org.unicase.emfstore.esmodel.notification.ESNotification;
 import org.unicase.emfstore.esmodel.versioning.ChangePackage;
 import org.unicase.emfstore.esmodel.versioning.operations.AbstractOperation;
+import org.unicase.model.bug.BugPackage;
+import org.unicase.model.rationale.RationalePackage;
+import org.unicase.model.task.TaskPackage;
 import org.unicase.workspace.ProjectSpace;
 import org.unicase.workspace.notification.provider.AssignmentNotificationProvider;
 
@@ -31,7 +34,9 @@ public final class NotificationGenerator {
 	private NotificationGenerator() {
 		instance = this;
 		providers = new ArrayList<NotificationProvider>();
-		providers.add(new AssignmentNotificationProvider());
+		providers.add(new AssignmentNotificationProvider(TaskPackage.eINSTANCE.getActionItem()));
+		providers.add(new AssignmentNotificationProvider(RationalePackage.eINSTANCE.getIssue()));
+		providers.add(new AssignmentNotificationProvider(BugPackage.eINSTANCE.getBugReport()));
 	}
 
 	/**
@@ -57,18 +62,17 @@ public final class NotificationGenerator {
 	public List<ESNotification> generateNotifications(List<ChangePackage> changePackages, String currentUsername,
 		ProjectSpace projectSpace) {
 		List<ESNotification> result = new ArrayList<ESNotification>();
-		for (NotificationProvider provider : providers) {
-			provider.init(projectSpace);
-		}
+		List<AbstractOperation> operations = new ArrayList<AbstractOperation>();
 		for (ChangePackage changePackage : changePackages) {
 			for (AbstractOperation operation : changePackage.getOperations()) {
-				for (NotificationProvider provider : providers) {
-					provider.processOperation(operation);
-				}
+				operations.add(operation);
 			}
 		}
 		for (NotificationProvider provider : providers) {
-			result.addAll(provider.getCurrentResult());
+			provider.init(projectSpace, operations);
+		}
+		for (NotificationProvider provider : providers) {
+			result.addAll(provider.getResult());
 			provider.clear();
 		}
 		return result;

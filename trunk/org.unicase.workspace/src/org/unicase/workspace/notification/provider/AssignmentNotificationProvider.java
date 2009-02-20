@@ -7,17 +7,15 @@ package org.unicase.workspace.notification.provider;
 
 import java.util.ArrayList;
 import java.util.Date;
-import java.util.HashMap;
 import java.util.HashSet;
 import java.util.List;
-import java.util.Map;
 import java.util.Set;
 
+import org.eclipse.emf.ecore.EClass;
 import org.unicase.emfstore.esmodel.notification.ESNotification;
 import org.unicase.emfstore.esmodel.notification.NotificationFactory;
 import org.unicase.emfstore.esmodel.util.EsModelUtil;
 import org.unicase.emfstore.esmodel.versioning.operations.AbstractOperation;
-import org.unicase.emfstore.esmodel.versioning.operations.CreateDeleteOperation;
 import org.unicase.emfstore.esmodel.versioning.operations.MultiReferenceOperation;
 import org.unicase.emfstore.esmodel.versioning.operations.OperationsPackage;
 import org.unicase.emfstore.esmodel.versioning.operations.ReferenceOperation;
@@ -29,7 +27,7 @@ import org.unicase.model.organization.Group;
 import org.unicase.model.organization.OrgUnit;
 import org.unicase.model.organization.OrganizationPackage;
 import org.unicase.model.organization.User;
-import org.unicase.model.task.TaskPackage;
+import org.unicase.model.task.WorkItem;
 import org.unicase.workspace.ProjectSpace;
 import org.unicase.workspace.exceptions.CannotMatchUserInProjectException;
 import org.unicase.workspace.notification.NotificationProvider;
@@ -47,7 +45,39 @@ public class AssignmentNotificationProvider implements NotificationProvider {
 	private ProjectSpace projectSpace;
 	private User user;
 	private Set<ModelElementId> workItems;
-	private Map<ModelElementId, ModelElement> createdElementsMap;
+	private EClass clazz;
+
+	/**
+	 * Default constructor.
+	 * 
+	 * @param assignmentClass the class of the assignment - e.g. ActionItem, BugReport, etc.
+	 */
+	public AssignmentNotificationProvider(EClass assignmentClass) {
+		this.clazz = assignmentClass;
+	}
+
+	/**
+	 * Initializs the provider.
+	 * 
+	 * @param projectSpace the project space - needed for resolving the current user
+	 * @param operations the list of operations to be processed.
+	 */
+	public void init(ProjectSpace projectSpace, List<AbstractOperation> operations) {
+		clear();
+		this.projectSpace = projectSpace;
+		try {
+			this.user = OrgUnitHelper.getUser(projectSpace);
+		} catch (NoCurrentUserException e) {
+			clear();
+		} catch (CannotMatchUserInProjectException e) {
+			clear();
+		}
+		this.workItems = new HashSet<ModelElementId>();
+
+		for (AbstractOperation operation : operations) {
+			processOperation(operation);
+		}
+	}
 
 	/**
 	 * {@inheritDoc}
@@ -55,29 +85,23 @@ public class AssignmentNotificationProvider implements NotificationProvider {
 	 * @see org.unicase.workspace.notification.NotificationProvider#clear()
 	 */
 	public void clear() {
-		this.projectSpace = null;
 		this.user = null;
-		this.workItems = null;
+		this.projectSpace = null;
 		if (this.workItems != null) {
 			this.workItems.clear();
 		}
-		if (this.createdElementsMap != null) {
-			this.createdElementsMap.clear();
-		}
-		this.createdElementsMap = null;
 	}
 
 	/**
 	 * {@inheritDoc}
 	 * 
-	 * @see org.unicase.workspace.notification.NotificationProvider#getCurrentResult()
+	 * @see org.unicase.workspace.notification.NotificationProvider#getResult()
 	 */
-	public List<ESNotification> getCurrentResult() {
+	public List<ESNotification> getResult() {
 		List<ESNotification> result = new ArrayList<ESNotification>();
 
 		// create a notification for the new work items
 		ESNotification notification = NotificationFactory.eINSTANCE.createESNotification();
-		notification.setCreationDate(new Date());
 		notification.setName("New work items");
 		notification.setProject(EsModelUtil.clone(projectSpace.getProjectId()));
 		notification.setRecipient(user.getName());
@@ -90,27 +114,19 @@ public class AssignmentNotificationProvider implements NotificationProvider {
 		String message = stringBuilder.toString();
 		notification.setMessage(message);
 		notification.getRelatedModelElements().addAll(workItems);
+		WorkItem[] wis = workItems.toArray(new WorkItem[0]);
+		Date date = wis[0].getCreationDate();
+		if (wis.length > 1) {
+			for (WorkItem wi : wis) {
+				if (wi.getCreationDate().after(date)) {
+					date = wi.getCreationDate();
+				}
+			}
+		}
+		notification.setCreationDate(date);
 
 		result.add(notification);
 		return result;
-	}
-
-	/**
-	 * {@inheritDoc}
-	 * 
-	 * @see org.unicase.workspace.notification.NotificationProvider#init()
-	 */
-	public void init(ProjectSpace projectSpace) {
-		this.projectSpace = projectSpace;
-		try {
-			this.user = OrgUnitHelper.getUser(projectSpace);
-		} catch (NoCurrentUserException e) {
-			clear();
-		} catch (CannotMatchUserInProjectException e) {
-			clear();
-		}
-		this.workItems = new HashSet<ModelElementId>();
-		this.createdElementsMap = new HashMap<ModelElementId, ModelElement>();
 	}
 
 	/**
@@ -123,8 +139,6 @@ public class AssignmentNotificationProvider implements NotificationProvider {
 			return;
 		}
 
-		updateCreatedModelElementsMap(operation);
-
 		ReferenceOperation referenceOperation = getReferenceOperation(operation);
 		if (referenceOperation == null) {
 			return;
@@ -134,9 +148,13 @@ public class AssignmentNotificationProvider implements NotificationProvider {
 
 		Project project = projectSpace.getProject();
 		ModelElement modelElement = getModelElement(operation, project);
+		if (modelElement == null) {
+			// the ME was deleted from the project.
+			return;
+		}
 
 		// if we have a change of an orgunit feature in a work item
-		if (TaskPackage.eINSTANCE.getWorkItem().isInstance(modelElement)) {
+		if (clazz.isInstance(modelElement)) {
 			if (!(featureName.equalsIgnoreCase("assignee") || featureName.equalsIgnoreCase("participants"))) {
 				return;
 			}
@@ -158,13 +176,15 @@ public class AssignmentNotificationProvider implements NotificationProvider {
 	}
 
 	private void processOrgUnit(AbstractOperation operation, ReferenceOperation referenceOperation,
-		ModelElement modelElement) {
+		ModelElement userElement) {
 		Set<Group> allCurrentGroups = OrgUnitHelper.getAllGroupsOfOrgUnit(user);
-		if (allCurrentGroups.contains(modelElement)) {
+		if (allCurrentGroups.contains(userElement)) {
 			workItems.addAll(referenceOperation.getOtherInvolvedModelElements());
 		}
-		if (OrganizationPackage.eINSTANCE.getUser().isInstance(modelElement)) {
-			if (user.getName().equalsIgnoreCase(modelElement.getName())) {
+		if (OrganizationPackage.eINSTANCE.getUser().isInstance(userElement)) {
+			ModelElement modelElement = getModelElement(referenceOperation, projectSpace.getProject());
+			if (user.getName().equalsIgnoreCase(userElement.getName()) && modelElement != null
+				&& clazz.isInstance(modelElement)) {
 				workItems.add(operation.getModelElementId());
 			}
 		}
@@ -189,23 +209,12 @@ public class AssignmentNotificationProvider implements NotificationProvider {
 		}
 	}
 
-	private void updateCreatedModelElementsMap(AbstractOperation operation) {
-		if (OperationsPackage.eINSTANCE.getCreateDeleteOperation().isInstance(operation)) {
-			CreateDeleteOperation createDeleteOperation = (CreateDeleteOperation) operation;
-			if (!createDeleteOperation.isDelete()) {
-				createdElementsMap.put(createDeleteOperation.getModelElementId(), createDeleteOperation
-					.getModelElement());
-			}
-		}
-	}
-
 	private ModelElement getModelElement(AbstractOperation operation, Project project) {
 		ModelElementId modelElementId = operation.getModelElementId();
 		if (project.contains(modelElementId)) {
 			return project.getModelElement(modelElementId);
-		} else {
-			return createdElementsMap.get(modelElementId);
 		}
+		return null;
 	}
 
 	/**
