@@ -33,8 +33,6 @@ import org.unicase.model.task.ActionItem;
 import org.unicase.model.task.TaskFactory;
 import org.unicase.workspace.ProjectSpace;
 import org.unicase.workspace.edit.Activator;
-import org.unicase.workspace.edit.dashboard.widgets.DashboardEventWidget;
-import org.unicase.workspace.edit.dashboard.widgets.DashboardRelatedTasksWidget;
 import org.unicase.workspace.edit.dashboard.widgets.DashboardTaskWidget;
 
 /**
@@ -69,47 +67,8 @@ public class DashboardPage extends FormPage {
 	protected void createFormContent(IManagedForm managedForm) {
 		super.createFormContent(managedForm);
 
-		// Layout form
-		form = managedForm.getForm();
-		toolkit = this.getEditor().getToolkit();
-		toolkit.decorateFormHeading(form.getForm());
-		DashboardEditorInput editorInput = (DashboardEditorInput) getEditorInput();
-		project = editorInput.getProjectSpace().getProject();
-		ProjectSpace projectSpace = editorInput.getProjectSpace();
-		form.setText("Dashboard - " + projectSpace.getProjectName());
-		form.setImage(Activator.getImageDescriptor("/icons/dashboard.png").createImage());
-
-		Composite body = form.getBody();
-		body.setLayout(new GridLayout());
-		SashForm globalSash = new SashForm(body, SWT.HORIZONTAL);
-		GridDataFactory.fillDefaults().align(SWT.FILL, SWT.FILL).grab(true, true).applyTo(globalSash);
-		toolkit.adapt(globalSash, true, true);
-		globalSash.setSashWidth(4);
-
-		main = toolkit.createComposite(globalSash, SWT.NONE);
-		main.setBackground(Display.getCurrent().getSystemColor(SWT.COLOR_WHITE));
-		main.setBackgroundMode(SWT.INHERIT_FORCE);
-		GridLayoutFactory.fillDefaults().numColumns(1).equalWidth(false).spacing(0, 0).applyTo(main);
-		GridDataFactory.fillDefaults().align(SWT.FILL, SWT.FILL).grab(true, true).applyTo(main);
-
-		widgets = toolkit.createComposite(globalSash, SWT.NONE);
-		// widgets.setBackground(Display.getCurrent().getSystemColor(SWT.COLOR_DARK_GRAY));
-		widgets.setBackgroundMode(SWT.INHERIT_FORCE);
-		GridLayoutFactory.fillDefaults().numColumns(1).equalWidth(false).extendedMargins(5, 5, 6, 0).applyTo(widgets);
-		GridDataFactory.fillDefaults().align(SWT.FILL, SWT.FILL).applyTo(widgets);
-
-		DashboardTaskWidget tasks = new DashboardTaskWidget(widgets, SWT.NONE);
-		GridDataFactory.fillDefaults().grab(true, false).applyTo(tasks);
-
-		DashboardRelatedTasksWidget related = new DashboardRelatedTasksWidget(widgets, SWT.NONE);
-		GridDataFactory.fillDefaults().grab(true, false).applyTo(related);
-
-		DashboardEventWidget events = new DashboardEventWidget(widgets, SWT.NONE);
-		GridDataFactory.fillDefaults().grab(true, false).applyTo(events);
-
 		// --------------- TEST DATA ----------------------
 		final List<ESNotification> notifications = new ArrayList<ESNotification>();
-		// WorkspaceManager.getInstance().getCurrentWorkspace().getActiveProjectSpace().getNotifications();
 
 		ESNotification n1 = NotificationFactory.eINSTANCE.createESNotification();
 		n1.setCreationDate(new Date());
@@ -155,6 +114,45 @@ public class DashboardPage extends FormPage {
 		notifications.add(n3);
 		// --------------- TEST DATA ----------------------
 
+		// Layout form
+		form = managedForm.getForm();
+		toolkit = this.getEditor().getToolkit();
+		toolkit.decorateFormHeading(form.getForm());
+		DashboardEditorInput editorInput = (DashboardEditorInput) getEditorInput();
+		ProjectSpace projectSpace = editorInput.getProjectSpace();
+		project = projectSpace.getProject();
+		form.setText("Dashboard - " + projectSpace.getProjectName());
+		form.setImage(Activator.getImageDescriptor("/icons/dashboard.png").createImage());
+		form.setExpandVertical(true);
+
+		Composite body = form.getBody();
+		body.setLayout(new GridLayout());
+		SashForm globalSash = new SashForm(body, SWT.HORIZONTAL);
+		GridDataFactory.fillDefaults().align(SWT.FILL, SWT.FILL).grab(true, true).applyTo(globalSash);
+		toolkit.adapt(globalSash, true, true);
+		globalSash.setSashWidth(4);
+
+		main = toolkit.createComposite(globalSash, SWT.NONE);
+		main.setBackground(Display.getCurrent().getSystemColor(SWT.COLOR_WHITE));
+		main.setBackgroundMode(SWT.INHERIT_FORCE);
+		GridLayoutFactory.fillDefaults().numColumns(1).equalWidth(false).spacing(0, 0).applyTo(main);
+		GridDataFactory.fillDefaults().align(SWT.FILL, SWT.FILL).grab(true, true).applyTo(main);
+
+		widgets = toolkit.createComposite(globalSash, SWT.NONE);
+		// widgets.setBackground(Display.getCurrent().getSystemColor(SWT.COLOR_DARK_GRAY));
+		widgets.setBackgroundMode(SWT.INHERIT_FORCE);
+		GridLayoutFactory.fillDefaults().numColumns(1).equalWidth(false).extendedMargins(5, 5, 6, 0).applyTo(widgets);
+		GridDataFactory.fillDefaults().align(SWT.FILL, SWT.FILL).applyTo(widgets);
+
+		DashboardTaskWidget tasks = new DashboardTaskWidget(widgets, SWT.NONE, projectSpace);
+		GridDataFactory.fillDefaults().grab(true, false).applyTo(tasks);
+
+		// DashboardRelatedTasksWidget related = new DashboardRelatedTasksWidget(widgets, SWT.NONE);
+		// GridDataFactory.fillDefaults().grab(true, false).applyTo(related);
+		//
+		// DashboardEventWidget events = new DashboardEventWidget(widgets, SWT.NONE);
+		// GridDataFactory.fillDefaults().grab(true, false).applyTo(events);
+
 		TransactionalEditingDomain domain = TransactionalEditingDomain.Registry.INSTANCE
 			.getEditingDomain("org.unicase.EditingDomain");
 		domain.getCommandStack().execute(new RecordingCommand(domain) {
@@ -176,8 +174,15 @@ public class DashboardPage extends FormPage {
 
 	private void loadNotifications(List<ESNotification> notifications) {
 		for (ESNotification n : notifications) {
-			DashboardEntry entry = new DashboardEntry(main, SWT.NONE, n, project);
+			DashboardEntry entry = new DashboardEntry(this, main, SWT.NONE, n, project);
 			GridDataFactory.fillDefaults().align(SWT.FILL, SWT.BEGINNING).grab(true, false).applyTo(entry);
 		}
+	}
+
+	/**
+	 * @return the form
+	 */
+	public ScrolledForm getForm() {
+		return form;
 	}
 }

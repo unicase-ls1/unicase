@@ -5,8 +5,6 @@
  */
 package org.unicase.workspace.edit.dashboard.widgets;
 
-import org.eclipse.jface.layout.GridDataFactory;
-import org.eclipse.swt.SWT;
 import org.eclipse.swt.widgets.Composite;
 
 /**
@@ -32,10 +30,6 @@ public class DashboardEventWidget extends AbstractDashboardWidget {
 	 */
 	@Override
 	protected void createContent() {
-		Composite content = getContent();
-		setBackgroundMode(SWT.INHERIT_FORCE);
-		content = new Composite(this, SWT.NONE);
-		GridDataFactory.fillDefaults().grab(true, true).hint(100, 200).applyTo(content);
 	}
 
 }
