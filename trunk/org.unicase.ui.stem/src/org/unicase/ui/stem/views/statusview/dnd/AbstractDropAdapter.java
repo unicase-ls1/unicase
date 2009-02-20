@@ -5,7 +5,6 @@
  */
 package org.unicase.ui.stem.views.statusview.dnd;
 
-import java.util.ArrayList;
 import java.util.List;
 import java.util.Set;
 
@@ -95,30 +94,61 @@ public abstract class AbstractDropAdapter extends DropTargetAdapter {
 	protected void dropNonWorkItemOnWorkPackage() {
 		// if some work item in currentOpenME (hierarchical) has already annotated source, do nothing
 		// otherwise create an AI annotating source and add it to work items of currentOpenME
+
 		Set<ModelElement> openersForSource = TaxonomyAccess.getInstance().getOpeningLinkTaxonomy().getLeafOpeners(
 			dragSource);
-		List<WorkItem> workItemsToAdd = new ArrayList<WorkItem>();
-		try {
-			for (ModelElement me : openersForSource) {
-				if (me instanceof WorkItem) {
+		int i = 0;
+		for (ModelElement me : openersForSource) {
+			if (me instanceof WorkItem) {
+				try {
 					if (!me.getMEState().equals(MEState.CLOSED) && isAssignedToTheSameTeam(me)) {
-						workItemsToAdd.add((WorkItem) me);
-					}
-				}
-			}
-		} catch (CircularDependencyException e) {
-			// TODO Auto-generated catch block
-			e.printStackTrace();
-		}
 
-		if (workItemsToAdd.size() == 0) {
+						((WorkPackage) currentOpenME).getContainedWorkItems().add((WorkItem) me);
+						i++;
+					}
+
+				} catch (CircularDependencyException e) {
+					// Do nothing
+				}
+
+			}
+		}
+		if (i == 0) {
 			ActionItem ai = TaskFactory.eINSTANCE.createActionItem();
 			ai.setName("New Action Item relating " + dragSource.getName());
 			ai.getAnnotatedModelElements().add(dragSource);
 			((WorkPackage) currentOpenME).getContainedWorkItems().add(ai);
-		} else {
-			((WorkPackage) currentOpenME).getContainedWorkItems().addAll(workItemsToAdd);
 		}
+
+		// //This is another implementation. It solve the problem of WorkItems being added one by one to WorkPackage
+		// //(and thus refreshing tree after each one).
+		// //But it leads to an UnsopurtedOperationException due to a
+		// //multiple remove operation.
+
+		// Set<ModelElement> openersForSource = TaxonomyAccess.getInstance().getOpeningLinkTaxonomy().getLeafOpeners(
+		// dragSource);
+		// List<WorkItem> workItemsToAdd = new ArrayList<WorkItem>();
+		// try {
+		// for (ModelElement me : openersForSource) {
+		// if (me instanceof WorkItem) {
+		// if (!me.getMEState().equals(MEState.CLOSED) && isAssignedToTheSameTeam(me)) {
+		// workItemsToAdd.add((WorkItem) me);
+		// }
+		// }
+		// }
+		// } catch (CircularDependencyException e) {
+		// // TODO Auto-generated catch block
+		// e.printStackTrace();
+		// }
+		//
+		// if (workItemsToAdd.size() == 0) {
+		// ActionItem ai = TaskFactory.eINSTANCE.createActionItem();
+		// ai.setName("New Action Item relating " + dragSource.getName());
+		// ai.getAnnotatedModelElements().add(dragSource);
+		// ((WorkPackage) currentOpenME).getContainedWorkItems().add(ai);
+		// } else {
+		// ((WorkPackage) currentOpenME).getContainedWorkItems().addAll(workItemsToAdd);
+		// }
 
 	}
 
