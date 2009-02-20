@@ -46,8 +46,7 @@ public class ShowHistoryEventItemProvider extends EventItemProvider implements I
 	 */
 	@Override
 	public List<IItemPropertyDescriptor> getPropertyDescriptors(Object object) {
-		if (itemPropertyDescriptors == null)
-		{
+		if (itemPropertyDescriptors == null) {
 			super.getPropertyDescriptors(object);
 
 		}
@@ -64,8 +63,7 @@ public class ShowHistoryEventItemProvider extends EventItemProvider implements I
 	 */
 	@Override
 	public Collection<? extends EStructuralFeature> getChildrenFeatures(Object object) {
-		if (childrenFeatures == null)
-		{
+		if (childrenFeatures == null) {
 			super.getChildrenFeatures(object);
 			childrenFeatures.add(EventsPackage.Literals.SHOW_HISTORY_EVENT__SOURCE_VERSION);
 			childrenFeatures.add(EventsPackage.Literals.SHOW_HISTORY_EVENT__TARGET_VERSION);
@@ -120,8 +118,7 @@ public class ShowHistoryEventItemProvider extends EventItemProvider implements I
 	public void notifyChanged(Notification notification) {
 		updateChildren(notification);
 
-		switch (notification.getFeatureID(ShowHistoryEvent.class))
-		{
+		switch (notification.getFeatureID(ShowHistoryEvent.class)) {
 			case EventsPackage.SHOW_HISTORY_EVENT__SOURCE_VERSION:
 			case EventsPackage.SHOW_HISTORY_EVENT__TARGET_VERSION:
 				fireNotifyChanged(new ViewerNotification(notification, notification.getNotifier(), true, false));
@@ -166,8 +163,7 @@ public class ShowHistoryEventItemProvider extends EventItemProvider implements I
 			childFeature == EventsPackage.Literals.SHOW_HISTORY_EVENT__SOURCE_VERSION ||
 			childFeature == EventsPackage.Literals.SHOW_HISTORY_EVENT__TARGET_VERSION;
 
-		if (qualify)
-		{
+		if (qualify) {
 			return getString
 				("_UI_CreateChild_text2",
 				 new Object[] { getTypeText(childObject), getFeatureText(childFeature), getTypeText(owner) });

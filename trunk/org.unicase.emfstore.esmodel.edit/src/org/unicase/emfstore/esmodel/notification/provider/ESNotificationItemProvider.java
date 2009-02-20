@@ -51,8 +51,7 @@ public class ESNotificationItemProvider extends IdentifiableElementItemProvider 
 	 */
 	@Override
 	public List<IItemPropertyDescriptor> getPropertyDescriptors(Object object) {
-		if (itemPropertyDescriptors == null)
-		{
+		if (itemPropertyDescriptors == null) {
 			super.getPropertyDescriptors(object);
 
 			addNamePropertyDescriptor(object);
@@ -204,8 +203,7 @@ public class ESNotificationItemProvider extends IdentifiableElementItemProvider 
 	 */
 	@Override
 	public Collection<? extends EStructuralFeature> getChildrenFeatures(Object object) {
-		if (childrenFeatures == null)
-		{
+		if (childrenFeatures == null) {
 			super.getChildrenFeatures(object);
 			childrenFeatures.add(NotificationPackage.Literals.ES_NOTIFICATION__PROJECT);
 			childrenFeatures.add(NotificationPackage.Literals.ES_NOTIFICATION__RELATED_MODEL_ELEMENTS);
@@ -259,8 +257,7 @@ public class ESNotificationItemProvider extends IdentifiableElementItemProvider 
 	public void notifyChanged(Notification notification) {
 		updateChildren(notification);
 
-		switch (notification.getFeatureID(ESNotification.class))
-		{
+		switch (notification.getFeatureID(ESNotification.class)) {
 			case NotificationPackage.ES_NOTIFICATION__NAME:
 			case NotificationPackage.ES_NOTIFICATION__MESSAGE:
 			case NotificationPackage.ES_NOTIFICATION__SEEN:

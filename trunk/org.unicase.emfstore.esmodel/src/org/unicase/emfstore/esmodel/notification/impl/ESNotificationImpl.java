@@ -254,16 +254,13 @@ public class ESNotificationImpl extends IdentifiableElementImpl implements ESNot
 	 * @generated
 	 */
 	public ProjectId getProject() {
-		if (project != null && project.eIsProxy())
-		{
+		if (project != null && project.eIsProxy()) {
 			InternalEObject oldProject = (InternalEObject)project;
 			project = (ProjectId)eResolveProxy(oldProject);
-			if (project != oldProject)
-			{
+			if (project != oldProject) {
 				InternalEObject newProject = (InternalEObject)project;
 				NotificationChain msgs = oldProject.eInverseRemove(this, EOPPOSITE_FEATURE_BASE - NotificationPackage.ES_NOTIFICATION__PROJECT, null, null);
-				if (newProject.eInternalContainer() == null)
-				{
+				if (newProject.eInternalContainer() == null) {
 					msgs = newProject.eInverseAdd(this, EOPPOSITE_FEATURE_BASE - NotificationPackage.ES_NOTIFICATION__PROJECT, null, msgs);
 				}
 				if (msgs != null) msgs.dispatch();
@@ -289,8 +286,7 @@ public class ESNotificationImpl extends IdentifiableElementImpl implements ESNot
 	public NotificationChain basicSetProject(ProjectId newProject, NotificationChain msgs) {
 		ProjectId oldProject = project;
 		project = newProject;
-		if (eNotificationRequired())
-		{
+		if (eNotificationRequired()) {
 			ENotificationImpl notification = new ENotificationImpl(this, Notification.SET, NotificationPackage.ES_NOTIFICATION__PROJECT, oldProject, newProject);
 			if (msgs == null) msgs = notification; else msgs.add(notification);
 		}
@@ -302,8 +298,7 @@ public class ESNotificationImpl extends IdentifiableElementImpl implements ESNot
 	 * @generated
 	 */
 	public void setProject(ProjectId newProject) {
-		if (newProject != project)
-		{
+		if (newProject != project) {
 			NotificationChain msgs = null;
 			if (project != null)
 				msgs = ((InternalEObject)project).eInverseRemove(this, EOPPOSITE_FEATURE_BASE - NotificationPackage.ES_NOTIFICATION__PROJECT, null, msgs);
@@ -321,8 +316,7 @@ public class ESNotificationImpl extends IdentifiableElementImpl implements ESNot
 	 * @generated
 	 */
 	public EList<ModelElementId> getRelatedModelElements() {
-		if (relatedModelElements == null)
-		{
+		if (relatedModelElements == null) {
 			relatedModelElements = new EObjectContainmentEList.Resolving<ModelElementId>(ModelElementId.class, this, NotificationPackage.ES_NOTIFICATION__RELATED_MODEL_ELEMENTS);
 		}
 		return relatedModelElements;
@@ -395,8 +389,7 @@ public class ESNotificationImpl extends IdentifiableElementImpl implements ESNot
 	 */
 	@Override
 	public NotificationChain eInverseRemove(InternalEObject otherEnd, int featureID, NotificationChain msgs) {
-		switch (featureID)
-		{
+		switch (featureID) {
 			case NotificationPackage.ES_NOTIFICATION__PROJECT:
 				return basicSetProject(null, msgs);
 			case NotificationPackage.ES_NOTIFICATION__RELATED_MODEL_ELEMENTS:
@@ -411,8 +404,7 @@ public class ESNotificationImpl extends IdentifiableElementImpl implements ESNot
 	 */
 	@Override
 	public Object eGet(int featureID, boolean resolve, boolean coreType) {
-		switch (featureID)
-		{
+		switch (featureID) {
 			case NotificationPackage.ES_NOTIFICATION__NAME:
 				return getName();
 			case NotificationPackage.ES_NOTIFICATION__MESSAGE:
@@ -441,8 +433,7 @@ public class ESNotificationImpl extends IdentifiableElementImpl implements ESNot
 	@SuppressWarnings("unchecked")
 	@Override
 	public void eSet(int featureID, Object newValue) {
-		switch (featureID)
-		{
+		switch (featureID) {
 			case NotificationPackage.ES_NOTIFICATION__NAME:
 				setName((String)newValue);
 				return;
@@ -478,8 +469,7 @@ public class ESNotificationImpl extends IdentifiableElementImpl implements ESNot
 	 */
 	@Override
 	public void eUnset(int featureID) {
-		switch (featureID)
-		{
+		switch (featureID) {
 			case NotificationPackage.ES_NOTIFICATION__NAME:
 				setName(NAME_EDEFAULT);
 				return;
@@ -514,8 +504,7 @@ public class ESNotificationImpl extends IdentifiableElementImpl implements ESNot
 	 */
 	@Override
 	public boolean eIsSet(int featureID) {
-		switch (featureID)
-		{
+		switch (featureID) {
 			case NotificationPackage.ES_NOTIFICATION__NAME:
 				return NAME_EDEFAULT == null ? name != null : !NAME_EDEFAULT.equals(name);
 			case NotificationPackage.ES_NOTIFICATION__MESSAGE:

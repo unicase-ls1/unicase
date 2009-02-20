@@ -134,8 +134,7 @@ public abstract class ReferenceOperationImpl extends FeatureOperationImpl implem
 	 */
 	@Override
 	public Object eGet(int featureID, boolean resolve, boolean coreType) {
-		switch (featureID)
-		{
+		switch (featureID) {
 			case OperationsPackage.REFERENCE_OPERATION__BIDIRECTIONAL:
 				return isBidirectional() ? Boolean.TRUE : Boolean.FALSE;
 			case OperationsPackage.REFERENCE_OPERATION__OPPOSITE_FEATURE_NAME:
@@ -150,8 +149,7 @@ public abstract class ReferenceOperationImpl extends FeatureOperationImpl implem
 	 */
 	@Override
 	public void eSet(int featureID, Object newValue) {
-		switch (featureID)
-		{
+		switch (featureID) {
 			case OperationsPackage.REFERENCE_OPERATION__BIDIRECTIONAL:
 				setBidirectional(((Boolean)newValue).booleanValue());
 				return;
@@ -168,8 +166,7 @@ public abstract class ReferenceOperationImpl extends FeatureOperationImpl implem
 	 */
 	@Override
 	public void eUnset(int featureID) {
-		switch (featureID)
-		{
+		switch (featureID) {
 			case OperationsPackage.REFERENCE_OPERATION__BIDIRECTIONAL:
 				setBidirectional(BIDIRECTIONAL_EDEFAULT);
 				return;
@@ -186,8 +183,7 @@ public abstract class ReferenceOperationImpl extends FeatureOperationImpl implem
 	 */
 	@Override
 	public boolean eIsSet(int featureID) {
-		switch (featureID)
-		{
+		switch (featureID) {
 			case OperationsPackage.REFERENCE_OPERATION__BIDIRECTIONAL:
 				return bidirectional != BIDIRECTIONAL_EDEFAULT;
 			case OperationsPackage.REFERENCE_OPERATION__OPPOSITE_FEATURE_NAME:

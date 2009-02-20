@@ -20,50 +20,50 @@ import org.unicase.model.ModelElementId;
  */
 public interface NavigatorCreateEvent extends Event {
 	/**
-	 * Returns the value of the '<em><b>Created Element</b></em>' reference.
+	 * Returns the value of the '<em><b>Created Element</b></em>' containment reference.
 	 * <!-- begin-user-doc -->
 	 * <p>
 	 * If the meaning of the '<em>Created Element</em>' reference isn't clear, there really should be more of a
 	 * description here...
 	 * </p>
 	 * <!-- end-user-doc -->
-	 * @return the value of the '<em>Created Element</em>' reference.
+	 * @return the value of the '<em>Created Element</em>' containment reference.
 	 * @see #setCreatedElement(ModelElementId)
 	 * @see org.unicase.emfstore.esmodel.versioning.events.EventsPackage#getNavigatorCreateEvent_CreatedElement()
-	 * @model
+	 * @model containment="true" resolveProxies="true"
 	 * @generated
 	 */
 	ModelElementId getCreatedElement();
 
 	/**
-	 * Sets the value of the '{@link org.unicase.emfstore.esmodel.versioning.events.NavigatorCreateEvent#getCreatedElement <em>Created Element</em>}' reference.
+	 * Sets the value of the '{@link org.unicase.emfstore.esmodel.versioning.events.NavigatorCreateEvent#getCreatedElement <em>Created Element</em>}' containment reference.
 	 * <!-- begin-user-doc --> <!-- end-user-doc -->
-	 * @param value the new value of the '<em>Created Element</em>' reference.
+	 * @param value the new value of the '<em>Created Element</em>' containment reference.
 	 * @see #getCreatedElement()
 	 * @generated
 	 */
 	void setCreatedElement(ModelElementId value);
 
 	/**
-	 * Returns the value of the '<em><b>Source Section</b></em>' reference.
+	 * Returns the value of the '<em><b>Source Section</b></em>' containment reference.
 	 * <!-- begin-user-doc -->
 	 * <p>
 	 * If the meaning of the '<em>Source Section</em>' reference isn't clear, there really should be more of a
 	 * description here...
 	 * </p>
 	 * <!-- end-user-doc -->
-	 * @return the value of the '<em>Source Section</em>' reference.
+	 * @return the value of the '<em>Source Section</em>' containment reference.
 	 * @see #setSourceSection(ModelElementId)
 	 * @see org.unicase.emfstore.esmodel.versioning.events.EventsPackage#getNavigatorCreateEvent_SourceSection()
-	 * @model
+	 * @model containment="true" resolveProxies="true"
 	 * @generated
 	 */
 	ModelElementId getSourceSection();
 
 	/**
-	 * Sets the value of the '{@link org.unicase.emfstore.esmodel.versioning.events.NavigatorCreateEvent#getSourceSection <em>Source Section</em>}' reference.
+	 * Sets the value of the '{@link org.unicase.emfstore.esmodel.versioning.events.NavigatorCreateEvent#getSourceSection <em>Source Section</em>}' containment reference.
 	 * <!-- begin-user-doc --> <!-- end-user-doc -->
-	 * @param value the new value of the '<em>Source Section</em>' reference.
+	 * @param value the new value of the '<em>Source Section</em>' containment reference.
 	 * @see #getSourceSection()
 	 * @generated
 	 */

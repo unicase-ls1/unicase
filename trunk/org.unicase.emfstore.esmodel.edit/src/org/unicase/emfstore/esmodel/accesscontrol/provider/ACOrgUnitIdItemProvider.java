@@ -44,8 +44,7 @@ public class ACOrgUnitIdItemProvider extends UniqueIdentifierItemProvider implem
 	 */
 	@Override
 	public List<IItemPropertyDescriptor> getPropertyDescriptors(Object object) {
-		if (itemPropertyDescriptors == null)
-		{
+		if (itemPropertyDescriptors == null) {
 			super.getPropertyDescriptors(object);
 
 		}

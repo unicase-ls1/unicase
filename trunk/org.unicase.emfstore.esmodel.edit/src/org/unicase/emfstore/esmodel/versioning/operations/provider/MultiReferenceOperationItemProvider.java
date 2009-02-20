@@ -49,8 +49,7 @@ public class MultiReferenceOperationItemProvider extends ReferenceOperationItemP
 	 */
 	@Override
 	public List<IItemPropertyDescriptor> getPropertyDescriptors(Object object) {
-		if (itemPropertyDescriptors == null)
-		{
+		if (itemPropertyDescriptors == null) {
 			super.getPropertyDescriptors(object);
 
 			addAddPropertyDescriptor(object);
@@ -111,8 +110,7 @@ public class MultiReferenceOperationItemProvider extends ReferenceOperationItemP
 	 */
 	@Override
 	public Collection<? extends EStructuralFeature> getChildrenFeatures(Object object) {
-		if (childrenFeatures == null)
-		{
+		if (childrenFeatures == null) {
 			super.getChildrenFeatures(object);
 			childrenFeatures.add(OperationsPackage.Literals.MULTI_REFERENCE_OPERATION__REFERENCED_MODEL_ELEMENTS);
 		}
@@ -165,8 +163,7 @@ public class MultiReferenceOperationItemProvider extends ReferenceOperationItemP
 	public void notifyChanged(Notification notification) {
 		updateChildren(notification);
 
-		switch (notification.getFeatureID(MultiReferenceOperation.class))
-		{
+		switch (notification.getFeatureID(MultiReferenceOperation.class)) {
 			case OperationsPackage.MULTI_REFERENCE_OPERATION__ADD:
 			case OperationsPackage.MULTI_REFERENCE_OPERATION__INDEX:
 				fireNotifyChanged(new ViewerNotification(notification, notification.getNotifier(), false, true));

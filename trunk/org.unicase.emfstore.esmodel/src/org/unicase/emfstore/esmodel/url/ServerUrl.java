@@ -17,13 +17,13 @@ import org.eclipse.emf.ecore.EObject;
  */
 public interface ServerUrl extends EObject {
 	/**
-	 * Returns the value of the '<em><b>Host Name</b></em>' attribute. <!-- begin-user-doc -->
+	 * Returns the value of the '<em><b>Host Name</b></em>' attribute.
+	 * <!-- begin-user-doc -->
 	 * <p>
 	 * If the meaning of the '<em>Host Name</em>' attribute isn't clear, there really should be more of a description
 	 * here...
 	 * </p>
 	 * <!-- end-user-doc -->
-	 * 
 	 * @return the value of the '<em>Host Name</em>' attribute.
 	 * @see #setHostName(String)
 	 * @see org.unicase.emfstore.esmodel.url.UrlPackage#getServerUrl_HostName()
@@ -33,9 +33,8 @@ public interface ServerUrl extends EObject {
 	String getHostName();
 
 	/**
-	 * Sets the value of the '{@link org.unicase.emfstore.esmodel.url.ServerUrl#getHostName <em>Host Name</em>}'
-	 * attribute. <!-- begin-user-doc --> <!-- end-user-doc -->
-	 * 
+	 * Sets the value of the '{@link org.unicase.emfstore.esmodel.url.ServerUrl#getHostName <em>Host Name</em>}' attribute.
+	 * <!-- begin-user-doc --> <!-- end-user-doc -->
 	 * @param value the new value of the '<em>Host Name</em>' attribute.
 	 * @see #getHostName()
 	 * @generated
@@ -43,12 +42,12 @@ public interface ServerUrl extends EObject {
 	void setHostName(String value);
 
 	/**
-	 * Returns the value of the '<em><b>Port</b></em>' attribute. <!-- begin-user-doc -->
+	 * Returns the value of the '<em><b>Port</b></em>' attribute.
+	 * <!-- begin-user-doc -->
 	 * <p>
 	 * If the meaning of the '<em>Port</em>' attribute isn't clear, there really should be more of a description here...
 	 * </p>
 	 * <!-- end-user-doc -->
-	 * 
 	 * @return the value of the '<em>Port</em>' attribute.
 	 * @see #setPort(int)
 	 * @see org.unicase.emfstore.esmodel.url.UrlPackage#getServerUrl_Port()

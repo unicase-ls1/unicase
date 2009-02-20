@@ -48,8 +48,7 @@ public class ServerSpaceItemProvider extends ItemProviderAdapter implements IEdi
 	 */
 	@Override
 	public List<IItemPropertyDescriptor> getPropertyDescriptors(Object object) {
-		if (itemPropertyDescriptors == null)
-		{
+		if (itemPropertyDescriptors == null) {
 			super.getPropertyDescriptors(object);
 
 		}
@@ -66,8 +65,7 @@ public class ServerSpaceItemProvider extends ItemProviderAdapter implements IEdi
 	 */
 	@Override
 	public Collection<? extends EStructuralFeature> getChildrenFeatures(Object object) {
-		if (childrenFeatures == null)
-		{
+		if (childrenFeatures == null) {
 			super.getChildrenFeatures(object);
 			childrenFeatures.add(EsmodelPackage.Literals.SERVER_SPACE__GROUPS);
 			childrenFeatures.add(EsmodelPackage.Literals.SERVER_SPACE__PROJECTS);
@@ -120,8 +118,7 @@ public class ServerSpaceItemProvider extends ItemProviderAdapter implements IEdi
 	public void notifyChanged(Notification notification) {
 		updateChildren(notification);
 
-		switch (notification.getFeatureID(ServerSpace.class))
-		{
+		switch (notification.getFeatureID(ServerSpace.class)) {
 			case EsmodelPackage.SERVER_SPACE__GROUPS:
 			case EsmodelPackage.SERVER_SPACE__PROJECTS:
 			case EsmodelPackage.SERVER_SPACE__OPEN_SESSIONS:

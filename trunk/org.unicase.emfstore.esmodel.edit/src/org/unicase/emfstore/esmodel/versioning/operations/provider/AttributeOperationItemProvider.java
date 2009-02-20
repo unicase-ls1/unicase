@@ -45,8 +45,7 @@ public class AttributeOperationItemProvider extends FeatureOperationItemProvider
 	 */
 	@Override
 	public List<IItemPropertyDescriptor> getPropertyDescriptors(Object object) {
-		if (itemPropertyDescriptors == null)
-		{
+		if (itemPropertyDescriptors == null) {
 			super.getPropertyDescriptors(object);
 
 			addOldValuePropertyDescriptor(object);
@@ -131,8 +130,7 @@ public class AttributeOperationItemProvider extends FeatureOperationItemProvider
 	public void notifyChanged(Notification notification) {
 		updateChildren(notification);
 
-		switch (notification.getFeatureID(AttributeOperation.class))
-		{
+		switch (notification.getFeatureID(AttributeOperation.class)) {
 			case OperationsPackage.ATTRIBUTE_OPERATION__OLD_VALUE:
 			case OperationsPackage.ATTRIBUTE_OPERATION__NEW_VALUE:
 				fireNotifyChanged(new ViewerNotification(notification, notification.getNotifier(), false, true));

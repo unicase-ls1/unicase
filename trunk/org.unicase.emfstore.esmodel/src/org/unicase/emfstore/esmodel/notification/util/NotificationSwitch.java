@@ -35,8 +35,7 @@ public class NotificationSwitch<T> {
 	 * @generated
 	 */
 	public NotificationSwitch() {
-		if (modelPackage == null)
-		{
+		if (modelPackage == null) {
 			modelPackage = NotificationPackage.eINSTANCE;
 		}
 	}
@@ -58,12 +57,10 @@ public class NotificationSwitch<T> {
 	 * @generated
 	 */
 	protected T doSwitch(EClass theEClass, EObject theEObject) {
-		if (theEClass.eContainer() == modelPackage)
-		{
+		if (theEClass.eContainer() == modelPackage) {
 			return doSwitch(theEClass.getClassifierID(), theEObject);
 		}
-		else
-		{
+		else {
 			List<EClass> eSuperTypes = theEClass.getESuperTypes();
 			return
 				eSuperTypes.isEmpty() ?
@@ -79,10 +76,8 @@ public class NotificationSwitch<T> {
 	 * @generated
 	 */
 	protected T doSwitch(int classifierID, EObject theEObject) {
-		switch (classifierID)
-		{
-			case NotificationPackage.ES_NOTIFICATION:
-			{
+		switch (classifierID) {
+			case NotificationPackage.ES_NOTIFICATION: {
 				ESNotification esNotification = (ESNotification)theEObject;
 				T result = caseESNotification(esNotification);
 				if (result == null) result = caseIdentifiableElement(esNotification);

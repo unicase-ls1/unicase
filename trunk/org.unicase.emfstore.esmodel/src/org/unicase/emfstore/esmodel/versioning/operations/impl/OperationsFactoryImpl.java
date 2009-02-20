@@ -33,16 +33,13 @@ public class OperationsFactoryImpl extends EFactoryImpl implements OperationsFac
 	 * @generated
 	 */
 	public static OperationsFactory init() {
-		try
-		{
+		try {
 			OperationsFactory theOperationsFactory = (OperationsFactory)EPackage.Registry.INSTANCE.getEFactory("http://unicase.org/esmodel/versioning/operations"); 
-			if (theOperationsFactory != null)
-			{
+			if (theOperationsFactory != null) {
 				return theOperationsFactory;
 			}
 		}
-		catch (Exception exception)
-		{
+		catch (Exception exception) {
 			EcorePlugin.INSTANCE.log(exception);
 		}
 		return new OperationsFactoryImpl();
@@ -63,8 +60,7 @@ public class OperationsFactoryImpl extends EFactoryImpl implements OperationsFac
 	 */
 	@Override
 	public EObject create(EClass eClass) {
-		switch (eClass.getClassifierID())
-		{
+		switch (eClass.getClassifierID()) {
 			case OperationsPackage.COMPOSITE_OPERATION: return createCompositeOperation();
 			case OperationsPackage.CREATE_DELETE_OPERATION: return createCreateDeleteOperation();
 			case OperationsPackage.ATTRIBUTE_OPERATION: return createAttributeOperation();

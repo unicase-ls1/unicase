@@ -48,8 +48,7 @@ public class TagVersionSpecItemProvider extends ItemProviderAdapter implements I
 	 */
 	@Override
 	public List<IItemPropertyDescriptor> getPropertyDescriptors(Object object) {
-		if (itemPropertyDescriptors == null)
-		{
+		if (itemPropertyDescriptors == null) {
 			super.getPropertyDescriptors(object);
 
 			addNamePropertyDescriptor(object);
@@ -112,8 +111,7 @@ public class TagVersionSpecItemProvider extends ItemProviderAdapter implements I
 	public void notifyChanged(Notification notification) {
 		updateChildren(notification);
 
-		switch (notification.getFeatureID(TagVersionSpec.class))
-		{
+		switch (notification.getFeatureID(TagVersionSpec.class)) {
 			case VersioningPackage.TAG_VERSION_SPEC__NAME:
 				fireNotifyChanged(new ViewerNotification(notification, notification.getNotifier(), false, true));
 				return;

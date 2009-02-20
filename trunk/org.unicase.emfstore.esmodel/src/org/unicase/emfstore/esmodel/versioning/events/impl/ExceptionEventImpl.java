@@ -202,8 +202,7 @@ public class ExceptionEventImpl extends EventImpl implements ExceptionEvent {
 	 */
 	@Override
 	public Object eGet(int featureID, boolean resolve, boolean coreType) {
-		switch (featureID)
-		{
+		switch (featureID) {
 			case EventsPackage.EXCEPTION_EVENT__EXCEPTION_TITLE:
 				return getExceptionTitle();
 			case EventsPackage.EXCEPTION_EVENT__EXCEPTION_STACK_TRACE:
@@ -222,8 +221,7 @@ public class ExceptionEventImpl extends EventImpl implements ExceptionEvent {
 	 */
 	@Override
 	public void eSet(int featureID, Object newValue) {
-		switch (featureID)
-		{
+		switch (featureID) {
 			case EventsPackage.EXCEPTION_EVENT__EXCEPTION_TITLE:
 				setExceptionTitle((String)newValue);
 				return;
@@ -246,8 +244,7 @@ public class ExceptionEventImpl extends EventImpl implements ExceptionEvent {
 	 */
 	@Override
 	public void eUnset(int featureID) {
-		switch (featureID)
-		{
+		switch (featureID) {
 			case EventsPackage.EXCEPTION_EVENT__EXCEPTION_TITLE:
 				setExceptionTitle(EXCEPTION_TITLE_EDEFAULT);
 				return;
@@ -270,8 +267,7 @@ public class ExceptionEventImpl extends EventImpl implements ExceptionEvent {
 	 */
 	@Override
 	public boolean eIsSet(int featureID) {
-		switch (featureID)
-		{
+		switch (featureID) {
 			case EventsPackage.EXCEPTION_EVENT__EXCEPTION_TITLE:
 				return EXCEPTION_TITLE_EDEFAULT == null ? exceptionTitle != null : !EXCEPTION_TITLE_EDEFAULT.equals(exceptionTitle);
 			case EventsPackage.EXCEPTION_EVENT__EXCEPTION_STACK_TRACE:

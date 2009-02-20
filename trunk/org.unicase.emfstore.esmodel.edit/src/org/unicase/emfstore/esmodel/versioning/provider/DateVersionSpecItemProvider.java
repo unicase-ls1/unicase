@@ -49,8 +49,7 @@ public class DateVersionSpecItemProvider extends ItemProviderAdapter implements 
 	 */
 	@Override
 	public List<IItemPropertyDescriptor> getPropertyDescriptors(Object object) {
-		if (itemPropertyDescriptors == null)
-		{
+		if (itemPropertyDescriptors == null) {
 			super.getPropertyDescriptors(object);
 
 			addDatePropertyDescriptor(object);
@@ -114,8 +113,7 @@ public class DateVersionSpecItemProvider extends ItemProviderAdapter implements 
 	public void notifyChanged(Notification notification) {
 		updateChildren(notification);
 
-		switch (notification.getFeatureID(DateVersionSpec.class))
-		{
+		switch (notification.getFeatureID(DateVersionSpec.class)) {
 			case VersioningPackage.DATE_VERSION_SPEC__DATE:
 				fireNotifyChanged(new ViewerNotification(notification, notification.getNotifier(), false, true));
 				return;

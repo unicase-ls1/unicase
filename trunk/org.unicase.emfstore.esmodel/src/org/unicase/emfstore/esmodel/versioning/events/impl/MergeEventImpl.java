@@ -163,16 +163,13 @@ public class MergeEventImpl extends EventImpl implements MergeEvent {
 	 * @generated
 	 */
 	public PrimaryVersionSpec getBaseVersion() {
-		if (baseVersion != null && baseVersion.eIsProxy())
-		{
+		if (baseVersion != null && baseVersion.eIsProxy()) {
 			InternalEObject oldBaseVersion = (InternalEObject)baseVersion;
 			baseVersion = (PrimaryVersionSpec)eResolveProxy(oldBaseVersion);
-			if (baseVersion != oldBaseVersion)
-			{
+			if (baseVersion != oldBaseVersion) {
 				InternalEObject newBaseVersion = (InternalEObject)baseVersion;
 				NotificationChain msgs = oldBaseVersion.eInverseRemove(this, EOPPOSITE_FEATURE_BASE - EventsPackage.MERGE_EVENT__BASE_VERSION, null, null);
-				if (newBaseVersion.eInternalContainer() == null)
-				{
+				if (newBaseVersion.eInternalContainer() == null) {
 					msgs = newBaseVersion.eInverseAdd(this, EOPPOSITE_FEATURE_BASE - EventsPackage.MERGE_EVENT__BASE_VERSION, null, msgs);
 				}
 				if (msgs != null) msgs.dispatch();
@@ -198,8 +195,7 @@ public class MergeEventImpl extends EventImpl implements MergeEvent {
 	public NotificationChain basicSetBaseVersion(PrimaryVersionSpec newBaseVersion, NotificationChain msgs) {
 		PrimaryVersionSpec oldBaseVersion = baseVersion;
 		baseVersion = newBaseVersion;
-		if (eNotificationRequired())
-		{
+		if (eNotificationRequired()) {
 			ENotificationImpl notification = new ENotificationImpl(this, Notification.SET, EventsPackage.MERGE_EVENT__BASE_VERSION, oldBaseVersion, newBaseVersion);
 			if (msgs == null) msgs = notification; else msgs.add(notification);
 		}
@@ -211,8 +207,7 @@ public class MergeEventImpl extends EventImpl implements MergeEvent {
 	 * @generated
 	 */
 	public void setBaseVersion(PrimaryVersionSpec newBaseVersion) {
-		if (newBaseVersion != baseVersion)
-		{
+		if (newBaseVersion != baseVersion) {
 			NotificationChain msgs = null;
 			if (baseVersion != null)
 				msgs = ((InternalEObject)baseVersion).eInverseRemove(this, EOPPOSITE_FEATURE_BASE - EventsPackage.MERGE_EVENT__BASE_VERSION, null, msgs);
@@ -230,16 +225,13 @@ public class MergeEventImpl extends EventImpl implements MergeEvent {
 	 * @generated
 	 */
 	public PrimaryVersionSpec getTargetVersion() {
-		if (targetVersion != null && targetVersion.eIsProxy())
-		{
+		if (targetVersion != null && targetVersion.eIsProxy()) {
 			InternalEObject oldTargetVersion = (InternalEObject)targetVersion;
 			targetVersion = (PrimaryVersionSpec)eResolveProxy(oldTargetVersion);
-			if (targetVersion != oldTargetVersion)
-			{
+			if (targetVersion != oldTargetVersion) {
 				InternalEObject newTargetVersion = (InternalEObject)targetVersion;
 				NotificationChain msgs = oldTargetVersion.eInverseRemove(this, EOPPOSITE_FEATURE_BASE - EventsPackage.MERGE_EVENT__TARGET_VERSION, null, null);
-				if (newTargetVersion.eInternalContainer() == null)
-				{
+				if (newTargetVersion.eInternalContainer() == null) {
 					msgs = newTargetVersion.eInverseAdd(this, EOPPOSITE_FEATURE_BASE - EventsPackage.MERGE_EVENT__TARGET_VERSION, null, msgs);
 				}
 				if (msgs != null) msgs.dispatch();
@@ -265,8 +257,7 @@ public class MergeEventImpl extends EventImpl implements MergeEvent {
 	public NotificationChain basicSetTargetVersion(PrimaryVersionSpec newTargetVersion, NotificationChain msgs) {
 		PrimaryVersionSpec oldTargetVersion = targetVersion;
 		targetVersion = newTargetVersion;
-		if (eNotificationRequired())
-		{
+		if (eNotificationRequired()) {
 			ENotificationImpl notification = new ENotificationImpl(this, Notification.SET, EventsPackage.MERGE_EVENT__TARGET_VERSION, oldTargetVersion, newTargetVersion);
 			if (msgs == null) msgs = notification; else msgs.add(notification);
 		}
@@ -278,8 +269,7 @@ public class MergeEventImpl extends EventImpl implements MergeEvent {
 	 * @generated
 	 */
 	public void setTargetVersion(PrimaryVersionSpec newTargetVersion) {
-		if (newTargetVersion != targetVersion)
-		{
+		if (newTargetVersion != targetVersion) {
 			NotificationChain msgs = null;
 			if (targetVersion != null)
 				msgs = ((InternalEObject)targetVersion).eInverseRemove(this, EOPPOSITE_FEATURE_BASE - EventsPackage.MERGE_EVENT__TARGET_VERSION, null, msgs);
@@ -297,8 +287,7 @@ public class MergeEventImpl extends EventImpl implements MergeEvent {
 	 * @generated
 	 */
 	public EList<AbstractOperation> getLocalChanges() {
-		if (localChanges == null)
-		{
+		if (localChanges == null) {
 			localChanges = new EObjectContainmentEList.Resolving<AbstractOperation>(AbstractOperation.class, this, EventsPackage.MERGE_EVENT__LOCAL_CHANGES);
 		}
 		return localChanges;
@@ -310,8 +299,7 @@ public class MergeEventImpl extends EventImpl implements MergeEvent {
 	 */
 	@Override
 	public NotificationChain eInverseRemove(InternalEObject otherEnd, int featureID, NotificationChain msgs) {
-		switch (featureID)
-		{
+		switch (featureID) {
 			case EventsPackage.MERGE_EVENT__BASE_VERSION:
 				return basicSetBaseVersion(null, msgs);
 			case EventsPackage.MERGE_EVENT__TARGET_VERSION:
@@ -328,8 +316,7 @@ public class MergeEventImpl extends EventImpl implements MergeEvent {
 	 */
 	@Override
 	public Object eGet(int featureID, boolean resolve, boolean coreType) {
-		switch (featureID)
-		{
+		switch (featureID) {
 			case EventsPackage.MERGE_EVENT__NUMBER_OF_CONFLICTS:
 				return new Integer(getNumberOfConflicts());
 			case EventsPackage.MERGE_EVENT__TOTAL_TIME:
@@ -353,8 +340,7 @@ public class MergeEventImpl extends EventImpl implements MergeEvent {
 	@SuppressWarnings("unchecked")
 	@Override
 	public void eSet(int featureID, Object newValue) {
-		switch (featureID)
-		{
+		switch (featureID) {
 			case EventsPackage.MERGE_EVENT__NUMBER_OF_CONFLICTS:
 				setNumberOfConflicts(((Integer)newValue).intValue());
 				return;
@@ -381,8 +367,7 @@ public class MergeEventImpl extends EventImpl implements MergeEvent {
 	 */
 	@Override
 	public void eUnset(int featureID) {
-		switch (featureID)
-		{
+		switch (featureID) {
 			case EventsPackage.MERGE_EVENT__NUMBER_OF_CONFLICTS:
 				setNumberOfConflicts(NUMBER_OF_CONFLICTS_EDEFAULT);
 				return;
@@ -408,8 +393,7 @@ public class MergeEventImpl extends EventImpl implements MergeEvent {
 	 */
 	@Override
 	public boolean eIsSet(int featureID) {
-		switch (featureID)
-		{
+		switch (featureID) {
 			case EventsPackage.MERGE_EVENT__NUMBER_OF_CONFLICTS:
 				return numberOfConflicts != NUMBER_OF_CONFLICTS_EDEFAULT;
 			case EventsPackage.MERGE_EVENT__TOTAL_TIME:

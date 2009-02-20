@@ -46,8 +46,7 @@ public class ExceptionEventItemProvider extends EventItemProvider implements IEd
 	 */
 	@Override
 	public List<IItemPropertyDescriptor> getPropertyDescriptors(Object object) {
-		if (itemPropertyDescriptors == null)
-		{
+		if (itemPropertyDescriptors == null) {
 			super.getPropertyDescriptors(object);
 
 			addExceptionTitlePropertyDescriptor(object);
@@ -180,8 +179,7 @@ public class ExceptionEventItemProvider extends EventItemProvider implements IEd
 	public void notifyChanged(Notification notification) {
 		updateChildren(notification);
 
-		switch (notification.getFeatureID(ExceptionEvent.class))
-		{
+		switch (notification.getFeatureID(ExceptionEvent.class)) {
 			case EventsPackage.EXCEPTION_EVENT__EXCEPTION_TITLE:
 			case EventsPackage.EXCEPTION_EVENT__EXCEPTION_STACK_TRACE:
 			case EventsPackage.EXCEPTION_EVENT__EXCEPTION_CAUSE_TITLE:

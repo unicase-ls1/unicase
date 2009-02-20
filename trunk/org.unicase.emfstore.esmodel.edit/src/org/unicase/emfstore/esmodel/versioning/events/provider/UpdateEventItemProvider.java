@@ -46,8 +46,7 @@ public class UpdateEventItemProvider extends EventItemProvider implements IEditi
 	 */
 	@Override
 	public List<IItemPropertyDescriptor> getPropertyDescriptors(Object object) {
-		if (itemPropertyDescriptors == null)
-		{
+		if (itemPropertyDescriptors == null) {
 			super.getPropertyDescriptors(object);
 
 		}
@@ -64,8 +63,7 @@ public class UpdateEventItemProvider extends EventItemProvider implements IEditi
 	 */
 	@Override
 	public Collection<? extends EStructuralFeature> getChildrenFeatures(Object object) {
-		if (childrenFeatures == null)
-		{
+		if (childrenFeatures == null) {
 			super.getChildrenFeatures(object);
 			childrenFeatures.add(EventsPackage.Literals.UPDATE_EVENT__BASE_VERSION);
 			childrenFeatures.add(EventsPackage.Literals.UPDATE_EVENT__TARGET_VERSION);
@@ -120,8 +118,7 @@ public class UpdateEventItemProvider extends EventItemProvider implements IEditi
 	public void notifyChanged(Notification notification) {
 		updateChildren(notification);
 
-		switch (notification.getFeatureID(UpdateEvent.class))
-		{
+		switch (notification.getFeatureID(UpdateEvent.class)) {
 			case EventsPackage.UPDATE_EVENT__BASE_VERSION:
 			case EventsPackage.UPDATE_EVENT__TARGET_VERSION:
 				fireNotifyChanged(new ViewerNotification(notification, notification.getNotifier(), true, false));
@@ -166,8 +163,7 @@ public class UpdateEventItemProvider extends EventItemProvider implements IEditi
 			childFeature == EventsPackage.Literals.UPDATE_EVENT__BASE_VERSION ||
 			childFeature == EventsPackage.Literals.UPDATE_EVENT__TARGET_VERSION;
 
-		if (qualify)
-		{
+		if (qualify) {
 			return getString
 				("_UI_CreateChild_text2",
 				 new Object[] { getTypeText(childObject), getFeatureText(childFeature), getTypeText(owner) });

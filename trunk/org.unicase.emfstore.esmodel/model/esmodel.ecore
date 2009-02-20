@@ -229,8 +229,10 @@
             containment="true"/>
       </eClassifiers>
       <eClassifiers xsi:type="ecore:EClass" name="AnnotationEvent" eSuperTypes="#//versioning/events/Event">
-        <eStructuralFeatures xsi:type="ecore:EReference" name="annotatedElement" eType="ecore:EClass ../../org.unicase.model/model/model.ecore#//ModelElementId"/>
-        <eStructuralFeatures xsi:type="ecore:EReference" name="annotation" eType="ecore:EClass ../../org.unicase.model/model/model.ecore#//ModelElementId"/>
+        <eStructuralFeatures xsi:type="ecore:EReference" name="annotatedElement" eType="ecore:EClass ../../org.unicase.model/model/model.ecore#//ModelElementId"
+            containment="true"/>
+        <eStructuralFeatures xsi:type="ecore:EReference" name="annotation" eType="ecore:EClass ../../org.unicase.model/model/model.ecore#//ModelElementId"
+            containment="true"/>
       </eClassifiers>
       <eClassifiers xsi:type="ecore:EClass" name="RevertEvent" eSuperTypes="#//versioning/events/Event">
         <eStructuralFeatures xsi:type="ecore:EAttribute" name="revertedChangesCount"
@@ -247,24 +249,32 @@
         <eStructuralFeatures xsi:type="ecore:EAttribute" name="sourceView" eType="ecore:EDataType http://www.eclipse.org/emf/2002/Ecore#//EString"/>
         <eStructuralFeatures xsi:type="ecore:EAttribute" name="targetView" eType="ecore:EDataType http://www.eclipse.org/emf/2002/Ecore#//EString"/>
         <eStructuralFeatures xsi:type="ecore:EReference" name="dragSourceElement"
-            eType="ecore:EClass ../../org.unicase.model/model/model.ecore#//ModelElementId"/>
+            eType="ecore:EClass ../../org.unicase.model/model/model.ecore#//ModelElementId"
+            containment="true"/>
         <eStructuralFeatures xsi:type="ecore:EReference" name="dropTargetElement"
-            eType="ecore:EClass ../../org.unicase.model/model/model.ecore#//ModelElementId"/>
+            eType="ecore:EClass ../../org.unicase.model/model/model.ecore#//ModelElementId"
+            containment="true"/>
       </eClassifiers>
       <eClassifiers xsi:type="ecore:EClass" name="LinkEvent" eSuperTypes="#//versioning/events/Event">
         <eStructuralFeatures xsi:type="ecore:EAttribute" name="sourceView" eType="ecore:EDataType http://www.eclipse.org/emf/2002/Ecore#//EString"/>
-        <eStructuralFeatures xsi:type="ecore:EReference" name="sourceElement" eType="ecore:EClass ../../org.unicase.model/model/model.ecore#//ModelElementId"/>
-        <eStructuralFeatures xsi:type="ecore:EReference" name="targetElement" eType="ecore:EClass ../../org.unicase.model/model/model.ecore#//ModelElementId"/>
+        <eStructuralFeatures xsi:type="ecore:EReference" name="sourceElement" eType="ecore:EClass ../../org.unicase.model/model/model.ecore#//ModelElementId"
+            containment="true"/>
+        <eStructuralFeatures xsi:type="ecore:EReference" name="targetElement" eType="ecore:EClass ../../org.unicase.model/model/model.ecore#//ModelElementId"
+            containment="true"/>
         <eStructuralFeatures xsi:type="ecore:EAttribute" name="createdNew" eType="ecore:EDataType http://www.eclipse.org/emf/2002/Ecore#//EBoolean"/>
       </eClassifiers>
       <eClassifiers xsi:type="ecore:EClass" name="TraceEvent" eSuperTypes="#//versioning/events/Event">
-        <eStructuralFeatures xsi:type="ecore:EReference" name="sourceElement" eType="ecore:EClass ../../org.unicase.model/model/model.ecore#//ModelElementId"/>
-        <eStructuralFeatures xsi:type="ecore:EReference" name="targetElement" eType="ecore:EClass ../../org.unicase.model/model/model.ecore#//ModelElementId"/>
+        <eStructuralFeatures xsi:type="ecore:EReference" name="sourceElement" eType="ecore:EClass ../../org.unicase.model/model/model.ecore#//ModelElementId"
+            containment="true"/>
+        <eStructuralFeatures xsi:type="ecore:EReference" name="targetElement" eType="ecore:EClass ../../org.unicase.model/model/model.ecore#//ModelElementId"
+            containment="true"/>
         <eStructuralFeatures xsi:type="ecore:EAttribute" name="featureName" eType="ecore:EDataType http://www.eclipse.org/emf/2002/Ecore#//EString"/>
       </eClassifiers>
       <eClassifiers xsi:type="ecore:EClass" name="NavigatorCreateEvent" eSuperTypes="#//versioning/events/Event">
-        <eStructuralFeatures xsi:type="ecore:EReference" name="createdElement" eType="ecore:EClass ../../org.unicase.model/model/model.ecore#//ModelElementId"/>
-        <eStructuralFeatures xsi:type="ecore:EReference" name="sourceSection" eType="ecore:EClass ../../org.unicase.model/model/model.ecore#//ModelElementId"/>
+        <eStructuralFeatures xsi:type="ecore:EReference" name="createdElement" eType="ecore:EClass ../../org.unicase.model/model/model.ecore#//ModelElementId"
+            containment="true"/>
+        <eStructuralFeatures xsi:type="ecore:EReference" name="sourceSection" eType="ecore:EClass ../../org.unicase.model/model/model.ecore#//ModelElementId"
+            containment="true"/>
         <eStructuralFeatures xsi:type="ecore:EAttribute" name="dynamic" eType="ecore:EDataType http://www.eclipse.org/emf/2002/Ecore#//EBoolean"/>
       </eClassifiers>
       <eClassifiers xsi:type="ecore:EClass" name="PluginFocusEvent" eSuperTypes="#//versioning/events/Event">

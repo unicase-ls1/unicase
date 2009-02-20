@@ -48,8 +48,7 @@ public class AbstractOperationItemProvider extends ItemProviderAdapter implement
 	 */
 	@Override
 	public List<IItemPropertyDescriptor> getPropertyDescriptors(Object object) {
-		if (itemPropertyDescriptors == null)
-		{
+		if (itemPropertyDescriptors == null) {
 			super.getPropertyDescriptors(object);
 
 			addNamePropertyDescriptor(object);
@@ -200,8 +199,7 @@ public class AbstractOperationItemProvider extends ItemProviderAdapter implement
 	public void notifyChanged(Notification notification) {
 		updateChildren(notification);
 
-		switch (notification.getFeatureID(AbstractOperation.class))
-		{
+		switch (notification.getFeatureID(AbstractOperation.class)) {
 			case OperationsPackage.ABSTRACT_OPERATION__NAME:
 			case OperationsPackage.ABSTRACT_OPERATION__DESCRIPTION:
 			case OperationsPackage.ABSTRACT_OPERATION__ACCEPTED:

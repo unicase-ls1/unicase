@@ -6,6 +6,7 @@
 package org.unicase.emfstore.esmodel.versioning.events.impl;
 
 import org.eclipse.emf.common.notify.Notification;
+import org.eclipse.emf.common.notify.NotificationChain;
 import org.eclipse.emf.ecore.EClass;
 import org.eclipse.emf.ecore.InternalEObject;
 import org.eclipse.emf.ecore.impl.ENotificationImpl;
@@ -45,7 +46,7 @@ public class LinkEventImpl extends EventImpl implements LinkEvent {
 	protected String sourceView = SOURCE_VIEW_EDEFAULT;
 
 	/**
-	 * The cached value of the '{@link #getSourceElement() <em>Source Element</em>}' reference.
+	 * The cached value of the '{@link #getSourceElement() <em>Source Element</em>}' containment reference.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
 	 * @see #getSourceElement()
@@ -55,7 +56,7 @@ public class LinkEventImpl extends EventImpl implements LinkEvent {
 	protected ModelElementId sourceElement;
 
 	/**
-	 * The cached value of the '{@link #getTargetElement() <em>Target Element</em>}' reference.
+	 * The cached value of the '{@link #getTargetElement() <em>Target Element</em>}' containment reference.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
 	 * @see #getTargetElement()
@@ -125,12 +126,16 @@ public class LinkEventImpl extends EventImpl implements LinkEvent {
 	 * @generated
 	 */
 	public ModelElementId getSourceElement() {
-		if (sourceElement != null && sourceElement.eIsProxy())
-		{
+		if (sourceElement != null && sourceElement.eIsProxy()) {
 			InternalEObject oldSourceElement = (InternalEObject)sourceElement;
 			sourceElement = (ModelElementId)eResolveProxy(oldSourceElement);
-			if (sourceElement != oldSourceElement)
-			{
+			if (sourceElement != oldSourceElement) {
+				InternalEObject newSourceElement = (InternalEObject)sourceElement;
+				NotificationChain msgs = oldSourceElement.eInverseRemove(this, EOPPOSITE_FEATURE_BASE - EventsPackage.LINK_EVENT__SOURCE_ELEMENT, null, null);
+				if (newSourceElement.eInternalContainer() == null) {
+					msgs = newSourceElement.eInverseAdd(this, EOPPOSITE_FEATURE_BASE - EventsPackage.LINK_EVENT__SOURCE_ELEMENT, null, msgs);
+				}
+				if (msgs != null) msgs.dispatch();
 				if (eNotificationRequired())
 					eNotify(new ENotificationImpl(this, Notification.RESOLVE, EventsPackage.LINK_EVENT__SOURCE_ELEMENT, oldSourceElement, sourceElement));
 			}
@@ -147,14 +152,36 @@ public class LinkEventImpl extends EventImpl implements LinkEvent {
 	}
 
 	/**
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 */
+	public NotificationChain basicSetSourceElement(ModelElementId newSourceElement, NotificationChain msgs) {
+		ModelElementId oldSourceElement = sourceElement;
+		sourceElement = newSourceElement;
+		if (eNotificationRequired()) {
+			ENotificationImpl notification = new ENotificationImpl(this, Notification.SET, EventsPackage.LINK_EVENT__SOURCE_ELEMENT, oldSourceElement, newSourceElement);
+			if (msgs == null) msgs = notification; else msgs.add(notification);
+		}
+		return msgs;
+	}
+
+	/**
 	 * <!-- begin-user-doc --> <!-- end-user-doc -->
 	 * @generated
 	 */
 	public void setSourceElement(ModelElementId newSourceElement) {
-		ModelElementId oldSourceElement = sourceElement;
-		sourceElement = newSourceElement;
-		if (eNotificationRequired())
-			eNotify(new ENotificationImpl(this, Notification.SET, EventsPackage.LINK_EVENT__SOURCE_ELEMENT, oldSourceElement, sourceElement));
+		if (newSourceElement != sourceElement) {
+			NotificationChain msgs = null;
+			if (sourceElement != null)
+				msgs = ((InternalEObject)sourceElement).eInverseRemove(this, EOPPOSITE_FEATURE_BASE - EventsPackage.LINK_EVENT__SOURCE_ELEMENT, null, msgs);
+			if (newSourceElement != null)
+				msgs = ((InternalEObject)newSourceElement).eInverseAdd(this, EOPPOSITE_FEATURE_BASE - EventsPackage.LINK_EVENT__SOURCE_ELEMENT, null, msgs);
+			msgs = basicSetSourceElement(newSourceElement, msgs);
+			if (msgs != null) msgs.dispatch();
+		}
+		else if (eNotificationRequired())
+			eNotify(new ENotificationImpl(this, Notification.SET, EventsPackage.LINK_EVENT__SOURCE_ELEMENT, newSourceElement, newSourceElement));
 	}
 
 	/**
@@ -162,12 +189,16 @@ public class LinkEventImpl extends EventImpl implements LinkEvent {
 	 * @generated
 	 */
 	public ModelElementId getTargetElement() {
-		if (targetElement != null && targetElement.eIsProxy())
-		{
+		if (targetElement != null && targetElement.eIsProxy()) {
 			InternalEObject oldTargetElement = (InternalEObject)targetElement;
 			targetElement = (ModelElementId)eResolveProxy(oldTargetElement);
-			if (targetElement != oldTargetElement)
-			{
+			if (targetElement != oldTargetElement) {
+				InternalEObject newTargetElement = (InternalEObject)targetElement;
+				NotificationChain msgs = oldTargetElement.eInverseRemove(this, EOPPOSITE_FEATURE_BASE - EventsPackage.LINK_EVENT__TARGET_ELEMENT, null, null);
+				if (newTargetElement.eInternalContainer() == null) {
+					msgs = newTargetElement.eInverseAdd(this, EOPPOSITE_FEATURE_BASE - EventsPackage.LINK_EVENT__TARGET_ELEMENT, null, msgs);
+				}
+				if (msgs != null) msgs.dispatch();
 				if (eNotificationRequired())
 					eNotify(new ENotificationImpl(this, Notification.RESOLVE, EventsPackage.LINK_EVENT__TARGET_ELEMENT, oldTargetElement, targetElement));
 			}
@@ -184,14 +215,36 @@ public class LinkEventImpl extends EventImpl implements LinkEvent {
 	}
 
 	/**
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 */
+	public NotificationChain basicSetTargetElement(ModelElementId newTargetElement, NotificationChain msgs) {
+		ModelElementId oldTargetElement = targetElement;
+		targetElement = newTargetElement;
+		if (eNotificationRequired()) {
+			ENotificationImpl notification = new ENotificationImpl(this, Notification.SET, EventsPackage.LINK_EVENT__TARGET_ELEMENT, oldTargetElement, newTargetElement);
+			if (msgs == null) msgs = notification; else msgs.add(notification);
+		}
+		return msgs;
+	}
+
+	/**
 	 * <!-- begin-user-doc --> <!-- end-user-doc -->
 	 * @generated
 	 */
 	public void setTargetElement(ModelElementId newTargetElement) {
-		ModelElementId oldTargetElement = targetElement;
-		targetElement = newTargetElement;
-		if (eNotificationRequired())
-			eNotify(new ENotificationImpl(this, Notification.SET, EventsPackage.LINK_EVENT__TARGET_ELEMENT, oldTargetElement, targetElement));
+		if (newTargetElement != targetElement) {
+			NotificationChain msgs = null;
+			if (targetElement != null)
+				msgs = ((InternalEObject)targetElement).eInverseRemove(this, EOPPOSITE_FEATURE_BASE - EventsPackage.LINK_EVENT__TARGET_ELEMENT, null, msgs);
+			if (newTargetElement != null)
+				msgs = ((InternalEObject)newTargetElement).eInverseAdd(this, EOPPOSITE_FEATURE_BASE - EventsPackage.LINK_EVENT__TARGET_ELEMENT, null, msgs);
+			msgs = basicSetTargetElement(newTargetElement, msgs);
+			if (msgs != null) msgs.dispatch();
+		}
+		else if (eNotificationRequired())
+			eNotify(new ENotificationImpl(this, Notification.SET, EventsPackage.LINK_EVENT__TARGET_ELEMENT, newTargetElement, newTargetElement));
 	}
 
 	/**
@@ -214,13 +267,28 @@ public class LinkEventImpl extends EventImpl implements LinkEvent {
 	}
 
 	/**
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 */
+	@Override
+	public NotificationChain eInverseRemove(InternalEObject otherEnd, int featureID, NotificationChain msgs) {
+		switch (featureID) {
+			case EventsPackage.LINK_EVENT__SOURCE_ELEMENT:
+				return basicSetSourceElement(null, msgs);
+			case EventsPackage.LINK_EVENT__TARGET_ELEMENT:
+				return basicSetTargetElement(null, msgs);
+		}
+		return super.eInverseRemove(otherEnd, featureID, msgs);
+	}
+
+	/**
 	 * <!-- begin-user-doc --> <!-- end-user-doc -->
 	 * @generated
 	 */
 	@Override
 	public Object eGet(int featureID, boolean resolve, boolean coreType) {
-		switch (featureID)
-		{
+		switch (featureID) {
 			case EventsPackage.LINK_EVENT__SOURCE_VIEW:
 				return getSourceView();
 			case EventsPackage.LINK_EVENT__SOURCE_ELEMENT:
@@ -241,8 +309,7 @@ public class LinkEventImpl extends EventImpl implements LinkEvent {
 	 */
 	@Override
 	public void eSet(int featureID, Object newValue) {
-		switch (featureID)
-		{
+		switch (featureID) {
 			case EventsPackage.LINK_EVENT__SOURCE_VIEW:
 				setSourceView((String)newValue);
 				return;
@@ -265,8 +332,7 @@ public class LinkEventImpl extends EventImpl implements LinkEvent {
 	 */
 	@Override
 	public void eUnset(int featureID) {
-		switch (featureID)
-		{
+		switch (featureID) {
 			case EventsPackage.LINK_EVENT__SOURCE_VIEW:
 				setSourceView(SOURCE_VIEW_EDEFAULT);
 				return;
@@ -289,8 +355,7 @@ public class LinkEventImpl extends EventImpl implements LinkEvent {
 	 */
 	@Override
 	public boolean eIsSet(int featureID) {
-		switch (featureID)
-		{
+		switch (featureID) {
 			case EventsPackage.LINK_EVENT__SOURCE_VIEW:
 				return SOURCE_VIEW_EDEFAULT == null ? sourceView != null : !SOURCE_VIEW_EDEFAULT.equals(sourceView);
 			case EventsPackage.LINK_EVENT__SOURCE_ELEMENT:

@@ -6,6 +6,7 @@
 package org.unicase.emfstore.esmodel.versioning.events.impl;
 
 import org.eclipse.emf.common.notify.Notification;
+import org.eclipse.emf.common.notify.NotificationChain;
 import org.eclipse.emf.ecore.EClass;
 import org.eclipse.emf.ecore.InternalEObject;
 import org.eclipse.emf.ecore.impl.ENotificationImpl;
@@ -33,7 +34,7 @@ public class AnnotationEventImpl extends EventImpl implements AnnotationEvent {
 	protected ModelElementId annotatedElement;
 
 	/**
-	 * The cached value of the '{@link #getAnnotation() <em>Annotation</em>}' reference.
+	 * The cached value of the '{@link #getAnnotation() <em>Annotation</em>}' containment reference.
 	 * <!-- begin-user-doc --> <!--
 	 * end-user-doc -->
 	 * @see #getAnnotation()
@@ -64,12 +65,16 @@ public class AnnotationEventImpl extends EventImpl implements AnnotationEvent {
 	 * @generated
 	 */
 	public ModelElementId getAnnotatedElement() {
-		if (annotatedElement != null && annotatedElement.eIsProxy())
-		{
+		if (annotatedElement != null && annotatedElement.eIsProxy()) {
 			InternalEObject oldAnnotatedElement = (InternalEObject)annotatedElement;
 			annotatedElement = (ModelElementId)eResolveProxy(oldAnnotatedElement);
-			if (annotatedElement != oldAnnotatedElement)
-			{
+			if (annotatedElement != oldAnnotatedElement) {
+				InternalEObject newAnnotatedElement = (InternalEObject)annotatedElement;
+				NotificationChain msgs = oldAnnotatedElement.eInverseRemove(this, EOPPOSITE_FEATURE_BASE - EventsPackage.ANNOTATION_EVENT__ANNOTATED_ELEMENT, null, null);
+				if (newAnnotatedElement.eInternalContainer() == null) {
+					msgs = newAnnotatedElement.eInverseAdd(this, EOPPOSITE_FEATURE_BASE - EventsPackage.ANNOTATION_EVENT__ANNOTATED_ELEMENT, null, msgs);
+				}
+				if (msgs != null) msgs.dispatch();
 				if (eNotificationRequired())
 					eNotify(new ENotificationImpl(this, Notification.RESOLVE, EventsPackage.ANNOTATION_EVENT__ANNOTATED_ELEMENT, oldAnnotatedElement, annotatedElement));
 			}
@@ -86,14 +91,36 @@ public class AnnotationEventImpl extends EventImpl implements AnnotationEvent {
 	}
 
 	/**
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 */
+	public NotificationChain basicSetAnnotatedElement(ModelElementId newAnnotatedElement, NotificationChain msgs) {
+		ModelElementId oldAnnotatedElement = annotatedElement;
+		annotatedElement = newAnnotatedElement;
+		if (eNotificationRequired()) {
+			ENotificationImpl notification = new ENotificationImpl(this, Notification.SET, EventsPackage.ANNOTATION_EVENT__ANNOTATED_ELEMENT, oldAnnotatedElement, newAnnotatedElement);
+			if (msgs == null) msgs = notification; else msgs.add(notification);
+		}
+		return msgs;
+	}
+
+	/**
 	 * <!-- begin-user-doc --> <!-- end-user-doc -->
 	 * @generated
 	 */
 	public void setAnnotatedElement(ModelElementId newAnnotatedElement) {
-		ModelElementId oldAnnotatedElement = annotatedElement;
-		annotatedElement = newAnnotatedElement;
-		if (eNotificationRequired())
-			eNotify(new ENotificationImpl(this, Notification.SET, EventsPackage.ANNOTATION_EVENT__ANNOTATED_ELEMENT, oldAnnotatedElement, annotatedElement));
+		if (newAnnotatedElement != annotatedElement) {
+			NotificationChain msgs = null;
+			if (annotatedElement != null)
+				msgs = ((InternalEObject)annotatedElement).eInverseRemove(this, EOPPOSITE_FEATURE_BASE - EventsPackage.ANNOTATION_EVENT__ANNOTATED_ELEMENT, null, msgs);
+			if (newAnnotatedElement != null)
+				msgs = ((InternalEObject)newAnnotatedElement).eInverseAdd(this, EOPPOSITE_FEATURE_BASE - EventsPackage.ANNOTATION_EVENT__ANNOTATED_ELEMENT, null, msgs);
+			msgs = basicSetAnnotatedElement(newAnnotatedElement, msgs);
+			if (msgs != null) msgs.dispatch();
+		}
+		else if (eNotificationRequired())
+			eNotify(new ENotificationImpl(this, Notification.SET, EventsPackage.ANNOTATION_EVENT__ANNOTATED_ELEMENT, newAnnotatedElement, newAnnotatedElement));
 	}
 
 	/**
@@ -101,12 +128,16 @@ public class AnnotationEventImpl extends EventImpl implements AnnotationEvent {
 	 * @generated
 	 */
 	public ModelElementId getAnnotation() {
-		if (annotation != null && annotation.eIsProxy())
-		{
+		if (annotation != null && annotation.eIsProxy()) {
 			InternalEObject oldAnnotation = (InternalEObject)annotation;
 			annotation = (ModelElementId)eResolveProxy(oldAnnotation);
-			if (annotation != oldAnnotation)
-			{
+			if (annotation != oldAnnotation) {
+				InternalEObject newAnnotation = (InternalEObject)annotation;
+				NotificationChain msgs = oldAnnotation.eInverseRemove(this, EOPPOSITE_FEATURE_BASE - EventsPackage.ANNOTATION_EVENT__ANNOTATION, null, null);
+				if (newAnnotation.eInternalContainer() == null) {
+					msgs = newAnnotation.eInverseAdd(this, EOPPOSITE_FEATURE_BASE - EventsPackage.ANNOTATION_EVENT__ANNOTATION, null, msgs);
+				}
+				if (msgs != null) msgs.dispatch();
 				if (eNotificationRequired())
 					eNotify(new ENotificationImpl(this, Notification.RESOLVE, EventsPackage.ANNOTATION_EVENT__ANNOTATION, oldAnnotation, annotation));
 			}
@@ -123,14 +154,52 @@ public class AnnotationEventImpl extends EventImpl implements AnnotationEvent {
 	}
 
 	/**
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 */
+	public NotificationChain basicSetAnnotation(ModelElementId newAnnotation, NotificationChain msgs) {
+		ModelElementId oldAnnotation = annotation;
+		annotation = newAnnotation;
+		if (eNotificationRequired()) {
+			ENotificationImpl notification = new ENotificationImpl(this, Notification.SET, EventsPackage.ANNOTATION_EVENT__ANNOTATION, oldAnnotation, newAnnotation);
+			if (msgs == null) msgs = notification; else msgs.add(notification);
+		}
+		return msgs;
+	}
+
+	/**
 	 * <!-- begin-user-doc --> <!-- end-user-doc -->
 	 * @generated
 	 */
 	public void setAnnotation(ModelElementId newAnnotation) {
-		ModelElementId oldAnnotation = annotation;
-		annotation = newAnnotation;
-		if (eNotificationRequired())
-			eNotify(new ENotificationImpl(this, Notification.SET, EventsPackage.ANNOTATION_EVENT__ANNOTATION, oldAnnotation, annotation));
+		if (newAnnotation != annotation) {
+			NotificationChain msgs = null;
+			if (annotation != null)
+				msgs = ((InternalEObject)annotation).eInverseRemove(this, EOPPOSITE_FEATURE_BASE - EventsPackage.ANNOTATION_EVENT__ANNOTATION, null, msgs);
+			if (newAnnotation != null)
+				msgs = ((InternalEObject)newAnnotation).eInverseAdd(this, EOPPOSITE_FEATURE_BASE - EventsPackage.ANNOTATION_EVENT__ANNOTATION, null, msgs);
+			msgs = basicSetAnnotation(newAnnotation, msgs);
+			if (msgs != null) msgs.dispatch();
+		}
+		else if (eNotificationRequired())
+			eNotify(new ENotificationImpl(this, Notification.SET, EventsPackage.ANNOTATION_EVENT__ANNOTATION, newAnnotation, newAnnotation));
+	}
+
+	/**
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 */
+	@Override
+	public NotificationChain eInverseRemove(InternalEObject otherEnd, int featureID, NotificationChain msgs) {
+		switch (featureID) {
+			case EventsPackage.ANNOTATION_EVENT__ANNOTATED_ELEMENT:
+				return basicSetAnnotatedElement(null, msgs);
+			case EventsPackage.ANNOTATION_EVENT__ANNOTATION:
+				return basicSetAnnotation(null, msgs);
+		}
+		return super.eInverseRemove(otherEnd, featureID, msgs);
 	}
 
 	/**
@@ -139,8 +208,7 @@ public class AnnotationEventImpl extends EventImpl implements AnnotationEvent {
 	 */
 	@Override
 	public Object eGet(int featureID, boolean resolve, boolean coreType) {
-		switch (featureID)
-		{
+		switch (featureID) {
 			case EventsPackage.ANNOTATION_EVENT__ANNOTATED_ELEMENT:
 				if (resolve) return getAnnotatedElement();
 				return basicGetAnnotatedElement();
@@ -157,8 +225,7 @@ public class AnnotationEventImpl extends EventImpl implements AnnotationEvent {
 	 */
 	@Override
 	public void eSet(int featureID, Object newValue) {
-		switch (featureID)
-		{
+		switch (featureID) {
 			case EventsPackage.ANNOTATION_EVENT__ANNOTATED_ELEMENT:
 				setAnnotatedElement((ModelElementId)newValue);
 				return;
@@ -175,8 +242,7 @@ public class AnnotationEventImpl extends EventImpl implements AnnotationEvent {
 	 */
 	@Override
 	public void eUnset(int featureID) {
-		switch (featureID)
-		{
+		switch (featureID) {
 			case EventsPackage.ANNOTATION_EVENT__ANNOTATED_ELEMENT:
 				setAnnotatedElement((ModelElementId)null);
 				return;
@@ -193,8 +259,7 @@ public class AnnotationEventImpl extends EventImpl implements AnnotationEvent {
 	 */
 	@Override
 	public boolean eIsSet(int featureID) {
-		switch (featureID)
-		{
+		switch (featureID) {
 			case EventsPackage.ANNOTATION_EVENT__ANNOTATED_ELEMENT:
 				return annotatedElement != null;
 			case EventsPackage.ANNOTATION_EVENT__ANNOTATION:

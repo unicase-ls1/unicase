@@ -127,8 +127,7 @@ public class AttributeOperationImpl extends FeatureOperationImpl implements Attr
 	 */
 	@Override
 	public Object eGet(int featureID, boolean resolve, boolean coreType) {
-		switch (featureID)
-		{
+		switch (featureID) {
 			case OperationsPackage.ATTRIBUTE_OPERATION__OLD_VALUE:
 				return getOldValue();
 			case OperationsPackage.ATTRIBUTE_OPERATION__NEW_VALUE:
@@ -143,8 +142,7 @@ public class AttributeOperationImpl extends FeatureOperationImpl implements Attr
 	 */
 	@Override
 	public void eSet(int featureID, Object newValue) {
-		switch (featureID)
-		{
+		switch (featureID) {
 			case OperationsPackage.ATTRIBUTE_OPERATION__OLD_VALUE:
 				setOldValue(newValue);
 				return;
@@ -161,8 +159,7 @@ public class AttributeOperationImpl extends FeatureOperationImpl implements Attr
 	 */
 	@Override
 	public void eUnset(int featureID) {
-		switch (featureID)
-		{
+		switch (featureID) {
 			case OperationsPackage.ATTRIBUTE_OPERATION__OLD_VALUE:
 				setOldValue(OLD_VALUE_EDEFAULT);
 				return;
@@ -179,8 +176,7 @@ public class AttributeOperationImpl extends FeatureOperationImpl implements Attr
 	 */
 	@Override
 	public boolean eIsSet(int featureID) {
-		switch (featureID)
-		{
+		switch (featureID) {
 			case OperationsPackage.ATTRIBUTE_OPERATION__OLD_VALUE:
 				return OLD_VALUE_EDEFAULT == null ? oldValue != null : !OLD_VALUE_EDEFAULT.equals(oldValue);
 			case OperationsPackage.ATTRIBUTE_OPERATION__NEW_VALUE:

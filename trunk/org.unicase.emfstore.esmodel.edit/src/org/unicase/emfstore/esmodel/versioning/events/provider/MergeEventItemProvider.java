@@ -49,8 +49,7 @@ public class MergeEventItemProvider extends EventItemProvider implements IEditin
 	 */
 	@Override
 	public List<IItemPropertyDescriptor> getPropertyDescriptors(Object object) {
-		if (itemPropertyDescriptors == null)
-		{
+		if (itemPropertyDescriptors == null) {
 			super.getPropertyDescriptors(object);
 
 			addNumberOfConflictsPropertyDescriptor(object);
@@ -112,8 +111,7 @@ public class MergeEventItemProvider extends EventItemProvider implements IEditin
 	 */
 	@Override
 	public Collection<? extends EStructuralFeature> getChildrenFeatures(Object object) {
-		if (childrenFeatures == null)
-		{
+		if (childrenFeatures == null) {
 			super.getChildrenFeatures(object);
 			childrenFeatures.add(EventsPackage.Literals.MERGE_EVENT__BASE_VERSION);
 			childrenFeatures.add(EventsPackage.Literals.MERGE_EVENT__TARGET_VERSION);
@@ -169,8 +167,7 @@ public class MergeEventItemProvider extends EventItemProvider implements IEditin
 	public void notifyChanged(Notification notification) {
 		updateChildren(notification);
 
-		switch (notification.getFeatureID(MergeEvent.class))
-		{
+		switch (notification.getFeatureID(MergeEvent.class)) {
 			case EventsPackage.MERGE_EVENT__NUMBER_OF_CONFLICTS:
 			case EventsPackage.MERGE_EVENT__TOTAL_TIME:
 				fireNotifyChanged(new ViewerNotification(notification, notification.getNotifier(), false, true));
@@ -265,8 +262,7 @@ public class MergeEventItemProvider extends EventItemProvider implements IEditin
 			childFeature == EventsPackage.Literals.MERGE_EVENT__BASE_VERSION ||
 			childFeature == EventsPackage.Literals.MERGE_EVENT__TARGET_VERSION;
 
-		if (qualify)
-		{
+		if (qualify) {
 			return getString
 				("_UI_CreateChild_text2",
 				 new Object[] { getTypeText(childObject), getFeatureText(childFeature), getTypeText(owner) });

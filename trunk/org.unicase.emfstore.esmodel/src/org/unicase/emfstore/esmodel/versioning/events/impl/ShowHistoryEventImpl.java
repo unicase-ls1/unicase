@@ -66,16 +66,13 @@ public class ShowHistoryEventImpl extends EventImpl implements ShowHistoryEvent 
 	 * @generated
 	 */
 	public PrimaryVersionSpec getSourceVersion() {
-		if (sourceVersion != null && sourceVersion.eIsProxy())
-		{
+		if (sourceVersion != null && sourceVersion.eIsProxy()) {
 			InternalEObject oldSourceVersion = (InternalEObject)sourceVersion;
 			sourceVersion = (PrimaryVersionSpec)eResolveProxy(oldSourceVersion);
-			if (sourceVersion != oldSourceVersion)
-			{
+			if (sourceVersion != oldSourceVersion) {
 				InternalEObject newSourceVersion = (InternalEObject)sourceVersion;
 				NotificationChain msgs = oldSourceVersion.eInverseRemove(this, EOPPOSITE_FEATURE_BASE - EventsPackage.SHOW_HISTORY_EVENT__SOURCE_VERSION, null, null);
-				if (newSourceVersion.eInternalContainer() == null)
-				{
+				if (newSourceVersion.eInternalContainer() == null) {
 					msgs = newSourceVersion.eInverseAdd(this, EOPPOSITE_FEATURE_BASE - EventsPackage.SHOW_HISTORY_EVENT__SOURCE_VERSION, null, msgs);
 				}
 				if (msgs != null) msgs.dispatch();
@@ -101,8 +98,7 @@ public class ShowHistoryEventImpl extends EventImpl implements ShowHistoryEvent 
 	public NotificationChain basicSetSourceVersion(PrimaryVersionSpec newSourceVersion, NotificationChain msgs) {
 		PrimaryVersionSpec oldSourceVersion = sourceVersion;
 		sourceVersion = newSourceVersion;
-		if (eNotificationRequired())
-		{
+		if (eNotificationRequired()) {
 			ENotificationImpl notification = new ENotificationImpl(this, Notification.SET, EventsPackage.SHOW_HISTORY_EVENT__SOURCE_VERSION, oldSourceVersion, newSourceVersion);
 			if (msgs == null) msgs = notification; else msgs.add(notification);
 		}
@@ -114,8 +110,7 @@ public class ShowHistoryEventImpl extends EventImpl implements ShowHistoryEvent 
 	 * @generated
 	 */
 	public void setSourceVersion(PrimaryVersionSpec newSourceVersion) {
-		if (newSourceVersion != sourceVersion)
-		{
+		if (newSourceVersion != sourceVersion) {
 			NotificationChain msgs = null;
 			if (sourceVersion != null)
 				msgs = ((InternalEObject)sourceVersion).eInverseRemove(this, EOPPOSITE_FEATURE_BASE - EventsPackage.SHOW_HISTORY_EVENT__SOURCE_VERSION, null, msgs);
@@ -133,16 +128,13 @@ public class ShowHistoryEventImpl extends EventImpl implements ShowHistoryEvent 
 	 * @generated
 	 */
 	public PrimaryVersionSpec getTargetVersion() {
-		if (targetVersion != null && targetVersion.eIsProxy())
-		{
+		if (targetVersion != null && targetVersion.eIsProxy()) {
 			InternalEObject oldTargetVersion = (InternalEObject)targetVersion;
 			targetVersion = (PrimaryVersionSpec)eResolveProxy(oldTargetVersion);
-			if (targetVersion != oldTargetVersion)
-			{
+			if (targetVersion != oldTargetVersion) {
 				InternalEObject newTargetVersion = (InternalEObject)targetVersion;
 				NotificationChain msgs = oldTargetVersion.eInverseRemove(this, EOPPOSITE_FEATURE_BASE - EventsPackage.SHOW_HISTORY_EVENT__TARGET_VERSION, null, null);
-				if (newTargetVersion.eInternalContainer() == null)
-				{
+				if (newTargetVersion.eInternalContainer() == null) {
 					msgs = newTargetVersion.eInverseAdd(this, EOPPOSITE_FEATURE_BASE - EventsPackage.SHOW_HISTORY_EVENT__TARGET_VERSION, null, msgs);
 				}
 				if (msgs != null) msgs.dispatch();
@@ -168,8 +160,7 @@ public class ShowHistoryEventImpl extends EventImpl implements ShowHistoryEvent 
 	public NotificationChain basicSetTargetVersion(PrimaryVersionSpec newTargetVersion, NotificationChain msgs) {
 		PrimaryVersionSpec oldTargetVersion = targetVersion;
 		targetVersion = newTargetVersion;
-		if (eNotificationRequired())
-		{
+		if (eNotificationRequired()) {
 			ENotificationImpl notification = new ENotificationImpl(this, Notification.SET, EventsPackage.SHOW_HISTORY_EVENT__TARGET_VERSION, oldTargetVersion, newTargetVersion);
 			if (msgs == null) msgs = notification; else msgs.add(notification);
 		}
@@ -181,8 +172,7 @@ public class ShowHistoryEventImpl extends EventImpl implements ShowHistoryEvent 
 	 * @generated
 	 */
 	public void setTargetVersion(PrimaryVersionSpec newTargetVersion) {
-		if (newTargetVersion != targetVersion)
-		{
+		if (newTargetVersion != targetVersion) {
 			NotificationChain msgs = null;
 			if (targetVersion != null)
 				msgs = ((InternalEObject)targetVersion).eInverseRemove(this, EOPPOSITE_FEATURE_BASE - EventsPackage.SHOW_HISTORY_EVENT__TARGET_VERSION, null, msgs);
@@ -201,8 +191,7 @@ public class ShowHistoryEventImpl extends EventImpl implements ShowHistoryEvent 
 	 */
 	@Override
 	public NotificationChain eInverseRemove(InternalEObject otherEnd, int featureID, NotificationChain msgs) {
-		switch (featureID)
-		{
+		switch (featureID) {
 			case EventsPackage.SHOW_HISTORY_EVENT__SOURCE_VERSION:
 				return basicSetSourceVersion(null, msgs);
 			case EventsPackage.SHOW_HISTORY_EVENT__TARGET_VERSION:
@@ -217,8 +206,7 @@ public class ShowHistoryEventImpl extends EventImpl implements ShowHistoryEvent 
 	 */
 	@Override
 	public Object eGet(int featureID, boolean resolve, boolean coreType) {
-		switch (featureID)
-		{
+		switch (featureID) {
 			case EventsPackage.SHOW_HISTORY_EVENT__SOURCE_VERSION:
 				if (resolve) return getSourceVersion();
 				return basicGetSourceVersion();
@@ -235,8 +223,7 @@ public class ShowHistoryEventImpl extends EventImpl implements ShowHistoryEvent 
 	 */
 	@Override
 	public void eSet(int featureID, Object newValue) {
-		switch (featureID)
-		{
+		switch (featureID) {
 			case EventsPackage.SHOW_HISTORY_EVENT__SOURCE_VERSION:
 				setSourceVersion((PrimaryVersionSpec)newValue);
 				return;
@@ -253,8 +240,7 @@ public class ShowHistoryEventImpl extends EventImpl implements ShowHistoryEvent 
 	 */
 	@Override
 	public void eUnset(int featureID) {
-		switch (featureID)
-		{
+		switch (featureID) {
 			case EventsPackage.SHOW_HISTORY_EVENT__SOURCE_VERSION:
 				setSourceVersion((PrimaryVersionSpec)null);
 				return;
@@ -271,8 +257,7 @@ public class ShowHistoryEventImpl extends EventImpl implements ShowHistoryEvent 
 	 */
 	@Override
 	public boolean eIsSet(int featureID) {
-		switch (featureID)
-		{
+		switch (featureID) {
 			case EventsPackage.SHOW_HISTORY_EVENT__SOURCE_VERSION:
 				return sourceVersion != null;
 			case EventsPackage.SHOW_HISTORY_EVENT__TARGET_VERSION:

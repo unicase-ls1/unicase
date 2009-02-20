@@ -203,8 +203,7 @@ public class LogMessageImpl extends EObjectImpl implements LogMessage {
 	 */
 	@Override
 	public Object eGet(int featureID, boolean resolve, boolean coreType) {
-		switch (featureID)
-		{
+		switch (featureID) {
 			case VersioningPackage.LOG_MESSAGE__AUTHOR:
 				return getAuthor();
 			case VersioningPackage.LOG_MESSAGE__MESSAGE:
@@ -223,8 +222,7 @@ public class LogMessageImpl extends EObjectImpl implements LogMessage {
 	 */
 	@Override
 	public void eSet(int featureID, Object newValue) {
-		switch (featureID)
-		{
+		switch (featureID) {
 			case VersioningPackage.LOG_MESSAGE__AUTHOR:
 				setAuthor((String)newValue);
 				return;
@@ -247,8 +245,7 @@ public class LogMessageImpl extends EObjectImpl implements LogMessage {
 	 */
 	@Override
 	public void eUnset(int featureID) {
-		switch (featureID)
-		{
+		switch (featureID) {
 			case VersioningPackage.LOG_MESSAGE__AUTHOR:
 				setAuthor(AUTHOR_EDEFAULT);
 				return;
@@ -271,8 +268,7 @@ public class LogMessageImpl extends EObjectImpl implements LogMessage {
 	 */
 	@Override
 	public boolean eIsSet(int featureID) {
-		switch (featureID)
-		{
+		switch (featureID) {
 			case VersioningPackage.LOG_MESSAGE__AUTHOR:
 				return AUTHOR_EDEFAULT == null ? author != null : !AUTHOR_EDEFAULT.equals(author);
 			case VersioningPackage.LOG_MESSAGE__MESSAGE:

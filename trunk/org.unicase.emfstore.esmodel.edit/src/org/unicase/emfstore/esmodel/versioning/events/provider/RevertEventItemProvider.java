@@ -46,8 +46,7 @@ public class RevertEventItemProvider extends EventItemProvider implements IEditi
 	 */
 	@Override
 	public List<IItemPropertyDescriptor> getPropertyDescriptors(Object object) {
-		if (itemPropertyDescriptors == null)
-		{
+		if (itemPropertyDescriptors == null) {
 			super.getPropertyDescriptors(object);
 
 			addRevertedChangesCountPropertyDescriptor(object);
@@ -112,8 +111,7 @@ public class RevertEventItemProvider extends EventItemProvider implements IEditi
 	public void notifyChanged(Notification notification) {
 		updateChildren(notification);
 
-		switch (notification.getFeatureID(RevertEvent.class))
-		{
+		switch (notification.getFeatureID(RevertEvent.class)) {
 			case EventsPackage.REVERT_EVENT__REVERTED_CHANGES_COUNT:
 				fireNotifyChanged(new ViewerNotification(notification, notification.getNotifier(), false, true));
 				return;

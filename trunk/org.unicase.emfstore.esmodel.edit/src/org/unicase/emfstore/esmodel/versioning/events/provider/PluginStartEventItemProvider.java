@@ -46,8 +46,7 @@ public class PluginStartEventItemProvider extends EventItemProvider implements I
 	 */
 	@Override
 	public List<IItemPropertyDescriptor> getPropertyDescriptors(Object object) {
-		if (itemPropertyDescriptors == null)
-		{
+		if (itemPropertyDescriptors == null) {
 			super.getPropertyDescriptors(object);
 
 			addPluginIdPropertyDescriptor(object);
@@ -111,8 +110,7 @@ public class PluginStartEventItemProvider extends EventItemProvider implements I
 	public void notifyChanged(Notification notification) {
 		updateChildren(notification);
 
-		switch (notification.getFeatureID(PluginStartEvent.class))
-		{
+		switch (notification.getFeatureID(PluginStartEvent.class)) {
 			case EventsPackage.PLUGIN_START_EVENT__PLUGIN_ID:
 				fireNotifyChanged(new ViewerNotification(notification, notification.getNotifier(), false, true));
 				return;

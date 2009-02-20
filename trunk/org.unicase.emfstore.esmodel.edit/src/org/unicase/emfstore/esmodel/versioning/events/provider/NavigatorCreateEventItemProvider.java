@@ -46,8 +46,7 @@ public class NavigatorCreateEventItemProvider extends EventItemProvider implemen
 	 */
 	@Override
 	public List<IItemPropertyDescriptor> getPropertyDescriptors(Object object) {
-		if (itemPropertyDescriptors == null)
-		{
+		if (itemPropertyDescriptors == null) {
 			super.getPropertyDescriptors(object);
 
 			addCreatedElementPropertyDescriptor(object);
@@ -155,8 +154,7 @@ public class NavigatorCreateEventItemProvider extends EventItemProvider implemen
 	public void notifyChanged(Notification notification) {
 		updateChildren(notification);
 
-		switch (notification.getFeatureID(NavigatorCreateEvent.class))
-		{
+		switch (notification.getFeatureID(NavigatorCreateEvent.class)) {
 			case EventsPackage.NAVIGATOR_CREATE_EVENT__DYNAMIC:
 				fireNotifyChanged(new ViewerNotification(notification, notification.getNotifier(), false, true));
 				return;

@@ -47,8 +47,7 @@ public class MultiReferenceMoveOperationItemProvider extends FeatureOperationIte
 	 */
 	@Override
 	public List<IItemPropertyDescriptor> getPropertyDescriptors(Object object) {
-		if (itemPropertyDescriptors == null)
-		{
+		if (itemPropertyDescriptors == null) {
 			super.getPropertyDescriptors(object);
 
 			addOldIndexPropertyDescriptor(object);
@@ -156,8 +155,7 @@ public class MultiReferenceMoveOperationItemProvider extends FeatureOperationIte
 	public void notifyChanged(Notification notification) {
 		updateChildren(notification);
 
-		switch (notification.getFeatureID(MultiReferenceMoveOperation.class))
-		{
+		switch (notification.getFeatureID(MultiReferenceMoveOperation.class)) {
 			case OperationsPackage.MULTI_REFERENCE_MOVE_OPERATION__OLD_INDEX:
 			case OperationsPackage.MULTI_REFERENCE_MOVE_OPERATION__NEW_INDEX:
 				fireNotifyChanged(new ViewerNotification(notification, notification.getNotifier(), false, true));

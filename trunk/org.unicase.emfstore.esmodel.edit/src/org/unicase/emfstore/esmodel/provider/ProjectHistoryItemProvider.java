@@ -50,8 +50,7 @@ public class ProjectHistoryItemProvider extends ItemProviderAdapter implements I
 	 */
 	@Override
 	public List<IItemPropertyDescriptor> getPropertyDescriptors(Object object) {
-		if (itemPropertyDescriptors == null)
-		{
+		if (itemPropertyDescriptors == null) {
 			super.getPropertyDescriptors(object);
 
 			addProjectNamePropertyDescriptor(object);
@@ -113,8 +112,7 @@ public class ProjectHistoryItemProvider extends ItemProviderAdapter implements I
 	 */
 	@Override
 	public Collection<? extends EStructuralFeature> getChildrenFeatures(Object object) {
-		if (childrenFeatures == null)
-		{
+		if (childrenFeatures == null) {
 			super.getChildrenFeatures(object);
 			childrenFeatures.add(EsmodelPackage.Literals.PROJECT_HISTORY__PROJECT_ID);
 			childrenFeatures.add(EsmodelPackage.Literals.PROJECT_HISTORY__VERSIONS);
@@ -168,8 +166,7 @@ public class ProjectHistoryItemProvider extends ItemProviderAdapter implements I
 	public void notifyChanged(Notification notification) {
 		updateChildren(notification);
 
-		switch (notification.getFeatureID(ProjectHistory.class))
-		{
+		switch (notification.getFeatureID(ProjectHistory.class)) {
 			case EsmodelPackage.PROJECT_HISTORY__PROJECT_NAME:
 			case EsmodelPackage.PROJECT_HISTORY__PROJECT_DESCRIPTION:
 				fireNotifyChanged(new ViewerNotification(notification, notification.getNotifier(), false, true));

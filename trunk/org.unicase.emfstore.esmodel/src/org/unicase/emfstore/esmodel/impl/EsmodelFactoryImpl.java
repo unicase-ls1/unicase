@@ -31,16 +31,13 @@ public class EsmodelFactoryImpl extends EFactoryImpl implements EsmodelFactory {
 	 * @generated
 	 */
 	public static EsmodelFactory init() {
-		try
-		{
+		try {
 			EsmodelFactory theEsmodelFactory = (EsmodelFactory)EPackage.Registry.INSTANCE.getEFactory("http://unicase.org/emfstore/esmodel"); 
-			if (theEsmodelFactory != null)
-			{
+			if (theEsmodelFactory != null) {
 				return theEsmodelFactory;
 			}
 		}
-		catch (Exception exception)
-		{
+		catch (Exception exception) {
 			EcorePlugin.INSTANCE.log(exception);
 		}
 		return new EsmodelFactoryImpl();
@@ -61,8 +58,7 @@ public class EsmodelFactoryImpl extends EFactoryImpl implements EsmodelFactory {
 	 */
 	@Override
 	public EObject create(EClass eClass) {
-		switch (eClass.getClassifierID())
-		{
+		switch (eClass.getClassifierID()) {
 			case EsmodelPackage.PROJECT_HISTORY: return createProjectHistory();
 			case EsmodelPackage.PROJECT_INFO: return createProjectInfo();
 			case EsmodelPackage.SESSION_ID: return createSessionId();

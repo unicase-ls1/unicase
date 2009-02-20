@@ -34,17 +34,17 @@ import org.unicase.emfstore.esmodel.url.util.UrlAdapterFactory;
 public class UrlItemProviderAdapterFactory extends UrlAdapterFactory implements ComposeableAdapterFactory,
 	IChangeNotifier, IDisposable {
 	/**
-	 * This keeps track of the root adapter factory that delegates to this adapter factory. <!-- begin-user-doc --> <!--
+	 * This keeps track of the root adapter factory that delegates to this adapter factory.
+	 * <!-- begin-user-doc --> <!--
 	 * end-user-doc -->
-	 * 
 	 * @generated
 	 */
 	protected ComposedAdapterFactory parentAdapterFactory;
 
 	/**
-	 * This is used to implement {@link org.eclipse.emf.edit.provider.IChangeNotifier}. <!-- begin-user-doc --> <!--
+	 * This is used to implement {@link org.eclipse.emf.edit.provider.IChangeNotifier}.
+	 * <!-- begin-user-doc --> <!--
 	 * end-user-doc -->
-	 * 
 	 * @generated
 	 */
 	protected IChangeNotifier changeNotifier = new ChangeNotifier();
@@ -58,8 +58,8 @@ public class UrlItemProviderAdapterFactory extends UrlAdapterFactory implements 
 	protected Collection<Object> supportedTypes = new ArrayList<Object>();
 
 	/**
-	 * This constructs an instance. <!-- begin-user-doc --> <!-- end-user-doc -->
-	 * 
+	 * This constructs an instance.
+	 * <!-- begin-user-doc --> <!-- end-user-doc -->
 	 * @generated
 	 */
 	public UrlItemProviderAdapterFactory() {
@@ -73,15 +73,14 @@ public class UrlItemProviderAdapterFactory extends UrlAdapterFactory implements 
 	/**
 	 * This keeps track of the one adapter used for all {@link org.unicase.emfstore.esmodel.url.ServerUrl} instances.
 	 * <!-- begin-user-doc --> <!-- end-user-doc -->
-	 * 
 	 * @generated
 	 */
 	protected ServerUrlItemProvider serverUrlItemProvider;
 
 	/**
-	 * This creates an adapter for a {@link org.unicase.emfstore.esmodel.url.ServerUrl}. <!-- begin-user-doc --> <!--
+	 * This creates an adapter for a {@link org.unicase.emfstore.esmodel.url.ServerUrl}.
+	 * <!-- begin-user-doc --> <!--
 	 * end-user-doc -->
-	 * 
 	 * @generated
 	 */
 	@Override
@@ -94,17 +93,16 @@ public class UrlItemProviderAdapterFactory extends UrlAdapterFactory implements 
 	}
 
 	/**
-	 * This keeps track of the one adapter used for all {@link org.unicase.emfstore.esmodel.url.ProjectUrlFragment}
-	 * instances. <!-- begin-user-doc --> <!-- end-user-doc -->
-	 * 
+	 * This keeps track of the one adapter used for all {@link org.unicase.emfstore.esmodel.url.ProjectUrlFragment} instances.
+	 * <!-- begin-user-doc --> <!-- end-user-doc -->
 	 * @generated
 	 */
 	protected ProjectUrlFragmentItemProvider projectUrlFragmentItemProvider;
 
 	/**
-	 * This creates an adapter for a {@link org.unicase.emfstore.esmodel.url.ProjectUrlFragment}. <!-- begin-user-doc
+	 * This creates an adapter for a {@link org.unicase.emfstore.esmodel.url.ProjectUrlFragment}.
+	 * <!-- begin-user-doc
 	 * --> <!-- end-user-doc -->
-	 * 
 	 * @generated
 	 */
 	@Override
@@ -117,9 +115,8 @@ public class UrlItemProviderAdapterFactory extends UrlAdapterFactory implements 
 	}
 
 	/**
-	 * This keeps track of the one adapter used for all {@link org.unicase.emfstore.esmodel.url.ModelElementUrlFragment}
-	 * instances. <!-- begin-user-doc --> <!-- end-user-doc -->
-	 * 
+	 * This keeps track of the one adapter used for all {@link org.unicase.emfstore.esmodel.url.ModelElementUrlFragment} instances.
+	 * <!-- begin-user-doc --> <!-- end-user-doc -->
 	 * @generated
 	 */
 	protected ModelElementUrlFragmentItemProvider modelElementUrlFragmentItemProvider;
@@ -140,17 +137,16 @@ public class UrlItemProviderAdapterFactory extends UrlAdapterFactory implements 
 	}
 
 	/**
-	 * This keeps track of the one adapter used for all {@link org.unicase.emfstore.esmodel.url.ModelElementUrl}
-	 * instances. <!-- begin-user-doc --> <!-- end-user-doc -->
-	 * 
+	 * This keeps track of the one adapter used for all {@link org.unicase.emfstore.esmodel.url.ModelElementUrl} instances.
+	 * <!-- begin-user-doc --> <!-- end-user-doc -->
 	 * @generated
 	 */
 	protected ModelElementUrlItemProvider modelElementUrlItemProvider;
 
 	/**
-	 * This creates an adapter for a {@link org.unicase.emfstore.esmodel.url.ModelElementUrl}. <!-- begin-user-doc -->
+	 * This creates an adapter for a {@link org.unicase.emfstore.esmodel.url.ModelElementUrl}.
+	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
-	 * 
 	 * @generated
 	 */
 	@Override
@@ -163,8 +159,8 @@ public class UrlItemProviderAdapterFactory extends UrlAdapterFactory implements 
 	}
 
 	/**
-	 * This returns the root adapter factory that contains this factory. <!-- begin-user-doc --> <!-- end-user-doc -->
-	 * 
+	 * This returns the root adapter factory that contains this factory.
+	 * <!-- begin-user-doc --> <!-- end-user-doc -->
 	 * @generated
 	 */
 	public ComposeableAdapterFactory getRootAdapterFactory() {
@@ -172,8 +168,8 @@ public class UrlItemProviderAdapterFactory extends UrlAdapterFactory implements 
 	}
 
 	/**
-	 * This sets the composed adapter factory that contains this factory. <!-- begin-user-doc --> <!-- end-user-doc -->
-	 * 
+	 * This sets the composed adapter factory that contains this factory.
+	 * <!-- begin-user-doc --> <!-- end-user-doc -->
 	 * @generated
 	 */
 	public void setParentAdapterFactory(ComposedAdapterFactory parentAdapterFactory) {
@@ -182,7 +178,6 @@ public class UrlItemProviderAdapterFactory extends UrlAdapterFactory implements 
 
 	/**
 	 * <!-- begin-user-doc --> <!-- end-user-doc -->
-	 * 
 	 * @generated
 	 */
 	@Override
@@ -191,9 +186,9 @@ public class UrlItemProviderAdapterFactory extends UrlAdapterFactory implements 
 	}
 
 	/**
-	 * This implementation substitutes the factory itself as the key for the adapter. <!-- begin-user-doc --> <!--
+	 * This implementation substitutes the factory itself as the key for the adapter.
+	 * <!-- begin-user-doc --> <!--
 	 * end-user-doc -->
-	 * 
 	 * @generated
 	 */
 	@Override
@@ -203,14 +198,13 @@ public class UrlItemProviderAdapterFactory extends UrlAdapterFactory implements 
 
 	/**
 	 * <!-- begin-user-doc --> <!-- end-user-doc -->
-	 * 
 	 * @generated
 	 */
 	@Override
 	public Object adapt(Object object, Object type) {
 		if (isFactoryForType(type)) {
 			Object adapter = super.adapt(object, type);
-			if (!(type instanceof Class) || (((Class<?>) type).isInstance(adapter))) {
+			if (!(type instanceof Class) || (((Class<?>)type).isInstance(adapter))) {
 				return adapter;
 			}
 		}
@@ -219,8 +213,8 @@ public class UrlItemProviderAdapterFactory extends UrlAdapterFactory implements 
 	}
 
 	/**
-	 * This adds a listener. <!-- begin-user-doc --> <!-- end-user-doc -->
-	 * 
+	 * This adds a listener.
+	 * <!-- begin-user-doc --> <!-- end-user-doc -->
 	 * @generated
 	 */
 	public void addListener(INotifyChangedListener notifyChangedListener) {
@@ -228,8 +222,8 @@ public class UrlItemProviderAdapterFactory extends UrlAdapterFactory implements 
 	}
 
 	/**
-	 * This removes a listener. <!-- begin-user-doc --> <!-- end-user-doc -->
-	 * 
+	 * This removes a listener.
+	 * <!-- begin-user-doc --> <!-- end-user-doc -->
 	 * @generated
 	 */
 	public void removeListener(INotifyChangedListener notifyChangedListener) {
@@ -237,9 +231,9 @@ public class UrlItemProviderAdapterFactory extends UrlAdapterFactory implements 
 	}
 
 	/**
-	 * This delegates to {@link #changeNotifier} and to {@link #parentAdapterFactory}. <!-- begin-user-doc --> <!--
+	 * This delegates to {@link #changeNotifier} and to {@link #parentAdapterFactory}.
+	 * <!-- begin-user-doc --> <!--
 	 * end-user-doc -->
-	 * 
 	 * @generated
 	 */
 	public void fireNotifyChanged(Notification notification) {
@@ -251,19 +245,15 @@ public class UrlItemProviderAdapterFactory extends UrlAdapterFactory implements 
 	}
 
 	/**
-	 * This disposes all of the item providers created by this factory. <!-- begin-user-doc --> <!-- end-user-doc -->
-	 * 
+	 * This disposes all of the item providers created by this factory. 
+	 * <!-- begin-user-doc --> <!-- end-user-doc -->
 	 * @generated
 	 */
 	public void dispose() {
-		if (serverUrlItemProvider != null)
-			serverUrlItemProvider.dispose();
-		if (projectUrlFragmentItemProvider != null)
-			projectUrlFragmentItemProvider.dispose();
-		if (modelElementUrlFragmentItemProvider != null)
-			modelElementUrlFragmentItemProvider.dispose();
-		if (modelElementUrlItemProvider != null)
-			modelElementUrlItemProvider.dispose();
+		if (serverUrlItemProvider != null) serverUrlItemProvider.dispose();
+		if (projectUrlFragmentItemProvider != null) projectUrlFragmentItemProvider.dispose();
+		if (modelElementUrlFragmentItemProvider != null) modelElementUrlFragmentItemProvider.dispose();
+		if (modelElementUrlItemProvider != null) modelElementUrlItemProvider.dispose();
 	}
 
 }

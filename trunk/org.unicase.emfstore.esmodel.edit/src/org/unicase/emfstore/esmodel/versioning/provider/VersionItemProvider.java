@@ -50,8 +50,7 @@ public class VersionItemProvider extends ItemProviderAdapter implements IEditing
 	 */
 	@Override
 	public List<IItemPropertyDescriptor> getPropertyDescriptors(Object object) {
-		if (itemPropertyDescriptors == null)
-		{
+		if (itemPropertyDescriptors == null) {
 			super.getPropertyDescriptors(object);
 
 			addNextVersionPropertyDescriptor(object);
@@ -112,8 +111,7 @@ public class VersionItemProvider extends ItemProviderAdapter implements IEditing
 	 */
 	@Override
 	public Collection<? extends EStructuralFeature> getChildrenFeatures(Object object) {
-		if (childrenFeatures == null)
-		{
+		if (childrenFeatures == null) {
 			super.getChildrenFeatures(object);
 			childrenFeatures.add(VersioningPackage.Literals.VERSION__PROJECT_STATE);
 			childrenFeatures.add(VersioningPackage.Literals.VERSION__PRIMARY_SPEC);
@@ -167,8 +165,7 @@ public class VersionItemProvider extends ItemProviderAdapter implements IEditing
 	public void notifyChanged(Notification notification) {
 		updateChildren(notification);
 
-		switch (notification.getFeatureID(Version.class))
-		{
+		switch (notification.getFeatureID(Version.class)) {
 			case VersioningPackage.VERSION__PROJECT_STATE:
 			case VersioningPackage.VERSION__PRIMARY_SPEC:
 			case VersioningPackage.VERSION__TAG_SPECS:

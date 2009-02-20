@@ -85,8 +85,7 @@ public class AccesscontrolItemProviderAdapterFactory extends AccesscontrolAdapte
 	 */
 	@Override
 	public Adapter createACUserAdapter() {
-		if (acUserItemProvider == null)
-		{
+		if (acUserItemProvider == null) {
 			acUserItemProvider = new ACUserItemProvider(this);
 		}
 
@@ -108,8 +107,7 @@ public class AccesscontrolItemProviderAdapterFactory extends AccesscontrolAdapte
 	 */
 	@Override
 	public Adapter createACOrgUnitAdapter() {
-		if (acOrgUnitItemProvider == null)
-		{
+		if (acOrgUnitItemProvider == null) {
 			acOrgUnitItemProvider = new ACOrgUnitItemProvider(this);
 		}
 
@@ -131,8 +129,7 @@ public class AccesscontrolItemProviderAdapterFactory extends AccesscontrolAdapte
 	 */
 	@Override
 	public Adapter createACGroupAdapter() {
-		if (acGroupItemProvider == null)
-		{
+		if (acGroupItemProvider == null) {
 			acGroupItemProvider = new ACGroupItemProvider(this);
 		}
 
@@ -154,8 +151,7 @@ public class AccesscontrolItemProviderAdapterFactory extends AccesscontrolAdapte
 	 */
 	@Override
 	public Adapter createACOrgUnitIdAdapter() {
-		if (acOrgUnitIdItemProvider == null)
-		{
+		if (acOrgUnitIdItemProvider == null) {
 			acOrgUnitIdItemProvider = new ACOrgUnitIdItemProvider(this);
 		}
 
@@ -206,11 +202,9 @@ public class AccesscontrolItemProviderAdapterFactory extends AccesscontrolAdapte
 	 */
 	@Override
 	public Object adapt(Object object, Object type) {
-		if (isFactoryForType(type))
-		{
+		if (isFactoryForType(type)) {
 			Object adapter = super.adapt(object, type);
-			if (!(type instanceof Class) || (((Class<?>)type).isInstance(adapter)))
-			{
+			if (!(type instanceof Class) || (((Class<?>)type).isInstance(adapter))) {
 				return adapter;
 			}
 		}
@@ -245,8 +239,7 @@ public class AccesscontrolItemProviderAdapterFactory extends AccesscontrolAdapte
 	public void fireNotifyChanged(Notification notification) {
 		changeNotifier.fireNotifyChanged(notification);
 
-		if (parentAdapterFactory != null)
-		{
+		if (parentAdapterFactory != null) {
 			parentAdapterFactory.fireNotifyChanged(notification);
 		}
 	}

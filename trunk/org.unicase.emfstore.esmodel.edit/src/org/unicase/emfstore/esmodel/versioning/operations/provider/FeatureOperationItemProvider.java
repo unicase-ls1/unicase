@@ -45,8 +45,7 @@ public class FeatureOperationItemProvider extends AbstractOperationItemProvider 
 	 */
 	@Override
 	public List<IItemPropertyDescriptor> getPropertyDescriptors(Object object) {
-		if (itemPropertyDescriptors == null)
-		{
+		if (itemPropertyDescriptors == null) {
 			super.getPropertyDescriptors(object);
 
 			addFeatureNamePropertyDescriptor(object);
@@ -109,8 +108,7 @@ public class FeatureOperationItemProvider extends AbstractOperationItemProvider 
 	public void notifyChanged(Notification notification) {
 		updateChildren(notification);
 
-		switch (notification.getFeatureID(FeatureOperation.class))
-		{
+		switch (notification.getFeatureID(FeatureOperation.class)) {
 			case OperationsPackage.FEATURE_OPERATION__FEATURE_NAME:
 				fireNotifyChanged(new ViewerNotification(notification, notification.getNotifier(), false, true));
 				return;

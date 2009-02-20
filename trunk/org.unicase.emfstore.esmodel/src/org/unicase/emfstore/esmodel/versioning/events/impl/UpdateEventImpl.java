@@ -65,16 +65,13 @@ public class UpdateEventImpl extends EventImpl implements UpdateEvent {
 	 * @generated
 	 */
 	public PrimaryVersionSpec getBaseVersion() {
-		if (baseVersion != null && baseVersion.eIsProxy())
-		{
+		if (baseVersion != null && baseVersion.eIsProxy()) {
 			InternalEObject oldBaseVersion = (InternalEObject)baseVersion;
 			baseVersion = (PrimaryVersionSpec)eResolveProxy(oldBaseVersion);
-			if (baseVersion != oldBaseVersion)
-			{
+			if (baseVersion != oldBaseVersion) {
 				InternalEObject newBaseVersion = (InternalEObject)baseVersion;
 				NotificationChain msgs = oldBaseVersion.eInverseRemove(this, EOPPOSITE_FEATURE_BASE - EventsPackage.UPDATE_EVENT__BASE_VERSION, null, null);
-				if (newBaseVersion.eInternalContainer() == null)
-				{
+				if (newBaseVersion.eInternalContainer() == null) {
 					msgs = newBaseVersion.eInverseAdd(this, EOPPOSITE_FEATURE_BASE - EventsPackage.UPDATE_EVENT__BASE_VERSION, null, msgs);
 				}
 				if (msgs != null) msgs.dispatch();
@@ -100,8 +97,7 @@ public class UpdateEventImpl extends EventImpl implements UpdateEvent {
 	public NotificationChain basicSetBaseVersion(PrimaryVersionSpec newBaseVersion, NotificationChain msgs) {
 		PrimaryVersionSpec oldBaseVersion = baseVersion;
 		baseVersion = newBaseVersion;
-		if (eNotificationRequired())
-		{
+		if (eNotificationRequired()) {
 			ENotificationImpl notification = new ENotificationImpl(this, Notification.SET, EventsPackage.UPDATE_EVENT__BASE_VERSION, oldBaseVersion, newBaseVersion);
 			if (msgs == null) msgs = notification; else msgs.add(notification);
 		}
@@ -113,8 +109,7 @@ public class UpdateEventImpl extends EventImpl implements UpdateEvent {
 	 * @generated
 	 */
 	public void setBaseVersion(PrimaryVersionSpec newBaseVersion) {
-		if (newBaseVersion != baseVersion)
-		{
+		if (newBaseVersion != baseVersion) {
 			NotificationChain msgs = null;
 			if (baseVersion != null)
 				msgs = ((InternalEObject)baseVersion).eInverseRemove(this, EOPPOSITE_FEATURE_BASE - EventsPackage.UPDATE_EVENT__BASE_VERSION, null, msgs);
@@ -132,16 +127,13 @@ public class UpdateEventImpl extends EventImpl implements UpdateEvent {
 	 * @generated
 	 */
 	public PrimaryVersionSpec getTargetVersion() {
-		if (targetVersion != null && targetVersion.eIsProxy())
-		{
+		if (targetVersion != null && targetVersion.eIsProxy()) {
 			InternalEObject oldTargetVersion = (InternalEObject)targetVersion;
 			targetVersion = (PrimaryVersionSpec)eResolveProxy(oldTargetVersion);
-			if (targetVersion != oldTargetVersion)
-			{
+			if (targetVersion != oldTargetVersion) {
 				InternalEObject newTargetVersion = (InternalEObject)targetVersion;
 				NotificationChain msgs = oldTargetVersion.eInverseRemove(this, EOPPOSITE_FEATURE_BASE - EventsPackage.UPDATE_EVENT__TARGET_VERSION, null, null);
-				if (newTargetVersion.eInternalContainer() == null)
-				{
+				if (newTargetVersion.eInternalContainer() == null) {
 					msgs = newTargetVersion.eInverseAdd(this, EOPPOSITE_FEATURE_BASE - EventsPackage.UPDATE_EVENT__TARGET_VERSION, null, msgs);
 				}
 				if (msgs != null) msgs.dispatch();
@@ -167,8 +159,7 @@ public class UpdateEventImpl extends EventImpl implements UpdateEvent {
 	public NotificationChain basicSetTargetVersion(PrimaryVersionSpec newTargetVersion, NotificationChain msgs) {
 		PrimaryVersionSpec oldTargetVersion = targetVersion;
 		targetVersion = newTargetVersion;
-		if (eNotificationRequired())
-		{
+		if (eNotificationRequired()) {
 			ENotificationImpl notification = new ENotificationImpl(this, Notification.SET, EventsPackage.UPDATE_EVENT__TARGET_VERSION, oldTargetVersion, newTargetVersion);
 			if (msgs == null) msgs = notification; else msgs.add(notification);
 		}
@@ -180,8 +171,7 @@ public class UpdateEventImpl extends EventImpl implements UpdateEvent {
 	 * @generated
 	 */
 	public void setTargetVersion(PrimaryVersionSpec newTargetVersion) {
-		if (newTargetVersion != targetVersion)
-		{
+		if (newTargetVersion != targetVersion) {
 			NotificationChain msgs = null;
 			if (targetVersion != null)
 				msgs = ((InternalEObject)targetVersion).eInverseRemove(this, EOPPOSITE_FEATURE_BASE - EventsPackage.UPDATE_EVENT__TARGET_VERSION, null, msgs);
@@ -200,8 +190,7 @@ public class UpdateEventImpl extends EventImpl implements UpdateEvent {
 	 */
 	@Override
 	public NotificationChain eInverseRemove(InternalEObject otherEnd, int featureID, NotificationChain msgs) {
-		switch (featureID)
-		{
+		switch (featureID) {
 			case EventsPackage.UPDATE_EVENT__BASE_VERSION:
 				return basicSetBaseVersion(null, msgs);
 			case EventsPackage.UPDATE_EVENT__TARGET_VERSION:
@@ -216,8 +205,7 @@ public class UpdateEventImpl extends EventImpl implements UpdateEvent {
 	 */
 	@Override
 	public Object eGet(int featureID, boolean resolve, boolean coreType) {
-		switch (featureID)
-		{
+		switch (featureID) {
 			case EventsPackage.UPDATE_EVENT__BASE_VERSION:
 				if (resolve) return getBaseVersion();
 				return basicGetBaseVersion();
@@ -234,8 +222,7 @@ public class UpdateEventImpl extends EventImpl implements UpdateEvent {
 	 */
 	@Override
 	public void eSet(int featureID, Object newValue) {
-		switch (featureID)
-		{
+		switch (featureID) {
 			case EventsPackage.UPDATE_EVENT__BASE_VERSION:
 				setBaseVersion((PrimaryVersionSpec)newValue);
 				return;
@@ -252,8 +239,7 @@ public class UpdateEventImpl extends EventImpl implements UpdateEvent {
 	 */
 	@Override
 	public void eUnset(int featureID) {
-		switch (featureID)
-		{
+		switch (featureID) {
 			case EventsPackage.UPDATE_EVENT__BASE_VERSION:
 				setBaseVersion((PrimaryVersionSpec)null);
 				return;
@@ -270,8 +256,7 @@ public class UpdateEventImpl extends EventImpl implements UpdateEvent {
 	 */
 	@Override
 	public boolean eIsSet(int featureID) {
-		switch (featureID)
-		{
+		switch (featureID) {
 			case EventsPackage.UPDATE_EVENT__BASE_VERSION:
 				return baseVersion != null;
 			case EventsPackage.UPDATE_EVENT__TARGET_VERSION:

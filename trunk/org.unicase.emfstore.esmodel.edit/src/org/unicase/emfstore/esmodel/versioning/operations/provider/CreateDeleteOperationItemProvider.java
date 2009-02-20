@@ -63,8 +63,7 @@ public class CreateDeleteOperationItemProvider extends AbstractOperationItemProv
 	 */
 	@Override
 	public List<IItemPropertyDescriptor> getPropertyDescriptors(Object object) {
-		if (itemPropertyDescriptors == null)
-		{
+		if (itemPropertyDescriptors == null) {
 			super.getPropertyDescriptors(object);
 
 			addDeletePropertyDescriptor(object);
@@ -103,8 +102,7 @@ public class CreateDeleteOperationItemProvider extends AbstractOperationItemProv
 	 */
 	@Override
 	public Collection<? extends EStructuralFeature> getChildrenFeatures(Object object) {
-		if (childrenFeatures == null)
-		{
+		if (childrenFeatures == null) {
 			super.getChildrenFeatures(object);
 			childrenFeatures.add(OperationsPackage.Literals.CREATE_DELETE_OPERATION__MODEL_ELEMENT);
 			childrenFeatures.add(OperationsPackage.Literals.CREATE_DELETE_OPERATION__SUB_OPERATIONS);
@@ -158,8 +156,7 @@ public class CreateDeleteOperationItemProvider extends AbstractOperationItemProv
 	public void notifyChanged(Notification notification) {
 		updateChildren(notification);
 
-		switch (notification.getFeatureID(CreateDeleteOperation.class))
-		{
+		switch (notification.getFeatureID(CreateDeleteOperation.class)) {
 			case OperationsPackage.CREATE_DELETE_OPERATION__DELETE:
 				fireNotifyChanged(new ViewerNotification(notification, notification.getNotifier(), false, true));
 				return;

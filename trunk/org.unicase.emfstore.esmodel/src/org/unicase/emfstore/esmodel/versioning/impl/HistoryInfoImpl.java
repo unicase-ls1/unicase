@@ -83,16 +83,13 @@ public class HistoryInfoImpl extends EObjectImpl implements HistoryInfo {
 	 * @generated
 	 */
 	public PrimaryVersionSpec getPrimerySpec() {
-		if (primerySpec != null && primerySpec.eIsProxy())
-		{
+		if (primerySpec != null && primerySpec.eIsProxy()) {
 			InternalEObject oldPrimerySpec = (InternalEObject)primerySpec;
 			primerySpec = (PrimaryVersionSpec)eResolveProxy(oldPrimerySpec);
-			if (primerySpec != oldPrimerySpec)
-			{
+			if (primerySpec != oldPrimerySpec) {
 				InternalEObject newPrimerySpec = (InternalEObject)primerySpec;
 				NotificationChain msgs = oldPrimerySpec.eInverseRemove(this, EOPPOSITE_FEATURE_BASE - VersioningPackage.HISTORY_INFO__PRIMERY_SPEC, null, null);
-				if (newPrimerySpec.eInternalContainer() == null)
-				{
+				if (newPrimerySpec.eInternalContainer() == null) {
 					msgs = newPrimerySpec.eInverseAdd(this, EOPPOSITE_FEATURE_BASE - VersioningPackage.HISTORY_INFO__PRIMERY_SPEC, null, msgs);
 				}
 				if (msgs != null) msgs.dispatch();
@@ -118,8 +115,7 @@ public class HistoryInfoImpl extends EObjectImpl implements HistoryInfo {
 	public NotificationChain basicSetPrimerySpec(PrimaryVersionSpec newPrimerySpec, NotificationChain msgs) {
 		PrimaryVersionSpec oldPrimerySpec = primerySpec;
 		primerySpec = newPrimerySpec;
-		if (eNotificationRequired())
-		{
+		if (eNotificationRequired()) {
 			ENotificationImpl notification = new ENotificationImpl(this, Notification.SET, VersioningPackage.HISTORY_INFO__PRIMERY_SPEC, oldPrimerySpec, newPrimerySpec);
 			if (msgs == null) msgs = notification; else msgs.add(notification);
 		}
@@ -131,8 +127,7 @@ public class HistoryInfoImpl extends EObjectImpl implements HistoryInfo {
 	 * @generated
 	 */
 	public void setPrimerySpec(PrimaryVersionSpec newPrimerySpec) {
-		if (newPrimerySpec != primerySpec)
-		{
+		if (newPrimerySpec != primerySpec) {
 			NotificationChain msgs = null;
 			if (primerySpec != null)
 				msgs = ((InternalEObject)primerySpec).eInverseRemove(this, EOPPOSITE_FEATURE_BASE - VersioningPackage.HISTORY_INFO__PRIMERY_SPEC, null, msgs);
@@ -150,16 +145,13 @@ public class HistoryInfoImpl extends EObjectImpl implements HistoryInfo {
 	 * @generated
 	 */
 	public LogMessage getLogMessage() {
-		if (logMessage != null && logMessage.eIsProxy())
-		{
+		if (logMessage != null && logMessage.eIsProxy()) {
 			InternalEObject oldLogMessage = (InternalEObject)logMessage;
 			logMessage = (LogMessage)eResolveProxy(oldLogMessage);
-			if (logMessage != oldLogMessage)
-			{
+			if (logMessage != oldLogMessage) {
 				InternalEObject newLogMessage = (InternalEObject)logMessage;
 				NotificationChain msgs = oldLogMessage.eInverseRemove(this, EOPPOSITE_FEATURE_BASE - VersioningPackage.HISTORY_INFO__LOG_MESSAGE, null, null);
-				if (newLogMessage.eInternalContainer() == null)
-				{
+				if (newLogMessage.eInternalContainer() == null) {
 					msgs = newLogMessage.eInverseAdd(this, EOPPOSITE_FEATURE_BASE - VersioningPackage.HISTORY_INFO__LOG_MESSAGE, null, msgs);
 				}
 				if (msgs != null) msgs.dispatch();
@@ -185,8 +177,7 @@ public class HistoryInfoImpl extends EObjectImpl implements HistoryInfo {
 	public NotificationChain basicSetLogMessage(LogMessage newLogMessage, NotificationChain msgs) {
 		LogMessage oldLogMessage = logMessage;
 		logMessage = newLogMessage;
-		if (eNotificationRequired())
-		{
+		if (eNotificationRequired()) {
 			ENotificationImpl notification = new ENotificationImpl(this, Notification.SET, VersioningPackage.HISTORY_INFO__LOG_MESSAGE, oldLogMessage, newLogMessage);
 			if (msgs == null) msgs = notification; else msgs.add(notification);
 		}
@@ -198,8 +189,7 @@ public class HistoryInfoImpl extends EObjectImpl implements HistoryInfo {
 	 * @generated
 	 */
 	public void setLogMessage(LogMessage newLogMessage) {
-		if (newLogMessage != logMessage)
-		{
+		if (newLogMessage != logMessage) {
 			NotificationChain msgs = null;
 			if (logMessage != null)
 				msgs = ((InternalEObject)logMessage).eInverseRemove(this, EOPPOSITE_FEATURE_BASE - VersioningPackage.HISTORY_INFO__LOG_MESSAGE, null, msgs);
@@ -217,8 +207,7 @@ public class HistoryInfoImpl extends EObjectImpl implements HistoryInfo {
 	 * @generated
 	 */
 	public EList<TagVersionSpec> getTagSpecs() {
-		if (tagSpecs == null)
-		{
+		if (tagSpecs == null) {
 			tagSpecs = new EObjectContainmentEList.Resolving<TagVersionSpec>(TagVersionSpec.class, this, VersioningPackage.HISTORY_INFO__TAG_SPECS);
 		}
 		return tagSpecs;
@@ -230,8 +219,7 @@ public class HistoryInfoImpl extends EObjectImpl implements HistoryInfo {
 	 */
 	@Override
 	public NotificationChain eInverseRemove(InternalEObject otherEnd, int featureID, NotificationChain msgs) {
-		switch (featureID)
-		{
+		switch (featureID) {
 			case VersioningPackage.HISTORY_INFO__PRIMERY_SPEC:
 				return basicSetPrimerySpec(null, msgs);
 			case VersioningPackage.HISTORY_INFO__LOG_MESSAGE:
@@ -248,8 +236,7 @@ public class HistoryInfoImpl extends EObjectImpl implements HistoryInfo {
 	 */
 	@Override
 	public Object eGet(int featureID, boolean resolve, boolean coreType) {
-		switch (featureID)
-		{
+		switch (featureID) {
 			case VersioningPackage.HISTORY_INFO__PRIMERY_SPEC:
 				if (resolve) return getPrimerySpec();
 				return basicGetPrimerySpec();
@@ -269,8 +256,7 @@ public class HistoryInfoImpl extends EObjectImpl implements HistoryInfo {
 	@SuppressWarnings("unchecked")
 	@Override
 	public void eSet(int featureID, Object newValue) {
-		switch (featureID)
-		{
+		switch (featureID) {
 			case VersioningPackage.HISTORY_INFO__PRIMERY_SPEC:
 				setPrimerySpec((PrimaryVersionSpec)newValue);
 				return;
@@ -291,8 +277,7 @@ public class HistoryInfoImpl extends EObjectImpl implements HistoryInfo {
 	 */
 	@Override
 	public void eUnset(int featureID) {
-		switch (featureID)
-		{
+		switch (featureID) {
 			case VersioningPackage.HISTORY_INFO__PRIMERY_SPEC:
 				setPrimerySpec((PrimaryVersionSpec)null);
 				return;
@@ -312,8 +297,7 @@ public class HistoryInfoImpl extends EObjectImpl implements HistoryInfo {
 	 */
 	@Override
 	public boolean eIsSet(int featureID) {
-		switch (featureID)
-		{
+		switch (featureID) {
 			case VersioningPackage.HISTORY_INFO__PRIMERY_SPEC:
 				return primerySpec != null;
 			case VersioningPackage.HISTORY_INFO__LOG_MESSAGE:

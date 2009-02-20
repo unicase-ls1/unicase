@@ -48,8 +48,7 @@ public class PrimaryVersionSpecItemProvider extends ItemProviderAdapter implemen
 	 */
 	@Override
 	public List<IItemPropertyDescriptor> getPropertyDescriptors(Object object) {
-		if (itemPropertyDescriptors == null)
-		{
+		if (itemPropertyDescriptors == null) {
 			super.getPropertyDescriptors(object);
 
 			addIdentifierPropertyDescriptor(object);
@@ -110,8 +109,7 @@ public class PrimaryVersionSpecItemProvider extends ItemProviderAdapter implemen
 	public void notifyChanged(Notification notification) {
 		updateChildren(notification);
 
-		switch (notification.getFeatureID(PrimaryVersionSpec.class))
-		{
+		switch (notification.getFeatureID(PrimaryVersionSpec.class)) {
 			case VersioningPackage.PRIMARY_VERSION_SPEC__IDENTIFIER:
 				fireNotifyChanged(new ViewerNotification(notification, notification.getNotifier(), false, true));
 				return;

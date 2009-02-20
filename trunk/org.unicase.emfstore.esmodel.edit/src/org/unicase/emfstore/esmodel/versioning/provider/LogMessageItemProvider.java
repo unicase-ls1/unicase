@@ -48,8 +48,7 @@ public class LogMessageItemProvider extends ItemProviderAdapter implements IEdit
 	 */
 	@Override
 	public List<IItemPropertyDescriptor> getPropertyDescriptors(Object object) {
-		if (itemPropertyDescriptors == null)
-		{
+		if (itemPropertyDescriptors == null) {
 			super.getPropertyDescriptors(object);
 
 			addAuthorPropertyDescriptor(object);
@@ -178,8 +177,7 @@ public class LogMessageItemProvider extends ItemProviderAdapter implements IEdit
 	public void notifyChanged(Notification notification) {
 		updateChildren(notification);
 
-		switch (notification.getFeatureID(LogMessage.class))
-		{
+		switch (notification.getFeatureID(LogMessage.class)) {
 			case VersioningPackage.LOG_MESSAGE__AUTHOR:
 			case VersioningPackage.LOG_MESSAGE__MESSAGE:
 			case VersioningPackage.LOG_MESSAGE__DATE:

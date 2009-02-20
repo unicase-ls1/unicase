@@ -83,16 +83,13 @@ public class HistoryQueryImpl extends EObjectImpl implements HistoryQuery {
 	 * @generated
 	 */
 	public PrimaryVersionSpec getSource() {
-		if (source != null && source.eIsProxy())
-		{
+		if (source != null && source.eIsProxy()) {
 			InternalEObject oldSource = (InternalEObject)source;
 			source = (PrimaryVersionSpec)eResolveProxy(oldSource);
-			if (source != oldSource)
-			{
+			if (source != oldSource) {
 				InternalEObject newSource = (InternalEObject)source;
 				NotificationChain msgs = oldSource.eInverseRemove(this, EOPPOSITE_FEATURE_BASE - VersioningPackage.HISTORY_QUERY__SOURCE, null, null);
-				if (newSource.eInternalContainer() == null)
-				{
+				if (newSource.eInternalContainer() == null) {
 					msgs = newSource.eInverseAdd(this, EOPPOSITE_FEATURE_BASE - VersioningPackage.HISTORY_QUERY__SOURCE, null, msgs);
 				}
 				if (msgs != null) msgs.dispatch();
@@ -118,8 +115,7 @@ public class HistoryQueryImpl extends EObjectImpl implements HistoryQuery {
 	public NotificationChain basicSetSource(PrimaryVersionSpec newSource, NotificationChain msgs) {
 		PrimaryVersionSpec oldSource = source;
 		source = newSource;
-		if (eNotificationRequired())
-		{
+		if (eNotificationRequired()) {
 			ENotificationImpl notification = new ENotificationImpl(this, Notification.SET, VersioningPackage.HISTORY_QUERY__SOURCE, oldSource, newSource);
 			if (msgs == null) msgs = notification; else msgs.add(notification);
 		}
@@ -131,8 +127,7 @@ public class HistoryQueryImpl extends EObjectImpl implements HistoryQuery {
 	 * @generated
 	 */
 	public void setSource(PrimaryVersionSpec newSource) {
-		if (newSource != source)
-		{
+		if (newSource != source) {
 			NotificationChain msgs = null;
 			if (source != null)
 				msgs = ((InternalEObject)source).eInverseRemove(this, EOPPOSITE_FEATURE_BASE - VersioningPackage.HISTORY_QUERY__SOURCE, null, msgs);
@@ -150,16 +145,13 @@ public class HistoryQueryImpl extends EObjectImpl implements HistoryQuery {
 	 * @generated
 	 */
 	public PrimaryVersionSpec getTarget() {
-		if (target != null && target.eIsProxy())
-		{
+		if (target != null && target.eIsProxy()) {
 			InternalEObject oldTarget = (InternalEObject)target;
 			target = (PrimaryVersionSpec)eResolveProxy(oldTarget);
-			if (target != oldTarget)
-			{
+			if (target != oldTarget) {
 				InternalEObject newTarget = (InternalEObject)target;
 				NotificationChain msgs = oldTarget.eInverseRemove(this, EOPPOSITE_FEATURE_BASE - VersioningPackage.HISTORY_QUERY__TARGET, null, null);
-				if (newTarget.eInternalContainer() == null)
-				{
+				if (newTarget.eInternalContainer() == null) {
 					msgs = newTarget.eInverseAdd(this, EOPPOSITE_FEATURE_BASE - VersioningPackage.HISTORY_QUERY__TARGET, null, msgs);
 				}
 				if (msgs != null) msgs.dispatch();
@@ -185,8 +177,7 @@ public class HistoryQueryImpl extends EObjectImpl implements HistoryQuery {
 	public NotificationChain basicSetTarget(PrimaryVersionSpec newTarget, NotificationChain msgs) {
 		PrimaryVersionSpec oldTarget = target;
 		target = newTarget;
-		if (eNotificationRequired())
-		{
+		if (eNotificationRequired()) {
 			ENotificationImpl notification = new ENotificationImpl(this, Notification.SET, VersioningPackage.HISTORY_QUERY__TARGET, oldTarget, newTarget);
 			if (msgs == null) msgs = notification; else msgs.add(notification);
 		}
@@ -198,8 +189,7 @@ public class HistoryQueryImpl extends EObjectImpl implements HistoryQuery {
 	 * @generated
 	 */
 	public void setTarget(PrimaryVersionSpec newTarget) {
-		if (newTarget != target)
-		{
+		if (newTarget != target) {
 			NotificationChain msgs = null;
 			if (target != null)
 				msgs = ((InternalEObject)target).eInverseRemove(this, EOPPOSITE_FEATURE_BASE - VersioningPackage.HISTORY_QUERY__TARGET, null, msgs);
@@ -217,8 +207,7 @@ public class HistoryQueryImpl extends EObjectImpl implements HistoryQuery {
 	 * @generated
 	 */
 	public EList<ModelElementId> getModelElements() {
-		if (modelElements == null)
-		{
+		if (modelElements == null) {
 			modelElements = new EObjectContainmentEList.Resolving<ModelElementId>(ModelElementId.class, this, VersioningPackage.HISTORY_QUERY__MODEL_ELEMENTS);
 		}
 		return modelElements;
@@ -230,8 +219,7 @@ public class HistoryQueryImpl extends EObjectImpl implements HistoryQuery {
 	 */
 	@Override
 	public NotificationChain eInverseRemove(InternalEObject otherEnd, int featureID, NotificationChain msgs) {
-		switch (featureID)
-		{
+		switch (featureID) {
 			case VersioningPackage.HISTORY_QUERY__SOURCE:
 				return basicSetSource(null, msgs);
 			case VersioningPackage.HISTORY_QUERY__TARGET:
@@ -248,8 +236,7 @@ public class HistoryQueryImpl extends EObjectImpl implements HistoryQuery {
 	 */
 	@Override
 	public Object eGet(int featureID, boolean resolve, boolean coreType) {
-		switch (featureID)
-		{
+		switch (featureID) {
 			case VersioningPackage.HISTORY_QUERY__SOURCE:
 				if (resolve) return getSource();
 				return basicGetSource();
@@ -269,8 +256,7 @@ public class HistoryQueryImpl extends EObjectImpl implements HistoryQuery {
 	@SuppressWarnings("unchecked")
 	@Override
 	public void eSet(int featureID, Object newValue) {
-		switch (featureID)
-		{
+		switch (featureID) {
 			case VersioningPackage.HISTORY_QUERY__SOURCE:
 				setSource((PrimaryVersionSpec)newValue);
 				return;
@@ -291,8 +277,7 @@ public class HistoryQueryImpl extends EObjectImpl implements HistoryQuery {
 	 */
 	@Override
 	public void eUnset(int featureID) {
-		switch (featureID)
-		{
+		switch (featureID) {
 			case VersioningPackage.HISTORY_QUERY__SOURCE:
 				setSource((PrimaryVersionSpec)null);
 				return;
@@ -312,8 +297,7 @@ public class HistoryQueryImpl extends EObjectImpl implements HistoryQuery {
 	 */
 	@Override
 	public boolean eIsSet(int featureID) {
-		switch (featureID)
-		{
+		switch (featureID) {
 			case VersioningPackage.HISTORY_QUERY__SOURCE:
 				return source != null;
 			case VersioningPackage.HISTORY_QUERY__TARGET:

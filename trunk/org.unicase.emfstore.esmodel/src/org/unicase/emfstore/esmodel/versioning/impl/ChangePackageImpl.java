@@ -97,8 +97,7 @@ public class ChangePackageImpl extends EObjectImpl implements ChangePackage {
 	 * @generated
 	 */
 	public EList<AbstractOperation> getOperations() {
-		if (operations == null)
-		{
+		if (operations == null) {
 			operations = new EObjectContainmentEList.Resolving<AbstractOperation>(AbstractOperation.class, this, VersioningPackage.CHANGE_PACKAGE__OPERATIONS);
 		}
 		return operations;
@@ -109,8 +108,7 @@ public class ChangePackageImpl extends EObjectImpl implements ChangePackage {
 	 * @generated
 	 */
 	public EList<Event> getEvents() {
-		if (events == null)
-		{
+		if (events == null) {
 			events = new EObjectContainmentEList.Resolving<Event>(Event.class, this, VersioningPackage.CHANGE_PACKAGE__EVENTS);
 		}
 		return events;
@@ -121,16 +119,13 @@ public class ChangePackageImpl extends EObjectImpl implements ChangePackage {
 	 * @generated
 	 */
 	public LogMessage getLogMessage() {
-		if (logMessage != null && logMessage.eIsProxy())
-		{
+		if (logMessage != null && logMessage.eIsProxy()) {
 			InternalEObject oldLogMessage = (InternalEObject)logMessage;
 			logMessage = (LogMessage)eResolveProxy(oldLogMessage);
-			if (logMessage != oldLogMessage)
-			{
+			if (logMessage != oldLogMessage) {
 				InternalEObject newLogMessage = (InternalEObject)logMessage;
 				NotificationChain msgs = oldLogMessage.eInverseRemove(this, EOPPOSITE_FEATURE_BASE - VersioningPackage.CHANGE_PACKAGE__LOG_MESSAGE, null, null);
-				if (newLogMessage.eInternalContainer() == null)
-				{
+				if (newLogMessage.eInternalContainer() == null) {
 					msgs = newLogMessage.eInverseAdd(this, EOPPOSITE_FEATURE_BASE - VersioningPackage.CHANGE_PACKAGE__LOG_MESSAGE, null, msgs);
 				}
 				if (msgs != null) msgs.dispatch();
@@ -156,8 +151,7 @@ public class ChangePackageImpl extends EObjectImpl implements ChangePackage {
 	public NotificationChain basicSetLogMessage(LogMessage newLogMessage, NotificationChain msgs) {
 		LogMessage oldLogMessage = logMessage;
 		logMessage = newLogMessage;
-		if (eNotificationRequired())
-		{
+		if (eNotificationRequired()) {
 			ENotificationImpl notification = new ENotificationImpl(this, Notification.SET, VersioningPackage.CHANGE_PACKAGE__LOG_MESSAGE, oldLogMessage, newLogMessage);
 			if (msgs == null) msgs = notification; else msgs.add(notification);
 		}
@@ -169,8 +163,7 @@ public class ChangePackageImpl extends EObjectImpl implements ChangePackage {
 	 * @generated
 	 */
 	public void setLogMessage(LogMessage newLogMessage) {
-		if (newLogMessage != logMessage)
-		{
+		if (newLogMessage != logMessage) {
 			NotificationChain msgs = null;
 			if (logMessage != null)
 				msgs = ((InternalEObject)logMessage).eInverseRemove(this, EOPPOSITE_FEATURE_BASE - VersioningPackage.CHANGE_PACKAGE__LOG_MESSAGE, null, msgs);
@@ -188,8 +181,7 @@ public class ChangePackageImpl extends EObjectImpl implements ChangePackage {
 	 * @generated
 	 */
 	public EList<ESNotification> getNotifications() {
-		if (notifications == null)
-		{
+		if (notifications == null) {
 			notifications = new EObjectContainmentEList.Resolving<ESNotification>(ESNotification.class, this, VersioningPackage.CHANGE_PACKAGE__NOTIFICATIONS);
 		}
 		return notifications;
@@ -250,8 +242,7 @@ public class ChangePackageImpl extends EObjectImpl implements ChangePackage {
 	 */
 	@Override
 	public NotificationChain eInverseRemove(InternalEObject otherEnd, int featureID, NotificationChain msgs) {
-		switch (featureID)
-		{
+		switch (featureID) {
 			case VersioningPackage.CHANGE_PACKAGE__OPERATIONS:
 				return ((InternalEList<?>)getOperations()).basicRemove(otherEnd, msgs);
 			case VersioningPackage.CHANGE_PACKAGE__EVENTS:
@@ -272,8 +263,7 @@ public class ChangePackageImpl extends EObjectImpl implements ChangePackage {
 	 */
 	@Override
 	public Object eGet(int featureID, boolean resolve, boolean coreType) {
-		switch (featureID)
-		{
+		switch (featureID) {
 			case VersioningPackage.CHANGE_PACKAGE__OPERATIONS:
 				return getOperations();
 			case VersioningPackage.CHANGE_PACKAGE__EVENTS:
@@ -294,8 +284,7 @@ public class ChangePackageImpl extends EObjectImpl implements ChangePackage {
 	@SuppressWarnings("unchecked")
 	@Override
 	public void eSet(int featureID, Object newValue) {
-		switch (featureID)
-		{
+		switch (featureID) {
 			case VersioningPackage.CHANGE_PACKAGE__OPERATIONS:
 				getOperations().clear();
 				getOperations().addAll((Collection<? extends AbstractOperation>)newValue);
@@ -321,8 +310,7 @@ public class ChangePackageImpl extends EObjectImpl implements ChangePackage {
 	 */
 	@Override
 	public void eUnset(int featureID) {
-		switch (featureID)
-		{
+		switch (featureID) {
 			case VersioningPackage.CHANGE_PACKAGE__OPERATIONS:
 				getOperations().clear();
 				return;
@@ -345,8 +333,7 @@ public class ChangePackageImpl extends EObjectImpl implements ChangePackage {
 	 */
 	@Override
 	public boolean eIsSet(int featureID) {
-		switch (featureID)
-		{
+		switch (featureID) {
 			case VersioningPackage.CHANGE_PACKAGE__OPERATIONS:
 				return operations != null && !operations.isEmpty();
 			case VersioningPackage.CHANGE_PACKAGE__EVENTS:

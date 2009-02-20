@@ -6,6 +6,7 @@
 package org.unicase.emfstore.esmodel.versioning.events.impl;
 
 import org.eclipse.emf.common.notify.Notification;
+import org.eclipse.emf.common.notify.NotificationChain;
 import org.eclipse.emf.ecore.EClass;
 import org.eclipse.emf.ecore.InternalEObject;
 import org.eclipse.emf.ecore.impl.ENotificationImpl;
@@ -144,12 +145,16 @@ public class DNDEventImpl extends EventImpl implements DNDEvent {
 	 * @generated
 	 */
 	public ModelElementId getDragSourceElement() {
-		if (dragSourceElement != null && dragSourceElement.eIsProxy())
-		{
+		if (dragSourceElement != null && dragSourceElement.eIsProxy()) {
 			InternalEObject oldDragSourceElement = (InternalEObject)dragSourceElement;
 			dragSourceElement = (ModelElementId)eResolveProxy(oldDragSourceElement);
-			if (dragSourceElement != oldDragSourceElement)
-			{
+			if (dragSourceElement != oldDragSourceElement) {
+				InternalEObject newDragSourceElement = (InternalEObject)dragSourceElement;
+				NotificationChain msgs = oldDragSourceElement.eInverseRemove(this, EOPPOSITE_FEATURE_BASE - EventsPackage.DND_EVENT__DRAG_SOURCE_ELEMENT, null, null);
+				if (newDragSourceElement.eInternalContainer() == null) {
+					msgs = newDragSourceElement.eInverseAdd(this, EOPPOSITE_FEATURE_BASE - EventsPackage.DND_EVENT__DRAG_SOURCE_ELEMENT, null, msgs);
+				}
+				if (msgs != null) msgs.dispatch();
 				if (eNotificationRequired())
 					eNotify(new ENotificationImpl(this, Notification.RESOLVE, EventsPackage.DND_EVENT__DRAG_SOURCE_ELEMENT, oldDragSourceElement, dragSourceElement));
 			}
@@ -166,14 +171,36 @@ public class DNDEventImpl extends EventImpl implements DNDEvent {
 	}
 
 	/**
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 */
+	public NotificationChain basicSetDragSourceElement(ModelElementId newDragSourceElement, NotificationChain msgs) {
+		ModelElementId oldDragSourceElement = dragSourceElement;
+		dragSourceElement = newDragSourceElement;
+		if (eNotificationRequired()) {
+			ENotificationImpl notification = new ENotificationImpl(this, Notification.SET, EventsPackage.DND_EVENT__DRAG_SOURCE_ELEMENT, oldDragSourceElement, newDragSourceElement);
+			if (msgs == null) msgs = notification; else msgs.add(notification);
+		}
+		return msgs;
+	}
+
+	/**
 	 * <!-- begin-user-doc --> <!-- end-user-doc -->
 	 * @generated
 	 */
 	public void setDragSourceElement(ModelElementId newDragSourceElement) {
-		ModelElementId oldDragSourceElement = dragSourceElement;
-		dragSourceElement = newDragSourceElement;
-		if (eNotificationRequired())
-			eNotify(new ENotificationImpl(this, Notification.SET, EventsPackage.DND_EVENT__DRAG_SOURCE_ELEMENT, oldDragSourceElement, dragSourceElement));
+		if (newDragSourceElement != dragSourceElement) {
+			NotificationChain msgs = null;
+			if (dragSourceElement != null)
+				msgs = ((InternalEObject)dragSourceElement).eInverseRemove(this, EOPPOSITE_FEATURE_BASE - EventsPackage.DND_EVENT__DRAG_SOURCE_ELEMENT, null, msgs);
+			if (newDragSourceElement != null)
+				msgs = ((InternalEObject)newDragSourceElement).eInverseAdd(this, EOPPOSITE_FEATURE_BASE - EventsPackage.DND_EVENT__DRAG_SOURCE_ELEMENT, null, msgs);
+			msgs = basicSetDragSourceElement(newDragSourceElement, msgs);
+			if (msgs != null) msgs.dispatch();
+		}
+		else if (eNotificationRequired())
+			eNotify(new ENotificationImpl(this, Notification.SET, EventsPackage.DND_EVENT__DRAG_SOURCE_ELEMENT, newDragSourceElement, newDragSourceElement));
 	}
 
 	/**
@@ -181,12 +208,16 @@ public class DNDEventImpl extends EventImpl implements DNDEvent {
 	 * @generated
 	 */
 	public ModelElementId getDropTargetElement() {
-		if (dropTargetElement != null && dropTargetElement.eIsProxy())
-		{
+		if (dropTargetElement != null && dropTargetElement.eIsProxy()) {
 			InternalEObject oldDropTargetElement = (InternalEObject)dropTargetElement;
 			dropTargetElement = (ModelElementId)eResolveProxy(oldDropTargetElement);
-			if (dropTargetElement != oldDropTargetElement)
-			{
+			if (dropTargetElement != oldDropTargetElement) {
+				InternalEObject newDropTargetElement = (InternalEObject)dropTargetElement;
+				NotificationChain msgs = oldDropTargetElement.eInverseRemove(this, EOPPOSITE_FEATURE_BASE - EventsPackage.DND_EVENT__DROP_TARGET_ELEMENT, null, null);
+				if (newDropTargetElement.eInternalContainer() == null) {
+					msgs = newDropTargetElement.eInverseAdd(this, EOPPOSITE_FEATURE_BASE - EventsPackage.DND_EVENT__DROP_TARGET_ELEMENT, null, msgs);
+				}
+				if (msgs != null) msgs.dispatch();
 				if (eNotificationRequired())
 					eNotify(new ENotificationImpl(this, Notification.RESOLVE, EventsPackage.DND_EVENT__DROP_TARGET_ELEMENT, oldDropTargetElement, dropTargetElement));
 			}
@@ -203,14 +234,52 @@ public class DNDEventImpl extends EventImpl implements DNDEvent {
 	}
 
 	/**
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 */
+	public NotificationChain basicSetDropTargetElement(ModelElementId newDropTargetElement, NotificationChain msgs) {
+		ModelElementId oldDropTargetElement = dropTargetElement;
+		dropTargetElement = newDropTargetElement;
+		if (eNotificationRequired()) {
+			ENotificationImpl notification = new ENotificationImpl(this, Notification.SET, EventsPackage.DND_EVENT__DROP_TARGET_ELEMENT, oldDropTargetElement, newDropTargetElement);
+			if (msgs == null) msgs = notification; else msgs.add(notification);
+		}
+		return msgs;
+	}
+
+	/**
 	 * <!-- begin-user-doc --> <!-- end-user-doc -->
 	 * @generated
 	 */
 	public void setDropTargetElement(ModelElementId newDropTargetElement) {
-		ModelElementId oldDropTargetElement = dropTargetElement;
-		dropTargetElement = newDropTargetElement;
-		if (eNotificationRequired())
-			eNotify(new ENotificationImpl(this, Notification.SET, EventsPackage.DND_EVENT__DROP_TARGET_ELEMENT, oldDropTargetElement, dropTargetElement));
+		if (newDropTargetElement != dropTargetElement) {
+			NotificationChain msgs = null;
+			if (dropTargetElement != null)
+				msgs = ((InternalEObject)dropTargetElement).eInverseRemove(this, EOPPOSITE_FEATURE_BASE - EventsPackage.DND_EVENT__DROP_TARGET_ELEMENT, null, msgs);
+			if (newDropTargetElement != null)
+				msgs = ((InternalEObject)newDropTargetElement).eInverseAdd(this, EOPPOSITE_FEATURE_BASE - EventsPackage.DND_EVENT__DROP_TARGET_ELEMENT, null, msgs);
+			msgs = basicSetDropTargetElement(newDropTargetElement, msgs);
+			if (msgs != null) msgs.dispatch();
+		}
+		else if (eNotificationRequired())
+			eNotify(new ENotificationImpl(this, Notification.SET, EventsPackage.DND_EVENT__DROP_TARGET_ELEMENT, newDropTargetElement, newDropTargetElement));
+	}
+
+	/**
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 */
+	@Override
+	public NotificationChain eInverseRemove(InternalEObject otherEnd, int featureID, NotificationChain msgs) {
+		switch (featureID) {
+			case EventsPackage.DND_EVENT__DRAG_SOURCE_ELEMENT:
+				return basicSetDragSourceElement(null, msgs);
+			case EventsPackage.DND_EVENT__DROP_TARGET_ELEMENT:
+				return basicSetDropTargetElement(null, msgs);
+		}
+		return super.eInverseRemove(otherEnd, featureID, msgs);
 	}
 
 	/**
@@ -219,8 +288,7 @@ public class DNDEventImpl extends EventImpl implements DNDEvent {
 	 */
 	@Override
 	public Object eGet(int featureID, boolean resolve, boolean coreType) {
-		switch (featureID)
-		{
+		switch (featureID) {
 			case EventsPackage.DND_EVENT__SOURCE_VIEW:
 				return getSourceView();
 			case EventsPackage.DND_EVENT__TARGET_VIEW:
@@ -241,8 +309,7 @@ public class DNDEventImpl extends EventImpl implements DNDEvent {
 	 */
 	@Override
 	public void eSet(int featureID, Object newValue) {
-		switch (featureID)
-		{
+		switch (featureID) {
 			case EventsPackage.DND_EVENT__SOURCE_VIEW:
 				setSourceView((String)newValue);
 				return;
@@ -265,8 +332,7 @@ public class DNDEventImpl extends EventImpl implements DNDEvent {
 	 */
 	@Override
 	public void eUnset(int featureID) {
-		switch (featureID)
-		{
+		switch (featureID) {
 			case EventsPackage.DND_EVENT__SOURCE_VIEW:
 				setSourceView(SOURCE_VIEW_EDEFAULT);
 				return;
@@ -289,8 +355,7 @@ public class DNDEventImpl extends EventImpl implements DNDEvent {
 	 */
 	@Override
 	public boolean eIsSet(int featureID) {
-		switch (featureID)
-		{
+		switch (featureID) {
 			case EventsPackage.DND_EVENT__SOURCE_VIEW:
 				return SOURCE_VIEW_EDEFAULT == null ? sourceView != null : !SOURCE_VIEW_EDEFAULT.equals(sourceView);
 			case EventsPackage.DND_EVENT__TARGET_VIEW:
