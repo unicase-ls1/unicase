@@ -165,7 +165,7 @@ public class ActivityTabComposite extends Composite implements ProjectChangeObse
 	public void dispose() {
 
 		workspace.eAdapters().remove(adapterImpl);
-		if (workspace.getActiveProjectSpace() != null || workspace.getActiveProjectSpace().getProject() != null) {
+		if (workspace.getActiveProjectSpace() != null && workspace.getActiveProjectSpace().getProject() != null) {
 			workspace.getActiveProjectSpace().getProject().removeProjectChangeObserver(ActivityTabComposite.this);
 		}
 		super.dispose();
