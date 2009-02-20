@@ -5,6 +5,7 @@
  */
 package org.unicase.workspace.edit.dashboard.widgets;
 
+import org.eclipse.jface.layout.GridDataFactory;
 import org.eclipse.jface.layout.GridLayoutFactory;
 import org.eclipse.jface.resource.JFaceResources;
 import org.eclipse.swt.SWT;
@@ -25,7 +26,9 @@ import org.eclipse.swt.widgets.Display;
 public abstract class AbstractDashboardWidget extends Composite {
 
 	private String title;
-	private Composite content;
+	private Composite panel;
+	private Display display;
+	private Color bg = new Color(display, 233, 244, 255);
 
 	/**
 	 * Default constructor.
@@ -36,20 +39,20 @@ public abstract class AbstractDashboardWidget extends Composite {
 	public AbstractDashboardWidget(final Composite parent, int style) {
 		super(parent, style);
 		title = "";
+		display = Display.getCurrent();
 		GridLayoutFactory.fillDefaults().numColumns(1).extendedMargins(12, 12, 35, 15).applyTo(this);
 		setBackgroundMode(SWT.INHERIT_FORCE);
-		createContent();
 		addPaintListener(new PaintListener() {
 
 			public void paintControl(PaintEvent e) {
-				Display display = Display.getCurrent();
 				GC gc = e.gc;
 				int x = getClientArea().x;
 				int y = getClientArea().y;
-				gc.setBackground(new Color(display, 233, 244, 255));
-				gc.fillRoundRectangle(x, y, getSize().x - 1, getSize().y - 1, 40, 40);
+				gc.setAntialias(SWT.ON);
+				gc.setBackground(bg);
+				gc.fillRoundRectangle(x, y, getSize().x - 1, getSize().y - 1, 20, 20);
 				gc.setForeground(new Color(display, 20, 74, 180));
-				gc.drawRoundRectangle(x, y, getSize().x - 1, getSize().y - 1, 40, 40);
+				gc.drawRoundRectangle(x, y, getSize().x - 1, getSize().y - 1, 20, 20);
 				x += 15;
 				Font headerFont = JFaceResources.getBannerFont();
 				gc.setFont(headerFont);
@@ -59,6 +62,9 @@ public abstract class AbstractDashboardWidget extends Composite {
 				gc.drawLine(x - 3, y, getSize().x - 13, y);
 			}
 		});
+		panel = new Composite(this, SWT.NONE);
+		panel.setBackground(bg);
+		GridDataFactory.fillDefaults().grab(true, true).applyTo(panel);
 	}
 
 	/**
@@ -85,7 +91,7 @@ public abstract class AbstractDashboardWidget extends Composite {
 	/**
 	 * @return the content
 	 */
-	public Composite getContent() {
-		return content;
+	public Composite getPanel() {
+		return panel;
 	}
 }

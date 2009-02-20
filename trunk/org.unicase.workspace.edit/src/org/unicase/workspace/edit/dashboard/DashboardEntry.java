@@ -16,11 +16,14 @@ import org.eclipse.swt.events.MouseAdapter;
 import org.eclipse.swt.events.MouseEvent;
 import org.eclipse.swt.events.MouseListener;
 import org.eclipse.swt.events.MouseTrackAdapter;
+import org.eclipse.swt.events.PaintEvent;
+import org.eclipse.swt.events.PaintListener;
 import org.eclipse.swt.events.SelectionEvent;
 import org.eclipse.swt.events.SelectionListener;
 import org.eclipse.swt.events.TypedEvent;
 import org.eclipse.swt.graphics.Color;
 import org.eclipse.swt.graphics.Image;
+import org.eclipse.swt.graphics.Rectangle;
 import org.eclipse.swt.widgets.Composite;
 import org.eclipse.swt.widgets.Display;
 import org.eclipse.swt.widgets.Label;
@@ -78,6 +81,7 @@ public class DashboardEntry extends Composite {
 
 	private boolean open = true;
 	private Color blue;
+	private DashboardPage page;
 
 	/**
 	 * Default constuctor.
@@ -86,10 +90,12 @@ public class DashboardEntry extends Composite {
 	 * @param style the style.
 	 * @param notification the notification.
 	 * @param project the project.
+	 * @param page a back link to the dashboard page (needed only for layout purposes).
 	 */
-	public DashboardEntry(Composite parent, int style, ESNotification notification, Project project) {
+	public DashboardEntry(DashboardPage page, Composite parent, int style, ESNotification notification, Project project) {
 		super(parent, style);
 
+		this.page = page;
 		n = notification;
 		this.project = project;
 		display = Display.getCurrent();
@@ -113,17 +119,11 @@ public class DashboardEntry extends Composite {
 			.applyTo(this);
 		this.setBackground(notificationColor);
 
-		Composite image = new Composite(this, SWT.NONE);
-		GridDataFactory.fillDefaults().hint(16, 16).applyTo(image);
 		AdapterFactoryLabelProvider labelProvider = new AdapterFactoryLabelProvider(new ComposedAdapterFactory(
 			ComposedAdapterFactory.Descriptor.Registry.INSTANCE));
+		Image image = labelProvider.getImage(project.getModelElement(n.getRelatedModelElements().get(0)));
+		Link link = createImageLink(image, this, n.getMessage());
 
-		image.setBackgroundImage(labelProvider.getImage(project.getModelElement(n.getRelatedModelElements().get(0))));
-
-		Link link = new Link(this, SWT.NONE);
-		link.setText(n.getMessage());
-		GridDataFactory.fillDefaults().align(SWT.BEGINNING, SWT.BEGINNING).applyTo(link);
-		// link.setBackground(notificationColor);
 		link.addSelectionListener(new LinkSelectionListener());
 		Label date = new Label(this, SWT.NONE);
 		date.setText(format.format(n.getCreationDate()));
@@ -168,14 +168,12 @@ public class DashboardEntry extends Composite {
 			Composite drawerEntry = new Composite(drawer, SWT.NONE);
 			GridDataFactory.fillDefaults().grab(true, false).applyTo(drawerEntry);
 			GridLayoutFactory.fillDefaults().numColumns(2).equalWidth(false).spacing(5, 0).applyTo(drawerEntry);
-			Composite icon = new Composite(drawerEntry, SWT.NONE);
-			icon.setBackgroundImage(labelProvider.getImage(me));
-			GridDataFactory.fillDefaults().hint(16, 16).applyTo(icon);
-			Link name = new Link(drawerEntry, SWT.WRAP);
-			name.setText("<a href=\"unicase://localhost/project/" + me.getModelElementId().getId() + "\">"
-				+ labelProvider.getText(me) + "</a>");
-			name.addSelectionListener(new LinkSelectionListener());
-			name.addMouseTrackListener(hoverListener);
+
+			Link meLink = createImageLink(labelProvider.getImage(me), drawerEntry,
+				"<a href=\"unicase://localhost/project/" + me.getModelElementId().getId() + "\">"
+					+ labelProvider.getText(me) + "</a>");
+			meLink.addSelectionListener(new LinkSelectionListener());
+			meLink.addMouseTrackListener(hoverListener);
 			drawerEntry.addMouseTrackListener(hoverListener);
 		}
 		drawer.addMouseTrackListener(hoverListener);
@@ -242,10 +240,31 @@ public class DashboardEntry extends Composite {
 			height = 0;
 		}
 		GridDataFactory.fillDefaults().hint(10, height).span(3, 1).indent(20, indent).grab(true, false).applyTo(drawer);
-		this.getParent().layout(true);
-		this.getParent().getParent().getParent().getParent().getParent().layout(true);
+		getParent().layout(true);
+		Composite sash = this.getParent().getParent();
+		sash.layout(true);
+		Composite main = sash.getParent();
+		main.layout(true);
+		page.getForm().setMinSize(main.computeSize(SWT.DEFAULT, SWT.DEFAULT));
+		page.getForm().layout(true);
 		// gallery.setLocation(0, -128);
 		// sa.move(gallery, gallery.getLocation().x, -128, 1000, new ElasticOut(), null, null);
+	}
+
+	private Link createImageLink(final Image image, Composite parent, String text) {
+		final Composite imageComposite = new Composite(parent, SWT.NONE);
+		GridDataFactory.fillDefaults().hint(16, 16).applyTo(imageComposite);
+		imageComposite.addPaintListener(new PaintListener() {
+			public void paintControl(PaintEvent e) {
+				Rectangle area = imageComposite.getClientArea();
+				e.gc.drawImage(image, area.x, area.y);
+			}
+		});
+
+		Link link = new Link(parent, SWT.WRAP);
+		link.setText(text);
+		GridDataFactory.fillDefaults().align(SWT.BEGINNING, SWT.BEGINNING).applyTo(link);
+		return link;
 	}
 
 }
