@@ -58,7 +58,7 @@ public abstract class EventUtil {
 	 * @param viewID The ID of the current view.
 	 * @param presentationID The ID of the new presentation.
 	 */
-	public static void logPresentationChangeEvent(String viewID, String presentationID) {
+	public static void logPresentationSwitchEvent(String viewID, String presentationID) {
 		final PresentationSwitchEvent presentationSwitchEvent = EventsFactory.eINSTANCE.createPresentationSwitchEvent();
 		presentationSwitchEvent.setNewPresentation(presentationID);
 		presentationSwitchEvent.setReadView(viewID);

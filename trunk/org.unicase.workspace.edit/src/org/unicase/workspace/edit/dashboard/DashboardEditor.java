@@ -95,4 +95,23 @@ public class DashboardEditor extends SharedHeaderFormEditor {
 		return false;
 	}
 
+	/**
+	 * Refreshes the editor.
+	 */
+	public void refresh() {
+		// removePage(0);
+		addPages();
+	}
+
+	/**
+	 * {@inheritDoc}
+	 */
+	@Override
+	public void setFocus() {
+
+		super.setFocus();
+		page.setFocus();
+
+	}
+
 }

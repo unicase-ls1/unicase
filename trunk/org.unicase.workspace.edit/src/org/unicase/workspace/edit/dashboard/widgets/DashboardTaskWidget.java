@@ -57,13 +57,13 @@ public class DashboardTaskWidget extends AbstractDashboardWidget {
 		List<WorkItem> myWI = new ArrayList<WorkItem>();
 		for (WorkItem wi : allWI) {
 			if (wi.getAssignee() != null
-				&& !wi.getAssignee().getName().equals(ps.getUsersession().getACUser().getName())) {
+				&& wi.getAssignee().getName().equals(ps.getUsersession().getACUser().getName())) {
 				myWI.add(wi);
 			}
 		}
-		int ais = 2;
-		int brs = 20;
-		int is = 99;
+		int ais = 0;
+		int brs = 0;
+		int is = 0;
 		for (WorkItem wi : myWI) {
 			if (TaskPackage.eINSTANCE.getCheckable().isInstance(wi) && ((Checkable) wi).isChecked()) {
 				continue;
@@ -82,15 +82,15 @@ public class DashboardTaskWidget extends AbstractDashboardWidget {
 		string.append(string1);
 		String string2 = "" + ais + "";
 		string.append(string2);
-		String string3 = " open ActionItems\n";
+		String string3 = " open ActionItem" + (ais == 1 ? "" : "s") + "\n";
 		string.append(string3);
 		String string4 = "" + brs + "";
 		string.append(string4);
-		String string5 = " unresolved BugReports\n";
+		String string5 = " unresolved BugReport" + (brs == 1 ? "" : "s") + "\n";
 		string.append(string5);
 		String string6 = "" + is + "";
 		string.append(string6);
-		String string7 = " open Issues";
+		String string7 = " open Issue" + (is == 1 ? "" : "s") + "";
 		string.append(string7);
 		label.setText(string.toString());
 
@@ -111,6 +111,8 @@ public class DashboardTaskWidget extends AbstractDashboardWidget {
 		style.length = string6.length();
 		style.fontStyle = SWT.BOLD;
 		label.setStyleRange(style);
+
+		label.setEnabled(false);
 
 	}
 }

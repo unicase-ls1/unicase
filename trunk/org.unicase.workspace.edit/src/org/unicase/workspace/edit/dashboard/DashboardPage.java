@@ -5,8 +5,6 @@
  */
 package org.unicase.workspace.edit.dashboard;
 
-import java.util.ArrayList;
-import java.util.Date;
 import java.util.List;
 
 import org.eclipse.emf.transaction.RecordingCommand;
@@ -23,14 +21,7 @@ import org.eclipse.ui.forms.editor.FormPage;
 import org.eclipse.ui.forms.widgets.FormToolkit;
 import org.eclipse.ui.forms.widgets.ScrolledForm;
 import org.unicase.emfstore.esmodel.notification.ESNotification;
-import org.unicase.emfstore.esmodel.notification.NotificationFactory;
 import org.unicase.model.Project;
-import org.unicase.model.bug.BugFactory;
-import org.unicase.model.bug.BugReport;
-import org.unicase.model.rationale.Issue;
-import org.unicase.model.rationale.RationaleFactory;
-import org.unicase.model.task.ActionItem;
-import org.unicase.model.task.TaskFactory;
 import org.unicase.workspace.ProjectSpace;
 import org.unicase.workspace.edit.Activator;
 import org.unicase.workspace.edit.dashboard.widgets.DashboardTaskWidget;
@@ -48,6 +39,8 @@ public class DashboardPage extends FormPage {
 	private Composite widgets;
 
 	private Project project;
+
+	private List<ESNotification> notifications;
 
 	/**
 	 * Default constructor.
@@ -67,52 +60,53 @@ public class DashboardPage extends FormPage {
 	protected void createFormContent(IManagedForm managedForm) {
 		super.createFormContent(managedForm);
 
-		// --------------- TEST DATA ----------------------
-		final List<ESNotification> notifications = new ArrayList<ESNotification>();
-
-		ESNotification n1 = NotificationFactory.eINSTANCE.createESNotification();
-		n1.setCreationDate(new Date());
-		n1.setMessage("You have been assigned " + "<a href=\"more\">3</a> new BugReports.");
-		final ActionItem ai = TaskFactory.eINSTANCE.createActionItem();
-		final BugReport br = BugFactory.eINSTANCE.createBugReport();
-		final Issue i = RationaleFactory.eINSTANCE.createIssue();
-
-		n1.getRelatedModelElements().add(br.getModelElementId());
-		n1.getRelatedModelElements().add(br.getModelElementId());
-		n1.getRelatedModelElements().add(br.getModelElementId());
-
-		ESNotification n2 = NotificationFactory.eINSTANCE.createESNotification();
-		n2.setCreationDate(new Date());
-		n2
-			.setMessage("You have been assigned "
-				+ "<a href=\"unicase://localhost/coldphusion/_stWbEJ63Ed2sqfORmUtZjA\">Should we have a entrance class?</a>."
-				+ "DHGJASFDGHAS <a href=\"unicase://localhost/coldphusion/_stWbEJ63Ed2sqfORmUtZjA\">Should we have a ?</a>.");
-		n2.getRelatedModelElements().add(i.getModelElementId());
-
-		ESNotification n3 = NotificationFactory.eINSTANCE.createESNotification();
-		n3.setCreationDate(new Date());
-		n3.setMessage("You have been assigned " + "<a href=\"more\">2</a> new ActionItems.");
-		n3.getRelatedModelElements().add(ai.getModelElementId());
-		n3.getRelatedModelElements().add(ai.getModelElementId());
-
-		ESNotification updated = NotificationFactory.eINSTANCE.createESNotification();
-		updated.setCreationDate(new Date());
-		updated.setMessage("revision 178");
+		// // --------------- TEST DATA ----------------------
+		// notifications = new ArrayList<ESNotification>();
 		//
-		notifications.add(updated);
-		notifications.add(n1);
-		notifications.add(n2);
-		notifications.add(n3);
-		notifications.add(updated);
-		notifications.add(n3);
-		notifications.add(n3);
-		notifications.add(n3);
-		notifications.add(n3);
-		notifications.add(updated);
-		notifications.add(n2);
-		notifications.add(n1);
-		notifications.add(n3);
-		// --------------- TEST DATA ----------------------
+		// ESNotification n1 = NotificationFactory.eINSTANCE.createESNotification();
+		// n1.setCreationDate(new Date());
+		// n1.setMessage("You have been assigned " + "<a href=\"more\">3</a> new BugReports.");
+		// final ActionItem ai = TaskFactory.eINSTANCE.createActionItem();
+		// final BugReport br = BugFactory.eINSTANCE.createBugReport();
+		// final Issue i = RationaleFactory.eINSTANCE.createIssue();
+		//
+		// n1.getRelatedModelElements().add(br.getModelElementId());
+		// n1.getRelatedModelElements().add(br.getModelElementId());
+		// n1.getRelatedModelElements().add(br.getModelElementId());
+		//
+		// ESNotification n2 = NotificationFactory.eINSTANCE.createESNotification();
+		// n2.setCreationDate(new Date());
+		// n2
+		// .setMessage("You have been assigned "
+		// + "<a href=\"unicase://localhost/coldphusion/_stWbEJ63Ed2sqfORmUtZjA\">Should we have a entrance class?</a>."
+		// +
+		// "DHGJASFDGHAS <a href=\"unicase://localhost/coldphusion/_stWbEJ63Ed2sqfORmUtZjA\">Should we have a ?</a>.");
+		// n2.getRelatedModelElements().add(i.getModelElementId());
+		//
+		// ESNotification n3 = NotificationFactory.eINSTANCE.createESNotification();
+		// n3.setCreationDate(new Date());
+		// n3.setMessage("You have been assigned " + "<a href=\"more\">2</a> new ActionItems.");
+		// n3.getRelatedModelElements().add(ai.getModelElementId());
+		// n3.getRelatedModelElements().add(ai.getModelElementId());
+		//
+		// ESNotification updated = NotificationFactory.eINSTANCE.createESNotification();
+		// updated.setCreationDate(new Date());
+		// updated.setMessage("revision 178");
+		// //
+		// notifications.add(updated);
+		// notifications.add(n1);
+		// notifications.add(n2);
+		// notifications.add(n3);
+		// notifications.add(updated);
+		// notifications.add(n3);
+		// notifications.add(n3);
+		// notifications.add(n3);
+		// notifications.add(n3);
+		// notifications.add(updated);
+		// notifications.add(n2);
+		// notifications.add(n1);
+		// notifications.add(n3);
+		// // --------------- TEST DATA ----------------------
 
 		// Layout form
 		form = managedForm.getForm();
@@ -120,10 +114,14 @@ public class DashboardPage extends FormPage {
 		toolkit.decorateFormHeading(form.getForm());
 		DashboardEditorInput editorInput = (DashboardEditorInput) getEditorInput();
 		ProjectSpace projectSpace = editorInput.getProjectSpace();
+
+		notifications = projectSpace.getNotifications();
+
 		project = projectSpace.getProject();
 		form.setText("Dashboard - " + projectSpace.getProjectName());
 		form.setImage(Activator.getImageDescriptor("/icons/dashboard.png").createImage());
 		form.setExpandVertical(true);
+		form.setExpandHorizontal(true);
 
 		Composite body = form.getBody();
 		body.setLayout(new GridLayout());
@@ -159,9 +157,9 @@ public class DashboardPage extends FormPage {
 
 			@Override
 			protected void doExecute() {
-				project.addModelElement(ai);
-				project.addModelElement(br);
-				project.addModelElement(i);
+				// project.addModelElement(ai);
+				// project.addModelElement(br);
+				// project.addModelElement(i);
 				loadNotifications(notifications);
 			}
 		});
@@ -169,6 +167,7 @@ public class DashboardPage extends FormPage {
 		int[] topWeights = { 80, 20 };
 		globalSash.setWeights(topWeights);
 
+		form.setFocus();
 		form.pack();
 	}
 
@@ -184,5 +183,16 @@ public class DashboardPage extends FormPage {
 	 */
 	public ScrolledForm getForm() {
 		return form;
+	}
+
+	/**
+	 * {@inheritDoc}
+	 * 
+	 * @see org.eclipse.ui.forms.editor.FormPage#setFocus()
+	 */
+	@Override
+	public void setFocus() {
+		super.setFocus();
+		main.setFocus();
 	}
 }

@@ -6,11 +6,8 @@
 package org.unicase.workspace.edit.views.changes;
 
 import java.util.ArrayList;
-import java.util.Date;
 import java.util.List;
 
-import org.eclipse.emf.transaction.RecordingCommand;
-import org.eclipse.emf.transaction.TransactionalEditingDomain;
 import org.eclipse.jface.layout.GridDataFactory;
 import org.eclipse.swt.SWT;
 import org.eclipse.swt.events.SelectionEvent;
@@ -21,9 +18,7 @@ import org.eclipse.swt.widgets.Control;
 import org.eclipse.swt.widgets.TabFolder;
 import org.eclipse.swt.widgets.TabItem;
 import org.unicase.emfstore.esmodel.versioning.ChangePackage;
-import org.unicase.emfstore.esmodel.versioning.events.EventsFactory;
-import org.unicase.emfstore.esmodel.versioning.events.PresentationSwitchEvent;
-import org.unicase.workspace.WorkspaceManager;
+import org.unicase.workspace.util.EventUtil;
 
 /**
  * A composite that contains multiple tabs displaying the operation from a different view - e.g. grouped by model
@@ -44,8 +39,6 @@ public class TabbedChangesComposite extends Composite implements ChangesComposit
 		}
 
 		public void widgetSelected(SelectionEvent e) {
-			final PresentationSwitchEvent event = EventsFactory.eINSTANCE.createPresentationSwitchEvent();
-			event.setReadView(getClass().getName().toString());
 			String tab = "Unknown view";
 			Control control = folder.getSelection()[0].getControl();
 			if (control instanceof CompactChangesComposite) {
@@ -53,16 +46,7 @@ public class TabbedChangesComposite extends Composite implements ChangesComposit
 			} else if (control instanceof DetailedChangesComposite) {
 				tab = "Detailed view";
 			}
-			event.setNewPresentation(tab);
-			event.setTimestamp(new Date());
-			TransactionalEditingDomain domain = TransactionalEditingDomain.Registry.INSTANCE
-				.getEditingDomain("org.unicase.EditingDomain");
-			domain.getCommandStack().execute(new RecordingCommand(domain) {
-				@Override
-				protected void doExecute() {
-					WorkspaceManager.getInstance().getCurrentWorkspace().getActiveProjectSpace().addEvent(event);
-				}
-			});
+			EventUtil.logPresentationSwitchEvent(getClass().getName().toString(), tab);
 		}
 	}
 

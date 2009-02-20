@@ -15,6 +15,7 @@ import org.eclipse.jface.dialogs.ProgressMonitorDialog;
 import org.eclipse.jface.window.Window;
 import org.eclipse.swt.widgets.Display;
 import org.eclipse.swt.widgets.Shell;
+import org.eclipse.ui.IEditorPart;
 import org.eclipse.ui.PartInitException;
 import org.eclipse.ui.PlatformUI;
 import org.unicase.emfstore.esmodel.versioning.ChangePackage;
@@ -26,6 +27,7 @@ import org.unicase.ui.common.exceptions.DialogHandler;
 import org.unicase.workspace.ProjectSpace;
 import org.unicase.workspace.Usersession;
 import org.unicase.workspace.WorkspaceManager;
+import org.unicase.workspace.edit.dashboard.DashboardEditor;
 import org.unicase.workspace.edit.dashboard.DashboardEditorInput;
 import org.unicase.workspace.edit.dialogs.LoginDialog;
 import org.unicase.workspace.edit.dialogs.MergeDialog;
@@ -186,12 +188,12 @@ public class UpdateProjectHandler extends ProjectActionHandler implements Update
 		ProjectSpace activeProjectSpace = WorkspaceManager.getInstance().getCurrentWorkspace().getActiveProjectSpace();
 		DashboardEditorInput input = new DashboardEditorInput(activeProjectSpace);
 		try {
-			PlatformUI.getWorkbench().getActiveWorkbenchWindow().getActivePage().openEditor(input,
+			IEditorPart editor = PlatformUI.getWorkbench().getActiveWorkbenchWindow().getActivePage().openEditor(input,
 				"org.unicase.workspace.edit.dashboard", true);
+			((DashboardEditor) editor).refresh();
 		} catch (PartInitException e) {
 			e.printStackTrace();
 		}
 
 	}
-
 }

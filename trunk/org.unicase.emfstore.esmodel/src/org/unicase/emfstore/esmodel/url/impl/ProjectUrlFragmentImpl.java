@@ -244,6 +244,11 @@ public class ProjectUrlFragmentImpl extends EObjectImpl implements ProjectUrlFra
 		return result.toString();
 	}
 
+	/**
+	 * {@inheritDoc}
+	 * 
+	 * @generated NOT
+	 */
 	public String getUrlString() {
 		StringBuilder stringBuilder = new StringBuilder();
 		stringBuilder.append(getName());

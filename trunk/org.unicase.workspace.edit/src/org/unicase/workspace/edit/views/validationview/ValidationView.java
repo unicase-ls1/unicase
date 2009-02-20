@@ -242,11 +242,11 @@ public class ValidationView extends ViewPart {
 	 */
 	protected void setUserFilter(boolean checked) {
 		if (checked) {
-			EventUtil.logPresentationChangeEvent(viewId, "UserFilter");
+			EventUtil.logPresentationSwitchEvent(viewId, "UserFilter");
 			tableViewer.addFilter(userFilter);
 		} else {
 			if (userFilter != null) {
-				EventUtil.logPresentationChangeEvent(viewId, "NoUserFilter");
+				EventUtil.logPresentationSwitchEvent(viewId, "NoUserFilter");
 				tableViewer.removeFilter(userFilter);
 			}
 		}
@@ -285,11 +285,11 @@ public class ValidationView extends ViewPart {
 	 */
 	protected void setTeamFilter(boolean checked) {
 		if (checked) {
-			EventUtil.logPresentationChangeEvent(viewId, "TeamFilter");
+			EventUtil.logPresentationSwitchEvent(viewId, "TeamFilter");
 			tableViewer.addFilter(teamFilter);
 		} else {
 			if (teamFilter != null) {
-				EventUtil.logPresentationChangeEvent(viewId, "NoTeamFilter");
+				EventUtil.logPresentationSwitchEvent(viewId, "NoTeamFilter");
 				tableViewer.removeFilter(teamFilter);
 			}
 		}
