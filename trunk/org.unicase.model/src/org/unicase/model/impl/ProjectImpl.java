@@ -63,6 +63,7 @@ public class ProjectImpl extends EObjectImpl implements Project, ProjectChangeOb
 
 	/**
 	 * <!-- begin-user-doc --> .<!-- end-user-doc -->
+	 * 
 	 * @generated
 	 */
 	@Override
@@ -72,6 +73,7 @@ public class ProjectImpl extends EObjectImpl implements Project, ProjectChangeOb
 
 	/**
 	 * <!-- begin-user-doc --> <!-- end-user-doc -->
+	 * 
 	 * @generated
 	 */
 	public EList<ModelElement> getModelElements() {
@@ -174,6 +176,7 @@ public class ProjectImpl extends EObjectImpl implements Project, ProjectChangeOb
 
 	/**
 	 * <!-- begin-user-doc --> <!-- end-user-doc -->
+	 * 
 	 * @generated
 	 */
 	@Override
@@ -187,6 +190,7 @@ public class ProjectImpl extends EObjectImpl implements Project, ProjectChangeOb
 
 	/**
 	 * <!-- begin-user-doc --> <!-- end-user-doc -->
+	 * 
 	 * @generated
 	 */
 	@Override
@@ -200,6 +204,7 @@ public class ProjectImpl extends EObjectImpl implements Project, ProjectChangeOb
 
 	/**
 	 * <!-- begin-user-doc --> <!-- end-user-doc -->
+	 * 
 	 * @generated
 	 */
 	@SuppressWarnings("unchecked")
@@ -216,6 +221,7 @@ public class ProjectImpl extends EObjectImpl implements Project, ProjectChangeOb
 
 	/**
 	 * <!-- begin-user-doc --> <!-- end-user-doc -->
+	 * 
 	 * @generated
 	 */
 	@Override
@@ -230,6 +236,7 @@ public class ProjectImpl extends EObjectImpl implements Project, ProjectChangeOb
 
 	/**
 	 * <!-- begin-user-doc --> <!-- end-user-doc -->
+	 * 
 	 * @generated
 	 */
 	@Override
@@ -389,17 +396,14 @@ public class ProjectImpl extends EObjectImpl implements Project, ProjectChangeOb
 		for (ModelElement otherModelElement : this.getAllModelElements()) {
 			for (ModelElement otherElementOpposite : otherModelElement.getLinkedModelElements()) {
 				if (otherElementOpposite == modelElement) {
-					EList<EReference> references = otherModelElement.eClass().getEReferences();
+					EList<EReference> references = otherModelElement.eClass().getEAllReferences();
 					for (EReference reference : references) {
 						if (!reference.isContainment() && !reference.isContainer()) {
-							if (!reference.isContainer() && !reference.isContainment()) {
-								if (reference.isMany()) {
-									((EList<?>) otherModelElement.eGet(reference)).remove(modelElement);
-								} else {
-									modelElement.eSet(reference, null);
-								}
+							if (reference.isMany()) {
+								((EList<?>) otherModelElement.eGet(reference)).remove(modelElement);
+							} else {
+								modelElement.eSet(reference, null);
 							}
-
 						}
 					}
 				}
