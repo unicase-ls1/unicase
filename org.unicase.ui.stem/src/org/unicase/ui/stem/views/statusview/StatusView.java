@@ -473,7 +473,7 @@ public class StatusView extends ViewPart implements ProjectChangeObserver {
 				Widget item = e.item;
 				TabItem tabItem = (TabItem) item;
 				String text = tabItem.getText();
-				EventUtil.logPresentationChangeEvent("org.unicase.ui.treeview.views.StatusView", text);
+				EventUtil.logPresentationSwitchEvent("org.unicase.ui.treeview.views.StatusView", text);
 				super.widgetSelected(e);
 			}
 

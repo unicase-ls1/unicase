@@ -196,6 +196,12 @@ public class ServerUrlImpl extends EObjectImpl implements ServerUrl {
 		return result.toString();
 	}
 
+	/**
+	 * {@inheritDoc}
+	 * 
+	 * @see org.unicase.emfstore.esmodel.url.ServerUrl#getUrlString()
+	 * @generated NOT
+	 */
 	public String getUrlString() {
 		StringBuilder stringBuilder = new StringBuilder();
 		stringBuilder.append(getHostName());

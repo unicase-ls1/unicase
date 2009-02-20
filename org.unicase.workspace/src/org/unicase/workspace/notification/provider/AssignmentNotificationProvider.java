@@ -27,7 +27,6 @@ import org.unicase.model.organization.Group;
 import org.unicase.model.organization.OrgUnit;
 import org.unicase.model.organization.OrganizationPackage;
 import org.unicase.model.organization.User;
-import org.unicase.model.task.WorkItem;
 import org.unicase.workspace.ProjectSpace;
 import org.unicase.workspace.exceptions.CannotMatchUserInProjectException;
 import org.unicase.workspace.notification.NotificationProvider;
@@ -99,7 +98,9 @@ public class AssignmentNotificationProvider implements NotificationProvider {
 	 */
 	public List<ESNotification> getResult() {
 		List<ESNotification> result = new ArrayList<ESNotification>();
-
+		if (workItems.isEmpty()) {
+			return result;
+		}
 		// create a notification for the new work items
 		ESNotification notification = NotificationFactory.eINSTANCE.createESNotification();
 		notification.setName("New work items");
@@ -109,17 +110,23 @@ public class AssignmentNotificationProvider implements NotificationProvider {
 		notification.setSender("unicase assignment notification generator");
 		StringBuilder stringBuilder = new StringBuilder();
 		stringBuilder.append("You have been assigned ");
+		if (workItems.size() == 1) {
+
+		}
 		stringBuilder.append(workItems.size());
 		stringBuilder.append(" new work items.");
 		String message = stringBuilder.toString();
 		notification.setMessage(message);
 		notification.getRelatedModelElements().addAll(workItems);
-		WorkItem[] wis = workItems.toArray(new WorkItem[0]);
-		Date date = wis[0].getCreationDate();
-		if (wis.length > 1) {
-			for (WorkItem wi : wis) {
-				if (wi.getCreationDate().after(date)) {
-					date = wi.getCreationDate();
+		ModelElementId[] wis = workItems.toArray(new ModelElementId[0]);
+		Date date = new Date();
+		if (wis.length > 0) {
+			ModelElement me = projectSpace.getProject().getModelElement(wis[0]);
+			date = me.getCreationDate();
+			for (ModelElementId wi : wis) {
+				Date newDate = projectSpace.getProject().getModelElement(wi).getCreationDate();
+				if (newDate.after(date)) {
+					date = newDate;
 				}
 			}
 		}
@@ -155,7 +162,7 @@ public class AssignmentNotificationProvider implements NotificationProvider {
 
 		// if we have a change of an orgunit feature in a work item
 		if (clazz.isInstance(modelElement)) {
-			if (!(featureName.equalsIgnoreCase("assignee") || featureName.equalsIgnoreCase("participants"))) {
+			if (!(featureName.equalsIgnoreCase("assignee"))) {
 				return;
 			}
 			processWorkItem(operation, referenceOperation, project);
@@ -163,7 +170,7 @@ public class AssignmentNotificationProvider implements NotificationProvider {
 		}
 		// if we have a change in a workitem related feature in a org unit
 		else if (OrganizationPackage.eINSTANCE.getOrgUnit().isInstance(modelElement)) {
-			if (!(featureName.equalsIgnoreCase("assignments") || featureName.equalsIgnoreCase("participations"))) {
+			if (!(featureName.equalsIgnoreCase("assignments"))) {
 				return;
 			}
 

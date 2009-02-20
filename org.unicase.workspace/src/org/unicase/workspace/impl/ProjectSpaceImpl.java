@@ -2023,8 +2023,9 @@ public class ProjectSpaceImpl extends IdentifiableElementImpl implements Project
 	}
 
 	public ModelElement resolve(ModelElementUrlFragment modelElementUrlFragment) throws MEUrlResolutionException {
-		// AS: please implement
-		return null;
+		// MK: why do we need this exception?
+		ModelElementId modelElementId = modelElementUrlFragment.getModelElementId();
+		return getProject().getModelElement(modelElementId);
 	}
 
 } // ProjectContainerImpl

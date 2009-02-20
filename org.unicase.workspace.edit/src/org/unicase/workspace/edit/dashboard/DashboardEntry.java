@@ -240,13 +240,8 @@ public class DashboardEntry extends Composite {
 			height = 0;
 		}
 		GridDataFactory.fillDefaults().hint(10, height).span(3, 1).indent(20, indent).grab(true, false).applyTo(drawer);
-		getParent().layout(true);
-		Composite sash = this.getParent().getParent();
-		sash.layout(true);
-		Composite main = sash.getParent();
-		main.layout(true);
-		page.getForm().setMinSize(main.computeSize(SWT.DEFAULT, SWT.DEFAULT));
-		page.getForm().layout(true);
+		getParent().layout();
+		page.getForm().reflow(true);
 		// gallery.setLocation(0, -128);
 		// sa.move(gallery, gallery.getLocation().x, -128, 1000, new ElasticOut(), null, null);
 	}
