@@ -9,6 +9,7 @@ import java.net.URL;
 import java.util.Date;
 import java.util.HashMap;
 import java.util.Iterator;
+import java.util.List;
 import java.util.Map;
 import java.util.Set;
 
@@ -48,6 +49,7 @@ import org.eclipse.ui.part.ViewPart;
 import org.unicase.model.ModelElement;
 import org.unicase.model.Project;
 import org.unicase.model.task.WorkItem;
+import org.unicase.model.task.WorkPackage;
 import org.unicase.model.task.util.MEState;
 import org.unicase.model.task.util.TaxonomyAccess;
 import org.unicase.model.util.ProjectChangeObserver;
@@ -299,8 +301,13 @@ public class StatusView extends ViewPart implements ProjectChangeObserver {
 		// get number of all Openers for this model element
 		// in a hierarchical manner
 		Set<ModelElement> leafOpeners = TaxonomyAccess.getInstance().getOpeningLinkTaxonomy().getLeafOpeners(input);
+
+		if (input instanceof WorkPackage) {
+			removeNotContainedTasks(leafOpeners, (WorkPackage) input);
+		}
+
 		int tasks = leafOpeners.size();
-		int estimate = TaxonomyAccess.getInstance().getOpeningLinkTaxonomy().getEstimate(input);
+		int estimate = TaxonomyAccess.getInstance().getOpeningLinkTaxonomy().getEstimate(leafOpeners);
 		int closedTasks = getClosedTasks(leafOpeners);
 		int closedEstimate = getClosedEstimate(leafOpeners);
 
@@ -349,6 +356,12 @@ public class StatusView extends ViewPart implements ProjectChangeObserver {
 		hierarchyTabComposite.setInput(input);
 		userTabComposite.setInput(input, this);
 		activityTabComposite.setInput(input);
+
+	}
+
+	private void removeNotContainedTasks(Set<ModelElement> leafOpeners, WorkPackage input2) {
+		List<WorkItem> allContainedWorkItems = input2.getAllContainedWorkItems();
+		leafOpeners.retainAll(allContainedWorkItems);
 
 	}
 

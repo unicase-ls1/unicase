@@ -132,7 +132,13 @@ public class OpeningLinkTaxonomy {
 		return leafOpeners;
 	}
 
-	private int getEstimate(Set<ModelElement> leafOpeners) {
+	/**
+	 * Returns the aggregated estimate for a set of {@link ModelElement}s.
+	 * 
+	 * @param leafOpeners the list of work items
+	 * @return the estimate
+	 */
+	public int getEstimate(Set<ModelElement> leafOpeners) {
 		int estimate = 0;
 		Iterator<ModelElement> iterator = leafOpeners.iterator();
 		while (iterator.hasNext()) {
