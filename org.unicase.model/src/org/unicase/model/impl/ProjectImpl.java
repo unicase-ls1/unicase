@@ -392,32 +392,12 @@ public class ProjectImpl extends EObjectImpl implements Project, ProjectChangeOb
 		for (ProjectChangeObserver projectChangeObserver : this.observers) {
 			projectChangeObserver.modelElementDeleteStarted(modelElement);
 		}
-		// delete all non containment cross references from other elements in the project
-		for (ModelElement otherModelElement : this.getAllModelElements()) {
-			for (ModelElement otherElementOpposite : otherModelElement.getLinkedModelElements()) {
-				if (otherElementOpposite == modelElement) {
-					EList<EReference> references = otherModelElement.eClass().getEAllReferences();
-					for (EReference reference : references) {
-						if (!reference.isContainment() && !reference.isContainer()) {
-							if (reference.isMany()) {
-								((EList<?>) otherModelElement.eGet(reference)).remove(modelElement);
-							} else {
-								modelElement.eSet(reference, null);
-							}
-						}
-					}
-				}
-			}
-		}
-		// delete all non containment cross references to other elments
-		for (EReference reference : modelElement.eClass().getEAllReferences()) {
-			if (!reference.isContainer() && !reference.isContainment()) {
-				if (reference.isMany()) {
-					((EList<?>) modelElement.eGet(reference)).clear();
-				} else {
-					modelElement.eSet(reference, null);
-				}
-			}
+		deleteIncomingCrossReferences(modelElement);
+		deleteOutgoingCrossReferences(modelElement);
+
+		for (ModelElement child : modelElement.getAllContainedModelElements()) {
+			deleteIncomingCrossReferences(child);
+			deleteOutgoingCrossReferences(child);
 		}
 
 		// remove containment
@@ -430,6 +410,35 @@ public class ProjectImpl extends EObjectImpl implements Project, ProjectChangeOb
 		}
 		for (ProjectChangeObserver projectChangeObserver : this.observers) {
 			projectChangeObserver.modelElementDeleteCompleted(modelElement);
+		}
+	}
+
+	private void deleteOutgoingCrossReferences(ModelElement modelElement) {
+		// delete all non containment cross references to other elments
+		for (EReference reference : modelElement.eClass().getEAllReferences()) {
+			if (!reference.isContainer() && !reference.isContainment()) {
+				modelElement.eUnset(reference);
+			}
+		}
+	}
+
+	private void deleteIncomingCrossReferences(ModelElement modelElement) {
+		// delete all non containment cross references from other elements in the project
+		for (ModelElement otherModelElement : this.getAllModelElements()) {
+			for (ModelElement otherElementOpposite : otherModelElement.getLinkedModelElements()) {
+				if (otherElementOpposite == modelElement) {
+					EList<EReference> references = otherModelElement.eClass().getEAllReferences();
+					for (EReference reference : references) {
+						if (!reference.isContainment() && !reference.isContainer()) {
+							if (reference.isMany()) {
+								((EList<?>) otherModelElement.eGet(reference)).remove(modelElement);
+							} else {
+								modelElement.eUnset(reference);
+							}
+						}
+					}
+				}
+			}
 		}
 	}
 
