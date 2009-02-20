@@ -55,12 +55,14 @@ public final class DeleteModelElementCommand extends RecordingCommand {
 				progressDialog.open();
 				progressDialog.getProgressMonitor().beginTask("Deleting " + me.getName() + "...", 100);
 				progressDialog.getProgressMonitor().worked(20);
-				
-				me.delete();
-				//EcoreUtil.delete(me, true);
-				
-				progressDialog.getProgressMonitor().done();
-				progressDialog.close();
+
+				try {
+					me.delete();
+					// EcoreUtil.delete(me, true);
+				} finally {
+					progressDialog.getProgressMonitor().done();
+					progressDialog.close();
+				}
 			}
 		}
 	}
