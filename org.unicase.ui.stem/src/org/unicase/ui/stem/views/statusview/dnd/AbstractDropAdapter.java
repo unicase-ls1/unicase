@@ -15,6 +15,8 @@ import org.eclipse.swt.dnd.DND;
 import org.eclipse.swt.dnd.DropTargetAdapter;
 import org.eclipse.swt.dnd.DropTargetEvent;
 import org.unicase.model.ModelElement;
+import org.unicase.model.organization.Group;
+import org.unicase.model.organization.OrgUnit;
 import org.unicase.model.task.ActionItem;
 import org.unicase.model.task.TaskFactory;
 import org.unicase.model.task.WorkItem;
@@ -24,6 +26,7 @@ import org.unicase.model.task.util.MEState;
 import org.unicase.model.task.util.TaxonomyAccess;
 import org.unicase.ui.common.dnd.DragSourcePlaceHolder;
 import org.unicase.workspace.util.EventUtil;
+import org.unicase.workspace.util.OrgUnitHelper;
 
 /**
  * Note that in methods dropXXOnYY(), YY actually means the currentOpenME and not drop target!
@@ -129,9 +132,26 @@ public abstract class AbstractDropAdapter extends DropTargetAdapter {
 	 * @return true if currentOpenME and dropped ME are assigned to the same team.
 	 */
 	protected boolean isAssignedToTheSameTeam(WorkItem me) {
-
-		// TODO: implement
-		return true;
+		WorkItem parent;
+		if (currentOpenME instanceof WorkItem) {
+			parent = (WorkItem) currentOpenME;
+		} else {
+			return false;
+		}
+		OrgUnit parentAssignee = parent.getAssignee();
+		if (parentAssignee == null || me.getAssignee() == null) {
+			return false;
+		}
+		if (parentAssignee.equals(me.getAssignee())) {
+			return true;
+		}
+		Set<Group> allGroupsOfOrgUnit = OrgUnitHelper.getAllGroupsOfOrgUnit(me.getAssignee());
+		for (OrgUnit group : allGroupsOfOrgUnit) {
+			if (group.equals(parentAssignee)) {
+				return true;
+			}
+		}
+		return false;
 	}
 
 	/**
