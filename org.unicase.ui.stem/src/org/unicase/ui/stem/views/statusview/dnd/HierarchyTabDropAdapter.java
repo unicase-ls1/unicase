@@ -20,7 +20,7 @@ import org.unicase.model.task.util.TaxonomyAccess;
  * 
  * @author helming
  */
-public class HierarchyTabDropAdapter extends AbstractFlatHierarchyTabDropAdapter {
+public class HierarchyTabDropAdapter extends AbstractDropAdapter {
 
 	/**
 	 * {@inheritDoc} In hierarchy view: If a WorkItem is dropped on a root element (drop target), this element will be
@@ -28,7 +28,7 @@ public class HierarchyTabDropAdapter extends AbstractFlatHierarchyTabDropAdapter
 	 * in white area of viewer (not on a drop target) the currentOpenME will be annotated (if it is not already
 	 * (hierarchically)annotated too).
 	 * 
-	 * @see org.unicase.ui.stem.views.statusview.dnd.AbstractFlatHierarchyTabDropAdapter#dropWorkItemOnNonWorkPackage()
+	 * @see org.unicase.ui.stem.views.statusview.dnd.AbstractDropAdapter#dropWorkItemOnNonWorkPackage()
 	 */
 	@Override
 	protected void dropWorkItemOnNonWorkPackage() {
@@ -43,7 +43,7 @@ public class HierarchyTabDropAdapter extends AbstractFlatHierarchyTabDropAdapter
 	 * on a non-WorkItem ME in the tree, then annotate this ME (if not already annotated). Note that in this case you
 	 * cannot drop a WorkItem on another WorkItem in tree. The canDrop() method checks this.
 	 * 
-	 * @see org.unicase.ui.stem.views.statusview.dnd.AbstractFlatHierarchyTabDropAdapter#dropWorkItemOnWorkPackage()
+	 * @see org.unicase.ui.stem.views.statusview.dnd.AbstractDropAdapter#dropWorkItemOnWorkPackage()
 	 */
 	@Override
 	protected void dropWorkItemOnWorkPackage() {
@@ -85,7 +85,7 @@ public class HierarchyTabDropAdapter extends AbstractFlatHierarchyTabDropAdapter
 	/**
 	 * {@inheritDoc}
 	 * 
-	 * @see org.unicase.ui.stem.views.statusview.dnd.AbstractFlatHierarchyTabDropAdapter#canDrop(org.eclipse.swt.dnd.DropTargetEvent)
+	 * @see org.unicase.ui.stem.views.statusview.dnd.AbstractDropAdapter#canDrop(org.eclipse.swt.dnd.DropTargetEvent)
 	 */
 	@Override
 	protected boolean canDrop(DropTargetEvent event) {

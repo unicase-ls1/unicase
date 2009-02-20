@@ -18,13 +18,13 @@ import org.unicase.model.task.util.TaxonomyAccess;
  * 
  * @author Hodaie
  */
-public class FlatTabDropAdapter extends AbstractFlatHierarchyTabDropAdapter {
+public class FlatTabDropAdapter extends AbstractDropAdapter {
 
 	/**
 	 * {@inheritDoc} In flat tab: Drop WorkItem B on ME (non work package) A. If B somewhere exists in annotations of A
 	 * (hierarchical), do nothing; otherwise Annotate A with B
 	 * 
-	 * @see org.unicase.ui.stem.views.statusview.dnd.AbstractFlatHierarchyTabDropAdapter#dropWorkItemOnNonWorkPackage()
+	 * @see org.unicase.ui.stem.views.statusview.dnd.AbstractDropAdapter#dropWorkItemOnNonWorkPackage()
 	 */
 	@Override
 	protected void dropWorkItemOnNonWorkPackage() {

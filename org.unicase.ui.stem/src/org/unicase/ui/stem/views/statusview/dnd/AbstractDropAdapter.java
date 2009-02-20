@@ -5,6 +5,7 @@
  */
 package org.unicase.ui.stem.views.statusview.dnd;
 
+import java.util.ArrayList;
 import java.util.List;
 import java.util.Set;
 
@@ -30,7 +31,7 @@ import org.unicase.workspace.util.EventUtil;
  * 
  * @author Hodaie
  */
-public abstract class AbstractFlatHierarchyTabDropAdapter extends DropTargetAdapter {
+public abstract class AbstractDropAdapter extends DropTargetAdapter {
 
 	private ModelElement currentOpenME;
 	private ModelElement dragSource;
@@ -85,7 +86,6 @@ public abstract class AbstractFlatHierarchyTabDropAdapter extends DropTargetAdap
 	 * Subclasses may override this default behavior.
 	 */
 	protected void dropWorkItemOnNonWorkPackage() {
-
 	}
 
 	/**
@@ -97,27 +97,27 @@ public abstract class AbstractFlatHierarchyTabDropAdapter extends DropTargetAdap
 		// otherwise create an AI annotating source and add it to work items of currentOpenME
 		Set<ModelElement> openersForSource = TaxonomyAccess.getInstance().getOpeningLinkTaxonomy().getLeafOpeners(
 			dragSource);
-		int i = 0;
-		for (ModelElement me : openersForSource) {
-			if (me instanceof WorkItem) {
-				try {
+		List<WorkItem> workItemsToAdd = new ArrayList<WorkItem>();
+		try {
+			for (ModelElement me : openersForSource) {
+				if (me instanceof WorkItem) {
 					if (!me.getMEState().equals(MEState.CLOSED) && isAssignedToTheSameTeam(me)) {
-
-						((WorkPackage) currentOpenME).getContainedWorkItems().add((WorkItem) me);
-						i++;
+						workItemsToAdd.add((WorkItem) me);
 					}
-
-				} catch (CircularDependencyException e) {
-					// Do nothing
 				}
-
 			}
+		} catch (CircularDependencyException e) {
+			// TODO Auto-generated catch block
+			e.printStackTrace();
 		}
-		if (i == 0) {
+
+		if (workItemsToAdd.size() == 0) {
 			ActionItem ai = TaskFactory.eINSTANCE.createActionItem();
 			ai.setName("New Action Item relating " + dragSource.getName());
 			ai.getAnnotatedModelElements().add(dragSource);
 			((WorkPackage) currentOpenME).getContainedWorkItems().add(ai);
+		} else {
+			((WorkPackage) currentOpenME).getContainedWorkItems().addAll(workItemsToAdd);
 		}
 
 	}
