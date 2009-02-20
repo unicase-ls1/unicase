@@ -67,6 +67,7 @@ import org.unicase.model.Project;
 import org.unicase.model.diagram.DiagramFactory;
 import org.unicase.model.diagram.DiagramPackage;
 import org.unicase.model.impl.IdentifiableElementImpl;
+import org.unicase.model.util.ModelUtil;
 import org.unicase.model.util.ModelValidationHelper;
 import org.unicase.model.util.ProjectChangeObserver;
 import org.unicase.workspace.Configuration;
@@ -1992,7 +1993,7 @@ public class ProjectSpaceImpl extends IdentifiableElementImpl implements Project
 	public void modelElementDeleteCompleted(ModelElement modelElement) {
 		if (isRecording) {
 			deleteOperation.setDelete(true);
-			deleteOperation.setModelElement(modelElement);
+			deleteOperation.setModelElement(ModelUtil.clone(modelElement));
 			deleteOperation.setModelElementId(modelElement.getModelElementId());
 			this.getOperations().add(deleteOperation);
 
@@ -2003,6 +2004,14 @@ public class ProjectSpaceImpl extends IdentifiableElementImpl implements Project
 				resource.getContents().remove(modelElement);
 				saveResource(resource);
 			}
+			for (ModelElement child : modelElement.getAllContainedModelElements()) {
+				Resource childResource = child.eResource();
+				if (childResource != null) {
+					childResource.getContents().remove(child);
+					saveResource(childResource);
+				}
+			}
+
 		}
 	}
 
