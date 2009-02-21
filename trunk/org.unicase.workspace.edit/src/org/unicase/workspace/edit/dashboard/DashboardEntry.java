@@ -120,7 +120,7 @@ public class DashboardEntry extends Composite {
 		lightBlue = new Color(display, 233, 244, 255);
 		blue = new Color(Display.getCurrent(), 191, 222, 255);
 		notificationColor = display.getSystemColor(SWT.COLOR_WHITE);
-		format = new SimpleDateFormat("dd.MM.yyyy mm:HH");
+		format = new SimpleDateFormat("dd.MM.yyyy HH:mm");
 
 		this.setBackgroundMode(SWT.INHERIT_FORCE);
 		if (!createUpdateEntry()) {

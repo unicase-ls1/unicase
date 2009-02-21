@@ -99,8 +99,8 @@ public class DashboardEditor extends SharedHeaderFormEditor {
 	 * Refreshes the editor.
 	 */
 	public void refresh() {
-		// removePage(0);
 		addPages();
+		removePage(0);
 	}
 
 	/**
