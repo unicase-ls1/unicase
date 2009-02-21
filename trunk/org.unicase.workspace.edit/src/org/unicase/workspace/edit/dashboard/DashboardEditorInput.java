@@ -5,6 +5,7 @@
  */
 package org.unicase.workspace.edit.dashboard;
 
+import java.util.ArrayList;
 import java.util.Collections;
 import java.util.Comparator;
 import java.util.List;
@@ -112,10 +113,12 @@ public class DashboardEditorInput implements IEditorInput {
 	 * @return the list of all notifications in the current project space.
 	 */
 	public List<ESNotification> getNotifications() {
-		EList<ESNotification> notifications = getProjectSpace().getNotifications();
+		EList<ESNotification> originalNotifications = getProjectSpace().getNotifications();
+		ArrayList<ESNotification> notifications = new ArrayList<ESNotification>();
+		notifications.addAll(originalNotifications);
 		Collections.sort(notifications, new Comparator<ESNotification>() {
 			public int compare(ESNotification arg0, ESNotification arg1) {
-				return (arg0.getCreationDate().before(arg1.getCreationDate()) ? -1 : 1);
+				return (arg0.getCreationDate().after(arg1.getCreationDate()) ? -1 : 1);
 			}
 		});
 		return notifications;
