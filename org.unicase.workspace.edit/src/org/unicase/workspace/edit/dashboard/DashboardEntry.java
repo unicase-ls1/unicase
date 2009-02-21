@@ -7,9 +7,12 @@ package org.unicase.workspace.edit.dashboard;
 
 import java.net.MalformedURLException;
 import java.text.SimpleDateFormat;
+import java.util.Date;
 
 import org.eclipse.emf.edit.provider.ComposedAdapterFactory;
 import org.eclipse.emf.edit.ui.provider.AdapterFactoryLabelProvider;
+import org.eclipse.emf.transaction.RecordingCommand;
+import org.eclipse.emf.transaction.TransactionalEditingDomain;
 import org.eclipse.jface.layout.GridDataFactory;
 import org.eclipse.jface.layout.GridLayoutFactory;
 import org.eclipse.swt.SWT;
@@ -32,6 +35,8 @@ import org.eclipse.swt.widgets.Link;
 import org.unicase.emfstore.esmodel.notification.ESNotification;
 import org.unicase.emfstore.esmodel.url.ModelElementUrl;
 import org.unicase.emfstore.esmodel.url.UrlFactory;
+import org.unicase.emfstore.esmodel.versioning.events.EventsFactory;
+import org.unicase.emfstore.esmodel.versioning.events.NotificationReadEvent;
 import org.unicase.model.ModelElement;
 import org.unicase.model.ModelElementId;
 import org.unicase.ui.common.util.ActionHelper;
@@ -69,6 +74,7 @@ public class DashboardEntry extends Composite {
 				ModelElementUrl modelElementUrl = UrlFactory.eINSTANCE.createModelElementUrl(text);
 				ModelElementId mid = modelElementUrl.getModelElementUrlFragment().getModelElementId();
 				ActionHelper.openModelElement(project.getProject().getModelElement(mid), DashboardEditor.ID);
+				logEvent(mid);
 			} catch (MalformedURLException ex) {
 				WorkspaceUtil.logException("Invalid unicase URL pattern", ex);
 			}
@@ -250,6 +256,23 @@ public class DashboardEntry extends Composite {
 		page.getForm().reflow(true);
 		// gallery.setLocation(0, -128);
 		// sa.move(gallery, gallery.getLocation().x, -128, 1000, new ElasticOut(), null, null);
+	}
+
+	private void logEvent(ModelElementId modelElementId) {
+		final NotificationReadEvent readEvent = EventsFactory.eINSTANCE.createNotificationReadEvent();
+		readEvent.setModelElement(modelElementId);
+		readEvent.setNotificationId(n.getIdentifier());
+		readEvent.setReadView("org.unicase.ui.meeditor");
+		readEvent.setSourceView(DashboardEditor.ID);
+		readEvent.setTimestamp(new Date());
+		TransactionalEditingDomain domain = TransactionalEditingDomain.Registry.INSTANCE
+			.getEditingDomain("org.unicase.EditingDomain");
+		domain.getCommandStack().execute(new RecordingCommand(domain) {
+			@Override
+			protected void doExecute() {
+				project.addEvent(readEvent);
+			}
+		});
 	}
 
 	private Link createImageLink(final Image image, Composite parent, String text) {

@@ -46,7 +46,7 @@ public class TabbedChangesComposite extends Composite implements ChangesComposit
 			} else if (control instanceof DetailedChangesComposite) {
 				tab = "Detailed view";
 			}
-			EventUtil.logPresentationSwitchEvent(getClass().getName().toString(), tab);
+			EventUtil.logPresentationSwitchEvent(getClass().getName(), tab);
 		}
 	}
 
