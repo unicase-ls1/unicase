@@ -7,6 +7,8 @@ package org.unicase.workspace.edit.views.historybrowserview;
 
 import java.util.List;
 
+import org.eclipse.emf.transaction.RecordingCommand;
+import org.eclipse.emf.transaction.TransactionalEditingDomain;
 import org.eclipse.jface.action.Action;
 import org.eclipse.jface.action.MenuManager;
 import org.eclipse.jface.action.Separator;
@@ -253,10 +255,17 @@ public class HistoryComposite extends Composite implements ISelectionChangedList
 		Action actionCheckout = new Action("Checkout this version") {
 			@Override
 			public void run() {
-				IStructuredSelection selection = (IStructuredSelection) tableViewer.getSelection();
+				final IStructuredSelection selection = (IStructuredSelection) tableViewer.getSelection();
 				if (!selection.isEmpty()) {
-					HistoryInfo info = (HistoryInfo) selection.getFirstElement();
-					parentView.checkout(info.getPrimerySpec());
+					TransactionalEditingDomain domain = TransactionalEditingDomain.Registry.INSTANCE
+						.getEditingDomain("org.unicase.EditingDomain");
+					domain.getCommandStack().execute(new RecordingCommand(domain) {
+						@Override
+						protected void doExecute() {
+							HistoryInfo info = (HistoryInfo) selection.getFirstElement();
+							parentView.checkout(info.getPrimerySpec());
+						}
+					});
 				}
 			}
 
