@@ -70,9 +70,6 @@ public class TaskObjectNotificationProvider implements NotificationProvider {
 
 		for (ChangePackage changePackage : changePackages) {
 			for (AbstractOperation operation : changePackage.getOperations()) {
-				if (operation.getClientDate() == null) {
-					operation.setClientDate(changePackage.getLogMessage().getDate());
-				}
 				ModelElementId modelElementId = operation.getModelElementId();
 				if (objectsOfWork.containsKey(modelElementId)) {
 					addChangePackage(modelElementId, operation, changes);
