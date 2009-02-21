@@ -885,11 +885,19 @@ public class ProjectSpaceImpl extends IdentifiableElementImpl implements Project
 		getOperations().clear();
 		getEvents().clear();
 
+		generateNotifications(changePackage);
+
 		saveProjectSpaceOnly();
 
 		startChangeRecording();
 
 		return newBaseVersion;
+	}
+
+	private void generateNotifications(ChangePackage changePackage) {
+		ArrayList<ChangePackage> changes = new ArrayList<ChangePackage>();
+		changes.add(changePackage);
+		generateNotifications(changes);
 	}
 
 	/**
@@ -995,14 +1003,7 @@ public class ProjectSpaceImpl extends IdentifiableElementImpl implements Project
 		setBaseVersion(resolvedVersion);
 		saveResourceSet();
 
-		// generate notifications from change packages, ignore all exception if any
-		try {
-			List<ESNotification> newNotifications = NotificationGenerator.getInstance().generateNotifications(changes,
-				this.getUsersession().getUsername(), this);
-			this.getNotifications().addAll(newNotifications);
-		} catch (RuntimeException e) {
-			WorkspaceUtil.logException("Creating notifications failed!", e);
-		}
+		generateNotifications(changes);
 
 		if (!isRecording) {
 			startChangeRecording();
@@ -1011,6 +1012,18 @@ public class ProjectSpaceImpl extends IdentifiableElementImpl implements Project
 		observer.updateCompleted();
 
 		return resolvedVersion;
+	}
+
+	private void generateNotifications(List<ChangePackage> changes) {
+		// generate notifications from change packages, ignore all exception if any
+		try {
+			List<ESNotification> newNotifications = NotificationGenerator.getInstance().generateNotifications(changes,
+				this.getUsersession().getUsername(), this);
+			this.getNotifications().addAll(newNotifications);
+			saveProjectSpaceOnly();
+		} catch (RuntimeException e) {
+			WorkspaceUtil.logException("Creating notifications failed!", e);
+		}
 	}
 
 	/**
@@ -2025,7 +2038,11 @@ public class ProjectSpaceImpl extends IdentifiableElementImpl implements Project
 	public ModelElement resolve(ModelElementUrlFragment modelElementUrlFragment) throws MEUrlResolutionException {
 		// MK: why do we need this exception?
 		ModelElementId modelElementId = modelElementUrlFragment.getModelElementId();
-		return getProject().getModelElement(modelElementId);
+		ModelElement modelElement = getProject().getModelElement(modelElementId);
+		if (modelElement == null) {
+			throw new MEUrlResolutionException();
+		}
+		return modelElement;
 	}
 
 } // ProjectContainerImpl
