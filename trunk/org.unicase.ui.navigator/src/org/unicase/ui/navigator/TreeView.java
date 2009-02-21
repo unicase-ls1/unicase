@@ -108,6 +108,11 @@ public class TreeView extends ViewPart { // implements IShowInSource
 			projectSpace = null;
 		}
 
+		if (obj == null || projectSpace == null) {
+			// the active project space should NEVER be null
+			return;
+		}
+
 		if (WorkspaceManager.getInstance().getCurrentWorkspace().getActiveProjectSpace() != null) {
 			if (WorkspaceManager.getInstance().getCurrentWorkspace().getActiveProjectSpace().equals(projectSpace)) {
 				return;
@@ -115,17 +120,15 @@ public class TreeView extends ViewPart { // implements IShowInSource
 		}
 		TransactionalEditingDomain domain = TransactionalEditingDomain.Registry.INSTANCE
 			.getEditingDomain("org.unicase.EditingDomain");
-		if (projectSpace != null) {
-			domain.getCommandStack().execute(new RecordingCommand(domain) {
+		domain.getCommandStack().execute(new RecordingCommand(domain) {
 
-				@Override
-				protected void doExecute() {
-					WorkspaceManager.getInstance().getCurrentWorkspace().setActiveProjectSpace(projectSpace);
+			@Override
+			protected void doExecute() {
+				WorkspaceManager.getInstance().getCurrentWorkspace().setActiveProjectSpace(projectSpace);
 
-				}
+			}
 
-			});
-		}
+		});
 
 	}
 
