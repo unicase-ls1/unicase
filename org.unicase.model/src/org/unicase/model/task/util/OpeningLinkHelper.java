@@ -12,6 +12,7 @@ import java.util.Set;
 
 import org.unicase.model.ModelElement;
 import org.unicase.model.ModelElementId;
+import org.unicase.model.document.DocumentPackage;
 import org.unicase.model.organization.User;
 import org.unicase.model.task.WorkItem;
 import org.unicase.model.util.ModelElementPath;
@@ -54,6 +55,9 @@ public final class OpeningLinkHelper {
 		OpeningLinkTaxonomy openingLinkTaxonomy = TaxonomyAccess.getInstance().getOpeningLinkTaxonomy();
 		ArrayList<ModelElement> openeds = openingLinkTaxonomy.getOpened(source);
 		for (ModelElement opened : openeds) {
+			if (DocumentPackage.eINSTANCE.getSection().isInstance(opened)) {
+				continue;
+			}
 			// Create path
 			ModelElementPath path = UtilFactory.eINSTANCE.createModelElementPath();
 			path.setSource(list.get(0).getModelElementId());
