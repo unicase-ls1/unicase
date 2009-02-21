@@ -42,6 +42,7 @@ import org.unicase.emfstore.esmodel.versioning.VersioningFactory;
 import org.unicase.emfstore.esmodel.versioning.events.EventsFactory;
 import org.unicase.emfstore.esmodel.versioning.events.PluginStartEvent;
 import org.unicase.emfstore.exceptions.EmfStoreException;
+import org.unicase.emfstore.exceptions.InvalidVersionSpecException;
 import org.unicase.model.Project;
 import org.unicase.workspace.Configuration;
 import org.unicase.workspace.ProjectSpace;
@@ -126,6 +127,7 @@ public class WorkspaceImpl extends EObjectImpl implements Workspace {
 
 	/**
 	 * <!-- begin-user-doc --> <!-- end-user-doc -->
+	 * 
 	 * @generated
 	 */
 	protected WorkspaceImpl() {
@@ -134,6 +136,7 @@ public class WorkspaceImpl extends EObjectImpl implements Workspace {
 
 	/**
 	 * <!-- begin-user-doc --> <!-- end-user-doc -->
+	 * 
 	 * @generated
 	 */
 	@Override
@@ -143,6 +146,7 @@ public class WorkspaceImpl extends EObjectImpl implements Workspace {
 
 	/**
 	 * <!-- begin-user-doc --> <!-- end-user-doc -->
+	 * 
 	 * @generated
 	 */
 	public EList<ProjectSpace> getProjectSpaces() {
@@ -155,6 +159,7 @@ public class WorkspaceImpl extends EObjectImpl implements Workspace {
 
 	/**
 	 * <!-- begin-user-doc --> <!-- end-user-doc -->
+	 * 
 	 * @generated
 	 */
 	public EList<ServerInfo> getServerInfos() {
@@ -167,6 +172,7 @@ public class WorkspaceImpl extends EObjectImpl implements Workspace {
 
 	/**
 	 * <!-- begin-user-doc --> <!-- end-user-doc -->
+	 * 
 	 * @generated
 	 */
 	public EList<Usersession> getUsersessions() {
@@ -179,6 +185,7 @@ public class WorkspaceImpl extends EObjectImpl implements Workspace {
 
 	/**
 	 * <!-- begin-user-doc --> <!-- end-user-doc -->
+	 * 
 	 * @generated
 	 */
 	public ProjectSpace getActiveProjectSpace() {
@@ -196,6 +203,7 @@ public class WorkspaceImpl extends EObjectImpl implements Workspace {
 
 	/**
 	 * <!-- begin-user-doc --> <!-- end-user-doc -->
+	 * 
 	 * @generated
 	 */
 	public ProjectSpace basicGetActiveProjectSpace() {
@@ -204,6 +212,7 @@ public class WorkspaceImpl extends EObjectImpl implements Workspace {
 
 	/**
 	 * <!-- begin-user-doc --> <!-- end-user-doc -->
+	 * 
 	 * @generated
 	 */
 	public void setActiveProjectSpace(ProjectSpace newActiveProjectSpace) {
@@ -257,8 +266,14 @@ public class WorkspaceImpl extends EObjectImpl implements Workspace {
 			Calendar calendar = Calendar.getInstance();
 			calendar.add(Calendar.DAY_OF_YEAR, -10);
 			dateVersionSpec.setDate(calendar.getTime());
-			PrimaryVersionSpec sourceSpec = this.connectionManager.resolveVersionSpec(usersession.getSessionId(),
-				projectInfo.getProjectId(), dateVersionSpec);
+			PrimaryVersionSpec sourceSpec;
+			try {
+				sourceSpec = this.connectionManager.resolveVersionSpec(usersession.getSessionId(), projectInfo
+					.getProjectId(), dateVersionSpec);
+			} catch (InvalidVersionSpecException e) {
+				sourceSpec = VersioningFactory.eINSTANCE.createPrimaryVersionSpec();
+				sourceSpec.setIdentifier(0);
+			}
 			List<ChangePackage> changes = connectionManager.getChanges(usersession.getSessionId(), projectInfo
 				.getProjectId(), sourceSpec, targetSpec);
 			List<ESNotification> newNotifications = NotificationGenerator.getInstance().generateNotifications(changes,
@@ -308,6 +323,7 @@ public class WorkspaceImpl extends EObjectImpl implements Workspace {
 
 	/**
 	 * <!-- begin-user-doc --> <!-- end-user-doc -->
+	 * 
 	 * @generated
 	 */
 	@Override
@@ -325,6 +341,7 @@ public class WorkspaceImpl extends EObjectImpl implements Workspace {
 
 	/**
 	 * <!-- begin-user-doc --> <!-- end-user-doc -->
+	 * 
 	 * @generated
 	 */
 	@Override
@@ -346,6 +363,7 @@ public class WorkspaceImpl extends EObjectImpl implements Workspace {
 
 	/**
 	 * <!-- begin-user-doc --> <!-- end-user-doc -->
+	 * 
 	 * @generated
 	 */
 	@SuppressWarnings("unchecked")
@@ -373,6 +391,7 @@ public class WorkspaceImpl extends EObjectImpl implements Workspace {
 
 	/**
 	 * <!-- begin-user-doc --> <!-- end-user-doc -->
+	 * 
 	 * @generated
 	 */
 	@Override
@@ -396,6 +415,7 @@ public class WorkspaceImpl extends EObjectImpl implements Workspace {
 
 	/**
 	 * <!-- begin-user-doc --> <!-- end-user-doc -->
+	 * 
 	 * @generated
 	 */
 	@Override
