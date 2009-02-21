@@ -20,6 +20,7 @@ import org.unicase.model.task.TaskPackage;
 import org.unicase.workspace.ProjectSpace;
 import org.unicase.workspace.notification.provider.AssignmentNotificationProvider;
 import org.unicase.workspace.notification.provider.TaskObjectNotificationProvider;
+import org.unicase.workspace.notification.provider.UpdateNotificationProvider;
 import org.unicase.workspace.util.WorkspaceUtil;
 
 /**
@@ -39,10 +40,14 @@ public final class NotificationGenerator {
 	private NotificationGenerator() {
 		instance = this;
 		providers = new ArrayList<NotificationProvider>();
+		// update provider must be first in list
+		providers.add(new UpdateNotificationProvider());
+
 		providers.add(new AssignmentNotificationProvider(TaskPackage.eINSTANCE.getActionItem()));
 		providers.add(new AssignmentNotificationProvider(RationalePackage.eINSTANCE.getIssue()));
 		providers.add(new AssignmentNotificationProvider(BugPackage.eINSTANCE.getBugReport()));
 		providers.add(new TaskObjectNotificationProvider());
+
 	}
 
 	/**
