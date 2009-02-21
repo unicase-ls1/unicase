@@ -75,7 +75,7 @@ public class TaskObjectNotificationProvider implements NotificationProvider {
 
 		for (ModelElementId meId : changes.keySet()) {
 			ESNotification createNotification = createNotification(meId, changes.get(meId), objectsOfWork.get(meId),
-				projectSpace.getProject());
+				projectSpace);
 			createNotification.setProject(projectSpace.getProjectId());
 			createNotification.setName("Task Object Change");
 			result.add(createNotification);
@@ -85,7 +85,8 @@ public class TaskObjectNotificationProvider implements NotificationProvider {
 	}
 
 	private ESNotification createNotification(ModelElementId meId, List<AbstractOperation> list,
-		ModelElementPath modelElementPath, Project project) {
+		ModelElementPath modelElementPath, ProjectSpace projectSpace) {
+		Project project = projectSpace.getProject();
 		ESNotification notification = NotificationFactory.eINSTANCE.createESNotification();
 		notification.setCreationDate(NotificationHelper.getLastDate(list));
 		for (AbstractOperation operation : list) {
@@ -96,18 +97,18 @@ public class TaskObjectNotificationProvider implements NotificationProvider {
 		message.append("This");
 		message.append(modelElement.eClass().getName());
 		message.append("has been modified:");
-		message.append(NotificationHelper.getHTMLLinkForModelElement(meId, project));
+		message.append(NotificationHelper.getHTMLLinkForModelElement(meId, projectSpace));
 		message.append("<br>");
 
 		message.append("There is a trace from your work item: ");
 
-		message.append(NotificationHelper.getHTMLLinkForModelElement(modelElementPath.getSource(), project));
+		message.append(NotificationHelper.getHTMLLinkForModelElement(modelElementPath.getSource(), projectSpace));
 		message.append(" => ");
 		for (ModelElementId traceId : modelElementPath.getPath()) {
-			message.append(NotificationHelper.getHTMLLinkForModelElement(traceId, project));
+			message.append(NotificationHelper.getHTMLLinkForModelElement(traceId, projectSpace));
 			message.append(" => ");
 		}
-		message.append(NotificationHelper.getHTMLLinkForModelElement(modelElementPath.getTarget(), project));
+		message.append(NotificationHelper.getHTMLLinkForModelElement(modelElementPath.getTarget(), projectSpace));
 
 		return notification;
 	}
