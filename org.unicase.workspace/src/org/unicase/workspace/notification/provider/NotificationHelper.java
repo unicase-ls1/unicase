@@ -49,10 +49,10 @@ public final class NotificationHelper {
 	 * This method create a HTML link pointing to a model element for the message of Notifications.
 	 * 
 	 * @param meId The id of the model element
-	 * @param project
+	 * @param project the project
 	 * @return a HTML link as string
 	 */
-	public static Object getHTMLLinkForModelElement(ModelElementId meId, Project project) {
+	public static String getHTMLLinkForModelElement(ModelElementId meId, Project project) {
 		// TODO Auto-generated method stub
 		return null;
 	}
