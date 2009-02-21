@@ -66,7 +66,7 @@ public class DashboardPage extends FormPage {
 		DashboardEditorInput editorInput = (DashboardEditorInput) getEditorInput();
 		projectSpace = editorInput.getProjectSpace();
 
-		notifications = projectSpace.getNotifications();
+		notifications = editorInput.getNotifications();
 
 		form.setText("Dashboard - " + projectSpace.getProjectName());
 		form.setImage(Activator.getImageDescriptor("/icons/dashboard.png").createImage());
@@ -87,7 +87,6 @@ public class DashboardPage extends FormPage {
 		GridDataFactory.fillDefaults().align(SWT.FILL, SWT.FILL).grab(true, true).applyTo(main);
 
 		widgets = toolkit.createComposite(globalSash, SWT.NONE);
-		// widgets.setBackground(Display.getCurrent().getSystemColor(SWT.COLOR_DARK_GRAY));
 		widgets.setBackgroundMode(SWT.INHERIT_FORCE);
 		GridLayoutFactory.fillDefaults().numColumns(1).equalWidth(false).extendedMargins(5, 5, 6, 0).applyTo(widgets);
 		GridDataFactory.fillDefaults().align(SWT.FILL, SWT.FILL).applyTo(widgets);
@@ -107,9 +106,6 @@ public class DashboardPage extends FormPage {
 
 			@Override
 			protected void doExecute() {
-				// project.addModelElement(ai);
-				// project.addModelElement(br);
-				// project.addModelElement(i);
 				loadNotifications(notifications);
 			}
 		});
