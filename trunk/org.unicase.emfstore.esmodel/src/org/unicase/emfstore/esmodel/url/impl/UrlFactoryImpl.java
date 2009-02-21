@@ -44,26 +44,26 @@ public class UrlFactoryImpl extends EFactoryImpl implements UrlFactory {
 	private static final String EXCEPTION_MESSAGE = "Invalid unicase URL!";
 
 	/**
-	 * Creates the default factory implementation.
-	 * <!-- begin-user-doc --> <!-- end-user-doc -->
+	 * Creates the default factory implementation. <!-- begin-user-doc --> <!-- end-user-doc -->
+	 * 
 	 * @generated
 	 */
 	public static UrlFactory init() {
 		try {
-			UrlFactory theUrlFactory = (UrlFactory)EPackage.Registry.INSTANCE.getEFactory("http://unicase.org/emfstore/esmodel/url"); 
+			UrlFactory theUrlFactory = (UrlFactory) EPackage.Registry.INSTANCE
+				.getEFactory("http://unicase.org/emfstore/esmodel/url");
 			if (theUrlFactory != null) {
 				return theUrlFactory;
 			}
-		}
-		catch (Exception exception) {
+		} catch (Exception exception) {
 			EcorePlugin.INSTANCE.log(exception);
 		}
 		return new UrlFactoryImpl();
 	}
 
 	/**
-	 * Creates an instance of the factory.
-	 * <!-- begin-user-doc --> <!-- end-user-doc -->
+	 * Creates an instance of the factory. <!-- begin-user-doc --> <!-- end-user-doc -->
+	 * 
 	 * @generated
 	 */
 	public UrlFactoryImpl() {
@@ -72,22 +72,28 @@ public class UrlFactoryImpl extends EFactoryImpl implements UrlFactory {
 
 	/**
 	 * <!-- begin-user-doc --> <!-- end-user-doc -->
+	 * 
 	 * @generated
 	 */
 	@Override
 	public EObject create(EClass eClass) {
 		switch (eClass.getClassifierID()) {
-			case UrlPackage.SERVER_URL: return createServerUrl();
-			case UrlPackage.PROJECT_URL_FRAGMENT: return createProjectUrlFragment();
-			case UrlPackage.MODEL_ELEMENT_URL_FRAGMENT: return createModelElementUrlFragment();
-			case UrlPackage.MODEL_ELEMENT_URL: return createModelElementUrl();
-			default:
-				throw new IllegalArgumentException("The class '" + eClass.getName() + "' is not a valid classifier");
+		case UrlPackage.SERVER_URL:
+			return createServerUrl();
+		case UrlPackage.PROJECT_URL_FRAGMENT:
+			return createProjectUrlFragment();
+		case UrlPackage.MODEL_ELEMENT_URL_FRAGMENT:
+			return createModelElementUrlFragment();
+		case UrlPackage.MODEL_ELEMENT_URL:
+			return createModelElementUrl();
+		default:
+			throw new IllegalArgumentException("The class '" + eClass.getName() + "' is not a valid classifier");
 		}
 	}
 
 	/**
 	 * <!-- begin-user-doc --> <!-- end-user-doc -->
+	 * 
 	 * @generated
 	 */
 	public ServerUrl createServerUrl() {
@@ -97,6 +103,7 @@ public class UrlFactoryImpl extends EFactoryImpl implements UrlFactory {
 
 	/**
 	 * <!-- begin-user-doc --> <!-- end-user-doc -->
+	 * 
 	 * @generated
 	 */
 	public ProjectUrlFragment createProjectUrlFragment() {
@@ -106,6 +113,7 @@ public class UrlFactoryImpl extends EFactoryImpl implements UrlFactory {
 
 	/**
 	 * <!-- begin-user-doc --> <!-- end-user-doc -->
+	 * 
 	 * @generated
 	 */
 	public ModelElementUrlFragment createModelElementUrlFragment() {
@@ -113,7 +121,7 @@ public class UrlFactoryImpl extends EFactoryImpl implements UrlFactory {
 		return modelElementUrlFragment;
 	}
 
-	// BEGIN OF CUSTOM CODE
+	// begin of custom code
 	/**
 	 * Creates and parses the model element url.
 	 * 
@@ -173,10 +181,11 @@ public class UrlFactoryImpl extends EFactoryImpl implements UrlFactory {
 		return modelURL;
 	}
 
-	// END OF CUSTOM CODE
+	// end of custom code
 
 	/**
 	 * <!-- begin-user-doc --> <!-- end-user-doc -->
+	 * 
 	 * @generated
 	 */
 	public ModelElementUrl createModelElementUrl() {
@@ -186,14 +195,16 @@ public class UrlFactoryImpl extends EFactoryImpl implements UrlFactory {
 
 	/**
 	 * <!-- begin-user-doc --> <!-- end-user-doc -->
+	 * 
 	 * @generated
 	 */
 	public UrlPackage getUrlPackage() {
-		return (UrlPackage)getEPackage();
+		return (UrlPackage) getEPackage();
 	}
 
 	/**
 	 * <!-- begin-user-doc --> <!-- end-user-doc -->
+	 * 
 	 * @deprecated
 	 * @generated
 	 */
