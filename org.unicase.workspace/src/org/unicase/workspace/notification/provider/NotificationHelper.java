@@ -9,6 +9,7 @@ import java.util.Date;
 import java.util.List;
 
 import org.unicase.emfstore.esmodel.versioning.operations.AbstractOperation;
+import org.unicase.model.ModelElementId;
 
 /**
  * This class offer helper methods for notifications.
@@ -28,6 +29,22 @@ public final class NotificationHelper {
 	 * @return the latest date.
 	 */
 	public static Date getLastDate(List<AbstractOperation> list) {
+		Date date = new Date();
+		for (AbstractOperation operation : list) {
+			if (date == null) {
+				date = operation.getClientDate();
+			} else {
+				Date newDate = operation.getClientDate();
+				if (newDate.after(date)) {
+					date = newDate;
+				}
+
+			}
+		}
+		return date;
+	}
+
+	public static Object getHTMLLinkForModelElement(ModelElementId meId) {
 		// TODO Auto-generated method stub
 		return null;
 	}
