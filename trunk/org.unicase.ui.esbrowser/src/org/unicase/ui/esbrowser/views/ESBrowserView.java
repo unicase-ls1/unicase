@@ -52,6 +52,7 @@ import org.unicase.workspace.ServerInfo;
 import org.unicase.workspace.Usersession;
 import org.unicase.workspace.WorkspaceManager;
 import org.unicase.workspace.accesscontrol.AccessControlHelper;
+import org.unicase.workspace.edit.dashboard.DashboardEditorInput;
 import org.unicase.workspace.util.EventUtil;
 import org.unicase.workspace.util.WorkspaceUtil;
 
@@ -172,14 +173,16 @@ public class ESBrowserView extends ViewPart {
 						ProjectSpace projectSpace = contentProvider.getProjectServerMap().get(element)
 							.getLastUsersession().checkout(element);
 						WorkspaceUtil.logCheckout(projectSpace, projectSpace.getBaseVersion());
+						DashboardEditorInput input = new DashboardEditorInput(projectSpace);
+						PlatformUI.getWorkbench().getActiveWorkbenchWindow().getActivePage().openEditor(input,
+							"org.unicase.workspace.edit.dashboard", true);
 					} catch (EmfStoreException e) {
 						DialogHandler.showExceptionDialog(e);
 						// BEGIN SUPRESS CATCH EXCEPTION
 					} catch (Exception e) {
 						DialogHandler.showExceptionDialog(e);
-					}
-					// END SUPRESS CATCH EXCEPTION
-					finally {
+						// END SUPRESS CATCH EXCEPTION
+					} finally {
 						progressDialog.getProgressMonitor().done();
 						progressDialog.close();
 					}
