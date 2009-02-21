@@ -164,4 +164,13 @@ public class CommitProjectHandler extends ProjectActionHandler implements Commit
 		return false;
 	}
 
+	/**
+	 * {@inheritDoc}
+	 * 
+	 * @see org.unicase.workspace.util.CommitObserver#commitCompleted()
+	 */
+	public void commitCompleted() {
+		// nothing to do
+	}
+
 }
