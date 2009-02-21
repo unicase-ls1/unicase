@@ -32,7 +32,7 @@ public final class NotificationHelper {
 	 * @return the latest date.
 	 */
 	public static Date getLastDate(List<AbstractOperation> list) {
-		Date date = new Date();
+		Date date = null;
 		for (AbstractOperation operation : list) {
 			if (date == null) {
 				date = operation.getClientDate();
@@ -43,6 +43,9 @@ public final class NotificationHelper {
 				}
 
 			}
+		}
+		if (date == null) {
+			date = new Date();
 		}
 		return date;
 	}
