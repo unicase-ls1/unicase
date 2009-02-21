@@ -214,8 +214,19 @@ public class AssignmentNotificationProvider implements NotificationProvider {
 		stringBuilder.append("You have been assigned ");
 		ModelElementId[] wis = workItems.toArray(new ModelElementId[0]);
 		if (workItems.size() == 1) {
+			stringBuilder.append(" a");
+			String className = this.clazz.getName();
+			if (className.startsWith("A")) {
+				stringBuilder.append("n");
+			}
+			stringBuilder.append(" ");
+			stringBuilder.append(className);
+			stringBuilder.append(" ");
 			stringBuilder.append(NotificationHelper.getHTMLLinkForModelElement(wis[0], projectSpace));
 		} else if (workItems.size() == 2) {
+			stringBuilder.append("the ");
+			stringBuilder.append(this.clazz.getName());
+			stringBuilder.append("s ");
 			stringBuilder.append(NotificationHelper.getHTMLLinkForModelElement(wis[0], projectSpace));
 			stringBuilder.append(" and ");
 			stringBuilder.append(NotificationHelper.getHTMLLinkForModelElement(wis[1], projectSpace));
