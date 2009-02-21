@@ -11,6 +11,7 @@ import java.util.Map;
 import java.util.Set;
 
 import org.unicase.model.ModelElement;
+import org.unicase.model.ModelElementId;
 import org.unicase.model.organization.User;
 import org.unicase.model.task.WorkItem;
 import org.unicase.model.util.ModelElementPath;
@@ -33,8 +34,8 @@ public final class OpeningLinkHelper {
 	 * @param user the User.
 	 * @return a map of modelelemts to path
 	 */
-	public static Map<ModelElement, ModelElementPath> getObjectsOfWork(User user) {
-		Map<ModelElement, ModelElementPath> ret = new HashMap<ModelElement, ModelElementPath>();
+	public static Map<ModelElementId, ModelElementPath> getObjectsOfWork(User user) {
+		Map<ModelElementId, ModelElementPath> ret = new HashMap<ModelElementId, ModelElementPath>();
 
 		Set<WorkItem> workItemsOfUser = TaskQuery.getWorkItemsOfUser(user);
 		for (WorkItem workItem : workItemsOfUser) {
@@ -45,8 +46,8 @@ public final class OpeningLinkHelper {
 	}
 
 	private static void handleObject(ModelElement source, ArrayList<ModelElement> list,
-		Map<ModelElement, ModelElementPath> ret) {
-		if (ret.containsKey(source)) {
+		Map<ModelElementId, ModelElementPath> ret) {
+		if (ret.containsKey(source.getModelElementId())) {
 			return;
 		}
 		list.add(source);
@@ -62,7 +63,7 @@ public final class OpeningLinkHelper {
 					path.getPath().add(list.get(i).getModelElementId());
 				}
 			}
-			ret.put(opened, path);
+			ret.put(opened.getModelElementId(), path);
 
 			ArrayList<ModelElement> newList = new ArrayList<ModelElement>();
 			newList.addAll(list);
