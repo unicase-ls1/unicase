@@ -44,6 +44,12 @@ public final class NotificationHelper {
 		return date;
 	}
 
+	/**
+	 * This method create a HTML link pointing to a model element for the message of Notifications.
+	 * 
+	 * @param meId The id of the model element
+	 * @return a HTML link as string
+	 */
 	public static Object getHTMLLinkForModelElement(ModelElementId meId) {
 		// TODO Auto-generated method stub
 		return null;
