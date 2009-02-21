@@ -192,7 +192,7 @@ public class UpdateProjectHandler extends ProjectActionHandler implements Update
 				"org.unicase.workspace.edit.dashboard", true);
 			((DashboardEditor) editor).refresh();
 		} catch (PartInitException e) {
-			e.printStackTrace();
+			WorkspaceUtil.logException(e.getMessage(), e);
 		}
 
 	}
