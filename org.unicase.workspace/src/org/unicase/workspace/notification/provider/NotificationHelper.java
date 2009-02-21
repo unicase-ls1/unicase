@@ -9,8 +9,9 @@ import java.util.Date;
 import java.util.List;
 
 import org.unicase.emfstore.esmodel.versioning.operations.AbstractOperation;
+import org.unicase.model.ModelElement;
 import org.unicase.model.ModelElementId;
-import org.unicase.model.Project;
+import org.unicase.workspace.ProjectSpace;
 
 /**
  * This class offer helper methods for notifications.
@@ -49,12 +50,24 @@ public final class NotificationHelper {
 	 * This method create a HTML link pointing to a model element for the message of Notifications.
 	 * 
 	 * @param meId The id of the model element
-	 * @param project the project
+	 * @param projectSpace the project space
 	 * @return a HTML link as string
 	 */
-	public static String getHTMLLinkForModelElement(ModelElementId meId, Project project) {
-		// TODO Auto-generated method stub
-		return null;
-	}
+	public static String getHTMLLinkForModelElement(ModelElementId meId, ProjectSpace projectSpace) {
 
+		ModelElement modelElement = projectSpace.getProject().getModelElement(meId);
+		if (modelElement != null) {
+			StringBuilder ret = new StringBuilder("unicase://current:0/");
+			ret.append(projectSpace.getProjectName());
+			ret.append("%");
+			ret.append(projectSpace.getProjectId());
+			ret.append("/");
+			ret.append(modelElement.getName());
+			ret.append("%");
+			ret.append(meId.getId());
+			ret.append("/");
+		}
+
+		throw new IllegalArgumentException("ModelElement does not exist.");
+	}
 }
