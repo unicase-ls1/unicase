@@ -193,14 +193,14 @@ public class DashboardEntry extends Composite {
 	}
 
 	private boolean createUpdateEntry() {
-		if (!n.getSender().equals(UpdateNotificationProvider.NAME)) {
+		if (n.getSender() == null || (n.getSender() != null && !n.getSender().equals(UpdateNotificationProvider.NAME))) {
 			return false;
 		}
 		GridDataFactory.fillDefaults().align(SWT.FILL, SWT.BEGINNING).grab(true, false).applyTo(this);
 		GridLayoutFactory.fillDefaults().numColumns(5).equalWidth(false).extendedMargins(0, 0, 6, 6).spacing(0, 0)
 			.applyTo(this);
 
-		Composite updated = createRoundedLabel(this, "Updated " + n.getMessage());
+		Composite updated = createRoundedLabel(this, n.getMessage());
 		GridDataFactory.fillDefaults().applyTo(updated);
 
 		Composite space = new Composite(this, SWT.NONE);
