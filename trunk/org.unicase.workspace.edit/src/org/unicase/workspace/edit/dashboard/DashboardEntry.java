@@ -5,6 +5,7 @@
  */
 package org.unicase.workspace.edit.dashboard;
 
+import java.net.MalformedURLException;
 import java.text.SimpleDateFormat;
 
 import org.eclipse.emf.edit.provider.ComposedAdapterFactory;
@@ -29,12 +30,15 @@ import org.eclipse.swt.widgets.Display;
 import org.eclipse.swt.widgets.Label;
 import org.eclipse.swt.widgets.Link;
 import org.unicase.emfstore.esmodel.notification.ESNotification;
+import org.unicase.emfstore.esmodel.url.ModelElementUrl;
+import org.unicase.emfstore.esmodel.url.UrlFactory;
 import org.unicase.model.ModelElement;
 import org.unicase.model.ModelElementId;
-import org.unicase.model.ModelFactory;
-import org.unicase.model.Project;
 import org.unicase.ui.common.util.ActionHelper;
+import org.unicase.workspace.ProjectSpace;
 import org.unicase.workspace.edit.Activator;
+import org.unicase.workspace.notification.provider.NotificationHelper;
+import org.unicase.workspace.util.WorkspaceUtil;
 
 /**
  * A dashboard entry widget.
@@ -61,10 +65,13 @@ public class DashboardEntry extends Composite {
 				open = !open;
 				return;
 			}
-			URLResolver url = new URLResolver(text);
-			ModelElementId mid = ModelFactory.eINSTANCE.createModelElementId();
-			mid.setId(url.getMID());
-			ActionHelper.openModelElement(project.getModelElement(mid), DashboardEditor.ID);
+			try {
+				ModelElementUrl modelElementUrl = UrlFactory.eINSTANCE.createModelElementUrl(text);
+				ModelElementId mid = modelElementUrl.getModelElementUrlFragment().getModelElementId();
+				ActionHelper.openModelElement(project.getProject().getModelElement(mid), DashboardEditor.ID);
+			} catch (MalformedURLException ex) {
+				WorkspaceUtil.logException("Invalid unicase URL pattern", ex);
+			}
 		}
 	}
 
@@ -76,7 +83,7 @@ public class DashboardEntry extends Composite {
 	private ESNotification n;
 	private SimpleDateFormat format;
 	private Display display;
-	private Project project;
+	private ProjectSpace project;
 	private Composite drawer;
 
 	private boolean open = true;
@@ -92,7 +99,8 @@ public class DashboardEntry extends Composite {
 	 * @param project the project.
 	 * @param page a back link to the dashboard page (needed only for layout purposes).
 	 */
-	public DashboardEntry(DashboardPage page, Composite parent, int style, ESNotification notification, Project project) {
+	public DashboardEntry(DashboardPage page, Composite parent, int style, ESNotification notification,
+		ProjectSpace project) {
 		super(parent, style);
 
 		this.page = page;
@@ -121,13 +129,12 @@ public class DashboardEntry extends Composite {
 
 		AdapterFactoryLabelProvider labelProvider = new AdapterFactoryLabelProvider(new ComposedAdapterFactory(
 			ComposedAdapterFactory.Descriptor.Registry.INSTANCE));
-		Image image = labelProvider.getImage(project.getModelElement(n.getRelatedModelElements().get(0)));
+		Image image = labelProvider.getImage(project.getProject().getModelElement(n.getRelatedModelElements().get(0)));
 		Link link = createImageLink(image, this, n.getMessage());
 
 		link.addSelectionListener(new LinkSelectionListener());
 		Label date = new Label(this, SWT.NONE);
 		date.setText(format.format(n.getCreationDate()));
-		// date.setBackground(notificationColor);
 		GridDataFactory.fillDefaults().align(SWT.BEGINNING, SWT.BEGINNING).applyTo(date);
 		date.setForeground(display.getSystemColor(SWT.COLOR_GRAY));
 
@@ -164,14 +171,13 @@ public class DashboardEntry extends Composite {
 		GridLayoutFactory.fillDefaults().numColumns(1).spacing(0, 5).extendedMargins(3, 3, 3, 3).applyTo(drawer);
 		drawer.setBackground(lightBlue);
 		for (ModelElementId mid : n.getRelatedModelElements()) {
-			ModelElement me = project.getModelElement(mid);
+			ModelElement me = project.getProject().getModelElement(mid);
 			Composite drawerEntry = new Composite(drawer, SWT.NONE);
 			GridDataFactory.fillDefaults().grab(true, false).applyTo(drawerEntry);
 			GridLayoutFactory.fillDefaults().numColumns(2).equalWidth(false).spacing(5, 0).applyTo(drawerEntry);
 
-			Link meLink = createImageLink(labelProvider.getImage(me), drawerEntry,
-				"<a href=\"unicase://localhost/project/" + me.getModelElementId().getId() + "\">"
-					+ labelProvider.getText(me) + "</a>");
+			String hyperlink = NotificationHelper.getHTMLLinkForModelElement(me, project);
+			Link meLink = createImageLink(labelProvider.getImage(me), drawerEntry, hyperlink);
 			meLink.addSelectionListener(new LinkSelectionListener());
 			meLink.addMouseTrackListener(hoverListener);
 			drawerEntry.addMouseTrackListener(hoverListener);

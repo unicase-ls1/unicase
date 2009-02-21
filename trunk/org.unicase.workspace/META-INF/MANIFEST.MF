@@ -12,6 +12,8 @@ Export-Package: org.unicase.workspace,
  org.unicase.workspace.connectionmanager,
  org.unicase.workspace.exceptions,
  org.unicase.workspace.impl,
+ org.unicase.workspace.notification,
+ org.unicase.workspace.notification.provider,
  org.unicase.workspace.util
 Require-Bundle: org.eclipse.core.runtime,
  org.eclipse.emf.ecore;visibility:=reexport,

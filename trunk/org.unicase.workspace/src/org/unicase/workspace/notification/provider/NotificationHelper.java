@@ -57,18 +57,29 @@ public final class NotificationHelper {
 
 		ModelElement modelElement = projectSpace.getProject().getModelElement(meId);
 		if (modelElement != null) {
-			StringBuilder ret = new StringBuilder("unicase://current:0/");
-			ret.append(projectSpace.getProjectName());
-			ret.append("%");
-			ret.append(projectSpace.getProjectId());
-			ret.append("/");
-			ret.append(modelElement.getName());
-			ret.append("%");
-			ret.append(meId.getId());
-			ret.append("/");
-			return ret.toString();
+			return getHTMLLinkForModelElement(modelElement, projectSpace);
 		}
 
 		throw new IllegalArgumentException("ModelElement does not exist.");
+	}
+
+	/**
+	 * This method create a HTML link pointing to a model element for the message of Notifications.
+	 * 
+	 * @param modelElement The model element
+	 * @param projectSpace the project space
+	 * @return a HTML link as string
+	 */
+	public static String getHTMLLinkForModelElement(ModelElement modelElement, ProjectSpace projectSpace) {
+		StringBuilder ret = new StringBuilder("unicase://current:0/");
+		ret.append(projectSpace.getProjectName());
+		ret.append("%");
+		ret.append(projectSpace.getProjectId());
+		ret.append("/");
+		ret.append(modelElement.getName());
+		ret.append("%");
+		ret.append(modelElement.getIdentifier());
+		ret.append("/");
+		return ret.toString();
 	}
 }
