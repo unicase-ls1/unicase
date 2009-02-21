@@ -59,8 +59,7 @@ public final class NotificationHelper {
 		if (modelElement != null) {
 			return getHTMLLinkForModelElement(modelElement, projectSpace);
 		}
-
-		throw new IllegalArgumentException("ModelElement does not exist.");
+		return "(deleted element)";
 	}
 
 	/**
@@ -71,7 +70,7 @@ public final class NotificationHelper {
 	 * @return a HTML link as string
 	 */
 	public static String getHTMLLinkForModelElement(ModelElement modelElement, ProjectSpace projectSpace) {
-		StringBuilder ret = new StringBuilder("unicase://current:0/");
+		StringBuilder ret = new StringBuilder("<a href=\"unicase://current:0/");
 		ret.append(projectSpace.getProjectName());
 		ret.append("%");
 		ret.append(projectSpace.getProjectId());
@@ -79,7 +78,9 @@ public final class NotificationHelper {
 		ret.append(modelElement.getName());
 		ret.append("%");
 		ret.append(modelElement.getIdentifier());
-		ret.append("/");
+		ret.append("\">");
+		ret.append(modelElement.getName());
+		ret.append("</a>");
 		return ret.toString();
 	}
 }
