@@ -14,6 +14,7 @@ import org.unicase.emfstore.esmodel.util.EsModelUtil;
 import org.unicase.emfstore.esmodel.versioning.ChangePackage;
 import org.unicase.emfstore.esmodel.versioning.events.EventsFactory;
 import org.unicase.emfstore.esmodel.versioning.events.NotificationGenerationEvent;
+import org.unicase.emfstore.esmodel.versioning.operations.AbstractOperation;
 import org.unicase.model.bug.BugPackage;
 import org.unicase.model.rationale.RationalePackage;
 import org.unicase.model.task.TaskPackage;
@@ -73,6 +74,15 @@ public final class NotificationGenerator {
 	public List<ESNotification> generateNotifications(List<ChangePackage> changePackages, String currentUsername,
 		ProjectSpace projectSpace) {
 		List<ESNotification> result = new ArrayList<ESNotification>();
+
+		// retify client date if neccessary
+		for (ChangePackage changePackage : changePackages) {
+			for (AbstractOperation operation : changePackage.getOperations()) {
+				if (operation.getClientDate() == null) {
+					operation.setClientDate(changePackage.getLogMessage().getDate());
+				}
+			}
+		}
 
 		for (NotificationProvider provider : providers) {
 			try {
