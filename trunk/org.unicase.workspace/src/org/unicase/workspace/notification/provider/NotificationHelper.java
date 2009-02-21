@@ -66,6 +66,7 @@ public final class NotificationHelper {
 			ret.append("%");
 			ret.append(meId.getId());
 			ret.append("/");
+			return ret.toString();
 		}
 
 		throw new IllegalArgumentException("ModelElement does not exist.");
