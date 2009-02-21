@@ -268,13 +268,13 @@ public class WorkspaceImpl extends EObjectImpl implements Workspace {
 			dateVersionSpec.setDate(calendar.getTime());
 			PrimaryVersionSpec sourceSpec;
 			try {
-				sourceSpec = this.connectionManager.resolveVersionSpec(usersession.getSessionId(), projectInfo
+				sourceSpec = this.connectionManager.resolveVersionSpec(usersession.getSessionId(), projectSpace
 					.getProjectId(), dateVersionSpec);
 			} catch (InvalidVersionSpecException e) {
 				sourceSpec = VersioningFactory.eINSTANCE.createPrimaryVersionSpec();
 				sourceSpec.setIdentifier(0);
 			}
-			List<ChangePackage> changes = connectionManager.getChanges(usersession.getSessionId(), projectInfo
+			List<ChangePackage> changes = connectionManager.getChanges(usersession.getSessionId(), projectSpace
 				.getProjectId(), sourceSpec, targetSpec);
 			List<ESNotification> newNotifications = NotificationGenerator.getInstance().generateNotifications(changes,
 				usersession.getUsername(), projectSpace);
