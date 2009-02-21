@@ -4,10 +4,8 @@
  *
  * $Id$
  */
-package analyzer.impl;
+package org.unicase.analyzer.impl;
 
-import analyzer.AnalyzerPackage;
-import analyzer.ProjectAnalysisData;
 
 import java.util.Collection;
 
@@ -25,6 +23,8 @@ import org.eclipse.emf.ecore.impl.EObjectImpl;
 import org.eclipse.emf.ecore.util.EObjectContainmentEList;
 import org.eclipse.emf.ecore.util.InternalEList;
 
+import org.unicase.analyzer.AnalyzerPackage;
+import org.unicase.analyzer.ProjectAnalysisData;
 import org.unicase.emfstore.esmodel.versioning.ChangePackage;
 
 import org.unicase.model.Project;
@@ -36,8 +36,8 @@ import org.unicase.model.Project;
  * <p>
  * The following features are implemented:
  * <ul>
- *   <li>{@link analyzer.impl.ProjectAnalysisDataImpl#getProjectState <em>Project State</em>}</li>
- *   <li>{@link analyzer.impl.ProjectAnalysisDataImpl#getChangePackages <em>Change Packages</em>}</li>
+ *   <li>{@link org.unicase.analyzer.impl.ProjectAnalysisDataImpl#getProjectState <em>Project State</em>}</li>
+ *   <li>{@link org.unicase.analyzer.impl.ProjectAnalysisDataImpl#getChangePackages <em>Change Packages</em>}</li>
  * </ul>
  * </p>
  *

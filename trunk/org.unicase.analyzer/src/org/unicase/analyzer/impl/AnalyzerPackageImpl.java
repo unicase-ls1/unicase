@@ -4,11 +4,8 @@
  *
  * $Id$
  */
-package analyzer.impl;
+package org.unicase.analyzer.impl;
 
-import analyzer.AnalyzerFactory;
-import analyzer.AnalyzerPackage;
-import analyzer.ProjectAnalysisData;
 
 import org.eclipse.emf.ecore.EClass;
 import org.eclipse.emf.ecore.EPackage;
@@ -16,6 +13,9 @@ import org.eclipse.emf.ecore.EReference;
 
 import org.eclipse.emf.ecore.impl.EPackageImpl;
 
+import org.unicase.analyzer.AnalyzerFactory;
+import org.unicase.analyzer.AnalyzerPackage;
+import org.unicase.analyzer.ProjectAnalysisData;
 import org.unicase.emfstore.esmodel.EsmodelPackage;
 
 import org.unicase.emfstore.esmodel.versioning.VersioningPackage;
@@ -47,7 +47,7 @@ public class AnalyzerPackageImpl extends EPackageImpl implements AnalyzerPackage
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
 	 * @see org.eclipse.emf.ecore.EPackage.Registry
-	 * @see analyzer.AnalyzerPackage#eNS_URI
+	 * @see org.unicase.analyzer.AnalyzerPackage#eNS_URI
 	 * @see #init()
 	 * @generated
 	 */

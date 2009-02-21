@@ -3,7 +3,7 @@
  * </copyright>
  */
 
-package analyzer;
+package org.unicase.analyzer;
 
 import java.util.Iterator;
 
