@@ -122,13 +122,9 @@ public class UrlFactoryImpl extends EFactoryImpl implements UrlFactory {
 	}
 
 	// begin of custom code
+
 	/**
-	 * Creates and parses the model element url.
-	 * 
-	 * @throws MalformedURLException when the url is malformed (d'oh!)
-	 * @generated NOT
-	 * @return the newly created {@link ModelElementUrl}
-	 * @param url the url as a string.
+	 * {@inheritDoc}
 	 */
 	public ModelElementUrl createModelElementUrl(String url) throws MalformedURLException {
 
