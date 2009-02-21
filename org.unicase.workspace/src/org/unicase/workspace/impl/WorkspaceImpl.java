@@ -223,17 +223,22 @@ public class WorkspaceImpl extends EObjectImpl implements Workspace {
 				oldActiveProjectSpace, activeProjectSpace));
 	}
 
+	public ProjectSpace checkout(final Usersession usersession, final ProjectInfo projectInfo) throws EmfStoreException {
+		PrimaryVersionSpec targetSpec = this.connectionManager.resolveVersionSpec(usersession.getSessionId(),
+			projectInfo.getProjectId(), VersionSpec.HEAD_VERSION);
+		return checkout(usersession, projectInfo, targetSpec);
+	}
+
 	/**
 	 * <!-- begin-user-doc --> <!-- end-user-doc -->
 	 * 
 	 * @generated NOT
 	 */
-	public ProjectSpace checkout(final Usersession usersession, final ProjectInfo projectInfo) throws EmfStoreException {
+	public ProjectSpace checkout(final Usersession usersession, final ProjectInfo projectInfo,
+		PrimaryVersionSpec targetSpec) throws EmfStoreException {
 
 		// MK: hack: set head version manually because esbrowser does not update revisions properly
 		ProjectInfo projectInfoCopy = (ProjectInfo) EcoreUtil.copy(projectInfo);
-		PrimaryVersionSpec targetSpec = this.connectionManager.resolveVersionSpec(usersession.getSessionId(),
-			projectInfo.getProjectId(), VersionSpec.HEAD_VERSION);
 		projectInfoCopy.setVersion(targetSpec);
 
 		// get Project from server
