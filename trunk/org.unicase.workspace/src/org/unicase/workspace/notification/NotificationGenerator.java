@@ -16,6 +16,7 @@ import org.unicase.model.rationale.RationalePackage;
 import org.unicase.model.task.TaskPackage;
 import org.unicase.workspace.ProjectSpace;
 import org.unicase.workspace.notification.provider.AssignmentNotificationProvider;
+import org.unicase.workspace.notification.provider.TaskObjectNotificationProvider;
 
 /**
  * Singleton class to generate notifications from change packages.
@@ -37,6 +38,7 @@ public final class NotificationGenerator {
 		providers.add(new AssignmentNotificationProvider(TaskPackage.eINSTANCE.getActionItem()));
 		providers.add(new AssignmentNotificationProvider(RationalePackage.eINSTANCE.getIssue()));
 		providers.add(new AssignmentNotificationProvider(BugPackage.eINSTANCE.getBugReport()));
+		providers.add(new TaskObjectNotificationProvider());
 	}
 
 	/**
