@@ -183,6 +183,24 @@ public class HistoryBrowserView extends AbstractSCMView {
 	}
 
 	/**
+	 * Checks out a specific revision.
+	 * 
+	 * @param versionSpec the version
+	 */
+	public void checkout(PrimaryVersionSpec versionSpec) {
+		try {
+			ProjectSpace activeProjectSpace = getActiveProjectSpace();
+			if (activeProjectSpace == null) {
+				return;
+			}
+			WorkspaceManager.getInstance().getCurrentWorkspace().checkout(activeProjectSpace.getUsersession(),
+				activeProjectSpace.getProjectInfo(), versionSpec);
+		} catch (EmfStoreException e) {
+			DialogHandler.showExceptionDialog(e);
+		}
+	}
+
+	/**
 	 * Removes a tag to a version.
 	 * 
 	 * @param versionSpec the version

@@ -250,6 +250,18 @@ public class HistoryComposite extends Composite implements ISelectionChangedList
 
 		};
 
+		Action actionCheckout = new Action("Checkout this version") {
+			@Override
+			public void run() {
+				IStructuredSelection selection = (IStructuredSelection) tableViewer.getSelection();
+				if (!selection.isEmpty()) {
+					HistoryInfo info = (HistoryInfo) selection.getFirstElement();
+					parentView.checkout(info.getPrimerySpec());
+				}
+			}
+
+		};
+
 		Action actionRemoveTag = new ActionExtension("Remove tags...");
 
 		MenuManager mgr = new MenuManager();
@@ -260,6 +272,8 @@ public class HistoryComposite extends Composite implements ISelectionChangedList
 		mgr.add(new Separator());
 		mgr.add(actionAddTag);
 		mgr.add(actionRemoveTag);
+		mgr.add(new Separator());
+		mgr.add(actionCheckout);
 
 		tableViewer.getControl().setMenu(mgr.createContextMenu(tableViewer.getControl()));
 
