@@ -71,9 +71,8 @@ public final class NotificationGenerator {
 				// BEGIN SUPRESS CATCH EXCEPTION
 			} catch (RuntimeException e) {
 				// END SUPRESS CATCH EXCEPTION
-				providers.remove(provider);
 				WorkspaceUtil.logException("Notification Provider " + provider.getName()
-					+ "threw an exception and is removed.", e);
+					+ "threw an exception, its notifications where discarded", e);
 			}
 		}
 		return result;
