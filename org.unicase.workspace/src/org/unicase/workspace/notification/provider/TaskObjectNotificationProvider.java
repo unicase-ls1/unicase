@@ -6,13 +6,17 @@
 package org.unicase.workspace.notification.provider;
 
 import java.util.ArrayList;
+import java.util.HashMap;
 import java.util.List;
 import java.util.Map;
 
 import org.unicase.emfstore.esmodel.notification.ESNotification;
+import org.unicase.emfstore.esmodel.notification.NotificationFactory;
 import org.unicase.emfstore.esmodel.versioning.ChangePackage;
 import org.unicase.emfstore.esmodel.versioning.operations.AbstractOperation;
+import org.unicase.model.ModelElement;
 import org.unicase.model.ModelElementId;
+import org.unicase.model.Project;
 import org.unicase.model.organization.User;
 import org.unicase.model.task.util.OpeningLinkHelper;
 import org.unicase.model.util.ModelElementPath;
@@ -28,11 +32,21 @@ import org.unicase.workspace.util.OrgUnitHelper;
  * @author helming
  */
 public class TaskObjectNotificationProvider implements NotificationProvider {
-
+	/**
+	 * {@inheritDoc}
+	 * 
+	 * @see org.unicase.workspace.notification.NotificationProvider#getName()
+	 */
 	public String getName() {
 		return "Task Object Change Notifier";
 	}
 
+	/**
+	 * {@inheritDoc}
+	 * 
+	 * @see org.unicase.workspace.notification.NotificationProvider#provideNotifications(org.unicase.workspace.ProjectSpace,
+	 *      java.util.List, java.lang.String)
+	 */
 	public List<ESNotification> provideNotifications(ProjectSpace projectSpace, List<ChangePackage> changePackages,
 		String currentUsername) {
 		List<ESNotification> result = new ArrayList<ESNotification>();
@@ -48,15 +62,65 @@ public class TaskObjectNotificationProvider implements NotificationProvider {
 			return result;
 		}
 		Map<ModelElementId, ModelElementPath> objectsOfWork = OpeningLinkHelper.getObjectsOfWork(user);
+		Map<ModelElementId, List<AbstractOperation>> changes = new HashMap<ModelElementId, List<AbstractOperation>>();
 
 		for (ChangePackage changePackage : changePackages) {
 			for (AbstractOperation operation : changePackage.getOperations()) {
 				ModelElementId modelElementId = operation.getModelElementId();
 				if (objectsOfWork.containsKey(modelElementId)) {
-
+					addChangePackage(modelElementId, operation, changes);
 				}
 			}
 		}
+
+		for (ModelElementId meId : changes.keySet()) {
+			ESNotification createNotification = createNotification(meId, changes.get(meId), objectsOfWork.get(meId),
+				projectSpace.getProject());
+			createNotification.setProject(projectSpace.getProjectId());
+			createNotification.setName("Task Object Change");
+			result.add(createNotification);
+		}
+
 		return result;
+	}
+
+	private ESNotification createNotification(ModelElementId meId, List<AbstractOperation> list,
+		ModelElementPath modelElementPath, Project project) {
+		ESNotification notification = NotificationFactory.eINSTANCE.createESNotification();
+		notification.setCreationDate(NotificationHelper.getLastDate(list));
+		for (AbstractOperation operation : list) {
+			notification.getRelatedModelElements().add(operation.getModelElementId());
+		}
+		ModelElement modelElement = project.getModelElement(meId);
+		StringBuilder message = new StringBuilder();
+		message.append("This");
+		message.append(modelElement.eClass().getName());
+		message.append("has been modified:");
+		message.append(NotificationHelper.getHTMLLinkForModelElement(meId, project));
+		message.append("<br>");
+
+		message.append("There is a trace from your work item: ");
+
+		message.append(NotificationHelper.getHTMLLinkForModelElement(modelElementPath.getSource(), project));
+		message.append(" => ");
+		for (ModelElementId traceId : modelElementPath.getPath()) {
+			message.append(NotificationHelper.getHTMLLinkForModelElement(traceId, project));
+			message.append(" => ");
+		}
+		message.append(NotificationHelper.getHTMLLinkForModelElement(modelElementPath.getTarget(), project));
+
+		return notification;
+	}
+
+	private void addChangePackage(ModelElementId modelElementId, AbstractOperation operation,
+		Map<ModelElementId, List<AbstractOperation>> changes) {
+		if (changes.containsKey(modelElementId)) {
+			changes.get(modelElementId).add(operation);
+		} else {
+			ArrayList<AbstractOperation> arrayList = new ArrayList<AbstractOperation>();
+			arrayList.add(operation);
+			changes.put(modelElementId, arrayList);
+		}
+
 	}
 }
