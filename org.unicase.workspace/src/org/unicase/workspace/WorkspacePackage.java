@@ -370,7 +370,7 @@ public interface WorkspacePackage extends EPackage {
 	int PROJECT_SPACE__LOCAL_OPERATIONS = ModelPackage.IDENTIFIABLE_ELEMENT_FEATURE_COUNT + 11;
 
 	/**
-	 * The feature id for the '<em><b>Notifications</b></em>' reference list.
+	 * The feature id for the '<em><b>Notifications</b></em>' containment reference list.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
 	 * @generated
@@ -781,10 +781,10 @@ public interface WorkspacePackage extends EPackage {
 	EReference getProjectSpace_LocalOperations();
 
 	/**
-	 * Returns the meta object for the reference list '{@link org.unicase.workspace.ProjectSpace#getNotifications <em>Notifications</em>}'.
+	 * Returns the meta object for the containment reference list '{@link org.unicase.workspace.ProjectSpace#getNotifications <em>Notifications</em>}'.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
-	 * @return the meta object for the reference list '<em>Notifications</em>'.
+	 * @return the meta object for the containment reference list '<em>Notifications</em>'.
 	 * @see org.unicase.workspace.ProjectSpace#getNotifications()
 	 * @see #getProjectSpace()
 	 * @generated
@@ -1122,7 +1122,7 @@ public interface WorkspacePackage extends EPackage {
 		EReference PROJECT_SPACE__LOCAL_OPERATIONS = eINSTANCE.getProjectSpace_LocalOperations();
 
 		/**
-		 * The meta object literal for the '<em><b>Notifications</b></em>' reference list feature.
+		 * The meta object literal for the '<em><b>Notifications</b></em>' containment reference list feature.
 		 * <!-- begin-user-doc -->
 		 * <!-- end-user-doc -->
 		 * @generated

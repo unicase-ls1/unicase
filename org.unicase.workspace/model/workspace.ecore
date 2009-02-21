@@ -60,7 +60,8 @@
     <eStructuralFeatures xsi:type="ecore:EReference" name="localOperations" eType="#//OperationComposite"
         containment="true"/>
     <eStructuralFeatures xsi:type="ecore:EReference" name="notifications" upperBound="-1"
-        eType="ecore:EClass ../../org.unicase.emfstore.esmodel/model/esmodel.ecore#//notification/ESNotification"/>
+        eType="ecore:EClass ../../org.unicase.emfstore.esmodel/model/esmodel.ecore#//notification/ESNotification"
+        containment="true"/>
   </eClassifiers>
   <eClassifiers xsi:type="ecore:EClass" name="OperationComposite">
     <eStructuralFeatures xsi:type="ecore:EReference" name="operations" upperBound="-1"
