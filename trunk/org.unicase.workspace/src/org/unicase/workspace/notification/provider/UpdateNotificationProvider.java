@@ -23,7 +23,10 @@ import org.unicase.workspace.notification.NotificationProvider;
  */
 public class UpdateNotificationProvider implements NotificationProvider {
 
-	private static final String NAME = "Update Notification Provider";
+	/**
+	 * The name.
+	 */
+	public static final String NAME = "Update Notification Provider";
 
 	/**
 	 * {@inheritDoc}
