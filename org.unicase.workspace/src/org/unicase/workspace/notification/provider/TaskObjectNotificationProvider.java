@@ -6,6 +6,7 @@
 package org.unicase.workspace.notification.provider;
 
 import java.util.ArrayList;
+import java.util.Date;
 import java.util.HashMap;
 import java.util.List;
 import java.util.Map;
@@ -88,7 +89,7 @@ public class TaskObjectNotificationProvider implements NotificationProvider {
 		ModelElementPath modelElementPath, ProjectSpace projectSpace) {
 		Project project = projectSpace.getProject();
 		ESNotification notification = NotificationFactory.eINSTANCE.createESNotification();
-		notification.setCreationDate(NotificationHelper.getLastDate(list));
+		notification.setCreationDate(new Date());
 		for (AbstractOperation operation : list) {
 			notification.getRelatedModelElements().add(operation.getModelElementId());
 		}
