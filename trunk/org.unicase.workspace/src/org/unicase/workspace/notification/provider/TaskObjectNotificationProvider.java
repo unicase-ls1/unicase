@@ -8,8 +8,10 @@ package org.unicase.workspace.notification.provider;
 import java.util.ArrayList;
 import java.util.Date;
 import java.util.HashMap;
+import java.util.HashSet;
 import java.util.List;
 import java.util.Map;
+import java.util.Set;
 
 import org.eclipse.emf.ecore.util.EcoreUtil;
 import org.unicase.emfstore.esmodel.ProjectId;
@@ -92,9 +94,11 @@ public class TaskObjectNotificationProvider implements NotificationProvider {
 		Project project = projectSpace.getProject();
 		ESNotification notification = NotificationFactory.eINSTANCE.createESNotification();
 		notification.setCreationDate(new Date());
+		Set<ModelElementId> relatedElementSet = new HashSet<ModelElementId>();
 		for (AbstractOperation operation : list) {
-			notification.getRelatedModelElements().add(operation.getModelElementId());
+			relatedElementSet.add(operation.getModelElementId());
 		}
+		notification.getRelatedModelElements().addAll(relatedElementSet);
 		ModelElement modelElement = project.getModelElement(meId);
 		StringBuilder message = new StringBuilder();
 		message.append(modelElement.eClass().getName());
