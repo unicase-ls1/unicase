@@ -192,7 +192,7 @@ public class DashboardEntry extends Composite {
 	}
 
 	private boolean createUpdateEntry() {
-		if (!n.getMessage().startsWith("revision")) {
+		if (n.getMessage() != null && !n.getMessage().startsWith("revision")) {
 			return false;
 		}
 		GridDataFactory.fillDefaults().align(SWT.FILL, SWT.BEGINNING).grab(true, false).applyTo(this);
