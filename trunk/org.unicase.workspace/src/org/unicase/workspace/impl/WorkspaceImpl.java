@@ -7,9 +7,11 @@ package org.unicase.workspace.impl;
 
 import java.io.File;
 import java.io.IOException;
+import java.util.Calendar;
 import java.util.Collection;
 import java.util.Date;
 import java.util.HashSet;
+import java.util.List;
 import java.util.Set;
 
 import org.eclipse.emf.common.notify.Notification;
@@ -29,10 +31,14 @@ import org.eclipse.emf.ecore.util.EcoreUtil;
 import org.eclipse.emf.ecore.util.InternalEList;
 import org.eclipse.emf.transaction.TransactionalEditingDomain;
 import org.unicase.emfstore.esmodel.ProjectInfo;
+import org.unicase.emfstore.esmodel.notification.ESNotification;
 import org.unicase.emfstore.esmodel.url.ProjectUrlFragment;
 import org.unicase.emfstore.esmodel.url.ServerUrl;
+import org.unicase.emfstore.esmodel.versioning.ChangePackage;
+import org.unicase.emfstore.esmodel.versioning.DateVersionSpec;
 import org.unicase.emfstore.esmodel.versioning.PrimaryVersionSpec;
 import org.unicase.emfstore.esmodel.versioning.VersionSpec;
+import org.unicase.emfstore.esmodel.versioning.VersioningFactory;
 import org.unicase.emfstore.esmodel.versioning.events.EventsFactory;
 import org.unicase.emfstore.esmodel.versioning.events.PluginStartEvent;
 import org.unicase.emfstore.exceptions.EmfStoreException;
@@ -48,6 +54,8 @@ import org.unicase.workspace.WorkspacePackage;
 import org.unicase.workspace.connectionmanager.ConnectionManager;
 import org.unicase.workspace.exceptions.ProjectUrlResolutionException;
 import org.unicase.workspace.exceptions.ServerUrlResolutionException;
+import org.unicase.workspace.notification.NotificationGenerator;
+import org.unicase.workspace.util.WorkspaceUtil;
 
 /*
  * <!-- begin-user-doc --> An implementation of the model object ' <em><b>Workspace</b></em>'. <!-- end-user-doc --> <p>
@@ -223,8 +231,9 @@ public class WorkspaceImpl extends EObjectImpl implements Workspace {
 
 		// MK: hack: set head version manually because esbrowser does not update revisions properly
 		ProjectInfo projectInfoCopy = (ProjectInfo) EcoreUtil.copy(projectInfo);
-		projectInfoCopy.setVersion(this.connectionManager.resolveVersionSpec(usersession.getSessionId(), projectInfo
-			.getProjectId(), VersionSpec.HEAD_VERSION));
+		PrimaryVersionSpec targetSpec = this.connectionManager.resolveVersionSpec(usersession.getSessionId(),
+			projectInfo.getProjectId(), VersionSpec.HEAD_VERSION);
+		projectInfoCopy.setVersion(targetSpec);
 
 		// get Project from server
 		final Project project = this.connectionManager.getProject(usersession.getSessionId(), projectInfo
@@ -235,8 +244,9 @@ public class WorkspaceImpl extends EObjectImpl implements Workspace {
 
 		final PrimaryVersionSpec primaryVersionSpec = projectInfoCopy.getVersion();
 
-		// init project space
 		ProjectSpace projectSpace = WorkspaceFactory.eINSTANCE.createProjectSpace();
+
+		// init project space
 		projectSpace.setProjectId(projectInfo.getProjectId());
 		projectSpace.setProjectName(projectInfo.getName());
 		projectSpace.setProjectDescription(projectInfo.getDescription());
@@ -248,6 +258,31 @@ public class WorkspaceImpl extends EObjectImpl implements Workspace {
 		projectSpace.setLocalOperations(WorkspaceFactory.eINSTANCE.createOperationComposite());
 
 		projectSpace.initResources(this.workspaceResourceSet);
+
+		// getRecentChanges and generate notifications
+		try {
+			DateVersionSpec dateVersionSpec = VersioningFactory.eINSTANCE.createDateVersionSpec();
+			Calendar calendar = Calendar.getInstance();
+			calendar.add(Calendar.DAY_OF_YEAR, -10);
+			dateVersionSpec.setDate(calendar.getTime());
+			PrimaryVersionSpec sourceSpec = this.connectionManager.resolveVersionSpec(usersession.getSessionId(),
+				projectInfo.getProjectId(), dateVersionSpec);
+			List<ChangePackage> changes = connectionManager.getChanges(usersession.getSessionId(), projectInfo
+				.getProjectId(), sourceSpec, targetSpec);
+			List<ESNotification> newNotifications = NotificationGenerator.getInstance().generateNotifications(changes,
+				usersession.getUsername(), projectSpace);
+			projectSpace.getNotifications().addAll(newNotifications);
+			projectSpace.eResource().save(null);
+		} catch (EmfStoreException e) {
+			projectSpace.getNotifications().clear();
+			WorkspaceUtil.logException("Creating notifications failed!", e);
+		} catch (RuntimeException e) {
+			projectSpace.getNotifications().clear();
+			WorkspaceUtil.logException("Creating notifications failed!", e);
+		} catch (IOException e) {
+			projectSpace.getNotifications().clear();
+			WorkspaceUtil.logException("Creating notifications failed!", e);
+		}
 
 		getProjectSpaces().add(projectSpace);
 		this.save();
