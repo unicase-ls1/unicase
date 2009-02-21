@@ -533,5 +533,10 @@ public interface ProjectSpace extends IdentifiableElement {
 	 */
 	ModelElement resolve(ModelElementUrlFragment modelElementUrlFragment) throws MEUrlResolutionException;
 
+	/**
+	 * Get a project info for the project space.
+	 * 
+	 * @return a project info
+	 */
 	ProjectInfo getProjectInfo();
 } // ProjectContainer
