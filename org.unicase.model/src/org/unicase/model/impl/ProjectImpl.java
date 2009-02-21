@@ -433,7 +433,7 @@ public class ProjectImpl extends EObjectImpl implements Project, ProjectChangeOb
 							if (reference.isMany()) {
 								((EList<?>) otherModelElement.eGet(reference)).remove(modelElement);
 							} else {
-								modelElement.eUnset(reference);
+								otherModelElement.eUnset(reference);
 							}
 						}
 					}

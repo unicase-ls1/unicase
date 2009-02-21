@@ -130,6 +130,18 @@ public class StepImpl extends ModelElementImpl implements Step {
 	}
 
 	/**
+	 * <!-- begin-user-doc --> <!-- end-user-doc -->
+	 * @generated
+	 */
+	public void setIncludedUseCaseGen(UseCase newIncludedUseCase) {
+		UseCase oldIncludedUseCase = includedUseCase;
+		includedUseCase = newIncludedUseCase;
+		if (eNotificationRequired())
+			eNotify(new ENotificationImpl(this, Notification.SET, RequirementPackage.STEP__INCLUDED_USE_CASE,
+				oldIncludedUseCase, includedUseCase));
+	}
+
+	/**
 	 * <!-- begin-user-doc --> If a usecase is included into a step this method checks if the step is also included in
 	 * the useCase. If not it will add the new included usecase to the included usecases of the parent use case. <!--
 	 * end-user-doc --> {@inheritDoc}
@@ -137,17 +149,12 @@ public class StepImpl extends ModelElementImpl implements Step {
 	 * @generated NOT
 	 */
 	public void setIncludedUseCase(UseCase newIncludedUseCase) {
+		setIncludedUseCaseGen(newIncludedUseCase);
 		UseCase useCase = getUseCase();
-		if (useCase != null) {
+		if (useCase != null && newIncludedUseCase != null) {
 			if (!useCase.getIncludedUseCases().contains(newIncludedUseCase)) {
 				useCase.getIncludedUseCases().add(newIncludedUseCase);
 			}
-		}
-		UseCase oldIncludedUseCase = includedUseCase;
-		includedUseCase = newIncludedUseCase;
-		if (eNotificationRequired()) {
-			eNotify(new ENotificationImpl(this, Notification.SET, RequirementPackage.STEP__INCLUDED_USE_CASE,
-				oldIncludedUseCase, includedUseCase));
 		}
 	}
 
