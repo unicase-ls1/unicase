@@ -43,6 +43,7 @@ import org.unicase.ui.common.util.ActionHelper;
 import org.unicase.workspace.ProjectSpace;
 import org.unicase.workspace.edit.Activator;
 import org.unicase.workspace.notification.provider.NotificationHelper;
+import org.unicase.workspace.notification.provider.UpdateNotificationProvider;
 import org.unicase.workspace.util.WorkspaceUtil;
 
 /**
@@ -192,7 +193,7 @@ public class DashboardEntry extends Composite {
 	}
 
 	private boolean createUpdateEntry() {
-		if (n.getMessage() != null && !n.getMessage().startsWith("revision")) {
+		if (!n.getSender().equals(UpdateNotificationProvider.NAME)) {
 			return false;
 		}
 		GridDataFactory.fillDefaults().align(SWT.FILL, SWT.BEGINNING).grab(true, false).applyTo(this);
