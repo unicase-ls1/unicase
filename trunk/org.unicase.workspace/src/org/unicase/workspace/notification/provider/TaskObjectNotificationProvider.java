@@ -6,7 +6,6 @@
 package org.unicase.workspace.notification.provider;
 
 import java.util.ArrayList;
-import java.util.Date;
 import java.util.HashMap;
 import java.util.HashSet;
 import java.util.List;
@@ -71,6 +70,9 @@ public class TaskObjectNotificationProvider implements NotificationProvider {
 
 		for (ChangePackage changePackage : changePackages) {
 			for (AbstractOperation operation : changePackage.getOperations()) {
+				if (operation.getClientDate() == null) {
+					operation.setClientDate(changePackage.getLogMessage().getDate());
+				}
 				ModelElementId modelElementId = operation.getModelElementId();
 				if (objectsOfWork.containsKey(modelElementId)) {
 					addChangePackage(modelElementId, operation, changes);
@@ -95,7 +97,7 @@ public class TaskObjectNotificationProvider implements NotificationProvider {
 		ModelElementPath modelElementPath, ProjectSpace projectSpace) {
 		Project project = projectSpace.getProject();
 		ESNotification notification = NotificationFactory.eINSTANCE.createESNotification();
-		notification.setCreationDate(new Date());
+		notification.setCreationDate(NotificationHelper.getLastDate(list));
 		Set<ModelElementId> relatedElementSet = new HashSet<ModelElementId>();
 		for (AbstractOperation operation : list) {
 			relatedElementSet.add(operation.getModelElementId());
