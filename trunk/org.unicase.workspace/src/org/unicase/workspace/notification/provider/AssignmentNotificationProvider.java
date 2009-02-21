@@ -15,6 +15,7 @@ import org.eclipse.emf.ecore.EClass;
 import org.unicase.emfstore.esmodel.notification.ESNotification;
 import org.unicase.emfstore.esmodel.notification.NotificationFactory;
 import org.unicase.emfstore.esmodel.util.EsModelUtil;
+import org.unicase.emfstore.esmodel.versioning.ChangePackage;
 import org.unicase.emfstore.esmodel.versioning.operations.AbstractOperation;
 import org.unicase.emfstore.esmodel.versioning.operations.MultiReferenceOperation;
 import org.unicase.emfstore.esmodel.versioning.operations.OperationsPackage;
@@ -41,9 +42,6 @@ import org.unicase.workspace.util.OrgUnitHelper;
  */
 public class AssignmentNotificationProvider implements NotificationProvider {
 
-	private ProjectSpace projectSpace;
-	private User user;
-	private Set<ModelElementId> workItems;
 	private EClass clazz;
 
 	/**
@@ -55,52 +53,148 @@ public class AssignmentNotificationProvider implements NotificationProvider {
 		this.clazz = assignmentClass;
 	}
 
-	/**
-	 * Initializs the provider.
-	 * 
-	 * @param projectSpace the project space - needed for resolving the current user
-	 * @param operations the list of operations to be processed.
-	 */
-	public void init(ProjectSpace projectSpace, List<AbstractOperation> operations) {
-		clear();
-		this.projectSpace = projectSpace;
-		try {
-			this.user = OrgUnitHelper.getUser(projectSpace);
-		} catch (NoCurrentUserException e) {
-			clear();
-		} catch (CannotMatchUserInProjectException e) {
-			clear();
+	private void processOrgUnit(AbstractOperation operation, ReferenceOperation referenceOperation,
+		ModelElement userElement, User user, Set<ModelElementId> workItems, ProjectSpace projectSpace) {
+		Set<Group> allCurrentGroups = OrgUnitHelper.getAllGroupsOfOrgUnit(user);
+		if (allCurrentGroups.contains(userElement)) {
+			workItems.addAll(referenceOperation.getOtherInvolvedModelElements());
 		}
-		this.workItems = new HashSet<ModelElementId>();
+		if (OrganizationPackage.eINSTANCE.getUser().isInstance(userElement)) {
+			ModelElement modelElement = projectSpace.getProject().getModelElement(
+				referenceOperation.getModelElementId());
+			if (user.getName().equalsIgnoreCase(userElement.getName()) && modelElement != null
+				&& clazz.isInstance(modelElement)) {
+				workItems.add(operation.getModelElementId());
+			}
+		}
+	}
 
-		for (AbstractOperation operation : operations) {
-			processOperation(operation);
+	private void processWorkItem(AbstractOperation operation, ReferenceOperation referenceOperation, User user,
+		Set<ModelElementId> workItems, Project project) {
+		Set<OrgUnit> impactedOrgUnits = new HashSet<OrgUnit>();
+		for (ModelElementId modelElementId : referenceOperation.getOtherInvolvedModelElements()) {
+			ModelElement element = project.getModelElement(modelElementId);
+			impactedOrgUnits.add((OrgUnit) element);
 		}
+		Set<Group> allCurrentGroups = OrgUnitHelper.getAllGroupsOfOrgUnit(user);
+		for (OrgUnit impactedOrgUnit : impactedOrgUnits) {
+			if (allCurrentGroups.contains(impactedOrgUnit)) {
+				workItems.add(operation.getModelElementId());
+			}
+			if (OrganizationPackage.eINSTANCE.getUser().isInstance(impactedOrgUnit)) {
+				if (user.getName().equalsIgnoreCase(impactedOrgUnit.getName())) {
+					workItems.add(operation.getModelElementId());
+				}
+			}
+		}
+	}
+
+	/**
+	 * Filters all unwanted operation and returns a reference operation if applicable.
+	 * 
+	 * @param operation abstract operation
+	 * @return the reference operation or null if there is no reference operation
+	 */
+	private ReferenceOperation getReferenceOperation(AbstractOperation operation) {
+		// filter all operations other than reference operations
+		if (!OperationsPackage.eINSTANCE.getReferenceOperation().isInstance(operation)) {
+			return null;
+		}
+
+		ReferenceOperation referenceOperation = (ReferenceOperation) operation;
+
+		// filter remove reference operations
+		if (OperationsPackage.eINSTANCE.getMultiReferenceOperation().isInstance(referenceOperation)) {
+			MultiReferenceOperation multiReferenceOperation = (MultiReferenceOperation) referenceOperation;
+			if (!multiReferenceOperation.isAdd()) {
+				return null;
+			}
+		}
+		if (OperationsPackage.eINSTANCE.getSingleReferenceOperation().isInstance(referenceOperation)) {
+			SingleReferenceOperation singleReferenceOperation = (SingleReferenceOperation) referenceOperation;
+			if (singleReferenceOperation.getNewValue() == null) {
+				return null;
+			}
+		}
+		return referenceOperation;
 	}
 
 	/**
 	 * {@inheritDoc}
 	 * 
-	 * @see org.unicase.workspace.notification.NotificationProvider#clear()
+	 * @see org.unicase.workspace.notification.NotificationProvider#getName()
 	 */
-	public void clear() {
-		this.user = null;
-		this.projectSpace = null;
-		if (this.workItems != null) {
-			this.workItems.clear();
-		}
+	public String getName() {
+		return "Assignement Notification Provider";
 	}
 
 	/**
 	 * {@inheritDoc}
 	 * 
-	 * @see org.unicase.workspace.notification.NotificationProvider#getResult()
+	 * @see org.unicase.workspace.notification.NotificationProvider#provideNotifications(org.unicase.workspace.ProjectSpace,
+	 *      java.util.List, java.lang.String)
 	 */
-	public List<ESNotification> getResult() {
+	public List<ESNotification> provideNotifications(ProjectSpace projectSpace, List<ChangePackage> changePackages,
+		String currentUsername) {
 		List<ESNotification> result = new ArrayList<ESNotification>();
+		User user = null;
+		try {
+			user = OrgUnitHelper.getUser(projectSpace);
+		} catch (NoCurrentUserException e) {
+			return result;
+		} catch (CannotMatchUserInProjectException e) {
+			return result;
+		}
+		Set<ModelElementId> workItems = new HashSet<ModelElementId>();
+
+		if (projectSpace == null || user == null) {
+			return result;
+		}
+
+		for (ChangePackage changePackage : changePackages) {
+			for (AbstractOperation operation : changePackage.getOperations()) {
+
+				ReferenceOperation referenceOperation = getReferenceOperation(operation);
+				if (referenceOperation == null) {
+					continue;
+				}
+
+				String featureName = referenceOperation.getFeatureName();
+
+				Project project = projectSpace.getProject();
+				ModelElement modelElement = project.getModelElement(operation.getModelElementId());
+				if (modelElement == null) {
+					// the ME was deleted from the project.
+					continue;
+				}
+
+				// if we have a change of an orgunit feature in a work item
+				if (clazz.isInstance(modelElement)) {
+					if (!(featureName.equalsIgnoreCase("assignee"))) {
+						continue;
+					}
+					processWorkItem(operation, referenceOperation, user, workItems, project);
+
+				}
+				// if we have a change in a workitem related feature in a org unit
+				else if (OrganizationPackage.eINSTANCE.getOrgUnit().isInstance(modelElement)) {
+					if (!(featureName.equalsIgnoreCase("assignments"))) {
+						continue;
+					}
+
+					processOrgUnit(operation, referenceOperation, modelElement, user, workItems, projectSpace);
+				}
+
+				else {
+					continue;
+				}
+			}
+		}
+
 		if (workItems.isEmpty()) {
 			return result;
 		}
+
 		// create a notification for the new work items
 		ESNotification notification = NotificationFactory.eINSTANCE.createESNotification();
 		notification.setName("New work items");
@@ -134,123 +228,6 @@ public class AssignmentNotificationProvider implements NotificationProvider {
 
 		result.add(notification);
 		return result;
-	}
 
-	/**
-	 * {@inheritDoc}
-	 * 
-	 * @see org.unicase.workspace.notification.NotificationProvider#processOperation(org.unicase.emfstore.esmodel.versioning.operations.AbstractOperation)
-	 */
-	public void processOperation(AbstractOperation operation) {
-		if (projectSpace == null || user == null) {
-			return;
-		}
-
-		ReferenceOperation referenceOperation = getReferenceOperation(operation);
-		if (referenceOperation == null) {
-			return;
-		}
-
-		String featureName = referenceOperation.getFeatureName();
-
-		Project project = projectSpace.getProject();
-		ModelElement modelElement = getModelElement(operation, project);
-		if (modelElement == null) {
-			// the ME was deleted from the project.
-			return;
-		}
-
-		// if we have a change of an orgunit feature in a work item
-		if (clazz.isInstance(modelElement)) {
-			if (!(featureName.equalsIgnoreCase("assignee"))) {
-				return;
-			}
-			processWorkItem(operation, referenceOperation, project);
-
-		}
-		// if we have a change in a workitem related feature in a org unit
-		else if (OrganizationPackage.eINSTANCE.getOrgUnit().isInstance(modelElement)) {
-			if (!(featureName.equalsIgnoreCase("assignments"))) {
-				return;
-			}
-
-			processOrgUnit(operation, referenceOperation, modelElement);
-		}
-
-		else {
-			return;
-		}
-	}
-
-	private void processOrgUnit(AbstractOperation operation, ReferenceOperation referenceOperation,
-		ModelElement userElement) {
-		Set<Group> allCurrentGroups = OrgUnitHelper.getAllGroupsOfOrgUnit(user);
-		if (allCurrentGroups.contains(userElement)) {
-			workItems.addAll(referenceOperation.getOtherInvolvedModelElements());
-		}
-		if (OrganizationPackage.eINSTANCE.getUser().isInstance(userElement)) {
-			ModelElement modelElement = getModelElement(referenceOperation, projectSpace.getProject());
-			if (user.getName().equalsIgnoreCase(userElement.getName()) && modelElement != null
-				&& clazz.isInstance(modelElement)) {
-				workItems.add(operation.getModelElementId());
-			}
-		}
-	}
-
-	private void processWorkItem(AbstractOperation operation, ReferenceOperation referenceOperation, Project project) {
-		Set<OrgUnit> impactedOrgUnits = new HashSet<OrgUnit>();
-		for (ModelElementId modelElementId : referenceOperation.getOtherInvolvedModelElements()) {
-			ModelElement element = project.getModelElement(modelElementId);
-			impactedOrgUnits.add((OrgUnit) element);
-		}
-		Set<Group> allCurrentGroups = OrgUnitHelper.getAllGroupsOfOrgUnit(user);
-		for (OrgUnit impactedOrgUnit : impactedOrgUnits) {
-			if (allCurrentGroups.contains(impactedOrgUnit)) {
-				workItems.add(operation.getModelElementId());
-			}
-			if (OrganizationPackage.eINSTANCE.getUser().isInstance(impactedOrgUnit)) {
-				if (user.getName().equalsIgnoreCase(impactedOrgUnit.getName())) {
-					workItems.add(operation.getModelElementId());
-				}
-			}
-		}
-	}
-
-	private ModelElement getModelElement(AbstractOperation operation, Project project) {
-		ModelElementId modelElementId = operation.getModelElementId();
-		if (project.contains(modelElementId)) {
-			return project.getModelElement(modelElementId);
-		}
-		return null;
-	}
-
-	/**
-	 * Filters all unwanted operation and returns a reference operation if applicable.
-	 * 
-	 * @param operation abstract operation
-	 * @return the reference operation or null if there is no reference operation
-	 */
-	private ReferenceOperation getReferenceOperation(AbstractOperation operation) {
-		// filter all operations other than reference operations
-		if (!OperationsPackage.eINSTANCE.getReferenceOperation().isInstance(operation)) {
-			return null;
-		}
-
-		ReferenceOperation referenceOperation = (ReferenceOperation) operation;
-
-		// filter remove reference operations
-		if (OperationsPackage.eINSTANCE.getMultiReferenceOperation().isInstance(referenceOperation)) {
-			MultiReferenceOperation multiReferenceOperation = (MultiReferenceOperation) referenceOperation;
-			if (!multiReferenceOperation.isAdd()) {
-				return null;
-			}
-		}
-		if (OperationsPackage.eINSTANCE.getSingleReferenceOperation().isInstance(referenceOperation)) {
-			SingleReferenceOperation singleReferenceOperation = (SingleReferenceOperation) referenceOperation;
-			if (singleReferenceOperation.getNewValue() == null) {
-				return null;
-			}
-		}
-		return referenceOperation;
 	}
 }

@@ -8,7 +8,7 @@ package org.unicase.workspace.notification;
 import java.util.List;
 
 import org.unicase.emfstore.esmodel.notification.ESNotification;
-import org.unicase.emfstore.esmodel.versioning.operations.AbstractOperation;
+import org.unicase.emfstore.esmodel.versioning.ChangePackage;
 import org.unicase.workspace.ProjectSpace;
 
 /**
@@ -19,29 +19,21 @@ import org.unicase.workspace.ProjectSpace;
 public interface NotificationProvider {
 
 	/**
-	 * Initializes the notification provider.
+	 * Return the name of the provider.
+	 * 
+	 * @return the name
+	 */
+	String getName();
+
+	/**
+	 * Provide notifications for a list of change packages.
 	 * 
 	 * @param projectSpace the project space.
-	 * @param operations the list of operations.
-	 */
-	void init(ProjectSpace projectSpace, List<AbstractOperation> operations);
-
-	/**
-	 * Process an operation. May result in a change in internal state.
-	 * 
-	 * @param operation the operation to process
-	 */
-	void processOperation(AbstractOperation operation);
-
-	/**
-	 * Get current result from provider. Result may change when processing more operations.
-	 * 
+	 * @param changePackages a list of change packages
+	 * @param currentUsername the name of the current user
 	 * @return a list of notifications
 	 */
-	List<ESNotification> getResult();
+	List<ESNotification> provideNotifications(ProjectSpace projectSpace, List<ChangePackage> changePackages,
+		String currentUsername);
 
-	/**
-	 * Clear the internal state of the provider including its current results.
-	 */
-	void clear();
 }
