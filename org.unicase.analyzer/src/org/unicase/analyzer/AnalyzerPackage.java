@@ -4,7 +4,7 @@
  *
  * $Id$
  */
-package analyzer;
+package org.unicase.analyzer;
 
 import org.eclipse.emf.ecore.EClass;
 import org.eclipse.emf.ecore.EPackage;
@@ -21,7 +21,7 @@ import org.eclipse.emf.ecore.EReference;
  *   <li>and each data type</li>
  * </ul>
  * <!-- end-user-doc -->
- * @see analyzer.AnalyzerFactory
+ * @see org.unicase.analyzer.AnalyzerFactory
  * @model kind="package"
  * @generated
  */
@@ -56,14 +56,14 @@ public interface AnalyzerPackage extends EPackage {
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
-	AnalyzerPackage eINSTANCE = analyzer.impl.AnalyzerPackageImpl.init();
+	AnalyzerPackage eINSTANCE = org.unicase.analyzer.impl.AnalyzerPackageImpl.init();
 
 	/**
-	 * The meta object id for the '{@link analyzer.impl.ProjectAnalysisDataImpl <em>Project Analysis Data</em>}' class.
+	 * The meta object id for the '{@link org.unicase.analyzer.impl.ProjectAnalysisDataImpl <em>Project Analysis Data</em>}' class.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
-	 * @see analyzer.impl.ProjectAnalysisDataImpl
-	 * @see analyzer.impl.AnalyzerPackageImpl#getProjectAnalysisData()
+	 * @see org.unicase.analyzer.impl.ProjectAnalysisDataImpl
+	 * @see org.unicase.analyzer.impl.AnalyzerPackageImpl#getProjectAnalysisData()
 	 * @generated
 	 */
 	int PROJECT_ANALYSIS_DATA = 0;
@@ -97,32 +97,32 @@ public interface AnalyzerPackage extends EPackage {
 
 
 	/**
-	 * Returns the meta object for class '{@link analyzer.ProjectAnalysisData <em>Project Analysis Data</em>}'.
+	 * Returns the meta object for class '{@link org.unicase.analyzer.ProjectAnalysisData <em>Project Analysis Data</em>}'.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
 	 * @return the meta object for class '<em>Project Analysis Data</em>'.
-	 * @see analyzer.ProjectAnalysisData
+	 * @see org.unicase.analyzer.ProjectAnalysisData
 	 * @generated
 	 */
 	EClass getProjectAnalysisData();
 
 	/**
-	 * Returns the meta object for the containment reference '{@link analyzer.ProjectAnalysisData#getProjectState <em>Project State</em>}'.
+	 * Returns the meta object for the containment reference '{@link org.unicase.analyzer.ProjectAnalysisData#getProjectState <em>Project State</em>}'.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
 	 * @return the meta object for the containment reference '<em>Project State</em>'.
-	 * @see analyzer.ProjectAnalysisData#getProjectState()
+	 * @see org.unicase.analyzer.ProjectAnalysisData#getProjectState()
 	 * @see #getProjectAnalysisData()
 	 * @generated
 	 */
 	EReference getProjectAnalysisData_ProjectState();
 
 	/**
-	 * Returns the meta object for the containment reference list '{@link analyzer.ProjectAnalysisData#getChangePackages <em>Change Packages</em>}'.
+	 * Returns the meta object for the containment reference list '{@link org.unicase.analyzer.ProjectAnalysisData#getChangePackages <em>Change Packages</em>}'.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
 	 * @return the meta object for the containment reference list '<em>Change Packages</em>'.
-	 * @see analyzer.ProjectAnalysisData#getChangePackages()
+	 * @see org.unicase.analyzer.ProjectAnalysisData#getChangePackages()
 	 * @see #getProjectAnalysisData()
 	 * @generated
 	 */
@@ -151,11 +151,11 @@ public interface AnalyzerPackage extends EPackage {
 	 */
 	interface Literals {
 		/**
-		 * The meta object literal for the '{@link analyzer.impl.ProjectAnalysisDataImpl <em>Project Analysis Data</em>}' class.
+		 * The meta object literal for the '{@link org.unicase.analyzer.impl.ProjectAnalysisDataImpl <em>Project Analysis Data</em>}' class.
 		 * <!-- begin-user-doc -->
 		 * <!-- end-user-doc -->
-		 * @see analyzer.impl.ProjectAnalysisDataImpl
-		 * @see analyzer.impl.AnalyzerPackageImpl#getProjectAnalysisData()
+		 * @see org.unicase.analyzer.impl.ProjectAnalysisDataImpl
+		 * @see org.unicase.analyzer.impl.AnalyzerPackageImpl#getProjectAnalysisData()
 		 * @generated
 		 */
 		EClass PROJECT_ANALYSIS_DATA = eINSTANCE.getProjectAnalysisData();

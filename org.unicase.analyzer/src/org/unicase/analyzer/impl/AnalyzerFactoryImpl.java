@@ -4,9 +4,8 @@
  *
  * $Id$
  */
-package analyzer.impl;
+package org.unicase.analyzer.impl;
 
-import analyzer.*;
 
 import org.eclipse.emf.ecore.EClass;
 import org.eclipse.emf.ecore.EObject;
@@ -15,6 +14,7 @@ import org.eclipse.emf.ecore.EPackage;
 import org.eclipse.emf.ecore.impl.EFactoryImpl;
 
 import org.eclipse.emf.ecore.plugin.EcorePlugin;
+import org.unicase.analyzer.*;
 
 /**
  * <!-- begin-user-doc -->

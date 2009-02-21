@@ -5,7 +5,8 @@
     modelPluginID="org.unicase.analyzer" modelName="Analyzer" importerID="org.eclipse.emf.importer.ecore"
     complianceLevel="5.0" copyrightFields="false" usedGenPackages="platform:/plugin/org.eclipse.emf.ecore/model/Ecore.genmodel#//ecore platform:/plugin/org.unicase.emfstore.esmodel/model/esmodel.genmodel#//esmodel platform:/plugin/org.unicase.model/model/model.genmodel#//model platform:/plugin/org.eclipse.gmf.runtime.notation/model/notation.genmodel#//notation">
   <foreignModel>analyzer.ecore</foreignModel>
-  <genPackages prefix="Analyzer" disposableProviderFactory="true" ecorePackage="analyzer.ecore#/">
+  <genPackages prefix="Analyzer" basePackage="org.unicase" disposableProviderFactory="true"
+      ecorePackage="analyzer.ecore#/">
     <genClasses ecoreClass="analyzer.ecore#//ProjectAnalysisData">
       <genFeatures property="None" children="true" createChild="true" ecoreFeature="ecore:EReference analyzer.ecore#//ProjectAnalysisData/projectState"/>
       <genFeatures property="None" children="true" createChild="true" ecoreFeature="ecore:EReference analyzer.ecore#//ProjectAnalysisData/changePackages"/>

@@ -4,7 +4,7 @@
  *
  * $Id$
  */
-package analyzer;
+package org.unicase.analyzer;
 
 import org.eclipse.emf.common.util.EList;
 
@@ -22,12 +22,12 @@ import org.unicase.model.Project;
  * <p>
  * The following features are supported:
  * <ul>
- *   <li>{@link analyzer.ProjectAnalysisData#getProjectState <em>Project State</em>}</li>
- *   <li>{@link analyzer.ProjectAnalysisData#getChangePackages <em>Change Packages</em>}</li>
+ *   <li>{@link org.unicase.analyzer.ProjectAnalysisData#getProjectState <em>Project State</em>}</li>
+ *   <li>{@link org.unicase.analyzer.ProjectAnalysisData#getChangePackages <em>Change Packages</em>}</li>
  * </ul>
  * </p>
  *
- * @see analyzer.AnalyzerPackage#getProjectAnalysisData()
+ * @see org.unicase.analyzer.AnalyzerPackage#getProjectAnalysisData()
  * @model
  * @generated
  */
@@ -42,14 +42,14 @@ public interface ProjectAnalysisData extends EObject {
 	 * <!-- end-user-doc -->
 	 * @return the value of the '<em>Project State</em>' containment reference.
 	 * @see #setProjectState(Project)
-	 * @see analyzer.AnalyzerPackage#getProjectAnalysisData_ProjectState()
+	 * @see org.unicase.analyzer.AnalyzerPackage#getProjectAnalysisData_ProjectState()
 	 * @model containment="true"
 	 * @generated
 	 */
 	Project getProjectState();
 
 	/**
-	 * Sets the value of the '{@link analyzer.ProjectAnalysisData#getProjectState <em>Project State</em>}' containment reference.
+	 * Sets the value of the '{@link org.unicase.analyzer.ProjectAnalysisData#getProjectState <em>Project State</em>}' containment reference.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
 	 * @param value the new value of the '<em>Project State</em>' containment reference.
@@ -68,7 +68,7 @@ public interface ProjectAnalysisData extends EObject {
 	 * </p>
 	 * <!-- end-user-doc -->
 	 * @return the value of the '<em>Change Packages</em>' containment reference list.
-	 * @see analyzer.AnalyzerPackage#getProjectAnalysisData_ChangePackages()
+	 * @see org.unicase.analyzer.AnalyzerPackage#getProjectAnalysisData_ChangePackages()
 	 * @model containment="true"
 	 * @generated
 	 */
