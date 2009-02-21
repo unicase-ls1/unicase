@@ -9,6 +9,7 @@ package org.unicase.emfstore.esmodel.util;
 import org.eclipse.emf.ecore.EObject;
 import org.eclipse.emf.ecore.util.EcoreUtil;
 import org.unicase.emfstore.esmodel.ProjectId;
+import org.unicase.emfstore.esmodel.notification.ESNotification;
 import org.unicase.emfstore.esmodel.versioning.PrimaryVersionSpec;
 
 /**
@@ -44,5 +45,16 @@ public final class EsModelUtil {
 	public static ProjectId clone(ProjectId projectId) {
 		EObject copy = EcoreUtil.copy(projectId);
 		return (ProjectId) copy;
+	}
+
+	/**
+	 * Clone a notification.
+	 * 
+	 * @param notification the notification
+	 * @return a clone
+	 */
+	public static ESNotification clone(ESNotification notification) {
+		EObject copy = EcoreUtil.copy(notification);
+		return (ESNotification) copy;
 	}
 }
