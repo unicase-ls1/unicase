@@ -204,15 +204,22 @@ public class AssignmentNotificationProvider implements NotificationProvider {
 		notification.setSender("unicase assignment notification generator");
 		StringBuilder stringBuilder = new StringBuilder();
 		stringBuilder.append("You have been assigned ");
+		ModelElementId[] wis = workItems.toArray(new ModelElementId[0]);
 		if (workItems.size() == 1) {
-
+			stringBuilder.append(NotificationHelper.getHTMLLinkForModelElement(wis[0], projectSpace));
+		} else if (workItems.size() == 2) {
+			stringBuilder.append(NotificationHelper.getHTMLLinkForModelElement(wis[0], projectSpace));
+			stringBuilder.append(" and ");
+			stringBuilder.append(NotificationHelper.getHTMLLinkForModelElement(wis[1], projectSpace));
+		} else {
+			stringBuilder.append("<a href=\"more\">");
+			stringBuilder.append(workItems.size());
+			stringBuilder.append("</a> ");
+			stringBuilder.append(clazz.getName() + "s");
 		}
-		stringBuilder.append(workItems.size());
-		stringBuilder.append(" new work items.");
 		String message = stringBuilder.toString();
 		notification.setMessage(message);
 		notification.getRelatedModelElements().addAll(workItems);
-		ModelElementId[] wis = workItems.toArray(new ModelElementId[0]);
 		Date date = new Date();
 		if (wis.length > 0) {
 			ModelElement me = projectSpace.getProject().getModelElement(wis[0]);
