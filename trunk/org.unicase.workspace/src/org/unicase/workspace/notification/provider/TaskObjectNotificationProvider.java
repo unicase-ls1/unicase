@@ -83,6 +83,8 @@ public class TaskObjectNotificationProvider implements NotificationProvider {
 				projectSpace);
 			createNotification.setProject((ProjectId) EcoreUtil.copy(projectSpace.getProjectId()));
 			createNotification.setName("Task Object Change");
+			createNotification.setRecipient(currentUsername);
+			createNotification.setSender(getName());
 			result.add(createNotification);
 		}
 
