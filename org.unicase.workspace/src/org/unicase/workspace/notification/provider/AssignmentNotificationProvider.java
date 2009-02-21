@@ -196,6 +196,14 @@ public class AssignmentNotificationProvider implements NotificationProvider {
 		}
 
 		// create a notification for the new work items
+		ESNotification notification = createNotification(projectSpace, user, workItems);
+
+		result.add(notification);
+		return result;
+
+	}
+
+	private ESNotification createNotification(ProjectSpace projectSpace, User user, Set<ModelElementId> workItems) {
 		ESNotification notification = NotificationFactory.eINSTANCE.createESNotification();
 		notification.setName("New work items");
 		notification.setProject(EsModelUtil.clone(projectSpace.getProjectId()));
@@ -232,9 +240,6 @@ public class AssignmentNotificationProvider implements NotificationProvider {
 			}
 		}
 		notification.setCreationDate(date);
-
-		result.add(notification);
-		return result;
-
+		return notification;
 	}
 }
