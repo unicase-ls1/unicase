@@ -18,6 +18,8 @@ import org.unicase.emfstore.esmodel.versioning.events.ExceptionEvent;
 import org.unicase.emfstore.esmodel.versioning.events.LinkEvent;
 import org.unicase.emfstore.esmodel.versioning.events.MergeEvent;
 import org.unicase.emfstore.esmodel.versioning.events.NavigatorCreateEvent;
+import org.unicase.emfstore.esmodel.versioning.events.NotificationGenerationEvent;
+import org.unicase.emfstore.esmodel.versioning.events.NotificationReadEvent;
 import org.unicase.emfstore.esmodel.versioning.events.PerspectiveEvent;
 import org.unicase.emfstore.esmodel.versioning.events.PluginFocusEvent;
 import org.unicase.emfstore.esmodel.versioning.events.PluginStartEvent;
@@ -160,6 +162,14 @@ public class EventsAdapterFactory extends AdapterFactoryImpl {
 			@Override
 			public Adapter caseShowChangesEvent(ShowChangesEvent object) {
 				return createShowChangesEventAdapter();
+			}
+			@Override
+			public Adapter caseNotificationReadEvent(NotificationReadEvent object) {
+				return createNotificationReadEventAdapter();
+			}
+			@Override
+			public Adapter caseNotificationGenerationEvent(NotificationGenerationEvent object) {
+				return createNotificationGenerationEventAdapter();
 			}
 			@Override
 			public Adapter defaultCase(EObject object) {
@@ -450,6 +460,34 @@ public class EventsAdapterFactory extends AdapterFactoryImpl {
 	 * @generated
 	 */
 	public Adapter createShowChangesEventAdapter() {
+		return null;
+	}
+
+	/**
+	 * Creates a new adapter for an object of class '{@link org.unicase.emfstore.esmodel.versioning.events.NotificationReadEvent <em>Notification Read Event</em>}'.
+	 * <!-- begin-user-doc -->
+	 * This default implementation returns null so that we can easily ignore cases;
+	 * it's useful to ignore a case when inheritance will catch all the cases anyway.
+	 * <!-- end-user-doc -->
+	 * @return the new adapter.
+	 * @see org.unicase.emfstore.esmodel.versioning.events.NotificationReadEvent
+	 * @generated
+	 */
+	public Adapter createNotificationReadEventAdapter() {
+		return null;
+	}
+
+	/**
+	 * Creates a new adapter for an object of class '{@link org.unicase.emfstore.esmodel.versioning.events.NotificationGenerationEvent <em>Notification Generation Event</em>}'.
+	 * <!-- begin-user-doc -->
+	 * This default implementation returns null so that we can easily ignore cases;
+	 * it's useful to ignore a case when inheritance will catch all the cases anyway.
+	 * <!-- end-user-doc -->
+	 * @return the new adapter.
+	 * @see org.unicase.emfstore.esmodel.versioning.events.NotificationGenerationEvent
+	 * @generated
+	 */
+	public Adapter createNotificationGenerationEventAdapter() {
 		return null;
 	}
 

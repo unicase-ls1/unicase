@@ -20,6 +20,8 @@ import org.unicase.emfstore.esmodel.versioning.events.ExceptionEvent;
 import org.unicase.emfstore.esmodel.versioning.events.LinkEvent;
 import org.unicase.emfstore.esmodel.versioning.events.MergeEvent;
 import org.unicase.emfstore.esmodel.versioning.events.NavigatorCreateEvent;
+import org.unicase.emfstore.esmodel.versioning.events.NotificationGenerationEvent;
+import org.unicase.emfstore.esmodel.versioning.events.NotificationReadEvent;
 import org.unicase.emfstore.esmodel.versioning.events.PerspectiveEvent;
 import org.unicase.emfstore.esmodel.versioning.events.PluginFocusEvent;
 import org.unicase.emfstore.esmodel.versioning.events.PluginStartEvent;
@@ -92,6 +94,8 @@ public class EventsFactoryImpl extends EFactoryImpl implements EventsFactory {
 			case EventsPackage.UNDO_EVENT: return createUndoEvent();
 			case EventsPackage.VALIDATE: return createValidate();
 			case EventsPackage.SHOW_CHANGES_EVENT: return createShowChangesEvent();
+			case EventsPackage.NOTIFICATION_READ_EVENT: return createNotificationReadEvent();
+			case EventsPackage.NOTIFICATION_GENERATION_EVENT: return createNotificationGenerationEvent();
 			default:
 				throw new IllegalArgumentException("The class '" + eClass.getName() + "' is not a valid classifier");
 		}
@@ -275,6 +279,26 @@ public class EventsFactoryImpl extends EFactoryImpl implements EventsFactory {
 	public ShowChangesEvent createShowChangesEvent() {
 		ShowChangesEventImpl showChangesEvent = new ShowChangesEventImpl();
 		return showChangesEvent;
+	}
+
+	/**
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 */
+	public NotificationReadEvent createNotificationReadEvent() {
+		NotificationReadEventImpl notificationReadEvent = new NotificationReadEventImpl();
+		return notificationReadEvent;
+	}
+
+	/**
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 */
+	public NotificationGenerationEvent createNotificationGenerationEvent() {
+		NotificationGenerationEventImpl notificationGenerationEvent = new NotificationGenerationEventImpl();
+		return notificationGenerationEvent;
 	}
 
 	/**

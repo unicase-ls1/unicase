@@ -32,6 +32,8 @@ import org.unicase.emfstore.esmodel.versioning.events.ExceptionEvent;
 import org.unicase.emfstore.esmodel.versioning.events.LinkEvent;
 import org.unicase.emfstore.esmodel.versioning.events.MergeEvent;
 import org.unicase.emfstore.esmodel.versioning.events.NavigatorCreateEvent;
+import org.unicase.emfstore.esmodel.versioning.events.NotificationGenerationEvent;
+import org.unicase.emfstore.esmodel.versioning.events.NotificationReadEvent;
 import org.unicase.emfstore.esmodel.versioning.events.PerspectiveEvent;
 import org.unicase.emfstore.esmodel.versioning.events.PluginFocusEvent;
 import org.unicase.emfstore.esmodel.versioning.events.PluginStartEvent;
@@ -173,6 +175,20 @@ public class EventsPackageImpl extends EPackageImpl implements EventsPackage {
 	 * @generated
 	 */
 	private EClass showChangesEventEClass = null;
+
+	/**
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 */
+	private EClass notificationReadEventEClass = null;
+
+	/**
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 */
+	private EClass notificationGenerationEventEClass = null;
 
 	/**
 	 * Creates an instance of the model <b>Package</b>, registered with {@link org.eclipse.emf.ecore.EPackage.Registry
@@ -770,6 +786,42 @@ public class EventsPackageImpl extends EPackageImpl implements EventsPackage {
 	}
 
 	/**
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 */
+	public EClass getNotificationReadEvent() {
+		return notificationReadEventEClass;
+	}
+
+	/**
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 */
+	public EAttribute getNotificationReadEvent_NotificationId() {
+		return (EAttribute)notificationReadEventEClass.getEStructuralFeatures().get(0);
+	}
+
+	/**
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 */
+	public EClass getNotificationGenerationEvent() {
+		return notificationGenerationEventEClass;
+	}
+
+	/**
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 */
+	public EReference getNotificationGenerationEvent_Notifications() {
+		return (EReference)notificationGenerationEventEClass.getEStructuralFeatures().get(0);
+	}
+
+	/**
 	 * <!-- begin-user-doc --> <!-- end-user-doc -->
 	 * @generated
 	 */
@@ -876,6 +928,12 @@ public class EventsPackageImpl extends EPackageImpl implements EventsPackage {
 		showChangesEventEClass = createEClass(SHOW_CHANGES_EVENT);
 		createEReference(showChangesEventEClass, SHOW_CHANGES_EVENT__SOURCE_VERSION);
 		createEReference(showChangesEventEClass, SHOW_CHANGES_EVENT__TARGET_VERSION);
+
+		notificationReadEventEClass = createEClass(NOTIFICATION_READ_EVENT);
+		createEAttribute(notificationReadEventEClass, NOTIFICATION_READ_EVENT__NOTIFICATION_ID);
+
+		notificationGenerationEventEClass = createEClass(NOTIFICATION_GENERATION_EVENT);
+		createEReference(notificationGenerationEventEClass, NOTIFICATION_GENERATION_EVENT__NOTIFICATIONS);
 	}
 
 	/**
@@ -904,6 +962,7 @@ public class EventsPackageImpl extends EPackageImpl implements EventsPackage {
 		EcorePackage theEcorePackage = (EcorePackage)EPackage.Registry.INSTANCE.getEPackage(EcorePackage.eNS_URI);
 		VersioningPackage theVersioningPackage = (VersioningPackage)EPackage.Registry.INSTANCE.getEPackage(VersioningPackage.eNS_URI);
 		OperationsPackage theOperationsPackage = (OperationsPackage)EPackage.Registry.INSTANCE.getEPackage(OperationsPackage.eNS_URI);
+		NotificationPackage theNotificationPackage = (NotificationPackage)EPackage.Registry.INSTANCE.getEPackage(NotificationPackage.eNS_URI);
 
 		// Create type parameters
 
@@ -929,6 +988,8 @@ public class EventsPackageImpl extends EPackageImpl implements EventsPackage {
 		undoEventEClass.getESuperTypes().add(this.getEvent());
 		validateEClass.getESuperTypes().add(this.getEvent());
 		showChangesEventEClass.getESuperTypes().add(this.getEvent());
+		notificationReadEventEClass.getESuperTypes().add(this.getReadEvent());
+		notificationGenerationEventEClass.getESuperTypes().add(this.getEvent());
 
 		// Initialize classes and features; add operations and parameters
 		initEClass(eventEClass, Event.class, "Event", !IS_ABSTRACT, !IS_INTERFACE, IS_GENERATED_INSTANCE_CLASS);
@@ -1013,6 +1074,13 @@ public class EventsPackageImpl extends EPackageImpl implements EventsPackage {
 		initEClass(showChangesEventEClass, ShowChangesEvent.class, "ShowChangesEvent", !IS_ABSTRACT, !IS_INTERFACE, IS_GENERATED_INSTANCE_CLASS);
 		initEReference(getShowChangesEvent_SourceVersion(), theVersioningPackage.getPrimaryVersionSpec(), null, "sourceVersion", null, 0, 1, ShowChangesEvent.class, !IS_TRANSIENT, !IS_VOLATILE, IS_CHANGEABLE, IS_COMPOSITE, IS_RESOLVE_PROXIES, !IS_UNSETTABLE, IS_UNIQUE, !IS_DERIVED, IS_ORDERED);
 		initEReference(getShowChangesEvent_TargetVersion(), theVersioningPackage.getPrimaryVersionSpec(), null, "targetVersion", null, 0, 1, ShowChangesEvent.class, !IS_TRANSIENT, !IS_VOLATILE, IS_CHANGEABLE, IS_COMPOSITE, IS_RESOLVE_PROXIES, !IS_UNSETTABLE, IS_UNIQUE, !IS_DERIVED, IS_ORDERED);
+
+		initEClass(notificationReadEventEClass, NotificationReadEvent.class, "NotificationReadEvent", !IS_ABSTRACT, !IS_INTERFACE, IS_GENERATED_INSTANCE_CLASS);
+		initEAttribute(getNotificationReadEvent_NotificationId(), ecorePackage.getEString(), "notificationId", "", 0, 1, NotificationReadEvent.class, !IS_TRANSIENT, !IS_VOLATILE, IS_CHANGEABLE, !IS_UNSETTABLE, !IS_ID, IS_UNIQUE, !IS_DERIVED, IS_ORDERED);
+
+		initEClass(notificationGenerationEventEClass, NotificationGenerationEvent.class, "NotificationGenerationEvent", !IS_ABSTRACT, !IS_INTERFACE, IS_GENERATED_INSTANCE_CLASS);
+		initEReference(getNotificationGenerationEvent_Notifications(), theNotificationPackage.getESNotification(), null, "notifications", null, 0, -1, NotificationGenerationEvent.class, !IS_TRANSIENT, !IS_VOLATILE, IS_CHANGEABLE, IS_COMPOSITE, IS_RESOLVE_PROXIES, !IS_UNSETTABLE, IS_UNIQUE, !IS_DERIVED, IS_ORDERED);
+		getNotificationGenerationEvent_Notifications().getEKeys().add(theModelPackage.getIdentifiableElement_Identifier());
 	}
 
 } // EventsPackageImpl

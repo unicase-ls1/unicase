@@ -923,6 +923,107 @@ public interface EventsPackage extends EPackage {
 	int SHOW_CHANGES_EVENT_FEATURE_COUNT = EVENT_FEATURE_COUNT + 2;
 
 	/**
+	 * The meta object id for the '{@link org.unicase.emfstore.esmodel.versioning.events.impl.NotificationReadEventImpl <em>Notification Read Event</em>}' class.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @see org.unicase.emfstore.esmodel.versioning.events.impl.NotificationReadEventImpl
+	 * @see org.unicase.emfstore.esmodel.versioning.events.impl.EventsPackageImpl#getNotificationReadEvent()
+	 * @generated
+	 */
+	int NOTIFICATION_READ_EVENT = 20;
+
+	/**
+	 * The feature id for the '<em><b>Timestamp</b></em>' attribute.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 * @ordered
+	 */
+	int NOTIFICATION_READ_EVENT__TIMESTAMP = READ_EVENT__TIMESTAMP;
+
+	/**
+	 * The feature id for the '<em><b>Model Element</b></em>' containment reference.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 * @ordered
+	 */
+	int NOTIFICATION_READ_EVENT__MODEL_ELEMENT = READ_EVENT__MODEL_ELEMENT;
+
+	/**
+	 * The feature id for the '<em><b>Source View</b></em>' attribute.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 * @ordered
+	 */
+	int NOTIFICATION_READ_EVENT__SOURCE_VIEW = READ_EVENT__SOURCE_VIEW;
+
+	/**
+	 * The feature id for the '<em><b>Read View</b></em>' attribute.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 * @ordered
+	 */
+	int NOTIFICATION_READ_EVENT__READ_VIEW = READ_EVENT__READ_VIEW;
+
+	/**
+	 * The feature id for the '<em><b>Notification Id</b></em>' attribute.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 * @ordered
+	 */
+	int NOTIFICATION_READ_EVENT__NOTIFICATION_ID = READ_EVENT_FEATURE_COUNT + 0;
+
+	/**
+	 * The number of structural features of the '<em>Notification Read Event</em>' class.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 * @ordered
+	 */
+	int NOTIFICATION_READ_EVENT_FEATURE_COUNT = READ_EVENT_FEATURE_COUNT + 1;
+
+	/**
+	 * The meta object id for the '{@link org.unicase.emfstore.esmodel.versioning.events.impl.NotificationGenerationEventImpl <em>Notification Generation Event</em>}' class.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @see org.unicase.emfstore.esmodel.versioning.events.impl.NotificationGenerationEventImpl
+	 * @see org.unicase.emfstore.esmodel.versioning.events.impl.EventsPackageImpl#getNotificationGenerationEvent()
+	 * @generated
+	 */
+	int NOTIFICATION_GENERATION_EVENT = 21;
+
+	/**
+	 * The feature id for the '<em><b>Timestamp</b></em>' attribute.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 * @ordered
+	 */
+	int NOTIFICATION_GENERATION_EVENT__TIMESTAMP = EVENT__TIMESTAMP;
+
+	/**
+	 * The feature id for the '<em><b>Notifications</b></em>' containment reference list.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 * @ordered
+	 */
+	int NOTIFICATION_GENERATION_EVENT__NOTIFICATIONS = EVENT_FEATURE_COUNT + 0;
+
+	/**
+	 * The number of structural features of the '<em>Notification Generation Event</em>' class.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 * @ordered
+	 */
+	int NOTIFICATION_GENERATION_EVENT_FEATURE_COUNT = EVENT_FEATURE_COUNT + 1;
+
+	/**
 	 * Returns the meta object for class '{@link org.unicase.emfstore.esmodel.versioning.events.Event <em>Event</em>}'.
 	 * <!-- begin-user-doc --> <!-- end-user-doc -->
 	 * @return the meta object for class '<em>Event</em>'.
@@ -1583,6 +1684,48 @@ public interface EventsPackage extends EPackage {
 	EReference getShowChangesEvent_TargetVersion();
 
 	/**
+	 * Returns the meta object for class '{@link org.unicase.emfstore.esmodel.versioning.events.NotificationReadEvent <em>Notification Read Event</em>}'.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @return the meta object for class '<em>Notification Read Event</em>'.
+	 * @see org.unicase.emfstore.esmodel.versioning.events.NotificationReadEvent
+	 * @generated
+	 */
+	EClass getNotificationReadEvent();
+
+	/**
+	 * Returns the meta object for the attribute '{@link org.unicase.emfstore.esmodel.versioning.events.NotificationReadEvent#getNotificationId <em>Notification Id</em>}'.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @return the meta object for the attribute '<em>Notification Id</em>'.
+	 * @see org.unicase.emfstore.esmodel.versioning.events.NotificationReadEvent#getNotificationId()
+	 * @see #getNotificationReadEvent()
+	 * @generated
+	 */
+	EAttribute getNotificationReadEvent_NotificationId();
+
+	/**
+	 * Returns the meta object for class '{@link org.unicase.emfstore.esmodel.versioning.events.NotificationGenerationEvent <em>Notification Generation Event</em>}'.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @return the meta object for class '<em>Notification Generation Event</em>'.
+	 * @see org.unicase.emfstore.esmodel.versioning.events.NotificationGenerationEvent
+	 * @generated
+	 */
+	EClass getNotificationGenerationEvent();
+
+	/**
+	 * Returns the meta object for the containment reference list '{@link org.unicase.emfstore.esmodel.versioning.events.NotificationGenerationEvent#getNotifications <em>Notifications</em>}'.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @return the meta object for the containment reference list '<em>Notifications</em>'.
+	 * @see org.unicase.emfstore.esmodel.versioning.events.NotificationGenerationEvent#getNotifications()
+	 * @see #getNotificationGenerationEvent()
+	 * @generated
+	 */
+	EReference getNotificationGenerationEvent_Notifications();
+
+	/**
 	 * Returns the factory that creates the instances of the model.
 	 * <!-- begin-user-doc --> <!-- end-user-doc -->
 	 * @return the factory that creates the instances of the model.
@@ -2125,6 +2268,42 @@ public interface EventsPackage extends EPackage {
 		 * @generated
 		 */
 		EReference SHOW_CHANGES_EVENT__TARGET_VERSION = eINSTANCE.getShowChangesEvent_TargetVersion();
+
+		/**
+		 * The meta object literal for the '{@link org.unicase.emfstore.esmodel.versioning.events.impl.NotificationReadEventImpl <em>Notification Read Event</em>}' class.
+		 * <!-- begin-user-doc -->
+		 * <!-- end-user-doc -->
+		 * @see org.unicase.emfstore.esmodel.versioning.events.impl.NotificationReadEventImpl
+		 * @see org.unicase.emfstore.esmodel.versioning.events.impl.EventsPackageImpl#getNotificationReadEvent()
+		 * @generated
+		 */
+		EClass NOTIFICATION_READ_EVENT = eINSTANCE.getNotificationReadEvent();
+
+		/**
+		 * The meta object literal for the '<em><b>Notification Id</b></em>' attribute feature.
+		 * <!-- begin-user-doc -->
+		 * <!-- end-user-doc -->
+		 * @generated
+		 */
+		EAttribute NOTIFICATION_READ_EVENT__NOTIFICATION_ID = eINSTANCE.getNotificationReadEvent_NotificationId();
+
+		/**
+		 * The meta object literal for the '{@link org.unicase.emfstore.esmodel.versioning.events.impl.NotificationGenerationEventImpl <em>Notification Generation Event</em>}' class.
+		 * <!-- begin-user-doc -->
+		 * <!-- end-user-doc -->
+		 * @see org.unicase.emfstore.esmodel.versioning.events.impl.NotificationGenerationEventImpl
+		 * @see org.unicase.emfstore.esmodel.versioning.events.impl.EventsPackageImpl#getNotificationGenerationEvent()
+		 * @generated
+		 */
+		EClass NOTIFICATION_GENERATION_EVENT = eINSTANCE.getNotificationGenerationEvent();
+
+		/**
+		 * The meta object literal for the '<em><b>Notifications</b></em>' containment reference list feature.
+		 * <!-- begin-user-doc -->
+		 * <!-- end-user-doc -->
+		 * @generated
+		 */
+		EReference NOTIFICATION_GENERATION_EVENT__NOTIFICATIONS = eINSTANCE.getNotificationGenerationEvent_Notifications();
 
 	}
 
