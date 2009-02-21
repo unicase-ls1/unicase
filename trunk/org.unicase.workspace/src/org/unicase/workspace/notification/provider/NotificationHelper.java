@@ -10,6 +10,7 @@ import java.util.List;
 
 import org.unicase.emfstore.esmodel.versioning.operations.AbstractOperation;
 import org.unicase.model.ModelElementId;
+import org.unicase.model.Project;
 
 /**
  * This class offer helper methods for notifications.
@@ -48,9 +49,10 @@ public final class NotificationHelper {
 	 * This method create a HTML link pointing to a model element for the message of Notifications.
 	 * 
 	 * @param meId The id of the model element
+	 * @param project
 	 * @return a HTML link as string
 	 */
-	public static Object getHTMLLinkForModelElement(ModelElementId meId) {
+	public static Object getHTMLLinkForModelElement(ModelElementId meId, Project project) {
 		// TODO Auto-generated method stub
 		return null;
 	}
