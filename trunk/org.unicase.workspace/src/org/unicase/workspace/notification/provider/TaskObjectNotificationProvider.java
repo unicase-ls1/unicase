@@ -11,6 +11,8 @@ import java.util.HashMap;
 import java.util.List;
 import java.util.Map;
 
+import org.eclipse.emf.ecore.util.EcoreUtil;
+import org.unicase.emfstore.esmodel.ProjectId;
 import org.unicase.emfstore.esmodel.notification.ESNotification;
 import org.unicase.emfstore.esmodel.notification.NotificationFactory;
 import org.unicase.emfstore.esmodel.versioning.ChangePackage;
@@ -77,7 +79,7 @@ public class TaskObjectNotificationProvider implements NotificationProvider {
 		for (ModelElementId meId : changes.keySet()) {
 			ESNotification createNotification = createNotification(meId, changes.get(meId), objectsOfWork.get(meId),
 				projectSpace);
-			createNotification.setProject(projectSpace.getProjectId());
+			createNotification.setProject((ProjectId) EcoreUtil.copy(projectSpace.getProjectId()));
 			createNotification.setName("Task Object Change");
 			result.add(createNotification);
 		}
