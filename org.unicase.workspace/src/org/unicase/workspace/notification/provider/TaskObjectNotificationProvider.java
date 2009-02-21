@@ -95,13 +95,13 @@ public class TaskObjectNotificationProvider implements NotificationProvider {
 		}
 		ModelElement modelElement = project.getModelElement(meId);
 		StringBuilder message = new StringBuilder();
-		message.append("This");
 		message.append(modelElement.eClass().getName());
-		message.append("has been modified:");
+		message.append(" ");
 		message.append(NotificationHelper.getHTMLLinkForModelElement(meId, projectSpace));
+		message.append(" has been modified: ");
 		message.append("\n");
 
-		message.append("This is the trace from your work item to the changed element: ");
+		message.append("Trace to the changed element: ");
 
 		message.append(NotificationHelper.getHTMLLinkForModelElement(modelElementPath.getSource(), projectSpace));
 		message.append(" => ");
