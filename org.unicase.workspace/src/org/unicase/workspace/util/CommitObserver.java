@@ -21,4 +21,9 @@ public interface CommitObserver {
 	 * @return true if the changes have been confirmed, false - otherwise.
 	 */
 	boolean inspectChanges(ChangePackage changePackage);
+
+	/**
+	 * Called after the commit is completed.
+	 */
+	void commitCompleted();
 }
