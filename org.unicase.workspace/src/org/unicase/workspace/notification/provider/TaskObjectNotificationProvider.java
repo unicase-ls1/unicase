@@ -5,11 +5,12 @@
  */
 package org.unicase.workspace.notification.provider;
 
-import java.util.HashSet;
+import java.util.ArrayList;
 import java.util.List;
 import java.util.Map;
 
 import org.unicase.emfstore.esmodel.notification.ESNotification;
+import org.unicase.emfstore.esmodel.versioning.ChangePackage;
 import org.unicase.emfstore.esmodel.versioning.operations.AbstractOperation;
 import org.unicase.model.ModelElementId;
 import org.unicase.model.organization.User;
@@ -28,59 +29,34 @@ import org.unicase.workspace.util.OrgUnitHelper;
  */
 public class TaskObjectNotificationProvider implements NotificationProvider {
 
-	private ProjectSpace projectSpace;
-	private HashSet<ModelElementId> workItems;
-	private User user;
-	private Map<ModelElementId, ModelElementPath> objectsOfWork;
-
-	/**
-	 * {@inheritDoc}
-	 * 
-	 * @see org.unicase.workspace.notification.NotificationProvider#clear()
-	 */
-	public void clear() {
-		this.user = null;
-		this.projectSpace = null;
-		if (this.workItems != null) {
-			this.workItems.clear();
-		}
-
+	public String getName() {
+		return "Task Object Change Notifier";
 	}
 
-	/**
-	 * {@inheritDoc}
-	 * 
-	 * @see org.unicase.workspace.notification.NotificationProvider#getResult()
-	 */
-	public List<ESNotification> getResult() {
-		// TODO Auto-generated method stub
-		return null;
-	}
-
-	public void init(ProjectSpace projectSpace, List<AbstractOperation> operations) {
-		clear();
-		this.projectSpace = projectSpace;
+	public List<ESNotification> provideNotifications(ProjectSpace projectSpace, List<ChangePackage> changePackages,
+		String currentUsername) {
+		List<ESNotification> result = new ArrayList<ESNotification>();
+		User user = null;
 		try {
-			this.user = OrgUnitHelper.getUser(projectSpace);
+			user = OrgUnitHelper.getUser(projectSpace);
 		} catch (NoCurrentUserException e) {
-			clear();
-			return;
+			return result;
 		} catch (CannotMatchUserInProjectException e) {
-			clear();
-			return;
+			return result;
 		}
-		objectsOfWork = OpeningLinkHelper.getObjectsOfWork(user);
-
-	}
-
-	public void processOperation(AbstractOperation operation) {
 		if (projectSpace == null || user == null) {
-			return;
+			return result;
 		}
-		ModelElementId modelElementId = operation.getModelElementId();
-		if (objectsOfWork.containsKey(modelElementId)) {
+		Map<ModelElementId, ModelElementPath> objectsOfWork = OpeningLinkHelper.getObjectsOfWork(user);
 
+		for (ChangePackage changePackage : changePackages) {
+			for (AbstractOperation operation : changePackage.getOperations()) {
+				ModelElementId modelElementId = operation.getModelElementId();
+				if (objectsOfWork.containsKey(modelElementId)) {
+
+				}
+			}
 		}
-
+		return result;
 	}
 }

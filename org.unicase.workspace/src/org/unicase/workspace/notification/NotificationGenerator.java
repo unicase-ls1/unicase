@@ -10,13 +10,13 @@ import java.util.List;
 
 import org.unicase.emfstore.esmodel.notification.ESNotification;
 import org.unicase.emfstore.esmodel.versioning.ChangePackage;
-import org.unicase.emfstore.esmodel.versioning.operations.AbstractOperation;
 import org.unicase.model.bug.BugPackage;
 import org.unicase.model.rationale.RationalePackage;
 import org.unicase.model.task.TaskPackage;
 import org.unicase.workspace.ProjectSpace;
 import org.unicase.workspace.notification.provider.AssignmentNotificationProvider;
 import org.unicase.workspace.notification.provider.TaskObjectNotificationProvider;
+import org.unicase.workspace.util.WorkspaceUtil;
 
 /**
  * Singleton class to generate notifications from change packages.
@@ -64,18 +64,17 @@ public final class NotificationGenerator {
 	public List<ESNotification> generateNotifications(List<ChangePackage> changePackages, String currentUsername,
 		ProjectSpace projectSpace) {
 		List<ESNotification> result = new ArrayList<ESNotification>();
-		List<AbstractOperation> operations = new ArrayList<AbstractOperation>();
-		for (ChangePackage changePackage : changePackages) {
-			for (AbstractOperation operation : changePackage.getOperations()) {
-				operations.add(operation);
+
+		for (NotificationProvider provider : providers) {
+			try {
+				result.addAll(provider.provideNotifications(projectSpace, changePackages, currentUsername));
+				// BEGIN SUPRESS CATCH EXCEPTION
+			} catch (RuntimeException e) {
+				// END SUPRESS CATCH EXCEPTION
+				providers.remove(provider);
+				WorkspaceUtil.logException("Notification Provider " + provider.getName()
+					+ "threw an exception and is removed.", e);
 			}
-		}
-		for (NotificationProvider provider : providers) {
-			provider.init(projectSpace, operations);
-		}
-		for (NotificationProvider provider : providers) {
-			result.addAll(provider.getResult());
-			provider.clear();
 		}
 		return result;
 	}
