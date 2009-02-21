@@ -6,10 +6,14 @@
 package org.unicase.workspace.notification;
 
 import java.util.ArrayList;
+import java.util.Date;
 import java.util.List;
 
 import org.unicase.emfstore.esmodel.notification.ESNotification;
+import org.unicase.emfstore.esmodel.util.EsModelUtil;
 import org.unicase.emfstore.esmodel.versioning.ChangePackage;
+import org.unicase.emfstore.esmodel.versioning.events.EventsFactory;
+import org.unicase.emfstore.esmodel.versioning.events.NotificationGenerationEvent;
 import org.unicase.model.bug.BugPackage;
 import org.unicase.model.rationale.RationalePackage;
 import org.unicase.model.task.TaskPackage;
@@ -75,6 +79,16 @@ public final class NotificationGenerator {
 					+ "threw an exception, its notifications where discarded", e);
 			}
 		}
+
+		// create a notification generation event
+		NotificationGenerationEvent generationEvent = EventsFactory.eINSTANCE.createNotificationGenerationEvent();
+		generationEvent.setTimestamp(new Date());
+		for (ESNotification notification : result) {
+			ESNotification clone = EsModelUtil.clone(notification);
+			generationEvent.getNotifications().add(clone);
+		}
+		projectSpace.addEvent(generationEvent);
+
 		return result;
 	}
 
