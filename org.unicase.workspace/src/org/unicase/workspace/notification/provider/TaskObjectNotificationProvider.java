@@ -110,7 +110,7 @@ public class TaskObjectNotificationProvider implements NotificationProvider {
 			message.append(" => ");
 		}
 		message.append(NotificationHelper.getHTMLLinkForModelElement(modelElementPath.getTarget(), projectSpace));
-
+		notification.setMessage(message.toString());
 		return notification;
 	}
 
