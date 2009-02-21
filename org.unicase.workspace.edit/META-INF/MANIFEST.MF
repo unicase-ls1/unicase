@@ -9,7 +9,10 @@ Bundle-Vendor: unicase.org
 Bundle-Localization: plugin
 Bundle-RequiredExecutionEnvironment: J2SE-1.5
 Export-Package: 
+ org.unicase.workspace.edit,
  org.unicase.workspace.edit.commands,
+ org.unicase.workspace.edit.dashboard,
+ org.unicase.workspace.edit.dashboard.widgets,
  org.unicase.workspace.edit.dialogs,
  org.unicase.workspace.provider
 Require-Bundle: org.eclipse.ui;visibility:=reexport,
