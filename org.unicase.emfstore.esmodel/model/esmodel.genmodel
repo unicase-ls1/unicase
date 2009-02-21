@@ -238,6 +238,12 @@
           <genFeatures property="None" children="true" createChild="true" ecoreFeature="ecore:EReference esmodel.ecore#//versioning/events/ShowChangesEvent/sourceVersion"/>
           <genFeatures property="None" children="true" createChild="true" ecoreFeature="ecore:EReference esmodel.ecore#//versioning/events/ShowChangesEvent/targetVersion"/>
         </genClasses>
+        <genClasses ecoreClass="esmodel.ecore#//versioning/events/NotificationReadEvent">
+          <genFeatures createChild="false" ecoreFeature="ecore:EAttribute esmodel.ecore#//versioning/events/NotificationReadEvent/notificationId"/>
+        </genClasses>
+        <genClasses ecoreClass="esmodel.ecore#//versioning/events/NotificationGenerationEvent">
+          <genFeatures property="None" children="true" createChild="true" ecoreFeature="ecore:EReference esmodel.ecore#//versioning/events/NotificationGenerationEvent/notifications"/>
+        </genClasses>
       </nestedGenPackages>
     </nestedGenPackages>
     <nestedGenPackages prefix="Accesscontrol" basePackage="org.unicase.emfstore.esmodel"

@@ -18,6 +18,8 @@ import org.unicase.emfstore.esmodel.versioning.events.ExceptionEvent;
 import org.unicase.emfstore.esmodel.versioning.events.LinkEvent;
 import org.unicase.emfstore.esmodel.versioning.events.MergeEvent;
 import org.unicase.emfstore.esmodel.versioning.events.NavigatorCreateEvent;
+import org.unicase.emfstore.esmodel.versioning.events.NotificationGenerationEvent;
+import org.unicase.emfstore.esmodel.versioning.events.NotificationReadEvent;
 import org.unicase.emfstore.esmodel.versioning.events.PerspectiveEvent;
 import org.unicase.emfstore.esmodel.versioning.events.PluginFocusEvent;
 import org.unicase.emfstore.esmodel.versioning.events.PluginStartEvent;
@@ -231,6 +233,21 @@ public class EventsSwitch<T> {
 				ShowChangesEvent showChangesEvent = (ShowChangesEvent)theEObject;
 				T result = caseShowChangesEvent(showChangesEvent);
 				if (result == null) result = caseEvent(showChangesEvent);
+				if (result == null) result = defaultCase(theEObject);
+				return result;
+			}
+			case EventsPackage.NOTIFICATION_READ_EVENT: {
+				NotificationReadEvent notificationReadEvent = (NotificationReadEvent)theEObject;
+				T result = caseNotificationReadEvent(notificationReadEvent);
+				if (result == null) result = caseReadEvent(notificationReadEvent);
+				if (result == null) result = caseEvent(notificationReadEvent);
+				if (result == null) result = defaultCase(theEObject);
+				return result;
+			}
+			case EventsPackage.NOTIFICATION_GENERATION_EVENT: {
+				NotificationGenerationEvent notificationGenerationEvent = (NotificationGenerationEvent)theEObject;
+				T result = caseNotificationGenerationEvent(notificationGenerationEvent);
+				if (result == null) result = caseEvent(notificationGenerationEvent);
 				if (result == null) result = defaultCase(theEObject);
 				return result;
 			}
@@ -505,6 +522,36 @@ public class EventsSwitch<T> {
 	 * @generated
 	 */
 	public T caseShowChangesEvent(ShowChangesEvent object) {
+		return null;
+	}
+
+	/**
+	 * Returns the result of interpreting the object as an instance of '<em>Notification Read Event</em>'.
+	 * <!-- begin-user-doc -->
+	 * This implementation returns null;
+	 * returning a non-null result will terminate the switch.
+	 * <!-- end-user-doc -->
+	 * @param object the target of the switch.
+	 * @return the result of interpreting the object as an instance of '<em>Notification Read Event</em>'.
+	 * @see #doSwitch(org.eclipse.emf.ecore.EObject) doSwitch(EObject)
+	 * @generated
+	 */
+	public T caseNotificationReadEvent(NotificationReadEvent object) {
+		return null;
+	}
+
+	/**
+	 * Returns the result of interpreting the object as an instance of '<em>Notification Generation Event</em>'.
+	 * <!-- begin-user-doc -->
+	 * This implementation returns null;
+	 * returning a non-null result will terminate the switch.
+	 * <!-- end-user-doc -->
+	 * @param object the target of the switch.
+	 * @return the result of interpreting the object as an instance of '<em>Notification Generation Event</em>'.
+	 * @see #doSwitch(org.eclipse.emf.ecore.EObject) doSwitch(EObject)
+	 * @generated
+	 */
+	public T caseNotificationGenerationEvent(NotificationGenerationEvent object) {
 		return null;
 	}
 

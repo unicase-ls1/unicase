@@ -524,6 +524,52 @@ public class EventsItemProviderAdapterFactory extends EventsAdapterFactory imple
 	}
 
 	/**
+	 * This keeps track of the one adapter used for all {@link org.unicase.emfstore.esmodel.versioning.events.NotificationReadEvent} instances.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 */
+	protected NotificationReadEventItemProvider notificationReadEventItemProvider;
+
+	/**
+	 * This creates an adapter for a {@link org.unicase.emfstore.esmodel.versioning.events.NotificationReadEvent}.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 */
+	@Override
+	public Adapter createNotificationReadEventAdapter() {
+		if (notificationReadEventItemProvider == null) {
+			notificationReadEventItemProvider = new NotificationReadEventItemProvider(this);
+		}
+
+		return notificationReadEventItemProvider;
+	}
+
+	/**
+	 * This keeps track of the one adapter used for all {@link org.unicase.emfstore.esmodel.versioning.events.NotificationGenerationEvent} instances.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 */
+	protected NotificationGenerationEventItemProvider notificationGenerationEventItemProvider;
+
+	/**
+	 * This creates an adapter for a {@link org.unicase.emfstore.esmodel.versioning.events.NotificationGenerationEvent}.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 */
+	@Override
+	public Adapter createNotificationGenerationEventAdapter() {
+		if (notificationGenerationEventItemProvider == null) {
+			notificationGenerationEventItemProvider = new NotificationGenerationEventItemProvider(this);
+		}
+
+		return notificationGenerationEventItemProvider;
+	}
+
+	/**
 	 * This returns the root adapter factory that contains this factory.
 	 * <!-- begin-user-doc --> <!-- end-user-doc -->
 	 * @generated
@@ -635,6 +681,8 @@ public class EventsItemProviderAdapterFactory extends EventsAdapterFactory imple
 		if (undoEventItemProvider != null) undoEventItemProvider.dispose();
 		if (validateItemProvider != null) validateItemProvider.dispose();
 		if (showChangesEventItemProvider != null) showChangesEventItemProvider.dispose();
+		if (notificationReadEventItemProvider != null) notificationReadEventItemProvider.dispose();
+		if (notificationGenerationEventItemProvider != null) notificationGenerationEventItemProvider.dispose();
 	}
 
 }

@@ -182,6 +182,24 @@ public interface EventsFactory extends EFactory {
 	ShowChangesEvent createShowChangesEvent();
 
 	/**
+	 * Returns a new object of class '<em>Notification Read Event</em>'.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @return a new object of class '<em>Notification Read Event</em>'.
+	 * @generated
+	 */
+	NotificationReadEvent createNotificationReadEvent();
+
+	/**
+	 * Returns a new object of class '<em>Notification Generation Event</em>'.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @return a new object of class '<em>Notification Generation Event</em>'.
+	 * @generated
+	 */
+	NotificationGenerationEvent createNotificationGenerationEvent();
+
+	/**
 	 * Returns the package supported by this factory.
 	 * <!-- begin-user-doc --> <!-- end-user-doc -->
 	 * @return the package supported by this factory.

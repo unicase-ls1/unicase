@@ -296,6 +296,14 @@
         <eStructuralFeatures xsi:type="ecore:EReference" name="targetVersion" eType="#//versioning/PrimaryVersionSpec"
             containment="true"/>
       </eClassifiers>
+      <eClassifiers xsi:type="ecore:EClass" name="NotificationReadEvent" eSuperTypes="#//versioning/events/ReadEvent">
+        <eStructuralFeatures xsi:type="ecore:EAttribute" name="notificationId" eType="ecore:EDataType http://www.eclipse.org/emf/2002/Ecore#//EString"
+            defaultValueLiteral=""/>
+      </eClassifiers>
+      <eClassifiers xsi:type="ecore:EClass" name="NotificationGenerationEvent" eSuperTypes="#//versioning/events/Event">
+        <eStructuralFeatures xsi:type="ecore:EReference" name="notifications" upperBound="-1"
+            eType="#//notification/ESNotification" containment="true" eKeys="../../org.unicase.model/model/model.ecore#//IdentifiableElement/identifier"/>
+      </eClassifiers>
     </eSubpackages>
   </eSubpackages>
   <eSubpackages name="accesscontrol" nsURI="http://unicase.org/esmodel/accesscontrol"
