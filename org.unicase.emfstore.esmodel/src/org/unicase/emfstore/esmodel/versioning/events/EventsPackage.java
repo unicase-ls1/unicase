@@ -481,13 +481,22 @@ public interface EventsPackage extends EPackage {
 	int SHOW_HISTORY_EVENT__TARGET_VERSION = EVENT_FEATURE_COUNT + 1;
 
 	/**
+	 * The feature id for the '<em><b>Model Element</b></em>' containment reference.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 * @ordered
+	 */
+	int SHOW_HISTORY_EVENT__MODEL_ELEMENT = EVENT_FEATURE_COUNT + 2;
+
+	/**
 	 * The number of structural features of the '<em>Show History Event</em>' class.
 	 * <!-- begin-user-doc --> <!--
 	 * end-user-doc -->
 	 * @generated
 	 * @ordered
 	 */
-	int SHOW_HISTORY_EVENT_FEATURE_COUNT = EVENT_FEATURE_COUNT + 2;
+	int SHOW_HISTORY_EVENT_FEATURE_COUNT = EVENT_FEATURE_COUNT + 3;
 
 	/**
 	 * The meta object id for the '{@link org.unicase.emfstore.esmodel.versioning.events.impl.PerspectiveEventImpl <em>Perspective Event</em>}' class.
@@ -1358,6 +1367,17 @@ public interface EventsPackage extends EPackage {
 	EReference getShowHistoryEvent_TargetVersion();
 
 	/**
+	 * Returns the meta object for the containment reference '{@link org.unicase.emfstore.esmodel.versioning.events.ShowHistoryEvent#getModelElement <em>Model Element</em>}'.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @return the meta object for the containment reference '<em>Model Element</em>'.
+	 * @see org.unicase.emfstore.esmodel.versioning.events.ShowHistoryEvent#getModelElement()
+	 * @see #getShowHistoryEvent()
+	 * @generated
+	 */
+	EReference getShowHistoryEvent_ModelElement();
+
+	/**
 	 * Returns the meta object for class '{@link org.unicase.emfstore.esmodel.versioning.events.PerspectiveEvent <em>Perspective Event</em>}'.
 	 * <!-- begin-user-doc --> <!-- end-user-doc -->
 	 * @return the meta object for class '<em>Perspective Event</em>'.
@@ -2010,6 +2030,14 @@ public interface EventsPackage extends EPackage {
 		 * @generated
 		 */
 		EReference SHOW_HISTORY_EVENT__TARGET_VERSION = eINSTANCE.getShowHistoryEvent_TargetVersion();
+
+		/**
+		 * The meta object literal for the '<em><b>Model Element</b></em>' containment reference feature.
+		 * <!-- begin-user-doc -->
+		 * <!-- end-user-doc -->
+		 * @generated
+		 */
+		EReference SHOW_HISTORY_EVENT__MODEL_ELEMENT = eINSTANCE.getShowHistoryEvent_ModelElement();
 
 		/**
 		 * The meta object literal for the '{@link org.unicase.emfstore.esmodel.versioning.events.impl.PerspectiveEventImpl <em>Perspective Event</em>}' class.

@@ -190,6 +190,7 @@
         <genClasses ecoreClass="esmodel.ecore#//versioning/events/ShowHistoryEvent">
           <genFeatures property="None" children="true" createChild="true" ecoreFeature="ecore:EReference esmodel.ecore#//versioning/events/ShowHistoryEvent/sourceVersion"/>
           <genFeatures property="None" children="true" createChild="true" ecoreFeature="ecore:EReference esmodel.ecore#//versioning/events/ShowHistoryEvent/targetVersion"/>
+          <genFeatures property="None" children="true" createChild="true" ecoreFeature="ecore:EReference esmodel.ecore#//versioning/events/ShowHistoryEvent/modelElement"/>
         </genClasses>
         <genClasses ecoreClass="esmodel.ecore#//versioning/events/PerspectiveEvent"/>
         <genClasses ecoreClass="esmodel.ecore#//versioning/events/DNDEvent">
