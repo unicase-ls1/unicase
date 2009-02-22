@@ -42,6 +42,7 @@ import org.unicase.model.ModelElementId;
 import org.unicase.ui.common.util.ActionHelper;
 import org.unicase.workspace.ProjectSpace;
 import org.unicase.workspace.edit.Activator;
+import org.unicase.workspace.exceptions.MEUrlResolutionException;
 import org.unicase.workspace.notification.provider.NotificationHelper;
 import org.unicase.workspace.notification.provider.UpdateNotificationProvider;
 import org.unicase.workspace.util.WorkspaceUtil;
@@ -80,9 +81,13 @@ public class DashboardEntry extends Composite {
 			}
 			try {
 				ModelElementUrl modelElementUrl = UrlFactory.eINSTANCE.createModelElementUrl(text);
-				ModelElementId mid = modelElementUrl.getModelElementUrlFragment().getModelElementId();
-				ActionHelper.openModelElement(project.getProject().getModelElement(mid), DashboardEditor.ID);
-				logEvent(mid, source);
+				ModelElement modelElement = null;
+				try {
+					modelElement = project.resolve(modelElementUrl.getModelElementUrlFragment());
+				} catch (MEUrlResolutionException e1) {
+				}
+				ActionHelper.openModelElement(modelElement, DashboardEditor.ID);
+				logEvent(modelElement.getModelElementId(), source);
 			} catch (MalformedURLException ex) {
 				WorkspaceUtil.logException("Invalid unicase URL pattern", ex);
 			}
