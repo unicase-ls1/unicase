@@ -1,7 +1,0 @@
-# Tracing options for the org.unicase.ui.componentDiagram plug-in
-
-# Common issues
-org.unicase.ui.componentDiagram/debug=false
-
-# Visual IDs
-org.unicase.ui.componentDiagram/debug/visualID=false
