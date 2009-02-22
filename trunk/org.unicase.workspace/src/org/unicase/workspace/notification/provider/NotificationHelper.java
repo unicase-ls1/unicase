@@ -8,7 +8,6 @@ package org.unicase.workspace.notification.provider;
 import java.util.Date;
 import java.util.List;
 
-import org.unicase.emfstore.esmodel.util.EsModelUtil;
 import org.unicase.emfstore.esmodel.versioning.operations.AbstractOperation;
 import org.unicase.model.ModelElement;
 import org.unicase.model.ModelElementId;
@@ -77,9 +76,9 @@ public final class NotificationHelper {
 		StringBuilder ret = new StringBuilder("<a href=\"unicase://current:0/");
 		ret.append(projectSpace.getProjectName());
 		ret.append("%");
-		ret.append(EsModelUtil.clone(projectSpace.getProjectId()));
+		ret.append(projectSpace.getProjectId().getId());
 		ret.append("/");
-		ret.append(modelElement.getName());
+		ret.append(modelElement.getName().replaceAll("\"", "\\'"));
 		ret.append("%");
 		ret.append(modelElement.getIdentifier());
 		ret.append("\">");
