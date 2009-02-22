@@ -130,9 +130,10 @@ public class MEDiagramItemProvider extends AttachmentItemProvider implements IEd
 	}
 
 	/**
-	 * This returns MEDiagram.gif. <!-- begin-user-doc --> returns different icons for different diagram types<!--
-	 * end-user-doc -->
+	 * This returns MEDiagram.gif. <!-- begin-user-doc --> returns different icons for different diagram types
 	 * 
+	 * @param object th object to get the image for
+	 * @return the image object <!-- end-user-doc -->
 	 * @generated NOT
 	 */
 	@Override
