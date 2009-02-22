@@ -13,6 +13,7 @@ import org.eclipse.emf.edit.provider.ComposedAdapterFactory;
 import org.eclipse.emf.edit.ui.provider.AdapterFactoryLabelProvider;
 import org.eclipse.emf.transaction.RecordingCommand;
 import org.eclipse.emf.transaction.TransactionalEditingDomain;
+import org.eclipse.jface.dialogs.MessageDialog;
 import org.eclipse.jface.layout.GridDataFactory;
 import org.eclipse.jface.layout.GridLayoutFactory;
 import org.eclipse.swt.SWT;
@@ -144,7 +145,7 @@ public class DashboardEntry extends Composite {
 	}
 
 	private void createNotificationEntry() {
-		GridLayoutFactory.fillDefaults().numColumns(3).equalWidth(false).extendedMargins(3, 10, 6, 6).spacing(5, 0)
+		GridLayoutFactory.fillDefaults().numColumns(4).equalWidth(false).extendedMargins(3, 0, 6, 6).spacing(5, 0)
 			.applyTo(this);
 		this.setBackground(notificationColor);
 
@@ -158,6 +159,35 @@ public class DashboardEntry extends Composite {
 		date.setText(format.format(n.getCreationDate()));
 		GridDataFactory.fillDefaults().grab(true, false).align(SWT.END, SWT.BEGINNING).applyTo(date);
 		date.setForeground(display.getSystemColor(SWT.COLOR_GRAY));
+
+		final Composite close = new Composite(this, SWT.NONE);
+		GridDataFactory.fillDefaults().hint(16, 16).applyTo(close);
+		final Image closeImage = Activator.getImageDescriptor("icons/close.png").createImage();
+		close.addPaintListener(new PaintListener() {
+			public void paintControl(PaintEvent e) {
+				Rectangle area = close.getClientArea();
+				e.gc.drawImage(closeImage, area.x, area.y);
+			}
+		});
+		close.addMouseListener(new MouseAdapter() {
+			@Override
+			public void mouseDown(MouseEvent e) {
+				boolean hide = MessageDialog.openConfirm(getShell(), "Hide notification",
+					"Are you sure you are not interested in this kind of notification?");
+				if (hide) {
+					TransactionalEditingDomain domain = TransactionalEditingDomain.Registry.INSTANCE
+						.getEditingDomain("org.unicase.EditingDomain");
+					domain.getCommandStack().execute(new RecordingCommand(domain) {
+
+						@Override
+						protected void doExecute() {
+							n.setSeen(true);
+							((DashboardEditor) page.getEditor()).refresh();
+						}
+					});
+				}
+			}
+		});
 
 		MouseTrackAdapter hoverListener = new MouseTrackAdapter() {
 			@Override
