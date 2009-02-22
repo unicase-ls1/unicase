@@ -481,7 +481,7 @@ public interface EventsPackage extends EPackage {
 	int SHOW_HISTORY_EVENT__TARGET_VERSION = EVENT_FEATURE_COUNT + 1;
 
 	/**
-	 * The feature id for the '<em><b>Model Element</b></em>' containment reference.
+	 * The feature id for the '<em><b>Model Element</b></em>' containment reference list.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
 	 * @generated
@@ -1367,10 +1367,10 @@ public interface EventsPackage extends EPackage {
 	EReference getShowHistoryEvent_TargetVersion();
 
 	/**
-	 * Returns the meta object for the containment reference '{@link org.unicase.emfstore.esmodel.versioning.events.ShowHistoryEvent#getModelElement <em>Model Element</em>}'.
+	 * Returns the meta object for the containment reference list '{@link org.unicase.emfstore.esmodel.versioning.events.ShowHistoryEvent#getModelElement <em>Model Element</em>}'.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
-	 * @return the meta object for the containment reference '<em>Model Element</em>'.
+	 * @return the meta object for the containment reference list '<em>Model Element</em>'.
 	 * @see org.unicase.emfstore.esmodel.versioning.events.ShowHistoryEvent#getModelElement()
 	 * @see #getShowHistoryEvent()
 	 * @generated
@@ -2032,7 +2032,7 @@ public interface EventsPackage extends EPackage {
 		EReference SHOW_HISTORY_EVENT__TARGET_VERSION = eINSTANCE.getShowHistoryEvent_TargetVersion();
 
 		/**
-		 * The meta object literal for the '<em><b>Model Element</b></em>' containment reference feature.
+		 * The meta object literal for the '<em><b>Model Element</b></em>' containment reference list feature.
 		 * <!-- begin-user-doc -->
 		 * <!-- end-user-doc -->
 		 * @generated

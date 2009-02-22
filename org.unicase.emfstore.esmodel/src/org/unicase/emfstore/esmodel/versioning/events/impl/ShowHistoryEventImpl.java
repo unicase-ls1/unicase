@@ -5,11 +5,16 @@
  */
 package org.unicase.emfstore.esmodel.versioning.events.impl;
 
+import java.util.Collection;
+
 import org.eclipse.emf.common.notify.Notification;
 import org.eclipse.emf.common.notify.NotificationChain;
+import org.eclipse.emf.common.util.EList;
 import org.eclipse.emf.ecore.EClass;
 import org.eclipse.emf.ecore.InternalEObject;
 import org.eclipse.emf.ecore.impl.ENotificationImpl;
+import org.eclipse.emf.ecore.util.EObjectContainmentEList;
+import org.eclipse.emf.ecore.util.InternalEList;
 import org.unicase.emfstore.esmodel.versioning.PrimaryVersionSpec;
 import org.unicase.emfstore.esmodel.versioning.events.EventsPackage;
 import org.unicase.emfstore.esmodel.versioning.events.ShowHistoryEvent;
@@ -46,14 +51,14 @@ public class ShowHistoryEventImpl extends EventImpl implements ShowHistoryEvent 
 	protected PrimaryVersionSpec targetVersion;
 
 	/**
-	 * The cached value of the '{@link #getModelElement() <em>Model Element</em>}' containment reference.
+	 * The cached value of the '{@link #getModelElement() <em>Model Element</em>}' containment reference list.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
 	 * @see #getModelElement()
 	 * @generated
 	 * @ordered
 	 */
-	protected ModelElementId modelElement;
+	protected EList<ModelElementId> modelElement;
 
 	/**
 	 * <!-- begin-user-doc --> <!-- end-user-doc -->
@@ -201,65 +206,11 @@ public class ShowHistoryEventImpl extends EventImpl implements ShowHistoryEvent 
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
-	public ModelElementId getModelElement() {
-		if (modelElement != null && modelElement.eIsProxy()) {
-			InternalEObject oldModelElement = (InternalEObject)modelElement;
-			modelElement = (ModelElementId)eResolveProxy(oldModelElement);
-			if (modelElement != oldModelElement) {
-				InternalEObject newModelElement = (InternalEObject)modelElement;
-				NotificationChain msgs = oldModelElement.eInverseRemove(this, EOPPOSITE_FEATURE_BASE - EventsPackage.SHOW_HISTORY_EVENT__MODEL_ELEMENT, null, null);
-				if (newModelElement.eInternalContainer() == null) {
-					msgs = newModelElement.eInverseAdd(this, EOPPOSITE_FEATURE_BASE - EventsPackage.SHOW_HISTORY_EVENT__MODEL_ELEMENT, null, msgs);
-				}
-				if (msgs != null) msgs.dispatch();
-				if (eNotificationRequired())
-					eNotify(new ENotificationImpl(this, Notification.RESOLVE, EventsPackage.SHOW_HISTORY_EVENT__MODEL_ELEMENT, oldModelElement, modelElement));
-			}
+	public EList<ModelElementId> getModelElement() {
+		if (modelElement == null) {
+			modelElement = new EObjectContainmentEList.Resolving<ModelElementId>(ModelElementId.class, this, EventsPackage.SHOW_HISTORY_EVENT__MODEL_ELEMENT);
 		}
 		return modelElement;
-	}
-
-	/**
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
-	 * @generated
-	 */
-	public ModelElementId basicGetModelElement() {
-		return modelElement;
-	}
-
-	/**
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
-	 * @generated
-	 */
-	public NotificationChain basicSetModelElement(ModelElementId newModelElement, NotificationChain msgs) {
-		ModelElementId oldModelElement = modelElement;
-		modelElement = newModelElement;
-		if (eNotificationRequired()) {
-			ENotificationImpl notification = new ENotificationImpl(this, Notification.SET, EventsPackage.SHOW_HISTORY_EVENT__MODEL_ELEMENT, oldModelElement, newModelElement);
-			if (msgs == null) msgs = notification; else msgs.add(notification);
-		}
-		return msgs;
-	}
-
-	/**
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
-	 * @generated
-	 */
-	public void setModelElement(ModelElementId newModelElement) {
-		if (newModelElement != modelElement) {
-			NotificationChain msgs = null;
-			if (modelElement != null)
-				msgs = ((InternalEObject)modelElement).eInverseRemove(this, EOPPOSITE_FEATURE_BASE - EventsPackage.SHOW_HISTORY_EVENT__MODEL_ELEMENT, null, msgs);
-			if (newModelElement != null)
-				msgs = ((InternalEObject)newModelElement).eInverseAdd(this, EOPPOSITE_FEATURE_BASE - EventsPackage.SHOW_HISTORY_EVENT__MODEL_ELEMENT, null, msgs);
-			msgs = basicSetModelElement(newModelElement, msgs);
-			if (msgs != null) msgs.dispatch();
-		}
-		else if (eNotificationRequired())
-			eNotify(new ENotificationImpl(this, Notification.SET, EventsPackage.SHOW_HISTORY_EVENT__MODEL_ELEMENT, newModelElement, newModelElement));
 	}
 
 	/**
@@ -274,7 +225,7 @@ public class ShowHistoryEventImpl extends EventImpl implements ShowHistoryEvent 
 			case EventsPackage.SHOW_HISTORY_EVENT__TARGET_VERSION:
 				return basicSetTargetVersion(null, msgs);
 			case EventsPackage.SHOW_HISTORY_EVENT__MODEL_ELEMENT:
-				return basicSetModelElement(null, msgs);
+				return ((InternalEList<?>)getModelElement()).basicRemove(otherEnd, msgs);
 		}
 		return super.eInverseRemove(otherEnd, featureID, msgs);
 	}
@@ -293,8 +244,7 @@ public class ShowHistoryEventImpl extends EventImpl implements ShowHistoryEvent 
 				if (resolve) return getTargetVersion();
 				return basicGetTargetVersion();
 			case EventsPackage.SHOW_HISTORY_EVENT__MODEL_ELEMENT:
-				if (resolve) return getModelElement();
-				return basicGetModelElement();
+				return getModelElement();
 		}
 		return super.eGet(featureID, resolve, coreType);
 	}
@@ -303,6 +253,7 @@ public class ShowHistoryEventImpl extends EventImpl implements ShowHistoryEvent 
 	 * <!-- begin-user-doc --> <!-- end-user-doc -->
 	 * @generated
 	 */
+	@SuppressWarnings("unchecked")
 	@Override
 	public void eSet(int featureID, Object newValue) {
 		switch (featureID) {
@@ -313,7 +264,8 @@ public class ShowHistoryEventImpl extends EventImpl implements ShowHistoryEvent 
 				setTargetVersion((PrimaryVersionSpec)newValue);
 				return;
 			case EventsPackage.SHOW_HISTORY_EVENT__MODEL_ELEMENT:
-				setModelElement((ModelElementId)newValue);
+				getModelElement().clear();
+				getModelElement().addAll((Collection<? extends ModelElementId>)newValue);
 				return;
 		}
 		super.eSet(featureID, newValue);
@@ -333,7 +285,7 @@ public class ShowHistoryEventImpl extends EventImpl implements ShowHistoryEvent 
 				setTargetVersion((PrimaryVersionSpec)null);
 				return;
 			case EventsPackage.SHOW_HISTORY_EVENT__MODEL_ELEMENT:
-				setModelElement((ModelElementId)null);
+				getModelElement().clear();
 				return;
 		}
 		super.eUnset(featureID);
@@ -351,7 +303,7 @@ public class ShowHistoryEventImpl extends EventImpl implements ShowHistoryEvent 
 			case EventsPackage.SHOW_HISTORY_EVENT__TARGET_VERSION:
 				return targetVersion != null;
 			case EventsPackage.SHOW_HISTORY_EVENT__MODEL_ELEMENT:
-				return modelElement != null;
+				return modelElement != null && !modelElement.isEmpty();
 		}
 		return super.eIsSet(featureID);
 	}
