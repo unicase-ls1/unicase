@@ -5,17 +5,16 @@
  */
 package org.unicase.emfstore.connection.rmi;
 
+// BEGIN IGNORE UNNECCESSARY IMPORT
 import java.rmi.Remote;
 import java.rmi.RemoteException;
 import java.util.List;
 
-// BEGIN IGNORE UNNECCESSARY IMPORT
-// import caused by comment
-import org.unicase.emfstore.EmfStore; // END IGNORE UNNECCESSARY IMPORT
-
+import org.unicase.emfstore.EmfStore;
 import org.unicase.emfstore.accesscontrol.AccessControlException;
 import org.unicase.emfstore.exceptions.EmfStoreException;
 
+// END IGNORE UNNECCESSARY IMPORT
 /**
  * Facade for the RMIConnectionManager. Part of the RMI transport layer.
  * 

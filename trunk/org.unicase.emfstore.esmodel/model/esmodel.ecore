@@ -243,7 +243,8 @@
             containment="true"/>
         <eStructuralFeatures xsi:type="ecore:EReference" name="targetVersion" eType="#//versioning/PrimaryVersionSpec"
             containment="true"/>
-        <eStructuralFeatures xsi:type="ecore:EReference" name="modelElement" eType="ecore:EClass ../../org.unicase.model/model/model.ecore#//ModelElementId"
+        <eStructuralFeatures xsi:type="ecore:EReference" name="modelElement" upperBound="-1"
+            eType="ecore:EClass ../../org.unicase.model/model/model.ecore#//ModelElementId"
             containment="true"/>
       </eClassifiers>
       <eClassifiers xsi:type="ecore:EClass" name="PerspectiveEvent" eSuperTypes="#//versioning/events/Event"/>
