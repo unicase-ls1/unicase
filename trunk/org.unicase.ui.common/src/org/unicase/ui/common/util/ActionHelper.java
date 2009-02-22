@@ -24,9 +24,11 @@ import org.eclipse.emf.ecore.util.EcoreUtil;
 import org.eclipse.emf.transaction.RecordingCommand;
 import org.eclipse.emf.transaction.TransactionalEditingDomain;
 import org.eclipse.jface.dialogs.ErrorDialog;
+import org.eclipse.jface.dialogs.MessageDialog;
 import org.eclipse.jface.viewers.ColumnViewer;
 import org.eclipse.jface.viewers.ISelection;
 import org.eclipse.jface.viewers.IStructuredSelection;
+import org.eclipse.swt.widgets.Display;
 import org.eclipse.ui.IEditorInput;
 import org.eclipse.ui.ISelectionService;
 import org.eclipse.ui.PartInitException;
@@ -133,6 +135,7 @@ public final class ActionHelper {
 	 */
 	public static void openModelElement(final ModelElement me, final String sourceView) {
 		if (me == null) {
+			MessageDialog.openError(Display.getCurrent().getActiveShell(), "The element was deleted", "The model element you are trying to open was deleted!");
 			return;
 		}
 
