@@ -38,6 +38,7 @@ import org.unicase.emfstore.esmodel.url.ModelElementUrl;
 import org.unicase.emfstore.esmodel.url.ModelElementUrlFragment;
 import org.unicase.emfstore.esmodel.url.UrlFactory;
 import org.unicase.emfstore.esmodel.versioning.events.EventsFactory;
+import org.unicase.emfstore.esmodel.versioning.events.NotificationIgnoreEvent;
 import org.unicase.emfstore.esmodel.versioning.events.NotificationReadEvent;
 import org.unicase.model.ModelElement;
 import org.unicase.model.ModelElementId;
@@ -185,6 +186,7 @@ public class DashboardEntry extends Composite {
 						@Override
 						protected void doExecute() {
 							n.setSeen(true);
+							logEvent(n, project);
 							((DashboardEditor) page.getEditor()).refresh();
 						}
 					});
@@ -351,6 +353,13 @@ public class DashboardEntry extends Composite {
 		link.setText(text);
 		GridDataFactory.fillDefaults().align(SWT.BEGINNING, SWT.BEGINNING).applyTo(link);
 		return link;
+	}
+
+	private void logEvent(ESNotification n, ProjectSpace projectSpace) {
+		NotificationIgnoreEvent notificationIgnoreEvent = EventsFactory.eINSTANCE.createNotificationIgnoreEvent();
+		notificationIgnoreEvent.setTimestamp(new Date());
+		notificationIgnoreEvent.setNotificationId(n.getIdentifier());
+		projectSpace.addEvent(notificationIgnoreEvent);
 	}
 
 }
