@@ -34,6 +34,7 @@ import org.eclipse.swt.widgets.Label;
 import org.eclipse.swt.widgets.Link;
 import org.unicase.emfstore.esmodel.notification.ESNotification;
 import org.unicase.emfstore.esmodel.url.ModelElementUrl;
+import org.unicase.emfstore.esmodel.url.ModelElementUrlFragment;
 import org.unicase.emfstore.esmodel.url.UrlFactory;
 import org.unicase.emfstore.esmodel.versioning.events.EventsFactory;
 import org.unicase.emfstore.esmodel.versioning.events.NotificationReadEvent;
@@ -82,12 +83,13 @@ public class DashboardEntry extends Composite {
 			try {
 				ModelElementUrl modelElementUrl = UrlFactory.eINSTANCE.createModelElementUrl(text);
 				ModelElement modelElement = null;
+				ModelElementUrlFragment modelElementUrlFragment = modelElementUrl.getModelElementUrlFragment();
 				try {
-					modelElement = project.resolve(modelElementUrl.getModelElementUrlFragment());
+					modelElement = project.resolve(modelElementUrlFragment);
 				} catch (MEUrlResolutionException e1) {
 				}
 				ActionHelper.openModelElement(modelElement, DashboardEditor.ID);
-				logEvent(modelElement.getModelElementId(), source);
+				logEvent(modelElementUrlFragment.getModelElementId(), source);
 			} catch (MalformedURLException ex) {
 				WorkspaceUtil.logException("Invalid unicase URL pattern", ex);
 			}
