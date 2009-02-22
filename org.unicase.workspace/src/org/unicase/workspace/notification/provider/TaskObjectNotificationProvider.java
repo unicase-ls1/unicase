@@ -105,7 +105,7 @@ public class TaskObjectNotificationProvider implements NotificationProvider {
 		message.append(modelElement.eClass().getName());
 		message.append(" ");
 		message.append(NotificationHelper.getHTMLLinkForModelElement(meId, projectSpace));
-		message.append(" has been modified: ");
+		message.append(" has been modified.");
 		message.append("\n");
 
 		message.append("Trace to the changed element: ");
