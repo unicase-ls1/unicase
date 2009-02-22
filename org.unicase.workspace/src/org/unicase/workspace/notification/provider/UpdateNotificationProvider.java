@@ -50,7 +50,6 @@ public class UpdateNotificationProvider implements NotificationProvider {
 		StringBuilder stringBuilder = new StringBuilder();
 		stringBuilder.append("You updated your project to version ");
 		stringBuilder.append(projectSpace.getBaseVersion().getIdentifier());
-		stringBuilder.append(".");
 		notification.setMessage(stringBuilder.toString());
 		notification.setName("Updated Project");
 		notification.setProject(EsModelUtil.clone(projectSpace.getProjectId()));
