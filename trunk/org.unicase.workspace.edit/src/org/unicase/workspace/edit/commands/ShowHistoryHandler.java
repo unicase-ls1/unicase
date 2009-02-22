@@ -5,6 +5,8 @@
  */
 package org.unicase.workspace.edit.commands;
 
+import java.util.Date;
+
 import org.eclipse.core.commands.ExecutionEvent;
 import org.eclipse.core.commands.ExecutionException;
 import org.eclipse.emf.transaction.RecordingCommand;
@@ -14,6 +16,8 @@ import org.eclipse.swt.widgets.Shell;
 import org.eclipse.ui.IWorkbenchPage;
 import org.eclipse.ui.PartInitException;
 import org.eclipse.ui.PlatformUI;
+import org.unicase.emfstore.esmodel.versioning.events.EventsFactory;
+import org.unicase.emfstore.esmodel.versioning.events.PluginFocusEvent;
 import org.unicase.model.ModelElement;
 import org.unicase.ui.common.exceptions.DialogHandler;
 import org.unicase.ui.common.util.ActionHelper;
@@ -62,14 +66,15 @@ public class ShowHistoryHandler extends ProjectActionHandler {
 					ModelElement modelElement = ActionHelper.getModelElement(event);
 					IWorkbenchPage page = PlatformUI.getWorkbench().getActiveWorkbenchWindow().getActivePage();
 					HistoryBrowserView historyBrowserView = null;
+					String viewId = "org.unicase.workspace.edit.views.historybrowserview.HistoryBrowserView";
 					try {
-						historyBrowserView = (HistoryBrowserView) page
-							.showView("org.unicase.workspace.edit.views.historybrowserview.HistoryBrowserView");
+						historyBrowserView = (HistoryBrowserView) page.showView(viewId);
 					} catch (PartInitException e) {
 						DialogHandler.showExceptionDialog(e);
 					}
 					if (historyBrowserView != null) {
 						historyBrowserView.setInput(finalProjectSpace, modelElement);
+						logEvent(finalProjectSpace, viewId);
 					}
 				}
 			}
@@ -78,4 +83,10 @@ public class ShowHistoryHandler extends ProjectActionHandler {
 		return null;
 	}
 
+	private void logEvent(final ProjectSpace finalProjectSpace, String viewId) {
+		PluginFocusEvent historyEvent = EventsFactory.eINSTANCE.createPluginFocusEvent();
+		historyEvent.setPluginId(viewId);
+		historyEvent.setTimestamp(new Date());
+		finalProjectSpace.addEvent(historyEvent);
+	}
 }
