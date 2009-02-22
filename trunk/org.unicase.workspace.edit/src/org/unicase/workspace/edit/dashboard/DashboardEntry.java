@@ -144,7 +144,7 @@ public class DashboardEntry extends Composite {
 	}
 
 	private void createNotificationEntry() {
-		GridLayoutFactory.fillDefaults().numColumns(3).equalWidth(false).extendedMargins(3, 3, 6, 6).spacing(5, 0)
+		GridLayoutFactory.fillDefaults().numColumns(3).equalWidth(false).extendedMargins(3, 10, 6, 6).spacing(5, 0)
 			.applyTo(this);
 		this.setBackground(notificationColor);
 
@@ -156,7 +156,7 @@ public class DashboardEntry extends Composite {
 		link.addSelectionListener(new LinkSelectionListener("link"));
 		Label date = new Label(this, SWT.NONE);
 		date.setText(format.format(n.getCreationDate()));
-		GridDataFactory.fillDefaults().align(SWT.BEGINNING, SWT.BEGINNING).applyTo(date);
+		GridDataFactory.fillDefaults().grab(true, false).align(SWT.END, SWT.BEGINNING).applyTo(date);
 		date.setForeground(display.getSystemColor(SWT.COLOR_GRAY));
 
 		MouseTrackAdapter hoverListener = new MouseTrackAdapter() {
