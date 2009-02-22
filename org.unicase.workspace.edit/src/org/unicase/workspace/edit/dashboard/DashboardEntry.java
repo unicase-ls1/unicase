@@ -109,6 +109,7 @@ public class DashboardEntry extends Composite {
 	private Composite drawer;
 
 	private boolean open = true;
+	private boolean mouseOver;
 	private Color blue;
 	private DashboardPage page;
 
@@ -165,8 +166,10 @@ public class DashboardEntry extends Composite {
 		final Image closeImage = Activator.getImageDescriptor("icons/close.png").createImage();
 		close.addPaintListener(new PaintListener() {
 			public void paintControl(PaintEvent e) {
-				Rectangle area = close.getClientArea();
-				e.gc.drawImage(closeImage, area.x, area.y);
+				if (mouseOver) {
+					Rectangle area = close.getClientArea();
+					e.gc.drawImage(closeImage, area.x, area.y);
+				}
 			}
 		});
 		close.addMouseListener(new MouseAdapter() {
@@ -192,11 +195,13 @@ public class DashboardEntry extends Composite {
 		MouseTrackAdapter hoverListener = new MouseTrackAdapter() {
 			@Override
 			public void mouseEnter(MouseEvent e) {
+				mouseOver = true;
 				setBackground(lightBlue);
 			}
 
 			@Override
 			public void mouseExit(MouseEvent e) {
+				mouseOver = false;
 				setBackground(notificationColor);
 			}
 		};
@@ -216,6 +221,7 @@ public class DashboardEntry extends Composite {
 		this.addMouseTrackListener(hoverListener);
 		link.addMouseTrackListener(hoverListener);
 		date.addMouseTrackListener(hoverListener);
+		close.addMouseTrackListener(hoverListener);
 
 		drawer = new Composite(this, SWT.NONE);
 		GridDataFactory.fillDefaults().hint(10, 0).span(3, 1).grab(true, false).applyTo(drawer);
