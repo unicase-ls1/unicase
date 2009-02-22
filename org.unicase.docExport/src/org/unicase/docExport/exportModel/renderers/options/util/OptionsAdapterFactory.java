@@ -9,7 +9,6 @@ import org.eclipse.emf.common.notify.Adapter;
 import org.eclipse.emf.common.notify.Notifier;
 import org.eclipse.emf.common.notify.impl.AdapterFactoryImpl;
 import org.eclipse.emf.ecore.EObject;
-import org.unicase.docExport.exportModel.renderers.options.*;
 import org.unicase.docExport.exportModel.renderers.options.AttributeOption;
 import org.unicase.docExport.exportModel.renderers.options.BooleanAttributeOption;
 import org.unicase.docExport.exportModel.renderers.options.BoxModelOption;

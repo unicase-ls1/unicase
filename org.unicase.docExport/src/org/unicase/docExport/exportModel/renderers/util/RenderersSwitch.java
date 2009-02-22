@@ -9,7 +9,6 @@ import java.util.List;
 
 import org.eclipse.emf.ecore.EClass;
 import org.eclipse.emf.ecore.EObject;
-import org.unicase.docExport.exportModel.renderers.*;
 import org.unicase.docExport.exportModel.renderers.AttributeRenderer;
 import org.unicase.docExport.exportModel.renderers.AttributeRendererMapping;
 import org.unicase.docExport.exportModel.renderers.DocumentRenderer;

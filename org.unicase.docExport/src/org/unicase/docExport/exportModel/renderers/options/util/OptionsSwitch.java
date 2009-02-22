@@ -9,7 +9,6 @@ import java.util.List;
 
 import org.eclipse.emf.ecore.EClass;
 import org.eclipse.emf.ecore.EObject;
-import org.unicase.docExport.exportModel.renderers.options.*;
 import org.unicase.docExport.exportModel.renderers.options.AttributeOption;
 import org.unicase.docExport.exportModel.renderers.options.BooleanAttributeOption;
 import org.unicase.docExport.exportModel.renderers.options.BoxModelOption;
