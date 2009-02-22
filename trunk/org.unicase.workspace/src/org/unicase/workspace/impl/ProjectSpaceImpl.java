@@ -1990,7 +1990,11 @@ public class ProjectSpaceImpl extends IdentifiableElementImpl implements Project
 	 * @see org.unicase.workspace.ProjectSpace#addEvent(org.unicase.emfstore.esmodel.versioning.events.Event)
 	 */
 	public void addEvent(Event event) {
+		if (event.getTimestamp() == null) {
+			event.setTimestamp(new Date());
+		}
 		this.getEvents().add(event);
+		saveProjectSpaceOnly();
 	}
 
 	/**
@@ -2047,7 +2051,6 @@ public class ProjectSpaceImpl extends IdentifiableElementImpl implements Project
 	}
 
 	public ModelElement resolve(ModelElementUrlFragment modelElementUrlFragment) throws MEUrlResolutionException {
-		// MK: why do we need this exception?
 		ModelElementId modelElementId = modelElementUrlFragment.getModelElementId();
 		ModelElement modelElement = getProject().getModelElement(modelElementId);
 		if (modelElement == null) {
