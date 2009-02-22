@@ -48,9 +48,7 @@ public final class OpeningLinkHelper {
 
 	private static void handleObject(ModelElement source, ArrayList<ModelElement> list,
 		Map<ModelElementId, ModelElementPath> ret) {
-		if (ret.containsKey(source.getModelElementId())) {
-			return;
-		}
+
 		list.add(source);
 		OpeningLinkTaxonomy openingLinkTaxonomy = TaxonomyAccess.getInstance().getOpeningLinkTaxonomy();
 		ArrayList<ModelElement> openeds = openingLinkTaxonomy.getOpened(source);
@@ -67,11 +65,14 @@ public final class OpeningLinkHelper {
 					path.getPath().add(list.get(i).getModelElementId());
 				}
 			}
-			ret.put(opened.getModelElementId(), path);
+			if (!ret.containsKey(opened.getModelElementId())) {
+				ret.put(opened.getModelElementId(), path);
 
-			ArrayList<ModelElement> newList = new ArrayList<ModelElement>();
-			newList.addAll(list);
-			handleObject(opened, newList, ret);
+				ArrayList<ModelElement> newList = new ArrayList<ModelElement>();
+				newList.addAll(list);
+				handleObject(opened, newList, ret);
+			}
+
 		}
 	}
 }
