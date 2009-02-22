@@ -60,6 +60,13 @@ public class DashboardEntry extends Composite {
 	 */
 	private final class LinkSelectionListener implements SelectionListener {
 
+		private String source;
+
+		public LinkSelectionListener(String source) {
+			super();
+			this.source = source;
+		}
+
 		public void widgetDefaultSelected(SelectionEvent e) {
 			System.out.println("");
 		}
@@ -75,7 +82,7 @@ public class DashboardEntry extends Composite {
 				ModelElementUrl modelElementUrl = UrlFactory.eINSTANCE.createModelElementUrl(text);
 				ModelElementId mid = modelElementUrl.getModelElementUrlFragment().getModelElementId();
 				ActionHelper.openModelElement(project.getProject().getModelElement(mid), DashboardEditor.ID);
-				logEvent(mid);
+				logEvent(mid, source);
 			} catch (MalformedURLException ex) {
 				WorkspaceUtil.logException("Invalid unicase URL pattern", ex);
 			}
@@ -139,7 +146,7 @@ public class DashboardEntry extends Composite {
 		Image image = labelProvider.getImage(project.getProject().getModelElement(n.getRelatedModelElements().get(0)));
 		Link link = createImageLink(image, this, n.getMessage());
 
-		link.addSelectionListener(new LinkSelectionListener());
+		link.addSelectionListener(new LinkSelectionListener("link"));
 		Label date = new Label(this, SWT.NONE);
 		date.setText(format.format(n.getCreationDate()));
 		GridDataFactory.fillDefaults().align(SWT.BEGINNING, SWT.BEGINNING).applyTo(date);
@@ -185,7 +192,7 @@ public class DashboardEntry extends Composite {
 
 			String hyperlink = NotificationHelper.getHTMLLinkForModelElement(me, project);
 			Link meLink = createImageLink(labelProvider.getImage(me), drawerEntry, hyperlink);
-			meLink.addSelectionListener(new LinkSelectionListener());
+			meLink.addSelectionListener(new LinkSelectionListener("drawer"));
 			meLink.addMouseTrackListener(hoverListener);
 			drawerEntry.addMouseTrackListener(hoverListener);
 		}
@@ -248,6 +255,19 @@ public class DashboardEntry extends Composite {
 		if (open) {
 			height = size * 20 + 6;
 			indent = 10;
+			final NotificationReadEvent readEvent = EventsFactory.eINSTANCE.createNotificationReadEvent();
+			readEvent.setNotificationId(n.getIdentifier());
+			readEvent.setReadView(DashboardEditor.ID);
+			readEvent.setSourceView(DashboardEditor.ID);
+			readEvent.setTimestamp(new Date());
+			TransactionalEditingDomain domain = TransactionalEditingDomain.Registry.INSTANCE
+				.getEditingDomain("org.unicase.EditingDomain");
+			domain.getCommandStack().execute(new RecordingCommand(domain) {
+				@Override
+				protected void doExecute() {
+					project.addEvent(readEvent);
+				}
+			});
 		} else {
 			indent = 0;
 			height = 0;
@@ -259,12 +279,12 @@ public class DashboardEntry extends Composite {
 		// sa.move(gallery, gallery.getLocation().x, -128, 1000, new ElasticOut(), null, null);
 	}
 
-	private void logEvent(ModelElementId modelElementId) {
+	private void logEvent(ModelElementId modelElementId, String source) {
 		final NotificationReadEvent readEvent = EventsFactory.eINSTANCE.createNotificationReadEvent();
 		readEvent.setModelElement(modelElementId);
 		readEvent.setNotificationId(n.getIdentifier());
 		readEvent.setReadView("org.unicase.ui.meeditor");
-		readEvent.setSourceView(DashboardEditor.ID);
+		readEvent.setSourceView(DashboardEditor.ID + "." + source);
 		readEvent.setTimestamp(new Date());
 		TransactionalEditingDomain domain = TransactionalEditingDomain.Registry.INSTANCE
 			.getEditingDomain("org.unicase.EditingDomain");
