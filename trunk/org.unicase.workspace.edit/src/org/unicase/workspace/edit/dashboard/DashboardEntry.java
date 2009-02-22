@@ -275,8 +275,6 @@ public class DashboardEntry extends Composite {
 		GridDataFactory.fillDefaults().hint(10, height).span(3, 1).indent(20, indent).grab(true, false).applyTo(drawer);
 		getParent().layout();
 		page.getForm().reflow(true);
-		// gallery.setLocation(0, -128);
-		// sa.move(gallery, gallery.getLocation().x, -128, 1000, new ElasticOut(), null, null);
 	}
 
 	private void logEvent(ModelElementId modelElementId, String source) {
