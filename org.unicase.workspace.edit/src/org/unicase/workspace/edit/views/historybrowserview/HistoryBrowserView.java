@@ -6,6 +6,7 @@
 package org.unicase.workspace.edit.views.historybrowserview;
 
 import java.util.ArrayList;
+import java.util.Date;
 import java.util.List;
 
 import org.eclipse.emf.transaction.RecordingCommand;
@@ -24,6 +25,8 @@ import org.unicase.emfstore.esmodel.versioning.PrimaryVersionSpec;
 import org.unicase.emfstore.esmodel.versioning.TagVersionSpec;
 import org.unicase.emfstore.esmodel.versioning.VersionSpec;
 import org.unicase.emfstore.esmodel.versioning.VersioningFactory;
+import org.unicase.emfstore.esmodel.versioning.events.EventsFactory;
+import org.unicase.emfstore.esmodel.versioning.events.ShowHistoryEvent;
 import org.unicase.emfstore.exceptions.EmfStoreException;
 import org.unicase.model.ModelElement;
 import org.unicase.ui.common.exceptions.DialogHandler;
@@ -81,8 +84,17 @@ public class HistoryBrowserView extends AbstractSCMView {
 			return;
 		}
 		try {
+			HistoryQuery query = getQuery(end);
 			List<HistoryInfo> historyInfo = activeProjectSpace.getUsersession().getHistoryInfo(
-				activeProjectSpace.getProjectId(), getQuery(end));
+				activeProjectSpace.getProjectId(), query);
+
+			// Event logging
+			ShowHistoryEvent historyEvent = EventsFactory.eINSTANCE.createShowHistoryEvent();
+			historyEvent.setSourceVersion(query.getSource());
+			historyEvent.setTargetVersion(query.getTarget());
+			historyEvent.setTimestamp(new Date());
+			activeProjectSpace.addEvent(historyEvent);
+
 			if (historyInfo != null) {
 				for (HistoryInfo hi : historyInfo) {
 					if (hi.getPrimerySpec().equals(activeProjectSpace.getBaseVersion())) {
