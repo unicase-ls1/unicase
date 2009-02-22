@@ -9,6 +9,7 @@ import java.util.ArrayList;
 import java.util.Date;
 import java.util.List;
 
+import org.eclipse.emf.common.util.EList;
 import org.eclipse.emf.transaction.RecordingCommand;
 import org.eclipse.emf.transaction.TransactionalEditingDomain;
 import org.eclipse.jface.action.Action;
@@ -29,6 +30,8 @@ import org.unicase.emfstore.esmodel.versioning.events.EventsFactory;
 import org.unicase.emfstore.esmodel.versioning.events.ShowHistoryEvent;
 import org.unicase.emfstore.exceptions.EmfStoreException;
 import org.unicase.model.ModelElement;
+import org.unicase.model.ModelElementId;
+import org.unicase.model.util.ModelUtil;
 import org.unicase.ui.common.exceptions.DialogHandler;
 import org.unicase.workspace.ProjectSpace;
 import org.unicase.workspace.WorkspaceManager;
@@ -93,6 +96,12 @@ public class HistoryBrowserView extends AbstractSCMView {
 			historyEvent.setSourceVersion(query.getSource());
 			historyEvent.setTargetVersion(query.getTarget());
 			historyEvent.setTimestamp(new Date());
+			EList<ModelElementId> modelElements = query.getModelElements();
+			if (modelElements != null) {
+				for (ModelElementId modelElementId : modelElements) {
+					historyEvent.getModelElement().add(ModelUtil.clone(modelElementId));
+				}
+			}
 			activeProjectSpace.addEvent(historyEvent);
 
 			if (historyInfo != null) {
