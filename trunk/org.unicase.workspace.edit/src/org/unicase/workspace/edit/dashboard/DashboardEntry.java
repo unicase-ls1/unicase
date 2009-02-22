@@ -190,7 +190,7 @@ public class DashboardEntry extends Composite {
 			GridDataFactory.fillDefaults().grab(true, false).applyTo(drawerEntry);
 			GridLayoutFactory.fillDefaults().numColumns(2).equalWidth(false).spacing(5, 0).applyTo(drawerEntry);
 
-			String hyperlink = NotificationHelper.getHTMLLinkForModelElement(me, project);
+			String hyperlink = NotificationHelper.getHTMLLinkForModelElement(mid, project);
 			Link meLink = createImageLink(labelProvider.getImage(me), drawerEntry, hyperlink);
 			meLink.addSelectionListener(new LinkSelectionListener("drawer"));
 			meLink.addMouseTrackListener(hoverListener);
