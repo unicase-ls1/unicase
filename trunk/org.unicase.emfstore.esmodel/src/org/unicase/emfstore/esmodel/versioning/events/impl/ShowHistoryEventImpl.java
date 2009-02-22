@@ -13,6 +13,7 @@ import org.eclipse.emf.ecore.impl.ENotificationImpl;
 import org.unicase.emfstore.esmodel.versioning.PrimaryVersionSpec;
 import org.unicase.emfstore.esmodel.versioning.events.EventsPackage;
 import org.unicase.emfstore.esmodel.versioning.events.ShowHistoryEvent;
+import org.unicase.model.ModelElementId;
 
 /*
  * <!-- begin-user-doc --> An implementation of the model object '<em><b>Show History Event</b></em>'. <!-- end-user-doc
@@ -43,6 +44,16 @@ public class ShowHistoryEventImpl extends EventImpl implements ShowHistoryEvent 
 	 * @ordered
 	 */
 	protected PrimaryVersionSpec targetVersion;
+
+	/**
+	 * The cached value of the '{@link #getModelElement() <em>Model Element</em>}' containment reference.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @see #getModelElement()
+	 * @generated
+	 * @ordered
+	 */
+	protected ModelElementId modelElement;
 
 	/**
 	 * <!-- begin-user-doc --> <!-- end-user-doc -->
@@ -186,6 +197,72 @@ public class ShowHistoryEventImpl extends EventImpl implements ShowHistoryEvent 
 	}
 
 	/**
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 */
+	public ModelElementId getModelElement() {
+		if (modelElement != null && modelElement.eIsProxy()) {
+			InternalEObject oldModelElement = (InternalEObject)modelElement;
+			modelElement = (ModelElementId)eResolveProxy(oldModelElement);
+			if (modelElement != oldModelElement) {
+				InternalEObject newModelElement = (InternalEObject)modelElement;
+				NotificationChain msgs = oldModelElement.eInverseRemove(this, EOPPOSITE_FEATURE_BASE - EventsPackage.SHOW_HISTORY_EVENT__MODEL_ELEMENT, null, null);
+				if (newModelElement.eInternalContainer() == null) {
+					msgs = newModelElement.eInverseAdd(this, EOPPOSITE_FEATURE_BASE - EventsPackage.SHOW_HISTORY_EVENT__MODEL_ELEMENT, null, msgs);
+				}
+				if (msgs != null) msgs.dispatch();
+				if (eNotificationRequired())
+					eNotify(new ENotificationImpl(this, Notification.RESOLVE, EventsPackage.SHOW_HISTORY_EVENT__MODEL_ELEMENT, oldModelElement, modelElement));
+			}
+		}
+		return modelElement;
+	}
+
+	/**
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 */
+	public ModelElementId basicGetModelElement() {
+		return modelElement;
+	}
+
+	/**
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 */
+	public NotificationChain basicSetModelElement(ModelElementId newModelElement, NotificationChain msgs) {
+		ModelElementId oldModelElement = modelElement;
+		modelElement = newModelElement;
+		if (eNotificationRequired()) {
+			ENotificationImpl notification = new ENotificationImpl(this, Notification.SET, EventsPackage.SHOW_HISTORY_EVENT__MODEL_ELEMENT, oldModelElement, newModelElement);
+			if (msgs == null) msgs = notification; else msgs.add(notification);
+		}
+		return msgs;
+	}
+
+	/**
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 */
+	public void setModelElement(ModelElementId newModelElement) {
+		if (newModelElement != modelElement) {
+			NotificationChain msgs = null;
+			if (modelElement != null)
+				msgs = ((InternalEObject)modelElement).eInverseRemove(this, EOPPOSITE_FEATURE_BASE - EventsPackage.SHOW_HISTORY_EVENT__MODEL_ELEMENT, null, msgs);
+			if (newModelElement != null)
+				msgs = ((InternalEObject)newModelElement).eInverseAdd(this, EOPPOSITE_FEATURE_BASE - EventsPackage.SHOW_HISTORY_EVENT__MODEL_ELEMENT, null, msgs);
+			msgs = basicSetModelElement(newModelElement, msgs);
+			if (msgs != null) msgs.dispatch();
+		}
+		else if (eNotificationRequired())
+			eNotify(new ENotificationImpl(this, Notification.SET, EventsPackage.SHOW_HISTORY_EVENT__MODEL_ELEMENT, newModelElement, newModelElement));
+	}
+
+	/**
 	 * <!-- begin-user-doc --> <!-- end-user-doc -->
 	 * @generated
 	 */
@@ -196,6 +273,8 @@ public class ShowHistoryEventImpl extends EventImpl implements ShowHistoryEvent 
 				return basicSetSourceVersion(null, msgs);
 			case EventsPackage.SHOW_HISTORY_EVENT__TARGET_VERSION:
 				return basicSetTargetVersion(null, msgs);
+			case EventsPackage.SHOW_HISTORY_EVENT__MODEL_ELEMENT:
+				return basicSetModelElement(null, msgs);
 		}
 		return super.eInverseRemove(otherEnd, featureID, msgs);
 	}
@@ -213,6 +292,9 @@ public class ShowHistoryEventImpl extends EventImpl implements ShowHistoryEvent 
 			case EventsPackage.SHOW_HISTORY_EVENT__TARGET_VERSION:
 				if (resolve) return getTargetVersion();
 				return basicGetTargetVersion();
+			case EventsPackage.SHOW_HISTORY_EVENT__MODEL_ELEMENT:
+				if (resolve) return getModelElement();
+				return basicGetModelElement();
 		}
 		return super.eGet(featureID, resolve, coreType);
 	}
@@ -229,6 +311,9 @@ public class ShowHistoryEventImpl extends EventImpl implements ShowHistoryEvent 
 				return;
 			case EventsPackage.SHOW_HISTORY_EVENT__TARGET_VERSION:
 				setTargetVersion((PrimaryVersionSpec)newValue);
+				return;
+			case EventsPackage.SHOW_HISTORY_EVENT__MODEL_ELEMENT:
+				setModelElement((ModelElementId)newValue);
 				return;
 		}
 		super.eSet(featureID, newValue);
@@ -247,6 +332,9 @@ public class ShowHistoryEventImpl extends EventImpl implements ShowHistoryEvent 
 			case EventsPackage.SHOW_HISTORY_EVENT__TARGET_VERSION:
 				setTargetVersion((PrimaryVersionSpec)null);
 				return;
+			case EventsPackage.SHOW_HISTORY_EVENT__MODEL_ELEMENT:
+				setModelElement((ModelElementId)null);
+				return;
 		}
 		super.eUnset(featureID);
 	}
@@ -262,6 +350,8 @@ public class ShowHistoryEventImpl extends EventImpl implements ShowHistoryEvent 
 				return sourceVersion != null;
 			case EventsPackage.SHOW_HISTORY_EVENT__TARGET_VERSION:
 				return targetVersion != null;
+			case EventsPackage.SHOW_HISTORY_EVENT__MODEL_ELEMENT:
+				return modelElement != null;
 		}
 		return super.eIsSet(featureID);
 	}

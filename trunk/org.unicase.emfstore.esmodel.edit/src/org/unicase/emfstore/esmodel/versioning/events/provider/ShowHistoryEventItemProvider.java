@@ -22,6 +22,7 @@ import org.eclipse.emf.edit.provider.ViewerNotification;
 import org.unicase.emfstore.esmodel.versioning.VersioningFactory;
 import org.unicase.emfstore.esmodel.versioning.events.EventsPackage;
 import org.unicase.emfstore.esmodel.versioning.events.ShowHistoryEvent;
+import org.unicase.model.ModelFactory;
 
 /*
  * This is the item provider adapter for a {@link org.unicase.emfstore.esmodel.versioning.events.ShowHistoryEvent}
@@ -67,6 +68,7 @@ public class ShowHistoryEventItemProvider extends EventItemProvider implements I
 			super.getChildrenFeatures(object);
 			childrenFeatures.add(EventsPackage.Literals.SHOW_HISTORY_EVENT__SOURCE_VERSION);
 			childrenFeatures.add(EventsPackage.Literals.SHOW_HISTORY_EVENT__TARGET_VERSION);
+			childrenFeatures.add(EventsPackage.Literals.SHOW_HISTORY_EVENT__MODEL_ELEMENT);
 		}
 		return childrenFeatures;
 	}
@@ -121,6 +123,7 @@ public class ShowHistoryEventItemProvider extends EventItemProvider implements I
 		switch (notification.getFeatureID(ShowHistoryEvent.class)) {
 			case EventsPackage.SHOW_HISTORY_EVENT__SOURCE_VERSION:
 			case EventsPackage.SHOW_HISTORY_EVENT__TARGET_VERSION:
+			case EventsPackage.SHOW_HISTORY_EVENT__MODEL_ELEMENT:
 				fireNotifyChanged(new ViewerNotification(notification, notification.getNotifier(), true, false));
 				return;
 		}
@@ -146,6 +149,11 @@ public class ShowHistoryEventItemProvider extends EventItemProvider implements I
 			(createChildParameter
 				(EventsPackage.Literals.SHOW_HISTORY_EVENT__TARGET_VERSION,
 				 VersioningFactory.eINSTANCE.createPrimaryVersionSpec()));
+
+		newChildDescriptors.add
+			(createChildParameter
+				(EventsPackage.Literals.SHOW_HISTORY_EVENT__MODEL_ELEMENT,
+				 ModelFactory.eINSTANCE.createModelElementId()));
 	}
 
 	/**

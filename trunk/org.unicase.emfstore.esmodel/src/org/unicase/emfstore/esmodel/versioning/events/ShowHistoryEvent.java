@@ -6,6 +6,7 @@
 package org.unicase.emfstore.esmodel.versioning.events;
 
 import org.unicase.emfstore.esmodel.versioning.PrimaryVersionSpec;
+import org.unicase.model.ModelElementId;
 
 /*
  * <!-- begin-user-doc --> A representation of the model object '<em><b>Show History Event</b></em>'. <!-- end-user-doc
@@ -67,5 +68,31 @@ public interface ShowHistoryEvent extends Event {
 	 * @generated
 	 */
 	void setTargetVersion(PrimaryVersionSpec value);
+
+	/**
+	 * Returns the value of the '<em><b>Model Element</b></em>' containment reference.
+	 * <!-- begin-user-doc -->
+	 * <p>
+	 * If the meaning of the '<em>Model Element</em>' containment reference isn't clear,
+	 * there really should be more of a description here...
+	 * </p>
+	 * <!-- end-user-doc -->
+	 * @return the value of the '<em>Model Element</em>' containment reference.
+	 * @see #setModelElement(ModelElementId)
+	 * @see org.unicase.emfstore.esmodel.versioning.events.EventsPackage#getShowHistoryEvent_ModelElement()
+	 * @model containment="true" resolveProxies="true"
+	 * @generated
+	 */
+	ModelElementId getModelElement();
+
+	/**
+	 * Sets the value of the '{@link org.unicase.emfstore.esmodel.versioning.events.ShowHistoryEvent#getModelElement <em>Model Element</em>}' containment reference.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @param value the new value of the '<em>Model Element</em>' containment reference.
+	 * @see #getModelElement()
+	 * @generated
+	 */
+	void setModelElement(ModelElementId value);
 
 } // ShowHistoryEvent
