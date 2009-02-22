@@ -139,7 +139,11 @@ public class MEEditorPage extends FormPage {
 		GridDataFactory.fillDefaults().align(SWT.LEFT, SWT.TOP).grab(true, false).applyTo(bottom);
 
 		// Layout form
-		form.setText(modelElement.getName());
+		String name = modelElement.getName();
+		if (name.length() > 33) {
+			name = name.substring(0, 30) + "...";
+		}
+		form.setText(name);
 		form.setImage(new AdapterFactoryLabelProvider(new ComposedAdapterFactory(
 			ComposedAdapterFactory.Descriptor.Registry.INSTANCE)).getImage(modelElement));
 

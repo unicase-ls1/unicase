@@ -78,11 +78,15 @@ public final class NotificationHelper {
 		ret.append("%");
 		ret.append(projectSpace.getProjectId().getId());
 		ret.append("/");
-		ret.append(modelElement.getName().replaceAll("\"", "\\'"));
+		String name = modelElement.getName().replaceAll("\"", "\\'");
+		ret.append(name);
 		ret.append("%");
 		ret.append(modelElement.getIdentifier());
 		ret.append("\">");
-		ret.append(modelElement.getName());
+		if (name.length() > 33) {
+			name = name.substring(0, 30) + "...";
+		}
+		ret.append(name);
 		ret.append("</a>");
 		return ret.toString();
 	}
