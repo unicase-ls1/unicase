@@ -307,6 +307,10 @@
         <eStructuralFeatures xsi:type="ecore:EReference" name="notifications" upperBound="-1"
             eType="#//notification/ESNotification" containment="true" eKeys="../../org.unicase.model/model/model.ecore#//IdentifiableElement/identifier"/>
       </eClassifiers>
+      <eClassifiers xsi:type="ecore:EClass" name="NotificationIgnoreEvent" eSuperTypes="#//versioning/events/Event">
+        <eStructuralFeatures xsi:type="ecore:EAttribute" name="notificationId" eType="ecore:EDataType http://www.eclipse.org/emf/2002/Ecore#//EString"
+            defaultValueLiteral=""/>
+      </eClassifiers>
     </eSubpackages>
   </eSubpackages>
   <eSubpackages name="accesscontrol" nsURI="http://unicase.org/esmodel/accesscontrol"

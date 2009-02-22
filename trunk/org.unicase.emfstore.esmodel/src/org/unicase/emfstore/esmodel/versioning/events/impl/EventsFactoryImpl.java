@@ -21,6 +21,7 @@ import org.unicase.emfstore.esmodel.versioning.events.LinkEvent;
 import org.unicase.emfstore.esmodel.versioning.events.MergeEvent;
 import org.unicase.emfstore.esmodel.versioning.events.NavigatorCreateEvent;
 import org.unicase.emfstore.esmodel.versioning.events.NotificationGenerationEvent;
+import org.unicase.emfstore.esmodel.versioning.events.NotificationIgnoreEvent;
 import org.unicase.emfstore.esmodel.versioning.events.NotificationReadEvent;
 import org.unicase.emfstore.esmodel.versioning.events.PerspectiveEvent;
 import org.unicase.emfstore.esmodel.versioning.events.PluginFocusEvent;
@@ -96,6 +97,7 @@ public class EventsFactoryImpl extends EFactoryImpl implements EventsFactory {
 			case EventsPackage.SHOW_CHANGES_EVENT: return createShowChangesEvent();
 			case EventsPackage.NOTIFICATION_READ_EVENT: return createNotificationReadEvent();
 			case EventsPackage.NOTIFICATION_GENERATION_EVENT: return createNotificationGenerationEvent();
+			case EventsPackage.NOTIFICATION_IGNORE_EVENT: return createNotificationIgnoreEvent();
 			default:
 				throw new IllegalArgumentException("The class '" + eClass.getName() + "' is not a valid classifier");
 		}
@@ -299,6 +301,16 @@ public class EventsFactoryImpl extends EFactoryImpl implements EventsFactory {
 	public NotificationGenerationEvent createNotificationGenerationEvent() {
 		NotificationGenerationEventImpl notificationGenerationEvent = new NotificationGenerationEventImpl();
 		return notificationGenerationEvent;
+	}
+
+	/**
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 */
+	public NotificationIgnoreEvent createNotificationIgnoreEvent() {
+		NotificationIgnoreEventImpl notificationIgnoreEvent = new NotificationIgnoreEventImpl();
+		return notificationIgnoreEvent;
 	}
 
 	/**

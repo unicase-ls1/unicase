@@ -299,6 +299,11 @@ public class ChangePackageItemProvider extends ItemProviderAdapter implements IE
 
 		newChildDescriptors.add
 			(createChildParameter
+				(VersioningPackage.Literals.CHANGE_PACKAGE__EVENTS,
+				 EventsFactory.eINSTANCE.createNotificationIgnoreEvent()));
+
+		newChildDescriptors.add
+			(createChildParameter
 				(VersioningPackage.Literals.CHANGE_PACKAGE__LOG_MESSAGE,
 				 VersioningFactory.eINSTANCE.createLogMessage()));
 
