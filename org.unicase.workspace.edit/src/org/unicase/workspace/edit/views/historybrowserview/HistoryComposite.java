@@ -5,6 +5,7 @@
  */
 package org.unicase.workspace.edit.views.historybrowserview;
 
+import java.util.Date;
 import java.util.List;
 
 import org.eclipse.emf.transaction.RecordingCommand;
@@ -37,17 +38,21 @@ import org.eclipse.swt.widgets.Table;
 import org.eclipse.swt.widgets.TableColumn;
 import org.eclipse.ui.PlatformUI;
 import org.eclipse.ui.dialogs.ElementListSelectionDialog;
+import org.unicase.emfstore.esmodel.util.EsModelUtil;
 import org.unicase.emfstore.esmodel.versioning.ChangePackage;
 import org.unicase.emfstore.esmodel.versioning.HistoryInfo;
 import org.unicase.emfstore.esmodel.versioning.PrimaryVersionSpec;
 import org.unicase.emfstore.esmodel.versioning.TagVersionSpec;
 import org.unicase.emfstore.esmodel.versioning.VersioningFactory;
+import org.unicase.emfstore.esmodel.versioning.events.EventsFactory;
+import org.unicase.emfstore.esmodel.versioning.events.ShowChangesEvent;
 import org.unicase.emfstore.esmodel.versioning.operations.AbstractOperation;
 import org.unicase.emfstore.exceptions.EmfStoreException;
 import org.unicase.model.ModelElement;
 import org.unicase.model.Project;
 import org.unicase.ui.common.exceptions.DialogHandler;
 import org.unicase.ui.common.util.ActionHelper;
+import org.unicase.workspace.ProjectSpace;
 import org.unicase.workspace.WorkspaceManager;
 import org.unicase.workspace.edit.views.changes.AbstractChangesComposite;
 import org.unicase.workspace.edit.views.changes.TabbedChangesComposite;
@@ -427,8 +432,10 @@ public class HistoryComposite extends Composite implements ISelectionChangedList
 				prevVersionSpec.setIdentifier(prev);
 				List<ChangePackage> changes = null;
 				try {
-					changes = WorkspaceManager.getInstance().getCurrentWorkspace().getActiveProjectSpace().getChanges(
-						prevVersionSpec, currentVersionSpec);
+					ProjectSpace activeProjectSpace = WorkspaceManager.getInstance().getCurrentWorkspace()
+						.getActiveProjectSpace();
+					changes = activeProjectSpace.getChanges(prevVersionSpec, currentVersionSpec);
+					logEvent(activeProjectSpace, prevVersionSpec, currentVersionSpec);
 					changesComposite = new TabbedChangesComposite(bottom, SWT.NONE, changes);
 					for (AbstractChangesComposite tab : changesComposite.getTabs()) {
 						tab.getTreeViewer().addDoubleClickListener(this);
@@ -440,6 +447,15 @@ public class HistoryComposite extends Composite implements ISelectionChangedList
 			}
 			bottom.layout(true);
 		}
+	}
+
+	private void logEvent(ProjectSpace activeProjectSpace, PrimaryVersionSpec prevVersionSpec,
+		PrimaryVersionSpec currentVersionSpec) {
+		ShowChangesEvent showChangesEvent = EventsFactory.eINSTANCE.createShowChangesEvent();
+		showChangesEvent.setSourceVersion(EsModelUtil.clone(prevVersionSpec));
+		showChangesEvent.setTargetVersion(EsModelUtil.clone(currentVersionSpec));
+		showChangesEvent.setTimestamp(new Date());
+		activeProjectSpace.addEvent(showChangesEvent);
 	}
 
 	/**
