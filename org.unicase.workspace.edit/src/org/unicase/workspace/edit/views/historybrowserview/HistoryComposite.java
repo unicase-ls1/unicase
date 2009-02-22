@@ -416,46 +416,60 @@ public class HistoryComposite extends Composite implements ISelectionChangedList
 	 * {@inheritDoc}
 	 */
 	public void selectionChanged(SelectionChangedEvent event) {
-		Object selection = ((IStructuredSelection) event.getSelection()).getFirstElement();
+		final Object selection = ((IStructuredSelection) event.getSelection()).getFirstElement();
 		if (selection != null && selection instanceof HistoryInfo) {
-			HistoryInfo historyInfo = (HistoryInfo) selection;
-			PrimaryVersionSpec currentVersionSpec = historyInfo.getPrimerySpec();
-			int current = currentVersionSpec.getIdentifier();
-
-			if (changesComposite != null && !changesComposite.isDisposed()) {
-				changesComposite.dispose();
-			}
-			// skip the initial change package
-			if (current != 0) {
-				int prev = current - 1;
-				PrimaryVersionSpec prevVersionSpec = VersioningFactory.eINSTANCE.createPrimaryVersionSpec();
-				prevVersionSpec.setIdentifier(prev);
-				List<ChangePackage> changes = null;
-				try {
-					ProjectSpace activeProjectSpace = WorkspaceManager.getInstance().getCurrentWorkspace()
-						.getActiveProjectSpace();
-					changes = activeProjectSpace.getChanges(prevVersionSpec, currentVersionSpec);
-					logEvent(activeProjectSpace, prevVersionSpec, currentVersionSpec);
-					changesComposite = new TabbedChangesComposite(bottom, SWT.NONE, changes);
-					for (AbstractChangesComposite tab : changesComposite.getTabs()) {
-						tab.getTreeViewer().addDoubleClickListener(this);
-					}
-					GridDataFactory.fillDefaults().align(SWT.FILL, SWT.FILL).grab(true, true).applyTo(changesComposite);
-				} catch (EmfStoreException e) {
-					DialogHandler.showExceptionDialog(e);
+			TransactionalEditingDomain domain = TransactionalEditingDomain.Registry.INSTANCE
+				.getEditingDomain("org.unicase.EditingDomain");
+			domain.getCommandStack().execute(new RecordingCommand(domain) {
+				@Override
+				protected void doExecute() {
+					processSelectionChange(selection);
 				}
-			}
-			bottom.layout(true);
+			});
+
 		}
+	}
+
+	private void processSelectionChange(Object selection) {
+		HistoryInfo historyInfo = (HistoryInfo) selection;
+		PrimaryVersionSpec currentVersionSpec = historyInfo.getPrimerySpec();
+		int current = currentVersionSpec.getIdentifier();
+
+		if (changesComposite != null && !changesComposite.isDisposed()) {
+			changesComposite.dispose();
+		}
+		// skip the initial change package
+		if (current != 0) {
+			int prev = current - 1;
+			PrimaryVersionSpec prevVersionSpec = VersioningFactory.eINSTANCE.createPrimaryVersionSpec();
+			prevVersionSpec.setIdentifier(prev);
+			List<ChangePackage> changes = null;
+			try {
+				ProjectSpace activeProjectSpace = WorkspaceManager.getInstance().getCurrentWorkspace()
+					.getActiveProjectSpace();
+				changes = activeProjectSpace.getChanges(prevVersionSpec, currentVersionSpec);
+				logEvent(activeProjectSpace, prevVersionSpec, currentVersionSpec);
+				changesComposite = new TabbedChangesComposite(bottom, SWT.NONE, changes);
+				for (AbstractChangesComposite tab : changesComposite.getTabs()) {
+					tab.getTreeViewer().addDoubleClickListener(this);
+				}
+				GridDataFactory.fillDefaults().align(SWT.FILL, SWT.FILL).grab(true, true).applyTo(changesComposite);
+			} catch (EmfStoreException e) {
+				DialogHandler.showExceptionDialog(e);
+			}
+		}
+		bottom.layout(true);
 	}
 
 	private void logEvent(ProjectSpace activeProjectSpace, PrimaryVersionSpec prevVersionSpec,
 		PrimaryVersionSpec currentVersionSpec) {
+
 		ShowChangesEvent showChangesEvent = EventsFactory.eINSTANCE.createShowChangesEvent();
 		showChangesEvent.setSourceVersion(EsModelUtil.clone(prevVersionSpec));
 		showChangesEvent.setTargetVersion(EsModelUtil.clone(currentVersionSpec));
 		showChangesEvent.setTimestamp(new Date());
 		activeProjectSpace.addEvent(showChangesEvent);
+
 	}
 
 	/**
