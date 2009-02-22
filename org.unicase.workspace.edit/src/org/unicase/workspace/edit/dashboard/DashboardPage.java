@@ -72,6 +72,7 @@ public class DashboardPage extends FormPage {
 		final PluginFocusEvent focusEvent = EventsFactory.eINSTANCE.createPluginFocusEvent();
 		focusEvent.setPluginId(DashboardEditor.ID);
 		focusEvent.setTimestamp(new Date());
+		focusEvent.setStartDate(new Date());
 		TransactionalEditingDomain domain = TransactionalEditingDomain.Registry.INSTANCE
 			.getEditingDomain("org.unicase.EditingDomain");
 		domain.getCommandStack().execute(new RecordingCommand(domain) {
