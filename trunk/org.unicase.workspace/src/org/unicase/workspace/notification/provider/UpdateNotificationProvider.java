@@ -45,6 +45,12 @@ public class UpdateNotificationProvider implements NotificationProvider {
 	 */
 	public List<ESNotification> provideNotifications(ProjectSpace projectSpace, List<ChangePackage> changePackages,
 		String currentUsername) {
+		List<ESNotification> result = new ArrayList<ESNotification>();
+		// do not generate an update notification for a commit
+		if (changePackages.size() == 1 && changePackages.get(0).getLogMessage().getAuthor().equals(currentUsername)) {
+			return result;
+		}
+
 		ESNotification notification = NotificationFactory.eINSTANCE.createESNotification();
 		notification.setCreationDate(new Date());
 		StringBuilder stringBuilder = new StringBuilder();
@@ -55,7 +61,6 @@ public class UpdateNotificationProvider implements NotificationProvider {
 		notification.setProject(EsModelUtil.clone(projectSpace.getProjectId()));
 		notification.setRecipient(currentUsername);
 		notification.setSender(getName());
-		List<ESNotification> result = new ArrayList<ESNotification>();
 		result.add(notification);
 		return result;
 	}
