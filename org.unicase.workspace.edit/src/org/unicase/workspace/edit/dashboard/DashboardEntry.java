@@ -177,10 +177,10 @@ public class DashboardEntry extends Composite {
 			@Override
 			public void mouseDown(MouseEvent e) {
 				boolean hide = MessageDialog
-					.openConfirm(
+					.openQuestion(
 						getShell(),
 						"Reject notification",
-						"Are you sure you are not interested in this notification? Your choice will be used to filter notifications you will receive in the future.");
+						"Are you sure you are NOT interested in this notification? Your choice will be used to filter notifications you will receive in the future.");
 				if (hide) {
 					TransactionalEditingDomain domain = TransactionalEditingDomain.Registry.INSTANCE
 						.getEditingDomain("org.unicase.EditingDomain");
