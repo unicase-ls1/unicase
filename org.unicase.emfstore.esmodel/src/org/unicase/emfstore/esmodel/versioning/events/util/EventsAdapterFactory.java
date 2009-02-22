@@ -19,6 +19,7 @@ import org.unicase.emfstore.esmodel.versioning.events.LinkEvent;
 import org.unicase.emfstore.esmodel.versioning.events.MergeEvent;
 import org.unicase.emfstore.esmodel.versioning.events.NavigatorCreateEvent;
 import org.unicase.emfstore.esmodel.versioning.events.NotificationGenerationEvent;
+import org.unicase.emfstore.esmodel.versioning.events.NotificationIgnoreEvent;
 import org.unicase.emfstore.esmodel.versioning.events.NotificationReadEvent;
 import org.unicase.emfstore.esmodel.versioning.events.PerspectiveEvent;
 import org.unicase.emfstore.esmodel.versioning.events.PluginFocusEvent;
@@ -170,6 +171,10 @@ public class EventsAdapterFactory extends AdapterFactoryImpl {
 			@Override
 			public Adapter caseNotificationGenerationEvent(NotificationGenerationEvent object) {
 				return createNotificationGenerationEventAdapter();
+			}
+			@Override
+			public Adapter caseNotificationIgnoreEvent(NotificationIgnoreEvent object) {
+				return createNotificationIgnoreEventAdapter();
 			}
 			@Override
 			public Adapter defaultCase(EObject object) {
@@ -488,6 +493,20 @@ public class EventsAdapterFactory extends AdapterFactoryImpl {
 	 * @generated
 	 */
 	public Adapter createNotificationGenerationEventAdapter() {
+		return null;
+	}
+
+	/**
+	 * Creates a new adapter for an object of class '{@link org.unicase.emfstore.esmodel.versioning.events.NotificationIgnoreEvent <em>Notification Ignore Event</em>}'.
+	 * <!-- begin-user-doc -->
+	 * This default implementation returns null so that we can easily ignore cases;
+	 * it's useful to ignore a case when inheritance will catch all the cases anyway.
+	 * <!-- end-user-doc -->
+	 * @return the new adapter.
+	 * @see org.unicase.emfstore.esmodel.versioning.events.NotificationIgnoreEvent
+	 * @generated
+	 */
+	public Adapter createNotificationIgnoreEventAdapter() {
 		return null;
 	}
 

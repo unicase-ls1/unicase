@@ -1033,6 +1033,43 @@ public interface EventsPackage extends EPackage {
 	int NOTIFICATION_GENERATION_EVENT_FEATURE_COUNT = EVENT_FEATURE_COUNT + 1;
 
 	/**
+	 * The meta object id for the '{@link org.unicase.emfstore.esmodel.versioning.events.impl.NotificationIgnoreEventImpl <em>Notification Ignore Event</em>}' class.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @see org.unicase.emfstore.esmodel.versioning.events.impl.NotificationIgnoreEventImpl
+	 * @see org.unicase.emfstore.esmodel.versioning.events.impl.EventsPackageImpl#getNotificationIgnoreEvent()
+	 * @generated
+	 */
+	int NOTIFICATION_IGNORE_EVENT = 22;
+
+	/**
+	 * The feature id for the '<em><b>Timestamp</b></em>' attribute.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 * @ordered
+	 */
+	int NOTIFICATION_IGNORE_EVENT__TIMESTAMP = EVENT__TIMESTAMP;
+
+	/**
+	 * The feature id for the '<em><b>Notification Id</b></em>' attribute.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 * @ordered
+	 */
+	int NOTIFICATION_IGNORE_EVENT__NOTIFICATION_ID = EVENT_FEATURE_COUNT + 0;
+
+	/**
+	 * The number of structural features of the '<em>Notification Ignore Event</em>' class.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 * @ordered
+	 */
+	int NOTIFICATION_IGNORE_EVENT_FEATURE_COUNT = EVENT_FEATURE_COUNT + 1;
+
+	/**
 	 * Returns the meta object for class '{@link org.unicase.emfstore.esmodel.versioning.events.Event <em>Event</em>}'.
 	 * <!-- begin-user-doc --> <!-- end-user-doc -->
 	 * @return the meta object for class '<em>Event</em>'.
@@ -1746,6 +1783,27 @@ public interface EventsPackage extends EPackage {
 	EReference getNotificationGenerationEvent_Notifications();
 
 	/**
+	 * Returns the meta object for class '{@link org.unicase.emfstore.esmodel.versioning.events.NotificationIgnoreEvent <em>Notification Ignore Event</em>}'.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @return the meta object for class '<em>Notification Ignore Event</em>'.
+	 * @see org.unicase.emfstore.esmodel.versioning.events.NotificationIgnoreEvent
+	 * @generated
+	 */
+	EClass getNotificationIgnoreEvent();
+
+	/**
+	 * Returns the meta object for the attribute '{@link org.unicase.emfstore.esmodel.versioning.events.NotificationIgnoreEvent#getNotificationId <em>Notification Id</em>}'.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @return the meta object for the attribute '<em>Notification Id</em>'.
+	 * @see org.unicase.emfstore.esmodel.versioning.events.NotificationIgnoreEvent#getNotificationId()
+	 * @see #getNotificationIgnoreEvent()
+	 * @generated
+	 */
+	EAttribute getNotificationIgnoreEvent_NotificationId();
+
+	/**
 	 * Returns the factory that creates the instances of the model.
 	 * <!-- begin-user-doc --> <!-- end-user-doc -->
 	 * @return the factory that creates the instances of the model.
@@ -2332,6 +2390,24 @@ public interface EventsPackage extends EPackage {
 		 * @generated
 		 */
 		EReference NOTIFICATION_GENERATION_EVENT__NOTIFICATIONS = eINSTANCE.getNotificationGenerationEvent_Notifications();
+
+		/**
+		 * The meta object literal for the '{@link org.unicase.emfstore.esmodel.versioning.events.impl.NotificationIgnoreEventImpl <em>Notification Ignore Event</em>}' class.
+		 * <!-- begin-user-doc -->
+		 * <!-- end-user-doc -->
+		 * @see org.unicase.emfstore.esmodel.versioning.events.impl.NotificationIgnoreEventImpl
+		 * @see org.unicase.emfstore.esmodel.versioning.events.impl.EventsPackageImpl#getNotificationIgnoreEvent()
+		 * @generated
+		 */
+		EClass NOTIFICATION_IGNORE_EVENT = eINSTANCE.getNotificationIgnoreEvent();
+
+		/**
+		 * The meta object literal for the '<em><b>Notification Id</b></em>' attribute feature.
+		 * <!-- begin-user-doc -->
+		 * <!-- end-user-doc -->
+		 * @generated
+		 */
+		EAttribute NOTIFICATION_IGNORE_EVENT__NOTIFICATION_ID = eINSTANCE.getNotificationIgnoreEvent_NotificationId();
 
 	}
 

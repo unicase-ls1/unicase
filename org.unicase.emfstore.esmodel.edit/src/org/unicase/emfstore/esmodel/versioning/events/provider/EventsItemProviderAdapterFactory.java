@@ -570,6 +570,29 @@ public class EventsItemProviderAdapterFactory extends EventsAdapterFactory imple
 	}
 
 	/**
+	 * This keeps track of the one adapter used for all {@link org.unicase.emfstore.esmodel.versioning.events.NotificationIgnoreEvent} instances.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 */
+	protected NotificationIgnoreEventItemProvider notificationIgnoreEventItemProvider;
+
+	/**
+	 * This creates an adapter for a {@link org.unicase.emfstore.esmodel.versioning.events.NotificationIgnoreEvent}.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 */
+	@Override
+	public Adapter createNotificationIgnoreEventAdapter() {
+		if (notificationIgnoreEventItemProvider == null) {
+			notificationIgnoreEventItemProvider = new NotificationIgnoreEventItemProvider(this);
+		}
+
+		return notificationIgnoreEventItemProvider;
+	}
+
+	/**
 	 * This returns the root adapter factory that contains this factory.
 	 * <!-- begin-user-doc --> <!-- end-user-doc -->
 	 * @generated
@@ -683,6 +706,7 @@ public class EventsItemProviderAdapterFactory extends EventsAdapterFactory imple
 		if (showChangesEventItemProvider != null) showChangesEventItemProvider.dispose();
 		if (notificationReadEventItemProvider != null) notificationReadEventItemProvider.dispose();
 		if (notificationGenerationEventItemProvider != null) notificationGenerationEventItemProvider.dispose();
+		if (notificationIgnoreEventItemProvider != null) notificationIgnoreEventItemProvider.dispose();
 	}
 
 }

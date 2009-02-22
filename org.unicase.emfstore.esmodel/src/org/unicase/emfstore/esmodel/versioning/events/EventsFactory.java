@@ -200,6 +200,15 @@ public interface EventsFactory extends EFactory {
 	NotificationGenerationEvent createNotificationGenerationEvent();
 
 	/**
+	 * Returns a new object of class '<em>Notification Ignore Event</em>'.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @return a new object of class '<em>Notification Ignore Event</em>'.
+	 * @generated
+	 */
+	NotificationIgnoreEvent createNotificationIgnoreEvent();
+
+	/**
 	 * Returns the package supported by this factory.
 	 * <!-- begin-user-doc --> <!-- end-user-doc -->
 	 * @return the package supported by this factory.

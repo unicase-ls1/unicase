@@ -245,6 +245,9 @@
         <genClasses ecoreClass="esmodel.ecore#//versioning/events/NotificationGenerationEvent">
           <genFeatures property="None" children="true" createChild="true" ecoreFeature="ecore:EReference esmodel.ecore#//versioning/events/NotificationGenerationEvent/notifications"/>
         </genClasses>
+        <genClasses ecoreClass="esmodel.ecore#//versioning/events/NotificationIgnoreEvent">
+          <genFeatures createChild="false" ecoreFeature="ecore:EAttribute esmodel.ecore#//versioning/events/NotificationIgnoreEvent/notificationId"/>
+        </genClasses>
       </nestedGenPackages>
     </nestedGenPackages>
     <nestedGenPackages prefix="Accesscontrol" basePackage="org.unicase.emfstore.esmodel"

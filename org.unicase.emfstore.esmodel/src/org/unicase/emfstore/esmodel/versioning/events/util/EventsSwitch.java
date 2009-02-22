@@ -19,6 +19,7 @@ import org.unicase.emfstore.esmodel.versioning.events.LinkEvent;
 import org.unicase.emfstore.esmodel.versioning.events.MergeEvent;
 import org.unicase.emfstore.esmodel.versioning.events.NavigatorCreateEvent;
 import org.unicase.emfstore.esmodel.versioning.events.NotificationGenerationEvent;
+import org.unicase.emfstore.esmodel.versioning.events.NotificationIgnoreEvent;
 import org.unicase.emfstore.esmodel.versioning.events.NotificationReadEvent;
 import org.unicase.emfstore.esmodel.versioning.events.PerspectiveEvent;
 import org.unicase.emfstore.esmodel.versioning.events.PluginFocusEvent;
@@ -248,6 +249,13 @@ public class EventsSwitch<T> {
 				NotificationGenerationEvent notificationGenerationEvent = (NotificationGenerationEvent)theEObject;
 				T result = caseNotificationGenerationEvent(notificationGenerationEvent);
 				if (result == null) result = caseEvent(notificationGenerationEvent);
+				if (result == null) result = defaultCase(theEObject);
+				return result;
+			}
+			case EventsPackage.NOTIFICATION_IGNORE_EVENT: {
+				NotificationIgnoreEvent notificationIgnoreEvent = (NotificationIgnoreEvent)theEObject;
+				T result = caseNotificationIgnoreEvent(notificationIgnoreEvent);
+				if (result == null) result = caseEvent(notificationIgnoreEvent);
 				if (result == null) result = defaultCase(theEObject);
 				return result;
 			}
@@ -552,6 +560,21 @@ public class EventsSwitch<T> {
 	 * @generated
 	 */
 	public T caseNotificationGenerationEvent(NotificationGenerationEvent object) {
+		return null;
+	}
+
+	/**
+	 * Returns the result of interpreting the object as an instance of '<em>Notification Ignore Event</em>'.
+	 * <!-- begin-user-doc -->
+	 * This implementation returns null;
+	 * returning a non-null result will terminate the switch.
+	 * <!-- end-user-doc -->
+	 * @param object the target of the switch.
+	 * @return the result of interpreting the object as an instance of '<em>Notification Ignore Event</em>'.
+	 * @see #doSwitch(org.eclipse.emf.ecore.EObject) doSwitch(EObject)
+	 * @generated
+	 */
+	public T caseNotificationIgnoreEvent(NotificationIgnoreEvent object) {
 		return null;
 	}
 
