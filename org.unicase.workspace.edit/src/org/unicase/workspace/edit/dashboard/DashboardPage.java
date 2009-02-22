@@ -5,6 +5,7 @@
  */
 package org.unicase.workspace.edit.dashboard;
 
+import java.util.Date;
 import java.util.List;
 
 import org.eclipse.emf.transaction.RecordingCommand;
@@ -21,6 +22,8 @@ import org.eclipse.ui.forms.editor.FormPage;
 import org.eclipse.ui.forms.widgets.FormToolkit;
 import org.eclipse.ui.forms.widgets.ScrolledForm;
 import org.unicase.emfstore.esmodel.notification.ESNotification;
+import org.unicase.emfstore.esmodel.versioning.events.EventsFactory;
+import org.unicase.emfstore.esmodel.versioning.events.PluginFocusEvent;
 import org.unicase.workspace.ProjectSpace;
 import org.unicase.workspace.edit.Activator;
 import org.unicase.workspace.edit.dashboard.widgets.DashboardTaskWidget;
@@ -66,6 +69,19 @@ public class DashboardPage extends FormPage {
 		DashboardEditorInput editorInput = (DashboardEditorInput) getEditorInput();
 		projectSpace = editorInput.getProjectSpace();
 
+		final PluginFocusEvent focusEvent = EventsFactory.eINSTANCE.createPluginFocusEvent();
+		focusEvent.setPluginId(DashboardEditor.ID);
+		focusEvent.setTimestamp(new Date());
+		TransactionalEditingDomain domain = TransactionalEditingDomain.Registry.INSTANCE
+			.getEditingDomain("org.unicase.EditingDomain");
+		domain.getCommandStack().execute(new RecordingCommand(domain) {
+
+			@Override
+			protected void doExecute() {
+				projectSpace.addEvent(focusEvent);
+			}
+		});
+
 		notifications = editorInput.getNotifications();
 
 		form.setText("Dashboard - " + projectSpace.getProjectName());
@@ -100,8 +116,6 @@ public class DashboardPage extends FormPage {
 		// DashboardEventWidget events = new DashboardEventWidget(widgets, SWT.NONE);
 		// GridDataFactory.fillDefaults().grab(true, false).applyTo(events);
 
-		TransactionalEditingDomain domain = TransactionalEditingDomain.Registry.INSTANCE
-			.getEditingDomain("org.unicase.EditingDomain");
 		domain.getCommandStack().execute(new RecordingCommand(domain) {
 
 			@Override
