@@ -134,8 +134,10 @@ public class DashboardPage extends FormPage {
 
 	private void loadNotifications(List<ESNotification> notifications) {
 		for (ESNotification n : notifications) {
-			DashboardEntry entry = new DashboardEntry(this, main, SWT.NONE, n, projectSpace);
-			GridDataFactory.fillDefaults().align(SWT.FILL, SWT.BEGINNING).grab(true, false).applyTo(entry);
+			if (!n.isSeen()) {
+				DashboardEntry entry = new DashboardEntry(this, main, SWT.NONE, n, projectSpace);
+				GridDataFactory.fillDefaults().align(SWT.FILL, SWT.BEGINNING).grab(true, false).applyTo(entry);
+			}
 		}
 	}
 
