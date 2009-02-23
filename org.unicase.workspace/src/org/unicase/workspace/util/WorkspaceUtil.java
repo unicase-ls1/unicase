@@ -135,7 +135,7 @@ public final class WorkspaceUtil {
 		String cmd = "";
 
 		if (lcOSName.startsWith("mac os x")) {
-			fileUrl = "'" + fileUrl + "'";
+			// fileUrl = "'" + fileUrl + "'";
 			cmd = "open";
 		} else if (lcOSName.startsWith("linux")) {
 			// fileUrl = "'" + fileUrl + "'";
