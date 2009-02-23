@@ -8,10 +8,8 @@
         upperBound="-1" eType="#//renderers/ModelElementRendererMapping" containment="true"/>
     <eStructuralFeatures xsi:type="ecore:EReference" name="layoutOptions" eType="#//renderers/options/LayoutOptions"
         containment="true"/>
-    <eStructuralFeatures xsi:type="ecore:EReference" name="globalRendererOptions"
-        upperBound="-1" eType="#//renderers/options/AttributeOption" containment="true"/>
-    <eStructuralFeatures xsi:type="ecore:EAttribute" name="name" eType="ecore:EDataType platform:/plugin/org.eclipse.emf.ecore/model/Ecore.ecore#//EString"/>
-    <eStructuralFeatures xsi:type="ecore:EAttribute" name="defaultTemplate" eType="ecore:EDataType platform:/plugin/org.eclipse.emf.ecore/model/Ecore.ecore#//EBoolean"/>
+    <eStructuralFeatures xsi:type="ecore:EAttribute" name="name" eType="ecore:EDataType http://www.eclipse.org/emf/2002/Ecore#//EString"/>
+    <eStructuralFeatures xsi:type="ecore:EAttribute" name="defaultTemplate" eType="ecore:EDataType http://www.eclipse.org/emf/2002/Ecore#//EBoolean"/>
   </eClassifiers>
   <eSubpackages name="renderers" nsURI="http://unicase.org/docExport/exportModel/renderers"
       nsPrefix="org.unicase.docExport.exportModel.renderers">
@@ -30,12 +28,12 @@
     <eClassifiers xsi:type="ecore:EClass" name="ModelElementRendererMapping">
       <eStructuralFeatures xsi:type="ecore:EReference" name="renderer" eType="#//renderers/ModelElementRenderer"
           containment="true"/>
-      <eStructuralFeatures xsi:type="ecore:EAttribute" name="eClassName" eType="ecore:EDataType platform:/plugin/org.eclipse.emf.ecore/model/Ecore.ecore#//EString"/>
+      <eStructuralFeatures xsi:type="ecore:EAttribute" name="eClassName" eType="ecore:EDataType http://www.eclipse.org/emf/2002/Ecore#//EString"/>
     </eClassifiers>
     <eClassifiers xsi:type="ecore:EClass" name="AttributeRendererMapping">
       <eStructuralFeatures xsi:type="ecore:EReference" name="attributeRenderer" eType="#//renderers/AttributeRenderer"
           containment="true"/>
-      <eStructuralFeatures xsi:type="ecore:EAttribute" name="featureName" eType="ecore:EDataType platform:/plugin/org.eclipse.emf.ecore/model/Ecore.ecore#//EString"/>
+      <eStructuralFeatures xsi:type="ecore:EAttribute" name="featureName" eType="ecore:EDataType http://www.eclipse.org/emf/2002/Ecore#//EString"/>
     </eClassifiers>
     <eSubpackages name="defaultRenderers" nsURI="http://unicase.org/docExport/exportModel/renderers/defaultRenderers"
         nsPrefix="org.unicase.docExport.exportModel.renderers.defaultRenderers">
@@ -56,17 +54,17 @@
     <eSubpackages name="options" nsURI="http://unicase.org/docExport/exportModel/renderers/options"
         nsPrefix="org.unicase.docExport.exportModel.renderers.options">
       <eClassifiers xsi:type="ecore:EClass" name="RendererOption" abstract="true">
-        <eStructuralFeatures xsi:type="ecore:EAttribute" name="name" eType="ecore:EDataType platform:/plugin/org.eclipse.emf.ecore/model/Ecore.ecore#//EString"/>
+        <eStructuralFeatures xsi:type="ecore:EAttribute" name="name" eType="ecore:EDataType http://www.eclipse.org/emf/2002/Ecore#//EString"/>
       </eClassifiers>
       <eClassifiers xsi:type="ecore:EClass" name="AttributeOption" abstract="true"
           eSuperTypes="#//renderers/options/RendererOption">
-        <eStructuralFeatures xsi:type="ecore:EAttribute" name="hide" eType="ecore:EDataType platform:/plugin/org.eclipse.emf.ecore/model/Ecore.ecore#//EBoolean"
+        <eStructuralFeatures xsi:type="ecore:EAttribute" name="hide" eType="ecore:EDataType http://www.eclipse.org/emf/2002/Ecore#//EBoolean"
             defaultValueLiteral="false"/>
         <eStructuralFeatures xsi:type="ecore:EAttribute" name="overwriteGlobalOption"
-            eType="ecore:EDataType platform:/plugin/org.eclipse.emf.ecore/model/Ecore.ecore#//EBoolean"
+            eType="ecore:EDataType http://www.eclipse.org/emf/2002/Ecore#//EBoolean"
             defaultValueLiteral="false"/>
-        <eStructuralFeatures xsi:type="ecore:EAttribute" name="attributeText" eType="ecore:EDataType platform:/plugin/org.eclipse.emf.ecore/model/Ecore.ecore#//EString"/>
-        <eStructuralFeatures xsi:type="ecore:EAttribute" name="orderNumber" eType="ecore:EDataType platform:/plugin/org.eclipse.emf.ecore/model/Ecore.ecore#//EInt"/>
+        <eStructuralFeatures xsi:type="ecore:EAttribute" name="attributeText" eType="ecore:EDataType http://www.eclipse.org/emf/2002/Ecore#//EString"/>
+        <eStructuralFeatures xsi:type="ecore:EAttribute" name="orderNumber" eType="ecore:EDataType http://www.eclipse.org/emf/2002/Ecore#//EInt"/>
       </eClassifiers>
       <eClassifiers xsi:type="ecore:EClass" name="SingleReferenceAttributeOption"
           eSuperTypes="#//renderers/options/ReferenceAttributeOption"/>
@@ -83,42 +81,42 @@
             eType="#//renderers/options/TextOption" containment="true"/>
         <eStructuralFeatures xsi:type="ecore:EReference" name="sectionTextOption"
             eType="#//renderers/options/TextOption" containment="true"/>
-        <eStructuralFeatures xsi:type="ecore:EAttribute" name="hideAnnotations" eType="ecore:EDataType platform:/plugin/org.eclipse.emf.ecore/model/Ecore.ecore#//EBoolean"/>
-        <eStructuralFeatures xsi:type="ecore:EAttribute" name="hideAttachments" eType="ecore:EDataType platform:/plugin/org.eclipse.emf.ecore/model/Ecore.ecore#//EBoolean"/>
+        <eStructuralFeatures xsi:type="ecore:EAttribute" name="hideAnnotations" eType="ecore:EDataType http://www.eclipse.org/emf/2002/Ecore#//EBoolean"/>
+        <eStructuralFeatures xsi:type="ecore:EAttribute" name="hideAttachments" eType="ecore:EDataType http://www.eclipse.org/emf/2002/Ecore#//EBoolean"/>
         <eStructuralFeatures xsi:type="ecore:EAttribute" name="hideIncomingDocumentReferences"
-            eType="ecore:EDataType platform:/plugin/org.eclipse.emf.ecore/model/Ecore.ecore#//EBoolean"/>
+            eType="ecore:EDataType http://www.eclipse.org/emf/2002/Ecore#//EBoolean"/>
         <eStructuralFeatures xsi:type="ecore:EAttribute" name="hideModelElementImages"
-            eType="ecore:EDataType platform:/plugin/org.eclipse.emf.ecore/model/Ecore.ecore#//EBoolean"/>
+            eType="ecore:EDataType http://www.eclipse.org/emf/2002/Ecore#//EBoolean"/>
         <eStructuralFeatures xsi:type="ecore:EReference" name="modelElementTextOption"
             eType="#//renderers/options/TextOption" containment="true"/>
-        <eStructuralFeatures xsi:type="ecore:EAttribute" name="headerText" eType="ecore:EDataType platform:/plugin/org.eclipse.emf.ecore/model/Ecore.ecore#//EString"/>
-        <eStructuralFeatures xsi:type="ecore:EAttribute" name="footerText" eType="ecore:EDataType platform:/plugin/org.eclipse.emf.ecore/model/Ecore.ecore#//EString"/>
+        <eStructuralFeatures xsi:type="ecore:EAttribute" name="headerText" eType="ecore:EDataType http://www.eclipse.org/emf/2002/Ecore#//EString"/>
+        <eStructuralFeatures xsi:type="ecore:EAttribute" name="footerText" eType="ecore:EDataType http://www.eclipse.org/emf/2002/Ecore#//EString"/>
         <eStructuralFeatures xsi:type="ecore:EReference" name="sectionOption" eType="#//renderers/options/SectionOption"
             containment="true"/>
         <eStructuralFeatures xsi:type="ecore:EAttribute" name="sectionFontSizeDecreaseStep"
-            eType="ecore:EDataType platform:/plugin/org.eclipse.emf.ecore/model/Ecore.ecore#//EInt"/>
+            eType="ecore:EDataType http://www.eclipse.org/emf/2002/Ecore#//EInt"/>
         <eStructuralFeatures xsi:type="ecore:EReference" name="documentTitleTextOption"
             eType="#//renderers/options/TextOption" containment="true"/>
         <eStructuralFeatures xsi:type="ecore:EAttribute" name="showModelElementTypeInSectionTitle"
-            eType="ecore:EDataType platform:/plugin/org.eclipse.emf.ecore/model/Ecore.ecore#//EBoolean"/>
+            eType="ecore:EDataType http://www.eclipse.org/emf/2002/Ecore#//EBoolean"/>
         <eStructuralFeatures xsi:type="ecore:EAttribute" name="appendixStyle" eType="#//renderers/options/AppendixStyle"/>
-        <eStructuralFeatures xsi:type="ecore:EAttribute" name="logoImage" eType="ecore:EDataType platform:/plugin/org.eclipse.emf.ecore/model/Ecore.ecore#//EString"/>
+        <eStructuralFeatures xsi:type="ecore:EAttribute" name="logoImage" eType="ecore:EDataType http://www.eclipse.org/emf/2002/Ecore#//EString"/>
         <eStructuralFeatures xsi:type="ecore:EReference" name="footerTextOption" eType="#//renderers/options/TextOption"
             containment="true"/>
         <eStructuralFeatures xsi:type="ecore:EAttribute" name="footerShowDocumentTitle"
-            eType="ecore:EDataType platform:/plugin/org.eclipse.emf.ecore/model/Ecore.ecore#//EBoolean"/>
+            eType="ecore:EDataType http://www.eclipse.org/emf/2002/Ecore#//EBoolean"/>
         <eStructuralFeatures xsi:type="ecore:EAttribute" name="pageCitationStyle"
             eType="#//renderers/options/PageCitationStyle"/>
         <eStructuralFeatures xsi:type="ecore:EAttribute" name="headerStyle" eType="#//renderers/options/HeaderStyle"/>
-        <eStructuralFeatures xsi:type="ecore:EAttribute" name="logoWidth" eType="ecore:EDataType platform:/plugin/org.eclipse.emf.ecore/model/Ecore.ecore#//EInt"/>
-        <eStructuralFeatures xsi:type="ecore:EAttribute" name="logoHeight" eType="ecore:EDataType platform:/plugin/org.eclipse.emf.ecore/model/Ecore.ecore#//EInt"/>
-        <eStructuralFeatures xsi:type="ecore:EAttribute" name="logoOnCoverPage" eType="ecore:EDataType platform:/plugin/org.eclipse.emf.ecore/model/Ecore.ecore#//EBoolean"/>
+        <eStructuralFeatures xsi:type="ecore:EAttribute" name="logoWidth" eType="ecore:EDataType http://www.eclipse.org/emf/2002/Ecore#//EInt"/>
+        <eStructuralFeatures xsi:type="ecore:EAttribute" name="logoHeight" eType="ecore:EDataType http://www.eclipse.org/emf/2002/Ecore#//EInt"/>
+        <eStructuralFeatures xsi:type="ecore:EAttribute" name="logoOnCoverPage" eType="ecore:EDataType http://www.eclipse.org/emf/2002/Ecore#//EBoolean"/>
         <eStructuralFeatures xsi:type="ecore:EReference" name="tableOfContentsTextOption"
             eType="#//renderers/options/TextOption" containment="true"/>
         <eStructuralFeatures xsi:type="ecore:EAttribute" name="hideTableOfContents"
-            eType="ecore:EDataType platform:/plugin/org.eclipse.emf.ecore/model/Ecore.ecore#//EBoolean"/>
+            eType="ecore:EDataType http://www.eclipse.org/emf/2002/Ecore#//EBoolean"/>
         <eStructuralFeatures xsi:type="ecore:EAttribute" name="hideHeaderAndFooterOnCoverPage"
-            eType="ecore:EDataType platform:/plugin/org.eclipse.emf.ecore/model/Ecore.ecore#//EBoolean"/>
+            eType="ecore:EDataType http://www.eclipse.org/emf/2002/Ecore#//EBoolean"/>
       </eClassifiers>
       <eClassifiers xsi:type="ecore:EEnum" name="PageCitationStyle">
         <eLiterals name="PAGE"/>
@@ -140,18 +138,18 @@
       <eClassifiers xsi:type="ecore:EClass" name="TextOption" eSuperTypes="#//renderers/options/RendererOption">
         <eStructuralFeatures xsi:type="ecore:EAttribute" name="fontFamily" eType="#//renderers/options/FontFamily"
             defaultValueLiteral=""/>
-        <eStructuralFeatures xsi:type="ecore:EAttribute" name="fontSize" eType="ecore:EDataType platform:/plugin/org.eclipse.emf.ecore/model/Ecore.ecore#//EInt"
+        <eStructuralFeatures xsi:type="ecore:EAttribute" name="fontSize" eType="ecore:EDataType http://www.eclipse.org/emf/2002/Ecore#//EInt"
             defaultValueLiteral="12"/>
-        <eStructuralFeatures xsi:type="ecore:EAttribute" name="bold" eType="ecore:EDataType platform:/plugin/org.eclipse.emf.ecore/model/Ecore.ecore#//EBoolean"/>
-        <eStructuralFeatures xsi:type="ecore:EAttribute" name="underline" eType="ecore:EDataType platform:/plugin/org.eclipse.emf.ecore/model/Ecore.ecore#//EBoolean"/>
+        <eStructuralFeatures xsi:type="ecore:EAttribute" name="bold" eType="ecore:EDataType http://www.eclipse.org/emf/2002/Ecore#//EBoolean"/>
+        <eStructuralFeatures xsi:type="ecore:EAttribute" name="underline" eType="ecore:EDataType http://www.eclipse.org/emf/2002/Ecore#//EBoolean"/>
         <eStructuralFeatures xsi:type="ecore:EReference" name="fontColor" eType="#//renderers/options/UColor"
             containment="true"/>
         <eStructuralFeatures xsi:type="ecore:EAttribute" name="textAlign" eType="#//renderers/options/TextAlign"/>
-        <eStructuralFeatures xsi:type="ecore:EAttribute" name="italics" eType="ecore:EDataType platform:/plugin/org.eclipse.emf.ecore/model/Ecore.ecore#//EBoolean"/>
+        <eStructuralFeatures xsi:type="ecore:EAttribute" name="italics" eType="ecore:EDataType http://www.eclipse.org/emf/2002/Ecore#//EBoolean"/>
       </eClassifiers>
       <eClassifiers xsi:type="ecore:EClass" name="ReferenceAttributeOption" abstract="true"
           eSuperTypes="#//renderers/options/AttributeOption">
-        <eStructuralFeatures xsi:type="ecore:EAttribute" name="contained" eType="ecore:EDataType platform:/plugin/org.eclipse.emf.ecore/model/Ecore.ecore#//EBoolean"/>
+        <eStructuralFeatures xsi:type="ecore:EAttribute" name="contained" eType="ecore:EDataType http://www.eclipse.org/emf/2002/Ecore#//EBoolean"/>
         <eStructuralFeatures xsi:type="ecore:EReference" name="referenceOption" eType="#//renderers/options/ReferenceOption"
             containment="true"/>
       </eClassifiers>
@@ -171,52 +169,52 @@
         <eLiterals name="TABLE" value="5" literal="table"/>
       </eClassifiers>
       <eClassifiers xsi:type="ecore:EClass" name="UColor" eSuperTypes="#//renderers/options/RendererOption">
-        <eStructuralFeatures xsi:type="ecore:EAttribute" name="red" eType="ecore:EDataType platform:/plugin/org.eclipse.emf.ecore/model/Ecore.ecore#//EInt"/>
-        <eStructuralFeatures xsi:type="ecore:EAttribute" name="green" eType="ecore:EDataType platform:/plugin/org.eclipse.emf.ecore/model/Ecore.ecore#//EInt"/>
-        <eStructuralFeatures xsi:type="ecore:EAttribute" name="blue" eType="ecore:EDataType platform:/plugin/org.eclipse.emf.ecore/model/Ecore.ecore#//EInt"/>
+        <eStructuralFeatures xsi:type="ecore:EAttribute" name="red" eType="ecore:EDataType http://www.eclipse.org/emf/2002/Ecore#//EInt"/>
+        <eStructuralFeatures xsi:type="ecore:EAttribute" name="green" eType="ecore:EDataType http://www.eclipse.org/emf/2002/Ecore#//EInt"/>
+        <eStructuralFeatures xsi:type="ecore:EAttribute" name="blue" eType="ecore:EDataType http://www.eclipse.org/emf/2002/Ecore#//EInt"/>
       </eClassifiers>
       <eClassifiers xsi:type="ecore:EClass" name="BoxModelOption" eSuperTypes="#//renderers/options/RendererOption">
-        <eStructuralFeatures xsi:type="ecore:EAttribute" name="margin" eType="ecore:EDataType platform:/plugin/org.eclipse.emf.ecore/model/Ecore.ecore#//EDouble"
+        <eStructuralFeatures xsi:type="ecore:EAttribute" name="margin" eType="ecore:EDataType http://www.eclipse.org/emf/2002/Ecore#//EDouble"
             defaultValueLiteral="0"/>
-        <eStructuralFeatures xsi:type="ecore:EAttribute" name="marginTop" eType="ecore:EDataType platform:/plugin/org.eclipse.emf.ecore/model/Ecore.ecore#//EDouble"
+        <eStructuralFeatures xsi:type="ecore:EAttribute" name="marginTop" eType="ecore:EDataType http://www.eclipse.org/emf/2002/Ecore#//EDouble"
             defaultValueLiteral="0"/>
-        <eStructuralFeatures xsi:type="ecore:EAttribute" name="marginLeft" eType="ecore:EDataType platform:/plugin/org.eclipse.emf.ecore/model/Ecore.ecore#//EDouble"
+        <eStructuralFeatures xsi:type="ecore:EAttribute" name="marginLeft" eType="ecore:EDataType http://www.eclipse.org/emf/2002/Ecore#//EDouble"
             defaultValueLiteral="0"/>
-        <eStructuralFeatures xsi:type="ecore:EAttribute" name="marginBottom" eType="ecore:EDataType platform:/plugin/org.eclipse.emf.ecore/model/Ecore.ecore#//EDouble"
+        <eStructuralFeatures xsi:type="ecore:EAttribute" name="marginBottom" eType="ecore:EDataType http://www.eclipse.org/emf/2002/Ecore#//EDouble"
             defaultValueLiteral="0"/>
-        <eStructuralFeatures xsi:type="ecore:EAttribute" name="marginRight" eType="ecore:EDataType platform:/plugin/org.eclipse.emf.ecore/model/Ecore.ecore#//EDouble"
+        <eStructuralFeatures xsi:type="ecore:EAttribute" name="marginRight" eType="ecore:EDataType http://www.eclipse.org/emf/2002/Ecore#//EDouble"
             defaultValueLiteral="0"/>
-        <eStructuralFeatures xsi:type="ecore:EAttribute" name="border" eType="ecore:EDataType platform:/plugin/org.eclipse.emf.ecore/model/Ecore.ecore#//EDouble"
+        <eStructuralFeatures xsi:type="ecore:EAttribute" name="border" eType="ecore:EDataType http://www.eclipse.org/emf/2002/Ecore#//EDouble"
             defaultValueLiteral="0"/>
-        <eStructuralFeatures xsi:type="ecore:EAttribute" name="borderTop" eType="ecore:EDataType platform:/plugin/org.eclipse.emf.ecore/model/Ecore.ecore#//EDouble"
+        <eStructuralFeatures xsi:type="ecore:EAttribute" name="borderTop" eType="ecore:EDataType http://www.eclipse.org/emf/2002/Ecore#//EDouble"
             defaultValueLiteral="0"/>
-        <eStructuralFeatures xsi:type="ecore:EAttribute" name="borderLeft" eType="ecore:EDataType platform:/plugin/org.eclipse.emf.ecore/model/Ecore.ecore#//EDouble"
+        <eStructuralFeatures xsi:type="ecore:EAttribute" name="borderLeft" eType="ecore:EDataType http://www.eclipse.org/emf/2002/Ecore#//EDouble"
             defaultValueLiteral="0"/>
-        <eStructuralFeatures xsi:type="ecore:EAttribute" name="borderBottom" eType="ecore:EDataType platform:/plugin/org.eclipse.emf.ecore/model/Ecore.ecore#//EDouble"
+        <eStructuralFeatures xsi:type="ecore:EAttribute" name="borderBottom" eType="ecore:EDataType http://www.eclipse.org/emf/2002/Ecore#//EDouble"
             defaultValueLiteral="0"/>
-        <eStructuralFeatures xsi:type="ecore:EAttribute" name="borderRight" eType="ecore:EDataType platform:/plugin/org.eclipse.emf.ecore/model/Ecore.ecore#//EDouble"
+        <eStructuralFeatures xsi:type="ecore:EAttribute" name="borderRight" eType="ecore:EDataType http://www.eclipse.org/emf/2002/Ecore#//EDouble"
             defaultValueLiteral="0"/>
         <eStructuralFeatures xsi:type="ecore:EAttribute" name="borderStyle" eType="#//renderers/options/UBorderStyle"
             defaultValueLiteral="SOLID"/>
         <eStructuralFeatures xsi:type="ecore:EReference" name="borderColor" eType="#//renderers/options/UColor"
             containment="true"/>
-        <eStructuralFeatures xsi:type="ecore:EAttribute" name="padding" eType="ecore:EDataType platform:/plugin/org.eclipse.emf.ecore/model/Ecore.ecore#//EDouble"
+        <eStructuralFeatures xsi:type="ecore:EAttribute" name="padding" eType="ecore:EDataType http://www.eclipse.org/emf/2002/Ecore#//EDouble"
             defaultValueLiteral="0"/>
-        <eStructuralFeatures xsi:type="ecore:EAttribute" name="paddingTop" eType="ecore:EDataType platform:/plugin/org.eclipse.emf.ecore/model/Ecore.ecore#//EDouble"
+        <eStructuralFeatures xsi:type="ecore:EAttribute" name="paddingTop" eType="ecore:EDataType http://www.eclipse.org/emf/2002/Ecore#//EDouble"
             defaultValueLiteral="0"/>
-        <eStructuralFeatures xsi:type="ecore:EAttribute" name="paddingLeft" eType="ecore:EDataType platform:/plugin/org.eclipse.emf.ecore/model/Ecore.ecore#//EDouble"
+        <eStructuralFeatures xsi:type="ecore:EAttribute" name="paddingLeft" eType="ecore:EDataType http://www.eclipse.org/emf/2002/Ecore#//EDouble"
             defaultValueLiteral="0"/>
-        <eStructuralFeatures xsi:type="ecore:EAttribute" name="paddingBottom" eType="ecore:EDataType platform:/plugin/org.eclipse.emf.ecore/model/Ecore.ecore#//EDouble"
+        <eStructuralFeatures xsi:type="ecore:EAttribute" name="paddingBottom" eType="ecore:EDataType http://www.eclipse.org/emf/2002/Ecore#//EDouble"
             defaultValueLiteral="0"/>
-        <eStructuralFeatures xsi:type="ecore:EAttribute" name="paddingRight" eType="ecore:EDataType platform:/plugin/org.eclipse.emf.ecore/model/Ecore.ecore#//EDouble"
+        <eStructuralFeatures xsi:type="ecore:EAttribute" name="paddingRight" eType="ecore:EDataType http://www.eclipse.org/emf/2002/Ecore#//EDouble"
             defaultValueLiteral="0"/>
         <eStructuralFeatures xsi:type="ecore:EReference" name="backgroundColor" eType="#//renderers/options/UColor"/>
-        <eStructuralFeatures xsi:type="ecore:EAttribute" name="keepTogether" eType="ecore:EDataType platform:/plugin/org.eclipse.emf.ecore/model/Ecore.ecore#//EBoolean"/>
-        <eStructuralFeatures xsi:type="ecore:EAttribute" name="keepWithPrevious" eType="ecore:EDataType platform:/plugin/org.eclipse.emf.ecore/model/Ecore.ecore#//EBoolean"/>
-        <eStructuralFeatures xsi:type="ecore:EAttribute" name="keepWithNext" eType="ecore:EDataType platform:/plugin/org.eclipse.emf.ecore/model/Ecore.ecore#//EBoolean"/>
-        <eStructuralFeatures xsi:type="ecore:EAttribute" name="breakBefore" eType="ecore:EDataType platform:/plugin/org.eclipse.emf.ecore/model/Ecore.ecore#//EBoolean"/>
-        <eStructuralFeatures xsi:type="ecore:EAttribute" name="width" eType="ecore:EDataType platform:/plugin/org.eclipse.emf.ecore/model/Ecore.ecore#//EInt"/>
-        <eStructuralFeatures xsi:type="ecore:EAttribute" name="breakAfter" eType="ecore:EDataType platform:/plugin/org.eclipse.emf.ecore/model/Ecore.ecore#//EBoolean"/>
+        <eStructuralFeatures xsi:type="ecore:EAttribute" name="keepTogether" eType="ecore:EDataType http://www.eclipse.org/emf/2002/Ecore#//EBoolean"/>
+        <eStructuralFeatures xsi:type="ecore:EAttribute" name="keepWithPrevious" eType="ecore:EDataType http://www.eclipse.org/emf/2002/Ecore#//EBoolean"/>
+        <eStructuralFeatures xsi:type="ecore:EAttribute" name="keepWithNext" eType="ecore:EDataType http://www.eclipse.org/emf/2002/Ecore#//EBoolean"/>
+        <eStructuralFeatures xsi:type="ecore:EAttribute" name="breakBefore" eType="ecore:EDataType http://www.eclipse.org/emf/2002/Ecore#//EBoolean"/>
+        <eStructuralFeatures xsi:type="ecore:EAttribute" name="width" eType="ecore:EDataType http://www.eclipse.org/emf/2002/Ecore#//EInt"/>
+        <eStructuralFeatures xsi:type="ecore:EAttribute" name="breakAfter" eType="ecore:EDataType http://www.eclipse.org/emf/2002/Ecore#//EBoolean"/>
       </eClassifiers>
       <eClassifiers xsi:type="ecore:EEnum" name="UBorderStyle">
         <eLiterals name="HIDDEN" literal="hidden"/>
@@ -233,7 +231,7 @@
         <eStructuralFeatures xsi:type="ecore:EAttribute" name="sectionNumberingStyle"
             eType="#//renderers/options/SectionNumberingStyle"/>
         <eStructuralFeatures xsi:type="ecore:EAttribute" name="leaveOutPreviousSectionNumbering"
-            eType="ecore:EDataType platform:/plugin/org.eclipse.emf.ecore/model/Ecore.ecore#//EBoolean"/>
+            eType="ecore:EDataType http://www.eclipse.org/emf/2002/Ecore#//EBoolean"/>
       </eClassifiers>
       <eClassifiers xsi:type="ecore:EEnum" name="SectionNumberingStyle">
         <eLiterals name="NUMERICAL" literal="numerical"/>

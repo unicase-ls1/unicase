@@ -7,6 +7,7 @@ package org.unicase.docExport.editors;
 
 import org.eclipse.core.runtime.IProgressMonitor;
 import org.eclipse.core.runtime.IStatus;
+import org.eclipse.emf.ecore.EClass;
 import org.eclipse.emf.ecore.util.EcoreUtil;
 import org.eclipse.swt.SWT;
 import org.eclipse.swt.custom.CTabFolder;
@@ -36,6 +37,7 @@ public class TemplateEditor extends EditorPart {
 
 	private ScrolledComposite modelElementRendererScrolledComposite;
 	private ScrolledComposite layoutOptionsScrolledComposite;
+	private ModelElementRenderersTab modelElementRenderersTab;
 
 	/**
 	 * .
@@ -47,6 +49,10 @@ public class TemplateEditor extends EditorPart {
 	 */
 	public static final String ID = "org.unicase.docExport.editors.TemplateEditor";
 
+	/**
+	 * this supress warning is temporarily!! TODO remove this suprress warning.. old template will be needed for dirty
+	 * check
+	 */
 	@SuppressWarnings("unused")
 	private Template oldTemplate;
 	private Template template;
@@ -62,13 +68,13 @@ public class TemplateEditor extends EditorPart {
 	 */
 	@Override
 	public void doSave(IProgressMonitor monitor) {
-		if (template.isDefaultTemplate()) {
+		if (getTemplate().isDefaultTemplate()) {
 			MessageBox messageBox = new MessageBox(PlatformUI.getWorkbench().getDisplay().getActiveShell());
 			messageBox.setMessage("you can't save a default template. Use save as instead");
 			messageBox.open();
 		} else {
 			try {
-				TemplateRegistry.saveTemplate(template);
+				TemplateRegistry.saveTemplate(getTemplate());
 			} catch (TemplateSaveException e) {
 				WorkspaceUtil.log("could not save the Template", e, IStatus.ERROR);
 			}
@@ -80,7 +86,7 @@ public class TemplateEditor extends EditorPart {
 	 */
 	@Override
 	public void doSaveAs() {
-		Template template2 = (Template) EcoreUtil.copy(template);
+		Template template2 = (Template) EcoreUtil.copy(getTemplate());
 		template2.setDefaultTemplate(false);
 		TemplateSaveAsDialog dialog = new TemplateSaveAsDialog(this.getSite().getShell(), template2);
 		dialog.open();
@@ -96,8 +102,8 @@ public class TemplateEditor extends EditorPart {
 		setInput(input);
 
 		this.template = ((TemplateEditorInput) input).getTemplate();
-		this.oldTemplate = (Template) EcoreUtil.copy(this.template);
-		setPartName(template.getName());
+		this.oldTemplate = (Template) EcoreUtil.copy(this.getTemplate());
+		setPartName(getTemplate().getName());
 	}
 
 	/**
@@ -106,6 +112,7 @@ public class TemplateEditor extends EditorPart {
 	@Override
 	public boolean isDirty() {
 		// return !EcoreUtil.equals(template, oldTemplate);
+
 		return true;
 	}
 
@@ -134,9 +141,25 @@ public class TemplateEditor extends EditorPart {
 		modelElementRendererScrolledComposite = createTab("ModelElement Renderers");
 		layoutOptionsScrolledComposite = createTab("layoutOptions");
 
-		new ModelElementRenderersTab(modelElementRendererScrolledComposite, SWT.NONE, tabFolder, template);
+		modelElementRenderersTab = new ModelElementRenderersTab(modelElementRendererScrolledComposite, SWT.NONE,
+			tabFolder, getTemplate());
 
-		new LayoutOptionsTab(layoutOptionsScrolledComposite, SWT.NONE, tabFolder, template);
+		new LayoutOptionsTab(layoutOptionsScrolledComposite, SWT.NONE, tabFolder, getTemplate());
+	}
+
+	/**
+	 * @param modelElementEClass the Model Element type which shall be selected
+	 */
+	public void chooseModelElementType(EClass modelElementEClass) {
+		modelElementRenderersTab.chooseModelElementType(modelElementEClass);
+	}
+
+	/**
+	 * @param modelElementEClass the EClass of the modelElement
+	 * @param featureName the name of the requested feature
+	 */
+	public void chooseFeature(EClass modelElementEClass, String featureName) {
+		modelElementRenderersTab.chooseFeature(modelElementEClass, featureName);
 	}
 
 	/**
@@ -161,6 +184,13 @@ public class TemplateEditor extends EditorPart {
 		tabItem1.setControl(scrolledComposite);
 
 		return scrolledComposite;
+	}
+
+	/**
+	 * @return the template
+	 */
+	public Template getTemplate() {
+		return template;
 	}
 
 }

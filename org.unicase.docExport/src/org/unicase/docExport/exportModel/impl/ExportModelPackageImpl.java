@@ -9,7 +9,6 @@ import org.eclipse.emf.ecore.EAttribute;
 import org.eclipse.emf.ecore.EClass;
 import org.eclipse.emf.ecore.EPackage;
 import org.eclipse.emf.ecore.EReference;
-import org.eclipse.emf.ecore.EcorePackage;
 import org.eclipse.emf.ecore.impl.EPackageImpl;
 import org.unicase.docExport.exportModel.ExportModelFactory;
 import org.unicase.docExport.exportModel.ExportModelPackage;
@@ -87,9 +86,6 @@ public class ExportModelPackageImpl extends EPackageImpl implements ExportModelP
 
 		isInited = true;
 
-		// Initialize simple dependencies
-		EcorePackage.eINSTANCE.eClass();
-
 		// Obtain or create and register interdependencies
 		RenderersPackageImpl theRenderersPackage = (RenderersPackageImpl)(EPackage.Registry.INSTANCE.getEPackage(RenderersPackage.eNS_URI) instanceof RenderersPackageImpl ? EPackage.Registry.INSTANCE.getEPackage(RenderersPackage.eNS_URI) : RenderersPackage.eINSTANCE);
 		DefaultRenderersPackageImpl theDefaultRenderersPackage = (DefaultRenderersPackageImpl)(EPackage.Registry.INSTANCE.getEPackage(DefaultRenderersPackage.eNS_URI) instanceof DefaultRenderersPackageImpl ? EPackage.Registry.INSTANCE.getEPackage(DefaultRenderersPackage.eNS_URI) : DefaultRenderersPackage.eINSTANCE);
@@ -144,16 +140,8 @@ public class ExportModelPackageImpl extends EPackageImpl implements ExportModelP
 	 * <!-- begin-user-doc --> <!-- end-user-doc -->
 	 * @generated
 	 */
-	public EReference getTemplate_GlobalRendererOptions() {
-		return (EReference)templateEClass.getEStructuralFeatures().get(2);
-	}
-
-	/**
-	 * <!-- begin-user-doc --> <!-- end-user-doc -->
-	 * @generated
-	 */
 	public EAttribute getTemplate_Name() {
-		return (EAttribute)templateEClass.getEStructuralFeatures().get(3);
+		return (EAttribute)templateEClass.getEStructuralFeatures().get(2);
 	}
 
 	/**
@@ -161,7 +149,7 @@ public class ExportModelPackageImpl extends EPackageImpl implements ExportModelP
 	 * @generated
 	 */
 	public EAttribute getTemplate_DefaultTemplate() {
-		return (EAttribute)templateEClass.getEStructuralFeatures().get(4);
+		return (EAttribute)templateEClass.getEStructuralFeatures().get(3);
 	}
 
 	/**
@@ -192,7 +180,6 @@ public class ExportModelPackageImpl extends EPackageImpl implements ExportModelP
 		templateEClass = createEClass(TEMPLATE);
 		createEReference(templateEClass, TEMPLATE__MODEL_ELEMENT_RENDERER_MAPPING);
 		createEReference(templateEClass, TEMPLATE__LAYOUT_OPTIONS);
-		createEReference(templateEClass, TEMPLATE__GLOBAL_RENDERER_OPTIONS);
 		createEAttribute(templateEClass, TEMPLATE__NAME);
 		createEAttribute(templateEClass, TEMPLATE__DEFAULT_TEMPLATE);
 	}
@@ -221,7 +208,6 @@ public class ExportModelPackageImpl extends EPackageImpl implements ExportModelP
 		// Obtain other dependent packages
 		RenderersPackage theRenderersPackage = (RenderersPackage)EPackage.Registry.INSTANCE.getEPackage(RenderersPackage.eNS_URI);
 		OptionsPackage theOptionsPackage = (OptionsPackage)EPackage.Registry.INSTANCE.getEPackage(OptionsPackage.eNS_URI);
-		EcorePackage theEcorePackage = (EcorePackage)EPackage.Registry.INSTANCE.getEPackage(EcorePackage.eNS_URI);
 
 		// Add subpackages
 		getESubpackages().add(theRenderersPackage);
@@ -236,9 +222,8 @@ public class ExportModelPackageImpl extends EPackageImpl implements ExportModelP
 		initEClass(templateEClass, Template.class, "Template", !IS_ABSTRACT, !IS_INTERFACE, IS_GENERATED_INSTANCE_CLASS);
 		initEReference(getTemplate_ModelElementRendererMapping(), theRenderersPackage.getModelElementRendererMapping(), null, "modelElementRendererMapping", null, 0, -1, Template.class, !IS_TRANSIENT, !IS_VOLATILE, IS_CHANGEABLE, IS_COMPOSITE, !IS_RESOLVE_PROXIES, !IS_UNSETTABLE, IS_UNIQUE, !IS_DERIVED, IS_ORDERED);
 		initEReference(getTemplate_LayoutOptions(), theOptionsPackage.getLayoutOptions(), null, "layoutOptions", null, 0, 1, Template.class, !IS_TRANSIENT, !IS_VOLATILE, IS_CHANGEABLE, IS_COMPOSITE, !IS_RESOLVE_PROXIES, !IS_UNSETTABLE, IS_UNIQUE, !IS_DERIVED, IS_ORDERED);
-		initEReference(getTemplate_GlobalRendererOptions(), theOptionsPackage.getAttributeOption(), null, "globalRendererOptions", null, 0, -1, Template.class, !IS_TRANSIENT, !IS_VOLATILE, IS_CHANGEABLE, IS_COMPOSITE, !IS_RESOLVE_PROXIES, !IS_UNSETTABLE, IS_UNIQUE, !IS_DERIVED, IS_ORDERED);
-		initEAttribute(getTemplate_Name(), theEcorePackage.getEString(), "name", null, 0, 1, Template.class, !IS_TRANSIENT, !IS_VOLATILE, IS_CHANGEABLE, !IS_UNSETTABLE, !IS_ID, IS_UNIQUE, !IS_DERIVED, IS_ORDERED);
-		initEAttribute(getTemplate_DefaultTemplate(), theEcorePackage.getEBoolean(), "defaultTemplate", null, 0, 1, Template.class, !IS_TRANSIENT, !IS_VOLATILE, IS_CHANGEABLE, !IS_UNSETTABLE, !IS_ID, IS_UNIQUE, !IS_DERIVED, IS_ORDERED);
+		initEAttribute(getTemplate_Name(), ecorePackage.getEString(), "name", null, 0, 1, Template.class, !IS_TRANSIENT, !IS_VOLATILE, IS_CHANGEABLE, !IS_UNSETTABLE, !IS_ID, IS_UNIQUE, !IS_DERIVED, IS_ORDERED);
+		initEAttribute(getTemplate_DefaultTemplate(), ecorePackage.getEBoolean(), "defaultTemplate", null, 0, 1, Template.class, !IS_TRANSIENT, !IS_VOLATILE, IS_CHANGEABLE, !IS_UNSETTABLE, !IS_ID, IS_UNIQUE, !IS_DERIVED, IS_ORDERED);
 
 		// Create resource
 		createResource(eNS_URI);

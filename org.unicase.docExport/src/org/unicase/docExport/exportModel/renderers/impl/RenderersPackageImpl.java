@@ -11,7 +11,6 @@ import org.eclipse.emf.ecore.EAttribute;
 import org.eclipse.emf.ecore.EClass;
 import org.eclipse.emf.ecore.EPackage;
 import org.eclipse.emf.ecore.EReference;
-import org.eclipse.emf.ecore.EcorePackage;
 import org.eclipse.emf.ecore.impl.EPackageImpl;
 import org.unicase.docExport.exportModel.ExportModelPackage;
 import org.unicase.docExport.exportModel.Template;
@@ -121,9 +120,6 @@ public class RenderersPackageImpl extends EPackageImpl implements RenderersPacka
 		RenderersPackageImpl theRenderersPackage = (RenderersPackageImpl)(EPackage.Registry.INSTANCE.getEPackage(eNS_URI) instanceof RenderersPackageImpl ? EPackage.Registry.INSTANCE.getEPackage(eNS_URI) : new RenderersPackageImpl());
 
 		isInited = true;
-
-		// Initialize simple dependencies
-		EcorePackage.eINSTANCE.eClass();
 
 		// Obtain or create and register interdependencies
 		ExportModelPackageImpl theExportModelPackage = (ExportModelPackageImpl)(EPackage.Registry.INSTANCE.getEPackage(ExportModelPackage.eNS_URI) instanceof ExportModelPackageImpl ? EPackage.Registry.INSTANCE.getEPackage(ExportModelPackage.eNS_URI) : ExportModelPackage.eINSTANCE);
@@ -325,7 +321,6 @@ public class RenderersPackageImpl extends EPackageImpl implements RenderersPacka
 		SpecialRenderersPackage theSpecialRenderersPackage = (SpecialRenderersPackage)EPackage.Registry.INSTANCE.getEPackage(SpecialRenderersPackage.eNS_URI);
 		OptionsPackage theOptionsPackage = (OptionsPackage)EPackage.Registry.INSTANCE.getEPackage(OptionsPackage.eNS_URI);
 		ExportModelPackage theExportModelPackage = (ExportModelPackage)EPackage.Registry.INSTANCE.getEPackage(ExportModelPackage.eNS_URI);
-		EcorePackage theEcorePackage = (EcorePackage)EPackage.Registry.INSTANCE.getEPackage(EcorePackage.eNS_URI);
 
 		// Add subpackages
 		getESubpackages().add(theDefaultRenderersPackage);
@@ -351,11 +346,11 @@ public class RenderersPackageImpl extends EPackageImpl implements RenderersPacka
 
 		initEClass(modelElementRendererMappingEClass, ModelElementRendererMapping.class, "ModelElementRendererMapping", !IS_ABSTRACT, !IS_INTERFACE, IS_GENERATED_INSTANCE_CLASS);
 		initEReference(getModelElementRendererMapping_Renderer(), this.getModelElementRenderer(), null, "renderer", null, 0, 1, ModelElementRendererMapping.class, !IS_TRANSIENT, !IS_VOLATILE, IS_CHANGEABLE, IS_COMPOSITE, !IS_RESOLVE_PROXIES, !IS_UNSETTABLE, IS_UNIQUE, !IS_DERIVED, IS_ORDERED);
-		initEAttribute(getModelElementRendererMapping_EClassName(), theEcorePackage.getEString(), "eClassName", null, 0, 1, ModelElementRendererMapping.class, !IS_TRANSIENT, !IS_VOLATILE, IS_CHANGEABLE, !IS_UNSETTABLE, !IS_ID, IS_UNIQUE, !IS_DERIVED, IS_ORDERED);
+		initEAttribute(getModelElementRendererMapping_EClassName(), ecorePackage.getEString(), "eClassName", null, 0, 1, ModelElementRendererMapping.class, !IS_TRANSIENT, !IS_VOLATILE, IS_CHANGEABLE, !IS_UNSETTABLE, !IS_ID, IS_UNIQUE, !IS_DERIVED, IS_ORDERED);
 
 		initEClass(attributeRendererMappingEClass, AttributeRendererMapping.class, "AttributeRendererMapping", !IS_ABSTRACT, !IS_INTERFACE, IS_GENERATED_INSTANCE_CLASS);
 		initEReference(getAttributeRendererMapping_AttributeRenderer(), this.getAttributeRenderer(), null, "attributeRenderer", null, 0, 1, AttributeRendererMapping.class, !IS_TRANSIENT, !IS_VOLATILE, IS_CHANGEABLE, IS_COMPOSITE, !IS_RESOLVE_PROXIES, !IS_UNSETTABLE, IS_UNIQUE, !IS_DERIVED, IS_ORDERED);
-		initEAttribute(getAttributeRendererMapping_FeatureName(), theEcorePackage.getEString(), "featureName", null, 0, 1, AttributeRendererMapping.class, !IS_TRANSIENT, !IS_VOLATILE, IS_CHANGEABLE, !IS_UNSETTABLE, !IS_ID, IS_UNIQUE, !IS_DERIVED, IS_ORDERED);
+		initEAttribute(getAttributeRendererMapping_FeatureName(), ecorePackage.getEString(), "featureName", null, 0, 1, AttributeRendererMapping.class, !IS_TRANSIENT, !IS_VOLATILE, IS_CHANGEABLE, !IS_UNSETTABLE, !IS_ID, IS_UNIQUE, !IS_DERIVED, IS_ORDERED);
 	}
 
 	// begin custom code

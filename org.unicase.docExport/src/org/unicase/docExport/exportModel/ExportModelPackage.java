@@ -80,21 +80,12 @@ public interface ExportModelPackage extends EPackage {
 	int TEMPLATE__LAYOUT_OPTIONS = 1;
 
 	/**
-	 * The feature id for the '<em><b>Global Renderer Options</b></em>' containment reference list.
-	 * <!-- begin-user-doc
-	 * --> <!-- end-user-doc -->
-	 * @generated
-	 * @ordered
-	 */
-	int TEMPLATE__GLOBAL_RENDERER_OPTIONS = 2;
-
-	/**
 	 * The feature id for the '<em><b>Name</b></em>' attribute.
 	 * <!-- begin-user-doc --> <!-- end-user-doc -->
 	 * @generated
 	 * @ordered
 	 */
-	int TEMPLATE__NAME = 3;
+	int TEMPLATE__NAME = 2;
 
 	/**
 	 * The feature id for the '<em><b>Default Template</b></em>' attribute. <!-- begin-user-doc --> <!-- end-user-doc
@@ -103,7 +94,7 @@ public interface ExportModelPackage extends EPackage {
 	 * @generated
 	 * @ordered
 	 */
-	int TEMPLATE__DEFAULT_TEMPLATE = 4;
+	int TEMPLATE__DEFAULT_TEMPLATE = 3;
 
 	/**
 	 * The number of structural features of the '<em>Template</em>' class.
@@ -111,7 +102,7 @@ public interface ExportModelPackage extends EPackage {
 	 * @generated
 	 * @ordered
 	 */
-	int TEMPLATE_FEATURE_COUNT = 5;
+	int TEMPLATE_FEATURE_COUNT = 4;
 
 	/**
 	 * Returns the meta object for class '{@link org.unicase.docExport.exportModel.Template <em>Template</em>}'. <!--
@@ -143,16 +134,6 @@ public interface ExportModelPackage extends EPackage {
 	 * @generated
 	 */
 	EReference getTemplate_LayoutOptions();
-
-	/**
-	 * Returns the meta object for the containment reference list '{@link org.unicase.docExport.exportModel.Template#getGlobalRendererOptions <em>Global Renderer Options</em>}'.
-	 * <!-- begin-user-doc --> <!-- end-user-doc -->
-	 * @return the meta object for the containment reference list '<em>Global Renderer Options</em>'.
-	 * @see org.unicase.docExport.exportModel.Template#getGlobalRendererOptions()
-	 * @see #getTemplate()
-	 * @generated
-	 */
-	EReference getTemplate_GlobalRendererOptions();
 
 	/**
 	 * Returns the meta object for the attribute '{@link org.unicase.docExport.exportModel.Template#getName <em>Name</em>}'.
@@ -217,13 +198,6 @@ public interface ExportModelPackage extends EPackage {
 		 * @generated
 		 */
 		EReference TEMPLATE__LAYOUT_OPTIONS = eINSTANCE.getTemplate_LayoutOptions();
-
-		/**
-		 * The meta object literal for the '<em><b>Global Renderer Options</b></em>' containment reference list feature.
-		 * <!-- begin-user-doc --> <!-- end-user-doc -->
-		 * @generated
-		 */
-		EReference TEMPLATE__GLOBAL_RENDERER_OPTIONS = eINSTANCE.getTemplate_GlobalRendererOptions();
 
 		/**
 		 * The meta object literal for the '<em><b>Name</b></em>' attribute feature.

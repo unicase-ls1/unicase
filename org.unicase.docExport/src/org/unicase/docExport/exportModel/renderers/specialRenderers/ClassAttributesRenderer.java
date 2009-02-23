@@ -8,9 +8,16 @@ package org.unicase.docExport.exportModel.renderers.specialRenderers;
 import org.unicase.docExport.exportModel.renderers.AttributeRenderer;
 
 /**
+<<<<<<< .mine
+ * <!-- begin-user-doc --> A representation of the model object '<em><b>Class Attributes Renderer</b></em>'. <!--
+ * end-user-doc -->
+ *
+ *
+=======
  * <!-- begin-user-doc --> A representation of the model object '<em><b>Class Attributes Renderer</b></em>'. <!--
  * end-user-doc -->
  * 
+>>>>>>> .r2871
  * @see org.unicase.docExport.exportModel.renderers.specialRenderers.SpecialRenderersPackage#getClassAttributesRenderer()
  * @model
  * @generated

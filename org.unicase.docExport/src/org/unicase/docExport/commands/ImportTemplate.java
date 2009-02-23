@@ -105,6 +105,8 @@ public class ImportTemplate extends AbstractHandler {
 				}
 			}
 		} catch (FileNotFoundException e1) {
+			System.out.println("error when importing template: " + e1.getMessage());
+			e1.printStackTrace();
 			throw new InvalidTemplateArchiveException();
 		}
 	}

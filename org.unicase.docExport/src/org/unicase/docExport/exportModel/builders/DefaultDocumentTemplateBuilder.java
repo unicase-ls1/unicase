@@ -15,17 +15,13 @@ import org.eclipse.emf.ecore.EObject;
 import org.eclipse.emf.ecore.EPackage;
 import org.unicase.docExport.exportModel.DocumentTemplateFactory;
 import org.unicase.docExport.exportModel.Template;
-import org.unicase.docExport.exportModel.renderers.options.BooleanAttributeOption;
-import org.unicase.docExport.exportModel.renderers.options.DateAttributeOption;
 import org.unicase.docExport.exportModel.renderers.options.FontFamily;
 import org.unicase.docExport.exportModel.renderers.options.LayoutOptions;
-import org.unicase.docExport.exportModel.renderers.options.MultiReferenceAttributeOption;
 import org.unicase.docExport.exportModel.renderers.options.OptionsFactory;
-import org.unicase.docExport.exportModel.renderers.options.SingleReferenceAttributeOption;
-import org.unicase.docExport.exportModel.renderers.options.StringAttributeOption;
 import org.unicase.docExport.exportModel.renderers.options.TextAlign;
 import org.unicase.docExport.exportModel.renderers.options.UColor;
 import org.unicase.model.ModelElement;
+import org.unicase.model.ModelPackage;
 
 /**
  * This class create a new DocumentTemplate. Therefore all available ModelElement types have to be added. For each
@@ -78,40 +74,6 @@ public final class DefaultDocumentTemplateBuilder {
 		layoutOptions.getDocumentTitleTextOption().setTextAlign(TextAlign.CENTER);
 		layoutOptions.getDocumentTitleTextOption().setBold(true);
 
-		StringAttributeOption stringAttributeOption = OptionsFactory.eINSTANCE.createStringAttributeOption();
-		stringAttributeOption.setName("Text");
-		SingleReferenceAttributeOption singleReferenceAttributeOption = OptionsFactory.eINSTANCE
-			.createSingleReferenceAttributeOption();
-		singleReferenceAttributeOption.setName("Single reference");
-		MultiReferenceAttributeOption multiReferenceAttributeOption = OptionsFactory.eINSTANCE
-			.createMultiReferenceAttributeOption();
-		multiReferenceAttributeOption.setName("Mutli reference");
-		DateAttributeOption dateAttributeOption = OptionsFactory.eINSTANCE.createDateAttributeOption();
-		dateAttributeOption.setName("Date attributes");
-		BooleanAttributeOption booleanAttributeOption = OptionsFactory.eINSTANCE.createBooleanAttributeOption();
-		booleanAttributeOption.setName("Boolean attributes");
-
-		template.getGlobalRendererOptions().add(stringAttributeOption);
-		template.getGlobalRendererOptions().add(singleReferenceAttributeOption);
-		template.getGlobalRendererOptions().add(multiReferenceAttributeOption);
-		template.getGlobalRendererOptions().add(dateAttributeOption);
-		template.getGlobalRendererOptions().add(booleanAttributeOption);
-
-		// for (EClass eClass : modelElementTypes) {
-		// ModelElementRenderer renderer;
-		// if (eClass.getInstanceClass().equals(Meeting.class)) {
-		// renderer = SpecialRenderersFactory.eINSTANCE.createMeetingRenderer(template);
-		// } else {
-		// renderer = DefaultModelElementRendererBuilder.build(eClass, template);
-		// }
-		//			
-		//			
-		// ModelElementRendererMapping mapping = RenderersFactory.eINSTANCE.createModelElementRendererMapping();
-		// mapping.setEClassName(eClass.getName());
-		// mapping.setRenderer(renderer);
-		// template.getModelElementRendererMapping().add(mapping);
-		// }
-
 		return template;
 	}
 
@@ -163,5 +125,21 @@ public final class DefaultDocumentTemplateBuilder {
 		Collections.sort(modelElementTypes, new EClassComparator());
 
 		return modelElementTypes;
+	}
+
+	/**
+	 * @param eClassName the name of the EClass which is searched for.
+	 * @return the EClass with the same name like eClassName
+	 */
+	public static EClass getEClassOfString(String eClassName) {
+		ArrayList<EClass> eClasses = getModelElements(ModelPackage.eINSTANCE.eContents());
+
+		for (EClass eClass : eClasses) {
+			if (eClassName.equals(eClass.getName())) {
+				return eClass;
+			}
+		}
+
+		return null;
 	}
 }
