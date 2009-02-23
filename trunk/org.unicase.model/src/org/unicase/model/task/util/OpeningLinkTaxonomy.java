@@ -23,6 +23,7 @@ import org.unicase.model.requirement.UseCase;
 import org.unicase.model.task.Checkable;
 import org.unicase.model.task.Milestone;
 import org.unicase.model.task.WorkItem;
+import org.unicase.model.task.WorkPackage;
 
 /**
  * Taxonomy to define opening links.
@@ -133,19 +134,17 @@ public class OpeningLinkTaxonomy {
 	}
 
 	/**
-	 * Returns the aggregated estimate for a set of {@link ModelElement}s.
+	 * Returns the aggregated estimate for a set of {@link WorkItem}s.
 	 * 
 	 * @param leafOpeners the list of work items
 	 * @return the estimate
 	 */
-	public int getEstimate(Set<ModelElement> leafOpeners) {
+	public int getEstimate(Set<WorkItem> leafOpeners) {
 		int estimate = 0;
-		Iterator<ModelElement> iterator = leafOpeners.iterator();
+		Iterator<WorkItem> iterator = leafOpeners.iterator();
 		while (iterator.hasNext()) {
-			ModelElement next = iterator.next();
-			if (next instanceof WorkItem) {
-				estimate = estimate + ((WorkItem) next).getEstimate();
-			}
+			WorkItem next = iterator.next();
+			estimate = estimate + next.getEstimate();
 		}
 		return estimate;
 	}
@@ -158,7 +157,71 @@ public class OpeningLinkTaxonomy {
 	 */
 	public int getEstimate(ModelElement input) {
 		Set<ModelElement> leafOpeners = getLeafOpeners(input);
-		return getEstimate(leafOpeners);
+		Set<WorkItem> workItems = new HashSet<WorkItem>();
+		Iterator<ModelElement> iterator = leafOpeners.iterator();
+		while (iterator.hasNext()) {
+			ModelElement me = iterator.next();
+			if (me instanceof WorkItem) {
+				workItems.add((WorkItem) me);
+
+			}
+		}
+		return getEstimate(workItems);
+	}
+
+	/**
+	 * Returns an aggregate of estimate for closed work items relating to this model element.
+	 * 
+	 * @param input model element
+	 * @return estimate of closed work items
+	 */
+	public int getClosedEstimate(ModelElement input) {
+		Set<ModelElement> leafOpeners = getLeafOpeners(input);
+		Set<WorkItem> closedWorkItems = new HashSet<WorkItem>();
+		Iterator<ModelElement> iterator = leafOpeners.iterator();
+		while (iterator.hasNext()) {
+			ModelElement me = iterator.next();
+			if (me instanceof WorkItem) {
+				WorkItem workItem = (WorkItem) me;
+				if (workItem.getState().equals(MEState.CLOSED)) {
+					closedWorkItems.add(workItem);
+				}
+			}
+		}
+		return getEstimate(closedWorkItems);
+	}
+
+	/**
+	 * Returns estimate of all leaf openers of this model element, which are contained in this work package.
+	 * 
+	 * @param workPackage WorkPackage that contains related leaf openers
+	 * @param modelElement ModelElement to compute estimate of its leaf openers
+	 * @return estimate of relative leaf openers for this model element
+	 */
+	public int getRelativeEstimate(WorkPackage workPackage, ModelElement modelElement) {
+		return getEstimate(getRelativeWorkItems(workPackage, modelElement));
+	}
+
+	/**
+	 * Returns work items of this model element, which are contained in this work package.
+	 * 
+	 * @param workPackage WorkPackage that contains related work items
+	 * @param modelElement ModelElement whose relative work items are returned
+	 * @return relative work items for this model element
+	 */
+	public Set<WorkItem> getRelativeWorkItems(WorkPackage workPackage, ModelElement modelElement) {
+
+		Set<ModelElement> leafOpeners = getLeafOpeners(modelElement);
+		Set<WorkItem> relativeWorkItems = new HashSet<WorkItem>();
+		for (ModelElement me : leafOpeners) {
+			if (me instanceof WorkItem) {
+				if (workPackage.getAllContainedWorkItems().contains(me)) {
+					relativeWorkItems.add((WorkItem) me);
+				}
+			}
+		}
+
+		return relativeWorkItems;
 	}
 
 	/**

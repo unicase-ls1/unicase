@@ -13,6 +13,7 @@ import java.util.Set;
 import org.eclipse.emf.common.util.EList;
 import org.eclipse.emf.edit.provider.ComposedAdapterFactory;
 import org.eclipse.emf.edit.ui.provider.AdapterFactoryContentProvider;
+import org.eclipse.jface.viewers.Viewer;
 import org.unicase.model.Annotation;
 import org.unicase.model.ModelElement;
 import org.unicase.model.task.WorkItem;
@@ -26,6 +27,8 @@ import org.unicase.model.task.util.TaxonomyAccess;
  */
 
 public class HierarchyTabContentProvider extends AdapterFactoryContentProvider {
+
+	private ModelElement root;
 
 	/**
 	 * . Constructor
@@ -130,16 +133,12 @@ public class HierarchyTabContentProvider extends AdapterFactoryContentProvider {
 		}
 		ModelElement modelElement = (ModelElement) object;
 		List<ModelElement> ret = new ArrayList<ModelElement>();
-		if (viewer.getInput() instanceof WorkPackage) {
-			WorkPackage workPackage = (WorkPackage) viewer.getInput();
-			Set<ModelElement> allContainedModelElements = workPackage.getAllContainedModelElements();
-			EList<Annotation> annotations = modelElement.getAnnotations();
-			for (Annotation annotation : annotations) {
-				if (allContainedModelElements.contains(annotation)) {
-					ret.add(annotation);
-				}
-			}
-			return ret.toArray(new Object[ret.size()]);
+		if (root instanceof WorkPackage) {
+			WorkPackage workPackage = (WorkPackage) root;
+			Set<WorkItem> relativeWorkItems = TaxonomyAccess.getInstance().getOpeningLinkTaxonomy()
+				.getRelativeWorkItems(workPackage, modelElement);
+
+			return relativeWorkItems.toArray(new Object[ret.size()]);
 
 		}
 
@@ -151,4 +150,27 @@ public class HierarchyTabContentProvider extends AdapterFactoryContentProvider {
 		// ret.addAll(TaxonomyAccess.getInstance().getOpeningLinkTaxonomy().getLeafOpeners(modelElement));
 		return ret.toArray(new Object[ret.size()]);
 	}
+
+	/**
+	 * {@inheritDoc}
+	 */
+	@Override
+	public void inputChanged(Viewer viewer, Object oldInput, Object newInput) {
+
+		super.inputChanged(viewer, oldInput, newInput);
+
+		// keep track of input to status view
+		// this will be used in getAssignables() method
+		this.root = (ModelElement) newInput;
+	}
+
+	/**
+	 * Returns the model element currently open in status view.
+	 * 
+	 * @return the model element currently open in status view.
+	 */
+	public ModelElement getRoot() {
+		return root;
+	}
+
 }
