@@ -245,7 +245,7 @@ public class AssignmentNotificationProvider implements NotificationProvider {
 			date = me.getCreationDate();
 			for (ModelElementId wi : wis) {
 				Date newDate = projectSpace.getProject().getModelElement(wi).getCreationDate();
-				if (newDate.after(date)) {
+				if (newDate != null && newDate.after(date)) {
 					date = newDate;
 				}
 			}
