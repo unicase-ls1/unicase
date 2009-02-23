@@ -17,8 +17,11 @@ import org.eclipse.swt.SWT;
 import org.eclipse.swt.custom.CTabFolder;
 import org.eclipse.swt.events.ModifyEvent;
 import org.eclipse.swt.events.ModifyListener;
+import org.eclipse.swt.events.SelectionEvent;
+import org.eclipse.swt.events.SelectionListener;
 import org.eclipse.swt.layout.GridData;
 import org.eclipse.swt.layout.GridLayout;
+import org.eclipse.swt.widgets.Button;
 import org.eclipse.swt.widgets.Combo;
 import org.eclipse.swt.widgets.Composite;
 import org.eclipse.swt.widgets.Group;
@@ -26,13 +29,12 @@ import org.eclipse.swt.widgets.Label;
 import org.unicase.docExport.AttributeRendererRegistry;
 import org.unicase.docExport.ModelElementRendererRegistry;
 import org.unicase.docExport.exportModel.Template;
-import org.unicase.docExport.exportModel.builders.DefaultDocumentTemplateBuilder;
 import org.unicase.docExport.exportModel.renderers.AttributeRenderer;
 import org.unicase.docExport.exportModel.renderers.ModelElementRenderer;
-import org.unicase.docExport.exportModel.renderers.options.AttributeOption;
 import org.unicase.docExport.exportModel.renderers.options.RendererOption;
 import org.unicase.model.ModelElement;
-import org.unicase.model.ModelPackage;
+import org.unicase.model.task.TaskPackage;
+import org.unicase.ui.common.dialogs.METypeSelectionDialog;
 
 /**
  * @author Sebastian Hoecht
@@ -41,10 +43,12 @@ public class ModelElementRenderersTab extends TemplateEditorTab {
 	private Composite rendererSelectContainer;
 	private Composite optionsContainer;
 	private Combo modelElementRendererSelect;
-	private Group attributeOptionsContainer;
+	private Composite attributeOptionsContainer;
 	private Composite attributeOptionsSubContainer;
-	private Group rendererOptionsContainer;
+	private Composite rendererOptionsContainer;
 	private Combo attributeRendererSelector;
+	private Combo attributeOptionsSelector;
+	private Label modelElementType;
 
 	/**
 	 * @param parent the ScrolledComposite which is contained in a tabItem
@@ -60,37 +64,40 @@ public class ModelElementRenderersTab extends TemplateEditorTab {
 		GridLayout gLayout5 = new GridLayout();
 		gLayout5.numColumns = 2;
 		GridData gData5 = new GridData(GridData.FILL_HORIZONTAL);
+		gLayout5.makeColumnsEqualWidth = true;
 		rendererSelectContainer.setLayout(gLayout5);
 		rendererSelectContainer.setLayoutData(gData5);
 
-		new Label(rendererSelectContainer, SWT.NONE).setText("ModelElement type");
+		modelElementType = new Label(rendererSelectContainer, SWT.NONE);
+		modelElementType.setText(TaskPackage.eINSTANCE.getActionItem().getInstanceClass().getSimpleName());
 		new Label(rendererSelectContainer, SWT.NONE).setText("ModelElement renderer");
 
-		final ArrayList<EClass> modelElementTypes = DefaultDocumentTemplateBuilder
-			.getModelElements(ModelPackage.eINSTANCE.eContents());
+		final Button selectModelElementType = new Button(rendererSelectContainer, SWT.PUSH);
+		selectModelElementType.setText("Select Model Element Type");
 
-		Combo modelElementType = new Combo(rendererSelectContainer, SWT.READ_ONLY);
+		selectModelElementType.addSelectionListener(new SelectionListener() {
+			public void widgetDefaultSelected(SelectionEvent e) {
+			}
+
+			public void widgetSelected(SelectionEvent e) {
+				METypeSelectionDialog dialog = new METypeSelectionDialog(rendererSelectContainer.getShell(), false);
+
+				if (dialog.open() == METypeSelectionDialog.OK) {
+					createRendererSelector(dialog.getResult()[0]);
+					modelElementType.setText(dialog.getResult()[0].getInstanceClass().getSimpleName());
+				}
+
+			}
+		});
 
 		optionsContainer = new Composite(getContainerTab(), SWT.FILL);
 		GridLayout gLayout4 = new GridLayout();
-		gLayout4.numColumns = 2;
+		gLayout4.numColumns = 1;
 		GridData gData4 = new GridData(GridData.FILL_HORIZONTAL);
 		optionsContainer.setLayout(gLayout4);
 		optionsContainer.setLayoutData(gData4);
 
-		for (int i = 0; i < modelElementTypes.size(); i++) {
-			modelElementType.add(modelElementTypes.get(i).getName(), i);
-		}
-
-		modelElementType.addModifyListener(new ModifyListener() {
-
-			public void modifyText(ModifyEvent e) {
-				EClass modelElementEClass = modelElementTypes.get(((Combo) e.widget).getSelectionIndex());
-				createRendererSelector(modelElementEClass);
-			}
-
-		});
-		modelElementType.select(0);
+		createRendererSelector(TaskPackage.eINSTANCE.getActionItem());
 
 		layoutAndPackAll();
 	}
@@ -113,44 +120,77 @@ public class ModelElementRenderersTab extends TemplateEditorTab {
 		return container;
 	}
 
+	/**
+	 * @param modelElementEClass the Model Element type which shall be selected
+	 */
+	public void chooseModelElementType(EClass modelElementEClass) {
+		modelElementType.setText(modelElementEClass.getInstanceClass().getSimpleName());
+		createRendererSelector(modelElementEClass);
+	}
+
+	/**
+	 * @param modelElementEClass the EClass of the modelElement
+	 * @param featureName the name of the requested feature
+	 */
+	public void chooseFeature(EClass modelElementEClass, String featureName) {
+		chooseModelElementType(modelElementEClass);
+
+		int i = 0;
+		for (String item : attributeOptionsSelector.getItems()) {
+			if (item.equals(featureName)) {
+				attributeOptionsSelector.select(i);
+			}
+			i++;
+		}
+	}
+
 	private void createRendererSelector(final EClass modelElementEClass) {
 		final ArrayList<ModelElementRenderer> modelElementRenderers = new ArrayList<ModelElementRenderer>();
-		modelElementRenderers.add(getTemplate().getModelElementRenderer(modelElementEClass));
 		modelElementRenderers.addAll(ModelElementRendererRegistry.getSupportedModelElementRenderers(modelElementEClass
 			.getName(), getTemplate()));
 
 		if (modelElementRendererSelect != null) {
 			modelElementRendererSelect.dispose();
 		}
+
 		modelElementRendererSelect = new Combo(rendererSelectContainer, SWT.READ_ONLY);
-		modelElementRendererSelect.add("-");
+		modelElementRendererSelect.add("(unset)");
 		for (int i = 0; i < modelElementRenderers.size(); i++) {
-			String oldSelection = "";
-			if (i == 0) {
-				oldSelection = " (*)";
-			}
-			if (modelElementRenderers.get(i) == null) {
-				modelElementRendererSelect.add("-" + oldSelection, i + 1);
-			} else {
-				modelElementRendererSelect.add(modelElementRenderers.get(i).getClass().getSimpleName() + oldSelection,
-					i + 1);
-			}
+			modelElementRendererSelect.add(modelElementRenderers.get(i).eClass().getInstanceClass().getSimpleName(),
+				i + 1);
 		}
+
+		final ModelElementRenderer currentRenderer = getTemplate().getModelElementRenderer(modelElementEClass);
 
 		modelElementRendererSelect.addModifyListener(new ModifyListener() {
 
 			public void modifyText(ModifyEvent e) {
 				int selectionIndex = ((Combo) e.widget).getSelectionIndex();
 				if (selectionIndex > 0) {
-					rebuildModelElementRendererOptions(modelElementRenderers.get(selectionIndex - 1),
-						modelElementEClass);
+					if (currentRenderer != null
+						&& modelElementRenderers.get(selectionIndex - 1).eClass().getInstanceClass().equals(
+							currentRenderer.eClass().getInstanceClass())) {
+						rebuildModelElementRendererOptions(currentRenderer, modelElementEClass);
+					} else {
+						rebuildModelElementRendererOptions(modelElementRenderers.get(selectionIndex - 1),
+							modelElementEClass);
+					}
+
 				} else {
 					rebuildModelElementRendererOptions(null, modelElementEClass);
 				}
 			}
 		});
+		modelElementRendererSelect.select(0);
 
-		modelElementRendererSelect.select(1);
+		if (currentRenderer != null) {
+			for (int i = 0; i < modelElementRenderers.size(); i++) {
+				if (modelElementRenderers.get(i).eClass().getInstanceClass().equals(
+					currentRenderer.eClass().getInstanceClass())) {
+					modelElementRendererSelect.select(i + 1);
+				}
+			}
+		}
 	}
 
 	private void rebuildModelElementRendererOptions(final ModelElementRenderer renderer, EClass eClass) {
@@ -176,20 +216,18 @@ public class ModelElementRenderersTab extends TemplateEditorTab {
 
 		if (renderer != null) {
 			getTemplate().setModelElementRenderer(eClass.getName(), renderer);
-			attributeOptionsContainer.setText("attributes");
-			rendererOptionsContainer.setText("renderer options");
+			((Group) attributeOptionsContainer).setText(" Attributes ");
+			((Group) rendererOptionsContainer).setText(" Renderer options ");
 
 			final ArrayList<EStructuralFeature> attributes = getAttributes(eClass);
-			Combo attributeOptionsSelector = new Combo(attributeOptionsContainer, SWT.READ_ONLY);
+			attributeOptionsSelector = new Combo(attributeOptionsContainer, SWT.READ_ONLY);
 			for (int i = 0; i < attributes.size(); i++) {
 				attributeOptionsSelector.add(attributes.get(i).getName(), i);
 			}
 
 			attributeOptionsSelector.addModifyListener(new ModifyListener() {
 				public void modifyText(ModifyEvent e) {
-					attributes.get(((Combo) e.widget).getSelectionIndex());
 					createAttributeRendererSelector(attributes.get(((Combo) e.widget).getSelectionIndex()), renderer);
-
 					layoutAndPackAll();
 				}
 			});
@@ -210,10 +248,18 @@ public class ModelElementRenderersTab extends TemplateEditorTab {
 					}
 				});
 				rendererOptionSelector.select(0);
-
 			}
+			if (rendererOptions.size() < 1) {
+				rendererOptionsContainer.dispose();
+				rendererOptionsContainer = new Composite(optionsContainer, SWT.NONE);
+			}
+
 		} else {
 			// remove renderer
+			rendererOptionsContainer.dispose();
+			rendererOptionsContainer = new Composite(optionsContainer, SWT.NONE);
+			attributeOptionsContainer.dispose();
+			attributeOptionsContainer = new Composite(optionsContainer, SWT.NONE);
 			getTemplate().removeModelElementRenderer(eClass);
 		}
 
@@ -224,8 +270,9 @@ public class ModelElementRenderersTab extends TemplateEditorTab {
 		final ModelElementRenderer modelElementRenderer) {
 
 		final ArrayList<AttributeRenderer> renderers = new ArrayList<AttributeRenderer>();
-		renderers.add(modelElementRenderer.getAttributeRenderer(feature));
 		renderers.addAll(AttributeRendererRegistry.getSupportedAttributeRenderers(feature, getTemplate()));
+
+		final AttributeRenderer currentAttributeRenderer = modelElementRenderer.getAttributeRenderer(feature);
 
 		if (attributeRendererSelector != null) {
 			attributeRendererSelector.dispose();
@@ -233,48 +280,55 @@ public class ModelElementRenderersTab extends TemplateEditorTab {
 
 		attributeRendererSelector = new Combo(attributeOptionsContainer, SWT.READ_ONLY);
 
-		attributeRendererSelector.add("-", 0);
+		attributeRendererSelector.add("(unset)", 0);
 		for (int i = 0; i < renderers.size(); i++) {
-			String oldSelection = "";
-			if (i == 0) {
-				oldSelection = " (*)";
-			}
-			if (renderers.get(i) == null) {
-				attributeRendererSelector.add("-" + oldSelection, i + 1);
-			} else {
-				attributeRendererSelector.add(renderers.get(i).getClass().getSimpleName().replace("impl", "")
-					+ oldSelection);
-			}
+			attributeRendererSelector.add(renderers.get(i).eClass().getInstanceClass().getSimpleName(), i + 1);
 		}
 
 		attributeRendererSelector.getParent().layout(true);
 
 		attributeRendererSelector.addModifyListener(new ModifyListener() {
 			public void modifyText(ModifyEvent e) {
-				int selectionIndex = ((Combo) e.widget).getSelectionIndex();
-				if (attributeOptionsSubContainer != null) {
-					attributeOptionsSubContainer.dispose();
-				}
-				attributeOptionsSubContainer = new Composite(attributeOptionsContainer, SWT.FILL);
-				attributeOptionsSubContainer.setLayout(new GridLayout());
-				attributeOptionsSubContainer.setLayoutData(new GridData(GridData.FILL_HORIZONTAL));
-				if (selectionIndex == 0) {
+				rebuildAttributeOptionsContainer();
+				if (((Combo) e.widget).getSelectionIndex() == 0) {
 					modelElementRenderer.removeAttributeRenderer(feature);
 				} else {
-					AttributeRenderer attributeRenderer = renderers.get(selectionIndex - 1);
-					if (attributeRenderer != null) {
+					AttributeRenderer attributeRenderer = renderers.get(((Combo) e.widget).getSelectionIndex() - 1);
+					if (currentAttributeRenderer != null
+						&& currentAttributeRenderer.eClass().getInstanceClass().equals(
+							attributeRenderer.eClass().getInstanceClass())) {
+						AttributeOptionFactory.buildOptionsFormular(attributeOptionsSubContainer,
+							currentAttributeRenderer.getAttributeOption());
+						modelElementRenderer.setAttributeRenderer(feature, currentAttributeRenderer);
+					} else {
+						AttributeOptionFactory.buildOptionsFormular(attributeOptionsSubContainer, attributeRenderer
+							.getAttributeOption());
 						modelElementRenderer.setAttributeRenderer(feature, attributeRenderer);
-						AttributeOption attributeOption = attributeRenderer.getAttributeOption();
-						if (attributeOption != null) {
-							AttributeOptionFactory.buildOptionsFormular(attributeOptionsSubContainer, attributeRenderer
-								.getAttributeOption());
-						}
-						layoutAndPackAll();
 					}
+					layoutAndPackAll();
 				}
 			}
+
 		});
-		attributeRendererSelector.select(1);
+		if (currentAttributeRenderer == null) {
+			attributeRendererSelector.select(0);
+		} else {
+			for (int i = 0; i < renderers.size(); i++) {
+				if (renderers.get(i).eClass().getInstanceClass().equals(
+					currentAttributeRenderer.eClass().getInstanceClass())) {
+					attributeRendererSelector.select(i + 1);
+				}
+			}
+		}
+	}
+
+	private void rebuildAttributeOptionsContainer() {
+		if (attributeOptionsSubContainer != null) {
+			attributeOptionsSubContainer.dispose();
+		}
+		attributeOptionsSubContainer = new Composite(attributeOptionsContainer, SWT.FILL);
+		attributeOptionsSubContainer.setLayout(new GridLayout());
+		attributeOptionsSubContainer.setLayoutData(new GridData(GridData.FILL_HORIZONTAL));
 	}
 
 	private ArrayList<EStructuralFeature> getAttributes(EClass eClass) {

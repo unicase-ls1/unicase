@@ -90,7 +90,7 @@ public class LayoutOptionsTab extends TemplateEditorTab {
 
 		// factory.buildOptionsFormular(generalOptions, template.getLayoutOptions());
 
-		setFocus();
+		generalOptions.setFocus();
 
 		layoutAndPack();
 	}

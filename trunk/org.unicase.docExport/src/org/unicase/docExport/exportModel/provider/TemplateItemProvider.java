@@ -116,7 +116,6 @@ public class TemplateItemProvider extends ItemProviderAdapter implements IEditin
 			super.getChildrenFeatures(object);
 			childrenFeatures.add(ExportModelPackage.Literals.TEMPLATE__MODEL_ELEMENT_RENDERER_MAPPING);
 			childrenFeatures.add(ExportModelPackage.Literals.TEMPLATE__LAYOUT_OPTIONS);
-			childrenFeatures.add(ExportModelPackage.Literals.TEMPLATE__GLOBAL_RENDERER_OPTIONS);
 		}
 		return childrenFeatures;
 	}
@@ -174,7 +173,6 @@ public class TemplateItemProvider extends ItemProviderAdapter implements IEditin
 				return;
 			case ExportModelPackage.TEMPLATE__MODEL_ELEMENT_RENDERER_MAPPING:
 			case ExportModelPackage.TEMPLATE__LAYOUT_OPTIONS:
-			case ExportModelPackage.TEMPLATE__GLOBAL_RENDERER_OPTIONS:
 				fireNotifyChanged(new ViewerNotification(notification, notification.getNotifier(), true, false));
 				return;
 		}
@@ -200,31 +198,6 @@ public class TemplateItemProvider extends ItemProviderAdapter implements IEditin
 			(createChildParameter
 				(ExportModelPackage.Literals.TEMPLATE__LAYOUT_OPTIONS,
 				 OptionsFactory.eINSTANCE.createLayoutOptions()));
-
-		newChildDescriptors.add
-			(createChildParameter
-				(ExportModelPackage.Literals.TEMPLATE__GLOBAL_RENDERER_OPTIONS,
-				 OptionsFactory.eINSTANCE.createSingleReferenceAttributeOption()));
-
-		newChildDescriptors.add
-			(createChildParameter
-				(ExportModelPackage.Literals.TEMPLATE__GLOBAL_RENDERER_OPTIONS,
-				 OptionsFactory.eINSTANCE.createMultiReferenceAttributeOption()));
-
-		newChildDescriptors.add
-			(createChildParameter
-				(ExportModelPackage.Literals.TEMPLATE__GLOBAL_RENDERER_OPTIONS,
-				 OptionsFactory.eINSTANCE.createStringAttributeOption()));
-
-		newChildDescriptors.add
-			(createChildParameter
-				(ExportModelPackage.Literals.TEMPLATE__GLOBAL_RENDERER_OPTIONS,
-				 OptionsFactory.eINSTANCE.createBooleanAttributeOption()));
-
-		newChildDescriptors.add
-			(createChildParameter
-				(ExportModelPackage.Literals.TEMPLATE__GLOBAL_RENDERER_OPTIONS,
-				 OptionsFactory.eINSTANCE.createDateAttributeOption()));
 	}
 
 	/**

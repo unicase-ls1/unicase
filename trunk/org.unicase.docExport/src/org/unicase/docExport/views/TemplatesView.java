@@ -26,6 +26,7 @@ import org.eclipse.ui.handlers.IHandlerService;
 import org.eclipse.ui.part.ViewPart;
 import org.unicase.docExport.TemplateRegistry;
 import org.unicase.docExport.editors.TemplateEditor;
+import org.unicase.docExport.exceptions.TemplateSaveException;
 
 /**
  * @author Sebastian Höcht
@@ -52,6 +53,13 @@ public class TemplatesView extends ViewPart {
 	@Override
 	public void createPartControl(Composite parent) {
 
+		try {
+			TemplateRegistry.getAllTemplates();
+		} catch (TemplateSaveException e2) {
+			// TODO Auto-generated catch block
+			e2.printStackTrace();
+		}
+
 		AdapterFactory myAdapterFactory = new ComposedAdapterFactory(
 			ComposedAdapterFactory.Descriptor.Registry.INSTANCE);
 
@@ -59,16 +67,27 @@ public class TemplatesView extends ViewPart {
 		viewer.setLabelProvider(new AdapterFactoryLabelProvider(myAdapterFactory));
 		viewer.setContentProvider(new AdapterFactoryContentProvider(myAdapterFactory));
 
+		// viewer.setLabelProvider(new TreeLabelProvider());
+		// viewer.setContentProvider(new TreeContentProvider());
+
 		viewer.getTree().setLayoutData(new GridData(GridData.FILL_BOTH));
 
 		// viewer.setLabelProvider(new TreeLabelProvider());
 		// viewer.setContentProvider(new ExportModelItemProviderAdapterFactory().);
+
 		try {
 			viewer.setInput(TemplateRegistry.getTemplatesResource());
 		} catch (IOException e1) {
 			// TODO Auto-generated catch block
 			e1.printStackTrace();
 		}
+
+		// try {
+		// viewer.setInput(TemplateRegistry.getAllTemplates().get(0));
+		// } catch (TemplateSaveException e1) {
+		// // TODO Auto-generated catch block
+		// e1.printStackTrace();
+		// }
 
 		// viewer.setLabelProvider(labelProvider);
 		// try {

@@ -7,7 +7,6 @@ package org.unicase.docExport.exportModel.provider;
 
 import org.eclipse.emf.common.EMFPlugin;
 import org.eclipse.emf.common.util.ResourceLocator;
-import org.eclipse.emf.ecore.provider.EcoreEditPlugin;
 
 /**
  * This is the central singleton for the ExportModel edit plugin.
@@ -37,7 +36,6 @@ public final class ExportModelEditPlugin extends EMFPlugin {
 	public ExportModelEditPlugin() {
 		super
 		  (new ResourceLocator [] {
-		     EcoreEditPlugin.INSTANCE,
 		   });
 	}
 

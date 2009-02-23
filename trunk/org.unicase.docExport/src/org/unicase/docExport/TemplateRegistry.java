@@ -6,10 +6,15 @@
 package org.unicase.docExport;
 
 import java.io.File;
+import java.io.FileOutputStream;
 import java.io.IOException;
+import java.io.InputStream;
 import java.net.URL;
 import java.util.ArrayList;
 import java.util.Collections;
+import java.util.Enumeration;
+import java.util.jar.JarEntry;
+import java.util.jar.JarFile;
 
 import org.eclipse.core.runtime.FileLocator;
 import org.eclipse.core.runtime.IStatus;
@@ -28,6 +33,7 @@ import org.unicase.docExport.exceptions.TemplatesFileNotFoundException;
 import org.unicase.docExport.exportModel.ExportModelPackage;
 import org.unicase.docExport.exportModel.Template;
 import org.unicase.docExport.exportModel.builders.DefaultDocumentTemplateBuilder;
+import org.unicase.workspace.Configuration;
 import org.unicase.workspace.util.WorkspaceUtil;
 
 /**
@@ -37,6 +43,8 @@ import org.unicase.workspace.util.WorkspaceUtil;
  * @author Sebastian Hoecht
  */
 public final class TemplateRegistry {
+
+	private static final String DEFAULT_TEMPLATE_TMP = "defaultTemplate.tmp";
 
 	private static final String DEFAULT_TEMPLATES_FOLDER = "defaultTemplates";
 
@@ -52,15 +60,15 @@ public final class TemplateRegistry {
 	private static ResourceSet resourceSet;
 
 	private static final String DEFAULT_TEMPLATE_NAME = "default";
-	private static final String UNICASE_FOLDER = ".unicase";
+	private static final String UNICASE_FOLDER = Configuration.getWorkspaceDirectory();
+
 	private static final String DOCUMENT_EXPORT_FOLDER = "docExport";
-	private static final String TEMPLATES_FILE_NAME = "templates5";
+	private static final String TEMPLATES_FILE_NAME = "templates6";
 
 	/**
 	 * The folder where all templates should be saved.
 	 */
-	public static final String TEMPLATE_FOLDER = System.getProperty("user.home") + File.separatorChar + UNICASE_FOLDER
-		+ File.separatorChar + DOCUMENT_EXPORT_FOLDER + File.separatorChar;
+	public static final String TEMPLATE_FOLDER = UNICASE_FOLDER + DOCUMENT_EXPORT_FOLDER + File.separatorChar;
 
 	/**
 	 * The folder where all logo images of the templates should be saved.
@@ -106,22 +114,88 @@ public final class TemplateRegistry {
 
 		try {
 			URL templateFolderUrl = FileLocator.find(Activator.getDefault().getBundle(), new Path(
-				DEFAULT_TEMPLATES_FOLDER + "/"), Collections.EMPTY_MAP);
+				DEFAULT_TEMPLATES_FOLDER + File.separatorChar), Collections.EMPTY_MAP);
 
-			File templateFolder = new File(FileLocator.resolve(templateFolderUrl).getPath());
-			File[] files = templateFolder.listFiles();
-			for (int i = 0; i < files.length; i++) {
-				Path path = new Path(files[i].getAbsolutePath());
-				if (path.getFileExtension().equals("zip")) {
-					ImportTemplate.importTemplate(files[i].getAbsolutePath(), true);
+			// loading the template in the developer version is easy
+			if (Configuration.isDeveloperVersion()) {
+				File templateFolder = new File(FileLocator.resolve(templateFolderUrl).getPath());
+				File[] files = templateFolder.listFiles();
+				for (int i = 0; i < files.length; i++) {
+					Path path = new Path(files[i].getAbsolutePath());
+					if (path.getFileExtension().equals("zip")) {
+						ImportTemplate.importTemplate(files[i].getAbsolutePath(), true);
+					}
+				}
+			} else {
+				// loading the templates in the deployed version is very complicated, because you have to
+				// list all files within the templates folder, which can't be done with File.list()
+				// because This function doesn't work for jar files
+				URL pluginJarFile = FileLocator.find(Activator.getDefault().getBundle(), new Path(""),
+					Collections.EMPTY_MAP);
+
+				String jarFilePath = FileLocator.resolve(pluginJarFile).getPath();
+
+				// I couldn't find a function, which generates the correct path string.
+				// so i take this one and manipulate it.
+				// cut the last file separator and the "!"
+				jarFilePath = jarFilePath.substring(0, jarFilePath.length() - 2);
+				jarFilePath = jarFilePath.replace("file:", "");
+
+				JarFile jarFile = new JarFile(jarFilePath);
+				Enumeration<JarEntry> jarEnum = jarFile.entries();
+
+				// walk through all entries in the jar file of the docExport bundle
+				while (jarEnum.hasMoreElements()) {
+					JarEntry jarEntry = jarEnum.nextElement();
+					// filter the entries to the entries starting with the default templates folder
+					if (jarEntry.getName().startsWith(DEFAULT_TEMPLATES_FOLDER)) {
+						Path path = new Path(jarFilePath + File.separatorChar + jarEntry.getName());
+						// make sure, that you don't try to import with a wrong file.
+						if (path.getFileExtension() != null && path.getFileExtension().equals("zip")) {
+							jarFile.getInputStream(jarEntry);
+							InputStream fis = jarFile.getInputStream(jarEntry);
+							FileOutputStream fos = new FileOutputStream(TEMPLATE_FOLDER + DEFAULT_TEMPLATE_TMP);
+							readZipFile(fis, fos);
+							ImportTemplate.importTemplate(TEMPLATE_FOLDER + DEFAULT_TEMPLATE_TMP, true);
+						}
+					}
 				}
 			}
 		} catch (IOException e) {
 			// no problem
+			// if it doesn't work.. there is no imported default template.. bad luck then!
 		} catch (InvalidTemplateArchiveException e) {
 			// no problem
 		} catch (TemplateSaveException e) {
 			// no problem
+		}
+	}
+
+	private static void readZipFile(InputStream fis, FileOutputStream fos) {
+		try {
+			byte[] buf = new byte[1024];
+			int i = 0;
+			while ((i = fis.read(buf)) != -1) {
+				fos.write(buf, 0, i);
+			}
+		} catch (IOException e) {
+			// TODO Auto-generated catch block
+			e.printStackTrace();
+		} finally {
+			if (fis != null) {
+				try {
+					fis.close();
+				} catch (IOException e) {
+					// TODO Auto-generated catch block
+					e.printStackTrace();
+				}
+			}
+			try {
+				fos.close();
+			} catch (IOException e) {
+				// TODO Auto-generated catch block
+				e.printStackTrace();
+			}
 		}
 	}
 

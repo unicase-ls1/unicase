@@ -9,6 +9,7 @@ import org.eclipse.core.commands.AbstractHandler;
 import org.eclipse.core.commands.ExecutionEvent;
 import org.eclipse.core.commands.ExecutionException;
 import org.eclipse.core.commands.IHandler;
+import org.eclipse.emf.ecore.EClass;
 import org.eclipse.jface.viewers.ISelection;
 import org.eclipse.jface.viewers.IStructuredSelection;
 import org.eclipse.ui.IWorkbenchPage;
@@ -18,6 +19,10 @@ import org.eclipse.ui.handlers.HandlerUtil;
 import org.unicase.docExport.editors.TemplateEditor;
 import org.unicase.docExport.editors.TemplateEditorInput;
 import org.unicase.docExport.exportModel.Template;
+import org.unicase.docExport.exportModel.builders.DefaultDocumentTemplateBuilder;
+import org.unicase.docExport.exportModel.renderers.AttributeRendererMapping;
+import org.unicase.docExport.exportModel.renderers.ModelElementRenderer;
+import org.unicase.docExport.exportModel.renderers.ModelElementRendererMapping;
 import org.unicase.docExport.views.TemplatesView;
 
 /**
@@ -46,17 +51,46 @@ public class CallTemplateEditor extends AbstractHandler implements IHandler {
 		}
 
 		Object o = ssel.getFirstElement();
-		if (!(o instanceof Template)) {
-			return null;
-		}
+		if (o instanceof Template) {
+			Template template = (Template) o;
+			TemplateEditorInput input = new TemplateEditorInput(template);
+			try {
+				page.openEditor(input, TemplateEditor.ID);
+			} catch (PartInitException e) {
+				// TODO Auto-generated catch block
+				e.printStackTrace();
+			}
+		} else if (o instanceof ModelElementRendererMapping) {
+			ModelElementRendererMapping mapping = (ModelElementRendererMapping) o;
 
-		Template template = (Template) o;
-		TemplateEditorInput input = new TemplateEditorInput(template);
-		try {
-			page.openEditor(input, TemplateEditor.ID);
-		} catch (PartInitException e) {
-			// TODO Auto-generated catch block
-			e.printStackTrace();
+			try {
+				TemplateEditorInput input = new TemplateEditorInput(mapping.getRenderer().getTemplate());
+				TemplateEditor editor = (TemplateEditor) page.openEditor(input, TemplateEditor.ID);
+
+				editor
+					.chooseModelElementType(DefaultDocumentTemplateBuilder.getEClassOfString(mapping.getEClassName()));
+			} catch (PartInitException e) {
+				// TODO Auto-generated catch block
+				e.printStackTrace();
+			}
+		} else if (o instanceof AttributeRendererMapping) {
+			AttributeRendererMapping mapping = (AttributeRendererMapping) o;
+			TemplateEditorInput input = new TemplateEditorInput(((ModelElementRenderer) mapping.eContainer())
+				.getTemplate());
+
+			try {
+				TemplateEditor editor = (TemplateEditor) page.openEditor(input, TemplateEditor.ID);
+
+				ModelElementRenderer renderer = (ModelElementRenderer) mapping.eContainer();
+				ModelElementRendererMapping modelElementRendererMapping = (ModelElementRendererMapping) renderer
+					.eContainer();
+				EClass modelElementType = DefaultDocumentTemplateBuilder.getEClassOfString(modelElementRendererMapping
+					.getEClassName());
+				editor.chooseFeature(modelElementType, mapping.getFeatureName());
+			} catch (PartInitException e) {
+				// TODO Auto-generated catch block
+				e.printStackTrace();
+			}
 		}
 
 		return null;
