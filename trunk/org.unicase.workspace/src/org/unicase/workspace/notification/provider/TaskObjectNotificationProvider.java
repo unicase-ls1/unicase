@@ -18,10 +18,13 @@ import org.unicase.emfstore.esmodel.notification.ESNotification;
 import org.unicase.emfstore.esmodel.notification.NotificationFactory;
 import org.unicase.emfstore.esmodel.versioning.ChangePackage;
 import org.unicase.emfstore.esmodel.versioning.operations.AbstractOperation;
+import org.unicase.emfstore.esmodel.versioning.operations.OperationsPackage;
+import org.unicase.emfstore.esmodel.versioning.operations.ReferenceOperation;
 import org.unicase.model.ModelElement;
 import org.unicase.model.ModelElementId;
 import org.unicase.model.Project;
 import org.unicase.model.organization.User;
+import org.unicase.model.task.TaskPackage;
 import org.unicase.model.task.util.OpeningLinkHelper;
 import org.unicase.model.util.ModelElementPath;
 import org.unicase.workspace.ProjectSpace;
@@ -70,6 +73,9 @@ public class TaskObjectNotificationProvider implements NotificationProvider {
 
 		for (ChangePackage changePackage : changePackages) {
 			for (AbstractOperation operation : changePackage.getOperations()) {
+				if (filter(operation)) {
+					continue;
+				}
 				ModelElementId modelElementId = operation.getModelElementId();
 				if (objectsOfWork.containsKey(modelElementId)) {
 					addChangePackage(modelElementId, operation, changes);
@@ -88,6 +94,18 @@ public class TaskObjectNotificationProvider implements NotificationProvider {
 		}
 
 		return result;
+	}
+
+	private boolean filter(AbstractOperation operation) {
+		if (OperationsPackage.eINSTANCE.getReferenceOperation().isInstance(operation)) {
+			ReferenceOperation referenceOperation = (ReferenceOperation) operation;
+			String featureName = TaskPackage.eINSTANCE.getWorkPackage_ContainedWorkItems().getName();
+			if (referenceOperation.getFeatureName().equals(featureName)
+				|| referenceOperation.getOppositeFeatureName().equals(featureName)) {
+				return true;
+			}
+		}
+		return false;
 	}
 
 	private ESNotification createNotification(ModelElementId meId, List<AbstractOperation> list,
