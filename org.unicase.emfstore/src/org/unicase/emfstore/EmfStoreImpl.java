@@ -609,7 +609,11 @@ public class EmfStoreImpl implements EmfStore {
 			// DateVersionSpec
 		} else if (versionSpec instanceof DateVersionSpec) {
 			for (Version version : projectHistory.getVersions()) {
-				if (((DateVersionSpec) versionSpec).getDate().before(version.getLogMessage().getDate())) {
+				LogMessage logMessage = version.getLogMessage();
+				if (logMessage == null) {
+					continue;
+				}
+				if (((DateVersionSpec) versionSpec).getDate().before(logMessage.getDate())) {
 					Version previousVersion = version.getPreviousVersion();
 					if (previousVersion == null) {
 						break;
@@ -617,7 +621,9 @@ public class EmfStoreImpl implements EmfStore {
 					return previousVersion.getPrimarySpec();
 				}
 			}
-			throw new InvalidVersionSpecException();
+			PrimaryVersionSpec primaryVersionSpec = VersioningFactory.eINSTANCE.createPrimaryVersionSpec();
+			primaryVersionSpec.setIdentifier(0);
+			return primaryVersionSpec;
 			// TagVersionSpec
 		} else if (versionSpec instanceof TagVersionSpec) {
 			for (Version version : projectHistory.getVersions()) {
