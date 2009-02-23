@@ -13,6 +13,7 @@ import org.eclipse.jface.viewers.IColorProvider;
 import org.unicase.model.organization.OrgUnit;
 import org.unicase.model.task.Checkable;
 import org.unicase.model.task.WorkItem;
+import org.unicase.model.task.util.MEState;
 import org.unicase.model.task.util.TaxonomyAccess;
 
 /**
@@ -25,13 +26,12 @@ public class UserEstimateLabelProvider extends ColumnLabelProvider implements IC
 	private final UserTabContentProvider contentProvider;
 
 	/**
-	 * Default constructor.
+	 * Constructor.
 	 * 
 	 * @param contentProvider the contentProvider for the tree
 	 */
 	public UserEstimateLabelProvider(UserTabContentProvider contentProvider) {
 		this.contentProvider = contentProvider;
-		// TODO Auto-generated constructor stub
 	}
 
 	/**
@@ -59,6 +59,20 @@ public class UserEstimateLabelProvider extends ColumnLabelProvider implements IC
 				estimate = estimate + ((WorkItem) check).getEstimate();
 			}
 		}
-		return estimate + "";
+
+		int closedEstimate = getClosedEstimate(workItems);
+
+		return closedEstimate + " / " + estimate;
+	}
+
+	private int getClosedEstimate(Set<Checkable> workItems) {
+
+		int closedEstimate = 0;
+		for (Checkable workItem : workItems) {
+			if (((WorkItem) workItem).getState().equals(MEState.CLOSED)) {
+				closedEstimate += ((WorkItem) workItem).getEstimate();
+			}
+		}
+		return closedEstimate;
 	}
 }

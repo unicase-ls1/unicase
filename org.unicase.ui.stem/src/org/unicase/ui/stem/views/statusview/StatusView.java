@@ -63,7 +63,7 @@ import org.unicase.workspace.WorkspacePackage;
 import org.unicase.workspace.util.EventUtil;
 
 /**
- * . This view summarizes the the progress status of a model element according to its Openers, Annotations, and
+ * This view summarizes the the progress status of a model element according to its Openers, Annotations, and
  * corresponding Assignables. The view contains a top part showing name, description and project of input model element,
  * and a progress bar showing its overall progress. The bottom part of view contains two tabs showing Openers of the
  * input model element in flat and hierarchical views, and a tab showing users participating in this model element and
@@ -307,7 +307,7 @@ public class StatusView extends ViewPart implements ProjectChangeObserver {
 		}
 
 		int tasks = leafOpeners.size();
-		int estimate = TaxonomyAccess.getInstance().getOpeningLinkTaxonomy().getEstimate(leafOpeners);
+		int estimate = TaxonomyAccess.getInstance().getOpeningLinkTaxonomy().getEstimate(input);
 		int closedTasks = getClosedTasks(leafOpeners);
 		int closedEstimate = getClosedEstimate(leafOpeners);
 
@@ -380,16 +380,16 @@ public class StatusView extends ViewPart implements ProjectChangeObserver {
 	}
 
 	private int getClosedTasks(Set<ModelElement> leafOpeners) {
-		int openTasks = 0;
+		int closedTasks = 0;
 		Iterator<ModelElement> iterator = leafOpeners.iterator();
 		while (iterator.hasNext()) {
 			ModelElement next = iterator.next();
 			// JH: change to workItem
 			if (next.getState().equals(MEState.CLOSED)) {
-				openTasks++;
+				closedTasks++;
 			}
 		}
-		return openTasks;
+		return closedTasks;
 	}
 
 	private Date getLatestDueDate(Set<ModelElement> leafOpeners) {

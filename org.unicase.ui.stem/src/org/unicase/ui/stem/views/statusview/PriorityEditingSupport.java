@@ -14,13 +14,13 @@ import org.eclipse.jface.viewers.EditingSupport;
  * 
  * @author helming
  */
-public class PriorityEditionSupport extends EditingSupport {
+public class PriorityEditingSupport extends EditingSupport {
 	/**
 	 * . Constructor
 	 * 
 	 * @param viewer the viewer containing this column
 	 */
-	public PriorityEditionSupport(ColumnViewer viewer) {
+	public PriorityEditingSupport(ColumnViewer viewer) {
 		super(viewer);
 		// TODO Auto-generated constructor stub
 	}

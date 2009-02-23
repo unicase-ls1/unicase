@@ -104,7 +104,7 @@ public abstract class AbstractDropAdapter extends DropTargetAdapter {
 		for (ModelElement me : openersForSource) {
 			if (me instanceof WorkItem) {
 				try {
-					if (!me.getMEState().equals(MEState.CLOSED) && isAssignedToTheSameTeam((WorkItem) me)) {
+					if (!me.getMEState().getStatus().equals(MEState.CLOSED) && isAssignedToTheSameTeam((WorkItem) me)) {
 
 						((WorkPackage) currentOpenME).getContainedWorkItems().add((WorkItem) me);
 						i++;

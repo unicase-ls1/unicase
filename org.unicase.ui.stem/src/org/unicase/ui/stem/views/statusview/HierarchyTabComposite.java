@@ -97,7 +97,7 @@ public class HierarchyTabComposite extends Composite implements ProjectChangeObs
 	}
 
 	private void createTree() {
-		treeViewer = new TreeViewer(this, SWT.BORDER);
+		treeViewer = new TreeViewer(this, SWT.BORDER | SWT.FULL_SELECTION);
 		treeViewer.getTree().setLayoutData(new GridData(SWT.FILL, SWT.FILL, true, true));
 
 		treeViewer.setLabelProvider(new HierarchyTabLabelProvider());
@@ -165,16 +165,17 @@ public class HierarchyTabComposite extends Composite implements ProjectChangeObs
 		tclmPriority.getColumn().setWidth(100);
 		PriorityLabelProvider priorityToLabelProvider = new PriorityLabelProvider();
 		tclmPriority.setLabelProvider(priorityToLabelProvider);
-		tclmPriority.setEditingSupport(new PriorityEditionSupport(viewer));
+		tclmPriority.setEditingSupport(new PriorityEditingSupport(viewer));
 		new TreeViewerColumnSorter(viewer, tclmPriority, priorityToLabelProvider);
 
 		// Estimate
 		TreeViewerColumn tclmEstimate = new TreeViewerColumn(viewer, SWT.NONE);
 		tclmEstimate.getColumn().setText("Estimate");
 		tclmEstimate.getColumn().setWidth(100);
-		EstimateLabelProvider estimateToLabelProvider = new EstimateLabelProvider();
+		HierarchyTabEstimateLabelProvider estimateToLabelProvider = new HierarchyTabEstimateLabelProvider(
+			(HierarchyTabContentProvider) viewer.getContentProvider());
 		tclmEstimate.setLabelProvider(estimateToLabelProvider);
-		tclmEstimate.setEditingSupport(new PriorityEditionSupport(viewer));
+		tclmEstimate.setEditingSupport(new PriorityEditingSupport(viewer));
 		new TreeViewerColumnSorter(viewer, tclmEstimate, estimateToLabelProvider);
 
 	}

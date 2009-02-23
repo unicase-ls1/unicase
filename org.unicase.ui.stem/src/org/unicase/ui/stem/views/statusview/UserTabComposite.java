@@ -92,7 +92,7 @@ public class UserTabComposite extends Composite implements ProjectChangeObserver
 	}
 
 	private void createTree() {
-		treeViewer = new TreeViewer(this, SWT.BORDER);
+		treeViewer = new TreeViewer(this, SWT.BORDER | SWT.FULL_SELECTION);
 		treeViewer.getTree().setLayoutData(new GridData(SWT.FILL, SWT.FILL, true, true));
 
 		UserTabContentProvider contentProvider = new UserTabContentProvider();
