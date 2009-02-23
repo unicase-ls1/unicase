@@ -191,6 +191,12 @@ public class AssignmentNotificationProvider implements NotificationProvider {
 			}
 		}
 
+		TaskChangeNotificationProvider changeNotificationProvider = new TaskChangeNotificationProvider(this.clazz);
+		changeNotificationProvider.addToFilter(workItems);
+		List<ESNotification> notifications = changeNotificationProvider.provideNotifications(projectSpace,
+			changePackages, currentUsername);
+		result.addAll(notifications);
+
 		if (workItems.isEmpty()) {
 			return result;
 		}

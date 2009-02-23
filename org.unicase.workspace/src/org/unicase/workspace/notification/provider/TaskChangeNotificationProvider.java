@@ -6,10 +6,13 @@
 package org.unicase.workspace.notification.provider;
 
 import java.util.ArrayList;
+import java.util.Collection;
 import java.util.Date;
+import java.util.HashMap;
 import java.util.HashSet;
 import java.util.Iterator;
 import java.util.List;
+import java.util.Map;
 import java.util.Set;
 
 import org.eclipse.emf.ecore.EClass;
@@ -18,6 +21,8 @@ import org.unicase.emfstore.esmodel.notification.NotificationFactory;
 import org.unicase.emfstore.esmodel.util.EsModelUtil;
 import org.unicase.emfstore.esmodel.versioning.ChangePackage;
 import org.unicase.emfstore.esmodel.versioning.operations.AbstractOperation;
+import org.unicase.model.ModelElement;
+import org.unicase.model.ModelElementId;
 import org.unicase.model.organization.User;
 import org.unicase.model.task.WorkItem;
 import org.unicase.model.task.util.TaskQuery;
@@ -37,6 +42,8 @@ public class TaskChangeNotificationProvider implements NotificationProvider {
 
 	private EClass clazz;
 
+	private Set<ModelElementId> elementsToExclude;
+
 	/**
 	 * Default constructor.
 	 * 
@@ -44,6 +51,16 @@ public class TaskChangeNotificationProvider implements NotificationProvider {
 	 */
 	public TaskChangeNotificationProvider(EClass assignmentClass) {
 		this.clazz = assignmentClass;
+		this.elementsToExclude = new HashSet<ModelElementId>();
+	}
+
+	/**
+	 * Add the given elements to the exclude filter. Excluding them from notification.
+	 * 
+	 * @param elements the elements to exclude
+	 */
+	public void addToFilter(Collection<ModelElementId> elements) {
+		this.elementsToExclude.addAll(elements);
 	}
 
 	/**
@@ -77,16 +94,26 @@ public class TaskChangeNotificationProvider implements NotificationProvider {
 			return result;
 		}
 
-		Set<WorkItem> workItems = new HashSet<WorkItem>();
+		Map<WorkItem, Date> workItems = new HashMap<WorkItem, Date>();
 
 		Set<WorkItem> workItemsOfUser = TaskQuery.getWorkItemsOfUser(user);
 
 		for (ChangePackage changePackage : changePackages) {
 			for (AbstractOperation operation : changePackage.getOperations()) {
-
+				ModelElementId modelElementId = operation.getModelElementId();
+				ModelElement modelElement = projectSpace.getProject().getModelElement(modelElementId);
+				if (modelElement == null) {
+					continue;
+				}
+				if (!this.clazz.isInstance(modelElement)) {
+					continue;
+				}
+				if (this.elementsToExclude.contains(modelElementId)) {
+					continue;
+				}
 				for (WorkItem workItem : workItemsOfUser) {
-					if (workItem.getModelElementId().equals(operation.getModelElementId())) {
-						workItems.add(workItem);
+					if (workItem.getModelElementId().equals(modelElementId)) {
+						workItems.put(workItem, operation.getClientDate());
 					}
 				}
 			}
@@ -104,7 +131,8 @@ public class TaskChangeNotificationProvider implements NotificationProvider {
 
 	}
 
-	private ESNotification createNotification(ProjectSpace projectSpace, User user, Set<WorkItem> workItems) {
+	private ESNotification createNotification(ProjectSpace projectSpace, User user, Map<WorkItem, Date> workItemMap) {
+		Set<WorkItem> workItems = workItemMap.keySet();
 		ESNotification notification = NotificationFactory.eINSTANCE.createESNotification();
 		notification.setName("Changed work items");
 		notification.setProject(EsModelUtil.clone(projectSpace.getProjectId()));
@@ -143,7 +171,7 @@ public class TaskChangeNotificationProvider implements NotificationProvider {
 		Date date = workItems.iterator().next().getCreationDate();
 		for (WorkItem workItem : workItems) {
 			notification.getRelatedModelElements().add(workItem.getModelElementId());
-			Date newDate = workItem.getCreationDate();
+			Date newDate = workItemMap.get(workItem);
 			if (newDate != null && newDate.after(date)) {
 				date = newDate;
 			}
