@@ -20,7 +20,6 @@ import org.unicase.model.rationale.RationalePackage;
 import org.unicase.model.task.TaskPackage;
 import org.unicase.workspace.ProjectSpace;
 import org.unicase.workspace.notification.provider.AssignmentNotificationProvider;
-import org.unicase.workspace.notification.provider.TaskChangeNotificationProvider;
 import org.unicase.workspace.notification.provider.TaskObjectNotificationProvider;
 import org.unicase.workspace.notification.provider.UpdateNotificationProvider;
 import org.unicase.workspace.util.WorkspaceUtil;
@@ -45,15 +44,17 @@ public final class NotificationGenerator {
 		// update provider must be first in list
 		providers.add(new UpdateNotificationProvider());
 
-		providers.add(new AssignmentNotificationProvider(TaskPackage.eINSTANCE.getActionItem()));
+		TaskPackage taskPackage = TaskPackage.eINSTANCE;
+		providers.add(new AssignmentNotificationProvider(taskPackage.getActionItem()));
 		providers.add(new AssignmentNotificationProvider(RationalePackage.eINSTANCE.getIssue()));
 		providers.add(new AssignmentNotificationProvider(BugPackage.eINSTANCE.getBugReport()));
+		providers.add(new AssignmentNotificationProvider(taskPackage.getWorkPackage()));
 
 		providers.add(new TaskObjectNotificationProvider());
 
-		providers.add(new TaskChangeNotificationProvider(TaskPackage.eINSTANCE.getActionItem()));
-		providers.add(new TaskChangeNotificationProvider(RationalePackage.eINSTANCE.getIssue()));
-		providers.add(new TaskChangeNotificationProvider(BugPackage.eINSTANCE.getBugReport()));
+		// providers.add(new TaskChangeNotificationProvider(TaskPackage.eINSTANCE.getActionItem()));
+		// providers.add(new TaskChangeNotificationProvider(RationalePackage.eINSTANCE.getIssue()));
+		// providers.add(new TaskChangeNotificationProvider(BugPackage.eINSTANCE.getBugReport()));
 
 	}
 
