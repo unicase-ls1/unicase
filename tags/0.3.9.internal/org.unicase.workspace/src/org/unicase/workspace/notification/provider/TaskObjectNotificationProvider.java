@@ -96,6 +96,18 @@ public class TaskObjectNotificationProvider implements NotificationProvider {
 		return result;
 	}
 
+	private boolean filter(AbstractOperation operation) {
+		if (OperationsPackage.eINSTANCE.getReferenceOperation().isInstance(operation)) {
+			ReferenceOperation referenceOperation = (ReferenceOperation) operation;
+			String featureName = TaskPackage.eINSTANCE.getWorkPackage_ContainedWorkItems().getName();
+			if (referenceOperation.getFeatureName().equals(featureName)
+				|| referenceOperation.getOppositeFeatureName().equals(featureName)) {
+				return true;
+			}
+		}
+		return false;
+	}
+
 	private ESNotification createNotification(ModelElementId meId, List<AbstractOperation> list,
 		ModelElementPath modelElementPath, ProjectSpace projectSpace) {
 		Project project = projectSpace.getProject();
@@ -137,17 +149,5 @@ public class TaskObjectNotificationProvider implements NotificationProvider {
 			changes.put(modelElementId, arrayList);
 		}
 
-	}
-	
-	private boolean filter(AbstractOperation operation) {
-		if (OperationsPackage.eINSTANCE.getReferenceOperation().isInstance(operation)) {
-			ReferenceOperation referenceOperation = (ReferenceOperation) operation;
-			String featureName = TaskPackage.eINSTANCE.getWorkPackage_ContainedWorkItems().getName();
-			if (referenceOperation.getFeatureName().equals(featureName)
-				|| referenceOperation.getOppositeFeatureName().equals(featureName)) {
-				return true;
-			}
-		}
-		return false;
 	}
 }
