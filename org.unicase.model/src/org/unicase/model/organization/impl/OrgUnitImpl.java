@@ -33,18 +33,18 @@ import org.unicase.model.task.WorkItem;
  */
 public abstract class OrgUnitImpl extends ModelElementImpl implements OrgUnit {
 	/**
-	 * The default value of the '{@link #getAcOrgId() <em>Ac Org Id</em>}' attribute.
-	 * <!-- begin-user-doc --> <!--
+	 * The default value of the '{@link #getAcOrgId() <em>Ac Org Id</em>}' attribute. <!-- begin-user-doc --> <!--
 	 * end-user-doc -->
+	 * 
 	 * @see #getAcOrgId()
 	 * @generated
 	 * @ordered
 	 */
 	protected static final String AC_ORG_ID_EDEFAULT = null;
 	/**
-	 * The cached value of the '{@link #getAcOrgId() <em>Ac Org Id</em>}' attribute.
-	 * <!-- begin-user-doc --> <!--
+	 * The cached value of the '{@link #getAcOrgId() <em>Ac Org Id</em>}' attribute. <!-- begin-user-doc --> <!--
 	 * end-user-doc -->
+	 * 
 	 * @see #getAcOrgId()
 	 * @generated
 	 * @ordered
@@ -61,9 +61,9 @@ public abstract class OrgUnitImpl extends ModelElementImpl implements OrgUnit {
 	protected EList<Group> groupMemberships;
 
 	/**
-	 * The cached value of the '{@link #getAssignments() <em>Assignments</em>}' reference list.
-	 * <!-- begin-user-doc -->
+	 * The cached value of the '{@link #getAssignments() <em>Assignments</em>}' reference list. <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
+	 * 
 	 * @see #getAssignments()
 	 * @generated
 	 * @ordered
@@ -81,6 +81,7 @@ public abstract class OrgUnitImpl extends ModelElementImpl implements OrgUnit {
 
 	/**
 	 * <!-- begin-user-doc --> <!-- end-user-doc -->
+	 * 
 	 * @generated
 	 */
 	protected OrgUnitImpl() {
@@ -89,6 +90,7 @@ public abstract class OrgUnitImpl extends ModelElementImpl implements OrgUnit {
 
 	/**
 	 * <!-- begin-user-doc --> <!-- end-user-doc -->
+	 * 
 	 * @generated
 	 */
 	@Override
@@ -98,6 +100,7 @@ public abstract class OrgUnitImpl extends ModelElementImpl implements OrgUnit {
 
 	/**
 	 * <!-- begin-user-doc --> <!-- end-user-doc -->
+	 * 
 	 * @generated
 	 */
 	public String getAcOrgId() {
@@ -106,6 +109,7 @@ public abstract class OrgUnitImpl extends ModelElementImpl implements OrgUnit {
 
 	/**
 	 * <!-- begin-user-doc --> <!-- end-user-doc -->
+	 * 
 	 * @generated
 	 */
 	public void setAcOrgId(String newAcOrgId) {
@@ -118,6 +122,7 @@ public abstract class OrgUnitImpl extends ModelElementImpl implements OrgUnit {
 
 	/**
 	 * <!-- begin-user-doc --> <!-- end-user-doc -->
+	 * 
 	 * @generated
 	 */
 	public EList<Group> getGroupMemberships() {
@@ -130,6 +135,7 @@ public abstract class OrgUnitImpl extends ModelElementImpl implements OrgUnit {
 
 	/**
 	 * <!-- begin-user-doc --> <!-- end-user-doc -->
+	 * 
 	 * @generated
 	 */
 	public EList<WorkItem> getAssignments() {
@@ -142,6 +148,7 @@ public abstract class OrgUnitImpl extends ModelElementImpl implements OrgUnit {
 
 	/**
 	 * <!-- begin-user-doc --> <!-- end-user-doc -->
+	 * 
 	 * @generated
 	 */
 	public EList<WorkItem> getParticipations() {
@@ -154,6 +161,7 @@ public abstract class OrgUnitImpl extends ModelElementImpl implements OrgUnit {
 
 	/**
 	 * <!-- begin-user-doc --> <!-- end-user-doc -->
+	 * 
 	 * @generated
 	 */
 	@SuppressWarnings("unchecked")
@@ -172,6 +180,7 @@ public abstract class OrgUnitImpl extends ModelElementImpl implements OrgUnit {
 
 	/**
 	 * <!-- begin-user-doc --> <!-- end-user-doc -->
+	 * 
 	 * @generated
 	 */
 	@Override
@@ -189,6 +198,7 @@ public abstract class OrgUnitImpl extends ModelElementImpl implements OrgUnit {
 
 	/**
 	 * <!-- begin-user-doc --> <!-- end-user-doc -->
+	 * 
 	 * @generated
 	 */
 	@Override
@@ -208,6 +218,7 @@ public abstract class OrgUnitImpl extends ModelElementImpl implements OrgUnit {
 
 	/**
 	 * <!-- begin-user-doc --> <!-- end-user-doc -->
+	 * 
 	 * @generated
 	 */
 	@SuppressWarnings("unchecked")
@@ -235,6 +246,7 @@ public abstract class OrgUnitImpl extends ModelElementImpl implements OrgUnit {
 
 	/**
 	 * <!-- begin-user-doc --> <!-- end-user-doc -->
+	 * 
 	 * @generated
 	 */
 	@Override
@@ -258,6 +270,7 @@ public abstract class OrgUnitImpl extends ModelElementImpl implements OrgUnit {
 
 	/**
 	 * <!-- begin-user-doc --> <!-- end-user-doc -->
+	 * 
 	 * @generated
 	 */
 	@Override
@@ -277,6 +290,7 @@ public abstract class OrgUnitImpl extends ModelElementImpl implements OrgUnit {
 
 	/**
 	 * <!-- begin-user-doc --> <!-- end-user-doc -->
+	 * 
 	 * @generated
 	 */
 	@Override

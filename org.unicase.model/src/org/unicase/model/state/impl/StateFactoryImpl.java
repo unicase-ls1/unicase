@@ -21,8 +21,8 @@ import org.unicase.model.state.Transition;
  */
 public class StateFactoryImpl extends EFactoryImpl implements StateFactory {
 	/**
-	 * Creates the default factory implementation.
-	 * <!-- begin-user-doc --> <!-- end-user-doc -->
+	 * Creates the default factory implementation. <!-- begin-user-doc --> <!-- end-user-doc -->
+	 * 
 	 * @generated
 	 */
 	public static StateFactory init() {
@@ -39,8 +39,8 @@ public class StateFactoryImpl extends EFactoryImpl implements StateFactory {
 	}
 
 	/**
-	 * Creates an instance of the factory.
-	 * <!-- begin-user-doc --> <!-- end-user-doc -->
+	 * Creates an instance of the factory. <!-- begin-user-doc --> <!-- end-user-doc -->
+	 * 
 	 * @generated
 	 */
 	public StateFactoryImpl() {
@@ -49,6 +49,7 @@ public class StateFactoryImpl extends EFactoryImpl implements StateFactory {
 
 	/**
 	 * <!-- begin-user-doc --> <!-- end-user-doc -->
+	 * 
 	 * @generated
 	 */
 	@Override
@@ -65,6 +66,7 @@ public class StateFactoryImpl extends EFactoryImpl implements StateFactory {
 
 	/**
 	 * <!-- begin-user-doc --> <!-- end-user-doc -->
+	 * 
 	 * @generated
 	 */
 	public State createState() {
@@ -74,6 +76,7 @@ public class StateFactoryImpl extends EFactoryImpl implements StateFactory {
 
 	/**
 	 * <!-- begin-user-doc --> <!-- end-user-doc -->
+	 * 
 	 * @generated
 	 */
 	public Transition createTransition() {
@@ -83,6 +86,7 @@ public class StateFactoryImpl extends EFactoryImpl implements StateFactory {
 
 	/**
 	 * <!-- begin-user-doc --> <!-- end-user-doc -->
+	 * 
 	 * @generated
 	 */
 	public StatePackage getStatePackage() {
@@ -91,6 +95,7 @@ public class StateFactoryImpl extends EFactoryImpl implements StateFactory {
 
 	/**
 	 * <!-- begin-user-doc --> <!-- end-user-doc -->
+	 * 
 	 * @deprecated
 	 * @generated
 	 */

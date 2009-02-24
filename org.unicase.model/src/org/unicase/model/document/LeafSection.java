@@ -19,15 +19,15 @@ import org.unicase.model.ModelElement;
  */
 public interface LeafSection extends Section {
 	/**
-	 * Returns the value of the '<em><b>Model Elements</b></em>' containment reference list.
-	 * The list contents are of type {@link org.unicase.model.ModelElement}.
-	 * It is bidirectional and its opposite is '{@link org.unicase.model.ModelElement#getLeafSection <em>Leaf Section</em>}'.
-	 * <!-- begin-user-doc -->
+	 * Returns the value of the '<em><b>Model Elements</b></em>' containment reference list. The list contents are of
+	 * type {@link org.unicase.model.ModelElement}. It is bidirectional and its opposite is '
+	 * {@link org.unicase.model.ModelElement#getLeafSection <em>Leaf Section</em>}'. <!-- begin-user-doc -->
 	 * <p>
 	 * If the meaning of the '<em>Model Elements</em>' containment reference list isn't clear, there really should be
 	 * more of a description here...
 	 * </p>
 	 * <!-- end-user-doc -->
+	 * 
 	 * @return the value of the '<em>Model Elements</em>' containment reference list.
 	 * @see org.unicase.model.document.DocumentPackage#getLeafSection_ModelElements()
 	 * @see org.unicase.model.ModelElement#getLeafSection

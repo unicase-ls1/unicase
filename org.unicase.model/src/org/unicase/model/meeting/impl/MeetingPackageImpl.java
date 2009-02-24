@@ -56,30 +56,35 @@ import org.unicase.model.util.impl.UtilPackageImpl;
 public class MeetingPackageImpl extends EPackageImpl implements MeetingPackage {
 	/**
 	 * <!-- begin-user-doc --> <!-- end-user-doc -->
+	 * 
 	 * @generated
 	 */
 	private EClass meetingEClass = null;
 
 	/**
 	 * <!-- begin-user-doc --> <!-- end-user-doc -->
+	 * 
 	 * @generated
 	 */
 	private EClass meetingSectionEClass = null;
 
 	/**
 	 * <!-- begin-user-doc --> <!-- end-user-doc -->
+	 * 
 	 * @generated
 	 */
 	private EClass compositeMeetingSectionEClass = null;
 
 	/**
 	 * <!-- begin-user-doc --> <!-- end-user-doc -->
+	 * 
 	 * @generated
 	 */
 	private EClass issueMeetingSectionEClass = null;
 
 	/**
 	 * <!-- begin-user-doc --> <!-- end-user-doc -->
+	 * 
 	 * @generated
 	 */
 	private EClass workItemMeetingSectionEClass = null;
@@ -103,27 +108,24 @@ public class MeetingPackageImpl extends EPackageImpl implements MeetingPackage {
 
 	/**
 	 * <!-- begin-user-doc --> <!-- end-user-doc -->
+	 * 
 	 * @generated
 	 */
 	private static boolean isInited = false;
 
 	/**
-	 * Creates, registers, and initializes the <b>Package</b> for this
-	 * model, and for any others upon which it depends.  Simple
-	 * dependencies are satisfied by calling this method on all
-	 * dependent packages before doing anything else.  This method drives
-	 * initialization for interdependent packages directly, in parallel
-	 * with this package, itself.
-	 * <p>Of this package and its interdependencies, all packages which
-	 * have not yet been registered by their URI values are first created
-	 * and registered.  The packages are then initialized in two steps:
-	 * meta-model objects for all of the packages are created before any
-	 * are initialized, since one package's meta-model objects may refer to
-	 * those of another.
-	 * <p>Invocation of this method will not affect any packages that have
-	 * already been initialized.
-	 * <!-- begin-user-doc
+	 * Creates, registers, and initializes the <b>Package</b> for this model, and for any others upon which it depends.
+	 * Simple dependencies are satisfied by calling this method on all dependent packages before doing anything else.
+	 * This method drives initialization for interdependent packages directly, in parallel with this package, itself.
+	 * <p>
+	 * Of this package and its interdependencies, all packages which have not yet been registered by their URI values
+	 * are first created and registered. The packages are then initialized in two steps: meta-model objects for all of
+	 * the packages are created before any are initialized, since one package's meta-model objects may refer to those of
+	 * another.
+	 * <p>
+	 * Invocation of this method will not affect any packages that have already been initialized. <!-- begin-user-doc
 	 * --> <!-- end-user-doc -->
+	 * 
 	 * @see #eNS_URI
 	 * @see #createPackageContents()
 	 * @see #initializePackageContents()
@@ -234,6 +236,7 @@ public class MeetingPackageImpl extends EPackageImpl implements MeetingPackage {
 
 	/**
 	 * <!-- begin-user-doc --> <!-- end-user-doc -->
+	 * 
 	 * @generated
 	 */
 	public EClass getMeeting() {
@@ -242,6 +245,7 @@ public class MeetingPackageImpl extends EPackageImpl implements MeetingPackage {
 
 	/**
 	 * <!-- begin-user-doc --> <!-- end-user-doc -->
+	 * 
 	 * @generated
 	 */
 	public EAttribute getMeeting_Location() {
@@ -250,6 +254,7 @@ public class MeetingPackageImpl extends EPackageImpl implements MeetingPackage {
 
 	/**
 	 * <!-- begin-user-doc --> <!-- end-user-doc -->
+	 * 
 	 * @generated
 	 */
 	public EAttribute getMeeting_Starttime() {
@@ -258,6 +263,7 @@ public class MeetingPackageImpl extends EPackageImpl implements MeetingPackage {
 
 	/**
 	 * <!-- begin-user-doc --> <!-- end-user-doc -->
+	 * 
 	 * @generated
 	 */
 	public EAttribute getMeeting_Endtime() {
@@ -266,6 +272,7 @@ public class MeetingPackageImpl extends EPackageImpl implements MeetingPackage {
 
 	/**
 	 * <!-- begin-user-doc --> <!-- end-user-doc -->
+	 * 
 	 * @generated
 	 */
 	public EReference getMeeting_Facilitator() {
@@ -274,6 +281,7 @@ public class MeetingPackageImpl extends EPackageImpl implements MeetingPackage {
 
 	/**
 	 * <!-- begin-user-doc --> <!-- end-user-doc -->
+	 * 
 	 * @generated
 	 */
 	public EReference getMeeting_Minutetaker() {
@@ -282,6 +290,7 @@ public class MeetingPackageImpl extends EPackageImpl implements MeetingPackage {
 
 	/**
 	 * <!-- begin-user-doc --> <!-- end-user-doc -->
+	 * 
 	 * @generated
 	 */
 	public EReference getMeeting_Timekeeper() {
@@ -290,6 +299,7 @@ public class MeetingPackageImpl extends EPackageImpl implements MeetingPackage {
 
 	/**
 	 * <!-- begin-user-doc --> <!-- end-user-doc -->
+	 * 
 	 * @generated
 	 */
 	public EReference getMeeting_Participants() {
@@ -298,6 +308,7 @@ public class MeetingPackageImpl extends EPackageImpl implements MeetingPackage {
 
 	/**
 	 * <!-- begin-user-doc --> <!-- end-user-doc -->
+	 * 
 	 * @generated
 	 */
 	public EReference getMeeting_Sections() {
@@ -306,6 +317,7 @@ public class MeetingPackageImpl extends EPackageImpl implements MeetingPackage {
 
 	/**
 	 * <!-- begin-user-doc --> <!-- end-user-doc -->
+	 * 
 	 * @generated
 	 */
 	public EReference getMeeting_IdentifiedIssuesSection() {
@@ -314,6 +326,7 @@ public class MeetingPackageImpl extends EPackageImpl implements MeetingPackage {
 
 	/**
 	 * <!-- begin-user-doc --> <!-- end-user-doc -->
+	 * 
 	 * @generated
 	 */
 	public EReference getMeeting_IdentifiedWorkItemsSection() {
@@ -322,6 +335,7 @@ public class MeetingPackageImpl extends EPackageImpl implements MeetingPackage {
 
 	/**
 	 * <!-- begin-user-doc --> <!-- end-user-doc -->
+	 * 
 	 * @generated
 	 */
 	public EClass getMeetingSection() {
@@ -330,6 +344,7 @@ public class MeetingPackageImpl extends EPackageImpl implements MeetingPackage {
 
 	/**
 	 * <!-- begin-user-doc --> <!-- end-user-doc -->
+	 * 
 	 * @generated
 	 */
 	public EAttribute getMeetingSection_AllocatedTime() {
@@ -338,6 +353,7 @@ public class MeetingPackageImpl extends EPackageImpl implements MeetingPackage {
 
 	/**
 	 * <!-- begin-user-doc --> <!-- end-user-doc -->
+	 * 
 	 * @generated
 	 */
 	public EClass getCompositeMeetingSection() {
@@ -346,6 +362,7 @@ public class MeetingPackageImpl extends EPackageImpl implements MeetingPackage {
 
 	/**
 	 * <!-- begin-user-doc --> <!-- end-user-doc -->
+	 * 
 	 * @generated
 	 */
 	public EReference getCompositeMeetingSection_Subsections() {
@@ -354,6 +371,7 @@ public class MeetingPackageImpl extends EPackageImpl implements MeetingPackage {
 
 	/**
 	 * <!-- begin-user-doc --> <!-- end-user-doc -->
+	 * 
 	 * @generated
 	 */
 	public EClass getIssueMeetingSection() {
@@ -362,6 +380,7 @@ public class MeetingPackageImpl extends EPackageImpl implements MeetingPackage {
 
 	/**
 	 * <!-- begin-user-doc --> <!-- end-user-doc -->
+	 * 
 	 * @generated
 	 */
 	public EReference getIssueMeetingSection_IncludedIssues() {
@@ -370,6 +389,7 @@ public class MeetingPackageImpl extends EPackageImpl implements MeetingPackage {
 
 	/**
 	 * <!-- begin-user-doc --> <!-- end-user-doc -->
+	 * 
 	 * @generated
 	 */
 	public EClass getWorkItemMeetingSection() {
@@ -378,6 +398,7 @@ public class MeetingPackageImpl extends EPackageImpl implements MeetingPackage {
 
 	/**
 	 * <!-- begin-user-doc --> <!-- end-user-doc -->
+	 * 
 	 * @generated
 	 */
 	public EReference getWorkItemMeetingSection_IncludedWorkItems() {
@@ -386,6 +407,7 @@ public class MeetingPackageImpl extends EPackageImpl implements MeetingPackage {
 
 	/**
 	 * <!-- begin-user-doc --> <!-- end-user-doc -->
+	 * 
 	 * @generated
 	 */
 	public MeetingFactory getMeetingFactory() {
@@ -394,14 +416,15 @@ public class MeetingPackageImpl extends EPackageImpl implements MeetingPackage {
 
 	/**
 	 * <!-- begin-user-doc --> <!-- end-user-doc -->
+	 * 
 	 * @generated
 	 */
 	private boolean isCreated = false;
 
 	/**
-	 * Creates the meta-model objects for the package.  This method is
-	 * guarded to have no affect on any invocation but its first.
-	 * <!-- begin-user-doc --> <!-- end-user-doc -->
+	 * Creates the meta-model objects for the package. This method is guarded to have no affect on any invocation but
+	 * its first. <!-- begin-user-doc --> <!-- end-user-doc -->
+	 * 
 	 * @generated
 	 */
 	public void createPackageContents() {
@@ -437,14 +460,15 @@ public class MeetingPackageImpl extends EPackageImpl implements MeetingPackage {
 
 	/**
 	 * <!-- begin-user-doc --> <!-- end-user-doc -->
+	 * 
 	 * @generated
 	 */
 	private boolean isInitialized = false;
 
 	/**
-	 * Complete the initialization of the package and its meta-model.  This
-	 * method is guarded to have no affect on any invocation but its first.
-	 * <!-- begin-user-doc --> <!-- end-user-doc -->
+	 * Complete the initialization of the package and its meta-model. This method is guarded to have no affect on any
+	 * invocation but its first. <!-- begin-user-doc --> <!-- end-user-doc -->
+	 * 
 	 * @generated
 	 */
 	public void initializePackageContents() {
@@ -547,8 +571,8 @@ public class MeetingPackageImpl extends EPackageImpl implements MeetingPackage {
 	}
 
 	/**
-	 * Initializes the annotations for <b>org.unicase.ui.meeditor</b>.
-	 * <!-- begin-user-doc --> <!-- end-user-doc -->
+	 * Initializes the annotations for <b>org.unicase.ui.meeditor</b>. <!-- begin-user-doc --> <!-- end-user-doc -->
+	 * 
 	 * @generated
 	 */
 	protected void createOrgAnnotations() {
