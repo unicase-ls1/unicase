@@ -26,6 +26,7 @@ import org.eclipse.swt.widgets.Table;
 import org.eclipse.swt.widgets.TableColumn;
 import org.unicase.model.ModelElement;
 import org.unicase.model.Project;
+import org.unicase.model.task.WorkItem;
 import org.unicase.model.task.util.CircularDependencyException;
 import org.unicase.model.task.util.MEState;
 import org.unicase.model.util.ProjectChangeObserver;
@@ -179,6 +180,9 @@ public class FlatTabComposite extends Composite implements ProjectChangeObserver
 		// model element column shows model element corresponding to a
 		// checkable/assignable
 		createModelElementColumn();
+
+		// priority column
+		createPriorityColumn();
 	}
 
 	private void createTodoColumn() {
@@ -240,6 +244,27 @@ public class FlatTabComposite extends Composite implements ProjectChangeObserver
 		TaskObjectLabelProvider labelProvider = new TaskObjectLabelProvider();
 		tclmModelElement.setLabelProvider(labelProvider);
 		new TableViewerColumnSorter(tableViewer, tclmModelElement, labelProvider);
+	}
+
+	private void createPriorityColumn() {
+		TableViewerColumn tclmPriority = new TableViewerColumn(tableViewer, SWT.LEAD);
+		tclmPriority.getColumn().setText("Priority");
+		tclmPriority.getColumn().setWidth(80);
+		ColumnLabelProvider labelProvider = new ColumnLabelProvider() {
+
+			@Override
+			public String getText(Object element) {
+				if (element instanceof WorkItem) {
+					return ((WorkItem) element).getPriority() + "";
+				} else {
+					return super.getText(element);
+				}
+
+			}
+
+		};
+		tclmPriority.setLabelProvider(labelProvider);
+		new TableViewerColumnSorter(tableViewer, tclmPriority, labelProvider);
 	}
 
 	// on double click open the selection
