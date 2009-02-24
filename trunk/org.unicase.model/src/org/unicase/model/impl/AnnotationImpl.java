@@ -27,6 +27,7 @@ public abstract class AnnotationImpl extends ModelElementImpl implements Annotat
 	/**
 	 * The cached value of the '{@link #getAnnotatedModelElements() <em>Annotated Model Elements</em>}' reference list.
 	 * <!-- begin-user-doc --> <!-- end-user-doc -->
+	 * 
 	 * @see #getAnnotatedModelElements()
 	 * @generated
 	 * @ordered
@@ -35,6 +36,7 @@ public abstract class AnnotationImpl extends ModelElementImpl implements Annotat
 
 	/**
 	 * <!-- begin-user-doc --> <!-- end-user-doc -->
+	 * 
 	 * @generated
 	 */
 	protected AnnotationImpl() {
@@ -43,6 +45,7 @@ public abstract class AnnotationImpl extends ModelElementImpl implements Annotat
 
 	/**
 	 * <!-- begin-user-doc --> <!-- end-user-doc -->
+	 * 
 	 * @generated
 	 */
 	@Override
@@ -52,6 +55,7 @@ public abstract class AnnotationImpl extends ModelElementImpl implements Annotat
 
 	/**
 	 * <!-- begin-user-doc --> <!-- end-user-doc -->
+	 * 
 	 * @generated
 	 */
 	public EList<ModelElement> getAnnotatedModelElements() {
@@ -64,6 +68,7 @@ public abstract class AnnotationImpl extends ModelElementImpl implements Annotat
 
 	/**
 	 * <!-- begin-user-doc --> <!-- end-user-doc -->
+	 * 
 	 * @generated
 	 */
 	@SuppressWarnings("unchecked")
@@ -79,6 +84,7 @@ public abstract class AnnotationImpl extends ModelElementImpl implements Annotat
 
 	/**
 	 * <!-- begin-user-doc --> <!-- end-user-doc -->
+	 * 
 	 * @generated
 	 */
 	@Override
@@ -92,6 +98,7 @@ public abstract class AnnotationImpl extends ModelElementImpl implements Annotat
 
 	/**
 	 * <!-- begin-user-doc --> <!-- end-user-doc -->
+	 * 
 	 * @generated
 	 */
 	@Override
@@ -105,6 +112,7 @@ public abstract class AnnotationImpl extends ModelElementImpl implements Annotat
 
 	/**
 	 * <!-- begin-user-doc --> <!-- end-user-doc -->
+	 * 
 	 * @generated
 	 */
 	@SuppressWarnings("unchecked")
@@ -121,6 +129,7 @@ public abstract class AnnotationImpl extends ModelElementImpl implements Annotat
 
 	/**
 	 * <!-- begin-user-doc --> <!-- end-user-doc -->
+	 * 
 	 * @generated
 	 */
 	@Override
@@ -135,6 +144,7 @@ public abstract class AnnotationImpl extends ModelElementImpl implements Annotat
 
 	/**
 	 * <!-- begin-user-doc --> <!-- end-user-doc -->
+	 * 
 	 * @generated
 	 */
 	@Override

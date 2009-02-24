@@ -101,7 +101,7 @@
         <genFeatures createChild="false" ecoreFeature="ecore:EAttribute model.ecore#//task/WorkItem/priority"/>
       </genClasses>
       <genClasses ecoreClass="model.ecore#//task/Milestone">
-        <genFeatures notify="false" createChild="false" propertySortChoices="true"
+        <genFeatures notify="false" children="true" createChild="false" propertySortChoices="true"
             ecoreFeature="ecore:EReference model.ecore#//task/Milestone/containedModelElements"/>
       </genClasses>
       <genClasses image="false" ecoreClass="model.ecore#//task/Checkable">

@@ -27,6 +27,7 @@ public abstract class AttachmentImpl extends ModelElementImpl implements Attachm
 	/**
 	 * The cached value of the '{@link #getReferringModelElements() <em>Referring Model Elements</em>}' reference list.
 	 * <!-- begin-user-doc --> <!-- end-user-doc -->
+	 * 
 	 * @see #getReferringModelElements()
 	 * @generated
 	 * @ordered
@@ -35,6 +36,7 @@ public abstract class AttachmentImpl extends ModelElementImpl implements Attachm
 
 	/**
 	 * <!-- begin-user-doc --> <!-- end-user-doc -->
+	 * 
 	 * @generated
 	 */
 	protected AttachmentImpl() {
@@ -43,6 +45,7 @@ public abstract class AttachmentImpl extends ModelElementImpl implements Attachm
 
 	/**
 	 * <!-- begin-user-doc --> <!-- end-user-doc -->
+	 * 
 	 * @generated
 	 */
 	@Override
@@ -52,6 +55,7 @@ public abstract class AttachmentImpl extends ModelElementImpl implements Attachm
 
 	/**
 	 * <!-- begin-user-doc --> <!-- end-user-doc -->
+	 * 
 	 * @generated
 	 */
 	public EList<ModelElement> getReferringModelElements() {
@@ -64,6 +68,7 @@ public abstract class AttachmentImpl extends ModelElementImpl implements Attachm
 
 	/**
 	 * <!-- begin-user-doc --> <!-- end-user-doc -->
+	 * 
 	 * @generated
 	 */
 	@SuppressWarnings("unchecked")
@@ -79,6 +84,7 @@ public abstract class AttachmentImpl extends ModelElementImpl implements Attachm
 
 	/**
 	 * <!-- begin-user-doc --> <!-- end-user-doc -->
+	 * 
 	 * @generated
 	 */
 	@Override
@@ -92,6 +98,7 @@ public abstract class AttachmentImpl extends ModelElementImpl implements Attachm
 
 	/**
 	 * <!-- begin-user-doc --> <!-- end-user-doc -->
+	 * 
 	 * @generated
 	 */
 	@Override
@@ -105,6 +112,7 @@ public abstract class AttachmentImpl extends ModelElementImpl implements Attachm
 
 	/**
 	 * <!-- begin-user-doc --> <!-- end-user-doc -->
+	 * 
 	 * @generated
 	 */
 	@SuppressWarnings("unchecked")
@@ -121,6 +129,7 @@ public abstract class AttachmentImpl extends ModelElementImpl implements Attachm
 
 	/**
 	 * <!-- begin-user-doc --> <!-- end-user-doc -->
+	 * 
 	 * @generated
 	 */
 	@Override
@@ -135,6 +144,7 @@ public abstract class AttachmentImpl extends ModelElementImpl implements Attachm
 
 	/**
 	 * <!-- begin-user-doc --> <!-- end-user-doc -->
+	 * 
 	 * @generated
 	 */
 	@Override

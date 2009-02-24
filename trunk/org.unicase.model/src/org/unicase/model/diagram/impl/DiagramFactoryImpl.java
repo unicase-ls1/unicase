@@ -22,8 +22,8 @@ import org.unicase.model.diagram.MEDiagram;
  */
 public class DiagramFactoryImpl extends EFactoryImpl implements DiagramFactory {
 	/**
-	 * Creates the default factory implementation.
-	 * <!-- begin-user-doc --> <!-- end-user-doc -->
+	 * Creates the default factory implementation. <!-- begin-user-doc --> <!-- end-user-doc -->
+	 * 
 	 * @generated
 	 */
 	public static DiagramFactory init() {
@@ -40,8 +40,8 @@ public class DiagramFactoryImpl extends EFactoryImpl implements DiagramFactory {
 	}
 
 	/**
-	 * Creates an instance of the factory.
-	 * <!-- begin-user-doc --> <!-- end-user-doc -->
+	 * Creates an instance of the factory. <!-- begin-user-doc --> <!-- end-user-doc -->
+	 * 
 	 * @generated
 	 */
 	public DiagramFactoryImpl() {
@@ -50,6 +50,7 @@ public class DiagramFactoryImpl extends EFactoryImpl implements DiagramFactory {
 
 	/**
 	 * <!-- begin-user-doc --> <!-- end-user-doc -->
+	 * 
 	 * @generated
 	 */
 	@Override
@@ -64,6 +65,7 @@ public class DiagramFactoryImpl extends EFactoryImpl implements DiagramFactory {
 
 	/**
 	 * <!-- begin-user-doc --> <!-- end-user-doc -->
+	 * 
 	 * @generated
 	 */
 	@Override
@@ -78,6 +80,7 @@ public class DiagramFactoryImpl extends EFactoryImpl implements DiagramFactory {
 
 	/**
 	 * <!-- begin-user-doc --> <!-- end-user-doc -->
+	 * 
 	 * @generated
 	 */
 	@Override
@@ -92,6 +95,7 @@ public class DiagramFactoryImpl extends EFactoryImpl implements DiagramFactory {
 
 	/**
 	 * <!-- begin-user-doc --> <!-- end-user-doc -->
+	 * 
 	 * @generated
 	 */
 	public MEDiagram createMEDiagram() {
@@ -101,6 +105,7 @@ public class DiagramFactoryImpl extends EFactoryImpl implements DiagramFactory {
 
 	/**
 	 * <!-- begin-user-doc --> <!-- end-user-doc -->
+	 * 
 	 * @generated
 	 */
 	public DiagramType createDiagramTypeFromString(EDataType eDataType, String initialValue) {
@@ -113,6 +118,7 @@ public class DiagramFactoryImpl extends EFactoryImpl implements DiagramFactory {
 
 	/**
 	 * <!-- begin-user-doc --> <!-- end-user-doc -->
+	 * 
 	 * @generated
 	 */
 	public String convertDiagramTypeToString(EDataType eDataType, Object instanceValue) {
@@ -121,6 +127,7 @@ public class DiagramFactoryImpl extends EFactoryImpl implements DiagramFactory {
 
 	/**
 	 * <!-- begin-user-doc --> <!-- end-user-doc -->
+	 * 
 	 * @generated
 	 */
 	public DiagramPackage getDiagramPackage() {
@@ -129,6 +136,7 @@ public class DiagramFactoryImpl extends EFactoryImpl implements DiagramFactory {
 
 	/**
 	 * <!-- begin-user-doc --> <!-- end-user-doc -->
+	 * 
 	 * @deprecated
 	 * @generated
 	 */
