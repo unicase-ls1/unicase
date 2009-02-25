@@ -118,6 +118,12 @@ public class DashboardEditorInput implements IEditorInput {
 		notifications.addAll(originalNotifications);
 		Collections.sort(notifications, new Comparator<ESNotification>() {
 			public int compare(ESNotification arg0, ESNotification arg1) {
+				if (arg0 == null) {
+					return 1;
+				}
+				if (arg1 == null) {
+					return -1;
+				}
 				return (arg0.getCreationDate().after(arg1.getCreationDate()) ? -1 : 1);
 			}
 		});
