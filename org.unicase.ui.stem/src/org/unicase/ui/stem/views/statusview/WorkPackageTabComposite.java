@@ -66,15 +66,15 @@ public class WorkPackageTabComposite extends Composite implements ProjectChangeO
 
 		TableViewer unassigned = createTable("Unassigned");
 		unassigned
-			.setContentProvider(new WorkPackageStatusContentProvider(WorkPackageStatusContentProvider.UNASSIGNED));
+			.setContentProvider(new WorkPackageTabContentProvider(WorkPackageTabContentProvider.UNASSIGNED));
 		TableViewer assigned = createTable("Assigned");
-		assigned.setContentProvider(new WorkPackageStatusContentProvider(WorkPackageStatusContentProvider.ASSIGNED));
+		assigned.setContentProvider(new WorkPackageTabContentProvider(WorkPackageTabContentProvider.ASSIGNED));
 		TableViewer blocked = createTable("Blocked");
-		blocked.setContentProvider(new WorkPackageStatusContentProvider(WorkPackageStatusContentProvider.BLOCKED));
+		blocked.setContentProvider(new WorkPackageTabContentProvider(WorkPackageTabContentProvider.BLOCKED));
 		TableViewer testing = createTable("Testing");
-		testing.setContentProvider(new WorkPackageStatusContentProvider(WorkPackageStatusContentProvider.TESTING));
+		testing.setContentProvider(new WorkPackageTabContentProvider(WorkPackageTabContentProvider.TESTING));
 		TableViewer finished = createTable("Done");
-		finished.setContentProvider(new WorkPackageStatusContentProvider(WorkPackageStatusContentProvider.DONE));
+		finished.setContentProvider(new WorkPackageTabContentProvider(WorkPackageTabContentProvider.DONE));
 
 		tables.add(assigned);
 		tables.add(unassigned);
@@ -83,6 +83,9 @@ public class WorkPackageTabComposite extends Composite implements ProjectChangeO
 		tables.add(finished);
 
 		sash.setWeights(new int[] { 20, 20, 20, 20, 20 });
+
+		addDnDSupport();
+		hookDoubleClick();
 
 		workspace = WorkspaceManager.getInstance().getCurrentWorkspace();
 		if (workspace.getActiveProjectSpace() != null) {
@@ -129,9 +132,6 @@ public class WorkPackageTabComposite extends Composite implements ProjectChangeO
 		tableViewer.setComparator(new ViewerComparator() {
 
 		});
-
-		hookDoubleClick();
-		addDnDSupport();
 		return tableViewer;
 	}
 
