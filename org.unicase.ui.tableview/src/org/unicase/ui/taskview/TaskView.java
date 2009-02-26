@@ -26,6 +26,7 @@ import org.unicase.model.organization.User;
 import org.unicase.model.task.TaskPackage;
 import org.unicase.model.task.WorkItem;
 import org.unicase.model.util.ProjectChangeObserver;
+import org.unicase.ui.common.filter.ResolvedBugReportFilter;
 import org.unicase.ui.common.filter.TeamFilter;
 import org.unicase.ui.common.filter.UserFilter;
 import org.unicase.ui.common.util.ActionHelper;
@@ -63,6 +64,8 @@ public class TaskView extends ViewPart implements ProjectChangeObserver {
 	private Workspace workspace;
 	private Action filterToBlocked;
 	private BlockedElementsViewerFilter blockedFilter;
+	private ResolvedBugReportFilter resolvedBugReportFilter;
+	private Action filterResolvedBugReports;
 
 	/**
 	 * default constructor.
@@ -133,8 +136,28 @@ public class TaskView extends ViewPart implements ProjectChangeObserver {
 		createBlockedFilter();
 		menuManager.add(filterToBlocked);
 
+		createResolvedBugReportFilter();
+		menuManager.add(filterResolvedBugReports);
+
 		getSite().setSelectionProvider(viewer);
 		hookDoubleClickAction();
+	}
+
+	private void createResolvedBugReportFilter() {
+		resolvedBugReportFilter = new ResolvedBugReportFilter();
+		filterResolvedBugReports = new Action("", SWT.TOGGLE) {
+			@Override
+			public void run() {
+				setResolvedBugReportsFilter(isChecked());
+			}
+
+		};
+		filterResolvedBugReports.setImageDescriptor(Activator.getImageDescriptor("/icons/Bug_resolved.png"));
+		Boolean resolvedBugReportsFilterBoolean = Boolean.parseBoolean(settings.get("ResolvedBugReportsFilter"));
+		filterResolvedBugReports.setChecked(resolvedBugReportsFilterBoolean);
+		filterResolvedBugReports.setToolTipText("Show/Hide resolved bug reports.");
+		setResolvedBugReportsFilter(resolvedBugReportsFilterBoolean);
+
 	}
 
 	private void createBlockedFilter() {
@@ -303,6 +326,21 @@ public class TaskView extends ViewPart implements ProjectChangeObserver {
 			}
 		}
 
+	}
+
+	/**
+	 * sets the resolved bug report filter.
+	 * 
+	 * @param checked if resolved bug reports are filtered.
+	 */
+	protected void setResolvedBugReportsFilter(boolean checked) {
+		if (checked) {
+			viewer.addFilter(resolvedBugReportFilter);
+		} else {
+			if (resolvedBugReportFilter != null) {
+				viewer.removeFilter(resolvedBugReportFilter);
+			}
+		}
 	}
 
 	private void hookDoubleClickAction() {
