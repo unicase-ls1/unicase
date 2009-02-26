@@ -111,6 +111,7 @@ public class StatusView extends ViewPart implements ProjectChangeObserver {
 	private static final String HIERARCHY_TAB_IMAGE = "hierarchy_tab_image";
 	private static final String USER_TAB_IMAGE = "user_tab_image";
 	private static final String ACTIVITY_TAB_IMAGE = "avtivity_tab_image";
+	private static final String WP_TAB_IMAGE = "wp_tab_image";
 	private TabFolder tabFolder;
 	private TabItem wpTab;
 
@@ -169,6 +170,10 @@ public class StatusView extends ViewPart implements ProjectChangeObserver {
 		url = FileLocator.find(Platform.getBundle("org.unicase.ui.stem"), new Path("icons/ganttChart.png"), null);
 		imageDescriptor = ImageDescriptor.createFromURL(url);
 		images.put(ACTIVITY_TAB_IMAGE, imageDescriptor.createImage());
+
+		url = FileLocator.find(Platform.getBundle("org.unicase.ui.stem"), new Path("icons/backlog.png"), null);
+		imageDescriptor = ImageDescriptor.createFromURL(url);
+		images.put(WP_TAB_IMAGE, imageDescriptor.createImage());
 
 	}
 
@@ -366,7 +371,7 @@ public class StatusView extends ViewPart implements ProjectChangeObserver {
 				wpTab = new TabItem(tabFolder, SWT.None);
 
 				wpTab.setText("WorkPackage status");
-				wpTab.setImage(images.get(FLAT_TAB_IMAGE));
+				wpTab.setImage(images.get(WP_TAB_IMAGE));
 				wpTabComposite = new WorkPackageTabComposite(tabFolder, SWT.NONE);
 				wpTab.setControl(wpTabComposite);
 			}
@@ -562,7 +567,8 @@ public class StatusView extends ViewPart implements ProjectChangeObserver {
 		images.get(FLAT_TAB_IMAGE).dispose();
 		images.get(HIERARCHY_TAB_IMAGE).dispose();
 		images.get(USER_TAB_IMAGE).dispose();
-		images.get(ACTIVITY_TAB_IMAGE);
+		images.get(ACTIVITY_TAB_IMAGE).dispose();
+		images.get(WP_TAB_IMAGE).dispose();
 
 		images.clear();
 

@@ -11,13 +11,15 @@ import org.eclipse.swt.SWT;
 import org.eclipse.swt.dnd.DropTarget;
 import org.eclipse.swt.dnd.DropTargetListener;
 import org.eclipse.swt.dnd.Transfer;
+import org.eclipse.swt.graphics.Color;
 import org.eclipse.swt.widgets.Composite;
 import org.eclipse.swt.widgets.Label;
 import org.eclipse.swt.widgets.Link;
 import org.unicase.model.task.WorkItem;
+import org.unicase.ui.common.util.URLHelper;
+import org.unicase.ui.common.util.URLSelectionListener;
 import org.unicase.workspace.ProjectSpace;
 import org.unicase.workspace.WorkspaceManager;
-import org.unicase.workspace.notification.provider.NotificationHelper;
 
 /**
  * @author Shterev
@@ -35,31 +37,31 @@ public class WorkPackageTabItem extends Composite {
 	public WorkPackageTabItem(Composite parent, int style, WorkItem workItem, int bg) {
 		super(parent, style);
 		ProjectSpace projectSpace = WorkspaceManager.getInstance().getCurrentWorkspace().getActiveProjectSpace();
-		GridLayoutFactory.fillDefaults().numColumns(2).spacing(0, 0).applyTo(this);
+		GridLayoutFactory.fillDefaults().numColumns(2).spacing(0, 0).margins(5, 10).equalWidth(false).applyTo(this);
 		if (bg != 0) {
-			setBackground(getDisplay().getSystemColor(SWT.COLOR_LIST_SELECTION));
+			// setBackground(new Color(getDisplay(), 181, 213, 255));
+			setBackground(new Color(getDisplay(), 233, 244, 255));
 		} else {
-			setBackground(getDisplay().getSystemColor(SWT.COLOR_WHITE));
+			setBackground(new Color(getDisplay(), 255, 255, 255));
 		}
 		setBackgroundMode(SWT.INHERIT_FORCE);
 
-		UnicaseLinkSelectionListener selectionListener = new UnicaseLinkSelectionListener(projectSpace);
+		URLSelectionListener selectionListener = URLSelectionListener.getInstance(projectSpace);
 
-		Link name = new Link(this, SWT.WRAP);
-		GridDataFactory.fillDefaults().span(2, 1).grab(true, true).applyTo(name);
-		name.setText(NotificationHelper.getHTMLLinkForModelElement(workItem, projectSpace));
-		name.addSelectionListener(selectionListener);
+		Composite name = URLHelper.getModelElementLink(this, workItem, projectSpace);
+		// Link name = new Link(this, SWT.WRAP);
+		GridDataFactory.fillDefaults().span(4, 1).grab(true, true).applyTo(name);
+		// name.setText(URLHelper.getHTMLLinkForModelElement(workItem, projectSpace));
+		// name.addSelectionListener(selectionListener);
 
 		Link assignee = new Link(this, SWT.WRAP);
 		GridDataFactory.fillDefaults().grab(true, true).applyTo(assignee);
-		assignee.setText("Assig.: "
-			+ NotificationHelper.getHTMLLinkForModelElement(workItem.getAssignee(), projectSpace));
+		assignee.setText("Assig.: " + URLHelper.getHTMLLinkForModelElement(workItem.getAssignee(), projectSpace));
 		assignee.addSelectionListener(selectionListener);
 
 		Link tester = new Link(this, SWT.WRAP);
 		GridDataFactory.fillDefaults().grab(true, true).applyTo(tester);
-		tester
-			.setText("Tester: " + NotificationHelper.getHTMLLinkForModelElement(workItem.getAssignee(), projectSpace));
+		tester.setText("Tester: " + URLHelper.getHTMLLinkForModelElement(workItem.getReviewer(), projectSpace));
 		tester.addSelectionListener(selectionListener);
 
 		Label priority = new Label(this, SWT.WRAP);
@@ -68,19 +70,16 @@ public class WorkPackageTabItem extends Composite {
 
 		Label estimate = new Label(this, SWT.WRAP);
 		GridDataFactory.fillDefaults().grab(true, true).applyTo(estimate);
-		estimate.setText("Estimate: " + workItem.getPriority());
+		estimate.setText("Estimate: " + workItem.getEstimate());
 
 		if (!workItem.getPredecessors().isEmpty()) {
-			StringBuilder buffer = new StringBuilder();
-			buffer.append("Blocker: ");
-			for (WorkItem wi : workItem.getPredecessors()) {
-				buffer.append(NotificationHelper.getHTMLLinkForModelElement(wi, projectSpace));
-				buffer.append("\n");
-			}
-			Link blocker = new Link(this, SWT.WRAP);
+			Label blocker = new Label(this, SWT.WRAP);
 			GridDataFactory.fillDefaults().grab(true, true).span(2, 1).applyTo(blocker);
-			blocker.setText(buffer.toString());
-			blocker.addSelectionListener(selectionListener);
+			blocker.setText("Blocker: ");
+			for (WorkItem wi : workItem.getPredecessors()) {
+				Composite c = URLHelper.getModelElementLink(this, wi, projectSpace);
+				GridDataFactory.fillDefaults().grab(true, true).span(2, 1).applyTo(c);
+			}
 		}
 	}
 

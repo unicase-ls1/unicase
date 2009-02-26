@@ -6,17 +6,15 @@
 package org.unicase.ui.stem.views.statusview;
 
 import java.util.ArrayList;
+import java.util.Collections;
+import java.util.Comparator;
 import java.util.List;
 
 import org.eclipse.emf.edit.provider.ComposedAdapterFactory;
 import org.eclipse.emf.edit.ui.provider.AdapterFactoryContentProvider;
-import org.unicase.model.organization.Group;
-import org.unicase.model.organization.OrgUnit;
 import org.unicase.model.task.Checkable;
 import org.unicase.model.task.WorkItem;
 import org.unicase.model.task.WorkPackage;
-import org.unicase.model.task.util.CircularDependencyException;
-import org.unicase.model.task.util.MEState;
 
 /**
  * This is the ContentProvider.
@@ -47,6 +45,27 @@ public class WorkPackageTabContentProvider extends AdapterFactoryContentProvider
 	public static final String TESTING = "Testing";
 
 	private String key;
+	private PriorityComparator priorityComparator;
+
+	/**
+	 * Compares two WorkItems by their priority.
+	 * 
+	 * @author Shterev
+	 */
+	private final class PriorityComparator implements Comparator<WorkItem> {
+
+		public int compare(WorkItem o1, WorkItem o2) {
+			int prio1 = o1.getPriority();
+			int prio2 = o2.getPriority();
+			if (prio1 > prio2) {
+				return 1;
+			} else if (prio1 < prio2) {
+				return -1;
+			}
+			return 0;
+		}
+
+	}
 
 	/**
 	 * Constructor.
@@ -55,6 +74,7 @@ public class WorkPackageTabContentProvider extends AdapterFactoryContentProvider
 	 */
 	public WorkPackageTabContentProvider(String key) {
 		super(new ComposedAdapterFactory(ComposedAdapterFactory.Descriptor.Registry.INSTANCE));
+		priorityComparator = new PriorityComparator();
 		this.key = key;
 
 	}
@@ -71,7 +91,7 @@ public class WorkPackageTabContentProvider extends AdapterFactoryContentProvider
 		WorkPackage wp = (WorkPackage) object;
 		List<WorkItem> wis = wp.getAllContainedWorkItems();
 		for (WorkItem wi : wis) {
-			if (!(wi instanceof Checkable)) {
+			if (wi instanceof WorkPackage) {
 				continue;
 			}
 			if (key.equals(ASSIGNED)) {
@@ -86,87 +106,42 @@ public class WorkPackageTabContentProvider extends AdapterFactoryContentProvider
 				handleUnassignedColumn(ret, wi);
 			}
 		}
+		Collections.sort(ret, priorityComparator);
 		return ret.toArray();
 	}
 
 	private void handleUnassignedColumn(ArrayList<WorkItem> ret, WorkItem wi) {
-		if (isUnassigned(wi)) {
+		if (!((Checkable) wi).isChecked() && wi.getAssignee() == null && wi.getParticipants().isEmpty()
+			&& wi.getPredecessors().isEmpty()) {
 			ret.add(wi);
 		}
 	}
 
-	private boolean isUnassigned(WorkItem wi) {
-		OrgUnit assignee = wi.getAssignee();
-		if (assignee == null) {
-			return true;
-		}
-		if (assignee instanceof Group) {
-			return true;
-		}
-		return false;
-	}
-
 	private void handleDoneColumn(ArrayList<WorkItem> ret, WorkItem wi) {
-		if (isUnassigned(wi)) {
-			return;
-		}
 		if (((Checkable) wi).isChecked()) {
 			ret.add(wi);
 		}
 	}
 
 	private void handleTestingColumn(ArrayList<WorkItem> ret, WorkItem wi) {
-		if (isUnassigned(wi)) {
-			return;
-		}
-		if (((Checkable) wi).isChecked()) {
-			return;
-		}
-		if (isBlocked(wi)) {
-			return;
-		}
-
-		if (!(wi.getReviewer() == null) && wi.isResolved()) {
+		if (!wi.getParticipants().isEmpty() && !((Checkable) wi).isChecked() && wi.getPredecessors().isEmpty()) {
 			ret.add(wi);
 		}
 	}
 
 	private void handleBlockedColumn(ArrayList<WorkItem> ret, WorkItem wi) {
-		if (isUnassigned(wi)) {
-			return;
-		}
-		if (((Checkable) wi).isChecked()) {
-			return;
-		}
-		if (isBlocked(wi)) {
+		if (!wi.getPredecessors().isEmpty() && !((Checkable) wi).isChecked()) {
 			ret.add(wi);
 		}
-	}
-
-	private boolean isBlocked(WorkItem wi) {
-		String status;
-		try {
-			status = wi.getMEState().getStatus();
-		} catch (CircularDependencyException e) {
-			status = MEState.CLOSED;
-		}
-		return (status.equals(MEState.BLOCKED));
 	}
 
 	private void handleAssigneColumn(ArrayList<WorkItem> ret, WorkItem wi) {
-		if (isUnassigned(wi)) {
-			return;
-		}
-		if (((Checkable) wi).isChecked()) {
-			return;
-		}
-		if (isBlocked(wi)) {
-			return;
-		}
-		if (!(wi.isResolved()) || (wi.getReviewer() == null)) {
+		if (wi.getAssignee() != null && wi.getParticipants().isEmpty() && !((Checkable) wi).isChecked()
+			&& wi.getPredecessors().isEmpty()) {
 			ret.add(wi);
 		}
 	}
+
 	/**
 	 * Getter.
 	 * 
