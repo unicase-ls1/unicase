@@ -649,7 +649,7 @@ public class TaskPackageImpl extends EPackageImpl implements TaskPackage {
 			"position", "right" });
 		addAnnotation(getWorkItem_Assignee(), 1, "org.unicase.ui.meeditor", new String[] { "priority", "10.0",
 			"position", "right" });
-		addAnnotation(getWorkItem_Reviewer(), source, new String[] { "priority", "13.0", "position", "left" });
+		addAnnotation(getWorkItem_Reviewer(), source, new String[] { "priority", "12.0", "position", "left" });
 		addAnnotation(getWorkItem_Participants(), source, new String[] { "priority", "10.0", "position", "right" });
 		addAnnotation(getWorkItem_DueDate(), source, new String[] { "priority", "12.0", "position", "left" });
 		addAnnotation(getWorkItem_Estimate(), source, new String[] { "priority", "18.0", "position", "left" });
