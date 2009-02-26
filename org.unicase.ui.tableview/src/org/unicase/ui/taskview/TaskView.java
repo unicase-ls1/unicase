@@ -378,11 +378,14 @@ public class TaskView extends ViewPart implements ProjectChangeObserver {
 	@Override
 	public void dispose() {
 		workspace.eAdapters().remove(adapterImpl);
-		workspace.getActiveProjectSpace().getProject().removeProjectChangeObserver(this);
+		if (workspace.getActiveProjectSpace() != null && workspace.getActiveProjectSpace().getProject() != null) {
+			workspace.getActiveProjectSpace().getProject().removeProjectChangeObserver(this);
+		}
 		settings.put("TeamFilter", filterToMyTeam.isChecked());
 		settings.put("UncheckedFilter", filterToUnchecked.isChecked());
 		settings.put("UserFilter", filterToMe.isChecked());
 		settings.put("BlockedFilter", filterToBlocked.isChecked());
+		settings.put("ResolvedBugReportsFilter", filterResolvedBugReports.isChecked());
 		try {
 			settings.save(filename);
 		} catch (IOException e) {
