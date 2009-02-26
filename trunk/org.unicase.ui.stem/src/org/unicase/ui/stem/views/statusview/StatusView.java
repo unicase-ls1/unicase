@@ -355,18 +355,18 @@ public class StatusView extends ViewPart implements ProjectChangeObserver {
 			pbEstimate.setToolTipText(Integer.toString(estimateprogress) + "% done");
 		}
 
-		if (wpTab != null) {
+		if (!TaskPackage.eINSTANCE.getWorkPackage().isInstance(input) && wpTab != null) {
 			wpTab.dispose();
-		}
-		if (TaskPackage.eINSTANCE.getWorkPackage().isInstance(input)) {
-			wpTab = new TabItem(tabFolder, SWT.None);
+			wpTab = null;
+		} else {
+			if (wpTab == null) {
+				wpTab = new TabItem(tabFolder, SWT.None);
 
-			wpTab.setText("WorkPackage status");
-			wpTab.setImage(images.get(FLAT_TAB_IMAGE));
-			if (wpTabComposite == null) {
+				wpTab.setText("WorkPackage status");
+				wpTab.setImage(images.get(FLAT_TAB_IMAGE));
 				wpTabComposite = new WorkPackageTabComposite(tabFolder, SWT.NONE);
+				wpTab.setControl(wpTabComposite);
 			}
-			wpTab.setControl(wpTabComposite);
 			wpTabComposite.setInput(input);
 		}
 		// set input for tabs
