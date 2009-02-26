@@ -9,9 +9,7 @@ import java.util.ArrayList;
 
 import org.eclipse.emf.common.notify.Notification;
 import org.eclipse.emf.common.notify.impl.AdapterImpl;
-import org.eclipse.emf.edit.provider.ComposedAdapterFactory;
 import org.eclipse.emf.edit.ui.dnd.LocalTransfer;
-import org.eclipse.emf.edit.ui.provider.AdapterFactoryLabelProvider;
 import org.eclipse.jface.layout.GridDataFactory;
 import org.eclipse.jface.layout.GridLayoutFactory;
 import org.eclipse.jface.viewers.DoubleClickEvent;
@@ -45,7 +43,6 @@ public class WorkPackageTabComposite extends Composite implements ProjectChangeO
 	private Workspace workspace;
 	private AdapterImpl adapterImpl;
 	private WorkPackageTabDropAdapter wpTabDropAdapter;
-	private AdapterFactoryLabelProvider adapterFactoryLabelProvider;
 	private ArrayList<TableViewer> tables = new ArrayList<TableViewer>();
 	private SashForm sash;
 
@@ -61,12 +58,8 @@ public class WorkPackageTabComposite extends Composite implements ProjectChangeO
 		sash = new SashForm(this, SWT.NONE);
 		GridDataFactory.fillDefaults().grab(true, true).applyTo(sash);
 
-		adapterFactoryLabelProvider = new AdapterFactoryLabelProvider(new ComposedAdapterFactory(
-			ComposedAdapterFactory.Descriptor.Registry.INSTANCE));
-
 		TableViewer unassigned = createTable("Unassigned");
-		unassigned
-			.setContentProvider(new WorkPackageTabContentProvider(WorkPackageTabContentProvider.UNASSIGNED));
+		unassigned.setContentProvider(new WorkPackageTabContentProvider(WorkPackageTabContentProvider.UNASSIGNED));
 		TableViewer assigned = createTable("Assigned");
 		assigned.setContentProvider(new WorkPackageTabContentProvider(WorkPackageTabContentProvider.ASSIGNED));
 		TableViewer blocked = createTable("Blocked");
