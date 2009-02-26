@@ -356,6 +356,7 @@ public class StatusView extends ViewPart implements ProjectChangeObserver {
 		}
 
 		if (!TaskPackage.eINSTANCE.getWorkPackage().isInstance(input) && wpTab != null) {
+			wpTabComposite.dispose();
 			wpTab.dispose();
 			wpTab = null;
 		} else {
