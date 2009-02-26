@@ -6,18 +6,16 @@
 package org.unicase.ui.stem.views.statusview;
 
 import org.eclipse.jface.viewers.ColumnLabelProvider;
-import org.eclipse.jface.viewers.IColorProvider;
 import org.eclipse.swt.graphics.Image;
 import org.unicase.model.ModelElement;
 import org.unicase.model.organization.OrgUnit;
-import org.unicase.model.task.Checkable;
 import org.unicase.model.task.WorkItem;
 
 /**
  * @author Shterev
  */
 
-public class WorkPackageTabLabelProvider extends ColumnLabelProvider implements IColorProvider {
+public class WorkPackageTabLabelProvider extends ColumnLabelProvider {
 
 	/**
 	 * Constructor.

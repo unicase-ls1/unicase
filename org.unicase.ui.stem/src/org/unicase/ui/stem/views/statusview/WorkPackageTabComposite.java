@@ -12,22 +12,29 @@ import org.eclipse.emf.common.notify.impl.AdapterImpl;
 import org.eclipse.emf.edit.ui.dnd.LocalTransfer;
 import org.eclipse.jface.layout.GridDataFactory;
 import org.eclipse.jface.layout.GridLayoutFactory;
+import org.eclipse.jface.viewers.ColumnLabelProvider;
 import org.eclipse.jface.viewers.DoubleClickEvent;
 import org.eclipse.jface.viewers.IDoubleClickListener;
 import org.eclipse.jface.viewers.IStructuredSelection;
 import org.eclipse.jface.viewers.TableViewer;
 import org.eclipse.jface.viewers.TableViewerColumn;
-import org.eclipse.jface.viewers.ViewerComparator;
+import org.eclipse.jface.viewers.Viewer;
 import org.eclipse.swt.SWT;
 import org.eclipse.swt.custom.SashForm;
 import org.eclipse.swt.dnd.DND;
 import org.eclipse.swt.dnd.Transfer;
+import org.eclipse.swt.graphics.Point;
 import org.eclipse.swt.layout.GridData;
 import org.eclipse.swt.widgets.Composite;
+import org.eclipse.swt.widgets.Event;
+import org.eclipse.swt.widgets.Listener;
 import org.eclipse.swt.widgets.Table;
+import org.eclipse.swt.widgets.TableItem;
 import org.unicase.model.ModelElement;
 import org.unicase.model.Project;
+import org.unicase.model.task.WorkItem;
 import org.unicase.model.util.ProjectChangeObserver;
+import org.unicase.ui.common.TableViewerColumnSorter;
 import org.unicase.ui.common.util.ActionHelper;
 import org.unicase.ui.stem.views.statusview.dnd.WorkPackageTabDropAdapter;
 import org.unicase.workspace.ProjectSpace;
@@ -40,11 +47,76 @@ import org.unicase.workspace.WorkspacePackage;
  */
 public class WorkPackageTabComposite extends Composite implements ProjectChangeObserver {
 
+	/**
+	 * Priority sorter.
+	 * 
+	 * @author Shterev
+	 */
+	private final class PrioritySorter extends TableViewerColumnSorter {
+		private PrioritySorter(TableViewer viewer, TableViewerColumn column, ColumnLabelProvider columnLabelProvider) {
+			super(viewer, column, columnLabelProvider);
+		}
+
+		@Override
+		public int compare(Viewer viewer, Object e1, Object e2) {
+			int prio1 = 0;
+			int prio2 = 0;
+			if (e1 instanceof WorkItem) {
+				prio1 = ((WorkItem) e1).getPriority();
+			}
+			if (e2 instanceof WorkItem) {
+				prio2 = ((WorkItem) e2).getPriority();
+			}
+			return (prio1 > prio2 ? 1 : -1);
+		}
+	}
+
+	/**
+	 * @author Shterev
+	 */
+	private final class WorkPackagePaintListener implements Listener {
+		public void handleEvent(Event event) {
+			switch (event.type) {
+			case SWT.MeasureItem: {
+				TableItem item = (TableItem) event.item;
+				String text = getText(item);
+				Point size = event.gc.textExtent(text);
+				event.width = size.x;
+				event.height = Math.max(event.height, size.y);
+				break;
+			}
+			case SWT.PaintItem: {
+				TableItem item = (TableItem) event.item;
+				String text = getText(item);
+				Point size = event.gc.textExtent(text);
+				int offset2 = event.index == 0 ? Math.max(0, (event.height - size.y) / 2) : 0;
+				event.gc.drawText(text, event.x, event.y + offset2, true);
+				break;
+			}
+			case SWT.EraseItem: {
+				event.detail &= ~SWT.FOREGROUND;
+				break;
+			}
+			default:
+				break;
+			}
+		}
+
+		String getText(TableItem item) {
+			String text = labelProvider.getText(item.getData());
+			if (text == null) {
+				text = ".";
+			}
+			return text;
+		}
+	}
+
 	private Workspace workspace;
 	private AdapterImpl adapterImpl;
 	private WorkPackageTabDropAdapter wpTabDropAdapter;
 	private ArrayList<TableViewer> tables = new ArrayList<TableViewer>();
 	private SashForm sash;
+	private WorkPackageTabLabelProvider labelProvider;
 
 	/**
 	 * Constructor.
@@ -58,6 +130,8 @@ public class WorkPackageTabComposite extends Composite implements ProjectChangeO
 		sash = new SashForm(this, SWT.NONE);
 		GridDataFactory.fillDefaults().grab(true, true).applyTo(sash);
 
+		labelProvider = new WorkPackageTabLabelProvider();
+
 		TableViewer unassigned = createTable("Unassigned");
 		unassigned.setContentProvider(new WorkPackageTabContentProvider(WorkPackageTabContentProvider.UNASSIGNED));
 		TableViewer assigned = createTable("Assigned");
@@ -69,6 +143,12 @@ public class WorkPackageTabComposite extends Composite implements ProjectChangeO
 		TableViewer finished = createTable("Done");
 		finished.setContentProvider(new WorkPackageTabContentProvider(WorkPackageTabContentProvider.DONE));
 
+		/*
+		 * NOTE: MeasureItem, PaintItem and EraseItem are called repeatedly. Therefore, it is critical for performance
+		 * that these methods be as efficient as possible.
+		 */
+		Listener paintListener = new WorkPackagePaintListener();
+
 		tables.add(assigned);
 		tables.add(unassigned);
 		tables.add(blocked);
@@ -76,6 +156,12 @@ public class WorkPackageTabComposite extends Composite implements ProjectChangeO
 		tables.add(finished);
 
 		sash.setWeights(new int[] { 20, 20, 20, 20, 20 });
+
+		for (TableViewer table : tables) {
+			table.getTable().addListener(SWT.MeasureItem, paintListener);
+			table.getTable().addListener(SWT.PaintItem, paintListener);
+			table.getTable().addListener(SWT.EraseItem, paintListener);
+		}
 
 		addDnDSupport();
 		hookDoubleClick();
@@ -108,10 +194,9 @@ public class WorkPackageTabComposite extends Composite implements ProjectChangeO
 	}
 
 	private TableViewer createTable(String title) {
-		TableViewer tableViewer = new TableViewer(sash, SWT.BORDER | SWT.FULL_SELECTION);
+		TableViewer tableViewer = new TableViewer(sash, SWT.FULL_SELECTION | SWT.BORDER);
 		tableViewer.getTable().setLayoutData(new GridData(SWT.FILL, SWT.FILL, true, true));
 
-		final WorkPackageTabLabelProvider labelProvider = new WorkPackageTabLabelProvider();
 		tableViewer.setLabelProvider(labelProvider);
 
 		Table table = tableViewer.getTable();
@@ -120,11 +205,9 @@ public class WorkPackageTabComposite extends Composite implements ProjectChangeO
 		// root nodes (WorkPackage) and their contained WorkItems
 		TableViewerColumn tclmWorkItem = new TableViewerColumn(tableViewer, SWT.NONE);
 		tclmWorkItem.getColumn().setText(title);
-		tclmWorkItem.getColumn().setWidth(100);
+		tclmWorkItem.getColumn().setWidth(200);
 		tclmWorkItem.setLabelProvider(labelProvider);
-		tableViewer.setComparator(new ViewerComparator() {
-
-		});
+		new PrioritySorter(tableViewer, tclmWorkItem, labelProvider);
 		return tableViewer;
 	}
 
