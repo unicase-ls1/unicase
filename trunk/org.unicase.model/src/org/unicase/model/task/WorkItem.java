@@ -154,7 +154,7 @@ public interface WorkItem extends Annotation {
 	 * @see org.unicase.model.task.TaskPackage#getWorkItem_Reviewer()
 	 * @see org.unicase.model.organization.User#getWorkItemsToReview
 	 * @model opposite="workItemsToReview" keys="identifier"
-	 *        annotation="org.unicase.ui.meeditor priority='9.0' position='right'"
+	 *        annotation="org.unicase.ui.meeditor priority='13.0' position='left'"
 	 * @generated
 	 */
 	User getReviewer();
