@@ -73,6 +73,9 @@ public final class NotificationHelper {
 	 * @return a HTML link as string
 	 */
 	public static String getHTMLLinkForModelElement(ModelElement modelElement, ProjectSpace projectSpace) {
+		if (modelElement == null) {
+			return "";
+		}
 		StringBuilder ret = new StringBuilder("<a href=\"unicase://current:0/");
 		ret.append(projectSpace.getProjectName());
 		ret.append("%");
