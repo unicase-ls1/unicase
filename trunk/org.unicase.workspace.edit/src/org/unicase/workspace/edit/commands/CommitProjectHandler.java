@@ -175,12 +175,24 @@ public class CommitProjectHandler extends ProjectActionHandler implements Commit
 	 * @see org.unicase.workspace.util.CommitObserver#commitCompleted()
 	 */
 	public void commitCompleted() {
+		showDashboard();
+	}
+
+	/**
+	 * Shows or focuses and refreshes on the dashboard.
+	 */
+	private void showDashboard() {
 		ProjectSpace activeProjectSpace = WorkspaceManager.getInstance().getCurrentWorkspace().getActiveProjectSpace();
 		DashboardEditorInput input = new DashboardEditorInput(activeProjectSpace);
 		try {
 			IEditorPart editor = PlatformUI.getWorkbench().getActiveWorkbenchWindow().getActivePage().openEditor(input,
 				"org.unicase.workspace.edit.dashboard", true);
-			((DashboardEditor) editor).refresh();
+			if (editor instanceof DashboardEditor) {
+				((DashboardEditor) editor).refresh();
+			} else {
+				WorkspaceUtil.logException("Trying to open an unknown editor as a dashboard!",
+					new IllegalArgumentException(editor.toString()));
+			}
 		} catch (PartInitException e) {
 			WorkspaceUtil.logException(e.getMessage(), e);
 		}
