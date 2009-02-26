@@ -11,8 +11,10 @@ import org.eclipse.jface.layout.GridDataFactory;
 import org.eclipse.jface.layout.GridLayoutFactory;
 import org.eclipse.jface.resource.JFaceResources;
 import org.eclipse.swt.SWT;
+import org.eclipse.swt.custom.ScrolledComposite;
 import org.eclipse.swt.custom.StyleRange;
 import org.eclipse.swt.custom.StyledText;
+import org.eclipse.swt.graphics.Color;
 import org.eclipse.swt.widgets.Composite;
 import org.unicase.model.task.WorkItem;
 import org.unicase.model.task.WorkPackage;
@@ -30,6 +32,10 @@ public class WorkPackageTabCategory extends Composite {
 
 	private StyledText title;
 
+	private Composite client;
+
+	private ScrolledComposite scroller;
+
 	/**
 	 * Default constructor.
 	 * 
@@ -38,14 +44,39 @@ public class WorkPackageTabCategory extends Composite {
 	 */
 	public WorkPackageTabCategory(Composite parent, int style) {
 		super(parent, style);
-		GridLayoutFactory.fillDefaults().numColumns(1).spacing(0, 5).applyTo(this);
-		title = new StyledText(this, SWT.WRAP);
+		GridLayoutFactory.fillDefaults().numColumns(1).spacing(0, 0).applyTo(this);
+
+		Composite titleComposite = new Composite(this, SWT.NONE);
+		GridDataFactory.fillDefaults().grab(true, false).applyTo(titleComposite);
+		GridLayoutFactory.fillDefaults().numColumns(1).spacing(0, 0).applyTo(titleComposite);
+		titleComposite.setBackground(new Color(getDisplay(), 115, 158, 227));
+		titleComposite.setBackgroundMode(SWT.INHERIT_FORCE);
+		title = new StyledText(titleComposite, SWT.WRAP);
+		title.setForeground(new Color(getDisplay(), 255, 255, 255));
 		title.setEnabled(false);
 		GridDataFactory.fillDefaults().grab(true, false).align(SWT.CENTER, SWT.BEGINNING).applyTo(title);
+
+		scroller = new ScrolledComposite(this, SWT.H_SCROLL | SWT.V_SCROLL | SWT.BORDER);
+		GridLayoutFactory.fillDefaults().numColumns(1).spacing(0, 0).applyTo(scroller);
+		GridDataFactory.fillDefaults().grab(true, true).applyTo(scroller);
+		scroller.setExpandHorizontal(true);
+		scroller.setExpandVertical(true);
+		scroller.getVerticalBar().setIncrement(20);
+		scroller.getHorizontalBar().setIncrement(20);
+
+		client = new Composite(scroller, SWT.NONE);
+		GridLayoutFactory.fillDefaults().numColumns(1).spacing(0, 0).applyTo(client);
+		GridDataFactory.fillDefaults().grab(true, true).applyTo(client);
+
 		items = new ArrayList<WorkPackageTabItem>();
+
+		scroller.setContent(client);
 	}
 
-	private void refresh() {
+	/**
+	 * Refreshes this category column.
+	 */
+	public void refresh() {
 
 		for (Composite c : items) {
 			c.dispose();
@@ -57,10 +88,13 @@ public class WorkPackageTabCategory extends Composite {
 		int i = 0;
 		for (Object item : contentProvider.getElements(workPackage)) {
 			i++;
-			WorkPackageTabItem tabItem = new WorkPackageTabItem(this, SWT.NONE, (WorkItem) item, i % 2);
+			WorkPackageTabItem tabItem = new WorkPackageTabItem(client, SWT.NONE, (WorkItem) item, i % 2);
 			GridDataFactory.fillDefaults().grab(true, false).align(SWT.FILL, SWT.BEGINNING).applyTo(tabItem);
 			items.add(tabItem);
 		}
+
+		client.layout(true);
+		scroller.setMinSize(client.computeSize(SWT.DEFAULT, SWT.DEFAULT));
 
 	}
 

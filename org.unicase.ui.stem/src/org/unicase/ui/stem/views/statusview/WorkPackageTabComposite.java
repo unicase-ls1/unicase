@@ -54,10 +54,9 @@ public class WorkPackageTabComposite extends Composite implements ProjectChangeO
 		super(parent, style);
 		GridLayoutFactory.fillDefaults().numColumns(1).applyTo(this);
 		sash = new SashForm(this, SWT.BORDER);
-		sash.setSashWidth(10);
+		sash.setSashWidth(2);
 		GridDataFactory.fillDefaults().grab(true, true).applyTo(sash);
-		setBackgroundMode(SWT.INHERIT_FORCE);
-		setBackground(getDisplay().getSystemColor(SWT.COLOR_WHITE));
+		setBackground(getDisplay().getSystemColor(SWT.COLOR_BLACK));
 
 		WorkPackageTabContentProvider unassignedContentProvider = new WorkPackageTabContentProvider(
 			WorkPackageTabContentProvider.UNASSIGNED);
@@ -70,16 +69,16 @@ public class WorkPackageTabComposite extends Composite implements ProjectChangeO
 		WorkPackageTabContentProvider testingContentProvider = new WorkPackageTabContentProvider(
 			WorkPackageTabContentProvider.TESTING);
 
-		WorkPackageTabCategory assigned = new WorkPackageTabCategory(sash, SWT.NONE);
-		assigned.setContentProvider(assignedContentProvider);
 		WorkPackageTabCategory unassigned = new WorkPackageTabCategory(sash, SWT.NONE);
 		unassigned.setContentProvider(unassignedContentProvider);
+		WorkPackageTabCategory assigned = new WorkPackageTabCategory(sash, SWT.NONE);
+		assigned.setContentProvider(assignedContentProvider);
 		WorkPackageTabCategory blocked = new WorkPackageTabCategory(sash, SWT.NONE);
 		blocked.setContentProvider(blockedContentProvider);
-		WorkPackageTabCategory done = new WorkPackageTabCategory(sash, SWT.NONE);
-		done.setContentProvider(doneContentProvider);
 		WorkPackageTabCategory testing = new WorkPackageTabCategory(sash, SWT.NONE);
 		testing.setContentProvider(testingContentProvider);
+		WorkPackageTabCategory done = new WorkPackageTabCategory(sash, SWT.NONE);
+		done.setContentProvider(doneContentProvider);
 
 		categories = new ArrayList<WorkPackageTabCategory>();
 		categories.add(assigned);
@@ -164,8 +163,8 @@ public class WorkPackageTabComposite extends Composite implements ProjectChangeO
 	 *      org.unicase.model.ModelElement)
 	 */
 	public void modelElementAdded(Project project, ModelElement modelElement) {
-		for (TableViewer table : tables) {
-			table.refresh();
+		for (WorkPackageTabCategory cat : categories) {
+			cat.refresh();
 		}
 	}
 
@@ -196,8 +195,8 @@ public class WorkPackageTabComposite extends Composite implements ProjectChangeO
 	 *      org.unicase.model.ModelElement)
 	 */
 	public void modelElementRemoved(Project project, ModelElement modelElement) {
-		for (TableViewer table : tables) {
-			table.refresh();
+		for (WorkPackageTabCategory cat : categories) {
+			cat.refresh();
 		}
 
 	}
@@ -209,8 +208,8 @@ public class WorkPackageTabComposite extends Composite implements ProjectChangeO
 	 *      org.unicase.model.Project, org.unicase.model.ModelElement)
 	 */
 	public void notify(Notification notification, Project project, ModelElement modelElement) {
-		for (TableViewer table : tables) {
-			table.refresh();
+		for (WorkPackageTabCategory cat : categories) {
+			cat.refresh();
 		}
 	}
 

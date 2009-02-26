@@ -43,10 +43,10 @@ import org.unicase.emfstore.esmodel.versioning.events.NotificationReadEvent;
 import org.unicase.model.ModelElement;
 import org.unicase.model.ModelElementId;
 import org.unicase.ui.common.util.ActionHelper;
+import org.unicase.ui.common.util.URLHelper;
 import org.unicase.workspace.ProjectSpace;
 import org.unicase.workspace.edit.Activator;
 import org.unicase.workspace.exceptions.MEUrlResolutionException;
-import org.unicase.workspace.notification.provider.NotificationHelper;
 import org.unicase.workspace.notification.provider.UpdateNotificationProvider;
 import org.unicase.workspace.util.WorkspaceUtil;
 
@@ -238,7 +238,7 @@ public class DashboardEntry extends Composite {
 			GridDataFactory.fillDefaults().grab(true, false).applyTo(drawerEntry);
 			GridLayoutFactory.fillDefaults().numColumns(2).equalWidth(false).spacing(5, 0).applyTo(drawerEntry);
 
-			String hyperlink = NotificationHelper.getHTMLLinkForModelElement(mid, project);
+			String hyperlink = URLHelper.getHTMLLinkForModelElement(mid, project);
 			Link meLink = createImageLink(labelProvider.getImage(me), drawerEntry, hyperlink);
 			meLink.addSelectionListener(new LinkSelectionListener("drawer"));
 			meLink.addMouseTrackListener(hoverListener);
