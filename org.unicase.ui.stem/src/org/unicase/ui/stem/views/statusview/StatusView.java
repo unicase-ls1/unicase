@@ -363,7 +363,9 @@ public class StatusView extends ViewPart implements ProjectChangeObserver {
 
 			wpTab.setText("WorkPackage status");
 			wpTab.setImage(images.get(FLAT_TAB_IMAGE));
-			wpTabComposite = new WorkPackageTabComposite(tabFolder, SWT.NONE);
+			if (wpTabComposite == null) {
+				wpTabComposite = new WorkPackageTabComposite(tabFolder, SWT.NONE);
+			}
 			wpTab.setControl(wpTabComposite);
 			wpTabComposite.setInput(input);
 		}

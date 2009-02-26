@@ -77,6 +77,8 @@ public class WorkPackageTabDropAdapter extends DropTargetAdapter {
 
 	@SuppressWarnings("unchecked")
 	private boolean extractDnDSourceAndTarget(DropTargetEvent event) {
+		source = null;
+		target = null;
 		boolean result = true;
 
 		List<Object> tmpSource = (List<Object>) DragSourcePlaceHolder.getDragSource();
