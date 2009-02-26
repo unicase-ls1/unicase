@@ -57,8 +57,8 @@ public class WorkPackageTabLabelProvider extends ColumnLabelProvider implements 
 			}
 			buffer.append("\n");
 		}
-		buffer.append("Done: ");
-		buffer.append((((Checkable) wi).isChecked() ? "Yes" : "No"));
+		buffer.append("Priority: ");
+		buffer.append(wi.getPriority());
 		buffer.append("\n");
 		if (!wi.getPredecessors().isEmpty()) {
 			buffer.append("Blocker: ");
