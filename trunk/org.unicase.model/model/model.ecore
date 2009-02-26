@@ -105,6 +105,8 @@
           <details key="position" value="left"/>
         </eAnnotations>
       </eStructuralFeatures>
+      <eStructuralFeatures xsi:type="ecore:EReference" name="workItemsToReview" upperBound="-1"
+          eType="#//task/WorkItem" eOpposite="#//task/WorkItem/reviewer" eKeys="#//IdentifiableElement/identifier"/>
     </eClassifiers>
     <eClassifiers xsi:type="ecore:EClass" name="OrgUnit" abstract="true" eSuperTypes="#//ModelElement">
       <eStructuralFeatures xsi:type="ecore:EAttribute" name="acOrgId" eType="ecore:EDataType http://www.eclipse.org/emf/2002/Ecore#//EString"/>
@@ -141,7 +143,7 @@
     <eClassifiers xsi:type="ecore:EClass" name="ActionItem" eSuperTypes="#//task/WorkItem #//task/Checkable">
       <eStructuralFeatures xsi:type="ecore:EAttribute" name="done" eType="ecore:EDataType http://www.eclipse.org/emf/2002/Ecore#//EBoolean">
         <eAnnotations source="org.unicase.ui.meeditor">
-          <details key="priority" value="20.0"/>
+          <details key="priority" value="17.0"/>
           <details key="position" value="left"/>
         </eAnnotations>
       </eStructuralFeatures>
@@ -203,8 +205,19 @@
       <eStructuralFeatures xsi:type="ecore:EReference" name="assignee" eType="#//organization/OrgUnit"
           eOpposite="#//organization/OrgUnit/assignments" eKeys="#//IdentifiableElement/identifier">
         <eAnnotations source="org.unicase.ui.meeditor">
+          <eAnnotations source="org.unicase.ui.meeditor">
+            <details key="priority" value="10.0"/>
+            <details key="position" value="right"/>
+          </eAnnotations>
           <details key="priority" value="11.0"/>
           <details key="position" value="left"/>
+        </eAnnotations>
+      </eStructuralFeatures>
+      <eStructuralFeatures xsi:type="ecore:EReference" name="reviewer" eType="#//organization/User"
+          eOpposite="#//organization/User/workItemsToReview" eKeys="#//IdentifiableElement/identifier">
+        <eAnnotations source="org.unicase.ui.meeditor">
+          <details key="priority" value="9.0"/>
+          <details key="position" value="right"/>
         </eAnnotations>
       </eStructuralFeatures>
       <eStructuralFeatures xsi:type="ecore:EReference" name="participants" upperBound="-1"
@@ -221,11 +234,27 @@
           <details key="position" value="left"/>
         </eAnnotations>
       </eStructuralFeatures>
-      <eStructuralFeatures xsi:type="ecore:EAttribute" name="estimate" eType="ecore:EDataType http://www.eclipse.org/emf/2002/Ecore#//EInt"/>
-      <eStructuralFeatures xsi:type="ecore:EAttribute" name="effort" eType="ecore:EDataType http://www.eclipse.org/emf/2002/Ecore#//EInt"/>
+      <eStructuralFeatures xsi:type="ecore:EAttribute" name="estimate" eType="ecore:EDataType http://www.eclipse.org/emf/2002/Ecore#//EInt">
+        <eAnnotations source="org.unicase.ui.meeditor">
+          <details key="priority" value="18.0"/>
+          <details key="position" value="left"/>
+        </eAnnotations>
+      </eStructuralFeatures>
+      <eStructuralFeatures xsi:type="ecore:EAttribute" name="effort" eType="ecore:EDataType http://www.eclipse.org/emf/2002/Ecore#//EInt">
+        <eAnnotations source="org.unicase.ui.meeditor">
+          <details key="priority" value="19.0"/>
+          <details key="position" value="left"/>
+        </eAnnotations>
+      </eStructuralFeatures>
       <eStructuralFeatures xsi:type="ecore:EAttribute" name="priority" eType="ecore:EDataType http://www.eclipse.org/emf/2002/Ecore#//EInt">
         <eAnnotations source="org.unicase.ui.meeditor">
           <details key="priority" value="12.0"/>
+          <details key="position" value="left"/>
+        </eAnnotations>
+      </eStructuralFeatures>
+      <eStructuralFeatures xsi:type="ecore:EAttribute" name="resolved" eType="ecore:EDataType http://www.eclipse.org/emf/2002/Ecore#//EBoolean">
+        <eAnnotations source="org.unicase.ui.meeditor">
+          <details key="priority" value="13.0"/>
           <details key="position" value="left"/>
         </eAnnotations>
       </eStructuralFeatures>
@@ -1030,12 +1059,7 @@
   </eSubpackages>
   <eSubpackages name="bug" nsURI="http://unicase.org/model/bug" nsPrefix="org.unicase.model.bug">
     <eClassifiers xsi:type="ecore:EClass" name="BugReport" eSuperTypes="#//task/WorkItem #//task/Checkable">
-      <eStructuralFeatures xsi:type="ecore:EAttribute" name="Status" eType="#//bug/BugStatus">
-        <eAnnotations source="org.unicase.ui.meeditor">
-          <details key="priority" value="20.0"/>
-          <details key="position" value="left"/>
-        </eAnnotations>
-      </eStructuralFeatures>
+      <eStructuralFeatures xsi:type="ecore:EAttribute" name="Status" eType="#//bug/BugStatus"/>
       <eStructuralFeatures xsi:type="ecore:EAttribute" name="severity" eType="#//bug/Severity">
         <eAnnotations source="org.unicase.ui.meeditor">
           <details key="priority" value="9.5"/>
@@ -1044,13 +1068,13 @@
       </eStructuralFeatures>
       <eStructuralFeatures xsi:type="ecore:EAttribute" name="resolution" eType="ecore:EDataType http://www.eclipse.org/emf/2002/Ecore#//EString">
         <eAnnotations source="org.unicase.ui.meeditor">
-          <details key="priority" value="21.0"/>
+          <details key="priority" value="16.0"/>
           <details key="position" value="left"/>
         </eAnnotations>
       </eStructuralFeatures>
       <eStructuralFeatures xsi:type="ecore:EAttribute" name="resolutionType" eType="#//bug/ResolutionType">
         <eAnnotations source="org.unicase.ui.meeditor">
-          <details key="priority" value="22.0"/>
+          <details key="priority" value="17.0"/>
           <details key="position" value="left"/>
         </eAnnotations>
       </eStructuralFeatures>

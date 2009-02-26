@@ -21,13 +21,13 @@ import org.unicase.model.ModelElement;
  */
 public interface State extends ModelElement {
 	/**
-	 * Returns the value of the '<em><b>Exit Conditions</b></em>' attribute. <!-- begin-user-doc -->
+	 * Returns the value of the '<em><b>Exit Conditions</b></em>' attribute.
+	 * <!-- begin-user-doc -->
 	 * <p>
 	 * If the meaning of the '<em>Exit Conditions</em>' attribute list isn't clear, there really should be more of a
 	 * description here...
 	 * </p>
 	 * <!-- end-user-doc -->
-	 * 
 	 * @return the value of the '<em>Exit Conditions</em>' attribute.
 	 * @see #setExitConditions(String)
 	 * @see org.unicase.model.state.StatePackage#getState_ExitConditions()
@@ -37,9 +37,8 @@ public interface State extends ModelElement {
 	String getExitConditions();
 
 	/**
-	 * Sets the value of the '{@link org.unicase.model.state.State#getExitConditions <em>Exit Conditions</em>}'
-	 * attribute. <!-- begin-user-doc --> <!-- end-user-doc -->
-	 * 
+	 * Sets the value of the '{@link org.unicase.model.state.State#getExitConditions <em>Exit Conditions</em>}' attribute.
+	 * <!-- begin-user-doc --> <!-- end-user-doc -->
 	 * @param value the new value of the '<em>Exit Conditions</em>' attribute.
 	 * @see #getExitConditions()
 	 * @generated
@@ -47,13 +46,13 @@ public interface State extends ModelElement {
 	void setExitConditions(String value);
 
 	/**
-	 * Returns the value of the '<em><b>Activities</b></em>' attribute. <!-- begin-user-doc -->
+	 * Returns the value of the '<em><b>Activities</b></em>' attribute.
+	 * <!-- begin-user-doc -->
 	 * <p>
 	 * If the meaning of the '<em>Activities</em>' attribute list isn't clear, there really should be more of a
 	 * description here...
 	 * </p>
 	 * <!-- end-user-doc -->
-	 * 
 	 * @return the value of the '<em>Activities</em>' attribute.
 	 * @see #setActivities(String)
 	 * @see org.unicase.model.state.StatePackage#getState_Activities()
@@ -73,13 +72,13 @@ public interface State extends ModelElement {
 	void setActivities(String value);
 
 	/**
-	 * Returns the value of the '<em><b>Entry Conditions</b></em>' attribute. <!-- begin-user-doc -->
+	 * Returns the value of the '<em><b>Entry Conditions</b></em>' attribute.
+	 * <!-- begin-user-doc -->
 	 * <p>
 	 * If the meaning of the '<em>Entry Conditions</em>' attribute list isn't clear, there really should be more of a
 	 * description here...
 	 * </p>
 	 * <!-- end-user-doc -->
-	 * 
 	 * @return the value of the '<em>Entry Conditions</em>' attribute.
 	 * @see #setEntryConditions(String)
 	 * @see org.unicase.model.state.StatePackage#getState_EntryConditions()
@@ -89,9 +88,8 @@ public interface State extends ModelElement {
 	String getEntryConditions();
 
 	/**
-	 * Sets the value of the '{@link org.unicase.model.state.State#getEntryConditions <em>Entry Conditions</em>}'
-	 * attribute. <!-- begin-user-doc --> <!-- end-user-doc -->
-	 * 
+	 * Sets the value of the '{@link org.unicase.model.state.State#getEntryConditions <em>Entry Conditions</em>}' attribute.
+	 * <!-- begin-user-doc --> <!-- end-user-doc -->
 	 * @param value the new value of the '<em>Entry Conditions</em>' attribute.
 	 * @see #getEntryConditions()
 	 * @generated
@@ -99,15 +97,15 @@ public interface State extends ModelElement {
 	void setEntryConditions(String value);
 
 	/**
-	 * Returns the value of the '<em><b>Outgoing Transitions</b></em>' reference list. The list contents are of type
-	 * {@link org.unicase.model.state.Transition}. It is bidirectional and its opposite is '
-	 * {@link org.unicase.model.state.Transition#getSource <em>Source</em>}'. <!-- begin-user-doc -->
+	 * Returns the value of the '<em><b>Outgoing Transitions</b></em>' reference list.
+	 * The list contents are of type {@link org.unicase.model.state.Transition}.
+	 * It is bidirectional and its opposite is '{@link org.unicase.model.state.Transition#getSource <em>Source</em>}'.
+	 * <!-- begin-user-doc -->
 	 * <p>
 	 * If the meaning of the '<em>Outgoing Transitions</em>' reference list isn't clear, there really should be more of
 	 * a description here...
 	 * </p>
 	 * <!-- end-user-doc -->
-	 * 
 	 * @return the value of the '<em>Outgoing Transitions</em>' reference list.
 	 * @see org.unicase.model.state.StatePackage#getState_OutgoingTransitions()
 	 * @see org.unicase.model.state.Transition#getSource
@@ -117,15 +115,15 @@ public interface State extends ModelElement {
 	EList<Transition> getOutgoingTransitions();
 
 	/**
-	 * Returns the value of the '<em><b>Incoming Transitions</b></em>' reference list. The list contents are of type
-	 * {@link org.unicase.model.state.Transition}. It is bidirectional and its opposite is '
-	 * {@link org.unicase.model.state.Transition#getTarget <em>Target</em>}'. <!-- begin-user-doc -->
+	 * Returns the value of the '<em><b>Incoming Transitions</b></em>' reference list.
+	 * The list contents are of type {@link org.unicase.model.state.Transition}.
+	 * It is bidirectional and its opposite is '{@link org.unicase.model.state.Transition#getTarget <em>Target</em>}'.
+	 * <!-- begin-user-doc -->
 	 * <p>
 	 * If the meaning of the '<em>Incoming Transitions</em>' reference list isn't clear, there really should be more of
 	 * a description here...
 	 * </p>
 	 * <!-- end-user-doc -->
-	 * 
 	 * @return the value of the '<em>Incoming Transitions</em>' reference list.
 	 * @see org.unicase.model.state.StatePackage#getState_IncomingTransitions()
 	 * @see org.unicase.model.state.Transition#getTarget

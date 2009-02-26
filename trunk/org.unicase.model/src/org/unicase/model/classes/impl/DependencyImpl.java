@@ -24,9 +24,9 @@ import org.unicase.model.impl.ModelElementImpl;
  */
 public class DependencyImpl extends ModelElementImpl implements Dependency {
 	/**
-	 * The cached value of the '{@link #getSource() <em>Source</em>}' reference. <!-- begin-user-doc --> <!--
+	 * The cached value of the '{@link #getSource() <em>Source</em>}' reference.
+	 * <!-- begin-user-doc --> <!--
 	 * end-user-doc -->
-	 * 
 	 * @see #getSource()
 	 * @generated
 	 * @ordered
@@ -34,9 +34,9 @@ public class DependencyImpl extends ModelElementImpl implements Dependency {
 	protected PackageElement source;
 
 	/**
-	 * The cached value of the '{@link #getTarget() <em>Target</em>}' reference. <!-- begin-user-doc --> <!--
+	 * The cached value of the '{@link #getTarget() <em>Target</em>}' reference.
+	 * <!-- begin-user-doc --> <!--
 	 * end-user-doc -->
-	 * 
 	 * @see #getTarget()
 	 * @generated
 	 * @ordered
@@ -45,7 +45,6 @@ public class DependencyImpl extends ModelElementImpl implements Dependency {
 
 	/**
 	 * <!-- begin-user-doc --> <!-- end-user-doc -->
-	 * 
 	 * @generated
 	 */
 	protected DependencyImpl() {
@@ -54,7 +53,6 @@ public class DependencyImpl extends ModelElementImpl implements Dependency {
 
 	/**
 	 * <!-- begin-user-doc --> <!-- end-user-doc -->
-	 * 
 	 * @generated
 	 */
 	@Override
@@ -64,7 +62,6 @@ public class DependencyImpl extends ModelElementImpl implements Dependency {
 
 	/**
 	 * <!-- begin-user-doc --> <!-- end-user-doc -->
-	 * 
 	 * @generated
 	 */
 	public PackageElement getSource() {
@@ -82,7 +79,6 @@ public class DependencyImpl extends ModelElementImpl implements Dependency {
 
 	/**
 	 * <!-- begin-user-doc --> <!-- end-user-doc -->
-	 * 
 	 * @generated
 	 */
 	public PackageElement basicGetSource() {
@@ -91,7 +87,6 @@ public class DependencyImpl extends ModelElementImpl implements Dependency {
 
 	/**
 	 * <!-- begin-user-doc --> <!-- end-user-doc -->
-	 * 
 	 * @generated
 	 */
 	public NotificationChain basicSetSource(PackageElement newSource, NotificationChain msgs) {
@@ -110,7 +105,6 @@ public class DependencyImpl extends ModelElementImpl implements Dependency {
 
 	/**
 	 * <!-- begin-user-doc --> <!-- end-user-doc -->
-	 * 
 	 * @generated
 	 */
 	public void setSource(PackageElement newSource) {
@@ -132,7 +126,6 @@ public class DependencyImpl extends ModelElementImpl implements Dependency {
 
 	/**
 	 * <!-- begin-user-doc --> <!-- end-user-doc -->
-	 * 
 	 * @generated
 	 */
 	public PackageElement getTarget() {
@@ -150,7 +143,6 @@ public class DependencyImpl extends ModelElementImpl implements Dependency {
 
 	/**
 	 * <!-- begin-user-doc --> <!-- end-user-doc -->
-	 * 
 	 * @generated
 	 */
 	public PackageElement basicGetTarget() {
@@ -159,7 +151,6 @@ public class DependencyImpl extends ModelElementImpl implements Dependency {
 
 	/**
 	 * <!-- begin-user-doc --> <!-- end-user-doc -->
-	 * 
 	 * @generated
 	 */
 	public NotificationChain basicSetTarget(PackageElement newTarget, NotificationChain msgs) {
@@ -178,7 +169,6 @@ public class DependencyImpl extends ModelElementImpl implements Dependency {
 
 	/**
 	 * <!-- begin-user-doc --> <!-- end-user-doc -->
-	 * 
 	 * @generated
 	 */
 	public void setTarget(PackageElement newTarget) {
@@ -200,7 +190,6 @@ public class DependencyImpl extends ModelElementImpl implements Dependency {
 
 	/**
 	 * <!-- begin-user-doc --> <!-- end-user-doc -->
-	 * 
 	 * @generated
 	 */
 	@Override
@@ -222,7 +211,6 @@ public class DependencyImpl extends ModelElementImpl implements Dependency {
 
 	/**
 	 * <!-- begin-user-doc --> <!-- end-user-doc -->
-	 * 
 	 * @generated
 	 */
 	@Override
@@ -238,7 +226,6 @@ public class DependencyImpl extends ModelElementImpl implements Dependency {
 
 	/**
 	 * <!-- begin-user-doc --> <!-- end-user-doc -->
-	 * 
 	 * @generated
 	 */
 	@Override
@@ -258,7 +245,6 @@ public class DependencyImpl extends ModelElementImpl implements Dependency {
 
 	/**
 	 * <!-- begin-user-doc --> <!-- end-user-doc -->
-	 * 
 	 * @generated
 	 */
 	@Override
@@ -276,7 +262,6 @@ public class DependencyImpl extends ModelElementImpl implements Dependency {
 
 	/**
 	 * <!-- begin-user-doc --> <!-- end-user-doc -->
-	 * 
 	 * @generated
 	 */
 	@Override
@@ -294,7 +279,6 @@ public class DependencyImpl extends ModelElementImpl implements Dependency {
 
 	/**
 	 * <!-- begin-user-doc --> <!-- end-user-doc -->
-	 * 
 	 * @generated
 	 */
 	@Override

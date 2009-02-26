@@ -35,9 +35,9 @@ import org.unicase.model.profile.StereotypeInstance;
  */
 public class StereotypeImpl extends ModelElementImpl implements Stereotype {
 	/**
-	 * The default value of the '{@link #isRequired() <em>Required</em>}' attribute. <!-- begin-user-doc --> <!--
+	 * The default value of the '{@link #isRequired() <em>Required</em>}' attribute.
+	 * <!-- begin-user-doc --> <!--
 	 * end-user-doc -->
-	 * 
 	 * @see #isRequired()
 	 * @generated
 	 * @ordered
@@ -45,9 +45,9 @@ public class StereotypeImpl extends ModelElementImpl implements Stereotype {
 	protected static final boolean REQUIRED_EDEFAULT = false;
 
 	/**
-	 * The cached value of the '{@link #isRequired() <em>Required</em>}' attribute. <!-- begin-user-doc --> <!--
+	 * The cached value of the '{@link #isRequired() <em>Required</em>}' attribute.
+	 * <!-- begin-user-doc --> <!--
 	 * end-user-doc -->
-	 * 
 	 * @see #isRequired()
 	 * @generated
 	 * @ordered
@@ -65,9 +65,8 @@ public class StereotypeImpl extends ModelElementImpl implements Stereotype {
 	protected EList<StereotypeInstance> stereotypeInstances;
 
 	/**
-	 * The cached value of the '{@link #getStereotypeAttributes() <em>Stereotype Attributes</em>}' containment reference
-	 * list. <!-- begin-user-doc --> <!-- end-user-doc -->
-	 * 
+	 * The cached value of the '{@link #getStereotypeAttributes() <em>Stereotype Attributes</em>}' containment reference list.
+	 * <!-- begin-user-doc --> <!-- end-user-doc -->
 	 * @see #getStereotypeAttributes()
 	 * @generated
 	 * @ordered
@@ -76,7 +75,6 @@ public class StereotypeImpl extends ModelElementImpl implements Stereotype {
 
 	/**
 	 * <!-- begin-user-doc --> <!-- end-user-doc -->
-	 * 
 	 * @generated
 	 */
 	protected StereotypeImpl() {
@@ -85,7 +83,6 @@ public class StereotypeImpl extends ModelElementImpl implements Stereotype {
 
 	/**
 	 * <!-- begin-user-doc --> <!-- end-user-doc -->
-	 * 
 	 * @generated
 	 */
 	@Override
@@ -95,7 +92,6 @@ public class StereotypeImpl extends ModelElementImpl implements Stereotype {
 
 	/**
 	 * <!-- begin-user-doc --> <!-- end-user-doc -->
-	 * 
 	 * @generated
 	 */
 	public boolean isRequired() {
@@ -104,7 +100,6 @@ public class StereotypeImpl extends ModelElementImpl implements Stereotype {
 
 	/**
 	 * <!-- begin-user-doc --> <!-- end-user-doc -->
-	 * 
 	 * @generated
 	 */
 	public void setRequired(boolean newRequired) {
@@ -117,7 +112,6 @@ public class StereotypeImpl extends ModelElementImpl implements Stereotype {
 
 	/**
 	 * <!-- begin-user-doc --> <!-- end-user-doc -->
-	 * 
 	 * @generated
 	 */
 	public Profile getProfile() {
@@ -128,7 +122,6 @@ public class StereotypeImpl extends ModelElementImpl implements Stereotype {
 
 	/**
 	 * <!-- begin-user-doc --> <!-- end-user-doc -->
-	 * 
 	 * @generated
 	 */
 	public Profile basicGetProfile() {
@@ -139,7 +132,6 @@ public class StereotypeImpl extends ModelElementImpl implements Stereotype {
 
 	/**
 	 * <!-- begin-user-doc --> <!-- end-user-doc -->
-	 * 
 	 * @generated
 	 */
 	public NotificationChain basicSetProfile(Profile newProfile, NotificationChain msgs) {
@@ -149,7 +141,6 @@ public class StereotypeImpl extends ModelElementImpl implements Stereotype {
 
 	/**
 	 * <!-- begin-user-doc --> <!-- end-user-doc -->
-	 * 
 	 * @generated
 	 */
 	public void setProfile(Profile newProfile) {
@@ -173,7 +164,6 @@ public class StereotypeImpl extends ModelElementImpl implements Stereotype {
 
 	/**
 	 * <!-- begin-user-doc --> <!-- end-user-doc -->
-	 * 
 	 * @generated
 	 */
 	public EList<StereotypeInstance> getStereotypeInstances() {
@@ -186,7 +176,6 @@ public class StereotypeImpl extends ModelElementImpl implements Stereotype {
 
 	/**
 	 * <!-- begin-user-doc --> <!-- end-user-doc -->
-	 * 
 	 * @generated
 	 */
 	public EList<StereotypeAttribute> getStereotypeAttributes() {
@@ -200,7 +189,6 @@ public class StereotypeImpl extends ModelElementImpl implements Stereotype {
 
 	/**
 	 * <!-- begin-user-doc --> <!-- end-user-doc -->
-	 * 
 	 * @generated
 	 */
 	@SuppressWarnings("unchecked")
@@ -223,7 +211,6 @@ public class StereotypeImpl extends ModelElementImpl implements Stereotype {
 
 	/**
 	 * <!-- begin-user-doc --> <!-- end-user-doc -->
-	 * 
 	 * @generated
 	 */
 	@Override
@@ -241,7 +228,6 @@ public class StereotypeImpl extends ModelElementImpl implements Stereotype {
 
 	/**
 	 * <!-- begin-user-doc --> <!-- end-user-doc -->
-	 * 
 	 * @generated
 	 */
 	@Override
@@ -255,7 +241,6 @@ public class StereotypeImpl extends ModelElementImpl implements Stereotype {
 
 	/**
 	 * <!-- begin-user-doc --> <!-- end-user-doc -->
-	 * 
 	 * @generated
 	 */
 	@Override
@@ -277,7 +262,6 @@ public class StereotypeImpl extends ModelElementImpl implements Stereotype {
 
 	/**
 	 * <!-- begin-user-doc --> <!-- end-user-doc -->
-	 * 
 	 * @generated
 	 */
 	@SuppressWarnings("unchecked")
@@ -304,7 +288,6 @@ public class StereotypeImpl extends ModelElementImpl implements Stereotype {
 
 	/**
 	 * <!-- begin-user-doc --> <!-- end-user-doc -->
-	 * 
 	 * @generated
 	 */
 	@Override
@@ -328,7 +311,6 @@ public class StereotypeImpl extends ModelElementImpl implements Stereotype {
 
 	/**
 	 * <!-- begin-user-doc --> <!-- end-user-doc -->
-	 * 
 	 * @generated
 	 */
 	@Override
@@ -348,7 +330,6 @@ public class StereotypeImpl extends ModelElementImpl implements Stereotype {
 
 	/**
 	 * <!-- begin-user-doc --> <!-- end-user-doc -->
-	 * 
 	 * @generated
 	 */
 	@Override

@@ -36,7 +36,6 @@ public class CompositeMeetingSectionImpl extends MeetingSectionImpl implements C
 
 	/**
 	 * <!-- begin-user-doc --> <!-- end-user-doc -->
-	 * 
 	 * @generated
 	 */
 	protected CompositeMeetingSectionImpl() {
@@ -45,7 +44,6 @@ public class CompositeMeetingSectionImpl extends MeetingSectionImpl implements C
 
 	/**
 	 * <!-- begin-user-doc --> <!-- end-user-doc -->
-	 * 
 	 * @generated
 	 */
 	@Override
@@ -55,7 +53,6 @@ public class CompositeMeetingSectionImpl extends MeetingSectionImpl implements C
 
 	/**
 	 * <!-- begin-user-doc --> <!-- end-user-doc -->
-	 * 
 	 * @generated
 	 */
 	public EList<MeetingSection> getSubsections() {
@@ -68,7 +65,6 @@ public class CompositeMeetingSectionImpl extends MeetingSectionImpl implements C
 
 	/**
 	 * <!-- begin-user-doc --> <!-- end-user-doc -->
-	 * 
 	 * @generated
 	 */
 	@Override
@@ -82,7 +78,6 @@ public class CompositeMeetingSectionImpl extends MeetingSectionImpl implements C
 
 	/**
 	 * <!-- begin-user-doc --> <!-- end-user-doc -->
-	 * 
 	 * @generated
 	 */
 	@Override
@@ -96,7 +91,6 @@ public class CompositeMeetingSectionImpl extends MeetingSectionImpl implements C
 
 	/**
 	 * <!-- begin-user-doc --> <!-- end-user-doc -->
-	 * 
 	 * @generated
 	 */
 	@SuppressWarnings("unchecked")
@@ -113,7 +107,6 @@ public class CompositeMeetingSectionImpl extends MeetingSectionImpl implements C
 
 	/**
 	 * <!-- begin-user-doc --> <!-- end-user-doc -->
-	 * 
 	 * @generated
 	 */
 	@Override
@@ -128,7 +121,6 @@ public class CompositeMeetingSectionImpl extends MeetingSectionImpl implements C
 
 	/**
 	 * <!-- begin-user-doc --> <!-- end-user-doc -->
-	 * 
 	 * @generated
 	 */
 	@Override

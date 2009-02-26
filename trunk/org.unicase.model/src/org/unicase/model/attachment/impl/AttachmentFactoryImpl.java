@@ -20,8 +20,8 @@ import org.unicase.model.attachment.UrlAttachment;
  */
 public class AttachmentFactoryImpl extends EFactoryImpl implements AttachmentFactory {
 	/**
-	 * Creates the default factory implementation. <!-- begin-user-doc --> <!-- end-user-doc -->
-	 * 
+	 * Creates the default factory implementation.
+	 * <!-- begin-user-doc --> <!-- end-user-doc -->
 	 * @generated
 	 */
 	public static AttachmentFactory init() {
@@ -38,8 +38,8 @@ public class AttachmentFactoryImpl extends EFactoryImpl implements AttachmentFac
 	}
 
 	/**
-	 * Creates an instance of the factory. <!-- begin-user-doc --> <!-- end-user-doc -->
-	 * 
+	 * Creates an instance of the factory.
+	 * <!-- begin-user-doc --> <!-- end-user-doc -->
 	 * @generated
 	 */
 	public AttachmentFactoryImpl() {
@@ -48,7 +48,6 @@ public class AttachmentFactoryImpl extends EFactoryImpl implements AttachmentFac
 
 	/**
 	 * <!-- begin-user-doc --> <!-- end-user-doc -->
-	 * 
 	 * @generated
 	 */
 	@Override
@@ -63,7 +62,6 @@ public class AttachmentFactoryImpl extends EFactoryImpl implements AttachmentFac
 
 	/**
 	 * <!-- begin-user-doc --> <!-- end-user-doc -->
-	 * 
 	 * @generated
 	 */
 	public UrlAttachment createUrlAttachment() {
@@ -73,7 +71,6 @@ public class AttachmentFactoryImpl extends EFactoryImpl implements AttachmentFac
 
 	/**
 	 * <!-- begin-user-doc --> <!-- end-user-doc -->
-	 * 
 	 * @generated
 	 */
 	public AttachmentPackage getAttachmentPackage() {
@@ -82,7 +79,6 @@ public class AttachmentFactoryImpl extends EFactoryImpl implements AttachmentFac
 
 	/**
 	 * <!-- begin-user-doc --> <!-- end-user-doc -->
-	 * 
 	 * @deprecated
 	 * @generated
 	 */

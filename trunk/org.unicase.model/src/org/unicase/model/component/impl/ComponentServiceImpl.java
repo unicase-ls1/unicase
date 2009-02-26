@@ -42,7 +42,6 @@ public class ComponentServiceImpl extends ModelElementImpl implements ComponentS
 
 	/**
 	 * <!-- begin-user-doc --> <!-- end-user-doc -->
-	 * 
 	 * @generated
 	 */
 	protected ComponentServiceImpl() {
@@ -51,7 +50,6 @@ public class ComponentServiceImpl extends ModelElementImpl implements ComponentS
 
 	/**
 	 * <!-- begin-user-doc --> <!-- end-user-doc -->
-	 * 
 	 * @generated
 	 */
 	@Override
@@ -61,7 +59,6 @@ public class ComponentServiceImpl extends ModelElementImpl implements ComponentS
 
 	/**
 	 * <!-- begin-user-doc --> <!-- end-user-doc -->
-	 * 
 	 * @generated
 	 */
 	public Component getOfferingComponent() {
@@ -72,7 +69,6 @@ public class ComponentServiceImpl extends ModelElementImpl implements ComponentS
 
 	/**
 	 * <!-- begin-user-doc --> <!-- end-user-doc -->
-	 * 
 	 * @generated
 	 */
 	public Component basicGetOfferingComponent() {
@@ -83,7 +79,6 @@ public class ComponentServiceImpl extends ModelElementImpl implements ComponentS
 
 	/**
 	 * <!-- begin-user-doc --> <!-- end-user-doc -->
-	 * 
 	 * @generated
 	 */
 	public NotificationChain basicSetOfferingComponent(Component newOfferingComponent, NotificationChain msgs) {
@@ -94,7 +89,6 @@ public class ComponentServiceImpl extends ModelElementImpl implements ComponentS
 
 	/**
 	 * <!-- begin-user-doc --> <!-- end-user-doc -->
-	 * 
 	 * @generated
 	 */
 	public void setOfferingComponent(Component newOfferingComponent) {
@@ -118,7 +112,6 @@ public class ComponentServiceImpl extends ModelElementImpl implements ComponentS
 
 	/**
 	 * <!-- begin-user-doc --> <!-- end-user-doc -->
-	 * 
 	 * @generated
 	 */
 	public EList<Component> getConsumingComponents() {
@@ -131,7 +124,6 @@ public class ComponentServiceImpl extends ModelElementImpl implements ComponentS
 
 	/**
 	 * <!-- begin-user-doc --> <!-- end-user-doc -->
-	 * 
 	 * @generated
 	 */
 	@SuppressWarnings("unchecked")
@@ -151,7 +143,6 @@ public class ComponentServiceImpl extends ModelElementImpl implements ComponentS
 
 	/**
 	 * <!-- begin-user-doc --> <!-- end-user-doc -->
-	 * 
 	 * @generated
 	 */
 	@Override
@@ -167,7 +158,6 @@ public class ComponentServiceImpl extends ModelElementImpl implements ComponentS
 
 	/**
 	 * <!-- begin-user-doc --> <!-- end-user-doc -->
-	 * 
 	 * @generated
 	 */
 	@Override
@@ -182,7 +172,6 @@ public class ComponentServiceImpl extends ModelElementImpl implements ComponentS
 
 	/**
 	 * <!-- begin-user-doc --> <!-- end-user-doc -->
-	 * 
 	 * @generated
 	 */
 	@Override
@@ -200,7 +189,6 @@ public class ComponentServiceImpl extends ModelElementImpl implements ComponentS
 
 	/**
 	 * <!-- begin-user-doc --> <!-- end-user-doc -->
-	 * 
 	 * @generated
 	 */
 	@SuppressWarnings("unchecked")
@@ -220,7 +208,6 @@ public class ComponentServiceImpl extends ModelElementImpl implements ComponentS
 
 	/**
 	 * <!-- begin-user-doc --> <!-- end-user-doc -->
-	 * 
 	 * @generated
 	 */
 	@Override
@@ -238,7 +225,6 @@ public class ComponentServiceImpl extends ModelElementImpl implements ComponentS
 
 	/**
 	 * <!-- begin-user-doc --> <!-- end-user-doc -->
-	 * 
 	 * @generated
 	 */
 	@Override

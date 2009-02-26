@@ -4905,25 +4905,16 @@
             featureName="eType" referenceValue="model.ecore#//bug/BugStatus"/>
       </changes>
       <changes xsi:type="history:CreateChild" target="model.ecore#//bug/BugReport/Status"
-          element="model.ecore#//bug/BugReport/Status/%org.unicase.ui.meeditor%" referenceName="eAnnotations">
-        <changes xsi:type="history:Set" element="model.ecore#//bug/BugReport/Status/%org.unicase.ui.meeditor%"
-            featureName="source" dataValue="org.unicase.ui.meeditor"/>
+          referenceName="eAnnotations">
+        <changes xsi:type="history:Set" featureName="source" dataValue="org.unicase.ui.meeditor"/>
       </changes>
-      <changes xsi:type="history:CreateChild" target="model.ecore#//bug/BugReport/Status/%org.unicase.ui.meeditor%"
-          element="model.ecore#//bug/BugReport/Status/%org.unicase.ui.meeditor%/@details.0"
-          referenceName="details">
-        <changes xsi:type="history:Set" element="model.ecore#//bug/BugReport/Status/%org.unicase.ui.meeditor%/@details.0"
-            featureName="key" dataValue="priority"/>
-        <changes xsi:type="history:Set" element="model.ecore#//bug/BugReport/Status/%org.unicase.ui.meeditor%/@details.0"
-            featureName="value" dataValue="20.0"/>
+      <changes xsi:type="history:CreateChild" referenceName="details">
+        <changes xsi:type="history:Set" featureName="key" dataValue="priority"/>
+        <changes xsi:type="history:Set" featureName="value" dataValue="20.0"/>
       </changes>
-      <changes xsi:type="history:CreateChild" target="model.ecore#//bug/BugReport/Status/%org.unicase.ui.meeditor%"
-          element="model.ecore#//bug/BugReport/Status/%org.unicase.ui.meeditor%/@details.1"
-          referenceName="details">
-        <changes xsi:type="history:Set" element="model.ecore#//bug/BugReport/Status/%org.unicase.ui.meeditor%/@details.1"
-            featureName="key" dataValue="position"/>
-        <changes xsi:type="history:Set" element="model.ecore#//bug/BugReport/Status/%org.unicase.ui.meeditor%/@details.1"
-            featureName="value" dataValue="left"/>
+      <changes xsi:type="history:CreateChild" referenceName="details">
+        <changes xsi:type="history:Set" featureName="key" dataValue="position"/>
+        <changes xsi:type="history:Set" featureName="value" dataValue="left"/>
       </changes>
       <changes xsi:type="history:CreateChild" target="model.ecore#//bug/BugStatus"
           element="model.ecore#//bug/BugStatus/NEW" referenceName="eLiterals">
@@ -6174,5 +6165,33 @@
         featureName="upperBound" dataValue="-1"/>
     <changes xsi:type="history:Set" element="model.ecore#//util/ModelElementPath/path"
         featureName="name" dataValue="path"/>
+    <changes xsi:type="history:CompositeChange">
+      <changes xsi:type="history:CreateChild" target="model.ecore#//task/ActionItem"
+          referenceName="eStructuralFeatures">
+        <changes xsi:type="history:Set" featureName="name" dataValue="done"/>
+        <changes xsi:type="history:Set" featureName="eType" referenceValue="http://www.eclipse.org/emf/2002/Ecore#//EBoolean"/>
+      </changes>
+      <changes xsi:type="history:CreateChild" referenceName="eAnnotations">
+        <changes xsi:type="history:Set" featureName="source" dataValue="org.unicase.ui.meeditor"/>
+      </changes>
+      <changes xsi:type="history:CreateChild" referenceName="details">
+        <changes xsi:type="history:Set" featureName="key" dataValue="priority"/>
+        <changes xsi:type="history:Set" featureName="value" dataValue="20.0"/>
+      </changes>
+      <changes xsi:type="history:CreateChild" referenceName="details">
+        <changes xsi:type="history:Set" featureName="key" dataValue="position"/>
+        <changes xsi:type="history:Set" featureName="value" dataValue="left"/>
+      </changes>
+    </changes>
+    <changes xsi:type="history:Set" featureName="name" dataValue="resolved"/>
+    <changes xsi:type="history:CreateChild" target="model.ecore#//task/ActionItem"
+        referenceName="eStructuralFeatures"/>
+    <changes xsi:type="history:Set" featureName="eType" referenceValue="model.ecore#//organization/User"/>
+    <changes xsi:type="history:CreateChild" target="model.ecore#//organization/User"
+        element="model.ecore#//organization/User/workItemsToReview" referenceName="eStructuralFeatures"/>
+    <changes xsi:type="history:Set" element="model.ecore#//organization/User/workItemsToReview"
+        featureName="upperBound" dataValue="-1"/>
+    <changes xsi:type="history:Set" element="model.ecore#//organization/User/workItemsToReview"
+        featureName="name" dataValue="itemsToReview"/>
   </releases>
 </history:History>

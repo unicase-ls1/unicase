@@ -5,11 +5,20 @@
  */
 package org.unicase.model.organization.impl;
 
+import java.util.Collection;
+
 import org.eclipse.emf.common.notify.Notification;
+import org.eclipse.emf.common.notify.NotificationChain;
+import org.eclipse.emf.common.util.EList;
 import org.eclipse.emf.ecore.EClass;
+import org.eclipse.emf.ecore.InternalEObject;
 import org.eclipse.emf.ecore.impl.ENotificationImpl;
+import org.eclipse.emf.ecore.util.EObjectWithInverseResolvingEList;
+import org.eclipse.emf.ecore.util.InternalEList;
 import org.unicase.model.organization.OrganizationPackage;
 import org.unicase.model.organization.User;
+import org.unicase.model.task.TaskPackage;
+import org.unicase.model.task.WorkItem;
 
 /*
  * <!-- begin-user-doc --> An implementation of the model object ' <em><b>User</b></em>'. <!-- end-user-doc --> <p> The
@@ -20,9 +29,9 @@ import org.unicase.model.organization.User;
  */
 public class UserImpl extends OrgUnitImpl implements User {
 	/**
-	 * The default value of the '{@link #getEmail() <em>Email</em>}' attribute. <!-- begin-user-doc --> <!--
+	 * The default value of the '{@link #getEmail() <em>Email</em>}' attribute.
+	 * <!-- begin-user-doc --> <!--
 	 * end-user-doc -->
-	 * 
 	 * @see #getEmail()
 	 * @generated
 	 * @ordered
@@ -39,36 +48,36 @@ public class UserImpl extends OrgUnitImpl implements User {
 	protected String email = EMAIL_EDEFAULT;
 
 	/**
-	 * The default value of the '{@link #getFirstName() <em>First Name</em>}' attribute. <!-- begin-user-doc --> <!--
+	 * The default value of the '{@link #getFirstName() <em>First Name</em>}' attribute.
+	 * <!-- begin-user-doc --> <!--
 	 * end-user-doc -->
-	 * 
 	 * @see #getFirstName()
 	 * @generated
 	 * @ordered
 	 */
 	protected static final String FIRST_NAME_EDEFAULT = null;
 	/**
-	 * The cached value of the '{@link #getFirstName() <em>First Name</em>}' attribute. <!-- begin-user-doc --> <!--
+	 * The cached value of the '{@link #getFirstName() <em>First Name</em>}' attribute.
+	 * <!-- begin-user-doc --> <!--
 	 * end-user-doc -->
-	 * 
 	 * @see #getFirstName()
 	 * @generated
 	 * @ordered
 	 */
 	protected String firstName = FIRST_NAME_EDEFAULT;
 	/**
-	 * The default value of the '{@link #getLastName() <em>Last Name</em>}' attribute. <!-- begin-user-doc --> <!--
+	 * The default value of the '{@link #getLastName() <em>Last Name</em>}' attribute.
+	 * <!-- begin-user-doc --> <!--
 	 * end-user-doc -->
-	 * 
 	 * @see #getLastName()
 	 * @generated
 	 * @ordered
 	 */
 	protected static final String LAST_NAME_EDEFAULT = null;
 	/**
-	 * The cached value of the '{@link #getLastName() <em>Last Name</em>}' attribute. <!-- begin-user-doc --> <!--
+	 * The cached value of the '{@link #getLastName() <em>Last Name</em>}' attribute.
+	 * <!-- begin-user-doc --> <!--
 	 * end-user-doc -->
-	 * 
 	 * @see #getLastName()
 	 * @generated
 	 * @ordered
@@ -76,8 +85,17 @@ public class UserImpl extends OrgUnitImpl implements User {
 	protected String lastName = LAST_NAME_EDEFAULT;
 
 	/**
+	 * The cached value of the '{@link #getWorkItemsToReview() <em>Work Items To Review</em>}' reference list.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @see #getWorkItemsToReview()
+	 * @generated
+	 * @ordered
+	 */
+	protected EList<WorkItem> workItemsToReview;
+
+	/**
 	 * <!-- begin-user-doc --> <!-- end-user-doc -->
-	 * 
 	 * @generated
 	 */
 	protected UserImpl() {
@@ -86,7 +104,6 @@ public class UserImpl extends OrgUnitImpl implements User {
 
 	/**
 	 * <!-- begin-user-doc --> <!-- end-user-doc -->
-	 * 
 	 * @generated
 	 */
 	@Override
@@ -96,7 +113,6 @@ public class UserImpl extends OrgUnitImpl implements User {
 
 	/**
 	 * <!-- begin-user-doc --> <!-- end-user-doc -->
-	 * 
 	 * @generated
 	 */
 	public String getEmail() {
@@ -105,7 +121,6 @@ public class UserImpl extends OrgUnitImpl implements User {
 
 	/**
 	 * <!-- begin-user-doc --> <!-- end-user-doc -->
-	 * 
 	 * @generated
 	 */
 	public void setEmail(String newEmail) {
@@ -117,7 +132,6 @@ public class UserImpl extends OrgUnitImpl implements User {
 
 	/**
 	 * <!-- begin-user-doc --> <!-- end-user-doc -->
-	 * 
 	 * @generated
 	 */
 	public String getFirstName() {
@@ -126,7 +140,6 @@ public class UserImpl extends OrgUnitImpl implements User {
 
 	/**
 	 * <!-- begin-user-doc --> <!-- end-user-doc -->
-	 * 
 	 * @generated
 	 */
 	public void setFirstName(String newFirstName) {
@@ -139,7 +152,6 @@ public class UserImpl extends OrgUnitImpl implements User {
 
 	/**
 	 * <!-- begin-user-doc --> <!-- end-user-doc -->
-	 * 
 	 * @generated
 	 */
 	public String getLastName() {
@@ -148,7 +160,6 @@ public class UserImpl extends OrgUnitImpl implements User {
 
 	/**
 	 * <!-- begin-user-doc --> <!-- end-user-doc -->
-	 * 
 	 * @generated
 	 */
 	public void setLastName(String newLastName) {
@@ -160,8 +171,50 @@ public class UserImpl extends OrgUnitImpl implements User {
 	}
 
 	/**
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 */
+	public EList<WorkItem> getWorkItemsToReview() {
+		if (workItemsToReview == null) {
+			workItemsToReview = new EObjectWithInverseResolvingEList<WorkItem>(WorkItem.class, this,
+				OrganizationPackage.USER__WORK_ITEMS_TO_REVIEW, TaskPackage.WORK_ITEM__REVIEWER);
+		}
+		return workItemsToReview;
+	}
+
+	/**
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 */
+	@SuppressWarnings("unchecked")
+	@Override
+	public NotificationChain eInverseAdd(InternalEObject otherEnd, int featureID, NotificationChain msgs) {
+		switch (featureID) {
+		case OrganizationPackage.USER__WORK_ITEMS_TO_REVIEW:
+			return ((InternalEList<InternalEObject>) (InternalEList<?>) getWorkItemsToReview())
+				.basicAdd(otherEnd, msgs);
+		}
+		return super.eInverseAdd(otherEnd, featureID, msgs);
+	}
+
+	/**
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 */
+	@Override
+	public NotificationChain eInverseRemove(InternalEObject otherEnd, int featureID, NotificationChain msgs) {
+		switch (featureID) {
+		case OrganizationPackage.USER__WORK_ITEMS_TO_REVIEW:
+			return ((InternalEList<?>) getWorkItemsToReview()).basicRemove(otherEnd, msgs);
+		}
+		return super.eInverseRemove(otherEnd, featureID, msgs);
+	}
+
+	/**
 	 * <!-- begin-user-doc --> <!-- end-user-doc -->
-	 * 
 	 * @generated
 	 */
 	@Override
@@ -173,15 +226,17 @@ public class UserImpl extends OrgUnitImpl implements User {
 			return getFirstName();
 		case OrganizationPackage.USER__LAST_NAME:
 			return getLastName();
+		case OrganizationPackage.USER__WORK_ITEMS_TO_REVIEW:
+			return getWorkItemsToReview();
 		}
 		return super.eGet(featureID, resolve, coreType);
 	}
 
 	/**
 	 * <!-- begin-user-doc --> <!-- end-user-doc -->
-	 * 
 	 * @generated
 	 */
+	@SuppressWarnings("unchecked")
 	@Override
 	public void eSet(int featureID, Object newValue) {
 		switch (featureID) {
@@ -194,13 +249,16 @@ public class UserImpl extends OrgUnitImpl implements User {
 		case OrganizationPackage.USER__LAST_NAME:
 			setLastName((String) newValue);
 			return;
+		case OrganizationPackage.USER__WORK_ITEMS_TO_REVIEW:
+			getWorkItemsToReview().clear();
+			getWorkItemsToReview().addAll((Collection<? extends WorkItem>) newValue);
+			return;
 		}
 		super.eSet(featureID, newValue);
 	}
 
 	/**
 	 * <!-- begin-user-doc --> <!-- end-user-doc -->
-	 * 
 	 * @generated
 	 */
 	@Override
@@ -215,13 +273,15 @@ public class UserImpl extends OrgUnitImpl implements User {
 		case OrganizationPackage.USER__LAST_NAME:
 			setLastName(LAST_NAME_EDEFAULT);
 			return;
+		case OrganizationPackage.USER__WORK_ITEMS_TO_REVIEW:
+			getWorkItemsToReview().clear();
+			return;
 		}
 		super.eUnset(featureID);
 	}
 
 	/**
 	 * <!-- begin-user-doc --> <!-- end-user-doc -->
-	 * 
 	 * @generated
 	 */
 	@Override
@@ -233,13 +293,14 @@ public class UserImpl extends OrgUnitImpl implements User {
 			return FIRST_NAME_EDEFAULT == null ? firstName != null : !FIRST_NAME_EDEFAULT.equals(firstName);
 		case OrganizationPackage.USER__LAST_NAME:
 			return LAST_NAME_EDEFAULT == null ? lastName != null : !LAST_NAME_EDEFAULT.equals(lastName);
+		case OrganizationPackage.USER__WORK_ITEMS_TO_REVIEW:
+			return workItemsToReview != null && !workItemsToReview.isEmpty();
 		}
 		return super.eIsSet(featureID);
 	}
 
 	/**
 	 * <!-- begin-user-doc --> <!-- end-user-doc -->
-	 * 
 	 * @generated
 	 */
 	@Override

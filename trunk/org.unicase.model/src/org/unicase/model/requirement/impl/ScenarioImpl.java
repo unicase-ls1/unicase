@@ -42,9 +42,9 @@ import org.unicase.model.requirement.UseCase;
  */
 public class ScenarioImpl extends ModelElementImpl implements Scenario {
 	/**
-	 * The cached value of the '{@link #getSteps() <em>Steps</em>}' containment reference list. <!-- begin-user-doc -->
+	 * The cached value of the '{@link #getSteps() <em>Steps</em>}' containment reference list.
+	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
-	 * 
 	 * @see #getSteps()
 	 * @generated
 	 * @ordered
@@ -53,16 +53,14 @@ public class ScenarioImpl extends ModelElementImpl implements Scenario {
 	/**
 	 * The cached value of the '{@link #getInitiatingActorInstance() <em>Initiating Actor Instance</em>}' reference.
 	 * <!-- begin-user-doc --> <!-- end-user-doc -->
-	 * 
 	 * @see #getInitiatingActorInstance()
 	 * @generated
 	 * @ordered
 	 */
 	protected ActorInstance initiatingActorInstance;
 	/**
-	 * The cached value of the '{@link #getParticipatingActorInstances() <em>Participating Actor Instances</em>}'
-	 * reference list. <!-- begin-user-doc --> <!-- end-user-doc -->
-	 * 
+	 * The cached value of the '{@link #getParticipatingActorInstances() <em>Participating Actor Instances</em>}' reference list.
+	 * <!-- begin-user-doc --> <!-- end-user-doc -->
 	 * @see #getParticipatingActorInstances()
 	 * @generated
 	 * @ordered
@@ -81,16 +79,14 @@ public class ScenarioImpl extends ModelElementImpl implements Scenario {
 	/**
 	 * The cached value of the '{@link #getFunctionalRequirements() <em>Functional Requirements</em>}' reference list.
 	 * <!-- begin-user-doc --> <!-- end-user-doc -->
-	 * 
 	 * @see #getFunctionalRequirements()
 	 * @generated
 	 * @ordered
 	 */
 	protected EList<FunctionalRequirement> functionalRequirements;
 	/**
-	 * The cached value of the '{@link #getNonFunctionalRequirements() <em>Non Functional Requirements</em>}' reference
-	 * list. <!-- begin-user-doc --> <!-- end-user-doc -->
-	 * 
+	 * The cached value of the '{@link #getNonFunctionalRequirements() <em>Non Functional Requirements</em>}' reference list.
+	 * <!-- begin-user-doc --> <!-- end-user-doc -->
 	 * @see #getNonFunctionalRequirements()
 	 * @generated
 	 * @ordered
@@ -118,7 +114,6 @@ public class ScenarioImpl extends ModelElementImpl implements Scenario {
 
 	/**
 	 * <!-- begin-user-doc --> <!-- end-user-doc -->
-	 * 
 	 * @generated
 	 */
 	protected ScenarioImpl() {
@@ -127,7 +122,6 @@ public class ScenarioImpl extends ModelElementImpl implements Scenario {
 
 	/**
 	 * <!-- begin-user-doc --> <!-- end-user-doc -->
-	 * 
 	 * @generated
 	 */
 	@Override
@@ -137,7 +131,6 @@ public class ScenarioImpl extends ModelElementImpl implements Scenario {
 
 	/**
 	 * <!-- begin-user-doc --> <!-- end-user-doc -->
-	 * 
 	 * @generated
 	 */
 	public EList<Step> getSteps() {
@@ -149,7 +142,6 @@ public class ScenarioImpl extends ModelElementImpl implements Scenario {
 
 	/**
 	 * <!-- begin-user-doc --> <!-- end-user-doc -->
-	 * 
 	 * @generated
 	 */
 	public ActorInstance getInitiatingActorInstance() {
@@ -168,7 +160,6 @@ public class ScenarioImpl extends ModelElementImpl implements Scenario {
 
 	/**
 	 * <!-- begin-user-doc --> <!-- end-user-doc -->
-	 * 
 	 * @generated
 	 */
 	public ActorInstance basicGetInitiatingActorInstance() {
@@ -177,7 +168,6 @@ public class ScenarioImpl extends ModelElementImpl implements Scenario {
 
 	/**
 	 * <!-- begin-user-doc --> <!-- end-user-doc -->
-	 * 
 	 * @generated
 	 */
 	public NotificationChain basicSetInitiatingActorInstance(ActorInstance newInitiatingActorInstance,
@@ -198,7 +188,6 @@ public class ScenarioImpl extends ModelElementImpl implements Scenario {
 
 	/**
 	 * <!-- begin-user-doc --> <!-- end-user-doc -->
-	 * 
 	 * @generated
 	 */
 	public void setInitiatingActorInstance(ActorInstance newInitiatingActorInstance) {
@@ -221,7 +210,6 @@ public class ScenarioImpl extends ModelElementImpl implements Scenario {
 
 	/**
 	 * <!-- begin-user-doc --> <!-- end-user-doc -->
-	 * 
 	 * @generated
 	 */
 	public EList<ActorInstance> getParticipatingActorInstances() {
@@ -235,7 +223,6 @@ public class ScenarioImpl extends ModelElementImpl implements Scenario {
 
 	/**
 	 * <!-- begin-user-doc --> <!-- end-user-doc -->
-	 * 
 	 * @generated
 	 */
 	public EList<UseCase> getInstantiatedUseCases() {
@@ -248,7 +235,6 @@ public class ScenarioImpl extends ModelElementImpl implements Scenario {
 
 	/**
 	 * <!-- begin-user-doc --> <!-- end-user-doc -->
-	 * 
 	 * @generated
 	 */
 	public EList<FunctionalRequirement> getFunctionalRequirements() {
@@ -262,7 +248,6 @@ public class ScenarioImpl extends ModelElementImpl implements Scenario {
 
 	/**
 	 * <!-- begin-user-doc --> <!-- end-user-doc -->
-	 * 
 	 * @generated
 	 */
 	public EList<NonFunctionalRequirement> getNonFunctionalRequirements() {
@@ -276,7 +261,6 @@ public class ScenarioImpl extends ModelElementImpl implements Scenario {
 
 	/**
 	 * <!-- begin-user-doc --> <!-- end-user-doc -->
-	 * 
 	 * @generated
 	 */
 	public EList<Method> getParticipatingMethods() {
@@ -289,7 +273,6 @@ public class ScenarioImpl extends ModelElementImpl implements Scenario {
 
 	/**
 	 * <!-- begin-user-doc --> <!-- end-user-doc -->
-	 * 
 	 * @generated
 	 */
 	public EList<org.unicase.model.classes.Class> getParticipatingClasses() {
@@ -303,7 +286,6 @@ public class ScenarioImpl extends ModelElementImpl implements Scenario {
 
 	/**
 	 * <!-- begin-user-doc --> <!-- end-user-doc -->
-	 * 
 	 * @generated
 	 */
 	@SuppressWarnings("unchecked")
@@ -339,7 +321,6 @@ public class ScenarioImpl extends ModelElementImpl implements Scenario {
 
 	/**
 	 * <!-- begin-user-doc --> <!-- end-user-doc -->
-	 * 
 	 * @generated
 	 */
 	@Override
@@ -367,7 +348,6 @@ public class ScenarioImpl extends ModelElementImpl implements Scenario {
 
 	/**
 	 * <!-- begin-user-doc --> <!-- end-user-doc -->
-	 * 
 	 * @generated
 	 */
 	@Override
@@ -397,7 +377,6 @@ public class ScenarioImpl extends ModelElementImpl implements Scenario {
 
 	/**
 	 * <!-- begin-user-doc --> <!-- end-user-doc -->
-	 * 
 	 * @generated
 	 */
 	@SuppressWarnings("unchecked")
@@ -441,7 +420,6 @@ public class ScenarioImpl extends ModelElementImpl implements Scenario {
 
 	/**
 	 * <!-- begin-user-doc --> <!-- end-user-doc -->
-	 * 
 	 * @generated
 	 */
 	@Override
@@ -477,7 +455,6 @@ public class ScenarioImpl extends ModelElementImpl implements Scenario {
 
 	/**
 	 * <!-- begin-user-doc --> <!-- end-user-doc -->
-	 * 
 	 * @generated
 	 */
 	@Override
