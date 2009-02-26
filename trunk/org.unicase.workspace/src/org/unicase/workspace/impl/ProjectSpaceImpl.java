@@ -1867,7 +1867,7 @@ public class ProjectSpaceImpl extends IdentifiableElementImpl implements Project
 	 * @param modelElement the model element.
 	 */
 	private void appendCreator(ModelElement modelElement) {
-		if (modelElement.getCreator() == null) {
+		if (modelElement.getCreator() == null || modelElement.getCreator().equals("")) {
 			Usersession usersession = getUsersession();
 			// used when the project has not been shared yet
 			// and there is practically no possible way of
@@ -1877,6 +1877,8 @@ public class ProjectSpaceImpl extends IdentifiableElementImpl implements Project
 				creator = usersession.getACUser().getName();
 			}
 			modelElement.setCreator(creator);
+		}
+		if (modelElement.getCreationDate() == null) {
 			modelElement.setCreationDate(new Date());
 		}
 	}
