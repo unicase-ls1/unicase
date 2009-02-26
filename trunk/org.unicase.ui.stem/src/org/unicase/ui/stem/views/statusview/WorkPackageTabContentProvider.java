@@ -10,9 +10,13 @@ import java.util.List;
 
 import org.eclipse.emf.edit.provider.ComposedAdapterFactory;
 import org.eclipse.emf.edit.ui.provider.AdapterFactoryContentProvider;
+import org.unicase.model.organization.Group;
+import org.unicase.model.organization.OrgUnit;
 import org.unicase.model.task.Checkable;
 import org.unicase.model.task.WorkItem;
 import org.unicase.model.task.WorkPackage;
+import org.unicase.model.task.util.CircularDependencyException;
+import org.unicase.model.task.util.MEState;
 
 /**
  * This is the ContentProvider.
@@ -67,7 +71,7 @@ public class WorkPackageTabContentProvider extends AdapterFactoryContentProvider
 		WorkPackage wp = (WorkPackage) object;
 		List<WorkItem> wis = wp.getAllContainedWorkItems();
 		for (WorkItem wi : wis) {
-			if (wi instanceof WorkPackage) {
+			if (!(wi instanceof Checkable)) {
 				continue;
 			}
 			if (key.equals(ASSIGNED)) {
@@ -86,37 +90,83 @@ public class WorkPackageTabContentProvider extends AdapterFactoryContentProvider
 	}
 
 	private void handleUnassignedColumn(ArrayList<WorkItem> ret, WorkItem wi) {
-		if (!((Checkable) wi).isChecked() && wi.getAssignee() == null && wi.getParticipants().isEmpty()
-			&& wi.getPredecessors().isEmpty()) {
+		if (isUnassigned(wi)) {
 			ret.add(wi);
 		}
 	}
 
+	private boolean isUnassigned(WorkItem wi) {
+		OrgUnit assignee = wi.getAssignee();
+		if (assignee == null) {
+			return true;
+		}
+		if (assignee instanceof Group) {
+			return true;
+		}
+		return false;
+	}
+
 	private void handleDoneColumn(ArrayList<WorkItem> ret, WorkItem wi) {
+		if (isUnassigned(wi)) {
+			return;
+		}
 		if (((Checkable) wi).isChecked()) {
 			ret.add(wi);
 		}
 	}
 
 	private void handleTestingColumn(ArrayList<WorkItem> ret, WorkItem wi) {
-		if (!wi.getParticipants().isEmpty() && !((Checkable) wi).isChecked() && wi.getPredecessors().isEmpty()) {
+		if (isUnassigned(wi)) {
+			return;
+		}
+		if (((Checkable) wi).isChecked()) {
+			return;
+		}
+		if (isBlocked(wi)) {
+			return;
+		}
+
+		if (!(wi.getReviewer() == null) && wi.isResolved()) {
 			ret.add(wi);
 		}
 	}
 
 	private void handleBlockedColumn(ArrayList<WorkItem> ret, WorkItem wi) {
-		if (!wi.getPredecessors().isEmpty() && !((Checkable) wi).isChecked()) {
+		if (isUnassigned(wi)) {
+			return;
+		}
+		if (((Checkable) wi).isChecked()) {
+			return;
+		}
+		if (isBlocked(wi)) {
 			ret.add(wi);
 		}
+	}
+
+	private boolean isBlocked(WorkItem wi) {
+		String status;
+		try {
+			status = wi.getMEState().getStatus();
+		} catch (CircularDependencyException e) {
+			status = MEState.CLOSED;
+		}
+		return (status.equals(MEState.BLOCKED));
 	}
 
 	private void handleAssigneColumn(ArrayList<WorkItem> ret, WorkItem wi) {
-		if (wi.getAssignee() != null && wi.getParticipants().isEmpty() && !((Checkable) wi).isChecked()
-			&& wi.getPredecessors().isEmpty()) {
+		if (isUnassigned(wi)) {
+			return;
+		}
+		if (((Checkable) wi).isChecked()) {
+			return;
+		}
+		if (isBlocked(wi)) {
+			return;
+		}
+		if (!(wi.isResolved()) || (wi.getReviewer() == null)) {
 			ret.add(wi);
 		}
 	}
-
 	/**
 	 * Getter.
 	 * 
