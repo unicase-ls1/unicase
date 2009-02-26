@@ -27,7 +27,6 @@ import org.eclipse.jface.resource.ImageDescriptor;
 import org.eclipse.jface.viewers.TreeSelection;
 import org.eclipse.swt.SWT;
 import org.eclipse.swt.custom.CLabel;
-import org.eclipse.swt.custom.SashForm;
 import org.eclipse.swt.dnd.DND;
 import org.eclipse.swt.dnd.DropTarget;
 import org.eclipse.swt.dnd.DropTargetEvent;
@@ -179,10 +178,13 @@ public class StatusView extends ViewPart implements ProjectChangeObserver {
 	@Override
 	public void createPartControl(Composite parent) {
 
-		SashForm sash = new SashForm(parent, SWT.VERTICAL);
-		createTopComposite(sash);
-		createTabs(sash);
-		sash.setWeights(new int[] { 20, 80 });
+		Composite root = new Composite(parent, SWT.NONE);
+		GridLayoutFactory.fillDefaults().numColumns(1).applyTo(root);
+		GridDataFactory.fillDefaults().grab(true, true).applyTo(root);
+
+		createTopComposite(root);
+		createTabs(root);
+		// sash.setWeights(new int[] { 20, 80 });
 		IActionBars bars = getViewSite().getActionBars();
 		IToolBarManager menuManager = bars.getToolBarManager();
 		Action refresh = new Action() {
@@ -198,15 +200,15 @@ public class StatusView extends ViewPart implements ProjectChangeObserver {
 
 	}
 
-	private void createTopComposite(SashForm sash) {
-		topComposite = new Composite(sash, SWT.NONE);
+	private void createTopComposite(Composite root) {
+		topComposite = new Composite(root, SWT.NONE);
 		GridLayoutFactory.fillDefaults().numColumns(2).equalWidth(false).applyTo(topComposite);
-		GridDataFactory.fillDefaults().align(SWT.FILL, SWT.FILL).grab(true, true).applyTo(topComposite);
+		GridDataFactory.fillDefaults().grab(true, false).hint(80, 80).applyTo(topComposite);
 
 		dropComposite = new Composite(topComposite, SWT.NONE);
 		dropComposite.setBackground(Display.getCurrent().getSystemColor(SWT.COLOR_WIDGET_BACKGROUND));
 		GridLayoutFactory.fillDefaults().numColumns(1).equalWidth(false).applyTo(dropComposite);
-		GridDataFactory.fillDefaults().align(SWT.BEGINNING, SWT.CENTER).grab(false, false).hint(80, 80).indent(5, 0)
+		GridDataFactory.fillDefaults().align(SWT.BEGINNING, SWT.BEGINNING).grab(false, false).hint(80, 80).indent(5, 0)
 			.applyTo(dropComposite);
 		dropComposite.setBackgroundImage(images.get(DROP_COMPOSITE_BACKGROUND));
 
@@ -221,7 +223,7 @@ public class StatusView extends ViewPart implements ProjectChangeObserver {
 			lblName.setImage(labelProvider.getImage(input));
 		}
 		lblName.setText("Drag a model element in the drop box to the left");
-		Color bgColor = Display.getCurrent().getSystemColor(SWT.COLOR_TITLE_BACKGROUND_GRADIENT);
+		Color bgColor = new Color(Display.getCurrent(), 205, 223, 237);
 		Color bgColor2 = Display.getCurrent().getSystemColor(SWT.COLOR_WIDGET_BACKGROUND);
 		lblName.setBackground(new Color[] { bgColor, bgColor2 }, new int[] { 100 }, true);
 
@@ -450,8 +452,9 @@ public class StatusView extends ViewPart implements ProjectChangeObserver {
 
 	}
 
-	private void createTabs(SashForm sash) {
-		tabFolder = new TabFolder(sash, SWT.TOP);
+	private void createTabs(Composite root) {
+		tabFolder = new TabFolder(root, SWT.NONE);
+		GridDataFactory.fillDefaults().grab(true, true).applyTo(tabFolder);
 
 		// flat tab
 		TabItem flatTab = new TabItem(tabFolder, SWT.None);

@@ -57,6 +57,9 @@ public class WorkPackageTabLabelProvider extends ColumnLabelProvider {
 		}
 		buffer.append("Priority: ");
 		buffer.append(wi.getPriority());
+		buffer.append(" ");
+		buffer.append("Estimate: ");
+		buffer.append(wi.getEstimate());
 		buffer.append("\n");
 		if (!wi.getPredecessors().isEmpty()) {
 			buffer.append("Blocker: ");
@@ -66,9 +69,6 @@ public class WorkPackageTabLabelProvider extends ColumnLabelProvider {
 			}
 			buffer.append("\n");
 		}
-		buffer.append("Estimate: ");
-		buffer.append(wi.getEstimate());
-		buffer.append("\n");
 		if (!wi.getAnnotatedModelElements().isEmpty()) {
 			buffer.append("Annotating: ");
 			for (ModelElement me : wi.getAnnotatedModelElements()) {

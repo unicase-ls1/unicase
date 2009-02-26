@@ -24,23 +24,23 @@ public class WorkPackageTabContentProvider extends AdapterFactoryContentProvider
 	/**
 	 * Constant for the unassigned column.
 	 */
-	public static final String UNASSIGNED = "unassigned";
+	public static final String UNASSIGNED = "Unassigned";
 	/**
 	 * Constant for the assigned column.
 	 */
-	public static final String ASSIGNED = "assigned";
+	public static final String ASSIGNED = "Assigned";
 	/**
 	 * Constant for the blocked column.
 	 */
-	public static final String BLOCKED = "blocked";
+	public static final String BLOCKED = "Blocked";
 	/**
 	 * Constant for the done column.
 	 */
-	public static final String DONE = "done";
+	public static final String DONE = "Done";
 	/**
 	 * Column for the testing column.
 	 */
-	public static final String TESTING = "testing";
+	public static final String TESTING = "Testing";
 
 	private String key;
 
@@ -115,6 +115,15 @@ public class WorkPackageTabContentProvider extends AdapterFactoryContentProvider
 			&& wi.getPredecessors().isEmpty()) {
 			ret.add(wi);
 		}
+	}
+
+	/**
+	 * Getter.
+	 * 
+	 * @return the key.
+	 */
+	public String getKey() {
+		return key;
 	}
 
 }
