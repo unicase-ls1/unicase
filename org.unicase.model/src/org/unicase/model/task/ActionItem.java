@@ -15,16 +15,16 @@ package org.unicase.model.task;
  */
 public interface ActionItem extends WorkItem, Checkable {
 	/**
-	 * Returns the value of the '<em><b>Done</b></em>' attribute. <!-- begin-user-doc -->
+	 * Returns the value of the '<em><b>Done</b></em>' attribute.
+	 * <!-- begin-user-doc -->
 	 * <p>
 	 * If the meaning of the '<em>Done</em>' attribute isn't clear, there really should be more of a description here...
 	 * </p>
 	 * <!-- end-user-doc -->
-	 * 
 	 * @return the value of the '<em>Done</em>' attribute.
 	 * @see #setDone(boolean)
 	 * @see org.unicase.model.task.TaskPackage#getActionItem_Done()
-	 * @model annotation="org.unicase.ui.meeditor priority='20.0' position='left'"
+	 * @model annotation="org.unicase.ui.meeditor priority='17.0' position='left'"
 	 * @generated
 	 */
 	boolean isDone();
@@ -40,14 +40,14 @@ public interface ActionItem extends WorkItem, Checkable {
 	void setDone(boolean value);
 
 	/**
-	 * Returns the value of the '<em><b>Activity</b></em>' attribute. The literals are from the enumeration
-	 * {@link org.unicase.model.task.ActivityType}. <!-- begin-user-doc -->
+	 * Returns the value of the '<em><b>Activity</b></em>' attribute.
+	 * The literals are from the enumeration {@link org.unicase.model.task.ActivityType}.
+	 * <!-- begin-user-doc -->
 	 * <p>
 	 * If the meaning of the '<em>Activity</em>' attribute isn't clear, there really should be more of a description
 	 * here...
 	 * </p>
 	 * <!-- end-user-doc -->
-	 * 
 	 * @return the value of the '<em>Activity</em>' attribute.
 	 * @see org.unicase.model.task.ActivityType
 	 * @see #setActivity(ActivityType)

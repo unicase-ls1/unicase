@@ -41,7 +41,6 @@ public class SolutionImpl extends ModelElementImpl implements Solution {
 
 	/**
 	 * <!-- begin-user-doc --> <!-- end-user-doc -->
-	 * 
 	 * @generated
 	 */
 	protected SolutionImpl() {
@@ -50,7 +49,6 @@ public class SolutionImpl extends ModelElementImpl implements Solution {
 
 	/**
 	 * <!-- begin-user-doc --> <!-- end-user-doc -->
-	 * 
 	 * @generated
 	 */
 	@Override
@@ -60,7 +58,6 @@ public class SolutionImpl extends ModelElementImpl implements Solution {
 
 	/**
 	 * <!-- begin-user-doc --> <!-- end-user-doc -->
-	 * 
 	 * @generated
 	 */
 	public EList<Proposal> getUnderlyingProposals() {
@@ -73,7 +70,6 @@ public class SolutionImpl extends ModelElementImpl implements Solution {
 
 	/**
 	 * <!-- begin-user-doc --> <!-- end-user-doc -->
-	 * 
 	 * @generated
 	 */
 	public Issue getIssue() {
@@ -84,7 +80,6 @@ public class SolutionImpl extends ModelElementImpl implements Solution {
 
 	/**
 	 * <!-- begin-user-doc --> <!-- end-user-doc -->
-	 * 
 	 * @generated
 	 */
 	public Issue basicGetIssue() {
@@ -95,7 +90,6 @@ public class SolutionImpl extends ModelElementImpl implements Solution {
 
 	/**
 	 * <!-- begin-user-doc --> <!-- end-user-doc -->
-	 * 
 	 * @generated
 	 */
 	public NotificationChain basicSetIssue(Issue newIssue, NotificationChain msgs) {
@@ -105,7 +99,6 @@ public class SolutionImpl extends ModelElementImpl implements Solution {
 
 	/**
 	 * <!-- begin-user-doc --> <!-- end-user-doc -->
-	 * 
 	 * @generated
 	 */
 	public void setIssue(Issue newIssue) {
@@ -128,7 +121,6 @@ public class SolutionImpl extends ModelElementImpl implements Solution {
 
 	/**
 	 * <!-- begin-user-doc --> <!-- end-user-doc -->
-	 * 
 	 * @generated
 	 */
 	@Override
@@ -144,7 +136,6 @@ public class SolutionImpl extends ModelElementImpl implements Solution {
 
 	/**
 	 * <!-- begin-user-doc --> <!-- end-user-doc -->
-	 * 
 	 * @generated
 	 */
 	@Override
@@ -158,7 +149,6 @@ public class SolutionImpl extends ModelElementImpl implements Solution {
 
 	/**
 	 * <!-- begin-user-doc --> <!-- end-user-doc -->
-	 * 
 	 * @generated
 	 */
 	@Override
@@ -172,7 +162,6 @@ public class SolutionImpl extends ModelElementImpl implements Solution {
 
 	/**
 	 * <!-- begin-user-doc --> <!-- end-user-doc -->
-	 * 
 	 * @generated
 	 */
 	@Override
@@ -190,7 +179,6 @@ public class SolutionImpl extends ModelElementImpl implements Solution {
 
 	/**
 	 * <!-- begin-user-doc --> <!-- end-user-doc -->
-	 * 
 	 * @generated
 	 */
 	@SuppressWarnings("unchecked")
@@ -210,7 +198,6 @@ public class SolutionImpl extends ModelElementImpl implements Solution {
 
 	/**
 	 * <!-- begin-user-doc --> <!-- end-user-doc -->
-	 * 
 	 * @generated
 	 */
 	@Override
@@ -228,7 +215,6 @@ public class SolutionImpl extends ModelElementImpl implements Solution {
 
 	/**
 	 * <!-- begin-user-doc --> <!-- end-user-doc -->
-	 * 
 	 * @generated
 	 */
 	@Override

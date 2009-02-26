@@ -23,6 +23,7 @@ import org.unicase.model.change.ModelChangePackage;
 import org.unicase.model.impl.AnnotationImpl;
 import org.unicase.model.organization.OrgUnit;
 import org.unicase.model.organization.OrganizationPackage;
+import org.unicase.model.organization.User;
 import org.unicase.model.rationale.Criterion;
 import org.unicase.model.rationale.Issue;
 import org.unicase.model.rationale.Proposal;
@@ -54,9 +55,9 @@ import org.unicase.model.task.WorkPackage;
  */
 public class IssueImpl extends AnnotationImpl implements Issue {
 	/**
-	 * The default value of the '{@link #isChecked() <em>Checked</em>}' attribute. <!-- begin-user-doc --> <!--
+	 * The default value of the '{@link #isChecked() <em>Checked</em>}' attribute.
+	 * <!-- begin-user-doc --> <!--
 	 * end-user-doc -->
-	 * 
 	 * @see #isChecked()
 	 * @generated
 	 * @ordered
@@ -64,9 +65,8 @@ public class IssueImpl extends AnnotationImpl implements Issue {
 	protected static final boolean CHECKED_EDEFAULT = false;
 
 	/**
-	 * The cached value of the '{@link #getAssociatedChangePackages() <em>Associated Change Packages</em>}' reference
-	 * list. <!-- begin-user-doc --> <!-- end-user-doc -->
-	 * 
+	 * The cached value of the '{@link #getAssociatedChangePackages() <em>Associated Change Packages</em>}' reference list.
+	 * <!-- begin-user-doc --> <!-- end-user-doc -->
 	 * @see #getAssociatedChangePackages()
 	 * @generated
 	 * @ordered
@@ -74,9 +74,9 @@ public class IssueImpl extends AnnotationImpl implements Issue {
 	protected EList<ModelChangePackage> associatedChangePackages;
 
 	/**
-	 * The cached value of the '{@link #getPredecessors() <em>Predecessors</em>}' reference list. <!-- begin-user-doc
+	 * The cached value of the '{@link #getPredecessors() <em>Predecessors</em>}' reference list.
+	 * <!-- begin-user-doc
 	 * --> <!-- end-user-doc -->
-	 * 
 	 * @see #getPredecessors()
 	 * @generated
 	 * @ordered
@@ -84,9 +84,9 @@ public class IssueImpl extends AnnotationImpl implements Issue {
 	protected EList<WorkItem> predecessors;
 
 	/**
-	 * The cached value of the '{@link #getSuccessors() <em>Successors</em>}' reference list. <!-- begin-user-doc -->
+	 * The cached value of the '{@link #getSuccessors() <em>Successors</em>}' reference list.
+	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
-	 * 
 	 * @see #getSuccessors()
 	 * @generated
 	 * @ordered
@@ -94,9 +94,9 @@ public class IssueImpl extends AnnotationImpl implements Issue {
 	protected EList<WorkItem> successors;
 
 	/**
-	 * The cached value of the '{@link #getAssignee() <em>Assignee</em>}' reference. <!-- begin-user-doc --> <!--
+	 * The cached value of the '{@link #getAssignee() <em>Assignee</em>}' reference.
+	 * <!-- begin-user-doc --> <!--
 	 * end-user-doc -->
-	 * 
 	 * @see #getAssignee()
 	 * @generated
 	 * @ordered
@@ -104,9 +104,19 @@ public class IssueImpl extends AnnotationImpl implements Issue {
 	protected OrgUnit assignee;
 
 	/**
-	 * The cached value of the '{@link #getParticipants() <em>Participants</em>}' reference list. <!-- begin-user-doc
+	 * The cached value of the '{@link #getReviewer() <em>Reviewer</em>}' reference.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @see #getReviewer()
+	 * @generated
+	 * @ordered
+	 */
+	protected User reviewer;
+
+	/**
+	 * The cached value of the '{@link #getParticipants() <em>Participants</em>}' reference list.
+	 * <!-- begin-user-doc
 	 * --> <!-- end-user-doc -->
-	 * 
 	 * @see #getParticipants()
 	 * @generated
 	 * @ordered
@@ -114,9 +124,9 @@ public class IssueImpl extends AnnotationImpl implements Issue {
 	protected EList<OrgUnit> participants;
 
 	/**
-	 * The default value of the '{@link #getDueDate() <em>Due Date</em>}' attribute. <!-- begin-user-doc --> <!--
+	 * The default value of the '{@link #getDueDate() <em>Due Date</em>}' attribute.
+	 * <!-- begin-user-doc --> <!--
 	 * end-user-doc -->
-	 * 
 	 * @see #getDueDate()
 	 * @generated
 	 * @ordered
@@ -124,9 +134,9 @@ public class IssueImpl extends AnnotationImpl implements Issue {
 	protected static final Date DUE_DATE_EDEFAULT = null;
 
 	/**
-	 * The cached value of the '{@link #getDueDate() <em>Due Date</em>}' attribute. <!-- begin-user-doc --> <!--
+	 * The cached value of the '{@link #getDueDate() <em>Due Date</em>}' attribute.
+	 * <!-- begin-user-doc --> <!--
 	 * end-user-doc -->
-	 * 
 	 * @see #getDueDate()
 	 * @generated
 	 * @ordered
@@ -134,9 +144,9 @@ public class IssueImpl extends AnnotationImpl implements Issue {
 	protected Date dueDate = DUE_DATE_EDEFAULT;
 
 	/**
-	 * The default value of the '{@link #getEstimate() <em>Estimate</em>}' attribute. <!-- begin-user-doc --> <!--
+	 * The default value of the '{@link #getEstimate() <em>Estimate</em>}' attribute.
+	 * <!-- begin-user-doc --> <!--
 	 * end-user-doc -->
-	 * 
 	 * @see #getEstimate()
 	 * @generated
 	 * @ordered
@@ -144,9 +154,9 @@ public class IssueImpl extends AnnotationImpl implements Issue {
 	protected static final int ESTIMATE_EDEFAULT = 0;
 
 	/**
-	 * The cached value of the '{@link #getEstimate() <em>Estimate</em>}' attribute. <!-- begin-user-doc --> <!--
+	 * The cached value of the '{@link #getEstimate() <em>Estimate</em>}' attribute.
+	 * <!-- begin-user-doc --> <!--
 	 * end-user-doc -->
-	 * 
 	 * @see #getEstimate()
 	 * @generated
 	 * @ordered
@@ -154,9 +164,9 @@ public class IssueImpl extends AnnotationImpl implements Issue {
 	protected int estimate = ESTIMATE_EDEFAULT;
 
 	/**
-	 * The default value of the '{@link #getEffort() <em>Effort</em>}' attribute. <!-- begin-user-doc --> <!--
+	 * The default value of the '{@link #getEffort() <em>Effort</em>}' attribute.
+	 * <!-- begin-user-doc --> <!--
 	 * end-user-doc -->
-	 * 
 	 * @see #getEffort()
 	 * @generated
 	 * @ordered
@@ -164,9 +174,9 @@ public class IssueImpl extends AnnotationImpl implements Issue {
 	protected static final int EFFORT_EDEFAULT = 0;
 
 	/**
-	 * The cached value of the '{@link #getEffort() <em>Effort</em>}' attribute. <!-- begin-user-doc --> <!--
+	 * The cached value of the '{@link #getEffort() <em>Effort</em>}' attribute.
+	 * <!-- begin-user-doc --> <!--
 	 * end-user-doc -->
-	 * 
 	 * @see #getEffort()
 	 * @generated
 	 * @ordered
@@ -174,9 +184,9 @@ public class IssueImpl extends AnnotationImpl implements Issue {
 	protected int effort = EFFORT_EDEFAULT;
 
 	/**
-	 * The default value of the '{@link #getPriority() <em>Priority</em>}' attribute. <!-- begin-user-doc --> <!--
+	 * The default value of the '{@link #getPriority() <em>Priority</em>}' attribute.
+	 * <!-- begin-user-doc --> <!--
 	 * end-user-doc -->
-	 * 
 	 * @see #getPriority()
 	 * @generated
 	 * @ordered
@@ -184,14 +194,34 @@ public class IssueImpl extends AnnotationImpl implements Issue {
 	protected static final int PRIORITY_EDEFAULT = 0;
 
 	/**
-	 * The cached value of the '{@link #getPriority() <em>Priority</em>}' attribute. <!-- begin-user-doc --> <!--
+	 * The cached value of the '{@link #getPriority() <em>Priority</em>}' attribute.
+	 * <!-- begin-user-doc --> <!--
 	 * end-user-doc -->
-	 * 
 	 * @see #getPriority()
 	 * @generated
 	 * @ordered
 	 */
 	protected int priority = PRIORITY_EDEFAULT;
+
+	/**
+	 * The default value of the '{@link #isResolved() <em>Resolved</em>}' attribute.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @see #isResolved()
+	 * @generated
+	 * @ordered
+	 */
+	protected static final boolean RESOLVED_EDEFAULT = false;
+
+	/**
+	 * The cached value of the '{@link #isResolved() <em>Resolved</em>}' attribute.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @see #isResolved()
+	 * @generated
+	 * @ordered
+	 */
+	protected boolean resolved = RESOLVED_EDEFAULT;
 
 	/**
 	 * The cached value of the '{@link #getProposals() <em>Proposals</em>}' containment reference list. <!--
@@ -204,9 +234,9 @@ public class IssueImpl extends AnnotationImpl implements Issue {
 	protected EList<Proposal> proposals;
 
 	/**
-	 * The cached value of the '{@link #getSolution() <em>Solution</em>}' containment reference. <!-- begin-user-doc -->
+	 * The cached value of the '{@link #getSolution() <em>Solution</em>}' containment reference.
+	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
-	 * 
 	 * @see #getSolution()
 	 * @generated
 	 * @ordered
@@ -214,9 +244,9 @@ public class IssueImpl extends AnnotationImpl implements Issue {
 	protected Solution solution;
 
 	/**
-	 * The cached value of the '{@link #getCriteria() <em>Criteria</em>}' reference list. <!-- begin-user-doc --> <!--
+	 * The cached value of the '{@link #getCriteria() <em>Criteria</em>}' reference list.
+	 * <!-- begin-user-doc --> <!--
 	 * end-user-doc -->
-	 * 
 	 * @see #getCriteria()
 	 * @generated
 	 * @ordered
@@ -224,9 +254,9 @@ public class IssueImpl extends AnnotationImpl implements Issue {
 	protected EList<Criterion> criteria;
 
 	/**
-	 * The default value of the '{@link #getActivity() <em>Activity</em>}' attribute. <!-- begin-user-doc --> <!--
+	 * The default value of the '{@link #getActivity() <em>Activity</em>}' attribute.
+	 * <!-- begin-user-doc --> <!--
 	 * end-user-doc -->
-	 * 
 	 * @see #getActivity()
 	 * @generated
 	 * @ordered
@@ -234,9 +264,9 @@ public class IssueImpl extends AnnotationImpl implements Issue {
 	protected static final ActivityType ACTIVITY_EDEFAULT = ActivityType.NONE;
 
 	/**
-	 * The cached value of the '{@link #getActivity() <em>Activity</em>}' attribute. <!-- begin-user-doc --> <!--
+	 * The cached value of the '{@link #getActivity() <em>Activity</em>}' attribute.
+	 * <!-- begin-user-doc --> <!--
 	 * end-user-doc -->
-	 * 
 	 * @see #getActivity()
 	 * @generated
 	 * @ordered
@@ -245,7 +275,6 @@ public class IssueImpl extends AnnotationImpl implements Issue {
 
 	/**
 	 * <!-- begin-user-doc --> <!-- end-user-doc -->
-	 * 
 	 * @generated
 	 */
 	protected IssueImpl() {
@@ -254,7 +283,6 @@ public class IssueImpl extends AnnotationImpl implements Issue {
 
 	/**
 	 * <!-- begin-user-doc --> <!-- end-user-doc -->
-	 * 
 	 * @generated
 	 */
 	@Override
@@ -287,7 +315,6 @@ public class IssueImpl extends AnnotationImpl implements Issue {
 
 	/**
 	 * <!-- begin-user-doc --> . <!-- end-user-doc -->
-	 * 
 	 * @generated
 	 */
 	public WorkPackage getContainingWorkpackage() {
@@ -298,7 +325,6 @@ public class IssueImpl extends AnnotationImpl implements Issue {
 
 	/**
 	 * <!-- begin-user-doc --> <!-- end-user-doc -->
-	 * 
 	 * @generated
 	 */
 	public WorkPackage basicGetContainingWorkpackage() {
@@ -309,7 +335,6 @@ public class IssueImpl extends AnnotationImpl implements Issue {
 
 	/**
 	 * <!-- begin-user-doc --> <!-- end-user-doc -->
-	 * 
 	 * @generated
 	 */
 	public NotificationChain basicSetContainingWorkpackage(WorkPackage newContainingWorkpackage, NotificationChain msgs) {
@@ -320,7 +345,6 @@ public class IssueImpl extends AnnotationImpl implements Issue {
 
 	/**
 	 * <!-- begin-user-doc --> <!-- end-user-doc -->
-	 * 
 	 * @generated
 	 */
 	public void setContainingWorkpackage(WorkPackage newContainingWorkpackage) {
@@ -344,7 +368,6 @@ public class IssueImpl extends AnnotationImpl implements Issue {
 
 	/**
 	 * <!-- begin-user-doc --> <!-- end-user-doc -->
-	 * 
 	 * @generated
 	 */
 	public EList<ModelChangePackage> getAssociatedChangePackages() {
@@ -357,7 +380,6 @@ public class IssueImpl extends AnnotationImpl implements Issue {
 
 	/**
 	 * <!-- begin-user-doc --> <!-- end-user-doc -->
-	 * 
 	 * @generated
 	 */
 	public EList<WorkItem> getPredecessors() {
@@ -370,7 +392,6 @@ public class IssueImpl extends AnnotationImpl implements Issue {
 
 	/**
 	 * <!-- begin-user-doc --> <!-- end-user-doc -->
-	 * 
 	 * @generated
 	 */
 	public EList<WorkItem> getSuccessors() {
@@ -383,7 +404,6 @@ public class IssueImpl extends AnnotationImpl implements Issue {
 
 	/**
 	 * <!-- begin-user-doc --> <!-- end-user-doc -->
-	 * 
 	 * @generated
 	 */
 	public OrgUnit getAssignee() {
@@ -401,7 +421,6 @@ public class IssueImpl extends AnnotationImpl implements Issue {
 
 	/**
 	 * <!-- begin-user-doc --> <!-- end-user-doc -->
-	 * 
 	 * @generated
 	 */
 	public OrgUnit basicGetAssignee() {
@@ -410,7 +429,6 @@ public class IssueImpl extends AnnotationImpl implements Issue {
 
 	/**
 	 * <!-- begin-user-doc --> <!-- end-user-doc -->
-	 * 
 	 * @generated
 	 */
 	public NotificationChain basicSetAssignee(OrgUnit newAssignee, NotificationChain msgs) {
@@ -429,7 +447,6 @@ public class IssueImpl extends AnnotationImpl implements Issue {
 
 	/**
 	 * <!-- begin-user-doc --> <!-- end-user-doc -->
-	 * 
 	 * @generated
 	 */
 	public void setAssignee(OrgUnit newAssignee) {
@@ -450,8 +467,75 @@ public class IssueImpl extends AnnotationImpl implements Issue {
 	}
 
 	/**
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 */
+	public User getReviewer() {
+		if (reviewer != null && reviewer.eIsProxy()) {
+			InternalEObject oldReviewer = (InternalEObject) reviewer;
+			reviewer = (User) eResolveProxy(oldReviewer);
+			if (reviewer != oldReviewer) {
+				if (eNotificationRequired())
+					eNotify(new ENotificationImpl(this, Notification.RESOLVE, RationalePackage.ISSUE__REVIEWER,
+						oldReviewer, reviewer));
+			}
+		}
+		return reviewer;
+	}
+
+	/**
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 */
+	public User basicGetReviewer() {
+		return reviewer;
+	}
+
+	/**
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 */
+	public NotificationChain basicSetReviewer(User newReviewer, NotificationChain msgs) {
+		User oldReviewer = reviewer;
+		reviewer = newReviewer;
+		if (eNotificationRequired()) {
+			ENotificationImpl notification = new ENotificationImpl(this, Notification.SET,
+				RationalePackage.ISSUE__REVIEWER, oldReviewer, newReviewer);
+			if (msgs == null)
+				msgs = notification;
+			else
+				msgs.add(notification);
+		}
+		return msgs;
+	}
+
+	/**
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 */
+	public void setReviewer(User newReviewer) {
+		if (newReviewer != reviewer) {
+			NotificationChain msgs = null;
+			if (reviewer != null)
+				msgs = ((InternalEObject) reviewer).eInverseRemove(this,
+					OrganizationPackage.USER__WORK_ITEMS_TO_REVIEW, User.class, msgs);
+			if (newReviewer != null)
+				msgs = ((InternalEObject) newReviewer).eInverseAdd(this,
+					OrganizationPackage.USER__WORK_ITEMS_TO_REVIEW, User.class, msgs);
+			msgs = basicSetReviewer(newReviewer, msgs);
+			if (msgs != null)
+				msgs.dispatch();
+		} else if (eNotificationRequired())
+			eNotify(new ENotificationImpl(this, Notification.SET, RationalePackage.ISSUE__REVIEWER, newReviewer,
+				newReviewer));
+	}
+
+	/**
 	 * <!-- begin-user-doc --> <!-- end-user-doc -->
-	 * 
 	 * @generated
 	 */
 	public EList<Proposal> getProposals() {
@@ -464,7 +548,6 @@ public class IssueImpl extends AnnotationImpl implements Issue {
 
 	/**
 	 * <!-- begin-user-doc --> <!-- end-user-doc -->
-	 * 
 	 * @generated
 	 */
 	public Solution getSolution() {
@@ -490,7 +573,6 @@ public class IssueImpl extends AnnotationImpl implements Issue {
 
 	/**
 	 * <!-- begin-user-doc --> <!-- end-user-doc -->
-	 * 
 	 * @generated
 	 */
 	public Solution basicGetSolution() {
@@ -499,7 +581,6 @@ public class IssueImpl extends AnnotationImpl implements Issue {
 
 	/**
 	 * <!-- begin-user-doc --> <!-- end-user-doc -->
-	 * 
 	 * @generated
 	 */
 	public NotificationChain basicSetSolution(Solution newSolution, NotificationChain msgs) {
@@ -518,7 +599,6 @@ public class IssueImpl extends AnnotationImpl implements Issue {
 
 	/**
 	 * <!-- begin-user-doc --> <!-- end-user-doc -->
-	 * 
 	 * @generated
 	 */
 	public void setSolution(Solution newSolution) {
@@ -540,7 +620,6 @@ public class IssueImpl extends AnnotationImpl implements Issue {
 
 	/**
 	 * <!-- begin-user-doc --> <!-- end-user-doc -->
-	 * 
 	 * @generated
 	 */
 	public EList<Criterion> getCriteria() {
@@ -552,7 +631,6 @@ public class IssueImpl extends AnnotationImpl implements Issue {
 
 	/**
 	 * <!-- begin-user-doc --> <!-- end-user-doc -->
-	 * 
 	 * @generated
 	 */
 	public ActivityType getActivity() {
@@ -561,7 +639,6 @@ public class IssueImpl extends AnnotationImpl implements Issue {
 
 	/**
 	 * <!-- begin-user-doc --> <!-- end-user-doc -->
-	 * 
 	 * @generated
 	 */
 	public void setActivity(ActivityType newActivity) {
@@ -574,7 +651,6 @@ public class IssueImpl extends AnnotationImpl implements Issue {
 
 	/**
 	 * <!-- begin-user-doc --> <!-- end-user-doc -->
-	 * 
 	 * @generated
 	 */
 	public EList<OrgUnit> getParticipants() {
@@ -587,7 +663,6 @@ public class IssueImpl extends AnnotationImpl implements Issue {
 
 	/**
 	 * <!-- begin-user-doc --> <!-- end-user-doc -->
-	 * 
 	 * @generated
 	 */
 	public Date getDueDate() {
@@ -596,7 +671,6 @@ public class IssueImpl extends AnnotationImpl implements Issue {
 
 	/**
 	 * <!-- begin-user-doc --> <!-- end-user-doc -->
-	 * 
 	 * @generated
 	 */
 	public void setDueDate(Date newDueDate) {
@@ -608,7 +682,6 @@ public class IssueImpl extends AnnotationImpl implements Issue {
 
 	/**
 	 * <!-- begin-user-doc --> <!-- end-user-doc -->
-	 * 
 	 * @generated
 	 */
 	public int getEstimate() {
@@ -617,7 +690,6 @@ public class IssueImpl extends AnnotationImpl implements Issue {
 
 	/**
 	 * <!-- begin-user-doc --> <!-- end-user-doc -->
-	 * 
 	 * @generated
 	 */
 	public void setEstimate(int newEstimate) {
@@ -630,7 +702,6 @@ public class IssueImpl extends AnnotationImpl implements Issue {
 
 	/**
 	 * <!-- begin-user-doc --> <!-- end-user-doc -->
-	 * 
 	 * @generated
 	 */
 	public int getEffort() {
@@ -639,7 +710,6 @@ public class IssueImpl extends AnnotationImpl implements Issue {
 
 	/**
 	 * <!-- begin-user-doc --> <!-- end-user-doc -->
-	 * 
 	 * @generated
 	 */
 	public void setEffort(int newEffort) {
@@ -651,7 +721,6 @@ public class IssueImpl extends AnnotationImpl implements Issue {
 
 	/**
 	 * <!-- begin-user-doc --> <!-- end-user-doc -->
-	 * 
 	 * @generated
 	 */
 	public int getPriority() {
@@ -660,7 +729,6 @@ public class IssueImpl extends AnnotationImpl implements Issue {
 
 	/**
 	 * <!-- begin-user-doc --> <!-- end-user-doc -->
-	 * 
 	 * @generated
 	 */
 	public void setPriority(int newPriority) {
@@ -672,8 +740,29 @@ public class IssueImpl extends AnnotationImpl implements Issue {
 	}
 
 	/**
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 */
+	public boolean isResolved() {
+		return resolved;
+	}
+
+	/**
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 */
+	public void setResolved(boolean newResolved) {
+		boolean oldResolved = resolved;
+		resolved = newResolved;
+		if (eNotificationRequired())
+			eNotify(new ENotificationImpl(this, Notification.SET, RationalePackage.ISSUE__RESOLVED, oldResolved,
+				resolved));
+	}
+
+	/**
 	 * <!-- begin-user-doc --> <!-- end-user-doc -->
-	 * 
 	 * @generated
 	 */
 	@SuppressWarnings("unchecked")
@@ -693,6 +782,11 @@ public class IssueImpl extends AnnotationImpl implements Issue {
 				msgs = ((InternalEObject) assignee).eInverseRemove(this, OrganizationPackage.ORG_UNIT__ASSIGNMENTS,
 					OrgUnit.class, msgs);
 			return basicSetAssignee((OrgUnit) otherEnd, msgs);
+		case RationalePackage.ISSUE__REVIEWER:
+			if (reviewer != null)
+				msgs = ((InternalEObject) reviewer).eInverseRemove(this,
+					OrganizationPackage.USER__WORK_ITEMS_TO_REVIEW, User.class, msgs);
+			return basicSetReviewer((User) otherEnd, msgs);
 		case RationalePackage.ISSUE__PARTICIPANTS:
 			return ((InternalEList<InternalEObject>) (InternalEList<?>) getParticipants()).basicAdd(otherEnd, msgs);
 		case RationalePackage.ISSUE__PROPOSALS:
@@ -708,7 +802,6 @@ public class IssueImpl extends AnnotationImpl implements Issue {
 
 	/**
 	 * <!-- begin-user-doc --> <!-- end-user-doc -->
-	 * 
 	 * @generated
 	 */
 	@Override
@@ -722,6 +815,8 @@ public class IssueImpl extends AnnotationImpl implements Issue {
 			return ((InternalEList<?>) getSuccessors()).basicRemove(otherEnd, msgs);
 		case RationalePackage.ISSUE__ASSIGNEE:
 			return basicSetAssignee(null, msgs);
+		case RationalePackage.ISSUE__REVIEWER:
+			return basicSetReviewer(null, msgs);
 		case RationalePackage.ISSUE__PARTICIPANTS:
 			return ((InternalEList<?>) getParticipants()).basicRemove(otherEnd, msgs);
 		case RationalePackage.ISSUE__PROPOSALS:
@@ -734,7 +829,6 @@ public class IssueImpl extends AnnotationImpl implements Issue {
 
 	/**
 	 * <!-- begin-user-doc --> <!-- end-user-doc -->
-	 * 
 	 * @generated
 	 */
 	@Override
@@ -749,7 +843,6 @@ public class IssueImpl extends AnnotationImpl implements Issue {
 
 	/**
 	 * <!-- begin-user-doc --> <!-- end-user-doc -->
-	 * 
 	 * @generated
 	 */
 	@Override
@@ -771,6 +864,10 @@ public class IssueImpl extends AnnotationImpl implements Issue {
 			if (resolve)
 				return getAssignee();
 			return basicGetAssignee();
+		case RationalePackage.ISSUE__REVIEWER:
+			if (resolve)
+				return getReviewer();
+			return basicGetReviewer();
 		case RationalePackage.ISSUE__PARTICIPANTS:
 			return getParticipants();
 		case RationalePackage.ISSUE__DUE_DATE:
@@ -781,6 +878,8 @@ public class IssueImpl extends AnnotationImpl implements Issue {
 			return new Integer(getEffort());
 		case RationalePackage.ISSUE__PRIORITY:
 			return new Integer(getPriority());
+		case RationalePackage.ISSUE__RESOLVED:
+			return isResolved() ? Boolean.TRUE : Boolean.FALSE;
 		case RationalePackage.ISSUE__PROPOSALS:
 			return getProposals();
 		case RationalePackage.ISSUE__SOLUTION:
@@ -797,7 +896,6 @@ public class IssueImpl extends AnnotationImpl implements Issue {
 
 	/**
 	 * <!-- begin-user-doc --> <!-- end-user-doc -->
-	 * 
 	 * @generated
 	 */
 	@SuppressWarnings("unchecked")
@@ -825,6 +923,9 @@ public class IssueImpl extends AnnotationImpl implements Issue {
 		case RationalePackage.ISSUE__ASSIGNEE:
 			setAssignee((OrgUnit) newValue);
 			return;
+		case RationalePackage.ISSUE__REVIEWER:
+			setReviewer((User) newValue);
+			return;
 		case RationalePackage.ISSUE__PARTICIPANTS:
 			getParticipants().clear();
 			getParticipants().addAll((Collection<? extends OrgUnit>) newValue);
@@ -840,6 +941,9 @@ public class IssueImpl extends AnnotationImpl implements Issue {
 			return;
 		case RationalePackage.ISSUE__PRIORITY:
 			setPriority(((Integer) newValue).intValue());
+			return;
+		case RationalePackage.ISSUE__RESOLVED:
+			setResolved(((Boolean) newValue).booleanValue());
 			return;
 		case RationalePackage.ISSUE__PROPOSALS:
 			getProposals().clear();
@@ -861,7 +965,6 @@ public class IssueImpl extends AnnotationImpl implements Issue {
 
 	/**
 	 * <!-- begin-user-doc --> <!-- end-user-doc -->
-	 * 
 	 * @generated
 	 */
 	@Override
@@ -885,6 +988,9 @@ public class IssueImpl extends AnnotationImpl implements Issue {
 		case RationalePackage.ISSUE__ASSIGNEE:
 			setAssignee((OrgUnit) null);
 			return;
+		case RationalePackage.ISSUE__REVIEWER:
+			setReviewer((User) null);
+			return;
 		case RationalePackage.ISSUE__PARTICIPANTS:
 			getParticipants().clear();
 			return;
@@ -899,6 +1005,9 @@ public class IssueImpl extends AnnotationImpl implements Issue {
 			return;
 		case RationalePackage.ISSUE__PRIORITY:
 			setPriority(PRIORITY_EDEFAULT);
+			return;
+		case RationalePackage.ISSUE__RESOLVED:
+			setResolved(RESOLVED_EDEFAULT);
 			return;
 		case RationalePackage.ISSUE__PROPOSALS:
 			getProposals().clear();
@@ -918,7 +1027,6 @@ public class IssueImpl extends AnnotationImpl implements Issue {
 
 	/**
 	 * <!-- begin-user-doc --> <!-- end-user-doc -->
-	 * 
 	 * @generated
 	 */
 	@Override
@@ -936,6 +1044,8 @@ public class IssueImpl extends AnnotationImpl implements Issue {
 			return successors != null && !successors.isEmpty();
 		case RationalePackage.ISSUE__ASSIGNEE:
 			return assignee != null;
+		case RationalePackage.ISSUE__REVIEWER:
+			return reviewer != null;
 		case RationalePackage.ISSUE__PARTICIPANTS:
 			return participants != null && !participants.isEmpty();
 		case RationalePackage.ISSUE__DUE_DATE:
@@ -946,6 +1056,8 @@ public class IssueImpl extends AnnotationImpl implements Issue {
 			return effort != EFFORT_EDEFAULT;
 		case RationalePackage.ISSUE__PRIORITY:
 			return priority != PRIORITY_EDEFAULT;
+		case RationalePackage.ISSUE__RESOLVED:
+			return resolved != RESOLVED_EDEFAULT;
 		case RationalePackage.ISSUE__PROPOSALS:
 			return proposals != null && !proposals.isEmpty();
 		case RationalePackage.ISSUE__SOLUTION:
@@ -960,7 +1072,6 @@ public class IssueImpl extends AnnotationImpl implements Issue {
 
 	/**
 	 * <!-- begin-user-doc --> <!-- end-user-doc -->
-	 * 
 	 * @generated
 	 */
 	@Override
@@ -985,6 +1096,8 @@ public class IssueImpl extends AnnotationImpl implements Issue {
 				return TaskPackage.WORK_ITEM__SUCCESSORS;
 			case RationalePackage.ISSUE__ASSIGNEE:
 				return TaskPackage.WORK_ITEM__ASSIGNEE;
+			case RationalePackage.ISSUE__REVIEWER:
+				return TaskPackage.WORK_ITEM__REVIEWER;
 			case RationalePackage.ISSUE__PARTICIPANTS:
 				return TaskPackage.WORK_ITEM__PARTICIPANTS;
 			case RationalePackage.ISSUE__DUE_DATE:
@@ -995,6 +1108,8 @@ public class IssueImpl extends AnnotationImpl implements Issue {
 				return TaskPackage.WORK_ITEM__EFFORT;
 			case RationalePackage.ISSUE__PRIORITY:
 				return TaskPackage.WORK_ITEM__PRIORITY;
+			case RationalePackage.ISSUE__RESOLVED:
+				return TaskPackage.WORK_ITEM__RESOLVED;
 			default:
 				return -1;
 			}
@@ -1004,7 +1119,6 @@ public class IssueImpl extends AnnotationImpl implements Issue {
 
 	/**
 	 * <!-- begin-user-doc --> <!-- end-user-doc -->
-	 * 
 	 * @generated
 	 */
 	@Override
@@ -1029,6 +1143,8 @@ public class IssueImpl extends AnnotationImpl implements Issue {
 				return RationalePackage.ISSUE__SUCCESSORS;
 			case TaskPackage.WORK_ITEM__ASSIGNEE:
 				return RationalePackage.ISSUE__ASSIGNEE;
+			case TaskPackage.WORK_ITEM__REVIEWER:
+				return RationalePackage.ISSUE__REVIEWER;
 			case TaskPackage.WORK_ITEM__PARTICIPANTS:
 				return RationalePackage.ISSUE__PARTICIPANTS;
 			case TaskPackage.WORK_ITEM__DUE_DATE:
@@ -1039,6 +1155,8 @@ public class IssueImpl extends AnnotationImpl implements Issue {
 				return RationalePackage.ISSUE__EFFORT;
 			case TaskPackage.WORK_ITEM__PRIORITY:
 				return RationalePackage.ISSUE__PRIORITY;
+			case TaskPackage.WORK_ITEM__RESOLVED:
+				return RationalePackage.ISSUE__RESOLVED;
 			default:
 				return -1;
 			}
@@ -1048,7 +1166,6 @@ public class IssueImpl extends AnnotationImpl implements Issue {
 
 	/**
 	 * <!-- begin-user-doc --> <!-- end-user-doc -->
-	 * 
 	 * @generated
 	 */
 	@Override
@@ -1065,6 +1182,8 @@ public class IssueImpl extends AnnotationImpl implements Issue {
 		result.append(effort);
 		result.append(", priority: ");
 		result.append(priority);
+		result.append(", resolved: ");
+		result.append(resolved);
 		result.append(", activity: ");
 		result.append(activity);
 		result.append(')');
