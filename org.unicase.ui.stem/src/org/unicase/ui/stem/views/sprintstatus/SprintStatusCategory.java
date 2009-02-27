@@ -51,13 +51,13 @@ public class SprintStatusCategory extends Composite {
 		GridLayoutFactory.fillDefaults().numColumns(1).spacing(0, 0).applyTo(titleComposite);
 		// titleComposite.setBackground(new Color(getDisplay(), 115, 158, 227)); macos blue
 		titleComposite.setBackground(new Color(getDisplay(), 157, 168, 185));
-		titleComposite.setBackground(new Color(getDisplay(), 216, 5, 0));
+		titleComposite.setBackground(new Color(getDisplay(), 186, 4, 0));
 		titleComposite.setBackgroundMode(SWT.INHERIT_FORCE);
 		title = new StyledText(titleComposite, SWT.WRAP);
 		title.setForeground(new Color(getDisplay(), 255, 255, 255));
 		title.setEnabled(false);
 		GridDataFactory.fillDefaults().grab(true, false).align(SWT.CENTER, SWT.BEGINNING).applyTo(title);
-		
+
 		scroller = new ScrolledComposite(this, SWT.H_SCROLL | SWT.V_SCROLL | SWT.BORDER);
 		GridLayoutFactory.fillDefaults().numColumns(1).spacing(0, 0).applyTo(scroller);
 		GridDataFactory.fillDefaults().grab(true, true).applyTo(scroller);
