@@ -99,7 +99,7 @@ public class SprintStatusView extends ViewPart {
 	@Override
 	public void setFocus() {
 		EventUtil.logFocusEvent(ID);
-		getViewSite().getPart().setFocus();
+		// getViewSite().getPart().setFocus();
 	}
 
 	/**
