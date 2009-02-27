@@ -7,8 +7,9 @@ package org.unicase.ui.common.filter;
 
 import org.eclipse.jface.viewers.Viewer;
 import org.eclipse.jface.viewers.ViewerFilter;
-import org.unicase.model.bug.BugReport;
-import org.unicase.model.bug.BugStatus;
+import org.unicase.model.organization.OrgUnit;
+import org.unicase.model.organization.User;
+import org.unicase.model.task.WorkItem;
 
 /**
  * This filter prevents showing of resolved bug reports in viewers.
@@ -18,6 +19,16 @@ import org.unicase.model.bug.BugStatus;
  */
 public class ResolvedBugReportFilter extends ViewerFilter {
 
+	private final User user;
+	
+	/**
+	 * Constructor.
+	 * @param user the user, whose resolved work items must be filtered.
+	 */
+	public ResolvedBugReportFilter(User user){
+		this.user = user;
+	}
+	
 	/**
 	 * {@inheritDoc}
 	 * 
@@ -25,9 +36,44 @@ public class ResolvedBugReportFilter extends ViewerFilter {
 	 */
 	@Override
 	public boolean select(Viewer viewer, Object parentElement, Object element) {
-		if(element instanceof BugReport){
-			return !((BugReport)element).getStatus().equals(BugStatus.RESOLVED);
+		
+		//false = don't show; true = show
+
+		if(element instanceof WorkItem){
+			WorkItem workItem = (WorkItem) element;
+			if(user == null){
+				
+				return !workItem.isResolved();
+			}
+			
+			OrgUnit assignee = workItem.getAssignee();
+			if(assignee == null){
+				if(workItem.getCreator().equals(user.getName())){
+					return !workItem.isResolved();
+				}else if(workItem.getReviewer().equals(user)){
+					return workItem.isResolved();
+				}else{
+					return false;
+				}
+			
+			}
+			
+			if(assignee.equals(user)){
+				
+				return !workItem.isResolved();
+			}
+			
+			if(workItem.getReviewer().equals(user)){
+				return workItem.isResolved();
+			}
+			
+						
+//			if(currentUser.equals(assignee)&&workItem.isResolved()&&!workItem.getReviewer().equals(currentUser)){
+//				//filter it out
+//				return true;
+//			}
 		}
+		
 		return false;
 	}
 

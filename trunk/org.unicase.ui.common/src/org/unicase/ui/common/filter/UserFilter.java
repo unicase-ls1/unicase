@@ -5,7 +5,6 @@
  */
 package org.unicase.ui.common.filter;
 
-import org.eclipse.emf.common.util.EList;
 import org.eclipse.jface.viewers.Viewer;
 import org.eclipse.jface.viewers.ViewerFilter;
 import org.unicase.model.ModelElement;
@@ -40,18 +39,25 @@ public class UserFilter extends ViewerFilter {
 			return true;
 		}
 		if (element instanceof WorkItem) {
-			EList<OrgUnit> participants = ((WorkItem) element).getParticipants();
-			for (OrgUnit orgUnit : participants) {
-				if (orgUnit.equals(user)) {
-					return true;
-				}
+			//if user participates in this work item
+			WorkItem workItem = (WorkItem)element;
+			if(workItem.getParticipants().contains(user)){
+				return true;
 			}
-			OrgUnit assignee = ((WorkItem) element).getAssignee();
-			if (assignee != null) {
-				return ((assignee.equals(user)));
+			
+			//or if user is assignee of this work item 
+			OrgUnit assignee = workItem.getAssignee();
+			if (assignee != null && assignee.equals(user)) {
+				return true;
+			}
+			
+			//or if this work item is resolved, and user is its reviewer
+			if(workItem.isResolved() && workItem.getReviewer().equals(user)){
+				return true;
 			}
 
 		}
+		
 		if (element instanceof ModelElement) {
 			String creator = ((ModelElement) element).getCreator();
 			if (user.getName().equals(creator)) {
