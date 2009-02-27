@@ -3,7 +3,7 @@
  * accompanying materials are made available under the terms of the Eclipse Public License v1.0 which accompanies this
  * distribution, and is available at http://www.eclipse.org/legal/epl-v10.html </copyright>
  */
-package org.unicase.ui.stem.views.statusview;
+package org.unicase.ui.stem.views.sprintstatus;
 
 import java.util.ArrayList;
 import java.util.Collections;
@@ -22,7 +22,7 @@ import org.unicase.model.task.WorkPackage;
  * @author Shterev
  */
 
-public class WorkPackageTabContentProvider extends AdapterFactoryContentProvider {
+public class SprintStatusContentProvider extends AdapterFactoryContentProvider {
 	/**
 	 * Constant for the unassigned column.
 	 */
@@ -72,7 +72,7 @@ public class WorkPackageTabContentProvider extends AdapterFactoryContentProvider
 	 * 
 	 * @param key determines which column is shown.
 	 */
-	public WorkPackageTabContentProvider(String key) {
+	public SprintStatusContentProvider(String key) {
 		super(new ComposedAdapterFactory(ComposedAdapterFactory.Descriptor.Registry.INSTANCE));
 		priorityComparator = new PriorityComparator();
 		this.key = key;

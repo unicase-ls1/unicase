@@ -3,7 +3,7 @@
  * accompanying materials are made available under the terms of the Eclipse Public License v1.0 which accompanies this
  * distribution, and is available at http://www.eclipse.org/legal/epl-v10.html </copyright>
  */
-package org.unicase.ui.stem.views.statusview;
+package org.unicase.ui.stem.views.sprintstatus;
 
 import java.util.ArrayList;
 
@@ -21,6 +21,7 @@ import org.eclipse.swt.custom.SashForm;
 import org.eclipse.swt.dnd.DND;
 import org.eclipse.swt.dnd.Transfer;
 import org.eclipse.swt.widgets.Composite;
+import org.eclipse.swt.widgets.Label;
 import org.unicase.model.ModelElement;
 import org.unicase.model.Project;
 import org.unicase.model.task.WorkPackage;
@@ -35,14 +36,15 @@ import org.unicase.workspace.WorkspacePackage;
 /**
  * @author Shterev
  */
-public class WorkPackageTabComposite extends Composite implements ProjectChangeObserver {
+public class SprintStatusComposite extends Composite implements ProjectChangeObserver {
 
 	private Workspace workspace;
 	private AdapterImpl adapterImpl;
 	private WorkPackageTabDropAdapter wpTabDropAdapter;
 	private ArrayList<TableViewer> tables = new ArrayList<TableViewer>();
 	private SashForm sash;
-	private ArrayList<WorkPackageTabCategory> categories;
+	private ArrayList<SprintStatusCategory> categories;
+	private Label hiddenText;
 
 	/**
 	 * Constructor.
@@ -50,37 +52,40 @@ public class WorkPackageTabComposite extends Composite implements ProjectChangeO
 	 * @param parent parent
 	 * @param style style
 	 */
-	public WorkPackageTabComposite(Composite parent, int style) {
+	public SprintStatusComposite(Composite parent, int style) {
 		super(parent, style);
-		GridLayoutFactory.fillDefaults().numColumns(1).applyTo(this);
+		GridLayoutFactory.fillDefaults().numColumns(1).spacing(0, 0).applyTo(this);
+		hiddenText = new Label(this, SWT.NONE);
+		GridDataFactory.fillDefaults().hint(0, 0).applyTo(hiddenText);
+		// hiddenText.
 		sash = new SashForm(this, SWT.BORDER);
 		sash.setSashWidth(2);
 		GridDataFactory.fillDefaults().grab(true, true).applyTo(sash);
 		setBackground(getDisplay().getSystemColor(SWT.COLOR_BLACK));
 
-		WorkPackageTabContentProvider unassignedContentProvider = new WorkPackageTabContentProvider(
-			WorkPackageTabContentProvider.UNASSIGNED);
-		WorkPackageTabContentProvider assignedContentProvider = new WorkPackageTabContentProvider(
-			WorkPackageTabContentProvider.ASSIGNED);
-		WorkPackageTabContentProvider blockedContentProvider = new WorkPackageTabContentProvider(
-			WorkPackageTabContentProvider.BLOCKED);
-		WorkPackageTabContentProvider doneContentProvider = new WorkPackageTabContentProvider(
-			WorkPackageTabContentProvider.DONE);
-		WorkPackageTabContentProvider testingContentProvider = new WorkPackageTabContentProvider(
-			WorkPackageTabContentProvider.TESTING);
+		SprintStatusContentProvider unassignedContentProvider = new SprintStatusContentProvider(
+			SprintStatusContentProvider.UNASSIGNED);
+		SprintStatusContentProvider assignedContentProvider = new SprintStatusContentProvider(
+			SprintStatusContentProvider.ASSIGNED);
+		SprintStatusContentProvider blockedContentProvider = new SprintStatusContentProvider(
+			SprintStatusContentProvider.BLOCKED);
+		SprintStatusContentProvider doneContentProvider = new SprintStatusContentProvider(
+			SprintStatusContentProvider.DONE);
+		SprintStatusContentProvider testingContentProvider = new SprintStatusContentProvider(
+			SprintStatusContentProvider.TESTING);
 
-		WorkPackageTabCategory unassigned = new WorkPackageTabCategory(sash, SWT.NONE);
+		SprintStatusCategory unassigned = new SprintStatusCategory(sash, SWT.NONE);
 		unassigned.setContentProvider(unassignedContentProvider);
-		WorkPackageTabCategory assigned = new WorkPackageTabCategory(sash, SWT.NONE);
+		SprintStatusCategory assigned = new SprintStatusCategory(sash, SWT.NONE);
 		assigned.setContentProvider(assignedContentProvider);
-		WorkPackageTabCategory blocked = new WorkPackageTabCategory(sash, SWT.NONE);
+		SprintStatusCategory blocked = new SprintStatusCategory(sash, SWT.NONE);
 		blocked.setContentProvider(blockedContentProvider);
-		WorkPackageTabCategory testing = new WorkPackageTabCategory(sash, SWT.NONE);
+		SprintStatusCategory testing = new SprintStatusCategory(sash, SWT.NONE);
 		testing.setContentProvider(testingContentProvider);
-		WorkPackageTabCategory done = new WorkPackageTabCategory(sash, SWT.NONE);
+		SprintStatusCategory done = new SprintStatusCategory(sash, SWT.NONE);
 		done.setContentProvider(doneContentProvider);
 
-		categories = new ArrayList<WorkPackageTabCategory>();
+		categories = new ArrayList<SprintStatusCategory>();
 		categories.add(assigned);
 		categories.add(unassigned);
 		categories.add(blocked);
@@ -94,7 +99,7 @@ public class WorkPackageTabComposite extends Composite implements ProjectChangeO
 
 		workspace = WorkspaceManager.getInstance().getCurrentWorkspace();
 		if (workspace.getActiveProjectSpace() != null) {
-			workspace.getActiveProjectSpace().getProject().addProjectChangeObserver(WorkPackageTabComposite.this);
+			workspace.getActiveProjectSpace().getProject().addProjectChangeObserver(SprintStatusComposite.this);
 		}
 		adapterImpl = new AdapterImpl() {
 			@Override
@@ -104,13 +109,12 @@ public class WorkPackageTabComposite extends Composite implements ProjectChangeO
 					// remove old listeners
 					Object oldValue = msg.getOldValue();
 					if (oldValue instanceof ProjectSpace) {
-						((ProjectSpace) oldValue).getProject()
-							.removeProjectChangeObserver(WorkPackageTabComposite.this);
+						((ProjectSpace) oldValue).getProject().removeProjectChangeObserver(SprintStatusComposite.this);
 					}
 					// add listener to get notified when work items get deleted/added/changed
 					if (workspace.getActiveProjectSpace() != null) {
 						workspace.getActiveProjectSpace().getProject().addProjectChangeObserver(
-							WorkPackageTabComposite.this);
+							SprintStatusComposite.this);
 					}
 				}
 			}
@@ -150,7 +154,7 @@ public class WorkPackageTabComposite extends Composite implements ProjectChangeO
 	 */
 	public void setInput(ModelElement me) {
 		// hierachieTabDropAdapter.setCurrentOpenME(me);
-		for (WorkPackageTabCategory cat : categories) {
+		for (SprintStatusCategory cat : categories) {
 			cat.setInput((WorkPackage) me);
 		}
 
@@ -163,7 +167,7 @@ public class WorkPackageTabComposite extends Composite implements ProjectChangeO
 	 *      org.unicase.model.ModelElement)
 	 */
 	public void modelElementAdded(Project project, ModelElement modelElement) {
-		for (WorkPackageTabCategory cat : categories) {
+		for (SprintStatusCategory cat : categories) {
 			cat.refresh();
 		}
 	}
@@ -195,7 +199,7 @@ public class WorkPackageTabComposite extends Composite implements ProjectChangeO
 	 *      org.unicase.model.ModelElement)
 	 */
 	public void modelElementRemoved(Project project, ModelElement modelElement) {
-		for (WorkPackageTabCategory cat : categories) {
+		for (SprintStatusCategory cat : categories) {
 			cat.refresh();
 		}
 
@@ -208,7 +212,7 @@ public class WorkPackageTabComposite extends Composite implements ProjectChangeO
 	 *      org.unicase.model.Project, org.unicase.model.ModelElement)
 	 */
 	public void notify(Notification notification, Project project, ModelElement modelElement) {
-		for (WorkPackageTabCategory cat : categories) {
+		for (SprintStatusCategory cat : categories) {
 			cat.refresh();
 		}
 	}
@@ -221,11 +225,18 @@ public class WorkPackageTabComposite extends Composite implements ProjectChangeO
 
 		workspace.eAdapters().remove(adapterImpl);
 		if (workspace.getActiveProjectSpace() != null && workspace.getActiveProjectSpace().getProject() != null) {
-			workspace.getActiveProjectSpace().getProject().removeProjectChangeObserver(WorkPackageTabComposite.this);
-
+			workspace.getActiveProjectSpace().getProject().removeProjectChangeObserver(SprintStatusComposite.this);
 		}
-
 		super.dispose();
 	}
 
+	/**
+	 * {@inheritDoc}
+	 */
+	@Override
+	public boolean setFocus() {
+		boolean ret = super.setFocus();
+		hiddenText.forceFocus();
+		return ret;
+	}
 }

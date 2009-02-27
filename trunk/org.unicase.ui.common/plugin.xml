@@ -260,6 +260,12 @@
         </instanceof>
      </definition>
      <definition
+           id="org.unicase.ui.common.commands.workPackage">
+        <instanceof
+              value="org.unicase.model.task.WorkPackage">
+        </instanceof>
+     </definition>
+     <definition
            id="org.unicase.ui.common.commands.MEDiagram">
         <instanceof
               value="org.unicase.model.diagram.MEDiagram">

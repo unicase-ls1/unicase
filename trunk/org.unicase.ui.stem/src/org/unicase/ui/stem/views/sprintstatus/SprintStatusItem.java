@@ -3,7 +3,7 @@
  * accompanying materials are made available under the terms of the Eclipse Public License v1.0 which accompanies this
  * distribution, and is available at http://www.eclipse.org/legal/epl-v10.html </copyright>
  */
-package org.unicase.ui.stem.views.statusview;
+package org.unicase.ui.stem.views.sprintstatus;
 
 import org.eclipse.jface.layout.GridDataFactory;
 import org.eclipse.jface.layout.GridLayoutFactory;
@@ -24,7 +24,7 @@ import org.unicase.workspace.WorkspaceManager;
 /**
  * @author Shterev
  */
-public class WorkPackageTabItem extends Composite {
+public class SprintStatusItem extends Composite {
 
 	/**
 	 * Default constructor.
@@ -34,7 +34,7 @@ public class WorkPackageTabItem extends Composite {
 	 * @param workItem the workItem input.
 	 * @param bg flag for the alternating background: 0 for white, anything else for colored;
 	 */
-	public WorkPackageTabItem(Composite parent, int style, WorkItem workItem, int bg) {
+	public SprintStatusItem(Composite parent, int style, WorkItem workItem, int bg) {
 		super(parent, style);
 		ProjectSpace projectSpace = WorkspaceManager.getInstance().getCurrentWorkspace().getActiveProjectSpace();
 		GridLayoutFactory.fillDefaults().numColumns(2).spacing(0, 0).margins(5, 10).equalWidth(false).applyTo(this);
