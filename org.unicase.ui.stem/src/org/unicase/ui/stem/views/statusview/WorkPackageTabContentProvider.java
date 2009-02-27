@@ -58,9 +58,9 @@ public class WorkPackageTabContentProvider extends AdapterFactoryContentProvider
 			int prio1 = o1.getPriority();
 			int prio2 = o2.getPriority();
 			if (prio1 > prio2) {
-				return 1;
-			} else if (prio1 < prio2) {
 				return -1;
+			} else if (prio1 < prio2) {
+				return 1;
 			}
 			return 0;
 		}

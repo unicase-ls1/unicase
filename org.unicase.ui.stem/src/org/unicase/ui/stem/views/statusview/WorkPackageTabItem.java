@@ -38,12 +38,6 @@ public class WorkPackageTabItem extends Composite {
 		super(parent, style);
 		ProjectSpace projectSpace = WorkspaceManager.getInstance().getCurrentWorkspace().getActiveProjectSpace();
 		GridLayoutFactory.fillDefaults().numColumns(2).spacing(0, 0).margins(5, 10).equalWidth(false).applyTo(this);
-		if (bg != 0) {
-			// setBackground(new Color(getDisplay(), 181, 213, 255));
-			setBackground(new Color(getDisplay(), 233, 244, 255));
-		} else {
-			setBackground(new Color(getDisplay(), 255, 255, 255));
-		}
 		setBackgroundMode(SWT.INHERIT_FORCE);
 
 		URLSelectionListener selectionListener = URLSelectionListener.getInstance(projectSpace);
@@ -53,6 +47,15 @@ public class WorkPackageTabItem extends Composite {
 		GridDataFactory.fillDefaults().span(4, 1).grab(true, true).applyTo(name);
 		// name.setText(URLHelper.getHTMLLinkForModelElement(workItem, projectSpace));
 		// name.addSelectionListener(selectionListener);
+		if (bg != 0) {
+			// setBackground(new Color(getDisplay(), 181, 213, 255)); macos selected blue
+			// setBackground(new Color(getDisplay(), 233, 244, 255)); // light blue
+			setBackground(new Color(getDisplay(), 243, 233, 163));
+			name.setBackground(new Color(getDisplay(), 239, 214, 148));
+		} else {
+			setBackground(new Color(getDisplay(), 255, 247, 197));
+			name.setBackground(new Color(getDisplay(), 239, 214, 148));
+		}
 
 		Link assignee = new Link(this, SWT.WRAP);
 		GridDataFactory.fillDefaults().grab(true, true).applyTo(assignee);
