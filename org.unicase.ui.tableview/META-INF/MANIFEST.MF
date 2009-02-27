@@ -2,15 +2,15 @@ Manifest-Version: 1.0
 Bundle-ManifestVersion: 2
 Bundle-Name: unicase Tableview Plug-in
 Bundle-SymbolicName: org.unicase.ui.tableview;singleton:=true
-Bundle-Version: 0.3.9.qualifier
+Bundle-Version: 0.3.11.internal
 Bundle-Activator: org.unicase.ui.tableview.Activator
 Require-Bundle: org.eclipse.core.runtime,
  org.eclipse.ui,
  org.eclipse.emf.edit,
  org.eclipse.emf.edit.ui,
  org.eclipse.emf.transaction;bundle-version="1.2.0",
- org.unicase.ui.common;bundle-version="0.3.9.qualifier",
- org.unicase.model.edit;bundle-version="0.3.9.qualifier"
+ org.unicase.ui.common;bundle-version="0.3.11.internal",
+ org.unicase.model.edit;bundle-version="0.3.11.internal"
 Bundle-ActivationPolicy: lazy
 Bundle-Vendor: unicase.org
 Bundle-RequiredExecutionEnvironment: J2SE-1.5
