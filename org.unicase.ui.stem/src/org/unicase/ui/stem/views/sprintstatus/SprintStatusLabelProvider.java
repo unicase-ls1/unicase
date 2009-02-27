@@ -3,7 +3,7 @@
  * accompanying materials are made available under the terms of the Eclipse Public License v1.0 which accompanies this
  * distribution, and is available at http://www.eclipse.org/legal/epl-v10.html </copyright>
  */
-package org.unicase.ui.stem.views.statusview;
+package org.unicase.ui.stem.views.sprintstatus;
 
 import org.eclipse.jface.viewers.ColumnLabelProvider;
 import org.eclipse.swt.graphics.Image;
@@ -15,12 +15,12 @@ import org.unicase.model.task.WorkItem;
  * @author Shterev
  */
 
-public class WorkPackageTabLabelProvider extends ColumnLabelProvider {
+public class SprintStatusLabelProvider extends ColumnLabelProvider {
 
 	/**
 	 * Constructor.
 	 */
-	public WorkPackageTabLabelProvider() {
+	public SprintStatusLabelProvider() {
 		super();
 	}
 

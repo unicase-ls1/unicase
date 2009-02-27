@@ -3,7 +3,7 @@
  * accompanying materials are made available under the terms of the Eclipse Public License v1.0 which accompanies this
  * distribution, and is available at http://www.eclipse.org/legal/epl-v10.html </copyright>
  */
-package org.unicase.ui.stem.views.statusview;
+package org.unicase.ui.stem.views.sprintstatus;
 
 import java.util.ArrayList;
 
@@ -22,13 +22,13 @@ import org.unicase.model.task.WorkPackage;
 /**
  * @author Shterev
  */
-public class WorkPackageTabCategory extends Composite {
+public class SprintStatusCategory extends Composite {
 
-	private WorkPackageTabContentProvider contentProvider;
+	private SprintStatusContentProvider contentProvider;
 
 	private WorkPackage workPackage;
 
-	private ArrayList<WorkPackageTabItem> items;
+	private ArrayList<SprintStatusItem> items;
 
 	private StyledText title;
 
@@ -42,7 +42,7 @@ public class WorkPackageTabCategory extends Composite {
 	 * @param parent the parent
 	 * @param style the style
 	 */
-	public WorkPackageTabCategory(Composite parent, int style) {
+	public SprintStatusCategory(Composite parent, int style) {
 		super(parent, style);
 		GridLayoutFactory.fillDefaults().numColumns(1).spacing(0, 0).applyTo(this);
 
@@ -71,7 +71,7 @@ public class WorkPackageTabCategory extends Composite {
 		GridLayoutFactory.fillDefaults().numColumns(1).spacing(0, 0).applyTo(client);
 		GridDataFactory.fillDefaults().grab(true, true).applyTo(client);
 
-		items = new ArrayList<WorkPackageTabItem>();
+		items = new ArrayList<SprintStatusItem>();
 
 		scroller.setContent(client);
 	}
@@ -91,7 +91,7 @@ public class WorkPackageTabCategory extends Composite {
 		int i = 0;
 		for (Object item : contentProvider.getElements(workPackage)) {
 			i++;
-			WorkPackageTabItem tabItem = new WorkPackageTabItem(client, SWT.NONE, (WorkItem) item, i % 2);
+			SprintStatusItem tabItem = new SprintStatusItem(client, SWT.NONE, (WorkItem) item, i % 2);
 			GridDataFactory.fillDefaults().grab(true, false).align(SWT.FILL, SWT.BEGINNING).applyTo(tabItem);
 			items.add(tabItem);
 		}
@@ -116,7 +116,7 @@ public class WorkPackageTabCategory extends Composite {
 	 * 
 	 * @param provider the provider.
 	 */
-	public void setContentProvider(WorkPackageTabContentProvider provider) {
+	public void setContentProvider(SprintStatusContentProvider provider) {
 		this.contentProvider = provider;
 		title.setText(provider.getKey());
 		StyleRange st = new StyleRange();

@@ -47,7 +47,6 @@ import org.eclipse.ui.IActionBars;
 import org.eclipse.ui.part.ViewPart;
 import org.unicase.model.ModelElement;
 import org.unicase.model.Project;
-import org.unicase.model.task.TaskPackage;
 import org.unicase.model.task.WorkItem;
 import org.unicase.model.task.WorkPackage;
 import org.unicase.model.task.util.MEState;
@@ -91,7 +90,6 @@ public class StatusView extends ViewPart implements ProjectChangeObserver {
 	private HierarchyTabComposite hierarchyTabComposite;
 	private UserTabComposite userTabComposite;
 	private ActivityTabComposite activityTabComposite;
-	private WorkPackageTabComposite wpTabComposite;
 	private Label lblLatestDueDateName;
 	private Composite dropComposite;
 	private ProgressBar pbEstimate;
@@ -113,7 +111,6 @@ public class StatusView extends ViewPart implements ProjectChangeObserver {
 	private static final String ACTIVITY_TAB_IMAGE = "avtivity_tab_image";
 	private static final String WP_TAB_IMAGE = "wp_tab_image";
 	private TabFolder tabFolder;
-	private TabItem wpTab;
 
 	/**
 	 * Constructor.
@@ -362,21 +359,6 @@ public class StatusView extends ViewPart implements ProjectChangeObserver {
 			pbEstimate.setToolTipText(Integer.toString(estimateprogress) + "% done");
 		}
 
-		if (!TaskPackage.eINSTANCE.getWorkPackage().isInstance(input) && wpTab != null) {
-			wpTabComposite.dispose();
-			wpTab.dispose();
-			wpTab = null;
-		} else {
-			if (wpTab == null) {
-				wpTab = new TabItem(tabFolder, SWT.None);
-
-				wpTab.setText("WorkPackage status");
-				wpTab.setImage(images.get(WP_TAB_IMAGE));
-				wpTabComposite = new WorkPackageTabComposite(tabFolder, SWT.NONE);
-				wpTab.setControl(wpTabComposite);
-			}
-			wpTabComposite.setInput(input);
-		}
 		// set input for tabs
 		flatTabComposite.setInput(input, this);
 		hierarchyTabComposite.setInput(input);
