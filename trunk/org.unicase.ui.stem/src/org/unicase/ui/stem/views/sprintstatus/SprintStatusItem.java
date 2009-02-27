@@ -37,50 +37,58 @@ public class SprintStatusItem extends Composite {
 	public SprintStatusItem(Composite parent, int style, WorkItem workItem, int bg) {
 		super(parent, style);
 		ProjectSpace projectSpace = WorkspaceManager.getInstance().getCurrentWorkspace().getActiveProjectSpace();
-		GridLayoutFactory.fillDefaults().numColumns(2).spacing(0, 0).margins(5, 10).equalWidth(false).applyTo(this);
+		GridLayoutFactory.fillDefaults().numColumns(1).spacing(0, 0).equalWidth(false).applyTo(this);
+
+		Composite header = new Composite(this, SWT.NONE);
+		GridLayoutFactory.fillDefaults().numColumns(1).spacing(0, 0).applyTo(header);
+		GridDataFactory.fillDefaults().grab(true, false).applyTo(header);
+
+		Composite content = new Composite(this, SWT.NONE);
+		GridLayoutFactory.fillDefaults().numColumns(2).spacing(0, 0).margins(5, 10).equalWidth(false).applyTo(content);
+		GridDataFactory.fillDefaults().grab(true, true).applyTo(content);
 		setBackgroundMode(SWT.INHERIT_FORCE);
 
 		URLSelectionListener selectionListener = URLSelectionListener.getInstance(projectSpace);
 
-		Composite name = URLHelper.getModelElementLink(this, workItem, projectSpace);
+		Composite name = URLHelper.getModelElementLink(header, workItem, projectSpace);
 		// Link name = new Link(this, SWT.WRAP);
 		GridDataFactory.fillDefaults().span(4, 1).grab(true, true).applyTo(name);
 		// name.setText(URLHelper.getHTMLLinkForModelElement(workItem, projectSpace));
 		// name.addSelectionListener(selectionListener);
+		header.setBackground(new Color(getDisplay(), 239, 214, 148));
+		header.setBackgroundMode(SWT.INHERIT_FORCE);
 		if (bg != 0) {
 			// setBackground(new Color(getDisplay(), 181, 213, 255)); macos selected blue
 			// setBackground(new Color(getDisplay(), 233, 244, 255)); // light blue
-			setBackground(new Color(getDisplay(), 243, 233, 163));
-			name.setBackground(new Color(getDisplay(), 239, 214, 148));
+			setBackground(new Color(getDisplay(), 251, 241, 158));
 		} else {
-			setBackground(new Color(getDisplay(), 255, 247, 197));
-			name.setBackground(new Color(getDisplay(), 239, 214, 148));
+			setBackground(new Color(getDisplay(), 255, 249, 202));
 		}
 
-		Link assignee = new Link(this, SWT.WRAP);
+		Link assignee = new Link(content, SWT.WRAP);
 		GridDataFactory.fillDefaults().grab(true, true).applyTo(assignee);
 		assignee.setText("Assig.: " + URLHelper.getHTMLLinkForModelElement(workItem.getAssignee(), projectSpace));
 		assignee.addSelectionListener(selectionListener);
 
-		Link tester = new Link(this, SWT.WRAP);
+		Link tester = new Link(content, SWT.WRAP);
 		GridDataFactory.fillDefaults().grab(true, true).applyTo(tester);
 		tester.setText("Tester: " + URLHelper.getHTMLLinkForModelElement(workItem.getReviewer(), projectSpace));
 		tester.addSelectionListener(selectionListener);
 
-		Label priority = new Label(this, SWT.WRAP);
+		Label priority = new Label(content, SWT.WRAP);
 		GridDataFactory.fillDefaults().grab(true, true).applyTo(priority);
 		priority.setText("Priority: " + workItem.getPriority());
 
-		Label estimate = new Label(this, SWT.WRAP);
+		Label estimate = new Label(content, SWT.WRAP);
 		GridDataFactory.fillDefaults().grab(true, true).applyTo(estimate);
 		estimate.setText("Estimate: " + workItem.getEstimate());
 
 		if (!workItem.getPredecessors().isEmpty()) {
-			Label blocker = new Label(this, SWT.WRAP);
+			Label blocker = new Label(content, SWT.WRAP);
 			GridDataFactory.fillDefaults().grab(true, true).span(2, 1).applyTo(blocker);
 			blocker.setText("Blocker: ");
 			for (WorkItem wi : workItem.getPredecessors()) {
-				Composite c = URLHelper.getModelElementLink(this, wi, projectSpace);
+				Composite c = URLHelper.getModelElementLink(content, wi, projectSpace);
 				GridDataFactory.fillDefaults().grab(true, true).span(2, 1).applyTo(c);
 			}
 		}
