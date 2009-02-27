@@ -1,0 +1,41 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<?eclipse version="3.2"?>
+<plugin>
+   <extension
+         point="org.eclipse.ui.editors">
+      <editor
+            class="org.unicase.ui.meeditor.MEEditor"
+            default="false"
+            id="org.unicase.ui.meeditor"
+            name="Model Element Editor">
+      </editor>
+   </extension>
+   <extension
+         point="org.eclipse.ui.commands">
+      <command
+            defaultHandler="org.unicase.ui.meeditor.commands.OpenModelElementHandler"
+            id="org.unicase.ui.meeditor.openModelElement"
+            name="OpenModelElement">
+      </command>
+   </extension>
+   <extension
+         point="org.eclipse.ui.menus">
+      <menuContribution
+            locationURI="toolbar:org.unicase.ui.meeditor.MEEditorPage?after=additions">
+         <separator
+               name="org.unicase.ui.meeditor.separator1"
+               visible="true">
+         </separator>
+      </menuContribution>
+      <menuContribution
+            locationURI="toolbar:org.unicase.ui.meeditor.MEEditorPage?after=org.unicase.ui.meeditor.separator1">
+         <command
+               commandId="org.unicase.ui.navigator.ShowMEInNavigator"
+               icon="icons/link_with_navigator.gif"
+               style="push"
+               tooltip="show this model element in navigator">
+         </command>
+      </menuContribution>
+   </extension>
+
+</plugin>

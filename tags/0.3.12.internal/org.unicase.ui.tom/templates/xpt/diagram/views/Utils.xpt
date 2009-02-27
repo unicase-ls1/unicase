@@ -1,0 +1,111 @@
+/*
+ * Copyright (c) 2007, 2008 Borland Software Corporation
+ * 
+ * All rights reserved. This program and the accompanying materials
+ * are made available under the terms of the Eclipse Public License v1.0
+ * which accompanies this distribution, and is available at
+ * http://www.eclipse.org/legal/epl-v10.html
+ *
+ * Contributors:
+ *    Dmitry Stadnik (Borland) - initial API and implementation
+ */
+
+«IMPORT "http://www.eclipse.org/gmf/2008/GenModel"»
+«IMPORT "http://www.eclipse.org/emf/2002/Ecore"»
+«IMPORT "http://www.eclipse.org/emf/2002/GenModel"»
+«EXTENSION xpt::diagram::ViewmapAttributesUtils»
+«EXTENSION xpt::GenModelUtils»
+
+«DEFINE updateSemanticHint FOR gmfgen::GenCommonBase-»
+	if (semanticHint == null) {
+		semanticHint = «getDiagram().getVisualIDRegistryQualifiedClassName()».getType(
+				«getEditPartQualifiedClassName()».VISUAL_ID);
+		view.setType(semanticHint);
+	}
+«ENDDEFINE»
+
+«DEFINE createChildNode FOR gmfgen::GenCommonBase-»
+	getViewService().createNode(eObjectAdapter, view,
+			«getDiagram().getVisualIDRegistryQualifiedClassName()».getType(«getEditPartQualifiedClassName()».VISUAL_ID),
+			org.eclipse.gmf.runtime.diagram.core.util.ViewUtil.APPEND, true, getPreferencesHint());
+«ENDDEFINE»
+
+«DEFINE domainElementAdapter(String adapterVar) FOR gmfgen::ModelFacet-»
+«ENDDEFINE»
+
+«DEFINE domainElementAdapter(String adapterVar) FOR gmfgen::TypeModelFacet-»
+	org.eclipse.emf.ecore.EObject eObject =
+			(org.eclipse.emf.ecore.EObject) semanticAdapter.getAdapter(org.eclipse.emf.ecore.EObject.class);
+	if (eObject != null) {
+		«adapterVar» = new org.eclipse.gmf.runtime.emf.core.util.EObjectAdapter(eObject);
+	}
+«ENDDEFINE»
+
+«DEFINE foregroundColour(String viewVar) FOR gmfgen::Viewmap-»
+	«EXPAND foregroundColour(viewVar) FOREACH attributes-»
+«ENDDEFINE»
+
+«DEFINE foregroundColour(String viewVar) FOR gmfgen::Attributes-»
+«ENDDEFINE»
+
+«DEFINE foregroundColour(String viewVar) FOR gmfgen::ColorAttributes-»
+	org.eclipse.gmf.runtime.diagram.core.util.ViewUtil.setStructuralFeatureValue(«viewVar»,
+			org.eclipse.gmf.runtime.notation.NotationPackage.eINSTANCE.getLineStyle_LineColor(),
+			org.eclipse.gmf.runtime.draw2d.ui.figures.FigureUtilities.colorToInteger(
+					org.eclipse.draw2d.ColorConstants.«foregroundColor»));
+«ENDDEFINE»
+
+«DEFINE backgroundColour(String viewVar) FOR gmfgen::Viewmap-»
+	«EXPAND backgroundColour(viewVar) FOREACH attributes-»
+«ENDDEFINE»
+
+«DEFINE backgroundColour(String viewVar) FOR gmfgen::Attributes-»
+«ENDDEFINE»
+
+«DEFINE backgroundColour(String viewVar) FOR gmfgen::ColorAttributes-»
+	org.eclipse.gmf.runtime.diagram.core.util.ViewUtil.setStructuralFeatureValue(«viewVar»,
+			org.eclipse.gmf.runtime.notation.NotationPackage.eINSTANCE.getFillStyle_FillColor(),
+			org.eclipse.gmf.runtime.draw2d.ui.figures.FigureUtilities.colorToInteger(
+					org.eclipse.draw2d.ColorConstants.«backgroundColor»));
+«ENDDEFINE»
+
+«DEFINE addShapeStyle(String stylesVar) FOR gmfgen::Viewmap-»
+	«IF isFixedFont()-»
+		«stylesVar».add(org.eclipse.gmf.runtime.notation.NotationFactory.eINSTANCE.createDescriptionStyle());
+		«stylesVar».add(org.eclipse.gmf.runtime.notation.NotationFactory.eINSTANCE.createFillStyle());
+		«stylesVar».add(org.eclipse.gmf.runtime.notation.NotationFactory.eINSTANCE.createLineStyle());
+	«ELSE-»
+		«stylesVar».add(org.eclipse.gmf.runtime.notation.NotationFactory.eINSTANCE.createShapeStyle());
+	«ENDIF-»
+«ENDDEFINE»
+
+«DEFINE addTextStyle(String stylesVar) FOR gmfgen::LabelModelFacet-»
+«ENDDEFINE»
+
+«DEFINE addTextStyle(String stylesVar) FOR gmfgen::DesignLabelModelFacet-»
+	«stylesVar».add(org.eclipse.gmf.runtime.notation.NotationFactory.eINSTANCE.createDescriptionStyle());
+«ENDDEFINE»
+
+«DEFINE addLinkedDiagramStyle(String stylesVar) FOR gmfgen::GenCommonBase-»
+	«EXPAND addLinkedDiagramStyle(stylesVar) FOREACH behaviour-»
+«ENDDEFINE»
+
+«DEFINE addLinkedDiagramStyle(String stylesVar) FOR gmfgen::Behaviour-»
+«ENDDEFINE»
+
+«DEFINE addLinkedDiagramStyle(String stylesVar) FOR gmfgen::OpenDiagramBehaviour-»
+	{
+		org.eclipse.gmf.runtime.notation.HintedDiagramLinkStyle diagramFacet =
+				org.eclipse.gmf.runtime.notation.NotationFactory.eINSTANCE.createHintedDiagramLinkStyle();
+	«IF diagramKind != null-»
+		diagramFacet.setHint("«diagramKind»"); // $NON-NLS-1$
+	«ENDIF-»
+		«stylesVar».add(diagramFacet);
+	}
+«ENDDEFINE»
+
+«DEFINE addCustomStyles(String stylesVar) FOR gmfgen::GenCommonBase-»
+	«FOREACH styles AS style-»
+		«stylesVar».add(«EXPAND MetaModel::NewInstance FOR style»);
+	«ENDFOREACH-»
+«ENDDEFINE»
