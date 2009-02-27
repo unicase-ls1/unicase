@@ -49,7 +49,9 @@ public class WorkPackageTabCategory extends Composite {
 		Composite titleComposite = new Composite(this, SWT.NONE);
 		GridDataFactory.fillDefaults().grab(true, false).applyTo(titleComposite);
 		GridLayoutFactory.fillDefaults().numColumns(1).spacing(0, 0).applyTo(titleComposite);
-		titleComposite.setBackground(new Color(getDisplay(), 115, 158, 227));
+		// titleComposite.setBackground(new Color(getDisplay(), 115, 158, 227)); macos blue
+		titleComposite.setBackground(new Color(getDisplay(), 157, 168, 185));
+		titleComposite.setBackground(new Color(getDisplay(), 216, 5, 0));
 		titleComposite.setBackgroundMode(SWT.INHERIT_FORCE);
 		title = new StyledText(titleComposite, SWT.WRAP);
 		title.setForeground(new Color(getDisplay(), 255, 255, 255));
@@ -63,6 +65,7 @@ public class WorkPackageTabCategory extends Composite {
 		scroller.setExpandVertical(true);
 		scroller.getVerticalBar().setIncrement(20);
 		scroller.getHorizontalBar().setIncrement(20);
+		scroller.setBackground(new Color(getDisplay(), 0, 205, 205));
 
 		client = new Composite(scroller, SWT.NONE);
 		GridLayoutFactory.fillDefaults().numColumns(1).spacing(0, 0).applyTo(client);
