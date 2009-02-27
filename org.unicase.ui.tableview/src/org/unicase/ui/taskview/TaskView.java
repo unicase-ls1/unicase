@@ -105,7 +105,7 @@ public class TaskView extends ViewPart implements ProjectChangeObserver {
 			@Override
 			public void notifyChanged(Notification msg) {
 				if ((msg.getFeatureID(Workspace.class)) == WorkspacePackage.WORKSPACE__ACTIVE_PROJECT_SPACE) {
-					initUserFilter();
+					initUserDependentFilters();
 
 					// remove old listeners
 					Object oldValue = msg.getOldValue();
@@ -124,9 +124,10 @@ public class TaskView extends ViewPart implements ProjectChangeObserver {
 		IActionBars bars = getViewSite().getActionBars();
 		IToolBarManager menuManager = bars.getToolBarManager();
 
-		initUserFilter();
+		initUserDependentFilters();
 		menuManager.add(filterToMe);
 		menuManager.add(filterToMyTeam);
+		menuManager.add(filterResolvedBugReports);
 
 		// Create Checked filter
 
@@ -136,28 +137,8 @@ public class TaskView extends ViewPart implements ProjectChangeObserver {
 		createBlockedFilter();
 		menuManager.add(filterToBlocked);
 
-		createResolvedBugReportFilter();
-		menuManager.add(filterResolvedBugReports);
-
 		getSite().setSelectionProvider(viewer);
 		hookDoubleClickAction();
-	}
-
-	private void createResolvedBugReportFilter() {
-		resolvedBugReportFilter = new ResolvedBugReportFilter();
-		filterResolvedBugReports = new Action("", SWT.TOGGLE) {
-			@Override
-			public void run() {
-				setResolvedBugReportsFilter(isChecked());
-			}
-
-		};
-		filterResolvedBugReports.setImageDescriptor(Activator.getImageDescriptor("/icons/Bug_resolved.png"));
-		Boolean resolvedBugReportsFilterBoolean = Boolean.parseBoolean(settings.get("ResolvedBugReportsFilter"));
-		filterResolvedBugReports.setChecked(resolvedBugReportsFilterBoolean);
-		filterResolvedBugReports.setToolTipText("Show/Hide resolved bug reports.");
-		setResolvedBugReportsFilter(resolvedBugReportsFilterBoolean);
-
 	}
 
 	private void createBlockedFilter() {
@@ -191,7 +172,7 @@ public class TaskView extends ViewPart implements ProjectChangeObserver {
 
 	}
 
-	private void initUserFilter() {
+	private void initUserDependentFilters() {
 		try {
 			User user;
 			user = OrgUnitHelper.getCurrentUser(WorkspaceManager.getInstance().getCurrentWorkspace());
@@ -199,15 +180,19 @@ public class TaskView extends ViewPart implements ProjectChangeObserver {
 			createUserFilter(user);
 			// Create Team Filter
 			createTeamFilter(user);
+			// create resolved bug reports filter
+			createResolvedBugReportFilter(user);
 
 		} catch (NoCurrentUserException e) {
 			// Disable filter
 			createUserFilter(null);
 			createTeamFilter(null);
+			createResolvedBugReportFilter(null);
 		} catch (CannotMatchUserInProjectException e) {
 			// Disable filter
 			createUserFilter(null);
 			createTeamFilter(null);
+			createResolvedBugReportFilter(null);
 		}
 	}
 
@@ -296,6 +281,37 @@ public class TaskView extends ViewPart implements ProjectChangeObserver {
 		userFilter = new UserFilter(user);
 		filterToMe.setToolTipText("Restricts the displayed table items to items owned by the current user.");
 		setUserFilter(filterToMe.isChecked());
+	}
+
+	private void createResolvedBugReportFilter(User user) {
+
+		if (filterResolvedBugReports == null) {
+			filterResolvedBugReports = new Action("", SWT.TOGGLE) {
+				@Override
+				public void run() {
+					setResolvedBugReportsFilter(isChecked());
+				}
+
+			};
+			filterResolvedBugReports.setImageDescriptor(Activator.getImageDescriptor("/icons/Bug_resolved.png"));
+			Boolean resolvedBugReportsFilterBoolean = Boolean.parseBoolean(settings.get("ResolvedBugReportsFilter"));
+			filterResolvedBugReports.setChecked(resolvedBugReportsFilterBoolean);
+			filterResolvedBugReports.setToolTipText("Show/Hide resolved bug reports.");
+		}
+
+		if (user == null) {
+			setResolvedBugReportsFilter(false);
+			filterResolvedBugReports.setEnabled(false);
+			return;
+		}
+
+		if (resolvedBugReportFilter != null) {
+			viewer.removeFilter(userFilter);
+		}
+		filterResolvedBugReports.setEnabled(true);
+		resolvedBugReportFilter = new ResolvedBugReportFilter(user);
+		setResolvedBugReportsFilter(filterResolvedBugReports.isChecked());
+
 	}
 
 	/**

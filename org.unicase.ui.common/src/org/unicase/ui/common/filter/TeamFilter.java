@@ -28,7 +28,7 @@ public class TeamFilter extends ViewerFilter {
 	/**
 	 * default constructor.
 	 * 
-	 * @param user The user to whos team it should be filtered.
+	 * @param user The user to whose team it should be filtered.
 	 */
 	public TeamFilter(User user) {
 		team = OrgUnitHelper.getTeam(user);
@@ -41,16 +41,24 @@ public class TeamFilter extends ViewerFilter {
 	@Override
 	public boolean select(Viewer viewer, Object parentElement, Object element) {
 		if (element instanceof WorkItem) {
-			EList<OrgUnit> participants = ((WorkItem) element).getParticipants();
+			//if team contains any participants of this work item, then show the work item
+			WorkItem workItem = (WorkItem)element;
+			EList<OrgUnit> participants = workItem.getParticipants();
 			for (OrgUnit orgUnit : participants) {
 				if (team.contains(orgUnit)) {
 					return true;
 				}
 			}
 
-			OrgUnit assignee = ((WorkItem) element).getAssignee();
+			//if team contains assignee of this work item then show the work item
+			OrgUnit assignee = workItem.getAssignee();
 			if (assignee != null) {
 				return (team.contains(assignee));
+			}
+			
+			//if work item is resolved and its reviewer is member of this team then show it
+			if(workItem.isResolved() && team.contains(workItem.getReviewer())){
+				return true;
 			}
 
 			return false;
