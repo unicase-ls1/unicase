@@ -44,26 +44,14 @@ public class ResolvedBugReportFilter extends ViewerFilter {
 			
 			OrgUnit assignee = workItem.getAssignee();
 			if(assignee != null){
-				return workItem.getAssignee().equals(user) && !workItem.isResolved();
+				if(workItem.getAssignee().equals(user)){
+					return !workItem.isResolved();
+				}
 			}
 			
-//			if(assignee.equals(user)){
-//				
-//				return !workItem.isResolved();
-//			}
-//			
-//			if(workItem.getReviewer().equals(user)){
-//				return workItem.isResolved();
-//			}
-			
-						
-//			if(currentUser.equals(assignee)&&workItem.isResolved()&&!workItem.getReviewer().equals(currentUser)){
-//				//filter it out
-//				return true;
-//			}
 		}
 		
-		return false;
+		return true;
 	}
 
 }
