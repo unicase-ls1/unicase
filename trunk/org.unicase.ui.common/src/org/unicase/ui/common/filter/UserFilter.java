@@ -52,7 +52,7 @@ public class UserFilter extends ViewerFilter {
 			}
 			
 			//or if this work item is resolved, and user is its reviewer
-			if(workItem.isResolved() && workItem.getReviewer().equals(user)){
+			if(workItem.isResolved() && workItem.getReviewer() != null && workItem.getReviewer().equals(user)){
 				return true;
 			}
 
