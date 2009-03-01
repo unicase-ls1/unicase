@@ -16,13 +16,12 @@
             id="org.unicase.ui.treeview.views.IterationPlanningView">
       </view>
       <view
-            allowMultiple="true"
             category="org.unicase"
             class="org.unicase.ui.stem.views.sprintstatus.SprintStatusView"
             icon="icons/backlog.png"
             id="org.unicase.ui.stem.views.sprintstatus.SprintStatusView"
             name="Sprint Status"
-            restorable="true">
+            restorable="false">
       </view>
       <view
             allowMultiple="true"

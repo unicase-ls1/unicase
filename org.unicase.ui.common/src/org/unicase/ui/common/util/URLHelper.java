@@ -63,7 +63,12 @@ public final class URLHelper {
 		StringBuilder ret = new StringBuilder("<a href=\"unicase://current:0/");
 		ret.append(projectSpace.getProjectName());
 		ret.append("%");
-		ret.append(projectSpace.getProjectId().getId());
+		if(projectSpace.getProjectId()==null){
+			//the project is not shared yet
+			ret.append("0");
+		}else{
+			ret.append(projectSpace.getProjectId().getId());
+		}
 		ret.append("/");
 		String name = modelElement.getName().replaceAll("\"", "\\'");
 		ret.append(name);
