@@ -448,6 +448,11 @@
                     <instanceof
                           value="org.unicase.workspace.ProjectSpace">
                     </instanceof>
+                    <test
+                          forcePluginActivation="true"
+                          property="org.unicase.workspace.edit.commands.isAdmin"
+                          value="true">
+                    </test>
                  </iterate>
               </visibleWhen>
            </command>
@@ -467,6 +472,11 @@
                     <test
                           forcePluginActivation="true"
                           property="org.unicase.workspace.edit.commands.projectIsShared"
+                          value="true">
+                    </test>
+                    <test
+                          forcePluginActivation="true"
+                          property="org.unicase.workspace.edit.commands.isAdmin"
                           value="true">
                     </test>
                  </iterate>
@@ -504,6 +514,11 @@
                     <instanceof
                           value="org.unicase.workspace.ProjectSpace">
                     </instanceof>
+                    <test
+                          forcePluginActivation="true"
+                          property="org.unicase.workspace.edit.commands.isAdmin"
+                          value="true">
+                    </test>
                  </iterate>
               </visibleWhen>
            </command>
@@ -520,6 +535,11 @@
                     <instanceof
                           value="org.unicase.workspace.ProjectSpace">
                     </instanceof>
+                    <test
+                          forcePluginActivation="true"
+                          property="org.unicase.workspace.edit.commands.isAdmin"
+                          value="true">
+                    </test>
                  </iterate>
               </visibleWhen>
            </command>
@@ -661,6 +681,13 @@
               id="org.unicase.workspace.edit.commands.projectHasLocalChangesTester"
               namespace="org.unicase.workspace.edit.commands"
               properties="projectHasLocalChanges"
+              type="org.unicase.workspace.ProjectSpace">
+        </propertyTester>
+        <propertyTester
+              class="org.unicase.workspace.edit.commands.IsAdminTester"
+              id="org.unicase.workspace.edit.commands.isAdminTester"
+              namespace="org.unicase.workspace.edit.commands"
+              properties="isAdmin"
               type="org.unicase.workspace.ProjectSpace">
         </propertyTester>
      </extension>
