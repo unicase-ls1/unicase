@@ -86,7 +86,7 @@ public class SprintStatusCategory extends Composite {
 		}
 
 		if (workPackage == null) {
-			throw new IllegalStateException("Cannot operate with a null input!");
+			return;
 		}
 		int i = 0;
 		for (Object item : contentProvider.getElements(workPackage)) {

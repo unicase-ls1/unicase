@@ -34,9 +34,7 @@ public class ShowSprintStatusHandler extends AbstractHandler {
 		ModelElement me = ActionHelper.getModelElement(event);
 
 		try {
-			SprintStatusView sprintStatusView = (SprintStatusView) page.showView(SprintStatusView.ID, me.getName(),
-				IWorkbenchPage.VIEW_ACTIVATE);
-
+			SprintStatusView sprintStatusView = (SprintStatusView) page.showView(SprintStatusView.ID);
 			sprintStatusView.setInput(me);
 
 		} catch (PartInitException e) {
