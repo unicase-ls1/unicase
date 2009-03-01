@@ -12,6 +12,7 @@ import org.eclipse.core.commands.ExecutionException;
 import org.eclipse.emf.transaction.RecordingCommand;
 import org.eclipse.emf.transaction.TransactionalEditingDomain;
 import org.eclipse.jface.dialogs.MessageDialog;
+import org.eclipse.swt.widgets.Display;
 import org.eclipse.swt.widgets.Shell;
 import org.eclipse.ui.IWorkbenchPage;
 import org.eclipse.ui.PartInitException;
@@ -34,6 +35,52 @@ import org.unicase.workspace.edit.views.historybrowserview.HistoryBrowserView;
  */
 public class ShowHistoryHandler extends ProjectActionHandler {
 
+	/**
+	 * Recording command to wrap the opening of the view.
+	 * @author Shterev
+	 *
+	 */
+	private final class HistoryRecordingCommand extends RecordingCommand {
+		private final ProjectSpace finalProjectSpace;
+		private final ExecutionEvent event;
+
+		private HistoryRecordingCommand(TransactionalEditingDomain domain, ProjectSpace finalProjectSpace,
+			ExecutionEvent event) {
+			super(domain);
+			this.finalProjectSpace = finalProjectSpace;
+			this.event = event;
+		}
+
+		@Override
+		protected void doExecute() {
+			int loginStatus = LoginDialog.SUCCESSFUL;
+			Usersession usersession = finalProjectSpace.getUsersession();
+			if (usersession == null) {
+				MessageDialog.openError(Display.getCurrent().getActiveShell(), "Project not shared",
+					"This project has not been shared yet!");
+				return;
+			}
+			if (!usersession.isLoggedIn()) {
+				loginStatus = (new LoginDialog(shell, usersession, usersession.getServerInfo())).open();
+			}
+			if (loginStatus == LoginDialog.SUCCESSFUL) {
+				ModelElement modelElement = ActionHelper.getModelElement(event);
+				IWorkbenchPage page = PlatformUI.getWorkbench().getActiveWorkbenchWindow().getActivePage();
+				HistoryBrowserView historyBrowserView = null;
+				String viewId = "org.unicase.workspace.edit.views.historybrowserview.HistoryBrowserView";
+				try {
+					historyBrowserView = (HistoryBrowserView) page.showView(viewId);
+				} catch (PartInitException e) {
+					DialogHandler.showExceptionDialog(e);
+				}
+				if (historyBrowserView != null) {
+					historyBrowserView.setInput(finalProjectSpace, modelElement);
+					logEvent(finalProjectSpace, viewId);
+				}
+			}
+		}
+	}
+
 	private Shell shell;
 
 	/**
@@ -54,31 +101,7 @@ public class ShowHistoryHandler extends ProjectActionHandler {
 		final ProjectSpace finalProjectSpace = projectSpace;
 		TransactionalEditingDomain domain = TransactionalEditingDomain.Registry.INSTANCE
 			.getEditingDomain("org.unicase.EditingDomain");
-		domain.getCommandStack().execute(new RecordingCommand(domain) {
-			@Override
-			protected void doExecute() {
-				int loginStatus = LoginDialog.SUCCESSFUL;
-				Usersession usersession = finalProjectSpace.getUsersession();
-				if (!usersession.isLoggedIn()) {
-					loginStatus = (new LoginDialog(shell, usersession, usersession.getServerInfo())).open();
-				}
-				if (loginStatus == LoginDialog.SUCCESSFUL) {
-					ModelElement modelElement = ActionHelper.getModelElement(event);
-					IWorkbenchPage page = PlatformUI.getWorkbench().getActiveWorkbenchWindow().getActivePage();
-					HistoryBrowserView historyBrowserView = null;
-					String viewId = "org.unicase.workspace.edit.views.historybrowserview.HistoryBrowserView";
-					try {
-						historyBrowserView = (HistoryBrowserView) page.showView(viewId);
-					} catch (PartInitException e) {
-						DialogHandler.showExceptionDialog(e);
-					}
-					if (historyBrowserView != null) {
-						historyBrowserView.setInput(finalProjectSpace, modelElement);
-						logEvent(finalProjectSpace, viewId);
-					}
-				}
-			}
-		});
+		domain.getCommandStack().execute(new HistoryRecordingCommand(domain, finalProjectSpace, event));
 
 		return null;
 	}
