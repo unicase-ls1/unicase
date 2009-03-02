@@ -138,12 +138,7 @@ public class MEEditorPage extends FormPage {
 		GridLayoutFactory.fillDefaults().numColumns(1).equalWidth(false).extendedMargins(5, 5, 5, 5).applyTo(bottom);
 		GridDataFactory.fillDefaults().align(SWT.LEFT, SWT.TOP).grab(true, false).applyTo(bottom);
 
-		// Layout form
-		String name = modelElement.getName();
-		if (name.length() > 33) {
-			name = name.substring(0, 30) + "...";
-		}
-		form.setText(name);
+		updateSectionTitle();
 		form.setImage(new AdapterFactoryLabelProvider(new ComposedAdapterFactory(
 			ComposedAdapterFactory.Descriptor.Registry.INSTANCE)).getImage(modelElement));
 
@@ -156,6 +151,19 @@ public class MEEditorPage extends FormPage {
 		createSpecificMEControls();
 		createToolbar();
 		form.pack();
+	}
+
+	/**
+	 * Updates the name of the section.
+	 */
+	public void updateSectionTitle() {
+		// Layout form
+		String name = modelElement.getName();
+		if (name.length() > 33) {
+			name = name.substring(0, 30) + "...";
+		}
+		name += " [" + modelElement.eClass().getName() + "]";
+		form.setText(name);
 	}
 
 	private void createToolbar() {

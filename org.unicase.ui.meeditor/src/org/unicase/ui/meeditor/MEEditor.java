@@ -17,6 +17,7 @@ import org.eclipse.emf.edit.provider.ComposedAdapterFactory;
 import org.eclipse.emf.edit.provider.ReflectiveItemProviderAdapterFactory;
 import org.eclipse.emf.edit.provider.resource.ResourceItemProviderAdapterFactory;
 import org.eclipse.emf.transaction.TransactionalEditingDomain;
+import org.eclipse.swt.graphics.Image;
 import org.eclipse.ui.IEditorInput;
 import org.eclipse.ui.IEditorSite;
 import org.eclipse.ui.PartInitException;
@@ -123,14 +124,15 @@ public class MEEditor extends SharedHeaderFormEditor {
 						&& ((EAttribute) msg.getFeature()).getName().equals("name")) {
 						setPartName(getLimitedTitle(msg.getNewStringValue()));
 						if (mePage != null) {
-							mePage.getManagedForm().getForm().setText(msg.getNewStringValue());
+							mePage.updateSectionTitle();
 						}
 					}
-					setTitleImage(input.getImageDescriptor().createImage());
+					Image titleImage = input.getImageDescriptor().createImage();
+					setTitleImage(titleImage);
 					// TODO AS: Debug why sometimes the page is null - not disposed Adapter?
 					if (mePage != null) {
 						// TODO AS: Replace with a SeverityDecorator.
-						mePage.getManagedForm().getForm().setImage(input.getImageDescriptor().createImage());
+						mePage.getManagedForm().getForm().setImage(titleImage);
 					}
 				}
 
