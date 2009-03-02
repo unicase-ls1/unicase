@@ -350,7 +350,7 @@ public class TaskView extends ViewPart implements ProjectChangeObserver {
 	 * @param checked if resolved bug reports are filtered.
 	 */
 	protected void setResolvedBugReportsFilter(boolean checked) {
-		if (checked) {
+		if (!checked) {
 			viewer.addFilter(resolvedBugReportFilter);
 		} else {
 			if (resolvedBugReportFilter != null) {
