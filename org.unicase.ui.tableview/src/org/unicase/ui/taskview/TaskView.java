@@ -164,7 +164,7 @@ public class TaskView extends ViewPart implements ProjectChangeObserver {
 	 * @param checked if the blocked filter is activated.
 	 */
 	protected void setBlockedFilter(boolean checked) {
-		if (checked) {
+		if (!checked) {
 			viewer.removeFilter(blockedFilter);
 		} else {
 			viewer.addFilter(blockedFilter);
