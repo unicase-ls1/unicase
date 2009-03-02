@@ -7,6 +7,8 @@ package org.unicase.ui.taskview;
 
 import java.io.IOException;
 
+import org.eclipse.core.internal.resources.Project;
+import org.eclipse.core.internal.resources.Workspace;
 import org.eclipse.core.runtime.IPath;
 import org.eclipse.emf.common.notify.Notification;
 import org.eclipse.emf.common.notify.impl.AdapterImpl;
@@ -19,26 +21,9 @@ import org.eclipse.jface.viewers.IDoubleClickListener;
 import org.eclipse.swt.SWT;
 import org.eclipse.swt.widgets.Composite;
 import org.eclipse.ui.IActionBars;
+import org.eclipse.ui.internal.keys.model.ModelElement;
 import org.eclipse.ui.part.ViewPart;
-import org.unicase.model.ModelElement;
-import org.unicase.model.Project;
-import org.unicase.model.organization.User;
-import org.unicase.model.task.TaskPackage;
-import org.unicase.model.task.WorkItem;
-import org.unicase.model.util.ProjectChangeObserver;
-import org.unicase.ui.common.filter.ResolvedBugReportFilter;
-import org.unicase.ui.common.filter.TeamFilter;
-import org.unicase.ui.common.filter.UserFilter;
-import org.unicase.ui.common.util.ActionHelper;
 import org.unicase.ui.tableview.Activator;
-import org.unicase.workspace.ProjectSpace;
-import org.unicase.workspace.Workspace;
-import org.unicase.workspace.WorkspaceManager;
-import org.unicase.workspace.WorkspacePackage;
-import org.unicase.workspace.exceptions.CannotMatchUserInProjectException;
-import org.unicase.workspace.util.EventUtil;
-import org.unicase.workspace.util.NoCurrentUserException;
-import org.unicase.workspace.util.OrgUnitHelper;
 
 /**
  * A specialized TableView to display Action Items.
@@ -350,7 +335,7 @@ public class TaskView extends ViewPart implements ProjectChangeObserver {
 	 * @param checked if resolved bug reports are filtered.
 	 */
 	protected void setResolvedBugReportsFilter(boolean checked) {
-		if (checked) {
+		if (!checked) {
 			viewer.addFilter(resolvedBugReportFilter);
 		} else {
 			if (resolvedBugReportFilter != null) {
