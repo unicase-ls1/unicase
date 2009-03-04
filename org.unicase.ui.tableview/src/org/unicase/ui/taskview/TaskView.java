@@ -5,8 +5,6 @@
  */
 package org.unicase.ui.taskview;
 
-import java.io.IOException;
-
 import org.eclipse.core.runtime.IPath;
 import org.eclipse.emf.common.notify.Notification;
 import org.eclipse.emf.common.notify.impl.AdapterImpl;
@@ -39,6 +37,8 @@ import org.unicase.workspace.exceptions.CannotMatchUserInProjectException;
 import org.unicase.workspace.util.EventUtil;
 import org.unicase.workspace.util.NoCurrentUserException;
 import org.unicase.workspace.util.OrgUnitHelper;
+
+import java.io.IOException;
 
 /**
  * A specialized TableView to display Action Items.
@@ -165,9 +165,9 @@ public class TaskView extends ViewPart implements ProjectChangeObserver {
 	 */
 	protected void setBlockedFilter(boolean checked) {
 		if (!checked) {
-			viewer.removeFilter(blockedFilter);
-		} else {
 			viewer.addFilter(blockedFilter);
+		} else {
+			viewer.removeFilter(blockedFilter);
 		}
 
 	}
@@ -320,10 +320,10 @@ public class TaskView extends ViewPart implements ProjectChangeObserver {
 	 * @param checked if filtered
 	 */
 	protected void setUncheckedFilter(boolean checked) {
-		if (checked) {
-			viewer.removeFilter(uncheckedFilter);
-		} else {
+		if (!checked) {
 			viewer.addFilter(uncheckedFilter);
+		} else {
+			viewer.removeFilter(uncheckedFilter);
 		}
 
 	}
@@ -351,7 +351,9 @@ public class TaskView extends ViewPart implements ProjectChangeObserver {
 	 */
 	protected void setResolvedBugReportsFilter(boolean checked) {
 		if (!checked) {
-			viewer.addFilter(resolvedBugReportFilter);
+			if (resolvedBugReportFilter != null) {
+				viewer.addFilter(resolvedBugReportFilter);
+			}
 		} else {
 			if (resolvedBugReportFilter != null) {
 				viewer.removeFilter(resolvedBugReportFilter);
