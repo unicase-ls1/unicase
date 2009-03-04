@@ -38,7 +38,7 @@ public class DateColumnLabelProvider extends ColumnLabelProvider {
 	public String getText(Object element) {
 
 		if (!feature.getEType().equals(EcorePackage.Literals.EDATE)) {
-			return super.getText(element);
+			return "";
 		}
 
 		Format formatter = new SimpleDateFormat("yyyy MM.dd. HH:mm:ss");
@@ -48,10 +48,9 @@ public class DateColumnLabelProvider extends ColumnLabelProvider {
 			if (date != null) {
 				return formatter.format(date);
 			}
-
 		}
 
-		return super.getText(element);
+		return "";
 	}
 
 }
