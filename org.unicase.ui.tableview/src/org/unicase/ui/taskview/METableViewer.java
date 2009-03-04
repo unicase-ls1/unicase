@@ -12,6 +12,7 @@ import org.eclipse.emf.ecore.EAttribute;
 import org.eclipse.emf.ecore.EClass;
 import org.eclipse.emf.ecore.EReference;
 import org.eclipse.emf.ecore.EStructuralFeature;
+import org.eclipse.emf.ecore.EcorePackage;
 import org.eclipse.emf.edit.ui.provider.AdapterFactoryContentProvider;
 import org.eclipse.jface.viewers.ColumnLabelProvider;
 import org.eclipse.jface.viewers.EditingSupport;
@@ -152,6 +153,13 @@ public class METableViewer extends TableViewer {
 
 		EReference container = TaskPackage.Literals.WORK_ITEM__CONTAINING_WORKPACKAGE;
 		prepareStandardColumn(container, 150);
+
+		EAttribute dueDate = TaskPackage.Literals.WORK_ITEM__DUE_DATE;
+		prepareStandardColumn(dueDate, 150);
+
+		EAttribute priority = TaskPackage.Literals.WORK_ITEM__PRIORITY;
+		prepareStandardColumn(priority, 50);
+
 	}
 
 	private String getFeatureName(EStructuralFeature feature) {
@@ -160,11 +168,6 @@ public class METableViewer extends TableViewer {
 			+ currentFeature.getName() + "_feature";
 		return ModelEditPlugin.INSTANCE.getString(nameLookupString);
 	}
-
-	// public void setRestrictedToCurrentUser(){
-	// ViewerFilter userFilter = new TaskViewFilter();
-	// this.setFilters(filters)
-	// }
 
 	private TableViewerColumn prepareStandardColumn(EStructuralFeature currentFeature, int width) {
 		TableViewerColumn currentColumn = new TableViewerColumn(this, SWT.CENTER);
@@ -176,8 +179,8 @@ public class METableViewer extends TableViewer {
 		currentColumn.getColumn().setMoveable(true);
 		currentColumn.getColumn().setResizable(true);
 		ColumnLabelProvider provider;
-		if (currentFeature.equals(ModelPackage.Literals.MODEL_ELEMENT__CREATION_DATE)) {
-			provider = new CreationDateColumnLabelProvider(this, currentFeature);
+		if (currentFeature.getEType().equals(EcorePackage.Literals.EDATE)) {
+			provider = new DateColumnLabelProvider(currentFeature);
 		} else {
 			provider = new GenericColumnLabelProvider(this, currentFeature);
 		}
