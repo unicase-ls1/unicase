@@ -231,7 +231,9 @@ public class TaskView extends ViewPart implements ProjectChangeObserver {
 	 */
 	protected void setTeamFilter(boolean checked) {
 		if (checked) {
-			viewer.addFilter(teamFilter);
+			if (teamFilter != null) {
+				viewer.addFilter(teamFilter);
+			}
 		} else {
 			if (teamFilter != null) {
 				viewer.removeFilter(teamFilter);
@@ -335,7 +337,9 @@ public class TaskView extends ViewPart implements ProjectChangeObserver {
 	 */
 	protected void setUserFilter(boolean checked) {
 		if (checked) {
-			viewer.addFilter(userFilter);
+			if (userFilter != null) {
+				viewer.addFilter(userFilter);
+			}
 		} else {
 			if (userFilter != null) {
 				viewer.removeFilter(userFilter);
