@@ -54,11 +54,6 @@ public final class AttributeRendererRegistry {
 			}
 		}
 
-		if (feature instanceof EReference
-			&& ((EReference) feature).getEReferenceType().eClass().equals(
-				RequirementPackage.eINSTANCE.getStep().getInstanceTypeName())) {
-		}
-
 		return ret;
 	}
 }

@@ -189,6 +189,11 @@ public class ModelElementRendererMappingItemProvider extends ItemProviderAdapter
 			(createChildParameter
 				(RenderersPackage.Literals.MODEL_ELEMENT_RENDERER_MAPPING__RENDERER,
 				 SpecialRenderersFactory.eINSTANCE.createClassRenderer()));
+
+		newChildDescriptors.add
+			(createChildParameter
+				(RenderersPackage.Literals.MODEL_ELEMENT_RENDERER_MAPPING__RENDERER,
+				 SpecialRenderersFactory.eINSTANCE.createFhmMeetingRenderer()));
 	}
 
 	/**

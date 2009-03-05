@@ -13,6 +13,7 @@ import org.unicase.docExport.exportModel.renderers.AttributeRenderer;
 import org.unicase.docExport.exportModel.renderers.ModelElementRenderer;
 import org.unicase.docExport.exportModel.renderers.specialRenderers.ClassAttributesRenderer;
 import org.unicase.docExport.exportModel.renderers.specialRenderers.ClassRenderer;
+import org.unicase.docExport.exportModel.renderers.specialRenderers.FhmMeetingRenderer;
 import org.unicase.docExport.exportModel.renderers.specialRenderers.MeetingRenderer;
 import org.unicase.docExport.exportModel.renderers.specialRenderers.MethodRenderer;
 import org.unicase.docExport.exportModel.renderers.specialRenderers.MilestoneRenderer;
@@ -97,6 +98,10 @@ public class SpecialRenderersAdapterFactory extends AdapterFactoryImpl {
 			@Override
 			public Adapter caseClassAttributesRenderer(ClassAttributesRenderer object) {
 				return createClassAttributesRendererAdapter();
+			}
+			@Override
+			public Adapter caseFhmMeetingRenderer(FhmMeetingRenderer object) {
+				return createFhmMeetingRendererAdapter();
 			}
 			@Override
 			public Adapter caseModelElementRenderer(ModelElementRenderer object) {
@@ -212,6 +217,20 @@ public class SpecialRenderersAdapterFactory extends AdapterFactoryImpl {
 	 * @generated
 	 */
 	public Adapter createClassAttributesRendererAdapter() {
+		return null;
+	}
+
+	/**
+	 * Creates a new adapter for an object of class '{@link org.unicase.docExport.exportModel.renderers.specialRenderers.FhmMeetingRenderer <em>Fhm Meeting Renderer</em>}'.
+	 * <!-- begin-user-doc -->
+	 * This default implementation returns null so that we can easily ignore cases;
+	 * it's useful to ignore a case when inheritance will catch all the cases anyway.
+	 * <!-- end-user-doc -->
+	 * @return the new adapter.
+	 * @see org.unicase.docExport.exportModel.renderers.specialRenderers.FhmMeetingRenderer
+	 * @generated
+	 */
+	public Adapter createFhmMeetingRendererAdapter() {
 		return null;
 	}
 

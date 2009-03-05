@@ -61,6 +61,7 @@ public class MeetingRendererImpl extends ModelElementRendererImpl implements Mee
 
 	/**
 	 * <!-- begin-user-doc --> . <!-- end-user-doc -->
+	 * 
 	 * @generated
 	 */
 	@Override
@@ -92,22 +93,22 @@ public class MeetingRendererImpl extends ModelElementRendererImpl implements Mee
 
 		for (RendererOption option : getRendererOptions()) {
 			if (option.getName().equals("workItem")) {
-				workItemTextOption = (TextOption) option;
+				setWorkItemTextOption((TextOption) option);
 			}
 		}
 
-		this.meeting = (Meeting) modelElement;
+		this.setMeeting((Meeting) modelElement);
 
 		String topic = "";
-		if (meeting.getStarttime() == null) {
+		if (getMeeting().getStarttime() == null) {
 			topic += TOPIC_AGENDA;
-		} else if (meeting.getStarttime().compareTo(Calendar.getInstance().getTime()) > 0) {
+		} else if (getMeeting().getStarttime().compareTo(Calendar.getInstance().getTime()) > 0) {
 			topic += TOPIC_PROTOKOLL;
 		} else {
 			topic += TOPIC_AGENDA;
 		}
 
-		UParagraph topic2 = new UParagraph(topic + meeting.getName(), (TextOption) EcoreUtil.copy(getTemplate()
+		UParagraph topic2 = new UParagraph(topic + getMeeting().getName(), (TextOption) EcoreUtil.copy(getTemplate()
 			.getLayoutOptions().getSectionTextOption()));
 
 		USection title = new USection(topic2);
@@ -135,7 +136,7 @@ public class MeetingRendererImpl extends ModelElementRendererImpl implements Mee
 	/**
 	 * creates the meeting table of this meeting containing the most important information.
 	 */
-	private void createMeetingTable(USection parent) {
+	protected void createMeetingTable(USection parent) {
 		UTable table = new UTable(2);
 		table.getBoxModel().setMarginTop(5);
 		table.getDefaultCellBoxModel().setBorder(0.8);
@@ -158,56 +159,56 @@ public class MeetingRendererImpl extends ModelElementRendererImpl implements Mee
 		table.addCell(rollen);
 
 		String text;
-		if (meeting.getStarttime() != null) {
+		if (getMeeting().getStarttime() != null) {
 			Calendar cal = new GregorianCalendar();
-			cal.setTime(meeting.getStarttime());
+			cal.setTime(getMeeting().getStarttime());
 			text = cal.get(Calendar.DAY_OF_MONTH) + "-" + (cal.get(Calendar.MONTH) + 1) + "-" + cal.get(Calendar.YEAR);
 		} else {
 			text = "";
 		}
 		table.addCell("Datum: " + text);
 
-		if (meeting.getFacilitator() != null) {
-			text = getOrgUnitName(meeting.getFacilitator());
+		if (getMeeting().getFacilitator() != null) {
+			text = getOrgUnitName(getMeeting().getFacilitator());
 		} else {
 			text = "";
 		}
 		table.addCell("Moderator: " + text);
 
-		if (meeting.getStarttime() != null) {
+		if (getMeeting().getStarttime() != null) {
 			Calendar cal = new GregorianCalendar();
-			cal.setTime(meeting.getStarttime());
+			cal.setTime(getMeeting().getStarttime());
 			text = getTimeString(cal);
 		} else {
 			text = "";
 		}
 		table.addCell("Start: " + text);
 
-		if (meeting.getTimekeeper() != null) {
-			text = getOrgUnitName(meeting.getTimekeeper());
+		if (getMeeting().getTimekeeper() != null) {
+			text = getOrgUnitName(getMeeting().getTimekeeper());
 		} else {
 			text = "";
 		}
 		table.addCell("Zeitnehmer: " + text);
 
-		if (meeting.getEndtime() != null) {
+		if (getMeeting().getEndtime() != null) {
 			Calendar cal = new GregorianCalendar();
-			cal.setTime(meeting.getEndtime());
+			cal.setTime(getMeeting().getEndtime());
 			text = getTimeString(cal);
 		} else {
 			text = "";
 		}
 		table.addCell("Ende: " + text);
 
-		if (meeting.getMinutetaker() != null) {
-			text = getOrgUnitName(meeting.getMinutetaker());
+		if (getMeeting().getMinutetaker() != null) {
+			text = getOrgUnitName(getMeeting().getMinutetaker());
 		} else {
 			text = "";
 		}
 		table.addCell("Protokollant: " + text);
 
-		if (meeting.getLocation() != null) {
-			text = meeting.getLocation();
+		if (getMeeting().getLocation() != null) {
+			text = getMeeting().getLocation();
 		} else {
 			text = "";
 		}
@@ -217,7 +218,7 @@ public class MeetingRendererImpl extends ModelElementRendererImpl implements Mee
 		table.addCell(ort);
 
 		String text2 = "Teilnehmer: ";
-		for (OrgUnit orgUnit : meeting.getParticipants()) {
+		for (OrgUnit orgUnit : getMeeting().getParticipants()) {
 			text2 += getOrgUnitName(orgUnit) + ", ";
 		}
 		text2 = text2.substring(0, text2.length() - 2);
@@ -230,7 +231,7 @@ public class MeetingRendererImpl extends ModelElementRendererImpl implements Mee
 		parent.add(table);
 	}
 
-	private String getTimeString(Calendar cal) {
+	protected String getTimeString(Calendar cal) {
 		String text = "";
 		if (cal.get(Calendar.HOUR_OF_DAY) < 10) {
 			text += 0;
@@ -245,15 +246,15 @@ public class MeetingRendererImpl extends ModelElementRendererImpl implements Mee
 		return text;
 	}
 
-	private void renderMeetingSections(USection title) {
+	protected void renderMeetingSections(USection title) {
 
-		EList<MeetingSection> sections = meeting.getSections();
+		EList<MeetingSection> sections = getMeeting().getSections();
 		for (MeetingSection meetingSection : sections) {
 			renderMeetingSection(title, meetingSection);
 		}
 	}
 
-	private void renderMeetingSection(UCompositeSection parent, MeetingSection meetingSection) {
+	protected void renderMeetingSection(UCompositeSection parent, MeetingSection meetingSection) {
 
 		if (meetingSection instanceof CompositeMeetingSection) {
 			renderCompositeMeetingSection(parent, (CompositeMeetingSection) meetingSection);
@@ -264,7 +265,7 @@ public class MeetingRendererImpl extends ModelElementRendererImpl implements Mee
 		}
 	}
 
-	private void renderCompositeMeetingSection(UCompositeSection parent, CompositeMeetingSection meetingSection) {
+	protected void renderCompositeMeetingSection(UCompositeSection parent, CompositeMeetingSection meetingSection) {
 
 		parent.add(new UParagraph(" "));
 
@@ -282,7 +283,7 @@ public class MeetingRendererImpl extends ModelElementRendererImpl implements Mee
 		}
 	}
 
-	private void renderIssueMeetingSection(UCompositeSection parent, IssueMeetingSection meetingSection) {
+	protected void renderIssueMeetingSection(UCompositeSection parent, IssueMeetingSection meetingSection) {
 
 		parent.add(new UParagraph(" "));
 
@@ -309,7 +310,7 @@ public class MeetingRendererImpl extends ModelElementRendererImpl implements Mee
 		}
 	}
 
-	private void renderWorkItemMeetingSection(UCompositeSection parent, WorkItemMeetingSection meetingSection) {
+	protected void renderWorkItemMeetingSection(UCompositeSection parent, WorkItemMeetingSection meetingSection) {
 		USection workItemSection = new USection(getMeetingSectionTitle(meetingSection), getTemplate()
 			.getLayoutOptions().getModelElementTextOption());
 		parent.add(new UParagraph(" "));
@@ -332,7 +333,7 @@ public class MeetingRendererImpl extends ModelElementRendererImpl implements Mee
 		}
 	}
 
-	private void renderWorkItem(USection workItemSection, WorkItem workItem, int number) {
+	protected void renderWorkItem(USection workItemSection, WorkItem workItem, int number) {
 		// ModelElementRendererMappings mappings = template.modelElementRendererMappings;
 		// ModelElementRenderer renderer = mappings.get(workItem.eClass().getInstanceClass());
 		// renderer.render(workItem, workItemSection, layoutOptions);
@@ -364,7 +365,7 @@ public class MeetingRendererImpl extends ModelElementRendererImpl implements Mee
 		}
 		workItemText += " (" + workItem.getState() + ")";
 
-		UParagraph par = new UParagraph(text + workItemText, workItemTextOption);
+		UParagraph par = new UParagraph(text + workItemText, getWorkItemTextOption());
 		par.setIndentionLeft(1);
 		workItemSection.add(par);
 
@@ -373,20 +374,20 @@ public class MeetingRendererImpl extends ModelElementRendererImpl implements Mee
 			int i = 1;
 			for (Proposal proposal : issue.getProposals()) {
 				String text2 = "P[" + number + "." + i + "]: " + proposal.getName();
-				UParagraph par2 = new UParagraph(text2, workItemTextOption);
+				UParagraph par2 = new UParagraph(text2, getWorkItemTextOption());
 				par2.setIndentionLeft(2);
 				workItemSection.add(par2);
 			}
 
 			if (issue.getSolution() != null) {
-				UParagraph solution = new UParagraph("Solution: " + issue.getSolution().getName(), workItemTextOption);
+				UParagraph solution = new UParagraph("Solution: " + issue.getSolution().getName(), getWorkItemTextOption());
 				solution.setIndentionLeft(2);
 				workItemSection.add(solution);
 			}
 		}
 	}
 
-	private String getMeetingSectionTitle(MeetingSection meetingSection) {
+	protected String getMeetingSectionTitle(MeetingSection meetingSection) {
 		String title = meetingSection.getName();
 		if (meetingSection.getAllocatedTime() > 0) {
 			title += " [" + meetingSection.getAllocatedTime() + " Minuten]";
@@ -394,7 +395,7 @@ public class MeetingRendererImpl extends ModelElementRendererImpl implements Mee
 		return title;
 	}
 
-	private void renderDescription(UCompositeSection parent, ModelElement me) {
+	protected void renderDescription(UCompositeSection parent, ModelElement me) {
 		UParagraph descr = new UParagraph(WorkspaceUtil.cleanFormatedText(me.getDescription()) + "\n", getTemplate()
 			.getLayoutOptions().getDefaultTextOption());
 		descr.setIndentionLeft(1);
@@ -402,7 +403,7 @@ public class MeetingRendererImpl extends ModelElementRendererImpl implements Mee
 		descr.getBoxModel().setKeepWithPrevious(true);
 	}
 
-	private String getOrgUnitName(OrgUnit orgUnit) {
+	protected String getOrgUnitName(OrgUnit orgUnit) {
 
 		if (orgUnit == null) {
 			return "<not assigned>";
@@ -423,5 +424,33 @@ public class MeetingRendererImpl extends ModelElementRendererImpl implements Mee
 		return ret;
 	}
 	// end custom code
+
+	/**
+	 * @param meeting the meeting to set
+	 */
+	protected void setMeeting(Meeting meeting) {
+		this.meeting = meeting;
+	}
+
+	/**
+	 * @return the meeting
+	 */
+	protected Meeting getMeeting() {
+		return meeting;
+	}
+
+	/**
+	 * @param workItemTextOption the workItemTextOption to set
+	 */
+	protected void setWorkItemTextOption(TextOption workItemTextOption) {
+		this.workItemTextOption = workItemTextOption;
+	}
+
+	/**
+	 * @return the workItemTextOption
+	 */
+	protected TextOption getWorkItemTextOption() {
+		return workItemTextOption;
+	}
 
 } // MeetingRendererImpl

@@ -14,6 +14,7 @@ import org.unicase.docExport.exportModel.builders.DefaultDocumentTemplateBuilder
 import org.unicase.docExport.exportModel.builders.DefaultModelElementRendererBuilder;
 import org.unicase.docExport.exportModel.renderers.ModelElementRenderer;
 import org.unicase.docExport.exportModel.renderers.specialRenderers.ClassRenderer;
+import org.unicase.docExport.exportModel.renderers.specialRenderers.FhmMeetingRenderer;
 import org.unicase.docExport.exportModel.renderers.specialRenderers.MeetingRenderer;
 import org.unicase.docExport.exportModel.renderers.specialRenderers.MilestoneRenderer;
 import org.unicase.docExport.exportModel.renderers.specialRenderers.PackageFlatRenderer;
@@ -51,6 +52,11 @@ public final class ModelElementRendererRegistry {
 		if (modelElementEClass.equals("Meeting")) {
 			MeetingRenderer renderer = SpecialRenderersFactory.eINSTANCE.createMeetingRenderer(template);
 			renderers.add(renderer);
+
+			FhmMeetingRenderer renderer2 = SpecialRenderersFactory.eINSTANCE.createFhmMeetingRenderer();
+			renderer2.setTemplate(template);
+			renderers.add(renderer2);
+
 		} else if (modelElementEClass.equals("Milestone")) {
 			MilestoneRenderer renderer = SpecialRenderersFactory.eINSTANCE.createMilestoneRenderer();
 			renderer.setTemplate(template);

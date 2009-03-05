@@ -237,6 +237,29 @@ public class SpecialRenderersItemProviderAdapterFactory extends SpecialRenderers
 	}
 
 	/**
+	 * This keeps track of the one adapter used for all {@link org.unicase.docExport.exportModel.renderers.specialRenderers.FhmMeetingRenderer} instances.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 */
+	protected FhmMeetingRendererItemProvider fhmMeetingRendererItemProvider;
+
+	/**
+	 * This creates an adapter for a {@link org.unicase.docExport.exportModel.renderers.specialRenderers.FhmMeetingRenderer}.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 */
+	@Override
+	public Adapter createFhmMeetingRendererAdapter() {
+		if (fhmMeetingRendererItemProvider == null) {
+			fhmMeetingRendererItemProvider = new FhmMeetingRendererItemProvider(this);
+		}
+
+		return fhmMeetingRendererItemProvider;
+	}
+
+	/**
 	 * This returns the root adapter factory that contains this factory.
 	 * <!-- begin-user-doc --> <!-- end-user-doc -->
 	 * @generated
@@ -335,6 +358,7 @@ public class SpecialRenderersItemProviderAdapterFactory extends SpecialRenderers
 		if (packageFlatRendererItemProvider != null) packageFlatRendererItemProvider.dispose();
 		if (classRendererItemProvider != null) classRendererItemProvider.dispose();
 		if (classAttributesRendererItemProvider != null) classAttributesRendererItemProvider.dispose();
+		if (fhmMeetingRendererItemProvider != null) fhmMeetingRendererItemProvider.dispose();
 	}
 
 }

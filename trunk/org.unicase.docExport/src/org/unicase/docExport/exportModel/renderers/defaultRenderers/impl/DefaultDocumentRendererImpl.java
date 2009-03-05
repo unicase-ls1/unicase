@@ -13,6 +13,7 @@ import org.eclipse.core.runtime.Path;
 import org.eclipse.emf.common.util.EList;
 import org.eclipse.emf.ecore.EClass;
 import org.eclipse.emf.ecore.EObject;
+import org.eclipse.emf.ecore.util.EcoreUtil;
 import org.unicase.docExport.DocumentExport;
 import org.unicase.docExport.TemplateRegistry;
 import org.unicase.docExport.exportModel.Template;
@@ -49,7 +50,7 @@ import org.unicase.workspace.util.WorkspaceUtil;
  * end-user-doc -->
  * <p>
  * </p>
- *
+ * 
  * @generated
  */
 public class DefaultDocumentRendererImpl extends DocumentRendererImpl implements DefaultDocumentRenderer {
@@ -59,6 +60,7 @@ public class DefaultDocumentRendererImpl extends DocumentRendererImpl implements
 
 	/**
 	 * <!-- begin-user-doc --> <!-- end-user-doc -->
+	 * 
 	 * @generated
 	 */
 	protected DefaultDocumentRendererImpl() {
@@ -67,6 +69,7 @@ public class DefaultDocumentRendererImpl extends DocumentRendererImpl implements
 
 	/**
 	 * <!-- begin-user-doc --> <!-- end-user-doc -->
+	 * 
 	 * @generated
 	 */
 	@Override
@@ -80,6 +83,13 @@ public class DefaultDocumentRendererImpl extends DocumentRendererImpl implements
 	 * returned containing all information needed to use a DocWriter.
 	 */
 	public UCompositeSection render(ModelElement modelElement, Template template) {
+
+		if (!(modelElement instanceof LeafSection) && !(modelElement instanceof CompositeSection)) {
+			template = (Template) EcoreUtil.copy(template);
+
+			// hiding the header and footer on a document without and document structure is not good.
+			template.getLayoutOptions().setHideHeaderAndFooterOnCoverPage(false);
+		}
 
 		this.template = template;
 		URootCompositeSection root = new URootCompositeSection();
@@ -166,15 +176,24 @@ public class DefaultDocumentRendererImpl extends DocumentRendererImpl implements
 	private void setHeader(URootCompositeSection root) {
 		HeaderStyle headerStyle = template.getLayoutOptions().getHeaderStyle();
 
+		UParagraph headerContainer = new UParagraph("");
+		root.setHeader(headerContainer);
+
+		// This is a hack for margin top of the header reagion.
+		// fop doesn't render the extend attribute of the fo:xsl-region-before
+		UImage marginTop = new UImage(new Path("i_do_not_exist"));
+		headerContainer.add(marginTop);
+		marginTop.setHeight(15);
+
 		if (headerStyle.equals(HeaderStyle.ONLY_TEXT)) {
-			UParagraph header = new UParagraph("\n" + template.getLayoutOptions().getHeaderText(), template
-				.getLayoutOptions().getHeaderTextOption());
-			root.setHeader(header);
+			UParagraph header = new UParagraph(template.getLayoutOptions().getHeaderText(), template.getLayoutOptions()
+				.getHeaderTextOption());
+			headerContainer.add(header);
 		} else if (headerStyle.equals(HeaderStyle.TEXT_AND_LOGO)) {
 			UTable headerTable = new UTable(2);
 
-			UParagraph header = new UParagraph("\n" + template.getLayoutOptions().getHeaderText(), template
-				.getLayoutOptions().getHeaderTextOption());
+			UParagraph header = new UParagraph(template.getLayoutOptions().getHeaderText(), template.getLayoutOptions()
+				.getHeaderTextOption());
 
 			UImage logo = new UImage(new Path(TemplateRegistry.TEMPLATE_IMAGE_FOLDER
 				+ template.getLayoutOptions().getLogoImage()));
@@ -186,7 +205,7 @@ public class DefaultDocumentRendererImpl extends DocumentRendererImpl implements
 			headerTable.addCell(leftCell);
 			headerTable.addCell(rightCell);
 
-			root.setHeader(headerTable);
+			headerContainer.add(headerTable);
 		} else {
 			WorkspaceUtil.log("The HeaderStyle " + headerStyle + "isn't implemented yet", new Exception(),
 				IStatus.ERROR);

@@ -50,6 +50,7 @@
         <genClasses ecoreClass="exportModel.ecore#//renderers/specialRenderers/PackageFlatRenderer"/>
         <genClasses ecoreClass="exportModel.ecore#//renderers/specialRenderers/ClassRenderer"/>
         <genClasses ecoreClass="exportModel.ecore#//renderers/specialRenderers/ClassAttributesRenderer"/>
+        <genClasses ecoreClass="exportModel.ecore#//renderers/specialRenderers/FhmMeetingRenderer"/>
       </nestedGenPackages>
       <nestedGenPackages prefix="Options" basePackage="org.unicase.docExport.exportModel.renderers"
           disposableProviderFactory="true" ecorePackage="exportModel.ecore#//renderers/options">
