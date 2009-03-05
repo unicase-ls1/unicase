@@ -39,6 +39,8 @@ public class TemplateEditor extends EditorPart {
 	private ScrolledComposite layoutOptionsScrolledComposite;
 	private ModelElementRenderersTab modelElementRenderersTab;
 
+	
+	
 	/**
 	 * .
 	 */
@@ -182,7 +184,7 @@ public class TemplateEditor extends EditorPart {
 		scrolledComposite.setLayout(layout1);
 		scrolledComposite.setLayoutData(data1);
 		tabItem1.setControl(scrolledComposite);
-
+		
 		return scrolledComposite;
 	}
 

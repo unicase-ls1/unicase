@@ -81,6 +81,15 @@ public interface SpecialRenderersFactory extends EFactory {
 	ClassAttributesRenderer createClassAttributesRenderer();
 
 	/**
+	 * Returns a new object of class '<em>Fhm Meeting Renderer</em>'.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @return a new object of class '<em>Fhm Meeting Renderer</em>'.
+	 * @generated
+	 */
+	FhmMeetingRenderer createFhmMeetingRenderer();
+
+	/**
 	 * Returns the package supported by this factory.
 	 * <!-- begin-user-doc --> <!-- end-user-doc -->
 	 * @return the package supported by this factory.

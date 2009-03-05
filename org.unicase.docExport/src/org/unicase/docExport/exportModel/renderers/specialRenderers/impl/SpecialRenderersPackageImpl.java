@@ -18,6 +18,7 @@ import org.unicase.docExport.exportModel.renderers.options.OptionsPackage;
 import org.unicase.docExport.exportModel.renderers.options.impl.OptionsPackageImpl;
 import org.unicase.docExport.exportModel.renderers.specialRenderers.ClassAttributesRenderer;
 import org.unicase.docExport.exportModel.renderers.specialRenderers.ClassRenderer;
+import org.unicase.docExport.exportModel.renderers.specialRenderers.FhmMeetingRenderer;
 import org.unicase.docExport.exportModel.renderers.specialRenderers.MeetingRenderer;
 import org.unicase.docExport.exportModel.renderers.specialRenderers.MethodRenderer;
 import org.unicase.docExport.exportModel.renderers.specialRenderers.MilestoneRenderer;
@@ -74,6 +75,13 @@ public class SpecialRenderersPackageImpl extends EPackageImpl implements Special
 	 * @generated
 	 */
 	private EClass classAttributesRendererEClass = null;
+
+	/**
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 */
+	private EClass fhmMeetingRendererEClass = null;
 
 	/**
 	 * Creates an instance of the model <b>Package</b>, registered with {@link org.eclipse.emf.ecore.EPackage.Registry
@@ -213,6 +221,15 @@ public class SpecialRenderersPackageImpl extends EPackageImpl implements Special
 	}
 
 	/**
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 */
+	public EClass getFhmMeetingRenderer() {
+		return fhmMeetingRendererEClass;
+	}
+
+	/**
 	 * <!-- begin-user-doc --> <!-- end-user-doc -->
 	 * @generated
 	 */
@@ -250,6 +267,8 @@ public class SpecialRenderersPackageImpl extends EPackageImpl implements Special
 		classRendererEClass = createEClass(CLASS_RENDERER);
 
 		classAttributesRendererEClass = createEClass(CLASS_ATTRIBUTES_RENDERER);
+
+		fhmMeetingRendererEClass = createEClass(FHM_MEETING_RENDERER);
 	}
 
 	/**
@@ -288,6 +307,7 @@ public class SpecialRenderersPackageImpl extends EPackageImpl implements Special
 		packageFlatRendererEClass.getESuperTypes().add(theRenderersPackage.getModelElementRenderer());
 		classRendererEClass.getESuperTypes().add(theRenderersPackage.getModelElementRenderer());
 		classAttributesRendererEClass.getESuperTypes().add(theRenderersPackage.getAttributeRenderer());
+		fhmMeetingRendererEClass.getESuperTypes().add(this.getMeetingRenderer());
 
 		// Initialize classes and features; add operations and parameters
 		initEClass(meetingRendererEClass, MeetingRenderer.class, "MeetingRenderer", !IS_ABSTRACT, !IS_INTERFACE, IS_GENERATED_INSTANCE_CLASS);
@@ -303,6 +323,8 @@ public class SpecialRenderersPackageImpl extends EPackageImpl implements Special
 		initEClass(classRendererEClass, ClassRenderer.class, "ClassRenderer", !IS_ABSTRACT, !IS_INTERFACE, IS_GENERATED_INSTANCE_CLASS);
 
 		initEClass(classAttributesRendererEClass, ClassAttributesRenderer.class, "ClassAttributesRenderer", !IS_ABSTRACT, !IS_INTERFACE, IS_GENERATED_INSTANCE_CLASS);
+
+		initEClass(fhmMeetingRendererEClass, FhmMeetingRenderer.class, "FhmMeetingRenderer", !IS_ABSTRACT, !IS_INTERFACE, IS_GENERATED_INSTANCE_CLASS);
 	}
 
 } // SpecialRenderersPackageImpl

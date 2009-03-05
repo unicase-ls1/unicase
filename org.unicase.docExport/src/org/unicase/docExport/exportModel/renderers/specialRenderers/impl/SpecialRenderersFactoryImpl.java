@@ -15,6 +15,7 @@ import org.unicase.docExport.exportModel.Template;
 import org.unicase.docExport.exportModel.renderers.options.TextOption;
 import org.unicase.docExport.exportModel.renderers.specialRenderers.ClassAttributesRenderer;
 import org.unicase.docExport.exportModel.renderers.specialRenderers.ClassRenderer;
+import org.unicase.docExport.exportModel.renderers.specialRenderers.FhmMeetingRenderer;
 import org.unicase.docExport.exportModel.renderers.specialRenderers.MeetingRenderer;
 import org.unicase.docExport.exportModel.renderers.specialRenderers.MethodRenderer;
 import org.unicase.docExport.exportModel.renderers.specialRenderers.MilestoneRenderer;
@@ -69,6 +70,7 @@ public class SpecialRenderersFactoryImpl extends EFactoryImpl implements Special
 			case SpecialRenderersPackage.PACKAGE_FLAT_RENDERER: return createPackageFlatRenderer();
 			case SpecialRenderersPackage.CLASS_RENDERER: return createClassRenderer();
 			case SpecialRenderersPackage.CLASS_ATTRIBUTES_RENDERER: return createClassAttributesRenderer();
+			case SpecialRenderersPackage.FHM_MEETING_RENDERER: return createFhmMeetingRenderer();
 			default:
 				throw new IllegalArgumentException("The class '" + eClass.getName() + "' is not a valid classifier");
 		}
@@ -151,6 +153,16 @@ public class SpecialRenderersFactoryImpl extends EFactoryImpl implements Special
 	public ClassAttributesRenderer createClassAttributesRenderer() {
 		ClassAttributesRendererImpl classAttributesRenderer = new ClassAttributesRendererImpl();
 		return classAttributesRenderer;
+	}
+
+	/**
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 */
+	public FhmMeetingRenderer createFhmMeetingRenderer() {
+		FhmMeetingRendererImpl fhmMeetingRenderer = new FhmMeetingRendererImpl();
+		return fhmMeetingRenderer;
 	}
 
 	/**

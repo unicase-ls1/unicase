@@ -50,6 +50,7 @@
       <eClassifiers xsi:type="ecore:EClass" name="PackageFlatRenderer" eSuperTypes="#//renderers/ModelElementRenderer"/>
       <eClassifiers xsi:type="ecore:EClass" name="ClassRenderer" eSuperTypes="#//renderers/ModelElementRenderer"/>
       <eClassifiers xsi:type="ecore:EClass" name="ClassAttributesRenderer" eSuperTypes="#//renderers/AttributeRenderer"/>
+      <eClassifiers xsi:type="ecore:EClass" name="FhmMeetingRenderer" eSuperTypes="#//renderers/specialRenderers/MeetingRenderer"/>
     </eSubpackages>
     <eSubpackages name="options" nsURI="http://unicase.org/docExport/exportModel/renderers/options"
         nsPrefix="org.unicase.docExport.exportModel.renderers.options">

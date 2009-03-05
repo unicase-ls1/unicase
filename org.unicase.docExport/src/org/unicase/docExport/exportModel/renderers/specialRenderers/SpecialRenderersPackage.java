@@ -312,6 +312,52 @@ public interface SpecialRenderersPackage extends EPackage {
 	int CLASS_ATTRIBUTES_RENDERER_FEATURE_COUNT = RenderersPackage.ATTRIBUTE_RENDERER_FEATURE_COUNT + 0;
 
 	/**
+	 * The meta object id for the '{@link org.unicase.docExport.exportModel.renderers.specialRenderers.impl.FhmMeetingRendererImpl <em>Fhm Meeting Renderer</em>}' class.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @see org.unicase.docExport.exportModel.renderers.specialRenderers.impl.FhmMeetingRendererImpl
+	 * @see org.unicase.docExport.exportModel.renderers.specialRenderers.impl.SpecialRenderersPackageImpl#getFhmMeetingRenderer()
+	 * @generated
+	 */
+	int FHM_MEETING_RENDERER = 7;
+
+	/**
+	 * The feature id for the '<em><b>Renderer Options</b></em>' containment reference list.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 * @ordered
+	 */
+	int FHM_MEETING_RENDERER__RENDERER_OPTIONS = MEETING_RENDERER__RENDERER_OPTIONS;
+
+	/**
+	 * The feature id for the '<em><b>Template</b></em>' reference.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 * @ordered
+	 */
+	int FHM_MEETING_RENDERER__TEMPLATE = MEETING_RENDERER__TEMPLATE;
+
+	/**
+	 * The feature id for the '<em><b>Attribute Renderer Mapping</b></em>' containment reference list.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 * @ordered
+	 */
+	int FHM_MEETING_RENDERER__ATTRIBUTE_RENDERER_MAPPING = MEETING_RENDERER__ATTRIBUTE_RENDERER_MAPPING;
+
+	/**
+	 * The number of structural features of the '<em>Fhm Meeting Renderer</em>' class.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 * @ordered
+	 */
+	int FHM_MEETING_RENDERER_FEATURE_COUNT = MEETING_RENDERER_FEATURE_COUNT + 0;
+
+	/**
 	 * Returns the meta object for class '{@link org.unicase.docExport.exportModel.renderers.specialRenderers.MeetingRenderer <em>Meeting Renderer</em>}'.
 	 * <!-- begin-user-doc --> <!-- end-user-doc -->
 	 * @return the meta object for class '<em>Meeting Renderer</em>'.
@@ -375,6 +421,16 @@ public interface SpecialRenderersPackage extends EPackage {
 	 * @generated
 	 */
 	EClass getClassAttributesRenderer();
+
+	/**
+	 * Returns the meta object for class '{@link org.unicase.docExport.exportModel.renderers.specialRenderers.FhmMeetingRenderer <em>Fhm Meeting Renderer</em>}'.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @return the meta object for class '<em>Fhm Meeting Renderer</em>'.
+	 * @see org.unicase.docExport.exportModel.renderers.specialRenderers.FhmMeetingRenderer
+	 * @generated
+	 */
+	EClass getFhmMeetingRenderer();
 
 	/**
 	 * Returns the factory that creates the instances of the model.
@@ -460,6 +516,16 @@ public interface SpecialRenderersPackage extends EPackage {
 		 * @generated
 		 */
 		EClass CLASS_ATTRIBUTES_RENDERER = eINSTANCE.getClassAttributesRenderer();
+
+		/**
+		 * The meta object literal for the '{@link org.unicase.docExport.exportModel.renderers.specialRenderers.impl.FhmMeetingRendererImpl <em>Fhm Meeting Renderer</em>}' class.
+		 * <!-- begin-user-doc -->
+		 * <!-- end-user-doc -->
+		 * @see org.unicase.docExport.exportModel.renderers.specialRenderers.impl.FhmMeetingRendererImpl
+		 * @see org.unicase.docExport.exportModel.renderers.specialRenderers.impl.SpecialRenderersPackageImpl#getFhmMeetingRenderer()
+		 * @generated
+		 */
+		EClass FHM_MEETING_RENDERER = eINSTANCE.getFhmMeetingRenderer();
 
 	}
 

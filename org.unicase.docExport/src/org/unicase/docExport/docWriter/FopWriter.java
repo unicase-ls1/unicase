@@ -579,14 +579,14 @@ public abstract class FopWriter implements DocWriter {
 		// footer
 		Element regionAfter = getDoc().createElement("fo:region-after");
 		parent.appendChild(regionAfter);
-		regionAfter.setAttribute("extent", "25pt");
+		regionAfter.setAttribute("extent", "35pt");
 	}
 
 	private void createBodyRegion(Element parent) {
 		// body
 		Element regionBody = getDoc().createElement("fo:region-body");
 		parent.appendChild(regionBody);
-		regionBody.setAttribute("margin-top", "55pt");
+		regionBody.setAttribute("margin-top", "75pt");
 		regionBody.setAttribute("margin-bottom", "45pt");
 		regionBody.setAttribute("margin-left", "45pt");
 		regionBody.setAttribute("margin-right", "45pt");

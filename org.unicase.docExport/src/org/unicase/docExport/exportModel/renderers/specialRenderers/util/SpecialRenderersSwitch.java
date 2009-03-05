@@ -13,6 +13,7 @@ import org.unicase.docExport.exportModel.renderers.AttributeRenderer;
 import org.unicase.docExport.exportModel.renderers.ModelElementRenderer;
 import org.unicase.docExport.exportModel.renderers.specialRenderers.ClassAttributesRenderer;
 import org.unicase.docExport.exportModel.renderers.specialRenderers.ClassRenderer;
+import org.unicase.docExport.exportModel.renderers.specialRenderers.FhmMeetingRenderer;
 import org.unicase.docExport.exportModel.renderers.specialRenderers.MeetingRenderer;
 import org.unicase.docExport.exportModel.renderers.specialRenderers.MethodRenderer;
 import org.unicase.docExport.exportModel.renderers.specialRenderers.MilestoneRenderer;
@@ -133,6 +134,14 @@ public class SpecialRenderersSwitch<T> {
 				if (result == null) result = defaultCase(theEObject);
 				return result;
 			}
+			case SpecialRenderersPackage.FHM_MEETING_RENDERER: {
+				FhmMeetingRenderer fhmMeetingRenderer = (FhmMeetingRenderer)theEObject;
+				T result = caseFhmMeetingRenderer(fhmMeetingRenderer);
+				if (result == null) result = caseMeetingRenderer(fhmMeetingRenderer);
+				if (result == null) result = caseModelElementRenderer(fhmMeetingRenderer);
+				if (result == null) result = defaultCase(theEObject);
+				return result;
+			}
 			default: return defaultCase(theEObject);
 		}
 	}
@@ -234,6 +243,21 @@ public class SpecialRenderersSwitch<T> {
 	 * @generated
 	 */
 	public T caseClassAttributesRenderer(ClassAttributesRenderer object) {
+		return null;
+	}
+
+	/**
+	 * Returns the result of interpreting the object as an instance of '<em>Fhm Meeting Renderer</em>'.
+	 * <!-- begin-user-doc -->
+	 * This implementation returns null;
+	 * returning a non-null result will terminate the switch.
+	 * <!-- end-user-doc -->
+	 * @param object the target of the switch.
+	 * @return the result of interpreting the object as an instance of '<em>Fhm Meeting Renderer</em>'.
+	 * @see #doSwitch(org.eclipse.emf.ecore.EObject) doSwitch(EObject)
+	 * @generated
+	 */
+	public T caseFhmMeetingRenderer(FhmMeetingRenderer object) {
 		return null;
 	}
 
