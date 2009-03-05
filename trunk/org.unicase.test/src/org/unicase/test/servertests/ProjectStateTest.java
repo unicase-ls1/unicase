@@ -1,17 +1,18 @@
 package org.unicase.test.servertests;
 
+import java.util.Iterator;
 import java.util.List;
 
-import org.eclipse.emf.ecore.util.EcoreUtil;
 import org.unicase.emfstore.esmodel.ProjectInfo;
 import org.unicase.emfstore.esmodel.SessionId;
 import org.unicase.emfstore.esmodel.versioning.ChangePackage;
 import org.unicase.emfstore.esmodel.versioning.PrimaryVersionSpec;
 import org.unicase.emfstore.esmodel.versioning.VersioningFactory;
+import org.unicase.emfstore.esmodel.versioning.operations.AbstractOperation;
+import org.unicase.emfstore.esmodel.versioning.operations.CreateDeleteOperation;
 import org.unicase.emfstore.exceptions.EmfStoreException;
 import org.unicase.model.Project;
 import org.unicase.test.TestCase;
-import org.unicase.test.tests.change.ChangeTestHelper;
 import org.unicase.workspace.WorkspaceManager;
 import org.unicase.workspace.connectionmanager.ConnectionManager;
 
@@ -37,36 +38,61 @@ public class ProjectStateTest extends TestCase {
 				System.out.println(pI + " " + pI.getProjectId() + " at Version: " + pI.getVersion().getIdentifier());
 				if (pI.getName().contains("DOLLI2")) {
 
-					PrimaryVersionSpec primaryVersionSpec = VersioningFactory.eINSTANCE.createPrimaryVersionSpec();
-					primaryVersionSpec.setIdentifier(0);
-					Project project = connectionManager.getProject(sessionId, pI.getProjectId(), primaryVersionSpec);
+					PrimaryVersionSpec source = VersioningFactory.eINSTANCE.createPrimaryVersionSpec();
+					source.setIdentifier(0);
+					PrimaryVersionSpec target = VersioningFactory.eINSTANCE.createPrimaryVersionSpec();
+					target.setIdentifier(50);
+					Project project = connectionManager.getProject(sessionId, pI.getProjectId(), target);
 
-					for (int i = 1; i < pI.getVersion().getIdentifier(); i++) {
-						PrimaryVersionSpec source = (PrimaryVersionSpec) EcoreUtil.copy(primaryVersionSpec);
-						primaryVersionSpec.setIdentifier(i);
-						Project nextProject = connectionManager.getProject(sessionId, pI.getProjectId(),
-							primaryVersionSpec);
+					Project Project = connectionManager.getProject(sessionId, pI.getProjectId(), target);
+					List<ChangePackage> changes = connectionManager.getChanges(sessionId, pI.getProjectId(), source,
+						target);
 
-						List<ChangePackage> changes = connectionManager.getChanges(sessionId, pI.getProjectId(),
-							source, primaryVersionSpec);
-
-						if (changes.size() == 0) {
-							System.out.println("no changes");
-							System.exit(0);
+					int i = 0;
+					boolean found = false;
+					for (ChangePackage changePackage : changes) {
+						Iterator<AbstractOperation> iter = changePackage.getOperations().iterator();
+						while (iter.hasNext()) {
+							AbstractOperation abstractOperation = iter.next();
+							if (abstractOperation instanceof CreateDeleteOperation) {
+								if (abstractOperation.getModelElementId().getId().equals("__q0UYJUkEd2FG-kzr70dNg")) {
+									System.out.println("Version: " + i + " delete found");
+									if (false && found) {
+										iter.remove();
+									} else {
+										found = true;
+									}
+								}
+							}
 						}
-
-						changes.get(0).apply(project);
-
-						int[] linearCompare = ChangeTestHelper.linearCompare(project, nextProject);
-						if (linearCompare[0] != 1) {
-							System.out.println("collision between" + source.getIdentifier() + " and "
-								+ primaryVersionSpec.getIdentifier());
-							System.exit(0);
-						}
-						project = nextProject;
-						System.out.println("CHECKED: " + source.getIdentifier() + " and "
-							+ primaryVersionSpec.getIdentifier());
+						target.setIdentifier(i);
+						// connectionManager.setChangePackage(sessionId, changePackage, pI.getProjectId(), target);
+						i++;
 					}
+
+					// for (int i = 1; i < pI.getVersion().getIdentifier(); i++) {
+					// Project nextProject = connectionManager.getProject(sessionId, pI.getProjectId(), target);
+					//
+					// List<ChangePackage> changes = connectionManager.getChanges(sessionId, pI.getProjectId(),
+					// source, target);
+					//
+					// if (changes.size() == 0) {
+					// System.out.println("no changes");
+					// System.exit(0);
+					// }
+					//						
+					// changes.get(0).apply(project);
+					//						
+					// int[] linearCompare = ChangeTestHelper.linearCompare(project, nextProject);
+					// if (linearCompare[0] != 1) {
+					// System.out.println("collision between" + source.getIdentifier() + " and "
+					// + primaryVersionSpec.getIdentifier());
+					// System.exit(0);
+					// }
+					// project = nextProject;
+					// System.out.println("CHECKED: " + source.getIdentifier() + " and "
+					// + target.getIdentifier());
+					// }
 
 				}
 			}
