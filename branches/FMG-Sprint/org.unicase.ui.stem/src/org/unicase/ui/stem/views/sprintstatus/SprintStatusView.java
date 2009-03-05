@@ -5,6 +5,8 @@
  */
 package org.unicase.ui.stem.views.sprintstatus;
 
+import java.util.Comparator;
+
 import org.eclipse.jface.action.Action;
 import org.eclipse.jface.action.IToolBarManager;
 import org.eclipse.jface.layout.GridDataFactory;
@@ -13,15 +15,77 @@ import org.eclipse.swt.widgets.Composite;
 import org.eclipse.ui.IActionBars;
 import org.eclipse.ui.part.ViewPart;
 import org.unicase.model.ModelElement;
+import org.unicase.model.organization.OrgUnit;
 import org.unicase.model.task.TaskPackage;
+import org.unicase.model.task.WorkItem;
 import org.unicase.ui.common.util.ActionHelper;
 import org.unicase.ui.stem.Activator;
+import org.unicase.workspace.WorkspaceManager;
+import org.unicase.workspace.exceptions.CannotMatchUserInProjectException;
 import org.unicase.workspace.util.EventUtil;
+import org.unicase.workspace.util.NoCurrentUserException;
+import org.unicase.workspace.util.OrgUnitHelper;
 
 /**
+ * A view that displays the status of a given sprint (work package). It is mainly used to plan the sprint and
+ * (re-)assign the work items.
+ * 
  * @author Shterev
  */
 public class SprintStatusView extends ViewPart {
+
+	/**
+	 * Compares two work items acc. to the name of their user.
+	 * 
+	 * @author Shterev
+	 */
+	private class UserComparator implements Comparator<WorkItem> {
+
+		public int compare(WorkItem o1, WorkItem o2) {
+			OrgUnit user1 = o1.getAssignee();
+			OrgUnit user2 = o2.getAssignee();
+			if (user1 == null && user2 == null) {
+				return 0;
+			} else if (user1 == null) {
+				return -1;
+			} else if (user2 == null) {
+				return 1;
+			}
+			return user1.getName().compareTo(user2.getName());
+
+		}
+	}
+
+	/**
+	 * Compares two work items acc. to their priority.
+	 * 
+	 * @author Shterev
+	 */
+	private class PriorityComparator implements Comparator<WorkItem> {
+
+		public int compare(WorkItem o1, WorkItem o2) {
+			int prio1 = o1.getPriority();
+			int prio2 = o2.getPriority();
+			if (prio1 == prio2) {
+				return 0;
+			} else if (prio1 > prio2) {
+				return -1;
+			}
+			return 1;
+		}
+	}
+
+	/**
+	 * Compares two work items acc. to their names.
+	 * 
+	 * @author Shterev
+	 */
+	private class NameComparator implements Comparator<WorkItem> {
+
+		public int compare(WorkItem o1, WorkItem o2) {
+			return o1.getName().compareTo(o2.getName());
+		}
+	}
 
 	/**
 	 * ID for this view.
@@ -46,7 +110,11 @@ public class SprintStatusView extends ViewPart {
 	public void createPartControl(Composite parent) {
 
 		statusComposite = new SprintStatusComposite(parent, SWT.NONE);
+
 		GridDataFactory.fillDefaults().grab(true, true).applyTo(statusComposite);
+
+		statusComposite.addComparator(0, new NameComparator());
+		statusComposite.addComparator(0, new PriorityComparator());
 
 		IActionBars bars = getViewSite().getActionBars();
 		IToolBarManager menuManager = bars.getToolBarManager();
@@ -59,6 +127,47 @@ public class SprintStatusView extends ViewPart {
 		refresh.setImageDescriptor(Activator.getImageDescriptor("/icons/refresh.png"));
 		refresh.setToolTipText("Refresh");
 		menuManager.add(refresh);
+
+		try {
+			final SprintUserFilter userFilter = new SprintUserFilter(OrgUnitHelper.getCurrentUser(WorkspaceManager
+				.getInstance().getCurrentWorkspace()));
+			Action filterByUser = new Action("", SWT.TOGGLE) {
+
+				@Override
+				public void run() {
+					if (isChecked()) {
+						statusComposite.addFilter(userFilter);
+					} else {
+						statusComposite.removeFilter(userFilter);
+					}
+					setInput(input);
+				}
+			};
+			filterByUser.setChecked(false);
+
+			filterByUser.setImageDescriptor(Activator.getImageDescriptor("/icons/filtertouser.png"));
+			filterByUser.setToolTipText("Show only my items");
+			menuManager.add(filterByUser);
+		} catch (NoCurrentUserException e) {
+		} catch (CannotMatchUserInProjectException e) {
+		}
+
+		final UserComparator userComparator = new UserComparator();
+		Action groupByUser = new Action("", SWT.TOGGLE) {
+			@Override
+			public void run() {
+				if (isChecked()) {
+					statusComposite.addComparator(0, userComparator);
+				} else {
+					statusComposite.removeComparator(userComparator);
+				}
+				setInput(input);
+			}
+		};
+		groupByUser.setImageDescriptor(Activator.getImageDescriptor("/icons/filtertomyteam.png"));
+		groupByUser.setToolTipText("Group by user");
+		groupByUser.setChecked(false);
+		menuManager.add(groupByUser);
 
 	}
 

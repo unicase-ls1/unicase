@@ -125,4 +125,11 @@ public class SprintStatusCategory extends Composite {
 		st.font = JFaceResources.getBannerFont();
 		title.setStyleRange(st);
 	}
+
+	/**
+	 * @return the {@link SprintStatusContentProvider}
+	 */
+	public SprintStatusContentProvider getContentProvider() {
+		return this.contentProvider;
+	}
 }
