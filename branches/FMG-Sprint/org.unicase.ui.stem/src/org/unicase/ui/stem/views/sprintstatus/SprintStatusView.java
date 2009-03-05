@@ -47,9 +47,9 @@ public class SprintStatusView extends ViewPart {
 			if (user1 == null && user2 == null) {
 				return 0;
 			} else if (user1 == null) {
-				return -1;
-			} else if (user2 == null) {
 				return 1;
+			} else if (user2 == null) {
+				return -1;
 			}
 			return user1.getName().compareTo(user2.getName());
 
@@ -83,7 +83,7 @@ public class SprintStatusView extends ViewPart {
 	private class NameComparator implements Comparator<WorkItem> {
 
 		public int compare(WorkItem o1, WorkItem o2) {
-			return o1.getName().compareTo(o2.getName());
+			return o1.getName().toLowerCase().compareTo(o2.getName().toLowerCase());
 		}
 	}
 
@@ -158,8 +158,10 @@ public class SprintStatusView extends ViewPart {
 			public void run() {
 				if (isChecked()) {
 					statusComposite.addComparator(0, userComparator);
+					statusComposite.setShowGroups(true);
 				} else {
 					statusComposite.removeComparator(userComparator);
+					statusComposite.setShowGroups(false);
 				}
 				setInput(input);
 			}

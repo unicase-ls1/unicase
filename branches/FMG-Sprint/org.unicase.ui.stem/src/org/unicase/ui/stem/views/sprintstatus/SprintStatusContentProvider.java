@@ -96,10 +96,10 @@ public class SprintStatusContentProvider extends AdapterFactoryContentProvider {
 		}
 		WorkPackage wp = (WorkPackage) object;
 		List<WorkItem> wis = wp.getAllContainedWorkItems();
-		for (WorkItem wi : wis) {
+		workitems: for (WorkItem wi : wis) {
 			for (SprintFilter f : filters) {
 				if (!f.accept(wi)) {
-					continue;
+					continue workitems;
 				}
 			}
 			if (!(wi instanceof Checkable)) {

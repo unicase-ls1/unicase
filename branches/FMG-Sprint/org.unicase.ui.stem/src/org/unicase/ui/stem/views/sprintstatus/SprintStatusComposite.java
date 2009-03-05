@@ -286,4 +286,15 @@ public class SprintStatusComposite extends Composite implements ProjectChangeObs
 			cat.getContentProvider().removeComparator(comparator);
 		}
 	}
+
+	/**
+	 * Turns the group captions on/off.
+	 * 
+	 * @param b the visibility
+	 */
+	public void setShowGroups(boolean b) {
+		for (SprintStatusCategory cat : categories) {
+			cat.setShowGroups(b);
+		}
+	}
 }
