@@ -97,13 +97,16 @@ public class METableViewer extends TableViewer {
 
 		this.setAdapterFactory(adapterFactory);
 
+		this.createColumns();
+		this.getTable().setLinesVisible(true);
+		this.getTable().setHeaderVisible(true);
+
+		// if viewer input is set before columns are created, sometime checkbox images are not shown (or created?)
+		// correctly (see GenericColumnLabelProvider for checkbox images)
 		if (workspace.getActiveProjectSpace() != null) {
 			setInput(workspace.getActiveProjectSpace().getProject());
 		}
 
-		this.createColumns();
-		this.getTable().setLinesVisible(true);
-		this.getTable().setHeaderVisible(true);
 	}
 
 	/**
