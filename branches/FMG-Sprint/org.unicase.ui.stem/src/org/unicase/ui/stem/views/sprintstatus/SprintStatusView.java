@@ -6,18 +6,24 @@
 package org.unicase.ui.stem.views.sprintstatus;
 
 import java.util.Comparator;
+import java.util.HashSet;
 
+import org.eclipse.emf.edit.provider.ComposedAdapterFactory;
+import org.eclipse.emf.edit.ui.provider.AdapterFactoryLabelProvider;
 import org.eclipse.jface.action.Action;
 import org.eclipse.jface.action.IToolBarManager;
 import org.eclipse.jface.layout.GridDataFactory;
+import org.eclipse.jface.window.Window;
 import org.eclipse.swt.SWT;
 import org.eclipse.swt.widgets.Composite;
 import org.eclipse.ui.IActionBars;
+import org.eclipse.ui.dialogs.ElementListSelectionDialog;
 import org.eclipse.ui.part.ViewPart;
 import org.unicase.model.ModelElement;
 import org.unicase.model.organization.OrgUnit;
 import org.unicase.model.task.TaskPackage;
 import org.unicase.model.task.WorkItem;
+import org.unicase.model.task.WorkPackage;
 import org.unicase.ui.common.util.ActionHelper;
 import org.unicase.ui.stem.Activator;
 import org.unicase.workspace.WorkspaceManager;
@@ -33,6 +39,53 @@ import org.unicase.workspace.util.OrgUnitHelper;
  * @author Shterev
  */
 public class SprintStatusView extends ViewPart {
+
+	/**
+	 * An Action to filter the contents to a specific user.
+	 * 
+	 * @author Shterev
+	 */
+	private final class FilterByUserAction extends Action {
+		private final AdapterFactoryLabelProvider adapterFactoryLabelProvider;
+		private final SprintUserFilter userFilter;
+
+		private FilterByUserAction(String text, int style, AdapterFactoryLabelProvider adapterFactoryLabelProvider,
+			SprintUserFilter userFilter) {
+			super(text, style);
+			this.adapterFactoryLabelProvider = adapterFactoryLabelProvider;
+			this.userFilter = userFilter;
+		}
+
+		@Override
+		public void run() {
+			if (isChecked()) {
+				if (input != null && TaskPackage.eINSTANCE.getWorkPackage().isInstance(input)) {
+					WorkPackage workPackage = (WorkPackage) input;
+					HashSet<OrgUnit> userSet = new HashSet<OrgUnit>();
+					for (WorkItem wi : workPackage.getAllContainedWorkItems()) {
+						userSet.add(wi.getAssignee());
+						userSet.add(wi.getReviewer());
+						userSet.addAll(wi.getParticipants());
+					}
+					userSet.remove(null);
+					ElementListSelectionDialog dlg = new ElementListSelectionDialog(getSite().getShell(),
+						adapterFactoryLabelProvider);
+					dlg.setMultipleSelection(false);
+					dlg.setElements(userSet.toArray());
+					dlg.setTitle("Select User");
+					dlg.setBlockOnOpen(true);
+					if (dlg.open() == Window.OK) {
+						userFilter.setUser((OrgUnit) dlg.getFirstResult());
+					}
+
+				}
+				statusComposite.addFilter(userFilter);
+			} else {
+				statusComposite.removeFilter(userFilter);
+			}
+			setInput(input);
+		}
+	}
 
 	/**
 	 * Compares two work items acc. to the name of their user.
@@ -109,6 +162,9 @@ public class SprintStatusView extends ViewPart {
 	@Override
 	public void createPartControl(Composite parent) {
 
+		final AdapterFactoryLabelProvider adapterFactoryLabelProvider = new AdapterFactoryLabelProvider(
+			new ComposedAdapterFactory(ComposedAdapterFactory.Descriptor.Registry.INSTANCE));
+
 		statusComposite = new SprintStatusComposite(parent, SWT.NONE);
 
 		GridDataFactory.fillDefaults().grab(true, true).applyTo(statusComposite);
@@ -131,18 +187,7 @@ public class SprintStatusView extends ViewPart {
 		try {
 			final SprintUserFilter userFilter = new SprintUserFilter(OrgUnitHelper.getCurrentUser(WorkspaceManager
 				.getInstance().getCurrentWorkspace()));
-			Action filterByUser = new Action("", SWT.TOGGLE) {
-
-				@Override
-				public void run() {
-					if (isChecked()) {
-						statusComposite.addFilter(userFilter);
-					} else {
-						statusComposite.removeFilter(userFilter);
-					}
-					setInput(input);
-				}
-			};
+			Action filterByUser = new FilterByUserAction("", SWT.TOGGLE, adapterFactoryLabelProvider, userFilter);
 			filterByUser.setChecked(false);
 
 			filterByUser.setImageDescriptor(Activator.getImageDescriptor("/icons/filtertouser.png"));

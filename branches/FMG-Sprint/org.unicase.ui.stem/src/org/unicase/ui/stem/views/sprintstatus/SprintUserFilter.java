@@ -49,4 +49,13 @@ public class SprintUserFilter implements SprintFilter {
 		ret = ret || workItem.getParticipants().contains(user);
 		return ret;
 	}
+
+	/**
+	 * Sets a new user for this filter.
+	 * 
+	 * @param user the new user.
+	 */
+	public void setUser(OrgUnit user) {
+		this.user = user;
+	}
 }
