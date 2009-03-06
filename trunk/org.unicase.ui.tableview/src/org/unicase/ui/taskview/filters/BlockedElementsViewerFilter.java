@@ -3,26 +3,30 @@
  * accompanying materials are made available under the terms of the Eclipse Public License v1.0 which accompanies this
  * distribution, and is available at http://www.eclipse.org/legal/epl-v10.html </copyright>
  */
-package org.unicase.ui.taskview;
+package org.unicase.ui.taskview.filters;
 
 import org.eclipse.jface.viewers.Viewer;
 import org.eclipse.jface.viewers.ViewerFilter;
-import org.unicase.model.task.Checkable;
+import org.unicase.model.ModelElement;
+import org.unicase.model.task.util.MEState;
 
 /**
- * this filter shows only checkables.
+ * Filter to filter blocked elements.
  * 
  * @author helming
  */
-public class CheckableViewerFilter extends ViewerFilter {
+public class BlockedElementsViewerFilter extends ViewerFilter {
 	/**
 	 * {@inheritDoc}
-	 * 
-	 * @see org.eclipse.jface.viewers.ViewerFilter#select(org.eclipse.jface.viewers.Viewer, java.lang.Object,
-	 *      java.lang.Object)
 	 */
 	@Override
 	public boolean select(Viewer viewer, Object parentElement, Object element) {
-		return (element instanceof Checkable);
+		if (element instanceof ModelElement) {
+
+			return !((ModelElement) element).getState().equals(MEState.BLOCKED);
+
+		}
+		return true;
 	}
+
 }

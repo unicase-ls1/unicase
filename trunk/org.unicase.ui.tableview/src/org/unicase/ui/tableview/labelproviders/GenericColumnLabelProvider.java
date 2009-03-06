@@ -3,7 +3,7 @@
  * accompanying materials are made available under the terms of the Eclipse Public License v1.0 which accompanies this
  * distribution, and is available at http://www.eclipse.org/legal/epl-v10.html </copyright>
  */
-package org.unicase.ui.taskview;
+package org.unicase.ui.tableview.labelproviders;
 
 import org.eclipse.emf.ecore.EObject;
 import org.eclipse.emf.ecore.EStructuralFeature;
@@ -25,6 +25,7 @@ import org.eclipse.ui.PlatformUI;
 import org.unicase.model.ModelPackage;
 import org.unicase.model.task.Checkable;
 import org.unicase.model.task.TaskPackage;
+import org.unicase.ui.tableview.viewer.METableViewer;
 
 import java.lang.reflect.InvocationTargetException;
 import java.lang.reflect.Method;

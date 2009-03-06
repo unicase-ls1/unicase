@@ -14,7 +14,7 @@ import org.unicase.ui.stem.views.iterationplanningview.AssignedToEditingSupport;
 import org.unicase.ui.stem.views.iterationplanningview.EMFColumnLabelProvider;
 import org.unicase.ui.stem.views.iterationplanningview.TaskObjectEditingSupport;
 import org.unicase.ui.stem.views.iterationplanningview.TaskObjectLabelProvider;
-import org.unicase.ui.tableview.labelprovider.StatusLabelProvider;
+import org.unicase.ui.tableview.labelproviders.StatusLabelProvider;
 
 /**
  * Utility for task tables.
