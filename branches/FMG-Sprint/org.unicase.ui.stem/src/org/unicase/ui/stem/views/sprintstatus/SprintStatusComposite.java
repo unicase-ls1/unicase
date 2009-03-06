@@ -29,7 +29,6 @@ import org.unicase.model.task.WorkItem;
 import org.unicase.model.task.WorkPackage;
 import org.unicase.model.util.ProjectChangeObserver;
 import org.unicase.ui.common.util.ActionHelper;
-import org.unicase.ui.stem.views.statusview.dnd.WorkPackageTabDropAdapter;
 import org.unicase.workspace.ProjectSpace;
 import org.unicase.workspace.Workspace;
 import org.unicase.workspace.WorkspaceManager;
@@ -42,7 +41,7 @@ public class SprintStatusComposite extends Composite implements ProjectChangeObs
 
 	private Workspace workspace;
 	private AdapterImpl adapterImpl;
-	private WorkPackageTabDropAdapter wpTabDropAdapter;
+	private SprintStatusDropAdapter wpTabDropAdapter;
 	private ArrayList<TableViewer> tables = new ArrayList<TableViewer>();
 	private SashForm sash;
 	private ArrayList<SprintStatusCategory> categories;
@@ -129,7 +128,7 @@ public class SprintStatusComposite extends Composite implements ProjectChangeObs
 		int dndOperations = DND.DROP_COPY | DND.DROP_MOVE | DND.DROP_LINK;
 		Transfer[] transfers = new Transfer[] { LocalTransfer.getInstance() };
 
-		wpTabDropAdapter = new WorkPackageTabDropAdapter();
+		wpTabDropAdapter = new SprintStatusDropAdapter();
 		for (final TableViewer table : tables) {
 			table.addDropSupport(dndOperations, transfers, wpTabDropAdapter);
 		}
