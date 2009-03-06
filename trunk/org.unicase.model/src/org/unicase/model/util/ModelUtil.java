@@ -5,12 +5,6 @@
  */
 package org.unicase.model.util;
 
-import java.io.ByteArrayInputStream;
-import java.io.ByteArrayOutputStream;
-import java.io.IOException;
-import java.io.UnsupportedEncodingException;
-import java.util.ArrayList;
-
 import org.eclipse.emf.common.util.URI;
 import org.eclipse.emf.ecore.EClass;
 import org.eclipse.emf.ecore.EObject;
@@ -23,6 +17,15 @@ import org.unicase.model.ModelElementId;
 import org.unicase.model.ModelFactory;
 import org.unicase.model.ModelPackage;
 import org.unicase.model.Project;
+
+import java.io.ByteArrayInputStream;
+import java.io.ByteArrayOutputStream;
+import java.io.IOException;
+import java.io.UnsupportedEncodingException;
+import java.util.ArrayList;
+import java.util.HashSet;
+import java.util.Iterator;
+import java.util.Set;
 
 /**
  * Utility class for ModelElements.
@@ -190,4 +193,55 @@ public final class ModelUtil {
 	public static ArrayList<EClass> getSubclasses(EClass clazz) {
 		return getSubclasses(clazz, ModelPackage.eINSTANCE);
 	}
+
+	/**
+	 * Recursively goes through model and create a list of all non-Abstract classes.
+	 * 
+	 * @param ePackage the package to start with.
+	 * @return list of all non-Abstract model element classes in starting package and its sub-packages
+	 */
+	public static Set<EClass> getNonAbstractMETypes(EPackage ePackage) {
+
+		Set<EClass> nonAbstractMETypes = new HashSet<EClass>();
+		Set<EClass> allMETypes = getAllMETypes(ePackage);
+
+		Iterator<EClass> iterator = allMETypes.iterator();
+		while (iterator.hasNext()) {
+			EClass eClass = iterator.next();
+			if (!(eClass.isAbstract() || eClass.isInterface())) {
+				nonAbstractMETypes.add(eClass);
+			}
+		}
+
+		return nonAbstractMETypes;
+
+	}
+
+	/**
+	 * Recursively goes through package and returns a list of all EClasses inheriting ModelElement (abstract classes and
+	 * interfaces are also include).
+	 * 
+	 * @param ePackage starting package
+	 * @return a list of all EClasses inheriting ModelElement (inclusive abstract classes and interfaces) in starting
+	 *         package and all its sub-packages.
+	 */
+	public static Set<EClass> getAllMETypes(EPackage ePackage) {
+		EClass modelElementEClass = ModelPackage.eINSTANCE.getModelElement();
+		Set<EClass> meTypes = new HashSet<EClass>();
+
+		for (EObject eObject : ePackage.eContents()) {
+			if (eObject instanceof EClass) {
+				EClass eClass = (EClass) eObject;
+				if (modelElementEClass.isSuperTypeOf(eClass)) {
+					meTypes.add(eClass);
+				}
+			} else if (eObject instanceof EPackage) {
+				EPackage eSubPackage = (EPackage) eObject;
+				meTypes.addAll(getAllMETypes(eSubPackage));
+			}
+		}
+
+		return meTypes;
+	}
+
 }
