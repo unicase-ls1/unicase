@@ -3,7 +3,7 @@
  * accompanying materials are made available under the terms of the Eclipse Public License v1.0 which accompanies this
  * distribution, and is available at http://www.eclipse.org/legal/epl-v10.html </copyright>
  */
-package org.unicase.ui.taskview;
+package org.unicase.ui.tableview.viewer;
 
 import org.eclipse.emf.common.notify.AdapterFactory;
 import org.eclipse.emf.common.notify.Notification;
@@ -27,7 +27,9 @@ import org.unicase.model.Project;
 import org.unicase.model.provider.ModelEditPlugin;
 import org.unicase.model.task.TaskPackage;
 import org.unicase.ui.common.TableViewerColumnSorter;
-import org.unicase.ui.tableview.labelprovider.StatusLabelProvider;
+import org.unicase.ui.tableview.labelproviders.DateColumnLabelProvider;
+import org.unicase.ui.tableview.labelproviders.GenericColumnLabelProvider;
+import org.unicase.ui.tableview.labelproviders.StatusLabelProvider;
 import org.unicase.workspace.ProjectSpace;
 import org.unicase.workspace.Workspace;
 import org.unicase.workspace.WorkspaceManager;

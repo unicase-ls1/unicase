@@ -29,6 +29,11 @@ import org.unicase.ui.common.filter.TeamFilter;
 import org.unicase.ui.common.filter.UserFilter;
 import org.unicase.ui.common.util.ActionHelper;
 import org.unicase.ui.tableview.Activator;
+import org.unicase.ui.tableview.viewer.EClassFilterItemProvider;
+import org.unicase.ui.tableview.viewer.FilteredItemProviderAdapterFactory;
+import org.unicase.ui.tableview.viewer.METableViewer;
+import org.unicase.ui.taskview.filters.BlockedElementsViewerFilter;
+import org.unicase.ui.taskview.filters.UncheckedElementsViewerFilter;
 import org.unicase.workspace.ProjectSpace;
 import org.unicase.workspace.Workspace;
 import org.unicase.workspace.WorkspaceManager;
@@ -50,20 +55,24 @@ public class TaskView extends ViewPart implements ProjectChangeObserver {
 	private METableViewer viewer;
 	private final EClass itemMetaClass = TaskPackage.eINSTANCE.getWorkItem();
 	private FilteredItemProviderAdapterFactory adapterFactory;
-
 	private Action doubleClickAction;
-	private UncheckedElementsViewerFilter uncheckedFilter;
-	private UserFilter userFilter;
-	private Action filterToMe;
 	private DialogSettings settings;
-	private Action filterToUnchecked;
-	private TeamFilter teamFilter;
-	private Action filterToMyTeam;
 	private String filename;
 	private AdapterImpl adapterImpl;
 	private Workspace workspace;
-	private Action filterToBlocked;
+
+	private UncheckedElementsViewerFilter uncheckedFilter;
+	private Action filterToUnchecked;
+
+	private UserFilter userFilter;
+	private Action filterToMe;
+
+	private TeamFilter teamFilter;
+	private Action filterToMyTeam;
+
 	private BlockedElementsViewerFilter blockedFilter;
+	private Action filterToBlocked;
+
 	private ResolvedBugReportFilter resolvedBugReportFilter;
 	private Action filterResolvedBugReports;
 
@@ -97,7 +106,6 @@ public class TaskView extends ViewPart implements ProjectChangeObserver {
 		viewer = new METableViewer(parent, adapterFactory, itemMetaClass);
 		// the task view shall only display objects that are instance of
 		// Checkable
-		viewer.addFilter(new CheckableViewerFilter());
 		if (workspace.getActiveProjectSpace() != null) {
 			workspace.getActiveProjectSpace().getProject().addProjectChangeObserver(TaskView.this);
 		}
