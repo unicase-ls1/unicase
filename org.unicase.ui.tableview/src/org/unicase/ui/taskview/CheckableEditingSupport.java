@@ -21,6 +21,8 @@ import org.unicase.model.task.Checkable;
  */
 public class CheckableEditingSupport extends EditingSupport {
 
+	private CheckboxCellEditor cellEditor;
+
 	/**
 	 * default constructor.
 	 * 
@@ -28,6 +30,7 @@ public class CheckableEditingSupport extends EditingSupport {
 	 */
 	public CheckableEditingSupport(TableViewer viewer) {
 		super(viewer);
+		cellEditor = new CheckboxCellEditor();
 	}
 
 	/**
@@ -44,7 +47,7 @@ public class CheckableEditingSupport extends EditingSupport {
 	@Override
 	protected CellEditor getCellEditor(Object element) {
 		if (element instanceof Checkable) {
-			return new CheckboxCellEditor(getViewer().getTable());
+			return cellEditor;
 		} else {
 			return null;
 		}
