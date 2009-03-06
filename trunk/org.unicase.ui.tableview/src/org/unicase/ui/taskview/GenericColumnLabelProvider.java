@@ -5,9 +5,6 @@
  */
 package org.unicase.ui.taskview;
 
-import java.lang.reflect.InvocationTargetException;
-import java.lang.reflect.Method;
-
 import org.eclipse.emf.ecore.EObject;
 import org.eclipse.emf.ecore.EStructuralFeature;
 import org.eclipse.emf.edit.provider.ComposedAdapterFactory;
@@ -21,12 +18,16 @@ import org.eclipse.swt.graphics.Image;
 import org.eclipse.swt.graphics.ImageData;
 import org.eclipse.swt.graphics.Point;
 import org.eclipse.swt.widgets.Button;
+import org.eclipse.swt.widgets.Display;
 import org.eclipse.swt.widgets.Shell;
 import org.eclipse.ui.IDecoratorManager;
 import org.eclipse.ui.PlatformUI;
 import org.unicase.model.ModelPackage;
 import org.unicase.model.task.Checkable;
 import org.unicase.model.task.TaskPackage;
+
+import java.lang.reflect.InvocationTargetException;
+import java.lang.reflect.Method;
 
 /**
  * A specific ColumnLabelProvider for the display of features of Checkable instances. For the
@@ -60,17 +61,19 @@ public class GenericColumnLabelProvider extends org.eclipse.jface.viewers.Column
 			new ComposedAdapterFactory(ComposedAdapterFactory.Descriptor.Registry.INSTANCE)), decoratorManager
 			.getLabelDecorator());
 		if (JFaceResources.getImageRegistry().getDescriptor(CHECKED_KEY) == null) {
-			JFaceResources.getImageRegistry().put(UNCHECK_KEY, makeShot(viewer.getControl().getShell(), false));
-			JFaceResources.getImageRegistry().put(CHECKED_KEY, makeShot(viewer.getControl().getShell(), true));
+			JFaceResources.getImageRegistry().put(UNCHECK_KEY, makeShot(false));
+			JFaceResources.getImageRegistry().put(CHECKED_KEY, makeShot(true));
 		}
 	}
 
-	private Image makeShot(Shell sh, boolean type) {
+	private Image makeShot(boolean type) {
 		// Hopefully no platform uses exactly this color
 		// because we'll make it transparent in the image.
-		Color greenScreen = new Color(sh.getDisplay(), 222, 223, 224);
+		Display display = Display.getDefault();
+		Color greenScreen = new Color(display, 222, 223, 224);
 
-		Shell tmpShell = new Shell(sh, SWT.NO_TRIM);
+		Shell tmpShell = new Shell(display, SWT.NO_TRIM | SWT.ON_TOP);
+		tmpShell.setVisible(false);
 
 		// otherwise we have a default gray color
 		tmpShell.setBackground(greenScreen);
@@ -91,17 +94,19 @@ public class GenericColumnLabelProvider extends org.eclipse.jface.viewers.Column
 
 		tmpShell.open();
 		GC gc = new GC(tmpShell);
-		Image image = new Image(sh.getDisplay(), bsize.x, bsize.y);
+		Image image = new Image(display, bsize.x, bsize.y);
 		gc.copyArea(image, 0, 0);
 		gc.dispose();
 		tmpShell.close();
+		tmpShell.dispose();
 
 		ImageData imageData = image.getImageData();
 		imageData.transparentPixel = imageData.palette.getPixel(greenScreen.getRGB());
-
 		image.dispose();
 
-		return new Image(sh.getDisplay(), imageData);
+		Image ret = new Image(display, imageData);
+
+		return ret;
 	}
 
 	/**
