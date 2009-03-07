@@ -13,7 +13,7 @@ import org.unicase.model.organization.User;
 import org.unicase.model.task.WorkItem;
 
 /**
- * A filter to filter workitems lists to a certain user.
+ * A filter to filter workitems lists to a certain user. 
  * 
  * @author helming
  */
@@ -32,6 +32,11 @@ public class UserFilter extends ViewerFilter {
 
 	/**
 	 * {@inheritDoc}
+	 *  The filter should only show the following:
+	 * - Tasks the user created which are *not* assigned yet
+	 * - Tasks the user is Assignee
+	 * - Tasks the user is Reviewer and status "resolved"
+	 * - Tasks the user is Participant.
 	 */
 	@Override
 	public boolean select(Viewer viewer, Object parentElement, Object element) {
@@ -55,15 +60,18 @@ public class UserFilter extends ViewerFilter {
 			if(workItem.isResolved() && workItem.getReviewer() != null && workItem.getReviewer().equals(user)){
 				return true;
 			}
+			
+			if(user.getName().equals(workItem.getCreator()) && workItem.getAssignee() == null){
+				return true;
+			}
 
-		}
-		
-		if (element instanceof ModelElement) {
+		}else if (element instanceof ModelElement) {
 			String creator = ((ModelElement) element).getCreator();
 			if (user.getName().equals(creator)) {
 				return true;
 			}
 		}
+		
 		return false;
 	}
 
