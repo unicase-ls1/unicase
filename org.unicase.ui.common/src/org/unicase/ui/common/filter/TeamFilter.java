@@ -60,10 +60,17 @@ public class TeamFilter extends ViewerFilter {
 			if(workItem.isResolved() && team.contains(workItem.getReviewer())){
 				return true;
 			}
+			
+			if(workItem.getAssignee() == null){
+				for (OrgUnit orgUnit : team) {
+					if (orgUnit.getName().equals(workItem.getCreator())) {
+						return true;
+					}
+				}
+			}
 
-			return false;
-		}
-		if (element instanceof ModelElement) {
+			
+		}else if (element instanceof ModelElement) {
 			String creator = ((ModelElement) element).getCreator();
 			for (OrgUnit orgUnit : team) {
 				if (orgUnit.getName().equals(creator)) {
