@@ -5,6 +5,25 @@
  */
 package org.unicase.emfstore.accesscontrol.authentication;
 
+import java.io.FileInputStream;
+import java.io.FileNotFoundException;
+import java.io.IOException;
+import java.security.InvalidKeyException;
+import java.security.KeyStore;
+import java.security.KeyStoreException;
+import java.security.NoSuchAlgorithmException;
+import java.security.PrivateKey;
+import java.security.UnrecoverableKeyException;
+import java.security.cert.CertificateException;
+
+import javax.crypto.BadPaddingException;
+import javax.crypto.Cipher;
+import javax.crypto.IllegalBlockSizeException;
+import javax.crypto.NoSuchPaddingException;
+
+import org.apache.commons.codec.binary.Base64;
+import org.apache.commons.logging.Log;
+import org.apache.commons.logging.LogFactory;
 import org.unicase.emfstore.ServerConfiguration;
 import org.unicase.emfstore.accesscontrol.AccessControlException;
 import org.unicase.emfstore.accesscontrol.AuthenticationControl;
@@ -12,6 +31,7 @@ import org.unicase.emfstore.esmodel.ClientVersionInfo;
 import org.unicase.emfstore.esmodel.EsmodelFactory;
 import org.unicase.emfstore.esmodel.SessionId;
 import org.unicase.emfstore.exceptions.ClientVersionOutOfDateException;
+import org.unicase.emfstore.exceptions.DecryptException;
 
 /**
  * Abstract class for authentication.
@@ -22,6 +42,7 @@ public abstract class AbstractAuthenticationControl implements AuthenticationCon
 
 	private String superuser;
 	private String superuserpw;
+	private final Log myLogger;
 
 	/**
 	 * Default constructor.
@@ -31,6 +52,44 @@ public abstract class AbstractAuthenticationControl implements AuthenticationCon
 			ServerConfiguration.SUPER_USER_DEFAULT);
 		superuserpw = ServerConfiguration.getProperties().getProperty(ServerConfiguration.SUPER_USER_PASSWORD,
 			ServerConfiguration.SUPER_USER_PASSWORD_DEFAULT);
+		myLogger = LogFactory.getLog(AbstractAuthenticationControl.class);
+	}
+
+	/**
+	 * Decrypts a password .
+	 * 
+	 * @param encryptedPsw The encrypted password
+	 * @param key PrivateKey
+	 * @return the decrypted password
+	 * @throws DecryptException AccessControlException
+	 */
+	private String deCrypt(String encryptedPsw, PrivateKey key) throws DecryptException {
+		byte[] outBytes;
+
+		try {
+			outBytes = Base64.decodeBase64(encryptedPsw.getBytes());
+			Cipher cipher = Cipher.getInstance("RSA");
+			cipher.init(Cipher.DECRYPT_MODE, key);
+			byte[] decryptedByteAr = cipher.doFinal(outBytes);
+			return new String(decryptedByteAr);
+
+		} catch (NoSuchAlgorithmException e) {
+			myLogger.error("NoSuchAlgorithmException", e);
+			throw new DecryptException();
+		} catch (NoSuchPaddingException e) {
+			myLogger.error("NoSuchPaddingException", e);
+			throw new DecryptException();
+		} catch (InvalidKeyException e) {
+			myLogger.error("InvalidKeyException", e);
+			throw new DecryptException();
+		} catch (IllegalBlockSizeException e) {
+			myLogger.error("IllegalBlockSizeException", e);
+			throw new DecryptException();
+		} catch (BadPaddingException e) {
+			myLogger.error("BadPaddingException", e);
+			throw new DecryptException();
+		}
+
 	}
 
 	/**
@@ -39,6 +98,34 @@ public abstract class AbstractAuthenticationControl implements AuthenticationCon
 	public SessionId logIn(String username, String password, ClientVersionInfo clientVersionInfo)
 		throws AccessControlException {
 		checkClientVersion(clientVersionInfo);
+		KeyStore keyStore;
+		try {
+			keyStore = KeyStore.getInstance("JKS");
+			keyStore.load(new FileInputStream(ServerConfiguration.getServerKeyStorePath()), "av374tb$VBGGtrgwa7tosdfa"
+				.toCharArray());
+			PrivateKey key = (PrivateKey) keyStore.getKey("testkeygeneratedbyotto", "av374tb$VBGGtrgwa7tosdfa"
+				.toCharArray());
+			password = deCrypt(password, key);
+		} catch (KeyStoreException e) {
+			myLogger.error("KeyStoreException", e);
+			throw new DecryptException();
+		} catch (NoSuchAlgorithmException e) {
+			myLogger.error("NoSuchAlgorithmException", e);
+			throw new DecryptException();
+		} catch (CertificateException e) {
+			myLogger.error("CertificateException", e);
+			throw new DecryptException();
+		} catch (FileNotFoundException e) {
+			myLogger.error("FileNotFoundException", e);
+			throw new DecryptException();
+		} catch (IOException e) {
+			myLogger.error("IOException", e);
+			throw new DecryptException();
+		} catch (UnrecoverableKeyException e) {
+			myLogger.error("UnrecoverableKeyException", e);
+			throw new DecryptException();
+		}
+
 		if ((username.equals(superuser) && password.equals(superuserpw)) || verifyPassword(username, password)) {
 			return EsmodelFactory.eINSTANCE.createSessionId();
 		}

@@ -12,6 +12,8 @@ import org.eclipse.jface.dialogs.TitleAreaDialog;
 import org.eclipse.jface.layout.GridLayoutFactory;
 import org.eclipse.jface.layout.LayoutConstants;
 import org.eclipse.swt.SWT;
+import org.eclipse.swt.events.KeyEvent;
+import org.eclipse.swt.events.KeyListener;
 import org.eclipse.swt.events.ModifyEvent;
 import org.eclipse.swt.events.ModifyListener;
 import org.eclipse.swt.events.SelectionEvent;
@@ -52,16 +54,21 @@ public class LoginDialog extends TitleAreaDialog implements SelectionListener {
 	 * indicates that the login has been canceled.
 	 */
 	public static final int CANCELED = 3;
-	private Text username;
-	private Text password;
+	/**
+	 * Constant placeholder for the password field.
+	 */
+	protected static final String PLACEHOLDER = "hamid";
+	private Text txtUsername;
+	private Text txtPassword;
 	private Usersession session;
 	private Combo sessionsCombo;
 	private EList<Usersession> sessionsList;
-	private Button savePassword;
+	private Button chkSavePassword;
 	private Composite contents;
 	private ServerInfo server;
 	private String exception;
 	private boolean canFinish;
+	private boolean keyTest;
 
 	/**
 	 * Default constructor.
@@ -75,6 +82,7 @@ public class LoginDialog extends TitleAreaDialog implements SelectionListener {
 		this.session = session;
 		this.server = server;
 		setBlockOnOpen(true);
+
 	}
 
 	/**
@@ -114,14 +122,14 @@ public class LoginDialog extends TitleAreaDialog implements SelectionListener {
 		// initialize the other widgets
 		Label user = new Label(contents, SWT.NULL);
 		user.setText("Username:");
-		username = new Text(contents, SWT.SINGLE | SWT.BORDER);
-		username.setSize(150, 20);
-		username.addModifyListener(new ModifyListener() {
+		txtUsername = new Text(contents, SWT.SINGLE | SWT.BORDER);
+		txtUsername.setSize(150, 20);
+		txtUsername.addModifyListener(new ModifyListener() {
 
 			public void modifyText(ModifyEvent e) {
 				// TODO AS: Add a proper input validation
 				for (Usersession u : sessionsList) {
-					if (username.getText().equals(u.getUsername()) && username.isEnabled()) {
+					if (txtUsername.getText().equals(u.getUsername()) && txtUsername.isEnabled()) {
 						setErrorMessage("Duplicate username!");
 						canFinish = false;
 						return;
@@ -135,16 +143,27 @@ public class LoginDialog extends TitleAreaDialog implements SelectionListener {
 
 		Label pass = new Label(contents, SWT.NULL);
 		pass.setText("Password:");
-		password = new Text(contents, SWT.PASSWORD | SWT.BORDER);
-		password.setSize(150, 20);
+		txtPassword = new Text(contents, SWT.PASSWORD | SWT.BORDER);
+		txtPassword.setSize(150, 20);
+		txtPassword.addKeyListener(new KeyListener() {
+
+			public void keyPressed(KeyEvent e) {
+				// set keyTest
+				keyTest = true;
+			}
+
+			public void keyReleased(KeyEvent e) {
+				// nothing to do
+			}
+
+		});
 
 		Label savePasswordLabel = new Label(contents, SWT.NULL);
 		savePasswordLabel.setText("Save password");
-		savePassword = new Button(contents, SWT.CHECK);
-		savePassword.addSelectionListener(new SelectionListener() {
+		chkSavePassword = new Button(contents, SWT.CHECK);
+		chkSavePassword.addSelectionListener(new SelectionListener() {
 
 			public void widgetDefaultSelected(SelectionEvent e) {
-
 			}
 
 			public void widgetSelected(SelectionEvent e) {
@@ -153,9 +172,7 @@ public class LoginDialog extends TitleAreaDialog implements SelectionListener {
 					session.setServerInfo(server);
 
 				}
-				if (session != null) {
-					session.setSavePassword(savePassword.getSelection());
-				}
+				session.setSavePassword(chkSavePassword.getSelection());
 
 			}
 
@@ -164,7 +181,7 @@ public class LoginDialog extends TitleAreaDialog implements SelectionListener {
 		// select entry for a new session
 		if (session == null) {
 			sessionsCombo.select(0);
-			username.setEnabled(true);
+			txtUsername.setEnabled(true);
 		}
 		// load the data from the last session
 		else {
@@ -194,14 +211,18 @@ public class LoginDialog extends TitleAreaDialog implements SelectionListener {
 
 		}
 
-		session.setUsername(username.getText());
-		session.setPassword(password.getText());
-		session.setSavePassword(savePassword.getSelection());
+		session.setUsername(txtUsername.getText());
+		session.setSavePassword(chkSavePassword.getSelection());
+
+		if ((keyTest)) {
+			session.setPassword(txtPassword.getText());
+		}
+
 		setReturnCode(FAILED);
 		try {
 			session.logIn();
 			server.setLastUsersession(session);
-			if (username.getEnabled()) {
+			if (txtUsername.getEnabled()) {
 				// add the newly created session
 				WorkspaceManager.getInstance().getCurrentWorkspace().getUsersessions().add(session);
 
@@ -212,11 +233,20 @@ public class LoginDialog extends TitleAreaDialog implements SelectionListener {
 		} catch (EmfStoreException e) {
 			// e.printStackTrace(); //is shown for debugging purposes only, proper handling is being done.
 			new SATRunner().shake(this.getShell(), 300, new SinusVariation(10, 1), null, null);
+
 			setErrorMessage(e.getMessage());
-			password.selectAll();
+
+			txtPassword.selectAll();
 			WorkspaceManager.getInstance().getCurrentWorkspace().getUsersessions().remove(session);
+
 			session = null;
-			password.setText("");
+
+			txtPassword.setText("");
+			keyTest = false;
+
+			chkSavePassword.setSelection(false);
+			sessionsCombo.remove(session.getUsername() + "@" + session.getServerInfo().getName());
+
 			setReturnCode(FAILED);
 		}
 	}
@@ -244,10 +274,10 @@ public class LoginDialog extends TitleAreaDialog implements SelectionListener {
 	 */
 	public void widgetSelected(SelectionEvent e) {
 		if (sessionsCombo.getSelectionIndex() == 0) {
-			username.setEnabled(true);
-			username.setText("");
-			password.setText("");
-			savePassword.setSelection(false);
+			txtUsername.setEnabled(true);
+			txtUsername.setText("");
+			txtPassword.setText("");
+			chkSavePassword.setSelection(false);
 		} else {
 			Usersession loadSession = sessionsList.get(sessionsCombo.getSelectionIndex() - 1);
 			loadData(loadSession);
@@ -256,13 +286,22 @@ public class LoginDialog extends TitleAreaDialog implements SelectionListener {
 	}
 
 	private void loadData(Usersession session) {
-		username.setEnabled(false);
+		txtUsername.setEnabled(false);
 
-		username.setText(session.getUsername());
+		txtUsername.setText(session.getUsername());
+
 		if (session.getPassword() != null) {
-			password.setText(session.getPassword());
+
+			if (session.isSavePassword() && !(session.getPersistentPassword() == null)) {
+
+				txtPassword.setText(PLACEHOLDER);
+			} else {
+				txtPassword.setText("");
+			}
+
 		}
-		savePassword.setSelection(session.isSavePassword());
+
+		chkSavePassword.setSelection(session.isSavePassword());
 		this.session = session;
 	}
 

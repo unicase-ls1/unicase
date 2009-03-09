@@ -11,15 +11,23 @@ import java.io.FileNotFoundException;
 import java.io.FileOutputStream;
 import java.io.IOException;
 import java.io.InputStream;
+import java.security.InvalidKeyException;
 import java.security.KeyStore;
 import java.security.KeyStoreException;
 import java.security.NoSuchAlgorithmException;
+import java.security.PublicKey;
 import java.security.cert.Certificate;
 import java.security.cert.CertificateException;
 import java.security.cert.CertificateFactory;
 import java.util.ArrayList;
 import java.util.Enumeration;
 
+import javax.crypto.BadPaddingException;
+import javax.crypto.Cipher;
+import javax.crypto.IllegalBlockSizeException;
+import javax.crypto.NoSuchPaddingException;
+
+import org.apache.commons.codec.binary.Base64;
 import org.unicase.workspace.Configuration;
 
 /**
@@ -213,64 +221,57 @@ public final class KeyStoreManager {
 	}
 
 	/**
-	 * Encrypts a password to save it locally.
+	 * Encrypts a password.
 	 * 
-	 * @param value String
-	 * @param key int
+	 * @param inp String
 	 * @return String
 	 */
-	public static String enCrypt(String value, int key) {
+	public static String enCrypt(String inp) {
+		KeyStoreManager keyStoreManager = KeyStoreManager.getInstance();
+		Certificate publicKey = keyStoreManager.getCertificate("unicase.org test test(!!!) certificate");
+		PublicKey key = publicKey.getPublicKey();
+		byte[] inpBytes;
 
-		String edited = value;
-		StringBuffer ergebnis = new StringBuffer();
+		try {
+			inpBytes = inp.getBytes();
+			Cipher cipher = Cipher.getInstance("RSA");
+			cipher.init(Cipher.ENCRYPT_MODE, key);
+			byte[] encryptededByteAr = cipher.doFinal(inpBytes);
+			byte[] base64EncodedByteAr = Base64.encodeBase64(encryptededByteAr);
+			return new String(base64EncodedByteAr);
 
-		for (int i = 0; i < edited.length(); i++) {
-			int c = edited.charAt(i);
-
-			if ((c >= 'A') && (c <= 'z')) {
-				c += key;
-				if (c > 'z') {
-					c = 'a' + c % 'z' - 1;
-				}
-				if ((c > 'Z') && (c < 'a')) {
-					c = 'A' + c % 'Z' - 1;
-				}
-			}
-			ergebnis.append((char) c);
+		} catch (NoSuchAlgorithmException e) {
+			// nothing to do
+			e.printStackTrace();
+		} catch (NoSuchPaddingException e) {
+			// nothing to do
+			e.printStackTrace();
+		} catch (InvalidKeyException e) {
+			// nothing to do
+			e.printStackTrace();
+		} catch (IllegalBlockSizeException e) {
+			// nothing to do
+			e.printStackTrace();
+		} catch (BadPaddingException e) {
+			// nothing to do
+			e.printStackTrace();
 		}
-		return ergebnis.toString();
+		return inp;
 
 	}
 
 	/**
-	 * Decrypt a password which was saved locally.
-	 * 
-	 * @param value String
-	 * @param key int
-	 * @return String
+	 * @param alias String
+	 * @return Certificate
 	 */
-	public static String deCrypt(String value, int key) {
-		if (value != null) {
-			String edited = value;
-			StringBuffer ergebnis = new StringBuffer();
-
-			for (int i = 0; i < edited.length(); i++) {
-				int c = edited.charAt(i);
-
-				if ((c >= 'A') && (c <= 'z')) {
-					c -= key;
-					if ((c < 'a') && (c > 'Z')) {
-						c = 'a' + ('z' - c % 'a') - 1;
-					}
-					if (c < 'A') {
-						c = 'A' + ('Z' - c % 'A') - 1;
-					}
-				}
-				ergebnis.append((char) c);
-			}
-			return ergebnis.toString();
+	private Certificate getCertificate(String alias) {
+		loadKeyStore();
+		try {
+			return keyStore.getCertificate(alias);
+		} catch (KeyStoreException e) {
+			e.printStackTrace();
 		}
-		return "";
+		return null;
 	}
 
 }
