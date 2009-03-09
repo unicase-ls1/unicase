@@ -159,6 +159,29 @@ public class AccesscontrolItemProviderAdapterFactory extends AccesscontrolAdapte
 	}
 
 	/**
+	 * This keeps track of the one adapter used for all {@link org.unicase.emfstore.esmodel.accesscontrol.OrgUnitProperties} instances.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 */
+	protected OrgUnitPropertiesItemProvider orgUnitPropertiesItemProvider;
+
+	/**
+	 * This creates an adapter for a {@link org.unicase.emfstore.esmodel.accesscontrol.OrgUnitProperties}.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 */
+	@Override
+	public Adapter createOrgUnitPropertiesAdapter() {
+		if (orgUnitPropertiesItemProvider == null) {
+			orgUnitPropertiesItemProvider = new OrgUnitPropertiesItemProvider(this);
+		}
+
+		return orgUnitPropertiesItemProvider;
+	}
+
+	/**
 	 * This returns the root adapter factory that contains this factory.
 	 * <!-- begin-user-doc --> <!-- end-user-doc -->
 	 * @generated
@@ -254,6 +277,7 @@ public class AccesscontrolItemProviderAdapterFactory extends AccesscontrolAdapte
 		if (acOrgUnitItemProvider != null) acOrgUnitItemProvider.dispose();
 		if (acGroupItemProvider != null) acGroupItemProvider.dispose();
 		if (acOrgUnitIdItemProvider != null) acOrgUnitIdItemProvider.dispose();
+		if (orgUnitPropertiesItemProvider != null) orgUnitPropertiesItemProvider.dispose();
 	}
 
 }
