@@ -21,7 +21,7 @@ import org.eclipse.gmf.runtime.notation.Node;
 import org.eclipse.gmf.runtime.notation.View;
 import org.eclipse.gmf.runtime.notation.impl.EdgeImpl;
 import org.eclipse.jface.action.Action;
-import org.unicase.ui.common.commands.DeleteFromViewCommand;
+import org.unicase.ui.common.diagram.commands.DeleteFromViewCommand;
 import org.unicase.ui.common.util.ActionHelper;
 import org.unicase.workspace.WorkspaceManager;
 
