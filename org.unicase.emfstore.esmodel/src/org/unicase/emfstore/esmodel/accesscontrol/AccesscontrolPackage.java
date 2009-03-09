@@ -99,7 +99,7 @@ public interface AccesscontrolPackage extends EPackage {
 	int AC_ORG_UNIT__DESCRIPTION = ModelPackage.IDENTIFIABLE_ELEMENT_FEATURE_COUNT + 2;
 
 	/**
-	 * The feature id for the '<em><b>Properties</b></em>' containment reference.
+	 * The feature id for the '<em><b>Properties</b></em>' containment reference list.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
 	 * @generated
@@ -149,7 +149,7 @@ public interface AccesscontrolPackage extends EPackage {
 	int AC_USER__DESCRIPTION = AC_ORG_UNIT__DESCRIPTION;
 
 	/**
-	 * The feature id for the '<em><b>Properties</b></em>' containment reference.
+	 * The feature id for the '<em><b>Properties</b></em>' containment reference list.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
 	 * @generated
@@ -223,7 +223,7 @@ public interface AccesscontrolPackage extends EPackage {
 	int AC_GROUP__DESCRIPTION = AC_ORG_UNIT__DESCRIPTION;
 
 	/**
-	 * The feature id for the '<em><b>Properties</b></em>' containment reference.
+	 * The feature id for the '<em><b>Properties</b></em>' containment reference list.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
 	 * @generated
@@ -382,10 +382,10 @@ public interface AccesscontrolPackage extends EPackage {
 	EAttribute getACOrgUnit_Description();
 
 	/**
-	 * Returns the meta object for the containment reference '{@link org.unicase.emfstore.esmodel.accesscontrol.ACOrgUnit#getProperties <em>Properties</em>}'.
+	 * Returns the meta object for the containment reference list '{@link org.unicase.emfstore.esmodel.accesscontrol.ACOrgUnit#getProperties <em>Properties</em>}'.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
-	 * @return the meta object for the containment reference '<em>Properties</em>'.
+	 * @return the meta object for the containment reference list '<em>Properties</em>'.
 	 * @see org.unicase.emfstore.esmodel.accesscontrol.ACOrgUnit#getProperties()
 	 * @see #getACOrgUnit()
 	 * @generated
@@ -532,7 +532,7 @@ public interface AccesscontrolPackage extends EPackage {
 		EAttribute AC_ORG_UNIT__DESCRIPTION = eINSTANCE.getACOrgUnit_Description();
 
 		/**
-		 * The meta object literal for the '<em><b>Properties</b></em>' containment reference feature.
+		 * The meta object literal for the '<em><b>Properties</b></em>' containment reference list feature.
 		 * <!-- begin-user-doc -->
 		 * <!-- end-user-doc -->
 		 * @generated
