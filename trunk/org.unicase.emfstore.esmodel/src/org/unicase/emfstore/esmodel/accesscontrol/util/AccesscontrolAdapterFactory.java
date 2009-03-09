@@ -14,6 +14,7 @@ import org.unicase.emfstore.esmodel.accesscontrol.ACOrgUnit;
 import org.unicase.emfstore.esmodel.accesscontrol.ACOrgUnitId;
 import org.unicase.emfstore.esmodel.accesscontrol.ACUser;
 import org.unicase.emfstore.esmodel.accesscontrol.AccesscontrolPackage;
+import org.unicase.emfstore.esmodel.accesscontrol.OrgUnitProperties;
 import org.unicase.model.IdentifiableElement;
 import org.unicase.model.UniqueIdentifier;
 
@@ -82,6 +83,10 @@ public class AccesscontrolAdapterFactory extends AdapterFactoryImpl {
 			@Override
 			public Adapter caseACOrgUnitId(ACOrgUnitId object) {
 				return createACOrgUnitIdAdapter();
+			}
+			@Override
+			public Adapter caseOrgUnitProperties(OrgUnitProperties object) {
+				return createOrgUnitPropertiesAdapter();
 			}
 			@Override
 			public Adapter caseIdentifiableElement(IdentifiableElement object) {
@@ -160,6 +165,20 @@ public class AccesscontrolAdapterFactory extends AdapterFactoryImpl {
 	 * @generated
 	 */
 	public Adapter createACOrgUnitIdAdapter() {
+		return null;
+	}
+
+	/**
+	 * Creates a new adapter for an object of class '{@link org.unicase.emfstore.esmodel.accesscontrol.OrgUnitProperties <em>Org Unit Properties</em>}'.
+	 * <!-- begin-user-doc -->
+	 * This default implementation returns null so that we can easily ignore cases;
+	 * it's useful to ignore a case when inheritance will catch all the cases anyway.
+	 * <!-- end-user-doc -->
+	 * @return the new adapter.
+	 * @see org.unicase.emfstore.esmodel.accesscontrol.OrgUnitProperties
+	 * @generated
+	 */
+	public Adapter createOrgUnitPropertiesAdapter() {
 		return null;
 	}
 

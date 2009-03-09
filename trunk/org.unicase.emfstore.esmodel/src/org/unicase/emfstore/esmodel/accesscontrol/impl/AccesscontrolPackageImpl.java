@@ -17,6 +17,7 @@ import org.unicase.emfstore.esmodel.accesscontrol.ACOrgUnitId;
 import org.unicase.emfstore.esmodel.accesscontrol.ACUser;
 import org.unicase.emfstore.esmodel.accesscontrol.AccesscontrolFactory;
 import org.unicase.emfstore.esmodel.accesscontrol.AccesscontrolPackage;
+import org.unicase.emfstore.esmodel.accesscontrol.OrgUnitProperties;
 import org.unicase.emfstore.esmodel.accesscontrol.roles.RolesPackage;
 import org.unicase.emfstore.esmodel.accesscontrol.roles.impl.RolesPackageImpl;
 import org.unicase.emfstore.esmodel.impl.EsmodelPackageImpl;
@@ -60,6 +61,13 @@ public class AccesscontrolPackageImpl extends EPackageImpl implements Accesscont
 	 * @generated
 	 */
 	private EClass acOrgUnitIdEClass = null;
+
+	/**
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 */
+	private EClass orgUnitPropertiesEClass = null;
 
 	/**
 	 * Creates an instance of the model <b>Package</b>, registered with {@link org.eclipse.emf.ecore.EPackage.Registry
@@ -209,6 +217,15 @@ public class AccesscontrolPackageImpl extends EPackageImpl implements Accesscont
 	}
 
 	/**
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 */
+	public EReference getACOrgUnit_Properties() {
+		return (EReference)acOrgUnitEClass.getEStructuralFeatures().get(3);
+	}
+
+	/**
 	 * <!-- begin-user-doc --> <!-- end-user-doc -->
 	 * @generated
 	 */
@@ -230,6 +247,33 @@ public class AccesscontrolPackageImpl extends EPackageImpl implements Accesscont
 	 */
 	public EClass getACOrgUnitId() {
 		return acOrgUnitIdEClass;
+	}
+
+	/**
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 */
+	public EClass getOrgUnitProperties() {
+		return orgUnitPropertiesEClass;
+	}
+
+	/**
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 */
+	public EAttribute getOrgUnitProperties_Name() {
+		return (EAttribute)orgUnitPropertiesEClass.getEStructuralFeatures().get(0);
+	}
+
+	/**
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 */
+	public EAttribute getOrgUnitProperties_Value() {
+		return (EAttribute)orgUnitPropertiesEClass.getEStructuralFeatures().get(1);
 	}
 
 	/**
@@ -265,11 +309,16 @@ public class AccesscontrolPackageImpl extends EPackageImpl implements Accesscont
 		createEAttribute(acOrgUnitEClass, AC_ORG_UNIT__NAME);
 		createEReference(acOrgUnitEClass, AC_ORG_UNIT__ROLES);
 		createEAttribute(acOrgUnitEClass, AC_ORG_UNIT__DESCRIPTION);
+		createEReference(acOrgUnitEClass, AC_ORG_UNIT__PROPERTIES);
 
 		acGroupEClass = createEClass(AC_GROUP);
 		createEReference(acGroupEClass, AC_GROUP__MEMBERS);
 
 		acOrgUnitIdEClass = createEClass(AC_ORG_UNIT_ID);
+
+		orgUnitPropertiesEClass = createEClass(ORG_UNIT_PROPERTIES);
+		createEAttribute(orgUnitPropertiesEClass, ORG_UNIT_PROPERTIES__NAME);
+		createEAttribute(orgUnitPropertiesEClass, ORG_UNIT_PROPERTIES__VALUE);
 	}
 
 	/**
@@ -319,6 +368,7 @@ public class AccesscontrolPackageImpl extends EPackageImpl implements Accesscont
 		initEAttribute(getACOrgUnit_Name(), ecorePackage.getEString(), "name", null, 1, 1, ACOrgUnit.class, !IS_TRANSIENT, !IS_VOLATILE, IS_CHANGEABLE, !IS_UNSETTABLE, !IS_ID, IS_UNIQUE, !IS_DERIVED, IS_ORDERED);
 		initEReference(getACOrgUnit_Roles(), theRolesPackage.getRole(), null, "roles", null, 0, -1, ACOrgUnit.class, !IS_TRANSIENT, !IS_VOLATILE, IS_CHANGEABLE, IS_COMPOSITE, IS_RESOLVE_PROXIES, !IS_UNSETTABLE, IS_UNIQUE, !IS_DERIVED, IS_ORDERED);
 		initEAttribute(getACOrgUnit_Description(), ecorePackage.getEString(), "description", null, 0, 1, ACOrgUnit.class, !IS_TRANSIENT, !IS_VOLATILE, IS_CHANGEABLE, !IS_UNSETTABLE, !IS_ID, IS_UNIQUE, !IS_DERIVED, IS_ORDERED);
+		initEReference(getACOrgUnit_Properties(), this.getOrgUnitProperties(), null, "properties", null, 0, 1, ACOrgUnit.class, !IS_TRANSIENT, !IS_VOLATILE, IS_CHANGEABLE, IS_COMPOSITE, IS_RESOLVE_PROXIES, !IS_UNSETTABLE, IS_UNIQUE, !IS_DERIVED, IS_ORDERED);
 
 		addEOperation(acOrgUnitEClass, this.getACOrgUnitId(), "getId", 0, 1, IS_UNIQUE, IS_ORDERED);
 
@@ -327,6 +377,10 @@ public class AccesscontrolPackageImpl extends EPackageImpl implements Accesscont
 		getACGroup_Members().getEKeys().add(theModelPackage.getIdentifiableElement_Identifier());
 
 		initEClass(acOrgUnitIdEClass, ACOrgUnitId.class, "ACOrgUnitId", !IS_ABSTRACT, !IS_INTERFACE, IS_GENERATED_INSTANCE_CLASS);
+
+		initEClass(orgUnitPropertiesEClass, OrgUnitProperties.class, "OrgUnitProperties", !IS_ABSTRACT, !IS_INTERFACE, IS_GENERATED_INSTANCE_CLASS);
+		initEAttribute(getOrgUnitProperties_Name(), ecorePackage.getEString(), "name", null, 0, 1, OrgUnitProperties.class, !IS_TRANSIENT, !IS_VOLATILE, IS_CHANGEABLE, !IS_UNSETTABLE, !IS_ID, IS_UNIQUE, !IS_DERIVED, IS_ORDERED);
+		initEAttribute(getOrgUnitProperties_Value(), ecorePackage.getEString(), "value", null, 0, 1, OrgUnitProperties.class, !IS_TRANSIENT, !IS_VOLATILE, IS_CHANGEABLE, !IS_UNSETTABLE, !IS_ID, IS_UNIQUE, !IS_DERIVED, IS_ORDERED);
 	}
 
 } // AccesscontrolPackageImpl

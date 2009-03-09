@@ -16,6 +16,7 @@ import org.unicase.emfstore.esmodel.accesscontrol.ACOrgUnitId;
 import org.unicase.emfstore.esmodel.accesscontrol.ACUser;
 import org.unicase.emfstore.esmodel.accesscontrol.AccesscontrolFactory;
 import org.unicase.emfstore.esmodel.accesscontrol.AccesscontrolPackage;
+import org.unicase.emfstore.esmodel.accesscontrol.OrgUnitProperties;
 
 /*
  * <!-- begin-user-doc --> An implementation of the model <b>Factory</b>. <!-- end-user-doc -->
@@ -60,6 +61,7 @@ public class AccesscontrolFactoryImpl extends EFactoryImpl implements Accesscont
 			case AccesscontrolPackage.AC_ORG_UNIT: return createACOrgUnit();
 			case AccesscontrolPackage.AC_GROUP: return createACGroup();
 			case AccesscontrolPackage.AC_ORG_UNIT_ID: return createACOrgUnitId();
+			case AccesscontrolPackage.ORG_UNIT_PROPERTIES: return createOrgUnitProperties();
 			default:
 				throw new IllegalArgumentException("The class '" + eClass.getName() + "' is not a valid classifier");
 		}
@@ -99,6 +101,16 @@ public class AccesscontrolFactoryImpl extends EFactoryImpl implements Accesscont
 	public ACOrgUnitId createACOrgUnitId() {
 		ACOrgUnitIdImpl acOrgUnitId = new ACOrgUnitIdImpl();
 		return acOrgUnitId;
+	}
+
+	/**
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 */
+	public OrgUnitProperties createOrgUnitProperties() {
+		OrgUnitPropertiesImpl orgUnitProperties = new OrgUnitPropertiesImpl();
+		return orgUnitProperties;
 	}
 
 	/**

@@ -14,6 +14,7 @@ import org.unicase.emfstore.esmodel.accesscontrol.ACOrgUnit;
 import org.unicase.emfstore.esmodel.accesscontrol.ACOrgUnitId;
 import org.unicase.emfstore.esmodel.accesscontrol.ACUser;
 import org.unicase.emfstore.esmodel.accesscontrol.AccesscontrolPackage;
+import org.unicase.emfstore.esmodel.accesscontrol.OrgUnitProperties;
 import org.unicase.model.IdentifiableElement;
 import org.unicase.model.UniqueIdentifier;
 
@@ -111,6 +112,12 @@ public class AccesscontrolSwitch<T> {
 				if (result == null) result = defaultCase(theEObject);
 				return result;
 			}
+			case AccesscontrolPackage.ORG_UNIT_PROPERTIES: {
+				OrgUnitProperties orgUnitProperties = (OrgUnitProperties)theEObject;
+				T result = caseOrgUnitProperties(orgUnitProperties);
+				if (result == null) result = defaultCase(theEObject);
+				return result;
+			}
 			default: return defaultCase(theEObject);
 		}
 	}
@@ -165,6 +172,21 @@ public class AccesscontrolSwitch<T> {
 	 * @generated
 	 */
 	public T caseACOrgUnitId(ACOrgUnitId object) {
+		return null;
+	}
+
+	/**
+	 * Returns the result of interpreting the object as an instance of '<em>Org Unit Properties</em>'.
+	 * <!-- begin-user-doc -->
+	 * This implementation returns null;
+	 * returning a non-null result will terminate the switch.
+	 * <!-- end-user-doc -->
+	 * @param object the target of the switch.
+	 * @return the result of interpreting the object as an instance of '<em>Org Unit Properties</em>'.
+	 * @see #doSwitch(org.eclipse.emf.ecore.EObject) doSwitch(EObject)
+	 * @generated
+	 */
+	public T caseOrgUnitProperties(OrgUnitProperties object) {
 		return null;
 	}
 

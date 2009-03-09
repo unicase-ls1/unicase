@@ -19,6 +19,7 @@ import org.unicase.emfstore.esmodel.accesscontrol.ACOrgUnit;
 import org.unicase.emfstore.esmodel.accesscontrol.ACOrgUnitId;
 import org.unicase.emfstore.esmodel.accesscontrol.AccesscontrolFactory;
 import org.unicase.emfstore.esmodel.accesscontrol.AccesscontrolPackage;
+import org.unicase.emfstore.esmodel.accesscontrol.OrgUnitProperties;
 import org.unicase.emfstore.esmodel.accesscontrol.roles.Role;
 import org.unicase.model.impl.IdentifiableElementImpl;
 
@@ -81,6 +82,16 @@ public class ACOrgUnitImpl extends IdentifiableElementImpl implements ACOrgUnit 
 	 * @ordered
 	 */
 	protected String description = DESCRIPTION_EDEFAULT;
+
+	/**
+	 * The cached value of the '{@link #getProperties() <em>Properties</em>}' containment reference.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @see #getProperties()
+	 * @generated
+	 * @ordered
+	 */
+	protected OrgUnitProperties properties;
 
 	/**
 	 * <!-- begin-user-doc --> <!-- end-user-doc -->
@@ -182,6 +193,8 @@ public class ACOrgUnitImpl extends IdentifiableElementImpl implements ACOrgUnit 
 		switch (featureID) {
 			case AccesscontrolPackage.AC_ORG_UNIT__ROLES:
 				return ((InternalEList<?>)getRoles()).basicRemove(otherEnd, msgs);
+			case AccesscontrolPackage.AC_ORG_UNIT__PROPERTIES:
+				return basicSetProperties(null, msgs);
 		}
 		return super.eInverseRemove(otherEnd, featureID, msgs);
 	}
@@ -206,6 +219,72 @@ public class ACOrgUnitImpl extends IdentifiableElementImpl implements ACOrgUnit 
 	}
 
 	/**
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 */
+	public OrgUnitProperties getProperties() {
+		if (properties != null && properties.eIsProxy()) {
+			InternalEObject oldProperties = (InternalEObject)properties;
+			properties = (OrgUnitProperties)eResolveProxy(oldProperties);
+			if (properties != oldProperties) {
+				InternalEObject newProperties = (InternalEObject)properties;
+				NotificationChain msgs = oldProperties.eInverseRemove(this, EOPPOSITE_FEATURE_BASE - AccesscontrolPackage.AC_ORG_UNIT__PROPERTIES, null, null);
+				if (newProperties.eInternalContainer() == null) {
+					msgs = newProperties.eInverseAdd(this, EOPPOSITE_FEATURE_BASE - AccesscontrolPackage.AC_ORG_UNIT__PROPERTIES, null, msgs);
+				}
+				if (msgs != null) msgs.dispatch();
+				if (eNotificationRequired())
+					eNotify(new ENotificationImpl(this, Notification.RESOLVE, AccesscontrolPackage.AC_ORG_UNIT__PROPERTIES, oldProperties, properties));
+			}
+		}
+		return properties;
+	}
+
+	/**
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 */
+	public OrgUnitProperties basicGetProperties() {
+		return properties;
+	}
+
+	/**
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 */
+	public NotificationChain basicSetProperties(OrgUnitProperties newProperties, NotificationChain msgs) {
+		OrgUnitProperties oldProperties = properties;
+		properties = newProperties;
+		if (eNotificationRequired()) {
+			ENotificationImpl notification = new ENotificationImpl(this, Notification.SET, AccesscontrolPackage.AC_ORG_UNIT__PROPERTIES, oldProperties, newProperties);
+			if (msgs == null) msgs = notification; else msgs.add(notification);
+		}
+		return msgs;
+	}
+
+	/**
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 */
+	public void setProperties(OrgUnitProperties newProperties) {
+		if (newProperties != properties) {
+			NotificationChain msgs = null;
+			if (properties != null)
+				msgs = ((InternalEObject)properties).eInverseRemove(this, EOPPOSITE_FEATURE_BASE - AccesscontrolPackage.AC_ORG_UNIT__PROPERTIES, null, msgs);
+			if (newProperties != null)
+				msgs = ((InternalEObject)newProperties).eInverseAdd(this, EOPPOSITE_FEATURE_BASE - AccesscontrolPackage.AC_ORG_UNIT__PROPERTIES, null, msgs);
+			msgs = basicSetProperties(newProperties, msgs);
+			if (msgs != null) msgs.dispatch();
+		}
+		else if (eNotificationRequired())
+			eNotify(new ENotificationImpl(this, Notification.SET, AccesscontrolPackage.AC_ORG_UNIT__PROPERTIES, newProperties, newProperties));
+	}
+
+	/**
 	 * <!-- begin-user-doc --> <!-- end-user-doc -->
 	 * @generated
 	 */
@@ -218,6 +297,9 @@ public class ACOrgUnitImpl extends IdentifiableElementImpl implements ACOrgUnit 
 				return getRoles();
 			case AccesscontrolPackage.AC_ORG_UNIT__DESCRIPTION:
 				return getDescription();
+			case AccesscontrolPackage.AC_ORG_UNIT__PROPERTIES:
+				if (resolve) return getProperties();
+				return basicGetProperties();
 		}
 		return super.eGet(featureID, resolve, coreType);
 	}
@@ -240,6 +322,9 @@ public class ACOrgUnitImpl extends IdentifiableElementImpl implements ACOrgUnit 
 			case AccesscontrolPackage.AC_ORG_UNIT__DESCRIPTION:
 				setDescription((String)newValue);
 				return;
+			case AccesscontrolPackage.AC_ORG_UNIT__PROPERTIES:
+				setProperties((OrgUnitProperties)newValue);
+				return;
 		}
 		super.eSet(featureID, newValue);
 	}
@@ -260,6 +345,9 @@ public class ACOrgUnitImpl extends IdentifiableElementImpl implements ACOrgUnit 
 			case AccesscontrolPackage.AC_ORG_UNIT__DESCRIPTION:
 				setDescription(DESCRIPTION_EDEFAULT);
 				return;
+			case AccesscontrolPackage.AC_ORG_UNIT__PROPERTIES:
+				setProperties((OrgUnitProperties)null);
+				return;
 		}
 		super.eUnset(featureID);
 	}
@@ -277,6 +365,8 @@ public class ACOrgUnitImpl extends IdentifiableElementImpl implements ACOrgUnit 
 				return roles != null && !roles.isEmpty();
 			case AccesscontrolPackage.AC_ORG_UNIT__DESCRIPTION:
 				return DESCRIPTION_EDEFAULT == null ? description != null : !DESCRIPTION_EDEFAULT.equals(description);
+			case AccesscontrolPackage.AC_ORG_UNIT__PROPERTIES:
+				return properties != null;
 		}
 		return super.eIsSet(featureID);
 	}

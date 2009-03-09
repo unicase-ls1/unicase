@@ -96,4 +96,30 @@ public interface ACOrgUnit extends IdentifiableElement {
 	 */
 	void setDescription(String value);
 
+	/**
+	 * Returns the value of the '<em><b>Properties</b></em>' containment reference.
+	 * <!-- begin-user-doc -->
+	 * <p>
+	 * If the meaning of the '<em>Properties</em>' containment reference isn't clear,
+	 * there really should be more of a description here...
+	 * </p>
+	 * <!-- end-user-doc -->
+	 * @return the value of the '<em>Properties</em>' containment reference.
+	 * @see #setProperties(OrgUnitProperties)
+	 * @see org.unicase.emfstore.esmodel.accesscontrol.AccesscontrolPackage#getACOrgUnit_Properties()
+	 * @model containment="true" resolveProxies="true"
+	 * @generated
+	 */
+	OrgUnitProperties getProperties();
+
+	/**
+	 * Sets the value of the '{@link org.unicase.emfstore.esmodel.accesscontrol.ACOrgUnit#getProperties <em>Properties</em>}' containment reference.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @param value the new value of the '<em>Properties</em>' containment reference.
+	 * @see #getProperties()
+	 * @generated
+	 */
+	void setProperties(OrgUnitProperties value);
+
 } // ACOrgUnit
