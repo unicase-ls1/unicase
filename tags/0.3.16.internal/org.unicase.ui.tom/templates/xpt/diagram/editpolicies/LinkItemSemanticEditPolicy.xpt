@@ -1,0 +1,66 @@
+/*
+ * Copyright (c) 2007 Borland Software Corporation
+ * 
+ * All rights reserved. This program and the accompanying materials
+ * are made available under the terms of the Eclipse Public License v1.0
+ * which accompanies this distribution, and is available at
+ * http://www.eclipse.org/legal/epl-v10.html
+ *
+ * Contributors:
+ *    Alexander Shatalin (Borland) - initial API and implementation
+ */
+
+«IMPORT "http://www.eclipse.org/gmf/2008/GenModel"»
+«EXTENSION xpt::GenModelUtils»
+
+«DEFINE LinkItemSemanticEditPolicy FOR gmfgen::GenLink-»
+	«EXPAND xpt::Common::copyright FOR diagram.editorGen-»
+package «getDiagram().editPoliciesPackageName»;
+
+«EXPAND xpt::Common::generatedClassComment»
+public class «itemSemanticEditPolicyClassName» extends «diagram.getBaseItemSemanticEditPolicyQualifiedClassName()» {
+
+	«EXPAND classBody(getDiagram()) FOR modelFacet-»
+
+	«EXPAND additions-»
+}
+«ENDDEFINE» 
+
+«DEFINE classBody(gmfgen::GenDiagram diagram) FOR gmfgen::FeatureLinkModelFacet-»
+	«EXPAND getDestroyReferenceCommand-»
+«ENDDEFINE»
+
+«DEFINE classBody(gmfgen::GenDiagram diagram) FOR gmfgen::TypeLinkModelFacet-»
+	«EXPAND getDestroyElementCommand-»
+	«EXPAND xpt::diagram::editpolicies::linkCommands::linkCommands(diagram)-»
+«ENDDEFINE»
+
+«DEFINE classBody(gmfgen::GenDiagram diagram) FOR gmfgen::LinkModelFacet-»
+	«ERROR "Unsupported model facet: " + this-»
+«ENDDEFINE»
+
+«DEFINE getDestroyReferenceCommand FOR gmfgen::FeatureLinkModelFacet-»
+	«EXPAND xpt::Common::generatedMemberComment»
+protected org.eclipse.gef.commands.Command getDestroyReferenceCommand(org.eclipse.gmf.runtime.emf.type.core.requests.DestroyReferenceRequest req) {
+	return getGEFWrapper(new org.eclipse.gmf.runtime.emf.type.core.commands.DestroyReferenceCommand(req)«IF isContains(metaFeature)» {
+
+		protected org.eclipse.gmf.runtime.common.core.command.CommandResult doExecuteWithResult(org.eclipse.core.runtime.IProgressMonitor progressMonitor, org.eclipse.core.runtime.IAdaptable info) throws org.eclipse.core.commands.ExecutionException {
+			org.eclipse.emf.ecore.EObject referencedObject = getReferencedObject();
+			org.eclipse.emf.ecore.resource.Resource resource = referencedObject.eResource();
+			org.eclipse.gmf.runtime.common.core.command.CommandResult result = super.doExecuteWithResult(progressMonitor, info);
+			resource.getContents().add(referencedObject);
+			return result;
+		}
+
+	}«ENDIF»);
+}
+«ENDDEFINE»
+
+«DEFINE getDestroyElementCommand FOR gmfgen::TypeLinkModelFacet-»
+	«EXPAND xpt::Common::generatedMemberComment»
+protected org.eclipse.gef.commands.Command getDestroyElementCommand(org.eclipse.gmf.runtime.emf.type.core.requests.DestroyElementRequest req) {
+	return getGEFWrapper(new org.eclipse.gmf.runtime.emf.type.core.commands.DestroyElementCommand(req));
+}
+«ENDDEFINE»
+
+«DEFINE additions FOR gmfgen::GenLink»«ENDDEFINE»
