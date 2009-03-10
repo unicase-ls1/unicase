@@ -5,9 +5,12 @@
  */
 package org.unicase.ui.common.views;
 
+import java.util.Date;
+
 import org.eclipse.jface.resource.FontRegistry;
 import org.eclipse.jface.viewers.ISelection;
 import org.eclipse.jface.viewers.IStructuredSelection;
+import org.eclipse.jface.viewers.StructuredSelection;
 import org.eclipse.swt.SWT;
 import org.eclipse.swt.graphics.Font;
 import org.eclipse.swt.graphics.FontData;
@@ -121,21 +124,62 @@ public class Preview extends ViewPart implements ISelectionListener {
 	@Override
 	public void dispose() {
 
-		super.dispose();
 		getSite().getPage().removeSelectionListener(this);
 		if (namelabel != null) {
 			namelabel.dispose();
 		}
-		if (creatorAndDatelabel != null) {
+		if (creatorAndDatelabel != null && !creatorAndDatelabel.isDisposed()) {
+
 			creatorAndDatelabel.dispose();
+
 		}
-		if (textwidget != null) {
+		// disposes all Fonds
+		fondsDispose();
+
+		disposeControls();
+
+		if (labelprovider != null) {
+			labelprovider.dispose();
+		}
+		super.dispose();
+	}
+
+	/**
+	 * Disposes the Controls of this {@link Preview}.
+	 */
+	private void disposeControls() {
+		if (textwidget != null && !textwidget.isDisposed()) {
 			textwidget.dispose();
 		}
-		if (composite != null) {
+		if (composite != null && !composite.isDisposed()) {
+
 			composite.dispose();
+
 		}
 
+		if (iconlabel != null && !iconlabel.isDisposed()) {
+
+			iconlabel.dispose();
+
+		}
+	}
+
+	/**
+	 * disposes Fonds.
+	 */
+	private void fondsDispose() {
+		if (registry != null) {
+			Font[] fonts = new Font[3];
+			fonts[0] = registry.get(namelabelfont);
+			fonts[1] = registry.get(creatorlabelfont);
+			fonts[2] = registry.get(descriptiontextfont);
+			for (int i = 0; i < fonts.length; i++) {
+				if (fonts[i] != null && !fonts[i].isDisposed()) {
+					fonts[i].dispose();
+				}
+			}
+
+		}
 	}
 
 	/**
@@ -143,44 +187,59 @@ public class Preview extends ViewPart implements ISelectionListener {
 	 * @param selection is the selection.
 	 */
 	public void selectionChanged(IWorkbenchPart part, ISelection selection) {
-
 		if (selection.isEmpty()) {
 			return;
 		}
-		IStructuredSelection selected = (IStructuredSelection) selection;
-		Object object = selected.getFirstElement();
-		if (object instanceof ModelElement) {
-			ModelElement me = (ModelElement) object;
-			setModelElement(me);
+		if (selection instanceof StructuredSelection) {
 
-		} else {
-			if (iconlabel != null) {
-				Image icon = labelprovider.getImage(object);
-				iconlabel.setImage(icon);
-			}
-			String labeltext = labelprovider.getText(object);
-			if (namelabel != null) {
-				namelabel.setText(labeltext);
-			}
-			if (creatorAndDatelabel != null) {
-				creatorAndDatelabel.setText(" "); // Date ?!
-			}
-			if (textwidget != null) {
-				if (labeltext == "Orphans") {
-					textwidget.setText(orphansdescription);
-				} else {
-					textwidget.setText(nocomment);
-				}
-			}
+			IStructuredSelection selected = (IStructuredSelection) selection;
 
-		}
-		// layout reconstituted.
-		if (composite != null) {
-			composite.layout();
+			Object object = selected.getFirstElement();
+
+			if (object instanceof ModelElement) {
+				ModelElement me = (ModelElement) object;
+
+				setModelElement(me);
+
+			} else {
+				setselectedObject(object);
+
+			}
+			// layout reconstituted.
+			if (composite != null) {
+				composite.layout();
+			}
 		}
 
 	}
 
+	/**
+	 * @param object the selected StructuredSelection Object.
+	 */
+	private void setselectedObject(Object object) {
+		if (iconlabel != null) {
+			Image icon = labelprovider.getImage(object);
+			iconlabel.setImage(icon);
+		}
+		String labeltext = labelprovider.getText(object);
+		if (namelabel != null) {
+			namelabel.setText(labeltext);
+		}
+		if (creatorAndDatelabel != null) {
+			creatorAndDatelabel.setText(" "); // Date ?!
+		}
+		if (textwidget != null) {
+			if (labeltext == "Orphans") {
+				textwidget.setText(orphansdescription);
+			} else {
+				textwidget.setText(nocomment);
+			}
+		}
+	}
+
+	/**
+	 * @param me the selected ModelElement.
+	 */
 	private void setModelElement(ModelElement me) {
 		Image icon = labelprovider.getImage(me);
 		if (iconlabel != null) {
@@ -190,14 +249,25 @@ public class Preview extends ViewPart implements ISelectionListener {
 			namelabel.setText(labelprovider.getText(me));
 		}
 		if (creatorAndDatelabel != null) {
-			creatorAndDatelabel.setText(" " + me.getCreator() + " " + me.getCreationDate().toString());
+			String creator = me.getCreator();
+			Date creationdate = me.getCreationDate();
+			String creationdateStr = "";
+			if (creator == null || creator.equals("")) {
+				creator = "";
+			}
+			if (creationdate != null) {
+				creationdateStr = creationdate.toString();
+			}
+			creatorAndDatelabel.setText(" " + creator + " " + creationdateStr);
 		}
 		if (textwidget != null) {
 			String name = me.getDescriptionPlainText();
-			if (name.equals(null)) {
+			if (name==null) {
 				textwidget.setText(nocomment);
 			}
+			else{
 			textwidget.setText(name);
+			}
 		}
 	}
 
