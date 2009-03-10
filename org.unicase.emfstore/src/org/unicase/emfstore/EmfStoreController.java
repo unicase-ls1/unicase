@@ -103,6 +103,9 @@ public class EmfStoreController implements IApplication {
 
 		historyCache = initHistoryCache();
 
+		// FixSuite fixSuite = new FixSuite(serverSpace);
+		// fixSuite.fix("_vJNjlI-jEd2NxKsJ-WbHVA");
+
 		accessControl = initAccessControl(serverSpace);
 		emfStore = new EmfStoreImpl(serverSpace, accessControl);
 		adminEmfStore = new AdminEmfStoreImpl(serverSpace, accessControl);
