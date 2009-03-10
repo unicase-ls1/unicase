@@ -6,6 +6,7 @@
 package org.unicase.ui.meeditor.mecontrols.melinkcontrol;
 
 import java.util.ArrayList;
+import java.util.List;
 
 import org.eclipse.emf.common.util.EList;
 import org.eclipse.emf.ecore.EClass;
@@ -25,6 +26,7 @@ import org.eclipse.swt.graphics.Image;
 import org.eclipse.ui.PlatformUI;
 import org.eclipse.ui.dialogs.ElementListSelectionDialog;
 import org.unicase.model.ModelElement;
+import org.unicase.model.Project;
 import org.unicase.model.document.LeafSection;
 import org.unicase.model.util.ModelUtil;
 import org.unicase.ui.common.MEClassLabelProvider;
@@ -78,16 +80,34 @@ public class NewReferenceAction extends Action {
 			newMEInstance.setName("new " + newClass.getName());
 
 			if (!eReference.isContainer()) {
-				// add the modelelement to the Leafsection.
-				LeafSection leafsection = modelElement.getLeafSection();
+				// Returns the value of the Container
+				EReference reference = getParentReference(newMEInstance);
+				if (reference != null) {
+					if (reference.isMany()) {
+						Object object = modelElement.eContainer().eGet(reference);
+						EList<EObject> eList = (EList<EObject>) object;
+						eList.add(newMEInstance);
 
-				if (leafsection != null) {
-					leafsection.getModelElements().add(newMEInstance);
-
+					}
 				} else {
-					// add the modelelment to the project (Orphans).
-					modelElement.getProject().addModelElement(newMEInstance);
+					// List of LeafSections (Containers).
+					EObject parent = modelElement.eContainer();
+					while (!(parent instanceof Project)) {
+						// if parent container instance of leafSection ,
+						// add the container to the leafSectionlist.
+						if (parent instanceof LeafSection) {
+							((LeafSection) parent).getModelElements().add(newMEInstance);
+							break;
+						}
+						parent = parent.eContainer();
+
+					}
+					// add the MEinstance to the project (Orphans).
+					if (newMEInstance.eContainer() == null) {
+						modelElement.getProject().addModelElement(newMEInstance);
+					}
 				}
+
 			}
 
 			// add the new object to the reference
@@ -100,6 +120,29 @@ public class NewReferenceAction extends Action {
 			}
 
 			ActionHelper.openModelElement(newMEInstance, this.getClass().getName());
+		}
+
+		/**
+		 * @param newMEInstance {@link ModelElement} the new modelElement instance.
+		 * @return EReference the Container
+		 */
+		private EReference getParentReference(final ModelElement newMEInstance) {
+			// the value of the 'EAll Containments' reference list.
+			List<EReference> eallcontainments = modelElement.eContainer().eClass().getEAllContainments();
+			EReference reference = null;
+			for (EReference containmentitem : eallcontainments) {
+
+				if (containmentitem.getEReferenceType().equals(newMEInstance)) {
+					reference = containmentitem;
+
+					break;
+				} else if (containmentitem.getEReferenceType().isSuperTypeOf(newMEInstance.eClass())) {
+
+					reference = containmentitem;
+					break;
+				}
+			}
+			return reference;
 		}
 	}
 
