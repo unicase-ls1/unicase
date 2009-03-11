@@ -286,6 +286,9 @@
                  name="org.unicase.model.ModelElement">
            </objectClass>
         </enablement>
+        <description>
+           Shows state of a model element (Blocked/Running).
+        </description>
      </decorator>
      <decorator
            adaptable="true"
@@ -299,6 +302,9 @@
                  name="org.unicase.workspace.ProjectSpace">
            </objectClass>
         </enablement>
+        <description>
+           Shows version of current project.
+        </description>
      </decorator>
      <decorator
            adaptable="true"
@@ -312,6 +318,25 @@
                  name="org.unicase.workspace.ProjectSpace">
            </objectClass>
         </enablement>
+        <description>
+           If the porject has local changes.
+        </description>
+     </decorator>
+     <decorator
+           adaptable="true"
+           class="org.unicase.ui.common.decorators.ChildrenDecorator"
+           id="org.unicase.ui.common.decorators.ChildrenDecorator"
+           label="Children Decorator"
+           lightweight="true"
+           state="true">
+        <enablement>
+           <objectClass
+                 name="org.eclipse.emf.edit.provider.DelegatingWrapperItemProvider">
+           </objectClass>
+        </enablement> 
+        <description>
+           Shows a link icon on children that are not actually contained in their parent in Navigator.
+        </description>
      </decorator>
   </extension>
     <extension

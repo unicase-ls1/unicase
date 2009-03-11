@@ -21,6 +21,7 @@ import org.eclipse.emf.ecore.EFactory;
 import org.eclipse.emf.ecore.EObject;
 import org.eclipse.emf.ecore.EStructuralFeature;
 import org.eclipse.emf.ecore.util.EcoreUtil;
+import org.eclipse.emf.edit.provider.DelegatingWrapperItemProvider;
 import org.eclipse.emf.transaction.RecordingCommand;
 import org.eclipse.emf.transaction.TransactionalEditingDomain;
 import org.eclipse.jface.dialogs.ErrorDialog;
@@ -367,7 +368,14 @@ public final class ActionHelper {
 		Object obj = getSelection();
 		if (obj instanceof ModelElement) {
 			return (ModelElement) obj;
-		} else {
+		} else if(obj instanceof DelegatingWrapperItemProvider) {
+			if( ((DelegatingWrapperItemProvider)obj).getValue() instanceof ModelElement){
+				return (ModelElement) ((DelegatingWrapperItemProvider)obj).getValue();
+			}else{
+				return null;
+			}
+			
+		}else{
 			return null;
 		}
 	}

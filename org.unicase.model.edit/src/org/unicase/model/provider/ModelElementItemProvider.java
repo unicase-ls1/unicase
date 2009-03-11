@@ -5,11 +5,9 @@
  */
 package org.unicase.model.provider;
 
-import java.util.Collection;
-import java.util.List;
-
 import org.eclipse.emf.common.notify.AdapterFactory;
 import org.eclipse.emf.common.notify.Notification;
+import org.eclipse.emf.ecore.EReference;
 import org.eclipse.emf.ecore.EStructuralFeature;
 import org.eclipse.emf.edit.provider.ComposeableAdapterFactory;
 import org.eclipse.emf.edit.provider.IEditingDomainItemProvider;
@@ -24,6 +22,9 @@ import org.unicase.model.ModelElement;
 import org.unicase.model.ModelPackage;
 import org.unicase.model.profile.ProfileFactory;
 
+import java.util.Collection;
+import java.util.List;
+
 /*
  * This is the item provider adapter for a {@link org.unicase.model.ModelElement} object. <!-- begin-user-doc --> <!--
  * end-user-doc -->
@@ -32,8 +33,8 @@ import org.unicase.model.profile.ProfileFactory;
 public class ModelElementItemProvider extends IdentifiableElementItemProvider implements IEditingDomainItemProvider,
 	IStructuredItemContentProvider, ITreeItemContentProvider, IItemLabelProvider, IItemPropertySource {
 	/**
-	 * This constructs an instance from a factory and a notifier.
-	 * <!-- begin-user-doc --> <!-- end-user-doc -->
+	 * This constructs an instance from a factory and a notifier. <!-- begin-user-doc --> <!-- end-user-doc -->
+	 * 
 	 * @generated
 	 */
 	public ModelElementItemProvider(AdapterFactory adapterFactory) {
@@ -41,8 +42,8 @@ public class ModelElementItemProvider extends IdentifiableElementItemProvider im
 	}
 
 	/**
-	 * This returns the property descriptors for the adapted class.
-	 * <!-- begin-user-doc --> <!-- end-user-doc -->
+	 * This returns the property descriptors for the adapted class. <!-- begin-user-doc --> <!-- end-user-doc -->
+	 * 
 	 * @generated
 	 */
 	@Override
@@ -60,8 +61,8 @@ public class ModelElementItemProvider extends IdentifiableElementItemProvider im
 	}
 
 	/**
-	 * This adds a property descriptor for the Name feature.
-	 * <!-- begin-user-doc --> <!-- end-user-doc -->
+	 * This adds a property descriptor for the Name feature. <!-- begin-user-doc --> <!-- end-user-doc -->
+	 * 
 	 * @generated
 	 */
 	protected void addNamePropertyDescriptor(Object object) {
@@ -73,8 +74,8 @@ public class ModelElementItemProvider extends IdentifiableElementItemProvider im
 	}
 
 	/**
-	 * This adds a property descriptor for the Description feature.
-	 * <!-- begin-user-doc --> <!-- end-user-doc -->
+	 * This adds a property descriptor for the Description feature. <!-- begin-user-doc --> <!-- end-user-doc -->
+	 * 
 	 * @generated
 	 */
 	protected void addDescriptionPropertyDescriptor(Object object) {
@@ -86,8 +87,8 @@ public class ModelElementItemProvider extends IdentifiableElementItemProvider im
 	}
 
 	/**
-	 * This adds a property descriptor for the Annotations feature.
-	 * <!-- begin-user-doc --> <!-- end-user-doc -->
+	 * This adds a property descriptor for the Annotations feature. <!-- begin-user-doc --> <!-- end-user-doc -->
+	 * 
 	 * @generated
 	 */
 	protected void addAnnotationsPropertyDescriptor(Object object) {
@@ -99,8 +100,8 @@ public class ModelElementItemProvider extends IdentifiableElementItemProvider im
 	}
 
 	/**
-	 * This adds a property descriptor for the Attachments feature.
-	 * <!-- begin-user-doc --> <!-- end-user-doc -->
+	 * This adds a property descriptor for the Attachments feature. <!-- begin-user-doc --> <!-- end-user-doc -->
+	 * 
 	 * @generated
 	 */
 	protected void addAttachmentsPropertyDescriptor(Object object) {
@@ -112,9 +113,9 @@ public class ModelElementItemProvider extends IdentifiableElementItemProvider im
 	}
 
 	/**
-	 * This adds a property descriptor for the Incoming Document References feature.
-	 * <!-- begin-user-doc --> <!--
+	 * This adds a property descriptor for the Incoming Document References feature. <!-- begin-user-doc --> <!--
 	 * end-user-doc -->
+	 * 
 	 * @generated
 	 */
 	protected void addIncomingDocumentReferencesPropertyDescriptor(Object object) {
@@ -129,9 +130,9 @@ public class ModelElementItemProvider extends IdentifiableElementItemProvider im
 	/**
 	 * This specifies how to implement {@link #getChildren} and is used to deduce an appropriate feature for an
 	 * {@link org.eclipse.emf.edit.command.AddCommand}, {@link org.eclipse.emf.edit.command.RemoveCommand} or
-	 * {@link org.eclipse.emf.edit.command.MoveCommand} in {@link #createCommand}.
-	 * <!-- begin-user-doc --> <!--
+	 * {@link org.eclipse.emf.edit.command.MoveCommand} in {@link #createCommand}. <!-- begin-user-doc --> <!--
 	 * end-user-doc -->
+	 * 
 	 * @generated
 	 */
 	@Override
@@ -145,6 +146,7 @@ public class ModelElementItemProvider extends IdentifiableElementItemProvider im
 
 	/**
 	 * <!-- begin-user-doc --> <!-- end-user-doc -->
+	 * 
 	 * @generated
 	 */
 	@Override
@@ -193,9 +195,9 @@ public class ModelElementItemProvider extends IdentifiableElementItemProvider im
 	}
 
 	/**
-	 * This adds {@link org.eclipse.emf.edit.command.CommandParameter}s describing the children
-	 * that can be created under this object.
-	 * <!-- begin-user-doc --> <!-- end-user-doc -->
+	 * This adds {@link org.eclipse.emf.edit.command.CommandParameter}s describing the children that can be created
+	 * under this object. <!-- begin-user-doc --> <!-- end-user-doc -->
+	 * 
 	 * @generated
 	 */
 	@Override
@@ -213,6 +215,25 @@ public class ModelElementItemProvider extends IdentifiableElementItemProvider im
 	@Override
 	public Object getImage(Object object) {
 		return getResourceLocator().getImage("full/obj16/ModelElement");
+	}
+
+	/**
+	 * {@inheritDoc} <!-- begin-user-doc --> <!-- end-user-doc -->
+	 * 
+	 * @generated NOT
+	 */
+	@Override
+	protected boolean isWrappingNeeded(Object object) {
+
+		wrappingNeeded = super.isWrappingNeeded(object);
+		for (EStructuralFeature f : getChildrenFeatures(object)) {
+			if (f instanceof EReference && !(((EReference) f).isContainment())) {
+				wrappingNeeded = Boolean.TRUE;
+				break;
+			}
+		}
+
+		return wrappingNeeded;
 	}
 
 }
