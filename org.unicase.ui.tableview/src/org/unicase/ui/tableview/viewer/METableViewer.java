@@ -132,7 +132,7 @@ public class METableViewer extends TableViewer {
 		currentColumn.getColumn().setWidth(30);
 		currentColumn.getColumn().setMoveable(true);
 		currentColumn.getColumn().setResizable(false);
-		ColumnLabelProvider provider = new GenericColumnLabelProvider(this, check, this.getTable().getItemHeight());
+		ColumnLabelProvider provider = new GenericColumnLabelProvider(this, check);
 		currentColumn.setLabelProvider(provider);
 
 		EditingSupport es = new CheckableEditingSupport(this);
@@ -187,7 +187,7 @@ public class METableViewer extends TableViewer {
 		if (currentFeature.getEType().equals(EcorePackage.Literals.EDATE)) {
 			provider = new DateColumnLabelProvider(currentFeature);
 		} else {
-			provider = new GenericColumnLabelProvider(this, currentFeature, this.getTable().getItemHeight());
+			provider = new GenericColumnLabelProvider(this, currentFeature);
 		}
 		currentColumn.setLabelProvider(provider);
 
