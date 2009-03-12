@@ -5,9 +5,6 @@
  */
 package org.unicase.ui.tableview.labelproviders;
 
-import java.lang.reflect.InvocationTargetException;
-import java.lang.reflect.Method;
-
 import org.eclipse.emf.ecore.EObject;
 import org.eclipse.emf.ecore.EStructuralFeature;
 import org.eclipse.emf.edit.provider.ComposedAdapterFactory;
@@ -30,6 +27,9 @@ import org.unicase.model.task.Checkable;
 import org.unicase.model.task.TaskPackage;
 import org.unicase.ui.tableview.viewer.METableViewer;
 
+import java.lang.reflect.InvocationTargetException;
+import java.lang.reflect.Method;
+
 /**
  * A specific ColumnLabelProvider for the display of features of Checkable instances. For the
  * {@link TaskPackage.Literals.CHECKABLE__CHECKED} feature, it returns images of CheckBoxes. For the
@@ -45,7 +45,6 @@ public class GenericColumnLabelProvider extends org.eclipse.jface.viewers.Column
 	 */
 	private EStructuralFeature feature;
 	private DecoratingLabelProvider decoratingLabelProvider;
-	private int tableItemHeight;
 	private static final String CHECKED_KEY = "CHECKED";
 	private static final String UNCHECK_KEY = "UNCHECKED";
 
@@ -54,12 +53,10 @@ public class GenericColumnLabelProvider extends org.eclipse.jface.viewers.Column
 	 * 
 	 * @param viewer the viewer that uses this column provider for a specific column
 	 * @param feature the feature that this provider shall return a label for
-	 * @param tableItemHeight height of table items. This is used to set the size of checkbox images
 	 */
-	public GenericColumnLabelProvider(METableViewer viewer, EStructuralFeature feature, int tableItemHeight) {
+	public GenericColumnLabelProvider(METableViewer viewer, EStructuralFeature feature) {
 		super();
 		this.setFeature(feature);
-		this.tableItemHeight = tableItemHeight;
 		IDecoratorManager decoratorManager = PlatformUI.getWorkbench().getDecoratorManager();
 		decoratingLabelProvider = new DecoratingLabelProvider(new AdapterFactoryLabelProvider(
 			new ComposedAdapterFactory(ComposedAdapterFactory.Descriptor.Registry.INSTANCE)), decoratorManager
@@ -88,13 +85,13 @@ public class GenericColumnLabelProvider extends org.eclipse.jface.viewers.Column
 
 		// otherwise an image is located in a corner
 		button.setLocation(1, 1);
-		Point bsize = button.computeSize(tableItemHeight, tableItemHeight);
+		Point bsize = button.computeSize(SWT.DEFAULT, SWT.DEFAULT);
 
 		// otherwise an image is stretched by width
-		bsize.x = bsize.x - 1;
-		bsize.y = bsize.y - 3;
-		// bsize.x = Math.max(bsize.x - 1, bsize.y - 1);
-		// bsize.y = Math.max(bsize.x - 1, bsize.y - 1);
+		// bsize.x = bsize.x - 1;
+		// bsize.y = bsize.y - 3;
+		bsize.x = Math.max(bsize.x - 1, bsize.y - 1);
+		bsize.y = Math.max(bsize.x - 1, bsize.y - 1);
 		button.setSize(bsize);
 		tmpShell.setSize(bsize);
 
