@@ -1,6 +1,8 @@
 package org.unicase.emfstore.fixes;
 
+import java.util.ArrayList;
 import java.util.HashSet;
+import java.util.List;
 
 import org.unicase.emfstore.esmodel.versioning.Version;
 import org.unicase.emfstore.esmodel.versioning.operations.AbstractOperation;
@@ -17,6 +19,7 @@ public class FalseDeleteFix extends AbstractFix {
 				System.out.println("No changes in version " + version.getPrimarySpec().getIdentifier());
 				continue;
 			}
+			List<AbstractOperation> deleteList = new ArrayList<AbstractOperation>();
 			for (AbstractOperation operation : version.getChanges().getOperations()) {
 				if (operation instanceof CreateDeleteOperation) {
 					CreateDeleteOperation deleteOperation = (CreateDeleteOperation) operation;
@@ -24,10 +27,15 @@ public class FalseDeleteFix extends AbstractFix {
 						if (!deletedMEs.add(deleteOperation.getModelElementId().getId())) {
 							System.out.println("False delete (id: " + deleteOperation.getModelElementId().getId()
 								+ ") in version " + version.getPrimarySpec().getIdentifier());
+							deleteList.add(deleteOperation);
 						}
 					}
 				}
 			}
+			for (AbstractOperation ao : deleteList) {
+				version.getChanges().getOperations().remove(ao);
+			}
+			save(version);
 		}
 	}
 

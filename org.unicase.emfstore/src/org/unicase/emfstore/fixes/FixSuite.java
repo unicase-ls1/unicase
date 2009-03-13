@@ -16,8 +16,10 @@ public class FixSuite {
 		this.serverSpace = serverSpace;
 		fixes = new ArrayList<AbstractFix>();
 
-		fixes.add(new LogmessageFix());
-		fixes.add(new FalseDeleteFix());
+		// fixes.add(new LogmessageFix());
+		// fixes.add(new FalseDeleteFix());
+		// fixes.add(new EndDateToDueDateFix());
+		fixes.add(new CheckChanges());
 	}
 
 	public void fix(String projectId) {
