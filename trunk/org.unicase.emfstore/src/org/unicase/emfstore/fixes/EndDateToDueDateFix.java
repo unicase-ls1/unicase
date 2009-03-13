@@ -9,6 +9,10 @@ public class EndDateToDueDateFix extends AbstractFix {
 	@Override
 	void fix() {
 		for (Version version : projectHistory.getVersions()) {
+			if (version.getChanges() == null) {
+				System.out.println("No changes in version " + version.getPrimarySpec().getIdentifier());
+				continue;
+			}
 			for (AbstractOperation operation : version.getChanges().getOperations()) {
 				if (operation instanceof AttributeOperation) {
 					AttributeOperation attributeOperation = (AttributeOperation) operation;
