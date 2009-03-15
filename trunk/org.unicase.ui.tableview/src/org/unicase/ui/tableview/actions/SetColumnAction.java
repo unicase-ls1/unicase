@@ -28,7 +28,7 @@ import org.unicase.ui.tableview.util.UnicaseTableViewUtil;
 /**
  * An Action for adding UnicaseTableView Columns.
  * 
- * @author abdelhamidbarzali
+ * @author Abdelhamid Barzali.
  */
 public class SetColumnAction extends Action {
 
