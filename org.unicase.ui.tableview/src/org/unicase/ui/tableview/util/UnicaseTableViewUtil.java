@@ -39,7 +39,7 @@ import org.unicase.workspace.WorkspaceManager;
 /**
  * Utility class for the UniCase TableViews.
  * 
- * @author abdelhamidbarzali.
+ * @author Abdelhamid Barzali.
  */
 public final class UnicaseTableViewUtil {
 	/**
@@ -69,7 +69,7 @@ public final class UnicaseTableViewUtil {
 			if (columns[i].getText().length() <= 8 && !resizecondition) {
 
 				columns[i].setWidth(55);
-				resize = resize + 20;
+				resize = resize + 10;
 			}
 
 			else if (columns.length > 6) {
