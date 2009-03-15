@@ -5,13 +5,13 @@
  */
 package org.unicase.ui.tableview.labelproviders;
 
+import java.text.Format;
+import java.text.SimpleDateFormat;
+
 import org.eclipse.emf.ecore.EStructuralFeature;
 import org.eclipse.emf.ecore.EcorePackage;
 import org.eclipse.jface.viewers.ColumnLabelProvider;
 import org.unicase.model.ModelElement;
-
-import java.text.Format;
-import java.text.SimpleDateFormat;
 
 /**
  * @author hamidmomeny
@@ -36,21 +36,32 @@ public class DateColumnLabelProvider extends ColumnLabelProvider {
 	 */
 	@Override
 	public String getText(Object element) {
+		String formatvalue = "";
 
 		if (!feature.getEType().equals(EcorePackage.Literals.EDATE)) {
 			return "";
 		}
 
 		Format formatter = new SimpleDateFormat("yyyy MM.dd. HH:mm:ss");
-		if (element instanceof ModelElement) {
-			ModelElement me = (ModelElement) element;
-			Object date = me.eGet(feature);
-			if (date != null) {
-				return formatter.format(date);
-			}
-		}
+		try {
+			if (element instanceof ModelElement) {
+				ModelElement me = (ModelElement) element;
+				Object date = me.eGet(feature);
+				if (date != null) {
 
-		return "";
+					formatvalue = formatter.format(date);
+
+					return formatvalue;
+				}
+			}
+		} catch (IllegalArgumentException e) {
+			// AB: - if the Format cannot format the given object !
+			return formatvalue;
+		} catch (NullPointerException e) {
+			return formatvalue;
+
+		}
+		return formatvalue;
 	}
 
 }
