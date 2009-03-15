@@ -1,0 +1,7 @@
+manueller logmessage fix von 55-57 und 334 (manuelles umkopieren der logmessage)
+
+delete all deleteoperations with fixdelete (+manuell in version 5: __q0UYJUkEd2FG-kzr70dNg)
+
+bis 324: doppelte Logmessages
+
+78: setdescription funktioniert nicht obwohl me da ist, kann apply es nicht finden
