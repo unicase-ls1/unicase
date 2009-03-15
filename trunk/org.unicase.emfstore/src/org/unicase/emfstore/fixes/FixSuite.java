@@ -20,6 +20,7 @@ public class FixSuite {
 		// fixes.add(new FalseDeleteFix());
 		// fixes.add(new EndDateToDueDateFix());
 		fixes.add(new CheckChanges());
+		fixes.add(new FindChanges());
 	}
 
 	public void fix(String projectId) {
