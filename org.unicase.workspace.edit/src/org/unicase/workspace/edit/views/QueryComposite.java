@@ -46,7 +46,7 @@ import org.unicase.workspace.edit.views.Query.QueryRangeType;
  * 
  * @author Hodaie
  */
-public class QueryComosite extends Composite {
+public class QueryComposite extends Composite {
 
 	private Button rbtnVer;
 	private Button rbtnNumOfDays;
@@ -87,7 +87,7 @@ public class QueryComosite extends Composite {
 	 * @param parent the parent
 	 * @param style the style
 	 */
-	public QueryComosite(Composite parent, int style) {
+	public QueryComposite(Composite parent, int style) {
 		super(parent, style);
 		this.setLayout(new GridLayout());
 		createExpandItems();

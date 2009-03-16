@@ -31,7 +31,7 @@ public abstract class AbstractSCMView extends ViewPart {
 
 	private Label lblCriteria;
 
-	private QueryComosite queryComposite;
+	private QueryComposite queryComposite;
 
 	/**
 	 * Get the bowser tab whose contents are set by inheriting classes.
@@ -86,14 +86,14 @@ public abstract class AbstractSCMView extends ViewPart {
 	/**
 	 * @return the queryComposite
 	 */
-	protected QueryComosite getQueryComposite() {
+	protected QueryComposite getQueryComposite() {
 		return queryComposite;
 	}
 
 	/**
 	 * @param queryComposite the queryComposite to set
 	 */
-	protected void setQueryComposite(QueryComosite queryComposite) {
+	protected void setQueryComposite(QueryComposite queryComposite) {
 		this.queryComposite = queryComposite;
 	}
 
