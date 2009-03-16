@@ -5,6 +5,9 @@
  */
 package org.unicase.ui.tableview.labelproviders;
 
+import java.lang.reflect.InvocationTargetException;
+import java.lang.reflect.Method;
+
 import org.eclipse.emf.ecore.EObject;
 import org.eclipse.emf.ecore.EStructuralFeature;
 import org.eclipse.emf.edit.provider.ComposedAdapterFactory;
@@ -26,9 +29,6 @@ import org.unicase.model.ModelPackage;
 import org.unicase.model.task.Checkable;
 import org.unicase.model.task.TaskPackage;
 import org.unicase.ui.tableview.viewer.METableViewer;
-
-import java.lang.reflect.InvocationTargetException;
-import java.lang.reflect.Method;
 
 /**
  * A specific ColumnLabelProvider for the display of features of Checkable instances. For the
@@ -84,21 +84,20 @@ public class GenericColumnLabelProvider extends org.eclipse.jface.viewers.Column
 		button.setSelection(type);
 
 		// otherwise an image is located in a corner
-		button.setLocation(1, 1);
+		button.setLocation(0, 0);
 		Point bsize = button.computeSize(SWT.DEFAULT, SWT.DEFAULT);
 
 		// otherwise an image is stretched by width
-		// bsize.x = bsize.x - 1;
-		// bsize.y = bsize.y - 3;
-		bsize.x = Math.max(bsize.x - 1, bsize.y - 1);
-		bsize.y = Math.max(bsize.x - 1, bsize.y - 1);
+		bsize.x = Math.min(bsize.x, 16);
+		bsize.y = Math.min(bsize.y, 16);
 		button.setSize(bsize);
-		tmpShell.setSize(bsize);
+
+		tmpShell.setSize(17, 17);
 
 		tmpShell.open();
 		GC gc = new GC(tmpShell);
-		Image image = new Image(display, bsize.x, bsize.y);
-		gc.copyArea(image, 0, 0);
+		Image image = new Image(display, 16, 16);
+		gc.copyArea(image, 1, 1);
 		gc.dispose();
 		tmpShell.close();
 		tmpShell.dispose();
