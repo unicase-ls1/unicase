@@ -5,6 +5,9 @@
  */
 package org.unicase.ui.tableview.labelproviders;
 
+import java.lang.reflect.InvocationTargetException;
+import java.lang.reflect.Method;
+
 import org.eclipse.emf.ecore.EObject;
 import org.eclipse.emf.ecore.EStructuralFeature;
 import org.eclipse.emf.edit.provider.ComposedAdapterFactory;
@@ -28,9 +31,6 @@ import org.unicase.model.ModelPackage;
 import org.unicase.model.task.Checkable;
 import org.unicase.model.task.TaskPackage;
 import org.unicase.ui.tableview.viewer.METableViewer;
-
-import java.lang.reflect.InvocationTargetException;
-import java.lang.reflect.Method;
 
 /**
  * A specific ColumnLabelProvider for the display of features of Checkable instances. For the
@@ -97,7 +97,7 @@ public class GenericColumnLabelProvider extends org.eclipse.jface.viewers.Column
 		tmpShell.setSize(17, 17);
 		GridLayout gridLayout = new GridLayout(1, true);
 		gridLayout.marginHeight = 0;
-		gridLayout.marginTop = 0;
+		gridLayout.marginTop = 1;
 		gridLayout.marginRight = 2;
 		gridLayout.marginWidth = 0;
 		gridLayout.horizontalSpacing = 0;
@@ -109,8 +109,6 @@ public class GenericColumnLabelProvider extends org.eclipse.jface.viewers.Column
 		button.setLayoutData(gridData);
 
 		button.setLocation(17 - bsize.x, 0);
-
-		tmpShell.setBackground(display.getSystemColor(SWT.COLOR_RED));
 
 		tmpShell.open();
 		GC gc = new GC(tmpShell);
