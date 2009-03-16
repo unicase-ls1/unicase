@@ -138,21 +138,13 @@ public interface WorkspacePackage extends EPackage {
 	int SERVER_INFO__PORT = 2;
 
 	/**
-	 * The feature id for the '<em><b>Display Name</b></em>' attribute.
-	 * <!-- begin-user-doc --> <!-- end-user-doc -->
-	 * @generated
-	 * @ordered
-	 */
-	int SERVER_INFO__DISPLAY_NAME = 3;
-
-	/**
 	 * The feature id for the '<em><b>Project Infos</b></em>' reference list. <!-- begin-user-doc --> <!-- end-user-doc
 	 * -->
 	 * 
 	 * @generated
 	 * @ordered
 	 */
-	int SERVER_INFO__PROJECT_INFOS = 4;
+	int SERVER_INFO__PROJECT_INFOS = 3;
 
 	/**
 	 * The feature id for the '<em><b>Last Usersession</b></em>' reference. <!-- begin-user-doc --> <!-- end-user-doc
@@ -161,7 +153,7 @@ public interface WorkspacePackage extends EPackage {
 	 * @generated
 	 * @ordered
 	 */
-	int SERVER_INFO__LAST_USERSESSION = 5;
+	int SERVER_INFO__LAST_USERSESSION = 4;
 
 	/**
 	 * The number of structural features of the '<em>Server Info</em>' class. <!-- begin-user-doc --> <!-- end-user-doc
@@ -170,7 +162,7 @@ public interface WorkspacePackage extends EPackage {
 	 * @generated
 	 * @ordered
 	 */
-	int SERVER_INFO_FEATURE_COUNT = 6;
+	int SERVER_INFO_FEATURE_COUNT = 5;
 
 	/**
 	 * The meta object id for the '{@link org.unicase.workspace.impl.UsersessionImpl <em>Usersession</em>}' class. <!--
@@ -538,16 +530,6 @@ public interface WorkspacePackage extends EPackage {
 	 * @generated
 	 */
 	EAttribute getServerInfo_Port();
-
-	/**
-	 * Returns the meta object for the attribute '{@link org.unicase.workspace.ServerInfo#getDisplayName <em>Display Name</em>}'.
-	 * <!-- begin-user-doc --> <!-- end-user-doc -->
-	 * @return the meta object for the attribute '<em>Display Name</em>'.
-	 * @see org.unicase.workspace.ServerInfo#getDisplayName()
-	 * @see #getServerInfo()
-	 * @generated
-	 */
-	EAttribute getServerInfo_DisplayName();
 
 	/**
 	 * Returns the meta object for the reference list '{@link org.unicase.workspace.ServerInfo#getProjectInfos <em>Project Infos</em>}'.
@@ -926,14 +908,6 @@ public interface WorkspacePackage extends EPackage {
 		 * @generated
 		 */
 		EAttribute SERVER_INFO__PORT = eINSTANCE.getServerInfo_Port();
-
-		/**
-		 * The meta object literal for the '<em><b>Display Name</b></em>' attribute feature.
-		 * <!-- begin-user-doc -->
-		 * <!-- end-user-doc -->
-		 * @generated
-		 */
-		EAttribute SERVER_INFO__DISPLAY_NAME = eINSTANCE.getServerInfo_DisplayName();
 
 		/**
 		 * The meta object literal for the '<em><b>Project Infos</b></em>' reference list feature.

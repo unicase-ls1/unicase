@@ -90,26 +90,6 @@ public class ServerInfoImpl extends EObjectImpl implements ServerInfo {
 	protected int port = PORT_EDEFAULT;
 
 	/**
-	 * The default value of the '{@link #getDisplayName() <em>Display Name</em>}' attribute.
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
-	 * @see #getDisplayName()
-	 * @generated
-	 * @ordered
-	 */
-	protected static final String DISPLAY_NAME_EDEFAULT = null;
-
-	/**
-	 * The cached value of the '{@link #getDisplayName() <em>Display Name</em>}' attribute.
-	 * <!-- begin-user-doc --> <!--
-	 * end-user-doc -->
-	 * @see #getDisplayName()
-	 * @generated
-	 * @ordered
-	 */
-	protected String displayName = DISPLAY_NAME_EDEFAULT;
-
-	/**
 	 * The cached value of the '{@link #getProjectInfos() <em>Project Infos</em>}' reference list.
 	 * <!-- begin-user-doc
 	 * --> <!-- end-user-doc -->
@@ -207,26 +187,6 @@ public class ServerInfoImpl extends EObjectImpl implements ServerInfo {
 	 * <!-- begin-user-doc --> <!-- end-user-doc -->
 	 * @generated
 	 */
-	public String getDisplayName() {
-		return displayName;
-	}
-
-	/**
-	 * <!-- begin-user-doc --> <!-- end-user-doc -->
-	 * @generated
-	 */
-	public void setDisplayName(String newDisplayName) {
-		String oldDisplayName = displayName;
-		displayName = newDisplayName;
-		if (eNotificationRequired())
-			eNotify(new ENotificationImpl(this, Notification.SET, WorkspacePackage.SERVER_INFO__DISPLAY_NAME,
-				oldDisplayName, displayName));
-	}
-
-	/**
-	 * <!-- begin-user-doc --> <!-- end-user-doc -->
-	 * @generated
-	 */
 	public EList<ProjectInfo> getProjectInfos() {
 		if (projectInfos == null) {
 			projectInfos = new EObjectResolvingEList<ProjectInfo>(ProjectInfo.class, this,
@@ -285,8 +245,6 @@ public class ServerInfoImpl extends EObjectImpl implements ServerInfo {
 			return getUrl();
 		case WorkspacePackage.SERVER_INFO__PORT:
 			return new Integer(getPort());
-		case WorkspacePackage.SERVER_INFO__DISPLAY_NAME:
-			return getDisplayName();
 		case WorkspacePackage.SERVER_INFO__PROJECT_INFOS:
 			return getProjectInfos();
 		case WorkspacePackage.SERVER_INFO__LAST_USERSESSION:
@@ -313,9 +271,6 @@ public class ServerInfoImpl extends EObjectImpl implements ServerInfo {
 			return;
 		case WorkspacePackage.SERVER_INFO__PORT:
 			setPort(((Integer) newValue).intValue());
-			return;
-		case WorkspacePackage.SERVER_INFO__DISPLAY_NAME:
-			setDisplayName((String) newValue);
 			return;
 		case WorkspacePackage.SERVER_INFO__PROJECT_INFOS:
 			getProjectInfos().clear();
@@ -344,9 +299,6 @@ public class ServerInfoImpl extends EObjectImpl implements ServerInfo {
 		case WorkspacePackage.SERVER_INFO__PORT:
 			setPort(PORT_EDEFAULT);
 			return;
-		case WorkspacePackage.SERVER_INFO__DISPLAY_NAME:
-			setDisplayName(DISPLAY_NAME_EDEFAULT);
-			return;
 		case WorkspacePackage.SERVER_INFO__PROJECT_INFOS:
 			getProjectInfos().clear();
 			return;
@@ -370,8 +322,6 @@ public class ServerInfoImpl extends EObjectImpl implements ServerInfo {
 			return URL_EDEFAULT == null ? url != null : !URL_EDEFAULT.equals(url);
 		case WorkspacePackage.SERVER_INFO__PORT:
 			return port != PORT_EDEFAULT;
-		case WorkspacePackage.SERVER_INFO__DISPLAY_NAME:
-			return DISPLAY_NAME_EDEFAULT == null ? displayName != null : !DISPLAY_NAME_EDEFAULT.equals(displayName);
 		case WorkspacePackage.SERVER_INFO__PROJECT_INFOS:
 			return projectInfos != null && !projectInfos.isEmpty();
 		case WorkspacePackage.SERVER_INFO__LAST_USERSESSION:
@@ -396,8 +346,6 @@ public class ServerInfoImpl extends EObjectImpl implements ServerInfo {
 		result.append(url);
 		result.append(", port: ");
 		result.append(port);
-		result.append(", displayName: ");
-		result.append(displayName);
 		result.append(')');
 		return result.toString();
 	}

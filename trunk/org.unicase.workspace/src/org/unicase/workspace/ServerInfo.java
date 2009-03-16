@@ -98,31 +98,6 @@ public interface ServerInfo extends EObject {
 	void setPort(int value);
 
 	/**
-	 * Returns the value of the '<em><b>Display Name</b></em>' attribute.
-	 * <!-- begin-user-doc -->
-	 * <p>
-	 * If the meaning of the '<em>Display Name</em>' attribute isn't clear, there really should be more of a description
-	 * here...
-	 * </p>
-	 * <!-- end-user-doc -->
-	 * @return the value of the '<em>Display Name</em>' attribute.
-	 * @see #setDisplayName(String)
-	 * @see org.unicase.workspace.WorkspacePackage#getServerInfo_DisplayName()
-	 * @model
-	 * @generated
-	 */
-	String getDisplayName();
-
-	/**
-	 * Sets the value of the '{@link org.unicase.workspace.ServerInfo#getDisplayName <em>Display Name</em>}' attribute.
-	 * <!-- begin-user-doc --> <!-- end-user-doc -->
-	 * @param value the new value of the '<em>Display Name</em>' attribute.
-	 * @see #getDisplayName()
-	 * @generated
-	 */
-	void setDisplayName(String value);
-
-	/**
 	 * Returns the value of the '<em><b>Project Infos</b></em>' reference list.
 	 * The list contents are of type {@link org.unicase.emfstore.esmodel.ProjectInfo}.
 	 * <!-- begin-user-doc -->

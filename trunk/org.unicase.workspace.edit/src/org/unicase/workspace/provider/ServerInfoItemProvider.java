@@ -53,7 +53,6 @@ public class ServerInfoItemProvider extends ItemProviderAdapter implements IEdit
 			addNamePropertyDescriptor(object);
 			addUrlPropertyDescriptor(object);
 			addPortPropertyDescriptor(object);
-			addDisplayNamePropertyDescriptor(object);
 			addProjectInfosPropertyDescriptor(object);
 			addLastUsersessionPropertyDescriptor(object);
 		}
@@ -97,19 +96,6 @@ public class ServerInfoItemProvider extends ItemProviderAdapter implements IEdit
 			"_UI_PropertyDescriptor_description", "_UI_ServerInfo_port_feature", "_UI_ServerInfo_type"),
 			WorkspacePackage.Literals.SERVER_INFO__PORT, true, false, false,
 			ItemPropertyDescriptor.INTEGRAL_VALUE_IMAGE, null, null));
-	}
-
-	/**
-	 * This adds a property descriptor for the Display Name feature.
-	 * <!-- begin-user-doc --> <!-- end-user-doc -->
-	 * @generated
-	 */
-	protected void addDisplayNamePropertyDescriptor(Object object) {
-		itemPropertyDescriptors.add(createItemPropertyDescriptor(((ComposeableAdapterFactory) adapterFactory)
-			.getRootAdapterFactory(), getResourceLocator(), getString("_UI_ServerInfo_displayName_feature"), getString(
-			"_UI_PropertyDescriptor_description", "_UI_ServerInfo_displayName_feature", "_UI_ServerInfo_type"),
-			WorkspacePackage.Literals.SERVER_INFO__DISPLAY_NAME, true, false, false,
-			ItemPropertyDescriptor.GENERIC_VALUE_IMAGE, null, null));
 	}
 
 	/**
@@ -175,7 +161,6 @@ public class ServerInfoItemProvider extends ItemProviderAdapter implements IEdit
 		case WorkspacePackage.SERVER_INFO__NAME:
 		case WorkspacePackage.SERVER_INFO__URL:
 		case WorkspacePackage.SERVER_INFO__PORT:
-		case WorkspacePackage.SERVER_INFO__DISPLAY_NAME:
 			fireNotifyChanged(new ViewerNotification(notification, notification.getNotifier(), false, true));
 			return;
 		}
