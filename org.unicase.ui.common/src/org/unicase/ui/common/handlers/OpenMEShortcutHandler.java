@@ -93,9 +93,11 @@ public class OpenMEShortcutHandler extends AbstractHandler implements IHandler {
 		if (dialog.open() == Window.OK) {
 			result = dialog.getResult();
 		}
-
+		
 		ModelElement mod = (ModelElement) dialog.getFirstResult();
-		ActionHelper.openModelElement(mod, "org.unicase.ui.OpenMEShortcut");
+		if(mod!=null){
+			ActionHelper.openModelElement(mod, "org.unicase.ui.OpenMEShortcut");
+		}
 		return result;
 	}
 
