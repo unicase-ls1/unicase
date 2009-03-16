@@ -691,5 +691,17 @@
               type="org.unicase.workspace.ProjectSpace">
         </propertyTester>
      </extension>
+        <extension
+         point="org.eclipse.ui.menus">
+      <menuContribution
+            locationURI="toolbar:org.unicase.ui.meeditor.MEEditorPage?before=org.unicase.ui.navigator.ShowMEInNavigator">
+         <command
+               commandId="org.unicase.workspace.edit.showHistory"
+               icon="icons/historyview.png"
+               style="push"
+               tooltip="show the history for this model element">
+         </command>
+      </menuContribution>
+   </extension>
 
 </plugin>
