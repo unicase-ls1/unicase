@@ -5,9 +5,6 @@
  */
 package org.unicase.ui.tableview.labelproviders;
 
-import java.lang.reflect.InvocationTargetException;
-import java.lang.reflect.Method;
-
 import org.eclipse.emf.ecore.EObject;
 import org.eclipse.emf.ecore.EStructuralFeature;
 import org.eclipse.emf.edit.provider.ComposedAdapterFactory;
@@ -20,6 +17,8 @@ import org.eclipse.swt.graphics.GC;
 import org.eclipse.swt.graphics.Image;
 import org.eclipse.swt.graphics.ImageData;
 import org.eclipse.swt.graphics.Point;
+import org.eclipse.swt.layout.GridData;
+import org.eclipse.swt.layout.GridLayout;
 import org.eclipse.swt.widgets.Button;
 import org.eclipse.swt.widgets.Display;
 import org.eclipse.swt.widgets.Shell;
@@ -29,6 +28,9 @@ import org.unicase.model.ModelPackage;
 import org.unicase.model.task.Checkable;
 import org.unicase.model.task.TaskPackage;
 import org.unicase.ui.tableview.viewer.METableViewer;
+
+import java.lang.reflect.InvocationTargetException;
+import java.lang.reflect.Method;
 
 /**
  * A specific ColumnLabelProvider for the display of features of Checkable instances. For the
@@ -84,7 +86,8 @@ public class GenericColumnLabelProvider extends org.eclipse.jface.viewers.Column
 		button.setSelection(type);
 
 		// otherwise an image is located in a corner
-		button.setLocation(0, 0);
+		// button.setLocation(0, 0);
+
 		Point bsize = button.computeSize(SWT.DEFAULT, SWT.DEFAULT);
 
 		// otherwise an image is stretched by width
@@ -93,11 +96,16 @@ public class GenericColumnLabelProvider extends org.eclipse.jface.viewers.Column
 		button.setSize(bsize);
 
 		tmpShell.setSize(17, 17);
+		GridLayout gridLayout = new GridLayout(1, true);
+		tmpShell.setLayout(gridLayout);
+
+		GridData gridData = new GridData(SWT.FILL, SWT.FILL, true, true);
+		button.setLayoutData(gridData);
 
 		tmpShell.open();
 		GC gc = new GC(tmpShell);
 		Image image = new Image(display, 16, 16);
-		gc.copyArea(image, 1, 1);
+		gc.copyArea(image, 0, 0);
 		gc.dispose();
 		tmpShell.close();
 		tmpShell.dispose();
