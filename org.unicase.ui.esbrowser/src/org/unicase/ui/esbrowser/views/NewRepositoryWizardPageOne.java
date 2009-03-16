@@ -27,7 +27,6 @@ import org.unicase.workspace.ServerInfo;
 public class NewRepositoryWizardPageOne extends WizardPage {
 
 	private Text name;
-	private Text displayName;
 	private Text url;
 	private Spinner port;
 
@@ -57,12 +56,6 @@ public class NewRepositoryWizardPageOne extends WizardPage {
 		int ncol = 2;
 		gl.numColumns = ncol;
 		composite.setLayout(gl);
-
-		new Label(composite, SWT.NONE).setText("Display name:");
-		displayName = new Text(composite, SWT.BORDER);
-		gd = new GridData(GridData.FILL_HORIZONTAL);
-		gd.horizontalSpan = ncol - 1;
-		displayName.setLayoutData(gd);
 
 		new Label(composite, SWT.NONE).setText("Name:");
 		name = new Text(composite, SWT.BORDER);
@@ -98,7 +91,7 @@ public class NewRepositoryWizardPageOne extends WizardPage {
 		if (getErrorMessage() != null) {
 			return false;
 		}
-		if (isTextNonEmpty(name) && isTextNonEmpty(displayName) && isTextNonEmpty(url)) {
+		if (isTextNonEmpty(name) && isTextNonEmpty(url)) {
 			saveDataToModel();
 			return true;
 		}
