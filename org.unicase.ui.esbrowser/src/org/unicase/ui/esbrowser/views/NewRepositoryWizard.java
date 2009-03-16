@@ -111,6 +111,7 @@ public class NewRepositoryWizard extends Wizard implements INewWizard {
 		} else {
 			MessageDialog.openError(workbench.getActiveWorkbenchWindow().getShell(), "Error",
 				"Field(s) were left blank!");
+			return false;
 		}
 		return true;
 	}
