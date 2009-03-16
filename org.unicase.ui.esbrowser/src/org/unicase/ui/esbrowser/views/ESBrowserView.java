@@ -238,8 +238,8 @@ public class ESBrowserView extends ViewPart {
 			@Override
 			public int compare(Viewer viewer, Object e1, Object e2) {
 				if (e1 instanceof ServerInfo && e2 instanceof ServerInfo) {
-					return ((ServerInfo) e1).getDisplayName().toLowerCase().compareTo(
-						((ServerInfo) e2).getDisplayName().toLowerCase());
+					return ((ServerInfo) e1).getName().toLowerCase().compareTo(
+						((ServerInfo) e2).getName().toLowerCase());
 				} else if (e1 instanceof ProjectInfo && e2 instanceof ProjectInfo) {
 					return ((ProjectInfo) e1).getName().toLowerCase().compareTo(
 						((ProjectInfo) e2).getName().toLowerCase());
@@ -396,7 +396,7 @@ public class ESBrowserView extends ViewPart {
 				ISelection selection = viewer.getSelection();
 				Object obj = ((IStructuredSelection) selection).getFirstElement();
 				ServerInfo serverInfo = ((ServerInfo) obj);
-				RepositoryWizard wizard = new RepositoryWizard(ESBrowserView.this);
+				NewRepositoryWizard wizard = new NewRepositoryWizard(ESBrowserView.this);
 				wizard.init(getSite().getWorkbenchWindow().getWorkbench(), (IStructuredSelection) getSite()
 					.getWorkbenchWindow().getSelectionService().getSelection(), serverInfo);
 				WizardDialog dialog = new WizardDialog(getSite().getWorkbenchWindow().getShell(), wizard);
@@ -411,7 +411,7 @@ public class ESBrowserView extends ViewPart {
 		addRepository = new Action() {
 			@Override
 			public void run() {
-				RepositoryWizard wizard = new RepositoryWizard(ESBrowserView.this);
+				NewRepositoryWizard wizard = new NewRepositoryWizard(ESBrowserView.this);
 				wizard.init(getSite().getWorkbenchWindow().getWorkbench(), (IStructuredSelection) getSite()
 					.getWorkbenchWindow().getSelectionService().getSelection());
 				WizardDialog dialog = new WizardDialog(getSite().getWorkbenchWindow().getShell(), wizard);

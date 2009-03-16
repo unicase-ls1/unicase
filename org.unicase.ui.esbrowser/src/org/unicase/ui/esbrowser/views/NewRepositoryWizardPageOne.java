@@ -24,7 +24,7 @@ import org.unicase.workspace.ServerInfo;
  * 
  * @author shterev
  */
-public class RepositoryWizardPageOne extends WizardPage {
+public class NewRepositoryWizardPageOne extends WizardPage {
 
 	private Text name;
 	private Text displayName;
@@ -37,7 +37,7 @@ public class RepositoryWizardPageOne extends WizardPage {
 	 * @param workbench the current workbench
 	 * @param selection the current selection
 	 */
-	public RepositoryWizardPageOne(IWorkbench workbench, IStructuredSelection selection) {
+	public NewRepositoryWizardPageOne(IWorkbench workbench, IStructuredSelection selection) {
 		super("Main");
 		setTitle("Server Details");
 		setDescription("Select the details for the new repository");
@@ -47,7 +47,7 @@ public class RepositoryWizardPageOne extends WizardPage {
 	 * {@inheritDoc}
 	 */
 	public void createControl(Composite parent) {
-		RepositoryWizard wizard = (RepositoryWizard) getWizard();
+		NewRepositoryWizard wizard = (NewRepositoryWizard) getWizard();
 		ServerInfo serverInfo = wizard.getServerInfo();
 
 		GridData gd;
@@ -83,7 +83,6 @@ public class RepositoryWizardPageOne extends WizardPage {
 		port.setLayoutData(gd);
 		port.setValues(1099, 1, 999999, 0, 1, 10);
 		if (serverInfo.getUrl() != null) {
-			displayName.setText(serverInfo.getDisplayName());
 			name.setText(serverInfo.getName());
 			url.setText(serverInfo.getUrl());
 			port.setSelection(serverInfo.getPort());
@@ -115,9 +114,8 @@ public class RepositoryWizardPageOne extends WizardPage {
 		domain.getCommandStack().execute(new RecordingCommand(domain) {
 			@Override
 			protected void doExecute() {
-				RepositoryWizard wizard = (RepositoryWizard) getWizard();
+				NewRepositoryWizard wizard = (NewRepositoryWizard) getWizard();
 				ServerInfo serverInfo = wizard.getServerInfo();
-				serverInfo.setDisplayName(displayName.getText());
 				serverInfo.setName(name.getText());
 				serverInfo.setUrl(url.getText());
 				serverInfo.setPort(port.getSelection());

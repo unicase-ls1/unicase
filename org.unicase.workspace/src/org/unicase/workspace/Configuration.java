@@ -109,7 +109,6 @@ public final class Configuration {
 
 	private static ServerInfo getReleaseServerInfo() {
 		ServerInfo serverInfo = WorkspaceFactory.eINSTANCE.createServerInfo();
-		serverInfo.setDisplayName("unicase Server");
 		serverInfo.setName("unicase Server");
 		serverInfo.setPort(1099);
 		serverInfo.setUrl("unicase.in.tum.de");
@@ -118,7 +117,6 @@ public final class Configuration {
 
 	private static ServerInfo getInternalServerInfo() {
 		ServerInfo serverInfo = WorkspaceFactory.eINSTANCE.createServerInfo();
-		serverInfo.setDisplayName("unicase Developer Server");
 		serverInfo.setName("unicase Developer Server");
 		serverInfo.setPort(1099);
 		serverInfo.setUrl("unicase-dev.in.tum.de");
@@ -127,7 +125,6 @@ public final class Configuration {
 
 	private static ServerInfo getLocalhostServerInfo() {
 		ServerInfo serverInfo = WorkspaceFactory.eINSTANCE.createServerInfo();
-		serverInfo.setDisplayName("Localhost Server");
 		serverInfo.setName("Localhost Server");
 		serverInfo.setPort(1099);
 		serverInfo.setUrl("localhost");

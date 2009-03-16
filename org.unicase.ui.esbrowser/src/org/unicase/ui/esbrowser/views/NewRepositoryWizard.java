@@ -22,11 +22,11 @@ import org.unicase.workspace.WorkspaceManager;
  * 
  * @author shterev
  */
-public class RepositoryWizard extends Wizard implements INewWizard {
+public class NewRepositoryWizard extends Wizard implements INewWizard {
 
 	private ServerInfo serverInfo;
 
-	private RepositoryWizardPageOne mainPage;
+	private NewRepositoryWizardPageOne mainPage;
 
 	private IStructuredSelection selection;
 
@@ -40,7 +40,7 @@ public class RepositoryWizard extends Wizard implements INewWizard {
 	 * 
 	 * @param view callback to the repository view
 	 */
-	public RepositoryWizard(ESBrowserView view) {
+	public NewRepositoryWizard(ESBrowserView view) {
 		super();
 		this.view = view;
 	}
@@ -50,7 +50,7 @@ public class RepositoryWizard extends Wizard implements INewWizard {
 	 */
 	@Override
 	public void addPages() {
-		mainPage = new RepositoryWizardPageOne(workbench, selection);
+		mainPage = new NewRepositoryWizardPageOne(workbench, selection);
 		addPage(mainPage);
 	}
 
@@ -100,8 +100,8 @@ public class RepositoryWizard extends Wizard implements INewWizard {
 				protected void doExecute() {
 					// save serverInfo to workspace
 					Workspace workspace = WorkspaceManager.getInstance().getCurrentWorkspace();
-					if (!RepositoryWizard.this.edit) {
-						workspace.getServerInfos().add(RepositoryWizard.this.serverInfo);
+					if (!NewRepositoryWizard.this.edit) {
+						workspace.getServerInfos().add(NewRepositoryWizard.this.serverInfo);
 					}
 					workspace.save();
 				}

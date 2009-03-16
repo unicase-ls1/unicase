@@ -216,16 +216,8 @@ public class WorkspacePackageImpl extends EPackageImpl implements WorkspacePacka
 	 * <!-- begin-user-doc --> <!-- end-user-doc -->
 	 * @generated
 	 */
-	public EAttribute getServerInfo_DisplayName() {
-		return (EAttribute) serverInfoEClass.getEStructuralFeatures().get(3);
-	}
-
-	/**
-	 * <!-- begin-user-doc --> <!-- end-user-doc -->
-	 * @generated
-	 */
 	public EReference getServerInfo_ProjectInfos() {
-		return (EReference) serverInfoEClass.getEStructuralFeatures().get(4);
+		return (EReference) serverInfoEClass.getEStructuralFeatures().get(3);
 	}
 
 	/**
@@ -233,7 +225,7 @@ public class WorkspacePackageImpl extends EPackageImpl implements WorkspacePacka
 	 * @generated
 	 */
 	public EReference getServerInfo_LastUsersession() {
-		return (EReference) serverInfoEClass.getEStructuralFeatures().get(5);
+		return (EReference) serverInfoEClass.getEStructuralFeatures().get(4);
 	}
 
 	/**
@@ -486,7 +478,6 @@ public class WorkspacePackageImpl extends EPackageImpl implements WorkspacePacka
 		createEAttribute(serverInfoEClass, SERVER_INFO__NAME);
 		createEAttribute(serverInfoEClass, SERVER_INFO__URL);
 		createEAttribute(serverInfoEClass, SERVER_INFO__PORT);
-		createEAttribute(serverInfoEClass, SERVER_INFO__DISPLAY_NAME);
 		createEReference(serverInfoEClass, SERVER_INFO__PROJECT_INFOS);
 		createEReference(serverInfoEClass, SERVER_INFO__LAST_USERSESSION);
 
@@ -590,9 +581,6 @@ public class WorkspacePackageImpl extends EPackageImpl implements WorkspacePacka
 			!IS_TRANSIENT, !IS_VOLATILE, IS_CHANGEABLE, !IS_UNSETTABLE, !IS_ID, IS_UNIQUE, !IS_DERIVED, IS_ORDERED);
 		initEAttribute(getServerInfo_Port(), ecorePackage.getEInt(), "port", null, 1, 1, ServerInfo.class,
 			!IS_TRANSIENT, !IS_VOLATILE, IS_CHANGEABLE, !IS_UNSETTABLE, !IS_ID, IS_UNIQUE, !IS_DERIVED, IS_ORDERED);
-		initEAttribute(getServerInfo_DisplayName(), ecorePackage.getEString(), "displayName", null, 0, 1,
-			ServerInfo.class, !IS_TRANSIENT, !IS_VOLATILE, IS_CHANGEABLE, !IS_UNSETTABLE, !IS_ID, IS_UNIQUE,
-			!IS_DERIVED, IS_ORDERED);
 		initEReference(getServerInfo_ProjectInfos(), theEsmodelPackage.getProjectInfo(), null, "projectInfos", null, 0,
 			-1, ServerInfo.class, IS_TRANSIENT, !IS_VOLATILE, IS_CHANGEABLE, !IS_COMPOSITE, IS_RESOLVE_PROXIES,
 			!IS_UNSETTABLE, IS_UNIQUE, !IS_DERIVED, IS_ORDERED);
