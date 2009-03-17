@@ -5,23 +5,135 @@
  */
 package org.unicase.ui.stem.views.sprintstatus;
 
+import java.util.Comparator;
+import java.util.HashSet;
+
+import org.eclipse.emf.edit.provider.ComposedAdapterFactory;
+import org.eclipse.emf.edit.ui.provider.AdapterFactoryLabelProvider;
 import org.eclipse.jface.action.Action;
 import org.eclipse.jface.action.IToolBarManager;
 import org.eclipse.jface.layout.GridDataFactory;
+import org.eclipse.jface.window.Window;
 import org.eclipse.swt.SWT;
 import org.eclipse.swt.widgets.Composite;
 import org.eclipse.ui.IActionBars;
+import org.eclipse.ui.dialogs.ElementListSelectionDialog;
 import org.eclipse.ui.part.ViewPart;
 import org.unicase.model.ModelElement;
+import org.unicase.model.organization.OrgUnit;
 import org.unicase.model.task.TaskPackage;
+import org.unicase.model.task.WorkItem;
+import org.unicase.model.task.WorkPackage;
 import org.unicase.ui.common.util.ActionHelper;
 import org.unicase.ui.stem.Activator;
 import org.unicase.workspace.util.EventUtil;
 
 /**
+ * A view that displays the status of a given sprint (work package). It is mainly used to plan the sprint and
+ * (re-)assign the work items.
+ * 
  * @author Shterev
  */
 public class SprintStatusView extends ViewPart {
+
+	/**
+	 * An Action to filter the contents to a specific user.
+	 * 
+	 * @author Shterev
+	 */
+	private final class FilterByUserAction extends Action {
+		private final AdapterFactoryLabelProvider adapterFactoryLabelProvider;
+		private final SprintUserFilter userFilter;
+
+		private FilterByUserAction(String text, int style, AdapterFactoryLabelProvider adapterFactoryLabelProvider) {
+			super(text, style);
+			this.adapterFactoryLabelProvider = adapterFactoryLabelProvider;
+			this.userFilter = new SprintUserFilter();
+		}
+
+		@Override
+		public void run() {
+			if (isChecked()) {
+				if (input != null && TaskPackage.eINSTANCE.getWorkPackage().isInstance(input)) {
+					WorkPackage workPackage = (WorkPackage) input;
+					HashSet<OrgUnit> userSet = new HashSet<OrgUnit>();
+					for (WorkItem wi : workPackage.getAllContainedWorkItems()) {
+						userSet.add(wi.getAssignee());
+						userSet.add(wi.getReviewer());
+						userSet.addAll(wi.getParticipants());
+					}
+					userSet.remove(null);
+					ElementListSelectionDialog dlg = new ElementListSelectionDialog(getSite().getShell(),
+						adapterFactoryLabelProvider);
+					dlg.setMultipleSelection(false);
+					dlg.setElements(userSet.toArray());
+					dlg.setTitle("Select User");
+					dlg.setBlockOnOpen(true);
+					if (dlg.open() == Window.OK) {
+						userFilter.setUser((OrgUnit) dlg.getFirstResult());
+					}
+
+				}
+				statusComposite.addFilter(userFilter);
+			} else {
+				statusComposite.removeFilter(userFilter);
+			}
+			setInput(input);
+		}
+	}
+
+	/**
+	 * Compares two work items acc. to the name of their user.
+	 * 
+	 * @author Shterev
+	 */
+	private class UserComparator implements Comparator<WorkItem> {
+
+		public int compare(WorkItem o1, WorkItem o2) {
+			OrgUnit user1 = o1.getAssignee();
+			OrgUnit user2 = o2.getAssignee();
+			if (user1 == null && user2 == null) {
+				return 0;
+			} else if (user1 == null) {
+				return 1;
+			} else if (user2 == null) {
+				return -1;
+			}
+			return user1.getName().compareTo(user2.getName());
+
+		}
+	}
+
+	/**
+	 * Compares two work items acc. to their priority.
+	 * 
+	 * @author Shterev
+	 */
+	private class PriorityComparator implements Comparator<WorkItem> {
+
+		public int compare(WorkItem o1, WorkItem o2) {
+			int prio1 = o1.getPriority();
+			int prio2 = o2.getPriority();
+			if (prio1 == prio2) {
+				return 0;
+			} else if (prio1 > prio2) {
+				return -1;
+			}
+			return 1;
+		}
+	}
+
+	/**
+	 * Compares two work items acc. to their names.
+	 * 
+	 * @author Shterev
+	 */
+	private class NameComparator implements Comparator<WorkItem> {
+
+		public int compare(WorkItem o1, WorkItem o2) {
+			return o1.getName().toLowerCase().compareTo(o2.getName().toLowerCase());
+		}
+	}
 
 	/**
 	 * ID for this view.
@@ -45,8 +157,15 @@ public class SprintStatusView extends ViewPart {
 	@Override
 	public void createPartControl(Composite parent) {
 
+		final AdapterFactoryLabelProvider adapterFactoryLabelProvider = new AdapterFactoryLabelProvider(
+			new ComposedAdapterFactory(ComposedAdapterFactory.Descriptor.Registry.INSTANCE));
+
 		statusComposite = new SprintStatusComposite(parent, SWT.NONE);
+
 		GridDataFactory.fillDefaults().grab(true, true).applyTo(statusComposite);
+
+		statusComposite.addComparator(0, new NameComparator());
+		statusComposite.addComparator(0, new PriorityComparator());
 
 		IActionBars bars = getViewSite().getActionBars();
 		IToolBarManager menuManager = bars.getToolBarManager();
@@ -59,6 +178,32 @@ public class SprintStatusView extends ViewPart {
 		refresh.setImageDescriptor(Activator.getImageDescriptor("/icons/refresh.png"));
 		refresh.setToolTipText("Refresh");
 		menuManager.add(refresh);
+
+		Action filterByUser = new FilterByUserAction("", SWT.TOGGLE, adapterFactoryLabelProvider);
+		filterByUser.setChecked(false);
+
+		filterByUser.setImageDescriptor(Activator.getImageDescriptor("/icons/filtertouser.png"));
+		filterByUser.setToolTipText("Show only my items");
+		menuManager.add(filterByUser);
+
+		final UserComparator userComparator = new UserComparator();
+		Action groupByUser = new Action("", SWT.TOGGLE) {
+			@Override
+			public void run() {
+				if (isChecked()) {
+					statusComposite.addComparator(0, userComparator);
+					statusComposite.setShowGroups(true);
+				} else {
+					statusComposite.removeComparator(userComparator);
+					statusComposite.setShowGroups(false);
+				}
+				setInput(input);
+			}
+		};
+		groupByUser.setImageDescriptor(Activator.getImageDescriptor("/icons/filtertomyteam.png"));
+		groupByUser.setToolTipText("Group by user");
+		groupByUser.setChecked(false);
+		menuManager.add(groupByUser);
 
 	}
 

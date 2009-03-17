@@ -21,7 +21,7 @@ import org.unicase.model.task.util.CircularDependencyException;
 import org.unicase.model.task.util.MEState;
 
 /**
- * This is the ContentProvider.
+ * This is the ContentProvider for the sprint status view.
  * 
  * @author Shterev
  */
@@ -49,26 +49,26 @@ public class SprintStatusContentProvider extends AdapterFactoryContentProvider {
 	public static final String TESTING = "Testing";
 
 	private String key;
-	private PriorityComparator priorityComparator;
+	private SprintItemComparator sprintItemComparator;
+	private List<Comparator<WorkItem>> comparators;
+	private List<SprintFilter> filters;
 
 	/**
 	 * Compares two WorkItems by their priority.
 	 * 
 	 * @author Shterev
 	 */
-	private final class PriorityComparator implements Comparator<WorkItem> {
+	private final class SprintItemComparator implements Comparator<WorkItem> {
 
 		public int compare(WorkItem o1, WorkItem o2) {
-			int prio1 = o1.getPriority();
-			int prio2 = o2.getPriority();
-			if (prio1 > prio2) {
-				return -1;
-			} else if (prio1 < prio2) {
-				return 1;
+			for (Comparator<WorkItem> c : comparators) {
+				int ret = c.compare(o1, o2);
+				if (ret != 0) {
+					return ret;
+				}
 			}
 			return 0;
 		}
-
 	}
 
 	/**
@@ -78,7 +78,9 @@ public class SprintStatusContentProvider extends AdapterFactoryContentProvider {
 	 */
 	public SprintStatusContentProvider(String key) {
 		super(new ComposedAdapterFactory(ComposedAdapterFactory.Descriptor.Registry.INSTANCE));
-		priorityComparator = new PriorityComparator();
+		comparators = new ArrayList<Comparator<WorkItem>>();
+		filters = new ArrayList<SprintFilter>();
+		sprintItemComparator = new SprintItemComparator();
 		this.key = key;
 
 	}
@@ -94,7 +96,12 @@ public class SprintStatusContentProvider extends AdapterFactoryContentProvider {
 		}
 		WorkPackage wp = (WorkPackage) object;
 		List<WorkItem> wis = wp.getAllContainedWorkItems();
-		for (WorkItem wi : wis) {
+		workitems: for (WorkItem wi : wis) {
+			for (SprintFilter f : filters) {
+				if (!f.accept(wi)) {
+					continue workitems;
+				}
+			}
 			if (!(wi instanceof Checkable)) {
 				continue;
 			}
@@ -110,7 +117,7 @@ public class SprintStatusContentProvider extends AdapterFactoryContentProvider {
 				handleUnassignedColumn(ret, wi);
 			}
 		}
-		Collections.sort(ret, priorityComparator);
+		Collections.sort(ret, sprintItemComparator);
 		return ret.toArray();
 	}
 
@@ -200,6 +207,43 @@ public class SprintStatusContentProvider extends AdapterFactoryContentProvider {
 	 */
 	public String getKey() {
 		return key;
+	}
+
+	/**
+	 * Adds a new comparator to the content provider.
+	 * 
+	 * @param comparator the comparator.
+	 * @param index the priority for this comparator (0 being the highest).
+	 */
+	public void addComparator(int index, Comparator<WorkItem> comparator) {
+		comparators.add(index, comparator);
+	}
+
+	/**
+	 * Adds a new filter to the content provider.
+	 * 
+	 * @param filter the filter.
+	 */
+	public void addFilter(SprintFilter filter) {
+		filters.add(filter);
+	}
+
+	/**
+	 * Removes a filter from the content provider.
+	 * 
+	 * @param filter the filter.
+	 */
+	public void removeFilter(SprintFilter filter) {
+		filters.remove(filter);
+	}
+
+	/**
+	 * Removes a comparator from the content provider.
+	 * 
+	 * @param comparator the comparator.
+	 */
+	public void removeComparator(Comparator<WorkItem> comparator) {
+		comparators.remove(comparator);
 	}
 
 }

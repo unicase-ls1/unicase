@@ -16,6 +16,8 @@ import org.eclipse.swt.custom.StyleRange;
 import org.eclipse.swt.custom.StyledText;
 import org.eclipse.swt.graphics.Color;
 import org.eclipse.swt.widgets.Composite;
+import org.eclipse.swt.widgets.Label;
+import org.unicase.model.organization.OrgUnit;
 import org.unicase.model.task.WorkItem;
 import org.unicase.model.task.WorkPackage;
 
@@ -23,6 +25,38 @@ import org.unicase.model.task.WorkPackage;
  * @author Shterev
  */
 public class SprintStatusCategory extends Composite {
+
+	/**
+	 * Separator to group the work items by assignees.
+	 * 
+	 * @author Shterev
+	 */
+	private class SprintCategorySeparator extends Composite {
+
+		private Label label;
+
+		public SprintCategorySeparator(Composite parent, int style) {
+			super(parent, style);
+			GridLayoutFactory.fillDefaults().numColumns(1).spacing(0, 0).applyTo(this);
+			GridDataFactory.fillDefaults().grab(true, false).applyTo(this);
+			label = new Label(this, SWT.WRAP);
+			GridDataFactory.fillDefaults().grab(true, false).applyTo(label);
+			label.setForeground(getDisplay().getSystemColor(SWT.COLOR_WHITE));
+			label.setBackground(new Color(getDisplay(), 217, 160, 53));
+			label.setBackground(new Color(getDisplay(), 130, 130, 130));
+			label.setBackground(new Color(getDisplay(), 189, 98, 53));
+
+			Composite line = new Composite(this, SWT.NONE);
+			GridDataFactory.fillDefaults().hint(2, 2).grab(true, false).applyTo(line);
+			line.setBackground(getDisplay().getSystemColor(SWT.COLOR_RED));
+			line.setBackground(new Color(getDisplay(), 125, 55, 29));
+		}
+
+		public void setLabel(String text) {
+			this.label.setText("  " + text);
+		}
+
+	}
 
 	private SprintStatusContentProvider contentProvider;
 
@@ -35,6 +69,8 @@ public class SprintStatusCategory extends Composite {
 	private Composite client;
 
 	private ScrolledComposite scroller;
+
+	private boolean showGroups;
 
 	/**
 	 * Default constructor.
@@ -50,7 +86,6 @@ public class SprintStatusCategory extends Composite {
 		GridDataFactory.fillDefaults().grab(true, false).applyTo(titleComposite);
 		GridLayoutFactory.fillDefaults().numColumns(1).spacing(0, 0).applyTo(titleComposite);
 		// titleComposite.setBackground(new Color(getDisplay(), 115, 158, 227)); macos blue
-		titleComposite.setBackground(new Color(getDisplay(), 157, 168, 185));
 		titleComposite.setBackground(new Color(getDisplay(), 186, 4, 0));
 		titleComposite.setBackgroundMode(SWT.INHERIT_FORCE);
 		title = new StyledText(titleComposite, SWT.WRAP);
@@ -65,14 +100,21 @@ public class SprintStatusCategory extends Composite {
 		scroller.setExpandVertical(true);
 		scroller.getVerticalBar().setIncrement(20);
 		scroller.getHorizontalBar().setIncrement(20);
-		scroller.setBackground(new Color(getDisplay(), 0, 205, 205));
 
+		createClient();
+
+		items = new ArrayList<SprintStatusItem>();
+	}
+
+	private void createClient() {
+		if (client != null) {
+			client.dispose();
+		}
 		client = new Composite(scroller, SWT.NONE);
 		GridLayoutFactory.fillDefaults().numColumns(1).spacing(0, 5).applyTo(client);
 		GridDataFactory.fillDefaults().grab(true, true).applyTo(client);
-
-		items = new ArrayList<SprintStatusItem>();
-
+		// client.setBackground(new Color(getDisplay(), 130, 130, 130));
+		// client.setBackground(new Color(getDisplay(), 255, 255, 255));
 		scroller.setContent(client);
 	}
 
@@ -81,19 +123,30 @@ public class SprintStatusCategory extends Composite {
 	 */
 	public void refresh() {
 
-		for (Composite c : items) {
-			c.dispose();
-		}
+		createClient();
 
 		if (workPackage == null) {
 			return;
 		}
 		int i = 0;
+
+		OrgUnit prevUser = null;
 		for (Object item : contentProvider.getElements(workPackage)) {
+			WorkItem workItem = (WorkItem) item;
+			OrgUnit user = workItem.getAssignee();
+			// TODO AS: replace with a proper data structure
+			if (user == null && prevUser != null && showGroups) {
+				SprintCategorySeparator separator = new SprintCategorySeparator(client, SWT.NONE);
+				separator.setLabel("Unassigned");
+			} else if (user != null && !user.equals(prevUser) && showGroups) {
+				SprintCategorySeparator separator = new SprintCategorySeparator(client, SWT.NONE);
+				separator.setLabel(user.getName());
+			}
 			i++;
-			SprintStatusItem tabItem = new SprintStatusItem(client, SWT.NONE, (WorkItem) item, i % 2);
+			SprintStatusItem tabItem = new SprintStatusItem(client, SWT.NONE, workItem, i % 2);
 			GridDataFactory.fillDefaults().grab(true, false).align(SWT.FILL, SWT.BEGINNING).applyTo(tabItem);
 			items.add(tabItem);
+			prevUser = user;
 		}
 
 		client.layout(true);
@@ -124,5 +177,21 @@ public class SprintStatusCategory extends Composite {
 		st.length = title.getText().length();
 		st.font = JFaceResources.getBannerFont();
 		title.setStyleRange(st);
+	}
+
+	/**
+	 * @return the {@link SprintStatusContentProvider}
+	 */
+	public SprintStatusContentProvider getContentProvider() {
+		return this.contentProvider;
+	}
+
+	/**
+	 * Turns the group captions on/off.
+	 * 
+	 * @param showGroups the visibility
+	 */
+	public void setShowGroups(boolean showGroups) {
+		this.showGroups = showGroups;
 	}
 }

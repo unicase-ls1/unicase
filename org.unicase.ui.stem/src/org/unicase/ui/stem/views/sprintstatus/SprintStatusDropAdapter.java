@@ -4,7 +4,7 @@
  * distribution, and is available at http://www.eclipse.org/legal/epl-v10.html </copyright>
  */
 
-package org.unicase.ui.stem.views.statusview.dnd;
+package org.unicase.ui.stem.views.sprintstatus;
 
 import java.util.List;
 
@@ -24,7 +24,7 @@ import org.unicase.workspace.util.EventUtil;
  * 
  * @author Shterev
  */
-public class WorkPackageTabDropAdapter extends DropTargetAdapter {
+public class SprintStatusDropAdapter extends DropTargetAdapter {
 
 	private ModelElement source;
 	private WorkItem target;
@@ -32,7 +32,7 @@ public class WorkPackageTabDropAdapter extends DropTargetAdapter {
 	/**
 	 * Constructor.
 	 */
-	public WorkPackageTabDropAdapter() {
+	public SprintStatusDropAdapter() {
 	}
 
 	/**
@@ -63,7 +63,7 @@ public class WorkPackageTabDropAdapter extends DropTargetAdapter {
 		domain.getCommandStack().execute(new RecordingCommand(domain) {
 			@Override
 			protected void doExecute() {
-				EventUtil.logStatusViewDropEvent(target, source, "Unknown", "UserTab");
+				EventUtil.logStatusViewDropEvent(target, source, "Unknown", "Sprint status view");
 				reassignWorkItem(target, (OrgUnit) source);
 			}
 
@@ -90,7 +90,7 @@ public class WorkPackageTabDropAdapter extends DropTargetAdapter {
 		if (tmpSource.size() != 1) {
 			result = false;
 		}
-		if (!(tmpSource.get(0) instanceof OrgUnit)) {
+		if (!(tmpSource.get(0) instanceof WorkItem)) {
 			result = false;
 		}
 
@@ -100,7 +100,7 @@ public class WorkPackageTabDropAdapter extends DropTargetAdapter {
 
 		// check if source and currentOpenME are in the same project
 		if (result) {
-			source = (ModelElement) tmpSource.get(0);
+			source = (WorkItem) tmpSource.get(0);
 			target = (WorkItem) event.item.getData();
 		}
 
