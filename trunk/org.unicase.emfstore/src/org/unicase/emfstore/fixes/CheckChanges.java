@@ -1,5 +1,6 @@
 package org.unicase.emfstore.fixes;
 
+import java.io.File;
 import java.io.FileWriter;
 import java.io.IOException;
 
@@ -10,7 +11,6 @@ import org.unicase.emfstore.esmodel.versioning.Version;
 import org.unicase.emfstore.exceptions.RMISerializationException;
 import org.unicase.model.ModelElement;
 import org.unicase.model.Project;
-import org.unicase.model.meeting.CompositeMeetingSection;
 import org.unicase.model.meeting.Meeting;
 import org.unicase.model.meeting.MeetingSection;
 
@@ -29,7 +29,8 @@ public class CheckChanges extends AbstractFix {
 				state = (Project) EcoreUtil.copy(version.getProjectState());
 			} else {
 				if (version.getPrimarySpec().getIdentifier() == 78) {
-					specialVersion78(state);
+
+					// specialVersion78(state);
 				}
 				version.getChanges().apply(state);
 				// System.out.println("applying changes in version " + version.getPrimarySpec().getIdentifier());
@@ -39,21 +40,8 @@ public class CheckChanges extends AbstractFix {
 						System.out.println("project compare not equal in version "
 							+ version.getPrimarySpec().getIdentifier());
 
-						try {
-							FileWriter fileWriter = new FileWriter(System.getProperty("user.home")
-								+ "/Desktop/compare/project_" + version.getPrimarySpec().getIdentifier()
-								+ "_generated.txt");
-							fileWriter.write(SerializationUtil.eObjectToString(state));
-							fileWriter.close();
-							fileWriter = new FileWriter(System.getProperty("user.home") + "/Desktop/compare/project_"
-								+ version.getPrimarySpec().getIdentifier() + ".txt");
-							fileWriter.write(SerializationUtil.eObjectToString(version.getProjectState()));
-							fileWriter.close();
-						} catch (IOException e) {
-							e.printStackTrace();
-						} catch (RMISerializationException e) {
-							e.printStackTrace();
-						}
+						printProjectStates(state, version);
+
 					} else {
 						System.out.println("project compare is equal(!) in version "
 							+ version.getPrimarySpec().getIdentifier());
@@ -64,10 +52,31 @@ public class CheckChanges extends AbstractFix {
 		}
 	}
 
+	private void printProjectStates(Project state, Version version) {
+		try {
+			File file = new File(System.getProperty("user.home") + "/Desktop/compare/project_"
+				+ version.getPrimarySpec().getIdentifier() + "_generated.txt");
+			file.createNewFile();
+			FileWriter fileWriter = new FileWriter(file);
+			fileWriter.write(SerializationUtil.eObjectToString(state));
+			fileWriter.close();
+			file = new File(System.getProperty("user.home") + "/Desktop/compare/project_"
+				+ version.getPrimarySpec().getIdentifier() + ".txt");
+			file.createNewFile();
+			fileWriter = new FileWriter(file);
+			fileWriter.write(SerializationUtil.eObjectToString(version.getProjectState()));
+			fileWriter.close();
+		} catch (IOException e) {
+			e.printStackTrace();
+		} catch (RMISerializationException e) {
+			e.printStackTrace();
+		}
+	}
+
 	private void specialVersion78(Project state) {
 		for (ModelElement me : state.getAllModelElements()) {
 
-			if (me instanceof CompositeMeetingSection) {
+			if (me instanceof MeetingSection) {
 				System.out.println(me.getIdentifier());
 			}
 
@@ -75,7 +84,7 @@ public class CheckChanges extends AbstractFix {
 				System.out.println("JAAAAAAAAAAA");
 			}
 			if (me.getIdentifier().equals("_sfct0J-7Ed2Mf6xmMnysAw")) {
-				System.out.println("_sfct0J-7Ed2Mf6xmMnysAw is in the project");
+				// System.out.println("_sfct0J-7Ed2Mf6xmMnysAw is in the project");
 				Meeting m = (Meeting) me;
 				for (MeetingSection ms : m.getSections()) {
 					System.out.println(ms);
