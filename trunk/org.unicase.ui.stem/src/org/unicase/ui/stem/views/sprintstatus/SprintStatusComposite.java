@@ -6,6 +6,7 @@
 package org.unicase.ui.stem.views.sprintstatus;
 
 import java.util.ArrayList;
+import java.util.Comparator;
 
 import org.eclipse.emf.common.notify.Notification;
 import org.eclipse.emf.common.notify.impl.AdapterImpl;
@@ -24,10 +25,10 @@ import org.eclipse.swt.widgets.Composite;
 import org.eclipse.swt.widgets.Label;
 import org.unicase.model.ModelElement;
 import org.unicase.model.Project;
+import org.unicase.model.task.WorkItem;
 import org.unicase.model.task.WorkPackage;
 import org.unicase.model.util.ProjectChangeObserver;
 import org.unicase.ui.common.util.ActionHelper;
-import org.unicase.ui.stem.views.statusview.dnd.WorkPackageTabDropAdapter;
 import org.unicase.workspace.ProjectSpace;
 import org.unicase.workspace.Workspace;
 import org.unicase.workspace.WorkspaceManager;
@@ -40,7 +41,7 @@ public class SprintStatusComposite extends Composite implements ProjectChangeObs
 
 	private Workspace workspace;
 	private AdapterImpl adapterImpl;
-	private WorkPackageTabDropAdapter wpTabDropAdapter;
+	private SprintStatusDropAdapter wpTabDropAdapter;
 	private ArrayList<TableViewer> tables = new ArrayList<TableViewer>();
 	private SashForm sash;
 	private ArrayList<SprintStatusCategory> categories;
@@ -127,7 +128,7 @@ public class SprintStatusComposite extends Composite implements ProjectChangeObs
 		int dndOperations = DND.DROP_COPY | DND.DROP_MOVE | DND.DROP_LINK;
 		Transfer[] transfers = new Transfer[] { LocalTransfer.getInstance() };
 
-		wpTabDropAdapter = new WorkPackageTabDropAdapter();
+		wpTabDropAdapter = new SprintStatusDropAdapter();
 		for (final TableViewer table : tables) {
 			table.addDropSupport(dndOperations, transfers, wpTabDropAdapter);
 		}
@@ -238,5 +239,61 @@ public class SprintStatusComposite extends Composite implements ProjectChangeObs
 		boolean ret = super.setFocus();
 		hiddenText.forceFocus();
 		return ret;
+	}
+
+	/**
+	 * Adds a filter to each category.
+	 * 
+	 * @param filter the filter
+	 */
+	public void addFilter(SprintFilter filter) {
+		for (SprintStatusCategory cat : categories) {
+			cat.getContentProvider().addFilter(filter);
+		}
+	}
+
+	/**
+	 * Adds a comparator to each category.
+	 * 
+	 * @param comparator the comparator
+	 * @param index the priority
+	 */
+	public void addComparator(int index, Comparator<WorkItem> comparator) {
+		for (SprintStatusCategory cat : categories) {
+			cat.getContentProvider().addComparator(index, comparator);
+		}
+	}
+
+	/**
+	 * Removes a filter from each category.
+	 * 
+	 * @param filter the filter
+	 */
+	public void removeFilter(SprintFilter filter) {
+		for (SprintStatusCategory cat : categories) {
+			cat.getContentProvider().removeFilter(filter);
+		}
+	}
+
+	/**
+	 * Adds a comparator to each category.
+	 * 
+	 * @param comparator the comparator
+	 */
+	public void removeComparator(Comparator<WorkItem> comparator) {
+		for (SprintStatusCategory cat : categories) {
+			cat.getContentProvider().removeComparator(comparator);
+		}
+	}
+
+	/**
+	 * Turns the group captions on/off.
+	 * 
+	 * @param b the visibility
+	 */
+	public void setShowGroups(boolean b) {
+		for (SprintStatusCategory cat : categories) {
+			cat.setShowGroups(b);
+		}
 	}
 }
