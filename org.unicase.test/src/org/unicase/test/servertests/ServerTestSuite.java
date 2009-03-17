@@ -11,6 +11,11 @@ public class ServerTestSuite extends TestSuite {
 
 	private ConnectionManager connectionManager;
 	private String USERNAME = "super";
+
+	public SessionId getLogIn() {
+		return logIn;
+	}
+
 	private String PASSWORD = "test";
 	private SessionId logIn;
 

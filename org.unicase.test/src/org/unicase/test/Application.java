@@ -3,6 +3,7 @@ package org.unicase.test;
 import org.eclipse.equinox.app.IApplication;
 import org.eclipse.equinox.app.IApplicationContext;
 import org.unicase.test.servertests.ServerTestSuite;
+import org.unicase.test.servertests.analyser.AnalyserTestSuite;
 import org.unicase.test.tests.change.manual.ManualChangeTestSuite;
 import org.unicase.test.tests.change.random.RandomChangeTestSuite;
 
@@ -14,6 +15,7 @@ public class Application implements IApplication {
 	private final static int RANDOMTEST = 1;
 	private final static int CHANGETEST = 2;
 	private final static int SERVERTEST = 3;
+	private final static int ANALYSERTEST = 4;
 
 	private int DEFAULTITERATION = 10;
 
@@ -24,7 +26,7 @@ public class Application implements IApplication {
 	public Object start(IApplicationContext context) throws Exception {
 
 		// ///////
-		int testToRun = SERVERTEST;
+		int testToRun = ANALYSERTEST;
 		// ///////
 
 		TestSuite test = null;
@@ -40,6 +42,10 @@ public class Application implements IApplication {
 		case SERVERTEST:
 			ServerTestSuite testSuite = new ServerTestSuite();
 			testSuite.runTest(1);
+			break;
+		case ANALYSERTEST:
+			AnalyserTestSuite testSuite1 = new AnalyserTestSuite();
+			testSuite1.runTest(1);
 			break;
 		}
 
