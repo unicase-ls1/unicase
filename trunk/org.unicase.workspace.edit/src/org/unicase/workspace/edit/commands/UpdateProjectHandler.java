@@ -15,8 +15,6 @@ import org.eclipse.jface.dialogs.ProgressMonitorDialog;
 import org.eclipse.jface.window.Window;
 import org.eclipse.swt.widgets.Display;
 import org.eclipse.swt.widgets.Shell;
-import org.eclipse.ui.IEditorPart;
-import org.eclipse.ui.PartInitException;
 import org.eclipse.ui.PlatformUI;
 import org.unicase.emfstore.esmodel.versioning.ChangePackage;
 import org.unicase.emfstore.esmodel.versioning.PrimaryVersionSpec;
@@ -24,11 +22,10 @@ import org.unicase.emfstore.esmodel.versioning.VersionSpec;
 import org.unicase.emfstore.exceptions.ConnectionException;
 import org.unicase.emfstore.exceptions.EmfStoreException;
 import org.unicase.ui.common.exceptions.DialogHandler;
+import org.unicase.ui.common.util.ActionHelper;
 import org.unicase.workspace.ProjectSpace;
 import org.unicase.workspace.Usersession;
 import org.unicase.workspace.WorkspaceManager;
-import org.unicase.workspace.edit.dashboard.DashboardEditor;
-import org.unicase.workspace.edit.dashboard.DashboardEditorInput;
 import org.unicase.workspace.edit.dialogs.LoginDialog;
 import org.unicase.workspace.edit.dialogs.MergeDialog;
 import org.unicase.workspace.edit.dialogs.UpdateDialog;
@@ -185,26 +182,7 @@ public class UpdateProjectHandler extends ProjectActionHandler implements Update
 	 * @see org.unicase.workspace.util.UpdateObserver#updateCompleted()
 	 */
 	public void updateCompleted() {
-		showDashboard();
+		ActionHelper.openDashboard();
 	}
 
-	/**
-	 * Shows or focuses and refreshes on the dashboard.
-	 */
-	private void showDashboard() {
-		ProjectSpace activeProjectSpace = WorkspaceManager.getInstance().getCurrentWorkspace().getActiveProjectSpace();
-		DashboardEditorInput input = new DashboardEditorInput(activeProjectSpace);
-		try {
-			IEditorPart editor = PlatformUI.getWorkbench().getActiveWorkbenchWindow().getActivePage().openEditor(input,
-				"org.unicase.workspace.edit.dashboard", true);
-			if (editor instanceof DashboardEditor) {
-				((DashboardEditor) editor).refresh();
-			} else {
-				WorkspaceUtil.logException("Trying to open an unknown editor as a dashboard!",
-					new IllegalArgumentException(editor.toString()));
-			}
-		} catch (PartInitException e) {
-			WorkspaceUtil.logException(e.getMessage(), e);
-		}
-	}
 }
