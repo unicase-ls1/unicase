@@ -21,7 +21,7 @@ import org.unicase.model.task.util.CircularDependencyException;
 import org.unicase.model.task.util.MEState;
 
 /**
- * This is the ContentProvider.
+ * This is the ContentProvider for the sprint status view.
  * 
  * @author Shterev
  */
