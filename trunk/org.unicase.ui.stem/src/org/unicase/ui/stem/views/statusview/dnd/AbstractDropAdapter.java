@@ -95,7 +95,9 @@ public abstract class AbstractDropAdapter extends DropTargetAdapter {
 	 * Subclasses may override this default behavior.
 	 */
 	protected void dropNonWorkItemOnWorkPackage() {
-		// if some work item in currentOpenME (hierarchical) has already annotated source, do nothing
+		// if one of work items annotating the source is assigned to the same team as work package and is not already
+		// closed,
+		// then add this work item to work package.
 		// otherwise create an AI annotating source and add it to work items of currentOpenME
 
 		Set<ModelElement> openersForSource = TaxonomyAccess.getInstance().getOpeningLinkTaxonomy().getLeafOpeners(
@@ -146,8 +148,8 @@ public abstract class AbstractDropAdapter extends DropTargetAdapter {
 			return true;
 		}
 		Set<Group> allGroupsOfOrgUnit = OrgUnitHelper.getAllGroupsOfOrgUnit(me.getAssignee());
-		for (OrgUnit group : allGroupsOfOrgUnit) {
-			if (group.equals(parentAssignee)) {
+		for (Group group : allGroupsOfOrgUnit) {
+			if (group.equals(parentAssignee) || group.getOrgUnits().contains(parentAssignee)) {
 				return true;
 			}
 		}
