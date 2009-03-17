@@ -101,47 +101,6 @@ public class ProjectStateTest extends TestCase {
 		}
 	}
 
-	// private void getChanges(ProjectInfo pi, boolean turned) {
-	// PrimaryVersionSpec primaryVersionSpec = VersioningFactory.eINSTANCE.createPrimaryVersionSpec();
-	// primaryVersionSpec.setIdentifier(0);
-	// try {
-	//
-	// List<ChangePackage> changes = null;
-	//
-	// if (turned) {
-	// changes = connectionManager.getChanges(sessionId, pi.getProjectId(), pi.getVersion(),
-	// primaryVersionSpec);
-	// } else {
-	// changes = connectionManager.getChanges(sessionId, pi.getProjectId(), primaryVersionSpec, pi
-	// .getVersion());
-	// }
-	//
-	// int i = 1;
-	// for (ChangePackage cp : changes) {
-	// System.out.println("change " + (i++) + ": " + cp.getLogMessage().getDate());
-	// }
-	// } catch (EmfStoreException e) {
-	// e.printStackTrace();
-	// }
-	// }
-	//
-	// private void getProjectStates(ProjectInfo pi) {
-	// PrimaryVersionSpec primaryVersionSpec = VersioningFactory.eINSTANCE.createPrimaryVersionSpec();
-	// for (int i = 1350; i <= pi.getVersion().getIdentifier(); i++) {
-	// primaryVersionSpec.setIdentifier(i);
-	// try {
-	// System.out.print("getting version " + i + ": ");
-	// Project project = connectionManager.getProject(sessionId, pi.getProjectId(), primaryVersionSpec);
-	// System.out.println(project);
-	// } catch (NullPointerException e) {
-	// e.printStackTrace();
-	// } catch (EmfStoreException e) {
-	// e.printStackTrace();
-	// }
-	//
-	// }
-	// }
-
 	@Override
 	public void outputResults(boolean outputToFile) {
 
