@@ -183,7 +183,7 @@ public class SprintStatusView extends ViewPart {
 		filterByUser.setChecked(false);
 
 		filterByUser.setImageDescriptor(Activator.getImageDescriptor("/icons/filtertouser.png"));
-		filterByUser.setToolTipText("Show only my items");
+		filterByUser.setToolTipText("Filter to a user");
 		menuManager.add(filterByUser);
 
 		final UserComparator userComparator = new UserComparator();
