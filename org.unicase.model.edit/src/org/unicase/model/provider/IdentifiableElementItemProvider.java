@@ -17,7 +17,6 @@ import org.eclipse.emf.edit.provider.IItemPropertyDescriptor;
 import org.eclipse.emf.edit.provider.IItemPropertySource;
 import org.eclipse.emf.edit.provider.IStructuredItemContentProvider;
 import org.eclipse.emf.edit.provider.ITreeItemContentProvider;
-import org.eclipse.emf.edit.provider.ItemProviderAdapter;
 import org.eclipse.emf.edit.provider.ViewerNotification;
 import org.unicase.model.IdentifiableElement;
 import org.unicase.model.ModelPackage;
@@ -27,7 +26,7 @@ import org.unicase.model.ModelPackage;
  * <!-- end-user-doc -->
  * @generated
  */
-public class IdentifiableElementItemProvider extends ItemProviderAdapter implements IEditingDomainItemProvider,
+public class IdentifiableElementItemProvider extends RootElementItemProvider implements IEditingDomainItemProvider,
 	IStructuredItemContentProvider, ITreeItemContentProvider, IItemLabelProvider, IItemPropertySource {
 	/**
 	 * This constructs an instance from a factory and a notifier.
