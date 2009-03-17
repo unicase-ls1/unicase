@@ -55,6 +55,9 @@ public final class ActionHelper {
 	private static final String MEEDITOR_OPENMODELELEMENT_COMMAND_ID = "org.unicase.ui.meeditor.openModelElement";
 	private static final String ME_TO_OPEN_EVALUATIONCONTEXT_VARIABLE = "meToOpen";
 	private static final String FEATURE_TO_MARK_EVALUATIONCONTEXT_VARIABLE = "featureToMark";
+	
+	private static final String DASHBOARD_CONTEXT_VARIABLE = "org.unicase.workspace.edit.dashboardInput";
+	private static final String DASHBOARD_COMMAND = "org.unicase.workspace.edit.showDashboard";
 
 	private ActionHelper() {
 
@@ -168,6 +171,39 @@ public final class ActionHelper {
 			openMEwithMEEditor(me);
 		}
 
+	}
+	
+	
+	/**
+	 * Opens the dashboard for the currently selected projectspace.
+	 */
+	public static void openDashboard(){
+		ProjectSpace projectSpace = WorkspaceManager.getInstance().getCurrentWorkspace().getActiveProjectSpace();
+		openDashboard(projectSpace);
+	}
+	
+	/**
+	 * Opens the dashboard for the given project.
+	 * @param projectSpace the project space.
+	 */
+	public static void openDashboard(ProjectSpace projectSpace){
+		IHandlerService handlerService = (IHandlerService) PlatformUI.getWorkbench().getService(IHandlerService.class);
+
+		IEvaluationContext context = handlerService.getCurrentState();
+		context.addVariable(DASHBOARD_CONTEXT_VARIABLE, projectSpace);
+
+		try {
+			handlerService.executeCommand(DASHBOARD_COMMAND, null);
+
+		} catch (ExecutionException e) {
+			DialogHandler.showExceptionDialog(e);
+		} catch (NotDefinedException e) {
+			DialogHandler.showExceptionDialog(e);
+		} catch (NotEnabledException e) {
+			DialogHandler.showExceptionDialog(e);
+		} catch (NotHandledException e) {
+			DialogHandler.showExceptionDialog(e);
+		}
 	}
 
 	private static void openMEwithMEEditor(ModelElement me) {
