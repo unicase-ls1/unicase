@@ -22,20 +22,29 @@ public class FindChanges extends AbstractFix {
 						e.printStackTrace();
 					}
 
-					if (result.contains("_sfdU4J-7Ed2Mf6xmMnysAw")) {
-						try {
-							FileWriter fileWriter = new FileWriter(System.getProperty("user.home")
-								+ "/Desktop/changes.txt", true);
-							fileWriter.write("version: " + version.getPrimarySpec().getIdentifier()
-								+ System.getProperty("line.separator") + System.getProperty("line.separator") + result
-								+ "\n");
-							fileWriter.close();
-						} catch (IOException e) {
-							e.printStackTrace();
-						}
+					if (result.contains("_hLQMsKOgEd2xnr7_LdISjQ")) {
+						printToFile(version, result);
 					}
+					// if (ao instanceof CreateDeleteOperation) {
+					// ModelElement modelElement = ((CreateDeleteOperation) ao).getModelElement();
+					// if (modelElement instanceof Meeting && ((Meeting) modelElement).getSections().size() != 0) {
+					// printToFile(version, result);
+					// }
+					// }
 				}
 			}
+		}
+	}
+
+	private void printToFile(Version version, String result) {
+		try {
+			FileWriter fileWriter = new FileWriter(System.getProperty("user.home") + "/Desktop/changes.txt", true);
+			fileWriter.write("version: " + version.getPrimarySpec().getIdentifier()
+				+ System.getProperty("line.separator") + System.getProperty("line.separator") + result
+				+ System.getProperty("line.separator"));
+			fileWriter.close();
+		} catch (IOException e) {
+			e.printStackTrace();
 		}
 	}
 

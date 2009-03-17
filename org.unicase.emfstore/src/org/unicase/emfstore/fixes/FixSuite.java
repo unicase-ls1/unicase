@@ -19,7 +19,8 @@ public class FixSuite {
 		// fixes.add(new LogmessageFix());
 		// fixes.add(new FalseDeleteFix());
 		// fixes.add(new EndDateToDueDateFix());
-		fixes.add(new CheckChanges());
+		// fixes.add(new MeetingCreationFix());
+		// fixes.add(new CheckChanges());
 		fixes.add(new FindChanges());
 	}
 
