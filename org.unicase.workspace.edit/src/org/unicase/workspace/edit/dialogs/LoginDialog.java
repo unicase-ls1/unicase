@@ -62,7 +62,7 @@ public class LoginDialog extends TitleAreaDialog implements SelectionListener {
 	private Text txtPassword;
 	private Usersession session;
 	private Combo sessionsCombo;
-	private EList<Usersession> sessionsList;
+	private ArrayList<Usersession> sessionsList;
 	private Button chkSavePassword;
 	private Composite contents;
 	private ServerInfo server;
@@ -102,7 +102,9 @@ public class LoginDialog extends TitleAreaDialog implements SelectionListener {
 		sessionsLabel.setText("Saved sessions:");
 
 		// initialize the list of appropriate usersessions
-		sessionsList = WorkspaceManager.getInstance().getCurrentWorkspace().getUsersessions();
+		sessionsList = new ArrayList<Usersession>();
+		EList<Usersession> workspaceSessions = WorkspaceManager.getInstance().getCurrentWorkspace().getUsersessions();
+		sessionsList.addAll(workspaceSessions);
 		ArrayList<Usersession> sessionToRemove = new ArrayList<Usersession>();
 		for (Usersession tempSession : sessionsList) {
 			if (!tempSession.getServerInfo().equals(server)) {
@@ -237,7 +239,6 @@ public class LoginDialog extends TitleAreaDialog implements SelectionListener {
 			setErrorMessage(e.getMessage());
 
 			txtPassword.selectAll();
-			WorkspaceManager.getInstance().getCurrentWorkspace().getUsersessions().remove(session);
 
 			session = null;
 
