@@ -83,28 +83,6 @@ public class SprintStatusView extends ViewPart {
 	}
 
 	/**
-	 * Compares two work items acc. to the name of their user.
-	 * 
-	 * @author Shterev
-	 */
-	private class UserComparator implements Comparator<WorkItem> {
-
-		public int compare(WorkItem o1, WorkItem o2) {
-			OrgUnit user1 = o1.getAssignee();
-			OrgUnit user2 = o2.getAssignee();
-			if (user1 == null && user2 == null) {
-				return 0;
-			} else if (user1 == null) {
-				return 1;
-			} else if (user2 == null) {
-				return -1;
-			}
-			return user1.getName().compareTo(user2.getName());
-
-		}
-	}
-
-	/**
 	 * Compares two work items acc. to their priority.
 	 * 
 	 * @author Shterev
@@ -186,15 +164,16 @@ public class SprintStatusView extends ViewPart {
 		filterByUser.setToolTipText("Filter to a user");
 		menuManager.add(filterByUser);
 
-		final UserComparator userComparator = new UserComparator();
+		final UserComparator assigneeComparator = new UserComparator(TaskPackage.eINSTANCE.getWorkItem_Assignee());
 		Action groupByUser = new Action("", SWT.TOGGLE) {
 			@Override
 			public void run() {
 				if (isChecked()) {
-					statusComposite.addComparator(0, userComparator);
+					statusComposite.addComparator(0, assigneeComparator);
+
 					statusComposite.setShowGroups(true);
 				} else {
-					statusComposite.removeComparator(userComparator);
+					statusComposite.removeComparator(assigneeComparator);
 					statusComposite.setShowGroups(false);
 				}
 				setInput(input);
