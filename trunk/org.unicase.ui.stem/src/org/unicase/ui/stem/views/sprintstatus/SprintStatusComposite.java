@@ -25,6 +25,7 @@ import org.eclipse.swt.widgets.Composite;
 import org.eclipse.swt.widgets.Label;
 import org.unicase.model.ModelElement;
 import org.unicase.model.Project;
+import org.unicase.model.task.TaskPackage;
 import org.unicase.model.task.WorkItem;
 import org.unicase.model.task.WorkPackage;
 import org.unicase.model.util.ProjectChangeObserver;
@@ -46,6 +47,11 @@ public class SprintStatusComposite extends Composite implements ProjectChangeObs
 	private SashForm sash;
 	private ArrayList<SprintStatusCategory> categories;
 	private Label hiddenText;
+	private SprintStatusCategory testing;
+	private SprintStatusCategory blocked;
+	private SprintStatusCategory assigned;
+	private SprintStatusCategory unassigned;
+	private SprintStatusCategory done;
 
 	/**
 	 * Constructor.
@@ -75,15 +81,15 @@ public class SprintStatusComposite extends Composite implements ProjectChangeObs
 		SprintStatusContentProvider testingContentProvider = new SprintStatusContentProvider(
 			SprintStatusContentProvider.TESTING);
 
-		SprintStatusCategory unassigned = new SprintStatusCategory(sash, SWT.NONE);
+		unassigned = new SprintStatusCategory(sash, SWT.NONE);
 		unassigned.setContentProvider(unassignedContentProvider);
-		SprintStatusCategory assigned = new SprintStatusCategory(sash, SWT.NONE);
+		assigned = new SprintStatusCategory(sash, SWT.NONE);
 		assigned.setContentProvider(assignedContentProvider);
-		SprintStatusCategory blocked = new SprintStatusCategory(sash, SWT.NONE);
+		blocked = new SprintStatusCategory(sash, SWT.NONE);
 		blocked.setContentProvider(blockedContentProvider);
-		SprintStatusCategory testing = new SprintStatusCategory(sash, SWT.NONE);
+		testing = new SprintStatusCategory(sash, SWT.NONE);
 		testing.setContentProvider(testingContentProvider);
-		SprintStatusCategory done = new SprintStatusCategory(sash, SWT.NONE);
+		done = new SprintStatusCategory(sash, SWT.NONE);
 		done.setContentProvider(doneContentProvider);
 
 		categories = new ArrayList<SprintStatusCategory>();
@@ -260,7 +266,14 @@ public class SprintStatusComposite extends Composite implements ProjectChangeObs
 	 */
 	public void addComparator(int index, Comparator<WorkItem> comparator) {
 		for (SprintStatusCategory cat : categories) {
-			cat.getContentProvider().addComparator(index, comparator);
+			if (comparator instanceof UserComparator) {
+				if (cat.equals(testing)) {
+					cat.getContentProvider().addComparator(index,
+						new UserComparator(TaskPackage.eINSTANCE.getWorkItem_Reviewer()));
+				} else {
+					cat.getContentProvider().addComparator(index, comparator);
+				}
+			}
 		}
 	}
 

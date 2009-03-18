@@ -10,6 +10,7 @@ import java.util.Collections;
 import java.util.Comparator;
 import java.util.List;
 
+import org.eclipse.emf.ecore.EReference;
 import org.eclipse.emf.edit.provider.ComposedAdapterFactory;
 import org.eclipse.emf.edit.ui.provider.AdapterFactoryContentProvider;
 import org.unicase.model.organization.Group;
@@ -52,6 +53,8 @@ public class SprintStatusContentProvider extends AdapterFactoryContentProvider {
 	private SprintItemComparator sprintItemComparator;
 	private List<Comparator<WorkItem>> comparators;
 	private List<SprintFilter> filters;
+	private EReference userReference;
+	private int userComparatorIndex = Integer.MAX_VALUE;
 
 	/**
 	 * Compares two WorkItems by their priority.
@@ -217,6 +220,20 @@ public class SprintStatusContentProvider extends AdapterFactoryContentProvider {
 	 */
 	public void addComparator(int index, Comparator<WorkItem> comparator) {
 		comparators.add(index, comparator);
+		if (comparator instanceof UserComparator) {
+			if (index < userComparatorIndex) {
+				userReference = ((UserComparator) comparator).getUserReference();
+				userComparatorIndex = index;
+			}
+		}
+	}
+
+	/**
+	 * @return The reference the user comparator for this category is based upon. If no user comparator has been set, a
+	 *         null will be returned.
+	 */
+	public EReference getUserReference() {
+		return userReference;
 	}
 
 	/**

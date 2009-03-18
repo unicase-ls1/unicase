@@ -7,6 +7,7 @@ package org.unicase.ui.stem.views.sprintstatus;
 
 import java.util.ArrayList;
 
+import org.eclipse.emf.ecore.EReference;
 import org.eclipse.jface.layout.GridDataFactory;
 import org.eclipse.jface.layout.GridLayoutFactory;
 import org.eclipse.jface.resource.JFaceResources;
@@ -133,20 +134,23 @@ public class SprintStatusCategory extends Composite {
 		OrgUnit prevUser = null;
 		for (Object item : contentProvider.getElements(workPackage)) {
 			WorkItem workItem = (WorkItem) item;
-			OrgUnit user = workItem.getAssignee();
-			// TODO AS: replace with a proper data structure
-			if (user == null && prevUser != null && showGroups) {
-				SprintCategorySeparator separator = new SprintCategorySeparator(client, SWT.NONE);
-				separator.setLabel("Unassigned");
-			} else if (user != null && !user.equals(prevUser) && showGroups) {
-				SprintCategorySeparator separator = new SprintCategorySeparator(client, SWT.NONE);
-				separator.setLabel(user.getName());
+			EReference userReference = contentProvider.getUserReference();
+			if (userReference != null) {
+				OrgUnit user = (OrgUnit) workItem.eGet(userReference);
+				// TODO AS: replace with a proper data structure
+				if (user == null && prevUser != null && showGroups) {
+					SprintCategorySeparator separator = new SprintCategorySeparator(client, SWT.NONE);
+					separator.setLabel("Unassigned");
+				} else if (user != null && !user.equals(prevUser) && showGroups) {
+					SprintCategorySeparator separator = new SprintCategorySeparator(client, SWT.NONE);
+					separator.setLabel(user.getName());
+				}
+				prevUser = user;
 			}
 			i++;
 			SprintStatusItem tabItem = new SprintStatusItem(client, SWT.NONE, workItem, i % 2);
 			GridDataFactory.fillDefaults().grab(true, false).align(SWT.FILL, SWT.BEGINNING).applyTo(tabItem);
 			items.add(tabItem);
-			prevUser = user;
 		}
 
 		client.layout(true);
