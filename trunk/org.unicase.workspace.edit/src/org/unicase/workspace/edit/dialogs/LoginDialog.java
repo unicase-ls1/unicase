@@ -238,14 +238,10 @@ public class LoginDialog extends TitleAreaDialog implements SelectionListener {
 
 			setErrorMessage(e.getMessage());
 
-			txtPassword.selectAll();
-
 			txtPassword.setText("");
 			keyTest = false;
 
 			chkSavePassword.setSelection(false);
-			sessionsCombo.remove(session.getUsername() + "@" + session.getServerInfo().getName());
-
 			setReturnCode(FAILED);
 		}
 	}
