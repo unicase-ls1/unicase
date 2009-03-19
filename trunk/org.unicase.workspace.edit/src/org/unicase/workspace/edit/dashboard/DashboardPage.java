@@ -27,6 +27,7 @@ import org.unicase.emfstore.esmodel.versioning.events.PluginFocusEvent;
 import org.unicase.workspace.ProjectSpace;
 import org.unicase.workspace.edit.Activator;
 import org.unicase.workspace.edit.dashboard.widgets.DashboardTaskWidget;
+import org.unicase.workspace.notification.provider.UpdateNotificationProvider;
 
 /**
  * The default page for the dashboard.
@@ -93,20 +94,23 @@ public class DashboardPage extends FormPage {
 		Composite body = form.getBody();
 		body.setLayout(new GridLayout());
 		SashForm globalSash = new SashForm(body, SWT.HORIZONTAL);
-		GridDataFactory.fillDefaults().align(SWT.FILL, SWT.FILL).grab(true, true).applyTo(globalSash);
+		GridDataFactory.fillDefaults().grab(true, false).applyTo(globalSash);
 		toolkit.adapt(globalSash, true, true);
 		globalSash.setSashWidth(4);
 
 		main = toolkit.createComposite(globalSash, SWT.NONE);
 		main.setBackground(Display.getCurrent().getSystemColor(SWT.COLOR_WHITE));
-		main.setBackgroundMode(SWT.INHERIT_FORCE);
+		main.setBackgroundMode(SWT.INHERIT_NONE);
 		GridLayoutFactory.fillDefaults().numColumns(1).equalWidth(false).spacing(0, 0).applyTo(main);
-		GridDataFactory.fillDefaults().align(SWT.FILL, SWT.FILL).grab(true, true).applyTo(main);
+		GridDataFactory.fillDefaults().grab(true, false).applyTo(main);
 
 		widgets = toolkit.createComposite(globalSash, SWT.NONE);
-		widgets.setBackgroundMode(SWT.INHERIT_FORCE);
+		widgets.setBackgroundMode(SWT.INHERIT_NONE);
 		GridLayoutFactory.fillDefaults().numColumns(1).equalWidth(false).extendedMargins(5, 5, 6, 0).applyTo(widgets);
-		GridDataFactory.fillDefaults().align(SWT.FILL, SWT.FILL).applyTo(widgets);
+		GridDataFactory.fillDefaults().applyTo(widgets);
+
+		main.setBackground(main.getDisplay().getSystemColor(SWT.COLOR_BLUE));
+		widgets.setBackground(widgets.getDisplay().getSystemColor(SWT.COLOR_RED));
 
 		DashboardTaskWidget tasks = new DashboardTaskWidget(widgets, SWT.NONE, projectSpace);
 		GridDataFactory.fillDefaults().grab(true, false).applyTo(tasks);
@@ -127,7 +131,6 @@ public class DashboardPage extends FormPage {
 
 		int[] topWeights = { 80, 20 };
 		globalSash.setWeights(topWeights);
-
 		form.setFocus();
 		form.pack();
 	}
@@ -135,8 +138,20 @@ public class DashboardPage extends FormPage {
 	private void loadNotifications(List<ESNotification> notifications) {
 		for (ESNotification n : notifications) {
 			if (!n.isSeen()) {
-				DashboardEntry entry = new DashboardEntry(this, main, SWT.NONE, n, projectSpace);
-				GridDataFactory.fillDefaults().align(SWT.FILL, SWT.BEGINNING).grab(true, false).applyTo(entry);
+				// SizeCache contentCache = new SizeCache();
+				// Composite c = (Composite) form.getContent();
+				// Rectangle clientArea = form.getClientArea();
+				// contentCache.setControl(c);
+				// Point newSize = contentCache.computeSize(FormUtil.getWidthHint(clientArea.width, c), FormUtil
+				// .getHeightHint(clientArea.height, c));
+				// System.out.println("Before notification: " + n.getMessage() + " " + newSize.toString());
+				AbstractDashboardEntry entry;
+				if (n.getSender() != null && n.getSender().equals(UpdateNotificationProvider.NAME)) {
+					entry = new UpdateDashboardEntry(this, main, SWT.NONE, n, projectSpace);
+				} else {
+					entry = new NotificationDashboardEntry(this, main, SWT.NONE, n, projectSpace);
+				}
+				GridDataFactory.fillDefaults().grab(true, false).applyTo(entry);
 			}
 		}
 	}
