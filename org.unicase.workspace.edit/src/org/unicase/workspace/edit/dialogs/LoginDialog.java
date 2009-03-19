@@ -240,8 +240,6 @@ public class LoginDialog extends TitleAreaDialog implements SelectionListener {
 
 			txtPassword.selectAll();
 
-			session = null;
-
 			txtPassword.setText("");
 			keyTest = false;
 
