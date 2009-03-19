@@ -14,6 +14,8 @@ import org.eclipse.swt.events.PaintEvent;
 import org.eclipse.swt.events.PaintListener;
 import org.eclipse.swt.graphics.Rectangle;
 import org.eclipse.swt.widgets.Composite;
+import org.eclipse.swt.widgets.Control;
+import org.eclipse.swt.widgets.Label;
 import org.eclipse.swt.widgets.Link;
 import org.unicase.model.ModelElement;
 import org.unicase.model.ModelElementId;
@@ -25,6 +27,27 @@ import org.unicase.workspace.ProjectSpace;
  * @author Shterev
  */
 public final class URLHelper {
+	
+	/**
+	 * Cuts the names of the elements to the default value.
+	 * @see URLHelper#LIMIT
+	 */
+	public static  final int DEFAULT = 0;
+	
+	/**
+	 * Do not cut the names of the elements until the MAXLIMIT is reached.
+	 */
+	public static final int UNLTD = -1;
+	
+	/**
+	 * The default limit of the name's length.
+	 */
+	public static final int LIMIT = 30;
+
+	/**
+	 * The maximal limit of the name's length.
+	 */
+	public static final int MAXLIMIT = 1000;
 	
 	private static AdapterFactoryLabelProvider labelProvider = new AdapterFactoryLabelProvider(new ComposedAdapterFactory(
 		ComposedAdapterFactory.Descriptor.Registry.INSTANCE));
@@ -38,13 +61,14 @@ public final class URLHelper {
 	 * 
 	 * @param meId The id of the model element
 	 * @param projectSpace the project space
+	 * @param style the string limit or @see {@link #DEFAULT} {@link #UNLTD} 
 	 * @return a HTML link as string
 	 */
-	public static String getHTMLLinkForModelElement(ModelElementId meId, ProjectSpace projectSpace) {
+	public static String getHTMLLinkForModelElement(ModelElementId meId, ProjectSpace projectSpace, int style) {
 
 		ModelElement modelElement = projectSpace.getProject().getModelElement(meId);
 		if (modelElement != null) {
-			return getHTMLLinkForModelElement(modelElement, projectSpace);
+			return getHTMLLinkForModelElement(modelElement, projectSpace, style);
 		}
 		return "(deleted element)";
 	}
@@ -54,9 +78,10 @@ public final class URLHelper {
 	 * 
 	 * @param modelElement The model element
 	 * @param projectSpace the project space
+	 * @param style the string limit or @see {@link #DEFAULT} {@link #UNLTD}
 	 * @return a HTML link as string
 	 */
-	public static String getHTMLLinkForModelElement(ModelElement modelElement, ProjectSpace projectSpace) {
+	public static String getHTMLLinkForModelElement(ModelElement modelElement, ProjectSpace projectSpace, int style) {
 		if (modelElement == null) {
 			return "";
 		}
@@ -75,8 +100,14 @@ public final class URLHelper {
 		ret.append("%");
 		ret.append(modelElement.getIdentifier());
 		ret.append("\">");
-		if (name.length() > 33) {
-			name = name.substring(0, 30) + "...";
+		int limit = style;
+		if(style == UNLTD){
+			limit = MAXLIMIT;
+		}else if(style==DEFAULT || style<-1){
+			limit = LIMIT;
+		}
+		if (name.length() > limit+3) {
+			name = name.substring(0, limit) + "...";
 		}
 		ret.append(name);
 		ret.append("</a>");
@@ -86,11 +117,30 @@ public final class URLHelper {
 	/**
 	 * Returns a composite containing both the icon and the model element link.
 	 * @param parent the parent composite.
-	 * @param modelElement the model element
+	 * @param modelElementId the model element id
 	 * @param projectSpace the project space
+	 * @param style the string limit or @see {@link #DEFAULT} {@link #UNLTD}
 	 * @return the link composite
 	 */
-	public static Composite getModelElementLink(Composite parent, final ModelElement modelElement, ProjectSpace projectSpace){
+	public static Control getModelElementLink(Composite parent, ModelElementId modelElementId, ProjectSpace projectSpace, int style){
+		ModelElement modelElement = projectSpace.getProject().getModelElement(modelElementId);
+		if (modelElement != null) {
+			return getModelElementLink(parent, modelElement, projectSpace, style);
+		}
+		Label deleted = new Label(parent, SWT.WRAP);
+		deleted.setText("(deleted element)");
+		return deleted;
+	}
+	
+	/**
+	 * Returns a composite containing both the icon and the model element link.
+	 * @param parent the parent composite.
+	 * @param modelElement the model element
+	 * @param projectSpace the project space
+	 * @param style the string limit or @see {@link #DEFAULT} {@link #UNLTD}
+	 * @return the link composite
+	 */
+	public static Control getModelElementLink(Composite parent, final ModelElement modelElement, ProjectSpace projectSpace, int style){
 		Composite c = new Composite(parent, SWT.NONE);
 		GridLayoutFactory.fillDefaults().numColumns(2).equalWidth(false).spacing(3,0).applyTo(c);
 		
@@ -104,8 +154,8 @@ public final class URLHelper {
 		});
 		
 		Link link = new Link(c, SWT.WRAP);
-		GridDataFactory.fillDefaults().grab(true, true).applyTo(link);
-		link.setText(getHTMLLinkForModelElement(modelElement, projectSpace));
+		GridDataFactory.fillDefaults().grab(true, false).applyTo(link);
+		link.setText(getHTMLLinkForModelElement(modelElement, projectSpace, style));
 		link.addSelectionListener(URLSelectionListener.getInstance(projectSpace));
 		
 		return c;
