@@ -13,6 +13,7 @@ import org.eclipse.swt.dnd.DropTargetListener;
 import org.eclipse.swt.dnd.Transfer;
 import org.eclipse.swt.graphics.Color;
 import org.eclipse.swt.widgets.Composite;
+import org.eclipse.swt.widgets.Control;
 import org.eclipse.swt.widgets.Label;
 import org.eclipse.swt.widgets.Link;
 import org.unicase.model.task.WorkItem;
@@ -50,7 +51,7 @@ public class SprintStatusItem extends Composite {
 
 		URLSelectionListener selectionListener = URLSelectionListener.getInstance(projectSpace);
 
-		Composite name = URLHelper.getModelElementLink(header, workItem, projectSpace);
+		Control name = URLHelper.getModelElementLink(header, workItem, projectSpace, URLHelper.DEFAULT);
 		// Link name = new Link(this, SWT.WRAP);
 		GridDataFactory.fillDefaults().span(4, 1).grab(true, true).applyTo(name);
 		// name.setText(URLHelper.getHTMLLinkForModelElement(workItem, projectSpace));
@@ -67,12 +68,14 @@ public class SprintStatusItem extends Composite {
 
 		Link assignee = new Link(content, SWT.WRAP);
 		GridDataFactory.fillDefaults().grab(true, true).applyTo(assignee);
-		assignee.setText("Assig.: " + URLHelper.getHTMLLinkForModelElement(workItem.getAssignee(), projectSpace));
+		assignee.setText("Assig.: "
+			+ URLHelper.getHTMLLinkForModelElement(workItem.getAssignee(), projectSpace, URLHelper.DEFAULT));
 		assignee.addSelectionListener(selectionListener);
 
 		Link tester = new Link(content, SWT.WRAP);
 		GridDataFactory.fillDefaults().grab(true, true).applyTo(tester);
-		tester.setText("Tester: " + URLHelper.getHTMLLinkForModelElement(workItem.getReviewer(), projectSpace));
+		tester.setText("Tester: "
+			+ URLHelper.getHTMLLinkForModelElement(workItem.getReviewer(), projectSpace, URLHelper.DEFAULT));
 		tester.addSelectionListener(selectionListener);
 
 		Label priority = new Label(content, SWT.WRAP);
@@ -88,7 +91,7 @@ public class SprintStatusItem extends Composite {
 			GridDataFactory.fillDefaults().grab(true, true).span(2, 1).applyTo(blocker);
 			blocker.setText("Blocker: ");
 			for (WorkItem wi : workItem.getPredecessors()) {
-				Composite c = URLHelper.getModelElementLink(content, wi, projectSpace);
+				Control c = URLHelper.getModelElementLink(content, wi, projectSpace, URLHelper.DEFAULT);
 				GridDataFactory.fillDefaults().grab(true, true).span(2, 1).applyTo(c);
 			}
 		}
