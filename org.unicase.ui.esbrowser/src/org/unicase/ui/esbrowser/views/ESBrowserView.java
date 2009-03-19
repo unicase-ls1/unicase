@@ -26,14 +26,19 @@ import org.eclipse.jface.viewers.DoubleClickEvent;
 import org.eclipse.jface.viewers.IDoubleClickListener;
 import org.eclipse.jface.viewers.ISelection;
 import org.eclipse.jface.viewers.IStructuredSelection;
+import org.eclipse.jface.viewers.TreeSelection;
 import org.eclipse.jface.viewers.TreeViewer;
 import org.eclipse.jface.viewers.Viewer;
 import org.eclipse.jface.viewers.ViewerSorter;
 import org.eclipse.jface.wizard.WizardDialog;
 import org.eclipse.swt.SWT;
+import org.eclipse.swt.events.MouseEvent;
+import org.eclipse.swt.events.MouseListener;
+import org.eclipse.swt.graphics.Point;
 import org.eclipse.swt.widgets.Composite;
 import org.eclipse.swt.widgets.Display;
 import org.eclipse.swt.widgets.Menu;
+import org.eclipse.swt.widgets.TreeItem;
 import org.eclipse.ui.IActionBars;
 import org.eclipse.ui.ISharedImages;
 import org.eclipse.ui.PlatformUI;
@@ -248,6 +253,31 @@ public class ESBrowserView extends ViewPart {
 		});
 		viewer.setInput(getViewSite());
 
+		// This is a trick to show add repository action in context menu
+		// whenever user right click on white area of ESBrowser.
+		// It checks where has the user just right clicked, and if it is not the tree then set the tree selection to
+		// none.
+		viewer.getTree().addMouseListener(new MouseListener() {
+			@Override
+			public void mouseDoubleClick(MouseEvent e) {
+			}
+
+			@Override
+			public void mouseDown(MouseEvent e) {
+				if (e.button == 3) {
+					Point p = new Point(e.x, e.y);
+					TreeItem treeItem = viewer.getTree().getItem(p);
+					if (treeItem == null) {
+						viewer.setSelection(TreeSelection.EMPTY);
+					}
+				}
+			}
+
+			@Override
+			public void mouseUp(MouseEvent e) {
+			}
+		});
+
 		PlatformUI.getWorkbench().getHelpSystem().setHelp(viewer.getControl(), "org.unicase.repositoryview.viewer");
 		makeActions();
 		hookContextMenu();
@@ -315,6 +345,8 @@ public class ESBrowserView extends ViewPart {
 			} catch (EmfStoreException e) {
 				// access denied
 			}
+		} else if (obj == null) {
+			manager.add(addRepository);
 		}
 	}
 
