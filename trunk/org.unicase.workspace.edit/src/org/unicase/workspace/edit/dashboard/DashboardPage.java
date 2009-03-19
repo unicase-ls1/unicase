@@ -100,17 +100,17 @@ public class DashboardPage extends FormPage {
 
 		main = toolkit.createComposite(globalSash, SWT.NONE);
 		main.setBackground(Display.getCurrent().getSystemColor(SWT.COLOR_WHITE));
-		main.setBackgroundMode(SWT.INHERIT_NONE);
+		main.setBackgroundMode(SWT.INHERIT_FORCE);
 		GridLayoutFactory.fillDefaults().numColumns(1).equalWidth(false).spacing(0, 0).applyTo(main);
 		GridDataFactory.fillDefaults().grab(true, false).applyTo(main);
 
 		widgets = toolkit.createComposite(globalSash, SWT.NONE);
-		widgets.setBackgroundMode(SWT.INHERIT_NONE);
+		widgets.setBackgroundMode(SWT.INHERIT_FORCE);
 		GridLayoutFactory.fillDefaults().numColumns(1).equalWidth(false).extendedMargins(5, 5, 6, 0).applyTo(widgets);
 		GridDataFactory.fillDefaults().applyTo(widgets);
 
-		main.setBackground(main.getDisplay().getSystemColor(SWT.COLOR_BLUE));
-		widgets.setBackground(widgets.getDisplay().getSystemColor(SWT.COLOR_RED));
+		// main.setBackground(main.getDisplay().getSystemColor(SWT.COLOR_BLUE));
+		// widgets.setBackground(widgets.getDisplay().getSystemColor(SWT.COLOR_RED));
 
 		DashboardTaskWidget tasks = new DashboardTaskWidget(widgets, SWT.NONE, projectSpace);
 		GridDataFactory.fillDefaults().grab(true, false).applyTo(tasks);
