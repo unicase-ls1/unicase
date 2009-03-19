@@ -30,7 +30,7 @@ import org.eclipse.swt.graphics.Color;
 import org.eclipse.swt.graphics.Image;
 import org.eclipse.swt.graphics.Rectangle;
 import org.eclipse.swt.widgets.Composite;
-import org.eclipse.swt.widgets.Display;
+import org.eclipse.swt.widgets.Control;
 import org.eclipse.swt.widgets.Label;
 import org.eclipse.swt.widgets.Link;
 import org.unicase.emfstore.esmodel.notification.ESNotification;
@@ -47,7 +47,6 @@ import org.unicase.ui.common.util.URLHelper;
 import org.unicase.workspace.ProjectSpace;
 import org.unicase.workspace.edit.Activator;
 import org.unicase.workspace.exceptions.MEUrlResolutionException;
-import org.unicase.workspace.notification.provider.UpdateNotificationProvider;
 import org.unicase.workspace.util.WorkspaceUtil;
 
 /**
@@ -55,7 +54,7 @@ import org.unicase.workspace.util.WorkspaceUtil;
  * 
  * @author Shterev
  */
-public class DashboardEntry extends Composite {
+public class NotificationDashboardEntry extends AbstractDashboardEntry {
 
 	/**
 	 * Selection listener for the links.
@@ -72,14 +71,12 @@ public class DashboardEntry extends Composite {
 		}
 
 		public void widgetDefaultSelected(SelectionEvent e) {
-			System.out.println("");
+			//
 		}
 
 		public void widgetSelected(SelectionEvent e) {
 			String text = e.text;
 			if (text.equals("more")) {
-				toggleDrawer(e, open);
-				open = !open;
 				return;
 			}
 			try {
@@ -87,7 +84,7 @@ public class DashboardEntry extends Composite {
 				ModelElement modelElement = null;
 				ModelElementUrlFragment modelElementUrlFragment = modelElementUrl.getModelElementUrlFragment();
 				try {
-					modelElement = project.resolve(modelElementUrlFragment);
+					modelElement = getProject().resolve(modelElementUrlFragment);
 				} catch (MEUrlResolutionException e1) {
 				}
 				ActionHelper.openModelElement(modelElement, DashboardEditor.ID);
@@ -98,24 +95,16 @@ public class DashboardEntry extends Composite {
 		}
 	}
 
-	private Image left;
-	private Image right;
-	private Image line;
 	private Color lightBlue;
 	private Color notificationColor;
-	private ESNotification n;
 	private SimpleDateFormat format;
-	private Display display;
-	private ProjectSpace project;
 	private Composite drawer;
 
 	private boolean open = true;
 	private boolean mouseOver;
-	private Color blue;
-	private DashboardPage page;
 
 	/**
-	 * Default constuctor.
+	 * Default constructor.
 	 * 
 	 * @param parent the parent composite.
 	 * @param style the style.
@@ -123,44 +112,40 @@ public class DashboardEntry extends Composite {
 	 * @param project the project.
 	 * @param page a back link to the dashboard page (needed only for layout purposes).
 	 */
-	public DashboardEntry(DashboardPage page, Composite parent, int style, ESNotification notification,
+	public NotificationDashboardEntry(DashboardPage page, Composite parent, int style, ESNotification notification,
 		ProjectSpace project) {
-		super(parent, style);
+		super(page, parent, style, notification, project);
 
-		this.page = page;
-		n = notification;
-		this.project = project;
-		display = Display.getCurrent();
-
-		left = Activator.getImageDescriptor("icons/left.png").createImage();
-		right = Activator.getImageDescriptor("icons/right.png").createImage();
-		line = Activator.getImageDescriptor("icons/line.png").createImage();
-		lightBlue = new Color(display, 233, 244, 255);
-		blue = new Color(Display.getCurrent(), 191, 222, 255);
-		notificationColor = display.getSystemColor(SWT.COLOR_WHITE);
+		lightBlue = new Color(getDisplay(), 233, 244, 255);
+		notificationColor = getDisplay().getSystemColor(SWT.COLOR_WHITE);
 		format = new SimpleDateFormat("dd.MM.yyyy HH:mm");
 
-		this.setBackgroundMode(SWT.INHERIT_FORCE);
-		if (!createUpdateEntry()) {
-			createNotificationEntry();
-		}
+		createEntry();
 	}
 
-	private void createNotificationEntry() {
+	/**
+	 * {@inheritDoc}
+	 */
+	@Override
+	protected void createEntry() {
 		GridLayoutFactory.fillDefaults().numColumns(4).equalWidth(false).extendedMargins(3, 0, 6, 6).spacing(5, 0)
 			.applyTo(this);
 		this.setBackground(notificationColor);
 
 		AdapterFactoryLabelProvider labelProvider = new AdapterFactoryLabelProvider(new ComposedAdapterFactory(
 			ComposedAdapterFactory.Descriptor.Registry.INSTANCE));
-		Image image = labelProvider.getImage(project.getProject().getModelElement(n.getRelatedModelElements().get(0)));
-		Link link = createImageLink(image, this, n.getMessage());
-
+		if (getNotification().getRelatedModelElements().size() == 0) {
+			return;
+		}
+		Image image = labelProvider.getImage(getProject().getProject().getModelElement(
+			getNotification().getRelatedModelElements().get(0)));
+		Link link = createImageLink(image, this, getNotification().getMessage());
 		link.addSelectionListener(new LinkSelectionListener("link"));
+
 		Label date = new Label(this, SWT.NONE);
-		date.setText(format.format(n.getCreationDate()));
-		GridDataFactory.fillDefaults().grab(true, false).align(SWT.END, SWT.BEGINNING).applyTo(date);
-		date.setForeground(display.getSystemColor(SWT.COLOR_GRAY));
+		date.setText(format.format(getNotification().getCreationDate()));
+		GridDataFactory.fillDefaults().align(SWT.END, SWT.BEGINNING).applyTo(date);
+		date.setForeground(getDisplay().getSystemColor(SWT.COLOR_GRAY));
 
 		final Composite close = new Composite(this, SWT.NONE);
 		GridDataFactory.fillDefaults().hint(16, 16).applyTo(close);
@@ -188,9 +173,9 @@ public class DashboardEntry extends Composite {
 
 						@Override
 						protected void doExecute() {
-							n.setSeen(true);
-							logEvent(n, project);
-							((DashboardEditor) page.getEditor()).refresh();
+							getNotification().setSeen(true);
+							logEvent(getNotification(), getProject());
+							((DashboardEditor) getPage().getEditor()).refresh();
 						}
 					});
 				}
@@ -220,91 +205,35 @@ public class DashboardEntry extends Composite {
 			}
 		};
 
-		this.addMouseListener(clickListener);
-		date.addMouseListener(clickListener);
-
 		this.addMouseTrackListener(hoverListener);
 		link.addMouseTrackListener(hoverListener);
 		date.addMouseTrackListener(hoverListener);
 		close.addMouseTrackListener(hoverListener);
 
 		drawer = new Composite(this, SWT.NONE);
-		GridDataFactory.fillDefaults().hint(10, 0).span(3, 1).grab(true, false).applyTo(drawer);
-		GridLayoutFactory.fillDefaults().numColumns(1).spacing(0, 5).extendedMargins(3, 3, 3, 3).applyTo(drawer);
+		GridDataFactory.fillDefaults().hint(10, 0).span(3, 1).indent(20, 0).grab(true, false).applyTo(drawer);
+		GridLayoutFactory.fillDefaults().numColumns(1).spacing(0, 8).extendedMargins(3, 3, 3, 3).applyTo(drawer);
 		drawer.setBackground(lightBlue);
-		for (ModelElementId mid : n.getRelatedModelElements()) {
-			ModelElement me = project.getProject().getModelElement(mid);
-			Composite drawerEntry = new Composite(drawer, SWT.NONE);
-			GridDataFactory.fillDefaults().grab(true, false).applyTo(drawerEntry);
-			GridLayoutFactory.fillDefaults().numColumns(2).equalWidth(false).spacing(5, 0).applyTo(drawerEntry);
 
-			String hyperlink = URLHelper.getHTMLLinkForModelElement(mid, project);
-			Link meLink = createImageLink(labelProvider.getImage(me), drawerEntry, hyperlink);
-			meLink.addSelectionListener(new LinkSelectionListener("drawer"));
-			meLink.addMouseTrackListener(hoverListener);
-			drawerEntry.addMouseTrackListener(hoverListener);
+		if (getNotification().getRelatedModelElements().size() > 1) {
+			this.addMouseListener(clickListener);
+			link.addMouseListener(clickListener);
+
+			for (ModelElementId mid : getNotification().getRelatedModelElements()) {
+				Control drawerEntry = URLHelper.getModelElementLink(drawer, mid, getProject(), URLHelper.UNLTD);
+				GridDataFactory.fillDefaults().grab(true, false).applyTo(drawerEntry);
+			}
 		}
-		drawer.addMouseTrackListener(hoverListener);
-	}
-
-	private boolean createUpdateEntry() {
-		if (n.getSender() == null || (n.getSender() != null && !n.getSender().equals(UpdateNotificationProvider.NAME))) {
-			return false;
-		}
-		GridDataFactory.fillDefaults().align(SWT.FILL, SWT.BEGINNING).grab(true, false).applyTo(this);
-		GridLayoutFactory.fillDefaults().numColumns(5).equalWidth(false).extendedMargins(0, 0, 6, 6).spacing(0, 0)
-			.applyTo(this);
-
-		Composite updated = createRoundedLabel(this, n.getMessage());
-		GridDataFactory.fillDefaults().applyTo(updated);
-
-		Composite space = new Composite(this, SWT.NONE);
-		GridDataFactory.fillDefaults().grab(true, false).hint(10, 15).applyTo(space);
-		space.setBackgroundImage(line);
-
-		Composite date = createRoundedLabel(this, format.format(n.getCreationDate()));
-		GridDataFactory.fillDefaults().applyTo(date);
-
-		GridDataFactory.fillDefaults().align(SWT.END, SWT.BEGINNING).applyTo(date);
-
-		return true;
-	}
-
-	private Composite createRoundedLabel(Composite parent, String text) {
-
-		Composite c = new Composite(parent, SWT.NONE);
-		GridLayoutFactory.fillDefaults().numColumns(3).equalWidth(false).spacing(0, 0).applyTo(c);
-
-		Composite left = new Composite(c, SWT.NONE);
-		left.setBackgroundImage(this.left);
-		GridDataFactory.fillDefaults().hint(10, 15).applyTo(left);
-
-		Composite main = new Composite(c, SWT.NONE);
-		GridDataFactory.fillDefaults().applyTo(main);
-		GridLayoutFactory.fillDefaults().numColumns(1).applyTo(main);
-		main.setBackground(blue);
-		Label label = new Label(main, SWT.NONE);
-		label.setText(text);
-
-		Composite right = new Composite(c, SWT.NONE);
-		right.setBackgroundImage(this.right);
-		GridDataFactory.fillDefaults().hint(10, 15).applyTo(right);
-
-		return c;
 	}
 
 	private void toggleDrawer(TypedEvent e, boolean open) {
-		int size = n.getRelatedModelElements().size();
-		if (size <= 1) {
-			return;
-		}
 		int height;
 		int indent;
 		if (open) {
-			height = size * 20 + 6;
 			indent = 10;
+			height = SWT.DEFAULT;
 			final NotificationReadEvent readEvent = EventsFactory.eINSTANCE.createNotificationReadEvent();
-			readEvent.setNotificationId(n.getIdentifier());
+			readEvent.setNotificationId(getNotification().getIdentifier());
 			readEvent.setReadView(DashboardEditor.ID);
 			readEvent.setSourceView(DashboardEditor.ID);
 			readEvent.setTimestamp(new Date());
@@ -313,7 +242,7 @@ public class DashboardEntry extends Composite {
 			domain.getCommandStack().execute(new RecordingCommand(domain) {
 				@Override
 				protected void doExecute() {
-					project.addEvent(readEvent);
+					getProject().addEvent(readEvent);
 				}
 			});
 		} else {
@@ -322,13 +251,13 @@ public class DashboardEntry extends Composite {
 		}
 		GridDataFactory.fillDefaults().hint(10, height).span(3, 1).indent(20, indent).grab(true, false).applyTo(drawer);
 		getParent().layout();
-		page.getForm().reflow(true);
+		getPage().getForm().reflow(true);
 	}
 
 	private void logEvent(ModelElementId modelElementId, String source) {
 		final NotificationReadEvent readEvent = EventsFactory.eINSTANCE.createNotificationReadEvent();
 		readEvent.setModelElement(modelElementId);
-		readEvent.setNotificationId(n.getIdentifier());
+		readEvent.setNotificationId(getNotification().getIdentifier());
 		readEvent.setReadView("org.unicase.ui.meeditor");
 		readEvent.setSourceView(DashboardEditor.ID + "." + source);
 		readEvent.setTimestamp(new Date());
@@ -337,7 +266,7 @@ public class DashboardEntry extends Composite {
 		domain.getCommandStack().execute(new RecordingCommand(domain) {
 			@Override
 			protected void doExecute() {
-				project.addEvent(readEvent);
+				getProject().addEvent(readEvent);
 			}
 		});
 	}
@@ -354,7 +283,7 @@ public class DashboardEntry extends Composite {
 
 		Link link = new Link(parent, SWT.WRAP);
 		link.setText(text);
-		GridDataFactory.fillDefaults().align(SWT.BEGINNING, SWT.BEGINNING).applyTo(link);
+		GridDataFactory.fillDefaults().hint(10, SWT.DEFAULT).grab(true, false).applyTo(link);
 		return link;
 	}
 
