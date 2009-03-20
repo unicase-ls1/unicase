@@ -5,6 +5,11 @@
  */
 package org.unicase.ui.tableview.viewer;
 
+import java.util.List;
+
+import org.eclipse.emf.common.util.BasicEList;
+import org.eclipse.emf.edit.provider.ComposedAdapterFactory;
+import org.eclipse.emf.edit.ui.provider.AdapterFactoryLabelProvider;
 import org.eclipse.emf.transaction.RecordingCommand;
 import org.eclipse.emf.transaction.TransactionalEditingDomain;
 import org.eclipse.emf.transaction.util.TransactionUtil;
@@ -12,7 +17,13 @@ import org.eclipse.jface.viewers.CellEditor;
 import org.eclipse.jface.viewers.CheckboxCellEditor;
 import org.eclipse.jface.viewers.EditingSupport;
 import org.eclipse.jface.viewers.TableViewer;
+import org.unicase.model.Project;
+import org.unicase.model.organization.OrganizationPackage;
+import org.unicase.model.organization.User;
 import org.unicase.model.task.Checkable;
+import org.unicase.model.task.WorkItem;
+import org.unicase.ui.taskview.ReviewerSelectionDialog;
+import org.unicase.workspace.WorkspaceManager;
 
 /**
  * Editing support for a checkbox column.
@@ -22,14 +33,17 @@ import org.unicase.model.task.Checkable;
 public class CheckableEditingSupport extends EditingSupport {
 
 	private CheckboxCellEditor cellEditor;
+	private User currentUser;
 
 	/**
 	 * default constructor.
 	 * 
 	 * @param viewer The viewer
+	 * @param currentUser the current user of task view
 	 */
-	public CheckableEditingSupport(TableViewer viewer) {
+	public CheckableEditingSupport(TableViewer viewer, User currentUser) {
 		super(viewer);
+		this.currentUser = currentUser;
 		cellEditor = new CheckboxCellEditor();
 	}
 
@@ -79,18 +93,60 @@ public class CheckableEditingSupport extends EditingSupport {
 	 * {@inheritDoc}
 	 */
 	@Override
-	protected void setValue(Object element, Object value) {
-		if ((element instanceof Checkable) && (value instanceof Boolean)) {
-			final Checkable c = (Checkable) element;
-			final boolean isChecked = (Boolean) value;
-			TransactionalEditingDomain domain = TransactionUtil.getEditingDomain(c);
-			domain.getCommandStack().execute(new RecordingCommand(domain) {
-				@Override
-				protected void doExecute() {
-					c.setChecked(isChecked);
-				}
-			});
+	protected void setValue(final Object element, final Object value) {
+		if (!(element instanceof Checkable) || !(value instanceof Boolean)) {
+			return;
 		}
+		TransactionalEditingDomain domain = TransactionUtil.getEditingDomain(element);
+		domain.getCommandStack().execute(new RecordingCommand(domain) {
+			@Override
+			protected void doExecute() {
+				setElementValue(element, value);
+			}
+		});
+
 		getViewer().refresh(element);
 	}
+
+	private void setElementValue(Object element, Object value) {
+
+		boolean isChecked = (Boolean) value;
+		if (element instanceof WorkItem) {
+			WorkItem workItem = (WorkItem) element;
+			if (workItem.getReviewer() != null) {
+				// if current user is the reviewer of work item, then set work item to done
+				// else, set it to resolved.
+				if (currentUser.equals(workItem.getReviewer())) {
+					((Checkable) workItem).setChecked(isChecked);
+				} else {
+					workItem.setResolved(isChecked);
+				}
+			} else {
+				// work item has no reviewer. Show reviewer selection dialog.
+				if (isChecked) {
+					AdapterFactoryLabelProvider labelProvider = new AdapterFactoryLabelProvider(
+						new ComposedAdapterFactory(ComposedAdapterFactory.Descriptor.Registry.INSTANCE));
+
+					ReviewerSelectionDialog reviwerSelectionDialog = new ReviewerSelectionDialog(this.getViewer()
+						.getControl().getShell(), labelProvider, workItem);
+					reviwerSelectionDialog.setMessage(ReviewerSelectionDialog.REVIEWERSELECTIONDIALOG_MESSAGE);
+
+					Project project = WorkspaceManager.getInstance().getCurrentWorkspace().getActiveProjectSpace()
+						.getProject();
+					List<User> users = project.getAllModelElementsbyClass(OrganizationPackage.eINSTANCE.getUser(),
+						new BasicEList<User>());
+					reviwerSelectionDialog.setElements(users.toArray());
+					reviwerSelectionDialog.open();
+				} else {
+
+				}
+
+			}
+		} else if (element instanceof Checkable) {
+			final Checkable c = (Checkable) element;
+			c.setChecked(isChecked);
+
+		}
+	}
+
 }

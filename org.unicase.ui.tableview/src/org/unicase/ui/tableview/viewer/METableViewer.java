@@ -135,7 +135,7 @@ public class METableViewer extends TableViewer {
 		ColumnLabelProvider provider = new GenericColumnLabelProvider(this, check);
 		currentColumn.setLabelProvider(provider);
 
-		EditingSupport es = new CheckableEditingSupport(this);
+		EditingSupport es = new CheckableEditingSupport(this, null);
 		currentColumn.setEditingSupport(es);
 
 		TableViewerColumn state = new TableViewerColumn(this, SWT.NONE);

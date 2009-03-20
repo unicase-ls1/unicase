@@ -5,6 +5,8 @@
  */
 package org.unicase.ui.taskview;
 
+import java.io.IOException;
+
 import org.eclipse.core.runtime.IPath;
 import org.eclipse.emf.common.notify.Notification;
 import org.eclipse.emf.common.notify.impl.AdapterImpl;
@@ -24,7 +26,6 @@ import org.unicase.model.organization.User;
 import org.unicase.model.task.TaskPackage;
 import org.unicase.model.task.WorkItem;
 import org.unicase.model.util.ProjectChangeObserver;
-import org.unicase.ui.common.filter.ResolvedBugReportFilter;
 import org.unicase.ui.common.filter.TeamFilter;
 import org.unicase.ui.common.filter.UserFilter;
 import org.unicase.ui.common.util.ActionHelper;
@@ -33,6 +34,7 @@ import org.unicase.ui.tableview.viewer.EClassFilterItemProvider;
 import org.unicase.ui.tableview.viewer.FilteredItemProviderAdapterFactory;
 import org.unicase.ui.tableview.viewer.METableViewer;
 import org.unicase.ui.taskview.filters.BlockedElementsViewerFilter;
+import org.unicase.ui.taskview.filters.ResolvedBugReportFilter;
 import org.unicase.ui.taskview.filters.UncheckedElementsViewerFilter;
 import org.unicase.workspace.ProjectSpace;
 import org.unicase.workspace.Workspace;
@@ -42,8 +44,6 @@ import org.unicase.workspace.exceptions.CannotMatchUserInProjectException;
 import org.unicase.workspace.util.EventUtil;
 import org.unicase.workspace.util.NoCurrentUserException;
 import org.unicase.workspace.util.OrgUnitHelper;
-
-import java.io.IOException;
 
 /**
  * A specialized TableView to display Action Items.
