@@ -28,11 +28,26 @@ public class CheckChanges extends AbstractFix {
 					+ version.getPrimarySpec().getIdentifier());
 				state = (Project) EcoreUtil.copy(version.getProjectState());
 			} else {
-				if (version.getPrimarySpec().getIdentifier() == 78) {
 
-					// specialVersion78(state);
-				}
 				version.getChanges().apply(state);
+
+				if (version.getPrimarySpec().getIdentifier() == 113 || version.getPrimarySpec().getIdentifier() == 112) {
+					File file = new File(System.getProperty("user.home") + "/Desktop/project_"
+						+ version.getPrimarySpec().getIdentifier() + "_generated.txt");
+					try {
+						file.createNewFile();
+						FileWriter fileWriter = new FileWriter(file);
+						fileWriter.write(SerializationUtil.eObjectToString(state));
+						fileWriter.close();
+					} catch (IOException e) {
+						// TODO Auto-generated catch block
+						e.printStackTrace();
+					} catch (RMISerializationException e) {
+						// TODO Auto-generated catch block
+						e.printStackTrace();
+					}
+				}
+
 				// System.out.println("applying changes in version " + version.getPrimarySpec().getIdentifier());
 				if (version.getProjectState() != null) {
 					int[] compare = linearCompare(version.getProjectState(), state);
@@ -40,7 +55,7 @@ public class CheckChanges extends AbstractFix {
 						System.out.println("project compare not equal in version "
 							+ version.getPrimarySpec().getIdentifier());
 
-						printProjectStates(state, version);
+						// printProjectStates(state, version);
 
 					} else {
 						System.out.println("project compare is equal(!) in version "
