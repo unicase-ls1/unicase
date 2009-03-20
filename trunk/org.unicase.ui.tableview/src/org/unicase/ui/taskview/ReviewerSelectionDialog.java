@@ -56,7 +56,7 @@ public class ReviewerSelectionDialog extends ElementListSelectionDialog {
 	protected void buttonPressed(int buttonId) {
 		super.buttonPressed(buttonId);
 		if (buttonId == SET_RESOLVED_BUTTON_ID) {
-			// set resolved without setting reviewer
+
 		} else if (buttonId == SET_DONE_BUTTON_ID) {
 			// set done without setting reviewer
 		}
