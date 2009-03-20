@@ -22,7 +22,7 @@ public class FindChanges extends AbstractFix {
 						e.printStackTrace();
 					}
 
-					if (result.contains("_hLQMsKOgEd2xnr7_LdISjQ")) {
+					if (result.contains("_o2GCsKmZEd2oT5AmpGnXcg") /* result.contains("_TiEHYKvpEd2COKzHNm-aQg") */) {
 						printToFile(version, result);
 					}
 					// if (ao instanceof CreateDeleteOperation) {
@@ -38,6 +38,7 @@ public class FindChanges extends AbstractFix {
 
 	private void printToFile(Version version, String result) {
 		try {
+			System.out.println("printing to file from version " + version.getPrimarySpec().getIdentifier());
 			FileWriter fileWriter = new FileWriter(System.getProperty("user.home") + "/Desktop/changes.txt", true);
 			fileWriter.write("version: " + version.getPrimarySpec().getIdentifier()
 				+ System.getProperty("line.separator") + System.getProperty("line.separator") + result
