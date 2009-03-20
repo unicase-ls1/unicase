@@ -258,11 +258,9 @@ public class ESBrowserView extends ViewPart {
 		// It checks where has the user just right clicked, and if it is not the tree then set the tree selection to
 		// none.
 		viewer.getTree().addMouseListener(new MouseListener() {
-			@Override
 			public void mouseDoubleClick(MouseEvent e) {
 			}
 
-			@Override
 			public void mouseDown(MouseEvent e) {
 				if (e.button == 3) {
 					Point p = new Point(e.x, e.y);
@@ -273,7 +271,6 @@ public class ESBrowserView extends ViewPart {
 				}
 			}
 
-			@Override
 			public void mouseUp(MouseEvent e) {
 			}
 		});
