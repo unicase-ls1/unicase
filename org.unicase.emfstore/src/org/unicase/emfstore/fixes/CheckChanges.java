@@ -31,22 +31,7 @@ public class CheckChanges extends AbstractFix {
 
 				version.getChanges().apply(state);
 
-				if (version.getPrimarySpec().getIdentifier() == 113 || version.getPrimarySpec().getIdentifier() == 112) {
-					File file = new File(System.getProperty("user.home") + "/Desktop/project_"
-						+ version.getPrimarySpec().getIdentifier() + "_generated.txt");
-					try {
-						file.createNewFile();
-						FileWriter fileWriter = new FileWriter(file);
-						fileWriter.write(SerializationUtil.eObjectToString(state));
-						fileWriter.close();
-					} catch (IOException e) {
-						// TODO Auto-generated catch block
-						e.printStackTrace();
-					} catch (RMISerializationException e) {
-						// TODO Auto-generated catch block
-						e.printStackTrace();
-					}
-				}
+				specialVersion113(state, version);
 
 				// System.out.println("applying changes in version " + version.getPrimarySpec().getIdentifier());
 				if (version.getProjectState() != null) {
@@ -55,7 +40,7 @@ public class CheckChanges extends AbstractFix {
 						System.out.println("project compare not equal in version "
 							+ version.getPrimarySpec().getIdentifier());
 
-						// printProjectStates(state, version);
+						printProjectStates(state, version);
 
 					} else {
 						System.out.println("project compare is equal(!) in version "
@@ -63,6 +48,25 @@ public class CheckChanges extends AbstractFix {
 					}
 					state = (Project) EcoreUtil.copy(version.getProjectState());
 				}
+			}
+		}
+	}
+
+	private void specialVersion113(Project state, Version version) {
+		if (version.getPrimarySpec().getIdentifier() == 113 || version.getPrimarySpec().getIdentifier() == 112) {
+			File file = new File(System.getProperty("user.home") + "/Desktop/project_"
+				+ version.getPrimarySpec().getIdentifier() + "_generated.txt");
+			try {
+				file.createNewFile();
+				FileWriter fileWriter = new FileWriter(file);
+				fileWriter.write(SerializationUtil.eObjectToString(state));
+				fileWriter.close();
+			} catch (IOException e) {
+				// TODO Auto-generated catch block
+				e.printStackTrace();
+			} catch (RMISerializationException e) {
+				// TODO Auto-generated catch block
+				e.printStackTrace();
 			}
 		}
 	}

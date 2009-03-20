@@ -24,3 +24,8 @@ fixing meeting in version 156
 fixing meeting in version 159
 fixing meeting in version 165
 fixing meeting in version 193
+
+manuelle lšschungen (-> manualdeletefix)
+
+projectstate 150 bei identifier="_TiEHYKvpEd2COKzHNm-aQg" bis auf 2 alle included usecases gelšscht.
+ - " -       200
