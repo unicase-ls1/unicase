@@ -27,8 +27,8 @@ import org.unicase.model.organization.OrganizationPackage;
 public class GroupItemProvider extends OrgUnitItemProvider implements IEditingDomainItemProvider,
 	IStructuredItemContentProvider, ITreeItemContentProvider, IItemLabelProvider, IItemPropertySource {
 	/**
-	 * This constructs an instance from a factory and a notifier.
-	 * <!-- begin-user-doc --> <!-- end-user-doc -->
+	 * This constructs an instance from a factory and a notifier. <!-- begin-user-doc --> <!-- end-user-doc -->
+	 * 
 	 * @generated
 	 */
 	public GroupItemProvider(AdapterFactory adapterFactory) {
@@ -36,8 +36,8 @@ public class GroupItemProvider extends OrgUnitItemProvider implements IEditingDo
 	}
 
 	/**
-	 * This returns the property descriptors for the adapted class.
-	 * <!-- begin-user-doc --> <!-- end-user-doc -->
+	 * This returns the property descriptors for the adapted class. <!-- begin-user-doc --> <!-- end-user-doc -->
+	 * 
 	 * @generated
 	 */
 	@Override
@@ -51,8 +51,8 @@ public class GroupItemProvider extends OrgUnitItemProvider implements IEditingDo
 	}
 
 	/**
-	 * This adds a property descriptor for the Org Units feature.
-	 * <!-- begin-user-doc --> <!-- end-user-doc -->
+	 * This adds a property descriptor for the Org Units feature. <!-- begin-user-doc --> <!-- end-user-doc -->
+	 * 
 	 * @generated
 	 */
 	protected void addOrgUnitsPropertyDescriptor(Object object) {
@@ -63,8 +63,8 @@ public class GroupItemProvider extends OrgUnitItemProvider implements IEditingDo
 	}
 
 	/**
-	 * This returns Group.gif.
-	 * <!-- begin-user-doc --> <!-- end-user-doc -->
+	 * This returns Group.gif. <!-- begin-user-doc --> <!-- end-user-doc -->
+	 * 
 	 * @generated
 	 */
 	@Override
@@ -96,9 +96,9 @@ public class GroupItemProvider extends OrgUnitItemProvider implements IEditingDo
 	}
 
 	/**
-	 * This adds {@link org.eclipse.emf.edit.command.CommandParameter}s describing the children
-	 * that can be created under this object.
-	 * <!-- begin-user-doc --> <!-- end-user-doc -->
+	 * This adds {@link org.eclipse.emf.edit.command.CommandParameter}s describing the children that can be created
+	 * under this object. <!-- begin-user-doc --> <!-- end-user-doc -->
+	 * 
 	 * @generated
 	 */
 	@Override

@@ -21,8 +21,8 @@ import org.unicase.model.organization.User;
  */
 public class OrganizationFactoryImpl extends EFactoryImpl implements OrganizationFactory {
 	/**
-	 * Creates the default factory implementation.
-	 * <!-- begin-user-doc --> <!-- end-user-doc -->
+	 * Creates the default factory implementation. <!-- begin-user-doc --> <!-- end-user-doc -->
+	 * 
 	 * @generated
 	 */
 	public static OrganizationFactory init() {
@@ -39,8 +39,8 @@ public class OrganizationFactoryImpl extends EFactoryImpl implements Organizatio
 	}
 
 	/**
-	 * Creates an instance of the factory.
-	 * <!-- begin-user-doc --> <!-- end-user-doc -->
+	 * Creates an instance of the factory. <!-- begin-user-doc --> <!-- end-user-doc -->
+	 * 
 	 * @generated
 	 */
 	public OrganizationFactoryImpl() {
@@ -49,6 +49,7 @@ public class OrganizationFactoryImpl extends EFactoryImpl implements Organizatio
 
 	/**
 	 * <!-- begin-user-doc --> <!-- end-user-doc -->
+	 * 
 	 * @generated
 	 */
 	@Override
@@ -65,6 +66,7 @@ public class OrganizationFactoryImpl extends EFactoryImpl implements Organizatio
 
 	/**
 	 * <!-- begin-user-doc --> <!-- end-user-doc -->
+	 * 
 	 * @generated
 	 */
 	public User createUser() {
@@ -74,6 +76,7 @@ public class OrganizationFactoryImpl extends EFactoryImpl implements Organizatio
 
 	/**
 	 * <!-- begin-user-doc --> <!-- end-user-doc -->
+	 * 
 	 * @generated
 	 */
 	public Group createGroup() {
@@ -83,6 +86,7 @@ public class OrganizationFactoryImpl extends EFactoryImpl implements Organizatio
 
 	/**
 	 * <!-- begin-user-doc --> <!-- end-user-doc -->
+	 * 
 	 * @generated
 	 */
 	public OrganizationPackage getOrganizationPackage() {
@@ -91,6 +95,7 @@ public class OrganizationFactoryImpl extends EFactoryImpl implements Organizatio
 
 	/**
 	 * <!-- begin-user-doc --> <!-- end-user-doc -->
+	 * 
 	 * @deprecated
 	 * @generated
 	 */

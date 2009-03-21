@@ -5,7 +5,7 @@
  */
 package org.unicase.model.task;
 
-import org.eclipse.emf.ecore.EObject;
+import org.unicase.model.ModelElement;
 
 /*
  * <!-- begin-user-doc --> A representation of the model object '<em><b>Checkable</b></em>'. <!-- end-user-doc --> <p>
@@ -15,15 +15,15 @@ import org.eclipse.emf.ecore.EObject;
  * @model interface="true" abstract="true"
  * @generated
  */
-public interface Checkable extends EObject {
+public interface Checkable extends ModelElement {
 	/**
-	 * Returns the value of the '<em><b>Checked</b></em>' attribute.
-	 * <!-- begin-user-doc -->
+	 * Returns the value of the '<em><b>Checked</b></em>' attribute. <!-- begin-user-doc -->
 	 * <p>
 	 * If the meaning of the '<em>Checked</em>' attribute isn't clear, there really should be more of a description
 	 * here...
 	 * </p>
 	 * <!-- end-user-doc -->
+	 * 
 	 * @return the value of the '<em>Checked</em>' attribute.
 	 * @see #setChecked(boolean)
 	 * @see org.unicase.model.task.TaskPackage#getCheckable_Checked()

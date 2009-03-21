@@ -6193,5 +6193,7 @@
         featureName="upperBound" dataValue="-1"/>
     <changes xsi:type="history:Set" element="model.ecore#//organization/User/workItemsToReview"
         featureName="name" dataValue="itemsToReview"/>
+    <changes xsi:type="history:Add" element="model.ecore#//task/Checkable" featureName="eSuperTypes"
+        referenceValue="model.ecore#//ModelElement"/>
   </releases>
 </history:History>
