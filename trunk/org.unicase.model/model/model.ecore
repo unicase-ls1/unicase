@@ -277,7 +277,8 @@
       <eLiterals name="TESTING" value="5" literal="Testing"/>
       <eLiterals name="MANAGEMENT" value="6" literal="Management"/>
     </eClassifiers>
-    <eClassifiers xsi:type="ecore:EClass" name="Checkable" abstract="true" interface="true">
+    <eClassifiers xsi:type="ecore:EClass" name="Checkable" abstract="true" interface="true"
+        eSuperTypes="#//ModelElement">
       <eStructuralFeatures xsi:type="ecore:EAttribute" name="checked" eType="ecore:EDataType http://www.eclipse.org/emf/2002/Ecore#//EBoolean"
           volatile="true" transient="true" derived="true"/>
     </eClassifiers>

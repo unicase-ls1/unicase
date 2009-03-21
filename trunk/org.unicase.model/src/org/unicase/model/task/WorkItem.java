@@ -30,14 +30,15 @@ import org.unicase.model.organization.User;
  */
 public interface WorkItem extends Annotation {
 	/**
-	 * Returns the value of the '<em><b>Containing Workpackage</b></em>' container reference.
-	 * It is bidirectional and its opposite is '{@link org.unicase.model.task.WorkPackage#getContainedWorkItems <em>Contained Work Items</em>}'.
+	 * Returns the value of the '<em><b>Containing Workpackage</b></em>' container reference. It is bidirectional and
+	 * its opposite is '{@link org.unicase.model.task.WorkPackage#getContainedWorkItems <em>Contained Work Items</em>}'.
 	 * <!-- begin-user-doc -->
 	 * <p>
 	 * If the meaning of the '<em>Containing Workpackage</em>' container reference isn't clear, there really should be
 	 * more of a description here...
 	 * </p>
 	 * <!-- end-user-doc -->
+	 * 
 	 * @return the value of the '<em>Containing Workpackage</em>' container reference.
 	 * @see #setContainingWorkpackage(WorkPackage)
 	 * @see org.unicase.model.task.TaskPackage#getWorkItem_ContainingWorkpackage()
@@ -49,8 +50,9 @@ public interface WorkItem extends Annotation {
 	WorkPackage getContainingWorkpackage();
 
 	/**
-	 * Sets the value of the '{@link org.unicase.model.task.WorkItem#getContainingWorkpackage <em>Containing Workpackage</em>}' container reference.
-	 * <!-- begin-user-doc --> <!-- end-user-doc -->
+	 * Sets the value of the '{@link org.unicase.model.task.WorkItem#getContainingWorkpackage
+	 * <em>Containing Workpackage</em>}' container reference. <!-- begin-user-doc --> <!-- end-user-doc -->
+	 * 
 	 * @param value the new value of the '<em>Containing Workpackage</em>' container reference.
 	 * @see #getContainingWorkpackage()
 	 * @generated
@@ -58,14 +60,14 @@ public interface WorkItem extends Annotation {
 	void setContainingWorkpackage(WorkPackage value);
 
 	/**
-	 * Returns the value of the '<em><b>Associated Change Packages</b></em>' reference list.
-	 * The list contents are of type {@link org.unicase.model.change.ModelChangePackage}.
-	 * <!-- begin-user-doc -->
+	 * Returns the value of the '<em><b>Associated Change Packages</b></em>' reference list. The list contents are of
+	 * type {@link org.unicase.model.change.ModelChangePackage}. <!-- begin-user-doc -->
 	 * <p>
 	 * If the meaning of the '<em>Associated Change Packages</em>' reference list isn't clear, there really should be
 	 * more of a description here...
 	 * </p>
 	 * <!-- end-user-doc -->
+	 * 
 	 * @return the value of the '<em>Associated Change Packages</em>' reference list.
 	 * @see org.unicase.model.task.TaskPackage#getWorkItem_AssociatedChangePackages()
 	 * @model keys="identifier"
@@ -74,15 +76,15 @@ public interface WorkItem extends Annotation {
 	EList<ModelChangePackage> getAssociatedChangePackages();
 
 	/**
-	 * Returns the value of the '<em><b>Predecessors</b></em>' reference list.
-	 * The list contents are of type {@link org.unicase.model.task.WorkItem}.
-	 * It is bidirectional and its opposite is '{@link org.unicase.model.task.WorkItem#getSuccessors <em>Successors</em>}'.
-	 * <!-- begin-user-doc -->
+	 * Returns the value of the '<em><b>Predecessors</b></em>' reference list. The list contents are of type
+	 * {@link org.unicase.model.task.WorkItem}. It is bidirectional and its opposite is '
+	 * {@link org.unicase.model.task.WorkItem#getSuccessors <em>Successors</em>}'. <!-- begin-user-doc -->
 	 * <p>
 	 * If the meaning of the '<em>Predecessors</em>' reference isn't clear, there really should be more of a description
 	 * here...
 	 * </p>
 	 * <!-- end-user-doc -->
+	 * 
 	 * @return the value of the '<em>Predecessors</em>' reference list.
 	 * @see org.unicase.model.task.TaskPackage#getWorkItem_Predecessors()
 	 * @see org.unicase.model.task.WorkItem#getSuccessors
@@ -93,15 +95,15 @@ public interface WorkItem extends Annotation {
 	EList<WorkItem> getPredecessors();
 
 	/**
-	 * Returns the value of the '<em><b>Successors</b></em>' reference list.
-	 * The list contents are of type {@link org.unicase.model.task.WorkItem}.
-	 * It is bidirectional and its opposite is '{@link org.unicase.model.task.WorkItem#getPredecessors <em>Predecessors</em>}'.
-	 * <!-- begin-user-doc -->
+	 * Returns the value of the '<em><b>Successors</b></em>' reference list. The list contents are of type
+	 * {@link org.unicase.model.task.WorkItem}. It is bidirectional and its opposite is '
+	 * {@link org.unicase.model.task.WorkItem#getPredecessors <em>Predecessors</em>}'. <!-- begin-user-doc -->
 	 * <p>
 	 * If the meaning of the '<em>Successors</em>' reference isn't clear, there really should be more of a description
 	 * here...
 	 * </p>
 	 * <!-- end-user-doc -->
+	 * 
 	 * @return the value of the '<em>Successors</em>' reference list.
 	 * @see org.unicase.model.task.TaskPackage#getWorkItem_Successors()
 	 * @see org.unicase.model.task.WorkItem#getPredecessors
@@ -112,14 +114,14 @@ public interface WorkItem extends Annotation {
 	EList<WorkItem> getSuccessors();
 
 	/**
-	 * Returns the value of the '<em><b>Assignee</b></em>' reference.
-	 * It is bidirectional and its opposite is '{@link org.unicase.model.organization.OrgUnit#getAssignments <em>Assignments</em>}'.
-	 * <!-- begin-user-doc -->
+	 * Returns the value of the '<em><b>Assignee</b></em>' reference. It is bidirectional and its opposite is '
+	 * {@link org.unicase.model.organization.OrgUnit#getAssignments <em>Assignments</em>}'. <!-- begin-user-doc -->
 	 * <p>
 	 * If the meaning of the '<em>Assignee</em>' reference isn't clear, there really should be more of a description
 	 * here...
 	 * </p>
 	 * <!-- end-user-doc -->
+	 * 
 	 * @return the value of the '<em>Assignee</em>' reference.
 	 * @see #setAssignee(OrgUnit)
 	 * @see org.unicase.model.task.TaskPackage#getWorkItem_Assignee()
@@ -141,14 +143,15 @@ public interface WorkItem extends Annotation {
 	void setAssignee(OrgUnit value);
 
 	/**
-	 * Returns the value of the '<em><b>Reviewer</b></em>' reference.
-	 * It is bidirectional and its opposite is '{@link org.unicase.model.organization.User#getWorkItemsToReview <em>Work Items To Review</em>}'.
-	 * <!-- begin-user-doc -->
+	 * Returns the value of the '<em><b>Reviewer</b></em>' reference. It is bidirectional and its opposite is '
+	 * {@link org.unicase.model.organization.User#getWorkItemsToReview <em>Work Items To Review</em>}'. <!--
+	 * begin-user-doc -->
 	 * <p>
-	 * If the meaning of the '<em>Reviewer</em>' reference isn't clear,
-	 * there really should be more of a description here...
+	 * If the meaning of the '<em>Reviewer</em>' reference isn't clear, there really should be more of a description
+	 * here...
 	 * </p>
 	 * <!-- end-user-doc -->
+	 * 
 	 * @return the value of the '<em>Reviewer</em>' reference.
 	 * @see #setReviewer(User)
 	 * @see org.unicase.model.task.TaskPackage#getWorkItem_Reviewer()
@@ -160,9 +163,9 @@ public interface WorkItem extends Annotation {
 	User getReviewer();
 
 	/**
-	 * Sets the value of the '{@link org.unicase.model.task.WorkItem#getReviewer <em>Reviewer</em>}' reference.
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
+	 * Sets the value of the '{@link org.unicase.model.task.WorkItem#getReviewer <em>Reviewer</em>}' reference. <!--
+	 * begin-user-doc --> <!-- end-user-doc -->
+	 * 
 	 * @param value the new value of the '<em>Reviewer</em>' reference.
 	 * @see #getReviewer()
 	 * @generated
@@ -170,16 +173,16 @@ public interface WorkItem extends Annotation {
 	void setReviewer(User value);
 
 	/**
-	 * Returns the value of the '<em><b>Participants</b></em>' reference list.
-	 * The list contents are of type {@link org.unicase.model.organization.OrgUnit}.
-	 * It is bidirectional and its opposite is '{@link org.unicase.model.organization.OrgUnit#getParticipations <em>Participations</em>}'.
-	 * <!-- begin-user-doc
+	 * Returns the value of the '<em><b>Participants</b></em>' reference list. The list contents are of type
+	 * {@link org.unicase.model.organization.OrgUnit}. It is bidirectional and its opposite is '
+	 * {@link org.unicase.model.organization.OrgUnit#getParticipations <em>Participations</em>}'. <!-- begin-user-doc
 	 * -->
 	 * <p>
 	 * If the meaning of the '<em>Participants</em>' reference list isn't clear, there really should be more of a
 	 * description here...
 	 * </p>
 	 * <!-- end-user-doc -->
+	 * 
 	 * @return the value of the '<em>Participants</em>' reference list.
 	 * @see org.unicase.model.task.TaskPackage#getWorkItem_Participants()
 	 * @see org.unicase.model.organization.OrgUnit#getParticipations
@@ -190,13 +193,13 @@ public interface WorkItem extends Annotation {
 	EList<OrgUnit> getParticipants();
 
 	/**
-	 * Returns the value of the '<em><b>Due Date</b></em>' attribute.
-	 * <!-- begin-user-doc -->
+	 * Returns the value of the '<em><b>Due Date</b></em>' attribute. <!-- begin-user-doc -->
 	 * <p>
 	 * If the meaning of the '<em>Due Date</em>' attribute isn't clear, there really should be more of a description
 	 * here...
 	 * </p>
 	 * <!-- end-user-doc -->
+	 * 
 	 * @return the value of the '<em>Due Date</em>' attribute.
 	 * @see #setDueDate(Date)
 	 * @see org.unicase.model.task.TaskPackage#getWorkItem_DueDate()
@@ -216,13 +219,13 @@ public interface WorkItem extends Annotation {
 	void setDueDate(Date value);
 
 	/**
-	 * Returns the value of the '<em><b>Estimate</b></em>' attribute.
-	 * <!-- begin-user-doc -->
+	 * Returns the value of the '<em><b>Estimate</b></em>' attribute. <!-- begin-user-doc -->
 	 * <p>
 	 * If the meaning of the '<em>Estimate</em>' attribute isn't clear, there really should be more of a description
 	 * here...
 	 * </p>
 	 * <!-- end-user-doc -->
+	 * 
 	 * @return the value of the '<em>Estimate</em>' attribute.
 	 * @see #setEstimate(int)
 	 * @see org.unicase.model.task.TaskPackage#getWorkItem_Estimate()
@@ -242,13 +245,13 @@ public interface WorkItem extends Annotation {
 	void setEstimate(int value);
 
 	/**
-	 * Returns the value of the '<em><b>Effort</b></em>' attribute.
-	 * <!-- begin-user-doc -->
+	 * Returns the value of the '<em><b>Effort</b></em>' attribute. <!-- begin-user-doc -->
 	 * <p>
 	 * If the meaning of the '<em>Effort</em>' attribute isn't clear, there really should be more of a description
 	 * here...
 	 * </p>
 	 * <!-- end-user-doc -->
+	 * 
 	 * @return the value of the '<em>Effort</em>' attribute.
 	 * @see #setEffort(int)
 	 * @see org.unicase.model.task.TaskPackage#getWorkItem_Effort()
@@ -268,13 +271,13 @@ public interface WorkItem extends Annotation {
 	void setEffort(int value);
 
 	/**
-	 * Returns the value of the '<em><b>Priority</b></em>' attribute.
-	 * <!-- begin-user-doc -->
+	 * Returns the value of the '<em><b>Priority</b></em>' attribute. <!-- begin-user-doc -->
 	 * <p>
 	 * If the meaning of the '<em>Priority</em>' attribute isn't clear, there really should be more of a description
 	 * here...
 	 * </p>
 	 * <!-- end-user-doc -->
+	 * 
 	 * @return the value of the '<em>Priority</em>' attribute.
 	 * @see #setPriority(int)
 	 * @see org.unicase.model.task.TaskPackage#getWorkItem_Priority()
@@ -294,13 +297,13 @@ public interface WorkItem extends Annotation {
 	void setPriority(int value);
 
 	/**
-	 * Returns the value of the '<em><b>Resolved</b></em>' attribute.
-	 * <!-- begin-user-doc -->
+	 * Returns the value of the '<em><b>Resolved</b></em>' attribute. <!-- begin-user-doc -->
 	 * <p>
-	 * If the meaning of the '<em>Resolved</em>' attribute isn't clear,
-	 * there really should be more of a description here...
+	 * If the meaning of the '<em>Resolved</em>' attribute isn't clear, there really should be more of a description
+	 * here...
 	 * </p>
 	 * <!-- end-user-doc -->
+	 * 
 	 * @return the value of the '<em>Resolved</em>' attribute.
 	 * @see #setResolved(boolean)
 	 * @see org.unicase.model.task.TaskPackage#getWorkItem_Resolved()
@@ -310,9 +313,9 @@ public interface WorkItem extends Annotation {
 	boolean isResolved();
 
 	/**
-	 * Sets the value of the '{@link org.unicase.model.task.WorkItem#isResolved <em>Resolved</em>}' attribute.
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
+	 * Sets the value of the '{@link org.unicase.model.task.WorkItem#isResolved <em>Resolved</em>}' attribute. <!--
+	 * begin-user-doc --> <!-- end-user-doc -->
+	 * 
 	 * @param value the new value of the '<em>Resolved</em>' attribute.
 	 * @see #isResolved()
 	 * @generated

@@ -19,14 +19,14 @@ import org.unicase.model.rationale.Proposal;
  */
 public interface MergingProposal extends Proposal {
 	/**
-	 * Returns the value of the '<em><b>Conflicting Proposals</b></em>' reference list.
-	 * The list contents are of type {@link org.unicase.model.change.MergingProposal}.
-	 * <!-- begin-user-doc -->
+	 * Returns the value of the '<em><b>Conflicting Proposals</b></em>' reference list. The list contents are of type
+	 * {@link org.unicase.model.change.MergingProposal}. <!-- begin-user-doc -->
 	 * <p>
 	 * If the meaning of the '<em>Conflicting Proposals</em>' reference list isn't clear, there really should be more of
 	 * a description here...
 	 * </p>
 	 * <!-- end-user-doc -->
+	 * 
 	 * @return the value of the '<em>Conflicting Proposals</em>' reference list.
 	 * @see org.unicase.model.change.ChangePackage#getMergingProposal_ConflictingProposals()
 	 * @model keys="identifier"
@@ -35,13 +35,13 @@ public interface MergingProposal extends Proposal {
 	EList<MergingProposal> getConflictingProposals();
 
 	/**
-	 * Returns the value of the '<em><b>Pending Changes</b></em>' reference.
-	 * <!-- begin-user-doc -->
+	 * Returns the value of the '<em><b>Pending Changes</b></em>' reference. <!-- begin-user-doc -->
 	 * <p>
 	 * If the meaning of the '<em>Pending Changes</em>' reference isn't clear, there really should be more of a
 	 * description here...
 	 * </p>
 	 * <!-- end-user-doc -->
+	 * 
 	 * @return the value of the '<em>Pending Changes</em>' reference.
 	 * @see #setPendingChanges(ModelChangePackage)
 	 * @see org.unicase.model.change.ChangePackage#getMergingProposal_PendingChanges()
@@ -51,8 +51,9 @@ public interface MergingProposal extends Proposal {
 	ModelChangePackage getPendingChanges();
 
 	/**
-	 * Sets the value of the '{@link org.unicase.model.change.MergingProposal#getPendingChanges <em>Pending Changes</em>}' reference.
-	 * <!-- begin-user-doc --> <!-- end-user-doc -->
+	 * Sets the value of the '{@link org.unicase.model.change.MergingProposal#getPendingChanges
+	 * <em>Pending Changes</em>}' reference. <!-- begin-user-doc --> <!-- end-user-doc -->
+	 * 
 	 * @param value the new value of the '<em>Pending Changes</em>' reference.
 	 * @see #getPendingChanges()
 	 * @generated

@@ -36,8 +36,8 @@ import org.unicase.model.task.TaskPackage;
 public class BugReportItemProvider extends AnnotationItemProvider implements IEditingDomainItemProvider,
 	IStructuredItemContentProvider, ITreeItemContentProvider, IItemLabelProvider, IItemPropertySource {
 	/**
-	 * This constructs an instance from a factory and a notifier.
-	 * <!-- begin-user-doc --> <!-- end-user-doc -->
+	 * This constructs an instance from a factory and a notifier. <!-- begin-user-doc --> <!-- end-user-doc -->
+	 * 
 	 * @generated
 	 */
 	public BugReportItemProvider(AdapterFactory adapterFactory) {
@@ -45,8 +45,8 @@ public class BugReportItemProvider extends AnnotationItemProvider implements IEd
 	}
 
 	/**
-	 * This returns the property descriptors for the adapted class.
-	 * <!-- begin-user-doc --> <!-- end-user-doc -->
+	 * This returns the property descriptors for the adapted class. <!-- begin-user-doc --> <!-- end-user-doc -->
+	 * 
 	 * @generated
 	 */
 	@Override
@@ -88,8 +88,8 @@ public class BugReportItemProvider extends AnnotationItemProvider implements IEd
 	}
 
 	/**
-	 * This adds a property descriptor for the Predecessors feature.
-	 * <!-- begin-user-doc --> <!-- end-user-doc -->
+	 * This adds a property descriptor for the Predecessors feature. <!-- begin-user-doc --> <!-- end-user-doc -->
+	 * 
 	 * @generated
 	 */
 	protected void addPredecessorsPropertyDescriptor(Object object) {
@@ -100,8 +100,8 @@ public class BugReportItemProvider extends AnnotationItemProvider implements IEd
 	}
 
 	/**
-	 * This adds a property descriptor for the Successors feature.
-	 * <!-- begin-user-doc --> <!-- end-user-doc -->
+	 * This adds a property descriptor for the Successors feature. <!-- begin-user-doc --> <!-- end-user-doc -->
+	 * 
 	 * @generated
 	 */
 	protected void addSuccessorsPropertyDescriptor(Object object) {
@@ -112,8 +112,8 @@ public class BugReportItemProvider extends AnnotationItemProvider implements IEd
 	}
 
 	/**
-	 * This adds a property descriptor for the Assignee feature.
-	 * <!-- begin-user-doc --> <!-- end-user-doc -->
+	 * This adds a property descriptor for the Assignee feature. <!-- begin-user-doc --> <!-- end-user-doc -->
+	 * 
 	 * @generated
 	 */
 	protected void addAssigneePropertyDescriptor(Object object) {
@@ -124,9 +124,8 @@ public class BugReportItemProvider extends AnnotationItemProvider implements IEd
 	}
 
 	/**
-	 * This adds a property descriptor for the Reviewer feature.
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
+	 * This adds a property descriptor for the Reviewer feature. <!-- begin-user-doc --> <!-- end-user-doc -->
+	 * 
 	 * @generated
 	 */
 	protected void addReviewerPropertyDescriptor(Object object) {
@@ -137,8 +136,8 @@ public class BugReportItemProvider extends AnnotationItemProvider implements IEd
 	}
 
 	/**
-	 * This adds a property descriptor for the Participants feature.
-	 * <!-- begin-user-doc --> <!-- end-user-doc -->
+	 * This adds a property descriptor for the Participants feature. <!-- begin-user-doc --> <!-- end-user-doc -->
+	 * 
 	 * @generated
 	 */
 	protected void addParticipantsPropertyDescriptor(Object object) {
@@ -149,8 +148,8 @@ public class BugReportItemProvider extends AnnotationItemProvider implements IEd
 	}
 
 	/**
-	 * This adds a property descriptor for the Due Date feature.
-	 * <!-- begin-user-doc --> <!-- end-user-doc -->
+	 * This adds a property descriptor for the Due Date feature. <!-- begin-user-doc --> <!-- end-user-doc -->
+	 * 
 	 * @generated
 	 */
 	protected void addDueDatePropertyDescriptor(Object object) {
@@ -162,8 +161,8 @@ public class BugReportItemProvider extends AnnotationItemProvider implements IEd
 	}
 
 	/**
-	 * This adds a property descriptor for the Estimate feature.
-	 * <!-- begin-user-doc --> <!-- end-user-doc -->
+	 * This adds a property descriptor for the Estimate feature. <!-- begin-user-doc --> <!-- end-user-doc -->
+	 * 
 	 * @generated
 	 */
 	protected void addEstimatePropertyDescriptor(Object object) {
@@ -175,8 +174,8 @@ public class BugReportItemProvider extends AnnotationItemProvider implements IEd
 	}
 
 	/**
-	 * This adds a property descriptor for the Effort feature.
-	 * <!-- begin-user-doc --> <!-- end-user-doc -->
+	 * This adds a property descriptor for the Effort feature. <!-- begin-user-doc --> <!-- end-user-doc -->
+	 * 
 	 * @generated
 	 */
 	protected void addEffortPropertyDescriptor(Object object) {
@@ -188,8 +187,8 @@ public class BugReportItemProvider extends AnnotationItemProvider implements IEd
 	}
 
 	/**
-	 * This adds a property descriptor for the Priority feature.
-	 * <!-- begin-user-doc --> <!-- end-user-doc -->
+	 * This adds a property descriptor for the Priority feature. <!-- begin-user-doc --> <!-- end-user-doc -->
+	 * 
 	 * @generated
 	 */
 	protected void addPriorityPropertyDescriptor(Object object) {
@@ -201,9 +200,8 @@ public class BugReportItemProvider extends AnnotationItemProvider implements IEd
 	}
 
 	/**
-	 * This adds a property descriptor for the Resolved feature.
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
+	 * This adds a property descriptor for the Resolved feature. <!-- begin-user-doc --> <!-- end-user-doc -->
+	 * 
 	 * @generated
 	 */
 	protected void addResolvedPropertyDescriptor(Object object) {
@@ -215,8 +213,8 @@ public class BugReportItemProvider extends AnnotationItemProvider implements IEd
 	}
 
 	/**
-	 * This adds a property descriptor for the Status feature.
-	 * <!-- begin-user-doc --> <!-- end-user-doc -->
+	 * This adds a property descriptor for the Status feature. <!-- begin-user-doc --> <!-- end-user-doc -->
+	 * 
 	 * @generated
 	 */
 	protected void addStatusPropertyDescriptor(Object object) {
@@ -228,8 +226,8 @@ public class BugReportItemProvider extends AnnotationItemProvider implements IEd
 	}
 
 	/**
-	 * This adds a property descriptor for the Severity feature.
-	 * <!-- begin-user-doc --> <!-- end-user-doc -->
+	 * This adds a property descriptor for the Severity feature. <!-- begin-user-doc --> <!-- end-user-doc -->
+	 * 
 	 * @generated
 	 */
 	protected void addSeverityPropertyDescriptor(Object object) {
@@ -241,8 +239,8 @@ public class BugReportItemProvider extends AnnotationItemProvider implements IEd
 	}
 
 	/**
-	 * This adds a property descriptor for the Resolution feature.
-	 * <!-- begin-user-doc --> <!-- end-user-doc -->
+	 * This adds a property descriptor for the Resolution feature. <!-- begin-user-doc --> <!-- end-user-doc -->
+	 * 
 	 * @generated
 	 */
 	protected void addResolutionPropertyDescriptor(Object object) {
@@ -254,8 +252,8 @@ public class BugReportItemProvider extends AnnotationItemProvider implements IEd
 	}
 
 	/**
-	 * This adds a property descriptor for the Resolution Type feature.
-	 * <!-- begin-user-doc --> <!-- end-user-doc -->
+	 * This adds a property descriptor for the Resolution Type feature. <!-- begin-user-doc --> <!-- end-user-doc -->
+	 * 
 	 * @generated
 	 */
 	protected void addResolutionTypePropertyDescriptor(Object object) {
@@ -339,9 +337,9 @@ public class BugReportItemProvider extends AnnotationItemProvider implements IEd
 	}
 
 	/**
-	 * This adds {@link org.eclipse.emf.edit.command.CommandParameter}s describing the children
-	 * that can be created under this object.
-	 * <!-- begin-user-doc --> <!-- end-user-doc -->
+	 * This adds {@link org.eclipse.emf.edit.command.CommandParameter}s describing the children that can be created
+	 * under this object. <!-- begin-user-doc --> <!-- end-user-doc -->
+	 * 
 	 * @generated
 	 */
 	@Override
@@ -350,8 +348,8 @@ public class BugReportItemProvider extends AnnotationItemProvider implements IEd
 	}
 
 	/**
-	 * Return the resource locator for this item provider's resources.
-	 * <!-- begin-user-doc --> <!-- end-user-doc -->
+	 * Return the resource locator for this item provider's resources. <!-- begin-user-doc --> <!-- end-user-doc -->
+	 * 
 	 * @generated
 	 */
 	@Override

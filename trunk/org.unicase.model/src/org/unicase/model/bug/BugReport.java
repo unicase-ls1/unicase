@@ -20,14 +20,14 @@ import org.unicase.model.task.WorkItem;
  */
 public interface BugReport extends WorkItem, Checkable {
 	/**
-	 * Returns the value of the '<em><b>Status</b></em>' attribute.
-	 * The literals are from the enumeration {@link org.unicase.model.bug.BugStatus}.
-	 * <!-- begin-user-doc -->
+	 * Returns the value of the '<em><b>Status</b></em>' attribute. The literals are from the enumeration
+	 * {@link org.unicase.model.bug.BugStatus}. <!-- begin-user-doc -->
 	 * <p>
 	 * If the meaning of the '<em>Status</em>' attribute isn't clear, there really should be more of a description
 	 * here...
 	 * </p>
 	 * <!-- end-user-doc -->
+	 * 
 	 * @return the value of the '<em>Status</em>' attribute.
 	 * @see org.unicase.model.bug.BugStatus
 	 * @see #setStatus(BugStatus)
@@ -49,14 +49,14 @@ public interface BugReport extends WorkItem, Checkable {
 	void setStatus(BugStatus value);
 
 	/**
-	 * Returns the value of the '<em><b>Severity</b></em>' attribute.
-	 * The literals are from the enumeration {@link org.unicase.model.bug.Severity}.
-	 * <!-- begin-user-doc -->
+	 * Returns the value of the '<em><b>Severity</b></em>' attribute. The literals are from the enumeration
+	 * {@link org.unicase.model.bug.Severity}. <!-- begin-user-doc -->
 	 * <p>
 	 * If the meaning of the '<em>Severity</em>' attribute isn't clear, there really should be more of a description
 	 * here...
 	 * </p>
 	 * <!-- end-user-doc -->
+	 * 
 	 * @return the value of the '<em>Severity</em>' attribute.
 	 * @see org.unicase.model.bug.Severity
 	 * @see #setSeverity(Severity)
@@ -78,13 +78,13 @@ public interface BugReport extends WorkItem, Checkable {
 	void setSeverity(Severity value);
 
 	/**
-	 * Returns the value of the '<em><b>Resolution</b></em>' attribute.
-	 * <!-- begin-user-doc -->
+	 * Returns the value of the '<em><b>Resolution</b></em>' attribute. <!-- begin-user-doc -->
 	 * <p>
 	 * If the meaning of the '<em>Resolution</em>' attribute isn't clear, there really should be more of a description
 	 * here...
 	 * </p>
 	 * <!-- end-user-doc -->
+	 * 
 	 * @return the value of the '<em>Resolution</em>' attribute.
 	 * @see #setResolution(String)
 	 * @see org.unicase.model.bug.BugPackage#getBugReport_Resolution()
@@ -104,14 +104,14 @@ public interface BugReport extends WorkItem, Checkable {
 	void setResolution(String value);
 
 	/**
-	 * Returns the value of the '<em><b>Resolution Type</b></em>' attribute.
-	 * The literals are from the enumeration {@link org.unicase.model.bug.ResolutionType}.
-	 * <!-- begin-user-doc -->
+	 * Returns the value of the '<em><b>Resolution Type</b></em>' attribute. The literals are from the enumeration
+	 * {@link org.unicase.model.bug.ResolutionType}. <!-- begin-user-doc -->
 	 * <p>
 	 * If the meaning of the '<em>Resolution Type</em>' attribute isn't clear, there really should be more of a
 	 * description here...
 	 * </p>
 	 * <!-- end-user-doc -->
+	 * 
 	 * @return the value of the '<em>Resolution Type</em>' attribute.
 	 * @see org.unicase.model.bug.ResolutionType
 	 * @see #setResolutionType(ResolutionType)
@@ -122,8 +122,9 @@ public interface BugReport extends WorkItem, Checkable {
 	ResolutionType getResolutionType();
 
 	/**
-	 * Sets the value of the '{@link org.unicase.model.bug.BugReport#getResolutionType <em>Resolution Type</em>}' attribute.
-	 * <!-- begin-user-doc --> <!-- end-user-doc -->
+	 * Sets the value of the '{@link org.unicase.model.bug.BugReport#getResolutionType <em>Resolution Type</em>}'
+	 * attribute. <!-- begin-user-doc --> <!-- end-user-doc -->
+	 * 
 	 * @param value the new value of the '<em>Resolution Type</em>' attribute.
 	 * @see org.unicase.model.bug.ResolutionType
 	 * @see #getResolutionType()

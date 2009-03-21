@@ -15,23 +15,23 @@ import org.eclipse.emf.ecore.EFactory;
  */
 public interface DiagramFactory extends EFactory {
 	/**
-	 * The singleton instance of the factory.
-	 * <!-- begin-user-doc --> <!-- end-user-doc -->
+	 * The singleton instance of the factory. <!-- begin-user-doc --> <!-- end-user-doc -->
+	 * 
 	 * @generated
 	 */
 	DiagramFactory eINSTANCE = org.unicase.model.diagram.impl.DiagramFactoryImpl.init();
 
 	/**
-	 * Returns a new object of class '<em>ME Diagram</em>'.
-	 * <!-- begin-user-doc --> <!-- end-user-doc -->
+	 * Returns a new object of class '<em>ME Diagram</em>'. <!-- begin-user-doc --> <!-- end-user-doc -->
+	 * 
 	 * @return a new object of class '<em>ME Diagram</em>'.
 	 * @generated
 	 */
 	MEDiagram createMEDiagram();
 
 	/**
-	 * Returns the package supported by this factory.
-	 * <!-- begin-user-doc --> <!-- end-user-doc -->
+	 * Returns the package supported by this factory. <!-- begin-user-doc --> <!-- end-user-doc -->
+	 * 
 	 * @return the package supported by this factory.
 	 * @generated
 	 */
