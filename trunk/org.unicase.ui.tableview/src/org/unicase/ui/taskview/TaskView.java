@@ -10,12 +10,12 @@ import java.io.IOException;
 import org.eclipse.core.runtime.IPath;
 import org.eclipse.emf.common.notify.Notification;
 import org.eclipse.emf.common.notify.impl.AdapterImpl;
-import org.eclipse.emf.ecore.EClass;
 import org.eclipse.jface.action.Action;
 import org.eclipse.jface.action.IToolBarManager;
 import org.eclipse.jface.dialogs.DialogSettings;
 import org.eclipse.jface.viewers.DoubleClickEvent;
 import org.eclipse.jface.viewers.IDoubleClickListener;
+import org.eclipse.jface.viewers.TableViewer;
 import org.eclipse.swt.SWT;
 import org.eclipse.swt.widgets.Composite;
 import org.eclipse.ui.IActionBars;
@@ -23,15 +23,12 @@ import org.eclipse.ui.part.ViewPart;
 import org.unicase.model.ModelElement;
 import org.unicase.model.Project;
 import org.unicase.model.organization.User;
-import org.unicase.model.task.TaskPackage;
 import org.unicase.model.task.WorkItem;
 import org.unicase.model.util.ProjectChangeObserver;
 import org.unicase.ui.common.filter.TeamFilter;
 import org.unicase.ui.common.filter.UserFilter;
 import org.unicase.ui.common.util.ActionHelper;
 import org.unicase.ui.tableview.Activator;
-import org.unicase.ui.tableview.viewer.EClassFilterItemProvider;
-import org.unicase.ui.tableview.viewer.FilteredItemProviderAdapterFactory;
 import org.unicase.ui.tableview.viewer.METableViewer;
 import org.unicase.ui.taskview.filters.BlockedElementsViewerFilter;
 import org.unicase.ui.taskview.filters.ResolvedBugReportFilter;
@@ -46,15 +43,16 @@ import org.unicase.workspace.util.NoCurrentUserException;
 import org.unicase.workspace.util.OrgUnitHelper;
 
 /**
- * A specialized TableView to display Action Items.
+ * TaskView shows checkables (work items which can be set to done).
  * 
  * @author Florian Schneider
+ * @author Zardosht Hodaie
  */
 public class TaskView extends ViewPart implements ProjectChangeObserver {
 
-	private METableViewer viewer;
-	private final EClass itemMetaClass = TaskPackage.eINSTANCE.getWorkItem();
-	private FilteredItemProviderAdapterFactory adapterFactory;
+	private TableViewer tableViewer;
+	// private final EClass itemMetaClass = TaskPackage.eINSTANCE.getWorkItem();
+	// private FilteredItemProviderAdapterFactory adapterFactory;
 	private Action doubleClickAction;
 	private DialogSettings settings;
 	private String filename;
@@ -101,11 +99,10 @@ public class TaskView extends ViewPart implements ProjectChangeObserver {
 	 */
 	@Override
 	public void createPartControl(Composite parent) {
-		adapterFactory = new FilteredItemProviderAdapterFactory();
-		adapterFactory.setFilteredItemProvider(new EClassFilterItemProvider(adapterFactory, itemMetaClass));
-		viewer = new METableViewer(parent, adapterFactory, itemMetaClass);
-		// the task view shall only display objects that are instance of
-		// Checkable
+
+		// tableViewer = new TableViewer(parent, SWT.FULL_SELECTION);
+		tableViewer = new METableViewer(parent);
+
 		if (workspace.getActiveProjectSpace() != null) {
 			workspace.getActiveProjectSpace().getProject().addProjectChangeObserver(TaskView.this);
 		}
@@ -145,7 +142,7 @@ public class TaskView extends ViewPart implements ProjectChangeObserver {
 		createBlockedFilter();
 		menuManager.add(filterToBlocked);
 
-		getSite().setSelectionProvider(viewer);
+		getSite().setSelectionProvider(tableViewer);
 		hookDoubleClickAction();
 	}
 
@@ -173,9 +170,9 @@ public class TaskView extends ViewPart implements ProjectChangeObserver {
 	 */
 	protected void setBlockedFilter(boolean checked) {
 		if (!checked) {
-			viewer.addFilter(blockedFilter);
+			tableViewer.addFilter(blockedFilter);
 		} else {
-			viewer.removeFilter(blockedFilter);
+			tableViewer.removeFilter(blockedFilter);
 		}
 
 	}
@@ -223,7 +220,7 @@ public class TaskView extends ViewPart implements ProjectChangeObserver {
 			return;
 		}
 		if (teamFilter != null) {
-			viewer.removeFilter(teamFilter);
+			tableViewer.removeFilter(teamFilter);
 		}
 		filterToMyTeam
 			.setToolTipText("Restricts the displayed table items to items owned by the current user and it's teammates.");
@@ -240,11 +237,11 @@ public class TaskView extends ViewPart implements ProjectChangeObserver {
 	protected void setTeamFilter(boolean checked) {
 		if (checked) {
 			if (teamFilter != null) {
-				viewer.addFilter(teamFilter);
+				tableViewer.addFilter(teamFilter);
 			}
 		} else {
 			if (teamFilter != null) {
-				viewer.removeFilter(teamFilter);
+				tableViewer.removeFilter(teamFilter);
 			}
 		}
 
@@ -285,7 +282,7 @@ public class TaskView extends ViewPart implements ProjectChangeObserver {
 			return;
 		}
 		if (userFilter != null) {
-			viewer.removeFilter(userFilter);
+			tableViewer.removeFilter(userFilter);
 		}
 		filterToMe.setEnabled(true);
 		userFilter = new UserFilter(user);
@@ -316,7 +313,7 @@ public class TaskView extends ViewPart implements ProjectChangeObserver {
 		}
 
 		if (resolvedBugReportFilter != null) {
-			viewer.removeFilter(userFilter);
+			tableViewer.removeFilter(userFilter);
 		}
 		filterResolvedBugReports.setEnabled(true);
 		resolvedBugReportFilter = new ResolvedBugReportFilter(user);
@@ -331,9 +328,9 @@ public class TaskView extends ViewPart implements ProjectChangeObserver {
 	 */
 	protected void setUncheckedFilter(boolean checked) {
 		if (!checked) {
-			viewer.addFilter(uncheckedFilter);
+			tableViewer.addFilter(uncheckedFilter);
 		} else {
-			viewer.removeFilter(uncheckedFilter);
+			tableViewer.removeFilter(uncheckedFilter);
 		}
 
 	}
@@ -346,11 +343,11 @@ public class TaskView extends ViewPart implements ProjectChangeObserver {
 	protected void setUserFilter(boolean checked) {
 		if (checked) {
 			if (userFilter != null) {
-				viewer.addFilter(userFilter);
+				tableViewer.addFilter(userFilter);
 			}
 		} else {
 			if (userFilter != null) {
-				viewer.removeFilter(userFilter);
+				tableViewer.removeFilter(userFilter);
 			}
 		}
 
@@ -364,18 +361,18 @@ public class TaskView extends ViewPart implements ProjectChangeObserver {
 	protected void setResolvedBugReportsFilter(boolean checked) {
 		if (!checked) {
 			if (resolvedBugReportFilter != null) {
-				viewer.addFilter(resolvedBugReportFilter);
+				tableViewer.addFilter(resolvedBugReportFilter);
 			}
 		} else {
 			if (resolvedBugReportFilter != null) {
-				viewer.removeFilter(resolvedBugReportFilter);
+				tableViewer.removeFilter(resolvedBugReportFilter);
 			}
 		}
 	}
 
 	private void hookDoubleClickAction() {
 		createDoubleClickAction();
-		viewer.addDoubleClickListener(new IDoubleClickListener() {
+		tableViewer.addDoubleClickListener(new IDoubleClickListener() {
 			public void doubleClick(DoubleClickEvent event) {
 				doubleClickAction.run();
 			}
@@ -398,7 +395,7 @@ public class TaskView extends ViewPart implements ProjectChangeObserver {
 	 */
 	@Override
 	public void setFocus() {
-		viewer.getTable().setFocus();
+		tableViewer.getTable().setFocus();
 		EventUtil.logFocusEvent("org.unicase.ui.taskview");
 	}
 
@@ -436,7 +433,7 @@ public class TaskView extends ViewPart implements ProjectChangeObserver {
 	 */
 	public void modelElementAdded(Project project, ModelElement modelElement) {
 		if (modelElement instanceof WorkItem) {
-			viewer.refresh();
+			tableViewer.refresh();
 		}
 	}
 
@@ -450,7 +447,7 @@ public class TaskView extends ViewPart implements ProjectChangeObserver {
 	 */
 	public void modelElementRemoved(Project project, ModelElement modelElement) {
 		if (modelElement instanceof WorkItem) {
-			viewer.refresh();
+			tableViewer.refresh();
 		}
 	}
 
@@ -466,7 +463,7 @@ public class TaskView extends ViewPart implements ProjectChangeObserver {
 	 */
 	public void notify(Notification notification, Project project, ModelElement modelElement) {
 		if (modelElement instanceof WorkItem) {
-			viewer.refresh();
+			tableViewer.refresh();
 		}
 	}
 
