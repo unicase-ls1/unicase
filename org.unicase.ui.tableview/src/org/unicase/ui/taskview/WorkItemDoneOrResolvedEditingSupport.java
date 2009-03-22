@@ -3,7 +3,7 @@
  * accompanying materials are made available under the terms of the Eclipse Public License v1.0 which accompanies this
  * distribution, and is available at http://www.eclipse.org/legal/epl-v10.html </copyright>
  */
-package org.unicase.ui.tableview.viewer;
+package org.unicase.ui.taskview;
 
 import java.util.List;
 
@@ -22,7 +22,6 @@ import org.unicase.model.organization.OrganizationPackage;
 import org.unicase.model.organization.User;
 import org.unicase.model.task.Checkable;
 import org.unicase.model.task.WorkItem;
-import org.unicase.ui.taskview.ReviewerSelectionDialog;
 import org.unicase.workspace.WorkspaceManager;
 
 /**
@@ -30,7 +29,7 @@ import org.unicase.workspace.WorkspaceManager;
  * 
  * @author helming
  */
-public class WorkItemCheckableEditingSupport extends EditingSupport {
+public class WorkItemDoneOrResolvedEditingSupport extends EditingSupport {
 
 	private CheckboxCellEditor cellEditor;
 	private User currentUser;
@@ -41,7 +40,7 @@ public class WorkItemCheckableEditingSupport extends EditingSupport {
 	 * @param viewer The viewer
 	 * @param currentUser the current user of task view
 	 */
-	public WorkItemCheckableEditingSupport(TableViewer viewer, User currentUser) {
+	public WorkItemDoneOrResolvedEditingSupport(TableViewer viewer, User currentUser) {
 		super(viewer);
 		this.currentUser = currentUser;
 		cellEditor = new CheckboxCellEditor();
