@@ -18,11 +18,10 @@ import org.eclipse.swt.graphics.Image;
 import org.eclipse.ui.IDecoratorManager;
 import org.eclipse.ui.PlatformUI;
 import org.unicase.model.ModelPackage;
-import org.unicase.model.task.TaskPackage;
 
 /**
  * A specific ColumnLabelProvider for the display of features of Checkable instances. For the
- * {@link TaskPackage.Literals.CHECKABLE__CHECKED} feature, it returns images of CheckBoxes. For the
+ * TaskPackage.Literals.CHECKABLE__CHECKED feature, it returns images of CheckBoxes. For the
  * {@link ModelPackage.Literals.MODEL_ELEMENT__NAME} feature, it uses a {@link DecoratingLabelProvider} to return a
  * decorated image consisting of a symbol corresponding to the model element type and possible decorations.
  * 
@@ -43,7 +42,7 @@ public class GenericColumnLabelProvider extends ColumnLabelProvider {
 	 */
 	public GenericColumnLabelProvider(EStructuralFeature feature) {
 		super();
-		this.setFeature(feature);
+		this.feature = feature;
 		IDecoratorManager decoratorManager = PlatformUI.getWorkbench().getDecoratorManager();
 		decoratingLabelProvider = new DecoratingLabelProvider(new AdapterFactoryLabelProvider(
 			new ComposedAdapterFactory(ComposedAdapterFactory.Descriptor.Registry.INSTANCE)), decoratorManager
@@ -71,14 +70,6 @@ public class GenericColumnLabelProvider extends ColumnLabelProvider {
 		return "";
 	}
 
-	private String extractTextFromEAttribute(EObject item) {
-		Object value = item.eGet(feature);
-		if (value != null) {
-			return value.toString();
-		}
-		return "";
-	}
-
 	@SuppressWarnings("unchecked")
 	private String extractTextFromEReference(EObject item) {
 		Object value = item.eGet(feature);
@@ -94,6 +85,14 @@ public class GenericColumnLabelProvider extends ColumnLabelProvider {
 		}
 	}
 
+	private String extractTextFromEAttribute(EObject item) {
+		Object value = item.eGet(feature);
+		if (value != null) {
+			return value.toString();
+		}
+		return "";
+	}
+
 	/**
 	 * {@inheritDoc}
 	 * 
@@ -107,15 +106,6 @@ public class GenericColumnLabelProvider extends ColumnLabelProvider {
 			decoratingLabelProvider.getLabelDecorator().decorateImage(image, element);
 		}
 		return image;
-	}
-
-	/**
-	 * set the feature.
-	 * 
-	 * @param feature the feature.
-	 */
-	public void setFeature(EStructuralFeature feature) {
-		this.feature = feature;
 	}
 
 	/**

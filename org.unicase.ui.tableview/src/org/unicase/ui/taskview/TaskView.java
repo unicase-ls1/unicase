@@ -6,10 +6,13 @@
 package org.unicase.ui.taskview;
 
 import java.io.IOException;
+import java.util.ArrayList;
+import java.util.List;
 
 import org.eclipse.core.runtime.IPath;
 import org.eclipse.emf.common.notify.Notification;
 import org.eclipse.emf.common.notify.impl.AdapterImpl;
+import org.eclipse.emf.ecore.EStructuralFeature;
 import org.eclipse.jface.action.Action;
 import org.eclipse.jface.action.IToolBarManager;
 import org.eclipse.jface.dialogs.DialogSettings;
@@ -21,9 +24,11 @@ import org.eclipse.swt.widgets.Composite;
 import org.eclipse.ui.IActionBars;
 import org.eclipse.ui.part.ViewPart;
 import org.unicase.model.ModelElement;
+import org.unicase.model.ModelPackage;
 import org.unicase.model.Project;
 import org.unicase.model.organization.User;
-import org.unicase.model.task.WorkItem;
+import org.unicase.model.task.Checkable;
+import org.unicase.model.task.TaskPackage;
 import org.unicase.model.util.ProjectChangeObserver;
 import org.unicase.ui.common.filter.TeamFilter;
 import org.unicase.ui.common.filter.UserFilter;
@@ -50,10 +55,11 @@ import org.unicase.workspace.util.OrgUnitHelper;
  */
 public class TaskView extends ViewPart implements ProjectChangeObserver {
 
+	private METableViewer viewer;
 	private TableViewer tableViewer;
 	// private final EClass itemMetaClass = TaskPackage.eINSTANCE.getWorkItem();
 	// private FilteredItemProviderAdapterFactory adapterFactory;
-	private Action doubleClickAction;
+	// private Action doubleClickAction;
 	private DialogSettings settings;
 	private String filename;
 	private AdapterImpl adapterImpl;
@@ -73,6 +79,7 @@ public class TaskView extends ViewPart implements ProjectChangeObserver {
 
 	private ResolvedBugReportFilter resolvedBugReportFilter;
 	private Action filterResolvedBugReports;
+	private User currentUser;
 
 	/**
 	 * default constructor.
@@ -100,28 +107,22 @@ public class TaskView extends ViewPart implements ProjectChangeObserver {
 	@Override
 	public void createPartControl(Composite parent) {
 
-		// tableViewer = new TableViewer(parent, SWT.FULL_SELECTION);
-		tableViewer = new METableViewer(parent);
+		viewer = initMETableViewer(parent);
+		tableViewer = viewer.getTableViewer();
 
-		if (workspace.getActiveProjectSpace() != null) {
-			workspace.getActiveProjectSpace().getProject().addProjectChangeObserver(TaskView.this);
-		}
+		workspace = WorkspaceManager.getInstance().getCurrentWorkspace();
 		adapterImpl = new AdapterImpl() {
 			@Override
 			public void notifyChanged(Notification msg) {
 				if ((msg.getFeatureID(Workspace.class)) == WorkspacePackage.WORKSPACE__ACTIVE_PROJECT_SPACE) {
-					initUserDependentFilters();
+					ProjectSpace activeProjectSpace = workspace.getActiveProjectSpace();
+					if (activeProjectSpace != null) {
+						Project currentProject = activeProjectSpace.getProject();
+						viewer.setInput(currentProject);
+					}
 
-					// remove old listeners
-					Object oldValue = msg.getOldValue();
-					if (oldValue instanceof ProjectSpace) {
-						((ProjectSpace) oldValue).getProject().removeProjectChangeObserver(TaskView.this);
-					}
-					// add listener to get notified when work items get deleted/added/changed
-					if (workspace.getActiveProjectSpace() != null) {
-						workspace.getActiveProjectSpace().getProject().addProjectChangeObserver(TaskView.this);
-					}
 				}
+				super.notifyChanged(msg);
 			}
 		};
 		workspace.eAdapters().add(adapterImpl);
@@ -144,6 +145,22 @@ public class TaskView extends ViewPart implements ProjectChangeObserver {
 
 		getSite().setSelectionProvider(tableViewer);
 		hookDoubleClickAction();
+	}
+
+	private METableViewer initMETableViewer(Composite parent) {
+		METableViewer metv = new METableViewer(parent, TaskPackage.eINSTANCE.getCheckable());
+		List<EStructuralFeature> features = new ArrayList<EStructuralFeature>();
+		features.add(TaskPackage.Literals.CHECKABLE__CHECKED);
+		features.add(ModelPackage.Literals.MODEL_ELEMENT__STATE);
+		features.add(ModelPackage.Literals.MODEL_ELEMENT__NAME);
+		features.add(TaskPackage.Literals.WORK_ITEM__ASSIGNEE);
+		features.add(ModelPackage.Literals.MODEL_ELEMENT__CREATION_DATE);
+		features.add(ModelPackage.Literals.MODEL_ELEMENT__CREATOR);
+		features.add(TaskPackage.Literals.WORK_ITEM__CONTAINING_WORKPACKAGE);
+		features.add(TaskPackage.Literals.WORK_ITEM__DUE_DATE);
+		features.add(TaskPackage.Literals.WORK_ITEM__PRIORITY);
+		metv.createColumns(features);
+		return metv;
 	}
 
 	private void createBlockedFilter() {
@@ -371,21 +388,17 @@ public class TaskView extends ViewPart implements ProjectChangeObserver {
 	}
 
 	private void hookDoubleClickAction() {
-		createDoubleClickAction();
-		tableViewer.addDoubleClickListener(new IDoubleClickListener() {
-			public void doubleClick(DoubleClickEvent event) {
-				doubleClickAction.run();
-			}
-		});
-	}
-
-	private void createDoubleClickAction() {
-		doubleClickAction = new Action() {
+		final Action doubleClickAction = new Action() {
 			@Override
 			public void run() {
 				ActionHelper.openModelElement(ActionHelper.getSelectedModelElement(), TaskView.class.getName());
 			}
 		};
+		tableViewer.addDoubleClickListener(new IDoubleClickListener() {
+			public void doubleClick(DoubleClickEvent event) {
+				doubleClickAction.run();
+			}
+		});
 	}
 
 	/**
@@ -432,7 +445,7 @@ public class TaskView extends ViewPart implements ProjectChangeObserver {
 	 * @param modelElement the model element
 	 */
 	public void modelElementAdded(Project project, ModelElement modelElement) {
-		if (modelElement instanceof WorkItem) {
+		if (modelElement instanceof Checkable) {
 			tableViewer.refresh();
 		}
 	}
@@ -446,7 +459,7 @@ public class TaskView extends ViewPart implements ProjectChangeObserver {
 	 * @param modelElement the model element
 	 */
 	public void modelElementRemoved(Project project, ModelElement modelElement) {
-		if (modelElement instanceof WorkItem) {
+		if (modelElement instanceof Checkable) {
 			tableViewer.refresh();
 		}
 	}
@@ -462,7 +475,7 @@ public class TaskView extends ViewPart implements ProjectChangeObserver {
 	 * @param modelElement the model element
 	 */
 	public void notify(Notification notification, Project project, ModelElement modelElement) {
-		if (modelElement instanceof WorkItem) {
+		if (modelElement instanceof Checkable) {
 			tableViewer.refresh();
 		}
 	}
@@ -472,7 +485,6 @@ public class TaskView extends ViewPart implements ProjectChangeObserver {
 	 *      {@inheritDoc}
 	 */
 	public void modelElementDeleteCompleted(ModelElement modelElement) {
-		// nothing to do
 	}
 
 	/**
@@ -480,7 +492,6 @@ public class TaskView extends ViewPart implements ProjectChangeObserver {
 	 *      {@inheritDoc}
 	 */
 	public void modelElementDeleteStarted(ModelElement modelElement) {
-		// nothing to do
 	}
 
 }
