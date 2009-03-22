@@ -150,7 +150,7 @@ public class TaskView extends ViewPart implements ProjectChangeObserver {
 	private METableViewer initMETableViewer(Composite parent) {
 		METableViewer metv = new METableViewer(parent, TaskPackage.eINSTANCE.getCheckable());
 		List<EStructuralFeature> features = new ArrayList<EStructuralFeature>();
-		features.add(TaskPackage.Literals.CHECKABLE__CHECKED);
+		// features.add(TaskPackage.Literals.CHECKABLE__CHECKED);
 		features.add(ModelPackage.Literals.MODEL_ELEMENT__STATE);
 		features.add(ModelPackage.Literals.MODEL_ELEMENT__NAME);
 		features.add(TaskPackage.Literals.WORK_ITEM__ASSIGNEE);
@@ -160,6 +160,10 @@ public class TaskView extends ViewPart implements ProjectChangeObserver {
 		features.add(TaskPackage.Literals.WORK_ITEM__DUE_DATE);
 		features.add(TaskPackage.Literals.WORK_ITEM__PRIORITY);
 		metv.createColumns(features);
+		WorkItemDoneOrResolvedLabelProvider doneResolvedLabelProvider = new WorkItemDoneOrResolvedLabelProvider();
+		doneResolvedLabelProvider.setCurrentUser(currentUser);
+		metv.addCustomColumn(0, "", 25, SWT.NONE, false, doneResolvedLabelProvider,
+			new WorkItemDoneOrResolvedEditingSupport(metv.getTableViewer(), currentUser));
 		return metv;
 	}
 

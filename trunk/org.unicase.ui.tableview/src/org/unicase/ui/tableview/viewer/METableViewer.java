@@ -32,7 +32,6 @@ import org.unicase.ui.tableview.labelproviders.AbstractCheckboxColumnLabelProvid
 import org.unicase.ui.tableview.labelproviders.DateColumnLabelProvider;
 import org.unicase.ui.tableview.labelproviders.GenericColumnLabelProvider;
 import org.unicase.ui.tableview.labelproviders.StatusLabelProvider;
-import org.unicase.ui.taskview.METableViewerContentProvider;
 
 /**
  * A tableviewer for modelelements.
@@ -199,6 +198,29 @@ public class METableViewer {
 		// features.add(propDesc);
 		// }
 		// createColumns(features);
+	}
+
+	/**
+	 * Adds a new TabelViewer column at given index.
+	 * 
+	 * @param index index
+	 * @param text header text
+	 * @param width width
+	 * @param style style (e.g. SWT.CENTER)
+	 * @param setSorter if this column can be sorted
+	 * @param labelProvider label provider
+	 * @param editingSupport editing support
+	 */
+	public void addCustomColumn(int index, String text, int width, int style, boolean setSorter,
+		ColumnLabelProvider labelProvider, EditingSupport editingSupport) {
+		TableViewerColumn customColumn = new TableViewerColumn(tableViewer, style, index);
+		customColumn.getColumn().setWidth(width);
+		customColumn.setEditingSupport(editingSupport);
+		if (setSorter) {
+			ViewerComparator comp = new TableViewerColumnSorter(tableViewer, customColumn, labelProvider);
+			customColumn.getViewer().setComparator(comp);
+		}
+		customColumn.setLabelProvider(labelProvider);
 	}
 
 	/**
