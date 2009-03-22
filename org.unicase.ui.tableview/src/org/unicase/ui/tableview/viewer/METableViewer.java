@@ -5,28 +5,35 @@
  */
 package org.unicase.ui.tableview.viewer;
 
-import org.eclipse.emf.common.notify.AdapterFactory;
+import java.util.List;
+
 import org.eclipse.emf.common.notify.Notification;
 import org.eclipse.emf.common.notify.impl.AdapterImpl;
+import org.eclipse.emf.common.util.BasicEList;
 import org.eclipse.emf.ecore.EAttribute;
 import org.eclipse.emf.ecore.EClass;
 import org.eclipse.emf.ecore.EReference;
 import org.eclipse.emf.ecore.EStructuralFeature;
 import org.eclipse.emf.ecore.EcorePackage;
-import org.eclipse.emf.edit.ui.provider.AdapterFactoryContentProvider;
+import org.eclipse.jface.resource.JFaceResources;
 import org.eclipse.jface.viewers.ColumnLabelProvider;
 import org.eclipse.jface.viewers.EditingSupport;
+import org.eclipse.jface.viewers.IStructuredContentProvider;
 import org.eclipse.jface.viewers.TableViewer;
 import org.eclipse.jface.viewers.TableViewerColumn;
+import org.eclipse.jface.viewers.Viewer;
 import org.eclipse.jface.viewers.ViewerComparator;
 import org.eclipse.swt.SWT;
 import org.eclipse.swt.events.DisposeEvent;
+import org.eclipse.swt.graphics.Image;
 import org.eclipse.swt.widgets.Composite;
 import org.unicase.model.ModelPackage;
 import org.unicase.model.Project;
 import org.unicase.model.provider.ModelEditPlugin;
+import org.unicase.model.task.Checkable;
 import org.unicase.model.task.TaskPackage;
 import org.unicase.ui.common.TableViewerColumnSorter;
+import org.unicase.ui.tableview.labelproviders.AbstractCheckboxColumnLabelProvider;
 import org.unicase.ui.tableview.labelproviders.DateColumnLabelProvider;
 import org.unicase.ui.tableview.labelproviders.GenericColumnLabelProvider;
 import org.unicase.ui.tableview.labelproviders.StatusLabelProvider;
@@ -53,32 +60,41 @@ public class METableViewer extends TableViewer {
 	}
 
 	private Project currentProject;
-	private AdapterFactory adapterFactory;
 	private AdapterImpl adapterImpl;
-
-	/**
-	 * Constructor that directly sets the input of the table view.
-	 * 
-	 * @param parent the parent control
-	 * @param adapterFactory the adapterFactory to use
-	 * @param input the new content for the table
-	 * @param itemMetaClass the EClass of the items that shall be displayed in the table
-	 */
-	public METableViewer(Composite parent, AdapterFactory adapterFactory, Object input, EClass itemMetaClass) {
-		this(parent, adapterFactory, itemMetaClass);
-		this.setInput(input);
-	}
 
 	/**
 	 * Standard constructor.
 	 * 
 	 * @param parent the parent control
-	 * @param adapterFactory the adapterFactory to use
-	 * @param itemMetaClass the EClass of the items that shall be displayed in the table
 	 */
-	public METableViewer(Composite parent, AdapterFactory adapterFactory, EClass itemMetaClass) {
+	public METableViewer(Composite parent) {
 		super(parent, SWT.FULL_SELECTION);
-		this.adapterFactory = adapterFactory;
+		// this.adapterFactory = adapterFactory;
+		this.setContentProvider(new IStructuredContentProvider() {
+
+			private Project project;
+
+			public Object[] getElements(Object inputElement) {
+				if (project != null) {
+					List<Checkable> checkables = project.getAllModelElementsbyClass(TaskPackage.eINSTANCE
+						.getCheckable(), new BasicEList<Checkable>());
+					return checkables.toArray();
+				}
+				return new Object[0];
+			}
+
+			public void dispose() {
+
+			}
+
+			public void inputChanged(Viewer viewer, Object oldInput, Object newInput) {
+
+				if (newInput instanceof Project) {
+					this.project = (Project) newInput;
+				}
+			}
+
+		});
 
 		workspace = WorkspaceManager.getInstance().getCurrentWorkspace();
 		adapterImpl = new AdapterImpl() {
@@ -97,8 +113,6 @@ public class METableViewer extends TableViewer {
 		};
 		workspace.eAdapters().add(adapterImpl);
 
-		this.setAdapterFactory(adapterFactory);
-
 		this.createColumns();
 		this.getTable().setLinesVisible(true);
 		this.getTable().setHeaderVisible(true);
@@ -111,28 +125,30 @@ public class METableViewer extends TableViewer {
 
 	}
 
-	/**
-	 * Updates the {@code adapterFactory} attribute of this class. Calls {@link #setInput(Object)} to reflect the
-	 * changed set of items that shall be displayed.
-	 * 
-	 * @param adapterFactory the new adapter factory that is used to create the AdapterFactoryContentProvider that
-	 *            bridges jFace to EMF provider calls.
-	 */
-	public void setAdapterFactory(AdapterFactory adapterFactory) {
-		this.adapterFactory = adapterFactory;
-		AdapterFactoryContentProvider contentProvider = new AdapterFactoryContentProvider(this.adapterFactory);
-		this.setContentProvider(contentProvider);
-
-		setInput(currentProject);
-	}
-
 	private void createColumns() {
 		EAttribute check = TaskPackage.Literals.CHECKABLE__CHECKED;
 		TableViewerColumn currentColumn = new TableViewerColumn(this, SWT.CENTER);
 		currentColumn.getColumn().setWidth(30);
 		currentColumn.getColumn().setMoveable(true);
 		currentColumn.getColumn().setResizable(false);
-		ColumnLabelProvider provider = new GenericColumnLabelProvider(this, check);
+		ColumnLabelProvider provider = new AbstractCheckboxColumnLabelProvider() {
+
+			@Override
+			public Image getImage(Object element) {
+				Image image = null;
+				if (element instanceof Checkable) {
+					Checkable checkable = (Checkable) element;
+					if (checkable.isChecked()) {
+						image = JFaceResources.getImage(AbstractCheckboxColumnLabelProvider.CHECKED);
+					} else {
+						image = JFaceResources.getImage(AbstractCheckboxColumnLabelProvider.UNCHECK);
+					}
+
+				}
+				return image;
+			}
+
+		};
 		currentColumn.setLabelProvider(provider);
 
 		EditingSupport es = new CheckableEditingSupport(this, null);
@@ -187,7 +203,7 @@ public class METableViewer extends TableViewer {
 		if (currentFeature.getEType().equals(EcorePackage.Literals.EDATE)) {
 			provider = new DateColumnLabelProvider(currentFeature);
 		} else {
-			provider = new GenericColumnLabelProvider(this, currentFeature);
+			provider = new GenericColumnLabelProvider(currentFeature);
 		}
 		currentColumn.setLabelProvider(provider);
 

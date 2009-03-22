@@ -36,32 +36,22 @@ public class DateColumnLabelProvider extends ColumnLabelProvider {
 	 */
 	@Override
 	public String getText(Object element) {
-		String formatvalue = "";
 
 		if (!feature.getEType().equals(EcorePackage.Literals.EDATE)) {
 			return "";
 		}
 
+		String formatedDate = "";
 		Format formatter = new SimpleDateFormat("yyyy MM.dd. HH:mm:ss");
-		try {
-			if (element instanceof ModelElement) {
-				ModelElement me = (ModelElement) element;
-				Object date = me.eGet(feature);
-				if (date != null) {
-
-					formatvalue = formatter.format(date);
-
-					return formatvalue;
-				}
+		if (element instanceof ModelElement) {
+			ModelElement me = (ModelElement) element;
+			Object date = me.eGet(feature);
+			if (date != null) {
+				formatedDate = formatter.format(date);
+				return formatedDate;
 			}
-		} catch (IllegalArgumentException e) {
-			// AB: - if the Format cannot format the given object !
-			return formatvalue;
-		} catch (NullPointerException e) {
-			return formatvalue;
-
 		}
-		return formatvalue;
+		return formatedDate;
 	}
 
 }
