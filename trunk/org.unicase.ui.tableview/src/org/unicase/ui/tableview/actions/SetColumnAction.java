@@ -101,8 +101,8 @@ public class SetColumnAction extends Action {
 						return;
 					}
 
-					columns[i].dispose();
-					UnicaseTableViewUtil.resizeColumns(tableViewer);
+					columns[i].setWidth(0);
+					// UnicaseTableViewUtil.resizeColumns(tableViewer);
 
 					this.setChecked(false);
 					return;

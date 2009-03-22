@@ -47,7 +47,12 @@ public class DateColumnLabelProvider extends ColumnLabelProvider {
 			ModelElement me = (ModelElement) element;
 			Object date = me.eGet(feature);
 			if (date != null) {
-				formatedDate = formatter.format(date);
+				try {
+					formatedDate = formatter.format(date);
+				} catch (IllegalArgumentException e) {
+					formatedDate = "";
+				}
+
 				return formatedDate;
 			}
 		}

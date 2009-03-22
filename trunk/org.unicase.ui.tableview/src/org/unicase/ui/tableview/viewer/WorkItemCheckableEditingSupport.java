@@ -30,7 +30,7 @@ import org.unicase.workspace.WorkspaceManager;
  * 
  * @author helming
  */
-public class CheckableEditingSupport extends EditingSupport {
+public class WorkItemCheckableEditingSupport extends EditingSupport {
 
 	private CheckboxCellEditor cellEditor;
 	private User currentUser;
@@ -41,7 +41,7 @@ public class CheckableEditingSupport extends EditingSupport {
 	 * @param viewer The viewer
 	 * @param currentUser the current user of task view
 	 */
-	public CheckableEditingSupport(TableViewer viewer, User currentUser) {
+	public WorkItemCheckableEditingSupport(TableViewer viewer, User currentUser) {
 		super(viewer);
 		this.currentUser = currentUser;
 		cellEditor = new CheckboxCellEditor();
@@ -101,14 +101,14 @@ public class CheckableEditingSupport extends EditingSupport {
 		domain.getCommandStack().execute(new RecordingCommand(domain) {
 			@Override
 			protected void doExecute() {
-				setElementValue(element, value);
+				doSetValue(element, value);
 			}
 		});
 
 		getViewer().refresh(element);
 	}
 
-	private void setElementValue(Object element, Object value) {
+	private void doSetValue(Object element, Object value) {
 
 		boolean isChecked = (Boolean) value;
 		if (element instanceof WorkItem) {

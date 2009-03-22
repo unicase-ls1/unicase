@@ -5,212 +5,290 @@
  */
 package org.unicase.ui.tableview.viewer;
 
+import java.util.ArrayList;
+import java.util.Collection;
 import java.util.List;
+import java.util.Map;
 
-import org.eclipse.emf.common.notify.Notification;
-import org.eclipse.emf.common.notify.impl.AdapterImpl;
-import org.eclipse.emf.common.util.BasicEList;
-import org.eclipse.emf.ecore.EAttribute;
 import org.eclipse.emf.ecore.EClass;
-import org.eclipse.emf.ecore.EReference;
+import org.eclipse.emf.ecore.EObject;
 import org.eclipse.emf.ecore.EStructuralFeature;
 import org.eclipse.emf.ecore.EcorePackage;
 import org.eclipse.jface.resource.JFaceResources;
 import org.eclipse.jface.viewers.ColumnLabelProvider;
 import org.eclipse.jface.viewers.EditingSupport;
-import org.eclipse.jface.viewers.IStructuredContentProvider;
 import org.eclipse.jface.viewers.TableViewer;
 import org.eclipse.jface.viewers.TableViewerColumn;
-import org.eclipse.jface.viewers.Viewer;
 import org.eclipse.jface.viewers.ViewerComparator;
 import org.eclipse.swt.SWT;
-import org.eclipse.swt.events.DisposeEvent;
 import org.eclipse.swt.graphics.Image;
 import org.eclipse.swt.widgets.Composite;
+import org.unicase.model.ModelElement;
 import org.unicase.model.ModelPackage;
 import org.unicase.model.Project;
-import org.unicase.model.provider.ModelEditPlugin;
-import org.unicase.model.task.Checkable;
-import org.unicase.model.task.TaskPackage;
+import org.unicase.model.organization.OrganizationPackage;
 import org.unicase.ui.common.TableViewerColumnSorter;
 import org.unicase.ui.tableview.labelproviders.AbstractCheckboxColumnLabelProvider;
 import org.unicase.ui.tableview.labelproviders.DateColumnLabelProvider;
 import org.unicase.ui.tableview.labelproviders.GenericColumnLabelProvider;
 import org.unicase.ui.tableview.labelproviders.StatusLabelProvider;
-import org.unicase.workspace.ProjectSpace;
-import org.unicase.workspace.Workspace;
-import org.unicase.workspace.WorkspaceManager;
-import org.unicase.workspace.WorkspacePackage;
+import org.unicase.ui.taskview.METableViewerContentProvider;
 
 /**
  * A tableviewer for modelelements.
  * 
  * @author schneidf
  */
-public class METableViewer extends TableViewer {
-	private final Workspace workspace;
+public class METableViewer {
+
+	private TableViewer tableViewer;
+	private EClass contentType;
+	private METableViewerContentProvider contentProvider;
 
 	/**
-	 * remove adapter. {@inheritDoc}
-	 */
-	@Override
-	protected void handleDispose(DisposeEvent event) {
-		workspace.eAdapters().remove(adapterImpl);
-		super.handleDispose(event);
-	}
-
-	private Project currentProject;
-	private AdapterImpl adapterImpl;
-
-	/**
-	 * Standard constructor.
+	 * Constructor.
 	 * 
-	 * @param parent the parent control
+	 * @param parent parent composite to show METableViewer
 	 */
 	public METableViewer(Composite parent) {
-		super(parent, SWT.FULL_SELECTION);
-		// this.adapterFactory = adapterFactory;
-		this.setContentProvider(new IStructuredContentProvider() {
+		tableViewer = new TableViewer(parent, SWT.FULL_SELECTION);
+		contentProvider = new METableViewerContentProvider();
+		tableViewer.setContentProvider(contentProvider);
+		tableViewer.getTable().setLinesVisible(true);
+		tableViewer.getTable().setHeaderVisible(true);
+	}
 
-			private Project project;
-
-			public Object[] getElements(Object inputElement) {
-				if (project != null) {
-					List<Checkable> checkables = project.getAllModelElementsbyClass(TaskPackage.eINSTANCE
-						.getCheckable(), new BasicEList<Checkable>());
-					return checkables.toArray();
-				}
-				return new Object[0];
-			}
-
-			public void dispose() {
-
-			}
-
-			public void inputChanged(Viewer viewer, Object oldInput, Object newInput) {
-
-				if (newInput instanceof Project) {
-					this.project = (Project) newInput;
-				}
-			}
-
-		});
-
-		workspace = WorkspaceManager.getInstance().getCurrentWorkspace();
-		adapterImpl = new AdapterImpl() {
-			@Override
-			public void notifyChanged(Notification msg) {
-				if ((msg.getFeatureID(Workspace.class)) == WorkspacePackage.WORKSPACE__ACTIVE_PROJECT_SPACE) {
-					ProjectSpace activeProjectSpace = workspace.getActiveProjectSpace();
-					if (activeProjectSpace != null) {
-						currentProject = activeProjectSpace.getProject();
-						setInput(currentProject);
-					}
-
-				}
-				super.notifyChanged(msg);
-			}
-		};
-		workspace.eAdapters().add(adapterImpl);
-
-		this.createColumns();
-		this.getTable().setLinesVisible(true);
-		this.getTable().setHeaderVisible(true);
-
-		// if viewer input is set before columns are created, sometime checkbox images are not shown (or created?)
-		// correctly (see GenericColumnLabelProvider for checkbox images)
-		if (workspace.getActiveProjectSpace() != null) {
-			setInput(workspace.getActiveProjectSpace().getProject());
-		}
+	/**
+	 * Constructor.
+	 * 
+	 * @param parent parent
+	 * @param meType model element type
+	 */
+	public METableViewer(Composite parent, EClass meType) {
+		tableViewer = new TableViewer(parent, SWT.FULL_SELECTION);
+		this.contentType = meType;
+		contentProvider = new METableViewerContentProvider();
+		contentProvider.setMEType(meType);
+		tableViewer.setContentProvider(contentProvider);
+		tableViewer.getTable().setLinesVisible(true);
+		tableViewer.getTable().setHeaderVisible(true);
 
 	}
 
-	private void createColumns() {
-		EAttribute check = TaskPackage.Literals.CHECKABLE__CHECKED;
-		TableViewerColumn currentColumn = new TableViewerColumn(this, SWT.CENTER);
-		currentColumn.getColumn().setWidth(30);
-		currentColumn.getColumn().setMoveable(true);
-		currentColumn.getColumn().setResizable(false);
+	/**
+	 * Creates table viewer columns from this set of features.
+	 * 
+	 * @param features EStructuralFeatures for each of which a TableViewerColumn is created.
+	 * @return columns
+	 */
+	public List<TableViewerColumn> createColumns(Collection<EStructuralFeature> features) {
+		List<TableViewerColumn> columns = new ArrayList<TableViewerColumn>();
+		for (EStructuralFeature feature : features) {
+			if (feature.getEType().equals(EcorePackage.Literals.EDATE)) {
+				columns.add(createDateColumn(feature));
+			} else if (feature.getEType().equals(EcorePackage.Literals.EBOOLEAN)) {
+				columns.add(createBooleanColumn(feature));
+			} else if (feature.equals(ModelPackage.Literals.MODEL_ELEMENT__STATE)) {
+				columns.add(createStateColumn(feature));
+			} else {
+				columns.add(createGenericColumn(feature));
+			}
+		}
+		return columns;
+	}
+
+	private TableViewerColumn createGenericColumn(EStructuralFeature feature) {
+
+		ColumnLabelProvider provider = new GenericColumnLabelProvider(feature);
+		int style, width;
+		if (feature.getEType().equals(EcorePackage.Literals.EINT)) {
+			style = SWT.CENTER;
+			width = 25;
+		} else if (feature.getEType().equals(OrganizationPackage.Literals.ORG_UNIT)
+			|| feature.getEType().equals(OrganizationPackage.Literals.USER)) {
+			style = SWT.CENTER;
+			width = 100;
+		} else if (feature.equals(ModelPackage.Literals.MODEL_ELEMENT__CREATOR)) {
+			style = SWT.CENTER;
+			width = 100;
+		} else {
+			style = SWT.NONE;
+			width = 150;
+		}
+		if (feature.getEType().equals(ModelPackage.Literals.MODEL_ELEMENT__NAME)) {
+			width = 270;
+		}
+		TableViewerColumn genericColumn = createColumn(feature, provider, width, style, true, true);
+
+		return genericColumn;
+	}
+
+	private TableViewerColumn createStateColumn(EStructuralFeature feature) {
+		TableViewerColumn stateColumn = new TableViewerColumn(tableViewer, SWT.NONE);
+		stateColumn.getColumn().setWidth(20);
+		stateColumn.setLabelProvider(new StatusLabelProvider());
+		stateColumn.getColumn().setText("State");
+		return stateColumn;
+	}
+
+	private TableViewerColumn createBooleanColumn(final EStructuralFeature feature) {
+
 		ColumnLabelProvider provider = new AbstractCheckboxColumnLabelProvider() {
 
 			@Override
 			public Image getImage(Object element) {
 				Image image = null;
-				if (element instanceof Checkable) {
-					Checkable checkable = (Checkable) element;
-					if (checkable.isChecked()) {
-						image = JFaceResources.getImage(AbstractCheckboxColumnLabelProvider.CHECKED);
-					} else {
-						image = JFaceResources.getImage(AbstractCheckboxColumnLabelProvider.UNCHECK);
-					}
-
+				if (!(element instanceof EObject)) {
+					return null;
+				}
+				Object obj = ((EObject) element).eGet(feature);
+				if (!(obj instanceof Boolean)) {
+					return null;
+				}
+				boolean featureValue = (Boolean) obj;
+				if (featureValue) {
+					image = JFaceResources.getImage(CHECKED);
+				} else {
+					image = JFaceResources.getImage(UNCHECK);
 				}
 				return image;
 			}
 
 		};
-		currentColumn.setLabelProvider(provider);
 
-		EditingSupport es = new CheckableEditingSupport(this, null);
-		currentColumn.setEditingSupport(es);
-
-		TableViewerColumn state = new TableViewerColumn(this, SWT.NONE);
-		state.getColumn().setWidth(20);
-		state.setLabelProvider(new StatusLabelProvider());
-		state.getColumn().setText("State");
-
-		EAttribute name = ModelPackage.Literals.MODEL_ELEMENT__NAME;
-		TableViewerColumn nameColumn = prepareStandardColumn(name, 250);
-		nameColumn.getColumn().setAlignment(SWT.LEFT);
-
-		EReference assignee = TaskPackage.Literals.WORK_ITEM__ASSIGNEE;
-		prepareStandardColumn(assignee, 150);
-
-		EAttribute creator = ModelPackage.Literals.MODEL_ELEMENT__CREATOR;
-		prepareStandardColumn(creator, 100);
-
-		EAttribute creationDate = ModelPackage.Literals.MODEL_ELEMENT__CREATION_DATE;
-		prepareStandardColumn(creationDate, 150);
-
-		EReference container = TaskPackage.Literals.WORK_ITEM__CONTAINING_WORKPACKAGE;
-		prepareStandardColumn(container, 150);
-
-		EAttribute dueDate = TaskPackage.Literals.WORK_ITEM__DUE_DATE;
-		prepareStandardColumn(dueDate, 150);
-
-		EAttribute priority = TaskPackage.Literals.WORK_ITEM__PRIORITY;
-		prepareStandardColumn(priority, 50);
-
+		TableViewerColumn booleanColumn = createColumn(feature, provider, 25, SWT.NONE, false, false);
+		booleanColumn.getColumn().setText("");
+		return booleanColumn;
 	}
 
-	private String getFeatureName(EStructuralFeature feature) {
-		EStructuralFeature currentFeature = feature;
-		String nameLookupString = "_UI_" + ((EClass) currentFeature.eContainer()).getName() + "_"
-			+ currentFeature.getName() + "_feature";
-		return ModelEditPlugin.INSTANCE.getString(nameLookupString);
-	}
+	private TableViewerColumn createColumn(EStructuralFeature feature, ColumnLabelProvider labelProvider, int width,
+		int style, boolean resizeable, boolean setSorter) {
+		TableViewerColumn column = new TableViewerColumn(tableViewer, style);
 
-	private TableViewerColumn prepareStandardColumn(EStructuralFeature currentFeature, int width) {
-		TableViewerColumn currentColumn = new TableViewerColumn(this, SWT.CENTER);
+		column.getColumn().setText(feature.getName());
+		column.getColumn().setWidth(width);
 
-		String name = getFeatureName(currentFeature);
-		currentColumn.getColumn().setText(name);
-		currentColumn.getColumn().setWidth(width);
+		column.getColumn().setMoveable(true);
+		column.getColumn().setResizable(resizeable);
 
-		currentColumn.getColumn().setMoveable(true);
-		currentColumn.getColumn().setResizable(true);
-		ColumnLabelProvider provider;
-		if (currentFeature.getEType().equals(EcorePackage.Literals.EDATE)) {
-			provider = new DateColumnLabelProvider(currentFeature);
-		} else {
-			provider = new GenericColumnLabelProvider(currentFeature);
+		column.setLabelProvider(labelProvider);
+		if (setSorter) {
+			ViewerComparator comp = new TableViewerColumnSorter(tableViewer, column, labelProvider);
+			column.getViewer().setComparator(comp);
 		}
-		currentColumn.setLabelProvider(provider);
 
-		ViewerComparator comp = new TableViewerColumnSorter(this, currentColumn, provider);
-		currentColumn.getViewer().setComparator(comp);
+		return column;
+	}
 
-		return currentColumn;
+	private TableViewerColumn createDateColumn(EStructuralFeature feature) {
+
+		ColumnLabelProvider provider = new DateColumnLabelProvider(feature);
+		TableViewerColumn dateColumn = createColumn(feature, provider, 150, SWT.CENTER, true, true);
+
+		return dateColumn;
+	}
+
+	/**
+	 * Creates for each EStructuralFeature of this model element type.
+	 * 
+	 * @param meEClass model element type
+	 */
+	public void createColumns(EClass meEClass) {
+		// arraylist<feat> features;
+		// for(item porperty descriptor : propertyDescriptors(meEClass)){
+		// features.add(propDesc);
+		// }
+		// createColumns(features);
+	}
+
+	/**
+	 * Creates columns with editing support.
+	 * 
+	 * @param features features.
+	 * @return columns
+	 */
+	public List<TableViewerColumn> createColumnsWithEditingSupport(Map<EStructuralFeature, EditingSupport> features) {
+		List<TableViewerColumn> columns = new ArrayList<TableViewerColumn>();
+		for (EStructuralFeature feature : features.keySet()) {
+			if (feature.getEType().equals(EcorePackage.Literals.EDATE)) {
+				TableViewerColumn column = createDateColumn(feature);
+				column.setEditingSupport(features.get(feature));
+				columns.add(column);
+			} else if (feature.getEType().equals(EcorePackage.Literals.EBOOLEAN)) {
+				TableViewerColumn column = createBooleanColumn(feature);
+				column.setEditingSupport(features.get(feature));
+				columns.add(column);
+			} else if (feature.getEType().equals(ModelPackage.Literals.MODEL_ELEMENT__STATE)) {
+				TableViewerColumn column = createStateColumn(feature);
+				column.setEditingSupport(features.get(feature));
+				columns.add(column);
+			} else {
+				TableViewerColumn column = createGenericColumn(feature);
+				column.setEditingSupport(features.get(feature));
+				columns.add(column);
+			}
+		}
+		return columns;
+
+	}
+
+	/**
+	 * Sets input to METableViewer. The input is a project along with a model element type. METableViwer shows all MEs
+	 * of that type.
+	 * 
+	 * @param project project
+	 * @param meType model element type to be shown in METableViwer
+	 */
+	public void setInput(Project project, EClass meType) {
+		this.contentType = meType;
+		contentProvider.setMEType(contentType);
+		tableViewer.setInput(project);
+		tableViewer.refresh();
+	}
+
+	/**
+	 * set input.
+	 * 
+	 * @param project project
+	 */
+	public void setInput(Project project) {
+		if (contentType == null) {
+			contentType = ModelPackage.eINSTANCE.getModelElement();
+		}
+		contentProvider.setMEType(contentType);
+		tableViewer.setInput(project);
+		tableViewer.refresh();
+	}
+
+	/**
+	 * set input.
+	 * 
+	 * @param elements elemnts
+	 */
+	public void setInpu(Collection<? extends ModelElement> elements) {
+		tableViewer.setInput(elements);
+		tableViewer.refresh();
+	}
+
+	/**
+	 * @return the tableViewer
+	 */
+	public TableViewer getTableViewer() {
+		return tableViewer;
+	}
+
+	/**
+	 * @param contentType the contentType to set
+	 */
+	public void setContentType(EClass contentType) {
+		this.contentType = contentType;
+	}
+
+	/**
+	 * @return the contentType
+	 */
+	public EClass getContentType() {
+		return contentType;
 	}
 
 }
