@@ -7,22 +7,28 @@ package org.unicase.ui.tableview.viewer;
 
 import java.util.ArrayList;
 import java.util.Collection;
+import java.util.Collections;
 import java.util.List;
 import java.util.Map;
 
 import org.eclipse.emf.ecore.EClass;
 import org.eclipse.emf.ecore.EObject;
+import org.eclipse.emf.ecore.EReference;
 import org.eclipse.emf.ecore.EStructuralFeature;
 import org.eclipse.emf.ecore.EcorePackage;
 import org.eclipse.jface.resource.JFaceResources;
+import org.eclipse.jface.viewers.ArrayContentProvider;
 import org.eclipse.jface.viewers.ColumnLabelProvider;
 import org.eclipse.jface.viewers.EditingSupport;
+import org.eclipse.jface.viewers.LabelProvider;
 import org.eclipse.jface.viewers.TableViewer;
 import org.eclipse.jface.viewers.TableViewerColumn;
 import org.eclipse.jface.viewers.ViewerComparator;
+import org.eclipse.jface.window.Window;
 import org.eclipse.swt.SWT;
 import org.eclipse.swt.graphics.Image;
 import org.eclipse.swt.widgets.Composite;
+import org.eclipse.ui.dialogs.ListSelectionDialog;
 import org.unicase.model.ModelElement;
 import org.unicase.model.ModelPackage;
 import org.unicase.model.Project;
@@ -34,15 +40,20 @@ import org.unicase.ui.tableview.labelproviders.GenericColumnLabelProvider;
 import org.unicase.ui.tableview.labelproviders.StatusLabelProvider;
 
 /**
- * A tableviewer for modelelements.
+ * A table viewer for model elements. Note that JFace TableViewer is not intended to be inherited. Therefore this is a
+ * wrapper around a JFace TableViewer plus some utility methods to create columns.
  * 
  * @author Zardosht Hodaie
  */
 public class METableViewer {
 
+	private static final String WIDTH = "width";
+	private static final String FEATURE = "feature";
 	private TableViewer tableViewer;
 	private EClass contentType;
 	private METableViewerContentProvider contentProvider;
+
+	private List<TableViewerColumn> columns;
 
 	/**
 	 * Constructor.
@@ -63,10 +74,12 @@ public class METableViewer {
 	}
 
 	/**
-	 * Constructor.
+	 * Constructor. Model element type is used by content provider to filter elements of that type in project. You can
+	 * thereafter create columns using createColumsn(meType) or by feeding a list of features to
+	 * createColumns(featureList).
 	 * 
 	 * @param parent parent
-	 * @param meType model element type
+	 * @param meType model element type which is to be shown in table viewer
 	 */
 	public METableViewer(Composite parent, EClass meType) {
 		this.contentType = meType;
@@ -83,7 +96,7 @@ public class METableViewer {
 	 * @return columns
 	 */
 	public List<TableViewerColumn> createColumns(Collection<EStructuralFeature> features) {
-		List<TableViewerColumn> columns = new ArrayList<TableViewerColumn>();
+		columns = new ArrayList<TableViewerColumn>();
 		for (EStructuralFeature feature : features) {
 			if (feature.getEType().equals(EcorePackage.Literals.EDATE)) {
 				columns.add(createDateColumn(feature));
@@ -125,10 +138,8 @@ public class METableViewer {
 	}
 
 	private TableViewerColumn createStateColumn(EStructuralFeature feature) {
-		TableViewerColumn stateColumn = new TableViewerColumn(tableViewer, SWT.CENTER);
-		stateColumn.getColumn().setWidth(30);
-		stateColumn.setLabelProvider(new StatusLabelProvider());
-		stateColumn.getColumn().setText("State");
+		ColumnLabelProvider labelProvider = new StatusLabelProvider();
+		TableViewerColumn stateColumn = createColumn(feature, labelProvider, 30, SWT.CENTER, true, false);
 		return stateColumn;
 	}
 
@@ -162,6 +173,17 @@ public class METableViewer {
 		return booleanColumn;
 	}
 
+	/**
+	 * all column creation methods should use this method first.
+	 * 
+	 * @param feature
+	 * @param labelProvider
+	 * @param width
+	 * @param style
+	 * @param resizeable
+	 * @param setSorter
+	 * @return
+	 */
 	private TableViewerColumn createColumn(EStructuralFeature feature, ColumnLabelProvider labelProvider, int width,
 		int style, boolean resizeable, boolean setSorter) {
 		TableViewerColumn column = new TableViewerColumn(tableViewer, style);
@@ -177,7 +199,8 @@ public class METableViewer {
 			ViewerComparator comp = new TableViewerColumnSorter(tableViewer, column, labelProvider);
 			column.getViewer().setComparator(comp);
 		}
-
+		column.getColumn().setData(WIDTH, new Integer(width));
+		column.getColumn().setData(FEATURE, feature.getName());
 		return column;
 	}
 
@@ -190,16 +213,159 @@ public class METableViewer {
 	}
 
 	/**
-	 * Creates for each EStructuralFeature of this model element type.
+	 * Creates a table viewer column for each EStructuralFeature of this model element type. Columns have no editing
+	 * support.
 	 * 
 	 * @param meEClass model element type
+	 * @param initialColumns list of feature names to be shown initially. If null, only name is shown.
+	 * @param showManyReferences if references with multiplicity many should be shown. if yes, then only the first
+	 *            element of referenced objects is shown.
 	 */
-	public void createColumns(EClass meEClass) {
-		// arraylist<feat> features;
-		// for(item porperty descriptor : propertyDescriptors(meEClass)){
-		// features.add(propDesc);
-		// }
-		// createColumns(features);
+	public void createColumns(EClass meEClass, Collection<String> initialColumns, boolean showManyReferences) {
+
+		if (initialColumns == null) {
+			initialColumns = new ArrayList<String>();
+			initialColumns.add(ModelPackage.Literals.MODEL_ELEMENT__NAME.getName());
+		}
+		tableViewer.getTable().setRedraw(false);
+		removeAllColumns();
+		List<EStructuralFeature> featuresToShow = new ArrayList<EStructuralFeature>();
+		featuresToShow.addAll(meEClass.getEAllStructuralFeatures());
+		if (!showManyReferences) {
+			for (EStructuralFeature feature : featuresToShow) {
+				if (feature instanceof EReference && ((EReference) feature).isMany()) {
+					featuresToShow.remove(feature);
+				}
+			}
+		}
+		createColumns(featuresToShow);
+		hideAllColumns();
+		showColumns(initialColumns);
+		tableViewer.getTable().setRedraw(true);
+		tableViewer.getTable().redraw();
+
+	}
+
+	/**
+	 * shows only columns corresponding to these features.
+	 * 
+	 * @param columnsToShow feature names
+	 */
+	public void showColumns(Collection<String> columnsToShow) {
+		if (columnsToShow.equals(Collections.emptyList())) {
+			return;
+		}
+		for (TableViewerColumn column : columns) {
+			if (columnsToShow.contains(column.getColumn().getData(FEATURE))) {
+				if (column.getColumn().getWidth() == 0) {
+					showColumn(column);
+				}
+			} else {
+				hideColumn(column);
+			}
+		}
+	}
+
+	private void showColumn(TableViewerColumn column) {
+		// show column (set its width to its getData(WIDTH))
+		Integer width = (Integer) column.getColumn().getData(WIDTH);
+		column.getColumn().setWidth(width.intValue());
+	}
+
+	/**
+	 * hides columns corresponding to these features.
+	 * 
+	 * @param featureNames feature names
+	 */
+	public void hideColumns(Collection<String> featureNames) {
+		for (TableViewerColumn column : columns) {
+			if (featureNames.contains(column.getColumn().getData(FEATURE))) {
+				if (column.getColumn().getWidth() > 0) {
+					hideColumn(column);
+				}
+			}
+		}
+	}
+
+	private void hideColumn(TableViewerColumn column) {
+		// hide column. save its current width in setData(WIDTH, currentWidth) and set its width to 0
+		if (column.getColumn().getWidth() == 0) {
+			return;
+		}
+		Integer currentWidth = column.getColumn().getWidth();
+		column.getColumn().setData(WIDTH, currentWidth);
+		column.getColumn().setWidth(0);
+	}
+
+	private void hideAllColumns() {
+		for (TableViewerColumn column : columns) {
+			hideColumn(column);
+		}
+	}
+
+	/**
+	 * removes and disposes columns corresponding to these features.
+	 * 
+	 * @param featureNames feature names
+	 */
+	public void removeColumns(Collection<String> featureNames) {
+		for (TableViewerColumn column : columns) {
+			if (featureNames.contains(column.getColumn().getData(FEATURE))) {
+				column.getColumn().dispose();
+			}
+		}
+	}
+
+	/**
+	 * removes and disposes all columns.
+	 */
+	public void removeAllColumns() {
+		for (TableViewerColumn column : columns) {
+			columns.remove(column);
+			column.getColumn().dispose();
+		}
+	}
+
+	/**
+	 * show show/hide columns dialog.
+	 * 
+	 * @return list of columns to be shown
+	 */
+	public List<String> displayShowHideColumnsDialog() {
+		List<String> columnFeatureNames = new ArrayList<String>();
+		for (TableViewerColumn column : columns) {
+			columnFeatureNames.add((String) column.getColumn().getData(FEATURE));
+		}
+		ListSelectionDialog showHideColumnsDialog = new ListSelectionDialog(tableViewer.getTable().getShell(),
+			columnFeatureNames, new ArrayContentProvider(), new LabelProvider(), "Select columns to be shown:");
+		showHideColumnsDialog.setTitle("Show/Hide columns");
+		showHideColumnsDialog.setInitialSelections(getVisibleColumns().toArray());
+		Object[] resultArray = new Object[0];
+		if (showHideColumnsDialog.open() == Window.OK) {
+			resultArray = showHideColumnsDialog.getResult();
+		}
+
+		List<String> result = new ArrayList<String>();
+		for (int i = 0; i < resultArray.length; i++) {
+			result.add((String) resultArray[i]);
+		}
+
+		return result;
+	}
+
+	/**
+	 * Returns feature names of visible columns. You can use it to add new columns to visible columns.
+	 * 
+	 * @return feature names of visible columns.
+	 */
+	public List<String> getVisibleColumns() {
+		List<String> visibleColumns = new ArrayList<String>();
+		for (TableViewerColumn column : columns) {
+			if (column.getColumn().getWidth() > 0) {
+				visibleColumns.add((String) column.getColumn().getData(FEATURE));
+			}
+		}
+		return visibleColumns;
 	}
 
 	/**
@@ -217,12 +383,19 @@ public class METableViewer {
 		ColumnLabelProvider labelProvider, EditingSupport editingSupport) {
 		TableViewerColumn customColumn = new TableViewerColumn(tableViewer, style, index);
 		customColumn.getColumn().setWidth(width);
+		customColumn.getColumn().setData(WIDTH, new Integer(width));
+		if (text == null || text.equals("")) {
+			customColumn.getColumn().setData(FEATURE, "Column " + index);
+		} else {
+			customColumn.getColumn().setData(FEATURE, text);
+		}
 		customColumn.setEditingSupport(editingSupport);
 		if (setSorter) {
 			ViewerComparator comp = new TableViewerColumnSorter(tableViewer, customColumn, labelProvider);
 			customColumn.getViewer().setComparator(comp);
 		}
 		customColumn.setLabelProvider(labelProvider);
+		columns.add(index, customColumn);
 	}
 
 	/**
@@ -232,7 +405,7 @@ public class METableViewer {
 	 * @return columns
 	 */
 	public List<TableViewerColumn> createColumnsWithEditingSupport(Map<EStructuralFeature, EditingSupport> features) {
-		List<TableViewerColumn> columns = new ArrayList<TableViewerColumn>();
+		columns = new ArrayList<TableViewerColumn>();
 		for (EStructuralFeature feature : features.keySet()) {
 			if (feature.getEType().equals(EcorePackage.Literals.EDATE)) {
 				TableViewerColumn column = createDateColumn(feature);
@@ -267,11 +440,10 @@ public class METableViewer {
 		this.contentType = meType;
 		contentProvider.setMEType(contentType);
 		tableViewer.setInput(project);
-		tableViewer.refresh();
 	}
 
 	/**
-	 * set input.
+	 * set input. if content type is null then all model elements are shown.
 	 * 
 	 * @param project project
 	 */
@@ -284,13 +456,12 @@ public class METableViewer {
 	}
 
 	/**
-	 * set input.
+	 * set direct input.
 	 * 
 	 * @param elements elemnts
 	 */
-	public void setInpu(Collection<? extends ModelElement> elements) {
+	public void setInput(Collection<? extends ModelElement> elements) {
 		tableViewer.setInput(elements);
-		tableViewer.refresh();
 	}
 
 	/**
@@ -312,6 +483,13 @@ public class METableViewer {
 	 */
 	public EClass getContentType() {
 		return contentType;
+	}
+
+	/**
+	 * @return the columns
+	 */
+	public List<TableViewerColumn> getColumns() {
+		return columns;
 	}
 
 }
