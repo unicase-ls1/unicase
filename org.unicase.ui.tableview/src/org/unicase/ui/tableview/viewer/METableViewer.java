@@ -36,7 +36,7 @@ import org.unicase.ui.tableview.labelproviders.StatusLabelProvider;
 /**
  * A tableviewer for modelelements.
  * 
- * @author schneidf
+ * @author Zardosht Hodaie
  */
 public class METableViewer {
 
@@ -279,7 +279,6 @@ public class METableViewer {
 		}
 		contentProvider.setMEType(contentType);
 		tableViewer.setInput(project);
-		tableViewer.refresh();
 	}
 
 	/**

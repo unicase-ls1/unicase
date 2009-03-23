@@ -42,7 +42,7 @@ public class WorkItemDoneOrResolvedEditingSupport extends EditingSupport {
 	 */
 	public WorkItemDoneOrResolvedEditingSupport(TableViewer viewer, User currentUser) {
 		super(viewer);
-		this.currentUser = currentUser;
+		this.setCurrentUser(currentUser);
 		cellEditor = new CheckboxCellEditor();
 	}
 
@@ -115,7 +115,7 @@ public class WorkItemDoneOrResolvedEditingSupport extends EditingSupport {
 			if (workItem.getReviewer() != null) {
 				// if current user is the reviewer of work item, then set work item to done
 				// else, set it to resolved.
-				if (currentUser.equals(workItem.getReviewer())) {
+				if (getCurrentUser().equals(workItem.getReviewer())) {
 					((Checkable) workItem).setChecked(isChecked);
 				} else {
 					workItem.setResolved(isChecked);
@@ -146,6 +146,20 @@ public class WorkItemDoneOrResolvedEditingSupport extends EditingSupport {
 			c.setChecked(isChecked);
 
 		}
+	}
+
+	/**
+	 * @param currentUser the currentUser to set
+	 */
+	public void setCurrentUser(User currentUser) {
+		this.currentUser = currentUser;
+	}
+
+	/**
+	 * @return the currentUser
+	 */
+	public User getCurrentUser() {
+		return currentUser;
 	}
 
 }

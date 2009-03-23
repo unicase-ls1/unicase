@@ -6,7 +6,12 @@
 
 package org.unicase.ui.taskview;
 
+import org.eclipse.jface.resource.JFaceResources;
 import org.eclipse.swt.graphics.Image;
+import org.unicase.model.organization.OrgUnit;
+import org.unicase.model.organization.User;
+import org.unicase.model.task.Checkable;
+import org.unicase.model.task.WorkItem;
 import org.unicase.ui.tableview.labelproviders.AbstractCheckboxColumnLabelProvider;
 
 /**
@@ -17,7 +22,7 @@ import org.unicase.ui.tableview.labelproviders.AbstractCheckboxColumnLabelProvid
  */
 public class WorkItemDoneOrResolvedLabelProvider extends AbstractCheckboxColumnLabelProvider {
 
-	private Object currentUser;
+	private User currentUser;
 
 	/**
 	 * {@inheritDoc}
@@ -26,20 +31,58 @@ public class WorkItemDoneOrResolvedLabelProvider extends AbstractCheckboxColumnL
 	 */
 	@Override
 	public Image getImage(Object element) {
-		return null;
+		if (!(element instanceof WorkItem)) {
+			return null;
+		}
+
+		WorkItem workItem = (WorkItem) element;
+		if (currentUser == null) {
+			return getDoneStateImage(workItem);
+		}
+
+		User reviewer = workItem.getReviewer();
+		OrgUnit assignee = workItem.getAssignee();
+		if (currentUser.equals(reviewer)) {
+			return getDoneStateImage(workItem);
+		}
+		if (currentUser.equals(assignee)) {
+			return getResolvedStateImage(workItem);
+		}
+
+		return getDoneStateImage(workItem);
+	}
+
+	private Image getResolvedStateImage(WorkItem workItem) {
+		if (((Checkable) workItem).isChecked()) {
+			return JFaceResources.getImage(CHECKED);
+		}
+		if (workItem.isResolved()) {
+			return JFaceResources.getImage(CHECKED);
+		} else {
+			return JFaceResources.getImage(UNCHECK);
+		}
+	}
+
+	private Image getDoneStateImage(WorkItem workItem) {
+		if (((Checkable) workItem).isChecked()) {
+			return JFaceResources.getImage(CHECKED);
+		} else {
+			return JFaceResources.getImage(UNCHECK);
+		}
+
 	}
 
 	/**
 	 * @param currentUser the currentUser to set
 	 */
-	public void setCurrentUser(Object currentUser) {
+	public void setCurrentUser(User currentUser) {
 		this.currentUser = currentUser;
 	}
 
 	/**
 	 * @return the currentUser
 	 */
-	public Object getCurrentUser() {
+	public User getCurrentUser() {
 		return currentUser;
 	}
 
