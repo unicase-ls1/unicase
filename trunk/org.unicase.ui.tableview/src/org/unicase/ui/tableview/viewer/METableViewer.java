@@ -50,8 +50,13 @@ public class METableViewer {
 	 * @param parent parent composite to show METableViewer
 	 */
 	public METableViewer(Composite parent) {
-		tableViewer = new TableViewer(parent, SWT.FULL_SELECTION);
 		contentProvider = new METableViewerContentProvider();
+		createTableViewer(parent);
+
+	}
+
+	private void createTableViewer(Composite parent) {
+		tableViewer = new TableViewer(parent, SWT.VIRTUAL | SWT.FULL_SELECTION);
 		tableViewer.setContentProvider(contentProvider);
 		tableViewer.getTable().setLinesVisible(true);
 		tableViewer.getTable().setHeaderVisible(true);
@@ -64,13 +69,10 @@ public class METableViewer {
 	 * @param meType model element type
 	 */
 	public METableViewer(Composite parent, EClass meType) {
-		tableViewer = new TableViewer(parent, SWT.FULL_SELECTION);
 		this.contentType = meType;
 		contentProvider = new METableViewerContentProvider();
 		contentProvider.setMEType(meType);
-		tableViewer.setContentProvider(contentProvider);
-		tableViewer.getTable().setLinesVisible(true);
-		tableViewer.getTable().setHeaderVisible(true);
+		createTableViewer(parent);
 
 	}
 
@@ -123,8 +125,8 @@ public class METableViewer {
 	}
 
 	private TableViewerColumn createStateColumn(EStructuralFeature feature) {
-		TableViewerColumn stateColumn = new TableViewerColumn(tableViewer, SWT.NONE);
-		stateColumn.getColumn().setWidth(20);
+		TableViewerColumn stateColumn = new TableViewerColumn(tableViewer, SWT.CENTER);
+		stateColumn.getColumn().setWidth(30);
 		stateColumn.setLabelProvider(new StatusLabelProvider());
 		stateColumn.getColumn().setText("State");
 		return stateColumn;

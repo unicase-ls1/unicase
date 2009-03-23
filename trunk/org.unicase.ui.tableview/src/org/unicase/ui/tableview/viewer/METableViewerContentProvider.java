@@ -5,7 +5,6 @@
  */
 package org.unicase.ui.tableview.viewer;
 
-import java.util.Calendar;
 import java.util.Collection;
 import java.util.List;
 
@@ -33,7 +32,6 @@ public class METableViewerContentProvider implements IStructuredContentProvider 
 	 * @see org.eclipse.jface.viewers.IStructuredContentProvider#getElements(java.lang.Object)
 	 */
 	public Object[] getElements(Object inputElement) {
-		System.out.println("getelement entered " + Calendar.getInstance().getTimeInMillis());
 		if (meType == null || project == null) {
 			if (directInput != null) {
 				return directInput.toArray();
@@ -43,7 +41,6 @@ public class METableViewerContentProvider implements IStructuredContentProvider 
 
 		List<? extends ModelElement> content = project.getAllModelElementsbyClass(meType,
 			new BasicEList<ModelElement>());
-		System.out.println("getelement leaved " + Calendar.getInstance().getTimeInMillis());
 		return content.toArray();
 
 	}

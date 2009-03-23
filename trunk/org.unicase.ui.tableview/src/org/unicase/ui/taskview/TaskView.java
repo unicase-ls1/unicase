@@ -7,7 +7,6 @@ package org.unicase.ui.taskview;
 
 import java.io.IOException;
 import java.util.ArrayList;
-import java.util.Calendar;
 import java.util.List;
 
 import org.eclipse.core.runtime.IPath;
@@ -15,12 +14,14 @@ import org.eclipse.emf.common.notify.Notification;
 import org.eclipse.emf.common.notify.impl.AdapterImpl;
 import org.eclipse.emf.ecore.EStructuralFeature;
 import org.eclipse.jface.action.Action;
+import org.eclipse.jface.action.IToolBarManager;
 import org.eclipse.jface.dialogs.DialogSettings;
 import org.eclipse.jface.viewers.DoubleClickEvent;
 import org.eclipse.jface.viewers.IDoubleClickListener;
 import org.eclipse.jface.viewers.TableViewer;
 import org.eclipse.swt.SWT;
 import org.eclipse.swt.widgets.Composite;
+import org.eclipse.ui.IActionBars;
 import org.eclipse.ui.part.ViewPart;
 import org.unicase.model.ModelElement;
 import org.unicase.model.ModelPackage;
@@ -32,6 +33,8 @@ import org.unicase.model.util.ProjectChangeObserver;
 import org.unicase.ui.common.util.ActionHelper;
 import org.unicase.ui.tableview.Activator;
 import org.unicase.ui.tableview.viewer.METableViewer;
+import org.unicase.ui.taskview.filters.BlockedElementsViewerFilter;
+import org.unicase.ui.taskview.filters.UncheckedElementsViewerFilter;
 import org.unicase.workspace.ProjectSpace;
 import org.unicase.workspace.Workspace;
 import org.unicase.workspace.WorkspaceManager;
@@ -59,8 +62,8 @@ public class TaskView extends ViewPart implements ProjectChangeObserver {
 	private AdapterImpl adapterImpl;
 	private Workspace workspace;
 
-	// private UncheckedElementsViewerFilter uncheckedFilter;
-	// private Action filterToUnchecked;
+	private UncheckedElementsViewerFilter uncheckedFilter;
+	private Action filterToUnchecked;
 	//
 	// private UserFilter userFilter;
 	// private Action filterToMe;
@@ -68,8 +71,8 @@ public class TaskView extends ViewPart implements ProjectChangeObserver {
 	// private TeamFilter teamFilter;
 	// private Action filterToMyTeam;
 	//
-	// private BlockedElementsViewerFilter blockedFilter;
-	// private Action filterToBlocked;
+	private BlockedElementsViewerFilter blockedFilter;
+	private Action filterToBlocked;
 	//
 	// private ResolvedBugReportFilter resolvedBugReportFilter;
 	// private Action filterResolvedBugReports;
@@ -114,10 +117,10 @@ public class TaskView extends ViewPart implements ProjectChangeObserver {
 					ProjectSpace activeProjectSpace = workspace.getActiveProjectSpace();
 					if (activeProjectSpace != null) {
 						Project currentProject = activeProjectSpace.getProject();
+						currentProject.addProjectChangeObserver(TaskView.this);
 						initUserDependentFilters();
 						doneOrResolvedEditingSupport.setCurrentUser(currentUser);
 						doneOrResolvedLabelProvider.setCurrentUser(currentUser);
-						System.out.println("input set " + Calendar.getInstance().getTimeInMillis());
 						viewer.setInput(currentProject);
 					}
 
@@ -127,8 +130,8 @@ public class TaskView extends ViewPart implements ProjectChangeObserver {
 		};
 		workspace.eAdapters().add(adapterImpl);
 
-		// IActionBars bars = getViewSite().getActionBars();
-		// IToolBarManager menuManager = bars.getToolBarManager();
+		IActionBars bars = getViewSite().getActionBars();
+		IToolBarManager menuManager = bars.getToolBarManager();
 
 		initUserDependentFilters();
 		// menuManager.add(filterToMe);
@@ -137,11 +140,11 @@ public class TaskView extends ViewPart implements ProjectChangeObserver {
 		//
 		// // Create Checked filter
 		//
-		// createCheckedFilter();
-		// menuManager.add(filterToUnchecked);
-		//
-		// createBlockedFilter();
-		// menuManager.add(filterToBlocked);
+		createCheckedFilter();
+		menuManager.add(filterToUnchecked);
+
+		createBlockedFilter();
+		menuManager.add(filterToBlocked);
 
 		getSite().setSelectionProvider(tableViewer);
 		hookDoubleClickAction();
@@ -167,36 +170,37 @@ public class TaskView extends ViewPart implements ProjectChangeObserver {
 		return metv;
 	}
 
-	// private void createBlockedFilter() {
-	// blockedFilter = new BlockedElementsViewerFilter();
-	// filterToBlocked = new Action("", SWT.TOGGLE) {
-	// @Override
-	// public void run() {
-	// setBlockedFilter(isChecked());
-	// }
-	//
-	// };
-	// filterToBlocked.setImageDescriptor(Activator.getImageDescriptor("/icons/blocked.gif"));
-	// Boolean blockedFilterBoolean = Boolean.parseBoolean(settings.get("BlockedFilter"));
-	// filterToBlocked.setChecked(blockedFilterBoolean);
-	// filterToBlocked.setToolTipText("Besides the unblocked elements, the blocked ones will be shown as well.");
-	// setBlockedFilter(blockedFilterBoolean);
-	//
-	// }
+	private void createBlockedFilter() {
+		blockedFilter = new BlockedElementsViewerFilter();
+		filterToBlocked = new Action("", SWT.TOGGLE) {
+			@Override
+			public void run() {
+				setBlockedFilter(isChecked());
+			}
+
+		};
+		filterToBlocked.setImageDescriptor(Activator.getImageDescriptor("/icons/blocked.gif"));
+		Boolean blockedFilterBoolean = Boolean.parseBoolean(settings.get("BlockedFilter"));
+		filterToBlocked.setChecked(blockedFilterBoolean);
+		filterToBlocked.setToolTipText("Besides the unblocked elements, the blocked ones will be shown as well.");
+		setBlockedFilter(blockedFilterBoolean);
+
+	}
 
 	/**
 	 * Sets the blocked filter.
 	 * 
 	 * @param checked if the blocked filter is activated.
 	 */
-	// protected void setBlockedFilter(boolean checked) {
-	// if (!checked) {
-	// tableViewer.addFilter(blockedFilter);
-	// } else {
-	// tableViewer.removeFilter(blockedFilter);
-	// }
-	//
-	// }
+	protected void setBlockedFilter(boolean checked) {
+		if (!checked) {
+			tableViewer.addFilter(blockedFilter);
+		} else {
+			tableViewer.removeFilter(blockedFilter);
+		}
+
+	}
+
 	private void initUserDependentFilters() {
 		try {
 
@@ -268,22 +272,22 @@ public class TaskView extends ViewPart implements ProjectChangeObserver {
 	// }
 	//
 	// }
-	// private void createCheckedFilter() {
-	// uncheckedFilter = new UncheckedElementsViewerFilter();
-	// filterToUnchecked = new Action("", SWT.TOGGLE) {
-	// @Override
-	// public void run() {
-	// setUncheckedFilter(isChecked());
-	// }
-	//
-	// };
-	// filterToUnchecked.setImageDescriptor(Activator.getImageDescriptor("/icons/tick.png"));
-	// Boolean uncheckedFilter = Boolean.parseBoolean(settings.get("UncheckedFilter"));
-	// filterToUnchecked.setChecked(uncheckedFilter);
-	// filterToUnchecked.setToolTipText("Besides the unchecked elements, the checked ones will be shown as well.");
-	// setUncheckedFilter(uncheckedFilter);
-	// }
-	//
+	private void createCheckedFilter() {
+		uncheckedFilter = new UncheckedElementsViewerFilter();
+		filterToUnchecked = new Action("", SWT.TOGGLE) {
+			@Override
+			public void run() {
+				setUncheckedFilter(isChecked());
+			}
+
+		};
+		filterToUnchecked.setImageDescriptor(Activator.getImageDescriptor("/icons/tick.png"));
+		Boolean uncheckedFilter = Boolean.parseBoolean(settings.get("UncheckedFilter"));
+		filterToUnchecked.setChecked(uncheckedFilter);
+		filterToUnchecked.setToolTipText("Besides the unchecked elements, the checked ones will be shown as well.");
+		setUncheckedFilter(uncheckedFilter);
+	}
+
 	// private void createUserFilter(User user) {
 	// if (filterToMe == null) {
 	// filterToMe = new Action("", SWT.TOGGLE) {
@@ -342,19 +346,20 @@ public class TaskView extends ViewPart implements ProjectChangeObserver {
 	//
 	// }
 	//
-	// /**
-	// * sets the uncheckd filter.
-	// *
-	// * @param checked if filtered
-	// */
-	// protected void setUncheckedFilter(boolean checked) {
-	// if (!checked) {
-	// tableViewer.addFilter(uncheckedFilter);
-	// } else {
-	// tableViewer.removeFilter(uncheckedFilter);
-	// }
-	//
-	// }
+	/**
+	 * sets the uncheckd filter.
+	 * 
+	 * @param checked if filtered
+	 */
+	protected void setUncheckedFilter(boolean checked) {
+		if (!checked) {
+			tableViewer.addFilter(uncheckedFilter);
+		} else {
+			tableViewer.removeFilter(uncheckedFilter);
+		}
+
+	}
+
 	/**
 	 * sets the userfilter.
 	 * 
@@ -424,9 +429,9 @@ public class TaskView extends ViewPart implements ProjectChangeObserver {
 			workspace.getActiveProjectSpace().getProject().removeProjectChangeObserver(this);
 		}
 		// settings.put("TeamFilter", filterToMyTeam.isChecked());
-		// settings.put("UncheckedFilter", filterToUnchecked.isChecked());
+		settings.put("UncheckedFilter", filterToUnchecked.isChecked());
 		// settings.put("UserFilter", filterToMe.isChecked());
-		// settings.put("BlockedFilter", filterToBlocked.isChecked());
+		settings.put("BlockedFilter", filterToBlocked.isChecked());
 		// settings.put("ResolvedBugReportsFilter", filterResolvedBugReports.isChecked());
 		try {
 			settings.save(filename);
@@ -478,7 +483,7 @@ public class TaskView extends ViewPart implements ProjectChangeObserver {
 	 */
 	public void notify(Notification notification, Project project, ModelElement modelElement) {
 		if (modelElement instanceof Checkable) {
-			tableViewer.refresh();
+			tableViewer.update(modelElement, null);
 		}
 	}
 
