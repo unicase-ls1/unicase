@@ -175,7 +175,9 @@ public class TaskView extends ViewPart implements ProjectChangeObserver {
 		filterToBlocked = new Action("", SWT.TOGGLE) {
 			@Override
 			public void run() {
-				setBlockedFilter(isChecked());
+				// setBlockedFilter(isChecked());
+				List<String> columnsToShow = viewer.displayShowHideColumnsDialog();
+				viewer.showColumns(columnsToShow);
 			}
 
 		};
@@ -183,7 +185,7 @@ public class TaskView extends ViewPart implements ProjectChangeObserver {
 		Boolean blockedFilterBoolean = Boolean.parseBoolean(settings.get("BlockedFilter"));
 		filterToBlocked.setChecked(blockedFilterBoolean);
 		filterToBlocked.setToolTipText("Besides the unblocked elements, the blocked ones will be shown as well.");
-		setBlockedFilter(blockedFilterBoolean);
+		// setBlockedFilter(blockedFilterBoolean);
 
 	}
 
