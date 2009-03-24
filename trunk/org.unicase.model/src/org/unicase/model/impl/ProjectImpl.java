@@ -429,7 +429,8 @@ public class ProjectImpl extends EObjectImpl implements Project, ProjectChangeOb
 				if (otherElementOpposite == modelElement) {
 					EList<EReference> references = otherModelElement.eClass().getEAllReferences();
 					for (EReference reference : references) {
-						if (!reference.isContainment() && !reference.isContainer()) {
+						if (!reference.isContainment() && !reference.isContainer()
+							&& isCorrespondingReference(modelElement, otherModelElement, reference)) {
 							if (reference.isMany()) {
 								((EList<?>) otherModelElement.eGet(reference)).remove(modelElement);
 							} else {
@@ -439,6 +440,18 @@ public class ProjectImpl extends EObjectImpl implements Project, ProjectChangeOb
 					}
 				}
 			}
+		}
+	}
+
+	private boolean isCorrespondingReference(ModelElement modelElement, ModelElement otherModelElement,
+		EReference reference) {
+		if (reference.isMany()) {
+			if (otherModelElement.eGet(reference) == null) {
+				return false;
+			}
+			return ((List<?>) otherModelElement.eGet(reference)).contains(modelElement);
+		} else {
+			return modelElement.equals(otherModelElement.eGet(reference));
 		}
 	}
 
