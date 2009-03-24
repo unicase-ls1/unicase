@@ -10,6 +10,7 @@ import java.io.ByteArrayOutputStream;
 import java.io.IOException;
 import java.io.UnsupportedEncodingException;
 import java.util.ArrayList;
+import java.util.Collection;
 import java.util.HashSet;
 import java.util.Iterator;
 import java.util.Set;
@@ -242,6 +243,22 @@ public final class ModelUtil {
 		}
 
 		return meTypes;
+	}
+
+	/**
+	 * FU!
+	 * 
+	 * @param collection fu!
+	 * @param modelElement fu!
+	 * @return fu!
+	 */
+	public static boolean listContains(Collection<? extends ModelElement> collection, ModelElement modelElement) {
+		for (ModelElement me : collection) {
+			if (me.getIdentifier().equals(modelElement.getIdentifier())) {
+				return true;
+			}
+		}
+		return false;
 	}
 
 }
