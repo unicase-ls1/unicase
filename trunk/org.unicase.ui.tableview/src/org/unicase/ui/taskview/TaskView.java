@@ -14,14 +14,15 @@ import org.eclipse.emf.common.notify.Notification;
 import org.eclipse.emf.common.notify.impl.AdapterImpl;
 import org.eclipse.emf.ecore.EStructuralFeature;
 import org.eclipse.jface.action.Action;
+import org.eclipse.jface.action.GroupMarker;
 import org.eclipse.jface.action.IToolBarManager;
+import org.eclipse.jface.action.Separator;
 import org.eclipse.jface.dialogs.DialogSettings;
-import org.eclipse.jface.viewers.DoubleClickEvent;
-import org.eclipse.jface.viewers.IDoubleClickListener;
 import org.eclipse.jface.viewers.TableViewer;
 import org.eclipse.swt.SWT;
 import org.eclipse.swt.widgets.Composite;
 import org.eclipse.ui.IActionBars;
+import org.eclipse.ui.IWorkbenchActionConstants;
 import org.eclipse.ui.part.ViewPart;
 import org.unicase.model.ModelElement;
 import org.unicase.model.ModelPackage;
@@ -54,12 +55,11 @@ public class TaskView extends ViewPart implements ProjectChangeObserver {
 
 	private METableViewer viewer;
 	private TableViewer tableViewer;
-	// private final EClass itemMetaClass = TaskPackage.eINSTANCE.getWorkItem();
-	// private FilteredItemProviderAdapterFactory adapterFactory;
+
 	// private Action doubleClickAction;
-	private DialogSettings settings;
-	private String filename;
-	private AdapterImpl adapterImpl;
+	private DialogSettings dialogSettings;
+	private String filtersSettingFilename;
+	private AdapterImpl workspaceListenerAdapter;
 	private Workspace workspace;
 
 	private UncheckedElementsViewerFilter uncheckedFilter;
@@ -80,6 +80,8 @@ public class TaskView extends ViewPart implements ProjectChangeObserver {
 	private WorkItemDoneOrResolvedLabelProvider doneOrResolvedLabelProvider;
 	private WorkItemDoneOrResolvedEditingSupport doneOrResolvedEditingSupport;
 
+	private static final String TASKVIEW_FILTERS_GROUP = "taskviewFilters";
+
 	/**
 	 * default constructor.
 	 */
@@ -87,13 +89,14 @@ public class TaskView extends ViewPart implements ProjectChangeObserver {
 	public TaskView() {
 		super();
 		IPath path = Activator.getDefault().getStateLocation();
-		filename = path.append("settings.txt").toOSString();
-		settings = new DialogSettings("Top");
+		filtersSettingFilename = path.append("settings.txt").toOSString();
+		dialogSettings = new DialogSettings("Top");
 		try {
-			settings.load(filename);
+			dialogSettings.load(filtersSettingFilename);
 		} catch (IOException e) {
 			// Do nothing.
 		}
+
 		workspace = WorkspaceManager.getInstance().getCurrentWorkspace();
 
 	}
@@ -110,7 +113,7 @@ public class TaskView extends ViewPart implements ProjectChangeObserver {
 		tableViewer = viewer.getTableViewer();
 
 		workspace = WorkspaceManager.getInstance().getCurrentWorkspace();
-		adapterImpl = new AdapterImpl() {
+		workspaceListenerAdapter = new AdapterImpl() {
 			@Override
 			public void notifyChanged(Notification msg) {
 				if ((msg.getFeatureID(Workspace.class)) == WorkspacePackage.WORKSPACE__ACTIVE_PROJECT_SPACE) {
@@ -128,10 +131,20 @@ public class TaskView extends ViewPart implements ProjectChangeObserver {
 				super.notifyChanged(msg);
 			}
 		};
-		workspace.eAdapters().add(adapterImpl);
+		workspace.eAdapters().add(workspaceListenerAdapter);
 
+		createActions();
+
+		getSite().setSelectionProvider(tableViewer);
+		hookDoubleClickAction();
+	}
+
+	/**
+	 * 
+	 */
+	private void createActions() {
 		IActionBars bars = getViewSite().getActionBars();
-		IToolBarManager menuManager = bars.getToolBarManager();
+		IToolBarManager toolbarManager = bars.getToolBarManager();
 
 		initUserDependentFilters();
 		// menuManager.add(filterToMe);
@@ -141,13 +154,28 @@ public class TaskView extends ViewPart implements ProjectChangeObserver {
 		// // Create Checked filter
 		//
 		createCheckedFilter();
-		menuManager.add(filterToUnchecked);
+		toolbarManager.add(filterToUnchecked);
 
 		createBlockedFilter();
-		menuManager.add(filterToBlocked);
+		toolbarManager.add(filterToBlocked);
 
-		getSite().setSelectionProvider(tableViewer);
-		hookDoubleClickAction();
+		Separator taskviewFiltersSeperator = new Separator(TASKVIEW_FILTERS_GROUP);
+		toolbarManager.add(taskviewFiltersSeperator);
+
+		toolbarManager.add(new GroupMarker(IWorkbenchActionConstants.MB_ADDITIONS));
+		Separator separator2 = new Separator("separator2");
+		toolbarManager.insertAfter(IWorkbenchActionConstants.MB_ADDITIONS, separator2);
+
+		Action showHideColumnsAction = new Action() {
+			@Override
+			public void run() {
+				List<String> columnsToShow = viewer.displayShowHideColumnsDialog();
+				viewer.showColumns(columnsToShow);
+			}
+
+		};
+		showHideColumnsAction.setToolTipText("Show/Hide columns");
+		toolbarManager.add(showHideColumnsAction);
 	}
 
 	private METableViewer initMETableViewer(Composite parent) {
@@ -175,14 +203,13 @@ public class TaskView extends ViewPart implements ProjectChangeObserver {
 		filterToBlocked = new Action("", SWT.TOGGLE) {
 			@Override
 			public void run() {
-				// setBlockedFilter(isChecked());
-				List<String> columnsToShow = viewer.displayShowHideColumnsDialog();
-				viewer.showColumns(columnsToShow);
+				setBlockedFilter(isChecked());
+
 			}
 
 		};
 		filterToBlocked.setImageDescriptor(Activator.getImageDescriptor("/icons/blocked.gif"));
-		Boolean blockedFilterBoolean = Boolean.parseBoolean(settings.get("BlockedFilter"));
+		Boolean blockedFilterBoolean = Boolean.parseBoolean(dialogSettings.get("BlockedFilter"));
 		filterToBlocked.setChecked(blockedFilterBoolean);
 		filterToBlocked.setToolTipText("Besides the unblocked elements, the blocked ones will be shown as well.");
 		// setBlockedFilter(blockedFilterBoolean);
@@ -284,7 +311,7 @@ public class TaskView extends ViewPart implements ProjectChangeObserver {
 
 		};
 		filterToUnchecked.setImageDescriptor(Activator.getImageDescriptor("/icons/tick.png"));
-		Boolean uncheckedFilter = Boolean.parseBoolean(settings.get("UncheckedFilter"));
+		Boolean uncheckedFilter = Boolean.parseBoolean(dialogSettings.get("UncheckedFilter"));
 		filterToUnchecked.setChecked(uncheckedFilter);
 		filterToUnchecked.setToolTipText("Besides the unchecked elements, the checked ones will be shown as well.");
 		setUncheckedFilter(uncheckedFilter);
@@ -403,11 +430,7 @@ public class TaskView extends ViewPart implements ProjectChangeObserver {
 				ActionHelper.openModelElement(ActionHelper.getSelectedModelElement(), TaskView.class.getName());
 			}
 		};
-		tableViewer.addDoubleClickListener(new IDoubleClickListener() {
-			public void doubleClick(DoubleClickEvent event) {
-				doubleClickAction.run();
-			}
-		});
+		viewer.setDoubleClickAction(doubleClickAction);
 	}
 
 	/**
@@ -426,17 +449,17 @@ public class TaskView extends ViewPart implements ProjectChangeObserver {
 	 */
 	@Override
 	public void dispose() {
-		workspace.eAdapters().remove(adapterImpl);
+		workspace.eAdapters().remove(workspaceListenerAdapter);
 		if (workspace.getActiveProjectSpace() != null && workspace.getActiveProjectSpace().getProject() != null) {
 			workspace.getActiveProjectSpace().getProject().removeProjectChangeObserver(this);
 		}
 		// settings.put("TeamFilter", filterToMyTeam.isChecked());
-		settings.put("UncheckedFilter", filterToUnchecked.isChecked());
+		dialogSettings.put("UncheckedFilter", filterToUnchecked.isChecked());
 		// settings.put("UserFilter", filterToMe.isChecked());
-		settings.put("BlockedFilter", filterToBlocked.isChecked());
+		dialogSettings.put("BlockedFilter", filterToBlocked.isChecked());
 		// settings.put("ResolvedBugReportsFilter", filterResolvedBugReports.isChecked());
 		try {
-			settings.save(filename);
+			dialogSettings.save(filtersSettingFilename);
 		} catch (IOException e) {
 			// JH Auto-generated catch block
 			e.printStackTrace();
