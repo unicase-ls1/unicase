@@ -89,8 +89,7 @@ public class MEEditorInput implements IEditorInput {
 	 * {@inheritDoc}
 	 */
 	public String getToolTipText() {
-		// TODO Auto-generated method stub
-		return "";
+		return getName();
 	}
 
 	/**
