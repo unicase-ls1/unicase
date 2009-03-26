@@ -29,3 +29,7 @@ manuelle löschungen (-> manualdeletefix)
 
 projectstate 150 bei identifier="_TiEHYKvpEd2COKzHNm-aQg" bis auf 2 alle included usecases gelöscht.
  - " -       200
+projectstate fix geschrieben (aber nicht programmatisch, weil der usecase bug noch nicht gefixt ist)
+ 
+ 
+ deletebug gefixt (zufällige references wurden gelöscht)
