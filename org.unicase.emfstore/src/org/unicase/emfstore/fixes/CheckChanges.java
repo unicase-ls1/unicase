@@ -31,7 +31,7 @@ public class CheckChanges extends AbstractFix {
 
 				version.getChanges().apply(state);
 
-				specialVersion113(state, version);
+				// specialVersion113(state, version);
 
 				// System.out.println("applying changes in version " + version.getPrimarySpec().getIdentifier());
 				if (version.getProjectState() != null) {
@@ -53,7 +53,7 @@ public class CheckChanges extends AbstractFix {
 	}
 
 	private void specialVersion113(Project state, Version version) {
-		if (version.getPrimarySpec().getIdentifier() == 113 || version.getPrimarySpec().getIdentifier() == 112) {
+		if (version.getPrimarySpec().getIdentifier() == 156 || version.getPrimarySpec().getIdentifier() == 157) {
 			File file = new File(System.getProperty("user.home") + "/Desktop/project_"
 				+ version.getPrimarySpec().getIdentifier() + "_generated.txt");
 			try {
