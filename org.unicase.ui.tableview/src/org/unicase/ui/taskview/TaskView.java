@@ -5,36 +5,46 @@
  */
 package org.unicase.ui.taskview;
 
-import java.io.IOException;
 import java.util.ArrayList;
 import java.util.List;
 
-import org.eclipse.core.runtime.IPath;
 import org.eclipse.emf.common.notify.Notification;
 import org.eclipse.emf.common.notify.impl.AdapterImpl;
+import org.eclipse.emf.common.util.BasicEList;
 import org.eclipse.emf.ecore.EStructuralFeature;
 import org.eclipse.jface.action.Action;
+import org.eclipse.jface.action.ControlContribution;
 import org.eclipse.jface.action.GroupMarker;
+import org.eclipse.jface.action.IAction;
 import org.eclipse.jface.action.IToolBarManager;
 import org.eclipse.jface.action.Separator;
-import org.eclipse.jface.dialogs.DialogSettings;
-import org.eclipse.jface.viewers.TableViewer;
+import org.eclipse.jface.dialogs.IDialogSettings;
 import org.eclipse.swt.SWT;
+import org.eclipse.swt.layout.GridData;
+import org.eclipse.swt.layout.GridLayout;
 import org.eclipse.swt.widgets.Composite;
+import org.eclipse.swt.widgets.Control;
+import org.eclipse.swt.widgets.Text;
 import org.eclipse.ui.IActionBars;
 import org.eclipse.ui.IWorkbenchActionConstants;
 import org.eclipse.ui.part.ViewPart;
 import org.unicase.model.ModelElement;
 import org.unicase.model.ModelPackage;
 import org.unicase.model.Project;
+import org.unicase.model.organization.OrganizationFactory;
+import org.unicase.model.organization.OrganizationPackage;
 import org.unicase.model.organization.User;
 import org.unicase.model.task.Checkable;
 import org.unicase.model.task.TaskPackage;
 import org.unicase.model.util.ProjectChangeObserver;
+import org.unicase.ui.common.filter.TeamFilter;
+import org.unicase.ui.common.filter.UserFilter;
 import org.unicase.ui.common.util.ActionHelper;
+import org.unicase.ui.common.util.UnicaseUiUtil;
 import org.unicase.ui.tableview.Activator;
 import org.unicase.ui.tableview.viewer.METableViewer;
 import org.unicase.ui.taskview.filters.BlockedElementsViewerFilter;
+import org.unicase.ui.taskview.filters.ResolvedBugReportFilter;
 import org.unicase.ui.taskview.filters.UncheckedElementsViewerFilter;
 import org.unicase.workspace.ProjectSpace;
 import org.unicase.workspace.Workspace;
@@ -54,31 +64,32 @@ import org.unicase.workspace.util.OrgUnitHelper;
 public class TaskView extends ViewPart implements ProjectChangeObserver {
 
 	private METableViewer viewer;
-	private TableViewer tableViewer;
-
-	// private Action doubleClickAction;
-	private DialogSettings dialogSettings;
-	private String filtersSettingFilename;
 	private AdapterImpl workspaceListenerAdapter;
 	private Workspace workspace;
+	private Project activeProject;
 
 	private UncheckedElementsViewerFilter uncheckedFilter;
 	private Action filterToUnchecked;
-	//
-	// private UserFilter userFilter;
-	// private Action filterToMe;
-	//
-	// private TeamFilter teamFilter;
-	// private Action filterToMyTeam;
-	//
+
+	private UserFilter userFilter;
+	private Action filterToLoggedInUser;
+	private IAction filterToSelectedUser;
+
+	private TeamFilter teamFilter;
+	private Action filterToTeam;
+
 	private BlockedElementsViewerFilter blockedFilter;
 	private Action filterToBlocked;
-	//
-	// private ResolvedBugReportFilter resolvedBugReportFilter;
-	// private Action filterResolvedBugReports;
-	private User currentUser;
+
+	private ResolvedBugReportFilter resolvedBugReportFilter;
+	private Action filterResolvedBugReports;
+
+	private User selectedUser;
+	private User loggedInUser;
+
 	private WorkItemDoneOrResolvedLabelProvider doneOrResolvedLabelProvider;
 	private WorkItemDoneOrResolvedEditingSupport doneOrResolvedEditingSupport;
+	private Text txtUser;
 
 	private static final String TASKVIEW_FILTERS_GROUP = "taskviewFilters";
 
@@ -88,15 +99,6 @@ public class TaskView extends ViewPart implements ProjectChangeObserver {
 
 	public TaskView() {
 		super();
-		IPath path = Activator.getDefault().getStateLocation();
-		filtersSettingFilename = path.append("settings.txt").toOSString();
-		dialogSettings = new DialogSettings("Top");
-		try {
-			dialogSettings.load(filtersSettingFilename);
-		} catch (IOException e) {
-			// Do nothing.
-		}
-
 		workspace = WorkspaceManager.getInstance().getCurrentWorkspace();
 
 	}
@@ -110,21 +112,19 @@ public class TaskView extends ViewPart implements ProjectChangeObserver {
 	public void createPartControl(Composite parent) {
 
 		viewer = initMETableViewer(parent);
-		tableViewer = viewer.getTableViewer();
 
 		workspace = WorkspaceManager.getInstance().getCurrentWorkspace();
 		workspaceListenerAdapter = new AdapterImpl() {
+
 			@Override
 			public void notifyChanged(Notification msg) {
 				if ((msg.getFeatureID(Workspace.class)) == WorkspacePackage.WORKSPACE__ACTIVE_PROJECT_SPACE) {
 					ProjectSpace activeProjectSpace = workspace.getActiveProjectSpace();
 					if (activeProjectSpace != null) {
-						Project currentProject = activeProjectSpace.getProject();
-						currentProject.addProjectChangeObserver(TaskView.this);
-						initUserDependentFilters();
-						doneOrResolvedEditingSupport.setCurrentUser(currentUser);
-						doneOrResolvedLabelProvider.setCurrentUser(currentUser);
-						viewer.setInput(currentProject);
+						activeProject = activeProjectSpace.getProject();
+						activeProject.addProjectChangeObserver(TaskView.this);
+						initLoggedInUserUser();
+						viewer.setInput(activeProject);
 					}
 
 				}
@@ -134,8 +134,9 @@ public class TaskView extends ViewPart implements ProjectChangeObserver {
 		workspace.eAdapters().add(workspaceListenerAdapter);
 
 		createActions();
+		initLoggedInUserUser();
 
-		getSite().setSelectionProvider(tableViewer);
+		getSite().setSelectionProvider(viewer.getTableViewer());
 		hookDoubleClickAction();
 	}
 
@@ -146,17 +147,65 @@ public class TaskView extends ViewPart implements ProjectChangeObserver {
 		IActionBars bars = getViewSite().getActionBars();
 		IToolBarManager toolbarManager = bars.getToolBarManager();
 
-		initUserDependentFilters();
-		// menuManager.add(filterToMe);
-		// menuManager.add(filterToMyTeam);
-		// menuManager.add(filterResolvedBugReports);
-		//
-		// // Create Checked filter
-		//
-		createCheckedFilter();
+		createFilters();
+
+		toolbarManager.add(filterToLoggedInUser);
+		filterToSelectedUser = new Action() {
+			@Override
+			public void run() {
+				List<User> users = new ArrayList<User>();
+				List<User> projectUsers = activeProject.getAllModelElementsbyClass(OrganizationPackage.eINSTANCE
+					.getUser(), new BasicEList<User>());
+				users.addAll(projectUsers);
+				User noUser = OrganizationFactory.eINSTANCE.createUser();
+				noUser.setName("[no user]");
+				users.add(noUser);
+
+				Object[] userArray = UnicaseUiUtil.showMESelectionDialog(TaskView.this.getSite().getShell(), users,
+					"Select user", false);
+				if (userArray.length > 0) {
+					selectedUser = (User) userArray[0];
+					if (selectedUser.getName().equals("[no user]")) {
+						selectedUser = null;
+					}
+					setUserFilter(true, selectedUser);
+					filterToLoggedInUser.setChecked(false);
+				}
+			}
+
+		};
+		filterToSelectedUser.setToolTipText("Select a user to filter to his/her tasks.");
+		toolbarManager.add(filterToSelectedUser);
+		ControlContribution userLabelToolbarContribution = new ControlContribution("userLabel") {
+
+			@Override
+			protected Control createControl(Composite parent) {
+				Composite composite = new Composite(parent, SWT.NONE);
+				GridLayout layout = new GridLayout();
+				layout.verticalSpacing = 0;
+				layout.marginHeight = 0;
+				composite.setLayout(layout);
+				txtUser = new Text(composite, SWT.BORDER);
+				GridData layoutData = new GridData(SWT.FILL, SWT.FILL, true, true);
+				layoutData.widthHint = 100;
+				txtUser.setLayoutData(layoutData);
+				txtUser.setEditable(false);
+				if (loggedInUser != null && filterToLoggedInUser.isChecked()) {
+					txtUser.setText(loggedInUser.getName());
+				} else {
+					txtUser.setText("[no user]");
+				}
+
+				return composite;
+			}
+
+		};
+		toolbarManager.add(userLabelToolbarContribution);
+		toolbarManager.add(filterToTeam);
+		toolbarManager.add(filterResolvedBugReports);
+
 		toolbarManager.add(filterToUnchecked);
 
-		createBlockedFilter();
 		toolbarManager.add(filterToBlocked);
 
 		Separator taskviewFiltersSeperator = new Separator(TASKVIEW_FILTERS_GROUP);
@@ -178,6 +227,135 @@ public class TaskView extends ViewPart implements ProjectChangeObserver {
 		toolbarManager.add(showHideColumnsAction);
 	}
 
+	private void createFilters() {
+		blockedFilter = new BlockedElementsViewerFilter();
+		filterToBlocked = new Action("", SWT.TOGGLE) {
+			@Override
+			public void run() {
+				setBlockedFilter(isChecked());
+
+			}
+
+		};
+		filterToBlocked.setImageDescriptor(Activator.getImageDescriptor("/icons/blocked.gif"));
+		filterToBlocked.setToolTipText("Besides the unblocked elements, the blocked ones will be shown as well.");
+		Boolean blockedFilterCheckState = Boolean.parseBoolean(getDialogSettings().get("BlockedFilter"));
+		filterToBlocked.setChecked(blockedFilterCheckState);
+		setBlockedFilter(blockedFilterCheckState);
+
+		//
+		// unchecked filter
+		//
+		uncheckedFilter = new UncheckedElementsViewerFilter();
+		filterToUnchecked = new Action("", SWT.TOGGLE) {
+			@Override
+			public void run() {
+				setUncheckedFilter(isChecked());
+			}
+
+		};
+		filterToUnchecked.setImageDescriptor(Activator.getImageDescriptor("/icons/tick.png"));
+		filterToUnchecked.setToolTipText("Besides the unchecked elements, the checked ones will be shown as well.");
+		Boolean uncheckedFilterCheckState = Boolean.parseBoolean(getDialogSettings().get("UncheckedFilter"));
+		filterToUnchecked.setChecked(uncheckedFilterCheckState);
+		setUncheckedFilter(uncheckedFilterCheckState);
+
+		//
+		// user filter
+		//
+		userFilter = new UserFilter(selectedUser);
+		filterToLoggedInUser = new Action("", SWT.TOGGLE) {
+			@Override
+			public void run() {
+				setUserFilter(isChecked(), loggedInUser);
+				selectedUser = null;
+			}
+
+		};
+		filterToLoggedInUser.setImageDescriptor(Activator.getImageDescriptor("/icons/filtertouser.png"));
+		filterToLoggedInUser.setToolTipText("Restricts the displayed table items to items owned by the current user.");
+		final Boolean userFilterCheckState = Boolean.parseBoolean(getDialogSettings().get("UserFilter"));
+		filterToLoggedInUser.setChecked(userFilterCheckState);
+
+		//
+		// resolved bug reports filter
+		//
+		resolvedBugReportFilter = new ResolvedBugReportFilter(selectedUser);
+		filterResolvedBugReports = new Action("", SWT.TOGGLE) {
+			@Override
+			public void run() {
+				if (loggedInUser != null && userFilterCheckState) {
+					setResolvedBugReportsFilter(isChecked(), loggedInUser);
+				} else {
+					setResolvedBugReportsFilter(isChecked(), selectedUser);
+				}
+
+			}
+
+		};
+		filterResolvedBugReports.setImageDescriptor(Activator.getImageDescriptor("/icons/Bug_resolved.png"));
+		filterResolvedBugReports.setToolTipText("Show/Hide resolved bug reports.");
+		Boolean resolvedBugReportsCheckState = Boolean
+			.parseBoolean(getDialogSettings().get("ResolvedBugReportsFilter"));
+		filterResolvedBugReports.setChecked(resolvedBugReportsCheckState);
+		if (loggedInUser != null && filterToSelectedUser.isChecked()) {
+			setResolvedBugReportsFilter(resolvedBugReportsCheckState, loggedInUser);
+		} else {
+			setResolvedBugReportsFilter(resolvedBugReportsCheckState, selectedUser);
+		}
+
+		//
+		// team filter
+		//
+		teamFilter = new TeamFilter(selectedUser);
+		filterToTeam = new Action("", SWT.TOGGLE) {
+			@Override
+			public void run() {
+				if (loggedInUser != null && filterToSelectedUser.isChecked()) {
+					setTeamFilter(isChecked(), loggedInUser);
+				} else {
+					setTeamFilter(isChecked(), selectedUser);
+				}
+
+			}
+
+		};
+		filterToTeam.setImageDescriptor(Activator.getImageDescriptor("/icons/filtertomyteam.png"));
+		filterToTeam
+			.setToolTipText("Restricts the displayed table items to items owned by the current user and it's teammates.");
+		Boolean teamFilterCeckState = Boolean.parseBoolean(getDialogSettings().get("TeamFilter"));
+		filterToTeam.setChecked(teamFilterCeckState);
+		if (loggedInUser != null && userFilterCheckState) {
+			setTeamFilter(teamFilterCeckState, loggedInUser);
+		} else {
+			setTeamFilter(teamFilterCeckState, selectedUser);
+		}
+
+	}
+
+	/**
+	 * {@inheritDoc}
+	 */
+	@Override
+	public void dispose() {
+		workspace.eAdapters().remove(workspaceListenerAdapter);
+		if (workspace.getActiveProjectSpace() != null && workspace.getActiveProjectSpace().getProject() != null) {
+			workspace.getActiveProjectSpace().getProject().removeProjectChangeObserver(this);
+		}
+
+		super.dispose();
+	}
+
+	private void hookDoubleClickAction() {
+		final Action doubleClickAction = new Action() {
+			@Override
+			public void run() {
+				ActionHelper.openModelElement(ActionHelper.getSelectedModelElement(), TaskView.class.getName());
+			}
+		};
+		viewer.setDoubleClickAction(doubleClickAction);
+	}
+
 	private METableViewer initMETableViewer(Composite parent) {
 		METableViewer metv = new METableViewer(parent, TaskPackage.eINSTANCE.getCheckable());
 		List<EStructuralFeature> features = new ArrayList<EStructuralFeature>();
@@ -192,280 +370,55 @@ public class TaskView extends ViewPart implements ProjectChangeObserver {
 		features.add(TaskPackage.Literals.WORK_ITEM__PRIORITY);
 		metv.createColumns(features);
 		doneOrResolvedLabelProvider = new WorkItemDoneOrResolvedLabelProvider();
-		doneOrResolvedLabelProvider.setCurrentUser(currentUser);
-		doneOrResolvedEditingSupport = new WorkItemDoneOrResolvedEditingSupport(metv.getTableViewer(), currentUser);
+		doneOrResolvedLabelProvider.setCurrentUser(loggedInUser);
+		doneOrResolvedEditingSupport = new WorkItemDoneOrResolvedEditingSupport(metv.getTableViewer(), loggedInUser);
 		metv.addCustomColumn(0, "", 25, SWT.NONE, false, doneOrResolvedLabelProvider, doneOrResolvedEditingSupport);
 		return metv;
 	}
 
-	private void createBlockedFilter() {
-		blockedFilter = new BlockedElementsViewerFilter();
-		filterToBlocked = new Action("", SWT.TOGGLE) {
-			@Override
-			public void run() {
-				setBlockedFilter(isChecked());
-
-			}
-
-		};
-		filterToBlocked.setImageDescriptor(Activator.getImageDescriptor("/icons/blocked.gif"));
-		Boolean blockedFilterBoolean = Boolean.parseBoolean(dialogSettings.get("BlockedFilter"));
-		filterToBlocked.setChecked(blockedFilterBoolean);
-		filterToBlocked.setToolTipText("Besides the unblocked elements, the blocked ones will be shown as well.");
-		// setBlockedFilter(blockedFilterBoolean);
-
-	}
-
-	/**
-	 * Sets the blocked filter.
-	 * 
-	 * @param checked if the blocked filter is activated.
-	 */
-	protected void setBlockedFilter(boolean checked) {
-		if (!checked) {
-			tableViewer.addFilter(blockedFilter);
-		} else {
-			tableViewer.removeFilter(blockedFilter);
-		}
-
-	}
-
-	private void initUserDependentFilters() {
+	private void initLoggedInUserUser() {
 		try {
-
-			currentUser = OrgUnitHelper.getCurrentUser(WorkspaceManager.getInstance().getCurrentWorkspace());
-			// Create User filter
-			// createUserFilter(currentUser);
-			// Create Team Filter
-			// createTeamFilter(currentUser);
-			// create resolved bug reports filter
-			// createResolvedBugReportFilter(currentUser);
-
+			loggedInUser = OrgUnitHelper.getCurrentUser(WorkspaceManager.getInstance().getCurrentWorkspace());
 		} catch (NoCurrentUserException e) {
-			currentUser = null;
-			// Disable filter
-			// createUserFilter(null);
-			// createTeamFilter(null);
-			// createResolvedBugReportFilter(null);
+			loggedInUser = null;
 		} catch (CannotMatchUserInProjectException e) {
-			currentUser = null;
-			// Disable filter
-			// createUserFilter(null);
-			// createTeamFilter(null);
-			// createResolvedBugReportFilter(null);
+			loggedInUser = null;
 		}
+		selectedUser = null;
+		viewer.removeFilter(userFilter);
+		viewer.removeFilter(teamFilter);
+		viewer.removeFilter(resolvedBugReportFilter);
+		if (txtUser != null) {
+			txtUser.setText("[no user]");
+		}
+
+		updateFilters();
+
 	}
 
-	// private void createTeamFilter(User user) {
-	// if (filterToMyTeam == null) {
-	// filterToMyTeam = new Action("", SWT.TOGGLE) {
-	// @Override
-	// public void run() {
-	// setTeamFilter(isChecked());
-	// }
-	//
-	// };
-	// filterToMyTeam.setImageDescriptor(Activator.getImageDescriptor("/icons/filtertomyteam.png"));
-	// Boolean teamFilter = Boolean.parseBoolean(settings.get("TeamFilter"));
-	// filterToMyTeam.setChecked(teamFilter);
-	// }
-	// if (user == null) {
-	// setTeamFilter(false);
-	// filterToMyTeam.setEnabled(false);
-	// return;
-	// }
-	// if (teamFilter != null) {
-	// tableViewer.removeFilter(teamFilter);
-	// }
-	// filterToMyTeam
-	// .setToolTipText("Restricts the displayed table items to items owned by the current user and it's teammates.");
-	// filterToMyTeam.setEnabled(true);
-	// teamFilter = new TeamFilter(user);
-	// setTeamFilter(filterToMyTeam.isChecked());
-	// }
-
-	/**
-	 * Sets the teamfilter.
-	 * 
-	 * @param checked if filtered
-	 */
-	// protected void setTeamFilter(boolean checked) {
-	// if (checked) {
-	// if (teamFilter != null) {
-	// tableViewer.addFilter(teamFilter);
-	// }
-	// } else {
-	// if (teamFilter != null) {
-	// tableViewer.removeFilter(teamFilter);
-	// }
-	// }
-	//
-	// }
-	private void createCheckedFilter() {
-		uncheckedFilter = new UncheckedElementsViewerFilter();
-		filterToUnchecked = new Action("", SWT.TOGGLE) {
-			@Override
-			public void run() {
-				setUncheckedFilter(isChecked());
+	private void updateFilters() {
+		if (loggedInUser == null) {
+			filterToLoggedInUser.setEnabled(false);
+			if (selectedUser != null) {
+				setUserFilter(true, selectedUser);
+				setTeamFilter(true, selectedUser);
+				setResolvedBugReportsFilter(true, selectedUser);
+			} else {
+				setUserFilter(false, null);
+				setTeamFilter(false, null);
+				setResolvedBugReportsFilter(false, null);
 			}
 
-		};
-		filterToUnchecked.setImageDescriptor(Activator.getImageDescriptor("/icons/tick.png"));
-		Boolean uncheckedFilter = Boolean.parseBoolean(dialogSettings.get("UncheckedFilter"));
-		filterToUnchecked.setChecked(uncheckedFilter);
-		filterToUnchecked.setToolTipText("Besides the unchecked elements, the checked ones will be shown as well.");
-		setUncheckedFilter(uncheckedFilter);
-	}
-
-	// private void createUserFilter(User user) {
-	// if (filterToMe == null) {
-	// filterToMe = new Action("", SWT.TOGGLE) {
-	// @Override
-	// public void run() {
-	// setUserFilter(isChecked());
-	// }
-	//
-	// };
-	// filterToMe.setImageDescriptor(Activator.getImageDescriptor("/icons/filtertouser.png"));
-	// Boolean isUserFilter = Boolean.parseBoolean(settings.get("UserFilter"));
-	// filterToMe.setChecked(isUserFilter);
-	// }
-	// if (user == null) {
-	// setUserFilter(false);
-	// filterToMe.setEnabled(false);
-	// return;
-	// }
-	// if (userFilter != null) {
-	// tableViewer.removeFilter(userFilter);
-	// }
-	// filterToMe.setEnabled(true);
-	// userFilter = new UserFilter(user);
-	// filterToMe.setToolTipText("Restricts the displayed table items to items owned by the current user.");
-	// setUserFilter(filterToMe.isChecked());
-	// }
-	//
-	// private void createResolvedBugReportFilter(User user) {
-	//
-	// if (filterResolvedBugReports == null) {
-	// filterResolvedBugReports = new Action("", SWT.TOGGLE) {
-	// @Override
-	// public void run() {
-	// setResolvedBugReportsFilter(isChecked());
-	// }
-	//
-	// };
-	// filterResolvedBugReports.setImageDescriptor(Activator.getImageDescriptor("/icons/Bug_resolved.png"));
-	// Boolean resolvedBugReportsFilterBoolean = Boolean.parseBoolean(settings.get("ResolvedBugReportsFilter"));
-	// filterResolvedBugReports.setChecked(resolvedBugReportsFilterBoolean);
-	// filterResolvedBugReports.setToolTipText("Show/Hide resolved bug reports.");
-	// }
-	//
-	// if (user == null) {
-	// setResolvedBugReportsFilter(false);
-	// filterResolvedBugReports.setEnabled(false);
-	// return;
-	// }
-	//
-	// if (resolvedBugReportFilter != null) {
-	// tableViewer.removeFilter(userFilter);
-	// }
-	// filterResolvedBugReports.setEnabled(true);
-	// resolvedBugReportFilter = new ResolvedBugReportFilter(user);
-	// setResolvedBugReportsFilter(filterResolvedBugReports.isChecked());
-	//
-	// }
-	//
-	/**
-	 * sets the uncheckd filter.
-	 * 
-	 * @param checked if filtered
-	 */
-	protected void setUncheckedFilter(boolean checked) {
-		if (!checked) {
-			tableViewer.addFilter(uncheckedFilter);
 		} else {
-			tableViewer.removeFilter(uncheckedFilter);
-		}
-
-	}
-
-	/**
-	 * sets the userfilter.
-	 * 
-	 * @param checked if fileterd.
-	 */
-	// protected void setUserFilter(boolean checked) {
-	// if (checked) {
-	// if (userFilter != null) {
-	// tableViewer.addFilter(userFilter);
-	// }
-	// } else {
-	// if (userFilter != null) {
-	// tableViewer.removeFilter(userFilter);
-	// }
-	// }
-	//
-	// }
-	//
-	// /**
-	// * sets the resolved bug report filter.
-	// *
-	// * @param checked if resolved bug reports are filtered.
-	// */
-	// protected void setResolvedBugReportsFilter(boolean checked) {
-	// if (!checked) {
-	// if (resolvedBugReportFilter != null) {
-	// tableViewer.addFilter(resolvedBugReportFilter);
-	// }
-	// } else {
-	// if (resolvedBugReportFilter != null) {
-	// tableViewer.removeFilter(resolvedBugReportFilter);
-	// }
-	// }
-	// }
-	private void hookDoubleClickAction() {
-		final Action doubleClickAction = new Action() {
-			@Override
-			public void run() {
-				ActionHelper.openModelElement(ActionHelper.getSelectedModelElement(), TaskView.class.getName());
+			filterToLoggedInUser.setEnabled(true);
+			if (filterToLoggedInUser.isChecked()) {
+				setUserFilter(true, loggedInUser);
+				setTeamFilter(filterToTeam.isChecked(), loggedInUser);
+				setResolvedBugReportsFilter(filterResolvedBugReports.isChecked(), loggedInUser);
 			}
-		};
-		viewer.setDoubleClickAction(doubleClickAction);
-	}
 
-	/**
-	 * {@inheritDoc}
-	 * 
-	 * @see org.eclipse.ui.part.WorkbenchPart#setFocus()
-	 */
-	@Override
-	public void setFocus() {
-		tableViewer.getTable().setFocus();
-		EventUtil.logFocusEvent("org.unicase.ui.taskview");
-	}
-
-	/**
-	 * {@inheritDoc}
-	 */
-	@Override
-	public void dispose() {
-		workspace.eAdapters().remove(workspaceListenerAdapter);
-		if (workspace.getActiveProjectSpace() != null && workspace.getActiveProjectSpace().getProject() != null) {
-			workspace.getActiveProjectSpace().getProject().removeProjectChangeObserver(this);
-		}
-		// settings.put("TeamFilter", filterToMyTeam.isChecked());
-		dialogSettings.put("UncheckedFilter", filterToUnchecked.isChecked());
-		// settings.put("UserFilter", filterToMe.isChecked());
-		dialogSettings.put("BlockedFilter", filterToBlocked.isChecked());
-		// settings.put("ResolvedBugReportsFilter", filterResolvedBugReports.isChecked());
-		try {
-			dialogSettings.save(filtersSettingFilename);
-		} catch (IOException e) {
-			// JH Auto-generated catch block
-			e.printStackTrace();
 		}
 
-		super.dispose();
 	}
 
 	/**
@@ -478,37 +431,7 @@ public class TaskView extends ViewPart implements ProjectChangeObserver {
 	 */
 	public void modelElementAdded(Project project, ModelElement modelElement) {
 		if (modelElement instanceof Checkable) {
-			tableViewer.refresh();
-		}
-	}
-
-	/**
-	 * Refresh the view if a work item has been removed.
-	 * 
-	 * @see org.unicase.model.util.ProjectChangeObserver#modelElementRemoved(org.unicase.model.Project,
-	 *      org.unicase.model.ModelElement)
-	 * @param project the project
-	 * @param modelElement the model element
-	 */
-	public void modelElementRemoved(Project project, ModelElement modelElement) {
-		if (modelElement instanceof Checkable) {
-			tableViewer.refresh();
-		}
-	}
-
-	/**
-	 * Refresh the view if a work item if notify has been called. Notify gets called when the model element has been
-	 * changed or the container of the ME has been changed. y * @see
-	 * org.unicase.model.util.ProjectChangeObserver#notify(org.eclipse.emf.common.notify.Notification,
-	 * org.unicase.model.Project, org.unicase.model.ModelElement)
-	 * 
-	 * @param notification the notification
-	 * @param project the project
-	 * @param modelElement the model element
-	 */
-	public void notify(Notification notification, Project project, ModelElement modelElement) {
-		if (modelElement instanceof Checkable) {
-			tableViewer.update(modelElement, null);
+			viewer.refresh();
 		}
 	}
 
@@ -526,4 +449,158 @@ public class TaskView extends ViewPart implements ProjectChangeObserver {
 	public void modelElementDeleteStarted(ModelElement modelElement) {
 	}
 
+	/**
+	 * Refresh the view if a work item has been removed.
+	 * 
+	 * @see org.unicase.model.util.ProjectChangeObserver#modelElementRemoved(org.unicase.model.Project,
+	 *      org.unicase.model.ModelElement)
+	 * @param project the project
+	 * @param modelElement the model element
+	 */
+	public void modelElementRemoved(Project project, ModelElement modelElement) {
+		if (modelElement instanceof Checkable) {
+			viewer.refresh();
+		}
+	}
+
+	/**
+	 * Refresh the view if a work item if notify has been called. Notify gets called when the model element has been
+	 * changed or the container of the ME has been changed. y * @see
+	 * org.unicase.model.util.ProjectChangeObserver#notify(org.eclipse.emf.common.notify.Notification,
+	 * org.unicase.model.Project, org.unicase.model.ModelElement)
+	 * 
+	 * @param notification the notification
+	 * @param project the project
+	 * @param modelElement the model element
+	 */
+	public void notify(Notification notification, Project project, ModelElement modelElement) {
+		if (modelElement instanceof Checkable) {
+			viewer.getTableViewer().update(modelElement, null);
+		}
+	}
+
+	/**
+	 * Sets the blocked filter.
+	 * 
+	 * @param checked if the blocked filter is activated.
+	 */
+	protected void setBlockedFilter(boolean checked) {
+		if (!checked) {
+			viewer.addFilter(blockedFilter);
+
+		} else {
+			viewer.removeFilter(blockedFilter);
+		}
+		getDialogSettings().put("BlockedFilter", filterToBlocked.isChecked());
+
+	}
+
+	/**
+	 * {@inheritDoc}
+	 * 
+	 * @see org.eclipse.ui.part.WorkbenchPart#setFocus()
+	 */
+	@Override
+	public void setFocus() {
+		viewer.getTableViewer().getTable().setFocus();
+		EventUtil.logFocusEvent("org.unicase.ui.taskview");
+	}
+
+	/**
+	 * sets the resolved bug report filter.
+	 * 
+	 * @param checked if resolved bug reports are filtered.
+	 * @param user user
+	 */
+	protected void setResolvedBugReportsFilter(boolean checked, User user) {
+		if (!checked) {
+			if (resolvedBugReportFilter != null) {
+				resolvedBugReportFilter.setUser(user);
+				viewer.addFilter(resolvedBugReportFilter);
+			}
+		} else {
+			if (resolvedBugReportFilter != null) {
+				viewer.removeFilter(resolvedBugReportFilter);
+			}
+		}
+		getDialogSettings().put("ResolvedBugReportsFilter", filterResolvedBugReports.isChecked());
+	}
+
+	/**
+	 * Sets the teamfilter.
+	 * 
+	 * @param checked if filtered
+	 * @param user user
+	 */
+	protected void setTeamFilter(boolean checked, User user) {
+		if (checked) {
+			if (teamFilter != null) {
+				teamFilter.setUser(user);
+				viewer.addFilter(teamFilter);
+			}
+		} else {
+			if (teamFilter != null) {
+				viewer.removeFilter(teamFilter);
+			}
+		}
+		getDialogSettings().put("TeamFilter", filterToTeam.isChecked());
+
+	}
+
+	/**
+	 * sets the uncheckd filter.
+	 * 
+	 * @param checked if filtered
+	 */
+	protected void setUncheckedFilter(boolean checked) {
+		if (!checked) {
+			viewer.addFilter(uncheckedFilter);
+		} else {
+			viewer.removeFilter(uncheckedFilter);
+		}
+		getDialogSettings().put("UncheckedFilter", filterToUnchecked.isChecked());
+
+	}
+
+	/**
+	 * sets the userfilter.
+	 * 
+	 * @param checked if fileterd.
+	 * @param user to which must be filtered
+	 */
+	protected void setUserFilter(boolean checked, User user) {
+		updateLabelProvider(user);
+		if (checked) {
+			if (userFilter != null) {
+				userFilter.setUser(user);
+				viewer.addFilter(userFilter);
+				if (txtUser == null) {
+					return;
+				}
+				if (user != null) {
+					txtUser.setText(user.getName());
+				} else {
+					txtUser.setText("[no user]");
+				}
+
+			}
+		} else {
+			if (userFilter != null) {
+				viewer.removeFilter(userFilter);
+				if (txtUser != null) {
+					txtUser.setText("[no user]");
+				}
+			}
+		}
+		getDialogSettings().put("UserFilter", filterToLoggedInUser.isChecked());
+	}
+
+	private void updateLabelProvider(User user) {
+		doneOrResolvedEditingSupport.setCurrentUser(user);
+		doneOrResolvedLabelProvider.setCurrentUser(user);
+	}
+
+	private IDialogSettings getDialogSettings() {
+		return Activator.getDefault().getDialogSettings();
+	}
 }

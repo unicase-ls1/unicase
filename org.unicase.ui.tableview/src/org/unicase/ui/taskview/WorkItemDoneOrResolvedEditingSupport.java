@@ -123,19 +123,7 @@ public class WorkItemDoneOrResolvedEditingSupport extends EditingSupport {
 			} else {
 				// work item has no reviewer. Show reviewer selection dialog.
 				if (isChecked) {
-					AdapterFactoryLabelProvider labelProvider = new AdapterFactoryLabelProvider(
-						new ComposedAdapterFactory(ComposedAdapterFactory.Descriptor.Registry.INSTANCE));
-
-					ReviewerSelectionDialog reviwerSelectionDialog = new ReviewerSelectionDialog(this.getViewer()
-						.getControl().getShell(), labelProvider, workItem);
-					reviwerSelectionDialog.setMessage(ReviewerSelectionDialog.REVIEWERSELECTIONDIALOG_MESSAGE);
-
-					Project project = WorkspaceManager.getInstance().getCurrentWorkspace().getActiveProjectSpace()
-						.getProject();
-					List<User> users = project.getAllModelElementsbyClass(OrganizationPackage.eINSTANCE.getUser(),
-						new BasicEList<User>());
-					reviwerSelectionDialog.setElements(users.toArray());
-					reviwerSelectionDialog.open();
+					showReviewerSelectionDialog(workItem);
 				} else {
 
 				}
@@ -146,6 +134,21 @@ public class WorkItemDoneOrResolvedEditingSupport extends EditingSupport {
 			c.setChecked(isChecked);
 
 		}
+	}
+
+	private void showReviewerSelectionDialog(WorkItem workItem) {
+		AdapterFactoryLabelProvider labelProvider = new AdapterFactoryLabelProvider(new ComposedAdapterFactory(
+			ComposedAdapterFactory.Descriptor.Registry.INSTANCE));
+
+		ReviewerSelectionDialog reviwerSelectionDialog = new ReviewerSelectionDialog(this.getViewer().getControl()
+			.getShell(), labelProvider, workItem);
+		reviwerSelectionDialog.setMessage(ReviewerSelectionDialog.REVIEWERSELECTIONDIALOG_MESSAGE);
+
+		Project project = WorkspaceManager.getInstance().getCurrentWorkspace().getActiveProjectSpace().getProject();
+		List<User> users = project.getAllModelElementsbyClass(OrganizationPackage.eINSTANCE.getUser(),
+			new BasicEList<User>());
+		reviwerSelectionDialog.setElements(users.toArray());
+		reviwerSelectionDialog.open();
 	}
 
 	/**

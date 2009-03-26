@@ -27,6 +27,7 @@ import org.eclipse.jface.viewers.LabelProvider;
 import org.eclipse.jface.viewers.TableViewer;
 import org.eclipse.jface.viewers.TableViewerColumn;
 import org.eclipse.jface.viewers.ViewerComparator;
+import org.eclipse.jface.viewers.ViewerFilter;
 import org.eclipse.jface.window.Window;
 import org.eclipse.swt.SWT;
 import org.eclipse.swt.graphics.Image;
@@ -506,6 +507,55 @@ public class METableViewer {
 	 */
 	public List<TableViewerColumn> getColumns() {
 		return columns;
+	}
+
+	/**
+	 * adds a filter to table viewer.
+	 * 
+	 * @param filter filter
+	 */
+	public void addFilter(ViewerFilter filter) {
+		if (filter != null) {
+			if (hasFilter(filter)) {
+				refresh();
+			} else {
+				tableViewer.addFilter(filter);
+			}
+		}
+	}
+
+	/**
+	 * removes a filter from viewer.
+	 * 
+	 * @param filter filter
+	 */
+	public void removeFilter(ViewerFilter filter) {
+		if (filter != null) {
+			tableViewer.removeFilter(filter);
+		}
+
+	}
+
+	/**
+	 * if viewer has this filter.
+	 * 
+	 * @param filter filter
+	 * @return boolean
+	 */
+	private boolean hasFilter(ViewerFilter filter) {
+		for (int i = 0; i < tableViewer.getFilters().length; i++) {
+			if (tableViewer.getFilters()[i] == filter) {
+				return true;
+			}
+		}
+		return false;
+	}
+
+	/**
+	 * refreshes the underlying table viewer.
+	 */
+	public void refresh() {
+		tableViewer.refresh();
 	}
 
 }

@@ -19,7 +19,7 @@ import org.unicase.model.task.WorkItem;
  */
 public class UserFilter extends ViewerFilter {
 
-	private final User user;
+	private  User user;
 
 	/**
 	 * default constructor.
@@ -40,10 +40,11 @@ public class UserFilter extends ViewerFilter {
 	 */
 	@Override
 	public boolean select(Viewer viewer, Object parentElement, Object element) {
+		//false = don't show, true = show
 		if (user == null) {
-			return true;
+			return true; 
 		}
-		if (element instanceof WorkItem) {
+		if (element instanceof WorkItem) { 
 			//if user participates in this work item
 			WorkItem workItem = (WorkItem)element;
 			if(workItem.getParticipants().contains(user)){
@@ -73,6 +74,20 @@ public class UserFilter extends ViewerFilter {
 		}
 		
 		return false;
+	}
+
+	/**
+	 * @param user the user to set
+	 */
+	public void setUser(User user) {
+		this.user = user;
+	}
+
+	/**
+	 * @return the user
+	 */
+	public User getUser() {
+		return user;
 	}
 
 }

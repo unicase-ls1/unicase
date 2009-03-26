@@ -23,6 +23,7 @@ import org.unicase.workspace.util.OrgUnitHelper;
  */
 public class TeamFilter extends ViewerFilter {
 
+	private User user;
 	private Set<OrgUnit> team;
 
 	/**
@@ -79,6 +80,21 @@ public class TeamFilter extends ViewerFilter {
 			}
 		}
 		return false;
+	}
+
+	/**
+	 * @param user the user to set
+	 */
+	public void setUser(User user) {
+		this.user = user;
+		team = OrgUnitHelper.getTeam(user);
+	}
+
+	/**
+	 * @return the user
+	 */
+	public User getUser() {
+		return user;
 	}
 
 }

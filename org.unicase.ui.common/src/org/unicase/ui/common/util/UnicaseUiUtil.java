@@ -11,6 +11,8 @@ import java.util.HashSet;
 import java.util.List;
 import java.util.Set;
 
+import org.eclipse.emf.common.util.BasicEList;
+import org.eclipse.emf.ecore.EClass;
 import org.eclipse.emf.ecore.EObject;
 import org.eclipse.emf.ecore.EStructuralFeature.Setting;
 import org.eclipse.emf.edit.provider.ComposedAdapterFactory;
@@ -22,6 +24,7 @@ import org.eclipse.ui.dialogs.ElementListSelectionDialog;
 import org.unicase.emfstore.esmodel.accesscontrol.ACUser;
 import org.unicase.emfstore.esmodel.accesscontrol.roles.Role;
 import org.unicase.model.ModelElement;
+import org.unicase.model.Project;
 import org.unicase.model.classes.Association;
 import org.unicase.workspace.ProjectSpace;
 import org.unicase.workspace.Usersession;
@@ -65,6 +68,19 @@ public final class UnicaseUiUtil {
 			result = dlg.getResult();
 		}
 		return result;
+	}
+	
+	/**
+	 * Shows a list of all MEs of meType in project.
+	 * @param shell shell
+	 * @param meType model element type
+	 * @param project project
+	 * @param multiSelection if multiple elements can be selected
+	 * @return selected elements
+	 */
+	public static Object[] showMESelectionDialog(Shell shell, EClass meType, Project project, boolean multiSelection){
+		List<? extends ModelElement> elements = project.getAllModelElementsbyClass(meType, new BasicEList<ModelElement>());
+		return showMESelectionDialog(shell, elements, "Select " + meType.getName(), multiSelection);
 	}
 
 	/**
