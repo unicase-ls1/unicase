@@ -24,8 +24,11 @@ import org.eclipse.ui.dialogs.ElementListSelectionDialog;
 import org.unicase.emfstore.esmodel.accesscontrol.ACUser;
 import org.unicase.emfstore.esmodel.accesscontrol.roles.Role;
 import org.unicase.model.ModelElement;
+import org.unicase.model.ModelPackage;
 import org.unicase.model.Project;
 import org.unicase.model.classes.Association;
+import org.unicase.model.util.ModelUtil;
+import org.unicase.ui.common.MEClassLabelProvider;
 import org.unicase.workspace.ProjectSpace;
 import org.unicase.workspace.Usersession;
 
@@ -82,9 +85,35 @@ public final class UnicaseUiUtil {
 		List<? extends ModelElement> elements = project.getAllModelElementsbyClass(meType, new BasicEList<ModelElement>());
 		return showMESelectionDialog(shell, elements, "Select " + meType.getName(), multiSelection);
 	}
+	
+	/**
+	 * Shows a list of model element types.
+	 * @param shell shell
+	 * @param showAbstractTypes if also abstract types are shown
+	 * @return selected model element type
+	 */
+	public static EClass showMETypeSelectionDialog(Shell shell, boolean showAbstractTypes){
+		ElementListSelectionDialog dlg = new ElementListSelectionDialog(shell.getShell(),
+			new MEClassLabelProvider());
+		Set<EClass> eClazz;
+		if(showAbstractTypes){
+			eClazz = ModelUtil.getAllMETypes(ModelPackage.eINSTANCE);
+		}else{
+			eClazz = ModelUtil.getNonAbstractMETypes(ModelPackage.eINSTANCE);
+		}
+		dlg.setElements(eClazz.toArray());
+		dlg.setTitle("Select model element type");
+		dlg.setBlockOnOpen(true);
+		dlg.setMultipleSelection(false);
+		EClass result = null;
+		if (dlg.open() == Window.OK) {
+			result = (EClass) dlg.getResult()[0];
+		}
+		return result;
+	}
 
 	/**
-	 * . This method searches for in- and outgoing associations of a node and returns them in an ArrayList
+	 * This method searches for in- and outgoing associations of a node and returns them in an ArrayList.
 	 * 
 	 * @param node The diagram node
 	 * @return The list of associations
