@@ -20,6 +20,7 @@ import org.unicase.model.rationale.RationalePackage;
 import org.unicase.model.task.TaskPackage;
 import org.unicase.workspace.ProjectSpace;
 import org.unicase.workspace.notification.provider.AssignmentNotificationProvider;
+import org.unicase.workspace.notification.provider.PushedNotificationProvider;
 import org.unicase.workspace.notification.provider.TaskObjectNotificationProvider;
 import org.unicase.workspace.notification.provider.UpdateNotificationProvider;
 import org.unicase.workspace.util.WorkspaceUtil;
@@ -51,6 +52,8 @@ public final class NotificationGenerator {
 		providers.add(new AssignmentNotificationProvider(taskPackage.getWorkPackage()));
 
 		providers.add(new TaskObjectNotificationProvider());
+
+		providers.add(new PushedNotificationProvider());
 
 		// providers.add(new TaskChangeNotificationProvider(TaskPackage.eINSTANCE.getActionItem()));
 		// providers.add(new TaskChangeNotificationProvider(RationalePackage.eINSTANCE.getIssue()));
@@ -98,7 +101,7 @@ public final class NotificationGenerator {
 			} catch (RuntimeException e) {
 				// END SUPRESS CATCH EXCEPTION
 				WorkspaceUtil.logException("Notification Provider " + provider.getName()
-					+ "threw an exception, its notifications where discarded", e);
+					+ " threw an exception, its notifications where discarded", e);
 			}
 		}
 
