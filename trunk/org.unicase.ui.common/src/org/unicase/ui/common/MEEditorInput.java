@@ -8,8 +8,16 @@ package org.unicase.ui.common;
 import org.eclipse.emf.ecore.EStructuralFeature;
 import org.eclipse.emf.edit.provider.ComposedAdapterFactory;
 import org.eclipse.emf.edit.ui.provider.AdapterFactoryLabelProvider;
+import org.eclipse.emf.transaction.RecordingCommand;
+import org.eclipse.emf.transaction.TransactionalEditingDomain;
+import org.eclipse.emf.transaction.util.TransactionUtil;
+import org.eclipse.jface.dialogs.IDialogConstants;
+import org.eclipse.jface.dialogs.InputDialog;
+import org.eclipse.jface.dialogs.MessageDialog;
 import org.eclipse.jface.resource.ImageDescriptor;
 import org.eclipse.jface.viewers.DecoratingLabelProvider;
+import org.eclipse.swt.widgets.Display;
+import org.eclipse.swt.widgets.Shell;
 import org.eclipse.ui.IDecoratorManager;
 import org.eclipse.ui.IEditorInput;
 import org.eclipse.ui.IPersistableElement;
@@ -20,6 +28,7 @@ import org.unicase.model.ModelElement;
  * The {@link IEditorInput} for the {@link MEEditor}.
  * 
  * @author helming
+ * @author shterev
  * @author naughton
  */
 public class MEEditorInput implements IEditorInput {
@@ -35,6 +44,28 @@ public class MEEditorInput implements IEditorInput {
 	public MEEditorInput(ModelElement me) {
 		super();
 		this.modelElement = me;
+		if (modelElement.getName() == null) {
+			final Shell activeShell = Display.getCurrent().getActiveShell();
+			boolean doSetName = MessageDialog
+				.openQuestion(
+					activeShell,
+					"Missing title",
+					"The element you are trying to open does not have a proper name and cannot be opened.\nDo you want to set a name for it now?");
+			if (doSetName) {
+				final InputDialog inputDialog = new InputDialog(activeShell, "New title",
+					"Please enter the new name for this element", "new " + modelElement.eClass().getName(), null);
+				inputDialog.setBlockOnOpen(true);
+				if (inputDialog.open() == IDialogConstants.OK_ID) {
+					TransactionalEditingDomain domain = TransactionUtil.getEditingDomain(modelElement);
+					domain.getCommandStack().execute(new RecordingCommand(domain) {
+						@Override
+						protected void doExecute() {
+							modelElement.setName(inputDialog.getValue());
+						}
+					});
+				}
+			}
+		}
 	}
 
 	/**
@@ -73,8 +104,7 @@ public class MEEditorInput implements IEditorInput {
 	 * {@inheritDoc}
 	 */
 	public String getName() {
-		String name = modelElement.getName();
-		return (name == null ? "" : name);
+		return modelElement.getName();
 	}
 
 	/**
