@@ -101,7 +101,8 @@ public class TaskObjectNotificationProvider implements NotificationProvider {
 			ReferenceOperation referenceOperation = (ReferenceOperation) operation;
 			String featureName = TaskPackage.eINSTANCE.getWorkPackage_ContainedWorkItems().getName();
 			if (referenceOperation.getFeatureName().equals(featureName)
-				|| referenceOperation.getOppositeFeatureName().equals(featureName)) {
+				|| (referenceOperation.getOppositeFeatureName() != null && referenceOperation.getOppositeFeatureName()
+					.equals(featureName))) {
 				return true;
 			}
 		}

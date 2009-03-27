@@ -47,8 +47,7 @@ public class UpdateNotificationProvider implements NotificationProvider {
 		String currentUsername) {
 		List<ESNotification> result = new ArrayList<ESNotification>();
 		// do not generate an update notification for a commit
-		if ((changePackages.size() == 1 && changePackages.get(0).getLogMessage() == null)
-			|| changePackages.get(0).getLogMessage().getAuthor().equals(currentUsername)) {
+		if ((changePackages.size() == 1 && changePackages.get(0).getLogMessage() == null)) {
 			return result;
 		}
 
