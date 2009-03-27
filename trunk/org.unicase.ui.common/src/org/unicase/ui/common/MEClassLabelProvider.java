@@ -36,8 +36,10 @@ public class MEClassLabelProvider extends AdapterFactoryLabelProvider {
 		// it inherits ModelElement then return its name.
 		if (object instanceof EClass) {
 			EClass eclass = (EClass) object;
+			if(eclass.equals(ModelPackage.eINSTANCE.getModelElement())){
+				text = eclass.getName();
+			}
 			if (eclass.getEAllSuperTypes().contains(ModelPackage.eINSTANCE.getModelElement())) {
-				// TODO: show getDisplayName()
 				text = eclass.getName();
 			}
 
@@ -57,8 +59,13 @@ public class MEClassLabelProvider extends AdapterFactoryLabelProvider {
 		if (object instanceof EClass) {
 			EClass eClass = (EClass) object;
 			EPackage ePackage = eClass.getEPackage();
-			ModelElement newMEInstance = (ModelElement) ePackage.getEFactoryInstance().create(eClass);
+			if(!eClass.isAbstract() && !eClass.isInterface()){
+					ModelElement newMEInstance = (ModelElement) ePackage.getEFactoryInstance().create(eClass);
 			return super.getImage(newMEInstance);
+			}else{
+				return super.getImage(object);
+			}
+		
 		}
 		return super.getImage(object);
 
