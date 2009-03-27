@@ -85,6 +85,7 @@ public class Association1CreateCommand extends CreateElementCommand {
 	/**
 	 * @generated
 	 */
+	@Override
 	public boolean canExecute() {
 		if (source == null && target == null) {
 			return false;
@@ -110,8 +111,10 @@ public class Association1CreateCommand extends CreateElementCommand {
 	 * @generated NOT {@inheritDoc}
 	 * @see org.eclipse.gmf.runtime.emf.type.core.commands.CreateElementCommand#doDefaultElementCreation()
 	 */
+	@Override
 	protected EObject doDefaultElementCreation() {
 		Association newElement = ClassesFactory.eINSTANCE.createAssociation();
+		newElement.setName("new Association");
 		getContainer().getNewElements().add(newElement);
 		getContainer().getElements().add(newElement);
 		newElement.setSource(getSource());
@@ -123,6 +126,7 @@ public class Association1CreateCommand extends CreateElementCommand {
 	/**
 	 * @generated
 	 */
+	@Override
 	protected EClass getEClassToEdit() {
 		return DiagramPackage.eINSTANCE.getMEDiagram();
 	}
@@ -130,6 +134,7 @@ public class Association1CreateCommand extends CreateElementCommand {
 	/**
 	 * @generated
 	 */
+	@Override
 	protected CommandResult doExecuteWithResult(IProgressMonitor monitor, IAdaptable info) throws ExecutionException {
 		if (!canExecute()) {
 			throw new ExecutionException("Invalid arguments in create link command"); //$NON-NLS-1$
@@ -140,6 +145,7 @@ public class Association1CreateCommand extends CreateElementCommand {
 	/**
 	 * @generated
 	 */
+	@Override
 	protected ConfigureRequest createConfigureRequest() {
 		ConfigureRequest request = super.createConfigureRequest();
 		request.setParameter(CreateRelationshipRequest.SOURCE, getSource());
@@ -150,6 +156,7 @@ public class Association1CreateCommand extends CreateElementCommand {
 	/**
 	 * @generated
 	 */
+	@Override
 	protected void setElementToEdit(EObject element) {
 		throw new UnsupportedOperationException();
 	}
