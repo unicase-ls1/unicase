@@ -13,6 +13,7 @@ import org.eclipse.gmf.runtime.notation.NotationPackage;
 import org.unicase.model.ModelPackage;
 import org.unicase.model.attachment.AttachmentFactory;
 import org.unicase.model.attachment.AttachmentPackage;
+import org.unicase.model.attachment.FileAttachment;
 import org.unicase.model.attachment.UrlAttachment;
 import org.unicase.model.bug.BugPackage;
 import org.unicase.model.bug.impl.BugPackageImpl;
@@ -55,6 +56,13 @@ public class AttachmentPackageImpl extends EPackageImpl implements AttachmentPac
 	 * @generated
 	 */
 	private EClass urlAttachmentEClass = null;
+
+	/**
+	 * <!-- begin-user-doc --> <!-- end-user-doc -->
+	 * 
+	 * @generated
+	 */
+	private EClass fileAttachmentEClass = null;
 
 	/**
 	 * Creates an instance of the model <b>Package</b>, registered with {@link org.eclipse.emf.ecore.EPackage.Registry
@@ -224,6 +232,51 @@ public class AttachmentPackageImpl extends EPackageImpl implements AttachmentPac
 	 * 
 	 * @generated
 	 */
+	public EClass getFileAttachment() {
+		return fileAttachmentEClass;
+	}
+
+	/**
+	 * <!-- begin-user-doc --> <!-- end-user-doc -->
+	 * 
+	 * @generated
+	 */
+	public EAttribute getFileAttachment_FileName() {
+		return (EAttribute) fileAttachmentEClass.getEStructuralFeatures().get(0);
+	}
+
+	/**
+	 * <!-- begin-user-doc --> <!-- end-user-doc -->
+	 * 
+	 * @generated
+	 */
+	public EAttribute getFileAttachment_FileHash() {
+		return (EAttribute) fileAttachmentEClass.getEStructuralFeatures().get(1);
+	}
+
+	/**
+	 * <!-- begin-user-doc --> <!-- end-user-doc -->
+	 * 
+	 * @generated
+	 */
+	public EAttribute getFileAttachment_FileID() {
+		return (EAttribute) fileAttachmentEClass.getEStructuralFeatures().get(2);
+	}
+
+	/**
+	 * <!-- begin-user-doc --> <!-- end-user-doc -->
+	 * 
+	 * @generated
+	 */
+	public EAttribute getFileAttachment_FileSize() {
+		return (EAttribute) fileAttachmentEClass.getEStructuralFeatures().get(3);
+	}
+
+	/**
+	 * <!-- begin-user-doc --> <!-- end-user-doc -->
+	 * 
+	 * @generated
+	 */
 	public AttachmentFactory getAttachmentFactory() {
 		return (AttachmentFactory) getEFactoryInstance();
 	}
@@ -249,6 +302,12 @@ public class AttachmentPackageImpl extends EPackageImpl implements AttachmentPac
 		// Create classes and their features
 		urlAttachmentEClass = createEClass(URL_ATTACHMENT);
 		createEAttribute(urlAttachmentEClass, URL_ATTACHMENT__URL);
+
+		fileAttachmentEClass = createEClass(FILE_ATTACHMENT);
+		createEAttribute(fileAttachmentEClass, FILE_ATTACHMENT__FILE_NAME);
+		createEAttribute(fileAttachmentEClass, FILE_ATTACHMENT__FILE_HASH);
+		createEAttribute(fileAttachmentEClass, FILE_ATTACHMENT__FILE_ID);
+		createEAttribute(fileAttachmentEClass, FILE_ATTACHMENT__FILE_SIZE);
 	}
 
 	/**
@@ -283,12 +342,28 @@ public class AttachmentPackageImpl extends EPackageImpl implements AttachmentPac
 
 		// Add supertypes to classes
 		urlAttachmentEClass.getESuperTypes().add(theModelPackage.getAttachment());
+		fileAttachmentEClass.getESuperTypes().add(theModelPackage.getAttachment());
 
 		// Initialize classes and features; add operations and parameters
 		initEClass(urlAttachmentEClass, UrlAttachment.class, "UrlAttachment", !IS_ABSTRACT, !IS_INTERFACE,
 			IS_GENERATED_INSTANCE_CLASS);
 		initEAttribute(getUrlAttachment_Url(), ecorePackage.getEString(), "url", null, 0, 1, UrlAttachment.class,
 			!IS_TRANSIENT, !IS_VOLATILE, IS_CHANGEABLE, !IS_UNSETTABLE, !IS_ID, IS_UNIQUE, !IS_DERIVED, IS_ORDERED);
+
+		initEClass(fileAttachmentEClass, FileAttachment.class, "FileAttachment", !IS_ABSTRACT, !IS_INTERFACE,
+			IS_GENERATED_INSTANCE_CLASS);
+		initEAttribute(getFileAttachment_FileName(), ecorePackage.getEString(), "fileName", null, 0, 1,
+			FileAttachment.class, !IS_TRANSIENT, !IS_VOLATILE, IS_CHANGEABLE, !IS_UNSETTABLE, !IS_ID, IS_UNIQUE,
+			!IS_DERIVED, IS_ORDERED);
+		initEAttribute(getFileAttachment_FileHash(), ecorePackage.getEString(), "fileHash", null, 0, 1,
+			FileAttachment.class, !IS_TRANSIENT, !IS_VOLATILE, IS_CHANGEABLE, !IS_UNSETTABLE, !IS_ID, IS_UNIQUE,
+			!IS_DERIVED, IS_ORDERED);
+		initEAttribute(getFileAttachment_FileID(), ecorePackage.getEString(), "fileID", null, 0, 1,
+			FileAttachment.class, !IS_TRANSIENT, !IS_VOLATILE, IS_CHANGEABLE, !IS_UNSETTABLE, !IS_ID, IS_UNIQUE,
+			!IS_DERIVED, IS_ORDERED);
+		initEAttribute(getFileAttachment_FileSize(), ecorePackage.getELong(), "fileSize", null, 0, 1,
+			FileAttachment.class, !IS_TRANSIENT, !IS_VOLATILE, IS_CHANGEABLE, !IS_UNSETTABLE, !IS_ID, IS_UNIQUE,
+			!IS_DERIVED, IS_ORDERED);
 	}
 
 } // AttachmentPackageImpl

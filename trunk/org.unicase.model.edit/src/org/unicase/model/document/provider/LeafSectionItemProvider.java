@@ -315,6 +315,9 @@ public class LeafSectionItemProvider extends ModelElementItemProvider implements
 			AttachmentFactory.eINSTANCE.createUrlAttachment()));
 
 		newChildDescriptors.add(createChildParameter(DocumentPackage.Literals.LEAF_SECTION__MODEL_ELEMENTS,
+			AttachmentFactory.eINSTANCE.createFileAttachment()));
+
+		newChildDescriptors.add(createChildParameter(DocumentPackage.Literals.LEAF_SECTION__MODEL_ELEMENTS,
 			ProfileFactory.eINSTANCE.createProfile()));
 
 		newChildDescriptors.add(createChildParameter(DocumentPackage.Literals.LEAF_SECTION__MODEL_ELEMENTS,

@@ -12,6 +12,7 @@ import org.eclipse.emf.ecore.impl.EFactoryImpl;
 import org.eclipse.emf.ecore.plugin.EcorePlugin;
 import org.unicase.model.attachment.AttachmentFactory;
 import org.unicase.model.attachment.AttachmentPackage;
+import org.unicase.model.attachment.FileAttachment;
 import org.unicase.model.attachment.UrlAttachment;
 
 /*
@@ -56,6 +57,8 @@ public class AttachmentFactoryImpl extends EFactoryImpl implements AttachmentFac
 		switch (eClass.getClassifierID()) {
 		case AttachmentPackage.URL_ATTACHMENT:
 			return createUrlAttachment();
+		case AttachmentPackage.FILE_ATTACHMENT:
+			return createFileAttachment();
 		default:
 			throw new IllegalArgumentException("The class '" + eClass.getName() + "' is not a valid classifier");
 		}
@@ -69,6 +72,16 @@ public class AttachmentFactoryImpl extends EFactoryImpl implements AttachmentFac
 	public UrlAttachment createUrlAttachment() {
 		UrlAttachmentImpl urlAttachment = new UrlAttachmentImpl();
 		return urlAttachment;
+	}
+
+	/**
+	 * <!-- begin-user-doc --> <!-- end-user-doc -->
+	 * 
+	 * @generated
+	 */
+	public FileAttachment createFileAttachment() {
+		FileAttachmentImpl fileAttachment = new FileAttachmentImpl();
+		return fileAttachment;
 	}
 
 	/**

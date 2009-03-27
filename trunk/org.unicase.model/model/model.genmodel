@@ -519,6 +519,12 @@
       <genClasses ecoreClass="model.ecore#//attachment/UrlAttachment">
         <genFeatures createChild="false" ecoreFeature="ecore:EAttribute model.ecore#//attachment/UrlAttachment/url"/>
       </genClasses>
+      <genClasses ecoreClass="model.ecore#//attachment/FileAttachment">
+        <genFeatures property="Readonly" createChild="false" ecoreFeature="ecore:EAttribute model.ecore#//attachment/FileAttachment/fileName"/>
+        <genFeatures property="Readonly" createChild="false" ecoreFeature="ecore:EAttribute model.ecore#//attachment/FileAttachment/fileHash"/>
+        <genFeatures property="Readonly" createChild="false" ecoreFeature="ecore:EAttribute model.ecore#//attachment/FileAttachment/fileID"/>
+        <genFeatures property="Readonly" createChild="false" ecoreFeature="ecore:EAttribute model.ecore#//attachment/FileAttachment/fileSize"/>
+      </genClasses>
     </nestedGenPackages>
     <nestedGenPackages prefix="Profile" basePackage="org.unicase.model" disposableProviderFactory="true"
         ecorePackage="model.ecore#//profile">

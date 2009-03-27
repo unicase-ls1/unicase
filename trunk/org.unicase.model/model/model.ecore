@@ -1267,6 +1267,12 @@
     <eClassifiers xsi:type="ecore:EClass" name="UrlAttachment" eSuperTypes="#//Attachment">
       <eStructuralFeatures xsi:type="ecore:EAttribute" name="url" eType="ecore:EDataType http://www.eclipse.org/emf/2002/Ecore#//EString"/>
     </eClassifiers>
+    <eClassifiers xsi:type="ecore:EClass" name="FileAttachment" eSuperTypes="#//Attachment">
+      <eStructuralFeatures xsi:type="ecore:EAttribute" name="fileName" eType="ecore:EDataType http://www.eclipse.org/emf/2002/Ecore#//EString"/>
+      <eStructuralFeatures xsi:type="ecore:EAttribute" name="fileHash" eType="ecore:EDataType http://www.eclipse.org/emf/2002/Ecore#//EString"/>
+      <eStructuralFeatures xsi:type="ecore:EAttribute" name="fileID" eType="ecore:EDataType http://www.eclipse.org/emf/2002/Ecore#//EString"/>
+      <eStructuralFeatures xsi:type="ecore:EAttribute" name="fileSize" eType="ecore:EDataType http://www.eclipse.org/emf/2002/Ecore#//ELong"/>
+    </eClassifiers>
   </eSubpackages>
   <eSubpackages name="profile" nsURI="http://unicase.org/model/profile" nsPrefix="org.unicase.model.profile">
     <eClassifiers xsi:type="ecore:EClass" name="Profile" eSuperTypes="#//ModelElement">
