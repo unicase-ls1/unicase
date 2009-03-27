@@ -18,7 +18,7 @@ import org.unicase.model.ModelElement;
 import org.unicase.model.ModelPackage;
 import org.unicase.model.Project;
 import org.unicase.model.util.ProjectChangeObserver;
-import org.unicase.ui.common.dialogs.METypeSelectionDialog;
+import org.unicase.ui.common.dialogs.METypeTreeSelectionDialog;
 import org.unicase.ui.tableview.viewer.METableViewer;
 import org.unicase.workspace.ProjectSpace;
 import org.unicase.workspace.Workspace;
@@ -109,7 +109,7 @@ public class UnicaseTableView extends ViewPart implements ProjectChangeObserver 
 	protected EClass[] showMETypeSelectionDialog() {
 		EClass[] result = null;
 
-		METypeSelectionDialog dialog = new METypeSelectionDialog(getSite().getShell(), false);
+		METypeTreeSelectionDialog dialog = new METypeTreeSelectionDialog(getSite().getShell(), false);
 		dialog.open();
 		result = dialog.getResult();
 		return result;
