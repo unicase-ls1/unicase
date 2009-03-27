@@ -34,7 +34,7 @@ import org.unicase.ui.common.ModelTreeContentProvider;
  * 
  * @author Hodaie
  */
-public class METypeSelectionDialog extends TitleAreaDialog implements Listener {
+public class METypeTreeSelectionDialog extends TitleAreaDialog implements Listener {
 
 	private TreeViewer treeViewer;
 	private boolean multiSelection;
@@ -46,7 +46,7 @@ public class METypeSelectionDialog extends TitleAreaDialog implements Listener {
 	 * @param parent The parent composite
 	 * @param multiSelection if multiselection is allowed.
 	 */
-	public METypeSelectionDialog(Shell parent, boolean multiSelection) {
+	public METypeTreeSelectionDialog(Shell parent, boolean multiSelection) {
 		super(parent);
 		this.multiSelection = multiSelection;
 

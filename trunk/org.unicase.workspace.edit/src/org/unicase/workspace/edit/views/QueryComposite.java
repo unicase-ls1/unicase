@@ -34,7 +34,7 @@ import org.unicase.model.Project;
 import org.unicase.model.organization.OrganizationPackage;
 import org.unicase.model.organization.User;
 import org.unicase.ui.common.MEClassLabelProvider;
-import org.unicase.ui.common.dialogs.METypeSelectionDialog;
+import org.unicase.ui.common.dialogs.METypeTreeSelectionDialog;
 import org.unicase.ui.common.util.UnicaseUiUtil;
 import org.unicase.workspace.WorkspaceManager;
 import org.unicase.workspace.edit.views.Query.QueryRangeType;
@@ -309,7 +309,7 @@ public class QueryComposite extends Composite {
 	protected EClass[] showMETypeSelectionDialog() {
 		EClass[] result = null;
 
-		METypeSelectionDialog dialog = new METypeSelectionDialog(getShell(), true);
+		METypeTreeSelectionDialog dialog = new METypeTreeSelectionDialog(getShell(), true);
 		dialog.open();
 		result = dialog.getResult();
 

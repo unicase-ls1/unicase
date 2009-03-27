@@ -34,7 +34,7 @@ import org.unicase.docExport.exportModel.renderers.ModelElementRenderer;
 import org.unicase.docExport.exportModel.renderers.options.RendererOption;
 import org.unicase.model.ModelElement;
 import org.unicase.model.task.TaskPackage;
-import org.unicase.ui.common.dialogs.METypeSelectionDialog;
+import org.unicase.ui.common.dialogs.METypeTreeSelectionDialog;
 
 /**
  * @author Sebastian Hoecht
@@ -80,9 +80,9 @@ public class ModelElementRenderersTab extends TemplateEditorTab {
 			}
 
 			public void widgetSelected(SelectionEvent e) {
-				METypeSelectionDialog dialog = new METypeSelectionDialog(rendererSelectContainer.getShell(), false);
+				METypeTreeSelectionDialog dialog = new METypeTreeSelectionDialog(rendererSelectContainer.getShell(), false);
 
-				if (dialog.open() == METypeSelectionDialog.OK) {
+				if (dialog.open() == METypeTreeSelectionDialog.OK) {
 					createRendererSelector(dialog.getResult()[0]);
 					modelElementType.setText(dialog.getResult()[0].getInstanceClass().getSimpleName());
 				}
