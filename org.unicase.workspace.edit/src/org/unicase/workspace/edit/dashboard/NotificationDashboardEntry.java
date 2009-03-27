@@ -43,6 +43,7 @@ import org.unicase.emfstore.esmodel.versioning.events.NotificationReadEvent;
 import org.unicase.model.ModelElement;
 import org.unicase.model.ModelElementId;
 import org.unicase.ui.common.util.ActionHelper;
+import org.unicase.ui.common.util.ModelElementClassTooltip;
 import org.unicase.ui.common.util.URLHelper;
 import org.unicase.workspace.ProjectSpace;
 import org.unicase.workspace.edit.Activator;
@@ -104,6 +105,7 @@ public class NotificationDashboardEntry extends AbstractDashboardEntry {
 	private boolean mouseOverClose;
 
 	private boolean open = true;
+	private AdapterFactoryLabelProvider labelProvider;
 
 	/**
 	 * Default constructor.
@@ -121,6 +123,8 @@ public class NotificationDashboardEntry extends AbstractDashboardEntry {
 		lightBlue = new Color(getDisplay(), 233, 244, 255);
 		notificationColor = getDisplay().getSystemColor(SWT.COLOR_WHITE);
 		format = new SimpleDateFormat("dd.MM.yyyy HH:mm");
+		labelProvider = new AdapterFactoryLabelProvider(new ComposedAdapterFactory(
+			ComposedAdapterFactory.Descriptor.Registry.INSTANCE));
 
 		createEntry();
 	}
@@ -137,14 +141,12 @@ public class NotificationDashboardEntry extends AbstractDashboardEntry {
 		GridDataFactory.fillDefaults().grab(true, true).applyTo(entry);
 		setBackground(notificationColor);
 
-		AdapterFactoryLabelProvider labelProvider = new AdapterFactoryLabelProvider(new ComposedAdapterFactory(
-			ComposedAdapterFactory.Descriptor.Registry.INSTANCE));
 		if (getNotification().getRelatedModelElements().size() == 0) {
 			return;
 		}
-		Image image = labelProvider.getImage(getProject().getProject().getModelElement(
-			getNotification().getRelatedModelElements().get(0)));
-		Link link = createImageLink(image, entry, getNotification().getMessage());
+		ModelElement modelElement = getProject().getProject().getModelElement(
+			getNotification().getRelatedModelElements().get(0));
+		Link link = createImageLink(modelElement, entry, getNotification().getMessage());
 		link.addSelectionListener(new LinkSelectionListener("link"));
 
 		Label date = new Label(entry, SWT.NONE);
@@ -290,7 +292,8 @@ public class NotificationDashboardEntry extends AbstractDashboardEntry {
 		});
 	}
 
-	private Link createImageLink(final Image image, Composite parent, String text) {
+	private Link createImageLink(ModelElement modelElement, Composite parent, String text) {
+		final Image image = labelProvider.getImage(modelElement);
 		final Composite imageComposite = new Composite(parent, SWT.NONE);
 		GridDataFactory.fillDefaults().hint(16, 16).applyTo(imageComposite);
 		imageComposite.addPaintListener(new PaintListener() {
@@ -299,6 +302,8 @@ public class NotificationDashboardEntry extends AbstractDashboardEntry {
 				e.gc.drawImage(image, area.x, area.y);
 			}
 		});
+		imageComposite.setData(modelElement.eClass());
+		ModelElementClassTooltip.enableFor(imageComposite);
 
 		Link link = new Link(parent, SWT.WRAP | SWT.MULTI);
 		if (text == null) {

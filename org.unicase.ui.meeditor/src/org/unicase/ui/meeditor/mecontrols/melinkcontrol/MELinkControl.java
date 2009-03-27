@@ -23,6 +23,7 @@ import org.eclipse.ui.forms.widgets.Hyperlink;
 import org.eclipse.ui.forms.widgets.ImageHyperlink;
 import org.unicase.model.ModelElement;
 import org.unicase.model.NonDomainElement;
+import org.unicase.ui.common.util.ModelElementClassTooltip;
 import org.unicase.ui.meeditor.mecontrols.AbstractMEControl;
 
 /**
@@ -76,6 +77,8 @@ public class MELinkControl extends AbstractMEControl {
 		Image image = labelProvider.getImage(getModelElement());
 		ImageHyperlink imageHyperlink = getToolkit().createImageHyperlink(linkComposite, style);
 		imageHyperlink.setImage(image);
+		imageHyperlink.setData(getModelElement().eClass());
+		ModelElementClassTooltip.enableFor(imageHyperlink);
 		hyperlink = getToolkit().createHyperlink(linkComposite, labelProvider.getText(getModelElement()), style);
 		IHyperlinkListener listener = new MEHyperLinkAdapter((ModelElement) getModelElement());
 		hyperlink.addHyperlinkListener(listener);
