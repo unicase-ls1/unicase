@@ -286,6 +286,9 @@ public class ProjectItemProvider extends RootElementItemProvider implements IEdi
 			AttachmentFactory.eINSTANCE.createUrlAttachment()));
 
 		newChildDescriptors.add(createChildParameter(ModelPackage.Literals.PROJECT__MODEL_ELEMENTS,
+			AttachmentFactory.eINSTANCE.createFileAttachment()));
+
+		newChildDescriptors.add(createChildParameter(ModelPackage.Literals.PROJECT__MODEL_ELEMENTS,
 			ProfileFactory.eINSTANCE.createProfile()));
 
 		newChildDescriptors.add(createChildParameter(ModelPackage.Literals.PROJECT__MODEL_ELEMENTS,

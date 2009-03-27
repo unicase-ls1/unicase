@@ -94,6 +94,29 @@ public class AttachmentItemProviderAdapterFactory extends AttachmentAdapterFacto
 	}
 
 	/**
+	 * This keeps track of the one adapter used for all {@link org.unicase.model.attachment.FileAttachment} instances.
+	 * <!-- begin-user-doc --> <!-- end-user-doc -->
+	 * 
+	 * @generated
+	 */
+	protected FileAttachmentItemProvider fileAttachmentItemProvider;
+
+	/**
+	 * This creates an adapter for a {@link org.unicase.model.attachment.FileAttachment}. <!-- begin-user-doc --> <!--
+	 * end-user-doc -->
+	 * 
+	 * @generated
+	 */
+	@Override
+	public Adapter createFileAttachmentAdapter() {
+		if (fileAttachmentItemProvider == null) {
+			fileAttachmentItemProvider = new FileAttachmentItemProvider(this);
+		}
+
+		return fileAttachmentItemProvider;
+	}
+
+	/**
 	 * This returns the root adapter factory that contains this factory. <!-- begin-user-doc --> <!-- end-user-doc -->
 	 * 
 	 * @generated
@@ -189,6 +212,8 @@ public class AttachmentItemProviderAdapterFactory extends AttachmentAdapterFacto
 	public void dispose() {
 		if (urlAttachmentItemProvider != null)
 			urlAttachmentItemProvider.dispose();
+		if (fileAttachmentItemProvider != null)
+			fileAttachmentItemProvider.dispose();
 	}
 
 }

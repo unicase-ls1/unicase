@@ -30,6 +30,14 @@ public interface AttachmentFactory extends EFactory {
 	UrlAttachment createUrlAttachment();
 
 	/**
+	 * Returns a new object of class '<em>File Attachment</em>'. <!-- begin-user-doc --> <!-- end-user-doc -->
+	 * 
+	 * @return a new object of class '<em>File Attachment</em>'.
+	 * @generated
+	 */
+	FileAttachment createFileAttachment();
+
+	/**
 	 * Returns the package supported by this factory. <!-- begin-user-doc --> <!-- end-user-doc -->
 	 * 
 	 * @return the package supported by this factory.

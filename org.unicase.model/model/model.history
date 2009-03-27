@@ -6195,5 +6195,23 @@
         featureName="name" dataValue="itemsToReview"/>
     <changes xsi:type="history:Add" element="model.ecore#//task/Checkable" featureName="eSuperTypes"
         referenceValue="model.ecore#//ModelElement"/>
+    <changes xsi:type="history:CreateChild" target="model.ecore#//attachment" element="model.ecore#//attachment/FileAttachment"
+        referenceName="eClassifiers"/>
+    <changes xsi:type="history:Set" element="model.ecore#//attachment/FileAttachment"
+        featureName="name" dataValue="FileAttachement"/>
+    <changes xsi:type="history:CompositeChange">
+      <changes xsi:type="history:Set" element="model.ecore#//attachment/FileAttachment"
+          featureName="instanceClassName"/>
+      <changes xsi:type="history:Set" element="model.ecore#//attachment/FileAttachment"
+          featureName="instanceTypeName"/>
+    </changes>
+    <changes xsi:type="history:Add" element="model.ecore#//attachment/FileAttachment"
+        featureName="eSuperTypes" referenceValue="model.ecore#//Attachment"/>
+    <changes xsi:type="history:CreateChild" target="model.ecore#//attachment/FileAttachment"
+        element="model.ecore#//attachment/FileAttachment/fileName" referenceName="eStructuralFeatures"/>
+    <changes xsi:type="history:Set" element="model.ecore#//attachment/FileAttachment/fileName"
+        featureName="eType" referenceValue="http://www.eclipse.org/emf/2002/Ecore#//EString"/>
+    <changes xsi:type="history:Set" element="model.ecore#//attachment/FileAttachment/fileName"
+        featureName="name" dataValue="fileName"/>
   </releases>
 </history:History>

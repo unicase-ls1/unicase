@@ -13,6 +13,7 @@ import org.unicase.model.Attachment;
 import org.unicase.model.IdentifiableElement;
 import org.unicase.model.ModelElement;
 import org.unicase.model.attachment.AttachmentPackage;
+import org.unicase.model.attachment.FileAttachment;
 import org.unicase.model.attachment.UrlAttachment;
 
 /*
@@ -71,6 +72,11 @@ public class AttachmentAdapterFactory extends AdapterFactoryImpl {
 		}
 
 		@Override
+		public Adapter caseFileAttachment(FileAttachment object) {
+			return createFileAttachmentAdapter();
+		}
+
+		@Override
 		public Adapter caseIdentifiableElement(IdentifiableElement object) {
 			return createIdentifiableElementAdapter();
 		}
@@ -114,6 +120,20 @@ public class AttachmentAdapterFactory extends AdapterFactoryImpl {
 	 * @generated
 	 */
 	public Adapter createUrlAttachmentAdapter() {
+		return null;
+	}
+
+	/**
+	 * Creates a new adapter for an object of class '{@link org.unicase.model.attachment.FileAttachment
+	 * <em>File Attachment</em>}'. <!-- begin-user-doc --> This default implementation returns null so that we can
+	 * easily ignore cases; it's useful to ignore a case when inheritance will catch all the cases anyway. <!--
+	 * end-user-doc -->
+	 * 
+	 * @return the new adapter.
+	 * @see org.unicase.model.attachment.FileAttachment
+	 * @generated
+	 */
+	public Adapter createFileAttachmentAdapter() {
 		return null;
 	}
 

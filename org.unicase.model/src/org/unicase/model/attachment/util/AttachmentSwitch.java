@@ -13,6 +13,7 @@ import org.unicase.model.Attachment;
 import org.unicase.model.IdentifiableElement;
 import org.unicase.model.ModelElement;
 import org.unicase.model.attachment.AttachmentPackage;
+import org.unicase.model.attachment.FileAttachment;
 import org.unicase.model.attachment.UrlAttachment;
 
 /*
@@ -91,6 +92,19 @@ public class AttachmentSwitch<T> {
 				result = defaultCase(theEObject);
 			return result;
 		}
+		case AttachmentPackage.FILE_ATTACHMENT: {
+			FileAttachment fileAttachment = (FileAttachment) theEObject;
+			T result = caseFileAttachment(fileAttachment);
+			if (result == null)
+				result = caseAttachment(fileAttachment);
+			if (result == null)
+				result = caseModelElement(fileAttachment);
+			if (result == null)
+				result = caseIdentifiableElement(fileAttachment);
+			if (result == null)
+				result = defaultCase(theEObject);
+			return result;
+		}
 		default:
 			return defaultCase(theEObject);
 		}
@@ -107,6 +121,20 @@ public class AttachmentSwitch<T> {
 	 * @generated
 	 */
 	public T caseUrlAttachment(UrlAttachment object) {
+		return null;
+	}
+
+	/**
+	 * Returns the result of interpreting the object as an instance of '<em>File Attachment</em>'. <!-- begin-user-doc
+	 * --> This implementation returns null; returning a non-null result will terminate the switch. <!-- end-user-doc
+	 * -->
+	 * 
+	 * @param object the target of the switch.
+	 * @return the result of interpreting the object as an instance of '<em>File Attachment</em>'.
+	 * @see #doSwitch(org.eclipse.emf.ecore.EObject) doSwitch(EObject)
+	 * @generated
+	 */
+	public T caseFileAttachment(FileAttachment object) {
 		return null;
 	}
 
