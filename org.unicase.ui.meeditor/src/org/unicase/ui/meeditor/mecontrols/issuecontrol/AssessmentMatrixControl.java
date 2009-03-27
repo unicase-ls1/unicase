@@ -308,6 +308,7 @@ public class AssessmentMatrixControl extends AbstractMEControl {
 			protected void doExecute() {
 				RationaleFactory rFactory = RationaleFactoryImpl.init();
 				Assessment assessment = rFactory.createAssessment();
+				assessment.setName("new Assessment");
 				assessment.setProposal(p);
 				assessment.setCriterion(c);
 				assessment.eAdapters().add(eAdapter);
