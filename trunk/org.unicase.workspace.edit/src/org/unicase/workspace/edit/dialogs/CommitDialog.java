@@ -6,13 +6,18 @@
 package org.unicase.workspace.edit.dialogs;
 
 import java.util.ArrayList;
+import java.util.HashMap;
 
 import org.eclipse.emf.common.util.EList;
 import org.eclipse.jface.dialogs.TitleAreaDialog;
 import org.eclipse.jface.layout.GridDataFactory;
+import org.eclipse.jface.viewers.ColumnLabelProvider;
+import org.eclipse.jface.viewers.TreeViewerColumn;
+import org.eclipse.jface.viewers.ViewerCell;
 import org.eclipse.swt.SWT;
 import org.eclipse.swt.events.SelectionEvent;
 import org.eclipse.swt.events.SelectionListener;
+import org.eclipse.swt.graphics.Image;
 import org.eclipse.swt.graphics.Rectangle;
 import org.eclipse.swt.layout.GridData;
 import org.eclipse.swt.layout.GridLayout;
@@ -23,9 +28,12 @@ import org.eclipse.swt.widgets.Display;
 import org.eclipse.swt.widgets.Label;
 import org.eclipse.swt.widgets.Shell;
 import org.eclipse.swt.widgets.Text;
+import org.unicase.emfstore.esmodel.notification.ESNotification;
 import org.unicase.emfstore.esmodel.versioning.ChangePackage;
+import org.unicase.emfstore.esmodel.versioning.operations.AbstractOperation;
 import org.unicase.workspace.WorkspaceManager;
 import org.unicase.workspace.edit.Activator;
+import org.unicase.workspace.edit.views.changes.DetailedChangesComposite;
 import org.unicase.workspace.edit.views.changes.TabbedChangesComposite;
 
 /**
@@ -40,6 +48,7 @@ public class CommitDialog extends TitleAreaDialog {
 	private String logMsg = "";
 	private ChangePackage changes;
 	private EList<String> oldLogMessages;
+	private HashMap<AbstractOperation, ArrayList<ESNotification>> operationsMap;
 
 	/**
 	 * Constructor.
@@ -102,6 +111,46 @@ public class CommitDialog extends TitleAreaDialog {
 		TabbedChangesComposite changesComposite = new TabbedChangesComposite(contents, SWT.BORDER, changePackages);
 		GridDataFactory.fillDefaults().align(SWT.FILL, SWT.FILL).grab(true, true).span(2, 1).applyTo(changesComposite);
 
+		// TODO AS: add proper handling to acquire a specific column
+		final DetailedChangesComposite detailedTab = (DetailedChangesComposite) changesComposite.getTabs().get(1);
+
+		operationsMap = new HashMap<AbstractOperation, ArrayList<ESNotification>>();
+		for (AbstractOperation op : changes.getOperations()) {
+			operationsMap.put(op, new ArrayList<ESNotification>());
+		}
+
+		TreeViewerColumn userColumn = new TreeViewerColumn(detailedTab.getTreeViewer(), SWT.NONE);
+		userColumn.getColumn().setWidth(300);
+		userColumn.getColumn().setText("Notify user");
+		userColumn.getColumn().setWidth(getShell().getSize().x / 2);
+		userColumn.setLabelProvider(new ColumnLabelProvider() {
+			@Override
+			public void update(ViewerCell cell) {
+				Object obj = cell.getElement();
+				String text = "";
+				Image image = null;
+				if (obj instanceof AbstractOperation) {
+					ArrayList<ESNotification> data = operationsMap.get(obj);
+					StringBuilder ret = new StringBuilder();
+					for (ESNotification n : data) {
+						ret.append(n.getRecipient());
+						ret.append("  ");
+					}
+					text = ret.toString();
+					if (data.size() > 0) {
+						image = Activator.getImageDescriptor("icons/user_comment.png").createImage();
+					}
+				}
+				cell.setText(text);
+				cell.setImage(image);
+				cell.setBackground(super.getBackground(obj));
+				cell.setForeground(super.getForeground(obj));
+				cell.setFont(super.getFont(obj));
+			}
+		});
+
+		userColumn.setEditingSupport(new PushedNotificationEditingSupport(detailedTab.getTreeViewer(), operationsMap));
+
 		return contents;
 
 	}
@@ -138,6 +187,12 @@ public class CommitDialog extends TitleAreaDialog {
 			// so only one element should be deleted
 			oldLogMessages.remove(0);
 		}
+
+		// add the newly created notifications to the change package
+		for (ArrayList<ESNotification> list : operationsMap.values()) {
+			changes.getNotifications().addAll(list);
+		}
+
 		super.okPressed();
 	}
 

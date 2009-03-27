@@ -15,11 +15,17 @@ import org.eclipse.swt.custom.StyleRange;
 import org.eclipse.swt.custom.StyledText;
 import org.eclipse.swt.widgets.Composite;
 import org.unicase.model.bug.BugPackage;
+import org.unicase.model.organization.Group;
+import org.unicase.model.organization.OrganizationPackage;
+import org.unicase.model.organization.User;
 import org.unicase.model.rationale.RationalePackage;
 import org.unicase.model.task.Checkable;
 import org.unicase.model.task.TaskPackage;
 import org.unicase.model.task.WorkItem;
 import org.unicase.workspace.ProjectSpace;
+import org.unicase.workspace.exceptions.CannotMatchUserInProjectException;
+import org.unicase.workspace.util.NoCurrentUserException;
+import org.unicase.workspace.util.OrgUnitHelper;
 
 /**
  * A dashboard widget displaying an overview of all tasks.
@@ -29,6 +35,7 @@ import org.unicase.workspace.ProjectSpace;
 public class DashboardTaskWidget extends AbstractDashboardWidget {
 
 	private ProjectSpace ps;
+	private User user;
 
 	/**
 	 * Default constructor.
@@ -41,7 +48,14 @@ public class DashboardTaskWidget extends AbstractDashboardWidget {
 		super(parent, style);
 		this.ps = ps;
 		setTitle("Tasks overview");
-		createContent();
+		try {
+			user = OrgUnitHelper.getUser(ps);
+			createContent();
+		} catch (NoCurrentUserException e) {
+			return;
+		} catch (CannotMatchUserInProjectException e) {
+			return;
+		}
 	}
 
 	/**
@@ -50,6 +64,7 @@ public class DashboardTaskWidget extends AbstractDashboardWidget {
 	@Override
 	protected void createContent() {
 		Composite panel = getPanel();
+
 		GridLayoutFactory.fillDefaults().applyTo(panel);
 		List<WorkItem> allWI = ps.getProject().getAllModelElementsbyClass(TaskPackage.eINSTANCE.getWorkItem(),
 			new BasicEList<WorkItem>());
@@ -57,7 +72,8 @@ public class DashboardTaskWidget extends AbstractDashboardWidget {
 		List<WorkItem> myWI = new ArrayList<WorkItem>();
 		for (WorkItem wi : allWI) {
 			if (wi.getAssignee() != null
-				&& wi.getAssignee().getName().equals(ps.getUsersession().getACUser().getName())) {
+				&& (wi.getAssignee().equals(user) || (OrganizationPackage.eINSTANCE.getGroup().isInstance(
+					wi.getAssignee()) && ((Group) wi.getAssignee()).getOrgUnits().contains(user)))) {
 				myWI.add(wi);
 			}
 		}
@@ -65,7 +81,7 @@ public class DashboardTaskWidget extends AbstractDashboardWidget {
 		int brs = 0;
 		int is = 0;
 		for (WorkItem wi : myWI) {
-			if (TaskPackage.eINSTANCE.getCheckable().isInstance(wi) && ((Checkable) wi).isChecked()) {
+			if (isChecked(wi) || isResolved(wi)) {
 				continue;
 			}
 			if (TaskPackage.eINSTANCE.getActionItem().isInstance(wi)) {
@@ -114,5 +130,13 @@ public class DashboardTaskWidget extends AbstractDashboardWidget {
 
 		label.setEnabled(false);
 
+	}
+
+	private boolean isResolved(WorkItem wi) {
+		return wi.isResolved();
+	}
+
+	private boolean isChecked(WorkItem wi) {
+		return TaskPackage.eINSTANCE.getCheckable().isInstance(wi) && ((Checkable) wi).isChecked();
 	}
 }

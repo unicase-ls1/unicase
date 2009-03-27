@@ -9,11 +9,13 @@ import org.eclipse.core.commands.ExecutionEvent;
 import org.eclipse.core.commands.ExecutionException;
 import org.eclipse.jface.dialogs.MessageDialog;
 import org.eclipse.swt.widgets.Display;
+import org.eclipse.ui.IEditorPart;
 import org.eclipse.ui.PartInitException;
 import org.eclipse.ui.PlatformUI;
 import org.eclipse.ui.handlers.HandlerUtil;
 import org.unicase.workspace.ProjectSpace;
 import org.unicase.workspace.WorkspaceManager;
+import org.unicase.workspace.edit.dashboard.DashboardEditor;
 import org.unicase.workspace.edit.dashboard.DashboardEditorInput;
 import org.unicase.workspace.util.WorkspaceUtil;
 
@@ -54,7 +56,11 @@ public class ShowDashboardHandler extends ProjectActionHandler {
 
 		DashboardEditorInput input = new DashboardEditorInput(projectSpace);
 		try {
-			PlatformUI.getWorkbench().getActiveWorkbenchWindow().getActivePage().openEditor(input, DASHBOARD_ID, true);
+			IEditorPart openEditor = PlatformUI.getWorkbench().getActiveWorkbenchWindow().getActivePage().openEditor(
+				input, DASHBOARD_ID, true);
+			if (openEditor instanceof DashboardEditor) {
+				((DashboardEditor) openEditor).refresh();
+			}
 		} catch (PartInitException e) {
 			WorkspaceUtil.logException(e.getMessage(), e);
 		}

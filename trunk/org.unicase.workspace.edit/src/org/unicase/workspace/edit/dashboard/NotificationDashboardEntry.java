@@ -99,9 +99,11 @@ public class NotificationDashboardEntry extends AbstractDashboardEntry {
 	private Color notificationColor;
 	private SimpleDateFormat format;
 	private Composite drawer;
+	private Composite entry;
+	private boolean mouseOver;
+	private boolean mouseOverClose;
 
 	private boolean open = true;
-	private boolean mouseOver;
 
 	/**
 	 * Default constructor.
@@ -128,9 +130,12 @@ public class NotificationDashboardEntry extends AbstractDashboardEntry {
 	 */
 	@Override
 	protected void createEntry() {
-		GridLayoutFactory.fillDefaults().numColumns(4).equalWidth(false).extendedMargins(3, 0, 6, 6).spacing(5, 0)
-			.applyTo(this);
-		this.setBackground(notificationColor);
+		GridLayoutFactory.fillDefaults().numColumns(2).equalWidth(false).margins(3, 0).applyTo(this);
+
+		entry = new Composite(this, SWT.NONE);
+		GridLayoutFactory.fillDefaults().numColumns(3).equalWidth(false).margins(0, 6).spacing(3, 0).applyTo(entry);
+		GridDataFactory.fillDefaults().grab(true, true).applyTo(entry);
+		setBackground(notificationColor);
 
 		AdapterFactoryLabelProvider labelProvider = new AdapterFactoryLabelProvider(new ComposedAdapterFactory(
 			ComposedAdapterFactory.Descriptor.Registry.INSTANCE));
@@ -139,26 +144,31 @@ public class NotificationDashboardEntry extends AbstractDashboardEntry {
 		}
 		Image image = labelProvider.getImage(getProject().getProject().getModelElement(
 			getNotification().getRelatedModelElements().get(0)));
-		Link link = createImageLink(image, this, getNotification().getMessage());
+		Link link = createImageLink(image, entry, getNotification().getMessage());
 		link.addSelectionListener(new LinkSelectionListener("link"));
 
-		Label date = new Label(this, SWT.NONE);
+		Label date = new Label(entry, SWT.NONE);
 		date.setText(format.format(getNotification().getCreationDate()));
 		GridDataFactory.fillDefaults().align(SWT.END, SWT.BEGINNING).applyTo(date);
 		date.setForeground(getDisplay().getSystemColor(SWT.COLOR_GRAY));
 
-		final Composite close = new Composite(this, SWT.NONE);
-		GridDataFactory.fillDefaults().hint(16, 16).applyTo(close);
 		final Image closeImage = Activator.getImageDescriptor("icons/close.png").createImage();
-		close.addPaintListener(new PaintListener() {
+		final Image closeImageRed = Activator.getImageDescriptor("icons/cross.png").createImage();
+		final Composite closeLink = new Composite(this, SWT.NONE);
+		GridDataFactory.fillDefaults().align(SWT.BEGINNING, SWT.BEGINNING).hint(18, 26).applyTo(closeLink);
+		closeLink.addPaintListener(new PaintListener() {
 			public void paintControl(PaintEvent e) {
 				if (mouseOver) {
-					Rectangle area = close.getClientArea();
-					e.gc.drawImage(closeImage, area.x, area.y);
+					Rectangle area = closeLink.getClientArea();
+					Image image = closeImage;
+					if (mouseOverClose) {
+						image = closeImageRed;
+					}
+					e.gc.drawImage(image, area.x, area.y + 5);
 				}
 			}
 		});
-		close.addMouseListener(new MouseAdapter() {
+		closeLink.addMouseListener(new MouseAdapter() {
 			@Override
 			public void mouseDown(MouseEvent e) {
 				boolean hide = MessageDialog
@@ -183,16 +193,23 @@ public class NotificationDashboardEntry extends AbstractDashboardEntry {
 		});
 
 		MouseTrackAdapter hoverListener = new MouseTrackAdapter() {
+
 			@Override
 			public void mouseEnter(MouseEvent e) {
-				mouseOver = true;
 				setBackground(lightBlue);
+				mouseOver = true;
+				if (e.widget.equals(closeLink)) {
+					mouseOverClose = true;
+				}
 			}
 
 			@Override
 			public void mouseExit(MouseEvent e) {
-				mouseOver = false;
 				setBackground(notificationColor);
+				mouseOver = false;
+				if (e.widget.equals(closeLink)) {
+					mouseOverClose = false;
+				}
 			}
 		};
 
@@ -205,18 +222,20 @@ public class NotificationDashboardEntry extends AbstractDashboardEntry {
 			}
 		};
 
-		this.addMouseTrackListener(hoverListener);
+		addMouseTrackListener(hoverListener);
+		entry.addMouseTrackListener(hoverListener);
 		link.addMouseTrackListener(hoverListener);
 		date.addMouseTrackListener(hoverListener);
-		close.addMouseTrackListener(hoverListener);
 
-		drawer = new Composite(this, SWT.NONE);
+		closeLink.addMouseTrackListener(hoverListener);
+
+		drawer = new Composite(entry, SWT.NONE);
 		GridDataFactory.fillDefaults().hint(10, 0).span(3, 1).indent(20, 0).grab(true, false).applyTo(drawer);
 		GridLayoutFactory.fillDefaults().numColumns(1).spacing(0, 8).extendedMargins(3, 3, 3, 3).applyTo(drawer);
 		drawer.setBackground(lightBlue);
 
 		if (getNotification().getRelatedModelElements().size() > 1) {
-			this.addMouseListener(clickListener);
+			entry.addMouseListener(clickListener);
 			link.addMouseListener(clickListener);
 
 			for (ModelElementId mid : getNotification().getRelatedModelElements()) {
@@ -281,7 +300,10 @@ public class NotificationDashboardEntry extends AbstractDashboardEntry {
 			}
 		});
 
-		Link link = new Link(parent, SWT.WRAP);
+		Link link = new Link(parent, SWT.WRAP | SWT.MULTI);
+		if (text == null) {
+			text = "";
+		}
 		link.setText(text);
 		GridDataFactory.fillDefaults().hint(10, SWT.DEFAULT).grab(true, false).applyTo(link);
 		return link;
