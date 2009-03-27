@@ -32,17 +32,28 @@ public class ReviewerSelectionDialog extends ElementListSelectionDialog {
 	public static final String REVIEWERSELECTIONDIALOG_MESSAGE = "This work item has currently no reviewer. Please select a reviewer. You can also set the work item to resolved or done without setting the reviewer (not recommanded):";
 	private static final int SET_RESOLVED_BUTTON_ID = 2;
 	private static final int SET_DONE_BUTTON_ID = 3;
+
+	/**
+	 * return code for the case user selected set resolve without setting reviewer.
+	 */
+	public static final int RESOLVED_SET = 8;
+
+	/**
+	 * return code for the case user selected set done without setting reviewer.
+	 */
+	public static final int DONE_SET = 16;
+
 	private WorkItem workItem;
 
 	/**
 	 * Constructor.
 	 * 
 	 * @param parent parent shell
-	 * @param renderer label provider
+	 * @param labelProvider label provider
 	 * @param workItem the work item whose checkbox is clicked in task view
 	 */
-	public ReviewerSelectionDialog(Shell parent, ILabelProvider renderer, WorkItem workItem) {
-		super(parent, renderer);
+	public ReviewerSelectionDialog(Shell parent, ILabelProvider labelProvider, WorkItem workItem) {
+		super(parent, labelProvider);
 		this.workItem = workItem;
 
 	}
@@ -54,12 +65,15 @@ public class ReviewerSelectionDialog extends ElementListSelectionDialog {
 	 */
 	@Override
 	protected void buttonPressed(int buttonId) {
-		super.buttonPressed(buttonId);
 		if (buttonId == SET_RESOLVED_BUTTON_ID) {
-
+			workItem.setResolved(true);
+			setReturnCode(RESOLVED_SET);
 		} else if (buttonId == SET_DONE_BUTTON_ID) {
 			// set done without setting reviewer
+			((Checkable) workItem).setChecked(true);
+			setReturnCode(DONE_SET);
 		}
+		close();
 	}
 
 	/**
