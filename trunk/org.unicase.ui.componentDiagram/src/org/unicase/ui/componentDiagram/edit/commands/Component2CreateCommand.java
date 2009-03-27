@@ -25,6 +25,7 @@ public class Component2CreateCommand extends CreateElementCommand {
 	/**
 	 * @generated
 	 */
+	@Override
 	protected EObject getElementToEdit() {
 		EObject container = ((CreateElementRequest) getRequest()).getContainer();
 		if (container instanceof View) {
@@ -36,15 +37,18 @@ public class Component2CreateCommand extends CreateElementCommand {
 	/**
 	 * @generated
 	 */
+	@Override
 	protected EClass getEClassToEdit() {
 		return DiagramPackage.eINSTANCE.getMEDiagram();
 	}
 
 	/**
-	 * @generated
+	 * @generated NOT
 	 */
+	@Override
 	protected EObject doDefaultElementCreation() {
 		ComponentService newElement = ComponentFactory.eINSTANCE.createComponentService();
+		newElement.setName("new ComponentService");
 
 		MEDiagram owner = (MEDiagram) getElementToEdit();
 		owner.getNewElements().add(newElement);
