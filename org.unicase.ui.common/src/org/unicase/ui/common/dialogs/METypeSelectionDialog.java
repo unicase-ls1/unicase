@@ -113,6 +113,17 @@ public class METypeSelectionDialog extends TitleAreaDialog implements Listener {
 
 	/**
 	 * {@inheritDoc}
+	 * 
+	 * @see org.eclipse.jface.dialogs.Dialog#cancelPressed()
+	 */
+	@Override
+	protected void cancelPressed() {
+		this.result = new EClass[0];
+		super.cancelPressed();
+	}
+
+	/**
+	 * {@inheritDoc}
 	 */
 	public void handleEvent(Event event) {
 		checkSelection();

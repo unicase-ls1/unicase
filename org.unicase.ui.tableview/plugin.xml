@@ -16,6 +16,7 @@
             restorable="true">
       </view>
       <view
+            allowMultiple="false"
             category="org.unicase"
             class="org.unicase.ui.tableview.UnicaseTableView"
             icon="icons/table_info.gif"
