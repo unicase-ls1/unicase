@@ -15,7 +15,6 @@ import org.eclipse.emf.ecore.EClass;
 import org.eclipse.jface.viewers.ArrayContentProvider;
 import org.eclipse.jface.viewers.IStructuredSelection;
 import org.eclipse.jface.viewers.TableViewer;
-import org.eclipse.jface.window.Window;
 import org.eclipse.swt.SWT;
 import org.eclipse.swt.events.SelectionEvent;
 import org.eclipse.swt.events.SelectionListener;
@@ -311,9 +310,9 @@ public class QueryComposite extends Composite {
 		EClass[] result = null;
 
 		METypeSelectionDialog dialog = new METypeSelectionDialog(getShell(), true);
-		if (dialog.open() == Window.OK) {
-			result = dialog.getResult();
-		}
+		dialog.open();
+		result = dialog.getResult();
+
 		return result;
 	}
 

@@ -8,6 +8,7 @@ package org.unicase.ui.tableview.viewer;
 import java.util.ArrayList;
 import java.util.Collection;
 import java.util.Collections;
+import java.util.Iterator;
 import java.util.List;
 import java.util.Map;
 
@@ -71,6 +72,7 @@ public class METableViewer {
 	}
 
 	private void createTableViewer(Composite parent) {
+		columns = new ArrayList<TableViewerColumn>();
 		tableViewer = new TableViewer(parent, SWT.VIRTUAL | SWT.FULL_SELECTION);
 		tableViewer.setContentProvider(contentProvider);
 		tableViewer.getTable().setLinesVisible(true);
@@ -234,11 +236,10 @@ public class METableViewer {
 		tableViewer.getTable().setRedraw(false);
 		removeAllColumns();
 		List<EStructuralFeature> featuresToShow = new ArrayList<EStructuralFeature>();
-		featuresToShow.addAll(meEClass.getEAllStructuralFeatures());
 		if (!showManyReferences) {
-			for (EStructuralFeature feature : featuresToShow) {
-				if (feature instanceof EReference && ((EReference) feature).isMany()) {
-					featuresToShow.remove(feature);
+			for (EStructuralFeature feature : meEClass.getEAllStructuralFeatures()) {
+				if (!(feature instanceof EReference && ((EReference) feature).isMany())) {
+					featuresToShow.add(feature);
 				}
 			}
 		}
@@ -324,10 +325,16 @@ public class METableViewer {
 	 * removes and disposes all columns.
 	 */
 	public void removeAllColumns() {
-		for (TableViewerColumn column : columns) {
-			columns.remove(column);
+		Iterator<TableViewerColumn> iter = columns.iterator();
+		while (iter.hasNext()) {
+			TableViewerColumn column = iter.next();
 			column.getColumn().dispose();
+			iter.remove();
 		}
+		// for (int i = 0; i < columns.size(); i++) {
+		// columns.remove(column);
+		// column.getColumn().dispose();
+		// }
 	}
 
 	/**
@@ -454,9 +461,19 @@ public class METableViewer {
 	 * @param meType model element type to be shown in METableViwer
 	 */
 	public void setInput(Project project, EClass meType) {
-		this.contentType = meType;
-		contentProvider.setMEType(contentType);
-		tableViewer.setInput(project);
+		if (!contentType.getName().equals(meType.getName())) {
+			tableViewer.setInput(Collections.emptyList());
+			tableViewer.refresh();
+			this.contentType = meType;
+			createColumns(meType, null, false);
+			contentProvider.setMEType(contentType);
+			if (project != null) {
+				tableViewer.setInput(project);
+			}
+		} else {
+			tableViewer.refresh();
+		}
+
 	}
 
 	/**
@@ -465,6 +482,10 @@ public class METableViewer {
 	 * @param project project
 	 */
 	public void setInput(Project project) {
+		if (project == null) {
+			contentProvider.setMEType(null);
+			tableViewer.setInput(Collections.emptyList());
+		}
 		if (contentType == null) {
 			contentType = ModelPackage.eINSTANCE.getModelElement();
 		}

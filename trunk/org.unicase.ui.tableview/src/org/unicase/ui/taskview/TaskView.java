@@ -94,16 +94,6 @@ public class TaskView extends ViewPart implements ProjectChangeObserver {
 	private static final String TASKVIEW_FILTERS_GROUP = "taskviewFilters";
 
 	/**
-	 * default constructor.
-	 */
-
-	public TaskView() {
-		super();
-		workspace = WorkspaceManager.getInstance().getCurrentWorkspace();
-
-	}
-
-	/**
 	 * {@inheritDoc}
 	 * 
 	 * @see org.eclipse.ui.part.WorkbenchPart#createPartControl(org.eclipse.swt.widgets.Composite)
@@ -339,7 +329,7 @@ public class TaskView extends ViewPart implements ProjectChangeObserver {
 	@Override
 	public void dispose() {
 		workspace.eAdapters().remove(workspaceListenerAdapter);
-		if (workspace.getActiveProjectSpace() != null && workspace.getActiveProjectSpace().getProject() != null) {
+		if (activeProject != null) {
 			workspace.getActiveProjectSpace().getProject().removeProjectChangeObserver(this);
 		}
 

@@ -6,6 +6,7 @@
 package org.unicase.ui.tableview.viewer;
 
 import java.util.Collection;
+import java.util.Collections;
 import java.util.List;
 
 import org.eclipse.emf.common.util.BasicEList;
@@ -69,6 +70,9 @@ public class METableViewerContentProvider implements IStructuredContentProvider 
 				this.directInput = (Collection<? extends ModelElement>) newInput;
 				project = null;
 				meType = null;
+			} else if (newInput == null) {
+				this.project = null;
+				directInput = Collections.emptyList();
 			}
 		}
 
