@@ -157,6 +157,8 @@ public final class URLHelper {
 		GridDataFactory.fillDefaults().grab(true, false).applyTo(link);
 		link.setText(getHTMLLinkForModelElement(modelElement, projectSpace, style));
 		link.addSelectionListener(URLSelectionListener.getInstance(projectSpace));
+		link.setData(modelElement);
+		ModelElementTooltip.enableFor(link);
 		
 		return c;
 	}
