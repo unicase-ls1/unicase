@@ -42,7 +42,12 @@ public class OperationsDescLabelProvider extends ColumnLabelProvider {
 		Object element = cell.getElement();
 		if (element instanceof AbstractOperation) {
 			AbstractOperation op = (AbstractOperation) element;
-			cell.setText(op.getDescription());
+			String description = op.getDescription();
+			int indexOfLF = description.indexOf("\n");
+			if (indexOfLF > 0) {
+				description = description.substring(0, indexOfLF) + " ...";
+			}
+			cell.setText(description);
 			Image image = visualizationHelper.getImage(emfProvider, op);
 			ImageDescriptor overlay = visualizationHelper.getOverlayImage(op);
 			if (image != null && overlay != null) {

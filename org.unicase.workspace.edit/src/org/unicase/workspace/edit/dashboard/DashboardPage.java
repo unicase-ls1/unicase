@@ -138,13 +138,6 @@ public class DashboardPage extends FormPage {
 	private void loadNotifications(List<ESNotification> notifications) {
 		for (ESNotification n : notifications) {
 			if (!n.isSeen()) {
-				// SizeCache contentCache = new SizeCache();
-				// Composite c = (Composite) form.getContent();
-				// Rectangle clientArea = form.getClientArea();
-				// contentCache.setControl(c);
-				// Point newSize = contentCache.computeSize(FormUtil.getWidthHint(clientArea.width, c), FormUtil
-				// .getHeightHint(clientArea.height, c));
-				// System.out.println("Before notification: " + n.getMessage() + " " + newSize.toString());
 				AbstractDashboardEntry entry;
 				if (n.getSender() != null && n.getSender().equals(UpdateNotificationProvider.NAME)) {
 					entry = new UpdateDashboardEntry(this, main, SWT.NONE, n, projectSpace);

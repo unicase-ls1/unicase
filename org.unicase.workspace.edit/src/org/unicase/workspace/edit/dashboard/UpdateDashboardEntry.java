@@ -60,7 +60,7 @@ public class UpdateDashboardEntry extends AbstractDashboardEntry {
 	@Override
 	protected void createEntry() {
 		GridDataFactory.fillDefaults().align(SWT.FILL, SWT.BEGINNING).grab(true, false).applyTo(this);
-		GridLayoutFactory.fillDefaults().numColumns(5).equalWidth(false).extendedMargins(0, 0, 6, 6).spacing(0, 0)
+		GridLayoutFactory.fillDefaults().numColumns(5).equalWidth(false).extendedMargins(0, 12, 6, 6).spacing(0, 0)
 			.applyTo(this);
 
 		Composite updated = createRoundedLabel(this, getNotification().getMessage());
