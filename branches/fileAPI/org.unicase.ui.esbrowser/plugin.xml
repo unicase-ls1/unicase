@@ -1,0 +1,44 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<?eclipse version="3.2"?>
+<plugin>
+   <extension-point id="currentProject" name="Current Project" schema="schema/currentProject.exsd"/>
+
+   <extension
+         point="org.eclipse.ui.views">
+      <category
+            name="unicase"
+            id="org.unicase">
+      </category>
+      <view
+            name="EmfStore Browser"
+            icon="icons/serverDB.png"
+            category="org.unicase"
+            class="org.unicase.ui.esbrowser.views.ESBrowserView"
+            id="org.unicase.ui.repository.views.RepositoryView">
+      </view>
+   </extension>
+   <extension
+         point="org.eclipse.help.contexts">
+      <contexts
+            file="contexts.xml">
+      </contexts>
+   </extension>
+   <extension
+        point="org.eclipse.ui.decorators">
+     <decorator
+           adaptable="true"
+           class="org.unicase.ui.esbrowser.provider.ESBrowserLabelDecorator"
+           id="org.unicase.ui.esbrowser.LoginDecorator"
+           label="Login Decorator"
+           lightweight="true"
+           state="true">
+        <enablement>
+           <objectClass
+                 name="org.unicase.workspace.ServerInfo">
+           </objectClass>
+        </enablement>
+     </decorator>
+  </extension>
+   
+
+</plugin>
