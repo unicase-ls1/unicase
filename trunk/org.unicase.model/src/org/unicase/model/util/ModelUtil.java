@@ -254,7 +254,7 @@ public final class ModelUtil {
 	 */
 	public static boolean listContains(Collection<? extends ModelElement> collection, ModelElement modelElement) {
 		for (ModelElement me : collection) {
-			if (me.getIdentifier().equals(modelElement.getIdentifier())) {
+			if (me.getIdentifier().equals(modelElement.getIdentifier()) || me == modelElement) {
 				return true;
 			}
 		}
