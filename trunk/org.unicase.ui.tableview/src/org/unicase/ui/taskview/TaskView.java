@@ -176,7 +176,7 @@ public class TaskView extends ViewPart implements ProjectChangeObserver {
 		};
 		filterToSelectedUser.setToolTipText("Select a user to filter to his/her tasks.");
 		toolbarManager.add(filterToSelectedUser);
-		ControlContribution userLabelToolbarContribution = new ControlContribution("userLabel") {
+		ControlContribution userTextToolbarContribution = new ControlContribution("userTextl") {
 
 			@Override
 			protected Control createControl(Composite parent) {
@@ -200,7 +200,7 @@ public class TaskView extends ViewPart implements ProjectChangeObserver {
 			}
 
 		};
-		toolbarManager.add(userLabelToolbarContribution);
+		toolbarManager.add(userTextToolbarContribution);
 		toolbarManager.add(filterToTeam);
 		toolbarManager.add(filterResolvedBugReports);
 

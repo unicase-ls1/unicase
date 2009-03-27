@@ -40,18 +40,20 @@ public class WorkItemDoneOrResolvedLabelProvider extends AbstractCheckboxColumnL
 			return getDoneStateImage(workItem);
 		}
 
-		User reviewer = workItem.getReviewer();
-		OrgUnit assignee = workItem.getAssignee();
-		if (currentUser.equals(reviewer)) {
+		if (isCurrentUserReviewer(workItem)) {
 			return getDoneStateImage(workItem);
 		}
-		if (currentUser.equals(assignee)) {
+		if (isCurrentUserAssigneeOrCreator(workItem)) {
 			return getResolvedStateImage(workItem);
 		}
 
 		return getDoneStateImage(workItem);
 	}
 
+	/**
+	 * @param workItem
+	 * @return
+	 */
 	private Image getResolvedStateImage(WorkItem workItem) {
 		if (((Checkable) workItem).isChecked()) {
 			return JFaceResources.getImage(CHECKED);
@@ -63,6 +65,10 @@ public class WorkItemDoneOrResolvedLabelProvider extends AbstractCheckboxColumnL
 		}
 	}
 
+	/**
+	 * @param workItem
+	 * @return
+	 */
 	private Image getDoneStateImage(WorkItem workItem) {
 		if (((Checkable) workItem).isChecked()) {
 			return JFaceResources.getImage(CHECKED);
@@ -70,6 +76,33 @@ public class WorkItemDoneOrResolvedLabelProvider extends AbstractCheckboxColumnL
 			return JFaceResources.getImage(UNCHECK);
 		}
 
+	}
+
+	/**
+	 * @param workItem
+	 * @return
+	 */
+	private boolean isCurrentUserAssigneeOrCreator(WorkItem workItem) {
+		if (currentUser == null) {
+			return false;
+		}
+		OrgUnit assignee = workItem.getAssignee();
+		String creator = workItem.getCreator();
+		return currentUser.equals(assignee) || currentUser.getName().equals(creator);
+	}
+
+	/**
+	 * @param workItem
+	 * @return
+	 */
+	private boolean isCurrentUserReviewer(WorkItem workItem) {
+		if (currentUser == null) {
+			return false;
+		}
+		if (workItem.getReviewer() == null) {
+			return false;
+		}
+		return getCurrentUser().equals(workItem.getReviewer());
 	}
 
 	/**

@@ -18,6 +18,7 @@ import org.eclipse.jface.viewers.CheckboxCellEditor;
 import org.eclipse.jface.viewers.EditingSupport;
 import org.eclipse.jface.viewers.TableViewer;
 import org.unicase.model.Project;
+import org.unicase.model.organization.OrgUnit;
 import org.unicase.model.organization.OrganizationPackage;
 import org.unicase.model.organization.User;
 import org.unicase.model.task.Checkable;
@@ -79,11 +80,20 @@ public class WorkItemDoneOrResolvedEditingSupport extends EditingSupport {
 	 */
 	@Override
 	protected Object getValue(Object element) {
+		if (element instanceof WorkItem) {
+			WorkItem workItem = (WorkItem) element;
+			if (((Checkable) element).isChecked()) {
+				return true;
+			}
+			if (isCurrentUserReviewer(workItem)) {
+				return ((Checkable) element).isChecked();
+			} else if (isCurrentUserAssigneeOrCreator(workItem)) {
+				return workItem.isResolved();
+			}
+		}
 		if (element instanceof Checkable) {
 			return ((Checkable) element).isChecked();
-		}
-
-		else {
+		} else {
 			return null;
 		}
 	}
@@ -104,7 +114,7 @@ public class WorkItemDoneOrResolvedEditingSupport extends EditingSupport {
 			}
 		});
 
-		getViewer().refresh(element);
+		getViewer().refresh();
 	}
 
 	private void doSetValue(Object element, Object value) {
@@ -115,19 +125,25 @@ public class WorkItemDoneOrResolvedEditingSupport extends EditingSupport {
 			if (workItem.getReviewer() != null) {
 				// if current user is the reviewer of work item, then set work item to done
 				// else, set it to resolved.
-				if (getCurrentUser().equals(workItem.getReviewer())) {
+				if (isCurrentUserReviewer(workItem)) {
 					((Checkable) workItem).setChecked(isChecked);
-				} else {
+				} else if (isCurrentUserAssigneeOrCreator(workItem)) {
+					// maybe if current user is assignee or creator of work item. but generally:
 					workItem.setResolved(isChecked);
 				}
 			} else {
-				// work item has no reviewer. Show reviewer selection dialog.
+				// work item has no reviewer. Show reviewer selection dialog if it is checked, or set it not done and
+				// not resolved regardless of who unchecks it.
 				if (isChecked) {
 					showReviewerSelectionDialog(workItem);
 				} else {
-
+					if (isCurrentUserReviewer(workItem) || isCurrentUserAssigneeOrCreator(workItem)) {
+						// set not checked (not done)
+						// set not resolved
+						((Checkable) workItem).setChecked(false);
+						workItem.setResolved(false);
+					}
 				}
-
 			}
 		} else if (element instanceof Checkable) {
 			final Checkable c = (Checkable) element;
@@ -136,6 +152,36 @@ public class WorkItemDoneOrResolvedEditingSupport extends EditingSupport {
 		}
 	}
 
+	/**
+	 * @param workItem
+	 * @return
+	 */
+	private boolean isCurrentUserAssigneeOrCreator(WorkItem workItem) {
+		if (currentUser == null) {
+			return false;
+		}
+		OrgUnit assignee = workItem.getAssignee();
+		String creator = workItem.getCreator();
+		return currentUser.equals(assignee) || currentUser.getName().equals(creator);
+	}
+
+	/**
+	 * @param workItem
+	 * @return
+	 */
+	private boolean isCurrentUserReviewer(WorkItem workItem) {
+		if (currentUser == null) {
+			return false;
+		}
+		if (workItem.getReviewer() == null) {
+			return false;
+		}
+		return getCurrentUser().equals(workItem.getReviewer());
+	}
+
+	/**
+	 * @param workItem
+	 */
 	private void showReviewerSelectionDialog(WorkItem workItem) {
 		AdapterFactoryLabelProvider labelProvider = new AdapterFactoryLabelProvider(new ComposedAdapterFactory(
 			ComposedAdapterFactory.Descriptor.Registry.INSTANCE));
