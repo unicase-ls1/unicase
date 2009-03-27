@@ -84,6 +84,7 @@ public class DependencyCreateCommand extends CreateElementCommand {
 	/**
 	 * @generated
 	 */
+	@Override
 	public boolean canExecute() {
 		if (source == null && target == null) {
 			return false;
@@ -113,8 +114,10 @@ public class DependencyCreateCommand extends CreateElementCommand {
 	 * 
 	 * @see org.eclipse.gmf.runtime.emf.type.core.commands.CreateElementCommand#doDefaultElementCreation()
 	 */
+	@Override
 	protected EObject doDefaultElementCreation() {
 		Dependency newElement = ClassesFactory.eINSTANCE.createDependency();
+		newElement.setName("new Dependency");
 		getContainer().getNewElements().add(newElement);
 		getContainer().getElements().add(newElement);
 		newElement.setSource(getSource());
@@ -125,6 +128,7 @@ public class DependencyCreateCommand extends CreateElementCommand {
 	/**
 	 * @generated
 	 */
+	@Override
 	protected EClass getEClassToEdit() {
 		return DiagramPackage.eINSTANCE.getMEDiagram();
 	}
@@ -132,6 +136,7 @@ public class DependencyCreateCommand extends CreateElementCommand {
 	/**
 	 * @generated
 	 */
+	@Override
 	protected CommandResult doExecuteWithResult(IProgressMonitor monitor, IAdaptable info) throws ExecutionException {
 		if (!canExecute()) {
 			throw new ExecutionException("Invalid arguments in create link command"); //$NON-NLS-1$
@@ -142,6 +147,7 @@ public class DependencyCreateCommand extends CreateElementCommand {
 	/**
 	 * @generated
 	 */
+	@Override
 	protected ConfigureRequest createConfigureRequest() {
 		ConfigureRequest request = super.createConfigureRequest();
 		request.setParameter(CreateRelationshipRequest.SOURCE, getSource());
@@ -152,6 +158,7 @@ public class DependencyCreateCommand extends CreateElementCommand {
 	/**
 	 * @generated
 	 */
+	@Override
 	protected void setElementToEdit(EObject element) {
 		throw new UnsupportedOperationException();
 	}
