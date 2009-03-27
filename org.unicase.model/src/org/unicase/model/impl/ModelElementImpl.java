@@ -266,6 +266,9 @@ public abstract class ModelElementImpl extends IdentifiableElementImpl implement
 	protected ModelElementImpl() {
 		// MK: Document why this is so.
 		super();
+
+		// TODO AS activate this when the models on the server are fixed.
+		// name = "new " + eClass().getName();
 	}
 
 	// end of custom code
