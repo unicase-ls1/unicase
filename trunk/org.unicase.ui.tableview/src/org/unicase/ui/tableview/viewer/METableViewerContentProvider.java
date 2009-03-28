@@ -69,7 +69,7 @@ public class METableViewerContentProvider implements IStructuredContentProvider 
 			} else if (newInput instanceof Collection) {
 				this.directInput = (Collection<? extends ModelElement>) newInput;
 				project = null;
-				meType = null;
+				// meType = null;
 			} else if (newInput == null) {
 				this.project = null;
 				directInput = Collections.emptyList();
