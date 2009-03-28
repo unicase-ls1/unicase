@@ -147,7 +147,8 @@
                style="push">
             <visibleWhen
                   checkEnabled="false">
-               <iterate>
+               <iterate
+                     ifEmpty="false">
                   <instanceof
                         value="org.unicase.model.meeting.Meeting">
                   </instanceof>
