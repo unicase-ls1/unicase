@@ -17,6 +17,8 @@ import org.eclipse.jface.viewers.SelectionChangedEvent;
 import org.eclipse.jface.viewers.TreeViewer;
 import org.eclipse.swt.dnd.DND;
 import org.eclipse.swt.dnd.Transfer;
+import org.eclipse.swt.events.MouseEvent;
+import org.eclipse.swt.events.MouseListener;
 import org.eclipse.swt.widgets.Composite;
 import org.eclipse.swt.widgets.Control;
 import org.eclipse.swt.widgets.Menu;
@@ -74,7 +76,8 @@ public class TreeView extends ViewPart { // implements IShowInSource
 		addSelectionListener();
 
 		if (viewer.getTree().getItems().length > 0) {
-			setActiveProjectSpace(viewer.getTree().getItems()[0].getData());
+			setActiveProjectSpace(viewer.getTree().getItem(0).getData());
+			viewer.getTree().select(viewer.getTree().getItem(0));
 
 		}
 
@@ -92,6 +95,19 @@ public class TreeView extends ViewPart { // implements IShowInSource
 						getViewSite().getActionBars().getStatusLineManager().setMessage(((ModelElement) obj).getName());
 					}
 				}
+			}
+		});
+
+		viewer.getTree().addMouseListener(new MouseListener() {
+
+			public void mouseDoubleClick(MouseEvent e) {
+			}
+
+			public void mouseUp(MouseEvent e) {
+			}
+
+			public void mouseDown(MouseEvent e) {
+				setActiveProjectSpace(viewer.getTree().getSelection()[0].getData());
 			}
 		});
 	}

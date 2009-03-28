@@ -113,7 +113,7 @@ public class TaskView extends ViewPart implements ProjectChangeObserver {
 					if (activeProjectSpace != null) {
 						activeProject = activeProjectSpace.getProject();
 						activeProject.addProjectChangeObserver(TaskView.this);
-						initLoggedInUserUser();
+						initLoggedInUser();
 						viewer.setInput(activeProject);
 					}
 
@@ -124,10 +124,15 @@ public class TaskView extends ViewPart implements ProjectChangeObserver {
 		workspace.eAdapters().add(workspaceListenerAdapter);
 
 		createActions();
-		initLoggedInUserUser();
+		initLoggedInUser();
 
 		getSite().setSelectionProvider(viewer.getTableViewer());
 		hookDoubleClickAction();
+
+		if (workspace.getActiveProjectSpace() != null) {
+			activeProject = workspace.getActiveProjectSpace().getProject();
+		}
+		viewer.setInput(activeProject);
 	}
 
 	/**
@@ -150,7 +155,6 @@ public class TaskView extends ViewPart implements ProjectChangeObserver {
 				User noUser = OrganizationFactory.eINSTANCE.createUser();
 				noUser.setName("[no user]");
 				users.add(noUser);
-
 				Object[] userArray = UnicaseUiUtil.showMESelectionDialog(TaskView.this.getSite().getShell(), users,
 					"Select user", false);
 				if (userArray.length > 0) {
@@ -159,10 +163,11 @@ public class TaskView extends ViewPart implements ProjectChangeObserver {
 						selectedUser = null;
 					}
 					setUserFilter(true, selectedUser);
+					setTeamFilter(filterToTeam.isChecked(), selectedUser);
+					setResolvedBugReportsFilter(filterResolvedBugReports.isChecked(), selectedUser);
 					filterToLoggedInUser.setChecked(false);
 				}
 			}
-
 		};
 		filterToSelectedUser.setToolTipText("Select a user to filter to his/her tasks.");
 		filterToSelectedUser.setImageDescriptor(Activator.getImageDescriptor("/icons/User.gif"));
@@ -364,11 +369,12 @@ public class TaskView extends ViewPart implements ProjectChangeObserver {
 		doneOrResolvedLabelProvider = new WorkItemDoneOrResolvedLabelProvider();
 		doneOrResolvedLabelProvider.setCurrentUser(loggedInUser);
 		doneOrResolvedEditingSupport = new WorkItemDoneOrResolvedEditingSupport(metv.getTableViewer(), loggedInUser);
-		metv.addCustomColumn(0, "", 25, SWT.NONE, false, doneOrResolvedLabelProvider, doneOrResolvedEditingSupport);
+		metv.addCustomColumn(0, "Done/Resolved", 30, SWT.NONE, false, doneOrResolvedLabelProvider,
+			doneOrResolvedEditingSupport);
 		return metv;
 	}
 
-	private void initLoggedInUserUser() {
+	private void initLoggedInUser() {
 		try {
 			loggedInUser = OrgUnitHelper.getCurrentUser(WorkspaceManager.getInstance().getCurrentWorkspace());
 		} catch (NoCurrentUserException e) {
@@ -394,11 +400,12 @@ public class TaskView extends ViewPart implements ProjectChangeObserver {
 			if (selectedUser != null) {
 				setUserFilter(true, selectedUser);
 				setTeamFilter(true, selectedUser);
-				setResolvedBugReportsFilter(true, selectedUser);
+				// here false = set filter
+				setResolvedBugReportsFilter(false, selectedUser);
 			} else {
 				setUserFilter(false, null);
 				setTeamFilter(false, null);
-				setResolvedBugReportsFilter(false, null);
+				setResolvedBugReportsFilter(true, null);
 			}
 
 		} else {
@@ -467,7 +474,7 @@ public class TaskView extends ViewPart implements ProjectChangeObserver {
 	 */
 	public void notify(Notification notification, Project project, ModelElement modelElement) {
 		if (modelElement instanceof Checkable) {
-			viewer.getTableViewer().update(modelElement, null);
+			viewer.refresh();
 		}
 	}
 

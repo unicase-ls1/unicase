@@ -79,6 +79,11 @@ public class UnicaseTableView extends ViewPart implements ProjectChangeObserver 
 		getSite().setSelectionProvider(viewer.getTableViewer());
 
 		hookDoubleClickAction();
+
+		if (workspace.getActiveProjectSpace() != null) {
+			activeProject = workspace.getActiveProjectSpace().getProject();
+		}
+		viewer.setInput(activeProject);
 	}
 
 	private void hookDoubleClickAction() {

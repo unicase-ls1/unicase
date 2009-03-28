@@ -145,7 +145,7 @@ public class METableViewer {
 
 	private TableViewerColumn createStateColumn(EStructuralFeature feature) {
 		ColumnLabelProvider labelProvider = new StatusLabelProvider();
-		TableViewerColumn stateColumn = createColumn(feature, labelProvider, 30, SWT.CENTER, true, false);
+		TableViewerColumn stateColumn = createColumn(feature, labelProvider, 35, SWT.CENTER, true, false);
 		return stateColumn;
 	}
 
@@ -414,6 +414,7 @@ public class METableViewer {
 		} else {
 			customColumn.getColumn().setData(FEATURE, text);
 		}
+		customColumn.getColumn().setText(text);
 		customColumn.setEditingSupport(editingSupport);
 		if (setSorter) {
 			ViewerComparator comp = new TableViewerColumnSorter(tableViewer, customColumn, labelProvider);
@@ -484,14 +485,14 @@ public class METableViewer {
 	 */
 	public void setInput(Project project) {
 		if (project == null) {
-			contentProvider.setMEType(null);
 			tableViewer.setInput(Collections.emptyList());
+		} else {
+			tableViewer.setInput(project);
 		}
-		if (contentType == null) {
-			contentType = ModelPackage.eINSTANCE.getModelElement();
-		}
-		contentProvider.setMEType(contentType);
-		tableViewer.setInput(project);
+		// if (contentType == null) {
+		// contentType = ModelPackage.eINSTANCE.getModelElement();
+		// }
+		// contentProvider.setMEType(contentType);
 	}
 
 	/**
