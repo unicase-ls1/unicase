@@ -55,6 +55,15 @@
                icon="icons/export.gif"
                label="Export Document"
                style="push">
+            <visibleWhen
+                  checkEnabled="false">
+               <iterate
+                     ifEmpty="false">
+                  <reference
+                        definitionId="org.unicase.ui.common.commands.modelElement">
+                  </reference>
+               </iterate>
+            </visibleWhen>
          </command>
       </menuContribution>
       <menuContribution
