@@ -165,6 +165,7 @@ public class TaskView extends ViewPart implements ProjectChangeObserver {
 
 		};
 		filterToSelectedUser.setToolTipText("Select a user to filter to his/her tasks.");
+		filterToSelectedUser.setImageDescriptor(Activator.getImageDescriptor("/icons/User.gif"));
 		toolbarManager.add(filterToSelectedUser);
 		ControlContribution userTextToolbarContribution = new ControlContribution("userTextl") {
 
@@ -214,6 +215,7 @@ public class TaskView extends ViewPart implements ProjectChangeObserver {
 
 		};
 		showHideColumnsAction.setToolTipText("Show/Hide columns");
+		showHideColumnsAction.setImageDescriptor(Activator.getImageDescriptor("/icons/table.png"));
 		toolbarManager.add(showHideColumnsAction);
 	}
 
