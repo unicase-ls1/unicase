@@ -11,16 +11,21 @@ import org.eclipse.emf.common.notify.Notification;
 import org.eclipse.emf.common.notify.impl.AdapterImpl;
 import org.eclipse.emf.ecore.EClass;
 import org.eclipse.jface.action.Action;
+import org.eclipse.jface.action.GroupMarker;
 import org.eclipse.jface.action.IToolBarManager;
+import org.eclipse.jface.action.Separator;
 import org.eclipse.swt.widgets.Composite;
+import org.eclipse.ui.IWorkbenchActionConstants;
 import org.eclipse.ui.part.ViewPart;
 import org.unicase.model.ModelElement;
 import org.unicase.model.ModelPackage;
 import org.unicase.model.Project;
 import org.unicase.model.util.ProjectChangeObserver;
 import org.unicase.ui.common.dialogs.METypeTreeSelectionDialog;
+import org.unicase.ui.common.util.ActionHelper;
 import org.unicase.ui.common.util.UnicaseUiUtil;
 import org.unicase.ui.tableview.viewer.METableViewer;
+import org.unicase.ui.taskview.TaskView;
 import org.unicase.workspace.ProjectSpace;
 import org.unicase.workspace.Workspace;
 import org.unicase.workspace.WorkspaceManager;
@@ -71,21 +76,25 @@ public class UnicaseTableView extends ViewPart implements ProjectChangeObserver 
 
 		createActions();
 
+		getSite().setSelectionProvider(viewer.getTableViewer());
+
+		hookDoubleClickAction();
+	}
+
+	private void hookDoubleClickAction() {
+		final Action doubleClickAction = new Action() {
+			@Override
+			public void run() {
+				ActionHelper.openModelElement(ActionHelper.getSelectedModelElement(), TaskView.class.getName());
+			}
+		};
+		viewer.setDoubleClickAction(doubleClickAction);
 	}
 
 	private void createActions() {
 		IToolBarManager toolbarManager = getViewSite().getActionBars().getToolBarManager();
-		Action showHideColumnsAction = new Action() {
-			@Override
-			public void run() {
-				List<String> columnsToShow = viewer.displayShowHideColumnsDialog();
-				viewer.showColumns(columnsToShow);
-			}
 
-		};
-		showHideColumnsAction.setToolTipText("Show/Hide columns");
-		toolbarManager.add(showHideColumnsAction);
-
+		// filter to model element type action
 		Action filterToMETypeAction = new Action() {
 			@Override
 			public void run() {
@@ -96,9 +105,27 @@ public class UnicaseTableView extends ViewPart implements ProjectChangeObserver 
 			}
 
 		};
-		showHideColumnsAction.setToolTipText("Filter to a specific model element type");
+		filterToMETypeAction.setToolTipText("Filter to a specific model element type");
 		filterToMETypeAction.setImageDescriptor(Activator.getImageDescriptor("/icons/filter.png"));
 		toolbarManager.add(filterToMETypeAction);
+
+		// addition separator
+		toolbarManager.add(new GroupMarker(IWorkbenchActionConstants.MB_ADDITIONS));
+		Separator separator2 = new Separator("separator2");
+		toolbarManager.insertAfter(IWorkbenchActionConstants.MB_ADDITIONS, separator2);
+
+		// show/hide columns action
+		Action showHideColumnsAction = new Action() {
+			@Override
+			public void run() {
+				List<String> columnsToShow = viewer.displayShowHideColumnsDialog();
+				viewer.showColumns(columnsToShow);
+			}
+
+		};
+		showHideColumnsAction.setToolTipText("Show/Hide columns");
+		showHideColumnsAction.setImageDescriptor(Activator.getImageDescriptor("/icons/table.png"));
+		toolbarManager.add(showHideColumnsAction);
 
 	}
 

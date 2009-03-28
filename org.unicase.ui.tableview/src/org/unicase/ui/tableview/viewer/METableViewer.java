@@ -269,6 +269,7 @@ public class METableViewer {
 				hideColumn(column);
 			}
 		}
+		tableViewer.refresh();
 	}
 
 	private void showColumn(TableViewerColumn column) {
