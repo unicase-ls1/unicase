@@ -43,6 +43,7 @@ import org.unicase.ui.common.filter.UserFilter;
 import org.unicase.ui.common.util.ActionHelper;
 import org.unicase.ui.common.util.UnicaseUiUtil;
 import org.unicase.ui.tableview.Activator;
+import org.unicase.ui.tableview.labelproviders.IntegerEditingSupport;
 import org.unicase.ui.tableview.viewer.METableViewer;
 import org.unicase.ui.taskview.filters.BlockedElementsViewerFilter;
 import org.unicase.ui.taskview.filters.ResolvedBugReportFilter;
@@ -373,8 +374,11 @@ public class TaskView extends ViewPart implements ProjectChangeObserver {
 		features.add(new METableViewer.FeatureEditignSupportPair<EStructuralFeature, EditingSupport>(
 			TaskPackage.Literals.WORK_ITEM__DUE_DATE, null));
 		features.add(new METableViewer.FeatureEditignSupportPair<EStructuralFeature, EditingSupport>(
-			TaskPackage.Literals.WORK_ITEM__PRIORITY, null));
+			TaskPackage.Literals.WORK_ITEM__PRIORITY, new IntegerEditingSupport(metv.getTableViewer(),
+				TaskPackage.Literals.WORK_ITEM__PRIORITY)));
+
 		metv.createColumnsWithEditingSupport(features);
+
 		doneOrResolvedLabelProvider = new WorkItemDoneOrResolvedLabelProvider();
 		doneOrResolvedLabelProvider.setCurrentUser(loggedInUser);
 		doneOrResolvedEditingSupport = new WorkItemDoneOrResolvedEditingSupport(metv.getTableViewer(), loggedInUser);
