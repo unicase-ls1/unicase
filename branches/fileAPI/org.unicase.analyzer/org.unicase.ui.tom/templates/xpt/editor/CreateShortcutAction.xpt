@@ -1,0 +1,130 @@
+/*
+ * Copyright (c) 2006,2007 Borland Software Corporation
+ * 
+ * All rights reserved. This program and the accompanying materials
+ * are made available under the terms of the Eclipse Public License v1.0
+ * which accompanies this distribution, and is available at
+ * http://www.eclipse.org/legal/epl-v10.html
+ *
+ * Contributors:
+ *    Alexander Shatalin (Borland) - initial API and implementation
+ */
+
+«IMPORT "http://www.eclipse.org/gmf/2008/GenModel"»
+«EXTENSION xpt::editor::Utils»
+
+«DEFINE CreateShortcutAction FOR gmfgen::GenDiagram-»
+	«EXPAND xpt::Common::copyright FOR editorGen-»
+package «editorGen.editor.packageName»;
+
+	«EXPAND xpt::Common::generatedClassComment»
+public class «createShortcutActionClassName» implements org.eclipse.ui.IObjectActionDelegate {
+
+	«EXPAND attributes-»
+
+	«EXPAND setActivePart-»
+	
+	«EXPAND selectionChanged-»
+	
+	«EXPAND isEnabled-»
+	
+	«EXPAND run-»
+
+	«EXPAND additions-»
+}
+«ENDDEFINE»
+
+«DEFINE attributes FOR gmfgen::GenDiagram-»
+	«EXPAND xpt::Common::generatedMemberComment»
+private «getEditPartQualifiedClassName()» mySelectedElement;
+	
+	«EXPAND xpt::Common::generatedMemberComment»
+private org.eclipse.swt.widgets.Shell myShell;
+«ENDDEFINE»
+
+«DEFINE setActivePart FOR gmfgen::GenDiagram-»
+	«EXPAND xpt::Common::generatedMemberComment»
+public void setActivePart(org.eclipse.jface.action.IAction action, org.eclipse.ui.IWorkbenchPart targetPart) {
+	myShell = targetPart.getSite().getShell();
+}
+«ENDDEFINE»
+
+«DEFINE selectionChanged FOR gmfgen::GenDiagram-»
+	«EXPAND xpt::Common::generatedMemberComment»
+public void selectionChanged(org.eclipse.jface.action.IAction action, org.eclipse.jface.viewers.ISelection selection) {
+	mySelectedElement = null;
+	if (selection instanceof org.eclipse.jface.viewers.IStructuredSelection) {
+		org.eclipse.jface.viewers.IStructuredSelection structuredSelection = (org.eclipse.jface.viewers.IStructuredSelection) selection;
+		if (structuredSelection.size() == 1 && structuredSelection.getFirstElement() instanceof «getEditPartQualifiedClassName()») {
+			mySelectedElement = («getEditPartQualifiedClassName()») structuredSelection.getFirstElement();
+		}
+	}
+	action.setEnabled(isEnabled());
+}
+«ENDDEFINE»
+	
+«DEFINE isEnabled FOR gmfgen::GenDiagram-»
+	«EXPAND xpt::Common::generatedMemberComment»
+private boolean isEnabled() {
+	return mySelectedElement != null;
+}
+«ENDDEFINE»
+
+«DEFINE run FOR gmfgen::GenDiagram-»
+	«EXPAND xpt::Common::generatedMemberComment»
+public void run(org.eclipse.jface.action.IAction action) {
+	final org.eclipse.gmf.runtime.notation.View view = (org.eclipse.gmf.runtime.notation.View) mySelectedElement.getModel();
+	«IF null == editorGen.application-»
+	«getElementChooserQualifiedClassName()» elementChooser = new «getElementChooserQualifiedClassName()»(myShell, view);
+	int result = elementChooser.open();
+	if (result != org.eclipse.jface.window.Window.OK) {
+		return;
+	}
+	org.eclipse.emf.common.util.URI selectedModelElementURI = elementChooser.getSelectedModelElementURI();
+	final org.eclipse.emf.ecore.EObject selectedElement;
+	try {
+		selectedElement = mySelectedElement.getEditingDomain().getResourceSet().getEObject(selectedModelElementURI, true);
+	} catch (org.eclipse.emf.common.util.WrappedException e) {
+		«editorGen.plugin.getActivatorQualifiedClassName()».getInstance().logError("Exception while loading object: " + selectedModelElementURI.toString(), e); «EXPAND xpt::Common::nonNLS»
+		return;
+	}
+
+	if (selectedElement == null) {
+		return;
+	}
+	org.eclipse.gmf.runtime.diagram.ui.requests.CreateViewRequest.ViewDescriptor viewDescriptor = new org.eclipse.gmf.runtime.diagram.ui.requests.CreateViewRequest.ViewDescriptor(new org.eclipse.gmf.runtime.emf.core.util.EObjectAdapter(selectedElement), org.eclipse.gmf.runtime.notation.Node.class, null, «editorGen.plugin.getActivatorQualifiedClassName()».DIAGRAM_PREFERENCES_HINT);
+	org.eclipse.gmf.runtime.common.core.command.ICommand command = new org.eclipse.gmf.runtime.diagram.ui.commands.CreateCommand(mySelectedElement.getEditingDomain(), viewDescriptor, view);
+	command = command.compose(new «getCreateShortcutDecorationsCommandQualifiedClassName()»(mySelectedElement.getEditingDomain(), view, viewDescriptor));
+	try {
+		org.eclipse.core.commands.operations.OperationHistoryFactory.getOperationHistory().execute(command, new org.eclipse.core.runtime.NullProgressMonitor(), null);
+	} catch (org.eclipse.core.commands.ExecutionException e) {
+		«editorGen.plugin.getActivatorQualifiedClassName()».getInstance().logError("Unable to create shortcut", e); «EXPAND xpt::Common::nonNLS»
+	}
+	«ELSE-»
+	org.eclipse.emf.ecore.resource.Resource resource = «getDiagramEditorUtilQualifiedClassName()».openModel(myShell, «EXPAND xpt::Externalizer::accessorCall(titleKey(i18nKeyForOpenModel(this))) FOR editorGen», mySelectedElement.getEditingDomain());
+	if (resource == null || resource.getContents().isEmpty()) {
+		return;
+	}
+	«EXPAND xpt::editor::ShortcutCreationWizard::qualifiedClassName» wizard = new «EXPAND xpt::editor::ShortcutCreationWizard::qualifiedClassName»((org.eclipse.emf.ecore.EObject) resource.getContents().get(0), view, mySelectedElement.getEditingDomain());
+	wizard.setWindowTitle(«EXPAND xpt::Externalizer::accessorCall(titleKey(i18nKeyForCreateShortcus(this))) FOR editorGen»);
+	«getDiagramEditorUtilQualifiedClassName()».runWizard(myShell, wizard, "CreateShortcut"); «EXPAND xpt::Common::nonNLS»
+	«ENDIF-»
+	}
+«ENDDEFINE»
+
+«DEFINE additions FOR gmfgen::GenDiagram-»
+«ENDDEFINE»
+
+«DEFINE i18nValues FOR gmfgen::GenDiagram-»
+«IF null != editorGen.application-»
+«EXPAND xpt::Externalizer::messageEntry(titleKey(i18nKeyForOpenModel(this)), "Select model to reference")-»
+«EXPAND xpt::Externalizer::messageEntry(titleKey(i18nKeyForCreateShortcus(this)), "Create shortcut")-»
+«ENDIF-»
+«ENDDEFINE»
+
+«DEFINE i18nAccessors FOR gmfgen::GenDiagram-»
+	«IF null != editorGen.application-»
+		«EXPAND xpt::Externalizer::accessorField(titleKey(i18nKeyForOpenModel(this)))-»
+		«EXPAND xpt::Externalizer::accessorField(titleKey(i18nKeyForCreateShortcus(this)))-»
+	«ENDIF-»
+«ENDDEFINE»
