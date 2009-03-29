@@ -19,6 +19,7 @@ import org.eclipse.jface.action.IAction;
 import org.eclipse.jface.action.IToolBarManager;
 import org.eclipse.jface.action.Separator;
 import org.eclipse.jface.dialogs.IDialogSettings;
+import org.eclipse.jface.viewers.EditingSupport;
 import org.eclipse.swt.SWT;
 import org.eclipse.swt.layout.GridData;
 import org.eclipse.swt.layout.GridLayout;
@@ -355,17 +356,25 @@ public class TaskView extends ViewPart implements ProjectChangeObserver {
 
 	private METableViewer initMETableViewer(Composite parent) {
 		METableViewer metv = new METableViewer(parent, TaskPackage.eINSTANCE.getCheckable());
-		List<EStructuralFeature> features = new ArrayList<EStructuralFeature>();
+		List<METableViewer.FeatureEditignSupportPair<EStructuralFeature, EditingSupport>> features = new ArrayList<METableViewer.FeatureEditignSupportPair<EStructuralFeature, EditingSupport>>();
 		// features.add(TaskPackage.Literals.CHECKABLE__CHECKED);
-		features.add(ModelPackage.Literals.MODEL_ELEMENT__STATE);
-		features.add(ModelPackage.Literals.MODEL_ELEMENT__NAME);
-		features.add(TaskPackage.Literals.WORK_ITEM__ASSIGNEE);
-		features.add(ModelPackage.Literals.MODEL_ELEMENT__CREATION_DATE);
-		features.add(ModelPackage.Literals.MODEL_ELEMENT__CREATOR);
-		features.add(TaskPackage.Literals.WORK_ITEM__CONTAINING_WORKPACKAGE);
-		features.add(TaskPackage.Literals.WORK_ITEM__DUE_DATE);
-		features.add(TaskPackage.Literals.WORK_ITEM__PRIORITY);
-		metv.createColumns(features);
+		features.add(new METableViewer.FeatureEditignSupportPair<EStructuralFeature, EditingSupport>(
+			ModelPackage.Literals.MODEL_ELEMENT__STATE, null));
+		features.add(new METableViewer.FeatureEditignSupportPair<EStructuralFeature, EditingSupport>(
+			ModelPackage.Literals.MODEL_ELEMENT__NAME, null));
+		features.add(new METableViewer.FeatureEditignSupportPair<EStructuralFeature, EditingSupport>(
+			TaskPackage.Literals.WORK_ITEM__ASSIGNEE, null));
+		features.add(new METableViewer.FeatureEditignSupportPair<EStructuralFeature, EditingSupport>(
+			ModelPackage.Literals.MODEL_ELEMENT__CREATION_DATE, null));
+		features.add(new METableViewer.FeatureEditignSupportPair<EStructuralFeature, EditingSupport>(
+			ModelPackage.Literals.MODEL_ELEMENT__CREATOR, null));
+		features.add(new METableViewer.FeatureEditignSupportPair<EStructuralFeature, EditingSupport>(
+			TaskPackage.Literals.WORK_ITEM__CONTAINING_WORKPACKAGE, null));
+		features.add(new METableViewer.FeatureEditignSupportPair<EStructuralFeature, EditingSupport>(
+			TaskPackage.Literals.WORK_ITEM__DUE_DATE, null));
+		features.add(new METableViewer.FeatureEditignSupportPair<EStructuralFeature, EditingSupport>(
+			TaskPackage.Literals.WORK_ITEM__PRIORITY, null));
+		metv.createColumnsWithEditingSupport(features);
 		doneOrResolvedLabelProvider = new WorkItemDoneOrResolvedLabelProvider();
 		doneOrResolvedLabelProvider.setCurrentUser(loggedInUser);
 		doneOrResolvedEditingSupport = new WorkItemDoneOrResolvedEditingSupport(metv.getTableViewer(), loggedInUser);

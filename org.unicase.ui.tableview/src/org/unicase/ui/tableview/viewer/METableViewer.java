@@ -10,7 +10,6 @@ import java.util.Collection;
 import java.util.Collections;
 import java.util.Iterator;
 import java.util.List;
-import java.util.Map;
 
 import org.eclipse.emf.ecore.EClass;
 import org.eclipse.emf.ecore.EObject;
@@ -93,28 +92,6 @@ public class METableViewer {
 		contentProvider.setMEType(meType);
 		createTableViewer(parent);
 
-	}
-
-	/**
-	 * Creates table viewer columns from this set of features.
-	 * 
-	 * @param features EStructuralFeatures for each of which a TableViewerColumn is created.
-	 * @return columns
-	 */
-	public List<TableViewerColumn> createColumns(Collection<EStructuralFeature> features) {
-		columns = new ArrayList<TableViewerColumn>();
-		for (EStructuralFeature feature : features) {
-			if (feature.getEType().equals(EcorePackage.Literals.EDATE)) {
-				columns.add(createDateColumn(feature));
-			} else if (feature.getEType().equals(EcorePackage.Literals.EBOOLEAN)) {
-				columns.add(createBooleanColumn(feature));
-			} else if (feature.equals(ModelPackage.Literals.MODEL_ELEMENT__STATE)) {
-				columns.add(createStateColumn(feature));
-			} else {
-				columns.add(createGenericColumn(feature));
-			}
-		}
-		return columns;
 	}
 
 	private TableViewerColumn createGenericColumn(EStructuralFeature feature) {
@@ -425,29 +402,54 @@ public class METableViewer {
 	}
 
 	/**
-	 * Creates columns with editing support.
+	 * Creates table viewer columns from this set of features.
 	 * 
-	 * @param features features.
+	 * @param features EStructuralFeatures for each of which a TableViewerColumn is created.
 	 * @return columns
 	 */
-	public List<TableViewerColumn> createColumnsWithEditingSupport(Map<EStructuralFeature, EditingSupport> features) {
+	public List<TableViewerColumn> createColumns(Collection<EStructuralFeature> features) {
 		columns = new ArrayList<TableViewerColumn>();
-		for (EStructuralFeature feature : features.keySet()) {
+		for (EStructuralFeature feature : features) {
+			if (feature.getEType().equals(EcorePackage.Literals.EDATE)) {
+				columns.add(createDateColumn(feature));
+			} else if (feature.getEType().equals(EcorePackage.Literals.EBOOLEAN)) {
+				columns.add(createBooleanColumn(feature));
+			} else if (feature.equals(ModelPackage.Literals.MODEL_ELEMENT__STATE)) {
+				columns.add(createStateColumn(feature));
+			} else {
+				columns.add(createGenericColumn(feature));
+			}
+		}
+		return columns;
+	}
+
+	/**
+	 * Creates columns with editing support.
+	 * 
+	 * @param featureEditingSupportPairs features.
+	 * @return columns
+	 */
+	public List<TableViewerColumn> createColumnsWithEditingSupport(
+		List<FeatureEditignSupportPair<EStructuralFeature, EditingSupport>> featureEditingSupportPairs) {
+		columns = new ArrayList<TableViewerColumn>();
+		for (FeatureEditignSupportPair<EStructuralFeature, EditingSupport> featureEditingSuportPair : featureEditingSupportPairs) {
+			EStructuralFeature feature = featureEditingSuportPair.getFeature();
+			EditingSupport editingSupport = featureEditingSuportPair.getEditingSupport();
 			if (feature.getEType().equals(EcorePackage.Literals.EDATE)) {
 				TableViewerColumn column = createDateColumn(feature);
-				column.setEditingSupport(features.get(feature));
+				column.setEditingSupport(editingSupport);
 				columns.add(column);
 			} else if (feature.getEType().equals(EcorePackage.Literals.EBOOLEAN)) {
 				TableViewerColumn column = createBooleanColumn(feature);
-				column.setEditingSupport(features.get(feature));
+				column.setEditingSupport(editingSupport);
 				columns.add(column);
-			} else if (feature.getEType().equals(ModelPackage.Literals.MODEL_ELEMENT__STATE)) {
+			} else if (feature.equals(ModelPackage.Literals.MODEL_ELEMENT__STATE)) {
 				TableViewerColumn column = createStateColumn(feature);
-				column.setEditingSupport(features.get(feature));
+				column.setEditingSupport(editingSupport);
 				columns.add(column);
 			} else {
 				TableViewerColumn column = createGenericColumn(feature);
-				column.setEditingSupport(features.get(feature));
+				column.setEditingSupport(editingSupport);
 				columns.add(column);
 			}
 		}
@@ -581,4 +583,50 @@ public class METableViewer {
 		tableViewer.refresh();
 	}
 
+	/**
+	 * This class represents a pair of EStructuralFeature and its corresponding EditingSupport. This is used to create
+	 * METableViewer columns from a list of features and their editing supports.
+	 * 
+	 * @author zardosht
+	 * @param <K> a type extending {@link EStructuralFeature}
+	 * @param <V> a tpye extending {@link EditingSupport}
+	 */
+	public static class FeatureEditignSupportPair<K extends EStructuralFeature, V extends EditingSupport> {
+
+		private K feature;
+		private V editingSupport;
+
+		/**
+		 * Constructor.
+		 * 
+		 * @param feature feature
+		 * @param editingSupport editing support
+		 */
+		public FeatureEditignSupportPair(K feature, V editingSupport) {
+			this.feature = feature;
+			this.editingSupport = editingSupport;
+		}
+
+		/**
+		 * returns the structural feature.
+		 * 
+		 * @see java.util.Map.Entry#getKey()
+		 * @return structural feature
+		 */
+		public K getFeature() {
+
+			return feature;
+		}
+
+		/**
+		 * returns editing support.
+		 * 
+		 * @see java.util.Map.Entry#getValue()
+		 * @return editing support
+		 */
+		public V getEditingSupport() {
+			return editingSupport;
+		}
+
+	}
 }
