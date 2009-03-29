@@ -8,8 +8,7 @@ package org.unicase.ui.common;
 import org.eclipse.jface.viewers.ColumnLabelProvider;
 import org.eclipse.jface.viewers.TreeViewer;
 import org.eclipse.jface.viewers.TreeViewerColumn;
-import org.eclipse.jface.viewers.Viewer;
-import org.eclipse.jface.viewers.ViewerComparator;
+import org.eclipse.jface.viewers.ViewerColumn;
 import org.eclipse.swt.SWT;
 import org.eclipse.swt.events.SelectionAdapter;
 import org.eclipse.swt.events.SelectionEvent;
@@ -23,41 +22,30 @@ import org.unicase.model.task.WorkPackage;
  * 
  * @author hodaie
  */
-public class TreeViewerColumnSorter extends ViewerComparator {
-	/**
-	 * . Direction constant used to show right direction arrow on column header
-	 */
-	public static final int ASC = 1;
-	/**
-	 * . Direction constant used to show right direction arrow on column header
-	 */
-	public static final int DESC = -1;
-
-	private int direction = 1;
+public class TreeViewerColumnSorter extends UnicaseColumnViewerSorter {
+	
 
 	private TreeViewerColumn column;
-	private ColumnLabelProvider columnLabelProvider;
 
-	private TreeViewer viewer;
 
 	/**
-	 * . Constructor
+	 * Constructor.
 	 * 
 	 * @param viewer TreeViewer to be sorted
 	 * @param column TreeViewerColumn based on which the TreeViewer is sorted
 	 * @param columnLabelProvider LabelProvider used to sort the contents
 	 */
 	public TreeViewerColumnSorter(TreeViewer viewer, TreeViewerColumn column, ColumnLabelProvider columnLabelProvider) {
-		this.columnLabelProvider = columnLabelProvider;
+		super(viewer, columnLabelProvider);
 		this.column = column;
-		this.viewer = viewer;
-		this.column.getColumn().addSelectionListener(new SelectionAdapter() {
+		
+	    column.getColumn().addSelectionListener(new SelectionAdapter() {
 
 			@Override
 			public void widgetSelected(SelectionEvent e) {
-				if (TreeViewerColumnSorter.this.viewer.getComparator() != null) {
-					if (TreeViewerColumnSorter.this.viewer.getComparator() == TreeViewerColumnSorter.this) {
-						if (direction == ASC) {
+				if (getViewer().getComparator() != null) {
+					if (getViewer().getComparator() == TreeViewerColumnSorter.this) {
+						if (getDirection() == ASC) {
 							setSorter(TreeViewerColumnSorter.this, DESC);
 						} else {
 							setSorter(TreeViewerColumnSorter.this, ASC);
@@ -73,52 +61,25 @@ public class TreeViewerColumnSorter extends ViewerComparator {
 	}
 
 	/**
-	 * . This is used to set the right direction arrow at column header and refresh the viewer.
+	 * This is used to set the right direction arrow at column header and refresh the viewer.
+	 * @param sorter sorter
+	 * @param direction direction
 	 */
-	private void setSorter(TreeViewerColumnSorter sorter, int direction) {
+	@Override
+	protected void setSorter(UnicaseColumnViewerSorter sorter, int direction) {
+		
+		super.setSorter(sorter, direction);
+		
 		column.getColumn().getParent().setSortColumn(column.getColumn());
-		sorter.direction = direction;
-
 		if (direction == ASC) {
 			column.getColumn().getParent().setSortDirection(SWT.DOWN);
 		} else {
 			column.getColumn().getParent().setSortDirection(SWT.UP);
 		}
-
-		if (viewer.getComparator() == sorter) {
-			viewer.refresh();
-		} else {
-			viewer.setComparator(sorter);
-		}
-
+	
 	}
 
-	/**
-	 * . {@inheritDoc}
-	 */
-	@SuppressWarnings("unchecked")
-	@Override
-	public int compare(Viewer viewer, Object e1, Object e2) {
-
-		String name1 = columnLabelProvider.getText(e1);
-		String name2 = columnLabelProvider.getText(e2);
-
-		if (name1 == null) {
-			name1 = "";
-		}
-		if (name2 == null) {
-			name2 = "";
-		}
-
-		// use the comparator to compare the strings
-		if (direction == ASC) {
-			return getComparator().compare(name1, name2);
-		} else {
-			return getComparator().compare(name2, name1);
-		}
-
-	}
-
+	
 	/**
 	 * . {@inheritDoc} This method is adapted to sort StatusView tree.
 	 */
@@ -131,6 +92,16 @@ public class TreeViewerColumnSorter extends ViewerComparator {
 			return 2;
 		}
 		return 3;
+	}
+
+	/**
+	 * {@inheritDoc}
+	 * 
+	 * @see org.unicase.ui.common.UnicaseColumnViewerSorter#getViewerColumn()
+	 */
+	@Override
+	public ViewerColumn getViewerColumn() {
+		return column;
 	}
 
 }

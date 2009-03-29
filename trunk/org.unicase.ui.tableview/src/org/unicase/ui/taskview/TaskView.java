@@ -376,6 +376,12 @@ public class TaskView extends ViewPart implements ProjectChangeObserver {
 		features.add(new METableViewer.FeatureEditignSupportPair<EStructuralFeature, EditingSupport>(
 			TaskPackage.Literals.WORK_ITEM__PRIORITY, new IntegerEditingSupport(metv.getTableViewer(),
 				TaskPackage.Literals.WORK_ITEM__PRIORITY)));
+		// features.add(new METableViewer.FeatureEditignSupportPair<EStructuralFeature, EditingSupport>(
+		// TaskPackage.Literals.WORK_ITEM__ESTIMATE, new IntegerEditingSupport(metv.getTableViewer(),
+		// TaskPackage.Literals.WORK_ITEM__ESTIMATE)));
+		// features.add(new METableViewer.FeatureEditignSupportPair<EStructuralFeature, EditingSupport>(
+		// TaskPackage.Literals.WORK_ITEM__EFFORT, new IntegerEditingSupport(metv.getTableViewer(),
+		// TaskPackage.Literals.WORK_ITEM__EFFORT)));
 
 		metv.createColumnsWithEditingSupport(features);
 
