@@ -15,6 +15,7 @@ import org.eclipse.jface.viewers.CellEditor;
 import org.eclipse.jface.viewers.EditingSupport;
 import org.eclipse.jface.viewers.TableViewer;
 import org.eclipse.jface.viewers.TextCellEditor;
+import org.unicase.ui.common.UnicaseColumnViewerSorter;
 
 /**
  * This is editing support for columns showing integeral values.
@@ -112,8 +113,9 @@ public class IntegerEditingSupport extends EditingSupport {
 				eObject.eSet(feature, value);
 			}
 		});
-
+		((UnicaseColumnViewerSorter) getViewer().getComparator()).setSortingEnabled(false);
 		getViewer().update(eObject, null);
+		// ((UnicaseColumnViewerSorter) getViewer().getComparator()).setSortingEnabled(true);
 	}
 
 }
