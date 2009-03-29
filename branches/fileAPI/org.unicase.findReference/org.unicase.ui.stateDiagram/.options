@@ -1,0 +1,7 @@
+# Tracing options for the org.unicase.ui.stateDiagram plug-in
+
+# Common issues
+org.unicase.ui.stateDiagram/debug=false
+
+# Visual IDs
+org.unicase.ui.stateDiagram/debug/visualID=false
