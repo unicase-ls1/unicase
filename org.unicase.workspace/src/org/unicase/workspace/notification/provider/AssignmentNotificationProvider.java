@@ -217,7 +217,7 @@ public class AssignmentNotificationProvider implements NotificationProvider {
 		notification.setSeen(false);
 		notification.setSender("unicase assignment notification generator");
 		StringBuilder stringBuilder = new StringBuilder();
-		stringBuilder.append("You have been assigned ");
+		stringBuilder.append("You have been assigned");
 		ModelElementId[] wis = workItems.toArray(new ModelElementId[0]);
 		if (workItems.size() == 1) {
 			stringBuilder.append(" a");

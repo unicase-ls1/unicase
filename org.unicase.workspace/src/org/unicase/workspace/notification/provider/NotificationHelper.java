@@ -86,8 +86,8 @@ public final class NotificationHelper {
 		ret.append("%");
 		ret.append(modelElement.getIdentifier());
 		ret.append("\">");
-		if (name.length() > 33) {
-			name = name.substring(0, 30) + "...";
+		if (name.length() > 53) {
+			name = name.substring(0, 50) + " ...";
 		}
 		ret.append(name);
 		ret.append("</a>");
