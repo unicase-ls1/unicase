@@ -15,6 +15,7 @@ import org.eclipse.jface.viewers.CellEditor;
 import org.eclipse.jface.viewers.EditingSupport;
 import org.eclipse.jface.viewers.TableViewer;
 import org.eclipse.jface.viewers.TextCellEditor;
+import org.eclipse.jface.viewers.ViewerComparator;
 import org.unicase.ui.common.UnicaseColumnViewerSorter;
 
 /**
@@ -113,9 +114,12 @@ public class IntegerEditingSupport extends EditingSupport {
 				eObject.eSet(feature, value);
 			}
 		});
-		((UnicaseColumnViewerSorter) getViewer().getComparator()).setSortingEnabled(false);
+		ViewerComparator viewerComparator = getViewer().getComparator();
+		if (viewerComparator != null && viewerComparator instanceof UnicaseColumnViewerSorter) {
+			((UnicaseColumnViewerSorter) viewerComparator).setSortingEnabled(false);
+		}
+
 		getViewer().update(eObject, null);
-		// ((UnicaseColumnViewerSorter) getViewer().getComparator()).setSortingEnabled(true);
 	}
 
 }
