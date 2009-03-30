@@ -40,8 +40,12 @@ public class WorkpackageContentProvider extends TransactionalAdapterFactoryConte
 	 */
 	@Override
 	public void dispose() {
-		WorkspaceManager.getInstance().getCurrentWorkspace().getActiveProjectSpace().getProject()
-			.removeProjectChangeObserver(this);
+		if (WorkspaceManager.getInstance().getCurrentWorkspace().getActiveProjectSpace() != null
+			&& WorkspaceManager.getInstance().getCurrentWorkspace().getActiveProjectSpace().getProject() != null) {
+			WorkspaceManager.getInstance().getCurrentWorkspace().getActiveProjectSpace().getProject()
+				.removeProjectChangeObserver(this);
+		}
+
 		super.dispose();
 	}
 

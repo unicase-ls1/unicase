@@ -43,7 +43,7 @@ public class FlatTabContentProvider extends AdapterFactoryContentProvider {
 			return result.toArray(new Object[result.size()]);
 
 		} else {
-			return null;
+			return new Object[0];
 		}
 
 	}
