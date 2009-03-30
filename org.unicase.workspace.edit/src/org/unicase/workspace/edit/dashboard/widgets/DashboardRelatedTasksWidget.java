@@ -6,6 +6,7 @@
 package org.unicase.workspace.edit.dashboard.widgets;
 
 import org.eclipse.swt.widgets.Composite;
+import org.unicase.workspace.edit.dashboard.DashboardPage;
 
 /**
  * A dashboard widget displaying an overview of related tasks.
@@ -14,14 +15,17 @@ import org.eclipse.swt.widgets.Composite;
  */
 public class DashboardRelatedTasksWidget extends AbstractDashboardWidget {
 
+	private static final String WIDGET_ID = "DashboardRelatedTaskWidget";
+
 	/**
 	 * Default constructor.
 	 * 
 	 * @param parent the parent
 	 * @param style the style
+	 * @param dashboard the dashboard
 	 */
-	public DashboardRelatedTasksWidget(Composite parent, int style) {
-		super(parent, style);
+	public DashboardRelatedTasksWidget(Composite parent, int style, DashboardPage dashboard) {
+		super(parent, style, dashboard);
 		setTitle("Tasks that might be related to you");
 	}
 
@@ -30,6 +34,14 @@ public class DashboardRelatedTasksWidget extends AbstractDashboardWidget {
 	 */
 	@Override
 	protected void createContent() {
+	}
+
+	/**
+	 * {@inheritDoc}
+	 */
+	@Override
+	protected String getId() {
+		return WIDGET_ID;
 	}
 
 }

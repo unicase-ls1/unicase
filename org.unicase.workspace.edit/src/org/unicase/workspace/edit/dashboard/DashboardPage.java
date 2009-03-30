@@ -26,6 +26,7 @@ import org.unicase.emfstore.esmodel.versioning.events.EventsFactory;
 import org.unicase.emfstore.esmodel.versioning.events.PluginFocusEvent;
 import org.unicase.workspace.ProjectSpace;
 import org.unicase.workspace.edit.Activator;
+import org.unicase.workspace.edit.dashboard.widgets.DashboardEventWidget;
 import org.unicase.workspace.edit.dashboard.widgets.DashboardTaskWidget;
 import org.unicase.workspace.notification.provider.UpdateNotificationProvider;
 
@@ -94,7 +95,7 @@ public class DashboardPage extends FormPage {
 		Composite body = form.getBody();
 		body.setLayout(new GridLayout());
 		SashForm globalSash = new SashForm(body, SWT.HORIZONTAL);
-		GridDataFactory.fillDefaults().grab(true, false).applyTo(globalSash);
+		GridDataFactory.fillDefaults().grab(true, true).applyTo(globalSash);
 		toolkit.adapt(globalSash, true, true);
 		globalSash.setSashWidth(4);
 
@@ -112,14 +113,14 @@ public class DashboardPage extends FormPage {
 		// main.setBackground(main.getDisplay().getSystemColor(SWT.COLOR_BLUE));
 		// widgets.setBackground(widgets.getDisplay().getSystemColor(SWT.COLOR_RED));
 
-		DashboardTaskWidget tasks = new DashboardTaskWidget(widgets, SWT.NONE, projectSpace);
+		DashboardTaskWidget tasks = new DashboardTaskWidget(widgets, SWT.NONE, this);
 		GridDataFactory.fillDefaults().grab(true, false).applyTo(tasks);
 
 		// DashboardRelatedTasksWidget related = new DashboardRelatedTasksWidget(widgets, SWT.NONE);
 		// GridDataFactory.fillDefaults().grab(true, false).applyTo(related);
 		//
-		// DashboardEventWidget events = new DashboardEventWidget(widgets, SWT.NONE);
-		// GridDataFactory.fillDefaults().grab(true, false).applyTo(events);
+		DashboardEventWidget events = new DashboardEventWidget(widgets, SWT.NONE, this);
+		GridDataFactory.fillDefaults().grab(true, false).applyTo(events);
 
 		domain.getCommandStack().execute(new RecordingCommand(domain) {
 
@@ -132,7 +133,6 @@ public class DashboardPage extends FormPage {
 		int[] topWeights = { 80, 20 };
 		globalSash.setWeights(topWeights);
 		form.setFocus();
-		form.pack();
 	}
 
 	private void loadNotifications(List<ESNotification> notifications) {
@@ -165,5 +165,12 @@ public class DashboardPage extends FormPage {
 	public void setFocus() {
 		super.setFocus();
 		main.setFocus();
+	}
+
+	/**
+	 * @return the project space for this dashboard
+	 */
+	public ProjectSpace getProjectSpace() {
+		return projectSpace;
 	}
 }

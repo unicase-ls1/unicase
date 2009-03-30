@@ -270,7 +270,8 @@ public class NotificationDashboardEntry extends AbstractDashboardEntry {
 			indent = 0;
 			height = 0;
 		}
-		GridDataFactory.fillDefaults().hint(10, height).span(3, 1).indent(20, indent).grab(true, false).applyTo(drawer);
+		GridDataFactory.fillDefaults().hint(480, height).grab(true, false).span(3, 1).indent(20, indent)
+			.applyTo(drawer);
 		getParent().layout();
 		getPage().getForm().reflow(true);
 	}
@@ -310,7 +311,7 @@ public class NotificationDashboardEntry extends AbstractDashboardEntry {
 			text = "";
 		}
 		link.setText(text);
-		GridDataFactory.fillDefaults().hint(10, SWT.DEFAULT).grab(true, false).applyTo(link);
+		GridDataFactory.fillDefaults().hint(500, SWT.DEFAULT).grab(true, true).applyTo(link);
 		return link;
 	}
 
