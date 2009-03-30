@@ -53,9 +53,7 @@ import org.unicase.model.task.util.MEState;
 import org.unicase.model.task.util.TaxonomyAccess;
 import org.unicase.model.util.ProjectChangeObserver;
 import org.unicase.ui.common.MEClassLabelProvider;
-import org.unicase.ui.common.util.ActionHelper;
 import org.unicase.ui.stem.Activator;
-import org.unicase.workspace.ProjectSpace;
 import org.unicase.workspace.Workspace;
 import org.unicase.workspace.WorkspaceManager;
 import org.unicase.workspace.WorkspacePackage;
@@ -74,6 +72,7 @@ import org.unicase.workspace.util.EventUtil;
  */
 public class StatusView extends ViewPart implements ProjectChangeObserver {
 
+	private Project activeProject;
 	private ModelElement input;
 	// this must be disposed!
 	private DropTarget dropTarget;
@@ -123,21 +122,29 @@ public class StatusView extends ViewPart implements ProjectChangeObserver {
 
 		workspace = WorkspaceManager.getInstance().getCurrentWorkspace();
 		if (workspace.getActiveProjectSpace() != null) {
-			workspace.getActiveProjectSpace().getProject().addProjectChangeObserver(StatusView.this);
+			activeProject = workspace.getActiveProjectSpace().getProject();
+			activeProject.addProjectChangeObserver(StatusView.this);
 		}
 		adapterImpl = new AdapterImpl() {
 			@Override
 			public void notifyChanged(Notification msg) {
 				if ((msg.getFeatureID(Workspace.class)) == WorkspacePackage.WORKSPACE__ACTIVE_PROJECT_SPACE) {
-
 					// remove old listeners
-					Object oldValue = msg.getOldValue();
-					if (oldValue instanceof ProjectSpace) {
-						((ProjectSpace) oldValue).getProject().removeProjectChangeObserver(StatusView.this);
+					if (activeProject != null) {
+						activeProject.removeProjectChangeObserver(StatusView.this);
 					}
 					// add listener to get notified when work items get deleted/added/changed
 					if (workspace.getActiveProjectSpace() != null) {
-						workspace.getActiveProjectSpace().getProject().addProjectChangeObserver(StatusView.this);
+						activeProject = workspace.getActiveProjectSpace().getProject();
+						activeProject.addProjectChangeObserver(StatusView.this);
+					} else {
+						try {
+							if (msg.getOldValue().equals(WorkspaceManager.getProjectSpace(activeProject))) {
+								setInput(null);
+							}
+						} catch (IllegalStateException e) {
+							setInput(null);
+						}
 					}
 				}
 			}
@@ -297,6 +304,7 @@ public class StatusView extends ViewPart implements ProjectChangeObserver {
 	 */
 	public void refreshView() {
 		if (input == null) {
+			resetView();
 			return;
 		}
 		// update attributes
@@ -367,6 +375,35 @@ public class StatusView extends ViewPart implements ProjectChangeObserver {
 
 	}
 
+	private void resetView() {
+		// update attributes
+		lblName.setImage(null);
+		lblName.setText("");
+		lblProjectName.setText("");
+		lblProgressName.setText(0 + "/" + 0);
+		lblEstimateProgressName.setText(0 + "/" + 0);
+		lblProgressName.pack(true);
+		lblEstimateProgressName.pack(true);
+		sectionComposite.layout(true);
+
+		lblLatestDueDateName.setText("");
+		lblLatestDueDateName.pack(true);
+
+		pbTasks.setMaximum(10);
+		pbEstimate.setMaximum(10);
+		pbEstimate.setSelection(0);
+		pbTasks.setSelection(0);
+		pbTasks.setToolTipText("0% done");
+		pbEstimate.setToolTipText("0% done");
+
+		// set input for tabs
+		flatTabComposite.setInput(null, this);
+		hierarchyTabComposite.setInput(null);
+		userTabComposite.setInput(null, this);
+		activityTabComposite.setInput(null);
+
+	}
+
 	private void removeNotContainedTasks(Set<ModelElement> leafOpeners, WorkPackage input2) {
 		List<WorkItem> allContainedWorkItems = input2.getAllContainedWorkItems();
 		leafOpeners.retainAll(allContainedWorkItems);
@@ -424,16 +461,10 @@ public class StatusView extends ViewPart implements ProjectChangeObserver {
 	 * Set input to the view. currently input is set using drag and drop on top composite. Later we implement a context
 	 * menu command for it too.
 	 * 
-	 * @param me input model element
+	 * @param newInput input model element
 	 */
-	public void setInput(ModelElement me) {
-		ModelElement newInput = me;
-		if (newInput == null) {
-			newInput = ActionHelper.getSelectedModelElement();
-		}
-		if (input == null || newInput != null) {
-			input = newInput;
-		}
+	public void setInput(ModelElement newInput) {
+		input = newInput;
 		topComposite.setFocus();
 		refreshView();
 
@@ -571,6 +602,12 @@ public class StatusView extends ViewPart implements ProjectChangeObserver {
 	 *      org.unicase.model.ModelElement)
 	 */
 	public void modelElementAdded(Project project, ModelElement modelElement) {
+		if (input == null) {
+			return;
+		}
+		if (project != input.getProject()) {
+			return;
+		}
 		refreshView();
 
 	}
@@ -602,6 +639,16 @@ public class StatusView extends ViewPart implements ProjectChangeObserver {
 	 *      org.unicase.model.ModelElement)
 	 */
 	public void modelElementRemoved(Project project, ModelElement modelElement) {
+		if (modelElement.equals(input)) {
+			setInput(null);
+			return;
+		}
+		if (input == null) {
+			return;
+		}
+		if (project != input.getProject()) {
+			return;
+		}
 		refreshView();
 
 	}
@@ -613,6 +660,12 @@ public class StatusView extends ViewPart implements ProjectChangeObserver {
 	 *      org.unicase.model.Project, org.unicase.model.ModelElement)
 	 */
 	public void notify(Notification notification, Project project, ModelElement modelElement) {
+		if (input == null) {
+			return;
+		}
+		if (project != input.getProject()) {
+			return;
+		}
 		refreshView();
 
 	}
