@@ -155,6 +155,8 @@ public class IterationPlanningView extends ViewPart {
 				if ((msg.getFeatureID(Workspace.class)) == WorkspacePackage.WORKSPACE__ACTIVE_PROJECT_SPACE) {
 					if (workspace.getActiveProjectSpace() != null) {
 						project = workspace.getActiveProjectSpace().getProject();
+					} else {
+						project = null;
 					}
 					setInput();
 				}
@@ -165,10 +167,10 @@ public class IterationPlanningView extends ViewPart {
 		// set input when showing the view for the first time.
 		if (workspace.getActiveProjectSpace() != null) {
 			project = workspace.getActiveProjectSpace().getProject();
-			setInput();
 		} else {
-			setInput();
+			project = null;
 		}
+		setInput();
 
 	}
 
