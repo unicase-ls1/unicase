@@ -66,6 +66,9 @@ public class UnicaseTableView extends ViewPart implements ProjectChangeObserver 
 						activeProject.addProjectChangeObserver(UnicaseTableView.this);
 
 						viewer.setInput(activeProject);
+					} else {
+						activeProject = null;
+						viewer.setInput(activeProject);
 					}
 
 				}

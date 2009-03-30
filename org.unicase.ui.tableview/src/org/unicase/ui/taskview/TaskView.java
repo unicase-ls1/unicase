@@ -117,6 +117,9 @@ public class TaskView extends ViewPart implements ProjectChangeObserver {
 						activeProject.addProjectChangeObserver(TaskView.this);
 						initLoggedInUser();
 						viewer.setInput(activeProject);
+					} else {
+						activeProject = null;
+						viewer.setInput(activeProject);
 					}
 
 				}
