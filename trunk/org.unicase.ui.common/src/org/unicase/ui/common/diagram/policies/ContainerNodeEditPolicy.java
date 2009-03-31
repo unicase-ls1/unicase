@@ -36,7 +36,7 @@ import org.eclipse.gmf.runtime.diagram.ui.requests.RequestConstants;
  * create a new source or target element. This will handle both single create connection requests and multi connection
  * requests (i.e. where the popup also prompts the user for the type of relationship to created).
  * 
- * @author cmahoney
+ * @author denglerm
  */
 public class ContainerNodeEditPolicy extends GraphicalNodeEditPolicy {
 
