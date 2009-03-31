@@ -15,16 +15,23 @@ import org.eclipse.emf.edit.domain.EditingDomain;
 import org.eclipse.emf.transaction.RecordingCommand;
 import org.eclipse.emf.transaction.TransactionalEditingDomain;
 import org.eclipse.emf.transaction.util.TransactionUtil;
+import org.eclipse.jface.layout.GridDataFactory;
+import org.eclipse.jface.layout.GridLayoutFactory;
 import org.eclipse.swt.SWT;
 import org.eclipse.swt.events.FocusEvent;
 import org.eclipse.swt.events.FocusListener;
+import org.eclipse.swt.events.MouseAdapter;
+import org.eclipse.swt.events.MouseEvent;
 import org.eclipse.swt.layout.GridData;
-import org.eclipse.swt.layout.GridLayout;
 import org.eclipse.swt.nebula.widgets.cdatetime.CDT;
 import org.eclipse.swt.nebula.widgets.cdatetime.CDateTime;
 import org.eclipse.swt.widgets.Composite;
 import org.eclipse.swt.widgets.Control;
+import org.eclipse.swt.widgets.Label;
+import org.eclipse.ui.ISharedImages;
+import org.eclipse.ui.PlatformUI;
 import org.eclipse.ui.forms.widgets.FormToolkit;
+import org.eclipse.ui.forms.widgets.ImageHyperlink;
 
 /**
  * Standard widgets to edit a date attribute.
@@ -33,9 +40,13 @@ import org.eclipse.ui.forms.widgets.FormToolkit;
  */
 public class MEDateControl extends AbstractMEControl implements MEControl {
 
-	private EAttribute attribute;
-	private CDateTime widget;
 	private AdapterImpl adapterImpl;
+	private EAttribute attribute;
+	private Composite dateComposite;
+
+	private CDateTime dateWidget;
+	private ImageHyperlink dateDeleteButton;
+	private Label dateDummy;
 
 	/**
 	 * default constructor.
@@ -65,16 +76,39 @@ public class MEDateControl extends AbstractMEControl implements MEControl {
 	 * {@inheritDoc}
 	 */
 	public Control createControl(Composite parent, int style) {
-		Composite composite = getToolkit().createComposite(parent);
-		composite.setLayout(new GridLayout(2, false));
-		composite.setBackgroundMode(SWT.INHERIT_FORCE);
-
-		// The picker (CDT.DROP_DOWN) is deactivated on purpose
-		widget = new CDateTime(composite, CDT.BORDER);
-		widget.setLayoutData(new GridData(SWT.FILL, SWT.FILL, true, true));
-		widget.setPattern("dd.MM.yyyy HH:mm");
+		dateComposite = getToolkit().createComposite(parent);
+		GridLayoutFactory.fillDefaults().numColumns(2).spacing(2, 0).applyTo(dateComposite);
+		GridDataFactory.fillDefaults().grab(true, false).applyTo(dateComposite);
+		dateComposite.setBackgroundMode(SWT.INHERIT_FORCE);
 		update();
-		widget.addFocusListener(new FocusListener() {
+		return dateComposite;
+	}
+
+	private void createDateHint() {
+		dateDummy = getToolkit().createLabel(dateComposite, "(Not Set)");
+		dateDummy.setForeground(dateComposite.getShell().getDisplay().getSystemColor(SWT.COLOR_DARK_GRAY));
+		dateDummy.addMouseListener(new MouseAdapter() {
+
+			@Override
+			public void mouseUp(MouseEvent e) {
+				TransactionalEditingDomain domain = TransactionUtil.getEditingDomain(getModelElement());
+				domain.getCommandStack().execute(new RecordingCommand(domain) {
+					@Override
+					protected void doExecute() {
+						getModelElement().eSet(attribute, new Date());
+					}
+				});
+			}
+
+		});
+	};
+
+	private CDateTime createDateWidget() {
+		// The picker (CDT.DROP_DOWN) is deactivated on purpose
+		dateWidget = new CDateTime(dateComposite, CDT.BORDER);
+		dateWidget.setLayoutData(new GridData(SWT.FILL, SWT.FILL, true, true));
+		dateWidget.setPattern("dd.MM.yyyy HH:mm");
+		dateWidget.addFocusListener(new FocusListener() {
 
 			public void focusGained(FocusEvent e) {
 				// nothing to do here
@@ -85,28 +119,27 @@ public class MEDateControl extends AbstractMEControl implements MEControl {
 				domain.getCommandStack().execute(new RecordingCommand(domain) {
 					@Override
 					protected void doExecute() {
-						getModelElement().eSet(attribute, widget.getSelection());
+						getModelElement().eSet(attribute, dateWidget.getSelection());
 					}
 				});
 			}
 
 		});
-		return composite;
-	}
-
-	private void update() {
-		TransactionalEditingDomain domain = TransactionUtil.getEditingDomain(getModelElement());
-		domain.getCommandStack().execute(new RecordingCommand(domain) {
+		dateDeleteButton = new ImageHyperlink(dateComposite, SWT.TOP);
+		dateDeleteButton.setImage(PlatformUI.getWorkbench().getSharedImages().getImage(ISharedImages.IMG_TOOL_DELETE));
+		dateDeleteButton.addMouseListener(new MouseAdapter() {
 			@Override
-			protected void doExecute() {
-				Date newDate = (Date) getModelElement().eGet(attribute);
-				if (newDate == null) {
-					newDate = new Date();
-					getModelElement().eSet(attribute, newDate);
-				}
-				widget.setSelection(newDate);
+			public void mouseUp(MouseEvent e) {
+				TransactionalEditingDomain domain = TransactionUtil.getEditingDomain(getModelElement());
+				domain.getCommandStack().execute(new RecordingCommand(domain) {
+					@Override
+					protected void doExecute() {
+						getModelElement().eSet(attribute, null);
+					}
+				});
 			}
 		});
+		return dateWidget;
 	}
 
 	/**
@@ -118,4 +151,30 @@ public class MEDateControl extends AbstractMEControl implements MEControl {
 		super.dispose();
 	}
 
+	private void update() {
+
+		TransactionalEditingDomain domain = TransactionUtil.getEditingDomain(getModelElement());
+		domain.getCommandStack().execute(new RecordingCommand(domain) {
+			@Override
+			protected void doExecute() {
+				Date newDate = (Date) getModelElement().eGet(attribute);
+				if (newDate == null) { // delete the date widget if it is present.
+					if (dateWidget != null) {
+						dateWidget.dispose();
+						dateDeleteButton.dispose();
+					}
+					createDateHint(); // create a dummy
+				} else if (dateWidget == null || dateWidget.isDisposed()) {
+					if (dateDummy != null) { // delete the dummy if it is present.
+						dateDummy.dispose();
+					}
+					createDateWidget(); // create a date widget and set its date.
+					dateWidget.setSelection(newDate);
+				}
+				dateComposite.layout(true);
+				dateComposite.getParent().layout(true);
+				dateComposite.getParent().getParent().layout(true);
+			}
+		});
+	}
 }
