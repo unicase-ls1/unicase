@@ -81,9 +81,9 @@ public class CreateDeleteOperationImpl extends AbstractOperationImpl implements 
 	}
 
 	/**
-	 * The default value of the '{@link #isDelete() <em>Delete</em>}' attribute.
-	 * <!-- begin-user-doc --> <!--
+	 * The default value of the '{@link #isDelete() <em>Delete</em>}' attribute. <!-- begin-user-doc --> <!--
 	 * end-user-doc -->
+	 * 
 	 * @see #isDelete()
 	 * @generated
 	 * @ordered
@@ -91,9 +91,9 @@ public class CreateDeleteOperationImpl extends AbstractOperationImpl implements 
 	protected static final boolean DELETE_EDEFAULT = false;
 
 	/**
-	 * The cached value of the '{@link #isDelete() <em>Delete</em>}' attribute.
-	 * <!-- begin-user-doc --> <!--
+	 * The cached value of the '{@link #isDelete() <em>Delete</em>}' attribute. <!-- begin-user-doc --> <!--
 	 * end-user-doc -->
+	 * 
 	 * @see #isDelete()
 	 * @generated
 	 * @ordered
@@ -122,6 +122,7 @@ public class CreateDeleteOperationImpl extends AbstractOperationImpl implements 
 
 	/**
 	 * <!-- begin-user-doc --> <!-- end-user-doc -->
+	 * 
 	 * @generated
 	 */
 	protected CreateDeleteOperationImpl() {
@@ -130,6 +131,7 @@ public class CreateDeleteOperationImpl extends AbstractOperationImpl implements 
 
 	/**
 	 * <!-- begin-user-doc --> <!-- end-user-doc -->
+	 * 
 	 * @generated
 	 */
 	@Override
@@ -139,6 +141,7 @@ public class CreateDeleteOperationImpl extends AbstractOperationImpl implements 
 
 	/**
 	 * <!-- begin-user-doc --> <!-- end-user-doc -->
+	 * 
 	 * @generated
 	 */
 	public boolean isDelete() {
@@ -147,32 +150,39 @@ public class CreateDeleteOperationImpl extends AbstractOperationImpl implements 
 
 	/**
 	 * <!-- begin-user-doc --> <!-- end-user-doc -->
+	 * 
 	 * @generated
 	 */
 	public void setDelete(boolean newDelete) {
 		boolean oldDelete = delete;
 		delete = newDelete;
 		if (eNotificationRequired())
-			eNotify(new ENotificationImpl(this, Notification.SET, OperationsPackage.CREATE_DELETE_OPERATION__DELETE, oldDelete, delete));
+			eNotify(new ENotificationImpl(this, Notification.SET, OperationsPackage.CREATE_DELETE_OPERATION__DELETE,
+				oldDelete, delete));
 	}
 
 	/**
 	 * <!-- begin-user-doc --> <!-- end-user-doc -->
+	 * 
 	 * @generated
 	 */
 	public ModelElement getModelElement() {
 		if (modelElement != null && modelElement.eIsProxy()) {
-			InternalEObject oldModelElement = (InternalEObject)modelElement;
-			modelElement = (ModelElement)eResolveProxy(oldModelElement);
+			InternalEObject oldModelElement = (InternalEObject) modelElement;
+			modelElement = (ModelElement) eResolveProxy(oldModelElement);
 			if (modelElement != oldModelElement) {
-				InternalEObject newModelElement = (InternalEObject)modelElement;
-				NotificationChain msgs = oldModelElement.eInverseRemove(this, EOPPOSITE_FEATURE_BASE - OperationsPackage.CREATE_DELETE_OPERATION__MODEL_ELEMENT, null, null);
+				InternalEObject newModelElement = (InternalEObject) modelElement;
+				NotificationChain msgs = oldModelElement.eInverseRemove(this, EOPPOSITE_FEATURE_BASE
+					- OperationsPackage.CREATE_DELETE_OPERATION__MODEL_ELEMENT, null, null);
 				if (newModelElement.eInternalContainer() == null) {
-					msgs = newModelElement.eInverseAdd(this, EOPPOSITE_FEATURE_BASE - OperationsPackage.CREATE_DELETE_OPERATION__MODEL_ELEMENT, null, msgs);
+					msgs = newModelElement.eInverseAdd(this, EOPPOSITE_FEATURE_BASE
+						- OperationsPackage.CREATE_DELETE_OPERATION__MODEL_ELEMENT, null, msgs);
 				}
-				if (msgs != null) msgs.dispatch();
+				if (msgs != null)
+					msgs.dispatch();
 				if (eNotificationRequired())
-					eNotify(new ENotificationImpl(this, Notification.RESOLVE, OperationsPackage.CREATE_DELETE_OPERATION__MODEL_ELEMENT, oldModelElement, modelElement));
+					eNotify(new ENotificationImpl(this, Notification.RESOLVE,
+						OperationsPackage.CREATE_DELETE_OPERATION__MODEL_ELEMENT, oldModelElement, modelElement));
 			}
 		}
 		return modelElement;
@@ -180,6 +190,7 @@ public class CreateDeleteOperationImpl extends AbstractOperationImpl implements 
 
 	/**
 	 * <!-- begin-user-doc --> <!-- end-user-doc -->
+	 * 
 	 * @generated
 	 */
 	public ModelElement basicGetModelElement() {
@@ -188,146 +199,165 @@ public class CreateDeleteOperationImpl extends AbstractOperationImpl implements 
 
 	/**
 	 * <!-- begin-user-doc --> <!-- end-user-doc -->
+	 * 
 	 * @generated
 	 */
 	public NotificationChain basicSetModelElement(ModelElement newModelElement, NotificationChain msgs) {
 		ModelElement oldModelElement = modelElement;
 		modelElement = newModelElement;
 		if (eNotificationRequired()) {
-			ENotificationImpl notification = new ENotificationImpl(this, Notification.SET, OperationsPackage.CREATE_DELETE_OPERATION__MODEL_ELEMENT, oldModelElement, newModelElement);
-			if (msgs == null) msgs = notification; else msgs.add(notification);
+			ENotificationImpl notification = new ENotificationImpl(this, Notification.SET,
+				OperationsPackage.CREATE_DELETE_OPERATION__MODEL_ELEMENT, oldModelElement, newModelElement);
+			if (msgs == null)
+				msgs = notification;
+			else
+				msgs.add(notification);
 		}
 		return msgs;
 	}
 
 	/**
 	 * <!-- begin-user-doc --> <!-- end-user-doc -->
+	 * 
 	 * @generated
 	 */
 	public void setModelElement(ModelElement newModelElement) {
 		if (newModelElement != modelElement) {
 			NotificationChain msgs = null;
 			if (modelElement != null)
-				msgs = ((InternalEObject)modelElement).eInverseRemove(this, EOPPOSITE_FEATURE_BASE - OperationsPackage.CREATE_DELETE_OPERATION__MODEL_ELEMENT, null, msgs);
+				msgs = ((InternalEObject) modelElement).eInverseRemove(this, EOPPOSITE_FEATURE_BASE
+					- OperationsPackage.CREATE_DELETE_OPERATION__MODEL_ELEMENT, null, msgs);
 			if (newModelElement != null)
-				msgs = ((InternalEObject)newModelElement).eInverseAdd(this, EOPPOSITE_FEATURE_BASE - OperationsPackage.CREATE_DELETE_OPERATION__MODEL_ELEMENT, null, msgs);
+				msgs = ((InternalEObject) newModelElement).eInverseAdd(this, EOPPOSITE_FEATURE_BASE
+					- OperationsPackage.CREATE_DELETE_OPERATION__MODEL_ELEMENT, null, msgs);
 			msgs = basicSetModelElement(newModelElement, msgs);
-			if (msgs != null) msgs.dispatch();
-		}
-		else if (eNotificationRequired())
-			eNotify(new ENotificationImpl(this, Notification.SET, OperationsPackage.CREATE_DELETE_OPERATION__MODEL_ELEMENT, newModelElement, newModelElement));
+			if (msgs != null)
+				msgs.dispatch();
+		} else if (eNotificationRequired())
+			eNotify(new ENotificationImpl(this, Notification.SET,
+				OperationsPackage.CREATE_DELETE_OPERATION__MODEL_ELEMENT, newModelElement, newModelElement));
 	}
 
 	/**
 	 * <!-- begin-user-doc --> <!-- end-user-doc -->
+	 * 
 	 * @generated
 	 */
 	public EList<ReferenceOperation> getSubOperations() {
 		if (subOperations == null) {
-			subOperations = new EObjectContainmentEList.Resolving<ReferenceOperation>(ReferenceOperation.class, this, OperationsPackage.CREATE_DELETE_OPERATION__SUB_OPERATIONS);
+			subOperations = new EObjectContainmentEList.Resolving<ReferenceOperation>(ReferenceOperation.class, this,
+				OperationsPackage.CREATE_DELETE_OPERATION__SUB_OPERATIONS);
 		}
 		return subOperations;
 	}
 
 	/**
 	 * <!-- begin-user-doc --> <!-- end-user-doc -->
+	 * 
 	 * @generated
 	 */
 	@Override
 	public NotificationChain eInverseRemove(InternalEObject otherEnd, int featureID, NotificationChain msgs) {
 		switch (featureID) {
-			case OperationsPackage.CREATE_DELETE_OPERATION__MODEL_ELEMENT:
-				return basicSetModelElement(null, msgs);
-			case OperationsPackage.CREATE_DELETE_OPERATION__SUB_OPERATIONS:
-				return ((InternalEList<?>)getSubOperations()).basicRemove(otherEnd, msgs);
+		case OperationsPackage.CREATE_DELETE_OPERATION__MODEL_ELEMENT:
+			return basicSetModelElement(null, msgs);
+		case OperationsPackage.CREATE_DELETE_OPERATION__SUB_OPERATIONS:
+			return ((InternalEList<?>) getSubOperations()).basicRemove(otherEnd, msgs);
 		}
 		return super.eInverseRemove(otherEnd, featureID, msgs);
 	}
 
 	/**
 	 * <!-- begin-user-doc --> <!-- end-user-doc -->
+	 * 
 	 * @generated
 	 */
 	@Override
 	public Object eGet(int featureID, boolean resolve, boolean coreType) {
 		switch (featureID) {
-			case OperationsPackage.CREATE_DELETE_OPERATION__DELETE:
-				return isDelete() ? Boolean.TRUE : Boolean.FALSE;
-			case OperationsPackage.CREATE_DELETE_OPERATION__MODEL_ELEMENT:
-				if (resolve) return getModelElement();
-				return basicGetModelElement();
-			case OperationsPackage.CREATE_DELETE_OPERATION__SUB_OPERATIONS:
-				return getSubOperations();
+		case OperationsPackage.CREATE_DELETE_OPERATION__DELETE:
+			return isDelete() ? Boolean.TRUE : Boolean.FALSE;
+		case OperationsPackage.CREATE_DELETE_OPERATION__MODEL_ELEMENT:
+			if (resolve)
+				return getModelElement();
+			return basicGetModelElement();
+		case OperationsPackage.CREATE_DELETE_OPERATION__SUB_OPERATIONS:
+			return getSubOperations();
 		}
 		return super.eGet(featureID, resolve, coreType);
 	}
 
 	/**
 	 * <!-- begin-user-doc --> <!-- end-user-doc -->
+	 * 
 	 * @generated
 	 */
 	@SuppressWarnings("unchecked")
 	@Override
 	public void eSet(int featureID, Object newValue) {
 		switch (featureID) {
-			case OperationsPackage.CREATE_DELETE_OPERATION__DELETE:
-				setDelete(((Boolean)newValue).booleanValue());
-				return;
-			case OperationsPackage.CREATE_DELETE_OPERATION__MODEL_ELEMENT:
-				setModelElement((ModelElement)newValue);
-				return;
-			case OperationsPackage.CREATE_DELETE_OPERATION__SUB_OPERATIONS:
-				getSubOperations().clear();
-				getSubOperations().addAll((Collection<? extends ReferenceOperation>)newValue);
-				return;
+		case OperationsPackage.CREATE_DELETE_OPERATION__DELETE:
+			setDelete(((Boolean) newValue).booleanValue());
+			return;
+		case OperationsPackage.CREATE_DELETE_OPERATION__MODEL_ELEMENT:
+			setModelElement((ModelElement) newValue);
+			return;
+		case OperationsPackage.CREATE_DELETE_OPERATION__SUB_OPERATIONS:
+			getSubOperations().clear();
+			getSubOperations().addAll((Collection<? extends ReferenceOperation>) newValue);
+			return;
 		}
 		super.eSet(featureID, newValue);
 	}
 
 	/**
 	 * <!-- begin-user-doc --> <!-- end-user-doc -->
+	 * 
 	 * @generated
 	 */
 	@Override
 	public void eUnset(int featureID) {
 		switch (featureID) {
-			case OperationsPackage.CREATE_DELETE_OPERATION__DELETE:
-				setDelete(DELETE_EDEFAULT);
-				return;
-			case OperationsPackage.CREATE_DELETE_OPERATION__MODEL_ELEMENT:
-				setModelElement((ModelElement)null);
-				return;
-			case OperationsPackage.CREATE_DELETE_OPERATION__SUB_OPERATIONS:
-				getSubOperations().clear();
-				return;
+		case OperationsPackage.CREATE_DELETE_OPERATION__DELETE:
+			setDelete(DELETE_EDEFAULT);
+			return;
+		case OperationsPackage.CREATE_DELETE_OPERATION__MODEL_ELEMENT:
+			setModelElement((ModelElement) null);
+			return;
+		case OperationsPackage.CREATE_DELETE_OPERATION__SUB_OPERATIONS:
+			getSubOperations().clear();
+			return;
 		}
 		super.eUnset(featureID);
 	}
 
 	/**
 	 * <!-- begin-user-doc --> <!-- end-user-doc -->
+	 * 
 	 * @generated
 	 */
 	@Override
 	public boolean eIsSet(int featureID) {
 		switch (featureID) {
-			case OperationsPackage.CREATE_DELETE_OPERATION__DELETE:
-				return delete != DELETE_EDEFAULT;
-			case OperationsPackage.CREATE_DELETE_OPERATION__MODEL_ELEMENT:
-				return modelElement != null;
-			case OperationsPackage.CREATE_DELETE_OPERATION__SUB_OPERATIONS:
-				return subOperations != null && !subOperations.isEmpty();
+		case OperationsPackage.CREATE_DELETE_OPERATION__DELETE:
+			return delete != DELETE_EDEFAULT;
+		case OperationsPackage.CREATE_DELETE_OPERATION__MODEL_ELEMENT:
+			return modelElement != null;
+		case OperationsPackage.CREATE_DELETE_OPERATION__SUB_OPERATIONS:
+			return subOperations != null && !subOperations.isEmpty();
 		}
 		return super.eIsSet(featureID);
 	}
 
 	/**
 	 * <!-- begin-user-doc --> <!-- end-user-doc -->
+	 * 
 	 * @generated
 	 */
 	@Override
 	public String toString() {
-		if (eIsProxy()) return super.toString();
+		if (eIsProxy())
+			return super.toString();
 
 		StringBuffer result = new StringBuffer(super.toString());
 		result.append(" (delete: ");
@@ -347,7 +377,7 @@ public class CreateDeleteOperationImpl extends AbstractOperationImpl implements 
 		stringBuilder.append(getModelElement().eClass().getName());
 		stringBuilder.append(" ");
 		stringBuilder.append(getModelElement().getName());
-		stringBuilder.append(".");
+		// stringBuilder.append(".");
 		return stringBuilder.toString();
 	}
 
