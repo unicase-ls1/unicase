@@ -15,10 +15,13 @@ import org.eclipse.emf.ecore.util.EcoreUtil;
 import org.eclipse.emf.edit.provider.ComposedAdapterFactory;
 import org.eclipse.emf.edit.ui.provider.AdapterFactoryLabelProvider;
 import org.eclipse.jface.dialogs.IDialogConstants;
+import org.eclipse.jface.dialogs.InputDialog;
+import org.eclipse.jface.dialogs.MessageDialog;
 import org.eclipse.jface.viewers.DialogCellEditor;
 import org.eclipse.swt.SWT;
 import org.eclipse.swt.widgets.Composite;
 import org.eclipse.swt.widgets.Control;
+import org.eclipse.swt.widgets.Display;
 import org.eclipse.swt.widgets.Label;
 import org.eclipse.swt.widgets.Tree;
 import org.eclipse.ui.dialogs.ElementListSelectionDialog;
@@ -92,6 +95,17 @@ public class PushedNotificationCellEditor extends DialogCellEditor {
 	}
 
 	private void handleResults(final ArrayList<ESNotification> operations, final Object[] results) {
+		String comment = null;
+		if (results.length > 0) {
+			if (MessageDialog.openQuestion(Display.getCurrent().getActiveShell(), "Notification comment",
+				"Do you want to send a comment with this notification?")) {
+				InputDialog inputDialog = new InputDialog(Display.getCurrent().getActiveShell(),
+					"Notification comment", "Your comment on this notification:", null, null);
+				if (inputDialog.open() == IDialogConstants.OK_ID) {
+					comment = inputDialog.getValue();
+				}
+			}
+		}
 		for (Object o : results) {
 			OrgUnit orgUnit = (OrgUnit) o;
 			ESNotification notification = NotificationFactory.eINSTANCE.createESNotification();
@@ -123,6 +137,10 @@ public class PushedNotificationCellEditor extends DialogCellEditor {
 						}
 					}
 				}
+			}
+			if (comment != null) {
+				msgBuilder.append("%%%");
+				msgBuilder.append(comment);
 			}
 			notification.setMessage(msgBuilder.toString());
 			operations.add(notification);
