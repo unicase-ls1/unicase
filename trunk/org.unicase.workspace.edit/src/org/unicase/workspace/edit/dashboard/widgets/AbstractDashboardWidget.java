@@ -5,6 +5,9 @@
  */
 package org.unicase.workspace.edit.dashboard.widgets;
 
+import java.util.Collections;
+import java.util.List;
+
 import org.eclipse.emf.edit.provider.ComposedAdapterFactory;
 import org.eclipse.emf.edit.ui.provider.AdapterFactoryLabelProvider;
 import org.eclipse.jface.layout.GridDataFactory;
@@ -31,67 +34,106 @@ import org.unicase.workspace.edit.dashboard.DashboardPage;
  * 
  * @author Shterev
  */
-public abstract class AbstractDashboardWidget extends Composite {
+public abstract class AbstractDashboardWidget {
 
-	private String title;
-	private Composite panel;
-	private Display display;
-	private Color bg = new Color(display, 233, 244, 255);
+	/**
+	 * A hyperlink adapter to change the position of the widget.
+	 * 
+	 * @author Shterev
+	 */
+	private final class PositionHyperlinkAdapter extends HyperlinkAdapter {
+		private static final String UP = "up";
+		private static final String DOWN = "down";
+		private String direction;
+
+		public PositionHyperlinkAdapter(String direction) {
+			this.direction = direction;
+		}
+
+		@Override
+		public void linkActivated(HyperlinkEvent e) {
+			List<AbstractDashboardWidget> widgets = getDashboard().getWidgets();
+			int index = widgets.indexOf(AbstractDashboardWidget.this);
+			if (direction.equals(UP) && index > 0) {
+				Collections.swap(widgets, index, index - 1);
+				getDashboard().reloadWidgets();
+			} else if (direction.equals(DOWN) && index < widgets.size() - 1) {
+				Collections.swap(widgets, index, index + 1);
+				getDashboard().reloadWidgets();
+			}
+		}
+	}
+
+	private Composite composite;
+	private Composite contentPanel;
 	private DashboardPage dashboard;
+	private Display display;
 	private AdapterFactoryLabelProvider labelProvider;
-	private Composite toolbar;
-	private Composite systemToolbar;
 	private final String prefix = "org.unicase.dashboard.";
+	private Composite systemToolbar;
+	private String title;
+	private Composite toolbar;
+	private Color bg;
 
 	/**
 	 * Default constructor.
 	 * 
-	 * @param parent the parent.
-	 * @param style the style.
 	 * @param dashboard the dashboard.
 	 */
-	public AbstractDashboardWidget(final Composite parent, int style, DashboardPage dashboard) {
-		super(parent, style);
+	public AbstractDashboardWidget(DashboardPage dashboard) {
+		display = Display.getCurrent();
+		bg = new Color(display, 233, 244, 255);
 		this.dashboard = dashboard;
 		labelProvider = new AdapterFactoryLabelProvider(new ComposedAdapterFactory(
 			ComposedAdapterFactory.Descriptor.Registry.INSTANCE));
 
 		title = "";
-		display = Display.getCurrent();
-		GridLayoutFactory.fillDefaults().numColumns(2).extendedMargins(12, 12, 35, 5).applyTo(this);
-		setBackgroundMode(SWT.INHERIT_FORCE);
-		setBackground(bg);
-		addPaintListener(new PaintListener() {
+	}
+
+	/**
+	 * Creates the widget in the given parent.
+	 * 
+	 * @param parent the parent
+	 * @return the widget composite
+	 */
+	public Composite createWidget(final Composite parent) {
+		composite = new Composite(parent, SWT.NONE);
+		GridLayoutFactory.fillDefaults().numColumns(2).extendedMargins(12, 12, 35, 5).applyTo(composite);
+		composite.setBackgroundMode(SWT.INHERIT_FORCE);
+		composite.setBackground(bg);
+		composite.addPaintListener(new PaintListener() {
 
 			public void paintControl(PaintEvent e) {
 				GC gc = e.gc;
-				int x = getClientArea().x;
-				int y = getClientArea().y;
+				int x = composite.getClientArea().x;
+				int y = composite.getClientArea().y;
 				gc.setAntialias(SWT.ON);
 				gc.setBackground(bg);
-				gc.fillRoundRectangle(x, y, getSize().x - 1, getSize().y - 1, 20, 20);
+				gc.fillRoundRectangle(x, y, composite.getSize().x - 1, composite.getSize().y - 1, 20, 20);
 				gc.setForeground(new Color(display, 20, 74, 180));
-				gc.drawRoundRectangle(x, y, getSize().x - 1, getSize().y - 1, 20, 20);
+				gc.drawRoundRectangle(x, y, composite.getSize().x - 1, composite.getSize().y - 1, 20, 20);
 				x += 15;
 				Font headerFont = JFaceResources.getBannerFont();
 				gc.setFont(headerFont);
 				gc.drawString(title, x, y + 10);
 				FontMetrics titleMetrics = gc.getFontMetrics();
 				y = y + titleMetrics.getHeight() + 12;
-				gc.drawLine(x - 3, y, getSize().x - 13, y);
+				gc.drawLine(x - 3, y, composite.getSize().x - 13, y);
 			}
 		});
-		panel = new Composite(this, SWT.NONE);
-		GridDataFactory.fillDefaults().span(2, 1).hint(150, SWT.DEFAULT).grab(true, false).applyTo(panel);
 
-		toolbar = new Composite(this, SWT.NONE);
-		GridDataFactory.fillDefaults().grab(true, false).applyTo(toolbar);
-		final RowLayout layout = new RowLayout();
-		layout.spacing = 1;
-		layout.marginLeft = 0;
-		toolbar.setLayout(layout);
+		createContentPanel();
+		createToolbar();
+		createSystemToolbar();
 
-		systemToolbar = new Composite(this, SWT.NONE);
+		return composite;
+	}
+
+	/**
+	 * 
+	 */
+	private void createSystemToolbar() {
+		systemToolbar = new Composite(composite, SWT.NONE);
 		GridDataFactory.fillDefaults().applyTo(systemToolbar);
 		final RowLayout sysLayout = new RowLayout();
 		sysLayout.spacing = 1;
@@ -100,53 +142,47 @@ public abstract class AbstractDashboardWidget extends Composite {
 
 		DashboardWidgetAction down = new DashboardWidgetAction(systemToolbar, "down.png");
 		down.setToolTipText("Move widget down");
+		down.addHyperlinkListener(new PositionHyperlinkAdapter(PositionHyperlinkAdapter.DOWN));
 		DashboardWidgetAction up = new DashboardWidgetAction(systemToolbar, "up.png");
 		up.setToolTipText("Move widget up");
+		up.addHyperlinkListener(new PositionHyperlinkAdapter(PositionHyperlinkAdapter.UP));
 		DashboardWidgetAction settings = new DashboardWidgetAction(systemToolbar, "cog.png");
 		settings.setToolTipText("Settings");
 		settings.addHyperlinkListener(new HyperlinkAdapter() {
 			@Override
 			public void linkActivated(HyperlinkEvent e) {
-				PreferenceDialog preferenceDialog = PreferencesUtil.createPreferenceDialogOn(getShell(), prefix
-					+ getId(), null, null);
+				PreferenceDialog preferenceDialog = PreferencesUtil.createPreferenceDialogOn(composite.getShell(),
+					prefix + getId(), null, null);
 				preferenceDialog.open();
 			}
 		});
 	}
 
 	/**
-	 * @return the dashboard this widget is created in
-	 */
-	protected DashboardPage getDashboard() {
-		return dashboard;
-	}
-
-	/**
 	 * Creates the content for this widget.
 	 */
-	protected void createContent() {
-
-	}
-
-	/**
-	 * @param title the new title.
-	 */
-	protected void setTitle(String title) {
-		this.title = title;
-	}
-
-	/**
-	 * @return the title
-	 */
-	public String getTitle() {
-		return title;
+	protected void createContentPanel() {
+		contentPanel = new Composite(composite, SWT.NONE);
+		GridDataFactory.fillDefaults().span(2, 1).hint(150, SWT.DEFAULT).grab(true, false).applyTo(contentPanel);
 	}
 
 	/**
 	 * @return the content
 	 */
-	protected Composite getPanel() {
-		return panel;
+	protected Composite getContentPanel() {
+		return contentPanel;
+	}
+
+	/**
+	 * Creates a toolbar for this widget.
+	 */
+	protected void createToolbar() {
+		toolbar = new Composite(composite, SWT.NONE);
+		GridDataFactory.fillDefaults().grab(true, false).applyTo(toolbar);
+		final RowLayout layout = new RowLayout();
+		layout.spacing = 1;
+		layout.marginLeft = 0;
+		toolbar.setLayout(layout);
 	}
 
 	/**
@@ -157,6 +193,25 @@ public abstract class AbstractDashboardWidget extends Composite {
 	}
 
 	/**
+	 * @return the composite for this widget.
+	 */
+	protected Composite getComposite() {
+		return composite;
+	}
+
+	/**
+	 * @return the dashboard this widget is created in
+	 */
+	protected DashboardPage getDashboard() {
+		return dashboard;
+	}
+
+	/**
+	 * @return the id for this widget
+	 */
+	protected abstract String getId();
+
+	/**
 	 * @return the {@link AdapterFactoryLabelProvider}
 	 */
 	protected AdapterFactoryLabelProvider getLabelProvider() {
@@ -164,7 +219,23 @@ public abstract class AbstractDashboardWidget extends Composite {
 	}
 
 	/**
-	 * @return the id for this widget
+	 * @return the title
 	 */
-	protected abstract String getId();
+	public String getTitle() {
+		return title;
+	}
+
+	/**
+	 * @param title the new title.
+	 */
+	protected void setTitle(String title) {
+		this.title = title;
+	}
+
+	/**
+	 * Disposes the widget's composite.
+	 */
+	public void dispose() {
+		composite.dispose();
+	}
 }

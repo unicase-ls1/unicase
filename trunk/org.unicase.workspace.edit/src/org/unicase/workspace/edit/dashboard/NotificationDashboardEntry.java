@@ -311,7 +311,7 @@ public class NotificationDashboardEntry extends AbstractDashboardEntry {
 			text = "";
 		}
 		link.setText(text);
-		GridDataFactory.fillDefaults().hint(500, SWT.DEFAULT).grab(true, true).applyTo(link);
+		GridDataFactory.fillDefaults().hint(500, SWT.DEFAULT).grab(true, false).applyTo(link);
 		return link;
 	}
 

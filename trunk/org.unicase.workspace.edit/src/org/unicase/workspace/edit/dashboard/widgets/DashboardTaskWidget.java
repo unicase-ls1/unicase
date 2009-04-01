@@ -57,18 +57,14 @@ public class DashboardTaskWidget extends AbstractDashboardWidget {
 	/**
 	 * Default constructor.
 	 * 
-	 * @param parent the parent
-	 * @param style the style
 	 * @param dashboard the dashboard
 	 */
-	public DashboardTaskWidget(Composite parent, int style, DashboardPage dashboard) {
-		super(parent, style, dashboard);
+	public DashboardTaskWidget(DashboardPage dashboard) {
+		super(dashboard);
 		this.ps = dashboard.getProjectSpace();
 		setTitle("Tasks overview");
 		try {
 			user = OrgUnitHelper.getUser(ps);
-			createContent();
-			createToolbar();
 		} catch (NoCurrentUserException e) {
 			return;
 		} catch (CannotMatchUserInProjectException e) {
@@ -76,7 +72,12 @@ public class DashboardTaskWidget extends AbstractDashboardWidget {
 		}
 	}
 
-	private void createToolbar() {
+	/**
+	 * {@inheritDoc}
+	 */
+	@Override
+	protected void createToolbar() {
+		super.createToolbar();
 		Composite toolbar = getToolbar();
 		DashboardWidgetAction taskView = new DashboardWidgetAction(toolbar, "table.png", 150);
 		taskView.setToolTipText("Open the Task View");
@@ -98,8 +99,9 @@ public class DashboardTaskWidget extends AbstractDashboardWidget {
 	 * {@inheritDoc}
 	 */
 	@Override
-	protected void createContent() {
-		Composite panel = getPanel();
+	protected void createContentPanel() {
+		super.createContentPanel();
+		Composite panel = getContentPanel();
 
 		GridLayoutFactory.fillDefaults().applyTo(panel);
 		List<WorkItem> allWI = ps.getProject().getAllModelElementsbyClass(TaskPackage.eINSTANCE.getWorkItem(),
@@ -174,11 +176,12 @@ public class DashboardTaskWidget extends AbstractDashboardWidget {
 
 		label.setEnabled(false);
 
-		Label currentSprint = new Label(panel, SWT.WRAP);
-		currentSprint.setText("You are participating in:");
-
-		for (WorkPackage sprint : sprints) {
-			URLHelper.getModelElementLink(panel, sprint, getDashboard().getProjectSpace(), 15);
+		if (sprints.size() > 0) {
+			Label currentSprint = new Label(panel, SWT.WRAP);
+			currentSprint.setText("You are participating in:");
+			for (WorkPackage sprint : sprints) {
+				URLHelper.getModelElementLink(panel, sprint, getDashboard().getProjectSpace(), 15);
+			}
 		}
 	}
 
