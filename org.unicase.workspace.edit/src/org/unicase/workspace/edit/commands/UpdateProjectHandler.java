@@ -99,9 +99,8 @@ public class UpdateProjectHandler extends ProjectActionHandler implements Update
 		progressDialog.getProgressMonitor().worked(10);
 		// initially setting the status as successful in case the user
 		// is already logged in
-		int loginStatus = LoginDialog.SUCCESSFUL;
 		try {
-			update(projectSpace, progressDialog, loginStatus);
+			update(projectSpace, progressDialog);
 		} catch (ChangeConflictException e1) {
 			handleChangeConflictException(e1);
 		} catch (NoChangesOnServerException e) {
@@ -111,7 +110,7 @@ public class UpdateProjectHandler extends ProjectActionHandler implements Update
 			try {
 				// try to reconnect once.
 				usersession.logIn();
-				update(projectSpace, progressDialog, loginStatus);
+				update(projectSpace, progressDialog);
 			} catch (ChangeConflictException e1) {
 				handleChangeConflictException(e1);
 			} catch (EmfStoreException e1) {
@@ -141,11 +140,11 @@ public class UpdateProjectHandler extends ProjectActionHandler implements Update
 		mergeDialog.open();
 	}
 
-	private void update(final ProjectSpace projectSpace, ProgressMonitorDialog progressDialog, int loginStatus)
+	private void update(final ProjectSpace projectSpace, ProgressMonitorDialog progressDialog)
 		throws EmfStoreException, ChangeConflictException {
-		LoginDialog login;
+		int loginStatus = LoginDialog.SUCCESSFUL;
 		if (!usersession.isLoggedIn()) {
-			login = new LoginDialog(shell, usersession, usersession.getServerInfo());
+			LoginDialog login = new LoginDialog(shell, usersession, usersession.getServerInfo());
 			loginStatus = login.open();
 		}
 		if (loginStatus == LoginDialog.SUCCESSFUL) {
