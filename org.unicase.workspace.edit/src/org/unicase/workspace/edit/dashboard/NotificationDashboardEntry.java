@@ -7,6 +7,7 @@ package org.unicase.workspace.edit.dashboard;
 
 import java.net.MalformedURLException;
 import java.text.SimpleDateFormat;
+import java.util.ArrayList;
 import java.util.Date;
 
 import org.eclipse.emf.edit.provider.ComposedAdapterFactory;
@@ -40,8 +41,10 @@ import org.unicase.emfstore.esmodel.url.UrlFactory;
 import org.unicase.emfstore.esmodel.versioning.events.EventsFactory;
 import org.unicase.emfstore.esmodel.versioning.events.NotificationIgnoreEvent;
 import org.unicase.emfstore.esmodel.versioning.events.NotificationReadEvent;
+import org.unicase.model.Annotation;
 import org.unicase.model.ModelElement;
 import org.unicase.model.ModelElementId;
+import org.unicase.model.rationale.RationalePackage;
 import org.unicase.ui.common.util.ActionHelper;
 import org.unicase.ui.common.util.ModelElementClassTooltip;
 import org.unicase.ui.common.util.URLHelper;
@@ -146,7 +149,7 @@ public class NotificationDashboardEntry extends AbstractDashboardEntry {
 		}
 		ModelElement modelElement = getProject().getProject().getModelElement(
 			getNotification().getRelatedModelElements().get(0));
-		Link link = createImageLink(modelElement, entry, getNotification().getMessage());
+		Link link = createImageLink(modelElement, entry, getMessage());
 		link.addSelectionListener(new LinkSelectionListener("link"));
 
 		Label date = new Label(entry, SWT.NONE);
@@ -230,6 +233,22 @@ public class NotificationDashboardEntry extends AbstractDashboardEntry {
 		date.addMouseTrackListener(hoverListener);
 
 		closeLink.addMouseTrackListener(hoverListener);
+
+		String[] comments = getComment();
+		if (comments != null) {
+			// Composite commentComposite = new Composite(entry, SWT.NONE);
+			for (String comment : comments) {
+				Label commentLabel = new Label(entry, SWT.WRAP);
+				commentLabel.setBackground(getDisplay().getSystemColor(SWT.COLOR_INFO_BACKGROUND));
+				GridDataFactory.fillDefaults().span(3, 1).hint(SWT.DEFAULT, 30).indent(20, 0).grab(true, false)
+					.applyTo(commentLabel);
+				commentLabel.setText(comment);
+				Composite border = new Composite(entry, SWT.NONE);
+				GridDataFactory.fillDefaults().span(3, 1).hint(SWT.DEFAULT, 30).hint(SWT.DEFAULT, 1).indent(20, 0)
+					.grab(true, false).applyTo(border);
+				border.setBackground(getDisplay().getSystemColor(SWT.COLOR_GRAY));
+			}
+		}
 
 		drawer = new Composite(entry, SWT.NONE);
 		GridDataFactory.fillDefaults().hint(10, 0).span(3, 1).indent(20, 0).grab(true, false).applyTo(drawer);
@@ -322,4 +341,37 @@ public class NotificationDashboardEntry extends AbstractDashboardEntry {
 		projectSpace.addEvent(notificationIgnoreEvent);
 	}
 
+	private String[] getComment() {
+		if (getNotification().getSender().equals("Pushed Notification Provider")) {
+			String[] items = getNotification().getMessage().split("\\%\\%\\%");
+			if (items.length == 2) {
+				return new String[] { items[1] };
+			}
+		} else if (getNotification().getRelatedModelElements().size() == 1) {
+			ArrayList<String> comments = new ArrayList<String>();
+			for (ModelElementId modelElementId : getNotification().getRelatedModelElements()) {
+				ModelElement modelElement = getProject().getProject().getModelElement(modelElementId);
+				if (modelElement != null) {
+					for (Annotation annotation : modelElement.getAnnotations()) {
+						if (RationalePackage.eINSTANCE.getComment().isInstance(annotation)) {
+							comments.add(annotation.getName());
+						}
+					}
+				}
+			}
+			if (comments.size() > 0) {
+				return comments.toArray(new String[0]);
+			}
+		}
+		return null;
+	}
+
+	private String getMessage() {
+		String message = getNotification().getMessage();
+		String[] items = message.split("\\%\\%\\%");
+		if (items.length > 1) {
+			return items[0];
+		}
+		return message;
+	}
 }
