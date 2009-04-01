@@ -34,6 +34,7 @@ import org.unicase.emfstore.esmodel.versioning.operations.AbstractOperation;
 import org.unicase.workspace.WorkspaceManager;
 import org.unicase.workspace.edit.Activator;
 import org.unicase.workspace.edit.views.changes.DetailedChangesComposite;
+import org.unicase.workspace.edit.views.changes.PushedNotificationEditingSupport;
 import org.unicase.workspace.edit.views.changes.TabbedChangesComposite;
 
 /**
