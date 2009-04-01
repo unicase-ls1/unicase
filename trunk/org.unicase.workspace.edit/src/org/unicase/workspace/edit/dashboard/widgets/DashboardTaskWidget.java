@@ -54,6 +54,16 @@ public class DashboardTaskWidget extends AbstractDashboardWidget {
 	private ProjectSpace ps;
 	private User user;
 
+	private ArrayList<ActionItem> actionItems;
+
+	private ArrayList<BugReport> bugReports;
+
+	private ArrayList<Issue> issues;
+
+	private HashSet<WorkPackage> sprints;
+
+	private Date now;
+
 	/**
 	 * Default constructor.
 	 * 
@@ -65,6 +75,24 @@ public class DashboardTaskWidget extends AbstractDashboardWidget {
 		setTitle("Tasks overview");
 		try {
 			user = OrgUnitHelper.getUser(ps);
+
+			actionItems = new ArrayList<ActionItem>();
+			bugReports = new ArrayList<BugReport>();
+			issues = new ArrayList<Issue>();
+			sprints = new HashSet<WorkPackage>();
+
+			now = new Date();
+
+			List<WorkItem> allWI = ps.getProject().getAllModelElementsbyClass(TaskPackage.eINSTANCE.getWorkItem(),
+				new BasicEList<WorkItem>());
+
+			for (WorkItem wi : allWI) {
+				if (applies(wi)) {
+					addWorkItem(wi);
+					WorkPackage containingWorkpackage = wi.getContainingWorkpackage();
+					addWorkPackage(containingWorkpackage);
+				}
+			}
 		} catch (NoCurrentUserException e) {
 			return;
 		} catch (CannotMatchUserInProjectException e) {
@@ -104,52 +132,22 @@ public class DashboardTaskWidget extends AbstractDashboardWidget {
 		Composite panel = getContentPanel();
 
 		GridLayoutFactory.fillDefaults().applyTo(panel);
-		List<WorkItem> allWI = ps.getProject().getAllModelElementsbyClass(TaskPackage.eINSTANCE.getWorkItem(),
-			new BasicEList<WorkItem>());
-
-		ArrayList<ActionItem> ais = new ArrayList<ActionItem>();
-		ArrayList<BugReport> brs = new ArrayList<BugReport>();
-		ArrayList<Issue> is = new ArrayList<Issue>();
-		HashSet<WorkPackage> sprints = new HashSet<WorkPackage>();
-
-		Date now = new Date();
-
-		for (WorkItem wi : allWI) {
-			if (applies(wi)) {
-				if (TaskPackage.eINSTANCE.getActionItem().isInstance(wi)) {
-					ais.add((ActionItem) wi);
-				} else if (RationalePackage.eINSTANCE.getIssue().isInstance(wi)) {
-					is.add((Issue) wi);
-				} else if (BugPackage.eINSTANCE.getBugReport().isInstance(wi)) {
-					brs.add((BugReport) wi);
-				}
-
-				WorkPackage containingWorkpackage = wi.getContainingWorkpackage();
-				if (containingWorkpackage != null
-					&& (containingWorkpackage.getStartDate() == null || containingWorkpackage.getStartDate()
-						.before(now))
-					&& (containingWorkpackage.getDueDate() != null && containingWorkpackage.getDueDate().after(now))) {
-					sprints.add(containingWorkpackage);
-				}
-			}
-		}
-		sprints.remove(null);
 
 		StyledText label = new StyledText(panel, SWT.WRAP | SWT.MULTI);
 		StringBuilder string = new StringBuilder();
 		String string1 = "You currently have:\n";
 		string.append(string1);
-		final int aiSize = ais.size();
+		final int aiSize = actionItems.size();
 		String string2 = "" + aiSize + "";
 		string.append(string2);
 		String string3 = " open ActionItem" + (aiSize == 1 ? "" : "s") + "\n";
 		string.append(string3);
-		final int brSize = brs.size();
+		final int brSize = bugReports.size();
 		String string4 = "" + brSize + "";
 		string.append(string4);
 		String string5 = " unresolved BugReport" + (brSize == 1 ? "" : "s") + "\n";
 		string.append(string5);
-		final int isSize = is.size();
+		final int isSize = issues.size();
 		String string6 = "" + isSize + "";
 		string.append(string6);
 		String string7 = " open Issue" + (isSize == 1 ? "" : "s") + "";
@@ -179,9 +177,28 @@ public class DashboardTaskWidget extends AbstractDashboardWidget {
 		if (sprints.size() > 0) {
 			Label currentSprint = new Label(panel, SWT.WRAP);
 			currentSprint.setText("You are participating in:");
+
 			for (WorkPackage sprint : sprints) {
 				URLHelper.getModelElementLink(panel, sprint, getDashboard().getProjectSpace(), 15);
 			}
+		}
+	}
+
+	private void addWorkPackage(WorkPackage containingWorkpackage) {
+		if (containingWorkpackage != null
+			&& (containingWorkpackage.getStartDate() == null || containingWorkpackage.getStartDate().before(now))
+			&& (containingWorkpackage.getDueDate() != null && containingWorkpackage.getDueDate().after(now))) {
+			sprints.add(containingWorkpackage);
+		}
+	}
+
+	private void addWorkItem(WorkItem wi) {
+		if (TaskPackage.eINSTANCE.getActionItem().isInstance(wi)) {
+			actionItems.add((ActionItem) wi);
+		} else if (RationalePackage.eINSTANCE.getIssue().isInstance(wi)) {
+			issues.add((Issue) wi);
+		} else if (BugPackage.eINSTANCE.getBugReport().isInstance(wi)) {
+			bugReports.add((BugReport) wi);
 		}
 	}
 
