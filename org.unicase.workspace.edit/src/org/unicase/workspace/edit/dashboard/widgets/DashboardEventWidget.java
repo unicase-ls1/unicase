@@ -44,24 +44,22 @@ public class DashboardEventWidget extends AbstractDashboardWidget {
 	/**
 	 * Default constructor.
 	 * 
-	 * @param parent the parent
-	 * @param style the style
 	 * @param dashboard the dashboard
 	 */
-	public DashboardEventWidget(Composite parent, int style, DashboardPage dashboard) {
-		super(parent, style, dashboard);
+	public DashboardEventWidget(DashboardPage dashboard) {
+		super(dashboard);
 		setTitle("Upcoming events");
-		createContent();
 	}
 
 	/**
 	 * {@inheritDoc}
 	 */
 	@Override
-	protected void createContent() {
+	protected void createContentPanel() {
+		super.createContentPanel();
 		EList<ModelElement> items = initItems();
 
-		Composite panel = getPanel();
+		Composite panel = getContentPanel();
 		GridLayoutFactory.fillDefaults().numColumns(2).equalWidth(false).spacing(3, 2).applyTo(panel);
 		final int count = items.size();
 
@@ -94,8 +92,9 @@ public class DashboardEventWidget extends AbstractDashboardWidget {
 				stringBuilder.append(time.format(date));
 				link.setText(stringBuilder.toString());
 				link.addSelectionListener(URLSelectionListener.getInstance(getDashboard().getProjectSpace()));
-				GridDataFactory.fillDefaults().hint(computeSize(SWT.DEFAULT, SWT.DEFAULT).x, SWT.DEFAULT).grab(true,
-					false).applyTo(link);
+				GridDataFactory.fillDefaults()
+					.hint(getComposite().computeSize(SWT.DEFAULT, SWT.DEFAULT).x, SWT.DEFAULT).grab(true, false)
+					.applyTo(link);
 			}
 		} else {
 			Label label = new Label(panel, SWT.WRAP);
