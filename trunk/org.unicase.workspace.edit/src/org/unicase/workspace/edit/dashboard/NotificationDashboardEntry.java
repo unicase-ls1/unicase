@@ -342,7 +342,8 @@ public class NotificationDashboardEntry extends AbstractDashboardEntry {
 	}
 
 	private String[] getComment() {
-		if (getNotification().getSender().equals("Pushed Notification Provider")) {
+		if (getNotification().getSender() != null
+			&& getNotification().getSender().equals("Pushed Notification Provider")) {
 			String[] items = getNotification().getMessage().split("\\%\\%\\%");
 			if (items.length == 2) {
 				return new String[] { items[1] };
