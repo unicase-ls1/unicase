@@ -6,6 +6,7 @@
 
 package org.unicase.workspace.edit;
 
+import org.eclipse.jface.preference.IPreferenceStore;
 import org.eclipse.jface.resource.ImageDescriptor;
 import org.eclipse.ui.plugin.AbstractUIPlugin;
 import org.osgi.framework.BundleContext;
@@ -72,4 +73,16 @@ public class Activator extends AbstractUIPlugin {
 	public static ImageDescriptor getImageDescriptor(String path) {
 		return imageDescriptorFromPlugin(PLUGIN_ID, path);
 	}
+
+	/**
+	 * Initializes a preference store with default preference values for this plug-in.
+	 */
+	@Override
+	protected void initializeDefaultPreferences(IPreferenceStore store) {
+
+		// Dashboard
+		// PreferenceConverter.setDefault(store, HIGHLIGHT_PREFERENCE, color.getRGB());
+
+	}
+
 }

@@ -15,6 +15,8 @@ import org.eclipse.jface.layout.GridLayoutFactory;
 import org.eclipse.jface.preference.PreferenceDialog;
 import org.eclipse.jface.resource.JFaceResources;
 import org.eclipse.swt.SWT;
+import org.eclipse.swt.events.MouseAdapter;
+import org.eclipse.swt.events.MouseEvent;
 import org.eclipse.swt.events.PaintEvent;
 import org.eclipse.swt.events.PaintListener;
 import org.eclipse.swt.graphics.Color;
@@ -23,6 +25,7 @@ import org.eclipse.swt.graphics.FontMetrics;
 import org.eclipse.swt.graphics.GC;
 import org.eclipse.swt.layout.RowLayout;
 import org.eclipse.swt.widgets.Composite;
+import org.eclipse.swt.widgets.Control;
 import org.eclipse.swt.widgets.Display;
 import org.eclipse.ui.dialogs.PreferencesUtil;
 import org.eclipse.ui.forms.events.HyperlinkAdapter;
@@ -41,17 +44,17 @@ public abstract class AbstractDashboardWidget {
 	 * 
 	 * @author Shterev
 	 */
-	private final class PositionHyperlinkAdapter extends HyperlinkAdapter {
+	private final class PositionAdapter extends MouseAdapter {
 		private static final String UP = "up";
 		private static final String DOWN = "down";
 		private String direction;
 
-		public PositionHyperlinkAdapter(String direction) {
+		public PositionAdapter(String direction) {
 			this.direction = direction;
 		}
 
 		@Override
-		public void linkActivated(HyperlinkEvent e) {
+		public void mouseUp(MouseEvent e) {
 			List<AbstractDashboardWidget> widgets = getDashboard().getWidgets();
 			int index = widgets.indexOf(AbstractDashboardWidget.this);
 			if (direction.equals(UP) && index > 0) {
@@ -100,7 +103,6 @@ public abstract class AbstractDashboardWidget {
 		composite = new Composite(parent, SWT.NONE);
 		GridLayoutFactory.fillDefaults().numColumns(2).extendedMargins(12, 12, 35, 5).applyTo(composite);
 		composite.setBackgroundMode(SWT.INHERIT_FORCE);
-		composite.setBackground(bg);
 		composite.addPaintListener(new PaintListener() {
 
 			public void paintControl(PaintEvent e) {
@@ -125,7 +127,9 @@ public abstract class AbstractDashboardWidget {
 		createContentPanel();
 		createToolbar();
 		createSystemToolbar();
-
+		for (Control c : composite.getChildren()) {
+			c.setBackground(bg);
+		}
 		return composite;
 	}
 
@@ -142,10 +146,12 @@ public abstract class AbstractDashboardWidget {
 
 		DashboardWidgetAction down = new DashboardWidgetAction(systemToolbar, "down.png");
 		down.setToolTipText("Move widget down");
-		down.addHyperlinkListener(new PositionHyperlinkAdapter(PositionHyperlinkAdapter.DOWN));
+		final PositionAdapter upListener = new PositionAdapter(PositionAdapter.DOWN);
+		final PositionAdapter downListener = new PositionAdapter(PositionAdapter.UP);
+		down.addMouseListener(upListener);
 		DashboardWidgetAction up = new DashboardWidgetAction(systemToolbar, "up.png");
 		up.setToolTipText("Move widget up");
-		up.addHyperlinkListener(new PositionHyperlinkAdapter(PositionHyperlinkAdapter.UP));
+		up.addMouseListener(downListener);
 		DashboardWidgetAction settings = new DashboardWidgetAction(systemToolbar, "cog.png");
 		settings.setToolTipText("Settings");
 		settings.addHyperlinkListener(new HyperlinkAdapter() {
