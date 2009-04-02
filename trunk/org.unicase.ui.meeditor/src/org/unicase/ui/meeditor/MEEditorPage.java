@@ -42,6 +42,7 @@ import org.eclipse.ui.services.IEvaluationService;
 import org.unicase.model.ModelElement;
 import org.unicase.model.rationale.Issue;
 import org.unicase.ui.meeditor.mecontrols.AbstractMEControl;
+import org.unicase.ui.meeditor.mecontrols.FeatureHintTooltipSupport;
 import org.unicase.ui.meeditor.mecontrols.MEControl;
 import org.unicase.ui.meeditor.mecontrols.METextControl;
 import org.unicase.ui.meeditor.mecontrols.uccontrol.UseCaseStepsControl;
@@ -250,6 +251,8 @@ public class MEEditorPage extends FormPage {
 			if (!itemPropertyDescriptor.isMany(modelElement)) {
 				Label label = toolkit.createLabel(attributeComposite, itemPropertyDescriptor
 					.getDisplayName(modelElement));
+				label.setData(modelElement);
+				FeatureHintTooltipSupport.enableFor(label, itemPropertyDescriptor);
 				control = meControl.createControl(attributeComposite, SWT.WRAP);
 				GridDataFactory.fillDefaults().align(SWT.LEFT, SWT.CENTER).applyTo(label);
 				GridDataFactory.fillDefaults().grab(true, false).align(SWT.FILL, SWT.BEGINNING).indent(10, 0).applyTo(
@@ -262,6 +265,8 @@ public class MEEditorPage extends FormPage {
 					control = meControl.createControl(bottom, SWT.WRAP);
 				} else {
 					control = meControl.createControl(attributeComposite, SWT.WRAP);
+					control.setData(modelElement);
+					FeatureHintTooltipSupport.enableFor(control, itemPropertyDescriptor);
 				}
 				GridDataFactory.fillDefaults().span(2, 1).grab(true, false).align(SWT.FILL, SWT.BEGINNING)
 					.indent(10, 0).applyTo(control);
