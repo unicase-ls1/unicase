@@ -34,9 +34,5 @@ projectstate fix geschrieben (aber nicht programmatisch, weil der usecase bug no
  
  
 deletebug gefixt (zufällige references wurden gelöscht)
- 
- 
- 
- 
-500: missing <modelElements xsi:type="org.unicase.model.classes:Class" identifier="_Ffc6kMrdEd2FLcQLgl5R9Q" name="StateMachineAction" superClasses="_CKz6AMrdEd2FLcQLgl5R9Q" outgoingAssociations="_3KKakMrdEd2FLcQLgl5R9Q _6WUNgMrdEd2FLcQLgl5R9Q"/>
- 
+
+500: added multirefrence to match projectstate

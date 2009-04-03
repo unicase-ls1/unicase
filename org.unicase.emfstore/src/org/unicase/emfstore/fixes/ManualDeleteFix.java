@@ -36,6 +36,10 @@ public class ManualDeleteFix extends AbstractFix {
 		// fixing description=";,&#xA;%BEGINNTEXT%"
 		deleteList.add("featureName=\"description\"::::modelElementId id=\"_clQM5ql9Ed26h6_QY5e1mw\"");
 		deleteList.add("featureName=\"description\"::::modelElementId id=\"_clQM5al9Ed26h6_QY5e1mw\"");
+
+		// reviewer set, but not in the projecstate (operation didnt work in past?)
+		deleteList
+			.add("featureName=\"reviewer\"::::modelElementId id=\"_dywScP9LEd2-D-gfFWiodg::::2009-03-02T13:56:31");
 	}
 
 	@Override
@@ -68,6 +72,7 @@ public class ManualDeleteFix extends AbstractFix {
 				}
 			}
 			save(version);
+			save(version.getChanges());
 		}
 	}
 
