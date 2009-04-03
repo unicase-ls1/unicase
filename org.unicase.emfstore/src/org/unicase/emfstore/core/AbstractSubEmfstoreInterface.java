@@ -23,7 +23,11 @@ import org.unicase.emfstore.exceptions.InvalidVersionSpecException;
 import org.unicase.emfstore.exceptions.StorageException;
 
 /**
- * todo.
+ * This is the super class for all subinterfaces of emfstore. Main interfaces, such as {@link EmfStoreImpl}, check and
+ * than delegates method calls to these subinterfaces, where the actual functionality is implemented. Subinterfaces
+ * shouldn't be accessed without the corresponding main interface, because they rely on the sanity checks of the main
+ * interfaces. The idea behind subinterfaces is to divide an emfstore interface into logical pieces and to avoid huge
+ * classes.
  * 
  * @author wesendon
  */
@@ -50,7 +54,7 @@ public abstract class AbstractSubEmfstoreInterface {
 	 * @param object the object
 	 * @throws FatalEmfStoreException in case of failure
 	 */
-	public void save(EObject object) throws FatalEmfStoreException {
+	protected void save(EObject object) throws FatalEmfStoreException {
 		try {
 			object.eResource().save(null);
 			// BEGIN SUPRESS CATCH EXCEPTION
@@ -60,11 +64,32 @@ public abstract class AbstractSubEmfstoreInterface {
 		// END SUPRESS CATCH EXCEPTION
 	}
 
-	private ServerSpace getServerSpace() {
+	/**
+	 * Returns the serverspace. Please always use a monitor ({@link #getMonitor()}) when operating on the serverspace.
+	 * 
+	 * @return serverspace
+	 */
+	protected ServerSpace getServerSpace() {
 		return serverSpace;
 	}
 
-	public ProjectHistory getProject(ProjectId projectId) throws EmfStoreException {
+	/**
+	 * Return a monitor object which should be used when operating on the serverspace.
+	 * 
+	 * @return monitor object
+	 */
+	protected Object getMonitor() {
+		return MonitorProvider.getInstance().getMonitor();
+	}
+
+	/**
+	 * Returns the corresponding project.
+	 * 
+	 * @param projectId project id
+	 * @return a project or throws exception
+	 * @throws EmfStoreException if project couldn't be found
+	 */
+	protected ProjectHistory getProject(ProjectId projectId) throws EmfStoreException {
 		for (ProjectHistory project : getServerSpace().getProjects()) {
 			if (project.getProjectId().equals(projectId)) {
 				return project;
@@ -74,7 +99,15 @@ public abstract class AbstractSubEmfstoreInterface {
 			+ " doesn't exist.");
 	}
 
-	public Version getVersion(ProjectId projectId, PrimaryVersionSpec versionSpec) throws EmfStoreException {
+	/**
+	 * Returns the specified version of a project.
+	 * 
+	 * @param projectId project id
+	 * @param versionSpec versionSpec
+	 * @return the version
+	 * @throws EmfStoreException if version couldn't be found
+	 */
+	protected Version getVersion(ProjectId projectId, PrimaryVersionSpec versionSpec) throws EmfStoreException {
 		EList<Version> versions = getProject(projectId).getVersions();
 		if (versionSpec.getIdentifier() < 0 || versionSpec.getIdentifier() > versions.size() - 1) {
 			throw new InvalidVersionSpecException();
@@ -82,7 +115,17 @@ public abstract class AbstractSubEmfstoreInterface {
 		return versions.get(versionSpec.getIdentifier());
 	}
 
-	public List<Version> getVersions(ProjectId projectId, PrimaryVersionSpec source, PrimaryVersionSpec target)
+	/**
+	 * Returns a list of versions starting from source and ending with target. This method returns the version always in
+	 * an ascanding order. So if you need it ordered differently you have to reverse the list.
+	 * 
+	 * @param projectId project id
+	 * @param source source
+	 * @param target target
+	 * @return list of versions
+	 * @throws EmfStoreException if source or target are out of range or any other problem occurs
+	 */
+	protected List<Version> getVersions(ProjectId projectId, PrimaryVersionSpec source, PrimaryVersionSpec target)
 		throws EmfStoreException {
 		if (source.compareTo(target) < 1) {
 			EList<Version> versions = getProject(projectId).getVersions();

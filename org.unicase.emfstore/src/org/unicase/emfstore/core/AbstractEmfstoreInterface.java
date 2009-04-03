@@ -18,9 +18,12 @@ import org.unicase.emfstore.exceptions.InvalidInputException;
 import org.unicase.model.ModelElement;
 
 /**
- * Super class of all EmfstoreInterfaces. Provides general methods for accesscontrol and delegation to the
- * subinterfaces.
+ * Super class of all EmfstoreInterfaces. Emfstore interfaces perform sanity checks, runs accesscontrol and then
+ * delegates the method call to the relating subinterface which actually implements the functionality. With
+ * {@link InternalCommand} it is possible to acces the interface without accesscontrol.
  * 
+ * @see AbstractSubEmfstoreInterface
+ * @see org.unicase.emfstore.EmfStoreInterface
  * @author wesendon
  */
 public abstract class AbstractEmfstoreInterface {
@@ -46,8 +49,10 @@ public abstract class AbstractEmfstoreInterface {
 		initSubInterfaces(serverSpace);
 	}
 
-	private void initSubInterfaces(ServerSpace serverSpace) {
+	private void initSubInterfaces(ServerSpace serverSpace) throws FatalEmfStoreException {
 		subInterfaces = new HashMap<Class<? extends AbstractSubEmfstoreInterface>, AbstractSubEmfstoreInterface>();
+
+		subInterfaces.put(HistorySubInterfaceImpl.class, new HistorySubInterfaceImpl(serverSpace));
 
 		initAdditionalSubInterfaces();
 	}
@@ -75,8 +80,10 @@ public abstract class AbstractEmfstoreInterface {
 
 	/**
 	 * Override this method in order to add additional subinterfaces.
+	 * 
+	 * @throws FatalEmfStoreException in case of failure
 	 */
-	public void initAdditionalSubInterfaces() {
+	public void initAdditionalSubInterfaces() throws FatalEmfStoreException {
 	}
 
 	/**
@@ -137,6 +144,10 @@ public abstract class AbstractEmfstoreInterface {
 	 * @throws AccessControlException access exception
 	 */
 	public synchronized void checkServerAdminAccess(SessionId sessionId) throws AccessControlException {
+		if (accessControlDisabled) {
+			return;
+		}
+		authorizationControl.checkServerAdminAccess(sessionId);
 	}
 
 	/**
