@@ -258,6 +258,21 @@ public class UCDropAdapter extends DropTargetAdapter {
 		Set<EClass> intersection = new HashSet<EClass>(dropAdapters.keySet());
 		intersection.retainAll(superClazz);
 
+		// check if intersection contains many classes, but if they are in an inheritance hierarchy keep only the deepest class.
+		// This must be discussed as a potential modeling problem.
+		
+		if(intersection.size() > 1){
+			Set<EClass> toBeRemoved = new HashSet<EClass>();
+			for(EClass eClass1 : intersection){
+				for(EClass eClass2 : intersection){
+					if(!eClass2.equals(eClass1) && eClass2.isSuperTypeOf(eClass1)){
+						toBeRemoved.add(eClass2);
+					}
+				}
+			}
+			intersection.removeAll(toBeRemoved);
+		}
+		
 		if (intersection.size() > 1) {
 			throw new IllegalStateException("More than one drop adapter for this type found!");
 
