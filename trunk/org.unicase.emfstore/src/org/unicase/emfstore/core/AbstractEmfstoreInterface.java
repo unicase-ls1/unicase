@@ -10,7 +10,6 @@ import java.util.Set;
 
 import org.unicase.emfstore.accesscontrol.AccessControlException;
 import org.unicase.emfstore.accesscontrol.AuthorizationControl;
-import org.unicase.emfstore.core.subinterfaces.HistorySubInterfaceImpl;
 import org.unicase.emfstore.esmodel.ProjectId;
 import org.unicase.emfstore.esmodel.ServerSpace;
 import org.unicase.emfstore.esmodel.SessionId;
@@ -49,15 +48,28 @@ public abstract class AbstractEmfstoreInterface {
 		}
 		this.authorizationControl = authorizationControl;
 		accessControlDisabled = false;
+		subInterfaces = new HashMap<Class<? extends AbstractSubEmfstoreInterface>, AbstractSubEmfstoreInterface>();
 		initSubInterfaces();
 	}
 
-	private void initSubInterfaces() throws FatalEmfStoreException {
-		subInterfaces = new HashMap<Class<? extends AbstractSubEmfstoreInterface>, AbstractSubEmfstoreInterface>();
+	/**
+	 * Implement this method in order to add subinterfaces. Therefor use the
+	 * {@link #addSubInterface(AbstractSubEmfstoreInterface)} method.
+	 * 
+	 * @throws FatalEmfStoreException in case of failure
+	 */
+	protected abstract void initSubInterfaces() throws FatalEmfStoreException;
 
-		subInterfaces.put(HistorySubInterfaceImpl.class, new HistorySubInterfaceImpl(this));
-
-		initAdditionalSubInterfaces();
+	/**
+	 * Adds a subinterface to the parent interface. If the subinterface exists already, the present instance is
+	 * overwritten by the new one.
+	 * 
+	 * @param subInterface the subinterface
+	 */
+	protected void addSubInterface(AbstractSubEmfstoreInterface subInterface) {
+		if (subInterface != null) {
+			getSubInterfaces().put(subInterface.getClass(), subInterface);
+		}
 	}
 
 	/**
@@ -79,14 +91,6 @@ public abstract class AbstractEmfstoreInterface {
 	@SuppressWarnings("unchecked")
 	protected <T> T getSubInterface(Class<T> clazz) {
 		return (T) subInterfaces.get(clazz);
-	}
-
-	/**
-	 * Override this method in order to add additional subinterfaces.
-	 * 
-	 * @throws FatalEmfStoreException in case of failure
-	 */
-	protected void initAdditionalSubInterfaces() throws FatalEmfStoreException {
 	}
 
 	/**
