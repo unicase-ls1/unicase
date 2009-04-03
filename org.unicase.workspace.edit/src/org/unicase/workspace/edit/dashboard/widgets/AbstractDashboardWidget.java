@@ -31,6 +31,7 @@ import org.eclipse.ui.dialogs.PreferencesUtil;
 import org.eclipse.ui.forms.events.HyperlinkAdapter;
 import org.eclipse.ui.forms.events.HyperlinkEvent;
 import org.unicase.workspace.edit.dashboard.DashboardPage;
+import org.unicase.workspace.edit.dashboard.DashboardToolbarAction;
 
 /**
  * The common functions for a dashboard widget.
@@ -144,15 +145,15 @@ public abstract class AbstractDashboardWidget {
 		sysLayout.marginRight = 0;
 		systemToolbar.setLayout(sysLayout);
 
-		DashboardWidgetAction down = new DashboardWidgetAction(systemToolbar, "down.png");
+		DashboardToolbarAction down = new DashboardToolbarAction(systemToolbar, "down.png");
 		down.setToolTipText("Move widget down");
 		final PositionAdapter upListener = new PositionAdapter(PositionAdapter.DOWN);
 		final PositionAdapter downListener = new PositionAdapter(PositionAdapter.UP);
 		down.addMouseListener(upListener);
-		DashboardWidgetAction up = new DashboardWidgetAction(systemToolbar, "up.png");
+		DashboardToolbarAction up = new DashboardToolbarAction(systemToolbar, "up.png");
 		up.setToolTipText("Move widget up");
 		up.addMouseListener(downListener);
-		DashboardWidgetAction settings = new DashboardWidgetAction(systemToolbar, "cog.png");
+		DashboardToolbarAction settings = new DashboardToolbarAction(systemToolbar, "cog.png");
 		settings.setToolTipText("Settings");
 		settings.addHyperlinkListener(new HyperlinkAdapter() {
 			@Override

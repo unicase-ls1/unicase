@@ -80,8 +80,6 @@ public class DashboardPage extends FormPage {
 		widgets = new ArrayList<AbstractDashboardWidget>();
 		widgets.add(new DashboardTaskWidget(this));
 		widgets.add(new DashboardEventWidget(this));
-		widgets.add(new DashboardTaskWidget(this));
-		widgets.add(new DashboardEventWidget(this));
 
 		form = managedForm.getForm();
 		toolkit = this.getEditor().getToolkit();
