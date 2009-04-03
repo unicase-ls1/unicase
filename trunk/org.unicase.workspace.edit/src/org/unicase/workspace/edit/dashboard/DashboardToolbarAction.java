@@ -3,7 +3,7 @@
  * accompanying materials are made available under the terms of the Eclipse Public License v1.0 which accompanies this
  * distribution, and is available at http://www.eclipse.org/legal/epl-v10.html </copyright>
  */
-package org.unicase.workspace.edit.dashboard.widgets;
+package org.unicase.workspace.edit.dashboard;
 
 import org.eclipse.swt.SWT;
 import org.eclipse.swt.events.MouseEvent;
@@ -11,14 +11,13 @@ import org.eclipse.swt.events.MouseTrackAdapter;
 import org.eclipse.swt.graphics.Image;
 import org.eclipse.swt.widgets.Composite;
 import org.eclipse.ui.forms.widgets.ImageHyperlink;
-import org.unicase.workspace.edit.dashboard.DashboardImageUtil;
 
 /**
- * An action button to be attached to the dashboard widgets.
+ * An action button to be attached to the dashboard.
  * 
  * @author Shterev
  */
-public class DashboardWidgetAction extends ImageHyperlink {
+public class DashboardToolbarAction extends ImageHyperlink {
 
 	private Image image;
 	private Image lightImage;
@@ -30,7 +29,7 @@ public class DashboardWidgetAction extends ImageHyperlink {
 	 * @param parent the parent
 	 * @param imagePath the image path
 	 */
-	public DashboardWidgetAction(Composite parent, String imagePath) {
+	public DashboardToolbarAction(Composite parent, String imagePath) {
 		this(parent, imagePath, DEFAULT_LIGHT_FACTOR);
 	}
 
@@ -41,7 +40,7 @@ public class DashboardWidgetAction extends ImageHyperlink {
 	 * @param imagePath the image path
 	 * @param lightFactor the light factor
 	 */
-	public DashboardWidgetAction(Composite parent, String imagePath, int lightFactor) {
+	public DashboardToolbarAction(Composite parent, String imagePath, int lightFactor) {
 		super(parent, SWT.BOTTOM);
 		image = DashboardImageUtil.getImage(imagePath);
 		lightImage = DashboardImageUtil.getLightImage(imagePath, lightFactor);

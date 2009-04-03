@@ -56,7 +56,7 @@ public abstract class AbstractDashboardEntry extends Composite {
 	/**
 	 * @return the project
 	 */
-	protected ProjectSpace getProject() {
+	protected ProjectSpace getProjectSpace() {
 		return project;
 	}
 

@@ -38,6 +38,7 @@ import org.unicase.ui.common.exceptions.DialogHandler;
 import org.unicase.ui.common.util.URLHelper;
 import org.unicase.workspace.ProjectSpace;
 import org.unicase.workspace.edit.dashboard.DashboardPage;
+import org.unicase.workspace.edit.dashboard.DashboardToolbarAction;
 import org.unicase.workspace.exceptions.CannotMatchUserInProjectException;
 import org.unicase.workspace.util.NoCurrentUserException;
 import org.unicase.workspace.util.OrgUnitHelper;
@@ -107,7 +108,7 @@ public class DashboardTaskWidget extends AbstractDashboardWidget {
 	protected void createToolbar() {
 		super.createToolbar();
 		Composite toolbar = getToolbar();
-		DashboardWidgetAction taskView = new DashboardWidgetAction(toolbar, "table.png", 150);
+		DashboardToolbarAction taskView = new DashboardToolbarAction(toolbar, "table.png", 150);
 		taskView.setToolTipText("Open the Task View");
 		taskView.addHyperlinkListener(new HyperlinkAdapter() {
 			@Override
@@ -129,6 +130,11 @@ public class DashboardTaskWidget extends AbstractDashboardWidget {
 	@Override
 	protected void createContentPanel() {
 		super.createContentPanel();
+
+		if (user == null) {
+			return;
+		}
+
 		Composite panel = getContentPanel();
 
 		GridLayoutFactory.fillDefaults().applyTo(panel);

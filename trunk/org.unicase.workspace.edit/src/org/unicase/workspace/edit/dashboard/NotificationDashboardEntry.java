@@ -20,8 +20,8 @@ import org.eclipse.jface.layout.GridLayoutFactory;
 import org.eclipse.swt.SWT;
 import org.eclipse.swt.events.MouseAdapter;
 import org.eclipse.swt.events.MouseEvent;
-import org.eclipse.swt.events.MouseListener;
 import org.eclipse.swt.events.MouseTrackAdapter;
+import org.eclipse.swt.events.MouseTrackListener;
 import org.eclipse.swt.events.PaintEvent;
 import org.eclipse.swt.events.PaintListener;
 import org.eclipse.swt.events.SelectionEvent;
@@ -30,6 +30,7 @@ import org.eclipse.swt.events.TypedEvent;
 import org.eclipse.swt.graphics.Color;
 import org.eclipse.swt.graphics.Image;
 import org.eclipse.swt.graphics.Rectangle;
+import org.eclipse.swt.layout.RowLayout;
 import org.eclipse.swt.widgets.Composite;
 import org.eclipse.swt.widgets.Control;
 import org.eclipse.swt.widgets.Label;
@@ -64,6 +65,59 @@ import org.unicase.workspace.util.WorkspaceUtil;
 public class NotificationDashboardEntry extends AbstractDashboardEntry {
 
 	/**
+	 * A mouse adapter that toggles the drawer.
+	 * 
+	 * @author Shterev
+	 */
+	private final class ToggleDrawerAdapter extends MouseAdapter {
+		@Override
+		public void mouseDown(MouseEvent e) {
+			toggleDrawer(e, showDrawer);
+			showDrawer = !showDrawer;
+			getPage().getForm().reflow(true);
+		}
+	}
+
+	/**
+	 * A mouse adapter that toggles the comments.
+	 * 
+	 * @author Shterev
+	 */
+	private final class ToggleCommentsAdapter extends MouseAdapter {
+		@Override
+		public void mouseDown(MouseEvent e) {
+			toggleComments(e, showComments);
+			showComments = !showComments;
+			getPage().getForm().reflow(true);
+		}
+	}
+
+	/**
+	 * A hover listener to change the color appearance of the notification.
+	 * 
+	 * @author Shterev
+	 */
+	private final class HoverTrackAdapter extends MouseTrackAdapter {
+		@Override
+		public void mouseEnter(MouseEvent e) {
+			setBackground(lightBlue);
+			mouseOver = true;
+			if (e.widget.equals(closeButton)) {
+				mouseOverClose = true;
+			}
+		}
+
+		@Override
+		public void mouseExit(MouseEvent e) {
+			setBackground(notificationColor);
+			mouseOver = false;
+			if (e.widget.equals(closeButton)) {
+				mouseOverClose = false;
+			}
+		}
+	}
+
+	/**
 	 * Selection listener for the links.
 	 * 
 	 * @author Shterev
@@ -91,7 +145,7 @@ public class NotificationDashboardEntry extends AbstractDashboardEntry {
 				ModelElement modelElement = null;
 				ModelElementUrlFragment modelElementUrlFragment = modelElementUrl.getModelElementUrlFragment();
 				try {
-					modelElement = getProject().resolve(modelElementUrlFragment);
+					modelElement = getProjectSpace().resolve(modelElementUrlFragment);
 				} catch (MEUrlResolutionException e1) {
 				}
 				ActionHelper.openModelElement(modelElement, DashboardEditor.ID);
@@ -105,13 +159,19 @@ public class NotificationDashboardEntry extends AbstractDashboardEntry {
 	private Color lightBlue;
 	private Color notificationColor;
 	private SimpleDateFormat format;
-	private Composite drawer;
-	private Composite entry;
+	private Composite drawerComposite;
+	private Composite notificationComposite;
 	private boolean mouseOver;
 	private boolean mouseOverClose;
 
-	private boolean open = true;
+	private boolean showDrawer = true;
+	private boolean showComments = true;
 	private AdapterFactoryLabelProvider labelProvider;
+	private Composite closeButton;
+	private Link entryMessage;
+	private Composite toolbar;
+	private Comment[] comments;
+	private Composite commentsComposite;
 
 	/**
 	 * Default constructor.
@@ -131,7 +191,7 @@ public class NotificationDashboardEntry extends AbstractDashboardEntry {
 		format = new SimpleDateFormat("dd.MM.yyyy HH:mm");
 		labelProvider = new AdapterFactoryLabelProvider(new ComposedAdapterFactory(
 			ComposedAdapterFactory.Descriptor.Registry.INSTANCE));
-
+		comments = getComment();
 		createEntry();
 	}
 
@@ -140,34 +200,76 @@ public class NotificationDashboardEntry extends AbstractDashboardEntry {
 	 */
 	@Override
 	protected void createEntry() {
+		// contains the entry and the close button
 		GridLayoutFactory.fillDefaults().numColumns(2).equalWidth(false).margins(3, 0).applyTo(this);
-
-		entry = new Composite(this, SWT.NONE);
-		GridLayoutFactory.fillDefaults().numColumns(3).equalWidth(false).margins(0, 6).spacing(3, 0).applyTo(entry);
-		GridDataFactory.fillDefaults().grab(true, true).applyTo(entry);
 		setBackground(notificationColor);
 
+		// contains the entry - everything apart from the close button
+		notificationComposite = new Composite(this, SWT.NONE);
+		GridDataFactory.fillDefaults().grab(true, true).applyTo(notificationComposite);
+		GridLayoutFactory.fillDefaults().spacing(0, 0).applyTo(notificationComposite);
+
 		if (getNotification().getRelatedModelElements().size() == 0) {
+			// assuming that _all_ notifications are based on a specific element
 			return;
 		}
-		ModelElement modelElement = getProject().getProject().getModelElement(
-			getNotification().getRelatedModelElements().get(0));
-		Link link = createImageLink(modelElement, entry, getMessage());
-		link.addSelectionListener(new LinkSelectionListener("link"));
 
-		Label date = new Label(entry, SWT.NONE);
-		date.setText(format.format(getNotification().getCreationDate()));
-		GridDataFactory.fillDefaults().align(SWT.END, SWT.BEGINNING).applyTo(date);
-		date.setForeground(getDisplay().getSystemColor(SWT.COLOR_GRAY));
+		createNotificationEntry();
+		createCloseButton();
 
+		MouseTrackAdapter hoverListener = new HoverTrackAdapter();
+		addMouseTrackListener(this, hoverListener);
+	}
+
+	private void addMouseTrackListener(Control control, MouseTrackListener listener) {
+		control.addMouseTrackListener(listener);
+		if (control instanceof Composite) {
+			for (Control c : ((Composite) control).getChildren()) {
+				addMouseTrackListener(c, listener);
+			}
+		}
+	}
+
+	private void createComments() {
+		commentsComposite = new Composite(notificationComposite, SWT.NONE);
+		GridLayoutFactory.fillDefaults().spacing(0, 0).applyTo(commentsComposite);
+		GridDataFactory.fillDefaults().span(3, 1).indent(20, 0).grab(true, false).applyTo(commentsComposite);
+		for (Comment comment : comments) {
+			createCommentEntry(commentsComposite, comment);
+		}
+		Composite c = commentsComposite;
+		while (c != null) {
+			c.layout(true);
+			c = c.getParent();
+		}
+	}
+
+	private void createDrawer() {
+
+		drawerComposite = new Composite(notificationComposite, SWT.NONE);
+		GridDataFactory.fillDefaults().hint(480, SWT.DEFAULT).grab(true, false).span(3, 1).indent(20, 0).applyTo(
+			drawerComposite);
+		GridLayoutFactory.fillDefaults().numColumns(1).spacing(0, 8).extendedMargins(3, 3, 3, 3).applyTo(
+			drawerComposite);
+		drawerComposite.setBackground(lightBlue);
+
+		for (ModelElementId mid : getNotification().getRelatedModelElements()) {
+			Control drawerEntry = URLHelper.getModelElementLink(drawerComposite, mid, getProjectSpace(),
+				URLHelper.UNLTD);
+			GridDataFactory.fillDefaults().grab(true, false).applyTo(drawerEntry);
+		}
+
+	}
+
+	private void createCloseButton() {
 		final Image closeImage = Activator.getImageDescriptor("icons/close.png").createImage();
 		final Image closeImageRed = Activator.getImageDescriptor("icons/cross.png").createImage();
-		final Composite closeLink = new Composite(this, SWT.NONE);
-		GridDataFactory.fillDefaults().align(SWT.BEGINNING, SWT.BEGINNING).hint(18, 26).applyTo(closeLink);
-		closeLink.addPaintListener(new PaintListener() {
+		closeButton = new Composite(this, SWT.NONE);
+		GridDataFactory.fillDefaults().align(SWT.BEGINNING, SWT.BEGINNING).hint(18, 26).applyTo(closeButton);
+		closeButton.addPaintListener(new PaintListener() {
 			public void paintControl(PaintEvent e) {
 				if (mouseOver) {
-					Rectangle area = closeLink.getClientArea();
+					Rectangle area = closeButton.getClientArea();
 					Image image = closeImage;
 					if (mouseOverClose) {
 						image = closeImageRed;
@@ -176,7 +278,7 @@ public class NotificationDashboardEntry extends AbstractDashboardEntry {
 				}
 			}
 		});
-		closeLink.addMouseListener(new MouseAdapter() {
+		closeButton.addMouseListener(new MouseAdapter() {
 			@Override
 			public void mouseDown(MouseEvent e) {
 				boolean hide = MessageDialog
@@ -192,88 +294,112 @@ public class NotificationDashboardEntry extends AbstractDashboardEntry {
 						@Override
 						protected void doExecute() {
 							getNotification().setSeen(true);
-							logEvent(getNotification(), getProject());
+							logEvent(getNotification(), getProjectSpace());
 							((DashboardEditor) getPage().getEditor()).refresh();
 						}
 					});
 				}
 			}
 		});
-
-		MouseTrackAdapter hoverListener = new MouseTrackAdapter() {
-
-			@Override
-			public void mouseEnter(MouseEvent e) {
-				setBackground(lightBlue);
-				mouseOver = true;
-				if (e.widget.equals(closeLink)) {
-					mouseOverClose = true;
-				}
-			}
-
-			@Override
-			public void mouseExit(MouseEvent e) {
-				setBackground(notificationColor);
-				mouseOver = false;
-				if (e.widget.equals(closeLink)) {
-					mouseOverClose = false;
-				}
-			}
-		};
-
-		MouseListener clickListener = new MouseAdapter() {
-
-			@Override
-			public void mouseDown(MouseEvent e) {
-				toggleDrawer(e, open);
-				open = !open;
-			}
-		};
-
-		addMouseTrackListener(hoverListener);
-		entry.addMouseTrackListener(hoverListener);
-		link.addMouseTrackListener(hoverListener);
-		date.addMouseTrackListener(hoverListener);
-
-		closeLink.addMouseTrackListener(hoverListener);
-
-		drawer = new Composite(entry, SWT.NONE);
-		GridDataFactory.fillDefaults().hint(10, 0).span(3, 1).indent(20, 0).grab(true, false).applyTo(drawer);
-		GridLayoutFactory.fillDefaults().numColumns(1).spacing(0, 8).extendedMargins(3, 3, 3, 3).applyTo(drawer);
-		drawer.setBackground(lightBlue);
-
-		if (getNotification().getRelatedModelElements().size() > 1) {
-			entry.addMouseListener(clickListener);
-			link.addMouseListener(clickListener);
-
-			for (ModelElementId mid : getNotification().getRelatedModelElements()) {
-				Control drawerEntry = URLHelper.getModelElementLink(drawer, mid, getProject(), URLHelper.UNLTD);
-				GridDataFactory.fillDefaults().grab(true, false).applyTo(drawerEntry);
-			}
-		}
-
-		Comment[] comments = getComment();
-		if (comments != null) {
-			Composite commentsComposite = new Composite(entry, SWT.NONE);
-			GridDataFactory.fillDefaults().span(3, 1).grab(true, false).applyTo(commentsComposite);
-			GridLayoutFactory.fillDefaults().applyTo(commentsComposite);
-			for (Comment comment : comments) {
-				createComment(commentsComposite, comment);
-			}
-		}
 	}
 
-	private void createComment(Composite parent, Comment comment) {
+	private void createNotificationEntry() {
+		ModelElement modelElement = getProjectSpace().getProject().getModelElement(
+			getNotification().getRelatedModelElements().get(0));
+
+		// the composite that wraps the whole notification
+		Composite notificationEntry = new Composite(notificationComposite, SWT.NONE);
+		GridDataFactory.fillDefaults().grab(true, true).applyTo(notificationEntry);
+		GridLayoutFactory.fillDefaults().numColumns(4).equalWidth(false).margins(6, 6).spacing(3, 0).applyTo(
+			notificationEntry);
+
+		// the image
+		final Image image = labelProvider.getImage(modelElement);
+		final Composite imageComposite = new Composite(notificationEntry, SWT.NONE);
+		GridDataFactory.fillDefaults().hint(16, 16).applyTo(imageComposite);
+		imageComposite.addPaintListener(new PaintListener() {
+			public void paintControl(PaintEvent e) {
+				Rectangle area = imageComposite.getClientArea();
+				e.gc.drawImage(image, area.x, area.y);
+			}
+		});
+		imageComposite.setData(modelElement.eClass());
+		ModelElementClassTooltip.enableFor(imageComposite);
+
+		// the message
+		entryMessage = new Link(notificationEntry, SWT.WRAP | SWT.MULTI);
+		String text = getMessage();
+		if (text == null) {
+			text = "";
+		}
+		entryMessage.setText(text);
+		GridDataFactory.fillDefaults().hint(500, SWT.DEFAULT).grab(true, false).applyTo(entryMessage);
+		entryMessage.addSelectionListener(new LinkSelectionListener("link"));
+
+		// the toolbar
+		createToolbar(notificationEntry);
+
+		// the date
+		Label date = new Label(notificationEntry, SWT.NONE);
+		date.setText(format.format(getNotification().getCreationDate()));
+		GridDataFactory.fillDefaults().align(SWT.END, SWT.BEGINNING).applyTo(date);
+		date.setForeground(getDisplay().getSystemColor(SWT.COLOR_GRAY));
+	}
+
+	private void createToolbar(Composite parent) {
+		toolbar = new Composite(parent, SWT.NONE);
+		GridDataFactory.fillDefaults().align(SWT.BEGINNING, SWT.BEGINNING).applyTo(toolbar);
+		RowLayout layout = new RowLayout();
+		layout.spacing = 0;
+		layout.marginTop = 0;
+		toolbar.setLayout(layout);
+		if (getNotification().getRelatedModelElements().size() > 1) {
+			DashboardToolbarAction toogleDrawer = new DashboardToolbarAction(toolbar, "details.png");
+			toogleDrawer.setToolTipText("Show details");
+			toogleDrawer.addMouseListener(new ToggleDrawerAdapter());
+		}
+		if (comments != null) {
+			DashboardToolbarAction toogleComments = new DashboardToolbarAction(toolbar, "comment.png", 100);
+			toogleComments.setToolTipText("Show comments");
+			Link toggleCommentsNumber = new Link(toolbar, SWT.WRAP);
+			toggleCommentsNumber.setText("<a>" + comments.length + "</a>");
+			ToggleCommentsAdapter toggleCommentsAdapter = new ToggleCommentsAdapter();
+			toggleCommentsNumber.addMouseListener(toggleCommentsAdapter);
+			toogleComments.addMouseListener(toggleCommentsAdapter);
+		}
+
+	}
+
+	private void createCommentEntry(Composite parent, Comment comment) {
+
+		if (comment.getCreator() != null) {
+			Composite commentTitleBar = new Composite(parent, SWT.NONE);
+			GridLayoutFactory.fillDefaults().numColumns(2).equalWidth(false).margins(3, 3).applyTo(commentTitleBar);
+			GridDataFactory.fillDefaults().grab(true, false).applyTo(commentTitleBar);
+			commentTitleBar.setBackground(new Color(getDisplay(), 246, 235, 197));
+
+			Label commentAuthor = new Label(commentTitleBar, SWT.WRAP);
+			commentAuthor.setText(comment.getCreator());
+			GridDataFactory.fillDefaults().grab(true, false).applyTo(commentAuthor);
+
+			SimpleDateFormat dateFormat = new SimpleDateFormat("dd.MM.yyyy HH:mm");
+			Label commentTime = new Label(commentTitleBar, SWT.WRAP);
+			commentTime.setText(dateFormat.format(comment.getCreationDate()));
+
+			Composite commentTitleBarBorder = new Composite(parent, SWT.NONE);
+			GridDataFactory.fillDefaults().span(2, 1).hint(SWT.DEFAULT, 1).grab(true, false).applyTo(
+				commentTitleBarBorder);
+			commentTitleBarBorder.setBackground(new Color(getDisplay(), 189, 157, 95));
+		}
 
 		Composite commentEntry = new Composite(parent, SWT.NONE);
-		GridLayoutFactory.fillDefaults().numColumns(3).equalWidth(false).margins(5, 5).spacing(3, 0).applyTo(
-			commentEntry);
-		GridDataFactory.fillDefaults().indent(20, 0).grab(true, true).applyTo(commentEntry);
+		GridLayoutFactory.fillDefaults().numColumns(3).equalWidth(false).spacing(3, 0).applyTo(commentEntry);
+		GridDataFactory.fillDefaults().grab(true, true).applyTo(commentEntry);
 		commentEntry.setBackground(getDisplay().getSystemColor(SWT.COLOR_INFO_BACKGROUND));
 
 		Label userAvatar = new Label(commentEntry, SWT.WRAP);
 		userAvatar.setImage(new Image(getDisplay(), DashboardImageUtil.getImage("homer.png").getImageData().scaledTo(
-			50, 50)));
+			30, 30)));
 		GridDataFactory.fillDefaults().align(SWT.BEGINNING, SWT.BEGINNING).applyTo(userAvatar);
 
 		Label userComment = new Label(commentEntry, SWT.WRAP);
@@ -287,32 +413,26 @@ public class NotificationDashboardEntry extends AbstractDashboardEntry {
 		}
 		GridDataFactory.fillDefaults().align(SWT.BEGINNING, SWT.BEGINNING).applyTo(replyButton);
 
-		Composite border = new Composite(commentEntry, SWT.NONE);
-		GridDataFactory.fillDefaults().span(3, 1).hint(SWT.DEFAULT, 1).grab(true, false).applyTo(border);
-		border.setBackground(new Color(getDisplay(), 230, 220, 220));
-
 		for (Comment c : comment.getReplies()) {
 			Composite userReply = new Composite(commentEntry, SWT.NONE);
-			GridLayoutFactory.fillDefaults().applyTo(userReply);
+			GridLayoutFactory.fillDefaults().spacing(0, 0).applyTo(userReply);
 			GridDataFactory.fillDefaults().indent(30, 0).span(3, 1).grab(true, false).applyTo(userReply);
-			createComment(userReply, c);
+			createCommentEntry(userReply, c);
 		}
 		for (Annotation annotation : comment.getAnnotations()) {
 			if (RationalePackage.eINSTANCE.getComment().isInterface()) {
 				Composite userReply = new Composite(commentEntry, SWT.NONE);
-				GridLayoutFactory.fillDefaults().applyTo(userReply);
+				GridLayoutFactory.fillDefaults().spacing(0, 0).applyTo(userReply);
 				GridDataFactory.fillDefaults().indent(20, 0).span(3, 1).grab(true, false).applyTo(userReply);
-				createComment(userReply, (Comment) annotation);
+				createCommentEntry(userReply, (Comment) annotation);
 			}
 		}
 	}
 
 	private void toggleDrawer(TypedEvent e, boolean open) {
-		int height;
-		int indent;
 		if (open) {
-			indent = 10;
-			height = SWT.DEFAULT;
+			createDrawer();
+
 			final NotificationReadEvent readEvent = EventsFactory.eINSTANCE.createNotificationReadEvent();
 			readEvent.setNotificationId(getNotification().getIdentifier());
 			readEvent.setReadView(DashboardEditor.ID);
@@ -323,17 +443,36 @@ public class NotificationDashboardEntry extends AbstractDashboardEntry {
 			domain.getCommandStack().execute(new RecordingCommand(domain) {
 				@Override
 				protected void doExecute() {
-					getProject().addEvent(readEvent);
+					getProjectSpace().addEvent(readEvent);
 				}
 			});
 		} else {
-			indent = 0;
-			height = 0;
+			drawerComposite.dispose();
 		}
-		GridDataFactory.fillDefaults().hint(480, height).grab(true, false).span(3, 1).indent(20, indent)
-			.applyTo(drawer);
 		getParent().layout();
-		getPage().getForm().reflow(true);
+	}
+
+	private void toggleComments(TypedEvent e, boolean open) {
+		if (open) {
+			createComments();
+
+			final NotificationReadEvent readEvent = EventsFactory.eINSTANCE.createNotificationReadEvent();
+			readEvent.setNotificationId(getNotification().getIdentifier());
+			readEvent.setReadView(DashboardEditor.ID);
+			readEvent.setSourceView(DashboardEditor.ID);
+			readEvent.setTimestamp(new Date());
+			TransactionalEditingDomain domain = TransactionalEditingDomain.Registry.INSTANCE
+				.getEditingDomain("org.unicase.EditingDomain");
+			domain.getCommandStack().execute(new RecordingCommand(domain) {
+				@Override
+				protected void doExecute() {
+					getProjectSpace().addEvent(readEvent);
+				}
+			});
+		} else {
+			commentsComposite.dispose();
+		}
+		getParent().layout();
 	}
 
 	private void logEvent(ModelElementId modelElementId, String source) {
@@ -348,31 +487,9 @@ public class NotificationDashboardEntry extends AbstractDashboardEntry {
 		domain.getCommandStack().execute(new RecordingCommand(domain) {
 			@Override
 			protected void doExecute() {
-				getProject().addEvent(readEvent);
+				getProjectSpace().addEvent(readEvent);
 			}
 		});
-	}
-
-	private Link createImageLink(ModelElement modelElement, Composite parent, String text) {
-		final Image image = labelProvider.getImage(modelElement);
-		final Composite imageComposite = new Composite(parent, SWT.NONE);
-		GridDataFactory.fillDefaults().hint(16, 16).applyTo(imageComposite);
-		imageComposite.addPaintListener(new PaintListener() {
-			public void paintControl(PaintEvent e) {
-				Rectangle area = imageComposite.getClientArea();
-				e.gc.drawImage(image, area.x, area.y);
-			}
-		});
-		imageComposite.setData(modelElement.eClass());
-		ModelElementClassTooltip.enableFor(imageComposite);
-
-		Link link = new Link(parent, SWT.WRAP | SWT.MULTI);
-		if (text == null) {
-			text = "";
-		}
-		link.setText(text);
-		GridDataFactory.fillDefaults().hint(500, SWT.DEFAULT).grab(true, false).applyTo(link);
-		return link;
 	}
 
 	private void logEvent(ESNotification n, ProjectSpace projectSpace) {
@@ -396,7 +513,7 @@ public class NotificationDashboardEntry extends AbstractDashboardEntry {
 		} else if (getNotification().getRelatedModelElements().size() == 1) {
 			ArrayList<Comment> comments = new ArrayList<Comment>();
 			for (ModelElementId modelElementId : getNotification().getRelatedModelElements()) {
-				ModelElement modelElement = getProject().getProject().getModelElement(modelElementId);
+				ModelElement modelElement = getProjectSpace().getProject().getModelElement(modelElementId);
 				if (modelElement != null) {
 					for (Annotation annotation : modelElement.getAnnotations()) {
 						if (RationalePackage.eINSTANCE.getComment().isInstance(annotation)) {
