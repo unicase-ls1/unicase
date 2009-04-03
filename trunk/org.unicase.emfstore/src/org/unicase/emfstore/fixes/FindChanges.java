@@ -3,10 +3,8 @@ package org.unicase.emfstore.fixes;
 import java.io.FileWriter;
 import java.io.IOException;
 
-import org.unicase.emfstore.connection.rmi.SerializationUtil;
 import org.unicase.emfstore.esmodel.versioning.Version;
 import org.unicase.emfstore.esmodel.versioning.operations.AbstractOperation;
-import org.unicase.emfstore.exceptions.RMISerializationException;
 
 public class FindChanges extends AbstractFix {
 
@@ -15,14 +13,25 @@ public class FindChanges extends AbstractFix {
 		for (Version version : projectHistory.getVersions()) {
 			if (version.getChanges() != null) {
 				for (AbstractOperation ao : version.getChanges().getOperations()) {
-					String result = "";
-					try {
-						result = SerializationUtil.eObjectToString(ao);
-					} catch (RMISerializationException e) {
-						e.printStackTrace();
-					}
+					String result = serializeOperation(ao);
 
-					if (result.contains("_6WUNgMrdEd2FLcQLgl5R9Q")) {
+					// if (between(version, 450, 500)) {
+					// System.out.println("checking version: " + version.getPrimarySpec().getIdentifier());
+					// if (ao instanceof CreateDeleteOperation && ((CreateDeleteOperation) ao).isDelete() == true) {
+					// ModelElement modelElement = projectHistory.getVersions().get(450).getProjectState()
+					// .getModelElement(ao.getModelElementId());
+					// if (modelElement != null) {
+					// for (ModelElement containedME : modelElement.getAllContainedModelElements()) {
+					// if (containedME.getIdentifier().equals("_6WUNgMrdEd2FLcQLgl5R9Q")) {
+					// printToFile(version, result);
+					// }
+					// }
+					// }
+					// }
+					// }
+
+					if (/* between(version, 500, 550) && */result.contains("_IT_QsP0PEd2TGLNSjOpjxw")
+						&& result.contains("_vQ-hsJUwEd2_ld_pN7IQ9Q")) {
 						printToFile(version, result);
 					}
 					// if (ao instanceof CreateDeleteOperation) {

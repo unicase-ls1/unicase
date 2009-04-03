@@ -6,9 +6,13 @@ import java.util.List;
 import org.eclipse.emf.ecore.EObject;
 import org.unicase.emfstore.connection.rmi.SerializationUtil;
 import org.unicase.emfstore.esmodel.ProjectHistory;
+import org.unicase.emfstore.esmodel.versioning.ChangePackage;
 import org.unicase.emfstore.esmodel.versioning.Version;
+import org.unicase.emfstore.esmodel.versioning.operations.AbstractOperation;
 import org.unicase.emfstore.exceptions.RMISerializationException;
 import org.unicase.emfstore.exceptions.StorageException;
+import org.unicase.model.ModelElementId;
+import org.unicase.model.ModelFactory;
 import org.unicase.model.Project;
 
 public abstract class AbstractFix {
@@ -33,6 +37,12 @@ public abstract class AbstractFix {
 			System.exit(0);
 		}
 		// END SUPRESS CATCH EXCEPTION
+	}
+
+	protected ModelElementId createMEID(String str) {
+		ModelElementId modelElementId = ModelFactory.eINSTANCE.createModelElementId();
+		modelElementId.setId(str);
+		return modelElementId;
 	}
 
 	protected List<Version> getVersionsWithProjectState() {
@@ -101,5 +111,28 @@ public abstract class AbstractFix {
 			}
 		}
 		return lineNum;
+	}
+
+	protected boolean between(Version version, int after, int before) {
+		return (version.getPrimarySpec().getIdentifier() >= after && version.getPrimarySpec().getIdentifier() <= before);
+	}
+
+	protected boolean containedInChangePackage(ChangePackage changePackage, String serializedOperation) {
+		for (AbstractOperation ao : changePackage.getOperations()) {
+			if (serializeOperation(ao).equals(serializedOperation)) {
+				return true;
+			}
+		}
+		return false;
+	}
+
+	protected String serializeOperation(AbstractOperation ao) {
+		String result = "";
+		try {
+			result = SerializationUtil.eObjectToString(ao);
+		} catch (RMISerializationException e) {
+			e.printStackTrace();
+		}
+		return result;
 	}
 }
