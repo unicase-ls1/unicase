@@ -10,6 +10,9 @@ import java.util.List;
 import org.unicase.emfstore.EmfStore;
 import org.unicase.emfstore.accesscontrol.AuthorizationControl;
 import org.unicase.emfstore.core.subinterfaces.HistorySubInterfaceImpl;
+import org.unicase.emfstore.core.subinterfaces.ProjectSubInterfaceImpl;
+import org.unicase.emfstore.core.subinterfaces.UserSubInterfaceImpl;
+import org.unicase.emfstore.core.subinterfaces.VersionSubInterfaceImpl;
 import org.unicase.emfstore.esmodel.ProjectId;
 import org.unicase.emfstore.esmodel.ProjectInfo;
 import org.unicase.emfstore.esmodel.ServerSpace;
@@ -43,6 +46,17 @@ public class EmfStoreImpl extends AbstractEmfstoreInterface implements EmfStore 
 	public EmfStoreImpl(ServerSpace serverSpace, AuthorizationControl authorizationControl)
 		throws FatalEmfStoreException {
 		super(serverSpace, authorizationControl);
+	}
+
+	/**
+	 * {@inheritDoc}
+	 */
+	@Override
+	protected void initSubInterfaces() throws FatalEmfStoreException {
+		addSubInterface(new HistorySubInterfaceImpl(this));
+		addSubInterface(new ProjectSubInterfaceImpl(this));
+		addSubInterface(new UserSubInterfaceImpl(this));
+		addSubInterface(new VersionSubInterfaceImpl(this));
 	}
 
 	/**

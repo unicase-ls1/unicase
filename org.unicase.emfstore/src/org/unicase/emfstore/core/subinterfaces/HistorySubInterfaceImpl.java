@@ -16,7 +16,6 @@ import org.unicase.emfstore.EmfStoreController;
 import org.unicase.emfstore.HistoryCache;
 import org.unicase.emfstore.core.AbstractEmfstoreInterface;
 import org.unicase.emfstore.core.AbstractSubEmfstoreInterface;
-import org.unicase.emfstore.core.EmfStoreImpl;
 import org.unicase.emfstore.esmodel.ProjectId;
 import org.unicase.emfstore.esmodel.versioning.HistoryInfo;
 import org.unicase.emfstore.esmodel.versioning.HistoryQuery;
