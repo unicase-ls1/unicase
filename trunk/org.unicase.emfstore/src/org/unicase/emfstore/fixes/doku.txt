@@ -30,6 +30,13 @@ manuelle löschungen (-> manualdeletefix)
 projectstate 150 bei identifier="_TiEHYKvpEd2COKzHNm-aQg" bis auf 2 alle included usecases gelöscht.
  - " -       200
 projectstate fix geschrieben (aber nicht programmatisch, weil der usecase bug noch nicht gefixt ist)
+------> UseCaseCleaner
  
  
- deletebug gefixt (zufällige references wurden gelöscht)
+deletebug gefixt (zufällige references wurden gelöscht)
+ 
+ 
+ 
+ 
+500: missing <modelElements xsi:type="org.unicase.model.classes:Class" identifier="_Ffc6kMrdEd2FLcQLgl5R9Q" name="StateMachineAction" superClasses="_CKz6AMrdEd2FLcQLgl5R9Q" outgoingAssociations="_3KKakMrdEd2FLcQLgl5R9Q _6WUNgMrdEd2FLcQLgl5R9Q"/>
+ 

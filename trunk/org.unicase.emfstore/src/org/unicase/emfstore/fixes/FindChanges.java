@@ -22,7 +22,7 @@ public class FindChanges extends AbstractFix {
 						e.printStackTrace();
 					}
 
-					if (result.contains("_WQyzkJ9pEd2Aq_vtgvKF4Q")) {
+					if (result.contains("_6WUNgMrdEd2FLcQLgl5R9Q")) {
 						printToFile(version, result);
 					}
 					// if (ao instanceof CreateDeleteOperation) {
