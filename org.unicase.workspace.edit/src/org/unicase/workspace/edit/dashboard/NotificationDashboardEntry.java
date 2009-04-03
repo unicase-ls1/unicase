@@ -34,6 +34,7 @@ import org.eclipse.swt.widgets.Composite;
 import org.eclipse.swt.widgets.Control;
 import org.eclipse.swt.widgets.Label;
 import org.eclipse.swt.widgets.Link;
+import org.eclipse.ui.forms.widgets.ImageHyperlink;
 import org.unicase.emfstore.esmodel.notification.ESNotification;
 import org.unicase.emfstore.esmodel.url.ModelElementUrl;
 import org.unicase.emfstore.esmodel.url.ModelElementUrlFragment;
@@ -44,6 +45,8 @@ import org.unicase.emfstore.esmodel.versioning.events.NotificationReadEvent;
 import org.unicase.model.Annotation;
 import org.unicase.model.ModelElement;
 import org.unicase.model.ModelElementId;
+import org.unicase.model.rationale.Comment;
+import org.unicase.model.rationale.RationaleFactory;
 import org.unicase.model.rationale.RationalePackage;
 import org.unicase.ui.common.util.ActionHelper;
 import org.unicase.ui.common.util.ModelElementClassTooltip;
@@ -234,22 +237,6 @@ public class NotificationDashboardEntry extends AbstractDashboardEntry {
 
 		closeLink.addMouseTrackListener(hoverListener);
 
-		String[] comments = getComment();
-		if (comments != null) {
-			// Composite commentComposite = new Composite(entry, SWT.NONE);
-			for (String comment : comments) {
-				Label commentLabel = new Label(entry, SWT.WRAP);
-				commentLabel.setBackground(getDisplay().getSystemColor(SWT.COLOR_INFO_BACKGROUND));
-				GridDataFactory.fillDefaults().span(3, 1).hint(SWT.DEFAULT, 30).indent(20, 0).grab(true, false)
-					.applyTo(commentLabel);
-				commentLabel.setText(comment);
-				Composite border = new Composite(entry, SWT.NONE);
-				GridDataFactory.fillDefaults().span(3, 1).hint(SWT.DEFAULT, 30).hint(SWT.DEFAULT, 1).indent(20, 0)
-					.grab(true, false).applyTo(border);
-				border.setBackground(getDisplay().getSystemColor(SWT.COLOR_GRAY));
-			}
-		}
-
 		drawer = new Composite(entry, SWT.NONE);
 		GridDataFactory.fillDefaults().hint(10, 0).span(3, 1).indent(20, 0).grab(true, false).applyTo(drawer);
 		GridLayoutFactory.fillDefaults().numColumns(1).spacing(0, 8).extendedMargins(3, 3, 3, 3).applyTo(drawer);
@@ -262,6 +249,60 @@ public class NotificationDashboardEntry extends AbstractDashboardEntry {
 			for (ModelElementId mid : getNotification().getRelatedModelElements()) {
 				Control drawerEntry = URLHelper.getModelElementLink(drawer, mid, getProject(), URLHelper.UNLTD);
 				GridDataFactory.fillDefaults().grab(true, false).applyTo(drawerEntry);
+			}
+		}
+
+		Comment[] comments = getComment();
+		if (comments != null) {
+			Composite commentsComposite = new Composite(entry, SWT.NONE);
+			GridDataFactory.fillDefaults().span(3, 1).grab(true, false).applyTo(commentsComposite);
+			GridLayoutFactory.fillDefaults().applyTo(commentsComposite);
+			for (Comment comment : comments) {
+				createComment(commentsComposite, comment);
+			}
+		}
+	}
+
+	private void createComment(Composite parent, Comment comment) {
+
+		Composite commentEntry = new Composite(parent, SWT.NONE);
+		GridLayoutFactory.fillDefaults().numColumns(3).equalWidth(false).margins(5, 5).spacing(3, 0).applyTo(
+			commentEntry);
+		GridDataFactory.fillDefaults().indent(20, 0).grab(true, true).applyTo(commentEntry);
+		commentEntry.setBackground(getDisplay().getSystemColor(SWT.COLOR_INFO_BACKGROUND));
+
+		Label userAvatar = new Label(commentEntry, SWT.WRAP);
+		userAvatar.setImage(new Image(getDisplay(), DashboardImageUtil.getImage("homer.png").getImageData().scaledTo(
+			50, 50)));
+		GridDataFactory.fillDefaults().align(SWT.BEGINNING, SWT.BEGINNING).applyTo(userAvatar);
+
+		Label userComment = new Label(commentEntry, SWT.WRAP);
+		userComment.setText(comment.getName());
+		GridDataFactory.fillDefaults().grab(true, false).applyTo(userComment);
+
+		ImageHyperlink replyButton = new ImageHyperlink(commentEntry, SWT.TOP);
+		if (comment.eContainer() != null) {
+			replyButton.setImage(DashboardImageUtil.getImage("comments.png"));
+			replyButton.setToolTipText("Reply");
+		}
+		GridDataFactory.fillDefaults().align(SWT.BEGINNING, SWT.BEGINNING).applyTo(replyButton);
+
+		Composite border = new Composite(commentEntry, SWT.NONE);
+		GridDataFactory.fillDefaults().span(3, 1).hint(SWT.DEFAULT, 1).grab(true, false).applyTo(border);
+		border.setBackground(new Color(getDisplay(), 230, 220, 220));
+
+		for (Comment c : comment.getReplies()) {
+			Composite userReply = new Composite(commentEntry, SWT.NONE);
+			GridLayoutFactory.fillDefaults().applyTo(userReply);
+			GridDataFactory.fillDefaults().indent(30, 0).span(3, 1).grab(true, false).applyTo(userReply);
+			createComment(userReply, c);
+		}
+		for (Annotation annotation : comment.getAnnotations()) {
+			if (RationalePackage.eINSTANCE.getComment().isInterface()) {
+				Composite userReply = new Composite(commentEntry, SWT.NONE);
+				GridLayoutFactory.fillDefaults().applyTo(userReply);
+				GridDataFactory.fillDefaults().indent(20, 0).span(3, 1).grab(true, false).applyTo(userReply);
+				createComment(userReply, (Comment) annotation);
 			}
 		}
 	}
@@ -341,27 +382,31 @@ public class NotificationDashboardEntry extends AbstractDashboardEntry {
 		projectSpace.addEvent(notificationIgnoreEvent);
 	}
 
-	private String[] getComment() {
+	private Comment[] getComment() {
 		if (getNotification().getSender() != null
 			&& getNotification().getSender().equals("Pushed Notification Provider")) {
 			String[] items = getNotification().getMessage().split("\\%\\%\\%");
+			Comment tempComment = RationaleFactory.eINSTANCE.createComment();
 			if (items.length == 2) {
-				return new String[] { items[1] };
+				tempComment.setName(items[1]);
+			} else {
+				tempComment.setName("Log message: added new AIs for sprint 34");
 			}
+			return new Comment[] { tempComment };
 		} else if (getNotification().getRelatedModelElements().size() == 1) {
-			ArrayList<String> comments = new ArrayList<String>();
+			ArrayList<Comment> comments = new ArrayList<Comment>();
 			for (ModelElementId modelElementId : getNotification().getRelatedModelElements()) {
 				ModelElement modelElement = getProject().getProject().getModelElement(modelElementId);
 				if (modelElement != null) {
 					for (Annotation annotation : modelElement.getAnnotations()) {
 						if (RationalePackage.eINSTANCE.getComment().isInstance(annotation)) {
-							comments.add(annotation.getName());
+							comments.add((Comment) annotation);
 						}
 					}
 				}
 			}
 			if (comments.size() > 0) {
-				return comments.toArray(new String[0]);
+				return comments.toArray(new Comment[0]);
 			}
 		}
 		return null;
