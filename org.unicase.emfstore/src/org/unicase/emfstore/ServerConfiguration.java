@@ -283,7 +283,7 @@ public final class ServerConfiguration {
 		StringBuffer sb = new StringBuffer(getUserHome());
 		sb.append(".unicase");
 		if (!isReleaseVersion()) {
-			if (false && isInternalReleaseVersion()) {
+			if (isInternalReleaseVersion()) {
 				sb.append(".internal");
 			} else {
 				sb.append(".dev");
