@@ -33,19 +33,19 @@ import org.unicase.emfstore.exceptions.StorageException;
  */
 public abstract class AbstractSubEmfstoreInterface {
 
-	private final ServerSpace serverSpace;
+	private final AbstractEmfstoreInterface parentInterface;
 
 	/**
 	 * Default constructor.
 	 * 
-	 * @param serverSpace serverspace
+	 * @param parentInterface parentInterface
 	 * @throws FatalEmfStoreException if serverspace is null
 	 */
-	public AbstractSubEmfstoreInterface(ServerSpace serverSpace) throws FatalEmfStoreException {
-		if (serverSpace == null) {
+	public AbstractSubEmfstoreInterface(AbstractEmfstoreInterface parentInterface) throws FatalEmfStoreException {
+		if (parentInterface == null) {
 			throw new FatalEmfStoreException();
 		}
-		this.serverSpace = serverSpace;
+		this.parentInterface = parentInterface;
 	}
 
 	/**
@@ -70,7 +70,7 @@ public abstract class AbstractSubEmfstoreInterface {
 	 * @return serverspace
 	 */
 	protected ServerSpace getServerSpace() {
-		return serverSpace;
+		return parentInterface.getServerSpace();
 	}
 
 	/**
@@ -79,7 +79,19 @@ public abstract class AbstractSubEmfstoreInterface {
 	 * @return monitor object
 	 */
 	protected Object getMonitor() {
-		return MonitorProvider.getInstance().getMonitor();
+		return parentInterface.getMonitor();
+	}
+
+	/**
+	 * This method gets a subinterface from the parent interface. Can be used if you need some functionality from
+	 * another subinterface.
+	 * 
+	 * @param <T> subinterface type
+	 * @param clazz class of subinterface
+	 * @return subinterface
+	 */
+	protected <T> T getSubInterface(Class<T> clazz) {
+		return parentInterface.getSubInterface(clazz);
 	}
 
 	/**

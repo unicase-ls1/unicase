@@ -10,6 +10,7 @@ import java.util.Set;
 
 import org.unicase.emfstore.accesscontrol.AccessControlException;
 import org.unicase.emfstore.accesscontrol.AuthorizationControl;
+import org.unicase.emfstore.core.subinterfaces.HistorySubInterfaceImpl;
 import org.unicase.emfstore.esmodel.ProjectId;
 import org.unicase.emfstore.esmodel.ServerSpace;
 import org.unicase.emfstore.esmodel.SessionId;
@@ -31,6 +32,7 @@ public abstract class AbstractEmfstoreInterface {
 	private AuthorizationControl authorizationControl;
 	private HashMap<Class<? extends AbstractSubEmfstoreInterface>, AbstractSubEmfstoreInterface> subInterfaces;
 	private boolean accessControlDisabled;
+	private final ServerSpace serverSpace;
 
 	/**
 	 * Default constructor.
@@ -41,18 +43,19 @@ public abstract class AbstractEmfstoreInterface {
 	 */
 	public AbstractEmfstoreInterface(ServerSpace serverSpace, AuthorizationControl authorizationControl)
 		throws FatalEmfStoreException {
+		this.serverSpace = serverSpace;
 		if (serverSpace == null || authorizationControl == null) {
 			throw new FatalEmfStoreException();
 		}
 		this.authorizationControl = authorizationControl;
 		accessControlDisabled = false;
-		initSubInterfaces(serverSpace);
+		initSubInterfaces();
 	}
 
-	private void initSubInterfaces(ServerSpace serverSpace) throws FatalEmfStoreException {
+	private void initSubInterfaces() throws FatalEmfStoreException {
 		subInterfaces = new HashMap<Class<? extends AbstractSubEmfstoreInterface>, AbstractSubEmfstoreInterface>();
 
-		subInterfaces.put(HistorySubInterfaceImpl.class, new HistorySubInterfaceImpl(serverSpace));
+		subInterfaces.put(HistorySubInterfaceImpl.class, new HistorySubInterfaceImpl(this));
 
 		initAdditionalSubInterfaces();
 	}
@@ -62,7 +65,7 @@ public abstract class AbstractEmfstoreInterface {
 	 * 
 	 * @return list of subinterfaces
 	 */
-	public HashMap<Class<? extends AbstractSubEmfstoreInterface>, AbstractSubEmfstoreInterface> getSubInterfaces() {
+	protected HashMap<Class<? extends AbstractSubEmfstoreInterface>, AbstractSubEmfstoreInterface> getSubInterfaces() {
 		return subInterfaces;
 	}
 
@@ -74,7 +77,7 @@ public abstract class AbstractEmfstoreInterface {
 	 * @return subinterface
 	 */
 	@SuppressWarnings("unchecked")
-	public <T> T getSubInterface(Class<T> clazz) {
+	protected <T> T getSubInterface(Class<T> clazz) {
 		return (T) subInterfaces.get(clazz);
 	}
 
@@ -83,7 +86,25 @@ public abstract class AbstractEmfstoreInterface {
 	 * 
 	 * @throws FatalEmfStoreException in case of failure
 	 */
-	public void initAdditionalSubInterfaces() throws FatalEmfStoreException {
+	protected void initAdditionalSubInterfaces() throws FatalEmfStoreException {
+	}
+
+	/**
+	 * Returns the serverspace. Please always use a monitor ({@link #getMonitor()}) when operating on the serverspace.
+	 * 
+	 * @return serverspace
+	 */
+	protected ServerSpace getServerSpace() {
+		return serverSpace;
+	}
+
+	/**
+	 * Return a monitor object which should be used when operating on the serverspace.
+	 * 
+	 * @return monitor object
+	 */
+	protected Object getMonitor() {
+		return MonitorProvider.getInstance().getMonitor();
 	}
 
 	/**
@@ -95,8 +116,8 @@ public abstract class AbstractEmfstoreInterface {
 	 * @param modelElements modelelemnts
 	 * @throws AccessControlException access exception
 	 */
-	public synchronized void checkReadAccess(SessionId sessionId, ProjectId projectId, Set<ModelElement> modelElements)
-		throws AccessControlException {
+	protected synchronized void checkReadAccess(SessionId sessionId, ProjectId projectId,
+		Set<ModelElement> modelElements) throws AccessControlException {
 		if (accessControlDisabled) {
 			return;
 		}
@@ -112,8 +133,8 @@ public abstract class AbstractEmfstoreInterface {
 	 * @param modelElements modelelemnts
 	 * @throws AccessControlException access exception
 	 */
-	public synchronized void checkWriteAccess(SessionId sessionId, ProjectId projectId, Set<ModelElement> modelElements)
-		throws AccessControlException {
+	protected synchronized void checkWriteAccess(SessionId sessionId, ProjectId projectId,
+		Set<ModelElement> modelElements) throws AccessControlException {
 		if (accessControlDisabled) {
 			return;
 		}
@@ -128,7 +149,7 @@ public abstract class AbstractEmfstoreInterface {
 	 * @param projectId project id
 	 * @throws AccessControlException access exception
 	 */
-	public synchronized void checkProjectAdminAccess(SessionId sessionId, ProjectId projectId)
+	protected synchronized void checkProjectAdminAccess(SessionId sessionId, ProjectId projectId)
 		throws AccessControlException {
 		if (accessControlDisabled) {
 			return;
@@ -143,7 +164,7 @@ public abstract class AbstractEmfstoreInterface {
 	 * @param sessionId sessionid
 	 * @throws AccessControlException access exception
 	 */
-	public synchronized void checkServerAdminAccess(SessionId sessionId) throws AccessControlException {
+	protected synchronized void checkServerAdminAccess(SessionId sessionId) throws AccessControlException {
 		if (accessControlDisabled) {
 			return;
 		}
@@ -156,7 +177,7 @@ public abstract class AbstractEmfstoreInterface {
 	 * @param objects objects to check
 	 * @throws InvalidInputException is thrown if the check fails
 	 */
-	public void sanityCheckObjects(Object[] objects) throws InvalidInputException {
+	protected void sanityCheckObjects(Object[] objects) throws InvalidInputException {
 		for (Object object : objects) {
 			sanityCheckObject(object);
 		}
@@ -169,7 +190,7 @@ public abstract class AbstractEmfstoreInterface {
 	 * @param object object to check
 	 * @throws InvalidInputException is thrown if the check fails
 	 */
-	public void sanityCheckObject(Object object) throws InvalidInputException {
+	protected void sanityCheckObject(Object object) throws InvalidInputException {
 		if (object == null) {
 			throw new InvalidInputException();
 		}

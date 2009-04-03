@@ -3,7 +3,7 @@
  * accompanying materials are made available under the terms of the Eclipse Public License v1.0 which accompanies this
  * distribution, and is available at http://www.eclipse.org/legal/epl-v10.html </copyright>
  */
-package org.unicase.emfstore.core;
+package org.unicase.emfstore.core.subinterfaces;
 
 import java.util.ArrayList;
 import java.util.Collections;
@@ -14,8 +14,10 @@ import java.util.TreeSet;
 import org.eclipse.emf.ecore.util.EcoreUtil;
 import org.unicase.emfstore.EmfStoreController;
 import org.unicase.emfstore.HistoryCache;
+import org.unicase.emfstore.core.AbstractEmfstoreInterface;
+import org.unicase.emfstore.core.AbstractSubEmfstoreInterface;
+import org.unicase.emfstore.core.EmfStoreImpl;
 import org.unicase.emfstore.esmodel.ProjectId;
-import org.unicase.emfstore.esmodel.ServerSpace;
 import org.unicase.emfstore.esmodel.versioning.HistoryInfo;
 import org.unicase.emfstore.esmodel.versioning.HistoryQuery;
 import org.unicase.emfstore.esmodel.versioning.LogMessage;
@@ -40,27 +42,29 @@ public class HistorySubInterfaceImpl extends AbstractSubEmfstoreInterface {
 	/**
 	 * Default constructor.
 	 * 
-	 * @param serverSpace serverspace
+	 * @param parentInterface parent interface
 	 * @throws FatalEmfStoreException in case of failure
 	 */
-	public HistorySubInterfaceImpl(ServerSpace serverSpace) throws FatalEmfStoreException {
-		super(serverSpace);
+	public HistorySubInterfaceImpl(AbstractEmfstoreInterface parentInterface) throws FatalEmfStoreException {
+		super(parentInterface);
 	}
 
 	/**
 	 * {@inheritDoc}
 	 */
 	public List<HistoryInfo> getHistoryInfo(ProjectId projectId, HistoryQuery historyQuery) throws EmfStoreException {
-		// if modelelements are added to the query, only history infos which are related to these modelelements will be
-		// returned.
-		if (historyQuery.getModelElements().size() > 0) {
-			return getHistoryInfo(projectId, historyQuery.getModelElements());
-		} else {
-			List<HistoryInfo> result = getHistoryInfo(projectId, historyQuery.getSource(), historyQuery.getTarget());
-			if (historyQuery.getSource().compareTo(historyQuery.getTarget()) < 0) {
-				Collections.reverse(result);
+		synchronized (getMonitor()) {
+			// if modelelements are added to the query, only history infos which are related to these modelelements will
+			// be returned.
+			if (historyQuery.getModelElements().size() > 0) {
+				return getHistoryInfo(projectId, historyQuery.getModelElements());
+			} else {
+				List<HistoryInfo> result = getHistoryInfo(projectId, historyQuery.getSource(), historyQuery.getTarget());
+				if (historyQuery.getSource().compareTo(historyQuery.getTarget()) < 0) {
+					Collections.reverse(result);
+				}
+				return result;
 			}
-			return result;
 		}
 	}
 
@@ -69,12 +73,14 @@ public class HistorySubInterfaceImpl extends AbstractSubEmfstoreInterface {
 	 */
 	public void addTag(ProjectId projectId, PrimaryVersionSpec versionSpec, TagVersionSpec tag)
 		throws EmfStoreException {
-		Version version = getVersion(projectId, versionSpec);
-		version.getTagSpecs().add(tag);
-		try {
-			save(version);
-		} catch (FatalEmfStoreException e) {
-			throw new StorageException(StorageException.NOSAVE);
+		synchronized (getMonitor()) {
+			Version version = getVersion(projectId, versionSpec);
+			version.getTagSpecs().add(tag);
+			try {
+				save(version);
+			} catch (FatalEmfStoreException e) {
+				throw new StorageException(StorageException.NOSAVE);
+			}
 		}
 	}
 
@@ -83,17 +89,19 @@ public class HistorySubInterfaceImpl extends AbstractSubEmfstoreInterface {
 	 */
 	public void removeTag(ProjectId projectId, PrimaryVersionSpec versionSpec, TagVersionSpec tag)
 		throws EmfStoreException {
-		Version version = getVersion(projectId, versionSpec);
-		Iterator<TagVersionSpec> iterator = version.getTagSpecs().iterator();
-		while (iterator.hasNext()) {
-			if (iterator.next().getName().equals(tag.getName())) {
-				iterator.remove();
+		synchronized (getMonitor()) {
+			Version version = getVersion(projectId, versionSpec);
+			Iterator<TagVersionSpec> iterator = version.getTagSpecs().iterator();
+			while (iterator.hasNext()) {
+				if (iterator.next().getName().equals(tag.getName())) {
+					iterator.remove();
+				}
 			}
-		}
-		try {
-			save(version);
-		} catch (FatalEmfStoreException e) {
-			throw new StorageException(StorageException.NOSAVE);
+			try {
+				save(version);
+			} catch (FatalEmfStoreException e) {
+				throw new StorageException(StorageException.NOSAVE);
+			}
 		}
 	}
 

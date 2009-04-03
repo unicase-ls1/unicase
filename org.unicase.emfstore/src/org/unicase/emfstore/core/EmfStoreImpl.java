@@ -9,6 +9,7 @@ import java.util.List;
 
 import org.unicase.emfstore.EmfStore;
 import org.unicase.emfstore.accesscontrol.AuthorizationControl;
+import org.unicase.emfstore.core.subinterfaces.HistorySubInterfaceImpl;
 import org.unicase.emfstore.esmodel.ProjectId;
 import org.unicase.emfstore.esmodel.ProjectInfo;
 import org.unicase.emfstore.esmodel.ServerSpace;
