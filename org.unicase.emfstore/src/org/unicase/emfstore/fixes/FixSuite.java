@@ -21,9 +21,8 @@ public class FixSuite {
 		// fixes.add(new EndDateToDueDateFix());
 		// fixes.add(new MeetingCreationFix());
 		// fixes.add(new ManualDeleteFix());
-		// fixes.add(new DuplicateUseCaseFix());
-		fixes.add(new CheckChanges());
-		// fixes.add(new FindChanges());
+		// fixes.add(new CheckChanges());
+		fixes.add(new FindChanges());
 	}
 
 	public void fix(String projectId) {

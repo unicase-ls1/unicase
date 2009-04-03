@@ -9,6 +9,10 @@ import org.unicase.model.requirement.UseCase;
 
 public class DuplicateUseCaseFix extends AbstractFix {
 
+	//
+	// !!!! REWRITE AFTER REMODELING OF STEPIMPL
+	//
+
 	@Override
 	void fix() {
 		for (Version version : projectHistory.getVersions()) {
