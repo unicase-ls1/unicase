@@ -46,7 +46,6 @@ import org.unicase.emfstore.esmodel.versioning.Version;
 import org.unicase.emfstore.exceptions.EmfStoreException;
 import org.unicase.emfstore.exceptions.FatalEmfStoreException;
 import org.unicase.emfstore.exceptions.StorageException;
-import org.unicase.emfstore.fixes.FixSuite;
 import org.unicase.emfstore.storage.ResourceStorage;
 import org.unicase.emfstore.taskmanager.TaskManager;
 import org.unicase.emfstore.taskmanager.tasks.CleanMemoryTask;
@@ -104,8 +103,8 @@ public class EmfStoreController implements IApplication {
 
 		historyCache = initHistoryCache();
 
-		FixSuite fixSuite = new FixSuite(serverSpace);
-		fixSuite.fix("_vJNjlI-jEd2NxKsJ-WbHVA");
+		// FixSuite fixSuite = new FixSuite(serverSpace);
+		// fixSuite.fix("_vJNjlI-jEd2NxKsJ-WbHVA");
 
 		accessControl = initAccessControl(serverSpace);
 		emfStore = new EmfStoreImpl(serverSpace, accessControl);
