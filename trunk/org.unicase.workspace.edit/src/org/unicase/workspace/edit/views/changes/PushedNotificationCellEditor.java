@@ -129,12 +129,9 @@ public class PushedNotificationCellEditor extends DialogCellEditor {
 				if (OperationsPackage.eINSTANCE.getReferenceOperation().isInstance(op)) {
 					ReferenceOperation referenceOp = (ReferenceOperation) op;
 					Set<ModelElementId> otherInvolvedModelElements = referenceOp.getOtherInvolvedModelElements();
-					if (otherInvolvedModelElements.size() > 0) {
-						msgBuilder.append(" (<a href=\"more\">details</a>) ");
-						for (ModelElementId id : otherInvolvedModelElements) {
-							ModelElementId idCopy = (ModelElementId) EcoreUtil.copy(id);
-							notification.getRelatedModelElements().add(idCopy);
-						}
+					for (ModelElementId id : otherInvolvedModelElements) {
+						ModelElementId idCopy = (ModelElementId) EcoreUtil.copy(id);
+						notification.getRelatedModelElements().add(idCopy);
 					}
 				}
 			}
