@@ -75,6 +75,7 @@ public class NotificationDashboardEntry extends AbstractDashboardEntry {
 			toggleDrawer(e, showDrawer);
 			showDrawer = !showDrawer;
 			getPage().getForm().reflow(true);
+			notificationComposite.setFocus();
 		}
 	}
 
@@ -89,6 +90,7 @@ public class NotificationDashboardEntry extends AbstractDashboardEntry {
 			toggleComments(e, showComments);
 			showComments = !showComments;
 			getPage().getForm().reflow(true);
+			notificationComposite.setFocus();
 		}
 	}
 
@@ -354,15 +356,16 @@ public class NotificationDashboardEntry extends AbstractDashboardEntry {
 		layout.marginTop = 0;
 		toolbar.setLayout(layout);
 		if (getNotification().getRelatedModelElements().size() > 1) {
-			DashboardToolbarAction toogleDrawer = new DashboardToolbarAction(toolbar, "details.png");
+			DashboardToolbarAction toogleDrawer = new DashboardToolbarAction(toolbar, "details.png", 150);
 			toogleDrawer.setToolTipText("Show details");
 			toogleDrawer.addMouseListener(new ToggleDrawerAdapter());
 		}
 		if (comments != null) {
-			DashboardToolbarAction toogleComments = new DashboardToolbarAction(toolbar, "comment.png", 100);
+			DashboardToolbarAction toogleComments = new DashboardToolbarAction(toolbar, "comment.png", 110);
 			toogleComments.setToolTipText("Show comments");
-			Link toggleCommentsNumber = new Link(toolbar, SWT.WRAP);
-			toggleCommentsNumber.setText("<a>" + comments.length + "</a>");
+			Label toggleCommentsNumber = new Label(toolbar, SWT.WRAP);
+			toggleCommentsNumber.setText(comments.length + "");
+			toggleCommentsNumber.setForeground(new Color(getDisplay(), 123, 160, 199));
 			ToggleCommentsAdapter toggleCommentsAdapter = new ToggleCommentsAdapter();
 			toggleCommentsNumber.addMouseListener(toggleCommentsAdapter);
 			toogleComments.addMouseListener(toggleCommentsAdapter);
