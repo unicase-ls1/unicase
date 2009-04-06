@@ -249,7 +249,7 @@ public class NotificationDashboardEntry extends AbstractDashboardEntry {
 	private void createDrawer() {
 
 		drawerComposite = new Composite(notificationComposite, SWT.NONE);
-		GridDataFactory.fillDefaults().hint(480, SWT.DEFAULT).grab(true, false).span(3, 1).indent(20, 0).applyTo(
+		GridDataFactory.fillDefaults().hint(380, SWT.DEFAULT).grab(true, false).span(3, 1).indent(20, 0).applyTo(
 			drawerComposite);
 		GridLayoutFactory.fillDefaults().numColumns(1).spacing(0, 8).extendedMargins(3, 3, 3, 3).applyTo(
 			drawerComposite);
@@ -335,7 +335,7 @@ public class NotificationDashboardEntry extends AbstractDashboardEntry {
 			text = "";
 		}
 		entryMessage.setText(text);
-		GridDataFactory.fillDefaults().hint(500, SWT.DEFAULT).grab(true, false).applyTo(entryMessage);
+		GridDataFactory.fillDefaults().hint(400, SWT.DEFAULT).grab(true, false).applyTo(entryMessage);
 		entryMessage.addSelectionListener(new LinkSelectionListener("link"));
 
 		// the toolbar
