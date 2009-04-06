@@ -30,6 +30,7 @@ import org.eclipse.swt.events.TypedEvent;
 import org.eclipse.swt.graphics.Color;
 import org.eclipse.swt.graphics.Image;
 import org.eclipse.swt.graphics.Rectangle;
+import org.eclipse.swt.layout.GridData;
 import org.eclipse.swt.layout.RowLayout;
 import org.eclipse.swt.widgets.Composite;
 import org.eclipse.swt.widgets.Control;
@@ -218,6 +219,7 @@ public class NotificationDashboardEntry extends AbstractDashboardEntry {
 
 		createNotificationEntry();
 		createCloseButton();
+		createDrawer();
 
 		MouseTrackAdapter hoverListener = new HoverTrackAdapter();
 		addMouseTrackListener(this, hoverListener);
@@ -249,8 +251,7 @@ public class NotificationDashboardEntry extends AbstractDashboardEntry {
 	private void createDrawer() {
 
 		drawerComposite = new Composite(notificationComposite, SWT.NONE);
-		GridDataFactory.fillDefaults().hint(380, SWT.DEFAULT).grab(true, false).span(3, 1).indent(20, 0).applyTo(
-			drawerComposite);
+		GridDataFactory.fillDefaults().hint(380, 0).grab(true, false).span(3, 1).indent(20, 0).applyTo(drawerComposite);
 		GridLayoutFactory.fillDefaults().numColumns(1).spacing(0, 8).extendedMargins(3, 3, 3, 3).applyTo(
 			drawerComposite);
 		drawerComposite.setBackground(lightBlue);
@@ -359,6 +360,9 @@ public class NotificationDashboardEntry extends AbstractDashboardEntry {
 			DashboardToolbarAction toogleDrawer = new DashboardToolbarAction(toolbar, "details.png", 150);
 			toogleDrawer.setToolTipText("Show details");
 			toogleDrawer.addMouseListener(new ToggleDrawerAdapter());
+			ToggleDrawerAdapter toggleDrawerAdapter = new ToggleDrawerAdapter();
+			entryMessage.addMouseListener(toggleDrawerAdapter);
+			notificationComposite.addMouseListener(toggleDrawerAdapter);
 		}
 		if (comments != null) {
 			DashboardToolbarAction toogleComments = new DashboardToolbarAction(toolbar, "comment.png", 110);
@@ -401,8 +405,7 @@ public class NotificationDashboardEntry extends AbstractDashboardEntry {
 		commentEntry.setBackground(getDisplay().getSystemColor(SWT.COLOR_INFO_BACKGROUND));
 
 		Label userAvatar = new Label(commentEntry, SWT.WRAP);
-		userAvatar.setImage(new Image(getDisplay(), DashboardImageUtil.getImage("homer.png").getImageData().scaledTo(
-			30, 30)));
+		userAvatar.setImage(DashboardImageUtil.getImage("guest_thumb.png"));
 		GridDataFactory.fillDefaults().align(SWT.BEGINNING, SWT.BEGINNING).applyTo(userAvatar);
 
 		Label userComment = new Label(commentEntry, SWT.WRAP);
@@ -434,8 +437,8 @@ public class NotificationDashboardEntry extends AbstractDashboardEntry {
 
 	private void toggleDrawer(TypedEvent e, boolean open) {
 		if (open) {
-			createDrawer();
-
+			GridDataFactory.createFrom((GridData) drawerComposite.getLayoutData()).hint(380, SWT.DEFAULT).applyTo(
+				drawerComposite);
 			final NotificationReadEvent readEvent = EventsFactory.eINSTANCE.createNotificationReadEvent();
 			readEvent.setNotificationId(getNotification().getIdentifier());
 			readEvent.setReadView(DashboardEditor.ID);
@@ -450,7 +453,8 @@ public class NotificationDashboardEntry extends AbstractDashboardEntry {
 				}
 			});
 		} else {
-			drawerComposite.dispose();
+			GridDataFactory.createFrom((GridData) drawerComposite.getLayoutData()).hint(380, 0)
+				.applyTo(drawerComposite);
 		}
 		getParent().layout();
 	}
