@@ -60,7 +60,7 @@ import org.unicase.workspace.util.WorkspaceUtil;
 /**
  * A dashboard entry widget.
  * 
- * @author Shterev
+ * @author Shterev.
  */
 public class NotificationDashboardEntry extends AbstractDashboardEntry {
 
