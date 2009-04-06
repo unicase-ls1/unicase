@@ -9,6 +9,7 @@ import java.text.SimpleDateFormat;
 import java.util.Date;
 
 import org.eclipse.core.runtime.IProgressMonitor;
+import org.eclipse.core.runtime.IStatus;
 import org.eclipse.emf.common.notify.Adapter;
 import org.eclipse.emf.common.notify.Notification;
 import org.eclipse.emf.common.notify.impl.AdapterImpl;
@@ -25,6 +26,7 @@ import org.eclipse.ui.forms.editor.SharedHeaderFormEditor;
 import org.unicase.model.ModelElement;
 import org.unicase.model.provider.ModelItemProviderAdapterFactory;
 import org.unicase.ui.common.MEEditorInput;
+import org.unicase.workspace.util.WorkspaceUtil;
 
 /**
  * GUI view for editing MEs.
@@ -61,10 +63,10 @@ public class MEEditor extends SharedHeaderFormEditor {
 	protected void addPages() {
 		MEEditorInput editorInput = (MEEditorInput) getEditorInput();
 		if (editorInput.getProblemFeature() != null) {
-			mePage = new MEEditorPage(this, "1", "Standard View", editingDomain, modelElement, editorInput
+			mePage = new MEEditorPage(this, "Edit", "Standard View", editingDomain, modelElement, editorInput
 				.getProblemFeature());
 		} else {
-			mePage = new MEEditorPage(this, "1", "Standard View", editingDomain, modelElement);
+			mePage = new MEEditorPage(this, "Edit", "Standard View", editingDomain, modelElement);
 		}
 		try {
 			addPage(mePage);
@@ -73,6 +75,19 @@ public class MEEditor extends SharedHeaderFormEditor {
 			e.printStackTrace();
 		}
 
+	}
+
+	/**
+	 * Shows the history page for the opened model element.
+	 */
+	public void showHistoryPage() {
+		MEHistoryPage historyPage = new MEHistoryPage(this, "History", "History", modelElement);
+		try {
+			addPage(historyPage);
+			setActivePage("History");
+		} catch (PartInitException e) {
+			WorkspaceUtil.log("Error while opening the history tab", e, IStatus.WARNING);
+		}
 	}
 
 	/**
