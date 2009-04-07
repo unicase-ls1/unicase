@@ -389,6 +389,8 @@
       <genClasses ecoreClass="model.ecore#//rationale/Comment">
         <genFeatures notify="false" createChild="false" propertySortChoices="true"
             ecoreFeature="ecore:EReference model.ecore#//rationale/Comment/replies"/>
+        <genFeatures notify="false" createChild="false" propertySortChoices="true"
+            ecoreFeature="ecore:EReference model.ecore#//rationale/Comment/recipient"/>
       </genClasses>
     </nestedGenPackages>
     <nestedGenPackages prefix="Change" basePackage="org.unicase.model" disposableProviderFactory="true"

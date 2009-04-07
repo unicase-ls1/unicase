@@ -61,7 +61,7 @@ public abstract class StereotypeAttributeInstanceImpl extends ModelElementImpl i
 	 * @generated
 	 */
 	public StereotypeInstance getStereotypeInstance() {
-		if (eContainerFeatureID() != ProfilePackage.STEREOTYPE_ATTRIBUTE_INSTANCE__STEREOTYPE_INSTANCE)
+		if (eContainerFeatureID != ProfilePackage.STEREOTYPE_ATTRIBUTE_INSTANCE__STEREOTYPE_INSTANCE)
 			return null;
 		return (StereotypeInstance) eContainer();
 	}
@@ -72,7 +72,7 @@ public abstract class StereotypeAttributeInstanceImpl extends ModelElementImpl i
 	 * @generated
 	 */
 	public StereotypeInstance basicGetStereotypeInstance() {
-		if (eContainerFeatureID() != ProfilePackage.STEREOTYPE_ATTRIBUTE_INSTANCE__STEREOTYPE_INSTANCE)
+		if (eContainerFeatureID != ProfilePackage.STEREOTYPE_ATTRIBUTE_INSTANCE__STEREOTYPE_INSTANCE)
 			return null;
 		return (StereotypeInstance) eInternalContainer();
 	}
@@ -95,7 +95,7 @@ public abstract class StereotypeAttributeInstanceImpl extends ModelElementImpl i
 	 */
 	public void setStereotypeInstance(StereotypeInstance newStereotypeInstance) {
 		if (newStereotypeInstance != eInternalContainer()
-			|| (eContainerFeatureID() != ProfilePackage.STEREOTYPE_ATTRIBUTE_INSTANCE__STEREOTYPE_INSTANCE && newStereotypeInstance != null)) {
+			|| (eContainerFeatureID != ProfilePackage.STEREOTYPE_ATTRIBUTE_INSTANCE__STEREOTYPE_INSTANCE && newStereotypeInstance != null)) {
 			if (EcoreUtil.isAncestor(this, newStereotypeInstance))
 				throw new IllegalArgumentException("Recursive containment not allowed for " + toString());
 			NotificationChain msgs = null;
@@ -232,7 +232,7 @@ public abstract class StereotypeAttributeInstanceImpl extends ModelElementImpl i
 	 */
 	@Override
 	public NotificationChain eBasicRemoveFromContainerFeature(NotificationChain msgs) {
-		switch (eContainerFeatureID()) {
+		switch (eContainerFeatureID) {
 		case ProfilePackage.STEREOTYPE_ATTRIBUTE_INSTANCE__STEREOTYPE_INSTANCE:
 			return eInternalContainer().eInverseRemove(this,
 				ProfilePackage.STEREOTYPE_INSTANCE__STEREOTYPE_ATTRIBUTE_INSTANCES, StereotypeInstance.class, msgs);

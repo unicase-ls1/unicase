@@ -5,8 +5,6 @@
  */
 package org.unicase.model.classes.impl;
 
-import static org.unicase.model.classes.ClassesPackage.CLASS;
-
 import org.eclipse.emf.ecore.EAttribute;
 import org.eclipse.emf.ecore.EClass;
 import org.eclipse.emf.ecore.EEnum;
@@ -61,7 +59,6 @@ import org.unicase.model.util.impl.UtilPackageImpl;
  * <!-- begin-user-doc --> An implementation of the model <b>Package</b>. <!-- end-user-doc -->
  * @generated
  */
-@SuppressWarnings("unused")
 public class ClassesPackageImpl extends EPackageImpl implements ClassesPackage {
 	/**
 	 * <!-- begin-user-doc --> <!-- end-user-doc -->

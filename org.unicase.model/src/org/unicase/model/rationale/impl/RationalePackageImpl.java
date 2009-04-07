@@ -418,6 +418,15 @@ public class RationalePackageImpl extends EPackageImpl implements RationalePacka
 	 * 
 	 * @generated
 	 */
+	public EReference getComment_Recipient() {
+		return (EReference) commentEClass.getEStructuralFeatures().get(1);
+	}
+
+	/**
+	 * <!-- begin-user-doc --> <!-- end-user-doc -->
+	 * 
+	 * @generated
+	 */
 	public RationaleFactory getRationaleFactory() {
 		return (RationaleFactory) getEFactoryInstance();
 	}
@@ -465,6 +474,7 @@ public class RationalePackageImpl extends EPackageImpl implements RationalePacka
 
 		commentEClass = createEClass(COMMENT);
 		createEReference(commentEClass, COMMENT__REPLIES);
+		createEReference(commentEClass, COMMENT__RECIPIENT);
 	}
 
 	/**
@@ -493,6 +503,8 @@ public class RationalePackageImpl extends EPackageImpl implements RationalePacka
 		// Obtain other dependent packages
 		ModelPackage theModelPackage = (ModelPackage) EPackage.Registry.INSTANCE.getEPackage(ModelPackage.eNS_URI);
 		TaskPackage theTaskPackage = (TaskPackage) EPackage.Registry.INSTANCE.getEPackage(TaskPackage.eNS_URI);
+		OrganizationPackage theOrganizationPackage = (OrganizationPackage) EPackage.Registry.INSTANCE
+			.getEPackage(OrganizationPackage.eNS_URI);
 
 		// Create type parameters
 
@@ -573,6 +585,10 @@ public class RationalePackageImpl extends EPackageImpl implements RationalePacka
 			!IS_TRANSIENT, !IS_VOLATILE, IS_CHANGEABLE, IS_COMPOSITE, IS_RESOLVE_PROXIES, !IS_UNSETTABLE, IS_UNIQUE,
 			!IS_DERIVED, IS_ORDERED);
 		getComment_Replies().getEKeys().add(theModelPackage.getIdentifiableElement_Identifier());
+		initEReference(getComment_Recipient(), theOrganizationPackage.getOrgUnit(), null, "recipient", null, 0, 1,
+			Comment.class, !IS_TRANSIENT, !IS_VOLATILE, IS_CHANGEABLE, !IS_COMPOSITE, IS_RESOLVE_PROXIES,
+			!IS_UNSETTABLE, IS_UNIQUE, !IS_DERIVED, IS_ORDERED);
+		getComment_Recipient().getEKeys().add(theModelPackage.getIdentifiableElement_Identifier());
 
 		// Create annotations
 		// org.unicase.ui.meeditor

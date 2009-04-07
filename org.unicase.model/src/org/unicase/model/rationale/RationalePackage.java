@@ -946,12 +946,20 @@ public interface RationalePackage extends EPackage {
 	int COMMENT__REPLIES = ModelPackage.ANNOTATION_FEATURE_COUNT + 0;
 
 	/**
+	 * The feature id for the '<em><b>Recipient</b></em>' reference. <!-- begin-user-doc --> <!-- end-user-doc -->
+	 * 
+	 * @generated
+	 * @ordered
+	 */
+	int COMMENT__RECIPIENT = ModelPackage.ANNOTATION_FEATURE_COUNT + 1;
+
+	/**
 	 * The number of structural features of the '<em>Comment</em>' class. <!-- begin-user-doc --> <!-- end-user-doc -->
 	 * 
 	 * @generated
 	 * @ordered
 	 */
-	int COMMENT_FEATURE_COUNT = ModelPackage.ANNOTATION_FEATURE_COUNT + 1;
+	int COMMENT_FEATURE_COUNT = ModelPackage.ANNOTATION_FEATURE_COUNT + 2;
 
 	/**
 	 * Returns the meta object for class ' {@link org.unicase.model.rationale.Issue <em>Issue</em>}'. <!--
@@ -1161,6 +1169,17 @@ public interface RationalePackage extends EPackage {
 	EReference getComment_Replies();
 
 	/**
+	 * Returns the meta object for the reference '{@link org.unicase.model.rationale.Comment#getRecipient
+	 * <em>Recipient</em>}'. <!-- begin-user-doc --> <!-- end-user-doc -->
+	 * 
+	 * @return the meta object for the reference '<em>Recipient</em>'.
+	 * @see org.unicase.model.rationale.Comment#getRecipient()
+	 * @see #getComment()
+	 * @generated
+	 */
+	EReference getComment_Recipient();
+
+	/**
 	 * Returns the factory that creates the instances of the model. <!-- begin-user-doc --> <!-- end-user-doc -->
 	 * 
 	 * @return the factory that creates the instances of the model.
@@ -1344,6 +1363,14 @@ public interface RationalePackage extends EPackage {
 		 * @generated
 		 */
 		EReference COMMENT__REPLIES = eINSTANCE.getComment_Replies();
+
+		/**
+		 * The meta object literal for the '<em><b>Recipient</b></em>' reference feature. <!-- begin-user-doc --> <!--
+		 * end-user-doc -->
+		 * 
+		 * @generated
+		 */
+		EReference COMMENT__RECIPIENT = eINSTANCE.getComment_Recipient();
 
 	}
 

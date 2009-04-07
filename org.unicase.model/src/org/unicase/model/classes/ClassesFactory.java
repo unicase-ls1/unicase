@@ -27,7 +27,7 @@ public interface ClassesFactory extends EFactory {
 	 * @return a new object of class '<em>Class</em>'.
 	 * @generated
 	 */
-	Class createClass();
+	org.unicase.model.classes.Class createClass();
 
 	/**
 	 * Returns a new object of class '<em>Package</em>'. <!-- begin-user-doc --> <!-- end-user-doc -->
@@ -35,7 +35,7 @@ public interface ClassesFactory extends EFactory {
 	 * @return a new object of class '<em>Package</em>'.
 	 * @generated
 	 */
-	Package createPackage();
+	org.unicase.model.classes.Package createPackage();
 
 	/**
 	 * Returns a new object of class '<em>Association</em>'. <!-- begin-user-doc --> <!-- end-user-doc -->

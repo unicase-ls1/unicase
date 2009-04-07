@@ -89,7 +89,7 @@ public class ModelVersionImpl extends EObjectImpl implements ModelVersion {
 	public Object eGet(int featureID, boolean resolve, boolean coreType) {
 		switch (featureID) {
 		case ModelPackage.MODEL_VERSION__RELEASE_NUMBER:
-			return getReleaseNumber();
+			return new Integer(getReleaseNumber());
 		}
 		return super.eGet(featureID, resolve, coreType);
 	}
@@ -103,7 +103,7 @@ public class ModelVersionImpl extends EObjectImpl implements ModelVersion {
 	public void eSet(int featureID, Object newValue) {
 		switch (featureID) {
 		case ModelPackage.MODEL_VERSION__RELEASE_NUMBER:
-			setReleaseNumber((Integer) newValue);
+			setReleaseNumber(((Integer) newValue).intValue());
 			return;
 		}
 		super.eSet(featureID, newValue);
