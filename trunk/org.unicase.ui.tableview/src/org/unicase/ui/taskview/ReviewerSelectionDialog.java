@@ -68,12 +68,14 @@ public class ReviewerSelectionDialog extends ElementListSelectionDialog {
 		if (buttonId == SET_RESOLVED_BUTTON_ID) {
 			workItem.setResolved(true);
 			setReturnCode(RESOLVED_SET);
+			close();
 		} else if (buttonId == SET_DONE_BUTTON_ID) {
 			// set done without setting reviewer
 			((Checkable) workItem).setChecked(true);
 			setReturnCode(DONE_SET);
+			close();
 		}
-		close();
+		super.buttonPressed(buttonId);
 	}
 
 	/**
