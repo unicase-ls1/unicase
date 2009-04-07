@@ -41,6 +41,7 @@ public class DeleteFromDiagramAction extends Action {
 		EditPart selectedElement = (EditPart) ActionHelper.getSelection();
 		CompoundCommand ccommand = new CompoundCommand("delete existing view");
 		View view = EditPartUtility.getView(selectedElement);
+		DiagramEditPart rootEditPart = null;
 		if (view instanceof Node){
 			DestroyElementRequest request = new DestroyElementRequest(WorkspaceManager.getInstance()
 				.getCurrentWorkspace().getEditingDomain(), EditPartUtility.getElement(selectedElement), false);
@@ -49,21 +50,19 @@ public class DeleteFromDiagramAction extends Action {
 				ccommand.add(new ICommandProxy(new DeleteFromDiagramCommand(request, selectedElement)));
 			}
 			ccommand.add(CommandFactory.createDeleteFromViewCommand(selectedElement));
+			rootEditPart= (DiagramEditPart)selectedElement.getParent();
 		} else if (view instanceof Edge) {
 
 			DestroyReferenceRequest req = new DestroyReferenceRequest(((Edge) view).getSource().getElement(), null,
 				((Edge) view).getTarget().getElement(), false);
 			ccommand.add(new ICommandProxy(new DestroyReferenceCommand(req)));
- 
-		}
-
-		((DiagramEditPart)selectedElement.getParent()).getDiagramEditDomain().getDiagramCommandStack().execute(ccommand);
+			rootEditPart= (DiagramEditPart) ((DiagramRootEditPart) selectedElement.getParent()).getContents();
+ 		}
+		rootEditPart.getDiagramEditDomain().getDiagramCommandStack().execute(ccommand);
 	
 		/// Until I find out, while the Editpart is not notified in this case, the following serves as a workaround
 		if (view instanceof EdgeImpl) {
-			MEDiagramEditPart me = (MEDiagramEditPart) ((DiagramRootEditPart) selectedElement.getParent())
-				.getContents();
-			me.updateView();
+			((MEDiagramEditPart)rootEditPart).updateView();
 		}
 	}
 }
