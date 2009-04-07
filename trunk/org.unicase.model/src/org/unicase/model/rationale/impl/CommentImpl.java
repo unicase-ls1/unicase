@@ -20,7 +20,7 @@ import org.unicase.model.organization.OrgUnit;
 import org.unicase.model.rationale.Comment;
 import org.unicase.model.rationale.RationalePackage;
 
-/*
+/**
  * <!-- begin-user-doc --> An implementation of the model object ' <em><b>Comment</b></em>'. <!-- end-user-doc --> <p>
  * The following features are implemented: <ul> <li>{@link org.unicase.model.rationale.impl.CommentImpl#getReplies
  * <em>Replies</em>}</li> </ul> </p>
@@ -28,9 +28,9 @@ import org.unicase.model.rationale.RationalePackage;
  */
 public class CommentImpl extends AnnotationImpl implements Comment {
 	/**
-	 * The cached value of the '{@link #getReplies() <em>Replies</em>}' containment reference list. <!-- begin-user-doc
+	 * The cached value of the '{@link #getReplies() <em>Replies</em>}' containment reference list.
+	 * <!-- begin-user-doc
 	 * --> <!-- end-user-doc -->
-	 * 
 	 * @see #getReplies()
 	 * @generated
 	 * @ordered
@@ -38,9 +38,9 @@ public class CommentImpl extends AnnotationImpl implements Comment {
 	protected EList<Comment> replies;
 
 	/**
-	 * The cached value of the '{@link #getRecipient() <em>Recipient</em>}' reference. <!-- begin-user-doc --> <!--
+	 * The cached value of the '{@link #getRecipient() <em>Recipient</em>}' reference.
+	 * <!-- begin-user-doc --> <!--
 	 * end-user-doc -->
-	 * 
 	 * @see #getRecipient()
 	 * @generated
 	 * @ordered
@@ -49,7 +49,6 @@ public class CommentImpl extends AnnotationImpl implements Comment {
 
 	/**
 	 * <!-- begin-user-doc --> <!-- end-user-doc -->
-	 * 
 	 * @generated
 	 */
 	protected CommentImpl() {
@@ -58,7 +57,6 @@ public class CommentImpl extends AnnotationImpl implements Comment {
 
 	/**
 	 * <!-- begin-user-doc --> <!-- end-user-doc -->
-	 * 
 	 * @generated
 	 */
 	@Override
@@ -68,7 +66,6 @@ public class CommentImpl extends AnnotationImpl implements Comment {
 
 	/**
 	 * <!-- begin-user-doc --> <!-- end-user-doc -->
-	 * 
 	 * @generated
 	 */
 	public EList<Comment> getReplies() {
@@ -81,7 +78,6 @@ public class CommentImpl extends AnnotationImpl implements Comment {
 
 	/**
 	 * <!-- begin-user-doc --> <!-- end-user-doc -->
-	 * 
 	 * @generated
 	 */
 	public OrgUnit getRecipient() {
@@ -99,7 +95,6 @@ public class CommentImpl extends AnnotationImpl implements Comment {
 
 	/**
 	 * <!-- begin-user-doc --> <!-- end-user-doc -->
-	 * 
 	 * @generated
 	 */
 	public OrgUnit basicGetRecipient() {
@@ -108,7 +103,6 @@ public class CommentImpl extends AnnotationImpl implements Comment {
 
 	/**
 	 * <!-- begin-user-doc --> <!-- end-user-doc -->
-	 * 
 	 * @generated
 	 */
 	public void setRecipient(OrgUnit newRecipient) {
@@ -121,7 +115,6 @@ public class CommentImpl extends AnnotationImpl implements Comment {
 
 	/**
 	 * <!-- begin-user-doc --> <!-- end-user-doc -->
-	 * 
 	 * @generated
 	 */
 	@Override
@@ -135,7 +128,6 @@ public class CommentImpl extends AnnotationImpl implements Comment {
 
 	/**
 	 * <!-- begin-user-doc --> <!-- end-user-doc -->
-	 * 
 	 * @generated
 	 */
 	@Override
@@ -153,7 +145,6 @@ public class CommentImpl extends AnnotationImpl implements Comment {
 
 	/**
 	 * <!-- begin-user-doc --> <!-- end-user-doc -->
-	 * 
 	 * @generated
 	 */
 	@SuppressWarnings("unchecked")
@@ -173,7 +164,6 @@ public class CommentImpl extends AnnotationImpl implements Comment {
 
 	/**
 	 * <!-- begin-user-doc --> <!-- end-user-doc -->
-	 * 
 	 * @generated
 	 */
 	@Override
@@ -191,7 +181,6 @@ public class CommentImpl extends AnnotationImpl implements Comment {
 
 	/**
 	 * <!-- begin-user-doc --> <!-- end-user-doc -->
-	 * 
 	 * @generated
 	 */
 	@Override

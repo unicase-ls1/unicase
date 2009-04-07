@@ -19,7 +19,7 @@ import org.unicase.model.requirement.RequirementPackage;
 import org.unicase.model.requirement.Scenario;
 import org.unicase.model.requirement.UseCase;
 
-/*
+/**
  * <!-- begin-user-doc --> An implementation of the model object ' <em><b>Non Functional Requirement</b></em>'. <!--
  * end-user-doc --> <p> The following features are implemented: <ul> <li>{@link
  * org.unicase.model.requirement.impl.NonFunctionalRequirementImpl#getRestrictedScenarios <em>Restricted
@@ -49,7 +49,6 @@ public class NonFunctionalRequirementImpl extends CriterionImpl implements NonFu
 
 	/**
 	 * <!-- begin-user-doc --> <!-- end-user-doc -->
-	 * 
 	 * @generated
 	 */
 	protected NonFunctionalRequirementImpl() {
@@ -58,7 +57,6 @@ public class NonFunctionalRequirementImpl extends CriterionImpl implements NonFu
 
 	/**
 	 * <!-- begin-user-doc --> <!-- end-user-doc -->
-	 * 
 	 * @generated
 	 */
 	@Override
@@ -68,7 +66,6 @@ public class NonFunctionalRequirementImpl extends CriterionImpl implements NonFu
 
 	/**
 	 * <!-- begin-user-doc --> <!-- end-user-doc -->
-	 * 
 	 * @generated
 	 */
 	public EList<Scenario> getRestrictedScenarios() {
@@ -82,7 +79,6 @@ public class NonFunctionalRequirementImpl extends CriterionImpl implements NonFu
 
 	/**
 	 * <!-- begin-user-doc --> <!-- end-user-doc -->
-	 * 
 	 * @generated
 	 */
 	public EList<UseCase> getRestrictedUseCases() {
@@ -96,7 +92,6 @@ public class NonFunctionalRequirementImpl extends CriterionImpl implements NonFu
 
 	/**
 	 * <!-- begin-user-doc --> <!-- end-user-doc -->
-	 * 
 	 * @generated
 	 */
 	@SuppressWarnings("unchecked")
@@ -115,7 +110,6 @@ public class NonFunctionalRequirementImpl extends CriterionImpl implements NonFu
 
 	/**
 	 * <!-- begin-user-doc --> <!-- end-user-doc -->
-	 * 
 	 * @generated
 	 */
 	@Override
@@ -131,7 +125,6 @@ public class NonFunctionalRequirementImpl extends CriterionImpl implements NonFu
 
 	/**
 	 * <!-- begin-user-doc --> <!-- end-user-doc -->
-	 * 
 	 * @generated
 	 */
 	@Override
@@ -147,7 +140,6 @@ public class NonFunctionalRequirementImpl extends CriterionImpl implements NonFu
 
 	/**
 	 * <!-- begin-user-doc --> <!-- end-user-doc -->
-	 * 
 	 * @generated
 	 */
 	@SuppressWarnings("unchecked")
@@ -168,7 +160,6 @@ public class NonFunctionalRequirementImpl extends CriterionImpl implements NonFu
 
 	/**
 	 * <!-- begin-user-doc --> <!-- end-user-doc -->
-	 * 
 	 * @generated
 	 */
 	@Override
@@ -186,7 +177,6 @@ public class NonFunctionalRequirementImpl extends CriterionImpl implements NonFu
 
 	/**
 	 * <!-- begin-user-doc --> <!-- end-user-doc -->
-	 * 
 	 * @generated
 	 */
 	@Override

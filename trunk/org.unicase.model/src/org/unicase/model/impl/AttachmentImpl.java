@@ -17,7 +17,7 @@ import org.unicase.model.Attachment;
 import org.unicase.model.ModelElement;
 import org.unicase.model.ModelPackage;
 
-/*
+/**
  * <!-- begin-user-doc --> An implementation of the model object '<em><b>Attachment</b></em>'. <!-- end-user-doc --> <p>
  * The following features are implemented: <ul> <li>{@link
  * org.unicase.model.impl.AttachmentImpl#getReferringModelElements <em>Referring Model Elements</em>}</li> </ul> </p>
@@ -27,7 +27,6 @@ public abstract class AttachmentImpl extends ModelElementImpl implements Attachm
 	/**
 	 * The cached value of the '{@link #getReferringModelElements() <em>Referring Model Elements</em>}' reference list.
 	 * <!-- begin-user-doc --> <!-- end-user-doc -->
-	 * 
 	 * @see #getReferringModelElements()
 	 * @generated
 	 * @ordered
@@ -36,7 +35,6 @@ public abstract class AttachmentImpl extends ModelElementImpl implements Attachm
 
 	/**
 	 * <!-- begin-user-doc --> <!-- end-user-doc -->
-	 * 
 	 * @generated
 	 */
 	protected AttachmentImpl() {
@@ -45,7 +43,6 @@ public abstract class AttachmentImpl extends ModelElementImpl implements Attachm
 
 	/**
 	 * <!-- begin-user-doc --> <!-- end-user-doc -->
-	 * 
 	 * @generated
 	 */
 	@Override
@@ -55,7 +52,6 @@ public abstract class AttachmentImpl extends ModelElementImpl implements Attachm
 
 	/**
 	 * <!-- begin-user-doc --> <!-- end-user-doc -->
-	 * 
 	 * @generated
 	 */
 	public EList<ModelElement> getReferringModelElements() {
@@ -68,7 +64,6 @@ public abstract class AttachmentImpl extends ModelElementImpl implements Attachm
 
 	/**
 	 * <!-- begin-user-doc --> <!-- end-user-doc -->
-	 * 
 	 * @generated
 	 */
 	@SuppressWarnings("unchecked")
@@ -84,7 +79,6 @@ public abstract class AttachmentImpl extends ModelElementImpl implements Attachm
 
 	/**
 	 * <!-- begin-user-doc --> <!-- end-user-doc -->
-	 * 
 	 * @generated
 	 */
 	@Override
@@ -98,7 +92,6 @@ public abstract class AttachmentImpl extends ModelElementImpl implements Attachm
 
 	/**
 	 * <!-- begin-user-doc --> <!-- end-user-doc -->
-	 * 
 	 * @generated
 	 */
 	@Override
@@ -112,7 +105,6 @@ public abstract class AttachmentImpl extends ModelElementImpl implements Attachm
 
 	/**
 	 * <!-- begin-user-doc --> <!-- end-user-doc -->
-	 * 
 	 * @generated
 	 */
 	@SuppressWarnings("unchecked")
@@ -129,7 +121,6 @@ public abstract class AttachmentImpl extends ModelElementImpl implements Attachm
 
 	/**
 	 * <!-- begin-user-doc --> <!-- end-user-doc -->
-	 * 
 	 * @generated
 	 */
 	@Override
@@ -144,7 +135,6 @@ public abstract class AttachmentImpl extends ModelElementImpl implements Attachm
 
 	/**
 	 * <!-- begin-user-doc --> <!-- end-user-doc -->
-	 * 
 	 * @generated
 	 */
 	@Override

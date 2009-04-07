@@ -14,7 +14,7 @@ import org.unicase.model.meeting.MeetingPackage;
 import org.unicase.model.meeting.WorkItemMeetingSection;
 import org.unicase.model.task.WorkItem;
 
-/*
+/**
  * <!-- begin-user-doc --> An implementation of the model object '<em><b>Work Item Meeting Section</b></em>'. <!--
  * end-user-doc --> <p> The following features are implemented: <ul> <li>{@link
  * org.unicase.model.meeting.impl.WorkItemMeetingSectionImpl#getIncludedWorkItems <em>Included Work Items</em>}</li>
@@ -34,7 +34,6 @@ public class WorkItemMeetingSectionImpl extends MeetingSectionImpl implements Wo
 
 	/**
 	 * <!-- begin-user-doc --> <!-- end-user-doc -->
-	 * 
 	 * @generated
 	 */
 	protected WorkItemMeetingSectionImpl() {
@@ -43,7 +42,6 @@ public class WorkItemMeetingSectionImpl extends MeetingSectionImpl implements Wo
 
 	/**
 	 * <!-- begin-user-doc --> <!-- end-user-doc -->
-	 * 
 	 * @generated
 	 */
 	@Override
@@ -53,7 +51,6 @@ public class WorkItemMeetingSectionImpl extends MeetingSectionImpl implements Wo
 
 	/**
 	 * <!-- begin-user-doc --> <!-- end-user-doc -->
-	 * 
 	 * @generated
 	 */
 	public EList<WorkItem> getIncludedWorkItems() {
@@ -66,7 +63,6 @@ public class WorkItemMeetingSectionImpl extends MeetingSectionImpl implements Wo
 
 	/**
 	 * <!-- begin-user-doc --> <!-- end-user-doc -->
-	 * 
 	 * @generated
 	 */
 	@Override
@@ -80,7 +76,6 @@ public class WorkItemMeetingSectionImpl extends MeetingSectionImpl implements Wo
 
 	/**
 	 * <!-- begin-user-doc --> <!-- end-user-doc -->
-	 * 
 	 * @generated
 	 */
 	@SuppressWarnings("unchecked")
@@ -97,7 +92,6 @@ public class WorkItemMeetingSectionImpl extends MeetingSectionImpl implements Wo
 
 	/**
 	 * <!-- begin-user-doc --> <!-- end-user-doc -->
-	 * 
 	 * @generated
 	 */
 	@Override
@@ -112,7 +106,6 @@ public class WorkItemMeetingSectionImpl extends MeetingSectionImpl implements Wo
 
 	/**
 	 * <!-- begin-user-doc --> <!-- end-user-doc -->
-	 * 
 	 * @generated
 	 */
 	@Override

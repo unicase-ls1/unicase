@@ -7,7 +7,7 @@ package org.unicase.model;
 
 import org.eclipse.emf.ecore.EObject;
 
-/*
+/**
  * <!-- begin-user-doc --> A representation of the model object '<em><b>Non Domain Element</b></em>'. <!-- end-user-doc
  * -->
  * @see org.unicase.model.ModelPackage#getNonDomainElement()

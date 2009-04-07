@@ -13,7 +13,7 @@ import org.eclipse.emf.ecore.util.EcoreUtil;
 import org.unicase.model.IdentifiableElement;
 import org.unicase.model.ModelPackage;
 
-/*
+/**
  * <!-- begin-user-doc --> An implementation of the model object '<em><b>Identifiable Element</b></em>'. <!--
  * end-user-doc --> <p> The following features are implemented: <ul> <li>{@link
  * org.unicase.model.impl.IdentifiableElementImpl#getIdentifier <em>Identifier</em>}</li> </ul> </p>
@@ -21,9 +21,9 @@ import org.unicase.model.ModelPackage;
  */
 public class IdentifiableElementImpl extends EObjectImpl implements IdentifiableElement {
 	/**
-	 * The default value of the '{@link #getIdentifier() <em>Identifier</em>}' attribute. <!-- begin-user-doc --> <!--
+	 * The default value of the '{@link #getIdentifier() <em>Identifier</em>}' attribute.
+	 * <!-- begin-user-doc --> <!--
 	 * end-user-doc -->
-	 * 
 	 * @see #getIdentifier()
 	 * @generated
 	 * @ordered
@@ -31,9 +31,9 @@ public class IdentifiableElementImpl extends EObjectImpl implements Identifiable
 	protected static final String IDENTIFIER_EDEFAULT = null;
 
 	/**
-	 * The cached value of the '{@link #getIdentifier() <em>Identifier</em>}' attribute. <!-- begin-user-doc --> <!--
+	 * The cached value of the '{@link #getIdentifier() <em>Identifier</em>}' attribute.
+	 * <!-- begin-user-doc --> <!--
 	 * end-user-doc -->
-	 * 
 	 * @see #getIdentifier()
 	 * @generated
 	 * @ordered
@@ -52,7 +52,6 @@ public class IdentifiableElementImpl extends EObjectImpl implements Identifiable
 
 	/**
 	 * <!-- begin-user-doc --> . <!-- end-user-doc -->
-	 * 
 	 * @generated
 	 */
 	@Override
@@ -62,7 +61,6 @@ public class IdentifiableElementImpl extends EObjectImpl implements Identifiable
 
 	/**
 	 * <!-- begin-user-doc --> <!-- end-user-doc -->
-	 * 
 	 * @generated
 	 */
 	public String getIdentifier() {
@@ -71,7 +69,6 @@ public class IdentifiableElementImpl extends EObjectImpl implements Identifiable
 
 	/**
 	 * <!-- begin-user-doc --> <!-- end-user-doc -->
-	 * 
 	 * @generated
 	 */
 	public void setIdentifier(String newIdentifier) {
@@ -84,7 +81,6 @@ public class IdentifiableElementImpl extends EObjectImpl implements Identifiable
 
 	/**
 	 * <!-- begin-user-doc --> <!-- end-user-doc -->
-	 * 
 	 * @generated
 	 */
 	@Override
@@ -98,7 +94,6 @@ public class IdentifiableElementImpl extends EObjectImpl implements Identifiable
 
 	/**
 	 * <!-- begin-user-doc --> <!-- end-user-doc -->
-	 * 
 	 * @generated
 	 */
 	@Override
@@ -113,7 +108,6 @@ public class IdentifiableElementImpl extends EObjectImpl implements Identifiable
 
 	/**
 	 * <!-- begin-user-doc --> <!-- end-user-doc -->
-	 * 
 	 * @generated
 	 */
 	@Override
@@ -128,7 +122,6 @@ public class IdentifiableElementImpl extends EObjectImpl implements Identifiable
 
 	/**
 	 * <!-- begin-user-doc --> <!-- end-user-doc -->
-	 * 
 	 * @generated
 	 */
 	@Override
@@ -142,7 +135,6 @@ public class IdentifiableElementImpl extends EObjectImpl implements Identifiable
 
 	/**
 	 * <!-- begin-user-doc --> <!-- end-user-doc -->
-	 * 
 	 * @generated
 	 */
 	@Override

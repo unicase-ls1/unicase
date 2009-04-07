@@ -21,7 +21,7 @@ import org.unicase.model.document.DocumentPackage;
 import org.unicase.model.document.Section;
 import org.unicase.model.impl.ModelElementImpl;
 
-/*
+/**
  * <!-- begin-user-doc --> An implementation of the model object ' <em><b>Composite Section</b></em>'. <!-- end-user-doc
  * --> <p> The following features are implemented: <ul> <li>{@link
  * org.unicase.model.document.impl.CompositeSectionImpl#getParent <em>Parent</em>}</li> <li>{@link
@@ -42,7 +42,6 @@ public class CompositeSectionImpl extends ModelElementImpl implements CompositeS
 
 	/**
 	 * <!-- begin-user-doc --> <!-- end-user-doc -->
-	 * 
 	 * @generated
 	 */
 	protected CompositeSectionImpl() {
@@ -51,7 +50,6 @@ public class CompositeSectionImpl extends ModelElementImpl implements CompositeS
 
 	/**
 	 * <!-- begin-user-doc --> <!-- end-user-doc -->
-	 * 
 	 * @generated
 	 */
 	@Override
@@ -61,29 +59,26 @@ public class CompositeSectionImpl extends ModelElementImpl implements CompositeS
 
 	/**
 	 * <!-- begin-user-doc --> <!-- end-user-doc -->
-	 * 
 	 * @generated
 	 */
 	public CompositeSection getParent() {
-		if (eContainerFeatureID != DocumentPackage.COMPOSITE_SECTION__PARENT)
+		if (eContainerFeatureID() != DocumentPackage.COMPOSITE_SECTION__PARENT)
 			return null;
 		return (CompositeSection) eContainer();
 	}
 
 	/**
 	 * <!-- begin-user-doc --> <!-- end-user-doc -->
-	 * 
 	 * @generated
 	 */
 	public CompositeSection basicGetParent() {
-		if (eContainerFeatureID != DocumentPackage.COMPOSITE_SECTION__PARENT)
+		if (eContainerFeatureID() != DocumentPackage.COMPOSITE_SECTION__PARENT)
 			return null;
 		return (CompositeSection) eInternalContainer();
 	}
 
 	/**
 	 * <!-- begin-user-doc --> <!-- end-user-doc -->
-	 * 
 	 * @generated
 	 */
 	public NotificationChain basicSetParent(CompositeSection newParent, NotificationChain msgs) {
@@ -93,12 +88,11 @@ public class CompositeSectionImpl extends ModelElementImpl implements CompositeS
 
 	/**
 	 * <!-- begin-user-doc --> <!-- end-user-doc -->
-	 * 
 	 * @generated
 	 */
 	public void setParent(CompositeSection newParent) {
 		if (newParent != eInternalContainer()
-			|| (eContainerFeatureID != DocumentPackage.COMPOSITE_SECTION__PARENT && newParent != null)) {
+			|| (eContainerFeatureID() != DocumentPackage.COMPOSITE_SECTION__PARENT && newParent != null)) {
 			if (EcoreUtil.isAncestor(this, newParent))
 				throw new IllegalArgumentException("Recursive containment not allowed for " + toString());
 			NotificationChain msgs = null;
@@ -117,7 +111,6 @@ public class CompositeSectionImpl extends ModelElementImpl implements CompositeS
 
 	/**
 	 * <!-- begin-user-doc --> <!-- end-user-doc -->
-	 * 
 	 * @generated
 	 */
 	public EList<Section> getSubsections() {
@@ -130,7 +123,6 @@ public class CompositeSectionImpl extends ModelElementImpl implements CompositeS
 
 	/**
 	 * <!-- begin-user-doc --> <!-- end-user-doc -->
-	 * 
 	 * @generated
 	 */
 	@SuppressWarnings("unchecked")
@@ -149,7 +141,6 @@ public class CompositeSectionImpl extends ModelElementImpl implements CompositeS
 
 	/**
 	 * <!-- begin-user-doc --> <!-- end-user-doc -->
-	 * 
 	 * @generated
 	 */
 	@Override
@@ -165,12 +156,11 @@ public class CompositeSectionImpl extends ModelElementImpl implements CompositeS
 
 	/**
 	 * <!-- begin-user-doc --> <!-- end-user-doc -->
-	 * 
 	 * @generated
 	 */
 	@Override
 	public NotificationChain eBasicRemoveFromContainerFeature(NotificationChain msgs) {
-		switch (eContainerFeatureID) {
+		switch (eContainerFeatureID()) {
 		case DocumentPackage.COMPOSITE_SECTION__PARENT:
 			return eInternalContainer().eInverseRemove(this, DocumentPackage.COMPOSITE_SECTION__SUBSECTIONS,
 				CompositeSection.class, msgs);
@@ -180,7 +170,6 @@ public class CompositeSectionImpl extends ModelElementImpl implements CompositeS
 
 	/**
 	 * <!-- begin-user-doc --> <!-- end-user-doc -->
-	 * 
 	 * @generated
 	 */
 	@Override
@@ -198,7 +187,6 @@ public class CompositeSectionImpl extends ModelElementImpl implements CompositeS
 
 	/**
 	 * <!-- begin-user-doc --> <!-- end-user-doc -->
-	 * 
 	 * @generated
 	 */
 	@SuppressWarnings("unchecked")
@@ -218,7 +206,6 @@ public class CompositeSectionImpl extends ModelElementImpl implements CompositeS
 
 	/**
 	 * <!-- begin-user-doc --> <!-- end-user-doc -->
-	 * 
 	 * @generated
 	 */
 	@Override
@@ -236,7 +223,6 @@ public class CompositeSectionImpl extends ModelElementImpl implements CompositeS
 
 	/**
 	 * <!-- begin-user-doc --> <!-- end-user-doc -->
-	 * 
 	 * @generated
 	 */
 	@Override

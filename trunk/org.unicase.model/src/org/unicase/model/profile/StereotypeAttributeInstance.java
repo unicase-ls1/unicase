@@ -7,7 +7,7 @@ package org.unicase.model.profile;
 
 import org.unicase.model.ModelElement;
 
-/*
+/**
  * <!-- begin-user-doc --> A representation of the model object '<em><b>Stereotype Attribute Instance</b></em>'. <!--
  * end-user-doc --> <p> The following features are supported: <ul> <li>{@link
  * org.unicase.model.profile.StereotypeAttributeInstance#getStereotypeInstance <em>Stereotype Instance</em>}</li>
@@ -19,15 +19,14 @@ import org.unicase.model.ModelElement;
  */
 public interface StereotypeAttributeInstance extends ModelElement {
 	/**
-	 * Returns the value of the '<em><b>Stereotype Instance</b></em>' container reference. It is bidirectional and its
-	 * opposite is '{@link org.unicase.model.profile.StereotypeInstance#getStereotypeAttributeInstances
-	 * <em>Stereotype Attribute Instances</em>}'. <!-- begin-user-doc -->
+	 * Returns the value of the '<em><b>Stereotype Instance</b></em>' container reference.
+	 * It is bidirectional and its opposite is '{@link org.unicase.model.profile.StereotypeInstance#getStereotypeAttributeInstances <em>Stereotype Attribute Instances</em>}'.
+	 * <!-- begin-user-doc -->
 	 * <p>
 	 * If the meaning of the '<em>Stereotype Instance</em>' container reference isn't clear, there really should be more
 	 * of a description here...
 	 * </p>
 	 * <!-- end-user-doc -->
-	 * 
 	 * @return the value of the '<em>Stereotype Instance</em>' container reference.
 	 * @see #setStereotypeInstance(StereotypeInstance)
 	 * @see org.unicase.model.profile.ProfilePackage#getStereotypeAttributeInstance_StereotypeInstance()
@@ -38,9 +37,8 @@ public interface StereotypeAttributeInstance extends ModelElement {
 	StereotypeInstance getStereotypeInstance();
 
 	/**
-	 * Sets the value of the '{@link org.unicase.model.profile.StereotypeAttributeInstance#getStereotypeInstance
-	 * <em>Stereotype Instance</em>}' container reference. <!-- begin-user-doc --> <!-- end-user-doc -->
-	 * 
+	 * Sets the value of the '{@link org.unicase.model.profile.StereotypeAttributeInstance#getStereotypeInstance <em>Stereotype Instance</em>}' container reference.
+	 * <!-- begin-user-doc --> <!-- end-user-doc -->
 	 * @param value the new value of the '<em>Stereotype Instance</em>' container reference.
 	 * @see #getStereotypeInstance()
 	 * @generated
@@ -48,15 +46,14 @@ public interface StereotypeAttributeInstance extends ModelElement {
 	void setStereotypeInstance(StereotypeInstance value);
 
 	/**
-	 * Returns the value of the '<em><b>Stereotype Attribute</b></em>' reference. It is bidirectional and its opposite
-	 * is '{@link org.unicase.model.profile.StereotypeAttribute#getStereotypeAttributeInstances
-	 * <em>Stereotype Attribute Instances</em>}'. <!-- begin-user-doc -->
+	 * Returns the value of the '<em><b>Stereotype Attribute</b></em>' reference.
+	 * It is bidirectional and its opposite is '{@link org.unicase.model.profile.StereotypeAttribute#getStereotypeAttributeInstances <em>Stereotype Attribute Instances</em>}'.
+	 * <!-- begin-user-doc -->
 	 * <p>
 	 * If the meaning of the '<em>Stereotype Attribute</em>' reference isn't clear, there really should be more of a
 	 * description here...
 	 * </p>
 	 * <!-- end-user-doc -->
-	 * 
 	 * @return the value of the '<em>Stereotype Attribute</em>' reference.
 	 * @see #setStereotypeAttribute(StereotypeAttribute)
 	 * @see org.unicase.model.profile.ProfilePackage#getStereotypeAttributeInstance_StereotypeAttribute()
@@ -67,9 +64,8 @@ public interface StereotypeAttributeInstance extends ModelElement {
 	StereotypeAttribute getStereotypeAttribute();
 
 	/**
-	 * Sets the value of the '{@link org.unicase.model.profile.StereotypeAttributeInstance#getStereotypeAttribute
-	 * <em>Stereotype Attribute</em>}' reference. <!-- begin-user-doc --> <!-- end-user-doc -->
-	 * 
+	 * Sets the value of the '{@link org.unicase.model.profile.StereotypeAttributeInstance#getStereotypeAttribute <em>Stereotype Attribute</em>}' reference.
+	 * <!-- begin-user-doc --> <!-- end-user-doc -->
 	 * @param value the new value of the '<em>Stereotype Attribute</em>' reference.
 	 * @see #getStereotypeAttribute()
 	 * @generated

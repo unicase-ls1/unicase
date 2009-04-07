@@ -8,7 +8,7 @@ package org.unicase.model.component;
 import org.eclipse.emf.common.util.EList;
 import org.unicase.model.ModelElement;
 
-/*
+/**
  * <!-- begin-user-doc --> A representation of the model object ' <em><b>Service</b></em>'. <!-- end-user-doc --> <p>
  * The following features are supported: <ul> <li>{@link
  * org.unicase.model.component.ComponentService#getOfferingComponent <em>Offering Component</em>}</li> <li>{@link
@@ -39,9 +39,8 @@ public interface ComponentService extends ModelElement {
 	Component getOfferingComponent();
 
 	/**
-	 * Sets the value of the '{@link org.unicase.model.component.ComponentService#getOfferingComponent
-	 * <em>Offering Component</em>}' container reference. <!-- begin-user-doc --> <!-- end-user-doc -->
-	 * 
+	 * Sets the value of the '{@link org.unicase.model.component.ComponentService#getOfferingComponent <em>Offering Component</em>}' container reference.
+	 * <!-- begin-user-doc --> <!-- end-user-doc -->
 	 * @param value the new value of the '<em>Offering Component</em>' container reference.
 	 * @see #getOfferingComponent()
 	 * @generated
