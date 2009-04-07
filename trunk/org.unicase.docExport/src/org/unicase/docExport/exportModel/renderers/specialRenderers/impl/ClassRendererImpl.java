@@ -10,6 +10,7 @@ import java.net.URL;
 import java.util.Collections;
 
 import org.eclipse.core.runtime.FileLocator;
+import org.eclipse.core.runtime.IStatus;
 import org.eclipse.core.runtime.Path;
 import org.eclipse.emf.common.util.EList;
 import org.eclipse.emf.ecore.EClass;
@@ -25,17 +26,19 @@ import org.unicase.docExport.exportModel.renderers.specialRenderers.ClassRendere
 import org.unicase.docExport.exportModel.renderers.specialRenderers.SpecialRenderersPackage;
 import org.unicase.model.ModelElement;
 import org.unicase.model.classes.Association;
+import org.unicase.workspace.util.WorkspaceUtil;
 
 /**
  * <!-- begin-user-doc --> An implementation of the model object '<em><b>Class Renderer</b></em>'. <!-- end-user-doc -->
  * <p>
  * </p>
- *
+ * 
  * @generated
  */
 public class ClassRendererImpl extends ModelElementRendererImpl implements ClassRenderer {
 	/**
 	 * <!-- begin-user-doc --> <!-- end-user-doc -->
+	 * 
 	 * @generated
 	 */
 	protected ClassRendererImpl() {
@@ -44,6 +47,7 @@ public class ClassRendererImpl extends ModelElementRendererImpl implements Class
 
 	/**
 	 * <!-- begin-user-doc --> <!-- end-user-doc -->
+	 * 
 	 * @generated
 	 */
 	@Override
@@ -129,8 +133,7 @@ public class ClassRendererImpl extends ModelElementRendererImpl implements Class
 			image.setWidth(40);
 			parent.add(image);
 		} catch (IOException e) {
-			// TODO Auto-generated catch block
-			e.printStackTrace();
+			WorkspaceUtil.log("An image of an association is missing", e, IStatus.WARNING);
 		}
 
 	}

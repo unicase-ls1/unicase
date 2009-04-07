@@ -68,8 +68,7 @@ public class TemplatesView extends ViewPart {
 		try {
 			viewer.setInput(TemplateRegistry.getTemplatesResource());
 		} catch (IOException e) {
-			// TODO Auto-generated catch block
-			e.printStackTrace();
+			// fall through
 		}
 
 		MenuManager menuManager = new MenuManager();
@@ -84,17 +83,13 @@ public class TemplatesView extends ViewPart {
 				try {
 					handlerService.executeCommand(TemplateEditor.COMMAND_ID, null);
 				} catch (ExecutionException e) {
-					// TODO Auto-generated catch block
-					e.printStackTrace();
+					// fall through
 				} catch (NotDefinedException e) {
-					// TODO Auto-generated catch block
-					e.printStackTrace();
+					// fall through
 				} catch (NotEnabledException e) {
-					// TODO Auto-generated catch block
-					e.printStackTrace();
+					// fall through
 				} catch (NotHandledException e) {
-					// TODO Auto-generated catch block
-					e.printStackTrace();
+					// fall through
 				}
 			}
 		});

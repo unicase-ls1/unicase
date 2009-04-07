@@ -9,6 +9,7 @@ import org.eclipse.core.commands.AbstractHandler;
 import org.eclipse.core.commands.ExecutionEvent;
 import org.eclipse.core.commands.ExecutionException;
 import org.eclipse.core.commands.IHandler;
+import org.eclipse.core.runtime.IStatus;
 import org.eclipse.emf.ecore.EClass;
 import org.eclipse.jface.viewers.ISelection;
 import org.eclipse.jface.viewers.IStructuredSelection;
@@ -24,6 +25,7 @@ import org.unicase.docExport.exportModel.renderers.AttributeRendererMapping;
 import org.unicase.docExport.exportModel.renderers.ModelElementRenderer;
 import org.unicase.docExport.exportModel.renderers.ModelElementRendererMapping;
 import org.unicase.docExport.views.TemplatesView;
+import org.unicase.workspace.util.WorkspaceUtil;
 
 /**
  * @author Sebastian Hoecht
@@ -57,8 +59,7 @@ public class CallTemplateEditor extends AbstractHandler implements IHandler {
 			try {
 				page.openEditor(input, TemplateEditor.ID);
 			} catch (PartInitException e) {
-				// TODO Auto-generated catch block
-				e.printStackTrace();
+				WorkspaceUtil.log("Template editor failure", e, IStatus.ERROR);
 			}
 		} else if (o instanceof ModelElementRendererMapping) {
 			ModelElementRendererMapping mapping = (ModelElementRendererMapping) o;
@@ -70,8 +71,7 @@ public class CallTemplateEditor extends AbstractHandler implements IHandler {
 				editor
 					.chooseModelElementType(DefaultDocumentTemplateBuilder.getEClassOfString(mapping.getEClassName()));
 			} catch (PartInitException e) {
-				// TODO Auto-generated catch block
-				e.printStackTrace();
+				WorkspaceUtil.log("Template editor failure", e, IStatus.ERROR);
 			}
 		} else if (o instanceof AttributeRendererMapping) {
 			AttributeRendererMapping mapping = (AttributeRendererMapping) o;
@@ -88,8 +88,7 @@ public class CallTemplateEditor extends AbstractHandler implements IHandler {
 					.getEClassName());
 				editor.chooseFeature(modelElementType, mapping.getFeatureName());
 			} catch (PartInitException e) {
-				// TODO Auto-generated catch block
-				e.printStackTrace();
+				WorkspaceUtil.log("Template editor failure", e, IStatus.ERROR);
 			}
 		}
 
