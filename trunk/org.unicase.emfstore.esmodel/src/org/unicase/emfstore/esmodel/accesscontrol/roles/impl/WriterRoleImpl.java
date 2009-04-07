@@ -11,9 +11,11 @@ import org.unicase.emfstore.esmodel.accesscontrol.roles.RolesPackage;
 import org.unicase.emfstore.esmodel.accesscontrol.roles.WriterRole;
 import org.unicase.model.ModelElement;
 
-/*
+/**
  * <!-- begin-user-doc --> An implementation of the model object ' <em><b>Writer Role</b></em>'. <!-- end-user-doc -->
- * <p> </p>
+ * <p>
+ * </p>
+ * 
  * @generated
  */
 public class WriterRoleImpl extends RoleImpl implements WriterRole {
@@ -44,6 +46,7 @@ public class WriterRoleImpl extends RoleImpl implements WriterRole {
 
 	/**
 	 * <!-- begin-user-doc --> <!-- end-user-doc -->
+	 * 
 	 * @generated
 	 */
 	protected WriterRoleImpl() {
@@ -52,6 +55,7 @@ public class WriterRoleImpl extends RoleImpl implements WriterRole {
 
 	/**
 	 * <!-- begin-user-doc --> <!-- end-user-doc -->
+	 * 
 	 * @generated
 	 */
 	@Override

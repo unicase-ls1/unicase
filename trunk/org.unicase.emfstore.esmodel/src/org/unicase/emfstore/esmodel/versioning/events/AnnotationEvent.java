@@ -7,25 +7,31 @@ package org.unicase.emfstore.esmodel.versioning.events;
 
 import org.unicase.model.ModelElementId;
 
-/*
+/**
  * <!-- begin-user-doc --> A representation of the model object '<em><b>Annotation Event</b></em>'. <!-- end-user-doc
- * --> <p> The following features are supported: <ul> <li>{@link
- * org.unicase.emfstore.esmodel.versioning.events.AnnotationEvent#getAnnotatedElement <em>Annotated Element </em>}</li>
+ * -->
+ * <p>
+ * The following features are supported:
+ * <ul>
+ * <li>{@link org.unicase.emfstore.esmodel.versioning.events.AnnotationEvent#getAnnotatedElement <em>Annotated Element
+ * </em>}</li>
  * <li>{@link org.unicase.emfstore.esmodel.versioning.events.AnnotationEvent#getAnnotation <em>Annotation</em>}</li>
- * </ul> </p>
+ * </ul>
+ * </p>
+ * 
  * @see org.unicase.emfstore.esmodel.versioning.events.EventsPackage#getAnnotationEvent()
  * @model
  * @generated
  */
 public interface AnnotationEvent extends Event {
 	/**
-	 * Returns the value of the '<em><b>Annotated Element</b></em>' containment reference.
-	 * <!-- begin-user-doc -->
+	 * Returns the value of the '<em><b>Annotated Element</b></em>' containment reference. <!-- begin-user-doc -->
 	 * <p>
 	 * If the meaning of the '<em>Annotated Element</em>' reference isn't clear, there really should be more of a
 	 * description here...
 	 * </p>
 	 * <!-- end-user-doc -->
+	 * 
 	 * @return the value of the '<em>Annotated Element</em>' containment reference.
 	 * @see #setAnnotatedElement(ModelElementId)
 	 * @see org.unicase.emfstore.esmodel.versioning.events.EventsPackage#getAnnotationEvent_AnnotatedElement()
@@ -35,8 +41,9 @@ public interface AnnotationEvent extends Event {
 	ModelElementId getAnnotatedElement();
 
 	/**
-	 * Sets the value of the '{@link org.unicase.emfstore.esmodel.versioning.events.AnnotationEvent#getAnnotatedElement <em>Annotated Element</em>}' containment reference.
-	 * <!-- begin-user-doc --> <!-- end-user-doc -->
+	 * Sets the value of the '{@link org.unicase.emfstore.esmodel.versioning.events.AnnotationEvent#getAnnotatedElement
+	 * <em>Annotated Element</em>}' containment reference. <!-- begin-user-doc --> <!-- end-user-doc -->
+	 * 
 	 * @param value the new value of the '<em>Annotated Element</em>' containment reference.
 	 * @see #getAnnotatedElement()
 	 * @generated
@@ -44,13 +51,13 @@ public interface AnnotationEvent extends Event {
 	void setAnnotatedElement(ModelElementId value);
 
 	/**
-	 * Returns the value of the '<em><b>Annotation</b></em>' containment reference.
-	 * <!-- begin-user-doc -->
+	 * Returns the value of the '<em><b>Annotation</b></em>' containment reference. <!-- begin-user-doc -->
 	 * <p>
 	 * If the meaning of the '<em>Annotation</em>' reference isn't clear, there really should be more of a description
 	 * here...
 	 * </p>
 	 * <!-- end-user-doc -->
+	 * 
 	 * @return the value of the '<em>Annotation</em>' containment reference.
 	 * @see #setAnnotation(ModelElementId)
 	 * @see org.unicase.emfstore.esmodel.versioning.events.EventsPackage#getAnnotationEvent_Annotation()
@@ -60,8 +67,9 @@ public interface AnnotationEvent extends Event {
 	ModelElementId getAnnotation();
 
 	/**
-	 * Sets the value of the '{@link org.unicase.emfstore.esmodel.versioning.events.AnnotationEvent#getAnnotation <em>Annotation</em>}' containment reference.
-	 * <!-- begin-user-doc --> <!-- end-user-doc -->
+	 * Sets the value of the '{@link org.unicase.emfstore.esmodel.versioning.events.AnnotationEvent#getAnnotation
+	 * <em>Annotation</em>}' containment reference. <!-- begin-user-doc --> <!-- end-user-doc -->
+	 * 
 	 * @param value the new value of the '<em>Annotation</em>' containment reference.
 	 * @see #getAnnotation()
 	 * @generated

@@ -10,14 +10,18 @@ import org.eclipse.emf.ecore.impl.EObjectImpl;
 import org.unicase.emfstore.esmodel.versioning.HeadVersionSpec;
 import org.unicase.emfstore.esmodel.versioning.VersioningPackage;
 
-/*
+/**
  * <!-- begin-user-doc --> An implementation of the model object ' <em><b>Head Version Spec</b></em>'. <!-- end-user-doc
- * --> <p> </p>
+ * -->
+ * <p>
+ * </p>
+ * 
  * @generated
  */
 public class HeadVersionSpecImpl extends EObjectImpl implements HeadVersionSpec {
 	/**
 	 * <!-- begin-user-doc --> <!-- end-user-doc -->
+	 * 
 	 * @generated
 	 */
 	protected HeadVersionSpecImpl() {
@@ -26,6 +30,7 @@ public class HeadVersionSpecImpl extends EObjectImpl implements HeadVersionSpec 
 
 	/**
 	 * <!-- begin-user-doc --> <!-- end-user-doc -->
+	 * 
 	 * @generated
 	 */
 	@Override

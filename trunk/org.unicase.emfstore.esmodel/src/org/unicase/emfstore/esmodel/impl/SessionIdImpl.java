@@ -10,14 +10,17 @@ import org.unicase.emfstore.esmodel.EsmodelPackage;
 import org.unicase.emfstore.esmodel.SessionId;
 import org.unicase.model.impl.UniqueIdentifierImpl;
 
-/*
+/**
  * <!-- begin-user-doc --> An implementation of the model object ' <em><b>Session Id</b></em>'. <!-- end-user-doc -->
- * <p> </p>
+ * <p>
+ * </p>
+ * 
  * @generated
  */
 public class SessionIdImpl extends UniqueIdentifierImpl implements SessionId {
 	/**
 	 * <!-- begin-user-doc --> <!-- end-user-doc -->
+	 * 
 	 * @generated
 	 */
 	protected SessionIdImpl() {
@@ -26,6 +29,7 @@ public class SessionIdImpl extends UniqueIdentifierImpl implements SessionId {
 
 	/**
 	 * <!-- begin-user-doc --> <!-- end-user-doc -->
+	 * 
 	 * @generated
 	 */
 	@Override

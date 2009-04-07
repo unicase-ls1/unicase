@@ -19,20 +19,26 @@ import org.unicase.emfstore.esmodel.versioning.operations.OperationsPackage;
 import org.unicase.model.ModelElement;
 import org.unicase.model.Project;
 
-/*
+/**
  * <!-- begin-user-doc --> An implementation of the model object '<em><b>Multi Attribute Operation</b></em>'. <!--
- * end-user-doc --> <p> The following features are implemented: <ul> <li>{@link
- * org.unicase.emfstore.esmodel.versioning.operations.impl.MultiAttributeOperationImpl#isAdd <em>Add</em>}</li>
- * <li>{@link org.unicase.emfstore.esmodel.versioning.operations.impl.MultiAttributeOperationImpl#getIndex
- * <em>Index</em>}</li> <li>{@link
- * org.unicase.emfstore.esmodel.versioning.operations.impl.MultiAttributeOperationImpl#getValues <em>Values</em>}</li>
- * </ul> </p>
+ * end-user-doc -->
+ * <p>
+ * The following features are implemented:
+ * <ul>
+ * <li>{@link org.unicase.emfstore.esmodel.versioning.operations.impl.MultiAttributeOperationImpl#isAdd <em>Add</em>}</li>
+ * <li>{@link org.unicase.emfstore.esmodel.versioning.operations.impl.MultiAttributeOperationImpl#getIndex <em>Index
+ * </em>}</li>
+ * <li>{@link org.unicase.emfstore.esmodel.versioning.operations.impl.MultiAttributeOperationImpl#getValues <em>Values
+ * </em>}</li>
+ * </ul>
+ * </p>
+ * 
  * @generated
  */
 public class MultiAttributeOperationImpl extends FeatureOperationImpl implements MultiAttributeOperation {
 	/**
-	 * The default value of the '{@link #isAdd() <em>Add</em>}' attribute.
-	 * <!-- begin-user-doc --> <!-- end-user-doc -->
+	 * The default value of the '{@link #isAdd() <em>Add</em>}' attribute. <!-- begin-user-doc --> <!-- end-user-doc -->
+	 * 
 	 * @see #isAdd()
 	 * @generated
 	 * @ordered
@@ -40,8 +46,8 @@ public class MultiAttributeOperationImpl extends FeatureOperationImpl implements
 	protected static final boolean ADD_EDEFAULT = false;
 
 	/**
-	 * The cached value of the '{@link #isAdd() <em>Add</em>}' attribute.
-	 * <!-- begin-user-doc --> <!-- end-user-doc -->
+	 * The cached value of the '{@link #isAdd() <em>Add</em>}' attribute. <!-- begin-user-doc --> <!-- end-user-doc -->
+	 * 
 	 * @see #isAdd()
 	 * @generated
 	 * @ordered
@@ -49,9 +55,9 @@ public class MultiAttributeOperationImpl extends FeatureOperationImpl implements
 	protected boolean add = ADD_EDEFAULT;
 
 	/**
-	 * The default value of the '{@link #getIndex() <em>Index</em>}' attribute.
-	 * <!-- begin-user-doc --> <!--
+	 * The default value of the '{@link #getIndex() <em>Index</em>}' attribute. <!-- begin-user-doc --> <!--
 	 * end-user-doc -->
+	 * 
 	 * @see #getIndex()
 	 * @generated
 	 * @ordered
@@ -69,9 +75,9 @@ public class MultiAttributeOperationImpl extends FeatureOperationImpl implements
 	protected int index = INDEX_EDEFAULT;
 
 	/**
-	 * The cached value of the '{@link #getValues() <em>Values</em>}' attribute list.
-	 * <!-- begin-user-doc --> <!--
+	 * The cached value of the '{@link #getValues() <em>Values</em>}' attribute list. <!-- begin-user-doc --> <!--
 	 * end-user-doc -->
+	 * 
 	 * @see #getValues()
 	 * @generated
 	 * @ordered
@@ -80,6 +86,7 @@ public class MultiAttributeOperationImpl extends FeatureOperationImpl implements
 
 	/**
 	 * <!-- begin-user-doc --> <!-- end-user-doc -->
+	 * 
 	 * @generated
 	 */
 	protected MultiAttributeOperationImpl() {
@@ -88,6 +95,7 @@ public class MultiAttributeOperationImpl extends FeatureOperationImpl implements
 
 	/**
 	 * <!-- begin-user-doc --> <!-- end-user-doc -->
+	 * 
 	 * @generated
 	 */
 	@Override
@@ -97,6 +105,7 @@ public class MultiAttributeOperationImpl extends FeatureOperationImpl implements
 
 	/**
 	 * <!-- begin-user-doc --> <!-- end-user-doc -->
+	 * 
 	 * @generated
 	 */
 	public boolean isAdd() {
@@ -105,17 +114,20 @@ public class MultiAttributeOperationImpl extends FeatureOperationImpl implements
 
 	/**
 	 * <!-- begin-user-doc --> <!-- end-user-doc -->
+	 * 
 	 * @generated
 	 */
 	public void setAdd(boolean newAdd) {
 		boolean oldAdd = add;
 		add = newAdd;
 		if (eNotificationRequired())
-			eNotify(new ENotificationImpl(this, Notification.SET, OperationsPackage.MULTI_ATTRIBUTE_OPERATION__ADD, oldAdd, add));
+			eNotify(new ENotificationImpl(this, Notification.SET, OperationsPackage.MULTI_ATTRIBUTE_OPERATION__ADD,
+				oldAdd, add));
 	}
 
 	/**
 	 * <!-- begin-user-doc --> <!-- end-user-doc -->
+	 * 
 	 * @generated
 	 */
 	public int getIndex() {
@@ -124,109 +136,119 @@ public class MultiAttributeOperationImpl extends FeatureOperationImpl implements
 
 	/**
 	 * <!-- begin-user-doc --> <!-- end-user-doc -->
+	 * 
 	 * @generated
 	 */
 	public void setIndex(int newIndex) {
 		int oldIndex = index;
 		index = newIndex;
 		if (eNotificationRequired())
-			eNotify(new ENotificationImpl(this, Notification.SET, OperationsPackage.MULTI_ATTRIBUTE_OPERATION__INDEX, oldIndex, index));
+			eNotify(new ENotificationImpl(this, Notification.SET, OperationsPackage.MULTI_ATTRIBUTE_OPERATION__INDEX,
+				oldIndex, index));
 	}
 
 	/**
 	 * <!-- begin-user-doc --> <!-- end-user-doc -->
+	 * 
 	 * @generated
 	 */
 	public EList<Object> getValues() {
 		if (values == null) {
-			values = new EDataTypeUniqueEList<Object>(Object.class, this, OperationsPackage.MULTI_ATTRIBUTE_OPERATION__VALUES);
+			values = new EDataTypeUniqueEList<Object>(Object.class, this,
+				OperationsPackage.MULTI_ATTRIBUTE_OPERATION__VALUES);
 		}
 		return values;
 	}
 
 	/**
 	 * <!-- begin-user-doc --> <!-- end-user-doc -->
+	 * 
 	 * @generated
 	 */
 	@Override
 	public Object eGet(int featureID, boolean resolve, boolean coreType) {
 		switch (featureID) {
-			case OperationsPackage.MULTI_ATTRIBUTE_OPERATION__ADD:
-				return isAdd() ? Boolean.TRUE : Boolean.FALSE;
-			case OperationsPackage.MULTI_ATTRIBUTE_OPERATION__INDEX:
-				return new Integer(getIndex());
-			case OperationsPackage.MULTI_ATTRIBUTE_OPERATION__VALUES:
-				return getValues();
+		case OperationsPackage.MULTI_ATTRIBUTE_OPERATION__ADD:
+			return isAdd();
+		case OperationsPackage.MULTI_ATTRIBUTE_OPERATION__INDEX:
+			return getIndex();
+		case OperationsPackage.MULTI_ATTRIBUTE_OPERATION__VALUES:
+			return getValues();
 		}
 		return super.eGet(featureID, resolve, coreType);
 	}
 
 	/**
 	 * <!-- begin-user-doc --> <!-- end-user-doc -->
+	 * 
 	 * @generated
 	 */
 	@SuppressWarnings("unchecked")
 	@Override
 	public void eSet(int featureID, Object newValue) {
 		switch (featureID) {
-			case OperationsPackage.MULTI_ATTRIBUTE_OPERATION__ADD:
-				setAdd(((Boolean)newValue).booleanValue());
-				return;
-			case OperationsPackage.MULTI_ATTRIBUTE_OPERATION__INDEX:
-				setIndex(((Integer)newValue).intValue());
-				return;
-			case OperationsPackage.MULTI_ATTRIBUTE_OPERATION__VALUES:
-				getValues().clear();
-				getValues().addAll((Collection<? extends Object>)newValue);
-				return;
+		case OperationsPackage.MULTI_ATTRIBUTE_OPERATION__ADD:
+			setAdd((Boolean) newValue);
+			return;
+		case OperationsPackage.MULTI_ATTRIBUTE_OPERATION__INDEX:
+			setIndex((Integer) newValue);
+			return;
+		case OperationsPackage.MULTI_ATTRIBUTE_OPERATION__VALUES:
+			getValues().clear();
+			getValues().addAll((Collection<? extends Object>) newValue);
+			return;
 		}
 		super.eSet(featureID, newValue);
 	}
 
 	/**
 	 * <!-- begin-user-doc --> <!-- end-user-doc -->
+	 * 
 	 * @generated
 	 */
 	@Override
 	public void eUnset(int featureID) {
 		switch (featureID) {
-			case OperationsPackage.MULTI_ATTRIBUTE_OPERATION__ADD:
-				setAdd(ADD_EDEFAULT);
-				return;
-			case OperationsPackage.MULTI_ATTRIBUTE_OPERATION__INDEX:
-				setIndex(INDEX_EDEFAULT);
-				return;
-			case OperationsPackage.MULTI_ATTRIBUTE_OPERATION__VALUES:
-				getValues().clear();
-				return;
+		case OperationsPackage.MULTI_ATTRIBUTE_OPERATION__ADD:
+			setAdd(ADD_EDEFAULT);
+			return;
+		case OperationsPackage.MULTI_ATTRIBUTE_OPERATION__INDEX:
+			setIndex(INDEX_EDEFAULT);
+			return;
+		case OperationsPackage.MULTI_ATTRIBUTE_OPERATION__VALUES:
+			getValues().clear();
+			return;
 		}
 		super.eUnset(featureID);
 	}
 
 	/**
 	 * <!-- begin-user-doc --> <!-- end-user-doc -->
+	 * 
 	 * @generated
 	 */
 	@Override
 	public boolean eIsSet(int featureID) {
 		switch (featureID) {
-			case OperationsPackage.MULTI_ATTRIBUTE_OPERATION__ADD:
-				return add != ADD_EDEFAULT;
-			case OperationsPackage.MULTI_ATTRIBUTE_OPERATION__INDEX:
-				return index != INDEX_EDEFAULT;
-			case OperationsPackage.MULTI_ATTRIBUTE_OPERATION__VALUES:
-				return values != null && !values.isEmpty();
+		case OperationsPackage.MULTI_ATTRIBUTE_OPERATION__ADD:
+			return add != ADD_EDEFAULT;
+		case OperationsPackage.MULTI_ATTRIBUTE_OPERATION__INDEX:
+			return index != INDEX_EDEFAULT;
+		case OperationsPackage.MULTI_ATTRIBUTE_OPERATION__VALUES:
+			return values != null && !values.isEmpty();
 		}
 		return super.eIsSet(featureID);
 	}
 
 	/**
 	 * <!-- begin-user-doc --> <!-- end-user-doc -->
+	 * 
 	 * @generated
 	 */
 	@Override
 	public String toString() {
-		if (eIsProxy()) return super.toString();
+		if (eIsProxy())
+			return super.toString();
 
 		StringBuffer result = new StringBuffer(super.toString());
 		result.append(" (add: ");

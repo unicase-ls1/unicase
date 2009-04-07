@@ -11,14 +11,18 @@ import org.unicase.emfstore.esmodel.accesscontrol.roles.ProjectAdminRole;
 import org.unicase.emfstore.esmodel.accesscontrol.roles.RolesPackage;
 import org.unicase.model.ModelElement;
 
-/*
+/**
  * <!-- begin-user-doc --> An implementation of the model object ' <em><b>Project Admin Role</b></em>'. <!--
- * end-user-doc --> <p> </p>
+ * end-user-doc -->
+ * <p>
+ * </p>
+ * 
  * @generated
  */
 public class ProjectAdminRoleImpl extends RoleImpl implements ProjectAdminRole {
 	/**
 	 * <!-- begin-user-doc --> <!-- end-user-doc -->
+	 * 
 	 * @generated
 	 */
 	protected ProjectAdminRoleImpl() {
@@ -27,6 +31,7 @@ public class ProjectAdminRoleImpl extends RoleImpl implements ProjectAdminRole {
 
 	/**
 	 * <!-- begin-user-doc --> <!-- end-user-doc -->
+	 * 
 	 * @generated
 	 */
 	@Override

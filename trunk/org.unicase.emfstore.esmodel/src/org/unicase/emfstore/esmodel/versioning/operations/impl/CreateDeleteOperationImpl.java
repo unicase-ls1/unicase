@@ -24,14 +24,21 @@ import org.unicase.model.ModelElement;
 import org.unicase.model.Project;
 import org.unicase.model.util.ModelUtil;
 
-/*
+/**
  * <!-- begin-user-doc --> An implementation of the model object ' <em><b>Create Delete Operation</b></em>'. <!--
- * end-user-doc --> <p> The following features are implemented: <ul> <li>{@link
- * org.unicase.emfstore.esmodel.versioning.operations.impl.CreateDeleteOperationImpl#isDelete <em>Delete</em>}</li>
- * <li>{@link org.unicase.emfstore.esmodel.versioning.operations.impl.CreateDeleteOperationImpl#getModelElement
- * <em>Model Element</em>}</li> <li>{@link
- * org.unicase.emfstore.esmodel.versioning.operations.impl.CreateDeleteOperationImpl#getSubOperations <em>Sub
- * Operations</em>}</li> </ul> </p>
+ * end-user-doc -->
+ * <p>
+ * The following features are implemented:
+ * <ul>
+ * <li>{@link org.unicase.emfstore.esmodel.versioning.operations.impl.CreateDeleteOperationImpl#isDelete <em>Delete
+ * </em>}</li>
+ * <li>{@link org.unicase.emfstore.esmodel.versioning.operations.impl.CreateDeleteOperationImpl#getModelElement <em>
+ * Model Element</em>}</li>
+ * <li>{@link org.unicase.emfstore.esmodel.versioning.operations.impl.CreateDeleteOperationImpl#getSubOperations <em>Sub
+ * Operations</em>}</li>
+ * </ul>
+ * </p>
+ * 
  * @generated
  */
 public class CreateDeleteOperationImpl extends AbstractOperationImpl implements CreateDeleteOperation {
@@ -276,7 +283,7 @@ public class CreateDeleteOperationImpl extends AbstractOperationImpl implements 
 	public Object eGet(int featureID, boolean resolve, boolean coreType) {
 		switch (featureID) {
 		case OperationsPackage.CREATE_DELETE_OPERATION__DELETE:
-			return isDelete() ? Boolean.TRUE : Boolean.FALSE;
+			return isDelete();
 		case OperationsPackage.CREATE_DELETE_OPERATION__MODEL_ELEMENT:
 			if (resolve)
 				return getModelElement();
@@ -297,7 +304,7 @@ public class CreateDeleteOperationImpl extends AbstractOperationImpl implements 
 	public void eSet(int featureID, Object newValue) {
 		switch (featureID) {
 		case OperationsPackage.CREATE_DELETE_OPERATION__DELETE:
-			setDelete(((Boolean) newValue).booleanValue());
+			setDelete((Boolean) newValue);
 			return;
 		case OperationsPackage.CREATE_DELETE_OPERATION__MODEL_ELEMENT:
 			setModelElement((ModelElement) newValue);

@@ -20,18 +20,19 @@ import org.eclipse.emf.edit.provider.ITreeItemContentProvider;
 import org.unicase.emfstore.esmodel.versioning.operations.OperationsPackage;
 import org.unicase.emfstore.esmodel.versioning.operations.SingleReferenceOperation;
 
-/*
- * This is the item provider adapter for a {@link
- * org.unicase.emfstore.esmodel.versioning.operations.SingleReferenceOperation} object. <!-- begin-user-doc --> <!--
- * end-user-doc -->
+/**
+ * This is the item provider adapter for a
+ * {@link org.unicase.emfstore.esmodel.versioning.operations.SingleReferenceOperation} object. <!-- begin-user-doc -->
+ * <!-- end-user-doc -->
+ * 
  * @generated
  */
 public class SingleReferenceOperationItemProvider extends ReferenceOperationItemProvider implements
 	IEditingDomainItemProvider, IStructuredItemContentProvider, ITreeItemContentProvider, IItemLabelProvider,
 	IItemPropertySource {
 	/**
-	 * This constructs an instance from a factory and a notifier.
-	 * <!-- begin-user-doc --> <!-- end-user-doc -->
+	 * This constructs an instance from a factory and a notifier. <!-- begin-user-doc --> <!-- end-user-doc -->
+	 * 
 	 * @generated
 	 */
 	public SingleReferenceOperationItemProvider(AdapterFactory adapterFactory) {
@@ -39,8 +40,8 @@ public class SingleReferenceOperationItemProvider extends ReferenceOperationItem
 	}
 
 	/**
-	 * This returns the property descriptors for the adapted class.
-	 * <!-- begin-user-doc --> <!-- end-user-doc -->
+	 * This returns the property descriptors for the adapted class. <!-- begin-user-doc --> <!-- end-user-doc -->
+	 * 
 	 * @generated
 	 */
 	@Override
@@ -55,50 +56,34 @@ public class SingleReferenceOperationItemProvider extends ReferenceOperationItem
 	}
 
 	/**
-	 * This adds a property descriptor for the Old Value feature.
-	 * <!-- begin-user-doc --> <!-- end-user-doc -->
+	 * This adds a property descriptor for the Old Value feature. <!-- begin-user-doc --> <!-- end-user-doc -->
+	 * 
 	 * @generated
 	 */
 	protected void addOldValuePropertyDescriptor(Object object) {
-		itemPropertyDescriptors.add
-			(createItemPropertyDescriptor
-				(((ComposeableAdapterFactory)adapterFactory).getRootAdapterFactory(),
-				 getResourceLocator(),
-				 getString("_UI_SingleReferenceOperation_oldValue_feature"),
-				 getString("_UI_PropertyDescriptor_description", "_UI_SingleReferenceOperation_oldValue_feature", "_UI_SingleReferenceOperation_type"),
-				 OperationsPackage.Literals.SINGLE_REFERENCE_OPERATION__OLD_VALUE,
-				 true,
-				 false,
-				 true,
-				 null,
-				 null,
-				 null));
+		itemPropertyDescriptors.add(createItemPropertyDescriptor(((ComposeableAdapterFactory) adapterFactory)
+			.getRootAdapterFactory(), getResourceLocator(), getString("_UI_SingleReferenceOperation_oldValue_feature"),
+			getString("_UI_PropertyDescriptor_description", "_UI_SingleReferenceOperation_oldValue_feature",
+				"_UI_SingleReferenceOperation_type"), OperationsPackage.Literals.SINGLE_REFERENCE_OPERATION__OLD_VALUE,
+			true, false, true, null, null, null));
 	}
 
 	/**
-	 * This adds a property descriptor for the New Value feature.
-	 * <!-- begin-user-doc --> <!-- end-user-doc -->
+	 * This adds a property descriptor for the New Value feature. <!-- begin-user-doc --> <!-- end-user-doc -->
+	 * 
 	 * @generated
 	 */
 	protected void addNewValuePropertyDescriptor(Object object) {
-		itemPropertyDescriptors.add
-			(createItemPropertyDescriptor
-				(((ComposeableAdapterFactory)adapterFactory).getRootAdapterFactory(),
-				 getResourceLocator(),
-				 getString("_UI_SingleReferenceOperation_newValue_feature"),
-				 getString("_UI_PropertyDescriptor_description", "_UI_SingleReferenceOperation_newValue_feature", "_UI_SingleReferenceOperation_type"),
-				 OperationsPackage.Literals.SINGLE_REFERENCE_OPERATION__NEW_VALUE,
-				 true,
-				 false,
-				 true,
-				 null,
-				 null,
-				 null));
+		itemPropertyDescriptors.add(createItemPropertyDescriptor(((ComposeableAdapterFactory) adapterFactory)
+			.getRootAdapterFactory(), getResourceLocator(), getString("_UI_SingleReferenceOperation_newValue_feature"),
+			getString("_UI_PropertyDescriptor_description", "_UI_SingleReferenceOperation_newValue_feature",
+				"_UI_SingleReferenceOperation_type"), OperationsPackage.Literals.SINGLE_REFERENCE_OPERATION__NEW_VALUE,
+			true, false, true, null, null, null));
 	}
 
 	/**
-	 * This returns SingleReferenceOperation.gif.
-	 * <!-- begin-user-doc --> <!-- end-user-doc -->
+	 * This returns SingleReferenceOperation.gif. <!-- begin-user-doc --> <!-- end-user-doc -->
+	 * 
 	 * @generated
 	 */
 	@Override
@@ -107,16 +92,15 @@ public class SingleReferenceOperationItemProvider extends ReferenceOperationItem
 	}
 
 	/**
-	 * This returns the label text for the adapted class.
-	 * <!-- begin-user-doc --> <!-- end-user-doc -->
+	 * This returns the label text for the adapted class. <!-- begin-user-doc --> <!-- end-user-doc -->
+	 * 
 	 * @generated
 	 */
 	@Override
 	public String getText(Object object) {
-		String label = ((SingleReferenceOperation)object).getName();
-		return label == null || label.length() == 0 ?
-			getString("_UI_SingleReferenceOperation_type") :
-			getString("_UI_SingleReferenceOperation_type") + " " + label;
+		String label = ((SingleReferenceOperation) object).getName();
+		return label == null || label.length() == 0 ? getString("_UI_SingleReferenceOperation_type")
+			: getString("_UI_SingleReferenceOperation_type") + " " + label;
 	}
 
 	/**
@@ -133,9 +117,9 @@ public class SingleReferenceOperationItemProvider extends ReferenceOperationItem
 	}
 
 	/**
-	 * This adds {@link org.eclipse.emf.edit.command.CommandParameter}s describing the children
-	 * that can be created under this object.
-	 * <!-- begin-user-doc --> <!-- end-user-doc -->
+	 * This adds {@link org.eclipse.emf.edit.command.CommandParameter}s describing the children that can be created
+	 * under this object. <!-- begin-user-doc --> <!-- end-user-doc -->
+	 * 
 	 * @generated
 	 */
 	@Override

@@ -23,16 +23,17 @@ import org.unicase.emfstore.esmodel.versioning.events.EventsPackage;
 import org.unicase.emfstore.esmodel.versioning.events.UndoEvent;
 import org.unicase.emfstore.esmodel.versioning.operations.OperationsFactory;
 
-/*
+/**
  * This is the item provider adapter for a {@link org.unicase.emfstore.esmodel.versioning.events.UndoEvent} object. <!--
  * begin-user-doc --> <!-- end-user-doc -->
+ * 
  * @generated
  */
 public class UndoEventItemProvider extends EventItemProvider implements IEditingDomainItemProvider,
 	IStructuredItemContentProvider, ITreeItemContentProvider, IItemLabelProvider, IItemPropertySource {
 	/**
-	 * This constructs an instance from a factory and a notifier.
-	 * <!-- begin-user-doc --> <!-- end-user-doc -->
+	 * This constructs an instance from a factory and a notifier. <!-- begin-user-doc --> <!-- end-user-doc -->
+	 * 
 	 * @generated
 	 */
 	public UndoEventItemProvider(AdapterFactory adapterFactory) {
@@ -40,8 +41,8 @@ public class UndoEventItemProvider extends EventItemProvider implements IEditing
 	}
 
 	/**
-	 * This returns the property descriptors for the adapted class.
-	 * <!-- begin-user-doc --> <!-- end-user-doc -->
+	 * This returns the property descriptors for the adapted class. <!-- begin-user-doc --> <!-- end-user-doc -->
+	 * 
 	 * @generated
 	 */
 	@Override
@@ -56,9 +57,9 @@ public class UndoEventItemProvider extends EventItemProvider implements IEditing
 	/**
 	 * This specifies how to implement {@link #getChildren} and is used to deduce an appropriate feature for an
 	 * {@link org.eclipse.emf.edit.command.AddCommand}, {@link org.eclipse.emf.edit.command.RemoveCommand} or
-	 * {@link org.eclipse.emf.edit.command.MoveCommand} in {@link #createCommand}.
-	 * <!-- begin-user-doc --> <!--
+	 * {@link org.eclipse.emf.edit.command.MoveCommand} in {@link #createCommand}. <!-- begin-user-doc --> <!--
 	 * end-user-doc -->
+	 * 
 	 * @generated
 	 */
 	@Override
@@ -72,6 +73,7 @@ public class UndoEventItemProvider extends EventItemProvider implements IEditing
 
 	/**
 	 * <!-- begin-user-doc --> <!-- end-user-doc -->
+	 * 
 	 * @generated
 	 */
 	@Override
@@ -83,8 +85,8 @@ public class UndoEventItemProvider extends EventItemProvider implements IEditing
 	}
 
 	/**
-	 * This returns UndoEvent.gif.
-	 * <!-- begin-user-doc --> <!-- end-user-doc -->
+	 * This returns UndoEvent.gif. <!-- begin-user-doc --> <!-- end-user-doc -->
+	 * 
 	 * @generated
 	 */
 	@Override
@@ -93,17 +95,16 @@ public class UndoEventItemProvider extends EventItemProvider implements IEditing
 	}
 
 	/**
-	 * This returns the label text for the adapted class.
-	 * <!-- begin-user-doc --> <!-- end-user-doc -->
+	 * This returns the label text for the adapted class. <!-- begin-user-doc --> <!-- end-user-doc -->
+	 * 
 	 * @generated
 	 */
 	@Override
 	public String getText(Object object) {
-		Date labelValue = ((UndoEvent)object).getTimestamp();
+		Date labelValue = ((UndoEvent) object).getTimestamp();
 		String label = labelValue == null ? null : labelValue.toString();
-		return label == null || label.length() == 0 ?
-			getString("_UI_UndoEvent_type") :
-			getString("_UI_UndoEvent_type") + " " + label;
+		return label == null || label.length() == 0 ? getString("_UI_UndoEvent_type") : getString("_UI_UndoEvent_type")
+			+ " " + label;
 	}
 
 	/**
@@ -118,67 +119,49 @@ public class UndoEventItemProvider extends EventItemProvider implements IEditing
 		updateChildren(notification);
 
 		switch (notification.getFeatureID(UndoEvent.class)) {
-			case EventsPackage.UNDO_EVENT__OPERATION:
-				fireNotifyChanged(new ViewerNotification(notification, notification.getNotifier(), true, false));
-				return;
+		case EventsPackage.UNDO_EVENT__OPERATION:
+			fireNotifyChanged(new ViewerNotification(notification, notification.getNotifier(), true, false));
+			return;
 		}
 		super.notifyChanged(notification);
 	}
 
 	/**
-	 * This adds {@link org.eclipse.emf.edit.command.CommandParameter}s describing the children
-	 * that can be created under this object.
-	 * <!-- begin-user-doc --> <!-- end-user-doc -->
+	 * This adds {@link org.eclipse.emf.edit.command.CommandParameter}s describing the children that can be created
+	 * under this object. <!-- begin-user-doc --> <!-- end-user-doc -->
+	 * 
 	 * @generated
 	 */
 	@Override
 	protected void collectNewChildDescriptors(Collection<Object> newChildDescriptors, Object object) {
 		super.collectNewChildDescriptors(newChildDescriptors, object);
 
-		newChildDescriptors.add
-			(createChildParameter
-				(EventsPackage.Literals.UNDO_EVENT__OPERATION,
-				 OperationsFactory.eINSTANCE.createCompositeOperation()));
+		newChildDescriptors.add(createChildParameter(EventsPackage.Literals.UNDO_EVENT__OPERATION,
+			OperationsFactory.eINSTANCE.createCompositeOperation()));
 
-		newChildDescriptors.add
-			(createChildParameter
-				(EventsPackage.Literals.UNDO_EVENT__OPERATION,
-				 OperationsFactory.eINSTANCE.createCreateDeleteOperation()));
+		newChildDescriptors.add(createChildParameter(EventsPackage.Literals.UNDO_EVENT__OPERATION,
+			OperationsFactory.eINSTANCE.createCreateDeleteOperation()));
 
-		newChildDescriptors.add
-			(createChildParameter
-				(EventsPackage.Literals.UNDO_EVENT__OPERATION,
-				 OperationsFactory.eINSTANCE.createAttributeOperation()));
+		newChildDescriptors.add(createChildParameter(EventsPackage.Literals.UNDO_EVENT__OPERATION,
+			OperationsFactory.eINSTANCE.createAttributeOperation()));
 
-		newChildDescriptors.add
-			(createChildParameter
-				(EventsPackage.Literals.UNDO_EVENT__OPERATION,
-				 OperationsFactory.eINSTANCE.createSingleReferenceOperation()));
+		newChildDescriptors.add(createChildParameter(EventsPackage.Literals.UNDO_EVENT__OPERATION,
+			OperationsFactory.eINSTANCE.createSingleReferenceOperation()));
 
-		newChildDescriptors.add
-			(createChildParameter
-				(EventsPackage.Literals.UNDO_EVENT__OPERATION,
-				 OperationsFactory.eINSTANCE.createMultiReferenceOperation()));
+		newChildDescriptors.add(createChildParameter(EventsPackage.Literals.UNDO_EVENT__OPERATION,
+			OperationsFactory.eINSTANCE.createMultiReferenceOperation()));
 
-		newChildDescriptors.add
-			(createChildParameter
-				(EventsPackage.Literals.UNDO_EVENT__OPERATION,
-				 OperationsFactory.eINSTANCE.createMultiReferenceMoveOperation()));
+		newChildDescriptors.add(createChildParameter(EventsPackage.Literals.UNDO_EVENT__OPERATION,
+			OperationsFactory.eINSTANCE.createMultiReferenceMoveOperation()));
 
-		newChildDescriptors.add
-			(createChildParameter
-				(EventsPackage.Literals.UNDO_EVENT__OPERATION,
-				 OperationsFactory.eINSTANCE.createMultiAttributeOperation()));
+		newChildDescriptors.add(createChildParameter(EventsPackage.Literals.UNDO_EVENT__OPERATION,
+			OperationsFactory.eINSTANCE.createMultiAttributeOperation()));
 
-		newChildDescriptors.add
-			(createChildParameter
-				(EventsPackage.Literals.UNDO_EVENT__OPERATION,
-				 OperationsFactory.eINSTANCE.createDiagramLayoutOperation()));
+		newChildDescriptors.add(createChildParameter(EventsPackage.Literals.UNDO_EVENT__OPERATION,
+			OperationsFactory.eINSTANCE.createDiagramLayoutOperation()));
 
-		newChildDescriptors.add
-			(createChildParameter
-				(EventsPackage.Literals.UNDO_EVENT__OPERATION,
-				 OperationsFactory.eINSTANCE.createMultiAttributeMoveOperation()));
+		newChildDescriptors.add(createChildParameter(EventsPackage.Literals.UNDO_EVENT__OPERATION,
+			OperationsFactory.eINSTANCE.createMultiAttributeMoveOperation()));
 	}
 
 }
