@@ -25,7 +25,6 @@ import org.eclipse.swt.SWT;
 import org.eclipse.swt.layout.GridData;
 import org.eclipse.swt.widgets.Composite;
 import org.eclipse.swt.widgets.Control;
-import org.eclipse.swt.widgets.Display;
 import org.eclipse.swt.widgets.Text;
 import org.eclipse.ui.IActionBars;
 import org.eclipse.ui.IWorkbenchActionConstants;
@@ -184,7 +183,6 @@ public class TaskView extends ViewPart implements ProjectChangeObserver {
 			protected Control createControl(Composite parent) {
 				Composite composite = new Composite(parent, SWT.NONE);
 				GridLayoutFactory.fillDefaults().margins(1, 0).spacing(0, 0).applyTo(composite);
-				composite.setBackground(Display.getCurrent().getSystemColor(SWT.COLOR_DARK_GRAY));
 				txtUser = new Text(composite, SWT.NONE);
 				txtUser.setEnabled(false);
 				GridData layoutData = new GridData(SWT.FILL, SWT.CENTER, true, true);
