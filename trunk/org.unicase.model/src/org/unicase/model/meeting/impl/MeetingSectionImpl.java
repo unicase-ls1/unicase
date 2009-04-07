@@ -89,7 +89,7 @@ public abstract class MeetingSectionImpl extends ModelElementImpl implements Mee
 	public Object eGet(int featureID, boolean resolve, boolean coreType) {
 		switch (featureID) {
 		case MeetingPackage.MEETING_SECTION__ALLOCATED_TIME:
-			return getAllocatedTime();
+			return new Integer(getAllocatedTime());
 		}
 		return super.eGet(featureID, resolve, coreType);
 	}
@@ -103,7 +103,7 @@ public abstract class MeetingSectionImpl extends ModelElementImpl implements Mee
 	public void eSet(int featureID, Object newValue) {
 		switch (featureID) {
 		case MeetingPackage.MEETING_SECTION__ALLOCATED_TIME:
-			setAllocatedTime((Integer) newValue);
+			setAllocatedTime(((Integer) newValue).intValue());
 			return;
 		}
 		super.eSet(featureID, newValue);

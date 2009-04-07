@@ -7,13 +7,16 @@ package org.unicase.model.rationale.impl;
 
 import java.util.Collection;
 
+import org.eclipse.emf.common.notify.Notification;
 import org.eclipse.emf.common.notify.NotificationChain;
 import org.eclipse.emf.common.util.EList;
 import org.eclipse.emf.ecore.EClass;
 import org.eclipse.emf.ecore.InternalEObject;
+import org.eclipse.emf.ecore.impl.ENotificationImpl;
 import org.eclipse.emf.ecore.util.EObjectContainmentEList;
 import org.eclipse.emf.ecore.util.InternalEList;
 import org.unicase.model.impl.AnnotationImpl;
+import org.unicase.model.organization.OrgUnit;
 import org.unicase.model.rationale.Comment;
 import org.unicase.model.rationale.RationalePackage;
 
@@ -33,6 +36,16 @@ public class CommentImpl extends AnnotationImpl implements Comment {
 	 * @ordered
 	 */
 	protected EList<Comment> replies;
+
+	/**
+	 * The cached value of the '{@link #getRecipient() <em>Recipient</em>}' reference. <!-- begin-user-doc --> <!--
+	 * end-user-doc -->
+	 * 
+	 * @see #getRecipient()
+	 * @generated
+	 * @ordered
+	 */
+	protected OrgUnit recipient;
 
 	/**
 	 * <!-- begin-user-doc --> <!-- end-user-doc -->
@@ -71,6 +84,46 @@ public class CommentImpl extends AnnotationImpl implements Comment {
 	 * 
 	 * @generated
 	 */
+	public OrgUnit getRecipient() {
+		if (recipient != null && recipient.eIsProxy()) {
+			InternalEObject oldRecipient = (InternalEObject) recipient;
+			recipient = (OrgUnit) eResolveProxy(oldRecipient);
+			if (recipient != oldRecipient) {
+				if (eNotificationRequired())
+					eNotify(new ENotificationImpl(this, Notification.RESOLVE, RationalePackage.COMMENT__RECIPIENT,
+						oldRecipient, recipient));
+			}
+		}
+		return recipient;
+	}
+
+	/**
+	 * <!-- begin-user-doc --> <!-- end-user-doc -->
+	 * 
+	 * @generated
+	 */
+	public OrgUnit basicGetRecipient() {
+		return recipient;
+	}
+
+	/**
+	 * <!-- begin-user-doc --> <!-- end-user-doc -->
+	 * 
+	 * @generated
+	 */
+	public void setRecipient(OrgUnit newRecipient) {
+		OrgUnit oldRecipient = recipient;
+		recipient = newRecipient;
+		if (eNotificationRequired())
+			eNotify(new ENotificationImpl(this, Notification.SET, RationalePackage.COMMENT__RECIPIENT, oldRecipient,
+				recipient));
+	}
+
+	/**
+	 * <!-- begin-user-doc --> <!-- end-user-doc -->
+	 * 
+	 * @generated
+	 */
 	@Override
 	public NotificationChain eInverseRemove(InternalEObject otherEnd, int featureID, NotificationChain msgs) {
 		switch (featureID) {
@@ -90,6 +143,10 @@ public class CommentImpl extends AnnotationImpl implements Comment {
 		switch (featureID) {
 		case RationalePackage.COMMENT__REPLIES:
 			return getReplies();
+		case RationalePackage.COMMENT__RECIPIENT:
+			if (resolve)
+				return getRecipient();
+			return basicGetRecipient();
 		}
 		return super.eGet(featureID, resolve, coreType);
 	}
@@ -107,6 +164,9 @@ public class CommentImpl extends AnnotationImpl implements Comment {
 			getReplies().clear();
 			getReplies().addAll((Collection<? extends Comment>) newValue);
 			return;
+		case RationalePackage.COMMENT__RECIPIENT:
+			setRecipient((OrgUnit) newValue);
+			return;
 		}
 		super.eSet(featureID, newValue);
 	}
@@ -122,6 +182,9 @@ public class CommentImpl extends AnnotationImpl implements Comment {
 		case RationalePackage.COMMENT__REPLIES:
 			getReplies().clear();
 			return;
+		case RationalePackage.COMMENT__RECIPIENT:
+			setRecipient((OrgUnit) null);
+			return;
 		}
 		super.eUnset(featureID);
 	}
@@ -136,6 +199,8 @@ public class CommentImpl extends AnnotationImpl implements Comment {
 		switch (featureID) {
 		case RationalePackage.COMMENT__REPLIES:
 			return replies != null && !replies.isEmpty();
+		case RationalePackage.COMMENT__RECIPIENT:
+			return recipient != null;
 		}
 		return super.eIsSet(featureID);
 	}

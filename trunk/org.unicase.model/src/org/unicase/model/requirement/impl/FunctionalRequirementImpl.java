@@ -328,7 +328,7 @@ public class FunctionalRequirementImpl extends ModelElementImpl implements Funct
 	 * @generated
 	 */
 	public FunctionalRequirement getRefinedRequirement() {
-		if (eContainerFeatureID() != RequirementPackage.FUNCTIONAL_REQUIREMENT__REFINED_REQUIREMENT)
+		if (eContainerFeatureID != RequirementPackage.FUNCTIONAL_REQUIREMENT__REFINED_REQUIREMENT)
 			return null;
 		return (FunctionalRequirement) eContainer();
 	}
@@ -339,7 +339,7 @@ public class FunctionalRequirementImpl extends ModelElementImpl implements Funct
 	 * @generated
 	 */
 	public FunctionalRequirement basicGetRefinedRequirement() {
-		if (eContainerFeatureID() != RequirementPackage.FUNCTIONAL_REQUIREMENT__REFINED_REQUIREMENT)
+		if (eContainerFeatureID != RequirementPackage.FUNCTIONAL_REQUIREMENT__REFINED_REQUIREMENT)
 			return null;
 		return (FunctionalRequirement) eInternalContainer();
 	}
@@ -363,7 +363,7 @@ public class FunctionalRequirementImpl extends ModelElementImpl implements Funct
 	 */
 	public void setRefinedRequirement(FunctionalRequirement newRefinedRequirement) {
 		if (newRefinedRequirement != eInternalContainer()
-			|| (eContainerFeatureID() != RequirementPackage.FUNCTIONAL_REQUIREMENT__REFINED_REQUIREMENT && newRefinedRequirement != null)) {
+			|| (eContainerFeatureID != RequirementPackage.FUNCTIONAL_REQUIREMENT__REFINED_REQUIREMENT && newRefinedRequirement != null)) {
 			if (EcoreUtil.isAncestor(this, newRefinedRequirement))
 				throw new IllegalArgumentException("Recursive containment not allowed for " + toString());
 			NotificationChain msgs = null;
@@ -461,7 +461,7 @@ public class FunctionalRequirementImpl extends ModelElementImpl implements Funct
 	 */
 	@Override
 	public NotificationChain eBasicRemoveFromContainerFeature(NotificationChain msgs) {
-		switch (eContainerFeatureID()) {
+		switch (eContainerFeatureID) {
 		case RequirementPackage.FUNCTIONAL_REQUIREMENT__REFINED_REQUIREMENT:
 			return eInternalContainer().eInverseRemove(this,
 				RequirementPackage.FUNCTIONAL_REQUIREMENT__REFINING_REQUIREMENTS, FunctionalRequirement.class, msgs);
@@ -482,9 +482,9 @@ public class FunctionalRequirementImpl extends ModelElementImpl implements Funct
 				return getRefinedRequirement();
 			return basicGetRefinedRequirement();
 		case RequirementPackage.FUNCTIONAL_REQUIREMENT__STORY_POINTS:
-			return getStoryPoints();
+			return new Integer(getStoryPoints());
 		case RequirementPackage.FUNCTIONAL_REQUIREMENT__PRIORITY:
-			return getPriority();
+			return new Integer(getPriority());
 		case RequirementPackage.FUNCTIONAL_REQUIREMENT__REFINING_REQUIREMENTS:
 			return getRefiningRequirements();
 		case RequirementPackage.FUNCTIONAL_REQUIREMENT__USE_CASES:
@@ -492,13 +492,13 @@ public class FunctionalRequirementImpl extends ModelElementImpl implements Funct
 		case RequirementPackage.FUNCTIONAL_REQUIREMENT__SCENARIOS:
 			return getScenarios();
 		case RequirementPackage.FUNCTIONAL_REQUIREMENT__REVIEWED:
-			return isReviewed();
+			return isReviewed() ? Boolean.TRUE : Boolean.FALSE;
 		case RequirementPackage.FUNCTIONAL_REQUIREMENT__STAKEHOLDER:
 			if (resolve)
 				return getStakeholder();
 			return basicGetStakeholder();
 		case RequirementPackage.FUNCTIONAL_REQUIREMENT__COST:
-			return getCost();
+			return new Integer(getCost());
 		}
 		return super.eGet(featureID, resolve, coreType);
 	}
@@ -516,10 +516,10 @@ public class FunctionalRequirementImpl extends ModelElementImpl implements Funct
 			setRefinedRequirement((FunctionalRequirement) newValue);
 			return;
 		case RequirementPackage.FUNCTIONAL_REQUIREMENT__STORY_POINTS:
-			setStoryPoints((Integer) newValue);
+			setStoryPoints(((Integer) newValue).intValue());
 			return;
 		case RequirementPackage.FUNCTIONAL_REQUIREMENT__PRIORITY:
-			setPriority((Integer) newValue);
+			setPriority(((Integer) newValue).intValue());
 			return;
 		case RequirementPackage.FUNCTIONAL_REQUIREMENT__REFINING_REQUIREMENTS:
 			getRefiningRequirements().clear();
@@ -534,13 +534,13 @@ public class FunctionalRequirementImpl extends ModelElementImpl implements Funct
 			getScenarios().addAll((Collection<? extends Scenario>) newValue);
 			return;
 		case RequirementPackage.FUNCTIONAL_REQUIREMENT__REVIEWED:
-			setReviewed((Boolean) newValue);
+			setReviewed(((Boolean) newValue).booleanValue());
 			return;
 		case RequirementPackage.FUNCTIONAL_REQUIREMENT__STAKEHOLDER:
 			setStakeholder((OrgUnit) newValue);
 			return;
 		case RequirementPackage.FUNCTIONAL_REQUIREMENT__COST:
-			setCost((Integer) newValue);
+			setCost(((Integer) newValue).intValue());
 			return;
 		}
 		super.eSet(featureID, newValue);

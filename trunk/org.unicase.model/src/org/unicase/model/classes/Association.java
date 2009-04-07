@@ -39,7 +39,7 @@ public interface Association extends ModelElement {
 	 *        annotation="org.unicase.ui.meeditor priority='10.0' position='left'"
 	 * @generated
 	 */
-	Class getSource();
+	org.unicase.model.classes.Class getSource();
 
 	/**
 	 * Sets the value of the '{@link org.unicase.model.classes.Association#getSource <em>Source</em>}' reference. <!--
@@ -49,7 +49,7 @@ public interface Association extends ModelElement {
 	 * @see #getSource()
 	 * @generated
 	 */
-	void setSource(Class value);
+	void setSource(org.unicase.model.classes.Class value);
 
 	/**
 	 * Returns the value of the '<em><b>Target</b></em>' reference. It is bidirectional and its opposite is '
@@ -69,7 +69,7 @@ public interface Association extends ModelElement {
 	 *        annotation="org.unicase.ui.meeditor priority='11.0' position='left'"
 	 * @generated
 	 */
-	Class getTarget();
+	org.unicase.model.classes.Class getTarget();
 
 	/**
 	 * Sets the value of the '{@link org.unicase.model.classes.Association#getTarget <em>Target</em>}' reference. <!--
@@ -79,7 +79,7 @@ public interface Association extends ModelElement {
 	 * @see #getTarget()
 	 * @generated
 	 */
-	void setTarget(Class value);
+	void setTarget(org.unicase.model.classes.Class value);
 
 	/**
 	 * Returns the value of the '<em><b>Type</b></em>' attribute. The default value is <code>""</code>. The literals are

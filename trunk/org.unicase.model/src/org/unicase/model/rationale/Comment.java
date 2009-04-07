@@ -7,6 +7,7 @@ package org.unicase.model.rationale;
 
 import org.eclipse.emf.common.util.EList;
 import org.unicase.model.Annotation;
+import org.unicase.model.organization.OrgUnit;
 
 /*
  * <!-- begin-user-doc --> A representation of the model object ' <em><b>Comment</b></em>'. <!-- end-user-doc --> <p>
@@ -33,5 +34,31 @@ public interface Comment extends Annotation {
 	 * @generated
 	 */
 	EList<Comment> getReplies();
+
+	/**
+	 * Returns the value of the '<em><b>Recipient</b></em>' reference. <!-- begin-user-doc -->
+	 * <p>
+	 * If the meaning of the '<em>Recipient</em>' reference isn't clear, there really should be more of a description
+	 * here...
+	 * </p>
+	 * <!-- end-user-doc -->
+	 * 
+	 * @return the value of the '<em>Recipient</em>' reference.
+	 * @see #setRecipient(OrgUnit)
+	 * @see org.unicase.model.rationale.RationalePackage#getComment_Recipient()
+	 * @model keys="identifier"
+	 * @generated
+	 */
+	OrgUnit getRecipient();
+
+	/**
+	 * Sets the value of the '{@link org.unicase.model.rationale.Comment#getRecipient <em>Recipient</em>}' reference.
+	 * <!-- begin-user-doc --> <!-- end-user-doc -->
+	 * 
+	 * @param value the new value of the '<em>Recipient</em>' reference.
+	 * @see #getRecipient()
+	 * @generated
+	 */
+	void setRecipient(OrgUnit value);
 
 } // Comment

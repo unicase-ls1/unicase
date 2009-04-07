@@ -121,7 +121,7 @@ public class StereotypeImpl extends ModelElementImpl implements Stereotype {
 	 * @generated
 	 */
 	public Profile getProfile() {
-		if (eContainerFeatureID() != ProfilePackage.STEREOTYPE__PROFILE)
+		if (eContainerFeatureID != ProfilePackage.STEREOTYPE__PROFILE)
 			return null;
 		return (Profile) eContainer();
 	}
@@ -132,7 +132,7 @@ public class StereotypeImpl extends ModelElementImpl implements Stereotype {
 	 * @generated
 	 */
 	public Profile basicGetProfile() {
-		if (eContainerFeatureID() != ProfilePackage.STEREOTYPE__PROFILE)
+		if (eContainerFeatureID != ProfilePackage.STEREOTYPE__PROFILE)
 			return null;
 		return (Profile) eInternalContainer();
 	}
@@ -154,7 +154,7 @@ public class StereotypeImpl extends ModelElementImpl implements Stereotype {
 	 */
 	public void setProfile(Profile newProfile) {
 		if (newProfile != eInternalContainer()
-			|| (eContainerFeatureID() != ProfilePackage.STEREOTYPE__PROFILE && newProfile != null)) {
+			|| (eContainerFeatureID != ProfilePackage.STEREOTYPE__PROFILE && newProfile != null)) {
 			if (EcoreUtil.isAncestor(this, newProfile))
 				throw new IllegalArgumentException("Recursive containment not allowed for " + toString());
 			NotificationChain msgs = null;
@@ -246,7 +246,7 @@ public class StereotypeImpl extends ModelElementImpl implements Stereotype {
 	 */
 	@Override
 	public NotificationChain eBasicRemoveFromContainerFeature(NotificationChain msgs) {
-		switch (eContainerFeatureID()) {
+		switch (eContainerFeatureID) {
 		case ProfilePackage.STEREOTYPE__PROFILE:
 			return eInternalContainer().eInverseRemove(this, ProfilePackage.PROFILE__STEREOTYPES, Profile.class, msgs);
 		}
@@ -262,7 +262,7 @@ public class StereotypeImpl extends ModelElementImpl implements Stereotype {
 	public Object eGet(int featureID, boolean resolve, boolean coreType) {
 		switch (featureID) {
 		case ProfilePackage.STEREOTYPE__REQUIRED:
-			return isRequired();
+			return isRequired() ? Boolean.TRUE : Boolean.FALSE;
 		case ProfilePackage.STEREOTYPE__PROFILE:
 			if (resolve)
 				return getProfile();
@@ -285,7 +285,7 @@ public class StereotypeImpl extends ModelElementImpl implements Stereotype {
 	public void eSet(int featureID, Object newValue) {
 		switch (featureID) {
 		case ProfilePackage.STEREOTYPE__REQUIRED:
-			setRequired((Boolean) newValue);
+			setRequired(((Boolean) newValue).booleanValue());
 			return;
 		case ProfilePackage.STEREOTYPE__PROFILE:
 			setProfile((Profile) newValue);

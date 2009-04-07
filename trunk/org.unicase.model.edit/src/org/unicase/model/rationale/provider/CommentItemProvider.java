@@ -50,6 +50,7 @@ public class CommentItemProvider extends AnnotationItemProvider implements IEdit
 			super.getPropertyDescriptors(object);
 
 			addRepliesPropertyDescriptor(object);
+			addRecipientPropertyDescriptor(object);
 		}
 		return itemPropertyDescriptors;
 	}
@@ -64,6 +65,18 @@ public class CommentItemProvider extends AnnotationItemProvider implements IEdit
 			.getRootAdapterFactory(), getResourceLocator(), getString("_UI_Comment_replies_feature"), getString(
 			"_UI_PropertyDescriptor_description", "_UI_Comment_replies_feature", "_UI_Comment_type"),
 			RationalePackage.Literals.COMMENT__REPLIES, true, false, true, null, null, null));
+	}
+
+	/**
+	 * This adds a property descriptor for the Recipient feature. <!-- begin-user-doc --> <!-- end-user-doc -->
+	 * 
+	 * @generated
+	 */
+	protected void addRecipientPropertyDescriptor(Object object) {
+		itemPropertyDescriptors.add(createItemPropertyDescriptor(((ComposeableAdapterFactory) adapterFactory)
+			.getRootAdapterFactory(), getResourceLocator(), getString("_UI_Comment_recipient_feature"), getString(
+			"_UI_PropertyDescriptor_description", "_UI_Comment_recipient_feature", "_UI_Comment_type"),
+			RationalePackage.Literals.COMMENT__RECIPIENT, true, false, true, null, null, null));
 	}
 
 	/**

@@ -65,7 +65,7 @@ public class ComponentServiceImpl extends ModelElementImpl implements ComponentS
 	 * @generated
 	 */
 	public Component getOfferingComponent() {
-		if (eContainerFeatureID() != ComponentPackage.COMPONENT_SERVICE__OFFERING_COMPONENT)
+		if (eContainerFeatureID != ComponentPackage.COMPONENT_SERVICE__OFFERING_COMPONENT)
 			return null;
 		return (Component) eContainer();
 	}
@@ -76,7 +76,7 @@ public class ComponentServiceImpl extends ModelElementImpl implements ComponentS
 	 * @generated
 	 */
 	public Component basicGetOfferingComponent() {
-		if (eContainerFeatureID() != ComponentPackage.COMPONENT_SERVICE__OFFERING_COMPONENT)
+		if (eContainerFeatureID != ComponentPackage.COMPONENT_SERVICE__OFFERING_COMPONENT)
 			return null;
 		return (Component) eInternalContainer();
 	}
@@ -99,7 +99,7 @@ public class ComponentServiceImpl extends ModelElementImpl implements ComponentS
 	 */
 	public void setOfferingComponent(Component newOfferingComponent) {
 		if (newOfferingComponent != eInternalContainer()
-			|| (eContainerFeatureID() != ComponentPackage.COMPONENT_SERVICE__OFFERING_COMPONENT && newOfferingComponent != null)) {
+			|| (eContainerFeatureID != ComponentPackage.COMPONENT_SERVICE__OFFERING_COMPONENT && newOfferingComponent != null)) {
 			if (EcoreUtil.isAncestor(this, newOfferingComponent))
 				throw new IllegalArgumentException("Recursive containment not allowed for " + toString());
 			NotificationChain msgs = null;
@@ -172,7 +172,7 @@ public class ComponentServiceImpl extends ModelElementImpl implements ComponentS
 	 */
 	@Override
 	public NotificationChain eBasicRemoveFromContainerFeature(NotificationChain msgs) {
-		switch (eContainerFeatureID()) {
+		switch (eContainerFeatureID) {
 		case ComponentPackage.COMPONENT_SERVICE__OFFERING_COMPONENT:
 			return eInternalContainer().eInverseRemove(this, ComponentPackage.COMPONENT__OFFERED_SERVICES,
 				Component.class, msgs);
