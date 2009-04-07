@@ -21,7 +21,7 @@ import org.unicase.model.requirement.RequirementPackage;
 import org.unicase.model.requirement.UseCase;
 import org.unicase.model.requirement.UserTask;
 
-/*
+/**
  * <!-- begin-user-doc --> An implementation of the model object '<em><b>User Task</b></em>'. <!-- end-user-doc --> <p>
  * The following features are implemented: <ul> <li>{@link
  * org.unicase.model.requirement.impl.UserTaskImpl#getInitiatingActor <em>Initiating Actor</em>}</li> <li>{@link
@@ -31,9 +31,9 @@ import org.unicase.model.requirement.UserTask;
  */
 public class UserTaskImpl extends ModelElementImpl implements UserTask {
 	/**
-	 * The cached value of the '{@link #getInitiatingActor() <em>Initiating Actor</em>}' reference. <!-- begin-user-doc
+	 * The cached value of the '{@link #getInitiatingActor() <em>Initiating Actor</em>}' reference.
+	 * <!-- begin-user-doc
 	 * --> <!-- end-user-doc -->
-	 * 
 	 * @see #getInitiatingActor()
 	 * @generated
 	 * @ordered
@@ -62,7 +62,6 @@ public class UserTaskImpl extends ModelElementImpl implements UserTask {
 
 	/**
 	 * <!-- begin-user-doc --> <!-- end-user-doc -->
-	 * 
 	 * @generated
 	 */
 	protected UserTaskImpl() {
@@ -71,7 +70,6 @@ public class UserTaskImpl extends ModelElementImpl implements UserTask {
 
 	/**
 	 * <!-- begin-user-doc --> <!-- end-user-doc -->
-	 * 
 	 * @generated
 	 */
 	@Override
@@ -81,7 +79,6 @@ public class UserTaskImpl extends ModelElementImpl implements UserTask {
 
 	/**
 	 * <!-- begin-user-doc --> <!-- end-user-doc -->
-	 * 
 	 * @generated
 	 */
 	public Actor getInitiatingActor() {
@@ -99,7 +96,6 @@ public class UserTaskImpl extends ModelElementImpl implements UserTask {
 
 	/**
 	 * <!-- begin-user-doc --> <!-- end-user-doc -->
-	 * 
 	 * @generated
 	 */
 	public Actor basicGetInitiatingActor() {
@@ -108,7 +104,6 @@ public class UserTaskImpl extends ModelElementImpl implements UserTask {
 
 	/**
 	 * <!-- begin-user-doc --> <!-- end-user-doc -->
-	 * 
 	 * @generated
 	 */
 	public NotificationChain basicSetInitiatingActor(Actor newInitiatingActor, NotificationChain msgs) {
@@ -127,7 +122,6 @@ public class UserTaskImpl extends ModelElementImpl implements UserTask {
 
 	/**
 	 * <!-- begin-user-doc --> <!-- end-user-doc -->
-	 * 
 	 * @generated
 	 */
 	public void setInitiatingActor(Actor newInitiatingActor) {
@@ -149,7 +143,6 @@ public class UserTaskImpl extends ModelElementImpl implements UserTask {
 
 	/**
 	 * <!-- begin-user-doc --> <!-- end-user-doc -->
-	 * 
 	 * @generated
 	 */
 	public EList<Actor> getParticipatingActor() {
@@ -162,7 +155,6 @@ public class UserTaskImpl extends ModelElementImpl implements UserTask {
 
 	/**
 	 * <!-- begin-user-doc --> <!-- end-user-doc -->
-	 * 
 	 * @generated
 	 */
 	public EList<UseCase> getRealizingUseCases() {
@@ -175,7 +167,6 @@ public class UserTaskImpl extends ModelElementImpl implements UserTask {
 
 	/**
 	 * <!-- begin-user-doc --> <!-- end-user-doc -->
-	 * 
 	 * @generated
 	 */
 	@SuppressWarnings("unchecked")
@@ -199,7 +190,6 @@ public class UserTaskImpl extends ModelElementImpl implements UserTask {
 
 	/**
 	 * <!-- begin-user-doc --> <!-- end-user-doc -->
-	 * 
 	 * @generated
 	 */
 	@Override
@@ -217,7 +207,6 @@ public class UserTaskImpl extends ModelElementImpl implements UserTask {
 
 	/**
 	 * <!-- begin-user-doc --> <!-- end-user-doc -->
-	 * 
 	 * @generated
 	 */
 	@Override
@@ -237,7 +226,6 @@ public class UserTaskImpl extends ModelElementImpl implements UserTask {
 
 	/**
 	 * <!-- begin-user-doc --> <!-- end-user-doc -->
-	 * 
 	 * @generated
 	 */
 	@SuppressWarnings("unchecked")
@@ -261,7 +249,6 @@ public class UserTaskImpl extends ModelElementImpl implements UserTask {
 
 	/**
 	 * <!-- begin-user-doc --> <!-- end-user-doc -->
-	 * 
 	 * @generated
 	 */
 	@Override
@@ -282,7 +269,6 @@ public class UserTaskImpl extends ModelElementImpl implements UserTask {
 
 	/**
 	 * <!-- begin-user-doc --> <!-- end-user-doc -->
-	 * 
 	 * @generated
 	 */
 	@Override

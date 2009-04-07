@@ -29,7 +29,7 @@ import org.unicase.model.impl.ModelElementImpl;
 import org.unicase.model.requirement.RequirementPackage;
 import org.unicase.model.requirement.Scenario;
 
-/*
+/**
  * <!-- begin-user-doc --> An implementation of the model object '<em><b>Method</b></em>'. <!-- end-user-doc --> <p> The
  * following features are implemented: <ul> <li>{@link org.unicase.model.classes.impl.MethodImpl#getVisibility
  * <em>Visibility</em>}</li> <li>{@link org.unicase.model.classes.impl.MethodImpl#getScope <em>Scope</em>}</li>
@@ -43,9 +43,9 @@ import org.unicase.model.requirement.Scenario;
  */
 public class MethodImpl extends ModelElementImpl implements Method {
 	/**
-	 * The default value of the '{@link #getVisibility() <em>Visibility</em>}' attribute. <!-- begin-user-doc --> <!--
+	 * The default value of the '{@link #getVisibility() <em>Visibility</em>}' attribute.
+	 * <!-- begin-user-doc --> <!--
 	 * end-user-doc -->
-	 * 
 	 * @see #getVisibility()
 	 * @generated
 	 * @ordered
@@ -53,9 +53,9 @@ public class MethodImpl extends ModelElementImpl implements Method {
 	protected static final VisibilityType VISIBILITY_EDEFAULT = VisibilityType.UNDEFINED;
 
 	/**
-	 * The cached value of the '{@link #getVisibility() <em>Visibility</em>}' attribute. <!-- begin-user-doc --> <!--
+	 * The cached value of the '{@link #getVisibility() <em>Visibility</em>}' attribute.
+	 * <!-- begin-user-doc --> <!--
 	 * end-user-doc -->
-	 * 
 	 * @see #getVisibility()
 	 * @generated
 	 * @ordered
@@ -63,9 +63,9 @@ public class MethodImpl extends ModelElementImpl implements Method {
 	protected VisibilityType visibility = VISIBILITY_EDEFAULT;
 
 	/**
-	 * The default value of the '{@link #getScope() <em>Scope</em>}' attribute. <!-- begin-user-doc --> <!--
+	 * The default value of the '{@link #getScope() <em>Scope</em>}' attribute.
+	 * <!-- begin-user-doc --> <!--
 	 * end-user-doc -->
-	 * 
 	 * @see #getScope()
 	 * @generated
 	 * @ordered
@@ -83,9 +83,9 @@ public class MethodImpl extends ModelElementImpl implements Method {
 	protected ScopeType scope = SCOPE_EDEFAULT;
 
 	/**
-	 * The default value of the '{@link #getReturnType() <em>Return Type</em>}' attribute. <!-- begin-user-doc --> <!--
+	 * The default value of the '{@link #getReturnType() <em>Return Type</em>}' attribute.
+	 * <!-- begin-user-doc --> <!--
 	 * end-user-doc -->
-	 * 
 	 * @see #getReturnType()
 	 * @generated
 	 * @ordered
@@ -93,9 +93,9 @@ public class MethodImpl extends ModelElementImpl implements Method {
 	protected static final String RETURN_TYPE_EDEFAULT = null;
 
 	/**
-	 * The cached value of the '{@link #getReturnType() <em>Return Type</em>}' attribute. <!-- begin-user-doc --> <!--
+	 * The cached value of the '{@link #getReturnType() <em>Return Type</em>}' attribute.
+	 * <!-- begin-user-doc --> <!--
 	 * end-user-doc -->
-	 * 
 	 * @see #getReturnType()
 	 * @generated
 	 * @ordered
@@ -103,9 +103,9 @@ public class MethodImpl extends ModelElementImpl implements Method {
 	protected String returnType = RETURN_TYPE_EDEFAULT;
 
 	/**
-	 * The default value of the '{@link #getSignature() <em>Signature</em>}' attribute. <!-- begin-user-doc --> <!--
+	 * The default value of the '{@link #getSignature() <em>Signature</em>}' attribute.
+	 * <!-- begin-user-doc --> <!--
 	 * end-user-doc -->
-	 * 
 	 * @see #getSignature()
 	 * @generated
 	 * @ordered
@@ -123,9 +123,9 @@ public class MethodImpl extends ModelElementImpl implements Method {
 	protected EList<MethodArgument> arguments;
 
 	/**
-	 * The default value of the '{@link #getProperties() <em>Properties</em>}' attribute. <!-- begin-user-doc --> <!--
+	 * The default value of the '{@link #getProperties() <em>Properties</em>}' attribute.
+	 * <!-- begin-user-doc --> <!--
 	 * end-user-doc -->
-	 * 
 	 * @see #getProperties()
 	 * @generated
 	 * @ordered
@@ -133,9 +133,9 @@ public class MethodImpl extends ModelElementImpl implements Method {
 	protected static final String PROPERTIES_EDEFAULT = null;
 
 	/**
-	 * The cached value of the '{@link #getProperties() <em>Properties</em>}' attribute. <!-- begin-user-doc --> <!--
+	 * The cached value of the '{@link #getProperties() <em>Properties</em>}' attribute.
+	 * <!-- begin-user-doc --> <!--
 	 * end-user-doc -->
-	 * 
 	 * @see #getProperties()
 	 * @generated
 	 * @ordered
@@ -143,9 +143,9 @@ public class MethodImpl extends ModelElementImpl implements Method {
 	protected String properties = PROPERTIES_EDEFAULT;
 
 	/**
-	 * The default value of the '{@link #getLabel() <em>Label</em>}' attribute. <!-- begin-user-doc --> <!--
+	 * The default value of the '{@link #getLabel() <em>Label</em>}' attribute.
+	 * <!-- begin-user-doc --> <!--
 	 * end-user-doc -->
-	 * 
 	 * @see #getLabel()
 	 * @generated
 	 * @ordered
@@ -163,9 +163,9 @@ public class MethodImpl extends ModelElementImpl implements Method {
 	protected String label = LABEL_EDEFAULT;
 
 	/**
-	 * The default value of the '{@link #isStubbed() <em>Stubbed</em>}' attribute. <!-- begin-user-doc --> <!--
+	 * The default value of the '{@link #isStubbed() <em>Stubbed</em>}' attribute.
+	 * <!-- begin-user-doc --> <!--
 	 * end-user-doc -->
-	 * 
 	 * @see #isStubbed()
 	 * @generated
 	 * @ordered
@@ -173,9 +173,9 @@ public class MethodImpl extends ModelElementImpl implements Method {
 	protected static final boolean STUBBED_EDEFAULT = false;
 
 	/**
-	 * The cached value of the '{@link #isStubbed() <em>Stubbed</em>}' attribute. <!-- begin-user-doc --> <!--
+	 * The cached value of the '{@link #isStubbed() <em>Stubbed</em>}' attribute.
+	 * <!-- begin-user-doc --> <!--
 	 * end-user-doc -->
-	 * 
 	 * @see #isStubbed()
 	 * @generated
 	 * @ordered
@@ -183,9 +183,9 @@ public class MethodImpl extends ModelElementImpl implements Method {
 	protected boolean stubbed = STUBBED_EDEFAULT;
 
 	/**
-	 * The cached value of the '{@link #getCalledMethods() <em>Called Methods</em>}' reference list. <!-- begin-user-doc
+	 * The cached value of the '{@link #getCalledMethods() <em>Called Methods</em>}' reference list.
+	 * <!-- begin-user-doc
 	 * --> <!-- end-user-doc -->
-	 * 
 	 * @see #getCalledMethods()
 	 * @generated
 	 * @ordered
@@ -214,7 +214,6 @@ public class MethodImpl extends ModelElementImpl implements Method {
 
 	/**
 	 * <!-- begin-user-doc --> <!-- end-user-doc -->
-	 * 
 	 * @generated
 	 */
 	protected MethodImpl() {
@@ -223,7 +222,6 @@ public class MethodImpl extends ModelElementImpl implements Method {
 
 	/**
 	 * <!-- begin-user-doc --> <!-- end-user-doc -->
-	 * 
 	 * @generated
 	 */
 	@Override
@@ -233,7 +231,6 @@ public class MethodImpl extends ModelElementImpl implements Method {
 
 	/**
 	 * <!-- begin-user-doc --> <!-- end-user-doc -->
-	 * 
 	 * @generated
 	 */
 	public VisibilityType getVisibility() {
@@ -242,7 +239,6 @@ public class MethodImpl extends ModelElementImpl implements Method {
 
 	/**
 	 * <!-- begin-user-doc --> <!-- end-user-doc -->
-	 * 
 	 * @generated
 	 */
 	public void setVisibility(VisibilityType newVisibility) {
@@ -255,7 +251,6 @@ public class MethodImpl extends ModelElementImpl implements Method {
 
 	/**
 	 * <!-- begin-user-doc --> <!-- end-user-doc -->
-	 * 
 	 * @generated
 	 */
 	public ScopeType getScope() {
@@ -264,7 +259,6 @@ public class MethodImpl extends ModelElementImpl implements Method {
 
 	/**
 	 * <!-- begin-user-doc --> <!-- end-user-doc -->
-	 * 
 	 * @generated
 	 */
 	public void setScope(ScopeType newScope) {
@@ -276,29 +270,26 @@ public class MethodImpl extends ModelElementImpl implements Method {
 
 	/**
 	 * <!-- begin-user-doc --> <!-- end-user-doc -->
-	 * 
 	 * @generated
 	 */
 	public org.unicase.model.classes.Class getDefiningClass() {
-		if (eContainerFeatureID != ClassesPackage.METHOD__DEFINING_CLASS)
+		if (eContainerFeatureID() != ClassesPackage.METHOD__DEFINING_CLASS)
 			return null;
 		return (org.unicase.model.classes.Class) eContainer();
 	}
 
 	/**
 	 * <!-- begin-user-doc --> <!-- end-user-doc -->
-	 * 
 	 * @generated
 	 */
 	public org.unicase.model.classes.Class basicGetDefiningClass() {
-		if (eContainerFeatureID != ClassesPackage.METHOD__DEFINING_CLASS)
+		if (eContainerFeatureID() != ClassesPackage.METHOD__DEFINING_CLASS)
 			return null;
 		return (org.unicase.model.classes.Class) eInternalContainer();
 	}
 
 	/**
 	 * <!-- begin-user-doc --> <!-- end-user-doc -->
-	 * 
 	 * @generated
 	 */
 	public NotificationChain basicSetDefiningClass(org.unicase.model.classes.Class newDefiningClass,
@@ -309,12 +300,11 @@ public class MethodImpl extends ModelElementImpl implements Method {
 
 	/**
 	 * <!-- begin-user-doc --> <!-- end-user-doc -->
-	 * 
 	 * @generated
 	 */
 	public void setDefiningClass(org.unicase.model.classes.Class newDefiningClass) {
 		if (newDefiningClass != eInternalContainer()
-			|| (eContainerFeatureID != ClassesPackage.METHOD__DEFINING_CLASS && newDefiningClass != null)) {
+			|| (eContainerFeatureID() != ClassesPackage.METHOD__DEFINING_CLASS && newDefiningClass != null)) {
 			if (EcoreUtil.isAncestor(this, newDefiningClass))
 				throw new IllegalArgumentException("Recursive containment not allowed for " + toString());
 			NotificationChain msgs = null;
@@ -333,7 +323,6 @@ public class MethodImpl extends ModelElementImpl implements Method {
 
 	/**
 	 * <!-- begin-user-doc --> <!-- end-user-doc -->
-	 * 
 	 * @generated
 	 */
 	public String getReturnType() {
@@ -342,7 +331,6 @@ public class MethodImpl extends ModelElementImpl implements Method {
 
 	/**
 	 * <!-- begin-user-doc --> <!-- end-user-doc -->
-	 * 
 	 * @generated
 	 */
 	public void setReturnType(String newReturnType) {
@@ -409,7 +397,6 @@ public class MethodImpl extends ModelElementImpl implements Method {
 
 	/**
 	 * <!-- begin-user-doc --> . <!-- end-user-doc -->
-	 * 
 	 * @generated
 	 */
 	public EList<MethodArgument> getArguments() {
@@ -422,7 +409,6 @@ public class MethodImpl extends ModelElementImpl implements Method {
 
 	/**
 	 * <!-- begin-user-doc --> <!-- end-user-doc -->
-	 * 
 	 * @generated
 	 */
 	@SuppressWarnings("unchecked")
@@ -446,7 +432,6 @@ public class MethodImpl extends ModelElementImpl implements Method {
 
 	/**
 	 * <!-- begin-user-doc --> <!-- end-user-doc -->
-	 * 
 	 * @generated
 	 */
 	@Override
@@ -468,12 +453,11 @@ public class MethodImpl extends ModelElementImpl implements Method {
 
 	/**
 	 * <!-- begin-user-doc --> <!-- end-user-doc -->
-	 * 
 	 * @generated
 	 */
 	@Override
 	public NotificationChain eBasicRemoveFromContainerFeature(NotificationChain msgs) {
-		switch (eContainerFeatureID) {
+		switch (eContainerFeatureID()) {
 		case ClassesPackage.METHOD__DEFINING_CLASS:
 			return eInternalContainer().eInverseRemove(this, ClassesPackage.CLASS__METHODS,
 				org.unicase.model.classes.Class.class, msgs);
@@ -483,7 +467,6 @@ public class MethodImpl extends ModelElementImpl implements Method {
 
 	/**
 	 * <!-- begin-user-doc --> <!-- end-user-doc -->
-	 * 
 	 * @generated
 	 */
 	@Override
@@ -508,7 +491,7 @@ public class MethodImpl extends ModelElementImpl implements Method {
 		case ClassesPackage.METHOD__LABEL:
 			return getLabel();
 		case ClassesPackage.METHOD__STUBBED:
-			return isStubbed() ? Boolean.TRUE : Boolean.FALSE;
+			return isStubbed();
 		case ClassesPackage.METHOD__CALLED_METHODS:
 			return getCalledMethods();
 		case ClassesPackage.METHOD__CALLING_METHODS:
@@ -521,7 +504,6 @@ public class MethodImpl extends ModelElementImpl implements Method {
 
 	/**
 	 * <!-- begin-user-doc --> <!-- end-user-doc -->
-	 * 
 	 * @generated
 	 */
 	@SuppressWarnings("unchecked")
@@ -551,7 +533,7 @@ public class MethodImpl extends ModelElementImpl implements Method {
 			setLabel((String) newValue);
 			return;
 		case ClassesPackage.METHOD__STUBBED:
-			setStubbed(((Boolean) newValue).booleanValue());
+			setStubbed((Boolean) newValue);
 			return;
 		case ClassesPackage.METHOD__CALLED_METHODS:
 			getCalledMethods().clear();
@@ -571,7 +553,6 @@ public class MethodImpl extends ModelElementImpl implements Method {
 
 	/**
 	 * <!-- begin-user-doc --> <!-- end-user-doc -->
-	 * 
 	 * @generated
 	 */
 	@Override
@@ -616,7 +597,6 @@ public class MethodImpl extends ModelElementImpl implements Method {
 
 	/**
 	 * <!-- begin-user-doc --> <!-- end-user-doc -->
-	 * 
 	 * @generated
 	 */
 	@Override
@@ -652,7 +632,6 @@ public class MethodImpl extends ModelElementImpl implements Method {
 
 	/**
 	 * <!-- begin-user-doc --> <!-- end-user-doc -->
-	 * 
 	 * @generated
 	 */
 	@Override
@@ -679,7 +658,6 @@ public class MethodImpl extends ModelElementImpl implements Method {
 
 	/**
 	 * <!-- begin-user-doc --> <!-- end-user-doc -->
-	 * 
 	 * @generated
 	 */
 	public String getProperties() {
@@ -688,7 +666,6 @@ public class MethodImpl extends ModelElementImpl implements Method {
 
 	/**
 	 * <!-- begin-user-doc --> <!-- end-user-doc -->
-	 * 
 	 * @generated
 	 */
 	public void setProperties(String newProperties) {
@@ -789,7 +766,6 @@ public class MethodImpl extends ModelElementImpl implements Method {
 
 	/**
 	 * <!-- begin-user-doc --> . <!-- end-user-doc -->
-	 * 
 	 * @generated
 	 */
 	public boolean isStubbed() {
@@ -798,7 +774,6 @@ public class MethodImpl extends ModelElementImpl implements Method {
 
 	/**
 	 * <!-- begin-user-doc --> <!-- end-user-doc -->
-	 * 
 	 * @generated
 	 */
 	public void setStubbed(boolean newStubbed) {
@@ -810,7 +785,6 @@ public class MethodImpl extends ModelElementImpl implements Method {
 
 	/**
 	 * <!-- begin-user-doc --> <!-- end-user-doc -->
-	 * 
 	 * @generated
 	 */
 	public EList<Method> getCalledMethods() {
@@ -823,7 +797,6 @@ public class MethodImpl extends ModelElementImpl implements Method {
 
 	/**
 	 * <!-- begin-user-doc --> <!-- end-user-doc -->
-	 * 
 	 * @generated
 	 */
 	public EList<Method> getCallingMethods() {
@@ -836,7 +809,6 @@ public class MethodImpl extends ModelElementImpl implements Method {
 
 	/**
 	 * <!-- begin-user-doc --> <!-- end-user-doc -->
-	 * 
 	 * @generated
 	 */
 	public EList<Scenario> getDemoParticipations() {

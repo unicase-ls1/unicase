@@ -22,7 +22,7 @@ import org.unicase.model.rationale.Issue;
 import org.unicase.model.rationale.Proposal;
 import org.unicase.model.rationale.RationalePackage;
 
-/*
+/**
  * <!-- begin-user-doc --> An implementation of the model object ' <em><b>Proposal</b></em>'. <!-- end-user-doc --> <p>
  * The following features are implemented: <ul> <li>{@link org.unicase.model.rationale.impl.ProposalImpl#getAssessments
  * <em>Assessments</em>}</li> <li>{@link org.unicase.model.rationale.impl.ProposalImpl#getIssue <em>Issue</em>}</li>
@@ -42,7 +42,6 @@ public class ProposalImpl extends ModelElementImpl implements Proposal {
 
 	/**
 	 * <!-- begin-user-doc --> <!-- end-user-doc -->
-	 * 
 	 * @generated
 	 */
 	protected ProposalImpl() {
@@ -51,7 +50,6 @@ public class ProposalImpl extends ModelElementImpl implements Proposal {
 
 	/**
 	 * <!-- begin-user-doc --> <!-- end-user-doc -->
-	 * 
 	 * @generated
 	 */
 	@Override
@@ -61,7 +59,6 @@ public class ProposalImpl extends ModelElementImpl implements Proposal {
 
 	/**
 	 * <!-- begin-user-doc --> <!-- end-user-doc -->
-	 * 
 	 * @generated
 	 */
 	public EList<Assessment> getAssessments() {
@@ -74,29 +71,26 @@ public class ProposalImpl extends ModelElementImpl implements Proposal {
 
 	/**
 	 * <!-- begin-user-doc --> <!-- end-user-doc -->
-	 * 
 	 * @generated
 	 */
 	public Issue getIssue() {
-		if (eContainerFeatureID != RationalePackage.PROPOSAL__ISSUE)
+		if (eContainerFeatureID() != RationalePackage.PROPOSAL__ISSUE)
 			return null;
 		return (Issue) eContainer();
 	}
 
 	/**
 	 * <!-- begin-user-doc --> <!-- end-user-doc -->
-	 * 
 	 * @generated
 	 */
 	public Issue basicGetIssue() {
-		if (eContainerFeatureID != RationalePackage.PROPOSAL__ISSUE)
+		if (eContainerFeatureID() != RationalePackage.PROPOSAL__ISSUE)
 			return null;
 		return (Issue) eInternalContainer();
 	}
 
 	/**
 	 * <!-- begin-user-doc --> <!-- end-user-doc -->
-	 * 
 	 * @generated
 	 */
 	public NotificationChain basicSetIssue(Issue newIssue, NotificationChain msgs) {
@@ -106,12 +100,11 @@ public class ProposalImpl extends ModelElementImpl implements Proposal {
 
 	/**
 	 * <!-- begin-user-doc --> <!-- end-user-doc -->
-	 * 
 	 * @generated
 	 */
 	public void setIssue(Issue newIssue) {
 		if (newIssue != eInternalContainer()
-			|| (eContainerFeatureID != RationalePackage.PROPOSAL__ISSUE && newIssue != null)) {
+			|| (eContainerFeatureID() != RationalePackage.PROPOSAL__ISSUE && newIssue != null)) {
 			if (EcoreUtil.isAncestor(this, newIssue))
 				throw new IllegalArgumentException("Recursive containment not allowed for " + toString());
 			NotificationChain msgs = null;
@@ -129,7 +122,6 @@ public class ProposalImpl extends ModelElementImpl implements Proposal {
 
 	/**
 	 * <!-- begin-user-doc --> <!-- end-user-doc -->
-	 * 
 	 * @generated
 	 */
 	@SuppressWarnings("unchecked")
@@ -148,7 +140,6 @@ public class ProposalImpl extends ModelElementImpl implements Proposal {
 
 	/**
 	 * <!-- begin-user-doc --> <!-- end-user-doc -->
-	 * 
 	 * @generated
 	 */
 	@Override
@@ -164,12 +155,11 @@ public class ProposalImpl extends ModelElementImpl implements Proposal {
 
 	/**
 	 * <!-- begin-user-doc --> <!-- end-user-doc -->
-	 * 
 	 * @generated
 	 */
 	@Override
 	public NotificationChain eBasicRemoveFromContainerFeature(NotificationChain msgs) {
-		switch (eContainerFeatureID) {
+		switch (eContainerFeatureID()) {
 		case RationalePackage.PROPOSAL__ISSUE:
 			return eInternalContainer().eInverseRemove(this, RationalePackage.ISSUE__PROPOSALS, Issue.class, msgs);
 		}
@@ -178,7 +168,6 @@ public class ProposalImpl extends ModelElementImpl implements Proposal {
 
 	/**
 	 * <!-- begin-user-doc --> <!-- end-user-doc -->
-	 * 
 	 * @generated
 	 */
 	@Override
@@ -196,7 +185,6 @@ public class ProposalImpl extends ModelElementImpl implements Proposal {
 
 	/**
 	 * <!-- begin-user-doc --> <!-- end-user-doc -->
-	 * 
 	 * @generated
 	 */
 	@SuppressWarnings("unchecked")
@@ -216,7 +204,6 @@ public class ProposalImpl extends ModelElementImpl implements Proposal {
 
 	/**
 	 * <!-- begin-user-doc --> <!-- end-user-doc -->
-	 * 
 	 * @generated
 	 */
 	@Override
@@ -234,7 +221,6 @@ public class ProposalImpl extends ModelElementImpl implements Proposal {
 
 	/**
 	 * <!-- begin-user-doc --> <!-- end-user-doc -->
-	 * 
 	 * @generated
 	 */
 	@Override

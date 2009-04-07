@@ -24,7 +24,7 @@ import org.unicase.model.rationale.Solution;
 import org.unicase.model.task.Checkable;
 import org.unicase.model.task.WorkItem;
 
-/*
+/**
  * <!-- begin-user-doc --> The <b>Switch</b> for the model's inheritance hierarchy. It supports the call {@link
  * #doSwitch(EObject) doSwitch(object)} to invoke the <code>caseXXX</code> method for each class of the model, starting
  * with the actual class of the object and proceeding up the inheritance hierarchy until a non-null result is returned,
@@ -34,15 +34,15 @@ import org.unicase.model.task.WorkItem;
  */
 public class ChangeSwitch<T> {
 	/**
-	 * The cached model package <!-- begin-user-doc --> <!-- end-user-doc -->
-	 * 
+	 * The cached model package
+	 * <!-- begin-user-doc --> <!-- end-user-doc -->
 	 * @generated
 	 */
 	protected static ChangePackage modelPackage;
 
 	/**
-	 * Creates an instance of the switch. <!-- begin-user-doc --> <!-- end-user-doc -->
-	 * 
+	 * Creates an instance of the switch.
+	 * <!-- begin-user-doc --> <!-- end-user-doc -->
 	 * @generated
 	 */
 	public ChangeSwitch() {
@@ -52,9 +52,8 @@ public class ChangeSwitch<T> {
 	}
 
 	/**
-	 * Calls <code>caseXXX</code> for each class of the model until one returns a non null result; it yields that
-	 * result. <!-- begin-user-doc --> <!-- end-user-doc -->
-	 * 
+	 * Calls <code>caseXXX</code> for each class of the model until one returns a non null result; it yields that result.
+	 * <!-- begin-user-doc --> <!-- end-user-doc -->
 	 * @return the first non-null result returned by a <code>caseXXX</code> call.
 	 * @generated
 	 */
@@ -63,9 +62,8 @@ public class ChangeSwitch<T> {
 	}
 
 	/**
-	 * Calls <code>caseXXX</code> for each class of the model until one returns a non null result; it yields that
-	 * result. <!-- begin-user-doc --> <!-- end-user-doc -->
-	 * 
+	 * Calls <code>caseXXX</code> for each class of the model until one returns a non null result; it yields that result.
+	 * <!-- begin-user-doc --> <!-- end-user-doc -->
 	 * @return the first non-null result returned by a <code>caseXXX</code> call.
 	 * @generated
 	 */
@@ -79,9 +77,8 @@ public class ChangeSwitch<T> {
 	}
 
 	/**
-	 * Calls <code>caseXXX</code> for each class of the model until one returns a non null result; it yields that
-	 * result. <!-- begin-user-doc --> <!-- end-user-doc -->
-	 * 
+	 * Calls <code>caseXXX</code> for each class of the model until one returns a non null result; it yields that result.
+	 * <!-- begin-user-doc --> <!-- end-user-doc -->
 	 * @return the first non-null result returned by a <code>caseXXX</code> call.
 	 * @generated
 	 */
@@ -104,11 +101,11 @@ public class ChangeSwitch<T> {
 			if (result == null)
 				result = caseIssue(mergingIssue);
 			if (result == null)
-				result = caseAnnotation(mergingIssue);
-			if (result == null)
 				result = caseCheckable(mergingIssue);
 			if (result == null)
 				result = caseWorkItem(mergingIssue);
+			if (result == null)
+				result = caseAnnotation(mergingIssue);
 			if (result == null)
 				result = caseModelElement(mergingIssue);
 			if (result == null)
@@ -167,9 +164,9 @@ public class ChangeSwitch<T> {
 	}
 
 	/**
-	 * Returns the result of interpreting the object as an instance of '<em>Merging Issue</em>'. <!-- begin-user-doc -->
+	 * Returns the result of interpreting the object as an instance of '<em>Merging Issue</em>'.
+	 * <!-- begin-user-doc -->
 	 * This implementation returns null; returning a non-null result will terminate the switch. <!-- end-user-doc -->
-	 * 
 	 * @param object the target of the switch.
 	 * @return the result of interpreting the object as an instance of '<em>Merging Issue</em>'.
 	 * @see #doSwitch(org.eclipse.emf.ecore.EObject) doSwitch(EObject)
@@ -222,9 +219,9 @@ public class ChangeSwitch<T> {
 	}
 
 	/**
-	 * Returns the result of interpreting the object as an instance of '<em>Element</em>'. <!-- begin-user-doc --> This
+	 * Returns the result of interpreting the object as an instance of '<em>Element</em>'.
+	 * <!-- begin-user-doc --> This
 	 * implementation returns null; returning a non-null result will terminate the switch. <!-- end-user-doc -->
-	 * 
 	 * @param object the target of the switch.
 	 * @return the result of interpreting the object as an instance of '<em>Element</em>'.
 	 * @see #doSwitch(org.eclipse.emf.ecore.EObject) doSwitch(EObject)
@@ -235,9 +232,9 @@ public class ChangeSwitch<T> {
 	}
 
 	/**
-	 * Returns the result of interpreting the object as an instance of '<em>Annotation</em>'. <!-- begin-user-doc -->
+	 * Returns the result of interpreting the object as an instance of '<em>Annotation</em>'.
+	 * <!-- begin-user-doc -->
 	 * This implementation returns null; returning a non-null result will terminate the switch. <!-- end-user-doc -->
-	 * 
 	 * @param object the target of the switch.
 	 * @return the result of interpreting the object as an instance of '<em>Annotation</em>'.
 	 * @see #doSwitch(org.eclipse.emf.ecore.EObject) doSwitch(EObject)
@@ -248,9 +245,9 @@ public class ChangeSwitch<T> {
 	}
 
 	/**
-	 * Returns the result of interpreting the object as an instance of '<em>Checkable</em>'. <!-- begin-user-doc -->
+	 * Returns the result of interpreting the object as an instance of '<em>Checkable</em>'.
+	 * <!-- begin-user-doc -->
 	 * This implementation returns null; returning a non-null result will terminate the switch. <!-- end-user-doc -->
-	 * 
 	 * @param object the target of the switch.
 	 * @return the result of interpreting the object as an instance of '<em>Checkable</em>'.
 	 * @see #doSwitch(org.eclipse.emf.ecore.EObject) doSwitch(EObject)
@@ -261,9 +258,9 @@ public class ChangeSwitch<T> {
 	}
 
 	/**
-	 * Returns the result of interpreting the object as an instance of '<em>Work Item</em>'. <!-- begin-user-doc -->
+	 * Returns the result of interpreting the object as an instance of '<em>Work Item</em>'.
+	 * <!-- begin-user-doc -->
 	 * This implementation returns null; returning a non-null result will terminate the switch. <!-- end-user-doc -->
-	 * 
 	 * @param object the target of the switch.
 	 * @return the result of interpreting the object as an instance of '<em>Work Item</em>'.
 	 * @see #doSwitch(org.eclipse.emf.ecore.EObject) doSwitch(EObject)
@@ -274,9 +271,9 @@ public class ChangeSwitch<T> {
 	}
 
 	/**
-	 * Returns the result of interpreting the object as an instance of '<em>Issue</em>'. <!-- begin-user-doc --> This
+	 * Returns the result of interpreting the object as an instance of '<em>Issue</em>'.
+	 * <!-- begin-user-doc --> This
 	 * implementation returns null; returning a non-null result will terminate the switch. <!-- end-user-doc -->
-	 * 
 	 * @param object the target of the switch.
 	 * @return the result of interpreting the object as an instance of '<em>Issue</em>'.
 	 * @see #doSwitch(org.eclipse.emf.ecore.EObject) doSwitch(EObject)
@@ -301,9 +298,9 @@ public class ChangeSwitch<T> {
 	}
 
 	/**
-	 * Returns the result of interpreting the object as an instance of '<em>Proposal</em>'. <!-- begin-user-doc --> This
+	 * Returns the result of interpreting the object as an instance of '<em>Proposal</em>'.
+	 * <!-- begin-user-doc --> This
 	 * implementation returns null; returning a non-null result will terminate the switch. <!-- end-user-doc -->
-	 * 
 	 * @param object the target of the switch.
 	 * @return the result of interpreting the object as an instance of '<em>Proposal</em>'.
 	 * @see #doSwitch(org.eclipse.emf.ecore.EObject) doSwitch(EObject)
@@ -314,9 +311,9 @@ public class ChangeSwitch<T> {
 	}
 
 	/**
-	 * Returns the result of interpreting the object as an instance of '<em>Solution</em>'. <!-- begin-user-doc --> This
+	 * Returns the result of interpreting the object as an instance of '<em>Solution</em>'.
+	 * <!-- begin-user-doc --> This
 	 * implementation returns null; returning a non-null result will terminate the switch. <!-- end-user-doc -->
-	 * 
 	 * @param object the target of the switch.
 	 * @return the result of interpreting the object as an instance of '<em>Solution</em>'.
 	 * @see #doSwitch(org.eclipse.emf.ecore.EObject) doSwitch(EObject)
@@ -327,10 +324,10 @@ public class ChangeSwitch<T> {
 	}
 
 	/**
-	 * Returns the result of interpreting the object as an instance of '<em>EObject</em>'. <!-- begin-user-doc --> This
+	 * Returns the result of interpreting the object as an instance of '<em>EObject</em>'.
+	 * <!-- begin-user-doc --> This
 	 * implementation returns null; returning a non-null result will terminate the switch, but this is the last case
 	 * anyway. <!-- end-user-doc -->
-	 * 
 	 * @param object the target of the switch.
 	 * @return the result of interpreting the object as an instance of '<em>EObject</em>'.
 	 * @see #doSwitch(org.eclipse.emf.ecore.EObject)

@@ -13,7 +13,7 @@ import org.eclipse.emf.ecore.util.EcoreUtil;
 import org.unicase.model.ModelPackage;
 import org.unicase.model.UniqueIdentifier;
 
-/*
+/**
  * <!-- begin-user-doc --> An implementation of the model object ' <em><b>Unique Identifier</b></em>'. <!-- end-user-doc
  * --> <p> The following features are implemented: <ul> <li>{@link org.unicase.model.impl.UniqueIdentifierImpl#getId
  * <em>Id</em>}</li> </ul> </p>
@@ -22,8 +22,8 @@ import org.unicase.model.UniqueIdentifier;
 public abstract class UniqueIdentifierImpl extends EObjectImpl implements UniqueIdentifier {
 
 	/**
-	 * The default value of the '{@link #getId() <em>Id</em>}' attribute. <!-- begin-user-doc --> <!-- end-user-doc -->
-	 * 
+	 * The default value of the '{@link #getId() <em>Id</em>}' attribute.
+	 * <!-- begin-user-doc --> <!-- end-user-doc -->
 	 * @see #getId()
 	 * @generated
 	 * @ordered
@@ -31,8 +31,8 @@ public abstract class UniqueIdentifierImpl extends EObjectImpl implements Unique
 	protected static final String ID_EDEFAULT = "Default Value Literal\t";
 
 	/**
-	 * The cached value of the '{@link #getId() <em>Id</em>}' attribute. <!-- begin-user-doc --> <!-- end-user-doc -->
-	 * 
+	 * The cached value of the '{@link #getId() <em>Id</em>}' attribute.
+	 * <!-- begin-user-doc --> <!-- end-user-doc -->
 	 * @see #getId()
 	 * @generated
 	 * @ordered
@@ -54,7 +54,6 @@ public abstract class UniqueIdentifierImpl extends EObjectImpl implements Unique
 
 	/**
 	 * <!-- begin-user-doc -->. <!-- end-user-doc -->
-	 * 
 	 * @generated
 	 */
 	@Override
@@ -64,7 +63,6 @@ public abstract class UniqueIdentifierImpl extends EObjectImpl implements Unique
 
 	/**
 	 * <!-- begin-user-doc --> <!-- end-user-doc -->
-	 * 
 	 * @generated
 	 */
 	public String getId() {
@@ -73,7 +71,6 @@ public abstract class UniqueIdentifierImpl extends EObjectImpl implements Unique
 
 	/**
 	 * <!-- begin-user-doc --> <!-- end-user-doc -->
-	 * 
 	 * @generated
 	 */
 	public void setId(String newId) {
@@ -85,7 +82,6 @@ public abstract class UniqueIdentifierImpl extends EObjectImpl implements Unique
 
 	/**
 	 * <!-- begin-user-doc --> <!-- end-user-doc -->
-	 * 
 	 * @generated
 	 */
 	@Override
@@ -99,7 +95,6 @@ public abstract class UniqueIdentifierImpl extends EObjectImpl implements Unique
 
 	/**
 	 * <!-- begin-user-doc --> <!-- end-user-doc -->
-	 * 
 	 * @generated
 	 */
 	@Override
@@ -114,7 +109,6 @@ public abstract class UniqueIdentifierImpl extends EObjectImpl implements Unique
 
 	/**
 	 * <!-- begin-user-doc --> <!-- end-user-doc -->
-	 * 
 	 * @generated
 	 */
 	@Override
@@ -129,7 +123,6 @@ public abstract class UniqueIdentifierImpl extends EObjectImpl implements Unique
 
 	/**
 	 * <!-- begin-user-doc --> <!-- end-user-doc -->
-	 * 
 	 * @generated
 	 */
 	@Override

@@ -12,7 +12,7 @@ import org.unicase.model.change.ChangePackage;
 import org.unicase.model.change.ModelChangePackage;
 import org.unicase.model.impl.ModelElementImpl;
 
-/*
+/**
  * <!-- begin-user-doc --> An implementation of the model object ' <em><b>Model Change Package</b></em>'. <!--
  * end-user-doc --> <p> The following features are implemented: <ul> <li>{@link
  * org.unicase.model.change.impl.ModelChangePackageImpl#getSourceVersion <em>Source Version</em>}</li> <li>{@link
@@ -21,9 +21,9 @@ import org.unicase.model.impl.ModelElementImpl;
  */
 public class ModelChangePackageImpl extends ModelElementImpl implements ModelChangePackage {
 	/**
-	 * The default value of the '{@link #getSourceVersion() <em>Source Version</em>}' attribute. <!-- begin-user-doc -->
+	 * The default value of the '{@link #getSourceVersion() <em>Source Version</em>}' attribute.
+	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
-	 * 
 	 * @see #getSourceVersion()
 	 * @generated
 	 * @ordered
@@ -31,9 +31,9 @@ public class ModelChangePackageImpl extends ModelElementImpl implements ModelCha
 	protected static final int SOURCE_VERSION_EDEFAULT = 0;
 
 	/**
-	 * The cached value of the '{@link #getSourceVersion() <em>Source Version</em>}' attribute. <!-- begin-user-doc -->
+	 * The cached value of the '{@link #getSourceVersion() <em>Source Version</em>}' attribute.
+	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
-	 * 
 	 * @see #getSourceVersion()
 	 * @generated
 	 * @ordered
@@ -41,9 +41,9 @@ public class ModelChangePackageImpl extends ModelElementImpl implements ModelCha
 	protected int sourceVersion = SOURCE_VERSION_EDEFAULT;
 
 	/**
-	 * The default value of the '{@link #getTargetVersion() <em>Target Version</em>}' attribute. <!-- begin-user-doc -->
+	 * The default value of the '{@link #getTargetVersion() <em>Target Version</em>}' attribute.
+	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
-	 * 
 	 * @see #getTargetVersion()
 	 * @generated
 	 * @ordered
@@ -51,9 +51,9 @@ public class ModelChangePackageImpl extends ModelElementImpl implements ModelCha
 	protected static final int TARGET_VERSION_EDEFAULT = 0;
 
 	/**
-	 * The cached value of the '{@link #getTargetVersion() <em>Target Version</em>}' attribute. <!-- begin-user-doc -->
+	 * The cached value of the '{@link #getTargetVersion() <em>Target Version</em>}' attribute.
+	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
-	 * 
 	 * @see #getTargetVersion()
 	 * @generated
 	 * @ordered
@@ -62,7 +62,6 @@ public class ModelChangePackageImpl extends ModelElementImpl implements ModelCha
 
 	/**
 	 * <!-- begin-user-doc --> <!-- end-user-doc -->
-	 * 
 	 * @generated
 	 */
 	protected ModelChangePackageImpl() {
@@ -71,7 +70,6 @@ public class ModelChangePackageImpl extends ModelElementImpl implements ModelCha
 
 	/**
 	 * <!-- begin-user-doc --> <!-- end-user-doc -->
-	 * 
 	 * @generated
 	 */
 	@Override
@@ -81,7 +79,6 @@ public class ModelChangePackageImpl extends ModelElementImpl implements ModelCha
 
 	/**
 	 * <!-- begin-user-doc --> <!-- end-user-doc -->
-	 * 
 	 * @generated
 	 */
 	public int getSourceVersion() {
@@ -90,7 +87,6 @@ public class ModelChangePackageImpl extends ModelElementImpl implements ModelCha
 
 	/**
 	 * <!-- begin-user-doc --> <!-- end-user-doc -->
-	 * 
 	 * @generated
 	 */
 	public void setSourceVersion(int newSourceVersion) {
@@ -103,7 +99,6 @@ public class ModelChangePackageImpl extends ModelElementImpl implements ModelCha
 
 	/**
 	 * <!-- begin-user-doc --> <!-- end-user-doc -->
-	 * 
 	 * @generated
 	 */
 	public int getTargetVersion() {
@@ -112,7 +107,6 @@ public class ModelChangePackageImpl extends ModelElementImpl implements ModelCha
 
 	/**
 	 * <!-- begin-user-doc --> <!-- end-user-doc -->
-	 * 
 	 * @generated
 	 */
 	public void setTargetVersion(int newTargetVersion) {
@@ -125,33 +119,31 @@ public class ModelChangePackageImpl extends ModelElementImpl implements ModelCha
 
 	/**
 	 * <!-- begin-user-doc --> <!-- end-user-doc -->
-	 * 
 	 * @generated
 	 */
 	@Override
 	public Object eGet(int featureID, boolean resolve, boolean coreType) {
 		switch (featureID) {
 		case ChangePackage.MODEL_CHANGE_PACKAGE__SOURCE_VERSION:
-			return new Integer(getSourceVersion());
+			return getSourceVersion();
 		case ChangePackage.MODEL_CHANGE_PACKAGE__TARGET_VERSION:
-			return new Integer(getTargetVersion());
+			return getTargetVersion();
 		}
 		return super.eGet(featureID, resolve, coreType);
 	}
 
 	/**
 	 * <!-- begin-user-doc --> <!-- end-user-doc -->
-	 * 
 	 * @generated
 	 */
 	@Override
 	public void eSet(int featureID, Object newValue) {
 		switch (featureID) {
 		case ChangePackage.MODEL_CHANGE_PACKAGE__SOURCE_VERSION:
-			setSourceVersion(((Integer) newValue).intValue());
+			setSourceVersion((Integer) newValue);
 			return;
 		case ChangePackage.MODEL_CHANGE_PACKAGE__TARGET_VERSION:
-			setTargetVersion(((Integer) newValue).intValue());
+			setTargetVersion((Integer) newValue);
 			return;
 		}
 		super.eSet(featureID, newValue);
@@ -159,7 +151,6 @@ public class ModelChangePackageImpl extends ModelElementImpl implements ModelCha
 
 	/**
 	 * <!-- begin-user-doc --> <!-- end-user-doc -->
-	 * 
 	 * @generated
 	 */
 	@Override
@@ -177,7 +168,6 @@ public class ModelChangePackageImpl extends ModelElementImpl implements ModelCha
 
 	/**
 	 * <!-- begin-user-doc --> <!-- end-user-doc -->
-	 * 
 	 * @generated
 	 */
 	@Override
@@ -193,7 +183,6 @@ public class ModelChangePackageImpl extends ModelElementImpl implements ModelCha
 
 	/**
 	 * <!-- begin-user-doc --> <!-- end-user-doc -->
-	 * 
 	 * @generated
 	 */
 	@Override

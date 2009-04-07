@@ -30,7 +30,7 @@ import org.unicase.model.Project;
 import org.unicase.model.util.ProjectChangeNotifier;
 import org.unicase.model.util.ProjectChangeObserver;
 
-/*
+/**
  * @author schroech
  * @implements ProjectChangeObserver
  * @generated
@@ -63,7 +63,6 @@ public class ProjectImpl extends EObjectImpl implements Project, ProjectChangeOb
 
 	/**
 	 * <!-- begin-user-doc --> .<!-- end-user-doc -->
-	 * 
 	 * @generated
 	 */
 	@Override
@@ -73,7 +72,6 @@ public class ProjectImpl extends EObjectImpl implements Project, ProjectChangeOb
 
 	/**
 	 * <!-- begin-user-doc --> <!-- end-user-doc -->
-	 * 
 	 * @generated
 	 */
 	public EList<ModelElement> getModelElements() {
@@ -176,7 +174,6 @@ public class ProjectImpl extends EObjectImpl implements Project, ProjectChangeOb
 
 	/**
 	 * <!-- begin-user-doc --> <!-- end-user-doc -->
-	 * 
 	 * @generated
 	 */
 	@Override
@@ -190,7 +187,6 @@ public class ProjectImpl extends EObjectImpl implements Project, ProjectChangeOb
 
 	/**
 	 * <!-- begin-user-doc --> <!-- end-user-doc -->
-	 * 
 	 * @generated
 	 */
 	@Override
@@ -204,7 +200,6 @@ public class ProjectImpl extends EObjectImpl implements Project, ProjectChangeOb
 
 	/**
 	 * <!-- begin-user-doc --> <!-- end-user-doc -->
-	 * 
 	 * @generated
 	 */
 	@SuppressWarnings("unchecked")
@@ -221,7 +216,6 @@ public class ProjectImpl extends EObjectImpl implements Project, ProjectChangeOb
 
 	/**
 	 * <!-- begin-user-doc --> <!-- end-user-doc -->
-	 * 
 	 * @generated
 	 */
 	@Override
@@ -236,7 +230,6 @@ public class ProjectImpl extends EObjectImpl implements Project, ProjectChangeOb
 
 	/**
 	 * <!-- begin-user-doc --> <!-- end-user-doc -->
-	 * 
 	 * @generated
 	 */
 	@Override

@@ -20,7 +20,7 @@ import org.unicase.model.profile.StereotypeAttributeInstanceString;
 import org.unicase.model.profile.StereotypeAttributeSimple;
 import org.unicase.model.profile.StereotypeInstance;
 
-/*
+/**
  * <!-- begin-user-doc --> The <b>Adapter Factory</b> for the model. It provides an adapter <code>createXXX</code>
  * method for each class of the model. <!-- end-user-doc -->
  * @see org.unicase.model.profile.ProfilePackage
@@ -28,15 +28,15 @@ import org.unicase.model.profile.StereotypeInstance;
  */
 public class ProfileAdapterFactory extends AdapterFactoryImpl {
 	/**
-	 * The cached model package. <!-- begin-user-doc --> <!-- end-user-doc -->
-	 * 
+	 * The cached model package.
+	 * <!-- begin-user-doc --> <!-- end-user-doc -->
 	 * @generated
 	 */
 	protected static ProfilePackage modelPackage;
 
 	/**
-	 * Creates an instance of the adapter factory. <!-- begin-user-doc --> <!-- end-user-doc -->
-	 * 
+	 * Creates an instance of the adapter factory.
+	 * <!-- begin-user-doc --> <!-- end-user-doc -->
 	 * @generated
 	 */
 	public ProfileAdapterFactory() {
@@ -46,10 +46,10 @@ public class ProfileAdapterFactory extends AdapterFactoryImpl {
 	}
 
 	/**
-	 * Returns whether this factory is applicable for the type of the object. <!-- begin-user-doc --> This
+	 * Returns whether this factory is applicable for the type of the object.
+	 * <!-- begin-user-doc --> This
 	 * implementation returns <code>true</code> if the object is either the model's package or is an instance object of
 	 * the model. <!-- end-user-doc -->
-	 * 
 	 * @return whether this factory is applicable for the type of the object.
 	 * @generated
 	 */
@@ -65,8 +65,8 @@ public class ProfileAdapterFactory extends AdapterFactoryImpl {
 	}
 
 	/**
-	 * The switch that delegates to the <code>createXXX</code> methods. <!-- begin-user-doc --> <!-- end-user-doc -->
-	 * 
+	 * The switch that delegates to the <code>createXXX</code> methods.
+	 * <!-- begin-user-doc --> <!-- end-user-doc -->
 	 * @generated
 	 */
 	protected ProfileSwitch<Adapter> modelSwitch = new ProfileSwitch<Adapter>() {
@@ -122,8 +122,8 @@ public class ProfileAdapterFactory extends AdapterFactoryImpl {
 	};
 
 	/**
-	 * Creates an adapter for the <code>target</code>. <!-- begin-user-doc --> <!-- end-user-doc -->
-	 * 
+	 * Creates an adapter for the <code>target</code>.
+	 * <!-- begin-user-doc --> <!-- end-user-doc -->
 	 * @param target the object to adapt.
 	 * @return the adapter for the <code>target</code>.
 	 * @generated
@@ -150,7 +150,6 @@ public class ProfileAdapterFactory extends AdapterFactoryImpl {
 	 * Creates a new adapter for an object of class '{@link org.unicase.model.profile.Stereotype <em>Stereotype</em>}'.
 	 * <!-- begin-user-doc --> This default implementation returns null so that we can easily ignore cases; it's useful
 	 * to ignore a case when inheritance will catch all the cases anyway. <!-- end-user-doc -->
-	 * 
 	 * @return the new adapter.
 	 * @see org.unicase.model.profile.Stereotype
 	 * @generated
@@ -160,11 +159,10 @@ public class ProfileAdapterFactory extends AdapterFactoryImpl {
 	}
 
 	/**
-	 * Creates a new adapter for an object of class '{@link org.unicase.model.profile.StereotypeInstance
-	 * <em>Stereotype Instance</em>}'. <!-- begin-user-doc --> This default implementation returns null so that we can
+	 * Creates a new adapter for an object of class '{@link org.unicase.model.profile.StereotypeInstance <em>Stereotype Instance</em>}'.
+	 * <!-- begin-user-doc --> This default implementation returns null so that we can
 	 * easily ignore cases; it's useful to ignore a case when inheritance will catch all the cases anyway. <!--
 	 * end-user-doc -->
-	 * 
 	 * @return the new adapter.
 	 * @see org.unicase.model.profile.StereotypeInstance
 	 * @generated
@@ -174,11 +172,10 @@ public class ProfileAdapterFactory extends AdapterFactoryImpl {
 	}
 
 	/**
-	 * Creates a new adapter for an object of class '{@link org.unicase.model.profile.StereotypeAttribute
-	 * <em>Stereotype Attribute</em>}'. <!-- begin-user-doc --> This default implementation returns null so that we can
+	 * Creates a new adapter for an object of class '{@link org.unicase.model.profile.StereotypeAttribute <em>Stereotype Attribute</em>}'.
+	 * <!-- begin-user-doc --> This default implementation returns null so that we can
 	 * easily ignore cases; it's useful to ignore a case when inheritance will catch all the cases anyway. <!--
 	 * end-user-doc -->
-	 * 
 	 * @return the new adapter.
 	 * @see org.unicase.model.profile.StereotypeAttribute
 	 * @generated
@@ -188,11 +185,10 @@ public class ProfileAdapterFactory extends AdapterFactoryImpl {
 	}
 
 	/**
-	 * Creates a new adapter for an object of class '{@link org.unicase.model.profile.StereotypeAttributeSimple
-	 * <em>Stereotype Attribute Simple</em>}'. <!-- begin-user-doc --> This default implementation returns null so that
+	 * Creates a new adapter for an object of class '{@link org.unicase.model.profile.StereotypeAttributeSimple <em>Stereotype Attribute Simple</em>}'.
+	 * <!-- begin-user-doc --> This default implementation returns null so that
 	 * we can easily ignore cases; it's useful to ignore a case when inheritance will catch all the cases anyway. <!--
 	 * end-user-doc -->
-	 * 
 	 * @return the new adapter.
 	 * @see org.unicase.model.profile.StereotypeAttributeSimple
 	 * @generated
@@ -202,11 +198,10 @@ public class ProfileAdapterFactory extends AdapterFactoryImpl {
 	}
 
 	/**
-	 * Creates a new adapter for an object of class '{@link org.unicase.model.profile.StereotypeAttributeInstance
-	 * <em>Stereotype Attribute Instance</em>}'. <!-- begin-user-doc --> This default implementation returns null so
+	 * Creates a new adapter for an object of class '{@link org.unicase.model.profile.StereotypeAttributeInstance <em>Stereotype Attribute Instance</em>}'.
+	 * <!-- begin-user-doc --> This default implementation returns null so
 	 * that we can easily ignore cases; it's useful to ignore a case when inheritance will catch all the cases anyway.
 	 * <!-- end-user-doc -->
-	 * 
 	 * @return the new adapter.
 	 * @see org.unicase.model.profile.StereotypeAttributeInstance
 	 * @generated
@@ -216,11 +211,10 @@ public class ProfileAdapterFactory extends AdapterFactoryImpl {
 	}
 
 	/**
-	 * Creates a new adapter for an object of class '{@link org.unicase.model.profile.StereotypeAttributeInstanceString
-	 * <em>Stereotype Attribute Instance String</em>}'. <!-- begin-user-doc --> This default implementation returns null
+	 * Creates a new adapter for an object of class '{@link org.unicase.model.profile.StereotypeAttributeInstanceString <em>Stereotype Attribute Instance String</em>}'.
+	 * <!-- begin-user-doc --> This default implementation returns null
 	 * so that we can easily ignore cases; it's useful to ignore a case when inheritance will catch all the cases
 	 * anyway. <!-- end-user-doc -->
-	 * 
 	 * @return the new adapter.
 	 * @see org.unicase.model.profile.StereotypeAttributeInstanceString
 	 * @generated
@@ -230,11 +224,10 @@ public class ProfileAdapterFactory extends AdapterFactoryImpl {
 	}
 
 	/**
-	 * Creates a new adapter for an object of class '{@link org.unicase.model.IdentifiableElement
-	 * <em>Identifiable Element</em>}'. <!-- begin-user-doc --> This default implementation returns null so that we can
+	 * Creates a new adapter for an object of class '{@link org.unicase.model.IdentifiableElement <em>Identifiable Element</em>}'.
+	 * <!-- begin-user-doc --> This default implementation returns null so that we can
 	 * easily ignore cases; it's useful to ignore a case when inheritance will catch all the cases anyway. <!--
 	 * end-user-doc -->
-	 * 
 	 * @return the new adapter.
 	 * @see org.unicase.model.IdentifiableElement
 	 * @generated
@@ -257,9 +250,9 @@ public class ProfileAdapterFactory extends AdapterFactoryImpl {
 	}
 
 	/**
-	 * Creates a new adapter for the default case. <!-- begin-user-doc --> This default implementation returns null.
+	 * Creates a new adapter for the default case.
+	 * <!-- begin-user-doc --> This default implementation returns null.
 	 * <!-- end-user-doc -->
-	 * 
 	 * @return the new adapter.
 	 * @generated
 	 */

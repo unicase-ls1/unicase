@@ -21,7 +21,7 @@ import org.unicase.model.component.ComponentPackage;
 import org.unicase.model.component.ComponentService;
 import org.unicase.model.impl.ModelElementImpl;
 
-/*
+/**
  * <!-- begin-user-doc --> An implementation of the model object ' <em><b>Service</b></em>'. <!-- end-user-doc --> <p>
  * The following features are implemented: <ul> <li>{@link
  * org.unicase.model.component.impl.ComponentServiceImpl#getOfferingComponent <em>Offering Component</em>}</li>
@@ -42,7 +42,6 @@ public class ComponentServiceImpl extends ModelElementImpl implements ComponentS
 
 	/**
 	 * <!-- begin-user-doc --> <!-- end-user-doc -->
-	 * 
 	 * @generated
 	 */
 	protected ComponentServiceImpl() {
@@ -51,7 +50,6 @@ public class ComponentServiceImpl extends ModelElementImpl implements ComponentS
 
 	/**
 	 * <!-- begin-user-doc --> <!-- end-user-doc -->
-	 * 
 	 * @generated
 	 */
 	@Override
@@ -61,29 +59,26 @@ public class ComponentServiceImpl extends ModelElementImpl implements ComponentS
 
 	/**
 	 * <!-- begin-user-doc --> <!-- end-user-doc -->
-	 * 
 	 * @generated
 	 */
 	public Component getOfferingComponent() {
-		if (eContainerFeatureID != ComponentPackage.COMPONENT_SERVICE__OFFERING_COMPONENT)
+		if (eContainerFeatureID() != ComponentPackage.COMPONENT_SERVICE__OFFERING_COMPONENT)
 			return null;
 		return (Component) eContainer();
 	}
 
 	/**
 	 * <!-- begin-user-doc --> <!-- end-user-doc -->
-	 * 
 	 * @generated
 	 */
 	public Component basicGetOfferingComponent() {
-		if (eContainerFeatureID != ComponentPackage.COMPONENT_SERVICE__OFFERING_COMPONENT)
+		if (eContainerFeatureID() != ComponentPackage.COMPONENT_SERVICE__OFFERING_COMPONENT)
 			return null;
 		return (Component) eInternalContainer();
 	}
 
 	/**
 	 * <!-- begin-user-doc --> <!-- end-user-doc -->
-	 * 
 	 * @generated
 	 */
 	public NotificationChain basicSetOfferingComponent(Component newOfferingComponent, NotificationChain msgs) {
@@ -94,12 +89,11 @@ public class ComponentServiceImpl extends ModelElementImpl implements ComponentS
 
 	/**
 	 * <!-- begin-user-doc --> <!-- end-user-doc -->
-	 * 
 	 * @generated
 	 */
 	public void setOfferingComponent(Component newOfferingComponent) {
 		if (newOfferingComponent != eInternalContainer()
-			|| (eContainerFeatureID != ComponentPackage.COMPONENT_SERVICE__OFFERING_COMPONENT && newOfferingComponent != null)) {
+			|| (eContainerFeatureID() != ComponentPackage.COMPONENT_SERVICE__OFFERING_COMPONENT && newOfferingComponent != null)) {
 			if (EcoreUtil.isAncestor(this, newOfferingComponent))
 				throw new IllegalArgumentException("Recursive containment not allowed for " + toString());
 			NotificationChain msgs = null;
@@ -118,7 +112,6 @@ public class ComponentServiceImpl extends ModelElementImpl implements ComponentS
 
 	/**
 	 * <!-- begin-user-doc --> <!-- end-user-doc -->
-	 * 
 	 * @generated
 	 */
 	public EList<Component> getConsumingComponents() {
@@ -131,7 +124,6 @@ public class ComponentServiceImpl extends ModelElementImpl implements ComponentS
 
 	/**
 	 * <!-- begin-user-doc --> <!-- end-user-doc -->
-	 * 
 	 * @generated
 	 */
 	@SuppressWarnings("unchecked")
@@ -151,7 +143,6 @@ public class ComponentServiceImpl extends ModelElementImpl implements ComponentS
 
 	/**
 	 * <!-- begin-user-doc --> <!-- end-user-doc -->
-	 * 
 	 * @generated
 	 */
 	@Override
@@ -167,12 +158,11 @@ public class ComponentServiceImpl extends ModelElementImpl implements ComponentS
 
 	/**
 	 * <!-- begin-user-doc --> <!-- end-user-doc -->
-	 * 
 	 * @generated
 	 */
 	@Override
 	public NotificationChain eBasicRemoveFromContainerFeature(NotificationChain msgs) {
-		switch (eContainerFeatureID) {
+		switch (eContainerFeatureID()) {
 		case ComponentPackage.COMPONENT_SERVICE__OFFERING_COMPONENT:
 			return eInternalContainer().eInverseRemove(this, ComponentPackage.COMPONENT__OFFERED_SERVICES,
 				Component.class, msgs);
@@ -182,7 +172,6 @@ public class ComponentServiceImpl extends ModelElementImpl implements ComponentS
 
 	/**
 	 * <!-- begin-user-doc --> <!-- end-user-doc -->
-	 * 
 	 * @generated
 	 */
 	@Override
@@ -200,7 +189,6 @@ public class ComponentServiceImpl extends ModelElementImpl implements ComponentS
 
 	/**
 	 * <!-- begin-user-doc --> <!-- end-user-doc -->
-	 * 
 	 * @generated
 	 */
 	@SuppressWarnings("unchecked")
@@ -220,7 +208,6 @@ public class ComponentServiceImpl extends ModelElementImpl implements ComponentS
 
 	/**
 	 * <!-- begin-user-doc --> <!-- end-user-doc -->
-	 * 
 	 * @generated
 	 */
 	@Override
@@ -238,7 +225,6 @@ public class ComponentServiceImpl extends ModelElementImpl implements ComponentS
 
 	/**
 	 * <!-- begin-user-doc --> <!-- end-user-doc -->
-	 * 
 	 * @generated
 	 */
 	@Override
