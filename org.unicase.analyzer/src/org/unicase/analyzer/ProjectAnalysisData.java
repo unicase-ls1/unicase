@@ -7,11 +7,10 @@
 package org.unicase.analyzer;
 
 import org.eclipse.emf.common.util.EList;
-
 import org.eclipse.emf.ecore.EObject;
-
+import org.unicase.emfstore.esmodel.ProjectId;
 import org.unicase.emfstore.esmodel.versioning.ChangePackage;
-
+import org.unicase.emfstore.esmodel.versioning.PrimaryVersionSpec;
 import org.unicase.model.Project;
 
 /**
@@ -24,6 +23,8 @@ import org.unicase.model.Project;
  * <ul>
  *   <li>{@link org.unicase.analyzer.ProjectAnalysisData#getProjectState <em>Project State</em>}</li>
  *   <li>{@link org.unicase.analyzer.ProjectAnalysisData#getChangePackages <em>Change Packages</em>}</li>
+ *   <li>{@link org.unicase.analyzer.ProjectAnalysisData#getPrimaryVersionSpec <em>Primary Version Spec</em>}</li>
+ *   <li>{@link org.unicase.analyzer.ProjectAnalysisData#getProjectId <em>Project Id</em>}</li>
  * </ul>
  * </p>
  *
@@ -73,5 +74,57 @@ public interface ProjectAnalysisData extends EObject {
 	 * @generated
 	 */
 	EList<ChangePackage> getChangePackages();
+
+	/**
+	 * Returns the value of the '<em><b>Primary Version Spec</b></em>' containment reference.
+	 * <!-- begin-user-doc -->
+	 * <p>
+	 * If the meaning of the '<em>Primary Version Spec</em>' containment reference isn't clear,
+	 * there really should be more of a description here...
+	 * </p>
+	 * <!-- end-user-doc -->
+	 * @return the value of the '<em>Primary Version Spec</em>' containment reference.
+	 * @see #setPrimaryVersionSpec(PrimaryVersionSpec)
+	 * @see org.unicase.analyzer.AnalyzerPackage#getProjectAnalysisData_PrimaryVersionSpec()
+	 * @model containment="true"
+	 * @generated
+	 */
+	PrimaryVersionSpec getPrimaryVersionSpec();
+
+	/**
+	 * Sets the value of the '{@link org.unicase.analyzer.ProjectAnalysisData#getPrimaryVersionSpec <em>Primary Version Spec</em>}' containment reference.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @param value the new value of the '<em>Primary Version Spec</em>' containment reference.
+	 * @see #getPrimaryVersionSpec()
+	 * @generated
+	 */
+	void setPrimaryVersionSpec(PrimaryVersionSpec value);
+
+	/**
+	 * Returns the value of the '<em><b>Project Id</b></em>' reference.
+	 * <!-- begin-user-doc -->
+	 * <p>
+	 * If the meaning of the '<em>Project Id</em>' reference isn't clear,
+	 * there really should be more of a description here...
+	 * </p>
+	 * <!-- end-user-doc -->
+	 * @return the value of the '<em>Project Id</em>' reference.
+	 * @see #setProjectId(ProjectId)
+	 * @see org.unicase.analyzer.AnalyzerPackage#getProjectAnalysisData_ProjectId()
+	 * @model
+	 * @generated
+	 */
+	ProjectId getProjectId();
+
+	/**
+	 * Sets the value of the '{@link org.unicase.analyzer.ProjectAnalysisData#getProjectId <em>Project Id</em>}' reference.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @param value the new value of the '<em>Project Id</em>' reference.
+	 * @see #getProjectId()
+	 * @generated
+	 */
+	void setProjectId(ProjectId value);
 
 } // ProjectAnalysisData

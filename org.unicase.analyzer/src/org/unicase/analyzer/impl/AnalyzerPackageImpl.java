@@ -10,16 +10,12 @@ package org.unicase.analyzer.impl;
 import org.eclipse.emf.ecore.EClass;
 import org.eclipse.emf.ecore.EPackage;
 import org.eclipse.emf.ecore.EReference;
-
 import org.eclipse.emf.ecore.impl.EPackageImpl;
-
 import org.unicase.analyzer.AnalyzerFactory;
 import org.unicase.analyzer.AnalyzerPackage;
 import org.unicase.analyzer.ProjectAnalysisData;
 import org.unicase.emfstore.esmodel.EsmodelPackage;
-
 import org.unicase.emfstore.esmodel.versioning.VersioningPackage;
-
 import org.unicase.model.ModelPackage;
 
 /**
@@ -139,6 +135,24 @@ public class AnalyzerPackageImpl extends EPackageImpl implements AnalyzerPackage
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
+	public EReference getProjectAnalysisData_PrimaryVersionSpec() {
+		return (EReference)projectAnalysisDataEClass.getEStructuralFeatures().get(2);
+	}
+
+	/**
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 */
+	public EReference getProjectAnalysisData_ProjectId() {
+		return (EReference)projectAnalysisDataEClass.getEStructuralFeatures().get(3);
+	}
+
+	/**
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 */
 	public AnalyzerFactory getAnalyzerFactory() {
 		return (AnalyzerFactory)getEFactoryInstance();
 	}
@@ -165,6 +179,8 @@ public class AnalyzerPackageImpl extends EPackageImpl implements AnalyzerPackage
 		projectAnalysisDataEClass = createEClass(PROJECT_ANALYSIS_DATA);
 		createEReference(projectAnalysisDataEClass, PROJECT_ANALYSIS_DATA__PROJECT_STATE);
 		createEReference(projectAnalysisDataEClass, PROJECT_ANALYSIS_DATA__CHANGE_PACKAGES);
+		createEReference(projectAnalysisDataEClass, PROJECT_ANALYSIS_DATA__PRIMARY_VERSION_SPEC);
+		createEReference(projectAnalysisDataEClass, PROJECT_ANALYSIS_DATA__PROJECT_ID);
 	}
 
 	/**
@@ -193,6 +209,7 @@ public class AnalyzerPackageImpl extends EPackageImpl implements AnalyzerPackage
 		// Obtain other dependent packages
 		ModelPackage theModelPackage = (ModelPackage)EPackage.Registry.INSTANCE.getEPackage(ModelPackage.eNS_URI);
 		VersioningPackage theVersioningPackage = (VersioningPackage)EPackage.Registry.INSTANCE.getEPackage(VersioningPackage.eNS_URI);
+		EsmodelPackage theEsmodelPackage = (EsmodelPackage)EPackage.Registry.INSTANCE.getEPackage(EsmodelPackage.eNS_URI);
 
 		// Create type parameters
 
@@ -204,6 +221,8 @@ public class AnalyzerPackageImpl extends EPackageImpl implements AnalyzerPackage
 		initEClass(projectAnalysisDataEClass, ProjectAnalysisData.class, "ProjectAnalysisData", !IS_ABSTRACT, !IS_INTERFACE, IS_GENERATED_INSTANCE_CLASS);
 		initEReference(getProjectAnalysisData_ProjectState(), theModelPackage.getProject(), null, "projectState", null, 0, 1, ProjectAnalysisData.class, !IS_TRANSIENT, !IS_VOLATILE, IS_CHANGEABLE, IS_COMPOSITE, !IS_RESOLVE_PROXIES, !IS_UNSETTABLE, IS_UNIQUE, !IS_DERIVED, IS_ORDERED);
 		initEReference(getProjectAnalysisData_ChangePackages(), theVersioningPackage.getChangePackage(), null, "changePackages", null, 0, -1, ProjectAnalysisData.class, !IS_TRANSIENT, !IS_VOLATILE, IS_CHANGEABLE, IS_COMPOSITE, !IS_RESOLVE_PROXIES, !IS_UNSETTABLE, IS_UNIQUE, !IS_DERIVED, IS_ORDERED);
+		initEReference(getProjectAnalysisData_PrimaryVersionSpec(), theVersioningPackage.getPrimaryVersionSpec(), null, "primaryVersionSpec", null, 0, 1, ProjectAnalysisData.class, !IS_TRANSIENT, !IS_VOLATILE, IS_CHANGEABLE, IS_COMPOSITE, !IS_RESOLVE_PROXIES, !IS_UNSETTABLE, IS_UNIQUE, !IS_DERIVED, IS_ORDERED);
+		initEReference(getProjectAnalysisData_ProjectId(), theEsmodelPackage.getProjectId(), null, "projectId", null, 0, 1, ProjectAnalysisData.class, !IS_TRANSIENT, !IS_VOLATILE, IS_CHANGEABLE, !IS_COMPOSITE, IS_RESOLVE_PROXIES, !IS_UNSETTABLE, IS_UNIQUE, !IS_DERIVED, IS_ORDERED);
 
 		// Create resource
 		createResource(eNS_URI);

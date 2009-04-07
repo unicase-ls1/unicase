@@ -12,11 +12,9 @@ import java.util.List;
 
 import org.eclipse.emf.common.notify.AdapterFactory;
 import org.eclipse.emf.common.notify.Notification;
-
 import org.eclipse.emf.common.util.ResourceLocator;
-
 import org.eclipse.emf.ecore.EStructuralFeature;
-
+import org.eclipse.emf.edit.provider.ComposeableAdapterFactory;
 import org.eclipse.emf.edit.provider.IEditingDomainItemProvider;
 import org.eclipse.emf.edit.provider.IItemLabelProvider;
 import org.eclipse.emf.edit.provider.IItemPropertyDescriptor;
@@ -25,12 +23,9 @@ import org.eclipse.emf.edit.provider.IStructuredItemContentProvider;
 import org.eclipse.emf.edit.provider.ITreeItemContentProvider;
 import org.eclipse.emf.edit.provider.ItemProviderAdapter;
 import org.eclipse.emf.edit.provider.ViewerNotification;
-
 import org.unicase.analyzer.AnalyzerPackage;
 import org.unicase.analyzer.ProjectAnalysisData;
-
 import org.unicase.emfstore.esmodel.versioning.VersioningFactory;
-
 import org.unicase.model.ModelFactory;
 
 /**
@@ -68,8 +63,31 @@ public class ProjectAnalysisDataItemProvider
 		if (itemPropertyDescriptors == null) {
 			super.getPropertyDescriptors(object);
 
+			addProjectIdPropertyDescriptor(object);
 		}
 		return itemPropertyDescriptors;
+	}
+
+	/**
+	 * This adds a property descriptor for the Project Id feature.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 */
+	protected void addProjectIdPropertyDescriptor(Object object) {
+		itemPropertyDescriptors.add
+			(createItemPropertyDescriptor
+				(((ComposeableAdapterFactory)adapterFactory).getRootAdapterFactory(),
+				 getResourceLocator(),
+				 getString("_UI_ProjectAnalysisData_projectId_feature"),
+				 getString("_UI_PropertyDescriptor_description", "_UI_ProjectAnalysisData_projectId_feature", "_UI_ProjectAnalysisData_type"),
+				 AnalyzerPackage.Literals.PROJECT_ANALYSIS_DATA__PROJECT_ID,
+				 true,
+				 false,
+				 true,
+				 null,
+				 null,
+				 null));
 	}
 
 	/**
@@ -86,6 +104,7 @@ public class ProjectAnalysisDataItemProvider
 			super.getChildrenFeatures(object);
 			childrenFeatures.add(AnalyzerPackage.Literals.PROJECT_ANALYSIS_DATA__PROJECT_STATE);
 			childrenFeatures.add(AnalyzerPackage.Literals.PROJECT_ANALYSIS_DATA__CHANGE_PACKAGES);
+			childrenFeatures.add(AnalyzerPackage.Literals.PROJECT_ANALYSIS_DATA__PRIMARY_VERSION_SPEC);
 		}
 		return childrenFeatures;
 	}
@@ -139,6 +158,7 @@ public class ProjectAnalysisDataItemProvider
 		switch (notification.getFeatureID(ProjectAnalysisData.class)) {
 			case AnalyzerPackage.PROJECT_ANALYSIS_DATA__PROJECT_STATE:
 			case AnalyzerPackage.PROJECT_ANALYSIS_DATA__CHANGE_PACKAGES:
+			case AnalyzerPackage.PROJECT_ANALYSIS_DATA__PRIMARY_VERSION_SPEC:
 				fireNotifyChanged(new ViewerNotification(notification, notification.getNotifier(), true, false));
 				return;
 		}
@@ -165,6 +185,11 @@ public class ProjectAnalysisDataItemProvider
 			(createChildParameter
 				(AnalyzerPackage.Literals.PROJECT_ANALYSIS_DATA__CHANGE_PACKAGES,
 				 VersioningFactory.eINSTANCE.createChangePackage()));
+
+		newChildDescriptors.add
+			(createChildParameter
+				(AnalyzerPackage.Literals.PROJECT_ANALYSIS_DATA__PRIMARY_VERSION_SPEC,
+				 VersioningFactory.eINSTANCE.createPrimaryVersionSpec()));
 	}
 
 	/**

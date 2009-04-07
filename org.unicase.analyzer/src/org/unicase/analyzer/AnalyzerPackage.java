@@ -87,13 +87,31 @@ public interface AnalyzerPackage extends EPackage {
 	int PROJECT_ANALYSIS_DATA__CHANGE_PACKAGES = 1;
 
 	/**
+	 * The feature id for the '<em><b>Primary Version Spec</b></em>' containment reference.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 * @ordered
+	 */
+	int PROJECT_ANALYSIS_DATA__PRIMARY_VERSION_SPEC = 2;
+
+	/**
+	 * The feature id for the '<em><b>Project Id</b></em>' reference.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 * @ordered
+	 */
+	int PROJECT_ANALYSIS_DATA__PROJECT_ID = 3;
+
+	/**
 	 * The number of structural features of the '<em>Project Analysis Data</em>' class.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
 	 * @generated
 	 * @ordered
 	 */
-	int PROJECT_ANALYSIS_DATA_FEATURE_COUNT = 2;
+	int PROJECT_ANALYSIS_DATA_FEATURE_COUNT = 4;
 
 
 	/**
@@ -127,6 +145,28 @@ public interface AnalyzerPackage extends EPackage {
 	 * @generated
 	 */
 	EReference getProjectAnalysisData_ChangePackages();
+
+	/**
+	 * Returns the meta object for the containment reference '{@link org.unicase.analyzer.ProjectAnalysisData#getPrimaryVersionSpec <em>Primary Version Spec</em>}'.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @return the meta object for the containment reference '<em>Primary Version Spec</em>'.
+	 * @see org.unicase.analyzer.ProjectAnalysisData#getPrimaryVersionSpec()
+	 * @see #getProjectAnalysisData()
+	 * @generated
+	 */
+	EReference getProjectAnalysisData_PrimaryVersionSpec();
+
+	/**
+	 * Returns the meta object for the reference '{@link org.unicase.analyzer.ProjectAnalysisData#getProjectId <em>Project Id</em>}'.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @return the meta object for the reference '<em>Project Id</em>'.
+	 * @see org.unicase.analyzer.ProjectAnalysisData#getProjectId()
+	 * @see #getProjectAnalysisData()
+	 * @generated
+	 */
+	EReference getProjectAnalysisData_ProjectId();
 
 	/**
 	 * Returns the factory that creates the instances of the model.
@@ -175,6 +215,22 @@ public interface AnalyzerPackage extends EPackage {
 		 * @generated
 		 */
 		EReference PROJECT_ANALYSIS_DATA__CHANGE_PACKAGES = eINSTANCE.getProjectAnalysisData_ChangePackages();
+
+		/**
+		 * The meta object literal for the '<em><b>Primary Version Spec</b></em>' containment reference feature.
+		 * <!-- begin-user-doc -->
+		 * <!-- end-user-doc -->
+		 * @generated
+		 */
+		EReference PROJECT_ANALYSIS_DATA__PRIMARY_VERSION_SPEC = eINSTANCE.getProjectAnalysisData_PrimaryVersionSpec();
+
+		/**
+		 * The meta object literal for the '<em><b>Project Id</b></em>' reference feature.
+		 * <!-- begin-user-doc -->
+		 * <!-- end-user-doc -->
+		 * @generated
+		 */
+		EReference PROJECT_ANALYSIS_DATA__PROJECT_ID = eINSTANCE.getProjectAnalysisData_ProjectId();
 
 	}
 

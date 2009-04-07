@@ -11,22 +11,18 @@ import java.util.Collection;
 
 import org.eclipse.emf.common.notify.Notification;
 import org.eclipse.emf.common.notify.NotificationChain;
-
 import org.eclipse.emf.common.util.EList;
-
 import org.eclipse.emf.ecore.EClass;
 import org.eclipse.emf.ecore.InternalEObject;
-
 import org.eclipse.emf.ecore.impl.ENotificationImpl;
 import org.eclipse.emf.ecore.impl.EObjectImpl;
-
 import org.eclipse.emf.ecore.util.EObjectContainmentEList;
 import org.eclipse.emf.ecore.util.InternalEList;
-
 import org.unicase.analyzer.AnalyzerPackage;
 import org.unicase.analyzer.ProjectAnalysisData;
+import org.unicase.emfstore.esmodel.ProjectId;
 import org.unicase.emfstore.esmodel.versioning.ChangePackage;
-
+import org.unicase.emfstore.esmodel.versioning.PrimaryVersionSpec;
 import org.unicase.model.Project;
 
 /**
@@ -38,6 +34,8 @@ import org.unicase.model.Project;
  * <ul>
  *   <li>{@link org.unicase.analyzer.impl.ProjectAnalysisDataImpl#getProjectState <em>Project State</em>}</li>
  *   <li>{@link org.unicase.analyzer.impl.ProjectAnalysisDataImpl#getChangePackages <em>Change Packages</em>}</li>
+ *   <li>{@link org.unicase.analyzer.impl.ProjectAnalysisDataImpl#getPrimaryVersionSpec <em>Primary Version Spec</em>}</li>
+ *   <li>{@link org.unicase.analyzer.impl.ProjectAnalysisDataImpl#getProjectId <em>Project Id</em>}</li>
  * </ul>
  * </p>
  *
@@ -63,6 +61,26 @@ public class ProjectAnalysisDataImpl extends EObjectImpl implements ProjectAnaly
 	 * @ordered
 	 */
 	protected EList<ChangePackage> changePackages;
+
+	/**
+	 * The cached value of the '{@link #getPrimaryVersionSpec() <em>Primary Version Spec</em>}' containment reference.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @see #getPrimaryVersionSpec()
+	 * @generated
+	 * @ordered
+	 */
+	protected PrimaryVersionSpec primaryVersionSpec;
+
+	/**
+	 * The cached value of the '{@link #getProjectId() <em>Project Id</em>}' reference.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @see #getProjectId()
+	 * @generated
+	 * @ordered
+	 */
+	protected ProjectId projectId;
 
 	/**
 	 * <!-- begin-user-doc -->
@@ -143,6 +161,87 @@ public class ProjectAnalysisDataImpl extends EObjectImpl implements ProjectAnaly
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
+	public PrimaryVersionSpec getPrimaryVersionSpec() {
+		return primaryVersionSpec;
+	}
+
+	/**
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 */
+	public NotificationChain basicSetPrimaryVersionSpec(PrimaryVersionSpec newPrimaryVersionSpec, NotificationChain msgs) {
+		PrimaryVersionSpec oldPrimaryVersionSpec = primaryVersionSpec;
+		primaryVersionSpec = newPrimaryVersionSpec;
+		if (eNotificationRequired()) {
+			ENotificationImpl notification = new ENotificationImpl(this, Notification.SET, AnalyzerPackage.PROJECT_ANALYSIS_DATA__PRIMARY_VERSION_SPEC, oldPrimaryVersionSpec, newPrimaryVersionSpec);
+			if (msgs == null) msgs = notification; else msgs.add(notification);
+		}
+		return msgs;
+	}
+
+	/**
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 */
+	public void setPrimaryVersionSpec(PrimaryVersionSpec newPrimaryVersionSpec) {
+		if (newPrimaryVersionSpec != primaryVersionSpec) {
+			NotificationChain msgs = null;
+			if (primaryVersionSpec != null)
+				msgs = ((InternalEObject)primaryVersionSpec).eInverseRemove(this, EOPPOSITE_FEATURE_BASE - AnalyzerPackage.PROJECT_ANALYSIS_DATA__PRIMARY_VERSION_SPEC, null, msgs);
+			if (newPrimaryVersionSpec != null)
+				msgs = ((InternalEObject)newPrimaryVersionSpec).eInverseAdd(this, EOPPOSITE_FEATURE_BASE - AnalyzerPackage.PROJECT_ANALYSIS_DATA__PRIMARY_VERSION_SPEC, null, msgs);
+			msgs = basicSetPrimaryVersionSpec(newPrimaryVersionSpec, msgs);
+			if (msgs != null) msgs.dispatch();
+		}
+		else if (eNotificationRequired())
+			eNotify(new ENotificationImpl(this, Notification.SET, AnalyzerPackage.PROJECT_ANALYSIS_DATA__PRIMARY_VERSION_SPEC, newPrimaryVersionSpec, newPrimaryVersionSpec));
+	}
+
+	/**
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 */
+	public ProjectId getProjectId() {
+		if (projectId != null && projectId.eIsProxy()) {
+			InternalEObject oldProjectId = (InternalEObject)projectId;
+			projectId = (ProjectId)eResolveProxy(oldProjectId);
+			if (projectId != oldProjectId) {
+				if (eNotificationRequired())
+					eNotify(new ENotificationImpl(this, Notification.RESOLVE, AnalyzerPackage.PROJECT_ANALYSIS_DATA__PROJECT_ID, oldProjectId, projectId));
+			}
+		}
+		return projectId;
+	}
+
+	/**
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 */
+	public ProjectId basicGetProjectId() {
+		return projectId;
+	}
+
+	/**
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 */
+	public void setProjectId(ProjectId newProjectId) {
+		ProjectId oldProjectId = projectId;
+		projectId = newProjectId;
+		if (eNotificationRequired())
+			eNotify(new ENotificationImpl(this, Notification.SET, AnalyzerPackage.PROJECT_ANALYSIS_DATA__PROJECT_ID, oldProjectId, projectId));
+	}
+
+	/**
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 */
 	@Override
 	public NotificationChain eInverseRemove(InternalEObject otherEnd, int featureID, NotificationChain msgs) {
 		switch (featureID) {
@@ -150,6 +249,8 @@ public class ProjectAnalysisDataImpl extends EObjectImpl implements ProjectAnaly
 				return basicSetProjectState(null, msgs);
 			case AnalyzerPackage.PROJECT_ANALYSIS_DATA__CHANGE_PACKAGES:
 				return ((InternalEList<?>)getChangePackages()).basicRemove(otherEnd, msgs);
+			case AnalyzerPackage.PROJECT_ANALYSIS_DATA__PRIMARY_VERSION_SPEC:
+				return basicSetPrimaryVersionSpec(null, msgs);
 		}
 		return super.eInverseRemove(otherEnd, featureID, msgs);
 	}
@@ -166,6 +267,11 @@ public class ProjectAnalysisDataImpl extends EObjectImpl implements ProjectAnaly
 				return getProjectState();
 			case AnalyzerPackage.PROJECT_ANALYSIS_DATA__CHANGE_PACKAGES:
 				return getChangePackages();
+			case AnalyzerPackage.PROJECT_ANALYSIS_DATA__PRIMARY_VERSION_SPEC:
+				return getPrimaryVersionSpec();
+			case AnalyzerPackage.PROJECT_ANALYSIS_DATA__PROJECT_ID:
+				if (resolve) return getProjectId();
+				return basicGetProjectId();
 		}
 		return super.eGet(featureID, resolve, coreType);
 	}
@@ -186,6 +292,12 @@ public class ProjectAnalysisDataImpl extends EObjectImpl implements ProjectAnaly
 				getChangePackages().clear();
 				getChangePackages().addAll((Collection<? extends ChangePackage>)newValue);
 				return;
+			case AnalyzerPackage.PROJECT_ANALYSIS_DATA__PRIMARY_VERSION_SPEC:
+				setPrimaryVersionSpec((PrimaryVersionSpec)newValue);
+				return;
+			case AnalyzerPackage.PROJECT_ANALYSIS_DATA__PROJECT_ID:
+				setProjectId((ProjectId)newValue);
+				return;
 		}
 		super.eSet(featureID, newValue);
 	}
@@ -204,6 +316,12 @@ public class ProjectAnalysisDataImpl extends EObjectImpl implements ProjectAnaly
 			case AnalyzerPackage.PROJECT_ANALYSIS_DATA__CHANGE_PACKAGES:
 				getChangePackages().clear();
 				return;
+			case AnalyzerPackage.PROJECT_ANALYSIS_DATA__PRIMARY_VERSION_SPEC:
+				setPrimaryVersionSpec((PrimaryVersionSpec)null);
+				return;
+			case AnalyzerPackage.PROJECT_ANALYSIS_DATA__PROJECT_ID:
+				setProjectId((ProjectId)null);
+				return;
 		}
 		super.eUnset(featureID);
 	}
@@ -220,6 +338,10 @@ public class ProjectAnalysisDataImpl extends EObjectImpl implements ProjectAnaly
 				return projectState != null;
 			case AnalyzerPackage.PROJECT_ANALYSIS_DATA__CHANGE_PACKAGES:
 				return changePackages != null && !changePackages.isEmpty();
+			case AnalyzerPackage.PROJECT_ANALYSIS_DATA__PRIMARY_VERSION_SPEC:
+				return primaryVersionSpec != null;
+			case AnalyzerPackage.PROJECT_ANALYSIS_DATA__PROJECT_ID:
+				return projectId != null;
 		}
 		return super.eIsSet(featureID);
 	}
