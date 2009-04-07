@@ -216,7 +216,7 @@ public final class ServerConfiguration {
 	 */
 	public static final String MULTI_PROPERTY_SEPERATOR = ",";
 
-	/*
+	/**
 	 * FILE EXTENSIONS
 	 */
 
