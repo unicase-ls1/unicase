@@ -19,7 +19,7 @@ public class Application implements IApplication {
 
 	private int DEFAULTITERATION = 1;
 
-	/*
+	/**
 	 * (non-Javadoc)
 	 * @seeorg.eclipse.equinox.app.IApplicationk#start(org.eclipse.equinox.app. IApplicationContext)
 	 */
@@ -56,7 +56,7 @@ public class Application implements IApplication {
 		return IApplication.EXIT_OK;
 	}
 
-	/*
+	/**
 	 * (non-Javadoc)
 	 * @see org.eclipse.equinox.app.IApplication#stop()
 	 */
