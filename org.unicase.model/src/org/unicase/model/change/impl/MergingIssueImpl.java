@@ -89,7 +89,7 @@ public class MergingIssueImpl extends IssueImpl implements MergingIssue {
 	public Object eGet(int featureID, boolean resolve, boolean coreType) {
 		switch (featureID) {
 		case ChangePackage.MERGING_ISSUE__RESOLVING_REVISION:
-			return new Integer(getResolvingRevision());
+			return getResolvingRevision();
 		}
 		return super.eGet(featureID, resolve, coreType);
 	}
@@ -103,7 +103,7 @@ public class MergingIssueImpl extends IssueImpl implements MergingIssue {
 	public void eSet(int featureID, Object newValue) {
 		switch (featureID) {
 		case ChangePackage.MERGING_ISSUE__RESOLVING_REVISION:
-			setResolvingRevision(((Integer) newValue).intValue());
+			setResolvingRevision((Integer) newValue);
 			return;
 		}
 		super.eSet(featureID, newValue);

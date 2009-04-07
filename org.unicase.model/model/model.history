@@ -6213,5 +6213,7 @@
         featureName="eType" referenceValue="http://www.eclipse.org/emf/2002/Ecore#//EString"/>
     <changes xsi:type="history:Set" element="model.ecore#//attachment/FileAttachment/fileName"
         featureName="name" dataValue="fileName"/>
+    <changes xsi:type="history:Set" element="model.ecore#//requirement/FunctionalRequirement/cost"
+        featureName="eType" referenceValue="http://www.eclipse.org/emf/2002/Ecore#//EInt"/>
   </releases>
 </history:History>

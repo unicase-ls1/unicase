@@ -283,7 +283,7 @@ public class ActionItemImpl extends AnnotationImpl implements ActionItem {
 	 * @generated
 	 */
 	public WorkPackage getContainingWorkpackage() {
-		if (eContainerFeatureID != TaskPackage.ACTION_ITEM__CONTAINING_WORKPACKAGE)
+		if (eContainerFeatureID() != TaskPackage.ACTION_ITEM__CONTAINING_WORKPACKAGE)
 			return null;
 		return (WorkPackage) eContainer();
 	}
@@ -294,7 +294,7 @@ public class ActionItemImpl extends AnnotationImpl implements ActionItem {
 	 * @generated
 	 */
 	public WorkPackage basicGetContainingWorkpackage() {
-		if (eContainerFeatureID != TaskPackage.ACTION_ITEM__CONTAINING_WORKPACKAGE)
+		if (eContainerFeatureID() != TaskPackage.ACTION_ITEM__CONTAINING_WORKPACKAGE)
 			return null;
 		return (WorkPackage) eInternalContainer();
 	}
@@ -317,7 +317,7 @@ public class ActionItemImpl extends AnnotationImpl implements ActionItem {
 	 */
 	public void setContainingWorkpackage(WorkPackage newContainingWorkpackage) {
 		if (newContainingWorkpackage != eInternalContainer()
-			|| (eContainerFeatureID != TaskPackage.ACTION_ITEM__CONTAINING_WORKPACKAGE && newContainingWorkpackage != null)) {
+			|| (eContainerFeatureID() != TaskPackage.ACTION_ITEM__CONTAINING_WORKPACKAGE && newContainingWorkpackage != null)) {
 			if (EcoreUtil.isAncestor(this, newContainingWorkpackage))
 				throw new IllegalArgumentException("Recursive containment not allowed for " + toString());
 			NotificationChain msgs = null;
@@ -761,7 +761,7 @@ public class ActionItemImpl extends AnnotationImpl implements ActionItem {
 	 */
 	@Override
 	public NotificationChain eBasicRemoveFromContainerFeature(NotificationChain msgs) {
-		switch (eContainerFeatureID) {
+		switch (eContainerFeatureID()) {
 		case TaskPackage.ACTION_ITEM__CONTAINING_WORKPACKAGE:
 			return eInternalContainer().eInverseRemove(this, TaskPackage.WORK_PACKAGE__CONTAINED_WORK_ITEMS,
 				WorkPackage.class, msgs);
@@ -800,17 +800,17 @@ public class ActionItemImpl extends AnnotationImpl implements ActionItem {
 		case TaskPackage.ACTION_ITEM__DUE_DATE:
 			return getDueDate();
 		case TaskPackage.ACTION_ITEM__ESTIMATE:
-			return new Integer(getEstimate());
+			return getEstimate();
 		case TaskPackage.ACTION_ITEM__EFFORT:
-			return new Integer(getEffort());
+			return getEffort();
 		case TaskPackage.ACTION_ITEM__PRIORITY:
-			return new Integer(getPriority());
+			return getPriority();
 		case TaskPackage.ACTION_ITEM__RESOLVED:
-			return isResolved() ? Boolean.TRUE : Boolean.FALSE;
+			return isResolved();
 		case TaskPackage.ACTION_ITEM__CHECKED:
-			return isChecked() ? Boolean.TRUE : Boolean.FALSE;
+			return isChecked();
 		case TaskPackage.ACTION_ITEM__DONE:
-			return isDone() ? Boolean.TRUE : Boolean.FALSE;
+			return isDone();
 		case TaskPackage.ACTION_ITEM__ACTIVITY:
 			return getActivity();
 		}
@@ -855,22 +855,22 @@ public class ActionItemImpl extends AnnotationImpl implements ActionItem {
 			setDueDate((Date) newValue);
 			return;
 		case TaskPackage.ACTION_ITEM__ESTIMATE:
-			setEstimate(((Integer) newValue).intValue());
+			setEstimate((Integer) newValue);
 			return;
 		case TaskPackage.ACTION_ITEM__EFFORT:
-			setEffort(((Integer) newValue).intValue());
+			setEffort((Integer) newValue);
 			return;
 		case TaskPackage.ACTION_ITEM__PRIORITY:
-			setPriority(((Integer) newValue).intValue());
+			setPriority((Integer) newValue);
 			return;
 		case TaskPackage.ACTION_ITEM__RESOLVED:
-			setResolved(((Boolean) newValue).booleanValue());
+			setResolved((Boolean) newValue);
 			return;
 		case TaskPackage.ACTION_ITEM__CHECKED:
-			setChecked(((Boolean) newValue).booleanValue());
+			setChecked((Boolean) newValue);
 			return;
 		case TaskPackage.ACTION_ITEM__DONE:
-			setDone(((Boolean) newValue).booleanValue());
+			setDone((Boolean) newValue);
 			return;
 		case TaskPackage.ACTION_ITEM__ACTIVITY:
 			setActivity((ActivityType) newValue);

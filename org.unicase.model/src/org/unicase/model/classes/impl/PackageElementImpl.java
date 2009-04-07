@@ -75,7 +75,7 @@ public abstract class PackageElementImpl extends ModelElementImpl implements Pac
 	 * @generated
 	 */
 	public org.unicase.model.classes.Package getParentPackage() {
-		if (eContainerFeatureID != ClassesPackage.PACKAGE_ELEMENT__PARENT_PACKAGE)
+		if (eContainerFeatureID() != ClassesPackage.PACKAGE_ELEMENT__PARENT_PACKAGE)
 			return null;
 		return (org.unicase.model.classes.Package) eContainer();
 	}
@@ -86,7 +86,7 @@ public abstract class PackageElementImpl extends ModelElementImpl implements Pac
 	 * @generated
 	 */
 	public org.unicase.model.classes.Package basicGetParentPackage() {
-		if (eContainerFeatureID != ClassesPackage.PACKAGE_ELEMENT__PARENT_PACKAGE)
+		if (eContainerFeatureID() != ClassesPackage.PACKAGE_ELEMENT__PARENT_PACKAGE)
 			return null;
 		return (org.unicase.model.classes.Package) eInternalContainer();
 	}
@@ -110,7 +110,7 @@ public abstract class PackageElementImpl extends ModelElementImpl implements Pac
 	 */
 	public void setParentPackage(org.unicase.model.classes.Package newParentPackage) {
 		if (newParentPackage != eInternalContainer()
-			|| (eContainerFeatureID != ClassesPackage.PACKAGE_ELEMENT__PARENT_PACKAGE && newParentPackage != null)) {
+			|| (eContainerFeatureID() != ClassesPackage.PACKAGE_ELEMENT__PARENT_PACKAGE && newParentPackage != null)) {
 			if (EcoreUtil.isAncestor(this, newParentPackage))
 				throw new IllegalArgumentException("Recursive containment not allowed for " + toString());
 			NotificationChain msgs = null;
@@ -201,7 +201,7 @@ public abstract class PackageElementImpl extends ModelElementImpl implements Pac
 	 */
 	@Override
 	public NotificationChain eBasicRemoveFromContainerFeature(NotificationChain msgs) {
-		switch (eContainerFeatureID) {
+		switch (eContainerFeatureID()) {
 		case ClassesPackage.PACKAGE_ELEMENT__PARENT_PACKAGE:
 			return eInternalContainer().eInverseRemove(this, ClassesPackage.PACKAGE__CONTAINED_PACKAGE_ELEMENTS,
 				org.unicase.model.classes.Package.class, msgs);

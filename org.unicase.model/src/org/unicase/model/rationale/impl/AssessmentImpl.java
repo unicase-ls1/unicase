@@ -81,7 +81,7 @@ public class AssessmentImpl extends ModelElementImpl implements Assessment {
 	 * @generated
 	 */
 	public Proposal getProposal() {
-		if (eContainerFeatureID != RationalePackage.ASSESSMENT__PROPOSAL)
+		if (eContainerFeatureID() != RationalePackage.ASSESSMENT__PROPOSAL)
 			return null;
 		return (Proposal) eContainer();
 	}
@@ -92,7 +92,7 @@ public class AssessmentImpl extends ModelElementImpl implements Assessment {
 	 * @generated
 	 */
 	public Proposal basicGetProposal() {
-		if (eContainerFeatureID != RationalePackage.ASSESSMENT__PROPOSAL)
+		if (eContainerFeatureID() != RationalePackage.ASSESSMENT__PROPOSAL)
 			return null;
 		return (Proposal) eInternalContainer();
 	}
@@ -114,7 +114,7 @@ public class AssessmentImpl extends ModelElementImpl implements Assessment {
 	 */
 	public void setProposal(Proposal newProposal) {
 		if (newProposal != eInternalContainer()
-			|| (eContainerFeatureID != RationalePackage.ASSESSMENT__PROPOSAL && newProposal != null)) {
+			|| (eContainerFeatureID() != RationalePackage.ASSESSMENT__PROPOSAL && newProposal != null)) {
 			if (EcoreUtil.isAncestor(this, newProposal))
 				throw new IllegalArgumentException("Recursive containment not allowed for " + toString());
 			NotificationChain msgs = null;
@@ -264,7 +264,7 @@ public class AssessmentImpl extends ModelElementImpl implements Assessment {
 	 */
 	@Override
 	public NotificationChain eBasicRemoveFromContainerFeature(NotificationChain msgs) {
-		switch (eContainerFeatureID) {
+		switch (eContainerFeatureID()) {
 		case RationalePackage.ASSESSMENT__PROPOSAL:
 			return eInternalContainer().eInverseRemove(this, RationalePackage.PROPOSAL__ASSESSMENTS, Proposal.class,
 				msgs);
@@ -289,7 +289,7 @@ public class AssessmentImpl extends ModelElementImpl implements Assessment {
 				return getCriterion();
 			return basicGetCriterion();
 		case RationalePackage.ASSESSMENT__VALUE:
-			return new Integer(getValue());
+			return getValue();
 		}
 		return super.eGet(featureID, resolve, coreType);
 	}
@@ -309,7 +309,7 @@ public class AssessmentImpl extends ModelElementImpl implements Assessment {
 			setCriterion((Criterion) newValue);
 			return;
 		case RationalePackage.ASSESSMENT__VALUE:
-			setValue(((Integer) newValue).intValue());
+			setValue((Integer) newValue);
 			return;
 		}
 		super.eSet(featureID, newValue);

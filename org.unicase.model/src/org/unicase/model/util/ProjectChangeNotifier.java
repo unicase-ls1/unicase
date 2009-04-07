@@ -100,7 +100,7 @@ public class ProjectChangeNotifier extends AdapterImpl {
 			fireNotification(notification);
 			if (isAboutContainment(notification)) {
 				Object oldValue = notification.getOldValue();
-				if (oldValue instanceof List) {
+				if (oldValue instanceof List<?>) {
 					@SuppressWarnings("unchecked")
 					List<ModelElement> list = (List<ModelElement>) oldValue;
 					for (ModelElement child : list) {
