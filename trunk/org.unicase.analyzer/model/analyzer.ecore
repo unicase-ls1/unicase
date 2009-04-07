@@ -9,5 +9,8 @@
     <eStructuralFeatures xsi:type="ecore:EReference" name="changePackages" upperBound="-1"
         eType="ecore:EClass platform:/plugin/org.unicase.emfstore.esmodel/model/esmodel.ecore#//versioning/ChangePackage"
         containment="true"/>
+    <eStructuralFeatures xsi:type="ecore:EReference" name="primaryVersionSpec" eType="ecore:EClass platform:/plugin/org.unicase.emfstore.esmodel/model/esmodel.ecore#//versioning/PrimaryVersionSpec"
+        containment="true"/>
+    <eStructuralFeatures xsi:type="ecore:EReference" name="projectId" eType="ecore:EClass platform:/plugin/org.unicase.emfstore.esmodel/model/esmodel.ecore#//ProjectId"/>
   </eClassifiers>
 </ecore:EPackage>

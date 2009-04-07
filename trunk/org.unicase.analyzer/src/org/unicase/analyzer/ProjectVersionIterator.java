@@ -10,6 +10,7 @@ import java.util.Iterator;
 import java.util.List;
 import java.util.NoSuchElementException;
 
+import org.eclipse.emf.ecore.util.EcoreUtil;
 import org.unicase.emfstore.esmodel.ProjectId;
 import org.unicase.emfstore.esmodel.versioning.ChangePackage;
 import org.unicase.emfstore.esmodel.versioning.PrimaryVersionSpec;
@@ -129,6 +130,12 @@ public class ProjectVersionIterator implements Iterator<ProjectAnalysisData> {
 				e.printStackTrace();
 			}
 			projectdata.setProjectState(project);
+			
+			ProjectId projectIdCopy = (ProjectId)EcoreUtil.copy(projectId);
+			projectdata.setProjectId(projectIdCopy);
+			
+			PrimaryVersionSpec primarSpecCopy = (PrimaryVersionSpec)EcoreUtil.copy(targetSpec);
+			projectdata.setPrimaryVersionSpec(primarSpecCopy);
 
 			if(targetSpec.getIdentifier() == start){
 				//changepackage.add(null);
