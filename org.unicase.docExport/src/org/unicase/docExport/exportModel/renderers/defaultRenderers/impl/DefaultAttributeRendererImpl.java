@@ -55,7 +55,7 @@ import org.unicase.workspace.util.WorkspaceUtil;
  * end-user-doc -->
  * <p>
  * </p>
- *
+ * 
  * @generated
  */
 public class DefaultAttributeRendererImpl extends AttributeRendererImpl implements DefaultAttributeRenderer {
@@ -65,6 +65,7 @@ public class DefaultAttributeRendererImpl extends AttributeRendererImpl implemen
 
 	/**
 	 * <!-- begin-user-doc --> <!-- end-user-doc -->
+	 * 
 	 * @generated
 	 */
 	protected DefaultAttributeRendererImpl() {
@@ -73,6 +74,7 @@ public class DefaultAttributeRendererImpl extends AttributeRendererImpl implemen
 
 	/**
 	 * <!-- begin-user-doc --> <!-- end-user-doc -->
+	 * 
 	 * @generated
 	 */
 	@Override
@@ -158,8 +160,7 @@ public class DefaultAttributeRendererImpl extends AttributeRendererImpl implemen
 				booleanImage.setHeight(template.getLayoutOptions().getDefaultTextOption().getFontSize());
 				parent.add(booleanImage);
 			} catch (IOException e) {
-				// TODO Auto-generated catch block
-				e.printStackTrace();
+				// fall through: If the image can't be accessed, it just won't be rendered.
 			}
 		} else if (option.getBooleanStyle().equals(BooleanStyle.NUMBERS)) {
 			String text;

@@ -11,6 +11,7 @@ import java.util.ArrayList;
 import java.util.Vector;
 
 import org.eclipse.core.runtime.CoreException;
+import org.eclipse.core.runtime.IStatus;
 import org.eclipse.core.runtime.NullProgressMonitor;
 import org.eclipse.core.runtime.Path;
 import org.eclipse.emf.common.util.EList;
@@ -40,19 +41,21 @@ import org.unicase.docExport.exportModel.renderers.options.UBorderStyle;
 import org.unicase.model.ModelElement;
 import org.unicase.model.diagram.MEDiagram;
 import org.unicase.model.diagram.impl.DiagramLoadException;
+import org.unicase.workspace.util.WorkspaceUtil;
 
 /**
  * <!-- begin-user-doc --> An implementation of the model object '<em><b>Default Model Element Renderer</b></em>'. <!--
  * end-user-doc -->
  * <p>
  * </p>
- *
+ * 
  * @generated
  */
 public class DefaultModelElementRendererImpl extends ModelElementRendererImpl implements DefaultModelElementRenderer {
 
 	/**
 	 * <!-- begin-user-doc --> <!-- end-user-doc -->
+	 * 
 	 * @generated
 	 */
 	protected DefaultModelElementRendererImpl() {
@@ -61,6 +64,7 @@ public class DefaultModelElementRendererImpl extends ModelElementRendererImpl im
 
 	/**
 	 * <!-- begin-user-doc --> <!-- end-user-doc -->
+	 * 
 	 * @generated
 	 */
 	@Override
@@ -151,11 +155,9 @@ public class DefaultModelElementRendererImpl extends ModelElementRendererImpl im
 								util.copyToImage(diagram.getGmfdiagram(), new Path(tmpImage.toString()),
 									ImageFileFormat.SVG, new NullProgressMonitor(), PreferencesHint.USE_DEFAULTS);
 							} catch (DiagramLoadException e) {
-								// TODO Auto-generated catch block
-								e.printStackTrace();
+								WorkspaceUtil.log("A diagram could not be loaded while exporting.", e, IStatus.WARNING);
 							} catch (CoreException e) {
-								// TODO Auto-generated catch block
-								e.printStackTrace();
+								WorkspaceUtil.log("Exception while loading the diagram.", e, IStatus.WARNING);
 							}
 						}
 					});
@@ -175,8 +177,7 @@ public class DefaultModelElementRendererImpl extends ModelElementRendererImpl im
 			parent.add(label);
 
 		} catch (IOException e1) {
-			// TODO Auto-generated catch block
-			e1.printStackTrace();
+			// fall through. The diagram wont be rendered, but everything else will work.
 		}
 	}
 

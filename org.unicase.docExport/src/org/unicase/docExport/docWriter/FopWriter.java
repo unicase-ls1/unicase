@@ -125,8 +125,7 @@ public abstract class FopWriter implements DocWriter {
 					out.close();
 				}
 			} catch (IOException e) {
-				// TODO Auto-generated catch block
-				e.printStackTrace();
+				// nothing to do here
 			}
 		}
 	}
