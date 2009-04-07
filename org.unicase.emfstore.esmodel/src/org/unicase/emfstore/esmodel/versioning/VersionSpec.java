@@ -7,8 +7,9 @@ package org.unicase.emfstore.esmodel.versioning;
 
 import org.eclipse.emf.ecore.EObject;
 
-/*
+/**
  * <!-- begin-user-doc --> A representation of the model object ' <em><b>Version Spec</b></em>'. <!-- end-user-doc -->
+ * 
  * @see org.unicase.emfstore.esmodel.versioning.VersioningPackage#getVersionSpec()
  * @model interface="true" abstract="true"
  * @generated

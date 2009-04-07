@@ -29,14 +29,21 @@ import org.unicase.model.ModelElementId;
 import org.unicase.model.Project;
 import org.unicase.model.util.ModelUtil;
 
-/*
+/**
  * <!-- begin-user-doc --> An implementation of the model object '<em><b>Multi Reference Operation</b></em>'. <!--
- * end-user-doc --> <p> The following features are implemented: <ul> <li>{@link
- * org.unicase.emfstore.esmodel.versioning.operations.impl.MultiReferenceOperationImpl#isAdd <em>Add</em>}</li>
- * <li>{@link org.unicase.emfstore.esmodel.versioning.operations.impl.MultiReferenceOperationImpl#getIndex
- * <em>Index</em>}</li> <li>{@link
- * org.unicase.emfstore.esmodel.versioning.operations.impl.MultiReferenceOperationImpl#getReferencedModelElements
- * <em>Referenced Model Elements</em>}</li> </ul> </p>
+ * end-user-doc -->
+ * <p>
+ * The following features are implemented:
+ * <ul>
+ * <li>{@link org.unicase.emfstore.esmodel.versioning.operations.impl.MultiReferenceOperationImpl#isAdd <em>Add</em>}</li>
+ * <li>{@link org.unicase.emfstore.esmodel.versioning.operations.impl.MultiReferenceOperationImpl#getIndex <em>Index
+ * </em>}</li>
+ * <li>
+ * {@link org.unicase.emfstore.esmodel.versioning.operations.impl.MultiReferenceOperationImpl#getReferencedModelElements
+ * <em>Referenced Model Elements</em>}</li>
+ * </ul>
+ * </p>
+ * 
  * @generated
  */
 public class MultiReferenceOperationImpl extends ReferenceOperationImpl implements MultiReferenceOperation {
@@ -187,9 +194,9 @@ public class MultiReferenceOperationImpl extends ReferenceOperationImpl implemen
 	public Object eGet(int featureID, boolean resolve, boolean coreType) {
 		switch (featureID) {
 		case OperationsPackage.MULTI_REFERENCE_OPERATION__ADD:
-			return isAdd() ? Boolean.TRUE : Boolean.FALSE;
+			return isAdd();
 		case OperationsPackage.MULTI_REFERENCE_OPERATION__INDEX:
-			return new Integer(getIndex());
+			return getIndex();
 		case OperationsPackage.MULTI_REFERENCE_OPERATION__REFERENCED_MODEL_ELEMENTS:
 			return getReferencedModelElements();
 		}
@@ -206,10 +213,10 @@ public class MultiReferenceOperationImpl extends ReferenceOperationImpl implemen
 	public void eSet(int featureID, Object newValue) {
 		switch (featureID) {
 		case OperationsPackage.MULTI_REFERENCE_OPERATION__ADD:
-			setAdd(((Boolean) newValue).booleanValue());
+			setAdd((Boolean) newValue);
 			return;
 		case OperationsPackage.MULTI_REFERENCE_OPERATION__INDEX:
-			setIndex(((Integer) newValue).intValue());
+			setIndex((Integer) newValue);
 			return;
 		case OperationsPackage.MULTI_REFERENCE_OPERATION__REFERENCED_MODEL_ELEMENTS:
 			getReferencedModelElements().clear();

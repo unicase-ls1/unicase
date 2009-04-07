@@ -5,22 +5,28 @@
  */
 package org.unicase.emfstore.esmodel.versioning;
 
-/*
+/**
  * <!-- begin-user-doc --> A representation of the model object ' <em><b>Tag Version Spec</b></em>'. <!-- end-user-doc
- * --> <p> The following features are supported: <ul> <li>{@link
- * org.unicase.emfstore.esmodel.versioning.TagVersionSpec#getName <em>Name</em>}</li> </ul> </p>
+ * -->
+ * <p>
+ * The following features are supported:
+ * <ul>
+ * <li>{@link org.unicase.emfstore.esmodel.versioning.TagVersionSpec#getName <em>Name</em>}</li>
+ * </ul>
+ * </p>
+ * 
  * @see org.unicase.emfstore.esmodel.versioning.VersioningPackage#getTagVersionSpec()
  * @model
  * @generated
  */
 public interface TagVersionSpec extends VersionSpec {
 	/**
-	 * Returns the value of the '<em><b>Name</b></em>' attribute.
-	 * <!-- begin-user-doc -->
+	 * Returns the value of the '<em><b>Name</b></em>' attribute. <!-- begin-user-doc -->
 	 * <p>
 	 * If the meaning of the '<em>Name</em>' attribute isn't clear, there really should be more of a description here...
 	 * </p>
 	 * <!-- end-user-doc -->
+	 * 
 	 * @return the value of the '<em>Name</em>' attribute.
 	 * @see #setName(String)
 	 * @see org.unicase.emfstore.esmodel.versioning.VersioningPackage#getTagVersionSpec_Name()
@@ -30,8 +36,9 @@ public interface TagVersionSpec extends VersionSpec {
 	String getName();
 
 	/**
-	 * Sets the value of the '{@link org.unicase.emfstore.esmodel.versioning.TagVersionSpec#getName <em>Name</em>}' attribute.
-	 * <!-- begin-user-doc --> <!-- end-user-doc -->
+	 * Sets the value of the '{@link org.unicase.emfstore.esmodel.versioning.TagVersionSpec#getName <em>Name</em>}'
+	 * attribute. <!-- begin-user-doc --> <!-- end-user-doc -->
+	 * 
 	 * @param value the new value of the '<em>Name</em>' attribute.
 	 * @see #getName()
 	 * @generated

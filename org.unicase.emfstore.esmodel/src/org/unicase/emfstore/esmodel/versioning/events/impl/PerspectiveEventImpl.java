@@ -9,14 +9,18 @@ import org.eclipse.emf.ecore.EClass;
 import org.unicase.emfstore.esmodel.versioning.events.EventsPackage;
 import org.unicase.emfstore.esmodel.versioning.events.PerspectiveEvent;
 
-/*
+/**
  * <!-- begin-user-doc --> An implementation of the model object '<em><b>Perspective Event</b></em>'. <!-- end-user-doc
- * --> <p> </p>
+ * -->
+ * <p>
+ * </p>
+ * 
  * @generated
  */
 public class PerspectiveEventImpl extends EventImpl implements PerspectiveEvent {
 	/**
 	 * <!-- begin-user-doc --> <!-- end-user-doc -->
+	 * 
 	 * @generated
 	 */
 	protected PerspectiveEventImpl() {
@@ -25,6 +29,7 @@ public class PerspectiveEventImpl extends EventImpl implements PerspectiveEvent 
 
 	/**
 	 * <!-- begin-user-doc --> <!-- end-user-doc -->
+	 * 
 	 * @generated
 	 */
 	@Override

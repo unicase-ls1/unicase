@@ -17,12 +17,19 @@ import org.unicase.emfstore.esmodel.versioning.operations.OperationsPackage;
 import org.unicase.model.ModelElement;
 import org.unicase.model.Project;
 
-/*
+/**
  * <!-- begin-user-doc --> An implementation of the model object ' <em><b>Attribute Operation</b></em>'. <!--
- * end-user-doc --> <p> The following features are implemented: <ul> <li>{@link
- * org.unicase.emfstore.esmodel.versioning.operations.impl.AttributeOperationImpl#getOldValue <em>Old Value</em>}</li>
- * <li>{@link org.unicase.emfstore.esmodel.versioning.operations.impl.AttributeOperationImpl#getNewValue <em>New
- * Value</em>}</li> </ul> </p>
+ * end-user-doc -->
+ * <p>
+ * The following features are implemented:
+ * <ul>
+ * <li>{@link org.unicase.emfstore.esmodel.versioning.operations.impl.AttributeOperationImpl#getOldValue <em>Old Value
+ * </em>}</li>
+ * <li>{@link org.unicase.emfstore.esmodel.versioning.operations.impl.AttributeOperationImpl#getNewValue <em>New Value
+ * </em>}</li>
+ * </ul>
+ * </p>
+ * 
  * @generated
  */
 public class AttributeOperationImpl extends FeatureOperationImpl implements AttributeOperation {

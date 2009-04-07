@@ -10,14 +10,17 @@ import org.unicase.emfstore.esmodel.EsmodelPackage;
 import org.unicase.emfstore.esmodel.ProjectId;
 import org.unicase.model.impl.UniqueIdentifierImpl;
 
-/*
+/**
  * <!-- begin-user-doc --> An implementation of the model object ' <em><b>Project Id</b></em>'. <!-- end-user-doc -->
- * <p> </p>
+ * <p>
+ * </p>
+ * 
  * @generated
  */
 public class ProjectIdImpl extends UniqueIdentifierImpl implements ProjectId {
 	/**
 	 * <!-- begin-user-doc --> <!-- end-user-doc -->
+	 * 
 	 * @generated
 	 */
 	protected ProjectIdImpl() {
@@ -26,6 +29,7 @@ public class ProjectIdImpl extends UniqueIdentifierImpl implements ProjectId {
 
 	/**
 	 * <!-- begin-user-doc --> <!-- end-user-doc -->
+	 * 
 	 * @generated
 	 */
 	@Override

@@ -24,13 +24,19 @@ import org.unicase.model.ModelElementId;
 import org.unicase.model.Project;
 import org.unicase.model.util.ModelUtil;
 
-/*
+/**
  * <!-- begin-user-doc --> An implementation of the model object '<em><b>Single Reference Operation</b></em>'. <!--
- * end-user-doc --> <p> The following features are implemented: <ul> <li>{@link
- * org.unicase.emfstore.esmodel.versioning.operations.impl.SingleReferenceOperationImpl#getOldValue <em>Old
- * Value</em>}</li> <li>{@link
- * org.unicase.emfstore.esmodel.versioning.operations.impl.SingleReferenceOperationImpl#getNewValue <em>New
- * Value</em>}</li> </ul> </p>
+ * end-user-doc -->
+ * <p>
+ * The following features are implemented:
+ * <ul>
+ * <li>{@link org.unicase.emfstore.esmodel.versioning.operations.impl.SingleReferenceOperationImpl#getOldValue <em>Old
+ * Value</em>}</li>
+ * <li>{@link org.unicase.emfstore.esmodel.versioning.operations.impl.SingleReferenceOperationImpl#getNewValue <em>New
+ * Value</em>}</li>
+ * </ul>
+ * </p>
+ * 
  * @generated
  */
 public class SingleReferenceOperationImpl extends ReferenceOperationImpl implements SingleReferenceOperation {

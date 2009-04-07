@@ -9,9 +9,12 @@ import org.eclipse.emf.ecore.EClass;
 import org.unicase.emfstore.esmodel.versioning.operations.DiagramLayoutOperation;
 import org.unicase.emfstore.esmodel.versioning.operations.OperationsPackage;
 
-/*
+/**
  * <!-- begin-user-doc --> An implementation of the model object '<em><b>Diagram Layout Operation</b></em>'. <!--
- * end-user-doc --> <p> </p>
+ * end-user-doc -->
+ * <p>
+ * </p>
+ * 
  * @generated
  */
 public class DiagramLayoutOperationImpl extends AttributeOperationImpl implements DiagramLayoutOperation {
@@ -27,6 +30,7 @@ public class DiagramLayoutOperationImpl extends AttributeOperationImpl implement
 
 	/**
 	 * <!-- begin-user-doc --> <!-- end-user-doc -->
+	 * 
 	 * @generated
 	 */
 	protected DiagramLayoutOperationImpl() {
@@ -35,6 +39,7 @@ public class DiagramLayoutOperationImpl extends AttributeOperationImpl implement
 
 	/**
 	 * <!-- begin-user-doc --> <!-- end-user-doc -->
+	 * 
 	 * @generated
 	 */
 	@Override

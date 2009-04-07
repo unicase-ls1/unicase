@@ -7,24 +7,30 @@ package org.unicase.emfstore.esmodel.versioning.events;
 
 import java.util.Date;
 
-/*
+/**
  * <!-- begin-user-doc --> A representation of the model object '<em><b>Plugin Focus Event</b></em>'. <!-- end-user-doc
- * --> <p> The following features are supported: <ul> <li>{@link
- * org.unicase.emfstore.esmodel.versioning.events.PluginFocusEvent#getPluginId <em>Plugin Id</em>}</li> <li>{@link
- * org.unicase.emfstore.esmodel.versioning.events.PluginFocusEvent#getStartDate <em>Start Date</em>}</li> </ul> </p>
+ * -->
+ * <p>
+ * The following features are supported:
+ * <ul>
+ * <li>{@link org.unicase.emfstore.esmodel.versioning.events.PluginFocusEvent#getPluginId <em>Plugin Id</em>}</li>
+ * <li>{@link org.unicase.emfstore.esmodel.versioning.events.PluginFocusEvent#getStartDate <em>Start Date</em>}</li>
+ * </ul>
+ * </p>
+ * 
  * @see org.unicase.emfstore.esmodel.versioning.events.EventsPackage#getPluginFocusEvent()
  * @model
  * @generated
  */
 public interface PluginFocusEvent extends Event {
 	/**
-	 * Returns the value of the '<em><b>Plugin Id</b></em>' attribute.
-	 * <!-- begin-user-doc -->
+	 * Returns the value of the '<em><b>Plugin Id</b></em>' attribute. <!-- begin-user-doc -->
 	 * <p>
 	 * If the meaning of the '<em>Plugin Id</em>' attribute isn't clear, there really should be more of a description
 	 * here...
 	 * </p>
 	 * <!-- end-user-doc -->
+	 * 
 	 * @return the value of the '<em>Plugin Id</em>' attribute.
 	 * @see #setPluginId(String)
 	 * @see org.unicase.emfstore.esmodel.versioning.events.EventsPackage#getPluginFocusEvent_PluginId()
@@ -34,8 +40,9 @@ public interface PluginFocusEvent extends Event {
 	String getPluginId();
 
 	/**
-	 * Sets the value of the '{@link org.unicase.emfstore.esmodel.versioning.events.PluginFocusEvent#getPluginId <em>Plugin Id</em>}' attribute.
-	 * <!-- begin-user-doc --> <!-- end-user-doc -->
+	 * Sets the value of the '{@link org.unicase.emfstore.esmodel.versioning.events.PluginFocusEvent#getPluginId
+	 * <em>Plugin Id</em>}' attribute. <!-- begin-user-doc --> <!-- end-user-doc -->
+	 * 
 	 * @param value the new value of the '<em>Plugin Id</em>' attribute.
 	 * @see #getPluginId()
 	 * @generated
@@ -43,13 +50,13 @@ public interface PluginFocusEvent extends Event {
 	void setPluginId(String value);
 
 	/**
-	 * Returns the value of the '<em><b>Start Date</b></em>' attribute.
-	 * <!-- begin-user-doc -->
+	 * Returns the value of the '<em><b>Start Date</b></em>' attribute. <!-- begin-user-doc -->
 	 * <p>
 	 * If the meaning of the '<em>Start Date</em>' attribute isn't clear, there really should be more of a description
 	 * here...
 	 * </p>
 	 * <!-- end-user-doc -->
+	 * 
 	 * @return the value of the '<em>Start Date</em>' attribute.
 	 * @see #setStartDate(Date)
 	 * @see org.unicase.emfstore.esmodel.versioning.events.EventsPackage#getPluginFocusEvent_StartDate()
@@ -59,8 +66,9 @@ public interface PluginFocusEvent extends Event {
 	Date getStartDate();
 
 	/**
-	 * Sets the value of the '{@link org.unicase.emfstore.esmodel.versioning.events.PluginFocusEvent#getStartDate <em>Start Date</em>}' attribute.
-	 * <!-- begin-user-doc --> <!-- end-user-doc -->
+	 * Sets the value of the '{@link org.unicase.emfstore.esmodel.versioning.events.PluginFocusEvent#getStartDate
+	 * <em>Start Date</em>}' attribute. <!-- begin-user-doc --> <!-- end-user-doc -->
+	 * 
 	 * @param value the new value of the '<em>Start Date</em>' attribute.
 	 * @see #getStartDate()
 	 * @generated
