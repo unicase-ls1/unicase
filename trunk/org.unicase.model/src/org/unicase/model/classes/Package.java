@@ -46,12 +46,12 @@ public interface Package extends PackageElement {
 	 * <!-- end-user-doc -->
 	 * 
 	 * @return the value of the '<em>Facade Class</em>' reference.
-	 * @see #setFacadeClass(org.unicase.model.classes.Class)
+	 * @see #setFacadeClass(Class)
 	 * @see org.unicase.model.classes.ClassesPackage#getPackage_FacadeClass()
 	 * @model annotation="org.unicase.ui.meeditor priority='20.0' position='left'"
 	 * @generated
 	 */
-	org.unicase.model.classes.Class getFacadeClass();
+	Class getFacadeClass();
 
 	/**
 	 * Sets the value of the '{@link org.unicase.model.classes.Package#getFacadeClass <em>Facade Class</em>}' reference.
@@ -61,6 +61,6 @@ public interface Package extends PackageElement {
 	 * @see #getFacadeClass()
 	 * @generated
 	 */
-	void setFacadeClass(org.unicase.model.classes.Class value);
+	void setFacadeClass(Class value);
 
 } // Package

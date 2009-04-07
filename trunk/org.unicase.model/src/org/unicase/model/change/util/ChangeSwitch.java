@@ -104,11 +104,11 @@ public class ChangeSwitch<T> {
 			if (result == null)
 				result = caseIssue(mergingIssue);
 			if (result == null)
-				result = caseAnnotation(mergingIssue);
-			if (result == null)
 				result = caseCheckable(mergingIssue);
 			if (result == null)
 				result = caseWorkItem(mergingIssue);
+			if (result == null)
+				result = caseAnnotation(mergingIssue);
 			if (result == null)
 				result = caseModelElement(mergingIssue);
 			if (result == null)

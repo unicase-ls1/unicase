@@ -328,7 +328,7 @@ public class BugReportImpl extends AnnotationImpl implements BugReport {
 	 * @generated
 	 */
 	public WorkPackage getContainingWorkpackage() {
-		if (eContainerFeatureID != BugPackage.BUG_REPORT__CONTAINING_WORKPACKAGE)
+		if (eContainerFeatureID() != BugPackage.BUG_REPORT__CONTAINING_WORKPACKAGE)
 			return null;
 		return (WorkPackage) eContainer();
 	}
@@ -339,7 +339,7 @@ public class BugReportImpl extends AnnotationImpl implements BugReport {
 	 * @generated
 	 */
 	public WorkPackage basicGetContainingWorkpackage() {
-		if (eContainerFeatureID != BugPackage.BUG_REPORT__CONTAINING_WORKPACKAGE)
+		if (eContainerFeatureID() != BugPackage.BUG_REPORT__CONTAINING_WORKPACKAGE)
 			return null;
 		return (WorkPackage) eInternalContainer();
 	}
@@ -362,7 +362,7 @@ public class BugReportImpl extends AnnotationImpl implements BugReport {
 	 */
 	public void setContainingWorkpackage(WorkPackage newContainingWorkpackage) {
 		if (newContainingWorkpackage != eInternalContainer()
-			|| (eContainerFeatureID != BugPackage.BUG_REPORT__CONTAINING_WORKPACKAGE && newContainingWorkpackage != null)) {
+			|| (eContainerFeatureID() != BugPackage.BUG_REPORT__CONTAINING_WORKPACKAGE && newContainingWorkpackage != null)) {
 			if (EcoreUtil.isAncestor(this, newContainingWorkpackage))
 				throw new IllegalArgumentException("Recursive containment not allowed for " + toString());
 			NotificationChain msgs = null;
@@ -850,7 +850,7 @@ public class BugReportImpl extends AnnotationImpl implements BugReport {
 	 */
 	@Override
 	public NotificationChain eBasicRemoveFromContainerFeature(NotificationChain msgs) {
-		switch (eContainerFeatureID) {
+		switch (eContainerFeatureID()) {
 		case BugPackage.BUG_REPORT__CONTAINING_WORKPACKAGE:
 			return eInternalContainer().eInverseRemove(this, TaskPackage.WORK_PACKAGE__CONTAINED_WORK_ITEMS,
 				WorkPackage.class, msgs);
@@ -889,15 +889,15 @@ public class BugReportImpl extends AnnotationImpl implements BugReport {
 		case BugPackage.BUG_REPORT__DUE_DATE:
 			return getDueDate();
 		case BugPackage.BUG_REPORT__ESTIMATE:
-			return new Integer(getEstimate());
+			return getEstimate();
 		case BugPackage.BUG_REPORT__EFFORT:
-			return new Integer(getEffort());
+			return getEffort();
 		case BugPackage.BUG_REPORT__PRIORITY:
-			return new Integer(getPriority());
+			return getPriority();
 		case BugPackage.BUG_REPORT__RESOLVED:
-			return isResolved() ? Boolean.TRUE : Boolean.FALSE;
+			return isResolved();
 		case BugPackage.BUG_REPORT__CHECKED:
-			return isChecked() ? Boolean.TRUE : Boolean.FALSE;
+			return isChecked();
 		case BugPackage.BUG_REPORT__STATUS:
 			return getStatus();
 		case BugPackage.BUG_REPORT__SEVERITY:
@@ -948,19 +948,19 @@ public class BugReportImpl extends AnnotationImpl implements BugReport {
 			setDueDate((Date) newValue);
 			return;
 		case BugPackage.BUG_REPORT__ESTIMATE:
-			setEstimate(((Integer) newValue).intValue());
+			setEstimate((Integer) newValue);
 			return;
 		case BugPackage.BUG_REPORT__EFFORT:
-			setEffort(((Integer) newValue).intValue());
+			setEffort((Integer) newValue);
 			return;
 		case BugPackage.BUG_REPORT__PRIORITY:
-			setPriority(((Integer) newValue).intValue());
+			setPriority((Integer) newValue);
 			return;
 		case BugPackage.BUG_REPORT__RESOLVED:
-			setResolved(((Boolean) newValue).booleanValue());
+			setResolved((Boolean) newValue);
 			return;
 		case BugPackage.BUG_REPORT__CHECKED:
-			setChecked(((Boolean) newValue).booleanValue());
+			setChecked((Boolean) newValue);
 			return;
 		case BugPackage.BUG_REPORT__STATUS:
 			setStatus((BugStatus) newValue);

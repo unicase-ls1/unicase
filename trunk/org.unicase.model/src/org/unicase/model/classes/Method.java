@@ -92,13 +92,13 @@ public interface Method extends ModelElement {
 	 * <!-- end-user-doc -->
 	 * 
 	 * @return the value of the '<em>Defining Class</em>' container reference.
-	 * @see #setDefiningClass(org.unicase.model.classes.Class)
+	 * @see #setDefiningClass(Class)
 	 * @see org.unicase.model.classes.ClassesPackage#getMethod_DefiningClass()
 	 * @see org.unicase.model.classes.Class#getMethods
 	 * @model opposite="methods" transient="false" annotation="org.unicase.ui.meeditor priority='10.0' position='left'"
 	 * @generated
 	 */
-	org.unicase.model.classes.Class getDefiningClass();
+	Class getDefiningClass();
 
 	/**
 	 * Sets the value of the '{@link org.unicase.model.classes.Method#getDefiningClass <em>Defining Class</em>}'
@@ -108,7 +108,7 @@ public interface Method extends ModelElement {
 	 * @see #getDefiningClass()
 	 * @generated
 	 */
-	void setDefiningClass(org.unicase.model.classes.Class value);
+	void setDefiningClass(Class value);
 
 	/**
 	 * Returns the value of the '<em><b>Return Type</b></em>' attribute. <!-- begin-user-doc -->

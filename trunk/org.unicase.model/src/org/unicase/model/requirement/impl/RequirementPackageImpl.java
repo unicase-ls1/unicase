@@ -9,7 +9,6 @@ import org.eclipse.emf.ecore.EAttribute;
 import org.eclipse.emf.ecore.EClass;
 import org.eclipse.emf.ecore.EPackage;
 import org.eclipse.emf.ecore.EReference;
-import org.eclipse.emf.ecore.EcorePackage;
 import org.eclipse.emf.ecore.impl.EPackageImpl;
 import org.eclipse.gmf.runtime.notation.NotationPackage;
 import org.unicase.model.ModelPackage;
@@ -934,7 +933,6 @@ public class RequirementPackageImpl extends EPackageImpl implements RequirementP
 		ModelPackage theModelPackage = (ModelPackage) EPackage.Registry.INSTANCE.getEPackage(ModelPackage.eNS_URI);
 		OrganizationPackage theOrganizationPackage = (OrganizationPackage) EPackage.Registry.INSTANCE
 			.getEPackage(OrganizationPackage.eNS_URI);
-		EcorePackage theEcorePackage = (EcorePackage) EPackage.Registry.INSTANCE.getEPackage(EcorePackage.eNS_URI);
 		ClassesPackage theClassesPackage = (ClassesPackage) EPackage.Registry.INSTANCE
 			.getEPackage(ClassesPackage.eNS_URI);
 
@@ -1009,7 +1007,7 @@ public class RequirementPackageImpl extends EPackageImpl implements RequirementP
 			"stakeholder", null, 0, 1, FunctionalRequirement.class, !IS_TRANSIENT, !IS_VOLATILE, IS_CHANGEABLE,
 			!IS_COMPOSITE, IS_RESOLVE_PROXIES, !IS_UNSETTABLE, IS_UNIQUE, !IS_DERIVED, IS_ORDERED);
 		getFunctionalRequirement_Stakeholder().getEKeys().add(theModelPackage.getIdentifiableElement_Identifier());
-		initEAttribute(getFunctionalRequirement_Cost(), theEcorePackage.getEInt(), "cost", null, 0, 1,
+		initEAttribute(getFunctionalRequirement_Cost(), ecorePackage.getEInt(), "cost", null, 0, 1,
 			FunctionalRequirement.class, !IS_TRANSIENT, !IS_VOLATILE, IS_CHANGEABLE, !IS_UNSETTABLE, !IS_ID, IS_UNIQUE,
 			!IS_DERIVED, IS_ORDERED);
 

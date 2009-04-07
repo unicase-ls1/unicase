@@ -263,7 +263,7 @@ public class WorkPackageImpl extends AnnotationImpl implements WorkPackage {
 	 * @generated
 	 */
 	public WorkPackage getContainingWorkpackage() {
-		if (eContainerFeatureID != TaskPackage.WORK_PACKAGE__CONTAINING_WORKPACKAGE)
+		if (eContainerFeatureID() != TaskPackage.WORK_PACKAGE__CONTAINING_WORKPACKAGE)
 			return null;
 		return (WorkPackage) eContainer();
 	}
@@ -274,7 +274,7 @@ public class WorkPackageImpl extends AnnotationImpl implements WorkPackage {
 	 * @generated
 	 */
 	public WorkPackage basicGetContainingWorkpackage() {
-		if (eContainerFeatureID != TaskPackage.WORK_PACKAGE__CONTAINING_WORKPACKAGE)
+		if (eContainerFeatureID() != TaskPackage.WORK_PACKAGE__CONTAINING_WORKPACKAGE)
 			return null;
 		return (WorkPackage) eInternalContainer();
 	}
@@ -297,7 +297,7 @@ public class WorkPackageImpl extends AnnotationImpl implements WorkPackage {
 	 */
 	public void setContainingWorkpackage(WorkPackage newContainingWorkpackage) {
 		if (newContainingWorkpackage != eInternalContainer()
-			|| (eContainerFeatureID != TaskPackage.WORK_PACKAGE__CONTAINING_WORKPACKAGE && newContainingWorkpackage != null)) {
+			|| (eContainerFeatureID() != TaskPackage.WORK_PACKAGE__CONTAINING_WORKPACKAGE && newContainingWorkpackage != null)) {
 			if (EcoreUtil.isAncestor(this, newContainingWorkpackage))
 				throw new IllegalArgumentException("Recursive containment not allowed for " + toString());
 			NotificationChain msgs = null;
@@ -737,7 +737,7 @@ public class WorkPackageImpl extends AnnotationImpl implements WorkPackage {
 	 */
 	@Override
 	public NotificationChain eBasicRemoveFromContainerFeature(NotificationChain msgs) {
-		switch (eContainerFeatureID) {
+		switch (eContainerFeatureID()) {
 		case TaskPackage.WORK_PACKAGE__CONTAINING_WORKPACKAGE:
 			return eInternalContainer().eInverseRemove(this, TaskPackage.WORK_PACKAGE__CONTAINED_WORK_ITEMS,
 				WorkPackage.class, msgs);
@@ -776,13 +776,13 @@ public class WorkPackageImpl extends AnnotationImpl implements WorkPackage {
 		case TaskPackage.WORK_PACKAGE__DUE_DATE:
 			return getDueDate();
 		case TaskPackage.WORK_PACKAGE__ESTIMATE:
-			return new Integer(getEstimate());
+			return getEstimate();
 		case TaskPackage.WORK_PACKAGE__EFFORT:
-			return new Integer(getEffort());
+			return getEffort();
 		case TaskPackage.WORK_PACKAGE__PRIORITY:
-			return new Integer(getPriority());
+			return getPriority();
 		case TaskPackage.WORK_PACKAGE__RESOLVED:
-			return isResolved() ? Boolean.TRUE : Boolean.FALSE;
+			return isResolved();
 		case TaskPackage.WORK_PACKAGE__CONTAINED_WORK_ITEMS:
 			return getContainedWorkItems();
 		case TaskPackage.WORK_PACKAGE__START_DATE:
@@ -831,16 +831,16 @@ public class WorkPackageImpl extends AnnotationImpl implements WorkPackage {
 			setDueDate((Date) newValue);
 			return;
 		case TaskPackage.WORK_PACKAGE__ESTIMATE:
-			setEstimate(((Integer) newValue).intValue());
+			setEstimate((Integer) newValue);
 			return;
 		case TaskPackage.WORK_PACKAGE__EFFORT:
-			setEffort(((Integer) newValue).intValue());
+			setEffort((Integer) newValue);
 			return;
 		case TaskPackage.WORK_PACKAGE__PRIORITY:
-			setPriority(((Integer) newValue).intValue());
+			setPriority((Integer) newValue);
 			return;
 		case TaskPackage.WORK_PACKAGE__RESOLVED:
-			setResolved(((Boolean) newValue).booleanValue());
+			setResolved((Boolean) newValue);
 			return;
 		case TaskPackage.WORK_PACKAGE__CONTAINED_WORK_ITEMS:
 			getContainedWorkItems().clear();
