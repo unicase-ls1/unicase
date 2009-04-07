@@ -184,7 +184,6 @@ public class TaskView extends ViewPart implements ProjectChangeObserver {
 				Composite composite = new Composite(parent, SWT.NONE);
 				GridLayoutFactory.fillDefaults().margins(1, 0).spacing(0, 0).applyTo(composite);
 				txtUser = new Text(composite, SWT.NONE);
-				txtUser.setEnabled(false);
 				GridData layoutData = new GridData(SWT.FILL, SWT.CENTER, true, true);
 				layoutData.widthHint = 100;
 				txtUser.setLayoutData(layoutData);
