@@ -125,7 +125,7 @@ public class FhmMeetingRendererImpl extends MeetingRendererImpl implements FhmMe
 
 		// left header column
 		UParagraph leftBlock = new UParagraph("");
-		headerTable.addCell(leftBlock);
+		headerTable.add(leftBlock);
 		leftBlock.getBoxModel().setBorderTop(BORDER_WIDTH);
 		leftBlock.getBoxModel().setBorderStyle(UBorderStyle.SOLID);
 		leftBlock.getBoxModel().setMarginRight(20);
@@ -139,7 +139,7 @@ public class FhmMeetingRendererImpl extends MeetingRendererImpl implements FhmMe
 
 		// right header column
 		UParagraph rightBlock = new UParagraph("");
-		headerTable.addCell(rightBlock);
+		headerTable.add(rightBlock);
 		rightBlock.getBoxModel().setBorderTop(BORDER_WIDTH);
 		rightBlock.getBoxModel().setBorderStyle(UBorderStyle.SOLID);
 

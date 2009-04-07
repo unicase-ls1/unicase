@@ -26,15 +26,18 @@ import org.eclipse.emf.ecore.resource.ResourceSet;
 import org.eclipse.emf.ecore.resource.impl.ResourceSetImpl;
 import org.eclipse.swt.SWT;
 import org.eclipse.swt.widgets.FileDialog;
+import org.eclipse.swt.widgets.MessageBox;
 import org.eclipse.ui.PlatformUI;
 import org.unicase.docExport.TemplateRegistry;
+import org.unicase.docExport.exceptions.InvalidTemplateArchiveException;
+import org.unicase.docExport.exceptions.TemplateImportException;
 import org.unicase.docExport.exceptions.TemplateSaveException;
 import org.unicase.docExport.exceptions.TemplatesFileNotFoundException;
 import org.unicase.docExport.exportModel.Template;
 import org.unicase.workspace.util.WorkspaceUtil;
 
 /**
- * @author Sebastian Hoecht
+ * The handler for the import template command.
  */
 public class ImportTemplate extends AbstractHandler {
 
@@ -51,11 +54,9 @@ public class ImportTemplate extends AbstractHandler {
 			try {
 				importTemplate(filePath, false);
 			} catch (InvalidTemplateArchiveException e) {
-				// TODO Auto-generated catch block
-				e.printStackTrace();
+				WorkspaceUtil.log("The template import failed", e, IStatus.ERROR);
 			} catch (TemplateSaveException e) {
-				// TODO Auto-generated catch block
-				e.printStackTrace();
+				WorkspaceUtil.log("The template import failed", e, IStatus.ERROR);
 			}
 		}
 
@@ -63,7 +64,7 @@ public class ImportTemplate extends AbstractHandler {
 	}
 
 	/**
-	 * Imports a Template stored in a zip file to the local folders of the client. The zipfile contains a resource of
+	 * Imports a Template stored in a zip file to the local folders of the client. The zip file contains a resource of
 	 * the Template and an image file, if there is a logo stored in the Template.
 	 * 
 	 * @param zipFilePath the Path of the File which should contain an exported Template
@@ -93,26 +94,36 @@ public class ImportTemplate extends AbstractHandler {
 					}
 				}
 			} catch (IOException e) {
-				// TODO Auto-generated catch block
-				e.printStackTrace();
+				MessageBox finished = new MessageBox(PlatformUI.getWorkbench().getDisplay().getActiveShell(), SWT.OK
+					| SWT.ICON_INFORMATION);
+				finished.setText("Template import failed");
+				finished.setMessage("The template file could not be accessed for any reason");
+				finished.open();
+			} catch (TemplateImportException e) {
+				MessageBox finished = new MessageBox(PlatformUI.getWorkbench().getDisplay().getActiveShell(), SWT.OK
+					| SWT.ICON_INFORMATION);
+				finished.setText("Template import failed");
+				finished.setMessage("The template import failed for some reason.");
+				finished.open();
 			} finally {
-				// we must always close the zip file.
 				try {
 					stream.close();
 				} catch (IOException e) {
-					// TODO Auto-generated catch block
-					e.printStackTrace();
+					// nothing to do
 				}
 			}
 		} catch (FileNotFoundException e1) {
-			System.out.println("error when importing template: " + e1.getMessage());
-			e1.printStackTrace();
 			throw new InvalidTemplateArchiveException();
 		}
 	}
 
+	/**
+	 * Store a template saved in a zip file into the templates resource.
+	 * 
+	 * @throws TemplateImportException
+	 */
 	private static Template storeTemplate(ZipEntry entry, ZipInputStream stream, boolean isDefaultTemplate)
-		throws InvalidTemplateArchiveException, TemplateSaveException {
+		throws TemplateImportException {
 		String outPath;
 		File tmpTemplateFile;
 		try {
@@ -130,13 +141,19 @@ public class ImportTemplate extends AbstractHandler {
 			TemplateRegistry.saveTemplate(template);
 			return template;
 		} catch (IOException e) {
-			// TODO Auto-generated catch block
-			e.printStackTrace();
+			WorkspaceUtil.log(
+				"a template from a zip file could not be moved into the resource. This should not happen.", e,
+				IStatus.ERROR);
+		} catch (InvalidTemplateArchiveException e) {
+			throw new TemplateImportException(e);
+		} catch (TemplateSaveException e) {
+			throw new TemplateImportException(e);
 		}
 		return null;
 	}
 
-	private static void storeImage(ZipEntry entry, ZipInputStream stream, Template template) {
+	private static void storeImage(ZipEntry entry, ZipInputStream stream, Template template)
+		throws TemplateImportException {
 		String outPath;
 		File tmpTemplateFile;
 		try {
@@ -149,12 +166,12 @@ public class ImportTemplate extends AbstractHandler {
 			tmpTemplateFile.renameTo(new File(TemplateRegistry.TEMPLATE_IMAGE_FOLDER
 				+ template.getLayoutOptions().getLogoImage()));
 		} catch (IOException e) {
-			// TODO Auto-generated catch block
-			e.printStackTrace();
+			// just fall through. Later, here could be added an additional error handling.
+			// i'm not sure if this can even happen.
 		}
 	}
 
-	private static void writeZipData(String outPath, ZipInputStream stream) {
+	private static void writeZipData(String outPath, ZipInputStream stream) throws TemplateImportException {
 		// create a buffer to improve copy performance later.
 		byte[] buffer = new byte[1024];
 
@@ -167,11 +184,9 @@ public class ImportTemplate extends AbstractHandler {
 					output.write(buffer, 0, len);
 				}
 			} catch (FileNotFoundException e) {
-				// TODO Auto-generated catch block
-				e.printStackTrace();
+				throw new TemplateImportException(e);
 			} catch (IOException e) {
-				// TODO Auto-generated catch block
-				e.printStackTrace();
+				throw new TemplateImportException(e);
 			}
 
 		} finally {
@@ -180,13 +195,15 @@ public class ImportTemplate extends AbstractHandler {
 				try {
 					output.close();
 				} catch (IOException e) {
-					// TODO Auto-generated catch block
-					e.printStackTrace();
+					// nothing to do.
 				}
 			}
 		}
 	}
 
+	/**
+	 * Returns the template from a EMF XML resource file.
+	 */
 	private static Template getTemplate(String resourceFile) throws InvalidTemplateArchiveException {
 		ResourceSet resourceSet = new ResourceSetImpl();
 		URI fileURI = URI.createFileURI(resourceFile);

@@ -15,6 +15,8 @@ import com.lowagie.text.Paragraph;
 import com.lowagie.text.rtf.style.RtfParagraphStyle;
 
 /**
+ * Uses iText to render a RTF document with the RTF heading styles for sections.
+ * 
  * @author Sebastian Hoecht
  */
 public class ITextRtfHeadingWriter extends ITextRtfWriter {
@@ -44,7 +46,7 @@ public class ITextRtfHeadingWriter extends ITextRtfWriter {
 		}
 
 		Paragraph paragraph = new Paragraph(child.getTitlParagraph().getText(), style);
-		//paragraph.setIndentationLeft(child.getIndentionLeft() * INDENTION_WIDTH);
+		// paragraph.setIndentationLeft(child.getIndentionLeft() * INDENTION_WIDTH);
 
 		addItextObject(parent, paragraph);
 

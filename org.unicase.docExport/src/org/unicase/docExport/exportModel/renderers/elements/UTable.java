@@ -16,8 +16,9 @@ import org.unicase.docExport.exportModel.renderers.options.TextOption;
 import org.unicase.workspace.util.WorkspaceUtil;
 
 /**
- * This class represents a table in the renderer.
+ * This class represents a basic table.
  * 
+ * @see UTableCell
  * @author Sebastian Hoecht
  */
 public class UTable extends UCompositeSection {
@@ -28,7 +29,7 @@ public class UTable extends UCompositeSection {
 
 	private float[] columnsWidths;
 
-	private int columnsCount = 2;
+	private int columnsCount;
 	private ArrayList<UTableCell> entries = new ArrayList<UTableCell>();
 
 	/**
@@ -43,7 +44,7 @@ public class UTable extends UCompositeSection {
 	/**
 	 * @param entry the entry (cell) which shall be added to the table
 	 */
-	public void addCell(UTableCell entry) {
+	public void add(UTableCell entry) {
 		entries.add(entry);
 	}
 
@@ -52,7 +53,7 @@ public class UTable extends UCompositeSection {
 	 * 
 	 * @param text the content of the UEntry
 	 */
-	public void addCell(String text) {
+	public void add(String text) {
 		UTableCell uEntry = new UTableCell(text, defaultTextOption);
 		uEntry.setBoxModel(defaultCellBoxModel);
 		entries.add(uEntry);
@@ -64,25 +65,14 @@ public class UTable extends UCompositeSection {
 	 * @param text the content of the UEntry
 	 * @param option the TextOption which decorates the Text
 	 */
-	public void addCell(String text, TextOption option) {
+	public void add(String text, TextOption option) {
 		UTableCell uEntry = new UTableCell(text, option);
 		uEntry.setBoxModel(defaultCellBoxModel);
 		entries.add(uEntry);
 	}
 
 	/**
-	 * Adds an UEntry containing the text.
-	 * 
-	 * @param paragraph the paragraph containing the text of the new entry
-	 */
-	public void addCell(UParagraph paragraph) {
-		UTableCell uEntry = new UTableCell(paragraph);
-
-		entries.add(uEntry);
-	}
-
-	/**
-	 * @param doc the document you want to add to the table into a table cell
+	 * @param doc the document you want to add to the table into a table cell. Only UParagraphs can be added.
 	 * @see org.unicase.docExport.exportModel.renderers.elements.UCompositeSection#add(org.unicase.docExport.exportModel.renderers.elements.UDocument)
 	 */
 	@Override
@@ -90,7 +80,8 @@ public class UTable extends UCompositeSection {
 		if (!(doc instanceof UParagraph)) {
 			WorkspaceUtil.log("You can only add UParagraphs to a table", new Exception(), IStatus.ERROR);
 		} else {
-			addCell((UParagraph) doc);
+			UTableCell uEntry = new UTableCell(doc);
+			entries.add(uEntry);
 		}
 	}
 

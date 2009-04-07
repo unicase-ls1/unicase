@@ -55,7 +55,7 @@ public class MethodRendererImpl extends AttributeRendererImpl implements MethodR
 		table.getDefaultCellBoxModel().setBorderBottom(0.5);
 		table.getDefaultCellBoxModel().setBorderStyle(UBorderStyle.DOTTED);
 		for (Method method : methods) {
-			table.addCell(method.getLabel(), template.getLayoutOptions().getDefaultTextOption());
+			table.add(method.getLabel(), template.getLayoutOptions().getDefaultTextOption());
 		}
 
 		parent.add(table);

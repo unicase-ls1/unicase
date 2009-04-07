@@ -8,6 +8,8 @@ package org.unicase.docExport.exportModel.renderers.elements;
 import org.unicase.docExport.exportModel.renderers.options.PageCitationStyle;
 
 /**
+ * This element represents the current page.
+ * 
  * @author Sebastian Hoecht
  */
 public class UPageNumber extends UDocument {

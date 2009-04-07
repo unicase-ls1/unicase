@@ -26,7 +26,7 @@ import org.eclipse.emf.ecore.resource.Resource;
 import org.eclipse.emf.ecore.resource.ResourceSet;
 import org.eclipse.emf.ecore.resource.impl.ResourceSetImpl;
 import org.unicase.docExport.commands.ImportTemplate;
-import org.unicase.docExport.commands.InvalidTemplateArchiveException;
+import org.unicase.docExport.exceptions.InvalidTemplateArchiveException;
 import org.unicase.docExport.exceptions.TemplateNotFoundException;
 import org.unicase.docExport.exceptions.TemplateSaveException;
 import org.unicase.docExport.exceptions.TemplatesFileNotFoundException;
@@ -37,32 +37,47 @@ import org.unicase.workspace.Configuration;
 import org.unicase.workspace.util.WorkspaceUtil;
 
 /**
- * This utility class handles the persistent templates. The template are stored in the plugin folder "templates". The
- * file extension should be ".template".
+ * This utility class handles the persistent templates. The default templates which are always loaded on startup are
+ * stored in the folder "defaultTemplates". The files must be from the same as as the template export function returns.
  * 
  * @author Sebastian Hoecht
  */
 public final class TemplateRegistry {
 
+	/**
+	 * The name of the temporary file which is used to unzip the default templates.
+	 */
 	private static final String DEFAULT_TEMPLATE_TMP = "defaultTemplate.tmp";
 
+	/**
+	 * The folder in the plug-in where all default templates are stored which are loaded before each export request.
+	 */
 	private static final String DEFAULT_TEMPLATES_FOLDER = "defaultTemplates";
 
 	/**
-	 * The template extension string. (".template")
+	 * The resource set for the EMF XML file. This is a singleton since it should only be loaded once.
 	 */
-	public static final String TEMPLATE_FILE_EXTENSION = ".template";
-
-	/**
-	 * this is the template which is used for exporting documents.
-	 */
-	private static Template template;
 	private static ResourceSet resourceSet;
 
+	/**
+	 * If there is no template, a new default template will be created automatically, and this name will be used.
+	 */
 	private static final String DEFAULT_TEMPLATE_NAME = "default";
+
+	/**
+	 * The Unicase folder, where the projects and templates are stored.
+	 */
 	private static final String UNICASE_FOLDER = Configuration.getWorkspaceDirectory();
 
+	/**
+	 * The folder within the Unicase folder, where the templates and template images are stored.
+	 */
 	private static final String DOCUMENT_EXPORT_FOLDER = "docExport";
+
+	/**
+	 * The filename of the EMF XML file, containing a set of templates. The version number of the template file name
+	 * must be incremented, if there are major EMF model changes causing incompatibility for older templates.
+	 */
 	private static final String TEMPLATES_FILE_NAME = "templates6";
 
 	/**
@@ -89,28 +104,11 @@ public final class TemplateRegistry {
 	};
 
 	/**
-	 * @return the global template which is used for rendering
+	 * Loads all default templates from the default template folders. This is a not so easy job, because the templates
+	 * are stored in single zip files containing an EMF XML file with a template and a logo image. These files need to
+	 * be unzipped and saved in the local unicase folder.
 	 */
-	public static Template getTemplate() {
-		if (template == null) {
-			try {
-				loadDefaultTemplate();
-			} catch (TemplateSaveException e) {
-				WorkspaceUtil.log("There is no Template to use, and a newly created template could" + " be saved.", e,
-					IStatus.ERROR);
-			}
-		}
-		return template;
-	}
-
-	/**
-	 * @param template set the global template which is used for rendering
-	 */
-	public static void setTemplate(Template template) {
-		TemplateRegistry.template = template;
-	}
-
-	private static void loadDefaultTemplatesFromZipFile() {
+	public static void loadDefaultTemplatesFromZipFile() {
 
 		try {
 			URL templateFolderUrl = FileLocator.find(Activator.getDefault().getBundle(), new Path(
@@ -162,15 +160,20 @@ public final class TemplateRegistry {
 				}
 			}
 		} catch (IOException e) {
-			// no problem
-			// if it doesn't work.. there is no imported default template.. bad luck then!
+			// just fall through. If a default template could not be loaded, the export function will still work.
 		} catch (InvalidTemplateArchiveException e) {
-			// no problem
+			// see above
 		} catch (TemplateSaveException e) {
-			// no problem
+			// see above
 		}
 	}
 
+	/**
+	 * Reads a zip file and copies the data to a non zip file allowing direct file access.
+	 * 
+	 * @param fis the zip file which is read.
+	 * @param fos the template file which is written.
+	 */
 	private static void readZipFile(InputStream fis, FileOutputStream fos) {
 		try {
 			byte[] buf = new byte[1024];
@@ -179,45 +182,20 @@ public final class TemplateRegistry {
 				fos.write(buf, 0, i);
 			}
 		} catch (IOException e) {
-			// TODO Auto-generated catch block
-			e.printStackTrace();
+			// nothing to do, because this should always work. If it doesn't there should be a code debuggin.
 		} finally {
 			if (fis != null) {
 				try {
 					fis.close();
 				} catch (IOException e) {
-					// TODO Auto-generated catch block
-					e.printStackTrace();
+					// nothing to do
 				}
 			}
 			try {
 				fos.close();
 			} catch (IOException e) {
-				// TODO Auto-generated catch block
-				e.printStackTrace();
+				// nothing to do
 			}
-		}
-	}
-
-	/**
-	 * loads the default template from the home folder. If this template doesn't exist, a new one will be created and
-	 * saved.
-	 * 
-	 * @throws TemplateSaveException
-	 */
-	private static void loadDefaultTemplate() throws TemplateSaveException {
-		try {
-			template = loadTemplate(DEFAULT_TEMPLATE_NAME);
-			WorkspaceUtil.log("The template " + DEFAULT_TEMPLATE_NAME + " has been loaded successfully",
-				new Exception(), IStatus.OK);
-		} catch (TemplateNotFoundException e) {
-			WorkspaceUtil.log("The template " + DEFAULT_TEMPLATE_NAME + " could not be found."
-				+ " Trying to load the templates files of the binary build.", new Exception(), IStatus.INFO);
-
-			template = createNewDefaultDocumentTemplate();
-			saveTemplate(template);
-			WorkspaceUtil.log("A new default template has been created and saved successfully", new Exception(),
-				IStatus.OK);
 		}
 	}
 
@@ -278,7 +256,7 @@ public final class TemplateRegistry {
 	}
 
 	/**
-	 * Saves a template to the disc in the template folder of this plugin. The filename will be template.getName(). +
+	 * Saves a template to the disc in the template folder of this plug-in. The filename will be template.getName(). +
 	 * ".template".
 	 * 
 	 * @param template the template which shall be saved
@@ -301,12 +279,9 @@ public final class TemplateRegistry {
 			} else {
 				resource.getContents().remove(oldTemplate);
 				resource.getContents().add(template);
-				TemplateRegistry.setTemplate(template);
 			}
 
 			resource.save(null);
-			// WorkspaceUtil.log("template " + template.getName() + " saved successfully", new Exception(), IStatus.OK);
-
 		} catch (TemplatesFileNotFoundException e) {
 			WorkspaceUtil.log("this should never happen", e, IStatus.ERROR);
 		} catch (IOException e) {
@@ -325,6 +300,8 @@ public final class TemplateRegistry {
 	}
 
 	/**
+	 * Returns a list of all available templates. Additionally, all default templates are loaded.
+	 * 
 	 * @return an ArrayList of all templates which a stored in the template folder
 	 * @throws TemplateSaveException -
 	 */
@@ -336,8 +313,8 @@ public final class TemplateRegistry {
 		Resource resource;
 		try {
 			resource = getTemplatesResource();
-		} catch (IOException e1) {
-			throw new TemplateSaveException(e1);
+		} catch (IOException e) {
+			throw new TemplateSaveException(e);
 		}
 
 		try {
@@ -356,10 +333,6 @@ public final class TemplateRegistry {
 				Template templateObject = (Template) object;
 				templates.add(templateObject);
 			}
-		}
-
-		if (templates.size() < 1) {
-			templates.add(getTemplate());
 		}
 
 		return templates;

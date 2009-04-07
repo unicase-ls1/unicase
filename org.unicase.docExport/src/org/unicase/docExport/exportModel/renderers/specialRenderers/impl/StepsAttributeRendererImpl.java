@@ -83,8 +83,8 @@ public class StepsAttributeRendererImpl extends AttributeRendererImpl implements
 		systemSteps.getBoxModel().setBorderStyle(UBorderStyle.SOLID);
 		systemSteps.getBoxModel().setBorderBottom(0.5);
 		systemSteps.getBoxModel().setKeepWithNext(true);
-		table.addCell(actorSteps);
-		table.addCell(systemSteps);
+		table.add(actorSteps);
+		table.add(systemSteps);
 
 		for (Step step : steps) {
 			UTableCell userCol = new UTableCell("");
@@ -95,8 +95,8 @@ public class StepsAttributeRendererImpl extends AttributeRendererImpl implements
 			systemCol.getBoxModel().setBorderStyle(UBorderStyle.DASHED);
 			systemCol.getBoxModel().setBorderBottom(0.5);
 
-			table.addCell(userCol);
-			table.addCell(systemCol);
+			table.add(userCol);
+			table.add(systemCol);
 
 			UParagraph content = new UParagraph("");
 

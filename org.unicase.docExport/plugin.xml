@@ -13,16 +13,6 @@
             name="Call Template Editor">
       </command>
       <command
-            defaultHandler="org.unicase.docExport.handlers.SelectTemplate"
-            id="org.unicase.docExport.selectTemplate"
-            name="select template">
-      </command>
-      <command
-            defaultHandler="org.unicase.docExport.handlers.SelectRenderer"
-            id="org.unicase.docExport.selectRenderer"
-            name="select renderer">
-      </command>
-      <command
             id="org.unicase.docExport.exportTemplate"
             name="exportTemplate">
       </command>

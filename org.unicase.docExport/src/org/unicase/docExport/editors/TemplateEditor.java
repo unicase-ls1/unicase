@@ -39,8 +39,6 @@ public class TemplateEditor extends EditorPart {
 	private ScrolledComposite layoutOptionsScrolledComposite;
 	private ModelElementRenderersTab modelElementRenderersTab;
 
-	
-	
 	/**
 	 * .
 	 */
@@ -51,11 +49,6 @@ public class TemplateEditor extends EditorPart {
 	 */
 	public static final String ID = "org.unicase.docExport.editors.TemplateEditor";
 
-	/**
-	 * this supress warning is temporarily!! TODO remove this suprress warning.. old template will be needed for dirty
-	 * check
-	 */
-	@SuppressWarnings("unused")
 	private Template oldTemplate;
 	private Template template;
 
@@ -77,6 +70,8 @@ public class TemplateEditor extends EditorPart {
 		} else {
 			try {
 				TemplateRegistry.saveTemplate(getTemplate());
+				oldTemplate = (Template) EcoreUtil.copy(template);
+				setDirty();
 			} catch (TemplateSaveException e) {
 				WorkspaceUtil.log("could not save the Template", e, IStatus.ERROR);
 			}
@@ -113,9 +108,7 @@ public class TemplateEditor extends EditorPart {
 	 */
 	@Override
 	public boolean isDirty() {
-		// return !EcoreUtil.equals(template, oldTemplate);
-
-		return true;
+		return !EcoreUtil.equals(template, oldTemplate);
 	}
 
 	/**
@@ -140,11 +133,11 @@ public class TemplateEditor extends EditorPart {
 		tabFolder.setLayout(tabLayout);
 		tabFolder.setLayoutData(tabLayoutData);
 
-		modelElementRendererScrolledComposite = createTab("ModelElement Renderers");
-		layoutOptionsScrolledComposite = createTab("layoutOptions");
+		modelElementRendererScrolledComposite = createTab("ModelElement renderers");
+		layoutOptionsScrolledComposite = createTab("Layout options");
 
 		modelElementRenderersTab = new ModelElementRenderersTab(modelElementRendererScrolledComposite, SWT.NONE,
-			tabFolder, getTemplate());
+			tabFolder, getTemplate(), this);
 
 		new LayoutOptionsTab(layoutOptionsScrolledComposite, SWT.NONE, tabFolder, getTemplate());
 	}
@@ -184,7 +177,7 @@ public class TemplateEditor extends EditorPart {
 		scrolledComposite.setLayout(layout1);
 		scrolledComposite.setLayoutData(data1);
 		tabItem1.setControl(scrolledComposite);
-		
+
 		return scrolledComposite;
 	}
 
@@ -195,4 +188,10 @@ public class TemplateEditor extends EditorPart {
 		return template;
 	}
 
+	/**
+	 * trigger the dirty event.
+	 */
+	public void setDirty() {
+		firePropertyChange(TemplateEditor.PROP_DIRTY);
+	}
 }

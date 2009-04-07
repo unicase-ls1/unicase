@@ -82,7 +82,7 @@ public class DefaultDocumentRendererImpl extends DocumentRendererImpl implements
 	 * Renders a document of the ModelElement modelElement using the Template template. The rendered Document will be
 	 * returned containing all information needed to use a DocWriter.
 	 */
-	public UCompositeSection render(ModelElement modelElement, Template template) {
+	public URootCompositeSection render(ModelElement modelElement, Template template) {
 
 		if (!(modelElement instanceof LeafSection) && !(modelElement instanceof CompositeSection)) {
 			template = (Template) EcoreUtil.copy(template);
@@ -104,7 +104,7 @@ public class DefaultDocumentRendererImpl extends DocumentRendererImpl implements
 			logo.setWidth(template.getLayoutOptions().getLogoWidth());
 			logo.setHeight(template.getLayoutOptions().getLogoHeight());
 			getDoc().add(logo);
-			logo.setCenter(true);
+			logo.setTextAlign(TextAlign.CENTER);
 			logo.getBoxModel().setMarginBottom(15);
 		}
 
@@ -145,9 +145,9 @@ public class DefaultDocumentRendererImpl extends DocumentRendererImpl implements
 		UTableCell leftCell = new UTableCell("");
 		UTableCell middleCell = new UTableCell("");
 		UTableCell rightCell = new UTableCell("");
-		footerTable.addCell(leftCell);
-		footerTable.addCell(middleCell);
-		footerTable.addCell(rightCell);
+		footerTable.add(leftCell);
+		footerTable.add(middleCell);
+		footerTable.add(rightCell);
 
 		if (template.getLayoutOptions().isFooterShowDocumentTitle()) {
 			UParagraph docTitle = new UParagraph(modelElement.getName(), template.getLayoutOptions()
@@ -179,8 +179,8 @@ public class DefaultDocumentRendererImpl extends DocumentRendererImpl implements
 		UParagraph headerContainer = new UParagraph("");
 		root.setHeader(headerContainer);
 
-		// This is a hack for margin top of the header reagion.
-		// fop doesn't render the extend attribute of the fo:xsl-region-before
+		// This is a hack for margin top of the header region.
+		// Apache FOP doesn't render the extend attribute of the fo:xsl-region-before
 		UImage marginTop = new UImage(new Path("i_do_not_exist"));
 		headerContainer.add(marginTop);
 		marginTop.setHeight(15);
@@ -202,8 +202,8 @@ public class DefaultDocumentRendererImpl extends DocumentRendererImpl implements
 			logo.setTextAlign(TextAlign.END);
 			UTableCell leftCell = new UTableCell(header);
 			UTableCell rightCell = new UTableCell(logo);
-			headerTable.addCell(leftCell);
-			headerTable.addCell(rightCell);
+			headerTable.add(leftCell);
+			headerTable.add(rightCell);
 
 			headerContainer.add(headerTable);
 		} else {
@@ -288,26 +288,25 @@ public class DefaultDocumentRendererImpl extends DocumentRendererImpl implements
 		UParagraph project = new UParagraph("Project:", layoutOptions.getDefaultTextOption());
 		project.getOption().setTextAlign(TextAlign.END);
 		project.getBoxModel().setMarginRight(8);
-		documentInfo.addCell(project);
-		documentInfo.addCell(WorkspaceManager.getInstance().getCurrentWorkspace().getActiveProjectSpace()
-			.getProjectName());
+		documentInfo.add(project);
+		documentInfo.add(WorkspaceManager.getInstance().getCurrentWorkspace().getActiveProjectSpace().getProjectName());
 
 		UParagraph unicaseVersion = new UParagraph("Project version:", layoutOptions.getDefaultTextOption());
 		unicaseVersion.getOption().setTextAlign(TextAlign.END);
 		unicaseVersion.getBoxModel().setMarginRight(8);
-		documentInfo.addCell(unicaseVersion);
+		documentInfo.add(unicaseVersion);
 		if (WorkspaceManager.getInstance().getCurrentWorkspace().getActiveProjectSpace().getBaseVersion() != null) {
-			documentInfo.addCell(String.valueOf(WorkspaceManager.getInstance().getCurrentWorkspace()
+			documentInfo.add(String.valueOf(WorkspaceManager.getInstance().getCurrentWorkspace()
 				.getActiveProjectSpace().getBaseVersion().getIdentifier()));
 		} else {
-			documentInfo.addCell("(local Project)");
+			documentInfo.add("(local Project)");
 		}
 
 		UParagraph exportDate = new UParagraph("Export date:", layoutOptions.getDefaultTextOption());
 		exportDate.getOption().setTextAlign(TextAlign.END);
 		exportDate.getBoxModel().setMarginRight(8);
-		documentInfo.addCell(exportDate);
-		documentInfo.addCell(date);
+		documentInfo.add(exportDate);
+		documentInfo.add(date);
 
 		documentInfo.getBoxModel().setWidth(200);
 

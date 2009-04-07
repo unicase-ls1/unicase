@@ -14,17 +14,17 @@ import org.unicase.docExport.exportModel.renderers.options.LayoutOptions;
 
 /**
  * <!-- begin-user-doc --> A representation of the model object '<em><b>Template</b></em>'. <!-- end-user-doc -->
- *
  * <p>
  * The following features are supported:
  * <ul>
- *   <li>{@link org.unicase.docExport.exportModel.Template#getModelElementRendererMapping <em>Model Element Renderer Mapping</em>}</li>
- *   <li>{@link org.unicase.docExport.exportModel.Template#getLayoutOptions <em>Layout Options</em>}</li>
- *   <li>{@link org.unicase.docExport.exportModel.Template#getName <em>Name</em>}</li>
- *   <li>{@link org.unicase.docExport.exportModel.Template#isDefaultTemplate <em>Default Template</em>}</li>
+ * <li>{@link org.unicase.docExport.exportModel.Template#getModelElementRendererMapping <em>Model Element Renderer
+ * Mapping</em>}</li>
+ * <li>{@link org.unicase.docExport.exportModel.Template#getLayoutOptions <em>Layout Options</em>}</li>
+ * <li>{@link org.unicase.docExport.exportModel.Template#getName <em>Name</em>}</li>
+ * <li>{@link org.unicase.docExport.exportModel.Template#isDefaultTemplate <em>Default Template</em>}</li>
  * </ul>
  * </p>
- *
+ * 
  * @see org.unicase.docExport.exportModel.ExportModelPackage#getTemplate()
  * @model
  * @generated
@@ -48,13 +48,13 @@ public interface Template extends EObject {
 	EList<ModelElementRendererMapping> getModelElementRendererMapping();
 
 	/**
-	 * Returns the value of the '<em><b>Layout Options</b></em>' containment reference.
-	 * <!-- begin-user-doc -->
+	 * Returns the value of the '<em><b>Layout Options</b></em>' containment reference. <!-- begin-user-doc -->
 	 * <p>
 	 * If the meaning of the '<em>Layout Options</em>' containment reference isn't clear, there really should be more of
 	 * a description here...
 	 * </p>
 	 * <!-- end-user-doc -->
+	 * 
 	 * @return the value of the '<em>Layout Options</em>' containment reference.
 	 * @see #setLayoutOptions(LayoutOptions)
 	 * @see org.unicase.docExport.exportModel.ExportModelPackage#getTemplate_LayoutOptions()
@@ -64,8 +64,9 @@ public interface Template extends EObject {
 	LayoutOptions getLayoutOptions();
 
 	/**
-	 * Sets the value of the '{@link org.unicase.docExport.exportModel.Template#getLayoutOptions <em>Layout Options</em>}' containment reference.
-	 * <!-- begin-user-doc --> <!-- end-user-doc -->
+	 * Sets the value of the '{@link org.unicase.docExport.exportModel.Template#getLayoutOptions
+	 * <em>Layout Options</em>}' containment reference. <!-- begin-user-doc --> <!-- end-user-doc -->
+	 * 
 	 * @param value the new value of the '<em>Layout Options</em>' containment reference.
 	 * @see #getLayoutOptions()
 	 * @generated
@@ -73,12 +74,12 @@ public interface Template extends EObject {
 	void setLayoutOptions(LayoutOptions value);
 
 	/**
-	 * Returns the value of the '<em><b>Name</b></em>' attribute.
-	 * <!-- begin-user-doc -->
+	 * Returns the value of the '<em><b>Name</b></em>' attribute. <!-- begin-user-doc -->
 	 * <p>
 	 * If the meaning of the '<em>Name</em>' attribute isn't clear, there really should be more of a description here...
 	 * </p>
 	 * <!-- end-user-doc -->
+	 * 
 	 * @return the value of the '<em>Name</em>' attribute.
 	 * @see #setName(String)
 	 * @see org.unicase.docExport.exportModel.ExportModelPackage#getTemplate_Name()
@@ -98,13 +99,13 @@ public interface Template extends EObject {
 	void setName(String value);
 
 	/**
-	 * Returns the value of the '<em><b>Default Template</b></em>' attribute.
-	 * <!-- begin-user-doc -->
+	 * Returns the value of the '<em><b>Default Template</b></em>' attribute. <!-- begin-user-doc -->
 	 * <p>
 	 * If the meaning of the '<em>Default Template</em>' attribute isn't clear, there really should be more of a
 	 * description here...
 	 * </p>
 	 * <!-- end-user-doc -->
+	 * 
 	 * @return the value of the '<em>Default Template</em>' attribute.
 	 * @see #setDefaultTemplate(boolean)
 	 * @see org.unicase.docExport.exportModel.ExportModelPackage#getTemplate_DefaultTemplate()
@@ -114,8 +115,9 @@ public interface Template extends EObject {
 	boolean isDefaultTemplate();
 
 	/**
-	 * Sets the value of the '{@link org.unicase.docExport.exportModel.Template#isDefaultTemplate <em>Default Template</em>}' attribute.
-	 * <!-- begin-user-doc --> <!-- end-user-doc -->
+	 * Sets the value of the '{@link org.unicase.docExport.exportModel.Template#isDefaultTemplate
+	 * <em>Default Template</em>}' attribute. <!-- begin-user-doc --> <!-- end-user-doc -->
+	 * 
 	 * @param value the new value of the '<em>Default Template</em>' attribute.
 	 * @see #isDefaultTemplate()
 	 * @generated
@@ -123,12 +125,31 @@ public interface Template extends EObject {
 	void setDefaultTemplate(boolean value);
 
 	// begin custom code
+	/**
+	 * Returns the ModelElementRenderer for a model element type (EClass). If there is no ModelElementRenderer
+	 * registered, a new default ModelElementRenderer will be created and returned. So there is always a useable
+	 * renderer!
+	 */
 	ModelElementRenderer getModelElementRendererNotNull(EClass eClass, Template template);
 
+	/**
+	 * Set the renderer for a model element type by the name of the EClass of the ModelElement. If there has been
+	 * registered a renderer before, the registration will be overwritten.
+	 */
 	void setModelElementRenderer(String eClassName, ModelElementRenderer renderer);
 
+	/**
+	 * Returns the registered ModelElementRenderer for a given model element type by the EClass. This function my return
+	 * null, if there isn't any renderer registered for this type.
+	 */
 	ModelElementRenderer getModelElementRenderer(EClass modelElementEClass);
 
+	/**
+	 * Removes the registration of a renderer for a model element type. So the default renderer will be used, when this
+	 * model element type is rendered.
+	 * 
+	 * @see #getModelElementRendererNotNull(EClass, Template)
+	 */
 	void removeModelElementRenderer(EClass modelElementEClass);
 	// end custom code
 } // Template

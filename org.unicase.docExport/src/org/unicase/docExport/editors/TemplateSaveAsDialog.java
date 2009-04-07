@@ -16,7 +16,6 @@ import org.eclipse.swt.layout.GridLayout;
 import org.eclipse.swt.widgets.Button;
 import org.eclipse.swt.widgets.Composite;
 import org.eclipse.swt.widgets.Control;
-import org.eclipse.swt.widgets.Label;
 import org.eclipse.swt.widgets.Shell;
 import org.eclipse.swt.widgets.Text;
 import org.unicase.docExport.TemplateRegistry;
@@ -41,7 +40,6 @@ public class TemplateSaveAsDialog extends TitleAreaDialog {
 	public TemplateSaveAsDialog(Shell parentShell, Template template) {
 		super(parentShell);
 		setHelpAvailable(false);
-		setTitle("Enter the name of the new Template");
 		this.template = template;
 	}
 
@@ -50,12 +48,11 @@ public class TemplateSaveAsDialog extends TitleAreaDialog {
 	 */
 	@Override
 	protected Control createDialogArea(Composite parent) {
-		// return super.createDialogArea(parent);
 		GridLayout layout = new GridLayout();
-		layout.numColumns = 2;
+		layout.numColumns = 1;
 		parent.setLayout(layout);
-		Label label1 = new Label(parent, SWT.None);
-		label1.setText("New Template Name");
+		// GridData gData = new GridData(GridData.FILL_HORIZONTAL);
+		// parent.setLayoutData(gData);
 		templateName = new Text(parent, SWT.BORDER);
 		return parent;
 	}
@@ -80,10 +77,8 @@ public class TemplateSaveAsDialog extends TitleAreaDialog {
 	@Override
 	protected Control createContents(Composite parent) {
 		Control contents = super.createContents(parent);
-		// Set the title
-		setTitle("This is my first own dialog");
-		// Set the message
-		setMessage("This is a TitleAreaDialog", IMessageProvider.INFORMATION);
+		setTitle("Save Template");
+		setMessage("Prompt a new template name", IMessageProvider.INFORMATION);
 		return contents;
 	}
 
@@ -92,7 +87,7 @@ public class TemplateSaveAsDialog extends TitleAreaDialog {
 	 */
 	@Override
 	protected void createButtonsForButtonBar(Composite parent) {
-		((GridLayout) parent.getLayout()).numColumns++;
+		((GridLayout) parent.getLayout()).numColumns = 3;
 		Button button = new Button(parent, SWT.PUSH);
 		button.setText("OK");
 		button.setFont(JFaceResources.getDialogFont());
@@ -111,6 +106,17 @@ public class TemplateSaveAsDialog extends TitleAreaDialog {
 				} else {
 					setErrorMessage("Please maintain the last name");
 				}
+			}
+		});
+
+		Button button2 = new Button(parent, SWT.PUSH);
+		button2.setText("cancel");
+		button2.setFont(JFaceResources.getDialogFont());
+		button2.addSelectionListener(new SelectionAdapter() {
+
+			@Override
+			public void widgetSelected(SelectionEvent e) {
+				close();
 			}
 		});
 	}

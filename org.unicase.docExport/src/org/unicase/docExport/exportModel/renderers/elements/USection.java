@@ -14,6 +14,9 @@ import org.unicase.docExport.exportModel.renderers.options.SectionOption;
 import org.unicase.docExport.exportModel.renderers.options.TextOption;
 
 /**
+ * A basic section which can be nested by any depth. This element should be used for all document structuring, because
+ * depending on the DocWriter specific document structuring element will be used automatically.
+ * 
  * @author Sebastian Hoecht
  */
 public class USection extends UCompositeSection {

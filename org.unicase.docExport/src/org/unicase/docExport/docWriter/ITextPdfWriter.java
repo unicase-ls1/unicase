@@ -9,28 +9,17 @@ import java.io.FileNotFoundException;
 import java.io.FileOutputStream;
 
 import org.unicase.docExport.exportModel.renderers.elements.URootCompositeSection;
-import org.unicase.docExport.exportModel.renderers.elements.USeperator;
 
 import com.lowagie.text.DocumentException;
 
 /**
- * This class is a strategy of writing a Document. This class contains a strategy to write an UDocument to a file using
- * the RTF (Rich Text Format).
+ * Uses iText to render a PDF document.
  * 
  * @author Sebastian Höcht
  */
 public class ITextPdfWriter extends ITextWriter implements DocWriter {
 
 	private static final String FILE_TYPE = "pdf";
-
-	/**
-	 * {@inheritDoc}
-	 */
-	@Override
-	protected void writeSeperator(Object parent, USeperator doc2) {
-		// TODO Auto-generated method stub
-
-	}
 
 	/**
 	 * {@inheritDoc}

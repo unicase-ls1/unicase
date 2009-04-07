@@ -25,11 +25,12 @@ import org.eclipse.jface.viewers.IStructuredSelection;
 import org.eclipse.ui.PlatformUI;
 import org.eclipse.ui.handlers.HandlerUtil;
 import org.unicase.docExport.TemplateRegistry;
-import org.unicase.docExport.exceptions.TemplateSaveException;
 import org.unicase.docExport.exportModel.Template;
 import org.unicase.workspace.util.WorkspaceUtil;
 
 /**
+ * The handler for the export template command.
+ * 
  * @author Sebastian Hoecht
  */
 public class ExportTemplate extends AbstractHandler {
@@ -66,27 +67,8 @@ public class ExportTemplate extends AbstractHandler {
 		Template template = (Template) o;
 
 		ExportTemplateDialog dialog;
-		try {
-			dialog = new ExportTemplateDialog(PlatformUI.getWorkbench().getDisplay().getActiveShell(), template);
-			dialog.open();
-		} catch (TemplateSaveException e) {
-			// TODO Auto-generated catch block
-			e.printStackTrace();
-		}
-
-		// FileDialog fd = new FileDialog(PlatformUI.getWorkbench().getDisplay().getActiveShell(), SWT.SAVE);
-		// fd.setText("Enter the filename, where you want to save the template");
-		// String filePath = fd.open();
-		//
-		// if (filePath != null) {
-		// try {
-		// saveZipFile(filePath, createTemplateFile(template).getAbsolutePath(), template.getLayoutOptions()
-		// .getLogoImage());
-		// } catch (IOException e) {
-		// // TODO Auto-generated catch block
-		// e.printStackTrace();
-		// }
-		// }
+		dialog = new ExportTemplateDialog(PlatformUI.getWorkbench().getDisplay().getActiveShell(), template);
+		dialog.open();
 
 		return null;
 	}
@@ -110,6 +92,8 @@ public class ExportTemplate extends AbstractHandler {
 	}
 
 	/**
+	 * Export a template to a file.
+	 * 
 	 * @param template the template which shall be exported to a file
 	 * @param filePath the location where the template shall be saved
 	 * @throws IOException shit happens...

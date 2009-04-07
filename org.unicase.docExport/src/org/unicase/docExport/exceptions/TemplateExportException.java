@@ -3,29 +3,24 @@
  * accompanying materials are made available under the terms of the Eclipse Public License v1.0 which accompanies this
  * distribution, and is available at http://www.eclipse.org/legal/epl-v10.html </copyright>
  */
-package org.unicase.docExport.docWriter;
-
-// Java
-import org.apache.fop.apps.MimeConstants;
+package org.unicase.docExport.exceptions;
 
 /**
+ * Any error while exporting a template.
+ * 
  * @author Sebastian Hoecht
  */
-public class FopPdfWriter extends FopWriter {
-	/**
-	 * {@inheritDoc}
-	 */
-	public String getFileType() {
-		return "pdf";
-	}
+public class TemplateExportException extends Exception {
+
+	private static final long serialVersionUID = 8486934896423948673L;
 
 	/**
-	 * {@inheritDoc}
+	 * constructor.
 	 * 
-	 * @see org.unicase.docExport.docWriter.FopWriter#getOutputFormat()
+	 * @param e the nested exception
 	 */
-	@Override
-	protected String getOutputFormat() {
-		return MimeConstants.MIME_PDF;
+	public TemplateExportException(Exception e) {
+		super(e);
 	}
+
 }

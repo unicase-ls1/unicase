@@ -23,6 +23,10 @@ import org.unicase.model.ModelPackage;
 import org.unicase.workspace.util.WorkspaceUtil;
 
 /**
+ * This class creates a mapping from a ModelElement type to a its possible ModelElementRenderers. So if you create a new
+ * ModelElementRenderer, it should be returned in the function getSupportedModelElementRenderers for all ModelElement
+ * types it supports.
+ * 
  * @author Sebastian Hoecht
  */
 public final class ModelElementRendererRegistry {
@@ -75,7 +79,7 @@ public final class ModelElementRendererRegistry {
 	}
 
 	/**
-	 * Returns the deafult renderer which shall be used, if no renderer has been selected.
+	 * Returns the default renderer which shall be used, if no renderer has been selected.
 	 * 
 	 * @param modelElementEClass the modelElement type a renderer is needed for
 	 * @param template the template where this renderer is used
@@ -96,7 +100,7 @@ public final class ModelElementRendererRegistry {
 	/**
 	 * Returns the EClass of a ModelElement type given the clazz name of the ModelELement.
 	 * 
-	 * @param clazz thez class name of the ModelElement
+	 * @param clazz the class name of the ModelElement
 	 * @return the EClass of the ModelElement
 	 */
 	public static EClass getEClassOfString(String clazz) {

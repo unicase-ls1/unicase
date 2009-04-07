@@ -8,6 +8,9 @@ package org.unicase.docExport.exportModel.renderers.elements;
 import org.unicase.docExport.exportModel.renderers.options.LayoutOptions;
 
 /**
+ * Any Document starts with this element. It contains some additional global layout options and is the entry point for
+ * all contents.
+ * 
  * @author Sebastian Hoecht
  */
 public class URootCompositeSection extends UCompositeSection {

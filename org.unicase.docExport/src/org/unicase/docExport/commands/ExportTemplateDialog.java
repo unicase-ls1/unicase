@@ -20,12 +20,15 @@ import org.eclipse.swt.widgets.Control;
 import org.eclipse.swt.widgets.DirectoryDialog;
 import org.eclipse.swt.widgets.Group;
 import org.eclipse.swt.widgets.Label;
+import org.eclipse.swt.widgets.MessageBox;
 import org.eclipse.swt.widgets.Shell;
 import org.eclipse.swt.widgets.Text;
-import org.unicase.docExport.exceptions.TemplateSaveException;
+import org.eclipse.ui.PlatformUI;
 import org.unicase.docExport.exportModel.Template;
 
 /**
+ * A custom Dialog for the export template command.
+ * 
  * @author Sebastian Hoecht
  */
 public class ExportTemplateDialog extends TitleAreaDialog {
@@ -40,9 +43,8 @@ public class ExportTemplateDialog extends TitleAreaDialog {
 	 * 
 	 * @param parentShell the parent shell object
 	 * @param template the template which shall be exported
-	 * @throws TemplateSaveException -
 	 */
-	public ExportTemplateDialog(Shell parentShell, Template template) throws TemplateSaveException {
+	public ExportTemplateDialog(Shell parentShell, Template template) {
 		super(parentShell);
 		setHelpAvailable(false);
 
@@ -54,8 +56,6 @@ public class ExportTemplateDialog extends TitleAreaDialog {
 	 */
 	@Override
 	protected Control createDialogArea(Composite parent) {
-		// return super.createDialogArea(parent);
-
 		GridLayout layout0 = new GridLayout();
 		layout0.numColumns = 1;
 		parent.setLayout(layout0);
@@ -104,10 +104,7 @@ public class ExportTemplateDialog extends TitleAreaDialog {
 	@Override
 	protected Control createContents(Composite parent) {
 		Control contents = super.createContents(parent);
-		// Set the title
 		setTitle("Export template");
-		// Set the message
-		// setMessage("Please select a enter a file.", IMessageProvider.INFORMATION);
 		return contents;
 	}
 
@@ -120,7 +117,7 @@ public class ExportTemplateDialog extends TitleAreaDialog {
 	}
 
 	/**
-	 * @author Sebastian Höcht
+	 * Listener for the save button which exports a template.
 	 */
 	class SaveSelectionListener extends SelectionAdapter {
 
@@ -137,28 +134,18 @@ public class ExportTemplateDialog extends TitleAreaDialog {
 					ExportTemplate.exportTemplate(template, fileLocation.getText() + "/" + templateName.getText());
 					close();
 				} catch (IOException e1) {
-					// TODO Auto-generated catch block
-					e1.printStackTrace();
+					MessageBox finished = new MessageBox(PlatformUI.getWorkbench().getDisplay().getActiveShell(),
+						SWT.OK | SWT.ICON_INFORMATION);
+					finished.setText("Export failed");
+					finished.setMessage("The selected file could not be selected for some reason.");
+					finished.open();
 				}
 			}
 		}
 	}
 
 	/**
-	 * @author Sebastian Höcht
-	 */
-	class CancelSelectionListener extends SelectionAdapter {
-		/**
-		 * {@inheritDoc}
-		 */
-		@Override
-		public void widgetSelected(SelectionEvent e) {
-			close();
-		}
-	}
-
-	/**
-	 * @author Sebastian Höcht
+	 * Listener for the file selection button.
 	 */
 	class FileLocationSelectionListener extends SelectionAdapter {
 		/**

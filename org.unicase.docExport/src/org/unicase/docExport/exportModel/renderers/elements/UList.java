@@ -12,6 +12,8 @@ import org.unicase.docExport.exportModel.renderers.options.OptionsFactory;
 import org.unicase.docExport.exportModel.renderers.options.TextOption;
 
 /**
+ * A simple list of strings.
+ * 
  * @author Sebastian Hoecht
  */
 public class UList extends UDocument {
