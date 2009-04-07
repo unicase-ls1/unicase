@@ -5,6 +5,9 @@
  */
 package org.unicase.ui.taskview;
 
+import java.util.ArrayList;
+import java.util.List;
+
 import org.eclipse.emf.common.notify.Notification;
 import org.eclipse.emf.common.notify.impl.AdapterImpl;
 import org.eclipse.emf.common.util.BasicEList;
@@ -16,12 +19,13 @@ import org.eclipse.jface.action.IAction;
 import org.eclipse.jface.action.IToolBarManager;
 import org.eclipse.jface.action.Separator;
 import org.eclipse.jface.dialogs.IDialogSettings;
+import org.eclipse.jface.layout.GridLayoutFactory;
 import org.eclipse.jface.viewers.EditingSupport;
 import org.eclipse.swt.SWT;
 import org.eclipse.swt.layout.GridData;
-import org.eclipse.swt.layout.GridLayout;
 import org.eclipse.swt.widgets.Composite;
 import org.eclipse.swt.widgets.Control;
+import org.eclipse.swt.widgets.Display;
 import org.eclipse.swt.widgets.Text;
 import org.eclipse.ui.IActionBars;
 import org.eclipse.ui.IWorkbenchActionConstants;
@@ -53,9 +57,6 @@ import org.unicase.workspace.exceptions.CannotMatchUserInProjectException;
 import org.unicase.workspace.util.EventUtil;
 import org.unicase.workspace.util.NoCurrentUserException;
 import org.unicase.workspace.util.OrgUnitHelper;
-
-import java.util.ArrayList;
-import java.util.List;
 
 /**
  * TaskView shows checkables (work items which can be set to done).
@@ -182,12 +183,11 @@ public class TaskView extends ViewPart implements ProjectChangeObserver {
 			@Override
 			protected Control createControl(Composite parent) {
 				Composite composite = new Composite(parent, SWT.NONE);
-				GridLayout layout = new GridLayout();
-				layout.verticalSpacing = 0;
-				layout.marginHeight = 0;
-				composite.setLayout(layout);
-				txtUser = new Text(composite, SWT.BORDER);
-				GridData layoutData = new GridData(SWT.FILL, SWT.TOP, true, false);
+				GridLayoutFactory.fillDefaults().margins(1, 0).spacing(0, 0).applyTo(composite);
+				composite.setBackground(Display.getCurrent().getSystemColor(SWT.COLOR_DARK_GRAY));
+				txtUser = new Text(composite, SWT.NONE);
+				txtUser.setEnabled(false);
+				GridData layoutData = new GridData(SWT.FILL, SWT.CENTER, true, true);
 				layoutData.widthHint = 100;
 				txtUser.setLayoutData(layoutData);
 				txtUser.setEditable(false);
