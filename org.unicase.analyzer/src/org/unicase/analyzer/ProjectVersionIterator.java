@@ -125,33 +125,29 @@ public class ProjectVersionIterator implements Iterator<ProjectAnalysisData> {
 			Project project = null;
 			try {
 				project = connectionManager.getProject(usersession.getSessionId(), projectId, targetSpec);
-			} catch (EmfStoreException e) {
-				WorkspaceUtil.logException("Couldn't get project", e);
-				e.printStackTrace();
-			}
-			projectdata.setProjectState(project);
-			
-			ProjectId projectIdCopy = (ProjectId)EcoreUtil.copy(projectId);
-			projectdata.setProjectId(projectIdCopy);
-			
-			PrimaryVersionSpec primarSpecCopy = (PrimaryVersionSpec)EcoreUtil.copy(targetSpec);
-			projectdata.setPrimaryVersionSpec(primarSpecCopy);
-
-			if(targetSpec.getIdentifier() == start){
-				//changepackage.add(null);
-				//projectdata.getChangePackages().add(null);
-			}
-			else{
+				projectdata.setProjectState(project);
+				
+				ProjectId projectIdCopy = (ProjectId)EcoreUtil.copy(projectId);
+				projectdata.setProjectId(projectIdCopy);
+				
+				PrimaryVersionSpec primarSpecCopy = (PrimaryVersionSpec)EcoreUtil.copy(targetSpec);
+				projectdata.setPrimaryVersionSpec(primarSpecCopy);
+				
+				
 				try {
 					sourceSpec.setIdentifier(targetSpec.getIdentifier() - step);
 					changepackage.addAll(connectionManager.getChanges(usersession.getSessionId(), projectId, sourceSpec, targetSpec));
 				} catch (EmfStoreException e) {
-						WorkspaceUtil.logException("Couldn't get Changes", e);
-						e.printStackTrace();
+					WorkspaceUtil.logException("Couldn't get Changes", e);
+					e.printStackTrace();
 				}
+				
+			} catch (EmfStoreException e) {
+				WorkspaceUtil.logException("Couldn't get project", e);
+				e.printStackTrace();
 			}
+
 			
-			projectdata.getProjectState();
 			targetSpec.setIdentifier(targetSpec.getIdentifier() + step);
 		}
 		return projectdata;
