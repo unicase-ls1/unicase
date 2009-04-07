@@ -17,7 +17,7 @@ public class Application implements IApplication {
 	private final static int SERVERTEST = 3;
 	private final static int ANALYSERTEST = 4;
 
-	private int DEFAULTITERATION = 10;
+	private int DEFAULTITERATION = 1;
 
 	/*
 	 * (non-Javadoc)
@@ -26,7 +26,7 @@ public class Application implements IApplication {
 	public Object start(IApplicationContext context) throws Exception {
 
 		// ///////
-		int testToRun = ANALYSERTEST;
+		int testToRun = RANDOMTEST;
 		// ///////
 
 		TestSuite test = null;
