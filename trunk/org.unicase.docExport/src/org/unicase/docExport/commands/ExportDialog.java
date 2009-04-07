@@ -42,9 +42,13 @@ import org.unicase.docExport.exceptions.TemplateSaveException;
 import org.unicase.docExport.exportModel.Template;
 import org.unicase.docExport.exportModel.renderers.DocumentRenderer;
 import org.unicase.model.ModelElement;
+import org.unicase.model.document.CompositeSection;
+import org.unicase.model.document.LeafSection;
 import org.unicase.workspace.util.WorkspaceUtil;
 
 /**
+ * A custom Dialog for the document export function.
+ * 
  * @author Sebastian Hoecht
  */
 public class ExportDialog extends TitleAreaDialog {
@@ -59,6 +63,7 @@ public class ExportDialog extends TitleAreaDialog {
 	private Combo exportType;
 	private Text fileLocation;
 	private Text fileName;
+	private Group container;
 
 	private Combo recursionDepth;
 
@@ -71,7 +76,7 @@ public class ExportDialog extends TitleAreaDialog {
 	 * @param docRenderer the DocumentRenderer which will use the template to render it to an URootCompositeSection,
 	 *            which is used by the DocWriter
 	 * @param modelElement the modelElement which shall be exported to a document
-	 * @throws TemplateSaveException -
+	 * @throws TemplateSaveException no access to the templates files.
 	 */
 	public ExportDialog(Shell parentShell, DocumentRenderer docRenderer, ModelElement modelElement)
 		throws TemplateSaveException {
@@ -91,13 +96,11 @@ public class ExportDialog extends TitleAreaDialog {
 	 */
 	@Override
 	protected Control createDialogArea(Composite parent) {
-		// return super.createDialogArea(parent);
-
 		GridLayout layout0 = new GridLayout();
 		layout0.numColumns = 1;
 		parent.setLayout(layout0);
 
-		Group container = new Group(parent, SWT.BORDER);
+		container = new Group(parent, SWT.BORDER);
 		GridLayout layout = new GridLayout();
 		layout.numColumns = 2;
 		container.setLayout(layout);
@@ -160,19 +163,21 @@ public class ExportDialog extends TitleAreaDialog {
 			}
 		});
 
-		Label label6 = new Label(container, SWT.NONE);
-		label6.setText("treat Model Element as Leaf Section");
+		if (!(modelElement instanceof LeafSection) && !(modelElement instanceof CompositeSection)) {
+			Label label6 = new Label(container, SWT.NONE);
+			label6.setText("treat Model Element as Leaf Section");
 
-		Button modelElementAsLeafSection = new Button(container, SWT.CHECK);
-		modelElementAsLeafSection.addSelectionListener(new SelectionListener() {
-			public void widgetDefaultSelected(SelectionEvent e) {
-			}
+			Button modelElementAsLeafSection = new Button(container, SWT.CHECK);
+			modelElementAsLeafSection.addSelectionListener(new SelectionListener() {
+				public void widgetDefaultSelected(SelectionEvent e) {
+				}
 
-			public void widgetSelected(SelectionEvent e) {
-				DocumentExport.setTreatModelElementAsLeafSection(((Button) e.widget).getSelection());
-			}
-		});
-		modelElementAsLeafSection.setSelection(false);
+				public void widgetSelected(SelectionEvent e) {
+					DocumentExport.setTreatModelElementAsLeafSection(((Button) e.widget).getSelection());
+				}
+			});
+			modelElementAsLeafSection.setSelection(false);
+		}
 
 		Composite container2 = new Composite(parent, SWT.NONE);
 		GridLayout layout2 = new GridLayout();
@@ -205,7 +210,7 @@ public class ExportDialog extends TitleAreaDialog {
 		// Set the title
 		setTitle("Export document");
 		// Set the message
-		setMessage("Please select a enter a file.", IMessageProvider.INFORMATION);
+		setMessage("Please select a file.", IMessageProvider.INFORMATION);
 		return contents;
 	}
 
@@ -231,19 +236,17 @@ public class ExportDialog extends TitleAreaDialog {
 			finished.setMessage("Fatal Error: " + e.getTargetException().getMessage() + "\n"
 				+ "Please contact a unicase developer");
 			finished.open();
-			e.printStackTrace();
 		} catch (InterruptedException e) {
 			MessageBox finished = new MessageBox(ExportDialog.platformShell, SWT.OK | SWT.ICON_INFORMATION);
 			finished.setText("Export status");
 			finished.setMessage("Export interrupted");
 			finished.open();
-			e.printStackTrace();
 		}
 	}
 
 	/**
 	 * Check if the file already exists and returns true, if the file shall be written. If the file already exists, a
-	 * prompt message box will appear, which asks the users, if he really wants to overwrite the file.
+	 * prompt message box will appear, which asks the user, if he really wants to overwrite the file.
 	 * 
 	 * @param fileUrl the system dependent url to the file
 	 * @return true if (over)writing is allowed, else false
@@ -273,8 +276,13 @@ public class ExportDialog extends TitleAreaDialog {
 				messageBox.open();
 				doIt = false;
 			} catch (IOException e) {
-				// TODO Auto-generated catch block
-				e.printStackTrace();
+				MessageBox messageBox = new MessageBox(ExportDialog.platformShell, SWT.OK | SWT.ICON_ERROR | SWT.CENTER);
+				messageBox.setMessage(e.getMessage());
+				messageBox
+					.setText("The File could not be accessed for some reason. The solution my depend on your operating system:"
+						+ "" + e.getMessage());
+				messageBox.open();
+				doIt = false;
 			}
 
 		}
@@ -299,7 +307,7 @@ public class ExportDialog extends TitleAreaDialog {
 	}
 
 	/**
-	 * @author Sebastian Höcht
+	 * Listener for the save button, which simply exports the document to a file.
 	 */
 	class SaveSelectionListener extends SelectionAdapter {
 
@@ -322,7 +330,7 @@ public class ExportDialog extends TitleAreaDialog {
 	}
 
 	/**
-	 * @author Sebastian Höcht
+	 * Listener for the save and open button, which exports the document and opens the file afterwards.
 	 */
 	class SaveAndOpenSelectionListener extends SelectionAdapter {
 		/**
@@ -345,7 +353,7 @@ public class ExportDialog extends TitleAreaDialog {
 	}
 
 	/**
-	 * @author Sebastian Höcht
+	 * Listener for the cancel button.
 	 */
 	class CancelSelectionListener extends SelectionAdapter {
 		/**
@@ -358,7 +366,7 @@ public class ExportDialog extends TitleAreaDialog {
 	}
 
 	/**
-	 * @author Sebastian Höcht
+	 * Listener for the file location selection.
 	 */
 	class FileLocationSelectionListener extends SelectionAdapter {
 		/**

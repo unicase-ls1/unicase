@@ -12,6 +12,8 @@ import org.eclipse.swt.widgets.Composite;
 import org.unicase.docExport.exportModel.Template;
 
 /**
+ * This is a top level tab for the TemplateEditor which deals with re-layouting the contents of the tab.
+ * 
  * @author Sebastian Hoecht
  */
 public class TemplateEditorTab extends Composite {

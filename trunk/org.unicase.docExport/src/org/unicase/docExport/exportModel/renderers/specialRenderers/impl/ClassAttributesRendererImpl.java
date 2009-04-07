@@ -55,7 +55,7 @@ public class ClassAttributesRendererImpl extends AttributeRendererImpl implement
 		table.getDefaultCellBoxModel().setBorderBottom(0.5);
 		table.getDefaultCellBoxModel().setBorderStyle(UBorderStyle.DOTTED);
 		for (Attribute attribute : attributes) {
-			table.addCell(attribute.getLabel(), template.getLayoutOptions().getDefaultTextOption());
+			table.add(attribute.getLabel(), template.getLayoutOptions().getDefaultTextOption());
 		}
 
 		parent.add(table);

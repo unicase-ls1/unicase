@@ -5,8 +5,11 @@
  */
 package org.unicase.docExport.docWriter;
 
+import java.io.BufferedOutputStream;
 import java.io.File;
+import java.io.FileOutputStream;
 import java.io.IOException;
+import java.io.OutputStream;
 
 import javax.xml.parsers.DocumentBuilder;
 import javax.xml.parsers.DocumentBuilderFactory;
@@ -20,10 +23,17 @@ import javax.xml.transform.TransformerException;
 import javax.xml.transform.TransformerFactory;
 import javax.xml.transform.TransformerFactoryConfigurationError;
 import javax.xml.transform.dom.DOMSource;
+import javax.xml.transform.sax.SAXResult;
 import javax.xml.transform.stream.StreamResult;
+import javax.xml.transform.stream.StreamSource;
 
+import org.apache.fop.apps.FOPException;
+import org.apache.fop.apps.FOUserAgent;
+import org.apache.fop.apps.Fop;
+import org.apache.fop.apps.FopFactory;
 import org.eclipse.core.runtime.IStatus;
 import org.unicase.docExport.DocumentExport;
+import org.unicase.docExport.exceptions.DocumentExportException;
 import org.unicase.docExport.exportModel.renderers.elements.UCompositeSection;
 import org.unicase.docExport.exportModel.renderers.elements.UDocument;
 import org.unicase.docExport.exportModel.renderers.elements.UImage;
@@ -40,6 +50,7 @@ import org.unicase.docExport.exportModel.renderers.elements.UTableOfContents;
 import org.unicase.docExport.exportModel.renderers.elements.UTextPart;
 import org.unicase.docExport.exportModel.renderers.options.BoxModelOption;
 import org.unicase.docExport.exportModel.renderers.options.PageCitationStyle;
+import org.unicase.docExport.exportModel.renderers.options.TextAlign;
 import org.unicase.docExport.exportModel.renderers.options.TextOption;
 import org.unicase.docExport.exportModel.renderers.options.UBorderStyle;
 import org.unicase.workspace.util.WorkspaceUtil;
@@ -47,21 +58,87 @@ import org.w3c.dom.Document;
 import org.w3c.dom.Element;
 
 /**
+ * This DocWriter generates a XSL-FO document based on the W3C recommendation. Afterwards the XSL-FO file is transformed
+ * into a document like PDF or RTF using Apache FOP.
+ * 
  * @author Sebastian Hoecht
  */
 public abstract class FopWriter implements DocWriter {
 
 	private static final int INDENTION_WIDTH = 15;
+
 	private Element root;
 	private Document doc;
 	private Element pageSequence;
 	private URootCompositeSection uRoot;
+	private FopFactory fopFactory = FopFactory.newInstance();
 
 	/**
+	 * Returns the type of the Apache FOP transformation, i.e. MimeConstants.MIME_PLAIN_TEXT
+	 * 
+	 * @return the Mime constant of fop
+	 */
+	protected abstract String getOutputFormat();
+
+	/**
+	 * {@inheritDoc}
+	 * 
+	 * @throws DocumentExportException
+	 */
+	public void export(String fileName, URootCompositeSection doc) throws DocumentExportException {
+		setURoot(doc);
+		File xslFo = createFOFile(doc);
+		OutputStream out = null;
+
+		try {
+			FOUserAgent foUserAgent = fopFactory.newFOUserAgent();
+
+			// Setup output stream. Note: Using BufferedOutputStream
+			// for performance reasons (helpful with FileOutputStreams).
+			out = new FileOutputStream(fileName);
+			out = new BufferedOutputStream(out);
+
+			// Construct fop with desired output format
+			Fop fop = fopFactory.newFop(this.getOutputFormat(), foUserAgent, out);
+
+			// Setup JAXP using identity transformer
+			TransformerFactory factory = TransformerFactory.newInstance();
+			Transformer transformer = factory.newTransformer(); // identity transformer
+
+			Source src = new StreamSource(xslFo);
+
+			// Resulting SAX events (the generated FO) must be piped through to FOP
+			Result res = new SAXResult(fop.getDefaultHandler());
+
+			// Start XSLT transformation and FOP processing
+			transformer.transform(src, res);
+
+		} catch (IOException e) {
+			throw new DocumentExportException("Couldn't read/write the files", e);
+		} catch (FOPException e) {
+			throw new DocumentExportException("FOP error: " + e.getMessage(), e);
+		} catch (TransformerException e) {
+			throw new DocumentExportException("Transformation error", e);
+		} finally {
+			try {
+				if (out != null) {
+					out.close();
+				}
+			} catch (IOException e) {
+				// TODO Auto-generated catch block
+				e.printStackTrace();
+			}
+		}
+	}
+
+	/**
+	 * Create the XSL-FO File from the internal document model.
+	 * 
 	 * @param uDoc the rootSection which contains all information needed to render a Document
 	 * @return an XML File containing an XML tree with XSL-FO syntax ready to be transformed to a Document
+	 * @throws DocumentExportException xsl-fo file creation failed
 	 */
-	protected File createFOFile(URootCompositeSection uDoc) {
+	protected File createFOFile(URootCompositeSection uDoc) throws DocumentExportException {
 
 		try {
 			DocumentBuilderFactory factory = DocumentBuilderFactory.newInstance();
@@ -100,26 +177,22 @@ public abstract class FopWriter implements DocWriter {
 			return tmpFoFile;
 
 		} catch (TransformerConfigurationException e) {
-			// TODO Auto-generated catch block
-			e.printStackTrace();
+			throw new DocumentExportException(e);
 		} catch (TransformerFactoryConfigurationError e) {
-			// TODO Auto-generated catch block
-			e.printStackTrace();
+			throw new DocumentExportException();
 		} catch (TransformerException e) {
-			// TODO Auto-generated catch block
-			e.printStackTrace();
+			throw new DocumentExportException(e);
 		} catch (ParserConfigurationException e) {
-			// TODO Auto-generated catch block
-			e.printStackTrace();
+			throw new DocumentExportException(e);
 		} catch (IOException e) {
-			// TODO Auto-generated catch block
-			e.printStackTrace();
+			throw new DocumentExportException(e);
 		}
-		return null;
 	}
 
 	/**
-	 * @param parent the xml fo Element
+	 * Write a UDocument to the XSL-FO tree.
+	 * 
+	 * @param parent the XSL-FO Element
 	 * @param uDoc the document which shall be written
 	 */
 	protected void writeUDocument(Element parent, UDocument uDoc) {
@@ -159,6 +232,24 @@ public abstract class FopWriter implements DocWriter {
 	}
 
 	/**
+	 * create the column specification of the table of contents table.
+	 * 
+	 * @param table the XSL-FO table element
+	 */
+	protected void createUTableOfContentsColumns(Element table) {
+		Element sectionColumn = getDoc().createElement("fo:table-column");
+		Element sectionTitleColumn = getDoc().createElement("fo:table-column");
+		Element sectionPageColumn = getDoc().createElement("fo:table-column");
+		table.appendChild(sectionColumn);
+		table.appendChild(sectionTitleColumn);
+		table.appendChild(sectionPageColumn);
+
+		sectionColumn.setAttribute("column-width", "15%");
+		sectionTitleColumn.setAttribute("column-width", "75%");
+		sectionPageColumn.setAttribute("column-width", "10%");
+	}
+
+	/**
 	 * @param parent the parent element where the table of contents shall be written
 	 * @param uSection the section containing the document structure, which is the content of the table of contents
 	 * @param textOption the TextOption which decorates the text of the TOC
@@ -176,16 +267,7 @@ public abstract class FopWriter implements DocWriter {
 		parent.appendChild(table);
 		table.setAttribute("margin-top", "10pt");
 
-		Element sectionColumn = getDoc().createElement("fo:table-column");
-		Element sectionTitleColumn = getDoc().createElement("fo:table-column");
-		Element sectionPageColumn = getDoc().createElement("fo:table-column");
-		table.appendChild(sectionColumn);
-		table.appendChild(sectionTitleColumn);
-		table.appendChild(sectionPageColumn);
-
-		sectionColumn.setAttribute("column-width", "15%");
-		sectionTitleColumn.setAttribute("column-width", "75%");
-		sectionPageColumn.setAttribute("column-width", "10%");
+		createUTableOfContentsColumns(table);
 
 		Element tableBody = getDoc().createElement("fo:table-body");
 		table.appendChild(tableBody);
@@ -211,6 +293,8 @@ public abstract class FopWriter implements DocWriter {
 				tableRow.appendChild(sectionNumberCell);
 				tableRow.appendChild(sectionTitleCell);
 				tableRow.appendChild(sectionPageCell);
+
+				createColumnWidths(sectionNumberCell, sectionTitleCell, sectionPageCell);
 
 				Element sectionNumberBlock = getDoc().createElement("fo:block");
 				Element sectionTitleBlock = getDoc().createElement("fo:block");
@@ -257,6 +341,17 @@ public abstract class FopWriter implements DocWriter {
 		}
 	}
 
+	/**
+	 * creates the column widths for each column manually by absolute values for the table of contents.
+	 * 
+	 * @param sectionNumberCell the cell for the section number.
+	 * @param sectionTitleCell the cell for the section title
+	 * @param sectionPageCell the cell for the page number.
+	 */
+	protected void createColumnWidths(Element sectionNumberCell, Element sectionTitleCell, Element sectionPageCell) {
+		// normally this is done in the table definition.
+	}
+
 	private void writeUImage(Element parent, UImage uImage) {
 		Element block = getDoc().createElement("fo:block");
 		applyBoxModel(block, uImage.getBoxModel());
@@ -281,7 +376,7 @@ public abstract class FopWriter implements DocWriter {
 		}
 		image.setAttribute("scaling", "uniform");
 
-		if (uImage.isCenter()) {
+		if (uImage.getTextAlign().equals(TextAlign.CENTER)) {
 			block.setAttribute("text-align", "center");
 		}
 
@@ -295,7 +390,7 @@ public abstract class FopWriter implements DocWriter {
 	}
 
 	/**
-	 * @param parent the parent fo xml node where the link shall be added
+	 * @param parent the parent XSL-FO node where the link shall be added
 	 * @param uLink the uLink object
 	 */
 	protected void writeULink(Element parent, ULink uLink) {
@@ -332,13 +427,10 @@ public abstract class FopWriter implements DocWriter {
 	}
 
 	/**
-	 * @param parent the parent xml fo Element
+	 * @param parent the parent XSL-FO Element
 	 * @param uTable the table which shall be written to the document
 	 */
 	protected void writeUTable(Element parent, UTable uTable) {
-		// Element tableAndCaption = doc.createElement("fo:table-and-caption");
-		// parent.appendChild(tableAndCaption);
-
 		if (uTable.getEntries().size() < 1) {
 			return;
 		}
@@ -703,9 +795,6 @@ public abstract class FopWriter implements DocWriter {
 		applyPageBreaks(foElement, option);
 	}
 
-	/**
-	 * Checkstyle is stupid (NPath complexity).
-	 */
 	private void applyPageBreaks(Element foElement, BoxModelOption option) {
 
 		if (option.isBreakBefore()) {

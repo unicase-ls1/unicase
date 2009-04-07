@@ -23,6 +23,8 @@ import org.unicase.model.impl.ModelElementImpl;
 import org.unicase.workspace.util.WorkspaceUtil;
 
 /**
+ * The handler for the document export command.
+ * 
  * @author Sebastian Hoecht
  */
 public class ExportDocument extends AbstractHandler {

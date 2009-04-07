@@ -5,6 +5,7 @@
  */
 package org.unicase.docExport.exportModel.renderers.elements;
 
+import org.eclipse.emf.ecore.util.EcoreUtil;
 import org.unicase.docExport.exportModel.renderers.options.BoxModelOption;
 import org.unicase.docExport.exportModel.renderers.options.OptionsFactory;
 
@@ -45,7 +46,7 @@ public abstract class UDocument {
 	 * @param boxModel the boxModel to set
 	 */
 	public void setBoxModel(BoxModelOption boxModel) {
-		this.boxModel = boxModel;
+		this.boxModel = (BoxModelOption) EcoreUtil.copy(boxModel);
 	}
 
 	/**

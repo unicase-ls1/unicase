@@ -13,7 +13,7 @@ import org.unicase.docExport.exportModel.renderers.options.TextOption;
 import org.unicase.workspace.util.WorkspaceUtil;
 
 /**
- * This class represents a Paragraph with some text.
+ * A simple paragraph containing some text and additional parents. This is the most common e
  * 
  * @author Sebastian Hoecht
  */
@@ -23,6 +23,13 @@ public class UParagraph extends UCompositeSection {
 
 	private String text = "";
 	private int indentionLeft;
+
+	/**
+	 * constructor.
+	 */
+	public UParagraph() {
+		// empty paragraph... text will be set later manually.
+	}
 
 	/**
 	 * @param text the content of the paragraph

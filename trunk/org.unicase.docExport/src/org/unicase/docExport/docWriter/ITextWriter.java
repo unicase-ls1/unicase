@@ -19,7 +19,6 @@ import org.unicase.docExport.exportModel.renderers.elements.UParagraph;
 import org.unicase.docExport.exportModel.renderers.elements.URef;
 import org.unicase.docExport.exportModel.renderers.elements.URootCompositeSection;
 import org.unicase.docExport.exportModel.renderers.elements.USection;
-import org.unicase.docExport.exportModel.renderers.elements.USeperator;
 import org.unicase.docExport.exportModel.renderers.elements.UTable;
 import org.unicase.docExport.exportModel.renderers.elements.UTableCell;
 import org.unicase.docExport.exportModel.renderers.elements.UTableOfContents;
@@ -46,10 +45,11 @@ import com.lowagie.text.Section;
 import com.lowagie.text.Table;
 
 /**
- * This class is the superclass of all DocWriters that use the iText library for writing an UDocument. Probably there
- * will be DocWriters for PDF, RTF and HTML
+ * This class is the superclass of all DocWriters that use the iText library for writing an UDocument. The iText library
+ * is a very fast and direct possibility to create documents. The main target is PDF, but it also supports other
+ * document formats like RTF and HTML. see: http://www.lowagie.com/iText/
  * 
- * @author Sebastian Höcht
+ * @author Sebastian Hoecht
  */
 public abstract class ITextWriter {
 
@@ -246,15 +246,6 @@ public abstract class ITextWriter {
 			WorkspaceUtil.log("unkown parent of USection: " + parent.getClass(), new Exception(), IStatus.WARNING);
 		}
 	}
-
-	/**
-	 * write a simple horizontal seperator to the document. Probably this will be a single horizontal line.
-	 * 
-	 * @param parent the iText parent object
-	 * @param seperator the seperator object to write
-	 * @throws DocumentException -
-	 */
-	protected abstract void writeSeperator(Object parent, USeperator seperator) throws DocumentException;
 
 	/**
 	 * @param parent the iText parent object

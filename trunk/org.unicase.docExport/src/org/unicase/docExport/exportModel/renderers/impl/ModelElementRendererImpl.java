@@ -65,12 +65,14 @@ import org.unicase.workspace.util.WorkspaceUtil;
  * <p>
  * The following features are implemented:
  * <ul>
- *   <li>{@link org.unicase.docExport.exportModel.renderers.impl.ModelElementRendererImpl#getRendererOptions <em>Renderer Options</em>}</li>
- *   <li>{@link org.unicase.docExport.exportModel.renderers.impl.ModelElementRendererImpl#getTemplate <em>Template</em>}</li>
- *   <li>{@link org.unicase.docExport.exportModel.renderers.impl.ModelElementRendererImpl#getAttributeRendererMapping <em>Attribute Renderer Mapping</em>}</li>
+ * <li>{@link org.unicase.docExport.exportModel.renderers.impl.ModelElementRendererImpl#getRendererOptions <em>Renderer
+ * Options</em>}</li>
+ * <li>{@link org.unicase.docExport.exportModel.renderers.impl.ModelElementRendererImpl#getTemplate <em>Template</em>}</li>
+ * <li>{@link org.unicase.docExport.exportModel.renderers.impl.ModelElementRendererImpl#getAttributeRendererMapping <em>
+ * Attribute Renderer Mapping</em>}</li>
  * </ul>
  * </p>
- *
+ * 
  * @generated
  */
 public abstract class ModelElementRendererImpl extends EObjectImpl implements ModelElementRenderer {
@@ -87,6 +89,7 @@ public abstract class ModelElementRendererImpl extends EObjectImpl implements Mo
 	/**
 	 * The cached value of the '{@link #getRendererOptions() <em>Renderer Options</em>}' containment reference list.
 	 * <!-- begin-user-doc --> <!-- end-user-doc -->
+	 * 
 	 * @see #getRendererOptions()
 	 * @generated
 	 * @ordered
@@ -94,9 +97,9 @@ public abstract class ModelElementRendererImpl extends EObjectImpl implements Mo
 	protected EList<RendererOption> rendererOptions;
 
 	/**
-	 * The cached value of the '{@link #getTemplate() <em>Template</em>}' reference.
-	 * <!-- begin-user-doc --> <!--
+	 * The cached value of the '{@link #getTemplate() <em>Template</em>}' reference. <!-- begin-user-doc --> <!--
 	 * end-user-doc -->
+	 * 
 	 * @see #getTemplate()
 	 * @generated
 	 * @ordered
@@ -104,8 +107,9 @@ public abstract class ModelElementRendererImpl extends EObjectImpl implements Mo
 	protected Template template;
 
 	/**
-	 * The cached value of the '{@link #getAttributeRendererMapping() <em>Attribute Renderer Mapping</em>}' containment reference list.
-	 * <!-- begin-user-doc --> <!-- end-user-doc -->
+	 * The cached value of the '{@link #getAttributeRendererMapping() <em>Attribute Renderer Mapping</em>}' containment
+	 * reference list. <!-- begin-user-doc --> <!-- end-user-doc -->
+	 * 
 	 * @see #getAttributeRendererMapping()
 	 * @generated
 	 * @ordered
@@ -114,6 +118,7 @@ public abstract class ModelElementRendererImpl extends EObjectImpl implements Mo
 
 	/**
 	 * <!-- begin-user-doc --> <!-- end-user-doc -->
+	 * 
 	 * @generated
 	 */
 	protected ModelElementRendererImpl() {
@@ -122,6 +127,7 @@ public abstract class ModelElementRendererImpl extends EObjectImpl implements Mo
 
 	/**
 	 * <!-- begin-user-doc --> <!-- end-user-doc -->
+	 * 
 	 * @generated
 	 */
 	@Override
@@ -131,26 +137,30 @@ public abstract class ModelElementRendererImpl extends EObjectImpl implements Mo
 
 	/**
 	 * <!-- begin-user-doc --> <!-- end-user-doc -->
+	 * 
 	 * @generated
 	 */
 	public EList<RendererOption> getRendererOptions() {
 		if (rendererOptions == null) {
-			rendererOptions = new EObjectContainmentEList<RendererOption>(RendererOption.class, this, RenderersPackage.MODEL_ELEMENT_RENDERER__RENDERER_OPTIONS);
+			rendererOptions = new EObjectContainmentEList<RendererOption>(RendererOption.class, this,
+				RenderersPackage.MODEL_ELEMENT_RENDERER__RENDERER_OPTIONS);
 		}
 		return rendererOptions;
 	}
 
 	/**
 	 * <!-- begin-user-doc --> <!-- end-user-doc -->
+	 * 
 	 * @generated
 	 */
 	public Template getTemplate() {
 		if (template != null && template.eIsProxy()) {
-			InternalEObject oldTemplate = (InternalEObject)template;
-			template = (Template)eResolveProxy(oldTemplate);
+			InternalEObject oldTemplate = (InternalEObject) template;
+			template = (Template) eResolveProxy(oldTemplate);
 			if (template != oldTemplate) {
 				if (eNotificationRequired())
-					eNotify(new ENotificationImpl(this, Notification.RESOLVE, RenderersPackage.MODEL_ELEMENT_RENDERER__TEMPLATE, oldTemplate, template));
+					eNotify(new ENotificationImpl(this, Notification.RESOLVE,
+						RenderersPackage.MODEL_ELEMENT_RENDERER__TEMPLATE, oldTemplate, template));
 			}
 		}
 		return template;
@@ -158,6 +168,7 @@ public abstract class ModelElementRendererImpl extends EObjectImpl implements Mo
 
 	/**
 	 * <!-- begin-user-doc --> <!-- end-user-doc -->
+	 * 
 	 * @generated
 	 */
 	public Template basicGetTemplate() {
@@ -166,115 +177,126 @@ public abstract class ModelElementRendererImpl extends EObjectImpl implements Mo
 
 	/**
 	 * <!-- begin-user-doc --> <!-- end-user-doc -->
+	 * 
 	 * @generated
 	 */
 	public void setTemplate(Template newTemplate) {
 		Template oldTemplate = template;
 		template = newTemplate;
 		if (eNotificationRequired())
-			eNotify(new ENotificationImpl(this, Notification.SET, RenderersPackage.MODEL_ELEMENT_RENDERER__TEMPLATE, oldTemplate, template));
+			eNotify(new ENotificationImpl(this, Notification.SET, RenderersPackage.MODEL_ELEMENT_RENDERER__TEMPLATE,
+				oldTemplate, template));
 	}
 
 	/**
 	 * <!-- begin-user-doc --> <!-- end-user-doc -->
+	 * 
 	 * @generated
 	 */
 	public EList<AttributeRendererMapping> getAttributeRendererMapping() {
 		if (attributeRendererMapping == null) {
-			attributeRendererMapping = new EObjectContainmentEList<AttributeRendererMapping>(AttributeRendererMapping.class, this, RenderersPackage.MODEL_ELEMENT_RENDERER__ATTRIBUTE_RENDERER_MAPPING);
+			attributeRendererMapping = new EObjectContainmentEList<AttributeRendererMapping>(
+				AttributeRendererMapping.class, this,
+				RenderersPackage.MODEL_ELEMENT_RENDERER__ATTRIBUTE_RENDERER_MAPPING);
 		}
 		return attributeRendererMapping;
 	}
 
 	/**
 	 * <!-- begin-user-doc --> <!-- end-user-doc -->
+	 * 
 	 * @generated
 	 */
 	@Override
 	public NotificationChain eInverseRemove(InternalEObject otherEnd, int featureID, NotificationChain msgs) {
 		switch (featureID) {
-			case RenderersPackage.MODEL_ELEMENT_RENDERER__RENDERER_OPTIONS:
-				return ((InternalEList<?>)getRendererOptions()).basicRemove(otherEnd, msgs);
-			case RenderersPackage.MODEL_ELEMENT_RENDERER__ATTRIBUTE_RENDERER_MAPPING:
-				return ((InternalEList<?>)getAttributeRendererMapping()).basicRemove(otherEnd, msgs);
+		case RenderersPackage.MODEL_ELEMENT_RENDERER__RENDERER_OPTIONS:
+			return ((InternalEList<?>) getRendererOptions()).basicRemove(otherEnd, msgs);
+		case RenderersPackage.MODEL_ELEMENT_RENDERER__ATTRIBUTE_RENDERER_MAPPING:
+			return ((InternalEList<?>) getAttributeRendererMapping()).basicRemove(otherEnd, msgs);
 		}
 		return super.eInverseRemove(otherEnd, featureID, msgs);
 	}
 
 	/**
 	 * <!-- begin-user-doc --> <!-- end-user-doc -->
+	 * 
 	 * @generated
 	 */
 	@Override
 	public Object eGet(int featureID, boolean resolve, boolean coreType) {
 		switch (featureID) {
-			case RenderersPackage.MODEL_ELEMENT_RENDERER__RENDERER_OPTIONS:
-				return getRendererOptions();
-			case RenderersPackage.MODEL_ELEMENT_RENDERER__TEMPLATE:
-				if (resolve) return getTemplate();
-				return basicGetTemplate();
-			case RenderersPackage.MODEL_ELEMENT_RENDERER__ATTRIBUTE_RENDERER_MAPPING:
-				return getAttributeRendererMapping();
+		case RenderersPackage.MODEL_ELEMENT_RENDERER__RENDERER_OPTIONS:
+			return getRendererOptions();
+		case RenderersPackage.MODEL_ELEMENT_RENDERER__TEMPLATE:
+			if (resolve)
+				return getTemplate();
+			return basicGetTemplate();
+		case RenderersPackage.MODEL_ELEMENT_RENDERER__ATTRIBUTE_RENDERER_MAPPING:
+			return getAttributeRendererMapping();
 		}
 		return super.eGet(featureID, resolve, coreType);
 	}
 
 	/**
 	 * <!-- begin-user-doc --> <!-- end-user-doc -->
+	 * 
 	 * @generated
 	 */
 	@SuppressWarnings("unchecked")
 	@Override
 	public void eSet(int featureID, Object newValue) {
 		switch (featureID) {
-			case RenderersPackage.MODEL_ELEMENT_RENDERER__RENDERER_OPTIONS:
-				getRendererOptions().clear();
-				getRendererOptions().addAll((Collection<? extends RendererOption>)newValue);
-				return;
-			case RenderersPackage.MODEL_ELEMENT_RENDERER__TEMPLATE:
-				setTemplate((Template)newValue);
-				return;
-			case RenderersPackage.MODEL_ELEMENT_RENDERER__ATTRIBUTE_RENDERER_MAPPING:
-				getAttributeRendererMapping().clear();
-				getAttributeRendererMapping().addAll((Collection<? extends AttributeRendererMapping>)newValue);
-				return;
+		case RenderersPackage.MODEL_ELEMENT_RENDERER__RENDERER_OPTIONS:
+			getRendererOptions().clear();
+			getRendererOptions().addAll((Collection<? extends RendererOption>) newValue);
+			return;
+		case RenderersPackage.MODEL_ELEMENT_RENDERER__TEMPLATE:
+			setTemplate((Template) newValue);
+			return;
+		case RenderersPackage.MODEL_ELEMENT_RENDERER__ATTRIBUTE_RENDERER_MAPPING:
+			getAttributeRendererMapping().clear();
+			getAttributeRendererMapping().addAll((Collection<? extends AttributeRendererMapping>) newValue);
+			return;
 		}
 		super.eSet(featureID, newValue);
 	}
 
 	/**
 	 * <!-- begin-user-doc --> <!-- end-user-doc -->
+	 * 
 	 * @generated
 	 */
 	@Override
 	public void eUnset(int featureID) {
 		switch (featureID) {
-			case RenderersPackage.MODEL_ELEMENT_RENDERER__RENDERER_OPTIONS:
-				getRendererOptions().clear();
-				return;
-			case RenderersPackage.MODEL_ELEMENT_RENDERER__TEMPLATE:
-				setTemplate((Template)null);
-				return;
-			case RenderersPackage.MODEL_ELEMENT_RENDERER__ATTRIBUTE_RENDERER_MAPPING:
-				getAttributeRendererMapping().clear();
-				return;
+		case RenderersPackage.MODEL_ELEMENT_RENDERER__RENDERER_OPTIONS:
+			getRendererOptions().clear();
+			return;
+		case RenderersPackage.MODEL_ELEMENT_RENDERER__TEMPLATE:
+			setTemplate((Template) null);
+			return;
+		case RenderersPackage.MODEL_ELEMENT_RENDERER__ATTRIBUTE_RENDERER_MAPPING:
+			getAttributeRendererMapping().clear();
+			return;
 		}
 		super.eUnset(featureID);
 	}
 
 	/**
 	 * <!-- begin-user-doc --> <!-- end-user-doc -->
+	 * 
 	 * @generated
 	 */
 	@Override
 	public boolean eIsSet(int featureID) {
 		switch (featureID) {
-			case RenderersPackage.MODEL_ELEMENT_RENDERER__RENDERER_OPTIONS:
-				return rendererOptions != null && !rendererOptions.isEmpty();
-			case RenderersPackage.MODEL_ELEMENT_RENDERER__TEMPLATE:
-				return template != null;
-			case RenderersPackage.MODEL_ELEMENT_RENDERER__ATTRIBUTE_RENDERER_MAPPING:
-				return attributeRendererMapping != null && !attributeRendererMapping.isEmpty();
+		case RenderersPackage.MODEL_ELEMENT_RENDERER__RENDERER_OPTIONS:
+			return rendererOptions != null && !rendererOptions.isEmpty();
+		case RenderersPackage.MODEL_ELEMENT_RENDERER__TEMPLATE:
+			return template != null;
+		case RenderersPackage.MODEL_ELEMENT_RENDERER__ATTRIBUTE_RENDERER_MAPPING:
+			return attributeRendererMapping != null && !attributeRendererMapping.isEmpty();
 		}
 		return super.eIsSet(featureID);
 	}
@@ -486,9 +508,7 @@ public abstract class ModelElementRendererImpl extends EObjectImpl implements Mo
 		description.getBoxModel().setKeepWithPrevious(true);
 		description.getOption().setTextAlign(TextAlign.JUSTIFY);
 
-		if (!description.equals("")) {
-			modelElementSection.add(description);
-		}
+		modelElementSection.add(description);
 
 		// keep with properties table, if the description is short
 		if (description.getText().length() < DESCRIPTION_MIN_SIZE) {
@@ -600,12 +620,12 @@ public abstract class ModelElementRendererImpl extends EObjectImpl implements Mo
 				UTableCell tableCellLeft = new UTableCell(leftParagraph);
 				tableCellLeft.getBoxModel().setBorderBottom(PROPERTIES_TABLE_BORDER_SIZE);
 				tableCellLeft.getBoxModel().setBorderStyle(UBorderStyle.DASHED);
-				table.addCell(tableCellLeft);
+				table.add(tableCellLeft);
 
 				UTableCell tableCellRight = new UTableCell("");
 				tableCellRight.getBoxModel().setBorderBottom(PROPERTIES_TABLE_BORDER_SIZE);
 				tableCellRight.getBoxModel().setBorderStyle(UBorderStyle.DASHED);
-				table.addCell(tableCellRight);
+				table.add(tableCellRight);
 
 				if (modelElement.eGet(feature) instanceof ModelElement) {
 					ModelElement featureModelElement = (ModelElement) modelElement.eGet(feature);
@@ -657,12 +677,12 @@ public abstract class ModelElementRendererImpl extends EObjectImpl implements Mo
 						.getDisplayName(modelElement)), template.getLayoutOptions().getDefaultTextOption());
 					leftTableCell.getBoxModel().setBorderBottom(PROPERTIES_TABLE_BORDER_SIZE);
 					leftTableCell.getBoxModel().setBorderStyle(UBorderStyle.DASHED);
-					table.addCell(leftTableCell);
+					table.add(leftTableCell);
 
 					UTableCell rightTableCell = new UTableCell(par);
 					rightTableCell.getBoxModel().setBorderBottom(PROPERTIES_TABLE_BORDER_SIZE);
 					rightTableCell.getBoxModel().setBorderStyle(UBorderStyle.DASHED);
-					table.addCell(rightTableCell);
+					table.add(rightTableCell);
 				}
 			}
 		}
@@ -695,6 +715,13 @@ public abstract class ModelElementRendererImpl extends EObjectImpl implements Mo
 		return attributeName;
 	}
 
+	/**
+	 * Returns the depth of the ModelElement in the nested Unicase tree.
+	 * 
+	 * @param modelElement to test
+	 * @param depth the depth to start with
+	 * @return
+	 */
 	public static int getModelElementDepth(ModelElement modelElement, int depth) {
 		EObject parent = modelElement.eContainer();
 		if (parent == null || parent instanceof LeafSection || parent instanceof CompositeSection) {
@@ -708,6 +735,12 @@ public abstract class ModelElementRendererImpl extends EObjectImpl implements Mo
 
 	protected abstract void doRender(ModelElement modelElement, UCompositeSection parent);
 
+	/**
+	 * Returns the AttributeRenderer for a feature of the ModelElement. May return null if there isnt any
+	 * AttributeRenderer registered for the feature.
+	 * 
+	 * @see org.unicase.docExport.exportModel.renderers.ModelElementRenderer#getAttributeRenderer(org.eclipse.emf.ecore.EStructuralFeature)
+	 */
 	public AttributeRenderer getAttributeRenderer(EStructuralFeature feature) {
 		for (AttributeRendererMapping mapping : getAttributeRendererMapping()) {
 			if (mapping.getFeatureName().equals(feature.getName())) {
@@ -717,6 +750,13 @@ public abstract class ModelElementRendererImpl extends EObjectImpl implements Mo
 		return null;
 	}
 
+	/**
+	 * Returns an AttributeRenderer for the feature. If there isn't any AttributeRenderer registered, a new default
+	 * AttributeRenderer will be created and returned.
+	 * 
+	 * @see #getAttributeRenderer(EStructuralFeature)
+	 * @see org.unicase.docExport.exportModel.renderers.ModelElementRenderer#getAttributeRendererNotNull(org.eclipse.emf.ecore.EStructuralFeature)
+	 */
 	public AttributeRenderer getAttributeRendererNotNull(EStructuralFeature feature) {
 
 		AttributeRenderer renderer = getAttributeRenderer(feature);
@@ -727,6 +767,14 @@ public abstract class ModelElementRendererImpl extends EObjectImpl implements Mo
 		}
 	}
 
+	/**
+	 * Set the AttributeRenderer for a feature. If there already is an AttributeRenderer, it will be written.
+	 * 
+	 * @param feature the feature of the attribute
+	 * @param renderer the AttributeRenderer to set
+	 * @see org.unicase.docExport.exportModel.renderers.ModelElementRenderer#setAttributeRenderer(org.eclipse.emf.ecore.EStructuralFeature,
+	 *      org.unicase.docExport.exportModel.renderers.AttributeRenderer)
+	 */
 	public void setAttributeRenderer(EStructuralFeature feature, AttributeRenderer renderer) {
 		for (AttributeRendererMapping mapping : getAttributeRendererMapping()) {
 			if (mapping.getFeatureName().equals(feature.getName())) {
@@ -742,6 +790,13 @@ public abstract class ModelElementRendererImpl extends EObjectImpl implements Mo
 
 	}
 
+	/**
+	 * Removes the AttributeRenderer for a feature.
+	 * 
+	 * @see #getAttributeRendererNotNull(EStructuralFeature)
+	 * @see org.unicase.docExport.exportModel.renderers.ModelElementRenderer#removeAttributeRenderer(org.eclipse.emf.ecore.EStructuralFeature)
+	 * @param feature the feature of the attribute
+	 */
 	public void removeAttributeRenderer(EStructuralFeature feature) {
 		AttributeRendererMapping mappingToRemove = null;
 		for (AttributeRendererMapping mapping : getAttributeRendererMapping()) {
@@ -755,10 +810,22 @@ public abstract class ModelElementRendererImpl extends EObjectImpl implements Mo
 		}
 	}
 
+	/**
+	 * Hide the structural lines of the default ModelElementRenderer.
+	 * 
+	 * @see org.unicase.docExport.exportModel.renderers.ModelElementRenderer#hideStructuralLines()
+	 */
 	public boolean hideStructuralLines() {
 		return false;
 	}
 
+	/**
+	 * Get the feature of a ModelElement by the name of the feature.
+	 * 
+	 * @param featureName the name of the feature
+	 * @param modelElement the modelElement where this feature is contained
+	 * @return the EStructuralFeature of the feature of the ModelElement.
+	 */
 	protected EStructuralFeature getFeature(String featureName, ModelElement modelElement) {
 		for (EStructuralFeature feature : modelElement.eClass().getEAllStructuralFeatures()) {
 			if (feature.getName().equals(featureName)) {

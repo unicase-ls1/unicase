@@ -92,22 +92,22 @@ public class ClassRendererImpl extends ModelElementRendererImpl implements Class
 		table.setColumnsWidths(new float[] { 3, 10, 7, 100 });
 
 		if (incoming) {
-			table.addCell(association.getTargetMultiplicity());
+			table.add(association.getTargetMultiplicity());
 		} else {
-			table.addCell(association.getSourceMultiplicity());
+			table.add(association.getSourceMultiplicity());
 		}
 
 		UParagraph imageCell = new UParagraph("");
-		table.addCell(imageCell);
+		table.add(imageCell);
 
 		renderAssociationImage(imageCell, association, incoming);
 
 		if (incoming) {
-			table.addCell(association.getSourceMultiplicity());
-			table.addCell(association.getSource().getName());
+			table.add(association.getSourceMultiplicity());
+			table.add(association.getSource().getName());
 		} else {
-			table.addCell(association.getTargetMultiplicity());
-			table.addCell(association.getTarget().getName());
+			table.add(association.getTargetMultiplicity());
+			table.add(association.getTarget().getName());
 		}
 
 		parent.add(table);

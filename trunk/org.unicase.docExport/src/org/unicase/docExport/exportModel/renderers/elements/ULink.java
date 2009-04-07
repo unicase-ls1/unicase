@@ -6,6 +6,9 @@
 package org.unicase.docExport.exportModel.renderers.elements;
 
 /**
+ * An Element which links to a URef element within a document.
+ * 
+ * @see URef
  * @author Sebastian Hoecht
  */
 public class ULink extends UParagraph {
@@ -21,7 +24,6 @@ public class ULink extends UParagraph {
 	 */
 	public ULink(String text, String internalLinkId) {
 		super(text);
-		// TODO Auto-generated constructor stub
 		this.setInternalLinkId(internalLinkId);
 	}
 

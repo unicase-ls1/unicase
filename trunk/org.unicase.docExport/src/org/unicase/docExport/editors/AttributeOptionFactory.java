@@ -44,6 +44,8 @@ import org.unicase.docExport.exportModel.renderers.options.UColor;
 import org.unicase.workspace.util.WorkspaceUtil;
 
 /**
+ * This Factory is used to create SWT input elements and bind them to an option.
+ * 
  * @author Sebastian Hoecht
  */
 public final class AttributeOptionFactory {

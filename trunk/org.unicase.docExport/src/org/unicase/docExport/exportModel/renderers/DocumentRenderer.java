@@ -7,7 +7,7 @@ package org.unicase.docExport.exportModel.renderers;
 
 import org.eclipse.emf.ecore.EObject;
 import org.unicase.docExport.exportModel.Template;
-import org.unicase.docExport.exportModel.renderers.elements.UCompositeSection;
+import org.unicase.docExport.exportModel.renderers.elements.URootCompositeSection;
 import org.unicase.model.ModelElement;
 
 /**
@@ -21,6 +21,6 @@ import org.unicase.model.ModelElement;
 public interface DocumentRenderer extends EObject {
 
 	// begin custom code
-	UCompositeSection render(ModelElement modelElement, Template template);
+	URootCompositeSection render(ModelElement modelElement, Template template);
 	// end custom code
 } // DocumentRenderer

@@ -155,8 +155,8 @@ public class MeetingRendererImpl extends ModelElementRendererImpl implements Mee
 		rollen.getBoxModel().setBorder(0.8);
 		rollen.getBoxModel().setBackgroundColor(background);
 		rollen.getBoxModel().setBorderStyle(UBorderStyle.SOLID);
-		table.addCell(wannUndWo);
-		table.addCell(rollen);
+		table.add(wannUndWo);
+		table.add(rollen);
 
 		String text;
 		if (getMeeting().getStarttime() != null) {
@@ -166,14 +166,14 @@ public class MeetingRendererImpl extends ModelElementRendererImpl implements Mee
 		} else {
 			text = "";
 		}
-		table.addCell("Datum: " + text);
+		table.add("Datum: " + text);
 
 		if (getMeeting().getFacilitator() != null) {
 			text = getOrgUnitName(getMeeting().getFacilitator());
 		} else {
 			text = "";
 		}
-		table.addCell("Moderator: " + text);
+		table.add("Moderator: " + text);
 
 		if (getMeeting().getStarttime() != null) {
 			Calendar cal = new GregorianCalendar();
@@ -182,14 +182,14 @@ public class MeetingRendererImpl extends ModelElementRendererImpl implements Mee
 		} else {
 			text = "";
 		}
-		table.addCell("Start: " + text);
+		table.add("Start: " + text);
 
 		if (getMeeting().getTimekeeper() != null) {
 			text = getOrgUnitName(getMeeting().getTimekeeper());
 		} else {
 			text = "";
 		}
-		table.addCell("Zeitnehmer: " + text);
+		table.add("Zeitnehmer: " + text);
 
 		if (getMeeting().getEndtime() != null) {
 			Calendar cal = new GregorianCalendar();
@@ -198,14 +198,14 @@ public class MeetingRendererImpl extends ModelElementRendererImpl implements Mee
 		} else {
 			text = "";
 		}
-		table.addCell("Ende: " + text);
+		table.add("Ende: " + text);
 
 		if (getMeeting().getMinutetaker() != null) {
 			text = getOrgUnitName(getMeeting().getMinutetaker());
 		} else {
 			text = "";
 		}
-		table.addCell("Protokollant: " + text);
+		table.add("Protokollant: " + text);
 
 		if (getMeeting().getLocation() != null) {
 			text = getMeeting().getLocation();
@@ -215,7 +215,7 @@ public class MeetingRendererImpl extends ModelElementRendererImpl implements Mee
 		UTableCell ort = new UTableCell("Ort: " + text);
 		ort.setColspan(2);
 		ort.setBoxModel(table.getDefaultCellBoxModel());
-		table.addCell(ort);
+		table.add(ort);
 
 		String text2 = "Teilnehmer: ";
 		for (OrgUnit orgUnit : getMeeting().getParticipants()) {
@@ -226,7 +226,7 @@ public class MeetingRendererImpl extends ModelElementRendererImpl implements Mee
 		UTableCell teilnehmer = new UTableCell(text2);
 		teilnehmer.setColspan(2);
 		teilnehmer.setBoxModel(table.getDefaultCellBoxModel());
-		table.addCell(teilnehmer);
+		table.add(teilnehmer);
 
 		parent.add(table);
 	}

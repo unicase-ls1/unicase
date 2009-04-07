@@ -5,9 +5,16 @@
  */
 package org.unicase.docExport.docWriter;
 
+import org.unicase.docExport.exceptions.DocumentExportException;
 import org.unicase.docExport.exportModel.renderers.elements.URootCompositeSection;
 
 /**
+ * This is the strategy class of the Strategy Design Pattern. There are several strategies for writing a rendered Model
+ * Element to a document. Depending on the strategy itself, different libraries can be used to fulfill this task. There
+ * even may be several DocWriters for one file type, using different libraries which have pros and cons. Each DocWriter
+ * has to be registered in the DocWriterRegistry in order to be able to selected in the Export Document Dialog.
+ * 
+ * @see DocWriterRegistry
  * @author Sebastian Hoecht
  */
 public interface DocWriter {
@@ -20,8 +27,9 @@ public interface DocWriter {
 	 * @see org.unicase.docExport.renderers.elements
 	 * @param fileName the filename where the document shall be saved
 	 * @param doc the document which shall be written to a file
+	 * @throws DocumentExportException export failed
 	 */
-	void export(String fileName, URootCompositeSection doc);
+	void export(String fileName, URootCompositeSection doc) throws DocumentExportException;
 
 	/**
 	 * Returns the file type, which will be used for this export. For example "pdf"

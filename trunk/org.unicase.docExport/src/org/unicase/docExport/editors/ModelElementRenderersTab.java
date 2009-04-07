@@ -49,16 +49,21 @@ public class ModelElementRenderersTab extends TemplateEditorTab {
 	private Combo attributeRendererSelector;
 	private Combo attributeOptionsSelector;
 	private Label modelElementType;
+	private TemplateEditor editor;
 
 	/**
 	 * @param parent the ScrolledComposite which is contained in a tabItem
 	 * @param style the SWT style
 	 * @param tabFolder the tabFolder where the ScrolledComposite is contained
-	 * @param template the template for this Formular
+	 * @param template the template for this form
+	 * @param editor the editor which contains this tab.
 	 */
-	public ModelElementRenderersTab(Composite parent, int style, CTabFolder tabFolder, Template template) {
+	public ModelElementRenderersTab(Composite parent, int style, CTabFolder tabFolder, Template template,
+		final TemplateEditor editor) {
 		super(parent, style, tabFolder, template);
 		setContainerTab(rebuildTabContainer(getContainerTab(), parent));
+
+		this.editor = editor;
 
 		rendererSelectContainer = new Composite(getContainerTab(), SWT.FILL);
 		GridLayout gLayout5 = new GridLayout();
@@ -80,7 +85,8 @@ public class ModelElementRenderersTab extends TemplateEditorTab {
 			}
 
 			public void widgetSelected(SelectionEvent e) {
-				METypeTreeSelectionDialog dialog = new METypeTreeSelectionDialog(rendererSelectContainer.getShell(), false);
+				METypeTreeSelectionDialog dialog = new METypeTreeSelectionDialog(rendererSelectContainer.getShell(),
+					false);
 
 				if (dialog.open() == METypeTreeSelectionDialog.OK) {
 					createRendererSelector(dialog.getResult()[0]);
@@ -179,6 +185,7 @@ public class ModelElementRenderersTab extends TemplateEditorTab {
 				} else {
 					rebuildModelElementRendererOptions(null, modelElementEClass);
 				}
+				editor.setDirty();
 			}
 		});
 		modelElementRendererSelect.select(0);
@@ -306,6 +313,7 @@ public class ModelElementRenderersTab extends TemplateEditorTab {
 						modelElementRenderer.setAttributeRenderer(feature, attributeRenderer);
 					}
 					layoutAndPackAll();
+					editor.setDirty();
 				}
 			}
 

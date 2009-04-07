@@ -9,6 +9,9 @@ import org.unicase.docExport.exportModel.renderers.options.OptionsFactory;
 import org.unicase.docExport.exportModel.renderers.options.TextOption;
 
 /**
+ * A Table Of Contents which is automatically generated from an USection.
+ * 
+ * @see USection
  * @author Sebastian Hoecht
  */
 public class UTableOfContents extends UDocument {

@@ -6,6 +6,9 @@
 package org.unicase.docExport.exportModel.renderers.elements;
 
 /**
+ * A reference to a certain position. This is like a label in LaTeX.
+ * 
+ * @see ULink
  * @author Sebastian Hoecht
  */
 public class URef extends UDocument {

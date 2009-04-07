@@ -11,13 +11,16 @@ import java.util.HashSet;
 import org.eclipse.core.runtime.IProgressMonitor;
 import org.eclipse.jface.operation.IRunnableWithProgress;
 import org.unicase.docExport.docWriter.DocWriter;
+import org.unicase.docExport.exceptions.DocumentExportException;
 import org.unicase.docExport.exportModel.Template;
 import org.unicase.docExport.exportModel.renderers.DocumentRenderer;
-import org.unicase.docExport.exportModel.renderers.elements.UCompositeSection;
 import org.unicase.docExport.exportModel.renderers.elements.URootCompositeSection;
 import org.unicase.model.ModelElement;
 
 /**
+ * This class wraps the document rendering (see package renderers) and document writing (see package docWriter) into an
+ * class which can be used for progress bars.
+ * 
  * @author Sebastian Hoecht
  */
 public class DocumentExport implements IRunnableWithProgress {
@@ -54,23 +57,25 @@ public class DocumentExport implements IRunnableWithProgress {
 	 * exports a the ModelElement to the file.
 	 * 
 	 * @param fileLocation the location where the modelElement shall be exported.
+	 * @throws DocumentExportException when the export failed for any reason.
 	 */
-	public void export(String fileLocation) {
-		UCompositeSection doc = renderer.render(modelElement, template);
-		// TODO change return type of all renderers to URootCompositeSection
-		docWriter.export(fileLocation, (URootCompositeSection) doc);
+	public void export(String fileLocation) throws DocumentExportException {
+		URootCompositeSection doc = renderer.render(modelElement, template);
+		docWriter.export(fileLocation, doc);
 
 	}
 
 	/**
-	 * @param monitor i dunno what this param is for, because i don't use it ;)
-	 * @throws InterruptedException .
-	 * @throws InvocationTargetException .
+	 * {@inheritDoc}
 	 */
 	public void run(IProgressMonitor monitor) throws InvocationTargetException, InterruptedException {
 
 		monitor.beginTask("Exporting Document", IProgressMonitor.UNKNOWN);
-		export(this.fileLocation);
+		try {
+			export(this.fileLocation);
+		} catch (DocumentExportException e) {
+			throw new InvocationTargetException(e);
+		}
 
 		if (monitor.isCanceled()) {
 			throw new InterruptedException("The export has been canceled");

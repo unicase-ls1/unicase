@@ -26,10 +26,11 @@ import org.eclipse.ui.handlers.IHandlerService;
 import org.eclipse.ui.part.ViewPart;
 import org.unicase.docExport.TemplateRegistry;
 import org.unicase.docExport.editors.TemplateEditor;
-import org.unicase.docExport.exceptions.TemplateSaveException;
 
 /**
- * @author Sebastian Höcht
+ * This view lists all templates in a treeview.
+ * 
+ * @author Sebastian Hoecht
  */
 public class TemplatesView extends ViewPart {
 
@@ -53,12 +54,7 @@ public class TemplatesView extends ViewPart {
 	@Override
 	public void createPartControl(Composite parent) {
 
-		try {
-			TemplateRegistry.getAllTemplates();
-		} catch (TemplateSaveException e2) {
-			// TODO Auto-generated catch block
-			e2.printStackTrace();
-		}
+		TemplateRegistry.loadDefaultTemplatesFromZipFile();
 
 		AdapterFactory myAdapterFactory = new ComposedAdapterFactory(
 			ComposedAdapterFactory.Descriptor.Registry.INSTANCE);
@@ -67,50 +63,24 @@ public class TemplatesView extends ViewPart {
 		viewer.setLabelProvider(new AdapterFactoryLabelProvider(myAdapterFactory));
 		viewer.setContentProvider(new AdapterFactoryContentProvider(myAdapterFactory));
 
-		// viewer.setLabelProvider(new TreeLabelProvider());
-		// viewer.setContentProvider(new TreeContentProvider());
-
 		viewer.getTree().setLayoutData(new GridData(GridData.FILL_BOTH));
-
-		// viewer.setLabelProvider(new TreeLabelProvider());
-		// viewer.setContentProvider(new ExportModelItemProviderAdapterFactory().);
 
 		try {
 			viewer.setInput(TemplateRegistry.getTemplatesResource());
-		} catch (IOException e1) {
+		} catch (IOException e) {
 			// TODO Auto-generated catch block
-			e1.printStackTrace();
+			e.printStackTrace();
 		}
-
-		// try {
-		// viewer.setInput(TemplateRegistry.getAllTemplates().get(0));
-		// } catch (TemplateSaveException e1) {
-		// // TODO Auto-generated catch block
-		// e1.printStackTrace();
-		// }
-
-		// viewer.setLabelProvider(labelProvider);
-		// try {
-		// viewer.setInput(TemplateRegistry.getAllTemplates());
-		// } catch (TemplateSaveException e1) {
-		// // TODO Auto-generated catch block
-		// e1.printStackTrace();
-		// }
 
 		MenuManager menuManager = new MenuManager();
 		Menu menu = menuManager.createContextMenu(viewer.getTree());
-		// Set the MenuManager
 		viewer.getTree().setMenu(menu);
 		getSite().registerContextMenu(menuManager, viewer);
-		// Make the selection available
 		getSite().setSelectionProvider(viewer);
 
 		viewer.addDoubleClickListener(new IDoubleClickListener() {
-
 			public void doubleClick(DoubleClickEvent event) {
-
 				IHandlerService handlerService = (IHandlerService) getSite().getService(IHandlerService.class);
-
 				try {
 					handlerService.executeCommand(TemplateEditor.COMMAND_ID, null);
 				} catch (ExecutionException e) {

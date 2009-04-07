@@ -79,7 +79,7 @@ public class LayoutOptionsTab extends TemplateEditorTab {
 		generalOptions = createTab("General");
 		coverPageOptions = createTab("Coverpage");
 		sectionOptions = createTab("Sections");
-		headerAndFooterOptions = createTab("Header & Footer");
+		headerAndFooterOptions = createTab("Header and footer");
 		logoOptions = createTab("Logo");
 
 		buildGeneralOptions(generalOptions);

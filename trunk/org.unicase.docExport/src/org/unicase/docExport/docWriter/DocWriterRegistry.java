@@ -8,6 +8,9 @@ package org.unicase.docExport.docWriter;
 import java.util.ArrayList;
 
 /**
+ * This is registry class for all available DocWriters.
+ * 
+ * @see DocWriter
  * @author Sebastian Hoecht
  */
 public final class DocWriterRegistry {

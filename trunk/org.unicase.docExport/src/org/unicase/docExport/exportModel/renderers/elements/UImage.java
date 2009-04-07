@@ -20,7 +20,6 @@ public class UImage extends UDocument {
 	private int width = DEFAULT_WIDTH;
 	private int height = DEFAULT_HEIGHT;
 	private boolean fitToPage;
-	private boolean center;
 	private TextAlign textAlign = TextAlign.START;
 
 	/**
@@ -91,20 +90,6 @@ public class UImage extends UDocument {
 	 */
 	public boolean isFitToPage() {
 		return fitToPage;
-	}
-
-	/**
-	 * @param center the center to set
-	 */
-	public void setCenter(boolean center) {
-		this.center = center;
-	}
-
-	/**
-	 * @return the center
-	 */
-	public boolean isCenter() {
-		return center;
 	}
 
 	/**

@@ -18,6 +18,10 @@ import org.unicase.model.classes.ClassesPackage;
 import org.unicase.model.requirement.RequirementPackage;
 
 /**
+ * This class creates a mapping from a ModelElement's feature to a its possible AttributeRenderers. So if you create a
+ * new AttributeRenderer, it should be returned in the function getSupportedAttributeRenderers for all features it
+ * supports.
+ * 
  * @author Sebastian Hoecht
  */
 public final class AttributeRendererRegistry {
@@ -27,7 +31,7 @@ public final class AttributeRendererRegistry {
 	}
 
 	/**
-	 * Returns all supported Attribute renderers for a given feature.
+	 * Returns all supported AttributeRenderers for a given feature.
 	 * 
 	 * @param feature the feature the supported attribute renderers are requestet
 	 * @param template the Template which is needed to build the attribute renderers

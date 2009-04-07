@@ -5,34 +5,13 @@
  */
 package org.unicase.docExport.docWriter;
 
-import java.io.BufferedOutputStream;
-import java.io.File;
-import java.io.FileOutputStream;
-import java.io.IOException;
-import java.io.OutputStream;
-
-import javax.xml.transform.Result;
-import javax.xml.transform.Source;
-import javax.xml.transform.Transformer;
-import javax.xml.transform.TransformerException;
-import javax.xml.transform.TransformerFactory;
-import javax.xml.transform.sax.SAXResult;
-import javax.xml.transform.stream.StreamSource;
-
-import org.apache.fop.apps.FOPException;
-import org.apache.fop.apps.FOUserAgent;
-import org.apache.fop.apps.Fop;
-import org.apache.fop.apps.FopFactory;
 import org.apache.fop.apps.MimeConstants;
 import org.unicase.docExport.exportModel.renderers.elements.UDocument;
 import org.unicase.docExport.exportModel.renderers.elements.ULink;
 import org.unicase.docExport.exportModel.renderers.elements.UParagraph;
-import org.unicase.docExport.exportModel.renderers.elements.URootCompositeSection;
-import org.unicase.docExport.exportModel.renderers.elements.USection;
 import org.unicase.docExport.exportModel.renderers.elements.UTable;
 import org.unicase.docExport.exportModel.renderers.elements.UTableCell;
 import org.unicase.docExport.exportModel.renderers.options.BoxModelOption;
-import org.unicase.docExport.exportModel.renderers.options.TextOption;
 import org.unicase.docExport.exportModel.renderers.options.UBorderStyle;
 import org.w3c.dom.Element;
 
@@ -40,161 +19,28 @@ import org.w3c.dom.Element;
  * @author Sebastian Hoecht
  */
 public class FopRtfWriter extends FopWriter {
-	// configure fopFactory as desired
-	private FopFactory fopFactory = FopFactory.newInstance();
 
 	private static final int RTF_CONTENT_WIDTH = 505;
 
 	/**
 	 * {@inheritDoc}
+	 * 
+	 * @see org.unicase.docExport.docWriter.FopWriter#createUTableOfContentsColumns(org.w3c.dom.Element)
 	 */
-	public void export(String fileName, URootCompositeSection doc) {
-
-		setURoot(doc);
-
-		File fo = createFOFile(doc);
-
-		OutputStream out = null;
-
-		try {
-			FOUserAgent foUserAgent = fopFactory.newFOUserAgent();
-			// configure foUserAgent as desired
-
-			// Setup output stream. Note: Using BufferedOutputStream
-			// for performance reasons (helpful with FileOutputStreams).
-			out = new FileOutputStream(fileName);
-			out = new BufferedOutputStream(out);
-
-			// Construct fop with desired output format
-			Fop fop = fopFactory.newFop(MimeConstants.MIME_RTF, foUserAgent, out);
-
-			// Setup JAXP using identity transformer
-			TransformerFactory factory = TransformerFactory.newInstance();
-			Transformer transformer = factory.newTransformer(); // identity transformer
-
-			// Setup input stream
-			Source src = new StreamSource(fo);
-
-			// Resulting SAX events (the generated FO) must be piped through to FOP
-			Result res = new SAXResult(fop.getDefaultHandler());
-
-			// Start XSLT transformation and FOP processing
-			transformer.transform(src, res);
-
-		} catch (IOException e) {
-			e.printStackTrace(System.err);
-		} catch (FOPException e) {
-			// TODO Auto-generated catch block
-			e.printStackTrace();
-		} catch (TransformerException e) {
-			// TODO Auto-generated catch block
-			e.printStackTrace();
-		} finally {
-			try {
-				if (out != null) {
-					out.close();
-				}
-			} catch (IOException e) {
-				// TODO Auto-generated catch block
-				e.printStackTrace();
-			}
-		}
+	@Override
+	protected void createUTableOfContentsColumns(Element table) {
+		// no column specification in RTF
 	}
 
 	/**
-	 * @param parent the parent element where the table of contents shall be written
-	 * @param uSection the section containing the document structure, which is the content of the table of contents
-	 * @param textOption the TextOption which decorates the text of the TOC
-	 * @see org.unicase.docExport.docWriter.FopWriter#writeUTableOfContents(org.w3c.dom.Element,
-	 *      org.unicase.docExport.exportModel.renderers.elements.USection,
-	 *      org.unicase.docExport.exportModel.renderers.options.TextOption)
+	 * {@inheritDoc}
 	 */
 	@Override
-	protected void writeUTableOfContents(Element parent, USection uSection, TextOption textOption) {
-		Element toc = getDoc().createElement("fo:block");
-		toc.setAttribute("id", "table_of_contents");
-		toc.setAttribute("font-size", "22pt");
-		toc.setTextContent("Table of Contents");
-		toc.setAttribute("text-align", "center");
-		toc.setAttribute("break-before", "page");
-		parent.appendChild(toc);
+	protected void createColumnWidths(Element sectionNumberCell, Element sectionTitleCell, Element sectionPageCell) {
+		sectionNumberCell.setAttribute("width", Math.ceil(15. / 100. * RTF_CONTENT_WIDTH) + "pt");
+		sectionTitleCell.setAttribute("width", Math.ceil(75. / 100. * RTF_CONTENT_WIDTH) + "pt");
+		sectionPageCell.setAttribute("width", Math.ceil(10. / 100. * RTF_CONTENT_WIDTH) + "pt");
 
-		Element table = getDoc().createElement("fo:table");
-		parent.appendChild(table);
-		table.setAttribute("margin-top", "10pt");
-
-		Element tableBody = getDoc().createElement("fo:table-body");
-		table.appendChild(tableBody);
-
-		writeUTableOfContentsEntry(tableBody, uSection, textOption);
-	}
-
-	/**
-	 * @param tableBody the fo:table-body xml node element
-	 * @param uSection the section containing the document structure, which is the content of the table of contents
-	 * @param textOption the TextOption which decorates the text of the TOC
-	 * @see org.unicase.docExport.docWriter.FopWriter#writeUTableOfContentsEntry(org.w3c.dom.Element,
-	 *      org.unicase.docExport.exportModel.renderers.elements.USection,
-	 *      org.unicase.docExport.exportModel.renderers.options.TextOption)
-	 */
-	@Override
-	protected void writeUTableOfContentsEntry(Element tableBody, USection uSection, TextOption textOption) {
-		for (USection section : uSection.getSubSections()) {
-			if (!section.getSectionOption().isLeaveOutPreviousSectionNumbering()) {
-				Element tableRow = getDoc().createElement("fo:table-row");
-				tableBody.appendChild(tableRow);
-				setTextOption(tableRow, textOption);
-
-				Element sectionNumberCell = getDoc().createElement("fo:table-cell");
-				Element sectionTitleCell = getDoc().createElement("fo:table-cell");
-				Element sectionPageCell = getDoc().createElement("fo:table-cell");
-				tableRow.appendChild(sectionNumberCell);
-				tableRow.appendChild(sectionTitleCell);
-				tableRow.appendChild(sectionPageCell);
-
-				sectionNumberCell.setAttribute("width", Math.ceil(15. / 100. * RTF_CONTENT_WIDTH) + "pt");
-				sectionTitleCell.setAttribute("width", Math.ceil(75. / 100. * RTF_CONTENT_WIDTH) + "pt");
-				sectionPageCell.setAttribute("width", Math.ceil(10. / 100. * RTF_CONTENT_WIDTH) + "pt");
-
-				Element sectionNumberBlock = getDoc().createElement("fo:block");
-				Element sectionTitleBlock = getDoc().createElement("fo:block");
-				Element sectionPageBlock = getDoc().createElement("fo:block");
-				sectionNumberCell.appendChild(sectionNumberBlock);
-				sectionTitleCell.appendChild(sectionTitleBlock);
-				sectionPageCell.appendChild(sectionPageBlock);
-				setTextOption(sectionNumberBlock, textOption);
-				setTextOption(sectionTitleBlock, textOption);
-				setTextOption(sectionPageBlock, textOption);
-
-				sectionNumberBlock.setAttribute("text-align", "right");
-				sectionNumberBlock.setAttribute("margin-right", "15pt");
-				sectionPageBlock.setAttribute("text-align", "right");
-				sectionPageBlock.setAttribute("margin-left", "5pt");
-
-				if (section.getDepth() == 1 && !section.getSectionNumberAsString().equals("")) {
-					sectionNumberBlock.setTextContent("Chapter  " + section.getFullSectionNumbering());
-				} else {
-					sectionNumberBlock.setTextContent(section.getFullSectionNumbering());
-				}
-
-				Element link = getDoc().createElement("fo:basic-link");
-				sectionTitleBlock.appendChild(link);
-				link.setAttribute("internal-destination", String.valueOf(section.hashCode()));
-				link.setTextContent(section.getTitlParagraph().getText());
-
-				if (section.getDepth() == 1) {
-					sectionNumberBlock.setAttribute("margin-top", "10pt");
-					sectionTitleBlock.setAttribute("margin-top", "10pt");
-					sectionPageBlock.setAttribute("margin-top", "10pt");
-				} else {
-					sectionNumberBlock.setAttribute("color", "rgb(0,0,0)");
-					sectionTitleBlock.setAttribute("color", "rgb(0,0,0)");
-					sectionPageBlock.setAttribute("color", "rgb(0,0,0)");
-				}
-
-				writeUTableOfContentsEntry(tableBody, section, textOption);
-			}
-		}
 	}
 
 	private double getMarginLeft(UDocument doc) {
@@ -214,9 +60,6 @@ public class FopRtfWriter extends FopWriter {
 	 */
 	@Override
 	protected void writeUTable(Element parent, UTable uTable) {
-		// Element tableAndCaption = doc.createElement("fo:table-and-caption");
-		// parent.appendChild(tableAndCaption);
-
 		uTable.getBoxModel().setMarginLeft(getMarginLeft(uTable.getParent()));
 
 		Element table = getDoc().createElement("fo:table");
@@ -267,10 +110,7 @@ public class FopRtfWriter extends FopWriter {
 	}
 
 	/**
-	 * @param parent the parent fo xml node
-	 * @param child the paragraph which shall be written
-	 * @see org.unicase.docExport.docWriter.FopWriter#writeUParagraph(org.w3c.dom.Element,
-	 *      org.unicase.docExport.exportModel.renderers.elements.UParagraph)
+	 * {@inheritDoc}
 	 */
 	@Override
 	protected void writeUParagraph(Element parent, UParagraph child) {
@@ -297,7 +137,6 @@ public class FopRtfWriter extends FopWriter {
 
 		if (i == 0) {
 			Element text2 = getDoc().createElement("fo:block");
-			// text2.setTextContent(child.getText());
 			parent.appendChild(text2);
 		}
 
@@ -369,7 +208,7 @@ public class FopRtfWriter extends FopWriter {
 	}
 
 	/**
-	 * @param parent the parent fo xml node where the link shall be added
+	 * @param parent the parent XML-FO node where the link shall be added
 	 * @param uLink the uLink object
 	 * @see org.unicase.docExport.docWriter.FopWriter#writeULink(org.w3c.dom.Element,
 	 *      org.unicase.docExport.exportModel.renderers.elements.ULink)
@@ -398,5 +237,15 @@ public class FopRtfWriter extends FopWriter {
 	 */
 	public String getFileType() {
 		return "rtf";
+	}
+
+	/**
+	 * {@inheritDoc}
+	 * 
+	 * @see org.unicase.docExport.docWriter.FopWriter#getOutputFormat()
+	 */
+	@Override
+	protected String getOutputFormat() {
+		return MimeConstants.MIME_RTF;
 	}
 }

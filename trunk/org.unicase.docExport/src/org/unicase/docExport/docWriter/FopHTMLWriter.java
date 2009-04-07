@@ -17,20 +17,28 @@ import javax.xml.transform.TransformerFactory;
 import javax.xml.transform.stream.StreamResult;
 import javax.xml.transform.stream.StreamSource;
 
+import org.apache.fop.apps.MimeConstants;
 import org.eclipse.core.runtime.FileLocator;
 import org.eclipse.core.runtime.Path;
 import org.unicase.docExport.Activator;
+import org.unicase.docExport.exceptions.DocumentExportException;
 import org.unicase.docExport.exportModel.renderers.elements.URootCompositeSection;
 
 /**
+ * This Strategy uses a free and open source XSLT transformation from xsl-fo to HTML. This renderer is currently causing
+ * problems with extensive layouts.
+ * 
  * @author Sebastian Hoecht
  */
 public class FopHTMLWriter extends FopWriter {
 
 	/**
 	 * {@inheritDoc}
+	 * 
+	 * @throws DocumentExportException
 	 */
-	public void export(String fileName, URootCompositeSection doc) {
+	@Override
+	public void export(String fileName, URootCompositeSection doc) throws DocumentExportException {
 		try {
 			setURoot(doc);
 
@@ -41,21 +49,17 @@ public class FopHTMLWriter extends FopWriter {
 
 			File xsltFile = new File(FileLocator.resolve(htmlXsltFile).getPath());
 
-			// JAXP liest Daten über die Source-Schnittstelle
 			Source xmlSource = new StreamSource(xmlFile);
 			Source xsltSource = new StreamSource(xsltFile);
 
-			// das Factory-Pattern unterstützt verschiedene XSLT-Prozessoren
 			TransformerFactory transFact = TransformerFactory.newInstance();
 			Transformer trans = transFact.newTransformer(xsltSource);
 
 			trans.transform(xmlSource, new StreamResult(fileName));
 		} catch (TransformerException e) {
-			// TODO Auto-generated catch block
-			e.printStackTrace();
+			throw new DocumentExportException(e);
 		} catch (IOException e) {
-			// TODO Auto-generated catch block
-			e.printStackTrace();
+			throw new DocumentExportException(e);
 		}
 	}
 
@@ -66,4 +70,13 @@ public class FopHTMLWriter extends FopWriter {
 		return "html";
 	}
 
+	/**
+	 * {@inheritDoc} This function won't be used in this DocWriter, because it uses a simple XSLT transformation.
+	 * 
+	 * @see org.unicase.docExport.docWriter.FopWriter#getOutputFormat()
+	 */
+	@Override
+	protected String getOutputFormat() {
+		return MimeConstants.MIME_PLAIN_TEXT;
+	}
 }
