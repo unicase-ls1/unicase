@@ -156,7 +156,7 @@ public class TaskChangeNotificationProvider implements NotificationProvider {
 			stringBuilder.append(NotificationHelper.getHTMLLinkForModelElement(iterator.next(), projectSpace));
 			stringBuilder.append(" and ");
 			stringBuilder.append(NotificationHelper.getHTMLLinkForModelElement(iterator.next(), projectSpace));
-			stringBuilder.append(".");
+			stringBuilder.append(" have changed.");
 		} else {
 			stringBuilder.append("<a href=\"more\">");
 			stringBuilder.append(workItems.size());
@@ -175,6 +175,9 @@ public class TaskChangeNotificationProvider implements NotificationProvider {
 			if (newDate != null && newDate.after(date)) {
 				date = newDate;
 			}
+		}
+		if (date == null) {
+			date = new Date();
 		}
 		notification.setCreationDate(date);
 		return notification;
