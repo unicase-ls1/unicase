@@ -89,7 +89,7 @@ public abstract class ChangeTestSuite extends TestSuite {
 		return testProject;
 	}
 
-	protected TestProjectParmeters getTestProjectPrams() {
+	protected TestProjectParmeters getTestProjectParams() {
 		return params;
 	}
 
