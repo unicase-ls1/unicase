@@ -142,7 +142,7 @@ public abstract class AbstractDropAdapter extends DropTargetAdapter {
 		}
 		OrgUnit parentAssignee = parent.getAssignee();
 		if (parentAssignee == null || me.getAssignee() == null) {
-			return false;
+			return true;
 		}
 		if (parentAssignee.equals(me.getAssignee())) {
 			return true;
