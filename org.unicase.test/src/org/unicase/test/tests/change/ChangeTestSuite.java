@@ -81,7 +81,7 @@ public abstract class ChangeTestSuite extends TestSuite {
 	protected Project getTestProject() {
 		if (testProject == null) {
 			System.out.println("creating test project");
-			params = new TestProjectParmeters(100, randomSeed, 10, 5, 20, 100);
+			params = new TestProjectParmeters(50, randomSeed, 5, 5, 10, 20);
 			ChangeTestHelper.setRandom(new Random(randomSeed));
 			testProject = new TestProjectGenerator(params).generateProject();
 			System.out.println("test project created");
