@@ -5,19 +5,12 @@
  */
 package org.unicase.ui.esbrowser.views;
 
-import java.io.BufferedWriter;
-import java.io.FileWriter;
-import java.io.IOException;
 import java.util.ArrayList;
-import java.util.List;
 
 import org.eclipse.emf.common.notify.Notification;
 import org.eclipse.emf.common.notify.impl.AdapterImpl;
 import org.eclipse.emf.common.util.EList;
 import org.eclipse.emf.edit.command.DeleteCommand;
-import org.eclipse.emf.edit.provider.AdapterFactoryItemDelegator;
-import org.eclipse.emf.edit.provider.ComposedAdapterFactory;
-import org.eclipse.emf.edit.provider.IItemPropertyDescriptor;
 import org.eclipse.emf.transaction.RecordingCommand;
 import org.eclipse.emf.transaction.TransactionalEditingDomain;
 import org.eclipse.jface.action.Action;
@@ -44,19 +37,14 @@ import org.eclipse.swt.events.MouseListener;
 import org.eclipse.swt.graphics.Point;
 import org.eclipse.swt.widgets.Composite;
 import org.eclipse.swt.widgets.Display;
-import org.eclipse.swt.widgets.FileDialog;
 import org.eclipse.swt.widgets.Menu;
 import org.eclipse.swt.widgets.TreeItem;
 import org.eclipse.ui.IActionBars;
 import org.eclipse.ui.ISharedImages;
 import org.eclipse.ui.PlatformUI;
 import org.eclipse.ui.part.ViewPart;
-import org.unicase.analyzer.ProjectAnalysisData;
-import org.unicase.analyzer.ProjectVersionIterator;
 import org.unicase.emfstore.esmodel.ProjectInfo;
-import org.unicase.emfstore.esmodel.versioning.ChangePackage;
 import org.unicase.emfstore.esmodel.versioning.VersioningFactory;
-import org.unicase.emfstore.esmodel.versioning.events.Event;
 import org.unicase.emfstore.exceptions.EmfStoreException;
 import org.unicase.ui.common.exceptions.DialogHandler;
 import org.unicase.ui.common.util.ActionHelper;
@@ -79,88 +67,6 @@ import org.unicase.workspace.util.WorkspaceUtil;
  * @author shterev
  */
 public class ESBrowserView extends ViewPart {
-
-	/**
-	 * Action to export events a project.
-	 * 
-	 * @author shterev
-	 */
-	private final class ExportEventsAction extends Action {
-		@Override
-		public void run() {
-			ISelection selection = viewer.getSelection();
-			ProjectInfo projectInfo = ((ProjectInfo) ((IStructuredSelection) selection).getFirstElement());
-			Usersession session = contentProvider.getProjectServerMap().get(projectInfo).getLastUsersession();
-
-			int start = 1;
-			int end = 10;
-			int step = 1;
-
-			ProjectVersionIterator iterator = new ProjectVersionIterator(session, projectInfo.getProjectId(), step,
-				start, end, "forward");
-			FileWriter fileWriter = null;
-			try {
-				// fileWriter = new FileWriter(projectInfo.getName() + projectInfo.getProjectId().getId());
-				FileDialog dialog = new FileDialog(Display.getCurrent().getActiveShell(), SWT.SAVE);
-				String path = dialog.open();
-				if (path == null) {
-					return;
-				}
-
-				fileWriter = new FileWriter(path);
-				BufferedWriter writer = new BufferedWriter(fileWriter);
-				AdapterFactoryItemDelegator adapterFactoryItemDelegator = new AdapterFactoryItemDelegator(
-					new ComposedAdapterFactory(ComposedAdapterFactory.Descriptor.Registry.INSTANCE));
-
-				while (iterator.hasNext()) {
-					try {
-						ProjectAnalysisData analysisData = iterator.next();
-
-						for (ChangePackage cp : analysisData.getChangePackages()) {
-							for (Event event : cp.getEvents()) {
-								String projectId = analysisData.getProjectId().getId();
-								writer.write(projectId);
-								writer.write(",");
-								int version = analysisData.getPrimaryVersionSpec().getIdentifier();
-								writer.write(version);
-								writer.write(",");
-								String eventClass = event.getClass().toString();
-								writer.write(eventClass);
-								writer.write(",");
-								writer.write(event.toString());
-								List<IItemPropertyDescriptor> propertyDescriptors = adapterFactoryItemDelegator
-									.getPropertyDescriptors(event);
-								if (propertyDescriptors == null) {
-									writer.write("No property descriptors");
-									continue;
-								}
-								for (IItemPropertyDescriptor itemPropertyDescriptor : propertyDescriptors) {
-									Object propertyValue = itemPropertyDescriptor.getPropertyValue(event);
-									String value = "null";
-									if (propertyValue != null) {
-										value = propertyValue.toString();
-									}
-									writer.write(value);
-									writer.write(",");
-								}
-								writer.newLine();
-								System.out.println("Written a new line.");
-							}
-						}
-					} catch (Exception e) {
-						System.out.println(e);
-						//
-					} finally {
-						writer.flush();
-					}
-				}
-				writer.close();
-			} catch (IOException e1) {
-				e1.printStackTrace();
-			}
-		}
-	}
-
 	/**
 	 * Action to show properties.
 	 * 
@@ -302,7 +208,6 @@ public class ESBrowserView extends ViewPart {
 	private ESBrowserContentProvider contentProvider;
 	private Action deleteAction;
 	private Action projectProperties;
-	private Action exportEvents;
 
 	/**
 	 * The constructor.
@@ -434,7 +339,6 @@ public class ESBrowserView extends ViewPart {
 				accessControl.checkServerAdminAccess();
 				manager.add(new Separator("Administrative"));
 				manager.add(serverDeleteProject);
-				manager.add(exportEvents);
 			} catch (EmfStoreException e) {
 				// access denied
 			}
@@ -574,11 +478,6 @@ public class ESBrowserView extends ViewPart {
 		projectProperties = new PropertiesAction();
 		projectProperties.setText("Properties");
 		projectProperties.setImageDescriptor(Activator.getImageDescriptor("icons/info.png"));
-
-		exportEvents = new ExportEventsAction();
-		exportEvents.setText("Export events");
-		exportEvents.setImageDescriptor(PlatformUI.getWorkbench().getSharedImages().getImageDescriptor(
-			ISharedImages.IMG_OBJ_ELEMENT));
 
 	}
 
