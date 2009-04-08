@@ -237,7 +237,7 @@ public class AssignmentNotificationProvider implements NotificationProvider {
 			stringBuilder.append(" and ");
 			stringBuilder.append(NotificationHelper.getHTMLLinkForModelElement(wis[1], projectSpace));
 		} else {
-			stringBuilder.append("<a href=\"more\">");
+			stringBuilder.append(" <a href=\"more\">");
 			stringBuilder.append(workItems.size());
 			stringBuilder.append("</a> ");
 			stringBuilder.append(clazz.getName() + "s");
