@@ -1,5 +1,5 @@
 package org.unicase.ui.tum.tuio;
-/*
+/**
 	TUIO Java backend - part of the reacTIVision project
 	http://reactivision.sourceforge.net/
 
