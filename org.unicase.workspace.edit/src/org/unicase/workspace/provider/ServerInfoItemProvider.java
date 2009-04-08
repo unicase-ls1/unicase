@@ -56,6 +56,7 @@ public class ServerInfoItemProvider extends ItemProviderAdapter implements IEdit
 			addPortPropertyDescriptor(object);
 			addProjectInfosPropertyDescriptor(object);
 			addLastUsersessionPropertyDescriptor(object);
+			addCertificateAliasPropertyDescriptor(object);
 		}
 		return itemPropertyDescriptors;
 	}
@@ -126,6 +127,19 @@ public class ServerInfoItemProvider extends ItemProviderAdapter implements IEdit
 	}
 
 	/**
+	 * This adds a property descriptor for the Certificate Alias feature. <!-- begin-user-doc --> <!-- end-user-doc -->
+	 * 
+	 * @generated
+	 */
+	protected void addCertificateAliasPropertyDescriptor(Object object) {
+		itemPropertyDescriptors.add(createItemPropertyDescriptor(((ComposeableAdapterFactory) adapterFactory)
+			.getRootAdapterFactory(), getResourceLocator(), getString("_UI_ServerInfo_certificateAlias_feature"),
+			getString("_UI_PropertyDescriptor_description", "_UI_ServerInfo_certificateAlias_feature",
+				"_UI_ServerInfo_type"), WorkspacePackage.Literals.SERVER_INFO__CERTIFICATE_ALIAS, true, false, false,
+			ItemPropertyDescriptor.GENERIC_VALUE_IMAGE, null, null));
+	}
+
+	/**
 	 * This returns ServerInfo.gif. <!-- begin-user-doc --> <!-- end-user-doc -->
 	 * 
 	 * @generated
@@ -162,6 +176,7 @@ public class ServerInfoItemProvider extends ItemProviderAdapter implements IEdit
 		case WorkspacePackage.SERVER_INFO__NAME:
 		case WorkspacePackage.SERVER_INFO__URL:
 		case WorkspacePackage.SERVER_INFO__PORT:
+		case WorkspacePackage.SERVER_INFO__CERTIFICATE_ALIAS:
 			fireNotifyChanged(new ViewerNotification(notification, notification.getNotifier(), false, true));
 			return;
 		}

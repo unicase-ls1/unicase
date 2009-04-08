@@ -246,6 +246,15 @@ public class WorkspacePackageImpl extends EPackageImpl implements WorkspacePacka
 	 * 
 	 * @generated
 	 */
+	public EAttribute getServerInfo_CertificateAlias() {
+		return (EAttribute) serverInfoEClass.getEStructuralFeatures().get(5);
+	}
+
+	/**
+	 * <!-- begin-user-doc --> <!-- end-user-doc -->
+	 * 
+	 * @generated
+	 */
 	public EClass getUsersession() {
 		return usersessionEClass;
 	}
@@ -515,6 +524,7 @@ public class WorkspacePackageImpl extends EPackageImpl implements WorkspacePacka
 		createEAttribute(serverInfoEClass, SERVER_INFO__PORT);
 		createEReference(serverInfoEClass, SERVER_INFO__PROJECT_INFOS);
 		createEReference(serverInfoEClass, SERVER_INFO__LAST_USERSESSION);
+		createEAttribute(serverInfoEClass, SERVER_INFO__CERTIFICATE_ALIAS);
 
 		usersessionEClass = createEClass(USERSESSION);
 		createEAttribute(usersessionEClass, USERSESSION__USERNAME);
@@ -623,6 +633,9 @@ public class WorkspacePackageImpl extends EPackageImpl implements WorkspacePacka
 		initEReference(getServerInfo_LastUsersession(), this.getUsersession(), null, "lastUsersession", null, 0, 1,
 			ServerInfo.class, !IS_TRANSIENT, !IS_VOLATILE, IS_CHANGEABLE, !IS_COMPOSITE, IS_RESOLVE_PROXIES,
 			!IS_UNSETTABLE, IS_UNIQUE, !IS_DERIVED, IS_ORDERED);
+		initEAttribute(getServerInfo_CertificateAlias(), ecorePackage.getEString(), "certificateAlias", null, 1, 1,
+			ServerInfo.class, !IS_TRANSIENT, !IS_VOLATILE, IS_CHANGEABLE, !IS_UNSETTABLE, !IS_ID, IS_UNIQUE,
+			!IS_DERIVED, IS_ORDERED);
 
 		initEClass(usersessionEClass, Usersession.class, "Usersession", !IS_ABSTRACT, !IS_INTERFACE,
 			IS_GENERATED_INSTANCE_CLASS);

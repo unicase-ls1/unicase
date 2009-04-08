@@ -23,6 +23,7 @@
       <genFeatures createChild="false" ecoreFeature="ecore:EAttribute workspace.ecore#//ServerInfo/port"/>
       <genFeatures notify="false" createChild="false" propertySortChoices="true" ecoreFeature="ecore:EReference workspace.ecore#//ServerInfo/projectInfos"/>
       <genFeatures notify="false" createChild="false" propertySortChoices="true" ecoreFeature="ecore:EReference workspace.ecore#//ServerInfo/lastUsersession"/>
+      <genFeatures createChild="false" ecoreFeature="ecore:EAttribute workspace.ecore#//ServerInfo/certificateAlias"/>
     </genClasses>
     <genClasses ecoreClass="workspace.ecore#//Usersession">
       <genFeatures createChild="false" ecoreFeature="ecore:EAttribute workspace.ecore#//Usersession/username"/>
