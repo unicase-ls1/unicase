@@ -41,7 +41,6 @@ public class UnicasePerspective implements IPerspectiveFactory {
 			IPageLayout.LEFT, 0.25f, factory.getEditorArea());
 
 		topLeft.addView("org.unicase.ui.navigator.viewer"); // NON-NLS-1
-		topLeft.addView(IPageLayout.ID_RES_NAV);
 
 		IFolderLayout bottom = factory.createFolder("bottomRight", // NON-NLS-1
 			IPageLayout.BOTTOM, 0.7f, factory.getEditorArea());
