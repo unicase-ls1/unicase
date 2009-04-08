@@ -1,77 +1,88 @@
 package org.unicase.test.tests.change.random;
 
+import java.util.ArrayList;
+import java.util.List;
+
 import org.unicase.emfstore.esmodel.versioning.ChangePackage;
 import org.unicase.emfstore.esmodel.versioning.operations.AbstractOperation;
 import org.unicase.emfstore.esmodel.versioning.operations.CreateDeleteOperation;
 import org.unicase.test.TestCase;
 import org.unicase.test.tests.change.ChangeTestHelper;
 import org.unicase.test.tests.change.ChangeTestSuite;
-import org.unicase.test.tests.change.random.testcases.DeleteAndRevertDeleteTest;
+import org.unicase.test.tests.change.random.testcases.AttributeChangeTest;
+import org.unicase.test.tests.change.random.testcases.AttributeTransitiveChangeTest;
+import org.unicase.test.tests.change.random.testcases.CommitTest;
+import org.unicase.test.tests.change.random.testcases.ContainmentReferenceAddNewTest;
+import org.unicase.test.tests.change.random.testcases.ContainmentReferenceMoveTest;
+import org.unicase.test.tests.change.random.testcases.CreateAndChangeAttributeTest;
+import org.unicase.test.tests.change.random.testcases.CreateAndChangeRefTest;
+import org.unicase.test.tests.change.random.testcases.CreateAndDeleteTest;
+import org.unicase.test.tests.change.random.testcases.DeleteTest;
+import org.unicase.test.tests.change.random.testcases.NonContainmentReferenceAddTest;
+import org.unicase.test.tests.change.random.testcases.NonContainmentReferenceRemoveTest;
 
 public class RandomChangeTestSuite extends ChangeTestSuite {
 
 	@Override
 	public void initTestCases() {
 
-		// List<RandomChangeTestCase> testCases = new ArrayList<RandomChangeTestCase>();
+		List<RandomChangeTestCase> testCases = new ArrayList<RandomChangeTestCase>();
 
-		// add test cases
+		// // add test cases
 		System.out.println("adding testcases...");
 
-		// // AttributeChangeTest
-		// AttributeChangeTest attributeChangeTest = new AttributeChangeTest(getTestProjectSpace(),
-		// "AttributeChangeTest",
-		// getTestProjectPrams());
-		// testCases.add(attributeChangeTest);
-		//
-		// // DeleteTest
-		// DeleteTest deleteTest = new DeleteTest(getTestProjectSpace(), "Delete", getTestProjectPrams());
-		// testCases.add(deleteTest);
-		//
-		// // ContainmentReferenceMoveTest
-		// ContainmentReferenceMoveTest containmentReferenceMoveTest = new ContainmentReferenceMoveTest(
-		// getTestProjectSpace(), "Move", getTestProjectPrams());
-		// testCases.add(containmentReferenceMoveTest);
-		//
-		// // ContainmentReferenceAddNewTest
-		// ContainmentReferenceAddNewTest containmentReferenceAddNewTest = new ContainmentReferenceAddNewTest(
-		// getTestProjectSpace(), "ContainmentReferenceAddNewTest", getTestProjectPrams());
-		// testCases.add(containmentReferenceAddNewTest);
-		//
-		// // Reference Test
-		// NonContainmentReferenceAddTest nonContainmentReferenceAddTest = new NonContainmentReferenceAddTest(
-		// getTestProjectSpace(), "Reference", getTestProjectPrams());
-		// testCases.add(nonContainmentReferenceAddTest);
-		//
-		// // CreateAndDelete Test
-		// CreateAndDeleteTest createAndDeleteTest = new CreateAndDeleteTest(getTestProjectSpace(), "CreateAndDelete",
-		// getTestProjectPrams());
-		// testCases.add(createAndDeleteTest);
-		//
-		// // AttributeTransitiveChangeTest Test
-		// AttributeTransitiveChangeTest attributeTransitiveChangeTest = new AttributeTransitiveChangeTest(
-		// getTestProjectSpace(), "AttributeTransitiveChangeTest", getTestProjectPrams());
-		// testCases.add(attributeTransitiveChangeTest);
-		//
-		// // RemoveSimpleRef Test
-		// NonContainmentReferenceRemoveTest nonContainmentRefRemoveTest = new NonContainmentReferenceRemoveTest(
-		// getTestProjectSpace(), "RemoveSimpleRef", getTestProjectPrams());
-		// testCases.add(nonContainmentRefRemoveTest);
-		//
-		// // CreateAndChangeRef Test
-		// CreateAndChangeRefTest createAndChangeRefTest = new CreateAndChangeRefTest(getTestProjectSpace(),
-		// "CreateAndChangeRef", getTestProjectPrams());
-		// testCases.add(createAndChangeRefTest);
-		//
-		// // CreateAndChangeAttribute Test
-		// CreateAndChangeAttributeTest createAndChangeAttrTest = new
-		// CreateAndChangeAttributeTest(getTestProjectSpace(),
-		// "CrateAndChangeAttribute", getTestProjectPrams());
-		// testCases.add(createAndChangeAttrTest);
+		// AttributeChangeTest
+		AttributeChangeTest attributeChangeTest = new AttributeChangeTest(getTestProjectSpace(), "AttributeChangeTest",
+			getTestProjectPrams());
+		testCases.add(attributeChangeTest);
+
+		// DeleteTest
+		DeleteTest deleteTest = new DeleteTest(getTestProjectSpace(), "Delete", getTestProjectPrams());
+		testCases.add(deleteTest);
+
+		// ContainmentReferenceMoveTest
+		ContainmentReferenceMoveTest containmentReferenceMoveTest = new ContainmentReferenceMoveTest(
+			getTestProjectSpace(), "Move", getTestProjectPrams());
+		testCases.add(containmentReferenceMoveTest);
+
+		// ContainmentReferenceAddNewTest
+		ContainmentReferenceAddNewTest containmentReferenceAddNewTest = new ContainmentReferenceAddNewTest(
+			getTestProjectSpace(), "ContainmentReferenceAddNewTest", getTestProjectPrams());
+		testCases.add(containmentReferenceAddNewTest);
+
+		// Reference Test
+		NonContainmentReferenceAddTest nonContainmentReferenceAddTest = new NonContainmentReferenceAddTest(
+			getTestProjectSpace(), "Reference", getTestProjectPrams());
+		testCases.add(nonContainmentReferenceAddTest);
+
+		// CreateAndDelete Test
+		CreateAndDeleteTest createAndDeleteTest = new CreateAndDeleteTest(getTestProjectSpace(), "CreateAndDelete",
+			getTestProjectPrams());
+		testCases.add(createAndDeleteTest);
+
+		// AttributeTransitiveChangeTest Test
+		AttributeTransitiveChangeTest attributeTransitiveChangeTest = new AttributeTransitiveChangeTest(
+			getTestProjectSpace(), "AttributeTransitiveChangeTest", getTestProjectPrams());
+		testCases.add(attributeTransitiveChangeTest);
+
+		// RemoveSimpleRef Test
+		NonContainmentReferenceRemoveTest nonContainmentRefRemoveTest = new NonContainmentReferenceRemoveTest(
+			getTestProjectSpace(), "RemoveSimpleRef", getTestProjectPrams());
+		testCases.add(nonContainmentRefRemoveTest);
+
+		// CreateAndChangeRef Test
+		CreateAndChangeRefTest createAndChangeRefTest = new CreateAndChangeRefTest(getTestProjectSpace(),
+			"CreateAndChangeRef", getTestProjectPrams());
+		testCases.add(createAndChangeRefTest);
 
 		// CreateAndChangeAttribute Test
-		DeleteAndRevertDeleteTest deleteAndRevertDeleteTest = new DeleteAndRevertDeleteTest(getTestProjectSpace(),
-			getCompareProjectSpace(), "DeleteAndRevertDeleteTest", getTestProjectPrams());
+		CreateAndChangeAttributeTest createAndChangeAttrTest = new CreateAndChangeAttributeTest(getTestProjectSpace(),
+			"CrateAndChangeAttribute", getTestProjectPrams());
+		testCases.add(createAndChangeAttrTest);
+
+		// CreateAndChangeAttribute Test
+		// DeleteAndRevertDeleteTest deleteAndRevertDeleteTest = new DeleteAndRevertDeleteTest(getTestProjectSpace(),
+		// getCompareProjectSpace(), "DeleteAndRevertDeleteTest", getTestProjectPrams());
 
 		// CompositeTest
 		// @SuppressWarnings("unused")
@@ -79,8 +90,7 @@ public class RandomChangeTestSuite extends ChangeTestSuite {
 		// testCases);
 
 		// CommitTest
-		// CommitTest commitTest = new CommitTest("Commit", getRandomSeed(),
-		// testCases);
+		CommitTest commitTest = new CommitTest(getTestProjectSpace(), "Commit", getTestProjectPrams(), testCases);
 
 		// this.getTestCases().add(compoundTest);
 		// this.getTestCases().add(containmentReferenceAddNewTest); //ok
@@ -93,8 +103,8 @@ public class RandomChangeTestSuite extends ChangeTestSuite {
 		// this.getTestCases().add(nonContainmentReferenceAddTest); //ok
 		// this.getTestCases().add(attributeTransitiveChangeTest); //ok
 		// this.getTestCases().add(attributeChangeTest); //ok
-		// this.getTestCases().add(commitTest);
-		this.getTestCases().add(deleteAndRevertDeleteTest);
+		this.getTestCases().add(commitTest);
+		// this.getTestCases().add(deleteAndRevertDeleteTest);
 
 	}
 

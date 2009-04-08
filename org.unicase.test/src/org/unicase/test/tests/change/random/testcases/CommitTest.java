@@ -5,9 +5,11 @@ import java.util.List;
 
 import org.eclipse.emf.transaction.RecordingCommand;
 import org.eclipse.emf.transaction.TransactionalEditingDomain;
+import org.unicase.emfstore.accesscontrol.AccessControlException;
 import org.unicase.emfstore.esmodel.versioning.LogMessage;
 import org.unicase.emfstore.esmodel.versioning.VersioningFactory;
 import org.unicase.emfstore.exceptions.EmfStoreException;
+import org.unicase.test.tests.change.ChangeTestHelper;
 import org.unicase.test.tests.change.random.RandomChangeTestCase;
 import org.unicase.ui.test.TestProjectParmeters;
 import org.unicase.workspace.ProjectSpace;
@@ -17,13 +19,14 @@ import org.unicase.workspace.WorkspaceFactory;
 
 public class CommitTest extends RandomChangeTestCase {
 
-	@SuppressWarnings("unused")
 	private List<RandomChangeTestCase> testCases;
 	private Usersession userSession;
+
 	private TransactionalEditingDomain domain;
 
 	public CommitTest(ProjectSpace testProjectSpace, String testName, TestProjectParmeters testProjParams,
 		List<RandomChangeTestCase> testCases) {
+
 		super(testProjectSpace, testName, testProjParams);
 		this.testCases = testCases;
 		userSession = WorkspaceFactory.eINSTANCE.createUsersession();
@@ -36,49 +39,33 @@ public class CommitTest extends RandomChangeTestCase {
 		userSession.setUsername("super");
 		userSession.setPassword("super");
 
+		domain = TransactionalEditingDomain.Registry.INSTANCE.getEditingDomain("org.unicase.EditingDomain");
+		try {
+			userSession.logIn();
+			domain.getCommandStack().execute(new RecordingCommand(domain) {
+				@Override
+				protected void doExecute() {
+					try {
+						getTestProjectSpace().shareProject(userSession);
+					} catch (EmfStoreException e) {
+						// TODO Auto-generated catch block
+						e.printStackTrace();
+					}
+				}
+			});
+
+		} catch (AccessControlException e) {
+			e.printStackTrace();
+		} catch (EmfStoreException e) {
+			e.printStackTrace();
+		}
 	}
-
-	// @Override
-	// public void setTestProjectSpace(ProjectSpace testProjectSpace) {
-	//
-	// super.setTestProjectSpace(testProjectSpace);
-	// try {
-	// userSession.logIn();
-	// domain = TransactionalEditingDomain.Registry.INSTANCE
-	// .getEditingDomain("org.unicase.EditingDomain");
-	// domain.getCommandStack().execute(new RecordingCommand(domain) {
-	// @Override
-	// protected void doExecute() {
-	// try {
-	// getTestProjectSpace().shareProject(userSession);
-	// } catch (EmfStoreException e) {
-	// // TODO Auto-generated catch block
-	// e.printStackTrace();
-	// }
-	// }
-	// });
-	//
-	// } catch (AccessControlException e) {
-	// // TODO Auto-generated catch block
-	// e.printStackTrace();
-	// } catch (EmfStoreException e) {
-	// // TODO Auto-generated catch block
-	// e.printStackTrace();
-	// }
-	//
-	// }
-
-	// @Override
-	// public void setTestProject(Project testProject) {
-	// // TODO Auto-generated method stub
-	// super.setTestProject(testProject);
-	// }
 
 	@Override
 	public void runTest() {
-		// CompositeTest compoundTest = new CompositeTest(getTestProject(), "CompositeTest",
-		// getTestProjParams(), testCases);
-		// compoundTest.runTest();
+		CompositeTest compositeTest = new CompositeTest(getTestProjectSpace(), "CompositeTest", getTestProjParams(),
+			testCases);
+		compositeTest.runTest();
 	}
 
 	@Override
@@ -92,9 +79,14 @@ public class CommitTest extends RandomChangeTestCase {
 			@Override
 			protected void doExecute() {
 				try {
+					System.out.println(ChangeTestHelper.getChangePackage(getTestProjectSpace().getOperations(), true,
+						false).getOperations().size()
+						+ " operations.");
 					getTestProjectSpace().commit(logMessage);
-				} catch (EmfStoreException e) {
-					// TODO Auto-generated catch block
+					System.out.println("commit successful!");
+
+				} catch (Exception e) {
+					System.out.println("commit failed!");
 					e.printStackTrace();
 				}
 			}
