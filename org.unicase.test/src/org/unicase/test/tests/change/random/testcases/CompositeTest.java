@@ -9,8 +9,8 @@ import org.unicase.workspace.ProjectSpace;
 public class CompositeTest extends RandomChangeTestCase {
 
 	private List<RandomChangeTestCase> testCases;
-	private static final int MAX_TIMES_TO_RUN = 50;
-	private static final int ITERATIONS = 50;
+	private static final int MAX_TIMES_TO_RUN = 40;
+	private static final int ITERATIONS = 20;
 
 	public CompositeTest(ProjectSpace testProjectSpace, String testName, TestProjectParmeters testProjParams,
 		List<RandomChangeTestCase> testCases) {

@@ -1,5 +1,6 @@
 package org.unicase.test.tests.change;
 
+import java.io.IOException;
 import java.util.Calendar;
 import java.util.Random;
 
@@ -28,6 +29,7 @@ public abstract class ChangeTestSuite extends TestSuite {
 	private TestProjectParmeters params;
 
 	private TransactionalEditingDomain domain;
+	private String testProjectPath;
 
 	protected ProjectSpace getTestProjectSpace() {
 		return testSpace;
@@ -40,22 +42,42 @@ public abstract class ChangeTestSuite extends TestSuite {
 	@Override
 	public void initTestSuite() {
 		System.out.println("initializing test projectSpaces");
-		testSpace = ChangeTestHelper.createEmptyProjectSpace("test");
+		params = new TestProjectParmeters(50, randomSeed, 5, 5, 10, 20);
+		ChangeTestHelper.setRandom(new Random(randomSeed));
+		final WorkspaceImpl currentWorkspace = (WorkspaceImpl) WorkspaceManager.getInstance().getCurrentWorkspace();
+		domain = TransactionalEditingDomain.Registry.INSTANCE.getEditingDomain("org.unicase.EditingDomain");
+		if (testProjectPath != null) {
+			domain.getCommandStack().execute(new RecordingCommand(domain) {
+				@Override
+				protected void doExecute() {
+					try {
+						testSpace = currentWorkspace.importProject(testProjectPath);
+						testProject = testSpace.getProject();
+					} catch (IOException e) {
+						e.printStackTrace();
+					}
+				}
+			});
+		} else {
+			testSpace = ChangeTestHelper.createEmptyProjectSpace("test");
+		}
+
 		compareSpace = ChangeTestHelper.createEmptyProjectSpace("compare");
 		((ProjectSpaceImpl) compareSpace).stopChangeRecording();
-		final WorkspaceImpl currentWorkspace = (WorkspaceImpl) WorkspaceManager.getInstance().getCurrentWorkspace();
 
-		domain = TransactionalEditingDomain.Registry.INSTANCE.getEditingDomain("org.unicase.EditingDomain");
 		domain.getCommandStack().execute(new RecordingCommand(domain) {
 
 			@Override
 			protected void doExecute() {
-				getTestProjectSpace().setProject(getTestProject());
-				getCompareProjectSpace().setProject(getCompareProject());
-				testSpace.initResources(currentWorkspace.getWorkspaceResourceSet());
-				compareSpace.initResources(currentWorkspace.getWorkspaceResourceSet());
 				EList<ProjectSpace> projectSpaces = currentWorkspace.getProjectSpaces();
-				projectSpaces.add(testSpace);
+				if (testProjectPath == null) {
+					getTestProjectSpace().setProject(getTestProject());
+					testSpace.initResources(currentWorkspace.getWorkspaceResourceSet());
+					projectSpaces.add(testSpace);
+				}
+
+				getCompareProjectSpace().setProject(getCompareProject());
+				compareSpace.initResources(currentWorkspace.getWorkspaceResourceSet());
 				projectSpaces.add(compareSpace);
 
 				currentWorkspace.save();
@@ -63,6 +85,14 @@ public abstract class ChangeTestSuite extends TestSuite {
 			}
 
 		});
+	}
+
+	public void setTestProjectPath(String path) {
+		testProjectPath = path;
+	}
+
+	public String getTestProjectPath() {
+		return testProjectPath;
 	}
 
 	protected Project getCompareProject() {
@@ -79,10 +109,9 @@ public abstract class ChangeTestSuite extends TestSuite {
 	}
 
 	protected Project getTestProject() {
+
 		if (testProject == null) {
 			System.out.println("creating test project");
-			params = new TestProjectParmeters(50, randomSeed, 5, 5, 10, 20);
-			ChangeTestHelper.setRandom(new Random(randomSeed));
 			testProject = new TestProjectGenerator(params).generateProject();
 			System.out.println("test project created");
 		}

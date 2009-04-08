@@ -309,7 +309,8 @@ public final class ChangeTestHelper {
 
 		int size = refTypeMEs.size();
 		if (size == 0) {
-			throw new IllegalStateException("There is no ME of this type in Project: " + type.getName());
+			return null;
+			// throw new IllegalStateException("There is no ME of this type in Project: " + type.getName());
 		}
 
 		ModelElement me = refTypeMEs.get(size == 1 ? 0 : getRandom().nextInt(size - 1));

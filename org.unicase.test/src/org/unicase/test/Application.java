@@ -21,6 +21,7 @@ public class Application implements IApplication {
 
 	/**
 	 * (non-Javadoc)
+	 * 
 	 * @seeorg.eclipse.equinox.app.IApplicationk#start(org.eclipse.equinox.app. IApplicationContext)
 	 */
 	public Object start(IApplicationContext context) throws Exception {
@@ -33,6 +34,7 @@ public class Application implements IApplication {
 		switch (testToRun) {
 		case RANDOMTEST:
 			test = new RandomChangeTestSuite();
+			((RandomChangeTestSuite) test).setTestProjectPath("/home/zardosht/Desktop/unicase.ucp");
 			break;
 
 		case CHANGETEST:
@@ -58,6 +60,7 @@ public class Application implements IApplication {
 
 	/**
 	 * (non-Javadoc)
+	 * 
 	 * @see org.eclipse.equinox.app.IApplication#stop()
 	 */
 	public void stop() {

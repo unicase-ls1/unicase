@@ -60,6 +60,9 @@ public class ContainmentReferenceMoveTest extends ChangePackageTest {
 		}
 
 		meToMove = ChangeTestHelper.getRandomMEofType(getTestProject(), refToChange.getEReferenceType());
+		if (meToMove == null) {
+			return;
+		}
 		while (meToMove.equals(me) || EcoreUtil.isAncestor(meToMove, me)) {
 			meToMove = ChangeTestHelper.getRandomMEofType(getTestProject(), refToChange.getEReferenceType());
 		}
