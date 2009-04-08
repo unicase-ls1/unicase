@@ -162,13 +162,22 @@ public interface WorkspacePackage extends EPackage {
 	int SERVER_INFO__LAST_USERSESSION = 4;
 
 	/**
+	 * The feature id for the '<em><b>Certificate Alias</b></em>' attribute. <!-- begin-user-doc --> <!-- end-user-doc
+	 * -->
+	 * 
+	 * @generated
+	 * @ordered
+	 */
+	int SERVER_INFO__CERTIFICATE_ALIAS = 5;
+
+	/**
 	 * The number of structural features of the '<em>Server Info</em>' class. <!-- begin-user-doc --> <!-- end-user-doc
 	 * -->
 	 * 
 	 * @generated
 	 * @ordered
 	 */
-	int SERVER_INFO_FEATURE_COUNT = 5;
+	int SERVER_INFO_FEATURE_COUNT = 6;
 
 	/**
 	 * The meta object id for the '{@link org.unicase.workspace.impl.UsersessionImpl <em>Usersession</em>}' class. <!--
@@ -563,6 +572,17 @@ public interface WorkspacePackage extends EPackage {
 	 * @generated
 	 */
 	EReference getServerInfo_LastUsersession();
+
+	/**
+	 * Returns the meta object for the attribute '{@link org.unicase.workspace.ServerInfo#getCertificateAlias
+	 * <em>Certificate Alias</em>}'. <!-- begin-user-doc --> <!-- end-user-doc -->
+	 * 
+	 * @return the meta object for the attribute '<em>Certificate Alias</em>'.
+	 * @see org.unicase.workspace.ServerInfo#getCertificateAlias()
+	 * @see #getServerInfo()
+	 * @generated
+	 */
+	EAttribute getServerInfo_CertificateAlias();
 
 	/**
 	 * Returns the meta object for class ' {@link org.unicase.workspace.Usersession <em>Usersession</em>}'. <!--
@@ -962,6 +982,14 @@ public interface WorkspacePackage extends EPackage {
 		 * @generated
 		 */
 		EReference SERVER_INFO__LAST_USERSESSION = eINSTANCE.getServerInfo_LastUsersession();
+
+		/**
+		 * The meta object literal for the '<em><b>Certificate Alias</b></em>' attribute feature. <!-- begin-user-doc
+		 * --> <!-- end-user-doc -->
+		 * 
+		 * @generated
+		 */
+		EAttribute SERVER_INFO__CERTIFICATE_ALIAS = eINSTANCE.getServerInfo_CertificateAlias();
 
 		/**
 		 * The meta object literal for the '{@link org.unicase.workspace.impl.UsersessionImpl <em>Usersession</em>}'

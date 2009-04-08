@@ -19,6 +19,7 @@ import org.unicase.emfstore.esmodel.ProjectInfo;
  * <li>{@link org.unicase.workspace.ServerInfo#getPort <em>Port</em>}</li>
  * <li>{@link org.unicase.workspace.ServerInfo#getProjectInfos <em>Project Infos</em>}</li>
  * <li>{@link org.unicase.workspace.ServerInfo#getLastUsersession <em>Last Usersession</em>}</li>
+ * <li>{@link org.unicase.workspace.ServerInfo#getCertificateAlias <em>Certificate Alias</em>}</li>
  * </ul>
  * </p>
  * 
@@ -143,5 +144,31 @@ public interface ServerInfo extends EObject {
 	 * @generated
 	 */
 	void setLastUsersession(Usersession value);
+
+	/**
+	 * Returns the value of the '<em><b>Certificate Alias</b></em>' attribute. <!-- begin-user-doc -->
+	 * <p>
+	 * If the meaning of the '<em>Certificate Alias</em>' attribute isn't clear, there really should be more of a
+	 * description here...
+	 * </p>
+	 * <!-- end-user-doc -->
+	 * 
+	 * @return the value of the '<em>Certificate Alias</em>' attribute.
+	 * @see #setCertificateAlias(String)
+	 * @see org.unicase.workspace.WorkspacePackage#getServerInfo_CertificateAlias()
+	 * @model required="true"
+	 * @generated
+	 */
+	String getCertificateAlias();
+
+	/**
+	 * Sets the value of the '{@link org.unicase.workspace.ServerInfo#getCertificateAlias <em>Certificate Alias</em>}'
+	 * attribute. <!-- begin-user-doc --> <!-- end-user-doc -->
+	 * 
+	 * @param value the new value of the '<em>Certificate Alias</em>' attribute.
+	 * @see #getCertificateAlias()
+	 * @generated
+	 */
+	void setCertificateAlias(String value);
 
 } // ServerInfo

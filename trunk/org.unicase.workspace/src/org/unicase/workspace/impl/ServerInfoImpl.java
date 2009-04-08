@@ -29,6 +29,7 @@ import org.unicase.workspace.WorkspacePackage;
  * <li>{@link org.unicase.workspace.impl.ServerInfoImpl#getPort <em>Port</em>}</li>
  * <li>{@link org.unicase.workspace.impl.ServerInfoImpl#getProjectInfos <em>Project Infos</em>}</li>
  * <li>{@link org.unicase.workspace.impl.ServerInfoImpl#getLastUsersession <em>Last Usersession</em>}</li>
+ * <li>{@link org.unicase.workspace.impl.ServerInfoImpl#getCertificateAlias <em>Certificate Alias</em>}</li>
  * </ul>
  * </p>
  * 
@@ -113,6 +114,26 @@ public class ServerInfoImpl extends EObjectImpl implements ServerInfo {
 	 * @ordered
 	 */
 	protected Usersession lastUsersession;
+
+	/**
+	 * The default value of the '{@link #getCertificateAlias() <em>Certificate Alias</em>}' attribute. <!--
+	 * begin-user-doc --> <!-- end-user-doc -->
+	 * 
+	 * @see #getCertificateAlias()
+	 * @generated
+	 * @ordered
+	 */
+	protected static final String CERTIFICATE_ALIAS_EDEFAULT = null;
+
+	/**
+	 * The cached value of the '{@link #getCertificateAlias() <em>Certificate Alias</em>}' attribute. <!--
+	 * begin-user-doc --> <!-- end-user-doc -->
+	 * 
+	 * @see #getCertificateAlias()
+	 * @generated
+	 * @ordered
+	 */
+	protected String certificateAlias = CERTIFICATE_ALIAS_EDEFAULT;
 
 	/**
 	 * <!-- begin-user-doc --> <!-- end-user-doc -->
@@ -254,6 +275,28 @@ public class ServerInfoImpl extends EObjectImpl implements ServerInfo {
 	 * 
 	 * @generated
 	 */
+	public String getCertificateAlias() {
+		return certificateAlias;
+	}
+
+	/**
+	 * <!-- begin-user-doc --> <!-- end-user-doc -->
+	 * 
+	 * @generated
+	 */
+	public void setCertificateAlias(String newCertificateAlias) {
+		String oldCertificateAlias = certificateAlias;
+		certificateAlias = newCertificateAlias;
+		if (eNotificationRequired())
+			eNotify(new ENotificationImpl(this, Notification.SET, WorkspacePackage.SERVER_INFO__CERTIFICATE_ALIAS,
+				oldCertificateAlias, certificateAlias));
+	}
+
+	/**
+	 * <!-- begin-user-doc --> <!-- end-user-doc -->
+	 * 
+	 * @generated
+	 */
 	@Override
 	public Object eGet(int featureID, boolean resolve, boolean coreType) {
 		switch (featureID) {
@@ -269,6 +312,8 @@ public class ServerInfoImpl extends EObjectImpl implements ServerInfo {
 			if (resolve)
 				return getLastUsersession();
 			return basicGetLastUsersession();
+		case WorkspacePackage.SERVER_INFO__CERTIFICATE_ALIAS:
+			return getCertificateAlias();
 		}
 		return super.eGet(featureID, resolve, coreType);
 	}
@@ -298,6 +343,9 @@ public class ServerInfoImpl extends EObjectImpl implements ServerInfo {
 		case WorkspacePackage.SERVER_INFO__LAST_USERSESSION:
 			setLastUsersession((Usersession) newValue);
 			return;
+		case WorkspacePackage.SERVER_INFO__CERTIFICATE_ALIAS:
+			setCertificateAlias((String) newValue);
+			return;
 		}
 		super.eSet(featureID, newValue);
 	}
@@ -325,6 +373,9 @@ public class ServerInfoImpl extends EObjectImpl implements ServerInfo {
 		case WorkspacePackage.SERVER_INFO__LAST_USERSESSION:
 			setLastUsersession((Usersession) null);
 			return;
+		case WorkspacePackage.SERVER_INFO__CERTIFICATE_ALIAS:
+			setCertificateAlias(CERTIFICATE_ALIAS_EDEFAULT);
+			return;
 		}
 		super.eUnset(featureID);
 	}
@@ -347,6 +398,9 @@ public class ServerInfoImpl extends EObjectImpl implements ServerInfo {
 			return projectInfos != null && !projectInfos.isEmpty();
 		case WorkspacePackage.SERVER_INFO__LAST_USERSESSION:
 			return lastUsersession != null;
+		case WorkspacePackage.SERVER_INFO__CERTIFICATE_ALIAS:
+			return CERTIFICATE_ALIAS_EDEFAULT == null ? certificateAlias != null : !CERTIFICATE_ALIAS_EDEFAULT
+				.equals(certificateAlias);
 		}
 		return super.eIsSet(featureID);
 	}
@@ -368,6 +422,8 @@ public class ServerInfoImpl extends EObjectImpl implements ServerInfo {
 		result.append(url);
 		result.append(", port: ");
 		result.append(port);
+		result.append(", certificateAlias: ");
+		result.append(certificateAlias);
 		result.append(')');
 		return result.toString();
 	}
