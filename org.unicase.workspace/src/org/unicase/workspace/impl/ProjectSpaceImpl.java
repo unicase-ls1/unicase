@@ -899,7 +899,9 @@ public class ProjectSpaceImpl extends IdentifiableElementImpl implements Project
 
 		startChangeRecording();
 
-		commitObserver.commitCompleted();
+		if (commitObserver != null) {
+			commitObserver.commitCompleted();
+		}
 
 		return newBaseVersion;
 	}

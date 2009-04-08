@@ -241,6 +241,7 @@ public class RMIConnectionManagerImpl implements ConnectionManager {
 		try {
 			registry = LocateRegistry.getRegistry(serverInfo.getUrl(), serverInfo.getPort());
 			RMIEmfStoreFacade facade = (RMIEmfStoreFacade) registry.lookup(RMIConnectionHandler.RMI_NAME);
+			clientVersionInfo.setVersion("0.3.17.internal");
 			SessionId sessionId = (SessionId) SerializationUtil.stringToEObject(facade.login(username, password,
 				SerializationUtil.eObjectToString(serverInfo), SerializationUtil.eObjectToString(clientVersionInfo)));
 			facadeMap.put(sessionId, facade);
