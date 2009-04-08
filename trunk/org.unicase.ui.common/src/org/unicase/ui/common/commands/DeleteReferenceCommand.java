@@ -55,7 +55,7 @@ public final class DeleteReferenceCommand extends RecordingCommand {
 			return;
 		}
 
-		if (object instanceof EList) {
+		if (object instanceof EList<?>) {
 			@SuppressWarnings("unchecked")
 			EList<EObject> list = (EList<EObject>) object;
 			list.remove(opposite);
