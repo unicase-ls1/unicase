@@ -245,9 +245,9 @@ public class DefaultAttributeRendererImpl extends AttributeRendererImpl implemen
 		name.setIndentionLeft(1);
 		parent.add(name);
 
-		if (false) {
-			addDescription(parent, WorkspaceUtil.cleanFormatedText(content.getDescription()));
-		}
+		// if (false) {
+		// addDescription(parent, WorkspaceUtil.cleanFormatedText(content.getDescription()));
+		// }
 	}
 
 	private void renderContainedReference(ModelElement content, UCompositeSection attributeSection,
@@ -324,11 +324,11 @@ public class DefaultAttributeRendererImpl extends AttributeRendererImpl implemen
 		}
 	}
 
-	private void addDescription(UCompositeSection parent, String descriptionText) {
-		UParagraph description = new UParagraph(descriptionText, layoutOptions.getDefaultTextOption());
-		description.setIndentionLeft(3);
-		parent.add(description);
-	}
+	// private void addDescription(UCompositeSection parent, String descriptionText) {
+	// UParagraph description = new UParagraph(descriptionText, layoutOptions.getDefaultTextOption());
+	// description.setIndentionLeft(3);
+	// parent.add(description);
+	// }
 	// end custom code
 
 } // DefaultAttributeRendererImpl
