@@ -12,7 +12,7 @@ public class ManualChangeTestSuite extends ChangeTestSuite {
 		// getTestCases().add(bidirectionalRefTest);
 
 		AddSameMEToASingleNonContainmentRef addSameMETest = new AddSameMEToASingleNonContainmentRef(
-			getTestProjectSpace(), "bidirectional ref", getTestProjectPrams());
+			getTestProjectSpace(), "bidirectional ref", getTestProjectParams());
 		getTestCases().add(addSameMETest);
 
 	}
