@@ -29,8 +29,8 @@ public class DynamicViewDescriptorAdapter implements IAdaptable {
 
 	/**
 	 * Constructor.
-	 * @param viewDescriptor
-	 * @param host
+	 * @param viewDescriptor the view descriptor
+	 * @param host the host edit part
 	 */
 	public DynamicViewDescriptorAdapter(ViewDescriptor viewDescriptor, DiagramEditPart host) {
 		if (viewDescriptor == null) {
