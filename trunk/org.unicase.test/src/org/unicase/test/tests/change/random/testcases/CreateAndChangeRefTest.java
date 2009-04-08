@@ -40,6 +40,9 @@ public class CreateAndChangeRefTest extends ChangePackageTest {
 		}
 
 		meToReference = ChangeTestHelper.getRandomMEofType(getTestProject(), refToChange.getEReferenceType());
+		if (meToReference == null) {
+			return;
+		}
 		// make a copy of old value of opposite reference for later inspection
 		// (see getExpectedNumOfChanges())
 		if (refToChange.getEOpposite() != null && refToChange.getEOpposite().getUpperBound() == 1

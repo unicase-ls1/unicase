@@ -63,6 +63,9 @@ public class NonContainmentReferenceAddTest extends ChangePackageTest {
 		oldValueOfRef = me.eGet(refToChange);
 
 		meToReference = ChangeTestHelper.getRandomMEofType(getTestProject(), refToChange.getEReferenceType());
+		if (meToReference == null) {
+			return;
+		}
 		// make a copy of old value of opposite reference for later inspection
 		// (see getExpectedNumOfChanges())
 		if (refToChange.getEOpposite() != null) {

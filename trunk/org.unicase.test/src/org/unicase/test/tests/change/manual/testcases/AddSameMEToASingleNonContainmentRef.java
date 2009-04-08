@@ -44,6 +44,9 @@ public class AddSameMEToASingleNonContainmentRef extends ManualChangeTestCase {
 
 		Dependency dep = (Dependency) ChangeTestHelper.getRandomMEofType(getTestProject(), ClassesPackage.eINSTANCE
 			.getDependency());
+		if (dep == null) {
+			return;
+		}
 		pe = dep.getTarget();
 
 		MergingIssue mergingIssue = (MergingIssue) ChangeTestHelper.getRandomMEofType(getTestProject(),

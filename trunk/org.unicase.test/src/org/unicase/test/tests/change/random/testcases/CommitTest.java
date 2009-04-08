@@ -46,7 +46,10 @@ public class CommitTest extends RandomChangeTestCase {
 				@Override
 				protected void doExecute() {
 					try {
-						getTestProjectSpace().shareProject(userSession);
+						if (getTestProjectSpace().getBaseVersion() == null) {
+							getTestProjectSpace().shareProject(userSession);
+						}
+
 					} catch (EmfStoreException e) {
 						// TODO Auto-generated catch block
 						e.printStackTrace();
@@ -87,6 +90,7 @@ public class CommitTest extends RandomChangeTestCase {
 
 				} catch (Exception e) {
 					System.out.println("commit failed!");
+					System.out.println("");
 					e.printStackTrace();
 				}
 			}
