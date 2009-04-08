@@ -12,11 +12,15 @@ import org.eclipse.emf.ecore.impl.EObjectImpl;
 import org.unicase.workspace.WorkspaceModelVersion;
 import org.unicase.workspace.WorkspacePackage;
 
-/*
+/**
  * <!-- begin-user-doc --> An implementation of the model object '<em><b>Model Version</b></em>'. <!-- end-user-doc -->
- * <p> The following features are implemented: <ul> <li>{@link
- * org.unicase.workspace.impl.WorkspaceModelVersionImpl#getModelReleaseNumber <em>Model Release Number</em>}</li> </ul>
+ * <p>
+ * The following features are implemented:
+ * <ul>
+ * <li>{@link org.unicase.workspace.impl.WorkspaceModelVersionImpl#getModelReleaseNumber <em>Model Release Number</em>}</li>
+ * </ul>
  * </p>
+ * 
  * @generated
  */
 public class WorkspaceModelVersionImpl extends EObjectImpl implements WorkspaceModelVersion {
@@ -42,6 +46,7 @@ public class WorkspaceModelVersionImpl extends EObjectImpl implements WorkspaceM
 
 	/**
 	 * <!-- begin-user-doc --> <!-- end-user-doc -->
+	 * 
 	 * @generated
 	 */
 	protected WorkspaceModelVersionImpl() {
@@ -50,6 +55,7 @@ public class WorkspaceModelVersionImpl extends EObjectImpl implements WorkspaceM
 
 	/**
 	 * <!-- begin-user-doc --> <!-- end-user-doc -->
+	 * 
 	 * @generated
 	 */
 	@Override
@@ -59,6 +65,7 @@ public class WorkspaceModelVersionImpl extends EObjectImpl implements WorkspaceM
 
 	/**
 	 * <!-- begin-user-doc --> <!-- end-user-doc -->
+	 * 
 	 * @generated
 	 */
 	public int getModelReleaseNumber() {
@@ -67,6 +74,7 @@ public class WorkspaceModelVersionImpl extends EObjectImpl implements WorkspaceM
 
 	/**
 	 * <!-- begin-user-doc --> <!-- end-user-doc -->
+	 * 
 	 * @generated
 	 */
 	public void setModelReleaseNumber(int newModelReleaseNumber) {
@@ -80,26 +88,28 @@ public class WorkspaceModelVersionImpl extends EObjectImpl implements WorkspaceM
 
 	/**
 	 * <!-- begin-user-doc --> <!-- end-user-doc -->
+	 * 
 	 * @generated
 	 */
 	@Override
 	public Object eGet(int featureID, boolean resolve, boolean coreType) {
 		switch (featureID) {
 		case WorkspacePackage.WORKSPACE_MODEL_VERSION__MODEL_RELEASE_NUMBER:
-			return new Integer(getModelReleaseNumber());
+			return getModelReleaseNumber();
 		}
 		return super.eGet(featureID, resolve, coreType);
 	}
 
 	/**
 	 * <!-- begin-user-doc --> <!-- end-user-doc -->
+	 * 
 	 * @generated
 	 */
 	@Override
 	public void eSet(int featureID, Object newValue) {
 		switch (featureID) {
 		case WorkspacePackage.WORKSPACE_MODEL_VERSION__MODEL_RELEASE_NUMBER:
-			setModelReleaseNumber(((Integer) newValue).intValue());
+			setModelReleaseNumber((Integer) newValue);
 			return;
 		}
 		super.eSet(featureID, newValue);
@@ -107,6 +117,7 @@ public class WorkspaceModelVersionImpl extends EObjectImpl implements WorkspaceM
 
 	/**
 	 * <!-- begin-user-doc --> <!-- end-user-doc -->
+	 * 
 	 * @generated
 	 */
 	@Override
@@ -121,6 +132,7 @@ public class WorkspaceModelVersionImpl extends EObjectImpl implements WorkspaceM
 
 	/**
 	 * <!-- begin-user-doc --> <!-- end-user-doc -->
+	 * 
 	 * @generated
 	 */
 	@Override
@@ -134,6 +146,7 @@ public class WorkspaceModelVersionImpl extends EObjectImpl implements WorkspaceM
 
 	/**
 	 * <!-- begin-user-doc --> <!-- end-user-doc -->
+	 * 
 	 * @generated
 	 */
 	@Override
