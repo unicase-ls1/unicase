@@ -37,8 +37,8 @@ public class ShowHistoryHandler extends ProjectActionHandler {
 
 	/**
 	 * Recording command to wrap the opening of the view.
+	 * 
 	 * @author Shterev
-	 *
 	 */
 	private final class HistoryRecordingCommand extends RecordingCommand {
 		private final ProjectSpace finalProjectSpace;
