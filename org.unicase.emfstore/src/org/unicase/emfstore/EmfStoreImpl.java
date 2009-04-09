@@ -242,7 +242,7 @@ public class EmfStoreImpl implements EmfStore {
 		PrimaryVersionSpec resolvedTarget = resolveVersionSpec(projectId, target);
 
 		if (resolvedSource.getIdentifier() == resolvedTarget.getIdentifier()) {
-			throw new InvalidVersionSpecException("Source and target are equal.");
+			return new ArrayList<ChangePackage>();
 		}
 
 		if (resolvedSource.getIdentifier() < resolvedTarget.getIdentifier()) {
