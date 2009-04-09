@@ -91,7 +91,6 @@ public class DashboardAnalyzerHandler extends AbstractHandler {
 							writer.write(dateFormat.format(n.getCreationDate()));
 							writer.write(",");
 							for (ModelElementId mid : n.getRelatedModelElements()) {
-								writer.write("{");
 								writer.write(mid.getId());
 								writer.write("|");
 								ModelElement modelElement = projectSpace.getProject().getModelElement(mid);
@@ -102,7 +101,7 @@ public class DashboardAnalyzerHandler extends AbstractHandler {
 									writer.write("|");
 									writer.write(modelElement.eClass().getName());
 								}
-								writer.write("}");
+								writer.write("#");
 							}
 							writer.write("\n\n");
 						}
