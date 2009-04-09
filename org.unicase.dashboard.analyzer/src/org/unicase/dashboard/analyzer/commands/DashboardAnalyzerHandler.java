@@ -21,6 +21,7 @@ import org.eclipse.swt.widgets.FileDialog;
 import org.unicase.analyzer.ProjectAnalysisData;
 import org.unicase.analyzer.ProjectVersionIterator;
 import org.unicase.emfstore.esmodel.notification.ESNotification;
+import org.unicase.model.ModelElement;
 import org.unicase.model.ModelElementId;
 import org.unicase.workspace.ProjectSpace;
 import org.unicase.workspace.Usersession;
@@ -93,9 +94,14 @@ public class DashboardAnalyzerHandler extends AbstractHandler {
 								writer.write("{");
 								writer.write(mid.getId());
 								writer.write("|");
-								writer.write(projectSpace.getProject().getModelElement(mid).getName());
-								writer.write("|");
-								writer.write(projectSpace.getProject().getModelElement(mid).eClass().getName());
+								ModelElement modelElement = projectSpace.getProject().getModelElement(mid);
+								if (modelElement == null) {
+									writer.write("deleted");
+								} else {
+									writer.write(modelElement.getName());
+									writer.write("|");
+									writer.write(modelElement.eClass().getName());
+								}
 								writer.write("}");
 							}
 							writer.write("\n\n");
