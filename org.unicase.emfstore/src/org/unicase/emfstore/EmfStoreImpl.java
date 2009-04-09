@@ -616,14 +616,12 @@ public class EmfStoreImpl implements EmfStore {
 				if (((DateVersionSpec) versionSpec).getDate().before(logMessage.getDate())) {
 					Version previousVersion = version.getPreviousVersion();
 					if (previousVersion == null) {
-						break;
+						return VersioningFactory.eINSTANCE.createPrimaryVersionSpec();
 					}
 					return previousVersion.getPrimarySpec();
 				}
 			}
-			PrimaryVersionSpec primaryVersionSpec = VersioningFactory.eINSTANCE.createPrimaryVersionSpec();
-			primaryVersionSpec.setIdentifier(0);
-			return primaryVersionSpec;
+			return projectHistory.getLastVersion().getPrimarySpec();
 			// TagVersionSpec
 		} else if (versionSpec instanceof TagVersionSpec) {
 			for (Version version : projectHistory.getVersions()) {
