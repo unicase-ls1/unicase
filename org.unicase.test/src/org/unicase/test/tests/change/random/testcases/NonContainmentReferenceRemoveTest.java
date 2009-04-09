@@ -36,22 +36,22 @@ public class NonContainmentReferenceRemoveTest extends ChangePackageTest {
 
 			@Override
 			protected void doExecute() {
-				doRemoveSimpleRef();
+				doRemoveNonContainmentRef();
 			}
 		});
 
 	}
 
 	@SuppressWarnings("unchecked")
-	private void doRemoveSimpleRef() {
+	private void doRemoveNonContainmentRef() {
 		me = ChangeTestHelper.getRandomME(getTestProject());
 
 		while (me.eCrossReferences().size() < 1) {
 			me = ChangeTestHelper.getRandomME(getTestProject());
 		}
 
-		int size = me.eCrossReferences().size();
-		int indexToRemove = (size == 1 ? 0 : getRandom().nextInt(size - 1));
+	
+		int indexToRemove =ChangeTestHelper.getRandomPosition(me.eCrossReferences().size());
 		meToRemove = (ModelElement) me.eCrossReferences().get(indexToRemove);
 
 		refToChange = findReference(me, meToRemove);

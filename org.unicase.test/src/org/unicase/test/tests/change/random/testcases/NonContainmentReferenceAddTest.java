@@ -93,14 +93,14 @@ public class NonContainmentReferenceAddTest extends ChangePackageTest {
 
 			@Override
 			protected void doExecute() {
-				doChangeSimpleRef();
+				doChangeNonContainmentRef();
 			}
 
 		});
 	}
 
 	@SuppressWarnings("unchecked")
-	private void doChangeSimpleRef() {
+	private void doChangeNonContainmentRef() {
 
 		Object object = me.eGet(refToChange);
 		if (refToChange.isMany()) {
@@ -120,7 +120,7 @@ public class NonContainmentReferenceAddTest extends ChangePackageTest {
 			}
 		}
 
-		ChangeTestHelper.changeSimpleRef(me, refToChange, meToReference);
+		ChangeTestHelper.changeNonContainmentRef(me, refToChange, meToReference);
 
 	}
 

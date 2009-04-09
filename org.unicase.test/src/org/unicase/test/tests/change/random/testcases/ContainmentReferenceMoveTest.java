@@ -14,14 +14,19 @@ import org.unicase.test.tests.change.random.ChangePackageTest;
 import org.unicase.ui.test.TestProjectParmeters;
 import org.unicase.workspace.ProjectSpace;
 
+/**
+ * This test move a contained model element to a new parent. It selects a random ME and a random containment reference
+ * (contRef) of it. Then finds a random ME (meToMove) that matches contRef and adds it to contRef. If contRef is many
+ * then meToMove will be added to a random position in the list.
+ * 
+ * @author zardosht
+ */
 public class ContainmentReferenceMoveTest extends ChangePackageTest {
 
 	private ModelElement me;
 	private EReference refToChange;
 	private ModelElement meToMove;
 	private Object oldParent;
-
-	// private Object oldValueOfRef;
 
 	public ContainmentReferenceMoveTest(ProjectSpace testProjectSpace, String testName,
 		TestProjectParmeters testProjParams) {
@@ -49,8 +54,8 @@ public class ContainmentReferenceMoveTest extends ChangePackageTest {
 	private void doMoveTest() {
 
 		oldParent = null;
-		// oldValueOfRef = null;
 
+		// get a random ME and one of its containment references (refToChange)
 		me = ChangeTestHelper.getRandomME(getTestProject());
 		refToChange = ChangeTestHelper.getRandomContainmentRef(me);
 
@@ -59,6 +64,7 @@ public class ContainmentReferenceMoveTest extends ChangePackageTest {
 			refToChange = ChangeTestHelper.getRandomContainmentRef(me);
 		}
 
+		// get a random ME matching refToChange. Also take care that meToMove is not the same as or an ancestor of ME
 		meToMove = ChangeTestHelper.getRandomMEofType(getTestProject(), refToChange.getEReferenceType());
 		if (meToMove == null) {
 			return;
@@ -68,7 +74,6 @@ public class ContainmentReferenceMoveTest extends ChangePackageTest {
 		}
 
 		oldParent = meToMove.eContainer();
-		// oldValueOfRef = me.eGet(refToChange);
 
 		Object object = me.eGet(refToChange);
 
@@ -78,14 +83,12 @@ public class ContainmentReferenceMoveTest extends ChangePackageTest {
 				throw new IllegalStateException("Null list return for feature " + refToChange.getName() + " on "
 					+ me.getName());
 			} else {
-				eList.add(meToMove);
+				int position = ChangeTestHelper.getRandomPosition(eList.size());
+				eList.add(position, meToMove);
 			}
 		} else {
 			me.eSet(refToChange, meToMove);
 		}
-
-		Object obj = new Object();
-		obj.toString();
 
 	}
 

@@ -11,6 +11,12 @@ import org.unicase.test.tests.change.random.ChangePackageTest;
 import org.unicase.ui.test.TestProjectParmeters;
 import org.unicase.workspace.ProjectSpace;
 
+/**
+ * This take a random ME and deletes it.
+ * 
+ * @author zardosht
+ * @author koegel
+ */
 public class DeleteTest extends ChangePackageTest {
 
 	private ModelElement me;

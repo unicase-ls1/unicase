@@ -14,9 +14,9 @@ import org.unicase.ui.test.TestProjectParmeters;
 import org.unicase.workspace.ProjectSpace;
 
 /**
- * This test takes a random ME A; Takes randomly one of its containment references contRef; Creates a model element of
- * corresponding type; adds newly created ME to A.contRef; extracts changes on test project and applies them on compare
- * project; Test succeeds when test and compare projects are identical.
+ * This test takes a random ME A; Takes randomly one of its containment references contRef; Creates a new model element
+ * of corresponding type; adds newly created ME to A.contRef. If contRef is a many reference then the new model element
+ * will be added to a random position in its list;
  * 
  * @author Hodaie
  */
@@ -51,6 +51,7 @@ public class ContainmentReferenceAddNewTest extends ChangePackageTest {
 	@SuppressWarnings("unchecked")
 	private void doAddTest() {
 
+		// get a random ME and one of its containment references
 		me = ChangeTestHelper.getRandomME(getTestProject());
 		refToChange = ChangeTestHelper.getRandomContainmentRef(me);
 
@@ -61,6 +62,7 @@ public class ContainmentReferenceAddNewTest extends ChangePackageTest {
 
 		EClass refType = refToChange.getEReferenceType();
 
+		// create a new instance of reference type
 		newInstance = ChangeTestHelper.createInstance(refType);
 
 		if (newInstance == null) {
@@ -76,7 +78,8 @@ public class ContainmentReferenceAddNewTest extends ChangePackageTest {
 					+ me.getName());
 
 			} else {
-				eList.add(newInstance);
+				int position = ChangeTestHelper.getRandomPosition(eList.size());
+				eList.add(position, newInstance);
 			}
 
 		} else {

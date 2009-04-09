@@ -37,6 +37,7 @@ public class AnalyserTest extends TestCase {
 			for (ProjectInfo pI : projectList) {
 				System.out.println(pI + " " + pI.getProjectId() + " at Version: " + pI.getVersion().getIdentifier());
 				if (pI.getName().contains("test")) {
+					@SuppressWarnings("unused")
 					ProjectAnalysisData projectData = AnalyzerFactory.eINSTANCE.createProjectAnalysisData();
 					Usersession usersession = WorkspaceFactory.eINSTANCE.createUsersession();
 					usersession.setSessionId(sessionId);
