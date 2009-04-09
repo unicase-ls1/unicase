@@ -37,28 +37,31 @@ public final class NotificationGenerator {
 	private List<NotificationProvider> providers;
 
 	/**
-	 * Private constructor.
+	 * Constructor.
 	 */
-	private NotificationGenerator() {
-		instance = this;
+	public NotificationGenerator() {
 		providers = new ArrayList<NotificationProvider>();
+	}
+
+	private static NotificationGenerator createSingletonInstance() {
+		NotificationGenerator result = new NotificationGenerator();
 		// update provider must be first in list
-		providers.add(new UpdateNotificationProvider());
+		result.addNotificationProvider(new UpdateNotificationProvider());
 
 		TaskPackage taskPackage = TaskPackage.eINSTANCE;
-		providers.add(new AssignmentNotificationProvider(taskPackage.getActionItem()));
-		providers.add(new AssignmentNotificationProvider(RationalePackage.eINSTANCE.getIssue()));
-		providers.add(new AssignmentNotificationProvider(BugPackage.eINSTANCE.getBugReport()));
-		providers.add(new AssignmentNotificationProvider(taskPackage.getWorkPackage()));
+		result.addNotificationProvider(new AssignmentNotificationProvider(taskPackage.getActionItem()));
+		result.addNotificationProvider(new AssignmentNotificationProvider(RationalePackage.eINSTANCE.getIssue()));
+		result.addNotificationProvider(new AssignmentNotificationProvider(BugPackage.eINSTANCE.getBugReport()));
+		result.addNotificationProvider(new AssignmentNotificationProvider(taskPackage.getWorkPackage()));
 
-		providers.add(new TaskObjectNotificationProvider());
+		result.addNotificationProvider(new TaskObjectNotificationProvider());
 
-		providers.add(new PushedNotificationProvider());
+		result.addNotificationProvider(new PushedNotificationProvider());
 
-		// providers.add(new TaskChangeNotificationProvider(TaskPackage.eINSTANCE.getActionItem()));
-		// providers.add(new TaskChangeNotificationProvider(RationalePackage.eINSTANCE.getIssue()));
-		// providers.add(new TaskChangeNotificationProvider(BugPackage.eINSTANCE.getBugReport()));
-
+		// result.addNotificationProvider(new TaskChangeNotificationProvider(TaskPackage.eINSTANCE.getActionItem()));
+		// result.addNotificationProvider(new TaskChangeNotificationProvider(RationalePackage.eINSTANCE.getIssue()));
+		// result.addNotificationProvider(new TaskChangeNotificationProvider(BugPackage.eINSTANCE.getBugReport()));
+		return result;
 	}
 
 	/**
@@ -68,13 +71,14 @@ public final class NotificationGenerator {
 	 */
 	public static NotificationGenerator getInstance() {
 		if (instance == null) {
-			instance = new NotificationGenerator();
+			instance = createSingletonInstance();
 		}
 		return instance;
 	}
 
 	/**
-	 * Generate notifications for a list of change packages.
+	 * Generate notifications for a list of change packages. Will also generate an event for the generated
+	 * notifications.
 	 * 
 	 * @param changePackages a list of change packages
 	 * @param currentUsername the name of the current user
@@ -83,9 +87,23 @@ public final class NotificationGenerator {
 	 */
 	public List<ESNotification> generateNotifications(List<ChangePackage> changePackages, String currentUsername,
 		ProjectSpace projectSpace) {
+		return generateNotifications(changePackages, currentUsername, projectSpace, true);
+	}
+
+	/**
+	 * Generate notifications for a list of change packages.
+	 * 
+	 * @param changePackages a list of change packages
+	 * @param currentUsername the name of the current user
+	 * @param projectSpace the current project space
+	 * @param createGenerationEvent true if an event should be generated about the notifications
+	 * @return a list of notification
+	 */
+	public List<ESNotification> generateNotifications(List<ChangePackage> changePackages, String currentUsername,
+		ProjectSpace projectSpace, boolean createGenerationEvent) {
 		List<ESNotification> result = new ArrayList<ESNotification>();
 
-		// retify client date if neccessary
+		// rectify client date if neccessary
 		for (ChangePackage changePackage : changePackages) {
 			for (AbstractOperation operation : changePackage.getOperations()) {
 				if (operation.getClientDate() == null) {
@@ -106,14 +124,15 @@ public final class NotificationGenerator {
 		}
 
 		// create a notification generation event
-		NotificationGenerationEvent generationEvent = EventsFactory.eINSTANCE.createNotificationGenerationEvent();
-		generationEvent.setTimestamp(new Date());
-		for (ESNotification notification : result) {
-			ESNotification clone = EsModelUtil.clone(notification);
-			generationEvent.getNotifications().add(clone);
+		if (createGenerationEvent) {
+			NotificationGenerationEvent generationEvent = EventsFactory.eINSTANCE.createNotificationGenerationEvent();
+			generationEvent.setTimestamp(new Date());
+			for (ESNotification notification : result) {
+				ESNotification clone = EsModelUtil.clone(notification);
+				generationEvent.getNotifications().add(clone);
+			}
+			projectSpace.addEvent(generationEvent);
 		}
-		projectSpace.addEvent(generationEvent);
-
 		return result;
 	}
 
