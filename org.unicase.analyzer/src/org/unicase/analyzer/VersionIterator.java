@@ -11,6 +11,7 @@ import java.util.NoSuchElementException;
 
 import org.eclipse.emf.ecore.util.EcoreUtil;
 import org.unicase.analyzer.exceptions.ItertorException;
+import org.unicase.emfstore.ServerConfiguration;
 import org.unicase.emfstore.esmodel.ProjectId;
 import org.unicase.emfstore.esmodel.util.EsModelUtil;
 import org.unicase.emfstore.esmodel.versioning.ChangePackage;
@@ -29,7 +30,9 @@ import org.unicase.workspace.util.WorkspaceUtil;
  * @author liya
  * 
  */
-public class ProjectVersionIterator implements Iterator<ProjectAnalysisData> {
+
+
+public class VersionIterator implements Iterator<ProjectAnalysisData> {
 
 	private final Usersession usersession;
 	private final ProjectId projectId;
@@ -42,15 +45,38 @@ public class ProjectVersionIterator implements Iterator<ProjectAnalysisData> {
 	private final PrimaryVersionSpec end;
 	private Project currentState;
 	private final boolean returnProjectDataCopy;
+	
+	/**By default, the iterator will go through from version 0 to Head version,
+	 * and the next() method will return the copy of ProjectAnalysisData instead of ProjectAnalysisData
+	 * @param usersession the session id for authentication
+	 * @param projectId the project id of the project to get
+	 * @param stepLength the step length for the iterator to go through to the next
+	 * @throws IteratorException if any error occurs
+	 * @generated NOT
+	 */
 
-	public ProjectVersionIterator(Usersession usersession, ProjectId projectId,
+	public VersionIterator(Usersession usersession, ProjectId projectId,
 			int stepLength) throws ItertorException {
 		this(usersession, projectId, stepLength, VersioningFactory.eINSTANCE
 				.createPrimaryVersionSpec(), VersioningFactory.eINSTANCE
 				.createHeadVersionSpec(), true, true);
 	}
+	
+	/**
+	 * @param usersession the session id for authentication
+	 * @param projectId the project id of the project to get
+	 * @param stepLength the step length for the iterator to go through to the next
+	 * @param start the version for the iterator to start from
+	 * @param end the version for the iterator to end with
+	 * @param isForward the direction for the iterator go through, either forward(true) or backward(false). 
+	 * However, doesn't work for backward now, will be solved in the near future
+	 * @param returnProjectDataCopy  the next() method will return the copy of ProjectAnalysisData
+	 * when it is set to true 
+	 * @throws IteratorException if any error occurs
+	 * @generated NOT
+	 */
 
-	public ProjectVersionIterator(Usersession usersession, ProjectId projectId,
+	public VersionIterator(Usersession usersession, ProjectId projectId,
 			int stepLength, VersionSpec start, VersionSpec end,
 			boolean isForward, boolean returnProjectDataCopy)
 			throws ItertorException {
@@ -130,26 +156,31 @@ public class ProjectVersionIterator implements Iterator<ProjectAnalysisData> {
 			throw new NoSuchElementException("There is no more Versions.");
 		}
 
-		List<ChangePackage> changes;
-		try {
-			changes = connectionManager.getChanges(usersession
-					.getSessionId(), projectId, sourceSpec, nextSpec);
-		} catch (EmfStoreException e) {
-			String message = "Could not get changes from server";
-			WorkspaceUtil.logException(message, e);
-			throw new NoSuchElementException(message + ":\n" + e);
+		if((sourceSpec.getIdentifier() != nextSpec.getIdentifier())&&(nextSpec.getIdentifier() != start.getIdentifier())){
+			List<ChangePackage> changes;
+			try {
+				changes = connectionManager.getChanges(usersession
+						.getSessionId(), projectId, sourceSpec, nextSpec);
+			} catch (EmfStoreException e) {
+				String message = "Could not get changes from server";
+				WorkspaceUtil.logException(message, e);
+				throw new NoSuchElementException(message + ":\n" + e);
+			}
+	
+			List<ChangePackage> changePackages = projectdata.getChangePackages();
+			for (ChangePackage changePackage: changes) {
+				changePackage.apply(currentState);
+				changePackages.add(changePackage);
+			}
 		}
-
-		List<ChangePackage> changePackages = projectdata.getChangePackages();
-		for (ChangePackage changePackage: changes) {
-			changePackage.apply(currentState);
-			changePackages.add(changePackage);
-		}
+		PrimaryVersionSpec nextSpecCopy = (PrimaryVersionSpec)EcoreUtil.copy(nextSpec);
+		projectdata.setPrimaryVersionSpec(nextSpecCopy);
 		
-		projectdata.setPrimaryVersionSpec(nextSpec);
-		projectdata.setProjectId(projectId);
+		ProjectId projectIdCopy = (ProjectId)EcoreUtil.copy(projectId);
+		projectdata.setProjectId(projectIdCopy);
+		
 		projectdata.setProjectState(currentState);
-		
+	
 		//increase counter
 		sourceSpec.setIdentifier(nextSpec.getIdentifier());		
 		updateSpecifier(nextSpec, stepLength, isForward);
