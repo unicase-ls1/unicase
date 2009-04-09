@@ -5,6 +5,7 @@ import java.io.File;
 import java.io.FileOutputStream;
 import java.io.IOException;
 import java.util.ArrayList;
+import java.util.Collections;
 import java.util.Date;
 import java.util.List;
 import java.util.Random;
@@ -313,7 +314,7 @@ public final class ChangeTestHelper {
 			// throw new IllegalStateException("There is no ME of this type in Project: " + type.getName());
 		}
 
-		ModelElement me = refTypeMEs.get(size == 1 ? 0 : getRandom().nextInt(size - 1));
+		ModelElement me = refTypeMEs.get(getRandomPosition(size));
 		return me;
 	}
 
@@ -325,13 +326,20 @@ public final class ChangeTestHelper {
 		return me;
 	}
 
+	/**
+	 * This creates a mew model element of given type. If type is abstract or interface a randomly selected sub-type of
+	 * it will be instantiated.
+	 * 
+	 * @param refType EReference type
+	 * @return a new model element instance of refType
+	 */
 	public static EObject createInstance(EClass refType) {
 
 		EObject ret = null;
 
 		if (refType.isAbstract() || refType.isInterface()) {
 			List<EClass> eClazz = ModelUtil.getSubclasses(refType, refType.getEPackage());
-			int index = eClazz.size() == 1 ? 0 : getRandom().nextInt(eClazz.size());
+			int index = getRandomPosition(eClazz.size());
 			refType = eClazz.get(index);
 		}
 
@@ -341,14 +349,23 @@ public final class ChangeTestHelper {
 
 	}
 
+	/**
+	 * This changes the given attribute on given ME. If attribute isMany then a new entry of attribute type will be
+	 * added to a random position of its list. Also if attribute is an Enum, then a new value from this enumeration will
+	 * be set for it. Note that new values are all selected randomly (except for strings).
+	 * 
+	 * @param me
+	 * @param attribute
+	 */
 	@SuppressWarnings("unchecked")
-	public static void changeSimpleAttribute(ModelElement me, EAttribute attribute) {
+	public static void changeAttribute(ModelElement me, EAttribute attribute) {
 
 		if (attribute.getEType().getInstanceClass().equals(String.class)) {
 			if (attribute.isMany()) {
 				Object object = me.eGet(attribute);
 				EList<String> eList = (EList<String>) object;
-				eList.add("new entry for" + attribute.getName());
+				int position = getRandomPosition(eList.size());
+				eList.add(position, "new entry for" + attribute.getName());
 
 			} else {
 				String oldValue = (String) me.eGet(attribute);
@@ -360,7 +377,8 @@ public final class ChangeTestHelper {
 			if (attribute.isMany()) {
 				Object object = me.eGet(attribute);
 				EList<Boolean> eList = (EList<Boolean>) object;
-				eList.add(getRandom().nextBoolean());
+				int position = getRandomPosition(eList.size());
+				eList.add(position, getRandom().nextBoolean());
 			} else {
 				me.eSet(attribute, !((Boolean) me.eGet(attribute)));
 			}
@@ -369,7 +387,8 @@ public final class ChangeTestHelper {
 			if (attribute.isMany()) {
 				Object object = me.eGet(attribute);
 				EList<Integer> eList = (EList<Integer>) object;
-				eList.add(getRandom().nextInt());
+				int position = getRandomPosition(eList.size());
+				eList.add(position, getRandom().nextInt());
 			} else {
 				me.eSet(attribute, getRandom().nextInt());
 			}
@@ -378,7 +397,8 @@ public final class ChangeTestHelper {
 			if (attribute.isMany()) {
 				Object object = me.eGet(attribute);
 				EList<Date> eList = (EList<Date>) object;
-				eList.add(getRandomDate());
+				int position = getRandomPosition(eList.size());
+				eList.add(position, getRandomDate());
 			} else {
 				me.eSet(attribute, getRandomDate());
 			}
@@ -387,11 +407,24 @@ public final class ChangeTestHelper {
 		if (attribute.getEType() instanceof EEnum) {
 			EEnum en = (EEnum) attribute.getEType();
 			int numOfLiterals = en.getELiterals().size();
-			int index = numOfLiterals == 1 ? 0 : getRandom().nextInt(numOfLiterals - 1);
+			int index = getRandomPosition(numOfLiterals);
 			EEnumLiteral value = en.getELiterals().get(index);
 			me.eSet(attribute, value.getInstance());
 		}
 
+	}
+
+	public static int getRandomPosition(int listSize) {
+
+		int position;
+		if (listSize == 0) {
+			position = 0;
+		} else if (listSize == 1) {
+			position = getRandom().nextInt(1);
+		} else {
+			position = getRandom().nextInt(listSize - 1);
+		}
+		return position;
 	}
 
 	public static void setRandom(Random random) {
@@ -418,7 +451,7 @@ public final class ChangeTestHelper {
 
 		int size = attributes.size();
 		if (size != 0) {
-			attribute = attributes.get(size == 1 ? 0 : getRandom().nextInt(size - 1));
+			attribute = attributes.get(getRandomPosition(size));
 
 		}
 
@@ -437,7 +470,7 @@ public final class ChangeTestHelper {
 
 		int size = nonContainmentRefs.size();
 		if (size != 0) {
-			nonContainmentRef = nonContainmentRefs.get(size == 1 ? 0 : getRandom().nextInt(size - 1));
+			nonContainmentRef = nonContainmentRefs.get(getRandomPosition(size));
 		}
 
 		return nonContainmentRef;
@@ -454,7 +487,7 @@ public final class ChangeTestHelper {
 		}
 		int size = containments.size();
 		if (size != 0) {
-			containmentRef = containments.get(size == 1 ? 0 : getRandom().nextInt(size - 1));
+			containmentRef = containments.get(getRandomPosition(size));
 		}
 
 		return containmentRef;
@@ -463,14 +496,15 @@ public final class ChangeTestHelper {
 	/**
 	 * This method takes a model element and a non-containment reference. It gathers all model elements in project which
 	 * have the type of that reference. Takes one of these in random, and adds it to reference list of input model
-	 * element.
+	 * element (in a random position if ref is many).
 	 * 
 	 * @param me the input model element
 	 * @param ref the non-containment reference to change
 	 * @param project the project
+	 * @return model element which is added to this reference
 	 */
 	@SuppressWarnings("unchecked")
-	public static ModelElement changeSimpleRef(ModelElement me, EReference ref, Project project) {
+	public static ModelElement changeNonContainementRef(ModelElement me, EReference ref, Project project) {
 
 		EClass refType = ref.getEReferenceType();
 		List<ModelElement> refTypeMEs = project.getAllModelElementsbyClass(refType, new BasicEList<ModelElement>());
@@ -479,7 +513,7 @@ public final class ChangeTestHelper {
 			refTypeMEs.remove(me);
 		}
 
-		ModelElement toBeReferencedME = refTypeMEs.get(getRandom().nextInt(refTypeMEs.size() - 1));
+		ModelElement toBeReferencedME = refTypeMEs.get(getRandomPosition(refTypeMEs.size()));
 
 		Object object = me.eGet(ref);
 		if (ref.isMany()) {
@@ -487,7 +521,8 @@ public final class ChangeTestHelper {
 			if (eList == null) {
 				throw new IllegalStateException("Null list return for feature " + ref.getName() + " on " + me.getName());
 			} else {
-				eList.add(toBeReferencedME);
+				int position = getRandomPosition(eList.size());
+				eList.add(position, toBeReferencedME);
 			}
 		} else {
 			me.eSet(ref, toBeReferencedME);
@@ -497,15 +532,21 @@ public final class ChangeTestHelper {
 
 	}
 
+	/**
+	 * @param me me
+	 * @param ref ref
+	 * @param toBeReferencedME
+	 */
 	@SuppressWarnings("unchecked")
-	public static void changeSimpleRef(ModelElement me, EReference ref, ModelElement toBeReferencedME) {
+	public static void changeNonContainmentRef(ModelElement me, EReference ref, ModelElement toBeReferencedME) {
 		Object object = me.eGet(ref);
 		if (ref.isMany()) {
 			EList<EObject> eList = (EList<EObject>) object;
 			if (eList == null) {
 				throw new IllegalStateException("Null list return for feature " + ref.getName() + " on " + me.getName());
 			} else {
-				eList.add(toBeReferencedME);
+				int position = getRandomPosition(eList.size());
+				eList.add(position, toBeReferencedME);
 			}
 		} else {
 			me.eSet(ref, toBeReferencedME);
@@ -513,4 +554,37 @@ public final class ChangeTestHelper {
 
 	}
 
+	/**
+	 * @param me ME
+	 * @param attribute an attribute with multiple values (isMany = true)
+	 */
+	public static void moveMultiAttributeValue(ModelElement me, EAttribute attribute) {
+		if (!attribute.isMany()) {
+			throw new IllegalArgumentException("Given attribute must be multiple valued (isMany = true)");
+		}
+
+		Object object = me.eGet(attribute);
+		EList<?> eList = (EList<?>) object;
+		int position1 = getRandomPosition(eList.size());
+		int position2 = getRandomPosition(eList.size());
+		Collections.swap(eList, position1, position2);
+
+	}
+
+	@SuppressWarnings("unchecked")
+	public static void moveMultiReferenceValue(ModelElement me, EReference ref) {
+		if (!ref.isMany()) {
+			throw new IllegalArgumentException("Given reference must be multiple valued (isMany = true)");
+		}
+		Object object = me.eGet(ref);
+		EList<EObject> eList = (EList<EObject>) object;
+		if (eList == null) {
+			throw new IllegalStateException("Null list return for feature " + ref.getName() + " on " + me.getName());
+		} else {
+			int position1 = getRandomPosition(eList.size());
+			int position2 = getRandomPosition(eList.size());
+			Collections.swap(eList, position1, position2);
+		}
+
+	}
 }

@@ -11,9 +11,9 @@ import org.unicase.ui.test.TestProjectParmeters;
 import org.unicase.workspace.ProjectSpace;
 
 /**
- * This is a ChangePackageTest. This test takes a random ME A. Change A.someSimpleAttribute = a Change
- * A.someSimpleAttribute = b Change A.someSimpleAttribute = c The expected change package should contain only one
- * operation: value of A.someSimpleAttribute changed from a to c
+ * This tests AttributeOperation. This is a ChangePackageTest. This test takes a random ME A. Change
+ * A.someSimpleAttribute = a Change A.someSimpleAttribute = b Change A.someSimpleAttribute = c The expected change
+ * package should contain only one operation: value of A.someSimpleAttribute changed from a to c
  * 
  * @author Hodaie
  */
@@ -55,12 +55,12 @@ public class AttributeTransitiveChangeTest extends ChangePackageTest {
 	protected void transChangeAttr() {
 		// from unset or a to b
 		firstValue = me.eGet(attributeToChange);
-		ChangeTestHelper.changeSimpleAttribute(me, attributeToChange);
+		ChangeTestHelper.changeAttribute(me, attributeToChange);
 
 		secondValue = me.eGet(attributeToChange);
 
 		// from b to c
-		ChangeTestHelper.changeSimpleAttribute(me, attributeToChange);
+		ChangeTestHelper.changeAttribute(me, attributeToChange);
 		thirdValue = me.eGet(attributeToChange);
 	}
 

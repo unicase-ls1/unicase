@@ -70,10 +70,7 @@ public class CreateAndChangeRefTest extends ChangePackageTest {
 	protected void doAddAndChangeRef() {
 
 		getTestProject().getModelElements().add(me);
-		ChangeTestHelper.changeSimpleRef(me, refToChange, meToReference);
-
-		Object obj = new Object();
-		obj.toString();
+		ChangeTestHelper.changeNonContainmentRef(me, refToChange, meToReference);
 
 	}
 

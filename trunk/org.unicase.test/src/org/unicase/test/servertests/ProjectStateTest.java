@@ -42,8 +42,10 @@ public class ProjectStateTest extends TestCase {
 					source.setIdentifier(0);
 					PrimaryVersionSpec target = VersioningFactory.eINSTANCE.createPrimaryVersionSpec();
 					target.setIdentifier(50);
+					@SuppressWarnings("unused")
 					Project project = connectionManager.getProject(sessionId, pI.getProjectId(), target);
 
+					@SuppressWarnings("unused")
 					Project Project = connectionManager.getProject(sessionId, pI.getProjectId(), target);
 					List<ChangePackage> changes = connectionManager.getChanges(sessionId, pI.getProjectId(), source,
 						target);

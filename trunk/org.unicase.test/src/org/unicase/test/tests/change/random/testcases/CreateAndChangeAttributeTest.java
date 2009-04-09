@@ -59,7 +59,7 @@ public class CreateAndChangeAttributeTest extends ChangePackageTest {
 	private void doAddAndChangeAttribute() {
 		getTestProject().getModelElements().add(me);
 
-		ChangeTestHelper.changeSimpleAttribute(me, attributeToChange);
+		ChangeTestHelper.changeAttribute(me, attributeToChange);
 	}
 
 	public int getExpectedNumOfChanges() {

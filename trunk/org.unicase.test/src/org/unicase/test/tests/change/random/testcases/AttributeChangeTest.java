@@ -11,9 +11,9 @@ import org.unicase.ui.test.TestProjectParmeters;
 import org.unicase.workspace.ProjectSpace;
 
 /**
- * This is a compare test. It takes randomly a ME from test project, changes one of its EAttributes, extract changes
- * from test project, applies changes to compare project. Test succeeds when compare project and test project are
- * identical.
+ * This tests AttrubuteOperation. This is a compare test. It takes randomly a ME from test project, changes one of its
+ * EAttributes, extract changes from test project, applies changes to compare project. Test succeeds when compare
+ * project and test project are identical.
  * 
  * @author Hodaie
  */
@@ -52,7 +52,7 @@ public class AttributeChangeTest extends ChangePackageTest {
 
 	protected void changeAttribute() {
 		oldAttrValue = me.eGet(attributeToChange);
-		ChangeTestHelper.changeSimpleAttribute(me, attributeToChange);
+		ChangeTestHelper.changeAttribute(me, attributeToChange);
 		newAttrValue = me.eGet(attributeToChange);
 
 	}
