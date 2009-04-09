@@ -5,15 +5,17 @@
 
 package org.unicase.analyzer;
 
-import java.util.ArrayList;
 import java.util.Iterator;
 import java.util.List;
 import java.util.NoSuchElementException;
 
 import org.eclipse.emf.ecore.util.EcoreUtil;
+import org.unicase.analyzer.exceptions.ItertorException;
 import org.unicase.emfstore.esmodel.ProjectId;
+import org.unicase.emfstore.esmodel.util.EsModelUtil;
 import org.unicase.emfstore.esmodel.versioning.ChangePackage;
 import org.unicase.emfstore.esmodel.versioning.PrimaryVersionSpec;
+import org.unicase.emfstore.esmodel.versioning.VersionSpec;
 import org.unicase.emfstore.esmodel.versioning.VersioningFactory;
 import org.unicase.emfstore.exceptions.EmfStoreException;
 import org.unicase.emfstore.exceptions.InvalidVersionSpecException;
@@ -25,141 +27,156 @@ import org.unicase.workspace.util.WorkspaceUtil;
 
 /**
  * @author liya
- *
+ * 
  */
 public class ProjectVersionIterator implements Iterator<ProjectAnalysisData> {
 
-	
 	private final Usersession usersession;
 	private final ProjectId projectId;
 	private final int stepLength;
 	private ConnectionManager connectionManager;
-	private PrimaryVersionSpec targetSpec;
-	private final String direction;
-	private final int start;
-	private final int end;
+	private PrimaryVersionSpec nextSpec;
+	private PrimaryVersionSpec sourceSpec;
+	private final boolean isForward;
+	private final PrimaryVersionSpec start;
+	private final PrimaryVersionSpec end;
+	private Project currentState;
+	private final boolean returnProjectDataCopy;
 
-	public ProjectVersionIterator(Usersession usersession, ProjectId projectId, int stepLength) {
+	public ProjectVersionIterator(Usersession usersession, ProjectId projectId,
+			int stepLength) throws ItertorException {
+		this(usersession, projectId, stepLength, VersioningFactory.eINSTANCE
+				.createPrimaryVersionSpec(), VersioningFactory.eINSTANCE
+				.createHeadVersionSpec(), true, true);
+	}
+
+	public ProjectVersionIterator(Usersession usersession, ProjectId projectId,
+			int stepLength, VersionSpec start, VersionSpec end,
+			boolean isForward, boolean returnProjectDataCopy)
+			throws ItertorException {
 		this.usersession = usersession;
 		this.projectId = projectId;
 		this.stepLength = stepLength;
-		this.connectionManager=WorkspaceManager.getInstance().getConnectionManager();
-		this.targetSpec = VersioningFactory.eINSTANCE.createPrimaryVersionSpec();
-		this.direction = "forward";
-		this.start = 0;
-		this.end = -1;
+		this.returnProjectDataCopy = returnProjectDataCopy;
+		this.connectionManager = WorkspaceManager.getInstance()
+				.getConnectionManager();
+		this.isForward = isForward;
+		try {
+			this.start = this.connectionManager.resolveVersionSpec(usersession
+					.getSessionId(), projectId, start);
+			this.end = this.connectionManager.resolveVersionSpec(usersession
+					.getSessionId(), projectId, end);
+			this.currentState = this.connectionManager.getProject(usersession
+					.getSessionId(), projectId, this.start);
+		} catch (InvalidVersionSpecException e) {
+			throw new ItertorException(
+					"Could not resolve start or end version.", e);
+		} catch (EmfStoreException e) {
+			throw new ItertorException("Cannot connect to server.", e);
+		}
+
+		// sanity checks
+		if (isForward) {
+			if (this.start.compareTo(this.end) >= 0) {
+				throw new ItertorException(
+						"Start must be before end if foward is set to true!");
+			}
+		} else {
+			if (this.start.compareTo(this.end) <= 0) {
+				throw new ItertorException(
+						"Start must be after end if foward is set to false!");
+			}
+		}
+
+		this.nextSpec = EsModelUtil.clone(this.start);
+		this.sourceSpec = EsModelUtil.clone(this.start);
+		updateSpecifier(sourceSpec, stepLength, !isForward);
+		if (isForward) {
+			if (sourceSpec.getIdentifier()<0) {
+				sourceSpec.setIdentifier(0);
+			}
+		}
+		else {
+			if (sourceSpec.compareTo(this.end)>0) {
+				sourceSpec.setIdentifier(this.end.getIdentifier());
+			}
+		}
 	}
-	
-	public ProjectVersionIterator(Usersession usersession, ProjectId projectId, int stepLength,
-		int start, int end, String direction) {
-		this.usersession = usersession;
-		this.projectId = projectId;
-		this.stepLength = stepLength;
-		this.connectionManager=WorkspaceManager.getInstance().getConnectionManager();
-		this.targetSpec = VersioningFactory.eINSTANCE.createPrimaryVersionSpec();
-		this.direction = direction;
-		this.start = start;
-		this.end = end;
-		this.targetSpec.setIdentifier(start);
-	}
-	/** 
+
+	/**
 	 * {@inheritDoc}
+	 * 
 	 * @see java.util.Iterator#hasNext()
 	 */
 	public boolean hasNext() {
 
-		PrimaryVersionSpec resolvedSpec = VersioningFactory.eINSTANCE.createPrimaryVersionSpec();
-		if(direction == "forward"){
-			if(end == -1){
-				try {
-					resolvedSpec = this.connectionManager.resolveVersionSpec(usersession.getSessionId(), 
-							projectId, VersioningFactory.eINSTANCE.createHeadVersionSpec());
-				} catch (InvalidVersionSpecException e) {
-					WorkspaceUtil.logException("Couldn't be resolved", e);
-				} catch (EmfStoreException e) {
-					WorkspaceUtil.logException("Couldn't be resolved", e);
-					e.printStackTrace();
-				}
-			}
-			else{
-				resolvedSpec.setIdentifier(end);
-			}
-			
-			return targetSpec.compareTo(resolvedSpec)<0;
-		}
-		else{
-			if(end == -1){
-				resolvedSpec.setIdentifier(0);
-			}
-			else{
-				resolvedSpec.setIdentifier(end);
-			}
-			
-			return targetSpec.compareTo(resolvedSpec)>0;
+		if (isForward) {
+			return nextSpec.compareTo(end) <= 0;
+		} else {
+			return nextSpec.compareTo(end) >= 0;
 		}
 	}
 
-	/** 
+	/**
 	 * {@inheritDoc}
+	 * 
 	 * @see java.util.Iterator#next()
 	 */
 	public ProjectAnalysisData next() {
-		ProjectAnalysisData projectdata = AnalyzerFactory.eINSTANCE.createProjectAnalysisData();
-		List<ChangePackage> changepackage = new ArrayList<ChangePackage>();
-		changepackage = projectdata.getChangePackages();
-		
-		PrimaryVersionSpec sourceSpec = VersioningFactory.eINSTANCE.createPrimaryVersionSpec();
-		
-		int step;
-		if(direction == "backward"){
-			step = -stepLength;
-		}
-		else{
-			step = stepLength;
-		}
-		
-		if(!hasNext()){
-			throw new NoSuchElementException("Has no next");
-		}
-		else{
-			Project project = null;
-			try {
-				project = connectionManager.getProject(usersession.getSessionId(), projectId, targetSpec);
-				projectdata.setProjectState(project);
-				
-				ProjectId projectIdCopy = (ProjectId)EcoreUtil.copy(projectId);
-				projectdata.setProjectId(projectIdCopy);
-				
-				PrimaryVersionSpec primarSpecCopy = (PrimaryVersionSpec)EcoreUtil.copy(targetSpec);
-				projectdata.setPrimaryVersionSpec(primarSpecCopy);
-				
-				
-				try {
-					sourceSpec.setIdentifier(targetSpec.getIdentifier() - step);
-					changepackage.addAll(connectionManager.getChanges(usersession.getSessionId(), projectId, sourceSpec, targetSpec));
-				} catch (EmfStoreException e) {
-					WorkspaceUtil.logException("Couldn't get Changes", e);
-					e.printStackTrace();
-				}
-				
-			} catch (EmfStoreException e) {
-				WorkspaceUtil.logException("Couldn't get project", e);
-				e.printStackTrace();
-			}
+		ProjectAnalysisData projectdata = AnalyzerFactory.eINSTANCE
+				.createProjectAnalysisData();
 
-			
-			targetSpec.setIdentifier(targetSpec.getIdentifier() + step);
+		if (!hasNext()) {
+			throw new NoSuchElementException("There is no more Versions.");
 		}
-		return projectdata;
+
+		List<ChangePackage> changes;
+		try {
+			changes = connectionManager.getChanges(usersession
+					.getSessionId(), projectId, sourceSpec, nextSpec);
+		} catch (EmfStoreException e) {
+			String message = "Could not get changes from server";
+			WorkspaceUtil.logException(message, e);
+			throw new NoSuchElementException(message + ":\n" + e);
+		}
+
+		List<ChangePackage> changePackages = projectdata.getChangePackages();
+		for (ChangePackage changePackage: changes) {
+			changePackage.apply(currentState);
+			changePackages.add(changePackage);
+		}
+		
+		projectdata.setPrimaryVersionSpec(nextSpec);
+		projectdata.setProjectId(projectId);
+		projectdata.setProjectState(currentState);
+		
+		//increase counter
+		sourceSpec.setIdentifier(nextSpec.getIdentifier());		
+		updateSpecifier(nextSpec, stepLength, isForward);
+		
+		if (returnProjectDataCopy) {
+			return (ProjectAnalysisData) EcoreUtil.copy(projectdata);
+		} else {
+			return projectdata;
+		}
 	}
 
-	/** 
+	private void updateSpecifier(PrimaryVersionSpec specifier, int stepLength, boolean isForward) {
+		int currentIdentifier = specifier.getIdentifier();
+		if (isForward) {
+			specifier.setIdentifier(currentIdentifier + stepLength);
+		} else {
+			specifier.setIdentifier(currentIdentifier - stepLength);
+		}
+	}
+	
+	/**
 	 * {@inheritDoc}
+	 * 
 	 * @see java.util.Iterator#remove()
 	 */
 	public void remove() {
-		// TODO Auto-generated method stub
-
+		throw new UnsupportedOperationException();
 	}
 
 }
