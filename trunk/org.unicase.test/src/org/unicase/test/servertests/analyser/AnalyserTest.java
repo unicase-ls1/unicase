@@ -5,8 +5,11 @@ import java.util.List;
 import org.unicase.analyzer.AnalyzerFactory;
 import org.unicase.analyzer.ProjectAnalysisData;
 import org.unicase.analyzer.ProjectVersionIterator;
+import org.unicase.analyzer.exceptions.ItertorException;
 import org.unicase.emfstore.esmodel.ProjectInfo;
 import org.unicase.emfstore.esmodel.SessionId;
+import org.unicase.emfstore.esmodel.versioning.PrimaryVersionSpec;
+import org.unicase.emfstore.esmodel.versioning.VersioningFactory;
 import org.unicase.emfstore.exceptions.EmfStoreException;
 import org.unicase.test.TestCase;
 import org.unicase.workspace.Usersession;
@@ -41,9 +44,14 @@ public class AnalyserTest extends TestCase {
 					ProjectAnalysisData projectData = AnalyzerFactory.eINSTANCE.createProjectAnalysisData();
 					Usersession usersession = WorkspaceFactory.eINSTANCE.createUsersession();
 					usersession.setSessionId(sessionId);
+					PrimaryVersionSpec start = VersioningFactory.eINSTANCE.createPrimaryVersionSpec();
+					start.setIdentifier(3);
+					PrimaryVersionSpec end = VersioningFactory.eINSTANCE.createPrimaryVersionSpec();
+					end.setIdentifier(-1);
+
 					int stepLength = 2;
 					ProjectVersionIterator projectIt = new ProjectVersionIterator(usersession, pI.getProjectId(),
-						stepLength, 3, -1, "backward");
+						stepLength, start, end, true, false);
 					int it = 1;
 					while (projectIt.hasNext()) {
 						projectData = projectIt.next();
@@ -53,6 +61,8 @@ public class AnalyserTest extends TestCase {
 				}
 			}
 		} catch (EmfStoreException e) {
+			e.printStackTrace();
+		} catch (ItertorException e) {
 			e.printStackTrace();
 		}
 
