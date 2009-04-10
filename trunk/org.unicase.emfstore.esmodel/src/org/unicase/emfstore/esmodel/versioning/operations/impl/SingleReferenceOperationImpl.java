@@ -368,7 +368,7 @@ public class SingleReferenceOperationImpl extends ReferenceOperationImpl impleme
 			.createSingleReferenceOperation();
 		reverse(singleReferenceOperation);
 		singleReferenceOperation.setNewValue(ModelUtil.clone(getOldValue()));
-		singleReferenceOperation.setOldValue(ModelUtil.clone(getOldValue()));
+		singleReferenceOperation.setOldValue(ModelUtil.clone(getNewValue()));
 		return singleReferenceOperation;
 	}
 
