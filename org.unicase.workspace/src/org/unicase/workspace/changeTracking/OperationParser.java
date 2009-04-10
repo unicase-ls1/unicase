@@ -58,7 +58,7 @@ public final class OperationParser {
 	 */
 	public static List<AbstractOperation> parseOperations(final Notification notification, ModelElement modelElement)
 		throws UnsupportedNotificationException {
-	
+
 		Object feature = notification.getFeature();
 		Object newValue = notification.getNewValue();
 		Object oldValue = notification.getOldValue();
@@ -83,9 +83,9 @@ public final class OperationParser {
 		if (isTransient(attribute, reference)) {
 			return new ArrayList<AbstractOperation>();
 		}
-	
+
 		switch (notification.getEventType()) {
-	
+
 		case Notification.SET:
 			return handleSetNotification(notification, attribute, reference, modelElement, oldValue, newValue);
 		case Notification.ADD:
@@ -185,7 +185,7 @@ public final class OperationParser {
 	private static List<AbstractOperation> handleMoveNotification(final Notification notification,
 		EAttribute attribute, EReference reference, ModelElement modelElement, Object newValue, Object oldValue)
 		throws UnsupportedNotificationException {
-	
+
 		if (attribute != null) {
 			throw new UnsupportedNotificationException(
 				"Move notification on attribute feature with multiplicty greater 1 not supported yet!");
@@ -207,41 +207,43 @@ public final class OperationParser {
 
 	private static List<AbstractOperation> handleSetReference(Notification notification, ModelElement modelElement,
 		EReference reference, Object newValueObject, Object oldValueObject) throws UnsupportedNotificationException {
-	
+
 		// sanity check newValue and oldValue
-		if (!(newValueObject instanceof ModelElement) || !(oldValueObject instanceof ModelElement)) {
+		boolean newValIsNoME = newValueObject != null && !(newValueObject instanceof ModelElement);
+		boolean oldValIsNoME = oldValueObject != null && !(oldValueObject instanceof ModelElement);
+		if (newValIsNoME || oldValIsNoME) {
 			// non model element references must be marked transient
 			throw new UnsupportedNotificationException("Non-transient non-modelElement reference feature detected: "
 				+ modelElement.getClass().getCanonicalName() + "-" + reference.getName());
 		}
 		ModelElement newValue = (ModelElement) newValueObject;
 		ModelElement oldValue = (ModelElement) oldValueObject;
-	
+
 		// handle bidirectional notifications
 		if (oppositeNotificationForSingleRefFollows(reference, notification, newValue, oldValue)) {
 			return new ArrayList<AbstractOperation>();
 		}
-	
+
 		// single reference set
 		return makeList(createSingleReferenceOperation(modelElement, oldValue, reference, newValue));
-	
+
 	}
 
 	private static List<AbstractOperation> handleChangeMultiReference(EReference reference, ModelElement modelElement,
 		ModelElement valueModelElement, Notification notification, boolean isAdd)
 		throws UnsupportedNotificationException {
-	
+
 		// sanity checks
 		if (!reference.isMany()) {
 			throw new UnsupportedNotificationException(
 				"Unkown notification state: Add notification on reference feature with isMany==false");
 		}
-	
+
 		// handle bidirectional notifications
 		if (oppositeNotificationForMultiRefFollows(notification, valueModelElement, reference)) {
 			return new ArrayList<AbstractOperation>();
 		}
-	
+
 		return makeList(createMultiReferenceOperation(notification, reference, valueModelElement, modelElement, isAdd));
 	}
 
@@ -341,7 +343,7 @@ public final class OperationParser {
 		if (reference.getEOpposite() == null) {
 			return false;
 		}
-	
+
 		// check if opposite feature
 		Notification nextNotification;
 		try {
@@ -349,10 +351,10 @@ public final class OperationParser {
 		} catch (UnknownNotificationImplementationException e) {
 			return false;
 		}
-		if (nextNotification.getFeature() != reference.getEOpposite()) {
+		if (nextNotification == null || nextNotification.getFeature() != reference.getEOpposite()) {
 			return false;
 		}
-	
+
 		// check if values match
 		if (newValue == null && nextNotification.getNotifier() == oldValue) {
 			return true;
@@ -367,12 +369,12 @@ public final class OperationParser {
 		if (reference.getEOpposite() == null) {
 			return false;
 		}
-	
+
 		List<Notification> nextNotifications = getNextNotifications(notification);
 		if (nextNotifications.size() < 1) {
 			return false;
 		}
-	
+
 		Notification nextNotification = nextNotifications.get(nextNotifications.size() - 1);
 		boolean featureMatch = nextNotification.getFeature() == reference.getEOpposite();
 		boolean valueMatch = nextNotification.getNotifier() == valueModelElement;
@@ -396,7 +398,7 @@ public final class OperationParser {
 			declaredField.setAccessible(true);
 			Object object = declaredField.get(notification);
 			Notification nextNotification = (Notification) object;
-	
+
 			return nextNotification;
 			// exception handling will only log error since this is
 			// not fatal if it fails, it just results in redundant
