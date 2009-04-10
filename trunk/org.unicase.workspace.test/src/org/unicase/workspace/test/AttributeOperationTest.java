@@ -17,6 +17,7 @@ import org.junit.Before;
 import org.junit.Test;
 import org.unicase.emfstore.esmodel.versioning.operations.AbstractOperation;
 import org.unicase.emfstore.esmodel.versioning.operations.AttributeOperation;
+import org.unicase.emfstore.esmodel.versioning.operations.util.OperationsCannonizer;
 import org.unicase.model.ModelElement;
 import org.unicase.model.ModelFactory;
 import org.unicase.model.Project;
@@ -81,7 +82,7 @@ public class AttributeOperationTest {
 	 */
 	@Test
 	public void changeAttribute() throws UnsupportedOperationException, UnsupportedNotificationException {
-		notifications.clear();
+		clearNotifications();
 		UseCase useCase = RequirementFactory.eINSTANCE.createUseCase();
 		project.addModelElement(useCase);
 		useCase.setName("newName");
@@ -101,7 +102,93 @@ public class AttributeOperationTest {
 		assertEquals("newName", attributeOperation.getNewValue());
 		assertEquals("name", attributeOperation.getFeatureName());
 		assertEquals(useCase.getModelElementId(), attributeOperation.getModelElementId());
+	}
+	
+	/**
+	 * Change an attribute twice and check the generated operations after cannonization.
+	 * 
+	 * @throws UnsupportedOperationException on test fail
+	 * @throws UnsupportedNotificationException on test fail
+	 */
+	@Test
+	public void changeAttributeTwice() throws UnsupportedOperationException, UnsupportedNotificationException {
+		clearNotifications();
+		UseCase useCase = RequirementFactory.eINSTANCE.createUseCase();
+		project.addModelElement(useCase);
+		useCase.setName("newName");
+		useCase.setName("otherName");
+		assertEquals("otherName", useCase.getName());
+		assertEquals(2, notifications.size());
+		assertEquals(2, notificationsMap.size());
+		
+		Notification notification = notifications.get(0);
+		List<AbstractOperation> operations = OperationParser.parseOperations(notification, notificationsMap.get(notification));
+		Notification notification2 = notifications.get(1);
+		operations.addAll(OperationParser.parseOperations(notification2, notificationsMap.get(notification2)));
+		
+		OperationsCannonizer.cannonize(operations);
+		
+		assertEquals(1, operations.size());
+		AbstractOperation operation = operations.get(0);
+		assertEquals(true, operation instanceof AttributeOperation);
+		AttributeOperation attributeOperation = (AttributeOperation) operation;
+		
+		assertEquals(null, attributeOperation.getOldValue());
+		assertEquals("otherName", attributeOperation.getNewValue());
+		assertEquals("name", attributeOperation.getFeatureName());
+		assertEquals(useCase.getModelElementId(), attributeOperation.getModelElementId());
+	}
+	
+	/**
+	 * Change an attribute and reverse the operation and check the result.
+	 * 
+	 * @throws UnsupportedOperationException on test fail
+	 * @throws UnsupportedNotificationException on test fail
+	 */
+	@Test
+	public void changeAttributeAndReverse() throws UnsupportedOperationException, UnsupportedNotificationException {
+		clearNotifications();
+		
+		UseCase useCase = RequirementFactory.eINSTANCE.createUseCase();
+		project.addModelElement(useCase);
+		useCase.setName("oldName");
+		
+		clearNotifications();
+		
+		useCase.setName("newName");
+		assertEquals("newName", useCase.getName());
+		assertEquals(1, notifications.size());
+		assertEquals(1, notificationsMap.size());
+		
+		Notification notification = notifications.get(0);
+		List<AbstractOperation> operations = OperationParser.parseOperations(notification, notificationsMap.get(notification));
+		
+		assertEquals(1, operations.size());
+		AbstractOperation operation = operations.get(0);
+		assertEquals(true, operation instanceof AttributeOperation);
+		AttributeOperation attributeOperation = (AttributeOperation) operation;
+		
+		assertEquals("oldName", attributeOperation.getOldValue());
+		assertEquals("newName", attributeOperation.getNewValue());
+		assertEquals("name", attributeOperation.getFeatureName());
+		assertEquals(useCase.getModelElementId(), attributeOperation.getModelElementId());
+		
+		AbstractOperation reverse = operation.reverse();
+		reverse.apply(project);
+		assertEquals(true, reverse instanceof AttributeOperation);
+		AttributeOperation reversedAttributeOperation = (AttributeOperation) reverse;
+		assertEquals("newName", reversedAttributeOperation.getOldValue());
+		assertEquals("oldName", reversedAttributeOperation.getNewValue());
+		assertEquals("name", reversedAttributeOperation.getFeatureName());
+		assertEquals(useCase.getModelElementId(), reversedAttributeOperation.getModelElementId());
+		
+		assertEquals("oldName", useCase.getName());
 		
 		
+	}
+	
+	private void clearNotifications() {
+		notifications.clear();
+		notificationsMap.clear();
 	}
 }
