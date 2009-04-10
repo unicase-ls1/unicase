@@ -21,20 +21,20 @@ import org.unicase.model.requirement.UseCase;
 import org.unicase.workspace.exceptions.UnsupportedNotificationException;
 
 /**
- * Tests the SingleReferenceOperation.
+ * Tests the MultiReferenceOperation.
  * @author koegel
  *
  */
-public class SingleReferenceOperationTest extends OperationTest {
+public class MultiReferenceOperationTest extends OperationTest {
 
 	/**
-	 * Change a single reference and check the generated operation.
+	 * Change a multi reference and check the generated operation.
 	 * 
 	 * @throws UnsupportedOperationException on test fail
 	 * @throws UnsupportedNotificationException on test fail
 	 */
 	@Test
-	public void changeSingleReference() throws UnsupportedOperationException, UnsupportedNotificationException {
+	public void changeMultiReference() throws UnsupportedOperationException, UnsupportedNotificationException {
 		UseCase useCase = RequirementFactory.eINSTANCE.createUseCase();
 		getProject().addModelElement(useCase);
 		Actor actor = RequirementFactory.eINSTANCE.createActor();
@@ -66,7 +66,7 @@ public class SingleReferenceOperationTest extends OperationTest {
 		assertEquals(1, otherInvolvedModelElements.size());
 		assertEquals(actor.getModelElementId(), otherInvolvedModelElements.iterator().next());
 	}
-
+	
 	/**
 	 * Change an single reference twice and check the generated operation.
 	 * 
@@ -75,18 +75,27 @@ public class SingleReferenceOperationTest extends OperationTest {
 	 */
 	@Test
 	public void changeSingleReferenceTwice() throws UnsupportedOperationException, UnsupportedNotificationException {
+
 		UseCase useCase = RequirementFactory.eINSTANCE.createUseCase();
 		getProject().addModelElement(useCase);
 		Actor oldActor = RequirementFactory.eINSTANCE.createActor();
 		getProject().addModelElement(oldActor);
 		Actor newActor = RequirementFactory.eINSTANCE.createActor();
 		getProject().addModelElement(newActor);
+		Actor middleActor = RequirementFactory.eINSTANCE.createActor();
+		getProject().addModelElement(middleActor);
+		useCase.setInitiatingActor(oldActor);
 		
 		clearOperations();
 		
-		useCase.setInitiatingActor(oldActor);
 		assertEquals(oldActor, useCase.getInitiatingActor());
 		EList<UseCase> initiatedUseCases = oldActor.getInitiatedUseCases();
+		assertEquals(1, initiatedUseCases.size());
+		assertEquals(useCase, initiatedUseCases.get(0));
+		
+		useCase.setInitiatingActor(middleActor);
+		assertEquals(middleActor, useCase.getInitiatingActor());
+		initiatedUseCases = middleActor.getInitiatedUseCases();
 		assertEquals(1, initiatedUseCases.size());
 		assertEquals(useCase, initiatedUseCases.get(0));
 		
@@ -103,14 +112,14 @@ public class SingleReferenceOperationTest extends OperationTest {
 		assertEquals(true, operation instanceof SingleReferenceOperation);
 		SingleReferenceOperation singleReferenceOperation = (SingleReferenceOperation) operation;
 		
-		assertEquals(null, singleReferenceOperation.getOldValue());
+		assertEquals(oldActor.getModelElementId(), singleReferenceOperation.getOldValue());
 		assertEquals(newActor.getModelElementId(), singleReferenceOperation.getNewValue());
 		assertEquals("initiatingActor", singleReferenceOperation.getFeatureName());
 		assertEquals(useCase.getModelElementId(), singleReferenceOperation.getModelElementId());
 		assertEquals("initiatedUseCases", singleReferenceOperation.getOppositeFeatureName());
 		assertEquals(true, singleReferenceOperation.isBidirectional());
 		Set<ModelElementId> otherInvolvedModelElements = singleReferenceOperation.getOtherInvolvedModelElements();
-		assertEquals(1, otherInvolvedModelElements.size());
+		assertEquals(2, otherInvolvedModelElements.size());
 		assertEquals(newActor.getModelElementId(), otherInvolvedModelElements.iterator().next());
 	}
 	
@@ -134,7 +143,7 @@ public class SingleReferenceOperationTest extends OperationTest {
 		EList<UseCase> initiatedUseCases = oldActor.getInitiatedUseCases();
 		assertEquals(1, initiatedUseCases.size());
 		assertEquals(useCase, initiatedUseCases.get(0));
-		
+
 		clearOperations();
 		
 		useCase.setInitiatingActor(newActor);

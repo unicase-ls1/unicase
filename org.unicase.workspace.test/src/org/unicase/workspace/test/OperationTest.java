@@ -5,17 +5,15 @@
  */
 package org.unicase.workspace.test;
 
-import java.util.ArrayList;
-import java.util.HashMap;
-import java.util.List;
-import java.util.Map;
+import java.util.Date;
 
-import org.eclipse.emf.common.notify.Notification;
 import org.junit.Before;
-import org.unicase.model.ModelElement;
+import org.unicase.emfstore.esmodel.EsmodelFactory;
+import org.unicase.emfstore.esmodel.versioning.VersioningFactory;
 import org.unicase.model.ModelFactory;
 import org.unicase.model.Project;
-import org.unicase.model.util.ProjectChangeObserver;
+import org.unicase.workspace.ProjectSpace;
+import org.unicase.workspace.WorkspaceFactory;
 
 /**
  * Abstract super class for operation tests, contains setup.
@@ -25,72 +23,38 @@ import org.unicase.model.util.ProjectChangeObserver;
  */
 public abstract class OperationTest {
 
-	private List<Notification> notifications;
 	private Project project;
-	private Map<Notification, ModelElement> notificationsMap;
+	private ProjectSpace projectSpace;
 
 	/**
 	 * Setup a dummy project for testing.
 	 */
 	@Before
-	public void setupProject() {
+	public void setupProjectSpace() {
+		ProjectSpace projectSpace = WorkspaceFactory.eINSTANCE.createProjectSpace();
+		projectSpace.setBaseVersion(VersioningFactory.eINSTANCE.createPrimaryVersionSpec());
+		projectSpace.setIdentifier("testProjectSpace");
+		projectSpace.setLastUpdated(new Date());
+		projectSpace.setLocalOperations(WorkspaceFactory.eINSTANCE.createOperationComposite());
+		projectSpace.setProjectDescription("ps description");
+		projectSpace.setProjectId(EsmodelFactory.eINSTANCE.createProjectId());
+		projectSpace.setProjectName("ps name");
+		
 		setProject(ModelFactory.eINSTANCE.createProject());
-		setNotifications(new ArrayList<Notification>());
-		setNotificationsMap(new HashMap<Notification, ModelElement>());
-		ProjectChangeObserver observer = new ProjectChangeObserver(){
 		
-			public void modelElementRemoved(Project project, ModelElement modelElement) {
-				//do nothing
-			}
+		projectSpace.setProject(getProject());
 		
-			public void modelElementDeleteStarted(ModelElement modelElement) {
-				//do nothing			
-			}
+		projectSpace.makeTransient();
+		projectSpace.init();
 		
-			public void modelElementDeleteCompleted(ModelElement modelElement) {
-				//do nothing
-			}
+		setProjectSpace(projectSpace);
 		
-			public void modelElementAdded(Project project, ModelElement modelElement) {
-				//do nothing	
-			}
-	
-			public void notify(Notification notification, Project project,
-					ModelElement modelElement) {
-				getNotifications().add(notification);
-				getNotificationsMap().put(notification, modelElement);
-			}
-	
-		};
-		getProject().addProjectChangeObserver(observer);
-	}
-
-	/**
-	 * Clear the recorded notifications.
-	 */
-	protected void clearNotifications() {
-		getNotifications().clear();
-		getNotificationsMap().clear();
-	}
-
-	/**
-	 * @param notifications the notifications to set
-	 */
-	public void setNotifications(List<Notification> notifications) {
-		this.notifications = notifications;
-	}
-
-	/**
-	 * @return the notifications
-	 */
-	public List<Notification> getNotifications() {
-		return notifications;
 	}
 
 	/**
 	 * @param project the project to set
 	 */
-	public void setProject(Project project) {
+	private void setProject(Project project) {
 		this.project = project;
 	}
 
@@ -102,17 +66,24 @@ public abstract class OperationTest {
 	}
 
 	/**
-	 * @param notificationsMap the notificationsMap to set
+	 * @param projectSpace the projectSpace to set
 	 */
-	public void setNotificationsMap(Map<Notification, ModelElement> notificationsMap) {
-		this.notificationsMap = notificationsMap;
+	private void setProjectSpace(ProjectSpace projectSpace) {
+		this.projectSpace = projectSpace;
 	}
 
 	/**
-	 * @return the notificationsMap
+	 * @return the projectSpace
 	 */
-	public Map<Notification, ModelElement> getNotificationsMap() {
-		return notificationsMap;
+	public ProjectSpace getProjectSpace() {
+		return projectSpace;
+	}
+
+	/**
+	 * Clear all operations from project space.
+	 */
+	protected void clearOperations() {
+		getProjectSpace().getOperations().clear();
 	}
 
 }
