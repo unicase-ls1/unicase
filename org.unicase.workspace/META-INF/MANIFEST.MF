@@ -9,6 +9,7 @@ Bundle-Localization: plugin
 Bundle-RequiredExecutionEnvironment: J2SE-1.5
 Export-Package: org.unicase.workspace,
  org.unicase.workspace.accesscontrol,
+ org.unicase.workspace.changeTracking,
  org.unicase.workspace.connectionmanager,
  org.unicase.workspace.exceptions,
  org.unicase.workspace.impl,
