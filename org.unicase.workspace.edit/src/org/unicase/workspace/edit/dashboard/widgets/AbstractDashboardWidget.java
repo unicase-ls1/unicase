@@ -12,7 +12,6 @@ import org.eclipse.emf.edit.provider.ComposedAdapterFactory;
 import org.eclipse.emf.edit.ui.provider.AdapterFactoryLabelProvider;
 import org.eclipse.jface.layout.GridDataFactory;
 import org.eclipse.jface.layout.GridLayoutFactory;
-import org.eclipse.jface.preference.PreferenceDialog;
 import org.eclipse.jface.resource.JFaceResources;
 import org.eclipse.swt.SWT;
 import org.eclipse.swt.events.MouseAdapter;
@@ -27,9 +26,6 @@ import org.eclipse.swt.layout.RowLayout;
 import org.eclipse.swt.widgets.Composite;
 import org.eclipse.swt.widgets.Control;
 import org.eclipse.swt.widgets.Display;
-import org.eclipse.ui.dialogs.PreferencesUtil;
-import org.eclipse.ui.forms.events.HyperlinkAdapter;
-import org.eclipse.ui.forms.events.HyperlinkEvent;
 import org.unicase.workspace.edit.dashboard.DashboardPage;
 import org.unicase.workspace.edit.dashboard.DashboardToolbarAction;
 
@@ -73,7 +69,6 @@ public abstract class AbstractDashboardWidget {
 	private DashboardPage dashboard;
 	private Display display;
 	private AdapterFactoryLabelProvider labelProvider;
-	private final String prefix = "org.unicase.dashboard.";
 	private Composite systemToolbar;
 	private String title;
 	private Composite toolbar;
@@ -153,16 +148,18 @@ public abstract class AbstractDashboardWidget {
 		DashboardToolbarAction up = new DashboardToolbarAction(systemToolbar, "up.png");
 		up.setToolTipText("Move widget up");
 		up.addMouseListener(downListener);
-		DashboardToolbarAction settings = new DashboardToolbarAction(systemToolbar, "cog.png");
-		settings.setToolTipText("Settings");
-		settings.addHyperlinkListener(new HyperlinkAdapter() {
-			@Override
-			public void linkActivated(HyperlinkEvent e) {
-				PreferenceDialog preferenceDialog = PreferencesUtil.createPreferenceDialogOn(composite.getShell(),
-					prefix + getId(), null, null);
-				preferenceDialog.open();
-			}
-		});
+
+		// String prefix = "org.unicase.dashboard.";
+		// DashboardToolbarAction settings = new DashboardToolbarAction(systemToolbar, "cog.png");
+		// settings.setToolTipText("Settings");
+		// settings.addHyperlinkListener(new HyperlinkAdapter() {
+		// @Override
+		// public void linkActivated(HyperlinkEvent e) {
+		// PreferenceDialog preferenceDialog = PreferencesUtil.createPreferenceDialogOn(composite.getShell(),
+		// prefix + getId(), null, null);
+		// preferenceDialog.open();
+		// }
+		// });
 	}
 
 	/**

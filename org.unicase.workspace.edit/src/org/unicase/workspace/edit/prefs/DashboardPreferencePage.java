@@ -19,23 +19,32 @@ import org.unicase.workspace.edit.Activator;
  */
 public class DashboardPreferencePage extends PreferencePage implements IWorkbenchPreferencePage {
 
+	/**
+	 * {@inheritDoc}
+	 */
 	@Override
 	protected Control createContents(Composite parent) {
 		// TODO Auto-generated method stub
 		return null;
 	}
 
+	/**
+	 * {@inheritDoc}
+	 */
 	public void init(IWorkbench workbench) {
 		// Initialize the preference store we wish to use
 		setPreferenceStore(Activator.getDefault().getPreferenceStore());
 	}
 
+	/**
+	 * {@inheritDoc}
+	 */
 	@Override
 	protected void performDefaults() {
 	}
 
 	/**
-	 * Save the color preference to the preference store.
+	 * {@inheritDoc}
 	 */
 	@Override
 	public boolean performOk() {
