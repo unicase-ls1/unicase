@@ -76,7 +76,7 @@ public class Activator extends AbstractUIPlugin {
 	}
 
 	/**
-	 * Initializes a preference store with default preference values for this plug-in.
+	 * {@inheritDoc}
 	 */
 	@Override
 	protected void initializeDefaultPreferences(IPreferenceStore store) {
