@@ -15,18 +15,32 @@ import java.util.List;
 import org.eclipse.core.commands.AbstractHandler;
 import org.eclipse.core.commands.ExecutionEvent;
 import org.eclipse.core.commands.ExecutionException;
+import org.eclipse.core.runtime.IProgressMonitor;
+import org.eclipse.emf.ecore.util.EcoreUtil;
+import org.eclipse.jface.dialogs.ProgressMonitorDialog;
 import org.eclipse.swt.SWT;
 import org.eclipse.swt.widgets.Display;
 import org.eclipse.swt.widgets.FileDialog;
 import org.unicase.analyzer.ProjectAnalysisData;
-import org.unicase.analyzer.ProjectVersionIterator;
+import org.unicase.analyzer.VersionIterator;
+import org.unicase.analyzer.exceptions.ItertorException;
+import org.unicase.dashboard.analyzer.providers.TaskNotificationProvider;
+import org.unicase.dashboard.analyzer.providers.TaskTraceNotificationProvider;
+import org.unicase.emfstore.esmodel.ProjectId;
 import org.unicase.emfstore.esmodel.notification.ESNotification;
+import org.unicase.emfstore.esmodel.versioning.PrimaryVersionSpec;
+import org.unicase.emfstore.esmodel.versioning.VersioningFactory;
 import org.unicase.model.ModelElement;
 import org.unicase.model.ModelElementId;
+import org.unicase.model.bug.BugPackage;
+import org.unicase.model.rationale.RationalePackage;
+import org.unicase.model.task.TaskPackage;
 import org.unicase.workspace.ProjectSpace;
 import org.unicase.workspace.Usersession;
 import org.unicase.workspace.WorkspaceManager;
 import org.unicase.workspace.notification.NotificationGenerator;
+import org.unicase.workspace.notification.provider.AssignmentNotificationProvider;
+import org.unicase.workspace.notification.provider.TaskObjectNotificationProvider;
 
 /**
  * Exports the esnotifications that were generated/used in the dashboard.
@@ -41,15 +55,18 @@ public class DashboardAnalyzerHandler extends AbstractHandler {
 		ProjectSpace projectSpace = WorkspaceManager.getInstance().getCurrentWorkspace().getActiveProjectSpace();
 
 		Usersession session = projectSpace.getUsersession();
-
-		int start = 1;
-		int end = 10;
+		ProjectId pid = (ProjectId) EcoreUtil.copy(projectSpace.getProjectId());
 		int step = 1;
 
-		ProjectVersionIterator iterator = new ProjectVersionIterator(session, projectSpace.getProjectId(), step, start,
-			end, "forward");
-		FileWriter fileWriter = null;
+		PrimaryVersionSpec start = VersioningFactory.eINSTANCE.createPrimaryVersionSpec();
+		start.setIdentifier(1);
+		PrimaryVersionSpec end = VersioningFactory.eINSTANCE.createPrimaryVersionSpec();
+		end.setIdentifier(10);
+		VersionIterator iterator;
 		try {
+			iterator = new VersionIterator(session, pid, step, start, end, true, true);
+			
+			FileWriter fileWriter = null;
 			FileDialog dialog = new FileDialog(Display.getCurrent().getActiveShell(), SWT.SAVE);
 			String path = dialog.open();
 			if (path == null) {
@@ -65,18 +82,40 @@ public class DashboardAnalyzerHandler extends AbstractHandler {
 			writer.write("Message,");
 			writer.write("User,");
 			writer.write("Date,");
-			writer.write("ModelElements");
-			writer.write("\n\n");
+			writer.write("ME Id,");
+			writer.write("ME Name,");
+			writer.write("ME Class");
+			writer.write("\n");
 
 			SimpleDateFormat dateFormat = new SimpleDateFormat("yyyy-MM-dd HH:mm");
-			String[] users = { "shterevg", "super" };
+			String[] users = { "shterevg", "helming", "koegel", "naughton" };
+			
+			NotificationGenerator generator = new NotificationGenerator();
+			
+			TaskPackage taskPackage = TaskPackage.eINSTANCE;
+			generator.addNotificationProvider(new TaskNotificationProvider(taskPackage.getActionItem()));
+			generator.addNotificationProvider(new TaskNotificationProvider(RationalePackage.eINSTANCE.getIssue()));
+			generator.addNotificationProvider(new TaskNotificationProvider(BugPackage.eINSTANCE.getBugReport()));
+			generator.addNotificationProvider(new TaskNotificationProvider(taskPackage.getWorkPackage()));
+			generator.addNotificationProvider(new TaskTraceNotificationProvider());
+			generator.addNotificationProvider(new TaskTraceNotificationProvider());
+			
+			ProgressMonitorDialog progressDialog = new ProgressMonitorDialog(Display.getCurrent().getActiveShell());
+			progressDialog.open();
+			progressDialog.getProgressMonitor().beginTask("Exporting notifications", IProgressMonitor.UNKNOWN);
+			
 			while (iterator.hasNext()) {
 				try {
 					ProjectAnalysisData analysisData = iterator.next();
-					// System.out.println("Writing revision "+analysisData.getPrimaryVersionSpec().getIdentifier());
+					if(analysisData==null){
+						break;
+					}
+					progressDialog.getProgressMonitor().setTaskName("Writing revision "+analysisData.getPrimaryVersionSpec().getIdentifier());
+					System.out.println("Writing revision "+analysisData.getPrimaryVersionSpec().getIdentifier());
+					
 					for (String user : users) {
-						List<ESNotification> notifications = NotificationGenerator.getInstance().generateNotifications(
-							analysisData.getChangePackages(), user, projectSpace);
+						List<ESNotification> notifications = generator.generateNotifications(
+							analysisData.getChangePackages(), user, projectSpace, false);
 						for (ESNotification n : notifications) {
 							writer.write(analysisData.getPrimaryVersionSpec().getIdentifier() + "");
 							writer.write(",");
@@ -90,30 +129,37 @@ public class DashboardAnalyzerHandler extends AbstractHandler {
 							writer.write(",");
 							writer.write(dateFormat.format(n.getCreationDate()));
 							writer.write(",");
-							for (ModelElementId mid : n.getRelatedModelElements()) {
-								writer.write(mid.getId());
-								writer.write("|");
-								ModelElement modelElement = projectSpace.getProject().getModelElement(mid);
+							final ModelElementId modelElementId = n.getRelatedModelElements().get(0);
+							if(modelElementId!=null){
+								ModelElement modelElement = projectSpace.getProject().getModelElement(modelElementId);
+								writer.write(modelElementId.getId());
+								writer.write(",");
 								if (modelElement == null) {
+									writer.write("deleted");
+									writer.write(",");
 									writer.write("deleted");
 								} else {
 									writer.write(modelElement.getName());
-									writer.write("|");
+									writer.write(",");
 									writer.write(modelElement.eClass().getName());
 								}
-								writer.write("#");
+							}else{
+								writer.write(",,");
 							}
-							writer.write("\n\n");
+							writer.write("\n");
 						}
 					}
-				} catch (Exception e) {
+				} catch (RuntimeException e) {
 					System.out.println(e);
 					//
 				} finally {
+					progressDialog.close();
 					writer.flush();
 				}
 			}
 			writer.close();
+		} catch (ItertorException e2) {
+			e2.printStackTrace();
 		} catch (IOException e1) {
 			e1.printStackTrace();
 		}
