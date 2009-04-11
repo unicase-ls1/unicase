@@ -39,8 +39,6 @@ import org.unicase.workspace.ProjectSpace;
 import org.unicase.workspace.Usersession;
 import org.unicase.workspace.WorkspaceManager;
 import org.unicase.workspace.notification.NotificationGenerator;
-import org.unicase.workspace.notification.provider.AssignmentNotificationProvider;
-import org.unicase.workspace.notification.provider.TaskObjectNotificationProvider;
 
 /**
  * Exports the esnotifications that were generated/used in the dashboard.
