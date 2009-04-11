@@ -13,7 +13,7 @@ import java.util.Set;
 import org.eclipse.emf.common.util.EList;
 import org.junit.Test;
 import org.unicase.emfstore.esmodel.versioning.operations.AbstractOperation;
-import org.unicase.emfstore.esmodel.versioning.operations.SingleReferenceOperation;
+import org.unicase.emfstore.esmodel.versioning.operations.MultiReferenceOperation;
 import org.unicase.model.ModelElementId;
 import org.unicase.model.requirement.Actor;
 import org.unicase.model.requirement.RequirementFactory;
@@ -36,159 +36,134 @@ public class MultiReferenceOperationTest extends OperationTest {
 	@Test
 	public void changeMultiReference() throws UnsupportedOperationException, UnsupportedNotificationException {
 		UseCase useCase = RequirementFactory.eINSTANCE.createUseCase();
+		useCase.setIdentifier("usecase1");
 		getProject().addModelElement(useCase);
 		Actor actor = RequirementFactory.eINSTANCE.createActor();
 		getProject().addModelElement(actor);
+		UseCase useCase2 = RequirementFactory.eINSTANCE.createUseCase();
+		useCase2.setIdentifier("usecase2");
+		getProject().addModelElement(useCase2);
+		UseCase useCase3 = RequirementFactory.eINSTANCE.createUseCase();
+		useCase3.setIdentifier("usecase3");
+		getProject().addModelElement(useCase3);
+		
 
 		clearOperations();
 		
-		useCase.setInitiatingActor(actor);
+		actor.getInitiatedUseCases().add(useCase);
+		actor.getInitiatedUseCases().add(useCase2);
+		actor.getInitiatedUseCases().add(useCase3);
 		
 		assertEquals(actor, useCase.getInitiatingActor());
+		assertEquals(actor, useCase2.getInitiatingActor());
+		assertEquals(actor, useCase3.getInitiatingActor());
 		EList<UseCase> initiatedUseCases = actor.getInitiatedUseCases();
-		assertEquals(1, initiatedUseCases.size());
+		assertEquals(3, initiatedUseCases.size());
 		assertEquals(useCase, initiatedUseCases.get(0));
+		assertEquals(useCase2, initiatedUseCases.get(1));
+		assertEquals(useCase3, initiatedUseCases.get(2));
 		
 		List<AbstractOperation> operations = getProjectSpace().getOperations();
 		
 		assertEquals(1, operations.size());
 		AbstractOperation operation = operations.get(0);
-		assertEquals(true, operation instanceof SingleReferenceOperation);
-		SingleReferenceOperation singleReferenceOperation = (SingleReferenceOperation) operation;
+		assertEquals(true, operation instanceof MultiReferenceOperation);
+		MultiReferenceOperation multiReferenceOperation = (MultiReferenceOperation) operation;
 		
-		assertEquals(null, singleReferenceOperation.getOldValue());
-		assertEquals(actor.getModelElementId(), singleReferenceOperation.getNewValue());
-		assertEquals("initiatingActor", singleReferenceOperation.getFeatureName());
-		assertEquals(useCase.getModelElementId(), singleReferenceOperation.getModelElementId());
-		assertEquals("initiatedUseCases", singleReferenceOperation.getOppositeFeatureName());
-		assertEquals(true, singleReferenceOperation.isBidirectional());
-		Set<ModelElementId> otherInvolvedModelElements = singleReferenceOperation.getOtherInvolvedModelElements();
-		assertEquals(1, otherInvolvedModelElements.size());
-		assertEquals(actor.getModelElementId(), otherInvolvedModelElements.iterator().next());
+		assertEquals("initiatedUseCases", multiReferenceOperation.getFeatureName());
+		assertEquals(0, multiReferenceOperation.getIndex());
+		assertEquals(actor.getModelElementId(), multiReferenceOperation.getModelElementId());
+		assertEquals("initiatingActor", multiReferenceOperation.getOppositeFeatureName());
+		assertEquals(true, multiReferenceOperation.isAdd());
+		assertEquals(true, multiReferenceOperation.isBidirectional());
+	
+		
+		EList<ModelElementId> referencedModelElements = multiReferenceOperation.getReferencedModelElements();
+		assertEquals(3, referencedModelElements.size());
+		assertEquals(useCase.getModelElementId(), referencedModelElements.get(0));
+		assertEquals(useCase2.getModelElementId(), referencedModelElements.get(1));
+		assertEquals(useCase3.getModelElementId(), referencedModelElements.get(2));
+		
+		
+		Set<ModelElementId> otherInvolvedModelElements = multiReferenceOperation.getOtherInvolvedModelElements();
+		assertEquals(3, otherInvolvedModelElements.size());
+		assertEquals(true, otherInvolvedModelElements.contains(useCase.getModelElementId()));
+		assertEquals(true, otherInvolvedModelElements.contains(useCase2.getModelElementId()));
+		assertEquals(true, otherInvolvedModelElements.contains(useCase3.getModelElementId()));
+
 	}
 	
+	
 	/**
-	 * Change an single reference twice and check the generated operation.
+	 * Change a multi reference and check the generated operation.
 	 * 
 	 * @throws UnsupportedOperationException on test fail
 	 * @throws UnsupportedNotificationException on test fail
 	 */
 	@Test
-	public void changeSingleReferenceTwice() throws UnsupportedOperationException, UnsupportedNotificationException {
-
+	public void reverseMultiReference() throws UnsupportedOperationException, UnsupportedNotificationException {
 		UseCase useCase = RequirementFactory.eINSTANCE.createUseCase();
+		useCase.setIdentifier("usecase1");
 		getProject().addModelElement(useCase);
-		Actor oldActor = RequirementFactory.eINSTANCE.createActor();
-		getProject().addModelElement(oldActor);
-		Actor newActor = RequirementFactory.eINSTANCE.createActor();
-		getProject().addModelElement(newActor);
-		Actor middleActor = RequirementFactory.eINSTANCE.createActor();
-		getProject().addModelElement(middleActor);
-		useCase.setInitiatingActor(oldActor);
-		
+		Actor actor = RequirementFactory.eINSTANCE.createActor();
+		getProject().addModelElement(actor);
+		UseCase useCase2 = RequirementFactory.eINSTANCE.createUseCase();
+		useCase2.setIdentifier("usecase2");
+		getProject().addModelElement(useCase2);
+		UseCase useCase3 = RequirementFactory.eINSTANCE.createUseCase();
+		useCase3.setIdentifier("usecase3");	
+		getProject().addModelElement(useCase3);
+
 		clearOperations();
 		
-		assertEquals(oldActor, useCase.getInitiatingActor());
-		EList<UseCase> initiatedUseCases = oldActor.getInitiatedUseCases();
-		assertEquals(1, initiatedUseCases.size());
-		assertEquals(useCase, initiatedUseCases.get(0));
+		actor.getInitiatedUseCases().add(useCase);
+		actor.getInitiatedUseCases().add(useCase2);
+		actor.getInitiatedUseCases().add(useCase3);
 		
-		useCase.setInitiatingActor(middleActor);
-		assertEquals(middleActor, useCase.getInitiatingActor());
-		initiatedUseCases = middleActor.getInitiatedUseCases();
-		assertEquals(1, initiatedUseCases.size());
+		assertEquals(actor, useCase.getInitiatingActor());
+		assertEquals(actor, useCase2.getInitiatingActor());
+		assertEquals(actor, useCase3.getInitiatingActor());
+		EList<UseCase> initiatedUseCases = actor.getInitiatedUseCases();
+		assertEquals(3, initiatedUseCases.size());
 		assertEquals(useCase, initiatedUseCases.get(0));
-		
-		useCase.setInitiatingActor(newActor);
-		assertEquals(newActor, useCase.getInitiatingActor());
-		initiatedUseCases = newActor.getInitiatedUseCases();
-		assertEquals(1, initiatedUseCases.size());
-		assertEquals(useCase, initiatedUseCases.get(0));
+		assertEquals(useCase2, initiatedUseCases.get(1));
+		assertEquals(useCase3, initiatedUseCases.get(2));
 		
 		List<AbstractOperation> operations = getProjectSpace().getOperations();
 		
 		assertEquals(1, operations.size());
 		AbstractOperation operation = operations.get(0);
-		assertEquals(true, operation instanceof SingleReferenceOperation);
-		SingleReferenceOperation singleReferenceOperation = (SingleReferenceOperation) operation;
+		assertEquals(true, operation instanceof MultiReferenceOperation);
+		MultiReferenceOperation multiReferenceOperation = (MultiReferenceOperation) operation;
 		
-		assertEquals(oldActor.getModelElementId(), singleReferenceOperation.getOldValue());
-		assertEquals(newActor.getModelElementId(), singleReferenceOperation.getNewValue());
-		assertEquals("initiatingActor", singleReferenceOperation.getFeatureName());
-		assertEquals(useCase.getModelElementId(), singleReferenceOperation.getModelElementId());
-		assertEquals("initiatedUseCases", singleReferenceOperation.getOppositeFeatureName());
-		assertEquals(true, singleReferenceOperation.isBidirectional());
-		Set<ModelElementId> otherInvolvedModelElements = singleReferenceOperation.getOtherInvolvedModelElements();
-		assertEquals(2, otherInvolvedModelElements.size());
-		assertEquals(newActor.getModelElementId(), otherInvolvedModelElements.iterator().next());
-	}
-	
-	/**
-	 * Change an single reference and reverse it.
-	 * 
-	 * @throws UnsupportedOperationException on test fail
-	 * @throws UnsupportedNotificationException on test fail
-	 */
-	@Test
-	public void reverseSingleReference() throws UnsupportedOperationException, UnsupportedNotificationException {
+		AbstractOperation reverse = multiReferenceOperation.reverse();
+		assertEquals(true, reverse instanceof MultiReferenceOperation);
+		
+		MultiReferenceOperation reversedMultiReferenceOperation = (MultiReferenceOperation) reverse;
+		assertEquals("initiatedUseCases", reversedMultiReferenceOperation.getFeatureName());
+		assertEquals(0, reversedMultiReferenceOperation.getIndex());
+		assertEquals(actor.getModelElementId(), reversedMultiReferenceOperation.getModelElementId());
+		assertEquals("initiatingActor", reversedMultiReferenceOperation.getOppositeFeatureName());
+		assertEquals(false, reversedMultiReferenceOperation.isAdd());
+		assertEquals(true, reversedMultiReferenceOperation.isBidirectional());
+		
+		EList<ModelElementId> referencedModelElements = reversedMultiReferenceOperation.getReferencedModelElements();
+		assertEquals(3, referencedModelElements.size());
+		assertEquals(useCase.getModelElementId(), referencedModelElements.get(0));
+		assertEquals(useCase2.getModelElementId(), referencedModelElements.get(1));
+		assertEquals(useCase3.getModelElementId(), referencedModelElements.get(2));
+		
+		Set<ModelElementId> otherInvolvedModelElements = reversedMultiReferenceOperation.getOtherInvolvedModelElements();
+		assertEquals(3, otherInvolvedModelElements.size());
+		assertEquals(true, otherInvolvedModelElements.contains(useCase.getModelElementId()));
+		assertEquals(true, otherInvolvedModelElements.contains(useCase2.getModelElementId()));
+		assertEquals(true, otherInvolvedModelElements.contains(useCase3.getModelElementId()));
 
-		UseCase useCase = RequirementFactory.eINSTANCE.createUseCase();
-		getProject().addModelElement(useCase);
-		Actor oldActor = RequirementFactory.eINSTANCE.createActor();
-		getProject().addModelElement(oldActor);
-		Actor newActor = RequirementFactory.eINSTANCE.createActor();
-		getProject().addModelElement(newActor);
-		useCase.setInitiatingActor(oldActor);
-		assertEquals(oldActor, useCase.getInitiatingActor());
-		EList<UseCase> initiatedUseCases = oldActor.getInitiatedUseCases();
-		assertEquals(1, initiatedUseCases.size());
-		assertEquals(useCase, initiatedUseCases.get(0));
-
-		clearOperations();
+		reversedMultiReferenceOperation.apply(getProject());
 		
-		useCase.setInitiatingActor(newActor);
-		assertEquals(newActor, useCase.getInitiatingActor());
-		initiatedUseCases = newActor.getInitiatedUseCases();
-		assertEquals(1, initiatedUseCases.size());
-		assertEquals(useCase, initiatedUseCases.get(0));
-		
-		List<AbstractOperation> operations = getProjectSpace().getOperations();
-		
-		assertEquals(1, operations.size());
-		AbstractOperation operation = operations.get(0);
-		assertEquals(true, operation instanceof SingleReferenceOperation);
-		SingleReferenceOperation singleReferenceOperation = (SingleReferenceOperation) operation;
-		
-		assertEquals(oldActor.getModelElementId(), singleReferenceOperation.getOldValue());
-		assertEquals(newActor.getModelElementId(), singleReferenceOperation.getNewValue());
-		assertEquals("initiatingActor", singleReferenceOperation.getFeatureName());
-		assertEquals(useCase.getModelElementId(), singleReferenceOperation.getModelElementId());
-		assertEquals("initiatedUseCases", singleReferenceOperation.getOppositeFeatureName());
-		assertEquals(true, singleReferenceOperation.isBidirectional());
-		Set<ModelElementId> otherInvolvedModelElements = singleReferenceOperation.getOtherInvolvedModelElements();
-		assertEquals(2, otherInvolvedModelElements.size());
-		assertEquals(true, otherInvolvedModelElements.contains(oldActor.getModelElementId()));
-		assertEquals(true, otherInvolvedModelElements.contains(newActor.getModelElementId()));
-		
-		
-		
-		AbstractOperation reverse = singleReferenceOperation.reverse();
-		assertEquals(true, reverse instanceof SingleReferenceOperation);
-		SingleReferenceOperation reversedSingleReferenceOperation = (SingleReferenceOperation) reverse;
-		
-		reversedSingleReferenceOperation.apply(getProject());
-		
-		assertEquals(oldActor, useCase.getInitiatingActor());
-		
-		assertEquals(newActor.getModelElementId(), reversedSingleReferenceOperation.getOldValue());
-		assertEquals(oldActor.getModelElementId(), reversedSingleReferenceOperation.getNewValue());
-		assertEquals("initiatingActor", reversedSingleReferenceOperation.getFeatureName());
-		assertEquals(useCase.getModelElementId(), reversedSingleReferenceOperation.getModelElementId());
-		assertEquals("initiatedUseCases", reversedSingleReferenceOperation.getOppositeFeatureName());
-		assertEquals(true, reversedSingleReferenceOperation.isBidirectional());
-		otherInvolvedModelElements = reversedSingleReferenceOperation.getOtherInvolvedModelElements();
-		assertEquals(2, otherInvolvedModelElements.size());
-		assertEquals(true, otherInvolvedModelElements.contains(oldActor.getModelElementId()));
-		assertEquals(true, otherInvolvedModelElements.contains(newActor.getModelElementId()));
+		assertEquals(0, actor.getInitiatedUseCases().size());
+		assertEquals(null, useCase.getInitiatingActor());
+		assertEquals(null, useCase2.getInitiatingActor());
+		assertEquals(null, useCase3.getInitiatingActor());
 	}
 }
