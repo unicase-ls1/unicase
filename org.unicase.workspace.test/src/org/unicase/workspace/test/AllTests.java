@@ -7,6 +7,7 @@ package org.unicase.workspace.test;
 
 import org.junit.runner.RunWith;
 import org.junit.runners.Suite;
+import org.unicase.emfstore.esmodel.versioning.operations.CreateDeleteOperation;
  
 /**
  * Test Suite for running all tests of workspace.
@@ -17,7 +18,8 @@ import org.junit.runners.Suite;
 @Suite.SuiteClasses({
   AttributeOperationTest.class,
   SingleReferenceOperationTest.class,
-  MultiReferenceOperationTest.class
+  MultiReferenceOperationTest.class,
+  CreateDeleteOperation.class
 })
 public class AllTests {
 
