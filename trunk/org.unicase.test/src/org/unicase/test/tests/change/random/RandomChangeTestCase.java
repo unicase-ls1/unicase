@@ -11,7 +11,8 @@ import org.unicase.workspace.ProjectSpace;
 
 public abstract class RandomChangeTestCase extends ChangeTestCase {
 
-	private static final String REUSLTS_SAVE_DIR = Configuration.getWorkspaceDirectory() + "\\tmp\\errorneousTests\\";
+	private static final String REUSLTS_SAVE_DIR = Configuration.getWorkspaceDirectory() + File.separator + "tmp"
+		+ File.separator + "errorneousTests";
 
 	public RandomChangeTestCase(ProjectSpace testProjectSpace, String testName, TestProjectParmeters testProjParams) {
 		super(testProjectSpace, testName, testProjParams);

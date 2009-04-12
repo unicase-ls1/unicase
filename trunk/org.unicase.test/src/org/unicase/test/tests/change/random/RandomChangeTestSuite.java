@@ -12,6 +12,7 @@ import org.unicase.test.tests.change.ChangeTestSuite;
 import org.unicase.test.tests.change.random.testcases.AttributeChangeTest;
 import org.unicase.test.tests.change.random.testcases.AttributeTransitiveChangeTest;
 import org.unicase.test.tests.change.random.testcases.CommitTest;
+import org.unicase.test.tests.change.random.testcases.CompositeTest;
 import org.unicase.test.tests.change.random.testcases.ContainmentReferenceAddNewTest;
 import org.unicase.test.tests.change.random.testcases.ContainmentReferenceMoveTest;
 import org.unicase.test.tests.change.random.testcases.CreateAndChangeAttributeTest;
@@ -99,12 +100,12 @@ public class RandomChangeTestSuite extends ChangeTestSuite {
 		testCases.add(multiReferenceMoveTest);
 
 		// CompositeTest
-		// @SuppressWarnings("unused")
-		// CompositeTest compositeTest = new CompositeTest(getTestProjectSpace(), "Composite", getTestProjectPrams(),
-		// testCases);
+		CompositeTest compositeTest = new CompositeTest(getTestProjectSpace(), "CompositeTest", getTestProjectParams(),
+			testCases, true);
 
 		// CommitTest
-		CommitTest commitTest = new CommitTest(getTestProjectSpace(), "Commit", getTestProjectParams(), testCases);
+		CommitTest commitTest = new CommitTest(getTestProjectSpace(), "CommitTest", getTestProjectParams(),
+			compositeTest);
 
 		// this.getTestCases().add(compoundTest);
 		// this.getTestCases().add(containmentReferenceAddNewTest); //ok

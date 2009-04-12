@@ -44,7 +44,7 @@ import org.unicase.workspace.impl.ProjectSpaceImpl;
 public final class ChangeTestHelper {
 
 	private static TransactionalEditingDomain domain;
-	private static String TEMP_PATH = Configuration.getWorkspaceDirectory() + "\\tmp\\";
+	private static String TEMP_PATH = Configuration.getWorkspaceDirectory() + File.separator + "tmp";
 
 	private static Random random;
 	private static List<ModelElement> allMEsInProject;
@@ -69,7 +69,7 @@ public final class ChangeTestHelper {
 		File file = new File(TEMP_PATH);
 		if (!file.exists()) {
 
-			new File(Configuration.getWorkspaceDirectory() + "\\tmp\\").mkdir();
+			new File(TEMP_PATH).mkdir();
 		}
 
 		return projectSpace;
@@ -184,7 +184,7 @@ public final class ChangeTestHelper {
 		try {
 			if (!file.exists()) {
 
-				new File(Configuration.getWorkspaceDirectory() + "\\tmp\\").mkdir();
+				new File(TEMP_PATH).mkdir();
 			}
 
 			FileOutputStream fos;
