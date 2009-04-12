@@ -4,7 +4,7 @@ import java.util.List;
 
 import org.unicase.analyzer.AnalyzerFactory;
 import org.unicase.analyzer.ProjectAnalysisData;
-import org.unicase.analyzer.ProjectVersionIterator;
+import org.unicase.analyzer.VersionIterator;
 import org.unicase.analyzer.exceptions.ItertorException;
 import org.unicase.emfstore.esmodel.ProjectInfo;
 import org.unicase.emfstore.esmodel.SessionId;
@@ -50,8 +50,8 @@ public class AnalyserTest extends TestCase {
 					end.setIdentifier(-1);
 
 					int stepLength = 2;
-					ProjectVersionIterator projectIt = new ProjectVersionIterator(usersession, pI.getProjectId(),
-						stepLength, start, end, true, false);
+					VersionIterator projectIt = new VersionIterator(usersession, pI.getProjectId(), stepLength, start,
+						end, true, false);
 					int it = 1;
 					while (projectIt.hasNext()) {
 						projectData = projectIt.next();

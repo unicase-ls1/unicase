@@ -1,7 +1,6 @@
 package org.unicase.test.tests.change.random.testcases;
 
 import java.util.Calendar;
-import java.util.List;
 
 import org.eclipse.emf.transaction.RecordingCommand;
 import org.eclipse.emf.transaction.TransactionalEditingDomain;
@@ -19,16 +18,17 @@ import org.unicase.workspace.WorkspaceFactory;
 
 public class CommitTest extends RandomChangeTestCase {
 
-	private List<RandomChangeTestCase> testCases;
 	private Usersession userSession;
 
 	private TransactionalEditingDomain domain;
+	private CompositeTest compositeTest;
 
 	public CommitTest(ProjectSpace testProjectSpace, String testName, TestProjectParmeters testProjParams,
-		List<RandomChangeTestCase> testCases) {
+		CompositeTest compositeTest) {
 
 		super(testProjectSpace, testName, testProjParams);
-		this.testCases = testCases;
+
+		this.compositeTest = compositeTest;
 		userSession = WorkspaceFactory.eINSTANCE.createUsersession();
 
 		ServerInfo serverInfo = WorkspaceFactory.eINSTANCE.createServerInfo();
@@ -66,8 +66,6 @@ public class CommitTest extends RandomChangeTestCase {
 
 	@Override
 	public void runTest() {
-		CompositeTest compositeTest = new CompositeTest(getTestProjectSpace(), "CompositeTest", getTestProjParams(),
-			testCases);
 		compositeTest.runTest();
 	}
 
