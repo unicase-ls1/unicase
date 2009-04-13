@@ -16,22 +16,22 @@ public class CompositeTest extends RandomChangeTestCase {
 
 	private List<RandomChangeTestCase> testCases;
 	private boolean testAll;
-	private static final int MAX_TIMES_TO_RUN = 5;
-	private static final int RANDOM_SELECT_ITERATIONS = 150;
-	private static final int TEST_ALL_ITERATIONS = 10;
+	private int maxTimesToRunATestCase = 3;
+	private int randomSelectIterations = 10;
+	private int testAllIterations = 10;
 
 	public CompositeTest(ProjectSpace testProjectSpace, String testName, TestProjectParmeters testProjParams,
 		List<RandomChangeTestCase> testCases, boolean testAll) {
 		super(testProjectSpace, testName, testProjParams);
 		this.testCases = testCases;
-		this.testAll = testAll;
+		this.setTestAll(testAll);
 
 	}
 
 	@Override
 	public void runTest() {
 
-		if (testAll) {
+		if (isTestAll()) {
 			testAll();
 		} else {
 			randomSelectTest();
@@ -39,17 +39,17 @@ public class CompositeTest extends RandomChangeTestCase {
 	}
 
 	private void randomSelectTest() {
-		for (int i = 0; i < RANDOM_SELECT_ITERATIONS; i++) {
+		for (int i = 0; i < getRandomSelectIterations(); i++) {
 			int numOfTestCases = testCases.size();
 			RandomChangeTestCase testCase = testCases.get(getRandom().nextInt(numOfTestCases));
 
-			int timesToRun = getRandom().nextInt(MAX_TIMES_TO_RUN);
+			int timesToRun = getRandom().nextInt(getMaxTimesToRunATestCase());
 			runTestCase(testCase, timesToRun);
 		}
 	}
 
 	private void testAll() {
-		for (int i = 0; i < TEST_ALL_ITERATIONS; i++) {
+		for (int i = 0; i < getTestAllIterations(); i++) {
 			List<RandomChangeTestCase> testCasesCopy = new ArrayList<RandomChangeTestCase>();
 			testCasesCopy.addAll(testCases);
 
@@ -57,7 +57,7 @@ public class CompositeTest extends RandomChangeTestCase {
 				int numOfTestCases = testCasesCopy.size();
 				RandomChangeTestCase testCase = testCasesCopy.get(getRandom().nextInt(numOfTestCases));
 
-				int timesToRun = getRandom().nextInt(MAX_TIMES_TO_RUN);
+				int timesToRun = getRandom().nextInt(getMaxTimesToRunATestCase());
 				runTestCase(testCase, timesToRun);
 
 				testCasesCopy.remove(testCase);
@@ -79,6 +79,62 @@ public class CompositeTest extends RandomChangeTestCase {
 			System.out.println();
 		}
 
+	}
+
+	/**
+	 * @param testAll the testAll to set
+	 */
+	public void setTestAll(boolean testAll) {
+		this.testAll = testAll;
+	}
+
+	/**
+	 * @return the testAll
+	 */
+	public boolean isTestAll() {
+		return testAll;
+	}
+
+	/**
+	 * @param testAllIterations the testAllIterations to set
+	 */
+	public void setTestAllIterations(int testAllIterations) {
+		this.testAllIterations = testAllIterations;
+	}
+
+	/**
+	 * @return the testAllIterations
+	 */
+	public int getTestAllIterations() {
+		return testAllIterations;
+	}
+
+	/**
+	 * @param randomSelectIterations the randomSelectIterations to set
+	 */
+	public void setRandomSelectIterations(int randomSelectIterations) {
+		this.randomSelectIterations = randomSelectIterations;
+	}
+
+	/**
+	 * @return the randomSelectIterations
+	 */
+	public int getRandomSelectIterations() {
+		return randomSelectIterations;
+	}
+
+	/**
+	 * @param maxTimesToRunATestCase the maxTimesToRunATestCase to set
+	 */
+	public void setMaxTimesToRunATestCase(int maxTimesToRunATestCase) {
+		this.maxTimesToRunATestCase = maxTimesToRunATestCase;
+	}
+
+	/**
+	 * @return the maxTimesToRunATestCase
+	 */
+	public int getMaxTimesToRunATestCase() {
+		return maxTimesToRunATestCase;
 	}
 
 }

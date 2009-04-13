@@ -76,6 +76,16 @@ public final class ChangeTestHelper {
 
 	}
 
+	/**
+	 * Creates a change package from given operations.
+	 * 
+	 * @param operations list of operations. This can be obtained by calling ProjectSpace.getOperations() method.
+	 * @param cannonize if operations will be cannonized.
+	 * @param clearOperations if operations must be cleared from project space. This is used when running more than one
+	 *            change package test after each other and we don't want operation from one change package test to be
+	 *            accumulated in operations of change package test run after that.
+	 * @return
+	 */
 	public static ChangePackage getChangePackage(final List<AbstractOperation> operations, final boolean cannonize,
 		final boolean clearOperations) {
 
@@ -101,8 +111,18 @@ public final class ChangeTestHelper {
 		return changePackage;
 	}
 
+	/**
+	 * This method compares two projects using ModelUtil.areEqual() method. But is almost always returns false, although
+	 * objects are equal. Therefore use linearCompare() method to compare a string representation of objects with each
+	 * other.
+	 * 
+	 * @param testSpace
+	 * @param compareSpace
+	 * @return if objects are equal
+	 */
 	public static boolean compare(ProjectSpace testSpace, ProjectSpace compareSpace) {
 
+		// extract changes from testSpace and apply them to compareSpace
 		prepareCompare(testSpace, compareSpace, false);
 
 		System.out.println("comparing...");
@@ -110,10 +130,12 @@ public final class ChangeTestHelper {
 	}
 
 	/**
-	 * Extracts changes form test project and applys them to compare project.
+	 * Extracts changes form test project and applies them to compare project. Extracted ChangePackage is also written
+	 * to disk (to TMP_PATH/changePackage.txt file) for further investigations.
 	 * 
-	 * @param testSpace
-	 * @param compareSpace
+	 * @param testSpace project space to extract operations from
+	 * @param compareSpace project space to apply extracted operations to
+	 * @param accumulative if operations must remain in test project space after extracting them
 	 */
 	private static void prepareCompare(final ProjectSpace testSpace, final ProjectSpace compareSpace,
 		final boolean accumulative) {
@@ -128,7 +150,8 @@ public final class ChangeTestHelper {
 		// succeeds.
 		EObject copyChangePackage = EcoreUtil.copy(changePackage);
 		ResourceSet reseourceSet = new ResourceSetImpl();
-		Resource resource = reseourceSet.createResource(URI.createFileURI(TEMP_PATH + "changePackage.txt"));
+		Resource resource = reseourceSet.createResource(URI.createFileURI(TEMP_PATH + File.separator
+			+ "changePackage.txt"));
 		resource.getContents().add(copyChangePackage);
 		try {
 			resource.save(null);
@@ -151,6 +174,18 @@ public final class ChangeTestHelper {
 		});
 	}
 
+	/**
+	 * Uses linearCompare(projectA, projectB) method to compare projects contained in given project spaces. The result
+	 * is an array of integers with following elements: index 0 (ARE_EQUAL) 0 if files are not equal and 1 otherwise;
+	 * index 1 (DIFFRENCE_POSITION) index of differing character; index 2 (CHARACTER) the differing character; index 3
+	 * (LINE_NUM) line number of first differing character; index 4 (COL_NUM) column number of first differing
+	 * character. If any exceptions is thrown, all indices in result array will be -1.
+	 * 
+	 * @param testSpace
+	 * @param compareSpace
+	 * @return if projects inside these project spaces are equal or not, and if they are not equal the location of
+	 *         differing character in their serialized string
+	 */
 	public static int[] linearCompare(ProjectSpace testSpace, ProjectSpace compareSpace) {
 
 		prepareCompare(testSpace, compareSpace, false);
@@ -159,6 +194,11 @@ public final class ChangeTestHelper {
 
 	}
 
+	/**
+	 * Returns editing domain.
+	 * 
+	 * @return editing domain
+	 */
 	public static TransactionalEditingDomain getDomain() {
 
 		if (domain == null) {
@@ -168,6 +208,15 @@ public final class ChangeTestHelper {
 		return domain;
 	}
 
+	/**
+	 * Returns a serialized string for this object. It also saves serialized string to disk (in TMP_PATH) under given
+	 * name.
+	 * 
+	 * @param object object
+	 * @param name name to save string representation of object
+	 * @return serialized string representation of this object
+	 * @throws SerializationException
+	 */
 	public static String eObjectToString(EObject object, String name) throws SerializationException {
 		if (object == null) {
 			return null;
@@ -180,7 +229,7 @@ public final class ChangeTestHelper {
 		} catch (IOException e) {
 			throw new SerializationException(e);
 		}
-		File file = new File(TEMP_PATH + name + ".txt");
+		File file = new File(TEMP_PATH + File.separator + name + ".txt");
 		try {
 			if (!file.exists()) {
 
@@ -198,6 +247,19 @@ public final class ChangeTestHelper {
 		return out.toString();
 	}
 
+	/**
+	 * This method compare two projects with each other. It first converts projects in string and finds location of
+	 * first character in which these strings differ. The result is an array of integers with following elements: index
+	 * 0 (ARE_EQUAL) 0 if files are not equal and 1 otherwise; index 1 (DIFFRENCE_POSITION) index of differing
+	 * character; index 2 (CHARACTER) the differing character; index 3 (LINE_NUM) line number of first differing
+	 * character; index 4 (COL_NUM) column number of first differing character. If any exceptions is thrown, all indices
+	 * in result array will be -1.
+	 * 
+	 * @param projectA project A
+	 * @param projectB project B
+	 * @return if projects are equal or not, and if they are not equal the location of differing character in their
+	 *         serialized string
+	 */
 	public static int[] linearCompare(Project projectA, Project projectB) {
 		int[] result = new int[5];
 		int ARE_EQUAL = 0;
@@ -239,6 +301,13 @@ public final class ChangeTestHelper {
 
 	}
 
+	/**
+	 * Finds column number of given index inside a multi-line string.
+	 * 
+	 * @param stringA string
+	 * @param index index
+	 * @return
+	 */
 	private static int getColNum(String stringA, int index) {
 		int lineNum = 1;
 		int pos = index;
@@ -255,6 +324,13 @@ public final class ChangeTestHelper {
 
 	}
 
+	/**
+	 * Finds line number of a given index inside a multi-line string.
+	 * 
+	 * @param stringA
+	 * @param index
+	 * @return
+	 */
 	private static int getLineNum(String stringA, int index) {
 		int lineNum = 1;
 		for (int i = 0; i < index; i++) {
@@ -265,6 +341,14 @@ public final class ChangeTestHelper {
 		return lineNum;
 	}
 
+	/**
+	 * Returns a list of randomly selected MEs
+	 * 
+	 * @param project project from which to select MEs
+	 * @param num how many MEs to select
+	 * @param unique if they must be unique
+	 * @return
+	 */
 	public static List<ModelElement> getRandomMEs(Project project, int num, boolean unique) {
 
 		List<ModelElement> result = new ArrayList<ModelElement>();
@@ -299,11 +383,25 @@ public final class ChangeTestHelper {
 		return result;
 	}
 
+	/**
+	 * Returns a randomly selected ME form this project.
+	 * 
+	 * @param project project
+	 * @return randomly selected ME
+	 */
 	public static ModelElement getRandomME(Project project) {
 		List<ModelElement> modelElements = getRandomMEs(project, 1, false);
 		return modelElements.get(0);
 	}
 
+	/**
+	 * Returns a randomly selected ME of given type from this project. If there is no ME of this type in project null is
+	 * returned.
+	 * 
+	 * @param project project
+	 * @param type model element type
+	 * @return ME or null if there is no ME of this type in project
+	 */
 	public static ModelElement getRandomMEofType(Project project, EClass type) {
 
 		List<ModelElement> refTypeMEs = project.getAllModelElementsbyClass(type, new BasicEList<ModelElement>());
@@ -318,6 +416,11 @@ public final class ChangeTestHelper {
 		return me;
 	}
 
+	/**
+	 * Creates an instance of model element with a randomly selected model element type.
+	 * 
+	 * @return ME
+	 */
 	public static ModelElement createRandomME() {
 		List<EClass> eClazz = ModelUtil.getSubclasses(ModelPackage.eINSTANCE.getModelElement());
 		EClass eClass = eClazz.get(getRandom().nextInt(eClazz.size() - 1));
@@ -414,6 +517,12 @@ public final class ChangeTestHelper {
 
 	}
 
+	/**
+	 * Returns a random position in a list. If list size is 0, 0 is returned.
+	 * 
+	 * @param listSize list size
+	 * @return random index
+	 */
 	public static int getRandomPosition(int listSize) {
 
 		int position;
@@ -427,18 +536,40 @@ public final class ChangeTestHelper {
 		return position;
 	}
 
+	/**
+	 * Sets random generator for this class.
+	 * 
+	 * @param random random
+	 */
 	public static void setRandom(Random random) {
 		ChangeTestHelper.random = random;
 	}
 
+	/**
+	 * Returns random generator of this ChangeTestHelper.
+	 * 
+	 * @return random
+	 */
 	public static Random getRandom() {
 		return random;
 	}
 
+	/**
+	 * get a random date.
+	 * 
+	 * @return ranodm date
+	 */
 	private static Date getRandomDate() {
 		return new Date();
 	}
 
+	/**
+	 * Returns randomly one of attributes of this ME. The returned attribute is changeable, is not
+	 * MODEL_ELEMENT_IDENTIFIER, and is not transient.
+	 * 
+	 * @param me ME
+	 * @return a random selected attribute
+	 */
 	public static EAttribute getRandomAttribute(ModelElement me) {
 		EAttribute attribute = null;
 		List<EAttribute> attributes = new ArrayList<EAttribute>();
@@ -459,6 +590,12 @@ public final class ChangeTestHelper {
 
 	}
 
+	/**
+	 * Returns a randomly selected non-containment reference of this ME. It is changeable, and not transient.
+	 * 
+	 * @param me ME
+	 * @return randomly selected changeable non-transient non-containment reference of this ME
+	 */
 	public static EReference getRandomNonContainmentRef(ModelElement me) {
 		EReference nonContainmentRef = null;
 		List<EReference> nonContainmentRefs = new ArrayList<EReference>();
@@ -477,6 +614,12 @@ public final class ChangeTestHelper {
 
 	}
 
+	/**
+	 * Returns a randomly selected containment reference of this ME. It is changeable and not transient.
+	 * 
+	 * @param me ME
+	 * @return a randomly selected containment reference of this ME. It is changeable and not transient
+	 */
 	public static EReference getRandomContainmentRef(ModelElement me) {
 		EReference containmentRef = null;
 		List<EReference> containments = new ArrayList<EReference>();
@@ -533,9 +676,12 @@ public final class ChangeTestHelper {
 	}
 
 	/**
-	 * @param me me
-	 * @param ref ref
-	 * @param toBeReferencedME
+	 * Adds the given model element to this non-containment reference of given ME. If reference is not many, the given
+	 * model element replaces the previous value of this reference.
+	 * 
+	 * @param me me model element to change its reference
+	 * @param ref non-containment reference
+	 * @param toBeReferencedME model element to reference
 	 */
 	@SuppressWarnings("unchecked")
 	public static void changeNonContainmentRef(ModelElement me, EReference ref, ModelElement toBeReferencedME) {
@@ -555,7 +701,9 @@ public final class ChangeTestHelper {
 	}
 
 	/**
-	 * @param me ME
+	 * Changes the index of a value in a multi-valued EAtrribute of this ME
+	 * 
+	 * @param me ME model element to change
 	 * @param attribute an attribute with multiple values (isMany = true)
 	 */
 	public static void moveMultiAttributeValue(ModelElement me, EAttribute attribute) {
@@ -571,6 +719,12 @@ public final class ChangeTestHelper {
 
 	}
 
+	/**
+	 * Changes index of a reference in a many EReference of given ME.
+	 * 
+	 * @param me ME
+	 * @param ref EReference to change
+	 */
 	@SuppressWarnings("unchecked")
 	public static void moveMultiReferenceValue(ModelElement me, EReference ref) {
 		if (!ref.isMany()) {
