@@ -39,6 +39,14 @@ public abstract class ChangeTestSuite extends TestSuite {
 		return compareSpace;
 	}
 
+	/**
+	 * This method initialize a test and a compare project space. If you provided path to an exported project as test
+	 * project this will be imported. Otherwise a random project is generated. Compare project is a copy of test
+	 * project. In the case an already existing project is imported as test project, TestProjectPrameters has all its
+	 * field except randomSeed equal 0.
+	 * 
+	 * @see org.unicase.test.TestSuite#initTestSuite()
+	 */
 	@Override
 	public void initTestSuite() {
 		System.out.println("initializing test projectSpaces");
@@ -53,6 +61,7 @@ public abstract class ChangeTestSuite extends TestSuite {
 					try {
 						testSpace = currentWorkspace.importProject(testProjectPath);
 						testProject = testSpace.getProject();
+						params = new TestProjectParmeters(0, randomSeed, 0, 0, 0, 0);
 					} catch (IOException e) {
 						e.printStackTrace();
 					}
@@ -95,6 +104,11 @@ public abstract class ChangeTestSuite extends TestSuite {
 		return testProjectPath;
 	}
 
+	/**
+	 * This creates a copy of test project as compare project.
+	 * 
+	 * @return a copy of test project.
+	 */
 	protected Project getCompareProject() {
 
 		if (testProject == null) {

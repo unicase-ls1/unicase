@@ -13,7 +13,7 @@ import org.unicase.test.tests.change.random.RandomChangeTestSuite;
 public class Application implements IApplication {
 
 	private final static int RANDOMTEST = 1;
-	private final static int CHANGETEST = 2;
+	private final static int MANUALTEST = 2;
 	private final static int SERVERTEST = 3;
 	private final static int ANALYSERTEST = 4;
 
@@ -37,7 +37,7 @@ public class Application implements IApplication {
 			((RandomChangeTestSuite) test).setTestProjectPath("/home/zardosht/Desktop/unicase.ucp");
 			break;
 
-		case CHANGETEST:
+		case MANUALTEST:
 			test = new ManualChangeTestSuite();
 			break;
 

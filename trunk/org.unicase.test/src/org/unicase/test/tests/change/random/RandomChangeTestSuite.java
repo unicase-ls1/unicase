@@ -3,15 +3,10 @@ package org.unicase.test.tests.change.random;
 import java.util.ArrayList;
 import java.util.List;
 
-import org.unicase.emfstore.esmodel.versioning.ChangePackage;
-import org.unicase.emfstore.esmodel.versioning.operations.AbstractOperation;
-import org.unicase.emfstore.esmodel.versioning.operations.CreateDeleteOperation;
-import org.unicase.test.TestCase;
 import org.unicase.test.tests.change.ChangeTestHelper;
 import org.unicase.test.tests.change.ChangeTestSuite;
 import org.unicase.test.tests.change.random.testcases.AttributeChangeTest;
 import org.unicase.test.tests.change.random.testcases.AttributeTransitiveChangeTest;
-import org.unicase.test.tests.change.random.testcases.CommitTest;
 import org.unicase.test.tests.change.random.testcases.CompositeTest;
 import org.unicase.test.tests.change.random.testcases.ContainmentReferenceAddNewTest;
 import org.unicase.test.tests.change.random.testcases.ContainmentReferenceMoveTest;
@@ -27,6 +22,12 @@ import org.unicase.test.tests.change.random.testcases.NonContainmentReferenceRem
 
 public class RandomChangeTestSuite extends ChangeTestSuite {
 
+	/**
+	 * Set test cases here. If you want to run a mixture of tests give them as a list to an instance of CompositeTest,
+	 * and set composite test as the test to be run.
+	 * 
+	 * @see org.unicase.test.TestSuite#initTestCases()
+	 */
 	@Override
 	public void initTestCases() {
 
@@ -101,11 +102,11 @@ public class RandomChangeTestSuite extends ChangeTestSuite {
 
 		// CompositeTest
 		CompositeTest compositeTest = new CompositeTest(getTestProjectSpace(), "CompositeTest", getTestProjectParams(),
-			testCases, true);
+			testCases, false);
 
 		// CommitTest
-		CommitTest commitTest = new CommitTest(getTestProjectSpace(), "CommitTest", getTestProjectParams(),
-			compositeTest);
+		// CommitTest commitTest = new CommitTest(getTestProjectSpace(), "CommitTest", getTestProjectParams(),
+		// compositeTest);
 
 		// this.getTestCases().add(compoundTest);
 		// this.getTestCases().add(containmentReferenceAddNewTest); //ok
@@ -118,7 +119,8 @@ public class RandomChangeTestSuite extends ChangeTestSuite {
 		// this.getTestCases().add(nonContainmentReferenceAddTest); //ok
 		// this.getTestCases().add(attributeTransitiveChangeTest); //ok
 		// this.getTestCases().add(attributeChangeTest); //ok
-		this.getTestCases().add(commitTest);
+		// this.getTestCases().add(commitTest);
+		this.getTestCases().add(compositeTest);
 		// this.getTestCases().add(deleteAndRevertDeleteTest);
 
 	}
@@ -127,8 +129,7 @@ public class RandomChangeTestSuite extends ChangeTestSuite {
 	public void endTestSuite() {
 
 		// if (containsCompareTest()) {
-		// endTestSuiteCompareTests();
-		// //endTestSuiteChangePackageTests();
+		endTestSuiteCompareTests();
 		// } else {
 		// endTestSuiteChangePackageTests();
 		//			
@@ -136,28 +137,16 @@ public class RandomChangeTestSuite extends ChangeTestSuite {
 
 	}
 
-	@SuppressWarnings("unused")
-	private boolean containsCompareTest() {
-		for (TestCase testCase : getTestCases()) {
-			if (!(testCase instanceof ChangePackageTest)) {
-				return true;
-			}
-		}
-		return false;
-	}
-
 	/**
-	 * Compare tests have a test project and a compare project. They make changes on test project, extract them, apply
-	 * them on compare project, and compare both projects. If test project and compare project are identical test
-	 * succeeds, otherwise test fails.
+	 * Compare test project space with compare project space.
 	 */
-	@SuppressWarnings("unused")
 	private void endTestSuiteCompareTests() {
+
 		int[] result = ChangeTestHelper.linearCompare(getTestProjectSpace(), getCompareProjectSpace());
 		if (result[0] == 1) {
 			System.out.println("Test succeeded!");
 		} else {
-			// logger.info("Test failed!");
+
 			System.out.println("XXXXXXXXXXXXXXXXXXXX----  Test failed!  ----XXXXXXXXXXXXXXXXXXXX ");
 
 			System.out.println(getTestProjectParams().toString());
@@ -178,33 +167,6 @@ public class RandomChangeTestSuite extends ChangeTestSuite {
 	 */
 	@SuppressWarnings("unused")
 	private void endTestSuiteChangePackageTests() {
-
-		ChangePackage changePackage = ChangeTestHelper.getChangePackage(getTestProjectSpace().getOperations(), true,
-			true);
-		if (changePackage.getOperations().size() == 3) {
-			System.out.println("ok");
-			return;
-
-		}
-
-		System.out.println("num of changes: " + changePackage.getOperations().size());
-
-		int i = 1;
-		for (AbstractOperation op : changePackage.getOperations()) {
-			System.out.println("-------------------------------------");
-			System.out.print(i + ". ");
-			if (op instanceof CreateDeleteOperation) {
-				System.out
-					.println(op.getName() + " (" + ((CreateDeleteOperation) op).getModelElement().getName() + ")");
-			} else {
-				System.out.println(op.getName() + " ("
-					+ getTestProject().getModelElement(op.getModelElementId()).getName() + ")");
-			}
-			System.out.println(op.getDescription());
-			// System.out.println("-------------------------------------");
-			i++;
-
-		}
+		// end here if we are going to investigate a change package.
 	}
-
 }
