@@ -5,11 +5,9 @@
  */
 package org.unicase.workspace.edit.views.changes;
 
-import java.util.ArrayList;
 import java.util.Arrays;
 import java.util.List;
 
-import org.eclipse.emf.ecore.EObject;
 import org.eclipse.emf.edit.provider.ComposedAdapterFactory;
 import org.eclipse.emf.edit.ui.provider.AdapterFactoryContentProvider;
 import org.eclipse.jface.viewers.IContentProvider;
@@ -47,12 +45,11 @@ public class CompactChangesContentProvider extends AdapterFactoryContentProvider
 	@Override
 	public Object[] getChildren(Object object) {
 		if (object instanceof ChangePackage) {
-			ArrayList<EObject> ret = new ArrayList<EObject>();
 			ChangePackage cPackage = (ChangePackage) object;
 			ChangePackageVisualizationHelper helper = new ChangePackageVisualizationHelper(Arrays.asList(cPackage),
 				WorkspaceManager.getInstance().getCurrentWorkspace().getActiveProjectSpace().getProject());
-			ret.addAll(helper.getAllModelElements(cPackage));
-			return ret.toArray();
+
+			return helper.getAllModelElements(cPackage).toArray();
 		}
 		return super.getChildren(object);
 

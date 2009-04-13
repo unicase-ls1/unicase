@@ -14,6 +14,7 @@ import org.unicase.emfstore.esmodel.versioning.ChangePackage;
 import org.unicase.emfstore.esmodel.versioning.LogMessage;
 import org.unicase.emfstore.esmodel.versioning.operations.AbstractOperation;
 import org.unicase.model.ModelElement;
+import org.unicase.model.ModelElementId;
 
 /**
  * Label provider for the model element column in the viewer.
@@ -56,6 +57,11 @@ public class MENameLabelProvider extends ColumnLabelProvider {
 	@Override
 	public void update(ViewerCell cell) {
 		Object element = cell.getElement();
+		final String deleted = "(Deleted Element)";
+		if (element == null || element instanceof ModelElementId) {
+			cell.setText(deleted);
+			return;
+		}
 		if (element instanceof AbstractOperation) {
 			AbstractOperation operation = (AbstractOperation) element;
 			ModelElement me = visualizationHelper.getModelElement(operation.getModelElementId());
@@ -64,7 +70,7 @@ public class MENameLabelProvider extends ColumnLabelProvider {
 				cell.setText(me.getName());
 				cell.setImage(emfProvider.getImage(me));
 			} else {
-				cell.setText("(Missing Element)");
+				cell.setText(deleted);
 			}
 			if (opBackgroundLabelProvider != null) {
 				cell.setForeground(opBackgroundLabelProvider.getColor(operation));
