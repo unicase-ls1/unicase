@@ -4,17 +4,18 @@
  */
 package org.unicase.analyzer.exceptions;
 
-public class ItertorException extends Exception {
+@SuppressWarnings("serial")
+public class IteratorException extends Exception {
 
-	public ItertorException(String message, Throwable cause) {
+	public IteratorException(String message, Throwable cause) {
 		super(message, cause);
 	}
 
-	public ItertorException(String message) {
+	public IteratorException(String message) {
 		super(message);
 	}
 
-	public ItertorException(Throwable cause) {
+	public IteratorException(Throwable cause) {
 		super(cause);
 	}
 
