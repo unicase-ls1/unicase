@@ -12,11 +12,14 @@ import java.io.IOException;
 import java.text.SimpleDateFormat;
 import java.util.Date;
 import java.util.List;
+import java.util.Set;
 
 import org.eclipse.core.commands.AbstractHandler;
 import org.eclipse.core.commands.ExecutionEvent;
 import org.eclipse.core.commands.ExecutionException;
 import org.eclipse.core.runtime.IProgressMonitor;
+import org.eclipse.emf.common.util.EList;
+import org.eclipse.emf.ecore.EObject;
 import org.eclipse.emf.ecore.util.EcoreUtil;
 import org.eclipse.jface.dialogs.MessageDialog;
 import org.eclipse.jface.dialogs.ProgressMonitorDialog;
@@ -26,10 +29,13 @@ import org.eclipse.swt.widgets.FileDialog;
 import org.unicase.analyzer.ProjectAnalysisData;
 import org.unicase.analyzer.VersionIterator;
 import org.unicase.analyzer.exceptions.ItertorException;
+import org.unicase.dashboard.analyzer.providers.CreatorNotificationProvider;
+import org.unicase.dashboard.analyzer.providers.ModifierNotificationProvider;
 import org.unicase.dashboard.analyzer.providers.TaskNotificationProvider;
 import org.unicase.dashboard.analyzer.providers.TaskTraceNotificationProvider;
 import org.unicase.emfstore.esmodel.ProjectId;
 import org.unicase.emfstore.esmodel.notification.ESNotification;
+import org.unicase.emfstore.esmodel.versioning.ChangePackage;
 import org.unicase.emfstore.esmodel.versioning.PrimaryVersionSpec;
 import org.unicase.emfstore.esmodel.versioning.VersioningFactory;
 import org.unicase.model.ModelElement;
@@ -40,6 +46,7 @@ import org.unicase.model.task.TaskPackage;
 import org.unicase.workspace.ProjectSpace;
 import org.unicase.workspace.Usersession;
 import org.unicase.workspace.WorkspaceManager;
+import org.unicase.workspace.edit.views.changes.ChangePackageVisualizationHelper;
 import org.unicase.workspace.notification.NotificationGenerator;
 
 /**
@@ -110,7 +117,9 @@ public class DashboardAnalyzerHandler extends AbstractHandler {
 			generator.addNotificationProvider(new TaskNotificationProvider(BugPackage.eINSTANCE.getBugReport()));
 			generator.addNotificationProvider(new TaskNotificationProvider(taskPackage.getWorkPackage()));
 			generator.addNotificationProvider(new TaskTraceNotificationProvider());
-			generator.addNotificationProvider(new TaskTraceNotificationProvider());
+			generator.addNotificationProvider(new CreatorNotificationProvider());
+			ModifierNotificationProvider modifierProvider = new ModifierNotificationProvider();
+			generator.addNotificationProvider(modifierProvider);
 
 			while (iterator.hasNext()) {
 				try {
@@ -124,8 +133,14 @@ public class DashboardAnalyzerHandler extends AbstractHandler {
 					System.out.println("Writing revision " + analysisData.getPrimaryVersionSpec().getIdentifier());
 
 					for (String user : users) {
-						List<ESNotification> notifications = generator.generateNotifications(analysisData
-							.getChangePackages(), user, projectSpace, false);
+
+						EList<ChangePackage> changePackages = analysisData.getChangePackages();
+
+						// update the list of modifies elements for the modifier provider.
+						updateModifiedElements(projectSpace, modifierProvider, user, changePackages);
+
+						List<ESNotification> notifications = generator.generateNotifications(changePackages, user,
+							projectSpace, false);
 						for (ESNotification n : notifications) {
 							writer.write(analysisData.getPrimaryVersionSpec().getIdentifier() + "");
 							writer.write(",");
@@ -180,5 +195,28 @@ public class DashboardAnalyzerHandler extends AbstractHandler {
 		progressDialog.close();
 
 		return null;
+	}
+
+	private void updateModifiedElements(ProjectSpace projectSpace, ModifierNotificationProvider modifierProvider,
+		String user, EList<ChangePackage> changePackages) {
+		ChangePackageVisualizationHelper visualizationHelper = new ChangePackageVisualizationHelper(
+			changePackages, projectSpace.getProject());
+		for (ChangePackage cp : changePackages) {
+			if (cp.getLogMessage().getAuthor().equals(user)) {
+				Set<EObject> allModelElements = visualizationHelper.getAllModelElements(cp);
+				for (EObject eObject : allModelElements) {
+					if (eObject instanceof ModelElement) {
+						ModelElement modelElement = (ModelElement) eObject;
+						if (modelElement.getCreator().equals(user)) {
+							// discard all elements included in the creator provider
+							continue;
+						}
+						modifierProvider.getWatchList().add(modelElement.getModelElementId());
+					} else if (eObject instanceof ModelElementId) {
+						modifierProvider.getWatchList().add((ModelElementId) eObject);
+					}
+				}
+			}
+		}
 	}
 }
