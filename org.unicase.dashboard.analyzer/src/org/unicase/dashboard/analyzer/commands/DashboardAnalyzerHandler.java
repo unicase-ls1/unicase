@@ -10,6 +10,7 @@ import java.io.BufferedWriter;
 import java.io.FileWriter;
 import java.io.IOException;
 import java.text.SimpleDateFormat;
+import java.util.Date;
 import java.util.List;
 
 import org.eclipse.core.commands.AbstractHandler;
@@ -17,6 +18,7 @@ import org.eclipse.core.commands.ExecutionEvent;
 import org.eclipse.core.commands.ExecutionException;
 import org.eclipse.core.runtime.IProgressMonitor;
 import org.eclipse.emf.ecore.util.EcoreUtil;
+import org.eclipse.jface.dialogs.MessageDialog;
 import org.eclipse.jface.dialogs.ProgressMonitorDialog;
 import org.eclipse.swt.SWT;
 import org.eclipse.swt.widgets.Display;
@@ -53,6 +55,11 @@ public class DashboardAnalyzerHandler extends AbstractHandler {
 		ProjectSpace projectSpace = WorkspaceManager.getInstance().getCurrentWorkspace().getActiveProjectSpace();
 
 		Usersession session = projectSpace.getUsersession();
+
+		if (!session.isLoggedIn()) {
+			MessageDialog.openError(Display.getCurrent().getActiveShell(), "Login required", "Log in first!");
+			return null;
+		}
 		ProjectId pid = (ProjectId) EcoreUtil.copy(projectSpace.getProjectId());
 		int step = 1;
 
@@ -61,13 +68,20 @@ public class DashboardAnalyzerHandler extends AbstractHandler {
 		PrimaryVersionSpec end = VersioningFactory.eINSTANCE.createPrimaryVersionSpec();
 		end.setIdentifier(10);
 		VersionIterator iterator;
+		ProgressMonitorDialog progressDialog = null;
 		try {
+
+			progressDialog = new ProgressMonitorDialog(Display.getCurrent().getActiveShell());
+			progressDialog.open();
+			progressDialog.getProgressMonitor().beginTask("Exporting notifications", IProgressMonitor.UNKNOWN);
+
 			iterator = new VersionIterator(session, pid, step, start, end, true, true);
-			
+
 			FileWriter fileWriter = null;
 			FileDialog dialog = new FileDialog(Display.getCurrent().getActiveShell(), SWT.SAVE);
 			String path = dialog.open();
 			if (path == null) {
+				progressDialog.close();
 				return null;
 			}
 
@@ -87,9 +101,9 @@ public class DashboardAnalyzerHandler extends AbstractHandler {
 
 			SimpleDateFormat dateFormat = new SimpleDateFormat("yyyy-MM-dd HH:mm");
 			String[] users = { "shterevg", "helming", "koegel", "naughton" };
-			
+
 			NotificationGenerator generator = new NotificationGenerator();
-			
+
 			TaskPackage taskPackage = TaskPackage.eINSTANCE;
 			generator.addNotificationProvider(new TaskNotificationProvider(taskPackage.getActionItem()));
 			generator.addNotificationProvider(new TaskNotificationProvider(RationalePackage.eINSTANCE.getIssue()));
@@ -97,23 +111,21 @@ public class DashboardAnalyzerHandler extends AbstractHandler {
 			generator.addNotificationProvider(new TaskNotificationProvider(taskPackage.getWorkPackage()));
 			generator.addNotificationProvider(new TaskTraceNotificationProvider());
 			generator.addNotificationProvider(new TaskTraceNotificationProvider());
-			
-			ProgressMonitorDialog progressDialog = new ProgressMonitorDialog(Display.getCurrent().getActiveShell());
-			progressDialog.open();
-			progressDialog.getProgressMonitor().beginTask("Exporting notifications", IProgressMonitor.UNKNOWN);
-			
+
 			while (iterator.hasNext()) {
 				try {
 					ProjectAnalysisData analysisData = iterator.next();
-					if(analysisData==null){
+					if (analysisData == null) {
 						break;
 					}
-					progressDialog.getProgressMonitor().setTaskName("Writing revision "+analysisData.getPrimaryVersionSpec().getIdentifier());
-					System.out.println("Writing revision "+analysisData.getPrimaryVersionSpec().getIdentifier());
-					
+					progressDialog.getProgressMonitor().beginTask(
+						"Writing revision " + analysisData.getPrimaryVersionSpec().getIdentifier(),
+						IProgressMonitor.UNKNOWN);
+					System.out.println("Writing revision " + analysisData.getPrimaryVersionSpec().getIdentifier());
+
 					for (String user : users) {
-						List<ESNotification> notifications = generator.generateNotifications(
-							analysisData.getChangePackages(), user, projectSpace, false);
+						List<ESNotification> notifications = generator.generateNotifications(analysisData
+							.getChangePackages(), user, projectSpace, false);
 						for (ESNotification n : notifications) {
 							writer.write(analysisData.getPrimaryVersionSpec().getIdentifier() + "");
 							writer.write(",");
@@ -125,10 +137,15 @@ public class DashboardAnalyzerHandler extends AbstractHandler {
 							writer.write(",");
 							writer.write(user);
 							writer.write(",");
-							writer.write(dateFormat.format(n.getCreationDate()));
+							final Date creationDate = n.getCreationDate();
+							if (creationDate != null) {
+								writer.write(dateFormat.format(creationDate));
+							} else {
+								writer.write("null");
+							}
 							writer.write(",");
 							final ModelElementId modelElementId = n.getRelatedModelElements().get(0);
-							if(modelElementId!=null){
+							if (modelElementId != null) {
 								ModelElement modelElement = projectSpace.getProject().getModelElement(modelElementId);
 								writer.write(modelElementId.getId());
 								writer.write(",");
@@ -141,7 +158,7 @@ public class DashboardAnalyzerHandler extends AbstractHandler {
 									writer.write(",");
 									writer.write(modelElement.eClass().getName());
 								}
-							}else{
+							} else {
 								writer.write(",,");
 							}
 							writer.write("\n");
@@ -151,7 +168,6 @@ public class DashboardAnalyzerHandler extends AbstractHandler {
 					System.out.println(e);
 					//
 				} finally {
-					progressDialog.close();
 					writer.flush();
 				}
 			}
@@ -161,8 +177,8 @@ public class DashboardAnalyzerHandler extends AbstractHandler {
 		} catch (IOException e1) {
 			e1.printStackTrace();
 		}
+		progressDialog.close();
 
 		return null;
 	}
-
 }
