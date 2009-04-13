@@ -310,6 +310,9 @@ public class ESBrowserView extends ViewPart {
 			if (session != null && session.isLoggedIn()) {
 				manager.add(new Separator("Userspace"));
 				manager.add(serverChangeSession);
+				if (accessControl == null) {
+					accessControl = new AccessControlHelper(session);
+				}
 				try {
 					accessControl.checkServerAdminAccess();
 					manager.add(new Separator("Administrative"));
@@ -335,6 +338,9 @@ public class ESBrowserView extends ViewPart {
 		} else if (obj instanceof ProjectInfo) {
 			manager.add(projectCheckout);
 			manager.add(projectProperties);
+			if (accessControl == null) {
+				accessControl = new AccessControlHelper(session);
+			}
 			try {
 				accessControl.checkServerAdminAccess();
 				manager.add(new Separator("Administrative"));
