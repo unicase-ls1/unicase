@@ -392,8 +392,9 @@ public class ProjectImpl extends EObjectImpl implements Project, ProjectChangeOb
 		for (ProjectChangeObserver projectChangeObserver : this.observers) {
 			projectChangeObserver.modelElementDeleteStarted(modelElement);
 		}
-		deleteIncomingCrossReferences(modelElement);
+
 		deleteOutgoingCrossReferences(modelElement);
+		deleteIncomingCrossReferences(modelElement);
 
 		for (ModelElement child : modelElement.getAllContainedModelElements()) {
 			deleteOutgoingCrossReferences(child);
