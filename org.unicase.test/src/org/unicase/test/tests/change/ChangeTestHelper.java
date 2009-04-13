@@ -1,15 +1,5 @@
 package org.unicase.test.tests.change;
 
-import java.io.ByteArrayOutputStream;
-import java.io.File;
-import java.io.FileOutputStream;
-import java.io.IOException;
-import java.util.ArrayList;
-import java.util.Collections;
-import java.util.Date;
-import java.util.List;
-import java.util.Random;
-
 import org.eclipse.emf.common.util.BasicEList;
 import org.eclipse.emf.common.util.EList;
 import org.eclipse.emf.common.util.URI;
@@ -40,6 +30,16 @@ import org.unicase.workspace.Configuration;
 import org.unicase.workspace.ProjectSpace;
 import org.unicase.workspace.WorkspaceFactory;
 import org.unicase.workspace.impl.ProjectSpaceImpl;
+
+import java.io.ByteArrayOutputStream;
+import java.io.File;
+import java.io.FileOutputStream;
+import java.io.IOException;
+import java.util.ArrayList;
+import java.util.Collections;
+import java.util.Date;
+import java.util.List;
+import java.util.Random;
 
 public final class ChangeTestHelper {
 
@@ -112,9 +112,8 @@ public final class ChangeTestHelper {
 	}
 
 	/**
-	 * This method compares two projects using ModelUtil.areEqual() method. But is almost always returns false, although
-	 * objects are equal. Therefore use linearCompare() method to compare a string representation of objects with each
-	 * other.
+	 * This method compares two projects using {@link ModelUtil#areEqual(Project, Project)}. You can also use
+	 * linearCompare(project, project) to identify the position in which the project differ.
 	 * 
 	 * @param testSpace
 	 * @param compareSpace
