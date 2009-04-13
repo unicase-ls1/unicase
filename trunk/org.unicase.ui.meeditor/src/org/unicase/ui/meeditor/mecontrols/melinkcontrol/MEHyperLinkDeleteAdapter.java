@@ -10,20 +10,20 @@ import org.eclipse.emf.ecore.EReference;
 import org.eclipse.emf.transaction.RecordingCommand;
 import org.eclipse.emf.transaction.TransactionalEditingDomain;
 import org.eclipse.emf.transaction.util.TransactionUtil;
-import org.eclipse.ui.forms.events.HyperlinkAdapter;
-import org.eclipse.ui.forms.events.HyperlinkEvent;
-import org.eclipse.ui.forms.events.IHyperlinkListener;
+import org.eclipse.swt.events.MouseAdapter;
+import org.eclipse.swt.events.MouseEvent;
 import org.unicase.model.ModelElement;
 import org.unicase.model.NonDomainElement;
 import org.unicase.ui.common.commands.DeleteModelElementCommand;
 import org.unicase.ui.common.commands.DeleteReferenceCommand;
 
 /**
- * A {@link HyperlinkAdapter} regarding deletion of model elements.
+ * A mouse adapter regarding deletion of model elements.
  * 
  * @author helming
+ * @author shterev
  */
-public class MEHyperLinkDeleteAdapter extends HyperlinkAdapter implements IHyperlinkListener {
+public class MEHyperLinkDeleteAdapter extends MouseAdapter {
 
 	private EObject modelElement;
 	private EReference reference;
@@ -46,7 +46,7 @@ public class MEHyperLinkDeleteAdapter extends HyperlinkAdapter implements IHyper
 	 * {@inheritDoc}
 	 */
 	@Override
-	public void linkActivated(HyperlinkEvent e) {
+	public void mouseUp(MouseEvent e) {
 		TransactionalEditingDomain domain = TransactionUtil.getEditingDomain(modelElement);
 		RecordingCommand command = null;
 		if (reference.isContainment() && opposite instanceof NonDomainElement) {
