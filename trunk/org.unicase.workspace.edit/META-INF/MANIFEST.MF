@@ -14,6 +14,7 @@ Export-Package:
  org.unicase.workspace.edit.dashboard,
  org.unicase.workspace.edit.dashboard.widgets,
  org.unicase.workspace.edit.dialogs,
+ org.unicase.workspace.edit.views.changes,
  org.unicase.workspace.provider
 Require-Bundle: org.eclipse.ui;visibility:=reexport,
  org.eclipse.emf.transaction,
