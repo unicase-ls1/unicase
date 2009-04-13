@@ -108,7 +108,7 @@ public class CreatorNotificationProvider implements NotificationProvider {
 	private void createNotification(ModelElementId mid, Date date) {
 
 		ModelElement modelElement = projectSpace.getProject().getModelElement(mid);
-		if (modelElement != null && modelElement.getCreator().equals(user)) {
+		if (modelElement != null && (modelElement.getCreator() != null && modelElement.getCreator().equals(user))) {
 			ESNotification notification = NotificationFactory.eINSTANCE.createESNotification();
 			notification.setCreationDate(date);
 			notification.setSender(getName());
@@ -127,7 +127,7 @@ public class CreatorNotificationProvider implements NotificationProvider {
 			stringBuilder.append(className);
 			stringBuilder.append(" ");
 			stringBuilder.append("that you created has been changed.");
-			stringBuilder.append(NotificationHelper.getHTMLLinkForModelElement(mid, projectSpace));
+			stringBuilder.append(NotificationHelper.getHTMLLinkForModelElement(mid, projectSpace, false));
 			String message = stringBuilder.toString();
 			notification.setMessage(message);
 			notification.getRelatedModelElements().add(mid);

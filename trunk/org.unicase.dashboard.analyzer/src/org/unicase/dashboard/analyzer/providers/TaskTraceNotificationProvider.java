@@ -109,19 +109,21 @@ public class TaskTraceNotificationProvider implements NotificationProvider {
 		StringBuilder message = new StringBuilder();
 		message.append(modelElement.eClass().getName());
 		message.append(" ");
-		message.append(NotificationHelper.getHTMLLinkForModelElement(meId, projectSpace));
+		message.append(NotificationHelper.getHTMLLinkForModelElement(meId, projectSpace, false));
 		message.append(" has been modified.");
 		message.append("\n");
 
 		message.append("Trace to the changed element: ");
 
-		message.append(NotificationHelper.getHTMLLinkForModelElement(modelElementPath.getSource(), projectSpace));
+		message
+			.append(NotificationHelper.getHTMLLinkForModelElement(modelElementPath.getSource(), projectSpace, false));
 		message.append(" => ");
 		for (ModelElementId traceId : modelElementPath.getPath()) {
-			message.append(NotificationHelper.getHTMLLinkForModelElement(traceId, projectSpace));
+			message.append(NotificationHelper.getHTMLLinkForModelElement(traceId, projectSpace, false));
 			message.append(" => ");
 		}
-		message.append(NotificationHelper.getHTMLLinkForModelElement(modelElementPath.getTarget(), projectSpace));
+		message
+			.append(NotificationHelper.getHTMLLinkForModelElement(modelElementPath.getTarget(), projectSpace, false));
 		notification.setMessage(message.toString());
 		ModelElementId modelElementId = (ModelElementId) EcoreUtil.copy(modelElementPath.getTarget());
 		notification.getRelatedModelElements().add(modelElementId);

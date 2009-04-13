@@ -7,6 +7,7 @@ package org.unicase.dashboard.analyzer.providers;
 
 import java.util.ArrayList;
 import java.util.Date;
+import java.util.HashSet;
 import java.util.List;
 import java.util.Set;
 
@@ -42,6 +43,7 @@ public class ModifierNotificationProvider implements NotificationProvider {
 	 * Default constructor.
 	 */
 	public ModifierNotificationProvider() {
+		watchList = new HashSet<ModelElementId>();
 	}
 
 	/**
@@ -128,7 +130,7 @@ public class ModifierNotificationProvider implements NotificationProvider {
 			stringBuilder.append(className);
 			stringBuilder.append(" ");
 			stringBuilder.append("that you modified has been changed.");
-			stringBuilder.append(NotificationHelper.getHTMLLinkForModelElement(mid, projectSpace));
+			stringBuilder.append(NotificationHelper.getHTMLLinkForModelElement(mid, projectSpace, false));
 			String message = stringBuilder.toString();
 			notification.setMessage(message);
 			notification.getRelatedModelElements().add(mid);

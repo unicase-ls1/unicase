@@ -29,7 +29,6 @@ import org.unicase.model.task.WorkItem;
 import org.unicase.model.task.util.TaskQuery;
 import org.unicase.workspace.ProjectSpace;
 import org.unicase.workspace.notification.NotificationProvider;
-import org.unicase.workspace.notification.provider.NotificationHelper;
 
 /**
  * Provides assignment notifications.
@@ -136,7 +135,7 @@ public class TaskChangeNotificationProvider implements NotificationProvider {
 		stringBuilder.append("Your ");
 		stringBuilder.append(clazz.getName());
 		stringBuilder.append(" ");
-		stringBuilder.append(NotificationHelper.getHTMLLinkForModelElement(workItem, projectSpace));
+		stringBuilder.append(workItem.getName());
 		stringBuilder.append(" has changed.");
 
 		String message = stringBuilder.toString();
