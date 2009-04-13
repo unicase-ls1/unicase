@@ -92,8 +92,7 @@ public class MELinkControl extends AbstractMEControl {
 		}
 		deleteLink.setImage(deleteImage);
 
-		deleteLink
-			.addHyperlinkListener(new MEHyperLinkDeleteAdapter(contextModelElement, reference, getModelElement()));
+		deleteLink.addMouseListener(new MEHyperLinkDeleteAdapter(contextModelElement, reference, getModelElement()));
 		return linkComposite;
 	}
 

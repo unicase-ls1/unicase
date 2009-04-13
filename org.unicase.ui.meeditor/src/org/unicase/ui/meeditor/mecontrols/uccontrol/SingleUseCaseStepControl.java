@@ -231,8 +231,7 @@ public class SingleUseCaseStepControl extends AbstractMEControl {
 		ImageHyperlink deleteLink = getToolkit().createImageHyperlink(buttonComposite, parentStyle);
 		deleteLink.setBackground(backGroundColor);
 		deleteLink.setImage(PlatformUI.getWorkbench().getSharedImages().getImage(ISharedImages.IMG_TOOL_DELETE));
-		deleteLink
-			.addHyperlinkListener(new MEHyperLinkDeleteAdapter(contextModelElement, reference, getModelElement()));
+		deleteLink.addMouseListener(new MEHyperLinkDeleteAdapter(contextModelElement, reference, getModelElement()));
 		deleteLink.setLayoutData(gdDeleteLink);
 	}
 
