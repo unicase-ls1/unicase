@@ -63,6 +63,7 @@ public class ProjectImpl extends EObjectImpl implements Project, ProjectChangeOb
 
 	/**
 	 * <!-- begin-user-doc --> .<!-- end-user-doc -->
+	 * 
 	 * @generated
 	 */
 	@Override
@@ -72,6 +73,7 @@ public class ProjectImpl extends EObjectImpl implements Project, ProjectChangeOb
 
 	/**
 	 * <!-- begin-user-doc --> <!-- end-user-doc -->
+	 * 
 	 * @generated
 	 */
 	public EList<ModelElement> getModelElements() {
@@ -174,6 +176,7 @@ public class ProjectImpl extends EObjectImpl implements Project, ProjectChangeOb
 
 	/**
 	 * <!-- begin-user-doc --> <!-- end-user-doc -->
+	 * 
 	 * @generated
 	 */
 	@Override
@@ -187,6 +190,7 @@ public class ProjectImpl extends EObjectImpl implements Project, ProjectChangeOb
 
 	/**
 	 * <!-- begin-user-doc --> <!-- end-user-doc -->
+	 * 
 	 * @generated
 	 */
 	@Override
@@ -200,6 +204,7 @@ public class ProjectImpl extends EObjectImpl implements Project, ProjectChangeOb
 
 	/**
 	 * <!-- begin-user-doc --> <!-- end-user-doc -->
+	 * 
 	 * @generated
 	 */
 	@SuppressWarnings("unchecked")
@@ -216,6 +221,7 @@ public class ProjectImpl extends EObjectImpl implements Project, ProjectChangeOb
 
 	/**
 	 * <!-- begin-user-doc --> <!-- end-user-doc -->
+	 * 
 	 * @generated
 	 */
 	@Override
@@ -230,6 +236,7 @@ public class ProjectImpl extends EObjectImpl implements Project, ProjectChangeOb
 
 	/**
 	 * <!-- begin-user-doc --> <!-- end-user-doc -->
+	 * 
 	 * @generated
 	 */
 	@Override
@@ -389,8 +396,8 @@ public class ProjectImpl extends EObjectImpl implements Project, ProjectChangeOb
 		deleteOutgoingCrossReferences(modelElement);
 
 		for (ModelElement child : modelElement.getAllContainedModelElements()) {
-			deleteIncomingCrossReferences(child);
 			deleteOutgoingCrossReferences(child);
+			deleteIncomingCrossReferences(child);
 		}
 
 		// remove containment
