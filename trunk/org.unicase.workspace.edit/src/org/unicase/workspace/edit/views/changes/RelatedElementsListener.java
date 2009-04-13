@@ -25,6 +25,7 @@ import org.eclipse.swt.widgets.Composite;
 import org.unicase.emfstore.esmodel.versioning.ChangePackage;
 import org.unicase.emfstore.esmodel.versioning.operations.AbstractOperation;
 import org.unicase.model.ModelElement;
+import org.unicase.model.ModelElementId;
 
 /**
  * A listener to display the model elements related to the current selection in the changes tree. Supports
@@ -72,7 +73,11 @@ public class RelatedElementsListener implements ISelectionChangedListener {
 
 			@Override
 			public String getText(Object element) {
-				return emfProvider.getText(element);
+				String text = emfProvider.getText(element);
+				if (element == null || element instanceof ModelElementId) {
+					text = "(Deleted Element)";
+				}
+				return text;
 			}
 		};
 		if (selected instanceof AbstractOperation) {

@@ -121,7 +121,12 @@ public class ChangePackageVisualizationHelper {
 			ReferenceOperation op = (ReferenceOperation) operation;
 			Set<ModelElementId> others = op.getOtherInvolvedModelElements();
 			for (ModelElementId id : others) {
-				set.add(getModelElement(id));
+				ModelElement modelElement = getModelElement(id);
+				if (modelElement != null) {
+					set.add(modelElement);
+				} else {
+					set.add(id);
+				}
 			}
 		}
 		return set;
@@ -219,7 +224,12 @@ public class ChangePackageVisualizationHelper {
 		Set<EObject> set = new HashSet<EObject>();
 		Set<ModelElementId> tempSet = this.touchedModelElements.get(changePackage);
 		for (ModelElementId id : tempSet) {
-			set.add(getModelElement(id));
+			ModelElement modelElement = getModelElement(id);
+			if (modelElement != null) {
+				set.add(modelElement);
+			} else {
+				set.add(id);
+			}
 		}
 		return set;
 	}
