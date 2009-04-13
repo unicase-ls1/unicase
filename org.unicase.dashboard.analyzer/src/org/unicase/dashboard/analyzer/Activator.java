@@ -10,24 +10,27 @@ import org.eclipse.ui.plugin.AbstractUIPlugin;
 import org.osgi.framework.BundleContext;
 
 /**
- * The activator class controls the plug-in life cycle
+ * The activator class controls the plug-in life cycle.
  * 
  * @author Shterev
  */
 public class Activator extends AbstractUIPlugin {
 
-	// The plug-in ID
+	/**
+	 * The plug-in ID.
+	 */
 	public static final String PLUGIN_ID = "org.unicase.dashboard.analyzer";
 
 	// The shared instance
 	private static Activator plugin;
-	
+
 	/**
-	 * The constructor
+	 * The constructor.
 	 */
 	public Activator() {
 	}
 
+	// BEGIN SUPRESS CATCH EXCEPTION
 	/**
 	 * {@inheritDoc}
 	 */
@@ -46,9 +49,11 @@ public class Activator extends AbstractUIPlugin {
 		super.stop(context);
 	}
 
+	// END SUPRESS CATCH EXCEPTION
+
 	/**
-	 * Returns the shared instance
-	 *
+	 * Returns the shared instance.
+	 * 
 	 * @return the shared instance
 	 */
 	public static Activator getDefault() {
@@ -56,9 +61,8 @@ public class Activator extends AbstractUIPlugin {
 	}
 
 	/**
-	 * Returns an image descriptor for the image file at the given
-	 * plug-in relative path
-	 *
+	 * Returns an image descriptor for the image file at the given plug-in relative path.
+	 * 
 	 * @param path the path
 	 * @return the image descriptor
 	 */

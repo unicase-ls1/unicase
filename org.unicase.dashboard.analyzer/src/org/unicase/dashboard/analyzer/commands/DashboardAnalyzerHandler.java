@@ -71,9 +71,9 @@ public class DashboardAnalyzerHandler extends AbstractHandler {
 		int step = 1;
 
 		PrimaryVersionSpec start = VersioningFactory.eINSTANCE.createPrimaryVersionSpec();
-		start.setIdentifier(1);
+		start.setIdentifier(404);
 		PrimaryVersionSpec end = VersioningFactory.eINSTANCE.createPrimaryVersionSpec();
-		end.setIdentifier(10);
+		end.setIdentifier(622);
 		VersionIterator iterator;
 		ProgressMonitorDialog progressDialog = null;
 		try {
@@ -107,7 +107,7 @@ public class DashboardAnalyzerHandler extends AbstractHandler {
 			writer.write("\n");
 
 			SimpleDateFormat dateFormat = new SimpleDateFormat("yyyy-MM-dd HH:mm");
-			String[] users = { "shterevg", "helming", "koegel", "naughton" };
+			String[] users = { "kaserf", "pfaehlem" };
 
 			NotificationGenerator generator = new NotificationGenerator();
 
@@ -130,7 +130,6 @@ public class DashboardAnalyzerHandler extends AbstractHandler {
 					progressDialog.getProgressMonitor().beginTask(
 						"Writing revision " + analysisData.getPrimaryVersionSpec().getIdentifier(),
 						IProgressMonitor.UNKNOWN);
-					System.out.println("Writing revision " + analysisData.getPrimaryVersionSpec().getIdentifier());
 
 					for (String user : users) {
 
@@ -179,9 +178,10 @@ public class DashboardAnalyzerHandler extends AbstractHandler {
 							writer.write("\n");
 						}
 					}
+					// BEGIN SUPRESS CATCH EXCEPTION
 				} catch (RuntimeException e) {
-					System.out.println(e);
-					//
+					e.printStackTrace();
+					// END SUPRESS CATCH EXCEPTION
 				} finally {
 					writer.flush();
 				}
@@ -199,15 +199,15 @@ public class DashboardAnalyzerHandler extends AbstractHandler {
 
 	private void updateModifiedElements(ProjectSpace projectSpace, ModifierNotificationProvider modifierProvider,
 		String user, EList<ChangePackage> changePackages) {
-		ChangePackageVisualizationHelper visualizationHelper = new ChangePackageVisualizationHelper(
-			changePackages, projectSpace.getProject());
+		ChangePackageVisualizationHelper visualizationHelper = new ChangePackageVisualizationHelper(changePackages,
+			projectSpace.getProject());
 		for (ChangePackage cp : changePackages) {
 			if (cp.getLogMessage().getAuthor().equals(user)) {
 				Set<EObject> allModelElements = visualizationHelper.getAllModelElements(cp);
 				for (EObject eObject : allModelElements) {
 					if (eObject instanceof ModelElement) {
 						ModelElement modelElement = (ModelElement) eObject;
-						if (modelElement.getCreator().equals(user)) {
+						if (modelElement.getCreator() != null && modelElement.getCreator().equals(user)) {
 							// discard all elements included in the creator provider
 							continue;
 						}

@@ -222,7 +222,7 @@ public class TaskNotificationProvider implements NotificationProvider {
 			stringBuilder.append(" ");
 			stringBuilder.append(className);
 			stringBuilder.append(" ");
-			stringBuilder.append(NotificationHelper.getHTMLLinkForModelElement(mid, projectSpace));
+			stringBuilder.append(NotificationHelper.getHTMLLinkForModelElement(mid, projectSpace, false));
 		String message = stringBuilder.toString();
 		notification.setMessage(message);
 		notification.getRelatedModelElements().add(mid);
