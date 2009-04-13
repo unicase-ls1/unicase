@@ -28,7 +28,7 @@ import org.eclipse.swt.widgets.Display;
 import org.eclipse.swt.widgets.FileDialog;
 import org.unicase.analyzer.ProjectAnalysisData;
 import org.unicase.analyzer.VersionIterator;
-import org.unicase.analyzer.exceptions.ItertorException;
+import org.unicase.analyzer.exceptions.IteratorException;
 import org.unicase.dashboard.analyzer.providers.CreatorNotificationProvider;
 import org.unicase.dashboard.analyzer.providers.ModifierNotificationProvider;
 import org.unicase.dashboard.analyzer.providers.TaskNotificationProvider;
@@ -82,7 +82,7 @@ public class DashboardAnalyzerHandler extends AbstractHandler {
 			progressDialog.open();
 			progressDialog.getProgressMonitor().beginTask("Exporting notifications", IProgressMonitor.UNKNOWN);
 
-			iterator = new VersionIterator(session, pid, step, start, end, true, true);
+			iterator = new VersionIterator(session, pid, step, start, end, false, true, true);
 
 			FileWriter fileWriter = null;
 			FileDialog dialog = new FileDialog(Display.getCurrent().getActiveShell(), SWT.SAVE);
@@ -187,7 +187,7 @@ public class DashboardAnalyzerHandler extends AbstractHandler {
 				}
 			}
 			writer.close();
-		} catch (ItertorException e2) {
+		} catch (IteratorException e2) {
 			e2.printStackTrace();
 		} catch (IOException e1) {
 			e1.printStackTrace();
