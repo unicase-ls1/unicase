@@ -54,6 +54,26 @@ public final class NotificationHelper {
 	 * 
 	 * @param meId The id of the model element
 	 * @param projectSpace the project space
+	 * @param active if there should be an actual link, or just the name
+	 * @return a HTML link as string
+	 */
+	public static String getHTMLLinkForModelElement(ModelElementId meId, ProjectSpace projectSpace, boolean active) {
+		
+		ModelElement modelElement = projectSpace.getProject().getModelElement(meId);
+		if (modelElement != null) {
+			if(active){
+				return getHTMLLinkForModelElement(modelElement, projectSpace);
+			}
+			return modelElement.getName();
+		}
+		return "(deleted element)";
+	}
+	
+	/**
+	 * This method create a HTML link pointing to a model element for the message of Notifications.
+	 * 
+	 * @param meId The id of the model element
+	 * @param projectSpace the project space
 	 * @return a HTML link as string
 	 */
 	public static String getHTMLLinkForModelElement(ModelElementId meId, ProjectSpace projectSpace) {
