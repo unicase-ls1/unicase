@@ -24,6 +24,7 @@ import org.unicase.workspace.Configuration;
 import org.unicase.workspace.ProjectSpace;
 import org.unicase.workspace.Workspace;
 import org.unicase.workspace.WorkspaceManager;
+import org.unicase.workspace.edit.dashboard.DashboardEditorInput;
 
 /**
  * Handler for delete project menu item.
@@ -78,6 +79,12 @@ public class DeleteProjectHandler extends ProjectActionHandler {
 						MEEditorInput editorInput = (MEEditorInput) editorReference.getEditorInput();
 						if (projectSpace.getProject().equals(editorInput.getModelElement().getProject())) {
 							// don't ask for saving, because we delete the project anyways
+							wbpage.closeEditor(editorReference.getEditor(false), false);
+						}
+					}
+					if (editorReference.getEditorInput() instanceof DashboardEditorInput) {
+						DashboardEditorInput editorInput = (DashboardEditorInput) editorReference.getEditorInput();
+						if (projectSpace.equals(editorInput.getProjectSpace())) {
 							wbpage.closeEditor(editorReference.getEditor(false), false);
 						}
 					}
