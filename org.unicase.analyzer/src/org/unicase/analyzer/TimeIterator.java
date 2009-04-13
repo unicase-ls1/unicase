@@ -11,14 +11,17 @@ import java.util.List;
 import java.util.NoSuchElementException;
 
 import org.eclipse.emf.ecore.util.EcoreUtil;
+import org.unicase.analyzer.exceptions.IteratorException;
 import org.unicase.emfstore.esmodel.ProjectId;
 import org.unicase.emfstore.esmodel.versioning.ChangePackage;
 import org.unicase.emfstore.esmodel.versioning.HistoryInfo;
 import org.unicase.emfstore.esmodel.versioning.HistoryQuery;
 import org.unicase.emfstore.esmodel.versioning.PrimaryVersionSpec;
 import org.unicase.emfstore.esmodel.versioning.DateVersionSpec;
+import org.unicase.emfstore.esmodel.versioning.VersionSpec;
 import org.unicase.emfstore.esmodel.versioning.VersioningFactory;
 import org.unicase.emfstore.exceptions.EmfStoreException;
+import org.unicase.emfstore.exceptions.InvalidVersionSpecException;
 import org.unicase.model.Project;
 import org.unicase.workspace.Usersession;
 import org.unicase.workspace.WorkspaceManager;
@@ -29,175 +32,123 @@ import org.unicase.workspace.util.WorkspaceUtil;
  * @author liya
  *
  */
-public class TimeIterator implements Iterator<ProjectAnalysisData> {
+public class TimeIterator extends VersionIterator {
 
-	private final Usersession usersession;
-	private final ProjectId projectId;
-	private final int stepLength;
-	private ConnectionManager connectionManager;
-	private PrimaryVersionSpec targetSpec;
 	private DateVersionSpec dateSpec;
-	private final String direction;
-	private final Date start;
-	private final Date end;
+	private int stepLengthUnit;
 
-	public TimeIterator(Usersession usersession, ProjectId projectId, int stepLength) {
-		this.usersession = usersession;
-		this.projectId = projectId;
-		this.stepLength = stepLength;
-		this.connectionManager=WorkspaceManager.getInstance().getConnectionManager();
-		this.targetSpec = VersioningFactory.eINSTANCE.createPrimaryVersionSpec();
-		this.dateSpec = VersioningFactory.eINSTANCE.createDateVersionSpec();
-		this.direction = "forward";
+	
+	/**By default, the iterator will go through from version 0 to Head version,
+	 * and the next() method will return the copy of ProjectAnalysisData instead of ProjectAnalysisData
+	 * @param usersession the session id for authentication
+	 * @param projectId the project id of the project to get
+	 * @param stepLength the step length for the iterator to go through to the next
+	 * @param stepLengthUnit the unit of time step length based on Calendar's static field, e.g. Calendar.SECOND
+	 * @throws IteratorException if any error occurs
+	 * @generated NOT
+	 */
+	public TimeIterator(Usersession usersession, ProjectId projectId, 
+			int stepLength, int stepLengthUnit) throws IteratorException {
 		
-		PrimaryVersionSpec resolvedSpec = VersioningFactory.eINSTANCE.createPrimaryVersionSpec();
-		try {
-			resolvedSpec = this.connectionManager.resolveVersionSpec(usersession.getSessionId(), 
-					projectId, VersioningFactory.eINSTANCE.createHeadVersionSpec());
-		} catch (EmfStoreException e1) {
-			WorkspaceUtil.logException("Couldn't be resolved", e1);
-		}
-
-		HistoryQuery historyQuery = VersioningFactory.eINSTANCE.createHistoryQuery();
-		historyQuery.setSource(targetSpec);
-		historyQuery.setTarget(resolvedSpec);
-		List<HistoryInfo> projectHistory = null;
-		try {
-			projectHistory = this.connectionManager.getHistoryInfo(usersession.getSessionId(),
-					projectId, historyQuery);
-		} catch (EmfStoreException e) {
-			e.printStackTrace();
-		}
-		this.start = projectHistory.get(0).getLogMessage().getDate();
-
-		this.end = projectHistory.get(projectHistory.size()-1).getLogMessage().getDate();
+		this(usersession, projectId, stepLength, stepLengthUnit, VersioningFactory.eINSTANCE
+				.createPrimaryVersionSpec(), VersioningFactory.eINSTANCE
+				.createHeadVersionSpec(), true, true);
 	}
 	
-	public TimeIterator(Usersession usersession, ProjectId projectId, int stepLength,
-		Date start, Date end, String direction) {
-		this.usersession = usersession;
-		this.projectId = projectId;
-		this.stepLength = stepLength;
-		this.connectionManager=WorkspaceManager.getInstance().getConnectionManager();
-		this.targetSpec = VersioningFactory.eINSTANCE.createPrimaryVersionSpec();
+	/**
+	 * @param usersession the session id for authentication
+	 * @param projectId the project id of the project to get
+	 * @param stepLength the step length for the iterator to go through to the next
+	 * @param stepLengthUnit the unit of time step length based on Calendar's static field, e.g. Calendar.SECOND
+	 * @param start the version for the iterator to start from
+	 * @param end the version for the iterator to end with
+	 * @param isForward the direction for the iterator go through, either forward(true) or backward(false). 
+	 * However, doesn't work for backward currently, will be solved in the near future
+	 * @param returnProjectDataCopy  the next() method will return the copy of ProjectAnalysisData
+	 * when it is set to true 
+	 * @throws IteratorException if any error occurs
+	 * @generated NOT
+	 */
+	public TimeIterator(Usersession usersession, ProjectId projectId,
+			int stepLength, int stepLengthUnit, VersionSpec start, VersionSpec end,
+			boolean isForward, boolean returnProjectDataCopy)
+			throws IteratorException {
+		
+		
+		super(usersession, projectId, stepLength, start, end, true, isForward, returnProjectDataCopy);
+		this.stepLengthUnit = stepLengthUnit;
+		
 		this.dateSpec = VersioningFactory.eINSTANCE.createDateVersionSpec();
-		this.direction = direction;
-		this.start = start;
-		this.end = end;
-		this.dateSpec.setDate(start);		
+		if(start instanceof DateVersionSpec){
+			this.dateSpec = (DateVersionSpec) start;
+		}
+		else{
+			HistoryQuery historyQuery = VersioningFactory.eINSTANCE.createHistoryQuery();
+			historyQuery.setSource(this.start);
+			historyQuery.setTarget(this.end);
+			List<HistoryInfo> projectHistory = null;
+			try {
+				projectHistory = this.connectionManager.getHistoryInfo(usersession.getSessionId(),
+						projectId, historyQuery);
+			} catch (InvalidVersionSpecException e) {
+				throw new IteratorException(
+						"Could not get the history info.", e);
+			} catch (EmfStoreException e) {
+				throw new IteratorException("Cannot connect to server.", e);
+			}
+			Date dateStart = projectHistory.get(0).getLogMessage().getDate();
+			this.dateSpec.setDate(dateStart);
+		}
+		
+		if(this.useUnit){
+			updateSpecifier(sourceSpec, dateSpec, stepLength, this.stepLengthUnit, !isForward);
+			
+			if (isForward) {
+				if (sourceSpec.getIdentifier()<0) {
+					sourceSpec.setIdentifier(0);
+				}
+			}
+			else {
+				if (sourceSpec.compareTo(this.end)>0) {
+					sourceSpec.setIdentifier(this.end.getIdentifier());
+				}
+			}
+		}
+
+	}
+	
+	private void updateSpecifier(PrimaryVersionSpec specifier, DateVersionSpec dateSpec, int stepLength,
+			int stepLengthUnit, boolean isForward){
+		
+		Calendar calendar = Calendar.getInstance();				
+		calendar.setTime(dateSpec.getDate());
+		
+		if (isForward) {
+			calendar.add(stepLengthUnit, stepLength);
+		} else {
+			calendar.add(stepLengthUnit, -stepLength);;
+		}
+		dateSpec.setDate(calendar.getTime());
 		try {
-			this.targetSpec = this.connectionManager.resolveVersionSpec(usersession.getSessionId(), projectId, dateSpec);
+			PrimaryVersionSpec temp = this.connectionManager.resolveVersionSpec(usersession.getSessionId(), 
+					projectId, dateSpec);
+			specifier.setIdentifier(temp.getIdentifier());
 		} catch (EmfStoreException e) {
 			WorkspaceUtil.logException("Couldn't be resolved", e);
 		}
+		
 	}
-	/** 
-	 * {@inheritDoc}
-	 * @see java.util.Iterator#hasNext()
-	 */
-	public boolean hasNext() {
 
-		PrimaryVersionSpec resolvedSpec = VersioningFactory.eINSTANCE.createPrimaryVersionSpec();
-		DateVersionSpec resDateSpec = VersioningFactory.eINSTANCE.createDateVersionSpec();
-		
-		if(direction == "forward"){
-			resDateSpec.setDate(end);
-			try {
-				resolvedSpec = this.connectionManager.resolveVersionSpec(usersession.getSessionId(), 
-						projectId, resDateSpec);
-			} catch (EmfStoreException e) {
-				WorkspaceUtil.logException("Couldn't be resolved", e);
-			}
-		
-			return targetSpec.compareTo(resolvedSpec)<0;
-		}
-		else{
-
-			resDateSpec.setDate(end);
-			try {
-				resolvedSpec = this.connectionManager.resolveVersionSpec(usersession.getSessionId(), projectId, resDateSpec);
-			} catch (EmfStoreException e) {
-				WorkspaceUtil.logException("Couldn't be resolved", e);
-			}
-		
-			return targetSpec.compareTo(resolvedSpec)>0;
-		}
-	}
 
 	/** 
 	 * {@inheritDoc}
 	 * @see java.util.Iterator#next()
 	 */
 	public ProjectAnalysisData next() {
-		ProjectAnalysisData projectdata = AnalyzerFactory.eINSTANCE.createProjectAnalysisData();
-		List<ChangePackage> changepackage = new ArrayList<ChangePackage>();
-		changepackage = projectdata.getChangePackages();
-		
-		PrimaryVersionSpec sourceSpec = VersioningFactory.eINSTANCE.createPrimaryVersionSpec();
-		
-		int step;
-		if(direction == "backward"){
-			step = -stepLength;
-		}
-		else{
-			step = stepLength;
-		}
-		
-		if(!hasNext()){
-			throw new NoSuchElementException("Has no next");
-		}
-		else{
-			Project project = null;
-			try {
-				project = connectionManager.getProject(usersession.getSessionId(), projectId, targetSpec);
-				projectdata.setProjectState(project);
-				
-				ProjectId projectIdCopy = (ProjectId)EcoreUtil.copy(projectId);
-				projectdata.setProjectId(projectIdCopy);
-				
-				PrimaryVersionSpec primarSpecCopy = (PrimaryVersionSpec)EcoreUtil.copy(targetSpec);
-				projectdata.setPrimaryVersionSpec(primarSpecCopy);
-				
-				Calendar calendar = Calendar.getInstance();				
-				calendar.setTime(dateSpec.getDate());
-				
-				if(dateSpec.getDate() == start){
-					//changepackage.add(null);
-					//projectdata.getChangePackages().add(null);
-				}
-				else{
-					
-					calendar.add(Calendar.SECOND, -step);
-					DateVersionSpec srcDateSpec = VersioningFactory.eINSTANCE.createDateVersionSpec();
-					srcDateSpec.setDate(calendar.getTime());
-					
-					try {
-						sourceSpec = connectionManager.resolveVersionSpec(usersession.getSessionId(), projectId, srcDateSpec);
-					} catch (EmfStoreException e1) {
-						WorkspaceUtil.logException("Couldn't be resolved", e1);
-					}
-					
-					try {
-						changepackage.addAll(connectionManager.getChanges(usersession.getSessionId(), projectId, sourceSpec, targetSpec));
-					} catch (EmfStoreException e) {
-							WorkspaceUtil.logException("Couldn't get Changes", e);
-							e.printStackTrace();
-					}
-				}
-
-				calendar.add(Calendar.SECOND, 2*step);
-				dateSpec.setDate(calendar.getTime());
-				try {
-					targetSpec = connectionManager.resolveVersionSpec(usersession.getSessionId(), projectId, dateSpec);
-				} catch (EmfStoreException e) {
-					WorkspaceUtil.logException("Couldn't be resolved", e);
-				}
-				
-			} catch (EmfStoreException e) {
-				WorkspaceUtil.logException("Couldn't get project", e);
-				e.printStackTrace();
-			}
-		}
+		ProjectAnalysisData projectdata = AnalyzerFactory.eINSTANCE
+		.createProjectAnalysisData();
+		projectdata = super.next();
+		updateSpecifier(nextSpec, dateSpec, stepLength, stepLengthUnit, isForward);
 		return projectdata;
 	}
 
