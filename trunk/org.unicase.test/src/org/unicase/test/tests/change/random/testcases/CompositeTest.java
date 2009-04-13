@@ -1,11 +1,11 @@
 package org.unicase.test.tests.change.random.testcases;
 
-import java.util.ArrayList;
-import java.util.List;
-
 import org.unicase.test.tests.change.random.RandomChangeTestCase;
 import org.unicase.ui.test.TestProjectParmeters;
 import org.unicase.workspace.ProjectSpace;
+
+import java.util.ArrayList;
+import java.util.List;
 
 /**
  * This runs a list of test cases randomly.
@@ -31,7 +31,7 @@ public class CompositeTest extends RandomChangeTestCase {
 	@Override
 	public void runTest() {
 
-		if (isTestAll()) {
+		if (testAll) {
 			testAll();
 		} else {
 			randomSelectTest();
@@ -39,17 +39,17 @@ public class CompositeTest extends RandomChangeTestCase {
 	}
 
 	private void randomSelectTest() {
-		for (int i = 0; i < getRandomSelectIterations(); i++) {
+		for (int i = 0; i < randomSelectIterations; i++) {
 			int numOfTestCases = testCases.size();
 			RandomChangeTestCase testCase = testCases.get(getRandom().nextInt(numOfTestCases));
 
-			int timesToRun = getRandom().nextInt(getMaxTimesToRunATestCase());
+			int timesToRun = getRandom().nextInt(maxTimesToRunATestCase);
 			runTestCase(testCase, timesToRun);
 		}
 	}
 
 	private void testAll() {
-		for (int i = 0; i < getTestAllIterations(); i++) {
+		for (int i = 0; i < testAllIterations; i++) {
 			List<RandomChangeTestCase> testCasesCopy = new ArrayList<RandomChangeTestCase>();
 			testCasesCopy.addAll(testCases);
 
@@ -57,7 +57,7 @@ public class CompositeTest extends RandomChangeTestCase {
 				int numOfTestCases = testCasesCopy.size();
 				RandomChangeTestCase testCase = testCasesCopy.get(getRandom().nextInt(numOfTestCases));
 
-				int timesToRun = getRandom().nextInt(getMaxTimesToRunATestCase());
+				int timesToRun = getRandom().nextInt(maxTimesToRunATestCase);
 				runTestCase(testCase, timesToRun);
 
 				testCasesCopy.remove(testCase);

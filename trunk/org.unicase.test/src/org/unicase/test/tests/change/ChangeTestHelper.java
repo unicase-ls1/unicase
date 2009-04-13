@@ -527,10 +527,8 @@ public final class ChangeTestHelper {
 		int position;
 		if (listSize == 0) {
 			position = 0;
-		} else if (listSize == 1) {
-			position = getRandom().nextInt(1);
 		} else {
-			position = getRandom().nextInt(listSize - 1);
+			position = getRandom().nextInt(listSize);
 		}
 		return position;
 	}
