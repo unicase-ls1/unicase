@@ -5,7 +5,9 @@
  */
 package org.unicase.ui.meeditor.mecontrols.melinkcontrol;
 
+import java.util.ArrayList;
 import java.util.Collection;
+import java.util.List;
 
 import org.eclipse.emf.common.util.BasicEList;
 import org.eclipse.emf.common.util.EList;
@@ -87,12 +89,15 @@ public class AddReferenceAction extends Action {
 						.getActiveWorkbenchWindow().getShell());
 					progressDialog.open();
 					progressDialog.getProgressMonitor().beginTask("Adding references...", results.length * 10);
+					List<EObject> list = new ArrayList<EObject>();
 					for (Object result : results) {
 						if (result instanceof EObject) {
-							eList.add((ModelElement) result);
+							list.add((ModelElement) result);
 							progressDialog.getProgressMonitor().worked(10);
 						}
 					}
+					eList.addAll(list);
+
 					progressDialog.getProgressMonitor().done();
 					progressDialog.close();
 				} else {
