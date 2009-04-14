@@ -73,7 +73,7 @@ public class HistorySubInterfaceImpl extends AbstractSubEmfstoreInterface {
 	public void addTag(ProjectId projectId, PrimaryVersionSpec versionSpec, TagVersionSpec tag)
 		throws EmfStoreException {
 		synchronized (getMonitor()) {
-			Version version = getVersion(projectId, versionSpec);
+			Version version = getSubInterface(VersionSubInterfaceImpl.class).getVersion(projectId, versionSpec);
 			version.getTagSpecs().add(tag);
 			try {
 				save(version);
@@ -89,7 +89,7 @@ public class HistorySubInterfaceImpl extends AbstractSubEmfstoreInterface {
 	public void removeTag(ProjectId projectId, PrimaryVersionSpec versionSpec, TagVersionSpec tag)
 		throws EmfStoreException {
 		synchronized (getMonitor()) {
-			Version version = getVersion(projectId, versionSpec);
+			Version version = getSubInterface(VersionSubInterfaceImpl.class).getVersion(projectId, versionSpec);
 			Iterator<TagVersionSpec> iterator = version.getTagSpecs().iterator();
 			while (iterator.hasNext()) {
 				if (iterator.next().getName().equals(tag.getName())) {
@@ -122,12 +122,14 @@ public class HistorySubInterfaceImpl extends AbstractSubEmfstoreInterface {
 		if (source == null || target == null) {
 			throw new InvalidInputException();
 		}
-		return getHistoryInfo(getVersions(projectId, source, target), projectId);
+		return getHistoryInfo(getSubInterface(VersionSubInterfaceImpl.class).getVersions(projectId, source, target),
+			projectId);
 	}
 
 	private List<HistoryInfo> getHistoryInfo(List<Version> versions, ProjectId projectId) throws EmfStoreException {
 		List<HistoryInfo> result = new ArrayList<HistoryInfo>();
-		PrimaryVersionSpec headRevision = getProject(projectId).getLastVersion().getPrimarySpec();
+		PrimaryVersionSpec headRevision = getSubInterface(ProjectSubInterfaceImpl.class).getProject(projectId)
+			.getLastVersion().getPrimarySpec();
 		for (Version version : versions) {
 			HistoryInfo history = createHistoryInfo(headRevision, version);
 			result.add(history);

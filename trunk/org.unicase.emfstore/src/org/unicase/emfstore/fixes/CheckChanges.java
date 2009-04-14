@@ -62,6 +62,7 @@ public class CheckChanges extends AbstractFix {
 		}
 	}
 
+	@SuppressWarnings("unused")
 	private void specialVersion113(Project state, Version version) {
 		if (version.getPrimarySpec().getIdentifier() == 156 || version.getPrimarySpec().getIdentifier() == 157) {
 			File file = new File(System.getProperty("user.home") + "/Desktop/project_"
@@ -102,6 +103,7 @@ public class CheckChanges extends AbstractFix {
 		}
 	}
 
+	@SuppressWarnings("unused")
 	private void specialVersion78(Project state) {
 		for (ModelElement me : state.getAllModelElements()) {
 

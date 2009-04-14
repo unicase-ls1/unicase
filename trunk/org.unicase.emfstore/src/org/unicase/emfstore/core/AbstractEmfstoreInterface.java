@@ -112,6 +112,15 @@ public abstract class AbstractEmfstoreInterface {
 	}
 
 	/**
+	 * Returns the authorizationControl.
+	 * 
+	 * @return authorizationControl
+	 */
+	protected AuthorizationControl getAuthorizationControl() {
+		return authorizationControl;
+	}
+
+	/**
 	 * Checks read access.
 	 * 
 	 * @see AuthorizationControl#checkReadAccess(SessionId, ProjectId, Set)
