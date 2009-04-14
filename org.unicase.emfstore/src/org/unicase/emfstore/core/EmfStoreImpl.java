@@ -42,7 +42,7 @@ public class EmfStoreImpl extends AbstractEmfstoreInterface implements EmfStore 
 	 * 
 	 * @param serverSpace the serverspace
 	 * @param authorizationControl the accesscontrol
-	 * @throws FatalEmfStoreException is
+	 * @throws FatalEmfStoreException in case of failure
 	 */
 	public EmfStoreImpl(ServerSpace serverSpace, AuthorizationControl authorizationControl)
 		throws FatalEmfStoreException {
@@ -117,7 +117,10 @@ public class EmfStoreImpl extends AbstractEmfstoreInterface implements EmfStore 
 	public PrimaryVersionSpec createVersion(SessionId sessionId, ProjectId projectId,
 		PrimaryVersionSpec baseVersionSpec, ChangePackage changePackage, LogMessage logMessage)
 		throws EmfStoreException, InvalidVersionSpecException {
-		return null;
+		sanityCheckObjects(new Object[] { sessionId, projectId, baseVersionSpec, changePackage, logMessage });
+		checkWriteAccess(sessionId, projectId, null);
+		return getSubInterface(VersionSubInterfaceImpl.class).createVersion(projectId, baseVersionSpec, changePackage,
+			logMessage);
 	}
 
 	/**
@@ -125,7 +128,9 @@ public class EmfStoreImpl extends AbstractEmfstoreInterface implements EmfStore 
 	 */
 	public List<ChangePackage> getChanges(SessionId sessionId, ProjectId projectId, VersionSpec source,
 		VersionSpec target) throws EmfStoreException {
-		return null;
+		sanityCheckObjects(new Object[] { sessionId, projectId, source, target });
+		checkReadAccess(sessionId, projectId, null);
+		return getSubInterface(VersionSubInterfaceImpl.class).getChanges(projectId, source, target);
 	}
 
 	/**
@@ -133,7 +138,8 @@ public class EmfStoreImpl extends AbstractEmfstoreInterface implements EmfStore 
 	 */
 	public PrimaryVersionSpec resolveVersionSpec(SessionId sessionId, ProjectId projectId, VersionSpec versionSpec)
 		throws EmfStoreException {
-		return null;
+		sanityCheckObjects(new Object[] { sessionId, projectId, versionSpec });
+		return getSubInterface(VersionSubInterfaceImpl.class).resolveVersionSpec(projectId, versionSpec);
 	}
 
 	/**
@@ -141,21 +147,29 @@ public class EmfStoreImpl extends AbstractEmfstoreInterface implements EmfStore 
 	 */
 	public Project getProject(SessionId sessionId, ProjectId projectId, VersionSpec versionSpec)
 		throws EmfStoreException {
-		return null;
+		sanityCheckObjects(new Object[] { sessionId, projectId, versionSpec });
+		checkReadAccess(sessionId, projectId, null);
+		return getSubInterface(ProjectSubInterfaceImpl.class).getProject(projectId, versionSpec);
 	}
 
 	/**
 	 * {@inheritDoc}
 	 */
 	public List<ProjectInfo> getProjectList(SessionId sessionId) throws EmfStoreException {
-		return null;
+		sanityCheckObject(sessionId);
+		// TODO look at usersubinterfaceimpl
+		// checkReadAccess(sessionId, projectId, null);
+		return getSubInterface(ProjectSubInterfaceImpl.class).getProjectList(sessionId);
 	}
 
 	/**
 	 * {@inheritDoc}
 	 */
 	public ACUser resolveUser(SessionId sessionId, ACOrgUnitId id) throws EmfStoreException {
-		return null;
+		sanityCheckObject(sessionId);
+		// TODO look at usersubinterfaceimpl
+		// checkReadAccess(sessionId, projectId, null);
+		return getSubInterface(UserSubInterfaceImpl.class).resolveUser(sessionId, id);
 	}
 
 }

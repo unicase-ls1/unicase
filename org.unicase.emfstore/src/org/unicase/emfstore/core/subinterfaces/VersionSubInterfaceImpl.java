@@ -22,7 +22,6 @@ import org.unicase.emfstore.core.AbstractEmfstoreInterface;
 import org.unicase.emfstore.core.AbstractSubEmfstoreInterface;
 import org.unicase.emfstore.esmodel.ProjectHistory;
 import org.unicase.emfstore.esmodel.ProjectId;
-import org.unicase.emfstore.esmodel.SessionId;
 import org.unicase.emfstore.esmodel.versioning.ChangePackage;
 import org.unicase.emfstore.esmodel.versioning.DateVersionSpec;
 import org.unicase.emfstore.esmodel.versioning.HeadVersionSpec;
@@ -113,9 +112,8 @@ public class VersionSubInterfaceImpl extends AbstractSubEmfstoreInterface {
 	/**
 	 * {@inheritDoc}
 	 */
-	public synchronized PrimaryVersionSpec createVersion(SessionId sessionId, ProjectId projectId,
-		PrimaryVersionSpec baseVersionSpec, ChangePackage changePackage, LogMessage logMessage)
-		throws EmfStoreException {
+	public PrimaryVersionSpec createVersion(ProjectId projectId, PrimaryVersionSpec baseVersionSpec,
+		ChangePackage changePackage, LogMessage logMessage) throws EmfStoreException {
 		synchronized (getMonitor()) {
 
 			long currentTimeMillis = System.currentTimeMillis();
@@ -221,8 +219,8 @@ public class VersionSubInterfaceImpl extends AbstractSubEmfstoreInterface {
 	/**
 	 * {@inheritDoc}
 	 */
-	public synchronized List<ChangePackage> getChanges(SessionId sessionId, ProjectId projectId, VersionSpec source,
-		VersionSpec target) throws EmfStoreException {
+	public List<ChangePackage> getChanges(ProjectId projectId, VersionSpec source, VersionSpec target)
+		throws EmfStoreException {
 		synchronized (getMonitor()) {
 			PrimaryVersionSpec resolvedSource = resolveVersionSpec(projectId, source);
 			PrimaryVersionSpec resolvedTarget = resolveVersionSpec(projectId, target);

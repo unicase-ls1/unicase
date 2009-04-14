@@ -66,7 +66,7 @@ public class ProjectSubInterfaceImpl extends AbstractSubEmfstoreInterface {
 	/**
 	 * {@inheritDoc}
 	 */
-	public synchronized Project getProject(ProjectId projectId, VersionSpec versionSpec) throws EmfStoreException {
+	public Project getProject(ProjectId projectId, VersionSpec versionSpec) throws EmfStoreException {
 		synchronized (getMonitor()) {
 			PrimaryVersionSpec resolvedVersion = getSubInterface(VersionSubInterfaceImpl.class).resolveVersionSpec(
 				projectId, versionSpec);
@@ -96,16 +96,18 @@ public class ProjectSubInterfaceImpl extends AbstractSubEmfstoreInterface {
 	/**
 	 * {@inheritDoc}
 	 */
-	public synchronized List<ProjectInfo> getProjectList(SessionId sessionId) {
-		List<ProjectInfo> result = new ArrayList<ProjectInfo>();
-		for (ProjectHistory project : getServerSpace().getProjects()) {
-			// try {
-			result.add(createProjectInfo(project));
-			// } catch (AccessControlException e) {
-			// // do nothing and continue
-			// }
+	public List<ProjectInfo> getProjectList(SessionId sessionId) {
+		synchronized (getMonitor()) {
+			List<ProjectInfo> result = new ArrayList<ProjectInfo>();
+			for (ProjectHistory project : getServerSpace().getProjects()) {
+				// try {
+				result.add(createProjectInfo(project));
+				// } catch (AccessControlException e) {
+				// // do nothing and continue
+				// }
+			}
+			return result;
 		}
-		return result;
 	}
 
 	/**
