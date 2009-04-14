@@ -154,7 +154,7 @@
               <iterate
                     ifEmpty="false">
                  <reference
-                       definitionId="org.unicase.ui.common.commands.modelElement">
+                       definitionId="org.unicase.ui.common.commands.directAnnotatable">
                  </reference>
               </iterate>
            </visibleWhen>
@@ -270,6 +270,19 @@
         <instanceof
               value="org.unicase.model.diagram.MEDiagram">
         </instanceof>
+     </definition>
+     <definition
+           id="org.unicase.ui.common.commands.directAnnotatable">
+        <and>
+           <instanceof
+                 value="org.unicase.model.ModelElement">
+           </instanceof>
+           <not>
+              <instanceof
+                    value="org.unicase.model.meeting.MeetingSection">
+              </instanceof>
+           </not>
+        </and>
      </definition>
   </extension>
     <extension
