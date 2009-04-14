@@ -34,7 +34,7 @@ public class Application implements IApplication {
 		switch (testToRun) {
 		case RANDOMTEST:
 			test = new RandomChangeTestSuite();
-			((RandomChangeTestSuite) test).setTestProjectPath("/home/zardosht/Desktop/unicase.ucp");
+			((RandomChangeTestSuite) test).setTestProjectPath(null);
 			break;
 
 		case MANUALTEST:
