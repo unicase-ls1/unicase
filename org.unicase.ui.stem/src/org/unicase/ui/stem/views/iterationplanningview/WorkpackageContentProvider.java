@@ -160,20 +160,6 @@ public class WorkpackageContentProvider extends TransactionalAdapterFactoryConte
 	/**
 	 * {@inheritDoc}
 	 */
-	public void modelElementRemoved(Project project, ModelElement modelElement) {
-		if (modelElement instanceof WorkItem) {
-			WorkPackage containingWorkpackage = ((WorkItem) modelElement).getContainingWorkpackage();
-			if (containingWorkpackage == null) {
-				TreeViewer treeViewer = (TreeViewer) viewer;
-				treeViewer.refresh(backlog, true);
-			}
-		}
-
-	}
-
-	/**
-	 * {@inheritDoc}
-	 */
 	public void notify(Notification notification, Project project, ModelElement modelElement) {
 		if (notification.isTouch()) {
 			return;
@@ -191,15 +177,21 @@ public class WorkpackageContentProvider extends TransactionalAdapterFactoryConte
 	 * @see org.unicase.model.util.ProjectChangeObserver#modelElementDeleteCompleted(org.unicase.model.ModelElement)
 	 *      {@inheritDoc}
 	 */
-	public void modelElementDeleteCompleted(ModelElement modelElement) {
-		// nothing to do
+	public void modelElementDeleteCompleted(Project project, ModelElement modelElement) {
+		if (modelElement instanceof WorkItem) {
+			WorkPackage containingWorkpackage = ((WorkItem) modelElement).getContainingWorkpackage();
+			if (containingWorkpackage == null) {
+				TreeViewer treeViewer = (TreeViewer) viewer;
+				treeViewer.refresh(backlog, true);
+			}
+		}
 	}
 
 	/**
 	 * @see org.unicase.model.util.ProjectChangeObserver#modelElementDeleteStarted(org.unicase.model.ModelElement)
 	 *      {@inheritDoc}
 	 */
-	public void modelElementDeleteStarted(ModelElement modelElement) {
+	public void modelElementDeleteStarted(Project project, ModelElement modelElement) {
 		// nothing to do
 	}
 

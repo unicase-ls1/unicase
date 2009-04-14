@@ -308,7 +308,7 @@ public class FlatTabComposite extends Composite implements ProjectChangeObserver
 	 * 
 	 * @see org.unicase.model.util.ProjectChangeObserver#modelElementDeleteCompleted(org.unicase.model.ModelElement)
 	 */
-	public void modelElementDeleteCompleted(ModelElement modelElement) {
+	public void modelElementDeleteCompleted(Project project, ModelElement modelElement) {
 		// nothing to do;
 
 	}
@@ -318,19 +318,8 @@ public class FlatTabComposite extends Composite implements ProjectChangeObserver
 	 * 
 	 * @see org.unicase.model.util.ProjectChangeObserver#modelElementDeleteStarted(org.unicase.model.ModelElement)
 	 */
-	public void modelElementDeleteStarted(ModelElement modelElement) {
+	public void modelElementDeleteStarted(Project project, ModelElement modelElement) {
 		// nothing to do
-
-	}
-
-	/**
-	 * {@inheritDoc}
-	 * 
-	 * @see org.unicase.model.util.ProjectChangeObserver#modelElementRemoved(org.unicase.model.Project,
-	 *      org.unicase.model.ModelElement)
-	 */
-	public void modelElementRemoved(Project project, ModelElement modelElement) {
-		tableViewer.refresh();
 
 	}
 

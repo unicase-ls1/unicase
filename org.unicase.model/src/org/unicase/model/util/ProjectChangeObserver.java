@@ -37,26 +37,19 @@ public interface ProjectChangeObserver {
 	void modelElementAdded(Project project, ModelElement modelElement);
 
 	/**
-	 * The given model element was removed from the project. This means it is no longer in the projects containment
-	 * tree.
-	 * 
-	 * @param project the project
-	 * @param modelElement the modelElement
-	 */
-	void modelElementRemoved(Project project, ModelElement modelElement);
-
-	/**
 	 * The given model element is starting to be deleted now.
 	 * 
+	 * @param project the project
 	 * @param modelElement the model element
 	 */
-	void modelElementDeleteStarted(ModelElement modelElement);
+	void modelElementDeleteStarted(Project project, ModelElement modelElement);
 
 	/**
 	 * The given model element has been completely deleted.
 	 * 
+	 * @param project the project
 	 * @param modelElement the model element
 	 */
-	void modelElementDeleteCompleted(ModelElement modelElement);
+	void modelElementDeleteCompleted(Project project, ModelElement modelElement);
 
 }

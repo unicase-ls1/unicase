@@ -367,8 +367,12 @@ public class SingleReferenceOperationImpl extends ReferenceOperationImpl impleme
 		SingleReferenceOperation singleReferenceOperation = OperationsFactory.eINSTANCE
 			.createSingleReferenceOperation();
 		reverse(singleReferenceOperation);
-		singleReferenceOperation.setNewValue(ModelUtil.clone(getOldValue()));
-		singleReferenceOperation.setOldValue(ModelUtil.clone(getNewValue()));
+		if (getOldValue() != null) {
+			singleReferenceOperation.setNewValue(ModelUtil.clone(getOldValue()));
+		}
+		if (getNewValue() != null) {
+			singleReferenceOperation.setOldValue(ModelUtil.clone(getNewValue()));
+		}
 		return singleReferenceOperation;
 	}
 

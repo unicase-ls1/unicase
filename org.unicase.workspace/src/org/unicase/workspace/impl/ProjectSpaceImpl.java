@@ -1511,34 +1511,32 @@ public class ProjectSpaceImpl extends IdentifiableElementImpl implements Project
 			@Override
 			protected void doExecute() {
 				Resource oldResource = modelElement.eResource();
-				String oldFileName = Configuration.getWorkspaceDirectory() + "ps-" + getIdentifier()
-					+ File.separatorChar + (getResourceCount() - 1) + ".ucf";
-				// FIXME MK check if file exists
+				URI oldUri = oldResource.getURI();
+				if (!oldUri.isFile()) {
+					throw new IllegalStateException(
+						"Project contains ModelElements that are not part of a file resource.");
+				}
+				String oldFileName = oldUri.toFileString();
 				if (new File(oldFileName).length() > Configuration.getMaxResourceFileSizeOnExpand()) {
 					String newfileName = Configuration.getWorkspaceDirectory() + "ps-" + getIdentifier()
 						+ File.separatorChar + getResourceCount() + ".ucf";
+					checkIfFileExists(newfileName);
 					URI fileURI = URI.createFileURI(newfileName);
-					oldResource.getResourceSet().createResource(fileURI);
+					Resource newResource = oldResource.getResourceSet().createResource(fileURI);
 					setResourceCount(getResourceCount() + 1);
+					newResource.getContents().add(modelElement);
+
+				}
+			}
+
+			private void checkIfFileExists(String newfileName) {
+				if (new File(newfileName).exists()) {
+					throw new IllegalStateException("File fragment \"" + newfileName
+						+ "\" already exists - ProjectSpace corrupted.");
 				}
 			}
 		});
 
-	}
-
-	/**
-	 * {@inheritDoc}
-	 * 
-	 * @see org.unicase.model.util.ProjectChangeObserver#modelElementRemoved(org.unicase.model.Project,
-	 *      org.unicase.model.ModelElement)
-	 */
-	public void modelElementRemoved(Project project, ModelElement modelElement) {
-		// MK clean resources from deleted model elements
-		// if (isRecording) {
-		// CreateDeleteOperation createDeleteOperation = createCreateDeleteOperation(modelElement, true);
-		// this.getOperations().add(createDeleteOperation);
-		// saveProjectSpaceOnly();
-		// }
 	}
 
 	/**
@@ -1685,7 +1683,7 @@ public class ProjectSpaceImpl extends IdentifiableElementImpl implements Project
 		cm.removeTag(getUsersession().getSessionId(), getProjectId(), versionSpec, tag);
 	}
 
-	public void modelElementDeleteCompleted(ModelElement modelElement) {
+	public void modelElementDeleteCompleted(Project project, ModelElement modelElement) {
 		if (isRecording) {
 			if (deleteOperation == null) {
 				throw new IllegalStateException("DeleteCompleted called without previous delete start call");
@@ -1715,7 +1713,7 @@ public class ProjectSpaceImpl extends IdentifiableElementImpl implements Project
 		}
 	}
 
-	public void modelElementDeleteStarted(ModelElement modelElement) {
+	public void modelElementDeleteStarted(Project project, ModelElement modelElement) {
 		if (isRecording) {
 			this.deleteOperation = OperationsFactory.eINSTANCE.createCreateDeleteOperation();
 			deleteOperation.setClientDate(new Date());
@@ -1741,24 +1739,35 @@ public class ProjectSpaceImpl extends IdentifiableElementImpl implements Project
 		addToResource(modelElement);
 		if (isRecording) {
 			stopChangeRecording();
-			// filter create operation if a predeccessing delete is already
+			// filter create operation if a preceding delete is already
 			// present
-			List<AbstractOperation> operations = this.getOperations();
-			for (int i = 0; i < operations.size(); i++) {
-				AbstractOperation abstractOperation = operations.get(i);
-				if (abstractOperation instanceof CreateDeleteOperation) {
-					CreateDeleteOperation operation = (CreateDeleteOperation) abstractOperation;
-					if (operation.isDelete() && operation.getModelElementId().equals(modelElement.getModelElementId())) {
-						operations.remove(operation);
-						return;
-					}
-				}
+			List<AbstractOperation> preceedingOperations = this.getOperations();
+			CreateDeleteOperation preceedingDeleteOperation = getPreceedingDeleteOperation(modelElement,
+				preceedingOperations);
+			if (preceedingDeleteOperation != null) {
+				preceedingOperations.remove(preceedingDeleteOperation);
+			} else {
+				appendCreator(modelElement);
+				preceedingOperations.add(createCreateDeleteOperation(modelElement, false));
 			}
-			appendCreator(modelElement);
-			operations.add(createCreateDeleteOperation(modelElement, false));
 			saveProjectSpaceOnly();
 			startChangeRecording();
 		}
+	}
+
+	private CreateDeleteOperation getPreceedingDeleteOperation(ModelElement modelElement,
+		List<AbstractOperation> operations) {
+
+		for (int i = operations.size() - 1; i >= 0; i--) {
+			AbstractOperation abstractOperation = operations.get(i);
+			if (abstractOperation instanceof CreateDeleteOperation) {
+				CreateDeleteOperation operation = (CreateDeleteOperation) abstractOperation;
+				if (operation.isDelete() && operation.getModelElementId().equals(modelElement.getModelElementId())) {
+					return operation;
+				}
+			}
+		}
+		return null;
 	}
 
 	/**
@@ -1794,7 +1803,7 @@ public class ProjectSpaceImpl extends IdentifiableElementImpl implements Project
 		CreateDeleteOperation createDeleteOperation = OperationsFactory.eINSTANCE.createCreateDeleteOperation();
 		createDeleteOperation.setDelete(delete);
 		createDeleteOperation.setModelElement((ModelElement) EcoreUtil.copy(modelElement));
-		createDeleteOperation.setModelElementId((ModelElementId) EcoreUtil.copy(modelElement.getModelElementId()));
+		createDeleteOperation.setModelElementId(modelElement.getModelElementId());
 		createDeleteOperation.setClientDate(new Date());
 		return createDeleteOperation;
 	}
