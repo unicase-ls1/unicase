@@ -546,4 +546,10 @@ public interface ProjectSpace extends IdentifiableElement {
 	 * @return a project info
 	 */
 	ProjectInfo getProjectInfo();
+
+	/**
+	 * Will make the projectSpace transient, it will not make its content or changes persistent. Can only be called
+	 * before the resources or the project space have been initialized.
+	 */
+	void makeTransient();
 } // ProjectContainer
