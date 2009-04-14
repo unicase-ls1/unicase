@@ -5,21 +5,10 @@
  */
 package org.unicase.emfstore.core;
 
-import java.util.ArrayList;
-import java.util.Iterator;
-import java.util.List;
-
-import org.eclipse.emf.common.util.EList;
 import org.eclipse.emf.ecore.EObject;
-import org.unicase.emfstore.esmodel.ProjectHistory;
-import org.unicase.emfstore.esmodel.ProjectId;
+import org.unicase.emfstore.accesscontrol.AuthorizationControl;
 import org.unicase.emfstore.esmodel.ServerSpace;
-import org.unicase.emfstore.esmodel.versioning.PrimaryVersionSpec;
-import org.unicase.emfstore.esmodel.versioning.Version;
-import org.unicase.emfstore.exceptions.EmfStoreException;
 import org.unicase.emfstore.exceptions.FatalEmfStoreException;
-import org.unicase.emfstore.exceptions.InvalidProjectIdException;
-import org.unicase.emfstore.exceptions.InvalidVersionSpecException;
 import org.unicase.emfstore.exceptions.StorageException;
 
 /**
@@ -83,6 +72,15 @@ public abstract class AbstractSubEmfstoreInterface {
 	}
 
 	/**
+	 * Returns the authorizationControl.
+	 * 
+	 * @return authorizationControl
+	 */
+	protected AuthorizationControl getAuthorizationControl() {
+		return parentInterface.getAuthorizationControl();
+	}
+
+	/**
 	 * This method gets a subinterface from the parent interface. Can be used if you need some functionality from
 	 * another subinterface.
 	 * 
@@ -92,68 +90,5 @@ public abstract class AbstractSubEmfstoreInterface {
 	 */
 	protected <T> T getSubInterface(Class<T> clazz) {
 		return parentInterface.getSubInterface(clazz);
-	}
-
-	/**
-	 * Returns the corresponding project.
-	 * 
-	 * @param projectId project id
-	 * @return a project or throws exception
-	 * @throws EmfStoreException if project couldn't be found
-	 */
-	protected ProjectHistory getProject(ProjectId projectId) throws EmfStoreException {
-		for (ProjectHistory project : getServerSpace().getProjects()) {
-			if (project.getProjectId().equals(projectId)) {
-				return project;
-			}
-		}
-		throw new InvalidProjectIdException("Project with the id:" + ((projectId == null) ? "null" : projectId)
-			+ " doesn't exist.");
-	}
-
-	/**
-	 * Returns the specified version of a project.
-	 * 
-	 * @param projectId project id
-	 * @param versionSpec versionSpec
-	 * @return the version
-	 * @throws EmfStoreException if version couldn't be found
-	 */
-	protected Version getVersion(ProjectId projectId, PrimaryVersionSpec versionSpec) throws EmfStoreException {
-		EList<Version> versions = getProject(projectId).getVersions();
-		if (versionSpec.getIdentifier() < 0 || versionSpec.getIdentifier() > versions.size() - 1) {
-			throw new InvalidVersionSpecException();
-		}
-		return versions.get(versionSpec.getIdentifier());
-	}
-
-	/**
-	 * Returns a list of versions starting from source and ending with target. This method returns the version always in
-	 * an ascanding order. So if you need it ordered differently you have to reverse the list.
-	 * 
-	 * @param projectId project id
-	 * @param source source
-	 * @param target target
-	 * @return list of versions
-	 * @throws EmfStoreException if source or target are out of range or any other problem occurs
-	 */
-	protected List<Version> getVersions(ProjectId projectId, PrimaryVersionSpec source, PrimaryVersionSpec target)
-		throws EmfStoreException {
-		if (source.compareTo(target) < 1) {
-			EList<Version> versions = getProject(projectId).getVersions();
-			if (source.getIdentifier() < 0 || source.getIdentifier() > versions.size() - 1
-				|| target.getIdentifier() < 0 || target.getIdentifier() > versions.size() - 1) {
-				throw new InvalidVersionSpecException();
-			}
-			List<Version> result = new ArrayList<Version>();
-			Iterator<Version> iter = versions.listIterator(source.getIdentifier());
-			int steps = target.getIdentifier() - source.getIdentifier();
-			while (iter.hasNext() && steps-- >= 0) {
-				result.add(iter.next());
-			}
-			return result;
-		} else {
-			return getVersions(projectId, target, source);
-		}
 	}
 }

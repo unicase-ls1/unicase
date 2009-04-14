@@ -11,6 +11,7 @@ import org.unicase.emfstore.EmfStore;
 import org.unicase.emfstore.accesscontrol.AuthorizationControl;
 import org.unicase.emfstore.core.subinterfaces.HistorySubInterfaceImpl;
 import org.unicase.emfstore.core.subinterfaces.ProjectSubInterfaceImpl;
+import org.unicase.emfstore.core.subinterfaces.ResourceHelper;
 import org.unicase.emfstore.core.subinterfaces.UserSubInterfaceImpl;
 import org.unicase.emfstore.core.subinterfaces.VersionSubInterfaceImpl;
 import org.unicase.emfstore.esmodel.ProjectId;
@@ -57,6 +58,7 @@ public class EmfStoreImpl extends AbstractEmfstoreInterface implements EmfStore 
 		addSubInterface(new ProjectSubInterfaceImpl(this));
 		addSubInterface(new UserSubInterfaceImpl(this));
 		addSubInterface(new VersionSubInterfaceImpl(this));
+		addSubInterface(new ResourceHelper(this));
 	}
 
 	/**
@@ -94,7 +96,9 @@ public class EmfStoreImpl extends AbstractEmfstoreInterface implements EmfStore 
 	 */
 	public ProjectInfo createProject(SessionId sessionId, String name, String description, LogMessage logMessage)
 		throws EmfStoreException {
-		return null;
+		sanityCheckObjects(new Object[] { sessionId, name, description, logMessage });
+		checkServerAdminAccess(sessionId);
+		return getSubInterface(ProjectSubInterfaceImpl.class).createProject(name, description, logMessage);
 	}
 
 	/**
@@ -102,7 +106,9 @@ public class EmfStoreImpl extends AbstractEmfstoreInterface implements EmfStore 
 	 */
 	public ProjectInfo createProject(SessionId sessionId, String name, String description, LogMessage logMessage,
 		Project project) throws EmfStoreException {
-		return null;
+		sanityCheckObjects(new Object[] { sessionId, name, description, logMessage, project });
+		checkServerAdminAccess(sessionId);
+		return getSubInterface(ProjectSubInterfaceImpl.class).createProject(name, description, logMessage, project);
 	}
 
 	/**
