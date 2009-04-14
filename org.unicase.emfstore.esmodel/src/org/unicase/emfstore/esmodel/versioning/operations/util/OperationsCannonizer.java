@@ -119,10 +119,11 @@ public final class OperationsCannonizer {
 
 			int indexDifference = lastMultiReferenceOperation.getIndex() - multiReferenceOperation.getIndex();
 			if (indexDifference > 0 && indexDifference <= referencedModelElements.size() + 1) {
-				referencedModelElements.addAll(indexDifference - 1, referencedModelElementsOfLast);
+				referencedModelElements.addAll(indexDifference, referencedModelElementsOfLast);
 				referencedModelElementsOfLast.clear();
 				referencedModelElementsOfLast.addAll(referencedModelElements);
 				changedReferences.put(key, lastMultiReferenceOperation);
+				lastMultiReferenceOperation.setIndex(multiReferenceOperation.getIndex());
 				operationsToBeDeleted.add(multiReferenceOperation);
 				return;
 			}
