@@ -19,6 +19,12 @@ import org.eclipse.gmf.runtime.diagram.ui.requests.CreateViewRequest.ViewDescrip
 import org.eclipse.gmf.runtime.notation.View;
 import org.unicase.ui.common.util.CollectionFilter;
 
+/**
+ * Dynamic runtime adapter for {@link ViewDescriptor}s.
+ *   
+ * @author schroech
+ *
+ */
 public class DynamicViewDescriptorAdapter implements IAdaptable {
 
 	private EditPart editPart;
@@ -29,18 +35,18 @@ public class DynamicViewDescriptorAdapter implements IAdaptable {
 
 	/**
 	 * Constructor.
-	 * @param viewDescriptor the view descriptor
-	 * @param host the host edit part
+	 * @param viewDescriptor The {@link ViewDescriptor} being adapted
+	 * @param host The {@link DiagramEditPart} which will be queried for the {@link ViewDescriptor}
 	 */
 	public DynamicViewDescriptorAdapter(ViewDescriptor viewDescriptor, DiagramEditPart host) {
 		if (viewDescriptor == null) {
 			throw new IllegalArgumentException();
 		}
-		
+
 		if (host == null) {
 			throw new IllegalArgumentException();
 		}
-		
+
 		this.viewDescriptor = viewDescriptor;
 		this.host = host;
 	}
@@ -88,7 +94,7 @@ public class DynamicViewDescriptorAdapter implements IAdaptable {
 				object = (EObject) viewDescriptor.getElementAdapter().getAdapter(EObject.class);	
 			}
 		}
-		
+
 		return object;
 	}
 

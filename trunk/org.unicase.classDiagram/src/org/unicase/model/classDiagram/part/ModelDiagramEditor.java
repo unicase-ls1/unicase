@@ -292,9 +292,4 @@ public class ModelDiagramEditor extends org.unicase.ui.common.diagram.ModelDiagr
 		getSite().registerContextMenu(ActionIds.DIAGRAM_EDITOR_CONTEXT_MENU, provider, getDiagramGraphicalViewer());
 	}
 
-	@Override
-	public boolean isDirty() {
-		return true;
-	}
-
 }

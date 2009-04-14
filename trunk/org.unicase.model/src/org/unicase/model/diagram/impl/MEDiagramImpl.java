@@ -509,7 +509,7 @@ public class MEDiagramImpl extends AttachmentImpl implements MEDiagram {
 	 * @generated NOT
 	 */
 	public void saveDiagramLayout() throws DiagramStoreException {
-		gmfdiagram.setElement(null);
+		getGmfdiagram().setElement(null);
 		// preserve original resource for all involved model elements
 		EList<ModelElement> elements = this.getElements();
 		Map<ModelElement, Resource> resourceMap = new HashMap<ModelElement, Resource>();
@@ -541,6 +541,9 @@ public class MEDiagramImpl extends AttachmentImpl implements MEDiagram {
 		for (ModelElement modelElement : resourceMap.keySet()) {
 			resourceMap.get(modelElement).getContents().add(modelElement);
 		}
+
+		getGmfdiagram().setElement(this);
+
 		setDiagramLayout(out.toString());
 		saveAllResources();
 
