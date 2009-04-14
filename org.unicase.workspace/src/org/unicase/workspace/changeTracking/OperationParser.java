@@ -94,10 +94,10 @@ public final class OperationParser {
 			return handleRemoveNotification(notification, attribute, reference, modelElement, oldValue);
 			// check this
 		case Notification.ADD_MANY:
-			return handleAddManyNotification(notification, feature);
+			return handleAddManyNotification(notification, attribute, reference, modelElement, oldValue, newValue);
 			// check this
 		case Notification.REMOVE_MANY:
-			return handleRemoveManyNotification(newValue);
+			return handleRemoveManyNotification(notification, attribute, reference, modelElement, oldValue, newValue);
 			// check this
 		case Notification.UNSET:
 			return handleUnsetNotification(notification, feature);
@@ -162,19 +162,66 @@ public final class OperationParser {
 		}
 	}
 
-	private static List<AbstractOperation> handleAddManyNotification(Notification notification, Object feature) {
-		// FIXME MK: implement
-		// throw new UnsupportedOperationException();
-		return new ArrayList<AbstractOperation>();
+	private static List<AbstractOperation> handleAddManyNotification(Notification notification, EAttribute attribute,
+		EReference reference, ModelElement modelElement, Object oldValue, Object newValue)
+		throws UnsupportedNotificationException {
+		if (attribute != null) {
+			throw new UnsupportedNotificationException(
+				"AddMany on attribute feature with multiplicity greater than 1 not yet supported.");
+		} else {
+			if (!(newValue instanceof List<?>)) {
+				throw new UnsupportedNotificationException(
+					"Non-transient non-modelElement reference feature detected: "
+						+ modelElement.getClass().getCanonicalName() + "-" + reference.getName());
+			}
+			List<ModelElement> checkedList = checkList((List<?>) newValue, modelElement, reference);
+			return handleChangeManyMultiReference(reference, modelElement, checkedList, notification, true);
+		}
 	}
 
-	private static List<AbstractOperation> handleRemoveManyNotification(Object newValue) {
-		// FIXME MK: implement
-		List<AbstractOperation> result = new ArrayList<AbstractOperation>();
-		if (newValue == null) {
-			return result;
+	private static List<AbstractOperation> handleChangeManyMultiReference(EReference reference,
+		ModelElement modelElement, List<ModelElement> checkedList, Notification notification, boolean isAdd)
+		throws UnsupportedNotificationException {
+
+		// sanity checks
+		if (!reference.isMany()) {
+			throw new UnsupportedNotificationException(
+				"Unkown notification state: Add notification on reference feature with isMany==false");
 		}
-		throw new UnsupportedOperationException();
+		if (checkedList.size() < 1) {
+			return new ArrayList<AbstractOperation>();
+		}
+
+		return makeList(createMultiReferenceOperation(notification, reference, checkedList, modelElement, isAdd));
+	}
+
+	@SuppressWarnings("unchecked")
+	private static List<ModelElement> checkList(List<?> newValue, ModelElement modelElement, EReference reference)
+		throws UnsupportedNotificationException {
+		for (Object value : newValue) {
+			if (!(value instanceof ModelElement)) {
+				throw new UnsupportedNotificationException(modelElement.getClass().getCanonicalName() + "-"
+					+ reference.getName() + "reference feature contains a non-model element.");
+			}
+		}
+		return (List<ModelElement>) newValue;
+	}
+
+	private static List<AbstractOperation> handleRemoveManyNotification(Notification notification,
+		EAttribute attribute, EReference reference, ModelElement modelElement, Object oldValue, Object newValue)
+		throws UnsupportedNotificationException {
+		if (attribute != null) {
+			throw new UnsupportedNotificationException(
+				"RemoveMany on attribute feature with multiplicity greater than 1 not yet supported.");
+		} else {
+			if (!(oldValue instanceof List<?>)) {
+				throw new UnsupportedNotificationException(
+					"Non-transient non-modelElement reference feature detected: "
+						+ modelElement.getClass().getCanonicalName() + "-" + reference.getName());
+			}
+			List<ModelElement> checkedList = checkList((List<?>) oldValue, modelElement, reference);
+			return handleChangeManyMultiReference(reference, modelElement, checkedList, notification, false);
+		}
 	}
 
 	private static List<AbstractOperation> handleUnsetNotification(Notification notification, Object feature)
@@ -290,13 +337,23 @@ public final class OperationParser {
 
 	private static MultiReferenceOperation createMultiReferenceOperation(Notification notification,
 		EReference reference, ModelElement valueModelElement, ModelElement parent, boolean isAdd) {
+		List<ModelElement> list = new ArrayList<ModelElement>();
+		list.add(valueModelElement);
+		return createMultiReferenceOperation(notification, reference, list, parent, isAdd);
+	}
+
+	private static MultiReferenceOperation createMultiReferenceOperation(Notification notification,
+		EReference reference, List<ModelElement> valueModelElements, ModelElement parent, boolean isAdd) {
 		MultiReferenceOperation multiReferenceOperation = OperationsFactory.eINSTANCE.createMultiReferenceOperation();
 		setCommonValues(multiReferenceOperation, parent);
 		setBidirectionalInfos(reference, multiReferenceOperation);
 		multiReferenceOperation.setFeatureName(reference.getName());
 		multiReferenceOperation.setAdd(isAdd);
 		multiReferenceOperation.setIndex(notification.getPosition());
-		multiReferenceOperation.getReferencedModelElements().add(valueModelElement.getModelElementId());
+		List<ModelElementId> referencedModelElements = multiReferenceOperation.getReferencedModelElements();
+		for (ModelElement valueElement : valueModelElements) {
+			referencedModelElements.add(valueElement.getModelElementId());
+		}
 		return multiReferenceOperation;
 	}
 
@@ -345,12 +402,13 @@ public final class OperationParser {
 		}
 
 		// check if opposite feature
-		Notification nextNotification;
-		try {
-			nextNotification = getNextNotification(notification);
-		} catch (UnknownNotificationImplementationException e) {
+		List<Notification> nextNotifications = getNextNotifications(notification);
+		if (nextNotifications.size() < 1) {
 			return false;
 		}
+
+		Notification nextNotification = nextNotifications.get(nextNotifications.size() - 1);
+
 		if (nextNotification == null || nextNotification.getFeature() != reference.getEOpposite()) {
 			return false;
 		}

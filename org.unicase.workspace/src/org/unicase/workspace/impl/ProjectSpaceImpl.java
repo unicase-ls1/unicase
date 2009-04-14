@@ -7,7 +7,6 @@ package org.unicase.workspace.impl;
 
 import java.io.File;
 import java.io.IOException;
-import java.lang.reflect.Field;
 import java.util.ArrayList;
 import java.util.Collection;
 import java.util.Date;
@@ -15,13 +14,10 @@ import java.util.List;
 
 import org.eclipse.emf.common.notify.Notification;
 import org.eclipse.emf.common.notify.NotificationChain;
-import org.eclipse.emf.common.notify.impl.NotificationImpl;
 import org.eclipse.emf.common.util.EList;
 import org.eclipse.emf.common.util.URI;
-import org.eclipse.emf.ecore.EAttribute;
 import org.eclipse.emf.ecore.EClass;
 import org.eclipse.emf.ecore.EObject;
-import org.eclipse.emf.ecore.EReference;
 import org.eclipse.emf.ecore.InternalEObject;
 import org.eclipse.emf.ecore.impl.ENotificationImpl;
 import org.eclipse.emf.ecore.resource.Resource;
@@ -49,23 +45,16 @@ import org.unicase.emfstore.esmodel.versioning.VersionSpec;
 import org.unicase.emfstore.esmodel.versioning.VersioningFactory;
 import org.unicase.emfstore.esmodel.versioning.events.Event;
 import org.unicase.emfstore.esmodel.versioning.operations.AbstractOperation;
-import org.unicase.emfstore.esmodel.versioning.operations.AttributeOperation;
 import org.unicase.emfstore.esmodel.versioning.operations.CreateDeleteOperation;
-import org.unicase.emfstore.esmodel.versioning.operations.DiagramLayoutOperation;
-import org.unicase.emfstore.esmodel.versioning.operations.MultiAttributeOperation;
-import org.unicase.emfstore.esmodel.versioning.operations.MultiReferenceMoveOperation;
-import org.unicase.emfstore.esmodel.versioning.operations.MultiReferenceOperation;
 import org.unicase.emfstore.esmodel.versioning.operations.OperationsFactory;
+import org.unicase.emfstore.esmodel.versioning.operations.OperationsPackage;
 import org.unicase.emfstore.esmodel.versioning.operations.ReferenceOperation;
-import org.unicase.emfstore.esmodel.versioning.operations.SingleReferenceOperation;
 import org.unicase.emfstore.esmodel.versioning.operations.util.OperationsCannonizer;
 import org.unicase.emfstore.exceptions.BaseVersionOutdatedException;
 import org.unicase.emfstore.exceptions.EmfStoreException;
 import org.unicase.model.ModelElement;
 import org.unicase.model.ModelElementId;
 import org.unicase.model.Project;
-import org.unicase.model.diagram.DiagramFactory;
-import org.unicase.model.diagram.DiagramPackage;
 import org.unicase.model.impl.IdentifiableElementImpl;
 import org.unicase.model.util.ModelUtil;
 import org.unicase.model.util.ModelValidationHelper;
@@ -77,12 +66,14 @@ import org.unicase.workspace.Usersession;
 import org.unicase.workspace.WorkspaceFactory;
 import org.unicase.workspace.WorkspaceManager;
 import org.unicase.workspace.WorkspacePackage;
+import org.unicase.workspace.changeTracking.OperationParser;
 import org.unicase.workspace.connectionmanager.ConnectionManager;
 import org.unicase.workspace.exceptions.ChangeConflictException;
 import org.unicase.workspace.exceptions.IllegalProjectSpaceStateException;
 import org.unicase.workspace.exceptions.MEUrlResolutionException;
 import org.unicase.workspace.exceptions.NoChangesOnServerException;
 import org.unicase.workspace.exceptions.NoLocalChangesException;
+import org.unicase.workspace.exceptions.UnsupportedNotificationException;
 import org.unicase.workspace.notification.NotificationGenerator;
 import org.unicase.workspace.util.CommitObserver;
 import org.unicase.workspace.util.UpdateObserver;
@@ -108,7 +99,6 @@ import org.unicase.workspace.util.WorkspaceUtil;
  *             <li>{@link org.unicase.workspace.impl.ProjectSpaceImpl#isDirty <em>Dirty</em>}</li>
  *             <li>{@link org.unicase.workspace.impl.ProjectSpaceImpl#getOldLogMessages <em>Old Log Messages</em>}</li>
  *             <li>{@link org.unicase.workspace.impl.ProjectSpaceImpl#getLocalOperations <em>Local Operations</em>}</li>
- *             <li>{@link org.unicase.workspace.impl.ProjectSpaceImpl#getNotifications <em>Notifications</em>}</li>
  *             </ul>
  *             </p>
  * @generated
@@ -298,6 +288,10 @@ public class ProjectSpaceImpl extends IdentifiableElementImpl implements Project
 	private boolean isRecording;
 
 	private CreateDeleteOperation deleteOperation;
+
+	private boolean initCompleted;
+
+	private boolean isTransient;
 
 	// begin of custom code
 	/**
@@ -1083,6 +1077,7 @@ public class ProjectSpaceImpl extends IdentifiableElementImpl implements Project
 	 * @generated NOT
 	 */
 	public void init() {
+		initCompleted = true;
 		this.getProject().addProjectChangeObserver(this);
 		startChangeRecording();
 
@@ -1125,6 +1120,7 @@ public class ProjectSpaceImpl extends IdentifiableElementImpl implements Project
 	 * @generated NOT
 	 */
 	public void initResources(ResourceSet resourceSet) {
+		initCompleted = true;
 		String projectSpaceFileNamePrefix = Configuration.getWorkspaceDirectory()
 			+ Configuration.getProjectSpaceDirectoryPrefix() + getIdentifier() + File.separatorChar;
 		String projectSpaceFileName = projectSpaceFileNamePrefix + this.getProjectName()
@@ -1480,6 +1476,13 @@ public class ProjectSpaceImpl extends IdentifiableElementImpl implements Project
 
 	private void saveResource(Resource resource) {
 		try {
+			if (resource == null) {
+				if (!isTransient) {
+					WorkspaceUtil.logException("Resources of project space are not properly initialized!",
+						new IllegalProjectSpaceStateException("Resource to save is null"));
+				}
+				return;
+			}
 			resource.save(Configuration.getResourceSaveOptions());
 		} catch (IOException e) {
 			Throwable cause = e.getCause();
@@ -1500,6 +1503,9 @@ public class ProjectSpaceImpl extends IdentifiableElementImpl implements Project
 	 * @generated NOT
 	 */
 	private void addToResource(final ModelElement modelElement) {
+		if (isTransient) {
+			return;
+		}
 		TransactionalEditingDomain domain = WorkspaceManager.getInstance().getCurrentWorkspace().getEditingDomain();
 		domain.getCommandStack().execute(new RecordingCommand(domain) {
 			@Override
@@ -1518,379 +1524,6 @@ public class ProjectSpaceImpl extends IdentifiableElementImpl implements Project
 			}
 		});
 
-	}
-
-	/**
-	 * Create all neccessary operations for the notification.
-	 * 
-	 * @param notification the notification
-	 * @param modelElement the model element the triggered the notification
-	 * @generated NOT
-	 */
-	private void createOperations(final Notification notification, ModelElement modelElement) {
-
-		Object feature = notification.getFeature();
-		Object newValue = notification.getNewValue();
-		Object oldValue = notification.getOldValue();
-		if (notification.getEventType() == Notification.SET) {
-			if (feature instanceof EAttribute) {
-				// Simple attribute set
-				EAttribute attribute = (EAttribute) feature;
-				if (attribute.isTransient()) {
-					return;
-				}
-				DiagramPackage diagramPackage = DiagramFactory.eINSTANCE.getDiagramPackage();
-				if (attribute.getName().equals(diagramPackage.getMEDiagram_DiagramLayout().getName())
-					&& diagramPackage.getMEDiagram().isInstance(modelElement)) {
-
-					DiagramLayoutOperation createDiagramLayoutOperation = OperationsFactory.eINSTANCE
-						.createDiagramLayoutOperation();
-					createDiagramLayoutOperation.setClientDate(new Date());
-					createDiagramLayoutOperation.setFeatureName(attribute.getName());
-					createDiagramLayoutOperation.setModelElementId((ModelElementId) EcoreUtil.copy(modelElement
-						.getModelElementId()));
-					createDiagramLayoutOperation.setNewValue(newValue);
-					createDiagramLayoutOperation.setOldValue(oldValue);
-					this.getOperations().add(createDiagramLayoutOperation);
-					return;
-
-				} else {
-					AttributeOperation attributeOperation = createAttributeOperation(notification, feature, newValue,
-						oldValue);
-					this.getOperations().add(attributeOperation);
-					return;
-				}
-			} else if (feature instanceof EReference) {
-				if (((EReference) feature).isTransient()) {
-					return;
-				}
-				handleSetReference(notification, (EReference) feature, (ModelElement) newValue, (ModelElement) oldValue);
-				return;
-			}
-			throw new IllegalStateException();
-		}
-
-		if (notification.getEventType() == Notification.ADD) {
-			if (feature instanceof EReference) {
-				handleEReference((EReference) feature, (ModelElement) newValue, notification, true);
-			} else if (feature instanceof EAttribute) {
-				EAttribute attribute = (EAttribute) feature;
-				if (attribute.isTransient()) {
-					return;
-				}
-				MultiAttributeOperation multiAttributeOperation = createMultiAttributeOperation(notification, newValue,
-					attribute, true);
-				this.getOperations().add(multiAttributeOperation);
-				return;
-			} else {
-				throw new IllegalStateException();
-			}
-		}
-
-		if (notification.getEventType() == Notification.REMOVE) {
-			if (feature instanceof EReference) {
-				handleEReference((EReference) feature, (ModelElement) oldValue, notification, false);
-			} else if (feature instanceof EAttribute) {
-				EAttribute attribute = (EAttribute) feature;
-				if (attribute.isTransient()) {
-					return;
-				}
-				MultiAttributeOperation multiAttributeOperation = createMultiAttributeOperation(notification, oldValue,
-					attribute, false);
-				this.getOperations().add(multiAttributeOperation);
-				return;
-			} else {
-				throw new IllegalStateException();
-			}
-			return;
-		}
-
-		if (notification.getEventType() == Notification.ADD_MANY) {
-			// FIXME MK: implement
-			throw new UnsupportedOperationException();
-		}
-		if (notification.getEventType() == Notification.REMOVE_MANY) {
-			// FIXME MK: implement
-			throw new UnsupportedOperationException();
-		}
-		if (notification.getEventType() == Notification.UNSET) {
-			// FIXME MK: how can I trigger this
-			throw new UnsupportedOperationException();
-		}
-		if (notification.getEventType() == Notification.MOVE) {
-			// FIXME MK: what about move many
-			if (feature instanceof EReference) {
-				EReference reference = (EReference) feature;
-				if (reference.isTransient()) {
-					return;
-				}
-				MultiReferenceMoveOperation multiReferenceMoveOperation = OperationsFactory.eINSTANCE
-					.createMultiReferenceMoveOperation();
-				multiReferenceMoveOperation.setClientDate(new Date());
-				multiReferenceMoveOperation.setFeatureName(reference.getName());
-				multiReferenceMoveOperation.setModelElementId(((ModelElement) notification.getNotifier())
-					.getModelElementId());
-				multiReferenceMoveOperation.setReferencedModelElementId(((ModelElement) notification.getNewValue())
-					.getModelElementId());
-				multiReferenceMoveOperation.setNewIndex(notification.getPosition());
-				multiReferenceMoveOperation.setOldIndex((Integer) oldValue);
-				this.getOperations().add(multiReferenceMoveOperation);
-
-			} else {
-				throw new IllegalStateException();
-			}
-		}
-
-	}
-
-	private void handleSetReference(Notification notification, EReference reference, ModelElement newValue,
-		ModelElement oldValue) {
-
-		if (reference.isTransient()) {
-			return;
-		}
-		// handle bidirectional notifications
-		if (reference.getEOpposite() != null) {
-			if (notification instanceof NotificationImpl) {
-				Field declaredField;
-				try {
-					declaredField = NotificationImpl.class.getDeclaredField("next");
-					declaredField.setAccessible(true);
-					Object object = declaredField.get(notification);
-					Notification nextNotification = (Notification) object;
-					if (nextNotification != null && nextNotification.getFeature() == reference.getEOpposite()) {
-						if (newValue == null && nextNotification.getNotifier() == oldValue) {
-							// skip this
-							return;
-						} else if (oldValue == null && nextNotification.getNotifier() == newValue) {
-							// skip this
-							return;
-						}
-					}
-
-				} catch (SecurityException e) {
-					// MK Auto-generated catch block
-					e.printStackTrace();
-				} catch (NoSuchFieldException e) {
-					// MK Auto-generated catch block
-					e.printStackTrace();
-				} catch (IllegalArgumentException e) {
-					// MK Auto-generated catch block
-					e.printStackTrace();
-				} catch (IllegalAccessException e) {
-					// MK Auto-generated catch block
-					e.printStackTrace();
-				}
-			}
-		}
-
-		// single reference set
-		SingleReferenceOperation singleReferenceOperation = createSingleReferenceOperation(notification, oldValue,
-			reference, newValue);
-		this.getOperations().add(singleReferenceOperation);
-	}
-
-	private MultiAttributeOperation createMultiAttributeOperation(Notification notification, Object newValue,
-		EAttribute attribute, boolean isAdd) {
-		MultiAttributeOperation multiAttributeOperation = OperationsFactory.eINSTANCE.createMultiAttributeOperation();
-		multiAttributeOperation.setClientDate(new Date());
-		multiAttributeOperation.setAdd(isAdd);
-		multiAttributeOperation.setFeatureName(attribute.getName());
-		multiAttributeOperation.setIndex(notification.getPosition());
-		multiAttributeOperation.setModelElementId(((ModelElement) notification.getNotifier()).getModelElementId());
-		multiAttributeOperation.getValues().add(newValue);
-		return multiAttributeOperation;
-	}
-
-	private AttributeOperation createAttributeOperation(Notification notification, Object feature, Object newValue,
-		Object oldValue) {
-		EAttribute attribute = (EAttribute) feature;
-		AttributeOperation attributeOperation = OperationsFactory.eINSTANCE.createAttributeOperation();
-		attributeOperation.setClientDate(new Date());
-		attributeOperation.setFeatureName(attribute.getName());
-		ModelElement modelElement = (ModelElement) notification.getNotifier();
-		attributeOperation.setModelElementId((ModelElementId) EcoreUtil.copy(modelElement.getModelElementId()));
-		attributeOperation.setNewValue(newValue);
-		attributeOperation.setOldValue(oldValue);
-		return attributeOperation;
-	}
-
-	private void handleEReference(EReference reference, ModelElement modelElement, Notification notification,
-		boolean isAdd) {
-
-		if (reference.isTransient()) {
-			return;
-		}
-		if (reference.isMany()) {
-			// handle bidirectional notifications
-			if (reference.getEOpposite() != null) {
-				if (notification instanceof NotificationImpl) {
-					Field declaredField;
-					try {
-						declaredField = NotificationImpl.class.getDeclaredField("next");
-						declaredField.setAccessible(true);
-						Object object = declaredField.get(notification);
-						Notification nextNotification = (Notification) object;
-						if (nextNotification != null && nextNotification.getFeature() == reference.getEOpposite()
-							&& nextNotification.getNotifier() == modelElement) {
-							// skip this notification
-							return;
-						}
-						// exception handling will only log error since this is
-						// not fatal if it fails, it just results in redundant
-						// operations being created.
-					} catch (SecurityException e) {
-						WorkspaceUtil.logException("Access to next field of notification failed.", e);
-					} catch (NoSuchFieldException e) {
-						WorkspaceUtil.logException("Access to next field of notification failed.", e);
-					} catch (IllegalArgumentException e) {
-						WorkspaceUtil.logException("Access to next field of notification failed.", e);
-					} catch (IllegalAccessException e) {
-						WorkspaceUtil.logException("Access to next field of notification failed.", e);
-					}
-				}
-			}
-
-			// element was added/removed to/from a reference feature
-			ModelElement parent = (ModelElement) notification.getNotifier();
-
-			MultiReferenceOperation multiReferenceOperation = createMultiReferenceOperation(notification, reference,
-				modelElement, parent, isAdd);
-			int index = getOperations().size();
-			// check if this operation refers to a previous delete
-			List<AbstractOperation> operations = this.getOperations();
-			for (int i = operations.size() - 1; i >= 0; i--) {
-				AbstractOperation lastOperation = operations.get(i);
-				if (!isRelated(modelElement, isAdd, parent, lastOperation)) {
-					index = i + 1;
-					break;
-				} else {
-					index = i;
-				}
-			}
-
-			operations.add(index, multiReferenceOperation);
-		} else {
-			// should never hit here
-			throw new IllegalStateException();
-		}
-	}
-
-	private boolean isRelated(ModelElement modelElement, boolean isAdd, ModelElement parent,
-		AbstractOperation lastOperation) {
-		if (!isAdd && lastOperation instanceof CreateDeleteOperation
-			&& ((CreateDeleteOperation) lastOperation).isDelete()) {
-			if (lastOperation.getModelElementId().equals(parent.getModelElementId())
-				|| lastOperation.getModelElementId().equals(modelElement.getModelElementId())) {
-				return true;
-			}
-		}
-		return false;
-	}
-
-	private MultiReferenceOperation createMultiReferenceOperation(Notification notification, EReference reference,
-		ModelElement modelElement, ModelElement parent, boolean isAdd) {
-		MultiReferenceOperation multiReferenceOperation = OperationsFactory.eINSTANCE.createMultiReferenceOperation();
-		setBidirectionalInfos(reference, multiReferenceOperation);
-		multiReferenceOperation.setClientDate(new Date());
-		multiReferenceOperation.setFeatureName(reference.getName());
-		multiReferenceOperation.setAdd(isAdd);
-		multiReferenceOperation.setIndex(notification.getPosition());
-		multiReferenceOperation.getReferencedModelElements().add(modelElement.getModelElementId());
-		multiReferenceOperation.setModelElementId(parent.getModelElementId());
-		return multiReferenceOperation;
-	}
-
-	private SingleReferenceOperation createSingleReferenceOperation(Notification notification, Object oldValue,
-		EReference reference, ModelElement newValueME) {
-		SingleReferenceOperation singleReferenceOperation = OperationsFactory.eINSTANCE
-			.createSingleReferenceOperation();
-		singleReferenceOperation.setFeatureName(reference.getName());
-		setBidirectionalInfos(reference, singleReferenceOperation);
-		singleReferenceOperation.setClientDate(new Date());
-		if (oldValue != null) {
-			singleReferenceOperation.setOldValue(((ModelElement) oldValue).getModelElementId());
-		}
-		if (newValueME != null) {
-			singleReferenceOperation.setNewValue(newValueME.getModelElementId());
-		}
-		singleReferenceOperation.setModelElementId(((ModelElement) notification.getNotifier()).getModelElementId());
-		return singleReferenceOperation;
-	}
-
-	private void setBidirectionalInfos(EReference reference, ReferenceOperation referenceOperation) {
-		if (reference.getEOpposite() != null) {
-			referenceOperation.setBidirectional(true);
-			referenceOperation.setOppositeFeatureName(reference.getEOpposite().getName());
-		} else {
-			referenceOperation.setBidirectional(false);
-		}
-	}
-
-	/**
-	 * Create a CreateDeleteOperation
-	 * 
-	 * @param modelElement the model element to delete or create
-	 * @param delete whether the element is deleted or created
-	 * @return the operation
-	 */
-	private CreateDeleteOperation createCreateDeleteOperation(ModelElement modelElement, boolean delete) {
-		CreateDeleteOperation createDeleteOperation = OperationsFactory.eINSTANCE.createCreateDeleteOperation();
-		createDeleteOperation.setDelete(delete);
-		createDeleteOperation.setModelElement((ModelElement) EcoreUtil.copy(modelElement));
-		createDeleteOperation.setModelElementId((ModelElementId) EcoreUtil.copy(modelElement.getModelElementId()));
-		createDeleteOperation.setClientDate(new Date());
-		return createDeleteOperation;
-	}
-
-	/**
-	 * {@inheritDoc}
-	 * 
-	 * @see org.unicase.model.util.ProjectChangeObserver#modelElementAdded(org.unicase.model.Project,
-	 *      org.unicase.model.ModelElement)
-	 */
-	public void modelElementAdded(Project project, ModelElement modelElement) {
-		addToResource(modelElement);
-		if (isRecording) {
-			// filter create operation if a predeccessing delete is already
-			// present
-			List<AbstractOperation> operations = this.getOperations();
-			for (int i = 0; i < operations.size(); i++) {
-				AbstractOperation abstractOperation = operations.get(i);
-				if (abstractOperation instanceof CreateDeleteOperation) {
-					CreateDeleteOperation operation = (CreateDeleteOperation) abstractOperation;
-					if (operation.isDelete() && operation.getModelElementId().equals(modelElement.getModelElementId())) {
-						operations.remove(operation);
-						return;
-					}
-				}
-			}
-			appendCreator(modelElement);
-			operations.add(createCreateDeleteOperation(modelElement, false));
-			saveProjectSpaceOnly();
-		}
-	}
-
-	/**
-	 * Appends the creator's name and the creation date.
-	 * 
-	 * @param modelElement the model element.
-	 */
-	private void appendCreator(ModelElement modelElement) {
-		if (modelElement.getCreator() == null || modelElement.getCreator().equals("")) {
-			Usersession usersession = getUsersession();
-			// used when the project has not been shared yet
-			// and there is practically no possible way of
-			// knowing who the creator was...
-			String creator = "unicase";
-			if (usersession != null) {
-				creator = usersession.getACUser().getName();
-			}
-			modelElement.setCreator(creator);
-		}
-		if (modelElement.getCreationDate() == null) {
-			modelElement.setCreationDate(new Date());
-		}
 	}
 
 	/**
@@ -1916,10 +1549,33 @@ public class ProjectSpaceImpl extends IdentifiableElementImpl implements Project
 	 */
 	public void notify(Notification notification, Project project, ModelElement modelElement) {
 		if (isRecording) {
-			if (this.deleteOperation == null) {
-				createOperations(notification, modelElement);
-				OperationsCannonizer.cannonize(getOperations());
+			List<AbstractOperation> createdOperations;
+			try {
+				createdOperations = OperationParser.parseOperations(notification, modelElement);
+			} catch (UnsupportedNotificationException e) {
+				WorkspaceUtil.logException("Recording an operation failed!", e);
+				// save model element anyway, other wise model could be corrupted
+				save(modelElement);
+				return;
 			}
+			if (this.deleteOperation == null) {
+				getOperations().addAll(createdOperations);
+				OperationsCannonizer.cannonize(getOperations());
+			} else {
+				EList<ReferenceOperation> subOperations = this.deleteOperation.getSubOperations();
+				// check if all recorded ops are reference operations
+				// MK: should also check if reference operations really refer to the delete
+				for (AbstractOperation operation : createdOperations) {
+					if (OperationsPackage.eINSTANCE.getReferenceOperation().isInstance(operation)) {
+						subOperations.add((ReferenceOperation) operation);
+					} else {
+						getOperations().add(operation);
+						String message = "During a delete operation an operation of a type other than ReferenceOperation occured!";
+						WorkspaceUtil.logException(message, new IllegalStateException(message));
+					}
+				}
+			}
+			// MK: maybe skip save if we are within a delete operation
 			saveProjectSpaceOnly();
 			save(modelElement);
 			setDirty(getOperations().size() > 0);
@@ -2031,13 +1687,18 @@ public class ProjectSpaceImpl extends IdentifiableElementImpl implements Project
 
 	public void modelElementDeleteCompleted(ModelElement modelElement) {
 		if (isRecording) {
+			if (deleteOperation == null) {
+				throw new IllegalStateException("DeleteCompleted called without previous delete start call");
+			}
 			deleteOperation.setDelete(true);
 			deleteOperation.setModelElement(ModelUtil.clone(modelElement));
 			deleteOperation.setModelElementId(modelElement.getModelElementId());
 			this.getOperations().add(deleteOperation);
 
 			deleteOperation = null;
+
 			saveProjectSpaceOnly();
+			setDirty(getOperations().size() > 0);
 			Resource resource = modelElement.eResource();
 			if (resource != null) {
 				resource.getContents().remove(modelElement);
@@ -2059,7 +1720,6 @@ public class ProjectSpaceImpl extends IdentifiableElementImpl implements Project
 			this.deleteOperation = OperationsFactory.eINSTANCE.createCreateDeleteOperation();
 			deleteOperation.setClientDate(new Date());
 		}
-		// MK: implement recording to subOperations of deleteoperation
 	}
 
 	public ModelElement resolve(ModelElementUrlFragment modelElementUrlFragment) throws MEUrlResolutionException {
@@ -2071,4 +1731,78 @@ public class ProjectSpaceImpl extends IdentifiableElementImpl implements Project
 		return modelElement;
 	}
 
+	/**
+	 * {@inheritDoc}
+	 * 
+	 * @see org.unicase.model.util.ProjectChangeObserver#modelElementAdded(org.unicase.model.Project,
+	 *      org.unicase.model.ModelElement)
+	 */
+	public void modelElementAdded(Project project, ModelElement modelElement) {
+		addToResource(modelElement);
+		if (isRecording) {
+			stopChangeRecording();
+			// filter create operation if a predeccessing delete is already
+			// present
+			List<AbstractOperation> operations = this.getOperations();
+			for (int i = 0; i < operations.size(); i++) {
+				AbstractOperation abstractOperation = operations.get(i);
+				if (abstractOperation instanceof CreateDeleteOperation) {
+					CreateDeleteOperation operation = (CreateDeleteOperation) abstractOperation;
+					if (operation.isDelete() && operation.getModelElementId().equals(modelElement.getModelElementId())) {
+						operations.remove(operation);
+						return;
+					}
+				}
+			}
+			appendCreator(modelElement);
+			operations.add(createCreateDeleteOperation(modelElement, false));
+			saveProjectSpaceOnly();
+			startChangeRecording();
+		}
+	}
+
+	/**
+	 * Appends the creator's name and the creation date.
+	 * 
+	 * @param modelElement the model element.
+	 */
+	private void appendCreator(ModelElement modelElement) {
+		if (modelElement.getCreator() == null || modelElement.getCreator().equals("")) {
+			Usersession usersession = getUsersession();
+			// used when the project has not been shared yet
+			// and there is practically no possible way of
+			// knowing who the creator was...
+			String creator = "unicase";
+			if (usersession != null) {
+				creator = usersession.getACUser().getName();
+			}
+			modelElement.setCreator(creator);
+		}
+		if (modelElement.getCreationDate() == null) {
+			modelElement.setCreationDate(new Date());
+		}
+	}
+
+	/**
+	 * Create a CreateDeleteOperation
+	 * 
+	 * @param modelElement the model element to delete or create
+	 * @param delete whether the element is deleted or created
+	 * @return the operation
+	 */
+	private CreateDeleteOperation createCreateDeleteOperation(ModelElement modelElement, boolean delete) {
+		CreateDeleteOperation createDeleteOperation = OperationsFactory.eINSTANCE.createCreateDeleteOperation();
+		createDeleteOperation.setDelete(delete);
+		createDeleteOperation.setModelElement((ModelElement) EcoreUtil.copy(modelElement));
+		createDeleteOperation.setModelElementId((ModelElementId) EcoreUtil.copy(modelElement.getModelElementId()));
+		createDeleteOperation.setClientDate(new Date());
+		return createDeleteOperation;
+	}
+
+	public void makeTransient() {
+		if (initCompleted) {
+			throw new IllegalAccessError("Project Space cannot be set to transient after init.");
+		}
+		isTransient = true;
+	}
 } // ProjectContainerImpl
