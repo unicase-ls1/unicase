@@ -31,11 +31,10 @@ import org.unicase.model.util.ProjectChangeNotifier;
 import org.unicase.model.util.ProjectChangeObserver;
 
 /**
- * @author schroech
- * @implements ProjectChangeObserver
+ * @author koegel, naughton
  * @generated
  */
-public class ProjectImpl extends EObjectImpl implements Project, ProjectChangeObserver {
+public class ProjectImpl extends EObjectImpl implements Project {
 	/**
 	 * The cached value of the '{@link #getModelElements() <em>Model Elements</em>}' containment reference list. <!--
 	 * begin-user-doc --> <!-- end-user-doc -->
@@ -274,6 +273,11 @@ public class ProjectImpl extends EObjectImpl implements Project, ProjectChangeOb
 	 * @return the cache map
 	 */
 	private Map<ModelElementId, ModelElement> getModelElementsFromCache() {
+		initCacheAndNotifier();
+		return modelElementCache;
+	}
+
+	private void initCacheAndNotifier() {
 		if (modelElementCache == null) {
 			// init cache
 			modelElementCache = new HashMap<ModelElementId, ModelElement>();
@@ -286,9 +290,12 @@ public class ProjectImpl extends EObjectImpl implements Project, ProjectChangeOb
 				}
 			}
 			// init cache update
-			new ProjectChangeNotifier(this, this);
+			new ProjectChangeNotifier(this);
 		}
-		return modelElementCache;
+	}
+
+	private void handleModelElementDeleted(ModelElement modelElement) {
+		this.getModelElementsFromCache().remove(modelElement.getModelElementId());
 	}
 
 	/**
@@ -297,7 +304,7 @@ public class ProjectImpl extends EObjectImpl implements Project, ProjectChangeOb
 	 * @see org.unicase.model.util.ProjectChangeObserver#modelElementAdded(org.unicase.model.Project,
 	 *      org.unicase.model.ModelElement)
 	 */
-	public void modelElementAdded(Project project, ModelElement modelElement) {
+	public void handleEMFModelElementAdded(Project project, ModelElement modelElement) {
 		if (this.modelElementCache.containsKey(modelElement.getModelElementId())) {
 			throw new IllegalStateException("ModelElement is already in the project!");
 		}
@@ -313,22 +320,9 @@ public class ProjectImpl extends EObjectImpl implements Project, ProjectChangeOb
 	 * @see org.unicase.model.util.ProjectChangeObserver#notify(org.eclipse.emf.common.notify.Notification,
 	 *      org.unicase.model.Project, org.unicase.model.ModelElement)
 	 */
-	public void notify(Notification notification, Project project, ModelElement modelElement) {
+	public void handleEMFNotification(Notification notification, Project project, ModelElement modelElement) {
 		for (ProjectChangeObserver projectChangeObserver : this.observers) {
 			projectChangeObserver.notify(notification, project, modelElement);
-		}
-	}
-
-	/**
-	 * {@inheritDoc}
-	 * 
-	 * @see org.unicase.model.util.ProjectChangeObserver#modelElementRemoved(org.unicase.model.Project,
-	 *      org.unicase.model.ModelElement)
-	 */
-	public void modelElementRemoved(Project project, ModelElement modelElement) {
-		this.modelElementCache.remove(modelElement.getModelElementId());
-		for (ProjectChangeObserver projectChangeObserver : this.observers) {
-			projectChangeObserver.modelElementRemoved(project, modelElement);
 		}
 	}
 
@@ -356,8 +350,7 @@ public class ProjectImpl extends EObjectImpl implements Project, ProjectChangeOb
 	 * @see org.unicase.model.Project#addProjectChangeObserver(org.unicase.model.util.ProjectChangeObserver)
 	 */
 	public void addProjectChangeObserver(ProjectChangeObserver projectChangeObserver) {
-		// FIXME: hack to init notifier and cache
-		getModelElementsFromCache();
+		initCacheAndNotifier();
 		this.observers.add(projectChangeObserver);
 	}
 
@@ -390,7 +383,7 @@ public class ProjectImpl extends EObjectImpl implements Project, ProjectChangeOb
 			throw new IllegalArgumentException("Cannot delete a model element that is not contained in this project.");
 		}
 		for (ProjectChangeObserver projectChangeObserver : this.observers) {
-			projectChangeObserver.modelElementDeleteStarted(modelElement);
+			projectChangeObserver.modelElementDeleteStarted(this, modelElement);
 		}
 
 		deleteOutgoingCrossReferences(modelElement);
@@ -409,9 +402,13 @@ public class ProjectImpl extends EObjectImpl implements Project, ProjectChangeOb
 			EList<?> containmentList = (EList<?>) containerModelElement.eGet(modelElement.eContainmentFeature());
 			containmentList.remove(modelElement);
 		}
+
+		handleModelElementDeleted(modelElement);
+
 		for (ProjectChangeObserver projectChangeObserver : this.observers) {
-			projectChangeObserver.modelElementDeleteCompleted(modelElement);
+			projectChangeObserver.modelElementDeleteCompleted(this, modelElement);
 		}
+
 	}
 
 	private void deleteOutgoingCrossReferences(ModelElement modelElement) {
@@ -456,11 +453,14 @@ public class ProjectImpl extends EObjectImpl implements Project, ProjectChangeOb
 		}
 	}
 
-	public void modelElementDeleteCompleted(ModelElement modelElement) {
-		// nothing to do
+	public void modelElementDeleteCompleted(Project project, ModelElement modelElement) {
+		this.modelElementCache.remove(modelElement.getModelElementId());
+		for (ProjectChangeObserver projectChangeObserver : this.observers) {
+			projectChangeObserver.modelElementDeleteCompleted(this, modelElement);
+		}
 	}
 
-	public void modelElementDeleteStarted(ModelElement modelElement) {
+	public void modelElementDeleteStarted(Project project, ModelElement modelElement) {
 		// nothing to do
 	}
 }

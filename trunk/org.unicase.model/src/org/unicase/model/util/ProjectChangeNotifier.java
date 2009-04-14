@@ -14,34 +14,26 @@ import org.eclipse.emf.ecore.EObject;
 import org.eclipse.emf.ecore.EReference;
 import org.unicase.model.ModelElement;
 import org.unicase.model.ModelPackage;
-import org.unicase.model.Project;
+import org.unicase.model.impl.ProjectImpl;
 
 /**
- * Notifies about changes in a project. WARNING: Only for use in Project! Use addProjectObserver of Project to listen
- * for a Project.
+ * Notifies about changes in a projectImpl. WARNING: Only for use in Project! Use addProjectObserver of Project to
+ * listen for a Project.
  * 
  * @author koegel
  */
-public class ProjectChangeNotifier extends AdapterImpl {
+public final class ProjectChangeNotifier extends AdapterImpl {
 
-	private ProjectChangeObserver projectChangeObserver;
-	private Project project;
+	private ProjectImpl projectImpl;
 
 	/**
 	 * Constructor.
 	 * 
-	 * @param project the project
-	 * @param projectChangeObserver the listener
+	 * @param projectImpl the projectImpl
 	 */
-	public ProjectChangeNotifier(Project project, ProjectChangeObserver projectChangeObserver) {
-
-		if (!(projectChangeObserver instanceof Project)) {
-			throw new IllegalArgumentException("This Notifier is only to be used by Project!");
-		}
-
-		this.projectChangeObserver = projectChangeObserver;
-		this.project = project;
-		TreeIterator<EObject> allContents = project.eAllContents();
+	public ProjectChangeNotifier(ProjectImpl projectImpl) {
+		this.projectImpl = projectImpl;
+		TreeIterator<EObject> allContents = projectImpl.eAllContents();
 		while (allContents.hasNext()) {
 			EObject next = allContents.next();
 			if (ModelPackage.eINSTANCE.getModelElement().isInstance(next)) {
@@ -49,7 +41,7 @@ public class ProjectChangeNotifier extends AdapterImpl {
 				modelElement.eAdapters().add(this);
 			}
 		}
-		project.eAdapters().add(this);
+		projectImpl.eAdapters().add(this);
 	}
 
 	/**
@@ -117,8 +109,7 @@ public class ProjectChangeNotifier extends AdapterImpl {
 	}
 
 	private void handleSingleRemove(Notification notification, ModelElement child) {
-		if (child.getProject() != project) {
-			this.projectChangeObserver.modelElementRemoved(project, child);
+		if (child.getProject() != projectImpl) {
 			child.eAdapters().remove(this);
 		}
 	}
@@ -126,7 +117,7 @@ public class ProjectChangeNotifier extends AdapterImpl {
 	private void fireNotification(Notification notification) {
 		Object notifier = notification.getNotifier();
 		if (notifier instanceof ModelElement) {
-			this.projectChangeObserver.notify(notification, project, (ModelElement) notifier);
+			projectImpl.handleEMFNotification(notification, projectImpl, (ModelElement) notifier);
 		}
 	}
 
@@ -164,11 +155,11 @@ public class ProjectChangeNotifier extends AdapterImpl {
 		if (ModelPackage.eINSTANCE.getModelElement().isInstance(newValue)) {
 			ModelElement modelElement = (ModelElement) newValue;
 			// this works only because the contains cache is not yet updated
-			if (!project.contains(modelElement)) {
+			if (!projectImpl.contains(modelElement)) {
 				newValue.eAdapters().add(this);
-				this.projectChangeObserver.modelElementAdded(project, (ModelElement) newValue);
+				projectImpl.handleEMFModelElementAdded(projectImpl, (ModelElement) newValue);
 			} else {
-				if (project.getModelElement(modelElement.getModelElementId()) != modelElement) {
+				if (projectImpl.getModelElement(modelElement.getModelElementId()) != modelElement) {
 					throw new IllegalStateException("Two elements with the same id but different instance detected!");
 				}
 			}
