@@ -303,7 +303,7 @@ public class MultiReferenceOperationImpl extends ReferenceOperationImpl implemen
 				@SuppressWarnings("unchecked")
 				EList<ModelElement> list = (EList<ModelElement>) object;
 				if (isAdd()) {
-					if (index < list.size()) {
+					if (index < list.size() && index > -1) {
 						list.addAll(getIndex(), referencedModelElements);
 					} else {
 						// if index is out of range ignore index
