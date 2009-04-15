@@ -14,7 +14,6 @@ import org.eclipse.emf.common.notify.Notification;
 import org.eclipse.emf.common.notify.impl.NotificationImpl;
 import org.eclipse.emf.ecore.EAttribute;
 import org.eclipse.emf.ecore.EReference;
-import org.eclipse.emf.ecore.util.EcoreUtil;
 import org.unicase.emfstore.esmodel.versioning.operations.AbstractOperation;
 import org.unicase.emfstore.esmodel.versioning.operations.AttributeOperation;
 import org.unicase.emfstore.esmodel.versioning.operations.DiagramLayoutOperation;
@@ -92,16 +91,12 @@ public final class OperationParser {
 			return handleAddNotification(notification, attribute, reference, modelElement, newValue);
 		case Notification.REMOVE:
 			return handleRemoveNotification(notification, attribute, reference, modelElement, oldValue);
-			// check this
 		case Notification.ADD_MANY:
 			return handleAddManyNotification(notification, attribute, reference, modelElement, oldValue, newValue);
-			// check this
 		case Notification.REMOVE_MANY:
 			return handleRemoveManyNotification(notification, attribute, reference, modelElement, oldValue, newValue);
-			// check this
 		case Notification.UNSET:
 			return handleUnsetNotification(notification, feature);
-			// check this
 		case Notification.MOVE:
 			return handleMoveNotification(notification, attribute, reference, modelElement, newValue, oldValue);
 		default:
@@ -238,6 +233,11 @@ public final class OperationParser {
 				"Move notification on attribute feature with multiplicty greater 1 not supported yet!");
 		} else {
 			// sanity checks
+			if (newValue == null | oldValue == null) {
+				throw new UnsupportedNotificationException(
+					"Null detected in oldValue or NewValue of move notification about: "
+						+ modelElement.getClass().getCanonicalName() + "-" + reference.getName());
+			}
 			if (!(newValue instanceof ModelElement)) {
 				// non model element references must be marked transient
 				throw new UnsupportedNotificationException(
@@ -298,9 +298,8 @@ public final class OperationParser {
 		Object newValue, Object oldValue) {
 		EAttribute attribute = (EAttribute) feature;
 		AttributeOperation attributeOperation = OperationsFactory.eINSTANCE.createAttributeOperation();
-		attributeOperation.setClientDate(new Date());
+		setCommonValues(attributeOperation, modelElement);
 		attributeOperation.setFeatureName(attribute.getName());
-		attributeOperation.setModelElementId(modelElement.getModelElementId());
 		attributeOperation.setNewValue(newValue);
 		attributeOperation.setOldValue(oldValue);
 		return attributeOperation;
@@ -310,10 +309,8 @@ public final class OperationParser {
 		Object newValue, Object oldValue) {
 		DiagramLayoutOperation createDiagramLayoutOperation = OperationsFactory.eINSTANCE
 			.createDiagramLayoutOperation();
-		createDiagramLayoutOperation.setClientDate(new Date());
+		setCommonValues(createDiagramLayoutOperation, modelElement);
 		createDiagramLayoutOperation.setFeatureName(attribute.getName());
-		createDiagramLayoutOperation.setModelElementId((ModelElementId) EcoreUtil
-			.copy(modelElement.getModelElementId()));
 		createDiagramLayoutOperation.setNewValue(newValue);
 		createDiagramLayoutOperation.setOldValue(oldValue);
 		return createDiagramLayoutOperation;
@@ -413,6 +410,7 @@ public final class OperationParser {
 			return false;
 		}
 
+		// MK: also check for type and value match
 		// check if values match
 		if (newValue == null && nextNotification.getNotifier() == oldValue) {
 			return true;
@@ -432,7 +430,7 @@ public final class OperationParser {
 		if (nextNotifications.size() < 1) {
 			return false;
 		}
-
+		// MK: also check for type and value match
 		Notification nextNotification = nextNotifications.get(nextNotifications.size() - 1);
 		boolean featureMatch = nextNotification.getFeature() == reference.getEOpposite();
 		boolean valueMatch = nextNotification.getNotifier() == valueModelElement;
@@ -471,6 +469,11 @@ public final class OperationParser {
 			WorkspaceUtil.logException("Access to next field of notification failed.", e);
 			throw new UnknownNotificationImplementationException(notification, e);
 		} catch (IllegalAccessException e) {
+			WorkspaceUtil.logException("Access to next field of notification failed.", e);
+			throw new UnknownNotificationImplementationException(notification, e);
+			// BEGIN SUPRESS CATCH EXCEPTION
+		} catch (RuntimeException e) {
+			// END SUPRESS CATCH EXCEPTION
 			WorkspaceUtil.logException("Access to next field of notification failed.", e);
 			throw new UnknownNotificationImplementationException(notification, e);
 		}

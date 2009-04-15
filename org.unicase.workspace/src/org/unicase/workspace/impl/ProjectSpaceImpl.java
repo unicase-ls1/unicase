@@ -1584,13 +1584,15 @@ public class ProjectSpaceImpl extends IdentifiableElementImpl implements Project
 	private void save(ModelElement modelElement) {
 		Resource resource = modelElement.eResource();
 		if (resource == null) {
+			String message = "Save failed: ModelElement \"" + modelElement.getIdentifier() + "\" has no resource!";
+			WorkspaceUtil.logException(message, new IllegalStateException(message));
 			return;
 		}
 		try {
 			resource.save(Configuration.getResourceSaveOptions());
 		} catch (IOException e) {
-			// TODO Auto-generated catch block
-			e.printStackTrace();
+			String message = "Save failed: ModelElement \"" + modelElement.getIdentifier();
+			WorkspaceUtil.logException(message, e);
 		}
 	}
 
