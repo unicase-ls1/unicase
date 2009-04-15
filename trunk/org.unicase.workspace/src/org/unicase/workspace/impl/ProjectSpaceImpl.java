@@ -1696,6 +1696,8 @@ public class ProjectSpaceImpl extends IdentifiableElementImpl implements Project
 
 			deleteOperation = null;
 
+			OperationsCannonizer.cannonize(getOperations());
+
 			saveProjectSpaceOnly();
 			setDirty(getOperations().size() > 0);
 			Resource resource = modelElement.eResource();
