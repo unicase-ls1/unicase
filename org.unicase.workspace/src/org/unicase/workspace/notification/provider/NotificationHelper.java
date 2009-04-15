@@ -58,17 +58,17 @@ public final class NotificationHelper {
 	 * @return a HTML link as string
 	 */
 	public static String getHTMLLinkForModelElement(ModelElementId meId, ProjectSpace projectSpace, boolean active) {
-		
+
 		ModelElement modelElement = projectSpace.getProject().getModelElement(meId);
 		if (modelElement != null) {
-			if(active){
+			if (active) {
 				return getHTMLLinkForModelElement(modelElement, projectSpace);
 			}
 			return modelElement.getName();
 		}
 		return "(deleted element)";
 	}
-	
+
 	/**
 	 * This method create a HTML link pointing to a model element for the message of Notifications.
 	 * 
