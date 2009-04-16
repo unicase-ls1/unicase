@@ -29,7 +29,7 @@ public class ReviewerSelectionDialog extends ElementListSelectionDialog {
 	/**
 	 * Message shown on {@link ReviewerSelectionDialog}.
 	 */
-	public static final String REVIEWERSELECTIONDIALOG_MESSAGE = "This work item has currently no reviewer. Please select a reviewer. You can also set the work item to resolved or done without setting the reviewer (not recommanded):";
+	public static final String REVIEWERSELECTIONDIALOG_MESSAGE = "This work item has currently no reviewer. Please select a reviewer. \nYou can also set the work item to resolved or done without setting the reviewer (not recommended).";
 	private static final int SET_RESOLVED_BUTTON_ID = 2;
 	private static final int SET_DONE_BUTTON_ID = 3;
 
