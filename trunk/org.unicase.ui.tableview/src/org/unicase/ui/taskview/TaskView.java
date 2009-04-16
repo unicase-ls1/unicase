@@ -94,6 +94,7 @@ public class TaskView extends ViewPart implements ProjectChangeObserver {
 	private Text txtUser;
 
 	private static final String TASKVIEW_FILTERS_GROUP = "taskviewFilters";
+	private static final String TASKVIEW_USER_GROUP = "taskviewUserFilter";
 
 	/**
 	 * {@inheritDoc}
@@ -168,7 +169,7 @@ public class TaskView extends ViewPart implements ProjectChangeObserver {
 						selectedUser = null;
 					}
 					setUserFilter(true, selectedUser);
-					setTeamFilter(filterToTeam.isChecked(), selectedUser);
+					setTeamFilter(filterToTeam.isChecked());
 					setResolvedBugReportsFilter(filterResolvedBugReports.isChecked(), selectedUser);
 					filterToLoggedInUser.setChecked(false);
 				}
@@ -198,7 +199,11 @@ public class TaskView extends ViewPart implements ProjectChangeObserver {
 			}
 
 		};
+
 		toolbarManager.add(userTextToolbarContribution);
+
+		Separator seperator = new Separator(TASKVIEW_USER_GROUP);
+		toolbarManager.add(seperator);
 		toolbarManager.add(filterToTeam);
 		toolbarManager.add(filterResolvedBugReports);
 
@@ -311,23 +316,22 @@ public class TaskView extends ViewPart implements ProjectChangeObserver {
 			@Override
 			public void run() {
 				if (loggedInUser != null && filterToSelectedUser.isChecked()) {
-					setTeamFilter(isChecked(), loggedInUser);
+					setTeamFilter(isChecked());
 				} else {
-					setTeamFilter(isChecked(), selectedUser);
+					setTeamFilter(isChecked());
 				}
 
 			}
 
 		};
 		filterToTeam.setImageDescriptor(Activator.getImageDescriptor("/icons/filtertomyteam.png"));
-		filterToTeam
-			.setToolTipText("Restricts the displayed table items to items owned by the current user and it's teammates.");
+		filterToTeam.setToolTipText("Show/Hide items owned by the current user's teammates.");
 		Boolean teamFilterCeckState = Boolean.parseBoolean(getDialogSettings().get("TeamFilter"));
 		filterToTeam.setChecked(teamFilterCeckState);
 		if (loggedInUser != null && userFilterCheckState) {
-			setTeamFilter(teamFilterCeckState, loggedInUser);
+			setTeamFilter(teamFilterCeckState);
 		} else {
-			setTeamFilter(teamFilterCeckState, selectedUser);
+			setTeamFilter(teamFilterCeckState);
 		}
 
 	}
@@ -418,12 +422,12 @@ public class TaskView extends ViewPart implements ProjectChangeObserver {
 			filterToLoggedInUser.setEnabled(false);
 			if (selectedUser != null) {
 				setUserFilter(true, selectedUser);
-				setTeamFilter(true, selectedUser);
+				setTeamFilter(true);
 				// here false = set filter
 				setResolvedBugReportsFilter(false, selectedUser);
 			} else {
 				setUserFilter(false, null);
-				setTeamFilter(false, null);
+				setTeamFilter(false);
 				setResolvedBugReportsFilter(true, null);
 			}
 
@@ -431,7 +435,7 @@ public class TaskView extends ViewPart implements ProjectChangeObserver {
 			filterToLoggedInUser.setEnabled(true);
 			if (filterToLoggedInUser.isChecked()) {
 				setUserFilter(true, loggedInUser);
-				setTeamFilter(filterToTeam.isChecked(), loggedInUser);
+				setTeamFilter(filterToTeam.isChecked());
 				setResolvedBugReportsFilter(filterResolvedBugReports.isChecked(), loggedInUser);
 			}
 
@@ -536,17 +540,13 @@ public class TaskView extends ViewPart implements ProjectChangeObserver {
 	 * @param checked if filtered
 	 * @param user user
 	 */
-	protected void setTeamFilter(boolean checked, User user) {
-		if (checked) {
-			if (teamFilter != null) {
-				teamFilter.setUser(user);
-				viewer.addFilter(teamFilter);
-			}
-		} else {
-			if (teamFilter != null) {
-				viewer.removeFilter(teamFilter);
-			}
+	protected void setTeamFilter(boolean checked) {
+
+		if (userFilter != null) {
+			userFilter.setShowTeam(checked);
+			viewer.refresh();
 		}
+
 		getDialogSettings().put("TeamFilter", filterToTeam.isChecked());
 
 	}
