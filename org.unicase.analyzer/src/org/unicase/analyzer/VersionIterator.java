@@ -11,7 +11,6 @@ import java.util.NoSuchElementException;
 
 import org.eclipse.emf.ecore.util.EcoreUtil;
 import org.unicase.analyzer.exceptions.IteratorException;
-import org.unicase.emfstore.ServerConfiguration;
 import org.unicase.emfstore.esmodel.ProjectId;
 import org.unicase.emfstore.esmodel.util.EsModelUtil;
 import org.unicase.emfstore.esmodel.versioning.ChangePackage;
