@@ -21,14 +21,11 @@ import java.util.Set;
 
 import org.apache.commons.logging.Log;
 import org.apache.commons.logging.LogFactory;
-import org.eclipse.emf.common.util.BasicEList;
 import org.eclipse.emf.common.util.EList;
-import org.eclipse.emf.common.util.TreeIterator;
 import org.eclipse.emf.common.util.URI;
 import org.eclipse.emf.ecore.EObject;
 import org.eclipse.emf.ecore.resource.Resource;
 import org.eclipse.emf.ecore.resource.ResourceSet;
-import org.eclipse.emf.ecore.resource.Resource.Diagnostic;
 import org.eclipse.emf.ecore.resource.impl.ResourceSetImpl;
 import org.eclipse.equinox.app.IApplication;
 import org.eclipse.equinox.app.IApplicationContext;
@@ -37,12 +34,10 @@ import org.unicase.emfstore.connection.ConnectionHandler;
 import org.unicase.emfstore.connection.rmi.RMIAdminConnectionHandler;
 import org.unicase.emfstore.connection.rmi.RMIConnectionHandler;
 import org.unicase.emfstore.esmodel.EsmodelFactory;
-import org.unicase.emfstore.esmodel.ProjectHistory;
 import org.unicase.emfstore.esmodel.ServerSpace;
 import org.unicase.emfstore.esmodel.accesscontrol.ACUser;
 import org.unicase.emfstore.esmodel.accesscontrol.AccesscontrolFactory;
 import org.unicase.emfstore.esmodel.accesscontrol.roles.RolesFactory;
-import org.unicase.emfstore.esmodel.versioning.Version;
 import org.unicase.emfstore.exceptions.EmfStoreException;
 import org.unicase.emfstore.exceptions.FatalEmfStoreException;
 import org.unicase.emfstore.exceptions.StorageException;
@@ -113,7 +108,7 @@ public class EmfStoreController implements IApplication {
 		connectionHandlers = initConnectionHandlers();
 
 		TaskManager taskManager = TaskManager.getInstance();
-		taskManager.addTask(new CleanMemoryTask(emfStore));
+		taskManager.addTask(new CleanMemoryTask(new EmfStoreImpl(serverSpace, accessControl)));
 		taskManager.start();
 
 		logger.info("Initialitation COMPLETE.");
@@ -381,29 +376,38 @@ public class EmfStoreController implements IApplication {
 		EList<EObject> contents = resource.getContents();
 		for (EObject object : contents) {
 			if (object instanceof ServerSpace) {
-				EList<ProjectHistory> projects = ((ServerSpace) object).getProjects();
-				for (ProjectHistory projectHistory : projects) {
-					EList<Version> versions = projectHistory.getVersions();
-					for (Version version : versions) {
-						TreeIterator<EObject> allContents = version.eResource().getAllContents();
-						while (allContents.hasNext()) {
-							allContents.next();
-
-						}
-					}
-				}
+				EmfStoreValidator emfStoreValidator = new EmfStoreValidator((ServerSpace) object);
+				emfStoreValidator.validate(EmfStoreValidator.RESOLVEALL | EmfStoreValidator.MODELELEMENTID
+					| EmfStoreValidator.PROJECTGENERATION);
 			}
 		}
 
-		EList<Diagnostic> errors = new BasicEList<Diagnostic>();
-		EList<Resource> resources = resource.getResourceSet().getResources();
-		for (Resource currentResource : resources) {
-			errors.addAll(currentResource.getErrors());
-		}
-
-		if (errors.size() > 0) {
-			throw new FatalEmfStoreException(StorageException.NOLOAD + " : " + errors.get(0).getMessage());
-		}
+		// EList<EObject> contents = resource.getContents();
+		// for (EObject object : contents) {
+		// if (object instanceof ServerSpace) {
+		// EList<ProjectHistory> projects = ((ServerSpace) object).getProjects();
+		// for (ProjectHistory projectHistory : projects) {
+		// EList<Version> versions = projectHistory.getVersions();
+		// for (Version version : versions) {
+		// TreeIterator<EObject> allContents = version.eResource().getAllContents();
+		// while (allContents.hasNext()) {
+		// allContents.next();
+		//
+		// }
+		// }
+		// }
+		// }
+		// }
+		//
+		// EList<Diagnostic> errors = new BasicEList<Diagnostic>();
+		// EList<Resource> resources = resource.getResourceSet().getResources();
+		// for (Resource currentResource : resources) {
+		// errors.addAll(currentResource.getErrors());
+		// }
+		//
+		// if (errors.size() > 0) {
+		// throw new FatalEmfStoreException(StorageException.NOLOAD + " : " + errors.get(0).getMessage());
+		// }
 	}
 
 	/**
