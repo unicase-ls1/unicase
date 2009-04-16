@@ -1,0 +1,47 @@
+/*
+ * Copyright (c) 2008 Borland Software Corporation
+ * 
+ * All rights reserved. This program and the accompanying materials
+ * are made available under the terms of the Eclipse Public License v1.0
+ * which accompanies this distribution, and is available at
+ * http://www.eclipse.org/legal/epl-v10.html
+ *
+ * Contributors:
+ *    Artem Tikhomirov (Borland) - initial API and implementation
+ */
+
+import "http://www.eclipse.org/gmf/2008/GenModel";
+import "http://www.eclipse.org/emf/2002/Ecore";
+import "http://www.eclipse.org/emf/2002/GenModel";
+
+extension xpt::GenModelUtils reexport;
+
+boolean expressionResultNeedsCast(GenClassifier c) : false ;
+boolean expressionResultNeedsCast(GenClass c) : false ;
+boolean expressionResultNeedsCast(GenDataType c) : isNumberObject(c) || isPrimitiveNumberType(c) ;
+boolean expressionResultNeedsCast(GenEnum c) : true ;
+
+/*
+ * Present approach may result in duplicated methods when same feature gets
+ * initialized using java language inside single ElementInitializer hierarchy
+ */
+String javaMethodName(GenCommonBase de, GenFeatureValueSpec valueSpec) :
+	valueSpec.feature.ecoreFeature.name + "_" + de.getUniqueIdentifier() 
+;
+
+List[GenFeatureValueSpec] recurseCollectValueSpec(GenFeatureSeqInitializer si) :
+	si.initializers.typeSelect(GenFeatureValueSpec).union(
+	si.initializers.typeSelect(GenReferenceNewElementSpec).newElementInitializers.recurseCollectValueSpec().flatten())
+;
+
+// privates
+
+private boolean isNumberObject(genmodel::GenClassifier c) : false ;
+private boolean isNumberObject(genmodel::GenClass c) : false ;
+private boolean isNumberObject(genmodel::GenDataType c) : {"java.math.BigDecimal", "java.math.BigInteger", "java.lang.Byte", "java.lang.Double", "java.lang.Float", "java.lang.Integer", "java.lang.Long", "java.lang.Short"}.contains(c.ecoreDataType.instanceClassName) ;
+private boolean isNumberObject(genmodel::GenEnum c) : false ;
+
+private boolean isPrimitiveNumberType(genmodel::GenClassifier c) : false ;
+private boolean isPrimitiveNumberType(genmodel::GenClass c) : false ;
+private boolean isPrimitiveNumberType(genmodel::GenDataType c) : {"byte", "double", "float", "int", "long", "short"}.contains(c.ecoreDataType.instanceClassName) ;
+private boolean isPrimitiveNumberType(genmodel::GenEnum c) : false ;
