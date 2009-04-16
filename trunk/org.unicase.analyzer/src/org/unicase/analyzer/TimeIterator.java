@@ -3,29 +3,21 @@
  */
 package org.unicase.analyzer;
 
-import java.util.ArrayList;
-import java.util.Iterator;
-import java.util.Date;
 import java.util.Calendar;
+import java.util.Date;
 import java.util.List;
-import java.util.NoSuchElementException;
 
-import org.eclipse.emf.ecore.util.EcoreUtil;
 import org.unicase.analyzer.exceptions.IteratorException;
 import org.unicase.emfstore.esmodel.ProjectId;
-import org.unicase.emfstore.esmodel.versioning.ChangePackage;
+import org.unicase.emfstore.esmodel.versioning.DateVersionSpec;
 import org.unicase.emfstore.esmodel.versioning.HistoryInfo;
 import org.unicase.emfstore.esmodel.versioning.HistoryQuery;
 import org.unicase.emfstore.esmodel.versioning.PrimaryVersionSpec;
-import org.unicase.emfstore.esmodel.versioning.DateVersionSpec;
 import org.unicase.emfstore.esmodel.versioning.VersionSpec;
 import org.unicase.emfstore.esmodel.versioning.VersioningFactory;
 import org.unicase.emfstore.exceptions.EmfStoreException;
 import org.unicase.emfstore.exceptions.InvalidVersionSpecException;
-import org.unicase.model.Project;
 import org.unicase.workspace.Usersession;
-import org.unicase.workspace.WorkspaceManager;
-import org.unicase.workspace.connectionmanager.ConnectionManager;
 import org.unicase.workspace.util.WorkspaceUtil;
 
 /**
@@ -144,6 +136,7 @@ public class TimeIterator extends VersionIterator {
 	 * {@inheritDoc}
 	 * @see java.util.Iterator#next()
 	 */
+	@Override
 	public ProjectAnalysisData next() {
 		ProjectAnalysisData projectdata = AnalyzerFactory.eINSTANCE
 		.createProjectAnalysisData();
@@ -156,8 +149,8 @@ public class TimeIterator extends VersionIterator {
 	 * {@inheritDoc}
 	 * @see java.util.Iterator#remove()
 	 */
+	@Override
 	public void remove() {
-		// TODO Auto-generated method stub
-
+		throw new UnsupportedOperationException();
 	}
 }
