@@ -881,7 +881,7 @@ public class ProjectSpaceImpl extends IdentifiableElementImpl implements Project
 		if (commitObserver != null) {
 			commitObserver.commitCompleted();
 		}
-
+		updateDirtyState();
 		return newBaseVersion;
 	}
 
@@ -1032,6 +1032,7 @@ public class ProjectSpaceImpl extends IdentifiableElementImpl implements Project
 		startChangeRecording();
 
 		this.getOperations().clear();
+		updateDirtyState();
 	}
 
 	/**
@@ -1050,6 +1051,10 @@ public class ProjectSpaceImpl extends IdentifiableElementImpl implements Project
 	 */
 	public void startChangeRecording() {
 		isRecording = true;
+		updateDirtyState();
+	}
+
+	private void updateDirtyState() {
 		setDirty(getOperations().size() > 0);
 	}
 
@@ -1559,7 +1564,7 @@ public class ProjectSpaceImpl extends IdentifiableElementImpl implements Project
 			// MK: maybe skip save if we are within a delete operation
 			saveProjectSpaceOnly();
 			save(modelElement);
-			setDirty(getOperations().size() > 0);
+			updateDirtyState();
 		}
 	}
 
@@ -1685,7 +1690,7 @@ public class ProjectSpaceImpl extends IdentifiableElementImpl implements Project
 			OperationsCannonizer.cannonize(getOperations());
 
 			saveProjectSpaceOnly();
-			setDirty(getOperations().size() > 0);
+			updateDirtyState();
 			Resource resource = modelElement.eResource();
 			if (resource != null) {
 				resource.getContents().remove(modelElement);
