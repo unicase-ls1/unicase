@@ -833,24 +833,16 @@ public class ProjectSpaceImpl extends IdentifiableElementImpl implements Project
 	public PrimaryVersionSpec commit(final LogMessage logMessage, CommitObserver commitObserver)
 		throws EmfStoreException {
 
-		stopChangeRecording();
-
 		// check if there are any changes
 		if (this.getOperations().size() == 0) {
-			startChangeRecording();
 			throw new NoLocalChangesException();
 		}
 
 		// check if we need to update first
 		PrimaryVersionSpec resolvedVersion;
-		try {
-			resolvedVersion = resolveVersionSpec(VersionSpec.HEAD_VERSION);
-		} catch (EmfStoreException e) {
-			startChangeRecording();
-			throw e;
-		}
+		resolvedVersion = resolveVersionSpec(VersionSpec.HEAD_VERSION);
+
 		if ((!getBaseVersion().equals(resolvedVersion))) {
-			startChangeRecording();
 			throw new BaseVersionOutdatedException();
 		}
 
@@ -871,18 +863,12 @@ public class ProjectSpaceImpl extends IdentifiableElementImpl implements Project
 		changePackage.cannonize();
 
 		if (commitObserver != null && !commitObserver.inspectChanges(changePackage)) {
-			startChangeRecording();
 			return this.getBaseVersion();
 		}
 
 		PrimaryVersionSpec newBaseVersion;
-		try {
-			newBaseVersion = connectionManager.createVersion(getUsersession().getSessionId(), getProjectId(),
-				getBaseVersion(), changePackage, logMessage);
-		} catch (EmfStoreException e) {
-			startChangeRecording();
-			throw e;
-		}
+		newBaseVersion = connectionManager.createVersion(getUsersession().getSessionId(), getProjectId(),
+			getBaseVersion(), changePackage, logMessage);
 
 		setBaseVersion(newBaseVersion);
 		getOperations().clear();
@@ -891,8 +877,6 @@ public class ProjectSpaceImpl extends IdentifiableElementImpl implements Project
 		generateNotifications(changePackage);
 
 		saveProjectSpaceOnly();
-
-		startChangeRecording();
 
 		if (commitObserver != null) {
 			commitObserver.commitCompleted();
@@ -957,6 +941,7 @@ public class ProjectSpaceImpl extends IdentifiableElementImpl implements Project
 	/**
 	 * {@inheritDoc}
 	 * 
+	 * @throws EmfStoreException
 	 * @see org.unicase.workspace.ProjectSpace#update(org.unicase.emfstore.esmodel.versioning.VersionSpec)
 	 * @generated NOT
 	 */
@@ -973,17 +958,11 @@ public class ProjectSpaceImpl extends IdentifiableElementImpl implements Project
 				+ getBaseVersion().getIdentifier() + ", but the server version of this project is "
 				+ resolvedVersion.getIdentifier() + "!");
 		}
-		stopChangeRecording();
 
 		List<ChangePackage> changes = new ArrayList<ChangePackage>();
-		try {
 
-			changes = connectionManager.getChanges(getUsersession().getSessionId(), projectId, baseVersion,
-				resolvedVersion);
-		} catch (EmfStoreException e) {
-			startChangeRecording();
-			throw e;
-		}
+		changes = connectionManager
+			.getChanges(getUsersession().getSessionId(), projectId, baseVersion, resolvedVersion);
 
 		// detect conflicts
 		ConflictDetector conflictDetector = new ConflictDetector();
@@ -1002,19 +981,18 @@ public class ProjectSpaceImpl extends IdentifiableElementImpl implements Project
 		if (observer != null && !observer.inspectChanges(changes)) {
 			return getBaseVersion();
 		}
+
+		stopChangeRecording();
 		final List<ChangePackage> cps = changes;
 		for (ChangePackage change : cps) {
 			change.apply(getProject());
 		}
+		startChangeRecording();
 
 		setBaseVersion(resolvedVersion);
 		saveResourceSet();
 
 		generateNotifications(changes);
-
-		if (!isRecording) {
-			startChangeRecording();
-		}
 
 		observer.updateCompleted();
 
@@ -1039,17 +1017,21 @@ public class ProjectSpaceImpl extends IdentifiableElementImpl implements Project
 	 * @generated NOT
 	 */
 	public void revert() {
-		stopChangeRecording();
 
 		// revert all local changes
 		ChangePackage changePackage = VersioningFactory.eINSTANCE.createChangePackage();
-		changePackage.getOperations().addAll(getOperations());
+		EList<AbstractOperation> copiedOperations = changePackage.getOperations();
+		for (AbstractOperation operation : getOperations()) {
+			copiedOperations.add((AbstractOperation) EcoreUtil.copy(operation));
+		}
+		changePackage.getOperations().addAll(copiedOperations);
 		changePackage.cannonize();
+
+		stopChangeRecording();
 		changePackage.reverse().apply(project);
+		startChangeRecording();
 
 		this.getOperations().clear();
-
-		startChangeRecording();
 	}
 
 	/**
@@ -1428,17 +1410,18 @@ public class ProjectSpaceImpl extends IdentifiableElementImpl implements Project
 	/**
 	 * {@inheritDoc}
 	 * 
+	 * @throws EmfStoreException
 	 * @see org.unicase.workspace.ProjectSpace#shareProject(org.unicase.workspace.Usersession)
 	 * @generated NOT
 	 */
 	public void shareProject(Usersession usersession) throws EmfStoreException {
-		this.stopChangeRecording();
 		this.setUsersession(usersession);
 		LogMessage logMessage = VersioningFactory.eINSTANCE.createLogMessage();
 		logMessage.setAuthor(usersession.getUsername());
 		logMessage.setClientDate(new Date());
 		logMessage.setMessage("Initial commit");
-		ProjectInfo createdProject = WorkspaceManager.getInstance().getConnectionManager().createProject(
+		ProjectInfo createdProject;
+		createdProject = WorkspaceManager.getInstance().getConnectionManager().createProject(
 			usersession.getSessionId(), this.getProjectName(), this.getProjectDescription(), logMessage,
 			this.getProject());
 		this.setBaseVersion(createdProject.getVersion());
@@ -1446,7 +1429,6 @@ public class ProjectSpaceImpl extends IdentifiableElementImpl implements Project
 		this.setProjectId(createdProject.getProjectId());
 		this.getOperations().clear();
 		this.saveProjectSpaceOnly();
-		this.startChangeRecording();
 	}
 
 	private void saveProjectSpaceOnly() {
@@ -1621,7 +1603,7 @@ public class ProjectSpaceImpl extends IdentifiableElementImpl implements Project
 	 * @see org.unicase.workspace.ProjectSpace#importLocalChanges(java.lang.String)
 	 */
 	public void importLocalChanges(String fileName) throws IOException {
-		stopChangeRecording();
+
 		ResourceSetImpl resourceSet = new ResourceSetImpl();
 		Resource resource = resourceSet.getResource(URI.createFileURI(fileName), true);
 		EList<EObject> directContents = resource.getContents();
@@ -1632,10 +1614,12 @@ public class ProjectSpaceImpl extends IdentifiableElementImpl implements Project
 		}
 
 		ChangePackage changePackage = (ChangePackage) directContents.get(0);
+		stopChangeRecording();
 		changePackage.apply(getProject());
+		startChangeRecording();
 		this.getOperations().addAll(changePackage.getOperations());
 		saveResourceSet();
-		startChangeRecording();
+
 	}
 
 	/**
@@ -1644,13 +1628,13 @@ public class ProjectSpaceImpl extends IdentifiableElementImpl implements Project
 	 * @see org.unicase.workspace.ProjectSpace#undoLastOperation()
 	 */
 	public void undoLastOperation() {
-		stopChangeRecording();
 		List<AbstractOperation> operations = this.getOperations();
 		AbstractOperation lastOperation = operations.get(operations.size() - 1);
+		stopChangeRecording();
 		lastOperation.reverse().apply(getProject());
+		startChangeRecording();
 		operations.remove(lastOperation);
 		saveResourceSet();
-		startChangeRecording();
 	}
 
 	/**
@@ -1743,36 +1727,10 @@ public class ProjectSpaceImpl extends IdentifiableElementImpl implements Project
 	public void modelElementAdded(Project project, ModelElement modelElement) {
 		addToResource(modelElement);
 		if (isRecording) {
-			stopChangeRecording();
-			// filter create operation if a preceding delete is already
-			// present
-			List<AbstractOperation> preceedingOperations = this.getOperations();
-			CreateDeleteOperation preceedingDeleteOperation = getPreceedingDeleteOperation(modelElement,
-				preceedingOperations);
-			if (preceedingDeleteOperation != null) {
-				preceedingOperations.remove(preceedingDeleteOperation);
-			} else {
-				appendCreator(modelElement);
-				preceedingOperations.add(createCreateDeleteOperation(modelElement, false));
-			}
+			appendCreator(modelElement);
+			this.getOperations().add(createCreateDeleteOperation(modelElement, false));
 			saveProjectSpaceOnly();
-			startChangeRecording();
 		}
-	}
-
-	private CreateDeleteOperation getPreceedingDeleteOperation(ModelElement modelElement,
-		List<AbstractOperation> operations) {
-
-		for (int i = operations.size() - 1; i >= 0; i--) {
-			AbstractOperation abstractOperation = operations.get(i);
-			if (abstractOperation instanceof CreateDeleteOperation) {
-				CreateDeleteOperation operation = (CreateDeleteOperation) abstractOperation;
-				if (operation.isDelete() && operation.getModelElementId().equals(modelElement.getModelElementId())) {
-					return operation;
-				}
-			}
-		}
-		return null;
 	}
 
 	/**
@@ -1781,6 +1739,7 @@ public class ProjectSpaceImpl extends IdentifiableElementImpl implements Project
 	 * @param modelElement the model element.
 	 */
 	private void appendCreator(ModelElement modelElement) {
+		stopChangeRecording();
 		if (modelElement.getCreator() == null || modelElement.getCreator().equals("")) {
 			Usersession usersession = getUsersession();
 			// used when the project has not been shared yet
@@ -1795,6 +1754,7 @@ public class ProjectSpaceImpl extends IdentifiableElementImpl implements Project
 		if (modelElement.getCreationDate() == null) {
 			modelElement.setCreationDate(new Date());
 		}
+		startChangeRecording();
 	}
 
 	/**
