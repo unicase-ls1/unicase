@@ -1556,7 +1556,8 @@ public class ProjectSpaceImpl extends IdentifiableElementImpl implements Project
 						subOperations.add((ReferenceOperation) operation);
 					} else {
 						getOperations().add(operation);
-						String message = "During a delete operation an operation of a type other than ReferenceOperation occured!";
+						String message = "During a delete operation an operation of a type other than ReferenceOperation occured: "
+							+ operation.getClass().getCanonicalName();
 						WorkspaceUtil.logException(message, new IllegalStateException(message));
 					}
 				}
