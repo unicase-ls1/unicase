@@ -538,7 +538,6 @@ public class TaskView extends ViewPart implements ProjectChangeObserver {
 	 * Sets the teamfilter.
 	 * 
 	 * @param checked if filtered
-	 * @param user user
 	 */
 	protected void setTeamFilter(boolean checked) {
 
