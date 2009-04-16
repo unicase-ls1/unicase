@@ -118,7 +118,7 @@ public final class OperationsCannonizer {
 		else if (multiReferenceOperation.isAdd() && lastMultiReferenceOperation.isAdd()) {
 
 			int indexDifference = lastMultiReferenceOperation.getIndex() - multiReferenceOperation.getIndex();
-			if (indexDifference > 0 && indexDifference <= referencedModelElements.size() + 1) {
+			if (indexDifference > 0 && indexDifference <= referencedModelElements.size()) {
 				referencedModelElements.addAll(indexDifference, referencedModelElementsOfLast);
 				referencedModelElementsOfLast.clear();
 				referencedModelElementsOfLast.addAll(referencedModelElements);
