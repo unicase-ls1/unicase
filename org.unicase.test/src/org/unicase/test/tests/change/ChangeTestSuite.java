@@ -1,7 +1,6 @@
 package org.unicase.test.tests.change;
 
 import java.io.IOException;
-import java.util.Calendar;
 import java.util.Random;
 
 import org.eclipse.emf.common.util.EList;
@@ -25,7 +24,7 @@ public abstract class ChangeTestSuite extends TestSuite {
 	private ProjectSpace testSpace;
 	private ProjectSpace compareSpace;
 
-	private Long randomSeed = Calendar.getInstance().getTimeInMillis();
+	private Long randomSeed = new Long(1); // Calendar.getInstance().getTimeInMillis();
 	private TestProjectParmeters params;
 
 	private TransactionalEditingDomain domain;
