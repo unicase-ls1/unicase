@@ -15,6 +15,10 @@ import org.junit.Test;
 import org.unicase.emfstore.esmodel.versioning.operations.AbstractOperation;
 import org.unicase.emfstore.esmodel.versioning.operations.SingleReferenceOperation;
 import org.unicase.model.ModelElementId;
+import org.unicase.model.rationale.Issue;
+import org.unicase.model.rationale.Proposal;
+import org.unicase.model.rationale.RationaleFactory;
+import org.unicase.model.rationale.RationalePackage;
 import org.unicase.model.requirement.Actor;
 import org.unicase.model.requirement.RequirementFactory;
 import org.unicase.model.requirement.UseCase;
@@ -182,4 +186,53 @@ public class SingleReferenceOperationTest extends OperationTest {
 		assertEquals(true, otherInvolvedModelElements.contains(oldActor.getModelElementId()));
 		assertEquals(true, otherInvolvedModelElements.contains(newActor.getModelElementId()));
 	}
+	
+	/**
+	 * Move a containee to another container.
+	 * 
+	 * @throws UnsupportedOperationException on test fail
+	 * @throws UnsupportedNotificationException on test fail
+	 */
+	@Test
+	public void moveContainmentReference() throws UnsupportedOperationException, UnsupportedNotificationException {
+		Issue oldIssue = RationaleFactory.eINSTANCE.createIssue();
+		getProject().addModelElement(oldIssue);
+		Issue newIssue = RationaleFactory.eINSTANCE.createIssue();
+		getProject().addModelElement(newIssue);
+		Proposal proposal = RationaleFactory.eINSTANCE.createProposal();
+		getProject().addModelElement(proposal);
+		proposal.setIssue(oldIssue);
+		clearOperations();
+
+		assertEquals(0, newIssue.getProposals().size());
+		assertEquals(1, oldIssue.getProposals().size());
+		assertEquals(proposal, oldIssue.getProposals().get(0));
+		assertEquals(oldIssue, proposal.getIssue());
+		
+		proposal.setIssue(newIssue);
+		
+		assertEquals(0, oldIssue.getProposals().size());
+		assertEquals(1, newIssue.getProposals().size());
+		assertEquals(proposal, newIssue.getProposals().get(0));
+		assertEquals(newIssue, proposal.getIssue());
+		
+		List<AbstractOperation> operations = getProjectSpace().getOperations();
+		
+		assertEquals(1, operations.size());
+		AbstractOperation operation = operations.get(0);
+		assertEquals(true, operation instanceof SingleReferenceOperation);
+		SingleReferenceOperation singleReferenceOperation = (SingleReferenceOperation) operation;
+		
+		assertEquals(oldIssue.getModelElementId(), singleReferenceOperation.getOldValue());
+		assertEquals(newIssue.getModelElementId(), singleReferenceOperation.getNewValue());
+		assertEquals(RationalePackage.eINSTANCE.getProposal_Issue().getName(), singleReferenceOperation.getFeatureName());
+		assertEquals(proposal.getModelElementId(), singleReferenceOperation.getModelElementId());
+		assertEquals(RationalePackage.eINSTANCE.getIssue_Proposals().getName(), singleReferenceOperation.getOppositeFeatureName());
+		assertEquals(true, singleReferenceOperation.isBidirectional());
+		Set<ModelElementId> otherInvolvedModelElements = singleReferenceOperation.getOtherInvolvedModelElements();
+		assertEquals(2, otherInvolvedModelElements.size());
+		assertEquals(true, otherInvolvedModelElements.contains(newIssue.getModelElementId()));
+		assertEquals(true, otherInvolvedModelElements.contains(oldIssue.getModelElementId()));
+	}
+	
 }
