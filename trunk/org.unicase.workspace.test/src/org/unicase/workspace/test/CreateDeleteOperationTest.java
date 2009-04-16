@@ -19,11 +19,14 @@ import org.unicase.emfstore.esmodel.versioning.operations.ReferenceOperation;
 import org.unicase.emfstore.esmodel.versioning.operations.SingleReferenceOperation;
 import org.unicase.model.ModelElement;
 import org.unicase.model.ModelElementId;
+import org.unicase.model.document.CompositeSection;
 import org.unicase.model.document.DocumentFactory;
 import org.unicase.model.document.LeafSection;
 import org.unicase.model.requirement.Actor;
 import org.unicase.model.requirement.RequirementFactory;
 import org.unicase.model.requirement.UseCase;
+import org.unicase.model.task.ActionItem;
+import org.unicase.model.task.TaskFactory;
 import org.unicase.workspace.exceptions.UnsupportedNotificationException;
 
 /**
@@ -288,5 +291,29 @@ public class CreateDeleteOperationTest extends OperationTest {
 		assertEquals(useCaseClone, otherActor.getParticipatedUseCases().get(0));
 		
 		assertEquals(5, operations.size());
+	}
+	
+	/**
+	 * check complex element deletion tracking.
+	 * 
+	 * @throws UnsupportedOperationException on test fail
+	 * @throws UnsupportedNotificationException on test fail
+	 */
+	@Test
+	public void complexCreateTest() throws UnsupportedOperationException, UnsupportedNotificationException {
+		for (int i = 0; i < 10; i++) {
+			CompositeSection createCompositeSection = DocumentFactory.eINSTANCE.createCompositeSection();
+			createCompositeSection.setName("Helmut" + i);
+			getProject().addModelElement(createCompositeSection);
+			LeafSection createLeafSection = DocumentFactory.eINSTANCE.createLeafSection();
+			createCompositeSection.getSubsections().add(createLeafSection);
+
+			for (int j = 0; j < 100; j++) {
+				ActionItem createActionItem = TaskFactory.eINSTANCE.createActionItem();
+				createActionItem.setName("Max tu dies" + j);
+				createLeafSection.getModelElements().add(createActionItem);
+			}
+		}
+		assertEquals(1040, getProjectSpace().getOperations().size());
 	}
 }
