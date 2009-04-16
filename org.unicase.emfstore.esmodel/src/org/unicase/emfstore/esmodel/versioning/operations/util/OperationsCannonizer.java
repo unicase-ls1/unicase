@@ -104,30 +104,31 @@ public final class OperationsCannonizer {
 		// the two ops must be both remvoe
 		EList<ModelElementId> referencedModelElements = multiReferenceOperation.getReferencedModelElements();
 		EList<ModelElementId> referencedModelElementsOfLast = lastMultiReferenceOperation.getReferencedModelElements();
-		if (!multiReferenceOperation.isAdd() && !lastMultiReferenceOperation.isAdd()) {
-
-			int indexDifference = lastMultiReferenceOperation.getIndex() - multiReferenceOperation.getIndex();
-			if (indexDifference > 0 && indexDifference <= referencedModelElements.size() + 1) {
-				referencedModelElements.addAll(indexDifference - 1, referencedModelElementsOfLast);
-				changedReferences.put(key, multiReferenceOperation);
-				operationsToBeDeleted.add(lastMultiReferenceOperation);
-				return;
-			}
-		}
-		// the two ops must be both add
-		else if (multiReferenceOperation.isAdd() && lastMultiReferenceOperation.isAdd()) {
-
-			int indexDifference = lastMultiReferenceOperation.getIndex() - multiReferenceOperation.getIndex();
-			if (indexDifference > 0 && indexDifference <= referencedModelElements.size()) {
-				referencedModelElements.addAll(indexDifference, referencedModelElementsOfLast);
-				referencedModelElementsOfLast.clear();
-				referencedModelElementsOfLast.addAll(referencedModelElements);
-				changedReferences.put(key, lastMultiReferenceOperation);
-				lastMultiReferenceOperation.setIndex(multiReferenceOperation.getIndex());
-				operationsToBeDeleted.add(multiReferenceOperation);
-				return;
-			}
-		} else if (multiReferenceOperation.isAdd() != lastMultiReferenceOperation.isAdd()) {
+		// if (!multiReferenceOperation.isAdd() && !lastMultiReferenceOperation.isAdd()) {
+		//
+		// int indexDifference = lastMultiReferenceOperation.getIndex() - multiReferenceOperation.getIndex();
+		// if (indexDifference > 0 && indexDifference <= referencedModelElements.size() + 1) {
+		// referencedModelElements.addAll(indexDifference - 1, referencedModelElementsOfLast);
+		// changedReferences.put(key, multiReferenceOperation);
+		// operationsToBeDeleted.add(lastMultiReferenceOperation);
+		// return;
+		// }
+		// }
+		// // the two ops must be both add
+		// else if (multiReferenceOperation.isAdd() && lastMultiReferenceOperation.isAdd()) {
+		// //ignore
+		// // int indexDifference = lastMultiReferenceOperation.getIndex() - multiReferenceOperation.getIndex();
+		// // if (indexDifference > 0 && indexDifference <= referencedModelElements.size()) {
+		// // referencedModelElements.addAll(indexDifference, referencedModelElementsOfLast);
+		// // referencedModelElementsOfLast.clear();
+		// // referencedModelElementsOfLast.addAll(referencedModelElements);
+		// // changedReferences.put(key, lastMultiReferenceOperation);
+		// // lastMultiReferenceOperation.setIndex(multiReferenceOperation.getIndex());
+		// // operationsToBeDeleted.add(multiReferenceOperation);
+		// // return;
+		// // }
+		// } else
+		if (multiReferenceOperation.isAdd() != lastMultiReferenceOperation.isAdd()) {
 			List<ModelElementId> idsToRemove = new ArrayList<ModelElementId>();
 			for (ModelElementId modelElementId : referencedModelElements) {
 				for (ModelElementId otherModelElementId : referencedModelElementsOfLast) {
