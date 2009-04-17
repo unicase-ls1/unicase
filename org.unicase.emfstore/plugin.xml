@@ -2,7 +2,7 @@
 <?eclipse version="3.2"?>
 <plugin>
    <extension
-         id="id1"
+         id="emfstore"
          point="org.eclipse.core.runtime.applications">
       <application
             cardinality="singleton-global"
@@ -14,24 +14,15 @@
       </application>
    </extension>
    <extension
-         id="unicaseEmfstoreProduct"
+         id="emfstore"
          point="org.eclipse.core.runtime.products">
       <product
-            application="org.unicase.emfstore.id1"
-            name="unicase EmfStore">
+            application="org.unicase.emfstore.emfstore"
+            name="emfstore">
          <property
                name="appName"
-               value="unicase EmfStore">
+               value="emfstore">
          </property>
       </product>
    </extension>
-   <extension
-         id="product"
-         point="org.eclipse.core.runtime.products">
-      <product
-            application="org.eclipse.ant.core.antRunner"
-            name="unicase EmfStore">
-      </product>
-   </extension>
-
 </plugin>
