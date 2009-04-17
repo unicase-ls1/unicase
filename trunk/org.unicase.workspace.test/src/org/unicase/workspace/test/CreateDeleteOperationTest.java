@@ -314,6 +314,6 @@ public class CreateDeleteOperationTest extends OperationTest {
 				createLeafSection.getModelElements().add(createActionItem);
 			}
 		}
-		assertEquals(1040, getProjectSpace().getOperations().size());
+		assertEquals(2030, getProjectSpace().getOperations().size());
 	}
 }
