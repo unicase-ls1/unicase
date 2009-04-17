@@ -312,7 +312,7 @@ public class MultiReferenceOperationImpl extends ReferenceOperationImpl implemen
 				} else {
 					list.removeAll(referencedModelElements);
 					for (ModelElement currentElement : referencedModelElements) {
-						if (!project.contains(currentElement.getModelElementId())) {
+						if (currentElement.getProject() == null) {
 							project.addModelElement(currentElement);
 						}
 					}
