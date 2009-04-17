@@ -30,28 +30,33 @@ import org.unicase.workspace.util.WorkspaceUtil;
  * 
  */
 
-
 public class VersionIterator implements Iterator<ProjectAnalysisData> {
 
-	protected final Usersession usersession;
-	protected final ProjectId projectId;
-	protected final int stepLength;
-	protected ConnectionManager connectionManager;
-	protected PrimaryVersionSpec nextSpec;
-	protected PrimaryVersionSpec sourceSpec;
-	protected final boolean isForward;
-	protected final PrimaryVersionSpec start;
-	protected final PrimaryVersionSpec end;
-	protected Project currentState;
-	protected final boolean returnProjectDataCopy;
-	protected final boolean useUnit;
-	
-	/**By default, the iterator will go through from version 0 to Head version,
-	 * and the next() method will return the copy of ProjectAnalysisData instead of ProjectAnalysisData
-	 * @param usersession the session id for authentication
-	 * @param projectId the project id of the project to get
-	 * @param stepLength the step length for the iterator to go through to the next
-	 * @throws IteratorException if any error occurs
+	private final Usersession usersession;
+	private final ProjectId projectId;
+	private final int stepLength;
+	private ConnectionManager connectionManager;
+	private PrimaryVersionSpec nextSpec;
+	private PrimaryVersionSpec sourceSpec;
+	private final boolean isForward;
+	private final PrimaryVersionSpec start;
+	private final PrimaryVersionSpec end;
+	private Project currentState;
+	private final boolean returnProjectDataCopy;
+
+	/**
+	 * By default, the iterator will go through from version 0 to Head version,
+	 * and the next() method will return the copy of ProjectAnalysisData instead
+	 * of ProjectAnalysisData
+	 * 
+	 * @param usersession
+	 *            the session id for authentication
+	 * @param projectId
+	 *            the project id of the project to get
+	 * @param stepLength
+	 *            the step length for the iterator to go through to the next
+	 * @throws IteratorException
+	 *             if any error occurs
 	 * @generated NOT
 	 */
 
@@ -61,31 +66,42 @@ public class VersionIterator implements Iterator<ProjectAnalysisData> {
 				.createPrimaryVersionSpec(), VersioningFactory.eINSTANCE
 				.createHeadVersionSpec(), false, true, true);
 	}
-	
+
 	/**
-	 * @param usersession the session id for authentication
-	 * @param projectId the project id of the project to get
-	 * @param stepLength the step length for the iterator to go through to the next
-	 * @param start the version for the iterator to start from
-	 * @param end the version for the iterator to end with
-	 * @param useUnit false if there is no unit for stepLength, not recommended to set to true. 
-	 * (Only set to true when it is needed for a TimeIterator) 
-	 * @param isForward the direction for the iterator go through, either forward(true) or backward(false) 
-	 * However, doesn't work for backward currently, will be solved in the near future
-	 * @param returnProjectDataCopy  the next() method will return the copy of ProjectAnalysisData
-	 * when it is set to true 
-	 * @throws IteratorException if any error occurs
+	 * @param usersession
+	 *            the session id for authentication
+	 * @param projectId
+	 *            the project id of the project to get
+	 * @param stepLength
+	 *            the step length for the iterator to go through to the next
+	 * @param start
+	 *            the version for the iterator to start from
+	 * @param end
+	 *            the version for the iterator to end with
+	 * @param isForward
+	 *            the direction for the iterator go through, either
+	 *            forward(true) or backward(false) However, doesn't work for
+	 *            backward currently, will be solved in the near future
+	 * @param returnProjectDataCopy
+	 *            the next() method will return the copy of ProjectAnalysisData
+	 *            when it is set to true
+	 * @throws IteratorException
+	 *             if any error occurs
 	 * @generated NOT
 	 */
 
 	public VersionIterator(Usersession usersession, ProjectId projectId,
-			int stepLength, VersionSpec start, VersionSpec end, boolean useUnit,
-			boolean isForward, boolean returnProjectDataCopy)
+			int stepLength, VersionSpec start, VersionSpec end,
+			boolean useUnit, boolean isForward, boolean returnProjectDataCopy)
 			throws IteratorException {
+		// LY: remove this if backward iterator is implemented
+		if (!isForward) {
+			throw new IllegalArgumentException(
+					"isForward=false not yet supported!");
+		}
 		this.usersession = usersession;
 		this.projectId = projectId;
 		this.stepLength = stepLength;
-		this.useUnit = useUnit;
 		this.returnProjectDataCopy = returnProjectDataCopy;
 		this.connectionManager = WorkspaceManager.getInstance()
 				.getConnectionManager();
@@ -119,19 +135,16 @@ public class VersionIterator implements Iterator<ProjectAnalysisData> {
 
 		this.nextSpec = EsModelUtil.clone(this.start);
 		this.sourceSpec = EsModelUtil.clone(this.start);
-		
-		if(!this.useUnit){
-			updateSpecifier(sourceSpec, stepLength, !isForward);
-		
-			if (isForward) {
-				if (sourceSpec.getIdentifier()<0) {
-					sourceSpec.setIdentifier(0);
-				}
+
+		updateSpecifier(sourceSpec, stepLength, !isForward);
+
+		if (isForward) {
+			if (sourceSpec.getIdentifier() < 0) {
+				sourceSpec.setIdentifier(0);
 			}
-			else {
-				if (sourceSpec.compareTo(this.end)>0) {
-					sourceSpec.setIdentifier(this.end.getIdentifier());
-				}
+		} else {
+			if (sourceSpec.compareTo(this.end) > 0) {
+				sourceSpec.setIdentifier(this.end.getIdentifier());
 			}
 		}
 	}
@@ -163,7 +176,8 @@ public class VersionIterator implements Iterator<ProjectAnalysisData> {
 			throw new NoSuchElementException("There is no more Versions.");
 		}
 
-		if((sourceSpec.getIdentifier() != nextSpec.getIdentifier())&&(nextSpec.getIdentifier() != start.getIdentifier())){
+		if ((sourceSpec.getIdentifier() != nextSpec.getIdentifier())
+				&& (nextSpec.getIdentifier() != start.getIdentifier())) {
 			List<ChangePackage> changes;
 			try {
 				changes = connectionManager.getChanges(usersession
@@ -173,27 +187,28 @@ public class VersionIterator implements Iterator<ProjectAnalysisData> {
 				WorkspaceUtil.logException(message, e);
 				throw new NoSuchElementException(message + ":\n" + e);
 			}
-	
-			List<ChangePackage> changePackages = projectdata.getChangePackages();
-			for (ChangePackage changePackage: changes) {
+
+			List<ChangePackage> changePackages = projectdata
+					.getChangePackages();
+			for (ChangePackage changePackage : changes) {
 				changePackage.apply(currentState);
 				changePackages.add(changePackage);
 			}
 		}
-		PrimaryVersionSpec nextSpecCopy = (PrimaryVersionSpec)EcoreUtil.copy(nextSpec);
+		PrimaryVersionSpec nextSpecCopy = (PrimaryVersionSpec) EcoreUtil
+				.copy(nextSpec);
 		projectdata.setPrimaryVersionSpec(nextSpecCopy);
-		
-		ProjectId projectIdCopy = (ProjectId)EcoreUtil.copy(projectId);
+
+		ProjectId projectIdCopy = (ProjectId) EcoreUtil.copy(projectId);
 		projectdata.setProjectId(projectIdCopy);
-		
+
 		projectdata.setProjectState(currentState);
-	
-		//increase counter
+
+		// increase counter
 		sourceSpec.setIdentifier(nextSpec.getIdentifier());
-		if(!this.useUnit){
-			updateSpecifier(nextSpec, stepLength, isForward);
-		}
-		
+
+		updateSpecifier(nextSpec, stepLength, isForward);
+
 		if (returnProjectDataCopy) {
 			return (ProjectAnalysisData) EcoreUtil.copy(projectdata);
 		} else {
@@ -201,7 +216,8 @@ public class VersionIterator implements Iterator<ProjectAnalysisData> {
 		}
 	}
 
-	private void updateSpecifier(PrimaryVersionSpec specifier, int stepLength, boolean isForward) {
+	protected void updateSpecifier(PrimaryVersionSpec specifier,
+			int stepLength, boolean isForward) {
 		int currentIdentifier = specifier.getIdentifier();
 		if (isForward) {
 			specifier.setIdentifier(currentIdentifier + stepLength);
@@ -209,7 +225,7 @@ public class VersionIterator implements Iterator<ProjectAnalysisData> {
 			specifier.setIdentifier(currentIdentifier - stepLength);
 		}
 	}
-	
+
 	/**
 	 * {@inheritDoc}
 	 * 
@@ -217,6 +233,111 @@ public class VersionIterator implements Iterator<ProjectAnalysisData> {
 	 */
 	public void remove() {
 		throw new UnsupportedOperationException();
+	}
+
+	/**
+	 * @return the connectionManager
+	 */
+	public ConnectionManager getConnectionManager() {
+		return connectionManager;
+	}
+
+	/**
+	 * @param connectionManager the connectionManager to set
+	 */
+	public void setConnectionManager(ConnectionManager connectionManager) {
+		this.connectionManager = connectionManager;
+	}
+
+	/**
+	 * @return the nextSpec
+	 */
+	public PrimaryVersionSpec getNextSpec() {
+		return nextSpec;
+	}
+
+	/**
+	 * @param nextSpec the nextSpec to set
+	 */
+	public void setNextSpec(PrimaryVersionSpec nextSpec) {
+		this.nextSpec = nextSpec;
+	}
+
+	/**
+	 * @return the sourceSpec
+	 */
+	public PrimaryVersionSpec getSourceSpec() {
+		return sourceSpec;
+	}
+
+	/**
+	 * @param sourceSpec the sourceSpec to set
+	 */
+	public void setSourceSpec(PrimaryVersionSpec sourceSpec) {
+		this.sourceSpec = sourceSpec;
+	}
+
+	/**
+	 * @return the currentState
+	 */
+	public Project getCurrentState() {
+		return currentState;
+	}
+
+	/**
+	 * @param currentState the currentState to set
+	 */
+	public void setCurrentState(Project currentState) {
+		this.currentState = currentState;
+	}
+
+	/**
+	 * @return the usersession
+	 */
+	public Usersession getUsersession() {
+		return usersession;
+	}
+
+	/**
+	 * @return the projectId
+	 */
+	public ProjectId getProjectId() {
+		return projectId;
+	}
+
+	/**
+	 * @return the stepLength
+	 */
+	public int getStepLength() {
+		return stepLength;
+	}
+
+	/**
+	 * @return the isForward
+	 */
+	public boolean isForward() {
+		return isForward;
+	}
+
+	/**
+	 * @return the start
+	 */
+	public PrimaryVersionSpec getStart() {
+		return start;
+	}
+
+	/**
+	 * @return the end
+	 */
+	public PrimaryVersionSpec getEnd() {
+		return end;
+	}
+
+	/**
+	 * @return the returnProjectDataCopy
+	 */
+	public boolean isReturnProjectDataCopy() {
+		return returnProjectDataCopy;
 	}
 
 }
