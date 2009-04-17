@@ -12,11 +12,13 @@ import org.eclipse.emf.common.notify.NotificationChain;
 import org.eclipse.emf.ecore.EClass;
 import org.eclipse.emf.ecore.InternalEObject;
 import org.eclipse.emf.ecore.impl.ENotificationImpl;
-import org.eclipse.emf.ecore.impl.EObjectImpl;
 import org.unicase.emfstore.esmodel.versioning.operations.AbstractOperation;
+import org.unicase.emfstore.esmodel.versioning.operations.OperationId;
+import org.unicase.emfstore.esmodel.versioning.operations.OperationsFactory;
 import org.unicase.emfstore.esmodel.versioning.operations.OperationsPackage;
 import org.unicase.model.ModelElementId;
 import org.unicase.model.Project;
+import org.unicase.model.impl.IdentifiableElementImpl;
 import org.unicase.model.util.ModelUtil;
 
 /**
@@ -39,7 +41,7 @@ import org.unicase.model.util.ModelUtil;
  * 
  * @generated
  */
-public abstract class AbstractOperationImpl extends EObjectImpl implements AbstractOperation {
+public abstract class AbstractOperationImpl extends IdentifiableElementImpl implements AbstractOperation {
 	/**
 	 * The default value of the '{@link #getName() <em>Name</em>}' attribute. <!-- begin-user-doc --> <!-- end-user-doc
 	 * -->
@@ -421,6 +423,20 @@ public abstract class AbstractOperationImpl extends EObjectImpl implements Abstr
 		result.append(clientDate);
 		result.append(')');
 		return result.toString();
+	}
+
+	/**
+	 * {@inheritDoc}
+	 * 
+	 * @see org.unicase.model.ModelElement#getModelElementId()
+	 */
+	public OperationId getOperationId() {
+		if (this.identifier == null) {
+			throw new IllegalStateException("Operation does not have an identifier");
+		}
+		OperationId operationId = OperationsFactory.eINSTANCE.createOperationId();
+		operationId.setId(this.identifier);
+		return operationId;
 	}
 
 } // AbstractOperationImpl

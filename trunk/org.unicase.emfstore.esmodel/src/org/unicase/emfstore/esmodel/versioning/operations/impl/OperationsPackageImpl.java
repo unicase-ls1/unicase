@@ -35,6 +35,7 @@ import org.unicase.emfstore.esmodel.versioning.operations.MultiAttributeMoveOper
 import org.unicase.emfstore.esmodel.versioning.operations.MultiAttributeOperation;
 import org.unicase.emfstore.esmodel.versioning.operations.MultiReferenceMoveOperation;
 import org.unicase.emfstore.esmodel.versioning.operations.MultiReferenceOperation;
+import org.unicase.emfstore.esmodel.versioning.operations.OperationId;
 import org.unicase.emfstore.esmodel.versioning.operations.OperationsFactory;
 import org.unicase.emfstore.esmodel.versioning.operations.OperationsPackage;
 import org.unicase.emfstore.esmodel.versioning.operations.ReferenceOperation;
@@ -130,6 +131,13 @@ public class OperationsPackageImpl extends EPackageImpl implements OperationsPac
 	 * @generated
 	 */
 	private EClass multiAttributeMoveOperationEClass = null;
+
+	/**
+	 * <!-- begin-user-doc --> <!-- end-user-doc -->
+	 * 
+	 * @generated
+	 */
+	private EClass operationIdEClass = null;
 
 	/**
 	 * Creates an instance of the model <b>Package</b>, registered with {@link org.eclipse.emf.ecore.EPackage.Registry
@@ -619,6 +627,15 @@ public class OperationsPackageImpl extends EPackageImpl implements OperationsPac
 	 * 
 	 * @generated
 	 */
+	public EClass getOperationId() {
+		return operationIdEClass;
+	}
+
+	/**
+	 * <!-- begin-user-doc --> <!-- end-user-doc -->
+	 * 
+	 * @generated
+	 */
 	public OperationsFactory getOperationsFactory() {
 		return (OperationsFactory) getEFactoryInstance();
 	}
@@ -695,6 +712,8 @@ public class OperationsPackageImpl extends EPackageImpl implements OperationsPac
 		multiAttributeMoveOperationEClass = createEClass(MULTI_ATTRIBUTE_MOVE_OPERATION);
 		createEAttribute(multiAttributeMoveOperationEClass, MULTI_ATTRIBUTE_MOVE_OPERATION__OLD_INDEX);
 		createEAttribute(multiAttributeMoveOperationEClass, MULTI_ATTRIBUTE_MOVE_OPERATION__NEW_INDEX);
+
+		operationIdEClass = createEClass(OPERATION_ID);
 	}
 
 	/**
@@ -729,6 +748,7 @@ public class OperationsPackageImpl extends EPackageImpl implements OperationsPac
 		// Set bounds for type parameters
 
 		// Add supertypes to classes
+		abstractOperationEClass.getESuperTypes().add(theModelPackage.getIdentifiableElement());
 		compositeOperationEClass.getESuperTypes().add(this.getAbstractOperation());
 		featureOperationEClass.getESuperTypes().add(this.getAbstractOperation());
 		createDeleteOperationEClass.getESuperTypes().add(this.getAbstractOperation());
@@ -740,6 +760,7 @@ public class OperationsPackageImpl extends EPackageImpl implements OperationsPac
 		referenceOperationEClass.getESuperTypes().add(this.getFeatureOperation());
 		diagramLayoutOperationEClass.getESuperTypes().add(this.getAttributeOperation());
 		multiAttributeMoveOperationEClass.getESuperTypes().add(this.getFeatureOperation());
+		operationIdEClass.getESuperTypes().add(theModelPackage.getUniqueIdentifier());
 
 		// Initialize classes and features; add operations and parameters
 		initEClass(abstractOperationEClass, AbstractOperation.class, "AbstractOperation", IS_ABSTRACT, !IS_INTERFACE,
@@ -868,6 +889,9 @@ public class OperationsPackageImpl extends EPackageImpl implements OperationsPac
 		initEAttribute(getMultiAttributeMoveOperation_NewIndex(), ecorePackage.getEInt(), "newIndex", null, 0, 1,
 			MultiAttributeMoveOperation.class, !IS_TRANSIENT, !IS_VOLATILE, IS_CHANGEABLE, !IS_UNSETTABLE, !IS_ID,
 			IS_UNIQUE, !IS_DERIVED, IS_ORDERED);
+
+		initEClass(operationIdEClass, OperationId.class, "OperationId", !IS_ABSTRACT, !IS_INTERFACE,
+			IS_GENERATED_INSTANCE_CLASS);
 	}
 
 } // OperationsPackageImpl
