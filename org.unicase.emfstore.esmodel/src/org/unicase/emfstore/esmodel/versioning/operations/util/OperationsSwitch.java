@@ -19,9 +19,12 @@ import org.unicase.emfstore.esmodel.versioning.operations.MultiAttributeMoveOper
 import org.unicase.emfstore.esmodel.versioning.operations.MultiAttributeOperation;
 import org.unicase.emfstore.esmodel.versioning.operations.MultiReferenceMoveOperation;
 import org.unicase.emfstore.esmodel.versioning.operations.MultiReferenceOperation;
+import org.unicase.emfstore.esmodel.versioning.operations.OperationId;
 import org.unicase.emfstore.esmodel.versioning.operations.OperationsPackage;
 import org.unicase.emfstore.esmodel.versioning.operations.ReferenceOperation;
 import org.unicase.emfstore.esmodel.versioning.operations.SingleReferenceOperation;
+import org.unicase.model.IdentifiableElement;
+import org.unicase.model.UniqueIdentifier;
 
 /**
  * <!-- begin-user-doc --> The <b>Switch</b> for the model's inheritance hierarchy. It supports the call
@@ -91,6 +94,8 @@ public class OperationsSwitch<T> {
 			AbstractOperation abstractOperation = (AbstractOperation) theEObject;
 			T result = caseAbstractOperation(abstractOperation);
 			if (result == null)
+				result = caseIdentifiableElement(abstractOperation);
+			if (result == null)
 				result = defaultCase(theEObject);
 			return result;
 		}
@@ -99,6 +104,8 @@ public class OperationsSwitch<T> {
 			T result = caseCompositeOperation(compositeOperation);
 			if (result == null)
 				result = caseAbstractOperation(compositeOperation);
+			if (result == null)
+				result = caseIdentifiableElement(compositeOperation);
 			if (result == null)
 				result = defaultCase(theEObject);
 			return result;
@@ -109,6 +116,8 @@ public class OperationsSwitch<T> {
 			if (result == null)
 				result = caseAbstractOperation(featureOperation);
 			if (result == null)
+				result = caseIdentifiableElement(featureOperation);
+			if (result == null)
 				result = defaultCase(theEObject);
 			return result;
 		}
@@ -117,6 +126,8 @@ public class OperationsSwitch<T> {
 			T result = caseCreateDeleteOperation(createDeleteOperation);
 			if (result == null)
 				result = caseAbstractOperation(createDeleteOperation);
+			if (result == null)
+				result = caseIdentifiableElement(createDeleteOperation);
 			if (result == null)
 				result = defaultCase(theEObject);
 			return result;
@@ -128,6 +139,8 @@ public class OperationsSwitch<T> {
 				result = caseFeatureOperation(attributeOperation);
 			if (result == null)
 				result = caseAbstractOperation(attributeOperation);
+			if (result == null)
+				result = caseIdentifiableElement(attributeOperation);
 			if (result == null)
 				result = defaultCase(theEObject);
 			return result;
@@ -142,6 +155,8 @@ public class OperationsSwitch<T> {
 			if (result == null)
 				result = caseAbstractOperation(singleReferenceOperation);
 			if (result == null)
+				result = caseIdentifiableElement(singleReferenceOperation);
+			if (result == null)
 				result = defaultCase(theEObject);
 			return result;
 		}
@@ -155,6 +170,8 @@ public class OperationsSwitch<T> {
 			if (result == null)
 				result = caseAbstractOperation(multiReferenceOperation);
 			if (result == null)
+				result = caseIdentifiableElement(multiReferenceOperation);
+			if (result == null)
 				result = defaultCase(theEObject);
 			return result;
 		}
@@ -165,6 +182,8 @@ public class OperationsSwitch<T> {
 				result = caseFeatureOperation(multiReferenceMoveOperation);
 			if (result == null)
 				result = caseAbstractOperation(multiReferenceMoveOperation);
+			if (result == null)
+				result = caseIdentifiableElement(multiReferenceMoveOperation);
 			if (result == null)
 				result = defaultCase(theEObject);
 			return result;
@@ -177,6 +196,8 @@ public class OperationsSwitch<T> {
 			if (result == null)
 				result = caseAbstractOperation(multiAttributeOperation);
 			if (result == null)
+				result = caseIdentifiableElement(multiAttributeOperation);
+			if (result == null)
 				result = defaultCase(theEObject);
 			return result;
 		}
@@ -187,6 +208,8 @@ public class OperationsSwitch<T> {
 				result = caseFeatureOperation(referenceOperation);
 			if (result == null)
 				result = caseAbstractOperation(referenceOperation);
+			if (result == null)
+				result = caseIdentifiableElement(referenceOperation);
 			if (result == null)
 				result = defaultCase(theEObject);
 			return result;
@@ -201,6 +224,8 @@ public class OperationsSwitch<T> {
 			if (result == null)
 				result = caseAbstractOperation(diagramLayoutOperation);
 			if (result == null)
+				result = caseIdentifiableElement(diagramLayoutOperation);
+			if (result == null)
 				result = defaultCase(theEObject);
 			return result;
 		}
@@ -211,6 +236,17 @@ public class OperationsSwitch<T> {
 				result = caseFeatureOperation(multiAttributeMoveOperation);
 			if (result == null)
 				result = caseAbstractOperation(multiAttributeMoveOperation);
+			if (result == null)
+				result = caseIdentifiableElement(multiAttributeMoveOperation);
+			if (result == null)
+				result = defaultCase(theEObject);
+			return result;
+		}
+		case OperationsPackage.OPERATION_ID: {
+			OperationId operationId = (OperationId) theEObject;
+			T result = caseOperationId(operationId);
+			if (result == null)
+				result = caseUniqueIdentifier(operationId);
 			if (result == null)
 				result = defaultCase(theEObject);
 			return result;
@@ -385,6 +421,47 @@ public class OperationsSwitch<T> {
 	 * @generated
 	 */
 	public T caseMultiAttributeMoveOperation(MultiAttributeMoveOperation object) {
+		return null;
+	}
+
+	/**
+	 * Returns the result of interpreting the object as an instance of '<em>Operation Id</em>'. <!-- begin-user-doc -->
+	 * This implementation returns null; returning a non-null result will terminate the switch. <!-- end-user-doc -->
+	 * 
+	 * @param object the target of the switch.
+	 * @return the result of interpreting the object as an instance of '<em>Operation Id</em>'.
+	 * @see #doSwitch(org.eclipse.emf.ecore.EObject) doSwitch(EObject)
+	 * @generated
+	 */
+	public T caseOperationId(OperationId object) {
+		return null;
+	}
+
+	/**
+	 * Returns the result of interpreting the object as an instance of '<em>Identifiable Element</em>'. <!--
+	 * begin-user-doc --> This implementation returns null; returning a non-null result will terminate the switch. <!--
+	 * end-user-doc -->
+	 * 
+	 * @param object the target of the switch.
+	 * @return the result of interpreting the object as an instance of '<em>Identifiable Element</em>'.
+	 * @see #doSwitch(org.eclipse.emf.ecore.EObject) doSwitch(EObject)
+	 * @generated
+	 */
+	public T caseIdentifiableElement(IdentifiableElement object) {
+		return null;
+	}
+
+	/**
+	 * Returns the result of interpreting the object as an instance of '<em>Unique Identifier</em>'. <!-- begin-user-doc
+	 * --> This implementation returns null; returning a non-null result will terminate the switch. <!-- end-user-doc
+	 * -->
+	 * 
+	 * @param object the target of the switch.
+	 * @return the result of interpreting the object as an instance of '<em>Unique Identifier</em>'.
+	 * @see #doSwitch(org.eclipse.emf.ecore.EObject) doSwitch(EObject)
+	 * @generated
+	 */
+	public T caseUniqueIdentifier(UniqueIdentifier object) {
 		return null;
 	}
 

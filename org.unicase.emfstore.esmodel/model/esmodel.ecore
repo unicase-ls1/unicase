@@ -110,7 +110,8 @@
     <eClassifiers xsi:type="ecore:EClass" name="HeadVersionSpec" eSuperTypes="#//versioning/VersionSpec"/>
     <eSubpackages name="operations" nsURI="http://unicase.org/esmodel/versioning/operations"
         nsPrefix="org.unicase.emfstore.esmodel.versioning.operations">
-      <eClassifiers xsi:type="ecore:EClass" name="AbstractOperation" abstract="true">
+      <eClassifiers xsi:type="ecore:EClass" name="AbstractOperation" abstract="true"
+          eSuperTypes="../../org.unicase.model/model/model.ecore#//IdentifiableElement">
         <eStructuralFeatures xsi:type="ecore:EAttribute" name="name" eType="ecore:EDataType http://www.eclipse.org/emf/2002/Ecore#//EString"
             changeable="false" volatile="true" transient="true" derived="true"/>
         <eStructuralFeatures xsi:type="ecore:EAttribute" name="description" eType="ecore:EDataType http://www.eclipse.org/emf/2002/Ecore#//EString"
@@ -183,6 +184,7 @@
         <eStructuralFeatures xsi:type="ecore:EAttribute" name="oldIndex" eType="ecore:EDataType http://www.eclipse.org/emf/2002/Ecore#//EInt"/>
         <eStructuralFeatures xsi:type="ecore:EAttribute" name="newIndex" eType="ecore:EDataType http://www.eclipse.org/emf/2002/Ecore#//EInt"/>
       </eClassifiers>
+      <eClassifiers xsi:type="ecore:EClass" name="OperationId" eSuperTypes="../../org.unicase.model/model/model.ecore#//UniqueIdentifier"/>
     </eSubpackages>
     <eSubpackages name="events" nsURI="http://unicase.org/esmodel/versioning/events"
         nsPrefix="org.unicase.emfstore.esmodel.versioning.events">
@@ -374,8 +376,10 @@
     <eClassifiers xsi:type="ecore:EClass" name="ESNotification" eSuperTypes="../../org.unicase.model/model/model.ecore#//IdentifiableElement">
       <eStructuralFeatures xsi:type="ecore:EAttribute" name="name" eType="ecore:EDataType http://www.eclipse.org/emf/2002/Ecore#//EString"/>
       <eStructuralFeatures xsi:type="ecore:EAttribute" name="message" eType="ecore:EDataType http://www.eclipse.org/emf/2002/Ecore#//EString"/>
+      <eStructuralFeatures xsi:type="ecore:EAttribute" name="details" eType="ecore:EDataType http://www.eclipse.org/emf/2002/Ecore#//EString"/>
       <eStructuralFeatures xsi:type="ecore:EAttribute" name="seen" eType="ecore:EDataType http://www.eclipse.org/emf/2002/Ecore#//EBoolean"/>
       <eStructuralFeatures xsi:type="ecore:EAttribute" name="creationDate" eType="ecore:EDataType http://www.eclipse.org/emf/2002/Ecore#//EDate"/>
+      <eStructuralFeatures xsi:type="ecore:EAttribute" name="provider" eType="ecore:EDataType http://www.eclipse.org/emf/2002/Ecore#//EString"/>
       <eStructuralFeatures xsi:type="ecore:EAttribute" name="sender" eType="ecore:EDataType http://www.eclipse.org/emf/2002/Ecore#//EString"/>
       <eStructuralFeatures xsi:type="ecore:EAttribute" name="recipient" eType="ecore:EDataType http://www.eclipse.org/emf/2002/Ecore#//EString"/>
       <eStructuralFeatures xsi:type="ecore:EReference" name="project" eType="#//ProjectId"
@@ -383,6 +387,8 @@
       <eStructuralFeatures xsi:type="ecore:EReference" name="relatedModelElements"
           upperBound="-1" eType="ecore:EClass ../../org.unicase.model/model/model.ecore#//ModelElementId"
           containment="true"/>
+      <eStructuralFeatures xsi:type="ecore:EReference" name="relatedOperations" upperBound="-1"
+          eType="#//versioning/operations/OperationId" containment="true"/>
     </eClassifiers>
   </eSubpackages>
   <eSubpackages name="url" nsURI="http://unicase.org/emfstore/esmodel/url" nsPrefix="org.unicase.emfstore.esmodel.url">

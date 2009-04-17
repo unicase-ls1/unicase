@@ -18,6 +18,7 @@ import org.unicase.emfstore.esmodel.versioning.operations.MultiAttributeMoveOper
 import org.unicase.emfstore.esmodel.versioning.operations.MultiAttributeOperation;
 import org.unicase.emfstore.esmodel.versioning.operations.MultiReferenceMoveOperation;
 import org.unicase.emfstore.esmodel.versioning.operations.MultiReferenceOperation;
+import org.unicase.emfstore.esmodel.versioning.operations.OperationId;
 import org.unicase.emfstore.esmodel.versioning.operations.OperationsFactory;
 import org.unicase.emfstore.esmodel.versioning.operations.OperationsPackage;
 import org.unicase.emfstore.esmodel.versioning.operations.SingleReferenceOperation;
@@ -81,6 +82,8 @@ public class OperationsFactoryImpl extends EFactoryImpl implements OperationsFac
 			return createDiagramLayoutOperation();
 		case OperationsPackage.MULTI_ATTRIBUTE_MOVE_OPERATION:
 			return createMultiAttributeMoveOperation();
+		case OperationsPackage.OPERATION_ID:
+			return createOperationId();
 		default:
 			throw new IllegalArgumentException("The class '" + eClass.getName() + "' is not a valid classifier");
 		}
@@ -174,6 +177,16 @@ public class OperationsFactoryImpl extends EFactoryImpl implements OperationsFac
 	public MultiAttributeMoveOperation createMultiAttributeMoveOperation() {
 		MultiAttributeMoveOperationImpl multiAttributeMoveOperation = new MultiAttributeMoveOperationImpl();
 		return multiAttributeMoveOperation;
+	}
+
+	/**
+	 * <!-- begin-user-doc --> <!-- end-user-doc -->
+	 * 
+	 * @generated
+	 */
+	public OperationId createOperationId() {
+		OperationIdImpl operationId = new OperationIdImpl();
+		return operationId;
 	}
 
 	/**

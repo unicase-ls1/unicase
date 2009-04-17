@@ -144,6 +144,7 @@
           <genFeatures createChild="false" ecoreFeature="ecore:EAttribute esmodel.ecore#//versioning/operations/MultiAttributeMoveOperation/oldIndex"/>
           <genFeatures createChild="false" ecoreFeature="ecore:EAttribute esmodel.ecore#//versioning/operations/MultiAttributeMoveOperation/newIndex"/>
         </genClasses>
+        <genClasses ecoreClass="esmodel.ecore#//versioning/operations/OperationId"/>
       </nestedGenPackages>
       <nestedGenPackages prefix="Events" basePackage="org.unicase.emfstore.esmodel.versioning"
           disposableProviderFactory="true" ecorePackage="esmodel.ecore#//versioning/events">
@@ -309,12 +310,15 @@
       <genClasses ecoreClass="esmodel.ecore#//notification/ESNotification">
         <genFeatures createChild="false" ecoreFeature="ecore:EAttribute esmodel.ecore#//notification/ESNotification/name"/>
         <genFeatures createChild="false" ecoreFeature="ecore:EAttribute esmodel.ecore#//notification/ESNotification/message"/>
+        <genFeatures createChild="false" ecoreFeature="ecore:EAttribute esmodel.ecore#//notification/ESNotification/details"/>
         <genFeatures createChild="false" ecoreFeature="ecore:EAttribute esmodel.ecore#//notification/ESNotification/seen"/>
         <genFeatures createChild="false" ecoreFeature="ecore:EAttribute esmodel.ecore#//notification/ESNotification/creationDate"/>
+        <genFeatures createChild="false" ecoreFeature="ecore:EAttribute esmodel.ecore#//notification/ESNotification/provider"/>
         <genFeatures createChild="false" ecoreFeature="ecore:EAttribute esmodel.ecore#//notification/ESNotification/sender"/>
         <genFeatures createChild="false" ecoreFeature="ecore:EAttribute esmodel.ecore#//notification/ESNotification/recipient"/>
         <genFeatures property="None" children="true" createChild="true" ecoreFeature="ecore:EReference esmodel.ecore#//notification/ESNotification/project"/>
         <genFeatures property="None" children="true" createChild="true" ecoreFeature="ecore:EReference esmodel.ecore#//notification/ESNotification/relatedModelElements"/>
+        <genFeatures property="None" children="true" createChild="true" ecoreFeature="ecore:EReference esmodel.ecore#//notification/ESNotification/relatedOperations"/>
       </genClasses>
     </nestedGenPackages>
     <nestedGenPackages prefix="Url" basePackage="org.unicase.emfstore.esmodel" disposableProviderFactory="true"

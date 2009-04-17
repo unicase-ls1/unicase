@@ -171,7 +171,7 @@ public class NotificationPackageImpl extends EPackageImpl implements Notificatio
 	 * @generated
 	 */
 	public EAttribute getESNotification_Sender() {
-		return (EAttribute) esNotificationEClass.getEStructuralFeatures().get(4);
+		return (EAttribute) esNotificationEClass.getEStructuralFeatures().get(6);
 	}
 
 	/**
@@ -180,7 +180,7 @@ public class NotificationPackageImpl extends EPackageImpl implements Notificatio
 	 * @generated
 	 */
 	public EAttribute getESNotification_Recipient() {
-		return (EAttribute) esNotificationEClass.getEStructuralFeatures().get(5);
+		return (EAttribute) esNotificationEClass.getEStructuralFeatures().get(7);
 	}
 
 	/**
@@ -189,7 +189,7 @@ public class NotificationPackageImpl extends EPackageImpl implements Notificatio
 	 * @generated
 	 */
 	public EReference getESNotification_Project() {
-		return (EReference) esNotificationEClass.getEStructuralFeatures().get(6);
+		return (EReference) esNotificationEClass.getEStructuralFeatures().get(8);
 	}
 
 	/**
@@ -198,7 +198,16 @@ public class NotificationPackageImpl extends EPackageImpl implements Notificatio
 	 * @generated
 	 */
 	public EReference getESNotification_RelatedModelElements() {
-		return (EReference) esNotificationEClass.getEStructuralFeatures().get(7);
+		return (EReference) esNotificationEClass.getEStructuralFeatures().get(9);
+	}
+
+	/**
+	 * <!-- begin-user-doc --> <!-- end-user-doc -->
+	 * 
+	 * @generated
+	 */
+	public EReference getESNotification_RelatedOperations() {
+		return (EReference) esNotificationEClass.getEStructuralFeatures().get(10);
 	}
 
 	/**
@@ -215,7 +224,7 @@ public class NotificationPackageImpl extends EPackageImpl implements Notificatio
 	 * 
 	 * @generated
 	 */
-	public EAttribute getESNotification_Seen() {
+	public EAttribute getESNotification_Details() {
 		return (EAttribute) esNotificationEClass.getEStructuralFeatures().get(2);
 	}
 
@@ -224,8 +233,26 @@ public class NotificationPackageImpl extends EPackageImpl implements Notificatio
 	 * 
 	 * @generated
 	 */
-	public EAttribute getESNotification_CreationDate() {
+	public EAttribute getESNotification_Seen() {
 		return (EAttribute) esNotificationEClass.getEStructuralFeatures().get(3);
+	}
+
+	/**
+	 * <!-- begin-user-doc --> <!-- end-user-doc -->
+	 * 
+	 * @generated
+	 */
+	public EAttribute getESNotification_CreationDate() {
+		return (EAttribute) esNotificationEClass.getEStructuralFeatures().get(4);
+	}
+
+	/**
+	 * <!-- begin-user-doc --> <!-- end-user-doc -->
+	 * 
+	 * @generated
+	 */
+	public EAttribute getESNotification_Provider() {
+		return (EAttribute) esNotificationEClass.getEStructuralFeatures().get(5);
 	}
 
 	/**
@@ -259,12 +286,15 @@ public class NotificationPackageImpl extends EPackageImpl implements Notificatio
 		esNotificationEClass = createEClass(ES_NOTIFICATION);
 		createEAttribute(esNotificationEClass, ES_NOTIFICATION__NAME);
 		createEAttribute(esNotificationEClass, ES_NOTIFICATION__MESSAGE);
+		createEAttribute(esNotificationEClass, ES_NOTIFICATION__DETAILS);
 		createEAttribute(esNotificationEClass, ES_NOTIFICATION__SEEN);
 		createEAttribute(esNotificationEClass, ES_NOTIFICATION__CREATION_DATE);
+		createEAttribute(esNotificationEClass, ES_NOTIFICATION__PROVIDER);
 		createEAttribute(esNotificationEClass, ES_NOTIFICATION__SENDER);
 		createEAttribute(esNotificationEClass, ES_NOTIFICATION__RECIPIENT);
 		createEReference(esNotificationEClass, ES_NOTIFICATION__PROJECT);
 		createEReference(esNotificationEClass, ES_NOTIFICATION__RELATED_MODEL_ELEMENTS);
+		createEReference(esNotificationEClass, ES_NOTIFICATION__RELATED_OPERATIONS);
 	}
 
 	/**
@@ -294,6 +324,8 @@ public class NotificationPackageImpl extends EPackageImpl implements Notificatio
 		ModelPackage theModelPackage = (ModelPackage) EPackage.Registry.INSTANCE.getEPackage(ModelPackage.eNS_URI);
 		EsmodelPackage theEsmodelPackage = (EsmodelPackage) EPackage.Registry.INSTANCE
 			.getEPackage(EsmodelPackage.eNS_URI);
+		OperationsPackage theOperationsPackage = (OperationsPackage) EPackage.Registry.INSTANCE
+			.getEPackage(OperationsPackage.eNS_URI);
 
 		// Create type parameters
 
@@ -310,9 +342,15 @@ public class NotificationPackageImpl extends EPackageImpl implements Notificatio
 		initEAttribute(getESNotification_Message(), ecorePackage.getEString(), "message", null, 0, 1,
 			ESNotification.class, !IS_TRANSIENT, !IS_VOLATILE, IS_CHANGEABLE, !IS_UNSETTABLE, !IS_ID, IS_UNIQUE,
 			!IS_DERIVED, IS_ORDERED);
+		initEAttribute(getESNotification_Details(), ecorePackage.getEString(), "details", null, 0, 1,
+			ESNotification.class, !IS_TRANSIENT, !IS_VOLATILE, IS_CHANGEABLE, !IS_UNSETTABLE, !IS_ID, IS_UNIQUE,
+			!IS_DERIVED, IS_ORDERED);
 		initEAttribute(getESNotification_Seen(), ecorePackage.getEBoolean(), "seen", null, 0, 1, ESNotification.class,
 			!IS_TRANSIENT, !IS_VOLATILE, IS_CHANGEABLE, !IS_UNSETTABLE, !IS_ID, IS_UNIQUE, !IS_DERIVED, IS_ORDERED);
 		initEAttribute(getESNotification_CreationDate(), ecorePackage.getEDate(), "creationDate", null, 0, 1,
+			ESNotification.class, !IS_TRANSIENT, !IS_VOLATILE, IS_CHANGEABLE, !IS_UNSETTABLE, !IS_ID, IS_UNIQUE,
+			!IS_DERIVED, IS_ORDERED);
+		initEAttribute(getESNotification_Provider(), ecorePackage.getEString(), "provider", null, 0, 1,
 			ESNotification.class, !IS_TRANSIENT, !IS_VOLATILE, IS_CHANGEABLE, !IS_UNSETTABLE, !IS_ID, IS_UNIQUE,
 			!IS_DERIVED, IS_ORDERED);
 		initEAttribute(getESNotification_Sender(), ecorePackage.getEString(), "sender", null, 0, 1,
@@ -326,6 +364,9 @@ public class NotificationPackageImpl extends EPackageImpl implements Notificatio
 			!IS_UNSETTABLE, IS_UNIQUE, !IS_DERIVED, IS_ORDERED);
 		initEReference(getESNotification_RelatedModelElements(), theModelPackage.getModelElementId(), null,
 			"relatedModelElements", null, 0, -1, ESNotification.class, !IS_TRANSIENT, !IS_VOLATILE, IS_CHANGEABLE,
+			IS_COMPOSITE, IS_RESOLVE_PROXIES, !IS_UNSETTABLE, IS_UNIQUE, !IS_DERIVED, IS_ORDERED);
+		initEReference(getESNotification_RelatedOperations(), theOperationsPackage.getOperationId(), null,
+			"relatedOperations", null, 0, -1, ESNotification.class, !IS_TRANSIENT, !IS_VOLATILE, IS_CHANGEABLE,
 			IS_COMPOSITE, IS_RESOLVE_PROXIES, !IS_UNSETTABLE, IS_UNIQUE, !IS_DERIVED, IS_ORDERED);
 	}
 

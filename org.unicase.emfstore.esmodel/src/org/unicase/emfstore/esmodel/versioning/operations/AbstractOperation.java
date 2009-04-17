@@ -7,7 +7,7 @@ package org.unicase.emfstore.esmodel.versioning.operations;
 
 import java.util.Date;
 
-import org.eclipse.emf.ecore.EObject;
+import org.unicase.model.IdentifiableElement;
 import org.unicase.model.ModelElementId;
 import org.unicase.model.Project;
 
@@ -30,7 +30,7 @@ import org.unicase.model.Project;
  * @model abstract="true"
  * @generated
  */
-public interface AbstractOperation extends EObject {
+public interface AbstractOperation extends IdentifiableElement {
 	/**
 	 * Returns the value of the '<em><b>Name</b></em>' attribute. <!-- begin-user-doc -->
 	 * <p>
@@ -162,5 +162,12 @@ public interface AbstractOperation extends EObject {
 	 * @return the reversed operation
 	 */
 	AbstractOperation reverse();
+
+	/**
+	 * Get the operations id.
+	 * 
+	 * @return the id
+	 */
+	OperationId getOperationId();
 
 } // AbstractOperation

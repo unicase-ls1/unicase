@@ -9,6 +9,7 @@ import java.util.Date;
 
 import org.eclipse.emf.common.util.EList;
 import org.unicase.emfstore.esmodel.ProjectId;
+import org.unicase.emfstore.esmodel.versioning.operations.OperationId;
 import org.unicase.model.IdentifiableElement;
 import org.unicase.model.ModelElementId;
 
@@ -19,13 +20,17 @@ import org.unicase.model.ModelElementId;
  * <ul>
  * <li>{@link org.unicase.emfstore.esmodel.notification.ESNotification#getName <em>Name</em>}</li>
  * <li>{@link org.unicase.emfstore.esmodel.notification.ESNotification#getMessage <em>Message</em>}</li>
+ * <li>{@link org.unicase.emfstore.esmodel.notification.ESNotification#getDetails <em>Details</em>}</li>
  * <li>{@link org.unicase.emfstore.esmodel.notification.ESNotification#isSeen <em>Seen</em>}</li>
  * <li>{@link org.unicase.emfstore.esmodel.notification.ESNotification#getCreationDate <em>Creation Date</em>}</li>
+ * <li>{@link org.unicase.emfstore.esmodel.notification.ESNotification#getProvider <em>Provider</em>}</li>
  * <li>{@link org.unicase.emfstore.esmodel.notification.ESNotification#getSender <em>Sender</em>}</li>
  * <li>{@link org.unicase.emfstore.esmodel.notification.ESNotification#getRecipient <em>Recipient</em>}</li>
  * <li>{@link org.unicase.emfstore.esmodel.notification.ESNotification#getProject <em>Project</em>}</li>
  * <li>{@link org.unicase.emfstore.esmodel.notification.ESNotification#getRelatedModelElements <em>Related Model
  * Elements</em>}</li>
+ * <li>{@link org.unicase.emfstore.esmodel.notification.ESNotification#getRelatedOperations <em>Related Operations</em>}
+ * </li>
  * </ul>
  * </p>
  * 
@@ -154,6 +159,22 @@ public interface ESNotification extends IdentifiableElement {
 	EList<ModelElementId> getRelatedModelElements();
 
 	/**
+	 * Returns the value of the '<em><b>Related Operations</b></em>' containment reference list. The list contents are
+	 * of type {@link org.unicase.emfstore.esmodel.versioning.operations.OperationId}. <!-- begin-user-doc -->
+	 * <p>
+	 * If the meaning of the '<em>Related Operations</em>' containment reference list isn't clear, there really should
+	 * be more of a description here...
+	 * </p>
+	 * <!-- end-user-doc -->
+	 * 
+	 * @return the value of the '<em>Related Operations</em>' containment reference list.
+	 * @see org.unicase.emfstore.esmodel.notification.NotificationPackage#getESNotification_RelatedOperations()
+	 * @model containment="true" resolveProxies="true"
+	 * @generated
+	 */
+	EList<OperationId> getRelatedOperations();
+
+	/**
 	 * Returns the value of the '<em><b>Message</b></em>' attribute. <!-- begin-user-doc -->
 	 * <p>
 	 * If the meaning of the '<em>Message</em>' attribute isn't clear, there really should be more of a description
@@ -178,6 +199,32 @@ public interface ESNotification extends IdentifiableElement {
 	 * @generated
 	 */
 	void setMessage(String value);
+
+	/**
+	 * Returns the value of the '<em><b>Details</b></em>' attribute. <!-- begin-user-doc -->
+	 * <p>
+	 * If the meaning of the '<em>Details</em>' attribute isn't clear, there really should be more of a description
+	 * here...
+	 * </p>
+	 * <!-- end-user-doc -->
+	 * 
+	 * @return the value of the '<em>Details</em>' attribute.
+	 * @see #setDetails(String)
+	 * @see org.unicase.emfstore.esmodel.notification.NotificationPackage#getESNotification_Details()
+	 * @model
+	 * @generated
+	 */
+	String getDetails();
+
+	/**
+	 * Sets the value of the '{@link org.unicase.emfstore.esmodel.notification.ESNotification#getDetails
+	 * <em>Details</em>}' attribute. <!-- begin-user-doc --> <!-- end-user-doc -->
+	 * 
+	 * @param value the new value of the '<em>Details</em>' attribute.
+	 * @see #getDetails()
+	 * @generated
+	 */
+	void setDetails(String value);
 
 	/**
 	 * Returns the value of the '<em><b>Seen</b></em>' attribute. <!-- begin-user-doc -->
@@ -229,5 +276,31 @@ public interface ESNotification extends IdentifiableElement {
 	 * @generated
 	 */
 	void setCreationDate(Date value);
+
+	/**
+	 * Returns the value of the '<em><b>Provider</b></em>' attribute. <!-- begin-user-doc -->
+	 * <p>
+	 * If the meaning of the '<em>Provider</em>' attribute isn't clear, there really should be more of a description
+	 * here...
+	 * </p>
+	 * <!-- end-user-doc -->
+	 * 
+	 * @return the value of the '<em>Provider</em>' attribute.
+	 * @see #setProvider(String)
+	 * @see org.unicase.emfstore.esmodel.notification.NotificationPackage#getESNotification_Provider()
+	 * @model
+	 * @generated
+	 */
+	String getProvider();
+
+	/**
+	 * Sets the value of the '{@link org.unicase.emfstore.esmodel.notification.ESNotification#getProvider
+	 * <em>Provider</em>}' attribute. <!-- begin-user-doc --> <!-- end-user-doc -->
+	 * 
+	 * @param value the new value of the '<em>Provider</em>' attribute.
+	 * @see #getProvider()
+	 * @generated
+	 */
+	void setProvider(String value);
 
 } // ESNotification

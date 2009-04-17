@@ -19,9 +19,12 @@ import org.unicase.emfstore.esmodel.versioning.operations.MultiAttributeMoveOper
 import org.unicase.emfstore.esmodel.versioning.operations.MultiAttributeOperation;
 import org.unicase.emfstore.esmodel.versioning.operations.MultiReferenceMoveOperation;
 import org.unicase.emfstore.esmodel.versioning.operations.MultiReferenceOperation;
+import org.unicase.emfstore.esmodel.versioning.operations.OperationId;
 import org.unicase.emfstore.esmodel.versioning.operations.OperationsPackage;
 import org.unicase.emfstore.esmodel.versioning.operations.ReferenceOperation;
 import org.unicase.emfstore.esmodel.versioning.operations.SingleReferenceOperation;
+import org.unicase.model.IdentifiableElement;
+import org.unicase.model.UniqueIdentifier;
 
 /**
  * <!-- begin-user-doc --> The <b>Adapter Factory</b> for the model. It provides an adapter <code>createXXX</code>
@@ -132,6 +135,21 @@ public class OperationsAdapterFactory extends AdapterFactoryImpl {
 		@Override
 		public Adapter caseMultiAttributeMoveOperation(MultiAttributeMoveOperation object) {
 			return createMultiAttributeMoveOperationAdapter();
+		}
+
+		@Override
+		public Adapter caseOperationId(OperationId object) {
+			return createOperationIdAdapter();
+		}
+
+		@Override
+		public Adapter caseIdentifiableElement(IdentifiableElement object) {
+			return createIdentifiableElementAdapter();
+		}
+
+		@Override
+		public Adapter caseUniqueIdentifier(UniqueIdentifier object) {
+			return createUniqueIdentifierAdapter();
 		}
 
 		@Override
@@ -323,6 +341,48 @@ public class OperationsAdapterFactory extends AdapterFactoryImpl {
 	 * @generated
 	 */
 	public Adapter createMultiAttributeMoveOperationAdapter() {
+		return null;
+	}
+
+	/**
+	 * Creates a new adapter for an object of class '
+	 * {@link org.unicase.emfstore.esmodel.versioning.operations.OperationId <em>Operation Id</em>}'. <!--
+	 * begin-user-doc --> This default implementation returns null so that we can easily ignore cases; it's useful to
+	 * ignore a case when inheritance will catch all the cases anyway. <!-- end-user-doc -->
+	 * 
+	 * @return the new adapter.
+	 * @see org.unicase.emfstore.esmodel.versioning.operations.OperationId
+	 * @generated
+	 */
+	public Adapter createOperationIdAdapter() {
+		return null;
+	}
+
+	/**
+	 * Creates a new adapter for an object of class '{@link org.unicase.model.IdentifiableElement
+	 * <em>Identifiable Element</em>}'. <!-- begin-user-doc --> This default implementation returns null so that we can
+	 * easily ignore cases; it's useful to ignore a case when inheritance will catch all the cases anyway. <!--
+	 * end-user-doc -->
+	 * 
+	 * @return the new adapter.
+	 * @see org.unicase.model.IdentifiableElement
+	 * @generated
+	 */
+	public Adapter createIdentifiableElementAdapter() {
+		return null;
+	}
+
+	/**
+	 * Creates a new adapter for an object of class '{@link org.unicase.model.UniqueIdentifier
+	 * <em>Unique Identifier</em>}'. <!-- begin-user-doc --> This default implementation returns null so that we can
+	 * easily ignore cases; it's useful to ignore a case when inheritance will catch all the cases anyway. <!--
+	 * end-user-doc -->
+	 * 
+	 * @return the new adapter.
+	 * @see org.unicase.model.UniqueIdentifier
+	 * @generated
+	 */
+	public Adapter createUniqueIdentifierAdapter() {
 		return null;
 	}
 

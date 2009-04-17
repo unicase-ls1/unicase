@@ -19,6 +19,7 @@ import org.eclipse.emf.ecore.util.InternalEList;
 import org.unicase.emfstore.esmodel.ProjectId;
 import org.unicase.emfstore.esmodel.notification.ESNotification;
 import org.unicase.emfstore.esmodel.notification.NotificationPackage;
+import org.unicase.emfstore.esmodel.versioning.operations.OperationId;
 import org.unicase.model.ModelElementId;
 import org.unicase.model.impl.IdentifiableElementImpl;
 
@@ -81,6 +82,26 @@ public class ESNotificationImpl extends IdentifiableElementImpl implements ESNot
 	protected String message = MESSAGE_EDEFAULT;
 
 	/**
+	 * The default value of the '{@link #getDetails() <em>Details</em>}' attribute. <!-- begin-user-doc --> <!--
+	 * end-user-doc -->
+	 * 
+	 * @see #getDetails()
+	 * @generated
+	 * @ordered
+	 */
+	protected static final String DETAILS_EDEFAULT = null;
+
+	/**
+	 * The cached value of the '{@link #getDetails() <em>Details</em>}' attribute. <!-- begin-user-doc --> <!--
+	 * end-user-doc -->
+	 * 
+	 * @see #getDetails()
+	 * @generated
+	 * @ordered
+	 */
+	protected String details = DETAILS_EDEFAULT;
+
+	/**
 	 * The default value of the '{@link #isSeen() <em>Seen</em>}' attribute. <!-- begin-user-doc --> <!-- end-user-doc
 	 * -->
 	 * 
@@ -119,6 +140,26 @@ public class ESNotificationImpl extends IdentifiableElementImpl implements ESNot
 	 * @ordered
 	 */
 	protected Date creationDate = CREATION_DATE_EDEFAULT;
+
+	/**
+	 * The default value of the '{@link #getProvider() <em>Provider</em>}' attribute. <!-- begin-user-doc --> <!--
+	 * end-user-doc -->
+	 * 
+	 * @see #getProvider()
+	 * @generated
+	 * @ordered
+	 */
+	protected static final String PROVIDER_EDEFAULT = null;
+
+	/**
+	 * The cached value of the '{@link #getProvider() <em>Provider</em>}' attribute. <!-- begin-user-doc --> <!--
+	 * end-user-doc -->
+	 * 
+	 * @see #getProvider()
+	 * @generated
+	 * @ordered
+	 */
+	protected String provider = PROVIDER_EDEFAULT;
 
 	/**
 	 * The default value of the '{@link #getSender() <em>Sender</em>}' attribute. <!-- begin-user-doc --> <!--
@@ -179,6 +220,16 @@ public class ESNotificationImpl extends IdentifiableElementImpl implements ESNot
 	 * @ordered
 	 */
 	protected EList<ModelElementId> relatedModelElements;
+
+	/**
+	 * The cached value of the '{@link #getRelatedOperations() <em>Related Operations</em>}' containment reference list.
+	 * <!-- begin-user-doc --> <!-- end-user-doc -->
+	 * 
+	 * @see #getRelatedOperations()
+	 * @generated
+	 * @ordered
+	 */
+	protected EList<OperationId> relatedOperations;
 
 	/**
 	 * <!-- begin-user-doc --> <!-- end-user-doc -->
@@ -360,6 +411,19 @@ public class ESNotificationImpl extends IdentifiableElementImpl implements ESNot
 	 * 
 	 * @generated
 	 */
+	public EList<OperationId> getRelatedOperations() {
+		if (relatedOperations == null) {
+			relatedOperations = new EObjectContainmentEList.Resolving<OperationId>(OperationId.class, this,
+				NotificationPackage.ES_NOTIFICATION__RELATED_OPERATIONS);
+		}
+		return relatedOperations;
+	}
+
+	/**
+	 * <!-- begin-user-doc --> <!-- end-user-doc -->
+	 * 
+	 * @generated
+	 */
 	public String getMessage() {
 		return message;
 	}
@@ -375,6 +439,28 @@ public class ESNotificationImpl extends IdentifiableElementImpl implements ESNot
 		if (eNotificationRequired())
 			eNotify(new ENotificationImpl(this, Notification.SET, NotificationPackage.ES_NOTIFICATION__MESSAGE,
 				oldMessage, message));
+	}
+
+	/**
+	 * <!-- begin-user-doc --> <!-- end-user-doc -->
+	 * 
+	 * @generated
+	 */
+	public String getDetails() {
+		return details;
+	}
+
+	/**
+	 * <!-- begin-user-doc --> <!-- end-user-doc -->
+	 * 
+	 * @generated
+	 */
+	public void setDetails(String newDetails) {
+		String oldDetails = details;
+		details = newDetails;
+		if (eNotificationRequired())
+			eNotify(new ENotificationImpl(this, Notification.SET, NotificationPackage.ES_NOTIFICATION__DETAILS,
+				oldDetails, details));
 	}
 
 	/**
@@ -426,6 +512,28 @@ public class ESNotificationImpl extends IdentifiableElementImpl implements ESNot
 	 * 
 	 * @generated
 	 */
+	public String getProvider() {
+		return provider;
+	}
+
+	/**
+	 * <!-- begin-user-doc --> <!-- end-user-doc -->
+	 * 
+	 * @generated
+	 */
+	public void setProvider(String newProvider) {
+		String oldProvider = provider;
+		provider = newProvider;
+		if (eNotificationRequired())
+			eNotify(new ENotificationImpl(this, Notification.SET, NotificationPackage.ES_NOTIFICATION__PROVIDER,
+				oldProvider, provider));
+	}
+
+	/**
+	 * <!-- begin-user-doc --> <!-- end-user-doc -->
+	 * 
+	 * @generated
+	 */
 	@Override
 	public NotificationChain eInverseRemove(InternalEObject otherEnd, int featureID, NotificationChain msgs) {
 		switch (featureID) {
@@ -433,6 +541,8 @@ public class ESNotificationImpl extends IdentifiableElementImpl implements ESNot
 			return basicSetProject(null, msgs);
 		case NotificationPackage.ES_NOTIFICATION__RELATED_MODEL_ELEMENTS:
 			return ((InternalEList<?>) getRelatedModelElements()).basicRemove(otherEnd, msgs);
+		case NotificationPackage.ES_NOTIFICATION__RELATED_OPERATIONS:
+			return ((InternalEList<?>) getRelatedOperations()).basicRemove(otherEnd, msgs);
 		}
 		return super.eInverseRemove(otherEnd, featureID, msgs);
 	}
@@ -449,10 +559,14 @@ public class ESNotificationImpl extends IdentifiableElementImpl implements ESNot
 			return getName();
 		case NotificationPackage.ES_NOTIFICATION__MESSAGE:
 			return getMessage();
+		case NotificationPackage.ES_NOTIFICATION__DETAILS:
+			return getDetails();
 		case NotificationPackage.ES_NOTIFICATION__SEEN:
 			return isSeen();
 		case NotificationPackage.ES_NOTIFICATION__CREATION_DATE:
 			return getCreationDate();
+		case NotificationPackage.ES_NOTIFICATION__PROVIDER:
+			return getProvider();
 		case NotificationPackage.ES_NOTIFICATION__SENDER:
 			return getSender();
 		case NotificationPackage.ES_NOTIFICATION__RECIPIENT:
@@ -463,6 +577,8 @@ public class ESNotificationImpl extends IdentifiableElementImpl implements ESNot
 			return basicGetProject();
 		case NotificationPackage.ES_NOTIFICATION__RELATED_MODEL_ELEMENTS:
 			return getRelatedModelElements();
+		case NotificationPackage.ES_NOTIFICATION__RELATED_OPERATIONS:
+			return getRelatedOperations();
 		}
 		return super.eGet(featureID, resolve, coreType);
 	}
@@ -482,11 +598,17 @@ public class ESNotificationImpl extends IdentifiableElementImpl implements ESNot
 		case NotificationPackage.ES_NOTIFICATION__MESSAGE:
 			setMessage((String) newValue);
 			return;
+		case NotificationPackage.ES_NOTIFICATION__DETAILS:
+			setDetails((String) newValue);
+			return;
 		case NotificationPackage.ES_NOTIFICATION__SEEN:
 			setSeen((Boolean) newValue);
 			return;
 		case NotificationPackage.ES_NOTIFICATION__CREATION_DATE:
 			setCreationDate((Date) newValue);
+			return;
+		case NotificationPackage.ES_NOTIFICATION__PROVIDER:
+			setProvider((String) newValue);
 			return;
 		case NotificationPackage.ES_NOTIFICATION__SENDER:
 			setSender((String) newValue);
@@ -500,6 +622,10 @@ public class ESNotificationImpl extends IdentifiableElementImpl implements ESNot
 		case NotificationPackage.ES_NOTIFICATION__RELATED_MODEL_ELEMENTS:
 			getRelatedModelElements().clear();
 			getRelatedModelElements().addAll((Collection<? extends ModelElementId>) newValue);
+			return;
+		case NotificationPackage.ES_NOTIFICATION__RELATED_OPERATIONS:
+			getRelatedOperations().clear();
+			getRelatedOperations().addAll((Collection<? extends OperationId>) newValue);
 			return;
 		}
 		super.eSet(featureID, newValue);
@@ -519,11 +645,17 @@ public class ESNotificationImpl extends IdentifiableElementImpl implements ESNot
 		case NotificationPackage.ES_NOTIFICATION__MESSAGE:
 			setMessage(MESSAGE_EDEFAULT);
 			return;
+		case NotificationPackage.ES_NOTIFICATION__DETAILS:
+			setDetails(DETAILS_EDEFAULT);
+			return;
 		case NotificationPackage.ES_NOTIFICATION__SEEN:
 			setSeen(SEEN_EDEFAULT);
 			return;
 		case NotificationPackage.ES_NOTIFICATION__CREATION_DATE:
 			setCreationDate(CREATION_DATE_EDEFAULT);
+			return;
+		case NotificationPackage.ES_NOTIFICATION__PROVIDER:
+			setProvider(PROVIDER_EDEFAULT);
 			return;
 		case NotificationPackage.ES_NOTIFICATION__SENDER:
 			setSender(SENDER_EDEFAULT);
@@ -536,6 +668,9 @@ public class ESNotificationImpl extends IdentifiableElementImpl implements ESNot
 			return;
 		case NotificationPackage.ES_NOTIFICATION__RELATED_MODEL_ELEMENTS:
 			getRelatedModelElements().clear();
+			return;
+		case NotificationPackage.ES_NOTIFICATION__RELATED_OPERATIONS:
+			getRelatedOperations().clear();
 			return;
 		}
 		super.eUnset(featureID);
@@ -553,10 +688,14 @@ public class ESNotificationImpl extends IdentifiableElementImpl implements ESNot
 			return NAME_EDEFAULT == null ? name != null : !NAME_EDEFAULT.equals(name);
 		case NotificationPackage.ES_NOTIFICATION__MESSAGE:
 			return MESSAGE_EDEFAULT == null ? message != null : !MESSAGE_EDEFAULT.equals(message);
+		case NotificationPackage.ES_NOTIFICATION__DETAILS:
+			return DETAILS_EDEFAULT == null ? details != null : !DETAILS_EDEFAULT.equals(details);
 		case NotificationPackage.ES_NOTIFICATION__SEEN:
 			return seen != SEEN_EDEFAULT;
 		case NotificationPackage.ES_NOTIFICATION__CREATION_DATE:
 			return CREATION_DATE_EDEFAULT == null ? creationDate != null : !CREATION_DATE_EDEFAULT.equals(creationDate);
+		case NotificationPackage.ES_NOTIFICATION__PROVIDER:
+			return PROVIDER_EDEFAULT == null ? provider != null : !PROVIDER_EDEFAULT.equals(provider);
 		case NotificationPackage.ES_NOTIFICATION__SENDER:
 			return SENDER_EDEFAULT == null ? sender != null : !SENDER_EDEFAULT.equals(sender);
 		case NotificationPackage.ES_NOTIFICATION__RECIPIENT:
@@ -565,6 +704,8 @@ public class ESNotificationImpl extends IdentifiableElementImpl implements ESNot
 			return project != null;
 		case NotificationPackage.ES_NOTIFICATION__RELATED_MODEL_ELEMENTS:
 			return relatedModelElements != null && !relatedModelElements.isEmpty();
+		case NotificationPackage.ES_NOTIFICATION__RELATED_OPERATIONS:
+			return relatedOperations != null && !relatedOperations.isEmpty();
 		}
 		return super.eIsSet(featureID);
 	}
@@ -584,10 +725,14 @@ public class ESNotificationImpl extends IdentifiableElementImpl implements ESNot
 		result.append(name);
 		result.append(", message: ");
 		result.append(message);
+		result.append(", details: ");
+		result.append(details);
 		result.append(", seen: ");
 		result.append(seen);
 		result.append(", creationDate: ");
 		result.append(creationDate);
+		result.append(", provider: ");
+		result.append(provider);
 		result.append(", sender: ");
 		result.append(sender);
 		result.append(", recipient: ");

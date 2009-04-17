@@ -89,12 +89,20 @@ public interface NotificationPackage extends EPackage {
 	int ES_NOTIFICATION__MESSAGE = ModelPackage.IDENTIFIABLE_ELEMENT_FEATURE_COUNT + 1;
 
 	/**
+	 * The feature id for the '<em><b>Details</b></em>' attribute. <!-- begin-user-doc --> <!-- end-user-doc -->
+	 * 
+	 * @generated
+	 * @ordered
+	 */
+	int ES_NOTIFICATION__DETAILS = ModelPackage.IDENTIFIABLE_ELEMENT_FEATURE_COUNT + 2;
+
+	/**
 	 * The feature id for the '<em><b>Seen</b></em>' attribute. <!-- begin-user-doc --> <!-- end-user-doc -->
 	 * 
 	 * @generated
 	 * @ordered
 	 */
-	int ES_NOTIFICATION__SEEN = ModelPackage.IDENTIFIABLE_ELEMENT_FEATURE_COUNT + 2;
+	int ES_NOTIFICATION__SEEN = ModelPackage.IDENTIFIABLE_ELEMENT_FEATURE_COUNT + 3;
 
 	/**
 	 * The feature id for the '<em><b>Creation Date</b></em>' attribute. <!-- begin-user-doc --> <!-- end-user-doc -->
@@ -102,7 +110,15 @@ public interface NotificationPackage extends EPackage {
 	 * @generated
 	 * @ordered
 	 */
-	int ES_NOTIFICATION__CREATION_DATE = ModelPackage.IDENTIFIABLE_ELEMENT_FEATURE_COUNT + 3;
+	int ES_NOTIFICATION__CREATION_DATE = ModelPackage.IDENTIFIABLE_ELEMENT_FEATURE_COUNT + 4;
+
+	/**
+	 * The feature id for the '<em><b>Provider</b></em>' attribute. <!-- begin-user-doc --> <!-- end-user-doc -->
+	 * 
+	 * @generated
+	 * @ordered
+	 */
+	int ES_NOTIFICATION__PROVIDER = ModelPackage.IDENTIFIABLE_ELEMENT_FEATURE_COUNT + 5;
 
 	/**
 	 * The feature id for the '<em><b>Sender</b></em>' attribute. <!-- begin-user-doc --> <!-- end-user-doc -->
@@ -110,7 +126,7 @@ public interface NotificationPackage extends EPackage {
 	 * @generated
 	 * @ordered
 	 */
-	int ES_NOTIFICATION__SENDER = ModelPackage.IDENTIFIABLE_ELEMENT_FEATURE_COUNT + 4;
+	int ES_NOTIFICATION__SENDER = ModelPackage.IDENTIFIABLE_ELEMENT_FEATURE_COUNT + 6;
 
 	/**
 	 * The feature id for the '<em><b>Recipient</b></em>' attribute. <!-- begin-user-doc --> <!-- end-user-doc -->
@@ -118,7 +134,7 @@ public interface NotificationPackage extends EPackage {
 	 * @generated
 	 * @ordered
 	 */
-	int ES_NOTIFICATION__RECIPIENT = ModelPackage.IDENTIFIABLE_ELEMENT_FEATURE_COUNT + 5;
+	int ES_NOTIFICATION__RECIPIENT = ModelPackage.IDENTIFIABLE_ELEMENT_FEATURE_COUNT + 7;
 
 	/**
 	 * The feature id for the '<em><b>Project</b></em>' containment reference. <!-- begin-user-doc --> <!-- end-user-doc
@@ -127,7 +143,7 @@ public interface NotificationPackage extends EPackage {
 	 * @generated
 	 * @ordered
 	 */
-	int ES_NOTIFICATION__PROJECT = ModelPackage.IDENTIFIABLE_ELEMENT_FEATURE_COUNT + 6;
+	int ES_NOTIFICATION__PROJECT = ModelPackage.IDENTIFIABLE_ELEMENT_FEATURE_COUNT + 8;
 
 	/**
 	 * The feature id for the '<em><b>Related Model Elements</b></em>' containment reference list. <!-- begin-user-doc
@@ -136,7 +152,16 @@ public interface NotificationPackage extends EPackage {
 	 * @generated
 	 * @ordered
 	 */
-	int ES_NOTIFICATION__RELATED_MODEL_ELEMENTS = ModelPackage.IDENTIFIABLE_ELEMENT_FEATURE_COUNT + 7;
+	int ES_NOTIFICATION__RELATED_MODEL_ELEMENTS = ModelPackage.IDENTIFIABLE_ELEMENT_FEATURE_COUNT + 9;
+
+	/**
+	 * The feature id for the '<em><b>Related Operations</b></em>' containment reference list. <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * 
+	 * @generated
+	 * @ordered
+	 */
+	int ES_NOTIFICATION__RELATED_OPERATIONS = ModelPackage.IDENTIFIABLE_ELEMENT_FEATURE_COUNT + 10;
 
 	/**
 	 * The number of structural features of the '<em>ES Notification</em>' class. <!-- begin-user-doc --> <!--
@@ -145,7 +170,7 @@ public interface NotificationPackage extends EPackage {
 	 * @generated
 	 * @ordered
 	 */
-	int ES_NOTIFICATION_FEATURE_COUNT = ModelPackage.IDENTIFIABLE_ELEMENT_FEATURE_COUNT + 8;
+	int ES_NOTIFICATION_FEATURE_COUNT = ModelPackage.IDENTIFIABLE_ELEMENT_FEATURE_COUNT + 11;
 
 	/**
 	 * Returns the meta object for class '{@link org.unicase.emfstore.esmodel.notification.ESNotification
@@ -218,6 +243,18 @@ public interface NotificationPackage extends EPackage {
 	EReference getESNotification_RelatedModelElements();
 
 	/**
+	 * Returns the meta object for the containment reference list '
+	 * {@link org.unicase.emfstore.esmodel.notification.ESNotification#getRelatedOperations <em>Related Operations</em>}
+	 * '. <!-- begin-user-doc --> <!-- end-user-doc -->
+	 * 
+	 * @return the meta object for the containment reference list '<em>Related Operations</em>'.
+	 * @see org.unicase.emfstore.esmodel.notification.ESNotification#getRelatedOperations()
+	 * @see #getESNotification()
+	 * @generated
+	 */
+	EReference getESNotification_RelatedOperations();
+
+	/**
 	 * Returns the meta object for the attribute '
 	 * {@link org.unicase.emfstore.esmodel.notification.ESNotification#getMessage <em>Message</em>}'. <!--
 	 * begin-user-doc --> <!-- end-user-doc -->
@@ -228,6 +265,18 @@ public interface NotificationPackage extends EPackage {
 	 * @generated
 	 */
 	EAttribute getESNotification_Message();
+
+	/**
+	 * Returns the meta object for the attribute '
+	 * {@link org.unicase.emfstore.esmodel.notification.ESNotification#getDetails <em>Details</em>}'. <!--
+	 * begin-user-doc --> <!-- end-user-doc -->
+	 * 
+	 * @return the meta object for the attribute '<em>Details</em>'.
+	 * @see org.unicase.emfstore.esmodel.notification.ESNotification#getDetails()
+	 * @see #getESNotification()
+	 * @generated
+	 */
+	EAttribute getESNotification_Details();
 
 	/**
 	 * Returns the meta object for the attribute '
@@ -252,6 +301,18 @@ public interface NotificationPackage extends EPackage {
 	 * @generated
 	 */
 	EAttribute getESNotification_CreationDate();
+
+	/**
+	 * Returns the meta object for the attribute '
+	 * {@link org.unicase.emfstore.esmodel.notification.ESNotification#getProvider <em>Provider</em>}'. <!--
+	 * begin-user-doc --> <!-- end-user-doc -->
+	 * 
+	 * @return the meta object for the attribute '<em>Provider</em>'.
+	 * @see org.unicase.emfstore.esmodel.notification.ESNotification#getProvider()
+	 * @see #getESNotification()
+	 * @generated
+	 */
+	EAttribute getESNotification_Provider();
 
 	/**
 	 * Returns the factory that creates the instances of the model. <!-- begin-user-doc --> <!-- end-user-doc -->
@@ -325,12 +386,28 @@ public interface NotificationPackage extends EPackage {
 		EReference ES_NOTIFICATION__RELATED_MODEL_ELEMENTS = eINSTANCE.getESNotification_RelatedModelElements();
 
 		/**
+		 * The meta object literal for the '<em><b>Related Operations</b></em>' containment reference list feature. <!--
+		 * begin-user-doc --> <!-- end-user-doc -->
+		 * 
+		 * @generated
+		 */
+		EReference ES_NOTIFICATION__RELATED_OPERATIONS = eINSTANCE.getESNotification_RelatedOperations();
+
+		/**
 		 * The meta object literal for the '<em><b>Message</b></em>' attribute feature. <!-- begin-user-doc --> <!--
 		 * end-user-doc -->
 		 * 
 		 * @generated
 		 */
 		EAttribute ES_NOTIFICATION__MESSAGE = eINSTANCE.getESNotification_Message();
+
+		/**
+		 * The meta object literal for the '<em><b>Details</b></em>' attribute feature. <!-- begin-user-doc --> <!--
+		 * end-user-doc -->
+		 * 
+		 * @generated
+		 */
+		EAttribute ES_NOTIFICATION__DETAILS = eINSTANCE.getESNotification_Details();
 
 		/**
 		 * The meta object literal for the '<em><b>Seen</b></em>' attribute feature. <!-- begin-user-doc --> <!--
@@ -347,6 +424,14 @@ public interface NotificationPackage extends EPackage {
 		 * @generated
 		 */
 		EAttribute ES_NOTIFICATION__CREATION_DATE = eINSTANCE.getESNotification_CreationDate();
+
+		/**
+		 * The meta object literal for the '<em><b>Provider</b></em>' attribute feature. <!-- begin-user-doc --> <!--
+		 * end-user-doc -->
+		 * 
+		 * @generated
+		 */
+		EAttribute ES_NOTIFICATION__PROVIDER = eINSTANCE.getESNotification_Provider();
 
 	}
 

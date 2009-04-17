@@ -9,6 +9,7 @@ import org.eclipse.emf.ecore.EAttribute;
 import org.eclipse.emf.ecore.EClass;
 import org.eclipse.emf.ecore.EPackage;
 import org.eclipse.emf.ecore.EReference;
+import org.unicase.model.ModelPackage;
 
 /**
  * <!-- begin-user-doc --> The <b>Package</b> for the model. It contains accessors for the meta objects to represent
@@ -64,12 +65,20 @@ public interface OperationsPackage extends EPackage {
 	int ABSTRACT_OPERATION = 0;
 
 	/**
+	 * The feature id for the '<em><b>Identifier</b></em>' attribute. <!-- begin-user-doc --> <!-- end-user-doc -->
+	 * 
+	 * @generated
+	 * @ordered
+	 */
+	int ABSTRACT_OPERATION__IDENTIFIER = ModelPackage.IDENTIFIABLE_ELEMENT__IDENTIFIER;
+
+	/**
 	 * The feature id for the '<em><b>Name</b></em>' attribute. <!-- begin-user-doc --> <!-- end-user-doc -->
 	 * 
 	 * @generated
 	 * @ordered
 	 */
-	int ABSTRACT_OPERATION__NAME = 0;
+	int ABSTRACT_OPERATION__NAME = ModelPackage.IDENTIFIABLE_ELEMENT_FEATURE_COUNT + 0;
 
 	/**
 	 * The feature id for the '<em><b>Description</b></em>' attribute. <!-- begin-user-doc --> <!-- end-user-doc -->
@@ -77,7 +86,7 @@ public interface OperationsPackage extends EPackage {
 	 * @generated
 	 * @ordered
 	 */
-	int ABSTRACT_OPERATION__DESCRIPTION = 1;
+	int ABSTRACT_OPERATION__DESCRIPTION = ModelPackage.IDENTIFIABLE_ELEMENT_FEATURE_COUNT + 1;
 
 	/**
 	 * The feature id for the '<em><b>Model Element Id</b></em>' containment reference. <!-- begin-user-doc --> <!--
@@ -86,7 +95,7 @@ public interface OperationsPackage extends EPackage {
 	 * @generated
 	 * @ordered
 	 */
-	int ABSTRACT_OPERATION__MODEL_ELEMENT_ID = 2;
+	int ABSTRACT_OPERATION__MODEL_ELEMENT_ID = ModelPackage.IDENTIFIABLE_ELEMENT_FEATURE_COUNT + 2;
 
 	/**
 	 * The feature id for the '<em><b>Accepted</b></em>' attribute. <!-- begin-user-doc --> <!-- end-user-doc -->
@@ -94,7 +103,7 @@ public interface OperationsPackage extends EPackage {
 	 * @generated
 	 * @ordered
 	 */
-	int ABSTRACT_OPERATION__ACCEPTED = 3;
+	int ABSTRACT_OPERATION__ACCEPTED = ModelPackage.IDENTIFIABLE_ELEMENT_FEATURE_COUNT + 3;
 
 	/**
 	 * The feature id for the '<em><b>Client Date</b></em>' attribute. <!-- begin-user-doc --> <!-- end-user-doc -->
@@ -102,7 +111,7 @@ public interface OperationsPackage extends EPackage {
 	 * @generated
 	 * @ordered
 	 */
-	int ABSTRACT_OPERATION__CLIENT_DATE = 4;
+	int ABSTRACT_OPERATION__CLIENT_DATE = ModelPackage.IDENTIFIABLE_ELEMENT_FEATURE_COUNT + 4;
 
 	/**
 	 * The number of structural features of the '<em>Abstract Operation</em>' class. <!-- begin-user-doc --> <!--
@@ -111,7 +120,7 @@ public interface OperationsPackage extends EPackage {
 	 * @generated
 	 * @ordered
 	 */
-	int ABSTRACT_OPERATION_FEATURE_COUNT = 5;
+	int ABSTRACT_OPERATION_FEATURE_COUNT = ModelPackage.IDENTIFIABLE_ELEMENT_FEATURE_COUNT + 5;
 
 	/**
 	 * The meta object id for the '
@@ -123,6 +132,14 @@ public interface OperationsPackage extends EPackage {
 	 * @generated
 	 */
 	int COMPOSITE_OPERATION = 1;
+
+	/**
+	 * The feature id for the '<em><b>Identifier</b></em>' attribute. <!-- begin-user-doc --> <!-- end-user-doc -->
+	 * 
+	 * @generated
+	 * @ordered
+	 */
+	int COMPOSITE_OPERATION__IDENTIFIER = ABSTRACT_OPERATION__IDENTIFIER;
 
 	/**
 	 * The feature id for the '<em><b>Name</b></em>' attribute. <!-- begin-user-doc --> <!-- end-user-doc -->
@@ -219,6 +236,14 @@ public interface OperationsPackage extends EPackage {
 	int FEATURE_OPERATION = 2;
 
 	/**
+	 * The feature id for the '<em><b>Identifier</b></em>' attribute. <!-- begin-user-doc --> <!-- end-user-doc -->
+	 * 
+	 * @generated
+	 * @ordered
+	 */
+	int FEATURE_OPERATION__IDENTIFIER = ABSTRACT_OPERATION__IDENTIFIER;
+
+	/**
 	 * The feature id for the '<em><b>Name</b></em>' attribute. <!-- begin-user-doc --> <!-- end-user-doc -->
 	 * 
 	 * @generated
@@ -286,6 +311,14 @@ public interface OperationsPackage extends EPackage {
 	 * @generated
 	 */
 	int CREATE_DELETE_OPERATION = 3;
+
+	/**
+	 * The feature id for the '<em><b>Identifier</b></em>' attribute. <!-- begin-user-doc --> <!-- end-user-doc -->
+	 * 
+	 * @generated
+	 * @ordered
+	 */
+	int CREATE_DELETE_OPERATION__IDENTIFIER = ABSTRACT_OPERATION__IDENTIFIER;
 
 	/**
 	 * The feature id for the '<em><b>Name</b></em>' attribute. <!-- begin-user-doc --> <!-- end-user-doc -->
@@ -375,6 +408,14 @@ public interface OperationsPackage extends EPackage {
 	int ATTRIBUTE_OPERATION = 4;
 
 	/**
+	 * The feature id for the '<em><b>Identifier</b></em>' attribute. <!-- begin-user-doc --> <!-- end-user-doc -->
+	 * 
+	 * @generated
+	 * @ordered
+	 */
+	int ATTRIBUTE_OPERATION__IDENTIFIER = FEATURE_OPERATION__IDENTIFIER;
+
+	/**
 	 * The feature id for the '<em><b>Name</b></em>' attribute. <!-- begin-user-doc --> <!-- end-user-doc -->
 	 * 
 	 * @generated
@@ -458,6 +499,14 @@ public interface OperationsPackage extends EPackage {
 	 * @generated
 	 */
 	int REFERENCE_OPERATION = 9;
+
+	/**
+	 * The feature id for the '<em><b>Identifier</b></em>' attribute. <!-- begin-user-doc --> <!-- end-user-doc -->
+	 * 
+	 * @generated
+	 * @ordered
+	 */
+	int REFERENCE_OPERATION__IDENTIFIER = FEATURE_OPERATION__IDENTIFIER;
 
 	/**
 	 * The feature id for the '<em><b>Name</b></em>' attribute. <!-- begin-user-doc --> <!-- end-user-doc -->
@@ -544,6 +593,14 @@ public interface OperationsPackage extends EPackage {
 	 * @generated
 	 */
 	int SINGLE_REFERENCE_OPERATION = 5;
+
+	/**
+	 * The feature id for the '<em><b>Identifier</b></em>' attribute. <!-- begin-user-doc --> <!-- end-user-doc -->
+	 * 
+	 * @generated
+	 * @ordered
+	 */
+	int SINGLE_REFERENCE_OPERATION__IDENTIFIER = REFERENCE_OPERATION__IDENTIFIER;
 
 	/**
 	 * The feature id for the '<em><b>Name</b></em>' attribute. <!-- begin-user-doc --> <!-- end-user-doc -->
@@ -648,6 +705,14 @@ public interface OperationsPackage extends EPackage {
 	 * @generated
 	 */
 	int MULTI_REFERENCE_OPERATION = 6;
+
+	/**
+	 * The feature id for the '<em><b>Identifier</b></em>' attribute. <!-- begin-user-doc --> <!-- end-user-doc -->
+	 * 
+	 * @generated
+	 * @ordered
+	 */
+	int MULTI_REFERENCE_OPERATION__IDENTIFIER = REFERENCE_OPERATION__IDENTIFIER;
 
 	/**
 	 * The feature id for the '<em><b>Name</b></em>' attribute. <!-- begin-user-doc --> <!-- end-user-doc -->
@@ -761,6 +826,14 @@ public interface OperationsPackage extends EPackage {
 	int MULTI_REFERENCE_MOVE_OPERATION = 7;
 
 	/**
+	 * The feature id for the '<em><b>Identifier</b></em>' attribute. <!-- begin-user-doc --> <!-- end-user-doc -->
+	 * 
+	 * @generated
+	 * @ordered
+	 */
+	int MULTI_REFERENCE_MOVE_OPERATION__IDENTIFIER = FEATURE_OPERATION__IDENTIFIER;
+
+	/**
 	 * The feature id for the '<em><b>Name</b></em>' attribute. <!-- begin-user-doc --> <!-- end-user-doc -->
 	 * 
 	 * @generated
@@ -853,6 +926,14 @@ public interface OperationsPackage extends EPackage {
 	 * @generated
 	 */
 	int MULTI_ATTRIBUTE_OPERATION = 8;
+
+	/**
+	 * The feature id for the '<em><b>Identifier</b></em>' attribute. <!-- begin-user-doc --> <!-- end-user-doc -->
+	 * 
+	 * @generated
+	 * @ordered
+	 */
+	int MULTI_ATTRIBUTE_OPERATION__IDENTIFIER = FEATURE_OPERATION__IDENTIFIER;
 
 	/**
 	 * The feature id for the '<em><b>Name</b></em>' attribute. <!-- begin-user-doc --> <!-- end-user-doc -->
@@ -948,6 +1029,14 @@ public interface OperationsPackage extends EPackage {
 	int DIAGRAM_LAYOUT_OPERATION = 10;
 
 	/**
+	 * The feature id for the '<em><b>Identifier</b></em>' attribute. <!-- begin-user-doc --> <!-- end-user-doc -->
+	 * 
+	 * @generated
+	 * @ordered
+	 */
+	int DIAGRAM_LAYOUT_OPERATION__IDENTIFIER = ATTRIBUTE_OPERATION__IDENTIFIER;
+
+	/**
 	 * The feature id for the '<em><b>Name</b></em>' attribute. <!-- begin-user-doc --> <!-- end-user-doc -->
 	 * 
 	 * @generated
@@ -1033,6 +1122,14 @@ public interface OperationsPackage extends EPackage {
 	int MULTI_ATTRIBUTE_MOVE_OPERATION = 11;
 
 	/**
+	 * The feature id for the '<em><b>Identifier</b></em>' attribute. <!-- begin-user-doc --> <!-- end-user-doc -->
+	 * 
+	 * @generated
+	 * @ordered
+	 */
+	int MULTI_ATTRIBUTE_MOVE_OPERATION__IDENTIFIER = FEATURE_OPERATION__IDENTIFIER;
+
+	/**
 	 * The feature id for the '<em><b>Name</b></em>' attribute. <!-- begin-user-doc --> <!-- end-user-doc -->
 	 * 
 	 * @generated
@@ -1105,6 +1202,33 @@ public interface OperationsPackage extends EPackage {
 	 * @ordered
 	 */
 	int MULTI_ATTRIBUTE_MOVE_OPERATION_FEATURE_COUNT = FEATURE_OPERATION_FEATURE_COUNT + 2;
+
+	/**
+	 * The meta object id for the '{@link org.unicase.emfstore.esmodel.versioning.operations.impl.OperationIdImpl
+	 * <em>Operation Id</em>}' class. <!-- begin-user-doc --> <!-- end-user-doc -->
+	 * 
+	 * @see org.unicase.emfstore.esmodel.versioning.operations.impl.OperationIdImpl
+	 * @see org.unicase.emfstore.esmodel.versioning.operations.impl.OperationsPackageImpl#getOperationId()
+	 * @generated
+	 */
+	int OPERATION_ID = 12;
+
+	/**
+	 * The feature id for the '<em><b>Id</b></em>' attribute. <!-- begin-user-doc --> <!-- end-user-doc -->
+	 * 
+	 * @generated
+	 * @ordered
+	 */
+	int OPERATION_ID__ID = ModelPackage.UNIQUE_IDENTIFIER__ID;
+
+	/**
+	 * The number of structural features of the '<em>Operation Id</em>' class. <!-- begin-user-doc --> <!-- end-user-doc
+	 * -->
+	 * 
+	 * @generated
+	 * @ordered
+	 */
+	int OPERATION_ID_FEATURE_COUNT = ModelPackage.UNIQUE_IDENTIFIER_FEATURE_COUNT + 0;
 
 	/**
 	 * Returns the meta object for class '{@link org.unicase.emfstore.esmodel.versioning.operations.AbstractOperation
@@ -1594,6 +1718,16 @@ public interface OperationsPackage extends EPackage {
 	EAttribute getMultiAttributeMoveOperation_NewIndex();
 
 	/**
+	 * Returns the meta object for class '{@link org.unicase.emfstore.esmodel.versioning.operations.OperationId
+	 * <em>Operation Id</em>}'. <!-- begin-user-doc --> <!-- end-user-doc -->
+	 * 
+	 * @return the meta object for class '<em>Operation Id</em>'.
+	 * @see org.unicase.emfstore.esmodel.versioning.operations.OperationId
+	 * @generated
+	 */
+	EClass getOperationId();
+
+	/**
 	 * Returns the factory that creates the instances of the model. <!-- begin-user-doc --> <!-- end-user-doc -->
 	 * 
 	 * @return the factory that creates the instances of the model.
@@ -1987,6 +2121,17 @@ public interface OperationsPackage extends EPackage {
 		 * @generated
 		 */
 		EAttribute MULTI_ATTRIBUTE_MOVE_OPERATION__NEW_INDEX = eINSTANCE.getMultiAttributeMoveOperation_NewIndex();
+
+		/**
+		 * The meta object literal for the '
+		 * {@link org.unicase.emfstore.esmodel.versioning.operations.impl.OperationIdImpl <em>Operation Id</em>}' class.
+		 * <!-- begin-user-doc --> <!-- end-user-doc -->
+		 * 
+		 * @see org.unicase.emfstore.esmodel.versioning.operations.impl.OperationIdImpl
+		 * @see org.unicase.emfstore.esmodel.versioning.operations.impl.OperationsPackageImpl#getOperationId()
+		 * @generated
+		 */
+		EClass OPERATION_ID = eINSTANCE.getOperationId();
 
 	}
 
