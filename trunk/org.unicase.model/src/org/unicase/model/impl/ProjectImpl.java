@@ -296,6 +296,9 @@ public class ProjectImpl extends EObjectImpl implements Project {
 
 	private void handleModelElementDeleted(ModelElement modelElement) {
 		this.getModelElementsFromCache().remove(modelElement.getModelElementId());
+		for (ModelElement child : modelElement.getAllContainedModelElements()) {
+			this.getModelElementsFromCache().remove(child.getModelElementId());
+		}
 	}
 
 	/**
@@ -308,9 +311,16 @@ public class ProjectImpl extends EObjectImpl implements Project {
 		if (this.modelElementCache.containsKey(modelElement.getModelElementId())) {
 			throw new IllegalStateException("ModelElement is already in the project!");
 		}
-		this.modelElementCache.put(modelElement.getModelElementId(), modelElement);
+		addModelElementAndChildrenToCache(modelElement);
 		for (ProjectChangeObserver projectChangeObserver : this.observers) {
 			projectChangeObserver.modelElementAdded(project, modelElement);
+		}
+	}
+
+	private void addModelElementAndChildrenToCache(ModelElement modelElement) {
+		this.modelElementCache.put(modelElement.getModelElementId(), modelElement);
+		for (ModelElement child : modelElement.getAllContainedModelElements()) {
+			this.modelElementCache.put(child.getModelElementId(), child);
 		}
 	}
 
