@@ -234,5 +234,56 @@ public class SingleReferenceOperationTest extends OperationTest {
 		assertEquals(true, otherInvolvedModelElements.contains(newIssue.getModelElementId()));
 		assertEquals(true, otherInvolvedModelElements.contains(oldIssue.getModelElementId()));
 	}
-	
+
+	/**
+	 * Test containment removing.
+	 * 
+	 * @throws UnsupportedOperationException on test fail
+	 */
+	@Test
+	public void removeContainment() throws UnsupportedOperationException {
+		Issue issue = RationaleFactory.eINSTANCE.createIssue();
+		getProject().addModelElement(issue);
+		Proposal proposal = RationaleFactory.eINSTANCE.createProposal();
+		getProject().addModelElement(proposal);
+		proposal.setIssue(issue);
+
+		clearOperations();
+		
+		assertEquals(1, issue.getProposals().size());
+		assertEquals(proposal, issue.getProposals().get(0));
+		assertEquals(issue, proposal.getIssue());
+		assertEquals(true, getProject().contains(issue));
+		assertEquals(true, getProject().contains(proposal));
+		assertEquals(getProject(), issue.getProject());
+		assertEquals(getProject(), proposal.getProject());
+		assertEquals(issue, proposal.eContainer());
+		
+		proposal.setIssue(null);
+		
+		assertEquals(true, getProject().contains(issue));
+		assertEquals(true, getProject().contains(proposal));
+		assertEquals(getProject(), issue.getProject());
+		assertEquals(getProject(), proposal.getProject());
+		assertEquals(0, issue.getProposals().size());
+		assertEquals(null, proposal.getIssue());
+		assertEquals(getProject(), proposal.eContainer());
+		
+		List<AbstractOperation> operations = getProjectSpace().getOperations();
+		
+		assertEquals(1, operations.size());
+		AbstractOperation operation = operations.get(0);
+		assertEquals(true, operation instanceof SingleReferenceOperation);
+		SingleReferenceOperation singleReferenceOperation = (SingleReferenceOperation) operation;
+		
+		assertEquals(issue.getModelElementId(), singleReferenceOperation.getOldValue());
+		assertEquals(null, singleReferenceOperation.getNewValue());
+		assertEquals(RationalePackage.eINSTANCE.getProposal_Issue().getName(), singleReferenceOperation.getFeatureName());
+		assertEquals(proposal.getModelElementId(), singleReferenceOperation.getModelElementId());
+		assertEquals(RationalePackage.eINSTANCE.getIssue_Proposals().getName(), singleReferenceOperation.getOppositeFeatureName());
+		assertEquals(true, singleReferenceOperation.isBidirectional());
+		Set<ModelElementId> otherInvolvedModelElements = singleReferenceOperation.getOtherInvolvedModelElements();
+		assertEquals(1, otherInvolvedModelElements.size());
+		assertEquals(true, otherInvolvedModelElements.contains(issue.getModelElementId()));
+	}
 }
