@@ -16,6 +16,19 @@ public class AddChangeOperationFix extends AbstractFix {
 				continue;
 			}
 
+			if (version(version) == 244) {
+				MultiReferenceOperation multiReferenceOperation = OperationsFactory.eINSTANCE
+					.createMultiReferenceOperation();
+				multiReferenceOperation.setAdd(true);
+				multiReferenceOperation.setBidirectional(false);
+				multiReferenceOperation.setModelElementId(createMEID("_AxpfgLy3Ed2XF4y-xW__9g"));
+				multiReferenceOperation.setFeatureName("includedUseCases");
+				multiReferenceOperation.getReferencedModelElements().add(createMEID("_3RFHMLzBEd2XF4y-xW__9g"));
+				multiReferenceOperation.setIndex(2);
+
+				addOperation(version, multiReferenceOperation);
+			}
+
 			if (version.getPrimarySpec().getIdentifier() == 500) {
 
 				addOperation(version, createMultiDelete("_Ffc6kMrdEd2FLcQLgl5R9Q", "outgoingAssociations", "source",

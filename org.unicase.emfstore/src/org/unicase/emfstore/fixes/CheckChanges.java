@@ -31,15 +31,11 @@ public class CheckChanges extends AbstractFix {
 
 				version.getChanges().apply(state);
 
-				// if (between(version, 449, 501)) {
-				// Class modelElement = (Class) state.getModelElement(createMEID("_Ffc6kMrdEd2FLcQLgl5R9Q"));
-				// if (modelElement != null) {
-				// for (ModelElement me : modelElement.getOutgoingAssociations()) {
-				// System.out.println("version " + version.getPrimarySpec().getIdentifier() + ": "
-				// + me.getIdentifier());
-				// }
-				// }
-				// }
+				if (between(version, 147, 150)) {
+					if (state.getModelElement(createMEID("_jpuo0LIbEd2mdsnzOQPBHw")) != null) {
+						System.out.println("Element in version" + version(version));
+					}
+				}
 
 				// specialVersion113(state, version);
 
@@ -56,6 +52,21 @@ public class CheckChanges extends AbstractFix {
 						System.out.println("project compare is equal(!) in version "
 							+ version.getPrimarySpec().getIdentifier());
 					}
+
+					// if (version(version) == 150 && state.getModelElement(createMEID("_jpuo0LIbEd2mdsnzOQPBHw")) !=
+					// null) {
+					// System.out.println(state.getModelElement(createMEID("_jpuo0LIbEd2mdsnzOQPBHw")));
+					// System.out.println("Element in version " + version(version));
+					//
+					// TreeIterator<EObject> allContents = state.eAllContents();
+					// while (allContents.hasNext()) {
+					// ModelElement next = (ModelElement) allContents.next();
+					// if (next.getIdentifier().equals("_jpuo0LIbEd2mdsnzOQPBHw")) {
+					// System.out.println("in list too");
+					// }
+					// }
+					// }
+
 					state = (Project) EcoreUtil.copy(version.getProjectState());
 				}
 			}
