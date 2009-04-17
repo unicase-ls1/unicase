@@ -45,6 +45,13 @@ public abstract class AbstractFix {
 		return modelElementId;
 	}
 
+	protected int version(Version version) {
+		if (version != null) {
+			return version.getPrimarySpec().getIdentifier();
+		}
+		return 0;
+	}
+
 	protected List<Version> getVersionsWithProjectState() {
 		List<Version> result = new ArrayList<Version>();
 		for (Version version : projectHistory.getVersions()) {
