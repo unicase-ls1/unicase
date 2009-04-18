@@ -14,7 +14,7 @@
    <windowImages/>
 
 
-   <launcher>
+   <launcher name="emfstore">
       <solaris/>
       <win useIco="false">
          <bmp/>
