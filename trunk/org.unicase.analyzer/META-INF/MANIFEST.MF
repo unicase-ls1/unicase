@@ -9,8 +9,7 @@ Bundle-Localization: plugin
 Bundle-RequiredExecutionEnvironment: J2SE-1.5
 Require-Bundle: org.eclipse.core.runtime,
  org.eclipse.emf.ecore;visibility:=reexport,
- org.unicase.workspace;bundle-version="0.3.5",
- org.unicase.analyzer
+ org.unicase.workspace;bundle-version="0.3.5"
 Bundle-ActivationPolicy: lazy
 Export-Package: org.unicase.analyzer,
  org.unicase.analyzer.exceptions,
