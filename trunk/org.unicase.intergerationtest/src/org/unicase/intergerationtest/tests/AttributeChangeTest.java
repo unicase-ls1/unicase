@@ -6,7 +6,6 @@
 
 package org.unicase.intergerationtest.tests;
 
-
 import static org.junit.Assert.assertTrue;
 
 import org.eclipse.emf.ecore.EAttribute;
@@ -19,10 +18,6 @@ import org.unicase.model.ModelElement;
 import org.unicase.model.util.SerializationException;
 
 /**
- * This tests AttrubuteOperation. This is a compare test. It takes randomly a ME from test project, changes one of its
- * EAttributes, extract changes from test project, applies changes to compare project. Test succeeds when compare
- * project and test project are identical.
- * 
  * @author Hodaie
  */
 public class AttributeChangeTest extends IntegrationTestCase {
@@ -30,15 +25,12 @@ public class AttributeChangeTest extends IntegrationTestCase {
 	private ModelElement me;
 
 	private EAttribute attributeToChange;
-	
 
-	
 	/**
-	 * 1. Get a random model element form test project; 2. get randomly one of its attributes. 3. 
+	 * 1. Get a random model element form test project; 2. get randomly one of its attributes. 3. change the attribute
 	 * 
 	 * @throws EmfStoreException EmfStoreException
 	 * @throws SerializationException SerializationException
-	 * 
 	 */
 	@Test
 	public void runTest() throws SerializationException, EmfStoreException {
@@ -57,13 +49,11 @@ public class AttributeChangeTest extends IntegrationTestCase {
 			}
 
 		});
-		
+
 		commitChanges();
-		
+
 		assertTrue(TestHelper.areEqual(getTestProject(), getCompareProject()));
 
 	}
 
-	
-	
 }

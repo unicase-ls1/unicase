@@ -618,6 +618,18 @@ public final class TestHelper {
 		return attribute;
 
 	}
+	
+	/**
+	 * returns a random reference of this ME.
+	 * @param me model element 
+	 * @return random reference of this ME
+	 */
+	public static EReference getRandomReference(ModelElement me){
+		int size = me.eClass().getEAllReferences().size();
+		int position = getRandomPosition(size);
+		EReference ref = me.eClass().getEAllReferences().get(position);
+		return ref;
+	}
 
 	/**
 	 * Returns a randomly selected non-containment reference of this ME. It is changeable, and not transient.
@@ -713,7 +725,7 @@ public final class TestHelper {
 	 * @param toBeReferencedME model element to reference
 	 */
 	@SuppressWarnings("unchecked")
-	public static void changeNonContainmentRef(ModelElement me, EReference ref, ModelElement toBeReferencedME) {
+	public static void changeReference(ModelElement me, EReference ref, ModelElement toBeReferencedME) {
 		Object object = me.eGet(ref);
 		if (ref.isMany()) {
 			EList<EObject> eList = (EList<EObject>) object;
