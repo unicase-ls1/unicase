@@ -82,7 +82,10 @@ public class EmfStoreController implements IApplication {
 	public Object start(IApplicationContext context) throws EmfStoreException, FatalEmfStoreException {
 
 		run(true);
+		instance = null;
+		logger.info("Server is STOPPED.");
 		return IApplication.EXIT_OK;
+
 	}
 
 	/**
@@ -129,9 +132,6 @@ public class EmfStoreController implements IApplication {
 		if (waitForTermination) {
 			waitForTermination();
 		}
-
-		instance = null;
-		logger.info("Server is STOPPED.");
 	}
 
 	private HistoryCache initHistoryCache() {
