@@ -16,6 +16,7 @@ import org.unicase.emfstore.exceptions.EmfStoreException;
 import org.unicase.intergerationtest.TestHelper;
 import org.unicase.model.ModelElement;
 import org.unicase.model.util.SerializationException;
+import org.unicase.workspace.exceptions.NoLocalChangesException;
 
 /**
  * @author Hodaie
@@ -32,9 +33,10 @@ public class AttributeChangeTest extends IntegrationTestCase {
 	 * @throws EmfStoreException EmfStoreException
 	 * @throws SerializationException SerializationException
 	 */
-	@Test
+	@Test  (expected = NoLocalChangesException.class)
 	public void runTest() throws SerializationException, EmfStoreException {
-
+System.out.println("AttributeChangeTest");
+		
 		TransactionalEditingDomain domain = TransactionalEditingDomain.Registry.INSTANCE
 			.getEditingDomain("org.unicase.EditingDomain");
 
@@ -52,7 +54,7 @@ public class AttributeChangeTest extends IntegrationTestCase {
 
 		commitChanges();
 
-		assertTrue(TestHelper.areEqual(getTestProject(), getCompareProject()));
+		assertTrue(TestHelper.areEqual(getTestProject(), getCompareProject(), "AttributeChangeTest"));
 
 	}
 

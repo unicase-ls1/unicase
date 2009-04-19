@@ -15,6 +15,7 @@ import org.unicase.emfstore.exceptions.EmfStoreException;
 import org.unicase.intergerationtest.TestHelper;
 import org.unicase.model.ModelElement;
 import org.unicase.model.util.SerializationException;
+import org.unicase.workspace.exceptions.NoLocalChangesException;
 
 /**
  *  
@@ -34,9 +35,9 @@ public class CreateAndDeleteTest extends IntegrationTestCase {
 	 * @throws SerializationException SerializationException
 	 * 
 	 */
-	@Test
+	@Test (expected = NoLocalChangesException.class)
 	public void runTest() throws SerializationException, EmfStoreException {
-		
+		System.out.println("CreateAndDeleteTest");
 	
 		while (meToReference == null) {
 			me = TestHelper.createRandomME();
@@ -63,7 +64,7 @@ public class CreateAndDeleteTest extends IntegrationTestCase {
 		});
 		
 		commitChanges();
-		assertTrue(TestHelper.areEqual(getTestProject(), getCompareProject()));
+		assertTrue(TestHelper.areEqual(getTestProject(), getCompareProject(), "CreateAndDeleteTest"));
 
 	}
 

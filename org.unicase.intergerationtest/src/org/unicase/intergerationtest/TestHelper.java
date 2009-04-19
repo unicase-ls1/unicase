@@ -778,6 +778,9 @@ public final class TestHelper {
 		} else {
 			int position1 = getRandomPosition(eList.size());
 			int position2 = getRandomPosition(eList.size());
+			if(position1 == position2){
+				return;
+			}
 			Collections.swap(eList, position1, position2);
 		}
 
@@ -788,11 +791,12 @@ public final class TestHelper {
 	 * 
 	 * @param testProject test project
 	 * @param compareProject compare project
+	 * @param testName test name
 	 * @return if serialized string from projects are equal
 	 * @throws SerializationException SerializationException
 	 */
-	public static boolean areEqual(Project testProject, Project compareProject) throws SerializationException {
-		String strTestProj = eObjectToString(testProject, "test", true);
+	public static boolean areEqual(Project testProject, Project compareProject, String testName) throws SerializationException {
+		String strTestProj = eObjectToString(testProject, testName + "-test", true);
 		String strCompareProj = eObjectToString(compareProject, "compare", true);
 		return strTestProj.equals(strCompareProj);
 	}

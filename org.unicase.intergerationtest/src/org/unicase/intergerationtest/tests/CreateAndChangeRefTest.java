@@ -32,9 +32,11 @@ public class CreateAndChangeRefTest extends IntegrationTestCase {
 	 * @throws SerializationException SerializationException
 	 * 
 	 */
-	@Test
+	@Test  
 	public void runTest() throws SerializationException, EmfStoreException {
-
+System.out.println("CreateAndChangeRefTest");
+		
+		
 		while (meToReference == null) {
 			me = TestHelper.createRandomME();
 			refToChange = TestHelper.getRandomNonContainmentRef(me);
@@ -62,7 +64,7 @@ public class CreateAndChangeRefTest extends IntegrationTestCase {
 		});
 		
 		commitChanges();
-		assertTrue(TestHelper.areEqual(getTestProject(), getCompareProject()));
+		assertTrue(TestHelper.areEqual(getTestProject(), getCompareProject(), "CreateAndChangeRefTest"));
 
 	}
 

@@ -16,6 +16,7 @@ import org.unicase.emfstore.exceptions.EmfStoreException;
 import org.unicase.intergerationtest.TestHelper;
 import org.unicase.model.ModelElement;
 import org.unicase.model.util.SerializationException;
+import org.unicase.workspace.exceptions.NoLocalChangesException;
 
 /**
  * @author zardosht
@@ -33,9 +34,9 @@ public class ContainmentReferenceMoveTest extends IntegrationTestCase {
 	 * @throws EmfStoreException EmfStoreException
 	 * @throws SerializationException SerializationException
 	 */
-	@Test
+	@Test  (expected = NoLocalChangesException.class)
 	public void runTest() throws SerializationException, EmfStoreException {
-
+System.out.println("ContainmentReferenceMoveTest");
 		while (meToMove == null) {
 			// get a random ME and one of its containment references (refToChange)
 			me = TestHelper.getRandomME(getTestProject());
@@ -57,7 +58,7 @@ public class ContainmentReferenceMoveTest extends IntegrationTestCase {
 		doMove(me, refToChange, meToMove);
 
 		commitChanges();
-		assertTrue(TestHelper.areEqual(getTestProject(), getCompareProject()));
+		assertTrue(TestHelper.areEqual(getTestProject(), getCompareProject(), "ContainmentReferenceMoveTest"));
 
 	}
 

@@ -34,8 +34,9 @@ public class MultiAttributeMoveTest extends IntegrationTestCase {
 	 * @throws SerializationException SerializationException
 	 * 
 	 */
-	@Test
+	@Test  
 	public void runTest() throws SerializationException, EmfStoreException {
+		System.out.println("MultiAttributeMoveTest");
 		me = TestHelper.getRandomME(getTestProject());
 		attributeToChange = TestHelper.getRandomAttribute(me);
 
@@ -45,7 +46,7 @@ public class MultiAttributeMoveTest extends IntegrationTestCase {
 			attributeToChange = TestHelper.getRandomAttribute(me);
 			tries++;
 			if (tries > 2000) {
-				assertTrue(TestHelper.areEqual(getTestProject(), getCompareProject()));
+				assertTrue(TestHelper.areEqual(getTestProject(), getCompareProject(), "MultiAttributeMoveTest"));
 				return;
 			}
 		}
@@ -60,7 +61,7 @@ public class MultiAttributeMoveTest extends IntegrationTestCase {
 		});
 		
 		commitChanges();
-		assertTrue(TestHelper.areEqual(getTestProject(), getCompareProject()));
+		assertTrue(TestHelper.areEqual(getTestProject(), getCompareProject(), "MultiAttributeMoveTest"));
 
 	}
 
