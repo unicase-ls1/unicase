@@ -81,9 +81,8 @@ public class EmfStoreController implements IApplication, Runnable {
 	 */
 	public Object start(IApplicationContext context) throws EmfStoreException, FatalEmfStoreException {
 
-		run(true);
+		run();
 		instance = null;
-		logger.info("Server is STOPPED.");
 		return IApplication.EXIT_OK;
 
 	}
@@ -91,11 +90,10 @@ public class EmfStoreController implements IApplication, Runnable {
 	/**
 	 * Run the server.
 	 * 
-	 * @param waitForTermination true if the server should force the calling thread to wait for its termination
 	 * @throws FatalEmfStoreException if the server fails fatally
 	 * @throws EmfStoreException if the server init fails
 	 */
-	public void run(boolean waitForTermination) throws FatalEmfStoreException, EmfStoreException {
+	public void init() throws FatalEmfStoreException, EmfStoreException {
 		if (instance != null) {
 			throw new FatalEmfStoreException("Another EmfStore Controller seems to be running already!");
 		}
@@ -129,9 +127,9 @@ public class EmfStoreController implements IApplication, Runnable {
 		logger.info("Initialitation COMPLETE.");
 		logger.info("Server is RUNNING...");
 
-		if (waitForTermination) {
-			waitForTermination();
-		}
+		waitForTermination();
+
+		logger.info("Server is STOPPED.");
 	}
 
 	private HistoryCache initHistoryCache() {
@@ -596,9 +594,26 @@ public class EmfStoreController implements IApplication, Runnable {
 	 */
 	public void run() {
 		try {
-			run(true);
+			init();
 		} catch (FatalEmfStoreException e) {
+			System.err.print("Server terminated unexpectedly!");
+			System.err.print(e);
+			System.out.print("Server terminated unexpectedly!");
+			System.out.print(e);
 		} catch (EmfStoreException e) {
+			System.err.print("Server terminated unexpectedly!");
+			System.err.print(e);
+			System.out.print("Server terminated unexpectedly!");
+			System.out.print(e);
 		}
+	}
+
+	/**
+	 * Start the EmfStore controller in a seperate thread.
+	 */
+	public static void startAsThread() {
+		EmfStoreController emfStoreController = new EmfStoreController();
+		Thread thread = new Thread(emfStoreController);
+		thread.start();
 	}
 }
