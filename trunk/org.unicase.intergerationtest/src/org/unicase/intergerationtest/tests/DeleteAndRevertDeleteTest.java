@@ -16,6 +16,7 @@ import org.unicase.emfstore.exceptions.EmfStoreException;
 import org.unicase.intergerationtest.TestHelper;
 import org.unicase.model.ModelElement;
 import org.unicase.model.util.SerializationException;
+import org.unicase.workspace.exceptions.NoLocalChangesException;
 
 import java.util.List;
 
@@ -35,8 +36,9 @@ public class DeleteAndRevertDeleteTest extends IntegrationTestCase  {
 	 * @throws SerializationException SerializationException
 	 * 
 	 */
-	@Test
+	@Test (expected = NoLocalChangesException.class)
 	public void runTest() throws SerializationException, EmfStoreException {
+		System.out.println("DeleteAndRevertDeleteTest");
 		TransactionalEditingDomain domain = TransactionalEditingDomain.Registry.INSTANCE
 			.getEditingDomain("org.unicase.EditingDomain");
 
@@ -48,7 +50,7 @@ public class DeleteAndRevertDeleteTest extends IntegrationTestCase  {
 		});
 		
 		commitChanges();
-		assertTrue(TestHelper.areEqual(getTestProject(), getCompareProject()));
+		assertTrue(TestHelper.areEqual(getTestProject(), getCompareProject(), "DeleteAndRevertDeleteTest"));
 	}
 
 	private void doTest() {

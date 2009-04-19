@@ -32,9 +32,11 @@ public class DeleteTest extends IntegrationTestCase {
 	 * @throws EmfStoreException EmfStoreException
 	 * @throws SerializationException SerializationException
 	 */
-	@Test
+	@Test  
 	public void runTest() throws SerializationException, EmfStoreException {
 
+		System.out.println("DeleteTest");
+		
 		TransactionalEditingDomain domain = TransactionalEditingDomain.Registry.INSTANCE
 			.getEditingDomain("org.unicase.EditingDomain");
 
@@ -52,7 +54,7 @@ public class DeleteTest extends IntegrationTestCase {
 		});
 		
 		commitChanges();
-		assertTrue(TestHelper.areEqual(getTestProject(), getCompareProject()));
+		assertTrue(TestHelper.areEqual(getTestProject(), getCompareProject(), "DeleteTest"));
 
 	}
 

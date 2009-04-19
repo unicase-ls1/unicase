@@ -33,9 +33,10 @@ public class CreateAndChangeAttributeTest extends IntegrationTestCase {
 	 * @throws SerializationException SerializationException
 	 * 
 	 */
-	@Test
+	@Test  
 	public void runTest() throws SerializationException, EmfStoreException {
-
+System.out.println("CreateAndChangeAttributeTest");
+		
 		me = TestHelper.createRandomME();
 		attributeToChange = TestHelper.getRandomAttribute(me);
 
@@ -59,7 +60,7 @@ public class CreateAndChangeAttributeTest extends IntegrationTestCase {
 		});
 		
 		commitChanges();
-		assertTrue(TestHelper.areEqual(getTestProject(), getCompareProject()));
+		assertTrue(TestHelper.areEqual(getTestProject(), getCompareProject(), "CreateAndChangeAttributeTest"));
 
 	}
 

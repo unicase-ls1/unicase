@@ -34,7 +34,8 @@ public class NonContainmentReferenceAddTest extends IntegrationTestCase {
 	 */
 	@Test
 	public void runTest() throws SerializationException, EmfStoreException {
-
+		System.out.println("NonContainmentReferenceAddTest");
+		
 		while (meToReference == null) {
 			me = TestHelper.getRandomME(getTestProject());
 			refToChange = TestHelper.getRandomNonContainmentRef(me);
@@ -61,7 +62,7 @@ public class NonContainmentReferenceAddTest extends IntegrationTestCase {
 		});
 
 		commitChanges();
-		assertTrue(TestHelper.areEqual(getTestProject(), getCompareProject()));
+		assertTrue(TestHelper.areEqual(getTestProject(), getCompareProject(), "NonContainmentReferenceAddTest"));
 	}
 
 }

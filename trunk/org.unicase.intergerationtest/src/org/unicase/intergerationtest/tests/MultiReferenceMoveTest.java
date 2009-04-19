@@ -15,6 +15,7 @@ import org.unicase.emfstore.exceptions.EmfStoreException;
 import org.unicase.intergerationtest.TestHelper;
 import org.unicase.model.ModelElement;
 import org.unicase.model.util.SerializationException;
+import org.unicase.workspace.exceptions.NoLocalChangesException;
 
 /**
  * This move an element in a many reference list to another position.
@@ -35,8 +36,10 @@ public class MultiReferenceMoveTest  extends IntegrationTestCase {
 	 * @throws SerializationException SerializationException
 	 * 
 	 */
-	@Test
+	@Test (expected = NoLocalChangesException.class)
 	public void runTest() throws SerializationException, EmfStoreException {
+		System.out.println("MultiReferenceMoveTests");
+		
 		me = TestHelper.getRandomME(getTestProject());
 		refToChange = TestHelper.getRandomReference(me);
 
@@ -55,7 +58,7 @@ public class MultiReferenceMoveTest  extends IntegrationTestCase {
 		});
 		
 		commitChanges();
-		assertTrue(TestHelper.areEqual(getTestProject(), getCompareProject()));
+		assertTrue(TestHelper.areEqual(getTestProject(), getCompareProject(), "MultiReferenceMoveTest"));
 
 	}
 

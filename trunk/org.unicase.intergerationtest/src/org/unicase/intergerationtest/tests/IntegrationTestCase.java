@@ -7,6 +7,7 @@ package org.unicase.intergerationtest.tests;
 
 import org.eclipse.emf.transaction.RecordingCommand;
 import org.eclipse.emf.transaction.TransactionalEditingDomain;
+import org.junit.Before;
 import org.junit.BeforeClass;
 import org.unicase.emfstore.accesscontrol.AccessControlException;
 import org.unicase.emfstore.esmodel.ProjectId;
@@ -102,6 +103,18 @@ public abstract class IntegrationTestCase {
 		}
 
 		
+		
+	}
+	
+	/**
+	 * Before every test make sure test project and compare project (which lies on the server) are equal.
+	 */
+	@Before
+	public void resetCompareProject(){
+		//if a compare project already exists on the server {
+			//this is only in first test not the case!
+			//delete compare project on the server
+		//}
 		shareProject();
 		projectId = getTestProjectSpace().getProjectId();
 	}
@@ -110,6 +123,7 @@ public abstract class IntegrationTestCase {
 	 * This shares test project with server.
 	 */
 	private static void shareProject() {
+		if(usersession == null){
 		usersession = WorkspaceFactory.eINSTANCE.createUsersession();
 
 		ServerInfo serverInfo = WorkspaceFactory.eINSTANCE.createServerInfo();
@@ -120,8 +134,13 @@ public abstract class IntegrationTestCase {
 		usersession.setUsername("super");
 		usersession.setPassword("super");
 
+		}
+		
 		try {
-			usersession.logIn();
+			if(!usersession.isLoggedIn()){
+				usersession.logIn();
+			}
+			
 			domain.getCommandStack().execute(new RecordingCommand(domain) {
 				@Override
 				protected void doExecute() {

@@ -40,7 +40,8 @@ public class NonContainmentReferenceRemoveTest  extends IntegrationTestCase {
  */
 	@Test
 	public void runTest() throws SerializationException, EmfStoreException {
-
+		System.out.println("NonContainmentReferenceRemoveTest");
+		
 		TransactionalEditingDomain domain = TransactionalEditingDomain.Registry.INSTANCE
 			.getEditingDomain("org.unicase.EditingDomain");
 		domain.getCommandStack().execute(new RecordingCommand(domain) {
@@ -52,7 +53,7 @@ public class NonContainmentReferenceRemoveTest  extends IntegrationTestCase {
 		});
 		
 		commitChanges();
-		assertTrue(TestHelper.areEqual(getTestProject(), getCompareProject()));
+		assertTrue(TestHelper.areEqual(getTestProject(), getCompareProject(), "NonContainmentReferenceRemoveTest"));
 
 	}
 

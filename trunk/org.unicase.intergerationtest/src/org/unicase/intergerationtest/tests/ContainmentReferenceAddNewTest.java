@@ -36,8 +36,9 @@ public class ContainmentReferenceAddNewTest extends IntegrationTestCase {
 	 * @throws EmfStoreException EmfStoreException
 	 * @throws SerializationException SerializationException
 	 */
-	@Test
+	@Test  
 	public void runTest() throws SerializationException, EmfStoreException {
+		System.out.println("ContainmentReferenceAddNewTest");
 
 		TransactionalEditingDomain domain = TransactionalEditingDomain.Registry.INSTANCE
 			.getEditingDomain("org.unicase.EditingDomain");
@@ -51,7 +52,7 @@ public class ContainmentReferenceAddNewTest extends IntegrationTestCase {
 		});
 
 		commitChanges();
-		assertTrue(TestHelper.areEqual(getTestProject(), getCompareProject()));
+		assertTrue(TestHelper.areEqual(getTestProject(), getCompareProject(), "ContainmentReferenceAddNewTest"));
 
 	}
 
