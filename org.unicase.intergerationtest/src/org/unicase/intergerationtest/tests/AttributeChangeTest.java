@@ -8,13 +8,11 @@ package org.unicase.intergerationtest.tests;
 
 import static org.junit.Assert.assertTrue;
 
-import org.eclipse.emf.ecore.EAttribute;
 import org.eclipse.emf.transaction.RecordingCommand;
 import org.eclipse.emf.transaction.TransactionalEditingDomain;
 import org.junit.Test;
 import org.unicase.emfstore.exceptions.EmfStoreException;
 import org.unicase.intergerationtest.TestHelper;
-import org.unicase.model.ModelElement;
 import org.unicase.model.util.SerializationException;
 import org.unicase.workspace.exceptions.NoLocalChangesException;
 
@@ -23,9 +21,7 @@ import org.unicase.workspace.exceptions.NoLocalChangesException;
  */
 public class AttributeChangeTest extends IntegrationTestCase {
 
-	private ModelElement me;
-
-	private EAttribute attributeToChange;
+	private long randomSeed = 1;
 
 	/**
 	 * 1. Get a random model element form test project; 2. get randomly one of its attributes. 3. change the attribute
@@ -33,21 +29,17 @@ public class AttributeChangeTest extends IntegrationTestCase {
 	 * @throws EmfStoreException EmfStoreException
 	 * @throws SerializationException SerializationException
 	 */
-	@Test  (expected = NoLocalChangesException.class)
+	@Test(expected = NoLocalChangesException.class)
 	public void runTest() throws SerializationException, EmfStoreException {
-System.out.println("AttributeChangeTest");
-		
-		TransactionalEditingDomain domain = TransactionalEditingDomain.Registry.INSTANCE
-			.getEditingDomain("org.unicase.EditingDomain");
+		System.out.println("AttributeChangeTest");
 
-		me = TestHelper.getRandomME(getTestProject());
-		attributeToChange = TestHelper.getRandomAttribute(me);
-
+		final TestHelper testHelper = new TestHelper(randomSeed, getTestProject());
+		TransactionalEditingDomain domain = TestHelper.getDomain();
 		domain.getCommandStack().execute(new RecordingCommand(domain) {
 
 			@Override
 			protected void doExecute() {
-				TestHelper.changeAttribute(me, attributeToChange);
+				testHelper.doChangeAttribute();
 			}
 
 		});

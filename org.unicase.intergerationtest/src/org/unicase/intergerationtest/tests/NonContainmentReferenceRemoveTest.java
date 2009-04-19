@@ -7,19 +7,12 @@ package org.unicase.intergerationtest.tests;
 
 import static org.junit.Assert.assertTrue;
 
-import org.eclipse.emf.common.util.EList;
-import org.eclipse.emf.ecore.EObject;
-import org.eclipse.emf.ecore.EReference;
 import org.eclipse.emf.transaction.RecordingCommand;
 import org.eclipse.emf.transaction.TransactionalEditingDomain;
 import org.junit.Test;
 import org.unicase.emfstore.exceptions.EmfStoreException;
 import org.unicase.intergerationtest.TestHelper;
-import org.unicase.model.ModelElement;
 import org.unicase.model.util.SerializationException;
-
-import java.util.ArrayList;
-import java.util.List;
 
 /**
  * 
@@ -28,9 +21,8 @@ import java.util.List;
  */
 public class NonContainmentReferenceRemoveTest  extends IntegrationTestCase {
 
-	private ModelElement me;
-	private ModelElement meToRemove;
-	private EReference refToChange;
+	
+	private long randomSeed = 1;
 
 	
 /**
@@ -42,13 +34,13 @@ public class NonContainmentReferenceRemoveTest  extends IntegrationTestCase {
 	public void runTest() throws SerializationException, EmfStoreException {
 		System.out.println("NonContainmentReferenceRemoveTest");
 		
-		TransactionalEditingDomain domain = TransactionalEditingDomain.Registry.INSTANCE
-			.getEditingDomain("org.unicase.EditingDomain");
+		final TestHelper testHelper = new TestHelper(randomSeed  , getTestProject());
+		TransactionalEditingDomain domain = TestHelper.getDomain();
 		domain.getCommandStack().execute(new RecordingCommand(domain) {
 
 			@Override
 			protected void doExecute() {
-				doRemoveNonContainmentRef();
+				testHelper.doNonContainmentReferenceRemove();
 			}
 		});
 		
@@ -57,66 +49,5 @@ public class NonContainmentReferenceRemoveTest  extends IntegrationTestCase {
 
 	}
 
-	@SuppressWarnings("unchecked")
-	private void doRemoveNonContainmentRef() {
-		me = TestHelper.getRandomME(getTestProject());
-
-		while (me.eCrossReferences().size() < 1) {
-			me = TestHelper.getRandomME(getTestProject());
-		}
-
 	
-		int indexToRemove = TestHelper.getRandomPosition(me.eCrossReferences().size());
-		meToRemove = (ModelElement) me.eCrossReferences().get(indexToRemove);
-
-		refToChange = findReference(me, meToRemove);
-
-		Object object = me.eGet(refToChange);
-		if (refToChange.isMany()) {
-			EList<EObject> eList = (EList<EObject>) object;
-			eList.remove(meToRemove);
-		} else {
-			me.eSet(refToChange, null);
-		}
-
-	}
-
-	@SuppressWarnings("unchecked")
-	private EReference findReference(ModelElement modelElement, ModelElement referencedME) {
-
-		List<EReference> refsMatchingReferencedME = new ArrayList<EReference>();
-		for (EReference ref : modelElement.eClass().getEAllReferences()) {
-			if (!(ref.isContainer() || ref.isContainment())
-				&& (ref.getEReferenceType().equals(referencedME.eClass()) || ref.getEReferenceType().isSuperTypeOf(
-					referencedME.eClass()))) {
-				refsMatchingReferencedME.add(ref);
-			}
-		}
-
-		if (refsMatchingReferencedME.size() == 1) {
-			return refsMatchingReferencedME.get(0);
-		}
-
-		for (EReference ref : refsMatchingReferencedME) {
-			Object object = me.eGet(ref);
-			if (object == null) {
-				continue;
-			}
-			if (ref.isMany()) {
-				EList<EObject> eList = (EList<EObject>) object;
-				if (eList.contains(referencedME)) {
-					return ref;
-				}
-			} else {
-				if (me.eGet(ref).equals(referencedME)) {
-					return ref;
-				}
-			}
-		}
-
-		return null;
-
-	}
-
-
 }

@@ -7,13 +7,11 @@ package org.unicase.intergerationtest.tests;
 
 import static org.junit.Assert.assertTrue;
 
-import org.eclipse.emf.ecore.EReference;
 import org.eclipse.emf.transaction.RecordingCommand;
 import org.eclipse.emf.transaction.TransactionalEditingDomain;
 import org.junit.Test;
 import org.unicase.emfstore.exceptions.EmfStoreException;
 import org.unicase.intergerationtest.TestHelper;
-import org.unicase.model.ModelElement;
 import org.unicase.model.util.SerializationException;
 
 /**
@@ -21,58 +19,35 @@ import org.unicase.model.util.SerializationException;
  */
 public class CreateAndChangeRefTest extends IntegrationTestCase {
 
-	private ModelElement me;
-	private EReference refToChange;
-	private ModelElement meToReference;
+	private long randomSeed = 1;
 
 	/**
 	 * Create a random ME and change one of its references.
 	 * 
 	 * @throws EmfStoreException EmfStoreException
 	 * @throws SerializationException SerializationException
-	 * 
 	 */
-	@Test  
+	@Test
 	public void runTest() throws SerializationException, EmfStoreException {
-System.out.println("CreateAndChangeRefTest");
-		
-		
-		while (meToReference == null) {
-			me = TestHelper.createRandomME();
-			refToChange = TestHelper.getRandomNonContainmentRef(me);
+		System.out.println("CreateAndChangeRefTest");
 
-			while (refToChange == null) {
-				me = TestHelper.createRandomME();
-				refToChange = TestHelper.getRandomNonContainmentRef(me);
-			}
-
-			meToReference = TestHelper.getRandomMEofType(getTestProject(), refToChange.getEReferenceType());
-		}
-
-		TransactionalEditingDomain domain = TransactionalEditingDomain.Registry.INSTANCE
-			.getEditingDomain("org.unicase.EditingDomain");
-
+		final TestHelper testHelper = new TestHelper(randomSeed, getTestProject());
+		TransactionalEditingDomain domain = TestHelper.getDomain();
 		domain.getCommandStack().execute(new RecordingCommand(domain) {
 
 			@Override
 			protected void doExecute() {
 
-				doAddAndChangeRef();
+				testHelper.doCreateAndChangeRef();
 
 			}
 
 		});
-		
+
 		commitChanges();
 		assertTrue(TestHelper.areEqual(getTestProject(), getCompareProject(), "CreateAndChangeRefTest"));
 
 	}
 
-	private void doAddAndChangeRef() {
-
-		getTestProject().getModelElements().add(me);
-		TestHelper.changeReference(me, refToChange, meToReference);
-
-	}
-
+	
 }
