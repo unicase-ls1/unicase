@@ -7,6 +7,11 @@ package org.unicase.workspace.test;
 
 import org.junit.runner.RunWith;
 import org.junit.runners.Suite;
+import org.unicase.workspace.test.operationTests.AttributeOperationTest;
+import org.unicase.workspace.test.operationTests.CreateDeleteOperationTest;
+import org.unicase.workspace.test.operationTests.MultiReferenceMoveOperationTest;
+import org.unicase.workspace.test.operationTests.MultiReferenceOperationTest;
+import org.unicase.workspace.test.operationTests.SingleReferenceOperationTest;
  
 /**
  * Test Suite for running all tests of workspace.
