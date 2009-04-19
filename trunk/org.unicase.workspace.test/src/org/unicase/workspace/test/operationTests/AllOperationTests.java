@@ -3,15 +3,10 @@
  * accompanying materials are made available under the terms of the Eclipse Public License v1.0 which accompanies this
  * distribution, and is available at http://www.eclipse.org/legal/epl-v10.html </copyright>
  */
-package org.unicase.workspace.test;
+package org.unicase.workspace.test.operationTests;
 
 import org.junit.runner.RunWith;
 import org.junit.runners.Suite;
-import org.unicase.workspace.test.operationTests.AttributeOperationTest;
-import org.unicase.workspace.test.operationTests.CreateDeleteOperationTest;
-import org.unicase.workspace.test.operationTests.MultiReferenceMoveOperationTest;
-import org.unicase.workspace.test.operationTests.MultiReferenceOperationTest;
-import org.unicase.workspace.test.operationTests.SingleReferenceOperationTest;
  
 /**
  * Test Suite for running all tests of workspace.
