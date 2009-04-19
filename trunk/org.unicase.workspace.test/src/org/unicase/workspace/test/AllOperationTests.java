@@ -26,6 +26,6 @@ import org.unicase.workspace.test.operationTests.SingleReferenceOperationTest;
   CreateDeleteOperationTest.class,
   MultiReferenceMoveOperationTest.class
 })
-public class AllTests {
+public class AllOperationTests {
 
 }
