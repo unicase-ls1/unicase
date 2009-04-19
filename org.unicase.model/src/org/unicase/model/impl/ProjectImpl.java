@@ -46,6 +46,7 @@ public class ProjectImpl extends EObjectImpl implements Project {
 	protected EList<ModelElement> modelElements;
 	private Map<ModelElementId, ModelElement> modelElementCache;
 	private List<ProjectChangeObserver> observers;
+	private ProjectChangeNotifier projectChangeNotifier;
 
 	// begin of custom code
 	/**
@@ -289,8 +290,7 @@ public class ProjectImpl extends EObjectImpl implements Project {
 					modelElementCache.put(modelElement.getModelElementId(), modelElement);
 				}
 			}
-			// init cache update
-			new ProjectChangeNotifier(this);
+			projectChangeNotifier = new ProjectChangeNotifier(this);
 		}
 	}
 
@@ -298,6 +298,10 @@ public class ProjectImpl extends EObjectImpl implements Project {
 		this.getModelElementsFromCache().remove(modelElement.getModelElementId());
 		for (ModelElement child : modelElement.getAllContainedModelElements()) {
 			this.getModelElementsFromCache().remove(child.getModelElementId());
+		}
+		// MK: hack to remove adapter of project change observer
+		if (this.projectChangeNotifier != null) {
+			modelElement.eAdapters().remove(this.projectChangeNotifier);
 		}
 	}
 
