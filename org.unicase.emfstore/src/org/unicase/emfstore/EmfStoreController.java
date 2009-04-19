@@ -59,7 +59,7 @@ import edu.tum.cs.cope.migration.execution.ReleaseUtil;
  * @author koegel
  * @author wesendonk
  */
-public class EmfStoreController implements IApplication {
+public class EmfStoreController implements IApplication, Runnable {
 
 	private EmfStore emfStore;
 	private AdminEmfStore adminEmfStore;
@@ -589,4 +589,16 @@ public class EmfStoreController implements IApplication {
 		System.out.println("*------------------*");
 	}
 
+	/**
+	 * {@inheritDoc}
+	 * 
+	 * @see java.lang.Runnable#run()
+	 */
+	public void run() {
+		try {
+			run(true);
+		} catch (FatalEmfStoreException e) {
+		} catch (EmfStoreException e) {
+		}
+	}
 }
