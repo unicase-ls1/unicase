@@ -7,14 +7,13 @@ package org.unicase.intergerationtest.tests;
 
 import static org.junit.Assert.assertTrue;
 
-import org.eclipse.emf.ecore.EAttribute;
 import org.eclipse.emf.transaction.RecordingCommand;
 import org.eclipse.emf.transaction.TransactionalEditingDomain;
 import org.junit.Test;
 import org.unicase.emfstore.exceptions.EmfStoreException;
 import org.unicase.intergerationtest.TestHelper;
-import org.unicase.model.ModelElement;
 import org.unicase.model.util.SerializationException;
+import org.unicase.workspace.exceptions.NoLocalChangesException;
 
 /**
  * 
@@ -23,9 +22,8 @@ import org.unicase.model.util.SerializationException;
  */
 public class MultiAttributeMoveTest extends IntegrationTestCase {
 
-	private ModelElement me;
-	private EAttribute attributeToChange;
-	private int tries;
+
+	private long randomSeed = 1;
 
 	/**
 	 * Finds an attribute with isMany = true and moves elements inside this attribute.
@@ -34,29 +32,16 @@ public class MultiAttributeMoveTest extends IntegrationTestCase {
 	 * @throws SerializationException SerializationException
 	 * 
 	 */
-	@Test  
+	@Test (expected  = NoLocalChangesException.class)
 	public void runTest() throws SerializationException, EmfStoreException {
 		System.out.println("MultiAttributeMoveTest");
-		me = TestHelper.getRandomME(getTestProject());
-		attributeToChange = TestHelper.getRandomAttribute(me);
-
-		//since isMany() attributes are seldom, we just try for limited times to find one.
-		while (attributeToChange == null || !attributeToChange.isMany()) {
-			me = TestHelper.createRandomME();
-			attributeToChange = TestHelper.getRandomAttribute(me);
-			tries++;
-			if (tries > 2000) {
-				assertTrue(TestHelper.areEqual(getTestProject(), getCompareProject(), "MultiAttributeMoveTest"));
-				return;
-			}
-		}
-
-		TransactionalEditingDomain domain = TransactionalEditingDomain.Registry.INSTANCE
-			.getEditingDomain("org.unicase.EditingDomain");
+	
+		final TestHelper testHelper = new TestHelper(randomSeed   , getTestProject());
+		TransactionalEditingDomain domain = TestHelper.getDomain();
 		domain.getCommandStack().execute(new RecordingCommand(domain) {
 			@Override
 			protected void doExecute() {
-				TestHelper.moveMultiAttributeValue(me, attributeToChange);
+				testHelper.doMultiAttributeMove();
 			}
 		});
 		

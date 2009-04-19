@@ -7,14 +7,11 @@ package org.unicase.intergerationtest.tests;
 
 import static org.junit.Assert.assertTrue;
 
-import org.eclipse.emf.ecore.EReference;
-import org.eclipse.emf.ecore.util.EcoreUtil;
 import org.eclipse.emf.transaction.RecordingCommand;
 import org.eclipse.emf.transaction.TransactionalEditingDomain;
 import org.junit.Test;
 import org.unicase.emfstore.exceptions.EmfStoreException;
 import org.unicase.intergerationtest.TestHelper;
-import org.unicase.model.ModelElement;
 import org.unicase.model.util.SerializationException;
 import org.unicase.workspace.exceptions.NoLocalChangesException;
 
@@ -23,9 +20,9 @@ import org.unicase.workspace.exceptions.NoLocalChangesException;
  */
 public class ContainmentReferenceMoveTest extends IntegrationTestCase {
 
-	private ModelElement me;
-	private EReference refToChange;
-	private ModelElement meToMove;
+
+
+	private long randomSeed = 1;
 
 	/**
 	 * Takes a random ME (meA). Takes randomly one of its containment references. Finds an existing ME in project
@@ -34,47 +31,22 @@ public class ContainmentReferenceMoveTest extends IntegrationTestCase {
 	 * @throws EmfStoreException EmfStoreException
 	 * @throws SerializationException SerializationException
 	 */
-	@Test  (expected = NoLocalChangesException.class)
+	@Test(expected = NoLocalChangesException.class)
 	public void runTest() throws SerializationException, EmfStoreException {
-System.out.println("ContainmentReferenceMoveTest");
-		while (meToMove == null) {
-			// get a random ME and one of its containment references (refToChange)
-			me = TestHelper.getRandomME(getTestProject());
-			refToChange = TestHelper.getRandomContainmentRef(me);
-
-			// Maybe this ME does not have any containment references. Then choose another one.
-			while (refToChange == null) {
-				me = TestHelper.getRandomME(getTestProject());
-				refToChange = TestHelper.getRandomContainmentRef(me);
-			}
-			// get a random ME matching refToChange. Also take care that meToMove is not the same as or an ancestor of
-			// ME
-			meToMove = TestHelper.getRandomMEofType(getTestProject(), refToChange.getEReferenceType());
-			if (meToMove != null && (meToMove.equals(me) || EcoreUtil.isAncestor(meToMove, me))) {
-				meToMove = null;
-			}
-		}
-
-		doMove(me, refToChange, meToMove);
-
-		commitChanges();
-		assertTrue(TestHelper.areEqual(getTestProject(), getCompareProject(), "ContainmentReferenceMoveTest"));
-
-	}
-
-	private void doMove(final ModelElement me, EReference ref, final ModelElement meToMove) {
-
-		TransactionalEditingDomain domain = TransactionalEditingDomain.Registry.INSTANCE
-			.getEditingDomain("org.unicase.EditingDomain");
-
+		System.out.println("ContainmentReferenceMoveTest");
+		final TestHelper testHelper = new TestHelper(randomSeed , getTestProject());
+		TransactionalEditingDomain domain = TestHelper.getDomain();
 		domain.getCommandStack().execute(new RecordingCommand(domain) {
 
 			@Override
 			protected void doExecute() {
-				TestHelper.changeReference(me, refToChange, meToMove);
+				testHelper.doContainmentReferenceMove();
 			}
 		});
-		
+
+		commitChanges();
+		assertTrue(TestHelper.areEqual(getTestProject(), getCompareProject(), "ContainmentReferenceMoveTest"));
+
 	}
 
 }

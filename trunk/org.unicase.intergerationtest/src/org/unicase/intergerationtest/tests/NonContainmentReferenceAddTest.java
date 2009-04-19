@@ -7,13 +7,11 @@ package org.unicase.intergerationtest.tests;
 
 import static org.junit.Assert.assertTrue;
 
-import org.eclipse.emf.ecore.EReference;
 import org.eclipse.emf.transaction.RecordingCommand;
 import org.eclipse.emf.transaction.TransactionalEditingDomain;
 import org.junit.Test;
 import org.unicase.emfstore.exceptions.EmfStoreException;
 import org.unicase.intergerationtest.TestHelper;
-import org.unicase.model.ModelElement;
 import org.unicase.model.util.SerializationException;
 
 /**
@@ -21,9 +19,8 @@ import org.unicase.model.util.SerializationException;
  */
 public class NonContainmentReferenceAddTest extends IntegrationTestCase {
 
-	private ModelElement me;
-	private EReference refToChange;
-	private ModelElement meToReference;
+	
+	private long randomSeed = 1;
 
 	/**
 	 * Select a random ME (meA). Select one of its non-containment references. Find an ME matching reference type (meB).
@@ -35,28 +32,13 @@ public class NonContainmentReferenceAddTest extends IntegrationTestCase {
 	@Test
 	public void runTest() throws SerializationException, EmfStoreException {
 		System.out.println("NonContainmentReferenceAddTest");
-		
-		while (meToReference == null) {
-			me = TestHelper.getRandomME(getTestProject());
-			refToChange = TestHelper.getRandomNonContainmentRef(me);
-
-			while (refToChange == null) {
-				me = TestHelper.createRandomME();
-				refToChange = TestHelper.getRandomNonContainmentRef(me);
-			}
-
-			meToReference = TestHelper.getRandomMEofType(getTestProject(), refToChange.getEReferenceType());
-
-		}
-
-		TransactionalEditingDomain domain = TransactionalEditingDomain.Registry.INSTANCE
-			.getEditingDomain("org.unicase.EditingDomain");
-
+		final TestHelper testHelper = new TestHelper(randomSeed , getTestProject());
+		TransactionalEditingDomain domain = TestHelper.getDomain();
 		domain.getCommandStack().execute(new RecordingCommand(domain) {
 
 			@Override
 			protected void doExecute() {
-				TestHelper.changeReference(me, refToChange, meToReference);
+				testHelper.doNonContainmentReferenceAdd();
 			}
 
 		});

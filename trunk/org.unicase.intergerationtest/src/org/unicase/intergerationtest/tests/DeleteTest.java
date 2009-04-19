@@ -12,7 +12,6 @@ import org.eclipse.emf.transaction.TransactionalEditingDomain;
 import org.junit.Test;
 import org.unicase.emfstore.exceptions.EmfStoreException;
 import org.unicase.intergerationtest.TestHelper;
-import org.unicase.model.ModelElement;
 import org.unicase.model.util.SerializationException;
 
 /**
@@ -23,7 +22,7 @@ import org.unicase.model.util.SerializationException;
  */
 public class DeleteTest extends IntegrationTestCase {
 
-	private ModelElement me;
+	private long randomSeed = 1;
 	
 
 	
@@ -36,18 +35,13 @@ public class DeleteTest extends IntegrationTestCase {
 	public void runTest() throws SerializationException, EmfStoreException {
 
 		System.out.println("DeleteTest");
-		
-		TransactionalEditingDomain domain = TransactionalEditingDomain.Registry.INSTANCE
-			.getEditingDomain("org.unicase.EditingDomain");
-
-		me = TestHelper.getRandomME(getTestProject());
-		
-
+		final TestHelper testHelper = new TestHelper(randomSeed  , getTestProject());
+		TransactionalEditingDomain domain = TestHelper.getDomain();
 		domain.getCommandStack().execute(new RecordingCommand(domain) {
 
 			@Override
 			protected void doExecute() {
-				me.delete();
+				testHelper.doDelete();
 
 			}
 

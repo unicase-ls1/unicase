@@ -10,15 +10,10 @@ import static org.junit.Assert.assertTrue;
 import org.eclipse.emf.transaction.RecordingCommand;
 import org.eclipse.emf.transaction.TransactionalEditingDomain;
 import org.junit.Test;
-import org.unicase.emfstore.esmodel.versioning.operations.AbstractOperation;
-import org.unicase.emfstore.esmodel.versioning.operations.CreateDeleteOperation;
 import org.unicase.emfstore.exceptions.EmfStoreException;
 import org.unicase.intergerationtest.TestHelper;
-import org.unicase.model.ModelElement;
 import org.unicase.model.util.SerializationException;
 import org.unicase.workspace.exceptions.NoLocalChangesException;
-
-import java.util.List;
 
 /**
  * 
@@ -28,6 +23,8 @@ import java.util.List;
 public class DeleteAndRevertDeleteTest extends IntegrationTestCase  {
 
 	
+
+	private long randomSeed = 1;
 
 	/**
 	 * Delete a random ME. Revert delete.
@@ -39,13 +36,13 @@ public class DeleteAndRevertDeleteTest extends IntegrationTestCase  {
 	@Test (expected = NoLocalChangesException.class)
 	public void runTest() throws SerializationException, EmfStoreException {
 		System.out.println("DeleteAndRevertDeleteTest");
-		TransactionalEditingDomain domain = TransactionalEditingDomain.Registry.INSTANCE
-			.getEditingDomain("org.unicase.EditingDomain");
-
+	
+		final TestHelper testHelper = new TestHelper(randomSeed , getTestProject());
+		TransactionalEditingDomain domain = TestHelper.getDomain();
 		domain.getCommandStack().execute(new RecordingCommand(domain) {
 			@Override
 			protected void doExecute() {
-				doTest();
+				testHelper.doDeleteAndRevert();
 			}
 		});
 		
@@ -53,14 +50,6 @@ public class DeleteAndRevertDeleteTest extends IntegrationTestCase  {
 		assertTrue(TestHelper.areEqual(getTestProject(), getCompareProject(), "DeleteAndRevertDeleteTest"));
 	}
 
-	private void doTest() {
-		ModelElement modelElement = TestHelper.getRandomME(getTestProject());
-		modelElement.delete();
-		List<AbstractOperation> operations = getTestProjectSpace().getOperations();
-		CreateDeleteOperation operation = (CreateDeleteOperation) operations.get(0);
-		CreateDeleteOperation reverse = (CreateDeleteOperation) operation.reverse();
-		reverse.apply(getTestProject());
-	}
-
+	
 
 }

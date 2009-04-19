@@ -9,11 +9,14 @@ import org.eclipse.emf.transaction.RecordingCommand;
 import org.eclipse.emf.transaction.TransactionalEditingDomain;
 import org.junit.Before;
 import org.junit.BeforeClass;
+import org.unicase.emfstore.EmfStoreController;
+import org.unicase.emfstore.ServerConfiguration;
 import org.unicase.emfstore.accesscontrol.AccessControlException;
 import org.unicase.emfstore.esmodel.ProjectId;
 import org.unicase.emfstore.esmodel.versioning.LogMessage;
 import org.unicase.emfstore.esmodel.versioning.VersioningFactory;
 import org.unicase.emfstore.exceptions.EmfStoreException;
+import org.unicase.emfstore.exceptions.FatalEmfStoreException;
 import org.unicase.intergerationtest.Activator;
 import org.unicase.intergerationtest.TestHelper;
 import org.unicase.model.Project;
@@ -29,7 +32,6 @@ import org.unicase.workspace.impl.WorkspaceImpl;
 import java.io.IOException;
 import java.net.URISyntaxException;
 import java.util.Calendar;
-import java.util.Random;
 
 /**
  * @author Hodaie
@@ -43,9 +45,7 @@ public abstract class IntegrationTestCase {
 	private static TransactionalEditingDomain domain;
 
 	private static ProjectId projectId;
-	private static long randomSeed = 1;
 	private static Workspace workSpace;
-
 
 	/**
 	 * set up test project.
@@ -57,7 +57,9 @@ public abstract class IntegrationTestCase {
 		if (testSpace != null) {
 			return;
 		}
-		
+
+		// startServer();
+
 		Configuration.setTesting(true);
 		workSpace = WorkspaceManager.getInstance().getCurrentWorkspace();
 		domain = TransactionalEditingDomain.Registry.INSTANCE.getEditingDomain("org.unicase.EditingDomain");
@@ -71,15 +73,27 @@ public abstract class IntegrationTestCase {
 
 	}
 
+	@SuppressWarnings("unused")
+	private static void startServer() {
+
+		ServerConfiguration.setTesting(true);
+		EmfStoreController esController = new EmfStoreController();
+		try {
+			esController.run(false);
+		} catch (FatalEmfStoreException e) {
+			e.printStackTrace();
+		} catch (EmfStoreException e) {
+			e.printStackTrace();
+		}
+
+	}
+
 	/**
 	 * Create test project space.
 	 */
 	private static void createTestProjectSapce() {
 
 		boolean createRandomProject = false;
-
-		
-		TestHelper.setRandom(new Random(randomSeed));
 
 		if (createRandomProject) {
 			createRandomTestProjet();
@@ -102,19 +116,17 @@ public abstract class IntegrationTestCase {
 			}
 		}
 
-		
-		
 	}
-	
+
 	/**
 	 * Before every test make sure test project and compare project (which lies on the server) are equal.
 	 */
 	@Before
-	public void resetCompareProject(){
-		//if a compare project already exists on the server {
-			//this is only in first test not the case!
-			//delete compare project on the server
-		//}
+	public void resetCompareProject() {
+		// if a compare project already exists on the server {
+		// this is only in first test not the case!
+		// delete compare project on the server
+		// }
 		shareProject();
 		projectId = getTestProjectSpace().getProjectId();
 	}
@@ -123,24 +135,24 @@ public abstract class IntegrationTestCase {
 	 * This shares test project with server.
 	 */
 	private static void shareProject() {
-		if(usersession == null){
-		usersession = WorkspaceFactory.eINSTANCE.createUsersession();
+		if (usersession == null) {
+			usersession = WorkspaceFactory.eINSTANCE.createUsersession();
 
-		ServerInfo serverInfo = WorkspaceFactory.eINSTANCE.createServerInfo();
-		serverInfo.setPort(1099);
-		serverInfo.setUrl("127.0.0.1");
+			ServerInfo serverInfo = WorkspaceFactory.eINSTANCE.createServerInfo();
+			serverInfo.setPort(1099);
+			serverInfo.setUrl("127.0.0.1");
 
-		usersession.setServerInfo(serverInfo);
-		usersession.setUsername("super");
-		usersession.setPassword("super");
+			usersession.setServerInfo(serverInfo);
+			usersession.setUsername("super");
+			usersession.setPassword("super");
 
 		}
-		
+
 		try {
-			if(!usersession.isLoggedIn()){
+			if (!usersession.isLoggedIn()) {
 				usersession.logIn();
 			}
-			
+
 			domain.getCommandStack().execute(new RecordingCommand(domain) {
 				@Override
 				protected void doExecute() {
@@ -191,7 +203,9 @@ public abstract class IntegrationTestCase {
 	 * 
 	 */
 	private static void createRandomTestProjet() {
-		testSpace = TestHelper.createEmptyProjectSpace("test");
+		// TODO
+		// testSpace = TestHelper.createEmptyProjectSpace("test");
+		// ....
 
 	}
 
@@ -217,8 +231,9 @@ public abstract class IntegrationTestCase {
 	 * @throws EmfStoreException EmfStoreException
 	 */
 	public static Project getCompareProject() throws EmfStoreException {
-		 
-		Project comparePrject = ((WorkspaceImpl) WorkspaceManager.getInstance().getCurrentWorkspace()).checkout(usersession, projectId);
+
+		Project comparePrject = ((WorkspaceImpl) WorkspaceManager.getInstance().getCurrentWorkspace()).checkout(
+			usersession, projectId);
 		return comparePrject;
 	}
 }
