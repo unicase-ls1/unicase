@@ -5,11 +5,11 @@
  */
 package org.unicase.emfstore;
 
-import java.io.File;
-import java.util.Properties;
-
 import org.eclipse.core.runtime.Platform;
 import org.osgi.framework.Bundle;
+
+import java.io.File;
+import java.util.Properties;
 
 /**
  * Represents the current server configuration.
@@ -245,6 +245,8 @@ public final class ServerConfiguration {
 	 */
 	public static final String FILE_EXTENSION_CHANGEPACKAGE = ".ucp";
 
+	private static boolean testing;
+
 	private static Properties properties;
 
 	private ServerConfiguration() {
@@ -282,7 +284,9 @@ public final class ServerConfiguration {
 	public static String getServerHome() {
 		StringBuffer sb = new StringBuffer(getUserHome());
 		sb.append(".unicase");
-		if (!isReleaseVersion()) {
+		if (testing) {
+			sb.append(".test");
+		} else if (!isReleaseVersion()) {
 			if (isInternalReleaseVersion()) {
 				sb.append(".internal");
 			} else {
@@ -430,6 +434,20 @@ public final class ServerConfiguration {
 	 */
 	public static String getBackupStatePrefix() {
 		return BACKUPPROJECTSTATE_FILE_PREFIX;
+	}
+
+	/**
+	 * @param testing if server is running for testing
+	 */
+	public static void setTesting(boolean testing) {
+		ServerConfiguration.testing = testing;
+	}
+
+	/**
+	 * @return if server is running for testing
+	 */
+	public static boolean isTesting() {
+		return testing;
 	}
 
 }
