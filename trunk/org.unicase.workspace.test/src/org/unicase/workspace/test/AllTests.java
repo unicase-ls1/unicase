@@ -8,7 +8,7 @@ package org.unicase.workspace.test;
 
 import org.junit.runner.RunWith;
 import org.junit.runners.Suite;
-import org.unicase.workspace.test.operationTests.AllOperationTests;
+import org.unicase.workspace.test.operations.AllOperationTests;
 
 /**
  * Runs all tests.
