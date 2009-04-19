@@ -16,7 +16,6 @@ import org.unicase.emfstore.esmodel.ProjectId;
 import org.unicase.emfstore.esmodel.versioning.LogMessage;
 import org.unicase.emfstore.esmodel.versioning.VersioningFactory;
 import org.unicase.emfstore.exceptions.EmfStoreException;
-import org.unicase.emfstore.exceptions.FatalEmfStoreException;
 import org.unicase.intergerationtest.Activator;
 import org.unicase.intergerationtest.TestHelper;
 import org.unicase.model.Project;
@@ -58,7 +57,7 @@ public abstract class IntegrationTestCase {
 			return;
 		}
 
-		// startServer();
+		startServer();
 
 		Configuration.setTesting(true);
 		workSpace = WorkspaceManager.getInstance().getCurrentWorkspace();
@@ -73,18 +72,20 @@ public abstract class IntegrationTestCase {
 
 	}
 
-	@SuppressWarnings("unused")
+	
 	private static void startServer() {
 
 		ServerConfiguration.setTesting(true);
-		EmfStoreController esController = new EmfStoreController();
-		try {
-			esController.run(false);
-		} catch (FatalEmfStoreException e) {
-			e.printStackTrace();
-		} catch (EmfStoreException e) {
-			e.printStackTrace();
-		}
+		new Thread(new EmfStoreController()).start();
+		
+//		EmfStoreController esController = new EmfStoreController();
+//		try {
+//			esController.run(false);
+//		} catch (FatalEmfStoreException e) {
+//			e.printStackTrace();
+//		} catch (EmfStoreException e) {
+//			e.printStackTrace();
+//		}
 
 	}
 
