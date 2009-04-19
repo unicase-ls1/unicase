@@ -14,6 +14,7 @@ import org.eclipse.emf.ecore.EObject;
 import org.eclipse.emf.ecore.EReference;
 import org.unicase.model.ModelElement;
 import org.unicase.model.ModelPackage;
+import org.unicase.model.Project;
 import org.unicase.model.impl.ProjectImpl;
 
 /**
@@ -22,9 +23,10 @@ import org.unicase.model.impl.ProjectImpl;
  * 
  * @author koegel
  */
-public final class ProjectChangeNotifier extends AdapterImpl {
+public final class ProjectChangeNotifier extends AdapterImpl implements ProjectChangeObserver {
 
 	private ProjectImpl projectImpl;
+	private boolean isDeleting;
 
 	/**
 	 * Constructor.
@@ -42,6 +44,7 @@ public final class ProjectChangeNotifier extends AdapterImpl {
 			}
 		}
 		projectImpl.eAdapters().add(this);
+		projectImpl.addProjectChangeObserver(this);
 	}
 
 	/**
@@ -109,7 +112,7 @@ public final class ProjectChangeNotifier extends AdapterImpl {
 	}
 
 	private void handleSingleRemove(Notification notification, ModelElement child) {
-		if (child.getProject() != projectImpl) {
+		if (!isDeleting && child.getProject() != projectImpl) {
 			projectImpl.addModelElement(child);
 		}
 	}
@@ -164,6 +167,46 @@ public final class ProjectChangeNotifier extends AdapterImpl {
 				}
 			}
 		}
+	}
+
+	/**
+	 * {@inheritDoc}
+	 * 
+	 * @see org.unicase.model.util.ProjectChangeObserver#modelElementAdded(org.unicase.model.Project,
+	 *      org.unicase.model.ModelElement)
+	 */
+	public void modelElementAdded(Project project, ModelElement modelElement) {
+		// nothing to do, do not implement anything here, this will cause loop otherwise
+	}
+
+	/**
+	 * {@inheritDoc}
+	 * 
+	 * @see org.unicase.model.util.ProjectChangeObserver#modelElementDeleteCompleted(org.unicase.model.Project,
+	 *      org.unicase.model.ModelElement)
+	 */
+	public void modelElementDeleteCompleted(Project project, ModelElement modelElement) {
+		this.isDeleting = false;
+	}
+
+	/**
+	 * {@inheritDoc}
+	 * 
+	 * @see org.unicase.model.util.ProjectChangeObserver#modelElementDeleteStarted(org.unicase.model.Project,
+	 *      org.unicase.model.ModelElement)
+	 */
+	public void modelElementDeleteStarted(Project project, ModelElement modelElement) {
+		this.isDeleting = true;
+	}
+
+	/**
+	 * {@inheritDoc}
+	 * 
+	 * @see org.unicase.model.util.ProjectChangeObserver#notify(org.eclipse.emf.common.notify.Notification,
+	 *      org.unicase.model.Project, org.unicase.model.ModelElement)
+	 */
+	public void notify(Notification notification, Project project, ModelElement modelElement) {
+		// nothing to do, do not implement anything here, this will cause loop otherwise
 	}
 
 }
