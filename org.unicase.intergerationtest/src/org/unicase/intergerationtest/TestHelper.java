@@ -31,6 +31,7 @@ import org.unicase.model.ModelPackage;
 import org.unicase.model.Project;
 import org.unicase.model.util.ModelUtil;
 import org.unicase.model.util.SerializationException;
+import org.unicase.workspace.Configuration;
 import org.unicase.workspace.ProjectSpace;
 import org.unicase.workspace.WorkspaceFactory;
 import org.unicase.workspace.impl.ProjectSpaceImpl;
@@ -53,7 +54,7 @@ import java.util.Random;
 public final class TestHelper {
 
 	private static TransactionalEditingDomain domain;
-	private static final String TEMP_PATH = getTestWorkspacePath() + File.separator + "tmp";
+	private static final String TEMP_PATH = Configuration.getWorkspaceDirectory() + "tmp";
 	private static Random random;
 	private static List<ModelElement> allMEsInProject;
 
@@ -226,15 +227,16 @@ public final class TestHelper {
 	}
 
 	/**
-	 * Returns a serialized string for this object. It also saves serialized string to disk (in TMP_PATH) under given
+	 * Returns a serialized string for this object. It can also save serialized string to disk (in TMP_PATH) under given
 	 * name.
 	 * 
 	 * @param object object
 	 * @param name name to save string representation of object
+	 * @param writeToDisk if serialized string must be saved to disk
 	 * @return serialized string representation of this object
 	 * @throws SerializationException SerializationException
 	 */
-	public static String eObjectToString(EObject object, String name) throws SerializationException {
+	public static String eObjectToString(EObject object, String name, boolean writeToDisk) throws SerializationException {
 		if (object == null) {
 			return null;
 		}
@@ -246,6 +248,21 @@ public final class TestHelper {
 		} catch (IOException e) {
 			throw new SerializationException(e);
 		}
+		
+		if(writeToDisk){
+			writeToDisk(name, out);
+		}
+		
+
+		return out.toString();
+	}
+
+	/**
+	 * Save the given OutputStream to disk under the given name.
+	 * @param name
+	 * @param out
+	 */
+	private static void writeToDisk(String name, ByteArrayOutputStream out) {
 		File file = new File(TEMP_PATH + File.separator + name + ".txt");
 		try {
 			if (!file.exists()) {
@@ -253,15 +270,12 @@ public final class TestHelper {
 				new File(TEMP_PATH).mkdir();
 			}
 
-			FileOutputStream fos;
-			fos = new FileOutputStream(file);
+			FileOutputStream fos = new FileOutputStream(file);
 			fos.write(out.toByteArray());
 			fos.close();
 		} catch (IOException e) {
 			e.printStackTrace();
 		}
-
-		return out.toString();
 	}
 
 	/**
@@ -290,8 +304,8 @@ public final class TestHelper {
 
 		try {
 
-			stringA = eObjectToString(projectA, "testProj");
-			stringB = eObjectToString(projectB, "compareProj");
+			stringA = eObjectToString(projectA, "testProj", false);
+			stringB = eObjectToString(projectB, "compareProj", false);
 
 		} catch (SerializationException e) {
 			for (int i = 0; i < 5; i++) {
@@ -756,15 +770,20 @@ public final class TestHelper {
 		}
 
 	}
-	
+
 	/**
-	 * Test work space is created in USERHOME/.unicase.test.
-	 * @return test work space path
+	 * Compares test porject and compare project using their serialiezed strings.
+	 * 
+	 * @param testProject test project
+	 * @param compareProject compare project
+	 * @return if serialized string from projects are equal
+	 * @throws SerializationException SerializationException
 	 */
-	public static String getTestWorkspacePath(){
-		StringBuilder path = new StringBuilder(System.getProperty("user.home"));
-		path.append(File.separator);
-		path.append(".unicase.test");
-		return path.toString();
+	public static boolean areEqual(Project testProject, Project compareProject) throws SerializationException {
+		String strTestProj = eObjectToString(testProject, "test", true);
+		String strCompareProj = eObjectToString(compareProject, "compare", true);
+		return strTestProj.equals(strCompareProj);
 	}
+
+
 }
