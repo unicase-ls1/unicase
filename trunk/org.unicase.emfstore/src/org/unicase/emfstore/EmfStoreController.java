@@ -81,6 +81,18 @@ public class EmfStoreController implements IApplication {
 	 */
 	public Object start(IApplicationContext context) throws EmfStoreException, FatalEmfStoreException {
 
+		run(true);
+		return IApplication.EXIT_OK;
+	}
+
+	/**
+	 * Run the server.
+	 * 
+	 * @param waitForTermination true if the server should force the calling thread to wait for its termination
+	 * @throws FatalEmfStoreException if the server fails fatally
+	 * @throws EmfStoreException if the server init fails
+	 */
+	public void run(boolean waitForTermination) throws FatalEmfStoreException, EmfStoreException {
 		if (instance != null) {
 			throw new FatalEmfStoreException("Another EmfStore Controller seems to be running already!");
 		}
@@ -114,11 +126,12 @@ public class EmfStoreController implements IApplication {
 		logger.info("Initialitation COMPLETE.");
 		logger.info("Server is RUNNING...");
 
-		waitForTermination();
+		if (waitForTermination) {
+			waitForTermination();
+		}
 
 		instance = null;
 		logger.info("Server is STOPPED.");
-		return IApplication.EXIT_OK;
 	}
 
 	private HistoryCache initHistoryCache() {
