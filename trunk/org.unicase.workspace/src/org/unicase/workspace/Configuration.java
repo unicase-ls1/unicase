@@ -5,15 +5,15 @@
  */
 package org.unicase.workspace;
 
-import java.io.File;
-import java.util.ArrayList;
-import java.util.List;
-import java.util.Map;
-
 import org.eclipse.core.runtime.Platform;
 import org.osgi.framework.Bundle;
 import org.unicase.emfstore.esmodel.ClientVersionInfo;
 import org.unicase.emfstore.esmodel.EsmodelFactory;
+
+import java.io.File;
+import java.util.ArrayList;
+import java.util.List;
+import java.util.Map;
 
 /**
  * Represents the current Workspace Configuration.
@@ -28,6 +28,7 @@ public final class Configuration {
 	private static final String PROJECT_FOLDER = "project";
 	private static final String PS = "ps-";
 	private static final String UPF = ".upf";
+	private static boolean testing;
 
 	private Configuration() {
 		// nothing to do
@@ -45,7 +46,9 @@ public final class Configuration {
 		sb.append(System.getProperty("user.home"));
 		sb.append(File.separatorChar);
 		sb.append(".unicase");
-		if (!isReleaseVersion()) {
+		if (testing) {
+			sb.append(".test");
+		} else if (!isReleaseVersion()) {
 			if (isInternalReleaseVersion()) {
 				sb.append(".internal");
 			} else {
@@ -254,5 +257,21 @@ public final class Configuration {
 	 */
 	public static String getModelReleaseNumberFileName() {
 		return getWorkspaceDirectory() + MODEL_VERSION_FILENAME;
+	}
+
+	/**
+	 * If we are running tests. In this case the workspace will be created in USERHOME/.unicase.test.
+	 * 
+	 * @param testing the testing to set
+	 */
+	public static void setTesting(boolean testing) {
+		Configuration.testing = testing;
+	}
+
+	/**
+	 * @return if we are running tests. In this case the workspace will be created in USERHOME/.unicase.test.
+	 */
+	public static boolean isTesting() {
+		return testing;
 	}
 }
