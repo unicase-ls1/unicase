@@ -296,12 +296,16 @@ public class ProjectImpl extends EObjectImpl implements Project {
 
 	private void handleModelElementDeleted(ModelElement modelElement) {
 		this.getModelElementsFromCache().remove(modelElement.getModelElementId());
-		for (ModelElement child : modelElement.getAllContainedModelElements()) {
-			this.getModelElementsFromCache().remove(child.getModelElementId());
-		}
 		// MK: hack to remove adapter of project change observer
 		if (this.projectChangeNotifier != null) {
 			modelElement.eAdapters().remove(this.projectChangeNotifier);
+		}
+		for (ModelElement child : modelElement.getAllContainedModelElements()) {
+			this.getModelElementsFromCache().remove(child.getModelElementId());
+			// MK: hack to remove adapter of project change observer
+			if (this.projectChangeNotifier != null) {
+				child.eAdapters().remove(this.projectChangeNotifier);
+			}
 		}
 	}
 
@@ -467,14 +471,4 @@ public class ProjectImpl extends EObjectImpl implements Project {
 		}
 	}
 
-	public void modelElementDeleteCompleted(Project project, ModelElement modelElement) {
-		this.modelElementCache.remove(modelElement.getModelElementId());
-		for (ProjectChangeObserver projectChangeObserver : this.observers) {
-			projectChangeObserver.modelElementDeleteCompleted(this, modelElement);
-		}
-	}
-
-	public void modelElementDeleteStarted(Project project, ModelElement modelElement) {
-		// nothing to do
-	}
 }
