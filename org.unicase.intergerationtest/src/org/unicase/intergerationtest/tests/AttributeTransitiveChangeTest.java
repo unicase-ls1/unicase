@@ -3,7 +3,6 @@
  * accompanying materials are made available under the terms of the Eclipse Public License v1.0 which accompanies this
  * distribution, and is available at http://www.eclipse.org/legal/epl-v10.html </copyright>
  */
-
 package org.unicase.intergerationtest.tests;
 
 import static org.junit.Assert.assertTrue;
@@ -18,42 +17,53 @@ import org.unicase.model.ModelElement;
 import org.unicase.model.util.SerializationException;
 
 /**
+ * 
  * @author Hodaie
  */
-public class AttributeChangeTest extends IntegrationTestCase {
+public class AttributeTransitiveChangeTest  extends IntegrationTestCase {
 
 	private ModelElement me;
-
 	private EAttribute attributeToChange;
-
+		
 	/**
-	 * 1. Get a random model element form test project; 2. get randomly one of its attributes. 3. change the attribute
+	 * Change the same attribute on a randomly selected ME twice.
 	 * 
 	 * @throws EmfStoreException EmfStoreException
 	 * @throws SerializationException SerializationException
+	 * 
 	 */
 	@Test
 	public void runTest() throws SerializationException, EmfStoreException {
 
-		TransactionalEditingDomain domain = TransactionalEditingDomain.Registry.INSTANCE
-			.getEditingDomain("org.unicase.EditingDomain");
-
 		me = TestHelper.getRandomME(getTestProject());
 		attributeToChange = TestHelper.getRandomAttribute(me);
+
+		TransactionalEditingDomain domain = TransactionalEditingDomain.Registry.INSTANCE
+			.getEditingDomain("org.unicase.EditingDomain");
 
 		domain.getCommandStack().execute(new RecordingCommand(domain) {
 
 			@Override
 			protected void doExecute() {
-				TestHelper.changeAttribute(me, attributeToChange);
+				transChangeAttr();
+
 			}
 
 		});
-
+		
 		commitChanges();
-
 		assertTrue(TestHelper.areEqual(getTestProject(), getCompareProject()));
 
 	}
 
+	
+	private void transChangeAttr() {
+		// from unset or a to b
+		TestHelper.changeAttribute(me, attributeToChange);
+
+		// from b to c
+		TestHelper.changeAttribute(me, attributeToChange);
+	}
+
+	
 }

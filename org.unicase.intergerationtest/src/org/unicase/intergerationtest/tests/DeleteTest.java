@@ -3,12 +3,10 @@
  * accompanying materials are made available under the terms of the Eclipse Public License v1.0 which accompanies this
  * distribution, and is available at http://www.eclipse.org/legal/epl-v10.html </copyright>
  */
-
 package org.unicase.intergerationtest.tests;
 
 import static org.junit.Assert.assertTrue;
 
-import org.eclipse.emf.ecore.EAttribute;
 import org.eclipse.emf.transaction.RecordingCommand;
 import org.eclipse.emf.transaction.TransactionalEditingDomain;
 import org.junit.Test;
@@ -18,17 +16,19 @@ import org.unicase.model.ModelElement;
 import org.unicase.model.util.SerializationException;
 
 /**
- * @author Hodaie
+ * This take a random ME and deletes it.
+ * 
+ * @author zardosht
+ * @author koegel
  */
-public class AttributeChangeTest extends IntegrationTestCase {
+public class DeleteTest extends IntegrationTestCase {
 
 	private ModelElement me;
+	
 
-	private EAttribute attributeToChange;
-
+	
 	/**
-	 * 1. Get a random model element form test project; 2. get randomly one of its attributes. 3. change the attribute
-	 * 
+	 * Delete a random ME.
 	 * @throws EmfStoreException EmfStoreException
 	 * @throws SerializationException SerializationException
 	 */
@@ -39,21 +39,24 @@ public class AttributeChangeTest extends IntegrationTestCase {
 			.getEditingDomain("org.unicase.EditingDomain");
 
 		me = TestHelper.getRandomME(getTestProject());
-		attributeToChange = TestHelper.getRandomAttribute(me);
+		
 
 		domain.getCommandStack().execute(new RecordingCommand(domain) {
 
 			@Override
 			protected void doExecute() {
-				TestHelper.changeAttribute(me, attributeToChange);
+				me.delete();
+
 			}
 
 		});
-
+		
 		commitChanges();
-
 		assertTrue(TestHelper.areEqual(getTestProject(), getCompareProject()));
 
 	}
 
+	
+
+	
 }
