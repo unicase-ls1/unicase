@@ -111,10 +111,15 @@ public class CreateDeleteOperationTest extends OperationTest {
 		useCase.setInitiatingActor(oldActor);
 		useCase.getParticipatingActors().add(newActor);
 		useCase.getParticipatingActors().add(otherActor);
+		assertEquals(true, getProject().contains(useCase));
+		assertEquals(getProject(), useCase.getProject());
 		
 		clearOperations();
 		
 		getProject().deleteModelElement(useCase);
+		
+		assertEquals(false, getProject().contains(useCase));
+		assertEquals(null, useCase.eContainer());
 		
 		List<AbstractOperation> operations = getProjectSpace().getOperations();
 		
