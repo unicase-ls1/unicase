@@ -110,7 +110,6 @@ public final class ProjectChangeNotifier extends AdapterImpl {
 
 	private void handleSingleRemove(Notification notification, ModelElement child) {
 		if (child.getProject() != projectImpl) {
-			child.eAdapters().remove(this);
 			projectImpl.addModelElement(child);
 		}
 	}
