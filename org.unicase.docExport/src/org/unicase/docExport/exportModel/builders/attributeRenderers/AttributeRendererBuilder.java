@@ -7,10 +7,10 @@ package org.unicase.docExport.exportModel.builders.attributeRenderers;
 
 import java.util.ArrayList;
 
+import org.eclipse.emf.ecore.EStructuralFeature;
 import org.unicase.docExport.exportModel.Template;
+import org.unicase.docExport.exportModel.builders.DefaultAttributeRendererFactory;
 import org.unicase.docExport.exportModel.renderers.AttributeRenderer;
-import org.unicase.docExport.exportModel.renderers.defaultRenderers.DefaultAttributeRenderer;
-import org.unicase.docExport.exportModel.renderers.defaultRenderers.DefaultRenderersFactory;
 
 /**
  * Creates a List of available AttributeRenderers for any Unicase model attribute.
@@ -21,12 +21,13 @@ public class AttributeRendererBuilder {
 
 	/**
 	 * @param template The template for the Renderer shall be created for.
+	 * @param feature the feature the AttributeRenderer is used for.
 	 * @return a list of all available ModelElementRenderers, which are ready to be used.
 	 */
-	public ArrayList<AttributeRenderer> buildRenderers(Template template) {
+	public ArrayList<AttributeRenderer> buildRenderers(EStructuralFeature feature, Template template) {
 		ArrayList<AttributeRenderer> renderers = new ArrayList<AttributeRenderer>();
 
-		DefaultAttributeRenderer renderer = DefaultRenderersFactory.eINSTANCE.createDefaultAttributeRenderer();
+		AttributeRenderer renderer = DefaultAttributeRendererFactory.build(feature, template);
 		renderers.add(renderer);
 
 		return renderers;

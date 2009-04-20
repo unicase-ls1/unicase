@@ -57,7 +57,6 @@ public final class AttributeRendererRegistry {
 			}
 		}
 
-		return builder.buildRenderers(template);
-
+		return builder.buildRenderers(feature, template);
 	}
 }

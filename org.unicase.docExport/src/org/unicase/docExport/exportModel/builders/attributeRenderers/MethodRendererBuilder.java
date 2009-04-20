@@ -7,6 +7,7 @@ package org.unicase.docExport.exportModel.builders.attributeRenderers;
 
 import java.util.ArrayList;
 
+import org.eclipse.emf.ecore.EStructuralFeature;
 import org.unicase.docExport.exportModel.Template;
 import org.unicase.docExport.exportModel.renderers.AttributeRenderer;
 import org.unicase.docExport.exportModel.renderers.specialRenderers.SpecialRenderersFactory;
@@ -24,8 +25,8 @@ public class MethodRendererBuilder extends AttributeRendererBuilder {
 	 * @see org.unicase.docExport.exportModel.builders.attributeRenderers.AttributeRendererBuilder#buildRenderers(org.unicase.docExport.exportModel.Template)
 	 */
 	@Override
-	public ArrayList<AttributeRenderer> buildRenderers(Template template) {
-		ArrayList<AttributeRenderer> renderers = super.buildRenderers(template);
+	public ArrayList<AttributeRenderer> buildRenderers(EStructuralFeature feature, Template template) {
+		ArrayList<AttributeRenderer> renderers = super.buildRenderers(feature, template);
 
 		renderers.add(SpecialRenderersFactory.eINSTANCE.createMethodRenderer());
 
