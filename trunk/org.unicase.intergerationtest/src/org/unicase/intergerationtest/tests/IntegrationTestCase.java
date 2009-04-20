@@ -26,6 +26,7 @@ import org.unicase.workspace.Usersession;
 import org.unicase.workspace.Workspace;
 import org.unicase.workspace.WorkspaceFactory;
 import org.unicase.workspace.WorkspaceManager;
+import org.unicase.workspace.exceptions.NoLocalChangesException;
 import org.unicase.workspace.impl.WorkspaceImpl;
 
 import java.io.IOException;
@@ -191,6 +192,8 @@ public abstract class IntegrationTestCase {
 				try {
 					getTestProjectSpace().commit(logMessage);
 					System.out.println("commit successful!");
+				}catch (NoLocalChangesException e){
+					//do nothing
 				} catch (EmfStoreException e) {
 					e.printStackTrace();
 				}

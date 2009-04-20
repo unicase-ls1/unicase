@@ -13,7 +13,6 @@ import org.junit.Test;
 import org.unicase.emfstore.exceptions.EmfStoreException;
 import org.unicase.intergerationtest.TestHelper;
 import org.unicase.model.util.SerializationException;
-import org.unicase.workspace.exceptions.NoLocalChangesException;
 
 /**
  * @author Hodaie
@@ -28,7 +27,7 @@ public class AttributeTransitiveChangeTest extends IntegrationTestCase {
 	 * @throws EmfStoreException EmfStoreException
 	 * @throws SerializationException SerializationException
 	 */
-	@Test(expected = NoLocalChangesException.class)
+	@Test
 	public void runTest() throws SerializationException, EmfStoreException {
 		System.out.println("AttributeTransitiveChangeTest");
 		final TestHelper testHelper = new TestHelper(randomSeed, getTestProject());
