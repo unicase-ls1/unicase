@@ -13,7 +13,6 @@ import org.junit.Test;
 import org.unicase.emfstore.exceptions.EmfStoreException;
 import org.unicase.intergerationtest.TestHelper;
 import org.unicase.model.util.SerializationException;
-import org.unicase.workspace.exceptions.NoLocalChangesException;
 
 /**
  * This move an element in a many reference list to another position.
@@ -34,7 +33,7 @@ public class MultiReferenceMoveTest  extends IntegrationTestCase {
 	 * @throws SerializationException SerializationException
 	 * 
 	 */
-	@Test (expected = NoLocalChangesException.class)
+	@Test 
 	public void runTest() throws SerializationException, EmfStoreException {
 		System.out.println("MultiReferenceMoveTests");
 		final TestHelper testHelper = new TestHelper(randomSeed , getTestProject());
