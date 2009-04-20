@@ -8,6 +8,8 @@ package org.unicase.docExport.docWriter;
 import org.apache.fop.apps.MimeConstants;
 
 /**
+ * Uses the TXT renderer of Apache FOP.
+ * 
  * @author Sebastian Hoecht
  */
 public class FopTxtWriter extends FopWriter {

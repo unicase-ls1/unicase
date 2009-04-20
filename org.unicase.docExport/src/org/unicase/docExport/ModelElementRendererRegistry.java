@@ -6,21 +6,25 @@
 package org.unicase.docExport;
 
 import java.util.ArrayList;
+import java.util.Collections;
+import java.util.Comparator;
 
-import org.eclipse.core.runtime.IStatus;
+import org.eclipse.emf.common.util.EList;
 import org.eclipse.emf.ecore.EClass;
+import org.eclipse.emf.ecore.EObject;
+import org.eclipse.emf.ecore.EPackage;
 import org.unicase.docExport.exportModel.Template;
-import org.unicase.docExport.exportModel.builders.DefaultDocumentTemplateBuilder;
-import org.unicase.docExport.exportModel.builders.DefaultModelElementRendererBuilder;
+import org.unicase.docExport.exportModel.builders.modelElementRenderers.ClassRenderersBuilder;
+import org.unicase.docExport.exportModel.builders.modelElementRenderers.MeetingRenderersBuilder;
+import org.unicase.docExport.exportModel.builders.modelElementRenderers.MilestoneRenderersBuilder;
+import org.unicase.docExport.exportModel.builders.modelElementRenderers.ModelElementRendererBuilder;
+import org.unicase.docExport.exportModel.builders.modelElementRenderers.PackageRenderersBuilder;
 import org.unicase.docExport.exportModel.renderers.ModelElementRenderer;
-import org.unicase.docExport.exportModel.renderers.specialRenderers.ClassRenderer;
-import org.unicase.docExport.exportModel.renderers.specialRenderers.FhmMeetingRenderer;
-import org.unicase.docExport.exportModel.renderers.specialRenderers.MeetingRenderer;
-import org.unicase.docExport.exportModel.renderers.specialRenderers.MilestoneRenderer;
-import org.unicase.docExport.exportModel.renderers.specialRenderers.PackageFlatRenderer;
-import org.unicase.docExport.exportModel.renderers.specialRenderers.SpecialRenderersFactory;
+import org.unicase.model.ModelElement;
 import org.unicase.model.ModelPackage;
-import org.unicase.workspace.util.WorkspaceUtil;
+import org.unicase.model.classes.ClassesPackage;
+import org.unicase.model.meeting.MeetingPackage;
+import org.unicase.model.task.TaskPackage;
 
 /**
  * This class creates a mapping from a ModelElement type to a its possible ModelElementRenderers. So if you create a new
@@ -38,82 +42,102 @@ public final class ModelElementRendererRegistry {
 	/**
 	 * Returns all possible ModelElementRenderers for a given modelElement EClass.
 	 * 
-	 * @param modelElementEClass the EClass of the ModelElement type
+	 * @param eClass the EClass of the ModelElement type
 	 * @param template the template where the ModelElementRenderers are needed. This parameter is required, because the
 	 *            a new default model element renderer is created. The build requires a template (because of the global
 	 *            renderer options)
 	 * @return all possible ModelElementRenderers
 	 */
-	public static ArrayList<ModelElementRenderer> getSupportedModelElementRenderers(String modelElementEClass,
-		Template template) {
+	public static ArrayList<ModelElementRenderer> getSupportedModelElementRenderers(EClass eClass, Template template) {
 
-		ArrayList<ModelElementRenderer> renderers = new ArrayList<ModelElementRenderer>();
+		ModelElementRendererBuilder builder = new ModelElementRendererBuilder();
 
-		ModelElementRenderer defaultRenderer = DefaultModelElementRendererBuilder.build(
-			getEClassOfString(modelElementEClass), template);
-		renderers.add(defaultRenderer);
-
-		if (modelElementEClass.equals("Meeting")) {
-			MeetingRenderer renderer = SpecialRenderersFactory.eINSTANCE.createMeetingRenderer(template);
-			renderers.add(renderer);
-
-			FhmMeetingRenderer renderer2 = SpecialRenderersFactory.eINSTANCE.createFhmMeetingRenderer();
-			renderer2.setTemplate(template);
-			renderers.add(renderer2);
-
-		} else if (modelElementEClass.equals("Milestone")) {
-			MilestoneRenderer renderer = SpecialRenderersFactory.eINSTANCE.createMilestoneRenderer();
-			renderer.setTemplate(template);
-			renderers.add(renderer);
-		} else if (modelElementEClass.equals("Package")) {
-			PackageFlatRenderer renderer = SpecialRenderersFactory.eINSTANCE.createPackageFlatRenderer();
-			renderer.setTemplate(template);
-			renderers.add(renderer);
-		} else if (modelElementEClass.equals("Class")) {
-			ClassRenderer renderer = SpecialRenderersFactory.eINSTANCE.createClassRenderer();
-			renderer.setTemplate(template);
-			renderers.add(renderer);
+		if (eClass.equals(MeetingPackage.eINSTANCE.getMeeting())) {
+			builder = new MeetingRenderersBuilder();
+		} else if (eClass.equals(TaskPackage.eINSTANCE.getMilestone())) {
+			builder = new MilestoneRenderersBuilder();
+		} else if (eClass.equals(ClassesPackage.eINSTANCE.getPackage())) {
+			builder = new PackageRenderersBuilder();
+		} else if (eClass.equals(ClassesPackage.eINSTANCE.getClass_())) {
+			builder = new ClassRenderersBuilder();
 		}
 
-		return renderers;
+		return builder.buildRenderers(template);
 	}
 
 	/**
-	 * Returns the default renderer which shall be used, if no renderer has been selected.
+	 * This function looks up the contents of a package for instantiatable ModelELements to add them to the result of
+	 * this function. This function looks up the subPackages recursively. Normally you will start this function with
+	 * ModelPackage.eINSTANCE.eContents()
 	 * 
-	 * @param modelElementEClass the modelElement type a renderer is needed for
-	 * @param template the template where this renderer is used
-	 * @return the fully configured default special renderer or a DefaultModelElementRenderer
+	 * @param objectList the myPackage.eContents() value where you want to look for EClasses
+	 * @return a list of EClasses which represent modelElement types
 	 */
-	public static ModelElementRenderer getDefaultSpecialModelElementRenderer(EClass modelElementEClass,
-		Template template) {
+	public static ArrayList<EClass> getModelElements(EList<EObject> objectList) {
 
-		if (modelElementEClass.getName().equals("Meeting")) {
-			return SpecialRenderersFactory.eINSTANCE.createMeetingRenderer(template);
-		} else if (modelElementEClass.getName().equals("Milestone")) {
-			return SpecialRenderersFactory.eINSTANCE.createMilestoneRenderer();
-		} else {
-			return DefaultModelElementRendererBuilder.build(modelElementEClass, template);
+		/**
+		 * Compare two EClasses by EClass name
+		 * 
+		 * @author Sebastian Höcht
+		 */
+		class EClassComparator implements Comparator<EClass> {
+
+			/**
+			 * @param o1 first eClass
+			 * @param o2 seconds eClass
+			 * @return -1; 0 or 1 like the string compareTo function
+			 */
+			public int compare(EClass o1, EClass o2) {
+				return o1.getName().compareTo(o2.getName());
+			}
+
 		}
+
+		ArrayList<EClass> modelElementTypes = new ArrayList<EClass>();
+
+		for (EObject object : objectList) {
+			if (object instanceof EClass) {
+				EClass eClass = (EClass) object;
+				EObject me;
+				if (!(eClass.isAbstract() || eClass.isInterface())) {
+					me = eClass.getEPackage().getEFactoryInstance().create(eClass);
+					if (me instanceof ModelElement) {
+						modelElementTypes.add((EClass) object);
+					}
+				}
+			} else if (object instanceof EPackage) {
+				modelElementTypes.addAll(getModelElements(object.eContents()));
+			}
+		}
+
+		Collections.sort(modelElementTypes, new EClassComparator());
+
+		return modelElementTypes;
 	}
 
 	/**
-	 * Returns the EClass of a ModelElement type given the clazz name of the ModelELement.
-	 * 
-	 * @param clazz the class name of the ModelElement
-	 * @return the EClass of the ModelElement
+	 * @param eClassName the name of the EClass which is searched for.
+	 * @return the EClass with the same name like eClassName
 	 */
-	public static EClass getEClassOfString(String clazz) {
-		ArrayList<EClass> modelElementTypes = DefaultDocumentTemplateBuilder.getModelElements(ModelPackage.eINSTANCE
-			.eContents());
+	public static EClass getEClassOfString(String eClassName) {
+		ArrayList<EClass> eClasses = getModelElements(ModelPackage.eINSTANCE.eContents());
 
-		for (EClass eClass : modelElementTypes) {
-			if (eClass.getName().equals(clazz)) {
+		for (EClass eClass : eClasses) {
+			if (eClassName.equals(eClass.getInstanceClassName())) {
 				return eClass;
 			}
 		}
 
-		WorkspaceUtil.log("can't find an EClass for the ModelElement Type " + clazz, new Exception(), IStatus.WARNING);
 		return null;
+	}
+
+	/**
+	 * Returns a unique string of an EClass.
+	 * 
+	 * @param eClass the EClass
+	 * @return a unique string of the EClass
+	 */
+	public static String getStringOfEClass(EClass eClass) {
+		return eClass.getInstanceTypeName();
 	}
 }

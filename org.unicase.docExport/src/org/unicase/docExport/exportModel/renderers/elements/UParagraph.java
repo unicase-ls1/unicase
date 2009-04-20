@@ -13,7 +13,7 @@ import org.unicase.docExport.exportModel.renderers.options.TextOption;
 import org.unicase.workspace.util.WorkspaceUtil;
 
 /**
- * A simple paragraph containing some text and additional parents. This is the most common e
+ * A simple paragraph containing some text and additional children. This is the most common element.
  * 
  * @author Sebastian Hoecht
  */

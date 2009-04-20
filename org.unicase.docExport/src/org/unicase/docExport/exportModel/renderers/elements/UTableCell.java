@@ -8,7 +8,7 @@ package org.unicase.docExport.exportModel.renderers.elements;
 import org.unicase.docExport.exportModel.renderers.options.TextOption;
 
 /**
- * This class represents an entry in an UTable.
+ * This element represents an entry in an UTable.
  * 
  * @see UTable
  * @author Sebastian Hoecht

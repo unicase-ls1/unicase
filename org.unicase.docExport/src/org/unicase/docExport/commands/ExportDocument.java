@@ -13,10 +13,11 @@ import org.eclipse.emf.transaction.RecordingCommand;
 import org.eclipse.emf.transaction.TransactionalEditingDomain;
 import org.eclipse.jface.viewers.ISelection;
 import org.eclipse.jface.viewers.IStructuredSelection;
+import org.eclipse.swt.widgets.MessageBox;
 import org.eclipse.swt.widgets.Shell;
 import org.eclipse.ui.PlatformUI;
 import org.eclipse.ui.handlers.HandlerUtil;
-import org.unicase.docExport.exceptions.TemplateSaveException;
+import org.unicase.docExport.exceptions.TemplatesFileNotFoundException;
 import org.unicase.docExport.exportModel.renderers.defaultRenderers.DefaultRenderersFactory;
 import org.unicase.model.ModelElement;
 import org.unicase.model.impl.ModelElementImpl;
@@ -57,13 +58,19 @@ public class ExportDocument extends AbstractHandler {
 		domain.getCommandStack().execute(new RecordingCommand(domain) {
 			@Override
 			protected void doExecute() {
+				ExportDialog dialog;
 				try {
-					ExportDialog dialog = new ExportDialog(shell, DefaultRenderersFactory.eINSTANCE
-						.createDefaultDocumentRenderer(), modelElement);
+					dialog = new ExportDialog(shell, DefaultRenderersFactory.eINSTANCE.createDefaultDocumentRenderer(),
+						modelElement);
 					dialog.open();
-				} catch (TemplateSaveException e) {
-					WorkspaceUtil.log("Couln't load/create any template.", e, IStatus.ERROR);
+				} catch (TemplatesFileNotFoundException e) {
+					WorkspaceUtil.log("The templates file could not be found or created", e, IStatus.ERROR);
+
+					MessageBox messageBox = new MessageBox(shell);
+					messageBox.setMessage("Couldn't find any Template");
+					messageBox.open();
 				}
+
 			}
 		});
 

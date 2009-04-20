@@ -31,7 +31,6 @@ public class TemplateEditorInput implements IEditorInput {
 	 * {@inheritDoc}
 	 */
 	public boolean exists() {
-		// TODO Auto-generated method stub
 		return false;
 	}
 
@@ -39,7 +38,6 @@ public class TemplateEditorInput implements IEditorInput {
 	 * {@inheritDoc}
 	 */
 	public ImageDescriptor getImageDescriptor() {
-		// TODO Auto-generated method stub
 		return null;
 	}
 
@@ -54,7 +52,6 @@ public class TemplateEditorInput implements IEditorInput {
 	 * {@inheritDoc}
 	 */
 	public IPersistableElement getPersistable() {
-		// TODO Auto-generated method stub
 		return null;
 	}
 
@@ -69,7 +66,6 @@ public class TemplateEditorInput implements IEditorInput {
 	 * {@inheritDoc}
 	 */
 	public Object getAdapter(Class adapter) {
-		// TODO Auto-generated method stub
 		return null;
 	}
 

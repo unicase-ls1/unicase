@@ -31,10 +31,9 @@ public class DocumentExportException extends Exception {
 	}
 
 	/**
-	 * 
+	 * Constructor.
 	 */
 	public DocumentExportException() {
-		// TODO Auto-generated constructor stub
 	}
 
 }

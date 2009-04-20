@@ -116,13 +116,6 @@ public class DefaultModelElementRendererImpl extends ModelElementRendererImpl im
 
 		removeAlreadyRenderedModelElements(remainingContainedModelElements, ordering.multiPropertiesOutsideOfTable,
 			modelElement);
-
-		// for (EObject containedModelElement : remainingContainedModelElements) {
-		// if (containedModelElement instanceof ModelElement) {
-		// renderContainedModelElement((ModelElement) containedModelElement, modelElementSection);
-		// }
-		// }
-
 	}
 
 	/**
@@ -177,7 +170,7 @@ public class DefaultModelElementRendererImpl extends ModelElementRendererImpl im
 			parent.add(label);
 
 		} catch (IOException e1) {
-			// fall through. The diagram wont be rendered, but everything else will work.
+			WorkspaceUtil.log("Diagram image rendering error", e1, IStatus.WARNING);
 		}
 	}
 
@@ -251,13 +244,6 @@ public class DefaultModelElementRendererImpl extends ModelElementRendererImpl im
 
 		for (IItemPropertyDescriptor propertyDescriptor : properties) {
 			EStructuralFeature feature = (EStructuralFeature) propertyDescriptor.getFeature(modelElement);
-
-			// UParagraph propertiesHeader = new UParagraph(
-			// getAttributeName(feature, propertyDescriptor.getDisplayName(modelElement)) + ": ",
-			// template.getLayoutOptions().getAttributeTextOption()
-			// );
-			// parent.add(propertiesHeader);
-			// propertiesHeader.getBoxModel().setMarginTop(15);
 
 			AttributeRenderer renderer = getAttributeRendererNotNull(feature);
 			renderer.render(feature, modelElement, parent, getTemplate());

@@ -120,18 +120,18 @@
             eType="ecore:EDataType http://www.eclipse.org/emf/2002/Ecore#//EBoolean"/>
       </eClassifiers>
       <eClassifiers xsi:type="ecore:EEnum" name="PageCitationStyle">
-        <eLiterals name="PAGE"/>
-        <eLiterals name="EMPTY" value="1"/>
-        <eLiterals name="PAGE_AND_LAST_PAGE" value="2"/>
+        <eLiterals name="PAGE" literal="page"/>
+        <eLiterals name="EMPTY" value="1" literal="empty"/>
+        <eLiterals name="PAGE_AND_LAST_PAGE" value="2" literal="page / lastpage"/>
       </eClassifiers>
       <eClassifiers xsi:type="ecore:EEnum" name="HeaderStyle">
-        <eLiterals name="ONLY_TEXT"/>
-        <eLiterals name="TEXT_AND_LOGO" value="1"/>
+        <eLiterals name="ONLY_TEXT" literal="only header text"/>
+        <eLiterals name="TEXT_AND_LOGO" value="1" literal="text and logo"/>
       </eClassifiers>
       <eClassifiers xsi:type="ecore:EEnum" name="AppendixStyle">
-        <eLiterals name="HIDE"/>
-        <eLiterals name="SHOW_FLAT" value="1"/>
-        <eLiterals name="SHOW_RECURSIVE" value="2"/>
+        <eLiterals name="HIDE" literal="hide"/>
+        <eLiterals name="SHOW_FLAT" value="1" literal="show flat"/>
+        <eLiterals name="SHOW_RECURSIVE" value="2" literal="show recursive"/>
       </eClassifiers>
       <eClassifiers xsi:type="ecore:EClass" name="ListOption" eSuperTypes="#//renderers/options/RendererOption">
         <eStructuralFeatures xsi:type="ecore:EAttribute" name="listStyle" eType="#//renderers/options/ListStyle"/>

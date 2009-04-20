@@ -26,13 +26,13 @@ import org.eclipse.emf.ecore.resource.Resource;
 import org.eclipse.emf.ecore.resource.ResourceSet;
 import org.eclipse.emf.ecore.resource.impl.ResourceSetImpl;
 import org.unicase.docExport.commands.ImportTemplate;
+import org.unicase.docExport.exceptions.DefaultTemplateLoadException;
 import org.unicase.docExport.exceptions.InvalidTemplateArchiveException;
-import org.unicase.docExport.exceptions.TemplateNotFoundException;
 import org.unicase.docExport.exceptions.TemplateSaveException;
 import org.unicase.docExport.exceptions.TemplatesFileNotFoundException;
 import org.unicase.docExport.exportModel.ExportModelPackage;
 import org.unicase.docExport.exportModel.Template;
-import org.unicase.docExport.exportModel.builders.DefaultDocumentTemplateBuilder;
+import org.unicase.docExport.exportModel.builders.DefaultDocumentTemplateFactory;
 import org.unicase.workspace.Configuration;
 import org.unicase.workspace.util.WorkspaceUtil;
 
@@ -78,7 +78,7 @@ public final class TemplateRegistry {
 	 * The filename of the EMF XML file, containing a set of templates. The version number of the template file name
 	 * must be incremented, if there are major EMF model changes causing incompatibility for older templates.
 	 */
-	private static final String TEMPLATES_FILE_NAME = "templates6";
+	private static final String TEMPLATES_FILE_NAME = "templates7";
 
 	/**
 	 * The folder where all templates should be saved.
@@ -107,8 +107,10 @@ public final class TemplateRegistry {
 	 * Loads all default templates from the default template folders. This is a not so easy job, because the templates
 	 * are stored in single zip files containing an EMF XML file with a template and a logo image. These files need to
 	 * be unzipped and saved in the local unicase folder.
+	 * 
+	 * @throws DefaultTemplateLoadException the default template couln't be loaded for any reason.
 	 */
-	public static void loadDefaultTemplatesFromZipFile() {
+	public static void loadDefaultTemplatesFromZipFile() throws DefaultTemplateLoadException {
 
 		try {
 			URL templateFolderUrl = FileLocator.find(Activator.getDefault().getBundle(), new Path(
@@ -160,11 +162,11 @@ public final class TemplateRegistry {
 				}
 			}
 		} catch (IOException e) {
-			// just fall through. If a default template could not be loaded, the export function will still work.
+			throw new DefaultTemplateLoadException(e);
 		} catch (InvalidTemplateArchiveException e) {
-			// see above
+			throw new DefaultTemplateLoadException(e);
 		} catch (TemplateSaveException e) {
-			// see above
+			throw new DefaultTemplateLoadException(e);
 		}
 	}
 
@@ -173,8 +175,9 @@ public final class TemplateRegistry {
 	 * 
 	 * @param fis the zip file which is read.
 	 * @param fos the template file which is written.
+	 * @throws DefaultTemplateLoadException
 	 */
-	private static void readZipFile(InputStream fis, FileOutputStream fos) {
+	private static void readZipFile(InputStream fis, FileOutputStream fos) throws DefaultTemplateLoadException {
 		try {
 			byte[] buf = new byte[1024];
 			int i = 0;
@@ -182,7 +185,7 @@ public final class TemplateRegistry {
 				fos.write(buf, 0, i);
 			}
 		} catch (IOException e) {
-			// nothing to do, because this should always work. If it doesn't there should be a code debuggin.
+			throw new DefaultTemplateLoadException(e);
 		} finally {
 			if (fis != null) {
 				try {
@@ -200,59 +203,33 @@ public final class TemplateRegistry {
 	}
 
 	/**
-	 * Loads a Template from the templates file.
+	 * Loads a Template from the templates file. If the Template could not be found, null is returned.
 	 * 
 	 * @param templateName the name of the template which shall be loaded
 	 * @return the Template which shall be loaded
-	 * @throws TemplateNotFoundException -
+	 * @throws TemplatesFileNotFoundException The Templates file could not be found
 	 */
-	public static Template loadTemplate(String templateName) throws TemplateNotFoundException {
+	public static Template getTemplate(String templateName) throws TemplatesFileNotFoundException {
 
 		Resource resource;
 		try {
 			resource = getTemplatesResource();
-			Template template = getTemplate(templateName, resource);
-			if (template == null) {
-				throw new TemplateNotFoundException(templateName);
-			} else {
-				return template;
-			}
-		} catch (IOException e) {
-			throw new TemplateNotFoundException(templateName);
-		} catch (TemplatesFileNotFoundException e) {
-			throw new TemplateNotFoundException(templateName);
-		}
-	}
-
-	/**
-	 * Loads a persistent template from the plug-in folder. If the template doesn't exist, null will be returned and an
-	 * error will be added to the eclipse error log.
-	 * 
-	 * @param templateName the name of the template which shall be loaded
-	 * @param resource the resource of the EMF store object
-	 * @return the loaded template
-	 * @throws TemplatesFileNotFoundException -
-	 */
-	public static Template getTemplate(String templateName, Resource resource) throws TemplatesFileNotFoundException {
-		try {
 			resource.load(resource.getResourceSet().getLoadOptions());
-		} catch (IOException e) {
-			WorkspaceUtil.log("Fetching template " + templateName + " failed ", new TemplatesFileNotFoundException(),
-				IStatus.WARNING);
-			throw new TemplatesFileNotFoundException();
-		}
 
-		EList<EObject> contents = resource.getContents();
-		for (EObject object : contents) {
-			if (object instanceof Template) {
-				Template templateObject = (Template) object;
-				if (templateObject.getName().equals(templateName)) {
-					return (Template) object;
+			EList<EObject> contents = resource.getContents();
+			for (EObject object : contents) {
+				if (object instanceof Template) {
+					Template templateObject = (Template) object;
+					if (templateObject.getName().equals(templateName)) {
+						return (Template) object;
+					}
 				}
 			}
-		}
+			return null;
 
-		return null;
+		} catch (IOException e) {
+			throw new TemplatesFileNotFoundException(e);
+		}
 	}
 
 	/**
@@ -260,19 +237,16 @@ public final class TemplateRegistry {
 	 * ".template".
 	 * 
 	 * @param template the template which shall be saved
-	 * @throws TemplateSaveException -
+	 * @throws TemplatesFileNotFoundException The templates file could not be found, and therefore the Template could
+	 *             not be saved.
 	 */
-	public static void saveTemplate(Template template) throws TemplateSaveException {
+	public static void saveTemplate(Template template) throws TemplatesFileNotFoundException {
 		Resource resource;
-		try {
-			resource = getTemplatesResource();
-		} catch (IOException e1) {
-			throw new TemplateSaveException(e1);
-		}
+		resource = getTemplatesResource();
 
 		Template oldTemplate;
 		try {
-			oldTemplate = getTemplate(template.getName(), resource);
+			oldTemplate = getTemplate(template.getName());
 
 			if (oldTemplate == null) {
 				resource.getContents().add(template);
@@ -283,9 +257,9 @@ public final class TemplateRegistry {
 
 			resource.save(null);
 		} catch (TemplatesFileNotFoundException e) {
-			WorkspaceUtil.log("this should never happen", e, IStatus.ERROR);
+			throw new TemplatesFileNotFoundException(e);
 		} catch (IOException e) {
-			throw new TemplateSaveException(e);
+			throw new TemplatesFileNotFoundException(e);
 		}
 	}
 
@@ -293,7 +267,7 @@ public final class TemplateRegistry {
 	 * @return a new DocumentTemplate
 	 */
 	public static Template createNewDefaultDocumentTemplate() {
-		Template template = DefaultDocumentTemplateBuilder.build();
+		Template template = DefaultDocumentTemplateFactory.build();
 		template.setName(DEFAULT_TEMPLATE_NAME);
 
 		return template;
@@ -303,24 +277,25 @@ public final class TemplateRegistry {
 	 * Returns a list of all available templates. Additionally, all default templates are loaded.
 	 * 
 	 * @return an ArrayList of all templates which a stored in the template folder
-	 * @throws TemplateSaveException -
+	 * @throws TemplatesFileNotFoundException The Template resource could not be loaded, and therefore, there is no
+	 *             template. This is a fatal Exception disabling all export functions.
 	 */
-	public static ArrayList<Template> getAllTemplates() throws TemplateSaveException {
-		loadDefaultTemplatesFromZipFile();
+	public static ArrayList<Template> getAllTemplates() throws TemplatesFileNotFoundException {
+		try {
+			loadDefaultTemplatesFromZipFile();
+		} catch (DefaultTemplateLoadException e) {
+			WorkspaceUtil.log("An Error occured while loading the default templates", e, IStatus.WARNING);
+		}
 
 		ArrayList<Template> templates = new ArrayList<Template>();
 
 		Resource resource;
-		try {
-			resource = getTemplatesResource();
-		} catch (IOException e) {
-			throw new TemplateSaveException(e);
-		}
+		resource = getTemplatesResource();
 
 		try {
 			resource.load(resource.getResourceSet().getLoadOptions());
 		} catch (IOException e) {
-			WorkspaceUtil.log("Fetching all templates failed", new TemplatesFileNotFoundException(), IStatus.WARNING);
+			WorkspaceUtil.log("Fetching all templates failed", new TemplatesFileNotFoundException(e), IStatus.WARNING);
 
 			Template template = createNewDefaultDocumentTemplate();
 			saveTemplate(template);
@@ -359,9 +334,10 @@ public final class TemplateRegistry {
 
 	/**
 	 * @return the static resource containing all templates
-	 * @throws IOException .
+	 * @throws TemplatesFileNotFoundException There was no templates file, and a new one has been created, but it
+	 *             couldn't be saved
 	 */
-	public static Resource getTemplatesResource() throws IOException {
+	public static Resource getTemplatesResource() throws TemplatesFileNotFoundException {
 		if (resourceSet == null) {
 			resourceSet = new ResourceSetImpl();
 		}
@@ -376,10 +352,28 @@ public final class TemplateRegistry {
 			} catch (IOException e) {
 				WorkspaceUtil.log("The templates file could not be saved after creating a new resource",
 					new Exception(), IStatus.ERROR);
-				throw new IOException();
+				throw new TemplatesFileNotFoundException(e);
 			}
 		} else {
 			return resourceSet.getResource(fileURI, true);
+		}
+	}
+
+	/**
+	 * Persistently deletes a template.
+	 * 
+	 * @param template the template which shall be deleted.
+	 * @throws TemplatesFileNotFoundException the template could not be deleted
+	 */
+	public static void deleteTemplate(Template template) throws TemplatesFileNotFoundException {
+		Resource resource;
+		resource = getTemplatesResource();
+
+		try {
+			resource.getContents().remove(template);
+			resource.save(null);
+		} catch (IOException e) {
+			throw new TemplatesFileNotFoundException(e);
 		}
 	}
 }

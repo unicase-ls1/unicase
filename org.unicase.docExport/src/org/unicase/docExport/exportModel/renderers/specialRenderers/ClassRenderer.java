@@ -8,9 +8,8 @@ package org.unicase.docExport.exportModel.renderers.specialRenderers;
 import org.unicase.docExport.exportModel.renderers.ModelElementRenderer;
 
 /**
- * <!-- begin-user-doc --> A representation of the model object '<em><b>Class Renderer</b></em>'. <!-- end-user-doc -->
- *
- *
+ * <!-- begin-user-doc --> A special renderer for a Unicase class. <!-- end-user-doc -->
+ * 
  * @see org.unicase.docExport.exportModel.renderers.specialRenderers.SpecialRenderersPackage#getClassRenderer()
  * @model
  * @generated

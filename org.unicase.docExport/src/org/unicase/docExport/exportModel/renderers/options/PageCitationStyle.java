@@ -26,7 +26,7 @@ public enum PageCitationStyle implements Enumerator {
 	 * @generated
 	 * @ordered
 	 */
-	PAGE(0, "PAGE", "PAGE"), /**
+	PAGE(0, "PAGE", "page"), /**
 	 * The '<em><b>EMPTY</b></em>' literal object. <!-- begin-user-doc --> <!-- end-user-doc
 	 * -->
 	 * 
@@ -34,7 +34,7 @@ public enum PageCitationStyle implements Enumerator {
 	 * @generated
 	 * @ordered
 	 */
-	EMPTY(1, "EMPTY", "EMPTY"),
+	EMPTY(1, "EMPTY", "empty"),
 
 	/**
 	 * The '<em><b>PAGE AND LAST PAGE</b></em>' literal object.
@@ -43,7 +43,7 @@ public enum PageCitationStyle implements Enumerator {
 	 * @generated
 	 * @ordered
 	 */
-	PAGE_AND_LAST_PAGE(2, "PAGE_AND_LAST_PAGE", "PAGE_AND_LAST_PAGE");
+	PAGE_AND_LAST_PAGE(2, "PAGE_AND_LAST_PAGE", "page / lastpage");
 
 	/**
 	 * The '<em><b>PAGE</b></em>' literal value.
@@ -54,7 +54,7 @@ public enum PageCitationStyle implements Enumerator {
 	 * </p>
 	 * <!-- end-user-doc -->
 	 * @see #PAGE
-	 * @model
+	 * @model literal="page"
 	 * @generated
 	 * @ordered
 	 */
@@ -69,7 +69,7 @@ public enum PageCitationStyle implements Enumerator {
 	 * </p>
 	 * <!-- end-user-doc -->
 	 * @see #EMPTY
-	 * @model
+	 * @model literal="empty"
 	 * @generated
 	 * @ordered
 	 */
@@ -84,7 +84,7 @@ public enum PageCitationStyle implements Enumerator {
 	 * </p>
 	 * <!-- end-user-doc -->
 	 * @see #PAGE_AND_LAST_PAGE
-	 * @model
+	 * @model literal="page / lastpage"
 	 * @generated
 	 * @ordered
 	 */

@@ -19,7 +19,7 @@ import org.eclipse.swt.widgets.Control;
 import org.eclipse.swt.widgets.Shell;
 import org.eclipse.swt.widgets.Text;
 import org.unicase.docExport.TemplateRegistry;
-import org.unicase.docExport.exceptions.TemplateSaveException;
+import org.unicase.docExport.exceptions.TemplatesFileNotFoundException;
 import org.unicase.docExport.exportModel.Template;
 import org.unicase.workspace.util.WorkspaceUtil;
 
@@ -51,8 +51,6 @@ public class TemplateSaveAsDialog extends TitleAreaDialog {
 		GridLayout layout = new GridLayout();
 		layout.numColumns = 1;
 		parent.setLayout(layout);
-		// GridData gData = new GridData(GridData.FILL_HORIZONTAL);
-		// parent.setLayoutData(gData);
 		templateName = new Text(parent, SWT.BORDER);
 		return parent;
 	}
@@ -99,7 +97,7 @@ public class TemplateSaveAsDialog extends TitleAreaDialog {
 					template.setName(templateName.getText());
 					try {
 						TemplateRegistry.saveTemplate(template);
-					} catch (TemplateSaveException e1) {
+					} catch (TemplatesFileNotFoundException e1) {
 						WorkspaceUtil.log("could not save the Template", e1, IStatus.ERROR);
 					}
 					close();

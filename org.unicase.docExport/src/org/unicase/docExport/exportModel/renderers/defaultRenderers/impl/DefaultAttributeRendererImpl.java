@@ -24,9 +24,7 @@ import org.unicase.docExport.Activator;
 import org.unicase.docExport.DocumentExport;
 import org.unicase.docExport.TemplateRegistry;
 import org.unicase.docExport.exportModel.Template;
-import org.unicase.docExport.exportModel.builders.DefaultModelElementRendererBuilder;
 import org.unicase.docExport.exportModel.renderers.ModelElementRenderer;
-import org.unicase.docExport.exportModel.renderers.ModelElementRendererMapping;
 import org.unicase.docExport.exportModel.renderers.defaultRenderers.DefaultAttributeRenderer;
 import org.unicase.docExport.exportModel.renderers.defaultRenderers.DefaultRenderersPackage;
 import org.unicase.docExport.exportModel.renderers.elements.UCompositeSection;
@@ -245,9 +243,6 @@ public class DefaultAttributeRendererImpl extends AttributeRendererImpl implemen
 		name.setIndentionLeft(1);
 		parent.add(name);
 
-		// if (false) {
-		// addDescription(parent, WorkspaceUtil.cleanFormatedText(content.getDescription()));
-		// }
 	}
 
 	private void renderContainedReference(ModelElement content, UCompositeSection attributeSection,
@@ -255,19 +250,14 @@ public class DefaultAttributeRendererImpl extends AttributeRendererImpl implemen
 		ModelElementRenderer renderer = getModelElementRenderer(content.eClass());
 		try {
 			renderer.render(content, attributeSection);
-		} catch (Exception e) {
+		} catch (RuntimeException e) {
 			WorkspaceUtil.log("Error in the renderer " + renderer.getClass().getSimpleName(), e, IStatus.ERROR);
 		}
 
 	}
 
 	private ModelElementRenderer getModelElementRenderer(EClass eClass) {
-		for (ModelElementRendererMapping mapping : template.getModelElementRendererMapping()) {
-			if (mapping.getEClassName().equals(eClass.getName()))
-				return mapping.getRenderer();
-		}
-
-		return DefaultModelElementRendererBuilder.build(eClass, template);
+		return template.getModelElementRendererNotNull(eClass, template);
 	}
 
 	private ReferenceOption getRefenceOption(AttributeOption option) {
@@ -323,12 +313,5 @@ public class DefaultAttributeRendererImpl extends AttributeRendererImpl implemen
 			parent.add(list);
 		}
 	}
-
-	// private void addDescription(UCompositeSection parent, String descriptionText) {
-	// UParagraph description = new UParagraph(descriptionText, layoutOptions.getDefaultTextOption());
-	// description.setIndentionLeft(3);
-	// parent.add(description);
-	// }
-	// end custom code
 
 } // DefaultAttributeRendererImpl

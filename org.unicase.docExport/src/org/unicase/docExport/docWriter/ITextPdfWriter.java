@@ -8,9 +8,11 @@ package org.unicase.docExport.docWriter;
 import java.io.FileNotFoundException;
 import java.io.FileOutputStream;
 
+import org.unicase.docExport.exceptions.DocumentExportException;
 import org.unicase.docExport.exportModel.renderers.elements.URootCompositeSection;
 
 import com.lowagie.text.DocumentException;
+import com.lowagie.text.pdf.PdfWriter;
 
 /**
  * Uses iText to render a PDF document.
@@ -31,24 +33,23 @@ public class ITextPdfWriter extends ITextWriter implements DocWriter {
 	/**
 	 * {@inheritDoc}
 	 * 
+	 * @throws DocumentExportException
 	 * @see org.unicase.docExport.docWriter.DocWriter#export(java.lang.String,
 	 *      org.unicase.docExport.exportModel.renderers.elements.URootCompositeSection)
 	 */
-	public void export(String fileName, URootCompositeSection uDoc) {
+	public void export(String fileName, URootCompositeSection uDoc) throws DocumentExportException {
 
 		try {
-			com.lowagie.text.pdf.PdfWriter.getInstance(getDoc(), new FileOutputStream(fileName));
+			PdfWriter.getInstance(getDoc(), new FileOutputStream(fileName));
 			getDoc().open();
 
 			writeUDocument(getDoc(), uDoc);
 
 			getDoc().close();
 		} catch (FileNotFoundException e) {
-			// TODO Auto-generated catch block
-			e.printStackTrace();
+			throw new DocumentExportException("File access error", e);
 		} catch (DocumentException e) {
-			// TODO Auto-generated catch block
-			e.printStackTrace();
+			throw new DocumentExportException("iText error", e);
 		}
 	}
 }

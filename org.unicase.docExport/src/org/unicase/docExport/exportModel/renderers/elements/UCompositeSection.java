@@ -8,7 +8,7 @@ package org.unicase.docExport.exportModel.renderers.elements;
 import java.util.Vector;
 
 /**
- * This class is just a container for more elements.
+ * This element is just a container for more elements.
  * 
  * @author Sebastian Hoecht
  */

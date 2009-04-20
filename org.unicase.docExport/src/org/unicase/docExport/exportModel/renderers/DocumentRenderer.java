@@ -21,6 +21,14 @@ import org.unicase.model.ModelElement;
 public interface DocumentRenderer extends EObject {
 
 	// begin custom code
+	/**
+	 * renders a modelElement using a template to the abstract recursive document model with the root element
+	 * URootCompositeSection.
+	 * 
+	 * @param modelElement the model element which shall be rendered.
+	 * @param template the template which defines the layout.
+	 * @return the root element of the document export internal document structure.
+	 */
 	URootCompositeSection render(ModelElement modelElement, Template template);
 	// end custom code
 } // DocumentRenderer

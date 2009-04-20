@@ -21,11 +21,14 @@ import org.unicase.docExport.exportModel.renderers.options.ReferenceAttributeOpt
 import org.unicase.docExport.exportModel.renderers.options.StringAttributeOption;
 
 /**
+ * Creates a new default AttributeRenderer and adds the correct AttributeOption objects. This is a factory method design
+ * pattern.
+ * 
  * @author Sebastian Hoecht
  */
-public final class DefaultAttributeRendererBuilder {
+public final class DefaultAttributeRendererFactory {
 
-	private DefaultAttributeRendererBuilder() {
+	private DefaultAttributeRendererFactory() {
 
 	}
 

@@ -5,15 +5,13 @@
  */
 package org.unicase.docExport.views;
 
-import java.io.IOException;
-
 import org.eclipse.core.commands.ExecutionException;
 import org.eclipse.core.commands.NotEnabledException;
 import org.eclipse.core.commands.NotHandledException;
 import org.eclipse.core.commands.common.NotDefinedException;
+import org.eclipse.core.runtime.IStatus;
 import org.eclipse.emf.common.notify.AdapterFactory;
 import org.eclipse.emf.edit.provider.ComposedAdapterFactory;
-import org.eclipse.emf.edit.ui.provider.AdapterFactoryContentProvider;
 import org.eclipse.emf.edit.ui.provider.AdapterFactoryLabelProvider;
 import org.eclipse.jface.action.MenuManager;
 import org.eclipse.jface.viewers.DoubleClickEvent;
@@ -26,6 +24,9 @@ import org.eclipse.ui.handlers.IHandlerService;
 import org.eclipse.ui.part.ViewPart;
 import org.unicase.docExport.TemplateRegistry;
 import org.unicase.docExport.editors.TemplateEditor;
+import org.unicase.docExport.exceptions.DefaultTemplateLoadException;
+import org.unicase.docExport.exceptions.TemplatesFileNotFoundException;
+import org.unicase.workspace.util.WorkspaceUtil;
 
 /**
  * This view lists all templates in a treeview.
@@ -54,21 +55,25 @@ public class TemplatesView extends ViewPart {
 	@Override
 	public void createPartControl(Composite parent) {
 
-		TemplateRegistry.loadDefaultTemplatesFromZipFile();
+		try {
+			TemplateRegistry.loadDefaultTemplatesFromZipFile();
+		} catch (DefaultTemplateLoadException e1) {
+			WorkspaceUtil.log("Default templates could not be loaded", e1, IStatus.ERROR);
+		}
 
 		AdapterFactory myAdapterFactory = new ComposedAdapterFactory(
 			ComposedAdapterFactory.Descriptor.Registry.INSTANCE);
 
 		viewer = new TreeViewer(parent);
 		viewer.setLabelProvider(new AdapterFactoryLabelProvider(myAdapterFactory));
-		viewer.setContentProvider(new AdapterFactoryContentProvider(myAdapterFactory));
+		viewer.setContentProvider(new TemplatesViewContentProvider(myAdapterFactory));
 
 		viewer.getTree().setLayoutData(new GridData(GridData.FILL_BOTH));
 
 		try {
 			viewer.setInput(TemplateRegistry.getTemplatesResource());
-		} catch (IOException e) {
-			// fall through
+		} catch (TemplatesFileNotFoundException e1) {
+			WorkspaceUtil.log("Templates file could not be loaded", e1, IStatus.ERROR);
 		}
 
 		MenuManager menuManager = new MenuManager();
@@ -83,18 +88,22 @@ public class TemplatesView extends ViewPart {
 				try {
 					handlerService.executeCommand(TemplateEditor.COMMAND_ID, null);
 				} catch (ExecutionException e) {
-					// fall through
+					logTemplateError(e);
 				} catch (NotDefinedException e) {
-					// fall through
+					logTemplateError(e);
 				} catch (NotEnabledException e) {
-					// fall through
+					logTemplateError(e);
 				} catch (NotHandledException e) {
-					// fall through
+					logTemplateError(e);
 				}
 			}
 		});
 
 		getSite().setSelectionProvider(viewer);
+	}
+
+	private void logTemplateError(Exception e) {
+		WorkspaceUtil.log("The Template editor could not be opened", e, IStatus.ERROR);
 	}
 
 	/**
@@ -103,5 +112,4 @@ public class TemplatesView extends ViewPart {
 	@Override
 	public void setFocus() {
 	}
-
 }

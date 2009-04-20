@@ -5,16 +5,12 @@
  */
 package org.unicase.docExport.exportModel.renderers.impl;
 
-import java.util.ArrayList;
-
 import org.eclipse.emf.ecore.EAttribute;
 import org.eclipse.emf.ecore.EClass;
 import org.eclipse.emf.ecore.EPackage;
 import org.eclipse.emf.ecore.EReference;
 import org.eclipse.emf.ecore.impl.EPackageImpl;
 import org.unicase.docExport.exportModel.ExportModelPackage;
-import org.unicase.docExport.exportModel.Template;
-import org.unicase.docExport.exportModel.builders.DefaultModelElementRendererBuilder;
 import org.unicase.docExport.exportModel.impl.ExportModelPackageImpl;
 import org.unicase.docExport.exportModel.renderers.AttributeRenderer;
 import org.unicase.docExport.exportModel.renderers.AttributeRendererMapping;
@@ -27,11 +23,8 @@ import org.unicase.docExport.exportModel.renderers.defaultRenderers.DefaultRende
 import org.unicase.docExport.exportModel.renderers.defaultRenderers.impl.DefaultRenderersPackageImpl;
 import org.unicase.docExport.exportModel.renderers.options.OptionsPackage;
 import org.unicase.docExport.exportModel.renderers.options.impl.OptionsPackageImpl;
-import org.unicase.docExport.exportModel.renderers.specialRenderers.SpecialRenderersFactory;
 import org.unicase.docExport.exportModel.renderers.specialRenderers.SpecialRenderersPackage;
 import org.unicase.docExport.exportModel.renderers.specialRenderers.impl.SpecialRenderersPackageImpl;
-import org.unicase.model.meeting.MeetingPackage;
-import org.unicase.model.task.TaskPackage;
 
 /**
  * <!-- begin-user-doc --> An implementation of the model <b>Package</b>. <!-- end-user-doc -->
@@ -352,22 +345,5 @@ public class RenderersPackageImpl extends EPackageImpl implements RenderersPacka
 		initEReference(getAttributeRendererMapping_AttributeRenderer(), this.getAttributeRenderer(), null, "attributeRenderer", null, 0, 1, AttributeRendererMapping.class, !IS_TRANSIENT, !IS_VOLATILE, IS_CHANGEABLE, IS_COMPOSITE, !IS_RESOLVE_PROXIES, !IS_UNSETTABLE, IS_UNIQUE, !IS_DERIVED, IS_ORDERED);
 		initEAttribute(getAttributeRendererMapping_FeatureName(), ecorePackage.getEString(), "featureName", null, 0, 1, AttributeRendererMapping.class, !IS_TRANSIENT, !IS_VOLATILE, IS_CHANGEABLE, !IS_UNSETTABLE, !IS_ID, IS_UNIQUE, !IS_DERIVED, IS_ORDERED);
 	}
-
-	// begin custom code
-	public static ArrayList<ModelElementRenderer> getSupportedModelElementRenderers(EClass eClass, Template template) {
-		ArrayList<ModelElementRenderer> renderers = new ArrayList<ModelElementRenderer>();
-
-		renderers.add(DefaultModelElementRendererBuilder.build(eClass, template));
-
-		if (eClass.equals(MeetingPackage.eINSTANCE.getMeeting())) {
-			renderers.add(SpecialRenderersFactory.eINSTANCE.createMeetingRenderer(template));
-		}
-		if (eClass.equals(TaskPackage.eINSTANCE.getMilestone())) {
-			renderers.add(SpecialRenderersFactory.eINSTANCE.createMilestoneRenderer());
-		}
-
-		return renderers;
-	}
-	// end custom code
 
 } // RenderersPackageImpl
