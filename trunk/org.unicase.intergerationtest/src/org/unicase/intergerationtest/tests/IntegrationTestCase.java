@@ -5,9 +5,16 @@
  */
 package org.unicase.intergerationtest.tests;
 
+import java.io.File;
+import java.io.FileFilter;
+import java.io.IOException;
+import java.net.URISyntaxException;
+import java.util.Calendar;
+
 import org.eclipse.emf.ecore.util.EcoreUtil;
 import org.eclipse.emf.transaction.RecordingCommand;
 import org.eclipse.emf.transaction.TransactionalEditingDomain;
+import org.junit.After;
 import org.junit.Before;
 import org.junit.BeforeClass;
 import org.unicase.emfstore.EmfStoreController;
@@ -20,6 +27,7 @@ import org.unicase.emfstore.exceptions.EmfStoreException;
 import org.unicase.intergerationtest.Activator;
 import org.unicase.intergerationtest.TestHelper;
 import org.unicase.model.Project;
+import org.unicase.model.util.FileUtil;
 import org.unicase.workspace.Configuration;
 import org.unicase.workspace.ProjectSpace;
 import org.unicase.workspace.ServerInfo;
@@ -30,11 +38,6 @@ import org.unicase.workspace.WorkspaceManager;
 import org.unicase.workspace.exceptions.NoLocalChangesException;
 import org.unicase.workspace.impl.ProjectSpaceImpl;
 import org.unicase.workspace.impl.WorkspaceImpl;
-
-import java.io.File;
-import java.io.IOException;
-import java.net.URISyntaxException;
-import java.util.Calendar;
 
 /**
  * @author Hodaie
@@ -50,6 +53,8 @@ public abstract class IntegrationTestCase {
 	private static ProjectId projectId;
 	private static Workspace workSpace;
 	private static Project testProjectBackup;
+
+	private static int executedTestsCounter;
 
 	/**
 	 * set up test project.
@@ -254,5 +259,62 @@ public abstract class IntegrationTestCase {
 		Project comparePrject = ((WorkspaceImpl) WorkspaceManager.getInstance().getCurrentWorkspace()).checkout(
 			usersession, projectId);
 		return comparePrject;
+	}
+
+	/**
+	 * cleans server and workspace after tests are run.
+	 */
+	@After
+	public void cleanUp() {
+		executedTestsCounter++;
+		if (executedTestsCounter == 14) {
+			doCleanUp();
+		}
+	}
+
+	private void doCleanUp() {
+		String serverPath = ServerConfiguration.getServerHome();
+		File serverDirectory = new File(serverPath);
+		FileFilter filter = new FileFilter() {
+
+			public boolean accept(File pathname) {
+				return pathname.getName().startsWith("project-");
+			}
+
+		};
+		File[] filesToDelete = serverDirectory.listFiles(filter);
+		for (int i = 0; i < filesToDelete.length; i++) {
+			try {
+				FileUtil.deleteFolder(filesToDelete[i]);
+			} catch (IOException e) {
+				
+				e.printStackTrace();
+			}
+		}
+		
+		new File(serverPath + "storage.uss").delete();
+		
+		String workspacePath = Configuration.getWorkspaceDirectory();
+		File workspaceDirectory = new File(workspacePath);
+		FileFilter filter2 = new FileFilter() {
+
+			public boolean accept(File pathname) {
+				return pathname.getName().startsWith("ps-");
+			}
+
+		};
+		File[] filesToDelete2 = workspaceDirectory.listFiles(filter2);
+		for (int i = 0; i < filesToDelete2.length; i++) {
+			try {
+				FileUtil.deleteFolder(filesToDelete2[i]);
+			} catch (IOException e) {
+				
+				e.printStackTrace();
+			}
+		}
+		
+		new File(workspacePath + "workspace.ucw").delete();
+		
+		
 	}
 }
