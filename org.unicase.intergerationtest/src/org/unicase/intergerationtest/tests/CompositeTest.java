@@ -28,10 +28,10 @@ public class CompositeTest extends IntegrationTestCase {
 	private long randomSeed = 1;
 	private int numOfTests = 13;
 
-	private boolean testAll;
+	private boolean testAll = true;
 	private int maxTimesToRunATestCase = 3;
-	private int randomSelectIterations = 10;
-	private int testAllIterations = 10;
+	private int randomSelectIterations = 50;
+	private int testAllIterations = 20;
 
 	private TestHelper testHelper;
 
@@ -105,7 +105,9 @@ public class CompositeTest extends IntegrationTestCase {
 		}
 
 		for (int j = 0; j < numOfTests; j++) {
-			Integer testToRun = testHelper.getRandomPosition(testsToRun.size());
+			int index = testHelper.getRandomPosition(testsToRun.size());
+			Integer testToRun = testsToRun.get(index);
+			
 			int timesToRun = testHelper.getRandomPosition(maxTimesToRunATestCase);
 			// make sure the test runs at least once
 			if (timesToRun == 0) {
@@ -122,67 +124,80 @@ public class CompositeTest extends IntegrationTestCase {
 		for (int i = 0; i < timesToRun; i++) {
 			switch (testToRun.intValue()) {
 			case 0:
-				// Delete test
+				// Delete 
+				System.out.println("Delete");
 				testHelper.doDelete();
 				break;
 
 			case 1:
-				// CreateAndDelete test
+				// CreateAndDelete 
+				System.out.println("CreateAndDelete");
 				testHelper.doCreateAndDelete();
 				break;
 
 			case 2:
 				// MultiReferenceMove
+				System.out.println("MultiReferenceMove");
 				testHelper.doMultiReferenceMove();
 				break;
 
 			case 3:
 				// ContainmentReferenceMove
+				System.out.println("ContainmentReferenceMove");
 				testHelper.doContainmentReferenceMove();
 				break;
 
 			case 4:
 				// NonContainmentReferenceRemove
+				System.out.println("NonContainmentReferenceRemove");
 				testHelper.doNonContainmentReferenceRemove();
 				break;
 
 			case 5:
 				// AttributeTransitiveChange
+				System.out.println("AttributeTransitiveChange");
 				testHelper.doAttributeTransitiveChange();
 				break;
 
 			case 6:
 				// MultiAttributeMove
+				System.out.println("MultiAttributeMove");
 				testHelper.doMultiAttributeMove();
 				break;
 
 			case 7:
 				// AttributeChange
+				System.out.println("AttributeChange");
 				testHelper.doChangeAttribute();
 				break;
 
 			case 8:
 				// DeleteAndRevertDelete
+				System.out.println("DeleteAndRevertDelete");
 				testHelper.doDeleteAndRevert();
 				break;
 
 			case 9:
 				// CreateAndChangeRef
+				System.out.println("CreateAndChangeRef");
 				testHelper.doCreateAndChangeRef();
 				break;
 
 			case 10:
 				// CreateAndChangeAttribute
+				System.out.println("CreateAndChangeAttribute");
 				testHelper.doCreateAndChangeAttribute();
 				break;
 
 			case 11:
 				// NonContainmentReferenceAdd
+				System.out.println("NonContainmentReferenceAdd");
 				testHelper.doNonContainmentReferenceAdd();
 				break;
 
 			case 12:
 				// ContainmentReferenceAddNew
+				System.out.println("ContainmentReferenceAddNew");
 				testHelper.doContainemntReferenceAddNew();
 				break;
 
