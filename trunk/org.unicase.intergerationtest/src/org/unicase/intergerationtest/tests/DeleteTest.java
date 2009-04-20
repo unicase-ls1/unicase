@@ -23,19 +23,18 @@ import org.unicase.model.util.SerializationException;
 public class DeleteTest extends IntegrationTestCase {
 
 	private long randomSeed = 1;
-	
 
-	
 	/**
 	 * Delete a random ME.
+	 * 
 	 * @throws EmfStoreException EmfStoreException
 	 * @throws SerializationException SerializationException
 	 */
-	@Test  
+	@Test
 	public void runTest() throws SerializationException, EmfStoreException {
 
 		System.out.println("DeleteTest");
-		final TestHelper testHelper = new TestHelper(randomSeed  , getTestProject());
+		final TestHelper testHelper = new TestHelper(randomSeed, getTestProject());
 		TransactionalEditingDomain domain = TestHelper.getDomain();
 		domain.getCommandStack().execute(new RecordingCommand(domain) {
 
@@ -46,13 +45,10 @@ public class DeleteTest extends IntegrationTestCase {
 			}
 
 		});
-		
+
 		commitChanges();
 		assertTrue(TestHelper.areEqual(getTestProject(), getCompareProject(), "DeleteTest"));
 
 	}
 
-	
-
-	
 }

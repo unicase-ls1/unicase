@@ -15,13 +15,9 @@ import org.unicase.intergerationtest.TestHelper;
 import org.unicase.model.util.SerializationException;
 
 /**
- * 
  * @author Hodaie
- *
  */
-public class DeleteAndRevertDeleteTest extends IntegrationTestCase  {
-
-	
+public class DeleteAndRevertDeleteTest extends IntegrationTestCase {
 
 	private long randomSeed = 1;
 
@@ -30,13 +26,12 @@ public class DeleteAndRevertDeleteTest extends IntegrationTestCase  {
 	 * 
 	 * @throws EmfStoreException EmfStoreException
 	 * @throws SerializationException SerializationException
-	 * 
 	 */
-	@Test 
+	@Test
 	public void runTest() throws SerializationException, EmfStoreException {
 		System.out.println("DeleteAndRevertDeleteTest");
-	
-		final TestHelper testHelper = new TestHelper(randomSeed , getTestProject());
+
+		final TestHelper testHelper = new TestHelper(randomSeed, getTestProject());
 		TransactionalEditingDomain domain = TestHelper.getDomain();
 		domain.getCommandStack().execute(new RecordingCommand(domain) {
 			@Override
@@ -44,11 +39,9 @@ public class DeleteAndRevertDeleteTest extends IntegrationTestCase  {
 				testHelper.doDeleteAndRevert();
 			}
 		});
-		
+
 		commitChanges();
 		assertTrue(TestHelper.areEqual(getTestProject(), getCompareProject(), "DeleteAndRevertDeleteTest"));
 	}
-
-	
 
 }

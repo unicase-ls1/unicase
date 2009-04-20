@@ -49,5 +49,4 @@ public class CreateAndChangeRefTest extends IntegrationTestCase {
 
 	}
 
-	
 }

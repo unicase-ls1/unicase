@@ -15,26 +15,23 @@ import org.unicase.intergerationtest.TestHelper;
 import org.unicase.model.util.SerializationException;
 
 /**
- * 
  * @author Hodaie
- *
  */
-public class NonContainmentReferenceRemoveTest  extends IntegrationTestCase {
+public class NonContainmentReferenceRemoveTest extends IntegrationTestCase {
 
-	
 	private long randomSeed = 1;
 
-	
-/**
- * Removes a referenced model element form a non-containment reference of a randomly selected ME.
- * @throws EmfStoreException EmfStoreException
- * @throws SerializationException SerializationException
- */
+	/**
+	 * Removes a referenced model element form a non-containment reference of a randomly selected ME.
+	 * 
+	 * @throws EmfStoreException EmfStoreException
+	 * @throws SerializationException SerializationException
+	 */
 	@Test
 	public void runTest() throws SerializationException, EmfStoreException {
 		System.out.println("NonContainmentReferenceRemoveTest");
-		
-		final TestHelper testHelper = new TestHelper(randomSeed  , getTestProject());
+
+		final TestHelper testHelper = new TestHelper(randomSeed, getTestProject());
 		TransactionalEditingDomain domain = TestHelper.getDomain();
 		domain.getCommandStack().execute(new RecordingCommand(domain) {
 
@@ -43,11 +40,10 @@ public class NonContainmentReferenceRemoveTest  extends IntegrationTestCase {
 				testHelper.doNonContainmentReferenceRemove();
 			}
 		});
-		
+
 		commitChanges();
 		assertTrue(TestHelper.areEqual(getTestProject(), getCompareProject(), "NonContainmentReferenceRemoveTest"));
 
 	}
 
-	
 }

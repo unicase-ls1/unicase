@@ -19,8 +19,6 @@ import org.unicase.model.util.SerializationException;
  */
 public class ContainmentReferenceMoveTest extends IntegrationTestCase {
 
-
-
 	private long randomSeed = 1;
 
 	/**
@@ -33,7 +31,7 @@ public class ContainmentReferenceMoveTest extends IntegrationTestCase {
 	@Test
 	public void runTest() throws SerializationException, EmfStoreException {
 		System.out.println("ContainmentReferenceMoveTest");
-		final TestHelper testHelper = new TestHelper(randomSeed , getTestProject());
+		final TestHelper testHelper = new TestHelper(randomSeed, getTestProject());
 		TransactionalEditingDomain domain = TestHelper.getDomain();
 		domain.getCommandStack().execute(new RecordingCommand(domain) {
 

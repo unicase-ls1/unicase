@@ -19,24 +19,20 @@ import org.unicase.model.util.SerializationException;
  * 
  * @author zardosht
  */
-public class MultiReferenceMoveTest  extends IntegrationTestCase {
+public class MultiReferenceMoveTest extends IntegrationTestCase {
 
-	
-	private long randomSeed =1;
-
-	
+	private long randomSeed = 1;
 
 	/**
 	 * This move an element in a many reference list to another position.
 	 * 
 	 * @throws EmfStoreException EmfStoreException
 	 * @throws SerializationException SerializationException
-	 * 
 	 */
-	@Test 
+	@Test
 	public void runTest() throws SerializationException, EmfStoreException {
 		System.out.println("MultiReferenceMoveTests");
-		final TestHelper testHelper = new TestHelper(randomSeed , getTestProject());
+		final TestHelper testHelper = new TestHelper(randomSeed, getTestProject());
 		TransactionalEditingDomain domain = TestHelper.getDomain();
 		domain.getCommandStack().execute(new RecordingCommand(domain) {
 			@Override
@@ -44,12 +40,10 @@ public class MultiReferenceMoveTest  extends IntegrationTestCase {
 				testHelper.doMultiReferenceMove();
 			}
 		});
-		
+
 		commitChanges();
 		assertTrue(TestHelper.areEqual(getTestProject(), getCompareProject(), "MultiReferenceMoveTest"));
 
 	}
-
-	
 
 }

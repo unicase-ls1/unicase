@@ -15,12 +15,10 @@ import org.unicase.intergerationtest.TestHelper;
 import org.unicase.model.util.SerializationException;
 
 /**
- *  
  * @author Hodaie
  */
 public class ContainmentReferenceAddNewTest extends IntegrationTestCase {
 
-	
 	private long randomSeed = 1;
 
 	/**
@@ -30,7 +28,7 @@ public class ContainmentReferenceAddNewTest extends IntegrationTestCase {
 	 * @throws EmfStoreException EmfStoreException
 	 * @throws SerializationException SerializationException
 	 */
-	@Test  
+	@Test
 	public void runTest() throws SerializationException, EmfStoreException {
 		System.out.println("ContainmentReferenceAddNewTest");
 
@@ -50,5 +48,4 @@ public class ContainmentReferenceAddNewTest extends IntegrationTestCase {
 
 	}
 
-	
 }
