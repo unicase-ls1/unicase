@@ -32,12 +32,13 @@ import org.unicase.workspace.util.WorkspaceUtil;
  * end-user-doc -->
  * <p>
  * </p>
- *
+ * 
  * @generated
  */
 public class StepsAttributeRendererImpl extends AttributeRendererImpl implements StepsAttributeRenderer {
 	/**
 	 * <!-- begin-user-doc --> <!-- end-user-doc -->
+	 * 
 	 * @generated
 	 */
 	protected StepsAttributeRendererImpl() {
@@ -46,6 +47,7 @@ public class StepsAttributeRendererImpl extends AttributeRendererImpl implements
 
 	/**
 	 * <!-- begin-user-doc --> <!-- end-user-doc -->
+	 * 
 	 * @generated
 	 */
 	@Override

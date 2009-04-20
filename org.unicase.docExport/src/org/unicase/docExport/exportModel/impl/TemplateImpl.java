@@ -261,7 +261,7 @@ public class TemplateImpl extends EObjectImpl implements Template {
 		case ExportModelPackage.TEMPLATE__NAME:
 			return getName();
 		case ExportModelPackage.TEMPLATE__DEFAULT_TEMPLATE:
-			return isDefaultTemplate() ? Boolean.TRUE : Boolean.FALSE;
+			return isDefaultTemplate();
 		}
 		return super.eGet(featureID, resolve, coreType);
 	}
@@ -286,7 +286,7 @@ public class TemplateImpl extends EObjectImpl implements Template {
 			setName((String) newValue);
 			return;
 		case ExportModelPackage.TEMPLATE__DEFAULT_TEMPLATE:
-			setDefaultTemplate(((Boolean) newValue).booleanValue());
+			setDefaultTemplate((Boolean) newValue);
 			return;
 		}
 		super.eSet(featureID, newValue);

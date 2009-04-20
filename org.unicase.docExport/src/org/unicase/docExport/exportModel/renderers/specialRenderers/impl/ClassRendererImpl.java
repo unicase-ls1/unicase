@@ -32,12 +32,13 @@ import org.unicase.workspace.util.WorkspaceUtil;
  * <!-- begin-user-doc --> An implementation of the model object '<em><b>Class Renderer</b></em>'. <!-- end-user-doc -->
  * <p>
  * </p>
- *
+ * 
  * @generated
  */
 public class ClassRendererImpl extends ModelElementRendererImpl implements ClassRenderer {
 	/**
 	 * <!-- begin-user-doc --> <!-- end-user-doc -->
+	 * 
 	 * @generated
 	 */
 	protected ClassRendererImpl() {
@@ -46,6 +47,7 @@ public class ClassRendererImpl extends ModelElementRendererImpl implements Class
 
 	/**
 	 * <!-- begin-user-doc --> <!-- end-user-doc -->
+	 * 
 	 * @generated
 	 */
 	@Override

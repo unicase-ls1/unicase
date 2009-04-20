@@ -23,15 +23,16 @@ import org.unicase.docExport.exportModel.renderers.options.OptionsPackage;
 import org.unicase.docExport.exportModel.renderers.options.SectionOption;
 
 /**
- * This is the item provider adapter for a {@link org.unicase.docExport.exportModel.renderers.options.SectionOption} object.
- * <!-- begin-user-doc --> <!-- end-user-doc -->
+ * This is the item provider adapter for a {@link org.unicase.docExport.exportModel.renderers.options.SectionOption}
+ * object. <!-- begin-user-doc --> <!-- end-user-doc -->
+ * 
  * @generated
  */
 public class SectionOptionItemProvider extends RendererOptionItemProvider implements IEditingDomainItemProvider,
 	IStructuredItemContentProvider, ITreeItemContentProvider, IItemLabelProvider, IItemPropertySource {
 	/**
-	 * This constructs an instance from a factory and a notifier.
-	 * <!-- begin-user-doc --> <!-- end-user-doc -->
+	 * This constructs an instance from a factory and a notifier. <!-- begin-user-doc --> <!-- end-user-doc -->
+	 * 
 	 * @generated
 	 */
 	public SectionOptionItemProvider(AdapterFactory adapterFactory) {
@@ -39,8 +40,8 @@ public class SectionOptionItemProvider extends RendererOptionItemProvider implem
 	}
 
 	/**
-	 * This returns the property descriptors for the adapted class.
-	 * <!-- begin-user-doc --> <!-- end-user-doc -->
+	 * This returns the property descriptors for the adapted class. <!-- begin-user-doc --> <!-- end-user-doc -->
+	 * 
 	 * @generated
 	 */
 	@Override
@@ -55,52 +56,39 @@ public class SectionOptionItemProvider extends RendererOptionItemProvider implem
 	}
 
 	/**
-	 * This adds a property descriptor for the Section Numbering Style feature.
-	 * <!-- begin-user-doc --> <!--
+	 * This adds a property descriptor for the Section Numbering Style feature. <!-- begin-user-doc --> <!--
 	 * end-user-doc -->
+	 * 
 	 * @generated
 	 */
 	protected void addSectionNumberingStylePropertyDescriptor(Object object) {
-		itemPropertyDescriptors.add
-			(createItemPropertyDescriptor
-				(((ComposeableAdapterFactory)adapterFactory).getRootAdapterFactory(),
-				 getResourceLocator(),
-				 getString("_UI_SectionOption_sectionNumberingStyle_feature"),
-				 getString("_UI_PropertyDescriptor_description", "_UI_SectionOption_sectionNumberingStyle_feature", "_UI_SectionOption_type"),
-				 OptionsPackage.Literals.SECTION_OPTION__SECTION_NUMBERING_STYLE,
-				 true,
-				 false,
-				 false,
-				 ItemPropertyDescriptor.GENERIC_VALUE_IMAGE,
-				 null,
-				 null));
+		itemPropertyDescriptors.add(createItemPropertyDescriptor(((ComposeableAdapterFactory) adapterFactory)
+			.getRootAdapterFactory(), getResourceLocator(),
+			getString("_UI_SectionOption_sectionNumberingStyle_feature"), getString(
+				"_UI_PropertyDescriptor_description", "_UI_SectionOption_sectionNumberingStyle_feature",
+				"_UI_SectionOption_type"), OptionsPackage.Literals.SECTION_OPTION__SECTION_NUMBERING_STYLE, true,
+			false, false, ItemPropertyDescriptor.GENERIC_VALUE_IMAGE, null, null));
 	}
 
 	/**
-	 * This adds a property descriptor for the Leave Out Previous Section Numbering feature.
-	 * <!-- begin-user-doc -->
+	 * This adds a property descriptor for the Leave Out Previous Section Numbering feature. <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
+	 * 
 	 * @generated
 	 */
 	protected void addLeaveOutPreviousSectionNumberingPropertyDescriptor(Object object) {
-		itemPropertyDescriptors.add
-			(createItemPropertyDescriptor
-				(((ComposeableAdapterFactory)adapterFactory).getRootAdapterFactory(),
-				 getResourceLocator(),
-				 getString("_UI_SectionOption_leaveOutPreviousSectionNumbering_feature"),
-				 getString("_UI_PropertyDescriptor_description", "_UI_SectionOption_leaveOutPreviousSectionNumbering_feature", "_UI_SectionOption_type"),
-				 OptionsPackage.Literals.SECTION_OPTION__LEAVE_OUT_PREVIOUS_SECTION_NUMBERING,
-				 true,
-				 false,
-				 false,
-				 ItemPropertyDescriptor.BOOLEAN_VALUE_IMAGE,
-				 null,
-				 null));
+		itemPropertyDescriptors.add(createItemPropertyDescriptor(((ComposeableAdapterFactory) adapterFactory)
+			.getRootAdapterFactory(), getResourceLocator(),
+			getString("_UI_SectionOption_leaveOutPreviousSectionNumbering_feature"), getString(
+				"_UI_PropertyDescriptor_description", "_UI_SectionOption_leaveOutPreviousSectionNumbering_feature",
+				"_UI_SectionOption_type"),
+			OptionsPackage.Literals.SECTION_OPTION__LEAVE_OUT_PREVIOUS_SECTION_NUMBERING, true, false, false,
+			ItemPropertyDescriptor.BOOLEAN_VALUE_IMAGE, null, null));
 	}
 
 	/**
-	 * This returns SectionOption.gif.
-	 * <!-- begin-user-doc --> <!-- end-user-doc -->
+	 * This returns SectionOption.gif. <!-- begin-user-doc --> <!-- end-user-doc -->
+	 * 
 	 * @generated
 	 */
 	@Override
@@ -109,16 +97,15 @@ public class SectionOptionItemProvider extends RendererOptionItemProvider implem
 	}
 
 	/**
-	 * This returns the label text for the adapted class.
-	 * <!-- begin-user-doc --> <!-- end-user-doc -->
+	 * This returns the label text for the adapted class. <!-- begin-user-doc --> <!-- end-user-doc -->
+	 * 
 	 * @generated
 	 */
 	@Override
 	public String getText(Object object) {
-		String label = ((SectionOption)object).getName();
-		return label == null || label.length() == 0 ?
-			getString("_UI_SectionOption_type") :
-			getString("_UI_SectionOption_type") + " " + label;
+		String label = ((SectionOption) object).getName();
+		return label == null || label.length() == 0 ? getString("_UI_SectionOption_type")
+			: getString("_UI_SectionOption_type") + " " + label;
 	}
 
 	/**
@@ -133,18 +120,18 @@ public class SectionOptionItemProvider extends RendererOptionItemProvider implem
 		updateChildren(notification);
 
 		switch (notification.getFeatureID(SectionOption.class)) {
-			case OptionsPackage.SECTION_OPTION__SECTION_NUMBERING_STYLE:
-			case OptionsPackage.SECTION_OPTION__LEAVE_OUT_PREVIOUS_SECTION_NUMBERING:
-				fireNotifyChanged(new ViewerNotification(notification, notification.getNotifier(), false, true));
-				return;
+		case OptionsPackage.SECTION_OPTION__SECTION_NUMBERING_STYLE:
+		case OptionsPackage.SECTION_OPTION__LEAVE_OUT_PREVIOUS_SECTION_NUMBERING:
+			fireNotifyChanged(new ViewerNotification(notification, notification.getNotifier(), false, true));
+			return;
 		}
 		super.notifyChanged(notification);
 	}
 
 	/**
-	 * This adds {@link org.eclipse.emf.edit.command.CommandParameter}s describing the children
-	 * that can be created under this object.
-	 * <!-- begin-user-doc --> <!-- end-user-doc -->
+	 * This adds {@link org.eclipse.emf.edit.command.CommandParameter}s describing the children that can be created
+	 * under this object. <!-- begin-user-doc --> <!-- end-user-doc -->
+	 * 
 	 * @generated
 	 */
 	@Override
