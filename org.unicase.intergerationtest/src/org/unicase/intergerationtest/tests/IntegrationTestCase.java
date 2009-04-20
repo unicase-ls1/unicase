@@ -55,6 +55,7 @@ public abstract class IntegrationTestCase {
 	private static Project testProjectBackup;
 
 	private static int executedTestsCounter;
+	private static final int NUM_OF_TESTS = 14 ;
 
 	/**
 	 * set up test project.
@@ -126,6 +127,8 @@ public abstract class IntegrationTestCase {
 		}
 
 	}
+
+	
 
 	/**
 	 * Before every test make sure test project and compare project (which lies on the server) are equal.
@@ -267,7 +270,7 @@ public abstract class IntegrationTestCase {
 	@After
 	public void cleanUp() {
 		executedTestsCounter++;
-		if (executedTestsCounter == 14) {
+		if (executedTestsCounter == NUM_OF_TESTS) {
 			doCleanUp();
 		}
 	}
