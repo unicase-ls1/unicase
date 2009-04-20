@@ -21,8 +21,10 @@ import org.eclipse.swt.widgets.Display;
 import org.eclipse.swt.widgets.Label;
 import org.eclipse.swt.widgets.Shell;
 import org.unicase.emfstore.esmodel.versioning.ChangePackage;
+import org.unicase.emfstore.esmodel.versioning.VersionSpec;
 import org.unicase.emfstore.esmodel.versioning.VersioningFactory;
 import org.unicase.emfstore.esmodel.versioning.operations.AbstractOperation;
+import org.unicase.emfstore.exceptions.EmfStoreException;
 import org.unicase.workspace.WorkspaceManager;
 import org.unicase.workspace.edit.views.changes.MergeChangesComposite;
 import org.unicase.workspace.impl.ProjectSpaceImpl;
@@ -107,16 +109,30 @@ public class MergeDialog extends TitleAreaDialog {
 	@Override
 	protected void okPressed() {
 
+		// MK fixme: we need the previous head version here
+		VersionSpec headVersion = VersioningFactory.eINSTANCE.createHeadVersionSpec();
+
 		// TODO MK: deal with the checked changes
 		HashMap<String, List<AbstractOperation>> resultSet = mergeComposite.getResultSet();
-		@SuppressWarnings("unused")
-		List<AbstractOperation> theirChanges = resultSet.get("theirs");
-		@SuppressWarnings("unused")
 		List<AbstractOperation> myChanges = resultSet.get("mineChecked");
-		@SuppressWarnings("unused")
 		List<AbstractOperation> theirNotChecked = resultSet.get("theirsNotChecked");
 
+		List<AbstractOperation> mergeResult = new ArrayList<AbstractOperation>();
+		for (AbstractOperation operationToReverse : theirNotChecked) {
+			mergeResult.add(0, operationToReverse.reverse());
+		}
+		mergeResult.addAll(myChanges);
+
+		try {
+			WorkspaceManager.getInstance().getCurrentWorkspace().getActiveProjectSpace().applyMergeResult(mergeResult,
+				headVersion);
+		} catch (EmfStoreException e) {
+			// TODO Auto-generated catch block
+			e.printStackTrace();
+		}
+
 		super.okPressed();
+		this.close();
 	}
 
 	/**
