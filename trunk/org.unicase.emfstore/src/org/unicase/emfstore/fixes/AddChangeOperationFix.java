@@ -16,7 +16,7 @@ public class AddChangeOperationFix extends AbstractFix {
 				continue;
 			}
 
-			if (version(version) == 244) {
+			if (false && version(version) == 244) {
 				MultiReferenceOperation multiReferenceOperation = OperationsFactory.eINSTANCE
 					.createMultiReferenceOperation();
 				multiReferenceOperation.setAdd(true);
@@ -29,7 +29,7 @@ public class AddChangeOperationFix extends AbstractFix {
 				addOperation(version, multiReferenceOperation);
 			}
 
-			if (version.getPrimarySpec().getIdentifier() == 500) {
+			if (false && version.getPrimarySpec().getIdentifier() == 500) {
 
 				addOperation(version, createMultiDelete("_Ffc6kMrdEd2FLcQLgl5R9Q", "outgoingAssociations", "source",
 					new String[] { "_6WUNgMrdEd2FLcQLgl5R9Q" }));
@@ -50,7 +50,7 @@ public class AddChangeOperationFix extends AbstractFix {
 					new String[] { "_CB7gEMXVEd2ol-2GGz06Vg" }));
 			}
 
-			if (version.getPrimarySpec().getIdentifier() == 550) {
+			if (false && version.getPrimarySpec().getIdentifier() == 550) {
 				addOperation(version, createMultiDelete("_2K4YwJUwEd2_ld_pN7IQ9Q", "assignments", "assignee",
 					new String[] { "_KuuzoPz1Ed2TGLNSjOpjxw" }));
 
@@ -76,8 +76,62 @@ public class AddChangeOperationFix extends AbstractFix {
 					new String[] { "_npCugMXZEd2ol-2GGz06Vg" }));
 			}
 
-			if (false) {
+			if (version(version) == 600) {
+				// addOperation(version, createMultiDelete("_vQ-hsJUwEd2_ld_pN7IQ9Q", "assignments", "assignee",
+				// new String[] { "_IT_QsP0PEd2TGLNSjOpjxw" }));
 
+				// addOperation(version, createMultiDelete("_3Tm7YJUwEd2_ld_pN7IQ9Q", "assignments", "assignee",
+				// new String[] { "_z7Y6UP9HEd2-D-gfFWiodg" }));
+
+				// addOperation(version, createMultiDelete("_4PMZ4JUwEd2_ld_pN7IQ9Q", "assignments", "assignee",
+				// new String[] { "_cJTK0P2qEd2-D-gfFWiodg" }));
+
+				// SingleReferenceOperation singleReferenceOperation = OperationsFactory.eINSTANCE
+				// .createSingleReferenceOperation();
+				// singleReferenceOperation.setBidirectional(true);
+				// singleReferenceOperation.setFeatureName("instantiatedActor");
+				// singleReferenceOperation.setModelElementId(createMEID("_fN77oLWMEd2OEbFJENZnxg"));
+				// singleReferenceOperation.setOppositeFeatureName("instances");
+				// singleReferenceOperation.setNewValue(null);
+				// singleReferenceOperation.setOldValue(createMEID("_uho6MMFIEd2Dlp5EMJWWaQ"));
+				// addOperation(version, singleReferenceOperation);
+
+				// SingleReferenceOperation singleReferenceOperation = OperationsFactory.eINSTANCE
+				// .createSingleReferenceOperation();
+				// singleReferenceOperation.setBidirectional(true);
+				// singleReferenceOperation.setFeatureName("initiatingActor");
+				// singleReferenceOperation.setModelElementId(createMEID("_hsHrwLzTEd2RWJ3BzLnjrw"));
+				// singleReferenceOperation.setOppositeFeatureName("initiatedUseCases");
+				// singleReferenceOperation.setNewValue(null);
+				// singleReferenceOperation.setOldValue(createMEID("_tkno8LVuEd2zjrhKjes5hg"));
+				// addOperation(version, singleReferenceOperation);
+
+				// SingleReferenceOperation singleReferenceOperation = OperationsFactory.eINSTANCE
+				// .createSingleReferenceOperation();
+				// singleReferenceOperation.setBidirectional(true);
+				// singleReferenceOperation.setFeatureName("initiatingActor");
+				// singleReferenceOperation.setModelElementId(createMEID("_QYtUwLyHEd2oQZN-8if49g"));
+				// singleReferenceOperation.setOppositeFeatureName("initiatedUseCases");
+				// singleReferenceOperation.setNewValue(null);
+				// singleReferenceOperation.setOldValue(createMEID("_MhVcUKmIEd28EtQH-SBtNg"));
+				// addOperation(version, singleReferenceOperation);
+
+			}
+			if (version(version) == 622) {
+				// addOperation(version, createMultiDelete("_vQ-hsJUwEd2_ld_pN7IQ9Q", "assignments", "assignee",
+				// new String[] { "_Y562QP0REd2TGLNSjOpjxw", "_pZmUwP0REd2TGLNSjOpjxw" }));
+				//
+				// addOperation(version, createMultiDelete("_3Tm7YJUwEd2_ld_pN7IQ9Q", "assignments", "assignee",
+				// new String[] { "_tr5VYP9LEd2-D-gfFWiodg" }));
+
+				SingleReferenceOperation singleReferenceOperation = OperationsFactory.eINSTANCE
+					.createSingleReferenceOperation();
+				singleReferenceOperation.setModelElementId(createMEID("_IJf3gMCAEd2XvKJDMrClbg"));
+				singleReferenceOperation.setBidirectional(false);
+				singleReferenceOperation.setFeatureName("stakeholder");
+				singleReferenceOperation.setNewValue(null);
+				singleReferenceOperation.setOldValue(createMEID("_4PMZ4JUwEd2_ld_pN7IQ9Q"));
+				addOperation(version, singleReferenceOperation);
 			}
 		}
 
