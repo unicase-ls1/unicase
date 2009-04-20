@@ -28,8 +28,10 @@ import org.unicase.workspace.Workspace;
 import org.unicase.workspace.WorkspaceFactory;
 import org.unicase.workspace.WorkspaceManager;
 import org.unicase.workspace.exceptions.NoLocalChangesException;
+import org.unicase.workspace.impl.ProjectSpaceImpl;
 import org.unicase.workspace.impl.WorkspaceImpl;
 
+import java.io.File;
 import java.io.IOException;
 import java.net.URISyntaxException;
 import java.util.Calendar;
@@ -96,10 +98,18 @@ public abstract class IntegrationTestCase {
 			try {
 				// use already created random project with parameter(100, randomSeed, 5, 5, 10, 20)
 				// testSpace = currentWorkspace.importProject("/TestProjects/randomProj.ucp");
+				//String path = "TestProjects/randomProject";
+				String path = "TestProjects/unicase.ucp";
 
 				// use unicase project
-				String uriString = Activator.getDefault().getBundle().getLocation() + "TestProjects/unicase.ucp";
-				uriString = uriString.replace("reference:file:/", "");
+				String uriString = Activator.getDefault().getBundle().getLocation() + path;
+				if(File.separator.equals("/")){
+					uriString = uriString.replace("reference:file:", "");
+									
+				}else{
+					uriString = uriString.replace("reference:file:/", "");
+				}
+				
 				testSpace = workSpace.importProject(uriString);
 
 				testProjectBackup = testSpace.getProject();
@@ -126,7 +136,11 @@ public abstract class IntegrationTestCase {
 
 			@Override
 			protected void doExecute() {
+				((ProjectSpaceImpl) getTestProjectSpace()).stopChangeRecording();
+				
 				getTestProjectSpace().setProject(testProject);
+				
+				getTestProjectSpace().init();
 			}
 		});
 
