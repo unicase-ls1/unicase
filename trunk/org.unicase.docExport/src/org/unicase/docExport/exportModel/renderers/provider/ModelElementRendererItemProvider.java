@@ -28,15 +28,16 @@ import org.unicase.docExport.exportModel.renderers.RenderersPackage;
 import org.unicase.docExport.exportModel.renderers.options.OptionsFactory;
 
 /**
- * This is the item provider adapter for a {@link org.unicase.docExport.exportModel.renderers.ModelElementRenderer} object.
- * <!-- begin-user-doc --> <!-- end-user-doc -->
+ * This is the item provider adapter for a {@link org.unicase.docExport.exportModel.renderers.ModelElementRenderer}
+ * object. <!-- begin-user-doc --> <!-- end-user-doc -->
+ * 
  * @generated
  */
 public class ModelElementRendererItemProvider extends ItemProviderAdapter implements IEditingDomainItemProvider,
 	IStructuredItemContentProvider, ITreeItemContentProvider, IItemLabelProvider, IItemPropertySource {
 	/**
-	 * This constructs an instance from a factory and a notifier.
-	 * <!-- begin-user-doc --> <!-- end-user-doc -->
+	 * This constructs an instance from a factory and a notifier. <!-- begin-user-doc --> <!-- end-user-doc -->
+	 * 
 	 * @generated
 	 */
 	public ModelElementRendererItemProvider(AdapterFactory adapterFactory) {
@@ -44,8 +45,8 @@ public class ModelElementRendererItemProvider extends ItemProviderAdapter implem
 	}
 
 	/**
-	 * This returns the property descriptors for the adapted class.
-	 * <!-- begin-user-doc --> <!-- end-user-doc -->
+	 * This returns the property descriptors for the adapted class. <!-- begin-user-doc --> <!-- end-user-doc -->
+	 * 
 	 * @generated
 	 */
 	@Override
@@ -59,32 +60,24 @@ public class ModelElementRendererItemProvider extends ItemProviderAdapter implem
 	}
 
 	/**
-	 * This adds a property descriptor for the Template feature.
-	 * <!-- begin-user-doc --> <!-- end-user-doc -->
+	 * This adds a property descriptor for the Template feature. <!-- begin-user-doc --> <!-- end-user-doc -->
+	 * 
 	 * @generated
 	 */
 	protected void addTemplatePropertyDescriptor(Object object) {
-		itemPropertyDescriptors.add
-			(createItemPropertyDescriptor
-				(((ComposeableAdapterFactory)adapterFactory).getRootAdapterFactory(),
-				 getResourceLocator(),
-				 getString("_UI_ModelElementRenderer_template_feature"),
-				 getString("_UI_PropertyDescriptor_description", "_UI_ModelElementRenderer_template_feature", "_UI_ModelElementRenderer_type"),
-				 RenderersPackage.Literals.MODEL_ELEMENT_RENDERER__TEMPLATE,
-				 true,
-				 false,
-				 true,
-				 null,
-				 null,
-				 null));
+		itemPropertyDescriptors.add(createItemPropertyDescriptor(((ComposeableAdapterFactory) adapterFactory)
+			.getRootAdapterFactory(), getResourceLocator(), getString("_UI_ModelElementRenderer_template_feature"),
+			getString("_UI_PropertyDescriptor_description", "_UI_ModelElementRenderer_template_feature",
+				"_UI_ModelElementRenderer_type"), RenderersPackage.Literals.MODEL_ELEMENT_RENDERER__TEMPLATE, true,
+			false, true, null, null, null));
 	}
 
 	/**
 	 * This specifies how to implement {@link #getChildren} and is used to deduce an appropriate feature for an
 	 * {@link org.eclipse.emf.edit.command.AddCommand}, {@link org.eclipse.emf.edit.command.RemoveCommand} or
-	 * {@link org.eclipse.emf.edit.command.MoveCommand} in {@link #createCommand}.
-	 * <!-- begin-user-doc --> <!--
+	 * {@link org.eclipse.emf.edit.command.MoveCommand} in {@link #createCommand}. <!-- begin-user-doc --> <!--
 	 * end-user-doc -->
+	 * 
 	 * @generated
 	 */
 	@Override
@@ -99,6 +92,7 @@ public class ModelElementRendererItemProvider extends ItemProviderAdapter implem
 
 	/**
 	 * <!-- begin-user-doc --> <!-- end-user-doc -->
+	 * 
 	 * @generated
 	 */
 	@Override
@@ -110,8 +104,8 @@ public class ModelElementRendererItemProvider extends ItemProviderAdapter implem
 	}
 
 	/**
-	 * This returns the label text for the adapted class.
-	 * <!-- begin-user-doc --> <!-- end-user-doc -->
+	 * This returns the label text for the adapted class. <!-- begin-user-doc --> <!-- end-user-doc -->
+	 * 
 	 * @generated
 	 */
 	@Override
@@ -131,93 +125,80 @@ public class ModelElementRendererItemProvider extends ItemProviderAdapter implem
 		updateChildren(notification);
 
 		switch (notification.getFeatureID(ModelElementRenderer.class)) {
-			case RenderersPackage.MODEL_ELEMENT_RENDERER__RENDERER_OPTIONS:
-			case RenderersPackage.MODEL_ELEMENT_RENDERER__ATTRIBUTE_RENDERER_MAPPING:
-				fireNotifyChanged(new ViewerNotification(notification, notification.getNotifier(), true, false));
-				return;
+		case RenderersPackage.MODEL_ELEMENT_RENDERER__RENDERER_OPTIONS:
+		case RenderersPackage.MODEL_ELEMENT_RENDERER__ATTRIBUTE_RENDERER_MAPPING:
+			fireNotifyChanged(new ViewerNotification(notification, notification.getNotifier(), true, false));
+			return;
 		}
 		super.notifyChanged(notification);
 	}
 
 	/**
-	 * This adds {@link org.eclipse.emf.edit.command.CommandParameter}s describing the children
-	 * that can be created under this object.
-	 * <!-- begin-user-doc --> <!-- end-user-doc -->
+	 * This adds {@link org.eclipse.emf.edit.command.CommandParameter}s describing the children that can be created
+	 * under this object. <!-- begin-user-doc --> <!-- end-user-doc -->
+	 * 
 	 * @generated
 	 */
 	@Override
 	protected void collectNewChildDescriptors(Collection<Object> newChildDescriptors, Object object) {
 		super.collectNewChildDescriptors(newChildDescriptors, object);
 
-		newChildDescriptors.add
-			(createChildParameter
-				(RenderersPackage.Literals.MODEL_ELEMENT_RENDERER__RENDERER_OPTIONS,
-				 OptionsFactory.eINSTANCE.createSingleReferenceAttributeOption()));
+		newChildDescriptors.add(createChildParameter(
+			RenderersPackage.Literals.MODEL_ELEMENT_RENDERER__RENDERER_OPTIONS, OptionsFactory.eINSTANCE
+				.createSingleReferenceAttributeOption()));
 
-		newChildDescriptors.add
-			(createChildParameter
-				(RenderersPackage.Literals.MODEL_ELEMENT_RENDERER__RENDERER_OPTIONS,
-				 OptionsFactory.eINSTANCE.createMultiReferenceAttributeOption()));
+		newChildDescriptors.add(createChildParameter(
+			RenderersPackage.Literals.MODEL_ELEMENT_RENDERER__RENDERER_OPTIONS, OptionsFactory.eINSTANCE
+				.createMultiReferenceAttributeOption()));
 
-		newChildDescriptors.add
-			(createChildParameter
-				(RenderersPackage.Literals.MODEL_ELEMENT_RENDERER__RENDERER_OPTIONS,
-				 OptionsFactory.eINSTANCE.createReferenceOption()));
+		newChildDescriptors.add(createChildParameter(
+			RenderersPackage.Literals.MODEL_ELEMENT_RENDERER__RENDERER_OPTIONS, OptionsFactory.eINSTANCE
+				.createReferenceOption()));
 
-		newChildDescriptors.add
-			(createChildParameter
-				(RenderersPackage.Literals.MODEL_ELEMENT_RENDERER__RENDERER_OPTIONS,
-				 OptionsFactory.eINSTANCE.createStringAttributeOption()));
+		newChildDescriptors.add(createChildParameter(
+			RenderersPackage.Literals.MODEL_ELEMENT_RENDERER__RENDERER_OPTIONS, OptionsFactory.eINSTANCE
+				.createStringAttributeOption()));
 
-		newChildDescriptors.add
-			(createChildParameter
-				(RenderersPackage.Literals.MODEL_ELEMENT_RENDERER__RENDERER_OPTIONS,
-				 OptionsFactory.eINSTANCE.createLayoutOptions()));
+		newChildDescriptors.add(createChildParameter(
+			RenderersPackage.Literals.MODEL_ELEMENT_RENDERER__RENDERER_OPTIONS, OptionsFactory.eINSTANCE
+				.createLayoutOptions()));
 
-		newChildDescriptors.add
-			(createChildParameter
-				(RenderersPackage.Literals.MODEL_ELEMENT_RENDERER__RENDERER_OPTIONS,
-				 OptionsFactory.eINSTANCE.createListOption()));
+		newChildDescriptors.add(createChildParameter(
+			RenderersPackage.Literals.MODEL_ELEMENT_RENDERER__RENDERER_OPTIONS, OptionsFactory.eINSTANCE
+				.createListOption()));
 
-		newChildDescriptors.add
-			(createChildParameter
-				(RenderersPackage.Literals.MODEL_ELEMENT_RENDERER__RENDERER_OPTIONS,
-				 OptionsFactory.eINSTANCE.createTextOption()));
+		newChildDescriptors.add(createChildParameter(
+			RenderersPackage.Literals.MODEL_ELEMENT_RENDERER__RENDERER_OPTIONS, OptionsFactory.eINSTANCE
+				.createTextOption()));
 
-		newChildDescriptors.add
-			(createChildParameter
-				(RenderersPackage.Literals.MODEL_ELEMENT_RENDERER__RENDERER_OPTIONS,
-				 OptionsFactory.eINSTANCE.createUColor()));
+		newChildDescriptors
+			.add(createChildParameter(RenderersPackage.Literals.MODEL_ELEMENT_RENDERER__RENDERER_OPTIONS,
+				OptionsFactory.eINSTANCE.createUColor()));
 
-		newChildDescriptors.add
-			(createChildParameter
-				(RenderersPackage.Literals.MODEL_ELEMENT_RENDERER__RENDERER_OPTIONS,
-				 OptionsFactory.eINSTANCE.createBoxModelOption()));
+		newChildDescriptors.add(createChildParameter(
+			RenderersPackage.Literals.MODEL_ELEMENT_RENDERER__RENDERER_OPTIONS, OptionsFactory.eINSTANCE
+				.createBoxModelOption()));
 
-		newChildDescriptors.add
-			(createChildParameter
-				(RenderersPackage.Literals.MODEL_ELEMENT_RENDERER__RENDERER_OPTIONS,
-				 OptionsFactory.eINSTANCE.createSectionOption()));
+		newChildDescriptors.add(createChildParameter(
+			RenderersPackage.Literals.MODEL_ELEMENT_RENDERER__RENDERER_OPTIONS, OptionsFactory.eINSTANCE
+				.createSectionOption()));
 
-		newChildDescriptors.add
-			(createChildParameter
-				(RenderersPackage.Literals.MODEL_ELEMENT_RENDERER__RENDERER_OPTIONS,
-				 OptionsFactory.eINSTANCE.createBooleanAttributeOption()));
+		newChildDescriptors.add(createChildParameter(
+			RenderersPackage.Literals.MODEL_ELEMENT_RENDERER__RENDERER_OPTIONS, OptionsFactory.eINSTANCE
+				.createBooleanAttributeOption()));
 
-		newChildDescriptors.add
-			(createChildParameter
-				(RenderersPackage.Literals.MODEL_ELEMENT_RENDERER__RENDERER_OPTIONS,
-				 OptionsFactory.eINSTANCE.createDateAttributeOption()));
+		newChildDescriptors.add(createChildParameter(
+			RenderersPackage.Literals.MODEL_ELEMENT_RENDERER__RENDERER_OPTIONS, OptionsFactory.eINSTANCE
+				.createDateAttributeOption()));
 
-		newChildDescriptors.add
-			(createChildParameter
-				(RenderersPackage.Literals.MODEL_ELEMENT_RENDERER__ATTRIBUTE_RENDERER_MAPPING,
-				 RenderersFactory.eINSTANCE.createAttributeRendererMapping()));
+		newChildDescriptors.add(createChildParameter(
+			RenderersPackage.Literals.MODEL_ELEMENT_RENDERER__ATTRIBUTE_RENDERER_MAPPING, RenderersFactory.eINSTANCE
+				.createAttributeRendererMapping()));
 	}
 
 	/**
-	 * Return the resource locator for this item provider's resources.
-	 * <!-- begin-user-doc --> <!-- end-user-doc -->
+	 * Return the resource locator for this item provider's resources. <!-- begin-user-doc --> <!-- end-user-doc -->
+	 * 
 	 * @generated
 	 */
 	@Override

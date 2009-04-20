@@ -14,7 +14,7 @@ import org.unicase.docExport.exportModel.renderers.options.StringAttributeOption
  * end-user-doc -->
  * <p>
  * </p>
- *
+ * 
  * @generated
  */
 public class StringAttributeOptionImpl extends AttributeOptionImpl implements StringAttributeOption {
@@ -29,6 +29,7 @@ public class StringAttributeOptionImpl extends AttributeOptionImpl implements St
 
 	/**
 	 * <!-- begin-user-doc --> . <!-- end-user-doc -->
+	 * 
 	 * @generated
 	 */
 	@Override

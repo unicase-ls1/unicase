@@ -23,17 +23,18 @@ import org.unicase.docExport.exportModel.renderers.options.OptionsFactory;
 import org.unicase.docExport.exportModel.renderers.options.OptionsPackage;
 
 /**
- * This is the item provider adapter for a {@link org.unicase.docExport.exportModel.renderers.options.MultiReferenceAttributeOption} object.
- * <!-- begin-user-doc
+ * This is the item provider adapter for a
+ * {@link org.unicase.docExport.exportModel.renderers.options.MultiReferenceAttributeOption} object. <!-- begin-user-doc
  * --> <!-- end-user-doc -->
+ * 
  * @generated
  */
 public class MultiReferenceAttributeOptionItemProvider extends ReferenceAttributeOptionItemProvider implements
 	IEditingDomainItemProvider, IStructuredItemContentProvider, ITreeItemContentProvider, IItemLabelProvider,
 	IItemPropertySource {
 	/**
-	 * This constructs an instance from a factory and a notifier.
-	 * <!-- begin-user-doc --> <!-- end-user-doc -->
+	 * This constructs an instance from a factory and a notifier. <!-- begin-user-doc --> <!-- end-user-doc -->
+	 * 
 	 * @generated
 	 */
 	public MultiReferenceAttributeOptionItemProvider(AdapterFactory adapterFactory) {
@@ -41,8 +42,8 @@ public class MultiReferenceAttributeOptionItemProvider extends ReferenceAttribut
 	}
 
 	/**
-	 * This returns the property descriptors for the adapted class.
-	 * <!-- begin-user-doc --> <!-- end-user-doc -->
+	 * This returns the property descriptors for the adapted class. <!-- begin-user-doc --> <!-- end-user-doc -->
+	 * 
 	 * @generated
 	 */
 	@Override
@@ -57,9 +58,9 @@ public class MultiReferenceAttributeOptionItemProvider extends ReferenceAttribut
 	/**
 	 * This specifies how to implement {@link #getChildren} and is used to deduce an appropriate feature for an
 	 * {@link org.eclipse.emf.edit.command.AddCommand}, {@link org.eclipse.emf.edit.command.RemoveCommand} or
-	 * {@link org.eclipse.emf.edit.command.MoveCommand} in {@link #createCommand}.
-	 * <!-- begin-user-doc --> <!--
+	 * {@link org.eclipse.emf.edit.command.MoveCommand} in {@link #createCommand}. <!-- begin-user-doc --> <!--
 	 * end-user-doc -->
+	 * 
 	 * @generated
 	 */
 	@Override
@@ -73,6 +74,7 @@ public class MultiReferenceAttributeOptionItemProvider extends ReferenceAttribut
 
 	/**
 	 * <!-- begin-user-doc --> <!-- end-user-doc -->
+	 * 
 	 * @generated
 	 */
 	@Override
@@ -84,8 +86,8 @@ public class MultiReferenceAttributeOptionItemProvider extends ReferenceAttribut
 	}
 
 	/**
-	 * This returns MultiReferenceAttributeOption.gif.
-	 * <!-- begin-user-doc --> <!-- end-user-doc -->
+	 * This returns MultiReferenceAttributeOption.gif. <!-- begin-user-doc --> <!-- end-user-doc -->
+	 * 
 	 * @generated
 	 */
 	@Override
@@ -94,16 +96,15 @@ public class MultiReferenceAttributeOptionItemProvider extends ReferenceAttribut
 	}
 
 	/**
-	 * This returns the label text for the adapted class.
-	 * <!-- begin-user-doc --> <!-- end-user-doc -->
+	 * This returns the label text for the adapted class. <!-- begin-user-doc --> <!-- end-user-doc -->
+	 * 
 	 * @generated
 	 */
 	@Override
 	public String getText(Object object) {
-		String label = ((MultiReferenceAttributeOption)object).getName();
-		return label == null || label.length() == 0 ?
-			getString("_UI_MultiReferenceAttributeOption_type") :
-			getString("_UI_MultiReferenceAttributeOption_type") + " " + label;
+		String label = ((MultiReferenceAttributeOption) object).getName();
+		return label == null || label.length() == 0 ? getString("_UI_MultiReferenceAttributeOption_type")
+			: getString("_UI_MultiReferenceAttributeOption_type") + " " + label;
 	}
 
 	/**
@@ -118,27 +119,26 @@ public class MultiReferenceAttributeOptionItemProvider extends ReferenceAttribut
 		updateChildren(notification);
 
 		switch (notification.getFeatureID(MultiReferenceAttributeOption.class)) {
-			case OptionsPackage.MULTI_REFERENCE_ATTRIBUTE_OPTION__LIST_OPTION:
-				fireNotifyChanged(new ViewerNotification(notification, notification.getNotifier(), true, false));
-				return;
+		case OptionsPackage.MULTI_REFERENCE_ATTRIBUTE_OPTION__LIST_OPTION:
+			fireNotifyChanged(new ViewerNotification(notification, notification.getNotifier(), true, false));
+			return;
 		}
 		super.notifyChanged(notification);
 	}
 
 	/**
-	 * This adds {@link org.eclipse.emf.edit.command.CommandParameter}s describing the children
-	 * that can be created under this object.
-	 * <!-- begin-user-doc --> <!-- end-user-doc -->
+	 * This adds {@link org.eclipse.emf.edit.command.CommandParameter}s describing the children that can be created
+	 * under this object. <!-- begin-user-doc --> <!-- end-user-doc -->
+	 * 
 	 * @generated
 	 */
 	@Override
 	protected void collectNewChildDescriptors(Collection<Object> newChildDescriptors, Object object) {
 		super.collectNewChildDescriptors(newChildDescriptors, object);
 
-		newChildDescriptors.add
-			(createChildParameter
-				(OptionsPackage.Literals.MULTI_REFERENCE_ATTRIBUTE_OPTION__LIST_OPTION,
-				 OptionsFactory.eINSTANCE.createListOption()));
+		newChildDescriptors.add(createChildParameter(
+			OptionsPackage.Literals.MULTI_REFERENCE_ATTRIBUTE_OPTION__LIST_OPTION, OptionsFactory.eINSTANCE
+				.createListOption()));
 	}
 
 }

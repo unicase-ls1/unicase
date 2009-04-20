@@ -35,17 +35,17 @@ import org.unicase.docExport.exportModel.renderers.specialRenderers.util.Special
 public class SpecialRenderersItemProviderAdapterFactory extends SpecialRenderersAdapterFactory implements
 	ComposeableAdapterFactory, IChangeNotifier, IDisposable {
 	/**
-	 * This keeps track of the root adapter factory that delegates to this adapter factory.
-	 * <!-- begin-user-doc --> <!--
+	 * This keeps track of the root adapter factory that delegates to this adapter factory. <!-- begin-user-doc --> <!--
 	 * end-user-doc -->
+	 * 
 	 * @generated
 	 */
 	protected ComposedAdapterFactory parentAdapterFactory;
 
 	/**
-	 * This is used to implement {@link org.eclipse.emf.edit.provider.IChangeNotifier}.
-	 * <!-- begin-user-doc --> <!--
+	 * This is used to implement {@link org.eclipse.emf.edit.provider.IChangeNotifier}. <!-- begin-user-doc --> <!--
 	 * end-user-doc -->
+	 * 
 	 * @generated
 	 */
 	protected IChangeNotifier changeNotifier = new ChangeNotifier();
@@ -59,8 +59,8 @@ public class SpecialRenderersItemProviderAdapterFactory extends SpecialRenderers
 	protected Collection<Object> supportedTypes = new ArrayList<Object>();
 
 	/**
-	 * This constructs an instance.
-	 * <!-- begin-user-doc --> <!-- end-user-doc -->
+	 * This constructs an instance. <!-- begin-user-doc --> <!-- end-user-doc -->
+	 * 
 	 * @generated
 	 */
 	public SpecialRenderersItemProviderAdapterFactory() {
@@ -81,9 +81,10 @@ public class SpecialRenderersItemProviderAdapterFactory extends SpecialRenderers
 	protected MeetingRendererItemProvider meetingRendererItemProvider;
 
 	/**
-	 * This creates an adapter for a {@link org.unicase.docExport.exportModel.renderers.specialRenderers.MeetingRenderer}.
-	 * <!-- begin-user-doc -->
+	 * This creates an adapter for a
+	 * {@link org.unicase.docExport.exportModel.renderers.specialRenderers.MeetingRenderer}. <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
+	 * 
 	 * @generated
 	 */
 	@Override
@@ -105,9 +106,10 @@ public class SpecialRenderersItemProviderAdapterFactory extends SpecialRenderers
 	protected MilestoneRendererItemProvider milestoneRendererItemProvider;
 
 	/**
-	 * This creates an adapter for a {@link org.unicase.docExport.exportModel.renderers.specialRenderers.MilestoneRenderer}.
-	 * <!-- begin-user-doc -->
+	 * This creates an adapter for a
+	 * {@link org.unicase.docExport.exportModel.renderers.specialRenderers.MilestoneRenderer}. <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
+	 * 
 	 * @generated
 	 */
 	@Override
@@ -129,9 +131,10 @@ public class SpecialRenderersItemProviderAdapterFactory extends SpecialRenderers
 	protected StepsAttributeRendererItemProvider stepsAttributeRendererItemProvider;
 
 	/**
-	 * This creates an adapter for a {@link org.unicase.docExport.exportModel.renderers.specialRenderers.StepsAttributeRenderer}.
-	 * <!-- begin-user-doc
+	 * This creates an adapter for a
+	 * {@link org.unicase.docExport.exportModel.renderers.specialRenderers.StepsAttributeRenderer}. <!-- begin-user-doc
 	 * --> <!-- end-user-doc -->
+	 * 
 	 * @generated
 	 */
 	@Override
@@ -153,8 +156,9 @@ public class SpecialRenderersItemProviderAdapterFactory extends SpecialRenderers
 	protected MethodRendererItemProvider methodRendererItemProvider;
 
 	/**
-	 * This creates an adapter for a {@link org.unicase.docExport.exportModel.renderers.specialRenderers.MethodRenderer}.
-	 * <!-- begin-user-doc --> <!-- end-user-doc -->
+	 * This creates an adapter for a {@link org.unicase.docExport.exportModel.renderers.specialRenderers.MethodRenderer}
+	 * . <!-- begin-user-doc --> <!-- end-user-doc -->
+	 * 
 	 * @generated
 	 */
 	@Override
@@ -176,9 +180,10 @@ public class SpecialRenderersItemProviderAdapterFactory extends SpecialRenderers
 	protected PackageFlatRendererItemProvider packageFlatRendererItemProvider;
 
 	/**
-	 * This creates an adapter for a {@link org.unicase.docExport.exportModel.renderers.specialRenderers.PackageFlatRenderer}.
-	 * <!-- begin-user-doc -->
+	 * This creates an adapter for a
+	 * {@link org.unicase.docExport.exportModel.renderers.specialRenderers.PackageFlatRenderer}. <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
+	 * 
 	 * @generated
 	 */
 	@Override
@@ -191,17 +196,18 @@ public class SpecialRenderersItemProviderAdapterFactory extends SpecialRenderers
 	}
 
 	/**
-	 * This keeps track of the one adapter used for all {@link org.unicase.docExport.exportModel.renderers.specialRenderers.ClassRenderer} instances.
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
+	 * This keeps track of the one adapter used for all
+	 * {@link org.unicase.docExport.exportModel.renderers.specialRenderers.ClassRenderer} instances. <!-- begin-user-doc
+	 * --> <!-- end-user-doc -->
+	 * 
 	 * @generated
 	 */
 	protected ClassRendererItemProvider classRendererItemProvider;
 
 	/**
 	 * This creates an adapter for a {@link org.unicase.docExport.exportModel.renderers.specialRenderers.ClassRenderer}.
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
+	 * <!-- begin-user-doc --> <!-- end-user-doc -->
+	 * 
 	 * @generated
 	 */
 	@Override
@@ -214,17 +220,19 @@ public class SpecialRenderersItemProviderAdapterFactory extends SpecialRenderers
 	}
 
 	/**
-	 * This keeps track of the one adapter used for all {@link org.unicase.docExport.exportModel.renderers.specialRenderers.ClassAttributesRenderer} instances.
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
+	 * This keeps track of the one adapter used for all
+	 * {@link org.unicase.docExport.exportModel.renderers.specialRenderers.ClassAttributesRenderer} instances. <!--
+	 * begin-user-doc --> <!-- end-user-doc -->
+	 * 
 	 * @generated
 	 */
 	protected ClassAttributesRendererItemProvider classAttributesRendererItemProvider;
 
 	/**
-	 * This creates an adapter for a {@link org.unicase.docExport.exportModel.renderers.specialRenderers.ClassAttributesRenderer}.
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
+	 * This creates an adapter for a
+	 * {@link org.unicase.docExport.exportModel.renderers.specialRenderers.ClassAttributesRenderer}. <!-- begin-user-doc
+	 * --> <!-- end-user-doc -->
+	 * 
 	 * @generated
 	 */
 	@Override
@@ -237,17 +245,19 @@ public class SpecialRenderersItemProviderAdapterFactory extends SpecialRenderers
 	}
 
 	/**
-	 * This keeps track of the one adapter used for all {@link org.unicase.docExport.exportModel.renderers.specialRenderers.FhmMeetingRenderer} instances.
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
+	 * This keeps track of the one adapter used for all
+	 * {@link org.unicase.docExport.exportModel.renderers.specialRenderers.FhmMeetingRenderer} instances. <!--
+	 * begin-user-doc --> <!-- end-user-doc -->
+	 * 
 	 * @generated
 	 */
 	protected FhmMeetingRendererItemProvider fhmMeetingRendererItemProvider;
 
 	/**
-	 * This creates an adapter for a {@link org.unicase.docExport.exportModel.renderers.specialRenderers.FhmMeetingRenderer}.
-	 * <!-- begin-user-doc -->
+	 * This creates an adapter for a
+	 * {@link org.unicase.docExport.exportModel.renderers.specialRenderers.FhmMeetingRenderer}. <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
+	 * 
 	 * @generated
 	 */
 	@Override
@@ -260,8 +270,8 @@ public class SpecialRenderersItemProviderAdapterFactory extends SpecialRenderers
 	}
 
 	/**
-	 * This returns the root adapter factory that contains this factory.
-	 * <!-- begin-user-doc --> <!-- end-user-doc -->
+	 * This returns the root adapter factory that contains this factory. <!-- begin-user-doc --> <!-- end-user-doc -->
+	 * 
 	 * @generated
 	 */
 	public ComposeableAdapterFactory getRootAdapterFactory() {
@@ -269,8 +279,8 @@ public class SpecialRenderersItemProviderAdapterFactory extends SpecialRenderers
 	}
 
 	/**
-	 * This sets the composed adapter factory that contains this factory.
-	 * <!-- begin-user-doc --> <!-- end-user-doc -->
+	 * This sets the composed adapter factory that contains this factory. <!-- begin-user-doc --> <!-- end-user-doc -->
+	 * 
 	 * @generated
 	 */
 	public void setParentAdapterFactory(ComposedAdapterFactory parentAdapterFactory) {
@@ -279,6 +289,7 @@ public class SpecialRenderersItemProviderAdapterFactory extends SpecialRenderers
 
 	/**
 	 * <!-- begin-user-doc --> <!-- end-user-doc -->
+	 * 
 	 * @generated
 	 */
 	@Override
@@ -287,9 +298,9 @@ public class SpecialRenderersItemProviderAdapterFactory extends SpecialRenderers
 	}
 
 	/**
-	 * This implementation substitutes the factory itself as the key for the adapter.
-	 * <!-- begin-user-doc --> <!--
+	 * This implementation substitutes the factory itself as the key for the adapter. <!-- begin-user-doc --> <!--
 	 * end-user-doc -->
+	 * 
 	 * @generated
 	 */
 	@Override
@@ -299,13 +310,14 @@ public class SpecialRenderersItemProviderAdapterFactory extends SpecialRenderers
 
 	/**
 	 * <!-- begin-user-doc --> <!-- end-user-doc -->
+	 * 
 	 * @generated
 	 */
 	@Override
 	public Object adapt(Object object, Object type) {
 		if (isFactoryForType(type)) {
 			Object adapter = super.adapt(object, type);
-			if (!(type instanceof Class) || (((Class<?>)type).isInstance(adapter))) {
+			if (!(type instanceof Class<?>) || (((Class<?>) type).isInstance(adapter))) {
 				return adapter;
 			}
 		}
@@ -314,8 +326,8 @@ public class SpecialRenderersItemProviderAdapterFactory extends SpecialRenderers
 	}
 
 	/**
-	 * This adds a listener.
-	 * <!-- begin-user-doc --> <!-- end-user-doc -->
+	 * This adds a listener. <!-- begin-user-doc --> <!-- end-user-doc -->
+	 * 
 	 * @generated
 	 */
 	public void addListener(INotifyChangedListener notifyChangedListener) {
@@ -323,8 +335,8 @@ public class SpecialRenderersItemProviderAdapterFactory extends SpecialRenderers
 	}
 
 	/**
-	 * This removes a listener.
-	 * <!-- begin-user-doc --> <!-- end-user-doc -->
+	 * This removes a listener. <!-- begin-user-doc --> <!-- end-user-doc -->
+	 * 
 	 * @generated
 	 */
 	public void removeListener(INotifyChangedListener notifyChangedListener) {
@@ -332,9 +344,9 @@ public class SpecialRenderersItemProviderAdapterFactory extends SpecialRenderers
 	}
 
 	/**
-	 * This delegates to {@link #changeNotifier} and to {@link #parentAdapterFactory}.
-	 * <!-- begin-user-doc --> <!--
+	 * This delegates to {@link #changeNotifier} and to {@link #parentAdapterFactory}. <!-- begin-user-doc --> <!--
 	 * end-user-doc -->
+	 * 
 	 * @generated
 	 */
 	public void fireNotifyChanged(Notification notification) {
@@ -346,19 +358,27 @@ public class SpecialRenderersItemProviderAdapterFactory extends SpecialRenderers
 	}
 
 	/**
-	 * This disposes all of the item providers created by this factory. 
-	 * <!-- begin-user-doc --> <!-- end-user-doc -->
+	 * This disposes all of the item providers created by this factory. <!-- begin-user-doc --> <!-- end-user-doc -->
+	 * 
 	 * @generated
 	 */
 	public void dispose() {
-		if (meetingRendererItemProvider != null) meetingRendererItemProvider.dispose();
-		if (milestoneRendererItemProvider != null) milestoneRendererItemProvider.dispose();
-		if (stepsAttributeRendererItemProvider != null) stepsAttributeRendererItemProvider.dispose();
-		if (methodRendererItemProvider != null) methodRendererItemProvider.dispose();
-		if (packageFlatRendererItemProvider != null) packageFlatRendererItemProvider.dispose();
-		if (classRendererItemProvider != null) classRendererItemProvider.dispose();
-		if (classAttributesRendererItemProvider != null) classAttributesRendererItemProvider.dispose();
-		if (fhmMeetingRendererItemProvider != null) fhmMeetingRendererItemProvider.dispose();
+		if (meetingRendererItemProvider != null)
+			meetingRendererItemProvider.dispose();
+		if (milestoneRendererItemProvider != null)
+			milestoneRendererItemProvider.dispose();
+		if (stepsAttributeRendererItemProvider != null)
+			stepsAttributeRendererItemProvider.dispose();
+		if (methodRendererItemProvider != null)
+			methodRendererItemProvider.dispose();
+		if (packageFlatRendererItemProvider != null)
+			packageFlatRendererItemProvider.dispose();
+		if (classRendererItemProvider != null)
+			classRendererItemProvider.dispose();
+		if (classAttributesRendererItemProvider != null)
+			classAttributesRendererItemProvider.dispose();
+		if (fhmMeetingRendererItemProvider != null)
+			fhmMeetingRendererItemProvider.dispose();
 	}
 
 }

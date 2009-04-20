@@ -18,16 +18,17 @@ import org.eclipse.emf.edit.provider.IStructuredItemContentProvider;
 import org.eclipse.emf.edit.provider.ITreeItemContentProvider;
 
 /**
- * This is the item provider adapter for a {@link org.unicase.docExport.exportModel.renderers.specialRenderers.FhmMeetingRenderer} object.
- * <!-- begin-user-doc
+ * This is the item provider adapter for a
+ * {@link org.unicase.docExport.exportModel.renderers.specialRenderers.FhmMeetingRenderer} object. <!-- begin-user-doc
  * --> <!-- end-user-doc -->
+ * 
  * @generated
  */
 public class FhmMeetingRendererItemProvider extends MeetingRendererItemProvider implements IEditingDomainItemProvider,
 	IStructuredItemContentProvider, ITreeItemContentProvider, IItemLabelProvider, IItemPropertySource {
 	/**
-	 * This constructs an instance from a factory and a notifier.
-	 * <!-- begin-user-doc --> <!-- end-user-doc -->
+	 * This constructs an instance from a factory and a notifier. <!-- begin-user-doc --> <!-- end-user-doc -->
+	 * 
 	 * @generated
 	 */
 	public FhmMeetingRendererItemProvider(AdapterFactory adapterFactory) {
@@ -35,8 +36,8 @@ public class FhmMeetingRendererItemProvider extends MeetingRendererItemProvider 
 	}
 
 	/**
-	 * This returns the property descriptors for the adapted class.
-	 * <!-- begin-user-doc --> <!-- end-user-doc -->
+	 * This returns the property descriptors for the adapted class. <!-- begin-user-doc --> <!-- end-user-doc -->
+	 * 
 	 * @generated
 	 */
 	@Override
@@ -49,8 +50,8 @@ public class FhmMeetingRendererItemProvider extends MeetingRendererItemProvider 
 	}
 
 	/**
-	 * This returns FhmMeetingRenderer.gif.
-	 * <!-- begin-user-doc --> <!-- end-user-doc -->
+	 * This returns FhmMeetingRenderer.gif. <!-- begin-user-doc --> <!-- end-user-doc -->
+	 * 
 	 * @generated
 	 */
 	@Override
@@ -59,8 +60,8 @@ public class FhmMeetingRendererItemProvider extends MeetingRendererItemProvider 
 	}
 
 	/**
-	 * This returns the label text for the adapted class.
-	 * <!-- begin-user-doc --> <!-- end-user-doc -->
+	 * This returns the label text for the adapted class. <!-- begin-user-doc --> <!-- end-user-doc -->
+	 * 
 	 * @generated
 	 */
 	@Override
@@ -82,9 +83,9 @@ public class FhmMeetingRendererItemProvider extends MeetingRendererItemProvider 
 	}
 
 	/**
-	 * This adds {@link org.eclipse.emf.edit.command.CommandParameter}s describing the children
-	 * that can be created under this object.
-	 * <!-- begin-user-doc --> <!-- end-user-doc -->
+	 * This adds {@link org.eclipse.emf.edit.command.CommandParameter}s describing the children that can be created
+	 * under this object. <!-- begin-user-doc --> <!-- end-user-doc -->
+	 * 
 	 * @generated
 	 */
 	@Override

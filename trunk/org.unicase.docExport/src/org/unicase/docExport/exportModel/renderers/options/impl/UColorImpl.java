@@ -16,12 +16,12 @@ import org.unicase.docExport.exportModel.renderers.options.UColor;
  * <p>
  * The following features are implemented:
  * <ul>
- *   <li>{@link org.unicase.docExport.exportModel.renderers.options.impl.UColorImpl#getRed <em>Red</em>}</li>
- *   <li>{@link org.unicase.docExport.exportModel.renderers.options.impl.UColorImpl#getGreen <em>Green</em>}</li>
- *   <li>{@link org.unicase.docExport.exportModel.renderers.options.impl.UColorImpl#getBlue <em>Blue</em>}</li>
+ * <li>{@link org.unicase.docExport.exportModel.renderers.options.impl.UColorImpl#getRed <em>Red</em>}</li>
+ * <li>{@link org.unicase.docExport.exportModel.renderers.options.impl.UColorImpl#getGreen <em>Green</em>}</li>
+ * <li>{@link org.unicase.docExport.exportModel.renderers.options.impl.UColorImpl#getBlue <em>Blue</em>}</li>
  * </ul>
  * </p>
- *
+ * 
  * @generated
  */
 public class UColorImpl extends RendererOptionImpl implements UColor {
@@ -36,8 +36,8 @@ public class UColorImpl extends RendererOptionImpl implements UColor {
 	protected static final int RED_EDEFAULT = 0;
 
 	/**
-	 * The cached value of the '{@link #getRed() <em>Red</em>}' attribute.
-	 * <!-- begin-user-doc --> <!-- end-user-doc -->
+	 * The cached value of the '{@link #getRed() <em>Red</em>}' attribute. <!-- begin-user-doc --> <!-- end-user-doc -->
+	 * 
 	 * @see #getRed()
 	 * @generated
 	 * @ordered
@@ -45,9 +45,9 @@ public class UColorImpl extends RendererOptionImpl implements UColor {
 	protected int red = RED_EDEFAULT;
 
 	/**
-	 * The default value of the '{@link #getGreen() <em>Green</em>}' attribute.
-	 * <!-- begin-user-doc --> <!--
+	 * The default value of the '{@link #getGreen() <em>Green</em>}' attribute. <!-- begin-user-doc --> <!--
 	 * end-user-doc -->
+	 * 
 	 * @see #getGreen()
 	 * @generated
 	 * @ordered
@@ -86,6 +86,7 @@ public class UColorImpl extends RendererOptionImpl implements UColor {
 
 	/**
 	 * <!-- begin-user-doc --> <!-- end-user-doc -->
+	 * 
 	 * @generated
 	 */
 	protected UColorImpl() {
@@ -94,6 +95,7 @@ public class UColorImpl extends RendererOptionImpl implements UColor {
 
 	/**
 	 * <!-- begin-user-doc --> <!-- end-user-doc -->
+	 * 
 	 * @generated
 	 */
 	@Override
@@ -103,6 +105,7 @@ public class UColorImpl extends RendererOptionImpl implements UColor {
 
 	/**
 	 * <!-- begin-user-doc --> <!-- end-user-doc -->
+	 * 
 	 * @generated
 	 */
 	public int getRed() {
@@ -111,6 +114,7 @@ public class UColorImpl extends RendererOptionImpl implements UColor {
 
 	/**
 	 * <!-- begin-user-doc --> <!-- end-user-doc -->
+	 * 
 	 * @generated
 	 */
 	public void setRed(int newRed) {
@@ -122,6 +126,7 @@ public class UColorImpl extends RendererOptionImpl implements UColor {
 
 	/**
 	 * <!-- begin-user-doc --> <!-- end-user-doc -->
+	 * 
 	 * @generated
 	 */
 	public int getGreen() {
@@ -130,6 +135,7 @@ public class UColorImpl extends RendererOptionImpl implements UColor {
 
 	/**
 	 * <!-- begin-user-doc --> <!-- end-user-doc -->
+	 * 
 	 * @generated
 	 */
 	public void setGreen(int newGreen) {
@@ -141,6 +147,7 @@ public class UColorImpl extends RendererOptionImpl implements UColor {
 
 	/**
 	 * <!-- begin-user-doc --> <!-- end-user-doc -->
+	 * 
 	 * @generated
 	 */
 	public int getBlue() {
@@ -149,6 +156,7 @@ public class UColorImpl extends RendererOptionImpl implements UColor {
 
 	/**
 	 * <!-- begin-user-doc --> <!-- end-user-doc -->
+	 * 
 	 * @generated
 	 */
 	public void setBlue(int newBlue) {
@@ -160,85 +168,91 @@ public class UColorImpl extends RendererOptionImpl implements UColor {
 
 	/**
 	 * <!-- begin-user-doc --> <!-- end-user-doc -->
+	 * 
 	 * @generated
 	 */
 	@Override
 	public Object eGet(int featureID, boolean resolve, boolean coreType) {
 		switch (featureID) {
-			case OptionsPackage.UCOLOR__RED:
-				return new Integer(getRed());
-			case OptionsPackage.UCOLOR__GREEN:
-				return new Integer(getGreen());
-			case OptionsPackage.UCOLOR__BLUE:
-				return new Integer(getBlue());
+		case OptionsPackage.UCOLOR__RED:
+			return getRed();
+		case OptionsPackage.UCOLOR__GREEN:
+			return getGreen();
+		case OptionsPackage.UCOLOR__BLUE:
+			return getBlue();
 		}
 		return super.eGet(featureID, resolve, coreType);
 	}
 
 	/**
 	 * <!-- begin-user-doc --> <!-- end-user-doc -->
+	 * 
 	 * @generated
 	 */
 	@Override
 	public void eSet(int featureID, Object newValue) {
 		switch (featureID) {
-			case OptionsPackage.UCOLOR__RED:
-				setRed(((Integer)newValue).intValue());
-				return;
-			case OptionsPackage.UCOLOR__GREEN:
-				setGreen(((Integer)newValue).intValue());
-				return;
-			case OptionsPackage.UCOLOR__BLUE:
-				setBlue(((Integer)newValue).intValue());
-				return;
+		case OptionsPackage.UCOLOR__RED:
+			setRed((Integer) newValue);
+			return;
+		case OptionsPackage.UCOLOR__GREEN:
+			setGreen((Integer) newValue);
+			return;
+		case OptionsPackage.UCOLOR__BLUE:
+			setBlue((Integer) newValue);
+			return;
 		}
 		super.eSet(featureID, newValue);
 	}
 
 	/**
 	 * <!-- begin-user-doc --> <!-- end-user-doc -->
+	 * 
 	 * @generated
 	 */
 	@Override
 	public void eUnset(int featureID) {
 		switch (featureID) {
-			case OptionsPackage.UCOLOR__RED:
-				setRed(RED_EDEFAULT);
-				return;
-			case OptionsPackage.UCOLOR__GREEN:
-				setGreen(GREEN_EDEFAULT);
-				return;
-			case OptionsPackage.UCOLOR__BLUE:
-				setBlue(BLUE_EDEFAULT);
-				return;
+		case OptionsPackage.UCOLOR__RED:
+			setRed(RED_EDEFAULT);
+			return;
+		case OptionsPackage.UCOLOR__GREEN:
+			setGreen(GREEN_EDEFAULT);
+			return;
+		case OptionsPackage.UCOLOR__BLUE:
+			setBlue(BLUE_EDEFAULT);
+			return;
 		}
 		super.eUnset(featureID);
 	}
 
 	/**
 	 * <!-- begin-user-doc --> <!-- end-user-doc -->
+	 * 
 	 * @generated
 	 */
 	@Override
 	public boolean eIsSet(int featureID) {
 		switch (featureID) {
-			case OptionsPackage.UCOLOR__RED:
-				return red != RED_EDEFAULT;
-			case OptionsPackage.UCOLOR__GREEN:
-				return green != GREEN_EDEFAULT;
-			case OptionsPackage.UCOLOR__BLUE:
-				return blue != BLUE_EDEFAULT;
+		case OptionsPackage.UCOLOR__RED:
+			return red != RED_EDEFAULT;
+		case OptionsPackage.UCOLOR__GREEN:
+			return green != GREEN_EDEFAULT;
+		case OptionsPackage.UCOLOR__BLUE:
+			return blue != BLUE_EDEFAULT;
 		}
 		return super.eIsSet(featureID);
 	}
 
 	/**
 	 * <!-- begin-user-doc --> <!-- end-user-doc -->
+	 * 
 	 * @generated
 	 */
 	@Override
 	public String toString() {
-		if (eIsProxy()) return super.toString();
+		if (eIsProxy())
+			return super.toString();
 
 		StringBuffer result = new StringBuffer(super.toString());
 		result.append(" (red: ");

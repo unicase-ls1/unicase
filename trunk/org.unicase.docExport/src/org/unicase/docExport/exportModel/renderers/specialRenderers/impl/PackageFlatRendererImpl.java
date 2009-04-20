@@ -25,12 +25,13 @@ import org.unicase.workspace.util.WorkspaceUtil;
  * end-user-doc -->
  * <p>
  * </p>
- *
+ * 
  * @generated
  */
 public class PackageFlatRendererImpl extends ModelElementRendererImpl implements PackageFlatRenderer {
 	/**
 	 * <!-- begin-user-doc --> <!-- end-user-doc -->
+	 * 
 	 * @generated
 	 */
 	protected PackageFlatRendererImpl() {
@@ -39,6 +40,7 @@ public class PackageFlatRendererImpl extends ModelElementRendererImpl implements
 
 	/**
 	 * <!-- begin-user-doc --> <!-- end-user-doc -->
+	 * 
 	 * @generated
 	 */
 	@Override

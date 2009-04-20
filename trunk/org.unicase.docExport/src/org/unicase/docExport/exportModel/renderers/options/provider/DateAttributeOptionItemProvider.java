@@ -23,16 +23,17 @@ import org.unicase.docExport.exportModel.renderers.options.DateAttributeOption;
 import org.unicase.docExport.exportModel.renderers.options.OptionsPackage;
 
 /**
- * This is the item provider adapter for a {@link org.unicase.docExport.exportModel.renderers.options.DateAttributeOption} object.
- * <!-- begin-user-doc --> <!--
+ * This is the item provider adapter for a
+ * {@link org.unicase.docExport.exportModel.renderers.options.DateAttributeOption} object. <!-- begin-user-doc --> <!--
  * end-user-doc -->
+ * 
  * @generated
  */
 public class DateAttributeOptionItemProvider extends AttributeOptionItemProvider implements IEditingDomainItemProvider,
 	IStructuredItemContentProvider, ITreeItemContentProvider, IItemLabelProvider, IItemPropertySource {
 	/**
-	 * This constructs an instance from a factory and a notifier.
-	 * <!-- begin-user-doc --> <!-- end-user-doc -->
+	 * This constructs an instance from a factory and a notifier. <!-- begin-user-doc --> <!-- end-user-doc -->
+	 * 
 	 * @generated
 	 */
 	public DateAttributeOptionItemProvider(AdapterFactory adapterFactory) {
@@ -40,8 +41,8 @@ public class DateAttributeOptionItemProvider extends AttributeOptionItemProvider
 	}
 
 	/**
-	 * This returns the property descriptors for the adapted class.
-	 * <!-- begin-user-doc --> <!-- end-user-doc -->
+	 * This returns the property descriptors for the adapted class. <!-- begin-user-doc --> <!-- end-user-doc -->
+	 * 
 	 * @generated
 	 */
 	@Override
@@ -55,29 +56,21 @@ public class DateAttributeOptionItemProvider extends AttributeOptionItemProvider
 	}
 
 	/**
-	 * This adds a property descriptor for the Date Style feature.
-	 * <!-- begin-user-doc --> <!-- end-user-doc -->
+	 * This adds a property descriptor for the Date Style feature. <!-- begin-user-doc --> <!-- end-user-doc -->
+	 * 
 	 * @generated
 	 */
 	protected void addDateStylePropertyDescriptor(Object object) {
-		itemPropertyDescriptors.add
-			(createItemPropertyDescriptor
-				(((ComposeableAdapterFactory)adapterFactory).getRootAdapterFactory(),
-				 getResourceLocator(),
-				 getString("_UI_DateAttributeOption_dateStyle_feature"),
-				 getString("_UI_PropertyDescriptor_description", "_UI_DateAttributeOption_dateStyle_feature", "_UI_DateAttributeOption_type"),
-				 OptionsPackage.Literals.DATE_ATTRIBUTE_OPTION__DATE_STYLE,
-				 true,
-				 false,
-				 false,
-				 ItemPropertyDescriptor.GENERIC_VALUE_IMAGE,
-				 null,
-				 null));
+		itemPropertyDescriptors.add(createItemPropertyDescriptor(((ComposeableAdapterFactory) adapterFactory)
+			.getRootAdapterFactory(), getResourceLocator(), getString("_UI_DateAttributeOption_dateStyle_feature"),
+			getString("_UI_PropertyDescriptor_description", "_UI_DateAttributeOption_dateStyle_feature",
+				"_UI_DateAttributeOption_type"), OptionsPackage.Literals.DATE_ATTRIBUTE_OPTION__DATE_STYLE, true,
+			false, false, ItemPropertyDescriptor.GENERIC_VALUE_IMAGE, null, null));
 	}
 
 	/**
-	 * This returns DateAttributeOption.gif.
-	 * <!-- begin-user-doc --> <!-- end-user-doc -->
+	 * This returns DateAttributeOption.gif. <!-- begin-user-doc --> <!-- end-user-doc -->
+	 * 
 	 * @generated
 	 */
 	@Override
@@ -86,16 +79,15 @@ public class DateAttributeOptionItemProvider extends AttributeOptionItemProvider
 	}
 
 	/**
-	 * This returns the label text for the adapted class.
-	 * <!-- begin-user-doc --> <!-- end-user-doc -->
+	 * This returns the label text for the adapted class. <!-- begin-user-doc --> <!-- end-user-doc -->
+	 * 
 	 * @generated
 	 */
 	@Override
 	public String getText(Object object) {
-		String label = ((DateAttributeOption)object).getName();
-		return label == null || label.length() == 0 ?
-			getString("_UI_DateAttributeOption_type") :
-			getString("_UI_DateAttributeOption_type") + " " + label;
+		String label = ((DateAttributeOption) object).getName();
+		return label == null || label.length() == 0 ? getString("_UI_DateAttributeOption_type")
+			: getString("_UI_DateAttributeOption_type") + " " + label;
 	}
 
 	/**
@@ -110,17 +102,17 @@ public class DateAttributeOptionItemProvider extends AttributeOptionItemProvider
 		updateChildren(notification);
 
 		switch (notification.getFeatureID(DateAttributeOption.class)) {
-			case OptionsPackage.DATE_ATTRIBUTE_OPTION__DATE_STYLE:
-				fireNotifyChanged(new ViewerNotification(notification, notification.getNotifier(), false, true));
-				return;
+		case OptionsPackage.DATE_ATTRIBUTE_OPTION__DATE_STYLE:
+			fireNotifyChanged(new ViewerNotification(notification, notification.getNotifier(), false, true));
+			return;
 		}
 		super.notifyChanged(notification);
 	}
 
 	/**
-	 * This adds {@link org.eclipse.emf.edit.command.CommandParameter}s describing the children
-	 * that can be created under this object.
-	 * <!-- begin-user-doc --> <!-- end-user-doc -->
+	 * This adds {@link org.eclipse.emf.edit.command.CommandParameter}s describing the children that can be created
+	 * under this object. <!-- begin-user-doc --> <!-- end-user-doc -->
+	 * 
 	 * @generated
 	 */
 	@Override
