@@ -164,9 +164,15 @@ public class ModelElementRenderersTabItem extends TemplateEditorTabItem {
 		rendererOptionsContainer.setLayout(gLayout3);
 		rendererOptionsContainer.setLayoutData(gData3);
 
-		// an AttributeRenderer has been chosen -> show the options
+		// an ModelElementRenderer has been chosen -> show the options
 		if (renderer != null) {
-			getTemplate().setModelElementRenderer(eClass, renderer);
+			final ModelElementRenderer currentRenderer = getTemplate().getModelElementRenderer(eClass);
+
+			// if and only if there is a new ModelElementRendererMapping or a different renderer from the current
+			// renderer has been selected, the renderer needs and must be set.
+			if (currentRenderer == null || !currentRenderer.eClass().equals(renderer.eClass())) {
+				getTemplate().setModelElementRenderer(eClass, renderer);
+			}
 			((Group) attributeOptionsContainer).setText(" Attributes ");
 			((Group) rendererOptionsContainer).setText(" Renderer options ");
 
@@ -178,7 +184,14 @@ public class ModelElementRenderersTabItem extends TemplateEditorTabItem {
 
 			attributeOptionsSelector.addModifyListener(new ModifyListener() {
 				public void modifyText(ModifyEvent e) {
-					createAttributeRendererSelector(attributes.get(((Combo) e.widget).getSelectionIndex()), renderer);
+					if (currentRenderer == null || !currentRenderer.eClass().equals(renderer.eClass())) {
+						createAttributeRendererSelector(attributes.get(((Combo) e.widget).getSelectionIndex()),
+							renderer);
+					} else {
+						createAttributeRendererSelector(attributes.get(((Combo) e.widget).getSelectionIndex()),
+							currentRenderer);
+					}
+
 				}
 			});
 			attributeOptionsSelector.select(0);

@@ -409,7 +409,7 @@ public class TemplateImpl extends EObjectImpl implements Template {
 	public void removeModelElementRenderer(EClass modelElementEClass) {
 		ModelElementRendererMapping mappingToRemove = null;
 		for (ModelElementRendererMapping mapping : getModelElementRendererMapping()) {
-			if (mapping.getEClassName().equals(modelElementEClass.getInstanceClass().getSimpleName())) {
+			if (mapping.getEClassName().equals(ModelElementRendererRegistry.getStringOfEClass(modelElementEClass))) {
 				mappingToRemove = mapping;
 			}
 		}
@@ -418,6 +418,5 @@ public class TemplateImpl extends EObjectImpl implements Template {
 			getModelElementRendererMapping().remove(mappingToRemove);
 		}
 	}
-
 	// end custom code
 } // TemplateImpl
