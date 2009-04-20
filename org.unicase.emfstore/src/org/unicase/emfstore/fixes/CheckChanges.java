@@ -31,11 +31,15 @@ public class CheckChanges extends AbstractFix {
 
 				version.getChanges().apply(state);
 
-				if (between(version, 147, 150)) {
-					if (state.getModelElement(createMEID("_jpuo0LIbEd2mdsnzOQPBHw")) != null) {
-						System.out.println("Element in version" + version(version));
-					}
-				}
+				// if (between(version, 244, 250)) {
+				// ModelElement modelElement = state.getModelElement(createMEID("_AxpfgLy3Ed2XF4y-xW__9g"));
+				// if (modelElement instanceof UseCase) {
+				// System.out.println("Version: " + version(version));
+				// for (UseCase use : ((UseCase) modelElement).getIncludedUseCases()) {
+				// System.out.println(use);
+				// }
+				// }
+				// }
 
 				// specialVersion113(state, version);
 

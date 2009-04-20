@@ -30,8 +30,7 @@ public class FindChanges extends AbstractFix {
 					// }
 					// }
 
-					if (/* between(version, 500, 550) && */result.contains("_XPjVULzKEd2RWJ3BzLnjrw")
-						&& result.contains("_AxpfgLy3Ed2XF4y-xW__9g")) {
+					if (/* between(version, 500, 550) && */result.contains("_uho6MMFIEd2Dlp5EMJWWaQ")) {
 						printToFile(version, result);
 					}
 					// if (ao instanceof CreateDeleteOperation) {
