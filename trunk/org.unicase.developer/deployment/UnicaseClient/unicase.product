@@ -1,7 +1,7 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <?pde version="3.4"?>
 
-<product name="Unicase" id="org.unicase.client.product" application="org.unicase.client.application" version="0.2.14" useFeatures="false">
+<product name="Unicase" id="org.unicase.client.product" application="org.unicase.client.application" version="0.3.18.qualifier" useFeatures="false">
 
    <aboutInfo>
       <image path="about.png"/>
@@ -37,9 +37,15 @@
 
    <plugins>
       <plugin id="com.ibm.icu"/>
+      <plugin id="edu.tum.cs.cope.common"/>
+      <plugin id="edu.tum.cs.cope.declaration"/>
+      <plugin id="edu.tum.cs.cope.declaration.registry"/>
+      <plugin id="edu.tum.cs.cope.migration"/>
+      <plugin id="edu.tum.cs.cope.migration.execution"/>
       <plugin id="javax.servlet"/>
       <plugin id="javax.xml"/>
       <plugin id="net.sourceforge.lpg.lpgjavaruntime"/>
+      <plugin id="org.apache.ant"/>
       <plugin id="org.apache.batik.bridge"/>
       <plugin id="org.apache.batik.css"/>
       <plugin id="org.apache.batik.dom"/>
@@ -52,10 +58,12 @@
       <plugin id="org.apache.batik.util"/>
       <plugin id="org.apache.batik.util.gui"/>
       <plugin id="org.apache.batik.xml"/>
+      <plugin id="org.apache.commons.codec"/>
       <plugin id="org.apache.commons.logging"/>
       <plugin id="org.apache.xerces"/>
       <plugin id="org.apache.xml.resolver"/>
       <plugin id="org.apache.xml.serializer"/>
+      <plugin id="org.codehaus.groovy"/>
       <plugin id="org.eclipse.ant.core"/>
       <plugin id="org.eclipse.compare"/>
       <plugin id="org.eclipse.core.commands"/>
@@ -192,6 +200,9 @@
       <plugin id="org.eclipse.update.core.linux" fragment="true"/>
       <plugin id="org.eclipse.update.core.win32" fragment="true"/>
       <plugin id="org.eclipse.update.ui"/>
+      <plugin id="org.junit"/>
+      <plugin id="org.unicase.analyzer"/>
+      <plugin id="org.unicase.analyzer.edit"/>
       <plugin id="org.unicase.classDiagram"/>
       <plugin id="org.unicase.client"/>
       <plugin id="org.unicase.docExport"/>
@@ -200,6 +211,7 @@
       <plugin id="org.unicase.emfstore.esmodel.edit"/>
       <plugin id="org.unicase.model"/>
       <plugin id="org.unicase.model.edit"/>
+      <plugin id="org.unicase.model.migrator"/>
       <plugin id="org.unicase.test"/>
       <plugin id="org.unicase.ui.common"/>
       <plugin id="org.unicase.ui.componentDiagram"/>
