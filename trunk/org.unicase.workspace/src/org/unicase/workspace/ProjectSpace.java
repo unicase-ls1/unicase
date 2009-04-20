@@ -552,4 +552,13 @@ public interface ProjectSpace extends IdentifiableElement {
 	 * before the resources or the project space have been initialized.
 	 */
 	void makeTransient();
+
+	/**
+	 * Apply the merge result to the project space. Will revert all previous change and apply the given result.
+	 * 
+	 * @param mergeResult a list of operations resulting from a merge
+	 * @param mergeTargetSpec the target spec to merge to
+	 * @throws EmfStoreException if exception occurs on the server
+	 */
+	void applyMergeResult(List<AbstractOperation> mergeResult, VersionSpec mergeTargetSpec) throws EmfStoreException;
 } // ProjectContainer

@@ -1785,4 +1785,21 @@ public class ProjectSpaceImpl extends IdentifiableElementImpl implements Project
 		}
 		isTransient = true;
 	}
+
+	/**
+	 * @see org.unicase.workspace.ProjectSpace#applyMergeResult(java.util.List)
+	 */
+	public void applyMergeResult(List<AbstractOperation> mergeResult, VersionSpec mergeTargetSpec)
+		throws EmfStoreException {
+		revert();
+		update(mergeTargetSpec);
+
+		stopChangeRecording();
+		for (AbstractOperation operation : mergeResult) {
+			operation.apply(getProject());
+		}
+		startChangeRecording();
+		getOperations().addAll(mergeResult);
+		saveResourceSet();
+	}
 } // ProjectContainerImpl
