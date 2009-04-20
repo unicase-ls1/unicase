@@ -5,6 +5,7 @@
  */
 package org.unicase.intergerationtest.tests;
 
+import org.eclipse.emf.ecore.util.EcoreUtil;
 import org.eclipse.emf.transaction.RecordingCommand;
 import org.eclipse.emf.transaction.TransactionalEditingDomain;
 import org.junit.Before;
@@ -46,6 +47,7 @@ public abstract class IntegrationTestCase {
 
 	private static ProjectId projectId;
 	private static Workspace workSpace;
+	private static Project testProjectBackup;
 
 	/**
 	 * set up test project.
@@ -73,20 +75,10 @@ public abstract class IntegrationTestCase {
 
 	}
 
-	
 	private static void startServer() {
 
 		ServerConfiguration.setTesting(true);
 		new Thread(new EmfStoreController()).start();
-		
-//		EmfStoreController esController = new EmfStoreController();
-//		try {
-//			esController.run(false);
-//		} catch (FatalEmfStoreException e) {
-//			e.printStackTrace();
-//		} catch (EmfStoreException e) {
-//			e.printStackTrace();
-//		}
 
 	}
 
@@ -110,7 +102,7 @@ public abstract class IntegrationTestCase {
 				uriString = uriString.replace("reference:file:/", "");
 				testSpace = workSpace.importProject(uriString);
 
-				testProject = testSpace.getProject();
+				testProjectBackup = testSpace.getProject();
 
 			} catch (IOException e) {
 
@@ -129,6 +121,15 @@ public abstract class IntegrationTestCase {
 		// this is only in first test not the case!
 		// delete compare project on the server
 		// }
+		testProject = (Project) EcoreUtil.copy(testProjectBackup);
+		domain.getCommandStack().execute(new RecordingCommand(domain) {
+
+			@Override
+			protected void doExecute() {
+				getTestProjectSpace().setProject(testProject);
+			}
+		});
+
 		shareProject();
 		projectId = getTestProjectSpace().getProjectId();
 	}
@@ -192,8 +193,8 @@ public abstract class IntegrationTestCase {
 				try {
 					getTestProjectSpace().commit(logMessage);
 					System.out.println("commit successful!");
-				}catch (NoLocalChangesException e){
-					//do nothing
+				} catch (NoLocalChangesException e) {
+					// do nothing
 				} catch (EmfStoreException e) {
 					e.printStackTrace();
 				}
