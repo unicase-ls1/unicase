@@ -98,18 +98,18 @@ public abstract class IntegrationTestCase {
 			try {
 				// use already created random project with parameter(100, randomSeed, 5, 5, 10, 20)
 				// testSpace = currentWorkspace.importProject("/TestProjects/randomProj.ucp");
-				//String path = "TestProjects/randomProject";
+				// String path = "TestProjects/randomProject";
 				String path = "TestProjects/unicase.ucp";
 
 				// use unicase project
 				String uriString = Activator.getDefault().getBundle().getLocation() + path;
-				if(File.separator.equals("/")){
+				if (File.separator.equals("/")) {
 					uriString = uriString.replace("reference:file:", "");
-									
-				}else{
+
+				} else {
 					uriString = uriString.replace("reference:file:/", "");
 				}
-				
+
 				testSpace = workSpace.importProject(uriString);
 
 				testProjectBackup = testSpace.getProject();
@@ -137,9 +137,9 @@ public abstract class IntegrationTestCase {
 			@Override
 			protected void doExecute() {
 				((ProjectSpaceImpl) getTestProjectSpace()).stopChangeRecording();
-				
+
 				getTestProjectSpace().setProject(testProject);
-				
+
 				getTestProjectSpace().init();
 			}
 		});

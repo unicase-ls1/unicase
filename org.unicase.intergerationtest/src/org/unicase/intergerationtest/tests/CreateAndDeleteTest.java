@@ -15,23 +15,19 @@ import org.unicase.intergerationtest.TestHelper;
 import org.unicase.model.util.SerializationException;
 
 /**
- *  
  * @author Hodaie
  */
 public class CreateAndDeleteTest extends IntegrationTestCase {
 
-	
 	private long randomSeed = 1;
 
-	
 	/**
 	 * Create a random ME. Change one of its non-containment references. Delete ME.
 	 * 
 	 * @throws EmfStoreException EmfStoreException
 	 * @throws SerializationException SerializationException
-	 * 
 	 */
-	@Test 
+	@Test
 	public void runTest() throws SerializationException, EmfStoreException {
 		System.out.println("CreateAndDeleteTest");
 		final TestHelper testHelper = new TestHelper(randomSeed, getTestProject());
@@ -44,11 +40,10 @@ public class CreateAndDeleteTest extends IntegrationTestCase {
 			}
 
 		});
-		
+
 		commitChanges();
 		assertTrue(TestHelper.areEqual(getTestProject(), getCompareProject(), "CreateAndDeleteTest"));
 
 	}
 
-	
 }
