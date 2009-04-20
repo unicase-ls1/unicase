@@ -6,7 +6,6 @@
 package org.unicase.workspace.edit.views.changes;
 
 import java.util.ArrayList;
-import java.util.Arrays;
 import java.util.HashMap;
 import java.util.List;
 import java.util.Set;
@@ -311,18 +310,26 @@ public class MergeChangesComposite extends Composite implements ChangesComposite
 
 		ret.put("theirs", theirOperations);
 
-		List<AbstractOperation> mineChecked = Arrays.asList((AbstractOperation[]) myDetailedTreeViewer
-			.getCheckedElements());
+		List<AbstractOperation> mineChecked = getChecked(myDetailedTreeViewer);
 		ret.put("mineChecked", mineChecked);
 
-		List<AbstractOperation> theirsChecked = Arrays.asList((AbstractOperation[]) theirDetailedTreeViewer
-			.getCheckedElements());
+		List<AbstractOperation> theirsChecked = getChecked(theirDetailedTreeViewer);
 		List<AbstractOperation> theirsNotChecked = new ArrayList<AbstractOperation>();
 		theirsNotChecked.addAll(theirOperations);
 		theirsNotChecked.removeAll(theirsChecked);
 		ret.put("theirsNotChecked", theirsNotChecked);
 
 		return ret;
+	}
+
+	private List<AbstractOperation> getChecked(CheckboxTreeViewer viewer) {
+		ArrayList<AbstractOperation> checked = new ArrayList<AbstractOperation>();
+		for (Object o : viewer.getCheckedElements()) {
+			if (o instanceof AbstractOperation) {
+				checked.add((AbstractOperation) o);
+			}
+		}
+		return checked;
 	}
 
 }
