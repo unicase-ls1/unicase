@@ -9,6 +9,8 @@ import org.eclipse.core.runtime.Path;
 import org.unicase.docExport.exportModel.renderers.options.TextAlign;
 
 /**
+ * An Image with some options.
+ * 
  * @author Sebastian Hoecht
  */
 public class UImage extends UDocument {

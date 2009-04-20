@@ -6,9 +6,12 @@
 package org.unicase.docExport.exceptions;
 
 /**
+ * The template archive of an imported template is incorrect by any reason.
+ * 
  * @author Sebastian Hoecht
  */
-@SuppressWarnings("serial")
 public class InvalidTemplateArchiveException extends Exception {
+
+	private static final long serialVersionUID = 1205753557900403417L;
 
 }

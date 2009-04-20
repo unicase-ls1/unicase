@@ -6,9 +6,20 @@
 package org.unicase.docExport.exceptions;
 
 /**
+ * The EMF templates resource file could not be found or created.
+ * 
  * @author Sebastian Hoecht
  */
-@SuppressWarnings("serial")
 public class TemplatesFileNotFoundException extends Exception {
 
+	private static final long serialVersionUID = 1916900335630327864L;
+
+	/**
+	 * calls super method.
+	 * 
+	 * @param cause the Exception which has caused this exception
+	 */
+	public TemplatesFileNotFoundException(Throwable cause) {
+		super(cause);
+	}
 }

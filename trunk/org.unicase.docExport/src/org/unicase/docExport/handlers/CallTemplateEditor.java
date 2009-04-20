@@ -10,7 +10,6 @@ import org.eclipse.core.commands.ExecutionEvent;
 import org.eclipse.core.commands.ExecutionException;
 import org.eclipse.core.commands.IHandler;
 import org.eclipse.core.runtime.IStatus;
-import org.eclipse.emf.ecore.EClass;
 import org.eclipse.jface.viewers.ISelection;
 import org.eclipse.jface.viewers.IStructuredSelection;
 import org.eclipse.ui.IWorkbenchPage;
@@ -20,10 +19,6 @@ import org.eclipse.ui.handlers.HandlerUtil;
 import org.unicase.docExport.editors.TemplateEditor;
 import org.unicase.docExport.editors.TemplateEditorInput;
 import org.unicase.docExport.exportModel.Template;
-import org.unicase.docExport.exportModel.builders.DefaultDocumentTemplateBuilder;
-import org.unicase.docExport.exportModel.renderers.AttributeRendererMapping;
-import org.unicase.docExport.exportModel.renderers.ModelElementRenderer;
-import org.unicase.docExport.exportModel.renderers.ModelElementRendererMapping;
 import org.unicase.docExport.views.TemplatesView;
 import org.unicase.workspace.util.WorkspaceUtil;
 
@@ -61,37 +56,7 @@ public class CallTemplateEditor extends AbstractHandler implements IHandler {
 			} catch (PartInitException e) {
 				WorkspaceUtil.log("Template editor failure", e, IStatus.ERROR);
 			}
-		} else if (o instanceof ModelElementRendererMapping) {
-			ModelElementRendererMapping mapping = (ModelElementRendererMapping) o;
-
-			try {
-				TemplateEditorInput input = new TemplateEditorInput(mapping.getRenderer().getTemplate());
-				TemplateEditor editor = (TemplateEditor) page.openEditor(input, TemplateEditor.ID);
-
-				editor
-					.chooseModelElementType(DefaultDocumentTemplateBuilder.getEClassOfString(mapping.getEClassName()));
-			} catch (PartInitException e) {
-				WorkspaceUtil.log("Template editor failure", e, IStatus.ERROR);
-			}
-		} else if (o instanceof AttributeRendererMapping) {
-			AttributeRendererMapping mapping = (AttributeRendererMapping) o;
-			TemplateEditorInput input = new TemplateEditorInput(((ModelElementRenderer) mapping.eContainer())
-				.getTemplate());
-
-			try {
-				TemplateEditor editor = (TemplateEditor) page.openEditor(input, TemplateEditor.ID);
-
-				ModelElementRenderer renderer = (ModelElementRenderer) mapping.eContainer();
-				ModelElementRendererMapping modelElementRendererMapping = (ModelElementRendererMapping) renderer
-					.eContainer();
-				EClass modelElementType = DefaultDocumentTemplateBuilder.getEClassOfString(modelElementRendererMapping
-					.getEClassName());
-				editor.chooseFeature(modelElementType, mapping.getFeatureName());
-			} catch (PartInitException e) {
-				WorkspaceUtil.log("Template editor failure", e, IStatus.ERROR);
-			}
 		}
-
 		return null;
 	}
 

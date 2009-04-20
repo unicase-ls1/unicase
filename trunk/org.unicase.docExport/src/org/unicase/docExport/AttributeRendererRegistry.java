@@ -11,9 +11,11 @@ import org.eclipse.emf.ecore.EClass;
 import org.eclipse.emf.ecore.EReference;
 import org.eclipse.emf.ecore.EStructuralFeature;
 import org.unicase.docExport.exportModel.Template;
-import org.unicase.docExport.exportModel.builders.DefaultAttributeRendererBuilder;
+import org.unicase.docExport.exportModel.builders.attributeRenderers.AttributeRendererBuilder;
+import org.unicase.docExport.exportModel.builders.attributeRenderers.ClassAttributeRendererBuilder;
+import org.unicase.docExport.exportModel.builders.attributeRenderers.MethodRendererBuilder;
+import org.unicase.docExport.exportModel.builders.attributeRenderers.StepRendererBuilder;
 import org.unicase.docExport.exportModel.renderers.AttributeRenderer;
-import org.unicase.docExport.exportModel.renderers.specialRenderers.SpecialRenderersFactory;
 import org.unicase.model.classes.ClassesPackage;
 import org.unicase.model.requirement.RequirementPackage;
 
@@ -39,25 +41,23 @@ public final class AttributeRendererRegistry {
 	 */
 	public static ArrayList<AttributeRenderer> getSupportedAttributeRenderers(EStructuralFeature feature,
 		Template template) {
-		ArrayList<AttributeRenderer> ret = new ArrayList<AttributeRenderer>();
 
-		ret.add(DefaultAttributeRendererBuilder.build(feature, template));
+		AttributeRendererBuilder builder = new AttributeRendererBuilder();
 
 		if (feature instanceof EReference) {
 			EClass referenceType = ((EReference) feature).getEReferenceType();
-			if (referenceType.getInstanceTypeName()
-				.equals(RequirementPackage.eINSTANCE.getStep().getInstanceTypeName())) {
-				ret.add(SpecialRenderersFactory.eINSTANCE.createStepsAttributeRenderer());
-			}
-			if (referenceType.getInstanceTypeName().equals(ClassesPackage.eINSTANCE.getMethod().getInstanceTypeName())) {
-				ret.add(SpecialRenderersFactory.eINSTANCE.createMethodRenderer());
-			}
-			if (referenceType.getInstanceTypeName().equals(
-				ClassesPackage.eINSTANCE.getAttribute().getInstanceTypeName())) {
-				ret.add(SpecialRenderersFactory.eINSTANCE.createClassAttributesRenderer());
+			if (referenceType.equals(RequirementPackage.eINSTANCE.getStep())) {
+				builder = new StepRendererBuilder();
+			} else if (referenceType.equals(RequirementPackage.eINSTANCE.getStep())) {
+				builder = new StepRendererBuilder();
+			} else if (referenceType.equals(ClassesPackage.eINSTANCE.getMethod())) {
+				builder = new MethodRendererBuilder();
+			} else if (referenceType.equals(ClassesPackage.eINSTANCE.getAttribute())) {
+				builder = new ClassAttributeRendererBuilder();
 			}
 		}
 
-		return ret;
+		return builder.buildRenderers(template);
+
 	}
 }

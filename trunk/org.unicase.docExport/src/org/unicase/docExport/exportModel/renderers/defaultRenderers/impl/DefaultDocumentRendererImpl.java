@@ -78,10 +78,6 @@ public class DefaultDocumentRendererImpl extends DocumentRendererImpl implements
 	}
 
 	// begin custom code
-	/**
-	 * Renders a document of the ModelElement modelElement using the Template template. The rendered Document will be
-	 * returned containing all information needed to use a DocWriter.
-	 */
 	public URootCompositeSection render(ModelElement modelElement, Template template) {
 
 		if (!(modelElement instanceof LeafSection) && !(modelElement instanceof CompositeSection)) {
@@ -107,10 +103,6 @@ public class DefaultDocumentRendererImpl extends DocumentRendererImpl implements
 			logo.setTextAlign(TextAlign.CENTER);
 			logo.getBoxModel().setMarginBottom(15);
 		}
-
-		// UParagraph coverPage = new UParagraph(template.getLayoutOptions().getCoverText());
-		// coverPage.setOption(template.getLayoutOptions().getCoverTextTextOption());
-		// getDoc().add(coverPage);
 
 		if (modelElement instanceof CompositeSection) {
 			renderDocCompositeSection((CompositeSection) modelElement, template.getLayoutOptions());
@@ -402,7 +394,7 @@ public class DefaultDocumentRendererImpl extends DocumentRendererImpl implements
 		ModelElementRenderer renderer = template.getModelElementRendererNotNull(modelElement.eClass(), template);
 		try {
 			renderer.render(modelElement, parent);
-		} catch (Exception e) {
+		} catch (RuntimeException e) {
 			WorkspaceUtil.log("Error in the renderer " + renderer.getClass().getSimpleName(), e, IStatus.ERROR);
 		}
 	}

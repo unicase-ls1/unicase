@@ -46,7 +46,6 @@ public class ITextRtfHeadingWriter extends ITextRtfWriter {
 		}
 
 		Paragraph paragraph = new Paragraph(child.getTitlParagraph().getText(), style);
-		// paragraph.setIndentationLeft(child.getIndentionLeft() * INDENTION_WIDTH);
 
 		addItextObject(parent, paragraph);
 

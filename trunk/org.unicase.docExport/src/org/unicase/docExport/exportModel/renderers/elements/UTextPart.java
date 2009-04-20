@@ -12,7 +12,7 @@ import org.unicase.docExport.exportModel.renderers.options.TextOption;
 import org.unicase.workspace.util.WorkspaceUtil;
 
 /**
- * This short text part, which can be decorated by a TextOption. This element should not trigger a new line, hence it
+ * A short text part, which can be decorated by a TextOption. This element should not trigger a new line, hence it
  * behaves like span in HTML.
  * 
  * @author Sebastian Hoecht

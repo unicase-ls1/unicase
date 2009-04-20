@@ -26,7 +26,7 @@ public enum AppendixStyle implements Enumerator {
 	 * @generated
 	 * @ordered
 	 */
-	HIDE(0, "HIDE", "HIDE"),
+	HIDE(0, "HIDE", "hide"),
 
 	/**
 	 * The '<em><b>SHOW FLAT</b></em>' literal object.
@@ -35,7 +35,7 @@ public enum AppendixStyle implements Enumerator {
 	 * @generated
 	 * @ordered
 	 */
-	SHOW_FLAT(1, "SHOW_FLAT", "SHOW_FLAT"),
+	SHOW_FLAT(1, "SHOW_FLAT", "show flat"),
 
 	/**
 	 * The '<em><b>SHOW RECURSIVE</b></em>' literal object.
@@ -44,7 +44,7 @@ public enum AppendixStyle implements Enumerator {
 	 * @generated
 	 * @ordered
 	 */
-	SHOW_RECURSIVE(2, "SHOW_RECURSIVE", "SHOW_RECURSIVE");
+	SHOW_RECURSIVE(2, "SHOW_RECURSIVE", "show recursive");
 
 	/**
 	 * The '<em><b>HIDE</b></em>' literal value.
@@ -55,7 +55,7 @@ public enum AppendixStyle implements Enumerator {
 	 * </p>
 	 * <!-- end-user-doc -->
 	 * @see #HIDE
-	 * @model
+	 * @model literal="hide"
 	 * @generated
 	 * @ordered
 	 */
@@ -70,7 +70,7 @@ public enum AppendixStyle implements Enumerator {
 	 * </p>
 	 * <!-- end-user-doc -->
 	 * @see #SHOW_FLAT
-	 * @model
+	 * @model literal="show flat"
 	 * @generated
 	 * @ordered
 	 */
@@ -85,7 +85,7 @@ public enum AppendixStyle implements Enumerator {
 	 * </p>
 	 * <!-- end-user-doc -->
 	 * @see #SHOW_RECURSIVE
-	 * @model
+	 * @model literal="show recursive"
 	 * @generated
 	 * @ordered
 	 */

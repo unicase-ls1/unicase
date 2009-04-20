@@ -113,11 +113,6 @@ public class MeetingRendererImpl extends ModelElementRendererImpl implements Mee
 
 		USection title = new USection(topic2);
 		section.add(title);
-		// todo this break is also done, if there are no following elements after the Meeting
-		// so there is an empty page at the end if you export a single meeting
-		// if you export multiple meetings, there should be page breaks between the meetings..
-		// looks nicer!
-		// title.getBoxModel().setBreakAfter(true);
 		title.getSectionOption().setLeaveOutPreviousSectionNumbering(true);
 		title.getSectionOption().setSectionNumberingStyle(SectionNumberingStyle.NONE);
 		title.getBoxModel().setMarginTop(20);
@@ -272,7 +267,6 @@ public class MeetingRendererImpl extends ModelElementRendererImpl implements Mee
 		USection uSection = new USection(getMeetingSectionTitle(meetingSection), getTemplate().getLayoutOptions()
 			.getModelElementTextOption());
 		parent.add(uSection);
-		// uSection.getSectionOption().setLeaveOutPreviousSectionNumbering(true);
 		uSection.getBoxModel().setMarginTop(12);
 
 		renderDescription(uSection, meetingSection);
@@ -297,16 +291,8 @@ public class MeetingRendererImpl extends ModelElementRendererImpl implements Mee
 		int i = 1;
 		EList<Issue> issues = meetingSection.getIncludedIssues();
 		for (Issue issue : issues) {
-
 			renderWorkItem(issueSection, issue, i);
 			i++;
-			// ModelElementRendererMappings mappings = template.modelElementRendererMappings;
-			// ModelElementRenderer renderer = mappings.get(Issue.class);
-			// renderer.render(issue, issueSection, layoutOptions);
-
-			// UParagraph par = new UParagraph("- " + issue.getName(), layoutOptions.defaultTextOption);
-			// par.setIndentionLeft(1);
-			// issueSection.add(par);
 		}
 	}
 
@@ -323,20 +309,12 @@ public class MeetingRendererImpl extends ModelElementRendererImpl implements Mee
 		int i = 1;
 		EList<WorkItem> workItems = meetingSection.getIncludedWorkItems();
 		for (WorkItem workItem : workItems) {
-
 			renderWorkItem(workItemSection, workItem, i);
 			i++;
-
-			// UParagraph par = new UParagraph("- " + workItem.getName(), layoutOptions.defaultTextOption);
-			// par.setIndentionLeft(1);
-			// workItemSection.add(par);
 		}
 	}
 
 	protected void renderWorkItem(USection workItemSection, WorkItem workItem, int number) {
-		// ModelElementRendererMappings mappings = template.modelElementRendererMappings;
-		// ModelElementRenderer renderer = mappings.get(workItem.eClass().getInstanceClass());
-		// renderer.render(workItem, workItemSection, layoutOptions);
 
 		String text = "";
 		String workItemText = "[" + number + ", " + getOrgUnitName(workItem.getAssignee()) + "]: " + workItem.getName();
@@ -359,7 +337,6 @@ public class MeetingRendererImpl extends ModelElementRendererImpl implements Mee
 				workItemText += cal.get(Calendar.DAY_OF_MONTH) + "." + cal.get(Calendar.MONTH);
 			}
 			workItemText += "]: " + workItem.getName();
-			// text += " (" + workItem.getState() + ")";
 		} else {
 			text += "WI";
 		}
@@ -380,7 +357,8 @@ public class MeetingRendererImpl extends ModelElementRendererImpl implements Mee
 			}
 
 			if (issue.getSolution() != null) {
-				UParagraph solution = new UParagraph("Solution: " + issue.getSolution().getName(), getWorkItemTextOption());
+				UParagraph solution = new UParagraph("Solution: " + issue.getSolution().getName(),
+					getWorkItemTextOption());
 				solution.setIndentionLeft(2);
 				workItemSection.add(solution);
 			}
@@ -423,6 +401,7 @@ public class MeetingRendererImpl extends ModelElementRendererImpl implements Mee
 
 		return ret;
 	}
+
 	// end custom code
 
 	/**

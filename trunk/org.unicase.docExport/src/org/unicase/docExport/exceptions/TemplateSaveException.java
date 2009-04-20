@@ -6,10 +6,13 @@
 package org.unicase.docExport.exceptions;
 
 /**
+ * A template could not be saved.
+ * 
  * @author Sebastian Hoecht
  */
-@SuppressWarnings("serial")
 public class TemplateSaveException extends Exception {
+
+	private static final long serialVersionUID = -5625146682115578340L;
 
 	/**
 	 * default constructor.

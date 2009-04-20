@@ -41,7 +41,6 @@ public abstract class AttributeRendererImpl extends EObjectImpl implements Attri
 
 	/**
 	 * <!-- begin-user-doc --> <!-- end-user-doc -->
-	 * 
 	 * @generated
 	 */
 	protected AttributeRendererImpl() {
@@ -50,7 +49,6 @@ public abstract class AttributeRendererImpl extends EObjectImpl implements Attri
 
 	/**
 	 * <!-- begin-user-doc --> <!-- end-user-doc -->
-	 * 
 	 * @generated
 	 */
 	@Override
@@ -60,7 +58,6 @@ public abstract class AttributeRendererImpl extends EObjectImpl implements Attri
 
 	/**
 	 * <!-- begin-user-doc --> <!-- end-user-doc -->
-	 * 
 	 * @generated
 	 */
 	public AttributeOption getAttributeOption() {
@@ -69,113 +66,99 @@ public abstract class AttributeRendererImpl extends EObjectImpl implements Attri
 
 	/**
 	 * <!-- begin-user-doc --> <!-- end-user-doc -->
-	 * 
 	 * @generated
 	 */
 	public NotificationChain basicSetAttributeOption(AttributeOption newAttributeOption, NotificationChain msgs) {
 		AttributeOption oldAttributeOption = attributeOption;
 		attributeOption = newAttributeOption;
 		if (eNotificationRequired()) {
-			ENotificationImpl notification = new ENotificationImpl(this, Notification.SET,
-				RenderersPackage.ATTRIBUTE_RENDERER__ATTRIBUTE_OPTION, oldAttributeOption, newAttributeOption);
-			if (msgs == null)
-				msgs = notification;
-			else
-				msgs.add(notification);
+			ENotificationImpl notification = new ENotificationImpl(this, Notification.SET, RenderersPackage.ATTRIBUTE_RENDERER__ATTRIBUTE_OPTION, oldAttributeOption, newAttributeOption);
+			if (msgs == null) msgs = notification; else msgs.add(notification);
 		}
 		return msgs;
 	}
 
 	/**
 	 * <!-- begin-user-doc --> <!-- end-user-doc -->
-	 * 
 	 * @generated
 	 */
 	public void setAttributeOption(AttributeOption newAttributeOption) {
 		if (newAttributeOption != attributeOption) {
 			NotificationChain msgs = null;
 			if (attributeOption != null)
-				msgs = ((InternalEObject) attributeOption).eInverseRemove(this, EOPPOSITE_FEATURE_BASE
-					- RenderersPackage.ATTRIBUTE_RENDERER__ATTRIBUTE_OPTION, null, msgs);
+				msgs = ((InternalEObject)attributeOption).eInverseRemove(this, EOPPOSITE_FEATURE_BASE - RenderersPackage.ATTRIBUTE_RENDERER__ATTRIBUTE_OPTION, null, msgs);
 			if (newAttributeOption != null)
-				msgs = ((InternalEObject) newAttributeOption).eInverseAdd(this, EOPPOSITE_FEATURE_BASE
-					- RenderersPackage.ATTRIBUTE_RENDERER__ATTRIBUTE_OPTION, null, msgs);
+				msgs = ((InternalEObject)newAttributeOption).eInverseAdd(this, EOPPOSITE_FEATURE_BASE - RenderersPackage.ATTRIBUTE_RENDERER__ATTRIBUTE_OPTION, null, msgs);
 			msgs = basicSetAttributeOption(newAttributeOption, msgs);
-			if (msgs != null)
-				msgs.dispatch();
-		} else if (eNotificationRequired())
-			eNotify(new ENotificationImpl(this, Notification.SET,
-				RenderersPackage.ATTRIBUTE_RENDERER__ATTRIBUTE_OPTION, newAttributeOption, newAttributeOption));
+			if (msgs != null) msgs.dispatch();
+		}
+		else if (eNotificationRequired())
+			eNotify(new ENotificationImpl(this, Notification.SET, RenderersPackage.ATTRIBUTE_RENDERER__ATTRIBUTE_OPTION, newAttributeOption, newAttributeOption));
 	}
 
 	/**
 	 * <!-- begin-user-doc --> <!-- end-user-doc -->
-	 * 
 	 * @generated
 	 */
 	@Override
 	public NotificationChain eInverseRemove(InternalEObject otherEnd, int featureID, NotificationChain msgs) {
 		switch (featureID) {
-		case RenderersPackage.ATTRIBUTE_RENDERER__ATTRIBUTE_OPTION:
-			return basicSetAttributeOption(null, msgs);
+			case RenderersPackage.ATTRIBUTE_RENDERER__ATTRIBUTE_OPTION:
+				return basicSetAttributeOption(null, msgs);
 		}
 		return super.eInverseRemove(otherEnd, featureID, msgs);
 	}
 
 	/**
 	 * <!-- begin-user-doc --> <!-- end-user-doc -->
-	 * 
 	 * @generated
 	 */
 	@Override
 	public Object eGet(int featureID, boolean resolve, boolean coreType) {
 		switch (featureID) {
-		case RenderersPackage.ATTRIBUTE_RENDERER__ATTRIBUTE_OPTION:
-			return getAttributeOption();
+			case RenderersPackage.ATTRIBUTE_RENDERER__ATTRIBUTE_OPTION:
+				return getAttributeOption();
 		}
 		return super.eGet(featureID, resolve, coreType);
 	}
 
 	/**
 	 * <!-- begin-user-doc --> <!-- end-user-doc -->
-	 * 
 	 * @generated
 	 */
 	@Override
 	public void eSet(int featureID, Object newValue) {
 		switch (featureID) {
-		case RenderersPackage.ATTRIBUTE_RENDERER__ATTRIBUTE_OPTION:
-			setAttributeOption((AttributeOption) newValue);
-			return;
+			case RenderersPackage.ATTRIBUTE_RENDERER__ATTRIBUTE_OPTION:
+				setAttributeOption((AttributeOption)newValue);
+				return;
 		}
 		super.eSet(featureID, newValue);
 	}
 
 	/**
 	 * <!-- begin-user-doc --> <!-- end-user-doc -->
-	 * 
 	 * @generated
 	 */
 	@Override
 	public void eUnset(int featureID) {
 		switch (featureID) {
-		case RenderersPackage.ATTRIBUTE_RENDERER__ATTRIBUTE_OPTION:
-			setAttributeOption((AttributeOption) null);
-			return;
+			case RenderersPackage.ATTRIBUTE_RENDERER__ATTRIBUTE_OPTION:
+				setAttributeOption((AttributeOption)null);
+				return;
 		}
 		super.eUnset(featureID);
 	}
 
 	/**
 	 * <!-- begin-user-doc --> <!-- end-user-doc -->
-	 * 
 	 * @generated
 	 */
 	@Override
 	public boolean eIsSet(int featureID) {
 		switch (featureID) {
-		case RenderersPackage.ATTRIBUTE_RENDERER__ATTRIBUTE_OPTION:
-			return attributeOption != null;
+			case RenderersPackage.ATTRIBUTE_RENDERER__ATTRIBUTE_OPTION:
+				return attributeOption != null;
 		}
 		return super.eIsSet(featureID);
 	}

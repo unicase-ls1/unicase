@@ -3,42 +3,32 @@
  * accompanying materials are made available under the terms of the Eclipse Public License v1.0 which accompanies this
  * distribution, and is available at http://www.eclipse.org/legal/epl-v10.html </copyright>
  */
-package org.unicase.docExport.handlers;
+package org.unicase.docExport.commands;
 
 import org.eclipse.core.commands.AbstractHandler;
 import org.eclipse.core.commands.ExecutionEvent;
 import org.eclipse.core.commands.ExecutionException;
-import org.eclipse.core.commands.IHandler;
 import org.eclipse.jface.viewers.ISelection;
 import org.eclipse.jface.viewers.IStructuredSelection;
-import org.eclipse.ui.IWorkbenchPage;
-import org.eclipse.ui.IWorkbenchWindow;
 import org.eclipse.ui.handlers.HandlerUtil;
-import org.unicase.docExport.exportModel.Template;
-import org.unicase.docExport.exportModel.renderers.ModelElementRenderer;
+import org.unicase.docExport.ModelElementRendererRegistry;
+import org.unicase.docExport.editors.TemplateEditor;
 import org.unicase.docExport.exportModel.renderers.ModelElementRendererMapping;
-import org.unicase.docExport.views.TemplatesView;
 
 /**
- * @author Sebastian Hoecht
+ * The handler for the import template command.
  */
-public class SelectRenderer extends AbstractHandler implements IHandler {
+public class RemoveModelElementRenderer extends AbstractHandler {
 
 	/**
 	 * {@inheritDoc}
 	 */
 	public Object execute(ExecutionEvent event) throws ExecutionException {
 
-		IWorkbenchWindow window = HandlerUtil.getActiveWorkbenchWindow(event);
-		IWorkbenchPage page = window.getActivePage();
-
-		TemplatesView view = (TemplatesView) page.findView(TemplatesView.ID);
-
-		ISelection sel = view.getSite().getSelectionProvider().getSelection();
+		ISelection sel = HandlerUtil.getCurrentSelection(event);
 		if (!(sel instanceof IStructuredSelection)) {
 			return null;
 		}
-
 		IStructuredSelection ssel = (IStructuredSelection) sel;
 		if (ssel.isEmpty()) {
 			return null;
@@ -49,14 +39,12 @@ public class SelectRenderer extends AbstractHandler implements IHandler {
 			return null;
 		}
 
-		ModelElementRenderer renderer = ((ModelElementRendererMapping) o).getRenderer();
-		Template template = ((Template) renderer.eContainer().eContainer());
+		ModelElementRendererMapping mapping = (ModelElementRendererMapping) o;
 
-		SelectRendererDialog dialog = new SelectRendererDialog(page.getActivePart().getSite().getShell(), template);
-		dialog.setPropertyEClass(((ModelElementRendererMapping) o).getEClassName());
-		dialog.open();
+		TemplateEditor editor = (TemplateEditor) HandlerUtil.getActiveEditor(event);
+		editor.getTemplate().removeModelElementRenderer(
+			ModelElementRendererRegistry.getEClassOfString(mapping.getEClassName()));
 
 		return null;
 	}
-
 }

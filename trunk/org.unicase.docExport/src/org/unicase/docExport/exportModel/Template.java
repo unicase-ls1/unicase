@@ -13,7 +13,7 @@ import org.unicase.docExport.exportModel.renderers.ModelElementRendererMapping;
 import org.unicase.docExport.exportModel.renderers.options.LayoutOptions;
 
 /**
- * <!-- begin-user-doc --> A representation of the model object '<em><b>Template</b></em>'. <!-- end-user-doc -->
+ * <!-- begin-user-doc --> Stores all information on how any unicase document is rendered. <!-- end-user-doc -->
  * <p>
  * The following features are supported:
  * <ul>
@@ -127,20 +127,27 @@ public interface Template extends EObject {
 	// begin custom code
 	/**
 	 * Returns the ModelElementRenderer for a model element type (EClass). If there is no ModelElementRenderer
-	 * registered, a new default ModelElementRenderer will be created and returned. So there is always a useable
-	 * renderer!
+	 * registered, a new default ModelElementRenderer will be created and returned. So there is always a renderer!
+	 * 
+	 * @param eClass the EClass of a unicase model
+	 * @param template the template where the renderer is used.
 	 */
 	ModelElementRenderer getModelElementRendererNotNull(EClass eClass, Template template);
 
 	/**
 	 * Set the renderer for a model element type by the name of the EClass of the ModelElement. If there has been
 	 * registered a renderer before, the registration will be overwritten.
+	 * 
+	 * @param eClass the EClass of a unicase model.
+	 * @param renderer the ModelElementRenderer which shall be set.
 	 */
-	void setModelElementRenderer(String eClassName, ModelElementRenderer renderer);
+	void setModelElementRenderer(EClass eClass, ModelElementRenderer renderer);
 
 	/**
 	 * Returns the registered ModelElementRenderer for a given model element type by the EClass. This function my return
 	 * null, if there isn't any renderer registered for this type.
+	 * 
+	 * @param modelElementEClass the EClass of a unicase model.
 	 */
 	ModelElementRenderer getModelElementRenderer(EClass modelElementEClass);
 
@@ -149,6 +156,7 @@ public interface Template extends EObject {
 	 * model element type is rendered.
 	 * 
 	 * @see #getModelElementRendererNotNull(EClass, Template)
+	 * @param modelElementEClass the EClass of a unicase model.
 	 */
 	void removeModelElementRenderer(EClass modelElementEClass);
 	// end custom code

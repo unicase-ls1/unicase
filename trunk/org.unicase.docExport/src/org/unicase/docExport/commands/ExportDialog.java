@@ -38,7 +38,7 @@ import org.unicase.docExport.DocumentExport;
 import org.unicase.docExport.TemplateRegistry;
 import org.unicase.docExport.docWriter.DocWriter;
 import org.unicase.docExport.docWriter.DocWriterRegistry;
-import org.unicase.docExport.exceptions.TemplateSaveException;
+import org.unicase.docExport.exceptions.TemplatesFileNotFoundException;
 import org.unicase.docExport.exportModel.Template;
 import org.unicase.docExport.exportModel.renderers.DocumentRenderer;
 import org.unicase.model.ModelElement;
@@ -76,10 +76,10 @@ public class ExportDialog extends TitleAreaDialog {
 	 * @param docRenderer the DocumentRenderer which will use the template to render it to an URootCompositeSection,
 	 *            which is used by the DocWriter
 	 * @param modelElement the modelElement which shall be exported to a document
-	 * @throws TemplateSaveException no access to the templates files.
+	 * @throws TemplatesFileNotFoundException no access to the templates files.
 	 */
 	public ExportDialog(Shell parentShell, DocumentRenderer docRenderer, ModelElement modelElement)
-		throws TemplateSaveException {
+		throws TemplatesFileNotFoundException {
 		super(parentShell);
 
 		platformShell = parentShell;
@@ -207,9 +207,7 @@ public class ExportDialog extends TitleAreaDialog {
 	@Override
 	protected Control createContents(Composite parent) {
 		Control contents = super.createContents(parent);
-		// Set the title
 		setTitle("Export document");
-		// Set the message
 		setMessage("Please select a file.", IMessageProvider.INFORMATION);
 		return contents;
 	}

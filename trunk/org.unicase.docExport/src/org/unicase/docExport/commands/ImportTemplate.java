@@ -38,6 +38,8 @@ import org.unicase.workspace.util.WorkspaceUtil;
 
 /**
  * The handler for the import template command.
+ * 
+ * @author Sebastian Hoecht
  */
 public class ImportTemplate extends AbstractHandler {
 
@@ -141,34 +143,28 @@ public class ImportTemplate extends AbstractHandler {
 			TemplateRegistry.saveTemplate(template);
 			return template;
 		} catch (IOException e) {
-			WorkspaceUtil.log(
-				"a template from a zip file could not be moved into the resource. This should not happen.", e,
-				IStatus.ERROR);
+			throw new TemplateImportException(e);
 		} catch (InvalidTemplateArchiveException e) {
 			throw new TemplateImportException(e);
-		} catch (TemplateSaveException e) {
+		} catch (TemplatesFileNotFoundException e) {
 			throw new TemplateImportException(e);
 		}
-		return null;
 	}
 
 	private static void storeImage(ZipEntry entry, ZipInputStream stream, Template template)
-		throws TemplateImportException {
+		throws TemplateImportException, IOException {
 		String outPath;
 		File tmpTemplateFile;
-		try {
-			File imageFolder = new File(TemplateRegistry.TEMPLATE_IMAGE_FOLDER);
-			imageFolder.mkdirs();
-			tmpTemplateFile = File.createTempFile("templateLogoImport", ".tmp");
-			outPath = tmpTemplateFile.getAbsolutePath();
 
-			writeZipData(outPath, stream);
-			tmpTemplateFile.renameTo(new File(TemplateRegistry.TEMPLATE_IMAGE_FOLDER
-				+ template.getLayoutOptions().getLogoImage()));
-		} catch (IOException e) {
-			// just fall through. Later, here could be added an additional error handling.
-			// i'm not sure if this can even happen.
-		}
+		File imageFolder = new File(TemplateRegistry.TEMPLATE_IMAGE_FOLDER);
+		imageFolder.mkdirs();
+		tmpTemplateFile = File.createTempFile("templateLogoImport", ".tmp");
+		outPath = tmpTemplateFile.getAbsolutePath();
+
+		writeZipData(outPath, stream);
+		tmpTemplateFile.renameTo(new File(TemplateRegistry.TEMPLATE_IMAGE_FOLDER
+			+ template.getLayoutOptions().getLogoImage()));
+
 	}
 
 	private static void writeZipData(String outPath, ZipInputStream stream) throws TemplateImportException {
@@ -213,7 +209,7 @@ public class ImportTemplate extends AbstractHandler {
 		try {
 			templateResource.load(templateResource.getResourceSet().getLoadOptions());
 		} catch (IOException e) {
-			WorkspaceUtil.log("Importing Template failed", new TemplatesFileNotFoundException(), IStatus.WARNING);
+			WorkspaceUtil.log("Importing Template failed", new TemplatesFileNotFoundException(e), IStatus.WARNING);
 			throw new InvalidTemplateArchiveException();
 		}
 

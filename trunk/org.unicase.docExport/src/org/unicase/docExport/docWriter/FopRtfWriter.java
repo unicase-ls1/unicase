@@ -16,6 +16,8 @@ import org.unicase.docExport.exportModel.renderers.options.UBorderStyle;
 import org.w3c.dom.Element;
 
 /**
+ * Uses the RTF renderer of Apache FOP.
+ * 
  * @author Sebastian Hoecht
  */
 public class FopRtfWriter extends FopWriter {

@@ -130,12 +130,11 @@ public abstract class ITextWriter {
 	}
 
 	private void writeUImage(Object parent, UImage uImage) {
-		// TODO ..
+		// TODO Auto-generated method stub
 	}
 
 	private void writeUList(Object parent, UList doc2) {
 		// TODO Auto-generated method stub
-
 	}
 
 	/**
@@ -330,7 +329,7 @@ public abstract class ITextWriter {
 	 * Additionally, UTextParts are added as chunks of the Paragraph, if there are UTextParts contained in this
 	 * UParagraph (same with UParagraph as child)
 	 * 
-	 * @param paragraph the paragraph containting the information to write
+	 * @param paragraph the paragraph containing the information to write
 	 * @return a new iText Paragraph
 	 * @throws DocumentException -
 	 */

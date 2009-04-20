@@ -76,8 +76,6 @@ public class FhmMeetingRendererImpl extends MeetingRendererImpl implements FhmMe
 
 		setWorkItemTextOption((TextOption) EcoreUtil.copy(getTemplate().getLayoutOptions().getDefaultTextOption()));
 
-		// createMeetingTable(title);
-
 		String topic = "";
 		if (getMeeting().getStarttime() == null) {
 			topic += TOPIC_AGENDA;
@@ -96,11 +94,6 @@ public class FhmMeetingRendererImpl extends MeetingRendererImpl implements FhmMe
 		USection title = new USection(topicParagraph);
 
 		section.add(title);
-		// todo this break is also done, if there are no following elements after the Meeting
-		// so there is an empty page at the end if you export a single meeting
-		// if you export multiple meetings, there should be page breaks between the meetings..
-		// looks nicer!
-		// title.getBoxModel().setBreakAfter(true);
 		title.getSectionOption().setLeaveOutPreviousSectionNumbering(true);
 		title.getSectionOption().setSectionNumberingStyle(SectionNumberingStyle.NONE);
 		title.getBoxModel().setMarginTop(20);

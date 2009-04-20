@@ -16,7 +16,7 @@ import org.unicase.docExport.exportModel.renderers.options.TextOption;
 import org.unicase.workspace.util.WorkspaceUtil;
 
 /**
- * This class represents a basic table.
+ * This element represents a basic table.
  * 
  * @see UTableCell
  * @author Sebastian Hoecht

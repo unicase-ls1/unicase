@@ -5,39 +5,54 @@
  */
 package org.unicase.docExport.editors;
 
+import java.util.ArrayList;
+
 import org.eclipse.core.runtime.IProgressMonitor;
 import org.eclipse.core.runtime.IStatus;
-import org.eclipse.emf.ecore.EClass;
 import org.eclipse.emf.ecore.util.EcoreUtil;
+import org.eclipse.jface.action.MenuManager;
+import org.eclipse.jface.viewers.ISelection;
+import org.eclipse.jface.viewers.ISelectionChangedListener;
+import org.eclipse.jface.viewers.IStructuredSelection;
+import org.eclipse.jface.viewers.SelectionChangedEvent;
 import org.eclipse.swt.SWT;
 import org.eclipse.swt.custom.CTabFolder;
-import org.eclipse.swt.custom.CTabItem;
-import org.eclipse.swt.custom.ScrolledComposite;
 import org.eclipse.swt.graphics.Color;
 import org.eclipse.swt.layout.GridData;
 import org.eclipse.swt.layout.GridLayout;
 import org.eclipse.swt.widgets.Composite;
+import org.eclipse.swt.widgets.Display;
+import org.eclipse.swt.widgets.Menu;
 import org.eclipse.swt.widgets.MessageBox;
 import org.eclipse.ui.IEditorInput;
 import org.eclipse.ui.IEditorSite;
 import org.eclipse.ui.PartInitException;
 import org.eclipse.ui.PlatformUI;
 import org.eclipse.ui.part.EditorPart;
+import org.unicase.docExport.ModelElementRendererRegistry;
 import org.unicase.docExport.TemplateRegistry;
-import org.unicase.docExport.exceptions.TemplateSaveException;
+import org.unicase.docExport.editors.tabItems.LayoutOptionsCoverpageTabItem;
+import org.unicase.docExport.editors.tabItems.LayoutOptionsGeneralTabItem;
+import org.unicase.docExport.editors.tabItems.LayoutOptionsHeaderAndFooterTabItem;
+import org.unicase.docExport.editors.tabItems.LayoutOptionsLogoTabItem;
+import org.unicase.docExport.editors.tabItems.LayoutOptionsSectionTabItem;
+import org.unicase.docExport.editors.tabItems.ModelElementRenderersTabItem;
+import org.unicase.docExport.exceptions.TemplatesFileNotFoundException;
 import org.unicase.docExport.exportModel.Template;
+import org.unicase.docExport.exportModel.renderers.ModelElementRendererMapping;
 import org.unicase.workspace.util.WorkspaceUtil;
 
 /**
+ * A template editor for all the options of a template.
+ * 
  * @author Sebastian Hoecht
  */
 public class TemplateEditor extends EditorPart {
 
 	private CTabFolder tabFolder;
 
-	private ScrolledComposite modelElementRendererScrolledComposite;
-	private ScrolledComposite layoutOptionsScrolledComposite;
-	private ModelElementRenderersTab modelElementRenderersTab;
+	private ModelElementRenderersTabItem modelElementRenderersTabItem;
+	private ArrayList<TemplateEditorTabItem> layoutTabItems = new ArrayList<TemplateEditorTabItem>();
 
 	/**
 	 * .
@@ -71,9 +86,12 @@ public class TemplateEditor extends EditorPart {
 			try {
 				TemplateRegistry.saveTemplate(getTemplate());
 				oldTemplate = (Template) EcoreUtil.copy(template);
-				setDirty();
-			} catch (TemplateSaveException e) {
+				testDirty();
+			} catch (TemplatesFileNotFoundException e) {
 				WorkspaceUtil.log("could not save the Template", e, IStatus.ERROR);
+				MessageBox messageBox = new MessageBox(PlatformUI.getWorkbench().getDisplay().getActiveShell());
+				messageBox.setMessage("Saving the template failed!");
+				messageBox.open();
 			}
 		}
 	}
@@ -124,37 +142,69 @@ public class TemplateEditor extends EditorPart {
 	 */
 	@Override
 	public void createPartControl(Composite parent) {
-		tabFolder = new CTabFolder(parent, SWT.LEAD);
+		Composite twoColumn = new Composite(parent, SWT.NONE);
+		GridLayout gLayout = new GridLayout();
+		gLayout.numColumns = 2;
+		GridData gData = new GridData(GridData.FILL_BOTH);
+		twoColumn.setLayout(gLayout);
+		twoColumn.setLayoutData(gData);
+
+		createTemplateTreeViewer(twoColumn, template);
+
+		tabFolder = new CTabFolder(twoColumn, SWT.TOP);
+		tabFolder.setTabPosition(SWT.BOTTOM);
 		tabFolder.setBackground(new Color(parent.getShell().getDisplay(), 240, 240, 240));
 		GridLayout tabLayout = new GridLayout();
 		tabLayout.numColumns = 1;
-		GridData tabLayoutData = new GridData(GridData.FILL_HORIZONTAL);
+		GridData tabLayoutData = new GridData(GridData.FILL_BOTH);
 		tabLayoutData.grabExcessHorizontalSpace = true;
 		tabFolder.setLayout(tabLayout);
 		tabFolder.setLayoutData(tabLayoutData);
 
-		modelElementRendererScrolledComposite = createTab("ModelElement renderers");
-		layoutOptionsScrolledComposite = createTab("Layout options");
+		modelElementRenderersTabItem = new ModelElementRenderersTabItem(tabFolder, template, this);
+		getLayoutTabItems().add(new LayoutOptionsGeneralTabItem(tabFolder, template, this));
+		getLayoutTabItems().add(new LayoutOptionsHeaderAndFooterTabItem(tabFolder, template, this));
+		getLayoutTabItems().add(new LayoutOptionsCoverpageTabItem(tabFolder, template, this));
+		getLayoutTabItems().add(new LayoutOptionsSectionTabItem(tabFolder, template, this));
+		getLayoutTabItems().add(new LayoutOptionsLogoTabItem(tabFolder, template, this));
 
-		modelElementRenderersTab = new ModelElementRenderersTab(modelElementRendererScrolledComposite, SWT.NONE,
-			tabFolder, getTemplate(), this);
-
-		new LayoutOptionsTab(layoutOptionsScrolledComposite, SWT.NONE, tabFolder, getTemplate());
+		tabFolder.setSelection(layoutTabItems.get(0));
+		tabFolder.setBackground(new Color(Display.getDefault(), 255, 255, 255));
 	}
 
-	/**
-	 * @param modelElementEClass the Model Element type which shall be selected
-	 */
-	public void chooseModelElementType(EClass modelElementEClass) {
-		modelElementRenderersTab.chooseModelElementType(modelElementEClass);
-	}
+	private void createTemplateTreeViewer(Composite parent, Template template) {
+		TemplateTreeViewer viewer = new TemplateTreeViewer(parent, template, this);
 
-	/**
-	 * @param modelElementEClass the EClass of the modelElement
-	 * @param featureName the name of the requested feature
-	 */
-	public void chooseFeature(EClass modelElementEClass, String featureName) {
-		modelElementRenderersTab.chooseFeature(modelElementEClass, featureName);
+		MenuManager menuManager = new MenuManager();
+		Menu menu = menuManager.createContextMenu(viewer.getTree());
+		viewer.getTree().setMenu(menu);
+
+		getSite().registerContextMenu(menuManager, viewer);
+		getSite().setSelectionProvider(viewer);
+
+		viewer.addSelectionChangedListener(new ISelectionChangedListener() {
+
+			public void selectionChanged(SelectionChangedEvent event) {
+				ISelection sel = event.getSelection();
+				if (sel instanceof IStructuredSelection) {
+					IStructuredSelection ssel = (IStructuredSelection) sel;
+					if (!ssel.isEmpty()) {
+						Object o = ssel.getFirstElement();
+						if ((o instanceof ModelElementRendererMapping)) {
+							tabFolder.setSelection(modelElementRenderersTabItem);
+							ModelElementRendererMapping mapping = (ModelElementRendererMapping) o;
+							modelElementRenderersTabItem.chooseModelElementType(ModelElementRendererRegistry
+								.getEClassOfString(mapping.getEClassName()));
+						} else if (o instanceof TemplateEditorTabItem) {
+							tabFolder.setSelection((TemplateEditorTabItem) o);
+						}
+					}
+				}
+			}
+
+		});
+
+		getSite().setSelectionProvider(viewer);
 	}
 
 	/**
@@ -163,22 +213,6 @@ public class TemplateEditor extends EditorPart {
 	@Override
 	public void setFocus() {
 		tabFolder.setFocus();
-	}
-
-	private ScrolledComposite createTab(String text) {
-		CTabItem tabItem1 = new CTabItem(tabFolder, SWT.BOTTOM);
-		tabItem1.setText(text);
-		ScrolledComposite scrolledComposite = new ScrolledComposite(tabFolder, SWT.H_SCROLL | SWT.V_SCROLL | SWT.BORDER
-			| SWT.BOTTOM);
-		scrolledComposite.setExpandHorizontal(true);
-		scrolledComposite.setExpandVertical(true);
-		GridLayout layout1 = new GridLayout();
-		GridData data1 = new GridData();
-		scrolledComposite.setLayout(layout1);
-		scrolledComposite.setLayoutData(data1);
-		tabItem1.setControl(scrolledComposite);
-
-		return scrolledComposite;
 	}
 
 	/**
@@ -191,7 +225,21 @@ public class TemplateEditor extends EditorPart {
 	/**
 	 * trigger the dirty event.
 	 */
-	public void setDirty() {
+	public void testDirty() {
 		firePropertyChange(TemplateEditor.PROP_DIRTY);
+	}
+
+	/**
+	 * @return the modelElementRenderersTab
+	 */
+	public ModelElementRenderersTabItem getModelElementRenderersTabItem() {
+		return modelElementRenderersTabItem;
+	}
+
+	/**
+	 * @return the layoutTabItems
+	 */
+	public ArrayList<TemplateEditorTabItem> getLayoutTabItems() {
+		return layoutTabItems;
 	}
 }

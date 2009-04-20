@@ -29,7 +29,7 @@ import org.eclipse.emf.edit.provider.IItemPropertyDescriptor;
 import org.unicase.docExport.DocumentExport;
 import org.unicase.docExport.TemplateRegistry;
 import org.unicase.docExport.exportModel.Template;
-import org.unicase.docExport.exportModel.builders.DefaultAttributeRendererBuilder;
+import org.unicase.docExport.exportModel.builders.DefaultAttributeRendererFactory;
 import org.unicase.docExport.exportModel.renderers.AttributeRenderer;
 import org.unicase.docExport.exportModel.renderers.AttributeRendererMapping;
 import org.unicase.docExport.exportModel.renderers.ModelElementRenderer;
@@ -469,7 +469,7 @@ public abstract class ModelElementRendererImpl extends EObjectImpl implements Mo
 		modelElementSection.setIndentionLeft(indentionLeft);
 
 		modelElementSection.getBoxModel().setMarginLeft(INDENTION_WIDTH * modelElementSection.getIndentionLeft());
-		// Modelelements, which have a depth greater than 2 of the document sectioning, a left
+		// ModelElements, which have a depth greater than 2 of the document sectioning, a left
 		// border is added, to structure the range of the ModelElement clearly.
 		// The border size of contained ModelElements decrease by the Section depth.
 		if (mayRenderStructuralLine(modelElement) && !(modelElement instanceof MEDiagram) && !hideStructuralLines) {
@@ -718,9 +718,9 @@ public abstract class ModelElementRendererImpl extends EObjectImpl implements Mo
 	/**
 	 * Returns the depth of the ModelElement in the nested Unicase tree.
 	 * 
-	 * @param modelElement to test
+	 * @param modelElement the model element
 	 * @param depth the depth to start with
-	 * @return
+	 * @return the depth of the modelElement.
 	 */
 	public static int getModelElementDepth(ModelElement modelElement, int depth) {
 		EObject parent = modelElement.eContainer();
@@ -733,12 +733,15 @@ public abstract class ModelElementRendererImpl extends EObjectImpl implements Mo
 		}
 	}
 
+	/**
+	 * Renders a modelElement into another element.
+	 * 
+	 * @param modelElement the modelElement to render
+	 * @param parent the parent element where the modelElement shall be rendered into.
+	 */
 	protected abstract void doRender(ModelElement modelElement, UCompositeSection parent);
 
 	/**
-	 * Returns the AttributeRenderer for a feature of the ModelElement. May return null if there isnt any
-	 * AttributeRenderer registered for the feature.
-	 * 
 	 * @see org.unicase.docExport.exportModel.renderers.ModelElementRenderer#getAttributeRenderer(org.eclipse.emf.ecore.EStructuralFeature)
 	 */
 	public AttributeRenderer getAttributeRenderer(EStructuralFeature feature) {
@@ -751,9 +754,6 @@ public abstract class ModelElementRendererImpl extends EObjectImpl implements Mo
 	}
 
 	/**
-	 * Returns an AttributeRenderer for the feature. If there isn't any AttributeRenderer registered, a new default
-	 * AttributeRenderer will be created and returned.
-	 * 
 	 * @see #getAttributeRenderer(EStructuralFeature)
 	 * @see org.unicase.docExport.exportModel.renderers.ModelElementRenderer#getAttributeRendererNotNull(org.eclipse.emf.ecore.EStructuralFeature)
 	 */
@@ -761,15 +761,13 @@ public abstract class ModelElementRendererImpl extends EObjectImpl implements Mo
 
 		AttributeRenderer renderer = getAttributeRenderer(feature);
 		if (renderer == null) {
-			return DefaultAttributeRendererBuilder.build(feature, template);
+			return DefaultAttributeRendererFactory.build(feature, template);
 		} else {
 			return renderer;
 		}
 	}
 
 	/**
-	 * Set the AttributeRenderer for a feature. If there already is an AttributeRenderer, it will be written.
-	 * 
 	 * @param feature the feature of the attribute
 	 * @param renderer the AttributeRenderer to set
 	 * @see org.unicase.docExport.exportModel.renderers.ModelElementRenderer#setAttributeRenderer(org.eclipse.emf.ecore.EStructuralFeature,
@@ -791,8 +789,6 @@ public abstract class ModelElementRendererImpl extends EObjectImpl implements Mo
 	}
 
 	/**
-	 * Removes the AttributeRenderer for a feature.
-	 * 
 	 * @see #getAttributeRendererNotNull(EStructuralFeature)
 	 * @see org.unicase.docExport.exportModel.renderers.ModelElementRenderer#removeAttributeRenderer(org.eclipse.emf.ecore.EStructuralFeature)
 	 * @param feature the feature of the attribute
@@ -811,8 +807,6 @@ public abstract class ModelElementRendererImpl extends EObjectImpl implements Mo
 	}
 
 	/**
-	 * Hide the structural lines of the default ModelElementRenderer.
-	 * 
 	 * @see org.unicase.docExport.exportModel.renderers.ModelElementRenderer#hideStructuralLines()
 	 */
 	public boolean hideStructuralLines() {
@@ -820,8 +814,6 @@ public abstract class ModelElementRendererImpl extends EObjectImpl implements Mo
 	}
 
 	/**
-	 * Get the feature of a ModelElement by the name of the feature.
-	 * 
 	 * @param featureName the name of the feature
 	 * @param modelElement the modelElement where this feature is contained
 	 * @return the EStructuralFeature of the feature of the ModelElement.

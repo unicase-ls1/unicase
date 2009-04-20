@@ -8,6 +8,8 @@ package org.unicase.docExport.exportModel.renderers.elements;
 import org.w3c.dom.Element;
 
 /**
+ * A wrapper element for custom XSL-FO elements.
+ * 
  * @author Sebastian Hoecht
  */
 public class UFormatingObject extends UDocument {

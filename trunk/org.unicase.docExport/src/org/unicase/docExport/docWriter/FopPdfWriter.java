@@ -9,6 +9,8 @@ package org.unicase.docExport.docWriter;
 import org.apache.fop.apps.MimeConstants;
 
 /**
+ * Uses the PDF renderer of Apache FOP.
+ * 
  * @author Sebastian Hoecht
  */
 public class FopPdfWriter extends FopWriter {

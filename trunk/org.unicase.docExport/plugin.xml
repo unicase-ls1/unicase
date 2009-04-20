@@ -20,6 +20,22 @@
             id="org.unicase.docExport.importTemplate"
             name="importTemplate">
       </command>
+      <command
+            id="org.unicase.docExport.removeModelElementRenderer"
+            name="removeModelElementRenderer">
+      </command>
+      <command
+            id="org.unicase.docExport.addModelElementRenderer"
+            name="addModelElementRenderer">
+      </command>
+      <command
+            id="org.unicase.docExport.addTemplate"
+            name="addTemplate">
+      </command>
+      <command
+            id="org.unicase.docExport.deleteTemplate"
+            name="deleteTemplate">
+      </command>
    </extension>
    <extension
          point="org.eclipse.ui.handlers">
@@ -34,6 +50,22 @@
       <handler
             class="org.unicase.docExport.commands.ImportTemplate"
             commandId="org.unicase.docExport.importTemplate">
+      </handler>
+      <handler
+            class="org.unicase.docExport.commands.AddModelElementRenderer"
+            commandId="org.unicase.docExport.addModelElementRenderer">
+      </handler>
+      <handler
+            class="org.unicase.docExport.commands.RemoveModelElementRenderer"
+            commandId="org.unicase.docExport.removeModelElementRenderer">
+      </handler>
+      <handler
+            class="org.unicase.docExport.commands.AddTemplate"
+            commandId="org.unicase.docExport.addTemplate">
+      </handler>
+      <handler
+            class="org.unicase.docExport.commands.DeleteTemplate"
+            commandId="org.unicase.docExport.deleteTemplate">
       </handler>
    </extension>
    <extension
@@ -77,6 +109,51 @@
                commandId="org.unicase.docExport.importTemplate"
                icon="icons/export.gif"
                label="import template"
+               style="push">
+         </command>
+         <command
+               commandId="org.unicase.docExport.deleteTemplate"
+               icon="icons/cross.png"
+               label="delete template"
+               style="push">
+            <visibleWhen
+                  checkEnabled="false">
+               <iterate
+                     ifEmpty="false">
+                  <instanceof
+                        value="org.unicase.docExport.exportModel.Template">
+                  </instanceof>
+               </iterate>
+            </visibleWhen>
+         </command>
+         <command
+               commandId="org.unicase.docExport.addTemplate"
+               icon="icons/add.png"
+               label="addTemplate"
+               style="push">
+         </command>
+      </menuContribution>
+      <menuContribution
+            locationURI="popup:org.unicase.docExport.editors.TemplateEditor">
+         <command
+               commandId="org.unicase.docExport.removeModelElementRenderer"
+               icon="icons/cross.png"
+               label="remove ModelElement Renderer"
+               style="push">
+            <visibleWhen
+                  checkEnabled="false">
+               <iterate
+                     ifEmpty="false">
+                  <instanceof
+                        value="org.unicase.docExport.exportModel.renderers.ModelElementRendererMapping">
+                  </instanceof>
+               </iterate>
+            </visibleWhen>
+         </command>
+         <command
+               commandId="org.unicase.docExport.addModelElementRenderer"
+               icon="icons/add.png"
+               label="add ModelElement Renderer"
                style="push">
          </command>
       </menuContribution>

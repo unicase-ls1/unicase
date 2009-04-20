@@ -6,10 +6,13 @@
 package org.unicase.docExport.exceptions;
 
 /**
+ * A template could not be found.
+ * 
  * @author Sebastian Hoecht
  */
-@SuppressWarnings("serial")
 public class TemplateNotFoundException extends Exception {
+
+	private static final long serialVersionUID = 4462931162843699016L;
 
 	/**
 	 * @param templateName the name of the template which could not be found

@@ -13,8 +13,8 @@ import org.unicase.docExport.exportModel.renderers.options.AttributeOption;
 import org.unicase.model.ModelElement;
 
 /**
- * <!-- begin-user-doc --> A representation of the model object '<em><b>Attribute Renderer</b></em>'. <!-- end-user-doc
- * -->
+ * <!-- begin-user-doc --> Superclass of all AttributeRenderers which are able to render any feature of a unicase model.
+ * <!-- end-user-doc -->
  * <p>
  * The following features are supported:
  * <ul>
@@ -56,8 +56,21 @@ public interface AttributeRenderer extends EObject {
 	void setAttributeOption(AttributeOption value);
 
 	// begin custom code
+	/**
+	 * Renders a feature of a modelElement into a section using the layout options of the template.
+	 * 
+	 * @param feature the feature of the unicase attribute.
+	 * @param modelElement the modelElement containing the information of the feature.
+	 * @param section the section where the content is rendered to.
+	 * @param template the template with layout options.
+	 */
 	void render(EStructuralFeature feature, ModelElement modelElement, UCompositeSection section, Template template);
 
+	/**
+	 * Hide or show the structural lines.
+	 * 
+	 * @return true if the structural lines shall be hidden, else false.
+	 */
 	boolean hideStructuralLines();
 	// end custom code
 } // AttributeRenderer

@@ -26,7 +26,7 @@ public enum HeaderStyle implements Enumerator {
 	 * @generated
 	 * @ordered
 	 */
-	ONLY_TEXT(0, "ONLY_TEXT", "ONLY_TEXT"), /**
+	ONLY_TEXT(0, "ONLY_TEXT", "only header text"), /**
 	 * The '<em><b>TEXT AND LOGO</b></em>' literal object.
 	 * <!-- begin-user-doc
 	 * --> <!-- end-user-doc -->
@@ -34,7 +34,7 @@ public enum HeaderStyle implements Enumerator {
 	 * @generated
 	 * @ordered
 	 */
-	TEXT_AND_LOGO(1, "TEXT_AND_LOGO", "TEXT_AND_LOGO");
+	TEXT_AND_LOGO(1, "TEXT_AND_LOGO", "text and logo");
 
 	/**
 	 * The '<em><b>ONLY TEXT</b></em>' literal value.
@@ -45,7 +45,7 @@ public enum HeaderStyle implements Enumerator {
 	 * </p>
 	 * <!-- end-user-doc -->
 	 * @see #ONLY_TEXT
-	 * @model
+	 * @model literal="only header text"
 	 * @generated
 	 * @ordered
 	 */
@@ -60,7 +60,7 @@ public enum HeaderStyle implements Enumerator {
 	 * </p>
 	 * <!-- end-user-doc -->
 	 * @see #TEXT_AND_LOGO
-	 * @model
+	 * @model literal="text and logo"
 	 * @generated
 	 * @ordered
 	 */
