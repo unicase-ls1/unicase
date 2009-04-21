@@ -30,6 +30,7 @@ import org.eclipse.swt.events.TypedEvent;
 import org.eclipse.swt.graphics.Color;
 import org.eclipse.swt.graphics.Image;
 import org.eclipse.swt.graphics.Rectangle;
+import org.eclipse.swt.graphics.Resource;
 import org.eclipse.swt.layout.GridData;
 import org.eclipse.swt.layout.RowLayout;
 import org.eclipse.swt.widgets.Composite;
@@ -175,6 +176,7 @@ public class NotificationDashboardEntry extends AbstractDashboardEntry {
 	private Composite toolbar;
 	private Comment[] comments;
 	private Composite commentsComposite;
+	private ArrayList<Resource> localResources;
 
 	/**
 	 * Default constructor.
@@ -188,14 +190,32 @@ public class NotificationDashboardEntry extends AbstractDashboardEntry {
 	public NotificationDashboardEntry(DashboardPage page, Composite parent, int style, ESNotification notification,
 		ProjectSpace project) {
 		super(page, parent, style, notification, project);
+		localResources = new ArrayList<Resource>();
 
 		lightBlue = new Color(getDisplay(), 233, 244, 255);
+		localResources.add(lightBlue);
+
 		notificationColor = getDisplay().getSystemColor(SWT.COLOR_WHITE);
+		if (getNotification().getSender() != null
+			&& getNotification().getSender().equals("Pushed Notification Provider")) {
+			notificationColor = getDisplay().getSystemColor(SWT.COLOR_INFO_BACKGROUND);
+		}
 		format = new SimpleDateFormat("dd.MM.yyyy HH:mm");
 		labelProvider = new AdapterFactoryLabelProvider(new ComposedAdapterFactory(
 			ComposedAdapterFactory.Descriptor.Registry.INSTANCE));
 		comments = getComment();
 		createEntry();
+	}
+
+	/**
+	 * {@inheritDoc}
+	 */
+	@Override
+	public void dispose() {
+		for (Resource r : localResources) {
+			r.dispose();
+		}
+		super.dispose();
 	}
 
 	/**
@@ -369,7 +389,9 @@ public class NotificationDashboardEntry extends AbstractDashboardEntry {
 			toogleComments.setToolTipText("Show comments");
 			Label toggleCommentsNumber = new Label(toolbar, SWT.WRAP);
 			toggleCommentsNumber.setText(comments.length + "");
-			toggleCommentsNumber.setForeground(new Color(getDisplay(), 123, 160, 199));
+			Color foreground = new Color(getDisplay(), 123, 160, 199);
+			localResources.add(foreground);
+			toggleCommentsNumber.setForeground(foreground);
 			ToggleCommentsAdapter toggleCommentsAdapter = new ToggleCommentsAdapter();
 			toggleCommentsNumber.addMouseListener(toggleCommentsAdapter);
 			toogleComments.addMouseListener(toggleCommentsAdapter);
@@ -383,7 +405,9 @@ public class NotificationDashboardEntry extends AbstractDashboardEntry {
 			Composite commentTitleBar = new Composite(parent, SWT.NONE);
 			GridLayoutFactory.fillDefaults().numColumns(2).equalWidth(false).margins(3, 3).applyTo(commentTitleBar);
 			GridDataFactory.fillDefaults().grab(true, false).applyTo(commentTitleBar);
-			commentTitleBar.setBackground(new Color(getDisplay(), 246, 235, 197));
+			Color titlebarColor = new Color(getDisplay(), 246, 235, 197);
+			localResources.add(titlebarColor);
+			commentTitleBar.setBackground(titlebarColor);
 
 			Label commentAuthor = new Label(commentTitleBar, SWT.WRAP);
 			commentAuthor.setText(comment.getCreator());
@@ -396,7 +420,9 @@ public class NotificationDashboardEntry extends AbstractDashboardEntry {
 			Composite commentTitleBarBorder = new Composite(parent, SWT.NONE);
 			GridDataFactory.fillDefaults().span(2, 1).hint(SWT.DEFAULT, 1).grab(true, false).applyTo(
 				commentTitleBarBorder);
-			commentTitleBarBorder.setBackground(new Color(getDisplay(), 189, 157, 95));
+			Color titlebarBorderColor = new Color(getDisplay(), 189, 157, 95);
+			localResources.add(titlebarBorderColor);
+			commentTitleBarBorder.setBackground(titlebarBorderColor);
 		}
 
 		Composite commentEntry = new Composite(parent, SWT.NONE);
