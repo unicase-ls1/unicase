@@ -5,15 +5,15 @@
  */
 package org.unicase.workspace;
 
-import org.eclipse.core.runtime.Platform;
-import org.osgi.framework.Bundle;
-import org.unicase.emfstore.esmodel.ClientVersionInfo;
-import org.unicase.emfstore.esmodel.EsmodelFactory;
-
 import java.io.File;
 import java.util.ArrayList;
 import java.util.List;
 import java.util.Map;
+
+import org.eclipse.core.runtime.Platform;
+import org.osgi.framework.Bundle;
+import org.unicase.emfstore.esmodel.ClientVersionInfo;
+import org.unicase.emfstore.esmodel.EsmodelFactory;
 
 /**
  * Represents the current Workspace Configuration.
@@ -133,9 +133,9 @@ public final class Configuration {
 		serverInfo.setUrl("localhost");
 
 		Usersession superUsersession = WorkspaceFactory.eINSTANCE.createUsersession();
+		superUsersession.setServerInfo(serverInfo);
 		superUsersession.setPassword("super");
 		superUsersession.setSavePassword(true);
-		superUsersession.setServerInfo(serverInfo);
 		superUsersession.setUsername("super");
 		serverInfo.setLastUsersession(superUsersession);
 
