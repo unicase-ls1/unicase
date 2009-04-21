@@ -5,7 +5,12 @@
  */
 package org.unicase.workspace.test.integration;
 
-import org.eclipse.emf.ecore.util.EcoreUtil;
+import java.io.File;
+import java.io.FileFilter;
+import java.io.IOException;
+import java.net.URISyntaxException;
+import java.util.Calendar;
+
 import org.eclipse.emf.transaction.RecordingCommand;
 import org.eclipse.emf.transaction.TransactionalEditingDomain;
 import org.junit.After;
@@ -28,33 +33,22 @@ import org.unicase.workspace.Workspace;
 import org.unicase.workspace.WorkspaceFactory;
 import org.unicase.workspace.WorkspaceManager;
 import org.unicase.workspace.exceptions.NoLocalChangesException;
-import org.unicase.workspace.impl.ProjectSpaceImpl;
 import org.unicase.workspace.impl.WorkspaceImpl;
 import org.unicase.workspace.test.Activator;
-
-import java.io.File;
-import java.io.FileFilter;
-import java.io.IOException;
-import java.net.URISyntaxException;
-import java.util.Calendar;
 
 /**
  * @author Hodaie
  */
 public abstract class IntegrationTestCase {
 
-	private static ProjectSpace testSpace;
-	private static Project testProject;
+	private ProjectSpace testSpace;
+	private Project testProject;
 
 	private static Usersession usersession;
 	private static TransactionalEditingDomain domain;
 
-	private static ProjectId projectId;
+	private ProjectId projectId;
 	private static Workspace workSpace;
-	private static Project testProjectBackup;
-
-	private static int executedTestsCounter;
-	private static final int NUM_OF_TESTS = 14 ;
 
 	/**
 	 * set up test project.
@@ -62,16 +56,26 @@ public abstract class IntegrationTestCase {
 	 * @throws URISyntaxException URISyntaxException
 	 */
 	@BeforeClass
-	public static void setup() throws URISyntaxException {
-		if (testSpace != null) {
+	public static void startServer() throws URISyntaxException {
+		if (workSpace != null) {
 			return;
 		}
 
-		startServer();
+		ServerConfiguration.setTesting(true);
+		new Thread(new EmfStoreController()).start();
 
 		Configuration.setTesting(true);
 		workSpace = WorkspaceManager.getInstance().getCurrentWorkspace();
 		domain = TransactionalEditingDomain.Registry.INSTANCE.getEditingDomain("org.unicase.EditingDomain");
+
+	}
+
+	/**
+	 * Before every test import test project and share it on the server.
+	 */
+	@Before
+	public void setup() {
+
 		domain.getCommandStack().execute(new RecordingCommand(domain) {
 
 			@Override
@@ -80,85 +84,48 @@ public abstract class IntegrationTestCase {
 			}
 		});
 
-	}
-
-	private static void startServer() {
-
-		ServerConfiguration.setTesting(true);
-		new Thread(new EmfStoreController()).start();
-
-	}
-
-	/**
-	 * Create test project space.
-	 */
-	private static void createTestProjectSapce() {
-
-		boolean createRandomProject = false;
-
-		if (createRandomProject) {
-			createRandomTestProjet();
-		} else {
-
-			try {
-				// use already created random project with parameter(100, randomSeed, 5, 5, 10, 20)
-				// testSpace = currentWorkspace.importProject("/TestProjects/randomProj50.ucp");
-				// String path = "TestProjects/randomProject";
-				String path = "TestProjects/unicase.ucp";
-
-				// use unicase project
-				String uriString = Activator.getDefault().getBundle().getLocation() + path;
-				if (File.separator.equals("/")) {
-					uriString = uriString.replace("reference:file:", "");
-
-				} else {
-					uriString = uriString.replace("reference:file:/", "");
-				}
-
-				testSpace = workSpace.importProject(uriString);
-
-				testProjectBackup = testSpace.getProject();
-
-			} catch (IOException e) {
-
-				e.printStackTrace();
-			}
-		}
-
-	}
-
-	
-
-	/**
-	 * Before every test make sure test project and compare project (which lies on the server) are equal.
-	 */
-	@Before
-	public void resetCompareProject() {
-		// if a compare project already exists on the server {
-		// this is only in first test not the case!
-		// delete compare project on the server
-		// }
-		testProject = (Project) EcoreUtil.copy(testProjectBackup);
-		domain.getCommandStack().execute(new RecordingCommand(domain) {
-
-			@Override
-			protected void doExecute() {
-				((ProjectSpaceImpl) getTestProjectSpace()).stopChangeRecording();
-
-				getTestProjectSpace().setProject(testProject);
-
-				getTestProjectSpace().init();
-			}
-		});
-
 		shareProject();
 		projectId = getTestProjectSpace().getProjectId();
 	}
 
 	/**
+	 * Create test project space.
+	 */
+	private void createTestProjectSapce() {
+
+		try {
+			String path;
+			
+			//use a random generated project (with about 5000 elements) with these parameter(30, randomSeed, 5, 5, 10, 20)
+			//path = "TestProjects/randomProject5";
+			
+			//use unicase project
+			path = "TestProjects/unicase.ucp";
+
+			// use unicase project
+			String uriString = Activator.getDefault().getBundle().getLocation() + path;
+			if (File.separator.equals("/")) {
+				uriString = uriString.replace("reference:file:", "");
+
+			} else {
+				uriString = uriString.replace("reference:file:/", "");
+			}
+
+			testSpace = workSpace.importProject(uriString);
+
+			testProject = testSpace.getProject();
+
+		} catch (IOException e) {
+
+			e.printStackTrace();
+		}
+
+	}
+
+	/**
 	 * This shares test project with server.
 	 */
-	private static void shareProject() {
+	private void shareProject() {
 		if (usersession == null) {
 			usersession = WorkspaceFactory.eINSTANCE.createUsersession();
 
@@ -226,26 +193,16 @@ public abstract class IntegrationTestCase {
 	}
 
 	/**
-	 * 
-	 */
-	private static void createRandomTestProjet() {
-		// TODO
-		// testSpace = TestHelper.createEmptyProjectSpace("test");
-		// ....
-
-	}
-
-	/**
 	 * @return the testSpace
 	 */
-	public static ProjectSpace getTestProjectSpace() {
+	public ProjectSpace getTestProjectSpace() {
 		return testSpace;
 	}
 
 	/**
 	 * @return the testProject
 	 */
-	public static Project getTestProject() {
+	public Project getTestProject() {
 		return testProject;
 	}
 
@@ -256,7 +213,7 @@ public abstract class IntegrationTestCase {
 	 * @return project lying on the server
 	 * @throws EmfStoreException EmfStoreException
 	 */
-	public static Project getCompareProject() throws EmfStoreException {
+	public Project getCompareProject() throws EmfStoreException {
 
 		Project comparePrject = ((WorkspaceImpl) WorkspaceManager.getInstance().getCurrentWorkspace()).checkout(
 			usersession, projectId);
@@ -268,55 +225,47 @@ public abstract class IntegrationTestCase {
 	 */
 	@After
 	public void cleanUp() {
-		executedTestsCounter++;
-		if (executedTestsCounter == NUM_OF_TESTS) {
-			doCleanUp();
-		}
-	}
-
-	private void doCleanUp() {
 		String serverPath = ServerConfiguration.getServerHome();
 		File serverDirectory = new File(serverPath);
-		FileFilter filter = new FileFilter() {
+		FileFilter serverFileFilter = new FileFilter() {
 
 			public boolean accept(File pathname) {
 				return pathname.getName().startsWith("project-");
 			}
 
 		};
-		File[] filesToDelete = serverDirectory.listFiles(filter);
-		for (int i = 0; i < filesToDelete.length; i++) {
+		File[] filesToDeleteOnServer = serverDirectory.listFiles(serverFileFilter);
+		for (int i = 0; i < filesToDeleteOnServer.length; i++) {
 			try {
-				FileUtil.deleteFolder(filesToDelete[i]);
+				FileUtil.deleteFolder(filesToDeleteOnServer[i]);
 			} catch (IOException e) {
-				
+
 				e.printStackTrace();
 			}
 		}
-		
-		new File(serverPath + "storage.uss").delete();
-		
+
+		//new File(serverPath + "storage.uss").delete();
+
 		String workspacePath = Configuration.getWorkspaceDirectory();
 		File workspaceDirectory = new File(workspacePath);
-		FileFilter filter2 = new FileFilter() {
+		FileFilter workspaceFileFilter = new FileFilter() {
 
 			public boolean accept(File pathname) {
 				return pathname.getName().startsWith("ps-");
 			}
 
 		};
-		File[] filesToDelete2 = workspaceDirectory.listFiles(filter2);
-		for (int i = 0; i < filesToDelete2.length; i++) {
+		File[] filesToDeleteOnWorkspace = workspaceDirectory.listFiles(workspaceFileFilter);
+		for (int i = 0; i < filesToDeleteOnWorkspace.length; i++) {
 			try {
-				FileUtil.deleteFolder(filesToDelete2[i]);
+				FileUtil.deleteFolder(filesToDeleteOnWorkspace[i]);
 			} catch (IOException e) {
-				
+
 				e.printStackTrace();
 			}
 		}
-		
-		new File(workspacePath + "workspace.ucw").delete();
-		
-		
+
+		//new File(workspacePath + "workspace.ucw").delete();
 	}
+
 }
