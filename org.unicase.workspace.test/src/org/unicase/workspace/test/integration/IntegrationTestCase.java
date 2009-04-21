@@ -96,13 +96,28 @@ public abstract class IntegrationTestCase {
 		try {
 			String path;
 			
-			//use a random generated project (with about 5000 elements) with these parameter(30, randomSeed, 5, 5, 10, 20)
-			//path = "TestProjects/randomProject5";
+			//use a random generated project (with about 6000 elements) with these parameter(10, 12345, 5, 3, 15, 20)
+			//path = "TestProjects/randomProject6";
+			
+			//use a random generated project (with about 8000 elements) with these parameter(15, 12345, 5, 3, 15, 20)
+			//path = "TestProjects/randomProject8";
+			
+			//use a random generated project (with about 12000 elements) with these parameter(20, 12345, 5, 5, 10, 20)
+			//path = "TestProjects/randomProject12";
+			
+			//use a random generated project (with about 14000 elements) with these parameter(30, 123, 5, 5, 10, 20)
+			//path = "TestProjects/randomProject14";
+			
+			//use a random generated project (with about 25000 elements) with these parameter(70, 123, 5, 5, 10, 20)
+			//path = "TestProjects/randomProject25";
+			
+			//use dolli2 project
+			//path = "TestProjects/dolli2.ucp";
 			
 			//use unicase project
 			path = "TestProjects/unicase.ucp";
 
-			// use unicase project
+			
 			String uriString = Activator.getDefault().getBundle().getLocation() + path;
 			if (File.separator.equals("/")) {
 				uriString = uriString.replace("reference:file:", "");
@@ -255,10 +270,10 @@ public abstract class IntegrationTestCase {
 			}
 
 		};
-		File[] filesToDeleteOnWorkspace = workspaceDirectory.listFiles(workspaceFileFilter);
-		for (int i = 0; i < filesToDeleteOnWorkspace.length; i++) {
+		File[] filesToDelete2 = workspaceDirectory.listFiles(workspaceFileFilter);
+		for (int i = 0; i < filesToDelete2.length; i++) {
 			try {
-				FileUtil.deleteFolder(filesToDeleteOnWorkspace[i]);
+				FileUtil.deleteFolder(filesToDelete2[i]);
 			} catch (IOException e) {
 
 				e.printStackTrace();
