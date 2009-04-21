@@ -7,14 +7,14 @@ package org.unicase.workspace.test.operations;
 
 import static org.junit.Assert.assertEquals;
 
-import java.util.List;
-
 import org.junit.Test;
 import org.unicase.emfstore.esmodel.versioning.operations.AbstractOperation;
 import org.unicase.emfstore.esmodel.versioning.operations.AttributeOperation;
 import org.unicase.model.requirement.RequirementFactory;
 import org.unicase.model.requirement.UseCase;
 import org.unicase.workspace.exceptions.UnsupportedNotificationException;
+
+import java.util.List;
 
 /**
  * Tests the Attribute Operation.
