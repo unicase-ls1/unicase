@@ -26,8 +26,8 @@ public class ConflictDetector {
 	 * Constructor. Uses default conflict detection strategy
 	 */
 	public ConflictDetector() {
-		this(new AlwaysFalseConflictDetectionStrategy());
-		// this(new FineGrainedConflictDetectionStrategy());
+		// this(new AlwaysFalseConflictDetectionStrategy());
+		this(new FineGrainedConflictDetectionStrategy());
 	}
 
 	/**
@@ -127,19 +127,15 @@ public class ConflictDetector {
 		// Check all operations if they are (transitively) required by op.
 		// We make use of the fact here that an operation can only require
 		// operations that are before it in time.
-		int opIdx = ops.indexOf(op);
 		List<AbstractOperation> required = new ArrayList<AbstractOperation>();
 		required.add(op);
 
-		for (int i = ops.size() - 1; i >= 0; i--) {
+		for (int i = ops.indexOf(op) - 1; i >= 0; i--) {
 			AbstractOperation current = ops.get(i);
-			// if the current op is after op, it can not be required by it
-			if (ops.indexOf(current) >= opIdx) {
-				continue;
-			}
 			// else check if it is required by any of the already required ops
+
 			for (AbstractOperation req : required) {
-				if (conflictDetectionStrategy.isRequired(req, current)) {
+				if (conflictDetectionStrategy.isRequired(current, req)) {
 					required.add(0, current);
 					break;
 				}
@@ -170,6 +166,7 @@ public class ConflictDetector {
 		int opIdx = ops.indexOf(op);
 		List<AbstractOperation> requiring = new ArrayList<AbstractOperation>();
 		requiring.add(op);
+
 		for (AbstractOperation current : ops) {
 			// if the current op is before op, it can not require it
 			if (ops.indexOf(current) <= opIdx) {
@@ -177,7 +174,7 @@ public class ConflictDetector {
 			}
 			// else check if it requires any of the already requiring ops
 			for (AbstractOperation req : requiring) {
-				if (conflictDetectionStrategy.isRequired(req, current)) {
+				if (conflictDetectionStrategy.isRequired(current, req)) {
 					requiring.add(current);
 					break;
 				}
