@@ -42,7 +42,8 @@ public class OperationsDescLabelProvider extends ColumnLabelProvider {
 		Object element = cell.getElement();
 		if (element instanceof AbstractOperation) {
 			AbstractOperation op = (AbstractOperation) element;
-			String description = op.getDescription();
+			// String description = op.getDescription();
+			String description = visualizationHelper.getDescription(op);
 			int indexOfLF = description.indexOf("\n");
 			if (indexOfLF > 0) {
 				description = description.substring(0, indexOfLF) + " ...";
@@ -67,7 +68,7 @@ public class OperationsDescLabelProvider extends ColumnLabelProvider {
 	public String getToolTipText(Object element) {
 		if (element instanceof AbstractOperation) {
 			AbstractOperation operation = (AbstractOperation) element;
-			String desc = operation.getDescription();
+			String desc = this.visualizationHelper.getDescription(operation);
 			return (desc != null ? desc : "No description");
 		}
 		return "Change package";

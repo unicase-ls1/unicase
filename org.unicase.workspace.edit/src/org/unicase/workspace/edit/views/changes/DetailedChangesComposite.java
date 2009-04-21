@@ -66,7 +66,7 @@ public class DetailedChangesComposite extends AbstractChangesComposite {
 		opColumn = new TreeViewerColumn(getTreeViewer(), SWT.NONE);
 		opColumn.getColumn().setWidth(300);
 		opColumn.getColumn().setText("Operation");
-		opColumn.setLabelProvider(new OperationsNameLabelProvider(getEmfLabelProvider(), getVisualizationHelper()));
+		opColumn.setLabelProvider(new OperationsDescLabelProvider(getEmfLabelProvider(), getVisualizationHelper()));
 
 	}
 
